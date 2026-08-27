@@ -74,20 +74,33 @@ fs.writeFileSync(path.join(ROOT, '_source/routes.csv'), csv(rutas));
 // que trae `alt`. Encolar una tarea por REFERENCIA hace el manifiesto no determinista:
 // la misma URL sale con `alt` o sin él según quién llegue antes.
 const assets = new Map(); // url -> {url, ext, alt, usos:[]}
-const ALT_DE = { // campo de imagen -> campo hermano que lleva su texto alternativo
-  'Image': 'Metadata Image SEO', 'Main Image': 'Metadescription Main Image SEO',
-  'Image Cover': 'Metadata Imagen Cover', 'Image Page': 'Metadata Image Page',
-  'Main Project Image': 'Metadata SEO Main Project Image', 'Step Image': 'Metadata Step Image',
-  'Logo': 'Metadata', 'Cover': 'Metadata', 'Icon': '',
-};
+// El campo del alt se EMPAREJA POR NOMBRE, no con una lista a mano: escribirla a mano
+// dejó fuera `Imagen Intro N`, `Image Animation N`, `Before/After Image` e `Img Feature N`
+// (297 alts perdidos en silencio). Webflow nombra el hermano con un prefijo variable:
+// Metadata / Metadescription / Metada / SEO Metadata, y a veces Image<->Imagen.
+const PREFIJO = /^(seo\s+)?(metadata|metadescription|metadatos|metada)\s*/i;
+const canon = (s) => s.toLowerCase().replace(/\bimagen\b/g, 'image').replace(/[^a-z0-9]+/g, '');
+function mapaAlt(cols) {
+  const metas = cols.filter(c => PREFIJO.test(c));
+  const mapa = {};
+  for (const c of cols) {
+    if (PREFIJO.test(c)) continue;
+    const hit = metas.find(m => canon(m.replace(PREFIJO, '').replace(/\bseo\b/gi, '')) === canon(c));
+    if (hit) mapa[c] = hit;
+  }
+  return mapa;
+}
+
 for (const f of fs.readdirSync(CMS)) {
   const col = f.replace(/\.csv$/, '');
-  for (const [i, item] of load(col).entries()) {
+  const filas = load(col);
+  const ALT_DE = filas.length ? mapaAlt(Object.keys(filas[0])) : {};
+  for (const [i, item] of filas.entries()) {
     for (const [campo, valor] of Object.entries(item)) {
       if (!/^https?:\/\//.test(valor)) continue;
       for (const raw of valor.split(';')) {
-        const url = decodeURI(raw.trim().replace(/[;,]$/, ''));
-        if (!/^https?:\/\//.test(url)) continue;
+        const url = normalizarUrl(raw.trim().replace(/[;,]$/, ''));
+        if (!url) continue;
         const alt = (item[ALT_DE[campo] ?? ''] || '').trim();
         const prev = assets.get(url);
         if (!prev) assets.set(url, { url, alt, usos: [`${col}.${campo}#${item.Slug || i}`] });
@@ -100,17 +113,34 @@ for (const f of fs.readdirSync(CMS)) {
 for (const f of fs.readdirSync(EXPORT).filter(x => x.endsWith('.html'))) {
   const html = fs.readFileSync(path.join(EXPORT, f), 'utf8');
   for (const m of html.matchAll(/https:\/\/(?:cdn\.prod\.website-files|uploads-ssl\.webflow)\.com\/[^"')\s]+/g)) {
-    const url = decodeURIComponent(m[0].replace(/&quot;$/, ''));
+    const url = normalizarUrl(m[0].replace(/&quot;$/, ''));
+    if (!url) continue;
+    // el alt del cromo vive en el propio <img>, no en un campo del CMS
+    const ctx = html.slice(Math.max(0, m.index - 400), m.index + 400);
+    const alt = (ctx.match(/\salt="([^"]*)"/) || [, ''])[1].trim();
     const prev = assets.get(url);
-    if (!prev) assets.set(url, { url, alt: '', usos: [`html:${f}`] });
-    else prev.usos.push(`html:${f}`);
+    if (!prev) assets.set(url, { url, alt, usos: [`html:${f}`] });
+    else { prev.usos.push(`html:${f}`); if (!prev.alt && alt) prev.alt = alt; }
   }
+}
+
+// La URL se usa CRUDA para descargar. Solo se corrigen dos defectos reales del origen:
+//   - `industry-solutions.html` repite el id de sitio en la ruta -> 403 (la simple da 200)
+//   - assets que no son media (el config .js de Finsweet) no son assets
+function normalizarUrl(u) {
+  if (!/^https?:\/\//.test(u)) return null;
+  if (/\.(js|css|json)(\?|$)/i.test(u)) return null;
+  return u.replace(/\/([0-9a-f]{24})\/\1\//, '/$1/');
 }
 
 // nombre final: quita los hashes ENCADENADOS de Webflow ({nuevo}_{viejo}_nombre)
 // y la doble codificación (%2520). Ambas vistas en migraciones anteriores.
 function nombreFinal(url) {
-  let n = decodeURIComponent(decodeURIComponent(url.split('/').pop().split('?')[0]));
+  // Decodificar ANTES de partir: 3 URLs traen la barra como %2F y el nombre se
+  // llevaría el id de sitio y el hash por delante.
+  let n = url.split('?')[0];
+  for (let i = 0; i < 2; i++) { try { n = decodeURIComponent(n); } catch { break; } }
+  n = n.split('/').pop();
   while (/^[0-9a-f]{24}_/.test(n)) n = n.slice(25);
   return n.toLowerCase()
     .normalize('NFD').replace(/[̀-ͯ]/g, '')

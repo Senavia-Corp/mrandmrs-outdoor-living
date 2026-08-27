@@ -7,15 +7,47 @@ dist/
 !.env.example
 .DS_Store
 
-# Insumos de migración: pesados y reconstruibles desde el export original.
-# Lo que SÍ se versiona son los derivados de texto (inventarios, catálogo IX2).
 _source/webflow-export/
-
-# El baseline de capturas es grande; el HTML y el texto sí se versionan
-# porque son el patrón contra el que se diffea.
+_source/sanity-masters/          # derivable: lo regenera scripts/download-assets.mjs
 baseline/shots/
 
-# ⚠️ public/ NO se ignora. En Pergola Plus, tener public/cms-img y public/videos
-# en .gitignore con deploy por git push dejó 429 URLs rotas en producción con
-# todas las puertas en verde en local. Vercel construye desde el clon de git:
-# lo que no esté versionado, no existe en el build.
+# ─────────────────────────────────────────────────────────────────────────────
+# ⚠️ LEE ESTO ANTES DE AÑADIR NADA AQUÍ DEBAJO
+#
+# Vercel construye desde el CLON DE GIT. Lo que no esté versionado NO EXISTE en
+# el build. En Pergola Plus, tener public/cms-img y public/videos ignorados con
+# deploy por `git push` dejó 429 URLs rotas en producción y TODAS las puertas en
+# verde en local — porque las puertas miraban el disco de esta máquina.
+#
+# Regla: si el sitio construido pide un fichero por una RUTA LOCAL FIJA,
+# ese fichero VA EN GIT. Sin excepciones.
+#
+# Lo de abajo se excluye porque su destino es SANITY (Fase 3) y las páginas lo
+# pedirán por URL del CDN de Sanity, no por ruta local. Si en la Fase 6 alguna
+# página acaba pidiendo una de estas rutas en local, HAY QUE VERSIONARLA.
+# `node scripts/check-assets.mjs` comprueba ese acoplamiento (check 9).
+# Se reconstruye con: node scripts/download-assets.mjs
+# ─────────────────────────────────────────────────────────────────────────────
+public/brochures/
+public/images/brochures/
+public/images/commercials/
+public/images/countries/
+public/images/images/
+public/images/logos/
+public/images/pool-builders/
+public/images/procesos/
+public/images/projects/
+public/images/residentials/
+public/images/subservices/
+public/images/where-we-serves/
+
+# Los 3 vídeos originales (70 MB) NO los referencia ninguna página: solo se usan
+# las variantes _mp4/_webm. Lista blanca en vez de exclusión, para que añadir un
+# vídeo nuevo falle en ruidoso y no en silencio.
+public/videos/*
+!public/videos/bg-video-mp4.mp4
+!public/videos/bg-video-webm.webm
+!public/videos/bg-video-1-mp4.mp4
+!public/videos/bg-video-1-webm.webm
+!public/videos/bg-video-3d-mp4.mp4
+!public/videos/bg-video-3d-webm.webm
