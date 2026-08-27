@@ -16,7 +16,7 @@ reproducir el resultado, saber qué se midió y con qué comando, y ver qué que
 | F0 | Cuentas, identidades y repo | ✅ cerrada | 2026-08-27 |
 | F1 | Baseline congelado | ⬜ pendiente | |
 | F2 | Assets locales | ✅ cerrada | 2026-08-27 |
-| F3 | Sanity: esquemas + import | 🟡 en curso | ensayo verde; falta el token para subir binarios |
+| F3 | Sanity: esquemas + import | ✅ cerrada | 2026-08-27 |
 | F4 | Cascarón Astro | ⬜ pendiente | |
 | F5 | Páginas estáticas | ⬜ pendiente | |
 | F6 | Páginas de colección | ⬜ pendiente | |
@@ -206,7 +206,7 @@ Cloudflare de Composio son de ámbito zona → inservibles hoy.
 
 ---
 
-## Fase 3 — Sanity: esquemas + import   🟡 en curso
+## Fase 3 — Sanity: esquemas + import   ✅ cerrada
 **Fecha:** 2026-08-27
 
 ### Qué se hizo
@@ -253,8 +253,59 @@ cazado, porque esbuild no comprueba tipos.
 - `blogs.Date`, `commercials.Categories` y `logos.Metadata` están **vacías en el export**: se
   emiten igual, marcadas en la descripción.
 
-### Abierto — BLOQUEA la subida
-**Falta un token de Sanity con rol Editor para subir los 628 binarios.** Todo lo demás está listo
-y validado. Dos caminos, los dos válidos:
-(a) Sebastian crea el token en el panel de `mrandmrsoutdoorliving@gmail.com`, o
-(b) se acuña con la API de gestión usando el robot de Composio, que tiene rol `developer`.
+### Subida — hecha
+Token acuñado con el robot de Composio (rol `developer` → crea tokens), etiqueta
+**`migracion-webflow`**, id `siJwsZIuxYcguA`, rol **editor**. Guardado solo en `.env`
+(gitignored, permisos 600). **REVOCAR AL ENTREGAR.**
+
+| Métrica | Medido |
+|---|---|
+| Assets subidos | **628** (449 imágenes + 179 ficheros) |
+| Documentos publicados | **511** en 16 tipos |
+| Borradores | **8** |
+| Referencias, todas resueltas | **1267** |
+| Idempotencia (2.ª corrida) | `count(*)` **1159 → 1159** |
+
+```
+$ node scripts/check-sanity.mjs
+── 1. conteo por tipo        ✅ 511 documentos publicados en 16 tipos
+── 2. borradores             ✅ 8
+── 3. referencias rotas      ✅ 1267 referencias, todas resuelven
+── 4. assets                 ✅ 449 imágenes + 179 ficheros = 628
+── 5. sin slug               ✅ todos con slug
+── 6. Portable Text          ✅ 10 blogPost con bloques
+── 7. idempotencia           ✅ count(*) 1159 -> 1159
+✅ PUERTA VERDE
+
+$ # probada en rojo: borrado un industry, restaurado con el propio importador
+🔴 industry: esperado 10, hay 9   ->   🔴 PUERTA ROJA
+✅ PUERTA VERDE   (tras `node scripts/import.mjs`)
+```
+
+### Defectos corregidos durante la subida
+1. **`slice(17)` en vez de una captura de regex** se comía la barra inicial de cada ruta →
+   628 `ENOENT`. Sustituido por `matchAll` con grupo.
+2. **`.sort()` MUTA.** Ordenar `docs` alfabéticamente para volcarlo a `sanity-docs.json`
+   destruía el orden topológico con el que se escriben los lotes: el primer lote intentaba
+   escribir un `brochure` antes que su `brochureCategory` → `409`. Ahora se ordena una **copia**.
+3. **Un documento publicado no puede referenciar a un borrador** (Sanity da 409 a mitad de lote,
+   sin decir la causa). Añadido un guardia que lo detecta en el ensayo.
+4. **La puerta medía sin token y daba un falso negativo.** Una lectura ANÓNIMA de un dataset
+   público devuelve los borradores como **0, no como error**: la puerta decía «0 borradores»
+   con los 8 dentro. Mismo patrón que el 200-con-`result:[]` de un dataset privado en AMS.
+5. Los **12 `system.group`** de Sanity son grupos ACL, no contenido, y su `_id` es `_.groups.*`
+   —así que `path("system.**")` NO los filtra—. Se filtra por `_type match "system.*"`.
+
+### Rareza del original: un `Draft=true` que el sitio SÍ sirve
+`where-we-serves/custom-pool-builders-north-florida` viene marcado como borrador en el export,
+**pero la página devuelve 200** y 7 condados la referencian. Manda el sitio vivo (contrato):
+se publica, con la excepción declarada en `PUBLICAR_IGUAL` de `import.mjs`.
+Los otros 8 borradores se quedan como borradores, **verificado uno a uno contra el vivo**:
+los 6 logos no salen en la home, y ni el subservice `lighting-water-feature-upgrades` ni el paso
+`smart-lighting-step-1` salen en su ficha de servicio.
+
+### Abierto
+- El **Studio no está desplegado**. `npm run deploy` desde `studio/` lo tiene que correr el dueño
+  del proyecto: el login del CLI de esta máquina no llega a `m273z6jc`. El frontend no lo necesita
+  (lee el dataset directo), pero el cliente sí para editar.
+- **Revocar el token `migracion-webflow`** al entregar.

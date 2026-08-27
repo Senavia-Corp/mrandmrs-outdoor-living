@@ -58,6 +58,12 @@ const ORDEN = ['categories', 'categories-brochures', 'industries', 'logos', 'sub
   'where-we-serves', 'residentials', 'commercials', 'countries', 'pool-builders',
   'procesos', 'images', 'brochures', 'projects', 'blogs', 'articles'];
 
+// El export marca Draft=true en items que el sitio VIVO sí sirve. Manda el vivo (contrato).
+// Comprobado 27-ago-2026: /where-we-serves/custom-pool-builders-north-florida devuelve 200 y
+// 7 condados lo referencian. Los otros 8 borradores NO aparecen en el sitio y siguen siendo
+// borradores (6 logos ausentes de la home, 1 subservice y 1 paso ausentes de su ficha).
+const PUBLICAR_IGUAL = new Set(['serviceRegion:custom-pool-builders-north-florida']);
+
 const porSlug = new Map();   // `${tipo}:${slug}` -> _id
 const docs = [];
 const usados = new Set();    // assets realmente referenciados
@@ -81,7 +87,7 @@ for (const col of ORDEN) {
       _type: m.tipo,
       [nombreTitulo]: fila[m.cols.includes('Title') ? 'Title' : 'Name'],
     };
-    if (fila['Draft'] === 'true') doc._draft = true;   // se convierte en drafts.<id> al subir
+    if (fila['Draft'] === 'true' && !PUBLICAR_IGUAL.has(`${m.tipo}:${fila['Slug']}`)) doc._draft = true;
     const semilla = `${m.tipo}:${fila['Slug']}`;
 
     for (const c of m.campos) {
@@ -144,6 +150,17 @@ for (const col of ORDEN) {
   }
 }
 
+// Un documento PUBLICADO que referencia a un BORRADOR revienta la mutación con 409, y el error
+// llega a mitad de lote sin decir cuál es la causa. Se detecta aquí, en el ensayo.
+const idsBorrador = new Set(docs.filter(d => d._draft).map(d => d._id));
+for (const d of docs) {
+  if (d._draft) continue;
+  const j = JSON.stringify(d);
+  for (const id of idsBorrador) {
+    if (j.includes(`"_ref":"${id}"`)) problemas.push(`publicado -> borrador  ${d._type}/${d.slug?.current} -> ${id}`);
+  }
+}
+
 // ── informe ──────────────────────────────────────────────────────────────────
 const porTipo = {};
 for (const d of docs) porTipo[d._type] = (porTipo[d._type] || 0) + 1;
@@ -166,10 +183,98 @@ if (problemas.length) {
 
 // salida determinista para poder diffear entre corridas
 const salida = path.join(ROOT, '_source/sanity-docs.json');
-fs.writeFileSync(salida, JSON.stringify(docs.sort((a, b) => a._id.localeCompare(b._id)), null, 2) + '\n');
+// OJO: sobre una COPIA. `.sort()` muta, y ordenar `docs` destruye el orden topológico
+// con el que se escriben los lotes (un brochure iría antes que su brochureCategory).
+fs.writeFileSync(salida, JSON.stringify([...docs].sort((a, b) => a._id.localeCompare(b._id)), null, 2) + '\n');
 console.log(`\ndocumentos escritos en ${path.relative(ROOT, salida)}`);
 
 if (DRY) {
   console.log('\nENSAYO. Para subir de verdad:  SANITY_WRITE_TOKEN=<token Editor> npm run import');
   process.exit(problemas.length ? 1 : 0);
 }
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SUBIDA REAL
+// ═══════════════════════════════════════════════════════════════════════════
+const TOKEN = process.env.SANITY_WRITE_TOKEN;
+const API = 'https://m273z6jc.api.sanity.io/v2021-06-07';
+const CACHE = path.join(ROOT, '_source/sanity-assets.json');
+const cache = fs.existsSync(CACHE) ? JSON.parse(fs.readFileSync(CACHE, 'utf8')) : {};
+
+// SVG y PDF van a /assets/files; el resto a /assets/images.
+// Medido: /assets/images rechaza el SVG con 422 «unsupported image format».
+const TIPOS = { jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp',
+  avif: 'image/avif', svg: 'image/svg+xml', pdf: 'application/pdf' };
+const claseDe = (ext) => (ext === 'svg' || ext === 'pdf') ? 'files' : 'images';
+
+async function subirAsset(ruta) {
+  const sha = crypto.createHash('sha256').update(fs.readFileSync(ruta)).digest('hex');
+  if (cache[sha]) return cache[sha];
+  const ext = path.extname(ruta).slice(1).toLowerCase();
+  const nombre = path.basename(ruta);
+  for (let i = 0; i < 3; i++) {
+    const r = await fetch(`${API}/assets/${claseDe(ext)}/production?filename=${encodeURIComponent(nombre)}`, {
+      method: 'POST',
+      headers: { authorization: `Bearer ${TOKEN}`, 'content-type': TIPOS[ext] || 'application/octet-stream' },
+      body: fs.readFileSync(ruta),
+    });
+    if (r.ok) {
+      const j = await r.json();
+      cache[sha] = { _id: j.document._id, clase: claseDe(ext) };
+      return cache[sha];
+    }
+    if (r.status < 500 && r.status !== 429) throw new Error(`${r.status} ${nombre}: ${(await r.text()).slice(0, 160)}`);
+    await new Promise(res => setTimeout(res, 600 * (i + 1)));
+  }
+  throw new Error(`agotados los reintentos: ${nombre}`);
+}
+
+// sustituye los marcadores _sanityAsset por la referencia real
+function resolver(v) {
+  if (Array.isArray(v)) return v.map(resolver);
+  if (v && typeof v === 'object') {
+    if (v._sanityAsset) {
+      const a = cache[crypto.createHash('sha256').update(fs.readFileSync(v._sanityAsset)).digest('hex')];
+      const base = { _type: a.clase === 'files' ? 'file' : 'image', asset: { _type: 'reference', _ref: a._id } };
+      if (v.alt) base.alt = v.alt;
+      if (v._key) base._key = v._key;
+      return base;
+    }
+    return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, resolver(x)]));
+  }
+  return v;
+}
+
+// 1. subir todos los assets (semáforo de 8: Sanity corta a 25 en vuelo)
+// captura, no desplazamientos mágicos: `slice(17)` se comía la barra inicial de la ruta
+const rutas = [...new Set([...JSON.stringify(docs).matchAll(/"_sanityAsset":"([^"]+)"/g)].map(m => m[1]))];
+console.log(`\nsubiendo ${rutas.length} assets (${Object.keys(cache).length} ya en caché)…`);
+let hechos = 0, cursor2 = 0, fallosSubida = [];
+await Promise.all(Array.from({ length: 8 }, async () => {
+  while (cursor2 < rutas.length) {
+    const r = rutas[cursor2++];
+    try { await subirAsset(r); } catch (e) { fallosSubida.push(e.message); }
+    if (++hechos % 60 === 0) { console.log(`  ${hechos}/${rutas.length}`); fs.writeFileSync(CACHE, JSON.stringify(cache, null, 2)); }
+  }
+}));
+fs.writeFileSync(CACHE, JSON.stringify(cache, null, 2));
+if (fallosSubida.length) { console.log(`🔴 ${fallosSubida.length} fallos de subida:`); fallosSubida.slice(0, 8).forEach(f => console.log('   ' + f)); process.exit(1); }
+console.log(`✅ ${rutas.length} assets en Sanity (${new Set(Object.values(cache).map(c => c._id)).size} únicos tras la deduplicación por contenido de Sanity)`);
+
+// 2. escribir los documentos en lotes
+const listos = docs.map(d => {
+  const { _draft, ...resto } = resolver(d);
+  return _draft ? { ...resto, _id: `drafts.${resto._id}` } : resto;
+});
+console.log(`\nescribiendo ${listos.length} documentos…`);
+for (let i = 0; i < listos.length; i += 50) {
+  const lote = listos.slice(i, i + 50);
+  const r = await fetch(`${API}/data/mutate/production`, {
+    method: 'POST',
+    headers: { authorization: `Bearer ${TOKEN}`, 'content-type': 'application/json' },
+    body: JSON.stringify({ mutations: lote.map(doc => ({ createOrReplace: doc })) }),
+  });
+  if (!r.ok) { console.log(`🔴 lote ${i}: ${r.status} ${(await r.text()).slice(0, 300)}`); process.exit(1); }
+  console.log(`  ${Math.min(i + 50, listos.length)}/${listos.length}`);
+}
+console.log('\n✅ import completo');

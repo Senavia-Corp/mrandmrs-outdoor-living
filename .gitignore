@@ -56,3 +56,4 @@ public/videos/*
 # salida del importador: se regenera con `npm run import:dry`
 _source/sanity-docs.json
 studio/dist/
+_source/sanity-assets.json
