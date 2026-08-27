@@ -1,0 +1,21 @@
+node_modules/
+dist/
+.vercel/
+.astro/
+.env
+.env.*
+!.env.example
+.DS_Store
+
+# Insumos de migración: pesados y reconstruibles desde el export original.
+# Lo que SÍ se versiona son los derivados de texto (inventarios, catálogo IX2).
+_source/webflow-export/
+
+# El baseline de capturas es grande; el HTML y el texto sí se versionan
+# porque son el patrón contra el que se diffea.
+baseline/shots/
+
+# ⚠️ public/ NO se ignora. En Pergola Plus, tener public/cms-img y public/videos
+# en .gitignore con deploy por git push dejó 429 URLs rotas en producción con
+# todas las puertas en verde en local. Vercel construye desde el clon de git:
+# lo que no esté versionado, no existe en el build.
