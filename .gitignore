@@ -8,7 +8,8 @@ dist/
 .DS_Store
 
 _source/webflow-export/
-_source/sanity-masters/          # derivable: lo regenera scripts/download-assets.mjs
+# derivable: lo regenera scripts/download-assets.mjs
+_source/sanity-masters/
 baseline/shots/
 
 # ─────────────────────────────────────────────────────────────────────────────
