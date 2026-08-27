@@ -124,6 +124,34 @@ for (const f of fs.readdirSync(EXPORT).filter(x => x.endsWith('.html'))) {
   }
 }
 
+// ...y los del CSS del ESTIMADOR, que vive en otro origen y por eso se quedó fuera en la
+// primera pasada de la Fase 2.
+//
+// `/pool-investment-estimator` no es una página de Webflow: es una app Astro+React servida
+// por Webflow Cloud desde un host `*.wf-app-prod.cosmic.webflow.services`. Su CSS pide 9
+// assets del CDN de Webflow y NINGUNO estaba en el manifiesto — entre ellos `checked.png` y
+// `unchecked.png`, que la bitácora dio por «no referenciados por ninguna página ni el CSS».
+// Lo eran, pero por un CSS que nadie había escaneado. Dos fallos independientes con el mismo
+// síntoma; el segundo solo se ve mirando fuera del export.
+//
+// El requisito del cliente es CERO referencias a cdn.prod.website-files.com al terminar, y
+// el CDN ya devuelve 403 permanente en assets de proyectos anteriores: lo que no se baje
+// ahora puede no estar cuando haga falta.
+const ESTIMADOR = path.join(ROOT, '_source/estimator');
+if (fs.existsSync(ESTIMADOR)) {
+  for (const f of fs.readdirSync(ESTIMADOR).filter((x) => /\.(css|html)$/.test(x))) {
+    const txt = fs.readFileSync(path.join(ESTIMADOR, f), 'utf8');
+    for (const m of txt.matchAll(/https:\/\/(?:cdn\.prod\.website-files|uploads-ssl\.webflow)\.com\/[^"')\s]+/g)) {
+      const url = normalizarUrl(m[0].replace(/&quot;$/, ''));
+      if (!url) continue;
+      const prev = assets.get(url);
+      // Sin alt: son fondos e iconos de un CSS, no hay <img> del que sacarlo.
+      if (!prev) assets.set(url, { url, alt: '', usos: [`html:estimator/${f}`] });
+      else prev.usos.push(`html:estimator/${f}`);
+    }
+  }
+}
+
 // La URL se usa CRUDA para descargar. Solo se corrigen dos defectos reales del origen:
 //   - `industry-solutions.html` repite el id de sitio en la ruta -> 403 (la simple da 200)
 //   - assets que no son media (el config .js de Finsweet) no son assets

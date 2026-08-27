@@ -14,8 +14,8 @@ reproducir el resultado, saber qué se midió y con qué comando, y ver qué que
 | Fase | Título | Estado | Cerrada |
 |---|---|---|---|
 | F0 | Cuentas, identidades y repo | ✅ cerrada | 2026-08-27 |
-| F1 | Baseline congelado | ⬜ pendiente | |
-| F2 | Assets locales | ✅ cerrada | 2026-08-27 |
+| F1 | Baseline congelado | 🟡 en curso | |
+| F2 | Assets locales | ↩️ reabierta y cerrada | 2026-08-27 |
 | F3 | Sanity: esquemas + import | ✅ cerrada | 2026-08-27 |
 | F4 | Cascarón Astro | ⬜ pendiente | |
 | F5 | Páginas estáticas | ⬜ pendiente | |
@@ -81,12 +81,112 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 | 2 | `commercials.csv` | Las cabeceras `Img Feature 2 / 3` y `SEO Metadata Image Feature 3 / 2` están **cruzadas** en el export. | Se emparejó por nombre (2→2, 3→3). Las páginas de `commercials` dan 404 en el sitio real, así que no se ve. Anotado por si algún día se publican. |
 | 3 | `industry-solutions.html` | La URL del logo repite el id de sitio (`/68f185…/68f185…/`) y da **403**. | Es un defecto del HTML de Webflow. Se normaliza al descargar; la ruta simple da 200 y su sha256 coincide con el logo local. |
 | 4 | export de Webflow | 6 ficheros con extensión `.avif` cuyo contenido es **WebP**. | Defecto del exportador. Se renombran a su formato real; servirlos como AVIF rompería la subida a Sanity. |
+| 5 | Home, `/contact-us` y todas las páginas (widget flotante) | **Los 3 widgets de Elfsight no pintan nada.** Medido el 27-ago-2026 en dos navegadores distintos sobre el sitio vivo: los tres contenedores se quedan en **altura 0 y sin hijos** tras barrido completo y 6–8 s de espera. `platform.js` sí carga y la petición a `core.service.elfsight.com/p/boot/` sí se hace. Dos de ellos no son adorno: `ce5a93b9…` es **Google Reviews** y `fdd09947…` el **Instagram Feed** — una `<section class="social-media">` entera. El tercero es el click-to-call. | `PROMPT.md` dice «mantener tal cual: cuenta del cliente», y solo conocía uno de los tres. Se mantienen los tres igual que están. **Pero conviene decírselo al cliente**: hoy paga por tres widgets que ningún visitante ve, y dos de ellos deberían ser secciones con contenido. La causa está en su cuenta de Elfsight, no en el sitio. |
+| 6 | `/`, `/about`, `/request-estimated`, home | **Finsweet hace tres trabajos, no uno.** Además del filtrado de listas que apunta `PROMPT.md`: el **marquee de logos** (`fs-marquee-logoscms_*`, 14 logos) y el **slider del blog** (`fs-slider-blog_*`). | No es una mejora: es alcance que faltaba. Anotado aquí para que la Fase 7 no lo descubra tarde — `@finsweet/attributes@2` hay que reimplementarlo en tres frentes, no en uno. |
 
 ---
 
 ## Entradas
 
 <!-- a partir de aquí, una entrada por fase, la más reciente arriba -->
+
+## Fase 2 (reabierta) — el CSS del estimador referenciaba 10 assets sin mapear   ✅ cerrada
+**Fecha:** 2026-08-27 · **Reabre:** la entrada de Fase 2 de más abajo, que NO se edita.
+
+### Por qué se reabre
+Preparando la Fase 1 se midió `/pool-investment-estimator` y resultó **no ser una página de
+Webflow**: es una app **Astro 5 + React `client:only`** servida por **Webflow Cloud** desde
+`67ed3381-….wf-app-prod.cosmic.webflow.services`, montada bajo el dominio real. Su hoja de
+estilos vive en ESE origen, así que `build-inventory.mjs` —que escanea el export y el HTML del
+vivo— nunca la miró. Dentro había **10 URLs de `cdn.prod.website-files.com` sin entrada en el
+manifiesto**.
+
+**Los 10 ficheros ya estaban en disco y en git**: habían entrado por el export local
+(`local:checked.png`, `local:bg-cover.svg`, …). Lo que faltaba era el **mapeo URL → fichero**.
+Sin él, la pasada de reescritura de la Fase 5 no habría tenido nada con qué sustituir esas 10
+URLs y el CSS del estimador se habría publicado apuntando al CDN de Webflow — justo el
+requisito duro del cliente («cero referencias a `cdn.prod.website-files.com` al terminar»), y
+sobre un CDN que ya devuelve **403 permanente** en assets de proyectos anteriores.
+
+Nota sobre la entrada vieja: decía que los 2 ficheros de `MISSING.txt` «no los referencia
+ninguna página ni el CSS». **Sigue siendo cierto** — los de `MISSING.txt` son
+`checked-thumb-130-130-80.png` y `unchecked-thumb-130-130-80.png`, las miniaturas. Los que sí
+usa el estimador son `checked.png` y `unchecked.png`, que son otros ficheros y sí estaban.
+
+### Qué se hizo
+- `scripts/build-inventory.mjs` — escanea también `_source/estimator/*.{css,html}` buscando
+  URLs del CDN. Un bloque, con el porqué escrito al lado.
+- `_source/estimator/` — **rescatado el material del estimador antes de que caduque** (depende
+  de que la suscripción de Webflow siga viva): cascarón HTML + CSS + los **3** JS. Eran 2 a
+  simple vista; el grafo de módulos se cerró recorriendo los `import` en cadena y apareció un
+  tercero, `index.BqdhZ9yF.js`, sin el cual la app no arranca. 676 kB, 5 ficheros.
+- `npm run assets` y `npm run check:assets`.
+
+### Números medidos
+| Métrica | Antes | Ahora |
+|---|---|---|
+| Assets únicos en el inventario | 657 | **667** (+10, 0 eliminados) |
+| Referencias en el manifiesto | 831 | **841** |
+| Ficheros distintos en disco | 793 | **793** (los 10 ya estaban) |
+| Entradas previas alteradas | — | **0** |
+| Assets de cromo versionados | 216 | **226** |
+| Fallos de descarga | — | **0** |
+| `_source/routes.csv` | — | **idéntico byte a byte** |
+
+### Evidencia
+```
+$ node scripts/build-inventory.mjs
+routes.csv            115 rutas
+assets-inventory.csv  667 assets únicos
+  referenciados 2+ veces: 45  (fundidos por URL: el manifiesto es determinista)
+
+$ diff inv-antes.csv _source/assets-inventory.csv | grep -c '^>'   # añadidos
+10
+$ diff inv-antes.csv _source/assets-inventory.csv | grep -c '^<'   # eliminados
+0
+$ diff rutas-antes.csv _source/routes.csv && echo "(idéntico)"
+(idéntico)
+
+$ node scripts/download-assets.mjs
+referencias procesadas : 841
+ficheros en disco      : 793  (617.5 MB de referencias, dedup incluido)
+✅ 0 fallos de descarga
+
+$ node scripts/check-assets.mjs
+── 8. cobertura del inventario     ✅ 667/667 remotos del inventario — faltan 0
+── 9. acoplamiento git ↔ despliegue ✅ 226 assets de cromo, todos versionados
+✅ PUERTA VERDE
+```
+
+Los 10 que faltaban, todos a `public/images/site/`:
+`whychooseusimg.webp` · `cta-footer-image.webp` · `testimonial-image.webp` ·
+`animateddivs-image.webp` · `outdoor-living-final-inspection-handover-florida-1….webp` ·
+`checked.png` · `unchecked.png` · `bg-cover.svg` · `bg-cover-movil.svg` · `bg-cover-phone.svg`
+
+sha256 del material rescatado del estimador:
+```
+8662dae9263f9f2e… PoolEstimatorPage.Cy-Yd7Xu.js   214 931 b
+0f1e56e86473119c… client.6NxMFTsy.js              175 515 b
+c64774625025eda2… index.BqdhZ9yF.js                12 250 b
+7f6d1c04a390ee46… index.C0oxWGe_.css              276 140 b
+ebd5a6f4c8a27959… index.html                        4 810 b
+```
+
+### Gate
+**Criterio:** `check:assets` verde, el inventario solo AÑADE (0 eliminados, 0 entradas previas
+alteradas) y `routes.csv` no se mueve.
+**Resultado:** ✅ verde. 9/9 checks, 667/667 de cobertura, 226 de cromo versionados.
+
+### Desviaciones
+El **cableado** del estimador como página es de la Fase 5. Aquí solo se rescata el material,
+y se hace ahora a propósito: tanto el CDN de Webflow como el origen `cosmic` dependen de una
+suscripción viva, y lo que no se baje hoy puede no estar mañana.
+
+### Abierto
+- El bundle del estimador es **código minificado sin fuentes**. Portarlo lo deja funcionando;
+  cambiar una fórmula o un precio exigiría rehacer la app.
+- Su CSS trae **2 `@import` a Google Fonts** (Montserrat y una familia larga con Bitter, Changa
+  One, Droid Sans…). La Fase 4 auto-aloja las fuentes: hay que incluir estas.
 
 ## Fase 2 — Assets locales   ✅ cerrada
 **Fecha:** 2026-08-27 · **Commits:** `F2: 657 assets descargados…` + `F2: saca sanity-masters de git…`
