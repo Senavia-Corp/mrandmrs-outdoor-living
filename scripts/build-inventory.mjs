@@ -76,7 +76,7 @@ fs.writeFileSync(path.join(ROOT, '_source/routes.csv'), csv(rutas));
 const assets = new Map(); // url -> {url, ext, alt, usos:[]}
 // El campo del alt se EMPAREJA POR NOMBRE, no con una lista a mano: escribirla a mano
 // dejó fuera `Imagen Intro N`, `Image Animation N`, `Before/After Image` e `Img Feature N`
-// (297 alts perdidos en silencio). Webflow nombra el hermano con un prefijo variable:
+// (31 alts perdidos en silencio, medidos). Webflow nombra el hermano con prefijo variable:
 // Metadata / Metadescription / Metada / SEO Metadata, y a veces Image<->Imagen.
 const PREFIJO = /^(seo\s+)?(metadata|metadescription|metadatos|metada)\s*/i;
 const canon = (s) => s.toLowerCase().replace(/\bimagen\b/g, 'image').replace(/[^a-z0-9]+/g, '');
