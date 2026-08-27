@@ -1,0 +1,18 @@
+{
+  "name": "mrandmrs-outdoor-living",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "assets": "node scripts/download-assets.mjs",
+    "check:assets": "node scripts/check-assets.mjs",
+    "schemas": "node scripts/gen-schemas.mjs",
+    "import:dry": "node scripts/import.mjs --dry-run",
+    "import": "node scripts/import.mjs"
+  },
+  "dependencies": {
+    "@portabletext/block-tools": "^6.0.0",
+    "@sanity/client": "^8.4.0",
+    "@sanity/schema": "^6.11.0",
+    "jsdom": "^30.0.1"
+  }
+}

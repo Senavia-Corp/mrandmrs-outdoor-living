@@ -133,14 +133,16 @@ Consecuencia práctica, y hay que tenerla clara:
 | Protección | ¿Necesita el dominio en Cloudflare? | Estado |
 |---|---|---|
 | **Turnstile** (captcha en los formularios) | **No.** Funciona en cualquier host | ✅ se puede hacer ya (Fase 8) |
-| Bot Fight Mode / WAF / rate-limit de zona | **Sí**: mover los NS de GoDaddy a Cloudflare | ⛔ decisión pendiente de Sebastian |
+| Bot Fight Mode / WAF / rate-limit de zona | **Sí**: mover los NS de GoDaddy a Cloudflare | ⛔ **DESCARTADO** por Sebastian, 27-ago-2026 |
 
 Las herramientas de Cloudflare que trae Composio (`GET_BOT_MANAGEMENT_SETTINGS`,
 `LIST_FIREWALL_RULES`) son **todas de ámbito zona**, así que hoy no sirven de nada.
 Composio **no tiene herramientas de Turnstile**: las claves se crean a mano en el panel.
 
-**No bloquees la migración por esto.** Turnstile cubre los formularios, que es donde está el
-abuso real de un sitio de captación. Lo de la zona se decide junto con el corte de dominio (Fase 11).
+**DECISIÓN 27-ago-2026 (Sebastian): solo Turnstile, el DNS se queda en GoDaddy.** En el corte,
+GoDaddy apunta a Vercel. No se mueven los nameservers. Es el montaje que ya corre en AB Aluminum
+y AMS: el abuso real de un sitio de captación entra por los formularios, y ahí Turnstile llega.
+Las 3 herramientas de Cloudflare de Composio se quedan sin uso — **no las persigas.**
 
 ### Lo que queda por hacer en esta fase
 1. **Token de escritura de Sanity** con rol **Editor** para el import (el robot de Composio sirve
@@ -677,13 +679,8 @@ nunca sobre `npm run dev`.**
 4. Repite **las 10 puertas contra la URL de preview**. Las de local no valen para esto.
 5. Enséñame la preview y el informe de las 10 puertas.
 6. **Para aquí.** El cambio de DNS lo apruebo yo. No lo hagas por iniciativa propia.
-7. **Decisión de Cloudflare, junto con el corte** — hoy el dominio está en GoDaddy:
-   - **(a) Dejarlo en GoDaddy** y apuntar a Vercel. Turnstile protege los formularios. Cero
-     capas nuevas. Es lo que hacen AB Aluminum y AMS.
-   - **(b) Mover los NS a Cloudflare** y poner Vercel detrás. Habilita Bot Fight Mode, WAF y
-     rate-limit de zona, y activa las herramientas de Composio que hoy ven 0 zonas. A cambio,
-     una capa más delante de Vercel y un cambio de NS que hay que coordinar con el corte.
-   Sea cual sea, **Turnstile va igual**: no depende del DNS.
+7. **El DNS se queda en GoDaddy** (decidido 27-ago-2026). En el corte, apuntar los registros de
+   GoDaddy a Vercel. **No se mueven los nameservers a Cloudflare.**
 8. Cuando lo apruebe: dominio, verificar el certificado del host **exacto** (apex y `www` son
    dos entradas distintas; en AB Aluminum solo el apex estaba en el proyecto y `www` servía un
    certificado que no casaba, con el sitio público efectivamente roto), reenviar sitemap a

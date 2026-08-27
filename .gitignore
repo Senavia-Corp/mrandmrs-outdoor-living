@@ -52,3 +52,7 @@ public/videos/*
 !public/videos/bg-video-1-webm.webm
 !public/videos/bg-video-3d-mp4.mp4
 !public/videos/bg-video-3d-webm.webm
+
+# salida del importador: se regenera con `npm run import:dry`
+_source/sanity-docs.json
+studio/dist/

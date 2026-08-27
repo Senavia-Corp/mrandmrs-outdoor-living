@@ -13,10 +13,10 @@ reproducir el resultado, saber qué se midió y con qué comando, y ver qué que
 
 | Fase | Título | Estado | Cerrada |
 |---|---|---|---|
-| F0 | Cuentas, identidades y repo | 🟡 en curso | (accesos, los gestiona Sebastian) |
+| F0 | Cuentas, identidades y repo | ✅ cerrada | 2026-08-27 |
 | F1 | Baseline congelado | ⬜ pendiente | |
 | F2 | Assets locales | ✅ cerrada | 2026-08-27 |
-| F3 | Sanity: esquemas + import | ⬜ pendiente | |
+| F3 | Sanity: esquemas + import | 🟡 en curso | ensayo verde; falta el token para subir binarios |
 | F4 | Cascarón Astro | ⬜ pendiente | |
 | F5 | Páginas estáticas | ⬜ pendiente | |
 | F6 | Páginas de colección | ⬜ pendiente | |
@@ -178,3 +178,83 @@ verde al devolverlo). Los checks 2 y 6 estuvieron en rojo de verdad y destaparon
   local, hay que versionarla.** `check:git` de la Fase 10 tiene que barrer `dist/` y exigirlo
   contra `git ls-files`, nunca contra el disco.
 - Los 213 másters JPEG son la entrada de la Fase 3; no van a git (derivables).
+
+## Fase 0 — Cuentas y repo   ✅ cerrada
+**Fecha:** 2026-08-27
+
+### Qué se verificó
+| Servicio | `--account` | Resuelve a |
+|---|---|---|
+| Sanity | `sanity_raker-uranic` | proyecto **`m273z6jc`**, org `oa0t37sqx`, dataset `production` **público y vacío** |
+| Vercel | `vercel_goral-format` | equipo **Senavia Corp** `team_S7aSWbSFopAYosvDC7LIdMUS` |
+| Cloudflare | `cloudflare_blab-squad` | cuenta del cliente, **0 zonas** |
+
+### Hallazgo: el dominio no está en Cloudflare
+`mrandmrsoutdoorliving.com` usa NS de **GoDaddy** (`ns75/ns76.domaincontrol.com`). El
+`server: cloudflare` que devuelve hoy es **el Cloudflare de Webflow**. Las 3 herramientas de
+Cloudflare de Composio son de ámbito zona → inservibles hoy.
+**Decisión de Sebastian:** solo Turnstile, el DNS se queda en GoDaddy.
+
+### Permisos del robot de Sanity, medidos
+`Claude_Code` (`pKuCLTBHB`), token `siq7a1w8exeC0K`, roles **developer + contributor + editor**.
+- ✅ **Escribe documentos** vía `composio proxy` (probado con un canario, creado y borrado;
+  dataset de vuelta a `count(*) = 0`).
+- 🔴 **NO puede subir binarios.** El proxy de Composio corrompe el cuerpo binario: un SVG (texto)
+  sube bien, pero WebP y JPEG dan `422 Input buffer contains unsupported image format`. Probado
+  con `Blob`, `Uint8Array` y `Buffer` — los tres fallan igual, así que no es la forma del cuerpo.
+  **Conclusión: `composio proxy` sirve para mutaciones JSON, no para `assets/images`.**
+
+---
+
+## Fase 3 — Sanity: esquemas + import   🟡 en curso
+**Fecha:** 2026-08-27
+
+### Qué se hizo
+- `scripts/schema-map.mjs` — **fuente única** del mapeo columna-CSV → campo-Sanity.
+  **Falla si alguna columna se queda sin destino**: es lo único que impide perder un campo en
+  silencio (un campo perdido no rompe el build, deja un hueco que nadie mira).
+- `scripts/gen-schemas.mjs` → `studio/schemaTypes/*.ts` (16 tipos + `seo`).
+- `studio/` — Sanity 4.22.1, `projectId: m273z6jc`, compila con `tsc --noEmit` sin error.
+- `scripts/import.mjs` — construye los documentos; **`--dry-run` por defecto** si no hay token.
+
+### Números medidos
+| Métrica | Esperado | Medido |
+|---|---|---|
+| Columnas de CSV sin destino | 0 | **0** de 236 campos en 16 colecciones |
+| Documentos construidos | = filas no archivadas | **519** |
+| Referencias rotas | 0 | **0** |
+| Assets ausentes | 0 | **0** |
+| Documentos con Portable Text | — | **79** |
+| Assets que van a Sanity | — | **628** (los otros 203 son cromo y se quedan en `public/`) |
+| Borradores (`Draft=true`) | — | **9** |
+
+Conteos por tipo, todos cuadran con los CSV: 147 galleryImage · 113 subservice · 57 brochure ·
+56 processStep · 53 poolBuilder · 20 logo · 14 service · 10 industry · 10 project · 10 blogPost ·
+9 brochureCategory · 9 county · 3 category · 3 commercialService · 3 article · 2 serviceRegion.
+
+### Evidencia
+```
+$ npm run import:dry
+documentos construidos : 519
+con Portable Text      : 79
+assets referenciados   : 628 de 831 del manifiesto
+✅ 0 referencias rotas · 0 assets ausentes
+```
+
+### Defecto corregido
+`gen-schemas.mjs` emitía `description: '…', (vacía en el export)` con el paréntesis **fuera de la
+cadena** → `.ts` roto. Lo cazó `tsc --noEmit`; el `npm run build` de Astro **no** lo habría
+cazado, porque esbuild no comprueba tipos.
+
+### Rarezas del original replicadas a propósito
+- Las erratas de nombre de campo se conservan en la `description` de cada campo del esquema
+  (`Heading 3D Rendeing Design`, `Metadescripcion SEO`, `Imagen Intro N`) para que el editor
+  reconozca de dónde viene cada cosa.
+- `blogs.Date`, `commercials.Categories` y `logos.Metadata` están **vacías en el export**: se
+  emiten igual, marcadas en la descripción.
+
+### Abierto — BLOQUEA la subida
+**Falta un token de Sanity con rol Editor para subir los 628 binarios.** Todo lo demás está listo
+y validado. Dos caminos, los dos válidos:
+(a) Sebastian crea el token en el panel de `mrandmrsoutdoorliving@gmail.com`, o
+(b) se acuña con la API de gestión usando el robot de Composio, que tiene rol `developer`.
