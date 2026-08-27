@@ -104,36 +104,54 @@ hornea en build y sirve HTML puro. Es el stack de Pergola Plus, AB Aluminum y AM
 
 ---
 
-# FASE 0 — Cuentas, identidades y repo
+# FASE 0 — Cuentas y repo   ✅ ACCESOS YA VERIFICADOS
 
-**Va primero por una razón concreta: en las tres migraciones anteriores, cruzar cuentas costó
-tiempo y dejó proyectos huérfanos.** En AB Aluminum hay dos proyectos de Sanity llamados igual
-y uno se creó por error en la cuenta corporativa. En AMS, `vercel link --scope` creó un proyecto
-duplicado vacío y un deploy aterrizó ahí.
+**Todo pasa por Composio, y `--account` es OBLIGATORIO en cada llamada.** Sin él, el CLI resuelve
+a otra identidad: hay 4 conexiones de Sanity y 5 de Vercel en esta cuenta. En AMS, omitirlo
+resolvió al equipo de GQM; en AB Aluminum, `vercel link --scope` creó un proyecto duplicado vacío.
 
-**No escribas una línea de código hasta cerrar esta fase.**
+| Servicio | Alias Composio | `--account` | Resuelve a | Verificado |
+|---|---|---|---|---|
+| **Sanity** | `mr-&-mrs-outdoor-living` | `sanity_raker-uranic` | proyecto **`m273z6jc`**, org `oa0t37sqx`, robot `Claude_Code` | ✅ 27-ago-2026 |
+| **Vercel** | `senavia-corp` | `vercel_goral-format` | equipo **Senavia Corp** `team_S7aSWbSFopAYosvDC7LIdMUS` | ✅ 27-ago-2026 |
+| **Cloudflare** | `mr-&-mrs-outdoor-living` | `cloudflare_blab-squad` | cuenta del cliente — **0 zonas** (ver aviso) | ⚠️ 27-ago-2026 |
 
-1. **Pregúntame** y anota en la bitácora, antes de crear nada:
-   - ¿El Sanity va en la cuenta **del cliente** o en la corporativa de Senavia? (regla de las
-     migraciones anteriores: **el contenido del cliente va en la cuenta del cliente**).
-   - ¿Qué equipo de Vercel? ¿Plan Hobby o Pro?
-   - ¿Repo de GitHub público o privado?
-2. **Dos avisos que hay que resolver ahora, no en la Fase 11:**
-   - **Hobby prohíbe el uso comercial.** Un sitio de cliente en producción sobre Hobby es
-     riesgo real de suspensión.
-   - **Hobby NO despliega desde un repo privado de una organización de GitHub.** Mensaje
-     literal de Vercel: *"Cannot deploy from a private GitHub organization repository on the
-     Hobby plan."* En AMS esto provocó tres flip-flops público↔privado en un solo día.
-3. El token de Sanity tiene que ser de rol **Editor**, no Viewer — un Viewer **falla el import
-   en silencio a mitad**. Si además hace falta crear un dataset (p. ej. `leads` privado), el
-   rol Editor tampoco basta: hace falta **Developer** (`sanity.project.datasets/create`).
-4. Secretos en `.env` gitignorado. **Nunca en la bitácora, nunca en memoria.** Rotar al entregar.
-5. `git init`, primer commit con la carpeta ya preparada.
+- **Sanity**: proyecto `m273z6jc`, dataset **`production`**, **público** (el frontend lee sin token)
+  y **vacío** (`count(*)` = 0). Confirmado con `curl https://m273z6jc.api.sanity.io/.../query/production?query=count(*)` → 200.
+- **Vercel**: **proyecto nuevo** en el equipo `senaviacorp`. Cuenta de Senavia
+  (`senaviacorporation@gmail.com`), no la del cliente.
+- **Cuenta del cliente**: `mrandmrsoutdoorliving@gmail.com` (Sanity + Cloudflare).
 
-**GATE 0** — En la bitácora: projectId + dataset de Sanity, equipo + plan de Vercel, repo y su
-visibilidad, y el rol del token verificado con una escritura real de prueba (no con un `whoami`).
+### ⚠️ El dominio NO está en Cloudflare — leer antes de la Fase 8
 
----
+`mrandmrsoutdoorliving.com` usa los NS de **GoDaddy** (`ns75/ns76.domaincontrol.com`) y apunta a
+Webflow. La cabecera `server: cloudflare` que devuelve hoy es **el Cloudflare de Webflow**, no el
+del cliente. Por eso `CLOUDFLARE_LIST_ZONES` sobre `cloudflare_blab-squad` devuelve **0 zonas**.
+
+Consecuencia práctica, y hay que tenerla clara:
+
+| Protección | ¿Necesita el dominio en Cloudflare? | Estado |
+|---|---|---|
+| **Turnstile** (captcha en los formularios) | **No.** Funciona en cualquier host | ✅ se puede hacer ya (Fase 8) |
+| Bot Fight Mode / WAF / rate-limit de zona | **Sí**: mover los NS de GoDaddy a Cloudflare | ⛔ decisión pendiente de Sebastian |
+
+Las herramientas de Cloudflare que trae Composio (`GET_BOT_MANAGEMENT_SETTINGS`,
+`LIST_FIREWALL_RULES`) son **todas de ámbito zona**, así que hoy no sirven de nada.
+Composio **no tiene herramientas de Turnstile**: las claves se crean a mano en el panel.
+
+**No bloquees la migración por esto.** Turnstile cubre los formularios, que es donde está el
+abuso real de un sitio de captación. Lo de la zona se decide junto con el corte de dominio (Fase 11).
+
+### Lo que queda por hacer en esta fase
+1. **Token de escritura de Sanity** con rol **Editor** para el import (el robot de Composio sirve
+   para leer y consultar; el import masivo de assets va por token + `@sanity/client`, porque el
+   MCP solo crea borradores y no sube ficheros). Un token **Viewer falla el import a mitad y en
+   silencio** — pasó en AB Aluminum.
+2. **Claves de Turnstile** (sitio + secreta) creadas en el panel de Cloudflare del cliente.
+3. Repo de GitHub: decidir visibilidad. **Hobby no despliega desde un repo privado de una
+   organización de GitHub** — si el equipo `senaviacorp` está en Hobby, el repo va público o
+   fuera de la organización. En AMS esto costó tres cambios público↔privado en un día.
+4. `.env` gitignorado. **Los secretos nunca van a la bitácora ni a memoria.** Rotar al entregar.
 
 # FASE 1 — Baseline congelado
 
@@ -168,7 +186,11 @@ en las capturas. Pega los conteos reales.
 
 ---
 
-# FASE 2 — Assets 100 % locales con nombre y formato SEO
+# FASE 2 — Assets 100 % locales con nombre y formato SEO   ✅ CERRADA 27-ago-2026
+
+> Hecha. 831 referencias, 793 ficheros, 0 fallos, manifiesto determinista. Ver la entrada de
+> `MIGRACION-LOG.md` para los 6 defectos que destapó la puerta. El resto de esta sección queda
+> como referencia de lo que se hizo y por qué.
 
 Requisito duro del cliente: **cero referencias a `cdn.prod.website-files.com` al terminar.**
 Urgente además porque el CDN de Webflow ya devuelve **403 permanente** en algunos assets de
@@ -237,6 +259,11 @@ public/brochures/              los 54 PDF
 
 # FASE 3 — Sanity: esquemas + import
 
+**Destino: `m273z6jc` / `production`** (público, hoy vacío). Órdenes por Composio con
+`--account sanity_raker-uranic`; el import masivo por token Editor + `@sanity/client`.
+Las imágenes salen de `public/images/**` y **los 213 AVIF se suben desde
+`_source/sanity-masters/**`**, que ya están convertidos a JPEG por la Fase 2.
+
 Un `documentType` por colección. Las 9 que no tienen página propia también son documentos
 (se referencian) para que el cliente pueda editarlas.
 
@@ -261,10 +288,10 @@ Un `documentType` por colección. Las 9 que no tienen página propia también so
 - Singletons: `siteSettings` (logo, teléfono `+1 352-740-3361`, JSON-LD de Organization, IDs de
   tracking) + un documento por página estática con sus campos SEO.
 
-> ### ⚠️ Sanity NO procesa AVIF al subir — y aquí hay 177
-> Es el formato más usado de este sitio. El importador tiene que **convertir avif→jpeg al vuelo**
-> antes de subir (`sips` en macOS, o `sharp`). En AB Aluminum fueron 87 y el import moría sin
-> explicar por qué.
+> ### ✅ AVIF: ya resuelto en la Fase 2
+> Sanity **no procesa AVIF** y este sitio tiene 213. Los másters JPEG ya existen en
+> `_source/sanity-masters/**` y el manifiesto los apunta en el campo `sanityMaster`.
+> **Sube ese fichero, no el `.avif`.** En AB Aluminum fueron 87 y el import moría sin explicar por qué.
 
 > ### ⚠️ Sanity corta a 25 peticiones en vuelo
 > Semáforo de **8** en el importador. Sanity además deduplica por contenido, así que el conteo
@@ -515,6 +542,36 @@ mismas clases que hoy (`w-form-done`, `w-form-fail`).
 > `company_url` lo autorellenan los gestores de contraseñas y tira usuarios reales. Usa algo
 > como `ref_id`. Y el time-trap a **<1000 ms**, no a 2500: 2500 tiraba a quien usa autofill.
 
+### Antibot — Cloudflare Turnstile
+
+Cuatro capas sobre el endpoint, en este orden (es el montaje ya probado en AB Aluminum):
+
+1. **Honeypot** `ref_id` — descarta en silencio.
+2. **Time-trap** — el cliente manda `elapsedMs`; el servidor descarta **<1000 ms**, en silencio.
+3. **Turnstile en modo Managed** — la capa principal. Widget en los 2 formularios, el cliente lee
+   el token de `cf-turnstile-response` y lo manda como `turnstileToken`; el servidor lo valida
+   contra `https://challenges.cloudflare.com/turnstile/v0/siteverify`.
+   **Sin token → 403. Token válido → pasa. Cloudflare inalcanzable → falla ABIERTO**, porque
+   perder leads es peor que colar un bot.
+4. **Rate-limit por IP en memoria** (8 s).
+
+Claves: la de sitio es pública y va en el código; `TURNSTILE_SECRET` en variables de entorno.
+Se crean en el panel de Cloudflare de `mrandmrsoutdoorliving@gmail.com` — **Composio no tiene
+herramientas de Turnstile**. Claves de prueba de Cloudflare: siempre-pasa
+`1x0000000000000000000000000000000AA`, siempre-bloquea `2x00000000000000000000000000000000AA`.
+
+> **Trampa medida en AB Aluminum:** el render implícito (`class="cf-turnstile"`) **falla sobre un
+> elemento oculto**. Si el widget vive en un paso de asistente que arranca `hidden`, hay que
+> renderizarlo **explícitamente** (`turnstile.render('#id')`) al llegar a ese paso.
+
+> **Trampa medida en AMS:** un captcha puesto solo en la plantilla de formulario deja el resto del
+> sitio sin nada y da sensación de protección que no existe. Comprueba que el script está en las
+> rutas que de verdad envían, no en todas por si acaso.
+
+**Lo que Turnstile NO cubre:** scraping, fuerza bruta sobre rutas y abuso a nivel de zona. Eso
+necesita el dominio proxied en Cloudflare, y hoy **está en GoDaddy** (ver el aviso de la Fase 0).
+Es una decisión de la Fase 11, no un bloqueo de esta.
+
 > ### ⚠️ Probar el endpoint
 > `astro preview` **no existe** con el adaptador de Vercel. O `astro dev` con cabecera `Origin`
 > en los POST (si no, Astro devuelve 403 por CSRF), o sirve `.vercel/output/static` con
@@ -606,6 +663,10 @@ nunca sobre `npm run dev`.**
 
 # FASE 11 — Deploy y corte de dominio
 
+0. **Proyecto NUEVO en el equipo `senaviacorp`** (`team_S7aSWbSFopAYosvDC7LIdMUS`), con
+   `--account vercel_goral-format` en toda orden de Composio. No reutilices un proyecto existente
+   y **no corras `vercel link` a secas**: en AB Aluminum creó un proyecto duplicado vacío en el
+   equipo equivocado y un deploy aterrizó ahí.
 1. **Despliega por `git push`, no por CLI.** El deploy por `vercel deploy --prod` devolvió
    `readyState: BLOCKED` sin código ni mensaje, con el equipo sin bloquear; en cuanto se conectó
    la integración de git, el push funcionó a la primera. **Si ves `BLOCKED`, no persigas el CLI: empuja.**
@@ -616,11 +677,18 @@ nunca sobre `npm run dev`.**
 4. Repite **las 10 puertas contra la URL de preview**. Las de local no valen para esto.
 5. Enséñame la preview y el informe de las 10 puertas.
 6. **Para aquí.** El cambio de DNS lo apruebo yo. No lo hagas por iniciativa propia.
-7. Cuando lo apruebe: dominio, verificar el certificado del host **exacto** (apex y `www` son
+7. **Decisión de Cloudflare, junto con el corte** — hoy el dominio está en GoDaddy:
+   - **(a) Dejarlo en GoDaddy** y apuntar a Vercel. Turnstile protege los formularios. Cero
+     capas nuevas. Es lo que hacen AB Aluminum y AMS.
+   - **(b) Mover los NS a Cloudflare** y poner Vercel detrás. Habilita Bot Fight Mode, WAF y
+     rate-limit de zona, y activa las herramientas de Composio que hoy ven 0 zonas. A cambio,
+     una capa más delante de Vercel y un cambio de NS que hay que coordinar con el corte.
+   Sea cual sea, **Turnstile va igual**: no depende del DNS.
+8. Cuando lo apruebe: dominio, verificar el certificado del host **exacto** (apex y `www` son
    dos entradas distintas; en AB Aluminum solo el apex estaba en el proyecto y `www` servía un
    certificado que no casaba, con el sitio público efectivamente roto), reenviar sitemap a
    Search Console, y **dejar Webflow publicado 30 días** por si hay que revertir.
-8. **Rota los tokens** de Sanity y Vercel al entregar.
+9. **Rota los tokens** de Sanity y Turnstile al entregar. Las conexiones de Composio se quedan.
 
 **GATE 11** — Las 10 puertas en verde contra la preview. Entrada final en la bitácora con la URL,
 los IDs de proyecto y la lista de lo que queda en manos del cliente.
