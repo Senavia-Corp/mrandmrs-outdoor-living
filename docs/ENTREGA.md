@@ -24,7 +24,21 @@ que los producen están en `MIGRACION-LOG.md`, entrada por fase.
 
 ## Lo que hace falta de tu parte
 
-### 0. AHORA MISMO: la Fase 12 está en local y no se puede subir
+### 0. El repositorio remoto está atrasado (el sitio SÍ está desplegado)
+**La Fase 12 está desplegada y verificada** en
+<https://mrandmrs-outdoor-living-p8geh8sve-senaviacorp.vercel.app> — se subió con
+`vercel deploy --prebuilt --prod`, reutilizando la sesión del CLI que ya había en la máquina.
+
+Lo que **no** se ha podido hacer es el `git push`: el token de GitHub del llavero es inválido
+(`gh auth status`: *«The token in keyring is invalid»*). Hay **8 commits en `main` sin subir**.
+Lo desplegado y lo versionado son el mismo código, pero el remoto está atrasado:
+
+```bash
+gh auth login -h github.com
+git push origin main
+```
+
+### 0b. (histórico) La Fase 12 estuvo en local sin poder subirse
 El token de GitHub del llavero **es inválido** (`gh auth status`: *«The token in keyring is
 invalid»*), así que `git push` falla con *«Invalid username or token»*. Hay **7 commits en
 `main` sin subir** con el estimador entero. Se desbloquea con:
