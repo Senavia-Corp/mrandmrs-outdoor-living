@@ -19,10 +19,10 @@ reproducir el resultado, saber qué se midió y con qué comando, y ver qué que
 | F3 | Sanity: esquemas + import | ✅ cerrada | 2026-08-27 |
 | F4 | Cascarón Astro | ✅ cerrada | 2026-08-27 |
 | F5 | Páginas estáticas | ✅ cerrada | 2026-08-27 |
-| F6 | Páginas de colección | ⬜ pendiente | |
+| F6 | Páginas de colección | ✅ cerrada | 2026-08-27 |
 | F7 | Animaciones e interacciones | ⬜ pendiente | |
 | F8 | Formularios y terceros | ⬜ pendiente | |
-| F9 | Paridad SEO | ⬜ pendiente | |
+| F9 | Paridad SEO | ✅ cerrada | 2026-08-27 |
 | F10 | Puertas de verificación | ⬜ pendiente | |
 | F11 | Deploy y corte de dominio | ⬜ pendiente | |
 
@@ -135,6 +135,89 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 ## Entradas
 
 <!-- a partir de aquí, una entrada por fase, la más reciente arriba -->
+
+## Fases 6 y 9 — las 101 de colección y la paridad SEO   ✅ cerradas
+**Fecha:** 2026-08-27
+
+### Objetivo
+Que respondan las 115 rutas y **ninguna más**, y que el `<head>` de todas sea el del origen.
+
+### Números medidos
+| Métrica | Esperado | Medido |
+|---|---|---|
+| Rutas construidas | 115 | **115 / 115** |
+| Rutas de más | 0 | **0** |
+| Referencias a Webflow / Elfsight en lo desplegado | 0 | **0** |
+| `<head>` idéntico al origen | 115 | **115 / 115** |
+| URLs en el sitemap | 113 | **113** |
+
+```
+$ npm run check:rutas
+  ok 115/115 rutas del sitio construidas · ok 115 paginas en el build, 0 de mas
+  ok el estimador se sirve · ok 0 referencias a Webflow / Elfsight
+PUERTA VERDE
+
+$ npm run check:seo                        # preview
+  115/115 paginas con el head identico al origen   -> PUERTA VERDE
+$ PUBLIC_ES_PRODUCCION=1 npm run check:seo # produccion
+  115/115 paginas con el head identico al origen   -> PUERTA VERDE
+```
+
+### La decisión de fondo de la Fase 6, y hay que leerla
+Las 101 páginas de colección se generan **desde el HTML servido de cada una**, igual que las
+estáticas — **no desde Sanity**. Es la misma ruta de código, así que no hay una segunda
+implementación que pueda divergir, y la paridad queda demostrada página a página.
+
+**Consecuencia, dicha claramente: hoy el CMS no pinta nada.** Los 511 documentos están
+importados y verificados en Sanity (Fase 3), pero las plantillas todavía no leen de ahí, así
+que editar en Sanity no cambia el sitio. Es un trabajo acotado —7 plantillas— y la paridad
+medida es la red de seguridad para hacerlo: cuando cada plantilla lea de Sanity,
+`check:texto` dirá al instante si algo dejó de cuadrar. **Se hizo en este orden a propósito:
+primero un sitio idéntico y desplegable, después la fuente de datos.**
+
+### Cuatro trampas más, todas medidas
+1. **`text/x-wf-template` va URL-CODIFICADO.** Webflow guarda ahí la plantilla de lista vacía,
+   y dentro había 20 URLs del CDN que ningún patrón literal casaba. Hay que decodificar,
+   reescribir y volver a codificar.
+2. **El paréntesis, otra vez.** Tres `og:image` se truncaban en `...florida%2520(1` porque la
+   regex paraba en `)`. Mismo bug que en el inventario, otra regex.
+3. **El id de sitio duplicado.** El JSON-LD de `/industry-solutions` trae la URL del logo con
+   el id repetido —el defecto del origen que ya anotó la Fase 2— así que no casaba con el
+   manifiesto hasta normalizarla igual que hace el inventario.
+4. **`og:image` se había quedado RELATIVA** al pasar las URLs a local. Los rastreadores
+   sociales no resuelven rutas relativas: se absolutizan contra `Astro.site`.
+
+### La canónica: adición deliberada, no paridad
+El sitio vivo **no tiene ni una canónica en las 115**. La Fase 9 del encargo las pide, así que
+son una adición consciente. `check:seo` no las compara contra el baseline —daría rojo en las
+115 por algo que hicimos a propósito—: exige que existan **solo en producción** y que apunten
+a su propia página.
+
+### El interruptor de indexación falla CERRADO
+Solo se indexa con `PUBLIC_ES_PRODUCCION` **exactamente igual a `"1"`**. Cualquier otro valor
+deja el sitio bloqueado. Gobierna las cuatro cosas a la vez: `robots.txt`, el `sitemap.xml`,
+el `<meta noindex>` y la canónica. Probado en los dos modos.
+
+El estimador también, y no era gratis: lo sirve `public/`, no pasa por `Base.astro`, y sin
+tocarlo habría sido **la única de las 115 indexable desde una preview**.
+
+No se usa `X-Robots-Tag` en `vercel.json`: es estático, no lee la variable, y o lo hereda
+producción o hay que acordarse de quitarlo justo en el despliegue que más caro sale olvidar.
+
+### El sitemap lleva 113, no 115
+Las mismas que el original. `/pool-investment-estimator` y
+`/where-we-serves/custom-pool-builders-north-florida` responden 200 pero el sitemap del origen
+no las lista. Se replica: meterlas sería cambiar lo que el sitio le dice a Google.
+
+### El fixture del cascarón ya no puede colarse
+`src/pages/cascaron.astro` era una ruta que el origen no tiene y que `check:rutas` iba a cazar.
+Pasó a ser una ruta **dinámica** cuyo `getStaticPaths` devuelve lista vacía salvo con
+`MM_FIXTURES=1`. Confiar en acordarse de borrar un fichero no es un plan.
+
+### Abierto
+- **Las 7 plantillas no leen de Sanity.** Es lo que queda para que el CMS sirva de algo.
+- Los 8 bloques de JSON-LD rotos del origen se emiten **crudos, byte a byte** (el contrato dice
+  replicar, no arreglar). Siguen siendo mejora candidata.
 
 ## Fase 5 — Páginas estáticas (14)   ✅ cerrada
 **Fecha:** 2026-08-27

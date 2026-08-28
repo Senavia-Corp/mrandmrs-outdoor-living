@@ -58,7 +58,12 @@ for (const f of fs.readdirSync(ORIGEN)) {
 
 const html = fs.readFileSync(path.join(ORIGEN, 'index.html'), 'utf8')
   .replace(COSMIC, '/pool-investment-estimator')
-  .replace(/<link rel="icon"[^>]*>/, '<link rel="icon" type="image/png" href="/images/site/favicon.png">');
+  .replace(/<link rel="icon"[^>]*>/, '<link rel="icon" type="image/png" href="/images/site/favicon.png">')
+  // El interruptor de indexacion tambien vale aqui. Esta pagina la sirve public/, asi que no
+  // pasa por Base.astro y sin esto seria la UNICA de las 115 indexable desde una preview.
+  .replace('</head>', (process.env.PUBLIC_ES_PRODUCCION === '1'
+    ? '<link rel="canonical" href="https://mrandmrsoutdoorliving.com/pool-investment-estimator">'
+    : '<meta name="robots" content="noindex, nofollow">') + '</head>');
 fs.writeFileSync(path.join(DESTINO, 'index.html'), html);
 
 if (sinMapear.size) {

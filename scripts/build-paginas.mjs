@@ -52,6 +52,11 @@ const SCRIPTS_FUERA = [
 ];
 
 const MARCA = '@@WIDGET@@';
+// Dentro de una cadena JSON o de un <script> el delimitador es la comilla, NO el parentesis:
+// parar en `)` truncaba 3 og:image en `...florida%2520(1` y las dejaba sin mapear. Es el mismo
+// bug que ya aparecio en el inventario. Se admite `)` y despues se recorta el que sobra.
+const reUrlGlobal = /https:\/\/(?:cdn\.prod\.website-files|uploads-ssl\.webflow)\.com\/[^"'\s\\<>,]+/g;
+const equilibra = (u) => { while (u.endsWith(')') && u.split(')').length > u.split('(').length) u = u.slice(0, -1); return u; };
 
 const sinMapear = new Set();
 function local(url) {
@@ -86,12 +91,23 @@ function localizar(raiz) {
   // Y dentro de los <script>: el JSON-LD de /gallery lleva 137 URLs de imagen del CDN, y el
   // codigo en linea de otras paginas alguna mas. No son atributos, asi que ningun escaneo de
   // src/srcset/href las veia, y el sitio habria seguido pidiendoselas a Webflow.
+  const reUrl = reUrlGlobal;
   for (const el of raiz.querySelectorAll('script')) {
     if (el.getAttribute('src')) continue;
     const t = el.textContent;
+    // Webflow guarda la plantilla de lista vacia (`text/x-wf-template`) URL-CODIFICADA, asi
+    // que la URL de dentro no casa ningun patron literal. Hay que decodificar, reescribir y
+    // volver a codificar, o esas 20 referencias se publican apuntando al CDN.
+    if (el.getAttribute('type') === 'text/x-wf-template') {
+      let dec;
+      try { dec = decodeURIComponent(t); } catch { continue; }
+      if (!reUrl.test(dec)) continue;
+      reUrl.lastIndex = 0;
+      el.textContent = encodeURIComponent(dec.replace(reUrl, (u) => local(equilibra(u))));
+      continue;
+    }
     if (!/website-files\.com|uploads-ssl\.webflow\.com|d3e54v103j8qbb/.test(t)) continue;
-    el.textContent = t.replace(/https:\/\/(?:cdn\.prod\.website-files|uploads-ssl\.webflow)\.com\/[^"'\s\\<>,)]+/g,
-      (u) => local(u));
+    el.textContent = t.replace(reUrl, (u) => local(equilibra(u)));
   }
   for (const el of raiz.querySelectorAll('[style]')) {
     const s = el.getAttribute('style');
@@ -104,9 +120,12 @@ function localizar(raiz) {
 const csv = fs.readFileSync(path.join(RAIZ, '_source/routes.csv'), 'utf8');
 const RUTAS = csv.trim().split('\n').slice(1)
   .map((l) => l.match(/"((?:[^"]|"")*)"/g).map((c) => c.slice(1, -1)))
-  .filter(([, tipo]) => tipo === 'estatica');
+  // FASE 6: tambien las 101 de coleccion. Es el mismo camino -el marcado sale del HTML
+  // servido de cada una-, asi que no hay una segunda implementacion que pueda divergir.
+  .filter(([, tipo]) => tipo === 'estatica' || tipo === 'coleccion' || tipo === 'estatica-oculta');
 
 const generadas = [];
+const porColeccion = {};
 for (const [ruta] of RUTAS) {
   const slug = aSlug(ruta);
   const fichero = path.join(RAIZ, '_source/vivo', `${slug}.html`);
@@ -115,6 +134,9 @@ for (const [ruta] of RUTAS) {
 
   const menu = doc.querySelector('section.menu');
   const pie = doc.querySelector('section.footer');
+  // /pool-investment-estimator no tiene cascaron porque NO ES una pagina de Webflow: es la
+  // app Astro+React de Webflow Cloud. La sirve public/, la porta scripts/build-estimador.mjs.
+  if (ruta === '/pool-investment-estimator') continue;
   if (!menu) { console.error(`  ROJO ${ruta}: no encuentro el nav`); continue; }
 
   const usados = new Set();
@@ -183,7 +205,31 @@ for (const [ruta] of RUTAS) {
   const titulo = doc.querySelector('title')?.textContent ?? '';
   const desc = doc.querySelector('meta[name="description"]')?.getAttribute('content') ?? '';
 
-  const imports = [...usados].map((c) => `import ${c} from '../components/widgets/${c}.astro';`).join('\n');
+  // Todo lo demas del <head> que es SEO, tal cual lo sirve el origen. `description` va aparte
+  // porque Base ya la emite; repetirla daria dos etiquetas.
+  const metaSeo = {};
+  for (const m of doc.head.querySelectorAll('meta[property],meta[name]')) {
+    const k = m.getAttribute('property') || m.getAttribute('name');
+    if (!/^(og:|twitter:|robots$|keywords$)/.test(k)) continue;
+    if (k === 'description') continue;
+    metaSeo[k] = local(m.getAttribute('content') ?? '');
+  }
+  // El JSON-LD se reserializa con las claves ORDENADAS para que un diff no falle por el orden.
+  // Los 8 bloques que NO parsean se dejan CRUDOS: son un defecto del origen (un salto de linea
+  // literal dentro de la cadena) y el contrato dice replicarlo, no arreglarlo.
+  const ordena = (v) => (Array.isArray(v) ? v.map(ordena)
+    : v && typeof v === 'object'
+      ? Object.fromEntries(Object.keys(v).sort().map((k) => [k, ordena(v[k])])) : v);
+  const jsonLd = [];
+  const jsonLdCrudo = [];
+  for (const sc of doc.head.querySelectorAll('script[type="application/ld+json"]')) {
+    const t = sc.textContent.replace(reUrlGlobal, (u) => local(equilibra(u)));
+    try { jsonLd.push(ordena(JSON.parse(t))); } catch { jsonLdCrudo.push(t); }
+  }
+
+  // La profundidad importa: /blogs/{slug} vive en src/pages/blogs/, asi que necesita ../../
+  const arriba = '../'.repeat((ruta.match(/\//g) ?? []).length);
+  const imports = [...usados].map((c) => `import ${c} from '${arriba}components/widgets/${c}.astro';`).join('\n');
   const cuerpo = partes.map((p, i) => (p.componente ? `<${p.componente} />` : `<Fragment set:html={T${i}} />`)).join('\n  ');
   const consts = [...partes.map((p, i) => (p.componente ? null : `const T${i} = ${JSON.stringify(p.html)};`)),
     ...partesTras.map((p, i) => (p.componente ? null : `const P${i} = ${JSON.stringify(p.html)};`)),
@@ -202,18 +248,24 @@ for (const [ruta] of RUTAS) {
   fs.writeFileSync(salida, `---
 // DERIVADO - no editar a mano. Lo genera scripts/build-paginas.mjs desde
 // _source/vivo/${slug}.html (el HTML que sirve el sitio vivo). Regenerar: npm run paginas
-import Base from '../layouts/Base.astro';
+import Base from '${arriba}layouts/Base.astro';
 ${imports}
 
 ${consts}
+const SEO = ${JSON.stringify({ meta: metaSeo, jsonLd })};
+${jsonLdCrudo.length ? `// ${jsonLdCrudo.length} bloque(s) de JSON-LD del origen NO parsean (salto de linea literal
+// dentro de la cadena). Se emiten CRUDOS, byte a byte, porque el contrato dice replicar.
+const LD_CRUDO = ${JSON.stringify(jsonLdCrudo)};` : 'const LD_CRUDO = [];'}
 ---
-<Base titulo=${JSON.stringify(titulo)} descripcion=${JSON.stringify(desc)} ruta=${JSON.stringify(ruta)}${pie ? '' : ' conPie={false}'}>
+<Base titulo=${JSON.stringify(titulo)} descripcion=${JSON.stringify(desc)} ruta=${JSON.stringify(ruta)}${pie ? '' : ' conPie={false}'} seo={SEO} jsonLdCrudo={LD_CRUDO}>
   ${cuerpoAntes}
   ${cuerpo}
   ${cuerpoTras}
 </Base>
 `);
   generadas.push([ruta, partes.length, acumulado.length, [...usados].join('+')]);
+  const col = ruta.split('/')[1] && RUTAS.find(([r]) => r === ruta)?.[2];
+  porColeccion[col || 'estatica'] = (porColeccion[col || 'estatica'] ?? 0) + 1;
 }
 
 if (sinMapear.size) {
@@ -224,7 +276,8 @@ if (sinMapear.size) {
 }
 
 console.log('');
-for (const [r, n, b, w] of generadas) {
-  console.log(`  ${r.padEnd(28)} ${String(n).padStart(2)} trozos  ${String(Math.round(b / 1024)).padStart(4)} kB  ${w}`);
+for (const [k, v] of Object.entries(porColeccion).sort((a, b) => b[1] - a[1])) {
+  console.log(`  ${String(k).padEnd(20)} ${String(v).padStart(3)} paginas`);
 }
-console.log(`\n  OK ${generadas.length} paginas estaticas\n`);
+const kb = generadas.reduce((a, [, , b]) => a + b, 0) / 1024;
+console.log(`\n  OK ${generadas.length} paginas · ${Math.round(kb)} kB de marcado\n`);

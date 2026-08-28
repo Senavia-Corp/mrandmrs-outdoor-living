@@ -30,11 +30,43 @@ interface Props {
   titulo: string;
   descripcion?: string;
   ruta?: string;
+  /** Metadatos del <head> tal cual los sirve el origen: og:*, twitter:*, robots y JSON-LD.
+   *  Los pasa el generador desde _source/vivo/. */
+  seo?: {
+    meta?: Record<string, string>;
+    jsonLd?: unknown[];
+  };
+  /** Bloques de JSON-LD del origen que NO parsean. Se emiten CRUDOS: es un defecto del sitio
+   *  vivo (un salto de línea literal dentro de la cadena) en 8 fichas de `/project/`, y el
+   *  contrato dice replicarlo, no arreglarlo. Anotado como mejora candidata. */
+  jsonLdCrudo?: string[];
   /** `/brochures` NO TIENE PIE en el origen. Rareza real, medida sobre las 115: es la única
    *  página con cascarón que se acaba sin él. Ponerle uno sería añadir una sección. */
   conPie?: boolean;
 }
-const { titulo, descripcion, ruta = Astro.url.pathname, conPie = true } = Astro.props;
+const { titulo, descripcion, ruta = Astro.url.pathname, conPie = true, seo = {}, jsonLdCrudo = [] } = Astro.props;
+
+/**
+ * La canónica es una ADICIÓN DELIBERADA, no paridad: el sitio vivo NO tiene ni una en las 115
+ * (comprobado). La pide la Fase 9 del encargo.
+ *
+ * El interruptor falla CERRADO: solo se indexa con el valor exacto "1". Y ojo con el
+ * fallback de la URL — si cayera en el dominio del cliente mientras esto vive en una preview,
+ * las 115 canónicas apuntarían al sitio VIEJO. Ese fue el fallo real en Pergola Plus. Por eso
+ * en preview no se emite canónica y se emite noindex.
+ */
+const ES_PRODUCCION = import.meta.env.PUBLIC_ES_PRODUCCION === '1';
+const canonica = ES_PRODUCCION ? new URL(ruta, Astro.site).href : null;
+/**
+ * `og:image` y `twitter:image` tienen que ser ABSOLUTAS: los rastreadores sociales no
+ * resuelven una ruta relativa, y al pasar las URLs del CDN a local se habian quedado en
+ * `/images/...`. El origen las servia absolutas; esto lo restituye.
+ */
+const meta = Object.fromEntries(Object.entries(seo.meta ?? {}).map(([k, v]) => [
+  k, /^(og:image|twitter:image)/.test(k) && typeof v === 'string' && v.startsWith('/')
+    ? new URL(v, Astro.site).href : v,
+]));
+const jsonLd = seo.jsonLd ?? [];
 ---
 <!doctype html>
 <html lang="en">
@@ -43,6 +75,13 @@ const { titulo, descripcion, ruta = Astro.url.pathname, conPie = true } = Astro.
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{titulo}</title>
     {descripcion && <meta name="description" content={descripcion} />}
+    {Object.entries(meta).map(([k, v]) => (k.startsWith('og:')
+      ? <meta property={k} content={v} />
+      : <meta name={k} content={v} />))}
+    {canonica && <link rel="canonical" href={canonica} />}
+    {!ES_PRODUCCION && <meta name="robots" content="noindex, nofollow" />}
+    {jsonLd.map((b) => <script type="application/ld+json" set:html={JSON.stringify(b)} />)}
+    {jsonLdCrudo.map((b) => <script type="application/ld+json" set:html={b} />)}
     <link rel="shortcut icon" href="/images/site/favicon.png" />
     <link rel="apple-touch-icon" href="/images/site/webclip.png" />
     {/* Webflow marca el <html> con w-mod-js y w-mod-touch y HAY CSS QUE DEPENDE DE ELLO.

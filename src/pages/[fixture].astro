@@ -1,0 +1,22 @@
+---
+/**
+ * FIXTURE de la puerta de la Fase 4, no una página del sitio.
+ *
+ * Es una ruta dinámica cuyo `getStaticPaths` devuelve la lista VACÍA salvo con
+ * `MM_FIXTURES=1`. Así no se construye nunca en un build normal y no puede colarse en
+ * producción ni hacer fallar el «ninguna ruta extra existe» de la Fase 6 — que era
+ * exactamente el riesgo de dejarla como página suelta y confiar en acordarse de borrarla.
+ *
+ *     MM_FIXTURES=1 npm run build && npm run check:cascaron
+ */
+import Base from '../layouts/Base.astro';
+
+export function getStaticPaths() {
+  return import.meta.env.MM_FIXTURES === '1' || process.env.MM_FIXTURES === '1'
+    ? [{ params: { fixture: 'cascaron' } }]
+    : [];
+}
+---
+<Base titulo="Cascarón" ruta="/">
+  <main style="min-height: 40vh; padding-top: calc(85px + 2rem)"></main>
+</Base>

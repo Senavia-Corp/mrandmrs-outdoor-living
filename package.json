@@ -13,16 +13,19 @@
     "css": "node scripts/build-css.mjs",
     "shell": "node scripts/build-shell.mjs",
     "dev": "astro dev --port 4325",
-    "build": "astro build",
+    "build": "npm run estimador && npm run seo:ficheros && astro build",
     "vista": "astro dev --port 4325 --open /vista-widgets",
     "vivo": "node scripts/fetch-vivo.mjs",
-    "check:cascaron": "node scripts/check-cascaron.mjs",
+    "check:cascaron": "MM_FIXTURES=1 npm run build && node scripts/check-cascaron.mjs",
     "fuentes": "node scripts/fetch-fuentes.mjs",
     "baseline:cascaron": "node scripts/capture-cascaron.mjs",
     "paginas": "node scripts/build-paginas.mjs",
     "check:texto": "node scripts/check-texto.mjs",
     "youtube": "node scripts/extract-youtube.mjs",
-    "estimador": "node scripts/build-estimador.mjs"
+    "estimador": "node scripts/build-estimador.mjs",
+    "check:rutas": "node scripts/check-rutas.mjs",
+    "check:seo": "node scripts/check-seo.mjs",
+    "seo:ficheros": "node scripts/build-seo-ficheros.mjs"
   },
   "dependencies": {
     "@astrojs/vercel": "^11.0.8",
