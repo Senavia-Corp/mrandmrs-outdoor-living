@@ -135,12 +135,77 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 | 6 | `/`, `/about`, `/request-estimated`, home | **Finsweet hace tres trabajos, no uno.** Además del filtrado de listas que apunta `PROMPT.md`: el **marquee de logos** (`fs-marquee-logoscms_*`, 14 logos) y el **slider del blog** (`fs-slider-blog_*`). | No es una mejora: es alcance que faltaba. Anotado aquí para que la Fase 7 no lo descubra tarde — `@finsweet/attributes@2` hay que reimplementarlo en tres frentes, no en uno. |
 | 7 | Menú y pie de las 114 páginas | **342 enlaces a `/commercial-services/…` que dan 404.** Comprobado contra el vivo: esas 3 fichas no tienen página propia, pero el sitio las enlaza desde el menú y el pie de todas las páginas. | Rotos ya en el origen. Arreglarlos sería inventarse 3 páginas que no existen. Declarados uno a uno en `check:enlaces`. **Son 342 enlaces que llevan a ninguna parte y cada uno es un visitante perdido**: o se crean las 3 páginas o se quitan los enlaces. Conversación con el cliente. |
 | 8 | `/gallery` y `/brochures` — formularios de filtro | **El sitio vivo pone un captcha de Turnstile en formularios que no envían nada.** Webflow lo inyecta en TODO `<form>`, así que Cloudflare cuelga su `<input type="hidden" name="cf-turnstile-response">` también en el filtro de servicios de `/gallery` y en el de categorías de `/brochures`. Medido: en `/brochures` ese nodo añade **16 px** a 479, porque el formulario es `display:grid; gap:16px` y a una columna cuenta como fila. | No se replica: montar un captcha donde nadie envía datos es una petición a Cloudflare por página y un widget que el visitante no entiende. En el sitio nuevo solo llevan Turnstile los DOS formularios de lead. El precio es que `/brochures` a 479 queda 16 px más corta que el original — la única diferencia de maqueta que se ha dejado a propósito, y se irá si el cliente quita el captcha del filtro en Webflow. |
+| 9 | Estimador — línea «Site Conditions» del desglose | **Los 1500 $ del recargo por HOA cuentan distinto en el total y en el desglose.** El total hace `(… + hoa) × recargo`; la línea del desglose hace `(…) × (recargo − 1) + hoa`. Con «Tight Access» y «Rock Excavation» marcados son 300 $ que el desglose no enseña. Medido: en el caso `todo-si` la línea dice $72.971 y «arreglarla» la dejaría en $87.565. | Es la tabla de precios del cliente. Se replica byte a byte y se verifica con `check:estimador` (384 casos). **«Arreglarlo» cambia el precio de 155 de los 384 casos medidos** — o sea que no es un detalle: es una decisión de negocio que tiene que tomar el cliente. |
+| 10 | Estimador — desglose en «Pool & Patio Remodel» | **El ×0,82 de la reforma se aplica al total y NO a las líneas del desglose**, así que las líneas no suman el total que se enseña arriba. | Igual que la fila 9: se replica. Si el cliente quiere que cuadre, es un cambio de una línea y `check:estimador` dirá exactamente a qué casos afecta. |
 
 ---
 
 ## Entradas
 
 <!-- a partir de aquí, una entrada por fase, la más reciente arriba -->
+
+## Fase 12b — el modelo en fuente propia, con su puerta   ✅ cerrada
+**Fecha:** 2026-08-28
+
+`src/lib/estimador.js` — `PRECIOS`, `POR_DEFECTO`, `SLIDERS`, `calcula()`, `dolares()`,
+`LINEAS_DESGLOSE`. Función pura, sin DOM y sin red. **Un solo módulo para dos consumidores**: lo
+que ve el visitante y la puerta que lo mide. Dos copias dejarían de ser la misma al primer
+arreglo que solo se aplique en un lado, y el síntoma sería un precio distinto en pantalla y en la
+puerta.
+
+`scripts/check-estimador.mjs` reproduce los 384 casos del oráculo **en Node, sin navegador** — lo
+que importa aquí: las otras puertas piden foco real y una cada vez, y ésta se puede lanzar
+mientras se trabaja sin estropear ninguna medición. Va la PRIMERA de la cadena de `npm run check`
+porque no necesita el build y falla en 0,2 s.
+
+```
+npm run check:estimador
+
+  ok   defecto        1/1        ok   todo-si        1/1
+  ok   categorico   162/162      ok   todo-no        1/1
+  ok   booleano      11/11       ok   extremos       8/8
+  ok   aleatorio    200/200
+
+  384/384 casos reproducidos · oráculo capturado el 2026-08-28
+  el oráculo coincidió 10/10 contra el dominio vivo
+
+PUERTA VERDE
+```
+
+### Vista en ROJO dos veces antes de darla por buena
+
+Una puerta que nadie ha visto fallar no es una puerta.
+
+**1 · Un precio cambiado.** `pebble: 1.15 → 1.16`:
+
+```
+  ROJO defecto        0/1     ROJO categorico   108/162     ROJO aleatorio  124/200
+  caso 0 (defecto) — new · 450sqft freeform/pebble · deck 600 pavers
+       min 83000 -> 84000
+       texto "$83,000 – $102,000" -> "$84,000 – $102,000"
+       Pool Structure: $56,925 -> $57,420
+       Permits & Engineering: $6,311 -> $6,356
+```
+
+Fíjate en los 54 casos `categorico` que **siguen en verde**: son los de `plaster` y `premium`,
+que no tocan ese multiplicador. La puerta discrimina, no dice «rojo» a todo.
+
+**2 · «Arreglar» la incoherencia del HOA.** Multiplicando también la línea del desglose por el
+recargo, que es lo que uno haría sin pensar:
+
+```
+  ROJO booleano 9/11   ROJO todo-si 0/1   ROJO aleatorio 45/200
+  caso 174 (todo-si) — Site Conditions: $72,971 -> $87,565
+```
+
+**155 casos.** Esto es la prueba de que la rareza es real y carga peso, no un detalle cosmético:
+«arreglarla» le cambiaría el precio a más de un tercio de los casos medidos. Se replica.
+
+### Las dos incoherencias del original, replicadas y anotadas
+
+Van a «Mejoras candidatas NO aplicadas» (filas 9 y 10). Ninguna se arregla: cambiar un precio sin
+que lo apruebe el cliente es cambiarle el negocio.
+
 
 ## Fase 12a — el oráculo del estimador, capturado antes de tocar nada   ✅ cerrada
 **Fecha:** 2026-08-28
