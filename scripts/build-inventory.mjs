@@ -112,8 +112,8 @@ for (const f of fs.readdirSync(CMS)) {
 // más los del HTML del export
 for (const f of fs.readdirSync(EXPORT).filter(x => x.endsWith('.html'))) {
   const html = fs.readFileSync(path.join(EXPORT, f), 'utf8');
-  for (const m of html.matchAll(/https:\/\/(?:cdn\.prod\.website-files|uploads-ssl\.webflow)\.com\/[^"')\s]+/g)) {
-    const url = normalizarUrl(m[0].replace(/&quot;$/, ''));
+  for (const m of html.matchAll(/https:\/\/(?:cdn\.prod\.website-files|uploads-ssl\.webflow)\.com\/[^"'\s\\<>,]+/g)) {
+    const url = normalizarUrl(equilibrarParentesis(equilibrarParentesis(m[0]).replace(/&(quot|apos|#34|#39);?$/, '')));
     if (!url) continue;
     // el alt del cromo vive en el propio <img>, no en un campo del CMS
     const ctx = html.slice(Math.max(0, m.index - 400), m.index + 400);
@@ -146,6 +146,53 @@ for (const f of fs.readdirSync(EXPORT).filter(x => x.endsWith('.html'))) {
 // Además hay que ensanchar el HOST: `custom-checkbox-checkmark.589d534424.svg` vive en
 // `d3e54v103j8qbb.cloudfront.net`, el host de assets de plataforma de Webflow, que el patrón
 // de siempre ni miraba. Es la palomita de todos los `w-checkbox` del sitio.
+// ...y los de LAS 115 PÁGINAS DEL SITIO VIVO, que es la fuente de verdad del contrato.
+//
+// Esto tenía que haber sido el escaneo PRINCIPAL desde el principio. Construir el inventario
+// desde el export dio tres reaperturas de la Fase 2 por la misma causa, y al medirlo salió
+// que el export está DESFASADO: de las 1183 URLs del CDN que piden las 115 páginas vivas,
+// solo 39 estaban en el manifiesto. Medidas las 1144 restantes una a una:
+//   · 689 son el MISMO contenido con otra URL — Webflow antepone un hash nuevo al resubir,
+//     así que el fichero ya estaba en disco y solo faltaba el mapeo URL -> fichero;
+//   · 440 son las variantes responsive `-p-500/800/1080` que Webflow genera para el srcset;
+//   ·  15 dan 403: el CDN ya no las sirve. 11 tienen equivalente local; las otras 4 son
+//     imágenes de una entrada de blog que están ROTAS EN EL SITIO VIVO ahora mismo.
+//   · imágenes de contenido genuinamente nuevas: CERO.
+//
+// Las variantes `-p-N` HEREDAN los usos de su imagen base, para que acaben en la misma
+// carpeta que ella. Si no, entrarían como cromo y 440 ficheros de colección se irían a
+// `images/site/`, que va a git: 47 MB versionados sin motivo.
+const VIVO = path.join(ROOT, 'baseline/html');
+if (fs.existsSync(VIVO)) {
+  const porNombre = new Map();
+  for (const a of assets.values()) porNombre.set(nombreFinal(a.url), a);
+  const pendientes = [];
+  for (const f of fs.readdirSync(VIVO).filter((x) => x.endsWith('.html'))) {
+    const html = fs.readFileSync(path.join(VIVO, f), 'utf8');
+    for (const m of html.matchAll(/https:\/\/(?:cdn\.prod\.website-files|uploads-ssl\.webflow)\.com\/[^"'\s\\<>,]+/g)) {
+      const url = normalizarUrl(equilibrarParentesis(equilibrarParentesis(m[0]).replace(/&(quot|apos|#34|#39);?$/, '')));
+      if (!url) continue;
+      const prev = assets.get(url);
+      if (prev) { prev.usos.push(`vivo:${f}`); continue; }
+      pendientes.push([url, f, html.slice(Math.max(0, m.index - 400), m.index + 400)]);
+    }
+  }
+  // Dos pasadas: primero las que no son variantes, para que las variantes encuentren su base.
+  const esVariante = (u) => /-p-\d+\.\w+$/.test(nombreFinal(u));
+  for (const orden of [0, 1]) {
+    for (const [url, f, ctx] of pendientes) {
+      if ((esVariante(url) ? 1 : 0) !== orden || assets.get(url)) continue;
+      const base = esVariante(url)
+        ? porNombre.get(nombreFinal(url).replace(/-p-\d+(\.\w+)$/, '$1'))
+        : null;
+      const alt = base?.alt || (ctx.match(/\salt="([^"]*)"/) || [, ''])[1].trim();
+      const a = { url, alt, usos: base ? [...base.usos] : [`vivo:${f}`] };
+      assets.set(url, a);
+      porNombre.set(nombreFinal(url), a);
+    }
+  }
+}
+
 const CSS_SITIO = path.join(ROOT, '_source/webflow-css');
 if (fs.existsSync(CSS_SITIO)) {
   for (const f of fs.readdirSync(CSS_SITIO).filter((x) => x.endsWith('.css'))) {
@@ -166,7 +213,7 @@ if (fs.existsSync(ESTIMADOR)) {
   for (const f of fs.readdirSync(ESTIMADOR).filter((x) => /\.(css|html)$/.test(x))) {
     const txt = fs.readFileSync(path.join(ESTIMADOR, f), 'utf8');
     for (const m of txt.matchAll(/https:\/\/(?:cdn\.prod\.website-files|uploads-ssl\.webflow)\.com\/[^"')\s]+/g)) {
-      const url = normalizarUrl(m[0].replace(/&quot;$/, ''));
+      const url = normalizarUrl(m[0].replace(/&(quot|apos|#34|#39);?$/, ''));
       if (!url) continue;
       const prev = assets.get(url);
       // Sin alt: son fondos e iconos de un CSS, no hay <img> del que sacarlo.
@@ -179,6 +226,23 @@ if (fs.existsSync(ESTIMADOR)) {
 // La URL se usa CRUDA para descargar. Solo se corrigen dos defectos reales del origen:
 //   - `industry-solutions.html` repite el id de sitio en la ruta -> 403 (la simple da 200)
 //   - assets que no son media (el config .js de Finsweet) no son assets
+/**
+ * La COMA tampoco forma parte de la URL cuando se saca de HTML: `data-video-urls` lleva el
+ * mp4 y el webm separados por coma, y `srcset` separa así sus entradas. Cogerla dentro daba
+ * una «URL» con dos pegadas que devolvía 403 — los 3 vídeos de fondo del sitio.
+ *
+ * Recorta el paréntesis de cierre que sobra al final de una URL sacada de HTML.
+ *
+ * En HTML el delimitador es la comilla, no el paréntesis: parar en `)` truncaba
+ * `…_Adobe Express - file (1).png` en `…file%20(1` y dejaba 12 assets sin extensión, entre
+ * ellos los 4 de una entrada de blog. Pero una URL dentro de `style="background:url(…)"` sí
+ * acaba en `)`. La regla que distingue las dos: si sobran cierres, el último no es de la URL.
+ */
+function equilibrarParentesis(u) {
+  while (u.endsWith(')') && (u.split(')').length > u.split('(').length)) u = u.slice(0, -1);
+  return u;
+}
+
 function normalizarUrl(u) {
   if (!/^https?:\/\//.test(u)) return null;
   // d3e54v103j8qbb.cloudfront.net es el host de assets de PLATAFORMA de Webflow (la palomita

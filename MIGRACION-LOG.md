@@ -15,9 +15,9 @@ reproducir el resultado, saber qué se midió y con qué comando, y ver qué que
 |---|---|---|---|
 | F0 | Cuentas, identidades y repo | ✅ cerrada | 2026-08-27 |
 | F1 | Baseline congelado | ✅ cerrada | 2026-08-27 |
-| F2 | Assets locales | ↩️ reabierta ×2, cerrada | 2026-08-27 |
+| F2 | Assets locales | ↩️ reabierta ×3, cerrada | 2026-08-27 |
 | F3 | Sanity: esquemas + import | ✅ cerrada | 2026-08-27 |
-| F4 | Cascarón Astro | 🟡 en curso | |
+| F4 | Cascarón Astro | ✅ cerrada | 2026-08-27 |
 | F5 | Páginas estáticas | ⬜ pendiente | |
 | F6 | Páginas de colección | ⬜ pendiente | |
 | F7 | Animaciones e interacciones | ⬜ pendiente | |
@@ -135,6 +135,152 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 ## Entradas
 
 <!-- a partir de aquí, una entrada por fase, la más reciente arriba -->
+
+## Fase 4 — Cascarón Astro   ✅ cerrada
+**Fecha:** 2026-08-27
+
+### Objetivo
+Que el nav y el pie del build sean **los mismos** que los del sitio vivo, en los 4 anchos.
+
+### Qué se hizo
+- `astro.config.mjs` — estático + adaptador de Vercel. **Astro 7, no 5**: `@astrojs/vercel@11`
+  pide `^7`, y es lo que corre en Pergola Plus y AB Aluminum. No cambia el contrato de salida.
+- `scripts/build-css.mjs` → `src/styles/webflow.css`, derivado del CSS **del vivo**.
+- `scripts/fetch-fuentes.mjs` → `public/fonts/` + `src/styles/fuentes.css`.
+- `scripts/build-shell.mjs` → `src/components/{Nav,Footer}.astro` (40 kB de marcado; no se copia a mano).
+- `scripts/capture-cascaron.mjs` → `baseline/cascaron.json`, la referencia congelada.
+- `scripts/check-cascaron.mjs` — la puerta.
+- `src/layouts/Base.astro` — nav + contenido + pie + botón de llamada.
+
+### Números medidos
+| Métrica | Medido |
+|---|---|
+| Elementos del nav comparados, por ancho | **303** |
+| Elementos del pie comparados, por ancho | **180** |
+| Elementos desviados (tol 0,6 px), 4 anchos | **0** |
+| Texto del nav y del pie | **idéntico** |
+| Banda del nav en píxeles | **99,90–100,00 %** |
+| Variables en `:root` | 82 (84 − 2 corruptas resueltas) |
+| `url()` del CDN en el CSS | **0** |
+| Peso de las fuentes auto-alojadas | 348 kB, 6 woff2 |
+
+### El hallazgo que cambió la puerta
+El encargo pedía «`check:visual` del nav y el pie **≥99 %** contra el baseline». **Esa métrica
+no sirve para el nav, y se puede demostrar:** con la tolerancia que hace que contenido
+IDÉNTICO llegue al 99 % tras el reescalado, un nav con un enlace movido **6 px** daba
+**99,33 %** y pasaba igual. No es un umbral mal elegido: la banda del nav es casi toda blanca,
+así que mover un enlace toca el 0,7 % de los píxeles.
+
+```
+  tolerancia   IGUALES(vivo vs build)   ROTO(build vs build+6px)
+  0.1           97.72 %                  98.81 %
+  0.2           99.71 %                  99.33 %      <- el roto pasa el 99 %
+  0.3          100.00 %                  99.66 %      <- el roto pasa el 99 %
+```
+
+Así que la puerta compara **la caja de cada elemento**, relativa a la sección, más el texto.
+Los píxeles se quedan como señal secundaria —cazan un color o una imagen que no carga, que la
+geometría no ve— con la tolerancia calibrada a 0.3, que es la medida que hace que contenido
+idéntico dé 100 % después de bajar a 1/4.
+
+### El otro hallazgo: @fontsource no vale
+El encargo dice de auto-alojar con `@fontsource-variable`. Se hizo, y el nav salía al
+**95,85 %**. Medido elemento a elemento: la caja del nav coincidía al píxel y el logo también,
+pero **un `a.nav-link` medía 57,35 px en el build y 59,54 px en el vivo**. Misma familia, mismo
+tamaño, mismo peso, métricas distintas: el Inter variable de fontsource no es el Inter que
+sirve Google hoy. Con cada enlace 2 px más estrecho, ninguna comparación iba a llegar al 99 %
+en 115 páginas.
+
+Se bajan los **.woff2 exactos** que pide el sitio, con la misma cadena de familias de su
+WebFont Loader. Tras el cambio: **0 de 60 elementos del nav desviados**.
+
+**Playfair Display no se migra.** El loader del origen carga sus 5 pesos, pero no la usa nadie:
+0 `font-family` con Playfair en el CSS del vivo y en las 115 páginas del baseline. Cero
+píxeles afectados. Anotado como desviación medida, no como olvido.
+
+### Evidencia
+```
+$ npm run check:cascaron
+── 1920px
+  ✅ menu: 303 elementos · ✅ geometría 0 desviados (tol 0.6px) · ✅ texto idéntico
+  ✅ footer: 180 elementos · ✅ geometría 0 desviados · ✅ texto idéntico
+  ✅ nav: píxeles (señal secundaria) — 100.00 %
+  … 1440, 991 y 479 igual
+✅ PUERTA VERDE
+
+$ # probada en rojo: .menu{height:92px} y .footer-link{padding-left:7px}
+  🔴 menu: geometría — 27 elementos desviados
+       #0 div.navbar: h 85->92     #1 a.navbar-logo: y 10->13.5
+  🔴 footer: geometría — 152 elementos desviados
+       #19 div.footer-block: w 134.1->141.1
+```
+
+### Rarezas del original replicadas a propósito
+- **`w-nav-overlay` se hornea.** `webflow.js` inyecta ese div vacío como último hijo de
+  `.navbar.w-nav` y ahí mueve el menú al abrirlo en móvil. Sin él, el cascarón tenía 302
+  elementos donde el vivo tiene 303, en los 4 anchos. Se hornea igual que lo inyectaba
+  Webflow; abrir y cerrar es de la Fase 7.
+- **El bloque `<style>` anti-FOUC del origen NO se copia.** Dice
+  `html.w-mod-js:not(.w-mod-ix) [data-w-id]{opacity:0}`, o sea «invisible hasta que arranque
+  IX2». Sin `webflow.js` nadie pone `w-mod-ix` y esos elementos se quedarían invisibles PARA
+  SIEMPRE. Es literalmente lo que pasó una vez en AMS. Lo sustituye el sello de la Fase 7.
+- Sí se conserva el script en línea que pone `w-mod-js`/`w-mod-touch`: hay CSS que depende.
+
+### Abierto
+- **Borrar `src/pages/cascaron.astro` y `src/pages/vista-widgets.astro` antes de la Fase 6.**
+  Son rutas que el origen no tiene; `check:rutas` las cazará.
+- El adaptador de Vercel emite `ruta/index.html` aunque `build.format` sea `'file'`. Hay que
+  decidir en la Fase 9/11 cómo queda la URL final (el encargo pide sin barra).
+
+## Fase 2 (reabierta, 3.ª vez) — el inventario se construía desde el export, y el export está desfasado   ✅ cerrada
+**Fecha:** 2026-08-27 · Destapado por el extractor del cascarón, que abortó.
+
+### Por qué se reabre
+El extractor del nav falló: **25 de las 27 imágenes del nav del vivo no estaban en el
+manifiesto**. Medido sobre las 115 páginas: de las **1183** URLs del CDN que piden, solo
+**39** estaban. La causa de fondo es la misma de las dos reaperturas anteriores — **el
+inventario se construía desde el export, y el contrato dice que manda el vivo**.
+
+Medidas las 1144 que faltaban, una a una:
+
+| | |
+|---|---|
+| Mismo contenido, URL re-hasheada por Webflow | **689** — solo faltaba el mapeo |
+| Variantes responsive `-p-500/800/1080` del `srcset` | **440** |
+| Imágenes de contenido genuinamente nuevas | **0** |
+
+**El export no ha perdido contenido: lo que se desfasó son las URLs.**
+
+### Dos bugs míos que salieron por el camino
+1. **La regex de URLs paraba en `)`.** En HTML el delimitador es la comilla, no el paréntesis:
+   `…_Adobe Express - file (1).png` se truncaba en `…file%20(1`. Eso dejó 12 assets sin
+   extensión y **explica los «15 assets que el CDN ya no sirve» que reporté antes: eran URLs
+   rotas por mí, no assets muertos.** Con la URL correcta bajan sin problema.
+2. **Tampoco paraba en la coma**, y `data-video-urls` lleva el mp4 y el webm separados por
+   coma: los 3 vídeos de fondo se pedían como una URL con dos pegadas y daban 403.
+
+Corregidos los dos: **0 fallos de descarga y 0 assets perdidos.**
+
+### Y una fragilidad de fondo, arreglada
+El ganador de cada `sha256` lo decidía **el orden de llegada de la red con concurrencia 8**.
+Al añadir URLs nuevas cuyo contenido ya estaba en disco, una podía ganar y **llevarse el
+fichero a otra carpeta**, moviendo rutas que ya referencian el CSS derivado y las páginas.
+Ahora `porSha` se siembra desde el manifiesto previo: lo colocado se queda donde está.
+Medido tras el cambio: **0 rutas movidas, 0 sha cambiados** sobre 844 entradas previas.
+
+### Números medidos
+| Métrica | Antes | Ahora |
+|---|---|---|
+| Assets únicos | 670 | **1826** |
+| Referencias | 844 | **2000** |
+| Ficheros en disco | 794 | **1238** |
+| Fallos de descarga | 0 | **0** |
+| Assets de cromo versionados | 229 | **792** (+48 MB) |
+| Rutas movidas de sitio | — | **0** |
+
+### Abierto
+- Los 48 MB de variantes responsive van a git porque las páginas las piden por ruta local y
+  son los bytes exactos del origen: reencodearlas sería cambiar píxeles.
 
 ## Fase 2 (reabierta, 2.ª vez) — nadie escaneaba los `url()` del CSS   ✅ cerrada
 **Fecha:** 2026-08-27 · Destapado al empezar la Fase 4.

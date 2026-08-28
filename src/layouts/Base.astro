@@ -1,7 +1,9 @@
 ---
 /**
- * Cascarón mínimo. El nav y el pie los añade la Fase 4 cuando el extractor pueda correr
- * (hoy aborta: 25 imágenes del nav del vivo no están en el manifiesto).
+ * El cascarón: nav + contenido + pie, más el botón flotante de llamada.
+ *
+ * `.menu` es position:fixed y mide 85 px, así que TODA página escrita a mano empieza en y=0,
+ * por detrás del nav. El padding superior va como calc(85px + aire), con el motivo al lado.
  *
  * El <head> reproduce lo que hay en el origen, MENOS lo que se va a propósito:
  *   · preconnect al CDN de Webflow y a Google Fonts -> ya no se usa ninguno de los dos
@@ -15,8 +17,13 @@
  * `w-mod-ix` no la pone nadie y esos elementos se quedan invisibles PARA SIEMPRE. Es
  * literalmente lo que ya pasó una vez en AMS. Lo sustituye el sello de la Fase 7.
  */
-import '@fontsource-variable/inter';
-import '@fontsource-variable/montserrat';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import ClickToCall from '../components/widgets/ClickToCall.astro';
+// Las fuentes son los .woff2 EXACTOS de Google, no @fontsource: con el Inter variable de
+// fontsource el nav salía al 95,85 % contra el baseline porque un a.nav-link medía 57,35 px
+// en vez de 59,54. Ver scripts/fetch-fuentes.mjs.
+import '../styles/fuentes.css';
 import '../styles/webflow.css';
 
 interface Props {
@@ -24,7 +31,7 @@ interface Props {
   descripcion?: string;
   ruta?: string;
 }
-const { titulo, descripcion } = Astro.props;
+const { titulo, descripcion, ruta = Astro.url.pathname } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
@@ -46,6 +53,9 @@ const { titulo, descripcion } = Astro.props;
     </script>
   </head>
   <body>
+    <Nav ruta={ruta} />
     <slot />
+    <Footer ruta={ruta} />
+    <ClickToCall />
   </body>
 </html>

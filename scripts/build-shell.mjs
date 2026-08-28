@@ -63,6 +63,22 @@ function limpiar(nodo) {
   return nodo.outerHTML;
 }
 
+/**
+ * `webflow.js` inyecta un `<div class="w-nav-overlay">` vacío como último hijo de
+ * `.navbar.w-nav`, y ahí mueve el menú al abrirlo en móvil. Como el HTML SERVIDO no lo trae
+ * (lo crea el JS que quitamos), sin esto el cascarón tiene 302 elementos donde el vivo tiene
+ * 303, en los 4 anchos. Se hornea igual que lo inyectaba Webflow; el comportamiento de abrir
+ * y cerrar es de la Fase 7.
+ */
+const navbar = doc.querySelector('section.menu .navbar.w-nav');
+if (navbar && !navbar.querySelector('.w-nav-overlay')) {
+  const ov = doc.createElement('div');
+  ov.className = 'w-nav-overlay';
+  ov.setAttribute('data-wf-ignore', '');
+  ov.id = 'w-nav-overlay-0';
+  navbar.appendChild(ov);
+}
+
 const piezas = {
   Nav: limpiar(doc.querySelector('section.menu')),
   Footer: limpiar(doc.querySelector('section.footer')),

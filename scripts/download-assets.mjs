@@ -51,7 +51,12 @@ function destino(a) {
   // `images/css:outdoorliving-shared/sin-slug/` — y la puerta salía VERDE, porque todos sus
   // checks miran coherencia contra el manifiesto, no si el destino tiene sentido. Lo cazó
   // el contador de cromo bajando de 226 a 208; ahora lo caza el check 10.
-  const cms = usos.filter(u => !u.startsWith('html:') && !u.startsWith('css:'));
+  // `html:`, `css:` y `vivo:` son referencias desde MARCADO o ESTILOS, no desde un campo del
+  // CMS: todas cuentan como cromo. Cada vez que se ha añadido un prefijo nuevo sin tocar esta
+  // línea, el prefijo entero se ha colado como nombre de carpeta (`images/css:…/sin-slug/`,
+  // `images/vivo:about/…`). Por eso existe el check 10.
+  const PREFIJOS_MARCADO = ['html:', 'css:', 'vivo:'];
+  const cms = usos.filter(u => !PREFIJOS_MARCADO.some(p => u.startsWith(p)));
   if (PDF.test(a.nombreFinal)) return { dir: 'brochures', sub: '' };
   if (VIDEO.test(a.nombreFinal)) return { dir: 'videos', sub: '' };
   if (!cms.length) return { dir: 'images', sub: 'site' };        // solo referenciado desde el HTML → cromo
@@ -152,6 +157,20 @@ async function bajar(url) {
 
 const porSha = new Map();     // sha256 -> ruta relativa ya escrita (deduplicación real)
 const usados = new Map();     // ruta relativa -> sha, para detectar colisión de nombre
+
+// SEMBRADO DESDE EL MANIFIESTO PREVIO. Sin esto, el ganador de cada sha lo decidía el orden
+// de llegada de la red con concurrencia 8: al añadir una URL NUEVA cuyo contenido ya estaba
+// en disco, podía ganar ella y llevarse el fichero a otra carpeta —moviendo una ruta que ya
+// referencian el CSS derivado y las páginas—. Sembrando primero lo que ya existe, lo
+// colocado se queda donde está y lo nuevo se limita a apuntar ahí.
+// De paso el determinismo deja de depender de la suerte: la Fase 2 lo dio por bueno con dos
+// corridas, pero eran dos corridas con la misma suerte.
+for (const [, a] of Object.entries(previo.assets)) {
+  const rel = a.publico.replace(/^\//, '');
+  if (!porSha.has(a.sha256) && fs.existsSync(path.join(PUB, rel))) {
+    porSha.set(a.sha256, rel); usados.set(rel, a.sha256);
+  }
+}
 const manifest = { generado: null, assets: {} };
 const fallos = [];
 
