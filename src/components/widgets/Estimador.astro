@@ -1,0 +1,512 @@
+---
+/**
+ * FASE 12c — EL ESTIMADOR, EN FUENTE PROPIA.
+ *
+ * Sustituye al bundle minificado de Webflow Cloud (`_source/estimator/`, 680 kB de React +
+ * Radix + Tailwind sin sourcemap). Aquí no hay ni React ni una sola dependencia nueva: los 7
+ * pasos se hornean en el HTML y un `<script>` de ~120 líneas conmuta el visible y recalcula.
+ *
+ * LO USAN DOS RUTAS, y por eso es un componente y no una página:
+ *   · `/pool-investment-estimator` — su página desnuda, sin nav ni pie, como el original;
+ *   · `/pool-cost-estimator`       — decisión D3: fuera el iframe, el estimador va empotrado.
+ *
+ * ─────────────────────────────────────────────────────────────────────────────
+ * LOS TRES CONTROLES SON NATIVOS
+ *
+ * El original monta `RadioGroup`, `Checkbox` y `Slider` de Radix: tres `<button role="...">`
+ * con estado de React y ~90 kB de librería. Aquí son `<input type="radio|checkbox|range">`.
+ * Con eso salen gratis el teclado, el lector de pantalla, el `name`/`value` para el
+ * `FormData` y —lo mejor— **la selección se pinta con `:has(input:checked)`, sin JavaScript**.
+ *
+ * ⚠️ UNA DIFERENCIA DELIBERADA, LA ÚNICA: EL PULGAR DEL SLIDER SE VE.
+ * En el original mide **2x2 px y es invisible** (medido con getComputedStyle y confirmado en
+ * captura: la barra se pinta pero no hay tirador). No es una decisión de diseño, es una regla
+ * perdida: `size-4` vive en `@layer utilities` y pierde contra la base sin capa. Lo demuestra
+ * el propio CSS del original, que dice `#pool-estimator [role=slider]{background-color:
+ * var(--gold)}` — o sea, el autor SÍ quería un pulgar dorado. Aquí se pinta, 16 px y dorado.
+ * Anotado en la bitácora y en `docs/ENTREGA.md` para que el cliente pueda vetarlo.
+ *
+ * ─────────────────────────────────────────────────────────────────────────────
+ * LOS PRECIOS NO ESTÁN AQUÍ
+ *
+ * Ni los números ni las etiquetas: «Base rate: $110/sqft» y «Heater (+$4,500)» se componen
+ * desde `PRECIOS` en tiempo de build. Cambiar un precio es tocar UNA línea de
+ * `src/lib/estimador.js` y el texto de la pantalla se mueve con él. En el original había que
+ * editar el bundle minificado.
+ */
+import { PRECIOS as P, POR_DEFECTO as D, SLIDERS as S, calcula, dolares, rangoTexto, subtitulo, LINEAS_DESGLOSE } from '../../lib/estimador.js';
+import '../../styles/estimador.css';
+
+interface Props {
+  /** `true` en la página desnuda: le pone el `min-height:100vh` del original. Empotrado, no. */
+  suelta?: boolean;
+}
+const { suelta = false } = Astro.props;
+
+/** Los 12 iconos de lucide-react del original, con el `path` sacado del propio bundle. */
+const ICONO: Record<string, string> = {
+  house: '<path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
+  'maximize-2': '<path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/>',
+  droplets: '<path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"/><path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"/>',
+  palette: '<path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"/><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/>',
+  'grid-3x3': '<rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/><path d="M15 3v18"/>',
+  waves: '<path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>',
+  'tree-pine': '<path d="m17 14 3 3.3a1 1 0 0 1-.7 1.7H4.7a1 1 0 0 1-.7-1.7L7 14h-.3a1 1 0 0 1-.7-1.7L9 9h-.2A1 1 0 0 1 8 7.3L12 3l4 4.3a1 1 0 0 1-.8 1.7H15l3 3.3a1 1 0 0 1-.7 1.7H17Z"/><path d="M12 22v-3"/>',
+  'circle-check': '<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>',
+  'chevron-left': '<path d="m15 18-6-6 6-6"/>',
+  'chevron-right': '<path d="m9 18 6-6-6-6"/>',
+  'chevron-down': '<path d="m6 9 6 6 6-6"/>',
+  'chevron-up': '<path d="m18 15-6-6-6 6"/>',
+};
+const svg = (n: string, extra = '') =>
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"`
+  + ` stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"${extra}>${ICONO[n]}</svg>`;
+
+const PASOS = [
+  ['house', 'Project Type'], ['maximize-2', 'Pool Size'], ['droplets', 'Pool Style / Complexity'],
+  ['palette', 'Interior Finish'], ['grid-3x3', 'Decking'], ['waves', 'Spa & Systems'],
+  ['tree-pine', 'Outdoor Living & Site'],
+];
+
+/** Grupos de opciones-tarjeta: [valor, título, descripción, nota, insignia]. */
+const PROYECTO = [
+  ['new', 'New Custom Pool', 'Complete pool construction from the ground up, including excavation, plumbing, electrical, and all finishes.', '', ''],
+  ['remodel', 'Pool & Patio Remodel', 'Renovate and upgrade your existing pool and surrounding areas with new finishes, equipment, and features.', '', ''],
+];
+const ESTILO = [
+  ['standard', 'Standard (Rectangular / Geometric)', 'Classic shapes with straight lines and simple angles. Most cost-effective option.', `Base rate: $${P.baseRatePerSqft.standard}/sqft`, ''],
+  ['freeform', 'Freeform', 'Natural, organic shapes with curves and custom features. Popular for resort-style designs.', `Base rate: $${P.baseRatePerSqft.freeform}/sqft`, '⭐ Popular'],
+  ['luxury', 'Luxury / Custom Geometry', 'Highly customized designs with complex shapes, vanishing edges, beach entries, or architectural features.', `Base rate: $${P.baseRatePerSqft.luxury}/sqft`, ''],
+];
+const ACABADO = [
+  ['plaster', 'Standard Plaster', 'Traditional white or colored plaster. Smooth finish with 7-10 year lifespan.', `Multiplier: ${P.finishMultiplier.plaster.toFixed(1)}x`, ''],
+  ['pebble', 'Pebble Finish', 'Natural pebble surface with enhanced durability and rich color options. 15-20 year lifespan.', `Multiplier: ${P.finishMultiplier.pebble}x`, '⭐ Popular'],
+  ['premium', 'Premium / Polished Finish', 'Glass bead, quartz, or polished aggregate. Ultra-smooth, vibrant colors, maximum longevity.', `Multiplier: ${P.finishMultiplier.premium}x`, ''],
+];
+const MATERIAL = [
+  ['concrete', 'Concrete', 'Brushed or stamped concrete. Affordable and versatile.', `Cost: $${P.deckingPerSqft.concrete}/sqft`, ''],
+  ['pavers', 'Pavers', 'Interlocking brick or stone pavers. Classic look with design flexibility.', `Cost: $${P.deckingPerSqft.pavers}/sqft`, '⭐'],
+  ['travertine', 'Travertine', 'Natural stone. Premium, stays cool underfoot, luxury aesthetic.', `Cost: $${P.deckingPerSqft.travertine}/sqft`, ''],
+];
+/** Radios en fila simple (el spa): [valor, texto, precio]. */
+const SPA = [
+  ['none', 'No Spa', ''],
+  ['integrated', 'Integrated Spa', `(+${dolares(P.spa.integrated)})`],
+  ['spillover', 'Raised Spillover Spa', `(+${dolares(P.spa.spillover)})`],
+];
+/** Casillas: [clave, título, descripción, precio-aparte]. */
+const SISTEMAS = [
+  ['calefaccion', `Heater (+${dolares(P.equipment.heater)})`, 'Gas or heat pump for year-round comfort', ''],
+  ['sal', `Salt System (+${dolares(P.equipment.saltSystem)})`, 'Lower maintenance, softer water feel', ''],
+  ['automatizacion', `Automation System (+${dolares(P.equipment.automation)})`, 'Control everything from your phone', ''],
+];
+const EXTERIOR = [
+  ['pergola', 'Pergola (Aluminum or Wood)', '', `(+${dolares(P.outdoor.pergola)})`],
+  ['techoLamas', 'Louvered Roof System', '', `(+${dolares(P.outdoor.louveredRoof)})`],
+  ['mosquitera', 'Pool Screen Enclosure', '', `(+${dolares(P.outdoor.screenEnclosure)})`],
+  ['cocina', 'Outdoor Kitchen', '', `(+${dolares(P.outdoor.outdoorKitchen)})`],
+  ['jardineria', 'Pool-Area Landscaping', '', `(+${dolares(P.outdoor.landscaping)})`],
+];
+const CONDICIONES = [
+  ['accesoLimitado', `Tight Access (+${P.siteConditions.tightAccess * 100}% total)`, 'Limited equipment access to backyard', ''],
+  ['roca', `Rock Excavation (+${P.siteConditions.rockExcavation * 100}% total)`, 'Significant rock or coral in soil', ''],
+  ['hoa', `HOA Approval Required (+${dolares(P.siteConditions.hoaApproval)})`, 'Community architectural review process', ''],
+];
+
+/** El primer render se hornea con el estado por defecto: la página sirve ya el rango bueno y
+ *  no hay un fotograma con «$0». El original pintaba en blanco hasta que React hidrataba. */
+const INI = calcula(D);
+const miles = (n: number) => n.toLocaleString('en-US');
+---
+
+<div id="pool-estimator" class={suelta ? 'pe-suelta' : undefined} data-pe>
+  <div class="pe-ancho">
+    <div class="pe-rejilla">
+
+      <div class="pe-izq">
+        <div class="pe-tarjeta pe-progreso">
+          <div class="pe-progreso-cuerpo">
+            <div class="pe-progreso-fila">
+              <span class="pe-paso-n">Step <span data-pe-paso>1</span> of {PASOS.length}</span>
+              <span class="pe-paso-pct"><span data-pe-pct>14</span>% Complete</span>
+            </div>
+            <div class="pe-barra"><div data-pe-barra style={`width:${100 / PASOS.length}%`}></div></div>
+          </div>
+        </div>
+
+        {PASOS.map(([icono, titulo], i) => (
+          <div class="pe-tarjeta" data-pe-tarjeta={i + 1} hidden={i > 0}>
+            <div class="pe-cab">
+              <div class="pe-cab-fila">
+                <Fragment set:html={svg(icono)} />
+                <div class="pe-titulo">{titulo}</div>
+              </div>
+            </div>
+            <div class="pe-cuerpo">
+
+              {i === 0 && (
+                <div class="pe-opciones">
+                  {PROYECTO.map(([v, t, desc]) => (
+                    <label class="pe-opcion">
+                      <input type="radio" name="proyecto" value={v} checked={D.proyecto === v} />
+                      <span class="pe-opcion-txt">
+                        <span class="pe-opcion-tit">{t}</span>
+                        <p class="pe-opcion-desc">{desc}</p>
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              )}
+
+              {i === 1 && (
+                <Fragment>
+                  <div class="pe-cifra">
+                    <div class="pe-cifra-n" data-pe-eco="tamano">{D.tamano}</div>
+                    <div class="pe-cifra-u">square feet</div>
+                  </div>
+                  <div class="pe-bloque">
+                    <input type="range" name="tamano" min={S.tamano.min} max={S.tamano.max} step={S.tamano.step}
+                      value={D.tamano} aria-label="Pool size in square feet" />
+                    <div class="pe-extremos"><span>{S.tamano.min} sqft</span><span>{S.tamano.max} sqft</span></div>
+                  </div>
+                  <div class="pe-bloque pe-nota-gris">
+                    <p><strong>Reference:</strong> A typical residential pool ranges from 350-600 sqft. Larger entertainment pools can exceed 700 sqft.</p>
+                  </div>
+                </Fragment>
+              )}
+
+              {[2, 3].includes(i) && (
+                <div class="pe-opciones">
+                  {(i === 2 ? ESTILO : ACABADO).map(([v, t, desc, nota, insignia]) => (
+                    <label class="pe-opcion">
+                      <input type="radio" name={i === 2 ? 'estilo' : 'acabado'} value={v}
+                        checked={(i === 2 ? D.estilo : D.acabado) === v} />
+                      <span class="pe-opcion-txt">
+                        <span class="pe-opcion-tit">{t}{insignia && <span class="pe-insignia">{insignia}</span>}</span>
+                        <p class="pe-opcion-desc">{desc}</p>
+                        <p class="pe-opcion-nota">{nota}</p>
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              )}
+
+              {i === 4 && (
+                <Fragment>
+                  <div class="pe-bloque">
+                    <h3 class="pe-h3">Deck Size</h3>
+                    <div class="pe-cifra pe-cifra-deck">
+                      <div class="pe-cifra-n" data-pe-eco="deck">{D.deck}</div>
+                      <div class="pe-cifra-u">square feet</div>
+                    </div>
+                    <input type="range" name="deck" min={S.deck.min} max={S.deck.max} step={S.deck.step}
+                      value={D.deck} aria-label="Deck size in square feet" />
+                    <div class="pe-extremos"><span>{miles(S.deck.min)} sqft</span><span>{miles(S.deck.max)} sqft</span></div>
+                  </div>
+                  <div class="pe-sep"></div>
+                  <div class="pe-bloque">
+                    <h3 class="pe-h3">Deck Material</h3>
+                    <div class="pe-opciones">
+                      {MATERIAL.map(([v, t, desc, nota, insignia]) => (
+                        <label class="pe-opcion pe-compacta">
+                          <input type="radio" name="material" value={v} checked={D.material === v} />
+                          <span class="pe-opcion-txt">
+                            <span class="pe-opcion-tit">{t}{insignia && <span class="pe-insignia">{insignia}</span>}</span>
+                            <p class="pe-opcion-desc">{desc}</p>
+                            <p class="pe-opcion-nota">{nota}</p>
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                </Fragment>
+              )}
+
+              {i === 5 && (
+                <Fragment>
+                  <div class="pe-bloque">
+                    <h3 class="pe-h3">Spa</h3>
+                    {SPA.map(([v, t, precio]) => (
+                      <label class="pe-fila pe-fila-centrada">
+                        <input type="radio" name="spa" value={v} checked={D.spa === v} />
+                        <span class="pe-fila-txt"><span class="pe-fila-tit">{t}{precio && <span class="pe-fila-precio">{precio}</span>}</span></span>
+                      </label>
+                    ))}
+                  </div>
+                  <div class="pe-sep"></div>
+                  <div class="pe-bloque">
+                    <h3 class="pe-h3">Pool Systems &amp; Comfort</h3>
+                    {SISTEMAS.map(([k, t, desc]) => (
+                      <label class="pe-fila">
+                        <input type="checkbox" name={k} checked={D[k as keyof typeof D] as boolean} />
+                        <span class="pe-fila-txt">
+                          <span class="pe-fila-tit">{t}</span>
+                          <p class="pe-fila-desc">{desc}</p>
+                        </span>
+                      </label>
+                    ))}
+                    <div class="pe-caja-luces">
+                      <div class="pe-caja-luces-cab">
+                        <span>LED Lighting</span>
+                        <span data-pe-luces>{D.luces} lights (+{dolares(D.luces * P.equipment.ledPerLight)})</span>
+                      </div>
+                      <input type="range" name="luces" min={S.luces.min} max={S.luces.max} step={S.luces.step}
+                        value={D.luces} aria-label="Number of LED lights" />
+                      <div class="pe-extremos pe-menudo"><span>{S.luces.min} lights</span><span>{S.luces.max} lights</span></div>
+                    </div>
+                  </div>
+                </Fragment>
+              )}
+
+              {i === 6 && (
+                <Fragment>
+                  <div class="pe-bloque">
+                    <h3 class="pe-h3">Outdoor Add-Ons</h3>
+                    {EXTERIOR.map(([k, t, , precio]) => (
+                      <label class="pe-fila">
+                        <input type="checkbox" name={k} checked={D[k as keyof typeof D] as boolean} />
+                        <span class="pe-fila-txt"><span class="pe-fila-tit">{t}<span class="pe-fila-precio">{precio}</span></span></span>
+                      </label>
+                    ))}
+                  </div>
+                  <div class="pe-sep"></div>
+                  <div class="pe-bloque">
+                    <h3 class="pe-h3">Site Conditions</h3>
+                    {CONDICIONES.map(([k, t, desc]) => (
+                      <label class="pe-fila">
+                        <input type="checkbox" name={k} checked={D[k as keyof typeof D] as boolean} />
+                        <span class="pe-fila-txt">
+                          <span class="pe-fila-tit">{t}</span>
+                          <p class="pe-fila-desc">{desc}</p>
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                </Fragment>
+              )}
+
+            </div>
+          </div>
+        ))}
+
+        <div class="pe-nav">
+          <button type="button" class="pe-boton pe-fantasma" data-pe-atras hidden>
+            <Fragment set:html={svg('chevron-left')} />Back
+          </button>
+          <button type="button" class="pe-boton" data-pe-siguiente>
+            Next<Fragment set:html={svg('chevron-right')} />
+          </button>
+        </div>
+      </div>
+
+      <div class="pe-panel-col">
+        <div class="pe-panel">
+          <div class="pe-panel-cuerpo">
+            <div>
+              <p class="pe-rotulo">Estimated Investment Range</p>
+              <div class="pe-rango" data-pe-rango>{rangoTexto(INI.min, INI.max)}</div>
+              <p class="pe-subtitulo" data-pe-subtitulo>{subtitulo(D.proyecto)}</p>
+            </div>
+            <div class="pe-raya-oro"></div>
+            <div>
+              <button type="button" class="pe-desplegar" data-pe-desplegar aria-expanded="false">
+                <span>View Cost Breakdown</span>
+                <Fragment set:html={svg('chevron-down', ' data-pe-flecha-abajo')} />
+                <Fragment set:html={svg('chevron-up', ' data-pe-flecha-arriba hidden')} />
+              </button>
+              <div class="pe-desglose" data-pe-desglose hidden>
+                {LINEAS_DESGLOSE.map(([clave, etiqueta]) => (
+                  <div data-pe-linea={clave}><span>{etiqueta}:</span><span></span></div>
+                ))}
+              </div>
+            </div>
+            <div class="pe-raya-blanca"></div>
+            <p class="pe-aviso">This estimate provides an approximate investment range based on your selections. Final pricing depends on site conditions, final design specifications, engineering requirements, and material selections. A detailed proposal will be provided following your design consultation.</p>
+
+            {/*
+              EL CIERRE. Aquí el original mandaba a `https://mrandmrsoutdoorliving.com/request-estimated`
+              en una pestaña nueva — con URL ABSOLUTA al dominio viejo, y **perdiendo todo lo que
+              el visitante acababa de configurar**. Ahora los datos se piden aquí, y el aviso al
+              negocio sale con la estimación y las opciones elegidas.
+
+              El marcado es EL QUE `src/components/Formularios.astro` YA SABE MANEJAR
+              (`form[data-name][data-mm-envia=1]` con sus hermanos `.w-form-done`/`.w-form-fail`):
+              de ahí salen el honeypot, la trampa de tiempo, el Turnstile con render explícito y
+              los estados. Un formulario nuevo con su propio JS habría sido una cuarta capa
+              antibot que nadie ha probado.
+            */}
+            <div class="pe-cierre" data-pe-cierre hidden>
+              <div class="pe-raya-oro"></div>
+              <div class="pe-cierre-cab">
+                <Fragment set:html={svg('circle-check')} />
+                <div>
+                  <p class="pe-cierre-tit">Your estimate is ready!</p>
+                  <p class="pe-cierre-txt">Schedule a complimentary design consultation to receive a detailed proposal tailored to your specific site and vision.</p>
+                </div>
+              </div>
+
+              <form data-name="Pool Estimator Form" data-mm-envia="1" method="post" action="/api/formulario" novalidate>
+                <div class="pe-campos">
+                  <div class="pe-campos pe-dos">
+                    <input class="pe-campo" type="text" name="Full-Name" placeholder="Full name" autocomplete="name" required />
+                    <input class="pe-campo" type="email" name="email" placeholder="Email" autocomplete="email" required />
+                  </div>
+                  <div class="pe-campos pe-dos">
+                    <input class="pe-campo" type="tel" name="Phone" placeholder="Phone" autocomplete="tel" />
+                    <input class="pe-campo" type="text" name="ZIP-Code" placeholder="ZIP code" autocomplete="postal-code" inputmode="numeric" />
+                  </div>
+                  <textarea class="pe-campo" name="Message" rows="2" placeholder="Anything we should know? (optional)"></textarea>
+                </div>
+                {/* Los ocultos los reescribe `recalcula()` en cada cambio: lo que se envía es
+                    siempre lo ÚLTIMO que el visitante eligió, no un estado de hace tres pasos. */}
+                <input type="hidden" name="Estimate-Range" data-pe-oculto="rango" />
+                <input type="hidden" name="Project-Type" data-pe-oculto="proyecto" />
+                <input type="hidden" name="Pool-Size" data-pe-oculto="tamano" />
+                <input type="hidden" name="Pool-Style" data-pe-oculto="estilo" />
+                <input type="hidden" name="Interior-Finish" data-pe-oculto="acabado" />
+                <input type="hidden" name="Deck-Size" data-pe-oculto="deck" />
+                <input type="hidden" name="Deck-Material" data-pe-oculto="material" />
+                <input type="hidden" name="Spa" data-pe-oculto="spa" />
+                <input type="hidden" name="Systems" data-pe-oculto="sistemas" />
+                <input type="hidden" name="LED-Lights" data-pe-oculto="luces" />
+                <input type="hidden" name="Outdoor-Add-Ons" data-pe-oculto="exterior" />
+                <input type="hidden" name="Site-Conditions" data-pe-oculto="condiciones" />
+                <input type="hidden" name="Cost-Breakdown" data-pe-oculto="desglose" />
+                <input class="pe-enviar" type="submit" value="Schedule Your Design Consultation" data-wait="Sending..." />
+              </form>
+              <div class="w-form-done"><p>Thank you — your estimate is on its way and a designer will reach out shortly.</p></div>
+              <div class="w-form-fail"><p>Something went wrong. Please call us or try again in a moment.</p></div>
+              <p class="pe-otra-via">Prefer a longer form? <a href="/request-estimated">Request a detailed estimate</a>.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  import { calcula, rangoTexto, subtitulo, dolares, LINEAS_DESGLOSE, SLIDERS } from '../../lib/estimador.js';
+
+  for (const raiz of document.querySelectorAll<HTMLElement>('[data-pe]')) {
+    const q = <T extends Element>(s: string) => raiz.querySelector<T>(s);
+    const qa = <T extends Element>(s: string) => [...raiz.querySelectorAll<T>(s)];
+    const tarjetas = qa<HTMLElement>('[data-pe-tarjeta]');
+    const TOTAL = tarjetas.length;
+    let paso = 1;
+
+    /**
+     * El estado sale del DOM, no de una variable paralela. Los `<input>` nativos YA son el
+     * estado: duplicarlo en un objeto es la forma más rápida de que las dos copias se
+     * separen. `FormData` no vale aquí porque los pasos ocultos siguen contando y las
+     * casillas sin marcar no aparecen.
+     */
+    const lee = () => {
+      const e: Record<string, string | number | boolean> = {};
+      for (const i of qa<HTMLInputElement>('input[name]')) {
+        if (i.type === 'radio') { if (i.checked) e[i.name] = i.value; }
+        else if (i.type === 'checkbox') e[i.name] = i.checked;
+        else if (i.type === 'range') e[i.name] = Number(i.value);
+      }
+      return e as any;
+    };
+
+    /** Lista legible de lo marcado en un grupo, para el correo. `—` si no hay nada. */
+    const marcadas = (claves: string[], etiquetas: Record<string, string>) => {
+      const e = lee();
+      const si = claves.filter((k) => e[k]).map((k) => etiquetas[k]);
+      return si.length ? si.join(', ') : '—';
+    };
+    const ETQ: Record<string, string> = {
+      calefaccion: 'Heater', sal: 'Salt System', automatizacion: 'Automation System',
+      pergola: 'Pergola', techoLamas: 'Louvered Roof System', mosquitera: 'Pool Screen Enclosure',
+      cocina: 'Outdoor Kitchen', jardineria: 'Pool-Area Landscaping',
+      accesoLimitado: 'Tight Access', roca: 'Rock Excavation', hoa: 'HOA Approval Required',
+    };
+    const LEGIBLE: Record<string, string> = {
+      new: 'New Custom Pool', remodel: 'Pool & Patio Remodel',
+      standard: 'Standard (Rectangular / Geometric)', freeform: 'Freeform', luxury: 'Luxury / Custom Geometry',
+      plaster: 'Standard Plaster', pebble: 'Pebble Finish', premium: 'Premium / Polished Finish',
+      concrete: 'Concrete', pavers: 'Pavers', travertine: 'Travertine',
+      none: 'No Spa', integrated: 'Integrated Spa', spillover: 'Raised Spillover Spa',
+    };
+
+    function recalcula() {
+      const e = lee();
+      const r = calcula(e);
+
+      q('[data-pe-rango]')!.textContent = rangoTexto(r.min, r.max);
+      q('[data-pe-subtitulo]')!.textContent = subtitulo(e.proyecto);
+
+      for (const [clave, , ocultaEnCero] of LINEAS_DESGLOSE) {
+        const fila = q<HTMLElement>(`[data-pe-linea="${clave}"]`)!;
+        const v = (r.desglose as any)[clave];
+        fila.hidden = Boolean(ocultaEnCero) && v <= 0;
+        fila.lastElementChild!.textContent = dolares(v);
+      }
+
+      // Los ecos de los sliders y el relleno de su pista.
+      for (const s of qa<HTMLInputElement>('input[type=range]')) {
+        const { min, max } = (SLIDERS as any)[s.name];
+        s.style.setProperty('--pe-pct', `${((Number(s.value) - min) / (max - min)) * 100}%`);
+        const eco = q<HTMLElement>(`[data-pe-eco="${s.name}"]`);
+        if (eco) eco.textContent = s.value;
+      }
+      q('[data-pe-luces]')!.textContent =
+        `${e.luces} ${e.luces === 1 ? 'light' : 'lights'} (+${dolares(e.luces * 450)})`;
+
+      // Y los ocultos del formulario, para que el aviso lleve LO ÚLTIMO que se eligió.
+      const oculto = (k: string, v: string) => {
+        const i = q<HTMLInputElement>(`[data-pe-oculto="${k}"]`); if (i) i.value = v;
+      };
+      oculto('rango', rangoTexto(r.min, r.max));
+      oculto('proyecto', LEGIBLE[e.proyecto]);
+      oculto('tamano', `${e.tamano} sqft`);
+      oculto('estilo', LEGIBLE[e.estilo]);
+      oculto('acabado', LEGIBLE[e.acabado]);
+      oculto('deck', `${e.deck} sqft`);
+      oculto('material', LEGIBLE[e.material]);
+      oculto('spa', LEGIBLE[e.spa]);
+      oculto('luces', String(e.luces));
+      oculto('sistemas', marcadas(['calefaccion', 'sal', 'automatizacion'], ETQ));
+      oculto('exterior', marcadas(['pergola', 'techoLamas', 'mosquitera', 'cocina', 'jardineria'], ETQ));
+      oculto('condiciones', marcadas(['accesoLimitado', 'roca', 'hoa'], ETQ));
+      oculto('desglose', LINEAS_DESGLOSE
+        .filter(([k, , oc]) => !(oc && (r.desglose as any)[k] <= 0))
+        .map(([k, etq]) => `${etq}: ${dolares((r.desglose as any)[k])}`).join(' · '));
+    }
+
+    function muestra(n: number) {
+      paso = Math.min(TOTAL, Math.max(1, n));
+      tarjetas.forEach((t, i) => { t.hidden = i + 1 !== paso; });
+      q('[data-pe-paso]')!.textContent = String(paso);
+      const pct = (paso / TOTAL) * 100;
+      q('[data-pe-pct]')!.textContent = String(Math.round(pct));
+      q<HTMLElement>('[data-pe-barra]')!.style.width = `${pct}%`;
+      q<HTMLElement>('[data-pe-atras]')!.hidden = paso === 1;
+      q<HTMLElement>('[data-pe-siguiente]')!.hidden = paso === TOTAL;
+      // El cierre solo existe al final: pedir los datos antes de enseñar el número es pedirlos
+      // a cambio de nada.
+      q<HTMLElement>('[data-pe-cierre]')!.hidden = paso !== TOTAL;
+    }
+
+    raiz.addEventListener('input', recalcula);
+    raiz.addEventListener('change', recalcula);
+    q('[data-pe-atras]')!.addEventListener('click', () => muestra(paso - 1));
+    q('[data-pe-siguiente]')!.addEventListener('click', () => muestra(paso + 1));
+
+    const desglose = q<HTMLElement>('[data-pe-desglose]')!;
+    q('[data-pe-desplegar]')!.addEventListener('click', (ev) => {
+      const b = ev.currentTarget as HTMLButtonElement;
+      desglose.hidden = !desglose.hidden;
+      b.setAttribute('aria-expanded', String(!desglose.hidden));
+      q<HTMLElement>('[data-pe-flecha-abajo]')!.hidden = !desglose.hidden;
+      q<HTMLElement>('[data-pe-flecha-arriba]')!.hidden = desglose.hidden;
+    });
+
+    recalcula();
+    muestra(1);
+  }
+</script>

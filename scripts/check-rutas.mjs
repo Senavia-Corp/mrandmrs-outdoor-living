@@ -56,9 +56,13 @@ const extras = enDisco.filter((r) => !esperadas.has(r) && !NO_SON_PAGINAS.test(r
 check(`${enDisco.length} paginas en el build, 0 de mas`, extras.length === 0, `${extras.length} extra`);
 lista(extras);
 
-// ── 3 · el estimador, que no lo genera Astro sino public/ ───────────────────
+// ── 3 · el estimador ────────────────────────────────────────────────────────
+// Desde la Fase 12c SÍ lo genera Astro (`src/pages/pool-investment-estimator.astro` +
+// `components/widgets/Estimador.astro`). Antes lo servía `public/` con el bundle de Webflow
+// Cloud y lo copiaba `build-estimador.mjs`, los dos ya borrados. La comprobación se queda:
+// es la única ruta que no sale del cascarón de Webflow y la que más veces ha cambiado de dueño.
 const est = resuelve('/pool-investment-estimator');
-check('el estimador se sirve', Boolean(est), est ? '' : 'falta public/pool-investment-estimator/index.html');
+check('el estimador se sirve', Boolean(est), est ? '' : 'no está en el build');
 
 // ── 4 · cero referencias a Webflow en lo desplegado ─────────────────────────
 let refs = 0; const conRefs = [];

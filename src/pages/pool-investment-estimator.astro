@@ -1,0 +1,49 @@
+---
+/**
+ * FASE 12c — la página DESNUDA del estimador.
+ *
+ * ESCRITA A MANO, no derivada. `build-paginas.mjs` la salta a propósito (siempre lo hizo): no es
+ * una página de Webflow y no tiene cascarón. En el origen era una app de Webflow Cloud servida
+ * bajo el dominio, **sin nav y sin pie** — y así se queda, porque `/pool-cost-estimator` la
+ * embebía en un iframe y el baseline de las dos rutas se capturó así.
+ *
+ * Hasta la Fase 12 la servía `public/pool-investment-estimator/` con el bundle portado y la
+ * fabricaba `scripts/build-estimador.mjs`. Los dos han desaparecido: ahora es este `.astro` y el
+ * componente `Estimador.astro`, que comparte con `/pool-cost-estimator`.
+ *
+ * EL `<head>` REPRODUCE EL DEL ORIGEN, que son 4 etiquetas y ni una de SEO — `check:seo` lo sabe
+ * (`SIN_HEAD_DE_WEBFLOW`) y solo le exige el `<title>`. El `viewport` va SIN `initial-scale`,
+ * como en el original.
+ *
+ * El interruptor de indexación es el mismo que el de `Base.astro`, y **falla cerrado**: sin
+ * `PUBLIC_ES_PRODUCCION=1` se emite `noindex` y NO se emite canónica. Sin esto, esta sería la
+ * única de las 115 indexable desde una preview — que es justo el aviso que llevaba escrito
+ * `build-estimador.mjs` y que se conserva aquí.
+ */
+import Estimador from '../components/widgets/Estimador.astro';
+import Formularios from '../components/Formularios.astro';
+import '../styles/fuentes.css';
+
+const ES_PRODUCCION = import.meta.env.PUBLIC_ES_PRODUCCION === '1';
+const canonica = ES_PRODUCCION ? new URL('/pool-investment-estimator', Astro.site).href : null;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Pool Investment Estimator - Mr &amp; Mrs Outdoor Living</title>
+    {canonica && <link rel="canonical" href={canonica} />}
+    {!ES_PRODUCCION && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="icon" type="image/png" href="/images/site/favicon.png" />
+  </head>
+  <body>
+    <Estimador suelta />
+    <Formularios />
+    {/* La página es su propio documento: el reset va aquí y NO en `estimador.css`, que se
+        carga también dentro de /pool-cost-estimator y allí no puede tocar nada global. */}
+    <style is:global>
+      html, body { margin: 0; padding: 0; }
+    </style>
+  </body>
+</html>

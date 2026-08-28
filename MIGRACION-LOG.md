@@ -144,6 +144,107 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 
 <!-- a partir de aquí, una entrada por fase, la más reciente arriba -->
 
+## Fase 12c — el estimador, rehecho en fuente propia   ✅ cerrada
+**Fecha:** 2026-08-28
+
+Fuera el bundle. `src/components/widgets/Estimador.astro` (marcado de los 7 pasos + panel +
+~120 líneas de `<script>`), `src/styles/estimador.css` (293 líneas, **todo bajo
+`#pool-estimator`**) y `src/pages/pool-investment-estimator.astro`, la página desnuda escrita a
+mano. Borrados `public/pool-investment-estimator/` (5 ficheros) y `scripts/build-estimador.mjs`;
+fuera el paso `estimador` de `npm run build`.
+
+| | antes | ahora |
+|---|---|---|
+| Lo que se sirve | 680 kB de React + Radix + Tailwind minificados, sin sourcemap | **20 kB** de HTML + CSS + JS propios |
+| Dependencias nuevas | React, Radix, Tailwind | **ninguna** |
+| Cambiar un precio | rehacer la app | una línea en `src/lib/estimador.js` |
+
+**Cero dependencias nuevas de verdad**: los tres controles son `<input type="radio|checkbox|
+range">` nativos. Con eso salen gratis el teclado, el lector de pantalla y el `FormData` — y la
+selección de la tarjeta se pinta con `:has(input:checked)`, **sin una línea de JavaScript**,
+donde el original necesitaba estado de React y un `onClick` en el div.
+
+Las etiquetas de precio del marcado (`Base rate: $110/sqft`, `Heater (+$4,500)`, `Tight Access
+(+8% total)`) se componen desde `PRECIOS` en tiempo de build: cambiar un precio mueve el número
+Y el texto. En el original había que editar el bundle minificado en dos sitios.
+
+### El resultado, medido
+
+```
+npm run check:visual -- /pool-investment-estimator
+  1920px  ok  100.00 %      991px  ok  100.00 %
+  1440px  ok  100.00 %      479px  ok   99.99 %
+  4 iguales · 0 distintas · 0 declaradas          PUERTA VERDE
+
+npm run check:texto -- /pool-investment-estimator
+  ok  /pool-investment-estimator                  PUERTA VERDE
+```
+
+**El encargo daba por hecho que esta ruta saldría roja en las dos puertas y habría que
+declararla. No hace falta: sale verde.** El paso 1 no enseña el formulario y «Step 1 of 7 /
+14% Complete» no cambia, así que no hay nada que declarar. Una declaración que no hace falta es
+una puerta menos.
+
+### LAS CLASES DEL ORIGINAL MIENTEN, Y HAY QUE SABERLO
+
+El CSS del original es Tailwind v4 (`@layer utilities`) **encima** de normalize.css y de la base
+de Webflow, que van SIN capa. Y una regla sin capa le gana a cualquier `@layer`. O sea que media
+docena de utilidades no hacen nada y la clase dice una cosa y la pantalla otra:
+
+| Clase que pone | Lo que se ve de verdad | Quién gana |
+|---|---|---|
+| `text-lg font-semibold` en las etiquetas de opción | **16px / 400** | `label{font-size:16px;font-weight:400}` |
+| `mt-2` en los párrafos de descripción | **0 arriba, 10 abajo** | `p{margin:0 0 10px}` |
+| `space-x-3` entre casilla y etiqueta | **0 de separación** | — |
+| `text-sm font-medium` en los botones | **18px / 400** | `button{font:inherit}` de normalize |
+| `font-semibold` en «Heater (+$4,500)» | **400** | `label{font-weight:400}` |
+| `size-4` en el pulgar del slider | **2x2 px, invisible** | (ver abajo) |
+
+Reproducir las clases habría dado una página **parecida** y con media docena de tamaños
+distintos. Todos los valores de `estimador.css` salen de `getComputedStyle` sobre la app
+original, paso a paso.
+
+### Cuatro defectos propios, y los cuatro los cazó la medición, no el ojo
+
+Ninguno se veía a simple vista; los cuatro movían píxeles.
+
+1. **El panel salía 14px alto.** `.pe-cierre` (el formulario del paso 7) es el último hijo del
+   panel y está oculto en los pasos 1-6, así que con `> :not(:last-child){margin-bottom}` el
+   párrafo de aviso cobraba 24px en vez de sus 10. Arreglado con `> * + *{margin-top}`: lo
+   oculto no aporta, y el primer visible nunca cobra.
+2. **Y luego 24px corto**, por el arreglo anterior. `.pe-aviso{margin:0 0 10px}` empata en
+   especificidad con `.pe-panel-cuerpo > * + *`, va después y gana — el atajo `margin` declara
+   también `margin-top:0`. Con `margin-bottom` a secas ya no hay empate que perder.
+3. **Todo el contenido de la tarjeta, 14px arriba.** El margen inferior de `.pe-cab-fila` se
+   escapaba de `.pe-cab` —que no tiene ni borde ni relleno— y se fundía con el `margin-top` de
+   `.pe-cuerpo`. Pasado a `padding-bottom`, que no colapsa.
+4. **La base tipográfica baja a 14px por debajo de 992.** Es una regla de la base de Webflow
+   (`@media (max-width:991px){body{font-size:14px}}`) que venía en el mismo CSS. Sin traerla, el
+   subtítulo y «View Cost Breakdown» se pintaban a 18px: 98,57 % a 991 y 98,60 % a 479, con la
+   página **3px más alta**. El porcentaje no señalaba nada; lo señaló comparar la geometría de
+   los dos DOM por hitos de TEXTO, que es lo único que funciona cuando las clases ya no coinciden
+   (`diag-geometria.mjs` empareja por clases de Webflow y aquí no puede emparejar nada).
+
+### La ÚNICA diferencia deliberada de maqueta: el pulgar del slider se ve
+
+En el original mide **2x2 px y es invisible** — comprobado con `getComputedStyle` y en captura:
+la barra se pinta pero no hay tirador que arrastrar. No es una decisión de diseño, es `size-4`
+perdiendo contra la base sin capa. Lo demuestra el propio CSS del original, que dice
+`#pool-estimator [role=slider]{background-color:var(--gold);border-color:var(--gold)}`: el autor
+SÍ quería un pulgar dorado. Aquí se pinta, 16px y dorado.
+
+No afecta a ninguna puerta —los sliders viven en los pasos 2, 5 y 6 y el baseline es del paso
+1—, así que se apunta aquí y en `docs/ENTREGA.md` para que el cliente pueda vetarlo.
+
+### El oráculo sigue siendo recapturable
+
+`capturar-oraculo.mjs` servía `public/pool-investment-estimator/`, que ya no existe. Ahora sirve
+**`_source/estimator/`** —el insumo congelado— deshaciendo al vuelo el prefijo del host de
+Webflow Cloud. Comprobado tras el borrado: el bundle ORIGINAL sigue arrancando y dando
+`$83,000 – $102,000`. Mientras esos 5 ficheros estén en git, el oráculo se puede volver a
+capturar aunque el dominio ya esté cortado.
+
+
 ## Fase 12b — el modelo en fuente propia, con su puerta   ✅ cerrada
 **Fecha:** 2026-08-28
 

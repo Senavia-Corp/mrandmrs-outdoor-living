@@ -37,14 +37,22 @@ import http from 'node:http';
 import { chromium } from 'playwright';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
-const APP = path.join(RAIZ, 'public/pool-investment-estimator');
+/**
+ * Se sirve DIRECTAMENTE de `_source/estimator/`, el insumo congelado, y no de
+ * `public/pool-investment-estimator/`, que desapareció en la Fase 12c junto con
+ * `build-estimador.mjs`. Así el oráculo se puede volver a capturar siempre, aunque el dominio
+ * ya esté cortado: mientras esos 5 ficheros estén en git, el original se puede ejecutar.
+ * Lo único que hay que deshacer al vuelo es el prefijo del host de Webflow Cloud.
+ */
+const APP = path.join(RAIZ, '_source/estimator');
+const COSMIC = /https:\/\/[0-9a-f-]+\.wf-app-prod\.cosmic\.webflow\.services\/pool-investment-estimator/g;
 const SALIDA = path.join(RAIZ, '_source/estimator-casos.json');
 const REFERENCIA = path.join(RAIZ, '_source/estimator-referencia.json');
 const VIVO = 'https://mrandmrsoutdoorliving.com/pool-investment-estimator';
 const CON_VIVO = process.argv.includes('--vivo');
 
 if (!fs.existsSync(path.join(APP, 'index.html'))) {
-  console.error('\nROJO no está public/pool-investment-estimator/ — corre `npm run estimador` ANTES de borrarlo\n');
+  console.error('\nROJO falta _source/estimator/ — sin el bundle original no hay oráculo que capturar\n');
   process.exit(1);
 }
 
@@ -125,10 +133,16 @@ for (let i = 0; i < 200; i++) {
 const TIPO = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript',
   '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.woff2': 'font/woff2' };
 const servidor = http.createServer((req, res) => {
-  const p = decodeURIComponent(req.url.split('?')[0]).replace(/^\/pool-investment-estimator/, '');
+  const p = decodeURIComponent(req.url.split('?')[0])
+    .replace(/^\/pool-investment-estimator/, '').replace(/^\/_astro\//, '/');
   const f = [path.join(APP, p), path.join(APP, p, 'index.html')].find((c) => fs.existsSync(c) && fs.statSync(c).isFile());
   if (!f) { res.writeHead(404); return res.end('no'); }
   res.writeHead(200, { 'content-type': TIPO[path.extname(f)] ?? 'application/octet-stream' });
+  // El index.html apunta al host de Webflow Cloud; se le da la vuelta al vuelo para que el
+  // navegador pida los tres JS y el CSS a este mismo servidor.
+  if (f.endsWith('index.html')) {
+    return res.end(fs.readFileSync(f, 'utf8').replace(COSMIC, '/pool-investment-estimator'));
+  }
   fs.createReadStream(f).pipe(res);
 });
 await new Promise((r) => servidor.listen(0, r));
@@ -317,7 +331,7 @@ fs.writeFileSync(SALIDA, JSON.stringify({
      + 'Cloud, antes de sustituirlo. La app nueva tiene que reproducir los ' + salida.length
      + ' casos. Se mide con scripts/check-estimador.mjs.',
   capturadoEl: new Date().toISOString(),
-  fuente: 'public/pool-investment-estimator/ (el bundle portado en la Fase 5, byte a byte el de Webflow Cloud)',
+  fuente: '_source/estimator/ (el bundle ORIGINAL de Webflow Cloud, congelado en la Fase 5)',
   contraElVivo: vivo,
   porDefecto: POR_DEFECTO,
   casos: salida,
