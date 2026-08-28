@@ -24,6 +24,20 @@ que los producen están en `MIGRACION-LOG.md`, entrada por fase.
 
 ## Lo que hace falta de tu parte
 
+### 0. AHORA MISMO: la Fase 12 está en local y no se puede subir
+El token de GitHub del llavero **es inválido** (`gh auth status`: *«The token in keyring is
+invalid»*), así que `git push` falla con *«Invalid username or token»*. Hay **7 commits en
+`main` sin subir** con el estimador entero. Se desbloquea con:
+
+```bash
+gh auth login -h github.com
+git push origin main
+```
+
+Y después **mira en el panel de Vercel si ha salido un despliegue**: si la integración de GitHub
+sigue sin conectar (ver más abajo), el push sube el código pero no despliega.
+
+
 ### 1. Credenciales (bloquean la Fase 8)
 | Variable | De dónde sale |
 |---|---|

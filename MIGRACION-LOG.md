@@ -144,6 +144,49 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 
 <!-- a partir de aquí, una entrada por fase, la más reciente arriba -->
 
+## Fase 12g — el despliegue   🔴 BLOQUEADO: el token de GitHub no vale
+**Fecha:** 2026-08-28
+
+Decidiste desplegar por `git push` y que Vercel lo recogiera. **El push no sale**:
+
+```
+git push origin main
+remote: Invalid username or token. Password authentication is not supported for Git operations.
+fatal: Authentication failed for 'https://github.com/senaviacorp/mrandmrs-outdoor-living.git/'
+
+gh auth status
+github.com
+  X Failed to log in to github.com account senaviacorp (keyring)
+  - The token in keyring is invalid.
+  - To re-authenticate, run: gh auth login -h github.com
+```
+
+Y por SSH tampoco: `Host key verification failed` (no hay `known_hosts` para github.com).
+
+**No lo puedo arreglar yo**, y no por falta de camino técnico sino porque el arreglo es
+autenticarse: `gh auth login` es interactivo y meter credenciales no es cosa mía. Tampoco sirve
+el CLI de Vercel como plan B —no está instalado— ni su API: el MCP responde **403** al equipo
+`team_S7aSWbSFopAYosvDC7LIdMUS`, lo mismo que ya pasaba en otros proyectos de esta cuenta.
+
+**Los 7 commits están en `main`, en local.** Nada se ha perdido y no hace falta rehacer nada:
+en cuanto haya sesión con GitHub, `git push origin main` sube la Fase 12 entera.
+
+```bash
+gh auth login -h github.com     # tú, una vez
+git push origin main
+```
+
+Y ojo con lo que ya avisaba `docs/ENTREGA.md`: **aunque el push funcione, puede no desplegar
+nada.** La integración de GitHub en la cuenta de Vercel es un OAuth del panel que solo puede
+hacer Sebastian, y sin ella Vercel no ve el repositorio. Después del push hay que **comprobar en
+el panel que ha salido un despliegue nuevo**; si no sale, el camino es el del 28-ago:
+`vercel deploy --prebuilt` desde el build local (y el CLI habría que instalarlo).
+
+**Lo que NO se ha podido verificar por esto:** el punto 6 del «Hecho es» del encargo —verificar
+sobre el despliegue y no sobre el build local—. Todo lo demás está medido en local, sobre
+`.vercel/output/static`, que es exactamente lo que se sube.
+
+
 ## Fase 12f — las puertas   🟡 8 verdes, 1 roja por 2 rutas que no son de esta fase
 **Fecha:** 2026-08-28
 
