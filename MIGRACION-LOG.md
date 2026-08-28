@@ -142,6 +142,93 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 
 <!-- a partir de aquí, una entrada por fase, la más reciente arriba -->
 
+## Fase 12a — el oráculo del estimador, capturado antes de tocar nada   ✅ cerrada
+**Fecha:** 2026-08-28
+
+### Por qué esto va primero
+
+`/pool-investment-estimator` es una **función pura**: misma entrada, misma salida, cero llamadas
+de red. Eso la convierte en un oráculo con el que verificar que la app nueva calcula igual — y el
+oráculo **desaparece en cuanto se sustituya el bundle o se corte el dominio**, o sea en cuanto
+empiece el trabajo. Este proyecto ya estuvo a punto de perder un dato equivalente (el orden manual
+de las colecciones, rescatado in extremis en `_source/orden-listas.json`). No se repite.
+
+### Lo capturado
+
+```
+node scripts/capturar-oraculo.mjs --vivo
+
+── capturando 384 casos del bundle ACTUAL (local)
+  local  384/384  373s   ultimo: $105,000 – $129,000
+── referencia de maqueta del paso 1 (caduca con el bundle)
+  1920px  alto 1080  54 elementos     991px  alto 1128  54 elementos
+  1440px  alto  900  54 elementos     479px  alto 1315  54 elementos
+── 10 casos contra el dominio VIVO (el bundle portado contra el original)
+  vivo    10/10  13s   ultimo: $169,000 – $206,000
+
+  384 casos · 209 rangos distintos
+  contra el vivo: 10/10 iguales
+  tipografía efectiva: Inter, sans-serif
+```
+
+| Bloque | Casos | Qué cubre |
+|---|---|---|
+| `categorico` | 162 | la combinatoria COMPLETA: proyecto × estilo × acabado × material × spa |
+| `aleatorio` | 200 | los 19 controles, con LCG de semilla fija (20260828): la tanda es reproducible |
+| `booleano` | 11 | cada casilla volteada una a una desde el estado por defecto |
+| `extremos` | 8 | **los sliders en su mínimo y en su máximo**: piscina {250,900} × deck {200,1500} × LED {0,12} |
+| `todo-si` / `todo-no` | 2 | todo encendido con los tres sliders al máximo, y todo apagado al mínimo |
+| `defecto` | 1 | el estado inicial |
+
+**Por caso se guardan 8 valores, no 1**: el rango, su texto literal, el subtítulo y las hasta 7
+líneas de «View Cost Breakdown». Un modelo equivocado puede acertar un rango por casualidad —la
+salida está redondeada al millar—; no puede acertar el desglose entero 384 veces.
+
+### El hallazgo que cambia el trabajo: el modelo NO estaba perdido
+
+El bundle está minificado pero **no ofuscado**. El objeto de precios sobrevive literal en
+`_source/estimator/PoolEstimatorPage.Cy-Yd7Xu.js` (byte ~190.100), y con él la fórmula, los 19
+estados por defecto, los 7 títulos, todos los textos y los 12 iconos de `lucide-react` con su
+`path`. Comprobado a mano contra el oráculo, sin navegador, en los dos extremos:
+
+| | `todo-si` (900 sqft · luxury · premium · 1500 travertine · todo ✓) | `todo-no` |
+|---|---|---|
+| Pool Structure | 900×145×1,35 = **176 175** ✓ | 250×85×1,0 = **21 250** ✓ |
+| Permits | (176175+52500)×0,09 = **20 580,75 → $20 581** ✓ | **$2 129** ✓ |
+| Site Conditions | 357 355,75×0,20 + 1500 = **$72 971** ✓ | (no sale) ✓ |
+| Rango | (358 855,75×1,20)×0,9/1,1 → **$388 000 – $474 000** ✓ | **$23 000 – $28 000** ✓ |
+
+O sea: el oráculo pasa de ser *la única fuente del modelo* a ser *la prueba contra la que se
+verifica un modelo ya recuperado*. Es una posición mucho mejor.
+
+### Dos cosas que se midieron porque también caducan
+
+- **La tipografía efectiva es `Inter, sans-serif`.** No era evidente: el CSS del bundle importa
+  18 familias de Google Fonts y define `--default-font-family: var(--font-geist-sans)`, una
+  variable **que no existe en ninguna parte del fichero**. Había que medirlo, no deducirlo. Inter
+  ya está auto-alojada en `src/styles/fuentes.css`, así que la app nueva no necesita Google Fonts.
+- **La geometría del paso 1 en los 4 anchos** (54 elementos con su `top`, alto y ancho), en
+  `_source/estimator-referencia.json`. Es la referencia contra la que se mide la maqueta nueva
+  cuando `diag-geometria.mjs` ya no pueda preguntarle al dominio.
+
+### Dos fallos propios, los dos silenciosos
+
+Ninguno de los dos habría petado: los dos habrían escrito un oráculo con datos falsos.
+
+1. **`querySelector('.text-5xl')` devolvía «600», no el rango.** El paso 5 pinta los pies
+   cuadrados del deck con esa misma clase y va ANTES en el documento. Reventó en el caso 4 porque
+   «600» no parsea como rango; si el deck hubiera medido «$83,000» habría pasado. Ahora el rango
+   se ancla al párrafo «Estimated Investment Range» y se lee su hermano.
+2. **`'Step 1 of 7'.replace(/\D+/g,'')` da `17`, no `1`.** El asistente se creía en el paso 17 y
+   pulsaba «Back» eternamente. Ahora el número sale del grupo de la expresión.
+
+### Verde es
+
+`_source/estimator-casos.json` (316 kB, versionado) con 384 casos, 0 fallos de captura, y **10/10
+coincidiendo contra el sitio vivo** — lo que además demuestra que el bundle portado en la Fase 5 y
+el original de Webflow dan exactamente lo mismo.
+
+
 ## Fase 10 — Puertas de verificación   🟡 8 de 10
 **Fecha:** 2026-08-27
 
