@@ -1,0 +1,9 @@
+{
+  "_lee_esto": "Datos de las reseñas de Google. VACÍO A PROPÓSITO: el componente no pinta nada mientras no haya reseñas REALES. No se rellena a mano ni con texto de ejemplo — una reseña inventada en un sitio de captación es un problema, no un marcador de posición. Lo llena la integración de la Fase 8 desde el perfil del cliente.",
+  "fuente": "Google Business Profile · CID 13592496939047920063",
+  "enlacePerfil": "https://maps.google.com/?cid=13592496939047920063",
+  "actualizado": null,
+  "valoracion": null,
+  "total": null,
+  "items": []
+}

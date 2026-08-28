@@ -1,0 +1,145 @@
+---
+/**
+ * Botón flotante de llamada. Sustituye al widget de Elfsight `e4536a7a-…` (decisión D2).
+ *
+ * POR QUÉ NO ES UN SOLO NÚMERO
+ * El negocio tiene DOS, y así los etiqueta el propio sitio en /contact-us
+ * (`div.phone-wrapper`): North Florida y South Florida. Un botón que llame solo a uno
+ * manda al visitante del sur a la oficina equivocada. Por eso se despliega en vez de
+ * marcar directo.
+ *
+ * DISEÑO: círculo de 65 px en --blue_dark, que es exactamente el `.btn-cta` que ya usa el
+ * sitio, y el panel con el degradado dorado de `.button-styles`. Nada inventado.
+ */
+import telefonos from '../../data/telefonos.json';
+const { items } = telefonos;
+---
+<div class="mm-llamar" data-mm-llamar>
+  <div class="mm-llamar__panel" id="mm-llamar-panel" hidden>
+    <p class="mm-llamar__titulo">Call us</p>
+    {items.map((t) => (
+      <a class="mm-llamar__num" href={`tel:${t.tel}`}>
+        <span class="mm-llamar__zona">{t.zona}</span>
+        <span class="mm-llamar__cifra">{t.visible}</span>
+      </a>
+    ))}
+  </div>
+
+  <button
+    type="button"
+    class="mm-llamar__btn"
+    aria-expanded="false"
+    aria-controls="mm-llamar-panel"
+    aria-label="Call us"
+  >
+    <svg class="mm-llamar__icono mm-llamar__icono--tel" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.6a1 1 0 0 1-.25 1l-2.22 2.2Z"
+        fill="currentColor"/>
+    </svg>
+    <svg class="mm-llamar__icono mm-llamar__icono--cerrar" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+    </svg>
+  </button>
+</div>
+
+<style>
+  .mm-llamar {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 900;                     /* el nav del sitio es fixed; esto va por encima */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: .75rem;
+  }
+
+  .mm-llamar__btn {
+    width: 65px; height: 65px;        /* .btn-cta del sitio */
+    border: 0; border-radius: 100%;
+    background-color: var(--blue_dark, #001c63);
+    color: #fff;
+    cursor: pointer;
+    display: grid; place-items: center;
+    box-shadow: 0 6px 22px #001c6359;
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .mm-llamar__btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px #001c6373 }
+  .mm-llamar__btn:focus-visible { outline: 3px solid var(--yellow-1, #f4b248); outline-offset: 3px }
+
+  .mm-llamar__icono { width: 28px; height: 28px }
+  .mm-llamar__icono--cerrar { display: none }
+  .mm-llamar__btn[aria-expanded='true'] .mm-llamar__icono--tel { display: none }
+  .mm-llamar__btn[aria-expanded='true'] .mm-llamar__icono--cerrar { display: block }
+
+  .mm-llamar__panel {
+    background: #fff;
+    border-radius: 15px;              /* el radio de .card del sitio */
+    padding: 1rem;
+    min-width: 250px;
+    box-shadow: 0 12px 34px #00000026;
+    animation: mm-llamar-entra .18s cubic-bezier(.165,.84,.44,1) backwards;
+  }
+  /* `backwards`, nunca `both`: con fill hacia delante el transform se queda serializado
+     como matrix(1,0,0,1,0,0) en vez de volver a none, y un transform distinto de none crea
+     contexto de apilamiento para los descendientes fixed. Medido en AMS. */
+  @keyframes mm-llamar-entra { from { opacity: 0; transform: translateY(8px) } }
+
+  .mm-llamar__titulo {
+    margin: 0 0 .6rem;
+    font-family: Montserrat, sans-serif;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: var(--blue_dark, #001c63);
+  }
+
+  .mm-llamar__num {
+    display: flex; flex-direction: column;
+    padding: .55rem .75rem;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--blue_dark, #001c63);
+    transition: background-color .15s ease;
+  }
+  .mm-llamar__num + .mm-llamar__num { margin-top: .25rem }
+  .mm-llamar__num:hover { background-color: var(--grey, #ececec) }
+  .mm-llamar__num:focus-visible { outline: 2px solid var(--yellow-1, #f4b248); outline-offset: 1px }
+
+  .mm-llamar__zona { font-size: 12px; font-weight: 600; opacity: .7 }
+  .mm-llamar__cifra { font-size: 17px; font-weight: 700; letter-spacing: .01em }
+
+  @media (max-width: 479px) {
+    .mm-llamar { right: 1rem; bottom: 1rem }
+    .mm-llamar__btn { width: 58px; height: 58px }
+    .mm-llamar__panel { min-width: min(250px, calc(100vw - 2rem)) }
+  }
+
+  /* Sin !important y repitiendo la misma cadena de selectores, para ganar por orden. */
+  @media (prefers-reduced-motion: reduce) {
+    .mm-llamar__panel { animation: none }
+    .mm-llamar__btn { transition: none }
+    .mm-llamar__btn:hover { transform: none }
+  }
+  @media print { .mm-llamar { display: none } }
+</style>
+
+<script>
+  // Sin dependencias y sin sellos: si este script no corre, el panel se queda oculto por
+  // `hidden` y el botón sigue siendo un botón. Lo peor que pasa es que no despliega.
+  for (const raiz of document.querySelectorAll('[data-mm-llamar]')) {
+    const btn = raiz.querySelector('.mm-llamar__btn');
+    const panel = raiz.querySelector('.mm-llamar__panel');
+    if (!btn || !panel) continue;
+
+    const poner = (abierto: boolean) => {
+      btn.setAttribute('aria-expanded', String(abierto));
+      panel.toggleAttribute('hidden', !abierto);
+    };
+
+    btn.addEventListener('click', () => poner(btn.getAttribute('aria-expanded') !== 'true'));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') poner(false); });
+    document.addEventListener('click', (e) => {
+      if (!raiz.contains(e.target as Node)) poner(false);
+    });
+  }
+</script>

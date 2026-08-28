@@ -11,7 +11,10 @@
     "baseline": "node scripts/capture-baseline.mjs",
     "check:baseline": "node scripts/check-baseline.mjs",
     "css": "node scripts/build-css.mjs",
-    "shell": "node scripts/build-shell.mjs"
+    "shell": "node scripts/build-shell.mjs",
+    "dev": "astro dev --port 4325",
+    "build": "astro build",
+    "vista": "astro dev --port 4325 --open /vista-widgets"
   },
   "dependencies": {
     "@astrojs/vercel": "^11.0.8",

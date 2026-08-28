@@ -1,0 +1,51 @@
+---
+/**
+ * Cascarón mínimo. El nav y el pie los añade la Fase 4 cuando el extractor pueda correr
+ * (hoy aborta: 25 imágenes del nav del vivo no están en el manifiesto).
+ *
+ * El <head> reproduce lo que hay en el origen, MENOS lo que se va a propósito:
+ *   · preconnect al CDN de Webflow y a Google Fonts -> ya no se usa ninguno de los dos
+ *   · webfont.js + WebFont.load        -> las fuentes se auto-alojan
+ *   · elfsightcdn.com/platform.js      -> decisión D2: los 3 widgets se rehacen nativos
+ *   · el script de analítica de Webflow -> es de la plataforma que abandonamos
+ *
+ * Y MENOS el bloque <style> anti-FOUC del origen, a propósito y con motivo:
+ * dice `html.w-mod-js:not(.w-mod-ix) [data-w-id="…"]{opacity:0}`, o sea «mantén esto
+ * invisible hasta que arranque IX2». Si se copiara tal cual sin webflow.js, la clase
+ * `w-mod-ix` no la pone nadie y esos elementos se quedan invisibles PARA SIEMPRE. Es
+ * literalmente lo que ya pasó una vez en AMS. Lo sustituye el sello de la Fase 7.
+ */
+import '@fontsource-variable/inter';
+import '@fontsource-variable/montserrat';
+import '../styles/webflow.css';
+
+interface Props {
+  titulo: string;
+  descripcion?: string;
+  ruta?: string;
+}
+const { titulo, descripcion } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titulo}</title>
+    {descripcion && <meta name="description" content={descripcion} />}
+    <link rel="shortcut icon" href="/images/site/favicon.png" />
+    <link rel="apple-touch-icon" href="/images/site/webclip.png" />
+    {/* Webflow marca el <html> con w-mod-js y w-mod-touch y HAY CSS QUE DEPENDE DE ELLO.
+        Va en línea y en el head para que no haya un fotograma sin la clase. */}
+    <script is:inline>
+      !function (o, c) {
+        var n = c.documentElement, t = ' w-mod-';
+        n.className += t + 'js';
+        ('ontouchstart' in o || o.DocumentTouch && c instanceof o.DocumentTouch) && (n.className += t + 'touch');
+      }(window, document);
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

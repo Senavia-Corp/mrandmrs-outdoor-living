@@ -1,0 +1,7 @@
+{
+  "_lee_esto": "Publicaciones de Instagram. VACÍO A PROPÓSITO: el componente no pinta nada mientras no haya publicaciones REALES. Lo llena la integración de la Fase 8 con un snapshot en build time — nunca con un token vivo en el navegador, que caduca y apaga el feed un martes cualquiera.",
+  "fuente": "https://www.instagram.com/mrandmrsoutdoorliving/",
+  "usuario": "mrandmrsoutdoorliving",
+  "actualizado": null,
+  "items": []
+}

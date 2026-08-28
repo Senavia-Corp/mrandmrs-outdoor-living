@@ -1,0 +1,160 @@
+---
+/**
+ * Reseñas de Google, nativas. Sustituye al widget de Elfsight `ce5a93b9-…` (decisión D2).
+ *
+ * DÓNDE VIVE
+ * Dentro de `section.testimonial-section` de la home, justo debajo del encabezado que ya
+ * existe («TESTIMONIALS» + h2 + párrafo). Esa sección tiene FONDO OSCURO con imagen y
+ * `color: var(--white)`, así que las tarjetas son de vidrio sobre el fondo, no blancas
+ * opacas: el sitio ya usa ese lenguaje (`.hero-glass-section-page`).
+ *
+ * SI NO HAY DATOS, NO PINTA NADA
+ * `src/data/resenas.json` está vacío a propósito y NO se rellena con texto de ejemplo.
+ * Una reseña inventada en un sitio de captación de clientes no es un marcador de posición,
+ * es un problema. Los datos los trae la integración con el perfil del cliente
+ * (CID 13592496939047920063).
+ */
+import datos from '../../data/resenas.json';
+
+interface Props {
+  /** Solo para la vista de diseño. En el sitio manda src/data/resenas.json. */
+  datosDemo?: typeof datos;
+}
+const d = (Astro.props.datosDemo ?? datos) as {
+  items: { autor: string; foto?: string; estrellas: number; texto: string; fecha?: string }[];
+  valoracion: number | null; total: number | null; enlacePerfil: string; actualizado: string | null;
+};
+const { items, valoracion, total, enlacePerfil, actualizado } = d;
+const hay = items.length > 0;
+const fmt = (f?: string) => (f ? new Date(f).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : '');
+---
+{hay && (
+  <div class="mm-resenas">
+    <div class="mm-resenas__resumen">
+      <svg class="mm-resenas__g" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5a5.6 5.6 0 0 1-2.4 3.7v3h3.9c2.3-2.1 3.5-5.2 3.5-8.9Z"/>
+        <path fill="#34A853" d="M12 24c3.2 0 5.9-1.1 7.9-2.9l-3.9-3a7.2 7.2 0 0 1-10.7-3.8H1.3v3.1A12 12 0 0 0 12 24Z"/>
+        <path fill="#FBBC05" d="M5.3 14.3a7.1 7.1 0 0 1 0-4.6V6.6H1.3a12 12 0 0 0 0 10.8l4-3.1Z"/>
+        <path fill="#EA4335" d="M12 4.8c1.8 0 3.4.6 4.6 1.8l3.5-3.5A12 12 0 0 0 1.3 6.6l4 3.1A7.2 7.2 0 0 1 12 4.8Z"/>
+      </svg>
+      {valoracion != null && (
+        <p class="mm-resenas__nota"><strong>{valoracion.toFixed(1)}</strong></p>
+      )}
+      {valoracion != null && (
+        <div class="mm-resenas__estrellas" role="img" aria-label={`${valoracion} de 5 estrellas`}>
+          {[1, 2, 3, 4, 5].map((n) => (
+            <svg viewBox="0 0 20 20" class={n <= Math.round(valoracion) ? 'llena' : ''} aria-hidden="true">
+              <path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9 4.8 17.6l1-5.8L1.5 7.7l5.9-.9L10 1.5Z"/>
+            </svg>
+          ))}
+        </div>
+      )}
+      {total != null && <p class="mm-resenas__total">{total} Google reviews</p>}
+      <a class="mm-resenas__enlace" href={enlacePerfil} target="_blank" rel="noopener noreferrer">
+        See all reviews
+      </a>
+    </div>
+
+    <ul class="mm-resenas__lista" role="list">
+      {items.map((r) => (
+        <li class="mm-resenas__tarjeta">
+          <div class="mm-resenas__estrellas mm-resenas__estrellas--card" role="img" aria-label={`${r.estrellas} de 5`}>
+            {[1, 2, 3, 4, 5].map((n) => (
+              <svg viewBox="0 0 20 20" class={n <= r.estrellas ? 'llena' : ''} aria-hidden="true">
+                <path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9 4.8 17.6l1-5.8L1.5 7.7l5.9-.9L10 1.5Z"/>
+              </svg>
+            ))}
+          </div>
+          <p class="mm-resenas__texto">{r.texto}</p>
+          <div class="mm-resenas__autor">
+            {r.foto
+              ? <img src={r.foto} alt="" width="40" height="40" loading="lazy" decoding="async" />
+              : <span class="mm-resenas__inicial" aria-hidden="true">{r.autor.trim().charAt(0)}</span>}
+            <span>
+              <strong>{r.autor}</strong>
+              {r.fecha && <em>{fmt(r.fecha)}</em>}
+            </span>
+          </div>
+        </li>
+      ))}
+    </ul>
+    {actualizado && <p class="mm-resenas__pie">Updated {fmt(actualizado)}</p>}
+  </div>
+)}
+
+<style>
+  .mm-resenas { width: 100%; max-width: 1250px; margin-inline: auto }
+
+  /* ── el resumen ───────────────────────────────────────────────────────── */
+  .mm-resenas__resumen {
+    display: flex; align-items: center; justify-content: center;
+    flex-wrap: wrap; gap: .75rem 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  .mm-resenas__g { width: 26px; height: 26px; flex: none }
+  .mm-resenas__nota { margin: 0; font-size: 34px; line-height: 1; font-weight: 700 }
+  .mm-resenas__total { margin: 0; font-size: 15px; font-weight: 600; opacity: .85 }
+
+  .mm-resenas__enlace {
+    display: inline-block;
+    padding: .5rem 1.1rem;
+    border-radius: 8px;
+    font-size: 14px; font-weight: 700; text-decoration: none;
+    color: var(--blue_dark, #001c63);
+    /* el degradado dorado de .button-styles del sitio, literal */
+    background-image: linear-gradient(135deg,
+      var(--yellow-1, #f4b248), var(--yellow-2, #d99933) 25%,
+      var(--yellow-3, #edb660) 50%, var(--yellow-2, #d99933) 75%, var(--yellow-1, #f4b248));
+  }
+  .mm-resenas__enlace:focus-visible { outline: 3px solid #fff; outline-offset: 2px }
+
+  /* ── estrellas ────────────────────────────────────────────────────────── */
+  .mm-resenas__estrellas { display: flex; gap: 2px }
+  .mm-resenas__estrellas svg { width: 18px; height: 18px; fill: #ffffff3d }
+  .mm-resenas__estrellas svg.llena { fill: var(--yellow-1, #f4b248) }
+
+  /* ── la rejilla ───────────────────────────────────────────────────────── */
+  .mm-resenas__lista {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .mm-resenas__tarjeta {
+    display: flex; flex-direction: column; gap: .85rem;
+    padding: 1.5rem;
+    border-radius: 15px;                        /* el radio de .card del sitio */
+    background-color: #ffffff14;                /* vidrio sobre el fondo oscuro */
+    border: 1px solid #ffffff29;
+    backdrop-filter: blur(6px);
+  }
+
+  .mm-resenas__texto {
+    margin: 0; font-size: 16px; line-height: 1.55;
+    display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .mm-resenas__autor { display: flex; align-items: center; gap: .7rem; margin-top: auto }
+  .mm-resenas__autor img,
+  .mm-resenas__inicial {
+    width: 40px; height: 40px; border-radius: 100%; flex: none;
+    object-fit: cover;
+  }
+  .mm-resenas__inicial {
+    display: grid; place-items: center;
+    background-color: var(--yellow-1, #f4b248);
+    color: var(--blue_dark, #001c63);
+    font-weight: 700; font-size: 17px;
+  }
+  .mm-resenas__autor span { display: flex; flex-direction: column; line-height: 1.3 }
+  .mm-resenas__autor em { font-style: normal; font-size: 13px; opacity: .75 }
+
+  .mm-resenas__pie { margin: 1.25rem 0 0; text-align: center; font-size: 13px; opacity: .6 }
+
+  @media (max-width: 767px) {
+    .mm-resenas__lista { grid-template-columns: 1fr }
+    .mm-resenas__nota { font-size: 28px }
+  }
+</style>

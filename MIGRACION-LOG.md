@@ -53,12 +53,21 @@ componentes propios: **click-to-call**, **reseñas de Google** y **feed de Insta
    es exactamente como se pierde una puerta.
 2. **`check:texto` es 100 % idéntico y NO admite excepción de umbral.** El texto nuevo de las
    reseñas y del feed hay que declararlo como bloque añadido, por ruta.
-3. **Hacen falta datos, y no los tenemos.** El click-to-call no: es un botón con
-   `tel:+1 352-740-3361` y se puede hacer ya. Los otros dos sí:
-   - **Reseñas de Google** → ficha de Google Business Profile del cliente. Precedente que ya
-     funciona en otro proyecto: snapshot en *build time*, no llamada en cliente.
-   - **Instagram** → cuenta del cliente. Mismo patrón: snapshot en build, sin token vivo en el
-     navegador (un token de Instagram caduca y el feed se apaga solo un martes cualquiera).
+3. **Hacen falta datos.** Los **tres diseños ya están hechos** (27-ago-2026); lo que falta
+   son los datos, y esa es la parte que Sebastian dejó **para el final**. Los componentes leen
+   de `src/data/*.json`, que están **vacíos a propósito**: si no hay datos reales, el widget no
+   pinta nada. Ni una reseña ni una publicación inventada — en un sitio de captación eso no es
+   un marcador de posición, es un problema.
+   - **Click-to-call: terminado y con datos.** No necesita integración. Y no es un número, son
+     **DOS**: el sitio etiqueta `North Florida +1 (352) 740-3361` y `South Florida
+     +1 (954) 913-7112` en `div.phone-wrapper` de `/contact-us`. Un botón que llamara solo al
+     primero mandaría a la oficina equivocada a medio estado.
+   - Reseñas de Google → **CID `13592496939047920063`** (dado por Sebastian, 27-ago-2026).
+     Es el identificador de `maps.google.com/?cid=…`. Falta la integración.
+   - **Instagram** → `@mrandmrsoutdoorliving` (sacado del pie del sitio). Mismo patrón:
+     snapshot en build, sin token vivo en el navegador — un token de Instagram caduca y el feed
+     se apaga solo un martes cualquiera. Las imágenes se sirven locales: las URLs del CDN de
+     Instagram van firmadas y caducan en horas.
 
    «Todo en local» se interpreta así: **cero peticiones a terceros en el navegador del
    visitante**; el contenido se hornea en el build. Pendiente de los accesos del cliente. No

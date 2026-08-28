@@ -1,0 +1,8 @@
+{
+  "_lee_esto": "Los dos teléfonos del negocio, copiados del sitio vivo (/contact-us, div.phone-wrapper). El orden y las etiquetas son los del origen.",
+  "items": [
+    { "zona": "North Florida", "tel": "+13527403361", "visible": "+1 (352) 740-3361" },
+    { "zona": "South Florida", "tel": "+19549137112", "visible": "+1 (954) 913-7112" }
+  ],
+  "correo": "info@mrandmrsoutdoorliving.com"
+}
