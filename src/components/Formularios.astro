@@ -49,13 +49,19 @@
       let idWidget = null;
 
       // El widget va al final del formulario, antes del boton de envio.
+      // SIN margen mientras este vacio. Con `margin:.75rem 0` fijo, el contenedor hacia la
+      // seccion del formulario 8 px mas alta que en el original y TODO lo de abajo se
+      // desplazaba: check:visual bajaba de 99% a 96-97% en /contact-us por un div vacio.
+      // El margen se pone cuando el widget existe de verdad.
       const caja = document.createElement('div');
       caja.className = 'mm-turnstile';
-      caja.style.margin = '.75rem 0';
       (boton?.parentElement ?? form).insertBefore(caja, boton ?? null);
 
       cargaTurnstile()
-        .then((ts) => { idWidget = ts.render(caja, { sitekey: CLAVE_SITIO, action: form.dataset.name }); })
+        .then((ts) => {
+          idWidget = ts.render(caja, { sitekey: CLAVE_SITIO, action: form.dataset.name });
+          caja.style.margin = '.75rem 0';
+        })
         .catch(() => { /* Cloudflare caido: el servidor falla ABIERTO, no bloqueamos el envio */ });
 
       form.addEventListener('submit', async (ev) => {
