@@ -1,0 +1,88 @@
+/* CSS PROPIO — esto NO es derivado. `webflow.css` y `Nav.astro` sí lo son (los generan
+ * `build-css.mjs` y `build-shell.mjs`), así que las correcciones de autor viven aquí.
+ * Se importa en `Base.astro` DESPUÉS de webflow.css: gana por orden, sin `!important`.
+ */
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * NAV — el logo se solapa con «Resources ⌄» entre 992 y 1204 px.
+ *
+ * MEDIDO en el despliegue, hueco entre el borde derecho del logo y «Resources»:
+ *
+ *     1920 1600 1440 1320 | 1280 | 1240 | 1210 | 1204 | 1100 |  992 | 991
+ *      +59  +59  +59  +58 |  +38 |  +18 |   +3 |    0 |  −52 | −106 | colapsa a hamburguesa
+ *
+ * El solape empieza en 1204 y NO en ~2000: por encima de 1320 el hueco es CONSTANTE porque
+ * `.nav-menu` topa en `max-width:1250px` y se centra. Por debajo baja a razón de EXACTAMENTE
+ * 0,5 px por px de viewport (medido en los 8 anchos de arriba).
+ *
+ * LA BANDA SE CORTA EN 1239, NO EN 1204. Entre 1205 y 1239 no hay solape pero el logo roza:
+ * 0,5 px de hueco a 1205, 3 a 1210, 8 a 1220. Eso se ve igual de mal que solaparse. A 1240 el
+ * hueco original ya es de 18 px y dentro de la banda se dan 20, así que el salto en el límite
+ * es de 2 px. 1239 sigue MUY lejos de los 1440 que mide la puerta.
+ *
+ * POR QUÉ PASA. `.navbar-logo` es `position:absolute` dentro de `.navbar`, o sea que se
+ * centra en el VIEWPORT y no participa del reparto. Los enlaces viven en
+ * `.wrapper-nav-menu` (`space-between`), que comparte `.nav-menu` con el CTA
+ * «Get a Free Estimate» de 179 px. Ese CTA le come 179 px SOLO al lado derecho, así que el
+ * hueco entre los dos grupos queda descentrado 89,5 px respecto del logo. Por eso el logo
+ * pisa siempre por la derecha y nunca por la izquierda.
+ *
+ * POR QUÉ NO SE ARREGLA ENCOGIENDO. A 992 px, con el logo centrado en el viewport, el
+ * borde izquierdo del grupo derecho cae en `528,8 − padding`. Para no tocarlo el logo
+ * tendría que medir **≤ 41,6 px de ancho** (medido: hoy mide 205,6). No es un problema de
+ * tamaño: es que centrar en el viewport algo cuyo hueco no está centrado no tiene solución.
+ *
+ * QUÉ SE HACE. Dentro de la banda el logo deja de ser absoluto y pasa a ser un ítem más del
+ * flex, a la izquierda. Así el solape es imposible POR CONSTRUCCIÓN, no por ajuste fino.
+ * Cuentas a 992, que es el caso peor:
+ *     logo 52px de alto -> 164,5 de ancho, +20 de margen           = 184,5
+ *     sobra para .wrapper-menu: 992 − 184,5 − 24 de padding        = 783,5
+ *     hace falta: 366 (grupo izq) + 284,2 (der) + 179 (CTA) − 56   = 773,2   -> 10,3 de aire
+ * Los 56 salen de bajar el padding de los 7 enlaces de 10px a 6px.
+ *
+ * LAS PUERTAS. `check:visual` mide a 1920 / 1440 / 991 / 479, los cuatro FUERA de la banda,
+ * así que esto no mueve un píxel del baseline en ninguna de las 115 páginas. Es a propósito:
+ * el encargo era arreglar el solape, no rediseñar el nav.
+ */
+@media screen and (min-width: 992px) and (max-width: 1239px) {
+  /* El gutter de la banda. Lo lleva `.navbar` y no `.wrapper-menu` porque el logo cuelga de
+   * `.navbar`: con el padding en el wrapper el logo se pegaba al borde (medido: left = 0). */
+  .navbar {
+    justify-content: flex-start;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .navbar-logo {
+    position: static;          /* <- lo que quita el solape; lo demás es que quepa */
+    flex: 0 0 auto;
+    height: 52px;
+    margin-right: 1.25rem;
+  }
+
+  .wrapper-menu {
+    flex: 1;
+    width: auto;
+    min-width: 0;              /* sin esto un flex item no baja de su contenido y desborda */
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .nav-menu { margin-left: 0 }
+
+  /* Los 7 enlaces van en DOS `.divider-navs-links` que `space-between` empuja a los extremos
+   * del carril. Con el logo ya dentro del reparto ese hueco se queda en 10,3 px a 992
+   * -medido-, o sea que los dos grupos se tocan y el `space-between` no compra nada. En la
+   * banda leen mejor como UNA tirada seguida, y el aire que sobra se junta en un solo sitio:
+   * entre los enlaces y el CTA, que es donde parece intencionado. */
+  .wrapper-nav-menu {
+    width: auto;
+    justify-content: flex-start;
+  }
+
+  .nav-link,
+  .dropdown-toggle-menu {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}

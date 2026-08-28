@@ -144,6 +144,140 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 
 <!-- a partir de aquí, una entrada por fase, la más reciente arriba -->
 
+## Fase R1 — el solape del logo en el nav   ✅ cerrada
+**Fecha:** 2026-08-28 · **Commit:** `<sha>`
+
+### Objetivo
+Que el logo del nav deje de pisar «Resources ⌄», sin mover un píxel del baseline en las 115
+páginas.
+
+### Qué se hizo
+- `src/styles/propio.css` **nuevo**. Primer fichero de CSS de autor del proyecto: `webflow.css`
+  lo genera `build-css.mjs` y `Nav.astro` lo genera `build-shell.mjs`, así que ninguno de los
+  dos se puede editar a mano.
+- `src/layouts/Base.astro`: se importa **después** de `webflow.css`, para ganar por orden y sin
+  un solo `!important`.
+- Una media query, `992–1239 px`. Dentro de ella el logo deja de ser `position:absolute` y pasa
+  a ser un ítem más del flex, a la izquierda; los 7 enlaces van en una tirada seguida y el CTA
+  se queda a la derecha.
+
+### Números medidos
+Hueco entre el borde derecho del logo y el grupo «Resources · financing · Contact Us».
+
+| ancho | antes | después |
+|---|---|---|
+| 1920 | +59 | **+59** (sin tocar) |
+| 1440 | +59 | **+59** (sin tocar) |
+| 1320 | +58 | **+58** (sin tocar) |
+| 1240 | **+18** | +18 (sin tocar: la banda acaba en 1239) |
+| 1220 | **+8** | +20 |
+| 1210 | **+3** | +20 |
+| 1205 | **+0,5** | +20 |
+| 1204 | **0** | +20 |
+| 1200 | **−2** | +20 |
+| 1100 | **−52** | +20 |
+| 992 | **−106** | +20 |
+| 991 | — hamburguesa | — hamburguesa (sin tocar) |
+| 479 | — hamburguesa | — hamburguesa (sin tocar) |
+
+El hueco baja a razón de **exactamente 0,5 px por px de viewport** entre 1320 y 1204.
+Desbordamiento horizontal: **0 en los 9 anchos**.
+
+### Evidencia
+El solape **no está a ~2000 px**, como decía la hipótesis del encargo: por encima de 1320 el
+hueco es constante porque `.nav-menu` topa en `max-width:1250px` y se centra.
+
+```
+ancho | hueco logo -> grupo derecho  (sin arreglar)
+ 1205 |    0.5 px   (logo 205.6)
+ 1210 |      3 px   (logo 205.6)
+ 1220 |      8 px   (logo 205.6)
+ 1240 |     18 px   (logo 205.6)
+ 1260 |     28 px   (logo 205.6)
+ 1280 |     38 px   (logo 205.6)
+ 1300 |     48 px   (logo 205.6)
+ 1320 |     58 px   (logo 205.6)
+```
+
+Después del arreglo, los 9 anchos con el build local servido desde `.vercel/output/static`:
+
+```
+ancho | logo l..r (ancho) | 1er enlace l | ult enlace r | CTA l..r | hueco logo->enlaces | SOLAPE | desbordaX
+1920 |  857.2..1062.8 (205.6) |    335 |   1406 | 1406..1585 | -727.8 |      0 | 0
+1440 |  617.2.. 822.8 (205.6) |     95 |   1166 | 1166..1345 | -727.8 |      0 | 0
+1320 |  557.2.. 762.8 (205.6) |     36 |   1105 | 1105..1284 | -726.8 |      0 | 0
+1205 |     16.. 180.5 (164.5) |  200.5 |  780.7 | 1010..1189 |     20 |      0 | 0
+1204 |     16.. 180.5 (164.5) |  200.5 |  780.7 | 1009..1188 |     20 |      0 | 0
+1100 |     16.. 180.5 (164.5) |  200.5 |  780.7 | 905..1084 |     20 |      0 | 0
+ 992 |     16.. 180.5 (164.5) |  200.5 |  780.7 | 797..976 |     20 |      0 | 0
+ 991 |     16.. 182.1 (166.1) |   null |   null |    -    |      - |      0 | 0 (hamburguesa)
+ 479 |     16.. 157.3 (141.3) |   null |   null |    -    |      - |      0 | 0 (hamburguesa)
+```
+
+Y la puerta, filtrada a 4 rutas que llevan el mismo nav (una sola pasada, una sola ventana):
+
+```bash
+$ npm run check:visual -- gallery about where-we-serves
+
+── 1920px
+  ok   /about                                               99.98 %
+  ok   /gallery                                             99.99 %
+  ok   /where-we-serves/custom-pool-builders-north-florida  99.98 %
+  ok   /where-we-serves/custom-pool-builders-south-florida  99.98 %
+
+── 1440px
+  ok   /about                                               99.97 %
+  ok   /gallery                                             99.98 %
+  ok   /where-we-serves/custom-pool-builders-north-florida  99.97 %
+  ok   /where-we-serves/custom-pool-builders-south-florida  99.97 %
+
+── 991px
+  ok   /about                                               99.96 %
+  ok   /gallery                                             99.99 %
+  ok   /where-we-serves/custom-pool-builders-north-florida  99.97 %
+  ok   /where-we-serves/custom-pool-builders-south-florida  99.97 %
+
+── 479px
+  ok   /about                                               99.95 %
+  ok   /gallery                                             99.98 %
+  ok   /where-we-serves/custom-pool-builders-north-florida  99.96 %
+  ok   /where-we-serves/custom-pool-builders-south-florida  99.96 %
+
+  16 iguales · 0 distintas · 0 declaradas · 0 sin baseline
+
+PUERTA VERDE
+```
+
+### Gate
+**Criterio:** solape ≤ 0 en 992–1239, y `check:visual` sin una sola ruta nueva en rojo — los
+4 anchos que mide (1920 / 1440 / 991 / 479) caen **todos fuera de la banda**, así que el
+arreglo tenía que salir gratis.
+**Resultado:** ✅ verde — 16 iguales, 0 distintas. Solape 0 en los 9 anchos medidos.
+
+### Desviaciones
+Dos, las dos con motivo medido:
+
+1. **La banda va hasta 1239 y no hasta 1204**, que es donde acaba el solape estricto. Entre
+   1205 y 1239 no hay solape pero el logo **roza**: 0,5 px de hueco a 1205, 3 a 1210, 8 a
+   1220. Eso se ve igual de mal. A 1240 el hueco original ya es de 18 px y dentro de la banda
+   se dan 20, así que en el límite el salto es de 2 px. 1239 sigue muy lejos de 1440.
+2. **No se arregla encogiendo el logo, y no por gusto.** A 992, con el logo centrado en el
+   viewport, el borde izquierdo del grupo derecho cae en `528,8 − padding`: para no tocarlo el
+   logo tendría que medir **≤ 41,6 px de ancho** (hoy mide 205,6). La causa no es el tamaño,
+   es que `.navbar-logo` es `position:absolute` —o sea, centrado en el VIEWPORT— mientras que
+   el hueco entre los dos grupos de enlaces está descentrado **89,5 px** hacia la izquierda,
+   que es la mitad del CTA «Get a Free Estimate» (179 px). Centrar en el viewport algo cuyo
+   hueco no está centrado no tiene solución por tamaño. Por eso el logo entra en el reparto.
+
+### Rarezas del original replicadas a propósito
+El solape **existe también en el sitio vivo** — el nav es byte a byte el del origen. No se
+replica: el encargo pedía arreglarlo. Fuera de 992–1239 el nav sigue siendo el del origen.
+
+### Abierto
+Nada. Los 4 anchos de la puerta quedan intactos y verificados.
+
+---
+
 ## Fase 1 (reabierta, 2.ª vez) — las 2 fichas de `/services` que no cuajaron   🟡 casi
 **Fecha:** 2026-08-28 · recapturadas del sitio VIVO mientras existe
 
