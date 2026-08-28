@@ -339,6 +339,23 @@ PUERTA VERDE
 Y el overlay necesita `z-index` alto: con 9 quedaba **detrás del contenido** aunque su caja
 estuviera en su sitio, porque varias secciones crean su propio contexto de apilamiento.
 
+### ↩️ CERRADO DESPUÉS: lo que quedaba de la Fase 7
+Medido en el navegador, no supuesto:
+
+| Componente | Medido |
+|---|---|
+| `w-lightbox` | 137 imágenes en 1 grupo, abre en «1 / 137» y navega |
+| Marquee | 14 logos → 28 duplicados, `--mm-dur: 17s`, animación corriendo |
+| Slider | 10 diapositivas, `scrollWidth 11870 / clientW 1187`, las flechas desplazan |
+| **Antes/después** | al 50 % la imagen «after» mide 315 px y la línea está en 315; arrastrando al 25 % pasan a 472 y 157. Con `role="slider"` y flechas del teclado |
+| **`w-tabs`** | 4 enlaces / 4 paneles en las 9 fichas de condado; al pulsar el 3.º se activa el panel 2 y queda en `display:block`. Con `role="tablist"` |
+
+El antes/después y los tabs se reimplementan **con el mecanismo del sitio**: el CSS ya trae
+`.bas-image-after-h{width:50%}` y `.w-tab-pane{display:none}`, así que arrastrar solo mueve ese
+50 % y cambiar de pestaña solo mueve la clase. Nada inventado.
+
+Queda únicamente la **paginación de `/where-we-serve`** (1 uso).
+
 ### Abierto — lo que la Fase 7 NO cubre todavía
 Está medido y acotado, no olvidado:
 - **`w-lightbox`** — `/gallery` tiene 137 referencias. Hoy los enlaces no abren visor.

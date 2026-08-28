@@ -71,6 +71,19 @@
   [fs-slider-element="previous"][aria-disabled="true"],
   [fs-slider-element="next"][aria-disabled="true"] { opacity: .35; pointer-events: none }
 
+  /* ── antes/despues ────────────────────────────────────────────────────── */
+  /* El sitio ya trae `.bas-image-after-h{width:50%;margin-left:auto}` y
+     `.bas-line-h{left:50%}`. Arrastrar solo mueve ese 50%: se replica el mecanismo del
+     original en vez de inventarse otro. */
+  [fb-before-after][data-mm-ba] { cursor: ew-resize; touch-action: none; user-select: none }
+  [fb-before-after][data-mm-ba] .bas-handle-h { left: var(--mm-ba, 50%); transform: translateX(-50%) }
+  [fb-before-after][data-mm-ba] .bas-line-h { left: var(--mm-ba, 50%) }
+  [fb-before-after][data-mm-ba] .bas-image-after-h { width: calc(100% - var(--mm-ba, 50%)) }
+
+  /* ── tabs ─────────────────────────────────────────────────────────────── */
+  /* El CSS del sitio ya hace `.w-tab-pane{display:none}` y muestra `.w--tab-active`. */
+  .w-tab-pane.w--tab-active { display: block }
+
   @media (prefers-reduced-motion: reduce) {
     [fs-marquee-element="list"][data-mm-marquee] { animation: none }
     [fs-slider-element="list"][data-mm-slider] { scroll-behavior: auto }
@@ -194,6 +207,87 @@
       lista.addEventListener('scroll', refresca, { passive: true });
       addEventListener('resize', refresca, { passive: true });
       refresca();
+    }
+
+    // ── 4 · antes/despues ────────────────────────────────────────────────
+    for (const w of document.querySelectorAll('[fb-before-after]')) {
+      const handle = w.querySelector('[fb-before-after-handle]');
+      if (!w.querySelector('.bas-image-after-h')) continue;
+      const inicio = Number(w.getAttribute('fb-before-after-start') || 50);
+      w.setAttribute('data-mm-ba', '');
+      const pon = (pct) => w.style.setProperty('--mm-ba', `${Math.min(100, Math.max(0, pct))}%`);
+      pon(inicio);
+
+      let arrastrando = false;
+      const desde = (ev) => {
+        const r = w.getBoundingClientRect();
+        const x = (ev.touches?.[0]?.clientX ?? ev.clientX) - r.left;
+        pon((x / r.width) * 100);
+      };
+      const empieza = (ev) => { arrastrando = true; desde(ev); ev.preventDefault(); };
+      w.addEventListener('pointerdown', empieza);
+      addEventListener('pointermove', (ev) => { if (arrastrando) desde(ev); });
+      addEventListener('pointerup', () => { arrastrando = false; });
+
+      // Accesible con teclado: sin esto, un control que solo responde al raton deja fuera a
+      // quien navega con tabulador.
+      if (handle) {
+        handle.setAttribute('role', 'slider');
+        handle.setAttribute('tabindex', '0');
+        handle.setAttribute('aria-label', 'Compare before and after');
+        handle.setAttribute('aria-valuemin', '0');
+        handle.setAttribute('aria-valuemax', '100');
+        handle.setAttribute('aria-valuenow', String(inicio));
+        let v = inicio;
+        handle.addEventListener('keydown', (ev) => {
+          const paso = ev.shiftKey ? 10 : 2;
+          if (ev.key === 'ArrowLeft') v -= paso;
+          else if (ev.key === 'ArrowRight') v += paso;
+          else return;
+          ev.preventDefault();
+          v = Math.min(100, Math.max(0, v));
+          pon(v);
+          handle.setAttribute('aria-valuenow', String(v));
+        });
+      }
+    }
+
+    // ── 5 · tabs ─────────────────────────────────────────────────────────
+    for (const tabs of document.querySelectorAll('.w-tabs')) {
+      const enlaces = [...tabs.querySelectorAll('.w-tab-link')];
+      const panes = [...tabs.querySelectorAll('.w-tab-pane')];
+      if (!enlaces.length || !panes.length) continue;
+      const menu = tabs.querySelector('.w-tab-menu');
+      if (menu) menu.setAttribute('role', 'tablist');
+
+      const activa = (nombre) => {
+        for (const a of enlaces) {
+          const suyo = a.getAttribute('data-w-tab') === nombre;
+          a.classList.toggle('w--current', suyo);
+          a.setAttribute('role', 'tab');
+          a.setAttribute('tabindex', suyo ? '0' : '-1');
+          a.setAttribute('aria-selected', String(suyo));
+        }
+        for (const p of panes) {
+          const suyo = p.getAttribute('data-w-tab') === nombre;
+          p.classList.toggle('w--tab-active', suyo);
+          p.setAttribute('role', 'tabpanel');
+        }
+      };
+      for (const [i, a] of enlaces.entries()) {
+        a.addEventListener('click', (ev) => { ev.preventDefault(); activa(a.getAttribute('data-w-tab')); });
+        a.addEventListener('keydown', (ev) => {
+          const d = ev.key === 'ArrowRight' ? 1 : ev.key === 'ArrowLeft' ? -1 : 0;
+          if (!d) return;
+          ev.preventDefault();
+          const sig = enlaces[(i + d + enlaces.length) % enlaces.length];
+          activa(sig.getAttribute('data-w-tab'));
+          sig.focus();
+        });
+      }
+      // Se respeta cual venia marcada en el marcado; si no hay ninguna, la primera.
+      const actual = enlaces.find((a) => a.classList.contains('w--current')) ?? enlaces[0];
+      activa(actual.getAttribute('data-w-tab'));
     }
   }());
 </script>
