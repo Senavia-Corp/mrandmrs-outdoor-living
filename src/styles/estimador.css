@@ -326,7 +326,6 @@
 }
 #pool-estimator .pe-enviar:hover { background: rgba(244, 178, 72, .9); }
 #pool-estimator .pe-enviar:disabled { opacity: .5; cursor: not-allowed; }
-#pool-estimator .pe-legal { font-size: 11px; line-height: 16px; color: rgba(255, 255, 255, .5); margin: 8px 0 0; }
 #pool-estimator .pe-otra-via { font-size: 13px; line-height: 18px; margin: 10px 0 0; color: rgba(255, 255, 255, .7); }
 #pool-estimator .pe-otra-via a { color: var(--pe-cielo); }
 /* Los dos estados usan las clases del propio sitio para que `Formularios.astro` los conmute

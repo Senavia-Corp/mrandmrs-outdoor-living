@@ -8,7 +8,7 @@ que los producen están en `MIGRACION-LOG.md`, entrada por fase.
 | Fase | Estado |
 |---|---|
 | F0 Cuentas y repo | ✅ |
-| F1 Baseline congelado | ↩️ reabierta 28-ago: el carrusel de pasos de `/services/` autoavanzaba y la captura no lo paraba. Receta corregida y las 14 fichas recapturadas |
+| F1 Baseline congelado | ↩️ reabierta 28-ago: el carrusel de pasos de `/services/` autoavanzaba y la captura no lo paraba. Receta corregida y las 14 fichas recapturadas — **pero en 2 de las 14 no cuajó**, ver «Lo que queda» punto 6 |
 | F2 Assets locales | ✅ (reabierta 3 veces) 1826 assets · 0 fallos · 0 referencias a Webflow |
 | F3 Sanity | ✅ 511 documentos · 628 assets · 0 referencias rotas |
 | F4 Cascarón | ✅ nav y pie idénticos al vivo por geometría, 4 anchos |
@@ -19,6 +19,7 @@ que los producen están en `MIGRACION-LOG.md`, entrada por fase.
 | F8 Formularios | 🟡 endpoint hecho y probado; **faltan credenciales** |
 | F9 Paridad SEO | ✅ 115/115 con el `<head>` del origen |
 | F10 Puertas | 🟡 9 de 10 escritas · **`check:visual` en rojo por 5 de 460** |
+| F12 Estimador en fuente propia | ✅ oráculo de 384 casos · app rehecha sin React ni bundle · capta el lead · `/pool-investment-estimator` a **100 %** de píxeles y texto |
 | F11 Deploy | 🟡 **LIVE 28-ago** en <https://mrandmrs-outdoor-living-rajppfro3-senaviacorp.vercel.app> · protegido por el equipo · **DNS sin tocar** |
 
 ## Lo que hace falta de tu parte
@@ -26,7 +27,7 @@ que los producen están en `MIGRACION-LOG.md`, entrada por fase.
 ### 1. Credenciales (bloquean la Fase 8)
 | Variable | De dónde sale |
 |---|---|
-| `SMTP_USER` / `SMTP_PASS` | Gmail App Password. **Exige 2FA activa** y debe ser de la cuenta que autentica |
+| `SMTP_USER` / `SMTP_PASS` | Gmail App Password. **Exige 2FA activa** y debe ser de la cuenta que autentica. Ahora bloquean **tres** formularios, no dos: el de contacto, el de presupuesto y el nuevo del estimador |
 | `LEAD_TO` | opcional; por defecto `info@mrandmrsoutdoorliving.com`, el del propio sitio |
 | `TURNSTILE_SECRET` | panel de Cloudflare del cliente. **La clave de SITIO ya existe** (`0x4AAAAAAAQTptj2So4dx43e`): la tenía Webflow |
 
@@ -49,6 +50,20 @@ valida** (deja pasar), no bloquea.
   ficha de Google Business Profile (CID `13592496939047920063`) y cuenta de Instagram.
 - **342 enlaces del menú y el pie llevan a `/commercial-services/…`, que da 404** — también en
   el sitio actual. O se crean esas 3 páginas o se quitan los enlaces.
+- **El estimador ya no vive en un iframe.** Decisión tuya del 28-ago: `/pool-cost-estimator`
+  monta el estimador directamente. Se ganan un documento, un juego de CSS y JS repetido y las
+  alturas fijas del iframe (900/1400/1600 px), y la página queda entre 196 y 272 px más corta
+  según el ancho. Las dos rutas comparten el mismo componente.
+- **El estimador ahora capta el lead.** Antes acababa en un botón a `/request-estimated` que
+  perdía por el camino todo lo que el visitante había configurado. Ahora pide nombre, email,
+  teléfono y código postal en el paso 7, y el aviso al negocio llega con la estimación, las 12
+  opciones elegidas y el desglose. **Falta que llegue el correo: eso son las credenciales SMTP.**
+- **Dos incoherencias de precio en la calculadora original, replicadas a propósito** (filas 9 y
+  10 de «Mejoras candidatas» en `MIGRACION-LOG.md`): los 1.500 $ del recargo por HOA cuentan
+  distinto en el total y en el desglose, y en «Pool & Patio Remodel» el descuento del 18 % se
+  aplica al total pero no a las líneas del desglose. **No se han tocado**: cambiar un precio sin
+  que lo apruebes es cambiarte el negocio. «Arreglar» la primera mueve el precio de 155 de los
+  384 casos medidos.
 - **127 imágenes de contenido con `alt` vacío** y **8 fichas de `/project/` con JSON-LD
   inválido**, las dos cosas heredadas del origen.
 
@@ -82,6 +97,20 @@ valida** (deja pasar), no bloquea.
    `/where-we-serve` y **viene vacío en el original** —Webflow no genera controles porque la
    lista cabe entera—, así que no hay nada que reimplementar.
 5. `check:lighthouse` y `check:formularios` (este último necesita las credenciales).
+6. **`check:texto` está en rojo en 2 de las 115**, y viene de antes de la Fase 12:
+   `/services/pool-remodeling-renovation-…` y `/services/pool-screen-enclosures-…`. Es el
+   carrusel de pasos de la Fase 1 reabierta: el baseline de esas dos guardó un paso avanzado y
+   el sitio construido enseña el primero, así que salen 2 líneas de más y 2 de menos en cada
+   una. Comprobado que **ninguno de sus insumos ha cambiado** en la Fase 12 (`git diff` sobre
+   los dos `.astro`, los dos `.txt` del baseline, `Componentes.astro`, `Interacciones.astro`,
+   `Base.astro`, `lib/captura.mjs` y `webflow.css`: sin salida), y es determinista, no un
+   parpadeo. **Se arregla recapturando esas dos fichas, y solo se puede mientras el dominio
+   siga vivo.** No se ha tocado porque el encargo dice expresamente que no se toca el baseline
+   de otras rutas.
+7. **Una decisión pequeña del estimador, tuya:** el pulgar del slider. En la app original mide
+   2×2 px y **es invisible** — la barra se pinta pero no hay tirador que arrastrar. No es
+   diseño, es una regla de CSS perdida; el propio CSS del original pedía un pulgar dorado. En la
+   versión nueva se pinta, 16 px y dorado. Si lo prefieres invisible como estaba, es una línea.
 
 ## Despliegue — hecho, y qué queda
 

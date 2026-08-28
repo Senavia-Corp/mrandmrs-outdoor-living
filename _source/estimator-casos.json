@@ -1,7 +1,7 @@
 {
  "que": "ORÁCULO del estimador. Entradas -> salidas MEDIDAS sobre el bundle original de Webflow Cloud, antes de sustituirlo. La app nueva tiene que reproducir los 384 casos. Se mide con scripts/check-estimador.mjs.",
  "capturadoEl": "2026-08-28T17:41:55.858Z",
- "fuente": "public/pool-investment-estimator/ (el bundle portado en la Fase 5, byte a byte el de Webflow Cloud)",
+ "fuente": "el bundle ORIGINAL de Webflow Cloud. Se capturo desde `public/pool-investment-estimator/` (copia byte a byte que porto la Fase 5) ANTES de borrarla en la Fase 12c. La copia congelada que queda, y desde la que se vuelve a capturar, es `_source/estimator/`: `node scripts/capturar-oraculo.mjs`.",
  "contraElVivo": {
   "intentado": true,
   "ok": 10,

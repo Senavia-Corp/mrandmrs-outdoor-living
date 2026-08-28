@@ -115,6 +115,9 @@ const CONDICIONES = [
 
 /** El primer render se hornea con el estado por defecto: la página sirve ya el rango bueno y
  *  no hay un fotograma con «$0». El original pintaba en blanco hasta que React hidrataba. */
+/** «Heater (+$4,500)» -> «Heater». Para el correo interesa la opción, no su precio. */
+const sinPrecio = (t: string) => t.replace(/\s*\(\+[^)]*\)$/, '');
+
 const INI = calcula(D);
 const miles = (n: number) => n.toLocaleString('en-US');
 ---
@@ -148,7 +151,7 @@ const miles = (n: number) => n.toLocaleString('en-US');
                 <div class="pe-opciones">
                   {PROYECTO.map(([v, t, desc]) => (
                     <label class="pe-opcion">
-                      <input type="radio" name="proyecto" value={v} checked={D.proyecto === v} />
+                      <input type="radio" name="proyecto" value={v} checked={D.proyecto === v} data-etq={t} />
                       <span class="pe-opcion-txt">
                         <span class="pe-opcion-tit">{t}</span>
                         <p class="pe-opcion-desc">{desc}</p>
@@ -180,7 +183,7 @@ const miles = (n: number) => n.toLocaleString('en-US');
                   {(i === 2 ? ESTILO : ACABADO).map(([v, t, desc, nota, insignia]) => (
                     <label class="pe-opcion">
                       <input type="radio" name={i === 2 ? 'estilo' : 'acabado'} value={v}
-                        checked={(i === 2 ? D.estilo : D.acabado) === v} />
+                        checked={(i === 2 ? D.estilo : D.acabado) === v} data-etq={t} />
                       <span class="pe-opcion-txt">
                         <span class="pe-opcion-tit">{t}{insignia && <span class="pe-insignia">{insignia}</span>}</span>
                         <p class="pe-opcion-desc">{desc}</p>
@@ -209,7 +212,7 @@ const miles = (n: number) => n.toLocaleString('en-US');
                     <div class="pe-opciones">
                       {MATERIAL.map(([v, t, desc, nota, insignia]) => (
                         <label class="pe-opcion pe-compacta">
-                          <input type="radio" name="material" value={v} checked={D.material === v} />
+                          <input type="radio" name="material" value={v} checked={D.material === v} data-etq={t} />
                           <span class="pe-opcion-txt">
                             <span class="pe-opcion-tit">{t}{insignia && <span class="pe-insignia">{insignia}</span>}</span>
                             <p class="pe-opcion-desc">{desc}</p>
@@ -228,7 +231,7 @@ const miles = (n: number) => n.toLocaleString('en-US');
                     <h3 class="pe-h3">Spa</h3>
                     {SPA.map(([v, t, precio]) => (
                       <label class="pe-fila pe-fila-centrada">
-                        <input type="radio" name="spa" value={v} checked={D.spa === v} />
+                        <input type="radio" name="spa" value={v} checked={D.spa === v} data-etq={t} />
                         <span class="pe-fila-txt"><span class="pe-fila-tit">{t}{precio && <span class="pe-fila-precio">{precio}</span>}</span></span>
                       </label>
                     ))}
@@ -238,7 +241,7 @@ const miles = (n: number) => n.toLocaleString('en-US');
                     <h3 class="pe-h3">Pool Systems &amp; Comfort</h3>
                     {SISTEMAS.map(([k, t, desc]) => (
                       <label class="pe-fila">
-                        <input type="checkbox" name={k} checked={D[k as keyof typeof D] as boolean} />
+                        <input type="checkbox" name={k} checked={D[k as keyof typeof D] as boolean} data-etq={sinPrecio(t)} />
                         <span class="pe-fila-txt">
                           <span class="pe-fila-tit">{t}</span>
                           <p class="pe-fila-desc">{desc}</p>
@@ -264,7 +267,7 @@ const miles = (n: number) => n.toLocaleString('en-US');
                     <h3 class="pe-h3">Outdoor Add-Ons</h3>
                     {EXTERIOR.map(([k, t, , precio]) => (
                       <label class="pe-fila">
-                        <input type="checkbox" name={k} checked={D[k as keyof typeof D] as boolean} />
+                        <input type="checkbox" name={k} checked={D[k as keyof typeof D] as boolean} data-etq={sinPrecio(t)} />
                         <span class="pe-fila-txt"><span class="pe-fila-tit">{t}<span class="pe-fila-precio">{precio}</span></span></span>
                       </label>
                     ))}
@@ -274,7 +277,7 @@ const miles = (n: number) => n.toLocaleString('en-US');
                     <h3 class="pe-h3">Site Conditions</h3>
                     {CONDICIONES.map(([k, t, desc]) => (
                       <label class="pe-fila">
-                        <input type="checkbox" name={k} checked={D[k as keyof typeof D] as boolean} />
+                        <input type="checkbox" name={k} checked={D[k as keyof typeof D] as boolean} data-etq={sinPrecio(t)} />
                         <span class="pe-fila-txt">
                           <span class="pe-fila-tit">{t}</span>
                           <p class="pe-fila-desc">{desc}</p>
@@ -394,7 +397,7 @@ const miles = (n: number) => n.toLocaleString('en-US');
 </div>
 
 <script>
-  import { calcula, rangoTexto, subtitulo, dolares, LINEAS_DESGLOSE, SLIDERS } from '../../lib/estimador.js';
+  import { PRECIOS, calcula, rangoTexto, subtitulo, dolares, LINEAS_DESGLOSE, SLIDERS } from '../../lib/estimador.js';
 
   for (const raiz of document.querySelectorAll<HTMLElement>('[data-pe]')) {
     const q = <T extends Element>(s: string) => raiz.querySelector<T>(s);
@@ -419,24 +422,18 @@ const miles = (n: number) => n.toLocaleString('en-US');
       return e as any;
     };
 
-    /** Lista legible de lo marcado en un grupo, para el correo. `—` si no hay nada. */
-    const marcadas = (claves: string[], etiquetas: Record<string, string>) => {
-      const e = lee();
-      const si = claves.filter((k) => e[k]).map((k) => etiquetas[k]);
+    /**
+     * La etiqueta legible de cada control la lleva el propio control en `data-etq`, puesta
+     * desde la MISMA lista que pinta el texto en pantalla. Antes había aquí dos diccionarios
+     * repitiendo esas cadenas: cambiar «Freeform» arriba habría dejado el correo diciendo lo
+     * de antes, y nadie se habría enterado hasta leer un lead.
+     */
+    const etq = (i: HTMLInputElement | null) => (i ? i.dataset.etq || i.value : '');
+    const elegido = (nombre: string) => etq(q<HTMLInputElement>(`input[name="${nombre}"]:checked`));
+    const marcadas = (claves: string[]) => {
+      const si = claves.map((k) => q<HTMLInputElement>(`input[name="${k}"]`))
+        .filter((i) => i?.checked).map(etq);
       return si.length ? si.join(', ') : '—';
-    };
-    const ETQ: Record<string, string> = {
-      calefaccion: 'Heater', sal: 'Salt System', automatizacion: 'Automation System',
-      pergola: 'Pergola', techoLamas: 'Louvered Roof System', mosquitera: 'Pool Screen Enclosure',
-      cocina: 'Outdoor Kitchen', jardineria: 'Pool-Area Landscaping',
-      accesoLimitado: 'Tight Access', roca: 'Rock Excavation', hoa: 'HOA Approval Required',
-    };
-    const LEGIBLE: Record<string, string> = {
-      new: 'New Custom Pool', remodel: 'Pool & Patio Remodel',
-      standard: 'Standard (Rectangular / Geometric)', freeform: 'Freeform', luxury: 'Luxury / Custom Geometry',
-      plaster: 'Standard Plaster', pebble: 'Pebble Finish', premium: 'Premium / Polished Finish',
-      concrete: 'Concrete', pavers: 'Pavers', travertine: 'Travertine',
-      none: 'No Spa', integrated: 'Integrated Spa', spillover: 'Raised Spillover Spa',
     };
 
     function recalcula() {
@@ -460,25 +457,25 @@ const miles = (n: number) => n.toLocaleString('en-US');
         const eco = q<HTMLElement>(`[data-pe-eco="${s.name}"]`);
         if (eco) eco.textContent = s.value;
       }
-      q('[data-pe-luces]')!.textContent =
-        `${e.luces} ${e.luces === 1 ? 'light' : 'lights'} (+${dolares(e.luces * 450)})`;
+      q('[data-pe-luces]')!.textContent = `${e.luces} ${e.luces === 1 ? 'light' : 'lights'}`
+        + ` (+${dolares(e.luces * PRECIOS.equipment.ledPerLight)})`;
 
       // Y los ocultos del formulario, para que el aviso lleve LO ÚLTIMO que se eligió.
       const oculto = (k: string, v: string) => {
         const i = q<HTMLInputElement>(`[data-pe-oculto="${k}"]`); if (i) i.value = v;
       };
       oculto('rango', rangoTexto(r.min, r.max));
-      oculto('proyecto', LEGIBLE[e.proyecto]);
+      oculto('proyecto', elegido('proyecto'));
       oculto('tamano', `${e.tamano} sqft`);
-      oculto('estilo', LEGIBLE[e.estilo]);
-      oculto('acabado', LEGIBLE[e.acabado]);
+      oculto('estilo', elegido('estilo'));
+      oculto('acabado', elegido('acabado'));
       oculto('deck', `${e.deck} sqft`);
-      oculto('material', LEGIBLE[e.material]);
-      oculto('spa', LEGIBLE[e.spa]);
+      oculto('material', elegido('material'));
+      oculto('spa', elegido('spa'));
       oculto('luces', String(e.luces));
-      oculto('sistemas', marcadas(['calefaccion', 'sal', 'automatizacion'], ETQ));
-      oculto('exterior', marcadas(['pergola', 'techoLamas', 'mosquitera', 'cocina', 'jardineria'], ETQ));
-      oculto('condiciones', marcadas(['accesoLimitado', 'roca', 'hoa'], ETQ));
+      oculto('sistemas', marcadas(['calefaccion', 'sal', 'automatizacion']));
+      oculto('exterior', marcadas(['pergola', 'techoLamas', 'mosquitera', 'cocina', 'jardineria']));
+      oculto('condiciones', marcadas(['accesoLimitado', 'roca', 'hoa']));
       oculto('desglose', LINEAS_DESGLOSE
         .filter(([k, , oc]) => !(oc && (r.desglose as any)[k] <= 0))
         .map(([k, etq]) => `${etq}: ${dolares((r.desglose as any)[k])}`).join(' · '));

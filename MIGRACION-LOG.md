@@ -144,6 +144,87 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 
 <!-- a partir de aquí, una entrada por fase, la más reciente arriba -->
 
+## Fase 12f — las puertas   🟡 8 verdes, 1 roja por 2 rutas que no son de esta fase
+**Fecha:** 2026-08-28
+
+| Puerta | Resultado |
+|---|---|
+| `check:estimador` | ✅ **384/384** casos del oráculo |
+| `check:assets` | ✅ |
+| `check:rutas` | ✅ 115/115 · 0 de más · **0 referencias a Webflow** |
+| `check:enlaces` | ✅ 0 rotos · 728/728 en `git ls-files` |
+| `check:seo` | ✅ 115/115 con el `<head>` del origen |
+| `check:ix2` | ✅ 0 invisibles · 0 transform residual · **0 scroll-x** · interacciones |
+| `check:texto` | 🔴 **2 de 115**, y las dos son de la Fase 1, no de ésta |
+| `check:visual` | ✅ en las rutas de esta fase · 🔴 la misma ficha de servicio |
+
+### Lo que esta fase toca, medido sobre el build final
+
+```
+check:visual   ok   /pool-investment-estimator   100.00 %   (1920, 1440, 991)  ·  99.99 % (479)
+               decl /pool-cost-estimator — alto 418 -> 366 (-52px)
+check:texto    ok   /pool-investment-estimator
+               ok   /pool-cost-estimator   (con el bloque declarado de /pool-investment-estimator)
+```
+
+`check:ix2`, entera:
+
+```
+── 479px
+  ok   11 paginas: 0 [data-w-id] en opacity:0     ok   0 barra de scroll horizontal
+  ok   0 transform residual en reposo             ok   el nav vuelve tras subir
+── interaccion
+  ok   1920: el desplegable abre y cierra    ok   479: el menu movil abre, se ve y cierra
+PUERTA VERDE
+```
+
+El `0 barra de scroll horizontal` importa aquí más que de costumbre: se ha cambiado un iframe de
+ancho fijo por un componente vivo dentro de una página de Webflow, y eso es justo lo que suele
+desbordar a 479.
+
+### LOS DOS ROJOS NO SON DE ESTA FASE
+
+`/services/pool-remodeling-renovation-…` y `/services/pool-screen-enclosures-…`: el carrusel de
+pasos de la Fase 1 reabierta. El baseline de esas dos guardó un paso avanzado y el sitio
+construido enseña el primero. **Comprobado, no supuesto** — `git diff` entre `0e80729` (antes de
+la Fase 12) y ahora sobre los dos `.astro`, los dos `.txt` del baseline, `Componentes.astro`,
+`Interacciones.astro`, `Base.astro`, `lib/captura.mjs` y `webflow.css`: **sin salida, ninguno ha
+cambiado**. Y es determinista: dos corridas seguidas dan las mismas 4 líneas.
+
+No se tocan: arreglarlo es recapturar el baseline de esas dos rutas y el encargo dice
+expresamente que no se toca el baseline de otras rutas. Queda en `docs/ENTREGA.md` punto 6.
+
+### `check:texto` ES FRÁGIL, Y HOY SE HA VISTO
+
+En la corrida completa se murió en la ruta ~90 con `page.waitForTimeout: Target page, context or
+browser has been closed`, y **se llevó por delante las 115**. Es exactamente el fallo contra el
+que se blindó `check:visual` el 28-ago —su cabecera lo cuenta: dos veces, 40 minutos perdidos—,
+pero ese blindaje **no se le puso a `check:texto`**, que tiene la misma exposición.
+
+No se arregla en esta fase: no es del encargo y una sola muestra no distingue un defecto de la
+puerta de una máquina saturada (había otro servidor de desarrollo del mismo repo comiendo CPU).
+Queda anotado como lo que es —**una puerta que revienta no es estricta, es frágil**— y el arreglo
+es de diez líneas: el mismo `try`/`catch` por ruta que ya tiene `check:visual`.
+
+### Dos limpiezas del código de la fase, antes de cerrar
+
+- **Un precio a fuego en el cliente.** El eco de las luces LED decía `e.luces * 450` en vez de
+  `PRECIOS.equipment.ledPerLight`. En una fase cuyo objetivo es «cambiar un precio es tocar una
+  línea», eso era justo la promesa rota.
+- **Dos diccionarios de etiquetas duplicados.** El `<script>` repetía las cadenas que ya pinta el
+  marcado, así que cambiar «Freeform» arriba habría dejado el correo diciendo lo de antes.
+  Ahora cada control lleva su etiqueta en `data-etq`, puesta desde la MISMA lista. El script
+  pierde 20 líneas.
+- Y una regla de CSS sin marcado (`.pe-legal`), fuera.
+
+### Una comprobación que parecía paranoia y no lo era
+
+`calcula()` usa `total * (1 - banda)` y `total * (1 + banda)` donde el original escribía `.9` y
+`1.1` literales. En coma flotante `1 + 0.1` podría no ser `1.1` y mover un redondeo al millar.
+Medido: `1 + 0.1 === 1.1` es **true**, y un barrido de 2,36 millones de totales da **0**
+divergencias. Bit a bit idéntico.
+
+
 ## Fase 12e — fuera el iframe de `/pool-cost-estimator` (decisión D3)   ✅ cerrada
 **Fecha:** 2026-08-28
 

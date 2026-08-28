@@ -134,8 +134,10 @@ for (const [ruta] of RUTAS) {
 
   const menu = doc.querySelector('section.menu');
   const pie = doc.querySelector('section.footer');
-  // /pool-investment-estimator no tiene cascaron porque NO ES una pagina de Webflow: es la
-  // app Astro+React de Webflow Cloud. La sirve public/, la porta scripts/build-estimador.mjs.
+  // /pool-investment-estimator no tiene cascaron porque NO ES una pagina de Webflow: en el
+  // origen era una app de Webflow Cloud, sin nav ni pie. Desde la Fase 12c la escribe a mano
+  // `src/pages/pool-investment-estimator.astro` con el componente `widgets/Estimador.astro`,
+  // el mismo que monta `/pool-cost-estimator`. Aqui se salta: no hay nada que derivar.
   if (ruta === '/pool-investment-estimator') continue;
   if (!menu) { console.error(`  ROJO ${ruta}: no encuentro el nav`); continue; }
 
