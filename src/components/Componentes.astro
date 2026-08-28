@@ -12,6 +12,8 @@
  * estado y nada se rompe**. El lightbox degrada a un enlace, el marquee a una fila de logos
  * quieta y el slider a una lista con scroll. Ninguno esconde nada.
  */
+import sliders from '../data/sliders.json';
+const SLIDERS = JSON.stringify(sliders.sliders);
 ---
 
 <dialog class="mm-lb" aria-label="Image gallery">
@@ -61,12 +63,14 @@
   [fs-marquee-element="marquee"]:hover [data-mm-marquee] { animation-play-state: paused }
 
   /* ── slider ───────────────────────────────────────────────────────────── */
+  /* Sin `display:flex` ni `flex:none`: el CSS del sitio ya los pone. Aqui solo se anade el
+     desplazamiento, que es lo que hacia el JS de Finsweet. */
   [fs-slider-element="list"][data-mm-slider] {
-    display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+    overflow-x: auto; scroll-snap-type: x mandatory;
     scrollbar-width: none; -ms-overflow-style: none;
   }
   [fs-slider-element="list"][data-mm-slider]::-webkit-scrollbar { display: none }
-  [fs-slider-element="list"][data-mm-slider] > * { scroll-snap-align: start; flex: none }
+  [fs-slider-element="list"][data-mm-slider] > * { scroll-snap-align: start }
   [fs-slider-element="previous"], [fs-slider-element="next"] { cursor: pointer }
   [fs-slider-element="previous"][aria-disabled="true"],
   [fs-slider-element="next"][aria-disabled="true"] { opacity: .35; pointer-events: none }
@@ -91,9 +95,10 @@
   @media print { .mm-lb { display: none } }
 </style>
 
-<script>
+<script define:vars={{ SLIDERS }}>
   (function () {
     'use strict';
+    const CONF_SLIDERS = JSON.parse(SLIDERS);
 
     // ── 1 · lightbox ────────────────────────────────────────────────────
     const dlg = document.querySelector('.mm-lb');
@@ -180,10 +185,37 @@
       lista.setAttribute('data-mm-slider', '');
       lista.style.scrollBehavior = 'smooth';
 
+      /**
+       * EL ANCHO DE LAS DIAPOSITIVAS NO ES UNA DECISION MIA.
+       * Sale de la configuracion del propio sitio (`slidesPerView` y `spaceBetween` por
+       * breakpoint). Dejarlo al CSS daba `width:33.333%` -3 por vista- donde el sitio muestra
+       * 4: la home salia 64 px mas corta y check:visual se quedaba en 98,x % en 100 paginas.
+       */
+      const conf = CONF_SLIDERS[inst.getAttribute('fs-slider-instance')];
+      const dimensiona = () => {
+        if (!conf) return;
+        const puntos = Object.keys(conf).map(Number).sort((a, b) => a - b);
+        const bp = puntos.filter((p) => innerWidth >= p).pop() ?? puntos[0];
+        const { slidesPerView: n, spaceBetween: gap } = conf[bp];
+        const ancho = lista.clientWidth;
+        const w = (ancho - gap * (n - 1)) / n;
+        for (const [i, s] of [...lista.children].entries()) {
+          s.style.width = `${w}px`;
+          s.style.marginRight = i === lista.children.length - 1 ? '' : `${gap}px`;
+        }
+      };
+      dimensiona();
+      addEventListener('resize', dimensiona, { passive: true });
+
       const prev = inst.querySelector('[fs-slider-element="previous"]');
       const next = inst.querySelector('[fs-slider-element="next"]');
       const drag = inst.querySelector('[fs-slider-element="scrollbar-drag"]');
-      const paso = () => lista.firstElementChild?.getBoundingClientRect().width ?? lista.clientWidth;
+      const paso = () => {
+        const p = lista.firstElementChild;
+        if (!p) return lista.clientWidth;
+        const r = p.getBoundingClientRect();
+        return r.width + parseFloat(getComputedStyle(p).marginRight || 0);
+      };
 
       const refresca = () => {
         const max = lista.scrollWidth - lista.clientWidth;
@@ -205,7 +237,7 @@
         });
       }
       lista.addEventListener('scroll', refresca, { passive: true });
-      addEventListener('resize', refresca, { passive: true });
+      addEventListener('resize', () => { dimensiona(); refresca(); }, { passive: true });
       refresca();
     }
 

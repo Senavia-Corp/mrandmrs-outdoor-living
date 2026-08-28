@@ -1,0 +1,151 @@
+{
+ "_lee_esto": "DERIVADO de _source/finsweet/componentsconfig-1.0.24.js, el fichero de configuracion que cargaba el sitio. Regenerar: npm run sliders",
+ "sliders": {
+  "fs-slider-proyectos": {
+   "320": {
+    "slidesPerView": 1,
+    "spaceBetween": 16
+   },
+   "991": {
+    "slidesPerView": 1,
+    "spaceBetween": 16
+   }
+  },
+  "fs-slider-projects": {
+   "320": {
+    "slidesPerView": 1,
+    "spaceBetween": 16
+   },
+   "991": {
+    "slidesPerView": 1,
+    "spaceBetween": 16
+   }
+  },
+  "fs-slider-gallery": {
+   "320": {
+    "slidesPerView": 1,
+    "spaceBetween": 16
+   },
+   "480": {
+    "slidesPerView": 1,
+    "spaceBetween": 16
+   },
+   "991": {
+    "slidesPerView": 2,
+    "spaceBetween": 16
+   },
+   "1920": {
+    "slidesPerView": 3,
+    "spaceBetween": 0
+   }
+  },
+  "fs-slider-brochure": {
+   "320": {
+    "slidesPerView": 1,
+    "spaceBetween": 16
+   },
+   "991": {
+    "slidesPerView": 3,
+    "spaceBetween": 16
+   }
+  },
+  "fs-slider": {
+   "320": {
+    "slidesPerView": 1,
+    "spaceBetween": 16
+   },
+   "480": {
+    "slidesPerView": 2,
+    "spaceBetween": 16
+   },
+   "768": {
+    "slidesPerView": 3,
+    "spaceBetween": 16
+   },
+   "991": {
+    "slidesPerView": 4,
+    "spaceBetween": 16
+   },
+   "1920": {
+    "slidesPerView": 4,
+    "spaceBetween": 16
+   }
+  },
+  "fs-slider-1": {
+   "320": {
+    "slidesPerView": 1,
+    "spaceBetween": 16
+   },
+   "991": {
+    "slidesPerView": 3,
+    "spaceBetween": 16
+   }
+  },
+  "fs-slider-sliderindustries": {
+   "320": {
+    "slidesPerView": 1,
+    "spaceBetween": 16
+   },
+   "768": {
+    "slidesPerView": 2,
+    "spaceBetween": 0
+   },
+   "991": {
+    "slidesPerView": 3,
+    "spaceBetween": 16
+   },
+   "1920": {
+    "slidesPerView": 4,
+    "spaceBetween": 0
+   }
+  },
+  "fs-slider-blog": {
+   "320": {
+    "slidesPerView": 1,
+    "spaceBetween": 16
+   },
+   "480": {
+    "slidesPerView": 1,
+    "spaceBetween": 0
+   },
+   "768": {
+    "slidesPerView": 2,
+    "spaceBetween": 0
+   },
+   "991": {
+    "slidesPerView": 3,
+    "spaceBetween": 16
+   },
+   "1920": {
+    "slidesPerView": 4,
+    "spaceBetween": 0
+   }
+  },
+  "fs-slider-blog-page": {
+   "320": {
+    "slidesPerView": 1,
+    "spaceBetween": 16
+   },
+   "480": {
+    "slidesPerView": 1,
+    "spaceBetween": 0
+   },
+   "768": {
+    "slidesPerView": 2,
+    "spaceBetween": 0
+   },
+   "991": {
+    "slidesPerView": 3,
+    "spaceBetween": 16
+   },
+   "1440": {
+    "slidesPerView": 4,
+    "spaceBetween": 0
+   },
+   "1920": {
+    "slidesPerView": 4,
+    "spaceBetween": 0
+   }
+  }
+ }
+}
