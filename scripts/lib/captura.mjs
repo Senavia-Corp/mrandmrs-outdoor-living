@@ -104,8 +104,14 @@ export async function asentar(pag) {
     // Se devuelven todos a la primera, en las dos formas de moverlos: transform (Finsweet) y
     // scrollLeft (la reimplementacion propia).
     for (const l of document.querySelectorAll('[fs-slider-element="list"]')) {
+      // PRIMERO se para el autoplay, y se para con SU PROPIO mecanismo: la configuracion del
+      // sitio dice `disableOnInteraction: true`, o sea que un pointerdown lo detiene. Sin
+      // esto, resetear no sirve de nada -el temporizador lo vuelve a mover 3 s despues y la
+      // captura lo pilla a media transicion: medido, `scrollLeft=71` en vez de 0-.
+      l.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true }));
       l.style.setProperty('transform', 'none', 'important');
       l.style.setProperty('transition', 'none', 'important');
+      l.style.setProperty('scroll-behavior', 'auto', 'important');
       l.scrollLeft = 0;
     }
   });
