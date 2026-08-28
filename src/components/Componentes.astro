@@ -207,18 +207,13 @@ const SLIDERS = JSON.stringify(sliders.sliders);
       // toma del elemento mas alto sale mas baja -medido: 20 px menos, y la seccion entera
       // encogia-. Finsweet hace lo mismo: fija `height: 67px` en el wrapper y en cada item,
       // que es lo que medía la caja original.
-      let anchoUno = 0;
-      const medidas = originales.map((h) => {
-        const r = h.getBoundingClientRect();
-        anchoUno += r.width;
-        return r.width;
-      });
-      // Ancho fijo por elemento, como Finsweet: sin el, los clones se reparten el espacio de
-      // otra manera. La ALTURA no se toca: la pone el CSS del sitio.
-      for (const [i, h] of originales.entries()) {
-        h.style.flex = '0 0 auto';
-        h.style.width = `${medidas[i]}px`;
-      }
+      // NO se fijan anchos por elemento. Se probo -Finsweet lo hace- y result que el ancho
+      // medido depende de CUANDO hayan cargado los logos: la misma pagina daba 99,27 % en una
+      // corrida y 98,48 % en la siguiente. Un numero que cambia entre corridas no sirve para
+      // una puerta. `flex: 0 0 auto` basta para que no se encojan, y el ancho lo pone el CSS
+      // del sitio a partir de la imagen, que es lo mismo cada vez.
+      const anchoUno = lista.scrollWidth;
+      for (const h of originales) h.style.flex = '0 0 auto';
       // Triplicado, como Finsweet: con solo dos copias el bucle se nota en pantallas anchas.
       for (let c = 0; c < 2; c++) {
         for (const h of originales) lista.appendChild(h.cloneNode(true));
