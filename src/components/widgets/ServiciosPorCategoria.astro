@@ -1,0 +1,482 @@
+---
+/**
+ * SERVICIOS POR CATEGORÍA — rediseño «panel de mando» (Sebastian, 28-ago-2026).
+ *
+ * Sustituye a `section.products-section` en las 3 rutas donde vivía: `/` y las 2 de
+ * `/where-we-serves/`. Los datos los extrae `scripts/build-paginas.mjs` a
+ * `src/data/servicios-categoria.json`, ruta a ruta, porque las 3 páginas NO son iguales:
+ * cambian el orden de las pestañas, el orden de los 14 servicios y la categoría por defecto.
+ *
+ * ─── LO QUE ARREGLA, Y EL NÚMERO QUE LO PEDÍA ───────────────────────────────────────────
+ *
+ * 1. EL SALTO DE 385 px. El original filtraba en el cliente: a los 756 ms, con la página ya
+ *    en `readyState:"complete"`, se veían los 14 servicios y ninguna ficha; el filtro caía
+ *    entre 870 y 2764 ms y la sección pasaba de 1211,6 px a 826,4 px a 1440. Ese tirón
+ *    arrastraba Where We Serve, Instagram y el pie. Aquí el estado inicial va SERVIDO: los
+ *    servicios que no son de la pestaña por defecto salen con `hidden` desde el HTML.
+ *
+ * 2. EL ESTADO ACTIVO ERA LO MENOS LEGIBLE. `.js-category-tab.is-active` pintaba blanco sobre
+ *    el degradado cian: **1,81:1** contra los 4,5:1 que pide WCAG AA (y las inactivas iban a
+ *    13,72:1, o sea que la jerarquía estaba INVERTIDA). Lo mismo hacía `.block-services:hover`.
+ *    Aquí la seleccionada es navy relleno con texto blanco.
+ *
+ * 3. NADA ERA ALCANZABLE CON TECLADO. Las 3 pestañas y las 14 filas eran `<div>` con
+ *    `tabIndex -1` y sin rol: lo único enfocable era el «See More» de la ficha abierta, 1 de
+ *    14. Y `accesslint` daba «0 violaciones» porque un `<div>` sin rol no es un control: no
+ *    había nada que auditar. Ahora las categorías son un `tablist` de verdad y las filas son
+ *    `<button>`.
+ *
+ * 4. LAS DOS COLUMNAS NO ACABABAN A LA MISMA ALTURA (481,2 / 475 / 500 px, tres suelos). La
+ *    ficha sigue siendo absoluta como en el original, pero con `inset: 0 0 0 auto` y SIN
+ *    altura fija, así que su alto es el del contenedor, que lo marca la lista. Se igualan por
+ *    construcción, no por ajuste.
+ *
+ * 5. EN MÓVIL LA SECCIÓN ESTABA VACÍA. `openFirstVisibleService()` hacía
+ *    `if (isTabletDown()) return;`, así que a 991 y a 479 no había ni foto, ni descripción, ni
+ *    CTA: 3 pestañas y 7 rótulos. Aquí la primera ficha viene abierta, en acordeón bajo su fila.
+ *
+ * ─── LO QUE NO SE TOCA, Y POR QUÉ ───────────────────────────────────────────────────────
+ *
+ * · EL CRISTAL DE LA FICHA. Parecía el sospechoso de contraste y NO lo es: medido píxel a
+ *   píxel sobre las fotos reales, con el blanco efectivo α 0,52 (0,65 × opacity .8) y el
+ *   `backdrop-filter: blur(20px)`, el PEOR píxel de las tres fotos de muestra da entre 6,90 y
+ *   9,85:1. Cumple AA de sobra. Se conserva tal cual.
+ *
+ * · LOS DOS `data-w-id`. Hoy no animan —sus claves en `reveals.json` llevan un prefijo
+ *   `pageId|` que `Interacciones.astro` no quita, así que 41 de las 79 no casan con nada—,
+ *   pero se conservan: son lo que mira `check:ix2` y lo que haría falta el día que se arregle.
+ *
+ * ─── LAS DOS TRAMPAS DE `check:texto`, QUE COMPARA `innerText` AL 100 % A 1920 ───────────
+ *
+ * a) EL ORDEN. En el original la ficha es HERMANA de su fila dentro del mismo
+ *    `.cms-item-services`, así que el texto sale: fila 1, título de la ficha, párrafo, «See
+ *    More», fila 2, fila 3… Aquí se respeta ese entrelazado —`<button>` y `<article>`
+ *    alternados— en vez de poner las 7 filas y luego las fichas. Separarlos en dos columnas
+ *    del DOM habría movido 3 líneas y puesto la puerta en rojo.
+ *
+ * b) EL CONTADOR «3 / 7» ES TEXTO NUEVO. Va como contenido generado (`::before` con
+ *    `attr()`), que `innerText` NO incluye. No es un truco para esquivar la puerta: es que un
+ *    indicador de posición no es contenido de la página, y colarlo en el `innerText` habría
+ *    obligado a declarar 3 rutas por un adorno.
+ */
+import DATOS from '../../data/servicios-categoria.json';
+
+// El mecanismo de marcador del generador (`@@WIDGET@@Nombre@@WIDGET@@`) no pasa props, así que
+// el componente se localiza solo. Se normaliza la barra final: Astro sirve
+// `/where-we-serves/x/` y en el JSON la clave es `/where-we-serves/x`.
+const ruta = Astro.url.pathname.replace(/(.)\/$/, '$1');
+const d = DATOS[ruta];
+if (!d) throw new Error(`ServiciosPorCategoria: no hay datos para ${ruta}. Corre \`npm run paginas\`.`);
+
+const esVisible = (sv) => sv.categorias.includes(d.defecto);
+const visibles = d.servicios.filter(esVisible);
+const activo = visibles[0]?.id;
+const posicion = (sv) => visibles.findIndex((v) => v.id === sv.id) + 1;
+---
+
+<section class="products-section svc">
+  <div class="w-layout-blockcontainer container w-container">
+
+    <div data-w-id={d.wIdTitulo} class="wrapper-title-services svc-cabecera">
+      <h2 set:html={d.titulo} />
+      <p class="paragraph-services" set:html={d.subtitulo} />
+
+      {/* Control segmentado de UNA pieza: tres pastillas sueltas no se leen como un grupo. */}
+      <div class="svc-cats" role="tablist" aria-label="Service categories">
+        {d.categorias.map((c) => (
+          <button
+            type="button"
+            role="tab"
+            id={`svc-cat-${c.slug}`}
+            class="svc-cat"
+            data-cat={c.slug}
+            aria-controls="svc-panel"
+            aria-selected={c.slug === d.defecto ? 'true' : 'false'}
+            tabindex={c.slug === d.defecto ? 0 : -1}
+            set:html={c.nombre}
+          />
+        ))}
+      </div>
+    </div>
+
+    <div
+      id="svc-panel"
+      role="tabpanel"
+      aria-labelledby={`svc-cat-${d.defecto}`}
+      data-w-id={d.wIdCuerpo}
+      class="svc-cuerpo"
+    >
+      {d.servicios.map((sv) => (
+        <>
+          <button
+            type="button"
+            class="svc-fila"
+            data-id={sv.id}
+            data-cats={sv.categorias.join(' ')}
+            aria-current={sv.id === activo ? 'true' : 'false'}
+            aria-controls={`svc-ficha-${sv.id}`}
+            hidden={!esVisible(sv)}
+          >
+            <img class="svc-icono" src={sv.icono} alt="" width="30" height="30" loading="lazy" />
+            <span class="svc-nombre" set:html={sv.nombre} />
+            <svg class="svc-chevron" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+              <path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+
+          <article
+            class="svc-ficha"
+            id={`svc-ficha-${sv.id}`}
+            data-id={sv.id}
+            hidden={sv.id !== activo}
+          >
+            <img class="svc-foto" src={sv.foto} alt={sv.alt} loading="lazy" />
+            {/* `data-n` lo repone el script al cambiar de fila o de pestaña. */}
+            <p class="svc-contador" aria-hidden="true"
+               data-n={esVisible(sv) ? posicion(sv) : 1} data-total={visibles.length} />
+            <div class="svc-barra">
+              <div class="blck-glass"></div>
+              <div class="svc-barra-txt">
+                <h3 class="svc-ficha-titulo" set:html={sv.titulo} />
+                <p class="svc-ficha-texto" set:html={sv.texto} />
+              </div>
+              <a class="svc-cta button w-button" href={sv.enlace} set:html={sv.cta} />
+            </div>
+          </article>
+        </>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* Paleta del sitio, sin tocar: navy #001c63, oro #f4b248, cian #31c2f6, azul-50 #e9f1fd.
+   * Inter va auto-alojada en `src/styles/fuentes.css`; aquí no se pide ni una fuente. */
+  .svc { --navy: #001c63; --oro: #f4b248; --cian: #31c2f6; --azul50: #e9f1fd; --linea: #dfe6f3 }
+
+  /* Un `hidden` tiene que ganarle SIEMPRE al `display` de la clase: es lo que sostiene el
+   * estado servido y, con él, que `innerText` sea el mismo que el del original. */
+  .svc [hidden] { display: none !important }
+
+  .svc-cabecera { display: flex; flex-direction: column; align-items: center }
+
+  /* ── El control segmentado ─────────────────────────────────────────────────────────────
+   * Una sola pieza con fondo propio, no tres pastillas sueltas: así se lee de un vistazo que
+   * las tres son el mismo control y que solo una puede estar puesta. */
+  .svc-cats {
+    display: inline-flex;
+    margin-top: 1.75rem;
+    padding: 4px;
+    background: var(--azul50);
+    border-radius: 999px;
+  }
+
+  .svc-cat {
+    appearance: none;
+    border: 0;
+    margin: 0;
+    padding: .6rem 1.15rem;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--navy);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color .18s ease, color .18s ease;
+  }
+
+  /* Navy relleno: 15,58:1 con el blanco. La regla que sustituye pintaba blanco sobre cian y
+   * daba 1,81:1 — lo seleccionado era lo menos legible de la sección. */
+  .svc-cat[aria-selected='true'] { background: var(--navy); color: #fff }
+  .svc-cat[aria-selected='false']:hover { background: #d8e6fb }
+
+  /* ── El cuerpo ─────────────────────────────────────────────────────────────────────────
+   * La ficha sigue siendo absoluta, como en el original, pero SIN altura fija: su alto es el
+   * del contenedor y el del contenedor lo marca la lista. Las dos columnas acaban a la misma
+   * altura por construcción. El `min-height` es para la pestaña de 3 servicios, donde la lista
+   * sola no da altura suficiente para una foto. */
+  .svc-cuerpo {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /* Las filas se centran en vertical. Las fichas son absolutas, o sea que no son ítems del
+     * flex y esto no las toca. Importa porque la lista cambia de alto entre pestañas: son
+     * 7 servicios en `outdoor-living`, 5 en `patio-cover` y 3 en `pool-spa` -14 items con 15
+     * asignaciones, porque `Pool Screen Enclosures` está en dos-. Alineadas arriba, la pestaña
+     * de 3 dejaba 256 px de hueco debajo y parecía un fallo; centradas, parece una decisión. */
+    justify-content: center;
+    min-height: 400px;
+    margin-top: 2.5rem;
+  }
+
+  /* ── Las filas ─────────────────────────────────────────────────────────────────────────
+   * 44 px y una línea fina en vez de 7 rectángulos redondeados de 50: siete filas pasan de
+   * 404 px a 308, y la diferencia entre pestañas (7 / 5 / 3 servicios) descuadra mucho menos. */
+  .svc-fila {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    width: 35%;
+    min-height: 48px;
+    padding: .35rem .75rem .35rem 0;
+    border: 0;
+    border-bottom: 1px solid var(--linea);
+    border-left: 4px solid transparent;
+    background: transparent;
+    color: var(--navy);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color .15s ease, border-color .15s ease, padding-left .15s ease;
+  }
+
+  .svc-icono {
+    flex: none;
+    width: 30px;
+    height: 30px;
+    padding: 3px;
+    border: 1px solid var(--oro);
+    border-radius: 100%;
+    background: #fff;
+    margin-left: .75rem;
+  }
+
+  .svc-nombre { flex: 1; font-size: 16px; font-weight: 500; line-height: 1.35 }
+
+  .svc-chevron {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity .15s ease, transform .15s ease;
+  }
+
+  /* Sin blanco-sobre-cian: ese par daba 1,81:1. Tinte suave y el texto se queda navy. */
+  .svc-fila:hover { background: var(--azul50) }
+
+  /* El raíl y el chevron APUNTAN a la ficha: es lo único que dice que la lista manda sobre la
+   * tarjeta, que era el fallo de UX principal.
+   *
+   * EL RAÍL ES NAVY Y NO ORO, Y ESO NO ES GUSTO. WCAG 1.4.11 pide 3:1 a lo que identifica el
+   * ESTADO de un control, y el oro de la marca no llega: #f4b248 da 1,63:1 sobre el tinte de
+   * la fila y 1,86:1 sobre el blanco. En navy son 13,72:1 y 15,60:1. El oro se queda donde sí
+   * cumple —el fondo del CTA, con texto navy a 8,40:1— y como refuerzo decorativo en el
+   * chevron y en el aro del icono, que ya no cargan con el estado. */
+  .svc-fila[aria-current='true'] {
+    background: var(--azul50);
+    border-left-color: var(--navy);
+    padding-left: .5rem;
+  }
+
+  .svc-fila[aria-current='true'] .svc-nombre { font-weight: 600 }
+  .svc-fila[aria-current='true'] .svc-chevron { opacity: 1; transform: none; color: var(--oro) }
+
+  /* Anillo de foco a dos tonos: el blanco separa del relleno navy de la pestaña activa y el
+   * navy da el contraste contra todo lo demás. Un anillo de un solo color no puede cumplir a
+   * la vez sobre el blanco de la página y sobre una pastilla navy. */
+  .svc-fila:focus-visible,
+  .svc-cat:focus-visible,
+  .svc-cta:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--navy);
+    border-radius: 4px;
+  }
+
+  .svc-cat:focus-visible { border-radius: 999px }
+  .svc-cta:focus-visible { border-radius: 999px }
+
+  /* ── La ficha ──────────────────────────────────────────────────────────────────────────*/
+  .svc-ficha {
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: 60%;
+    border-radius: 15px;
+    overflow: hidden;
+    background: var(--navy);
+  }
+
+  .svc-foto {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Contenido GENERADO a propósito: `innerText` no lo incluye, así que el indicador de
+   * posición no cuenta como texto de la página y `check:texto` sigue comparando al 100 %. */
+  .svc-contador::before { content: attr(data-n) ' / ' attr(data-total) }
+
+  .svc-contador {
+    position: absolute;
+    top: 1rem;
+    right: 1.25rem;
+    margin: 0;
+    padding: .25rem .6rem;
+    border-radius: 999px;
+    /* 80 % de navy: sobre el peor fondo posible -una foto blanca- el compuesto es
+     * rgb(51,73,130) y el blanco encima da 8,65:1. */
+    background: #001c63cc;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .02em;
+  }
+
+  /* La barra de cristal, ensanchada al ancho completo. El cristal es el MISMO del original
+   * -`.blck-glass`, que sigue viniendo de webflow.css- porque ya cumple AA: peor píxel medido
+   * entre 6,90 y 9,85:1 sobre las tres fotos de muestra. */
+  .svc-barra {
+    position: absolute;
+    inset: auto 1rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.15rem 1.5rem;
+    border-radius: 16px;
+    color: var(--navy);
+  }
+
+  .svc-barra-txt { position: relative; z-index: 2; min-width: 0 }
+
+  .svc-ficha-titulo {
+    margin: 0 0 4px;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--navy);
+  }
+
+  .svc-ficha-texto { margin: 0; font-size: 13px; line-height: 1.4; color: var(--navy) }
+
+  .svc-cta {
+    position: relative;
+    z-index: 2;
+    flex: none;
+    background: var(--oro);
+    color: var(--navy);
+    font-weight: 600;
+  }
+
+  /* ── ≤991: acordeón ────────────────────────────────────────────────────────────────────
+   * La ficha vuelve al flujo y cae justo bajo su fila, que es donde ya está en el DOM. En el
+   * original aquí NO se abría ninguna: la sección enseñaba 3 pestañas y 7 rótulos y nada más. */
+  @media screen and (max-width: 991px) {
+    .svc-cuerpo { min-height: 0 }
+
+    .svc-fila {
+      width: 100%;
+      min-height: 48px;
+    }
+
+    .svc-ficha {
+      position: relative;
+      inset: auto;
+      width: 100%;
+      margin: .75rem 0 1.25rem;
+      min-height: 340px;
+    }
+
+    .svc-cats { margin-top: 1.25rem; flex-wrap: wrap; justify-content: center }
+    .svc-cat { padding: .6rem .9rem }
+    .svc-ficha-titulo { font-size: 22px }
+  }
+
+  @media screen and (max-width: 479px) {
+    .svc-cats { border-radius: 20px }
+    .svc-cat { font-size: 13px; padding: .55rem .7rem }
+    .svc-barra { inset: auto .5rem .5rem; flex-direction: column; align-items: flex-start; gap: .9rem; padding: 1rem }
+    .svc-cta { align-self: stretch; text-align: center }
+    .svc-ficha { min-height: 300px }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .svc-cat, .svc-fila, .svc-chevron { transition: none }
+  }
+</style>
+
+<script>
+  /**
+   * El comportamiento. El estado inicial YA VIENE SERVIDO, así que esto solo maneja el cambio:
+   * si el script no llega, la sección se ve completa y la ficha abierta enlaza a su servicio.
+   * Eso es lo contrario de lo que hacía el original, que sin JS dejaba los 14 servicios sueltos
+   * y ninguna ficha.
+   *
+   * Teclado: ←/→/Inicio/Fin en las pestañas con tabindex móvil, que es el patrón que ya usa
+   * `Componentes.astro` §5 para los `w-tabs` de las 9 fichas de `/country/`; y ↑/↓ entre las
+   * filas visibles, que son `<button>` y entran solas en el orden de tabulación.
+   */
+  for (const seccion of document.querySelectorAll<HTMLElement>('.svc')) {
+    const panel = seccion.querySelector<HTMLElement>('.svc-cuerpo');
+    const pestanas = [...seccion.querySelectorAll<HTMLButtonElement>('.svc-cat')];
+    const filas = [...seccion.querySelectorAll<HTMLButtonElement>('.svc-fila')];
+    const fichas = [...seccion.querySelectorAll<HTMLElement>('.svc-ficha')];
+    if (!panel || !pestanas.length || !filas.length) continue;
+
+    const visibles = () => filas.filter((f) => !f.hidden);
+
+    function abre(id: string | undefined) {
+      if (!id) return;
+      const orden = visibles();
+      for (const f of filas) f.setAttribute('aria-current', String(f.dataset.id === id));
+      for (const fi of fichas) fi.hidden = fi.dataset.id !== id;
+      // El contador solo tiene sentido dentro de la pestaña activa, así que se recalcula aquí
+      // y no al construir: el mismo servicio ocupa otra posición en otra categoría.
+      const abierta = fichas.find((fi) => fi.dataset.id === id);
+      const cont = abierta?.querySelector<HTMLElement>('.svc-contador');
+      if (cont) {
+        cont.dataset.n = String(orden.findIndex((f) => f.dataset.id === id) + 1);
+        cont.dataset.total = String(orden.length);
+      }
+    }
+
+    function elige(slug: string | undefined) {
+      if (!slug) return;
+      for (const p of pestanas) {
+        const suya = p.dataset.cat === slug;
+        p.setAttribute('aria-selected', String(suya));
+        p.tabIndex = suya ? 0 : -1;
+        if (suya) panel.setAttribute('aria-labelledby', p.id);
+      }
+      for (const f of filas) f.hidden = !(f.dataset.cats ?? '').split(' ').includes(slug);
+      abre(visibles()[0]?.dataset.id);
+    }
+
+    for (const [i, p] of pestanas.entries()) {
+      p.addEventListener('click', () => elige(p.dataset.cat));
+      p.addEventListener('keydown', (ev) => {
+        const salto = ev.key === 'ArrowRight' ? 1 : ev.key === 'ArrowLeft' ? -1 : 0;
+        let destino: HTMLButtonElement | undefined;
+        if (salto) destino = pestanas[(i + salto + pestanas.length) % pestanas.length];
+        else if (ev.key === 'Home') destino = pestanas[0];
+        else if (ev.key === 'End') destino = pestanas[pestanas.length - 1];
+        if (!destino) return;
+        ev.preventDefault();
+        elige(destino.dataset.cat);
+        destino.focus();
+      });
+    }
+
+    for (const f of filas) {
+      f.addEventListener('click', () => abre(f.dataset.id));
+      // Enfocar con el tabulador también abre: si no, el lector de pantalla recorre 7 filas
+      // mientras la ficha se queda en la primera y lo que se oye no es lo que se ve.
+      f.addEventListener('focus', () => abre(f.dataset.id));
+      f.addEventListener('keydown', (ev) => {
+        const salto = ev.key === 'ArrowDown' ? 1 : ev.key === 'ArrowUp' ? -1 : 0;
+        if (!salto) return;
+        ev.preventDefault();
+        const orden = visibles();
+        const i = orden.indexOf(f);
+        orden[(i + salto + orden.length) % orden.length]?.focus();
+      });
+    }
+  }
+</script>

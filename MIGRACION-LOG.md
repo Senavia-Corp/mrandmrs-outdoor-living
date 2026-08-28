@@ -144,6 +144,206 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 
 <!-- a partir de aquí, una entrada por fase, la más reciente arriba -->
 
+## Fase R3 — rediseño de la sección de servicios por categoría   ✅ cerrada
+**Fecha:** 2026-08-28 · **Commit:** `<sha>` · **Dirección elegida por Sebastian:** B, «panel de mando»
+
+### Objetivo
+Rediseñar el bloque de pestañas «Outdoor Living / Pool Solutions / Patio Cover» de `/` y las 2
+fichas de `/where-we-serves/`, rompiendo la paridad **solo** en esas 3 rutas y sin que
+`check:texto` tenga que declarar nada.
+
+### Lo que se midió ANTES de diseñar, y las dos hipótesis que resultaron falsas
+
+| # | hipótesis del encargo | medido |
+|---|---|---|
+| 2 | «la activa es cian sólido y las inactivas casi blancas, con contraste bajo» | **al revés**: las inactivas van a 13,72:1 y la **activa a 1,81:1**, blanco sobre el degradado cian. Lo ilegible era lo seleccionado |
+| 5 | «el panel translúcido tiene contraste justo, compruébalo contra AA» | **falsa**. Peor píxel con el blur real: 9,61–9,85 (kitchens), 8,03–8,21 (pergolas), 6,90–7,19 (pool). **No se toca** |
+| 8 | «7 pastillas + imagen grande = sección larguísima en móvil» | **falsa**. A 479 medía 744,8 px **sin ninguna ficha abierta**: `openFirstVisibleService()` hace `if (isTabletDown()) return;`. No era larga, estaba vacía |
+| 1 | el solape del nav «a ~2000 px» | la banda rota es **992–1204**. Ver Fase R1 |
+
+Y tres defectos que no estaban en la lista:
+
+1. **385,2 px de salto en cada carga.** El filtro corría en el cliente. Sondeo cada 50 ms:
+   a **t = 756 ms**, con `readyState:"complete"`, se veían **14 filas y 0 fichas** y la sección
+   medía **1211,6 px** a 1440; entre 870 y 2764 ms caía a **826,4 px**. El instante varía entre
+   cargas: es una carrera con el trabajo de carga, no un retardo fijo.
+2. **El estado seleccionado era lo menos legible.** 1,81:1 en la pestaña activa y en el hover de
+   las filas, contra los 4,5:1 de WCAG AA.
+3. **Nada era alcanzable con teclado.** 3 pestañas y 14 filas eran `<div>` con `tabIndex -1` y sin
+   rol. Enfocables: **1 de 14**. Y `accesslint` daba **«0 violaciones»** — no porque estuviera
+   bien, sino porque un `<div>` sin rol no es un control: no había nada que auditar.
+
+### Qué se hizo
+- **`src/components/widgets/ServiciosPorCategoria.astro`** (nuevo). En `widgets/` a propósito: es
+  donde el generador escribe los imports sin caso especial, igual que `Estimador.astro` (D3).
+- **`scripts/build-paginas.mjs`**: `extraeServicios()` saca los datos de `section.products-section`
+  a **`src/data/servicios-categoria.json`**, ruta a ruta, y sustituye la sección entera por el
+  marcador `@@WIDGET@@ServiciosPorCategoria@@WIDGET@@`. Eso se lleva con ella el `<script>` de
+  6 KB y el `<style>` de la pestaña activa, que viven **dentro** de la sección.
+- Los datos se extraen POR RUTA porque las 3 páginas **no son iguales**: cambia el orden de las
+  pestañas, el orden de los 14 servicios, la categoría por defecto (`outdoor-living` en `/`,
+  `pool-spa` en las otras dos) y hasta las clases del bloque de título de la ficha.
+- **`scripts/check-visual.mjs`**: las 3 rutas declaradas **una a una** en
+  `DISTINTAS_A_PROPOSITO`, con el motivo escrito. Sin tocar el umbral ni ningún baseline.
+
+### Números medidos
+
+| métrica | antes | después |
+|---|---|---|
+| salto de maqueta al cargar (1440) | **385,2 px** | **0,0 px** en los 4 anchos y en las 2 rutas |
+| estado en el HTML servido | 14 filas / 0 fichas | **7 filas / 1 ficha**, igual que el estado asentado |
+| contraste de la pestaña activa | **1,81:1** | **15,60:1** (navy relleno) |
+| contraste del hover de fila | **1,81:1** | 13,72:1 |
+| desfase entre los suelos de las 2 columnas | 481,2 / 475 / 500 → **6,2 y 25 px** | **0,0 px** |
+| elementos enfocables en la sección | **1** | **11** (3 pestañas + 7 filas + CTA) |
+| alto de fila | 50 px + 9 de hueco | 48 px, sin hueco (7 filas: 404 → 336 px) |
+| ficha abierta en móvil | **ninguna** | la primera, en acordeón |
+| `role=tab` / `tabpanel` | 0 / 0 | **3 / 1** |
+| enlaces a servicios en el HTML | 14 (13 en fichas ocultas) | 14 (igual) |
+
+Contraste del panel de cristal, que **no se ha tocado** (blanco efectivo α 0,52 = 0,65 × opacity
+.8, con `backdrop-filter: blur(20px)`, texto `--blue_dark`):
+
+| foto | peor píxel con blur | medio |
+|---|---|---|
+| `covered-custom-outdoor-kitchen-florida.avif` | 9,61–9,85 | 10,2 |
+| `aluminum-pergolas-contractors-florida.avif` | 8,03–8,21 | 10,4 |
+| `new-pool-spa-construction-florida.avif` | 6,90–7,19 | 8,6 |
+
+### Evidencia
+
+Estado servido y salto, sobre `.vercel/output/static`:
+
+```
+/                            1920 | al pintar   816.4px 7f/1fi | asentado   816.4px 7f/1fi | SALTO 0.0px | fila 48.0 | enfocables 11 | tabs 3 panel true
+/                            1440 | al pintar   816.4px 7f/1fi | asentado   816.4px 7f/1fi | SALTO 0.0px | fila 48.0 | enfocables 11 | tabs 3 panel true
+/                             991 | al pintar   997.2px 7f/1fi | asentado   997.2px 7f/1fi | SALTO 0.0px | fila 48.0 | enfocables 11 | tabs 3 panel true
+/                             479 | al pintar     992px 7f/1fi | asentado     992px 7f/1fi | SALTO 0.0px | fila 48.0 | enfocables 11 | tabs 3 panel true
+/where-we-serves/custom-pool 1920 | al pintar   816.4px 3f/1fi | asentado   816.4px 3f/1fi | SALTO 0.0px | fila 48.0 | enfocables  7 | tabs 3 panel true
+                                  | cuerpo 2092.4..2522.4 | ficha 2092.4..2522.4 | desfase de suelos 0.0px
+```
+
+Las puertas sin navegador:
+
+```bash
+$ npm run check:assets    → ✅ PUERTA VERDE  (792 assets, 0 fuera de git)
+$ npm run check:rutas     → PUERTA VERDE     (115/115 construidas, 0 de más)
+$ npm run check:enlaces   → PUERTA VERDE     (728/728 ficheros de public/ en git)
+$ npm run check:seo       → PUERTA VERDE     (115/115 con el head del origen)
+$ npm run check:estimador → PUERTA VERDE     (384/384 casos)
+```
+
+`check:texto` en las 2 fichas de where-we-serves, que es donde el orden podía romperse:
+
+```bash
+$ npm run check:texto -- where-we-serves
+  ok   /where-we-serves/custom-pool-builders-north-florida
+  ok   /where-we-serves/custom-pool-builders-south-florida
+  2 identicas · 0 con diferencias · 0 aun sin construir
+PUERTA VERDE
+```
+
+`check:visual` **antes** de declarar, para verla en rojo:
+
+```bash
+$ npm run check:visual -- where-we-serves
+── 1920px
+  ROJO /where-we-serves/custom-pool-builders-north-florida  95.92 % (alto -2px)
+  ROJO /where-we-serves/custom-pool-builders-south-florida  95.96 % (alto -2px)
+  0 iguales · 8 distintas · 0 declaradas · 0 sin baseline
+PUERTA ROJA — 8 comparacion(es)
+```
+
+Y **después** de declarar las 3 rutas:
+
+```bash
+$ npm run check:visual -- where-we-serves
+  0 iguales · 0 distintas · 8 declaradas · 0 sin baseline
+     declarada / (los 4 anchos): REDISENO DE LA SECCION DE SERVICIOS POR CATEGORIA...
+     declarada /where-we-serves/custom-pool-builders-north-florida (los 4 anchos): ...
+     declarada /where-we-serves/custom-pool-builders-south-florida (los 4 anchos): ...
+PUERTA VERDE
+```
+
+Que la diferencia de `/` es **mía y no de otra cosa**, con `diag-visual`:
+
+```bash
+$ node scripts/diag-visual.mjs / 1920
+  / @ 1920  ·  baseline 480x2158  ·  ahora 480x2155  (-3 px)
+  53998 pixeles distintos de 1034400 (94.78 % iguales)
+  ── bandas con mas diferencia ──
+   y   1920..  2080 real ·    3084 px  (5.7 % del total)
+  ── elementos del DOM en la peor banda ──
+   section.products-section.svc  1920x816 @y1772
+   div.svc-cats  389x44 @y2008
+   button.svc-cat  135x36 @y2012
+```
+
+Y el control, una ruta que **no** se ha tocado:
+
+```bash
+$ node scripts/diag-visual.mjs /about 1920
+  /about @ 1920 · baseline 480x2010 · ahora 480x2010 (+0 px)
+  218 pixeles distintos de 964800 (99.98 % iguales)
+```
+
+Accesibilidad, sobre el marcado nuevo:
+
+```
+accesslint audit_html  →  No accessibility violations found.
+```
+
+Que ahora **significa algo**: hay 3 `role="tab"`, un `role="tabpanel"`, botones con nombre
+accesible y un SVG decorativo con `aria-hidden`. Antes el mismo resultado salía porque no había
+ni un control que auditar.
+
+### Gate
+**Criterio:** `check:texto` verde **sin declarar nada** en las 3 rutas; `check:ix2` verde;
+`check:visual` rojo **solo** en las 3 rutas y declarado una a una; las 5 puertas sin navegador
+verdes.
+**Resultado:** ✅ verde.
+
+### Desviaciones
+1. **La Fase R2 del plan (extraer los datos con el marcado idéntico, como paso intermedio) no se
+   hizo como commit aparte.** Habría sido reconstruir byte a byte un marcado que R3 borra. El
+   único riesgo real que aislaba —¿funciona el marcador sobre un `<section>` entero?— se probó en
+   30 segundos con un componente de una línea: `npm run paginas` metió
+   `<ServiciosPorCategoria />` y su `import` en las 3 páginas a la primera. Lo demás lo cubre
+   `check:texto`, que compara las líneas y su ORDEN, y es una comprobación de completitud más
+   fuerte que un diff de píxeles.
+2. **El contador «3 / 7» va como contenido generado** (`::before` con `attr()`). Es texto nuevo, y
+   `innerText` no incluye el contenido generado. No es para esquivar la puerta: un indicador de
+   posición no es contenido de la página, y meterlo en el `innerText` habría obligado a declarar
+   3 rutas por un adorno.
+3. **El raíl de la fila seleccionada es navy, no oro**, contra lo que decía la propuesta. WCAG
+   1.4.11 pide 3:1 a lo que identifica el ESTADO de un control y el oro de la marca no llega:
+   #f4b248 da **1,63:1** sobre el tinte de la fila y **1,86:1** sobre el blanco. En navy son
+   13,72:1 y 15,60:1. Por lo mismo el anillo de foco es a dos tonos (blanco + navy) y no oro: un
+   anillo de un solo color no puede cumplir a la vez sobre el blanco de la página y sobre una
+   pastilla navy. El oro se queda donde sí cumple: el fondo del CTA con texto navy, 8,40:1.
+4. **Las filas van centradas en vertical.** La lista cambia de alto entre pestañas (7 / 5 / 3
+   servicios) y alineada arriba la pestaña de 3 dejaba ~256 px de hueco debajo, que parecía un
+   fallo.
+
+### Rarezas del original replicadas a propósito
+- **14 servicios con 15 asignaciones**: `Pool Screen Enclosures` está en `patio-cover` **y** en
+  `pool-spa`. Se conserva; sale en las dos pestañas, como en el original.
+- **Los `data-w-id`** (`cf6e6112-…-413043` / `…-413058` en `/`, `a9d58cee-…` en las otras dos) se
+  conservan aunque hoy **no animen**: `check:ix2` los mira.
+- **El orden distinto de pestañas y servicios entre las 3 páginas** no se unifica: es lo que
+  `check:texto` compara línea a línea.
+
+### Abierto
+- **`check:texto` está en rojo en 12 de las 14 fichas de `/services/`, y NO es de esta fase.**
+  Comprobado guardando los cambios y reconstruyendo desde `HEAD`: la corrida limpia da
+  **exactamente las mismas 12 rojas y 2 verdes**. Son las 12 que no se recapturaron en la Fase 1
+  reabierta (el commit `f17a96b` recapturó 2). Fallan siempre con «faltan 2 líneas, sobran 2»,
+  intercambiando dos pasos contiguos del carrusel.
+- Los 41 reveals que nunca casan (`pageId|` sin quitar en `Interacciones.astro`) están en una
+  tarea aparte, ya en marcha en otra sesión.
+
+---
+
 ## Fase R1 — el solape del logo en el nav   ✅ cerrada
 **Fecha:** 2026-08-28 · **Commit:** `<sha>`
 

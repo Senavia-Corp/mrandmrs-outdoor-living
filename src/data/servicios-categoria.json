@@ -1,0 +1,665 @@
+{
+  "/": {
+    "titulo": "Full-Service Outdoor Living &amp; Pool Building Experts",
+    "subtitulo": "Trusted custom pool contractors delivering inground pool installation, spa design, and outdoor living solutions for North &amp; South Florida. Luxury, energy-efficient results tailored to you.",
+    "wIdTitulo": "cf6e6112-50b1-b164-fee5-1e4b8c413043",
+    "wIdCuerpo": "cf6e6112-50b1-b164-fee5-1e4b8c413058",
+    "defecto": "outdoor-living",
+    "conClasesFicha": true,
+    "categorias": [
+      {
+        "slug": "outdoor-living",
+        "nombre": "Outdoor Living"
+      },
+      {
+        "slug": "pool-spa",
+        "nombre": "Pool Solutions"
+      },
+      {
+        "slug": "patio-cover",
+        "nombre": "Patio Cover"
+      }
+    ],
+    "servicios": [
+      {
+        "id": "construction",
+        "nombre": "Pool  Construction",
+        "icono": "/images/residentials/custom-pool-spa-builders-in-north-south-florida/artboard-1.svg",
+        "categorias": [
+          "pool-spa"
+        ],
+        "foto": "/images/residentials/custom-pool-spa-builders-in-north-south-florida/new-pool-spa-construction-florida.avif",
+        "alt": "New pool and spa construction in Florida by licensed custom pool builders",
+        "titulo": "Custom Pool Builders",
+        "texto": "Custom pool and spa builders serving North &amp; South Florida, delivering high-quality construction and long-term outdoor value.",
+        "enlace": "/services/custom-pool-spa-builders-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "pergolas",
+        "nombre": "Aluminum Pergolas",
+        "icono": "/images/commercials/commercial-pool-construction-north-south-florida/artboard-3.svg",
+        "categorias": [
+          "patio-cover"
+        ],
+        "foto": "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/aluminum-pergolas-contractors-florida.avif",
+        "alt": "Custom aluminum pergolas built by outdoor living contractors in Florida.",
+        "titulo": "Custom Aluminum Pergola Builders",
+        "texto": "Custom pergola builders and installation company serving North &amp; South Florida, delivering durable designs that enhance outdoor comfort and style.",
+        "enlace": "/services/custom-aluminum-pergola-builders-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "louvered",
+        "nombre": "Louvered Roof Systems",
+        "icono": "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/artboard-4.svg",
+        "categorias": [
+          "patio-cover"
+        ],
+        "foto": "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/louvered-roof-systems-florida.avif",
+        "alt": "Motorized louvered roof system installed by custom outdoor living contractors in Florida",
+        "titulo": "Motorized Louvered Roof Systems",
+        "texto": "Motorized louvered roof builders and installation contractors in North &amp; South Florida, offering adjustable shade and weather protection.",
+        "enlace": "/services/motorized-louvered-roof-systems-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "rooms",
+        "nombre": "Patio Screen Rooms",
+        "icono": "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/artboard-5.svg",
+        "categorias": [
+          "patio-cover"
+        ],
+        "foto": "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/screened-patio-enclosure-florida.avif",
+        "alt": "Screened patio enclosure creating a comfortable outdoor living space in Florida.",
+        "titulo": "Patio Screen Rooms",
+        "texto": "Screen room builders and installation contractors in North &amp; South Florida, creating comfortable, protected outdoor living areas.",
+        "enlace": "/services/patio-screen-rooms-enclosures-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "kitchens",
+        "nombre": "Outdoor Kitchens",
+        "icono": "/images/residentials/custom-outdoor-kitchens-for-north-south-florida-homes/artboard-8.svg",
+        "categorias": [
+          "outdoor-living"
+        ],
+        "foto": "/images/residentials/custom-outdoor-kitchens-for-north-south-florida-homes/covered-custom-outdoor-kitchen-florida.avif",
+        "alt": "Custom outdoor kitchen built by professional outdoor kitchen builders in Florida.",
+        "titulo": "Custom Outdoor Kitchens",
+        "texto": "Outdoor kitchen builders and installation contractors serving North &amp; South Florida with custom layouts for entertaining and daily use.",
+        "enlace": "/services/custom-outdoor-kitchens-for-north-south-florida-homes",
+        "cta": "See More"
+      },
+      {
+        "id": "remodeling",
+        "nombre": "Pool Remodeling",
+        "icono": "/images/residentials/pool-remodeling-renovation-in-north-south-florida/artboard-2.svg",
+        "categorias": [
+          "pool-spa"
+        ],
+        "foto": "/images/residentials/pool-remodeling-renovation-in-north-south-florida/pool-spa-renovation-backyard-florida.avif",
+        "alt": "Pool and spa renovation enhancing a Florida backyard outdoor living contractors space.",
+        "titulo": "Pool Remodeling &amp; Renovation Services",
+        "texto": "Pool remodeling contractors serving North &amp; South Florida, upgrading pools with modern finishes, energy-efficient systems, and lasting results.",
+        "enlace": "/services/pool-remodeling-renovation-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "landscaping",
+        "nombre": "Landscaping",
+        "icono": "/images/residentials/professional-landscaping-services-in-north-south-florida/artboard-10.svg",
+        "categorias": [
+          "outdoor-living"
+        ],
+        "foto": "/images/residentials/professional-landscaping-services-in-north-south-florida/landscaping-services-florida.avif",
+        "alt": "Professional landscaping services designed for Florida residential properties.",
+        "titulo": "Professional Landscaping Services",
+        "texto": "Landscaping design and installation company serving North &amp; South Florida, providing complete outdoor solutions that improve curb appeal.",
+        "enlace": "/services/professional-landscaping-services-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "irrigation",
+        "nombre": "Automated Irrigation",
+        "icono": "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/artboard-11.svg",
+        "categorias": [
+          "outdoor-living"
+        ],
+        "foto": "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/automated-irrigation-florida.avif",
+        "alt": "Professional automated irrigation system installation for tropical landscapes in Florida. Efficient watering solutions designed to protect lawns, plants, and landscaping year-round",
+        "titulo": "Smart Irrigation System Installation",
+        "texto": "Smart irrigation installation contractors for North &amp; South Florida properties, focused on efficient watering solutions and long-term landscape health",
+        "enlace": "/services/smart-irrigation-system-installation-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "decks",
+        "nombre": "Custom Decks",
+        "icono": "/images/residentials/custom-deck-builders-in-north-south-florida/artboard-9.svg",
+        "categorias": [
+          "outdoor-living"
+        ],
+        "foto": "/images/residentials/custom-deck-builders-in-north-south-florida/custom-decks-florida.avif",
+        "alt": "Custom deck construction by professional outdoor living contractors in Florida.",
+        "titulo": "Custom Deck Builders",
+        "texto": "Professional deck builders and installation contractors serving North &amp; South Florida with durable, stylish outdoor deck solutions.",
+        "enlace": "/services/custom-deck-builders-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "furniture",
+        "nombre": "Outdoor Furniture",
+        "icono": "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/artboard-13.svg",
+        "categorias": [
+          "outdoor-living"
+        ],
+        "foto": "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/outdoor-furniture-florida.avif",
+        "alt": "Teak dining set and wicker lounge chairs on Florida patio.",
+        "titulo": "Premium Outdoor Furniture",
+        "texto": "Outdoor furniture installation company for North &amp; South Florida homes, offering durable, premium solutions for modern outdoor living.",
+        "enlace": "/services/premium-outdoor-furniture-for-north-south-florida-homes",
+        "cta": "See More"
+      },
+      {
+        "id": "enclosures",
+        "nombre": "Pool Screen Enclosures",
+        "icono": "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/artboard-6.svg",
+        "categorias": [
+          "patio-cover",
+          "pool-spa"
+        ],
+        "foto": "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/pool-screen-enclosures-florida.avif",
+        "alt": "Pool screen enclosures installed by licensed Florida enclosure contractors",
+        "titulo": "Pool Screen Enclosures",
+        "texto": "Pool screen enclosure builders and installation contractors in North &amp; South Florida, improving pool safety and cleanliness.",
+        "enlace": "/services/pool-screen-enclosures-for-north-south-florida-pools",
+        "cta": "See More"
+      },
+      {
+        "id": "screens",
+        "nombre": "Retractable Screens",
+        "icono": "/images/residentials/motorized-retractable-screens-in-north-south-florida/artboard-14.svg",
+        "categorias": [
+          "outdoor-living"
+        ],
+        "foto": "/images/residentials/motorized-retractable-screens-in-north-south-florida/retractable-screens-florida.avif",
+        "alt": "Retractable screens installed by professional outdoor living contractors in Florida.",
+        "titulo": "Motorized Retractable Patio Screens",
+        "texto": "Motorized retractable screen installation contractors serving North &amp; South Florida, delivering flexible shade and insect control.",
+        "enlace": "/services/motorized-retractable-screens-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "pole",
+        "nombre": "Pole Barn and Steel Buildings",
+        "icono": "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/artboard-7.svg",
+        "categorias": [
+          "patio-cover"
+        ],
+        "foto": "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/steel-building-construction-florida.avif",
+        "alt": "Steel building construction providing durable structures for Florida properties.",
+        "titulo": "Steel Building &amp; Pole Barn",
+        "texto": "Steel building and pole barn construction company serving North &amp; South Florida with durable, hurricane-rated structures.",
+        "enlace": "/services/steel-building-pole-barn-construction-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "lighting",
+        "nombre": "Smart Soffit LED Lighting",
+        "icono": "/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/artboard-12.svg",
+        "categorias": [
+          "outdoor-living"
+        ],
+        "foto": "/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/smart-soffit-led-lighting-florida.avif",
+        "alt": "Smart soffit LED lighting installed by professional outdoor lighting contractors in Florida.",
+        "titulo": "Smart Soffit &amp; LED Lighting Installation",
+        "texto": "Smart soffit and LED lighting installation company serving North &amp; South Florida, enhancing curb appeal and exterior security.",
+        "enlace": "/services/smart-soffit-led-lighting-installation-in-north-south-florida",
+        "cta": "See More"
+      }
+    ]
+  },
+  "/where-we-serves/custom-pool-builders-north-florida": {
+    "titulo": "Full-Service Outdoor Living &amp; Pool Building Experts",
+    "subtitulo": "Trusted custom pool contractors delivering inground pool installation, spa design, and outdoor living solutions for North &amp; South Florida. Luxury, energy-efficient results tailored to you.",
+    "wIdTitulo": "a9d58cee-a069-e584-e711-80e05d28f337",
+    "wIdCuerpo": "a9d58cee-a069-e584-e711-80e05d28f33c",
+    "defecto": "pool-spa",
+    "conClasesFicha": false,
+    "categorias": [
+      {
+        "slug": "pool-spa",
+        "nombre": "Pool Solutions"
+      },
+      {
+        "slug": "outdoor-living",
+        "nombre": "Outdoor Living"
+      },
+      {
+        "slug": "patio-cover",
+        "nombre": "Patio Cover"
+      }
+    ],
+    "servicios": [
+      {
+        "id": "pergolas",
+        "nombre": "Aluminum Pergolas",
+        "icono": "/images/commercials/commercial-pool-construction-north-south-florida/artboard-3.svg",
+        "categorias": [
+          "patio-cover"
+        ],
+        "foto": "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/aluminum-pergolas-contractors-florida.avif",
+        "alt": "Custom aluminum pergolas built by outdoor living contractors in Florida.",
+        "titulo": "Custom Aluminum Pergola Builders",
+        "texto": "Custom pergola builders and installation company serving North &amp; South Florida, delivering durable designs that enhance outdoor comfort and style.",
+        "enlace": "/services/custom-aluminum-pergola-builders-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "lighting",
+        "nombre": "Smart Soffit LED Lighting",
+        "icono": "/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/artboard-12.svg",
+        "categorias": [
+          "outdoor-living"
+        ],
+        "foto": "/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/smart-soffit-led-lighting-florida.avif",
+        "alt": "Smart soffit LED lighting installed by professional outdoor lighting contractors in Florida.",
+        "titulo": "Smart Soffit &amp; LED Lighting Installation",
+        "texto": "Smart soffit and LED lighting installation company serving North &amp; South Florida, enhancing curb appeal and exterior security.",
+        "enlace": "/services/smart-soffit-led-lighting-installation-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "pole",
+        "nombre": "Pole Barn and Steel Buildings",
+        "icono": "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/artboard-7.svg",
+        "categorias": [
+          "patio-cover"
+        ],
+        "foto": "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/steel-building-construction-florida.avif",
+        "alt": "Steel building construction providing durable structures for Florida properties.",
+        "titulo": "Steel Building &amp; Pole Barn",
+        "texto": "Steel building and pole barn construction company serving North &amp; South Florida with durable, hurricane-rated structures.",
+        "enlace": "/services/steel-building-pole-barn-construction-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "screens",
+        "nombre": "Retractable Screens",
+        "icono": "/images/residentials/motorized-retractable-screens-in-north-south-florida/artboard-14.svg",
+        "categorias": [
+          "outdoor-living"
+        ],
+        "foto": "/images/residentials/motorized-retractable-screens-in-north-south-florida/retractable-screens-florida.avif",
+        "alt": "Retractable screens installed by professional outdoor living contractors in Florida.",
+        "titulo": "Motorized Retractable Patio Screens",
+        "texto": "Motorized retractable screen installation contractors serving North &amp; South Florida, delivering flexible shade and insect control.",
+        "enlace": "/services/motorized-retractable-screens-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "remodeling",
+        "nombre": "Pool Remodeling",
+        "icono": "/images/residentials/pool-remodeling-renovation-in-north-south-florida/artboard-2.svg",
+        "categorias": [
+          "pool-spa"
+        ],
+        "foto": "/images/residentials/pool-remodeling-renovation-in-north-south-florida/pool-spa-renovation-backyard-florida.avif",
+        "alt": "Pool and spa renovation enhancing a Florida backyard outdoor living contractors space.",
+        "titulo": "Pool Remodeling &amp; Renovation Services",
+        "texto": "Pool remodeling contractors serving North &amp; South Florida, upgrading pools with modern finishes, energy-efficient systems, and lasting results.",
+        "enlace": "/services/pool-remodeling-renovation-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "rooms",
+        "nombre": "Patio Screen Rooms",
+        "icono": "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/artboard-5.svg",
+        "categorias": [
+          "patio-cover"
+        ],
+        "foto": "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/screened-patio-enclosure-florida.avif",
+        "alt": "Screened patio enclosure creating a comfortable outdoor living space in Florida.",
+        "titulo": "Patio Screen Rooms",
+        "texto": "Screen room builders and installation contractors in North &amp; South Florida, creating comfortable, protected outdoor living areas.",
+        "enlace": "/services/patio-screen-rooms-enclosures-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "furniture",
+        "nombre": "Outdoor Furniture",
+        "icono": "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/artboard-13.svg",
+        "categorias": [
+          "outdoor-living"
+        ],
+        "foto": "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/outdoor-furniture-florida.avif",
+        "alt": "Teak dining set and wicker lounge chairs on Florida patio.",
+        "titulo": "Premium Outdoor Furniture",
+        "texto": "Outdoor furniture installation company for North &amp; South Florida homes, offering durable, premium solutions for modern outdoor living.",
+        "enlace": "/services/premium-outdoor-furniture-for-north-south-florida-homes",
+        "cta": "See More"
+      },
+      {
+        "id": "louvered",
+        "nombre": "Louvered Roof Systems",
+        "icono": "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/artboard-4.svg",
+        "categorias": [
+          "patio-cover"
+        ],
+        "foto": "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/louvered-roof-systems-florida.avif",
+        "alt": "Motorized louvered roof system installed by custom outdoor living contractors in Florida",
+        "titulo": "Motorized Louvered Roof Systems",
+        "texto": "Motorized louvered roof builders and installation contractors in North &amp; South Florida, offering adjustable shade and weather protection.",
+        "enlace": "/services/motorized-louvered-roof-systems-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "decks",
+        "nombre": "Custom Decks",
+        "icono": "/images/residentials/custom-deck-builders-in-north-south-florida/artboard-9.svg",
+        "categorias": [
+          "outdoor-living"
+        ],
+        "foto": "/images/residentials/custom-deck-builders-in-north-south-florida/custom-decks-florida.avif",
+        "alt": "Custom deck construction by professional outdoor living contractors in Florida.",
+        "titulo": "Custom Deck Builders",
+        "texto": "Professional deck builders and installation contractors serving North &amp; South Florida with durable, stylish outdoor deck solutions.",
+        "enlace": "/services/custom-deck-builders-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "construction",
+        "nombre": "Pool  Construction",
+        "icono": "/images/residentials/custom-pool-spa-builders-in-north-south-florida/artboard-1.svg",
+        "categorias": [
+          "pool-spa"
+        ],
+        "foto": "/images/residentials/custom-pool-spa-builders-in-north-south-florida/new-pool-spa-construction-florida.avif",
+        "alt": "New pool and spa construction in Florida by licensed custom pool builders",
+        "titulo": "Custom Pool Builders",
+        "texto": "Custom pool and spa builders serving North &amp; South Florida, delivering high-quality construction and long-term outdoor value.",
+        "enlace": "/services/custom-pool-spa-builders-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "irrigation",
+        "nombre": "Automated Irrigation",
+        "icono": "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/artboard-11.svg",
+        "categorias": [
+          "outdoor-living"
+        ],
+        "foto": "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/automated-irrigation-florida.avif",
+        "alt": "Professional automated irrigation system installation for tropical landscapes in Florida. Efficient watering solutions designed to protect lawns, plants, and landscaping year-round",
+        "titulo": "Smart Irrigation System Installation",
+        "texto": "Smart irrigation installation contractors for North &amp; South Florida properties, focused on efficient watering solutions and long-term landscape health",
+        "enlace": "/services/smart-irrigation-system-installation-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "landscaping",
+        "nombre": "Landscaping",
+        "icono": "/images/residentials/professional-landscaping-services-in-north-south-florida/artboard-10.svg",
+        "categorias": [
+          "outdoor-living"
+        ],
+        "foto": "/images/residentials/professional-landscaping-services-in-north-south-florida/landscaping-services-florida.avif",
+        "alt": "Professional landscaping services designed for Florida residential properties.",
+        "titulo": "Professional Landscaping Services",
+        "texto": "Landscaping design and installation company serving North &amp; South Florida, providing complete outdoor solutions that improve curb appeal.",
+        "enlace": "/services/professional-landscaping-services-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "kitchens",
+        "nombre": "Outdoor Kitchens",
+        "icono": "/images/residentials/custom-outdoor-kitchens-for-north-south-florida-homes/artboard-8.svg",
+        "categorias": [
+          "outdoor-living"
+        ],
+        "foto": "/images/residentials/custom-outdoor-kitchens-for-north-south-florida-homes/covered-custom-outdoor-kitchen-florida.avif",
+        "alt": "Custom outdoor kitchen built by professional outdoor kitchen builders in Florida.",
+        "titulo": "Custom Outdoor Kitchens",
+        "texto": "Outdoor kitchen builders and installation contractors serving North &amp; South Florida with custom layouts for entertaining and daily use.",
+        "enlace": "/services/custom-outdoor-kitchens-for-north-south-florida-homes",
+        "cta": "See More"
+      },
+      {
+        "id": "enclosures",
+        "nombre": "Pool Screen Enclosures",
+        "icono": "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/artboard-6.svg",
+        "categorias": [
+          "patio-cover",
+          "pool-spa"
+        ],
+        "foto": "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/pool-screen-enclosures-florida.avif",
+        "alt": "Pool screen enclosures installed by licensed Florida enclosure contractors",
+        "titulo": "Pool Screen Enclosures",
+        "texto": "Pool screen enclosure builders and installation contractors in North &amp; South Florida, improving pool safety and cleanliness.",
+        "enlace": "/services/pool-screen-enclosures-for-north-south-florida-pools",
+        "cta": "See More"
+      }
+    ]
+  },
+  "/where-we-serves/custom-pool-builders-south-florida": {
+    "titulo": "Full-Service Outdoor Living &amp; Pool Building Experts",
+    "subtitulo": "Trusted custom pool contractors delivering inground pool installation, spa design, and outdoor living solutions for North &amp; South Florida. Luxury, energy-efficient results tailored to you.",
+    "wIdTitulo": "a9d58cee-a069-e584-e711-80e05d28f337",
+    "wIdCuerpo": "a9d58cee-a069-e584-e711-80e05d28f33c",
+    "defecto": "pool-spa",
+    "conClasesFicha": false,
+    "categorias": [
+      {
+        "slug": "pool-spa",
+        "nombre": "Pool Solutions"
+      },
+      {
+        "slug": "outdoor-living",
+        "nombre": "Outdoor Living"
+      },
+      {
+        "slug": "patio-cover",
+        "nombre": "Patio Cover"
+      }
+    ],
+    "servicios": [
+      {
+        "id": "pergolas",
+        "nombre": "Aluminum Pergolas",
+        "icono": "/images/commercials/commercial-pool-construction-north-south-florida/artboard-3.svg",
+        "categorias": [
+          "patio-cover"
+        ],
+        "foto": "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/aluminum-pergolas-contractors-florida.avif",
+        "alt": "Custom aluminum pergolas built by outdoor living contractors in Florida.",
+        "titulo": "Custom Aluminum Pergola Builders",
+        "texto": "Custom pergola builders and installation company serving North &amp; South Florida, delivering durable designs that enhance outdoor comfort and style.",
+        "enlace": "/services/custom-aluminum-pergola-builders-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "lighting",
+        "nombre": "Smart Soffit LED Lighting",
+        "icono": "/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/artboard-12.svg",
+        "categorias": [
+          "outdoor-living"
+        ],
+        "foto": "/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/smart-soffit-led-lighting-florida.avif",
+        "alt": "Smart soffit LED lighting installed by professional outdoor lighting contractors in Florida.",
+        "titulo": "Smart Soffit &amp; LED Lighting Installation",
+        "texto": "Smart soffit and LED lighting installation company serving North &amp; South Florida, enhancing curb appeal and exterior security.",
+        "enlace": "/services/smart-soffit-led-lighting-installation-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "pole",
+        "nombre": "Pole Barn and Steel Buildings",
+        "icono": "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/artboard-7.svg",
+        "categorias": [
+          "patio-cover"
+        ],
+        "foto": "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/steel-building-construction-florida.avif",
+        "alt": "Steel building construction providing durable structures for Florida properties.",
+        "titulo": "Steel Building &amp; Pole Barn",
+        "texto": "Steel building and pole barn construction company serving North &amp; South Florida with durable, hurricane-rated structures.",
+        "enlace": "/services/steel-building-pole-barn-construction-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "screens",
+        "nombre": "Retractable Screens",
+        "icono": "/images/residentials/motorized-retractable-screens-in-north-south-florida/artboard-14.svg",
+        "categorias": [
+          "outdoor-living"
+        ],
+        "foto": "/images/residentials/motorized-retractable-screens-in-north-south-florida/retractable-screens-florida.avif",
+        "alt": "Retractable screens installed by professional outdoor living contractors in Florida.",
+        "titulo": "Motorized Retractable Patio Screens",
+        "texto": "Motorized retractable screen installation contractors serving North &amp; South Florida, delivering flexible shade and insect control.",
+        "enlace": "/services/motorized-retractable-screens-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "remodeling",
+        "nombre": "Pool Remodeling",
+        "icono": "/images/residentials/pool-remodeling-renovation-in-north-south-florida/artboard-2.svg",
+        "categorias": [
+          "pool-spa"
+        ],
+        "foto": "/images/residentials/pool-remodeling-renovation-in-north-south-florida/pool-spa-renovation-backyard-florida.avif",
+        "alt": "Pool and spa renovation enhancing a Florida backyard outdoor living contractors space.",
+        "titulo": "Pool Remodeling &amp; Renovation Services",
+        "texto": "Pool remodeling contractors serving North &amp; South Florida, upgrading pools with modern finishes, energy-efficient systems, and lasting results.",
+        "enlace": "/services/pool-remodeling-renovation-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "rooms",
+        "nombre": "Patio Screen Rooms",
+        "icono": "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/artboard-5.svg",
+        "categorias": [
+          "patio-cover"
+        ],
+        "foto": "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/screened-patio-enclosure-florida.avif",
+        "alt": "Screened patio enclosure creating a comfortable outdoor living space in Florida.",
+        "titulo": "Patio Screen Rooms",
+        "texto": "Screen room builders and installation contractors in North &amp; South Florida, creating comfortable, protected outdoor living areas.",
+        "enlace": "/services/patio-screen-rooms-enclosures-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "furniture",
+        "nombre": "Outdoor Furniture",
+        "icono": "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/artboard-13.svg",
+        "categorias": [
+          "outdoor-living"
+        ],
+        "foto": "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/outdoor-furniture-florida.avif",
+        "alt": "Teak dining set and wicker lounge chairs on Florida patio.",
+        "titulo": "Premium Outdoor Furniture",
+        "texto": "Outdoor furniture installation company for North &amp; South Florida homes, offering durable, premium solutions for modern outdoor living.",
+        "enlace": "/services/premium-outdoor-furniture-for-north-south-florida-homes",
+        "cta": "See More"
+      },
+      {
+        "id": "louvered",
+        "nombre": "Louvered Roof Systems",
+        "icono": "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/artboard-4.svg",
+        "categorias": [
+          "patio-cover"
+        ],
+        "foto": "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/louvered-roof-systems-florida.avif",
+        "alt": "Motorized louvered roof system installed by custom outdoor living contractors in Florida",
+        "titulo": "Motorized Louvered Roof Systems",
+        "texto": "Motorized louvered roof builders and installation contractors in North &amp; South Florida, offering adjustable shade and weather protection.",
+        "enlace": "/services/motorized-louvered-roof-systems-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "decks",
+        "nombre": "Custom Decks",
+        "icono": "/images/residentials/custom-deck-builders-in-north-south-florida/artboard-9.svg",
+        "categorias": [
+          "outdoor-living"
+        ],
+        "foto": "/images/residentials/custom-deck-builders-in-north-south-florida/custom-decks-florida.avif",
+        "alt": "Custom deck construction by professional outdoor living contractors in Florida.",
+        "titulo": "Custom Deck Builders",
+        "texto": "Professional deck builders and installation contractors serving North &amp; South Florida with durable, stylish outdoor deck solutions.",
+        "enlace": "/services/custom-deck-builders-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "construction",
+        "nombre": "Pool  Construction",
+        "icono": "/images/residentials/custom-pool-spa-builders-in-north-south-florida/artboard-1.svg",
+        "categorias": [
+          "pool-spa"
+        ],
+        "foto": "/images/residentials/custom-pool-spa-builders-in-north-south-florida/new-pool-spa-construction-florida.avif",
+        "alt": "New pool and spa construction in Florida by licensed custom pool builders",
+        "titulo": "Custom Pool Builders",
+        "texto": "Custom pool and spa builders serving North &amp; South Florida, delivering high-quality construction and long-term outdoor value.",
+        "enlace": "/services/custom-pool-spa-builders-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "irrigation",
+        "nombre": "Automated Irrigation",
+        "icono": "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/artboard-11.svg",
+        "categorias": [
+          "outdoor-living"
+        ],
+        "foto": "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/automated-irrigation-florida.avif",
+        "alt": "Professional automated irrigation system installation for tropical landscapes in Florida. Efficient watering solutions designed to protect lawns, plants, and landscaping year-round",
+        "titulo": "Smart Irrigation System Installation",
+        "texto": "Smart irrigation installation contractors for North &amp; South Florida properties, focused on efficient watering solutions and long-term landscape health",
+        "enlace": "/services/smart-irrigation-system-installation-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "landscaping",
+        "nombre": "Landscaping",
+        "icono": "/images/residentials/professional-landscaping-services-in-north-south-florida/artboard-10.svg",
+        "categorias": [
+          "outdoor-living"
+        ],
+        "foto": "/images/residentials/professional-landscaping-services-in-north-south-florida/landscaping-services-florida.avif",
+        "alt": "Professional landscaping services designed for Florida residential properties.",
+        "titulo": "Professional Landscaping Services",
+        "texto": "Landscaping design and installation company serving North &amp; South Florida, providing complete outdoor solutions that improve curb appeal.",
+        "enlace": "/services/professional-landscaping-services-in-north-south-florida",
+        "cta": "See More"
+      },
+      {
+        "id": "kitchens",
+        "nombre": "Outdoor Kitchens",
+        "icono": "/images/residentials/custom-outdoor-kitchens-for-north-south-florida-homes/artboard-8.svg",
+        "categorias": [
+          "outdoor-living"
+        ],
+        "foto": "/images/residentials/custom-outdoor-kitchens-for-north-south-florida-homes/covered-custom-outdoor-kitchen-florida.avif",
+        "alt": "Custom outdoor kitchen built by professional outdoor kitchen builders in Florida.",
+        "titulo": "Custom Outdoor Kitchens",
+        "texto": "Outdoor kitchen builders and installation contractors serving North &amp; South Florida with custom layouts for entertaining and daily use.",
+        "enlace": "/services/custom-outdoor-kitchens-for-north-south-florida-homes",
+        "cta": "See More"
+      },
+      {
+        "id": "enclosures",
+        "nombre": "Pool Screen Enclosures",
+        "icono": "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/artboard-6.svg",
+        "categorias": [
+          "patio-cover",
+          "pool-spa"
+        ],
+        "foto": "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/pool-screen-enclosures-florida.avif",
+        "alt": "Pool screen enclosures installed by licensed Florida enclosure contractors",
+        "titulo": "Pool Screen Enclosures",
+        "texto": "Pool screen enclosure builders and installation contractors in North &amp; South Florida, improving pool safety and cleanliness.",
+        "enlace": "/services/pool-screen-enclosures-for-north-south-florida-pools",
+        "cta": "See More"
+      }
+    ]
+  }
+}

@@ -59,6 +59,15 @@ const reUrlGlobal = /https:\/\/(?:cdn\.prod\.website-files|uploads-ssl\.webflow)
 const equilibra = (u) => { while (u.endsWith(')') && u.split(')').length > u.split('(').length) u = u.slice(0, -1); return u; };
 
 const sinMapear = new Set();
+
+/**
+ * SERVICIOS POR CATEGORIA — los datos de `section.products-section`, ruta a ruta.
+ *
+ * La seccion vive en 3 paginas (`/` y las 2 de `/where-we-serves/`) y en las tres es la MISMA
+ * pieza con DISTINTOS datos: cambia el orden de las 3 pestanas, el orden de los 14 servicios y
+ * la categoria por defecto. Por eso esto se extrae por ruta y no se cablea en el componente.
+ */
+const SERVICIOS = {};
 function local(url) {
   if (!url || !/^https?:\/\//.test(url)) return url;
   if (!/(website-files\.com|uploads-ssl\.webflow\.com|d3e54v103j8qbb\.cloudfront\.net)/.test(url)) return url;
@@ -117,6 +126,88 @@ function localizar(raiz) {
   }
 }
 
+/**
+ * Saca los datos de `section.products-section`. Se llama YA LOCALIZADA, o sea despues de
+ * `localizar()`, para que las fotos y los iconos salgan con su ruta de `public/` y no con la
+ * del CDN de Webflow.
+ *
+ * Se guarda `innerHTML` y no `textContent` en los campos de texto: el origen trae `&amp;` en
+ * casi todos los titulos y `check:texto` compara el `innerText` renderizado. Reinyectarlo con
+ * `set:html` lo devuelve tal cual; con `textContent` saldria un `&amp;` literal en pantalla.
+ */
+function extraeServicios(sec, ruta) {
+  const t = (el) => (el ? el.innerHTML.trim() : null);
+  const at = (el, a) => (el ? el.getAttribute(a) : null);
+
+  // La categoria por defecto la decide CADA PAGINA en su propio <script>: `/` arranca en
+  // `outdoor-living` y las 2 de where-we-serves en `pool-spa`. Sin esto las tres abririan por
+  // la misma pestana y `check:texto` -que compara el orden linea a linea- se pondria rojo.
+  const codigo = [...sec.querySelectorAll('script:not([src])')].map((x) => x.textContent).join('\n');
+  const defecto = codigo.match(/DEFAULT_CATEGORY_SLUG\s*=\s*'([a-z0-9-]+)'/)?.[1] ?? null;
+
+  const categorias = [...sec.querySelectorAll('.js-category-tab')].map((tab) => ({
+    slug: at(tab, 'data-category-slug'),
+    nombre: t(tab.querySelector('.js-service-cat-name')),
+  }));
+
+  const servicios = [...sec.querySelectorAll('.cms-item-services')].map((it) => {
+    const ficha = it.querySelector('.block-services-info');
+    return {
+      id: at(it, 'data-service-id'),
+      nombre: t(it.querySelector('.heading-services')),
+      icono: at(it.querySelector('.icon-services'), 'src'),
+      // Un servicio puede estar en DOS categorias: `Pool Screen Enclosures` sale en
+      // `patio-cover` y en `pool-spa`. Son 14 items con 15 asignaciones.
+      categorias: [...it.querySelectorAll('.block-categories .js-service-cat')]
+        .map((c) => c.textContent.trim()),
+      foto: at(ficha.querySelector('.image-bg-services'), 'src'),
+      alt: at(ficha.querySelector('.image-bg-services'), 'alt'),
+      titulo: t(ficha.querySelector('h4')),
+      texto: t(ficha.querySelector('.paragraph-mini')),
+      enlace: at(ficha.querySelector('.block-buttom-services a'), 'href'),
+      cta: t(ficha.querySelector('.block-buttom-services a')),
+    };
+  });
+
+  // El bloque del titulo de la ficha NO es igual en las 3 paginas: en `/` es
+  // `<div class="block-content-service"><h4 class="heading-3">` y en las 2 de where-we-serves
+  // son un `<div>` y un `<h4>` PELADOS. Y esas clases pintan (`width:100%` y
+  // `margin-bottom:5px`), asi que unificarlas movería píxeles en 2 de las 3 rutas.
+  const conClasesFicha = !!sec.querySelector('.block-content-service');
+
+  const datos = {
+    titulo: t(sec.querySelector('.wrapper-title-services h2')),
+    subtitulo: t(sec.querySelector('.paragraph-services')),
+    // Los dos `data-w-id` son los que `src/data/reveals.json` usa para animar la seccion, y
+    // los mira `check:ix2`. Si se pierden, la seccion deja de revelarse.
+    wIdTitulo: at(sec.querySelector('.wrapper-title-services'), 'data-w-id'),
+    wIdCuerpo: at(sec.querySelector('.wrapper-item-service'), 'data-w-id'),
+    defecto,
+    conClasesFicha,
+    categorias,
+    servicios,
+  };
+
+  // Un hueco aqui es una ficha muda en la pagina. Mejor que reviente el generador.
+  const faltan = [];
+  if (!datos.titulo || !datos.subtitulo) faltan.push('titulo/subtitulo');
+  if (!datos.defecto) faltan.push('DEFAULT_CATEGORY_SLUG');
+  if (!datos.wIdTitulo || !datos.wIdCuerpo) faltan.push('data-w-id');
+  if (categorias.length !== 3) faltan.push(`categorias=${categorias.length}`);
+  for (const sv of servicios) {
+    for (const k of ['id', 'nombre', 'icono', 'foto', 'alt', 'titulo', 'texto', 'enlace', 'cta']) {
+      if (!sv[k]) faltan.push(`${sv.id ?? '?'}.${k}`);
+    }
+    if (!sv.categorias.length) faltan.push(`${sv.id}.categorias`);
+    if (!categorias.some((c) => sv.categorias.includes(c.slug))) faltan.push(`${sv.id}: sin pestana`);
+  }
+  if (faltan.length) {
+    console.error(`\n  ROJO ${ruta}: la seccion de servicios sale incompleta -> ${faltan.join(', ')}\n`);
+    process.exit(1);
+  }
+  SERVICIOS[ruta] = datos;
+}
+
 const csv = fs.readFileSync(path.join(RAIZ, '_source/routes.csv'), 'utf8');
 const RUTAS = csv.trim().split('\n').slice(1)
   .map((l) => l.match(/"((?:[^"]|"")*)"/g).map((c) => c.slice(1, -1)))
@@ -144,6 +235,20 @@ for (const [ruta] of RUTAS) {
   const usados = new Set();
   const limpia = (n) => {
     localizar(n);
+    /**
+     * SERVICIOS POR CATEGORIA -> componente. Se sustituye la SECCION ENTERA, no un trozo, y eso
+     * importa: el `<script>` de 6 KB que mueve las pestanas y el `<style>` que pinta la pestana
+     * activa viven los dos dentro de ella, en el mismo `div.w-embed.w-script`. Reemplazando el
+     * `<section>` se van los dos con el, sin ningun caso especial.
+     *
+     * Se comprueba con `matches` y no con `querySelector`: la seccion ES uno de los nodos de
+     * primer nivel que recorre el bucle, no un descendiente.
+     */
+    if (n.matches?.('section.products-section')) {
+      extraeServicios(n, ruta);
+      usados.add('ServiciosPorCategoria');
+      return MARCA + 'ServiciosPorCategoria' + MARCA;
+    }
     for (const s of n.querySelectorAll('script[src]')) {
       const src = s.getAttribute('src') ?? '';
       if (SCRIPTS_FUERA.some(([re]) => re.test(src))) s.remove();
@@ -351,6 +456,13 @@ const LD_CRUDO = ${JSON.stringify(jsonLdCrudo)};` : 'const LD_CRUDO = [];'}
   const col = ruta.split('/')[1] && RUTAS.find(([r]) => r === ruta)?.[2];
   porColeccion[col || 'estatica'] = (porColeccion[col || 'estatica'] ?? 0) + 1;
 }
+
+// Los datos de la seccion de servicios, ruta a ruta. Los lee
+// `src/components/widgets/ServiciosPorCategoria.astro` por `Astro.url.pathname`: el mecanismo
+// de marcador no pasa props, asi que el componente se localiza solo.
+fs.writeFileSync(path.join(RAIZ, 'src/data/servicios-categoria.json'),
+  JSON.stringify(SERVICIOS, null, 2) + '\n');
+console.log(`\n  servicios-categoria.json  ${Object.keys(SERVICIOS).length} rutas`);
 
 if (sinMapear.size) {
   console.error(`\nROJO ${sinMapear.size} URLs del CDN sin entrada en el manifiesto:\n`);
