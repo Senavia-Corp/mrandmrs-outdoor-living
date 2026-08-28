@@ -125,16 +125,15 @@ valida** (deja pasar), no bloquea.
    `/where-we-serve` y **viene vacío en el original** —Webflow no genera controles porque la
    lista cabe entera—, así que no hay nada que reimplementar.
 5. `check:lighthouse` y `check:formularios` (este último necesita las credenciales).
-6. **`check:texto` está en rojo en 2 de las 115**, y viene de antes de la Fase 12:
-   `/services/pool-remodeling-renovation-…` y `/services/pool-screen-enclosures-…`. Es el
-   carrusel de pasos de la Fase 1 reabierta: el baseline de esas dos guardó un paso avanzado y
-   el sitio construido enseña el primero, así que salen 2 líneas de más y 2 de menos en cada
-   una. Comprobado que **ninguno de sus insumos ha cambiado** en la Fase 12 (`git diff` sobre
-   los dos `.astro`, los dos `.txt` del baseline, `Componentes.astro`, `Interacciones.astro`,
-   `Base.astro`, `lib/captura.mjs` y `webflow.css`: sin salida), y es determinista, no un
-   parpadeo. **Se arregla recapturando esas dos fichas, y solo se puede mientras el dominio
-   siga vivo.** No se ha tocado porque el encargo dice expresamente que no se toca el baseline
-   de otras rutas.
+6. **Las 2 fichas de `/services` están casi cerradas.** Recapturadas del sitio vivo el 28-ago:
+   `check:texto` **verde en las dos**, y `check:visual` de 8 comparaciones rojas a 2. Por el
+   camino salió una séptima fuente de no determinismo —el slider de galería lo mueve Swiper, que
+   reescribe `transform` en línea y se lleva por delante el `!important` del congelado—, ya
+   arreglada en `scripts/lib/captura.mjs` con la API del propio Swiper.
+   Queda `pool-screen-enclosures` distinta a **1440 y 991** (a 1920 y 479 está bien). Sin
+   diagnosticar: se paró a petición tuya. Se cierra con
+   `node scripts/diag-visual.mjs /services/pool-screen-enclosures-for-north-south-florida-pools 1440`
+   y una recaptura — **y solo mientras el dominio viejo siga vivo**.
 7. **Una decisión pequeña del estimador, tuya:** el pulgar del slider. En la app original mide
    2×2 px y **es invisible** — la barra se pinta pero no hay tirador que arrastrar. No es
    diseño, es una regla de CSS perdida; el propio CSS del original pedía un pulgar dorado. En la

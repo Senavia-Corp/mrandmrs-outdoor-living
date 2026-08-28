@@ -153,6 +153,26 @@ export async function asentar(pag) {
     // reproducible, no ESTABLE: comparar «por que diapositiva iba» no es comparar el diseño.
     // Se devuelven todos a la primera, en las dos formas de moverlos: transform (Finsweet) y
     // scrollLeft (la reimplementacion propia).
+    // 5b · EL SLIDER DE GALERÍA DE `/services` — la SÉPTIMA fuente de no determinismo.
+    //
+    // Resetear estilos NO le vale: lo mueve Swiper, y Swiper escribe `transform` en LÍNEA
+    // cuando acaba su transición. Un `setProperty(..., 'important')` no protege de eso —
+    // `el.style.transform = '...'` reemplaza la propiedad Y su prioridad—, así que el reset se
+    // hacía y la animación en vuelo lo deshacía medio segundo después.
+    // Medido a 479 en `/services/pool-remodeling-renovation-…`: el vivo se quedaba en
+    // `matrix(1,0,0,1,-1724,0)` -varias diapositivas avanzadas- y el sitio nuevo en `none`,
+    // o sea 2179 px de diferencia en una banda y `check:visual` al 98,55 %.
+    //
+    // Se para con SU PROPIA API, como el resto de este fichero: el sitio ya expone la
+    // instancia en `el.swiper`. En el sitio nuevo no hay Swiper, así que esto no hace nada
+    // ahí y la comparación sigue siendo de lo mismo contra lo mismo.
+    for (const w of document.querySelectorAll('.swiper-initialized, [fs-slider-element="list-wrapper"]')) {
+      const sw = w.swiper;
+      if (!sw) continue;
+      sw.autoplay?.stop();
+      sw.setTransition?.(0);
+      sw.slideTo?.(0, 0, false);
+    }
     for (const l of document.querySelectorAll('[fs-slider-element="list"]')) {
       // PRIMERO se para el autoplay, y se para con SU PROPIO mecanismo: la configuracion del
       // sitio dice `disableOnInteraction: true`, o sea que un pointerdown lo detiene. Sin

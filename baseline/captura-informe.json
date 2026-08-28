@@ -1,5 +1,5 @@
 {
- "fecha": "2026-08-28T16:12:46.786Z",
+ "fecha": "2026-08-28T19:41:36.441Z",
  "base": "https://mrandmrsoutdoorliving.com",
  "escala": 0.25,
  "calidad": 82,
@@ -280,8 +280,8 @@
   },
   "/services/pool-remodeling-renovation-in-north-south-florida": {
    "slug": "services_pool-remodeling-renovation-in-north-south-florida",
-   "sha256Html": "8f0558d6e19ee76b1cb27ffd8b40aebd93fc1a9d792bf17ec16731e494341bf5",
-   "sha256Texto": "3a67e045037bafca1dc85ffd6ddc2da051773eaf1f42dcfb9f6e21bbe3b35be3",
+   "sha256Html": "9b3a9fb339b390627f22b44c472406856171b425943ce9e6c45519f0002c4552",
+   "sha256Texto": "ae6a5dc305a754c3324104b1c5bc4ef245114ffe4d8db3fcdeaeba633bb4fd4c",
    "alto": {
     "479": 9129,
     "991": 7846,
@@ -291,8 +291,8 @@
   },
   "/services/pool-screen-enclosures-for-north-south-florida-pools": {
    "slug": "services_pool-screen-enclosures-for-north-south-florida-pools",
-   "sha256Html": "a7b659ceb15cb6a8311fc9a03778d232348c29a08da379b06a60c51462b7d545",
-   "sha256Texto": "988dc3b26bbcc175e4584de6c6ef9750d7c635de7424ee08bf5378c4b4b24038",
+   "sha256Html": "003a48c0a883fb4578c871651786c66c7cf6aa23ccde6be07da3593ef84d983e",
+   "sha256Texto": "2c68a50c3cc8cf8b0c1083c94b0965e433e7300250e64bf99b8c5c8f37281f64",
    "alto": {
     "479": 9117,
     "991": 7846,
@@ -1281,6 +1281,6 @@
   }
  },
  "capturas": 4,
- "parcial": false,
+ "parcial": true,
  "previo": "2026-08-27T23:19:11.569Z"
 }

@@ -144,6 +144,75 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 
 <!-- a partir de aquí, una entrada por fase, la más reciente arriba -->
 
+## Fase 1 (reabierta, 2.ª vez) — las 2 fichas de `/services` que no cuajaron   🟡 casi
+**Fecha:** 2026-08-28 · recapturadas del sitio VIVO mientras existe
+
+`/services/pool-remodeling-renovation-…` y `/services/pool-screen-enclosures-…` llevaban en rojo
+desde la recaptura del 28-ago. Recapturadas con `--ruta "/services/pool-" --forzar`, que casa con
+esas dos y solo esas dos (comprobado contra `routes.csv`), y **el informe y el `seo.json` se
+fusionan**, así que ninguna otra ruta se ha tocado.
+
+### Lo primero era el carrusel de pasos, y ya está
+
+```
+                         ANTES                             AHORA
+remodeling      Permits & Project Coordination      Pool Assessment & Condition Analysis
+screen-encl.    (paso avanzado)                     Screen Type & Configuration Assessment
+
+npm run check:texto -- /services/pool-
+  ok   /services/pool-remodeling-renovation-in-north-south-florida
+  ok   /services/pool-screen-enclosures-for-north-south-florida-pools
+  2 identicas · 0 con diferencias                    PUERTA VERDE
+```
+
+### Y detrás había una SÉPTIMA fuente de no determinismo
+
+Con el carrusel arreglado, el 479 seguía en 98,55 %. `diag-visual` lo llevó al **slider de
+galería**, y la medición del DOM a los dos lados lo dejó claro:
+
+```
+── vivo   fs-slider-gallery_list   transform: matrix(1, 0, 0, 1, -1724, 0)
+── build  fs-slider-gallery_list   transform: none
+```
+
+El congelado ya reseteaba ese slider… y no servía: **lo mueve Swiper, y Swiper escribe
+`transform` en LÍNEA al acabar su transición**. `setProperty(..., 'important')` no protege de
+eso, porque `el.style.transform = '…'` reemplaza la propiedad *y su prioridad*. O sea que el
+reset se hacía y la animación en vuelo lo deshacía medio segundo después.
+
+Arreglado en `lib/captura.mjs` con **su propia API**, como todo lo demás de ese fichero:
+`sw.autoplay.stop()`, `sw.setTransition(0)`, `sw.slideTo(0, 0, false)`. En el sitio nuevo no hay
+Swiper, así que ahí no hace nada y la comparación sigue siendo de lo mismo contra lo mismo.
+
+### Dónde queda, medido
+
+```
+npm run check:visual -- /services/pool-
+  1920   ok 99.99 %   ok 99.99 %
+  1440   ok 99.99 %   ROJO 98.47 %   <- pool-screen-enclosures
+   991   ok 99.98 %   ROJO            <- pool-screen-enclosures
+   479   ok 99.95 %   ok 99.94 %      <- el 479 ERA el rojo gordo, y está
+  6 iguales · 2 distintas
+```
+
+**De 8 comparaciones en rojo a 2, y las dos en la misma ficha.** El 479 —el peor, con 2179 px de
+diferencia en una banda— está cerrado, y `check:texto` está verde en las dos, que es la puerta
+severa.
+
+### Lo que queda, y por qué se para aquí
+
+`pool-screen-enclosures` sigue distinta a 1440 y 991. No está diagnosticada: **se paró a petición
+de Sebastian**, que ya no quería más corridas abriendo ventanas del navegador. Con 479 arreglado
+y 1920 al 99,99 %, lo que queda huele a la misma familia —algo que se mueve solo en una banda
+concreta— y el camino está trillado:
+
+```bash
+node scripts/diag-visual.mjs /services/pool-screen-enclosures-for-north-south-florida-pools 1440
+```
+
+Ojo: **eso hay que hacerlo mientras el dominio siga vivo.** Después ya no se puede recapturar.
+
+
 ## Fase 12g — DESPLEGADO y verificado sobre el despliegue   ✅ cerrada
 **Fecha:** 2026-08-28
 
