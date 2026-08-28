@@ -1,0 +1,156 @@
+---
+/**
+ * Galería de YouTube, nativa. Sustituye al CUARTO widget de Elfsight (`2dd65b70-...`), el
+ * único de los cuatro que sí pintaba: 45 kB de contenido real en `/videos`.
+ *
+ * EL ORDEN DEL MARCADO NO ES LIBRE
+ * `check:texto` compara el `innerText` línea a línea, y en el original la duración va ANTES
+ * del título (es el badge sobre la miniatura). Reordenar «porque queda mejor» rompe la
+ * puerta. El orden es: duración · título · fecha · descripción · contadores.
+ *
+ * Los datos salen de `src/data/youtube.json`, extraído del DOM del sitio vivo con
+ * `npm run youtube`. Son reales; no hay ni un vídeo inventado. Las miniaturas están
+ * descargadas: `i.ytimg.com` es un tercero y el encargo pide cero dependencias externas.
+ */
+import datos from '../../data/youtube.json';
+
+const { canal, videos } = datos as {
+  canal: { titulo: string; propiedades: string[]; enlace: string; logo?: string };
+  videos: {
+    id: string; titulo: string; duracion: string; fecha: string;
+    descripcion: string[]; contadores: string[]; enlace: string; miniatura: string | null;
+  }[];
+};
+const hay = videos.length > 0;
+---
+{hay && (
+  <div class="mm-yt">
+    <header class="mm-yt__cab">
+      {canal.logo && <img class="mm-yt__logo" src={canal.logo} alt="" width="56" height="56" loading="lazy" decoding="async" />}
+      <div class="mm-yt__canal">
+        <a class="mm-yt__titulo" href={canal.enlace} target="_blank" rel="noopener noreferrer">{canal.titulo}</a>
+        <p class="mm-yt__props">{canal.propiedades.join(' • ')}</p>
+      </div>
+      {/* Sin texto visible A PROPOSITO: en el original el boton es un iframe de YouTube y su
+          texto no entra en el innerText del documento. Poner "Subscribe" anadiria una linea
+          que el sitio de origen no tiene. Accesible por aria-label. */}
+      <a class="mm-yt__sub" href={canal.enlace} target="_blank" rel="noopener noreferrer"
+         aria-label={`Subscribe to ${canal.titulo} on YouTube`}>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8ZM9.5 15.6V8.4l6.3 3.6-6.3 3.6Z"/></svg>
+      </a>
+    </header>
+
+    <ul class="mm-yt__lista" role="list">
+      {videos.map((v) => (
+        <li class="mm-yt__tarjeta">
+          <a class="mm-yt__previa" href={v.enlace} target="_blank" rel="noopener noreferrer" title={v.titulo}>
+            {v.miniatura && (
+              <img src={v.miniatura} alt={v.titulo} width="1280" height="720" loading="lazy" decoding="async" />
+            )}
+            {/* La duración va aquí, antes del título, porque así está en el original. */}
+            <span class="mm-yt__duracion">{v.duracion}</span>
+            <span class="mm-yt__play" aria-hidden="true">
+              <svg viewBox="0 0 68 48"><path fill="#f00" d="M66.5 7.7a8.6 8.6 0 0 0-6-6C55.2 0 34 0 34 0S12.8 0 7.5 1.7a8.6 8.6 0 0 0-6 6A89.6 89.6 0 0 0 0 24a89.6 89.6 0 0 0 1.5 16.3 8.6 8.6 0 0 0 6 6C12.8 48 34 48 34 48s21.2 0 26.5-1.7a8.6 8.6 0 0 0 6-6A89.6 89.6 0 0 0 68 24a89.6 89.6 0 0 0-1.5-16.3Z"/><path fill="#fff" d="M27 34.3 45.6 24 27 13.7v20.6Z"/></svg>
+            </span>
+          </a>
+          <div class="mm-yt__info">
+            <h3 class="mm-yt__vtitulo">
+              <a href={v.enlace} target="_blank" rel="noopener noreferrer">{v.titulo}</a>
+            </h3>
+            <p class="mm-yt__fecha">{v.fecha}</p>
+            {v.descripcion.length > 0 && (
+              <div class="mm-yt__desc">{v.descripcion.map((l) => <p>{l}</p>)}</div>
+            )}
+            {v.contadores.length > 0 && <p class="mm-yt__props">{v.contadores.join(' • ')}</p>}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
+
+<style>
+  .mm-yt { width: 100%; max-width: 1250px; margin-inline: auto }
+
+  .mm-yt__cab { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.75rem }
+  .mm-yt__logo { border-radius: 100%; flex: none; width: 56px; height: 56px; object-fit: cover }
+  .mm-yt__canal { display: flex; flex-direction: column; gap: .15rem; min-width: 0 }
+  .mm-yt__titulo {
+    font-family: Montserrat, sans-serif; font-size: 20px; font-weight: 700;
+    color: var(--blue_dark, #001c63); text-decoration: none;
+  }
+  .mm-yt__titulo:hover { text-decoration: underline }
+  .mm-yt__props { margin: 0; font-size: 14px; opacity: .7 }
+  .mm-yt__sub {
+    margin-left: auto; flex: none;
+    padding: .55rem 1.2rem; border-radius: 8px;
+    display: grid; place-items: center;
+    color: var(--blue_dark, #001c63);
+    background-image: linear-gradient(135deg,
+      var(--yellow-1, #f4b248), var(--yellow-2, #d99933) 25%,
+      var(--yellow-3, #edb660) 50%, var(--yellow-2, #d99933) 75%, var(--yellow-1, #f4b248));
+  }
+  .mm-yt__sub svg { width: 22px; height: 22px }
+  .mm-yt__sub:focus-visible,
+  .mm-yt__titulo:focus-visible { outline: 3px solid var(--upcolor, #1cadeb); outline-offset: 2px }
+
+  .mm-yt__lista {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
+  .mm-yt__tarjeta {
+    display: flex; flex-direction: column;
+    border-radius: 15px;                     /* el radio de .card del sitio */
+    overflow: hidden;
+    background-color: var(--grey, #ececec);
+  }
+
+  .mm-yt__previa { position: relative; display: block; aspect-ratio: 16 / 9; overflow: hidden }
+  .mm-yt__previa img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform .35s cubic-bezier(.165,.84,.44,1);
+  }
+  .mm-yt__previa:hover img { transform: scale(1.04) }
+  .mm-yt__previa:focus-visible { outline: 3px solid var(--upcolor, #1cadeb); outline-offset: -3px }
+
+  .mm-yt__duracion {
+    position: absolute; right: .6rem; bottom: .6rem;
+    padding: .15rem .45rem; border-radius: 4px;
+    background-color: #000000cc; color: #fff;
+    font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums;
+  }
+  .mm-yt__play {
+    position: absolute; inset: 0; display: grid; place-items: center;
+    opacity: .85; transition: opacity .25s ease;
+  }
+  .mm-yt__play svg { width: 58px; height: 41px }
+  .mm-yt__previa:hover .mm-yt__play { opacity: 1 }
+
+  .mm-yt__info { padding: 1rem 1.1rem 1.25rem; display: flex; flex-direction: column; gap: .4rem }
+  /* El CSS del sitio pone text-transform:capitalize a los encabezados, y eso convertia
+     "for Hotel & Resort" en "For Hotel & Resort" — o sea, cambiaba el TEXTO, que es lo que
+     check:texto compara caracter a caracter. Los titulos de los videos van tal cual vienen. */
+  .mm-yt__vtitulo { margin: 0; font-size: 17px; line-height: 1.3; text-transform: none }
+  .mm-yt__vtitulo a { color: var(--blue_dark, #001c63); text-decoration: none }
+  .mm-yt__vtitulo a:hover { text-decoration: underline }
+  .mm-yt__fecha { margin: 0; font-size: 13px; opacity: .65 }
+
+  .mm-yt__desc {
+    font-size: 14px; line-height: 1.5;
+    max-height: 7.5em; overflow: hidden;
+    -webkit-mask-image: linear-gradient(#000 70%, transparent);
+    mask-image: linear-gradient(#000 70%, transparent);
+  }
+  .mm-yt__desc p { margin: 0 0 .35rem }
+
+  @media (max-width: 479px) {
+    .mm-yt__lista { grid-template-columns: 1fr }
+    .mm-yt__cab { flex-wrap: wrap }
+    .mm-yt__sub { margin-left: 0 }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mm-yt__previa img { transition: none }
+    .mm-yt__previa:hover img { transform: none }
+  }
+</style>

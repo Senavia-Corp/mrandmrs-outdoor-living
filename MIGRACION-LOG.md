@@ -18,7 +18,7 @@ reproducir el resultado, saber qué se midió y con qué comando, y ver qué que
 | F2 | Assets locales | ↩️ reabierta ×3, cerrada | 2026-08-27 |
 | F3 | Sanity: esquemas + import | ✅ cerrada | 2026-08-27 |
 | F4 | Cascarón Astro | ✅ cerrada | 2026-08-27 |
-| F5 | Páginas estáticas | ⬜ pendiente | |
+| F5 | Páginas estáticas | ✅ cerrada | 2026-08-27 |
 | F6 | Páginas de colección | ⬜ pendiente | |
 | F7 | Animaciones e interacciones | ⬜ pendiente | |
 | F8 | Formularios y terceros | ⬜ pendiente | |
@@ -135,6 +135,96 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 ## Entradas
 
 <!-- a partir de aquí, una entrada por fase, la más reciente arriba -->
+
+## Fase 5 — Páginas estáticas (14)   ✅ cerrada
+**Fecha:** 2026-08-27
+
+### Objetivo
+Las 13 estáticas más `/pool-investment-estimator`, con el texto **idéntico carácter a carácter**
+al del sitio vivo y **cero referencias a Webflow**.
+
+### Números medidos
+| Métrica | Esperado | Medido |
+|---|---|---|
+| Páginas con texto 100 % idéntico | 14 | **14 / 14** |
+| Referencias a `website-files.com` en el build | 0 | **0** |
+| Referencias a `elfsightcdn` / `wf-app-prod` | 0 | **0** |
+| Referencias a jQuery / cloudfront | 0 | **0** |
+
+```
+$ npm run check:texto
+  ok / · ok /about · ok /blogs-tips · ok /brochures · ok /contact-us · ok /gallery
+  ok /industry-solutions · ok /pool-cost-estimator · ok /projects · ok /request-estimated
+  ok /testimonials · ok /videos · ok /where-we-serve · ok /pool-investment-estimator
+  14 identicas · 0 con diferencias · 101 aun sin construir
+PUERTA VERDE
+
+$ grep -ro "website-files.com|wf-app-prod|elfsightcdn" .vercel/output/static | wc -l
+0
+```
+
+### EL HALLAZGO GORDO: hay un CUARTO widget de Elfsight, y ese SÍ pinta
+`PROMPT.md` conocía uno (el click-to-call). Hay **cuatro**:
+
+| id | qué es | en cuántas páginas | ¿pinta? |
+|---|---|---|---|
+| `e4536a7a…` | Click to Call | 114 | no |
+| `ce5a93b9…` | Google Reviews | 83 | no |
+| `fdd09947…` | Instagram Feed | 79 | no |
+| **`2dd65b70…`** | **YouTube Gallery** | 1 (`/videos`) | **SÍ — 45 kB de contenido real** |
+
+Lo destapó `check:texto`: `/videos` perdía **114 líneas**. La galería trae la cabecera del
+canal y 8 vídeos con título, fecha, duración, descripción completa y contadores.
+
+**No hizo falta ninguna clave de API**: los datos se sacan de `baseline/html/videos.html`, que
+es el DOM del sitio vivo DESPUÉS de que el widget pintara. Son datos reales del canal del
+cliente, capturados de su propio sitio. `scripts/extract-youtube.mjs` los extrae y baja las 9
+miniaturas a local (`i.ytimg.com` es un tercero).
+
+### Rarezas del original replicadas a propósito
+- **`/brochures` no tiene pie.** Es la única de las 115 con cascarón que se acaba sin él.
+  Ponerle uno sería añadir una sección: `Base.astro` tiene `conPie`.
+- **`/gallery` lleva su `section.hero-section` ANTES del nav** en el documento. El nav es
+  `fixed`, así que no cambia lo que se ve — pero sí el ORDEN del `innerText`, y `check:texto`
+  compara línea a línea. Una sola página de las 115; el layout tiene un slot `antes-nav`.
+- **2 páginas llevan `<script>`+`<style>` DESPUÉS del pie** (el redimensionador del iframe del
+  estimador). Slot `tras-pie`.
+- Los títulos de los vídeos llevan `text-transform: none`: el CSS del sitio capitaliza los
+  encabezados y convertía `for Hotel & Resort` en `For Hotel & Resort`. Eso no es estilo, es
+  **cambiar el texto**, y `check:texto` lo caza.
+
+### Diferencias de texto DECLARADAS (D2)
+Dos líneas del baseline desaparecen a propósito, y están declaradas una a una en
+`check-texto.mjs`. Las dos son chrome del propio Elfsight, no contenido del cliente:
+`12` (su paginación) y `Free YouTube Video Gallery Widget` (su marca).
+
+El botón de suscribirse de la galería **no lleva texto visible a propósito**: en el original es
+un iframe de YouTube y su texto no entra en el `innerText` del documento. Poner «Subscribe»
+añadía una línea que el origen no tiene. Va accesible por `aria-label`.
+
+### Cuatro sitios donde vivían URLs del CDN que nadie miraba
+Cada uno salió de medir, no de suponer, y cada uno habría dejado el sitio pidiéndole cosas a
+Webflow después del corte:
+1. `href` — los botones de descarga de los **54 PDF**. No son imágenes, así que ningún escaneo
+   de `src`/`srcset` los veía.
+2. Dentro de `<script>` — el JSON-LD de `/gallery` lleva **137** URLs de imagen.
+3. `data-poster-url` — los pósters de los vídeos de fondo de la home.
+4. El **iframe absoluto** del estimador: apuntaba a `https://mrandmrsoutdoorliving.com/...`, o
+   sea que **cualquier preview habría cargado el sitio VIEJO dentro del nuevo** — y
+   `check:visual` habría estado comparando el original consigo mismo. Ahora es relativo.
+
+### El estimador, portado
+`scripts/build-estimador.mjs` copia los 3 JS + 1 CSS + el cascarón a
+`public/pool-investment-estimator/`, con las URLs del origen `cosmic` y del CDN a local.
+Funciona sin Webflow porque el bundle **no hace ni una llamada de red**.
+
+### Abierto
+- El estimador es **código minificado sin fuentes**: funciona, pero cambiar una fórmula o un
+  precio exigiría rehacerlo.
+- Su CSS trae **2 `@import` a Google Fonts** sin auto-alojar.
+- Cuando el cliente suba un vídeo nuevo, `npm run youtube` hay que volver a correrlo — y eso
+  solo funciona mientras el sitio viejo siga en pie. Después, integración con la API de YouTube.
+- **Borrar `cascaron.astro` y `vista-widgets.astro` antes de cerrar la Fase 6.**
 
 ## Fase 4 — Cascarón Astro   ✅ cerrada
 **Fecha:** 2026-08-27

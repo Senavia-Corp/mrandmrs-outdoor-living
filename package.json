@@ -18,7 +18,11 @@
     "vivo": "node scripts/fetch-vivo.mjs",
     "check:cascaron": "node scripts/check-cascaron.mjs",
     "fuentes": "node scripts/fetch-fuentes.mjs",
-    "baseline:cascaron": "node scripts/capture-cascaron.mjs"
+    "baseline:cascaron": "node scripts/capture-cascaron.mjs",
+    "paginas": "node scripts/build-paginas.mjs",
+    "check:texto": "node scripts/check-texto.mjs",
+    "youtube": "node scripts/extract-youtube.mjs",
+    "estimador": "node scripts/build-estimador.mjs"
   },
   "dependencies": {
     "@astrojs/vercel": "^11.0.8",

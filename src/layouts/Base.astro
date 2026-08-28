@@ -30,8 +30,11 @@ interface Props {
   titulo: string;
   descripcion?: string;
   ruta?: string;
+  /** `/brochures` NO TIENE PIE en el origen. Rareza real, medida sobre las 115: es la única
+   *  página con cascarón que se acaba sin él. Ponerle uno sería añadir una sección. */
+  conPie?: boolean;
 }
-const { titulo, descripcion, ruta = Astro.url.pathname } = Astro.props;
+const { titulo, descripcion, ruta = Astro.url.pathname, conPie = true } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
@@ -53,9 +56,24 @@ const { titulo, descripcion, ruta = Astro.url.pathname } = Astro.props;
     </script>
   </head>
   <body>
+    {/* El <noscript> de GTM va lo primero del body, como en el origen (section.code,
+        idéntica en las 115 páginas que llevan cascarón). */}
+    <section class="code">
+      <div class="w-embed w-iframe">
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N9BWB3BV"
+          height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      </div>
+    </section>
+    {/* /gallery tiene su section.hero-section ANTES del nav en el documento. El nav es
+        fixed, así que no cambia lo que se ve, pero sí el ORDEN del innerText — y check:texto
+        compara línea a línea. Es la única página así de las 115. */}
+    <slot name="antes-nav" />
     <Nav ruta={ruta} />
     <slot />
-    <Footer ruta={ruta} />
+    {conPie && <Footer ruta={ruta} />}
+    {/* 2 páginas llevan un <script>+<style> DESPUÉS del pie: el redimensionador del iframe
+        del estimador. Va en su sitio o cambia el orden del documento. */}
+    <slot name="tras-pie" />
     <ClickToCall />
   </body>
 </html>

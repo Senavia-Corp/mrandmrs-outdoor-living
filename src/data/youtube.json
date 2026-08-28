@@ -1,0 +1,211 @@
+{
+ "_lee_esto": "DERIVADO de baseline/html/videos.html, el DOM del sitio vivo tras pintar el widget de Elfsight. Datos reales del canal del cliente. Regenerar: npm run youtube",
+ "canal": {
+  "titulo": "Mr & Mrs Outdoor Living",
+  "propiedades": [
+   "0 Subscribers",
+   "10 Videos",
+   "270 Views"
+  ],
+  "enlace": "https://www.youtube.com/channel/UC3VGkVUUC1FmXhtn2CUofsA",
+  "logo": "/images/site/youtube/canal.jpg"
+ },
+ "videos": [
+  {
+   "id": "sQJgRrEdm8U",
+   "titulo": "Minimalist Insulated Pergola Outdoor Living Project",
+   "duracion": "00:36",
+   "fecha": "26/1/2026",
+   "descripcion": [
+    "This project highlights a minimalist insulated pergola installation completed by Mr & Mrs Outdoor Living in Florida.",
+    "Designed with clean lines and a modern aesthetic, the insulated pergola provides superior thermal comfort, shade, and durability while maintaining a sleek and timeless outdoor design.",
+    "🏗 Project Features:",
+    "- Insulated pergola system",
+    "- Minimalist, modern design",
+    "- Thermal and weather protection",
+    "- Low-maintenance, high-end materials",
+    "Mr & Mrs Outdoor Living specializes in custom pergolas and outdoor living solutions across North and South Florida, combining functionality with refined design.",
+    "If you're planning a modern pergola or outdoor living upgrade, our team is ready to help.",
+    "👉 Request a consultation:",
+    "📞 North Florida: +1 (352) 740-3361",
+    "📞 South Florida: +1 (954) 913-7112",
+    "#InsulatedPergola #MinimalistPergola #ModernOutdoorLiving #FloridaPergola #OutdoorDesign"
+   ],
+   "contadores": [
+    "1 Views",
+    "0 Likes",
+    "0 Comments"
+   ],
+   "enlace": "https://www.youtube.com/watch?v=sQJgRrEdm8U",
+   "miniatura": "/images/site/youtube/sQJgRrEdm8U.jpg"
+  },
+  {
+   "id": "yzD7dU1hkQ0",
+   "titulo": "Commercial Pergola Installation for Hotel & Resort",
+   "duracion": "01:10",
+   "fecha": "26/1/2026",
+   "descripcion": [
+    "This video showcases a commercial pergola installation completed by Mr & Mrs Outdoor Living for a hotel and resort property in Florida.",
+    "The project was designed to enhance guest comfort and elevate the resort’s outdoor amenities, providing shade, durability, and a refined aesthetic suitable for high-traffic commercial environments.",
+    "🏗 Project Highlights:",
+    "- Commercial-grade pergola installation",
+    "- Engineered for hotel & resort use",
+    "- Durable, low-maintenance materials",
+    "- Designed to complement resort architecture",
+    "Mr & Mrs Outdoor Living delivers commercial and residential outdoor living solutions across North and South Florida, working with hotels, resorts, property managers, and developers.",
+    "If you’re planning a commercial pergola or outdoor living upgrade for your hospitality property, our team is ready to help.",
+    "👉 Request a consultation:",
+    "📞 North Florida: +1 (352) 740-3361",
+    "📞 South Florida: +1 (954) 913-7112",
+    "#CommercialPergola #HotelPergola #ResortOutdoorLiving #HospitalityDesign #FloridaCommercial"
+   ],
+   "contadores": [
+    "1 Views",
+    "0 Likes",
+    "0 Comments"
+   ],
+   "enlace": "https://www.youtube.com/watch?v=yzD7dU1hkQ0",
+   "miniatura": "/images/site/youtube/yzD7dU1hkQ0.jpg"
+  },
+  {
+   "id": "EA1Xh6mDBN8",
+   "titulo": "Custom Pool & Louvered Roof Outdoor Living Project",
+   "duracion": "01:32",
+   "fecha": "26/1/2026",
+   "descripcion": [
+    "This project showcases a custom outdoor living space designed and built by Mr & Mrs Outdoor Living in Florida.",
+    "The backyard transformation includes a custom swimming pool, a modern louvered roof system, and a full patio remodel, providing adjustable shade, ventilation, and year-round outdoor comfort.",
+    "🏗 Project Features:",
+    "- Custom swimming pool construction",
+    "- Louvered roof system installation",
+    "- Complete patio and backyard remodeling",
+    "- High-end outdoor materials and finishes",
+    "Mr & Mrs Outdoor Living specializes in luxury pools and advanced outdoor living solutions across North and South Florida.",
+    "If you're considering a pool, louvered roof system, or full backyard renovation, our team is ready to help.",
+    "👉 Request an estimate:",
+    "📞 North Florida: +1 (352) 740-3361",
+    "📞 South Florida: +1 (954) 913-7112",
+    "#LouveredRoof #LouveredPergola #CustomPool #OutdoorLivingFlorida #BackyardRemodel"
+   ],
+   "contadores": [
+    "10 Views",
+    "0 Likes",
+    "0 Comments"
+   ],
+   "enlace": "https://www.youtube.com/watch?v=EA1Xh6mDBN8",
+   "miniatura": "/images/site/youtube/EA1Xh6mDBN8.jpg"
+  },
+  {
+   "id": "Z9aoWtcfiLs",
+   "titulo": "Luxury Pool & Outdoor Living Renovation",
+   "duracion": "00:31",
+   "fecha": "26/1/2026",
+   "descripcion": [
+    "This video features a complete backyard renovation designed and built by Mr & Mrs Outdoor Living in Florida.",
+    "The project includes a custom swimming pool, a pergola structure, and a full patio remodel, transforming the outdoor space into a refined and functional environment for entertaining and relaxation.",
+    "🏗 Project Features:",
+    "- Custom swimming pool construction",
+    "- Pergola installation",
+    "- Patio and backyard renovation",
+    "- Premium outdoor materials and finishes",
+    "Mr & Mrs Outdoor Living creates high-end outdoor living spaces for homeowners across North and South Florida.",
+    "Thinking about upgrading your backyard with a pool or pergola? Our team is ready to help.",
+    "👉 Request an estimate:",
+    "📞 North Florida: +1 (352) 740-3361",
+    "📞 South Florida: +1 (954) 913-7112",
+    "#LuxuryPool #PergolaProject #BackyardRenovation #OutdoorLivingFlorida #CustomPools"
+   ],
+   "contadores": [
+    "1 Views",
+    "0 Likes",
+    "0 Comments"
+   ],
+   "enlace": "https://www.youtube.com/watch?v=Z9aoWtcfiLs",
+   "miniatura": "/images/site/youtube/Z9aoWtcfiLs.jpg"
+  },
+  {
+   "id": "R4iTHv5m2Fs",
+   "titulo": "Custom Pool & Outdoor Living Transformation",
+   "duracion": "00:37",
+   "fecha": "26/1/2026",
+   "descripcion": [
+    "This video highlights another custom outdoor living project completed by Mr & Mrs Outdoor Living in Florida.",
+    "The project included the design and construction of a custom swimming pool, pergola installation, and a complete patio and backyard remodel, tailored to create a seamless outdoor living space ideal for Florida homes.",
+    "🏗 Project Scope:",
+    "- Custom swimming pool",
+    "- Pergola design & installation",
+    "- Complete patio remodeling",
+    "- Outdoor living enhancements",
+    "Mr & Mrs Outdoor Living delivers high-quality pool and outdoor living solutions throughout North and South Florida.",
+    "If you're considering a pool, pergola, or full backyard renovation, our team is here to help.",
+    "👉 Request an estimate:",
+    "📞 North Florida: +1 (352) 740-3361",
+    "📞 South Florida: +1 (954) 913-7112",
+    "#OutdoorLiving #CustomPool #PergolaFlorida #BackyardRemodel #FloridaOutdoor"
+   ],
+   "contadores": [
+    "0 Views",
+    "0 Likes",
+    "0 Comments"
+   ],
+   "enlace": "https://www.youtube.com/watch?v=R4iTHv5m2Fs",
+   "miniatura": "/images/site/youtube/R4iTHv5m2Fs.jpg"
+  },
+  {
+   "id": "nrU6coj7YpM",
+   "titulo": "Luxury Outdoor Living Project / Full Backyard Transformation",
+   "duracion": "00:31",
+   "fecha": "26/1/2026",
+   "descripcion": [
+    "This project showcases a complete outdoor living transformation completed by Mr & Mrs Outdoor Living in Florida.",
+    "The scope of work included a custom-designed swimming pool, a modern pergola, and a full backyard and patio remodel, creating a functional and elegant outdoor space designed for the Florida lifestyle.",
+    "🏗 Services Included:",
+    "- Custom pool design & construction",
+    "- Pergola installation",
+    "- Complete patio & backyard remodeling",
+    "- High-end outdoor finishes",
+    "Mr & Mrs Outdoor Living specializes in luxury pools and outdoor living projects across North and South Florida.",
+    "If you're planning a custom pool, pergola, or full backyard remodel, our team is ready to help.",
+    "👉 Request an estimate:",
+    "📞 North Florida: +1 (352) 740-3361",
+    "📞 South Florida: +1 (954) 913-7112",
+    "#CustomPool #Pergola #OutdoorLiving #BackyardRemodel #FloridaPools"
+   ],
+   "contadores": [
+    "3 Views",
+    "0 Likes",
+    "0 Comments"
+   ],
+   "enlace": "https://www.youtube.com/watch?v=nrU6coj7YpM",
+   "miniatura": "/images/site/youtube/nrU6coj7YpM.jpg"
+  },
+  {
+   "id": "flf23Q0TP9c",
+   "titulo": "New pool no stress",
+   "duracion": "00:19",
+   "fecha": "18/12/2025",
+   "descripcion": [],
+   "contadores": [
+    "79 Views",
+    "0 Likes",
+    "0 Comments"
+   ],
+   "enlace": "https://www.youtube.com/watch?v=flf23Q0TP9c",
+   "miniatura": "/images/site/youtube/flf23Q0TP9c.jpg"
+  },
+  {
+   "id": "1m45BeMxRkM",
+   "titulo": "Thinking about remodeling your pool or upgrading your backyard?Here’s why homeowners",
+   "duracion": "00:33",
+   "fecha": "18/12/2025",
+   "descripcion": [],
+   "contadores": [
+    "54 Views",
+    "0 Likes",
+    "0 Comments"
+   ],
+   "enlace": "https://www.youtube.com/watch?v=1m45BeMxRkM",
+   "miniatura": "/images/site/youtube/1m45BeMxRkM.jpg"
+  }
+ ]
+}
