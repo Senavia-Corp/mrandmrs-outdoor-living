@@ -10,7 +10,21 @@ dist/
 _source/webflow-export/
 # derivable: lo regenera scripts/download-assets.mjs
 _source/sanity-masters/
-baseline/shots/
+
+# ─────────────────────────────────────────────────────────────────────────────
+# baseline/shots/ SÍ VA A GIT — decisión de Sebastian, 27-ago-2026.
+#
+# Son la ÚNICA prueba de «quedó exactamente igual», y NO se pueden regenerar: en
+# cuanto el dominio apunte a Vercel, Webflow deja de servir el sitio (30 días de
+# margen) y ya no hay contra qué medir. En Pergola Plus las capturas del vivo
+# acabaron dentro del repo por esto mismo, después de haber estado en /tmp.
+#
+# Por eso van a 1/4 y JPEG q82: 61 MB en vez de 2,3 GB de PNG. WebP y AVIF no
+# valen — los dos revientan por encima de 16383 px de alto y /gallery a 479 px
+# sale de 39473. Lo que se pierde a 1/4 es LEER el cuerpo de texto en la captura,
+# que es justo lo único que check:visual no mide: de eso se encarga check:texto,
+# con el umbral al 100 %.
+# ─────────────────────────────────────────────────────────────────────────────
 
 # ─────────────────────────────────────────────────────────────────────────────
 # ⚠️ LEE ESTO ANTES DE AÑADIR NADA AQUÍ DEBAJO

@@ -7,12 +7,20 @@
     "check:assets": "node scripts/check-assets.mjs",
     "schemas": "node scripts/gen-schemas.mjs",
     "import:dry": "node scripts/import.mjs --dry-run",
-    "import": "node scripts/import.mjs"
+    "import": "node scripts/import.mjs",
+    "baseline": "node scripts/capture-baseline.mjs",
+    "check:baseline": "node scripts/check-baseline.mjs"
   },
   "dependencies": {
     "@portabletext/block-tools": "^6.0.0",
     "@sanity/client": "^8.4.0",
     "@sanity/schema": "^6.11.0",
     "jsdom": "^30.0.1"
+  },
+  "devDependencies": {
+    "pixelmatch": "^7.2.0",
+    "playwright": "^1.62.1",
+    "pngjs": "^7.0.0",
+    "sharp": "^0.35.4"
   }
 }

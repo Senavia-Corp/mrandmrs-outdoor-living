@@ -14,7 +14,7 @@ reproducir el resultado, saber qué se midió y con qué comando, y ver qué que
 | Fase | Título | Estado | Cerrada |
 |---|---|---|---|
 | F0 | Cuentas, identidades y repo | ✅ cerrada | 2026-08-27 |
-| F1 | Baseline congelado | 🟡 en curso | |
+| F1 | Baseline congelado | ✅ cerrada | 2026-08-27 |
 | F2 | Assets locales | ↩️ reabierta y cerrada | 2026-08-27 |
 | F3 | Sanity: esquemas + import | ✅ cerrada | 2026-08-27 |
 | F4 | Cascarón Astro | ⬜ pendiente | |
@@ -89,6 +89,174 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 ## Entradas
 
 <!-- a partir de aquí, una entrada por fase, la más reciente arriba -->
+
+## Fase 1 — Baseline congelado   ✅ cerrada
+**Fecha:** 2026-08-27 · **Commit:** `F1: baseline congelado…`
+
+### Objetivo
+Que exista, en disco **y en git**, la prueba reproducible de cómo es el sitio HOY: 115 HTML
+renderizados, 115 textos, 115 entradas de SEO, 460 capturas en 4 anchos, `robots.txt` y
+`sitemap.xml`, y **cero elementos con `data-w-id` en `opacity:0`** al capturar.
+
+Sin esto, `check:texto`, `check:seo` y `check:visual` son checks que no pueden fallar — el
+fallo exacto de `comprobar-imagenes.mjs` en Pergola Plus. Y la ventana se cierra: solo se puede
+capturar mientras Webflow sirva el sitio.
+
+### Qué se hizo
+- `scripts/lib/captura.mjs` — **el congelado, en un solo sitio.** Lo importan la captura y lo
+  importará `check:visual`. Módulo compartido a propósito: la comparación de píxeles solo
+  significa algo si las dos capturas se toman con la misma receta, y dos copias dejan de ser
+  iguales al primer arreglo que solo se aplica en un lado.
+- `scripts/capture-baseline.mjs` — la captura. Reanudable, con volcado en cada ruta.
+- `scripts/check-baseline.mjs` — la puerta, 8 checks.
+- `.gitignore` — **`baseline/shots/` sale de la lista de ignorados**, con el motivo al lado.
+
+### Números medidos
+| Métrica | Esperado | Medido |
+|---|---|---|
+| HTML renderizados (post-JS) | 115 | **115** |
+| Textos normalizados | 115 | **115** |
+| Entradas de `seo.json` | 115 | **115** |
+| Capturas (115 × 4 anchos) | 460 | **460** |
+| Mediciones abortadas | 0 | **0** |
+| Errores de carga | 0 | **0** |
+| `[data-w-id]` visibles en `opacity:0` | 0 | **0** |
+| Determinismo, píxeles iguales al recapturar | ≥99,5 % | **100,000 %** en los 3 arquetipos |
+| Determinismo, HTML normalizado y texto | idéntico | **sha256 idéntico** |
+| Peso en git | — | **71 MB** (53 capturas · 17 HTML · 1 texto) |
+| Página más alta | — | `/gallery`, **39 473 px** a 479 |
+
+### El baseline tiene que ser DETERMINISTA o no vale
+Si la captura no se reproduce, un umbral de «≥99 % de píxeles» no mide la migración: mide el
+ruido de la captura. **Cinco fuentes de no-determinismo, todas medidas sobre el vivo**, y su
+neutralización vive en el módulo compartido:
+
+| Fuente | Qué se midió | Neutralización |
+|---|---|---|
+| Barrido demasiado rápido | Con un viewport por rAF, 2 de los 25 `data-w-id` de la home se quedaban en `opacity:0`. IX2 pide que el elemento esté en pantalla un momento, no que lo cruces | 2 pasadas a medio viewport con 100 ms de reposo |
+| El nav se esconde al bajar | `.menu` es `position:fixed` de **85 px** (justo lo que dice `a-11`: `translateY(-85px)`). Capturar al llegar abajo = las 115 páginas sin nav | volver arriba y esperar 900 ms a que `a-12` lo devuelva |
+| Vídeos en `autoplay loop` | uno estaba en `t = 1,998 s` | `pause()` + `currentTime = 0` |
+| El marquee de Finsweet | `animation-name:none` pero `transform:matrix(1,0,0,1,-102.88,0)` → **lo mueve JS**, así que `animations:'disabled'` de Playwright NO lo toca | `transform:none !important`, que gana al style en línea |
+| Widgets de Elfsight | contenido remoto que cambia solo | `mask` de Playwright, declarada con su motivo |
+
+Y **cinco cosas más que cambian solo en el DOM serializado**, no en lo que se ve. Se
+normalizan una a una en `normalizarHtml()`; un «ignora el HTML» global habría convertido el
+check de determinismo en un check que no comprueba:
+
+1. El **WebFont Loader** de Google añade una clase por variante al `<html>`; el conjunto es
+   siempre el mismo y el **orden** depende de qué fuente gane la carrera → se ordenan.
+2. **Finsweet cachebustea su propio script** con la hora en ms (`fs-components.js?v=…`).
+3. **Finsweet genera un id aleatorio** para el clon con el que mide el marquee.
+4. El **transform en línea del marquee**: el congelado le gana por `!important` (por eso los
+   píxeles salen idénticos) pero el valor sigue llegando al `outerHTML`.
+5. **GTM inyecta A VECES** un `<script async>` de health-check de GA (`gtg_health=1`) y a veces
+   no. Se vio midiendo /about 5 veces: dos estados estables, 137 080 y 136 951 bytes, y la
+   única diferencia entre ellos eran esas dos etiquetas.
+
+Con las diez puestas: **5 de 5 pases dan el mismo sha256.**
+
+### Evidencia
+```
+$ npm run baseline
+  nuevas: 456 · abortadas: 0 · invisibles: 0 · errores: 0
+
+$ npm run check:baseline
+── 1. están las 115 de cada cosa
+  ✅ el informe cubre 115 rutas x 4 anchos · ✅ 115/115 HTML · ✅ 115/115 textos
+  ✅ 115/115 entradas de SEO · ✅ robots.txt · ✅ sitemap.xml
+── 2. las 460 capturas existen y SON un JPEG del ancho esperado
+  ✅ 460/460 capturas — 0 mal
+  ✅ muestra de 28 decodifica al ancho correcto — 0 mal
+── 3. ninguna medición abortada por la sonda de foco
+  ✅ mediciones abortadas — 0        ✅ errores de carga — 0
+── 4. ningún [data-w-id] visible se quedó en opacity:0
+  ✅ elementos invisibles — 0
+── 5. el SEO capturado tiene sentido
+  ✅ 115/115 con <title>
+  ✅ JSON-LD roto: exactamente las 8 del origen — 0 nuevas · 0 que ya no lo están
+  ✅ el origen sigue sin canónicas (0 esperadas)
+── 6. ningún texto vacío ni absurdamente corto
+  ✅ textos sospechosamente cortos — 0
+── 7. determinismo: recapturar da lo mismo
+     /                                                    100.000 % de píxeles iguales
+     /about                                               100.000 % de píxeles iguales
+     /services/custom-deck-builders-in-north-south-florid 100.000 % de píxeles iguales
+  ✅ 3 arquetipos reproducen — 0 desvíos
+── 8. el baseline está en git, no solo en este disco
+  ✅ 695/695 ficheros del baseline versionados — 0 fuera de git
+✅ PUERTA VERDE
+```
+
+### La puerta, probada en ROJO
+Siete roturas a propósito. **Tres encontraron un fallo en la propia puerta**, que es justo para
+lo que sirve hacerlas:
+
+| # | Rotura | Resultado |
+|---|---|---|
+| A | Borrar `shots/1920/gallery.jpg` | 🔴 check 2 — `458/460 · 1920 /gallery — no existe` |
+| B | Escribir un `.jpg` que contiene HTML (el fallo del 403 guardado como `.webp` de la Fase 2) | 🔴 check 2 — `479 / — no es JPEG`. **Y destapó que la puerta REVENTABA** con una excepción de sharp en vez de reportar: una puerta que se cae no te dice el resto de fallos. Ahora va en `try/catch` |
+| C | Truncar `text/about.txt` a 40 caracteres | 🔴 check 6 — `/about — 40 caracteres` |
+| D | `git rm --cached baseline/seo.json` | 🔴 check 8 — `693/694 · 1 fuera de git` |
+| E | Volver al barrido rápido de un viewport por rAF | 🔴 check 4 — **143 elementos invisibles en 22 rutas**, no los 2 de la home |
+| F | Robarle el foco a la pestaña | **NO SE PUDO ROMPER** — ver abajo |
+| G | Una ruta que da 404 | 🔴 check 3 — `1920 /ruta-que-no-existe 404` |
+
+Además, el **check 7 estuvo en rojo de verdad tres veces** durante el desarrollo, y es lo que
+destapó las 5 fuentes de no-determinismo del DOM.
+
+#### La rotura E es el motivo de existir de esta fase
+Con el barrido ingenuo salen **143 `[data-w-id]` congelados en `opacity:0` repartidos por 22
+rutas** — las 10 fichas de `/services/` pierden 9 elementos cada una, incluidos los
+`.cms-item-subservices` y el `.process-header`. Un baseline así habría servido de referencia
+con agujeros a TODAS las comparaciones posteriores, y `check:visual` habría salido **verde**
+comparando el sitio nuevo contra un retrato roto del viejo.
+
+#### La rotura F no prendió, y hay que decirlo
+**`document.hasFocus()` no puede dar `false` bajo Playwright.** Playwright activa la emulación
+de foco a propósito para que los tests no salgan flaky. Probado en los dos modos:
+
+```
+headless=true   sonda={"foco":true,"oculto":false,"fotogramas":50}  -> la deja pasar
+headless=false  sonda={"foco":true,"oculto":false,"fotogramas":26}  -> la deja pasar
+```
+
+Se intentó también robando el foco con `osascript` en bucle durante la captura: tampoco, porque
+`bringToFront()` lo recupera justo antes de medir. O sea que **esa mitad del check 3 da
+confianza falsa** y no cuenta como probada. Se deja puesta —en otro entorno, o si Playwright
+cambia, sí avisaría— pero con el aviso escrito en el código, y sabiendo que **el detector real
+del fallo que pretende evitar es el check 4**, que sí se probó en rojo con las 143.
+
+### Rarezas del original replicadas a propósito
+- **8 fichas de `/project/` publican JSON-LD inválido.** Error real medido sobre el HTML
+  servido: `Bad control character in string literal in JSON at position 443`. El campo
+  `description` del CMS acaba en salto de línea y Webflow lo interpola crudo dentro de la
+  cadena JSON. Ningún parser lo acepta, Google incluido. Se replica (contrato) y la puerta
+  exige que el conjunto siga siendo **exactamente esas 8**: si aparece una novena o una se
+  arregla sola, el baseline ya no describe el mismo sitio.
+- **113 de 115 páginas llevan JSON-LD**; las 2 que no son `/pool-investment-estimator` (que no
+  es una página de Webflow) y una más.
+
+### Desviación declarada de la paridad: las canónicas
+**El sitio vivo no tiene ni un `<link rel="canonical">`** — comprobado en 0 de 115, en
+estáticas y en los 7 tipos de ficha. La Fase 9 pide canónicas absolutas en las 115, así que
+**son una adición deliberada, no paridad**. Consecuencia para la Fase 9: `check:seo` tiene que
+tratarlas como diferencia esperada, no exigir que casen contra el baseline. La puerta de aquí
+no exige que existan: exige que **siga siendo cierto que el origen no las tiene**.
+
+### Lo que este baseline NO retrata
+Los **3 widgets de Elfsight se quedan en altura 0 y sin hijos**, medido en dos navegadores
+distintos tras barrido completo y 6–8 s de espera; `platform.js` carga y la petición a
+`core.service.elfsight.com/p/boot/` se hace. No es un artefacto de la automatización: no los ve
+nadie. Dos de ellos deberían pintar contenido (Google Reviews e Instagram Feed). Está en la
+tabla de mejoras candidatas, fila 5, porque es conversación con el cliente.
+
+### Abierto
+- **`baseline/shots/` pesa 53 MB en git** y no vuelve a cambiar salvo recaptura. Es el precio
+  de tener la única prueba de paridad dentro del repo.
+- `check:visual` (Fase 10) **tiene que importar `scripts/lib/captura.mjs`**, no reimplementar el
+  congelado. Si lo reimplementa, la comparación deja de ser de lo mismo contra lo mismo.
+- La media sonda de foco no está probada y no se puede probar aquí. Si alguna vez se cambia de
+  motor de navegador, hay que volver a intentar romperla.
 
 ## Fase 2 (reabierta) — el CSS del estimador referenciaba 10 assets sin mapear   ✅ cerrada
 **Fecha:** 2026-08-27 · **Reabre:** la entrada de Fase 2 de más abajo, que NO se edita.
