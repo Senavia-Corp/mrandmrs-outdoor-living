@@ -11,6 +11,9 @@ reproducir el resultado, saber qué se midió y con qué comando, y ver qué que
 
 ## Estado
 
+> **Estado de entrega, con lo que hace falta de fuera: [`docs/ENTREGA.md`](docs/ENTREGA.md).**
+
+
 | Fase | Título | Estado | Cerrada |
 |---|---|---|---|
 | F0 | Cuentas, identidades y repo | ✅ cerrada | 2026-08-27 |
@@ -23,8 +26,8 @@ reproducir el resultado, saber qué se midió y con qué comando, y ver qué que
 | F7 | Animaciones e interacciones | ✅ cerrada | 2026-08-27 |
 | F8 | Formularios y terceros | 🟡 falta el correo del cliente | |
 | F9 | Paridad SEO | ✅ cerrada | 2026-08-27 |
-| F10 | Puertas de verificación | 🟡 8 de 10 escritas | |
-| F11 | Deploy y corte de dominio | ⬜ pendiente | |
+| F10 | Puertas de verificación | 🟡 9 de 10 escritas | |
+| F11 | Deploy y corte de dominio | ⬜ pendiente — decisiones del cliente | |
 
 Estados: ⬜ pendiente · 🟡 en curso · ✅ cerrada · 🔴 bloqueada · ↩️ reabierta
 
