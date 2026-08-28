@@ -69,3 +69,4 @@ public/videos/*
 _source/sanity-docs.json
 studio/dist/
 _source/sanity-assets.json
+.vercel

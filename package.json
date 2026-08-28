@@ -12,9 +12,11 @@
     "css": "node scripts/build-css.mjs",
     "shell": "node scripts/build-shell.mjs",
     "paginas": "node scripts/build-paginas.mjs",
+    "plantillas": "node scripts/build-plantillas.mjs",
     "estimador": "node scripts/build-estimador.mjs",
     "reveals": "node scripts/build-reveals.mjs",
     "youtube": "node scripts/extract-youtube.mjs",
+    "orden": "node scripts/extract-orden.mjs",
     "seo:ficheros": "node scripts/build-seo-ficheros.mjs",
     "schemas": "node scripts/gen-schemas.mjs",
     "import:dry": "node scripts/import.mjs --dry-run",
@@ -30,6 +32,7 @@
     "check:texto": "node scripts/check-texto.mjs",
     "check:ix2": "node scripts/check-ix2.mjs",
     "check:visual": "node scripts/check-visual.mjs",
+    "diag:visual": "node scripts/diag-visual.mjs",
     "sliders": "node scripts/build-sliders.mjs"
   },
   "dependencies": {

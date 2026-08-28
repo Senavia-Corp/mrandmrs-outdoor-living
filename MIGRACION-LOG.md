@@ -17,17 +17,18 @@ reproducir el resultado, saber qué se midió y con qué comando, y ver qué que
 | Fase | Título | Estado | Cerrada |
 |---|---|---|---|
 | F0 | Cuentas, identidades y repo | ✅ cerrada | 2026-08-27 |
-| F1 | Baseline congelado | ✅ cerrada | 2026-08-27 |
+| F1 | Baseline congelado | ↩️ reabierta, cerrada | 2026-08-28 |
 | F2 | Assets locales | ↩️ reabierta ×3, cerrada | 2026-08-27 |
 | F3 | Sanity: esquemas + import | ✅ cerrada | 2026-08-27 |
 | F4 | Cascarón Astro | ✅ cerrada | 2026-08-27 |
 | F5 | Páginas estáticas | ✅ cerrada | 2026-08-27 |
 | F6 | Páginas de colección | ✅ cerrada | 2026-08-27 |
-| F7 | Animaciones e interacciones | ✅ cerrada | 2026-08-27 |
-| F8 | Formularios y terceros | 🟡 falta el correo del cliente | |
+| F6b | Las de colección leen de Sanity | 🟡 1 familia de 7 | |
+| F7 | Animaciones e interacciones | ✅ cerrada (nada pendiente: revisado 28-ago) | 2026-08-27 |
+| F8 | Formularios y terceros | ↩️ reabierta 28-ago (se cableaban los de filtro); falta el correo del cliente | |
 | F9 | Paridad SEO | ✅ cerrada | 2026-08-27 |
 | F10 | Puertas de verificación | 🟡 9 de 10 escritas | |
-| F11 | Deploy y corte de dominio | ⬜ pendiente — decisiones del cliente | |
+| F11 | Deploy y corte de dominio | 🟡 preview LIVE 28-ago (protegida); DNS SIN tocar | |
 
 Estados: ⬜ pendiente · 🟡 en curso · ✅ cerrada · 🔴 bloqueada · ↩️ reabierta
 
@@ -131,8 +132,9 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 | 3 | `industry-solutions.html` | La URL del logo repite el id de sitio (`/68f185…/68f185…/`) y da **403**. | Es un defecto del HTML de Webflow. Se normaliza al descargar; la ruta simple da 200 y su sha256 coincide con el logo local. |
 | 4 | export de Webflow | 6 ficheros con extensión `.avif` cuyo contenido es **WebP**. | Defecto del exportador. Se renombran a su formato real; servirlos como AVIF rompería la subida a Sanity. |
 | 5 | Home, `/contact-us` y todas las páginas (widget flotante) | **Los 3 widgets de Elfsight no pintan nada.** Medido el 27-ago-2026 en dos navegadores distintos sobre el sitio vivo: los tres contenedores se quedan en **altura 0 y sin hijos** tras barrido completo y 6–8 s de espera. `platform.js` sí carga y la petición a `core.service.elfsight.com/p/boot/` sí se hace. Dos de ellos no son adorno: `ce5a93b9…` es **Google Reviews** y `fdd09947…` el **Instagram Feed** — una `<section class="social-media">` entera. El tercero es el click-to-call. | ↩️ **YA NO APLICA — decisión de Sebastian, 27-ago-2026: los tres se rehacen NATIVOS y en local.** Fuera Elfsight y su `platform.js`. Ver «Decisiones de alcance» abajo. |
-| 7 | Menú y pie de las 114 páginas | **342 enlaces a `/commercial-services/…` que dan 404.** Comprobado contra el vivo: esas 3 fichas no tienen página propia, pero el sitio las enlaza desde el menú y el pie de todas las páginas. | Rotos ya en el origen. Arreglarlos sería inventarse 3 páginas que no existen. Declarados uno a uno en `check:enlaces`. **Son 342 enlaces que llevan a ninguna parte y cada uno es un visitante perdido**: o se crean las 3 páginas o se quitan los enlaces. Conversación con el cliente. |
 | 6 | `/`, `/about`, `/request-estimated`, home | **Finsweet hace tres trabajos, no uno.** Además del filtrado de listas que apunta `PROMPT.md`: el **marquee de logos** (`fs-marquee-logoscms_*`, 14 logos) y el **slider del blog** (`fs-slider-blog_*`). | No es una mejora: es alcance que faltaba. Anotado aquí para que la Fase 7 no lo descubra tarde — `@finsweet/attributes@2` hay que reimplementarlo en tres frentes, no en uno. |
+| 7 | Menú y pie de las 114 páginas | **342 enlaces a `/commercial-services/…` que dan 404.** Comprobado contra el vivo: esas 3 fichas no tienen página propia, pero el sitio las enlaza desde el menú y el pie de todas las páginas. | Rotos ya en el origen. Arreglarlos sería inventarse 3 páginas que no existen. Declarados uno a uno en `check:enlaces`. **Son 342 enlaces que llevan a ninguna parte y cada uno es un visitante perdido**: o se crean las 3 páginas o se quitan los enlaces. Conversación con el cliente. |
+| 8 | `/gallery` y `/brochures` — formularios de filtro | **El sitio vivo pone un captcha de Turnstile en formularios que no envían nada.** Webflow lo inyecta en TODO `<form>`, así que Cloudflare cuelga su `<input type="hidden" name="cf-turnstile-response">` también en el filtro de servicios de `/gallery` y en el de categorías de `/brochures`. Medido: en `/brochures` ese nodo añade **16 px** a 479, porque el formulario es `display:grid; gap:16px` y a una columna cuenta como fila. | No se replica: montar un captcha donde nadie envía datos es una petición a Cloudflare por página y un widget que el visitante no entiende. En el sitio nuevo solo llevan Turnstile los DOS formularios de lead. El precio es que `/brochures` a 479 queda 16 px más corta que el original — la única diferencia de maqueta que se ha dejado a propósito, y se irá si el cliente quita el captcha del filtro en Webflow. |
 
 ---
 
@@ -192,6 +194,466 @@ Todos a `/commercial-services/…`. Comprobado contra el vivo: **404 también al
   tapa el Performance en ~92 aunque la página sea rápida. Fiarse del desktop y de la URL
   desplegada.
 - **`check:formularios`** — no se puede escribir hasta tener credenciales de correo.
+
+## Fase 11 (parcial) — el sitio está en Vercel, con el DNS intacto   🟡
+
+**28-ago-2026.** 🔗 <https://mrandmrs-outdoor-living-rajppfro3-senaviacorp.vercel.app>
+Panel: <https://vercel.com/senaviacorp/mrandmrs-outdoor-living> · `dpl_9RFx72oKaFo8WBoBkHqbvqf4F826`
+
+### No se pudo enlazar el repo, y eso decidió la vía
+
+Las dos rutas de API fallaron de forma consistente en dos endpoints distintos:
+
+```
+VERCEL_CREATE_PROJECT       -> "You need to add a Login Connection to your GitHub account first"
+VERCEL_CREATE_NEW_DEPLOYMENT-> "The provided GitHub repository can't be found"
+```
+
+Y a mitad de los intentos el token de GitHub del CLI **quedó revocado**
+(`gh auth status: The token in keyring is invalid`), señal de que la autorización se estaba
+rehaciendo. La *Login Connection* de Vercel es del USUARIO y es distinta de dar acceso al
+repositorio en GitHub; conceder lo segundo no arregla lo primero.
+
+**Lo que decidió la vía no fue la comodidad, fue el contenido:** el repo en GitHub está en
+`4a1bba7`, de ANTES del trabajo de hoy. Enlazarlo habría desplegado el estado viejo. El CLI sube
+`.vercel/output`, que es el build de hoy — 115 páginas y la función de render.
+
+En la máquina ya había sesión del CLI con la cuenta correcta (`vercel whoami` → `senavia-corp`),
+así que no hizo falta ni instalar globalmente (`npx vercel`) ni tocar ninguna credencial.
+
+### ⚠️ Vercel lo puso en PRODUCCIÓN, no en preview
+
+No se pasó `--prod`. Es el comportamiento de Vercel con el primer despliegue de un proyecto:
+
+> *"This is the project's first deployment, so it was assigned to production."*
+
+**El DNS no se ha tocado** —`mrandmrsoutdoorliving.com` sigue en Webflow— así que esto no afecta
+al sitio del cliente. Y lo que protegía de verdad aguantó: **`PUBLIC_ES_PRODUCCION` sin definir
+sigue emitiendo `noindex`**, comprobado sobre el despliegue real y no sobre el build local.
+
+### Verificado SOBRE EL DESPLIEGUE
+
+El proyecto trae la protección de despliegue activada por defecto (302 al login para quien no
+esté en el equipo), así que la verificación va por `vercel curl`, que autentica:
+
+| Comprobación | Resultado |
+|---|---|
+| `<meta name="robots">` | `noindex, nofollow` ✅ · sin canónica |
+| Referencias a `website-files.com` / Elfsight | **0** / **0** |
+| Páginas servidas desde Sanity | `/pool-builders/alachua-florida` 130 kB, h1 correcto |
+| **El arreglo de los `alt`** | Alachua→«Alachua», Boca Raton→«Boca Raton», Weston→«Weston» |
+| `/gallery`, `/services/…` | correctas |
+
+### Abierto
+
+- **La protección de despliegue sigue activada.** Para enseñárselo al cliente hay que quitarla;
+  no se toca por iniciativa propia porque hace el sitio públicamente alcanzable.
+- **El repo sigue sin enlazar**, así que no hay despliegue automático por push. Cuando la
+  *Login Connection* esté de verdad: `vercel git connect --scope senaviacorp`.
+- **El corte de DNS no se ha hecho ni se hará sin aprobación de Sebastian.**
+- El trabajo de hoy sigue **sin comprometer ni subir**: falta el veredicto de `check:visual`.
+
+## Fase 8 (reabierta) — el cableado de formularios cogía TODOS, no solo los dos de lead   ✅ cerrada
+
+**28-ago-2026.** `check:visual` llevaba días en rojo por 5 comparaciones de 460, y el porcentaje
+no señalaba nada: «98,71 %, diferencia repartida por toda la página». Se escribieron dos
+diagnósticos —`diag:visual` (en qué banda cae la diferencia) y `diag-geometria.mjs` (qué elemento
+del DOM se separa del vivo)— y el segundo lo dijo en una línea:
+
+```
+$ node scripts/diag-geometria.mjs /gallery 1920
+  solo en local (5): input#0, div.mm-llamar#0, …
+   y   339  div.gallery-filter-form.w-form#0    dTop 0   dAlto 2
+```
+
+### El defecto
+
+`build-paginas.mjs` hacía `for (const form of n.querySelectorAll('form[data-name]'))` y a **todos**
+les ponía `action="/api/formulario"` y `data-mm-envia="1"`. Pero no todo `<form>` de Webflow envía
+nada: `/gallery` y `/brochures` tienen formularios de **filtro** de Finsweet —un `<select>` y unos
+checkboxes que solo filtran la lista—. Consecuencias, en orden de gravedad:
+
+1. **`Formularios.astro` les montaba un widget de Turnstile** en páginas que no recogen ningún
+   dato. Un captcha donde no hay envío es ruido y una petición a Cloudflare por página.
+2. Si alguien los hubiera enviado, el endpoint responde **400 «formulario desconocido»**: esos
+   nombres no están en su tabla. O sea que el cableado llevaba a un error garantizado.
+3. El honeypot añadía un hijo al `<form>`, que es `display:grid`, y eso **desplazaba 2 px** las
+   181 fotos de `/gallery`.
+
+La lista de formularios de lead ya existía en `src/pages/api/formulario.ts`. Ahora el generador
+usa la misma: si un formulario no está ahí, no se toca.
+
+### Medido, contra el sitio VIVO
+
+```
+$ node scripts/diag-geometria.mjs /gallery 1920      # despues
+  645 elementos comunes · 0 con desvio
+  sin desvios de geometria: la diferencia es de PINTADO, no de maqueta
+
+$ npm run check:visual -- /gallery /brochures /country/…broward /country/…palm-beach
+  1920  /gallery    98.71 % -> 99.99 %
+  1440  /gallery    98.29 % -> 99.98 %
+   991  /brochures  ->  99.96 %      1920 -> 99.98 %      1440 -> 99.98 %
+```
+
+### Lo que resultó NO ser un defecto
+
+- **`/brochures` a 479.** El sitio vivo tiene **Turnstile inyectado por Cloudflare en todos los
+  formularios**, incluido el de filtro:
+  `<div><div><input type="hidden" name="cf-turnstile-response" …></div></div>`. Ese formulario es
+  `display:grid; gap:16px`, así que a una columna el nodo vacío añade **una fila de 16 px**; a
+  anchos mayores cae en la segunda columna y no suma nada. Mi build no lo tiene porque no pone
+  captcha donde no hay envío. Va a «Mejoras candidatas» (fila 8) y se **declara en la puerta,
+  pero solo a 479**: `check:visual` aprendió a aceptar `{ anchos: [479], motivo }` además de un
+  texto suelto. Declarar la ruta entera por una diferencia que solo existe a 479 habría apagado
+  la puerta también a 1920, 1440 y 991 — y ahí es donde vive casi todo el contenido. Una
+  declaración que tapa más de lo que explica es una puerta menos.
+- **La tercera imagen de `/country/…-broward`** parecía cambiada
+  (`florida-custom-pool-builders-modern-backyard.avif` en el vivo,
+  `south-florida-custom-pool-builders-modern-backyard-design.avif` en el mío). Es **el mismo
+  fichero renombrado por el deduplicado**: `sha256 b31af196…` y 115 158 bytes en los dos,
+  verificado bajando el original del CDN. El nombre local sale de la primera referencia que lo
+  usó, que estaba en `where-we-serves`.
+
+## Fase 1 (reabierta) — el carrusel de pasos autoavanzaba, y la captura no lo paraba   ✅ cerrada
+
+**28-ago-2026.** `check:texto` pasó de 115/115 a **rojo en 10 de las 14 fichas de `/services/`**,
+todas con el mismo síntoma: «faltan 2 líneas, sobran 2».
+
+### No era el sitio nuevo: era la captura
+
+Las fichas de servicio traen **código propio del sitio** —no IX2, no Finsweet— que autoavanza
+los pasos del proceso cada 5 s y esconde los inactivos:
+
+```
+$ python3 -c "…"   # sobre baseline/html/services_pool-remodeling-…html
+<div role="listitem" class="process-content-item w-dyn-item"
+     style="display: none; opacity: 0; transform: translateY(-10px); transition: opacity 0.3s, transform 0.3s;">
+```
+
+`innerText` **no ve lo que está en `display:none`**, así que el baseline guardó el texto del paso
+que tocara en ese instante y la puerta leyó el de otro: 2 líneas de menos y 2 de más, que son el
+`<h2>` y el `<p>` de un paso cambiados por los de otro. El script es EL MISMO en los dos lados
+—va horneado en la página, verificado con `grep -c goToStep` sobre lo desplegado—, así que el
+sitio nuevo se comporta igual que el viejo. Lo que fallaba era comparar dos fotos tomadas en
+momentos distintos de una animación.
+
+Es la **sexta fuente de no determinismo**, y la Fase 1 solo neutralizó cinco. Las otras cinco se
+encontraron leyendo el HTML antes de capturar; esta no se veía ahí, porque el marcado es idéntico
+y lo único que cambia es *cuándo* miras.
+
+### Se para con el mecanismo del propio sitio
+
+El script expone su propio freno —`section.addEventListener('mouseenter', stopAutoplay)`— así que
+no hace falta inventar nada ni tocar temporizadores:
+
+```js
+// scripts/lib/captura.mjs, paso 5a
+document.querySelector('.process-step-item').dispatchEvent(new MouseEvent('click', …));  // fija el paso 0
+await pag.waitForTimeout(900);                                                            // 300 salida + 420 entrada
+document.querySelector('.process-section').dispatchEvent(new MouseEvent('mouseenter', …)); // para el autoplay
+```
+
+El `mouseenter` va **después** del clic y no antes: pulsar un paso llama a `startAutoplay()` al
+final, así que pararlo primero no serviría de nada. Mismo patrón que el `pointerdown` del slider
+de Finsweet en la Fase 7.
+
+Como la receta vive en `scripts/lib/captura.mjs` y la importan **tanto la captura del baseline
+como todas las puertas de navegador**, arreglarla en un sitio la arregla en los dos. Esa fue la
+razón de compartirla desde el principio.
+
+### Recaptura
+
+El origen sigue vivo (`HTTP 200`), así que el baseline de las 14 fichas se rehízo con la receta
+corregida en vez de declarar las 10 páginas como «distintas a propósito»:
+
+```
+$ npm run baseline -- --ruta /services/ --forzar
+```
+
+### Y una SÉPTIMA fuente: el asentado esperaba un número, no un estado
+
+Los 900 ms tras volver arriba se eligieron porque el nav tarda 500. Pero volver arriba mete otra
+vez en pantalla los elementos de la primera pantalla, y sus revelados duran **1000 ms**: la
+captura los cogía a media transición. Y como **una opacidad a medias no es 0**, la comprobación
+de invisibles del paso 6 los daba por buenos.
+
+Síntoma: la MISMA página contra el MISMO baseline, dos corridas seguidas.
+
+```
+$ node scripts/diag-visual.mjs /country/custom-pool-builders-broward-county-fl 479
+  2772 pixeles distintos (98.67 % iguales)     <- primera
+   736 pixeles distintos (99.65 % iguales)     <- segunda, misma entrada
+```
+
+Un umbral no distingue eso de una regresión de verdad, y eso es exactamente lo que convierte una
+puerta en decoración.
+
+No se puede preguntar «¿ha acabado la animación?» sin saber qué motor la mueve: IX2 usa estilos
+en línea y `requestAnimationFrame`, así que `document.getAnimations()` no la ve. Se pregunta lo
+único válido para cualquier motor: **¿ha cambiado algo entre dos muestras?** Se muestrea
+`opacity` y `transform` de todo lo animable cada 250 ms y se sigue hasta que dos lecturas
+seguidas salen iguales, con techo de 3 s.
+
+```
+$ for i in 1 2 3; do node scripts/diag-visual.mjs /country/…broward 479; done
+  2772 pixeles distintos (98.67 % iguales)
+  2772 pixeles distintos (98.67 % iguales)
+  2772 pixeles distintos (98.67 % iguales)
+```
+
+Estable. Y como ahora el número no se mueve, **el baseline entero se rehizo con la receta
+corregida**: el que había se tomó a media animación, y comparar dos recetas distintas es
+justamente lo que el diseño de receta compartida existía para impedir.
+
+### Y un defecto de robustez que costó 40 minutos
+
+La recaptura completa **murió en la ruta 44 de 115, del segundo de cuatro anchos**:
+
+```
+   43/115 /pool-builders/gainesville-florida    6580px  137k 11.6s
+page.evaluate: Execution context was destroyed, most likely because of a navigation.
+    at asentar (scripts/lib/captura.mjs:68)
+```
+
+`/pool-builders/gulf-stream-florida` navegó sola después de que `goto` diera la página por
+cargada, y eso destruyó el contexto en medio de la sonda de foco. La excepción subió sin que
+nadie la cogiera y se llevó por delante la corrida entera: **40 minutos tirados que además no
+decían nada de las otras 416 capturas**.
+
+Que una página se porte raro es normal; que eso mate el proceso es un defecto del script. Ahora
+el asentado va en `try/catch`: se reintenta **una vez** recargando, y si vuelve a fallar esa
+captura se anota como error y **la corrida sigue**. Quien tiene que ponerse en rojo por una
+captura que falta es `check:baseline`, que exige 460 de 460 — no el proceso reventando.
+
+Y para reanudar sin repetir lo bueno: la captura ya salta las rutas que tienen JPG cuando no se
+le pasa `--forzar`, así que basta con borrar **solo** las que quedaron sin rehacer. Se rehicieron
+304 en vez de 460.
+
+**Y el mismo defecto estaba en `check:visual`**, que no lo tenía arreglado: con la máquina
+saturada, `page.screenshot: Timeout 120000ms exceeded` mató la comparación **4 de 460**. Ahora
+cada ruta va en `try/catch`: la que no se pueda medir se cuenta **en rojo con su motivo** y la
+corrida sigue. No se cuela nada —la puerta acaba en rojo igual— pero se entera uno de las otras
+456 en vez de quedarse sin nada.
+
+Lección de las dos: **una puerta que revienta no es estricta, es frágil.** Lo estricto es contar
+el fallo y seguir midiendo.
+
+### Abierto
+
+- La ruta `/` dio **`medicion invalida {"foco":true,"oculto":false,"fotogramas":4}`** en una de
+  las corridas: la sonda pide ≥8 fotogramas en 400 ms y vio 4. Es la sonda haciendo su trabajo
+  —se niega a medir en vez de dar un número malo— pero indica que la máquina iba cargada. Si se
+  repite con la ventana en primer plano y sin nada más corriendo, entonces sí es un defecto.
+
+## Fase 6b — `pool-builders` deja de ser 53 ficheros y pasa a leer de Sanity   🟡 1 de 7 familias
+
+**28-ago-2026.** Hasta hoy los 511 documentos de Sanity estaban importados y verificados, y no
+los leía nadie: las 101 fichas de colección eran 101 `.astro` con el HTML horneado. Un CMS que
+no alimenta ninguna página no es un CMS, es una copia de seguridad cara.
+
+### La plantilla no se escribe: se deriva por diff
+
+Escribir a mano una plantilla de 800 tokens de marcado de Webflow es la vía rápida a un sitio
+«casi igual», y nadie sabría decir qué se perdió. `scripts/build-plantillas.mjs` lo hace al
+revés: tokeniza las N páginas ya generadas de una familia y **lo que coincide en las N es
+literal; lo que varía es un hueco**. Después cada hueco busca dueño: un campo de Sanity cuyo
+valor, escapado igual que lo escapa el sitio, sea EXACTAMENTE el del hueco **en las N**. Un
+campo que casa en 52 de 53 no vale — eso es una coincidencia, no una correspondencia.
+
+Los huecos no van solo en nodos de texto. De `<img src="…" loading="lazy" data-w-id="…"
+alt="…" class="image">` **solo cambia el `alt`**, así que se trocea **atributo a atributo**;
+meter la etiqueta entera como hueco habría obligado a guardar en el CMS el `data-w-id` de
+Webflow y las clases de maquetación.
+
+Y el valor tampoco tiene por qué ocupar el token entero. El emparejado no pregunta «¿es el token
+igual al campo?» sino «¿parten las N cadenas por ese valor en los MISMOS trozos?». Con eso caben
+en la misma regla el caso exacto, el valor con un `\n` detrás, el valor incrustado en un JSON, y
+el valor que sale **dos veces** en el mismo token —la URL de una imagen aparece en el `src` y otra
+vez en el JSON del lightbox—.
+
+**Y se elige el candidato más largo, y antes el que casa entero.** Sin esa regla la partición
+encontraba campos cortos que «también encajan»: el párrafo «Homeowners trust us for custom pools
+& outdoor living in **Alachua**. Read our reviews.» lo explicaba `name` = «Alachua» con todo lo
+demás de literal, en vez de `paragraphReviews`. Reproducía la página byte a byte **y aun así era
+falso**: editar ese párrafo en el CMS no habría cambiado nada. Byte-exacto no implica bien
+mapeado, y la autocomprobación sola no distingue los dos casos.
+
+### La autocomprobación, que es la parte que importa
+
+Antes de borrar una sola página, la plantilla se renderiza para las N y se compara **byte a
+byte** con la página que ya existía. `check:texto` lo habría cazado después, pero para entonces
+los originales ya estarían borrados — y una red que solo avisa cuando ya no puedes volver atrás
+no es una red.
+
+```
+$ node scripts/build-plantillas.mjs --dry-run
+
+  pool-builders     53 paginas · OK 53/53 identicas byte a byte · 13 huecos → h1Title, h2Title,
+                    intro, imagenIntro1.alt, imagenIntro2.alt, imagenIntro3.alt, headingIntro,
+                    paragraphIntro, paragraphReviews, paragraphFeatures, paragraphPortfolio,
+                    paragraphBlog
+  services          14 paginas · NO uniforme (835..851 tokens): listas de CMS de largo variable
+  project           10 paginas · NO uniforme (125..133 tokens): listas de CMS de largo variable
+  blogs             10 paginas · NO uniforme (654..1864 tokens): listas de CMS de largo variable
+  country            9 paginas · NO uniforme (947..1075 tokens): listas de CMS de largo variable
+  articles           3 paginas · NO uniforme (83..106 tokens): listas de CMS de largo variable
+  where-we-serves    2 paginas · NO uniforme (1293..1333 tokens): listas de CMS de largo variable
+```
+
+### 🔴 Lo que destapó: en Sanity, 52 de 53 ciudades decían «Alachua»
+
+La primera corrida dejó 3 huecos sin dueño — los `alt` de las tres imágenes de intro. El motivo
+no era el código:
+
+```
+   attr alt varia → campo: NINGUNO
+      imagenIntro1.alt: fallan 52/53 · ej archer-florida
+         sanity: "…manicured lawn and pergola lounge in Alachua, FL."
+         html  : "…manicured lawn and pergola lounge in Archer, FL."
+```
+
+**Causa.** `import.mjs` sacaba el `alt` de `assetLocal()`, que lo lee del **manifiesto**, y el
+manifiesto está indexado **por contenido**: las 53 ciudades comparten el mismo fichero de imagen
+—mismo sha256, deduplicado en la Fase 2— así que las 53 heredaban el alt de la primera ficha
+que lo usó. El CSV traía el alt por fila (`Metadata Imagen Intro 1`) y `schema-map.mjs` ya sabía
+qué columna va con qué imagen (`c.alt`); solo faltaba usarla.
+
+**Por qué ninguna puerta lo vio.** Las páginas eran estáticas y llevaban el alt bueno horneado
+desde el HTML vivo. El defecto solo existía en Sanity, y Sanity no pintaba nada. Habría salido
+a producción el día que el CMS pasara a ser la fuente: 52 páginas con el `alt` de otra ciudad
+—accesibilidad y SEO— sin que ninguna comparación contra el baseline se moviera un píxel.
+
+```
+$ npm run import:dry && npm run import
+  con alt de «Alachua» en imagenIntro1: 1 (antes: 53)
+   alachua-florida          …icured lawn and pergola lounge in Alachua, FL.
+   archer-florida           …nicured lawn and pergola lounge in Archer, FL.
+   atlantis-florida         …cured lawn and pergola lounge in Atlantis, FL.
+  ✅ import completo   (519 documentos)
+```
+
+Afecta a **todas** las familias con imágenes compartidas, no solo a `pool-builders`; por eso se
+arregló el importador y se relanzó el import entero en vez de parchear 52 documentos.
+
+### Defecto propio, corregido
+
+**`PID is not defined` al construir.** Astro extrae `getStaticPaths` a su propio módulo para el
+prerender, y allí no existe ninguna constante del módulo de la página. Las constantes del
+proyecto y el dataset van **dentro** de la función. No es un error de escritura: compila y
+revienta en el build.
+
+### Qué queda dentro y qué fuera del CMS
+
+`SEO.meta` y `SEO.jsonLd` **no** salen de Sanity: son el `<head>` medido del sitio vivo y
+`check:seo` los compara contra el baseline. Regenerarlos desde el CMS sería producir un JSON-LD
+distinto del que hay hoy, que es justo lo que el contrato prohíbe. Viven en
+`src/data/seo-pool-builders.json`, derivado. El `titulo` y la `descripcion` sí salen de Sanity
+(`seo.title` / `seo.description`), porque se demostró que reproducen el byte exacto.
+
+El build **depende ahora de la red**: si Sanity no responde, `getStaticPaths` lanza y el build
+para. Es deliberado — una colección que desaparece en silencio son 53 URLs que devuelven 404
+con el despliegue en verde.
+
+### Segunda pasada: los campos que valen lo mismo en las 53
+
+El diff, por definición, solo abre hueco donde algo **cambia**. Pero `headingReviews` vale «What
+Our Clients Say» en las 53 ciudades, así que quedaba de literal: el campo existía en Sanity, se
+veía en el estudio, y **editarlo no habría cambiado nada en la página**. Un CMS con campos que no
+hacen nada es peor que no tenerlos, porque nadie se entera hasta que alguien edita uno y se
+pregunta por qué no pasa nada.
+
+Una segunda pasada los convierte en hueco, con dos condiciones para no inventarse
+correspondencias: el valor tiene que aparecer **exactamente una vez** en toda la plantilla y
+medir **8 caracteres o más** —con menos, una palabra corriente casaría en cualquier trozo de
+marcado—. Pasan por la misma autocomprobación byte a byte que el resto.
+
+Resultado: **13 huecos → 18**. Entran `headingReviews`, `headingPortfolio`, `headingBlog`,
+`headingFeature` y `heading3DRendering`.
+
+### Medido
+
+| Métrica | Antes | Ahora |
+|---|---|---|
+| Ficheros en `src/pages/pool-builders/` | 53 | **1** |
+| Campos del CMS que de verdad pintan | 0 | **18** |
+| Rutas construidas de esa familia | 53 | **53** |
+| Reproducción byte a byte de las 53 | — | **53/53** |
+| Documentos que alimentan páginas | 0 de 511 | **53** |
+| `check:rutas` | verde | **verde**, 115 páginas, 0 de más |
+| `check:enlaces` | verde | **verde**, 729/729 en git |
+
+### Abierto
+
+- **6 familias de 7 siguen estáticas** (48 páginas), y ya se sabe exactamente qué le falta a
+  cada una. El generador aprendió a sacar las listas del esqueleto —cada RUN de `w-dyn-item`
+  hermanos se sustituye por UN marcador antes de comparar, porque el número de items es justo
+  lo que cambia— y con eso **`services`, `project`, `country` y `where-we-serves` alinean
+  exactas**. Lo que queda son huecos concretos, no un problema de forma:
+
+  | Familia | Pág. | Huecos sin dueño | Qué falta |
+  |---|---|---|---|
+  | `services` | 14 | 19 | rutas locales de imagen dentro de listas anidadas |
+  | `country` | 9 | 3 | ídem |
+  | `where-we-serves` | 2 | 5 | ídem |
+  | `project` | 10 | 2 | ver abajo |
+  | `blogs` | 10 | — | el cuerpo es texto enriquecido (529..1739 tokens, estructura distinta por ficha) |
+  | `articles` | 3 | — | ídem |
+
+  **Y el que decide el resto: el ORDEN de las listas es manual y no está en los datos.** La
+  lista de ciudades de una ficha de condado es una **referencia inversa** —las ciudades apuntan
+  al condado, no al revés— y eso se resuelve con `references(^._id)`; los recuentos cuadran
+  exactos en las 9 fichas (8/16/1/2/1/4/3/17/1, idénticos a `count(*[_type=="poolBuilder" &&
+  references(^._id)])`). Pero el ORDEN en que se pintan no es `name`, ni `_createdAt`, ni `_id`,
+  ni el de las filas del CSV: en Broward los índices del CSV salen `52, 50, 44, 38, 40, 39, 37,
+  29…`, con inversiones. Es el orden **manual de la colección de Webflow**, que el export no
+  conserva y que en Sanity no existe. Reproducirlo exige extraerlo del HTML vivo y guardarlo
+  como campo de rango — y hay que hacerlo **antes** de que caduque el dominio.
+
+  ✅ **Rescatado el mismo día**, sin esperar a cablearlo: `npm run orden`
+  (`scripts/extract-orden.mjs`) lee `baseline/html/`, saca de cada lista la secuencia de slugs y
+  la funde en un orden global por colección con un topológico. Sale
+  `_source/orden-listas.json`, **397 KB versionados**:
+
+  | Colección | Listas | Elementos | Orden global |
+  |---|---|---|---|
+  | `poolBuilder` | 119 | 53 | **53, sin contradicciones** ✅ |
+  | `county` | 4 | 9 | 9 ✅ |
+  | `serviceRegion` | 17 | 2 | 2 ✅ |
+  | `service` | 116 | 14 | **no existe** 🔴 las páginas se contradicen |
+  | `blogPost` | 74 | 10 | **no existe** 🔴 |
+  | `project` | 67 | 10 | **no existe** 🔴 |
+
+  Que tres colecciones no tengan orden global **no es un fallo del rescate, es el dato**: sus
+  listas de «relacionados» van en órdenes distintos según la ficha. Por eso el fichero guarda
+  **las secuencias crudas además de la fusión** — quedarse solo con la fusión habría perdido
+  justo el dato de las tres familias que más lo necesitan. Tras el corte de dominio ese fichero
+  es la única copia que queda.
+
+  Y la fusión no se da por buena porque salga: se comprueba que **reproduce todas las listas
+  observadas**, que es lo único que la valida.
+
+```
+  serviceRegion   17 listas · el orden global las explica TODAS: True
+  poolBuilder    119 listas · el orden global las explica TODAS: True
+  county           4 listas · el orden global las explica TODAS: True
+```
+
+  Dos obstáculos reales, medidos:
+  1. **`project`**: un nodo de texto acaba con `\n` en nueve fichas y **sin él en la décima**.
+     Ese byte no sale de ningún campo del CMS, así que la plantilla no lo puede reproducir.
+  2. **El `<script type="text/x-wf-template">` de Webflow** lleva el HTML del primer item de la
+     lista **URL-codificado**. Se sabe reconstruir —es la unidad de repetición codificada— pero
+     sería la única pieza derivada de otra derivada, y hoy no se hace.
+  3. **`blogs` y `articles`** exigen renderizar Portable Text, y un Portable Text renderizado
+     **no se puede demostrar idéntico byte a byte** al HTML que produjo Webflow. Esa familia no
+     entra hasta que haya otra forma de probarlo.
+
+  **No se han tocado**: cada familia entra entera y con las N fichas reproducidas byte a byte,
+  o no entra.
+- Los **428 MB de imágenes** siguen en git. Sacarlos exige que las 7 familias lean de Sanity.
+- El `alt` de las otras familias está corregido en Sanity pero **nadie lo lee todavía**, así que
+  no hay puerta que lo defienda hasta que se cableen.
 
 ## Fases 7 (2.ª parte) y 8 — componentes y formularios   🟡
 **Fecha:** 2026-08-27

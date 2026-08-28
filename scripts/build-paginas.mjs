@@ -174,6 +174,25 @@ for (const [ruta] of RUTAS) {
     // webflow.com/api/v1/form-. Se reapuntan al endpoint propio y se les anaden las dos capas
     // que van en el cliente. El comportamiento vive en src/components/Formularios.astro.
     for (const form of n.querySelectorAll('form[data-name]')) {
+      /**
+       * SOLO LOS DOS FORMULARIOS DE LEAD. No todo `<form>` de Webflow envía nada.
+       *
+       * `/gallery` tiene un `form[data-name="service-filter"]` que es el FILTRO de Finsweet: un
+       * `<select>` que no se envía a ninguna parte. Reapuntarlo a `/api/formulario` le colgaba
+       * el honeypot y hacía que `Formularios.astro` le montara un widget de Turnstile encima —
+       * en una página que no recoge datos de nadie.
+       *
+       * Medido con `diag-geometria.mjs` contra el vivo: `div.gallery-filter-form` salía **2 px
+       * más alta** y eso desplazaba las 181 fotos de la galería. `check:visual` lo veía como
+       * «98,7 %, diferencia repartida por toda la página», que es justo lo que parece medio
+       * píxel de desfase al reescalar a 1/4, y no señalaba nada.
+       *
+       * La lista es la MISMA que conoce `src/pages/api/formulario.ts`: si un formulario no está
+       * ahí, el endpoint lo rechaza con «formulario desconocido», así que cablearlo era además
+       * mandar al visitante a un 400.
+       */
+      const LEADS = new Set(['Contact Page Form', 'Request Quote Form']);
+      if (!LEADS.has(form.getAttribute('data-name'))) continue;
       form.setAttribute('method', 'post');
       form.setAttribute('action', '/api/formulario');
       form.dataset.mmEnvia = '1';

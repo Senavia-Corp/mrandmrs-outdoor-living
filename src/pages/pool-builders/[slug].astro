@@ -1,0 +1,69 @@
+---
+// DERIVADO - no editar a mano. Lo genera scripts/build-plantillas.mjs por diff de las
+// 53 paginas que habia antes; la autocomprobacion las reprodujo 53/53 byte a byte.
+// Regenerar: npm run plantillas
+import Base from '../../layouts/Base.astro';
+import ResenasGoogle from '../../components/widgets/ResenasGoogle.astro';
+import FeedInstagram from '../../components/widgets/FeedInstagram.astro';
+import SEO_RUTAS from '../../data/seo-pool-builders.json';
+import LIT from '../../data/plantilla-pool-builders.json';
+
+const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+/** Aplana el documento a rutas con puntos, igual que hizo el generador al derivar la plantilla. */
+function aplanar(o, pref = '', prof = 0, salida = {}) {
+  for (const [k, v] of Object.entries(o ?? {})) {
+    if (k.startsWith('_')) continue;
+    const ruta = pref ? `${pref}.${k}` : k;
+    if (typeof v === 'string') salida[ruta] = v;
+    else if (v && typeof v === 'object' && !Array.isArray(v) && prof < 3) aplanar(v, ruta, prof + 1, salida);
+  }
+  return salida;
+}
+
+export async function getStaticPaths() {
+  // El proyecto y el dataset van AQUI DENTRO, no en una constante del modulo: Astro extrae
+  // `getStaticPaths` a su propio modulo para el prerender y alli no existe nada de fuera.
+  // El sintoma era `PID is not defined` al construir, no al escribir el codigo.
+  const PID = import.meta.env.PUBLIC_SANITY_PROJECT_ID ?? "m273z6jc";
+  const DS = import.meta.env.PUBLIC_SANITY_DATASET ?? "production";
+  // Las listas se piden con su proyeccion: las de REFERENCIAS con `->` para traer el documento
+  // destino, porque el marcado pinta su nombre y su slug, no el identificador.
+  const q = '*[_type=="poolBuilder" && defined(slug.current)]{..., "slug": slug.current}';
+  const r = await fetch(`https://${PID}.api.sanity.io/v2024-01-01/data/query/${DS}?query=${encodeURIComponent(q)}`);
+  const { result, error } = await r.json();
+  // Sin datos no se construye media coleccion: se para el build. 53 URLs que
+  // desaparecen en silencio son 53 404 con el despliegue en verde.
+  if (error || !result?.length) throw new Error('Sanity no devolvio poolBuilder: ' + JSON.stringify(error ?? 'vacio'));
+  return result.map((doc) => ({ params: { slug: doc.slug }, props: { doc } }));
+}
+
+const { slug } = Astro.params;
+const d = aplanar(Astro.props.doc);
+const CAMPOS = [[null,{"c":"h1Title","tx":"","p":["",""]},null,{"c":"h2Title","tx":"","p":["",""]},null,{"c":"intro","tx":"","p":["",""]},null,{"c":"imagenIntro1.alt","tx":"","p":["<img src=\"/images/pool-builders/alachua-florida/custom-pool-pergola-outdoor-living-contractors-fl-1-.webp\" loading=\"lazy\" data-w-id=\"f72979fc-9196-9930-356a-1756486557d5\" alt=\"","\" class=\"image\">"]},null,{"c":"imagenIntro2.alt","tx":"","p":["<img src=\"/images/pool-builders/alachua-florida/luxury-outdoor-kitchen-pool-backyard-design-florida-1-.webp\" loading=\"lazy\" data-w-id=\"53f4d2e0-9a7a-0e16-e20a-ab8f9e03c935\" alt=\"","\" class=\"image\">"]},null,{"c":"imagenIntro3.alt","tx":"","p":["<img src=\"/images/pool-builders/alachua-florida/luxury-pool-builders-outdoor-living-florida-1-.webp\" loading=\"lazy\" data-w-id=\"8bad508e-9f02-2bc9-bf6d-6ac47990da3b\" alt=\"","\" class=\"image\">"]},null,{"c":"headingIntro","tx":"","p":["",""]},null,{"c":"paragraphIntro","tx":"","p":["",""]},null,{"c":"heading3DRendering","tx":"","p":["",""]},null,{"c":"paragraphReviews","tx":"","p":["",""]},null,{"c":"headingFeature","tx":"","p":["",""]},null,{"c":"paragraphFeatures","tx":"","p":["",""]},null,{"c":"headingPortfolio","tx":"","p":["",""]},null,{"c":"paragraphPortfolio","tx":"","p":["",""]},null,{"c":"headingReviews","tx":"","p":["",""]},null,{"c":"paragraphReviews","tx":"","p":["",""]},null],[null,{"c":"headingBlog","tx":"","p":["",""]},null,{"c":"paragraphBlog","tx":"","p":["",""]},null],[null]];
+
+
+const TX = { '': esc, url: encodeURIComponent };
+const valor = (h, o) => {
+  const v = o[h.c];
+  // Un campo vacio deja un hueco mudo en la pagina. Mejor que reviente el build.
+  if (typeof v !== 'string') throw new Error(`${slug}: falta el campo ${h.c}`);
+  return h.p.join(TX[h.tx](v));
+};
+
+
+const B = LIT.map((tr, b) => tr.map((x, i) => {
+  if (x !== null) return x;
+  const h = CAMPOS[b][i];
+  return valor(h, d);
+}).join(''));
+
+const { seo: SEO, ldCrudo: LD_CRUDO } = SEO_RUTAS[slug];
+---
+<Base titulo={d["seo.title"]} descripcion={d["seo.description"]} ruta={`/pool-builders/${slug}`} seo={SEO} jsonLdCrudo={LD_CRUDO}>
+  <Fragment set:html={B[0]} />
+  <ResenasGoogle />
+  <Fragment set:html={B[1]} />
+  <FeedInstagram />
+  <Fragment set:html={B[2]} />
+</Base>

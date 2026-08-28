@@ -106,7 +106,7 @@ for (const col of ORDEN) {
             const v = (fila[columna] || '').trim();
             if (!v) continue;
             algo = true;
-            if (k === 'image') { const a = assetLocal(v); if (a) { usados.add(a.publico); o.image = { _sanityAsset: a.ruta, alt: a.alt }; } }
+            if (k === 'image') { const a = assetLocal(v); if (a) { usados.add(a.publico); o.image = { _sanityAsset: a.ruta, _publico: a.publico, alt: a.alt }; } }
             else o[k] = v;
           }
           return algo ? o : null;
@@ -133,14 +133,31 @@ for (const col of ORDEN) {
           break;
         }
         case 'image': case 'file': {
+          /**
+           * EL `alt` ES DE LA FILA, NO DEL ACTIVO. Esto costó 52 páginas.
+           *
+           * `assetLocal()` devuelve el alt del MANIFIESTO, que está indexado por contenido: las
+           * 53 ciudades de `pool-builders` comparten el mismo fichero de imagen —mismo sha256,
+           * deduplicado en la Fase 2—, así que las 53 heredaban el alt de la primera. Resultado
+           * medido: en Sanity, 52 ciudades decían «…in Alachua, FL.» mientras la página viva
+           * decía su propia ciudad.
+           *
+           * No lo cazó ninguna puerta porque las páginas eran estáticas y llevaban el alt bueno
+           * horneado; el fallo solo aparecía al hacer que el CMS fuera la fuente. Lo cazó la
+           * autocomprobación byte a byte de `build-plantillas.mjs`.
+           *
+           * El CSV trae el alt por fila (`Metadata Imagen Intro 1`) y `schema-map.mjs` ya sabía
+           * qué columna va con qué imagen (`c.alt`). Solo faltaba usarla.
+           */
+          const altFila = c.alt ? String(fila[c.alt] ?? '').trim() : '';
           const urls = crudo.split(';').map(s => s.trim()).filter(Boolean);
           const items = urls.map((u, i) => {
             const a = assetLocal(u);
             if (!a) { problemas.push(`asset ausente    ${m.tipo}/${fila['Slug']}.${c.nombre} -> ${u.slice(0, 80)}`); return null; }
             usados.add(a.publico);
-            return { _sanityAsset: a.ruta, alt: a.alt, _key: hash(`${semilla}:${c.nombre}:${i}`) };
+            return { _sanityAsset: a.ruta, _publico: a.publico, alt: altFila || a.alt, _key: hash(`${semilla}:${c.nombre}:${i}`) };
           }).filter(Boolean);
-          if (items.length) doc[c.nombre] = c.multi ? items : { _sanityAsset: items[0]._sanityAsset, alt: items[0].alt };
+          if (items.length) doc[c.nombre] = c.multi ? items : { _sanityAsset: items[0]._sanityAsset, _publico: items[0]._publico, alt: items[0].alt };
           break;
         }
         default: doc[c.nombre] = crudo;
@@ -229,12 +246,26 @@ async function subirAsset(ruta) {
   throw new Error(`agotados los reintentos: ${nombre}`);
 }
 
+/**
+ * Puente activo de Sanity → fichero local, escrito en `src/data/assets-locales.json`.
+ *
+ * Las plantillas que leen del CMS necesitan pintar `src="/images/site/foo.avif"`, la MISMA ruta
+ * que hoy tienen horneada las páginas; con lo que hay en Sanity solo se llega al CDN de Sanity,
+ * que es otra URL y rompería la comparación byte a byte contra el baseline.
+ *
+ * El puente se emite AQUÍ y no se adivina después por nombre de fichero: dos activos distintos
+ * pueden llamarse igual en carpetas distintas, y este es el único punto del proceso donde se
+ * conocen a la vez el `_id` de Sanity y la ruta pública que le tocó al deduplicar por sha256.
+ */
+const assetsLocales = {};
+
 // sustituye los marcadores _sanityAsset por la referencia real
 function resolver(v) {
   if (Array.isArray(v)) return v.map(resolver);
   if (v && typeof v === 'object') {
     if (v._sanityAsset) {
       const a = cache[crypto.createHash('sha256').update(fs.readFileSync(v._sanityAsset)).digest('hex')];
+      if (v._publico) assetsLocales[a._id] = v._publico;
       const base = { _type: a.clase === 'files' ? 'file' : 'image', asset: { _type: 'reference', _ref: a._id } };
       if (v.alt) base.alt = v.alt;
       if (v._key) base._key = v._key;
@@ -266,6 +297,10 @@ const listos = docs.map(d => {
   const { _draft, ...resto } = resolver(d);
   return _draft ? { ...resto, _id: `drafts.${resto._id}` } : resto;
 });
+fs.mkdirSync(path.join(ROOT, 'src/data'), { recursive: true });
+fs.writeFileSync(path.join(ROOT, 'src/data/assets-locales.json'), JSON.stringify(assetsLocales, null, 1));
+console.log(`puente Sanity -> fichero local: ${Object.keys(assetsLocales).length} activos en src/data/assets-locales.json`);
+
 console.log(`\nescribiendo ${listos.length} documentos…`);
 for (let i = 0; i < listos.length; i += 50) {
   const lote = listos.slice(i, i + 50);

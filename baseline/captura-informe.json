@@ -1,5 +1,5 @@
 {
- "fecha": "2026-08-28T08:13:35.254Z",
+ "fecha": "2026-08-28T16:12:46.786Z",
  "base": "https://mrandmrsoutdoorliving.com",
  "escala": 0.25,
  "calidad": 82,
@@ -16,7 +16,7 @@
  "paginas": {
   "/about": {
    "slug": "about",
-   "sha256Html": "25588a65321e2ae0c8473ea3f5ca99b8a0d0b46732fd1f99c3ddd8029b53e8d3",
+   "sha256Html": "8699b09caea0a358ed3ce0b233b457b630a8959e4fb23bacc55d82b78ace1cee",
    "sha256Texto": "69c923047109cd628fe167bfe21e036561025f82ef4de2e049b5b0689db0768b",
    "alto": {
     "479": 9680,
@@ -27,7 +27,7 @@
   },
   "/": {
    "slug": "index",
-   "sha256Html": "cc721571b268664fbd2ad9ef62f6fc3da8ee251aa3beb1bae5c04fa44af23ffa",
+   "sha256Html": "f6be7362b087eb3a89e6b2935cec19a9ce2e270a348b6a4640be276c395dd89e",
    "sha256Texto": "5bee26d6fe57254d08e9751748fb2842cd1e23226a1f097a9b66cf8f7d0e19fc",
    "alto": {
     "479": 8159,
@@ -38,7 +38,7 @@
   },
   "/blogs-tips": {
    "slug": "blogs-tips",
-   "sha256Html": "a8a0c4cf6b960536236b5768600406d1ac1188f47a8d980cc1460f1b932a7e2e",
+   "sha256Html": "d4f6319253f3fc740c00a1084def5669fffe4dfb7aa8c1f082c47256bff35b76",
    "sha256Texto": "c4625f0a31bbb8ce6ba3549e42a5f54875a26d92fbba7eab7ed76d284498f1f6",
    "alto": {
     "479": 6938,
@@ -49,7 +49,7 @@
   },
   "/brochures": {
    "slug": "brochures",
-   "sha256Html": "12bdf42bf78e2b1104311e9c0614db2aa362b44619e0fecba7e205b3ed4ceb81",
+   "sha256Html": "571182acb59fcb5625ce782a2cd7fa82fa0224ab975d66fa0ef9976a87c77ad2",
    "sha256Texto": "6a3856129c542dc7b880792da21e59daed81445040dbbd1c989493ff77758af1",
    "alto": {
     "479": 22036,
@@ -60,7 +60,7 @@
   },
   "/contact-us": {
    "slug": "contact-us",
-   "sha256Html": "b95fa7ce87f9dc38a0e3f9a36918f17f4c209aeb761a5b98802b164a68604f02",
+   "sha256Html": "b17f790ca91758d2301a6802ec30928240b126f9201ca5f060833112b1fe555c",
    "sha256Texto": "67e7eece9d1f3737d6c1c87564e3b457f9c4d9a7e893367f1f0343a46aaaf2b1",
    "alto": {
     "479": 4866,
@@ -71,7 +71,7 @@
   },
   "/gallery": {
    "slug": "gallery",
-   "sha256Html": "9f05d34cae77fe3b0fb8ef72a8b7e0905a739740226a93e1bffb84e8df031ad1",
+   "sha256Html": "f12dc8ec42fa491d71436842d89058bd9419b05b2bd2a96ea685f14849ce4bec",
    "sha256Texto": "76c148d4a372dfbea13c3581a833a0249991a60cd315d9d61757398042048c73",
    "alto": {
     "479": 39473,
@@ -82,7 +82,7 @@
   },
   "/industry-solutions": {
    "slug": "industry-solutions",
-   "sha256Html": "0de5a000b7ae20da78dcb6a2e14b9a1f2b9f298752d63520338c0d3e0e99ee00",
+   "sha256Html": "a1467e4b154bef8be99b4e506a32ed3ad842c73559f479871b00d4d5e580e5bc",
    "sha256Texto": "67231e91ddcc8abe279ffd191649f06c1f425592f609ab759379c13388712e3f",
    "alto": {
     "479": 5999,
@@ -93,7 +93,7 @@
   },
   "/pool-cost-estimator": {
    "slug": "pool-cost-estimator",
-   "sha256Html": "d441261cf66b3b715d0aef62bc6b534a497b7648a8a321777b2ae1ca6322e64e",
+   "sha256Html": "6ec7f6779d1b22b313ed8a7ee95ecb975c138f88502ae9d7d20f1461c5881910",
    "sha256Texto": "8f645c65da017db6c05b0ae756fda8c4f1de64dc7b2e91e2d9b92d4aed742784",
    "alto": {
     "479": 3279,
@@ -104,7 +104,7 @@
   },
   "/projects": {
    "slug": "projects",
-   "sha256Html": "40ed3ecd56f83efe6079285084cd00218acea5186124a64be47344d6aa3b5b32",
+   "sha256Html": "7603cf4420fbb2eff5b657527990fe4012a729a384b36c62b7a42ae4beff34bc",
    "sha256Texto": "f9d546c03e86bc2eecf310220402f2501fc719a8a110e9b14bca55bb32c61705",
    "alto": {
     "479": 7450,
@@ -115,7 +115,7 @@
   },
   "/request-estimated": {
    "slug": "request-estimated",
-   "sha256Html": "854c18def27a71ab26e1cf8e93ff7176adf2a9118a7dcff466b3f3e062144d18",
+   "sha256Html": "88652f06b135ac872ad54df798e1fbb9c05ce3ddd06cf51a994fa856d2c6bfc2",
    "sha256Texto": "9384105340d575358d4ce235730ae2803c89b03f2bc41be1b3b036b09770b6d8",
    "alto": {
     "479": 2984,
@@ -126,7 +126,7 @@
   },
   "/testimonials": {
    "slug": "testimonials",
-   "sha256Html": "9c0bf782dc9c343aa8fe7b2bf35b0a2820c4b9b97e1e3625d8fca8013cebe260",
+   "sha256Html": "9ca2320a04190acc6e000f5c310c2b8ae70a311ce3de9d5d17919eabb3eb5466",
    "sha256Texto": "857e6df4afce161f247e4488a56ae81b8f0e9af75f12b928a54ddc115edb5047",
    "alto": {
     "479": 2281,
@@ -137,7 +137,7 @@
   },
   "/videos": {
    "slug": "videos",
-   "sha256Html": "1376bc3a2447b76dec2257cf5427dbc78e5e27321b213215d861b96f19db2983",
+   "sha256Html": "7ff96cd65aa8fe5d87370552255fc3afd66a8603f1b57687d9d9d76beddc57b2",
    "sha256Texto": "25fad9588df0c238bd9e46fff0dc31242998186a92c428403a4a49c32ccd86e1",
    "alto": {
     "479": 3420,
@@ -148,7 +148,7 @@
   },
   "/where-we-serve": {
    "slug": "where-we-serve",
-   "sha256Html": "60961fe17e405e45fcc4d9f5f6f7ac2e2e37d59896a83598d48d4a61c4b27b93",
+   "sha256Html": "b1f0c9328f9e9af997a64cbb01b4e4d9922787ea90fff3e9a9dd4775bc50c25f",
    "sha256Texto": "957302adf03e0791be73d95b9bfdde2bb247cc2f3347f839c2af3c297de03caf",
    "alto": {
     "479": 4216,
@@ -170,161 +170,161 @@
   },
   "/services/custom-aluminum-pergola-builders-in-north-south-florida": {
    "slug": "services_custom-aluminum-pergola-builders-in-north-south-florida",
-   "sha256Html": "9a9b0ea204c95c6aa21116e1edaa3ebeac7618c65cba6f203e442c7f5336b947",
-   "sha256Texto": "6265dcfa549b57e5c19000f7b26e51b57313b1c7d491689f1a9a4e2e65ecf84a",
+   "sha256Html": "0c35abe0e097fc62ccd4f7e652b854cd50398b12dca3acbf032c321694b19c9d",
+   "sha256Texto": "e39073630474c8077268fabfb2e9ffb8521415a0f9d8394ca1556e80a1d51d35",
    "alto": {
     "479": 9111,
-    "991": 7686,
+    "991": 7846,
     "1440": 7473,
     "1920": 7473
    }
   },
   "/services/smart-irrigation-system-installation-in-north-south-florida": {
    "slug": "services_smart-irrigation-system-installation-in-north-south-florida",
-   "sha256Html": "bdf27f3ca929556f942773363ca92a678d1117d693d392fd0936731a5ab0ff0e",
-   "sha256Texto": "9082d10b773b4716e67b4455ecc800fb55b4bb6d4d4adc2318b84a2373841dbb",
+   "sha256Html": "b95711c764ee6807fb3fc6e61147ca504a79bf9ea556c7dc768e9e70e0858dfb",
+   "sha256Texto": "7cac82226f50d2ccda42c5ca35bc5dcb634fad073b3c202252692b1674ebe815",
    "alto": {
-    "479": 9121,
-    "991": 7710,
+    "479": 9141,
+    "991": 7870,
     "1440": 7505,
     "1920": 7505
    }
   },
   "/services/custom-deck-builders-in-north-south-florida": {
    "slug": "services_custom-deck-builders-in-north-south-florida",
-   "sha256Html": "9548a6c831e3cd83ff96b4028b55b46906ff37e475e4234e344726d3b7c7471f",
-   "sha256Texto": "c6f3ea187a4afea538b21bebb519cb05ce3f1d8676811491893e4da8584baf28",
+   "sha256Html": "ee2aaa1a83ff59dcf60100d4987706db948983b1df7c4630ecbe6763e6bdb849",
+   "sha256Texto": "f73b1fd4759910c7dd8c402abd966bbb940c8a8d971f5e3df35463731c11f442",
    "alto": {
     "479": 9127,
-    "991": 7686,
+    "991": 7846,
     "1440": 7473,
     "1920": 7473
    }
   },
   "/services/professional-landscaping-services-in-north-south-florida": {
    "slug": "services_professional-landscaping-services-in-north-south-florida",
-   "sha256Html": "8ed13d678880c31b15c7c59279819790413ae40a3e28e7838a081162c0b20922",
-   "sha256Texto": "f4cb3d6bdebca15a995b61e25c818dd203f348c4935f54096e3ab24f4892f104",
+   "sha256Html": "4533ff15677c56b41813c6a1b71b9ab7f8ee2b2ac28810f70da996880fb5620e",
+   "sha256Texto": "4b42ae4dd525f1f6e3d925aeedbcaab7d16feb7c1c929fd1eeeb92d9ed5ab349",
    "alto": {
     "479": 9154,
-    "991": 7686,
+    "991": 7846,
     "1440": 7497,
     "1920": 7497
    }
   },
   "/services/motorized-louvered-roof-systems-in-north-south-florida": {
    "slug": "services_motorized-louvered-roof-systems-in-north-south-florida",
-   "sha256Html": "f8255c0d2a70c99175b026489b49e1edb15dcf6671b749d3ab5cc4b4cf9299db",
-   "sha256Texto": "8f4fe1b1ec08f2e59a93c317528cf0ccdfc21925a4b05c645c6a36022647bf7c",
+   "sha256Html": "637ca5a4ad399a6969ab7487fd8fa25c174ef0302e525edf8809b44831918719",
+   "sha256Texto": "2842955a29272012da05a797e6381247a19ce9b79922a2cf8c635bf3444ea268",
    "alto": {
-    "479": 9121,
-    "991": 7686,
+    "479": 9141,
+    "991": 8037,
     "1440": 7473,
     "1920": 7473
    }
   },
   "/services/premium-outdoor-furniture-for-north-south-florida-homes": {
    "slug": "services_premium-outdoor-furniture-for-north-south-florida-homes",
-   "sha256Html": "0cfc70d38558f1dc48c7f385cffcef55a6d04bc8df85169034c5ac7b7ab4375f",
-   "sha256Texto": "f04ea5ed432e9d7a6c8363bbb601d1a8aebcd7c784dd20c91b2364a2b6fd6125",
+   "sha256Html": "83ee02c4514490f22ddcdc61f66a019ab1f5761816e2c68dc0b858795429dd3b",
+   "sha256Texto": "54f4250738c557aae8919c48271c75db493d398f1f0045f2c4d89d39e53b5985",
    "alto": {
     "479": 9231,
-    "991": 7690,
+    "991": 7850,
     "1440": 7473,
     "1920": 7473
    }
   },
   "/services/custom-outdoor-kitchens-for-north-south-florida-homes": {
    "slug": "services_custom-outdoor-kitchens-for-north-south-florida-homes",
-   "sha256Html": "e019cf8a66fbec6f0f40a395bce72783ebbcaddd1bf2073d1decedbd89d3173f",
-   "sha256Texto": "53c94591834324467dceef7e73e17001264c7f35b0071e811451b5e514c06a70",
+   "sha256Html": "045da444ca2932934c5eb3d876972588eedb996bc9db50d393eb34d9c52b691f",
+   "sha256Texto": "27b1f3bea4ee0673b19ee08687edf663781a7a97497fa6a1d90b6e5a014c693b",
    "alto": {
-    "479": 9117,
-    "991": 7686,
+    "479": 9136,
+    "991": 7846,
     "1440": 7514,
     "1920": 7514
    }
   },
   "/services/patio-screen-rooms-enclosures-in-north-south-florida": {
    "slug": "services_patio-screen-rooms-enclosures-in-north-south-florida",
-   "sha256Html": "e99ba31fb624747b2285b8d224d7ebccc34f97bdf4e83cc77043e5820848cc2d",
-   "sha256Texto": "617509cfba8c3d4a766571aea0d93259d2efa9156a45a3f37f6297a16e78b627",
+   "sha256Html": "419ba9d50f59dd0dda734cacf2f0fc04db3af95be7173da89c082b15550cc4bc",
+   "sha256Texto": "d272f758509f421a2abd3a7eb429947bd7faf5d69c8fa3eb4976f6c83dc80d78",
    "alto": {
-    "479": 9157,
-    "991": 7686,
+    "479": 9138,
+    "991": 8037,
     "1440": 7541,
     "1920": 7541
    }
   },
   "/services/steel-building-pole-barn-construction-in-north-south-florida": {
    "slug": "services_steel-building-pole-barn-construction-in-north-south-florida",
-   "sha256Html": "22d1a00d4d8a475abf6ef04e55d6d29086e75548c45dde3f8fb2e7a40602f00d",
-   "sha256Texto": "c14625a21b4d1fd228c43e421b3a0e7a3a6ae1585b01fd157fa4d90f4a550ad2",
+   "sha256Html": "e188b38654834e5af598d594b0d4e96d3cd405012349104e70ccb7c9ab81b836",
+   "sha256Texto": "623b1844203dc0be4819964fb4e72d2c7993f3982428e1a57edb305cf3494d61",
    "alto": {
     "479": 9192,
-    "991": 7701,
+    "991": 8053,
     "1440": 7514,
     "1920": 7514
    }
   },
   "/services/custom-pool-spa-builders-in-north-south-florida": {
    "slug": "services_custom-pool-spa-builders-in-north-south-florida",
-   "sha256Html": "e92f86c04bf5e6b5cce59320794acf2b1aab9d856e75df9325b56c872570755c",
-   "sha256Texto": "86d6ce2bad1550cdb9f7d40cb2ac12268f80ed6fa2360494efe6f0d24bf9ac65",
+   "sha256Html": "5569523bcbb2ad491a4aabff08aa9838f6d437947696a2d4cf7f7593984ddced",
+   "sha256Texto": "0d35a85cb3f5ccac03b5ecf85c1239198fd3accbdf3387c13c965354f7e80ba6",
    "alto": {
     "479": 9201,
-    "991": 7694,
+    "991": 7874,
     "1440": 7506,
     "1920": 7506
    }
   },
   "/services/pool-remodeling-renovation-in-north-south-florida": {
    "slug": "services_pool-remodeling-renovation-in-north-south-florida",
-   "sha256Html": "3a127969f70f37a395a6ac0249749c66a6a19ef87a2b3703fbe98f1aeaf59e1a",
-   "sha256Texto": "7d92236b81f090dc5ba626a65f1d97a8deb50a3f9866423b99b311e7553f5c0f",
+   "sha256Html": "8f0558d6e19ee76b1cb27ffd8b40aebd93fc1a9d792bf17ec16731e494341bf5",
+   "sha256Texto": "3a67e045037bafca1dc85ffd6ddc2da051773eaf1f42dcfb9f6e21bbe3b35be3",
    "alto": {
-    "479": 9109,
-    "991": 7686,
+    "479": 9129,
+    "991": 7846,
     "1440": 7489,
     "1920": 7489
    }
   },
   "/services/pool-screen-enclosures-for-north-south-florida-pools": {
    "slug": "services_pool-screen-enclosures-for-north-south-florida-pools",
-   "sha256Html": "4170f599ce74098103f5d8663572908759165fc2910b7350949a93911ab8a502",
-   "sha256Texto": "6649ae9f3346346cd366d4a0c297a0aaa75606243d23312a0791825ed086a30f",
+   "sha256Html": "a7b659ceb15cb6a8311fc9a03778d232348c29a08da379b06a60c51462b7d545",
+   "sha256Texto": "988dc3b26bbcc175e4584de6c6ef9750d7c635de7424ee08bf5378c4b4b24038",
    "alto": {
     "479": 9117,
-    "991": 7686,
+    "991": 7846,
     "1440": 7499,
     "1920": 7499
    }
   },
   "/services/motorized-retractable-screens-in-north-south-florida": {
    "slug": "services_motorized-retractable-screens-in-north-south-florida",
-   "sha256Html": "bb18775d287842f8e632fed342f2ad658dee7807099520fdbb1beda5416d920a",
-   "sha256Texto": "ff641b0cf036d1f80e821a58d22c4978aad36d1c69465c369ade890cabd545ba",
+   "sha256Html": "d576f75e34dcbb1a6eac0c7f8b9a8c7dd9621416ccbe42633378f3e6e45197a0",
+   "sha256Texto": "0559e21a96e074b3135ddfa91833937bfcd5ee70e7e433819b5d363099056d40",
    "alto": {
-    "479": 9114,
-    "991": 7686,
+    "479": 9133,
+    "991": 7846,
     "1440": 7473,
     "1920": 7473
    }
   },
   "/services/smart-soffit-led-lighting-installation-in-north-south-florida": {
    "slug": "services_smart-soffit-led-lighting-installation-in-north-south-florida",
-   "sha256Html": "322a25994057ed35862e24812d91d7abdd4a64325d3d6bb61937913da9e897bc",
-   "sha256Texto": "a8a7cbe2c38f4bc9fec85f3358ad5b259e43ecd3fe3f1b51cf695fa4ee52f53e",
+   "sha256Html": "0cbbd3cbb9469dc4915dd1764d742e6736ba8b486e257b773ff1016624063b7c",
+   "sha256Texto": "1347bf4d1064a4a88a6546cf8cbd658d3aae53cb54141fdacde55e39679776d1",
    "alto": {
-    "479": 9180,
-    "991": 7686,
+    "479": 9141,
+    "991": 7826,
     "1440": 7499,
     "1920": 7499
    }
   },
   "/pool-builders/alachua-florida": {
    "slug": "pool-builders_alachua-florida",
-   "sha256Html": "4ce803eea90340b9caff91bec992a394065ac30207267a69bca9f725b53ec1e7",
+   "sha256Html": "d99cace7362627269d94a0825f6198ebd6a2aa4e95bb05c71550b589dae13716",
    "sha256Texto": "3c6076c068ea65c5a8b755644552c9068585d7423efe7a6b4982b8075d7943ad",
    "alto": {
     "479": 7228,
@@ -335,7 +335,7 @@
   },
   "/pool-builders/archer-florida": {
    "slug": "pool-builders_archer-florida",
-   "sha256Html": "9fa95cffb72dfe5424371ade0ff663a32a6099fa658c4e0842938c44557077bd",
+   "sha256Html": "aaebeee4a91e94ea3ad84c6513544927b05da5e6119ff524033197dbdd0341d9",
    "sha256Texto": "cd7c96ece1945be30ff7d1e10860eba07c293ca87c28c47a48c9e1895b259af9",
    "alto": {
     "479": 7228,
@@ -346,7 +346,7 @@
   },
   "/pool-builders/atlantis-florida": {
    "slug": "pool-builders_atlantis-florida",
-   "sha256Html": "3965bee7397bc77769ca45c788f72c98572caa66a8176ebc8e43e04108217ae7",
+   "sha256Html": "33965110520efaa3b494c06030880342174156922e4428d3412575c921267fd8",
    "sha256Texto": "a9247380aafa74fbaa252118b41315783ffd77eccc5f76ee339941235058d154",
    "alto": {
     "479": 7228,
@@ -357,7 +357,7 @@
   },
   "/pool-builders/boca-raton-florida": {
    "slug": "pool-builders_boca-raton-florida",
-   "sha256Html": "ab87679f53a84eac1bd052be983a05aa32c26e5d23f50e3ab3a077cac8f38796",
+   "sha256Html": "e35c020534508e26f192faede0dd5242a16775e21f9b4fa0b909039f40ed3dd8",
    "sha256Texto": "c8d0f2982ec16a263dd8be543eceaabb674f7229e624627fa657723dca9cc552",
    "alto": {
     "479": 7247,
@@ -368,7 +368,7 @@
   },
   "/pool-builders/boynton-beach-florida": {
    "slug": "pool-builders_boynton-beach-florida",
-   "sha256Html": "9a6834a7e982664ad7b93812cbe20a8777cd55472d2a0a24c84a63784625f2b7",
+   "sha256Html": "f7757ece76d7c1fb112b55bdeec17262c0c136ad72b0fac36c12d251d9297d5e",
    "sha256Texto": "5caaee1f63b4c87255047d3184f509d9d820e5d93568f75b639fc3f852fcc726",
    "alto": {
     "479": 7267,
@@ -379,7 +379,7 @@
   },
   "/pool-builders/cedar-key-florida": {
    "slug": "pool-builders_cedar-key-florida",
-   "sha256Html": "00a151aeeec9026b645aa7901e9c9f2e383267a63d9b70ce5149a344d8603956",
+   "sha256Html": "4fcff3d6a50025d19dcaba2dffec978fd816559386668cb2c4a4f5ba2738c0f9",
    "sha256Texto": "6b18ff6d3ec4e6d24b2a1318a54a3557205ec0636a2e0a886fce3c04eee428a1",
    "alto": {
     "479": 7247,
@@ -390,7 +390,7 @@
   },
   "/pool-builders/chiefland-florida": {
    "slug": "pool-builders_chiefland-florida",
-   "sha256Html": "f7d9dbb879d2372e42cfa78bc626a96dafa51d40055598393d423745b69e965c",
+   "sha256Html": "55de1e445f97cee07b9be3a1348d0cccd2ab2909fe4f8339a98e86fcab04e525",
    "sha256Texto": "19f8a3026355798ce0f68ae3e42e8558f2db82a3063fdc5c635674587c35e2bf",
    "alto": {
     "479": 7247,
@@ -401,7 +401,7 @@
   },
   "/pool-builders/cross-city-florida": {
    "slug": "pool-builders_cross-city-florida",
-   "sha256Html": "31171d1f0310f249cc87b5b4b5b913012b97217445880e6dea5a998274a9be61",
+   "sha256Html": "154b92722da5fae719e711df6bfa117fbe2dd298c82c76237e96c3dedf73d2a7",
    "sha256Texto": "8d657141b74471b2d2b47181d03c0af958f756c24538424aa5bf1c72ca54bb4e",
    "alto": {
     "479": 7247,
@@ -412,7 +412,7 @@
   },
   "/pool-builders/dania-beach-florida": {
    "slug": "pool-builders_dania-beach-florida",
-   "sha256Html": "a2a284e3146318709a2c12671c811b199c99d499e373c12f450d949a556880c3",
+   "sha256Html": "cbe9e61816ab551c44cc57b34292f5bf2ef6b5bb1d88c5221e293d0fc5b4391f",
    "sha256Texto": "619b6f7c4d8cdbdaca046d4351ed9114d9dd3bac42403d7a274d51a49f90549d",
    "alto": {
     "479": 7267,
@@ -423,7 +423,7 @@
   },
   "/pool-builders/davie-florida": {
    "slug": "pool-builders_davie-florida",
-   "sha256Html": "b44ce6dfd5dac0ae5b4264ba1fac6cdae37528a5072d9f0e1e11d511ffb1fe81",
+   "sha256Html": "4e25e9c6dd71f34918e2146d27123fab3bb49ee7c821a2db626e945fd9ef3268",
    "sha256Texto": "fa1d2f4829748c415958eb5d0e2f352dda6b180111fbfcf2b576f2ad762dc179",
    "alto": {
     "479": 7208,
@@ -434,7 +434,7 @@
   },
   "/pool-builders/deerfield-beach-florida": {
    "slug": "pool-builders_deerfield-beach-florida",
-   "sha256Html": "bac7c74ce4f37d3f0ebe8cbc3acce0fadc6314ab50dd4ed3b4f3b9098ddb6768",
+   "sha256Html": "4a884fc9a987dffcfcb27bd1e1654eed7584eb1696c3b00024ecc2696c1068f1",
    "sha256Texto": "ff9848fc1d5af9509b92a590de89534d228049f1317b277b7b88296b4e930d02",
    "alto": {
     "479": 7267,
@@ -445,7 +445,7 @@
   },
   "/pool-builders/delray-beach-florida": {
    "slug": "pool-builders_delray-beach-florida",
-   "sha256Html": "5d26a44aa059aab84420433a6e9f76eb9228382f4aac6ee61c7455c55fbf4a76",
+   "sha256Html": "4529f3fa1faa0691d6d45b7023e085bf6ed0cc098caec50670e0e2a916f801af",
    "sha256Texto": "adc7f9cb707f058c6e7491f23db57e1a6cddf5c15a33464b1902846c313f9d87",
    "alto": {
     "479": 7267,
@@ -456,7 +456,7 @@
   },
   "/pool-builders/fanning-springs-florida": {
    "slug": "pool-builders_fanning-springs-florida",
-   "sha256Html": "8280ecdcdb31144e8f3d95ed39fcdf19f519e2a35aeb02a5d420ec2fb3972f85",
+   "sha256Html": "c4bc4281292dba815f0e876650399aec4fbd38dc81dd75ac30cff29236e40d1d",
    "sha256Texto": "961d35fdd952ecf9cb5d3de51e99604880aa14c99c1221abd1d36ca6d44a6411",
    "alto": {
     "479": 7267,
@@ -467,7 +467,7 @@
   },
   "/pool-builders/fort-lauderdale-florida": {
    "slug": "pool-builders_fort-lauderdale-florida",
-   "sha256Html": "2782fdf6a0cd484ba33a4be7a0bc340e70be9475a7387f32e99f8c4cbd223fe8",
+   "sha256Html": "c2c26a0098fc5d07db2215fcf12c63cfdb7daa601b73ee07f822aa040671a60f",
    "sha256Texto": "d8c3f5348f74b012d4c831308a209381cf5b3dbcb41192ee6823dbfc32b360d3",
    "alto": {
     "479": 7267,
@@ -478,7 +478,7 @@
   },
   "/pool-builders/gainesville-florida": {
    "slug": "pool-builders_gainesville-florida",
-   "sha256Html": "33bbb585377e821c177fb57a3112ab99626f68e324ac293b8821062ffce288e9",
+   "sha256Html": "c9c8cfbdc448bc0e459dc621a4fb8af912e1550943f86ba5062acfd15371b89b",
    "sha256Texto": "0e6d2b1aeb02e89108b72050d3084fecf1d7ab1f3fa35d2614f52b506e9affed",
    "alto": {
     "479": 7247,
@@ -489,7 +489,7 @@
   },
   "/pool-builders/gulf-stream-florida": {
    "slug": "pool-builders_gulf-stream-florida",
-   "sha256Html": "19e5282d7a83a1b8169cd9894250544f44d4441ce2259ce687b9e13ed61215e8",
+   "sha256Html": "4877924cfd96e62e4d8b09962929acecbcda5b96ac1fe3a8ceeab1571484f0b5",
    "sha256Texto": "71550fec5ee4ea98e954f2d138e2da97c1df6fd5c84a986407d2749c6829db99",
    "alto": {
     "479": 7247,
@@ -500,7 +500,7 @@
   },
   "/pool-builders/hallandale-beach-florida": {
    "slug": "pool-builders_hallandale-beach-florida",
-   "sha256Html": "93bee2cf42be8fbc4f0a48d66709081e9963f469ded8340db1793e73c22d6233",
+   "sha256Html": "e2f92cbb3abcfa29ef19f22759aa6f9f706dcfa54e39d22842eb9d6820447e39",
    "sha256Texto": "f4d8525f871493a8c2d548f9aa1e46bcf45e593e6ac02a464ebab79b66b33227",
    "alto": {
     "479": 7267,
@@ -511,7 +511,7 @@
   },
   "/pool-builders/hawthorne-florida": {
    "slug": "pool-builders_hawthorne-florida",
-   "sha256Html": "cdaa9d588ed55f06250150c45fd0a041fbd5adaaf18c4ffb423ef0c546757a9e",
+   "sha256Html": "6beb712981bb95105b98beccaf2a12d52947b491ead60926ab3cd0c1264848bf",
    "sha256Texto": "efd4b854f5b81bcd8be653e2b6e77862b86301b0ed2685ea30e5945405614d7e",
    "alto": {
     "479": 7247,
@@ -522,7 +522,7 @@
   },
   "/pool-builders/high-springs-florida": {
    "slug": "pool-builders_high-springs-florida",
-   "sha256Html": "165a030eec3006574db9a4efd624a032905ad674b305c047cd7b57725c54dec9",
+   "sha256Html": "7c6d38f1c61d76e89c8f5b04fe817f273aad5696a94789da76243d0bfb4315e0",
    "sha256Texto": "33f9271d64f352cc32b3cd6de30132081862ae58b1f42848d4be0568635a88fa",
    "alto": {
     "479": 7267,
@@ -533,7 +533,7 @@
   },
   "/pool-builders/beach-florida": {
    "slug": "pool-builders_beach-florida",
-   "sha256Html": "c878182d2c4e05c1c68f4fa7efb4856a5c4c696f13efee28406b0cb56932a0e9",
+   "sha256Html": "002795be04951fba7bb7e79e9a84c655960f0f2d4456abf9382e0a05bd0a95b4",
    "sha256Texto": "9a8f7b8fd054573fdcc3288ea5bd60b0bce5eb741af67b87ad519461735e5db1",
    "alto": {
     "479": 7267,
@@ -544,7 +544,7 @@
   },
   "/pool-builders/hollywood-florida": {
    "slug": "pool-builders_hollywood-florida",
-   "sha256Html": "49163287314a3662b58191a05c6205c9c7d30449fc548555ebaef54ac51ea5a0",
+   "sha256Html": "a3df08118d95c2a38370ea857290aebd0866fbaa103b6b6afd68b41f4eb43681",
    "sha256Texto": "3ceda91487c53c502bcb93201be471cd4adf4eaa61359e5b14d1138c4378d476",
    "alto": {
     "479": 7247,
@@ -555,7 +555,7 @@
   },
   "/pool-builders/hypoluxo-florida": {
    "slug": "pool-builders_hypoluxo-florida",
-   "sha256Html": "6c4bd21fc9794d90c4d8062edeee082ec8ffa709a2b74e0a07a12b9e8b4ffad1",
+   "sha256Html": "daf3329d6c87e3e56ea332b24f6aadfaf00bf6f8330b234cb93748f3eb531b04",
    "sha256Texto": "f603f978a3623ff9ff9aeb8eed531826a74482bec6605dda8b3506615c64e3a9",
    "alto": {
     "479": 7247,
@@ -566,7 +566,7 @@
   },
   "/pool-builders/juno-beach-florida": {
    "slug": "pool-builders_juno-beach-florida",
-   "sha256Html": "41070ace58bd5a50f930c7b10ac2eea7967cfe408a908bea24c37fa4fcd7d950",
+   "sha256Html": "e7bad874248d2aaec055ee3bb9439a0af9c9d902fa9cccc35a8e6a7b7cf79712",
    "sha256Texto": "c87b2ae88cacc69c7d8c462dfde765a39c8aef7e395c606543a554660a7a5029",
    "alto": {
     "479": 7247,
@@ -577,7 +577,7 @@
   },
   "/pool-builders/jupiter-florida": {
    "slug": "pool-builders_jupiter-florida",
-   "sha256Html": "c414bf2d1872c9258e8dcf69ecc03d1de7499572956845d6b0cb03d8ca59ba41",
+   "sha256Html": "ac1f1f7656be9694ebf2ac02cc9416e66648e69e84a57911603ba0a1c49b7ae9",
    "sha256Texto": "e26c3c844d31b554a5dbd054cb24959776831f70d33a2cd28ef56813bb72d493",
    "alto": {
     "479": 7228,
@@ -588,7 +588,7 @@
   },
   "/pool-builders/lake-city-florida": {
    "slug": "pool-builders_lake-city-florida",
-   "sha256Html": "349c274b3a0360e394bb6661c2d5906787786e5a3d67b6936101ebb84267e93c",
+   "sha256Html": "b63c0f0d4472fed83ba4372efcdaa116de63ae3111b98a75dd6377a9e273002f",
    "sha256Texto": "160de5309b085a824177f9fc7d6fdf53e9a5850d731ff8f76489dcfbd791176f",
    "alto": {
     "479": 7247,
@@ -599,7 +599,7 @@
   },
   "/pool-builders/lighthouse-point-florida": {
    "slug": "pool-builders_lighthouse-point-florida",
-   "sha256Html": "54a4602ff66048fe03d82cba87b533b68420a2518240db7c7f43195ee5190837",
+   "sha256Html": "655b6326ffdd79147e54e80dcc0ff1c1343271a39890fd414f6b7316a33fc614",
    "sha256Texto": "9760e5eb369ba556dcffef8a8f6d11d62227a69fddf281707edbb1fd42a10ccf",
    "alto": {
     "479": 7267,
@@ -610,7 +610,7 @@
   },
   "/pool-builders/manalapan-florida": {
    "slug": "pool-builders_manalapan-florida",
-   "sha256Html": "fb06d7c5a8c884d3ca8abb3d95c1cad5bf6461994605f1b837bcfe2614b3de5f",
+   "sha256Html": "763290b0e7fbe50be309d6709e08f1acf70242403b5b4d120cabb97816db0aad",
    "sha256Texto": "8c630b112a7c15800856c219c324cd24ba601c2e79dc5f2932892f04eb754157",
    "alto": {
     "479": 7247,
@@ -621,7 +621,7 @@
   },
   "/pool-builders/mcintosh-florida": {
    "slug": "pool-builders_mcintosh-florida",
-   "sha256Html": "556adc65be04f8d7ed26ddb9aeeb36da6454b5f16e82078c925bcb50447fad55",
+   "sha256Html": "8e15c455493bdbeac1361d1bf048c42744d2e19f1aab170d53ec1fec0787642d",
    "sha256Texto": "b5d7d91e95af18625a188ef39bd858ca5f34db963664b904746192fa9a0b9a81",
    "alto": {
     "479": 7247,
@@ -632,7 +632,7 @@
   },
   "/pool-builders/micanopy-florida": {
    "slug": "pool-builders_micanopy-florida",
-   "sha256Html": "f17bef5348cab04a80b53326eeb8dd1736aedf49d0b2084b783173c28153b959",
+   "sha256Html": "0862350fbc005fffc67924d487383633fddad0b9b5ccc5654fbaee951fd93808",
    "sha256Texto": "7ffed6d1921dab69d0a268944ea6c402aff061123dc73d8f55f5502c6522c8fb",
    "alto": {
     "479": 7247,
@@ -643,7 +643,7 @@
   },
   "/pool-builders/miramar-florida": {
    "slug": "pool-builders_miramar-florida",
-   "sha256Html": "04133a10d98a3e110c5cc3b9e39c8fc82ad8713b312afa7b432006cf9de6b2ed",
+   "sha256Html": "197d008efb27e94145f93f056adf1c1fda9dd074127ed31a84456e4e7060c36f",
    "sha256Texto": "49ff7e0bd13e7c6b1a20a1446d91063016561a4439cbe8e4af13057cfeab7411",
    "alto": {
     "479": 7228,
@@ -654,7 +654,7 @@
   },
   "/pool-builders/newberry-florida": {
    "slug": "pool-builders_newberry-florida",
-   "sha256Html": "84b7e1877f24d1964b6bcd5bc33a115a0d4418c19630ee676d8177a4932a8ee5",
+   "sha256Html": "79fc1f854bb5cc30105f46ff2e1d6b174a833e0749177c9f528e774862fc8ce4",
    "sha256Texto": "9994e1abbc25386a5fe3e188f0512e0e8063708189361d779b8d54c071751592",
    "alto": {
     "479": 7247,
@@ -665,7 +665,7 @@
   },
   "/pool-builders/north-palm-beach-florida": {
    "slug": "pool-builders_north-palm-beach-florida",
-   "sha256Html": "dcdf007a0818b9ead85a48256da3ab49c035404d6c3a7ff35a4b381c69d04b98",
+   "sha256Html": "78092607a7946394dc2717fcc5637ebd06522bf3568a8ebb5c0c0dbe1c3ebbfd",
    "sha256Texto": "5f860e6097f905388883072243300dd3d07f78cea6355fb310125fb7945c393e",
    "alto": {
     "479": 7267,
@@ -676,7 +676,7 @@
   },
   "/pool-builders/ocala-florida": {
    "slug": "pool-builders_ocala-florida",
-   "sha256Html": "a3c272225a4d650ad3fc2284a0af4ec03d20cda19ccd9260b6b384f4d64ce610",
+   "sha256Html": "ef48596de033ea0f12833d29df85f49fb5d476490128018af1b4dd655e2edc6e",
    "sha256Texto": "cb7bd0267482676baf4e018f0ae715ee6a3a9a922d79d6de87ff5b78a4d8b364",
    "alto": {
     "479": 7228,
@@ -687,7 +687,7 @@
   },
   "/pool-builders/ocean-ridge-florida": {
    "slug": "pool-builders_ocean-ridge-florida",
-   "sha256Html": "fd60a59dce2269327b47a9e82ff00e90980aab57466f9072a61f3ddb645963b3",
+   "sha256Html": "7091c38c777ceaaafb3dab6233c3c1d487d41b48c2b4df1cd17ae12d1eef7d5c",
    "sha256Texto": "2393e1863ef58b6eb3493f693d2c3c5f5d832f05afb8d1905abf62c3fa682c4f",
    "alto": {
     "479": 7267,
@@ -698,7 +698,7 @@
   },
   "/pool-builders/old-town-florida": {
    "slug": "pool-builders_old-town-florida",
-   "sha256Html": "9aacba5a6362d0ffad49559af68077bfdfedc813efbc8c29e6adcbed21c86043",
+   "sha256Html": "175551d3ec8eb5e57df97b4fce9c4de402be721c0dc7898f99250a0358cb796c",
    "sha256Texto": "221e8a4dd30d9aed0d5a86ffe2340080aa65d03417bfba27388af2727459a396",
    "alto": {
     "479": 7247,
@@ -709,7 +709,7 @@
   },
   "/pool-builders/palatka-florida": {
    "slug": "pool-builders_palatka-florida",
-   "sha256Html": "e5f1e9273b688f63814c23719f2226b568bc59a1ac7c714465cc2cd66cd05308",
+   "sha256Html": "a53603d127b073bf68d911e651af02e53c7434c79f4e621cb48bb44418b6e43c",
    "sha256Texto": "fa36c699c5aebc7a440da2aad0e837ed66d55b361f1fda11fe5313e40c749ac1",
    "alto": {
     "479": 7228,
@@ -720,7 +720,7 @@
   },
   "/pool-builders/palm-beach-gardens-florida": {
    "slug": "pool-builders_palm-beach-gardens-florida",
-   "sha256Html": "1dd0268772699fd390ce37e190251778020f6039ef5c92c1dcf938b3044b751d",
+   "sha256Html": "ed6408a7772765c0a52a10b33fdfa19f36913976948f94feefc45a059698da85",
    "sha256Texto": "f735ab56487bce948fcbf0c5b683eba254ef2b50ce0da8c24db625c3c4fa9750",
    "alto": {
     "479": 7291,
@@ -731,7 +731,7 @@
   },
   "/pool-builders/parkland-florida": {
    "slug": "pool-builders_parkland-florida",
-   "sha256Html": "c1cdf93ef66cb4c55802033e97fdbd2ecff87624916ffb88f82f244028f29228",
+   "sha256Html": "008e2883ec40d32dd1b54008aca501dd8102f588b0c033941ff4345f8b590a19",
    "sha256Texto": "5189d1e2c4965baf9a49bffd6df8e5fa330c7765cbfc5986a93a1b73abea4143",
    "alto": {
     "479": 7247,
@@ -742,7 +742,7 @@
   },
   "/pool-builders/pembroke-pines-florida": {
    "slug": "pool-builders_pembroke-pines-florida",
-   "sha256Html": "da23fbe28542e8cd33962b554d2479143cdc9f25f0e24e942acd5a91b08b8750",
+   "sha256Html": "9a315109f725f8a636b97f578671f4a7a6f02dbd1c619ad009506b4251ba1fae",
    "sha256Texto": "d58c2ca04e73e2779f8a24dd9ad0b432c7c81bfdb29dc62ef54cbd134f7a19b2",
    "alto": {
     "479": 7267,
@@ -753,7 +753,7 @@
   },
   "/pool-builders/plantation-florida": {
    "slug": "pool-builders_plantation-florida",
-   "sha256Html": "da159ffcdcdba7dc6a2be304dd1b19c2a475edadc95edebd0378d4df39abfd0a",
+   "sha256Html": "a5427a5761e23f0964653a32dd4ee206e66527f6f0ecc557465d793861488351",
    "sha256Texto": "6971e6d28992e80c91d618a548219bf24c2948a9a5d4798dae4c07f00a0a4380",
    "alto": {
     "479": 7247,
@@ -764,7 +764,7 @@
   },
   "/pool-builders/pompano-beach-florida": {
    "slug": "pool-builders_pompano-beach-florida",
-   "sha256Html": "e4df5a654ee6d85ea83932dcab00f0552b8e349c64f0e36d13a7f3b864f568f9",
+   "sha256Html": "3069fdab88c67db8cfe701c78f9f74faa1bd9390245bedf6ac687f95b3d1e61f",
    "sha256Texto": "132f388f8dc00db0474c4dae405037be92b13ba7f40b827aa7bbbe933bea296b",
    "alto": {
     "479": 7267,
@@ -775,7 +775,7 @@
   },
   "/pool-builders/reddick-florida": {
    "slug": "pool-builders_reddick-florida",
-   "sha256Html": "5edaaf5819c72adfc9cbe59f06b7104d9f2cbfe9fb44582e36e444178c5a9f4f",
+   "sha256Html": "12570ec4f40a1fcccb6737b374f5cfba892ac14a255d6a41255a5c92e1f9f8c9",
    "sha256Texto": "1907cdb9d1546d46bb70fd9b1c027cbf1be3253a506a5544573c87e64d05a92c",
    "alto": {
     "479": 7228,
@@ -786,7 +786,7 @@
   },
   "/pool-builders/royal-palm-beach-florida": {
    "slug": "pool-builders_royal-palm-beach-florida",
-   "sha256Html": "e8fcaa9cf71bee1a4e476edad11f0e975b9599d2630616b2b044aed1aeb25641",
+   "sha256Html": "13eecdb1b420b949e97f7e17548cf853be156ecdc996c6b9705fe52ddc2021da",
    "sha256Texto": "9beb566a5ce3b7c8064111a0a7deca6a7a714a820f24dcc59287fb312beab01f",
    "alto": {
     "479": 7267,
@@ -797,7 +797,7 @@
   },
   "/pool-builders/south-palm-beach-florida": {
    "slug": "pool-builders_south-palm-beach-florida",
-   "sha256Html": "78baed19f6a981bb0481c6a45ec40a892baf368c23aada8e1318ef99cbb2c6dd",
+   "sha256Html": "83095452171f77283271853da7ae99a5a31677658b2923d7360025eac0a4670b",
    "sha256Texto": "8b4eb3bbd6166dfade907c5681bd63b39ef3760267af5afa620ec938ca05d7f5",
    "alto": {
     "479": 7267,
@@ -808,7 +808,7 @@
   },
   "/pool-builders/southwest-ranches-florida": {
    "slug": "pool-builders_southwest-ranches-florida",
-   "sha256Html": "69df47d01b70b5b16f9426f00f5640d428ee71ae08829e042579e965e3740cb4",
+   "sha256Html": "3f2591589b16c1668f8b85db41e57745106e9718c86e6a7a4f34ebadcbcc3f95",
    "sha256Texto": "42706f4672fec2196675571c571df9d231416dc70f2fa91af19376cd7587a29f",
    "alto": {
     "479": 7291,
@@ -819,7 +819,7 @@
   },
   "/pool-builders/tequesta-florida": {
    "slug": "pool-builders_tequesta-florida",
-   "sha256Html": "033957afb8c6eecceb4f25ac4c44c9bbd47695e190caabb9ff5eb9e3ec03450f",
+   "sha256Html": "4ed940d0fc2fc21b8649698e23101bbb48a91fabb3b0446d2a08e07a077c7b0a",
    "sha256Texto": "73b3c518df2ffe1ffc86778a86c8343dca06f55403907c158f19da10319bd807",
    "alto": {
     "479": 7247,
@@ -830,7 +830,7 @@
   },
   "/pool-builders/trenton-florida": {
    "slug": "pool-builders_trenton-florida",
-   "sha256Html": "89e5750c21e3b22e02cdbd8a5db8269dfbf15b0fb09b1efa307cbdf621f033f1",
+   "sha256Html": "1bb8494208bc0f2f5bc22496dac90bdb8524b342c6e394ac9d96a06bdaed4f56",
    "sha256Texto": "85a63c24a086143c371b4d010c61ac32b8b434274b8f94507205104d9ff748c1",
    "alto": {
     "479": 7228,
@@ -841,7 +841,7 @@
   },
   "/pool-builders/waldo-florida": {
    "slug": "pool-builders_waldo-florida",
-   "sha256Html": "2bab980f0f39bbfe9c60021de6f82136477feb9ed1873b54e7607660a4f4cb92",
+   "sha256Html": "ee2af0759201a893dbe91bf0a3ab6cd8195f2f96274b8fef13c705136de5bf1d",
    "sha256Texto": "62797d0ec22f8e85b9049a5f9dfb6876c0265a35df09dfee5147fd450c141278",
    "alto": {
     "479": 7228,
@@ -852,7 +852,7 @@
   },
   "/pool-builders/wellington-florida": {
    "slug": "pool-builders_wellington-florida",
-   "sha256Html": "b2bfad52360ea1ff3fc1fb2f8dfc12bbdeef9f070795450607512baddc007e70",
+   "sha256Html": "7fad1c33b294e23f97d03ccdab164ca8918eb38b340890235822582b24a354a8",
    "sha256Texto": "635a6a2ab10fd93ff567d00a3c58b8577915c8c30434abf99216d0750c09aa0e",
    "alto": {
     "479": 7247,
@@ -863,7 +863,7 @@
   },
   "/pool-builders/west-palm-beach-florida": {
    "slug": "pool-builders_west-palm-beach-florida",
-   "sha256Html": "03fbe4363b52e74a3b34cf31719873388c80b04a979095a0378b20e7a8de6f28",
+   "sha256Html": "60063a3d1d206322a7ce4d0c060f2ce8e1b39e1c069e2d35d392148f751ad239",
    "sha256Texto": "ecee866b1abc72242a26ed9ee20cbd93d40d693a3b0a5f7d068842c12967f24e",
    "alto": {
     "479": 7267,
@@ -874,7 +874,7 @@
   },
   "/pool-builders/weston-florida": {
    "slug": "pool-builders_weston-florida",
-   "sha256Html": "6da289c2b89820d4b83cd286dfdb5a42043cd5dd69445df116c976f520929708",
+   "sha256Html": "2eae67120a6efb20913f88d71ec9e72ffabd94f624fcd1b72ea22377a095cf24",
    "sha256Texto": "b65e5cd977cde5f6b8e10808eab183d5cdd8d7e27448ee0cc55083fb2c90e6de",
    "alto": {
     "479": 7228,
@@ -885,7 +885,7 @@
   },
   "/pool-builders/williston-florida": {
    "slug": "pool-builders_williston-florida",
-   "sha256Html": "c76a0016826fa0893296322dc17d17848718f5f0337b910f060a047ae5d1ef5a",
+   "sha256Html": "5986fe283d18dd72d9441b2acb64892c243cf85f6ed8dfc083decdb07a089b20",
    "sha256Texto": "0a48903f4cc9ab50cd4f07f007f5ab9e58e21ac17182557f2401b4ea7f97bd9f",
    "alto": {
     "479": 7228,
@@ -896,7 +896,7 @@
   },
   "/pool-builders/wilton-manors-florida": {
    "slug": "pool-builders_wilton-manors-florida",
-   "sha256Html": "dad56936b841089c84b65ddc388d90de257b2688ff91b2d810dfbc12285f8212",
+   "sha256Html": "9be205395f2173bb380c643aa0ca022cc69ef6b9c332044d3111c0f4a70f8494",
    "sha256Texto": "217138f0f7eaa89a61c7a59da15e7aadfe70ae124d165dc32fea3722feef9140",
    "alto": {
     "479": 7267,
@@ -907,7 +907,7 @@
   },
   "/project/luxury-pool-motorized-pergola-screens-south-florida": {
    "slug": "project_luxury-pool-motorized-pergola-screens-south-florida",
-   "sha256Html": "17ddc3e25ba0c9751e5f94095bf408aee2032183af1f52af91881d5e2c63d864",
+   "sha256Html": "e04020c5a45a1578de9eb6cf9388484dba0e290bf730474325332eed67edfde9",
    "sha256Texto": "9818f32f8b14b12962fac14b1f6f3635c292a05b50f58a3a6a45949e03bd9d62",
    "alto": {
     "479": 4289,
@@ -918,7 +918,7 @@
   },
   "/project/luxury-pool-pergola-outdoor-living-south-florida": {
    "slug": "project_luxury-pool-pergola-outdoor-living-south-florida",
-   "sha256Html": "a16f98796d30982ba495f7ed30153d6e6bd91cc74f536f56a8c13e2ace64e42c",
+   "sha256Html": "624d8e24d769f15367f5e20fee38892a6970b4756984929e8b128abfbeebf619",
    "sha256Texto": "9bfa3c043027617d7c16dd4873bbb6314a98d1956314146d70f5273f9003136b",
    "alto": {
     "479": 4289,
@@ -929,7 +929,7 @@
   },
   "/project/luxury-pool-spa-screen-enclosure-north-florida": {
    "slug": "project_luxury-pool-spa-screen-enclosure-north-florida",
-   "sha256Html": "4ad8356c22fb63685b2046f7171a5a585e605398608b4de1e716ed3304bc2ad3",
+   "sha256Html": "922a2a101aae10b14f6c4595ef6fa9d2d7cba036b2cf2976eca885468bfd1361",
    "sha256Texto": "5a042eb92d8485fc7a98a4573efcd559c140ac038f047ab7139dfe16d80050cf",
    "alto": {
     "479": 4289,
@@ -940,7 +940,7 @@
   },
   "/project/luxury-pool-spa-with-screen-enclosure-north-florida": {
    "slug": "project_luxury-pool-spa-with-screen-enclosure-north-florida",
-   "sha256Html": "bae1d6ceb017a924790896bb509419b9df53e58f0aafd1983bdbc571bac4f5bc",
+   "sha256Html": "5d7f1c86cd47efa9f8a60b40f27d610abc9fbf206a981c6311991505a04b8169",
    "sha256Texto": "0c2b49d890308df8f0495ddf0d25191acd9574a57bce9998ccefd75455ce56f9",
    "alto": {
     "479": 4289,
@@ -951,7 +951,7 @@
   },
   "/project/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida": {
    "slug": "project_luxury-pool-motorized-pergola-outdoor-kitchen-north-florida",
-   "sha256Html": "d78cb40e38a907d1ad9878c2a67c65eb3a58167f945b2e6fc483671430cb5d81",
+   "sha256Html": "eefb0e382d880d2008106dfd159dd2ec34a51033780af3d842cd1150645a2ff1",
    "sha256Texto": "c127fb9924cc70890e303d953bc2418787b465c4afeb33866bab5a88401f7b44",
    "alto": {
     "479": 3990,
@@ -962,7 +962,7 @@
   },
   "/project/luxury-pool-motorized-pergola-screen-enclosure-north-florida": {
    "slug": "project_luxury-pool-motorized-pergola-screen-enclosure-north-florida",
-   "sha256Html": "922cedbdde9cb234d65bf74b0bdcd203a594f4c8e4506feb3efc73f030a6405d",
+   "sha256Html": "a4431ed64e3b8f977459d77e98d12fd7b32d196b442c456a50fa336982501ff5",
    "sha256Texto": "7525638879051cbcea7fdf9ea96664e77385183fdaee0b0e8ab4f2bd6793486e",
    "alto": {
     "479": 4256,
@@ -973,7 +973,7 @@
   },
   "/project/luxury-pool-pergola-outdoor-kitchen-south-florida": {
    "slug": "project_luxury-pool-pergola-outdoor-kitchen-south-florida",
-   "sha256Html": "c704573a2c8078a77cce4c39ef19540465593a41446f086af8640878e2609d05",
+   "sha256Html": "02401fb7faed90e362386db8c06b6d04dda029623500505be71fec819a472561",
    "sha256Texto": "f5256d682f95d311b5c11893b7c241263d890fb561655b728e05cb4dc008b05e",
    "alto": {
     "479": 4289,
@@ -984,7 +984,7 @@
   },
   "/project/modern-pool-motorized-pergola-south-florida": {
    "slug": "project_modern-pool-motorized-pergola-south-florida",
-   "sha256Html": "6f04bfaa25316a2d7d4e4c70629e18a4feb393bc3fea8011e61abfe3dc7a71e8",
+   "sha256Html": "7a8ffa77dc5aabfadb2689a567e7bd7870e82197c166cd82c0be46f571369c6a",
    "sha256Texto": "36558e9cb4332abda5101cbcd764a146317eb2249262fb85be00e75f5a7ddc49",
    "alto": {
     "479": 4249,
@@ -995,7 +995,7 @@
   },
   "/project/residential-pool-pergola-outdoor-dining-north-florida": {
    "slug": "project_residential-pool-pergola-outdoor-dining-north-florida",
-   "sha256Html": "077143165abb9af757a10e675f20b14ca7fe66c0b0e5ffcd26071b27fbcd519e",
+   "sha256Html": "00b3b83504031add0b1c299314d3e95ee59a2cb675ad10e2041378b79bf900f9",
    "sha256Texto": "d6663d5f17e93aeb3ca968493f5a6874925988326245f464fabc796edd8f8104",
    "alto": {
     "479": 4256,
@@ -1006,7 +1006,7 @@
   },
   "/project/south-florida-backyard-pool-wood-pergola": {
    "slug": "project_south-florida-backyard-pool-wood-pergola",
-   "sha256Html": "95fba1cadcd26d9f8f194e4cdf273543b5f32675761c3e7a4c439be22d6c8b60",
+   "sha256Html": "142e9834d42757257825de8544adb76a1b0ad08baf65a91ab4ea0fcb2429bda9",
    "sha256Texto": "e00c3f76f3addd52e65b24eea2349265d22fb09ae490bf4314a32eccc3a1c314",
    "alto": {
     "479": 4236,
@@ -1017,7 +1017,7 @@
   },
   "/blogs/commercial-pool-construction-in-florida-what-decision-makers-must-know": {
    "slug": "blogs_commercial-pool-construction-in-florida-what-decision-makers-must-know",
-   "sha256Html": "a89fe5d9aaa25c0f3a9f6c5021c4a3dc8a1f7a525b8349be7012904d2168f674",
+   "sha256Html": "0a0fc41f81612638fe11543fefb0c2c16b42f9c3ac07fa2d4dc9edf2fd830eb8",
    "sha256Texto": "7a4a63490667a471f487a348a6ccf4cf8fb433a0375edc1312ef1b27135877bd",
    "alto": {
     "479": 15570,
@@ -1028,7 +1028,7 @@
   },
   "/blogs/common-pool-construction-mistakes-we-see-in-florida": {
    "slug": "blogs_common-pool-construction-mistakes-we-see-in-florida",
-   "sha256Html": "75007a17970ad424fc7d10aa2c9809d338224f262a9280a5b49bd9bb45a8102a",
+   "sha256Html": "6a5dedf3bce7d8593f079ff87c56b638eabeef628bde92901f127956ad89e16e",
    "sha256Texto": "e89ded89dfac96058e9352db05ee79000362af6f2f46019da109359fefe09a83",
    "alto": {
     "479": 11027,
@@ -1039,7 +1039,7 @@
   },
   "/blogs/complete-guide-to-pool-construction-in-florida-costs-timeline-process": {
    "slug": "blogs_complete-guide-to-pool-construction-in-florida-costs-timeline-process",
-   "sha256Html": "bfcdcf0fe23db9dbd2007a0cd2eff3a42b162ebd9be8f1e6c1b11a8802abc881",
+   "sha256Html": "b06437e75dd6c9b653664975fac964132c6f506d10abc9d367f5bc058377fe50",
    "sha256Texto": "e4c594c4e57bb65a3a96db11b515be5439f105878581c8c2014b1e3705921f05",
    "alto": {
     "479": 17578,
@@ -1050,7 +1050,7 @@
   },
   "/blogs/how-outdoor-living-spaces-increase-property-value-in-florida": {
    "slug": "blogs_how-outdoor-living-spaces-increase-property-value-in-florida",
-   "sha256Html": "0f315eb437f0699bfe6f7715e7af2d3afc6d482e50f848bfd4dc57c0925baeb7",
+   "sha256Html": "54059569fe3535c0909576496930ead4e012e7edb1417dec8c155871fbf4403e",
    "sha256Texto": "b20010814fa7e79b1826923748a1e34f1ad99006c94d233cfc7d7a87084ecd41",
    "alto": {
     "479": 10683,
@@ -1061,7 +1061,7 @@
   },
   "/blogs/new-pool-construction-vs-pool-remodeling-which-is-right-for-you": {
    "slug": "blogs_new-pool-construction-vs-pool-remodeling-which-is-right-for-you",
-   "sha256Html": "abdaba3d39f2a48195e8ba08606b303d9e2ae61d17ec52ce4ef81f163eeb2ebc",
+   "sha256Html": "8719f37e004b0617852d620fed56b0f803dc02416a08d49e1f9670255e132137",
    "sha256Texto": "d261b8f223449df7d7619baaf4f9b51476480271ee98a1066bbd76decb5d7e2d",
    "alto": {
     "479": 12713,
@@ -1072,7 +1072,7 @@
   },
   "/blogs/outdoor-living-design-guide-for-florida-homes": {
    "slug": "blogs_outdoor-living-design-guide-for-florida-homes",
-   "sha256Html": "e1e25f5f5dea59458d1f7416933583feff9737437cc06d9803a1d0573b19628e",
+   "sha256Html": "53deb8c0240babca6a1fd070cefc5d13fced95472ee41843f55afcff909fd2d0",
    "sha256Texto": "5b29d3b7df0d0c2a6e8f0e42747c4298a343f7e7df97e63f8d77bdedd41d1497",
    "alto": {
     "479": 13210,
@@ -1083,7 +1083,7 @@
   },
   "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish": {
    "slug": "blogs_pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
-   "sha256Html": "bb2681653c0fa5e2f54fd9b7b64e0e20523050e8bcf01c0345a21e1bb3adfde9",
+   "sha256Html": "16e9d1f18e98c36615c47453102f6de610aba28d82e89f3d5ffaccd1cb508675",
    "sha256Texto": "a568c3722df13c92ab1a20ad6cb151ae0588ef48e52bbbb2592e85aaa9d7b06e",
    "alto": {
     "479": 14944,
@@ -1094,7 +1094,7 @@
   },
   "/blogs/residential-vs-commercial-pool-construction-in-florida": {
    "slug": "blogs_residential-vs-commercial-pool-construction-in-florida",
-   "sha256Html": "9fd7d306cdbda6e7dd84fab791f744e1fb1170a959cdfa4b5b9f9d4e0d2444ad",
+   "sha256Html": "8b12a48ccc797ee7d92ba68d52340411d4c235bfa0c5fcd7917e374290af7109",
    "sha256Texto": "ebe024c5dfb64aa098ef7a99129acb1f0605b541b215223d95dc214c8bdd0e43",
    "alto": {
     "479": 15786,
@@ -1105,7 +1105,7 @@
   },
   "/blogs/top-10-luxury-pool-designs-for-florida-homes": {
    "slug": "blogs_top-10-luxury-pool-designs-for-florida-homes",
-   "sha256Html": "6329c2533f2b607fb1bb37b4e9ca89fdae7843b27bae7745754a8247de8ea502",
+   "sha256Html": "a27b549eb3f8220fdbde7461dae8c2009b4b47c78f089b1f53d19f1c39d707c0",
    "sha256Texto": "5bf46d9e3c2126fe499a6698638bb5a5d6cecd087dab0537fe3daf037a9254ca",
    "alto": {
     "479": 17598,
@@ -1116,7 +1116,7 @@
   },
   "/blogs/what-permits-are-required-for-pool-construction-in-florida": {
    "slug": "blogs_what-permits-are-required-for-pool-construction-in-florida",
-   "sha256Html": "405c32a494f280b481a37afe93b3cfeb07bcfa35af1037aa3b45f62005acd487",
+   "sha256Html": "b6e7e7db1bbf12caeadeac5ade547e7a4434335b99959fc235bafe1673b3432f",
    "sha256Texto": "5c025de6f99e5f7ce4a3f04d5bf5f1271ba34d6a814ac6ee276a8f0d1ef37e15",
    "alto": {
     "479": 12007,
@@ -1127,7 +1127,7 @@
   },
   "/country/custom-pool-builders-alachua-county-fl": {
    "slug": "country_custom-pool-builders-alachua-county-fl",
-   "sha256Html": "94db27c73e6a929e3cd1d79b247be2a45182c611671af0e6a9041d7e67a23fcc",
+   "sha256Html": "2cea1212eb2af6be4c3f79bbee2477e60d78b21d0cceef52a53c48b772645baf",
    "sha256Texto": "d12b82fb7b75d502a7aab8bf019b8b75b5fd0604996847cc1a0a78d04109b3bb",
    "alto": {
     "479": 6848,
@@ -1138,7 +1138,7 @@
   },
   "/country/custom-pool-builders-broward-county-fl": {
    "slug": "country_custom-pool-builders-broward-county-fl",
-   "sha256Html": "c65f8f4c4943198502d3bcc69d806e472c47c32a337fb4fcf4d6c5a3fab35496",
+   "sha256Html": "2b3ece45b9fbf7942a7210e51debede68f7b52fc3857f905cd90ed8230fba223",
    "sha256Texto": "c8ff8dc54a8bdb590589a37bff02c9fcce1b8e64acbb59ffecadf7bc3d76db7b",
    "alto": {
     "479": 6931,
@@ -1149,7 +1149,7 @@
   },
   "/country/custom-pool-builders-columbia-county-fl": {
    "slug": "country_custom-pool-builders-columbia-county-fl",
-   "sha256Html": "08b91ee85fe09a4997782fa463dffc3fae9af08c57746e8d023e023df5bed869",
+   "sha256Html": "045bf07f7b7811e59f2019bf7f0e70a840997c366f0adc6a30a0a3c12f945ad1",
    "sha256Texto": "2ebede32107b4dc355ab2675ee41abc8e6d12ed8da6f43dac01614ab2fdabf12",
    "alto": {
     "479": 6671,
@@ -1160,7 +1160,7 @@
   },
   "/country/custom-pool-builders-dixie-county-fl": {
    "slug": "country_custom-pool-builders-dixie-county-fl",
-   "sha256Html": "a4fe33091019d07c2517c6818c7d2ca40019117461a3e53ee2577dca64c8a0d0",
+   "sha256Html": "303914a12d85a1d28a4a816fa29954b6ecbf21dfd24a77f7726a57612af51cf8",
    "sha256Texto": "96b27c0e90ff9a42f25331981b5afe184f5b042ad5ed912738c547e38771a757",
    "alto": {
     "479": 6671,
@@ -1193,7 +1193,7 @@
   },
   "/country/custom-pool-builders-marion-county-fl": {
    "slug": "country_custom-pool-builders-marion-county-fl",
-   "sha256Html": "7dc2d27c5d70dbc0624f011eda09611df4a1becc70a821d401c22d45368485cb",
+   "sha256Html": "33730a4a91a8c1ca9e28378a15bab2a2d2471d8ab12fe90b6f80ff940c7234f7",
    "sha256Texto": "d36412e4e40f885566da7ae9e662681163554fb1e68cc7c9fbedd9325bacfccc",
    "alto": {
     "479": 6731,
@@ -1204,7 +1204,7 @@
   },
   "/country/custom-pool-builders-palm-beach-county-fl": {
    "slug": "country_custom-pool-builders-palm-beach-county-fl",
-   "sha256Html": "550bf9f13dd706ddb93e00a91074f74eec93b088a3542c8bc1a06ad92a452d8e",
+   "sha256Html": "0bfd5a8ea039480347ad97ade129e581d0110964b5915a8432582ee31780f213",
    "sha256Texto": "2ae3506580737258caf2d9e46390ec1d78a5fd17c1b1bdc44cabde51eea7ad86",
    "alto": {
     "479": 7011,
@@ -1215,7 +1215,7 @@
   },
   "/country/custom-pool-builders-putnam-county-fl": {
    "slug": "country_custom-pool-builders-putnam-county-fl",
-   "sha256Html": "19eba1748ac7dc3502a1ea8ee806d2fdd122e357665b43ea903788c4b5bae964",
+   "sha256Html": "325dfaea79735770d8fad2fa1682fbf55ffd6e2a4f7e1d69bd1c12778069d71a",
    "sha256Texto": "2410c80241bf177d7917afddecdc186b53f7571cc997f1c407302d04656f19c9",
    "alto": {
     "479": 6691,
@@ -1226,7 +1226,7 @@
   },
   "/articles/accessibility": {
    "slug": "articles_accessibility",
-   "sha256Html": "9d98426c1c05c43457f51c34afef7e38cb63e09e00112b27640aac023230919b",
+   "sha256Html": "4f62082913f83c43e1ee3619e925af7fedc1d85705b182b4f2ba87bf1b5c457d",
    "sha256Texto": "3800eff37b7eb054b93ab8a15adf203f1b34572d0dc67c03ea7a787068580ce7",
    "alto": {
     "479": 2748,
@@ -1237,7 +1237,7 @@
   },
   "/articles/privacy-policy": {
    "slug": "articles_privacy-policy",
-   "sha256Html": "597198360da8f6be8bc241199e8ddf4cc86b720eb7c88069fcb990669ee83227",
+   "sha256Html": "6e9837bf48f9fa07e07ea2dff9650cb32992d00e43d39d625027664c0b1deb97",
    "sha256Texto": "e6f0fe615bcb13ebd40ce713e69afa2f0c86309d003ce1efd2cb9e2407e64616",
    "alto": {
     "479": 2925,
@@ -1248,7 +1248,7 @@
   },
   "/articles/terms-conditions": {
    "slug": "articles_terms-conditions",
-   "sha256Html": "bfb48244ee21b95b7cbb9e4dbbf3a70cfbf7b0e78fd707b41b35da150fac4263",
+   "sha256Html": "d30992979f54a6d59e0bc299114096b351b112a11fff4c93ad404b51f00128f0",
    "sha256Texto": "23c0997b4cf0c00cff4bb5a7240923f3db014682f1780c7978fd2a24b6f13008",
    "alto": {
     "479": 2973,
@@ -1259,7 +1259,7 @@
   },
   "/where-we-serves/custom-pool-builders-north-florida": {
    "slug": "where-we-serves_custom-pool-builders-north-florida",
-   "sha256Html": "97b8ddc151f709cb896859d6bb85b27220727f3d0f719812065b9ca2fc1ee1f2",
+   "sha256Html": "d5a803b988b017c4b4943dfa622d2a5ad85d983417afd5092e24b71d2f5b1b31",
    "sha256Texto": "64c5c8d9c651d63e780aaa575a4d19345b2a28b5f3489ac1cc390302c8908844",
    "alto": {
     "479": 7776,
@@ -1270,7 +1270,7 @@
   },
   "/where-we-serves/custom-pool-builders-south-florida": {
    "slug": "where-we-serves_custom-pool-builders-south-florida",
-   "sha256Html": "f14dc6461ab58728688d28a0ee1f79c696b9b9f707f03eba9ad56675e6700f21",
+   "sha256Html": "bd14ea22b41317a37ecd42d1bbcc019f3d92b800a3350f1dd40273b8915d9336",
    "sha256Texto": "f36783aea1730760099b27fe7d54144bf53f020431220b447b9a8efd00550ad1",
    "alto": {
     "479": 7640,

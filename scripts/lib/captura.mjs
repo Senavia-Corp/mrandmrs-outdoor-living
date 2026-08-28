@@ -94,6 +94,56 @@ export async function asentar(pag) {
   await pag.evaluate(() => scrollTo(0, 0));
   await pag.waitForTimeout(900);
 
+  /**
+   * 4b · ESPERAR A QUE NADA SE MUEVA, en vez de esperar un número de milisegundos.
+   *
+   * Los 900 ms de arriba se eligieron porque el nav tarda 500. Pero al volver arriba vuelven a
+   * entrar en pantalla los elementos de la primera pantalla, y sus revelados duran **1000 ms**:
+   * la captura los pillaba a media transición. Como la opacidad a medias NO es 0, la
+   * comprobación de invisibles del paso 6 los daba por buenos.
+   *
+   * Síntoma medido en `/country/…-broward-county-fl` a 479: la MISMA página contra el MISMO
+   * baseline daba 98,67 % en una corrida y 99,65 % en la siguiente, con la diferencia siempre
+   * en la misma banda (la sección de imágenes de la primera pantalla). Un umbral no distingue
+   * eso de una regresión de verdad, y eso es justo lo que hace inútil una puerta.
+   *
+   * No se puede preguntar «¿ha acabado la animación?» sin saber qué motor la mueve —IX2 usa
+   * estilos en línea y rAF, no transiciones CSS, así que `document.getAnimations()` no la ve—.
+   * Así que se pregunta lo único que vale para cualquier motor: **¿ha cambiado algo entre dos
+   * muestras?** Se muestrea opacidad y transform de todo lo animable y se repite hasta que dos
+   * lecturas seguidas salen iguales.
+   */
+  const HUELLA = () => [...document.querySelectorAll('[data-w-id], [style*="opacity"], [style*="transform"]')]
+    .map((e) => { const c = getComputedStyle(e); return `${c.opacity}|${c.transform}`; }).join(';');
+  let previa = await pag.evaluate(HUELLA);
+  let quieto = false;
+  for (let i = 0; i < 12 && !quieto; i++) {          // techo de 3 s: si no para, que lo diga el paso 6
+    await pag.waitForTimeout(250);
+    const ahora = await pag.evaluate(HUELLA);
+    quieto = ahora === previa;
+    previa = ahora;
+  }
+
+  // 5a · EL CARRUSEL DE PASOS DEL PROCESO — la sexta fuente de no determinismo.
+  //
+  // Las 14 fichas de `/services` traen código propio del sitio que autoavanza los pasos cada
+  // 5 s (`AUTOPLAY_DELAY`) y esconde los inactivos con `display:none`. Como `innerText` no ve
+  // lo oculto, baseline y puerta leían PASOS DISTINTOS y `check:texto` salía en rojo con
+  // «faltan 2 líneas, sobran 2» en 9 páginas. No era un defecto del sitio nuevo: el script es
+  // el mismo en los dos lados; era la captura, que no lo paraba.
+  //
+  // Se para con SU PROPIO mecanismo, no con uno inventado: el sitio ya detiene el autoplay en
+  // el `mouseenter` de `.process-section`. Antes se pulsa el primer paso para fijar cuál es
+  // -pulsar reinicia el temporizador, por eso el `mouseenter` va DESPUÉS y no antes-.
+  if (await pag.$('.process-section')) {
+    await pag.evaluate(() => document.querySelector('.process-step-item')
+      ?.dispatchEvent(new MouseEvent('click', { bubbles: true })));
+    await pag.waitForTimeout(900);   // 300 de salida + 420 de entrada, con margen
+    await pag.evaluate(() => document.querySelector('.process-section')
+      ?.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true })));
+    await pag.waitForTimeout(200);
+  }
+
   // 5 · congelar lo que se mueve solo
   await pag.evaluate(() => {
     document.querySelectorAll('video').forEach((v) => { v.pause(); v.currentTime = 0; });

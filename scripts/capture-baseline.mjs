@@ -147,7 +147,32 @@ for (const [ancho, alto] of anchos) {
     }
     await pag.bringToFront();
 
-    const est = await asentar(pag);
+    /**
+     * El asentado va en try/catch porque UNA ruta no puede matar la corrida.
+     *
+     * Medido: `/pool-builders/gulf-stream-florida` a 1440 lanzó
+     * «Execution context was destroyed, most likely because of a navigation» dentro de la sonda
+     * —la página navegó sola después de que `goto` diera por cargado— y se llevó por delante la
+     * captura entera **en la ruta 44 de 115, del segundo de cuatro anchos**: 40 minutos de
+     * trabajo tirados que además no decían nada de las otras 416.
+     *
+     * Se reintenta una vez recargando; si vuelve a fallar, esa captura se cuenta como error y
+     * se sigue. `check:baseline` exige 460 de 460, así que una que falte sale en rojo allí —
+     * que es donde tiene que salir, no reventando el proceso.
+     */
+    let est;
+    try {
+      est = await asentar(pag);
+    } catch (e) {
+      try {
+        await pag.reload({ waitUntil: 'load', timeout: 60000 });
+        await pag.bringToFront();
+        est = await asentar(pag);
+      } catch (e2) {
+        informe.errores.push({ ruta: r.ruta, ancho, error: `asentar: ${e2.message.slice(0, 120)}` });
+        console.log(`  🔴 ${r.ruta} — asentar reventó dos veces: ${e2.message.slice(0, 60)}`); continue;
+      }
+    }
     if (!est.valida) {
       informe.abortadas.push({ ruta: r.ruta, ancho, sonda: est.sonda });
       console.log(`  ⛔ ${r.ruta} — MEDICIÓN INVÁLIDA ${JSON.stringify(est.sonda)}`); continue;

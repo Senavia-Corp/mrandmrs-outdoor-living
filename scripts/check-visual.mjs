@@ -50,8 +50,24 @@ const TOLERANCIA = 0.3;
 const TOL_ALTO = 3;
 const filtro = process.argv.slice(2).filter((a) => !a.startsWith('--'));
 
-/** Páginas que se ven distinto A PROPÓSITO, con su motivo. */
+/**
+ * Páginas que se ven distinto A PROPÓSITO, con su motivo.
+ *
+ * El valor puede ser un texto —vale para los 4 anchos— o `{ anchos: [479], motivo }` para
+ * declarar **solo el ancho donde la diferencia existe**. Lo segundo importa: declarar una ruta
+ * entera por una diferencia que solo aparece a 479 apaga la puerta también a 1920, 1440 y 991,
+ * y ahí es donde vive casi todo el contenido. Una declaración que tapa más de lo que explica es
+ * una puerta menos.
+ */
 const DISTINTAS_A_PROPOSITO = {
+  '/brochures': { anchos: [479], motivo:
+    'el sitio VIVO tiene Turnstile inyectado por Cloudflare en TODOS sus formularios, incluido '
+    + 'el de FILTRO de categorias, que no envia nada: Webflow cuelga ahi un '
+    + '`<div><div><input type="hidden" name="cf-turnstile-response"></div></div>`. Ese formulario '
+    + 'es `display:grid; gap:16px`, asi que a una columna (479) el nodo vacio anade UNA FILA de '
+    + '16 px; a partir de 991 cae en la segunda columna y no suma nada -por eso solo falla a 479-. '
+    + 'El sitio nuevo NO lo replica a proposito: no se pone captcha donde no hay envio. '
+    + 'Medido con diag-geometria contra el vivo: 310 elementos, el unico desvio es ese.' },
   '/contact-us': 'el widget de Turnstile NO renderiza fuera del dominio registrado. Medido: el '
     + 'script carga y `window.turnstile` existe, pero `render()` no pinta nada en localhost, '
     + 'asi que la pagina sale ~16 px mas corta que el baseline, donde SI estaba pintado. '
@@ -61,6 +77,14 @@ const DISTINTAS_A_PROPOSITO = {
   '/videos': 'la galeria de YouTube era el CUARTO widget de Elfsight y es el unico que SI '
     + 'pintaba. Ahora es nativa (D2), con el diseño del sitio en vez del de Elfsight: mismos 8 '
     + 'videos y mismo texto -check:texto lo exige al 100%- pero otra maqueta.',
+};
+
+/** ¿Está declarada esta ruta PARA ESTE ANCHO? Devuelve el motivo, o null. */
+const declarada = (ruta, ancho) => {
+  const d = DISTINTAS_A_PROPOSITO[ruta];
+  if (!d) return null;
+  if (typeof d === 'string') return d;
+  return d.anchos.includes(ancho) ? d.motivo : null;
 };
 
 if (!fs.existsSync(ESTATICO)) { console.error('\nROJO falta .vercel/output/static\n'); process.exit(1); }
@@ -103,19 +127,39 @@ for (const [ancho, alto] of ANCHOS) {
     const resp = await pag.goto(BASE + ruta, { waitUntil: 'load', timeout: 40000 }).catch(() => null);
     if (!resp?.ok()) { rojos.push([ancho, ruta, `HTTP ${resp?.status()}`]); mal++; continue; }
     await pag.bringToFront();
-    const est = await asentar(pag);
-    if (!est.valida) { rojos.push([ancho, ruta, `medicion invalida ${JSON.stringify(est.sonda)}`]); mal++; continue; }
 
-    const { buffer } = await aJpeg(sharp, await disparar(pag));
-    const ma = await sharp(ref, { limitInputPixels: false }).metadata();
-    const mb = await sharp(buffer, { limitInputPixels: false }).metadata();
+    /**
+     * UNA RUTA NO PUEDE MATAR LA CORRIDA. Medido dos veces el 28-ago:
+     *
+     *   - `asentar` lanzó «Execution context was destroyed» en la captura del baseline y se
+     *     llevó 40 min de trabajo por delante;
+     *   - aquí, `page.screenshot: Timeout 120000ms exceeded` mató la comparación **4 de 460**
+     *     porque la máquina estaba saturada y una página larga tardó más de 2 minutos.
+     *
+     * Ninguno de los dos era un fallo del sitio. Que una página vaya lenta o se porte raro es
+     * normal; que eso tire 70 minutos de medición es un defecto de la puerta. Ahora la ruta se
+     * cuenta como ROJA con su motivo y se sigue — y como se cuenta en rojo, no se cuela nada:
+     * la puerta acaba en rojo igual y dice exactamente cuál falló.
+     */
+    let est, buffer, ma, mb;
+    try {
+      est = await asentar(pag);
+      if (!est.valida) { rojos.push([ancho, ruta, `medicion invalida ${JSON.stringify(est.sonda)}`]); mal++; continue; }
+      ({ buffer } = await aJpeg(sharp, await disparar(pag)));
+      ma = await sharp(ref, { limitInputPixels: false }).metadata();
+      mb = await sharp(buffer, { limitInputPixels: false }).metadata();
+    } catch (e) {
+      rojos.push([ancho, ruta, `no se pudo medir: ${e.message.split('\n')[0].slice(0, 90)}`]);
+      mal++; console.log(`  ROJO ${ruta.padEnd(52).slice(0, 52)} ${e.message.split('\n')[0].slice(0, 40)}`);
+      continue;
+    }
 
     const deltaAlto = mb.height - ma.height;
     if (ma.width !== mb.width || Math.abs(deltaAlto) > TOL_ALTO) {
       // Una diferencia de alto GRANDE no se compara a la fuerza recortando: eso daria un
       // porcentaje que parece bueno mientras la pagina crece o encoge. Se reporta como lo que es.
       const dif = `alto ${ma.height} -> ${mb.height} (${deltaAlto > 0 ? '+' : ''}${deltaAlto}px)`;
-      if (DISTINTAS_A_PROPOSITO[ruta]) { declaradas++; console.log(`  decl ${ruta} — ${dif}`); }
+      if (declarada(ruta, ancho)) { declaradas++; console.log(`  decl ${ruta} — ${dif}`); }
       else { rojos.push([ancho, ruta, dif]); mal++; }
       continue;
     }
@@ -133,7 +177,7 @@ for (const [ancho, alto] of ANCHOS) {
     const nota = deltaAlto ? ` (alto ${deltaAlto > 0 ? '+' : ''}${deltaAlto}px)` : '';
 
     if (igual >= UMBRAL) { ok++; console.log(`  ok   ${ruta.padEnd(52).slice(0, 52)} ${igual.toFixed(2)} %${nota}`); }
-    else if (DISTINTAS_A_PROPOSITO[ruta]) { declaradas++; console.log(`  decl ${ruta.padEnd(52).slice(0, 52)} ${igual.toFixed(2)} %${nota}`); }
+    else if (declarada(ruta, ancho)) { declaradas++; console.log(`  decl ${ruta.padEnd(52).slice(0, 52)} ${igual.toFixed(2)} %${nota}`); }
     else { mal++; rojos.push([ancho, ruta, `${igual.toFixed(2)} % (umbral ${UMBRAL} %)${nota}`]); console.log(`  ROJO ${ruta.padEnd(52).slice(0, 52)} ${igual.toFixed(2)} %${nota}`); }
   }
   await ctx.close();
@@ -147,6 +191,10 @@ if (rojos.length) {
   if (rojos.length > 20) console.log(`  ... y ${rojos.length - 20} mas`);
 }
 console.log(`\n  ${ok} iguales · ${mal} distintas · ${declaradas} declaradas · ${saltadas} sin baseline`);
-for (const [r, m] of Object.entries(DISTINTAS_A_PROPOSITO)) console.log(`     declarada ${r}: ${m.slice(0, 92)}...`);
+for (const [r, d] of Object.entries(DISTINTAS_A_PROPOSITO)) {
+  const m = typeof d === 'string' ? d : d.motivo;
+  const donde = typeof d === 'string' ? 'los 4 anchos' : `solo ${d.anchos.join('/')}px`;
+  console.log(`     declarada ${r} (${donde}): ${m.slice(0, 84)}...`);
+}
 console.log(`\n${mal === 0 ? 'PUERTA VERDE' : `PUERTA ROJA — ${mal} comparacion(es)`}\n`);
 process.exit(mal ? 1 : 0);
