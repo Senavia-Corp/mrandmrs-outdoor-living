@@ -27,7 +27,9 @@
     "check:seo": "node scripts/check-seo.mjs",
     "seo:ficheros": "node scripts/build-seo-ficheros.mjs",
     "reveals": "node scripts/build-reveals.mjs",
-    "check:ix2": "node scripts/check-ix2.mjs"
+    "check:ix2": "node scripts/check-ix2.mjs",
+    "check:enlaces": "node scripts/check-enlaces.mjs",
+    "check": "npm run build && npm run check:assets && npm run check:rutas && npm run check:enlaces && npm run check:seo && npm run check:texto && npm run check:ix2"
   },
   "dependencies": {
     "@astrojs/vercel": "^11.0.8",

@@ -37,24 +37,22 @@ _source/sanity-masters/
 # Regla: si el sitio construido pide un fichero por una RUTA LOCAL FIJA,
 # ese fichero VA EN GIT. Sin excepciones.
 #
-# Lo de abajo se excluye porque su destino es SANITY (Fase 3) y las páginas lo
-# pedirán por URL del CDN de Sanity, no por ruta local. Si en la Fase 6 alguna
-# página acaba pidiendo una de estas rutas en local, HAY QUE VERSIONARLA.
-# `node scripts/check-assets.mjs` comprueba ese acoplamiento (check 9).
-# Se reconstruye con: node scripts/download-assets.mjs
+# ↩️ SE CUMPLIÓ LA PREDICCIÓN, 27-ago-2026.
+#
+# Aquí abajo estaba escrito: «su destino es SANITY y las páginas lo pedirán por
+# URL del CDN de Sanity, no por ruta local. Si en la Fase 6 alguna página acaba
+# pidiendo una de estas rutas en local, HAY QUE VERSIONARLA.»
+#
+# Pues eso pasó. Las 115 páginas se generan desde el HTML del sitio vivo, así que
+# piden las imágenes y los 54 PDF POR RUTA LOCAL. `check:enlaces` lo cazó:
+# 601 ficheros que `dist/` pide y que NO estaban en `git ls-files`. Desplegando
+# por `git push` habrían sido 601 assets rotos en producción con todas las demás
+# puertas en verde — el desastre de Pergola Plus, calcado.
+#
+# Así que se versionan: 428 MB. Es caro y se sabe. Deja de serlo el día que las 7
+# plantillas lean de Sanity y las imágenes se pidan a su CDN; ese día se vuelven a
+# ignorar. Mientras tanto, un sitio que funciona pesa más que un repo bonito.
 # ─────────────────────────────────────────────────────────────────────────────
-public/brochures/
-public/images/brochures/
-public/images/commercials/
-public/images/countries/
-public/images/images/
-public/images/logos/
-public/images/pool-builders/
-public/images/procesos/
-public/images/projects/
-public/images/residentials/
-public/images/subservices/
-public/images/where-we-serves/
 
 # Los 3 vídeos originales (70 MB) NO los referencia ninguna página: solo se usan
 # las variantes _mp4/_webm. Lista blanca en vez de exclusión, para que añadir un

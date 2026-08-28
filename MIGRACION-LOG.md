@@ -23,7 +23,7 @@ reproducir el resultado, saber qué se midió y con qué comando, y ver qué que
 | F7 | Animaciones e interacciones | ✅ cerrada | 2026-08-27 |
 | F8 | Formularios y terceros | 🟡 falta el correo del cliente | |
 | F9 | Paridad SEO | ✅ cerrada | 2026-08-27 |
-| F10 | Puertas de verificación | ⬜ pendiente | |
+| F10 | Puertas de verificación | 🟡 8 de 10 escritas | |
 | F11 | Deploy y corte de dominio | ⬜ pendiente | |
 
 Estados: ⬜ pendiente · 🟡 en curso · ✅ cerrada · 🔴 bloqueada · ↩️ reabierta
@@ -128,6 +128,7 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 | 3 | `industry-solutions.html` | La URL del logo repite el id de sitio (`/68f185…/68f185…/`) y da **403**. | Es un defecto del HTML de Webflow. Se normaliza al descargar; la ruta simple da 200 y su sha256 coincide con el logo local. |
 | 4 | export de Webflow | 6 ficheros con extensión `.avif` cuyo contenido es **WebP**. | Defecto del exportador. Se renombran a su formato real; servirlos como AVIF rompería la subida a Sanity. |
 | 5 | Home, `/contact-us` y todas las páginas (widget flotante) | **Los 3 widgets de Elfsight no pintan nada.** Medido el 27-ago-2026 en dos navegadores distintos sobre el sitio vivo: los tres contenedores se quedan en **altura 0 y sin hijos** tras barrido completo y 6–8 s de espera. `platform.js` sí carga y la petición a `core.service.elfsight.com/p/boot/` sí se hace. Dos de ellos no son adorno: `ce5a93b9…` es **Google Reviews** y `fdd09947…` el **Instagram Feed** — una `<section class="social-media">` entera. El tercero es el click-to-call. | ↩️ **YA NO APLICA — decisión de Sebastian, 27-ago-2026: los tres se rehacen NATIVOS y en local.** Fuera Elfsight y su `platform.js`. Ver «Decisiones de alcance» abajo. |
+| 7 | Menú y pie de las 114 páginas | **342 enlaces a `/commercial-services/…` que dan 404.** Comprobado contra el vivo: esas 3 fichas no tienen página propia, pero el sitio las enlaza desde el menú y el pie de todas las páginas. | Rotos ya en el origen. Arreglarlos sería inventarse 3 páginas que no existen. Declarados uno a uno en `check:enlaces`. **Son 342 enlaces que llevan a ninguna parte y cada uno es un visitante perdido**: o se crean las 3 páginas o se quitan los enlaces. Conversación con el cliente. |
 | 6 | `/`, `/about`, `/request-estimated`, home | **Finsweet hace tres trabajos, no uno.** Además del filtrado de listas que apunta `PROMPT.md`: el **marquee de logos** (`fs-marquee-logoscms_*`, 14 logos) y el **slider del blog** (`fs-slider-blog_*`). | No es una mejora: es alcance que faltaba. Anotado aquí para que la Fase 7 no lo descubra tarde — `@finsweet/attributes@2` hay que reimplementarlo en tres frentes, no en uno. |
 
 ---
@@ -135,6 +136,59 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 ## Entradas
 
 <!-- a partir de aquí, una entrada por fase, la más reciente arriba -->
+
+## Fase 10 — Puertas de verificación   🟡 8 de 10
+**Fecha:** 2026-08-27
+
+### Las que hay
+| Script | Comprueba | Estado |
+|---|---|---|
+| `check:assets` | 10 checks del pipeline de assets | ✅ verde |
+| `check:baseline` | el baseline es completo y determinista | ✅ verde |
+| `check:cascaron` | nav y pie contra el vivo, por geometría | ✅ verde |
+| `check:rutas` | 115/115, 0 de más, 0 referencias a Webflow | ✅ verde |
+| `check:enlaces` | enlaces, assets locales y **git ↔ despliegue** | ✅ verde |
+| `check:seo` | el `<head>` de las 115 | ✅ verde |
+| `check:texto` | `innerText` **100 % idéntico** | ✅ verde |
+| `check:ix2` | invisibles, transform residual, scroll-x, interacción | ✅ verde |
+| `check:visual` | diff de píxeles contra el baseline | ⬜ **falta** |
+| `check:lighthouse` | Perf/A11y/BP/SEO ≥ el actual | ⬜ **falta** |
+
+`npm run check` las encadena todas.
+
+### LO QUE CAZÓ `check:enlaces`, Y ES GRAVE
+**601 ficheros que `dist/` pide por ruta local NO estaban en `git ls-files`.** 428 MB de
+imágenes de colección y los 54 PDF.
+
+Desplegando por `git push` habrían sido **601 assets rotos en producción con todas las demás
+puertas en verde**. Es el desastre de Pergola Plus calcado: allí fueron 507 ficheros y 429 URLs
+rotas, y la puerta de entonces no podía verlo porque miraba **el disco** — el disco de la
+máquina donde el instalador acaba de dejarlo todo.
+
+Lo mejor es que **estaba predicho**. El `.gitignore` de la Fase 2 decía, con estas palabras:
+«su destino es SANITY y las páginas lo pedirán por URL del CDN de Sanity, no por ruta local.
+**Si en la Fase 6 alguna página acaba pidiendo una de estas rutas en local, HAY QUE
+VERSIONARLA.**» Pasó exactamente eso, porque las páginas se generan desde el HTML del vivo.
+
+Versionados: **428 MB**, el repo pasa de 267 MB a ~700 MB. Es caro y se sabe. Deja de serlo el
+día que las 7 plantillas lean de Sanity y las imágenes se pidan a su CDN.
+
+Probada en rojo desversionando un fichero: `728/729 — 1 fuera de git`. Verde al devolverlo.
+
+### Enlaces rotos: 342, y ya lo estaban
+Todos a `/commercial-services/…`. Comprobado contra el vivo: **404 también allí**. Se replican
+(contrato) y quedan declarados uno a uno con su motivo, más una fila en mejoras candidatas: son
+342 enlaces del menú y el pie que no llevan a ninguna parte.
+
+### Abierto
+- **`check:visual`** — es la que falta de verdad. Ojo con el diseño: ya se demostró en la Fase 4
+  que «≥99 % de píxeles» sobre una banda casi vacía deja pasar un elemento movido 6 px. Para
+  páginas completas el porcentaje sí discrimina, pero la tolerancia hay que calibrarla (0.3 tras
+  el reescalado a 1/4, medido).
+- **`check:lighthouse`** — recordar que el Lantern móvil en localhost revienta con `NO_LCP` y
+  tapa el Performance en ~92 aunque la página sea rápida. Fiarse del desktop y de la URL
+  desplegada.
+- **`check:formularios`** — no se puede escribir hasta tener credenciales de correo.
 
 ## Fases 7 (2.ª parte) y 8 — componentes y formularios   🟡
 **Fecha:** 2026-08-27
