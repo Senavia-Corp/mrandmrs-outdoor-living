@@ -65,6 +65,27 @@
 @media (max-width: 991px) { #pool-estimator { font-size: 14px; } }
 #pool-estimator *, #pool-estimator *::before, #pool-estimator *::after { box-sizing: border-box; }
 
+/**
+ * BLINDAJE CONTRA EL CSS DE LA PÁGINA ANFITRIONA.
+ *
+ * Este componente vive en DOS sitios: su página desnuda y, desde la decisión D3, dentro de
+ * `/pool-cost-estimator`, que carga el CSS entero de Webflow. Las reglas de base de Webflow
+ * alcanzan a mis elementos y lo dejaban **distinto en cada ruta**. Medido comparando los
+ * estilos calculados de 18 selectores en las dos:
+ *
+ *   · `label{margin-bottom:5px; font-size:16px}` -> mis tarjetas de opción SON `<label>` (para
+ *     que se puedan clicar enteras sin JavaScript), así que cobraban 5px de margen y quedaban
+ *     más separadas SOLO en la página empotrada;
+ *   · `h3{text-transform:capitalize}` -> daba igual porque mis títulos ya van en mayúscula
+ *     inicial, pero es una diferencia que un día dejará de dar igual;
+ *   · `input{...}` -> tipografía y color heredados distintos en cada ruta.
+ *
+ * Un componente que se ve distinto según dónde lo pongas no está terminado.
+ */
+#pool-estimator label { margin: 0; font-size: inherit; font-weight: inherit; }
+#pool-estimator input { font: inherit; color: inherit; }
+#pool-estimator h3.pe-h3 { text-transform: none; }
+
 /* La página desnuda ocupa el alto de la ventana; empotrado en /pool-cost-estimator, no —
    ahí lo alto lo pone el contenido y un `min-height:100vh` metería un hueco enorme. */
 #pool-estimator.pe-suelta { min-height: 100vh; }

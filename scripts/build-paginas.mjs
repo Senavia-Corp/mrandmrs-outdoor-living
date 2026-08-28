@@ -154,6 +154,26 @@ for (const [ruta] of RUTAS) {
       envoltorio.replaceWith(doc.createTextNode(MARCA + comp + MARCA));
       if (comp) usados.add(comp);
     }
+    /**
+     * DECISION D3 (Sebastian, 28-ago-2026) — FUERA EL IFRAME de /pool-cost-estimator.
+     *
+     * Esa pagina embebia `/pool-investment-estimator` en un `<iframe>` con altura FIJA
+     * (900/1400/1600 px segun el ancho) porque el estimador era una app de Webflow Cloud que
+     * vivia en otro servidor. Desde la Fase 12c es un componente de este mismo sitio, asi que
+     * el iframe ya no compra nada: cuesta un documento entero, un juego de CSS y JS repetido, y
+     * unas alturas fijas que o sobran o cortan.
+     *
+     * Se sustituye por el MISMO mecanismo con el que ya se cambian los 4 widgets de Elfsight:
+     * un marcador que mas abajo se convierte en `<Estimador />`. Por eso el componente vive en
+     * `components/widgets/`: asi el generador de imports no necesita ningun caso especial.
+     *
+     * La ruta `/pool-investment-estimator` NO desaparece: sigue siendo una de las 115 y sigue
+     * sirviendo el estimador desnudo. Las dos comparten el componente.
+     */
+    for (const emb of [...n.querySelectorAll('.code-embed-cost')]) {
+      (emb.closest('.w-embed') ?? emb).replaceWith(doc.createTextNode(MARCA + 'Estimador' + MARCA));
+      usados.add('Estimador');
+    }
     // El iframe del estimador viene con URL ABSOLUTA al dominio de produccion. Se pasa a
     // relativa: si no, cualquier preview cargaria el sitio VIEJO de Webflow dentro del nuevo
     // -y el check:visual estaria comparando el original contra si mismo-. Tras el corte

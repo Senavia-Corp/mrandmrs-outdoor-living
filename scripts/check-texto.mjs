@@ -64,6 +64,48 @@ const QUITADAS_A_PROPOSITO = [
   ['Free YouTube Video Gallery Widget', 'la marca de Elfsight en /videos. Se va con el widget'],
 ];
 
+/**
+ * Texto que APARECE a propósito, por ruta. Se declara un BLOQUE SEGUIDO, no unas líneas
+ * sueltas ni la ruta entera.
+ *
+ * DECISIÓN D3 (Sebastian, 28-ago-2026): `/pool-cost-estimator` embebía el estimador en un
+ * `<iframe>`, o sea en OTRO documento — y `innerText` no cruza documentos, así que su texto
+ * nunca contó aquí. Ahora el estimador va montado en la página, y esas 13 líneas entran en el
+ * `innerText`. Es exactamente el cambio que se pidió, y no se puede distinguir de un fallo si
+ * no se declara.
+ *
+ * Por qué así y no de otra forma:
+ *   · **el bloque se LEE de `baseline/text/pool-investment-estimator.txt`**, no se copia a
+ *     mano: si el texto del paso 1 del estimador cambia algún día, la declaración deja de casar
+ *     y esta puerta vuelve a rojo, que es justo lo que tiene que pasar;
+ *   · se exige SEGUIDO y EN ORDEN. Quitar 13 líneas sueltas dejaría pasar un reordenamiento;
+ *   · todo lo demás de la página se sigue comparando al 100 %. Declarar la ruta entera —o bajar
+ *     el umbral— habría apagado la puerta en las otras 90 líneas.
+ */
+const ANADIDAS_A_PROPOSITO = {
+  '/pool-cost-estimator': {
+    bloque: '/pool-investment-estimator',
+    motivo: 'D3: fuera el iframe, el estimador va montado en la pagina. Las 13 lineas son las '
+      + 'del paso 1 del estimador, que antes vivian en otro documento.',
+  },
+};
+
+/** Quita de `hay` el bloque declarado, EXIGIÉNDOLO seguido y en orden. `null` si no está. */
+function sinElBloque(ruta, hay) {
+  const d = ANADIDAS_A_PROPOSITO[ruta];
+  if (!d) return hay;
+  const f = path.join(RAIZ, 'baseline/text', `${aSlug(d.bloque)}.txt`);
+  if (!fs.existsSync(f)) return hay;
+  const bloque = fs.readFileSync(f, 'utf8').trimEnd().split('\n').filter(Boolean);
+  const lineas = hay.split('\n');
+  for (let i = 0; i + bloque.length <= lineas.length; i++) {
+    if (bloque.every((l, j) => lineas[i + j] === l)) {
+      return [...lineas.slice(0, i), ...lineas.slice(i + bloque.length)].join('\n');
+    }
+  }
+  return null;   // declarado pero NO está seguido: eso es rojo, y con motivo
+}
+
 /** Diferencia legible entre dos textos, línea a línea. */
 function diferencias(esperado, hay) {
   const a = esperado.split('\n'), b = hay.split('\n');
@@ -101,8 +143,20 @@ for (const ruta of RUTAS) {
   const declaradas = new Set(QUITADAS_A_PROPOSITO.map(([l]) => l));
   const esperado = fs.readFileSync(ref, 'utf8').trimEnd().split('\n')
     .filter((l) => !declaradas.has(l)).join('\n');
-  const hay = (await textoNormalizado(pag)).trimEnd();
-  if (hay === esperado) { ok++; console.log(`  ok   ${ruta}`); continue; }
+  const bruto = (await textoNormalizado(pag)).trimEnd();
+  const hay = sinElBloque(ruta, bruto);
+  if (hay === null) {
+    mal++;
+    console.log(`  ROJO ${ruta} — el bloque declarado de ${ANADIDAS_A_PROPOSITO[ruta].bloque} no aparece seguido`);
+    rojos.push({ ruta, falta: [`bloque declarado ausente o desordenado`], sobra: [], fuera: [] });
+    continue;
+  }
+  if (hay === esperado) {
+    ok++;
+    console.log(`  ok   ${ruta}${ANADIDAS_A_PROPOSITO[ruta] ? '   (con el bloque declarado de '
+      + ANADIDAS_A_PROPOSITO[ruta].bloque + ')' : ''}`);
+    continue;
+  }
 
   mal++;
   const d = diferencias(esperado, hay);
@@ -125,5 +179,8 @@ if (rojos.length) {
 }
 
 console.log(`\n  ${ok} identicas · ${mal} con diferencias · ${saltadas} aun sin construir`);
+for (const [r, d] of Object.entries(ANADIDAS_A_PROPOSITO)) {
+  console.log(`     declarado ${r}: el bloque de ${d.bloque} — ${d.motivo}`);
+}
 console.log(`\n${mal === 0 ? 'PUERTA VERDE' : `PUERTA ROJA — ${mal} pagina(s)`}\n`);
 process.exit(mal ? 1 : 0);

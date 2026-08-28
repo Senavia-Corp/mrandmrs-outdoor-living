@@ -144,6 +144,91 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 
 <!-- a partir de aquí, una entrada por fase, la más reciente arriba -->
 
+## Fase 12e — fuera el iframe de `/pool-cost-estimator` (decisión D3)   ✅ cerrada
+**Fecha:** 2026-08-28
+
+`/pool-cost-estimator` embebía el estimador en un `<iframe>` con **altura fija** (900 px a
+partir de 992, 1400 entre 768 y 991, 1600 por debajo) porque era una app que vivía en otro
+servidor. Desde la Fase 12c es un componente de este sitio, así que el iframe ya no compra nada:
+cuesta un documento entero, otro juego de CSS y JS, y unas alturas fijas que o sobran o cortan.
+
+**El cambio va en el GENERADOR, no en el `.astro`**: esa página es derivada y lo dice en su
+primera línea. `build-paginas.mjs` sustituye `div.code-embed-cost` por el marcador
+`@@WIDGET@@Estimador@@WIDGET@@` — el mismo mecanismo con el que ya se cambian los 4 widgets de
+Elfsight. Por eso el componente vive en `components/widgets/`: así el generador de `import`s no
+necesita ningún caso especial. El diff toca **solo** esa ruta.
+
+El `<script>` de `#msf` que va tras el pie **se queda**: es código de la propia página en el
+origen y no aporta `innerText`.
+
+### ⚠️ TRAMPA DE LA TUBERÍA: `npm run paginas` repuso 53 páginas ya jubiladas
+
+Regenerar las estáticas volvió a escribir las **53 fichas de `pool-builders`** que la Fase 6b
+había sustituido por `[slug].astro` leyendo de Sanity. El README lo avisa y aun así pasó. Se
+borraron con `git clean -f src/pages/pool-builders/` —solo lo NO versionado, `[slug].astro` está
+en git y sobrevive—. Si se hubieran colado, habría habido dos fuentes para las mismas 53 rutas.
+
+### Las dos puertas, medidas antes de declarar nada
+
+`check:texto` — **0 líneas faltan, sobran 13**, y son exactamente las 13 del paso 1 del
+estimador. Antes vivían en otro documento y `innerText` no cruza documentos.
+
+`check:visual` — la página queda **más corta** en los 4 anchos, que es justo lo que se pidió:
+
+```
+  1920  alto 418 -> 369 (-49px)      991  alto 602 -> 537 (-65px)
+  1440  alto 418 -> 369 (-49px)      479  alto 821 -> 753 (-68px)
+        (px del JPEG a 1/4 -> 196, 196, 260 y 272 px reales)
+```
+
+### Cómo se declaran, y por qué así
+
+- **`check:texto`: se declara un BLOQUE, no la ruta.** Se añade `ANADIDAS_A_PROPOSITO`, que
+  **lee las líneas de `baseline/text/pool-investment-estimator.txt`** —no se copian a mano— y
+  las exige **seguidas y en orden**. Las otras 90 líneas de la página se siguen comparando al
+  100 %. Visto en rojo: cambiando «Project Type» por «Project Types» en el componente, la puerta
+  vuelve a rojo con *«el bloque declarado no aparece seguido»*. Una declaración que se puede
+  cambiar por debajo sin que salte no es una declaración, es un interruptor.
+- **`check:visual`: la ruta entera, los 4 anchos**, con el motivo escrito. Aquí sí toca entera:
+  la diferencia existe en los cuatro y no es de un solo ancho.
+
+### Y una fuga de estilos que ninguna puerta podía ver
+
+El componente vive en dos sitios y **se veía distinto en cada uno**. Comparando los estilos
+calculados de 32 selectores en las dos rutas:
+
+- `label{margin-bottom:5px; font-size:16px}` de la base de Webflow alcanzaba mis tarjetas de
+  opción —que SON `<label>`, para poder clicarlas enteras sin JavaScript— y las separaba **5px
+  más** solo en la página empotrada;
+- `h3{text-transform:capitalize}` y la tipografía heredada de los `input`, lo mismo.
+
+`check:visual` no lo veía porque esa ruta está declarada, y en la desnuda no existe el CSS de
+Webflow. Arreglado con un bloque de blindaje en `estimador.css`. Vuelta a medir: **0 fugas en 32
+selectores** y la tarjeta mide 396px exactos en las dos rutas.
+
+### DOS ROJOS QUE NO SON MÍOS, Y SE CUENTAN EN ROJO IGUAL
+
+`check:texto` está rojo en `/services/pool-remodeling-renovation-…` y
+`/services/pool-screen-enclosures-…`: 2 líneas faltan y 2 sobran en cada una. Es el **carrusel de
+pasos** de las fichas de servicio, el mismo de la Fase 1 reabierta: el baseline guardó un paso
+avanzado («Permits & Project Coordination») y el sitio construido enseña el primero («Pool
+Assessment & Condition Analysis»). De las 14 fichas, la recaptura del 28-ago no cuajó en 2.
+
+**No es de la Fase 12, y está comprobado, no supuesto:**
+
+```
+git diff --stat 0e80729 HEAD -- <los 2 .astro> <los 2 baseline .txt> \
+    Componentes.astro Interacciones.astro Base.astro lib/captura.mjs webflow.css
+(sin salida: ninguno de los insumos de esas dos páginas ha cambiado)
+```
+
+Y es **determinista**, no un parpadeo: dos corridas seguidas dan exactamente las mismas 4 líneas.
+
+**No se toca.** Arreglarlo es recapturar el baseline de esas dos rutas, y el encargo dice
+expresamente que no se toca el baseline de otras rutas. Queda contado en rojo aquí y en
+`docs/ENTREGA.md`; se cierra recapturando esas dos fichas **mientras el dominio siga vivo**.
+
+
 ## Fase 12d — el estimador capta el lead   ✅ cerrada
 **Fecha:** 2026-08-28
 
