@@ -191,6 +191,11 @@ for (const [ruta] of RUTAS) {
        * ahí, el endpoint lo rechaza con «formulario desconocido», así que cablearlo era además
        * mandar al visitante a un 400.
        */
+      // El endpoint conoce un TERCERO, `Pool Estimator Form` (Fase 12d), que NO va aquí: no
+      // sale del HTML de Webflow, lo escribe `components/widgets/Estimador.astro` con su
+      // `data-mm-envia` y su honeypot puestos a mano. Esta lista es solo la de los formularios
+      // DERIVADOS; el invariante que importa sigue siendo el mismo -si un `data-name` no está
+      // en `FORMULARIOS` de `api/formulario.ts`, el envío es un 400-.
       const LEADS = new Set(['Contact Page Form', 'Request Quote Form']);
       if (!LEADS.has(form.getAttribute('data-name'))) continue;
       form.setAttribute('method', 'post');

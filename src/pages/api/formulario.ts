@@ -72,6 +72,36 @@ const FORMULARIOS: Record<string, { titulo: string; campos: [string, string][] }
       ['checkbox', 'Services of interest'],
     ],
   },
+  /**
+   * FASE 12d — el cierre del estimador de piscinas.
+   *
+   * Antes, el paso 7 acababa en un enlace a `/request-estimated` que **se llevaba por delante
+   * todo lo que el visitante acababa de configurar**: llegaba a un formulario en blanco y el
+   * negocio no se enteraba ni de que había usado la calculadora. Ahora los datos se piden allí
+   * mismo y el aviso sale con la estimación y las opciones elegidas.
+   *
+   * Los 13 campos de configuración van OCULTOS y los reescribe el propio estimador en cada
+   * cambio, así que lo que llega es lo ÚLTIMO que se eligió. El orden de esta lista es el orden
+   * del correo: primero con quién hay que hablar, después cuánto y de qué.
+   *
+   * ⚠️ Esto NO se cablea desde `build-paginas.mjs` como los otros dos. Aquel solo toca los
+   * `<form>` que vienen del HTML de Webflow; éste lo escribe a mano
+   * `src/components/widgets/Estimador.astro`, con su `data-mm-envia="1"` y su honeypot puestos
+   * ahí. Lo que sí comparte es `Formularios.astro`: las cuatro capas antibot son las mismas.
+   */
+  'Pool Estimator Form': {
+    titulo: 'Pool estimator lead',
+    campos: [
+      ['Full-Name', 'Full name'], ['email', 'Email'], ['Phone', 'Phone'],
+      ['ZIP-Code', 'ZIP code'], ['Message', 'Message'],
+      ['Estimate-Range', 'ESTIMATED RANGE'],
+      ['Project-Type', 'Project type'], ['Pool-Size', 'Pool size'], ['Pool-Style', 'Pool style'],
+      ['Interior-Finish', 'Interior finish'], ['Deck-Size', 'Deck size'],
+      ['Deck-Material', 'Deck material'], ['Spa', 'Spa'], ['Systems', 'Systems'],
+      ['LED-Lights', 'LED lights'], ['Outdoor-Add-Ons', 'Outdoor add-ons'],
+      ['Site-Conditions', 'Site conditions'], ['Cost-Breakdown', 'Cost breakdown'],
+    ],
+  },
 };
 
 const responde = (estado: number, cuerpo: Record<string, unknown>) =>

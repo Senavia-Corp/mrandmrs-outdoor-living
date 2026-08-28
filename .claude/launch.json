@@ -1,6 +1,14 @@
 {
   "version": "0.0.1",
   "configurations": [
-    { "name": "mrandmrs", "runtimeExecutable": "npm", "runtimeArgs": ["run", "dev"], "port": 4321 }
+    {
+      "name": "mrandmrs",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
+      "port": 4325
+    }
   ]
 }

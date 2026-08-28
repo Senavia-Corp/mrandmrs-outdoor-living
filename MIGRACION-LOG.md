@@ -144,6 +144,97 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 
 <!-- a partir de aquí, una entrada por fase, la más reciente arriba -->
 
+## Fase 12d — el estimador capta el lead   ✅ cerrada
+**Fecha:** 2026-08-28
+
+Antes, el paso 7 acababa en un botón que se iba a
+`https://mrandmrsoutdoorliving.com/request-estimated` **en una pestaña nueva, con URL absoluta al
+dominio viejo, y perdiendo por el camino todo lo que el visitante acababa de configurar**:
+llegaba a un formulario en blanco y el negocio no se enteraba ni de que había usado la
+calculadora. Ahora los datos se piden allí mismo y el aviso sale con la estimación y las
+opciones. El botón conserva su texto, «Schedule Your Design Consultation», y debajo queda un
+enlace a `/request-estimated` para quien prefiera el formulario largo.
+
+**Se reutiliza el camino probado, no se hace uno nuevo.** Tercera entrada en la tabla
+`FORMULARIOS` de `src/pages/api/formulario.ts` —no un endpoint paralelo— y el marcado es el que
+`src/components/Formularios.astro` ya sabe manejar (`form[data-name][data-mm-envia="1"]` con sus
+hermanos `.w-form-done`/`.w-form-fail`). De ahí salen gratis las cuatro capas antibot y los
+estados con las clases del sitio. Lo único propio es el honeypot `ref_id`, que a los otros dos se
+lo pone `build-paginas.mjs` y este no sale del HTML de Webflow.
+
+Los 13 campos de configuración van ocultos y los reescribe el mismo `recalcula()` que pinta el
+rango: **lo que se envía es siempre lo último que el visitante eligió**, no un estado de hace
+tres pasos.
+
+### Las seis respuestas del endpoint, medidas
+
+```
+  500  {"ok":false,"error":"el correo no esta configurado"} lead completo
+  200  {"ok":true}                                          honeypot relleno
+  200  {"ok":true}                                          trampa de tiempo (300 ms)
+  400  {"ok":false,"error":"correo no valido"}              correo invalido
+  400  {"ok":false,"error":"formulario desconocido"}        formulario desconocido
+  429  {"ok":false,"error":"demasiado rapido"}              rate-limit (misma IP dos veces)
+```
+
+El 500 del primero es lo correcto y es la regla de la casa: **sin `SMTP_USER`/`SMTP_PASS` no hay
+entrega, y un 200 sin correo es peor que un error**. En esa misma rama el endpoint registra las
+líneas del correo completas, y ahí se ve que el aviso lleva lo que tiene que llevar:
+
+```
+'ESTIMATED RANGE: $318,000 – $389,000'
+'Project type: Pool & Patio Remodel'      'Pool size: 900 sqft'
+'Pool style: Luxury / Custom Geometry'    'Interior finish: Premium / Polished Finish'
+'Deck size: 1500 sqft'                    'Deck material: Travertine'
+'Spa: Raised Spillover Spa'               'Systems: Heater, Salt System, Automation System'
+'LED lights: 12'
+'Outdoor add-ons: Pergola, Louvered Roof System, Pool Screen Enclosure, Outdoor Kitchen, Pool-Area Landscaping'
+'Site conditions: Tight Access, Rock Excavation, HOA Approval Required'
+'Cost breakdown: Pool Structure: $176,175 · Decking: $52,500 · Spa: $18,000 · …'
+```
+
+### Y de punta a punta, con casos del ORÁCULO
+
+Recorrido real en el navegador sobre el build, con el POST interceptado. Los casos salen de
+`_source/estimator-casos.json`, así que esto ata **UI → modelo → formulario → cable** contra lo
+medido del original:
+
+```
+  ok   todo-si     oraculo $388,000 – $474,000   pantalla $388,000 – $474,000   oculto $388,000 – $474,000
+  ok   todo-no     oraculo $23,000 – $28,000     pantalla $23,000 – $28,000     oculto $23,000 – $28,000
+  ok   defecto     oraculo $83,000 – $102,000    pantalla $83,000 – $102,000    oculto $83,000 – $102,000
+  ok   aleatorio   oraculo $243,000 – $297,000   pantalla $243,000 – $297,000   oculto $243,000 – $297,000
+
+  paso actual: 7 · cierre visible: true
+  ── lo que sale por el cable ──
+     Full-Name         Dana Whitfield          Estimate-Range    $243,000 – $297,000
+     email             dana@example.com        Project-Type      New Custom Pool
+     Phone             (305) 555-0142          Pool-Size         600 sqft
+     ZIP-Code          33139                   Pool-Style        Luxury / Custom Geometry
+     Deck-Size         1500 sqft               Interior-Finish   Premium / Polished Finish
+     Deck-Material     Pavers                  Spa               Raised Spillover Spa
+     LED-Lights        11                      Systems           Heater, Salt System, Automation System
+     Outdoor-Add-Ons   Pergola, Louvered Roof System, Outdoor Kitchen
+     Site-Conditions   Tight Access, HOA Approval Required
+     Cost-Breakdown    Pool Structure: $117,450 · Decking: $33,000 · Spa: $18,000 · …
+     ref_id            (vacío)                 __form            Pool Estimator Form
+                                               elapsedMs         2433
+  estado del formulario: enviado=true gracias=true
+```
+
+### LO QUE NO SE HA PROBADO, Y HAY QUE DECIRLO
+
+**Que el correo SALE de verdad, no.** Sigue sin haber `SMTP_USER`/`SMTP_PASS` (bloqueo de la
+Fase 8, ya anotado en `docs/ENTREGA.md`). Se ha probado la ruta entera **hasta el borde del
+envío**: el cuerpo se compone bien y el endpoint devuelve 500 en vez de mentir. El envío en sí es
+el MISMO código que usan los otros dos formularios y tampoco está probado en ninguno de los tres.
+
+Se intentó cerrarlo con un servidor SMTP+TLS de pega en local, y se abandonó tras dos intentos:
+el diálogo `AUTH LOGIN` se colgaba y la infraestructura de la prueba estaba costando más que lo
+que probaba. La rama del 500 ya registra el cuerpo entero, que es la prueba que hacía falta.
+Con unas credenciales de prueba se cierra en cinco minutos y se anota el `messageId`.
+
+
 ## Fase 12c — el estimador, rehecho en fuente propia   ✅ cerrada
 **Fecha:** 2026-08-28
 

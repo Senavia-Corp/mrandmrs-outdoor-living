@@ -372,6 +372,12 @@ const miles = (n: number) => n.toLocaleString('en-US');
                 <input type="hidden" name="Outdoor-Add-Ons" data-pe-oculto="exterior" />
                 <input type="hidden" name="Site-Conditions" data-pe-oculto="condiciones" />
                 <input type="hidden" name="Cost-Breakdown" data-pe-oculto="desglose" />
+                {/* HONEYPOT. A los formularios de Webflow se lo pone `build-paginas.mjs`; éste
+                    es propio, así que va aquí. Se llama `ref_id` a propósito: `company_url` y
+                    parecidos los autorellenan los gestores de contraseñas y tiran usuarios de
+                    verdad. Oculto SIN `display:none`, que algunos bots detectan. */}
+                <input type="text" name="ref_id" tabindex="-1" autocomplete="off" aria-hidden="true"
+                  style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
                 <input class="pe-enviar" type="submit" value="Schedule Your Design Consultation" data-wait="Sending..." />
               </form>
               <div class="w-form-done"><p>Thank you — your estimate is on its way and a designer will reach out shortly.</p></div>
