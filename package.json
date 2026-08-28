@@ -35,7 +35,8 @@
     "@sanity/client": "^8.4.0",
     "@sanity/schema": "^6.11.0",
     "astro": "^7.2.9",
-    "jsdom": "^30.0.1"
+    "jsdom": "^30.0.1",
+    "nodemailer": "^9.0.6"
   },
   "devDependencies": {
     "pixelmatch": "^7.2.0",

@@ -170,6 +170,25 @@ for (const [ruta] of RUTAS) {
         .replace(/^;+|;+$/g, '').trim();
       if (limpio) el.setAttribute('style', limpio); else el.removeAttribute('style');
     }
+    // FASE 8: los formularios de Webflow mueren al salir de Webflow -enviaban a
+    // webflow.com/api/v1/form-. Se reapuntan al endpoint propio y se les anaden las dos capas
+    // que van en el cliente. El comportamiento vive en src/components/Formularios.astro.
+    for (const form of n.querySelectorAll('form[data-name]')) {
+      form.setAttribute('method', 'post');
+      form.setAttribute('action', '/api/formulario');
+      form.dataset.mmEnvia = '1';
+      // HONEYPOT. Se llama `ref_id` a proposito: `company_url` o parecidos los autorellenan
+      // los gestores de contrasenas y tiran usuarios de verdad. Oculto sin `display:none`,
+      // que algunos bots detectan, y fuera del orden de tabulacion.
+      if (!form.querySelector('[name="ref_id"]')) {
+        const hp = doc.createElement('input');
+        hp.type = 'text'; hp.name = 'ref_id'; hp.tabIndex = -1;
+        hp.setAttribute('autocomplete', 'off');
+        hp.setAttribute('aria-hidden', 'true');
+        hp.setAttribute('style', 'position:absolute;left:-9999px;width:1px;height:1px;opacity:0');
+        form.appendChild(hp);
+      }
+    }
     for (const f of n.querySelectorAll('iframe[src^="https://mrandmrsoutdoorliving.com/"]')) {
       f.setAttribute('src', f.getAttribute('src').replace('https://mrandmrsoutdoorliving.com', ''));
     }

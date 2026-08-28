@@ -21,6 +21,8 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import ClickToCall from '../components/widgets/ClickToCall.astro';
 import Interacciones from '../components/Interacciones.astro';
+import Componentes from '../components/Componentes.astro';
+import Formularios from '../components/Formularios.astro';
 // Las fuentes son los .woff2 EXACTOS de Google, no @fontsource: con el Inter variable de
 // fontsource el nav salía al 95,85 % contra el baseline porque un a.nav-link medía 57,35 px
 // en vez de 59,54. Ver scripts/fetch-fuentes.mjs.
@@ -116,5 +118,7 @@ const jsonLd = seo.jsonLd ?? [];
     <slot name="tras-pie" />
     <ClickToCall />
     <Interacciones />
+    <Componentes />
+    <Formularios />
   </body>
 </html>

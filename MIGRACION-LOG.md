@@ -21,7 +21,7 @@ reproducir el resultado, saber qué se midió y con qué comando, y ver qué que
 | F5 | Páginas estáticas | ✅ cerrada | 2026-08-27 |
 | F6 | Páginas de colección | ✅ cerrada | 2026-08-27 |
 | F7 | Animaciones e interacciones | ✅ cerrada | 2026-08-27 |
-| F8 | Formularios y terceros | ⬜ pendiente | |
+| F8 | Formularios y terceros | 🟡 falta el correo del cliente | |
 | F9 | Paridad SEO | ✅ cerrada | 2026-08-27 |
 | F10 | Puertas de verificación | ⬜ pendiente | |
 | F11 | Deploy y corte de dominio | ⬜ pendiente | |
@@ -135,6 +135,81 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 ## Entradas
 
 <!-- a partir de aquí, una entrada por fase, la más reciente arriba -->
+
+## Fases 7 (2.ª parte) y 8 — componentes y formularios   🟡
+**Fecha:** 2026-08-27
+
+### Lo que se cerró de la Fase 7
+| Componente | Estado | Medido |
+|---|---|---|
+| `w-lightbox` | ✅ | `<dialog>`, **137 imágenes en 1 grupo** en `/gallery`, abre en «1 / 137» y navega |
+| Marquee de Finsweet | ✅ | 14 logos duplicados a **28**, `--mm-dur: 17s`, animación corriendo |
+| Slider de Finsweet | ✅ | 10 diapositivas, `scrollWidth 11870 / clientW 1187`, las flechas desplazan |
+
+La velocidad del marquee se calcula con el **ancho real** (60 px/s), no con un tiempo fijo: con
+un tiempo fijo, más logos = más rápido.
+
+Los tres degradan solos: sin JS, el lightbox es un enlace, el marquee una fila quieta y el
+slider una lista con scroll. Ninguno esconde nada.
+
+### Fase 8 — el endpoint, hecho y probado
+`src/pages/api/formulario.ts`, con las cuatro capas en orden. Probadas una a una contra el
+endpoint de verdad:
+
+```
+  ruta existe (GET)        -> 404          (solo POST)
+  honeypot relleno         -> 200 {"ok":true}                    descarta en silencio
+  time-trap 300ms          -> 200 {"ok":true}                    descarta en silencio
+  formulario desconocido   -> 400 {"error":"formulario desconocido"}
+  rate-limit inmediato     -> 429 {"error":"demasiado rapido"}
+  valido SIN SMTP          -> 500 {"error":"el correo no esta configurado"}
+```
+
+**La última línea es la que importa.** Sin credenciales devuelve **500**, no un 200 mentiroso:
+`ok` es true solo si el correo salió de verdad. En Pergola Plus el visitante veía «gracias»
+pasara lo que pasara con su lead.
+
+El honeypot se llama `ref_id` y no `company_url`: lo segundo lo autorellenan los gestores de
+contraseñas y tira usuarios reales. El time-trap está a **<1000 ms**, no a 2500, que tiraba a
+quien usa autofill.
+
+### La clave de Turnstile YA EXISTÍA
+No hay que crearla: los formularios del sitio vivo ya traen
+`data-turnstile-sitekey="0x4AAAAAAAQTptj2So4dx43e"` — el cliente ya lo tenía configurado en
+Webflow. **Falta solo la clave SECRETA**, que solo está en su panel de Cloudflare.
+
+El widget se renderiza **explícitamente**, no por `class="cf-turnstile"`: el render implícito
+falla sobre un elemento oculto. Y el script de Turnstile solo se carga en las páginas que de
+verdad envían: un captcha «en todas por si acaso» da sensación de protección donde no hay envío.
+
+### ⚠️ LA TRAMPA DE BUILD QUE HABRÍA MATADO EL FORMULARIO EN SILENCIO
+Esta no está en el encargo y es peor que la que sí está.
+
+Los secretos se leían con `import.meta.env.SMTP_USER`. **Vite sustituye eso en tiempo de
+BUILD**, y como al construir no había esas variables, el empaquetador dedujo que
+`if (!usuario || !clave)` era siempre cierto, **dio la rama del envío por muerta y la borró
+entera del bundle**. Verificado leyendo el chunk construido: 3160 bytes, un `return 500` a
+fuego y **cero menciones a nodemailer**.
+
+Lo grave es que **poner las variables en Vercel después NO lo arregla**: el código de enviar ya
+no existe en lo desplegado. El síntoma sería «configuré el correo y sigue sin enviar».
+
+Arreglado leyendo de `process.env`, que se resuelve en EJECUCIÓN. Comprobado tras el cambio:
+el chunk pasa a 4782 bytes con `createTransport`, `sendMail` y **nodemailer dentro de
+`.vercel/output/functions/_render.func/node_modules/`**.
+
+(La trampa que sí avisaba el encargo —el especificador del `import` en una variable— también
+está respetada: `await import('nodemailer')` con literal.)
+
+### Abierto — hace falta el cliente
+- **`SMTP_USER` / `SMTP_PASS`**: Gmail App Password exige 2FA activa y debe ser **de la cuenta
+  que autentica**. Destinatario por defecto `info@mrandmrsoutdoorliving.com`, el del propio sitio.
+- **`TURNSTILE_SECRET`**: del panel de Cloudflare del cliente. Sin ella el endpoint **no valida**
+  (deja pasar), no bloquea.
+- **GATE 8 sigue sin cumplirse**: pide un correo **recibido de verdad** por cada formulario, y
+  eso no se puede demostrar sin credenciales. El endpoint está probado en todo lo demás.
+- Del inventario de la Fase 7 quedan: el **antes/después**, `w-tabs` (2 usos) y la paginación
+  de `/blogs-tips`. Ninguno deja el sitio roto.
 
 ## Fase 7 — Animaciones e interacciones   ✅ cerrada
 **Fecha:** 2026-08-27

@@ -1,0 +1,95 @@
+---
+/**
+ * FASE 8 — el comportamiento de los dos formularios.
+ *
+ * Los de Webflow mueren al salir de Webflow: enviaban a `webflow.com/api/v1/form` y ahora no
+ * hay nadie al otro lado. Aquí se envían por `fetch` a `/api/formulario` y se conmutan los
+ * estados **con el mismo marcado y las mismas clases que el sitio ya tiene**
+ * (`.w-form-done` / `.w-form-fail`), para no cambiar ni un píxel.
+ *
+ * ANTIBOT: el honeypot y el time-trap se rellenan aquí; el servidor es quien decide. La
+ * validación del navegador es comodidad, no seguridad.
+ *
+ * TURNSTILE: la clave de sitio (`0x4AAAAAAAQTptj2So4dx43e`) ya existía — la tenía el propio
+ * Webflow en `data-turnstile-sitekey`. El widget se renderiza **explícitamente**, no por
+ * `class="cf-turnstile"`: el render implícito FALLA sobre un elemento oculto, y estos
+ * formularios viven dentro de secciones que pueden empezar ocultas. Medido en AB Aluminum.
+ */
+---
+
+<script>
+  (function () {
+    'use strict';
+    const CLAVE_SITIO = '0x4AAAAAAAQTptj2So4dx43e';
+    const forms = [...document.querySelectorAll('form[data-name]')].filter((f) => f.dataset.mmEnvia === '1');
+    if (!forms.length) return;
+
+    // El script de Turnstile solo se carga si hay formularios de verdad en ESTA pagina. Un
+    // captcha puesto «en todas por si acaso» da sensacion de proteccion donde no hay envio.
+    let turnstileListo = null;
+    const cargaTurnstile = () => {
+      if (turnstileListo) return turnstileListo;
+      turnstileListo = new Promise((res, rej) => {
+        const s = document.createElement('script');
+        s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+        s.async = true; s.defer = true;
+        s.onload = () => res(window.turnstile);
+        s.onerror = () => rej(new Error('turnstile no carga'));
+        document.head.appendChild(s);
+      });
+      return turnstileListo;
+    };
+
+    for (const form of forms) {
+      const padre = form.parentElement;
+      const done = padre?.querySelector('.w-form-done');
+      const fail = padre?.querySelector('.w-form-fail');
+      const boton = form.querySelector('[type=submit]');
+      const inicio = Date.now();
+      let idWidget = null;
+
+      // El widget va al final del formulario, antes del boton de envio.
+      const caja = document.createElement('div');
+      caja.className = 'mm-turnstile';
+      caja.style.margin = '.75rem 0';
+      (boton?.parentElement ?? form).insertBefore(caja, boton ?? null);
+
+      cargaTurnstile()
+        .then((ts) => { idWidget = ts.render(caja, { sitekey: CLAVE_SITIO, action: form.dataset.name }); })
+        .catch(() => { /* Cloudflare caido: el servidor falla ABIERTO, no bloqueamos el envio */ });
+
+      form.addEventListener('submit', async (ev) => {
+        ev.preventDefault();
+        const datos = new FormData(form);
+        datos.set('__form', form.dataset.name ?? '');
+        datos.set('elapsedMs', String(Date.now() - inicio));
+        try {
+          const ts = window.turnstile;
+          if (ts && idWidget !== null) datos.set('turnstileToken', ts.getResponse(idWidget) ?? '');
+        } catch { /* sin token: lo decide el servidor */ }
+
+        const textoBoton = boton?.value;
+        if (boton) { boton.disabled = true; boton.value = boton.dataset.wait || 'Please wait...'; }
+
+        let ok = false;
+        try {
+          const r = await fetch('/api/formulario', { method: 'POST', body: datos });
+          ok = r.ok && (await r.json().catch(() => ({}))).ok === true;
+        } catch { ok = false; }
+
+        if (boton) { boton.disabled = false; if (textoBoton !== undefined) boton.value = textoBoton; }
+        // Los estados usan el marcado del sitio, con sus clases. Webflow los conmuta con
+        // display; aqui igual.
+        if (ok) {
+          form.style.display = 'none';
+          if (done) done.style.display = 'block';
+          if (fail) fail.style.display = 'none';
+          form.reset();
+        } else {
+          if (fail) fail.style.display = 'block';
+          try { window.turnstile?.reset(idWidget); } catch { /* nada */ }
+        }
+      });
+    }
+  }());
+</script>

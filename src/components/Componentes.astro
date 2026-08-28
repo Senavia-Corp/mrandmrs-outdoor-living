@@ -1,0 +1,199 @@
+---
+/**
+ * FASE 7 (2.ª parte) — los componentes que quedaban de Webflow y de Finsweet.
+ *
+ *   1. `w-lightbox` — 137 referencias solo en `/gallery`. Se rehace con `<dialog>`, que trae
+ *      gratis el modal, el foco atrapado y el cierre con Esc.
+ *   2. El **marquee de logos** de Finsweet (`fs-marquee-*`), en `/`, `/about` y
+ *      `/request-estimated`.
+ *   3. El **slider** de Finsweet (`fs-slider-*`): 2 instancias en la home, proyectos y blog.
+ *
+ * Los tres van juntos porque comparten la misma regla: **si el JS no corre, se ve el primer
+ * estado y nada se rompe**. El lightbox degrada a un enlace, el marquee a una fila de logos
+ * quieta y el slider a una lista con scroll. Ninguno esconde nada.
+ */
+---
+
+<dialog class="mm-lb" aria-label="Image gallery">
+  <button class="mm-lb__x" type="button" aria-label="Close">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <button class="mm-lb__nav mm-lb__nav--prev" type="button" aria-label="Previous image">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+  </button>
+  <img class="mm-lb__img" alt="" />
+  <button class="mm-lb__nav mm-lb__nav--next" type="button" aria-label="Next image">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+  </button>
+  <p class="mm-lb__cuenta" aria-live="polite"></p>
+</dialog>
+
+<style is:global>
+  /* ── lightbox ─────────────────────────────────────────────────────────── */
+  .mm-lb { border: 0; padding: 0; background: transparent; max-width: 100vw; max-height: 100vh; width: 100%; height: 100% }
+  .mm-lb::backdrop { background-color: #000000e6 }
+  .mm-lb[open] { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1rem; padding: 1rem }
+  .mm-lb__img { grid-column: 2; max-width: 100%; max-height: 88vh; margin: 0 auto; display: block; object-fit: contain }
+  .mm-lb__nav, .mm-lb__x {
+    background-color: #ffffff1f; border: 0; color: #fff; cursor: pointer;
+    width: 48px; height: 48px; border-radius: 100%;
+    display: grid; place-items: center;
+  }
+  .mm-lb__nav:hover, .mm-lb__x:hover { background-color: #ffffff33 }
+  .mm-lb__nav:focus-visible, .mm-lb__x:focus-visible { outline: 3px solid var(--yellow-1, #f4b248); outline-offset: 2px }
+  .mm-lb__nav svg, .mm-lb__x svg { width: 26px; height: 26px }
+  .mm-lb__x { position: fixed; top: 1rem; right: 1rem }
+  .mm-lb__cuenta { position: fixed; bottom: 1rem; left: 0; right: 0; text-align: center; color: #fff; margin: 0; font-size: 14px }
+  @media (max-width: 767px) {
+    .mm-lb__nav { width: 40px; height: 40px }
+    .mm-lb[open] { gap: .35rem; padding: .35rem }
+  }
+
+  /* ── marquee ──────────────────────────────────────────────────────────── */
+  /* La duracion la calcula el JS con el ancho real, para que la VELOCIDAD sea la misma
+     tenga 14 logos o 40. Un tiempo fijo hace que mas items = mas rapido. */
+  [fs-marquee-element="list"][data-mm-marquee] {
+    display: flex; width: max-content;
+    animation: mm-marquee var(--mm-dur, 30s) linear infinite;
+  }
+  [fs-marquee-element="wrapper"][data-mm-marquee] { overflow: hidden }
+  @keyframes mm-marquee { to { transform: translateX(-50%) } }
+  [fs-marquee-element="marquee"]:hover [data-mm-marquee] { animation-play-state: paused }
+
+  /* ── slider ───────────────────────────────────────────────────────────── */
+  [fs-slider-element="list"][data-mm-slider] {
+    display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+    scrollbar-width: none; -ms-overflow-style: none;
+  }
+  [fs-slider-element="list"][data-mm-slider]::-webkit-scrollbar { display: none }
+  [fs-slider-element="list"][data-mm-slider] > * { scroll-snap-align: start; flex: none }
+  [fs-slider-element="previous"], [fs-slider-element="next"] { cursor: pointer }
+  [fs-slider-element="previous"][aria-disabled="true"],
+  [fs-slider-element="next"][aria-disabled="true"] { opacity: .35; pointer-events: none }
+
+  @media (prefers-reduced-motion: reduce) {
+    [fs-marquee-element="list"][data-mm-marquee] { animation: none }
+    [fs-slider-element="list"][data-mm-slider] { scroll-behavior: auto }
+  }
+  @media print { .mm-lb { display: none } }
+</style>
+
+<script>
+  (function () {
+    'use strict';
+
+    // ── 1 · lightbox ────────────────────────────────────────────────────
+    const dlg = document.querySelector('.mm-lb');
+    const img = dlg?.querySelector('.mm-lb__img');
+    const cuenta = dlg?.querySelector('.mm-lb__cuenta');
+    if (dlg && img) {
+      /** Los grupos salen del JSON que Webflow deja en cada enlace. */
+      const grupos = new Map();
+      const enlaces = [...document.querySelectorAll('a.w-lightbox')];
+      for (const a of enlaces) {
+        let datos;
+        try { datos = JSON.parse(a.querySelector('script.w-json')?.textContent ?? '{}'); } catch { continue; }
+        const items = (datos.items ?? []).filter((i) => i.type === 'image' && i.url);
+        if (!items.length) continue;
+        const g = datos.group || '__sin-grupo__';
+        if (!grupos.has(g)) grupos.set(g, []);
+        const lista = grupos.get(g);
+        a.dataset.mmLbGrupo = g;
+        a.dataset.mmLbIndice = String(lista.length);
+        lista.push({ url: items[0].url, alt: a.querySelector('img')?.alt ?? '' });
+      }
+
+      let actual = { grupo: null, i: 0 };
+      const pinta = () => {
+        const lista = grupos.get(actual.grupo) ?? [];
+        const it = lista[actual.i];
+        if (!it) return;
+        img.src = it.url;
+        img.alt = it.alt;
+        cuenta.textContent = lista.length > 1 ? `${actual.i + 1} / ${lista.length}` : '';
+        for (const b of dlg.querySelectorAll('.mm-lb__nav')) b.hidden = lista.length < 2;
+      };
+      const mueve = (d) => {
+        const lista = grupos.get(actual.grupo) ?? [];
+        if (lista.length < 2) return;
+        actual.i = (actual.i + d + lista.length) % lista.length;
+        pinta();
+      };
+
+      for (const a of enlaces) {
+        if (!a.dataset.mmLbGrupo) continue;
+        a.addEventListener('click', (ev) => {
+          ev.preventDefault();
+          // `stopPropagation` ademas del `preventDefault`: webflow.js traia un manejador de
+          // anclas DELEGADO en `document` que hacia su propio history.pushState y dejaba DOS
+          // entradas en el historial. No lo cargamos, pero la costumbre se queda por si algun
+          // embed de la pagina hace lo mismo.
+          ev.stopPropagation();
+          actual = { grupo: a.dataset.mmLbGrupo, i: Number(a.dataset.mmLbIndice) };
+          pinta();
+          dlg.showModal();
+        });
+      }
+      dlg.querySelector('.mm-lb__x')?.addEventListener('click', () => dlg.close());
+      dlg.querySelector('.mm-lb__nav--prev')?.addEventListener('click', () => mueve(-1));
+      dlg.querySelector('.mm-lb__nav--next')?.addEventListener('click', () => mueve(1));
+      dlg.addEventListener('click', (ev) => { if (ev.target === dlg) dlg.close(); });
+      dlg.addEventListener('keydown', (ev) => {
+        if (ev.key === 'ArrowLeft') mueve(-1);
+        if (ev.key === 'ArrowRight') mueve(1);
+      });
+    }
+
+    // ── 2 · marquee ─────────────────────────────────────────────────────
+    for (const inst of document.querySelectorAll('[fs-marquee-element="marquee"]')) {
+      const wrapper = inst.querySelector('[fs-marquee-element="wrapper"]');
+      const lista = inst.querySelector('[fs-marquee-element="list"]');
+      if (!wrapper || !lista || !lista.children.length) continue;
+      // Se duplica el contenido para que el bucle no de un salto al reiniciar: la animacion
+      // llega a -50% justo cuando la copia esta donde estaba el original.
+      const ancho = lista.scrollWidth;
+      for (const hijo of [...lista.children]) lista.appendChild(hijo.cloneNode(true));
+      // 60 px/s, que es el orden de lo que hacia Finsweet. Con el ancho real, la velocidad no
+      // depende de cuantos logos haya.
+      lista.style.setProperty('--mm-dur', `${Math.max(12, Math.round(ancho / 60))}s`);
+      lista.setAttribute('data-mm-marquee', '');
+      wrapper.setAttribute('data-mm-marquee', '');
+    }
+
+    // ── 3 · slider ──────────────────────────────────────────────────────
+    for (const lista of document.querySelectorAll('[fs-slider-element="list"]')) {
+      const inst = lista.closest('[fs-slider-instance]') ?? lista.parentElement?.parentElement;
+      if (!inst || !lista.children.length) continue;
+      lista.setAttribute('data-mm-slider', '');
+      lista.style.scrollBehavior = 'smooth';
+
+      const prev = inst.querySelector('[fs-slider-element="previous"]');
+      const next = inst.querySelector('[fs-slider-element="next"]');
+      const drag = inst.querySelector('[fs-slider-element="scrollbar-drag"]');
+      const paso = () => lista.firstElementChild?.getBoundingClientRect().width ?? lista.clientWidth;
+
+      const refresca = () => {
+        const max = lista.scrollWidth - lista.clientWidth;
+        prev?.setAttribute('aria-disabled', String(lista.scrollLeft <= 1));
+        next?.setAttribute('aria-disabled', String(lista.scrollLeft >= max - 1));
+        if (drag && max > 0) {
+          const visible = lista.clientWidth / lista.scrollWidth;
+          drag.style.width = `${Math.max(10, visible * 100)}%`;
+          drag.style.transform = `translateX(${(lista.scrollLeft / max) * (100 / visible - 100)}%)`;
+        }
+      };
+      for (const [b, d] of [[prev, -1], [next, 1]]) {
+        if (!b) continue;
+        b.setAttribute('role', 'button');
+        b.setAttribute('tabindex', '0');
+        b.addEventListener('click', () => { lista.scrollLeft += d * paso(); });
+        b.addEventListener('keydown', (ev) => {
+          if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); b.click(); }
+        });
+      }
+      lista.addEventListener('scroll', refresca, { passive: true });
+      addEventListener('resize', refresca, { passive: true });
+      refresca();
+    }
+  }());
+</script>
