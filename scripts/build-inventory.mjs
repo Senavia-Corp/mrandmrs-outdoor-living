@@ -137,6 +137,30 @@ for (const f of fs.readdirSync(EXPORT).filter(x => x.endsWith('.html'))) {
 // El requisito del cliente es CERO referencias a cdn.prod.website-files.com al terminar, y
 // el CDN ya devuelve 403 permanente en assets de proyectos anteriores: lo que no se baje
 // ahora puede no estar cuando haga falta.
+// ...y los del CSS DEL PROPIO SITIO. Tercer origen de referencias que la Fase 2 no miraba, y
+// el que avisa `PROMPT.md`: «ninguna puerta escanea los url() del CSS, ahí puede quedar un 404
+// invisible». No se veía porque el CSS DEL EXPORT usa rutas relativas (`../images/…`) — 0
+// url(https://) — mientras que el que sirve el vivo, que es el que produjo el baseline,
+// apunta al CDN en 13 sitios.
+//
+// Además hay que ensanchar el HOST: `custom-checkbox-checkmark.589d534424.svg` vive en
+// `d3e54v103j8qbb.cloudfront.net`, el host de assets de plataforma de Webflow, que el patrón
+// de siempre ni miraba. Es la palomita de todos los `w-checkbox` del sitio.
+const CSS_SITIO = path.join(ROOT, '_source/webflow-css');
+if (fs.existsSync(CSS_SITIO)) {
+  for (const f of fs.readdirSync(CSS_SITIO).filter((x) => x.endsWith('.css'))) {
+    const txt = fs.readFileSync(path.join(CSS_SITIO, f), 'utf8');
+    for (const m of txt.matchAll(/url\(\s*['"]?(https:\/\/[^'")\s]+)['"]?\s*\)/g)) {
+      const url = normalizarUrl(m[1]);
+      if (!url) continue;
+      const prev = assets.get(url);
+      // Sin alt: son fondos e iconos de CSS, no hay <img> del que sacarlo.
+      if (!prev) assets.set(url, { url, alt: '', usos: [`css:${f}`] });
+      else prev.usos.push(`css:${f}`);
+    }
+  }
+}
+
 const ESTIMADOR = path.join(ROOT, '_source/estimator');
 if (fs.existsSync(ESTIMADOR)) {
   for (const f of fs.readdirSync(ESTIMADOR).filter((x) => /\.(css|html)$/.test(x))) {
@@ -157,6 +181,10 @@ if (fs.existsSync(ESTIMADOR)) {
 //   - assets que no son media (el config .js de Finsweet) no son assets
 function normalizarUrl(u) {
   if (!/^https?:\/\//.test(u)) return null;
+  // d3e54v103j8qbb.cloudfront.net es el host de assets de PLATAFORMA de Webflow (la palomita
+  // de los checkbox, iconos del reproductor…). No es website-files.com, así que el patrón de
+  // los escaneos de HTML no lo casa; aquí llega por el CSS y hay que dejarlo pasar.
+  if (!/(website-files\.com|uploads-ssl\.webflow\.com|d3e54v103j8qbb\.cloudfront\.net)/.test(u)) return null;
   if (/\.(js|css|json)(\?|$)/i.test(u)) return null;
   return u.replace(/\/([0-9a-f]{24})\/\1\//, '/$1/');
 }

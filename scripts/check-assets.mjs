@@ -98,5 +98,22 @@ check(`${referenciados.length} assets de cromo, todos versionados`, fuera.length
 fuera.slice(0, 5).forEach(([, a]) => console.log(`     ${a.archivo}`));
 console.log('     nota: el resto de public/ está ignorado a propósito — su destino es Sanity (Fase 3).');
 
+console.log('\n── 10. cada destino es una carpeta que existe de verdad');
+// La puerta salió VERDE con 11 assets en `public/images/css:outdoorliving-shared/sin-slug/`:
+// todos sus checks miran coherencia CONTRA EL MANIFIESTO, y un destino absurdo es
+// perfectamente coherente consigo mismo. Un `usos` con prefijo nuevo (`css:`) se colaba como
+// si fuera una colección. Esto compara los destinos contra las colecciones que existen de
+// verdad, que son los CSV de _source/cms.
+const COLECCIONES = new Set(fs.readdirSync(path.join(ROOT, '_source/cms'))
+  .filter(f => f.endsWith('.csv')).map(f => f.replace(/\.csv$/, '')));
+COLECCIONES.add('site');
+const destinosMal = [...new Set(A
+  .map(([, a]) => a.publico)
+  .filter(p => p.startsWith('/images/'))
+  .map(p => p.split('/')[2])
+  .filter(sub => !COLECCIONES.has(sub)))];
+check(`${COLECCIONES.size} destinos válidos (site + ${COLECCIONES.size - 1} colecciones)`,
+  destinosMal.length === 0, `${destinosMal.length} inventados: ${destinosMal.slice(0, 3).join(', ')}`);
+
 console.log(`\n${fallos === 0 ? '✅ PUERTA VERDE' : `🔴 PUERTA ROJA — ${fallos} fallo(s)`}`);
 process.exit(fallos ? 1 : 0);

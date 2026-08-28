@@ -61,6 +61,7 @@
       },
       "sanityMaster": null,
       "usos": [
+        "css:outdoorliving-shared.efeeddf43.min.css",
         "html:estimator/index.C0oxWGe_.css"
       ]
     },
@@ -91,6 +92,8 @@
       },
       "sanityMaster": null,
       "usos": [
+        "css:outdoorliving-shared.efeeddf43.min.css",
+        "css:outdoorliving-shared.efeeddf43.min.css",
         "html:estimator/index.C0oxWGe_.css",
         "html:estimator/index.C0oxWGe_.css"
       ]
@@ -107,6 +110,7 @@
       },
       "sanityMaster": null,
       "usos": [
+        "css:outdoorliving-shared.efeeddf43.min.css",
         "html:estimator/index.C0oxWGe_.css"
       ]
     },
@@ -122,15 +126,35 @@
       },
       "sanityMaster": null,
       "usos": [
+        "css:outdoorliving-shared.efeeddf43.min.css",
+        "css:outdoorliving-shared.efeeddf43.min.css",
+        "css:outdoorliving-shared.efeeddf43.min.css",
+        "css:outdoorliving-shared.efeeddf43.min.css",
+        "css:outdoorliving-shared.efeeddf43.min.css",
         "html:estimator/index.C0oxWGe_.css",
         "html:estimator/index.C0oxWGe_.css",
         "html:estimator/index.C0oxWGe_.css",
         "html:estimator/index.C0oxWGe_.css"
       ]
     },
+    "https://cdn.prod.website-files.com/68f185eb546f2dc686d244e0/6939d07c36f86b39deaaec3b_Design3.webp": {
+      "archivo": "public/images/site/design3.webp",
+      "publico": "/images/site/design3.webp",
+      "sha256": "d2ba19c95055ad3b903fa598635d172ea13263d230f1021f94a7976a6952062e",
+      "bytes": 18310,
+      "alt": "",
+      "dim": {
+        "w": 1920,
+        "h": 255
+      },
+      "sanityMaster": null,
+      "usos": [
+        "css:outdoorliving-shared.efeeddf43.min.css"
+      ]
+    },
     "https://cdn.prod.website-files.com/68f185eb546f2dc686d244e0/694456466524b729067433f4_outdoor-living-final-inspection-handover-florida.webp": {
-      "archivo": "public/images/site/outdoor-living-final-inspection-handover-florida-1outdoor-living-final-inspection-handover-florida.webp",
-      "publico": "/images/site/outdoor-living-final-inspection-handover-florida-1outdoor-living-final-inspection-handover-florida.webp",
+      "archivo": "public/images/site/outdoor-living-final-inspection-handover-florida.webp",
+      "publico": "/images/site/outdoor-living-final-inspection-handover-florida.webp",
       "sha256": "3e231420bebd0c5a2bf67af131aa230f47480fb9a8eca0ecb8644f4514028c41",
       "bytes": 207834,
       "alt": "",
@@ -140,6 +164,7 @@
       },
       "sanityMaster": null,
       "usos": [
+        "css:outdoorliving-shared.efeeddf43.min.css",
         "html:estimator/index.C0oxWGe_.css"
       ]
     },
@@ -155,6 +180,7 @@
       },
       "sanityMaster": null,
       "usos": [
+        "css:outdoorliving-shared.efeeddf43.min.css",
         "html:estimator/index.C0oxWGe_.css"
       ]
     },
@@ -170,6 +196,7 @@
       },
       "sanityMaster": null,
       "usos": [
+        "css:outdoorliving-shared.efeeddf43.min.css",
         "html:estimator/index.C0oxWGe_.css"
       ]
     },
@@ -185,6 +212,7 @@
       },
       "sanityMaster": null,
       "usos": [
+        "css:outdoorliving-shared.efeeddf43.min.css",
         "html:estimator/index.C0oxWGe_.css"
       ]
     },
@@ -200,6 +228,7 @@
       },
       "sanityMaster": null,
       "usos": [
+        "css:outdoorliving-shared.efeeddf43.min.css",
         "html:estimator/index.C0oxWGe_.css"
       ]
     },
@@ -215,7 +244,23 @@
       },
       "sanityMaster": null,
       "usos": [
+        "css:outdoorliving-shared.efeeddf43.min.css",
         "html:estimator/index.C0oxWGe_.css"
+      ]
+    },
+    "https://cdn.prod.website-files.com/68f185eb546f2dc686d244e0/6a04b1bf2dc20f4d9a6352bf_check-icon-black.png": {
+      "archivo": "public/images/site/check-icon-black.png",
+      "publico": "/images/site/check-icon-black.png",
+      "sha256": "4c08d0100536b756912cabdb2e82d1e806a6943dabb4cd388b8d5593e5f91510",
+      "bytes": 269,
+      "alt": "",
+      "dim": {
+        "w": 24,
+        "h": 24
+      },
+      "sanityMaster": null,
+      "usos": [
+        "css:outdoorliving-shared.efeeddf43.min.css"
       ]
     },
     "https://cdn.prod.website-files.com/68f185eb546f2dc686d244e0%2F694316d3e547a0d88bb00c07_BG-Video-3D_poster.0000000.jpg": {
@@ -10096,6 +10141,21 @@
         "procesos.Step Image#pole-barn-step-4"
       ]
     },
+    "https://d3e54v103j8qbb.cloudfront.net/static/custom-checkbox-checkmark.589d534424.svg": {
+      "archivo": "public/images/site/custom-checkbox-checkmark.589d534424.svg",
+      "publico": "/images/site/custom-checkbox-checkmark.589d534424.svg",
+      "sha256": "121f8dc257d116b52e8d91b2c735fd52e7516c268b6c721c60ac45d22d5e6404",
+      "bytes": 167,
+      "alt": "",
+      "dim": {
+        "w": 13,
+        "h": 11
+      },
+      "sanityMaster": null,
+      "usos": [
+        "css:outdoorliving-shared.efeeddf43.min.css"
+      ]
+    },
     "https://uploads-ssl.webflow.com/6022af993a6b2191db3ed10c/628298b20ae0236682d4b87f_Play-24.svg": {
       "archivo": "public/images/site/play-24.svg",
       "publico": "/images/site/play-24.svg",
@@ -10843,8 +10903,8 @@
       ]
     },
     "local:check-icon-black-1check-icon-black.png": {
-      "archivo": "public/images/site/check-icon-black-1check-icon-black.png",
-      "publico": "/images/site/check-icon-black-1check-icon-black.png",
+      "archivo": "public/images/site/check-icon-black.png",
+      "publico": "/images/site/check-icon-black.png",
       "sha256": "4c08d0100536b756912cabdb2e82d1e806a6943dabb4cd388b8d5593e5f91510",
       "bytes": 269,
       "alt": "",
@@ -12148,8 +12208,8 @@
       ]
     },
     "local:outdoor-living-final-inspection-handover-florida-1outdoor-living-final-inspection-handover-florida.webp": {
-      "archivo": "public/images/site/outdoor-living-final-inspection-handover-florida-1outdoor-living-final-inspection-handover-florida.webp",
-      "publico": "/images/site/outdoor-living-final-inspection-handover-florida-1outdoor-living-final-inspection-handover-florida.webp",
+      "archivo": "public/images/site/outdoor-living-final-inspection-handover-florida.webp",
+      "publico": "/images/site/outdoor-living-final-inspection-handover-florida.webp",
       "sha256": "3e231420bebd0c5a2bf67af131aa230f47480fb9a8eca0ecb8644f4514028c41",
       "bytes": 207834,
       "alt": "",

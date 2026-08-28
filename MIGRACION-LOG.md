@@ -15,9 +15,9 @@ reproducir el resultado, saber qué se midió y con qué comando, y ver qué que
 |---|---|---|---|
 | F0 | Cuentas, identidades y repo | ✅ cerrada | 2026-08-27 |
 | F1 | Baseline congelado | ✅ cerrada | 2026-08-27 |
-| F2 | Assets locales | ↩️ reabierta y cerrada | 2026-08-27 |
+| F2 | Assets locales | ↩️ reabierta ×2, cerrada | 2026-08-27 |
 | F3 | Sanity: esquemas + import | ✅ cerrada | 2026-08-27 |
-| F4 | Cascarón Astro | ⬜ pendiente | |
+| F4 | Cascarón Astro | 🟡 en curso | |
 | F5 | Páginas estáticas | ⬜ pendiente | |
 | F6 | Páginas de colección | ⬜ pendiente | |
 | F7 | Animaciones e interacciones | ⬜ pendiente | |
@@ -27,6 +27,43 @@ reproducir el resultado, saber qué se midió y con qué comando, y ver qué que
 | F11 | Deploy y corte de dominio | ⬜ pendiente | |
 
 Estados: ⬜ pendiente · 🟡 en curso · ✅ cerrada · 🔴 bloqueada · ↩️ reabierta
+
+## Decisiones de alcance
+
+Lo que se aparta del contrato de paridad, con quién lo decidió y qué arrastra. Va aquí arriba
+y no enterrado en la entrada de una fase, porque cada una cambia lo que una puerta puede exigir.
+
+### D1 · La Fase 7 tiene tres frentes de Finsweet, no uno   — Sebastian, 27-ago-2026 ✅
+`PROMPT.md` solo apunta el filtrado de listas. Medido sobre el vivo, `@finsweet/attributes@2`
+hace además el **marquee de logos** (`fs-marquee-logoscms_*`, 14 logos, en `/`, `/about` y
+`/request-estimated`) y el **slider del blog** (`fs-slider-blog_*`). Los tres se reimplementan
+en local. No es una mejora: es alcance que faltaba en el encargo.
+
+### D2 · Los 3 widgets de Elfsight se rehacen NATIVOS y en local   — Sebastian, 27-ago-2026 ✅
+Fuera `elfsightcdn.com/platform.js` y los 3 `<div class="elfsight-app-…">`. Se sustituyen por
+componentes propios: **click-to-call**, **reseñas de Google** y **feed de Instagram**.
+
+**Esto es una desviación deliberada de la paridad, y arrastra tres cosas:**
+
+1. **Es CONTENIDO NUEVO frente al baseline.** Hoy los tres se quedan en altura 0 — medido en dos
+   navegadores— así que el baseline los retrata como huecos. En cuanto se pinten de verdad, la
+   home y `/contact-us` dejarán de casar. **`check:visual` necesita una excepción declarada por
+   región, con su motivo, nunca bajar el umbral global.** Sin eso, la puerta se pone roja para
+   siempre por algo que hicimos a propósito, y la primera reacción será relajar el umbral —que
+   es exactamente como se pierde una puerta.
+2. **`check:texto` es 100 % idéntico y NO admite excepción de umbral.** El texto nuevo de las
+   reseñas y del feed hay que declararlo como bloque añadido, por ruta.
+3. **Hacen falta datos, y no los tenemos.** El click-to-call no: es un botón con
+   `tel:+1 352-740-3361` y se puede hacer ya. Los otros dos sí:
+   - **Reseñas de Google** → ficha de Google Business Profile del cliente. Precedente que ya
+     funciona en otro proyecto: snapshot en *build time*, no llamada en cliente.
+   - **Instagram** → cuenta del cliente. Mismo patrón: snapshot en build, sin token vivo en el
+     navegador (un token de Instagram caduca y el feed se apaga solo un martes cualquiera).
+
+   «Todo en local» se interpreta así: **cero peticiones a terceros en el navegador del
+   visitante**; el contenido se hornea en el build. Pendiente de los accesos del cliente. No
+   bloquea las Fases 4, 5 ni 6.
+
 
 ---
 
@@ -81,7 +118,7 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 | 2 | `commercials.csv` | Las cabeceras `Img Feature 2 / 3` y `SEO Metadata Image Feature 3 / 2` están **cruzadas** en el export. | Se emparejó por nombre (2→2, 3→3). Las páginas de `commercials` dan 404 en el sitio real, así que no se ve. Anotado por si algún día se publican. |
 | 3 | `industry-solutions.html` | La URL del logo repite el id de sitio (`/68f185…/68f185…/`) y da **403**. | Es un defecto del HTML de Webflow. Se normaliza al descargar; la ruta simple da 200 y su sha256 coincide con el logo local. |
 | 4 | export de Webflow | 6 ficheros con extensión `.avif` cuyo contenido es **WebP**. | Defecto del exportador. Se renombran a su formato real; servirlos como AVIF rompería la subida a Sanity. |
-| 5 | Home, `/contact-us` y todas las páginas (widget flotante) | **Los 3 widgets de Elfsight no pintan nada.** Medido el 27-ago-2026 en dos navegadores distintos sobre el sitio vivo: los tres contenedores se quedan en **altura 0 y sin hijos** tras barrido completo y 6–8 s de espera. `platform.js` sí carga y la petición a `core.service.elfsight.com/p/boot/` sí se hace. Dos de ellos no son adorno: `ce5a93b9…` es **Google Reviews** y `fdd09947…` el **Instagram Feed** — una `<section class="social-media">` entera. El tercero es el click-to-call. | `PROMPT.md` dice «mantener tal cual: cuenta del cliente», y solo conocía uno de los tres. Se mantienen los tres igual que están. **Pero conviene decírselo al cliente**: hoy paga por tres widgets que ningún visitante ve, y dos de ellos deberían ser secciones con contenido. La causa está en su cuenta de Elfsight, no en el sitio. |
+| 5 | Home, `/contact-us` y todas las páginas (widget flotante) | **Los 3 widgets de Elfsight no pintan nada.** Medido el 27-ago-2026 en dos navegadores distintos sobre el sitio vivo: los tres contenedores se quedan en **altura 0 y sin hijos** tras barrido completo y 6–8 s de espera. `platform.js` sí carga y la petición a `core.service.elfsight.com/p/boot/` sí se hace. Dos de ellos no son adorno: `ce5a93b9…` es **Google Reviews** y `fdd09947…` el **Instagram Feed** — una `<section class="social-media">` entera. El tercero es el click-to-call. | ↩️ **YA NO APLICA — decisión de Sebastian, 27-ago-2026: los tres se rehacen NATIVOS y en local.** Fuera Elfsight y su `platform.js`. Ver «Decisiones de alcance» abajo. |
 | 6 | `/`, `/about`, `/request-estimated`, home | **Finsweet hace tres trabajos, no uno.** Además del filtrado de listas que apunta `PROMPT.md`: el **marquee de logos** (`fs-marquee-logoscms_*`, 14 logos) y el **slider del blog** (`fs-slider-blog_*`). | No es una mejora: es alcance que faltaba. Anotado aquí para que la Fase 7 no lo descubra tarde — `@finsweet/attributes@2` hay que reimplementarlo en tres frentes, no en uno. |
 
 ---
@@ -89,6 +126,76 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 ## Entradas
 
 <!-- a partir de aquí, una entrada por fase, la más reciente arriba -->
+
+## Fase 2 (reabierta, 2.ª vez) — nadie escaneaba los `url()` del CSS   ✅ cerrada
+**Fecha:** 2026-08-27 · Destapado al empezar la Fase 4.
+
+### Por qué se reabre
+`PROMPT.md` avisa literalmente: «ninguna puerta escanea los `url()` del CSS → ahí puede quedar
+un 404 invisible». Y así era. No se veía porque **el CSS del export usa rutas relativas**
+(`url('../images/…')`, 0 `url(https://)`), mientras que **el CSS que sirve el vivo —el que
+produjo el baseline— apunta al CDN en 13 sitios.**
+
+De esos 13 faltaban 3 en el manifiesto. Dos (`Design3.webp`, `check-icon-black.png`) ya estaban
+en disco por el export y solo les faltaba el mapeo. El tercero **no estaba en ningún sitio**:
+`custom-checkbox-checkmark.589d534424.svg`, la palomita de todos los `w-checkbox` del sitio,
+servida desde **`d3e54v103j8qbb.cloudfront.net`** — el host de assets de plataforma de Webflow,
+que ni siquiera casaba el patrón de URL del inventario.
+
+Es el mismo defecto que la primera reapertura y con un origen distinto: van tres sitios donde
+vivían referencias que nadie miraba (CSS del estimador, CSS del sitio, host de plataforma).
+
+### Qué se hizo
+- `scripts/build-inventory.mjs` — escanea `_source/webflow-css/*.css` y el patrón de host se
+  ensancha a `d3e54v103j8qbb.cloudfront.net`.
+- `_source/webflow-css/outdoorliving-shared.efeeddf43.min.css` — **el CSS del vivo, congelado**.
+  Es el que produjo el baseline; el del export no sirve para eso (ver más abajo).
+- `scripts/download-assets.mjs` — `destino()` trata `css:` como cromo, igual que `html:`.
+- `scripts/check-assets.mjs` — **check 10 nuevo**.
+
+### El fallo que la puerta dejó pasar en VERDE
+Al añadir el prefijo `css:` a los `usos`, `destino()` lo tomó por uso de colección y mandó
+**11 assets a `public/images/css:outdoorliving-shared/sin-slug/`**. Los 9 checks salieron
+**verdes**: todos comparan coherencia CONTRA EL MANIFIESTO, y un destino absurdo es
+perfectamente coherente consigo mismo. Lo único que lo delató fue el contador de cromo bajando
+de 226 a 208 — un número, no un check.
+
+De ahí el **check 10**: los destinos se comparan contra las colecciones que existen de verdad
+(los CSV de `_source/cms`). Probado en los dos sentidos.
+
+### Números medidos
+| Métrica | Antes | Ahora |
+|---|---|---|
+| Assets únicos | 667 | **670** (+3) |
+| Referencias | 841 | **844** |
+| Ficheros en disco | 793 | **794** (+1 real: la palomita) |
+| Assets de cromo versionados | 226 | **229** |
+| Checks de la puerta | 9 | **10** |
+
+```
+$ node scripts/check-assets.mjs
+── 8. cobertura del inventario   ✅ 670/670 remotos — faltan 0
+── 9. acoplamiento git ↔ despliegue ✅ 229 assets de cromo, todos versionados
+── 10. cada destino es una carpeta que existe de verdad
+  ✅ 17 destinos válidos (site + 16 colecciones) — 0 inventados
+✅ PUERTA VERDE
+
+$ # probado en rojo: un destino inventado en el manifiesto
+── 10.  🔴 17 destinos válidos — 1 inventados: inventada
+🔴 PUERTA ROJA — 1 fallo(s)
+```
+
+### Hallazgo para la Fase 4: el CSS del export NO es el del vivo
+- El del vivo (`…shared.efeeddf43.min.css`, 172 kB) **es normalize + webflow + sitio fundidos**,
+  y apunta al CDN.
+- El del export son 3 ficheros (178 + 40 + 8 kB) con rutas relativas.
+- **Manda el del vivo**: es el que produjo las 460 capturas contra las que mide `check:visual`.
+  Partir del export sería perseguir deriva de píxeles durante días.
+
+### Abierto
+- Las **2 variables con el nombre corrupto** (`--_apps---colors--background\<deleted|variable-…\>`
+  y su gemela de `card`) siguen en el `:root` del vivo. Las dos resuelven a `var(--white)` y hay
+  además una versión limpia de cada una. La Fase 4 las sustituye por su valor resuelto.
 
 ## Fase 1 — Baseline congelado   ✅ cerrada
 **Fecha:** 2026-08-27 · **Commit:** `F1: baseline congelado…`

@@ -46,7 +46,12 @@ function parseCsv(t) {
 const VIDEO = /\.(mp4|webm)$/i, PDF = /\.pdf$/i;
 function destino(a) {
   const usos = a.usos.split(' | ');
-  const cms = usos.filter(u => !u.startsWith('html:'));
+  // `css:` cuenta como CROMO igual que `html:`. Sin esta línea, un asset referenciado solo
+  // desde el CSS del sitio se tomaba por uso de colección y acababa en
+  // `images/css:outdoorliving-shared/sin-slug/` — y la puerta salía VERDE, porque todos sus
+  // checks miran coherencia contra el manifiesto, no si el destino tiene sentido. Lo cazó
+  // el contador de cromo bajando de 226 a 208; ahora lo caza el check 10.
+  const cms = usos.filter(u => !u.startsWith('html:') && !u.startsWith('css:'));
   if (PDF.test(a.nombreFinal)) return { dir: 'brochures', sub: '' };
   if (VIDEO.test(a.nombreFinal)) return { dir: 'videos', sub: '' };
   if (!cms.length) return { dir: 'images', sub: 'site' };        // solo referenciado desde el HTML → cromo
