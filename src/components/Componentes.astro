@@ -54,12 +54,18 @@ const SLIDERS = JSON.stringify(sliders.sliders);
   /* ── marquee ──────────────────────────────────────────────────────────── */
   /* La duracion la calcula el JS con el ancho real, para que la VELOCIDAD sea la misma
      tenga 14 logos o 40. Un tiempo fijo hace que mas items = mas rapido. */
+  /* La lista se queda EN FLUJO. Finsweet la saca con `position:absolute` y le da al wrapper
+     una altura explicita; replicar eso obligaba a calcular esa altura, y calcularla mal
+     encogia la seccion 20 px. En flujo, la altura la sigue poniendo el CSS del sitio y no hay
+     nada que calcular. Lo que si se replica es el ancho fijo por elemento y el triplicado. */
   [fs-marquee-element="list"][data-mm-marquee] {
-    display: flex; width: max-content;
+    display: flex; flex-wrap: nowrap; width: max-content;
     animation: mm-marquee var(--mm-dur, 30s) linear infinite;
   }
   [fs-marquee-element="wrapper"][data-mm-marquee] { overflow: hidden }
-  @keyframes mm-marquee { to { transform: translateX(-50%) } }
+  /* Un TERCIO, no la mitad: se triplica el contenido como hace Finsweet, asi que el bucle
+     cierra cuando la primera copia ha salido entera. */
+  @keyframes mm-marquee { to { transform: translateX(-33.3333%) } }
   [fs-marquee-element="marquee"]:hover [data-mm-marquee] { animation-play-state: paused }
 
   /* ── slider ───────────────────────────────────────────────────────────── */
@@ -79,10 +85,20 @@ const SLIDERS = JSON.stringify(sliders.sliders);
   /* El sitio ya trae `.bas-image-after-h{width:50%;margin-left:auto}` y
      `.bas-line-h{left:50%}`. Arrastrar solo mueve ese 50%: se replica el mecanismo del
      original en vez de inventarse otro. */
+  /* Se replica el mecanismo de Flowbase, leido del baseline:
+       wrapper  --fb-thumb-position: 50%
+       after    width:100%; height:100%; clip-path: inset(0 0 0 50%)
+       handle   left:50%; top:50%; transform: translate(-50%,-50%)
+       linea    left: var(--fb-thumb-position)
+     Lo hacia con `width: calc(100% - X)`, y eso NO es lo mismo: con `object-fit: cover` una
+     caja mas estrecha REESCALA la imagen en vez de recortarla. Se veia distinta. */
   [fb-before-after][data-mm-ba] { cursor: ew-resize; touch-action: none; user-select: none }
-  [fb-before-after][data-mm-ba] .bas-handle-h { left: var(--mm-ba, 50%); transform: translateX(-50%) }
-  [fb-before-after][data-mm-ba] .bas-line-h { left: var(--mm-ba, 50%) }
-  [fb-before-after][data-mm-ba] .bas-image-after-h { width: calc(100% - var(--mm-ba, 50%)) }
+  [fb-before-after][data-mm-ba] .bas-image-after-h {
+    width: 100%; height: 100%;
+    clip-path: inset(0px 0px 0px var(--fb-thumb-position, 50%));
+  }
+  [fb-before-after][data-mm-ba] .bas-handle-h { left: var(--fb-thumb-position, 50%); top: 50%; transform: translate(-50%, -50%) }
+  [fb-before-after][data-mm-ba] .bas-line-h { left: var(--fb-thumb-position, 50%); transform: translateX(-50%) }
 
   /* ── tabs ─────────────────────────────────────────────────────────────── */
   /* El CSS del sitio ya hace `.w-tab-pane{display:none}` y muestra `.w--tab-active`. */
@@ -163,20 +179,57 @@ const SLIDERS = JSON.stringify(sliders.sliders);
     }
 
     // ── 2 · marquee ─────────────────────────────────────────────────────
-    for (const inst of document.querySelectorAll('[fs-marquee-element="marquee"]')) {
+    const montaMarquee = async (inst) => {
       const wrapper = inst.querySelector('[fs-marquee-element="wrapper"]');
       const lista = inst.querySelector('[fs-marquee-element="list"]');
-      if (!wrapper || !lista || !lista.children.length) continue;
+      if (!wrapper || !lista || !lista.children.length) return;
+
+      // MEDIR DESPUES DE QUE CARGUEN LAS IMAGENES. Los logos no llevan width/height, asi que
+      // antes de cargar ocupan 0 y los anchos que se fijan salen mal. El sintoma no es un
+      // error: es una fila de logos con los tamaños cambiados, que solo se ve comparando.
+      const imgs = [...lista.querySelectorAll('img')].filter((i) => !i.complete);
+      if (imgs.length) {
+        await Promise.race([
+          Promise.all(imgs.map((i) => new Promise((r) => {
+            i.addEventListener('load', r, { once: true });
+            i.addEventListener('error', r, { once: true });
+          }))),
+          new Promise((r) => setTimeout(r, 3000)),   // techo: una imagen que no llega no bloquea
+        ]);
+      }
       // Se duplica el contenido para que el bucle no de un salto al reiniciar: la animacion
       // llega a -50% justo cuando la copia esta donde estaba el original.
-      const ancho = lista.scrollWidth;
-      for (const hijo of [...lista.children]) lista.appendChild(hijo.cloneNode(true));
-      // 60 px/s, que es el orden de lo que hacia Finsweet. Con el ancho real, la velocidad no
-      // depende de cuantos logos haya.
-      lista.style.setProperty('--mm-dur', `${Math.max(12, Math.round(ancho / 60))}s`);
+      // Se replica lo que hace Finsweet, leido del baseline: cada elemento con su ancho
+      // natural y una altura comun, la lista absoluta con el ancho total, y el wrapper con
+      // altura explicita.
+      const originales = [...lista.children];
+      // La altura se toma de la LISTA EN FLUJO, antes de sacarla con position:absolute. Si se
+      // toma del elemento mas alto sale mas baja -medido: 20 px menos, y la seccion entera
+      // encogia-. Finsweet hace lo mismo: fija `height: 67px` en el wrapper y en cada item,
+      // que es lo que medía la caja original.
+      let anchoUno = 0;
+      const medidas = originales.map((h) => {
+        const r = h.getBoundingClientRect();
+        anchoUno += r.width;
+        return r.width;
+      });
+      // Ancho fijo por elemento, como Finsweet: sin el, los clones se reparten el espacio de
+      // otra manera. La ALTURA no se toca: la pone el CSS del sitio.
+      for (const [i, h] of originales.entries()) {
+        h.style.flex = '0 0 auto';
+        h.style.width = `${medidas[i]}px`;
+      }
+      // Triplicado, como Finsweet: con solo dos copias el bucle se nota en pantallas anchas.
+      for (let c = 0; c < 2; c++) {
+        for (const h of originales) lista.appendChild(h.cloneNode(true));
+      }
+      lista.style.width = `${anchoUno * 3}px`;
+      // 60 px/s: con el ancho real, la velocidad no depende de cuantos logos haya.
+      lista.style.setProperty('--mm-dur', `${Math.max(12, Math.round(anchoUno / 60))}s`);
       lista.setAttribute('data-mm-marquee', '');
       wrapper.setAttribute('data-mm-marquee', '');
-    }
+    };
+    for (const inst of document.querySelectorAll('[fs-marquee-element="marquee"]')) montaMarquee(inst);
 
     // ── 3 · slider ──────────────────────────────────────────────────────
     for (const lista of document.querySelectorAll('[fs-slider-element="list"]')) {
@@ -267,7 +320,7 @@ const SLIDERS = JSON.stringify(sliders.sliders);
       if (!w.querySelector('.bas-image-after-h')) continue;
       const inicio = Number(w.getAttribute('fb-before-after-start') || 50);
       w.setAttribute('data-mm-ba', '');
-      const pon = (pct) => w.style.setProperty('--mm-ba', `${Math.min(100, Math.max(0, pct))}%`);
+      const pon = (pct) => w.style.setProperty('--fb-thumb-position', `${Math.min(100, Math.max(0, pct))}%`);
       pon(inicio);
 
       let arrastrando = false;
