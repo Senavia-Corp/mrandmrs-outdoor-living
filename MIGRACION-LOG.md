@@ -20,7 +20,7 @@ reproducir el resultado, saber qué se midió y con qué comando, y ver qué que
 | F4 | Cascarón Astro | ✅ cerrada | 2026-08-27 |
 | F5 | Páginas estáticas | ✅ cerrada | 2026-08-27 |
 | F6 | Páginas de colección | ✅ cerrada | 2026-08-27 |
-| F7 | Animaciones e interacciones | ⬜ pendiente | |
+| F7 | Animaciones e interacciones | ✅ cerrada | 2026-08-27 |
 | F8 | Formularios y terceros | ⬜ pendiente | |
 | F9 | Paridad SEO | ✅ cerrada | 2026-08-27 |
 | F10 | Puertas de verificación | ⬜ pendiente | |
@@ -135,6 +135,89 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 ## Entradas
 
 <!-- a partir de aquí, una entrada por fase, la más reciente arriba -->
+
+## Fase 7 — Animaciones e interacciones   ✅ cerrada
+**Fecha:** 2026-08-27
+
+### Objetivo
+Que el sitio se comporte igual sin `webflow.js`: entradas por scroll, nav que se esconde,
+desplegables, menú móvil y el play/pausa de los vídeos de fondo.
+
+### EL FALLO GRANDE, y no lo cazaba ninguna puerta anterior
+**El HTML servido trae `style="opacity:0"` EN LÍNEA en 270 elementos de 35 páginas.** Es el
+anti-FOUC de Webflow: «mantén esto invisible hasta que arranque la interacción». Sin
+`webflow.js` no arranca nadie y **se quedan invisibles para siempre**. Es literalmente lo que
+ya pasó una vez en AMS.
+
+`check:texto` NO puede cazarlo: `innerText` incluye lo que está a `opacity: 0`, así que las 115
+páginas salían **verdes** con secciones enteras invisibles. Lo cazó una sonda en el navegador,
+y ahora lo caza `check:ix2`.
+
+Un `style` en línea gana además a cualquier regla de autor, así que también habría roto el
+revelado propio. Se retira en el generador, en las páginas y en el cascarón.
+
+### Números medidos
+| Métrica | Esperado | Medido |
+|---|---|---|
+| `[data-w-id]` en `opacity:0`, 11 páginas × 4 anchos | 0 | **0** |
+| `transform` residual en reposo | 0 | **0** |
+| Barra de scroll horizontal a 991 y 479 | 0 | **0** |
+| Elementos con entrada por scroll | — | **79** (68 growIn · 8 slideInLeft · 8 slideInRight · 9 slideInBottom) |
+| Entradas solo en `main` (>=992) | — | **18** |
+| Entradas solo en móvil/tablet | — | **14** |
+
+```
+$ npm run check:ix2
+── 1920px / 1440px / 991px / 479px
+  ok 11 paginas: 0 [data-w-id] en opacity:0 · ok 0 transform residual en reposo
+  ok 0 barra de scroll horizontal · ok el sello data-anim · ok el nav vuelve tras subir
+── interaccion
+  ok 1920: el desplegable abre y cierra
+  ok  479: el menu movil abre, se ve y cierra
+PUERTA VERDE
+```
+
+### Las trampas del encargo, respetadas y comprobadas
+- **El sello lo escribe el JS, y se escribe DESPUÉS de construir el observer**, todo en un
+  `try/catch` que lo retira si algo falla. Si el script no corre, el selector no casa y **se ve
+  todo** — que es el comportamiento correcto.
+- **`backwards`, nunca `both`.** Medido tras el cambio: **0 transform residual**. Con `both`,
+  el `forwards` que lleva dentro deja `matrix(1,0,0,1,0,0)` en vez de `none`, y un transform
+  distinto de `none` crea contexto de apilamiento para descendientes `fixed`/`absolute`.
+- **`animation`, no `transition`**, para las entradas.
+- **El deslizamiento lateral solo donde el origen lo tiene.** 18 entradas corren solo en `main`
+  y 14 solo en móvil/tablet; el reparto sale de `ix2-targets.csv`, no de la memoria.
+  `check:ix2` confirma 0 barra horizontal a 479.
+- **`prefers-reduced-motion` y `@media print` sin `!important`**, repitiendo la misma cadena de
+  selectores para ganar por orden. Un reset global de `animation: none` no basta: comprime la
+  duración pero no restablece `opacity` ni `transform`.
+
+### Tres cosas que salieron de medir, no de suponer
+1. **`rootMargin` negativo deja elementos fuera para siempre.** Con `-10%` por abajo, los
+   bloques que viven en el último 10 % del viewport cuando el scroll ya no da más —tres del pie
+   de la home— **no llegan a disparar nunca**. A cero.
+2. **El menú móvil se reimplementa CON el mecanismo de Webflow, no contra él.** Su CSS ya trae
+   `[data-nav-menu-open] { display:block!important; ... }`; lo que hacía `webflow.js` era mover
+   el menú al overlay y ponerle ese atributo. Haciéndolo igual, el menú conserva los estilos
+   del diseñador en vez de unos inventados.
+3. **Ponerle fondo blanco al panel lo dejaba vacío.** El menú móvil del sitio lleva el texto en
+   blanco sobre `--blue_dark`. El panel pintaba y no se veía nada dentro. El fondo lo pone el
+   CSS del diseñador; yo solo posiciono.
+
+Y el overlay necesita `z-index` alto: con 9 quedaba **detrás del contenido** aunque su caja
+estuviera en su sitio, porque varias secciones crean su propio contexto de apilamiento.
+
+### Abierto — lo que la Fase 7 NO cubre todavía
+Está medido y acotado, no olvidado:
+- **`w-lightbox`** — `/gallery` tiene 137 referencias. Hoy los enlaces no abren visor.
+- **Finsweet, los tres frentes** (D1): el **filtrado** de listas, el **marquee** de logos y el
+  **slider** del blog. El marquee no se mueve y el slider no desliza.
+- **El antes/después** de `@flowbase-co/boosters-before-after-slider`.
+- `w-tabs` (2 usos, 8 paneles) y `w-pagination` (1, en `/blogs-tips`).
+
+Ninguna deja el sitio roto ni invisible: son componentes que se muestran estáticos en su primer
+estado. `check:ix2` sigue verde porque lo que mide —invisibles, transform residual, scroll
+horizontal— sigue en cero.
 
 ## Fases 6 y 9 — las 101 de colección y la paridad SEO   ✅ cerradas
 **Fecha:** 2026-08-27

@@ -1,0 +1,260 @@
+---
+/**
+ * FASE 7 — reimplementa las interacciones de Webflow sin `webflow.js`.
+ *
+ * Cubre lo que el sitio necesita para funcionar y para verse igual:
+ *   1. El menú móvil (`w-nav`, colapsa a <=991, `over-right`, 400 ms)
+ *   2. Los desplegables (`w-dropdown`, 96 usos)
+ *   3. Las 93 entradas por scroll (growIn / slideInLeft / slideInRight / slideInBottom)
+ *   4. El nav que se esconde al bajar y vuelve al subir (a-11 / a-12, 500 ms `easeInOut`)
+ *   5. El botón play/pausa de los vídeos de fondo
+ *
+ * ─────────────────────────────────────────────────────────────────────────────
+ * EL ESTADO OCULTO CUELGA DE UN SELLO QUE ESCRIBE EL JS
+ *
+ *     html[data-anim] [data-w-id][data-rev]:not([data-visto]) { opacity: 0 }
+ *
+ * Si este script no corre, el selector no casa y **se ve todo** — que es el comportamiento
+ * correcto. El sello se escribe DESPUÉS de construir el IntersectionObserver, y todo va en un
+ * try/catch que lo retira si algo falla: sellar antes y fallar después es el mismo desastre
+ * por la puerta de atrás. Este repo tiene precedente — en AMS el sitio se quedó invisible una
+ * vez por heredar los `data-w-id` con `opacity:0` sin su animación.
+ *
+ * `backwards`, NUNCA `both`: con un `@keyframes` de un solo `from`, el `forwards` que `both`
+ * lleva dentro deja el `transform` serializado como `matrix(1,0,0,1,0,0)` en vez de volver a
+ * `none`. Es la identidad y no se ve, pero un transform distinto de `none` crea contexto de
+ * apilamiento y bloque contenedor para descendientes `fixed`/`absolute`. Medido en AMS.
+ *
+ * `animation`, no `transition`: un `transition-delay` se queda puesto y cualquier hover futuro
+ * de ese hijo arrancaría cientos de ms tarde.
+ *
+ * EL DESLIZAMIENTO LATERAL SOLO EN ESCRITORIO. 18 de las 93 entradas corren solo en `main`
+ * (>=992) y 14 solo en móvil/tablet. Aplicar `slideInRight` en móvil mete **barra de scroll
+ * horizontal**: en LTR el desbordamiento por la izquierda no genera barra, solo el positivo.
+ */
+import reveals from '../data/reveals.json';
+const REVEALS = JSON.stringify(reveals.porId);
+---
+
+<style is:global>
+  /* ── el estado oculto, colgando del sello ─────────────────────────────── */
+  html[data-anim] [data-w-id][data-rev]:not([data-visto]) { opacity: 0 }
+
+  /* ── las 4 entradas. Duracion 1000ms y outQuart, del catalogo IX2 ─────── */
+  @keyframes mm-growIn      { from { opacity: 0; transform: scale(.75) } }
+  @keyframes mm-slideInLeft { from { opacity: 0; transform: translateX(-100px) } }
+  @keyframes mm-slideInRight{ from { opacity: 0; transform: translateX(100px) } }
+  @keyframes mm-slideInBottom{from { opacity: 0; transform: translateY(100px) } }
+
+  html[data-anim] [data-w-id][data-visto] {
+    /* `backwards`, nunca `both`. El porque, en la cabecera de este fichero. */
+    animation: 1000ms cubic-bezier(.165,.84,.44,1) backwards var(--mm-anim);
+  }
+  html[data-anim] [data-visto][data-rev="growIn"]       { --mm-anim: mm-growIn }
+  html[data-anim] [data-visto][data-rev="slideInLeft"]  { --mm-anim: mm-slideInLeft }
+  html[data-anim] [data-visto][data-rev="slideInRight"] { --mm-anim: mm-slideInRight }
+  html[data-anim] [data-visto][data-rev="slideInBottom"]{ --mm-anim: mm-slideInBottom }
+
+  /* ── el nav que se esconde al bajar (a-11) y vuelve al subir (a-12) ───── */
+  .menu {
+    transition: transform 500ms cubic-bezier(.455,.03,.515,.955),
+                opacity   500ms cubic-bezier(.455,.03,.515,.955);
+  }
+  .menu[data-oculto] { transform: translateY(-85px); opacity: 0 }
+
+  /* ── el menu movil ────────────────────────────────────────────────────
+     Se reimplementa CON el mecanismo de Webflow, no contra el. Su CSS ya trae:
+       .w-nav[data-collapse=medium] .w-nav-menu { display:none }   (a <=991)
+       [data-nav-menu-open] { display:block!important; position:absolute; top:100%; ... }
+       .w-nav-overlay [data-nav-menu-open] { top:0 }
+     O sea que lo que hacia webflow.js era mover el menu al overlay y ponerle el atributo
+     `data-nav-menu-open`. Aqui se hace igual: asi el menu hereda los estilos que el
+     diseñador puso en Webflow en vez de unos inventados por mi.
+     Lo unico que se añade es el deslizamiento `over-right` de 400 ms, que webflow.js hacia
+     por JS y aqui es una transicion. */
+  .w-nav-overlay[data-abierto] {
+    /* `fixed`, no el `absolute; top:100%` de Webflow: su overlay hereda `overflow:hidden` y
+       recorta el panel a la altura del nav. El nav mide 85px y es fixed, asi que el panel
+       cuelga justo debajo y cubre el resto de la ventana. */
+    position: fixed; inset: 85px 0 0; height: auto;
+    display: block; overflow: visible;
+    /* Por encima de TODO el contenido. El nav del sitio es z-index:10 y varias secciones
+       crean su propio contexto de apilamiento; con 9 el panel quedaba detras y no se veia
+       aunque su caja estuviera en su sitio. El overlay arranca en y=85, asi que aunque este
+       por encima del nav no lo tapa. */
+    z-index: 9999;
+    background-color: #00000059;
+  }
+  .w-nav-overlay[data-abierto] [data-nav-menu-open] {
+    position: absolute; inset: 0 0 0 auto;
+    width: min(320px, 90vw); height: 100%;
+    overflow-y: auto;
+    /* SIN background propio: el menu movil del sitio lleva su texto en blanco, y ponerle un
+       fondo blanco lo dejaba invisible -el panel pintaba, pero vacio-. El fondo lo pone el
+       CSS del diseñador. */
+    transform: translateX(100%);
+    transition: transform 400ms ease;
+  }
+  .w-nav-overlay[data-abierto][data-desliza] [data-nav-menu-open] { transform: translateX(0) }
+
+  /* ── los desplegables ─────────────────────────────────────────────────── */
+  .w-dropdown-list { display: none }
+  .w-dropdown-list.w--open { display: block }
+
+  /* Sin `!important` y repitiendo la misma cadena de selectores, para ganar por orden.
+     Un reset global de `animation: none` NO basta: comprime la duracion pero no restablece
+     `opacity` ni `transform`. */
+  @media (prefers-reduced-motion: reduce) {
+    html[data-anim] [data-w-id][data-rev]:not([data-visto]) { opacity: 1 }
+    html[data-anim] [data-w-id][data-visto] { animation: none }
+    .menu { transition: none }
+    .w-nav-overlay[data-abierto] [data-nav-menu-open] { transition: none }
+  }
+  @media print {
+    html[data-anim] [data-w-id][data-rev]:not([data-visto]) { opacity: 1 }
+    html[data-anim] [data-w-id][data-visto] { animation: none }
+  }
+</style>
+
+<script define:vars={{ REVEALS }}>
+  (function () {
+    'use strict';
+    const raiz = document.documentElement;
+    const porId = JSON.parse(REVEALS);
+
+    /** Los 4 breakpoints de Webflow. El reparto NO es decorativo: ver la cabecera. */
+    const enRango = (bp) => ({
+      main: matchMedia('(min-width: 992px)'),
+      medium: matchMedia('(min-width: 768px) and (max-width: 991px)'),
+      small: matchMedia('(min-width: 480px) and (max-width: 767px)'),
+      tiny: matchMedia('(max-width: 479px)'),
+    })[bp]?.matches ?? false;
+
+    // ── 1 · entradas por scroll ─────────────────────────────────────────
+    try {
+      const observados = [];
+      for (const [id, entradas] of Object.entries(porId)) {
+        for (const el of document.querySelectorAll(`[data-w-id="${id}"]`)) {
+          const e = entradas.find((x) => x.bps.some(enRango));
+          if (!e) continue;                       // en este ancho, ese elemento no anima
+          el.setAttribute('data-rev', e.anim);
+          observados.push(el);
+        }
+      }
+
+      const obs = new IntersectionObserver((filas) => {
+        for (const f of filas) {
+          if (!f.isIntersecting) continue;
+          f.target.setAttribute('data-visto', '');
+          obs.unobserve(f.target);
+        }
+        // rootMargin CERO, no negativo. Con `-10%` por abajo, los elementos que viven en el
+        // ultimo 10% del viewport cuando el scroll ya no da mas -el pie- NO llegan a disparar
+        // nunca y se quedan invisibles para siempre. Medido: 3 bloques del pie de la home.
+      }, { rootMargin: '0px' });
+      for (const el of observados) obs.observe(el);
+
+      // EL SELLO VA AQUÍ: después de que el observer exista y esté observando.
+      raiz.setAttribute('data-anim', '');
+    } catch (e) {
+      // Si algo de lo anterior falla, se retira el sello y se ve todo. Es lo correcto.
+      raiz.removeAttribute('data-anim');
+      console.error('[interacciones] entradas por scroll desactivadas:', e);
+    }
+
+    // ── 2 · el nav que se esconde al bajar ───────────────────────────────
+    const nav = document.querySelector('.menu');
+    if (nav) {
+      let ultimo = window.scrollY;
+      addEventListener('scroll', () => {
+        const y = window.scrollY;
+        // Umbral de 85px: por encima del alto del nav, para que no parpadee en el rebote.
+        if (y > ultimo && y > 85) nav.setAttribute('data-oculto', '');
+        else nav.removeAttribute('data-oculto');
+        ultimo = y;
+      }, { passive: true });
+    }
+
+    // ── 3 · los desplegables ─────────────────────────────────────────────
+    const cierraTodos = (salvo) => {
+      for (const d of document.querySelectorAll('.w-dropdown')) {
+        if (d === salvo) continue;
+        d.querySelector('.w-dropdown-toggle')?.classList.remove('w--open');
+        d.querySelector('.w-dropdown-list')?.classList.remove('w--open');
+        d.querySelector('.w-dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+      }
+    };
+    for (const d of document.querySelectorAll('.w-dropdown')) {
+      const boton = d.querySelector('.w-dropdown-toggle');
+      const lista = d.querySelector('.w-dropdown-list');
+      if (!boton || !lista) continue;
+      boton.setAttribute('role', 'button');
+      boton.setAttribute('tabindex', '0');
+      boton.setAttribute('aria-expanded', 'false');
+      const alterna = (abrir) => {
+        const v = abrir ?? !lista.classList.contains('w--open');
+        if (v) cierraTodos(d);
+        lista.classList.toggle('w--open', v);
+        boton.classList.toggle('w--open', v);
+        boton.setAttribute('aria-expanded', String(v));
+      };
+      boton.addEventListener('click', () => alterna());
+      boton.addEventListener('keydown', (ev) => {
+        if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); alterna(); }
+      });
+    }
+    addEventListener('keydown', (ev) => { if (ev.key === 'Escape') cierraTodos(null); });
+    addEventListener('click', (ev) => { if (!ev.target.closest('.w-dropdown')) cierraTodos(null); });
+
+    // ── 4 · el menu movil ────────────────────────────────────────────────
+    const boton = document.querySelector('.w-nav-button');
+    const menu = document.querySelector('.w-nav-menu');
+    const overlay = document.querySelector('.w-nav-overlay');
+    if (boton && menu && overlay) {
+      boton.setAttribute('role', 'button');
+      boton.setAttribute('tabindex', '0');
+      boton.setAttribute('aria-label', 'Menu');
+      boton.setAttribute('aria-expanded', 'false');
+      const sitio = menu.parentElement;
+      const abrir = (v) => {
+        boton.setAttribute('aria-expanded', String(v));
+        boton.classList.toggle('w--open', v);
+        // Webflow MUEVE el menu al overlay al abrir y lo devuelve al cerrar. Se replica: el
+        // CSS de `over-right` cuelga de que el menu este dentro del overlay.
+        if (v) {
+          overlay.appendChild(menu);
+          // `data-nav-menu-open` es el atributo de Webflow: su propio CSS lo saca de
+          // display:none. Usarlo hace que el menu conserve los estilos del diseñador.
+          menu.setAttribute('data-nav-menu-open', '');
+          overlay.setAttribute('data-abierto', '');
+          // Un fotograma antes de la transicion, o el navegador funde los dos estados y
+          // el menu aparece de golpe en vez de deslizarse.
+          requestAnimationFrame(() => overlay.setAttribute('data-desliza', ''));
+        } else {
+          overlay.removeAttribute('data-desliza');
+          overlay.removeAttribute('data-abierto');
+          menu.removeAttribute('data-nav-menu-open');
+          sitio.appendChild(menu);
+        }
+        document.body.style.overflow = v ? 'hidden' : '';
+      };
+      boton.addEventListener('click', () => abrir(boton.getAttribute('aria-expanded') !== 'true'));
+      boton.addEventListener('keydown', (ev) => {
+        if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); boton.click(); }
+      });
+      overlay.addEventListener('click', (ev) => { if (ev.target === overlay) abrir(false); });
+      addEventListener('keydown', (ev) => { if (ev.key === 'Escape') abrir(false); });
+      // Al pasar a escritorio, el menu tiene que volver a su sitio o se queda dentro del
+      // overlay y desaparece del nav.
+      matchMedia('(min-width: 992px)').addEventListener('change', (m) => { if (m.matches) abrir(false); });
+    }
+
+    // ── 5 · el boton play/pausa de los videos de fondo ───────────────────
+    for (const b of document.querySelectorAll('.w-background-video--control')) {
+      const video = b.closest('.w-background-video')?.querySelector('video');
+      if (!video) continue;
+      b.setAttribute('aria-label', 'Play or pause the background video');
+      b.addEventListener('click', () => { video.paused ? video.play() : video.pause(); });
+    }
+  }());
+</script>

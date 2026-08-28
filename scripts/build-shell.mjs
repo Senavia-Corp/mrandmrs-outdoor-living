@@ -50,6 +50,23 @@ function limpiar(nodo) {
     a.removeAttribute('aria-current');
     if (a.getAttribute('class') === '') a.removeAttribute('class');
   }
+  // Los enlaces internos ABSOLUTOS al dominio de produccion pasan a relativos: en una preview
+  // cada clic del nav se saldria al sitio viejo de Webflow.
+  for (const a of nodo.querySelectorAll('a[href^="https://mrandmrsoutdoorliving.com"]')) {
+    a.setAttribute('href', a.getAttribute('href').replace('https://mrandmrsoutdoorliving.com', '') || '/');
+  }
+  // LA TRAMPA DE AMS, y aqui estaba: el HTML servido trae `style="opacity:0"` EN LINEA en
+  // los elementos que anima IX2 -270 repartidos por 35 paginas-. Es el anti-FOUC de Webflow:
+  // «manten esto invisible hasta que arranque la interaccion». Sin webflow.js no arranca
+  // nadie y se quedan invisibles PARA SIEMPRE. Ademas, un style en linea gana a cualquier
+  // regla de autor, asi que tambien romperia el revelado propio.
+  //
+  // No lo caza check:texto -innerText incluye lo que tiene opacity:0-; lo caza check:ix2.
+  for (const el of n.querySelectorAll('[style*="opacity"]')) {
+    const limpio = el.getAttribute('style').replace(/(^|;)\s*opacity\s*:\s*0(?!\.)\s*(?=;|$)/gi, '$1')
+    .replace(/^;+|;+$/g, '').trim();
+    if (limpio) el.setAttribute('style', limpio); else el.removeAttribute('style');
+  }
   for (const img of nodo.querySelectorAll('img[src]')) img.setAttribute('src', local(img.getAttribute('src')));
   for (const el of nodo.querySelectorAll('[srcset]')) {
     el.setAttribute('srcset', el.getAttribute('srcset')

@@ -1,0 +1,1049 @@
+{
+ "_lee_esto": "DERIVADO de _source/animations/ix2-targets.csv. Regenerar: npm run reveals",
+ "breakpoints": {
+  "main": [
+   992,
+   null
+  ],
+  "medium": [
+   768,
+   991
+  ],
+  "small": [
+   480,
+   767
+  ],
+  "tiny": [
+   0,
+   479
+  ]
+ },
+ "easing": {
+  "outQuart": "cubic-bezier(0.165, 0.84, 0.44, 1)",
+  "easeInOut": "cubic-bezier(0.455, 0.03, 0.515, 0.955)"
+ },
+ "duracion": 1000,
+ "amplitudLateral": 100,
+ "porId": {
+  "12c8e489-ab6c-f74d-d0c2-18c43511ead7": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "cf60ca62-e5b4-3461-9fff-7f4e9e3b64a9": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "medium",
+     "small",
+     "tiny",
+     "main"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721de|a5871642-3b6c-271b-3ec9-9fed5cbdb3f3": [
+   {
+    "anim": "slideInRight",
+    "bps": [
+     "main"
+    ],
+    "cero": false
+   },
+   {
+    "anim": "growIn",
+    "bps": [
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "f811c775-c524-2700-ed75-4a83bcf40c57": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "da22a66a-ad39-0d6d-2fa2-62cb4e178480": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721f0|e94ffec7-4812-fbc6-e930-59a019961ce9": [
+   {
+    "anim": "slideInRight",
+    "bps": [
+     "main"
+    ],
+    "cero": false
+   },
+   {
+    "anim": "growIn",
+    "bps": [
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "90fb4871-cccb-5a13-f9e4-95b1df0636a2": [
+   {
+    "anim": "slideInRight",
+    "bps": [
+     "main"
+    ],
+    "cero": false
+   },
+   {
+    "anim": "growIn",
+    "bps": [
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721da|cf6e6112-50b1-b164-fee5-1e4b8c413058": [
+   {
+    "anim": "slideInBottom",
+    "bps": [
+     "main"
+    ],
+    "cero": false
+   },
+   {
+    "anim": "growIn",
+    "bps": [
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721da|cf6e6112-50b1-b164-fee5-1e4b8c413043": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main"
+    ],
+    "cero": false
+   }
+  ],
+  "330b3a3f-e72c-3f91-1f24-8dfe4f37952f": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "330b3a3f-e72c-3f91-1f24-8dfe4f379534": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "a1f123ae-345b-86a9-18b8-ddb864de3fab": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "d0e26d17-17a7-1637-e349-7157550d6e66": [
+   {
+    "anim": "slideInBottom",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "fd6a65e1-6acd-7404-311b-159de074845d": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "1b3f0000-6760-ab5a-e8a8-0451b5923b92": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "c6964fce-5218-8f0d-f211-580d83969ae1": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "34cd3ced-83f1-045b-fd89-afc4ef847f4a": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "74852c7c-aeb3-35a7-5cf1-44f4ce6ecae5": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "dfdd7317-58e7-27b3-99a6-2c20a5e8a7be": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "dfdd7317-58e7-27b3-99a6-2c20a5e8a7c8": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "1751d21a-c7f6-4875-4d5c-669cd0d5b935": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "d04947c9-3ba7-2add-caaa-9414425e8391": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "d04947c9-3ba7-2add-caaa-9414425e83ec": [
+   {
+    "anim": "slideInBottom",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "d04947c9-3ba7-2add-caaa-9414425e83ed": [
+   {
+    "anim": "slideInBottom",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "104e5641-1772-a28a-2e88-eb218a2ddf8c": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721de|8cc34998-48e5-bb72-accf-221a7753f4ed": [
+   {
+    "anim": "slideInLeft",
+    "bps": [
+     "main"
+    ],
+    "cero": false
+   },
+   {
+    "anim": "growIn",
+    "bps": [
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721de|0826fe29-babd-e8fb-0a42-82cd5580ecf8": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721de|cf0c09d3-d0b4-ba92-42a2-cec01a9dee35": [
+   {
+    "anim": "slideInRight",
+    "bps": [
+     "main"
+    ],
+    "cero": false
+   },
+   {
+    "anim": "growIn",
+    "bps": [
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "764f3c21-6644-7827-7b7a-25bbd0e40a23": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721df|906333cc-167b-479c-ae94-f7ad46037af5": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721df|11be53e8-68d1-13b1-051c-1b12ca00c3c8": [
+   {
+    "anim": "slideInRight",
+    "bps": [
+     "main"
+    ],
+    "cero": false
+   },
+   {
+    "anim": "growIn",
+    "bps": [
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721df|92e1d430-1509-d840-e593-ae3928b4eb32": [
+   {
+    "anim": "slideInLeft",
+    "bps": [
+     "main"
+    ],
+    "cero": false
+   },
+   {
+    "anim": "growIn",
+    "bps": [
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721e8|1b20b605-66d2-6f57-e097-e26fe4167c0a": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721e8|1e09eb34-5dfa-c000-dc70-f8f9d5c27f43": [
+   {
+    "anim": "slideInLeft",
+    "bps": [
+     "main"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721e8|474f47ea-6325-34d5-2f9c-e6f5417b28fa": [
+   {
+    "anim": "slideInRight",
+    "bps": [
+     "main"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721e8|cd6507e1-0ec2-bd3c-9308-2d1cad256861": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "3e7b68e7-e033-ed34-b3a7-e87aed50972d": [
+   {
+    "anim": "slideInLeft",
+    "bps": [
+     "main"
+    ],
+    "cero": false
+   },
+   {
+    "anim": "growIn",
+    "bps": [
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "7740b952-2d34-d915-8ab9-fb41fe6bef4f": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "d211c388-c60a-576c-7bc5-bd0a69d515f2": [
+   {
+    "anim": "slideInBottom",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721ed|de7e2f7f-c51a-bd7a-73f4-2ff969d96a30": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721ed|f30b2632-1bf6-6018-673f-aea37a006b0c": [
+   {
+    "anim": "slideInBottom",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721e0|967f80fd-c8b4-d4ec-5c6a-6f86b266ef37": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721ef|eca9d6ae-b2ac-947b-aa5b-6c02e740fb95": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721e1|f2018093-a560-305b-864e-5a2b0e197ff7": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721e2|fcac010e-d972-8847-d717-c8f4bdcd6aaa": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721e6|53096b5c-0f9c-8865-b9e9-f40105bfcddf": [
+   {
+    "anim": "slideInLeft",
+    "bps": [
+     "main"
+    ],
+    "cero": false
+   },
+   {
+    "anim": "growIn",
+    "bps": [
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721f2|d01628ed-7f34-9b3f-2b4a-9f22c92ec16a": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721f2|69e4df55-86c1-a89d-281e-f454cb25cb86": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "e8f76016-477e-e66e-7c25-4392c5f6cba0": [
+   {
+    "anim": "slideInLeft",
+    "bps": [
+     "main"
+    ],
+    "cero": false
+   },
+   {
+    "anim": "growIn",
+    "bps": [
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721db|983862a7-3688-6e3b-afeb-1962d292774b": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721db|f2721b05-6e5e-044b-b7c9-7a2a8bd783b4": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "98524246-2fbc-e691-5ab8-2715913bd179": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "98524246-2fbc-e691-5ab8-2715913bd17e": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "2fcae327-fd1b-997d-dd27-fb51a95eef02": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "dbbe8336-f746-006e-6caa-9f9daea7cc6a": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "4e3ac630-04d8-ebcf-c5f5-c24ea7e9ba56": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721dd|333e7244-2382-3d5a-9f96-e9d5e0ad3eae": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "c5943ea8-2479-0b18-7289-2e4baa1a48c8": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "c5943ea8-2479-0b18-7289-2e4baa1a48ce": [
+   {
+    "anim": "slideInBottom",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721f1|a9d58cee-a069-e584-e711-80e05d28f337": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721f1|a9d58cee-a069-e584-e711-80e05d28f33c": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   },
+   {
+    "anim": "slideInBottom",
+    "bps": [
+     "main"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721da|29867a8a-c7e7-06a6-ef63-f3ef2789a89f": [
+   {
+    "anim": "slideInRight",
+    "bps": [
+     "main"
+    ],
+    "cero": false
+   },
+   {
+    "anim": "growIn",
+    "bps": [
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721da|bf5925c7-6577-ba84-77a6-25f8d09f7373": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721db|f5ae371f-3a5a-84b7-3844-edd7198a776d": [
+   {
+    "anim": "slideInLeft",
+    "bps": [
+     "main"
+    ],
+    "cero": false
+   },
+   {
+    "anim": "growIn",
+    "bps": [
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721db|dce80844-cc8a-923f-8fa1-aa91c1419f9a": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721db|dce80844-cc8a-923f-8fa1-aa91c1419f9d": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721f7|9b1d2d0c-b40c-a640-03b8-677109a91025": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721f7|9b1d2d0c-b40c-a640-03b8-677109a9102a": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721f7|ca379aa5-e141-9c70-d7cc-cf56920cb8f1": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721f7|df442948-7719-1c67-0f50-9201c368c52f": [
+   {
+    "anim": "slideInBottom",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721db|9f159d33-eb67-9087-202c-bab1e4077bc3": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "f72979fc-9196-9930-356a-1756486557d5": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "53f4d2e0-9a7a-0e16-e20a-ab8f9e03c935": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "8bad508e-9f02-2bc9-bf6d-6ac47990da3b": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721da|29867a8a-c7e7-06a6-ef63-f3ef2789a898": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721da|29867a8a-c7e7-06a6-ef63-f3ef2789a89b": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "6a8f67a39235e3662e5721da|29867a8a-c7e7-06a6-ef63-f3ef2789a89d": [
+   {
+    "anim": "growIn",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "a1804646-b89a-ceab-b036-65650e10edd8": [
+   {
+    "anim": "slideInLeft",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ],
+  "a1804646-b89a-ceab-b036-65650e10ede2": [
+   {
+    "anim": "slideInRight",
+    "bps": [
+     "main",
+     "medium",
+     "small",
+     "tiny"
+    ],
+    "cero": false
+   }
+  ]
+ }
+}

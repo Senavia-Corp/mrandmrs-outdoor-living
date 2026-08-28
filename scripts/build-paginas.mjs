@@ -158,8 +158,27 @@ for (const [ruta] of RUTAS) {
     // relativa: si no, cualquier preview cargaria el sitio VIEJO de Webflow dentro del nuevo
     // -y el check:visual estaria comparando el original contra si mismo-. Tras el corte
     // apuntaria al sitio bueno igualmente, pero hasta entonces mentiria en cada verificacion.
+    // LA TRAMPA DE AMS, y aqui estaba: el HTML servido trae `style="opacity:0"` EN LINEA en
+    // los elementos que anima IX2 -270 repartidos por 35 paginas-. Es el anti-FOUC de Webflow:
+    // «manten esto invisible hasta que arranque la interaccion». Sin webflow.js no arranca
+    // nadie y se quedan invisibles PARA SIEMPRE. Ademas, un style en linea gana a cualquier
+    // regla de autor, asi que tambien romperia el revelado propio.
+    //
+    // No lo caza check:texto -innerText incluye lo que tiene opacity:0-; lo caza check:ix2.
+    for (const el of n.querySelectorAll('[style*="opacity"]')) {
+      const limpio = el.getAttribute('style').replace(/(^|;)\s*opacity\s*:\s*0(?!\.)\s*(?=;|$)/gi, '$1')
+        .replace(/^;+|;+$/g, '').trim();
+      if (limpio) el.setAttribute('style', limpio); else el.removeAttribute('style');
+    }
     for (const f of n.querySelectorAll('iframe[src^="https://mrandmrsoutdoorliving.com/"]')) {
       f.setAttribute('src', f.getAttribute('src').replace('https://mrandmrsoutdoorliving.com', ''));
+    }
+    // Y los 1482 enlaces internos ABSOLUTOS al dominio de produccion, repartidos por 114
+    // paginas. En una preview, cada clic se sale al sitio VIEJO de Webflow: navegar el sitio
+    // nuevo seria imposible y cualquier verificacion estaria mirando el original. Despues del
+    // corte funcionarian, pero hasta entonces mienten en todo.
+    for (const a of n.querySelectorAll('a[href^="https://mrandmrsoutdoorliving.com"]')) {
+      a.setAttribute('href', a.getAttribute('href').replace('https://mrandmrsoutdoorliving.com', '') || '/');
     }
     return n.outerHTML;
   };
