@@ -95,8 +95,20 @@ export async function asentar(pag) {
   await pag.waitForTimeout(900);
 
   // 5 · congelar lo que se mueve solo
-  await pag.evaluate(() => document.querySelectorAll('video')
-    .forEach((v) => { v.pause(); v.currentTime = 0; }));
+  await pag.evaluate(() => {
+    document.querySelectorAll('video').forEach((v) => { v.pause(); v.currentTime = 0; });
+    // LOS SLIDERS TAMBIEN SE MUEVEN SOLOS. El del blog tiene autoplay cada 3 s, y el baseline
+    // lo capturaba SIEMPRE a translate3d(-625px) -dos diapositivas avanzadas-. Salia
+    // reproducible por la casualidad de que el tiempo de asentado es constante, pero es
+    // reproducible, no ESTABLE: comparar «por que diapositiva iba» no es comparar el diseño.
+    // Se devuelven todos a la primera, en las dos formas de moverlos: transform (Finsweet) y
+    // scrollLeft (la reimplementacion propia).
+    for (const l of document.querySelectorAll('[fs-slider-element="list"]')) {
+      l.style.setProperty('transform', 'none', 'important');
+      l.style.setProperty('transition', 'none', 'important');
+      l.scrollLeft = 0;
+    }
+  });
   await pag.addStyleTag({ content: CONGELAR_CSS });
   await pag.waitForTimeout(400);
 

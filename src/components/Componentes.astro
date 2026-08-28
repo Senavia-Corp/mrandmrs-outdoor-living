@@ -194,9 +194,9 @@ const SLIDERS = JSON.stringify(sliders.sliders);
       const conf = CONF_SLIDERS[inst.getAttribute('fs-slider-instance')];
       const dimensiona = () => {
         if (!conf) return;
-        const puntos = Object.keys(conf).map(Number).sort((a, b) => a - b);
+        const puntos = Object.keys(conf.breakpoints).map(Number).sort((a, b) => a - b);
         const bp = puntos.filter((p) => innerWidth >= p).pop() ?? puntos[0];
-        const { slidesPerView: n, spaceBetween: gap } = conf[bp];
+        const { slidesPerView: n, spaceBetween: gap } = conf.breakpoints[bp];
         const ancho = lista.clientWidth;
         const w = (ancho - gap * (n - 1)) / n;
         for (const [i, s] of [...lista.children].entries()) {
@@ -239,6 +239,26 @@ const SLIDERS = JSON.stringify(sliders.sliders);
       lista.addEventListener('scroll', refresca, { passive: true });
       addEventListener('resize', () => { dimensiona(); refresca(); }, { passive: true });
       refresca();
+
+      /**
+       * AUTOPLAY. Tambien sale de la configuracion del sitio: el slider del blog y el de la
+       * galeria avanzan cada 3 s. No implementarlo dejaba el slider quieto, y eso ES una
+       * diferencia de comportamiento.
+       *
+       * `disableOnInteraction: true` en la config del sitio: se para en cuanto el visitante
+       * toca. Y se respeta `prefers-reduced-motion`: un carrusel que se mueve solo es
+       * exactamente lo que esa preferencia pide evitar.
+       */
+      if (conf?.autoplayMs && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        let temporizador = setInterval(() => {
+          const max = lista.scrollWidth - lista.clientWidth;
+          if (lista.scrollLeft >= max - 1) lista.scrollLeft = 0;
+          else lista.scrollLeft += paso();
+        }, conf.autoplayMs);
+        const para = () => { clearInterval(temporizador); temporizador = null; };
+        for (const ev of ['pointerdown', 'keydown', 'wheel']) lista.addEventListener(ev, para, { once: true, passive: true });
+        for (const b of [prev, next]) b?.addEventListener('click', para, { once: true });
+      }
     }
 
     // ── 4 · antes/despues ────────────────────────────────────────────────

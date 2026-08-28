@@ -46,7 +46,13 @@ for (const m of t.matchAll(/"fs-slider-instance='([^']+)'"\s*:\s*\{/g)) {
     const conf = Object.fromEntries([...b[2].matchAll(/(\w+)\s*:\s*([\d.]+)/g)].map((x) => [x[1], Number(x[2])]));
     puntos[b[1]] = { slidesPerView: conf.slidesPerView ?? 1, spaceBetween: conf.spaceBetween ?? 0 };
   }
-  if (Object.keys(puntos).length) sliders[m[1]] = puntos;
+  // El autoplay tambien es del sitio: el del blog avanza cada 3 s. Sin el, el slider se queda
+  // quieto y eso ES una diferencia de comportamiento, no de estilo.
+  const auto = bloque.match(/autoplay:\{([^}]*)\}/);
+  const delay = auto ? Number((auto[1].match(/delay:([\de.+]+)/) ?? [])[1] ?? 0) : 0;
+  if (Object.keys(puntos).length) {
+    sliders[m[1]] = { breakpoints: puntos, autoplayMs: Number.isFinite(delay) ? delay : 0 };
+  }
 }
 
 fs.writeFileSync(path.join(RAIZ, 'src/data/sliders.json'), JSON.stringify({
@@ -56,7 +62,8 @@ fs.writeFileSync(path.join(RAIZ, 'src/data/sliders.json'), JSON.stringify({
 }, null, 1));
 
 console.log('');
-for (const [n, bps] of Object.entries(sliders)) {
-  console.log(`  ${n.padEnd(28)} ${Object.entries(bps).map(([b, c]) => `${b}:${c.slidesPerView}/${c.spaceBetween}`).join('  ')}`);
+for (const [n, v] of Object.entries(sliders)) {
+  console.log(`  ${n.padEnd(28)} ${Object.entries(v.breakpoints).map(([b, c]) => `${b}:${c.slidesPerView}/${c.spaceBetween}`).join('  ')}`
+    + `   autoplay=${v.autoplayMs || 'no'}`);
 }
 console.log(`\n  OK ${Object.keys(sliders).length} sliders -> src/data/sliders.json\n`);
