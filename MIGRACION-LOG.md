@@ -31,6 +31,7 @@ reproducir el resultado, saber qué se midió y con qué comando, y ver qué que
 | F11 | Deploy y corte de dominio | 🟡 preview LIVE 28-ago (protegida); DNS SIN tocar | |
 | R6 | Cimientos del Programa R | ✅ cerrada | 2026-08-29 |
 | R9a | La home descomprimida (0 bytes) | ✅ cerrada | 2026-08-29 |
+| R7 | Sistema de diseño (0 px movidos) | ✅ cerrada | 2026-08-29 |
 
 Estados: ⬜ pendiente · 🟡 en curso · ✅ cerrada · 🔴 bloqueada · ↩️ reabierta
 
@@ -145,6 +146,172 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 ## Entradas
 
 <!-- a partir de aquí, una entrada por fase, la más reciente arriba -->
+
+## Fase R7 — el sistema de diseño   ✅ cerrada
+**Fecha:** 2026-08-29 · **Commit:** `191ae4f` · **Escribió:** chat ARTE · **Cableó y verificó:** director
+
+### Objetivo
+Establecer el lenguaje visual antes de aplicarlo, y que cargarlo **no mueva un píxel** en las 115.
+El nav y el pie salen en todas: rediseñar la home y después cambiar la tipografía base sería
+rehacer el trabajo.
+
+### Qué se hizo
+- `src/styles/disenio/tokens.css` (17 293 B) y `src/styles/disenio/base.css` (14 140 B), escritos
+  por ARTE. 28 clases `.mm-*`, 7 pasos tipográficos, espaciado base 4, radios, sombras de dos
+  capas teñidas de navy, y cada par de color con su **ratio medido** al lado.
+- Cableado en `src/layouts/Base.astro:46-47`, en el orden del contrato:
+  `fuentes -> webflow -> disenio/tokens -> disenio/base -> propio`. Gana por ORDEN.
+- **Nada en `@layer`**, y el motivo escrito al lado: `webflow.css` son 167 KB SIN capa, y
+  cualquier regla sin capa gana a toda regla con capa — meterlo en `@layer` lo haría perder
+  contra todo Webflow, incluidas sus 326 reglas en `max-width:991`.
+
+### Números medidos
+| Métrica | Antes | Después |
+|---|---|---|
+| Hash del bundle | `Base.78QQ07vP.css` | `Base.DCVYZ4Uz.css` |
+| Peso del bundle | 177 567 B | 184 375 B (**+6 808**) |
+| `!important` / `@layer` en `disenio/` | — | **0 / 0** |
+| Selectores fuera de `.mm-`/`.pe-`/`.svc-`/`:root` | — | **0** |
+| Literales de color fuera de `tokens.css` | — | **0** |
+| Referencias a `--_apps---*` | — | **0** |
+| Páginas HTML con un token o clase nuevos | — | **0** |
+| De las 28 clases `.mm-*`, presentes en algún marcado | — | **0** |
+
+El **+6 808 B** cuadra al byte con lo que `lightningcss` produce al minificar los dos ficheros
+(2 826 + 3 982). Misma cadena, mismo resultado.
+
+### Evidencia
+
+**1 · El gate: la barrida completa, contra la de R6.**
+
+```bash
+$ diff <(check:visual en R6) <(check:visual en R7)
+139c139
+<   ROJO /country/custom-pool-builders-dixie-county-fl        86.56 %
+>   ROJO /country/custom-pool-builders-dixie-county-fl        86.57 %
+152c152
+<   decl /                                                    93.32 % (alto -3px)
+>   decl /                                                    93.33 % (alto -3px)
+488c488
+<   ROJO /country/custom-pool-builders-broward-county-fl      98.77 %
+>   ROJO /country/custom-pool-builders-broward-county-fl      98.76 %
+
+$ diff <(check:texto en R6) <(check:texto en R7)   # sin salida: IDÉNTICOS
+$ diff <(check:ix2   en R6) <(check:ix2   en R7)   # sin salida: IDÉNTICOS
+```
+
+Totales, idénticos en las dos:
+
+```
+check:texto    103 identicas · 12 con diferencias              PUERTA ROJA — 12   salida 1
+check:ix2      PUERTA VERDE                                                       salida 0
+check:visual   399 iguales · 36 distintas · 25 declaradas · 0 sin baseline         salida 1
+```
+
+**Las 3 rutas que se mueven 0,01 puntos no cambian de veredicto y no mueven los totales.** Y una
+de ellas, `/country/…-broward-county-fl`, es literalmente la que la cabecera de `asentar()`
+documenta como la que daba **98,67 % y 99,65 %** en corridas consecutivas del MISMO contenido. `/`
+oscila 93,33 → 93,32 → 93,33 en tres corridas seguidas. Es ruido de captura, no maqueta.
+
+**2 · Por qué el gate se sostiene por CONSTRUCCIÓN y no por calibración.**
+
+```bash
+$ grep -rl 'mm-tit-1|mm-paso-6|mm-seccion|--mm-navy' .vercel/output/static
+  .vercel/output/static/_astro/Base.DCVYZ4Uz.css      # solo el bundle
+$ node -e "…cuenta las 28 clases .mm-* de base.css en todo el HTML construido…"
+  clases .mm-* definidas en base.css: 28
+  de esas, presentes en algun marcado: 0
+```
+
+Ninguna clase nueva casa con ningún elemento: 0 reglas se aplican. Eso es más fuerte que unos
+números bien calibrados, porque no depende de que los números estén bien.
+
+**3 · La curva de la `h1`, evaluada con dos lectores independientes** (el de ARTE y el mío):
+
+```
+ANCHO |  paso-6 | paridad | webflow | delta paso-6 | delta paridad
+ 1920 |  45.000 |      45 |      45 |         0.00 |          0.00
+ 1440 |  39.833 |      45 |      45 |        -5.17 |          0.00
+  991 |  35.000 |      45 |      45 |       -10.00 |          0.00
+  479 |  30.000 |      30 |      30 |         0.00 |          0.00
+
+anclas del §6, comparacion === :  1920 -> 45 EXACTO · 991 -> 35 EXACTO · 479 -> 30 EXACTO
+continuidad: 991 -> 35.000000 · 991.9 -> 35.000000 · 992 -> 35.010764
+```
+
+**4 · `text-transform` e `innerText`, medido en Chromium sobre una página construida:**
+
+```
+innerText sin transform   : "Outdoor Living"
+innerText con uppercase   : "OUTDOOR LIVING"      <-- LO APLICA
+innerText con capitalize  : "Outdoor Living"
+textContent con uppercase : "Outdoor Living"      <-- este NO
+```
+
+**5 · Un retoque de comentario no cambia lo emitido.** ARTE reescribió el comentario de
+`.mm-rotulo` después de la barrida. Confirmado que la barrida sigue valiendo:
+
+```bash
+$ npm run build
+$ diff <huella antes del retoque> <huella despues>   # sin salida: los 1380 ficheros IDÉNTICOS
+$ ls .vercel/output/static/_astro/Base.*.css
+  Base.DCVYZ4Uz.css                                  # el mismo hash
+```
+
+### Gate
+**Criterio (§7):** barrida visual idéntica a R6; cargar tokens que nadie consume debe mover 0 px
+en las 115.
+**Resultado:** ✅ verde.
+
+### Desviaciones
+**El §6 del contrato tiene el ancla de la `h1` mal medida, y se corrige aquí.**
+
+Dice que la curva se calibra «para pasar exactamente por 45 px a 1920, **35 a 991** y 30 a 479».
+Medido sobre `webflow.css` con un parser que respeta la pila de `@media`:
+
+```
+(sin media)                          h1   45px
+@media screen and (max-width:991px)  h1   45px
+@media screen and (max-width:767px)  h1   35px
+@media screen and (max-width:479px)  h1   30px
+```
+
+O sea que **a 991 —uno de los 4 anchos de la puerta— la `h1` de Webflow mide 45, no 35**. El 35
+vive en la banda 480–767, que no es ninguno de los 4 anchos que mide `check:visual`. La `h1` es
+además el único elemento cuyo escalón cae en 767; `body`, `h2`, `h3` y `h4` caen todos en 991.
+
+Consecuencia práctica: aplicar `--mm-paso-6` a una `h1` existente la encogería **−10 px a 991 y
+−5,17 a 1440**. Por eso hay un segundo token, `--mm-paso-h1-paridad`, escalón 45/45/35/30, que da
+**delta 0,00 px** contra Webflow en los 4 anchos. **Regla para los pulidores de R10: sección aún
+no rediseñada → modificador de paridad; sección rediseñada y re-baselinizada → se le quita.**
+
+Y un detalle que ahorra un ciclo: los tres anclajes **no son colineales** (pendientes 0,9766vw y
+1,0764vw), así que un solo `clamp()` no puede pasar por los tres — forzando una recta, a 991 salen
+35,330 px. Van en dos tramos, con el token redefinido dentro de `@media (min-width: 992px)`. Eso
+es CSS válido: lo que no se puede es usar una custom property en la CONDICIÓN de un `@media`, que
+es a lo que se refiere el §6.
+
+**Otras tres correcciones al §6**, medidas: **82** custom properties en `:root` (no 81); **34**
+valores distintos de `font-size` en 135 declaraciones (no 33); y los shadcn vivos son **2, no 3** —
+`--_apps---sizes--radius:16px` está DECLARADA pero con **0 usos** `var()` en todo el proyecto, así
+que el 16 se escribe como literal propio en `tokens.css`, que es donde el contrato lo permite.
+
+### Rarezas del original replicadas a propósito
+Ninguna. Esta fase no toca marcado.
+
+### Abierto
+1. **`.mm-rotulo` no lleva `uppercase`, y no lo llevará.** `innerText` aplica `text-transform` en
+   Blink, y `check:texto` compara `innerText` al 100 % sin tolerancia y no se re-baseliniza nunca.
+   **La regla va sin excepción para `capitalize`** aunque se midió que no transforma: una excepción
+   medida hoy es una regresión el día que alguien la generalice a `uppercase` por analogía.
+2. **La salida de emergencia `font-variant-caps: small-caps` está SIN MEDIR** y así queda escrito
+   en `base.css`: no se sabe si el subconjunto de Inter auto-alojado en `public/fonts` trae el
+   rasgo `smcp`. Si no lo trae, el navegador lo sintetiza y se ve mal. **Medirlo ANTES de usarlo.**
+3. **El tope de peso de la capa de autor**: acordado **12 KB** (la parte de `disenio/` son 6 808 B
+   minificados). Lo escribe `check-tokens.mjs`, que es de R8 y del director.
+4. **Tokens declarados y aún sin consumir** a propósito, como vocabulario para R9/R10:
+   `--mm-frio*`, `--mm-r-8`, `--mm-r-24`, `--mm-borde-control*` y varios `--mm-e-*`.
+
 
 ## Fase R9 (paso 1) — `index.astro` descomprimido, 0 bytes de diferencia   ✅ cerrada
 **Fecha:** 2026-08-29 · **Commit:** `1797ef4` · **Ejecutó:** chat HOME · **Verificó:** director
