@@ -30,6 +30,7 @@ reproducir el resultado, saber qué se midió y con qué comando, y ver qué que
 | F10 | Puertas de verificación | 🟡 9 de 10 escritas | |
 | F11 | Deploy y corte de dominio | 🟡 preview LIVE 28-ago (protegida); DNS SIN tocar | |
 | R6 | Cimientos del Programa R | ✅ cerrada | 2026-08-29 |
+| R9a | La home descomprimida (0 bytes) | ✅ cerrada | 2026-08-29 |
 
 Estados: ⬜ pendiente · 🟡 en curso · ✅ cerrada · 🔴 bloqueada · ↩️ reabierta
 
@@ -144,6 +145,116 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 ## Entradas
 
 <!-- a partir de aquí, una entrada por fase, la más reciente arriba -->
+
+## Fase R9 (paso 1) — `index.astro` descomprimido, 0 bytes de diferencia   ✅ cerrada
+**Fecha:** 2026-08-29 · **Commit:** `1797ef4` · **Ejecutó:** chat HOME · **Verificó:** director
+
+### Objetivo
+Partir los 4 fragmentos opacos de la home en secciones que abren y cierran en su sitio, **sin
+cambiar un byte** de lo construido. Refactor puro con red, antes de que haya nada de diseño
+encima: así, si algo se rompe, la puerta lo dice cuando la causa aún es una sola.
+
+### Qué se hizo
+- `src/pages/index.astro`: 4 constantes de una sola línea → **10 constantes con nombre de
+  sección + 2 envoltorios literales**. 26 → 82 líneas.
+- Las 11 secciones de primer nivel, y las **2 que cruzaban** frontera de fragmento:
+  `.testimonial-section` (abría en T2, cerraba en T4) y `.social-media` (abría en T4, cerraba
+  en T6). Cruzaban porque `build-paginas.mjs` parte por `@@WIDGET@@` y los widgets viven DENTRO
+  de las secciones: `ResenasGoogle` es hermana de la cabecera de testimonios, y `FeedInstagram`
+  es el cuerpo entero de `.social-media` (que en el origen es literalmente
+  `<section class="social-media"></section>`, 40 B).
+- **El criterio que hace que `check:texto` no pueda moverse:** el marcado literal son solo
+  etiquetas de estructura, **sin una sola letra de texto**. Todo lo que lleva texto sigue dentro
+  de `set:html`, así que ni una entidad (`&amp;`) puede recodificarse al pasar por el compilador.
+
+### Números medidos
+| Métrica | Antes | Después |
+|---|---|---|
+| `src/pages/index.astro` | 26 líneas · 50 682 B | 82 líneas · 53 580 B |
+| Constantes | 4 opacas (T0/T2/T4/T6) | 10 con nombre de sección |
+| `index.html` construido | 160 488 B | **160 488 B, mismo sha256** |
+| Ficheros del build idénticos | — | **1380 de 1380** |
+| `data-w-id` en la página | 17 | 17, mismo conjunto |
+| Hashes de CSS distintos en el build | 1 | 1, el mismo |
+
+### Evidencia
+
+**1 · El gate que pedía el contrato.**
+
+```bash
+$ npm run build
+$ diff <referencia> .vercel/output/static/index.html && echo "0 BYTES"
+0 BYTES
+$ echo $?
+0
+$ shasum -a 256 <referencia> .vercel/output/static/index.html
+7462e93869f1de92733143a9c01d804f5c96b09d2924d7fb0bd38109d949b7fa  <referencia>
+7462e93869f1de92733143a9c01d804f5c96b09d2924d7fb0bd38109d949b7fa  .vercel/output/static/index.html
+```
+
+**2 · Y una prueba MÁS FUERTE que la que pedía el contrato: el build entero.** Se construyó con
+la descompresión y sin ella, y se comparó el sha256 de los 1380 ficheros de salida:
+
+```bash
+$ diff <huella CON la descompresion> <huella SIN ella>
+                                        # sin salida: IDÉNTICOS, los 1380
+$ diff <build 1 CON> <build 2 CON>
+                                        # sin salida: el build es reproducible
+```
+
+**3 · Las tres puertas estáticas**, corridas por HOME **sin tubería** (con `| tail` se lee el
+código de salida del `tail`, no el de la puerta):
+
+```
+check:rutas    PUERTA VERDE  salida 0   115/115 construidas · 0 de mas · 0 refs a Webflow/Elfsight
+check:enlaces  PUERTA VERDE  salida 0   0 rotos · 0 a .html · 728/728 en git ls-files
+check:seo      PUERTA VERDE  salida 0   115/115 <head> identicos al origen
+```
+
+### Gate
+**Criterio (§7):** `diff` del `index.html` construido = 0 bytes, más `check:texto` y
+`check:visual` verdes.
+**Resultado:** ✅ verde, y por encima de lo pedido.
+
+**No se corrieron `check:texto` ni `check:visual`, y es una decisión, no un olvido.** Esas dos
+puertas miden el HTML construido; aquí está demostrado que **los 1380 ficheros de salida son
+idénticos byte a byte** con y sin el cambio, y que el build es reproducible. Correrlas serían 75
+minutos para reproducir un resultado ya probado idéntico, y encima a través de un navegador que
+introduce ruido — el mismo que hizo que `/` se moviera de 93,33 % a 93,32 % entre dos corridas
+del MISMO build en R6. La barrida completa vuelve en el gate de R7, que sí la necesita: ahí los
+tokens de ARTE entran de verdad en el build.
+
+### Desviaciones
+El encargo original decía «LO PRIMERO: `npm run build`». **Estaba mal escrito por el director**:
+lo lanzó mientras corría una barrida de `check:visual` de 65 minutos sobre
+`.vercel/output/static`, y el build reemplazó ese directorio en caliente. Se llevó por delante
+`check:ix2` (6 rutas en 404 falso, 2 fallos de interacción) y `check:visual` («falta
+.vercel/output/static»). Los 8 fallos eran contaminación, ninguno real: al repetir con la
+máquina en silencio, `check:ix2` salió VERDE. De ahí sale el **candado de construcción**: hay un
+solo constructor —el director—, y los trabajadores piden ventana.
+
+### Rarezas del original replicadas a propósito
+`.social-media` sigue siendo una sección cuyo cuerpo entero es un widget que hoy **no pinta
+nada**, porque `src/data/instagram.json` está vacío a propósito (decisión D2: sin datos reales
+no se inventa contenido). La descompresión no lo cambia: sigue midiendo 0 y el baseline lo
+retrata como hueco.
+
+### Abierto
+1. **El paso 2 de R9 —rediseñar— no ha empezado, y va después de R7.** Antes, `/` tiene que
+   pasar a contrato `rediseno` en `disenio/contratos.json`; desde R6, si no tiene referencia
+   aprobada la puerta sale ROJA en vez de saltársela.
+2. **`compressHTML` vale `"jsx"` por defecto en este Astro** (`node_modules/astro/dist/core/
+   config/schemas/defaults.js`), no `true`, y el proyecto no lo declara. Por eso la sangría
+   entre fragmentos no llega al HTML. Queda escrito en la cabecera del fichero: quien lo ponga a
+   `true` creyendo que es equivalente mete **un espacio en cada frontera de etiqueta de las 115
+   páginas**. Lo que sí sobrevive en modo `jsx` es un espacio entre dos etiquetas en la MISMA
+   línea.
+3. **`maybeRenderHead`**: meter el primer elemento HTML literal en `index.astro` hace que el
+   compilador inserte 2 `$$maybeRenderHead` que antes no estaban. No inyectan nada, y la prueba
+   no es teórica: `ServiciosPorCategoria` ya emite esos mismos 2 en el mismo slot y detrás del
+   fin de T0 hay 0 bytes inyectados. Motivo: `Base.astro` emite `renderHead` dentro de su
+   `<head>`, así que `hasRenderedHead` ya es `true` cuando corre el slot.
+
 
 ## Fase R6 — cimientos del Programa R   ✅ cerrada
 **Fecha:** 2026-08-29 · **Commit:** `9df27a0`
