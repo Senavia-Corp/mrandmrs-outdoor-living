@@ -147,6 +147,162 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 
 <!-- a partir de aquí, una entrada por fase, la más reciente arriba -->
 
+## Baseline — las 12 de `/services/`, recapturadas del vivo   ✅ cerrada (con un defecto nuevo abierto)
+**Fecha:** 2026-08-29 · **Commit:** `61e1be4` · Pedido por Sebastian: «arregla las 12 antes del corte de DNS»
+
+### Objetivo
+Devolver a verde `check:texto`, que es **la barandilla del Programa R** y llevaba 12 rutas en rojo.
+Solo se podía hacer mientras el dominio siguiera en Webflow.
+
+### Qué se hizo
+- Recapturadas del **sitio VIVO** las 12 fichas de `/services/` que no se habían recapturado tras
+  el arreglo 5a de `lib/captura.mjs`: `npm run baseline -- --ruta <r> --forzar`, una a una.
+- Cada `--forzar` reescribe **cuatro referencias**: `text/`, `html/`, los 4 `shots/` y la entrada
+  de `seo.json`. Se revisaron las cuatro antes de aceptar.
+
+### Por qué esto NO viola el §1.1 («`check:texto` no se re-baseliniza NUNCA»)
+Esa regla existe para que **nuestros** cambios no puedan redefinir la referencia. Aquí la
+referencia se tomó con una receta rota —el carrusel de pasos autoavanzando— y no retrataba
+fielmente a Webflow: guardaba un paso del proceso mientras la puerta leía otro, de ahí el
+«faltan 2 lineas, sobran 2» en 12 de las 14 fichas. La recaptura sale de
+`BASE = 'https://mrandmrsoutdoorliving.com'`, así que **nuestro build no influye en el
+resultado**. Precedente sancionado: las 2 `/services/pool-*` se recapturaron así el 28-ago y son
+justo las 2 que ya salían verdes.
+
+### Números medidos
+| Métrica | Antes | Después |
+|---|---|---|
+| `check:texto` | 103 idénticas · **12 con diferencias** | **115 idénticas · 0** |
+| `check:texto`, reproducibilidad | — | **3 de 3 pasadas en verde** |
+| `check:visual`, comparaciones rojas | 36 | **16** |
+| `baseline/seo.json` | — | **sin cambios** |
+| Ficheros de `baseline/` tocados | — | 12 text · 12 html · 48 shots |
+
+### Evidencia
+
+**1 · La receta se probó DETERMINISTA antes de escribir nada.** Idea de ARTE: «una referencia que
+solo se ha capturado UNA VEZ no se ha probado estable». Se capturó la misma ruta viva dos veces
+seguidas y se diffearon:
+
+```
+texto   IDÉNTICO
+html    4 bloques distintos -> normalizarHtml() los iguala: son las 4 ya documentadas
+shots   3 de 4 con sha256 DISTINTO
+        …pero con la MÉTRICA DE LA PUERTA (pixelmatch, tolerancia 0.3):
+        1920 -> 100.000 %   1440 -> 100.000 %   991 -> 100.000 %   479 -> 100.000 %
+        alturas idénticas en los 4
+```
+
+**Quedarse en el `sha256` habría hecho abortar una operación correcta**: la diferencia de bytes
+era ruido del compresor JPEG por debajo de la tolerancia de la puerta.
+
+**2 · La deriva del `<head>` se comprobó y no existe.** Aviso de ARTE: `seo.json` no retrata cómo
+se VE el vivo sino qué DICE su `<head>`, y ese `<head>` lleva meses en manos del cliente. Si
+hubiera cambiado un `<title>`, `--forzar` habría adoptado la deriva como verdad y `check:seo`
+seguiría en 115/115 verde **contra una referencia nueva**.
+
+```bash
+$ git diff --quiet baseline/seo.json && echo "sin cambios"
+sin cambios
+```
+
+**3 · El resultado.**
+
+```bash
+$ npm run check:texto
+  115 identicas · 0 con diferencias · 0 aun sin construir
+PUERTA VERDE                                    # y 3 de 3 pasadas dan lo mismo
+```
+
+### Gate
+**Criterio:** `check:texto` en verde y `seo.json` intacto.
+**Resultado:** ✅ verde. **La barandilla del programa está verde por primera vez, y eso desbloquea R10.**
+
+### Desviaciones
+**La 12.ª ruta era OTRO fallo, y no está «arreglada» en el mismo sentido que las otras 11.**
+
+`/services/smart-irrigation` fue la única cuyo texto NO cambió al recapturar — señal de que su
+rojo no venía de un baseline viejo. Capturándola tres veces del vivo:
+
+```
+cap1  Installation & Permit Compliance       <- paso 2
+cap2  Irrigation Assessment & System Design  <- paso 1
+cap3  Irrigation Assessment & System Design  <- paso 1
+```
+
+**Su captura contra el vivo es inestable: 1 de cada 3 cae en otro paso.** Recapturarla no lo
+arregla, solo congela un estado. El baseline guarda el estado mayoritario, que además es el que
+nuestro build renderiza de forma determinista. Verde, sí, pero sobre una referencia tomada de una
+fuente que falla 1 de cada 3 veces.
+
+### Abierto
+
+**1 · DEFECTO NUEVO Y GORDO: `check:visual` no es reproducible en `/services/` a 1440.**
+
+Mismo build, mismo baseline, dos corridas seguidas de la misma puerta:
+
+```
+                              acotada   completa
+custom-aluminum-pergola        99.99  →   99.10
+professional-landscaping       99.99  →   98.91
+custom-outdoor-kitchens        99.99  →   98.70
+steel-building-pole-barn       99.99  →   98.64
+smart-soffit-led-lighting      99.99  →   98.44
+pool-screen-enclosures         98.47  →   99.87    <- al revés
+```
+
+Es **bimodal**: cada ruta cae en ~99,99 % o en ~98,7 %. Como el baseline es un fichero fijo, la
+variación la pone **nuestro lado de la medición**.
+
+**NO es el carrusel de pasos**, y eso se descartó con una medida, no con una intuición: si lo
+fuera, `check:texto` flotaría también —`innerText` solo ve el paso visible— y `check:texto` sale
+verde 3 de 3. `diag-visual` localiza la banda:
+
+```
+  y  4160..4320 real ·  58 px (78.4 % del total)
+  ── elementos del DOM en la peor banda ──
+   section.gallery  1440x548 @y3884
+   div.slider-gallery-page  1376x420 @y3948
+   div.fs-slider-gallery_navigation  130x53 @y4199
+   div.fs-slider-gallery_list-wrapper.w-dyn-list  816x388 @y3948
+```
+
+Es el **slider de galería**: la familia del arreglo 5b, pero fallando en cada corrida de la
+puerta, no solo al capturar. Consecuencia: **ni las 36 rojas de antes ni las 16 de ahora son una
+medición estable**; son dos muestras de un proceso con ruido. Hasta que se arregle, el número de
+`check:visual` en `/services/` no se puede citar como si fuera un hecho.
+
+**2 · Corrección a una recomendación del director, anotada porque estuvo mal dada.** Al cerrar la
+recaptura se dijo que no merecía la pena tocar `asentar()` porque la inestabilidad «solo afecta a
+capturas futuras del vivo, que tras el corte de DNS ya no existirán». **Es falso**, y lo era con
+la evidencia ya delante: el 1-de-3 de `smart-irrigation` no era una rareza de esa ruta. La
+inestabilidad afecta a **cada corrida de la puerta**. Arreglar el reseteo del slider de galería en
+`lib/captura.mjs` es ahora la primera prioridad del programa.
+
+**3 · Las 67 rutas con Swiper y receta vieja: sin una sola víctima confirmada.** Medido cruzando
+el HTML del baseline con el último commit que tocó cada captura:
+
+```
+  con SWIPER, capturadas con receta VIEJA : 67   (64 en 0e80729 · 3 en e6126cd)
+  sin slider de ningun tipo               : 34
+  con la receta completa                  : 14   (61e1be4 y f17a96b)
+```
+
+De las 16 rojas actuales, **ninguna es un Swiper avanzado**: son 6 de `/services/` (el defecto
+bimodal de arriba) y 10 de `/country/`. O sea que la barrida no ha confirmado ni un fallo del tipo
+5b entre las 67. Recapturarlas sería re-baselinizar 268 shots sin un defecto que lo justifique.
+**Decisión: no se tocan.** Lo que sí urge es el punto 1, porque contamina cada medición.
+
+**4 · Las 10 rojas de `/country/` siguen sin diagnosticar**: 9 a 479 (~98,7 %) y
+`dixie-county` a 1920 (86,56 %, que es la peor del sitio con diferencia). Ninguna es de esta
+tanda; venían de antes.
+
+**5 · Las 3 capturas más antiguas con Swiper** salen de `e6126cd` (27-ago 20:53), anterior a 5a
+**y** a 5b. Están entre estas 11: `articles_accessibility`, `articles_privacy-policy`,
+`articles_terms-conditions`, `blogs-tips`, `contact-us`, `pool-cost-estimator`,
+`pool-investment-estimator`, `testimonials`, `videos` y las dos de `where-we-serves`.
+
+
 ## Fase R7 — el sistema de diseño   ✅ cerrada
 **Fecha:** 2026-08-29 · **Commit:** `191ae4f` · **Escribió:** chat ARTE · **Cableó y verificó:** director
 
