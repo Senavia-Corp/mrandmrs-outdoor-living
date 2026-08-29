@@ -144,6 +144,95 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 
 <!-- a partir de aquí, una entrada por fase, la más reciente arriba -->
 
+## Fase R5 — desplegado y verificado sobre el despliegue   ✅ cerrada
+**Fecha:** 2026-08-28 · **Desplegado:** `77aedc2` (R3), **NO** `ab529e5`
+
+🔗 <https://mrandmrs-outdoor-living-g06tohu52-senaviacorp.vercel.app>
+
+### Objetivo
+Publicar R1 + R3 y volver a medir sobre el despliegue lo que se prometió, no sobre el build local.
+
+### ⚠️ LO DESPLEGADO NO ES `main`, Y ES A PROPÓSITO
+`main` está en `ab529e5` («F7 reabierta: 41 de las 79 entradas por scroll no se animaban
+nunca»), que **no va en este despliegue**. Decisión de Sebastian: se publica solo R1 + R3.
+
+El motivo es de verificación, no de desconfianza: esa fase enciende **41 animaciones que hasta
+ahora no corrían nunca**, y eso no ha pasado por `check:visual`. Lo medido aquí dice que es
+**visualmente neutra una vez asentada** —`/about`, que no toca ninguna de las dos fases, salió a
+**99,98 %** en un build que SÍ la llevaba— pero «una ruta a 99,98 %» no es «las 115 verdes».
+
+Cómo se aisló, sin tocar el trabajo de la otra sesión y sin poder perder nada (ya estaba
+commiteado):
+
+```bash
+git checkout 77aedc2 -- _source/animations/ix2-targets.csv scripts/build-reveals.mjs \
+                        scripts/check-ix2.mjs scripts/extract-ix2.mjs src/data/reveals.json
+npm run build
+npx vercel@latest deploy --prebuilt --prod --scope senaviacorp --yes
+git checkout HEAD -- <las mismas 5 rutas>     # y `git status` vuelve a limpio
+```
+
+Comprobado antes de construir: `reveals.json` volvía a tener **41 claves con `pageId|`** (o sea,
+el estado ANTERIOR a su arreglo) y el rediseño seguía puesto. Y después de desplegar, que las 5
+volvían a las suyas: **0 claves con pipe** y `git status` vacío.
+
+**Qué falta para que despliegue y repo vuelvan a coincidir:** correr `npm run check:visual`
+entero con `ab529e5` dentro y, si sale verde, redesplegar desde `main`.
+
+### Números medidos SOBRE EL DESPLIEGUE
+
+```
+SALTO DE MAQUETA
+  1920 | al pintar   816.4px 7f | asentado   816.4px 7f | SALTO 0.0px | suelos    0px | enfocables 11
+  1440 | al pintar   816.4px 7f | asentado   816.4px 7f | SALTO 0.0px | suelos    0px | enfocables 11
+   991 | al pintar   997.2px 7f | asentado   997.2px 7f | SALTO 0.0px | suelos -308px | enfocables 11
+   479 | al pintar     992px 7f | asentado     992px 7f | SALTO 0.0px | suelos -308px | enfocables 11
+
+NAV — hueco logo -> «Resources»
+  1920 | hueco      59px | logo 205.6 | desbordaX 0     (fuera de la banda: sin tocar)
+  1440 | hueco      59px | logo 205.6 | desbordaX 0     (fuera de la banda: sin tocar)
+  1240 | hueco      18px | logo 205.6 | desbordaX 0     (fuera de la banda: sin tocar)
+  1204 | hueco     346px | logo 164.5 | desbordaX 0     (dentro: antes eran 0 px)
+  1100 | hueco     346px | logo 164.5 | desbordaX 0     (dentro: antes eran −52 px)
+   992 | hueco     346px | logo 164.5 | desbordaX 0     (dentro: antes eran −106 px)
+```
+
+Los **−308 px de «suelos» a 991 y 479 no son un desajuste**: ahí la ficha está EN FLUJO, en
+acordeón bajo su fila, así que su borde inferior cae a media lista. En escritorio, que es donde
+la ficha es absoluta y donde estaba la queja, el desfase es **0 px** (antes: 6,2 y 25).
+
+Dentro de la banda el hueco ya no se mide contra el mismo sitio —los 7 enlaces van en una tirada
+seguida en vez de en dos grupos separados— así que el número no es comparable con el de antes.
+Lo que sí lo es: **desbordamiento horizontal 0 y solape 0** en los 9 anchos.
+
+### Y el HTML servido
+```
+filas 14, ocultas 7 -> 7 visibles        fichas ocultas 13 -> 1 abierta
+role=tab 3 | tabpanel 1 | aria-selected=true: Outdoor Living
+enlaces a /services/: 14                 data-w-id conservados: 2
+el <script> de 6 KB de las pestañas: fuera
+robots: noindex, nofollow                canonica: ninguna (correcto en preview)
+/ · /where-we-serves/… · /gallery · /contact-us  ->  200
+```
+
+### Gate
+**Criterio:** salto 0 px en los 4 anchos, sin solape ni desbordamiento en la banda del nav, el
+`noindex` en pie y las rutas sirviendo.
+**Resultado:** ✅ verde en todo.
+
+### Desviaciones
+El despliegue excluye `ab529e5` a propósito. Ver arriba.
+
+### Abierto
+1. **`npm run check:visual` entero está sin correr**, y es lo único que puede ver `/` evaluada
+   como declarada: el filtro de la puerta es `ruta.includes(f)` y **toda** ruta contiene `/`, así
+   que la home no se puede aislar. Las otras dos rutas sí se verificaron con la puerta real.
+2. **Los 12 rojos de `check:texto` en `/services/`** siguen ahí y son previos a todo esto
+   (comprobado reconstruyendo desde `HEAD`).
+3. Cuando (1) esté verde con `ab529e5` dentro, redesplegar desde `main`.
+
+---
+
 ## Fase R3 — rediseño de la sección de servicios por categoría   ✅ cerrada
 **Fecha:** 2026-08-28 · **Commit:** `<sha>` · **Dirección elegida por Sebastian:** B, «panel de mando»
 
