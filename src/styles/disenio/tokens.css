@@ -1,0 +1,305 @@
+/* ============================================================================
+ * disenio/tokens.css — EL VOCABULARIO
+ *
+ * Propiedad de ARTE (PROMPT-REDISENO.md §3). Nadie mas escribe aqui: quien
+ * necesite un token lo PIDE (§8.6).
+ *
+ * Es el UNICO fichero del proyecto donde puede aparecer un literal de color.
+ * `base.css`, `propio.css` y los <style> de componentes usan var(), nunca un hex.
+ *
+ * DE DONDE SALEN LOS VALORES. Todos estan medidos sobre `src/styles/webflow.css`,
+ * ninguno inventado. Comandos en el informe R7-ARTE-01. Resumen:
+ *   · 82 custom properties en :root; 66 son `--_apps---*` (shadcn) y de esas 64
+ *     tienen CERO usos var(). Aqui no se referencia NINGUNA: si el sistema muerto
+ *     se borra algun dia, esta capa no se entera.
+ *   · quedan 16 propias, 13 de color. Esas 13 son la materia prima.
+ *   · 135 declaraciones font-size con 34 valores distintos -> 7 pasos.
+ *
+ * DOS PROHIBICIONES (§1.3), y no son de estilo:
+ *   · cero `!important` — si una regla lo necesita, esta mal puesta.
+ *   · nada envuelto en `@layer` — webflow.css son 167 KB SIN capa, y toda regla
+ *     sin capa gana a toda regla con capa. Con @layer esta hoja perderia contra
+ *     Webflow entero, incluidas sus 326 reglas en max-width:991.
+ *
+ * BREAKPOINTS. El CSS nuevo usa min-width y solo tres: 480 / 768 / 992. Webflow
+ * usa max-width 479 / 767 / 991. NUNCA se mezclan en la misma regla. La tabla va
+ * en comentario y no en tokens porque una custom property no puede ir en la
+ * CONDICION de un @media (redefinirla DENTRO si se puede, y es lo que se hace
+ * al final de este fichero):
+ *
+ *     mio (min-width)   |  banda        |  webflow (max-width)
+ *     -----------------------------------------------------------
+ *     (sin media)       |  0 .. 479     |  max-width: 479
+ *     min-width: 480    |  480 .. 767   |  max-width: 767
+ *     min-width: 768    |  768 .. 991   |  max-width: 991
+ *     min-width: 992    |  992 ..       |  (sin media)
+ *
+ *   Los limites encajan en enteros (479|480, 767|768, 991|992). Los 4 anchos que
+ *   mide check:visual —1920/1440/991/479— son enteros, asi que no hay hueco.
+ * ========================================================================== */
+
+:root {
+  /* ── COLOR · LOS 13 REALES ────────────────────────────────────────────────
+   * Copiados textualmente de :root de webflow.css. El numero es cuantas veces
+   * los usa Webflow hoy (`var(--x)` fuera de :root), no una estimacion. */
+  --mm-navy:        #001c63;  /* --blue_dark   71 usos — el color de la marca */
+  --mm-oro:         #f4b248;  /* --gold/--yellow-1  28+23 */
+  --mm-oro-hondo:   #d99933;  /* --yellow-2    25 */
+  --mm-oro-claro:   #edb660;  /* --yellow-3/--gold-light  17+5 */
+  --mm-cian:        #1cadeb;  /* --upcolor      4 */
+  --mm-cian-claro:  #31c2f6;  /* --blue-500     2 */
+  --mm-azul:        #1d4bbf;  /* --downcolor    5 */
+  --mm-azul-tenue:  #e9f1fd;  /* --blue-50-2    4 */
+  --mm-gris:        #ececec;  /* --grey         5 */
+  --mm-blanco:      #ffffff;  /* --white       86 */
+  --mm-negro:       #000000;  /* --black        4 — color de `body` en Webflow */
+
+  /* ── COLOR · DERIVADOS ────────────────────────────────────────────────────
+   * Cada uno lleva la transformacion exacta que lo produce. Son derivados de los
+   * 13 de arriba, no sustitutos (§6). */
+
+  /* navy x 0,55 en cada canal. Fondo hondo para pie y secciones oscuras. */
+  --mm-navy-hondo:  #000f36;
+
+  /* navy al 65 % sobre blanco. El 65 no es gusto: es el alfa MAS BAJO que pasa
+   * 4,5:1 sobre las DOS superficies claras a la vez —blanco 5,26:1 y
+   * --mm-azul-tenue 4,62:1—. Al 60 % cae a 3,91:1 sobre el tenue y deja de valer
+   * para texto normal. */
+  --mm-tinta-suave: #596b9a;
+
+  /* navy al 12 % sobre blanco. Borde decorativo: no transporta informacion, asi
+   * que 1,27:1 es legitimo (WCAG 1.4.11 solo exige 3:1 a lo que IDENTIFICA un
+   * control). Para eso esta el siguiente. */
+  --mm-borde:       #e0e4ec;
+
+  /* navy al 47 % sobre blanco = 3,03:1. Es el minimo que cumple 1.4.11, medido
+   * subiendo el alfa de 1 en 1 hasta cruzar el 3,0. Borde de campos de
+   * formulario, casillas y todo limite que HAY que ver para operar el control. */
+  --mm-borde-control: #8794b6;
+
+  /* blanco al 78 % sobre navy = 9,81:1. Texto secundario en fondo oscuro. */
+  --mm-tinta-suave-inversa: #c7cddd;
+
+  /* blanco al 10 % sobre navy. Superficie LEVANTADA dentro de una seccion
+   * oscura (una tarjeta sobre fondo navy). Sigue admitiendo blanco encima a
+   * 11,90:1 y oro a 6,41:1, o sea que levantar no cuesta legibilidad. */
+  --mm-navy-lomo:   #1a3373;
+
+  /* blanco al 16 % sobre navy = 1,57:1 contra el fondo. Es un borde decorativo
+   * en oscuro; para un CONTROL en oscuro se usa --mm-borde-control-inverso. */
+  --mm-borde-inverso: #29407c;
+
+  /* blanco al 36 % sobre navy = 3,09:1 contra el navy. Es el alfa mas bajo que
+   * cumple los 3:1 de WCAG 1.4.11, buscado subiendo de 1 en 1 igual que su
+   * gemelo claro (que sale al 47 %). Borde de control en seccion oscura. */
+  --mm-borde-control-inverso: #5c6e9b;
+
+  /* ── COLOR · PAPELES ──────────────────────────────────────────────────────
+   * Lo que consume `base.css`. Cada PAR lleva su ratio MEDIDO al lado (regla de
+   * la casa). Calculados con la formula de luminancia relativa de WCAG 2.x, no
+   * estimados; el comando esta en el informe.
+   *
+   * EL ORO NUNCA MARCA ESTADO. #f4b248 da 1,86:1 sobre blanco: ni se acerca a
+   * los 3:1 de WCAG 1.4.11, asi que no puede ser un foco, ni un borde de error,
+   * ni un icono que signifique algo. Vive en FONDOS de CTA con texto navy
+   * encima. Esta medido y no se rediscute (§6). */
+  --mm-fondo:            var(--mm-blanco);
+  --mm-fondo-tenue:      var(--mm-azul-tenue);
+  --mm-fondo-navy:       var(--mm-navy);
+  --mm-fondo-hondo:      var(--mm-navy-hondo);
+  --mm-superficie:       var(--mm-blanco);  /* fondo de tarjeta/panel. `.mm-inverso` lo cambia */
+
+  --mm-tinta:            var(--mm-navy);   /* sobre --mm-fondo ......... 15,60:1 */
+                                           /* sobre --mm-fondo-tenue ... 13,72:1 */
+                                           /* sobre --mm-gris .......... 13,20:1 */
+  --mm-tinta-cuerpo:     var(--mm-negro);  /* sobre --mm-fondo ......... 21,00:1 */
+                                           /* es el color de `body` en Webflow */
+  --mm-tinta-atenuada:   var(--mm-tinta-suave);      /* blanco 5,26 · tenue 4,62 */
+  --mm-tinta-inversa:    var(--mm-blanco); /* sobre --mm-fondo-navy .... 15,60:1 */
+                                           /* sobre --mm-fondo-hondo ... 18,72:1 */
+  --mm-tinta-inversa-2:  var(--mm-tinta-suave-inversa);  /* sobre navy .. 9,81:1 */
+
+  /* Acento de accion. El par oro/navy es el unico de la marca que pasa AAA. */
+  --mm-accion:           var(--mm-oro);        /* texto navy encima .... 8,40:1 */
+  --mm-accion-hover:     var(--mm-oro-hondo);  /* texto navy encima .... 6,35:1 */
+  --mm-accion-claro:     var(--mm-oro-claro);  /* texto navy encima .... 8,51:1 */
+  --mm-sobre-accion:     var(--mm-navy);       /* la tinta que va encima del oro */
+
+  /* Acento frio. Mismo trato que el oro: FONDO, nunca texto sobre blanco
+   * (#1cadeb sobre blanco = 2,55:1, suspenso). */
+  --mm-frio:             var(--mm-cian);       /* texto navy encima .... 6,11:1 */
+  --mm-frio-claro:       var(--mm-cian-claro); /* texto navy encima .... 7,56:1 */
+  --mm-sobre-frio:       var(--mm-navy);
+
+  /* Enlace en texto corrido. #1d4bbf es el unico azul de la casa que pasa AA
+   * como TEXTO: 7,47:1 sobre blanco y 6,57:1 sobre --mm-fondo-tenue. */
+  --mm-enlace:           var(--mm-azul);
+  --mm-enlace-inverso:   var(--mm-oro-claro);  /* sobre navy ........... 8,51:1 */
+
+  /* Foco. Tiene que dar >=3:1 contra lo que lo rodea; por eso es navy y no oro.
+   * navy/blanco 15,60:1 · navy/oro 8,40:1 · navy/--mm-fondo-tenue 13,72:1.
+   * En oscuro se invierte: blanco/navy 15,60:1. */
+  --mm-foco:             var(--mm-navy);
+  --mm-foco-inverso:     var(--mm-blanco);
+  --mm-foco-grosor:      2px;
+  --mm-foco-aire:        2px;
+
+  /* ── SOMBRA ───────────────────────────────────────────────────────────────
+   * Dos capas y TENIDAS DE NAVY, nunca negro puro (§6). Webflow usa `0 2px 5px
+   * #0003` —negro al 20 %— en 18 sitios; eso ensucia. El navy a alfa bajo cae
+   * dentro de la misma familia de color que el resto de la pagina.
+   * Sobre blanco, la capa mas densa de cada nivel resuelve a: */
+  --mm-sombra-1: 0 1px 2px rgb(0 28 99 / .08),   /* -> #ebedf3, 1,17:1 */
+                 0 1px 3px rgb(0 28 99 / .06);
+  --mm-sombra-2: 0 2px 6px rgb(0 28 99 / .10),   /* -> #e6e8ef, 1,22:1 */
+                 0 8px 20px rgb(0 28 99 / .08);
+  --mm-sombra-3: 0 4px 10px rgb(0 28 99 / .14),  /* -> #dbdfe9, 1,33:1 */
+                 0 18px 40px rgb(0 28 99 / .12);
+
+  /* ── TIPOGRAFIA · FAMILIA Y PESOS ─────────────────────────────────────────
+   * La pila es la EXACTA de Webflow (`Inter,sans-serif`). No se toca: las 6
+   * woff2 de public/fonts son las de Google y con el Inter variable de
+   * fontsource el nav cayo al 95,85 % (un a.nav-link medio 57,35px en vez de
+   * 59,54). Montserrat existe en el sitio pero solo en 2 selectores de
+   * formulario: no es una fuente de titulos y no entra en el sistema. */
+  --mm-fuente: Inter, sans-serif;
+
+  --mm-peso-normal: 400;   /* 21 declaraciones en Webflow */
+  --mm-peso-medio:  500;   /* 18 — es el peso de h2 */
+  --mm-peso-fuerte: 600;   /*  8 */
+  --mm-peso-negro:  700;   /*  6 — es el peso de h1 */
+
+  /* Alturas de linea, sin unidad para que hereden como razon. Medidas:
+   * body 140 % · h1 110 % · h2/h3/h4 120 %. */
+  --mm-alto-cuerpo:   1.4;
+  --mm-alto-titulo:   1.2;
+  --mm-alto-apretado: 1.1;
+
+  /* ── TIPOGRAFIA · LOS 7 PASOS ─────────────────────────────────────────────
+   * Sustituyen a los 34 tamanos sueltos. Cada paso esta anclado en valores que
+   * el sitio YA usa, en los tres anchos que mide la puerta:
+   *
+   *     paso        479   991  1920   de donde sale
+   *     -------------------------------------------------------------------
+   *     0 micro      12    12    14   12px (13 usos) -> 14px (27 usos)
+   *     1 menudo     14    14    16   14px (27) -> 16px (11)
+   *     2 cuerpo     14    14    18   `body` EXACTO
+   *     3 guia       15    16    20   `h4`   EXACTO
+   *     4 titulo-3   16    20    25   `h3`   EXACTO
+   *     5 titulo-2   20    25    35   `h2`   EXACTO
+   *     6 titulo-1   30    35    45   ancla del encargo (ver aviso abajo)
+   *
+   * POR QUE LA FORMA ES `s + (100vw - Wpx) * dS / dW` Y NO DECIMALES.
+   * A 1920, `(100vw - 991px)` vale exactamente 929px; x10/929 da 10 EXACTO en
+   * coma flotante porque son enteros. Con `1,0764263vw` saldria 44,99999...px y
+   * la puerta pide 45 exacto. La fraccion no es un adorno: es lo que hace que el
+   * numero caiga clavado.
+   *
+   * `100vw` es el ancho del viewport CON la barra de scroll (la spec dice que
+   * las barras se asumen inexistentes al resolver vw), que es justo el ancho que
+   * fija Playwright. Por eso el ancla se cumple tambien dentro de la puerta.
+   *
+   * Los pasos 0/1/2 no llevan calc por debajo de 992: sus anclas de 479 y 991
+   * son iguales, o sea que el tramo bajo es PLANO. Un calc ahi seria ruido. */
+  --mm-paso-0: 12px;
+  --mm-paso-1: 14px;
+  --mm-paso-2: 14px;
+  --mm-paso-3: clamp(15px, calc(15px + (100vw - 479px) * 1 / 512), 16px);
+  --mm-paso-4: clamp(16px, calc(16px + (100vw - 479px) * 4 / 512), 20px);
+  --mm-paso-5: clamp(20px, calc(20px + (100vw - 479px) * 5 / 512), 25px);
+
+  /* PASO 6 — h1 fluida. DOS TRAMOS, y no es pereza: los tres anclajes NO son
+   * colineales. Pendiente 479->991 = 0,9766vw; pendiente 991->1920 = 1,0764vw.
+   * Forzando una sola recta 479->1920, a 991 salen 35,330px en vez de 35: 0,33px
+   * que se comerian la puerta de R7. El tramo alto se redefine al final del
+   * fichero, dentro de `@media (min-width: 992px)`.
+   *
+   * AVISO PARA R10, medido: esta curva NO reproduce la h1 de Webflow. La h1 es
+   * el UNICO elemento cuyo escalon cae en 767 y no en 991 —body, h2, h3 y h4
+   * caen todos en 991—, asi que Webflow da 45px a 991 y esta curva da 35. Coste
+   * de aplicarla a una h1 existente, en los 4 anchos de la puerta:
+   *     1920  45,000 vs 45  =  0
+   *     1440  39,833 vs 45  = -5,17px
+   *      991  35,000 vs 45  = -10,00px
+   *      479  30,000 vs 30  =  0
+   * Los otros 6 pasos SI clavan Webflow en 479/991/1920 y solo se desvian a
+   * 1440. Para una seccion aun no redisenada, usa `--mm-paso-h1-paridad`. */
+  --mm-paso-6: clamp(30px, calc(30px + (100vw - 479px) * 5 / 512), 35px);
+
+  /* PARIDAD — el escalon 45/45/35/30 de Webflow, traducido a min-width. Se usa
+   * en h1 de secciones AUN NO REDISENADAS: mueve 0px en los 4 anchos. En cuanto
+   * la seccion se redisene y se re-baselinice, pasa a `--mm-paso-6`.
+   * La traduccion NO es simetrica: los escalones de Webflow son max-width
+   * 991/767/479, y en min-width el 45 arranca en 768, no en 992. Comprobado en
+   * los 8 anchos frontera; el valor de aqui es el de por debajo de 480. */
+  --mm-paso-h1-paridad: 30px;
+
+  /* ── ESPACIO ──────────────────────────────────────────────────────────────
+   * Base 4 (§6). Nombrados por su valor: un `--mm-e-24` no hay que ir a
+   * buscarlo a una tabla. */
+  --mm-e-4:     4px;
+  --mm-e-8:     8px;
+  --mm-e-12:   12px;
+  --mm-e-16:   16px;
+  --mm-e-24:   24px;
+  --mm-e-32:   32px;
+  --mm-e-48:   48px;
+  --mm-e-64:   64px;
+  --mm-e-96:   96px;
+  --mm-e-128: 128px;
+
+  /* ── RADIOS ───────────────────────────────────────────────────────────────
+   * 8/16/24/999 (§6). El 16 coincide con `--_apps---sizes--radius`, pero se
+   * escribe como literal y NO se referencia: ese token esta DECLARADO con CERO
+   * usos var() en todo el sitio (el §6 lo cuenta entre los 3 shadcn vivos y no
+   * lo esta), y la puerta prohibe apuntar a `--_apps---*`.
+   * `999rem` es el valor que Webflow ya usa para pastillas, en 13 sitios. */
+  --mm-r-8:        8px;
+  --mm-r-16:      16px;
+  --mm-r-24:      24px;
+  --mm-r-pastilla: 999rem;
+
+  /* ── MEDIDAS ──────────────────────────────────────────────────────────────
+   * Las dos anchuras reales del sitio, no numeros redondos: 1250px es el tope
+   * de `.nav-menu` y el contenedor mas ancho (7 usos); 650px es el contenedor
+   * de texto (8 usos), que al paso 2 de escritorio (18px) son ~68 caracteres,
+   * dentro de los 45-75 que pide una linea legible. */
+  --mm-ancho:  1250px;
+  --mm-medida:  650px;
+  --mm-canal:  var(--mm-e-24);   /* aire lateral del contenedor en movil */
+}
+
+/* ══ REDEFINICIONES POR ANCHO ═════════════════════════════════════════════════
+ * Van al final y en orden ascendente: la ultima que casa gana. Redefinir una
+ * custom property dentro de @media es CSS valido; lo que no se puede es usar
+ * una custom property en la CONDICION del @media. */
+
+@media (min-width: 480px) {
+  :root { --mm-paso-h1-paridad: 35px; }   /* Webflow: 480..767 */
+}
+
+@media (min-width: 768px) {
+  :root {
+    --mm-paso-h1-paridad: 45px;           /* Webflow: 768 y arriba */
+    --mm-canal: var(--mm-e-32);
+  }
+}
+
+@media (min-width: 992px) {
+  /* TRAMO ALTO DE LOS SIETE. Se redefinen TODOS, no solo la h1: si aqui faltara
+   * uno, ese paso se quedaria plano en su valor de 991 hasta 1920 —o sea, el
+   * cuerpo se quedaria en 14px en escritorio en vez de los 18px de Webflow—.
+   * Pendiente de cada uno = (valor1920 - valor991) / 929. */
+  :root {
+    --mm-paso-0: clamp(12px, calc(12px + (100vw - 991px) *  2 / 929), 14px);
+    --mm-paso-1: clamp(14px, calc(14px + (100vw - 991px) *  2 / 929), 16px);
+    --mm-paso-2: clamp(14px, calc(14px + (100vw - 991px) *  4 / 929), 18px);
+    --mm-paso-3: clamp(16px, calc(16px + (100vw - 991px) *  4 / 929), 20px);
+    --mm-paso-4: clamp(20px, calc(20px + (100vw - 991px) *  5 / 929), 25px);
+    --mm-paso-5: clamp(25px, calc(25px + (100vw - 991px) * 10 / 929), 35px);
+    /* h1: 35px a 991 -> 45px a 1920. En 992 el tramo bajo daria 35,0098 y este
+     * da 35,0108: 0,001px de salto en la frontera, o sea que la curva es
+     * continua a efectos de pintado. */
+    --mm-paso-6: clamp(35px, calc(35px + (100vw - 991px) * 10 / 929), 45px);
+  }
+}

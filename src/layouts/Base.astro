@@ -28,6 +28,23 @@ import Formularios from '../components/Formularios.astro';
 // en vez de 59,54. Ver scripts/fetch-fuentes.mjs.
 import '../styles/fuentes.css';
 import '../styles/webflow.css';
+/**
+ * LA CAPA DE DISENO (fase R7). El orden es el contrato, y gana por ORDEN, no por peso:
+ *
+ *   fuentes.css -> webflow.css -> disenio/tokens.css -> disenio/base.css -> propio.css
+ *
+ * Antes de webflow.css no ganaria nada y el rediseno «no se aplicaria» sin ningun error
+ * visible. Y NADA de esto va envuelto en `@layer`: webflow.css son 167 KB SIN capa, y
+ * cualquier regla sin capa gana a toda regla con capa -incluidas sus 326 reglas en
+ * max-width:991-. Cero `!important` en los dos ficheros, comprobado.
+ *
+ * Al cablearlos cambia el hash del bundle en las 115 paginas (Base.<hash>.css) y su tamano
+ * (+6 808 B minificados). Los PIXELES no se mueven, y no por calibracion sino por
+ * construccion: ninguna de las 28 clases `.mm-*` existe todavia en el marcado del sitio, asi
+ * que 0 elementos casan y 0 reglas se aplican. Medido en la barrida de R7.
+ */
+import '../styles/disenio/tokens.css';
+import '../styles/disenio/base.css';
 // CSS de autor, DESPUES de webflow.css para ganar por orden y sin `!important`.
 // Hoy solo lleva el arreglo del solape del logo del nav entre 992 y 1204 px.
 import '../styles/propio.css';
