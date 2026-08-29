@@ -7,6 +7,11 @@
  * Sobre `.vercel/output/static`, con el mismo congelado que el baseline, en los 4 anchos y
  * con barrido completo. Lo que exige:
  *
+ *   0. **0 claves de `reveals.json` huerfanas** (sin navegador, antes de todo lo demas).
+ *      Ninguna de las reglas de abajo puede ver una clave que no casa con ningun elemento:
+ *      si nadie recibe `data-rev`, nadie recibe `opacity:0` y todo sale verde. El porque,
+ *      con el defecto concreto que dejo pasar, junto al codigo.
+ *
  *   1. **0 elementos con `data-w-id` en `opacity: 0`.** Es el fallo grande de esta migración:
  *      el HTML servido trae `style="opacity:0"` en línea en 270 elementos de 35 páginas -el
  *      anti-FOUC de Webflow-, y sin `webflow.js` nadie los enciende. `check:texto` NO lo caza,
@@ -27,6 +32,49 @@ import { ARGS_NAVEGADOR, asentar } from './lib/captura.mjs';
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const ESTATICO = path.join(RAIZ, '.vercel/output/static');
 if (!fs.existsSync(ESTATICO)) { console.error('\nROJO falta .vercel/output/static\n'); process.exit(1); }
+
+/**
+ * PRE-PUERTA ESTATICA — ninguna clave de `reveals.json` puede quedar HUERFANA.
+ *
+ * Es la regla que faltaba, y es exactamente la que dejo pasar el defecto de las 41 claves
+ * compuestas: el extractor guardaba `<pageId>|<data-w-id>` -la codificacion de Webflow para
+ * los targets con ambito de pagina- mientras que el atributo del HTML lleva SOLO el
+ * data-w-id, asi que el selector no casaba con ningun elemento y esas 41 entradas por scroll
+ * no se animaban nunca.
+ *
+ * La regla 1 de mas abajo NO lo caza y no puede cazarlo: un elemento que nunca recibe
+ * `data-rev` tampoco recibe el `opacity:0` que cuelga de el, o sea que sale VERDE estando
+ * roto. La unica forma de verlo es preguntar por el otro lado -las claves que no casan con
+ * nada- y eso no necesita navegador.
+ *
+ * Las 14 que quedan son elementos que viven en plantillas del export que este sitio no
+ * publica (`detail_*`, que dan 404) o que la migracion no porto. Se FIJA el numero en vez de
+ * tolerar «algunas»: si sube, algo ha dejado de casar; si baja, es una mejora y hay que
+ * actualizarlo aqui. Un `>0` a secas volveria a ser una puerta que no comprueba.
+ */
+const HUERFANAS_ESPERADAS = 14;
+{
+  const { porId } = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/reveals.json'), 'utf8'));
+  const vistos = new Set();
+  (function barrer(dir) {
+    for (const d of fs.readdirSync(dir, { withFileTypes: true })) {
+      const f = path.join(dir, d.name);
+      if (d.isDirectory()) barrer(f);
+      else if (d.name.endsWith('.html')) {
+        for (const m of fs.readFileSync(f, 'utf8').matchAll(/data-w-id="([^"]+)"/g)) vistos.add(m[1]);
+      }
+    }
+  }(ESTATICO));
+  const huerfanas = Object.keys(porId).filter((k) => !vistos.has(k));
+  const ok = huerfanas.length <= HUERFANAS_ESPERADAS;
+  console.log(`\n\u2500\u2500 claves de reveals.json que casan con algun elemento`);
+  console.log(`  ${ok ? 'ok  ' : 'ROJO'} huerfanas ${huerfanas.length} (esperadas ${HUERFANAS_ESPERADAS}) de ${Object.keys(porId).length}`);
+  if (!ok) {
+    for (const k of huerfanas.slice(0, 10)) console.log(`       ${k} -> ${porId[k].map((x) => x.anim).join('/')}`);
+    console.error('\nPUERTA ROJA — hay claves que no casan con ningun elemento: esas entradas por scroll no se animan nunca\n');
+    process.exit(1);
+  }
+}
 
 /** Un arquetipo de cada tipo de página, no las 115: esto abre navegador y cuesta minutos. */
 const RUTAS = ['/', '/about', '/gallery', '/contact-us', '/videos', '/brochures',

@@ -109,7 +109,10 @@ fs.writeFileSync(path.join(OUT, 'ix2-catalog.md'), md);
 // --- 4. CSV de targets
 const rows = [['dataWId', 'actionListId', 'eventTypeId', 'mediaQueries', 'arrancaEnOpacity0', 'paginas']];
 for (const e of events) {
-  const wid = e.target?.id;
+  // Webflow codifica los targets con ambito de pagina como `<pageId>|<data-w-id>`, pero el
+  // atributo del HTML lleva SOLO el data-w-id. Sin pelar el prefijo, 41 de las 79 claves no
+  // casaban con ningun elemento y esas entradas por scroll no se animaban nunca.
+  const wid = e.target?.id?.split('|').pop();
   if (!wid) continue;
   rows.push([
     wid,

@@ -38,11 +38,11 @@ for (const f of filas) {
   if (prev) {
     // Un mismo elemento puede tener DOS entradas con breakpoints distintos: slideIn en
     // escritorio y growIn en movil. Se guardan las dos, cada una con su rango.
-    prev.push({ anim: f.actionListId, bps, cero: f.arrancaEnOpacity0 === 'si' });
+    prev.push({ anim: f.actionListId, bps });
   } else {
-    porId[f.dataWId] = [{ anim: f.actionListId, bps, cero: f.arrancaEnOpacity0 === 'si' }];
+    porId[f.dataWId] = [{ anim: f.actionListId, bps }];
   }
-  if (f.arrancaEnOpacity0 === 'si') arrancanEnCero++;
+  if (f.arrancaEnOpacity0 === 'SI') arrancanEnCero++;
 }
 
 const salida = {
