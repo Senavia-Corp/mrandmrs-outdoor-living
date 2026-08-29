@@ -29,6 +29,7 @@ reproducir el resultado, saber qué se midió y con qué comando, y ver qué que
 | F9 | Paridad SEO | ✅ cerrada | 2026-08-27 |
 | F10 | Puertas de verificación | 🟡 9 de 10 escritas | |
 | F11 | Deploy y corte de dominio | 🟡 preview LIVE 28-ago (protegida); DNS SIN tocar | |
+| R6 | Cimientos del Programa R | ✅ cerrada | 2026-08-29 |
 
 Estados: ⬜ pendiente · 🟡 en curso · ✅ cerrada · 🔴 bloqueada · ↩️ reabierta
 
@@ -143,6 +144,213 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 ## Entradas
 
 <!-- a partir de aquí, una entrada por fase, la más reciente arriba -->
+
+## Fase R6 — cimientos del Programa R   ✅ cerrada
+**Fecha:** 2026-08-29 · **Commit:** `9df27a0`
+
+### Objetivo
+Que ninguna medición del rediseño pueda salir verde sin haberse hecho. Los 3 defectos
+verificados del `PROMPT-REDISENO.md` §2, más `disenio/contratos.json` y el único escritor de
+referencias. Sin tocar un píxel.
+
+### Qué se hizo
+- **`scripts/lib/contratos.mjs`** (nuevo) — lee y VALIDA `disenio/contratos.json` en un solo
+  sitio, porque lo consumen dos (`check:visual` y `aprobar-diseno`). Falla CERRADO: una entrada
+  a medio rellenar aborta en vez de degradar a `paridad`, que sería el mismo fallo abierto
+  entrando por la puerta de atrás.
+- **`disenio/contratos.json`** (nuevo) — `porDefecto: paridad`, `rutas: {}`. Vacío A PROPÓSITO:
+  hoy no hay ni una referencia aprobada en el árbol. Las 3 rutas del rediseño de R3 siguen
+  declaradas en `DISTINTAS_A_PROPOSITO` y se mudan aquí al re-baselinizarlas (§5.3).
+- **`scripts/check-visual.mjs:157-178`** — la referencia ausente deja de ser `saltadas++`.
+- **`scripts/build-paginas.mjs`** — `NO_REGENERAR`, con coincidencia exacta o por prefijo, en el
+  punto de ESCRITURA.
+- **`scripts/aprobar-diseno.mjs`** (nuevo, 177 líneas) — único escritor de `baseline/shots/`.
+  Captura con `ANCHOS`/`asentar()`/`aJpeg()` de `lib/captura.mjs`. Archiva la captura de Webflow
+  en `baseline/webflow-2026-08/shots/` en vez de borrarla, y NO la pisa si ya está archivada.
+  Escribe al final, nunca sobre la marcha: un fallo en el ancho 3 no puede dejar una ruta con
+  dos anchos nuevos y dos viejos. Sin alias en `package.json` a propósito.
+- **`README.md:61-85`** — `check:seo` NO abre navegador.
+
+### Números medidos
+| Métrica | Antes | Después |
+|---|---|---|
+| `check:visual`, referencia ausente en ruta `rediseno` | saltada, VERDE | **ROJO** |
+| `check:visual`, referencia ausente en ruta `paridad` | saltada | saltada (igual) |
+| Rutas protegidas de `npm run paginas` | 0 | **54** (`/` + los 53 de `pool-builders/`) |
+| Puertas atadas al foco, según el README | 5 (con `check:seo`) | **4** |
+| Negativas de `aprobar-diseno` demostradas en rojo | — | **4 de 4** |
+| `git diff --stat HEAD -- baseline/` | vacío | **vacío** |
+
+### Evidencia
+
+**1 · El fallo n.º 1, por las dos caras.** Misma referencia ausente
+(`baseline/shots/1920/about.jpg` apartada), lo único que cambia es el contrato:
+
+```bash
+$ npm run check:visual -- /about        # con /about en contrato `rediseno`
+  ROJO /about                                               sin referencia aprobada
+── 1440px
+  ok   /about                                               99.97 %
+── 991px
+  ok   /about                                               99.96 %
+── 479px
+  ok   /about                                               99.95 %
+── detalle
+  1920 /about    contrato rediseno y NO hay referencia aprobada (node scripts/aprobar-diseno.mjs /about --si)
+  3 iguales · 1 distintas · 0 declaradas · 0 sin baseline
+  contratos: 1 ruta(s) en `rediseno` -> /about · el resto, paridad
+PUERTA ROJA — 1 comparacion(es)
+
+$ npm run check:visual -- /about        # la MISMA ausencia, contrato `paridad`
+── 1920px
+── 1440px
+  ok   /about                                               99.97 %
+── 991px
+  ok   /about                                               99.96 %
+── 479px
+  ok   /about                                               99.95 %
+  3 iguales · 0 distintas · 0 declaradas · 1 sin baseline
+  contratos: 0 ruta(s) en `rediseno` · el resto, paridad
+PUERTA VERDE
+```
+
+Referencia repuesta y verificada:
+`5aa4b5970bbd316bcee9925bbc7cafe7c5b15e9ef875cc21853e74583c5cb1ad`, idéntica a la de antes.
+
+**2 · La guarda del generador.**
+
+```bash
+$ npm run paginas
+  OK 60 paginas · 1983 kB de marcado
+
+  ==========================================================================
+  NO SE HAN REGENERADO 54 RUTA(S) — estan en NO_REGENERAR
+  ==========================================================================
+    /   1 ruta(s): /
+      la home la redisena la fase R9 y deja de ser derivable. [...]
+    /pool-builders/   53 ruta(s): /pool-builders/alachua-florida /pool-builders/archer-florida
+                      /pool-builders/atlantis-florida ... y 50 mas
+      la familia entera la sirve src/pages/pool-builders/[slug].astro leyendo de Sanity desde
+      la Fase 6b, que borro los 53 .astro a proposito. [...]
+
+  Salida 1 a proposito: un `&&` detras de esto tiene que pararse.
+$ echo $?
+1
+$ git status --porcelain          # el arbol, intacto
+```
+
+**3 · Las 4 negativas de `aprobar-diseno`, todas en rojo, salida 1.**
+
+```bash
+$ node scripts/aprobar-diseno.mjs / 
+SE NIEGA — falta --si
+   Vas a SUSTITUIR la referencia de 1 ruta(s) x 4 anchos.
+   A partir de ahi check:visual defiende la captura NUEVA, defectos incluidos.
+
+$ node scripts/aprobar-diseno.mjs / --si            # con el arbol sucio
+SE NIEGA — el arbol de git no esta limpio
+   Una referencia aprobada tiene que poder atribuirse a un sha. Commitea primero.
+
+$ node scripts/aprobar-diseno.mjs /about --si       # /about no figura en contratos.json
+SE NIEGA — /about no figura en disenio/contratos.json con contrato "rediseno"
+
+$ node scripts/aprobar-diseno.mjs / --si            # contrato ok, pero el build es viejo
+SE NIEGA — el build es mas VIEJO que src/ o public/
+   build   2026-08-29T05:16:25.852Z
+   fuente  2026-08-29T06:50:35.971Z
+   Capturarias el sitio de antes del ultimo cambio y lo hornearias como referencia.
+```
+
+**4 · El patrón, antes y después del parche.** Mismo árbol, misma máquina, sin nadie más
+construyendo.
+
+```bash
+$ diff <(check:visual ANTES) <(check:visual DESPUES)
+152c152
+<   decl /                                                    93.33 % (alto -3px)
+---
+>   decl /                                                    93.32 % (alto -3px)
+526a527
+>   contratos: 0 ruta(s) en `rediseno` · el resto, paridad
+
+$ diff <(check:texto ANTES) <(check:texto DESPUES)      # sin salida: IDENTICOS
+$ diff <(los 36 rojos ANTES) <(los 36 rojos DESPUES)    # sin salida: IDENTICOS
+```
+
+Resultado de las puertas, idéntico en las dos corridas:
+
+```
+check:estimador  PUERTA VERDE — 384/384 casos, oraculo 10/10 contra el vivo
+check:assets     PUERTA VERDE — los 10 apartados a 0
+check:rutas      PUERTA VERDE — 115/115, 0 extras
+check:enlaces    PUERTA VERDE — 0 rotos, 728/728 en git ls-files
+check:seo        PUERTA VERDE — 115/115 <head> identicos
+check:texto      PUERTA ROJA — 12 pagina(s)     · 103 identicas
+check:ix2        PUERTA VERDE                    salida 0
+check:visual     PUERTA ROJA — 36 comparacion(es)
+                 399 iguales · 36 distintas · 25 declaradas · 0 sin baseline
+```
+
+### Gate
+**Criterio:** las 10 puertas dan exactamente el mismo resultado que antes de empezar, y
+`git diff --stat HEAD -- baseline/` está vacío.
+**Resultado:** ✅ verde.
+
+El «**0 sin baseline**» es lo que hace honesta esta comparación: hoy las 460 referencias
+existen, así que la rama arreglada **no llega a ejecutarse ni una vez** en la barrida completa.
+Por eso el resultado tenía que salir idéntico, y sale.
+
+La única diferencia es `/` a 1440: **93,33 % → 93,32 %**, en una ruta DECLARADA cuyo veredicto
+(`decl`) no cambia, y los totales no se mueven. Es ruido de captura en la página del widget más
+pesado — el mismo tipo de variación que ya documenta la cabecera de `asentar()`. El parche no
+toca el camino de comparación de píxeles.
+
+### Desviaciones
+**Dos defectos más, y ninguno estaba en el §2: los destapó ejecutar la demostración en rojo.**
+
+1. **`npm run paginas` resucitaba los 53 `.astro` de `pool-builders`.** La Fase 6b los borró al
+   pasar la familia a Sanity; hoy la sirve `[slug].astro`. El generador los repuso como ficheros
+   sin versionar, que ensombrecen la plantilla y meten 53 rutas de más en `check:rutas`. La
+   primera versión de la guarda solo hablaba de `/`, así que **daba falsa seguridad**: quien
+   leyera el banner se habría quedado tranquilo. Extendida a prefijos.
+2. **La guarda rompía lo que venía a proteger.** Cortaba con `continue` al principio del bucle,
+   y eso se saltaba también `extraeServicios(...)`: `src/data/servicios-categoria.json` perdía
+   la entrada de `/` —221 líneas— y la sección de servicios de la home se quedaba sin datos.
+   O sea, protegía `index.astro` y desactivaba el rediseño de R3 por otro lado. Movida al punto
+   de escritura, donde ya está hecho todo el trabajo de lectura y solo queda tocar el disco.
+
+Las dos son el mismo patrón que R6 viene a matar —algo que sale bien sin haber comprobado nada—
+y las dos aparecieron porque se ejecutó la prueba en vez de razonarla.
+
+### Rarezas del original replicadas a propósito
+Ninguna nueva. `contratos.json` sale con `rutas: {}` y no con las 3 del rediseño de R3, porque
+esas rutas **no se han re-baselinizado**: siguen midiéndose contra su captura de Webflow y
+declaradas en `DISTINTAS_A_PROPOSITO`. Meterlas aquí ahora diría que tienen referencia aprobada,
+y no la tienen.
+
+### Abierto
+1. **`check:texto` está ROJA en 12 de las 14 fichas de `/services/`, y es la barandilla del
+   programa.** No es de esta fase. Sus `baseline/text/` se capturaron antes del arreglo del
+   carrusel de pasos en `lib/captura.mjs`, así que la referencia guarda un paso del proceso y la
+   puerta lee otro (`SOBRA` = paso 1, `FALTA` = un paso avanzado). Las 2 `/services/pool-*` que
+   sí se recapturaron después salen verdes, y son la prueba de la causa. **Bloquea R10**, y
+   **solo se puede reparar mientras el dominio siga en Webflow.**
+2. **Los 36 rojos de `check:visual`** son mayoría de la misma familia `/services/` más
+   `/country/custom-pool-builders-dixie-county-fl` a 86,56 %. Sin diagnosticar.
+3. **El §6 del contrato tiene el ancla de la `h1` mal.** Medido sobre `webflow.css`: la `h1` vale
+   45px sin media, 45px en `max-width:991`, 35px en `max-width:767` y 30px en `max-width:479`.
+   O sea que **a 991 —uno de los 4 anchos de la puerta— la `h1` mide 45, no 35**; el 35 vive en
+   la banda 480–767, que no es ninguno de los 4 anchos. Aplicar la curva fluida del §6 a una `h1`
+   existente la encogería **−10 px a 991 y −5,17 a 1440**. Lo encontró ARTE y lo verifiqué por
+   otra vía. Autorizado un segundo token de paridad (escalón 45/45/35/30).
+4. **Otras tres correcciones al §6**, medidas por ARTE: 82 custom properties en `:root` y no 81;
+   34 valores distintos de `font-size` en 135 declaraciones y no 33; y
+   `--_apps---sizes--radius:16px` está DECLARADA pero con **0 usos** `var()`, aunque el §6 la
+   cuente entre los 3 shadcn vivos.
+5. **La guarda 4 de `aprobar-diseno` (build viejo) solo se pudo demostrar con un commit temporal**
+   deshecho en el acto, porque la guarda 2 (árbol limpio) la tapa mientras `contratos.json` esté
+   modificado. En la primera aprobación real se verá en su sitio.
+
 
 ## Fase R5 — desplegado y verificado sobre el despliegue   ✅ cerrada
 **Fecha:** 2026-08-28 · **Desplegado:** `77aedc2` (R3), **NO** `ab529e5`
