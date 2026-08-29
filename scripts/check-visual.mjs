@@ -35,6 +35,7 @@ import { chromium } from 'playwright';
 import sharp from 'sharp';
 import pixelmatch from 'pixelmatch';
 import { ANCHOS, ARGS_NAVEGADOR, aSlug, asentar, disparar, aJpeg } from './lib/captura.mjs';
+import { leerContratos, contratoDe, redisenadas } from './lib/contratos.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const ESTATICO = path.join(RAIZ, '.vercel/output/static');
@@ -48,6 +49,11 @@ const TOLERANCIA = 0.3;
  * pierde una seccion entera puntuara bien en la parte que queda.
  */
 const TOL_ALTO = 3;
+/**
+ * EL CONTRATO DE CADA RUTA (`disenio/contratos.json`). Decide una sola cosa, y es la que
+ * arregla el fallo n.º 1 del Programa R: que hacer cuando FALTA la referencia. Ver mas abajo.
+ */
+const CONTRATOS = leerContratos();
 const filtro = process.argv.slice(2).filter((a) => !a.startsWith('--'));
 
 /**
@@ -156,7 +162,28 @@ for (const [ancho, alto] of ANCHOS) {
 
   for (const ruta of RUTAS) {
     const ref = path.join(RAIZ, 'baseline/shots', String(ancho), `${aSlug(ruta)}.jpg`);
-    if (!fs.existsSync(ref)) { saltadas++; continue; }
+    if (!fs.existsSync(ref)) {
+      /**
+       * EL FALLO N.º 1 DEL PROGRAMA R, CERRADO AQUI (PROMPT-REDISENO §2.1).
+       *
+       * Esto era `{ saltadas++; continue; }` a secas: falta de referencia = saltada EN SILENCIO,
+       * nunca roja. Con las 460 en su sitio daba igual. En cuanto una ruta se redisena, deja de
+       * dar igual: saldria verde sin haberse medido jamas — y verde es justo lo que nadie va a
+       * ir a revisar. `check-texto.mjs:137` y `check-seo.mjs` si ponen rojo en este caso; esta
+       * era la unica de las tres que fallaba abierta.
+       *
+       * Ahora manda el CONTRATO de la ruta:
+       *   · `rediseno` -> ROJO. Se prometio una referencia aprobada y no esta.
+       *   · `paridad`  -> saltada, como siempre: es una ruta que aun no se ha tocado.
+       */
+      if (contratoDe(CONTRATOS, ruta) === 'rediseno') {
+        mal++;
+        rojos.push([ancho, ruta, 'contrato rediseno y NO hay referencia aprobada'
+          + ' (node scripts/aprobar-diseno.mjs ' + ruta + ' --si)']);
+        console.log(`  ROJO ${ruta.padEnd(52).slice(0, 52)} sin referencia aprobada`);
+      } else saltadas++;
+      continue;
+    }
     const resp = await pag.goto(BASE + ruta, { waitUntil: 'load', timeout: 40000 }).catch(() => null);
     if (!resp?.ok()) { rojos.push([ancho, ruta, `HTTP ${resp?.status()}`]); mal++; continue; }
     await pag.bringToFront();
@@ -224,6 +251,8 @@ if (rojos.length) {
   if (rojos.length > 20) console.log(`  ... y ${rojos.length - 20} mas`);
 }
 console.log(`\n  ${ok} iguales · ${mal} distintas · ${declaradas} declaradas · ${saltadas} sin baseline`);
+const REDIS = redisenadas(CONTRATOS);
+console.log(`  contratos: ${REDIS.length} ruta(s) en \`rediseno\`${REDIS.length ? ' -> ' + REDIS.join(' ') : ''} · el resto, paridad`);
 for (const [r, d] of Object.entries(DISTINTAS_A_PROPOSITO)) {
   const m = typeof d === 'string' ? d : d.motivo;
   const donde = typeof d === 'string' ? 'los 4 anchos' : `solo ${d.anchos.join('/')}px`;

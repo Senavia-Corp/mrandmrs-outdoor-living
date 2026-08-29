@@ -1,0 +1,28 @@
+{
+  "_": [
+    "CONTRATO VISUAL DE CADA RUTA — unica fuente de verdad de que exige `check:visual`.",
+    "",
+    "Toda ruta es `paridad` salvo que figure abajo con contrato `rediseno`.",
+    "  paridad  -> se compara contra la captura de Webflow. Si FALTA la referencia, se salta.",
+    "  rediseno -> se compara contra la referencia APROBADA. Si FALTA la referencia, es ROJO.",
+    "",
+    "Esa asimetria es todo el arreglo del defecto §2.1: hasta R6, una referencia que faltaba se",
+    "saltaba en SILENCIO, asi que una ruta rediseñada y sin captura aprobada habria salido verde",
+    "sin haberse medido jamas.",
+    "",
+    "Una entrada `rediseno` exige `fecha`, `sha` y `motivo`. Sin uno de los tres, `check:visual`",
+    "sale ROJO entero y no mide nada: una entrada a medio rellenar no puede degradar a `paridad`",
+    "en silencio, que es el mismo fallo abierto por otra puerta.",
+    "",
+    "Quien escribe aqui es el DIRECTOR, y solo despues de que el humano haya aprobado la pagina",
+    "MIRANDOLA. La referencia la escribe `node scripts/aprobar-diseno.mjs <ruta> --si`, que es el",
+    "unico escritor de `baseline/shots/` y se niega a correr si la ruta no figura aqui.",
+    "",
+    "`rutas` va VACIO al cerrar R6, y es la verdad: hoy no hay ni una sola referencia aprobada en",
+    "el arbol. Las 3 rutas del rediseño de servicios de R3 (`/` y las dos de `where-we-serves/`)",
+    "siguen declaradas en DISTINTAS_A_PROPOSITO de `check-visual.mjs` contra su captura de",
+    "Webflow, y se mudan aqui el dia que se re-baselinicen, no antes (PROMPT-REDISENO §5.3)."
+  ],
+  "porDefecto": "paridad",
+  "rutas": {}
+}

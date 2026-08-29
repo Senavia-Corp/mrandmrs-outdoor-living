@@ -54,10 +54,32 @@ npm run build
 
 Si se lanza `npm run plantillas` a secas sobre una familia ya convertida, lo dice y no hace nada.
 
-## Las puertas piden el navegador CON FOCO, y solo una a la vez
+Desde R6, `npm run paginas` **no regenera las rutas de `NO_REGENERAR`** (hoy solo `/`) y sale con
+código 1 diciendo cuáles ha dejado en paz: su `.astro` deja de ser derivado en cuanto R9 lo toca, y
+regenerarlo sería borrar el rediseño. Las otras 114 sí se reponen con normalidad.
 
-`check:texto`, `check:seo`, `check:ix2`, `check:visual` y la captura del baseline abren Chromium
-en modo visible y **miden mal si la ventana pierde el foco** — hay una sonda que lo detecta y
-aborta antes que dar un número falso. Correr dos de ellas a la vez (o un diagnóstico mientras
-corre la captura) las hace competir por el foco: medido, la captura pasó de **9,2 s a 45 s por
-página** y las capturas de esa tanda quedaron en duda. **Una cada vez.**
+## Las puertas de navegador: una cada vez y con foco — y `check:seo` NO es una de ellas
+
+Abren Chromium en modo visible y **miden mal si la ventana pierde el foco** — hay una sonda que lo
+detecta y aborta antes que dar un número falso. Son **cuatro**:
+
+`check:texto` · `check:visual` · `check:ix2` · `check:cascaron`
+
+Fuera de la cadena de `npm run check` también abren navegador `check:baseline`, la captura
+(`npm run baseline`, `npm run baseline:cascaron`), `npm run oraculo`, los dos `diag-*` y
+`scripts/aprobar-diseno.mjs`. Se cuentan igual para el reparto: **una cada vez**.
+
+**`check:seo` NO abre navegador.** Es estática: lee el HTML ya construido con `jsdom`. Aquí ponía
+lo contrario, y esa línea reservaba una puerta entera que en realidad puede correr en paralelo con
+cualquier otra cosa. La evidencia son sus imports:
+
+```bash
+$ head -26 scripts/check-seo.mjs | grep '^import'
+import fs from 'node:fs';
+import path from 'node:path';
+import { JSDOM } from 'jsdom';
+```
+
+Correr dos de las de navegador a la vez (o un diagnóstico mientras corre la captura) las hace
+competir por el foco: medido, la captura pasó de **9,2 s a 45 s por página** y las capturas de esa
+tanda quedaron en duda. **Una cada vez.**

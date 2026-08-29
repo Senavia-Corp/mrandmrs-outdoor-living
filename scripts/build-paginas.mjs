@@ -215,8 +215,53 @@ const RUTAS = csv.trim().split('\n').slice(1)
   // servido de cada una-, asi que no hay una segunda implementacion que pueda divergir.
   .filter(([, tipo]) => tipo === 'estatica' || tipo === 'coleccion' || tipo === 'estatica-oculta');
 
+/**
+ * LAS RUTAS QUE ESTE GENERADOR YA NO PUEDE ESCRIBIR (PROMPT-REDISENO §2.2).
+ *
+ * Mas abajo esto hace `writeFileSync` sobre `src/pages/<ruta>.astro`, cabecera `// DERIVADO`
+ * incluida. Para las 114 es lo correcto: su marcado sale de `_source/vivo/` y se regenera igual.
+ * Para la home, en cuanto R9 la descomprima y la redisene, es BORRAR EL TRABAJO — y hasta hoy no
+ * habia ninguna guarda, asi que se perdia sin un mensaje.
+ *
+ * La guarda esta puesta ANTES de que haya nada que proteger, y es a proposito: una guarda que
+ * llega despues del accidente no es una guarda. El precio es que `npm run paginas` a secas ya no
+ * regenera la home; el motivo va escrito aqui al lado de la ruta.
+ *
+ * Falla RUIDOSAMENTE: no la toca, lo dice con un banner y **sale con codigo 1**, para que un
+ * `npm run paginas && npm run plantillas` se pare y alguien lo lea. Lo que NO hace es abortar la
+ * corrida entera: las otras 114 si se regeneran, porque una guarda que rompe la tuberia del
+ * repo es una guarda que alguien acaba borrando.
+ */
+const NO_REGENERAR = new Map([
+  ['/', 'la home la redisena la fase R9 y deja de ser derivable. Para regenerarla habria que '
+      + 'sacarla de aqui a mano, con su motivo en MIGRACION-LOG.md.'],
+  /**
+   * LA SEGUNDA, Y NO LA PUSO EL PROGRAMA R: la destapo la demostracion en rojo de la primera.
+   *
+   * La Fase 6b paso esta familia a leer de Sanity y BORRO los 53 .astro estaticos; hoy la sirve
+   * `src/pages/pool-builders/[slug].astro`. Al correr este generador para probar la guarda de
+   * `/`, reaparecieron los 53 como ficheros sin versionar. Eso ensombrece la plantilla, mete 53
+   * rutas de mas y rompe `check:rutas` -que exige 115 y 0 extras-, y todo ello en silencio: el
+   * banner solo hablaba de `/`, asi que quien lo leyera se habria quedado tranquilo.
+   *
+   * O sea, la guarda daba una falsa seguridad, que es peor que no tenerla. Es exactamente la
+   * familia de fallo que R6 viene a matar, solo que en el generador en vez de en la puerta.
+   */
+  ['/pool-builders/', 'la familia entera la sirve src/pages/pool-builders/[slug].astro leyendo '
+      + 'de Sanity desde la Fase 6b, que borro los 53 .astro a proposito. Regenerarlos los '
+      + 'repone sin versionar, ensombrece la plantilla y rompe check:rutas con 53 rutas de mas.'],
+]);
+
+/**
+ * Coincidencia EXACTA, o por prefijo si la clave acaba en `/`. `/` es un caso aparte: acaba en
+ * barra pero solo puede casar consigo misma, o protegeria el sitio entero.
+ */
+const protegida = (ruta) => [...NO_REGENERAR.keys()]
+  .find((k) => (k !== '/' && k.endsWith('/') ? ruta.startsWith(k) : ruta === k));
+
 const generadas = [];
 const porColeccion = {};
+const protegidas = [];
 for (const [ruta] of RUTAS) {
   const slug = aSlug(ruta);
   const fichero = path.join(RAIZ, '_source/vivo', `${slug}.html`);
@@ -431,6 +476,20 @@ for (const [ruta] of RUTAS) {
     ? `<${p.componente} slot="tras-pie" />`
     : `<Fragment slot="tras-pie" set:html={P${i}} />`)).join('\n  ');
 
+  /**
+   * LA GUARDA VA AQUI, EN LA ESCRITURA, Y NO AL PRINCIPIO DEL BUCLE.
+   *
+   * La primera version cortaba arriba con un `continue`, y eso tambien se saltaba
+   * `extraeServicios(...)`: `src/data/servicios-categoria.json` perdia la entrada de `/`
+   * -221 lineas- y la seccion de servicios de la home se quedaba sin datos. Medido al probar
+   * la guarda en rojo, no razonado: la propia guarda rompia lo que venia a proteger.
+   *
+   * Aqui abajo ya se ha hecho todo el trabajo de lectura y solo queda tocar el disco, que es
+   * exactamente lo unico que hay que impedir.
+   */
+  const clave = protegida(ruta);
+  if (clave) { protegidas.push([ruta, clave]); continue; }
+
   const destino = ruta === '/' ? 'index' : ruta.slice(1);
   const salida = path.join(RAIZ, 'src/pages', `${destino}.astro`);
   fs.mkdirSync(path.dirname(salida), { recursive: true });
@@ -477,3 +536,20 @@ for (const [k, v] of Object.entries(porColeccion).sort((a, b) => b[1] - a[1])) {
 }
 const kb = generadas.reduce((a, [, , b]) => a + b, 0) / 1024;
 console.log(`\n  OK ${generadas.length} paginas · ${Math.round(kb)} kB de marcado\n`);
+
+if (protegidas.length) {
+  console.error('  ' + '='.repeat(74));
+  console.error(`  NO SE HAN REGENERADO ${protegidas.length} RUTA(S) — estan en NO_REGENERAR`);
+  console.error('  ' + '='.repeat(74));
+  const porClave = new Map();
+  for (const [r, k] of protegidas) porClave.set(k, [...(porClave.get(k) ?? []), r]);
+  for (const [k, rs] of porClave) {
+    console.error(`    ${k}   ${rs.length} ruta(s): ${rs.slice(0, 3).join(' ')}`
+      + (rs.length > 3 ? ` ... y ${rs.length - 3} mas` : ''));
+    console.error(`      ${NO_REGENERAR.get(k)}`);
+  }
+  console.error('\n  Su .astro sigue como estaba. Si de verdad querias regenerarla, sacala de');
+  console.error('  NO_REGENERAR en scripts/build-paginas.mjs y anota el motivo en la bitacora.');
+  console.error('  Salida 1 a proposito: un `&&` detras de esto tiene que pararse.\n');
+  process.exit(1);
+}
