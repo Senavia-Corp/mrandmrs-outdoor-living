@@ -547,6 +547,14 @@ introduce ruido — el mismo que hizo que `/` se moviera de 93,33 % a 93,32 % en
 del MISMO build en R6. La barrida completa vuelve en el gate de R7, que sí la necesita: ahí los
 tokens de ARTE entran de verdad en el build.
 
+> **Y ESTE PRECEDENTE NO SE PUEDE CITAR A MEDIAS.** Lo señaló HOME al cerrar su encargo, y tiene
+> razón: lo que autoriza a saltarse las dos puertas de navegador es **la comparación de los 1380
+> ficheros de salida**, no el `diff` de `index.html`. El gate que pedía el contrato cubría UNA
+> página; las otras 114 quedaban fuera de él. Si algún día alguien invoca esta entrada para
+> saltarse una puerta apoyándose en un diff de una sola página, **no es el mismo caso** y la
+> decisión no está respaldada. La regla utilizable es: se puede omitir una puerta cuando existe
+> una prueba que cubre TODO lo que esa puerta mide, y no menos.
+
 ### Desviaciones
 El encargo original decía «LO PRIMERO: `npm run build`». **Estaba mal escrito por el director**:
 lo lanzó mientras corría una barrida de `check:visual` de 65 minutos sobre
