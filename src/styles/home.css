@@ -1,0 +1,30 @@
+/**
+ * CSS DE LA HOME — fase R9 paso 2.
+ *
+ * Lo posee EN EXCLUSIVA el chat de diseño (encargo R9-DIS). Nadie más escribe aquí.
+ * Este fichero existe desde el arranque de esa fase para que el agente no descubra a mitad
+ * de camino que su CSS no cargaba: `Base.astro` es del director, y cablearlo después habría
+ * sido un viaje de ida y vuelta por cada regla.
+ *
+ * ORDEN DE CARGA, y gana por ORDEN, nunca por `!important` (§1.3):
+ *
+ *   fuentes.css -> webflow.css -> disenio/tokens.css -> disenio/base.css -> home.css -> propio.css
+ *
+ * Va DESPUÉS de `disenio/base.css` para poder ajustar sus clases sin pelearse con ellas, y
+ * ANTES de `propio.css` porque ahí viven los parches sobre clases de Webflow, que son de otra
+ * naturaleza y no deben quedar por debajo de una capa de diseño de una sola página.
+ *
+ * LAS REGLAS DE ESTA CAPA (las mismas que `disenio/`, y las mide `check:tokens` en R8):
+ *   · cero `!important`, cero `@layer`
+ *   · todo selector empieza por `.mm-`, `.pe-`, `.svc-` o `:root`
+ *   · ningún literal de color: solo `var(--mm-*)`. Los hex viven en `disenio/tokens.css`
+ *   · ningún `opacity: 0` que no cuelgue de `html[data-anim]`
+ *   · nunca `animation-fill-mode: forwards`
+ *   · `min-width` 480 / 768 / 992, y jamás mezclado con los `max-width` de Webflow
+ *
+ * Y la de arriba de todas: el TEXTO no se toca. `check:texto` compara `innerText` al 100 %
+ * sin tolerancia y no se re-baseliniza nunca.
+ *
+ * De momento solo comentarios: no emite una sola regla, así que el CSS construido no cambia
+ * y el hash del bundle se queda donde estaba. La primera regla real la escribe R9-DIS.
+ */
