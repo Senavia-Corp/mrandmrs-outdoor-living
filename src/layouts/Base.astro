@@ -63,6 +63,18 @@ import '../styles/servicios.css';
 // servicios.css: el selector reparte 80/71 solo -las 9 de country/ no llevan
 // `.block-contect-intro`- asi que no hay lista de rutas que mantener.
 import '../styles/intro.css';
+// EL PORTAFOLIO (R10, lote `project/`), propiedad exclusiva del chat PULIDOR-1. Alcance
+// medido: `.project-gallery` 10 rutas -las fichas- y `.project-page` 11 -indice + fichas-.
+// Fichero propio y no dentro de propio.css porque el radio de impacto tiene que ser
+// atribuible a un solo chat: con tres frentes escribiendo a la vez, un fichero compartido
+// hace imposible saber de quien fue la regla que movio una pagina.
+import '../styles/proyectos.css';
+// LA LECTURA (R10, lote `blogs/` + `articles/`), propiedad exclusiva del chat PULIDOR-2.
+// `.blog-section` 10 + `.articles-section` 1 + `.article-body` 3 = 14 rutas.
+// NO confundir con `blog.css` de arriba: aquel es `.blog-section-page` y son 63 rutas. Los
+// dos nombres se diferencian en un sufijo, los dos ficheros los escriben chats distintos, y
+// un `grep` de la subcadena `blog-section` casa los 87 ficheros de las dos cosas juntas.
+import '../styles/lectura.css';
 // CSS de autor, DESPUES de webflow.css para ganar por orden y sin `!important`.
 // Hoy solo lleva el arreglo del solape del logo del nav entre 992 y 1204 px.
 import '../styles/propio.css';

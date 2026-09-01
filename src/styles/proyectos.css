@@ -1,0 +1,40 @@
+/**
+ * proyectos.css — EL PORTAFOLIO · fase R10, lote `project/`
+ *
+ * Lo posee EN EXCLUSIVA el chat PULIDOR-1 (encargo R10-PROY). Nadie mas escribe aqui.
+ *
+ * POR QUE EXISTE ANTES DE TENER UNA SOLA REGLA: `Base.astro` es del director, y cablear
+ * una hoja despues de escribirla obliga a un viaje de ida y vuelta por cada regla — o peor,
+ * el agente descubre a mitad de camino que su CSS nunca cargaba. Mismo criterio que
+ * `home.css`, que existe desde el arranque de R9 por esto mismo.
+ *
+ * QUE RESTILA, Y CUANTO. Medido sobre `.vercel/output/static` el 1-sep-2026:
+ *   .project-gallery   10 rutas  (solo las fichas /project/*)
+ *   .project-page      11 rutas  (el indice /projects + las fichas)
+ * Toda regla de este fichero cuelga de una de esas dos. Si necesitas una tercera, mide su
+ * alcance con `grep -rlo 'class="X"' .vercel/output/static --include='*.html' | wc -l`
+ * y declaralo en el informe: un selector que creias acotado a 10 puede pintar 87.
+ *
+ * FUERA DE ESTE FICHERO, y no por organizacion: `.hero-project` son 20 rutas —las 10 de
+ * /project/ Y las 10 de /blogs/—, asi que es cromo COMPARTIDO entre dos lotes que trabajan
+ * a la vez. Vive en su propio encargo. Igual `.hero-section` (18) y `.cta-footer` (102).
+ *
+ * ORDEN DE CARGA, y gana por ORDEN, nunca por `!important`:
+ *   fuentes -> webflow -> disenio/tokens -> disenio/base -> home -> blog -> servicios
+ *   -> intro -> proyectos -> lectura -> propio
+ *
+ * LAS REGLAS DE ESTA CAPA (las mide `check:tokens`):
+ *   · cero `!important`, cero `@layer` — webflow.css son 167 KB SIN capa, y cualquier regla
+ *     sin capa gana a toda regla con capa: envolver esto en una la haria perder contra todo
+ *   · ningun literal de color: solo `var(--mm-*)`. Los hex viven en `disenio/tokens.css`,
+ *     que es de ARTE/director. Token que falte, se PIDE
+ *   · `min-width` 480 / 768 / 992, jamas mezclado con los `max-width` de Webflow
+ *   · ningun `opacity: 0` que no cuelgue de `html[data-anim]`
+ *   · nunca `animation-fill-mode: forwards`
+ *   · el oro `#f4b248` da 1,86:1 sobre blanco: NUNCA marca estado
+ *
+ * Y la de arriba de todas: el TEXTO no se toca. `check:texto` compara `innerText` al 100 %
+ * sin tolerancia y no se re-baseliniza nunca.
+ *
+ * De momento solo comentarios: no emite una sola regla, asi que el CSS construido no cambia.
+ */

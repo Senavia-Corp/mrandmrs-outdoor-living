@@ -1,0 +1,44 @@
+/**
+ * lectura.css — LA EXPERIENCIA DE LECTURA · fase R10, lote `blogs/` + `articles/`
+ *
+ * Lo posee EN EXCLUSIVA el chat PULIDOR-2 (encargo R10-LECT). Nadie mas escribe aqui.
+ *
+ * POR QUE EXISTE ANTES DE TENER UNA SOLA REGLA: mismo motivo que `proyectos.css` y
+ * `home.css` — `Base.astro` es del director y cablear despues sale caro.
+ *
+ * POR QUE NO SE LLAMA `blog.css`: PORQUE YA HAY UNO Y ES OTRA COSA. `blog.css` restila
+ * `section.blog-section-page`, la seccion de blog que se pinta en 63 rutas (home, country/,
+ * pool-builders/). Este restila `section.blog-section`, que es la FICHA de blog y son 10.
+ * Los dos nombres se diferencian en un sufijo y los dos ficheros los escriben chats
+ * distintos: por eso este se llama por lo que hace, no por donde vive.
+ *
+ * QUE RESTILA, Y CUANTO. Medido sobre `.vercel/output/static` el 1-sep-2026:
+ *   .blog-section       10 rutas  (las fichas /blogs/*)
+ *   .articles-section    1 ruta   (/blogs-tips)
+ *   .article-body        3 rutas  (/articles/*, los legales)
+ *
+ * ⚠️ TRAMPA MEDIDA: `blog-section` como SUBCADENA casa 87 ficheros del build, porque
+ * `blog-section-page` la contiene. Como CLASE exacta son 10. Un `grep` descuidado te dice
+ * que estas pintando 87 paginas cuando pintas 10, o al reves. Mide siempre con las comillas:
+ *   grep -rlo 'class="blog-section"' .vercel/output/static --include='*.html' | wc -l
+ *
+ * FUERA DE ESTE FICHERO: `.hero-project` son 20 rutas —las 10 de /blogs/ Y las 10 de
+ * /project/—, cromo COMPARTIDO con el otro lote que trabaja a la vez. Encargo aparte.
+ *
+ * ORDEN DE CARGA, y gana por ORDEN, nunca por `!important`:
+ *   fuentes -> webflow -> disenio/tokens -> disenio/base -> home -> blog -> servicios
+ *   -> intro -> proyectos -> lectura -> propio
+ *
+ * LAS REGLAS DE ESTA CAPA (las mide `check:tokens`):
+ *   · cero `!important`, cero `@layer` — webflow.css son 167 KB SIN capa
+ *   · ningun literal de color: solo `var(--mm-*)`. Token que falte, se PIDE
+ *   · `min-width` 480 / 768 / 992, jamas mezclado con los `max-width` de Webflow
+ *   · ningun `opacity: 0` fuera de `html[data-anim]`; nunca `animation-fill-mode: forwards`
+ *   · el oro `#f4b248` da 1,86:1 sobre blanco: ni estado ni texto de cuerpo
+ *
+ * Y ademas, propia de este lote: `text-transform: capitalize` NO es inerte en este sitio.
+ * El marcado dice `What do we do!` y el baseline dice `What Do We Do!`. Tocarlo mueve el
+ * texto de 114 paginas.
+ *
+ * De momento solo comentarios: no emite una sola regla, asi que el CSS construido no cambia.
+ */
