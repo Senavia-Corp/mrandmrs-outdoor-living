@@ -1,0 +1,35 @@
+/**
+ * contacto.css — LA PAGINA DE CONTACTO · fase R12-CON
+ *
+ * Lo posee EN EXCLUSIVA el chat CONTACTO (encargo R12-CON). Nadie mas escribe aqui.
+ *
+ * QUE RESTILA, Y CUANTO. Medido sobre `.vercel/output/static` el 1-sep-2026:
+ *   .form-section / .form-div / .box-info-contact / .header-box-info / .phone-wrapper 1 rutas
+ *   .radio-button / .radio-button-label                            1 rutas
+ *   .form-block / .checkbox-field / .checkbox-label-3 / .success-message-form 2 rutas
+ *
+ * Los cuatro ultimos salen tambien en /request-estimated, el OTRO formulario de lead. Eso es
+ * bueno —un solo tratamiento para los dos— pero hay que declararlo: son 2 rutas, no 1.
+ *
+ * 🚨 AVISO QUE CAMBIA COMO SE VERIFICA ESTA PAGINA: /contact-us esta declarada en
+ * DISTINTAS_A_PROPOSITO a los CUATRO anchos (el widget de Turnstile no pinta fuera del dominio
+ * registrado, asi que en local la pagina sale ~16 px mas corta que su baseline). `declarada()`
+ * de check-visual.mjs se evalua ANTES y AL MARGEN del contrato, o sea que hoy esta pagina no se
+ * compara en ningun ancho: **verde aqui no prueba nada**. Resolverlo es del director.
+ *
+ * ORDEN DE CARGA, y gana por ORDEN, nunca por `!important`:
+ *   fuentes -> webflow -> disenio/tokens -> disenio/base -> [hojas de seccion] -> propio
+ *
+ * LAS REGLAS DE ESTA CAPA — `docs/encargos/00-PRINCIPIOS.md` §5, y las mide `check:tokens`
+ * (11 comprobaciones; correla tu, es estatica y tarda <1 s):
+ *   · cero `!important`, cero `@layer` (webflow.css son 167 KB SIN capa y ganaria a una capa)
+ *   · ningun literal de color: solo `var(--mm-*)`. Token que falte, se PIDE al director
+ *   · `min-width` 480 / 768 / 992, jamas mezclado con los `max-width` de Webflow
+ *   · ningun `opacity: 0` que nada vuelva a encender; nunca `forwards` ni `both`
+ *   · el oro `#f4b248` da 1,86:1 sobre blanco: nunca marca estado
+ *   · todo par de colores nuevo lleva su ratio MEDIDO al lado
+ *
+ * Y la de arriba de todas: se ELEVA la base de Webflow, no se sustituye. El TEXTO no se toca.
+ *
+ * De momento solo comentarios: no emite una sola regla, asi que el CSS construido no cambia.
+ */

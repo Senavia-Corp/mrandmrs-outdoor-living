@@ -1,0 +1,42 @@
+/**
+ * estimacion.css — LA PAGINA DE CONVERSION · fase R12
+ *
+ * Lo posee EN EXCLUSIVA el chat ESTIMACION (encargo R12-EST). Nadie mas escribe aqui.
+ *
+ * QUE RESTILA, Y CUANTO. Medido sobre `.vercel/output/static` el 1-sep-2026:
+ *   .appointment-section                                            1 ruta  (/request-estimated)
+ *   .block-form .main-form-block .header-form .header-form-block    1 ruta
+ *   .bugget-form .services-form .select-field .text-field-form      1 ruta
+ *   .msf-step .msf-buttons .msf-next .msf-back .step-wrapper        1 ruta
+ *   .checkbox-field .checkbox-label-3 .success-message-form         2 rutas  (+ /contact-us)
+ *   .text-block-7 .link-4 .ikonik-t882o                             2 rutas  (+ /contact-us)
+ *
+ * LAS DE 2 RUTAS SON TUYAS, NO DEL CHAT DE CONTACTO. Los dos formularios de lead del sitio
+ * comparten esas clases y tienen que hablar el mismo idioma: si las tocan dos chats salen dos
+ * casillas distintas y dos mensajes de exito distintos en el mismo sitio. Al escribirlas mueves
+ * TAMBIEN /contact-us: declaralo.
+ *
+ * 🚨 LA LOGICA NO SE TOCA. El formulario es multipaso por JS (`#msf`, `[data-step]`, `#msf-next`,
+ * `#msf-back`, `#msf-submit`). No se cambia ningun `id`, `name`, `data-required`, `data-step`,
+ * `action="/api/formulario"`, `data-turnstile-sitekey`, ni el campo trampa `ref_id`. Aqui solo
+ * entra CSS.
+ *
+ * 🚨 Y LA PUERTA NO TE VIGILA. `/request-estimated` esta declarada en `DISTINTAS_A_PROPOSITO` a
+ * los CUATRO anchos —el widget de Turnstile no pinta fuera del dominio registrado, asi que en
+ * local la pagina sale mas corta que su baseline—. `declarada()` se evalua ANTES y al margen del
+ * contrato, o sea que hoy esta pagina NO SE COMPARA en ningun ancho: **verde aqui no prueba
+ * nada**. Resolverlo es del director. Tu aportas capturas.
+ *
+ * ORDEN DE CARGA, y gana por ORDEN, nunca por `!important`.
+ *
+ * LAS REGLAS DE ESTA CAPA — `docs/encargos/00-PRINCIPIOS.md` §5, medidas por `check:tokens`:
+ *   · cero `!important`, cero `@layer` · ningun literal de color: solo `var(--mm-*)`
+ *   · `min-width` 480 / 768 / 992, nunca mezclado con los `max-width` de Webflow
+ *   · ningun `opacity: 0` que nada vuelva a encender; nunca `forwards` ni `both`
+ *   · el oro `#f4b248` da 1,86:1 sobre blanco: nunca marca estado
+ *   · todo par de colores nuevo lleva su ratio MEDIDO al lado
+ *
+ * Se ELEVA la base de Webflow, no se sustituye. El TEXTO no se toca.
+ *
+ * De momento solo comentarios: no emite una sola regla, asi que el CSS construido no cambia.
+ */

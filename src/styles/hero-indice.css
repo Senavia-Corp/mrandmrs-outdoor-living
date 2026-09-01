@@ -1,0 +1,34 @@
+/**
+ * hero-indice.css — EL HEROE DE LAS PAGINAS INDICE · fase R12-HERO
+ *
+ * Lo posee EN EXCLUSIVA el chat HERO-INDICE (encargo R12-HERO). Nadie mas escribe aqui.
+ *
+ * QUE RESTILA, Y CUANTO. Medido sobre `.vercel/output/static` el 1-sep-2026:
+ *   .hero-section                                                  8 rutas
+ *   .header-hero-page / .heading-hero-page / .text-block-4         8 rutas
+ *
+ * Las 8 rutas: /gallery /brochures /blogs-tips /contact-us /projects /testimonials
+ * /videos /industry-solutions. El MARCADO ES IDENTICO en las ocho —verificado, 421-452
+ * caracteres y las mismas 5 clases—: solo cambia el texto. Por eso es UN encargo y no cuatro:
+ * cuatro chats tocando esto darian cuatro heroes distintos en el mismo sitio.
+ *
+ * Es lo primero que ve el visitante en cada pagina que no es la home, y hoy es la plantilla de
+ * Webflow tal cual: h1 centrado, regla de oro debajo, parrafo centrado. La misma receta que en
+ * la home tenia un `border-bottom` de 1100 px de ancho.
+ *
+ * ORDEN DE CARGA, y gana por ORDEN, nunca por `!important`:
+ *   fuentes -> webflow -> disenio/tokens -> disenio/base -> [hojas de seccion] -> propio
+ *
+ * LAS REGLAS DE ESTA CAPA — `docs/encargos/00-PRINCIPIOS.md` §5, y las mide `check:tokens`
+ * (11 comprobaciones; correla tu, es estatica y tarda <1 s):
+ *   · cero `!important`, cero `@layer` (webflow.css son 167 KB SIN capa y ganaria a una capa)
+ *   · ningun literal de color: solo `var(--mm-*)`. Token que falte, se PIDE al director
+ *   · `min-width` 480 / 768 / 992, jamas mezclado con los `max-width` de Webflow
+ *   · ningun `opacity: 0` que nada vuelva a encender; nunca `forwards` ni `both`
+ *   · el oro `#f4b248` da 1,86:1 sobre blanco: nunca marca estado
+ *   · todo par de colores nuevo lleva su ratio MEDIDO al lado
+ *
+ * Y la de arriba de todas: se ELEVA la base de Webflow, no se sustituye. El TEXTO no se toca.
+ *
+ * De momento solo comentarios: no emite una sola regla, asi que el CSS construido no cambia.
+ */

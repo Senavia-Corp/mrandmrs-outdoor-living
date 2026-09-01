@@ -1,0 +1,29 @@
+/**
+ * galeria.css — LA REJILLA DE PROYECTOS · fase R12-GAL
+ *
+ * Lo posee EN EXCLUSIVA el chat GALERIA (encargo R12-GAL). Nadie mas escribe aqui.
+ *
+ * QUE RESTILA, Y CUANTO. Medido sobre `.vercel/output/static` el 1-sep-2026:
+ *   .gallery-page                                                  1 rutas
+ *   .gallery-filters / .gallery-filter-form / .service-filter      1 rutas
+ *   .cms-list-pictures / .cms-item-pictures / .gallery-picture / .block-pictures 1 rutas
+ *
+ * Todo exclusivo de /gallery: no hay riesgo de mover otra ruta, y por eso aqui se puede ser
+ * ambicioso con la maqueta. El filtro es un <select> nativo suelto sobre la rejilla.
+ *
+ * ORDEN DE CARGA, y gana por ORDEN, nunca por `!important`:
+ *   fuentes -> webflow -> disenio/tokens -> disenio/base -> [hojas de seccion] -> propio
+ *
+ * LAS REGLAS DE ESTA CAPA — `docs/encargos/00-PRINCIPIOS.md` §5, y las mide `check:tokens`
+ * (11 comprobaciones; correla tu, es estatica y tarda <1 s):
+ *   · cero `!important`, cero `@layer` (webflow.css son 167 KB SIN capa y ganaria a una capa)
+ *   · ningun literal de color: solo `var(--mm-*)`. Token que falte, se PIDE al director
+ *   · `min-width` 480 / 768 / 992, jamas mezclado con los `max-width` de Webflow
+ *   · ningun `opacity: 0` que nada vuelva a encender; nunca `forwards` ni `both`
+ *   · el oro `#f4b248` da 1,86:1 sobre blanco: nunca marca estado
+ *   · todo par de colores nuevo lleva su ratio MEDIDO al lado
+ *
+ * Y la de arriba de todas: se ELEVA la base de Webflow, no se sustituye. El TEXTO no se toca.
+ *
+ * De momento solo comentarios: no emite una sola regla, asi que el CSS construido no cambia.
+ */

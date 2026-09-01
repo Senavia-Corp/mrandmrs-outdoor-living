@@ -1,0 +1,31 @@
+/**
+ * blog-indice.css — EL INDICE DEL BLOG · fase R12-BLOG
+ *
+ * Lo posee EN EXCLUSIVA el chat BLOG-INDICE (encargo R12-BLOG). Nadie mas escribe aqui.
+ *
+ * QUE RESTILA, Y CUANTO. Medido sobre `.vercel/output/static` el 1-sep-2026:
+ *   .articles-section                                              1 rutas
+ *   .blogs-list / .item-blogs                                      1 rutas
+ *
+ * Exclusivo de /blogs-tips. NO confundir con `blog.css` (la seccion de blog en 63 rutas) ni
+ * con `lectura.css` (las 10 fichas de /blogs/*). Este es el INDICE: la rejilla de tarjetas.
+ *
+ * `.articles-section` estaba asignada a `lectura.css` en el encargo R10-LECT y se le retira
+ * aqui: pasa a este fichero. Un selector, un dueno.
+ *
+ * ORDEN DE CARGA, y gana por ORDEN, nunca por `!important`:
+ *   fuentes -> webflow -> disenio/tokens -> disenio/base -> [hojas de seccion] -> propio
+ *
+ * LAS REGLAS DE ESTA CAPA — `docs/encargos/00-PRINCIPIOS.md` §5, y las mide `check:tokens`
+ * (11 comprobaciones; correla tu, es estatica y tarda <1 s):
+ *   · cero `!important`, cero `@layer` (webflow.css son 167 KB SIN capa y ganaria a una capa)
+ *   · ningun literal de color: solo `var(--mm-*)`. Token que falte, se PIDE al director
+ *   · `min-width` 480 / 768 / 992, jamas mezclado con los `max-width` de Webflow
+ *   · ningun `opacity: 0` que nada vuelva a encender; nunca `forwards` ni `both`
+ *   · el oro `#f4b248` da 1,86:1 sobre blanco: nunca marca estado
+ *   · todo par de colores nuevo lleva su ratio MEDIDO al lado
+ *
+ * Y la de arriba de todas: se ELEVA la base de Webflow, no se sustituye. El TEXTO no se toca.
+ *
+ * De momento solo comentarios: no emite una sola regla, asi que el CSS construido no cambia.
+ */

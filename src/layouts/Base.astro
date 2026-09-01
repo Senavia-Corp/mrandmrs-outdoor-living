@@ -86,6 +86,17 @@ import '../styles/antes-despues.css';  // .before-after-section 15              
 import '../styles/render3d.css';       // ._3d-section 65                          -> PULIDOR-2
 import '../styles/ubicacion.css';      // .location 17                             -> PULIDOR-2
 import '../styles/social.css';         // .social-media 79                         -> PULIDOR-2
+// LAS 4 PAGINAS INDICE (fase R12) + su heroe comun. Medido: de lo que se ve en /gallery,
+// /brochures, /blogs-tips y /contact-us, solo la rejilla y el formulario son exclusivos de su
+// pagina; el heroe lo comparten las OCHO paginas indice con marcado identico —421-452 ch y las
+// mismas 5 clases, solo cambia el texto—. Por eso el heroe es UN encargo y no cuatro: cuatro
+// chats tocandolo darian cuatro heroes distintos en el mismo sitio.
+import '../styles/hero-indice.css';    // .hero-section 8                          -> HERO-INDICE
+import '../styles/galeria.css';        // .gallery-page 1                          -> GALERIA
+import '../styles/folletos.css';       // .brochures-section-page 1                -> FOLLETOS
+import '../styles/blog-indice.css';    // .articles-section 1                      -> BLOG-INDICE
+import '../styles/contacto.css';       // .form-section 1 (+4 clases en 2 rutas)    -> CONTACTO
+import '../styles/estimacion.css';     // .appointment-section 1 (+7 clases en 2)   -> ESTIMACION
 // CSS de autor, DESPUES de webflow.css para ganar por orden y sin `!important`.
 // Hoy solo lleva el arreglo del solape del logo del nav entre 992 y 1204 px.
 import '../styles/propio.css';

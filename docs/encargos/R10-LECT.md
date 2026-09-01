@@ -6,7 +6,8 @@ que está en otro chat: él construye, mide, commitea y despliega. **Tú diseña
 ```
 PROYECTO   /Users/senavia/Sites/mrandmrs-outdoor-living   (la sesión abre en ~)
 ENCARGO    R10-LECT
-RUTAS      las 10 fichas /blogs/*  +  /blogs-tips  +  los 3 /articles/*   (14 rutas)
+RUTAS      las 10 fichas /blogs/*  +  los 3 /articles/*   (13 rutas)
+           (/blogs-tips SALE: es del chat BLOG-INDICE desde el 1-sep)
 POSEES     src/styles/lectura.css   (ya creado y cableado por el director)
 PROHIBIDO  todo lo demás. En especial Base.astro, propio.css, home.css, proyectos.css,
            blog.css —¡NO es tuyo, ver abajo!—, disenio/*, scripts/*, contratos.json,
@@ -40,7 +41,7 @@ legibilidad y respeto, no lucimiento.
 | Selector | Rutas | |
 |---|---|---|
 | `.blog-section` | **10** | las fichas de blog |
-| `.articles-section` | **1** | `/blogs-tips` |
+| ~~`.articles-section`~~ | — | **RETIRADA 1-sep**: pasa al chat BLOG-INDICE (encargo R12-BLOG, `blog-indice.css`). Un selector, un dueño. |
 | `.article-body` | **3** | los legales |
 
 ### ⚠️ La trampa es la tuya, y ya casi cuela
@@ -66,7 +67,7 @@ También `.hero-section` (18) · `.cta-footer` (102) · `.code` · `.footer`.
   capa gana a toda regla con capa. Tu fichero gana por **orden de carga**.
 - Ningún literal de color: solo `var(--mm-*)` de `disenio/tokens.css`. **Token que falte, me lo
   pides** — `disenio/` es del director.
-- **Todo selector cuelga de `.blog-section`, `.articles-section` o `.article-body`.**
+- **Todo selector cuelga de `.blog-section` o `.article-body`.**
 - `min-width` 480 / 768 / 992, jamás mezclado con los `max-width` de Webflow.
 - Nunca `animation-fill-mode: forwards`. Ningún `opacity: 0` fuera de `html[data-anim]`.
 - El oro `#f4b248` da **1,86:1 sobre blanco**: ni estado ni texto de cuerpo.

@@ -1,0 +1,31 @@
+/**
+ * folletos.css — EL CATALOGO DE FOLLETOS · fase R12-FOL
+ *
+ * Lo posee EN EXCLUSIVA el chat FOLLETOS (encargo R12-FOL). Nadie mas escribe aqui.
+ *
+ * QUE RESTILA, Y CUANTO. Medido sobre `.vercel/output/static` el 1-sep-2026:
+ *   .brochures-section-page / .section_fs-example                  1 rutas
+ *   .filter_form / .filter_block / .filter_content / .checkbox_field / .checkbox_label 1 rutas
+ *   .cms_list / .cms_list-item / .cms_list-wrapper / .cover-brochure-page 1 rutas
+ *
+ * Todo exclusivo de /brochures. Ojo con la puerta: /brochures esta declarada en
+ * DISTINTAS_A_PROPOSITO SOLO a 479 px —el sitio vivo de Webflow inyecta Turnstile en el
+ * formulario de filtro y eso le anade 16 px que el sitio nuevo no replica a proposito—. En
+ * 1920, 1440 y 991 la puerta SI compara.
+ *
+ * ORDEN DE CARGA, y gana por ORDEN, nunca por `!important`:
+ *   fuentes -> webflow -> disenio/tokens -> disenio/base -> [hojas de seccion] -> propio
+ *
+ * LAS REGLAS DE ESTA CAPA — `docs/encargos/00-PRINCIPIOS.md` §5, y las mide `check:tokens`
+ * (11 comprobaciones; correla tu, es estatica y tarda <1 s):
+ *   · cero `!important`, cero `@layer` (webflow.css son 167 KB SIN capa y ganaria a una capa)
+ *   · ningun literal de color: solo `var(--mm-*)`. Token que falte, se PIDE al director
+ *   · `min-width` 480 / 768 / 992, jamas mezclado con los `max-width` de Webflow
+ *   · ningun `opacity: 0` que nada vuelva a encender; nunca `forwards` ni `both`
+ *   · el oro `#f4b248` da 1,86:1 sobre blanco: nunca marca estado
+ *   · todo par de colores nuevo lleva su ratio MEDIDO al lado
+ *
+ * Y la de arriba de todas: se ELEVA la base de Webflow, no se sustituye. El TEXTO no se toca.
+ *
+ * De momento solo comentarios: no emite una sola regla, asi que el CSS construido no cambia.
+ */
