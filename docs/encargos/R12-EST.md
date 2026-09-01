@@ -13,6 +13,10 @@ PROHIBIDO  todo lo demás. En especial `.hero-section` (8 rutas, del chat HERO-I
            y `estimador.css` — que es OTRA cosa: el calculador de `/pool-cost-estimator`.
 ```
 
+> **Lee antes `docs/encargos/PARTE-02.md`** — modo simultáneo: nueve frentes a la vez.
+> Manda sobre este documento. Ahí está por qué no esperas al director para nada, la higiene de
+> navegador y el contrato de color del formulario.
+
 ## Antes de nada
 
 1. `docs/encargos/00-PRINCIPIOS.md` — manda sobre todo.

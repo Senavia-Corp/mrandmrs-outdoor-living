@@ -12,6 +12,10 @@ PROHIBIDO  todo lo demás. Esto es CSS PURO: el markup solo se toca en la home, 
            Nada de Base.astro, propio.css, disenio/*, scripts/*, contratos.json, baseline/,
            MIGRACION-LOG.md, ni ningún .astro. Y EL TEXTO VISIBLE no se toca.
 ```
+> **Lee antes `docs/encargos/PARTE-02.md`** — modo simultáneo: nueve frentes a la vez.
+> Manda sobre este documento. Ahí está por qué no esperas al director para nada, la higiene de
+> navegador y el contrato de color del formulario.
+
 ## Antes de nada
 
 1. `docs/encargos/00-PRINCIPIOS.md` — manda sobre todo. Se **eleva** Webflow, no se sustituye.

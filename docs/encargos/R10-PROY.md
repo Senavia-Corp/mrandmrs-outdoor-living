@@ -14,6 +14,10 @@ PROHIBIDO  todo lo demás. En especial Base.astro, propio.css, home.css, lectura
            y EL TEXTO VISIBLE.
 ```
 
+> **Lee antes `docs/encargos/PARTE-02.md`** — modo simultáneo: nueve frentes a la vez.
+> Manda sobre este documento. Ahí está por qué no esperas al director para nada, la higiene de
+> navegador y el contrato de color del formulario.
+
 ## Antes de nada, en este orden
 
 0. **Lee `docs/encargos/00-PRINCIPIOS.md`.** Manda sobre este fichero. En una linea: se
