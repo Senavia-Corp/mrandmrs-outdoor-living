@@ -135,9 +135,56 @@ export async function asentar(pag) {
   // Se para con SU PROPIO mecanismo, no con uno inventado: el sitio ya detiene el autoplay en
   // el `mouseenter` de `.process-section`. Antes se pulsa el primer paso para fijar cuál es
   // -pulsar reinicia el temporizador, por eso el `mouseenter` va DESPUÉS y no antes-.
+  /**
+   * ⚠️ EL CLIC SE DESCARTABA EN SILENCIO, y era la causa REAL — arreglado el 1-sep-2026.
+   *
+   * Un solo clic NO basta. El script del sitio empieza asi:
+   *
+   *     function goToStep(index) {
+   *       if (isAnimating) return;      // <- se traga el clic, sin avisar
+   *       isAnimating = true;
+   *
+   * Si el autoplay (5 s) tiene una transicion en vuelo cuando llega este paso, `goToStep()`
+   * DESCARTA el clic y devuelve. El `mouseenter` de despues congela entonces el paso donde
+   * estuviera el autoplay, no el primero. No es aleatorio: depende de en que fase del ciclo de
+   * 5 s pilla la pagina, o sea de lo que haya tardado en cargar y asentarse — por eso aparece
+   * y desaparece segun la carga de la maquina.
+   *
+   * LO QUE PROVOCABA, medido, y son tres sintomas del mismo fallo:
+   *   · `check:texto` ROJO con «faltan 2 lineas, sobran 2» en 3 fichas de `/services`, que es
+   *     exactamente el sintoma que este bloque decia haber arreglado. La MISMA puerta sobre el
+   *     MISMO build dio 115/0 en una corrida y 112/3 en la siguiente;
+   *   · `.process-section` midiendo 754 px o 1106 px en la misma ruta segun la pasada, o sea
+   *     352 px reales de diferencia en el alto de la pagina;
+   *   · 8 de las 14 de `/services` en rojo en `check:visual` por diferencia de ALTO contra unas
+   *     referencias que habian congelado el otro paso.
+   *
+   * EL ARREGLO NO REESCRIBE `asentar()`: pregunta si el clic surtio efecto y reintenta. El
+   * estado es observable porque el propio script lo pinta — el circulo del paso activo recibe
+   * `background = '#0D1C3F'` en linea, o sea `rgb(13, 28, 63)` computado.
+   *
+   * Se reintenta cada 450 ms, muy por debajo de los 5 000 del autoplay, asi que el bucle gana
+   * siempre que la pagina responda. Si tras 10 intentos no lo fija, LO DICE: un paso que no se
+   * pudo fijar es una captura que no vale, y callarlo seria repetir el fallo que estamos
+   * cerrando.
+   */
   if (await pag.$('.process-section')) {
-    await pag.evaluate(() => document.querySelector('.process-step-item')
-      ?.dispatchEvent(new MouseEvent('click', { bubbles: true })));
+    const primeroActivo = () => pag.evaluate(() => {
+      const d = document.querySelector('.process-step-item');
+      const c = d?.querySelector('[class*="tab-circle"], [class*="Tab-Circle"]');
+      return !!c && getComputedStyle(c).backgroundColor === 'rgb(13, 28, 63)';
+    });
+    let fijado = await primeroActivo();
+    for (let i = 0; i < 10 && !fijado; i++) {
+      await pag.evaluate(() => document.querySelector('.process-step-item')
+        ?.dispatchEvent(new MouseEvent('click', { bubbles: true })));
+      await pag.waitForTimeout(450);
+      fijado = await primeroActivo();
+    }
+    if (!fijado) {
+      console.log('  ⚠️  el carrusel de pasos NO se pudo fijar en el primero tras 10 intentos'
+        + ' — esta captura no es comparable');
+    }
     await pag.waitForTimeout(900);   // 300 de salida + 420 de entrada, con margen
     await pag.evaluate(() => document.querySelector('.process-section')
       ?.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true })));

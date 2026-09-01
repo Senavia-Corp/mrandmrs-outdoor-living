@@ -4,6 +4,40 @@
  */
 
 /* ─────────────────────────────────────────────────────────────────────────────
+ * EL CTA DORADO LLEVABA TEXTO BLANCO: 1,84:1
+ *
+ * Es la peor cifra de accesibilidad del sitio y estaba en 114 de las 115 rutas —la única sin
+ * `.button-styles` es `/pool-investment-estimator`—, «Get A Free Estimate» del nav incluido.
+ *
+ * De dónde salía, y por qué costó verlo: el dorado NO es un `background-color`, es un
+ * `background-image: linear-gradient(...)` puesto por `.button` y `.button-styles`. El
+ * `background-color` se queda en el `#3898ec` que hereda de `.w-button`, así que una lectura
+ * de `getComputedStyle().backgroundColor` devuelve azul y hace pensar que el botón es azul.
+ * Lo que se ve es la capa de encima. El color del texto sí venía de `.w-button { color: #fff }`.
+ *
+ * Medido con la fórmula de luminancia de WCAG 2.x sobre `#f4b248`, y por dos vías
+ * independientes que coinciden:
+ *
+ *     blanco sobre el oro ....... 1,84:1   ✗   (AA pide 4,5:1 para texto normal)
+ *     navy  sobre el oro ........ 8,58:1   ✓   AAA
+ *
+ * No es una preferencia estética: `disenio/tokens.css` ya lo tiene escrito —«EL ORO NUNCA
+ * MARCA ESTADO … vive en FONDOS de CTA con texto navy encima»— y el par oro/navy es el único
+ * de la marca que pasa AAA. El sitio hacía lo contrario de su propio sistema.
+ *
+ * ALCANCE: cambia el aspecto del CTA en las 114. Decisión de Sebastian, 1-sep-2026.
+ *
+ * NO se toca el degradado ni el tamaño: solo la tinta. Y NO se tocan las flechas de los
+ * sliders, que también son oro con blanco (`fs-slider-projects_next` y hermanas): son iconos,
+ * no texto, así que les aplica el 3:1 de WCAG 1.4.11 y no el 4,5:1 — es otro arreglo con otro
+ * criterio, y va aparte.
+ * ------------------------------------------------------------------------- */
+.button,
+.button-styles {
+  color: var(--mm-sobre-accion);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
  * NAV · FOCO — F1 del rediseño.
  *
  * Webflow apaga el foco de TODOS los controles del nav:
