@@ -127,6 +127,33 @@ function localizar(raiz) {
 }
 
 /**
+ * JERARQUIA DE LA SECCION DE BLOG — R9-BLOG-01, y es una divergencia DELIBERADA respecto a
+ * `_source/vivo/`.
+ *
+ * Webflow marca la cabecera de la seccion con `h2` y los titulos de las tarjetas con `h4`: se
+ * salta el `h3`, asi que quien navegue por encabezados oye un nivel que no existe.
+ *
+ * POR QUE VA EN EL GENERADOR Y NO A MANO. La seccion esta inlineada identica en 10 rutas, y 9
+ * de ellas son DERIVADAS -llevan cabecera `// DERIVADO` y las reescribe este mismo script-.
+ * Editarlas a mano dura hasta el siguiente `npm run paginas`, y se perderia en silencio. La
+ * decima es `/`, que esta en NO_REGENERAR y por eso lleva el cambio escrito en su `.astro`.
+ *
+ * NO mueve `innerText`: cambia la etiqueta, no el texto. `check:texto` sigue al 100 %.
+ */
+function jerarquiaBlog(raiz) {
+  const titulos = raiz.matches?.('.blog-section-page')
+    ? [...raiz.querySelectorAll('h4')]
+    : [...(raiz.querySelectorAll?.('.blog-section-page h4') ?? [])];
+  for (const h4 of titulos) {
+    const h3 = h4.ownerDocument.createElement('h3');
+    for (const a of h4.attributes) h3.setAttribute(a.name, a.value);
+    h3.innerHTML = h4.innerHTML;
+    h4.replaceWith(h3);
+  }
+  return titulos.length;
+}
+
+/**
  * Saca los datos de `section.products-section`. Se llama YA LOCALIZADA, o sea despues de
  * `localizar()`, para que las fotos y los iconos salgan con su ruta de `public/` y no con la
  * del CDN de Webflow.
@@ -259,6 +286,7 @@ const NO_REGENERAR = new Map([
 const protegida = (ruta) => [...NO_REGENERAR.keys()]
   .find((k) => (k !== '/' && k.endsWith('/') ? ruta.startsWith(k) : ruta === k));
 
+let titulosBlog = 0;   // h4 -> h3 de la seccion de blog (R9-BLOG-01)
 const generadas = [];
 const porColeccion = {};
 const protegidas = [];
@@ -280,6 +308,7 @@ for (const [ruta] of RUTAS) {
   const usados = new Set();
   const limpia = (n) => {
     localizar(n);
+    titulosBlog += jerarquiaBlog(n);
     /**
      * SERVICIOS POR CATEGORIA -> componente. Se sustituye la SECCION ENTERA, no un trozo, y eso
      * importa: el `<script>` de 6 KB que mueve las pestanas y el `<style>` que pinta la pestana
@@ -535,7 +564,14 @@ for (const [k, v] of Object.entries(porColeccion).sort((a, b) => b[1] - a[1])) {
   console.log(`  ${String(k).padEnd(20)} ${String(v).padStart(3)} paginas`);
 }
 const kb = generadas.reduce((a, [, , b]) => a + b, 0) / 1024;
-console.log(`\n  OK ${generadas.length} paginas · ${Math.round(kb)} kB de marcado\n`);
+console.log(`\n  OK ${generadas.length} paginas · ${Math.round(kb)} kB de marcado`);
+// El numero cuenta lo TRANSFORMADO EN MEMORIA, no lo escrito: la seccion esta en 63 paginas de
+// `_source/vivo` (1 index + 9 country + 53 pool-builders) y de esas solo se escriben las 9. Sin
+// esta linea, un «630» al lado de «9 ficheros cambiados» parece un fallo y no lo es.
+console.log(`  blog: ${titulosBlog} titulo(s) h4 -> h3 en ${titulosBlog / 10} pagina(s) de _source`);
+console.log('        se ESCRIBEN solo las que no estan en NO_REGENERAR (las 9 de country/).');
+console.log('        Las 53 de pool-builders/ llevan el cambio en src/data/plantilla-pool-builders.json,');
+console.log('        que ya no se rederiva: `npm run plantillas` la salta con «0 paginas · ya convertida».\n');
 
 if (protegidas.length) {
   console.error('  ' + '='.repeat(74));

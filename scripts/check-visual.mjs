@@ -92,13 +92,10 @@ const DISTINTAS_A_PROPOSITO = {
     + 'HAY QUE VOLVER A MEDIRLO contra la preview, con el dominio de Vercel dado de alta en el '
     + 'widget de Cloudflare.',
   '/request-estimated': 'lo mismo que /contact-us: es el otro formulario.',
-  '/': 'REDISENO DE LA SECCION DE SERVICIOS POR CATEGORIA (Sebastian, 28-ago-2026), direccion «panel de mando». Rompe la paridad A PROPOSITO en esta ruta y en las otras dos donde vivia la seccion. Lo que cambia, y el numero que lo pedia:'
-    + '  1. El original filtraba los servicios EN EL CLIENTE. Medido con un sondeo cada 50 ms: a los 756 ms, con la pagina ya en readyState:"complete", se veian los 14 servicios y ninguna ficha; el filtro caia entre 870 y 2764 ms y la seccion pasaba de 1211,6 px a 826,4 px a 1440. Eso son 385,2 px de tiron en cada carga, arrastrando todo lo que va debajo. Ahora el estado inicial va SERVIDO en el HTML y el salto medido es 0,0 px en los 4 anchos.'
-    + '  2. La pestana activa pintaba blanco sobre el degradado cian: 1,81:1, contra los 4,5:1 de WCAG AA -y las inactivas iban a 13,72:1, o sea la jerarquia INVERTIDA-. Ahora es navy relleno, 15,60:1. El hover de las filas hacia lo mismo y tambien se va.'
-    + '  3. Las 3 pestanas y las 14 filas eran <div> con tabIndex -1 y sin rol: lo unico enfocable era el «See More» de la ficha abierta, 1 de 14. Ahora son 11 elementos enfocables, con role=tablist/tab/tabpanel, aria-selected y flechas.'
-    + '  4. Las dos columnas acababan en tres suelos distintos -481,2 / 475 / 500 px-. Ahora el desfase medido es 0,0 px.'
-    + '  5. En movil NO se abria ninguna ficha (isTabletDown() cortaba): 3 pestanas y 7 rotulos, sin foto ni CTA. Ahora la primera viene abierta, en acordeon.'
-    + 'El TEXTO no cambia: check:texto sigue comparando esta ruta al 100 % y sale identica -las filas ocultas van con [hidden], que innerText no ve, y el contador «3 / 7» es contenido generado con ::before, que tampoco cuenta-. Medido a 1920: 94,78 % y la peor banda cae en section.products-section.svc; la pagina queda 12 px mas corta.',
+  /* `/` YA NO ESTA AQUI. Su motivo se mudo a `disenio/contratos.json` con contrato
+   * `rediseno` el 31-ago-2026 (R9-BLOG-01), que es lo que manda PROMPT-REDISENO §5.3 al
+   * re-baselinizar una ruta. Las otras dos rutas `svc` siguen aqui porque siguen en paridad:
+   * se mudaran el dia que se re-baselinicen ellas, no antes. */
   '/where-we-serves/custom-pool-builders-north-florida': 'REDISENO DE LA SECCION DE SERVICIOS POR CATEGORIA (Sebastian, 28-ago-2026), direccion «panel de mando». Rompe la paridad A PROPOSITO en esta ruta y en las otras dos donde vivia la seccion. Lo que cambia, y el numero que lo pedia:'
     + '  1. El original filtraba los servicios EN EL CLIENTE. Medido con un sondeo cada 50 ms: a los 756 ms, con la pagina ya en readyState:"complete", se veian los 14 servicios y ninguna ficha; el filtro caia entre 870 y 2764 ms y la seccion pasaba de 1211,6 px a 826,4 px a 1440. Eso son 385,2 px de tiron en cada carga, arrastrando todo lo que va debajo. Ahora el estado inicial va SERVIDO en el HTML y el salto medido es 0,0 px en los 4 anchos.'
     + '  2. La pestana activa pintaba blanco sobre el degradado cian: 1,81:1, contra los 4,5:1 de WCAG AA -y las inactivas iban a 13,72:1, o sea la jerarquia INVERTIDA-. Ahora es navy relleno, 15,60:1. El hover de las filas hacia lo mismo y tambien se va.'

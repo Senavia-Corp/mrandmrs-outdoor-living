@@ -1,5 +1,6 @@
 {
  "_lee_esto": "DERIVADO de _source/finsweet/componentsconfig-1.0.24.js, el fichero de configuracion que cargaba el sitio. Regenerar: npm run sliders",
+ "_ojo": "ESTOS NUMEROS PUEDEN NO SER LOS QUE SE SIRVEN. `src/data/sliders-diseno.json` se fusiona ENCIMA de este fichero en Componentes.astro y sustituye la instancia entera. Hoy sobrescribe: fs-slider-blog. Mira alli antes de creerte una cifra de aqui.",
  "sliders": {
   "fs-slider-proyectos": {
    "breakpoints": {

@@ -12,8 +12,29 @@
  * estado y nada se rompe**. El lightbox degrada a un enlace, el marquee a una fila de logos
  * quieta y el slider a una lista con scroll. Ninguno esconde nada.
  */
+/**
+ * DOS CAPAS, y el orden importa.
+ *
+ * `sliders.json` es DERIVADO del config de Finsweet (`npm run sliders`): es lo que el sitio
+ * de Webflow servia. `sliders-diseno.json` NO es derivado: es lo que el rediseno decide.
+ * Poner el segundo despues significa que regenerar el primero es seguro — el override vive
+ * en otro fichero y el generador no lo alcanza. Es la misma forma del `NO_REGENERAR` de
+ * `build-paginas.mjs`, pero sin tener que congelar el derivado.
+ *
+ * La fusion es SUPERFICIAL a proposito: una instancia declarada en la capa de diseno
+ * sustituye a la de Finsweet entera. Fusionar breakpoint a breakpoint dejaria mezclas que
+ * nadie ha mirado nunca -el 1920 del diseno con el 991 de Finsweet-, y el ancho de las
+ * diapositivas es justo el numero que ya rompio `check:visual` una vez por inventarselo.
+ *
+ * Las claves `_*` son documentacion del repo y no se serializan: el motivo de un override
+ * son ~900 bytes de prosa que no tienen por que viajar a las 115 paginas.
+ */
 import sliders from '../data/sliders.json';
-const SLIDERS = JSON.stringify(sliders.sliders);
+import diseno from '../data/sliders-diseno.json';
+const SLIDERS = JSON.stringify(
+  { ...sliders.sliders, ...diseno.sliders },
+  (k, v) => (k.startsWith('_') ? undefined : v),
+);
 ---
 
 <dialog class="mm-lb" aria-label="Image gallery">
@@ -234,6 +255,27 @@ const SLIDERS = JSON.stringify(sliders.sliders);
       lista.style.scrollBehavior = 'smooth';
 
       /**
+       * TECLADO — WCAG 2.1.1. La lista es un contenedor con `overflow-x:auto`, o sea que se
+       * desplaza con rueda y con dedo pero NO con teclado: un contenedor scrollable solo
+       * responde a las flechas si puede recibir el foco. Las dos flechas ya eran <button> y
+       * ya se podian tabular, pero llevan al mismo sitio por saltos; esto da el recorrido
+       * fino y, sobre todo, hace que el contenido se pueda leer sin raton.
+       *
+       * `role="group"` + nombre, porque un contenedor enfocable sin nombre no dice al llegar
+       * que es. El nombre sale del encabezado de la seccion: `aria-label` NO es `innerText`,
+       * asi que `check:texto` no lo ve y sigue midiendo al 100 %.
+       *
+       * Alcanza a los 8 sliders del sitio, no solo al del blog. Es deliberado: el defecto
+       * era del mecanismo, no de una instancia.
+       */
+      lista.tabIndex = 0;
+      lista.setAttribute('role', 'group');
+      if (!lista.hasAttribute('aria-label')) {
+        const titulo = inst.closest('section')?.querySelector('h1, h2')?.textContent?.trim();
+        lista.setAttribute('aria-label', titulo ? `${titulo} — carousel` : 'Carousel');
+      }
+
+      /**
        * EL ANCHO DE LAS DIAPOSITIVAS NO ES UNA DECISION MIA.
        * Sale de la configuracion del propio sitio (`slidesPerView` y `spaceBetween` por
        * breakpoint). Dejarlo al CSS daba `width:33.333%` -3 por vista- donde el sitio muestra
@@ -298,14 +340,44 @@ const SLIDERS = JSON.stringify(sliders.sliders);
        * exactamente lo que esa preferencia pide evitar.
        */
       if (conf?.autoplayMs && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        let temporizador = setInterval(() => {
+        const avanza = () => {
           const max = lista.scrollWidth - lista.clientWidth;
           if (lista.scrollLeft >= max - 1) lista.scrollLeft = 0;
           else lista.scrollLeft += paso();
-        }, conf.autoplayMs);
-        const para = () => { clearInterval(temporizador); temporizador = null; };
+        };
+
+        /**
+         * DOS ESTADOS DISTINTOS, y por eso hay dos variables en vez de un `null` con dos
+         * significados: `detenido` es la parada DEFINITIVA que pedia `disableOnInteraction`
+         * del config del sitio, y `tick` es solo si ahora mismo corre o no. Con una sola
+         * variable, «pausado por hover» y «parado porque el visitante toco» se confunden, y
+         * el sintoma seria un carrusel que revive al sacar el raton despues de que alguien
+         * lo hubiera parado a proposito.
+         */
+        let tick = null;
+        let detenido = false;
+        const arranca = () => { if (!detenido && tick === null) tick = setInterval(avanza, conf.autoplayMs); };
+        const frena = () => { if (tick !== null) { clearInterval(tick); tick = null; } };
+        const para = () => { detenido = true; frena(); };
+
+        arranca();
         for (const ev of ['pointerdown', 'keydown', 'wheel']) lista.addEventListener(ev, para, { once: true, passive: true });
         for (const b of [prev, next]) b?.addEventListener('click', para, { once: true });
+
+        /**
+         * PAUSA — WCAG 2.2.2, que pide poder parar lo que se mueve solo y dura mas de 5 s.
+         * Lo de arriba ya paraba al tocar, pero eso no se descubre: hay que interactuar con
+         * el carrusel para enterarse de que se puede. Pasar el raton por encima o llegar
+         * tabulando lo pausa mientras se lee, que es cuando estorba.
+         *
+         * Va en `inst` y no en `lista` para que las flechas cuenten como «encima».
+         * `focusin`/`focusout` y no `focus`/`blur`: estos no burbujean, y quien recibe el
+         * foco es un hijo -la lista o un boton-, nunca la instancia.
+         */
+        inst.addEventListener('mouseenter', frena);
+        inst.addEventListener('mouseleave', arranca);
+        inst.addEventListener('focusin', frena);
+        inst.addEventListener('focusout', arranca);
       }
     }
 

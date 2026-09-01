@@ -1,0 +1,16 @@
+{
+ "_lee_esto": "NO ES DERIVADO. Este fichero lo escribe una persona y `npm run sliders` NO lo toca: es la capa de DISEÑO que se superpone a `sliders.json`, que si es derivado del config de Finsweet. Componentes.astro fusiona `{...sliders.sliders, ...override.sliders}`, o sea que una instancia declarada aqui sustituye a la de alla ENTERA -por eso van todos sus breakpoints, no solo el que cambia-. Regenerar sliders.json es seguro: el override sobrevive porque vive aparte.",
+ "sliders": {
+  "fs-slider-blog": {
+   "_motivo": "R9-BLOG-01: 3 tarjetas por vista en vez de 4 a partir de 1920. Finsweet servia 4 y a ese ancho la tarjeta caia a ~280px, con el h4 rompiendo a 4 lineas. Por debajo de 1920 el sitio YA mostraba 3 -el JS coge el breakpoint con `puntos.filter(p => innerWidth >= p).pop()`, asi que 1440 usaba el de 991-, de modo que este cambio SOLO se ve a 1920 y no mueve los otros 3 anchos de la puerta. El breakpoint de 1920 NO se borra: si se borrara, a 1920 se usaria el de 991 con `spaceBetween:16` y la tarjeta saldria a 374px; con 0 sale a 384,67px, que es lo que pide la aceptacion. El autoplay se queda en 3000ms por decision de Sebastian (31-ago-2026); la mitigacion de WCAG 2.2.2 es la pausa en hover/foco que anade Componentes.astro.",
+   "breakpoints": {
+    "320": { "slidesPerView": 1, "spaceBetween": 16 },
+    "480": { "slidesPerView": 1, "spaceBetween": 0 },
+    "768": { "slidesPerView": 2, "spaceBetween": 0 },
+    "991": { "slidesPerView": 3, "spaceBetween": 16 },
+    "1920": { "slidesPerView": 3, "spaceBetween": 0 }
+   },
+   "autoplayMs": 3000
+  }
+ }
+}

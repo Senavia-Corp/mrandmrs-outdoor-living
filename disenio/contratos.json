@@ -1,28 +1,95 @@
 {
-  "_": [
-    "CONTRATO VISUAL DE CADA RUTA — unica fuente de verdad de que exige `check:visual`.",
-    "",
-    "Toda ruta es `paridad` salvo que figure abajo con contrato `rediseno`.",
-    "  paridad  -> se compara contra la captura de Webflow. Si FALTA la referencia, se salta.",
-    "  rediseno -> se compara contra la referencia APROBADA. Si FALTA la referencia, es ROJO.",
-    "",
-    "Esa asimetria es todo el arreglo del defecto §2.1: hasta R6, una referencia que faltaba se",
-    "saltaba en SILENCIO, asi que una ruta rediseñada y sin captura aprobada habria salido verde",
-    "sin haberse medido jamas.",
-    "",
-    "Una entrada `rediseno` exige `fecha`, `sha` y `motivo`. Sin uno de los tres, `check:visual`",
-    "sale ROJO entero y no mide nada: una entrada a medio rellenar no puede degradar a `paridad`",
-    "en silencio, que es el mismo fallo abierto por otra puerta.",
-    "",
-    "Quien escribe aqui es el DIRECTOR, y solo despues de que el humano haya aprobado la pagina",
-    "MIRANDOLA. La referencia la escribe `node scripts/aprobar-diseno.mjs <ruta> --si`, que es el",
-    "unico escritor de `baseline/shots/` y se niega a correr si la ruta no figura aqui.",
-    "",
-    "`rutas` va VACIO al cerrar R6, y es la verdad: hoy no hay ni una sola referencia aprobada en",
-    "el arbol. Las 3 rutas del rediseño de servicios de R3 (`/` y las dos de `where-we-serves/`)",
-    "siguen declaradas en DISTINTAS_A_PROPOSITO de `check-visual.mjs` contra su captura de",
-    "Webflow, y se mudan aqui el dia que se re-baselinicen, no antes (PROMPT-REDISENO §5.3)."
-  ],
-  "porDefecto": "paridad",
-  "rutas": {}
+ "_": [
+  "CONTRATO VISUAL DE CADA RUTA — unica fuente de verdad de que exige `check:visual`.",
+  "",
+  "Toda ruta es `paridad` salvo que figure abajo con contrato `rediseno`.",
+  "  paridad  -> se compara contra la captura de Webflow. Si FALTA la referencia, se salta.",
+  "  rediseno -> se compara contra la referencia APROBADA. Si FALTA la referencia, es ROJO.",
+  "",
+  "Esa asimetria es todo el arreglo del defecto §2.1: hasta R6, una referencia que faltaba se",
+  "saltaba en SILENCIO, asi que una ruta rediseñada y sin captura aprobada habria salido verde",
+  "sin haberse medido jamas.",
+  "",
+  "Una entrada `rediseno` exige `fecha`, `sha` y `motivo`. Sin uno de los tres, `check:visual`",
+  "sale ROJO entero y no mide nada: una entrada a medio rellenar no puede degradar a `paridad`",
+  "en silencio, que es el mismo fallo abierto por otra puerta.",
+  "",
+  "Quien escribe aqui es el DIRECTOR, y solo despues de que el humano haya aprobado la pagina",
+  "MIRANDOLA. La referencia la escribe `node scripts/aprobar-diseno.mjs <ruta> --si`, que es el",
+  "unico escritor de `baseline/shots/` y se niega a correr si la ruta no figura aqui.",
+  "",
+  "`rutas` va VACIO al cerrar R6, y es la verdad: hoy no hay ni una sola referencia aprobada en",
+  "el arbol. Las 3 rutas del rediseño de servicios de R3 (`/` y las dos de `where-we-serves/`)",
+  "siguen declaradas en DISTINTAS_A_PROPOSITO de `check-visual.mjs` contra su captura de",
+  "Webflow, y se mudan aqui el dia que se re-baselinicen, no antes (PROMPT-REDISENO §5.3).",
+  "",
+  "R9-BLOG-01 (31-ago-2026) — las 10 primeras entradas. El motivo de `/` lleva DOS rediseños",
+  "pegados: el de servicios de R3, mudado VERBATIM desde DISTINTAS_A_PROPOSITO de",
+  "check-visual.mjs como manda §5.3, y el del blog. Mudarlo no es cosmetico: dejarlo en los dos",
+  "sitios habria hecho que el rediseño del blog quedara perdonado por un motivo que habla de",
+  "otra seccion, que es la misma familia de fallo que R6 vino a cerrar."
+ ],
+ "porDefecto": "paridad",
+ "rutas": {
+  "/": {
+   "contrato": "rediseno",
+   "fecha": "2026-08-31",
+   "sha": "2637205",
+   "motivo": "REDISENO DE LA SECCION DE SERVICIOS POR CATEGORIA (Sebastian, 28-ago-2026), direccion «panel de mando». Rompe la paridad A PROPOSITO en esta ruta y en las otras dos donde vivia la seccion. Lo que cambia, y el numero que lo pedia:  1. El original filtraba los servicios EN EL CLIENTE. Medido con un sondeo cada 50 ms: a los 756 ms, con la pagina ya en readyState:\"complete\", se veian los 14 servicios y ninguna ficha; el filtro caia entre 870 y 2764 ms y la seccion pasaba de 1211,6 px a 826,4 px a 1440. Eso son 385,2 px de tiron en cada carga, arrastrando todo lo que va debajo. Ahora el estado inicial va SERVIDO en el HTML y el salto medido es 0,0 px en los 4 anchos.  2. La pestana activa pintaba blanco sobre el degradado cian: 1,81:1, contra los 4,5:1 de WCAG AA -y las inactivas iban a 13,72:1, o sea la jerarquia INVERTIDA-. Ahora es navy relleno, 15,60:1. El hover de las filas hacia lo mismo y tambien se va.  3. Las 3 pestanas y las 14 filas eran <div> con tabIndex -1 y sin rol: lo unico enfocable era el «See More» de la ficha abierta, 1 de 14. Ahora son 11 elementos enfocables, con role=tablist/tab/tabpanel, aria-selected y flechas.  4. Las dos columnas acababan en tres suelos distintos -481,2 / 475 / 500 px-. Ahora el desfase medido es 0,0 px.  5. En movil NO se abria ninguna ficha (isTabletDown() cortaba): 3 pestanas y 7 rotulos, sin foto ni CTA. Ahora la primera viene abierta, en acordeon.El TEXTO no cambia: check:texto sigue comparando esta ruta al 100 % y sale identica -las filas ocultas van con [hidden], que innerText no ve, y el contador «3 / 7» es contenido generado con ::before, que tampoco cuenta-. Medido a 1920: 94,78 % y la peor banda cae en section.products-section.svc; la pagina queda 12 px mas corta.\n\nREDISENO DE LA SECCION DE BLOG, encargo R9-BLOG-01 (Sebastian, 31-ago-2026). La seccion `section.blog-section-page` esta inlineada IDENTICA en 10 rutas: esta y las 9 de `country/`. Lo que cambia: (1) 3 tarjetas por vista en vez de 4 a partir de 1920 -a 1440 y por debajo ya eran 3, asi que el numero de columnas SOLO se mueve en el ancho de 1920-; la tarjeta pasa de 312,5 a 416,67px de hueco y de ~280 a ~384,67px de ancho real. (2) El CTA «Read More» flotaba a distinta altura en cada tarjeta -774/815/790/815px medidos a 1920- porque `.content-card` es `justify-content:center`; ahora es `flex-start` con el CTA anclado abajo y el desfase medido es 0px. (3) La foto tenia `height:250px` fijo; ahora es `aspect-ratio:16/10`. (4) El chevron de las flechas era blanco sobre el degradado oro, ~1,9:1, contra los 3:1 que pide WCAG 1.4.11; ahora es navy relleno, 15,60:1. (5) La tarjeta entera es clicable con un `::after` sobre el enlace que ya existia, asi que el objetivo tactil sube de ~120x36 a la tarjeta completa. El TEXTO no cambia: `line-clamp` recorta en pantalla pero no toca `innerText`, y no se anade ni una palabra ni un enlace, asi que `check:texto` y `check:enlaces` siguen midiendo esta ruta al 100%."
+  },
+  "/country/custom-pool-builders-alachua-county-fl": {
+   "contrato": "rediseno",
+   "fecha": "2026-08-31",
+   "sha": "2637205",
+   "motivo": "REDISENO DE LA SECCION DE BLOG, encargo R9-BLOG-01 (Sebastian, 31-ago-2026). La seccion `section.blog-section-page` esta inlineada IDENTICA en 10 rutas: esta y las 9 de `country/`. Lo que cambia: (1) 3 tarjetas por vista en vez de 4 a partir de 1920 -a 1440 y por debajo ya eran 3, asi que el numero de columnas SOLO se mueve en el ancho de 1920-; la tarjeta pasa de 312,5 a 416,67px de hueco y de ~280 a ~384,67px de ancho real. (2) El CTA «Read More» flotaba a distinta altura en cada tarjeta -774/815/790/815px medidos a 1920- porque `.content-card` es `justify-content:center`; ahora es `flex-start` con el CTA anclado abajo y el desfase medido es 0px. (3) La foto tenia `height:250px` fijo; ahora es `aspect-ratio:16/10`. (4) El chevron de las flechas era blanco sobre el degradado oro, ~1,9:1, contra los 3:1 que pide WCAG 1.4.11; ahora es navy relleno, 15,60:1. (5) La tarjeta entera es clicable con un `::after` sobre el enlace que ya existia, asi que el objetivo tactil sube de ~120x36 a la tarjeta completa. El TEXTO no cambia: `line-clamp` recorta en pantalla pero no toca `innerText`, y no se anade ni una palabra ni un enlace, asi que `check:texto` y `check:enlaces` siguen midiendo esta ruta al 100%."
+  },
+  "/country/custom-pool-builders-broward-county-fl": {
+   "contrato": "rediseno",
+   "fecha": "2026-08-31",
+   "sha": "2637205",
+   "motivo": "REDISENO DE LA SECCION DE BLOG, encargo R9-BLOG-01 (Sebastian, 31-ago-2026). La seccion `section.blog-section-page` esta inlineada IDENTICA en 10 rutas: esta y las 9 de `country/`. Lo que cambia: (1) 3 tarjetas por vista en vez de 4 a partir de 1920 -a 1440 y por debajo ya eran 3, asi que el numero de columnas SOLO se mueve en el ancho de 1920-; la tarjeta pasa de 312,5 a 416,67px de hueco y de ~280 a ~384,67px de ancho real. (2) El CTA «Read More» flotaba a distinta altura en cada tarjeta -774/815/790/815px medidos a 1920- porque `.content-card` es `justify-content:center`; ahora es `flex-start` con el CTA anclado abajo y el desfase medido es 0px. (3) La foto tenia `height:250px` fijo; ahora es `aspect-ratio:16/10`. (4) El chevron de las flechas era blanco sobre el degradado oro, ~1,9:1, contra los 3:1 que pide WCAG 1.4.11; ahora es navy relleno, 15,60:1. (5) La tarjeta entera es clicable con un `::after` sobre el enlace que ya existia, asi que el objetivo tactil sube de ~120x36 a la tarjeta completa. El TEXTO no cambia: `line-clamp` recorta en pantalla pero no toca `innerText`, y no se anade ni una palabra ni un enlace, asi que `check:texto` y `check:enlaces` siguen midiendo esta ruta al 100%."
+  },
+  "/country/custom-pool-builders-columbia-county-fl": {
+   "contrato": "rediseno",
+   "fecha": "2026-08-31",
+   "sha": "2637205",
+   "motivo": "REDISENO DE LA SECCION DE BLOG, encargo R9-BLOG-01 (Sebastian, 31-ago-2026). La seccion `section.blog-section-page` esta inlineada IDENTICA en 10 rutas: esta y las 9 de `country/`. Lo que cambia: (1) 3 tarjetas por vista en vez de 4 a partir de 1920 -a 1440 y por debajo ya eran 3, asi que el numero de columnas SOLO se mueve en el ancho de 1920-; la tarjeta pasa de 312,5 a 416,67px de hueco y de ~280 a ~384,67px de ancho real. (2) El CTA «Read More» flotaba a distinta altura en cada tarjeta -774/815/790/815px medidos a 1920- porque `.content-card` es `justify-content:center`; ahora es `flex-start` con el CTA anclado abajo y el desfase medido es 0px. (3) La foto tenia `height:250px` fijo; ahora es `aspect-ratio:16/10`. (4) El chevron de las flechas era blanco sobre el degradado oro, ~1,9:1, contra los 3:1 que pide WCAG 1.4.11; ahora es navy relleno, 15,60:1. (5) La tarjeta entera es clicable con un `::after` sobre el enlace que ya existia, asi que el objetivo tactil sube de ~120x36 a la tarjeta completa. El TEXTO no cambia: `line-clamp` recorta en pantalla pero no toca `innerText`, y no se anade ni una palabra ni un enlace, asi que `check:texto` y `check:enlaces` siguen midiendo esta ruta al 100%."
+  },
+  "/country/custom-pool-builders-dixie-county-fl": {
+   "contrato": "rediseno",
+   "fecha": "2026-08-31",
+   "sha": "2637205",
+   "motivo": "REDISENO DE LA SECCION DE BLOG, encargo R9-BLOG-01 (Sebastian, 31-ago-2026). La seccion `section.blog-section-page` esta inlineada IDENTICA en 10 rutas: esta y las 9 de `country/`. Lo que cambia: (1) 3 tarjetas por vista en vez de 4 a partir de 1920 -a 1440 y por debajo ya eran 3, asi que el numero de columnas SOLO se mueve en el ancho de 1920-; la tarjeta pasa de 312,5 a 416,67px de hueco y de ~280 a ~384,67px de ancho real. (2) El CTA «Read More» flotaba a distinta altura en cada tarjeta -774/815/790/815px medidos a 1920- porque `.content-card` es `justify-content:center`; ahora es `flex-start` con el CTA anclado abajo y el desfase medido es 0px. (3) La foto tenia `height:250px` fijo; ahora es `aspect-ratio:16/10`. (4) El chevron de las flechas era blanco sobre el degradado oro, ~1,9:1, contra los 3:1 que pide WCAG 1.4.11; ahora es navy relleno, 15,60:1. (5) La tarjeta entera es clicable con un `::after` sobre el enlace que ya existia, asi que el objetivo tactil sube de ~120x36 a la tarjeta completa. El TEXTO no cambia: `line-clamp` recorta en pantalla pero no toca `innerText`, y no se anade ni una palabra ni un enlace, asi que `check:texto` y `check:enlaces` siguen midiendo esta ruta al 100%."
+  },
+  "/country/custom-pool-builders-gilchrist-county-fl": {
+   "contrato": "rediseno",
+   "fecha": "2026-08-31",
+   "sha": "2637205",
+   "motivo": "REDISENO DE LA SECCION DE BLOG, encargo R9-BLOG-01 (Sebastian, 31-ago-2026). La seccion `section.blog-section-page` esta inlineada IDENTICA en 10 rutas: esta y las 9 de `country/`. Lo que cambia: (1) 3 tarjetas por vista en vez de 4 a partir de 1920 -a 1440 y por debajo ya eran 3, asi que el numero de columnas SOLO se mueve en el ancho de 1920-; la tarjeta pasa de 312,5 a 416,67px de hueco y de ~280 a ~384,67px de ancho real. (2) El CTA «Read More» flotaba a distinta altura en cada tarjeta -774/815/790/815px medidos a 1920- porque `.content-card` es `justify-content:center`; ahora es `flex-start` con el CTA anclado abajo y el desfase medido es 0px. (3) La foto tenia `height:250px` fijo; ahora es `aspect-ratio:16/10`. (4) El chevron de las flechas era blanco sobre el degradado oro, ~1,9:1, contra los 3:1 que pide WCAG 1.4.11; ahora es navy relleno, 15,60:1. (5) La tarjeta entera es clicable con un `::after` sobre el enlace que ya existia, asi que el objetivo tactil sube de ~120x36 a la tarjeta completa. El TEXTO no cambia: `line-clamp` recorta en pantalla pero no toca `innerText`, y no se anade ni una palabra ni un enlace, asi que `check:texto` y `check:enlaces` siguen midiendo esta ruta al 100%."
+  },
+  "/country/custom-pool-builders-levy-county-fl": {
+   "contrato": "rediseno",
+   "fecha": "2026-08-31",
+   "sha": "2637205",
+   "motivo": "REDISENO DE LA SECCION DE BLOG, encargo R9-BLOG-01 (Sebastian, 31-ago-2026). La seccion `section.blog-section-page` esta inlineada IDENTICA en 10 rutas: esta y las 9 de `country/`. Lo que cambia: (1) 3 tarjetas por vista en vez de 4 a partir de 1920 -a 1440 y por debajo ya eran 3, asi que el numero de columnas SOLO se mueve en el ancho de 1920-; la tarjeta pasa de 312,5 a 416,67px de hueco y de ~280 a ~384,67px de ancho real. (2) El CTA «Read More» flotaba a distinta altura en cada tarjeta -774/815/790/815px medidos a 1920- porque `.content-card` es `justify-content:center`; ahora es `flex-start` con el CTA anclado abajo y el desfase medido es 0px. (3) La foto tenia `height:250px` fijo; ahora es `aspect-ratio:16/10`. (4) El chevron de las flechas era blanco sobre el degradado oro, ~1,9:1, contra los 3:1 que pide WCAG 1.4.11; ahora es navy relleno, 15,60:1. (5) La tarjeta entera es clicable con un `::after` sobre el enlace que ya existia, asi que el objetivo tactil sube de ~120x36 a la tarjeta completa. El TEXTO no cambia: `line-clamp` recorta en pantalla pero no toca `innerText`, y no se anade ni una palabra ni un enlace, asi que `check:texto` y `check:enlaces` siguen midiendo esta ruta al 100%."
+  },
+  "/country/custom-pool-builders-marion-county-fl": {
+   "contrato": "rediseno",
+   "fecha": "2026-08-31",
+   "sha": "2637205",
+   "motivo": "REDISENO DE LA SECCION DE BLOG, encargo R9-BLOG-01 (Sebastian, 31-ago-2026). La seccion `section.blog-section-page` esta inlineada IDENTICA en 10 rutas: esta y las 9 de `country/`. Lo que cambia: (1) 3 tarjetas por vista en vez de 4 a partir de 1920 -a 1440 y por debajo ya eran 3, asi que el numero de columnas SOLO se mueve en el ancho de 1920-; la tarjeta pasa de 312,5 a 416,67px de hueco y de ~280 a ~384,67px de ancho real. (2) El CTA «Read More» flotaba a distinta altura en cada tarjeta -774/815/790/815px medidos a 1920- porque `.content-card` es `justify-content:center`; ahora es `flex-start` con el CTA anclado abajo y el desfase medido es 0px. (3) La foto tenia `height:250px` fijo; ahora es `aspect-ratio:16/10`. (4) El chevron de las flechas era blanco sobre el degradado oro, ~1,9:1, contra los 3:1 que pide WCAG 1.4.11; ahora es navy relleno, 15,60:1. (5) La tarjeta entera es clicable con un `::after` sobre el enlace que ya existia, asi que el objetivo tactil sube de ~120x36 a la tarjeta completa. El TEXTO no cambia: `line-clamp` recorta en pantalla pero no toca `innerText`, y no se anade ni una palabra ni un enlace, asi que `check:texto` y `check:enlaces` siguen midiendo esta ruta al 100%."
+  },
+  "/country/custom-pool-builders-palm-beach-county-fl": {
+   "contrato": "rediseno",
+   "fecha": "2026-08-31",
+   "sha": "2637205",
+   "motivo": "REDISENO DE LA SECCION DE BLOG, encargo R9-BLOG-01 (Sebastian, 31-ago-2026). La seccion `section.blog-section-page` esta inlineada IDENTICA en 10 rutas: esta y las 9 de `country/`. Lo que cambia: (1) 3 tarjetas por vista en vez de 4 a partir de 1920 -a 1440 y por debajo ya eran 3, asi que el numero de columnas SOLO se mueve en el ancho de 1920-; la tarjeta pasa de 312,5 a 416,67px de hueco y de ~280 a ~384,67px de ancho real. (2) El CTA «Read More» flotaba a distinta altura en cada tarjeta -774/815/790/815px medidos a 1920- porque `.content-card` es `justify-content:center`; ahora es `flex-start` con el CTA anclado abajo y el desfase medido es 0px. (3) La foto tenia `height:250px` fijo; ahora es `aspect-ratio:16/10`. (4) El chevron de las flechas era blanco sobre el degradado oro, ~1,9:1, contra los 3:1 que pide WCAG 1.4.11; ahora es navy relleno, 15,60:1. (5) La tarjeta entera es clicable con un `::after` sobre el enlace que ya existia, asi que el objetivo tactil sube de ~120x36 a la tarjeta completa. El TEXTO no cambia: `line-clamp` recorta en pantalla pero no toca `innerText`, y no se anade ni una palabra ni un enlace, asi que `check:texto` y `check:enlaces` siguen midiendo esta ruta al 100%."
+  },
+  "/country/custom-pool-builders-putnam-county-fl": {
+   "contrato": "rediseno",
+   "fecha": "2026-08-31",
+   "sha": "2637205",
+   "motivo": "REDISENO DE LA SECCION DE BLOG, encargo R9-BLOG-01 (Sebastian, 31-ago-2026). La seccion `section.blog-section-page` esta inlineada IDENTICA en 10 rutas: esta y las 9 de `country/`. Lo que cambia: (1) 3 tarjetas por vista en vez de 4 a partir de 1920 -a 1440 y por debajo ya eran 3, asi que el numero de columnas SOLO se mueve en el ancho de 1920-; la tarjeta pasa de 312,5 a 416,67px de hueco y de ~280 a ~384,67px de ancho real. (2) El CTA «Read More» flotaba a distinta altura en cada tarjeta -774/815/790/815px medidos a 1920- porque `.content-card` es `justify-content:center`; ahora es `flex-start` con el CTA anclado abajo y el desfase medido es 0px. (3) La foto tenia `height:250px` fijo; ahora es `aspect-ratio:16/10`. (4) El chevron de las flechas era blanco sobre el degradado oro, ~1,9:1, contra los 3:1 que pide WCAG 1.4.11; ahora es navy relleno, 15,60:1. (5) La tarjeta entera es clicable con un `::after` sobre el enlace que ya existia, asi que el objetivo tactil sube de ~120x36 a la tarjeta completa. El TEXTO no cambia: `line-clamp` recorta en pantalla pero no toca `innerText`, y no se anade ni una palabra ni un enlace, asi que `check:texto` y `check:enlaces` siguen midiendo esta ruta al 100%."
+  }
+ }
 }

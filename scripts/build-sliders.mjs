@@ -55,15 +55,43 @@ for (const m of t.matchAll(/"fs-slider-instance='([^']+)'"\s*:\s*\{/g)) {
   }
 }
 
+/**
+ * LA CAPA DE DISENO — se lee aqui SOLO para avisar, nunca para escribirla.
+ *
+ * Desde R9-BLOG-01 hay un segundo fichero, `src/data/sliders-diseno.json`, que NO es derivado
+ * y que `Componentes.astro` fusiona ENCIMA de este. O sea que estos numeros pueden no ser los
+ * que ve el visitante.
+ *
+ * Regenerar sigue siendo seguro -el override vive aparte y este script no lo toca-, pero el
+ * riesgo que queda es de LECTURA: alguien abre `sliders.json`, lee «4 por vista» y se lo cree.
+ * Por eso el aviso va DENTRO del `_lee_esto` que se escribe, y no en un comentario de este
+ * fichero: el que se cree el numero estara mirando el JSON, no el generador.
+ */
+const DISENO = path.join(RAIZ, 'src/data/sliders-diseno.json');
+const sobrescritas = fs.existsSync(DISENO)
+  ? Object.keys(JSON.parse(fs.readFileSync(DISENO, 'utf8')).sliders ?? {})
+  : [];
+
 fs.writeFileSync(path.join(RAIZ, 'src/data/sliders.json'), JSON.stringify({
   _lee_esto: 'DERIVADO de _source/finsweet/componentsconfig-1.0.24.js, el fichero de '
     + 'configuracion que cargaba el sitio. Regenerar: npm run sliders',
+  _ojo: 'ESTOS NUMEROS PUEDEN NO SER LOS QUE SE SIRVEN. `src/data/sliders-diseno.json` se '
+    + 'fusiona ENCIMA de este fichero en Componentes.astro y sustituye la instancia entera. '
+    + (sobrescritas.length
+      ? `Hoy sobrescribe: ${sobrescritas.join(', ')}. Mira alli antes de creerte una cifra de aqui.`
+      : 'Hoy no sobrescribe ninguna.'),
   sliders,
 }, null, 1));
 
 console.log('');
 for (const [n, v] of Object.entries(sliders)) {
   console.log(`  ${n.padEnd(28)} ${Object.entries(v.breakpoints).map(([b, c]) => `${b}:${c.slidesPerView}/${c.spaceBetween}`).join('  ')}`
-    + `   autoplay=${v.autoplayMs || 'no'}`);
+    + `   autoplay=${v.autoplayMs || 'no'}`
+    + (sobrescritas.includes(n) ? '   <- SOBRESCRITO por sliders-diseno.json' : ''));
 }
-console.log(`\n  OK ${Object.keys(sliders).length} sliders -> src/data/sliders.json\n`);
+console.log(`\n  OK ${Object.keys(sliders).length} sliders -> src/data/sliders.json`);
+if (sobrescritas.length) {
+  console.log(`  OJO ${sobrescritas.length} instancia(s) las manda src/data/sliders-diseno.json, no este fichero:`);
+  console.log(`      ${sobrescritas.join('  ')}`);
+}
+console.log('');
