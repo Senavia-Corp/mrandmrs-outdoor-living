@@ -16,6 +16,8 @@ PROHIBIDO  todo lo demás. En especial Base.astro, propio.css, home.css, lectura
 
 ## Antes de nada, en este orden
 
+0. **Lee `docs/encargos/00-PRINCIPIOS.md`.** Manda sobre este fichero. En una linea: se
+   **eleva** la base de Webflow, no se sustituye.
 1. Lee `~/Sites/CLAUDE.md` — tabla de enrutado de skills y las 7 reglas duras del final.
 2. Lee `PROMPT-REDISENO.md` §1, §3, §5 y §6 de este repo. Es el contrato.
 3. **Invoca `frontend-design`** — esto es un rediseño, no un retoque — y después

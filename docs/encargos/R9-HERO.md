@@ -14,6 +14,8 @@ PROHIBIDO  todo lo demás. En especial Base.astro, propio.css, disenio/*, script
 
 ## Antes de nada, en este orden
 
+0. **Lee `docs/encargos/00-PRINCIPIOS.md`.** Manda sobre este fichero. En una linea: se
+   **eleva** la base de Webflow, no se sustituye.
 1. Lee `~/Sites/CLAUDE.md` — tabla de enrutado de skills y las 7 reglas duras del final.
 2. Lee `PROMPT-REDISENO.md` §1, §3, §5 y §6 de este repo. Es el contrato y manda sobre todo.
 3. **Invoca la skill `frontend-design` ANTES de escribir una línea de markup o CSS.** Es
@@ -24,20 +26,49 @@ PROHIBIDO  todo lo demás. En especial Base.astro, propio.css, disenio/*, script
 
 ## Objetivo
 
-El héroe de la portada — `section.hero-glass-section-page`, la constante `S_HERO` de
-`index.astro`. Es lo primero que ve alguien que va a gastar $80.000 en una piscina en Florida,
-y hoy es un héroe de plantilla de Webflow. Que parezca de un estudio.
+**Elevar** el héroe de la portada — `section.hero-glass-section-page`, la constante `S_HERO`
+de `index.astro`. No rediseñarlo: la composición de Webflow se conserva (vídeo de fondo, fila
+de 4 bullets, h1, subtítulo, CTA centrado, banda de logos al pie). Lo que se eleva es el
+espaciado, la jerarquía, el scrim, la escala del CTA y los estados.
+
+Es lo primero que ve alguien que va a gastar $80.000 en una piscina en Florida, y su trabajo
+es **captar el lead**.
+
+## El diagnóstico ya está hecho — no lo repitas, arréglalo
+
+Medido por el director el 1-sep-2026 sobre `.vercel/output/static` a 1440×900 y 479, con
+sondas de `getBoundingClientRect` y `getComputedStyle` y muestreo del vídeo en canvas.
+**Estos son tus números de partida.** Cada punto lleva lo que se midió; el «cómo» es tuyo.
+
+| # | Lo medido | Por qué importa para captar lead |
+|---|---|---|
+| 1 | **El CTA mide 181 × 38,4 px** (`padding: 11,2px 16px`, `font-size: 16px`) dentro de un héroe de 900 px de alto | El único elemento que convierte ocupa el **0,53 %** del héroe. A 479 baja a 162 × 36,4 con texto de 14 px |
+| 2 | **El bloque de contenido va de y=281 a y=618: 337 px de 900.** El 63 % del héroe es overlay sobre vídeo | No es respiración, es vacío. El aire tiene que repartirse, no acumularse arriba y abajo |
+| 3 | **Las 4 bullets bajan a 7 px de texto a 479** (12 px a 1440, 10 a 991). Cajas de 102 × 26 px | Son las cuatro razones para confiar —Licensed & Insurance, Financing Available, 3D Design, North & South Florida— y en móvil son ilegibles |
+| 4 | **El overlay es plano:** `linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4))`. El vídeo bajo el h1 va de luma 22 a 251. Tras el overlay, la zona más clara queda en **151** | Texto blanco sobre luma 151 = **2,92 : 1**. No llega ni a los 3:1 de texto grande. Un scrim plano ensucia el vídeo entero y aun así no protege el texto |
+| 5 | El subtítulo lleva `text-shadow: 1px 1px 4px #000` a 479 y `1px 1px 3px` a 991, y **ninguno a 1440** | Es el parche de alguien que notó el punto 4 y lo tapó en móvil. La sombra es el síntoma; el scrim es la causa |
+| 6 | **El h1 lleva `border-bottom: 2px solid` oro a lo ancho de sus 1100 px** | Es el detalle más de plantilla del héroe. Una regla de 1100 px bajo un titular centrado |
+| 7 | **Todo centrado**: `text-align:center` + `align-items:center` + `justify-content:space-between`. h1 de 69 caracteres en 2 líneas, subtítulo de 117 en 2 líneas de ~58 caracteres | Dos bloques centrados de anchura parecida y peso parecido compiten. El subtítulo tiene **más palabras que el titular** |
+| 8 | **El vídeo del héroe dura 40 s y del segundo ~14 al ~22 es un solar en obra** — excavadora, encofrado, tierra. Verificado con hoja de contactos de 9 fotogramas: 7 son obra terminada preciosa, 2 son la obra abierta | Uno de cada cinco visitantes ve un solar destrozado detrás del titular. Es el fallo más caro y **no es de CSS** |
+| 9 | El CTA es azul `#3898EC` con texto navy: **5,10 : 1**, correcto — pero es el **azul de Webflow por defecto**, no un color de la marca. Y el nav lleva otro «Get A Free Estimate» idéntico justo encima | Dos CTA iguales compitiendo, y el del héroe no usa el oro de la casa sobre navy (8,40 : 1), que es el par que la marca ya tiene medido |
+
+**El punto 8 es del director, no tuyo:** el vídeo se recorta o se reordena, y eso lo hago yo.
+Tú diseña contando con que el fondo será obra terminada.
 
 ## Entrega en dos pasos. El paso 2 no empieza hasta que Sebastian elija
 
-**PASO 1 — tres direcciones, sin tocar la home.**
-Móntalas en una página de trabajo que NO entra en el sitio: `src/pages/_lab-heroe.astro`
-(guion bajo: Astro no la enruta). Con el **texto real** del héroe actual copiado literal, para
-que se juzgue con el contenido de verdad y no con lorem. Cada dirección con su nombre, su razón
-en dos líneas y capturas a 1440 y 479. **Las tres genuinamente distintas** — no la misma con
-otro color. Entrégalas y **para**.
+**PASO 1 — tres variantes de la MISMA estructura.**
 
-**PASO 2 — solo con la dirección elegida:** llevarla a `index.astro` + `home.css`.
+No son tres héroes distintos: es **el héroe de Webflow, elevado de tres maneras**. Misma
+composición, mismos elementos, mismo orden, mismo texto. Lo que cambia entre variantes es el
+tratamiento — por ejemplo el tipo de scrim y de dónde nace, cómo se resuelve la jerarquía
+entre h1 y subtítulo, y cómo gana peso el CTA y qué hace la fila de bullets.
+
+Móntalas en `src/pages/_lab-heroe.astro` (guion bajo: Astro no la enruta), con el **texto real**
+copiado literal. Cada variante con su nombre, su razón en dos líneas, **los números del cuadro
+de arriba que mueve**, y capturas a 1440 y 479. Entrégalas y **para**.
+
+**PASO 2 — solo con la variante elegida:** llevarla a `index.astro` + `home.css`.
 
 ## Reglas de la capa (las mide `check:tokens`)
 
