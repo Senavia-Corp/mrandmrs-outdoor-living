@@ -39580,8 +39580,8 @@
     "local:bg-video-1-mp4.mp4": {
       "archivo": "public/videos/bg-video-1-mp4.mp4",
       "publico": "/videos/bg-video-1-mp4.mp4",
-      "sha256": "13e71d12c08f8843567a111c421d6d984cd06c419e42a7ea334965b8bb0c04d1",
-      "bytes": 10676529,
+      "sha256": "fc64724024ee1a15c8bf83a1e5a6837928aeac8c207fdda31d7529764702a23a",
+      "bytes": 7074770,
       "alt": "",
       "dim": null,
       "sanityMaster": null,
@@ -39607,8 +39607,8 @@
     "local:bg-video-1-webm.webm": {
       "archivo": "public/videos/bg-video-1-webm.webm",
       "publico": "/videos/bg-video-1-webm.webm",
-      "sha256": "fe5953c605fe37543a00a603a0b89df8a299371b661369b11d52266e2954366a",
-      "bytes": 11927841,
+      "sha256": "2b3b206de8f8cde95569bb5fa65c45360f095b14bc902032deaa1392bf3b6f4b",
+      "bytes": 7882636,
       "alt": "",
       "dim": null,
       "sanityMaster": null,

@@ -23,6 +23,39 @@ const MAGIC = {
   webm: b => b[0] === 0x1a && b[1] === 0x45,
 };
 
+/**
+ * ACTIVOS DERIVADOS A PROPÓSITO — el fichero servido YA NO es el que dio Webflow.
+ *
+ * El manifiesto guarda DOS entradas por activo: la `local:` (lo que se sirve) y la de su URL
+ * de origen en el CDN de Webflow (el registro de paridad). Al editar un activo, la local y la
+ * remota dejan de casar, y eso enciende las comprobaciones 3 y 7 — que es exactamente lo que
+ * deben hacer: avisan de que lo desplegado se ha separado de su origen.
+ *
+ * La salida NO es igualar los dos hashes. Poner en la entrada remota el sha256 de nuestro
+ * fichero afirmaría que el CDN de Webflow sirve nuestro recorte, que es falso, y borraría el
+ * único rastro de que aquí hubo una decisión. La entrada remota se queda CONGELADA con el
+ * hash del original, y la desviación se declara aquí con su motivo.
+ *
+ * Lo que se sigue exigiendo, y por eso la puerta no pierde fuerza: la entrada `local:` tiene
+ * que casar con el disco (comprobación 3). Si el fichero servido se corrompe, sigue saltando.
+ * Solo se perdona el desacuerdo entre la remota congelada y su gemela local.
+ */
+const DERIVADOS_A_PROPOSITO = {
+  '/videos/bg-video-1-mp4.mp4':
+    'Recorte del vídeo del héroe de la home, aprobado por Sebastian el 1-sep-2026. El original '
+    + 'dura 39,93 s y de 8,57 s a 22,13 s enseña una obra en construcción —excavadora, encofrado, '
+    + 'tierra—: el 34 % del bucle, detrás del titular «Licensed Custom Pool Builders». Los dos '
+    + 'cortes caen en frontera de plano (detectadas con select=gt(scene,0.30)), así que se quitan '
+    + 'cuatro planos enteros sin salto visible. Queda en 26,40 s, toda obra terminada. '
+    + 'Reencodado a h264 2135 kbps, el mismo bitrate del original.',
+  '/videos/bg-video-1-webm.webm':
+    'La pista WebM del mismo recorte, VP8 a 2389 kbps como el original. 26,36 s. '
+    + 'Mismo motivo y misma aprobación que el mp4.',
+};
+const derivado = (a) => Object.hasOwn(DERIVADOS_A_PROPOSITO, a.publico);
+/** true solo para la entrada REMOTA congelada de un activo derivado (la clave es su URL). */
+const remotaCongelada = (k, a) => derivado(a) && !k.startsWith('local:');
+
 console.log('\n── 1. todo lo referenciado existe en disco');
 const faltan = A.filter(([, a]) => !fs.existsSync(path.join(ROOT, a.archivo)));
 check('0 ficheros ausentes', faltan.length === 0, `${faltan.length} ausentes`);
@@ -42,9 +75,10 @@ check('0 con cabecera que no casa', corruptos === 0, `${corruptos}`);
 
 console.log('\n── 3. el sha256 del manifiesto casa con el disco');
 let desfase = 0;
-for (const [, a] of A) {
+for (const [k, a] of A) {
   const f = path.join(ROOT, a.archivo);
   if (!fs.existsSync(f)) continue;
+  if (remotaCongelada(k, a)) continue;   // ver DERIVADOS_A_PROPOSITO
   if (crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex') !== a.sha256) desfase++;
 }
 check('0 desfases sha256', desfase === 0, `${desfase}`);
@@ -73,10 +107,19 @@ sucios.slice(0, 5).forEach(([, a]) => console.log(`     ${a.publico}`));
 console.log('\n── 7. colisiones: mismo destino, contenido distinto');
 const porRuta = new Map(); let colision = 0;
 for (const [, a] of A) {
+  if (derivado(a)) continue;             // ver DERIVADOS_A_PROPOSITO
   if (porRuta.has(a.publico) && porRuta.get(a.publico) !== a.sha256) colision++;
   porRuta.set(a.publico, a.sha256);
 }
 check('0 colisiones sin resolver', colision === 0, `${colision}`);
+
+// Y se ENSEÑAN, en vez de callarlas. Una excepción que no se ve por pantalla deja de ser una
+// excepción declarada y pasa a ser un agujero: nadie revisa lo que no aparece en la salida.
+const decl7 = Object.keys(DERIVADOS_A_PROPOSITO);
+const vivos = decl7.filter((p) => A.some(([k, a]) => k.startsWith('local:') && a.publico === p));
+check(`${decl7.length} activos derivados a propósito, todos con su entrada local`,
+  vivos.length === decl7.length, `${decl7.length - vivos.length} declarados que ya no existen`);
+for (const p of decl7) console.log(`     ${p}`);
 
 console.log('\n── 8. cobertura: el inventario entero está en el manifiesto');
 const inv = fs.readFileSync(path.join(ROOT, '_source/assets-inventory.csv'), 'utf8').split('\n').length - 2;

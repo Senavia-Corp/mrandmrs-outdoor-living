@@ -54,7 +54,23 @@ const TOL_ALTO = 3;
  * arregla el fallo n.º 1 del Programa R: que hacer cuando FALTA la referencia. Ver mas abajo.
  */
 const CONTRATOS = leerContratos();
+
+
+/**
+ * FILTRO POSICIONAL. Cada argumento es una SUBCADENA de la ruta, salvo que empiece por `=`,
+ * que entonces es coincidencia EXACTA.
+ *
+ * El `=` existe por una razon concreta: la home es `/`, y `/` como subcadena casa las 115
+ * rutas. O sea que la unica pagina del sitio que NO se podia acotar era justo la que mas veces
+ * hay que medir durante el redisenio —y creerte que mides 1 mientras mides 115 son ~65 minutos
+ * con la pantalla del usuario secuestrada. Con `=/` se mide solo la home.
+ *
+ *     node scripts/check-visual.mjs /services/ /pool-builders/     (subcadena, como siempre)
+ *     node scripts/check-visual.mjs '=/'                           (SOLO la home; las comillas hacen
+ *                                                          falta: zsh expande `=/` solo)
+ */
 const filtro = process.argv.slice(2).filter((a) => !a.startsWith('--'));
+const casa = (r) => !filtro.length || filtro.some((f) => (f.startsWith('=') ? r === f.slice(1) : r.includes(f)));
 
 /**
  * Páginas que se ven distinto A PROPÓSITO, con su motivo.
@@ -143,7 +159,7 @@ const BASE = `http://localhost:${servidor.address().port}`;
 const csv = fs.readFileSync(path.join(RAIZ, '_source/routes.csv'), 'utf8');
 const RUTAS = csv.trim().split('\n').slice(1)
   .map((l) => l.match(/"((?:[^"]|"")*)"/g)[0].slice(1, -1))
-  .filter((r) => !filtro.length || filtro.some((f) => r.includes(f)));
+  .filter(casa);
 
 const cruda = (s) => s.ensureAlpha().raw().toBuffer();
 const nav = await chromium.launch({ headless: false, args: ARGS_NAVEGADOR });

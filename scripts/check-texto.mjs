@@ -25,8 +25,22 @@ import { ARGS_NAVEGADOR, aSlug, asentar, textoNormalizado } from './lib/captura.
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const ESTATICO = path.join(RAIZ, '.vercel/output/static');
-const filtro = process.argv.slice(2).filter((a) => !a.startsWith('--'));
 
+/**
+ * FILTRO POSICIONAL. Cada argumento es una SUBCADENA de la ruta, salvo que empiece por `=`,
+ * que entonces es coincidencia EXACTA.
+ *
+ * El `=` existe por una razon concreta: la home es `/`, y `/` como subcadena casa las 115
+ * rutas. O sea que la unica pagina del sitio que NO se podia acotar era justo la que mas veces
+ * hay que medir durante el redisenio —y creerte que mides 1 mientras mides 115 son ~65 minutos
+ * con la pantalla del usuario secuestrada. Con `=/` se mide solo la home.
+ *
+ *     node scripts/check-texto.mjs /services/ /pool-builders/     (subcadena, como siempre)
+ *     node scripts/check-texto.mjs '=/'                           (SOLO la home; las comillas hacen
+ *                                                          falta: zsh expande `=/` solo)
+ */
+const filtro = process.argv.slice(2).filter((a) => !a.startsWith('--'));
+const casa = (r) => !filtro.length || filtro.some((f) => (f.startsWith('=') ? r === f.slice(1) : r.includes(f)));
 if (!fs.existsSync(ESTATICO)) { console.error('\nROJO falta .vercel/output/static — corre `npm run build`\n'); process.exit(1); }
 
 const TIPO = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript',
@@ -50,7 +64,7 @@ const BASE = `http://localhost:${servidor.address().port}`;
 const csv = fs.readFileSync(path.join(RAIZ, '_source/routes.csv'), 'utf8');
 const RUTAS = csv.trim().split('\n').slice(1)
   .map((l) => l.match(/"((?:[^"]|"")*)"/g)[0].slice(1, -1))
-  .filter((r) => !filtro.length || filtro.some((f) => r.includes(f)));
+  .filter(casa);
 
 /**
  * Líneas del baseline que YA NO EXISTEN a propósito, con su motivo. Una a una: bajar el
