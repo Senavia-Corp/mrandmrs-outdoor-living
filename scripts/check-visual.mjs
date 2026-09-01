@@ -217,7 +217,20 @@ for (const [ancho, alto] of ANCHOS) {
       // porcentaje que parece bueno mientras la pagina crece o encoge. Se reporta como lo que es.
       const dif = `alto ${ma.height} -> ${mb.height} (${deltaAlto > 0 ? '+' : ''}${deltaAlto}px)`;
       if (declarada(ruta, ancho)) { declaradas++; console.log(`  decl ${ruta} — ${dif}`); }
-      else { rojos.push([ancho, ruta, dif]); mal++; }
+      else {
+        /* ESTA LINEA FALTABA, y es la unica rama de la puerta que contaba sin decir cual.
+         * Sintoma: el resumen daba «171 distintas» y en pantalla solo habia 33 lineas ROJO
+         * — 138 fallos contados y silenciados—. El `── detalle` del final tampoco salva,
+         * porque imprime `rojos.slice(0, 6)`.
+         *
+         * No falla ABIERTA -la puerta sale roja y el `process.exit` es correcto- pero
+         * oculta QUE fallo, y eso operativamente cuesta casi lo mismo: la lista de rojas es
+         * justo lo que decide que rutas se re-baselinizan. Un veredicto sin inventario
+         * obliga a adivinar, y adivinar delante del unico acto irreversible del sistema es
+         * como se hornea un defecto. */
+        rojos.push([ancho, ruta, dif]); mal++;
+        console.log(`  ROJO ${ruta.padEnd(52).slice(0, 52)} ${dif}`);
+      }
       continue;
     }
 
