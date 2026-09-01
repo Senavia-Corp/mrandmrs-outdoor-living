@@ -283,6 +283,23 @@ deja: un build que muere ahí no prueba que el sitio esté roto — se reintenta
 «arreglarlo», que es como se rompen de verdad. El código nunca estuvo en riesgo: el árbol siguió
 limpio y el artefacto es derivado.
 
+### La regla que le faltaba al modelo de propiedad (§3)
+«Espera tu turno» se escribió pensando en Chromium y en los builds, y daba por hecho que un
+trabajador en espera no afecta a nadie. **Falso para los ficheros que se importan siempre.**
+Pasó: un frente escribió 196 líneas en `propio.css` mientras esperaba ventana; `Base.astro:64`
+lo importa, así que esas líneas viajaban en las 115 páginas del siguiente `npm run build` —y el
+siguiente en construir era otro frente, a punto de tomar un número de partida que habría
+mezclado trabajo ajeno sin poder atribuirlo.
+
+> Los ficheros que se importan SIEMPRE —`propio.css`, `Base.astro`, `disenio/*`, las hojas de
+> sección, los componentes compartidos y los generadores— solo se escriben **durante tu
+> ventana**, no mientras esperas. Fuera de ella, el trabajo preparado vive en el scratchpad.
+> Escribir en ellos antes de tiempo no es tener el trabajo listo: es publicarlo en las 115 rutas
+> del siguiente que construya.
+
+La distinción no es entre ficheros propios y ajenos —el frente era dueño legítimo de
+`propio.css`— sino entre los que solo existen para ti y los que viajan en todas las páginas.
+
 ### Abierto
 - **`check:cascaron` regenera su propia referencia, desde el sitio VIVO** — el sexto de la
   familia, hallado al ver que `baseline/cascaron.json` salía sucio tras correrla.
