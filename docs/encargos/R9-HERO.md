@@ -108,9 +108,9 @@ para mirar tu trabajo.
 escribir hasta que te avise. Dos navegadores a la vez **matan** su corrida, no la ralentizan
 (`Target page, context or browser has been closed`), y ya pasó en la ruta 22 de 115.
 
-Y una que parece de cortesía y no lo es: **los ficheros que se importan siempre solo se escriben
-durante tu ventana.** `Base.astro` carga `home.css` en las 115 páginas, así que escribir en él
-mientras esperas turno publica tu trabajo a medias en el build del siguiente que construya.
+**No esperes permiso para escribir.** La ventana no es para eso: los tres frentes tienen
+ficheros disjuntos y escriben a la vez. Solo paras cuando el director diga **«VENTANA DE
+PUERTAS»**, que es cuando él construye o abre Chromium.
 
 ## Informe (al terminar cada paso)
 

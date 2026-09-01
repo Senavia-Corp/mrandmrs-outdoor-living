@@ -97,9 +97,9 @@ mide el director — · `git commit` · `check:texto|visual|ix2|cascaron` · nad
 escribir. Dos navegadores a la vez **matan** su corrida, no la ralentizan, y ya pasó en la ruta
 22 de 115.
 
-Y una que parece de cortesía y no lo es: **`proyectos.css` se importa en las 115 páginas**, así
-que escribir en él mientras esperas turno publica tu trabajo a medias en el build del siguiente
-que construya. Fuera de tu ventana, el trabajo preparado vive en un borrador aparte.
+**No esperes permiso para escribir.** La ventana no es para eso: los tres frentes tienen
+ficheros disjuntos y escriben a la vez. Solo paras cuando el director diga **«VENTANA DE
+PUERTAS»**, que es cuando él construye o abre Chromium.
 
 ## Informe
 

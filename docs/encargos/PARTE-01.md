@@ -104,8 +104,15 @@ baseline lo retrata como un hueco.
   tu trabajo en tu propio `astro dev` en tu puerto y en el panel de navegador de Claude.
 - **«VENTANA DE PUERTAS»** = cierra el panel y para de escribir hasta nuevo aviso. Dos
   navegadores a la vez **matan** mi corrida, no la ralentizan.
-- Escribe en tus ficheros **solo durante tu ventana**. Se importan en las 115 páginas: escribir
-  mientras esperas publica tu trabajo a medias en el build del siguiente que construya.
+- **La ventana NO es para escribir CSS.** Los tres juegos de ficheros son disjuntos y ningún
+  trabajador construye ni abre las puertas de navegador, así que **los tres escriben a la vez sin
+  pisarse**. La ventana existe solo para lo que hace el director: construir y correr Chromium.
+  Cuando oigas **«VENTANA DE PUERTAS»**, cierras el panel del navegador y dejas de escribir hasta
+  que te avise. Mientras no lo oigas, **trabajas**.
+
+  > Esto estaba mal escrito en la primera versión de este parte —decía «escribe solo durante tu
+  > ventana»— y los tres frentes pararon media hora esperando un permiso que el director nunca dio.
+  > Hicieron lo correcto: la instrucción era la que estaba mal.
 - **Un número sin el comando que lo produjo es una opinión.** Pega la salida literal.
 
 ## Orden de entrega
