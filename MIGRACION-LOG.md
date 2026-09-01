@@ -69,8 +69,26 @@ componentes propios: **click-to-call**, **reseñas de Google** y **feed de Insta
      **DOS**: el sitio etiqueta `North Florida +1 (352) 740-3361` y `South Florida
      +1 (954) 913-7112` en `div.phone-wrapper` de `/contact-us`. Un botón que llamara solo al
      primero mandaría a la oficina equivocada a medio estado.
-   - Reseñas de Google → **CID `13592496939047920063`** (dado por Sebastian, 27-ago-2026).
-     Es el identificador de `maps.google.com/?cid=…`. Falta la integración.
+   - Reseñas de Google → **CID `2096358844840078377`** (place `ChIJo8zESQOC4k0RKexwLEPDFx0`).
+     Es el identificador de `maps.google.com/?cid=…`.
+     **CORREGIDO el 31-ago-2026, y luego MATIZADO el mismo día.** Aquí ponía
+     `13592496939047920063`. Ese número **no es basura y no es de otro negocio**: es el
+     **location ID de Business Profile** de Mr & Mrs, verificado contra la API ya con acceso
+     concedido —`accounts/101245156904207437961` devuelve dos locations, `…931163 | Senavia
+     Corp` y `…920063 | Mr. & Mrs. Outdoor Living`—. Guárdalo: es el que hace falta para
+     `GBP_LOCATION`.
+
+     Lo que estaba mal era **usarlo en una URL `maps.google.com/?cid=`**, donde no resuelve.
+     Ahí va el CID de Maps, que es otro sistema de numeración: `2096358844840078377`. O sea
+     que el enlace «See all reviews» sí estaba roto, pero no por apuntar a otro negocio sino
+     por mezclar dos identificadores distintos del mismo.
+
+     La lección, que es más útil que el dato: **la primera corrección también fue una
+     suposición.** Se dio por «CID equivocado de otro negocio» sin poder consultar la API,
+     y el director la escribió aquí sin verificarla. Dos identificadores del mismo negocio en
+     dos sistemas de numeración se parecen lo bastante como para que «no coincide» se lea como
+     «es de otro». Antes de declarar basura un identificador, hay que poder preguntarle al
+     sistema que lo emitió.
    - **Instagram** → `@mrandmrsoutdoorliving` (sacado del pie del sitio). Mismo patrón:
      snapshot en build, sin token vivo en el navegador — un token de Instagram caduca y el feed
      se apaga solo un martes cualquiera. Las imágenes se sirven locales: las URLs del CDN de

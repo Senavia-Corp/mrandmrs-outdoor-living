@@ -408,8 +408,20 @@ Tres lotes a la vez. Mas no rinde: el cuello de botella no es el trabajo, es la 
 
 ## §8 LO QUE PUEDE ROMPERSE Y NO LO CUBRE NINGUNA PUERTA
 
-1. **`check-visual.mjs:158` falla abierto.** Se arregla en R6, antes que nada, o el programa entero
-   mide en falso.
+1. ~~**`check-visual.mjs:158` falla abierto.**~~ **CERRADO en R6** (`9df27a0`). Hoy manda el
+   contrato: `check-visual.mjs:161-181` pone ROJO si la ruta es `rediseno` y falta la referencia,
+   y solo salta si es `paridad`. Verificado en fuente el 31-ago-2026 — este punto llevaba desde
+   entonces describiendo como vivo un fallo ya muerto, y dos frentes lo citaron creyéndolo abierto.
+   Se deja tachado en vez de borrado: un riesgo que se cerró enseña más que un hueco.
+
+   **En su lugar, el fallo abierto de verdad, y era la puerta hermana:** `check-texto.mjs:136`
+   contaba como «aun sin construir» toda página que no cargara, sin sumar a `mal`, sin tocar el
+   `process.exit` y sin salir del verde. Una corrida que perdía el navegador en la ruta 14
+   imprimía «14 identicas · 0 con diferencias · 101 aun sin construir» y a continuación
+   **PUERTA VERDE**. Y `check:texto` es la ÚNICA puerta que no se re-baseliniza nunca (§1.1):
+   la barandilla del programa fallaba abierta. Hallado por R9-BLOG-01 el 31-ago-2026 y cerrado
+   el mismo día — dos intentos y, si falla el segundo, ROJO; el contador `saltadas` desaparece
+   porque en esa puerta no quedaba ni un caso legítimo de salto.
 2. **`npm run paginas` borra la home rediseñada.** Nadie corre un generador durante el programa sin
    decirlo, y la guarda tiene que fallar ruidosamente.
 3. **`disenio/` importado en el sitio equivocado.** Antes de `webflow.css` no gana nada: el rediseno
