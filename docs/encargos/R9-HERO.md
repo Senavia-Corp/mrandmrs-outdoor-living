@@ -70,7 +70,7 @@ de arriba que mueve**, y capturas a 1440 y 479. Entrégalas y **para**.
 
 **PASO 2 — solo con la variante elegida:** llevarla a `index.astro` + `home.css`.
 
-## Reglas de la capa (las mide `check:tokens`)
+## Reglas de la capa (las mide `check:tokens` — **córrela tú**)
 
 - Cero `!important`. Cero `@layer`: `webflow.css` son 167 KB **sin capa**, y cualquier regla sin
   capa gana a toda regla con capa. Tú ganas por **orden de carga**, que ya lo tienes.

@@ -59,7 +59,7 @@ reconstruyas.
 **clase exacta** son 10, porque `blog-section-page` la contiene. Un selector que creías acotado
 a 10 puede estar pintando 87 páginas. Mide siempre con las comillas dentro del patrón.
 
-## Reglas de la capa (las mide `check:tokens`)
+## Reglas de la capa (las mide `check:tokens` — **córrela tú**)
 
 - Cero `!important`. Cero `@layer`: `webflow.css` son 167 KB **sin capa**, y cualquier regla sin
   capa gana a toda regla con capa. Tu fichero gana por **orden de carga**.

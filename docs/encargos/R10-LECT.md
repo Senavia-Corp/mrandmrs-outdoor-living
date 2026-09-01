@@ -60,7 +60,7 @@ reconstruyas.
 de `/project/`**. Otro chat trabaja en `/project/` ahora mismo. Es de un encargo posterior.
 También `.hero-section` (18) · `.cta-footer` (102) · `.code` · `.footer`.
 
-## Reglas de la capa (las mide `check:tokens`)
+## Reglas de la capa (las mide `check:tokens` — **córrela tú**)
 
 - Cero `!important`. Cero `@layer`: `webflow.css` son 167 KB **sin capa**, y cualquier regla sin
   capa gana a toda regla con capa. Tu fichero gana por **orden de carga**.

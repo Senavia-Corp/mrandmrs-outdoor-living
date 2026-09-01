@@ -113,3 +113,29 @@ baseline lo retrata como un hueco.
 Manda el informe **por encargo terminado**, no todos juntos al final. Yo construyo, mido y
 commiteo de uno en uno; una cola de tres informes a la vez no acelera nada y me obliga a
 adivinar de quién es cada regla si algo sale rojo.
+
+---
+
+## ANEXO (14:55) — ya existe `check:tokens`, y la corres tú
+
+```bash
+npm run check:tokens
+```
+
+Estática, sin navegador, **menos de un segundo**. No construye nada, así que puedes correrla
+cuantas veces quieras sin molestar a nadie ni pedir ventana. **Córrela antes de cada informe y
+pega su salida literal.**
+
+Comprueba las nueve cosas que tu cabecera de fichero te pide y que nadie más puede ver: cero
+`!important`, cero `@layer`, ningún literal de color fuera de `disenio/tokens.css`, ninguna
+referencia a los tokens shadcn muertos, ningún `forwards`, prefijo de selector en `disenio/`,
+ningún `opacity: 0` estático, y el presupuesto de peso de la capa (hoy 16,6 KB de 80).
+
+Hoy da **PUERTA VERDE, 9 de 9, sin una sola excepción**. Está así porque la capa está limpia,
+y el trabajo de los tres es que siga estándolo: **si tu informe la trae en rojo, el encargo
+vuelve.** Da fichero y línea, así que no hay que adivinar.
+
+Dos cosas que sabe y que te ahorran un susto: los comentarios se descuentan antes de medir
+—tu cabecera menciona `!important` y `#f4b248` en prosa y eso no cuenta—, y un `opacity: 0`
+solo es violación si **nada vuelve a encenderlo** (un `@keyframes`, un `html[data-anim]`, un
+selector con atributo de estado o una regla que suba la opacidad en hover son legítimos).
