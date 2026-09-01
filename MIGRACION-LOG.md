@@ -163,6 +163,119 @@ Esta lista es el insumo de la conversación posterior con el cliente.
 
 ## Entradas
 
+## Fase R10/R11 — 4 frentes integrados, 83 rutas re-baselinizadas, y la barandilla que fallaba abierta   ✅ cerrada
+**Fecha:** 2026-08-31 · **Commits:** `fa02470` … `R11 lote 5/5`
+
+### Objetivo
+Integrar los cuatro frentes que estaban editando a la vez, medir con el árbol quieto y
+re-baselinizar lo aprobado. El rediseño de subservicios de `services/` era el encargo; la mitad
+del trabajo acabó siendo coordinar.
+
+### Qué se hizo
+- **`src/styles/servicios.css`** (nuevo) — la sección de subservicios de las 14 fichas.
+  `section.services` existe SOLO ahí: 1 sección y 1 rejilla por página, y 8 hijos elemento
+  exactos en la lista, verificado con dos parsers. 21 reglas, todas colgando de `.services`.
+- **`src/styles/blog.css`** (nuevo) — sacado de `home.css`, donde no cabía: la sección se pinta
+  en 63 rutas y un fichero llamado `home` mentiría sobre su alcance.
+- **`src/layouts/Base.astro`** — cableadas las dos, entre `home.css` y `propio.css`.
+- **`scripts/check-texto.mjs`** — cerrado el fallo abierto (abajo) y añadido el bloque declarado
+  de reseñas, derivado de `resenas.json`.
+- **`disenio/contratos.json`** — las 83 rutas rediseñadas a contrato `rediseno`.
+- Integrados sin revertir nada: F1 (foco y teclado del nav), R9-BLOG-01 (blog en carrusel),
+  D2 (reseñas nativas).
+
+### Números medidos
+| Métrica | Antes | Ahora |
+|---|---|---|
+| cuerpo de tarjeta de subservicio | 12 px, negro | 15 px, `#596b9a` (4,62:1 sobre el panel) |
+| antetítulo | 20 px — empatado con el h3 | 13 px, atenuado |
+| h3 de tarjeta | 20 px plano | 22,4 px a 1440 |
+| superficie | blanco sobre blanco + `0 2px 5px #0003` | panel `#e9f1fd` + borde 1 px, sin sombra |
+| icono | ancho sin fijar → `naturalWidth` **0** en frío | placa 72×72, 8/8 cargados |
+| línea de texto a 991 | ~90 caracteres | ~59 |
+| rutas re-baselinizadas | 0 | 83 (× 4 anchos = 332) |
+
+### Evidencia
+```bash
+$ node scripts/check-texto.mjs
+  115 identicas · 0 en rojo   (115/115 rutas medidas)
+  ok   reseñas: bloque declarado de 26 lineas, descontado en las 83 rutas que lo montan
+PUERTA VERDE
+
+$ node scripts/check-visual.mjs professional-landscaping-services broward-county gainesville-florida industry-solutions north-florida
+  40 iguales · 0 distintas · 0 declaradas · 0 sin baseline
+PUERTA VERDE
+```
+
+### Gate
+**Criterio:** texto 100 % sin re-baselinizar `baseline/text/`, ix2 verde, y las 83 defendiéndose
+contra sus referencias nuevas.
+**Resultado:** ✅ verde. `check:rutas`, `check:enlaces`, `check:seo`, `check:texto` (115/115) y
+`check:ix2` verdes; `check:visual` verde sobre la muestra de las 83.
+
+### EL FALLO ABIERTO — `check-texto.mjs:136`, y era la barandilla
+`if (!resp?.ok()) { saltadas++; continue; }`, impreso como «N aun sin construir». Dos mentiras:
+la causa casi nunca es que la página no esté construida —`!resp.ok()` casa con cualquier fallo
+de carga, y el que ocurre es que el navegador MUERA—, y `saltadas` **no entraba en `mal`**, así
+que no tocaba ni el veredicto ni el `process.exit`. Una corrida que perdía el navegador en la
+ruta 14 imprimía `14 identicas · 0 con diferencias · 101 aun sin construir` y a continuación
+**PUERTA VERDE, con salida 0**. Ocurrió: 101 fantasmas.
+
+`check:texto` es la ÚNICA puerta que no se re-baseliniza nunca (§1.1): es lo que da permiso de
+reescribir markup en las 114. **La barandilla del programa fallaba abierta.** Ahora: dos intentos
+y rojo, el cubo desaparece, una ruta no puede matar la corrida, y el resumen dice cuántas de las
+115 se midieron de verdad.
+
+Hallado por el frente R9-BLOG-01. Es el **quinto** fallo de la misma familia —una puerta que no
+distingue «no lo he medido» de «lo he medido y está bien»— y los cinco salieron el mismo día.
+
+### Desviaciones
+- **El re-baseline va POR LOTES, no de una vez.** La corrida única de las 83 murió con
+  `TimeoutError` en `disparar()` —que ya tiene 120 s por captura— en la número 87 de 332. No es
+  una página lenta: es el navegador atascándose tras ~86 capturas de página completa seguidas.
+  Y como `aprobar-diseno.mjs` exige árbol limpio, **entre lote y lote hay que commitear**; si no,
+  el siguiente se niega, y su negativa imprime el listado de sucios, que se parece lo bastante a
+  una salida normal como para colarse.
+- **El formateador de las reseñas NO se comparte** entre el componente y la puerta, contra lo que
+  proponía el frente de D2. Para código de producción DRY es correcto; para el oráculo de una
+  puerta se invierte: compartirlo haría la comparación `f(x) === f(x)`, verde siempre. La prueba
+  es que el bug de zona horaria de `ResenasGoogle.astro` se encontró **porque** las dos
+  derivaciones eran independientes y discreparon. Demostrado en rojo saboteando solo la zona
+  horaria de la puerta: 1 línea de 26 y salta.
+
+### Rarezas del original replicadas a propósito
+- **El `text-transform: capitalize` no se toca, ni para quitarlo.** `disenio/base.css:88-92`
+  afirma que `capitalize` no altera `innerText` y **es falso**: el marcado dice `What do we do!`
+  y `baseline/text/services_professional-….txt:17` dice `What Do We Do!`. Lo mismo en el nav
+  (`financing` → `Financing`, `Get a Free Estimate` → `Get A Free Estimate`). Es load-bearing en
+  las 114. La regla de `base.css` es correcta; su motivo está mal, y un comentario que dice «esto
+  es inerte» es por donde vuelve la regresión.
+- **El `<style>` sin ámbito del code-embed** de las 9 de `country/` deja `.grid-wrapper` en
+  `overflow: visible` contra el `hidden` de Webflow, ganando desde el `<body>` a toda hoja del
+  `<head>`. Medido en navegador. Mina para quien toque `.grid-wrapper` mañana.
+
+### Sobre las 9 rojas históricas de `country/`
+Quedan **superadas, no diagnosticadas**. Se sospechó que el bucle WAAPI del mosaico congelaba un
+fotograma arbitrario; el `diag-visual` previo al `--si` puso las seis bandas de mayor diferencia
+en `section.blog-section-page` y ninguna en `.grid-*`, pero **ese diag retrata la diferencia de
+hoy**, dominada por el blog rediseñado, no el ~98,7 % histórico. Lo que sí las cierra es que el
+baseline se capturó con la MISMA receta —`disparar()` con `animations:'disabled'`—, así que
+congeló el mismo fotograma: no había dos que comparar.
+
+### Abierto
+- **`check:cascaron`** sin correr: necesita el build de fixtures, que reemplaza el normal.
+- **La máscara de `.mm-resenas`** en `MASCARAS`: no hace falta hoy porque `resenas.json` es
+  estático y versionado, pero **hará falta ANTES del primer lunes** en cuanto entre el cron
+  semanal, o `check:visual` se pondrá rojo en las 83 esa madrugada.
+- **`scripts/build-shell.mjs` está roto** desde `b416096`: `n.querySelectorAll` con el parámetro
+  llamado `nodo` → ReferenceError. Y su línea 34 hace `fetch` al Webflow vivo, que morirá al
+  cortar el dominio.
+- **Las 71 rutas de `.block-contect-intro`** (fase de intro) sin empezar, y su decisión de alcance
+  pendiente: el generador emitirá `mm-intro` para dar el interruptor por página.
+- **`disenio/base.css:88-92`** por corregir — es de ARTE y ARTE no está activo.
+
+---
+
 <!-- a partir de aquí, una entrada por fase, la más reciente arriba -->
 
 ## Baseline — las 12 de `/services/`, recapturadas del vivo   ✅ cerrada (con un defecto nuevo abierto)
