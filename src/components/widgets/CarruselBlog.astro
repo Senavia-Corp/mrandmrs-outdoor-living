@@ -1,0 +1,95 @@
+---
+/**
+ * CarruselBlog — la seccion de blog de la home, llevada a las 14 fichas de `services/`.
+ *
+ * POR QUE UN COMPONENTE Y NO MARCADO INYECTADO. La seccion son ~15,7 KB de HTML con los 10
+ * posts horneados. Duplicarlo en 14 ficheros derivados seria 220 KB que hay que regenerar
+ * entero cada vez que cambie un post — y el encargo dice que MAS ADELANTE cada ficha filtrara
+ * por su categoria de servicio. Pasando por dato, ese dia es una prop, no una regeneracion.
+ *
+ * HEREDA EL REDISEÑO SIN DUPLICAR UNA LINEA DE CSS. `src/styles/blog.css` (R9-BLOG-01) cuelga
+ * entero de `.blog-section-page .*`: 3 tarjetas por vista, alturas iguales, CTA alineado,
+ * flecha en navy. Emitiendo las mismas clases se aplica solo.
+ *
+ * NO EMITE `data-w-id`, y es deliberado. Las claves de reveal viven en `src/data/reveals.json`
+ * y `check:ix2` fija las huerfanas en 14: emitir un id que no este en el catalogo, o repetir
+ * uno de la home, moveria ese contador. La entrada por scroll, si se quiere, se añade en CSS
+ * — mas barato que tocar el catalogo IX2.
+ *
+ * El motor del slider ya existe: `Componentes.astro` engancha por `[fs-slider-element="list"]`
+ * y `src/data/sliders.json` ya trae la configuracion de `fs-slider-blog`.
+ */
+import datos from '../../data/blogs.json';
+
+interface Props {
+  /** Filtra por categoria de servicio. HOY NO SE PASA y no hay categorias en el dato:
+   *  `blogs.json` las emite en `null`. Sin prop, o sin coincidencias, salen todos — que es
+   *  lo decidido con Sebastian: los 10 ahora, el filtro cuando existan las categorias. */
+  categoria?: string;
+}
+const { categoria } = Astro.props;
+
+const todos = datos.posts;
+const filtrados = categoria ? todos.filter((p) => p.categoria === categoria) : todos;
+/* Reserva explicita: una categoria sin posts NO deja la seccion vacia. Un carrusel de cero
+ * tarjetas es peor que uno generico, y ademas cambiaria el texto de esa ruta sin avisar. */
+const posts = filtrados.length ? filtrados : todos;
+---
+<section class="blog-section-page">
+  <div class="w-layout-blockcontainer container-blog w-container">
+    <div class="header-blog">
+      <h2>{datos.titulo}</h2>
+      <p>{datos.entradilla}</p>
+    </div>
+    <div>
+      <div fs-slider-type="cms" fs-slider-instance="fs-slider-blog" class="fs-slider-blog_instance">
+        <div fs-slider-element="list-wrapper" class="fs-slider-blog_list-wrapper w-dyn-list">
+          <div fs-slider-element="list" role="list" class="fs-slider-blog_list w-dyn-items">
+            {posts.map((p) => (
+              <div fs-slider-element="slide" role="listitem" class="fs-slider-blog_slide w-dyn-item">
+                <div class="card">
+                  <div class="image-card">
+                    <img
+                      alt={p.imagen.alt}
+                      loading="lazy"
+                      src={p.imagen.src}
+                      sizes={p.imagen.sizes}
+                      srcset={p.imagen.srcset}
+                      class="img-blog"
+                    />
+                  </div>
+                  <div class="content-card">
+                    <h3>{p.titulo}</h3>
+                    <p class="paragraph-mini">{p.resumen}</p>
+                    <div class="wrapper-buttons">
+                      <a href={p.enlace} class="button-styles w-button">{p.cta}</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div fs-slider-element="navigation" class="fs-slider-blog_navigation">
+          <button fs-slider-element="previous" class="fs-slider-blog_previous" aria-label="Previous posts">
+            <div class="fs-slider-blog_arrow w-embed">
+              <svg width="100%" height="100%" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M17.0019 3.80378C16.5119 3.31378 15.7219 3.31378 15.2319 3.80378L6.92189 12.1138C6.53189 12.5038 6.53189 13.1338 6.92189 13.5238L15.2319 21.8338C15.7219 22.3238 16.5119 22.3238 17.0019 21.8338C17.4919 21.3438 17.4919 20.5538 17.0019 20.0638L9.76189 12.8138L17.0119 5.56378C17.4919 5.08378 17.4919 4.28378 17.0019 3.80378Z" fill="currentColor"></path>
+              </svg>
+            </div>
+          </button>
+          <button fs-slider-element="next" class="fs-slider-blog_next" aria-label="Next posts">
+            <div class="fs-slider-blog_arrow w-embed">
+              <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M6.99811 21.0151C7.48811 21.5051 8.27811 21.5051 8.76811 21.0151L17.0781 12.7051C17.4681 12.3151 17.4681 11.6851 17.0781 11.2951L8.7681 2.98507C8.2781 2.49507 7.4881 2.49507 6.9981 2.98507C6.5081 3.47507 6.5081 4.26507 6.9981 4.75507L14.2381 12.0051L6.98811 19.2551C6.50811 19.7351 6.5081 20.5351 6.99811 21.0151Z" fill="currentColor"></path>
+              </svg>
+            </div>
+          </button>
+        </div>
+        <div fs-slider-element="scrollbar" class="fs-slider-blog_scrollbar">
+          <div fs-slider-element="scrollbar-drag" class="fs-slider-blog_scrollbar-drag"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

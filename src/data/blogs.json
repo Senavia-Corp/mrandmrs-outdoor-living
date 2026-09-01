@@ -1,0 +1,144 @@
+{
+ "_lee_esto": [
+  "DERIVADO de src/pages/index.astro por scripts/build-blogs.mjs. No editar a mano:",
+  "se regenera con `node scripts/build-blogs.mjs` y cualquier cambio manual se pierde.",
+  "",
+  "`categoria` va en null a proposito. Cuando existan categorias de servicio se rellena",
+  "aqui y CarruselBlog.astro filtra por su prop; no hay que tocar el generador de paginas",
+  "ni regenerar las 14 fichas."
+ ],
+ "titulo": "Luxury Outdoor Living & Pool Design Insights in Florida",
+ "entradilla": "Explore expert insights, guides, and tips on pool construction, spa design, and outdoor living design build Florida tailored for Florida homes.",
+ "posts": [
+  {
+   "titulo": "How Outdoor Living Spaces Increase Property Value in Florida",
+   "resumen": "Learn how pools, lanais, and outdoor kitchens increase property value and ROI in Florida’s real estate market.",
+   "enlace": "/blogs/how-outdoor-living-spaces-increase-property-value-in-florida",
+   "cta": "Read More",
+   "imagen": {
+    "src": "/images/site/outdoor-living-increases-property-value-florida.webp",
+    "srcset": "/images/site/outdoor-living-increases-property-value-florida-p-500.webp 500w, /images/site/outdoor-living-increases-property-value-florida-p-800.webp 800w, /images/site/outdoor-living-increases-property-value-florida-p-1080.webp 1080w, /images/site/outdoor-living-increases-property-value-florida-p-1600.webp 1600w, /images/site/outdoor-living-increases-property-value-florida-p-2000.webp 2000w, /images/site/outdoor-living-increases-property-value-florida-p-2600.webp 2600w, /images/site/outdoor-living-increases-property-value-florida.webp 2752w",
+    "sizes": "(max-width: 767px) 100vw, (max-width: 991px) 727px, 940px",
+    "alt": "Luxury outdoor living space in Florida with pool, lanai, and outdoor kitchen designed to increase property value."
+   },
+   "categoria": null
+  },
+  {
+   "titulo": "Outdoor Living Design Guide for Florida Homes",
+   "resumen": "Expert guide to designing durable, stylish outdoor living spaces built for Florida’s climate and lifestyle.",
+   "enlace": "/blogs/outdoor-living-design-guide-for-florida-homes",
+   "cta": "Read More",
+   "imagen": {
+    "src": "/images/site/outdoor-living-design-florida-homes.webp",
+    "srcset": "/images/site/outdoor-living-design-florida-homes-p-500.webp 500w, /images/site/outdoor-living-design-florida-homes-p-800.webp 800w, /images/site/outdoor-living-design-florida-homes-p-1080.webp 1080w, /images/site/outdoor-living-design-florida-homes-p-1600.webp 1600w, /images/site/outdoor-living-design-florida-homes-p-2000.webp 2000w, /images/site/outdoor-living-design-florida-homes-p-2600.webp 2600w, /images/site/outdoor-living-design-florida-homes.webp 2752w",
+    "sizes": "(max-width: 767px) 100vw, (max-width: 991px) 727px, 940px",
+    "alt": "Luxury outdoor living space in Florida with covered lanai, pool, and outdoor kitchen designed for year-round use."
+   },
+   "categoria": null
+  },
+  {
+   "titulo": "What Permits Are Required for Pool Construction in Florida?",
+   "resumen": "Learn which permits are required for pool construction in Florida and how to avoid delays, fines, and compliance issues.",
+   "enlace": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+   "cta": "Read More",
+   "imagen": {
+    "src": "/images/site/pool-construction-permits-florida.webp",
+    "srcset": "/images/site/pool-construction-permits-florida-p-500.webp 500w, /images/site/pool-construction-permits-florida-p-800.webp 800w, /images/site/pool-construction-permits-florida-p-1080.webp 1080w, /images/site/pool-construction-permits-florida-p-1600.webp 1600w, /images/site/pool-construction-permits-florida-p-2000.webp 2000w, /images/site/pool-construction-permits-florida.webp 2400w",
+    "sizes": "(max-width: 767px) 100vw, (max-width: 991px) 727px, 940px",
+    "alt": "Pool construction permits and inspection process in Florida for residential and commercial swimming pools."
+   },
+   "categoria": null
+  },
+  {
+   "titulo": "Common Pool Construction Mistakes We See in Florida",
+   "resumen": "Learn the most common pool construction mistakes in Florida and how to avoid costly repairs, delays, and code violations.",
+   "enlace": "/blogs/common-pool-construction-mistakes-we-see-in-florida",
+   "cta": "Read More",
+   "imagen": {
+    "src": "/images/site/common-pool-construction-mistakes-florida.webp",
+    "srcset": "/images/site/common-pool-construction-mistakes-florida-p-500.webp 500w, /images/site/common-pool-construction-mistakes-florida-p-800.webp 800w, /images/site/common-pool-construction-mistakes-florida-p-1080.webp 1080w, /images/site/common-pool-construction-mistakes-florida-p-1600.webp 1600w, /images/site/common-pool-construction-mistakes-florida-p-2000.webp 2000w, /images/site/common-pool-construction-mistakes-florida-p-2600.webp 2600w, /images/site/common-pool-construction-mistakes-florida.webp 2752w",
+    "sizes": "(max-width: 767px) 100vw, (max-width: 991px) 727px, 940px",
+    "alt": "Pool construction mistakes in Florida showing structural issues, drainage problems, and improper installation."
+   },
+   "categoria": null
+  },
+  {
+   "titulo": "Pool Construction Timeline in Florida: What to Expect From Start to Finish",
+   "resumen": "Understand the full pool construction timeline in Florida, from permits and excavation to inspections and final startup.",
+   "enlace": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+   "cta": "Read More",
+   "imagen": {
+    "src": "/images/site/pool-construction-timeline-florida.webp",
+    "srcset": "/images/site/pool-construction-timeline-florida-p-500.webp 500w, /images/site/pool-construction-timeline-florida-p-800.webp 800w, /images/site/pool-construction-timeline-florida-p-1080.webp 1080w, /images/site/pool-construction-timeline-florida-p-1600.webp 1600w, /images/site/pool-construction-timeline-florida-p-2000.webp 2000w, /images/site/pool-construction-timeline-florida-p-2600.webp 2600w, /images/site/pool-construction-timeline-florida.webp 2752w",
+    "sizes": "(max-width: 767px) 100vw, (max-width: 991px) 727px, 940px",
+    "alt": "Pool construction timeline in Florida showing excavation and structural phases of an inground pool project."
+   },
+   "categoria": null
+  },
+  {
+   "titulo": "Residential vs Commercial Pool Construction in Florida",
+   "resumen": "Key differences between residential and commercial pool construction in Florida, including codes, costs, timelines, and requirements.",
+   "enlace": "/blogs/residential-vs-commercial-pool-construction-in-florida",
+   "cta": "Read More",
+   "imagen": {
+    "src": "/images/site/residential-vs-commercial-pool-construction-florida.webp",
+    "srcset": "/images/site/residential-vs-commercial-pool-construction-florida-p-500.webp 500w, /images/site/residential-vs-commercial-pool-construction-florida-p-800.webp 800w, /images/site/residential-vs-commercial-pool-construction-florida-p-1080.webp 1080w, /images/site/residential-vs-commercial-pool-construction-florida-p-1600.webp 1600w, /images/site/residential-vs-commercial-pool-construction-florida-p-2000.webp 2000w, /images/site/residential-vs-commercial-pool-construction-florida-p-2600.webp 2600w, /images/site/residential-vs-commercial-pool-construction-florida.webp 3168w",
+    "sizes": "(max-width: 767px) 100vw, (max-width: 991px) 727px, 940px",
+    "alt": "Residential and commercial pool construction comparison showing private home pool and large Florida commercial pool."
+   },
+   "categoria": null
+  },
+  {
+   "titulo": "New Pool Construction vs Pool Remodeling: Which Is Right for You?",
+   "resumen": "Compare new pool construction and pool remodeling to choose the best option for your budget, timeline, and property goals.",
+   "enlace": "/blogs/new-pool-construction-vs-pool-remodeling-which-is-right-for-you",
+   "cta": "Read More",
+   "imagen": {
+    "src": "/images/site/new-pool-construction-vs-pool-remodeling-florida.webp",
+    "srcset": "/images/site/new-pool-construction-vs-pool-remodeling-florida-p-500.webp 500w, /images/site/new-pool-construction-vs-pool-remodeling-florida-p-800.webp 800w, /images/site/new-pool-construction-vs-pool-remodeling-florida-p-1080.webp 1080w, /images/site/new-pool-construction-vs-pool-remodeling-florida-p-1600.webp 1600w, /images/site/new-pool-construction-vs-pool-remodeling-florida-p-2000.webp 2000w, /images/site/new-pool-construction-vs-pool-remodeling-florida-p-2600.webp 2600w, /images/site/new-pool-construction-vs-pool-remodeling-florida.webp 2752w",
+    "sizes": "(max-width: 767px) 100vw, (max-width: 991px) 727px, 940px",
+    "alt": "Comparison of new pool construction and remodeled pool design in a Florida residential backyard."
+   },
+   "categoria": null
+  },
+  {
+   "titulo": "Commercial Pool Construction in Florida: What Decision-Makers Must Know",
+   "resumen": "Essential guide for developers and property owners planning compliant, durable commercial pool projects in Florida.",
+   "enlace": "/blogs/commercial-pool-construction-in-florida-what-decision-makers-must-know",
+   "cta": "Read More",
+   "imagen": {
+    "src": "/images/site/commercial-pool-construction-florida.webp",
+    "srcset": "/images/site/commercial-pool-construction-florida-p-500.webp 500w, /images/site/commercial-pool-construction-florida-p-800.webp 800w, /images/site/commercial-pool-construction-florida-p-1080.webp 1080w, /images/site/commercial-pool-construction-florida-p-1600.webp 1600w, /images/site/commercial-pool-construction-florida-p-2000.webp 2000w, /images/site/commercial-pool-construction-florida-p-2600.webp 2600w, /images/site/commercial-pool-construction-florida.webp 2752w",
+    "sizes": "(max-width: 767px) 100vw, (max-width: 991px) 727px, 940px",
+    "alt": "Commercial pool construction project in Florida designed for hotels, resorts, and multifamily properties."
+   },
+   "categoria": null
+  },
+  {
+   "titulo": "Complete Guide to Pool Construction in Florida: Costs, Timeline & Process",
+   "resumen": "Learn how pool construction works in Florida, including costs, timelines, permits, and climate considerations.",
+   "enlace": "/blogs/complete-guide-to-pool-construction-in-florida-costs-timeline-process",
+   "cta": "Read More",
+   "imagen": {
+    "src": "/images/site/luxury-pool-designs-florida-homes.webp",
+    "srcset": "/images/site/luxury-pool-designs-florida-homes-p-500.webp 500w, /images/site/luxury-pool-designs-florida-homes-p-800.webp 800w, /images/site/luxury-pool-designs-florida-homes-p-1080.webp 1080w, /images/site/luxury-pool-designs-florida-homes-p-1600.webp 1600w, /images/site/luxury-pool-designs-florida-homes-p-2000.webp 2000w, /images/site/luxury-pool-designs-florida-homes-p-2600.webp 2600w, /images/site/luxury-pool-designs-florida-homes.webp 2752w",
+    "sizes": "(max-width: 767px) 100vw, (max-width: 991px) 727px, 940px",
+    "alt": "Pool construction project in Florida showing modern inground pool design built to meet Florida building codes."
+   },
+   "categoria": null
+  },
+  {
+   "titulo": "Top 10 Luxury Pool Designs for Florida Homes",
+   "resumen": "Discover the top luxury pool designs transforming Florida homes. From infinity edges to integrated spas and smart lighting, explore premium pool ideas built for elegance, durability, and year-round outdoor living.",
+   "enlace": "/blogs/top-10-luxury-pool-designs-for-florida-homes",
+   "cta": "Read More",
+   "imagen": {
+    "src": "/images/site/luxury-pool-designs-florida-homes--blogs-tips.webp",
+    "srcset": "/images/site/luxury-pool-designs-florida-homes-p-500--blogs-tips.webp 500w, /images/site/luxury-pool-designs-florida-homes-p-800--blogs-tips.webp 800w, /images/site/luxury-pool-designs-florida-homes-p-1080--blogs-tips.webp 1080w, /images/site/luxury-pool-designs-florida-homes-p-1600--blogs-tips.webp 1600w, /images/site/luxury-pool-designs-florida-homes-p-2000--blogs-tips.webp 2000w, /images/site/luxury-pool-designs-florida-homes-p-2600--blogs-tips.webp 2600w, /images/site/luxury-pool-designs-florida-homes--blogs-tips.webp 2752w",
+    "sizes": "(max-width: 767px) 100vw, (max-width: 991px) 727px, 940px",
+    "alt": "Luxury pool design in Florida featuring a modern infinity-edge pool with glass tiles, integrated spa, and tropical landscaping designed for upscale outdoor living."
+   },
+   "categoria": null
+  }
+ ]
+}

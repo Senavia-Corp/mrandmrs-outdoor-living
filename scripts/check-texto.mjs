@@ -150,6 +150,66 @@ function lineasResenas() {
 }
 
 /**
+ * ── EL CARRUSEL DE BLOG EN `services/` (R10) — bloque DECLARADO, acotado POR RUTA ──────
+ *
+ * La seccion se añade a las 14 fichas de `services/` y aporta 32 lineas de `innerText`:
+ * titulo, entradilla y 10 posts x 3 (titulo, resumen, «Read More»). `baseline/text/` NO se
+ * re-baseliniza nunca (§1.1), asi que se DECLARA en vez de absorberse.
+ *
+ * SE ACOTA POR RUTA, y esta es la diferencia con el bloque de reseñas: en la HOME esta misma
+ * seccion SI esta en el baseline —es contenido del Webflow de origen—, asi que descontarla
+ * alli pondria `/` en rojo por 32 lineas que faltan. El de reseñas podia ir por marcador
+ * porque las reseñas son nuevas en las 83; este no.
+ *
+ * El formateo se escribe AQUI y no se importa de `CarruselBlog.astro`, por lo mismo que en
+ * reseñas: una puerta que deriva lo que espera del codigo que mide es `f(x) === f(x)`, verde
+ * siempre. Se comparte el DATO (`src/data/blogs.json`), no el formateo.
+ */
+const BLOG_RUTA = '/services/';
+
+/** Las lineas de `innerText` que emite CarruselBlog, en orden. */
+function lineasBlog() {
+  const f = path.join(RAIZ, 'src/data/blogs.json');
+  if (!fs.existsSync(f)) return [];
+  const d = JSON.parse(fs.readFileSync(f, 'utf8'));
+  const posts = d.posts ?? [];
+  if (!posts.length) return [];
+  const norm = (s) => (s ?? '').replace(/ /g, ' ').replace(/\s+/g, ' ').trim();
+
+  /**
+   * ⚠️ LOS TITULOS VAN CAPITALIZADOS, Y NO ES UN CAPRICHO DEL DATO.
+   *
+   * `webflow.css` pone `text-transform: capitalize` en `h2` y en `h3`, y **capitalize SI
+   * altera `innerText`** — es el hallazgo del frente del nav, y esta es la tercera vez que
+   * muerde: primero el nav (`financing` -> `Financing`), luego el antetitulo de subservicios
+   * (`What do we do!` -> `What Do We Do!`), y ahora esto.
+   *
+   * Medido sobre la pagina construida: 11 de las 32 lineas discrepaban, TODAS titulos, y
+   * todas por palabras pequeñas — `in`->`In`, `for`->`For`, `to`->`To`, `vs`->`Vs`.
+   * Aplicando la capitalizacion, 0 discrepancias.
+   *
+   * POR QUE SE MODELA AQUI Y NO SE GUARDA YA CAPITALIZADO EN `blogs.json`: el dato tiene que
+   * ser el texto REAL del post -es lo que se publica, lo que se indexa y lo que veria un CMS-.
+   * Guardar ahi el efecto de una regla CSS seria hornear la presentacion en el contenido, y
+   * el dia que alguien quite el `capitalize` el dato quedaria mintiendo.
+   *
+   * Solo se aplica a los TITULOS (h2 y los h3 de tarjeta). La entradilla y el resumen van en
+   * `<p>`, que no lleva capitalize — verificado: ninguna de esas lineas discrepaba.
+   *
+   * La aproximacion -mayuscula tras inicio, espacio o parentesis- no capitaliza tras guion,
+   * que es lo que hace CSS: `Decision-Makers` se queda igual en los dos lados. Validada contra
+   * el render real, no contra la especificacion.
+   */
+  const capitaliza = (s) => s.replace(/(^|[\s(])(\p{Ll})/gu, (_, a, b) => a + b.toUpperCase());
+
+  return [
+    capitaliza(norm(d.titulo)),
+    norm(d.entradilla),
+    ...posts.flatMap((p) => [capitaliza(norm(p.titulo)), norm(p.resumen), norm(p.cta)]),
+  ];
+}
+
+/**
  * Quita `bloque` de `lineas`, EXIGIÉNDOLO seguido y en orden. `null` si está pero partido o
  * desordenado — y ese `null` es lo que hace que esto DECLARE en vez de absorber: un
  * reordenamiento de las tarjetas sale rojo aunque estén todas.
@@ -164,8 +224,13 @@ function quitaBloque(lineas, bloque) {
   return null;
 }
 
+/** Cual de los bloques declarados fallo, para que el rojo diga la verdad. Antes el mensaje
+ *  etiquetaba TODO fallo como «bloque de reseñas» y me mando a depurar el bloque equivocado. */
+let bloqueQueFallo = null;
+
 /** Quita de `hay` los bloques declarados para esa ruta. `null` si alguno falla. */
 function sinElBloque(ruta, hay) {
+  bloqueQueFallo = null;
   let lineas = hay.split('\n');
 
   // 1 · el bloque tomado del baseline de OTRA ruta (hoy solo /pool-cost-estimator)
@@ -174,7 +239,7 @@ function sinElBloque(ruta, hay) {
     const f = path.join(RAIZ, 'baseline/text', `${aSlug(d.bloque)}.txt`);
     if (fs.existsSync(f)) {
       lineas = quitaBloque(lineas, fs.readFileSync(f, 'utf8').trimEnd().split('\n').filter(Boolean));
-      if (lineas === null) return null;
+      if (lineas === null) { bloqueQueFallo = `el bloque declarado de ${d.bloque}`; return null; }
     }
   }
 
@@ -183,7 +248,16 @@ function sinElBloque(ruta, hay) {
   const res = lineasResenas();
   if (res.length && lineas.includes(RESENAS_MARCADOR)) {
     lineas = quitaBloque(lineas, res);
-    if (lineas === null) return null;
+    if (lineas === null) { bloqueQueFallo = 'el bloque de reseñas (src/data/resenas.json)'; return null; }
+  }
+
+  // 3 · el carrusel de blog, SOLO en las fichas de services/. Los tres bloques son disjuntos.
+  if (ruta.startsWith(BLOG_RUTA)) {
+    const bl = lineasBlog();
+    if (bl.length) {
+      lineas = quitaBloque(lineas, bl);
+      if (lineas === null) { bloqueQueFallo = 'el bloque de blog (src/data/blogs.json)'; return null; }
+    }
   }
 
   return lineas.join('\n');
@@ -209,7 +283,7 @@ const ctx = await nav.newContext({ viewport: { width: 1920, height: 1080 },
   deviceScaleFactor: 1, reducedMotion: 'no-preference' });
 const pag = await ctx.newPage();
 
-let ok = 0, mal = 0, noCargaron = 0, conResenas = 0;
+let ok = 0, mal = 0, noCargaron = 0, conResenas = 0, conBlog = 0;
 const rojos = [];
 
 /**
@@ -222,6 +296,10 @@ const rojos = [];
  * puede exigir editar la puerta.
  */
 const RESENAS_ESPERADAS = lineasResenas().length ? 83 : 0;
+
+/** Las 14 fichas de `services/`. Derivado del estado, igual que el de reseñas: si el dato se
+ *  vacia, se esperan 0 y apagar la seccion no obliga a editar la puerta. */
+const BLOG_ESPERADAS = lineasBlog().length ? 14 : 0;
 
 for (const ruta of RUTAS) {
   const slug = aSlug(ruta);
@@ -306,15 +384,15 @@ for (const ruta of RUTAS) {
     .filter((l) => !declaradas.has(l)).join('\n');
   const bruto = (await textoNormalizado(pag)).trimEnd();
   if (bruto.includes(RESENAS_MARCADOR)) conResenas++;
+  if (ruta.startsWith(BLOG_RUTA) && lineasBlog().length
+      && bruto.includes(lineasBlog()[0])) conBlog++;
   const hay = sinElBloque(ruta, bruto);
   if (hay === null) {
     mal++;
     /* Cual de los dos bloques fallo. Antes esto leia `ANADIDAS_A_PROPOSITO[ruta].bloque` a
      * secas y habria reventado con un TypeError en las 83 rutas de reseñas, que no figuran
      * en ese mapa: el rojo se habria convertido en una caida de la corrida. */
-    const cual = ANADIDAS_A_PROPOSITO[ruta]
-      ? `el bloque declarado de ${ANADIDAS_A_PROPOSITO[ruta].bloque}`
-      : 'el bloque de reseñas derivado de src/data/resenas.json';
+    const cual = bloqueQueFallo ?? 'un bloque declarado';
     console.log(`  ROJO ${ruta} — ${cual} esta, pero PARTIDO o DESORDENADO`);
     rojos.push({ ruta, falta: [`${cual}: presente pero no seguido y en orden`], sobra: [], fuera: [] });
     continue;
@@ -374,6 +452,17 @@ if (filtro.length) {
 } else if (RESENAS_ESPERADAS) {
   console.log(`\n  ok   reseñas: bloque declarado de ${lineasResenas().length} lineas, `
     + `descontado en las ${conResenas} rutas que lo montan`);
+}
+
+/* Contador de blog. Mismo criterio que el de reseñas y misma omision en corrida acotada. */
+if (filtro.length) {
+  if (conBlog) console.log(`\n  --   blog: contador OMITIDO (corrida acotada). Salio en ${conBlog}.`);
+} else if (conBlog !== BLOG_ESPERADAS) {
+  mal++;
+  console.log(`\n  ROJO blog: el bloque sale en ${conBlog} ruta(s) y se esperaban ${BLOG_ESPERADAS}.`);
+} else if (BLOG_ESPERADAS) {
+  console.log(`  ok   blog: bloque declarado de ${lineasBlog().length} lineas, `
+    + `descontado en las ${conBlog} fichas de services/`);
 }
 
 if (noCargaron) {

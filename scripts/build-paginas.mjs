@@ -287,6 +287,10 @@ const protegida = (ruta) => [...NO_REGENERAR.keys()]
   .find((k) => (k !== '/' && k.endsWith('/') ? ruta.startsWith(k) : ruta === k));
 
 let titulosBlog = 0;   // h4 -> h3 de la seccion de blog (R9-BLOG-01)
+/* Cuenta las fichas de services/ que reciben el carrusel de blog. Se COMPRUEBA al final
+ * contra 14: si sube, se ha colado en rutas que no son de servicio; si baja, alguna se ha
+ * quedado sin el. Un «las que salgan» no comprobaria nada. */
+let blogsInsertados = 0;
 const generadas = [];
 const porColeccion = {};
 const protegidas = [];
@@ -438,8 +442,36 @@ for (const [ruta] of RUTAS) {
     antesNav += limpia(n);
   }
 
+  /**
+   * EL CARRUSEL DE BLOG EN LAS 14 FICHAS DE `services/` — y es una INSERCION, no una
+   * sustitucion, que es una capacidad que este generador no tenia.
+   *
+   * Hasta ahora solo REEMPLAZABA nodos que ya existian en el origen: `section.products-section`
+   * -> `ServiciosPorCategoria`, y los `div.elfsight-app-*` -> su widget. Aqui no hay nada que
+   * reemplazar: la seccion de blog NO existe en las fichas de servicio, y tampoco en el Webflow
+   * de origen -verificado, 0 coincidencias en `_source/vivo/services_*.html`-. Es contenido
+   * nuevo, no paridad.
+   *
+   * SE ACOTA POR PREFIJO DE RUTA y no por «si la pagina tiene .cta-footer»: ese `.cta-footer`
+   * esta en 114 paginas, asi que la condicion obvia habria puesto el carrusel en todas.
+   *
+   * VA ANTES DE `.cta-footer` porque es donde lo pidio Sebastian: entre las reseñas y el CTA
+   * del pie. En una ficha las secciones acaban en
+   *     location -> testimonial-section -> social-media -> cta-footer -> logos-section
+   *
+   * COSTE QUE HAY QUE TENER PRESENTE: son +32 lineas de `innerText` en cada una de las 14, y
+   * `baseline/text/` NO se re-baseliniza nunca (§1.1). Por eso el bloque va DECLARADO en
+   * `check-texto.mjs`, derivado de `src/data/blogs.json`, igual que el de reseñas.
+   */
   let acumulado = '';
-  for (let n = menu.nextElementSibling; n && n !== pie; n = n.nextElementSibling) acumulado += limpia(n);
+  for (let n = menu.nextElementSibling; n && n !== pie; n = n.nextElementSibling) {
+    if (ruta.startsWith('/services/') && n.matches?.('section.cta-footer')) {
+      acumulado += MARCA + 'CarruselBlog' + MARCA;
+      usados.add('CarruselBlog');
+      blogsInsertados++;
+    }
+    acumulado += limpia(n);
+  }
 
   // 2 páginas llevan un <script>+<style> DESPUÉS del pie (el redimensionador del iframe del
   // estimador). Si se ignoraran, esas páginas perderían código; si se pegaran arriba,
@@ -569,6 +601,8 @@ console.log(`\n  OK ${generadas.length} paginas · ${Math.round(kb)} kB de marca
 // `_source/vivo` (1 index + 9 country + 53 pool-builders) y de esas solo se escriben las 9. Sin
 // esta linea, un «630» al lado de «9 ficheros cambiados» parece un fallo y no lo es.
 console.log(`  blog: ${titulosBlog} titulo(s) h4 -> h3 en ${titulosBlog / 10} pagina(s) de _source`);
+console.log(`  carrusel de blog insertado en ${blogsInsertados} ficha(s) de services/`
+  + `${blogsInsertados === 14 ? '' : '   <<< SE ESPERABAN 14'}`);
 console.log('        se ESCRIBEN solo las que no estan en NO_REGENERAR (las 9 de country/).');
 console.log('        Las 53 de pool-builders/ llevan el cambio en src/data/plantilla-pool-builders.json,');
 console.log('        que ya no se rederiva: `npm run plantillas` la salta con «0 paginas · ya convertida».\n');
