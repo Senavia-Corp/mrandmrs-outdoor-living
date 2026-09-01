@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "astro dev --port 4325",
     "build": "npm run seo:ficheros && astro build",
-    "check": "npm run check:estimador && npm run build && npm run check:assets && npm run check:rutas && npm run check:enlaces && npm run check:seo && npm run check:texto && npm run check:ix2 && npm run check:visual",
+    "check": "npm run check:resenas && npm run check:estimador && npm run build && npm run check:assets && npm run check:rutas && npm run check:enlaces && npm run check:seo && npm run check:texto && npm run check:ix2 && npm run check:visual",
+    "resenas:fetch": "node scripts/fetch-resenas.mjs",
+    "check:resenas": "node scripts/lib/resenas-normalize.test.mjs && node scripts/check-resenas.mjs",
     "vivo": "node scripts/fetch-vivo.mjs",
     "assets": "node scripts/download-assets.mjs",
     "fuentes": "node scripts/fetch-fuentes.mjs",

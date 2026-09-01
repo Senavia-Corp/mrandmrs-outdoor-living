@@ -1,9 +1,60 @@
 {
-  "_lee_esto": "Datos de las reseñas de Google. VACÍO A PROPÓSITO: el componente no pinta nada mientras no haya reseñas REALES. No se rellena a mano ni con texto de ejemplo — una reseña inventada en un sitio de captación es un problema, no un marcador de posición. Lo llena la integración de la Fase 8 desde el perfil del cliente.",
-  "fuente": "Google Business Profile · CID 13592496939047920063",
-  "enlacePerfil": "https://maps.google.com/?cid=13592496939047920063",
-  "actualizado": null,
+  "_lee_esto": "GENERADO por scripts/fetch-resenas.mjs — no editar a mano, SALVO `publicar`. Refresco: npm run resenas:fetch",
+  "_publicar": "INTERRUPTOR HUMANO, no derivado. En false el componente no pinta NADA. ENCENDIDO el 31-ago-2026 por Sebastian, al conseguir acceso de Manager al Perfil de Empresa del cliente: se pasa de las 5 que daba Places a las 13 reales por Business Profile. El fetch lo PRESERVA entre corridas: apagarlo o encenderlo es una decision, no un efecto secundario de refrescar.",
+  "publicar": true,
+  "fuente": "Google Business Profile · CID 2096358844840078377 · business-profile-api",
+  "enlacePerfil": "https://maps.google.com/?cid=2096358844840078377",
+  "actualizado": "2026-09-01T01:11:12.135Z",
   "valoracion": null,
   "total": null,
-  "items": []
+  "items": [
+    {
+      "autor": "Scott Osteen",
+      "estrellas": 5,
+      "texto": "Wonderful company to work with, fast response time and they walk you through the whole process start to finish! Highly recommend!",
+      "fecha": "2026-05-07T13:40:15.358664Z"
+    },
+    {
+      "autor": "John Darr",
+      "estrellas": 5,
+      "texto": "If you are looking for a pool contractor that does a GREAT job and is fairly priced, Mr and Mrs Outdoor is your company!",
+      "fecha": "2026-05-07T13:08:09.555855Z"
+    },
+    {
+      "autor": "Brian Keyes",
+      "estrellas": 5,
+      "texto": "Thank you for your quick response and help with our spa deck issue. I know it was a small job, but your help saved my club thousands. Looking forward to work with you on our pergola swap out and our intracoastal outdoor kitchen. Thank you",
+      "fecha": "2026-01-16T15:27:13.432743Z"
+    },
+    {
+      "autor": "Manuel Guerrero",
+      "estrellas": 5,
+      "texto": "I contacted Mr & Mrs Outdoor Living to build a pergola and an outdoor kitchen, and their work was excellent. I hope to get a larger property someday so they can also build a swimming pool for me. Mr & Mrs Outdoor Living does almost everything and knows exactly what they're doing—100% recommended!",
+      "fecha": "2025-10-31T15:26:50.124395Z"
+    },
+    {
+      "autor": "Petra Morum",
+      "estrellas": 5,
+      "texto": "I had my pool resurfaced by this company and couldn’t be more pleased with the experience. They were professional, friendly, and offered fair pricing. Communication was excellent from start to finish — I received regular updates and follow-ups throughout the job, even while I was away. The work was completed on time and with great attention to detail. Highly recommend them for anyone looking for quality and reliable service!",
+      "fecha": "2025-10-08T06:23:27.316730Z"
+    },
+    {
+      "autor": "Lucas Ochoa",
+      "estrellas": 5,
+      "texto": "Hey Made a job with Mr and Mrs outside living and I can’t tell you how happy I’m with everything. They were great and very professional they did everything they said and even more I love how my back yard looks now it looks like a club, I want to spend more time outdoors that inside my house thank to them",
+      "fecha": "2025-10-03T16:51:06.504406Z"
+    },
+    {
+      "autor": "Sebas VoiceOver World",
+      "estrellas": 5,
+      "texto": "It was truly a great experience working with you guys! I really appreciate the beautiful work you did in my backyard—it turned out absolutely amazing. Everything about the process was seamless and stress-free. You were easy to work with, very professional, and the quality of the products exceeded my expectations. My pool looks incredible, and the pergola is just stunning—such a perfect addition to the space. Thank you so much for your hard work and dedication. I highly recommend Mr. & Mrs. Elder Living to anyone looking to transform their outdoor space!",
+      "fecha": "2025-09-24T18:15:31.157119Z"
+    },
+    {
+      "autor": "Liceth Pacheco",
+      "estrellas": 5,
+      "texto": "Valeria and her husband are the best. Thank you, Mr. and Mrs. Outdoor Living.",
+      "fecha": "2025-08-29T18:35:16.853554Z"
+    }
+  ]
 }

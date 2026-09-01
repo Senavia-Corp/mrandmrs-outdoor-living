@@ -21,12 +21,35 @@ interface Props {
   datosDemo?: typeof datos;
 }
 const d = (Astro.props.datosDemo ?? datos) as {
+  publicar?: boolean;
   items: { autor: string; foto?: string; estrellas: number; texto: string; fecha?: string }[];
   valoracion: number | null; total: number | null; enlacePerfil: string; actualizado: string | null;
 };
 const { items, valoracion, total, enlacePerfil, actualizado } = d;
-const hay = items.length > 0;
-const fmt = (f?: string) => (f ? new Date(f).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : '');
+/**
+ * Dos condiciones, y la primera es un INTERRUPTOR HUMANO que vive en el JSON.
+ *
+ * `publicar: false` deja las 83 rutas que montan este componente exactamente como
+ * estaban, sin desmontarlo de ninguna: el dia que haya material aprobado se cambia
+ * un booleano y salen. La decision es sobre los DATOS, no sobre el markup, y por eso
+ * no se apaga comentando el componente en 83 sitios.
+ *
+ * `!== false` y no `=== true`: un JSON antiguo sin el campo sigue pintando si tiene
+ * reseñas, que es el comportamiento de antes. Solo un `false` explicito apaga.
+ */
+const hay = d.publicar !== false && items.length > 0;
+/**
+ * Mes y año en la zona del NEGOCIO, no en la de quien mira.
+ *
+ * Sin `timeZone` esto lo resuelve el navegador del visitante: una reseña de las
+ * 21:00 del 31 de agosto en Florida llega como 2026-09-01T01:00Z y se veia
+ * «Aug 2026» desde Miami y «Sep 2026» desde Madrid. Es la fecha en que un cliente
+ * escribio su reseña: no puede depender de donde este el que la lee.
+ */
+const fmt = (f?: string) => (f
+  ? new Date(f).toLocaleDateString('en-US',
+      { month: 'short', year: 'numeric', timeZone: 'America/New_York' })
+  : '');
 ---
 {hay && (
   <div class="mm-resenas">
@@ -55,9 +78,10 @@ const fmt = (f?: string) => (f ? new Date(f).toLocaleDateString('en-US', { month
       </a>
     </div>
 
-    <ul class="mm-resenas__lista" role="list">
+    <div class="mm-resenas__carrusel" fs-slider-instance="fs-slider-resenas">
+    <ul class="mm-resenas__lista" fs-slider-element="list" role="list">
       {items.map((r) => (
-        <li class="mm-resenas__tarjeta">
+        <li class="mm-resenas__tarjeta" fs-slider-element="slide" role="listitem">
           <div class="mm-resenas__estrellas mm-resenas__estrellas--card" role="img" aria-label={`${r.estrellas} de 5`}>
             {[1, 2, 3, 4, 5].map((n) => (
               <svg viewBox="0 0 20 20" class={n <= r.estrellas ? 'llena' : ''} aria-hidden="true">
@@ -69,7 +93,7 @@ const fmt = (f?: string) => (f ? new Date(f).toLocaleDateString('en-US', { month
           <div class="mm-resenas__autor">
             {r.foto
               ? <img src={r.foto} alt="" width="40" height="40" loading="lazy" decoding="async" />
-              : <span class="mm-resenas__inicial" aria-hidden="true">{r.autor.trim().charAt(0)}</span>}
+              : <span class="mm-resenas__inicial" aria-hidden="true" data-inicial={r.autor.trim().charAt(0)}></span>}
             <span>
               <strong>{r.autor}</strong>
               {r.fecha && <em>{fmt(r.fecha)}</em>}
@@ -78,6 +102,18 @@ const fmt = (f?: string) => (f ? new Date(f).toLocaleDateString('en-US', { month
         </li>
       ))}
     </ul>
+      <div fs-slider-element="navigation" class="mm-resenas__nav">
+        <button type="button" fs-slider-element="previous" class="mm-resenas__flecha" aria-label="Previous reviews">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button type="button" fs-slider-element="next" class="mm-resenas__flecha" aria-label="Next reviews">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <div fs-slider-element="scrollbar" class="mm-resenas__barra" role="presentation">
+        <div fs-slider-element="scrollbar-drag" class="mm-resenas__barra-drag"></div>
+      </div>
+    </div>
     {actualizado && <p class="mm-resenas__pie">Updated {fmt(actualizado)}</p>}
   </div>
 )}
@@ -111,29 +147,88 @@ const fmt = (f?: string) => (f ? new Date(f).toLocaleDateString('en-US', { month
 
   /* ── estrellas ────────────────────────────────────────────────────────── */
   .mm-resenas__estrellas { display: flex; gap: 2px }
-  .mm-resenas__estrellas svg { width: 18px; height: 18px; fill: #ffffff3d }
-  .mm-resenas__estrellas svg.llena { fill: var(--yellow-1, #f4b248) }
+  /* `currentColor` y no un blanco fijo: este componente vive en fondo OSCURO en
+     la home y en fondo BLANCO en /testimonials y /contact-us. Con #ffffff3d la
+     estrella vacia era invisible en la mitad de las rutas. */
+  .mm-resenas__estrellas svg { width: 18px; height: 18px; fill: currentColor; opacity: .24 }
+  .mm-resenas__estrellas svg.llena { fill: var(--yellow-1, #f4b248); opacity: 1 }
 
-  /* ── la rejilla ───────────────────────────────────────────────────────── */
+  /* ── el carrusel ──────────────────────────────────────────────────────────
+     El motor vive en Componentes.astro y es global: se activa solo con los
+     atributos fs-slider-* mas una entrada en la configuracion de sliders. Aqui
+     NO se escribe JS. El desplazamiento, el scroll-snap y el ocultado de la
+     barra nativa los pone el, colgados de [fs-slider-element="list"].
+
+     ALTURA CONSTANTE, y es load-bearing: check-visual.mjs corta por diferencia
+     de alto ANTES de comparar un solo pixel. Si la seccion creciera con el
+     numero o la longitud de las reseñas, cada refresco semanal movería todo lo
+     que va debajo y pondría en rojo las 83 rutas sin que nada este roto. De ahi
+     las tres alturas clavadas: resumen, tarjeta y pie.
+     ─────────────────────────────────────────────────────────────────────────── */
+  .mm-resenas__carrusel { position: relative }
+
   .mm-resenas__lista {
     list-style: none; margin: 0; padding: 0;
-    display: grid; gap: 1.25rem;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: flex; gap: 1.25rem;
   }
 
   .mm-resenas__tarjeta {
     display: flex; flex-direction: column; gap: .85rem;
     padding: 1.5rem;
     border-radius: 15px;                        /* el radio de .card del sitio */
-    background-color: #ffffff14;                /* vidrio sobre el fondo oscuro */
+    /* Vidrio que se adapta al fondo. El primer valor es el respaldo para quien
+       no entienda color-mix; el segundo tiñe con el color de texto heredado, asi
+       que funciona igual sobre el fondo oscuro de la home que sobre el blanco de
+       /testimonials, donde un #ffffff14 era invisible. */
+    background-color: #ffffff14;
+    background-color: color-mix(in srgb, currentColor 8%, transparent);
     border: 1px solid #ffffff29;
+    border-color: color-mix(in srgb, currentColor 18%, transparent);
     backdrop-filter: blur(6px);
+    /* `flex: none` + `height` fijo: el motor escribe el `width` en linea a partir
+       de la configuracion, y la altura no puede depender del texto. El respaldo
+       de `flex-basis` es para cuando el motor aun no ha dimensionado. */
+    flex: none; height: 320px; flex-basis: min(380px, 82%);
+    box-sizing: border-box;
   }
 
   .mm-resenas__texto {
     margin: 0; font-size: 16px; line-height: 1.55;
+    /* El recorte es SOLO visual: el texto entero sigue en el DOM y en el HTML
+       servido, que es donde esta todo el valor -lo leen los crawlers y los
+       motores de respuesta-. `height` y no `max-height` para que una reseña
+       corta ocupe lo mismo que una larga. */
     display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical;
     overflow: hidden;
+    height: calc(6 * 1.55em);
+  }
+
+  /* ── flechas y barra ──────────────────────────────────────────────────── */
+  .mm-resenas__nav { display: flex; gap: .6rem; justify-content: center; margin-top: 1.5rem }
+  .mm-resenas__flecha {
+    width: 3rem; height: 3rem; flex: none;
+    display: grid; place-items: center;
+    border: 0; border-radius: 100%; cursor: pointer;
+    color: var(--blue_dark, #001c63);
+    background-image: linear-gradient(135deg,
+      var(--yellow-1, #f4b248), var(--yellow-2, #d99933) 25%,
+      var(--yellow-3, #edb660) 50%, var(--yellow-2, #d99933) 75%, var(--yellow-1, #f4b248));
+  }
+  .mm-resenas__flecha svg { width: 1.35rem; height: 1.35rem }
+  .mm-resenas__flecha:focus-visible { outline: 3px solid currentColor; outline-offset: 3px }
+  /* El motor marca los extremos con aria-disabled, no con el atributo disabled. */
+  .mm-resenas__flecha[aria-disabled="true"] { opacity: .35; pointer-events: none }
+
+  .mm-resenas__barra {
+    height: 1rem; margin-top: 1rem; border-radius: 1rem;
+    background-color: #ffffff29; overflow: hidden;
+    background-color: color-mix(in srgb, currentColor 18%, transparent);
+  }
+  .mm-resenas__barra-drag {
+    width: 20%; height: 1rem; border-radius: 1rem;
+    background-image: linear-gradient(135deg,
+      var(--yellow-1, #f4b248), var(--yellow-2, #d99933) 25%,
+      var(--yellow-3, #edb660) 50%, var(--yellow-2, #d99933) 75%, var(--yellow-1, #f4b248));
   }
 
   .mm-resenas__autor { display: flex; align-items: center; gap: .7rem; margin-top: auto }
@@ -148,13 +243,18 @@ const fmt = (f?: string) => (f ? new Date(f).toLocaleDateString('en-US', { month
     color: var(--blue_dark, #001c63);
     font-weight: 700; font-size: 17px;
   }
+  /* Contenido generado a proposito: como <span> de texto, `display:grid` lo
+     blockifica y se lleva una linea propia de innerText, que es la puerta mas
+     severa del repo. Con ::before no cuenta. Mismo truco que el contador 3/7. */
+  .mm-resenas__inicial::before { content: attr(data-inicial) }
   .mm-resenas__autor span { display: flex; flex-direction: column; line-height: 1.3 }
   .mm-resenas__autor em { font-style: normal; font-size: 13px; opacity: .75 }
 
   .mm-resenas__pie { margin: 1.25rem 0 0; text-align: center; font-size: 13px; opacity: .6 }
 
   @media (max-width: 767px) {
-    .mm-resenas__lista { grid-template-columns: 1fr }
+    /* El numero de tarjetas por vista lo gobierna slidesPerView, no el CSS. */
     .mm-resenas__nota { font-size: 28px }
+    .mm-resenas__tarjeta { height: 300px }
   }
 </style>
