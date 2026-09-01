@@ -284,6 +284,27 @@ deja: un build que muere ahí no prueba que el sitio esté roto — se reintenta
 limpio y el artefacto es derivado.
 
 ### Abierto
+- **`check:cascaron` regenera su propia referencia, desde el sitio VIVO** — el sexto de la
+  familia, hallado al ver que `baseline/cascaron.json` salía sucio tras correrla.
+  `check-cascaron.mjs:30` hace `import { sondaCascaron } from './capture-cascaron.mjs'`, y ese
+  módulo **no tiene guarda de módulo principal**: sus líneas 52-74 son código de nivel superior
+  que lanza Chromium, va a `https://mrandmrsoutdoorliving.com` y hace
+  `fs.writeFile('baseline/cascaron.json')`. Un `import` de ESM ejecuta el módulo entero, así que
+  **la puerta reescribe su referencia antes de comparar contra ella**, en cada corrida.
+  Consecuencias: (1) ensucia el árbol siempre, que es justo lo que bloquea `aprobar-diseno.mjs`;
+  (2) una deriva del Webflow vivo se absorbería en silencio en vez de saltar; (3) **el día que se
+  corte el dominio la puerta deja de funcionar del todo**. El verde de esta fase es real —comparó
+  el build contra el vivo y dio 303/303 con 0 desviados— pero significa «coincide con Webflow
+  ahora mismo», no «coincide con la referencia congelada». Arreglo: guarda de módulo principal en
+  `capture-cascaron.mjs`, y que el `BASE` del capturador salga de `_source/vivo/` congelado.
+  Explica además el «ruido de timestamp» que el frente del nav diagnosticó en `cascaron.json`: la
+  observación era correcta, la causa era otra.
+- **El degradado del mega-menú acababa en `#31c2f6` con texto blanco encima: 2,06:1**, en la
+  mitad inferior del panel y en las 114 páginas, desde la migración. **Ninguna puerta puede
+  cazarlo**: el panel va `display:none` al capturar, así que el cascarón guarda `0|0|0|0|none`
+  para sus ~149 elementos, `innerText` no lo ve y `check:visual` fotografía con todo cerrado. Es
+  una zona ciega estructural, no un descuido. Lo encontró un ojo, no un gate. Recortado a
+  `#1668b4` (5,72:1) con aprobación de Sebastian.
 - **La máscara de `.mm-resenas`** en `MASCARAS`: no hace falta hoy porque `resenas.json` es
   estático y versionado, pero **hará falta ANTES del primer lunes** en cuanto entre el cron
   semanal, o `check:visual` se pondrá rojo en las 83 esa madrugada.
