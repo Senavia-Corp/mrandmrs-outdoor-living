@@ -75,6 +75,17 @@ import '../styles/proyectos.css';
 // dos nombres se diferencian en un sufijo, los dos ficheros los escriben chats distintos, y
 // un `grep` de la subcadena `blog-section` casa los 87 ficheros de las dos cosas juntas.
 import '../styles/lectura.css';
+// LAS SIETE SECCIONES DE LA HOME que NO son solo de la home. Medido el 1-sep-2026: de las 11
+// secciones de `/`, la UNICA que existe unicamente ahi es el heroe. Las demas se pintan entre
+// 12 y 102 rutas, asi que «redisenar la home» es redisenar medio sitio — y un fichero
+// `home.css` que las llevara mentiria sobre su alcance, que es exactamente como nacio la mina
+// de `blog.css`. Una hoja por seccion, con su alcance en la cabecera y su dueno declarado.
+import '../styles/cta.css';            // .cta-page-section 12 + .cta-footer 102   -> HOME
+import '../styles/obra.css';           // .projects-section 66                     -> PULIDOR-1
+import '../styles/antes-despues.css';  // .before-after-section 15                 -> PULIDOR-1
+import '../styles/render3d.css';       // ._3d-section 65                          -> PULIDOR-2
+import '../styles/ubicacion.css';      // .location 17                             -> PULIDOR-2
+import '../styles/social.css';         // .social-media 79                         -> PULIDOR-2
 // CSS de autor, DESPUES de webflow.css para ganar por orden y sin `!important`.
 // Hoy solo lleva el arreglo del solape del logo del nav entre 992 y 1204 px.
 import '../styles/propio.css';

@@ -1,0 +1,38 @@
+/**
+ * cta.css — LAS DOS BANDAS DE CTA · fase R9-CTA
+ *
+ * Lo posee EN EXCLUSIVA el chat HOME (encargo R9-CTA). Nadie mas escribe aqui.
+ *
+ * QUE RESTILA, Y CUANTO. Medido sobre `.vercel/output/static` el 1-sep-2026:
+ *   .cta-page-section        12 rutas
+ *   .cta-footer              102 rutas
+ *
+ * Son los dos remates de conversion del sitio. `.cta-footer` sale en 102 de 115 rutas: es
+ * el elemento compartido MAS grande del programa y lo que se toque aqui se ve casi en todas
+ * partes. Por eso lo lleva el mismo frente que el heroe: es la misma decision de conversion,
+ * tomada dos veces, y partirla entre dos chats produciria dos botones distintos.
+ *
+ * ⚠️ NO ES UN FICHERO DE LA HOME. Se llama por lo que hace, no por donde se ve, porque
+ * acotarlo mañana a `/` romperia el resto de rutas en silencio. Es la leccion de `blog.css`,
+ * que nacio dentro de `home.css` y se pinta en 63 paginas.
+ *
+ * 🚨 Y por eso mismo: **todo cambio aqui pone en rojo `check:visual` en TODAS esas rutas**,
+ * y hay que re-baselinizarlas. Dilo en `RIESGO A OTRAS` con el numero; el director necesita
+ * saber que recapturar sin barrer las 115 (una barrida son ~65 min de la pantalla de Sebastian).
+ *
+ * ORDEN DE CARGA, y gana por ORDEN, nunca por `!important`:
+ *   fuentes -> webflow -> disenio/tokens -> disenio/base -> home -> blog -> servicios
+ *   -> intro -> proyectos -> lectura -> cta -> propio
+ *
+ * LAS REGLAS DE ESTA CAPA — las de `docs/encargos/00-PRINCIPIOS.md` §5, en corto:
+ *   · cero `!important`, cero `@layer` (webflow.css son 167 KB SIN capa y ganaria a una capa)
+ *   · ningun literal de color: solo `var(--mm-*)`. Token que falte, se PIDE al director
+ *   · `min-width` 480 / 768 / 992, jamas mezclado con los `max-width` de Webflow
+ *   · ningun `opacity: 0` fuera de `html[data-anim]`; nunca `animation-fill-mode: forwards`
+ *   · el oro `#f4b248` da 1,86:1 sobre blanco: nunca marca estado
+ *   · todo par de colores nuevo lleva su ratio MEDIDO al lado
+ *
+ * Y la de arriba de todas: se ELEVA la base de Webflow, no se sustituye. El TEXTO no se toca.
+ *
+ * De momento solo comentarios: no emite una sola regla, asi que el CSS construido no cambia.
+ */

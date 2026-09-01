@@ -1,0 +1,36 @@
+/**
+ * antes-despues.css — EL DESLIZADOR ANTES/DESPUES · fase R10-AD
+ *
+ * Lo posee EN EXCLUSIVA el chat PULIDOR-1 (encargo R10-AD). Nadie mas escribe aqui.
+ *
+ * QUE RESTILA, Y CUANTO. Medido sobre `.vercel/output/static` el 1-sep-2026:
+ *   .before-after-section    15 rutas
+ *
+ * El slider de Flowbase reimplementado en local. OJO: lleva JS propio y un tirador
+ * arrastrable. Cambiar su caja cambia las coordenadas del arrastre — verifica que sigue
+ * funcionando con raton Y con dedo antes de dar el informe por bueno.
+ *
+ * ⚠️ NO ES UN FICHERO DE LA HOME. Se llama por lo que hace, no por donde se ve, porque
+ * acotarlo mañana a `/` romperia el resto de rutas en silencio. Es la leccion de `blog.css`,
+ * que nacio dentro de `home.css` y se pinta en 63 paginas.
+ *
+ * 🚨 Y por eso mismo: **todo cambio aqui pone en rojo `check:visual` en TODAS esas rutas**,
+ * y hay que re-baselinizarlas. Dilo en `RIESGO A OTRAS` con el numero; el director necesita
+ * saber que recapturar sin barrer las 115 (una barrida son ~65 min de la pantalla de Sebastian).
+ *
+ * ORDEN DE CARGA, y gana por ORDEN, nunca por `!important`:
+ *   fuentes -> webflow -> disenio/tokens -> disenio/base -> home -> blog -> servicios
+ *   -> intro -> proyectos -> lectura -> antes-despues -> propio
+ *
+ * LAS REGLAS DE ESTA CAPA — las de `docs/encargos/00-PRINCIPIOS.md` §5, en corto:
+ *   · cero `!important`, cero `@layer` (webflow.css son 167 KB SIN capa y ganaria a una capa)
+ *   · ningun literal de color: solo `var(--mm-*)`. Token que falte, se PIDE al director
+ *   · `min-width` 480 / 768 / 992, jamas mezclado con los `max-width` de Webflow
+ *   · ningun `opacity: 0` fuera de `html[data-anim]`; nunca `animation-fill-mode: forwards`
+ *   · el oro `#f4b248` da 1,86:1 sobre blanco: nunca marca estado
+ *   · todo par de colores nuevo lleva su ratio MEDIDO al lado
+ *
+ * Y la de arriba de todas: se ELEVA la base de Webflow, no se sustituye. El TEXTO no se toca.
+ *
+ * De momento solo comentarios: no emite una sola regla, asi que el CSS construido no cambia.
+ */
