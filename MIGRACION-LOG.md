@@ -262,8 +262,28 @@ hoy**, dominada por el blog rediseñado, no el ~98,7 % histórico. Lo que sí la
 baseline se capturó con la MISMA receta —`disparar()` con `animations:'disabled'`—, así que
 congeló el mismo fotograma: no había dos que comparar.
 
+### `check:cascaron` — corrida después, y verde
+Las 10 puertas quedan verdes. En los 4 anchos: 303 elementos de nav y 180 de pie, **0 desviados**
+(tolerancia 0,6 px), textos idénticos y 100,00 % de píxeles del nav.
+
+**Y de camino, un fallo de entorno que parecía un desastre y no lo era.** El primer intento de
+`MM_FIXTURES=1 npm run build` murió con `getaddrinfo ENOTFOUND m273z6jc.api.sanity.io` y dejó
+`.vercel/output/static` **con 0 ficheros HTML**. No era una caída de red ni de Sanity. Medido en
+el momento:
+
+```bash
+$ nslookup m273z6jc.api.sanity.io          # -> CNAME api.i.sanity.io, 34.107.216.191
+$ node -e "fetch('https://api.sanity.io')" # -> HTTP 200
+$ node -e "dns.lookup('m273z6jc.api.sanity.io')"  # -> ERROR ENOTFOUND
+```
+
+La red iba, el host existía, y solo `getaddrinfo` decía que no: **caché negativa de DNS**. Tres
+minutos después los tres intentos resolvían y el build pasó sin tocar una línea. La regla que
+deja: un build que muere ahí no prueba que el sitio esté roto — se reintenta antes de
+«arreglarlo», que es como se rompen de verdad. El código nunca estuvo en riesgo: el árbol siguió
+limpio y el artefacto es derivado.
+
 ### Abierto
-- **`check:cascaron`** sin correr: necesita el build de fixtures, que reemplaza el normal.
 - **La máscara de `.mm-resenas`** en `MASCARAS`: no hace falta hoy porque `resenas.json` es
   estático y versionado, pero **hará falta ANTES del primer lunes** en cuanto entre el cron
   semanal, o `check:visual` se pondrá rojo en las 83 esa madrugada.
