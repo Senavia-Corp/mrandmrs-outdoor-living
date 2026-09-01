@@ -61,8 +61,14 @@ de ello, dilo en `ABIERTO`.
 
 ## Lo que hay hoy, medido
 
+**Y `.text-field` es TUYA** (2 rutas: `/request-estimated` y `/contact-us`). Es la clase con el
+borde blanco a 2,55:1 sobre el cian. El chat CONTACTO arregla el FONDO del panel (`.form`, suya);
+tú arreglas **el campo**. Los dos ratios se miden contra el fondo que quede, no contra el de hoy:
+coordinaos por el director antes de fijar colores.
+
 ```css
 .appointment-section  { 1 ruta — tuya entera }
+.text-field           { 2 rutas — color:#fff; background:#fff0; border:1px solid #fff }
 .select-field         { el desplegable de presupuesto }
 .text-field-form      { los inputs de dirección y contacto }
 .services-form        { las 14 casillas, hoy en dos columnas planas }

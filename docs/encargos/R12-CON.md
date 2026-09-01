@@ -33,10 +33,11 @@ un panel de degradado. Es uno de los **dos** formularios de lead del sitio.
 |---|---|---|
 | `.form-section` · `.form-div` · `.box-info-contact` · `.header-box-info` · `.phone-wrapper` | **1** | tuyos |
 | `.radio-button` · `.radio-button-label` | **1** | tuyos |
+| **`.form`** — el panel del degradado | **1** | tuyo. Aquí vive `linear-gradient(#1cadeb, #1d4bbf)`, la causa del 2,55:1 |
 
 **Lo que NO es tuyo aunque salga en tu página:** `.checkbox-field`, `.checkbox-label-3`,
-`.success-message-form`, `.text-block-7`, `.link-4` y `.ikonik-t882o` salen **también en
-`/request-estimated`** y los posee el chat **ESTIMACION** (`estimacion.css`). Los dos formularios
+`.success-message-form`, `.text-block-7`, `.link-4`, `.ikonik-t882o` y **`.text-field`** (los campos)
+salen **también en `/request-estimated`** y los posee el chat **ESTIMACION** (`estimacion.css`). Los dos formularios
 de lead tienen que hablar el mismo idioma: si los tocáis los dos, salen dos casillas distintas y
 dos mensajes de éxito distintos. Tampoco son tuyos `.location` (17 rutas, chat PULIDOR-2),
 `.testimonial-section` (82) ni `.cta-footer` (102).
@@ -50,7 +51,7 @@ escribe el usuario van en **blanco**:
 |---|---|---|
 | **Blanco sobre el cian de arriba `#1cadeb`** | **2,55 : 1** | 🔴 no llega ni al 3:1 de texto grande |
 | Blanco sobre el azul de abajo `#1d4bbf` | 7,47 : 1 | ✅ |
-| `.text-field { border: 1px solid #fff }` sobre el cian | **2,55 : 1** | 🔴 WCAG 1.4.11 pide 3:1 para el límite de un campo |
+| `.text-field { border: 1px solid #fff }` sobre el cian | **2,55 : 1** | 🔴 WCAG 1.4.11 pide 3:1 para el límite de un campo. **`.text-field` es del chat ESTIMACION** (2 rutas): tú arreglas el FONDO, él el campo. Coordinaos por el director |
 | Navy `#001c63` sobre ese cian | 6,11 : 1 | ✅ la salida está a mano |
 
 **La mitad de arriba del formulario es ilegible**: ahí caen «First name», «Last name» y «Email».
@@ -134,3 +135,15 @@ RIESGO A OTRAS  ·  ABIERTO
 ```
 
 **Un número sin el comando que lo produjo es una opinión.** Pega la salida literal, no la resumas.
+
+## Un dato que te sobrepasa, y por eso no es tuyo
+
+El **pie de página lleva el MISMO degradado** que tu panel:
+
+```
+.footer { background-image: linear-gradient(#1cadeb, #1d4bbf) }   -> 113 rutas
+```
+
+Si el pie tiene texto claro en su mitad superior, arrastra tu mismo 2,55:1 en **113 páginas**.
+`.footer` no tiene dueño todavía. **No lo toques**: mídelo si te cruzas con él y dilo en
+`ABIERTO` con el ratio. El director decide si abre encargo.
