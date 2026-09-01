@@ -1,0 +1,268 @@
+/**
+ * servicios.css — LA SECCION DE SUBSERVICIOS · fase R10, lote `services/`
+ *
+ * Lo posee el chat «Mejora seccion servicios premium». Nadie mas escribe aqui.
+ *
+ * QUE RESTILA, Y CUANTO. `section.services` existe SOLO en las 14 fichas de
+ * `src/pages/services/` — medido, no supuesto:
+ *
+ *     grep -rlo 'section class=\\"services\\"' src/pages | wc -l   -> 14
+ *     grep -rlo 'class=\\"item-subservice\\"' src/pages | grep -v services/  -> vacio
+ *
+ * Son 14 paginas x 8 tarjetas = 112. `request-estimated.astro` tiene `.services-form`,
+ * que es OTRA clase y no casa con el selector `.services`.
+ *
+ * ORDEN DE CARGA, y gana por ORDEN, nunca por `!important`:
+ *
+ *   fuentes -> webflow -> disenio/tokens -> disenio/base -> home -> servicios -> propio
+ *
+ * ANTES de `propio.css` a proposito: ahi viven los parches sobre clases de Webflow
+ * —hoy los anillos de foco del nav— y no deben quedar por debajo de una capa de una
+ * sola familia. DESPUES de `disenio/base.css` para poder ajustar sus clases sin
+ * pelearse con ellas.
+ *
+ * ─────────────────────────────────────────────────────────────────────────────
+ * LA EXCEPCION DE PREFIJO, Y POR QUE ES OBLIGATORIA AQUI
+ *
+ * La regla de la capa de diseño dice que todo selector empieza por `.mm-`, `.pe-`,
+ * `.svc-` o `:root`. En R10 **no se puede cumplir**: las 14 paginas llevan cabecera
+ * `// DERIVADO`, las regenera `build-paginas.mjs`, y §1.2 prohibe tocar markup fuera
+ * de `index.astro`. No hay donde poner una clase `.mm-*`. Asi que se persigue a las
+ * clases de Webflow, que es el mismo camino que ya tomo el frente de nav en
+ * `propio.css` (`.w-dropdown-toggle:focus-visible` con tokens `--mm-*`).
+ *
+ * LO QUE SI SE CUMPLE, sin una sola excepcion:
+ *   · TODO selector cuelga de `.services` -> el radio de impacto son esas 14 y nada mas
+ *   · cero literales de color: solo `var(--mm-*)`. Los hex viven en disenio/tokens.css
+ *   · cero `!important` — la especificidad (0,2,0) ya gana a la (0,1,0) de Webflow
+ *   · cero `@layer` — webflow.css son 167 KB SIN capa, y toda regla sin capa gana a
+ *     toda regla con capa: envolver esto la haria perder contra Webflow entero
+ *   · cero `url()` -> esta hoja no pide un asset, asi que no puede romper check:enlaces
+ *   · cero `opacity: 0` que no cuelgue de `html[data-anim]`, y nunca `forwards`
+ *   · `min-width` 480/768/992, JAMAS mezclado con los `max-width` de Webflow
+ *
+ * NINGUN ELEMENTO CON TEXTO VISIBLE RECIBE `text-transform`, Y EL `capitalize` QUE YA
+ * HAY NO SE QUITA. Las dos mitades de la regla, y la segunda es la que sorprende.
+ *
+ * `disenio/base.css:88-92` afirma que `capitalize` NO altera `innerText`. ES FALSO: su
+ * prueba fue degenerada, midio `capitalize` sobre un texto que YA venia capitalizado, o
+ * sea un no-op. La prueba de verdad esta en el arbol, y en ESTA seccion:
+ *
+ *     marcado (…/professional-landscaping….astro)  ->  `What do we do!`
+ *     baseline/text/services_professional-….txt:17 ->  `What Do We Do!`
+ *
+ * O sea que el `text-transform: capitalize` de `.heading-deco` es LOAD-BEARING en las 14:
+ * `check:texto` compara `innerText` al 100 % sin tolerancia contra ese baseline, y quitar
+ * el capitalize lo pondria ROJO en las 14 de golpe. Lo mismo pasa en el nav con
+ * `.nav-link`, `.button-styles` y `.heading-link-submenu` (`financing` -> `Financing`,
+ * `Get a Free Estimate` -> `Get A Free Estimate`), medido por el frente del nav.
+ *
+ * Asi que aqui no se toca `text-transform` NI PARA AÑADIRLO NI PARA QUITARLO. La regla de
+ * `base.css` es correcta; lo unico que estaba mal era su motivo, y por eso se escribe
+ * entero aqui: un comentario que dice «esto es inerte» es como se cuela la regresion.
+ *
+ * ─────────────────────────────────────────────────────────────────────────────
+ * LA DIRECCION: «PLACA». Tres valores claros apilados —seccion blanca, tarjeta en
+ * azul tenue, placa blanca con el icono dorado—. La firma es esa placa.
+ *
+ * La seccion NO se oscurece, y no es timidez: `.services` vive entre dos bandas
+ * azules (`.trusted-section` arriba con `#3185ca`, `.before-after-section` abajo).
+ * Su blanco es el respiro del ritmo de la pagina.
+ *
+ * EL ORO NO MARCA ESTADO EN NINGUN CASO. `#f4b248` da 1,86:1 sobre blanco, lejos de
+ * los 3:1 que WCAG 1.4.11 exige a lo que identifica un control. Vive donde ya vive:
+ * dentro del dibujo del icono.
+ */
+
+/* ── CABECERA DE LA SECCION ───────────────────────────────────────────────────
+ *
+ * El antetitulo media 20px, EXACTAMENTE LO MISMO que el h3 de cada tarjeta, con el
+ * cuerpo de venta a 12px debajo. Esa es la jerarquia invertida: el rotulo pesaba
+ * tanto como el titulo, y lo que vende pesaba la mitad que los dos.
+ *
+ * El h2 NO se toca. Ya esta bien dimensionado (35px a 1440) y aplicarle la curva
+ * fluida lo encogeria ~5px sin ganar nada: menos piezas en movimiento. */
+
+.services .heading-deco {
+  font-size: var(--mm-paso-0);
+  font-weight: var(--mm-peso-fuerte);
+  line-height: var(--mm-alto-cuerpo);
+  /* El unico espaciado positivo que Webflow ya usa. No es un valor nuevo. */
+  letter-spacing: 1px;
+  color: var(--mm-tinta-atenuada);
+}
+
+/* La entradilla que explica la seccion. Paso 3 es el de `h4`. */
+.services .header-subservices p {
+  font-size: var(--mm-paso-3);
+  line-height: var(--mm-alto-cuerpo);
+  color: var(--mm-tinta-atenuada);
+}
+
+/* ── LA REJILLA ───────────────────────────────────────────────────────────────
+ *
+ * Las COLUMNAS NO SE TOCAN. Webflow reparte 4 -> 2 -> 1 y las 8 tarjetas entran
+ * limpias en las tres (2 filas, 4 filas, 8 filas). Tres columnas dejarian una
+ * ultima fila coja de dos, que es peor maqueta y ademas mas cambio del necesario.
+ * Lo que si cambia es el aire: 16px de gap con tarjetas ya tenidas las pega. */
+
+.services .block-page-service { margin-top: var(--mm-e-48); }
+.services .cms-list-subservices { gap: var(--mm-e-24); }
+
+/* ── LA TARJETA ───────────────────────────────────────────────────────────────
+ *
+ * Webflow la dejaba BLANCA sobre seccion BLANCA, separada solo por
+ * `0 2px 5px #0003` —negro al 20 %—, que no separa: ensucia. Se cambia el metodo
+ * entero: la separacion la hace el TONO, no la sombra. Un panel tenido no necesita
+ * elevarse para leerse como pieza.
+ *
+ * Ratios medidos dentro de la tarjeta (fondo `--mm-fondo-tenue`, #e9f1fd):
+ *     `--mm-tinta` (navy) ............... 13,72:1
+ *     `--mm-tinta-atenuada` (#596b9a) ...  4,62:1   AA para texto normal
+ * El 65 % de alfa de la tinta atenuada se eligio en R7 por ser el mas bajo que pasa
+ * 4,5:1 sobre las DOS superficies claras a la vez; esta es la segunda. */
+
+.services .item-subservice {
+  background-color: var(--mm-fondo-tenue);
+  border: 1px solid var(--mm-borde);
+  border-radius: var(--mm-r-16);
+  box-shadow: none;
+  padding: var(--mm-e-24);
+  gap: var(--mm-e-16);
+  transition: background-color .18s ease, border-color .18s ease;
+}
+
+@media (min-width: 992px) {
+  .services .item-subservice { padding: var(--mm-e-32); }
+}
+
+/* EL HOVER NO ELEVA, Y ES DELIBERADO.
+ *
+ * Las 8 tarjetas son `div` SIN `href` y sin `tabindex`: la seccion cierra justo tras
+ * la rejilla, sin CTA ni ancla. Verificado leyendo el marcado, no supuesto. Un hover
+ * con `translateY` y sombra prometeria una navegacion que NO EXISTE — es el gesto
+ * que todo el mundo pone por reflejo y aqui seria mentir al puntero.
+ *
+ * Lo que hace es intercambiar los tonos: la tarjeta sube a blanco y la placa baja al
+ * tenue. Se cruzan. Asi el panel acusa el puntero sin fingir que es un boton, y la
+ * placa NO se disuelve en la tarjeta (que es lo que pasaria dejandola blanca sobre
+ * blanco, con solo su borde de 1,27:1 separandolas).
+ *
+ * El borde pasa a `--mm-borde-control` = 3,03:1 sobre blanco, el minimo de WCAG
+ * 1.4.11. Es navy, no oro, por lo dicho arriba. */
+.services .item-subservice:hover {
+  background-color: var(--mm-superficie);
+  border-color: var(--mm-borde-control);
+}
+
+/* ── LA PLACA DEL ICONO ───────────────────────────────────────────────────────
+ *
+ * `width` Y `height` EXPLICITOS, y esto no es estetica: los SVG traen
+ * `viewBox="0 0 1024 1024"` pero NINGUNA dimension intrinseca. Medido en un panel
+ * frio contra el sitio desplegado:
+ *
+ *     naturalWidth = 0 · getBoundingClientRect().width = 0 · complete = false
+ *
+ * con `height: 65px` como unica medida y `loading="lazy"` en el marcado. Un elemento
+ * de area cero puede no disparar nunca la carga diferida. Al fijar el ancho, ese modo
+ * de fallo se cierra por construccion.
+ *
+ * Las cajas YA eran cuadradas y uniformes (65x65 las ocho). Lo que baila es el DIBUJO
+ * dentro de su lienzo de 1024: cada icono ocupa una fraccion distinta. Eso no se
+ * arregla desde CSS —es el arte— pero una placa comun hace que las ocho lean como
+ * sistema en vez de como ocho recortes.
+ *
+ * 72 de caja con 12 de aire = 48 de dibujo. `box-sizing: border-box` ya es global en
+ * Webflow, asi que el padding va DENTRO de los 72. */
+.services .icon-subservice {
+  width: 72px;
+  height: 72px;
+  padding: var(--mm-e-12);
+  object-fit: contain;
+  background-color: var(--mm-superficie);
+  border: 1px solid var(--mm-borde);
+  border-radius: var(--mm-r-16);
+  transition: background-color .18s ease;
+}
+
+/* El cruce de tonos. Va DESPUES de la regla base y tiene mas especificidad
+ * (0,3,0 contra 0,2,0), asi que gana sin `!important`. */
+.services .item-subservice:hover .icon-subservice {
+  background-color: var(--mm-fondo-tenue);
+}
+
+/* ── EL TEXTO DE LA TARJETA ───────────────────────────────────────────────────
+ *
+ * El cuerpo estaba a 12px. Es el texto que vende cada subservicio y era el mas
+ * pequeño de la pagina. Ademas, a 991 la tarjeta mide 459px: con 12px eso son ~90
+ * caracteres por linea, muy por encima de los 45-75 que se pueden leer. Subir el
+ * tamaño arregla las dos cosas a la vez —el paso 1 deja la linea en ~59 caracteres
+ * a 991 y ~31 a 1440, donde la tarjeta ya es estrecha.
+ *
+ * El h3 vuelve a dominar: paso 4 es 16/20/->25px, o sea que en escritorio crece
+ * mientras el antetitulo baja al paso 0. La jerarquia se endereza por los dos lados. */
+
+.services .div-block-2 {
+  margin-top: 0;
+  gap: var(--mm-e-8);
+}
+
+.services .heading-2 {
+  font-size: var(--mm-paso-4);
+  line-height: var(--mm-alto-titulo);
+}
+
+.services .paragraph-mini {
+  font-size: var(--mm-paso-1);
+  line-height: var(--mm-alto-cuerpo);
+  color: var(--mm-tinta-atenuada);
+}
+
+/* ── LA ENTRADA, ESCALONADA ───────────────────────────────────────────────────
+ *
+ * Las 8 tarjetas comparten UN SOLO `data-w-id` (`f2721b05-…`), asi que hoy entran las
+ * ocho a la vez con el mismo `growIn` de 1000 ms. Se escalonan SOLO con
+ * `animation-delay`; no se toca el atributo ni `src/data/reveals.json`, de modo que
+ * `check:ix2` —que cuenta claves huerfanas contra el HTML construido, con
+ * `HUERFANAS_ESPERADAS = 14`— ni se entera.
+ *
+ * ESPECIFICIDAD. `Interacciones.astro` pone el atajo con
+ * `html[data-anim] [data-w-id][data-visto]` = (0,3,1). Un atajo `animation` reinicia
+ * `animation-delay` a 0s, asi que hay que ganarle: el selector de abajo es (0,5,1) y
+ * gana SIN depender del orden de carga entre esa hoja global y esta.
+ *
+ * `backwards` YA ESTA PUESTO ahi, y es justo lo que hace legitimo el retardo: durante
+ * la espera el elemento se queda en el `from` del keyframe en vez de parpadear. No se
+ * añade `forwards` ni se toca ese atajo.
+ *
+ * SOLO A PARTIR DE 768. Por debajo hay UNA columna y las tarjetas ya entran de una en
+ * una segun bajas: alli el retardo no escalona nada, solo hace que el contenido tarde
+ * mas en aparecer.
+ *
+ * DETERMINISMO DE LA CAPTURA: `asentar()` espera a que NADA SE MUEVA —muestrea
+ * opacidad y transform hasta que dos lecturas seguidas salen iguales, con techo de
+ * 3 s— en vez de esperar un numero de milisegundos. La cola de 420 ms cabe de sobra. */
+
+@media (min-width: 768px) {
+  html[data-anim] .services .cms-item-subservices[data-visto]:nth-child(2) { animation-delay:  60ms }
+  html[data-anim] .services .cms-item-subservices[data-visto]:nth-child(3) { animation-delay: 120ms }
+  html[data-anim] .services .cms-item-subservices[data-visto]:nth-child(4) { animation-delay: 180ms }
+  html[data-anim] .services .cms-item-subservices[data-visto]:nth-child(5) { animation-delay: 240ms }
+  html[data-anim] .services .cms-item-subservices[data-visto]:nth-child(6) { animation-delay: 300ms }
+  html[data-anim] .services .cms-item-subservices[data-visto]:nth-child(7) { animation-delay: 360ms }
+  html[data-anim] .services .cms-item-subservices[data-visto]:nth-child(8) { animation-delay: 420ms }
+}
+
+/* ── MOVIMIENTO REDUCIDO ──────────────────────────────────────────────────────
+ *
+ * `Interacciones.astro` ya apaga la animacion entera ahi (`animation: none`), asi que
+ * el retardo queda sin efecto por si solo. Se pone igualmente a 0 para no dejar un
+ * valor colgando que dependa de que la otra hoja siga haciendolo, y se apagan las dos
+ * transiciones de esta hoja, que son las unicas que introduce. */
+
+@media (prefers-reduced-motion: reduce) {
+  .services .item-subservice,
+  .services .icon-subservice { transition: none }
+
+  html[data-anim] .services .cms-item-subservices[data-visto] { animation-delay: 0s }
+}

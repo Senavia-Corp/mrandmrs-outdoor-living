@@ -1,0 +1,221 @@
+/**
+ * CSS DE LA SECCION DE BLOG — `section.blog-section-page`. Encargo R9-BLOG-01.
+ *
+ * POR QUE ESTE FICHERO EXISTE, Y NO ES ORGANIZACION: ES UNA MINA DESACTIVADA.
+ *
+ * Esto vivio primero en `home.css`, y funcionaba — `Base.astro` lo carga en las 115
+ * paginas, asi que llegaba a su destino—. El problema no era que no funcionase: era que
+ * el fichero se llama `home`. La seccion NO es de la home. Esta inlineada IDENTICA en
+ * 63 rutas:
+ *
+ *     1   `/`                                    marcado en src/pages/index.astro
+ *     9   `/country/custom-pool-builders-*`      DERIVADAS de scripts/build-paginas.mjs
+ *    53   `/pool-builders/<slug>`                src/data/plantilla-pool-builders.json
+ *                                                servidas por pool-builders/[slug].astro
+ *
+ * El dia que alguien acote `home.css` a `/` —que es exactamente lo que su nombre invita
+ * a hacer, y es una limpieza razonable— 53 paginas pierden su diseno EN SILENCIO. No hay
+ * puerta que avise: `check:texto` no se mueve (el texto es el mismo), `check:seo` tampoco
+ * (el `<head>` es el mismo), y `check:visual` solo lo veria si esas rutas estuvieran ya
+ * re-baselinizadas. Es la misma familia de fallo que el §2.1 y el §8.2: algo que se
+ * rompe sin que nadie lo note.
+ *
+ * ORDEN DE CARGA en `src/layouts/Base.astro`. Lo cablea el DIRECTOR, no este fichero:
+ *
+ *   fuentes.css -> webflow.css -> disenio/tokens.css -> disenio/base.css
+ *                -> home.css -> blog.css -> servicios.css -> propio.css
+ *
+ * Va DESPUES de `disenio/base.css` para poder ajustar sus clases sin pelearse con ellas,
+ * y ANTES de `propio.css`, donde viven los parches sobre clases de Webflow. Gana por
+ * ORDEN, nunca por `!important`.
+ *
+ * LAS REGLAS DE ESTA CAPA:
+ *   · cero `!important`, cero `@layer`
+ *   · ningun literal de color: solo `var(--mm-*)`. Los hex viven en `disenio/tokens.css`
+ *   · ningun `opacity: 0` que no cuelgue de `html[data-anim]`
+ *   · nunca `animation-fill-mode: forwards`
+ *   · `min-width` 480 / 768 / 992, y jamas mezclado con los `max-width` de Webflow
+ *   · el TEXTO no se toca: `check:texto` compara `innerText` al 100 % sin tolerancia
+ *
+ * FRICCION CONOCIDA, para cuando exista `check:tokens` (R8): la convencion pide que todo
+ * selector empiece por `.mm-`, `.pe-`, `.svc-` o `:root`. Aqui NO se puede: los unicos
+ * ganchos son clases de Webflow (`.blog-section-page`, `.card`, `.content-card`) y en las
+ * 62 rutas que no son `/` el marcado no se puede editar a mano —9 son derivadas y 53
+ * salen de una plantilla congelada—. O se declara `.blog-section-page` como gancho
+ * permitido, o estas reglas se mudan a `propio.css`. Lo decide el director.
+ */
+/* ── LA TARJETA ────────────────────────────────────────────────────────────────
+ * El defecto que se veia: el CTA flotaba a distinta altura en cada tarjeta -774, 815,
+ * 790 y 815 px medidos a 1920-. La causa NO era el CTA sino `.content-card`, que Webflow
+ * deja en `justify-content: center`: el bloque entero se centra en el hueco sobrante, asi
+ * que cada tarjeta lo reparte segun lo que mida su texto.
+ *
+ * Con `flex-start` arriba y `margin-top:auto` en el CTA, el sobrante se acumula en UN
+ * sitio y el boton queda anclado al suelo de la tarjeta. Las alturas ya eran iguales
+ * -`.fs-slider-blog_slide` es `align-items: stretch` y `.card` es `height: 100%`-; lo que
+ * faltaba era repartir por dentro.
+ * -------------------------------------------------------------------------- */
+.blog-section-page .content-card {
+  justify-content: flex-start;
+  gap: var(--mm-e-8);
+  padding: var(--mm-e-24);
+}
+
+.blog-section-page .wrapper-buttons {
+  margin-top: auto;
+  padding-top: var(--mm-e-8);
+}
+
+/* Superficie. Webflow pintaba `#ececec` con `box-shadow: 2px 2px 5px #0003` — gris sucio
+ * y una sombra negra, asimetrica y dura. Blanco sobre el blanco de la seccion necesita
+ * borde para no desaparecer, y la sombra de la casa va tenida de navy, nunca de negro. */
+.blog-section-page .card {
+  position: relative;              /* ancla del ::after que hace clicable la tarjeta */
+  background-color: var(--mm-superficie);
+  border: 1px solid var(--mm-borde);
+  border-radius: var(--mm-r-16);
+  box-shadow: var(--mm-sombra-1);
+  transition: box-shadow .18s ease, transform .18s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-section-page .card { transition: none; }
+}
+
+.blog-section-page .card:hover {
+  box-shadow: var(--mm-sombra-3);
+  transform: translateY(-2px);
+}
+
+/* ── LA FOTO ───────────────────────────────────────────────────────────────────
+ * `.img-blog` traia `height: 250px` fijo. `height: auto` va ANTES de `aspect-ratio` y no
+ * es opcional: con una altura declarada, `aspect-ratio` calcula el ANCHO a partir de ella
+ * y la imagen desborda la columna. Es la regla dura n.º 3 de la casa, y ya ha mordido.
+ * -------------------------------------------------------------------------- */
+.blog-section-page .img-blog {
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── TIPOGRAFIA ────────────────────────────────────────────────────────────────
+ * `line-clamp` recorta EN PANTALLA pero no toca `innerText`: `check:texto` compara al
+ * 100 % sin tolerancia y sigue verde. Es justo el permiso que da la barandilla.
+ *
+ * Y es lo que iguala las tarjetas por construccion: con el titulo topado en 2 lineas y el
+ * cuerpo en 3, ninguna fila hereda la altura de la mas larga.
+ *
+ * El cuerpo sube de los 12px de Webflow al paso 1 (14/16px). 12px de texto corrido esta
+ * por debajo de lo comodo, y aqui es el resumen que decide si se hace clic.
+ * -------------------------------------------------------------------------- */
+.blog-section-page .content-card h3 {
+  font-size: var(--mm-paso-4);
+  line-height: var(--mm-alto-titulo);
+  font-weight: var(--mm-peso-fuerte);
+  color: var(--mm-tinta);          /* navy sobre blanco .......... 15,60:1 */
+  margin: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.blog-section-page .paragraph-mini {
+  font-size: var(--mm-paso-1);
+  line-height: var(--mm-alto-cuerpo);
+  color: var(--mm-tinta-atenuada); /* #596b9a sobre blanco ....... 5,26:1 */
+  margin: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+
+/* ── LA TARJETA ENTERA ES EL ENLACE ────────────────────────────────────────────
+ * Sin anadir un `<a>` ni una palabra: el `::after` cuelga del enlace que YA existia, asi
+ * que `check:texto` y `check:enlaces` no se mueven. El objetivo tactil pasa de ~120x36 px
+ * al area completa de la tarjeta.
+ *
+ * El foco NO se dibuja aqui: `propio.css` ya pone el anillo de `.button-styles:focus-visible`
+ * y carga DESPUES que este fichero. Duplicarlo seria pelearse con una regla que gana.
+ * -------------------------------------------------------------------------- */
+.blog-section-page .card .button-styles::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+/* ── FLECHAS ───────────────────────────────────────────────────────────────────
+ * Dos defectos a la vez.
+ *
+ * 1. SE MONTABAN SOBRE LAS TARJETAS. `.fs-slider-blog_navigation` es `position:absolute;
+ *    inset:0` y los botones tiran de `margin-left/right:-1.5rem`: el circulo de 48px se
+ *    quedaba a caballo del borde de la primera y la ultima. Sacarlos MAS afuera no vale:
+ *    por debajo de 1250+ el contenedor ya toca los bordes y se saldrian de la pagina, y
+ *    la casa solo admite breakpoints en 480/768/992, asi que no hay donde afinarlo.
+ *    Se sacan del apilado y bajan a su propia fila, a la derecha, debajo de la barra de
+ *    progreso. Funciona en los 4 anchos con una sola regla y sin riesgo de desbordar.
+ *
+ * 2. CONTRASTE. El chevron era blanco (`color:#fff`) sobre el degradado oro: ~1,9:1,
+ *    cuando WCAG 1.4.11 pide 3:1 para un control. El oro no marca estado en esta casa —
+ *    esta medido y no se rediscute. Navy relleno con la punta clara: 15,60:1.
+ * -------------------------------------------------------------------------- */
+.blog-section-page .fs-slider-blog_navigation {
+  position: static;
+  order: 1;                        /* ultima fila: tarjetas -> progreso -> flechas */
+  justify-content: flex-end;
+  gap: var(--mm-e-12);
+  inset: auto;
+}
+
+.blog-section-page .fs-slider-blog_previous,
+.blog-section-page .fs-slider-blog_next {
+  position: static;
+  margin: 0;
+  background-image: none;
+  background-color: var(--mm-navy);
+  color: var(--mm-tinta-inversa);  /* chevron claro sobre navy ... 15,60:1 */
+  border: 0;
+  transition: background-color .18s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-section-page .fs-slider-blog_previous,
+  .blog-section-page .fs-slider-blog_next { transition: none; }
+}
+
+.blog-section-page .fs-slider-blog_previous:hover,
+.blog-section-page .fs-slider-blog_next:hover {
+  background-color: var(--mm-navy-lomo);
+}
+
+.blog-section-page .fs-slider-blog_previous:focus-visible,
+.blog-section-page .fs-slider-blog_next:focus-visible,
+.blog-section-page [fs-slider-element="list"]:focus-visible {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco);
+  outline-offset: var(--mm-foco-aire);
+}
+
+/* ── BARRA DE PROGRESO ─────────────────────────────────────────────────────────
+ * La pista era `#f5f5f5` sobre el blanco de la seccion: 1,04:1, o sea invisible. Un
+ * indicador que no se ve no indica. Con `--mm-gris` sobre blanco son 1,32:1 de pista, y
+ * lo que de verdad tiene que leerse es el CONTRASTE ENTRE PISTA Y RELLENO, que con navy
+ * sobre ese gris son 13,4:1. Con 10 tarjetas y 3 por vista hay 4 posiciones: esto es lo
+ * unico que dice en cual estas.
+ * -------------------------------------------------------------------------- */
+.blog-section-page .fs-slider-blog_scrollbar {
+  background-color: var(--mm-gris);
+  height: var(--mm-e-8);
+  border-radius: var(--mm-r-pastilla);
+}
+
+.blog-section-page .fs-slider-blog_scrollbar-drag {
+  background-image: none;
+  background-color: var(--mm-navy);
+  height: var(--mm-e-8);
+  border-radius: var(--mm-r-pastilla);
+}

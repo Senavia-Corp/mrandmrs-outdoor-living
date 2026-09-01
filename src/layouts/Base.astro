@@ -50,6 +50,15 @@ import '../styles/disenio/base.css';
 // donde viven los parches sobre clases de Webflow. Hoy solo lleva comentarios: no emite una
 // sola regla, asi que el CSS construido no cambia y el hash del bundle se queda donde estaba.
 import '../styles/home.css';
+// La seccion de BLOG (R9-BLOG-01). NO cabe en home.css y por eso tiene fichero propio: la
+// seccion se pinta en 63 rutas —1 index + 9 country/ + las 53 de pool-builders/ via
+// plantilla-pool-builders.json—, asi que un fichero llamado `home` mentiria sobre su alcance
+// y el dia que alguien lo acotara a `/` romperia 53 paginas en silencio.
+import '../styles/blog.css';
+// La seccion de SUBSERVICIOS de las 14 fichas de services/ (R10, lote 1). Mismo criterio que
+// blog.css: `section.services` existe SOLO en esas 14 —verificado, 1 seccion y 1 rejilla por
+// pagina— y todas sus reglas cuelgan de `.services`, asi que el radio de impacto es medible.
+import '../styles/servicios.css';
 // CSS de autor, DESPUES de webflow.css para ganar por orden y sin `!important`.
 // Hoy solo lleva el arreglo del solape del logo del nav entre 992 y 1204 px.
 import '../styles/propio.css';
