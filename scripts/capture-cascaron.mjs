@@ -49,6 +49,34 @@ export const sondaCascaron = (sel) => {
   };
 };
 
+/**
+ * GUARDA DE MODULO PRINCIPAL — sin ella, LEER esta puerta la ESCRIBIA.
+ *
+ * `check-cascaron.mjs:30` importa `sondaCascaron` de aqui, y un `import` de ESM ejecuta el
+ * MODULO ENTERO. Como todo lo de abajo estaba en el nivel superior, cada corrida de
+ * `check:cascaron` lanzaba Chromium, iba al Webflow VIVO y REESCRIBIA `baseline/cascaron.json`
+ * antes de que la puerta comparase contra el. O sea: la puerta regeneraba su propia referencia.
+ *
+ * Tres cosas rompia, y ninguna daba error:
+ *   1. Ensuciaba el arbol en cada corrida — y el arbol sucio es justo lo que hace que
+ *      `aprobar-diseno.mjs` se niegue a re-baselinizar (aprobar-diseno.mjs:71).
+ *   2. Una deriva del Webflow vivo se absorbia EN SILENCIO en vez de saltar: la referencia se
+ *      movia con el sitio. Un gate de paridad valido, pero NUNCA un gate de regresion, y se
+ *      estaba leyendo como lo segundo.
+ *   3. El dia del corte de dominio la puerta muere entera, porque su referencia sale de una web
+ *      externa. Mismo problema que `build-shell.mjs:34`, y hay que arreglarlos con la misma
+ *      receta: leer de `_source/vivo/`, que esta congelado y versionado.
+ *
+ * Sintoma que lo delato: `baseline/cascaron.json` aparecia modificado tras correr la puerta, y
+ * SOLO en el campo `fecha`. Se diagnostico dos veces como «ruido de timestamp» —el contenido era
+ * correcto, la geometria identica byte a byte— y las dos veces la causa quedo sin buscar. No era
+ * ruido: era la puerta escribiendo.
+ */
+const esPrincipal = process.argv[1]
+  && path.resolve(process.argv[1]) === path.resolve(new URL(import.meta.url).pathname);
+
+if (esPrincipal) {
+
 const nav = await chromium.launch({ headless: false, args: ARGS_NAVEGADOR });
 const salida = { fecha: new Date().toISOString(), base: BASE, anchos: {} };
 
@@ -73,3 +101,5 @@ for (const [ancho, alto] of ANCHOS) {
 await nav.close();
 await fs.writeFile(path.join(RAIZ, 'baseline/cascaron.json'), JSON.stringify(salida, null, 1));
 console.log('\n  ✅ baseline/cascaron.json\n');
+
+}   /* fin de la guarda: importar este modulo NO captura ni escribe nada */
