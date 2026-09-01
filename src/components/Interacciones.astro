@@ -184,6 +184,7 @@ const REVEALS = JSON.stringify(reveals.porId);
         d.querySelector('.w-dropdown-toggle')?.setAttribute('aria-expanded', 'false');
       }
     };
+    let nLista = 0;
     for (const d of document.querySelectorAll('.w-dropdown')) {
       const boton = d.querySelector('.w-dropdown-toggle');
       const lista = d.querySelector('.w-dropdown-list');
@@ -191,6 +192,11 @@ const REVEALS = JSON.stringify(reveals.porId);
       boton.setAttribute('role', 'button');
       boton.setAttribute('tabindex', '0');
       boton.setAttribute('aria-expanded', 'false');
+      // `aria-expanded` a secas no dice QUE se expande. Con `aria-controls` el lector anuncia
+      // el panel y permite saltar a el; las listas de Webflow vienen con `id=""`.
+      boton.setAttribute('aria-haspopup', 'true');
+      if (!lista.id) lista.id = `mm-submenu-${++nLista}`;
+      boton.setAttribute('aria-controls', lista.id);
       const alterna = (abrir) => {
         const v = abrir ?? !lista.classList.contains('w--open');
         if (v) cierraTodos(d);
@@ -202,9 +208,49 @@ const REVEALS = JSON.stringify(reveals.porId);
       boton.addEventListener('keydown', (ev) => {
         if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); alterna(); }
       });
+      // Tabular FUERA del panel lo dejaba abierto: con raton se cierra al mover, pero con
+      // teclado el panel se quedaba tapando la pagina mientras el foco ya estaba abajo.
+      // `relatedTarget` es a donde VA el foco; si sigue dentro del desplegable, no se cierra.
+      //
+      // SOLO EN EL NAV, y no es un detalle: este bucle recorre TODOS los `.w-dropdown` del
+      // documento, y fuera de `section.menu` los que hay son `.dropdown-faq` —acordeones de
+      // preguntas frecuentes, 9 en una pagina de servicio—. Un MENU se cierra cuando el foco
+      // sale; un ACORDEON no: cerrarle la respuesta al usuario por tabular a la siguiente
+      // pregunta es justo lo contrario de lo que espera.
+      if (d.closest('section.menu')) {
+        d.addEventListener('focusout', (ev) => {
+          if (!d.contains(ev.relatedTarget)) alterna(false);
+        });
+      }
     }
-    addEventListener('keydown', (ev) => { if (ev.key === 'Escape') cierraTodos(null); });
+    addEventListener('keydown', (ev) => {
+      if (ev.key !== 'Escape') return;
+      // Cerrar sin mas deja el foco dentro de un panel que ya no existe, y el navegador lo
+      // manda al `body`: con teclado hay que recorrer el nav entero otra vez. Se devuelve al
+      // toggle que lo abrio, que es de donde salio.
+      const abierto = document.querySelector('.w-dropdown-list.w--open')?.closest('.w-dropdown');
+      cierraTodos(null);
+      abierto?.querySelector('.w-dropdown-toggle')?.focus();
+    });
     addEventListener('click', (ev) => { if (!ev.target.closest('.w-dropdown')) cierraTodos(null); });
+
+    // El intercambio de foto del mega-menu lo hacia un script embebido en el marcado que solo
+    // escuchaba `mouseover` y `click`: al tabular por los 14 servicios la foto se quedaba en
+    // el primero y MENTIA sobre cual estaba enfocado. `focusin` burbujea, asi que basta un
+    // listener por panel. (El script embebido se retira en F2; hasta entonces conviven y
+    // hacen lo mismo, que es idempotente.)
+    for (const panel of document.querySelectorAll('.wrapper-submenu')) {
+      panel.addEventListener('focusin', (ev) => {
+        const item = ev.target.closest('.item-link[data-service]');
+        if (!item) return;
+        for (const n of panel.querySelectorAll('.item-link[data-service]')) {
+          n.classList.toggle('is-active', n === item);
+        }
+        for (const n of panel.querySelectorAll('.wrapper-picture-service[data-service]')) {
+          n.classList.toggle('is-active', n.dataset.service === item.dataset.service);
+        }
+      });
+    }
 
     // ── 4 · el menu movil ────────────────────────────────────────────────
     const boton = document.querySelector('.w-nav-button');
@@ -237,13 +283,33 @@ const REVEALS = JSON.stringify(reveals.porId);
           sitio.appendChild(menu);
         }
         document.body.style.overflow = v ? 'hidden' : '';
+        // Al cerrar, el foco vuelve al burger. `offsetParent === null` = burger oculto, que
+        // es el caso de `matchMedia` al pasar a escritorio: ahi robar el foco seria peor.
+        if (!v && boton.offsetParent !== null) boton.focus();
       };
+      // Focus trap. Sin el, tabular desde el ultimo enlace del menu se va a la pagina de
+      // detras -que esta con `overflow:hidden` y tapada por el overlay-, y el foco
+      // desaparece de la vista sin forma de volver.
+      const FOCO = 'a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])';
+      overlay.addEventListener('keydown', (ev) => {
+        if (ev.key !== 'Tab' || !overlay.hasAttribute('data-abierto')) return;
+        const f = [...overlay.querySelectorAll(FOCO)].filter((e) => e.offsetParent !== null);
+        if (!f.length) return;
+        const primero = f[0];
+        const ultimo = f[f.length - 1];
+        if (ev.shiftKey && document.activeElement === primero) { ev.preventDefault(); ultimo.focus(); }
+        else if (!ev.shiftKey && document.activeElement === ultimo) { ev.preventDefault(); primero.focus(); }
+      });
       boton.addEventListener('click', () => abrir(boton.getAttribute('aria-expanded') !== 'true'));
       boton.addEventListener('keydown', (ev) => {
         if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); boton.click(); }
       });
       overlay.addEventListener('click', (ev) => { if (ev.target === overlay) abrir(false); });
-      addEventListener('keydown', (ev) => { if (ev.key === 'Escape') abrir(false); });
+      // Solo si esta abierto: sin la guarda, cualquier `Escape` en la pagina llamaba a
+      // `abrir(false)` y ahora eso mueve el foco al burger.
+      addEventListener('keydown', (ev) => {
+        if (ev.key === 'Escape' && boton.getAttribute('aria-expanded') === 'true') abrir(false);
+      });
       // Al pasar a escritorio, el menu tiene que volver a su sitio o se queda dentro del
       // overlay y desaparece del nav.
       matchMedia('(min-width: 992px)').addEventListener('change', (m) => { if (m.matches) abrir(false); });

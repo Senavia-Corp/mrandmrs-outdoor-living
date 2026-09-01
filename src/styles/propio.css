@@ -4,6 +4,71 @@
  */
 
 /* ─────────────────────────────────────────────────────────────────────────────
+ * NAV · FOCO — F1 del rediseño.
+ *
+ * Webflow apaga el foco de TODOS los controles del nav:
+ *
+ *     .w-dropdown-toggle:focus { outline: 0 }
+ *     .w-nav-button:focus      { outline: 0 }
+ *     .w-nav-link:focus        { outline: 0 }
+ *
+ * Sin anillo, el nav no se puede recorrer a ojo con teclado: se sabe dónde está el
+ * foco solo por lo que pasa al pulsar Enter. Se repone con los tokens de la casa.
+ *
+ * Va en `:focus-visible` y no en `:focus`, así que el ratón no lo dispara y NINGUNA
+ * captura del baseline lo ve: ni `check:visual` ni `check:cascaron` fotografían un
+ * estado de foco. Esta regla es inerte para las puertas por construcción.
+ *
+ * Dos anillos porque hay dos fondos: `--mm-foco` es navy (15,60:1 sobre el blanco de
+ * la barra) y sobre el panel navy daría 1,1:1, o sea invisible. Ahí va el inverso.
+ * ------------------------------------------------------------------------- */
+.w-dropdown-toggle:focus-visible,
+.w-nav-button:focus-visible,
+.nav-link:focus-visible,
+.button-styles:focus-visible,
+.phone-link:focus-visible {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco);
+  outline-offset: var(--mm-foco-aire);
+}
+
+/* Dentro del panel desplegado el fondo es el degradado navy→cian. */
+.dropdown-list-submenu a:focus-visible,
+.dropdown-list-submenu [tabindex]:focus-visible {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco-inverso);
+  outline-offset: var(--mm-foco-aire);
+}
+
+/* Por debajo de 992 el menú entero se sirve sobre `--blue_dark`, así que los enlaces
+ * de primer nivel cambian de fondo y el anillo navy dejaría de verse. Se usa el
+ * breakpoint de Webflow (991) y no el de la casa (992) a propósito: esta regla
+ * persigue a `.nav-menu`, que es de Webflow. */
+@media screen and (max-width: 991px) {
+  .nav-link:focus-visible,
+  .w-dropdown-toggle:focus-visible {
+    outline-color: var(--mm-foco-inverso);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * NAV · EL CHEVRON CUENTA EL ESTADO
+ *
+ * `.icon-menu` es el chevron de los 4 desplegables y hoy no se entera de nada: con
+ * el panel abierto sigue apuntando hacia abajo, así que no dice cuál está abierto.
+ * `.w--open` lo pone el JS de `Interacciones.astro` sobre el toggle.
+ *
+ * Solo se ve con el panel ABIERTO, y las capturas del baseline son con todo cerrado.
+ * ------------------------------------------------------------------------- */
+.dropdown-toggle-menu .icon-menu {
+  transition: transform 160ms cubic-bezier(.455, .03, .515, .955);
+}
+.dropdown-toggle-menu.w--open .icon-menu {
+  transform: rotate(180deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .dropdown-toggle-menu .icon-menu { transition: none }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
  * NAV — el logo se solapa con «Resources ⌄» entre 992 y 1204 px.
  *
  * MEDIDO en el despliegue, hueco entre el borde derecho del logo y «Resources»:
