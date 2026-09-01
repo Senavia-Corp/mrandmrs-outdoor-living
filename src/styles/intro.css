@@ -1,0 +1,195 @@
+/**
+ * intro.css — LA BANDA DE CONFIANZA (`.trusted-section`)
+ *
+ * El mosaico de 3 fotos + «Complete Outdoor Construction Services…» + «More About Us».
+ * Encargo del chat «Prompt para sección intro mejorada»; lo ejecuta el director porque el
+ * bloqueo era suyo. Los hallazgos medidos son de ese chat salvo donde se diga.
+ *
+ * ALCANCE, medido sobre el build y no supuesto:
+ *
+ *     grep -rlo 'trusted-section'     .vercel/output/static --include='*.html'  ->  80
+ *     grep -rlo 'block-contect-intro' .vercel/output/static --include='*.html'  ->  71
+ *
+ * Las 9 de `country/` tienen `.trusted-section` pero NO `.block-contect-intro`: usan la otra
+ * variante del componente (`block-service-areas` + `wrapper-vertical-text-copy`). O sea que el
+ * reparto 80/71 lo hace el propio selector y NO hace falta mantener una lista de rutas en
+ * ningun sitio — que es lo que se desincroniza el dia que alguien añade una pagina.
+ *
+ * ORDEN DE CARGA: … -> home -> blog -> servicios -> intro -> propio.
+ * Reglas de la capa, las mismas que las hermanas: todo selector cuelga de `.trusted-section`,
+ * cero literales de color, cero `!important`, cero `@layer`, cero `url()`, cero `opacity:0`
+ * fuera de `html[data-anim]`, `min-width` 480/768/992 sin mezclar con los `max-width` de Webflow.
+ *
+ * ─────────────────────────────────────────────────────────────────────────────
+ * LOS TRES DEFECTOS QUE ARREGLA, MEDIDOS A 1440 / 991 / 479
+ *
+ *     caracteres por linea   67 · 134 · 60      <- 134 es el DOBLE del maximo legible
+ *     alineacion del parrafo left · CENTER · CENTER
+ *     alto del boton         38 · 36 · 36 px    <- WCAG 2.2 pide 44
+ *
+ * Y el de fondo: el texto blanco va sobre `#3185ca`, que da **3,93:1** — suspende los 4,5:1 de
+ * WCAG AA para texto normal. Sobre el punto mas claro de la foto de fondo baja a 2,55:1. O sea
+ * que el cuerpo de esta seccion no cumple contraste en las 80 rutas, desde la migracion.
+ */
+
+/* ── 1 · CONTRASTE: UN VELO, NO UN CAMBIO DE COLOR ────────────────────────────
+ *
+ * `box-shadow: inset` y no un `::before` ni un `background-image` nuevo, y las tres razones
+ * importan:
+ *   · una sombra inset se pinta ENCIMA del fondo y DEBAJO del contenido, que es exactamente
+ *     donde tiene que ir un velo — sin tocar `position` ni crear contexto de apilamiento;
+ *   · no necesita `url()`, asi que esta hoja sigue sin pedir un solo asset y no puede romper
+ *     `check:enlaces`;
+ *   · no añade un elemento, asi que no mueve el conteo del cascaron ni la firma posicional.
+ *
+ * El 50 % sale de la medicion del chat de intro: navy al 34 % deja el blanco en 4,50:1 —el
+ * minimo justo— y al 50 % en 6,16:1, con margen para el punto mas claro de la foto. Se elige el
+ * que tiene margen: un minimo exacto es un suspenso en cuanto la foto cambie.
+ *
+ * `100vmax` cubre la seccion entera a cualquier proporcion sin tener que saber su tamaño. */
+.trusted-section {
+  box-shadow: inset 0 0 0 100vmax color-mix(in srgb, var(--mm-navy) 50%, transparent);
+}
+
+/* ── 2 · LA MEDIDA, QUE ES EL DEFECTO MAS CARO ────────────────────────────────
+ *
+ * 134 caracteres por linea a 991. La regla legible son 45-75; el doble obliga al ojo a buscar
+ * el principio de cada linea y es donde la gente deja de leer. Se acota en `ch` y no en px
+ * porque `ch` sigue a la fuente: el limite se mantiene aunque cambie el tamaño.
+ *
+ * Y FUERA EL CENTRADO. Webflow centra este parrafo por debajo de 992 — 103 palabras centradas.
+ * Centrar prosa larga deja el borde izquierdo irregular y el ojo pierde el arranque de cada
+ * linea; es legible en un rotulo de tres palabras, no en un parrafo. Se gana por orden, sin
+ * media query: esta hoja carga despues que `webflow.css`.
+ *
+ * El titulo NO se acota en `ch` sino en `--mm-medida`: son 10 palabras y lo que necesita es
+ * bajar la altura de linea, que Webflow deja en 1,2 y en un titular de 3 lineas separa de mas. */
+/* 60ch, MEDIDO, no elegido a ojo. Contando cajas de linea con un `Range` —`getClientRects()`
+ * sobre el <p> devuelve UNA caja, la del bloque, y da 721 car/linea: no sirve— sale:
+ *
+ *     max-width    1440           991            479
+ *     (sin poner)  11 lin · 66    9 lin · 80 ✗  13 lin · 55
+ *     60ch         11 lin · 66   10 lin · 72    13 lin · 55
+ *     55ch         11 lin · 66   11 lin · 66    13 lin · 55
+ *
+ * 60ch es el que mete el 991 en rango sin tocar los otros dos: a 1440 la columna ya es mas
+ * estrecha que 60ch y a 479 manda el ancho de pantalla. `ch` es el ancho del «0», mas ancho que
+ * la letra media, asi que 60ch son ~72 caracteres reales — por eso 66ch se quedaba en 80. */
+.trusted-section .block-contect-intro p {
+  max-width: 60ch;
+}
+
+/* LA ALINEACION SE QUITA EN LOS DOS SITIOS DONDE WEBFLOW LA PONE, no solo en el parrafo.
+ * Por debajo de 992 hay DOS reglas centrando, y arreglar una sola deja la banda a medias:
+ *
+ *     .block-contect-intro { text-align: center }   -> el h2 y el texto del parrafo
+ *     .text-divider        { align-items: center }  -> la CAJA del parrafo dentro del flex
+ *
+ * Con `max-width: 60ch` la caja del parrafo es mas estrecha que su contenedor, asi que si solo
+ * se corrige el `text-align` queda el h2 centrado y el parrafo con el texto a la izquierda pero
+ * el bloque centrado: un borde izquierdo que no alinea con nada. Aviso del chat de intro. */
+.trusted-section .block-contect-intro { text-align: start }
+.trusted-section .text-divider { align-items: flex-start }
+
+.trusted-section .block-contect-intro h2 {
+  max-width: var(--mm-medida);
+  line-height: var(--mm-alto-apretado);
+  text-wrap: balance;
+}
+
+/* Ritmo entre titulo, cuerpo y CTA. Webflow lo resuelve con margenes sueltos de cada elemento;
+ * un `gap` unico es una sola decision en vez de tres que se contradicen.
+ *
+ * `justify-content: flex-start` NO ES DECORACION, y el aviso es del chat de intro: el
+ * contenedor YA es `flex-flow: column` con `justify-content: space-between`. Poner `gap` sin
+ * tocar eso deja DOS mecanismos repartiendo el mismo espacio sobrante — el gap fija un minimo
+ * y el space-between reparte el resto—, asi que el ritmo dependeria de cuanta altura sobre en
+ * cada pagina. Con `flex-start` manda el gap y el resultado es el mismo en las 71.
+ *
+ * `cursor: auto` porque Webflow pone `cursor: pointer` sobre este `<div>`, que no tiene rol ni
+ * manejador ni `href`: promete un clic que no existe. */
+.trusted-section .block-contect-intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--mm-e-24);
+  cursor: auto;
+}
+.trusted-section .block-contect-intro > * { margin-block: 0 }
+
+/* ── 3 · EL HUECO FANTASMA ────────────────────────────────────────────────────
+ *
+ * `.div-block-7` envuelve la lista de ciudades del CMS y mete 1rem de aire. En 15 de las 18
+ * fichas esa lista viene VACIA, asi que es un hueco que no anuncia nada. Se colapsa solo cuando
+ * esta vacio, con `:has()`, en vez de esconderlo siempre.
+ *
+ * Seguro para `check:texto`: ese div no tiene ni una letra cuando la lista viene vacia
+ * —verificado, no hay `w-dyn-empty` dentro—, y `innerText` no ve lo que no existe. Colapsar un
+ * contenedor sin texto no puede mover el baseline.
+ *
+ * En la home no existe: alli este bloque no casa con nada y no hace nada. */
+/* `display: none` y NO `margin/padding: 0`: quitar el margen deja la CAJA, que seguia midiendo
+ * 16px y ademas se comia un `gap` de 24 del contenedor. El hueco bajaba de ~40 a 40 — o sea que
+ * no lo cerraba. Aviso del chat de intro, medido sobre el build.
+ *
+ * Es seguro para `check:texto` por partida doble: cuando la lista viene vacia ese div no tiene
+ * ni una letra dentro -es literalmente `<div class="wrapper-cities-cms w-dyn-list"></div>`- y el
+ * selector solo casa cuando NO hay `.w-dyn-item`. Verificado que las listas POBLADAS si lo
+ * llevan (`<div role="listitem" class="item-cities-cms w-dyn-item">`, 11 en where-we-serve y 31
+ * en north-florida): si no lo llevaran, esto habria escondido 9, 7 y 2 enlaces de ciudad CON
+ * texto y habria puesto la barandilla en rojo en 3 rutas. */
+.trusted-section .div-block-7:not(:has(.w-dyn-item)) {
+  display: none;
+}
+
+/* ── 4 · EL CTA ───────────────────────────────────────────────────────────────
+ *
+ * 38px de alto a 1440 y 36 por debajo. WCAG 2.2 pide 44x44 como objetivo tactil (24x24 es el
+ * minimo AA; 44 es lo que se considera comodo). Con `min-height` y el padding que ya tiene,
+ * sube sin cambiar la tipografia ni el ancho.
+ *
+ * Y SE LE PONEN ESTADOS, que no tenia NINGUNO: `.button-styles` no lleva un solo `:hover` ni
+ * `:focus-visible` en los 167 KB de `webflow.css` (hallazgo del chat de intro). El foco se
+ * repone en navy —el oro da 1,86:1 y no puede marcar nada— y el hover baja la luminosidad del
+ * degradado sin cambiarle el color, que es lo unico que no exige decidir una paleta nueva.
+ *
+ * NO SE TOCA EL COLOR DEL TEXTO, y no porque este bien: el blanco sobre el oro `#f4b248` da
+ * **1,84:1**, un suspenso severo, y el sistema de diseño dice que el oro solo admite tinta
+ * navy (8,40:1). Pero `.button-styles` es el CTA de TODO el sitio —incluido «Get A Free
+ * Estimate» del nav— y cambiarlo es una decision de marca, no un arreglo de esta seccion.
+ * Queda planteado a Sebastian y anotado en la bitacora. */
+.trusted-section .button-styles {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  transition: filter .18s ease;
+}
+.trusted-section .button-styles:hover { filter: brightness(.94) }
+.trusted-section .button-styles:focus-visible {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco-inverso);
+  outline-offset: var(--mm-foco-aire);
+}
+
+/* ── 5 · EL MOSAICO NO SE TOCA, Y ESTA MEDIDO POR QUE ─────────────────────────
+ *
+ * EL MOTIVO ES EL PRESUPUESTO DE PIXELES, NO EL WAAPI. Conviene ser exacto porque la primera
+ * version de este comentario culpaba al embed y NO se sostiene: el chat de intro leyo sus 4.459
+ * caracteres enteros y solo escribe `col1/col2.style.flex` y `row1/row2.style.height`. NO toca
+ * `border-radius` ni `.image`, asi que un radio unificado si funcionaria en las 80.
+ *
+ * Se deja fuera porque hoy los 8px de radio solo existen a partir de 1280 y unificarlo mueve
+ * maqueta en 80 rutas por una mejora que nadie ha pedido. Entra cuando entre el resto, no de
+ * pasada en una hoja que va a arreglar un suspenso de contraste.
+ *
+ * LO QUE SI HAY QUE SABER DEL EMBED, para quien venga a tocar el mosaico:
+ *   · anima `flex` y `height` con `fill: "forwards"` y estilo EN LINEA, que gana a cualquier
+ *     hoja sin `!important` — y `!important` esta prohibido aqui. Una regla sobre `.grid-column`
+ *     o `.grid-row` funcionaria en 71 rutas y seria inerte en 9, sin avisar;
+ *   · trae un `<style>` SIN AMBITO en el `<body>` que deja `.grid-wrapper` en
+ *     `overflow: visible` contra el `hidden` de Webflow, ganando por orden a todo el `<head>`.
+ *     Medido en navegador. */
+
+@media (prefers-reduced-motion: reduce) {
+  .trusted-section .button-styles { transition: none }
+}
