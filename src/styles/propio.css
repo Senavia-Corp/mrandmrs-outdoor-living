@@ -185,3 +185,36 @@
     padding-right: 5px;
   }
 }
+
+/* ══ EL PIE — el mismo 2,55:1 del formulario, pero en 113 rutas ═══════════════
+ *
+ * `.footer` traia de Webflow EXACTAMENTE el mismo degradado que el panel del formulario de
+ * /contact-us: `linear-gradient(#1cadeb, #1d4bbf)`. Con el texto en blanco, la mitad de arriba
+ * es ilegible. Medido en produccion sobre el pie real (705 px de alto, 83 textos):
+ *
+ *     56 de 83 textos por debajo de 4,5:1
+ *     «Quick Links» / «Residential Services» / «Areas We Serve» ... 2,85:1
+ *     «Home», «Smart Soffit LED Lighting», «Alachua» ............... 3,00 - 3,03:1
+ *
+ * LA CORRECCION ES LA MISMA QUE YA ESTA PUBLICADA en el formulario, y por la misma razon: el
+ * techo de luminancia para que el BLANCO llegue a 4,5:1 es 0,1833, y el cian #1cadeb tiene
+ * 0,3613 — el DOBLE de brillante. Bajado hacia el navy de la marca:
+ *
+ *     color-mix(in srgb, var(--mm-cian) 60%, var(--mm-navy)) = #1173b5   L = 0,1572
+ *     blanco sobre el stop de arriba ..... 5,07:1   (era 2,55:1)
+ *     blanco sobre el stop de abajo ...... 7,47:1   (sin cambio: el azul ya cumplia)
+ *
+ * No se toca la direccion del degradado, ni el stop inferior, ni el padding, ni nada mas: es
+ * el MISMO pie, con el arranque a la luminancia que su propio texto necesita.
+ *
+ * 🚨 ESTO MUEVE PIXELES EN LAS 113 RUTAS. `check:visual` saldra en rojo para todo frente que
+ * tenga baseline abierta, y hay que re-baselinizar. Autorizado por Sebastian el 2-sep-2026
+ * despues de ensenarle los 56 de 83; el encargo R12-CON lo dejaba en ABIERTO justamente
+ * porque el alcance excede una pagina. */
+.footer {
+  background-image: linear-gradient(
+    color-mix(in srgb, var(--mm-cian) 60%, var(--mm-navy)),
+    var(--mm-azul)
+  );
+}
+
