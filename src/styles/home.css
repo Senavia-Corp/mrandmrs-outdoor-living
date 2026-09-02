@@ -65,16 +65,16 @@
    255) porque el azul aporta luminancia. La casa pide navy, así que sube el alfa.
    Suelo medido para blanco a 4,5:1 sobre 255: navy al 61 %.
 
-   LÍNEA DE AGUA: el velo no se desvanece, tiene un canto definido entre el 27 % y el
-   30 % de la altura. Es lo que permite poner el 74 % de navy solo donde está el texto
-   (0,277–0,723 de la sección, medido) en vez de untar un 40 % por todo, y deja limpia
-   la mitad superior del vídeo, que es obra real del cliente. Las bullets descansan
-   sobre ese canto. Con una transición de 24→31 % no leía como borde sino como
-   desvanecido; a 27→30 % sí.                                                         */
+   COBERTURA TOTAL, por decision de Sebastian el 2-sep-2026. La primera version tenia
+   una «linea de agua»: un canto definido al 27-30 % que dejaba limpia la mitad superior
+   del video. Vista en produccion, esa banda clara de arriba no le convencio y pidio el
+   filtro sobre TODO el fondo. El velo ya no tiene canto: arranca en 72 % y sube a 80 %
+   al pie. La seccion entera queda >=72 %, o sea que el blanco da >=6,60:1 en CUALQUIER
+   punto del heroe, no solo bajo el texto: mas margen que antes, no menos. Los 8 puntos
+   de degradado que quedan son profundidad, no proteccion — plano al 72 % cumpliria.  */
 .mm-hero{background-image:linear-gradient(to bottom,
-  color-mix(in srgb,var(--mm-navy) 12%,transparent) 0%,
-  color-mix(in srgb,var(--mm-navy) 14%,transparent) 27%,
-  color-mix(in srgb,var(--mm-navy) 74%,transparent) 30%,
+  color-mix(in srgb,var(--mm-navy) 72%,transparent) 0%,
+  color-mix(in srgb,var(--mm-navy) 76%,transparent) 45%,
   color-mix(in srgb,var(--mm-navy) 80%,transparent) 100%)}
 
 /* Punto 5 — el `text-shadow: 1px 1px 3px/4px #000` de 991 y 479 era el parche de quien
@@ -111,8 +111,8 @@
 /* Punto 3 — las 4 razones para confiar caían a 7 px a 479 y 10 a 991. El contraste ya
    estaba bien (navy sobre blanco al 70 % = 7,96:1 sobre el peor píxel oscuro); lo roto
    era el tamaño. --mm-paso-1 da 14 px a 479 y hasta 16 a 992+. La pastilla se vuelve
-   blanca opaca: navy encima 15,60:1, y así descansan sobre la línea de agua como el
-   gresite en el borde de la piscina. */
+   blanca opaca: navy encima 15,60:1, que las mantiene legibles contra el velo
+   navy de cobertura total. */
 .mm-hero .heading-mini-hero{font-size:var(--mm-paso-1);line-height:var(--mm-alto-cuerpo)}
 .mm-hero .icon-hero{width:var(--mm-e-16);height:var(--mm-e-16)}
 .mm-hero .block-icon-hero{padding:var(--mm-e-4)}
