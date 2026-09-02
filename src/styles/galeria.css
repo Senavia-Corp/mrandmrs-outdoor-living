@@ -45,8 +45,18 @@
  *   · el oro `#f4b248` da 1,86:1 sobre blanco: nunca marca estado — aqui no aparece
  *   · todo par de colores nuevo lleva su ratio MEDIDO al lado
  *
- * PIDO TOKEN: `--mm-ancho-galeria: 1600px` (§2). Es el unico literal de longitud del fichero
- * y esta declarado; mientras no exista, va el numero.
+ * TOKEN CONCEDIDO: `--mm-ancho-galeria: 1600px`, en `disenio/tokens.css` dentro de `:root`.
+ * Todo el AIRE y todos los RADIOS salen de `--mm-e-*` y `--mm-r-*`; los colores, de `var(--mm-*)`.
+ * Quedan CINCO numeros escritos a mano, y ninguno es aire ni color:
+ *   · `480` y `992` — los breakpoints que impone PRINCIPIOS §5. Una custom property no puede ir
+ *     en la CONDICION de un @media, asi que no hay otra forma de escribirlos.
+ *   · `44` — el objetivo tactil de WCAG. Es la misma cifra literal de la receta de la casa en
+ *     `intro.css:161-166`, no una invencion de este fichero.
+ *   · `300` y `400` — el SUELO de columna de cada tramo dentro de `minmax()`. No son espaciado:
+ *     son el ancho por debajo del cual una foto de obra deja de poder juzgarse, y de ellos sale
+ *     el recuento de columnas. Elegidos midiendo (§4), no redondeando. Si ARTE los quiere en
+ *     token, se los paso; no los meti en `--mm-e-*` porque esa escala es de AIRE y meter ahi un
+ *     umbral de layout la ensuciaria.
  *
  * Y la de arriba de todas: se ELEVA la base de Webflow, no se sustituye. El TEXTO no se toca.
  * En particular NO se enciende `.heading-brochure-nav`, que Webflow deja en `display:none`:
@@ -76,7 +86,7 @@
  * Las dos referencias, medidas a 1440: SAOTA 1261 px (88 % del ancho) y Raymond Jungles
  * 1344 px (93 %). `.gallery-page .container` es 0-2-0 y acota a 1 ruta: `.container` a pelo
  * pinta 113. */
-.gallery-page .container { max-width: 1600px }   /* PIDO TOKEN --mm-ancho-galeria */
+.gallery-page .container { max-width: var(--mm-ancho-galeria) }
 
 /* ── 3 · EL ENCUADRE ─────────────────────────────────────────────────────────────────────
  * El fallo mas caro de la pagina, y el que ninguna puerta ve. Con `height: 250px` fijo sobre
