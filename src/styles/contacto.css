@@ -260,10 +260,10 @@
  * `min-height: 44px` con `height: auto` porque Webflow declara `height: 38px` en `.w-input,
  * .w-select`: sin el `auto` el min-height gana pero deja la caja rigida. Nunca `height` fija.
  *
- * `font-size: var(--mm-e-16)` y no `--mm-paso-1`: por debajo de 16 px iOS hace ZOOM al enfocar
- * un campo y descoloca la pagina entera, y --mm-paso-1 da 14 px hasta 992. --mm-e-16 es un
- * token de espacio usado como tamano, que es feo; queda PEDIDO al director un `--mm-paso-campo`
- * de 16 px fijo. El valor es correcto, el nombre no.
+ * `font-size: var(--mm-paso-campo)` y no `--mm-paso-1`: por debajo de 16 px iOS Safari hace
+ * ZOOM al enfocar un campo y descoloca la pagina entera, y --mm-paso-1 da 14 px hasta 992.
+ * El token lo pidio este encargo y el director lo aniadio en f487415; hasta entonces esto era
+ * `--mm-e-16`, que daba el valor correcto con nombre de espacio.
  *
  * `margin-bottom: 0` mata los 10 px de `.w-input`: el aire entre campos lo lleva el gap. */
 .form .text-field,
@@ -274,7 +274,7 @@
   margin-bottom: 0;
   padding: var(--mm-e-12) var(--mm-e-16);
   border-radius: var(--mm-r-8);
-  font-size: var(--mm-e-16);
+  font-size: var(--mm-paso-campo);
   line-height: var(--mm-alto-cuerpo);
   transition-property: border-color, background-color;
   transition-duration: .15s;
@@ -523,28 +523,35 @@
  *
  * `.success-message-form` y `.ikonik-t882o` salen en 2 rutas, asi que van acotadas por
  * `.form-block`, que es 1: /request-estimated no se mueve. */
+/* 🚨 AQUI NO SE TOCA `display`, Y ESTO LO CAZO UNA PUERTA, NO EL OJO.
+ * `.w-form-done` nace con `display: none` y Webflow lo pone en `block` por JS al enviar. La
+ * primera version de este bloque traia `display: flex` para la maqueta, y eso PISA el `none`:
+ * el mensaje de exito se veia SIEMPRE, antes de rellenar nada. `check:texto '=/contact-us'`
+ * salio ROJA con tres lineas SOBRA —«Thank You! Your Request Has Been Successfully
+ * Received.», el parrafo y «Go To The Main Page»— porque pasaron a contar en el innerText.
+ * En una captura no se nota: la pantalla se ve bien, solo que en el momento equivocado.
+ * El aire va en los margenes de los hijos, que no dependen del modo de caja. */
 .form-block .success-message-form {
   background-color: var(--mm-fondo-tenue);   /* titular y parrafo navy encima .. 13,72:1 */
   border: 1px solid var(--mm-tinta-atenuada);/* vs panel blanco 5,26 · vs relleno 4,62 */
   border-radius: var(--mm-r-16);
   padding: var(--mm-e-48) var(--mm-e-32);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--mm-e-16);
 }
 @media (min-width: 768px) {
   .form-block .success-message-form { padding: var(--mm-e-64) var(--mm-e-48); }
 }
-.form-block .success-message-form > * { margin-block: 0; }
+.form-block .success-message-form > * { margin-block: 0 0 var(--mm-e-16); }
+.form-block .success-message-form > :last-child { margin-bottom: 0; }
 .form-block .success-message-form h2 {
   max-width: var(--mm-medida);
+  margin-inline: auto;
   text-wrap: balance;
   line-height: var(--mm-alto-titulo);
 }
 .form-block .success-message-form p,
 .form-block .success-message-form > div:not([class]) {
   max-width: var(--mm-medida);
+  margin-inline: auto;
   text-wrap: pretty;
 }
 
