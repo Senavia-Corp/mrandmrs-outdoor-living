@@ -45,9 +45,10 @@
  *     space-between no se repartiesen el mismo sobrante. Es la trampa documentada en
  *     `intro.css:100-107`. El hueco se hace con `margin` sobre el h1: una declaracion, no cuatro.
  *
- *   · NO se toca `margin-top: 85px`. Son la altura del nav `fixed` y el encargo pide llevarlos a
- *     token, pero NO EXISTE `--mm-nav-alto` y `disenio/` no lo escribe este chat. Re-declarar
- *     `85px` aqui seria mudar el numero magico de sitio, no quitarlo. Token PEDIDO al director.
+ *   · `margin-top` SI se lleva a token. `--mm-nav-alto` se pidio al director y lo concedio el
+ *     2-sep-2026 (PARTE-04 §1): la altura del nav `fixed` vivia como `85px` literal en
+ *     `webflow.css`, un numero magico repetido sin nombre. Ahora tiene uno. El pixel no se mueve
+ *     —85 = 85— y eso es deliberado: lo que cambia no es el resultado sino de DONDE sale.
  *
  *   · NO se neutraliza el `height: 100%` de `.hero-section`. Es inerte —el padre no tiene altura
  *     definida; `body{min-height:100%}` no la hace definida— y sigue siendolo despues de esta
@@ -97,12 +98,20 @@
  * `padding-inline` hay que declararlo tambien, y no es celo: sin el sobrevive el `2em` del atajo
  * y el aire lateral seguiria dependiendo del tamano del cuerpo. Pasa de 36/28 a 32/24 (`--mm-canal`).
  *
+ * LA UNICA DECLARACION DE ESTA HOJA QUE MUEVE 0 px, Y ESTA DICHO A PROPOSITO: el
+ * `margin-top: var(--mm-nav-alto)` resuelve a los mismos 85px que ya ponia Webflow. No es una
+ * declaracion INERTE en el sentido de CRITERIO —eso es codigo muerto, como los `flex-flow` sin
+ * `display:flex` de `.header-hero-page`—: aqui la regla SI se aplica y SI gana, lo que pasa es
+ * que sustituye a una equivalente. El dia que el nav deje de medir 85, la banda le sigue sola
+ * en las 8 rutas. Las otras 22 declaraciones tienen efecto en pixeles, medido por ablacion.
+ *
  * AVISO MEDIDO PARA LOS VECINOS: las 8 secciones que siguen al heroe tienen `padding-top: 0`
  * (`.gallery-page`, `.brochures-section-page`, `.articles-section`, `.form-section`,
  * `.project-page`, `.testimonials-page-section`, `.videos-section`, `.industries-section`). O sea
  * que estos 96px son TODO el aire hasta el contenido siguiente. Si alguna de esas hojas anade
  * padding superior, se suma al de aqui. */
 .hero-section {
+  margin-top: var(--mm-nav-alto);
   padding-block: var(--mm-e-48);
   padding-inline: var(--mm-canal);
 }
