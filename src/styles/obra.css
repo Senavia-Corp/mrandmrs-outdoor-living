@@ -31,5 +31,179 @@
  *
  * Y la de arriba de todas: se ELEVA la base de Webflow, no se sustituye. El TEXTO no se toca.
  *
- * De momento solo comentarios: no emite una sola regla, asi que el CSS construido no cambia.
+ * VARIANTE ELEGIDA POR SEBASTIAN el 2-sep-2026 mirando las capturas a 1440 y 479:
+ * **B, «placa navy»** — el panel pasa al navy de la marca, la foto se lleva 2/3 del ancho.
+ *
+ * ANCLAJE, Y POR QUE NO ES BUROCRACIA. Contado sobre las 115 paginas construidas, partiendo
+ * el atributo `class` por espacios y comparando el TOKEN ENTERO:
+ *
+ *   clase                        rutas   instancias fuera de la seccion
+ *   .block-item-project            66    0
+ *   .block-left/right-project      66    0
+ *   .img-project                   66    0
+ *   .fs-slider-projects_*          66    0
+ *   .wrapper-buttons-center-page   66    0
+ *   .wrapper-vertical-text        111    SI, en 111 rutas   <- por estas tres
+ *   .wrapper-buttons              104    SI, en 103 rutas   <- el anclaje es
+ *   .button-styles                114    SI, en 114 rutas   <- OBLIGATORIO
+ *
+ * OJO CON EL METODO, que me costo un numero mal dado: `grep -c '\bblock-left-project\b'` da
+ * 76 rutas, no 66, porque el guion es frontera de palabra y la expresion casa DENTRO de
+ * `block-left-project-page`, que es otra clase y vive en las 10 fichas de `/project/`. Es el
+ * mismo fallo de subcadena contra el que se endurecio `check-tokens.mjs`. Hay que comparar el
+ * token de clase entero:
+ *   node -e 'for (const m of html.matchAll(/class="([^"]*)"/g)) m[1].split(/\s+/).includes(CLASE)'
+ *
+ * Verificado ademas por el lado contrario: en las 10 rutas `/project/*` —que son de R10-PROY y
+ * si comparten `.wrapper-vertical-text`, `.wrapper-buttons` y `.button-styles`— el computado de
+ * esas clases es IDENTICO con y sin esta hoja. 50 sondas, 0 diferencias.
  */
+
+/* ── 1 · EL ENCUADRE: UNA SOLA RELACION EN TODOS LOS ANCHOS ───────────────────
+ *
+ * Hoy la caja de la foto lleva ALTURA FIJA por tramo (550/350/250/200 px) y ancho fluido, asi
+ * que la relacion va de 1,004 (a 992) a 2,844 (a 767) y SALTA 1,667 entre 991 y 992. Medido en
+ * 12 anchos entre 320 y 1920, no en los 4 que fotografia la puerta.
+ *
+ * Con `aspect-ratio` la relacion es 1,778 en los doce: salto 0,000 y recorte 0,7 %, porque las
+ * fotos son 1250x698 = 1,791 y 16/9 = 1,778. El 16/9 no es un numero bonito: es lo que el
+ * componente original de Finsweet ya declaraba en `.fs-slider-projects_image`, una regla que
+ * lleva 0 usos en las 66 rutas porque la foto usa `.img-project`.
+ *
+ * `height: auto` NO es opcional. Con la altura declarada, `aspect-ratio` calcula el ANCHO y
+ * desborda la columna. Aqui se neutraliza en los dos sitios donde Webflow la fija. */
+.projects-section .block-item-project { height: auto; align-items: stretch }
+.projects-section .block-left-project { height: auto; aspect-ratio: 16 / 9 }
+
+/* ── 2 · LAS 10 TARJETAS, LA MISMA ALTURA ─────────────────────────────────────
+ *
+ * Medido a 600 px: 402/402/402/402/378/402/378/402/378/402. Tres titulares ocupan una linea
+ * menos. Tambien pasa a 320 y a 479 — o sea, en toda la banda que la puerta no fotografia.
+ *
+ * No se arregla contando lineas ni poniendo una `min-height` de dos renglones: el texto no es
+ * mio y manana cambia. Se arregla dejando que el flex iguale la fila, que es para lo que esta.
+ * `.fs-slider-projects_list` viene con `align-items: start`. */
+.projects-section .fs-slider-projects_list { align-items: stretch }
+
+/* ── 3 · LA PLACA NAVY ────────────────────────────────────────────────────────
+ *
+ * El panel era `linear-gradient(#1cadeb, #1d4bbf)`: cian arriba, azul abajo. Con el titular
+ * BLANCO encima, el peor pixel bajo el h3 da 3,84:1 a 1440 (25px/400 es texto grande, umbral
+ * 3:1, asi que HOY CUMPLE — por 0,84). A 991 da 5,88:1 y a 479, 5,14:1.
+ *
+ * En navy plano el peor pixel es el navy mismo: 15,60:1 en toda la tarjeta, a cualquier ancho
+ * y bajo cualquier titular. Y el oro del CTA encima da 8,40:1, el unico par de la marca que
+ * pasa AAA. No es un color nuevo: `--blue_dark` tiene 71 usos en webflow.css y es EL color de
+ * la marca; lo que se va es un degradado de plantilla. */
+.projects-section .block-item-project {
+  background-image: none;
+  background-color: var(--mm-fondo-navy);
+  box-shadow: var(--mm-sombra-3);
+}
+/* NO se re-declara `border-radius`: Webflow ya da 16px y `--mm-r-16` vale 16px, o sea que la
+ * declaracion no moveria un pixel. Medido con y sin esta hoja: `16px` en los dos casos. El
+ * radio que quiere la variante B ES el que ya hay. */
+
+/* La columna de texto: aire de la escala y titular con jerarquia de verdad. El `1px` del
+ * filete es la UNICA longitud fuera de `--mm-e-*`/`--mm-r-*`/`--mm-paso-*` de este fichero, y
+ * es deliberado: un filete de pelo no es una decision de espaciado y no hay token de 1px.
+ * Igual el `44px`, que es la receta de la casa (intro.css:161-166) y el numero de WCAG 2.2. */
+.projects-section .block-right-project { padding: var(--mm-e-32) }
+/* NO se pone `gap` aqui ni en `.wrapper-vertical-text`, y merece explicacion porque es lo
+ * primero que uno escribe: `.block-right-project` es flex pero tiene UN SOLO hijo, asi que un
+ * gap no separa nada; y `.wrapper-vertical-text` NO ES FLEX —Webflow le da `flex-flow: column`
+ * y `justify-content: space-between` sin `display: flex`, o sea dos declaraciones muertas—, y
+ * ahi un gap tampoco hace nada. Las dos habrian salido verdes en cualquier revision y no
+ * pintan un pixel. El aire entre el titular y el CTA lo pone el `padding-top` de
+ * `.wrapper-buttons`, que si tiene efecto medido.
+ *
+ * Y NO se añade el `display: flex` que falta: activaria de golpe ese `justify-content:
+ * space-between` dormido en las 66 rutas, que es justo el movimiento que CRITERIO manda
+ * declarar antes de hacerlo. Queda propuesto en el informe, no ejecutado. */
+.projects-section .block-right-project h3 {
+  margin: 0;
+  font-size: var(--mm-paso-5);
+  line-height: var(--mm-alto-titulo);
+  text-wrap: balance;
+}
+.projects-section .wrapper-buttons {
+  margin-top: 0;
+  padding-top: var(--mm-e-24);
+  border-top: 1px solid var(--mm-borde-inverso);   /* blanco al 16 % sobre navy: 1,57:1, borde
+                                                    * DECORATIVO. No identifica ningun control,
+                                                    * asi que 1.4.11 no le pide 3:1. */
+}
+
+/* El reparto 66/34 es SOLO de la fila. Por debajo de 992 la tarjeta es una COLUMNA y la foto
+ * va a todo el ancho: sin esta guarda, el 66 % se colaba en el movil y dejaba la foto en
+ * 174 px a 320 (medido en el laboratorio antes de corregirlo). Una regla `min-width: 992` es
+ * invisible a 991, que es exactamente lo que se quiere. */
+@media (min-width: 992px) {
+  .projects-section .block-left-project { width: 66% }
+  .projects-section .block-right-project { width: 34% }
+}
+
+/* ── 4 · LOS DOS CONTROLES, VISIBLES Y ALCANZABLES ────────────────────────────
+ *
+ * Las flechas ya miden 48x48 y caen enteras dentro del viewport en 1920/1440/991/479/375
+ * (medido con getBoundingClientRect, no a ojo). Lo que fallaba es el ICONO: va con
+ * `fill="currentColor"` y `color:#fff` sobre el degradado dorado -> 1,86:1. En navy, 8,40:1.
+ *
+ * Y la seccion tiene HOY CERO reglas de estado: el anillo global de `disenio/base.css:286`
+ * solo alcanza a `.mm-accion`, `.mm-vinculo` y `.mm-tarjeta`, que aqui no existen. */
+.projects-section .fs-slider-projects_previous,
+.projects-section .fs-slider-projects_next {
+  color: var(--mm-navy);
+  transition-property: filter, box-shadow;
+  transition-duration: .18s;
+  transition-timing-function: ease-out;
+}
+.projects-section .fs-slider-projects_previous:hover,
+.projects-section .fs-slider-projects_next:hover { filter: brightness(.94) }
+
+/* Anillo SANDWICH blanco/navy/blanco. Un anillo de un solo color no vale aqui: la flecha
+ * cuelga medio dentro de la tarjeta (navy) y medio fuera (blanco de la seccion), o sea que sus
+ * dos vecinos son opuestos. Navy contra el halo blanco da 15,60:1 por los dos lados, caiga
+ * donde caiga. El oro no marca estado en ningun sitio: 1,86:1 sobre blanco. */
+.projects-section .fs-slider-projects_previous:focus-visible,
+.projects-section .fs-slider-projects_next:focus-visible {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco);
+  outline-offset: var(--mm-foco-aire);
+  box-shadow: 0 0 0 calc(var(--mm-foco-grosor) * 2 + var(--mm-foco-aire)) var(--mm-foco-inverso);
+}
+
+/* ── 5 · LOS DOS CTA, A 44 PX ─────────────────────────────────────────────────
+ *
+ * Medido: el de la tarjeta 34 px y el del pie de seccion 38,4 px. Suben con `min-height` y el
+ * padding que ya tienen, sin tocar tipografia ni ancho.
+ *
+ * EL ANILLO SOLO CAMBIA EN EL DE DENTRO, y no por gusto: `propio.css:62` ya pone uno navy a
+ * todo `.button-styles` del sitio, y sobre el panel navy de la tarjeta ese anillo daria
+ * 1,00:1 — invisible. En blanco da 15,60:1. El del PIE se queda con el de propio.css, porque
+ * vive sobre fondo blanco, donde el navy da 15,60:1 y uno blanco daria 1,00:1. Heredar un
+ * anillo sin mirar donde cae es como se fabrica un foco invisible. La especificidad 0-4-0 es
+ * la que hace falta para ganar a propio.css, que carga DESPUES (Base.astro:102 contra :84). */
+.projects-section .block-right-project .button-styles,
+.projects-section .wrapper-buttons-center-page .button-styles {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  transition: filter .18s ease-out;
+}
+.projects-section .block-right-project .button-styles:hover,
+.projects-section .wrapper-buttons-center-page .button-styles:hover { filter: brightness(.94) }
+.projects-section .block-right-project .button-styles:focus-visible {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco-inverso);
+  /* El `outline-offset` NO se re-declara: `propio.css:63` ya lo pone a `var(--mm-foco-aire)`
+   * sobre `.button-styles` y aqui solo hace falta cambiar el COLOR. Medido con y sin esta
+   * hoja: 2px en los dos casos. Si algun dia propio.css deja de ponerlo, este anillo se queda
+   * sin aire — es la unica dependencia que esta hoja tiene de otra. */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-section .fs-slider-projects_previous,
+  .projects-section .fs-slider-projects_next,
+  .projects-section .block-right-project .button-styles,
+  .projects-section .wrapper-buttons-center-page .button-styles { transition: none }
+}
