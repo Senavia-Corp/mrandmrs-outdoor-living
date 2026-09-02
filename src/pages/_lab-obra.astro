@@ -1,0 +1,232 @@
+---
+/**
+ * LABORATORIO de PULIDOR-1 — encargos R10-OBRA y R10-AD. NO ES UNA PAGINA DEL SITIO.
+ *
+ * El guion bajo la saca del enrutado de Astro, asi que no entra en el build ni suma una
+ * ruta 116. Existe solo para que Sebastian compare las dos variantes en la misma pantalla.
+ *
+ * EL MARCADO NO SE ESCRIBE AQUI: se lee de `.vercel/output/static/index.html`, o sea que es
+ * byte a byte el de produccion. Si lo transcribiera a mano, estaria comparando variantes
+ * sobre un marcado que no existe — que es justo como se aprueba un arreglo que luego no
+ * funciona en el sitio.
+ *
+ * Las reglas de las variantes viven en el <style> de abajo prefijadas por `.lab--a` / `.lab--b`.
+ * Ese prefijo SUBE la especificidad en 0-1-0, asi que el laboratorio sirve para ELEGIR, no
+ * para dar por buena la cascada: la elegida se verifica sin prefijo sobre la ruta real.
+ */
+import fs from 'node:fs';
+import path from 'node:path';
+import Base from '../layouts/Base.astro';
+
+const DIST = path.join(process.cwd(), '.vercel/output/static/index.html');
+const html = fs.readFileSync(DIST, 'utf8');
+
+/** Corta una <section> con cierre equilibrado. Un indexOf('</section>') pelado se queda corto
+ *  en cuanto haya una seccion anidada, y aqui el fallo seria silencioso. */
+function seccion(clase: string): string {
+  const i = html.indexOf(`<section class="${clase}"`);
+  if (i < 0) throw new Error(`no encuentro .${clase} en ${DIST}`);
+  const re = /<\/?section\b/g; re.lastIndex = i;
+  let d = 0;
+  for (let m; (m = re.exec(html));) {
+    d += m[0] === '<section' ? 1 : -1;
+    if (d === 0) return html.slice(i, m.index + '</section>'.length);
+  }
+  throw new Error(`.${clase} no cierra`);
+}
+
+const OBRA = seccion('projects-section');
+const AD = seccion('before-after-section');
+---
+
+<Base titulo="LAB R10-OBRA" descripcion="laboratorio interno" conPie={false}>
+  <div class="lab-hoja">
+    <p class="lab-cinta">A · placa honda — se conserva el degradado azul, oscurecido hasta que el blanco pasa</p>
+    <div class="lab lab--a" set:html={OBRA} />
+    <div class="lab lab--a" set:html={AD} />
+
+    <p class="lab-cinta">B · placa navy — el panel pasa al navy de la marca; la foto manda</p>
+    <div class="lab lab--b" set:html={OBRA} />
+    <div class="lab lab--b" set:html={AD} />
+
+    <p class="lab-cinta lab-cinta--hoy">HOY · sin tocar, para comparar</p>
+    <div class="lab lab--hoy" set:html={OBRA} />
+    <div class="lab lab--hoy" set:html={AD} />
+  </div>
+</Base>
+
+<style is:global>
+  /* ═══ CROMO DEL LABORATORIO — no viaja a ninguna hoja ═══ */
+  .lab-cinta { background: #111; color: #fff; font: 600 13px/1.5 Inter, sans-serif;
+    margin: 0; padding: 10px 16px; position: sticky; top: 0; z-index: 99; }
+  .lab-cinta--hoy { background: #7a1010 }
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+   * LO COMUN A LAS DOS VARIANTES — no es gusto, son defectos MEDIDOS hoy sobre
+   * `.vercel/output/static`. Va identico en A y en B.
+   * ═════════════════════════════════════════════════════════════════════════ */
+
+  /* ── 1 · EL ENCUADRE, UNA SOLA RELACION EN TODOS LOS ANCHOS ──────────────
+   * Hoy la caja de la foto lleva ALTURA FIJA (550/350/250/200 px) y ancho fluido, asi que la
+   * relacion va de 1,004 (a 992) a 2,844 (a 767) y salta 1,667 entre 991 y 992. Con
+   * `aspect-ratio` y `height:auto` la relacion es la MISMA en los 12 anchos medidos: salto
+   * 0,000 y recorte 0,7 % (las fotos son 1250x698 = 1,791, y 16/9 = 1,778).
+   * `height:auto` es obligatorio: con la altura declarada, aspect-ratio calcularia el ANCHO. */
+  .lab--a .block-left-project,
+  .lab--b .block-left-project { height: auto; aspect-ratio: 16 / 9 }
+  .lab--a .block-item-project,
+  .lab--b .block-item-project { height: auto; align-items: stretch }
+
+  /* ── 2 · LAS 10 TARJETAS, LA MISMA ALTURA ────────────────────────────────
+   * Hoy a 600 px salen 402/402/402/402/378/402/378/402/378/402: tres titulares ocupan una
+   * linea menos. No se arregla contando lineas —el texto no se toca y manana cambia—, se
+   * arregla dejando que el flex iguale la fila. */
+  .lab--a .fs-slider-projects_list,
+  .lab--b .fs-slider-projects_list { align-items: stretch }
+
+  /* ── 3 · LOS CONTROLES: CONTRASTE, TOQUE Y ESTADOS ───────────────────────
+   * Las flechas ya miden 48x48, pero su icono es `fill:currentColor` con `color:#fff` sobre
+   * el degradado dorado: 1,86:1. En navy da 8,40:1. El oro no marca estado, nunca.
+   * Y la seccion tiene HOY CERO reglas de :hover y :focus-visible: el anillo global de
+   * disenio/base.css:286 solo alcanza a .mm-accion/.mm-vinculo/.mm-tarjeta. */
+  .lab--a .fs-slider-projects_previous, .lab--a .fs-slider-projects_next,
+  .lab--b .fs-slider-projects_previous, .lab--b .fs-slider-projects_next {
+    color: var(--mm-navy);
+    transition-property: filter, box-shadow;
+    transition-duration: .18s;
+    transition-timing-function: ease-out;
+  }
+  .lab--a .fs-slider-projects_previous:hover, .lab--a .fs-slider-projects_next:hover,
+  .lab--b .fs-slider-projects_previous:hover, .lab--b .fs-slider-projects_next:hover { filter: brightness(.94) }
+
+  /* Anillo SANDWICH blanco/navy/blanco. Un anillo de un solo color no vale aqui: la flecha
+   * cuelga medio dentro de la tarjeta y medio fuera, asi que sus dos vecinos son distintos
+   * (y en la variante B el de dentro es navy). Navy contra el halo blanco da 15,60:1 por
+   * los dos lados, sea cual sea el fondo. */
+  .lab--a .fs-slider-projects_previous:focus-visible, .lab--a .fs-slider-projects_next:focus-visible,
+  .lab--b .fs-slider-projects_previous:focus-visible, .lab--b .fs-slider-projects_next:focus-visible,
+  .lab--a .bas-handle-h:focus-visible, .lab--b .bas-handle-h:focus-visible {
+    outline: var(--mm-foco-grosor) solid var(--mm-foco);
+    outline-offset: var(--mm-foco-aire);
+    box-shadow: 0 0 0 calc(var(--mm-foco-grosor) * 2 + var(--mm-foco-aire)) var(--mm-foco-inverso);
+  }
+
+  /* El CTA de la tarjeta y el de pie de seccion, a 44 px. Receta de la casa (intro.css:161). */
+  .lab--a .block-right-project .button-styles, .lab--b .block-right-project .button-styles,
+  .lab--a .wrapper-buttons-center-page .button-styles, .lab--b .wrapper-buttons-center-page .button-styles {
+    display: inline-flex; align-items: center; justify-content: center; min-height: 44px;
+    transition: filter .18s ease-out;
+  }
+  .lab--a .block-right-project .button-styles:hover, .lab--b .block-right-project .button-styles:hover,
+  .lab--a .wrapper-buttons-center-page .button-styles:hover, .lab--b .wrapper-buttons-center-page .button-styles:hover { filter: brightness(.94) }
+  /* Solo el CTA DE DENTRO de la tarjeta cambia de anillo, y no por gusto: `propio.css:62` ya
+   * pone uno navy a todo `.button-styles` del sitio, y sobre el panel navy de la tarjeta ese
+   * anillo daria 1,00:1 — invisible. En blanco da 7,47:1 sobre el azul de A y 15,60:1 sobre el
+   * navy de B. El CTA del PIE de seccion NO se toca: vive sobre fondo blanco, donde el anillo
+   * navy de propio.css da 15,60:1 y uno blanco daria 1,00:1. Un anillo heredado sin mirar
+   * donde cae es como se fabrica un foco invisible. */
+  .lab--a .block-right-project .button-styles:focus-visible,
+  .lab--b .block-right-project .button-styles:focus-visible {
+    outline: var(--mm-foco-grosor) solid var(--mm-foco-inverso);
+    outline-offset: var(--mm-foco-aire);
+  }
+
+  /* ── 4 · ANTES/DESPUES · EL TIRADOR VUELVE DEBAJO DEL DEDO ───────────────
+   * El JS mide `getBoundingClientRect()` sobre .bas-wrapper (caja de BORDE) y el clip-path se
+   * resuelve sobre la caja de RELLENO. Con `border:8px` eso son 16 px de diferencia de ancho:
+   * medido, el desfase es 8 - 16*pct/100 px, o sea +4 px al 25 %, 0 al 50 % y -4 al 75 %,
+   * llegando a ±8 px en los extremos. Quitando el BORDE las dos cajas coinciden y el termino
+   * se anula. El marco blanco no se pierde: pasa a `outline` con desplazamiento negativo, que
+   * se pinta en el mismo sitio, encima de las fotos y SIN ocupar caja. */
+  .lab--a .bas-wrapper, .lab--b .bas-wrapper {
+    border-width: 0;
+    outline: var(--mm-e-8) solid var(--mm-blanco);
+    outline-offset: calc(-1 * var(--mm-e-8));
+  }
+
+  /* El dedo recupera el scroll. `touch-action:none` congela el desplazamiento vertical en
+   * media pantalla de movil; `pan-y` deja pasar el gesto vertical y sigue entregando el
+   * horizontal al arrastre. Especificidad 0-2-0 para empatar con la regla del componente
+   * (`[fb-before-after][data-mm-ba]`), que carga ANTES: se gana por orden, sin !important. */
+  .lab--a [fb-before-after][data-mm-ba], .lab--b [fb-before-after][data-mm-ba] { touch-action: pan-y }
+
+  /* El tirador: 42x42 -> 44x44 por min-*, nunca por altura fija. */
+  .lab--a .bas-handle-h, .lab--b .bas-handle-h {
+    width: auto; height: auto; min-width: 44px; min-height: 44px;
+    background-color: var(--mm-accion);
+  }
+  /* El icono venia con `fill="#ffffff"` como ATRIBUTO DE PRESENTACION, que pierde contra
+   * cualquier selector CSS: blanco sobre oro son 1,86:1; navy sobre oro, 8,40:1. */
+  .lab--a .bas-handle-h svg path, .lab--b .bas-handle-h svg path { fill: var(--mm-navy) }
+
+  /* Las dos etiquetas dicen `cursor:pointer` y no tienen ni un manejador: es una afordancia
+   * falsa. Se quita el dedo; convertirlas en controles de verdad seria JS y no es mio. */
+  .lab--a .bas-label-before-h, .lab--a .bas-label-after-h,
+  .lab--b .bas-label-before-h, .lab--b .bas-label-after-h { cursor: default }
+
+  /* ── 5 · EL VELO DEL ANTES/DESPUES, POR PEOR PIXEL ───────────────────────
+   * `animateddivs-image.webp` tiene el 55,4 % de sus pixeles por debajo de 4,5:1 contra
+   * blanco y su peor pixel da 2,48:1. El velo se calcula sobre el FICHERO ENTERO, no sobre el
+   * recorte de un ancho: asi ningun recorte puede fallar. Navy al 35 % es el minimo (4,53:1);
+   * al 45 % el peor pixel da 5,48:1 y el 0,00 % del area queda por debajo.
+   * Va en ::before y no re-declarando el background para no repetir la ruta del fichero: si
+   * el director cambia la foto en webflow.css, esta hoja no se queda con la vieja. */
+  .lab--a .before-after-section, .lab--b .before-after-section { position: relative; isolation: isolate }
+  .lab--a .before-after-section::before, .lab--b .before-after-section::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background-color: color-mix(in srgb, var(--mm-navy) 45%, transparent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lab--a .fs-slider-projects_previous, .lab--a .fs-slider-projects_next,
+    .lab--b .fs-slider-projects_previous, .lab--b .fs-slider-projects_next,
+    .lab--a .block-right-project .button-styles, .lab--b .block-right-project .button-styles,
+    .lab--a .wrapper-buttons-center-page .button-styles, .lab--b .wrapper-buttons-center-page .button-styles { transition: none }
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+   * VARIANTE A — «PLACA HONDA». Se conserva el degradado azul de Webflow y solo se le baja
+   * la luminancia hasta que el blanco pasa. El cliente reconoce su tarjeta al instante.
+   * Blanco sobre --mm-azul #1d4bbf = 7,47:1 · sobre --mm-navy = 15,60:1.
+   * (Hoy el degradado arranca en #1cadeb y el h3 blanco da 3,07:1 a 1440 y 3,97:1 a 479.)
+   * ═════════════════════════════════════════════════════════════════════════ */
+  .lab--a .block-item-project {
+    background-image: linear-gradient(var(--mm-azul), var(--mm-navy));
+    border-radius: var(--mm-r-24);
+    box-shadow: var(--mm-sombra-2);
+  }
+  .lab--a .block-right-project { padding: var(--mm-e-32); gap: var(--mm-e-16) }
+  .lab--a .wrapper-vertical-text { gap: var(--mm-e-16) }
+  .lab--a .block-right-project h3 { text-wrap: balance; margin: 0; line-height: var(--mm-alto-titulo) }
+  .lab--a .wrapper-buttons { margin-top: 0 }
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+   * VARIANTE B — «PLACA NAVY». El panel pasa al navy de la marca (--blue_dark, 71 usos en
+   * Webflow) y la foto se lleva 2/3 del ancho. Blanco a 15,60:1 en TODA la tarjeta, oro del
+   * CTA a 8,40:1. Radio mas corto y sombra mas honda: menos plantilla, mas ficha de obra.
+   * ═════════════════════════════════════════════════════════════════════════ */
+  .lab--b .block-item-project {
+    background-image: none;
+    background-color: var(--mm-fondo-navy);
+    border-radius: var(--mm-r-16);
+    box-shadow: var(--mm-sombra-3);
+  }
+  .lab--b .block-right-project { padding: var(--mm-e-32); gap: var(--mm-e-24) }
+  /* El reparto 66/34 es SOLO de la fila. Por debajo de 992 la tarjeta es una COLUMNA y la foto
+   * va a todo el ancho: sin esta guarda, el 66 % se colaba en el movil y dejaba la foto en
+   * 174 px a 320 (medido). Una regla `min-width` es invisible a 991, que es justo lo que se
+   * quiere aqui. */
+  @media (min-width: 992px) {
+    .lab--b .block-left-project { width: 66% }
+    .lab--b .block-right-project { width: 34% }
+  }
+  .lab--b .wrapper-vertical-text { gap: var(--mm-e-24) }
+  .lab--b .block-right-project h3 {
+    text-wrap: balance; margin: 0;
+    font-size: var(--mm-paso-5); line-height: var(--mm-alto-titulo);
+  }
+  .lab--b .wrapper-buttons {
+    margin-top: 0; padding-top: var(--mm-e-24);
+    border-top: 1px solid var(--mm-borde-inverso);
+  }
+</style>
