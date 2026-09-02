@@ -27,10 +27,17 @@ suyo. Se deshizo bien, pero con nueve frentes esto vuelve a pasar seguro.
    git commit src/styles/tu-fichero.css docs/lo-tuyo.md -m "…"
    ```
    Esa forma **ignora el índice** para esas rutas: no puede arrastrar lo de nadie.
-3. **Antes de commitear, mira qué llevas:** `git diff --cached --stat`. Si aparece un fichero
+3. **Fichero NUEVO (sin seguir por git):** la forma con rutas **falla** —`did not match any
+   file(s) known to git`—, porque git no puede acotar a algo que no conoce. Entonces son dos
+   pasos, y el segundo es `--only`, que acota igual e ignora el resto del índice:
+   ```bash
+   git add docs/lo-nuevo.md && git commit --only docs/lo-nuevo.md -F mensaje.txt
+   ```
+   Me pasó a mí escribiendo esta misma regla.
+4. **Antes de commitear, mira qué llevas:** `git diff --cached --stat`. Si aparece un fichero
    que no es tuyo, sácalo con `git restore --staged <ruta>` — **no pierde su trabajo**, se queda
    en el árbol de su dueño.
-4. **Si haces `reset` para deshacer, comprueba que los ficheros ajenos volvieron al árbol.**
+5. **Si haces `reset` para deshacer, comprueba que los ficheros ajenos volvieron al árbol.**
 
 > Contexto de mando: PARTE-02 §5 decía «no commiteas, commiteo yo». Sebastian ha autorizado
 > directamente a varios frentes a commitear y empujar, y es su llamada. Con varios committers,
