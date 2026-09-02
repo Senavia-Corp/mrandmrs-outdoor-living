@@ -31,5 +31,137 @@
  *
  * Y la de arriba de todas: se ELEVA la base de Webflow, no se sustituye. El TEXTO no se toca.
  *
- * De momento solo comentarios: no emite una sola regla, asi que el CSS construido no cambia.
+ * LO QUE HACE, en corto (numeros y comandos en el informe R10-UBI):
+ *   · velo navy al 68 % en vez del negro al 50 %: peor pixel 5,83:1 (SUR) y 6,16:1 (NORTE),
+ *     con 0,00 % del area por debajo de 4,5:1. Copiar el navy al 50 % de `.trusted-section`
+ *     lo EMPEORARIA a 3,34:1 y 3,58:1.
+ *   · las dos tarjetas miden lo mismo y sus dos CTA comparten base — demostrado con una
+ *     prueba forzada, no por casualidad de que los dos textos midan parecido.
+ *   · cero aire muerto: 116,8 px por tarjeta a 1440 y 166,8 a 600 y 767 pasan a 0.
+ *   · la banda se cierra: hoy declara 96 px arriba y CERO abajo.
  */
+
+/* ══ BANDA COMPLETA ═══════════════════════════════════════════════════════════════════════
+ * Hoy `.location` declara `padding-top: 6rem` y NADA abajo: 96/0 a escritorio y 48/0 a <=991.
+ * Una banda con un solo costuron no es ritmo, es un descuido. */
+.location {
+  padding-block: var(--mm-e-48);
+}
+@media (min-width: 768px) { .location { padding-block: var(--mm-e-64); } }
+@media (min-width: 992px) { .location { padding-block: var(--mm-e-96); } }
+
+/* ══ UN SOLO CANAL ════════════════════════════════════════════════════════════════════════
+ * Hoy el canal es CERO: `.location` no declara padding lateral y `.container` no lleva
+ * ninguno, asi que a <=992 el titular toca el borde de la pantalla.
+ * `.w-container` NO sirve de palanca: su `max-width` esta muerto por orden de aparicion
+ * (offset 11716/12578/13699 contra 37727 de `.container`). */
+.location .container { padding-inline: var(--mm-canal); }
+.location .cms-country {
+  max-width: var(--mm-ancho);
+  margin-inline: auto;
+  padding-inline: var(--mm-canal);
+}
+/* NO se re-declara `margin-top`: Webflow ya pone `2rem` en `.cms-country` y coincide con
+ * `--mm-e-32`. Emitirlo seria una declaracion inerte. Queda apuntado que ese 32 px viene de
+ * `webflow.css`, que es DERIVADO: si algun dia se regenera con otro valor, vuelve aqui. */
+
+.location .header-location h2 {
+  font-size: var(--mm-paso-5);
+  line-height: var(--mm-alto-apretado);
+  text-wrap: balance;
+  margin: 0 0 var(--mm-e-12);
+}
+.location .header-location p {
+  font-size: var(--mm-paso-3);
+  line-height: var(--mm-alto-cuerpo);
+  color: var(--mm-tinta-atenuada);   /* navy al 65 % sobre blanco = 5,26:1 */
+  text-wrap: pretty;
+  margin: 0;
+}
+
+/* ══ SUELO COMPARTIDO ═════════════════════════════════════════════════════════════════════
+ * `align-items: center` es lo UNICO que hoy tapa que las dos tarjetas no miden lo mismo: con
+ * 92-117 px de holgura sobrante no se nota. Con `stretch` la fila se iguala de verdad. */
+.location .cms-list-country {
+  align-items: stretch;
+  overflow: visible;                 /* hoy `hidden`: recortaria la sombra de la tarjeta */
+}
+/* Tampoco `gap`: Webflow ya pone `1rem` y coincide con `--mm-e-16`. Misma nota que arriba. */
+
+/* ══ LA TARJETA ═══════════════════════════════════════════════════════════════════════════
+ * `min-height: 450px` solo se apaga por debajo de 480, asi que en la banda 480-767 —una sola
+ * columna, contenido corto— deja 166,8 px de hueco por tarjeta que ninguna puerta fotografia.
+ *
+ * EL VELO. Hoy es `linear-gradient(#00000080, #00000080)`: negro al 50 %, 4,04:1 y 4,34:1
+ * contra el peor pixel. Pasa a navy al 68 % -> 5,83:1 y 6,16:1, con 0,00 % del area por
+ * debajo de 4,5:1. Medido pixel a pixel sobre las dos .avif, no estimado.
+ *
+ * 🚨 NO PONER `transform`, `filter`, `opacity<1`, `will-change` NI `isolation` en esta regla:
+ * la foto es un `<img class="full-image-background">` a `z-index:-1`, o sea que pinta DEBAJO
+ * del fondo del padre solo mientras el padre no cree contexto de apilamiento. En cuanto lo
+ * cree, la foto sube por encima del velo y el blanco cae a 1,64:1 — y en reposo no se nota. */
+.location .item-country {
+  min-height: 0;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding-block: var(--mm-e-48);
+  padding-inline: var(--mm-e-32);
+  border-radius: var(--mm-r-24);
+  overflow: hidden;
+  background-image: none;
+  background-color: color-mix(in srgb, var(--mm-navy) 68%, transparent);
+}
+
+/* El titulo ancla ARRIBA y el CTA ABAJO. Con el `justify-content: flex-end` de Webflow las dos
+ * bases de CTA si cuadran, pero los dos TITULOS se descuadran en cuanto un parrafo mide una
+ * linea mas. Anclando por los dos extremos cuadran las dos cosas: medido con la prueba forzada
+ * del banco, diferencia 0,0 px en altura, en base de CTA y en top de h3. */
+.location .block-info-country {
+  width: 100%;
+  max-width: var(--mm-medida);
+  gap: var(--mm-e-12);
+  justify-content: flex-start;
+}
+.location .block-info-country h3 {
+  font-size: var(--mm-paso-4);
+  line-height: var(--mm-alto-apretado);
+  text-wrap: balance;
+  margin: 0;
+}
+.location .block-info-country p {
+  font-size: var(--mm-paso-2);
+  line-height: var(--mm-alto-cuerpo);
+  text-wrap: pretty;
+  margin: 0;
+}
+
+/* ══ EL CTA ═══════════════════════════════════════════════════════════════════════════════
+ * Se aplana el degradado metalico de 5 paradas de Webflow al oro del token. No es gusto: su
+ * parada mas oscura es `#d99933`, que con el navy encima da 6,35:1; plano son 8,40:1 en toda
+ * la superficie. Y el limite del boton contra el peor pixel del velo sube de 2,38:1 a 3,14:1
+ * (SUR) y 3,32:1 (NORTE), que es lo que WCAG 1.4.11 pide a lo que identifica un control.
+ * Objetivo tactil con la receta de la casa (intro.css:161-166): el boton mide 36,4 px hoy.
+ * Anillo BLANCO y no navy: `propio.css:62` carga el ultimo con `--mm-foco`, y aqui el fondo es
+ * el velo navy. Se le gana por PESO (0-4-0 contra 0-2-0), no por orden. */
+.location .item-country .button-styles {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  margin-top: auto;
+  padding-top: var(--mm-e-12);
+  border-radius: var(--mm-r-8);
+  background-image: none;
+  background-color: var(--mm-accion);
+  /* el navy del texto NO se re-declara: `propio.css:36` ya pone
+   * `.button, .button-styles { color: var(--mm-sobre-accion) }` en toda la casa. */
+  transition: background-color .18s ease;
+}
+.location .item-country .button-styles:hover { background-color: var(--mm-accion-hover); }
+.location .item-country .button-styles:focus-visible {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco-inverso);
+  outline-offset: var(--mm-foco-aire);
+}
+@media (prefers-reduced-motion: reduce) {
+  .location .item-country .button-styles { transition: none; }
+}

@@ -31,5 +31,121 @@
  *
  * Y la de arriba de todas: se ELEVA la base de Webflow, no se sustituye. El TEXTO no se toca.
  *
- * De momento solo comentarios: no emite una sola regla, asi que el CSS construido no cambia.
+ * LO QUE HACE, en corto (numeros y comandos en el informe R10-SOC):
+ *   · guarda de vacio: con `items: []` no hay `.mm-ig`, no casa nada y los 79 HTML no mueven
+ *     un pixel. Medido: la seccion vacia mide 0 px en los 7 anchos.
+ *   · rejilla determinista 4/4/3/2, todos divisores de 12 -> 0 huecos en los 7 anchos (hoy
+ *     `auto-fill` da 6/5/3/2 y deja 3 huecos de 184 px a 991).
+ *   · velo del hover a navy 68 % (hoy 45,1 % -> 2,85:1 sobre la peor foto posible).
+ *   · el foco deja de ser el `#1cadeb` que CRITERIO.md:26 prohibe.
+ *
+ * 🚨 LA CASCADA ES EL TRABAJO. El <style> del componente carga DESPUES (offset 1602 contra
+ * 1546) y lleva `[data-astro-cid-d6k336wr]` en cada selector. Su regla del velo en hover pesa
+ * (0,6,1): aqui NO basta con cargar despues, hay que PESAR mas. Por eso todo cuelga de
+ * `section.social-media …` y usa `a[href]` — que es cierto, toda celda es un enlace, no un
+ * truco para inflar. Cada regla lleva su rival y las dos especificidades al lado.
  */
+
+/* ══ GUARDA DE VACIO ══════════════════════════════════════════════════════════════════════
+ * TODO el aire de seccion vive aqui dentro. Con `items: []` el componente no pinta `.mm-ig`,
+ * `:has()` no casa y la seccion sigue midiendo 0 px en las 79 rutas: check:visual no se mueve
+ * y no hay que re-baselinizar nada mientras el feed siga vacio.
+ * rival: ninguno — `.social-media` no tiene ni una declaracion en los 190.947 bytes del CSS. */
+.social-media:has(.mm-ig) {
+  padding-block: var(--mm-e-48);
+  padding-inline: var(--mm-canal);
+}
+@media (min-width: 768px) { .social-media:has(.mm-ig) { padding-block: var(--mm-e-64); } }
+@media (min-width: 992px) { .social-media:has(.mm-ig) { padding-block: var(--mm-e-96); } }
+
+/* El componente se pone su propio `padding-inline: 1rem`; el canal ya lo pone la seccion.
+ * rival `.mm-ig[cid]` (0,2,0) · mio `section.social-media .mm-ig` (0,2,1) */
+section.social-media .mm-ig { padding-inline: 0; }
+/* El `max-width` NO se re-declara: el componente ya pone 1250px y coincide con `--mm-ancho`. */
+
+/* ══ LOS DOS CONTROLES DE LA CABECERA ═════════════════════════════════════════════════════
+ * Medido: `Follow` 79,5x28 y `@usuario` 217,2x12. Los dos por debajo de los 44 px de WCAG 2.2,
+ * y los dos pasan las once puertas en verde porque ninguna mide altura de toque.
+ * Receta de la casa: intro.css:161-166.
+ * rival `.mm-ig__seguir[cid]` (0,2,0) · mio (0,4,1) */
+section.social-media .mm-ig .mm-ig__cabecera .mm-ig__usuario,
+section.social-media .mm-ig .mm-ig__cabecera .mm-ig__seguir {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+}
+/* Mismo aplanado del oro que en `.location`, y por el mismo motivo medido. */
+/* Solo el aplanado del oro: el radio (8px) y el navy del texto ya los pone el componente,
+ * y coinciden con `--mm-r-8` y `--mm-sobre-accion`. Re-declararlos seria inerte.
+ * navy sobre oro: 8,40:1. */
+section.social-media .mm-ig .mm-ig__cabecera .mm-ig__seguir {
+  background-image: none;
+  background-color: var(--mm-accion);
+}
+/* Fuera el `#1cadeb`: 2,55:1 sobre blanco, y CRITERIO.md:26 lo prohibe por nombre.
+ * rival `.mm-ig__seguir[cid]:focus-visible` (0,3,0) · mio (0,5,1) */
+section.social-media .mm-ig .mm-ig__cabecera .mm-ig__usuario:focus-visible,
+section.social-media .mm-ig .mm-ig__cabecera .mm-ig__seguir:focus-visible {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco);   /* navy sobre blanco: 15,60:1 */
+  outline-offset: var(--mm-foco-aire);
+}
+
+/* ══ REJILLA DETERMINISTA ═════════════════════════════════════════════════════════════════
+ * Nunca `auto-fill`: hoy da 6/5/3/2 y con 12 fotos deja 3 huecos de 184,12 px a 991.
+ * 4 / 4 / 3 / 2 son todos DIVISORES DE 12, asi que las filas cierran en los cuatro anchos.
+ * Y el escalon va en 768, NO en 992: con el corte en 992 la celda se encogia un 34 % al
+ * ensanchar la pantalla un solo pixel (219,8 px a 991 -> 148 px a 992). Medido.
+ * rival `.mm-ig__rejilla[cid]` (0,2,0) y su `@media (max-width:479)` · mio (0,3,1) */
+section.social-media .mm-ig .mm-ig__rejilla {
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--mm-e-16);
+}
+@media (min-width: 480px) { section.social-media .mm-ig .mm-ig__rejilla { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 768px) { section.social-media .mm-ig .mm-ig__rejilla { grid-template-columns: repeat(4, 1fr); } }
+
+/* rival `.mm-ig__celda[cid] a[cid]` (0,3,1) · mio (0,4,2) */
+section.social-media .mm-ig .mm-ig__rejilla .mm-ig__celda a[href] { border-radius: var(--mm-r-16); }
+
+/* El anillo cae FUERA de la foto por el `outline-offset`, asi que sus DOS vecinos son el fondo
+ * de seccion: navy sobre blanco 15,60:1 por dentro y por fuera. Sobre la foto no habria
+ * garantia — son piscinas bajo sol de Florida.
+ * rival `.mm-ig__celda[cid] a[cid]:focus-visible` (0,4,1) · mio (0,5,2) */
+section.social-media .mm-ig .mm-ig__rejilla .mm-ig__celda a[href]:focus-visible {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco);
+  outline-offset: var(--mm-foco-aire);
+}
+
+/* ══ EL VELO, Y QUIEN LO ENCIENDE ═════════════════════════════════════════════════════════
+ * Hoy `#001c6373` = navy al 45,1 % -> 2,85:1 con el glifo blanco sobre la PEOR foto posible
+ * (blanca). Al 68 % son 5,83:1. Y se enciende tambien con el TECLADO, no solo con el raton:
+ * el `:is()` toma la especificidad de su argumento mas especifico, asi que una sola regla
+ * cubre los dos estados sin duplicarse.
+ * El `opacity: 0` del glifo se queda en el componente CON su encendedor al lado, asi que
+ * check:tokens no se pone roja: aqui no se escribe ningun `opacity: 0`.
+ * rival `.mm-ig__celda[cid] a[cid]:hover .mm-ig__velo[cid]` (0,6,1) · mio (0,7,2) */
+section.social-media .mm-ig .mm-ig__rejilla .mm-ig__celda a[href]:is(:hover, :focus-visible) .mm-ig__velo {
+  background-color: color-mix(in srgb, var(--mm-navy) 68%, transparent);
+}
+
+/* ══ QUE VE UN DEDO ═══════════════════════════════════════════════════════════════════════
+ * Donde no hay hover, un velo que solo aparece al pasar el raton no existe. Aqui el velo deja
+ * de ser velo: se encoge a un chip de esquina de navy SOLIDO con el glifo siempre visible.
+ * Blanco sobre navy solido = 15,60:1, y la foto se queda limpia en vez de turbia permanente.
+ * Sin tocar el DOM: es el mismo `<span>`, con otro papel.
+ * El peso es (0,6,2) a proposito: la regla de hover del componente pesa (0,6,1) y en un movil
+ * con hover pegajoso le pintaria el chip con su navy al 45 %. */
+@media (hover: none) {
+  section.social-media .mm-ig .mm-ig__rejilla .mm-ig__celda a[href] .mm-ig__velo {
+    inset: auto var(--mm-e-8) var(--mm-e-8) auto;
+    width: var(--mm-e-32);
+    height: var(--mm-e-32);
+    border-radius: var(--mm-r-8);
+    background-color: var(--mm-fondo-navy);
+  }
+  section.social-media .mm-ig .mm-ig__rejilla .mm-ig__celda a[href] .mm-ig__velo svg {
+    opacity: 1;
+    width: var(--mm-e-16);
+    height: var(--mm-e-16);
+  }
+}

@@ -1,0 +1,49 @@
+---
+/**
+ * MIRILLA DE LOS BANCOS DE PRUEBAS. Existe SOLO en `astro dev`.
+ *
+ * POR QUE HACE FALTA. Los nueve encargos piden la pagina de laboratorio en
+ * `src/pages/_lab-*.astro`, y Astro NO enruta un fichero que empieza por guion bajo — ni en
+ * `build` ni en `dev`. Medido: `/_lab-secciones` -> 404, `/lab/secciones` -> 200.
+ * Sin esta mirilla ningun banco se puede mirar.
+ *
+ * POR QUE NO ROMPE EL CONTEO DE 115. `getStaticPaths` devuelve la lista VACIA fuera de dev,
+ * asi que `astro build` no emite ni un HTML. Es el patron de `src/pages/[fixture].astro`,
+ * pero con `import.meta.env.DEV` en vez de una variable de entorno: asi funciona sobre
+ * CUALQUIER dev server, incluido el que ya tenga levantado otro frente. Y hace falta que sea
+ * asi, porque Astro 7 NO admite un segundo `astro dev` en el mismo proyecto: el segundo
+ * aborta con «Another astro dev server is already running».
+ *
+ * SIRVE A LOS NUEVE Y NO HAY QUE VOLVER A TOCARLA. Descubre los bancos sola: cada
+ * `src/pages/_lab-<algo>.astro` queda en `/lab/<algo>`. Si abres un banco nuevo, aparece solo.
+ * El `glob` es PEREZOSO a proposito: si el banco de otro frente tiene un error de sintaxis,
+ * revienta ese y solo ese, no la mirilla entera.
+ *
+ * Quitarla es borrar este fichero: no la importa nadie.
+ *
+ * La abrio PULIDOR-2 (R10-SEC) el 2-sep-2026.
+ */
+/**
+ * UNA LINEA POR BANCO. Empezo siendo un `import.meta.glob('../_lab-*.astro')` que los
+ * descubria solos, y era mas comodo — pero el glob es una macro de COMPILACION: Vite emitia
+ * un `.css` por cada banco ajeno aunque `getStaticPaths` devolviera la lista vacia, y esos
+ * ficheros acababan en `.vercel/output/static` (15 KB que no carga ningun HTML).
+ * Con la lista explicita, cada frente mete la suya y nadie arrastra el bundle de nadie.
+ */
+const BANCOS = {
+  secciones: () => import('../_lab-secciones.astro'),   // PULIDOR-2 · R10-SEC
+  // <tu-slug>: () => import('../_lab-<tu-slug>.astro'),
+};
+
+export function getStaticPaths() {
+  if (!import.meta.env.DEV) return [];
+  return ['secciones'].map((v) => ({ params: { v } }));
+}
+
+/* Nada de `return new Response(...)` aqui: en un proyecto `output: static` eso convierte la
+ * ruta en dinamica de servidor y el prerender se queda sin su chunk («Cannot find module
+ * .prerender/chunks/_v_…mjs»), tumbando el build ENTERO. `getStaticPaths` ya limita los
+ * valores validos, asi que cualquier otro slug lo 404ea Astro solo. */
+const Banco = (await BANCOS[Astro.params.v]()).default;
+---
+<Banco />

@@ -1,0 +1,633 @@
+---
+/**
+ * _lab-secciones.astro — BANCO DE PRUEBAS de PULIDOR-2 (encargo R10-SEC).
+ *
+ * NO ES UNA PAGINA DEL SITIO. El guion bajo la saca del enrutado de Astro, asi que no
+ * genera HTML: las 115 siguen siendo 115. Sirve para ver las DOS variantes de cada seccion
+ * una al lado de la otra y fotografiarlas a 1440 y 479.
+ *
+ * EL MARKUP ES EL REAL, byte a byte: `S_3D` y `S_UBICACION` estan copiadas literalmente de
+ * `src/pages/index.astro` (mismas 2376 y 2070 letras). Si se restila una copia de mentira,
+ * lo que se aprueba no es lo que se pinta.
+ *
+ * ⚠️ EL ENVOLTORIO SUBE LA ESPECIFICIDAD UNA CLASE. `.lab--a ._3d-section` pesa una clase mas
+ * que `._3d-section`. Para `._3d-section` y `.location` da igual —su rival es `webflow.css`,
+ * que carga ANTES, asi que el empate ya lo gana el orden—; pero para `.social-media` el rival
+ * es el <style> del componente, que carga DESPUES, y ahi manda el peso. Por eso las reglas de
+ * `.social-media` se escriben aqui YA con su anclaje de produccion (`section.social-media …`)
+ * y se re-verifican sobre una ruta real antes del informe.
+ *
+ * El texto visible del sitio no se toca en ningun sitio. Lo unico escrito aqui son las
+ * etiquetas del propio banco, que no viajan a ninguna ruta.
+ */
+import Base from '../layouts/Base.astro';
+import FeedInstagram from '../components/widgets/FeedInstagram.astro';
+
+const S_3D = "<section class=\"_3d-section\"><img src=\"/images/site/design2.webp\" loading=\"lazy\" sizes=\"(max-width: 1919px) 100vw, 1920px\" srcset=\"/images/site/design2-p-500.webp 500w, /images/site/design2-p-800.webp 800w, /images/site/design2-p-1080.webp 1080w, /images/site/design2-p-1600.webp 1600w, /images/site/design2.webp 1920w\" alt=\"\" class=\"design-bg\"><div class=\"w-layout-blockcontainer container w-container\"><div class=\"wrapper-video\"><div data-w-id=\"a1f123ae-345b-86a9-18b8-ddb864de3fab\" class=\"header-3d-section\"><h2>3D Pool Design &amp; Visualization</h2><p>Advanced 3D pool design and visualization for custom pool construction and remodeling across North &amp; South Florida.</p></div><div data-w-id=\"d0e26d17-17a7-1637-e349-7157550d6e66\" class=\"block-video\"><div data-poster-url=\"/images/site/bg-video-3d-poster.0000000.jpg\" data-video-urls=\"/videos/bg-video-3d-mp4.mp4,/videos/bg-video-3d-webm.webm\" data-autoplay=\"true\" data-loop=\"true\" data-wf-ignore=\"true\" class=\"background-video-3d w-background-video w-background-video-atom\"><video id=\"530cbcaa-1f3f-21e1-a774-0f91a89c10ec-video\" autoplay=\"\" loop=\"\" style=\"background-image:url(/images/site/bg-video-3d-poster.0000000.jpg)\" muted=\"\" playsinline=\"\" data-wf-ignore=\"true\" data-object-fit=\"cover\"><source src=\"/videos/bg-video-3d-mp4.mp4\" data-wf-ignore=\"true\"><source src=\"/videos/bg-video-3d-webm.webm\" data-wf-ignore=\"true\"></video><noscript><style>\n  [data-wf-bgvideo-fallback-img] {\n    display: none;\n  }\n  @media (prefers-reduced-motion: reduce) {\n    [data-wf-bgvideo-fallback-img] {\n      position: absolute;\n      z-index: -100;\n      display: inline-block;\n      height: 100%;\n      width: 100%;\n      object-fit: cover;\n    }\n  }</style><img data-wf-bgvideo-fallback-img=\"true\" src=\"/images/site/bg-video-3d-poster.0000000.jpg\" alt=\"\"></noscript><div aria-live=\"polite\"><button type=\"button\" data-w-bg-video-control=\"true\" aria-controls=\"530cbcaa-1f3f-21e1-a774-0f91a89c10ec-video\" class=\"w-backgroundvideo-backgroundvideoplaypausebutton w-background-video--control\"><span><img src=\"/images/site/pause.svg\" loading=\"lazy\" alt=\"Pause video\"></span><span hidden=\"\"><img loading=\"lazy\" alt=\"Play video\" src=\"/images/site/play-24.svg\"></span></button></div></div></div></div></div></section>";
+const S_UBICACION = "<section class=\"location\"><div class=\"w-layout-blockcontainer container w-container\"><div data-w-id=\"dfdd7317-58e7-27b3-99a6-2c20a5e8a7be\" class=\"header-location\"><h2>Where We Serve</h2><p>Regional Coverage With National Vision</p></div></div><div class=\"cms-country w-dyn-list\"><div role=\"list\" class=\"cms-list-country w-dyn-items\"><div role=\"listitem\" class=\"item-country w-dyn-item\"><img src=\"/images/where-we-serves/custom-pool-builders-south-florida/custom-inground-pool-builders-remodeling-florida.avif\" loading=\"lazy\" alt=\"Aerial drone view of a luxury custom pool and outdoor living project in South Florida, showcasing modern pool design by expert custom pool builders.\" class=\"full-image-background\"><div data-w-id=\"dfdd7317-58e7-27b3-99a6-2c20a5e8a7c8\" class=\"block-info-country\"><h3 class=\"white\">South Florida</h3><p>Licensed luxury pool builders in South Florida specializing in custom inground pools and outdoor living design-build projects, engineered, permitted, and built for high-end residential properties.</p><a href=\"/where-we-serves/custom-pool-builders-south-florida\" class=\"button button-styles w-button\">View South Florida Service Areas</a></div></div><div role=\"listitem\" class=\"item-country w-dyn-item\"><img src=\"/images/where-we-serves/custom-pool-builders-north-florida/service-areas-north-south-florida-pools.avif\" loading=\"lazy\" alt=\"Service areas map showing North Florida coverage for luxury custom pool builders and outdoor living services.\" class=\"full-image-background\"><div data-w-id=\"dfdd7317-58e7-27b3-99a6-2c20a5e8a7c8\" class=\"block-info-country\"><h3 class=\"white\">North Florida</h3><p>Licensed luxury pool builders in North Florida specializing in custom inground pools and outdoor living design-build projects, engineered for structural integrity and long-term durability.</p><a href=\"/where-we-serves/custom-pool-builders-north-florida\" class=\"button button-styles w-button\">View North Florida Service Areas</a></div></div></div></div></section>";
+
+const ITEMS_DEMO = [
+  {
+    "id": "demo-1",
+    "imagen": "/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-2.avif",
+    "alt": "Proyecto real de Mr & Mrs Outdoor Living",
+    "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+    "ancho": 640,
+    "alto": 640
+  },
+  {
+    "id": "demo-2",
+    "imagen": "/images/projects/luxury-pool-motorized-pergola-screen-enclosure-north-florida/luxury-pool-motorized-pergola-screen-enclosure-north-florida-2.avif",
+    "alt": "Proyecto real de Mr & Mrs Outdoor Living",
+    "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+    "ancho": 640,
+    "alto": 640
+  },
+  {
+    "id": "demo-3",
+    "imagen": "/images/projects/luxury-pool-motorized-pergola-screens-south-florida/luxury-pool-motorized-pergola-screens-south-florida-3.avif",
+    "alt": "Proyecto real de Mr & Mrs Outdoor Living",
+    "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+    "ancho": 640,
+    "alto": 640
+  },
+  {
+    "id": "demo-4",
+    "imagen": "/images/projects/luxury-pool-pergola-outdoor-kitchen-south-florida/luxury-pool-pergola-outdoor-kitchen-south-florida-2.avif",
+    "alt": "Proyecto real de Mr & Mrs Outdoor Living",
+    "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+    "ancho": 640,
+    "alto": 640
+  },
+  {
+    "id": "demo-5",
+    "imagen": "/images/projects/luxury-pool-pergola-outdoor-living-south-florida/luxury-pool-pergola-outdoor-living-south-florida-4.avif",
+    "alt": "Proyecto real de Mr & Mrs Outdoor Living",
+    "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+    "ancho": 640,
+    "alto": 640
+  },
+  {
+    "id": "demo-6",
+    "imagen": "/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-2.avif",
+    "alt": "Proyecto real de Mr & Mrs Outdoor Living",
+    "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+    "ancho": 640,
+    "alto": 640
+  },
+  {
+    "id": "demo-7",
+    "imagen": "/images/projects/luxury-pool-spa-with-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-north-florida-project-3.avif",
+    "alt": "Proyecto real de Mr & Mrs Outdoor Living",
+    "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+    "ancho": 640,
+    "alto": 640
+  },
+  {
+    "id": "demo-8",
+    "imagen": "/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-2.avif",
+    "alt": "Proyecto real de Mr & Mrs Outdoor Living",
+    "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+    "ancho": 640,
+    "alto": 640
+  },
+  {
+    "id": "demo-9",
+    "imagen": "/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-5.avif",
+    "alt": "Proyecto real de Mr & Mrs Outdoor Living",
+    "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+    "ancho": 640,
+    "alto": 640
+  },
+  {
+    "id": "demo-10",
+    "imagen": "/images/projects/south-florida-backyard-pool-wood-pergola/south-florida-pool-wood-pergola-outdoor-living-2.avif",
+    "alt": "Proyecto real de Mr & Mrs Outdoor Living",
+    "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+    "ancho": 640,
+    "alto": 640
+  },
+  {
+    "id": "demo-11",
+    "imagen": "/images/projects/luxury-pool-pergola-outdoor-kitchen-south-florida/luxury-pool-pergola-outdoor-kitchen-south-florida-6.avif",
+    "alt": "Proyecto real de Mr & Mrs Outdoor Living",
+    "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+    "ancho": 640,
+    "alto": 640
+  },
+  {
+    "id": "demo-12",
+    "imagen": "/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-5.avif",
+    "alt": "Proyecto real de Mr & Mrs Outdoor Living",
+    "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+    "ancho": 640,
+    "alto": 640
+  }
+];
+
+/**
+ * PRUEBA FORZADA que pide CRITERIO.md:122: se le anade UNA linea al parrafo de UNA sola
+ * tarjeta. Si las dos siguen midiendo lo mismo y sus dos CTA comparten base, la igualdad es
+ * estructural y no una casualidad de que los dos textos midan parecido.
+ * Solo vive en este banco: el texto del sitio no se toca.
+ */
+const S_UBICACION_FORZADA = S_UBICACION.replace(
+  'high-end residential properties.',
+  'high-end residential properties. Esta linea existe solo en el banco de pruebas para forzar el desequilibrio de altura y comprobar que las dos tarjetas siguen midiendo lo mismo.'
+);
+if (S_UBICACION_FORZADA === S_UBICACION) throw new Error('la prueba forzada no engancho: revisa la subcadena');
+
+const DEMO = {
+  usuario: 'mrandmrsoutdoorliving',
+  fuente: 'https://www.instagram.com/mrandmrsoutdoorliving/',
+  items: ITEMS_DEMO,
+};
+
+---
+<Base titulo="Banco R10-SEC · PULIDOR-2" ruta="/" conPie={false}>
+  <main class="lab">
+    <div class="lab__cab">
+      <h1>Banco R10-SEC</h1>
+      <p>Dos variantes por seccion, sobre el markup real. Elige una por encargo.</p>
+    </div>
+
+    <div class="lab__caso"><p class="lab__etq"><b>R10-3D · A</b> Marco — centrada, sobre blanco</p>
+      <div class="lab--a"><Fragment set:html={S_3D} /></div></div>
+    <div class="lab__caso"><p class="lab__etq"><b>R10-3D · B</b> Rail — ELEGIDA, sale de render3d.css</p>
+      <div class="lab--b"><Fragment set:html={S_3D} /></div></div>
+
+    <div class="lab__caso"><p class="lab__etq"><b>R10-UBI · A</b> Placa — tarjetas a sangre</p>
+      <div class="lab--a"><Fragment set:html={S_UBICACION} /></div></div>
+    <div class="lab__caso"><p class="lab__etq"><b>R10-UBI · B</b> Cobertura — ELEGIDA, sale de ubicacion.css</p>
+      <div class="lab--b"><Fragment set:html={S_UBICACION} /></div></div>
+    <div class="lab__caso"><p class="lab__etq"><b>R10-UBI · prueba forzada</b> una linea de mas en UNA tarjeta (variante B)</p>
+      <div class="lab--b"><Fragment set:html={S_UBICACION_FORZADA} /></div></div>
+
+    <div class="lab__caso"><p class="lab__etq"><b>R10-SOC · A</b> Hoja de contactos — 6 / 6 / 3 / 2 columnas</p>
+      <div class="lab--a"><section class="social-media"><FeedInstagram datosDemo={DEMO} /></section></div></div>
+    <div class="lab__caso"><p class="lab__etq"><b>R10-SOC · B</b> Escaparate — ELEGIDA, sale de social.css</p>
+      <div class="lab--b"><section class="social-media"><FeedInstagram datosDemo={DEMO} /></section></div></div>
+    <div class="lab__caso"><p class="lab__etq"><b>R10-SOC · guarda de vacio</b> con items:[] no se pinta nada y la seccion no ocupa</p>
+      <div class="lab--a"><section class="social-media"><FeedInstagram datosDemo={{ ...DEMO, items: [] }} /></section></div></div>
+  </main>
+</Base>
+
+<style is:global>
+  /* ══ CROMO DEL BANCO — no forma parte de ninguna variante ═══════════════════════════ */
+  .lab { padding-top: calc(85px + var(--mm-e-16)); }
+  .lab__cab { max-width: var(--mm-ancho); margin-inline: auto; padding: var(--mm-e-24) var(--mm-canal); }
+  .lab__cab h1 { font-size: var(--mm-paso-5); line-height: var(--mm-alto-apretado); color: var(--mm-tinta); margin: 0 0 var(--mm-e-8); }
+  .lab__cab p  { font-size: var(--mm-paso-2); color: var(--mm-tinta-atenuada); margin: 0; max-width: var(--mm-medida); }
+  .lab__caso { border-top: var(--mm-foco-grosor) solid var(--mm-borde); }
+  .lab__etq {
+    position: sticky; top: 85px; z-index: 40; margin: 0;
+    padding: var(--mm-e-8) var(--mm-canal);
+    background-color: var(--mm-fondo-navy); color: var(--mm-tinta-inversa-2);
+    font-family: var(--mm-fuente); font-size: var(--mm-paso-0); font-weight: var(--mm-peso-normal);
+  }
+  .lab__etq b { color: var(--mm-tinta-inversa); font-weight: var(--mm-peso-negro); margin-right: var(--mm-e-8); }
+
+  /* ══════════════════════════════════════════════════════════════════════════════════════
+   * `.lab--b` NO LLEVA NI UNA REGLA AQUI. Es lo que emiten `render3d.css`, `ubicacion.css` y
+   * `social.css`, tal cual, a especificidad de PRODUCCION. Asi el banco no puede aprobar algo
+   * que en las 115 rutas no gana la cascada — que es el fallo que este repo lleva contando
+   * siete veces con otro nombre.
+   *
+   * `.lab--a` son los DELTAS que devuelven la variante descartada, para poder compararlas.
+   * Suben una clase de especificidad, y por eso la A vive aqui y no al reves.
+   * ═══════════════════════════════════════════════════════════════════════════════════ */
+
+  /* ── R10-3D · A «Marco» — centrada, video contenido, sombra media ── */
+  .lab--a ._3d-section,
+  .lab--a ._3d-section .wrapper-video { text-align: center; }
+  .lab--a ._3d-section .header-3d-section { max-width: var(--mm-medida); margin-inline: auto; }
+  .lab--a ._3d-section .block-video { margin-top: var(--mm-e-32); box-shadow: var(--mm-sombra-2); }
+
+  /* ── R10-UBI · A «Placa» — las tarjetas a sangre, sin radio ──
+     El canal se lo pone la propia tarjeta: su padding izquierdo vale lo mismo que el margen
+     del contenedor, asi que el TEXTO de la primera tarjeta cae en la misma x que el titular.
+     Lectura amplia de CRITERIO.md:110; la B alinea en cambio el BORDE de la tarjeta. */
+  .lab--a .location .cms-country { max-width: none; margin-inline: 0; padding-inline: 0; }
+  .lab--a .location .item-country {
+    border-radius: 0;
+    padding-inline: calc(max(0px, (100vw - var(--mm-ancho)) / 2) + var(--mm-canal));
+  }
+
+  /* ── R10-SOC · A «Hoja de contactos» — densa: 6 columnas, hueco 8, radio 8 ── */
+  .lab--a section.social-media .mm-ig .mm-ig__rejilla { gap: var(--mm-e-8); }
+  .lab--a section.social-media .mm-ig .mm-ig__rejilla .mm-ig__celda a[href] { border-radius: var(--mm-r-8); }
+  @media (min-width: 768px) { .lab--a section.social-media .mm-ig .mm-ig__rejilla { grid-template-columns: repeat(6, 1fr); } }
+</style><img data-wf-bgvideo-fallback-img=\"true\" src=\"/images/site/bg-video-3d-poster.0000000.jpg\" alt=\"\"></noscript><div aria-live=\"polite\"><button type=\"button\" data-w-bg-video-control=\"true\" aria-controls=\"530cbcaa-1f3f-21e1-a774-0f91a89c10ec-video\" class=\"w-backgroundvideo-backgroundvideoplaypausebutton w-background-video--control\"><span><img src=\"/images/site/pause.svg\" loading=\"lazy\" alt=\"Pause video\"></span><span hidden=\"\"><img loading=\"lazy\" alt=\"Play video\" src=\"/images/site/play-24.svg\"></span></button></div></div></div></div></div></section>";
+const S_UBICACION = "<section class=\"location\"><div class=\"w-layout-blockcontainer container w-container\"><div data-w-id=\"dfdd7317-58e7-27b3-99a6-2c20a5e8a7be\" class=\"header-location\"><h2>Where We Serve</h2><p>Regional Coverage With National Vision</p></div></div><div class=\"cms-country w-dyn-list\"><div role=\"list\" class=\"cms-list-country w-dyn-items\"><div role=\"listitem\" class=\"item-country w-dyn-item\"><img src=\"/images/where-we-serves/custom-pool-builders-south-florida/custom-inground-pool-builders-remodeling-florida.avif\" loading=\"lazy\" alt=\"Aerial drone view of a luxury custom pool and outdoor living project in South Florida, showcasing modern pool design by expert custom pool builders.\" class=\"full-image-background\"><div data-w-id=\"dfdd7317-58e7-27b3-99a6-2c20a5e8a7c8\" class=\"block-info-country\"><h3 class=\"white\">South Florida</h3><p>Licensed luxury pool builders in South Florida specializing in custom inground pools and outdoor living design-build projects, engineered, permitted, and built for high-end residential properties.</p><a href=\"/where-we-serves/custom-pool-builders-south-florida\" class=\"button button-styles w-button\">View South Florida Service Areas</a></div></div><div role=\"listitem\" class=\"item-country w-dyn-item\"><img src=\"/images/where-we-serves/custom-pool-builders-north-florida/service-areas-north-south-florida-pools.avif\" loading=\"lazy\" alt=\"Service areas map showing North Florida coverage for luxury custom pool builders and outdoor living services.\" class=\"full-image-background\"><div data-w-id=\"dfdd7317-58e7-27b3-99a6-2c20a5e8a7c8\" class=\"block-info-country\"><h3 class=\"white\">North Florida</h3><p>Licensed luxury pool builders in North Florida specializing in custom inground pools and outdoor living design-build projects, engineered for structural integrity and long-term durability.</p><a href=\"/where-we-serves/custom-pool-builders-north-florida\" class=\"button button-styles w-button\">View North Florida Service Areas</a></div></div></div></div></section>";
+
+const ITEMS_DEMO = [
+  {
+    "id": "demo-1",
+    "imagen": "/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-2.avif",
+    "alt": "Proyecto real de Mr & Mrs Outdoor Living",
+    "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+    "ancho": 640,
+    "alto": 640
+  },
+  {
+    "id": "demo-2",
+    "imagen": "/images/projects/luxury-pool-motorized-pergola-screen-enclosure-north-florida/luxury-pool-motorized-pergola-screen-enclosure-north-florida-2.avif",
+    "alt": "Proyecto real de Mr & Mrs Outdoor Living",
+    "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+    "ancho": 640,
+    "alto": 640
+  },
+  {
+    "id": "demo-3",
+    "imagen": "/images/projects/luxury-pool-motorized-pergola-screens-south-florida/luxury-pool-motorized-pergola-screens-south-florida-3.avif",
+    "alt": "Proyecto real de Mr & Mrs Outdoor Living",
+    "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+    "ancho": 640,
+    "alto": 640
+  },
+  {
+    "id": "demo-4",
+    "imagen": "/images/projects/luxury-pool-pergola-outdoor-kitchen-south-florida/luxury-pool-pergola-outdoor-kitchen-south-florida-2.avif",
+    "alt": "Proyecto real de Mr & Mrs Outdoor Living",
+    "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+    "ancho": 640,
+    "alto": 640
+  },
+  {
+    "id": "demo-5",
+    "imagen": "/images/projects/luxury-pool-pergola-outdoor-living-south-florida/luxury-pool-pergola-outdoor-living-south-florida-4.avif",
+    "alt": "Proyecto real de Mr & Mrs Outdoor Living",
+    "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+    "ancho": 640,
+    "alto": 640
+  },
+  {
+    "id": "demo-6",
+    "imagen": "/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-2.avif",
+    "alt": "Proyecto real de Mr & Mrs Outdoor Living",
+    "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+    "ancho": 640,
+    "alto": 640
+  },
+  {
+    "id": "demo-7",
+    "imagen": "/images/projects/luxury-pool-spa-with-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-north-florida-project-3.avif",
+    "alt": "Proyecto real de Mr & Mrs Outdoor Living",
+    "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+    "ancho": 640,
+    "alto": 640
+  },
+  {
+    "id": "demo-8",
+    "imagen": "/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-2.avif",
+    "alt": "Proyecto real de Mr & Mrs Outdoor Living",
+    "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+    "ancho": 640,
+    "alto": 640
+  },
+  {
+    "id": "demo-9",
+    "imagen": "/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-5.avif",
+    "alt": "Proyecto real de Mr & Mrs Outdoor Living",
+    "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+    "ancho": 640,
+    "alto": 640
+  },
+  {
+    "id": "demo-10",
+    "imagen": "/images/projects/south-florida-backyard-pool-wood-pergola/south-florida-pool-wood-pergola-outdoor-living-2.avif",
+    "alt": "Proyecto real de Mr & Mrs Outdoor Living",
+    "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+    "ancho": 640,
+    "alto": 640
+  },
+  {
+    "id": "demo-11",
+    "imagen": "/images/projects/luxury-pool-pergola-outdoor-kitchen-south-florida/luxury-pool-pergola-outdoor-kitchen-south-florida-6.avif",
+    "alt": "Proyecto real de Mr & Mrs Outdoor Living",
+    "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+    "ancho": 640,
+    "alto": 640
+  },
+  {
+    "id": "demo-12",
+    "imagen": "/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-5.avif",
+    "alt": "Proyecto real de Mr & Mrs Outdoor Living",
+    "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+    "ancho": 640,
+    "alto": 640
+  }
+];
+
+/**
+ * PRUEBA FORZADA que pide CRITERIO.md:122: se le anade UNA linea al parrafo de UNA sola
+ * tarjeta. Si las dos siguen midiendo lo mismo y sus dos CTA comparten base, la igualdad es
+ * estructural y no una casualidad de que los dos textos midan parecido.
+ * Solo vive en este banco: el texto del sitio no se toca.
+ */
+const S_UBICACION_FORZADA = S_UBICACION.replace(
+  'high-end residential properties.',
+  'high-end residential properties. Esta linea existe solo en el banco de pruebas para forzar el desequilibrio de altura y comprobar que las dos tarjetas siguen midiendo lo mismo.'
+);
+if (S_UBICACION_FORZADA === S_UBICACION) throw new Error('la prueba forzada no engancho: revisa la subcadena');
+
+const DEMO = {
+  usuario: 'mrandmrsoutdoorliving',
+  fuente: 'https://www.instagram.com/mrandmrsoutdoorliving/',
+  items: ITEMS_DEMO,
+};
+
+---
+<Base titulo="Banco R10-SEC · PULIDOR-2" ruta="/" conPie={false}>
+  <main class="lab">
+    <div class="lab__cab">
+      <h1>Banco R10-SEC</h1>
+      <p>Dos variantes por seccion, sobre el markup real. Elige una por encargo.</p>
+    </div>
+
+    <div class="lab__caso"><p class="lab__etq"><b>R10-3D · A</b> Marco — centrada, sobre blanco</p>
+      <div class="lab--a"><Fragment set:html={S_3D} /></div></div>
+    <div class="lab__caso"><p class="lab__etq"><b>R10-3D · B</b> Rail — ELEGIDA, sale de render3d.css</p>
+      <div class="lab--b"><Fragment set:html={S_3D} /></div></div>
+
+    <div class="lab__caso"><p class="lab__etq"><b>R10-UBI · A</b> Placa — tarjetas a sangre</p>
+      <div class="lab--a"><Fragment set:html={S_UBICACION} /></div></div>
+    <div class="lab__caso"><p class="lab__etq"><b>R10-UBI · B</b> Cobertura — ELEGIDA, sale de ubicacion.css</p>
+      <div class="lab--b"><Fragment set:html={S_UBICACION} /></div></div>
+    <div class="lab__caso"><p class="lab__etq"><b>R10-UBI · prueba forzada</b> una linea de mas en UNA tarjeta (variante B)</p>
+      <div class="lab--b"><Fragment set:html={S_UBICACION_FORZADA} /></div></div>
+
+    <div class="lab__caso"><p class="lab__etq"><b>R10-SOC · A</b> Hoja de contactos — 6 / 6 / 3 / 2 columnas</p>
+      <div class="lab--a"><section class="social-media"><FeedInstagram datosDemo={DEMO} /></section></div></div>
+    <div class="lab__caso"><p class="lab__etq"><b>R10-SOC · B</b> Escaparate — ELEGIDA, sale de social.css</p>
+      <div class="lab--b"><section class="social-media"><FeedInstagram datosDemo={DEMO} /></section></div></div>
+    <div class="lab__caso"><p class="lab__etq"><b>R10-SOC · guarda de vacio</b> con items:[] no se pinta nada y la seccion no ocupa</p>
+      <div class="lab--a"><section class="social-media"><FeedInstagram datosDemo={{ ...DEMO, items: [] }} /></section></div></div>
+  </main>
+</Base>
+
+<style is:global>
+  /* ══ CROMO DEL BANCO — no forma parte de ninguna variante ═══════════════════════════ */
+  .lab { padding-top: calc(85px + var(--mm-e-16)); }
+  .lab__cab { max-width: var(--mm-ancho); margin-inline: auto; padding: var(--mm-e-24) var(--mm-canal); }
+  .lab__cab h1 { font-size: var(--mm-paso-5); line-height: var(--mm-alto-apretado); color: var(--mm-tinta); margin: 0 0 var(--mm-e-8); }
+  .lab__cab p  { font-size: var(--mm-paso-2); color: var(--mm-tinta-atenuada); margin: 0; max-width: var(--mm-medida); }
+  .lab__caso { border-top: var(--mm-foco-grosor) solid var(--mm-borde); }
+  .lab__etq {
+    position: sticky; top: 85px; z-index: 40; margin: 0;
+    padding: var(--mm-e-8) var(--mm-canal);
+    background-color: var(--mm-fondo-navy); color: var(--mm-tinta-inversa-2);
+    font-family: var(--mm-fuente); font-size: var(--mm-paso-0); font-weight: var(--mm-peso-normal);
+  }
+  .lab__etq b { color: var(--mm-tinta-inversa); font-weight: var(--mm-peso-negro); margin-right: var(--mm-e-8); }
+
+  /* ══ R10-3D · COMUN A LAS DOS VARIANTES ════════════════════════════════════════════ */
+
+  /* Aire de banda desde la escala, y simetrico. Hoy: `padding: 6rem 2em` -> 3rem/3rem a 991.
+     El `2em` resuelve contra el CUERPO, por eso el canal vale 36 px a 1440 y 28 a 991. */
+  .lab ._3d-section { padding-block: var(--mm-e-48); padding-inline: var(--mm-canal); }
+  @media (min-width: 768px) { .lab ._3d-section { padding-block: var(--mm-e-64); } }
+  @media (min-width: 992px) { .lab ._3d-section { padding-block: var(--mm-e-96); } }
+
+  /* UN SOLO CANAL: titular, parrafo y bloque de medio comparten caja, asi que sus tres
+     bordes izquierdos caen en la misma x. Hoy son 750 / 1000 / 1250 px: tres x distintas. */
+  .lab ._3d-section .header-3d-section { max-width: var(--mm-ancho); }
+
+  .lab ._3d-section .header-3d-section h2 {
+    font-size: var(--mm-paso-5); line-height: var(--mm-alto-apretado);
+    text-wrap: balance; margin: 0 0 var(--mm-e-12);
+  }
+  /* Jerarquia: el lead deja de pesar lo mismo que el titular. navy 65 % sobre blanco = 5,26:1 */
+  .lab ._3d-section .header-3d-section p {
+    font-size: var(--mm-paso-3); line-height: var(--mm-alto-cuerpo);
+    color: var(--mm-tinta-atenuada); max-width: var(--mm-medida);
+    text-wrap: pretty; margin: 0;
+  }
+
+  /* EL ENCUADRE. `height: auto` NEUTRALIZA el height:650/450/300/200 de Webflow: con la
+     altura aun declarada, `aspect-ratio` calcula el ANCHO y desborda la columna.
+     Fuente 1280x720 medida con ffprobe -> 16/9 -> 0 % de recorte en todos los anchos. */
+  .lab ._3d-section .block-video {
+    height: auto; aspect-ratio: 16 / 9;
+    max-width: var(--mm-ancho); width: 100%;
+    border-radius: var(--mm-r-24);
+  }
+
+  /* El boton de play/pausa. Webflow le pone `outline: 2px solid #3b79c3`, que CRITERIO.md:26
+     prohibe por nombre. Receta tactil de la casa (intro.css:161-166): min-height + inline-flex. */
+  /* El boton NO necesita receta tactil: MEDIDO, ya da 44x44 en los siete anchos porque sus dos
+     SVG son nativos de 44x44. Declarar `min-height:44px` aqui seria una declaracion inerte.
+     Lo que si hace falta es el `inset`: Webflow lo pone en `1em`, que resuelve contra el cuerpo
+     y vale 18 px a 1440 y 14 a 991 — el mismo defecto que el canal de la seccion. */
+  .lab ._3d-section .w-background-video--control { inset: auto var(--mm-e-12) var(--mm-e-12) auto; }
+  .lab ._3d-section .w-background-video--control:focus-visible {
+    outline: var(--mm-foco-grosor) solid var(--mm-foco-inverso);
+    outline-offset: var(--mm-foco-aire);
+  }
+
+  /* ── R10-3D · A «Marco» — centrada, sobre blanco ── */
+  /* Con la composicion CENTRADA no puede haber UN canal: si el texto se mide a `--mm-medida`
+     y el video ocupa `--mm-ancho`, sus bordes izquierdos no pueden coincidir. Lo que si se
+     consigue es que titular y parrafo compartan caja, o sea DOS canales en vez de tres.
+     La variante B resuelve el criterio entero pasando a rail izquierdo. */
+  .lab--a ._3d-section .header-3d-section { max-width: var(--mm-medida); }
+  .lab--a ._3d-section .block-video {
+    margin-top: var(--mm-e-32);
+    box-shadow: var(--mm-sombra-2);   /* sustituye al `0 2px 5px #0003` negro de Webflow */
+  }
+
+  /* ── R10-3D · B «Rail» — a la izquierda, banda tenue ── */
+  .lab--b ._3d-section { text-align: left; background-color: var(--mm-fondo-tenue); }
+  .lab--b ._3d-section .header-3d-section p { margin-inline: 0; }  /* navy 65 % sobre tenue = 4,62:1 */
+  .lab--b ._3d-section .block-video {
+    margin-top: var(--mm-e-24);       /* mas pegado: el par lee como un objeto, no como dos */
+    box-shadow: var(--mm-sombra-3);
+  }
+
+  /* ══ R10-UBI · COMUN A LAS DOS VARIANTES ═══════════════════════════════════════════ */
+
+  /* BANDA COMPLETA. Hoy `.location` declara `padding-top: 6rem` y CERO abajo. */
+  .lab .location { padding-block: var(--mm-e-48); }
+  @media (min-width: 768px) { .lab .location { padding-block: var(--mm-e-64); } }
+  @media (min-width: 992px) { .lab .location { padding-block: var(--mm-e-96); } }
+
+  .lab .location .container { padding-inline: var(--mm-canal); }
+  .lab .location .cms-country { margin-top: var(--mm-e-32); }
+
+  .lab .location .header-location h2 {
+    font-size: var(--mm-paso-5); line-height: var(--mm-alto-apretado);
+    text-wrap: balance; margin: 0 0 var(--mm-e-12);
+  }
+  .lab .location .header-location p {
+    font-size: var(--mm-paso-3); line-height: var(--mm-alto-cuerpo);
+    color: var(--mm-tinta-atenuada); text-wrap: pretty; margin: 0;
+  }
+
+  /* SUELO COMPARTIDO. `align-items: center` es lo UNICO que hoy tapa que las dos tarjetas
+     no miden lo mismo: con 92-117 px de holgura no se nota. Con `stretch` la fila se iguala
+     de verdad, y `justify-content: flex-end` de `.block-info-country` deja las dos bases de
+     CTA en la misma y. La prueba forzada de este banco lo demuestra. */
+  .lab .location .cms-list-country { align-items: stretch; gap: var(--mm-e-16); }
+
+  /* CERO AIRE MUERTO. `min-height: 450px` sigue vigente hasta 479, y en la banda 480-767 —una
+     sola columna, contenido corto— deja 147-167 px de hueco por tarjeta que ninguna puerta ve.
+     VELO: navy al 68 % (color-mix, el patron de intro.css:51). Peor pixel 5,83:1 SUR y 6,16:1
+     NORTE, 0,00 % del area por debajo de 4,5:1. Hoy es negro al 50 %: 4,04:1 y 4,34:1.
+     Copiar el navy al 50 % de `.trusted-section` lo EMPEORARIA a 3,34:1 y 3,58:1. */
+  .lab .location .item-country {
+    min-height: 0;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding-block: var(--mm-e-48);
+    background-image: none;
+    background-color: color-mix(in srgb, var(--mm-navy) 68%, transparent);
+  }
+
+  /* El titulo ancla ARRIBA y el CTA ABAJO. Con el `justify-content: flex-end` de Webflow las
+     dos bases de CTA si cuadran, pero los dos TITULOS se descuadran en cuanto un parrafo mide
+     una linea mas — visto en la prueba forzada de este mismo banco. Anclando por los dos
+     extremos cuadran las dos cosas. */
+  .lab .location .block-info-country {
+    width: 100%; max-width: var(--mm-medida); gap: var(--mm-e-12);
+    justify-content: flex-start;
+  }
+  .lab .location .block-info-country h3 {
+    font-size: var(--mm-paso-4); line-height: var(--mm-alto-apretado);
+    text-wrap: balance; margin: 0;
+  }
+  .lab .location .block-info-country p {
+    font-size: var(--mm-paso-2); line-height: var(--mm-alto-cuerpo);
+    text-wrap: pretty; margin: 0;
+  }
+
+  /* EL CTA. Se aplana el degradado metalico de 5 paradas de Webflow al oro del token: su
+     parada mas oscura es #d99933, que con el navy encima da 6,35:1; plano son 8,40:1 en toda
+     la superficie. Y contra el velo al 68 %, el limite del boton pasa de 2,38:1 a 3,14:1 (SUR)
+     y 3,32:1 (NORTE), que es lo que WCAG 1.4.11 pide a lo que identifica un control.
+     Objetivo tactil con la receta de intro.css:161-166. */
+  .lab .location .item-country .button-styles {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 44px;
+    margin-top: auto;            /* empuja el CTA al suelo de la tarjeta; el `gap` le garantiza
+                                   su aire minimo cuando la tarjeta no sobra altura */
+    padding-top: var(--mm-e-12);
+    border-radius: var(--mm-r-8);
+    background-image: none;
+    background-color: var(--mm-accion);
+    color: var(--mm-sobre-accion);
+    transition: background-color .18s ease;
+  }
+  .lab .location .item-country .button-styles:hover { background-color: var(--mm-accion-hover); }
+  /* Anillo BLANCO, no navy: `propio.css:62` carga el ultimo con `--mm-foco` y aqui el fondo
+     es el velo navy. Se gana por peso, no por orden, igual que hace intro.css:169. */
+  .lab .location .item-country .button-styles:focus-visible {
+    outline: var(--mm-foco-grosor) solid var(--mm-foco-inverso);
+    outline-offset: var(--mm-foco-aire);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .lab .location .item-country .button-styles { transition: none; }
+  }
+
+  /* ── R10-UBI · A «Placa» — las tarjetas siguen a sangre ──
+     El canal se lo pone la propia tarjeta: su padding izquierdo vale lo mismo que el margen
+     del contenedor, asi que el texto de la PRIMERA tarjeta cae en la misma x que el titular.
+     Lectura amplia de CRITERIO.md:110 (se alinea el TEXTO); la caja de la rejilla sigue a 0. */
+  .lab--a .location .item-country {
+    padding-inline: calc(max(0px, (100vw - var(--mm-ancho)) / 2) + var(--mm-canal));
+  }
+
+  /* ── R10-UBI · B «Cobertura» — las tarjetas entran en el contenedor ──
+     Lectura estricta de CRITERIO.md:110: titular, parrafo Y bloque de medio comparten x. */
+  .lab--b .location .cms-country {
+    max-width: var(--mm-ancho); margin-inline: auto; padding-inline: var(--mm-canal);
+  }
+  .lab--b .location .cms-list-country { overflow: visible; }
+  .lab--b .location .item-country {
+    padding-inline: var(--mm-e-32);
+    border-radius: var(--mm-r-24);
+    overflow: hidden;
+  }
+
+  /* ══ R10-SOC · COMUN ═══════════════════════════════════════════════════════════════
+     LA CASCADA. El <style> del componente carga DESPUES (offset 1602 contra 1546) y todos
+     sus selectores llevan [data-astro-cid-d6k336wr]. Su regla de velo en hover pesa (0,6,1),
+     asi que aqui NO basta con cargar despues: hay que pesar mas. El anclaje de produccion es
+     `section.social-media … a[href] …`, y `a[href]` es cierto —toda celda es un enlace—, no
+     un truco para inflar. Cero `!important`. */
+
+  /* GUARDA DE VACIO: con items:[] no existe `.mm-ig`, esta regla no casa y los 79 HTML no
+     mueven un pixel. El aire de seccion vive AQUI, no suelto en `.social-media`. */
+  .lab .social-media:has(.mm-ig) { padding-block: var(--mm-e-48); padding-inline: var(--mm-canal); }
+  @media (min-width: 768px) { .lab .social-media:has(.mm-ig) { padding-block: var(--mm-e-64); } }
+  @media (min-width: 992px) { .lab .social-media:has(.mm-ig) { padding-block: var(--mm-e-96); } }
+
+  .lab section.social-media .mm-ig { padding-inline: 0; max-width: var(--mm-ancho); }
+
+  /* Los dos controles de la cabecera: 33 px y 19,6 px hoy. */
+  .lab section.social-media .mm-ig .mm-ig__cabecera .mm-ig__usuario,
+  .lab section.social-media .mm-ig .mm-ig__cabecera .mm-ig__seguir {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 44px;
+  }
+  .lab section.social-media .mm-ig .mm-ig__cabecera .mm-ig__seguir {
+    border-radius: var(--mm-r-8);
+    background-image: none;
+    background-color: var(--mm-accion);   /* navy encima 8,40:1, igual que el CTA de ubicacion */
+    color: var(--mm-sobre-accion);
+  }
+  /* Fuera el #1cadeb del feed: CRITERIO.md:26 lo prohibe por nombre (2,55:1 sobre blanco). */
+  .lab section.social-media .mm-ig .mm-ig__cabecera .mm-ig__usuario:focus-visible,
+  .lab section.social-media .mm-ig .mm-ig__cabecera .mm-ig__seguir:focus-visible {
+    outline: var(--mm-foco-grosor) solid var(--mm-foco);
+    outline-offset: var(--mm-foco-aire);
+  }
+
+  /* REJILLA DETERMINISTA. Nunca `auto-fill`: hoy da 6/5/3/2 y con 12 fotos deja 3 huecos de
+     184,12 px a 991. Los recuentos elegidos son DIVISORES DE 12, asi que las filas cierran
+     en los cuatro anchos, y la serie no crece nunca al estrechar. */
+  .lab section.social-media .mm-ig .mm-ig__rejilla { grid-template-columns: repeat(2, 1fr); }
+
+  .lab section.social-media .mm-ig .mm-ig__rejilla .mm-ig__celda a[href]:focus-visible {
+    outline: var(--mm-foco-grosor) solid var(--mm-foco);
+    outline-offset: var(--mm-foco-aire);   /* el anillo cae FUERA de la foto: sus dos vecinos
+                                              son el fondo de seccion, 15,60:1 / 13,72:1 */
+  }
+
+  /* VELO: navy al 68 %. Hoy #001c6373 = navy al 45,1 % -> 2,85:1 sobre la peor foto posible
+     (blanca), y estas son piscinas bajo sol de Florida. Al 68 % son 5,83:1.
+     Se enciende tambien con el teclado, no solo con el raton. */
+  .lab section.social-media .mm-ig .mm-ig__rejilla .mm-ig__celda a[href]:is(:hover, :focus-visible) .mm-ig__velo {
+    background-color: color-mix(in srgb, var(--mm-navy) 68%, transparent);
+  }
+
+  /* QUE VE UN DEDO. Donde no hay hover el velo no es velo: se encoge a un chip de esquina de
+     navy solido con el glifo siempre visible. Blanco sobre navy solido = 15,60:1, y la foto
+     se queda limpia en vez de quedarse permanentemente turbia. Sin tocar el DOM. */
+  @media (hover: none) {
+    .lab section.social-media .mm-ig .mm-ig__rejilla .mm-ig__celda a[href] .mm-ig__velo {
+      inset: auto var(--mm-e-8) var(--mm-e-8) auto;
+      width: var(--mm-e-32); height: var(--mm-e-32);
+      border-radius: var(--mm-r-8);
+      background-color: var(--mm-fondo-navy);
+    }
+    .lab section.social-media .mm-ig .mm-ig__rejilla .mm-ig__celda a[href] .mm-ig__velo svg {
+      opacity: 1; width: var(--mm-e-16); height: var(--mm-e-16);
+    }
+  }
+
+  /* ── R10-SOC · A «Hoja de contactos» — densa, sobre blanco ── */
+  .lab--a section.social-media .mm-ig .mm-ig__rejilla { gap: var(--mm-e-8); }
+  .lab--a section.social-media .mm-ig .mm-ig__rejilla .mm-ig__celda a[href] { border-radius: var(--mm-r-8); }
+  /* El escalon va en 768 y NO en 992 a proposito: con el corte en 992 la celda pasaba de
+     225,8 px a 991 a 148 px a 992 —se encogia un 34 % al ensanchar la pantalla 1 px— y ademas
+     dejaba la tablet un 12 % MAS grande que el escritorio. Medido. */
+  @media (min-width: 480px) { .lab--a section.social-media .mm-ig .mm-ig__rejilla { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 768px) { .lab--a section.social-media .mm-ig .mm-ig__rejilla { grid-template-columns: repeat(6, 1fr); } }
+
+  /* ── R10-SOC · B «Escaparate» — celdas grandes, banda tenue ── */
+  .lab--b section.social-media:has(.mm-ig) { background-color: var(--mm-fondo-tenue); }
+  .lab--b section.social-media .mm-ig .mm-ig__rejilla { gap: var(--mm-e-16); }
+  .lab--b section.social-media .mm-ig .mm-ig__rejilla .mm-ig__celda a[href] { border-radius: var(--mm-r-16); }
+  @media (min-width: 480px) { .lab--b section.social-media .mm-ig .mm-ig__rejilla { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 768px) { .lab--b section.social-media .mm-ig .mm-ig__rejilla { grid-template-columns: repeat(4, 1fr); } }
+</style>

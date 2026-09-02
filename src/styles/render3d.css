@@ -31,5 +31,76 @@
  *
  * Y la de arriba de todas: se ELEVA la base de Webflow, no se sustituye. El TEXTO no se toca.
  *
- * De momento solo comentarios: no emite una sola regla, asi que el CSS construido no cambia.
+ * LO QUE HACE, en corto (numeros y comandos en el informe R10-3D):
+ *   · el video pasa a 16:9 con `height: auto` -> recorte 0 % en los 7 anchos medidos,
+ *     contra 13,5 / 20,4 / 14,4 / 25,0 / 15,9 % de hoy (el 25 % cae en 767, banda ciega).
+ *   · un solo canal: titular, parrafo y bloque de video caen en la MISMA x en los 7 anchos.
+ *   · el aire de banda sale de `--mm-e-*`, nunca de `em` (el `2em` de hoy resuelve contra el
+ *     cuerpo y da 36 px a 1440 y 28 a 991).
+ *   · el anillo de foco del boton de video deja de ser el `#3b79c3` de Webflow.
  */
+
+/* ══ BANDA ════════════════════════════════════════════════════════════════════════════════
+ * Aire simetrico desde la escala. Webflow declara `padding: 6rem 2em` y lo baja a `3rem` a
+ * <=991; el `2em` es el defecto: resuelve contra el CUERPO, asi que el canal vale 36 px a
+ * 1440 y 28 a 991 en vez de un valor declarado. `--mm-canal` son 24 px y 32 desde 768. */
+._3d-section {
+  padding-block: var(--mm-e-48);
+  padding-inline: var(--mm-canal);
+  text-align: left;
+}
+@media (min-width: 768px) { ._3d-section { padding-block: var(--mm-e-64); } }
+@media (min-width: 992px) { ._3d-section { padding-block: var(--mm-e-96); } }
+
+/* `.wrapper-video` se centra a si misma a <=991, y `text-align` lo gana el elemento mas
+ * cercano: sin esta linea el rail se rompe justo por debajo de 992. */
+._3d-section .wrapper-video { text-align: left; }
+
+/* ══ UN SOLO CANAL ════════════════════════════════════════════════════════════════════════
+ * Hoy hay TRES x distintas: el titular a 750 px de caja, el video a 1000 y el contenedor a
+ * 1250. Compartiendo caja, los tres bordes izquierdos caen en la misma x en los 7 anchos. */
+._3d-section .header-3d-section { max-width: var(--mm-ancho); }
+
+/* ══ JERARQUIA ════════════════════════════════════════════════════════════════════════════
+ * Hoy titular y lead pesan casi lo mismo. El lead baja a `--mm-tinta-atenuada` (navy al 65 %
+ * sobre blanco = 5,26:1) y se mide a `--mm-medida`. El titular es navy sobre blanco: 15,60:1. */
+._3d-section .header-3d-section h2 {
+  font-size: var(--mm-paso-5);
+  line-height: var(--mm-alto-apretado);
+  text-wrap: balance;
+  margin: 0 0 var(--mm-e-12);
+}
+._3d-section .header-3d-section p {
+  font-size: var(--mm-paso-3);
+  line-height: var(--mm-alto-cuerpo);
+  color: var(--mm-tinta-atenuada);
+  max-width: var(--mm-medida);
+  text-wrap: pretty;
+  margin: 0;
+}
+
+/* ══ EL ENCUADRE ══════════════════════════════════════════════════════════════════════════
+ * `height: auto` NEUTRALIZA el height:650/450/300/200 de Webflow, y NO es opcional: con la
+ * altura aun declarada, `aspect-ratio` calcula el ANCHO y desborda la columna.
+ * Fuente 1280x720 medida con ffprobe -> 16/9 -> 0 % de recorte.
+ * La sombra sustituye al `0 2px 5px #0003` negro de Webflow por la teñida de navy. */
+._3d-section .block-video {
+  height: auto;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  max-width: var(--mm-ancho);
+  margin-top: var(--mm-e-24);
+  border-radius: var(--mm-r-24);
+  box-shadow: var(--mm-sombra-3);
+}
+
+/* ══ EL BOTON DE PLAY/PAUSA ═══════════════════════════════════════════════════════════════
+ * NO lleva receta tactil: medido, ya da 44x44 en los 7 anchos porque sus dos SVG son nativos
+ * de 44x44. Un `min-height:44px` aqui seria una declaracion inerte.
+ * Lo que si hace falta: el `1em` de Webflow (otra vez el cuerpo) y su anillo de foco, que es
+ * el `#3b79c3` que CRITERIO.md:26 prohibe por nombre. Blanco sobre el video, no navy. */
+._3d-section .w-background-video--control { inset: auto var(--mm-e-12) var(--mm-e-12) auto; }
+._3d-section .w-background-video--control:focus-visible {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco-inverso);
+  outline-offset: var(--mm-foco-aire);
+}
