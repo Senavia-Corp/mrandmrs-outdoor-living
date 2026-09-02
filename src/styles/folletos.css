@@ -201,7 +201,9 @@
  *     un `grid-template-columns` sería una declaración inerte. Va abajo, con `columns`. */
 @media (min-width: 768px) {
   .filter_grid { grid-template-columns: auto 1fr; }
-  .filter_form_block { position: sticky; top: var(--mm-e-96); }
+  /* El desfase es la altura del nav MAS aire, no un valor de espaciado que da la
+   * casualidad de que despeja: `--mm-nav-alto` es el token semantico correcto. */
+  .filter_form_block { position: sticky; top: calc(var(--mm-nav-alto) + var(--mm-e-16)); }
   /* De 768 arriba el panel es una barra lateral de 288 px: dos columnas darian 130 px
    * por etiqueta. Vuelve a una. */
   .filter_list { grid-template-columns: 1fr; }
