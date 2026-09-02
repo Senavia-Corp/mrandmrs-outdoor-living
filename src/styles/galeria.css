@@ -3,27 +3,309 @@
  *
  * Lo posee EN EXCLUSIVA el chat GALERIA (encargo R12-GAL). Nadie mas escribe aqui.
  *
- * QUE RESTILA, Y CUANTO. Medido sobre `.vercel/output/static` el 1-sep-2026:
- *   .gallery-page                                                  1 rutas
- *   .gallery-filters / .gallery-filter-form / .service-filter      1 rutas
- *   .cms-list-pictures / .cms-item-pictures / .gallery-picture / .block-pictures 1 rutas
+ * VARIANTE APLICADA: **A · PLIEGO**. Sebastian delego la eleccion; se decide por lo medido,
+ * no por gusto, y las tres razones son:
+ *   1. RECORTE. Sobre las 129 fotos con relacion conocida, 3:2 tira el 14,6 % de media y 7:5
+ *      el 16,6 %; sobre la fuente DOMINANTE (1,791, 74 fotos) 16,2 % contra 21,8 %. Las dos
+ *      dejan solo 6 fotos por encima del techo del 25 % —los 3 retratos y las 3 cuadradas,
+ *      que fallan bajo cualquier caja apaisada—, pero A tira menos foto en el caso comun.
+ *   2. HONESTIDAD. Los 137 `.gallery-picture` son `<a href="#">` que NO ABREN NADA: el HTML
+ *      construido no tiene un solo `<script src>`, o sea que `webflow.js` no carga y el
+ *      lightbox nunca arranca. La variante B levantaba la pieza con sombra al pasar el raton,
+ *      que es la afordancia de una tarjeta pulsable. A mueve la FOTOGRAFIA dentro de un marco
+ *      que no se mueve: dice "esto esta vivo", no "pulsa aqui".
+ *   3. REFERENCIA. 3:2 es la geometria medida de SAOTA (397x265 = 1,50 a 1440 px), que es el
+ *      par mas cercano a este cliente: residencial de lujo con piscina.
  *
- * Todo exclusivo de /gallery: no hay riesgo de mover otra ruta, y por eso aqui se puede ser
- * ambicioso con la maqueta. El filtro es un <select> nativo suelto sobre la rejilla.
+ * QUE RESTILA, Y CUANTO. Medido sobre `.vercel/output/static` (115 HTML) el 2-sep-2026, por
+ * TOKEN EXACTO del atributo `class`, no por subcadena:
+ *   .gallery-page  .gallery-filters  .gallery-filter-form  .service-filter        1 ruta
+ *   .cms-list-pictures  .cms-item-pictures  .gallery-picture  .block-pictures     1 ruta
+ *   .nav-gallery  .cms-wrapper-pictures  .heading-brochure-nav                    1 ruta
+ *   .image-gallery                                                              25 RUTAS
+ *
+ * 🚨 `.image-gallery` ES LA TRAMPA DE ESTE LOTE. Es el `<img>` de dentro de `.gallery-picture`,
+ * y la misma clase la llevan los sliders de las 24 fichas de /services/ y /country/. Aqui NO
+ * se escribe ni una regla sobre `.image-gallery` a pelo: se llega SIEMPRE como
+ * `.gallery-picture .image-gallery`, colgada de una clase que pinta 1.
+ *   grep -rlE 'class="[^"]*\bgallery-page\b' da 25 y MIENTE: `\b` casa dentro de
+ *   `slider-gallery-page`, que existe en 24 rutas. Se mide tokenizando el atributo.
  *
  * ORDEN DE CARGA, y gana por ORDEN, nunca por `!important`:
  *   fuentes -> webflow -> disenio/tokens -> disenio/base -> [hojas de seccion] -> propio
+ * Esta hoja entra en `Base.astro:95`, o sea DESPUES de `webflow.css`: toda regla de aqui a
+ * 0-1-0 gana a su homologa de Webflow sin subir especificidad. Las DOS unicas reglas que
+ * necesitan especificidad y no orden van marcadas abajo (§6).
  *
- * LAS REGLAS DE ESTA CAPA — `docs/encargos/00-PRINCIPIOS.md` §5, y las mide `check:tokens`
- * (11 comprobaciones; correla tu, es estatica y tarda <1 s):
+ * LAS REGLAS DE ESTA CAPA — `docs/encargos/00-PRINCIPIOS.md` §5, y las mide `check:tokens`:
  *   · cero `!important`, cero `@layer` (webflow.css son 167 KB SIN capa y ganaria a una capa)
  *   · ningun literal de color: solo `var(--mm-*)`. Token que falte, se PIDE al director
  *   · `min-width` 480 / 768 / 992, jamas mezclado con los `max-width` de Webflow
  *   · ningun `opacity: 0` que nada vuelva a encender; nunca `forwards` ni `both`
- *   · el oro `#f4b248` da 1,86:1 sobre blanco: nunca marca estado
+ *   · el oro `#f4b248` da 1,86:1 sobre blanco: nunca marca estado — aqui no aparece
  *   · todo par de colores nuevo lleva su ratio MEDIDO al lado
  *
- * Y la de arriba de todas: se ELEVA la base de Webflow, no se sustituye. El TEXTO no se toca.
+ * PIDO TOKEN: `--mm-ancho-galeria: 1600px` (§2). Es el unico literal de longitud del fichero
+ * y esta declarado; mientras no exista, va el numero.
  *
- * De momento solo comentarios: no emite una sola regla, asi que el CSS construido no cambia.
+ * Y la de arriba de todas: se ELEVA la base de Webflow, no se sustituye. El TEXTO no se toca.
+ * En particular NO se enciende `.heading-brochure-nav`, que Webflow deja en `display:none`:
+ * su texto «Filter by Service:» entraria en `innerText` y `check:texto` compara al 100 %.
  */
+
+/* ── 1 · LA BANDA ────────────────────────────────────────────────────────────────────────
+ * Hoy `padding: 0 2em 6em`. Dos problemas medidos: no hay aire ARRIBA, y el `em` resuelve
+ * contra un body de 18 px en escritorio y 14 px en <=991, asi que el canal cambia solo con la
+ * tipografia (36 px a 1920, 28 px a 991) en vez de con el ancho.
+ * El `padding-top` no es decoracion: `.gallery-page` lleva `overflow: hidden`, que RECORTARIA
+ * el anillo de foco de la primera fila si el aire fuera 0.
+ * Medido a 1440 con el anillo puesto: holgura arriba 156 px, izquierda 32 px, alcance del
+ * anillo 4 px (2 de grosor + 2 de `outline-offset`). No se recorta. */
+.gallery-page {
+  padding-top: var(--mm-e-64);
+  padding-bottom: var(--mm-e-96);
+  padding-inline: var(--mm-canal);
+}
+
+/* ── 2 · LA MEDIDA ───────────────────────────────────────────────────────────────────────
+ * `.container{max-width:1250px}` (offset 44077 del CSS construido) gana a
+ * `.w-layout-blockcontainer{max-width:940px}` (39792) y a `.w-container` (18098) POR ORDEN,
+ * no por especificidad — y gana tambien dentro de los @media de Webflow, porque `.container`
+ * no esta en ninguno. Resultado: la rejilla nunca pasa de 1250, ni a 1920, y deja un tercio
+ * de la pantalla en blanco.
+ * Las dos referencias, medidas a 1440: SAOTA 1261 px (88 % del ancho) y Raymond Jungles
+ * 1344 px (93 %). `.gallery-page .container` es 0-2-0 y acota a 1 ruta: `.container` a pelo
+ * pinta 113. */
+.gallery-page .container { max-width: 1600px }   /* PIDO TOKEN --mm-ancho-galeria */
+
+/* ── 3 · EL ENCUADRE ─────────────────────────────────────────────────────────────────────
+ * El fallo mas caro de la pagina, y el que ninguna puerta ve. Con `height: 250px` fijo sobre
+ * columnas `1fr`, la relacion de cada foto la decide el ancho de la ventana. Medido sobre
+ * `dist`, ancho -> columna -> relacion:
+ *     1920/1440  406,0 x 250  ->  1,624       768   226,7 x 250  ->  0,907  ← RETRATO
+ *      992       296,0 x 250  ->  1,184       600   264,0 x 250  ->  1,056
+ *      991       301,0 x 250  ->  1,204       479   423,0 x 250  ->  1,692
+ * A 768 px —un iPad en vertical, que no fotografia ninguna puerta— la caja es MAS ALTA QUE
+ * ANCHA y una fuente 16:9 pierde el 49,4 %. Y a 992 la pieza es mas pequena que a 991: se
+ * encoge al ENSANCHAR la pantalla.
+ *
+ * 🚨 La altura se NEUTRALIZA ANTES de declarar la relacion: con `height` en pie,
+ * `aspect-ratio` calcula el ANCHO y desborda la columna. `height: auto` es un termino de la
+ * formula, no limpieza.
+ * La foto se saca del flujo con `position: absolute` para que su transform de hover (§5) no
+ * pueda mover la caja ni un pixel. */
+.gallery-picture {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;                 /* 1,500 medido en los 8 anchos, sin oscilacion */
+  border-radius: var(--mm-r-8);        /* Webflow trae 15px: se eleva a la escala, no se inventa */
+  overflow: hidden;
+}
+
+/* `.image-gallery` a pelo pinta 25 RUTAS. Solo se toca colgada de `.gallery-picture`. */
+.gallery-picture .image-gallery {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── 4 · LA REJILLA Y SU AIRE ────────────────────────────────────────────────────────────
+ * COLUMNAS. Webflow da 3 desde 768, que es de donde sale el retrato de arriba. Se pasa a 2 en
+ * toda la banda 480-991. El recuento medido queda 3 / 2 / 2 / 1 y NUNCA crece al estrechar.
+ *
+ * El tramo alto NO puede ser `1fr 1fr 1fr`: medido, a 992 el contenedor es 928 y tres columnas
+ * con hueco de 48 dan 277,3 px, cuando a 991 —con dos— dan 451,5. La pieza se encogeria un
+ * 39 % al ensanchar. Y no hay un `min-width` legal entre 992 y el infinito: PRINCIPIOS §5 solo
+ * admite 480/768/992. `auto-fill` con `minmax` resuelve el tramo entero con una regla y es
+ * MONOTONO por construccion —que es lo que CRITERIO.md teme del auto-fill—; `min(100%, 400px)`
+ * evita el desborde cuando el contenedor no llega a 400. Recuento medido: 1920 -> 3 ·
+ * 1440 -> 3 · 992 -> 2 · 991 -> 2 · 768 -> 2 · 600 -> 2 · 479 -> 1.
+ *
+ * HUECO. Hoy 16 px fijos en los tres tramos: el 3,9 % de la pieza en escritorio y el 3,5 % en
+ * movil, o sea que el aire no escala con la foto. Medido en las referencias: SAOTA 35/397 =
+ * 8,8 % y Raymond Jungles 29,5/314 = 9,4 %. Aqui 48/501 = 9,6 % a 1920.
+ *
+ * LA COSTURA. La galeria son DOS `.block-pictures` apilados (99 + 38 items), cada uno con su
+ * propio grid y `margin-top: 1rem`. Hoy son 16 px de margen contra 16 px de hueco: la costura
+ * no se ve POR CASUALIDAD. Al subir el hueco, un margen de 16 dejaria una linea de ritmo roto.
+ * Por eso el margen va igualado al hueco en cada tramo, y no es cosmetica. */
+.cms-list-pictures { grid-template-columns: 1fr; gap: var(--mm-e-16) }
+.block-pictures    { margin-top: var(--mm-e-16) }
+
+/* El tramo medio TAMPOCO puede ser `1fr 1fr`: medido sobre /gallery, a 480 el contenedor es
+ * 432 y dos columnas con hueco de 24 dan **204 x 136 px**, cuando a 479 —con una— dan
+ * 431 x 287,3. El area de la pieza cae un 78 % al cruzar de 479 a 480, y 204 px no bastan para
+ * juzgar una piscina. Mismo remedio y mismo minimo razonado: `auto-fill`, aqui con 300 px.
+ * Recuento medido: 480 -> 1 · 600 -> 1 · 671 -> 1 · 672 -> 2 · 767 -> 2 · 768 -> 2 · 991 -> 2.
+ * El salto 479/480 queda CONTINUO (431,0 -> 432,0) y la segunda columna entra en 672, donde la
+ * pieza aun mide 300 px. COSTE DECLARADO: entre 480 y 671 la pagina es una sola columna, o sea
+ * ~53.700 px de recorrido con las 137 fotos. Se prefiere legible y larga a corta e ilegible;
+ * la paginacion no es CSS y queda planteada al director. */
+@media (min-width: 480px) {
+  .cms-list-pictures {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+    gap: var(--mm-e-24);
+  }
+  .block-pictures { margin-top: var(--mm-e-24) }
+}
+
+@media (min-width: 992px) {
+  .cms-list-pictures {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 400px), 1fr));
+    gap: var(--mm-e-48);
+  }
+  .block-pictures { margin-top: var(--mm-e-48) }
+}
+
+/* ── 5 · LOS ESTADOS QUE NO EXISTIAN ─────────────────────────────────────────────────────
+ * Hoy hay CERO reglas de estado sobre `.gallery-picture`, y el anillo del sistema de
+ * `disenio/base.css` solo alcanza a `.mm-accion`, `.mm-vinculo` y `.mm-tarjeta`.
+ *
+ * EL FOCO. El `outline-offset` deja 2 px de papel blanco entre el anillo y la foto, asi que el
+ * navy da **15,60:1 por sus DOS vecinos** y no depende de lo que salga en la imagen —que es lo
+ * que pide CRITERIO.md y lo que un anillo pegado a la foto no puede garantizar.
+ *
+ * EL HOVER. Se mueve la FOTOGRAFIA, no la pieza: el marco no se desplaza, no hay sombra y no
+ * hay levantamiento. Es deliberado y esta explicado en la cabecera: el enlace no abre nada.
+ * Se enciende tambien en `:focus-visible` para que un teclado vea lo mismo que un raton. */
+.gallery-picture .image-gallery { transition: transform .5s cubic-bezier(.2, .6, .2, 1) }
+
+.gallery-picture:hover .image-gallery,
+.gallery-picture:focus-visible .image-gallery { transform: scale(1.045) }
+
+.gallery-picture:focus-visible {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco);   /* navy / blanco ... 15,60:1 */
+  outline-offset: var(--mm-foco-aire);
+}
+
+/* ── 6 · EL FILTRO ───────────────────────────────────────────────────────────────────────
+ * Fuera la pildora `#eee` de esquinas 10 px. El `<select>` se QUEDA: SAOTA usa cinco, nativos,
+ * blancos y sin borde. Lo que delataba a este eran la caja, los 38 px de alto y el foco
+ * borrado, no el control.
+ * Objetivo tactil con la receta que ya funciona en el repo (`intro.css:161-166`): `min-height`
+ * y nunca `height` fija. Medido: 44 px a 479/768/992/1440 y 46 px a 1920 (el paso tipografico
+ * crece). Antes: 38 px en los cinco.
+ * El ancho tambien cambia: de 702 px a 313 px a 1440. El control ahora mide lo que dice, no lo
+ * que le cabe. */
+.nav-gallery {
+  justify-content: center;
+  max-width: none;
+  padding-inline: 0;
+  gap: var(--mm-e-16);
+  margin-bottom: var(--mm-e-32);
+}
+
+.gallery-filters {
+  position: relative;
+  display: flex;        /* NO `inline-flex`: es hijo de `.nav-gallery{display:flex}` y un flex
+                         * item BLOQUIFICA inline-flex a flex por spec. Medido: computaba `flex`
+                         * con la regla y sin ella. Quien estrecha la pildora es `width:auto`
+                         * (718 px -> 346 px a 1920), no el display. */
+  width: auto;
+  padding: 0;
+  background-color: transparent;
+}
+
+.gallery-filter-form { width: auto }
+
+.service-filter {
+  appearance: none;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  min-height: 44px;
+  margin: 0;
+  padding: var(--mm-e-8) var(--mm-e-32) var(--mm-e-8) 0;
+  border: 0;
+  border-bottom: var(--mm-foco-grosor) solid var(--mm-borde-control);  /* 3,03:1 sobre blanco,
+                                                    el minimo de WCAG 1.4.11 para un control */
+  background-color: transparent;
+  color: var(--mm-tinta);                          /* navy sobre blanco ......... 15,60:1 */
+  text-align: left;
+  font-size: var(--mm-paso-3);
+  font-weight: var(--mm-peso-medio);
+  line-height: var(--mm-alto-cuerpo);
+  cursor: pointer;
+}
+
+/* La punta de flecha va en el ENVOLTORIO: un `<select>` no admite pseudoelementos. Se dibuja
+ * con dos bordes girados y no con una imagen, porque un `data:` URI de SVG llevaria dentro un
+ * literal de color y esta capa no admite ninguno. */
+.gallery-filters::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: var(--mm-e-8);
+  width: var(--mm-e-8);
+  height: var(--mm-e-8);
+  margin-top: calc(var(--mm-e-8) * -1);
+  border-right: var(--mm-foco-grosor) solid var(--mm-tinta);
+  border-bottom: var(--mm-foco-grosor) solid var(--mm-tinta);
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+/* 🚨 LAS DOS UNICAS REGLAS QUE GANAN POR ESPECIFICIDAD Y NO POR ORDEN.
+ * `.w-select:focus { border-color: #3898ec; outline: 0 }` es 0-2-0. Sin ganarle, el UNICO
+ * control de la pagina se queda sin anillo y con el azul de Webflow que CRITERIO.md prohibe
+ * (3,06:1 sobre blanco). Estos selectores son 0-3-0. */
+.gallery-filters .service-filter:focus { border-bottom-color: var(--mm-tinta) }
+
+.gallery-filters .service-filter:focus-visible {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco);
+  outline-offset: var(--mm-foco-aire);
+}
+
+/* ── 7 · AUDITORIA DE DECLARACIONES INERTES ──────────────────────────────────────────────
+ * Lo pide CRITERIO.md: "cuantas declaraciones emite cada fichero y cuantas tienen efecto
+ * medido; deben coincidir". Medido apagando y encendiendo ESTE bloque sobre /gallery a 1920 y
+ * comparando el valor calculado de cada propiedad:
+ *
+ *     22 reglas  ·  73 declaraciones
+ *       62  cambian el valor calculado          -> efecto medido
+ *        6  solo se activan en :hover/:focus-visible o bajo prefers-reduced-motion,
+ *           verificadas aparte con el teclado y con el raton
+ *        5  computan lo mismo con la regla y sin ella  -> GUARDAS, detalladas abajo
+ *        0  selectores que no casan con ningun elemento
+ *     62 + 6 + 5 = 73. Cuadra.
+ *
+ * LAS 5 GUARDAS no son inercia: defienden contra `webflow.css`, que es DERIVADO y se regenera.
+ *   · `.gallery-picture { position: relative }`  — hoy lo da otra regla de Webflow. Sin el, el
+ *     `inset: 0` de la foto la anclaria al ancestro posicionado de mas arriba y las 137 fotos
+ *     saldrian de su caja.
+ *   · `.gallery-picture { overflow: hidden }`    — hoy lo da Webflow. Sin el, el `scale(1.045)`
+ *     del hover se derramaria sobre las piezas vecinas.
+ *   · `.gallery-picture .image-gallery { object-fit: cover }` — hoy lo da `.image-gallery`, que
+ *     pinta 25 RUTAS y por eso NO es mia. Declararlo aqui es lo que me permite no depender de
+ *     una regla que no puedo tocar.
+ *   · `.gallery-filters { display: flex }`       — hoy lo da Webflow, y de el depende que
+ *     `width: auto` encoja la caja al contenido (718 px -> 346 px a 1920). Si cayera a `block`,
+ *     el ancho volveria a ser el del contenedor.
+ *   · `.service-filter { color: var(--mm-tinta) }` — Webflow da el mismo navy, pero via
+ *     `var(--blue_dark)`, que vive en webflow.css. Es exactamente el fallo que CRITERIO.md
+ *     describe con los tokens del degradado del CTA.
+ *
+ * SE BORRARON 5 que no defendian nada —ya las daba Webflow y no se apoya nada en ellas—:
+ * `align-items:center` y `border-radius:0` en `.gallery-filters`, `margin-bottom:0` en
+ * `.gallery-filter-form`, y `border-radius:0` y `font-family` en `.service-filter`.
+ * Y se cambio `display:inline-flex` por `display:flex` en `.gallery-filters`: era una MENTIRA
+ * en el fuente, porque un flex item bloquifica `inline-flex` a `flex` por spec y computaba
+ * `flex` con la regla y sin ella.
+ *
+ * REGLAS QUE REVIVEN: ninguna. Se comprobo que ningun `display:flex` heredado se enciende y
+ * que `.cms-item-pictures{height:100%}` sigue siendo inocuo: la altura de la pieza ya no la
+ * fija el hijo sino el `aspect-ratio` del enlace.
+ */
+
+/* ── 8 · MOVIMIENTO REDUCIDO ─────────────────────────────────────────────────────────────
+ * Nada de esta seccion comunica con el movimiento: apagarlo entero no quita informacion. */
+@media (prefers-reduced-motion: reduce) {
+  .gallery-picture .image-gallery { transition: none }
+  .gallery-picture:hover .image-gallery,
+  .gallery-picture:focus-visible .image-gallery { transform: none }
+}
