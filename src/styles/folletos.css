@@ -3,29 +3,219 @@
  *
  * Lo posee EN EXCLUSIVA el chat FOLLETOS (encargo R12-FOL). Nadie mas escribe aqui.
  *
- * QUE RESTILA, Y CUANTO. Medido sobre `.vercel/output/static` el 1-sep-2026:
- *   .brochures-section-page / .section_fs-example                  1 rutas
- *   .filter_form / .filter_block / .filter_content / .checkbox_field / .checkbox_label 1 rutas
- *   .cms_list / .cms_list-item / .cms_list-wrapper / .cover-brochure-page 1 rutas
+ * QUE RESTILA, Y CUANTO. Medido sobre `.vercel/output/static` el 2-sep-2026 con
+ *   grep -rlo 'class="[^"]*\bCLASE\b[^"]*"' .vercel/output/static --include='*.html' | wc -l
+ * Las 17 clases del lote dan 1 ruta CADA UNA:
+ *   .brochures-section-page 1 · .section_fs-example 1 · .container-large 1
+ *   .filter_form 1 · .filter_block 1 · .filter_block_header 1 · .filter_block_title 1
+ *   .filter_content 1 · .filter_grid 1 · .filter_form_block 1 · .filter_list 1
+ *   .checkbox_field 1 · .checkbox_label 1 · .checkbox_input 1
+ *   .cms_list 1 · .cms_list-item 1 · .cover-brochure-page 1 · .brochure-wrapper-page 1
  *
  * Todo exclusivo de /brochures. Ojo con la puerta: /brochures esta declarada en
  * DISTINTAS_A_PROPOSITO SOLO a 479 px —el sitio vivo de Webflow inyecta Turnstile en el
  * formulario de filtro y eso le anade 16 px que el sitio nuevo no replica a proposito—. En
  * 1920, 1440 y 991 la puerta SI compara.
  *
- * ORDEN DE CARGA, y gana por ORDEN, nunca por `!important`:
- *   fuentes -> webflow -> disenio/tokens -> disenio/base -> [hojas de seccion] -> propio
+ * ── EL PROBLEMA QUE RESUELVE, MEDIDO ───────────────────────────────────────────
+ * Las 57 portadas tienen relaciones reales de 0,647 a 1,545 (sips sobre los 57 jpg):
+ * 2,4x de recorrido. Webflow las metia en una caja de altura FIJA (350/300/250 px por
+ * tramo) con object-fit:cover, y encima ponia el boton «¡View More!» ENCIMA del arte.
+ * Resultado medido con getBoundingClientRect() + naturalWidth/Height:
  *
- * LAS REGLAS DE ESTA CAPA — `docs/encargos/00-PRINCIPIOS.md` §5, y las mide `check:tokens`
- * (11 comprobaciones; correla tu, es estatica y tarda <1 s):
- *   · cero `!important`, cero `@layer` (webflow.css son 167 KB SIN capa y ganaria a una capa)
- *   · ningun literal de color: solo `var(--mm-*)`. Token que falte, se PIDE al director
- *   · `min-width` 480 / 768 / 992, jamas mezclado con los `max-width` de Webflow
- *   · ningun `opacity: 0` que nada vuelva a encender; nunca `forwards` ni `both`
- *   · el oro `#f4b248` da 1,86:1 sobre blanco: nunca marca estado
+ *       recorte de portada     antes            despues
+ *       peor @1440             37,9 %           0,00 %
+ *       medio @1440            20,2 %           0,00 %
+ *       >25 % @1440            12 de 57         0
+ *       peor @479              45,4 %           0,00 %
+ *       >25 % @479             40 de 57         0
+ *
+ * La portada es el UNICO identificador de cada folleto: `.header-brochure` esta a
+ * display:none y no se puede encender —anadiria innerText y check:texto compara al 100 %—.
+ * Por eso el recorte no era un defecto estetico: borraba el nombre del fabricante.
+ *
+ * VARIANTE ELEGIDA POR SEBASTIAN: B · MUESTRARIO. La portada manda la altura y las
+ * tarjetas se empaquetan en columnas CSS. Cero recorte y cero aire muerto. Se descarto
+ * A (caja uniforme 3:4 con object-fit:contain) porque su aire muerto —13,77 % medio,
+ * 51,47 % peor— caia justo sobre los look books apaisados, las piezas mejor producidas.
+ *
+ * ── ORDEN DE CARGA, y gana por ORDEN, nunca por `!important` ────────────────────
+ *   fuentes -> webflow -> disenio/tokens -> disenio/base -> [hojas de seccion] -> propio
+ * Esta hoja entra en Base.astro:96, DESPUES de webflow.css (167 KB sin capa). Ninguna
+ * otra hoja de la capa ni ningun bloque <style> declara nada sobre estos 17 selectores
+ * (comprobado); hero-indice.css solo nombra .brochures-section-page en un COMENTARIO.
+ *
+ * AVISO QUE ME DEJO HERO-INDICE Y QUE RESPETO: .brochures-section-page tiene
+ * padding-top:0 y los 48/64 px de .hero-section son TODO el aire hasta aqui. Esta hoja
+ * NO declara nada sobre .brochures-section-page, asi que ese aire no se toca.
+ *
+ * ── LAS REGLAS DE ESTA CAPA — 00-PRINCIPIOS.md §5, las mide check:tokens ────────
+ *   · cero `!important`, cero `@layer` · ningun literal de color: solo var(--mm-*)
+ *   · min-width 480/768/992, jamas mezclado con los max-width de Webflow
+ *   · ningun opacity:0 que nada vuelva a encender; nunca `forwards` ni `both`
+ *   · el oro #f4b248 da 1,86:1 sobre blanco: NUNCA marca estado. Aqui vive solo como
+ *     indicador de casilla sobre navy (8,40:1)
  *   · todo par de colores nuevo lleva su ratio MEDIDO al lado
  *
- * Y la de arriba de todas: se ELEVA la base de Webflow, no se sustituye. El TEXTO no se toca.
+ * DECLARACIONES INERTES: 0. Medido sobre el BUILD real (.vercel/output/static con esta
+ * hoja inyectada), desactivando la hoja y releyendo el computado: de 126 declaraciones
+ * medibles, 124 cambian algo. Las 2 restantes son de
+ * .checkbox_input.w--redirected-focus-visible, clase que pone el JS de Webflow al enfocar
+ * y que NO tiene nodo en estatico: se emiten pero NO estan medidas pintadas, y no se
+ * cuentan en verde.
  *
- * De momento solo comentarios: no emite una sola regla, asi que el CSS construido no cambia.
+ * Y la de arriba de todas: se ELEVA la base de Webflow, no se sustituye. El TEXTO no se toca.
  */
+
+/* ── LOS SIETE DEFECTOS MEDIDOS ────────────────────────────────────────────
+ * Este bloque era idéntico en las dos variantes del laboratorio: no depende de
+ * cómo se resuelva la portada. El bloque de abajo es lo específico de B. */
+
+/* 1 · El catálogo recupera 250 px. El vacío que queda a 1920 lo fija
+ *     `.container{max-width:1250px}`, que es cromo compartido y no es de este
+ *     lote: 1000 -> 1250 es todo lo que puedo recuperar sin invadirlo. */
+.container-large { max-width: var(--mm-ancho); }
+
+/* 2 · El panel de filtros era visible durante 404 px de un scroll de 10.822.
+ *     Pegajoso desde 768: por debajo Webflow ya lo apila a ancho completo y
+ *     fijarlo ahí taparía media pantalla de móvil. */
+.filter_block {
+  border-radius: var(--mm-r-16);
+  box-shadow: var(--mm-sombra-2);
+}
+.filter_block_header { padding-bottom: var(--mm-e-8); }   /* Webflow ya da 1rem arriba y a los lados */
+.filter_block_title  { font-size: var(--mm-paso-3); letter-spacing: -.01em; }
+.filter_list {
+  gap: var(--mm-e-4);
+  padding-inline: var(--mm-e-8);
+  padding-bottom: var(--mm-e-8);
+  /* Con el panel a ancho completo (por debajo de 768) las nueve categorias en una
+   * sola columna comian el 53 % de la pantalla a 479 y empujaban el primer folleto
+   * a y=788 — peor que el Webflow original, que lo dejaba en 678. Subir las filas a
+   * 44 px lo pago con eso, asi que se recupera con dos columnas. Medido a 479:
+   * panel 479,6 -> 287,6 px (32 % de pantalla), primer folleto y=788 -> 596, y las
+   * nueve filas siguen a 44 px con las etiquetas largas envolviendo DENTRO de la fila.
+   * Rejilla y no `columns`: la lectura tiene que ir por filas, no por columnas. */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--mm-e-8);
+}
+
+/* 3 · La fila de filtro pasa de 25,2 px a 44, y la etiqueta de 12 px al paso 1.
+ *     Receta de altura la que ya funciona en el repo (intro.css:161-166):
+ *     min-height + flex + centrado. Nunca `height` fija. */
+.checkbox_field {
+  min-height: 44px;   /* convención de la casa: intro.css:165, base.css:234 */
+  gap: var(--mm-e-12);
+  padding-left: var(--mm-e-8);
+  padding-right: var(--mm-e-8);
+  border-radius: var(--mm-r-8);
+  font-size: var(--mm-paso-1);
+}
+.checkbox_label { font-size: inherit; margin-right: 0; }
+.checkbox_input { margin-top: 0; margin-right: 0; border-radius: var(--mm-r-8); }
+
+/* 4 · Estados. Hoy la sección tiene CERO reglas de estado en sus 66 controles.
+ *     blanco sobre --mm-navy-lomo = 11,90:1 (medido en tokens.css). */
+.checkbox_field:hover {
+  background-color: var(--mm-navy-lomo);
+  color: var(--mm-tinta-inversa);
+}
+/* El input real está a `position:absolute;z-index:-1`, así que el anillo va en
+ * la fila. Blanco sobre navy = 15,60:1 contra sus DOS vecinos. */
+.checkbox_field:has(input:focus-visible) {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco-inverso);
+  outline-offset: var(--mm-foco-aire);
+}
+/* Webflow enfoca la casilla con #b9fd3b —verde ácido de plantilla, fuera de la
+ * paleta—. Se sustituye por el foco del sistema. */
+.checkbox_input.w--redirected-focus-visible {
+  outline-color: var(--mm-foco-inverso);
+  outline-offset: var(--mm-foco-aire);
+}
+
+/* 5 · La tarjeta. `height:auto` va PRIMERO y explícito: mata los 350/300/250 px
+ *     de Webflow antes de que ningún `aspect-ratio` entre en juego —con la
+ *     altura declarada, aspect-ratio calcula el ANCHO y desborda la columna—. */
+.cms_list-item { max-width: none; }
+.brochure-wrapper-page {
+  height: auto;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: var(--mm-e-12);
+  /* el borde era `2px solid var(--white)` sobre fondo blanco: invisible.
+   * La sombra era `0 2px 5px #0003`, negro puro. */
+  border: 1px solid var(--mm-borde);
+  border-radius: var(--mm-r-16);
+  box-shadow: var(--mm-sombra-1);
+  background-color: var(--mm-superficie);
+  transition: box-shadow .2s ease, border-color .2s ease;
+}
+.brochure-wrapper-page:hover,
+.brochure-wrapper-page:focus-within {
+  border-color: var(--mm-borde-control);
+  box-shadow: var(--mm-sombra-2);
+}
+
+/* 6 · La portada sale del posicionamiento absoluto y pasa a mandar en el flujo.
+ *     Aquí es donde se acaba el recorte del 37,9 % / 45,4 %. */
+.cover-brochure-page {
+  position: static;
+  inset: auto;
+  width: 100%;
+  height: auto;
+}
+
+/* 7 · El botón deja de ir ENCIMA del arte y pasa a 44 px de alto. */
+.brochure-wrapper-page .button-styles {
+  min-height: 44px;   /* convención de la casa: intro.css:165, base.css:234 */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  border: 1px solid var(--mm-borde-control);   /* 3,03:1 sobre blanco */
+  border-radius: var(--mm-r-8);
+  padding: var(--mm-e-8) var(--mm-e-24);
+  font-size: var(--mm-paso-1);
+  transition: background-color .2s ease, color .2s ease;
+}
+.brochure-wrapper-page .button-styles:hover {
+  background-color: var(--mm-navy);            /* blanco encima = 15,60:1 */
+  color: var(--mm-tinta-inversa);
+}
+.brochure-wrapper-page .button-styles:focus-visible {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco);
+  outline-offset: var(--mm-foco-aire);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brochure-wrapper-page,
+  .brochure-wrapper-page .button-styles { transition: none; }
+}
+
+/* 8 · El panel por tramo. Webflow lo deja en `.66fr 1fr` en 768-991 —el 40 % del
+ *     ancho para nueve casillas—; se devuelve a `auto 1fr`, que es su propio valor
+ *     de escritorio, y ahí ya se puede pegar.
+ *     El recuento de COLUMNAS de la rejilla NO va aquí: con `.cms_list{display:block}`
+ *     un `grid-template-columns` sería una declaración inerte. Va abajo, con `columns`. */
+@media (min-width: 768px) {
+  .filter_grid { grid-template-columns: auto 1fr; }
+  .filter_form_block { position: sticky; top: var(--mm-e-96); }
+  /* De 768 arriba el panel es una barra lateral de 288 px: dos columnas darian 130 px
+   * por etiqueta. Vuelve a una. */
+  .filter_list { grid-template-columns: 1fr; }
+}
+
+/* ── B · MUESTRARIO · la variante elegida ──────────────────────────────────
+ * La portada manda la altura y las tarjetas se empaquetan en columnas CSS.
+ * Recuento por tramo 1/2/2/3, determinista, nunca auto-fill y nunca creciente
+ * al estrechar; resuelto con `columns` en vez de `grid-template-columns`.
+ * `.cms_list{display:block}` es lo que habilita `columns`: sin él, el
+ * `display:grid` de Webflow las ignora en silencio. */
+.cms_list { display: block; columns: 1; }   /* el gap ya son los 1.5rem de Webflow */
+.cms_list-item { break-inside: avoid; margin-bottom: var(--mm-e-24); }
+.brochure-wrapper-page { padding-bottom: var(--mm-e-16); }   /* overflow:hidden ya es de Webflow */
+
+@media (min-width: 480px) { .cms_list { columns: 2; } }
+@media (min-width: 992px) { .cms_list { columns: 3; } }

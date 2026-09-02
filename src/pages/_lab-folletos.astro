@@ -1,0 +1,228 @@
+---
+/**
+ * _lab-folletos.astro — LABORATORIO R12-FOL · NO ES UNA RUTA
+ *
+ * El guion bajo lo excluye del enrutado de Astro
+ * (node_modules/astro/dist/core/util.js:68 -> `if (part.startsWith("_")) return false;`),
+ * asi que este fichero NO sale en el build, NO cuenta para check:rutas y NO lo ve
+ * check:texto. Es el registro de las dos variantes que se le ensenaron a Sebastian.
+ *
+ * OJO: `src/pages` SI lo barre check:tokens buscando bloques <style>
+ * (scripts/check-tokens.mjs:18). El CSS de aqui va con var(--mm-*) y sin literales de
+ * color aunque el chequeo de literales solo mire la capa: lo de aqui tiene que poder
+ * trasplantarse LITERAL a folletos.css.
+ *
+ * COMO SE MIDIO: gemelo autonomo servido en el puerto 4342 con
+ * fuentes.css -> webflow.css -> disenio/tokens.css -> disenio/base.css, en ese orden.
+ * Las 57 tarjetas son las REALES, sacadas de .vercel/output/static/brochures/index.html
+ * (el build ya existia; no se reconstruyo).
+ *
+ * MEDIDO: 0,00 % de recorte en las 57 portadas en las DOS variantes (antes 37,9 % a 1440
+ * y 45,4 % a 479); 44 px de toque en boton y fila de filtro en 1920/1440/991/767/600/479;
+ * 0 declaraciones inertes de 132 medibles.
+ */
+const FRAGMENTO = "<div class=\"filter_grid\"><div class=\"filter_form_block w-form\"><form id=\"wf-form-filter\" name=\"wf-form-filter\" data-name=\"filter\" method=\"get\" fs-list-element=\"filters\" class=\"filter_form helper\" data-wf-page-id=\"69f8e1c6d1c9896597dac8cf\" data-wf-element-id=\"df442948-7719-1c67-0f50-9201c368c54b\" data-turnstile-sitekey=\"0x4AAAAAAAQTptj2So4dx43e\"><div class=\"filter_block\"><div class=\"filter_block_header\"><div class=\"filter_block_title\">Filter by Category</div></div><div class=\"filter_list-wrapper w-dyn-list\"><div role=\"list\" class=\"filter_list w-dyn-items\"><div role=\"listitem\" class=\"filter_item w-dyn-item\"><label class=\"w-checkbox checkbox_field\"><div class=\"w-checkbox-input w-checkbox-input--inputType-custom checkbox_input helper\"></div><input fs-list-value=\"retractable\" fs-list-field=\"make\" name=\"Checkbox\" data-name=\"Checkbox\" type=\"checkbox\" id=\"Checkbox\" style=\"position:absolute;z-index:-1\"><span class=\"checkbox_label w-form-label\" for=\"Checkbox\">Retractable Screens</span><div class=\"option-results\">[<span fs-cmsfilter-element=\"filter-results-count\">0</span>]</div></label></div><div role=\"listitem\" class=\"filter_item w-dyn-item\"><label class=\"w-checkbox checkbox_field\"><div class=\"w-checkbox-input w-checkbox-input--inputType-custom checkbox_input helper\"></div><input fs-list-value=\"enclosures\" fs-list-field=\"make\" name=\"Checkbox\" data-name=\"Checkbox\" type=\"checkbox\" id=\"Checkbox\" style=\"position:absolute;z-index:-1\"><span class=\"checkbox_label w-form-label\" for=\"Checkbox\">Pool Screen Enclosures</span><div class=\"option-results\">[<span fs-cmsfilter-element=\"filter-results-count\">0</span>]</div></label></div><div role=\"listitem\" class=\"filter_item w-dyn-item\"><label class=\"w-checkbox checkbox_field\"><div class=\"w-checkbox-input w-checkbox-input--inputType-custom checkbox_input helper\"></div><input fs-list-value=\"construction\" fs-list-field=\"make\" name=\"Checkbox\" data-name=\"Checkbox\" type=\"checkbox\" id=\"Checkbox\" style=\"position:absolute;z-index:-1\"><span class=\"checkbox_label w-form-label\" for=\"Checkbox\">Pool Construction and Remodeling</span><div class=\"option-results\">[<span fs-cmsfilter-element=\"filter-results-count\">0</span>]</div></label></div><div role=\"listitem\" class=\"filter_item w-dyn-item\"><label class=\"w-checkbox checkbox_field\"><div class=\"w-checkbox-input w-checkbox-input--inputType-custom checkbox_input helper\"></div><input fs-list-value=\"screen\" fs-list-field=\"make\" name=\"Checkbox\" data-name=\"Checkbox\" type=\"checkbox\" id=\"Checkbox\" style=\"position:absolute;z-index:-1\"><span class=\"checkbox_label w-form-label\" for=\"Checkbox\">Patio Screen Rooms</span><div class=\"option-results\">[<span fs-cmsfilter-element=\"filter-results-count\">0</span>]</div></label></div><div role=\"listitem\" class=\"filter_item w-dyn-item\"><label class=\"w-checkbox checkbox_field\"><div class=\"w-checkbox-input w-checkbox-input--inputType-custom checkbox_input helper\"></div><input fs-list-value=\"kitchens\" fs-list-field=\"make\" name=\"Checkbox\" data-name=\"Checkbox\" type=\"checkbox\" id=\"Checkbox\" style=\"position:absolute;z-index:-1\"><span class=\"checkbox_label w-form-label\" for=\"Checkbox\">Outdoor Kitchens</span><div class=\"option-results\">[<span fs-cmsfilter-element=\"filter-results-count\">0</span>]</div></label></div><div role=\"listitem\" class=\"filter_item w-dyn-item\"><label class=\"w-checkbox checkbox_field\"><div class=\"w-checkbox-input w-checkbox-input--inputType-custom checkbox_input helper\"></div><input fs-list-value=\"louvered\" fs-list-field=\"make\" name=\"Checkbox\" data-name=\"Checkbox\" type=\"checkbox\" id=\"Checkbox\" style=\"position:absolute;z-index:-1\"><span class=\"checkbox_label w-form-label\" for=\"Checkbox\">Louvered Roof Systems</span><div class=\"option-results\">[<span fs-cmsfilter-element=\"filter-results-count\">0</span>]</div></label></div><div role=\"listitem\" class=\"filter_item w-dyn-item\"><label class=\"w-checkbox checkbox_field\"><div class=\"w-checkbox-input w-checkbox-input--inputType-custom checkbox_input helper\"></div><input fs-list-value=\"decks\" fs-list-field=\"make\" name=\"Checkbox\" data-name=\"Checkbox\" type=\"checkbox\" id=\"Checkbox\" style=\"position:absolute;z-index:-1\"><span class=\"checkbox_label w-form-label\" for=\"Checkbox\">Custom Decks</span><div class=\"option-results\">[<span fs-cmsfilter-element=\"filter-results-count\">0</span>]</div></label></div><div role=\"listitem\" class=\"filter_item w-dyn-item\"><label class=\"w-checkbox checkbox_field\"><div class=\"w-checkbox-input w-checkbox-input--inputType-custom checkbox_input helper\"></div><input fs-list-value=\"irrigation\" fs-list-field=\"make\" name=\"Checkbox\" data-name=\"Checkbox\" type=\"checkbox\" id=\"Checkbox\" style=\"position:absolute;z-index:-1\"><span class=\"checkbox_label w-form-label\" for=\"Checkbox\">Automated Irrigation</span><div class=\"option-results\">[<span fs-cmsfilter-element=\"filter-results-count\">0</span>]</div></label></div><div role=\"listitem\" class=\"filter_item w-dyn-item\"><label class=\"w-checkbox checkbox_field\"><div class=\"w-checkbox-input w-checkbox-input--inputType-custom checkbox_input helper\"></div><input fs-list-value=\"pergolas\" fs-list-field=\"make\" name=\"Checkbox\" data-name=\"Checkbox\" type=\"checkbox\" id=\"Checkbox\" style=\"position:absolute;z-index:-1\"><span class=\"checkbox_label w-form-label\" for=\"Checkbox\">Aluminum Pergolas</span><div class=\"option-results\">[<span fs-cmsfilter-element=\"filter-results-count\">0</span>]</div></label></div></div></div></div></form><div class=\"w-form-done\"><div>Thank you! Your submission has been received!</div></div><div class=\"w-form-fail\"><div>Oops! Something went wrong while submitting the form.</div></div></div><div class=\"filter_content\"><div class=\"cms_list-wrapper w-dyn-list\"><div fs-list-element=\"list\" role=\"list\" class=\"cms_list helper w-dyn-items\"><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">kitchens</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/artisan-brochure/artisan-brochure.jpg\" alt=\"Artisan Brochure\" class=\"cover-brochure-page\"><a href=\"/brochures/artisan-brochure.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">kitchens</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/coyote-brochure/coyote-brochure.jpg\" alt=\"Coyote Brochure\" class=\"cover-brochure-page\"><a href=\"/brochures/coyote-brochure.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">decks</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/classic-modern-catalog/classic-modern-catalog.jpg\" alt=\"Classic Modern Catalog\" class=\"cover-brochure-page\"><a href=\"/brochures/classic-modern-catalog.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">decks</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/hurok-hardscapes-catalog/hurok-hardscapes-catalog.jpg\" alt=\"Hurok Hardscapes Catalog\" class=\"cover-brochure-page\"><a href=\"/brochures/hurok-hardscapes-catalog.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">decks</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/tremron-south-catalog/tremron-south-catalog.jpg\" alt=\"Tremron South Catalog\" class=\"cover-brochure-page\"><a href=\"/brochures/tremron-south-catalog.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">louvered</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/equinox-brochure/equinox-brochure.jpg\" alt=\"Equinox Brochure\" class=\"cover-brochure-page\"><a href=\"/brochures/equinox-brochure.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">enclosures</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/screened-pool-enclosures-flyer/screened-pool-enclosures-flyer.jpg\" alt=\"Screened Pool Enclosures Flyer\" class=\"cover-brochure-page\"><a href=\"/brochures/screened-pool-enclosures-flyer.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">enclosures</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/screen-frame-spline-guide/screen-frame-spline-guide.jpg\" alt=\"Screen Frame Spline Guide\" class=\"cover-brochure-page\"><a href=\"/brochures/screen-frame-spline-guide.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">enclosures</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/screen-enclosures-flyer/screen-enclosures-flyer.jpg\" alt=\"Screen Enclosures Flyer\" class=\"cover-brochure-page\"><a href=\"/brochures/screen-enclosures-flyer.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">enclosures</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/megaview-enclosures-brochure/megaview-enclosures-brochure.jpg\" alt=\"Megaview Enclosures Brochure\" class=\"cover-brochure-page\"><a href=\"/brochures/megaview-enclosures-brochure.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">retractable</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/retractable-screens-brochure/retractable-screens-brochure.jpg\" alt=\"Retractable Screens Brochure\" class=\"cover-brochure-page\"><a href=\"/brochures/retractable-screens-brochure.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">retractable</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/product-folder/product-folder.jpg\" alt=\"Product Folder\" class=\"cover-brochure-page\"><a href=\"/brochures/product-folder.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">retractable</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/pergola-screens-brochure/pergola-screens-brochure.jpg\" alt=\"Pergola Screens Brochure\" class=\"cover-brochure-page\"><a href=\"/brochures/pergola-screens-brochure.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">retractable</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/maestroshield-catalog-2025/maestroshield-catalog-2025.jpg\" alt=\"Maestroshield Catalog 2025\" class=\"cover-brochure-page\"><a href=\"/brochures/maestroshield-catalog-2025.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">construction</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/tremron-north-hardscape/tremron-north-hardscape.jpg\" alt=\"Tremron North Hardscape\" class=\"cover-brochure-page\"><a href=\"/brochures/tremron-north-hardscape.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">construction</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/stonemart-marble-travertine/stonemart-marble-travertine.jpg\" alt=\"Stonemart Marble Travertine\" class=\"cover-brochure-page\"><a href=\"/brochures/stonemart-marble-travertine.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">construction</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/sealer-guide/sealer-guide.jpg\" alt=\"Sealer Guide\" class=\"cover-brochure-page\"><a href=\"/brochures/sealer-guide.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">construction</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/sgm-warranty-card/sgm-warranty-card.jpg\" alt=\"Sgm Warranty Card\" class=\"cover-brochure-page\"><a href=\"/brochures/sgm-warranty-card.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">construction</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/sgm-pool-catalog-2026/sgm-pool-catalog-2026.jpg\" alt=\"Sgm Pool Catalog 2026\" class=\"cover-brochure-page\"><a href=\"/brochures/sgm-pool-catalog-2026.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">construction</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/coping-guide/coping-guide.jpg\" alt=\"Pool Coping\" class=\"cover-brochure-page\"><a href=\"/brochures/coping-guide.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">construction</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/ntp-plaster-brochure/ntp-plaster-brochure.jpg\" alt=\"Ntp Plaster Brochure\" class=\"cover-brochure-page\"><a href=\"/brochures/ntp-plaster-brochure.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">construction</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/npt-tile-collection/npt-tile-collection.jpg\" alt=\"Npt Tile Collection\" class=\"cover-brochure-page\"><a href=\"/brochures/npt-tile-collection.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">construction</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/milestone-flyer/milestone-flyer.jpg\" alt=\"Milestone Flyer\" class=\"cover-brochure-page\"><a href=\"/brochures/milestone-flyer--brochures-file-milestone-flyer-d56b4.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">construction</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/jandy-pump/jandy-pump.jpg\" alt=\"Jandy Pump\" class=\"cover-brochure-page\"><a href=\"/brochures/jandy-pump.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">construction</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/jandy-nicheless-led-light/jandy-nicheless-led-light.jpg\" alt=\"Jandy Nicheless Led Light\" class=\"cover-brochure-page\"><a href=\"/brochures/jandy-nicheless-led-light.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">construction</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/jandy-laminar-jet-rgbw/jandy-laminar-jet-rgbw.jpg\" alt=\"Jandy Laminar Jet Rgbw\" class=\"cover-brochure-page\"><a href=\"/brochures/jandy-laminar-jet-rgbw.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">construction</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/filter-340/filter-340.jpg\" alt=\"Filter 340\" class=\"cover-brochure-page\"><a href=\"/brochures/filter-340.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">construction</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/diamond-plaster-brochure/diamond-plaster-brochure.jpg\" alt=\"Diamond Plaster Brochure\" class=\"cover-brochure-page\"><a href=\"/brochures/diamond-plaster-brochure.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">construction</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/diamond-brite-color-card/diamond-brite-color-card.jpg\" alt=\"Diamond Brite Color Card\" class=\"cover-brochure-page\"><a href=\"/brochures/diamond-brite-color-card.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">construction</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/diamond-brite-brochure/diamond-brite-brochure.jpg\" alt=\"Diamond Brite Brochure\" class=\"cover-brochure-page\"><a href=\"/brochures/diamond-brite-brochure.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">construction</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/chiller-heater/chiller-heater.jpg\" alt=\"Chiller Heater\" class=\"cover-brochure-page\"><a href=\"/brochures/chiller-heater.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">construction</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/bond-kote-flyer/bond-kote-flyer.jpg\" alt=\"Bond Kote Flyer\" class=\"cover-brochure-page\"><a href=\"/brochures/bond-kote-flyer.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">construction</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/aqualink-all-in-one/aqualink-all-in-one.jpg\" alt=\"Aqualink All In One\" class=\"cover-brochure-page\"><a href=\"/brochures/aqualink-all-in-one.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">pergolas</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/roof-systems-brochure-2025/roof-systems-brochure-2025.jpg\" alt=\"Roof Systems Brochure 2025\" class=\"cover-brochure-page\"><a href=\"/brochures/roof-systems-brochure-2025.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">pergolas</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/renaissance-pitchbook/renaissance-pitchbook.jpg\" alt=\"Renaissance Pitchbook\" class=\"cover-brochure-page\"><a href=\"/brochures/renaissance-pitchbook.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">pergolas</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/renaissance-flyer/renaissance-flyer.jpg\" alt=\"Renaissance Flyer\" class=\"cover-brochure-page\"><a href=\"/brochures/renaissance-flyer.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">pergolas</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/pergola-lights/pergola-lights.jpg\" alt=\"Pergola Lights\" class=\"cover-brochure-page\"><a href=\"/brochures/pergola-lights.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">pergolas</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/hercules-comparison/hercules-comparison.jpg\" alt=\"Hercules Comparison\" class=\"cover-brochure-page\"><a href=\"/brochures/hercules-comparison.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">kitchens</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/napoleon-grills-brochure/napoleon-grills-brochure.jpg\" alt=\"Napoleon Grills Brochure\" class=\"cover-brochure-page\"><a href=\"/brochures/napoleon-grills-brochure.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">kitchens</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/challenger-kitchen-brochure/challenger-kitchen-brochure.jpg\" alt=\"Challenger Kitchen Brochure\" class=\"cover-brochure-page\"><a href=\"/brochures/challenger-kitchen-brochure.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">kitchens</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/challenger-big-green-egg-brochure/challenger-big-green-egg-brochure.jpg\" alt=\"Challenger Big Green Egg Brochure\" class=\"cover-brochure-page\"><a href=\"/brochures/challenger-big-green-egg-brochure.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">kitchens</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/challenger-7700-accessories/challenger-7700-accessories.jpg\" alt=\"Challenger 7700 Accessories\" class=\"cover-brochure-page\"><a href=\"/brochures/challenger-7700-accessories.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">kitchens</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/big-green-egg-catalogue/big-green-egg-catalogue.jpg\" alt=\"Big Green Egg Catalogue\" class=\"cover-brochure-page\"><a href=\"/brochures/big-green-egg-catalogue.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">kitchens</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/alfresco-brochure/alfresco-brochure.jpg\" alt=\"Alfresco Brochure\" class=\"cover-brochure-page\"><a href=\"/brochures/alfresco-brochure.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">louvered</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/shadespan-look-book/shadespan-look-book.jpg\" alt=\"Shadespan Look Book\" class=\"cover-brochure-page\"><a href=\"/brochures/shadespan-look-book.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">louvered</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/shadespan-brochure-usa/shadespan-brochure-usa.jpg\" alt=\"Shadespan Brochure Usa\" class=\"cover-brochure-page\"><a href=\"/brochures/shadespan-brochure-usa.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">louvered</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/oe-serenity-pergola-flyer/oe-serenity-pergola-flyer.jpg\" alt=\"Oe Serenity Pergola Flyer\" class=\"cover-brochure-page\"><a href=\"/brochures/oe-serenity-pergola-flyer.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">louvered</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/louvered-roof-brochure-2024/louvered-roof-brochure-2024.jpg\" alt=\"Louvered Roof Brochure 2024\" class=\"cover-brochure-page\"><a href=\"/brochures/louvered-roof-brochure-2024.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">louvered</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/louvered-roof-brochure/louvered-roof-brochure.jpg\" alt=\"Louvered Roof Brochure\" class=\"cover-brochure-page\"><a href=\"/brochures/louvered-roof-brochure.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">decks</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/stonemart-marble-travertine/stonemart-marble-travertine.jpg\" alt=\"Stonemart Marble Travertine\" class=\"cover-brochure-page\"><a href=\"/brochures/stonemart-marble-travertine.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">decks</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/sealer-guide/sealer-guide.jpg\" alt=\"Sealer Guide\" class=\"cover-brochure-page\"><a href=\"/brochures/sealer-guide.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">decks</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/milestone-travertine/milestone-travertine.jpg\" alt=\"Milestone Travertine\" class=\"cover-brochure-page\"><a href=\"/brochures/milestone-travertine.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">decks</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/milestone-flyer/milestone-flyer.jpg\" alt=\"Milestone Flyer\" class=\"cover-brochure-page\"><a href=\"/brochures/milestone-flyer.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">decks</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/coping-guide/coping-guide.jpg\" alt=\"Coping Guide\" class=\"cover-brochure-page\"><a href=\"/brochures/coping-guide.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">irrigation</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/irrigreen-warranty/irrigreen-warranty.jpg\" alt=\"Irrigreen Warranty\" class=\"cover-brochure-page\"><a href=\"/brochures/irrigreen-warranty.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">irrigation</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/irrigreen-smart-drip-system/irrigreen-smart-drip-system.jpg\" alt=\"Irrigreen Smart Drip System\" class=\"cover-brochure-page\"><a href=\"/brochures/irrigreen-smart-drip-system.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div><div role=\"listitem\" class=\"cms_list-item w-dyn-item\"><div class=\"header-brochure\"><div fs-list-field=\"make\">irrigation</div></div><div class=\"brochure-wrapper-page\"><img loading=\"lazy\" src=\"/images/brochures/irrigreen-brochure/irrigreen-brochure.jpg\" alt=\"Irrigreen Brochure\" class=\"cover-brochure-page\"><a href=\"/brochures/irrigreen-brochure.pdf\" target=\"_blank\" class=\"button button-styles secundary-white w-button\">¡View More!</a></div></div></div></div></div></div>";
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>R12-FOL · laboratorio</title>
+</head>
+<body>
+  <section class="lab-a">
+    <section class="brochures-section-page"><div class="w-layout-blockcontainer container w-container">
+      <section class="section_fs-example"><div class="padding-global"><div class="container-large">
+        <div class="fs-example_content"><div class="fs-example_wrapper"><div class="fs-example_layout">
+          <div class="filter_layout"><Fragment set:html={FRAGMENTO} /></div>
+        </div></div></div>
+      </div></div></section>
+    </div></section>
+  </section>
+
+  <section class="lab-b">
+    <section class="brochures-section-page"><div class="w-layout-blockcontainer container w-container">
+      <section class="section_fs-example"><div class="padding-global"><div class="container-large">
+        <div class="fs-example_content"><div class="fs-example_wrapper"><div class="fs-example_layout">
+          <div class="filter_layout"><Fragment set:html={FRAGMENTO} /></div>
+        </div></div></div>
+      </div></div></section>
+    </div></section>
+  </section>
+</body>
+</html>
+
+<style is:global>
+/* ══ COMUN A LAS DOS VARIANTES ═══════════════════════════════════════════════
+ * Esto viaja TAL CUAL a folletos.css cuando Sebastian elija.
+ * 23 reglas · 0 declaraciones inertes de 132 medibles. */
+/* ══════════════════════════════════════════════════════════════════════════════
+ * R12-FOL · CANDIDATO PARA folletos.css — laboratorio, aún NO aplicado
+ *
+ * Se ELEVA la tarjeta de Webflow, no se sustituye: mismos componentes, mismo
+ * orden, misma identidad. Lo que cambia es que la portada SE VE ENTERA.
+ *
+ * Gana por ORDEN DE CARGA (esta capa va después de webflow.css), nunca por
+ * `!important`. Ningún literal de color: solo var(--mm-*). Breakpoints solo
+ * min-width 480/768/992, jamás mezclados con los max-width de Webflow.
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── COMÚN A LAS DOS VARIANTES ─────────────────────────────────────────────
+ * Estas reglas son idénticas en A y en B: son los siete defectos medidos que
+ * no dependen de cómo se resuelva la portada. */
+
+/* 1 · El catálogo recupera 250 px. El vacío que queda a 1920 lo fija
+ *     `.container{max-width:1250px}`, que es cromo compartido y no es de este
+ *     lote: 1000 -> 1250 es todo lo que puedo recuperar sin invadirlo. */
+.container-large { max-width: var(--mm-ancho); }
+
+/* 2 · El panel de filtros era visible durante 404 px de un scroll de 10.822.
+ *     Pegajoso desde 768: por debajo Webflow ya lo apila a ancho completo y
+ *     fijarlo ahí taparía media pantalla de móvil. */
+.filter_block {
+  border-radius: var(--mm-r-16);
+  box-shadow: var(--mm-sombra-2);
+}
+.filter_block_header { padding-bottom: var(--mm-e-8); }   /* Webflow ya da 1rem arriba y a los lados */
+.filter_block_title  { font-size: var(--mm-paso-3); letter-spacing: -.01em; }
+.filter_list         { gap: var(--mm-e-4); padding-inline: var(--mm-e-8); padding-bottom: var(--mm-e-8); }
+
+/* 3 · La fila de filtro pasa de 25,2 px a 44, y la etiqueta de 12 px al paso 1.
+ *     Receta de altura la que ya funciona en el repo (intro.css:161-166):
+ *     min-height + flex + centrado. Nunca `height` fija. */
+.checkbox_field {
+  min-height: 44px;   /* convención de la casa: intro.css:165, base.css:234 */
+  gap: var(--mm-e-12);
+  padding-left: var(--mm-e-8);
+  padding-right: var(--mm-e-8);
+  border-radius: var(--mm-r-8);
+  font-size: var(--mm-paso-1);
+}
+.checkbox_label { font-size: inherit; margin-right: 0; }
+.checkbox_input { margin-top: 0; margin-right: 0; border-radius: var(--mm-r-8); }
+
+/* 4 · Estados. Hoy la sección tiene CERO reglas de estado en sus 66 controles.
+ *     blanco sobre --mm-navy-lomo = 11,90:1 (medido en tokens.css). */
+.checkbox_field:hover {
+  background-color: var(--mm-navy-lomo);
+  color: var(--mm-tinta-inversa);
+}
+/* El input real está a `position:absolute;z-index:-1`, así que el anillo va en
+ * la fila. Blanco sobre navy = 15,60:1 contra sus DOS vecinos. */
+.checkbox_field:has(input:focus-visible) {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco-inverso);
+  outline-offset: var(--mm-foco-aire);
+}
+/* Webflow enfoca la casilla con #b9fd3b —verde ácido de plantilla, fuera de la
+ * paleta—. Se sustituye por el foco del sistema. */
+.checkbox_input.w--redirected-focus-visible {
+  outline-color: var(--mm-foco-inverso);
+  outline-offset: var(--mm-foco-aire);
+}
+
+/* 5 · La tarjeta. `height:auto` va PRIMERO y explícito: mata los 350/300/250 px
+ *     de Webflow antes de que ningún `aspect-ratio` entre en juego —con la
+ *     altura declarada, aspect-ratio calcula el ANCHO y desborda la columna—. */
+.cms_list-item { max-width: none; }
+.brochure-wrapper-page {
+  height: auto;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: var(--mm-e-12);
+  /* el borde era `2px solid var(--white)` sobre fondo blanco: invisible.
+   * La sombra era `0 2px 5px #0003`, negro puro. */
+  border: 1px solid var(--mm-borde);
+  border-radius: var(--mm-r-16);
+  box-shadow: var(--mm-sombra-1);
+  background-color: var(--mm-superficie);
+  transition: box-shadow .2s ease, border-color .2s ease;
+}
+.brochure-wrapper-page:hover,
+.brochure-wrapper-page:focus-within {
+  border-color: var(--mm-borde-control);
+  box-shadow: var(--mm-sombra-2);
+}
+
+/* 6 · La portada sale del posicionamiento absoluto y pasa a mandar en el flujo.
+ *     Aquí es donde se acaba el recorte del 37,9 % / 45,4 %. */
+.cover-brochure-page {
+  position: static;
+  inset: auto;
+  width: 100%;
+  height: auto;
+}
+
+/* 7 · El botón deja de ir ENCIMA del arte y pasa a 44 px de alto. */
+.brochure-wrapper-page .button-styles {
+  min-height: 44px;   /* convención de la casa: intro.css:165, base.css:234 */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  border: 1px solid var(--mm-borde-control);   /* 3,03:1 sobre blanco */
+  border-radius: var(--mm-r-8);
+  padding: var(--mm-e-8) var(--mm-e-24);
+  font-size: var(--mm-paso-1);
+  transition: background-color .2s ease, color .2s ease;
+}
+.brochure-wrapper-page .button-styles:hover {
+  background-color: var(--mm-navy);            /* blanco encima = 15,60:1 */
+  color: var(--mm-tinta-inversa);
+}
+.brochure-wrapper-page .button-styles:focus-visible {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco);
+  outline-offset: var(--mm-foco-aire);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brochure-wrapper-page,
+  .brochure-wrapper-page .button-styles { transition: none; }
+}
+
+/* 8 · Rejilla y panel por tramo. Recuento DETERMINISTA, nunca auto-fill, y
+ *     jamás crece al estrechar: 1 / 2 / 2 / 3. El `gap` NO se redeclara: Webflow
+ *     ya da 1.5rem = 24px, o sea el propio --mm-e-24. */
+@media (min-width: 480px) {
+  .cms_list { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 768px) {
+  /* Webflow deja el panel en `.66fr 1fr` en 768-991: el 40 % del ancho para
+   * nueve casillas. Se devuelve a `auto 1fr`, que es su propio valor de
+   * escritorio, y ahí ya se puede pegar. */
+  .filter_grid { grid-template-columns: auto 1fr; }
+  .filter_form_block { position: sticky; top: var(--mm-e-96); }
+}
+@media (min-width: 992px) {
+  .cms_list { grid-template-columns: 1fr 1fr 1fr; }
+}
+
+
+/* ══ LAS DOS VARIANTES ═══════════════════════════════════════════════════════
+ * El prefijo .lab-a / .lab-b existe SOLO para poder verlas juntas. En
+ * folletos.css se cae el prefijo y quedan los selectores desnudos. */
+/* ── A · EXPOSITOR ────────────────────────────────────────────────────────
+ * Caja uniforme 3:4, portada CONTENIDA y centrada sobre un montaje tenue.
+ * Como la relación de la caja es la misma en las 57, la trampa de «la altura
+ * de la fila la fija la más larga» no puede darse: no hay fila irregular. */
+.lab-a .brochure-wrapper-page { padding: var(--mm-e-16); }
+.lab-a .cover-brochure-page {
+  aspect-ratio: 3 / 4;
+  object-fit: contain;
+  background-color: var(--mm-fondo-tenue);
+  border-radius: var(--mm-r-8);
+}
+
+/* ── B · MUESTRARIO ───────────────────────────────────────────────────────
+ * La portada manda la altura y las tarjetas se empaquetan en columnas CSS.
+ * Recuento por tramo igual que en A —1/2/2/3, determinista, nunca auto-fill—
+ * pero resuelto con `columns` en vez de con `grid-template-columns`. */
+.lab-b .cms_list { display: block; column-gap: var(--mm-e-24); columns: 1; }
+.lab-b .cms_list-item { display: block; break-inside: avoid; margin-bottom: var(--mm-e-24); }
+.lab-b .brochure-wrapper-page { padding: 0 0 var(--mm-e-16); overflow: hidden; }
+.lab-b .cover-brochure-page { border-radius: 0; }
+
+@media (min-width: 480px) { .lab-b .cms_list { columns: 2; } }
+@media (min-width: 992px) { .lab-b .cms_list { columns: 3; } }
+</style>
