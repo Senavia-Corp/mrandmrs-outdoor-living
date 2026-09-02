@@ -25,6 +25,103 @@
  * Y la de arriba de todas: el TEXTO no se toca. `check:texto` compara `innerText` al 100 %
  * sin tolerancia y no se re-baseliniza nunca.
  *
- * De momento solo comentarios: no emite una sola regla, así que el CSS construido no cambia
- * y el hash del bundle se queda donde estaba. La primera regla real la escribe R9-DIS.
+ * ── R9-HERO paso 2, variante A · CIMIENTO (elegida por Sebastian) ─────────────────
+ *
+ * TODO cuelga de `.mm-hero`, clase añadida a `section.hero-glass-section-page` en
+ * index.astro. NO es decoración: este fichero carga en las 115 páginas (Base.astro:52)
+ * y sin ese ancla `.button-styles` pintaría 59 ficheros de página y `.heading-hero` 23.
+ * `.hero-glass-section-page` existe en 1 sola (`grep -rl … src/pages | wc -l`).
+ *
+ * Y el efecto de segundo orden que hay que tener presente al editar esto: `.mm-hero .x`
+ * es 0-2-0 y las reglas de Webflow son 0-1-0. Las media queries NO suman especificidad,
+ * así que estas reglas ganan también DENTRO de los `max-width: 991/767/479` de Webflow.
+ * Toda propiedad que se toque aquí queda poseída en los cuatro anchos y hay que volver
+ * a declararla con `min-width`. Es la forma habitual de dejar algo bien a 1440 y roto a 479.
+ *
+ * LO QUE NO SE PUEDE TOCAR AQUÍ, medido y no opinado:
+ *   · `text-transform` de nada visible. `baseline/text/index.txt` guarda las formas
+ *     mutadas: el markup dice «Contractors in Florida» y el baseline «Contractors In
+ *     Florida»; «Get a Free Estimate» → «Get A Free Estimate». `innerText` SÍ refleja
+ *     `capitalize`, al contrario de lo que dice la cabecera de `disenio/base.css`.
+ *   · Nada que convierta `.hero-glass-section-page` en contexto de apilamiento
+ *     (`z-index`, `transform`, `filter`, `backdrop-filter`, `will-change`, `isolation`,
+ *     `opacity<1`): hoy es `position:relative` con `z-index:auto`, y por eso el
+ *     `z-index:-100` del <video> se escapa a la raíz y el fondo de la sección lo tapa.
+ *     En cuanto sea contexto, EL VÍDEO DESAPARECE. Por eso el velo se escribe como
+ *     `background-image` de la propia sección y no como capa nueva ni pseudo-elemento.
  */
+
+/* ═══ EL VELO — punto 4 del diagnóstico ═══════════════════════════════════════════
+   Sustituye el `linear-gradient(#0006,#0006)` plano de Webflow (escrito en hex corto:
+   buscando `rgba(0,0,0` no aparece). Ese velo plano daba 2,88:1 al texto blanco Y
+   ensuciaba el vídeo entero — fallaba por los dos lados a la vez.
+
+   El peor píxel bajo la banda de texto, muestreado segundo a segundo sobre los 26,4 s
+   del bucle en canvas, es 255 (blanco puro de la piedra del borde) y aparece en 5
+   segundos distintos. La media es 140: diseñar contra la media habría dado ~45 % de
+   navy y habría fallado en esos 5 segundos sin que ninguna puerta lo dijera.
+
+   Un velo navy es MÁS DÉBIL que uno negro al mismo alfa (2,49 vs 2,94 al 40 % sobre
+   255) porque el azul aporta luminancia. La casa pide navy, así que sube el alfa.
+   Suelo medido para blanco a 4,5:1 sobre 255: navy al 61 %.
+
+   LÍNEA DE AGUA: el velo no se desvanece, tiene un canto definido entre el 27 % y el
+   30 % de la altura. Es lo que permite poner el 74 % de navy solo donde está el texto
+   (0,277–0,723 de la sección, medido) en vez de untar un 40 % por todo, y deja limpia
+   la mitad superior del vídeo, que es obra real del cliente. Las bullets descansan
+   sobre ese canto. Con una transición de 24→31 % no leía como borde sino como
+   desvanecido; a 27→30 % sí.                                                         */
+.mm-hero{background-image:linear-gradient(to bottom,
+  color-mix(in srgb,var(--mm-navy) 12%,transparent) 0%,
+  color-mix(in srgb,var(--mm-navy) 14%,transparent) 27%,
+  color-mix(in srgb,var(--mm-navy) 74%,transparent) 30%,
+  color-mix(in srgb,var(--mm-navy) 80%,transparent) 100%)}
+
+/* Punto 5 — el `text-shadow: 1px 1px 3px/4px #000` de 991 y 479 era el parche de quien
+   notó el punto 4 y lo tapó solo en móvil. Con velo de verdad sobra.
+   Punto 6 — fuera la regla de oro de 2 px a lo ancho de los 1100 px de la h1. */
+.mm-hero .subheading-hero{text-shadow:none}
+.mm-hero .heading-hero{border-bottom-width:0;padding-bottom:0;text-wrap:balance}
+
+/* Punto 7 — dos bloques centrados de anchura parecida compiten: la h1 medía 1100 px y
+   el subtítulo 950, el 86 %. Se resuelve por MEDIDA, no por tamaño: a --mm-medida
+   (650 px) el subtítulo pasa a 3 líneas cortas y se lee como pie de titular. La h1 NO
+   se toca — ya son 60 px, por encima de cualquier paso del sistema. */
+.mm-hero .subheading-hero{max-width:var(--mm-medida);margin-inline:auto}
+
+/* Punto 2 — el bloque ocupaba 401 px de 900 (44,6 %). El aire se reparte en tres zonas
+   en vez de acumularse arriba y abajo. Medido después: 55,3 %. */
+.mm-hero .text-divider-hero{margin-bottom:var(--mm-e-32);
+  grid-column-gap:var(--mm-e-8);grid-row-gap:var(--mm-e-8)}
+.mm-hero .wrapper-buttons-center{margin-top:var(--mm-e-32)}
+
+/* Punto 1 — el CTA medía 181×38,4 px: el 0,53 % del héroe, y a 479 caía a 162×36,4,
+   por debajo de los 44 px de objetivo táctil de WCAG 2.2. `line-height:100%` era lo
+   que lo aplastaba. Navy sobre el degradado de oro da 8,40:1 en #f4b248 y 6,35:1 en
+   #d99933, y es OPACO: el único elemento del héroe legible en cualquier fotograma.
+   El foco va con --mm-foco-inverso (blanco) porque el fondo aquí es el velo navy;
+   el --mm-foco navy de propio.css:60 no se vería. */
+.mm-hero .wrapper-buttons-center .button-styles{display:inline-flex;align-items:center;
+  justify-content:center;min-height:var(--mm-e-48);padding:var(--mm-e-12) var(--mm-e-32);
+  font-size:var(--mm-paso-3);font-weight:var(--mm-peso-fuerte);line-height:var(--mm-alto-cuerpo);
+  border-radius:var(--mm-r-8);box-shadow:var(--mm-sombra-2)}
+.mm-hero .wrapper-buttons-center .button-styles:focus-visible{
+  outline:var(--mm-foco-grosor) solid var(--mm-foco-inverso);outline-offset:var(--mm-foco-aire)}
+
+/* Punto 3 — las 4 razones para confiar caían a 7 px a 479 y 10 a 991. El contraste ya
+   estaba bien (navy sobre blanco al 70 % = 7,96:1 sobre el peor píxel oscuro); lo roto
+   era el tamaño. --mm-paso-1 da 14 px a 479 y hasta 16 a 992+. La pastilla se vuelve
+   blanca opaca: navy encima 15,60:1, y así descansan sobre la línea de agua como el
+   gresite en el borde de la piscina. */
+.mm-hero .heading-mini-hero{font-size:var(--mm-paso-1);line-height:var(--mm-alto-cuerpo)}
+.mm-hero .icon-hero{width:var(--mm-e-16);height:var(--mm-e-16)}
+.mm-hero .block-icon-hero{padding:var(--mm-e-4)}
+.mm-hero .block-value-bullets{padding:var(--mm-e-8) var(--mm-e-12);
+  border-radius:var(--mm-r-pastilla);background-color:var(--mm-blanco)}
+
+@media (min-width:992px){
+  .mm-hero .wrapper-buttons-center .button-styles{
+    min-height:calc(var(--mm-e-48) + var(--mm-e-8));padding-inline:var(--mm-e-48)}
+  .mm-hero .text-divider-hero{margin-bottom:var(--mm-e-48)}
+  .mm-hero .wrapper-buttons-center{margin-top:var(--mm-e-48)}
+}
