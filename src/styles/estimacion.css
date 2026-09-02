@@ -440,7 +440,7 @@
   text-underline-offset: 2px;           /* igual que `.mm-vinculo` de base.css */
   text-decoration-thickness: 1px;
 }
-.appointment-section .appointment-section .link-4:hover { text-decoration-thickness: 2px }
+.appointment-section .link-4:hover { text-decoration-thickness: 2px }
 .appointment-section .link-4:focus-visible {
   outline: var(--mm-foco-grosor) solid var(--mm-foco);
   outline-offset: var(--mm-foco-aire);
