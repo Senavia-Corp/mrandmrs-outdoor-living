@@ -16,6 +16,21 @@ PROHIBIDO  todo lo demás. Esto es CSS PURO: el markup solo se toca en la home, 
 > Manda sobre este documento. Ahí está por qué no esperas al director para nada, la higiene de
 > navegador y el contrato de color del formulario.
 
+> ⚠️ **CORREGIDO 2-sep-2026 — dos atribuciones de este documento eran FALSAS.** Las midieron dos
+> frentes por separado y las verifiqué:
+>
+> | Clase | El documento decía | **Medido, tokenizando el atributo `class`** |
+> |---|---|---|
+> | `.text-field` | 2 rutas, de ESTIMACION | **1 ruta: solo `/contact-us`. Es de CONTACTO.** `/request-estimated` usa `.text-field-form` |
+> | `.submit-button` | el botón de envío, en verde menta | **0 rutas. No existe en ninguna de las 115.** El menta `#3cd3ad` y el morado `#6c33da` son CSS muerto de Webflow; el botón real es `.button-styles` |
+>
+> **La causa, y es una trampa que ahorra tiempo saberla:** conté con
+> `grep -E 'class="[^"]*\btext-field\b'`. En una expresión regular `\b` es frontera de PALABRA y
+> el guion **no es carácter de palabra**, así que `\btext-field\b` casa dentro de
+> `text-field-form`. Lo mismo le pasa a `\bform\b` (da 6; `.form` es 1) y a `\bgallery-page\b`
+> (da 25 por `slider-gallery-page`; es 1). **Una clase se cuenta partiendo el atributo `class` por
+> espacios y comparando el token entero**, nunca con `\b` ni con subcadena.
+
 ## Antes de nada
 
 1. `docs/encargos/00-PRINCIPIOS.md` — manda sobre todo. Se **eleva** Webflow, no se sustituye.

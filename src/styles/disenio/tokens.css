@@ -267,6 +267,41 @@
   --mm-ancho:  1250px;
   --mm-medida:  650px;
   --mm-canal:  var(--mm-e-24);   /* aire lateral del contenedor en movil */
+
+  /* ── LOS CUATRO QUE PIDIERON LOS FRENTES, 2-sep-2026 ─────────────────────
+   * Cada uno se pide, no se inventa: un literal suelto en una hoja de seccion es
+   * exactamente como se pudre un sistema de diseno repartido entre nueve agentes.
+   */
+
+  /* La altura del nav `fixed`. Vivia como `margin-top: 85px` literal en
+   * `.hero-section` de webflow.css — un numero magico repetido sin nombre. Lo pidio
+   * HERO-INDICE en vez de re-declararlo en su hoja, que habria sido mudar el numero
+   * de sitio en lugar de quitarlo. */
+  --mm-nav-alto: 85px;
+
+  /* 16 px es el SUELO, no una preferencia estetica: por debajo de 16, iOS Safari hace
+   * zoom automatico al enfocar un campo y descoloca la pagina entera. `--mm-paso-1` da
+   * 14 px hasta 992, asi que no sirve aqui. Lo pidio CONTACTO, que estaba usando
+   * `--mm-e-16` — el valor correcto con el nombre equivocado: un token de ESPACIO
+   * usado como tamano de letra. */
+  --mm-paso-campo: 16px;
+
+  /* El rojo de error. Lo pidio ESTIMACION: hoy el estado de error se distingue solo por
+   * el TEXTO y un borde de 2 px, que es el MISMO tratamiento que el foco — o sea que no
+   * se distingue. Elegido midiendo, no por gusto:
+   *     #b3261e / blanco ................ 6,54:1   >= 4,5 como texto
+   *     #b3261e / --mm-fondo-tenue ...... 5,75:1   >= 4,5 como texto
+   *     como borde contra los dos ....... 6,54 y 5,75, >= 3 de WCAG 1.4.11
+   * Se descarto #d92d20 (4,83 sobre blanco pero 4,25 sobre el fondo tenue: solo valia
+   * de borde). Y es inconfundible con el oro, que es lo que se le pide a un error. */
+  --mm-error: #b3261e;
+
+  /* El ancho maximo de la rejilla de /gallery. Unico literal de longitud que pidio
+   * GALERIA, y lo declaro en vez de callarlo. Los 1250 px del contenedor de Webflow
+   * dejaban la galeria en el 65 % de una pantalla de 1920; las referencias medidas por
+   * ese frente (SAOTA, Raymond Jungles) ponen la medida en el 88-93 % de la ventana. */
+  --mm-ancho-galeria: 1600px;
+
 }
 
 /* ══ REDEFINICIONES POR ANCHO ═════════════════════════════════════════════════
