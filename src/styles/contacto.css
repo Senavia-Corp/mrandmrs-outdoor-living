@@ -471,3 +471,113 @@
 }
 .wrapper-radio-buttons .w-radio:hover { background-color: var(--mm-fondo-tenue); }
 .wrapper-radio-buttons .radio-button { accent-color: var(--mm-enlace); }
+
+/* ── 8 · LA CASILLA DEL SMS ───────────────────────────────────────────────────
+ * 13x13 px medidos. WCAG 2.2 AA pide 24x24 al control; el objetivo con el pulgar lo da la
+ * <label>, que envuelve control y texto legal y mide muy por encima de 44.
+ *
+ * `.checkbox-field` sale en 2 rutas y la posee ESTIMACION, pero acoto con `.form` —1 ruta—
+ * asi que /request-estimated no se mueve. Alli el chat hermano ya la arreglo bajo
+ * `.appointment-section`, o sea que esta pagina se habia quedado en tierra de nadie: su regla
+ * no llega aqui y la mia no llega alli. Mismo resultado, cada uno en su ruta.
+ *
+ * Misma trampa que los radios: `.w-checkbox-input` trae `float: left; margin: 4px 0 0 -20px`
+ * y la label un `padding-left: 20px`. Se desmontan las dos piezas a la vez o el control se
+ * descoloca. */
+.form .checkbox-field {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--mm-e-12);
+  margin-top: var(--mm-e-16);
+  padding-left: 0;
+  cursor: pointer;
+}
+.form .checkbox-field::before,
+.form .checkbox-field::after { content: none; }
+.form .checkbox-field .w-checkbox-input {
+  float: none;
+  flex: none;
+  width: var(--mm-e-24);
+  height: var(--mm-e-24);
+  margin: 0;
+  accent-color: var(--mm-tinta);   /* navy sobre blanco .................... 15,60:1 */
+  cursor: pointer;
+}
+.form .checkbox-field .w-checkbox-input:focus-visible {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco);
+  outline-offset: var(--mm-foco-aire);
+}
+.form .checkbox-label-3 { text-wrap: pretty; }
+
+/* ── 9 · EL MENSAJE DE EXITO ──────────────────────────────────────────────────
+ * Es la ULTIMA pantalla que ve un lead y nadie la habia mirado nunca, porque nace con
+ * `display: none` y solo aparece tras enviar. Forzada y medida, tenia tres cosas:
+ *
+ *   fondo #dddddd   <- gris generico de `.w-form-done`, no un color de la marca, y ademas
+ *                      cae DENTRO del panel blanco del formulario
+ *   icono #f4aa2a sobre ese gris .... 1,45:1   el escudo es el elemento principal y no se ve
+ *   boton `.button.w-button` ......... background-color #3898ec, el azul de Webflow, vivo
+ *                      debajo del degradado oro. Es el fallo que CRITERIO persigue: el dia
+ *                      que webflow.css se regenere sin los tokens del oro, sale azul y no lo
+ *                      ve ninguna puerta.
+ *
+ * `.success-message-form` y `.ikonik-t882o` salen en 2 rutas, asi que van acotadas por
+ * `.form-block`, que es 1: /request-estimated no se mueve. */
+.form-block .success-message-form {
+  background-color: var(--mm-fondo-tenue);   /* titular y parrafo navy encima .. 13,72:1 */
+  border: 1px solid var(--mm-tinta-atenuada);/* vs panel blanco 5,26 · vs relleno 4,62 */
+  border-radius: var(--mm-r-16);
+  padding: var(--mm-e-48) var(--mm-e-32);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--mm-e-16);
+}
+@media (min-width: 768px) {
+  .form-block .success-message-form { padding: var(--mm-e-64) var(--mm-e-48); }
+}
+.form-block .success-message-form > * { margin-block: 0; }
+.form-block .success-message-form h2 {
+  max-width: var(--mm-medida);
+  text-wrap: balance;
+  line-height: var(--mm-alto-titulo);
+}
+.form-block .success-message-form p,
+.form-block .success-message-form > div:not([class]) {
+  max-width: var(--mm-medida);
+  text-wrap: pretty;
+}
+
+/* EL ESCUDO EN NAVY, Y NO ES GUSTO. El SVG es UN solo path con `fill: currentColor` y el
+ * check recortado por dentro, o sea que el check ensena el FONDO. En navy sobre el tenue el
+ * escudo da 13,72:1 y el check, que es el propio fondo, otros 13,72:1 contra el escudo.
+ * En oro no llega: 1,74:1 sobre el tenue, ni la mitad de los 3:1 de WCAG 1.4.11. Y un icono
+ * de exito ES estado, asi que aqui manda la regla de la casa: el oro no marca estado. */
+.form-block .success-message-form .ikonik-t882o { color: var(--mm-tinta); }
+
+/* El boton de vuelta. `background-color` propio para que el #3898ec de `.w-button` no pueda
+ * asomar nunca, aunque el degradado del oro desapareciera de webflow.css. */
+.form-block .success-message-form .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: var(--mm-e-12) var(--mm-e-32);
+  border-radius: var(--mm-r-8);
+  background-image: none;
+  background-color: var(--mm-accion);        /* tinta navy encima ............... 8,40:1 */
+  color: var(--mm-sobre-accion);
+  transition-property: background-color, transform;
+  transition-duration: .15s;
+  transition-timing-function: ease-out;
+}
+.form-block .success-message-form .button:hover { background-color: var(--mm-accion-hover); }
+.form-block .success-message-form .button:active { transform: scale(.97); }
+.form-block .success-message-form .button:focus-visible {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco);
+  outline-offset: var(--mm-foco-aire);
+}
+@media (prefers-reduced-motion: reduce) {
+  .form-block .success-message-form .button { transition: none; }
+  .form-block .success-message-form .button:active { transform: none; }
+}
