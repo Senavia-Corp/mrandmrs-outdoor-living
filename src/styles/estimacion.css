@@ -3,41 +3,559 @@
  *
  * Lo posee EN EXCLUSIVA el chat ESTIMACION (encargo R12-EST). Nadie mas escribe aqui.
  *
- * QUE RESTILA, Y CUANTO. Medido sobre `.vercel/output/static` el 1-sep-2026:
- *   .appointment-section                                            1 ruta  (/request-estimated)
- *   .block-form .main-form-block .header-form .header-form-block    1 ruta
- *   .bugget-form .services-form .select-field .text-field-form      1 ruta
- *   .msf-step .msf-buttons .msf-next .msf-back .step-wrapper        1 ruta
- *   .checkbox-field .checkbox-label-3 .success-message-form         2 rutas  (+ /contact-us)
- *   .text-field  (el campo: borde blanco a 2,55:1 sobre el cian)    2 rutas  (+ /contact-us)
- *   .text-block-7 .link-4 .ikonik-t882o                             2 rutas  (+ /contact-us)
+ * 🚨 CORRECCION DE ALCANCE — el encargo y `PARTE-02.md` §3 se equivocaban, y no de forma
+ * inocua. Medido sobre las 115 paginas de `.vercel/output/static` con la clase EXACTA
+ * (`class="[^"]*(?<![\w-])X(?![\w-])"`), no por subcadena:
  *
- * LAS DE 2 RUTAS SON TUYAS, NO DEL CHAT DE CONTACTO. Los dos formularios de lead del sitio
- * comparten esas clases y tienen que hablar el mismo idioma: si las tocan dos chats salen dos
- * casillas distintas y dos mensajes de exito distintos en el mismo sitio. Al escribirlas mueves
- * TAMBIEN /contact-us: declaralo.
+ *     clase                 rutas  usos   donde
+ *     text-field                1     4   /contact-us          <- NO esta en esta pagina
+ *     text-field-form           1     7   /request-estimated   <- esta SI es la nuestra
  *
- * 🚨 LA LOGICA NO SE TOCA. El formulario es multipaso por JS (`#msf`, `[data-step]`, `#msf-next`,
- * `#msf-back`, `#msf-submit`). No se cambia ningun `id`, `name`, `data-required`, `data-step`,
- * `action="/api/formulario"`, `data-turnstile-sitekey`, ni el campo trampa `ref_id`. Aqui solo
- * entra CSS.
+ * `.text-field` —la del borde blanco a 2,55:1 sobre el cian— vive SOLO en `/contact-us` y es
+ * de CONTACTO. El «2 rutas» del encargo salia de que `text-field-form` CONTIENE `text-field`.
+ * Aqui no hay panel cian ni degradado: hay `.msf-step{background:#ededed}` dentro de una
+ * tarjeta blanca. Se adopta igualmente la Regla 1 de PARTE-02 (fondo propio y opaco, tinta
+ * navy) porque es lo correcto, pero por sus propios motivos.
  *
- * 🚨 Y LA PUERTA NO TE VIGILA. `/request-estimated` esta declarada en `DISTINTAS_A_PROPOSITO` a
- * los CUATRO anchos —el widget de Turnstile no pinta fuera del dominio registrado, asi que en
- * local la pagina sale mas corta que su baseline—. `declarada()` se evalua ANTES y al margen del
- * contrato, o sea que hoy esta pagina NO SE COMPARA en ningun ancho: **verde aqui no prueba
- * nada**. Resolverlo es del director. Tu aportas capturas.
+ * QUE RESTILA, Y CUANTO. Todo va acotado bajo `.appointment-section` (1 ruta) SALVO dos
+ * excepciones declaradas abajo.
  *
- * ORDEN DE CARGA, y gana por ORDEN, nunca por `!important`.
+ *   ACOTADO A ESTA PAGINA (1 ruta)
+ *     .appointment-section .block-form .main-form-block .header-form .header-form-block
+ *     .step-wrapper .msf-step .msf-buttons .msf-next .msf-back
+ *     .bugget-form .text-block-6 .select-field .text-field-form .services-form
+ *     .msf-error .msf-error-input
  *
- * LAS REGLAS DE ESTA CAPA — `docs/encargos/00-PRINCIPIOS.md` §5, medidas por `check:tokens`:
- *   · cero `!important`, cero `@layer` · ningun literal de color: solo `var(--mm-*)`
- *   · `min-width` 480 / 768 / 992, nunca mezclado con los `max-width` de Webflow
- *   · ningun `opacity: 0` que nada vuelva a encender; nunca `forwards` ni `both`
- *   · el oro `#f4b248` da 1,86:1 sobre blanco: nunca marca estado
- *   · todo par de colores nuevo lleva su ratio MEDIDO al lado
+ *   ACOTADO A PROPOSITO aunque la clase salga en 2 rutas — porque contacto.css las reclama
+ *   TAMBIEN como suyas y dos chats escribiendo el mismo selector se resuelven por orden de
+ *   carga, en silencio. Acotando, `/contact-us` no se mueve y no hay colision:
+ *     .checkbox-field  .checkbox-label-3  .success-message-form  .ikonik-t882o
+ *   Si se quiere UN solo tratamiento para los dos formularios de lead, es promover el bloque
+ *   a selector desnudo en UNA hoja y borrar el de la otra. Decision del director, 1 linea.
  *
- * Se ELEVA la base de Webflow, no se sustituye. El TEXTO no se toca.
+ *   ACOTADO A OTRAS CLASES DE ALCANCE ENORME que caen dentro de esta seccion. Ninguna se
+ *   toca desnuda, y el encargo no las listaba:
+ *     .button 113 rutas · .wrapper-buttons-center 112 · .w-checkbox / .w-checkbox-input /
+ *     .w-form-label 3 (sale tambien en /brochures)
  *
- * De momento solo comentarios: no emite una sola regla, asi que el CSS construido no cambia.
+ *   SIN ACOTAR, Y MUEVE 2 RUTAS A PROPOSITO (`/request-estimated` + `/contact-us`):
+ *     .text-block-7  .link-4
+ *   Motivo: `.link-4` resolvia a `var(--_apps---sidebar--sidebar-border)` -> `var(--yellow-1)`
+ *   -> el ORO, 1,59:1 medido sobre su fondo real. Es el mismo defecto y el mismo arreglo en
+ *   las dos paginas, y contacto.css NO las reclama.
+ *
+ * 🚨 LA LOGICA NO SE TOCA. El formulario es multipaso por JS (`#msf`, `[data-step]`,
+ * `#msf-next`, `#msf-back`, `#msf-submit`). Ni un `id`, `name`, `data-required`, `data-step`,
+ * `action`, `data-turnstile-sitekey`, ni el campo trampa `ref_id`. Aqui solo entra CSS.
+ *
+ * 🚨 DOS COSAS QUE IMPONE ESE JS, y que rompen recetas de la casa. `showStep()` escribe
+ * estilo EN LINEA:
+ *   · `display:block|none` sobre `.msf-step` -> `display` sobre el paso es INALCANZABLE desde
+ *     CSS. Toda maqueta va en los hijos, nunca en el paso.
+ *   · `display:inline-block|none` sobre Back/Next/Enviar -> la receta de 44 px del repo
+ *     (`inline-flex` + `min-height`, intro.css:161-166) NO SIRVE en esos tres. La altura sale
+ *     de `padding-block` + `line-height`, que si sobreviven al estilo en linea.
+ *
+ * 🚨 Y LA PUERTA NO TE VIGILA. `/request-estimated` esta en `DISTINTAS_A_PROPOSITO` a los
+ * CUATRO anchos, y `declarada()` se evalua ANTES y al margen del contrato: hoy esta pagina NO
+ * SE COMPARA en ningun ancho. Verde aqui no prueba nada. Se compensa con medida propia a
+ * 1920/1440/991/767/600/479 — las dos ultimas no las fotografia ninguna puerta.
+ *
+ * ORDEN DE CARGA, y se gana por ORDEN y por ESPECIFICIDAD, nunca con `!important`:
+ *   fuentes -> webflow -> disenio/tokens -> disenio/base -> [hojas de seccion] -> propio
+ *
+ * OJO CON `propio.css`: ya emite `.button,.button-styles{color:var(--mm-sobre-accion)}` y
+ * carga DESPUES. El texto del boton de envio YA es navy sobre oro (8,40:1). Aqui no se toca
+ * su color, solo su altura.
+ *
+ * Se ELEVA la base de Webflow, no se sustituye. El TEXTO no se toca: no hay un solo
+ * `content:` con palabras en esta hoja, y no por descuido — `innerText` no ve los
+ * pseudo-elementos, asi que colar copy por ahi seria saltarse la unica puerta que lo vigila.
  */
+/* ══════════════════════════════════════════════════════════════════════════════
+ * COMUN A LAS DOS VARIANTES — esto es lo que iria TAL CUAL a estimacion.css.
+ * Todo bajo `.appointment-section` (1 ruta) salvo lo que se declara a 2 rutas.
+ * ════════════════════════════════════════════════════════════════════════════ */
+
+/* ── 1 · JERARQUIA DE LAS CABECERAS ─────────────────────────────────────────
+ * Hoy h1, h2 y sus parrafos van todos al mismo peso y color. */
+/* ── 0 · LA BANDA ───────────────────────────────────────────────────────────
+ * Webflow da `padding: 4rem 2rem` y 3rem arriba/abajo a <=991: o sea 64 / 48 / 32,
+ * que YA caen en la escala. Lo que no cae es el lateral: 32 px fijos en los cuatro
+ * anchos, cuando el sistema pide `--mm-canal` (24 en movil, 32 desde 768). Se
+ * traduce a min-width para no mezclar con los max-width de Webflow. Gana 16 px de
+ * ancho util por fila en movil, que es donde las fichas van mas justas. */
+.appointment-section {
+  padding-block: var(--mm-e-48);
+  padding-inline: var(--mm-canal);
+}
+@media (min-width: 992px) {
+  .appointment-section { padding-block: var(--mm-e-64) }
+}
+
+.appointment-section .header-form-block { margin-bottom: var(--mm-e-48) }
+.appointment-section .header-form-block h1,
+.appointment-section .header-form h2 {
+  text-wrap: balance;
+  line-height: var(--mm-alto-titulo);
+  margin-bottom: var(--mm-e-8);
+}
+.appointment-section .header-form-block > div,
+.appointment-section .header-form > div {
+  color: var(--mm-tinta-atenuada);   /* #596b9a — blanco 5,26:1 · tenue 4,62:1 */
+  font-size: var(--mm-paso-3);
+  line-height: var(--mm-alto-cuerpo);
+  text-wrap: pretty;
+  max-width: var(--mm-medida);
+  margin-inline: auto;
+}
+.appointment-section .header-form { margin-bottom: var(--mm-e-24) }
+
+/* ── 2 · LA TARJETA Y EL PANEL DEL PASO ─────────────────────────────────────
+ * Escalera de radios 8/16/24: campo -> panel -> tarjeta.
+ * El panel deja de ser gris muerto #ededed y pasa al azul palido de la marca. */
+.appointment-section .block-form {
+  border-radius: var(--mm-r-24);
+  box-shadow: var(--mm-sombra-2);
+  padding-top: var(--mm-e-32);
+  padding-bottom: var(--mm-e-32);
+}
+.appointment-section .msf-step {
+  background-color: var(--mm-fondo-tenue);   /* #e9f1fd · navy encima 13,72:1 */
+  border: 1px solid var(--mm-borde);
+  border-radius: var(--mm-r-16);
+  padding: var(--mm-e-24);
+}
+
+/* ── 3 · EL CARRIL DE PROGRESO ──────────────────────────────────────────────
+ * LA FIRMA. Sin una palabra: `content:""`. No se genera texto con `content:`
+ * porque `innerText` no ve los pseudo-elementos y colarlo seria saltarse la
+ * unica puerta que vigila el copy.
+ *
+ * Lee el estado del propio formulario: showStep() deja `style="display: none"`
+ * en los pasos dormidos, asi que `:not([style*="none"])` senala el vivo.
+ * Antes de que corra el JS no casa ninguno -> gana la regla del 3, que es
+ * honesto: sin JS los tres pasos se ven.
+ *
+ * Geometria: 3 tramos de 32 % con 2 huecos de 2 %. `transparent` entre paradas
+ * duras no interpola, asi que no hay halo gris. */
+.appointment-section .step-wrapper { gap: var(--mm-e-24) }
+.appointment-section .step-wrapper::before {
+  content: "";
+  align-self: stretch;
+  height: var(--mm-e-8);
+  border-radius: var(--mm-r-pastilla);
+  background-repeat: no-repeat;
+  background-image: linear-gradient(to right,
+    var(--mm-tinta) 0 32%, transparent 32% 34%,
+    var(--mm-borde-control) 34% 66%, transparent 66% 68%,
+    var(--mm-borde-control) 68% 100%);
+}
+.appointment-section .step-wrapper:has(.msf-step:nth-child(2):not([style*="none"]))::before {
+  background-image: linear-gradient(to right,
+    var(--mm-tinta) 0 32%, transparent 32% 34%,
+    var(--mm-tinta) 34% 66%, transparent 66% 68%,
+    var(--mm-borde-control) 68% 100%);
+}
+.appointment-section .step-wrapper:has(.msf-step:nth-child(3):not([style*="none"]))::before {
+  background-image: linear-gradient(to right,
+    var(--mm-tinta) 0 32%, transparent 32% 34%,
+    var(--mm-tinta) 34% 66%, transparent 66% 68%,
+    var(--mm-tinta) 68% 100%);
+}
+
+/* ── 4 · LOS CAMPOS ─────────────────────────────────────────────────────────
+ * `opacity:.8` fundia el campo ENTERO con el panel: placeholder a 2,24:1.
+ * Fondo propio y opaco -> el campo deja de depender de lo que haya debajo.
+ * `height:55px` fija -> `min-height` + padding, que crece con el contenido. */
+.appointment-section .text-field-form,
+.appointment-section .select-field {
+  opacity: 1;
+  height: auto;
+  min-height: 48px;
+  background-color: var(--mm-superficie);      /* blanco */
+  color: var(--mm-tinta);                      /* navy sobre blanco .... 15,60:1 */
+  border: 1px solid var(--mm-tinta-suave);     /* 5,26:1 dentro · 4,62:1 fuera */
+  border-radius: var(--mm-r-8);
+  padding: var(--mm-e-12) var(--mm-e-16);
+  font-size: var(--mm-paso-3);
+  line-height: var(--mm-alto-cuerpo);
+  margin-block: 0 var(--mm-e-16);
+  transition-property: border-color, box-shadow;
+  transition-duration: 150ms;
+  transition-timing-function: ease-out;
+}
+.appointment-section .text-field-form::placeholder {
+  color: var(--mm-tinta-atenuada);             /* 5,26:1 sobre el blanco del campo */
+}
+.appointment-section .text-field-form:hover,
+.appointment-section .select-field:hover,
+.appointment-section .text-field-form:focus,
+.appointment-section .select-field:focus {
+  border-color: var(--mm-tinta);               /* mata el #3898ec de Webflow */
+}
+.appointment-section .text-field-form:focus-visible,
+.appointment-section .select-field:focus-visible {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco);
+  outline-offset: var(--mm-foco-aire);
+}
+
+/* ── 5 · EL PRESUPUESTO ─────────────────────────────────────────────────────
+ * Etiqueta arriba y control a lo ancho, como los otros 7 campos. Es rejilla
+ * interna del componente, no mover una seccion. */
+.appointment-section .bugget-form {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--mm-e-8);
+  margin-block: 0 var(--mm-e-24);
+}
+.appointment-section .text-block-6 {
+  font-size: var(--mm-paso-3);
+  font-weight: var(--mm-peso-fuerte);
+  color: var(--mm-tinta);
+}
+.appointment-section .select-field { margin-bottom: 0 }
+
+/* ── 6 · LAS 14 CASILLAS DE SERVICIO ────────────────────────────────────────
+ * Los dos `:before/:after` de `.w-checkbox` son un clearfix de float: dentro de
+ * un contenedor flex se vuelven ITEMS y meten dos huecos. Se apagan. */
+.appointment-section .services-form {
+  grid-template-columns: 1fr;
+  gap: var(--mm-e-8);
+}
+.appointment-section .services-form .w-checkbox {
+  display: flex;
+  align-items: center;
+  gap: var(--mm-e-12);
+  min-height: 44px;
+  margin-bottom: 0;
+  padding: var(--mm-e-8) var(--mm-e-12);
+  border: 1px solid transparent;
+  border-radius: var(--mm-r-8);
+  cursor: pointer;
+  transition-property: border-color, background-color;
+  transition-duration: 150ms;
+  transition-timing-function: ease-out;
+}
+.appointment-section .services-form .w-checkbox::before,
+.appointment-section .services-form .w-checkbox::after { content: none }
+.appointment-section .services-form .w-checkbox-input {
+  float: none;
+  margin: 0;
+  flex: 0 0 auto;
+  width: var(--mm-e-24);      /* 24x24, el suelo de WCAG 2.2 AA */
+  height: var(--mm-e-24);
+  accent-color: var(--mm-tinta);
+  cursor: pointer;
+}
+.appointment-section .services-form .w-form-label {
+  font-size: var(--mm-paso-2);
+  line-height: var(--mm-alto-cuerpo);
+  color: var(--mm-tinta);
+  text-wrap: pretty;
+}
+/* Webflow envuelve las 14 etiquetas en <strong>, o sea 700 en toda la lista: eso
+ * no es enfasis, es ruido, y anula la jerarquia. Se baja al peso medio. */
+.appointment-section .services-form .w-form-label strong { font-weight: var(--mm-peso-medio) }
+.appointment-section .services-form .w-checkbox:has(:focus-visible) {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco);
+  outline-offset: var(--mm-foco-aire);
+}
+/* El anillo lo pinta la ETIQUETA, que envuelve a la casilla y se ve mas. Se
+ * quita el de la casilla solo donde `:has()` funciona: si no, se queda el
+ * nativo y nadie pierde el foco. */
+@supports selector(:has(*)) {
+  .appointment-section .services-form .w-checkbox-input:focus-visible { outline: none }
+}
+
+/* DOS columnas, no tres. Son 14 servicios: a 2 columnas salen 7 filas EXACTAS y
+ * ninguna queda a medias; a 3 sobran dos huecos en la ultima fila y ademas las
+ * etiquetas largas se parten en cuatro lineas. Medido a 1440 y 1920. */
+@media (min-width: 480px) {
+  .appointment-section .services-form { grid-template-columns: 1fr 1fr }
+}
+
+/* ── 7 · EL CONSENTIMIENTO SMS (paso 3) ─────────────────────────────────────
+ * `.checkbox-field` y `.checkbox-label-3` las reclaman TAMBIEN contacto.css.
+ * Van acotadas: asi `/contact-us` no se mueve y no hay colision silenciosa. */
+.appointment-section .checkbox-field {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--mm-e-12);
+  margin-top: var(--mm-e-16);
+  padding-left: 0;
+}
+.appointment-section .checkbox-field::before,
+.appointment-section .checkbox-field::after { content: none }
+.appointment-section .checkbox-field .w-checkbox-input {
+  float: none;
+  margin: 0;
+  flex: 0 0 auto;
+  width: var(--mm-e-24);
+  height: var(--mm-e-24);
+  accent-color: var(--mm-tinta);
+  cursor: pointer;
+}
+/* El consentimiento NO esta dentro de `.services-form`, asi que no le llegaba la
+ * regla de foco de las 14 casillas: caia al anillo por DEFECTO del navegador
+ * (#e59700, 1 px, 2,11:1 medido). El anillo va en la CAJA y no en la etiqueta:
+ * la etiqueta es un parrafo largo y rodearlo entero seria un anillo enorme. */
+.appointment-section .checkbox-field .w-checkbox-input:focus-visible {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco);
+  outline-offset: var(--mm-foco-aire);
+}
+.appointment-section .checkbox-label-3 {
+  font-size: var(--mm-paso-1);
+  line-height: var(--mm-alto-cuerpo);
+  color: var(--mm-tinta-atenuada);   /* 4,62:1 sobre el panel tenue */
+  text-wrap: pretty;
+}
+
+/* ── 8 · BACK / NEXT ────────────────────────────────────────────────────────
+ * showStep() escribe `display:inline-block` EN LINEA sobre los tres botones,
+ * asi que la receta de 44 px de la casa (`inline-flex` + `min-height`,
+ * intro.css:161-166) NO SIRVE aqui: el display en linea la gana. La altura
+ * sale de `padding-block` + `line-height`, que sobreviven. */
+.appointment-section .msf-buttons {
+  align-self: stretch;
+  gap: var(--mm-e-16);
+  margin-top: var(--mm-e-8);
+}
+.appointment-section .msf-next { margin-left: auto }   /* a la derecha con Back y sin Back */
+.appointment-section .msf-back,
+.appointment-section .msf-next {
+  padding-block: var(--mm-e-12);
+  padding-inline: var(--mm-e-24);
+  font-size: var(--mm-paso-2);
+  line-height: var(--mm-alto-cuerpo);
+  font-weight: var(--mm-peso-fuerte);
+  border-radius: var(--mm-r-pastilla);
+  border: 1px solid var(--mm-tinta);
+  color: var(--mm-tinta);
+  background-color: var(--mm-superficie);
+  text-align: center;
+  transition-property: background-color, color, border-color;
+  transition-duration: 150ms;
+  transition-timing-function: ease-out;
+}
+.appointment-section .msf-next {
+  background-color: var(--mm-tinta);
+  color: var(--mm-tinta-inversa);        /* blanco sobre navy ..... 15,60:1 */
+}
+.appointment-section .msf-back:hover { background-color: var(--mm-fondo-tenue) }
+.appointment-section .msf-next:hover { background-color: var(--mm-fondo-hondo) }  /* blanco 18,72:1 */
+.appointment-section .msf-back:focus-visible,
+.appointment-section .msf-next:focus-visible {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco);
+  outline-offset: var(--mm-foco-aire);   /* el hueco deja ver el panel: navy/tenue 13,72:1 */
+}
+
+/* ── 9 · EL BOTON DE ENVIO ──────────────────────────────────────────────────
+ * El color del texto ya lo pone propio.css (`.button{color:var(--mm-sobre-accion)}`,
+ * navy sobre oro 8,40:1). Aqui solo la altura, que a <=991 se quedaba en 36,4 px
+ * (font-size 14px con line-height 100% y .7rem de padding). */
+/* 🚨 EL CAPTCHA COMPARTE FILA CON EL CTA, Y SOLO SE VE EN PRODUCCION.
+ * `Formularios.astro:57-58` crea `div.mm-turnstile` y lo mete con
+ * `(boton.parentElement).insertBefore(caja, boton)`: el padre del boton es
+ * `.wrapper-buttons-center`, que es `display:flex; justify-content:center`. O sea que
+ * el widget (~300x65) y el CTA (~246 px) quedan LADO A LADO y centrados. En local no
+ * se ve —Turnstile no pinta fuera del dominio registrado, que es justo por lo que
+ * esta pagina esta en DISTINTAS_A_PROPOSITO—, asi que ninguna captura lo delata.
+ * En columna, el captcha queda encima del CTA; y con un solo hijo (el caso del
+ * mensaje de exito) el resultado es identico al de hoy. */
+.appointment-section .wrapper-buttons-center {
+  flex-direction: column;
+  align-items: center;
+  margin-top: var(--mm-e-24);
+}
+.appointment-section .button {
+  padding-block: var(--mm-e-16);
+  padding-inline: var(--mm-e-32);
+  font-size: var(--mm-paso-3);
+  line-height: var(--mm-alto-cuerpo);
+  font-weight: var(--mm-peso-fuerte);
+  border-radius: var(--mm-r-pastilla);
+  transition-property: filter;
+  transition-duration: 150ms;
+  transition-timing-function: ease-out;
+}
+.appointment-section .button:hover { filter: brightness(.94) }   /* mismo patron que intro.css */
+.appointment-section .button:focus-visible {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco);
+  outline-offset: var(--mm-foco-aire);
+}
+
+/* ── 10 · ERROR ─────────────────────────────────────────────────────────────
+ * El `<style>` del pie pinta `.msf-error-input{outline:2px solid currentColor}`
+ * y carga DESPUES; se le gana por especificidad (0-2-0 contra 0-1-0), no por orden.
+ * El error ya NO se confunde con el foco: `--mm-error` lo pedi yo y ARTE lo
+ * declaro medido. En mis dos superficies: 6,54:1 sobre el blanco del campo y
+ * 5,75:1 sobre el panel tenue — pasa como TEXTO (>=4,5) y como BORDE (>=3).
+ * Contra el navy del foco da 2,39:1, o sea que se distinguen a simple vista.
+ * El grosor va en `box-shadow: inset` y no en `border-width`: con `height:auto`
+ * el borde entra en la altura usada y subirlo a 2 px movia la caja 2 px (medido). */
+.appointment-section .msf-error-input {
+  outline: none;
+  border-color: var(--mm-error);
+  box-shadow: inset 0 0 0 1px var(--mm-error);   /* engrosa SIN mover la caja */
+}
+.appointment-section .msf-error {
+  font-size: var(--mm-paso-0);
+  font-weight: var(--mm-peso-fuerte);
+  color: var(--mm-error);                        /* 5,75:1 sobre el panel tenue */
+  margin-top: var(--mm-e-4);
+}
+
+/* ── 11 · LOS ENLACES LEGALES — ACOTADOS, y esto es una CORRECCION ──────────
+ * `.link-4` resolvia a `var(--_apps---sidebar--sidebar-border)` -> `var(--yellow-1)`
+ * -> el ORO. Sobre el fondo real de ESTA pagina da 1,59:1.
+ *
+ * 🚨 ESTAS DOS LAS ESCRIBI PRIMERO SIN ACOTAR, "para arreglar las 2 rutas de una".
+ * Estaba MAL y lo destapo medir el pixel pintado: en `/contact-us` estos dos
+ * elementos NO estan sobre blanco, estan DENTRO del panel cian
+ * `linear-gradient(#1cadeb -> #1d4bbf)`. Contra los dos extremos del degradado:
+ *
+ *     texto                          arriba #1cadeb   abajo #1d4bbf   peor
+ *     .text-block-7 blanco (Webflow)     2,55:1          7,47:1       2,55  malo
+ *     .text-block-7 --mm-tinta-atenuada  2,06:1          1,42:1       1,42  PEOR
+ *     .link-4 oro (Webflow)              1,37:1          4,02:1       1,37  malo
+ *     .link-4 --mm-enlace #1d4bbf        2,93:1          1,00:1       1,00  INVISIBLE
+ *
+ * `--mm-enlace` ES #1d4bbf, o sea el final del degradado: el enlace desaparecia
+ * en la mitad de abajo del panel. Empeoraba las dos, no las arreglaba.
+ *
+ * Por eso van ACOTADAS. `/contact-us` se queda como estaba —mal, pero suyo—: su
+ * arreglo depende de que panel elija CONTACTO (PARTE-02 §3 Regla 2 le da el panel),
+ * y un color que hoy funciona sobre el cian falla sobre lo que ponga manana. */
+.appointment-section .text-block-7 {
+  font-size: var(--mm-paso-1);
+  line-height: var(--mm-alto-cuerpo);
+  color: var(--mm-tinta-atenuada);
+  margin-top: var(--mm-e-16);
+  text-wrap: pretty;
+}
+.appointment-section .link-4 {
+  color: var(--mm-enlace);              /* #1d4bbf sobre blanco ... 7,47:1 */
+  text-decoration: underline;
+  text-underline-offset: 2px;           /* igual que `.mm-vinculo` de base.css */
+  text-decoration-thickness: 1px;
+}
+.appointment-section .appointment-section .link-4:hover { text-decoration-thickness: 2px }
+.appointment-section .link-4:focus-visible {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco);
+  outline-offset: var(--mm-foco-aire);
+}
+
+/* ── 12 · EL MENSAJE DE EXITO ───────────────────────────────────────────────
+ * `.w-form-done{background:#ddd}` con el icono de 110 px en #f4aa2a daba 1,45:1.
+ * Pasa a panel navy: el oro por fin puede ser el oro (8,40:1 sobre navy) y el
+ * texto blanco da 15,60:1. Es el unico momento celebratorio de la pagina.
+ * ACOTADO porque `.success-message-form` la reclama tambien contacto.css. */
+.appointment-section .success-message-form {
+  background-color: var(--mm-fondo-navy);
+  border-radius: var(--mm-r-24);
+  padding-block: var(--mm-e-48);
+}
+.appointment-section .success-message-form h2 {
+  color: var(--mm-tinta-inversa);        /* blanco sobre navy ..... 15,60:1 */
+  text-wrap: balance;
+  line-height: var(--mm-alto-titulo);
+  margin-top: var(--mm-e-24);
+  margin-bottom: var(--mm-e-8);
+}
+.appointment-section .success-message-form > div {
+  color: var(--mm-tinta-inversa-2);      /* #c7cddd sobre navy ..... 9,81:1 */
+  text-wrap: pretty;
+}
+.appointment-section .ikonik-t882o {
+  color: var(--mm-accion);               /* oro sobre navy ......... 8,40:1 */
+}
+
+/* ── 12b · EL FALLO DE ENVIO ────────────────────────────────────────────────
+ * `.w-form-fail{background:#ffdede}` es el rosa por defecto de la plantilla de
+ * Webflow, ajeno a la marca, y en la pagina donde se pierde el lead. Sale en 6
+ * rutas; va ACOTADO para no mover las otras cinco sin permiso.
+ * Con `--mm-error` ya declarado, el banner por fin dice «ha fallado» con su propio
+ * color en vez de parecerse al foco: 5,75:1 sobre el fondo tenue, como texto y
+ * como borde. */
+.appointment-section .w-form-fail {
+  background-color: var(--mm-fondo-tenue);
+  color: var(--mm-error);                  /* 5,75:1 sobre el tenue */
+  border: 2px solid var(--mm-error);
+  border-radius: var(--mm-r-8);
+  padding: var(--mm-e-12) var(--mm-e-16);
+  margin-top: var(--mm-e-16);
+  font-size: var(--mm-paso-2);
+  line-height: var(--mm-alto-cuerpo);
+  text-wrap: pretty;
+}
+
+/* ── 13 · GUARDA DE MOVIMIENTO ──────────────────────────────────────────────*/
+@media (prefers-reduced-motion: reduce) {
+  .appointment-section .text-field-form,
+  .appointment-section .select-field,
+  .appointment-section .services-form .w-checkbox,
+  .appointment-section .msf-back,
+  .appointment-section .msf-next,
+  .appointment-section .button { transition-duration: 0s }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+ * LOS 14 SERVICIOS, COMO FICHAS CON EL PICTOGRAMA DEL CLIENTE   (variante elegida)
+ *
+ * Los 14 iconos son `artboard-*.svg` del PROPIO CLIENTE: viewBox 0 0 50 50, fill navy,
+ * ya en `public/images/`. Nada generado por IA. Elegidos MIRANDOLOS en hoja de contactos,
+ * no por el nombre del fichero — y menos mal: `artboard-3` esta archivado bajo
+ * «commercial pool construction» pero el dibujo es una PERGOLA, que era justo el unico
+ * de los 14 servicios sin icono en `residentials/`. Por nombre se habria descartado.
+ *
+ * COSTE DECLARADO: `:nth-child` acopla estas 14 reglas al ORDEN DEL DOM de un fichero
+ * DERIVADO (`build-paginas.mjs` regenera la pagina desde `_source/vivo/`). Si cambia el
+ * orden de las casillas, los iconos se descolocan sin que ninguna puerta avise. Y son 14
+ * peticiones mas en la pagina que convierte (4-16 KB cada una).
+ * ════════════════════════════════════════════════════════════════════════════ */
+.appointment-section .services-form .w-checkbox {
+  align-items: center;
+  padding: var(--mm-e-12);
+  border-color: var(--mm-borde);
+  background-color: var(--mm-superficie);
+  color: var(--mm-tinta);
+  box-shadow: var(--mm-sombra-1);
+}
+.appointment-section .services-form .w-checkbox::before {
+  content: "";
+  order: 1;
+  flex: 0 0 auto;
+  width: var(--mm-e-32);
+  height: var(--mm-e-32);
+  background-image: var(--icono);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.appointment-section .services-form .w-form-label { order: 2 }
+.appointment-section .services-form .w-checkbox-input { order: 3; margin-left: auto }
+.appointment-section .services-form .w-checkbox:hover {
+  border-color: var(--mm-tinta-suave);
+  box-shadow: var(--mm-sombra-2);
+}
+.appointment-section .services-form .w-checkbox:has(:checked) {
+  border-color: var(--mm-tinta);
+  background-color: var(--mm-fondo-tenue);
+}
+
+/* Los 14, en el ORDEN DOM de las casillas */
+.appointment-section .services-form .w-checkbox:nth-child(1)  { --icono: url(/images/residentials/custom-pool-spa-builders-in-north-south-florida/artboard-1.svg) }
+.appointment-section .services-form .w-checkbox:nth-child(2)  { --icono: url(/images/residentials/pool-remodeling-renovation-in-north-south-florida/artboard-2.svg) }
+.appointment-section .services-form .w-checkbox:nth-child(3)  { --icono: url(/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/artboard-6.svg) }
+.appointment-section .services-form .w-checkbox:nth-child(4)  { --icono: url(/images/commercials/commercial-pool-construction-north-south-florida/artboard-3.svg) }
+.appointment-section .services-form .w-checkbox:nth-child(5)  { --icono: url(/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/artboard-4.svg) }
+.appointment-section .services-form .w-checkbox:nth-child(6)  { --icono: url(/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/artboard-7.svg) }
+.appointment-section .services-form .w-checkbox:nth-child(7)  { --icono: url(/images/residentials/professional-landscaping-services-in-north-south-florida/artboard-10.svg) }
+.appointment-section .services-form .w-checkbox:nth-child(8)  { --icono: url(/images/residentials/smart-irrigation-system-installation-in-north-south-florida/artboard-11.svg) }
+.appointment-section .services-form .w-checkbox:nth-child(9)  { --icono: url(/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/artboard-12.svg) }
+.appointment-section .services-form .w-checkbox:nth-child(10) { --icono: url(/images/residentials/custom-deck-builders-in-north-south-florida/artboard-9.svg) }
+.appointment-section .services-form .w-checkbox:nth-child(11) { --icono: url(/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/artboard-5.svg) }
+.appointment-section .services-form .w-checkbox:nth-child(12) { --icono: url(/images/residentials/motorized-retractable-screens-in-north-south-florida/artboard-14.svg) }
+.appointment-section .services-form .w-checkbox:nth-child(13) { --icono: url(/images/residentials/custom-outdoor-kitchens-for-north-south-florida-homes/artboard-8.svg) }
+.appointment-section .services-form .w-checkbox:nth-child(14) { --icono: url(/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/artboard-13.svg) }
