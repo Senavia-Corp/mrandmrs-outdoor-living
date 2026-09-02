@@ -32,5 +32,132 @@
  *
  * Y la de arriba de todas: se ELEVA la base de Webflow, no se sustituye. El TEXTO no se toca.
  *
- * De momento solo comentarios: no emite una sola regla, asi que el CSS construido no cambia.
+ * ANCLAJE. Medido sobre las 115 paginas construidas: `.bas-wrapper`, `.bas-handle-h`,
+ * `.bas-label-*` y `.before-after-intro` salen en 15 rutas y en NINGUNA fuera de esta seccion.
+ * Aun asi todo cuelga de `.before-after-section`: cuesta cero y cierra la puerta a que manana
+ * el marcado se reutilice en otro sitio.
+ *   grep -rl 'bas-wrapper' .vercel/output/static --include='*.html' | wc -l   -> 15
  */
+
+/* ── 1 · EL TIRADOR VUELVE DEBAJO DEL DEDO ────────────────────────────────────
+ *
+ * EL BORDE ERA UN TERMINO DE LA FORMULA, NO DECORACION. El JS mide
+ * `getBoundingClientRect()` sobre `.bas-wrapper` (caja de BORDE) y el `clip-path` de la foto
+ * «despues» se resuelve sobre la caja de RELLENO. Con `border: 8px` eso son 16 px de
+ * diferencia de ancho, y el desfase resulta ser `8 - 16 * pct/100` px:
+ *
+ *     posicion      5 %    25 %    50 %    75 %    95 %
+ *     desfase    +7,20   +4,00    0,00   -4,00   -7,20      -> ±8 px en los extremos
+ *
+ * Medido con raton real a 375, 991 y 1440, y es CONSTANTE EN PIXELES: no encoge en pantallas
+ * pequeñas, donde mas duele.
+ *
+ * Quitando el borde las dos cajas coinciden y el termino se anula: 0,00 px en las cinco
+ * posiciones, en los tres anchos, con raton Y con dedo. El marco blanco no se pierde: pasa a
+ * `outline` con desplazamiento negativo, que se pinta en el mismo sitio (el contorno se pinta
+ * el ULTIMO, encima de las fotos posicionadas) y NO ocupa caja. Comprobado que la caja
+ * exterior no se mueve ni un pixel: 677x450 a 1440, 927x450 a 991, 415x250 a 479. */
+.before-after-section .bas-wrapper {
+  border-width: 0;
+  outline: var(--mm-e-8) solid var(--mm-blanco);
+  outline-offset: calc(-1 * var(--mm-e-8));
+}
+
+/* ── 2 · EL DEDO RECUPERA EL SCROLL ───────────────────────────────────────────
+ *
+ * `touch-action: none` congelaba el desplazamiento vertical en toda la caja del deslizador,
+ * que en movil es media pantalla. Probado con un gesto REAL por el compositor
+ * (Input.synthesizeScrollGesture, que es quien obedece a `touch-action`; un TouchEvent
+ * despachado a mano no lo prueba porque el compositor ni lo ve):
+ *
+ *     swipe vertical de 300 px empezando sobre el deslizador, a 375 px
+ *     touch-action: none   -> la pagina se movio    0 px
+ *     touch-action: pan-y  -> la pagina se movio  300 px
+ *
+ * Y el arrastre horizontal sigue funcionando con dedo: un toque al 30 % lleva la costura al
+ * 30 %. `pan-y` cede al navegador el gesto vertical y conserva el horizontal, que es
+ * exactamente el reparto que este control necesita.
+ *
+ * Especificidad 0-3-0 para ganar a `[fb-before-after][data-mm-ba]` (0-2-0) del <style> de
+ * Componentes.astro. Aqui se gana por las dos vias: ese bloque carga en el desplazamiento
+ * 6182 del bundle y esta hoja hacia el 189000, o sea ANTES. Es el caso contrario al del feed
+ * de Instagram, donde el componente carga despues. */
+.before-after-section [fb-before-after][data-mm-ba] { touch-action: pan-y }
+
+/* ── 3 · EL TIRADOR: 44x44 Y UN ICONO QUE SE VE ───────────────────────────────
+ *
+ * 42x42 en los doce anchos medidos. Sube con `min-*` y `auto`, nunca con altura fija: la caja
+ * ya es `display:flex` centrado, asi que crece desde su icono de 24 px hasta el minimo.
+ *
+ * El icono venia con `fill="#ffffff"` como ATRIBUTO DE PRESENTACION, que pierde contra
+ * cualquier selector CSS — por eso se puede arreglar sin tocar el marcado. Blanco sobre el oro
+ * `#f4b248` son 1,86:1; navy sobre ese oro, 8,40:1. El oro no marca estado, y menos aun
+ * sostiene un icono blanco. */
+.before-after-section .bas-handle-h {
+  width: auto;
+  height: auto;
+  min-width: 44px;
+  min-height: 44px;
+}
+/* NO se re-declara el fondo del tirador: Webflow le pone `var(--gold)` y `--mm-accion` resuelve
+ * al MISMO `#f4b248`. Medido con y sin esta hoja: `rgb(244, 178, 72)` en los dos casos. Lo que
+ * cambia es el icono de encima, que es donde estaba el suspenso. */
+.before-after-section .bas-handle-h svg path { fill: var(--mm-navy) }
+
+/* El tirador ES un control (`role="slider"`, `tabindex="0"`, flechas del teclado — se los pone
+ * Componentes.astro:407) y hasta hoy solo tenia el anillo por defecto del navegador, 1px azul
+ * `#005fcc`, prohibido por CRITERIO. Mismo sandwich que las flechas de la rejilla: navy contra
+ * halo blanco, 15,60:1 por dentro y por fuera, sobre la foto que sea. */
+.before-after-section .bas-handle-h:focus-visible {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco);
+  outline-offset: var(--mm-foco-aire);
+  box-shadow: 0 0 0 calc(var(--mm-foco-grosor) * 2 + var(--mm-foco-aire)) var(--mm-foco-inverso);
+}
+
+/* Las dos etiquetas dicen `cursor: pointer` y no tienen ni un manejador: el JS de
+ * Componentes.astro:384-425 no las escucha. Es una afordancia falsa — parece que llevan a
+ * algun sitio y no llevan. Se quita el dedo. Convertirlas en controles de verdad (saltar al
+ * 0 % y al 100 %) son dos lineas de JS y NO es mio: queda propuesto en el informe. */
+.before-after-section .bas-label-before-h,
+.before-after-section .bas-label-after-h { cursor: default }
+
+/* ── 4 · EL VELO, CALCULADO POR PEOR PIXEL ────────────────────────────────────
+ *
+ * `animateddivs-image.webp` (1920x1112) tiene el 55,4 % de sus pixeles por debajo de 4,5:1
+ * contra blanco, y su peor pixel da 2,48:1. Ese 55,4 % es el 55,3 % que trae CRITERIO: el
+ * numero sale del FICHERO, no del recorte.
+ *
+ * Y ahi esta la trampa: medido en sitio, el texto blanco cae hoy sobre una zona buena —4,59:1
+ * a 1440, 5,16 a 991, 5,03 a 479, con 0,0 % del area por debajo—. O sea que HOY CUMPLE POR
+ * SUERTE, no por diseño: el recorte de `background-size: cover` depende del alto de la caja, y
+ * el alto depende de un texto que va a cambiar. Un velo calculado sobre el fichero entero
+ * convierte esa suerte en garantia: si aprueba la foto completa, aprueba cualquier recorte.
+ *
+ *     alfa navy   peor pixel de la foto   area bajo 4,5:1
+ *        0 %            2,48:1                55,4 %
+ *       35 %            4,53:1                 0,00 %      <- minimo que pasa
+ *       45 %            5,48:1                 0,00 %      <- el elegido
+ *
+ * 45 y no 35 porque 35 pasa por 0,03 y eso cabe en el ruido de decodificar un AVIF. Medido
+ * despues: el texto blanco sube a 8,11:1 a 1440, 8,66 a 991 y 8,46 a 479.
+ *
+ * VA EN ::before Y NO RE-DECLARANDO `background-image` para no repetir la ruta del fichero: si
+ * el director cambia la foto en webflow.css, esta hoja no se queda sirviendo la vieja en
+ * silencio. `isolation: isolate` acota el `z-index: -1` a la seccion, asi que el velo se pinta
+ * ENCIMA de la foto y DEBAJO de todo el contenido. El ::before es `position: absolute`, o sea
+ * que NO es un item flexible de la seccion y no mueve la maqueta. */
+.before-after-section {
+  position: relative;
+  isolation: isolate;
+}
+.before-after-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: color-mix(in srgb, var(--mm-navy) 45%, transparent);
+}
+
+/* NO hay guarda de `prefers-reduced-motion` en este fichero, y es a proposito: no emite ni una
+ * `transition` ni una `animation`. Una guarda sin nada que guardar es una declaracion inerte,
+ * y CRITERIO las cuenta. */
