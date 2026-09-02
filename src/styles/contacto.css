@@ -488,6 +488,10 @@
   display: flex;
   align-items: flex-start;
   gap: var(--mm-e-12);
+  /* El objetivo tactil es la LABEL entera, y su alto depende de en cuantas lineas caiga el
+   * texto legal: medido en produccion daba 37,8 px a 991, donde cabe en dos. El suelo lo fija
+   * este min-height, no el texto. `align-items: flex-start` mantiene la casilla arriba. */
+  min-height: 44px;
   margin-top: var(--mm-e-16);
   padding-left: 0;
   cursor: pointer;
