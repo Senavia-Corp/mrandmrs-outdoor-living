@@ -3,9 +3,11 @@
  *
  * Lo posee EN EXCLUSIVA el chat BLOG-INDICE (encargo R12-BLOG). Nadie mas escribe aqui.
  *
- * QUE RESTILA, Y CUANTO. Medido sobre `.vercel/output/static` el 1-sep-2026:
+ * QUE RESTILA, Y CUANTO. Medido sobre `.vercel/output/static` el 2-sep-2026:
  *   .articles-section                                              1 rutas
  *   .blogs-list / .item-blogs                                      1 rutas
+ *   $ grep -rlo 'class="articles-section"' .vercel/output/static --include='*.html' | wc -l
+ *          1
  *
  * Exclusivo de /blogs-tips. NO confundir con `blog.css` (la seccion de blog en 63 rutas) ni
  * con `lectura.css` (las 10 fichas de /blogs/*). Este es el INDICE: la rejilla de tarjetas.
@@ -27,5 +29,289 @@
  *
  * Y la de arriba de todas: se ELEVA la base de Webflow, no se sustituye. El TEXTO no se toca.
  *
- * De momento solo comentarios: no emite una sola regla, asi que el CSS construido no cambia.
- */
+ * ─────────────────────────────────────────────────────────────────────────────
+ * QUIEN PINTA LA TARJETA HOY, Y POR QUE HAY QUE SABERLO
+ *
+ * `.item-blogs` NO tiene ni una regla de aspecto: su unica regla en todo el proyecto es
+ * `.item-blogs{width:100%;height:100%}` (webflow.css:10 col 51618). Lo que se ve lo pinta
+ * `.card` — webflow.css:10 col 51653, especificidad (0,1,0), top-level:
+ *     background-color:#ececec · border-radius:15px · box-shadow:2px 2px 5px #0003
+ *
+ * `.card` NO ES EXCLUSIVA DE ESTA PAGINA (existe `.card.industry`, `.card.related-blogs`).
+ * Por eso TODO lo de aqui va anclado a `.articles-section`, sin una sola excepcion: una
+ * regla `.card{...}` desnuda en esta hoja repintaria tarjetas de otras secciones y ninguna
+ * puerta lo diria. Lo mismo vale para `.content-card`, `.img-blog`, `.paragraph-mini`,
+ * `.wrapper-buttons` y `.button-styles`.
+ *
+ * LO QUE NO SE TOCA, Y ESTA MEDIDO POR QUE
+ *   · `text-transform: capitalize` — vive en `h4` y en `.button-styles` (webflow.css:10) y
+ *     el baseline de `check:texto` YA guarda la forma capitalizada. El riesgo no es dejarlo:
+ *     es quitarlo o cambiarlo. En este fichero no aparece la propiedad, en ninguna direccion.
+ *   · Ningun `display:none` sobre texto: cambiaria `innerText` y la puerta es 100 % sin
+ *     tolerancia. `line-clamp` si vale — recorta EN PANTALLA sin tocar `innerText`.
+ *   · Ningun `transform` sobre `.item-blogs`: lleva `data-w-id` con la animacion `growIn`
+ *     (`opacity:0` + `scale(.75)`, src/components/Interacciones.astro:53). El hover va en
+ *     `.card`, que es un descendiente y no colisiona. Es lo mismo que hizo `blog.css`.
+ *   · El anillo de foco NO se dibuja aqui: `propio.css:59-66` ya pone
+ *     `.button-styles:focus-visible` y carga DESPUES (Base.astro:102 contra :97). Duplicarlo
+ *     seria pelearse con una regla que gana.
+ * ========================================================================== */
+
+/* ── 1 · LA BANDA ─────────────────────────────────────────────────────────────
+ * Webflow: `padding-bottom:4em; padding-left/right:2em`, mas `padding-top:3em;
+ * padding-bottom:3em` bajo max-width:991. Con `body` a 14px eso resuelve a 42/28 px, no a
+ * 48/32: el aire de seccion acababa dependiendo del tamano del cuerpo. Se pasa a la escala.
+ * Gano por ORDEN a las dos reglas de Webflow —empatamos a (0,1,0) y yo cargo 67 lineas
+ * despues—, y el `padding-block`/`padding-inline` anula los cuatro longhands de golpe.
+ * -------------------------------------------------------------------------- */
+.articles-section {
+  padding-block: var(--mm-e-48);
+  padding-inline: var(--mm-canal);
+}
+
+@media (min-width: 992px) {
+  .articles-section { padding-block: var(--mm-e-96); }
+}
+
+/* ── 2 · LA REJILLA ───────────────────────────────────────────────────────────
+ * DOS defectos medidos.
+ *
+ * 1. `align-items: flex-start` anulaba el `height:100%` que `.item-blogs` y `.card` YA
+ *    traian: cada tarjeta tomaba su altura natural y la fila quedaba dentada. Los titulos
+ *    van de 44 a 74 caracteres (1,68x) — dos lineas unos, tres otros. `stretch` lo cierra.
+ *
+ * 2. EL AIRE IBA AL REVES: `gap:2rem` a tres columnas y `gap:1rem` a dos. El aire se
+ *    estrechaba justo cuando la tarjeta se hace mas grande. Aqui nunca decrece al crecer.
+ * -------------------------------------------------------------------------- */
+.articles-section .blogs-list {
+  align-items: stretch;
+  gap: var(--mm-e-24);
+}
+
+@media (min-width: 768px) {
+  .articles-section .blogs-list { gap: var(--mm-e-32); }
+}
+
+/* ── 3 · LA TARJETA ───────────────────────────────────────────────────────────
+ * Webflow pintaba `#ececec` con `box-shadow:2px 2px 5px #0003`: gris sucio sobre fondo
+ * blanco —la tarjeta se lee como un HUECO, no como una superficie— y una sombra negra,
+ * asimetrica y dura. Blanco sobre blanco necesita borde para existir; la sombra de la casa
+ * va tenida de navy. Mismo tratamiento que ya recibio la tarjeta hermana en `blog.css:72`,
+ * para que las dos secciones de blog del sitio se lean como un solo sistema.
+ *
+ *   navy `--mm-tinta` sobre `--mm-superficie` (blanco) .......... 15,60:1
+ *   borde `--mm-borde` #e0e4ec sobre blanco ...................... 1,27:1
+ *     -> legitimo: es decorativo y no identifica ningun control (WCAG 1.4.11 exige 3:1
+ *        solo a lo que HAY que ver para operar). Quien separa de verdad es la sombra.
+ *
+ * `align-items:center` de Webflow encogia los hijos a su contenido; `stretch` es lo que
+ * permite que la variante B ponga la foto y el texto en fila sin huecos.
+ * -------------------------------------------------------------------------- */
+.articles-section .card {
+  position: relative;              /* ancla del ::after que hace pulsable la tarjeta */
+  background-color: var(--mm-superficie);
+  border: 1px solid var(--mm-borde);
+  border-radius: var(--mm-r-16);
+  box-shadow: var(--mm-sombra-1);
+  justify-content: flex-start;
+  align-items: stretch;
+  transition-property: box-shadow, transform;
+  transition-duration: .18s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .articles-section .card { transition: none; }
+}
+
+.articles-section .card:hover {
+  box-shadow: var(--mm-sombra-3);
+  transform: translateY(-2px);
+}
+
+/* REDUNDANTES A PROPOSITO, y son tres. `justify-content:flex-start` (§3), `object-fit:cover`
+ * (§4) y `color: var(--mm-tinta)` (§5) computan HOY lo mismo que ya daba Webflow. No son
+ * inertes: `webflow.css` es un fichero DERIVADO y se regenera. El dia que se regenere sin
+ * `object-fit`, la caja 16/9 estiraria las diez fotos; sin el `color`, el titulo dependeria
+ * de `--blue_dark`, que es un token de Webflow y no de la casa. Es la misma familia de
+ * fallo que CRITERIO.md describe con `--yellow-1` y el CTA que se vuelve azul. Se declaran
+ * aqui para que esta hoja se sostenga sola. Medido: 88 declaraciones emitidas, 70 con
+ * cambio de valor computado, 18 explicadas una a una en el informe.
+ * -------------------------------------------------------------------------- */
+
+/* ── 4 · LA FOTO ──────────────────────────────────────────────────────────────
+ * `height:auto` va en la MISMA regla que `aspect-ratio` y no es opcional: con una altura
+ * declarada —Webflow ponia `height:250px`—, `aspect-ratio` calcula el ANCHO a partir de
+ * ella y la imagen desborda la columna. Regla dura de la casa, y ya ha mordido aqui.
+ *
+ * POR QUE 16/9 Y NO OTRA. Las 10 fuentes no comparten relacion: ocho son 2752x1536 (1,792),
+ * la #6 es 2400x1792 (1,339) y la #9 es 3168x1344 (2,357). Recorte de `object-fit:cover`
+ * contra cada candidata, calculado sobre esas medidas reales:
+ *
+ *     caja      ocho a 1,792   #6 a 1,339   #9 a 2,357   PEOR
+ *     16/10     10,7 %         16,3 %       32,1 %       32,1 %
+ *     16/9       0,8 %         24,7 %       24,6 %       24,7 %   <- elegida
+ *     3/2       16,3 %         10,7 %       36,4 %       36,4 %
+ *
+ * 16/9 es la unica que deja las TRES por debajo del 25 %, y no por casualidad: es la
+ * relacion nativa de ocho de las diez fotos.
+ * -------------------------------------------------------------------------- */
+.articles-section .img-blog {
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  width: 100%;
+}
+
+/* ── 5 · TIPOGRAFIA ───────────────────────────────────────────────────────────
+ * El extracto estaba a 12px en navy: mismo color que el titulo, la mitad de tamano que el
+ * de cualquier indice que de verdad se lee (Stripe lo pone a 18px sobre medida de 460px).
+ * Sube al paso 1 y baja de color — la jerarquia la hace el contraste, no el tamano solo.
+ *
+ *   titulo  `--mm-tinta` navy sobre blanco ............ 15,60:1
+ *   cuerpo  `--mm-tinta-atenuada` #596b9a sobre blanco .. 5,26:1   (AA para texto normal)
+ *
+ * `justify-content:center` de Webflow centraba el bloque de texto dentro de su propio alto;
+ * con la fila ya estirada eso dejaria los botones a alturas distintas. `flex-start` arriba
+ * y `margin-top:auto` en la fila de botones ponen los CTA a la misma base sin recortar nada.
+ *
+ * `balance` y `pretty` solo cambian DONDE parte la linea. No entran en `innerText`.
+ * -------------------------------------------------------------------------- */
+.articles-section .content-card {
+  justify-content: flex-start;
+  gap: var(--mm-e-8);
+  padding: var(--mm-e-24);
+}
+
+.articles-section .content-card h4 {
+  font-size: var(--mm-paso-3);      /* el ancla EXACTA de h4: 15/16/20 en 479/991/1920 */
+  line-height: var(--mm-alto-titulo);
+  font-weight: var(--mm-peso-medio);
+  color: var(--mm-tinta);           /* navy sobre blanco ......... 15,60:1 */
+  margin: 0;
+  text-wrap: balance;
+}
+
+.articles-section .paragraph-mini {
+  font-size: var(--mm-paso-1);
+  line-height: var(--mm-alto-cuerpo);
+  color: var(--mm-tinta-atenuada);  /* #596b9a sobre blanco ...... 5,26:1 */
+  margin: 0;
+  text-wrap: pretty;
+}
+
+/* ── 6 · EL BOTON, Y LA TARJETA ENTERA COMO DIANA ─────────────────────────────
+ * El «Read More» medía ~34 px de alto (`padding:9px 15px` + 16px/100 %), por debajo de los
+ * 44 px de WCAG 2.2. La receta es la que ya funciona en el repo (intro.css:161-166):
+ * min-height + inline-flex + centrado. Nunca `height` fija ni `aspect-ratio`.
+ *
+ * Y la tarjeta entera pasa a ser el enlace, sin anadir un `<a>` ni una palabra: el `::after`
+ * cuelga del enlace que YA existia, asi que `check:texto` y `check:enlaces` no se mueven.
+ * Es lo que hacen las tres referencias medidas —Ahrefs, Stripe y Vercel—: ninguna deja el
+ * boton como unica diana, y dos de las tres ni siquiera tienen boton.
+ *
+ * El oro se queda de FONDO con tinta navy (8,40:1) — no marca estado en ningun sitio. El
+ * realce de hover es `filter`, no color, para no tocar ese par. Y va en `filter` y no en
+ * `transform` a proposito: el `::after` es hijo del enlace y un transform encogeria tambien
+ * la diana durante la transicion.
+ * -------------------------------------------------------------------------- */
+.articles-section .wrapper-buttons {
+  margin-top: auto;
+  padding-top: var(--mm-e-8);
+}
+
+.articles-section .button-styles {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding-inline: var(--mm-e-24);
+  border-radius: var(--mm-r-8);
+  transition-property: filter;
+  transition-duration: .18s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .articles-section .button-styles { transition: none; }
+}
+
+.articles-section .card:hover .button-styles { filter: brightness(.96); }
+
+/* ⚠️ TRAMPA MEDIDA, Y ESTA VIVA EN OTRO FICHERO. `webflow.css:10` (col 35882) trae
+ * `a { color:...; text-decoration:underline; position:relative }` — un selector de ELEMENTO
+ * desnudo, (0,0,1), que hace posicionado a TODO enlace del sitio. Sin neutralizarlo, el
+ * `::after` se ancla al BOTON y no a la tarjeta: medido, 129,97x44 px en vez de 395x487, y
+ * `document.elementFromPoint()` sobre la foto devuelve la <img>, no el enlace.
+ *
+ * `position: static` en el enlace es lo que devuelve el ancla a `.card`. La especificidad
+ * (0,2,0) le gana de sobra a `a`.
+ *
+ * Esto NO es exclusivo de aqui: el mismo patron de `blog.css:145-150` esta INERTE en sus 63
+ * rutas por esta misma razon —comprobado en `/`: su `::after` mide 111,97x34 (el boton) y no
+ * 374x457 (la tarjeta)—. Va al informe: el fichero no es mio y no lo toco.
+ * -------------------------------------------------------------------------- */
+.articles-section .card .button-styles {
+  position: static;
+}
+
+.articles-section .card .button-styles::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--mm-r-16);
+}
+
+/* ── 7 · LA DESTACADA — «PORTADA», elegida por Sebastian el 2-sep-2026 ────────
+ * Con 10 entradas, tres iguales por fila es la opcion mas pobre: no hay ninguna razon para
+ * que la guia de permisos y la de disenos de lujo pesen lo mismo. La primera abre a ancho
+ * completo en horizontal y las nueve restantes van a tres columnas.
+ *
+ * LA REJILLA CIERRA SOLA EN LOS TRES TRAMOS, sin un solo hueco. Medido en los cinco anchos:
+ *     >=992   3 col   1 destacada (span 3) + 9 en 3x3   = 4 filas exactas
+ *     768-991 2 col   10 iguales                         = 5 filas exactas
+ *     <768    1 col   10 apiladas                        = 10 filas
+ * La destacada solo aparece a partir de 992 justamente por eso: a dos columnas, hacerla
+ * abarcar las dos dejaria 9 tarjetas y una huerfana al final. Hoy, sin nada de esto, la
+ * huerfana existe: 10 en 3 columnas son 3 filas y una suelta.
+ *
+ * Por eso esto necesita UN solo @media, y es `min-width`: no hay que deshacer nada arriba.
+ * La igualdad de altura no la da una pinza de lineas sino la estructura — fila estirada
+ * (§2) mas `margin-top:auto` en los botones (§6).
+ *
+ * Se descarto la variante B («fichero»: diez tarjetas horizontales a dos columnas, extracto
+ * pinzado a 3 lineas). Su CSS NO se deja aqui comentado ni desactivado: seria una hoja con
+ * declaraciones inertes. Los numeros que la descartaron van en el informe — su tarjeta ancha
+ * y baja convierte el panel lateral en una tira vertical y la foto #9 (3168x1344) perdia el
+ * 54,5 % a 1440, contra el 24,7 % de esta.
+ * -------------------------------------------------------------------------- */
+@media (min-width: 992px) {
+  .articles-section .item-blogs:first-child { grid-column: 1 / -1; }
+
+  .articles-section .item-blogs:first-child > .card { flex-direction: row; }
+
+  .articles-section .item-blogs:first-child .image-card {
+    flex: 0 0 42%;
+    width: auto;
+    align-self: stretch;
+  }
+
+  /* La foto de la destacada llena el alto de la tarjeta: aqui manda la columna de texto,
+   * asi que se desactiva la caja 16/9 y se deja que `cover` resuelva contra el alto real. */
+  .articles-section .item-blogs:first-child .img-blog {
+    aspect-ratio: auto;
+    height: 100%;
+  }
+
+  .articles-section .item-blogs:first-child .content-card {
+    justify-content: center;
+    gap: var(--mm-e-16);
+    padding: var(--mm-e-48);
+  }
+
+  .articles-section .item-blogs:first-child h4 { font-size: var(--mm-paso-4); }
+
+  .articles-section .item-blogs:first-child .paragraph-mini {
+    font-size: var(--mm-paso-2);
+    max-width: 52ch;
+  }
+}
