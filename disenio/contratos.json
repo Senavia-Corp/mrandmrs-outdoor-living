@@ -528,6 +528,12 @@
       "fecha": "2026-08-31",
       "sha": "527b5f0",
       "motivo": "D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+    },
+    "/blogs-tips": {
+      "contrato": "rediseno",
+      "fecha": "2026-09-02",
+      "sha": "08f5c23",
+      "motivo": "R12-BLOG: el indice del blog pasa de tres tarjetas iguales por fila a una destacada a ancho completo mas 3x3 —10 = 1 + 9, cierra sin huecos—, con la fila estirada y los CTA a la misma base, tarjeta blanca con borde y sombra tenida de navy en vez del gris #ececec con sombra negra, encuadre 16/9 declarado, extracto al paso 1 y la tarjeta entera pulsable. Commiteado y empujado por el propio frente por orden de Sebastian. PENDIENTE de su aprobacion visual ante el director antes de re-baselinizar."
     }
   }
 }
