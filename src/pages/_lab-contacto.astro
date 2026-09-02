@@ -1,42 +1,35 @@
-/**
- * contacto.css — LA PAGINA DE CONTACTO · fase R12-CON
- *
- * Lo posee EN EXCLUSIVA el chat CONTACTO (encargo R12-CON). Nadie mas escribe aqui.
- *
- * VARIANTE ELEGIDA: **B — «tarjeta clara sobre banda honda»**. Se eligio por una MEDIDA de
- * integracion, no por gusto, y la medida invirtio la primera recomendacion. `estimacion.css`
- * posee `.link-4` y `.text-block-7` (2 rutas: pintan tambien AQUI) y las calibro para
- * superficie clara, que es su pagina. Integrado, sobre un panel OSCURO eso da:
- *
- *     .link-4       --mm-enlace #1d4bbf sobre panel #1d4dbf ....  1,02:1   invisible
- *     .text-block-7 --mm-tinta-atenuada #596b9a sobre #1d4dbf ..  1,39:1   ilegible
- *
- * y sobre el panel CLARO de esta variante:
- *
- *     .link-4 ................................................... 7,47:1
- *     .text-block-7 ............................................. 5,26:1
- *
- * O sea que la variante clara es la unica que encaja con el chat hermano sin que ninguno de
- * los dos tenga que deshacer su trabajo. La variante oscura (A, el degradado conservado en el
- * panel) queda documentada en `src/pages/_lab-contacto.astro` por si el reparto cambia.
- *
- * Medido contra `estimacion.css` con md5 42886d25ffb97c7d1fb0f16edf8045c2. Si ese fichero
- * cambia de color de fondo, hay que re-medir estas dos filas.
- *
- * ORDEN DE CARGA, y se gana por ORDEN, nunca por `!important`:
- *   fuentes -> webflow -> disenio/tokens -> disenio/base -> [hojas de seccion] -> propio
- * `contacto.css` va en la 98 y `propio.css` en la 102, asi que lo que compita con propio.css
- * —solo `.button-styles`— gana por ESPECIFICIDAD: aqui se escribe `.form .button-styles` y
- * `.box-info-contact .button-styles` (0-2-0 contra 0-1-0).
- *
- * 🚨 LA PUERTA NO VIGILA ESTA PAGINA. /contact-us esta en DISTINTAS_A_PROPOSITO a los CUATRO
- * anchos (Turnstile no pinta fuera del dominio registrado). `declarada()` se evalua ANTES y al
- * margen del contrato: **verde aqui no prueba nada**. Por eso todo lo de abajo va con su ratio
- * y su medida propias, y con evidencia manual a 600 y 767, que ninguna puerta visita.
- *
- * Se ELEVA la base de Webflow, no se sustituye. El TEXTO no se toca.
- */
+---
+// LABORATORIO R12-CON — las dos variantes de /contact-us, para que Sebastian elija.
+//
+// ESTE FICHERO NO SE CONSTRUYE. Astro excluye del routing todo fichero de src/pages con
+// prefijo `_`, asi que no genera ruta, no entra en las 115 y no lo ve `check:rutas`. Eso es
+// bueno —no ensucia el sitio— pero significa que tampoco se puede mirar con `astro dev`.
+//
+// COMO SE MIRA. Un servidor de laboratorio (scratchpad, puerto 4344) sirve el BUILD REAL de
+// `.vercel/output/static` e inyecta en /contact-us el bloque COMUN + el de la variante pedida:
+//
+//     http://localhost:4344/contact-us?v=0    el build tal cual (el estado de hoy)
+//     http://localhost:4344/contact-us?v=A
+//     http://localhost:4344/contact-us?v=B
+//
+// Se mide sobre el build y no sobre `dev` por la regla 1 de ~/Sites/CLAUDE.md (dev no hornea
+// width/height) y porque asi la cascada es la de PRODUCCION: webflow -> tokens -> base ->
+// hojas de seccion -> propio. Se inyecta al final del <head>, o sea por detras de propio.css,
+// que carga despues que contacto.css: por eso toda regla que compita con propio.css gana aqui
+// por ESPECIFICIDAD y no por ese orden. propio.css solo toca `.button-styles` (color) y
+// `.button-styles:focus-visible`; los selectores de abajo son `.form .button-styles` y
+// `.box-info-contact .button-styles` (0-2-0 contra 0-1-0), asi que lo medido aqui vale alli.
+//
+// CUANDO SEBASTIAN ELIJA, el bloque COMUN + el elegido se copian tal cual a
+// `src/styles/contacto.css`. Por eso este CSS ya cumple las reglas de esa capa: cero
+// `!important`, cero `@layer`, cero literales de color, longitudes de --mm-e-*/--mm-r-*/
+// --mm-paso-*, y `min-width` 480/768/992 sin mezclar con los `max-width` de Webflow.
+//
+// EL TEXTO NO SE TOCA. Aqui no hay markup: son solo hojas de estilo sobre el HTML ya
+// construido. Ni una palabra visible cambia, y ningun selector lleva `text-transform`.
+---
 
+<style is:global data-variante="COMUN">
 /* ══════════════════════════════════════════════════════════════════════════════
  * TRONCO COMUN — lo que A y B comparten. Es todo lo que no depende del panel.
  *
@@ -144,18 +137,15 @@
  * ritmo se lleva a un solo `gap` en vez de a los margenes sueltos de cada hijo. */
 .box-info-contact {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   gap: var(--mm-e-24);
 }
-/* LO QUE REVIVE, dicho: por encima de 992 Webflow declara `.box-info-contact { flex-flow:
- * column; justify-content: space-between }` SIN `display: flex`, o sea muerto. El `display`
- * de arriba lo resucita, y por eso aqui no hace falta un `flex-direction` propio —se midio y
- * no movia nada— pero SI hace falta el `justify-content`, que sin el volveria a
- * `space-between` y repartiria los 500 px de holgura de la columna en huecos muertos. */
+.box-info-contact > * { margin-block: 0; }
 
 .header-box-info { display: flex; flex-direction: column; gap: var(--mm-e-12); }
-.header-box-info h2 { margin-block: 0; text-wrap: balance; }
+.header-box-info h2 { margin-block: 0; text-wrap: balance; line-height: var(--mm-alto-titulo); }
 .header-box-info p  { margin-block: 0; text-wrap: pretty; max-width: var(--mm-medida); }
 
 /* Las tres filas de contacto. Webflow les da `padding: 1rem` suelto; el aire lo lleva el gap
@@ -210,17 +200,11 @@
 }
 
 /* ── 4 · EL FORMULARIO: RITMO ─────────────────────────────────────────────────
- * `align-content` NO ES DECORACION AQUI, y la razon no es la que parece. Webflow declara
- * `place-content: space-around flex-start`, o sea `align-content: space-around` +
- * `justify-content: flex-start`. Con el `display: flex` de hoy eso esta INERTE: en un flex de
- * una sola linea `align-content` no reparte nada, y `justify-content` ya vale `flex-start`
- * (comprobado: por eso declararlo no movia un pixel y se quito).
- *
- * Pero abajo esta hoja pasa el panel a `display: grid` en >=768, y en grid `align-content`
- * SI manda: `space-around` repartiria las filas y el ritmo dependeria de cuanta altura sobre.
- * O sea que una declaracion muerta de Webflow REVIVE por el cambio de display, y esta linea
- * es lo que la neutraliza. Es el caso de «lo que revive se dice» de CRITERIO. */
+ * Webflow deja DOS mecanismos repartiendo el mismo espacio sobrante: `gap: 16px` y
+ * `place-content: space-around flex-start`. Con eso el ritmo depende de cuanta altura sobre.
+ * Manda el gap. (Es la misma trampa que ya documenta intro.css en `.block-contect-intro`.) */
 .form {
+  justify-content: flex-start;
   align-content: flex-start;
   gap: var(--mm-e-24);
   padding: var(--mm-e-24);
@@ -270,22 +254,22 @@
 .form .text-field-message,
 .form select.w-select {
   height: auto;
+  min-height: 44px;
   width: 100%;
   margin-bottom: 0;
   padding: var(--mm-e-12) var(--mm-e-16);
+  border-width: 1px;
+  border-style: solid;
   border-radius: var(--mm-r-8);
+  font-family: var(--mm-fuente);
   font-size: var(--mm-e-16);
   line-height: var(--mm-alto-cuerpo);
-  transition-property: border-color, background-color;
+  transition-property: border-color, box-shadow;
   transition-duration: .15s;
   transition-timing-function: ease-out;
 }
-/* El suelo de 44 px va SOLO en los controles de una linea. El textarea se queda fuera del
- * grupo en vez de subirlo a 44 y devolverlo despues a los 150 que Webflow ya le da: dos
- * declaraciones que se anulan entre si son dos sitios donde equivocarse. */
-.form .text-field,
-.form select.w-select { min-height: 44px; }
-.form .text-field-message { resize: vertical; }
+/* El textarea conserva su altura util: 44 es el suelo de un control, no de una caja de texto. */
+.form .text-field-message { min-height: 150px; resize: vertical; }
 
 /* EL FOCO, QUE HOY NO EXISTE. `.w-input:focus { outline: 0 }` lo mata en las dos rutas de
  * formulario del sitio. Se recupera el del sistema. Con `outline-offset` positivo el anillo
@@ -355,7 +339,9 @@
   border: 1px solid transparent;
   border-radius: var(--mm-r-8);
   background-image: none;
-  background-color: var(--mm-accion);      /* la tinta navy la pone ya `.whitebg` .. 8,40:1 */
+  background-color: var(--mm-accion);      /* tinta navy encima ......... 8,40:1 */
+  color: var(--mm-sobre-accion);
+  font-weight: var(--mm-peso-fuerte);
   transition-property: background-color, transform;
   transition-duration: .15s;
   transition-timing-function: ease-out;
@@ -377,6 +363,94 @@
   .form .button-styles { transition: none; }
   .form .button-styles:active { transform: none; }
 }
+</style>
+
+<style is:global data-variante="A">
+/* ══════════════════════════════════════════════════════════════════════════════
+ * VARIANTE A — «EL MISMO PANEL, BIEN GRADUADO»
+ *
+ * La minima desviacion posible de Webflow: el degradado se queda donde esta, en la misma
+ * direccion, con el mismo `border-radius: 16px` y el mismo texto blanco. Lo unico que cambia
+ * es COMO DE CLARO empieza, y cambia lo justo para entrar en la ventana del foco.
+ *
+ * Un cliente que conozca su web la reconoce al instante. Es la variante conservadora.
+ *
+ * EL COLOR, sin token nuevo: `color-mix(in srgb, var(--mm-cian) 60%, var(--mm-navy))` da
+ * #1173b5. `color-mix` ya es el patron de la casa (intro.css:52 lo usa para el velo).
+ *
+ *   RATIOS MEDIDOS de esta variante
+ *     blanco sobre el stop de arriba #1173b5 ............  5,07:1   (hoy 2,55)
+ *     blanco sobre el stop de abajo  #1d4bbf ............  7,47:1
+ *     navy sobre campo blanco ...........................  15,60:1
+ *     anillo de foco BLANCO vs panel (sus dos vecinos) ..  5,07:1 en el peor punto
+ *     navy sobre oro del boton ..........................  8,40:1
+ *     texto del radio: navy sobre su pildora blanca .....  15,60:1
+ *
+ *   QUE IDENTIFICA EL LIMITE DEL CONTROL, que no es lo que parece. El borde navy del campo
+ *   da 3,02:1 contra el panel arriba y 2,57:1 a la altura de los radios: el degradado hace
+ *   que el ratio del BORDE varie con la altura y abajo no llega a los 3:1 de WCAG 1.4.11.
+ *   Quien cumple 1.4.11 aqui es el RELLENO, no la linea: blanco contra el panel da 6,08:1 y
+ *   no depende de la altura. El borde navy se queda como refuerzo visual —el mismo papel que
+ *   `--mm-borde` en tokens.css, que declara 1,27:1 y dice que no transporta informacion—.
+ * ══════════════════════════════════════════════════════════════════════════════ */
+
+.form {
+  background-image: linear-gradient(
+    color-mix(in srgb, var(--mm-cian) 60%, var(--mm-navy)),
+    var(--mm-azul)
+  );
+  border-radius: var(--mm-r-16);
+  box-shadow: var(--mm-sombra-3);
+
+  /* EL FOCO SE INVIERTE DENTRO DEL PANEL, y esto lo corrige una MEDIDA, no una opinion.
+   * Con anillo navy, medido en la y real de cada control sobre el degradado:
+   *     arriba del panel (#1271b6) .... 3,02:1   justo
+   *     a la altura del radio (#1761ba) 2,57:1   SUSPENDE 1.4.11
+   * El navy deja de cumplir segun se baja por el degradado. El blanco no: con
+   * `outline-offset` positivo el anillo tiene PANEL a los dos lados —el hueco del offset
+   * ensena el panel, no el relleno del campo— asi que su peor caso es el stop mas claro:
+   *     blanco vs #1173b5 (lo mas claro del panel) .. 5,07:1
+   *     blanco vs #1d4bbf (lo mas oscuro) ........... 7,47:1
+   * Redefinir la variable en el ambito es el mecanismo que base.css ya usa en `.mm-inverso`;
+   * aqui se aplica sin poder poner la clase, porque el markup no se toca. */
+  --mm-foco: var(--mm-foco-inverso);
+}
+
+/* El panel es oscuro, asi que el campo lleva fondo BLANCO (PARTE-02 Regla 1: fondo propio y
+ * opaco). Sobre un panel oscuro un campo blanco ademas SALTA, que es lo que se quiere de un
+ * campo. El borde va en la tinta y no en un gris: asi cumple 3:1 por los dos lados a la vez
+ * —3,08 contra el panel y 15,60 contra su propio relleno— sin inventar un color. */
+.form .text-field,
+.form .text-field-message,
+.form select.w-select {
+  background-color: var(--mm-fondo);               /* vs panel ............... 6,08:1 <- este
+                                                    * es el que cumple 1.4.11, no el borde */
+  border-color: var(--mm-tinta);                   /* refuerzo: 3,02:1 arriba, 2,57 abajo */
+  color: var(--mm-tinta);                          /* sobre blanco ......... 15,60:1 */
+}
+.form .text-field::placeholder,
+.form .text-field-message::placeholder {
+  color: var(--mm-tinta-atenuada);                 /* sobre blanco .......... 5,26:1 */
+}
+.form .text-field:focus-visible,
+.form .text-field-message:focus-visible,
+.form select.w-select:focus-visible {
+  box-shadow: 0 0 0 1px var(--mm-tinta) inset;     /* engorda el borde sin mover la caja */
+}
+
+/* El circulo del radio va sobre su propia pildora blanca, no sobre el degradado: asi el
+ * control tiene un fondo estable y el marcado no depende de donde caiga en el gradiente.
+ * `accent-color` en azul de enlace = 7,47:1 sobre blanco. El oro NO marca estado. */
+.wrapper-radio-buttons .w-radio {
+  background-color: var(--mm-fondo);               /* vs panel ............... 6,08:1 */
+  border-color: var(--mm-tinta);                   /* refuerzo, 2,57:1 a esa altura */
+  color: var(--mm-tinta);                          /* sobre su pildora ..... 15,60:1 */
+}
+.wrapper-radio-buttons .w-radio:hover { background-color: var(--mm-fondo-tenue); }
+.wrapper-radio-buttons .radio-button { accent-color: var(--mm-enlace); }
+</style>
+
+<style is:global data-variante="B">
 /* ══════════════════════════════════════════════════════════════════════════════
  * VARIANTE B — «TARJETA CLARA SOBRE BANDA HONDA»
  *
@@ -423,7 +497,8 @@
 
 .form {
   background-image: none;
-  background-color: var(--mm-superficie);          /* el radio de 16 px ya lo da Webflow */
+  background-color: var(--mm-superficie);
+  border-radius: var(--mm-r-16);
   box-shadow: var(--mm-sombra-3);
   color: var(--mm-tinta);                          /* sobre blanco ......... 15,60:1 */
 }
@@ -471,3 +546,4 @@
 }
 .wrapper-radio-buttons .w-radio:hover { background-color: var(--mm-fondo-tenue); }
 .wrapper-radio-buttons .radio-button { accent-color: var(--mm-enlace); }
+</style>
