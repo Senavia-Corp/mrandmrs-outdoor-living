@@ -88,8 +88,24 @@
  *
  *     innerText sin transform    -> "Outdoor Living"
  *     innerText con uppercase    -> "OUTDOOR LIVING"   <- LO APLICA
- *     innerText con capitalize   -> "Outdoor Living"
  *     textContent con uppercase  -> "Outdoor Living"   <- este NO
+ *
+ * ⚠️ CORREGIDO 1-sep-2026, y la version anterior de este comentario era PELIGROSA.
+ * Decia «innerText con capitalize -> "Outdoor Living"», o sea que `capitalize` NO
+ * movia innerText. Es FALSO, y el error estaba en el caso de prueba: "Outdoor Living"
+ * YA venia capitalizado, asi que la transformacion no tenia nada que hacer. Medir con
+ * una cadena que ya cumple no prueba nada.
+ *
+ * El baseline demuestra lo contrario, y son las dos mitades del mismo fichero:
+ *     marcado   .vercel/output/static/index.html   "…Contractors in Florida"
+ *     baseline  baseline/text/index.txt:13         "…Contractors In Florida"
+ *     marcado   Nav                                 "Get a Free Estimate"
+ *     baseline  baseline/text/index.txt:8           "Get A Free Estimate"
+ *
+ * `capitalize` es LOAD-BEARING en las 114 paginas. Quien lea el comentario viejo y
+ * «limpie» un text-transform del heroe o del nav pone `check:texto` en rojo — la unica
+ * puerta que no se re-baseliniza jamas. Lo cazo el frente de R9-HERO leyendo el
+ * baseline en vez de creerse el comentario. NO SE QUITA NINGUN capitalize.
  *
  * `check:texto` compara `innerText` al 100 % SIN TOLERANCIA contra el baseline
  * de Webflow y es la unica puerta que NO se re-baseliniza jamas (§1.1): es la
