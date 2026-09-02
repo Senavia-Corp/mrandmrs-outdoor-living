@@ -3,24 +3,75 @@
  *
  * Lo posee EN EXCLUSIVA el chat HERO-INDICE (encargo R12-HERO). Nadie mas escribe aqui.
  *
- * QUE RESTILA, Y CUANTO. Medido sobre `.vercel/output/static` el 1-sep-2026:
- *   .hero-section                                                  8 rutas
- *   .header-hero-page / .heading-hero-page / .text-block-4         8 rutas
+ * QUE RESTILA, Y CUANTO. Medido sobre `.vercel/output/static` el 2-sep-2026, con FRONTERA DE
+ * TOKEN DE CLASE y no por subcadena — la diferencia no es academica:
  *
- * Las 8 rutas: /gallery /brochures /blogs-tips /contact-us /projects /testimonials
- * /videos /industry-solutions. El MARCADO ES IDENTICO en las ocho —verificado, 421-452
- * caracteres y las mismas 5 clases—: solo cambia el texto. Por eso es UN encargo y no cuatro:
- * cuatro chats tocando esto darian cuatro heroes distintos en el mismo sitio.
+ *   grep -rl  'hero-section'                                    --include='*.html'  ->  18   MIENTE
+ *   grep -rlE 'class="([^"]* )?hero-section( [^"]*)?"'          --include='*.html'  ->   8   real
  *
- * Es lo primero que ve el visitante en cada pagina que no es la home, y hoy es la plantilla de
- * Webflow tal cual: h1 centrado, regla de oro debajo, parrafo centrado. La misma receta que en
- * la home tenia un `border-bottom` de 1100 px de ancho.
+ * Los 18 son `cover-hero-section` (las 9 de `country/`) y `half-hero-section`
+ * (`/where-we-serve`): dos clases DISTINTAS que contienen la mia como subcadena. Los cuatro
+ * selectores de esta hoja dan las mismas 8 rutas: `.hero-section`, `.header-hero-page`,
+ * `.heading-hero-page` y `.text-block-4` -> 8 / 8 / 8 / 8.
+ *
+ * Las 8: /gallery /brochures /blogs-tips /contact-us /projects /testimonials /videos
+ * /industry-solutions. El MARCADO ES IDENTICO en las ocho: solo cambia el texto. Por eso es UN
+ * encargo y no cuatro — cuatro chats tocando esto darian cuatro heroes distintos en el mismo sitio.
+ *
+ * Es lo primero que ve el visitante en cada pagina que no es la home.
+ *
+ * ─────────────────────────────────────────────────────────────────────────────────────────────
+ * VARIANTE B, «MARCA». Elegida por Sebastian el 2-sep-2026 sobre las capturas a 1440 y 479 de
+ * `src/pages/_lab-hero-indice.astro` (HOY / A / B con el texto real de /gallery, /blogs-tips y
+ * /industry-solutions). La variante A —titular intacto y sin filete— queda descartada.
+ *
+ * EL DEFECTO QUE MANDA SOBRE TODO: el parrafo no tiene NI UNA regla en los 167 KB de Webflow.
+ * Hereda del body y nada mas. Caracteres por linea de las 8 rutas construidas, por ancho:
+ *
+ *     ancho            479   600   767   991   992  1440  1920
+ *     peor ruta         59    75    95    95    95    95    95
+ *     rutas sobre 75     0     0     7     7     7     7     7      <- de 8
+ *
+ * De 767 para arriba SIETE DE LAS OCHO estan fuera del rango legible (45-75). Con esta hoja son
+ * 54 / 63 / 54 en los SIETE anchos, porque la medida va en `ch` y no en px: el cuerpo salta de
+ * 14 a 18 al cruzar 992, asi que un `max-width` en px daria dos medidas distintas. Es el mismo
+ * razonamiento —y el mismo precedente— que `intro.css:67-77`.
+ *
+ * LO QUE NO SE HACE, Y POR QUE:
+ *
+ *   · NO se anade `display: flex` a `.header-hero-page`. Reviviria de golpe CUATRO declaraciones
+ *     inertes en 8 rutas (`flex-flow:column`, `justify-content:space-between` y el `gap:10px` de
+ *     <=479) y obligaria a un `justify-content:flex-start` correctivo para que el gap y el
+ *     space-between no se repartiesen el mismo sobrante. Es la trampa documentada en
+ *     `intro.css:100-107`. El hueco se hace con `margin` sobre el h1: una declaracion, no cuatro.
+ *
+ *   · NO se toca `margin-top: 85px`. Son la altura del nav `fixed` y el encargo pide llevarlos a
+ *     token, pero NO EXISTE `--mm-nav-alto` y `disenio/` no lo escribe este chat. Re-declarar
+ *     `85px` aqui seria mudar el numero magico de sitio, no quitarlo. Token PEDIDO al director.
+ *
+ *   · NO se neutraliza el `height: 100%` de `.hero-section`. Es inerte —el padre no tiene altura
+ *     definida; `body{min-height:100%}` no la hace definida— y sigue siendolo despues de esta
+ *     hoja, porque nada de aqui le da altura a un ancestro. Un `height: auto` correctivo emitiria
+ *     una declaracion con CERO efecto medido, y el recuento de esta hoja tiene que cuadrar.
+ *
+ *   · NO se declara `line-height` en el h1. Webflow le pone `110%` SOBRE EL PROPIO h1, o sea
+ *     exactamente `1.1`: `var(--mm-alto-apretado)` seria byte distinto y pixel identico. En el
+ *     parrafo si se declara, y ahi si tiene efecto: el `140%` del body computa a px EN EL BODY
+ *     (25,2 / 19,6) y se hereda ya resuelto, asi que un parrafo de 16px heredaria 19,6 -> razon
+ *     1,225, demasiado apretada. Con `1.4` son 22,4.
+ *
+ *   · NINGUN `text-transform`. El `capitalize` del `h1` global sigue vivo y heredado, y el
+ *     baseline guarda las formas mutadas. `/contact-us` («Get in touch») es el caso sensible.
  *
  * ORDEN DE CARGA, y gana por ORDEN, nunca por `!important`:
  *   fuentes -> webflow -> disenio/tokens -> disenio/base -> [hojas de seccion] -> propio
  *
- * LAS REGLAS DE ESTA CAPA — `docs/encargos/00-PRINCIPIOS.md` §5, y las mide `check:tokens`
- * (11 comprobaciones; correla tu, es estatica y tarda <1 s):
+ * PROBADO, no supuesto: en el CSS construido las 11 reglas de Webflow que tocan estos cuatro
+ * selectores viven entre los offsets 57.004 y 172.509; la capa de autor empieza en 177.140
+ * (`--mm-navy`) y NINGUNA hoja de autor toca el heroe. O sea que no hay competidor: se gana por
+ * orden, y ademas los descendientes van a 0-2-0 contra los 0-1-0 de Webflow.
+ *
+ * LAS REGLAS DE ESTA CAPA — `docs/encargos/00-PRINCIPIOS.md` §5, y las mide `check:tokens`:
  *   · cero `!important`, cero `@layer` (webflow.css son 167 KB SIN capa y ganaria a una capa)
  *   · ningun literal de color: solo `var(--mm-*)`. Token que falte, se PIDE al director
  *   · `min-width` 480 / 768 / 992, jamas mezclado con los `max-width` de Webflow
@@ -29,6 +80,110 @@
  *   · todo par de colores nuevo lleva su ratio MEDIDO al lado
  *
  * Y la de arriba de todas: se ELEVA la base de Webflow, no se sustituye. El TEXTO no se toca.
- *
- * De momento solo comentarios: no emite una sola regla, asi que el CSS construido no cambia.
  */
+
+/* ── 1 · EL RITMO DE LA BANDA, EN TOKENS Y SIN INVERSION ──────────────────────────────────────
+ *
+ * Hoy `padding: 4em 2em 3rem` mezcla `em` y `rem` EN LA MISMA DECLARACION, y los `em` resuelven
+ * contra el cuerpo, que cambia de tamano al cruzar 992. Resultado medido en las 8 rutas:
+ *
+ *     1920 / 1440   72 arriba / 48 abajo     <- arriba pesa 1,5x
+ *      991 /  479   42 arriba / 48 abajo     <- se INVIERTE
+ *
+ * La escala es la de la casa (`.mm-seccion` de `disenio/base.css`): 48 / 64 / 96, simetrica. Una
+ * banda de cabecera no lleva filete que la cierre, asi que sus limites LOS DEFINE EL AIRE: si
+ * arriba y abajo no miden lo mismo, la banda parece descolgada.
+ *
+ * `padding-inline` hay que declararlo tambien, y no es celo: sin el sobrevive el `2em` del atajo
+ * y el aire lateral seguiria dependiendo del tamano del cuerpo. Pasa de 36/28 a 32/24 (`--mm-canal`).
+ *
+ * AVISO MEDIDO PARA LOS VECINOS: las 8 secciones que siguen al heroe tienen `padding-top: 0`
+ * (`.gallery-page`, `.brochures-section-page`, `.articles-section`, `.form-section`,
+ * `.project-page`, `.testimonials-page-section`, `.videos-section`, `.industries-section`). O sea
+ * que estos 96px son TODO el aire hasta el contenido siguiente. Si alguna de esas hojas anade
+ * padding superior, se suma al de aqui. */
+.hero-section {
+  padding-block: var(--mm-e-48);
+  padding-inline: var(--mm-canal);
+}
+@media (min-width: 768px) { .hero-section { padding-block: var(--mm-e-64); } }
+@media (min-width: 992px) { .hero-section { padding-block: var(--mm-e-96); } }
+
+/* ── 2 · EL PARRAFO, QUE HOY NO TIENE NI UNA REGLA ────────────────────────────────────────────
+ *
+ * `.text-block-4` no aparece ni una vez en los 167 KB de `webflow.css`: cero reglas propias. Es
+ * la unica frase que explica de que va la pagina, en 8 paginas, y esta sin disenar.
+ *
+ * MEDIDA en `ch`, no en px. 60ch da 54-63 caracteres reales en los siete anchos medidos (479,
+ * 600, 767, 991, 992, 1440, 1920), contra los 82-95 de hoy de 767 para arriba. Las cajas de
+ * linea se cuentan con un `Range`: `getClientRects()` sobre el `<div>` devuelve UNA caja, la del
+ * bloque, y miente. `ch` es el ancho del «0», mas ancho que la letra media, por eso 60ch son ~72
+ * caracteres de tope y no 60.
+ *
+ * COLOR. `--mm-tinta-atenuada` sobre blanco = 5,26:1 (AA holgado; el minimo es 4,5). Hoy el
+ * parrafo es negro puro a 21:1, o sea EL MISMO peso visual que el titular navy: eso no es
+ * jerarquia, es su ausencia. Es el papel «guia» del sistema, el mismo que `.mm-guia`.
+ *
+ * TAMANO. `--mm-paso-3` (15 / 16 / 20). Hoy hereda 14/18. Sube en todos los anchos menos 1440,
+ * donde da 17,93 contra 18: siete centesimas de pixel, invisible.
+ *
+ * `text-wrap: pretty` porque son parrafos de 2-3 lineas y es justo donde evita la linea huerfana
+ * de una palabra; en prosa larga no se usaria. */
+.hero-section .text-block-4 {
+  max-width: 60ch;
+  margin-inline: auto;
+  font-size: var(--mm-paso-3);
+  line-height: var(--mm-alto-cuerpo);
+  color: var(--mm-tinta-atenuada);
+  text-wrap: pretty;
+}
+
+/* ── 3 · EL TITULAR: LA CURVA DEL SISTEMA Y EL FILETE, REHECHO ────────────────────────────────
+ *
+ * FUERA EL FILETE DE ORO. `border-bottom: 1px solid var(--gold)` da 1,86:1 sobre blanco:
+ * decorativo y casi invisible. Es el mismo detalle de plantilla que ya se quito del heroe de la
+ * home, donde ademas medía 1100px de ancho.
+ *
+ * EL TAMANO PASA A `--mm-paso-6`, la curva fluida del sistema. Coste medido contra Webflow, y
+ * esta documentado en `tokens.css`:
+ *
+ *     1920   45,00  vs 45   =   0
+ *     1440   39,83  vs 45   =  -5,17px
+ *      991   35,00  vs 45   = -10,00px
+ *      479   30,00  vs 30   =   0
+ *
+ * Es legitimo porque esta seccion SI se redisena y se re-baseliniza; el escape
+ * `--mm-paso-h1-paridad` existe para las que aun no. Y a 991 los 45px de hoy conviven con un
+ * cuerpo de 14: razon 3,2:1, el ancho mas descompensado del sitio. Bajar a 35 lo deja en 2,2:1.
+ *
+ * `text-wrap: balance`, medido sobre `/industry-solutions`, que es el titular mas largo de las 8
+ * (57 caracteres). Ancho de la linea MAS ANCHA:
+ *
+ *     1440   747px -> 613px   (balance + paso-6)
+ *      479   402px -> 366px   y desaparece el huerfano «Florida» solo en la tercera linea
+ *
+ * Y EL FILETE VUELVE, REHECHO: de 850x1px en oro a 48x4px en navy, centrado bajo el titular.
+ * EN NAVY Y NO EN ORO porque a 1,86:1 el oro seguiria siendo una mancha tenue incluso a 4px de
+ * alto, que es exactamente la queja del diagnostico; el oro se queda donde vive, en fondos de CTA
+ * con tinta navy (8,40:1). Navy sobre blanco: 15,60:1.
+ *
+ * `content: ""` es cadena VACIA, asi que no puede mover `innerText` — COMPROBADO en navegador
+ * sobre las tres rutas del laboratorio, no deducido de la spec. */
+.hero-section .heading-hero-page {
+  border-bottom: 0;
+  padding-bottom: 0;
+  margin-bottom: var(--mm-e-24);
+  font-size: var(--mm-paso-6);
+  text-wrap: balance;
+}
+.hero-section .heading-hero-page::after {
+  content: "";
+  display: block;
+  width: var(--mm-e-48);
+  height: var(--mm-e-4);
+  margin: var(--mm-e-24) auto 0;
+  background-color: var(--mm-tinta);
+}
+@media (min-width: 768px) {
+  .hero-section .heading-hero-page { margin-bottom: var(--mm-e-32); }
+}
