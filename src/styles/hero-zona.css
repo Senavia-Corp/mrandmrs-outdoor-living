@@ -45,14 +45,26 @@
    encima del suelo de 4,5:1. */
 .hero-glass-section{
   align-items:flex-end;
-  padding-bottom:var(--mm-e-48);
+/* AIRE BAJO EL CTA — pedido por Sebastian el 3-sep-2026 viendo produccion: «los botones estan
+   muy en el borde de abajo». Medido alli: el CTA acababa a 80px del pie y `.wrapper-logos` es una
+   franja BLANCA OPACA de 67px pegada al pie, o sea que quedaban 25-34px de aire, y a 2000px de
+   ventana se leia como que el boton toca la franja.
+   80px = `--mm-e-64` + `--mm-e-16`. Con los 32 del `padding-bottom` del bloque, el CTA queda a
+   112px del pie y el aire sobre la franja pasa a 45px. No mas: se pidio «un espacio pequeno».
+   Ojo al editar esto: el bloque esta anclado abajo, asi que cada pixel de aqui SUBE el texto un
+   pixel y desalinea el velo. Las paradas de abajo estan calibradas contra ESTE valor. */
+  padding-bottom:calc(var(--mm-e-64) + var(--mm-e-16));
+  /* Y EL VELO LLEGA AL PIE, mismo defecto y mismo arreglo que en home.css (ver alli el metodo):
+     se aclaraba del 78% al 30% a partir del 84% de la altura, justo donde estan los botones, y
+     como la franja blanca de logos tapa los primeros 67px lo que se veia era una banda palida
+     entre las dos. La banda oscura baja al 100%; el borde de arriba (30/18/78 de 0 a 20) no se
+     toca. El 20% aguanta: medido en 991/768/430/390/360 con la ciudad de nombre mas largo, el
+     texto de zona a <=991 cae entre el 24,6% y el 64,1% de la altura. */
   background-image:linear-gradient(to bottom,
     color-mix(in srgb,var(--mm-navy) 30%,transparent) 0%,
     color-mix(in srgb,var(--mm-navy) 18%,transparent) 12%,
     color-mix(in srgb,var(--mm-navy) 78%,transparent) 20%,
-    color-mix(in srgb,var(--mm-navy) 78%,transparent) 74%,
-    color-mix(in srgb,var(--mm-navy) 30%,transparent) 84%,
-    color-mix(in srgb,var(--mm-navy) 35%,transparent) 100%)
+    color-mix(in srgb,var(--mm-navy) 78%,transparent) 100%)
 }
 
 /* Color de texto: NO se toca `.hero-glass-section` en general — tiene `.wrapper-logos`
@@ -186,11 +198,13 @@
      en la ciudad de nombre mas largo, a 1920). Banda oscura de 140 a 450: ~22px de margen por
      abajo y ~24 por arriba. Debajo de 140 estan los botones (80-120px) sobre oro/blanco opacos
      y la franja de logos; encima de 450 no hay texto y el video se aprecia al 18%. */
+  /* Arranca al 78% en el pixel 0 y solo se aclara hacia arriba. Re-medido tras subir el
+     padding: el texto sin fondo propio —aqui son TRES elementos— cae entre 194 y 458px del pie
+     en la ciudad de nombre mas largo, asi que los 480 dejan 22px de margen. El techo sube de
+     450 a 480 porque el padding nuevo levanta el bloque 16px. */
   .hero-glass-section{background-image:linear-gradient(to top,
-    color-mix(in srgb,var(--mm-navy) 35%,transparent) 0,
-    color-mix(in srgb,var(--mm-navy) 30%,transparent) 90px,
-    color-mix(in srgb,var(--mm-navy) 78%,transparent) 140px,
-    color-mix(in srgb,var(--mm-navy) 78%,transparent) 450px,
-    color-mix(in srgb,var(--mm-navy) 18%,transparent) 540px,
+    color-mix(in srgb,var(--mm-navy) 78%,transparent) 0,
+    color-mix(in srgb,var(--mm-navy) 78%,transparent) 480px,
+    color-mix(in srgb,var(--mm-navy) 18%,transparent) 570px,
     color-mix(in srgb,var(--mm-navy) 30%,transparent) 100%)}
 }

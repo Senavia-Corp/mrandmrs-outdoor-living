@@ -101,13 +101,30 @@
    anclado abajo eso dejaba un hueco vacio de mas de 200px antes del pie del heroe, medido
    en 375px. 48px = el mismo valor que usa Pergola Plus en su propio hero (padding-bottom:
    3rem).  */
-.mm-hero{align-items:flex-end;padding-bottom:var(--mm-e-48);background-image:linear-gradient(to bottom,
+/* AIRE BAJO EL CTA — pedido por Sebastian el 3-sep-2026 viendo produccion: «los botones estan
+   muy en el borde de abajo». Medido alli: el CTA acababa a 80px del pie y `.wrapper-logos` es una
+   franja BLANCA OPACA de 67px pegada al pie, o sea que quedaban 25-34px de aire, y a 2000px de
+   ventana se leia como que el boton toca la franja.
+   80px = `--mm-e-64` + `--mm-e-16`. Con los 32 del `padding-bottom` del bloque, el CTA queda a
+   112px del pie y el aire sobre la franja pasa a 45px. No mas: se pidio «un espacio pequeno».
+   Ojo al editar esto: el bloque esta anclado abajo, asi que cada pixel de aqui SUBE el texto un
+   pixel y desalinea el velo. Las paradas de abajo estan calibradas contra ESTE valor. */
+/* Y EL VELO LLEGA AL PIE. Antes se aclaraba por los DOS lados: por arriba a proposito (es donde
+   el video se aprecia) y por abajo sin motivo — del 78% caia al 30% en el 86% de la altura, o sea
+   justo donde estan los botones. Medido en produccion: el alfa a 67px del pie valia 31%. Como la
+   franja blanca tapa esos 67px, lo que se veia era una banda PALIDA entre la franja y la banda
+   oscura, y de ahi el «el degradado no llega abajo».
+   La banda oscura baja ahora hasta el 100% (el pie). El borde de ARRIBA no se toca: sigue el
+   35%/20%/78% de 0 a 27, que es lo que estaba bien. Y esto solo puede SUBIR el contraste, nunca
+   bajarlo: la banda se extiende, no se recorta.
+   El 27% aguanta: medido en 991/768/430/390/360, el texto de home a <=991 cae entre el 38,6% y
+   el 64% de la altura. */
+.mm-hero{align-items:flex-end;padding-bottom:calc(var(--mm-e-64) + var(--mm-e-16));
+  background-image:linear-gradient(to bottom,
   color-mix(in srgb,var(--mm-navy) 35%,transparent) 0%,
   color-mix(in srgb,var(--mm-navy) 20%,transparent) 14%,
   color-mix(in srgb,var(--mm-navy) 78%,transparent) 27%,
-  color-mix(in srgb,var(--mm-navy) 78%,transparent) 73%,
-  color-mix(in srgb,var(--mm-navy) 30%,transparent) 86%,
-  color-mix(in srgb,var(--mm-navy) 35%,transparent) 100%)}
+  color-mix(in srgb,var(--mm-navy) 78%,transparent) 100%)}
 /* LA COLUMNA — la causa raiz del encargo R9-HERO-AJUSTE.
    Los 800/880px venian copiados del heroe de Pergola Plus, cuyo titular («Live Outdoors.
    Beautifully.») son 26 caracteres; el de aqui son 69 y el de la ciudad mas larga 80. A 880px
@@ -153,7 +170,16 @@
    el subtítulo 950, el 86 %. Se resuelve por MEDIDA, no por tamaño: a --mm-medida
    (650 px) el subtítulo pasa a 3 líneas cortas y se lee como pie de titular. La h1 NO
    se toca — ya son 60 px, por encima de cualquier paso del sistema. */
-.mm-hero .subheading-hero{max-width:var(--mm-medida);margin-inline:0}
+/* MEDIDA DEL SUBTITULO — 800px, y esto REVISA a proposito lo que decia el parrafo de arriba.
+   Medido sobre produccion a 1920 y 2000: con `--mm-medida` (650px) sus 152 caracteres salen en
+   3 lineas a 25px. Barrido de anchos sobre la pagina viva: 650->3L, 700->3L, 750->2L. 800 es el
+   umbral con margen para el swap de fuente.
+   La razon del 650 era la medida tipografica y sigue siendo buena; lo que manda encima es que
+   Sebastian pidio compactar el bloque (3-sep-2026, viendo el sitio desplegado). A 800px el
+   subtitulo queda en el 75% del ancho del h1: el problema que arreglo el punto 7 era que estaban
+   al 86%, o sea que sigue por debajo del umbral en que los dos bloques compiten.
+   De 1440 abajo esto no cambia nada: alli el subtitulo ya mide 568-630px, por debajo del cap. */
+.mm-hero .subheading-hero{max-width:800px;margin-inline:0}
 /* RITMO — Webflow da `h2{margin-top:20px}` y `h1,h2,…{margin-bottom:10px}`, valores FIJOS. Al
    bajar la h1 de 60 a ~46px esos pixeles pesan proporcionalmente mas y el bloque queda mas
    suelto justo donde se pide compactarlo. El aire pasa a los pasos del sistema, y queda:
@@ -263,10 +289,12 @@
      franja de logos, que no dependen del velo; encima de 415 estan las badges (424-464) sobre
      pastilla blanca opaca, que tampoco. Ahi se aclara al 20%, que es donde mas se aprecia el
      video — el mismo criterio del gradiente de arriba, con la unidad correcta. */
+  /* Arranca al 78% en el pixel 0 —ver el porque en la regla base— y solo se aclara hacia
+     ARRIBA. Re-medido tras subir el padding y pasar el subtitulo a 2 lineas: el texto sin fondo
+     propio cae entre 200 y 395px del pie en los cuatro anchos de >=992, asi que los 415 dejan
+     20px de margen por arriba. Por abajo ya no hay margen que dar: es el pie. */
   .mm-hero{background-image:linear-gradient(to top,
-    color-mix(in srgb,var(--mm-navy) 35%,transparent) 0,
-    color-mix(in srgb,var(--mm-navy) 30%,transparent) 95px,
-    color-mix(in srgb,var(--mm-navy) 78%,transparent) 145px,
+    color-mix(in srgb,var(--mm-navy) 78%,transparent) 0,
     color-mix(in srgb,var(--mm-navy) 78%,transparent) 415px,
     color-mix(in srgb,var(--mm-navy) 20%,transparent) 505px,
     color-mix(in srgb,var(--mm-navy) 35%,transparent) 100%)}
