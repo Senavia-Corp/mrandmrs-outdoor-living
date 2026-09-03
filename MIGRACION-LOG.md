@@ -3651,3 +3651,65 @@ los 6 logos no salen en la home, y ni el subservice `lighting-water-feature-upgr
   del proyecto: el login del CLI de esta máquina no llega a `m273z6jc`. El frontend no lo necesita
   (lee el dataset directo), pero el cliente sí para editar.
 - **Revocar el token `migracion-webflow`** al entregar.
+
+---
+
+## Fuera de fase — `/financing`, la primera ruta de autoría propia (2-sep-2026)
+
+No es una fase de la migración: es la primera página que **no** viene de Webflow. Se anota
+aquí porque `build-paginas.mjs:265` y `aprobar-diseno.mjs` remiten a esta bitácora para el
+motivo de un cambio de esta clase, y porque cambia una premisa del proyecto — «115 rutas
+congeladas» pasa a ser «115 del origen + las propias, declaradas».
+
+### Por qué
+El nav mandaba «Financing» a `https://your.acornfinance.com/apply?d=NXJVM` con
+`target="_blank"` desde las 115 rutas. Cada clic salía del sitio antes de explicar nada.
+
+### Qué se hizo
+- `src/pages/financing.astro` — escrita a mano, en la raíz de `src/pages` (obligatorio:
+  `build-plantillas.mjs:357,648` hace `readdirSync` + `unlinkSync` sobre las 7 carpetas de
+  familia). Reutiliza el héroe de las páginas índice, el acordeón `.dropdown-faq` de
+  `/services/` y el cierre `.cta-footer`. Sin un solo `data-w-id`.
+- `src/styles/financiacion.css` — 4 reglas propias. Todo lo demás sale de la gramática `.mm-*`.
+- `scripts/lib/rutas-propias.mjs` — la declaración, en un solo sitio para tres puertas.
+- `Nav.astro` reapuntado a `/financing` a mano, con la transformación declarada en
+  `build-shell.mjs` (`CON_PAGINA_PROPIA`) para que una regeneración la reproduzca.
+- Sitemap: 113 del origen + 1 adición deliberada.
+
+### Qué se midió, y con qué comando
+
+    npm run check:tokens     PUERTA VERDE — 22 hojas, 59,7 KB de 80
+    npm run build && npm run check:rutas
+                             PUERTA VERDE — 115/115 del origen · 116 en el build, 0 de más
+                                            · ruta propia /financing construida
+    npm run check:enlaces    PUERTA VERDE — 0 enlaces internos rotos · 728/728 en git ls-files
+    npm run check:seo        PUERTA VERDE — 115/115 con el head del origen + 1 propia
+    PUBLIC_ES_PRODUCCION=1 npm run build && PUBLIC_ES_PRODUCCION=1 npm run check:seo
+                             PUERTA VERDE — canónica https://mrandmrsoutdoorliving.com/financing,
+                                            sin noindex, sitemap 114 URLs
+    (preview)                noindex+nofollow, sin canónica, sitemap 0, robots Disallow: /
+
+Accesibilidad medida a 479 px **antes** de escribir el arreglo: los enlaces de tarjeta salían
+a 381×12 px por un `line-height: 12px` heredado de Webflow — incumple WCAG 2.5.8 (AA pide
+24×24) y la excepción de «enlace dentro de una frase» no aplica porque van sueltos. Corregido
+a 44 px con `.fin-mas`. El CTA pasó de `.button-styles` (36 px) a `.mm-accion` (46 px medidos,
+oro con tinta navy 8,40:1).
+
+### Qué NO se midió, y por qué
+`check:texto` (no hay texto de origen; `baseline/text/` no se re-baseliniza jamás),
+`check:assets` (itera el manifiesto), `check:ix2` (11 arquetipos a mano) y `check:baseline`
+(audita el baseline de las 115). **No cuentan como verde.**
+
+### Abierto
+- **`check:visual` sale ROJA en `/financing` a propósito.** Contrato `rediseno` sin referencia
+  aprobada. Se cierra con `node scripts/aprobar-diseno.mjs /financing --si`, y eso solo lo
+  corre el director **después** de que Sebastian apruebe la página mirándola (§8.5).
+- **`npm run shell` no corre**: `build-shell.mjs:65` usa `n` donde la función recibe `nodo`
+  (`ReferenceError`, desde `b416096`, copia-pega de `build-paginas.mjs:373`). Por eso
+  `Nav.astro` se editó a mano. Arreglarlo es una palabra, pero regenerar hace `fetch` al sitio
+  vivo y arrastraría al cascarón cualquier deriva del origen: merece su propio frente con
+  `check:cascaron` de red.
+- **Sin cifras financieras** por decisión de Sebastian. Si algún día se publican APR, plazos o
+  cuotas, hay obligaciones de disclosure (TILA/Reg Z) que este sitio no tiene escritas.
+- La doble verdad del sitemap: `baseline/sitemap.xml` manda en el build, y la columna
+  `enSitemap` de `routes.csv` no la lee nadie.

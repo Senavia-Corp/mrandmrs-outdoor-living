@@ -13,11 +13,11 @@ que los producen están en `MIGRACION-LOG.md`, entrada por fase.
 | F3 Sanity | ✅ 511 documentos · 628 assets · 0 referencias rotas |
 | F4 Cascarón | ✅ nav y pie idénticos al vivo por geometría, 4 anchos |
 | F5 Páginas estáticas | ✅ 14/14 con texto 100 % idéntico |
-| F6 Páginas de colección | ✅ 115/115 rutas · 0 de más |
+| F6 Páginas de colección | ✅ 115/115 rutas del origen · 0 de más (el build sirve 116: ver «Fuera de fase» abajo) |
 | F6b Colecciones desde el CMS | 🟡 **1 familia de 7**: `pool-builders` (53 páginas) ya lee de Sanity, reproducción 53/53 byte a byte |
 | F7 Interacciones | ✅ 0 invisibles · 0 transform residual · 0 scroll-x |
 | F8 Formularios | 🟡 endpoint hecho y probado; **faltan credenciales** |
-| F9 Paridad SEO | ✅ 115/115 con el `<head>` del origen |
+| F9 Paridad SEO | ✅ 115/115 con el `<head>` del origen · +1 propia con head propio e indexación vigilada igual |
 | F10 Puertas | 🟡 9 de 10 escritas · **`check:visual` en rojo por 5 de 460** |
 | F12 Estimador en fuente propia | ✅ oráculo de 384 casos · app rehecha sin React ni bundle · capta el lead · `/pool-investment-estimator` a **100 %** de píxeles y texto |
 | F11 Deploy | 🟡 **LIVE 28-ago** en <https://mrandmrs-outdoor-living-rajppfro3-senaviacorp.vercel.app> · protegido por el equipo · **DNS sin tocar** |
@@ -217,3 +217,14 @@ npm run check
 Encadena build + `check:assets` + `check:rutas` + `check:enlaces` + `check:seo` +
 `check:texto` + `check:ix2` + `check:visual`. Las de navegador piden **foco real**: la ventana
 de Chromium tiene que quedarse delante.
+
+## Fuera de fase — `/financing` (2-sep-2026)
+
+La primera página de **autoría propia**: no existe en el origen de Webflow, así que la paridad
+no le aplica. Sustituye al enlace del nav que mandaba a Acorn Finance desde las 115 rutas.
+
+Verde en `check:tokens`, `check:rutas`, `check:enlaces` y `check:seo` (en los dos modos del
+interruptor de indexación). **`check:visual` sale ROJA a propósito** hasta que Sebastian
+apruebe la página mirándola y el director corra `aprobar-diseno.mjs`. Y hay cuatro puertas que
+**no pueden** medirla, por no tener origen contra el que comparar: están enumeradas en
+`scripts/lib/rutas-propias.mjs`. Detalle completo en `MIGRACION-LOG.md`.

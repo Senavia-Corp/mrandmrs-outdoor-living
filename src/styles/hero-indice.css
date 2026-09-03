@@ -15,7 +15,15 @@
  * `.heading-hero-page` y `.text-block-4` -> 8 / 8 / 8 / 8.
  *
  * Las 8: /gallery /brochures /blogs-tips /contact-us /projects /testimonials /videos
- * /industry-solutions. El MARCADO ES IDENTICO en las ocho: solo cambia el texto. Por eso es UN
+ * /industry-solutions.
+ *
+ * DESDE EL 2-SEP-2026 SON 9: `/financing` reutiliza este marcado. Es la unica de las nueve que
+ * NO viene de Webflow —la escribimos nosotros, ver `scripts/lib/rutas-propias.mjs`—, y adopta
+ * el heroe a proposito: un heroe distinto en la unica pagina nueva se leeria como una pagina
+ * de otro sitio. Consecuencia para quien toque esta hoja: un cambio aqui ya no mueve 8
+ * capturas de paridad, mueve 8 mas una de contrato `rediseno`.
+ *
+ * El MARCADO ES IDENTICO en todas: solo cambia el texto. Por eso es UN
  * encargo y no cuatro — cuatro chats tocando esto darian cuatro heroes distintos en el mismo sitio.
  *
  * Es lo primero que ve el visitante en cada pagina que no es la home.

@@ -123,6 +123,17 @@ const SEO = {
   ruta="/financing"
   seo={SEO}
 >
+  {/* UN `<main>`, QUE NINGUNA OTRA PAGINA DEL SITIO TIENE.
+      accesslint da `landmarks/landmark-main` en las 116 y `landmarks/region` en cada seccion
+      suelta: sin landmark principal, un lector de pantalla no ofrece «saltar al contenido» y
+      hay que recorrer el nav entero en cada pagina. Se arregla AQUI y no en `Base.astro`
+      porque envolver el slot cambiaria la estructura de las 115 derivadas, y esas estan bajo
+      contrato de paridad: mover un nodo en las 115 no es un arreglo de accesibilidad, es un
+      rediseño encubierto que ademas habria que re-baselinizar entero.
+      Verificado antes de ponerlo: `webflow.css` NO tiene ni una regla sobre el elemento
+      `main` —lo que parecia serlo era la cola de `.w-hidden-main{display:none!important}`—,
+      asi que no hereda display ni margenes de nadie y no mueve un pixel. */}
+  <main>
   {/* HEROE — mismo marcado que las 8 paginas indice, estilado por `hero-indice.css`. */}
   <section class="hero-section">
     <div class="w-layout-blockcontainer container w-container">
@@ -288,4 +299,5 @@ const SEO = {
       </div>
     </div>
   </section>
+  </main>
 </Base>

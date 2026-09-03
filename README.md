@@ -3,6 +3,12 @@
 Sitio de origen: <https://mrandmrsoutdoorliving.com> (Webflow, 115 páginas públicas).
 **Objetivo: paridad exacta.** No es un rediseño.
 
+El sitio sirve hoy **116**: las 115 de la migración más `/financing` (2-sep-2026), la primera
+página de autoría propia — no existe en el origen, así que no se mide contra él. Las rutas de
+esa clase se declaran en [`scripts/lib/rutas-propias.mjs`](scripts/lib/rutas-propias.mjs), que
+explica qué puerta las mide y cuáles **no pueden** medirlas. La paridad sigue siendo el
+contrato para las 115.
+
 - **El prompt de trabajo es [`PROMPT.md`](PROMPT.md)** — pégalo en una sesión nueva de Claude Code abierta en esta carpeta.
 - El registro de lo hecho va en [`MIGRACION-LOG.md`](MIGRACION-LOG.md), una entrada por fase.
 

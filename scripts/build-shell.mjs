@@ -17,7 +17,11 @@
  * del marcado.
  *
  * ─────────────────────────────────────────────────────────────────────────────
- * NAV Y PIE SON LOS MISMOS EN LAS 115 PÁGINAS
+ * NAV Y PIE SON LOS MISMOS EN LAS 115 PÁGINAS — Y EN LAS PROPIAS
+ *
+ * Desde el 2-sep-2026 el sitio sirve 116: las 115 de la migración más `/financing`, que
+ * también monta este cascarón porque usa `Base.astro`. Lo que sigue valiendo es la frase: nav
+ * y pie son UNO, no 116 variantes.
  *
  * Comprobado sobre 7 páginas de 6 tipos distintos: lo ÚNICO que cambia entre ellas es
  * `w--current` + `aria-current="page"` en el enlace que apunta a la página actual. Aquí se
