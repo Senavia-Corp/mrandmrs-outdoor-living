@@ -1,0 +1,83 @@
+/**
+ * EL HEROE DE AREA DE SERVICIO (55 rutas: 53 de pool-builders/[slug] via
+ * plantilla-pool-builders.json + los 2 where-we-serves/*.astro) — continuacion de
+ * R9-HERO (ver home.css) para las paginas que no son la home. Mismo criterio de alcance
+ * que hero-indice.css: medido por grep de clase exacta, no por subcadena.
+ *   grep -rl 'hero-glass-section' src/ | grep -v hero-glass-section-page
+ *   -> src/data/plantilla-pool-builders.json + los 2 where-we-serves/*.astro (+ webflow.css,
+ *      donde vive la regla base que este fichero sustituye por ORDEN de carga, no por peso).
+ *
+ * Reglas de esta capa, las mismas que home.css: cero `!important`, cero `@layer`, ningun
+ * literal de color fuera de disenio/tokens.css, `min-width` 480/768/992 y nunca mezclado
+ * con el `max-width` legado de Webflow.
+ *
+ * MISMA RESTRICCION QUE `.mm-hero` (ver home.css lineas 46-51): `.hero-glass-section` es
+ * `position:relative` sin `z-index`, y por eso el <video> (z-index:-100 de Webflow) se ve,
+ * escapando a la raiz del documento. Nunca anadir aqui `z-index`, `transform`, `filter`,
+ * `backdrop-filter`, `opacity<1`, `isolation` ni `will-change` sobre `.hero-glass-section`.
+ * El velo sigue siendo `background-image` de la seccion misma, no una capa nueva.
+ *
+ * `.hero-home-block` es la MISMA clase que usa el heroe de home — home.css escribe su
+ * propia regla para `.mm-hero .hero-home-block` (no se toca desde aqui: home.css declara
+ * posesion exclusiva de todo lo que cuelga de `.mm-hero`); aqui va solo la mitad de
+ * `.hero-glass-section`, con los mismos valores, a proposito.
+ *
+ * `.wrapper-buttons-center` es una clase de 67 ficheros del sitio (cta-page-section,
+ * cta-footer, cada pagina de services/country/project/blogs, etc.) — por eso toda regla
+ * de aqui va acotada bajo `.hero-glass-section`, nunca suelta.
+ */
+
+/* EL VELO — mismo criterio que `.mm-hero` en home.css (ver ese fichero para el metodo
+   completo de medicion de contraste sobre el video de home; este es bg-video-mp4.mp4/webm,
+   el que comparten las 55 rutas). El peor pixel de la franja baja es blanco puro (piedra
+   del borde de la piscina); el suelo para 4,5:1 con texto blanco es ~60-61 %.
+
+   Primer intento (mismo dia): banda oscura desde 72% de altura, igual que el primer
+   intento de home.css. Mismo fallo, medido igual (getBoundingClientRect, viewport
+   1280x720): el h1 cae en 21,2-41,8%, el h2 en 43,2-60,7%, el parrafo en 62,1-72,6% — los
+   tres bajo el 16% "claro" (24-50%) casi enteros. Los botones (78,7-84,4%) sí van sobre
+   dorado/blanco opacos y no necesitan velo. Corregido igual que home.css: banda oscura
+   (78%) desde 20% (justo antes del h1) hasta 74% (justo despues del parrafo); claro antes
+   del h1 y despues de los botones, que es donde el video se aprecia sin tapar nada que
+   dependa del velo para leerse. Contraste real verificado (canvas sobre el frame en vivo,
+   no solo teoria): peor pixel muestreado en la caja del h1 y del parrafo es blanco puro/
+   casi puro, y contra ese pixel a 78% de navy da 8,09:1 y 8,32:1 respectivamente — muy por
+   encima del suelo de 4,5:1. */
+.hero-glass-section{
+  align-items:flex-end;
+  padding-bottom:var(--mm-e-48);
+  background-image:linear-gradient(to bottom,
+    color-mix(in srgb,var(--mm-navy) 30%,transparent) 0%,
+    color-mix(in srgb,var(--mm-navy) 18%,transparent) 12%,
+    color-mix(in srgb,var(--mm-navy) 78%,transparent) 20%,
+    color-mix(in srgb,var(--mm-navy) 78%,transparent) 74%,
+    color-mix(in srgb,var(--mm-navy) 30%,transparent) 84%,
+    color-mix(in srgb,var(--mm-navy) 35%,transparent) 100%)
+}
+
+/* Color de texto: NO se toca `.hero-glass-section` en general — tiene `.wrapper-logos`
+   con fondo blanco y un `.heading-logos` sin color propio; ponerlo blanco ahi lo dejaria
+   en blanco sobre blanco. Se acota al h1 y al parrafo, los dos elementos que hoy heredan
+   el navy de la seccion y que solo eran legibles por estar sobre `.glass-effect-block`
+   (retirada del marcado en las 3 fuentes que arman este heroe). `.yellow` (el h2) ya es
+   blanco por su propia regla en webflow.css — no se toca su color, solo su text-shadow,
+   que era el parche de un velo sin fuerza real. */
+.hero-glass-section h1,
+.hero-glass-section .paragraph-2{color:var(--mm-blanco)}
+.hero-glass-section .yellow{text-shadow:none}
+
+/* Layout — columna izquierda, anclada abajo. Mismo mecanismo que `.mm-hero` en home.css:
+   `align-items:flex-end` de arriba ancla abajo (la seccion es flex fila); estas de aqui
+   quitan el centrado horizontal del bloque de texto y de su contenedor. El
+   `padding-bottom` de arriba reemplaza el 140-160px que Webflow ponia para el diseno
+   centrado viejo: con el bloque ya anclado abajo, esa cantidad dejaba un hueco vacio de
+   mas de 200px antes del pie del heroe (medido en movil, 375px). 48px = mismo valor que
+   usa Pergola Plus en el mismo sitio de su propio hero (padding-bottom: 3rem). */
+.hero-glass-section .hero-home-block{margin-left:0;max-width:800px}
+.hero-glass-section .wrapper-main-hero-page{text-align:left;align-items:flex-start}
+.hero-glass-section .text-divider-hero-city{align-items:flex-start}
+.hero-glass-section .wrapper-buttons-center{justify-content:flex-start}
+
+@media (min-width:992px){
+  .hero-glass-section .hero-home-block{max-width:880px}
+}

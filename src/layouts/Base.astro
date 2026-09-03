@@ -21,6 +21,7 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import ClickToCall from '../components/widgets/ClickToCall.astro';
 import Interacciones from '../components/Interacciones.astro';
+import MosaicoConfianza from '../components/MosaicoConfianza.astro';
 import Componentes from '../components/Componentes.astro';
 import Formularios from '../components/Formularios.astro';
 // Las fuentes son los .woff2 EXACTOS de Google, no @fontsource: con el Inter variable de
@@ -62,6 +63,11 @@ import '../styles/disenio/base.css';
 // donde viven los parches sobre clases de Webflow. Hoy solo lleva comentarios: no emite una
 // sola regla, asi que el CSS construido no cambia y el hash del bundle se queda donde estaba.
 import '../styles/home.css';
+// EL HEROE DE AREA DE SERVICIO (R9-HERO, continuacion). NO cabe en home.css: home.css
+// declara alcance de 1 sola ruta (ver su cabecera) y este hero vive en 55 (53 de
+// pool-builders/ via plantilla-pool-builders.json + los 2 where-we-serves/*.astro). Va
+// DESPUES de home.css y ANTES de blog.css, mismo criterio de orden que el resto de la capa.
+import '../styles/hero-zona.css';
 // La seccion de BLOG (R9-BLOG-01). NO cabe en home.css y por eso tiene fichero propio: la
 // seccion se pinta en 63 rutas —1 index + 9 country/ + las 53 de pool-builders/ via
 // plantilla-pool-builders.json—, asi que un fichero llamado `home` mentiria sobre su alcance
@@ -207,6 +213,7 @@ const jsonLd = seo.jsonLd ?? [];
     <slot name="tras-pie" />
     <ClickToCall />
     <Interacciones />
+    <MosaicoConfianza />
     <Componentes />
     <Formularios />
   </body>

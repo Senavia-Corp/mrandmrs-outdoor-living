@@ -71,11 +71,45 @@
    filtro sobre TODO el fondo. El velo ya no tiene canto: arranca en 72 % y sube a 80 %
    al pie. La seccion entera queda >=72 %, o sea que el blanco da >=6,60:1 en CUALQUIER
    punto del heroe, no solo bajo el texto: mas margen que antes, no menos. Los 8 puntos
-   de degradado que quedan son profundidad, no proteccion — plano al 72 % cumpliria.  */
-.mm-hero{background-image:linear-gradient(to bottom,
-  color-mix(in srgb,var(--mm-navy) 72%,transparent) 0%,
-  color-mix(in srgb,var(--mm-navy) 76%,transparent) 45%,
-  color-mix(in srgb,var(--mm-navy) 80%,transparent) 100%)}
+   de degradado que quedan son profundidad, no proteccion — plano al 72 % cumpliria.
+
+   SUPERADO el 3-sep-2026, tambien por Sebastian: tras comparar con el heroe de Pergola
+   Plus (mismo stack), pidio priorizar que el video se aprecie — banda central casi
+   transparente, oscuro solo donde vive el texto — en vez de la cobertura total de
+   arriba. El suelo de contraste NO baja: el alfa navy minimo para 4,5:1 contra el peor
+   pixel real de este video (blanco puro, la piedra del borde) sigue siendo ~60-61 %,
+   igual que arriba.
+
+   Primer intento (mismo dia): banda oscura desde 62% de altura. Medido en el DOM
+   construido (getBoundingClientRect, viewport 1280x720) que NO es donde vive el texto:
+   las badges caen en 14,9-22,8%, el h1 en 29,4-56,9%, el subtitulo en 58,3-70,8%, los
+   botones en 78,9-86,7%. El h1 quedaba bajo el 18% "claro" durante mas de la mitad de su
+   alto — ilegible en produccion. Corregido para proteger donde vive el texto SIN
+   backing propio (h1 y subtitulo, blancos sobre el video) y dejar claro donde el fondo
+   ya no importa: las badges van sobre pastilla blanca opaca y los botones sobre
+   dorado/blanco opacos — a esos dos el velo no los protege, no hace falta que los tape.
+   Por eso la banda oscura (78%) empieza en 27% (justo antes del h1) y se mantiene hasta
+   73% (justo despues del subtitulo); arriba de las badges y debajo de los botones se
+   aclara otra vez, que es donde mas se nota el video. Contraste real verificado con
+   canvas sobre el frame en vivo (no solo teoria): mismo metodo aplicado al heroe de area
+   de servicio (ver hero-zona.css) dio 8,09-8,32:1 contra el peor pixel real, muy por
+   encima del suelo de 4,5:1 — no repetido aqui por ser el mismo video y la misma formula.
+   Ver src/styles/hero-zona.css para el mismo criterio en el heroe de area de servicio
+   (con sus propias medidas, distinto bloque de texto), y las reglas de layout debajo:
+   alineado a la izquierda y anclado abajo en vez de centrado. El `padding-bottom` nuevo
+   reemplaza el que traia Webflow para el diseno centrado (140px+ a movil): con el bloque
+   anclado abajo eso dejaba un hueco vacio de mas de 200px antes del pie del heroe, medido
+   en 375px. 48px = el mismo valor que usa Pergola Plus en su propio hero (padding-bottom:
+   3rem).  */
+.mm-hero{align-items:flex-end;padding-bottom:var(--mm-e-48);background-image:linear-gradient(to bottom,
+  color-mix(in srgb,var(--mm-navy) 35%,transparent) 0%,
+  color-mix(in srgb,var(--mm-navy) 20%,transparent) 14%,
+  color-mix(in srgb,var(--mm-navy) 78%,transparent) 27%,
+  color-mix(in srgb,var(--mm-navy) 78%,transparent) 73%,
+  color-mix(in srgb,var(--mm-navy) 30%,transparent) 86%,
+  color-mix(in srgb,var(--mm-navy) 35%,transparent) 100%)}
+.mm-hero .hero-home-block{margin-left:0;max-width:800px}
+.mm-hero .wrapper-main-hero{text-align:left;align-items:flex-start}
 
 /* Punto 5 — el `text-shadow: 1px 1px 3px/4px #000` de 991 y 479 era el parche de quien
    notó el punto 4 y lo tapó solo en móvil. Con velo de verdad sobra.
@@ -87,13 +121,13 @@
    el subtítulo 950, el 86 %. Se resuelve por MEDIDA, no por tamaño: a --mm-medida
    (650 px) el subtítulo pasa a 3 líneas cortas y se lee como pie de titular. La h1 NO
    se toca — ya son 60 px, por encima de cualquier paso del sistema. */
-.mm-hero .subheading-hero{max-width:var(--mm-medida);margin-inline:auto}
+.mm-hero .subheading-hero{max-width:var(--mm-medida);margin-inline:0}
 
 /* Punto 2 — el bloque ocupaba 401 px de 900 (44,6 %). El aire se reparte en tres zonas
    en vez de acumularse arriba y abajo. Medido después: 55,3 %. */
-.mm-hero .text-divider-hero{margin-bottom:var(--mm-e-32);
+.mm-hero .text-divider-hero{justify-content:flex-start;margin-bottom:var(--mm-e-32);
   grid-column-gap:var(--mm-e-8);grid-row-gap:var(--mm-e-8)}
-.mm-hero .wrapper-buttons-center{margin-top:var(--mm-e-32)}
+.mm-hero .wrapper-buttons-center{justify-content:flex-start;margin-top:var(--mm-e-32)}
 
 /* Punto 1 — el CTA medía 181×38,4 px: el 0,53 % del héroe, y a 479 caía a 162×36,4,
    por debajo de los 44 px de objetivo táctil de WCAG 2.2. `line-height:100%` era lo
@@ -124,4 +158,5 @@
     min-height:calc(var(--mm-e-48) + var(--mm-e-8));padding-inline:var(--mm-e-48)}
   .mm-hero .text-divider-hero{margin-bottom:var(--mm-e-48)}
   .mm-hero .wrapper-buttons-center{margin-top:var(--mm-e-48)}
+  .mm-hero .hero-home-block{max-width:880px}
 }
