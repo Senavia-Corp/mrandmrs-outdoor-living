@@ -201,13 +201,31 @@
 
 /* El CTA de la columna. `.button-styles` pinta en 114 rutas: acotado por `.box-info-contact`.
  * Gana a propio.css (`.button-styles`, 0-1-0) por especificidad (0-2-0), no por orden. */
+/* EL DEGRADADO METALICO, APLANADO — y el motivo es el TEXTO, no el borde.
+ * `.button-styles` trae de Webflow un degradado de 5 paradas (#f4b248 -> #d99933 25% ->
+ * #edb660 50% -> #d99933 75% -> #f4b248), asi que el texto navy cae sobre una parada
+ * distinta segun donde toque cada letra. Medido en produccion, la parada mas oscura
+ * (#d99933) deja el texto en 6,35:1; al oro liso del token sube a 8,40:1, que es el par de
+ * la casa y el unico de la marca que pasa AAA. Es la misma correccion que los otros dos
+ * botones de esta pagina ya llevan, asi que ademas los tres quedan iguales.
+ *
+ * LO QUE NO SE HACE, y se dice porque dos frentes lo han planteado: NO se le pone un borde
+ * para llegar a los 3:1 de WCAG 1.4.11. El limite del boton contra el blanco da 1,86:1, pero
+ * 1.4.11 exige esos 3:1 a lo que IDENTIFICA el control, y estos botones se identifican por
+ * su TEXTO —8,40:1, muy por encima de 1.4.3— no por su silueta. Ponerle un borde cambiaria
+ * la identidad de todos los CTA del sitio para cumplir un criterio que no aplica. El oro
+ * como fondo de CTA con tinta navy es decision medida del sistema (tokens.css) y no se
+ * rediscute aqui. */
 .box-info-contact .button-styles {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-height: 44px;
   padding: var(--mm-e-12) var(--mm-e-24);
+  background-image: none;
+  background-color: var(--mm-accion);   /* tinta navy encima ................. 8,40:1 */
 }
+.box-info-contact .button-styles:hover { background-color: var(--mm-accion-hover); }
 
 /* ── 4 · EL FORMULARIO: RITMO ─────────────────────────────────────────────────
  * `align-content` NO ES DECORACION AQUI, y la razon no es la que parece. Webflow declara
@@ -592,3 +610,68 @@
   .form-block .success-message-form .button { transition: none; }
   .form-block .success-message-form .button:active { transform: none; }
 }
+
+/* ── 10 · EL WIDGET DE TURNSTILE ──────────────────────────────────────────────
+ * AVISO DE ESTIMACION, VIA EL DIRECTOR, Y AQUI NO ERA LO MISMO. En su pagina el CTA se sale a
+ * 479; aqui no. `Formularios.astro` inserta `<div class="mm-turnstile">` como hermano del
+ * boton de envio, o sea dentro del ultimo `.form-div`, y el widget de Cloudflare es un iframe
+ * de 300x65 px que NO se puede encoger por CSS: es de un tercero.
+ *
+ * MEDIDO reproduciendo la insercion exacta, con el widget pintado:
+ *
+ *     ancho   x del widget   ancho util del .form-div   desborde
+ *      400        48..348              304                0
+ *      375        48..348              279                0   <- cabe en pantalla pero se come
+ *      350        48..348              254                0      el padding derecho del panel
+ *      348        48..348              252                0   <- el limite exacto
+ *      344        48..348              248                4 px
+ *      320        48..348              224               28 px
+ *
+ * O sea que el umbral es 348 px, y por debajo aparece barra horizontal en el formulario de
+ * lead. Ningun entorno donde se puede medir lo enseña: Turnstile no pinta fuera del dominio
+ * registrado, asi que ni el build local ni la URL de Vercel lo tienen, y por eso mis seis
+ * anchos daban 0 px de desborde. Es EXACTAMENTE «la ausencia de senal leida como senal buena».
+ *
+ * EL ARREGLO NO PUEDE SER UN ESCALADO, y lo se porque lo intente y lo medi. `transform:
+ * scale(min(1, calc((100vw - 96px) / 300)))` parece la solucion elegante —resuelve el factor
+ * de forma continua sin necesitar un breakpoint en 348, que no esta permitido— pero es CSS
+ * INVALIDO: dividir una longitud entre un numero da una LONGITUD, y `scale()` exige un numero
+ * adimensional. El navegador descarta la declaracion entera y en silencio. Medido: la escala
+ * salia 1.000 en los diez anchos y el desborde seguia intacto. Una regla muerta que parece
+ * viva es peor que no tener regla.
+ *
+ * Asi que se aplica la regla de la casa para contenido mas ancho que su columna: que scrollee
+ * DENTRO de su propia caja y que el documento no tenga barra horizontal nunca. No hay
+ * breakpoint, no hay `transform` —o sea, ningun contexto de apilamiento nuevo— y por encima
+ * de 348 px no cambia absolutamente nada porque no hay nada que desbordar.
+ *
+ * `overscroll-behavior-x: contain` para que arrastrar el captcha no arrastre la pagina detras.
+ * `max-width: 100%` es lo que hace que la caja se quede en su columna en vez de estirarse con
+ * el iframe. */
+.form .mm-turnstile {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+/* Y ANTES DE DEJARLO SCROLLEAR, DARLE EL AIRE QUE FALTA. Con el scroll a secas, a 375 px —el
+ * ancho de movil mas comun— quedaban 21 px por arrastrar: el usuario tiene que empujar el
+ * captcha para ver su mitad derecha, y eso es friccion justo en el ultimo paso del formulario
+ * de lead. El widget mide 300 y a 375 la columna da 279.
+ *
+ * 12 px de margen negativo a cada lado devuelven 24 y lo dejan en 303: entra entero. Se come
+ * la mitad del padding del panel, no todo, asi que sigue leyendose como parte de la tarjeta.
+ * Solo por debajo de 480, que es un breakpoint permitido: de ahi arriba sobra sitio y el
+ * widget se alinea con los campos. */
+.form .mm-turnstile {
+  margin-inline: calc(var(--mm-e-12) * -1);
+  /* El `max-width: 100%` de arriba NO basta: el porcentaje se resuelve contra el ancho del
+   * PADRE, no contra el hueco disponible, asi que con solo el margen negativo la caja seguia
+   * midiendo 279 px y el scroll interno no bajaba. Medido. Hay que ampliar el tope los mismos
+   * 24 px que el margen recupera. */
+  max-width: calc(100% + var(--mm-e-12) * 2);
+}
+@media (min-width: 480px) {
+  .form .mm-turnstile { margin-inline: 0; max-width: 100%; }
+}
+
