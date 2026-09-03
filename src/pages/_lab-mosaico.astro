@@ -1,0 +1,106 @@
+---
+/**
+ * LABORATORIO — mosaico animado de `.trusted-section`, de 9 rutas a 80. NO ES UNA PAGINA DEL
+ * SITIO. Encargo: "el mosaico animado de .trusted-section" (Marion County, R14 pendiente de
+ * numerar — ver ABIERTO en el plan).
+ *
+ * EL MARCADO NO SE ESCRIBE AQUI: se lee de `.vercel/output/static/services/.../index.html`
+ * (mismo patron que `_lab-obra.astro`), asi que la columna HOY es byte a byte la de las 71
+ * rutas estaticas. La columna PROPUESTA parte del MISMO marcado (esta comprobado que es
+ * identico en las 80 rutas) y solo le anade la clase `.lab--nuevo`, que activa el CSS de abajo
+ * mas el observer del <script> al final del fichero.
+ *
+ * El viejo embed WAAPI de country/ NO se muestra corriendo aqui: un <script> inyectado por
+ * `set:html` no se ejecuta en el DOM (asi es innerHTML), asi que no serviria de nada
+ * extraerlo. Para ver el efecto actual en vivo: /country/custom-pool-builders-marion-county-fl.
+ */
+import fs from 'node:fs';
+import path from 'node:path';
+import Base from '../layouts/Base.astro';
+
+const DIST = path.join(process.cwd(), '.vercel/output/static/services/custom-deck-builders-in-north-south-florida/index.html');
+const html = fs.readFileSync(DIST, 'utf8');
+
+/** Corta una <section> con cierre equilibrado — igual que `_lab-obra.astro`. */
+function seccion(clase: string): string {
+  const i = html.indexOf(`<section class="${clase}"`);
+  if (i < 0) throw new Error(`no encuentro .${clase} en ${DIST}`);
+  const re = /<\/?section\b/g; re.lastIndex = i;
+  let d = 0;
+  for (let m; (m = re.exec(html));) {
+    d += m[0] === '<section' ? 1 : -1;
+    if (d === 0) return html.slice(i, m.index + '</section>'.length);
+  }
+  throw new Error(`.${clase} no cierra`);
+}
+
+const CONFIANZA = seccion('trusted-section');
+---
+
+<Base titulo="LAB mosaico" descripcion="laboratorio interno" conPie={false}>
+  <div class="lab-hoja">
+    <p class="lab-cinta lab-cinta--hoy">HOY · las 71 rutas estáticas, sin tocar — extraído de /services/custom-deck-builders-in-north-south-florida</p>
+    <div class="lab" set:html={CONFIANZA} />
+
+    <p class="lab-cinta">PROPUESTA · mismo marcado, con el bucle nuevo — entra en vista, corre en bucle, respeta prefers-reduced-motion</p>
+    <div class="lab lab--nuevo" set:html={CONFIANZA} />
+
+    <p class="lab-nota">
+      El efecto ACTUAL (WAAPI, 9 rutas de country/) no se puede reproducir aquí — un
+      &lt;script&gt; inyectado con <code>set:html</code> no se ejecuta. Para verlo en vivo:
+      <a href="/country/custom-pool-builders-marion-county-fl">/country/custom-pool-builders-marion-county-fl</a>.
+    </p>
+  </div>
+</Base>
+
+<style is:global>
+  /* ═══ CROMO DEL LABORATORIO — no viaja a ninguna hoja ═══ */
+  .lab-cinta { background: #111; color: #fff; font: 600 13px/1.5 Inter, sans-serif;
+    margin: 0; padding: 10px 16px; position: sticky; top: 0; z-index: 99; }
+  .lab-cinta--hoy { background: var(--mm-navy) }
+  .lab-nota { font: 400 13px/1.5 Inter, sans-serif; color: #444; padding: 16px; margin: 0; }
+  .lab-nota code { background: #eee; padding: 1px 5px; border-radius: 3px; }
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+   * EL BUCLE NUEVO — sustituye al embed WAAPI de country/. Mismos 4 estados reales que el
+   * script viejo (col1/col2 en flex-basis %, row1/row2 en height %), pero como @keyframes de
+   * verdad en vez de 5 llamadas a Element.animate() con un 5º paso muerto (states[4]==states[0]
+   * en el script viejo: 1,3s de cada 6,5s no movian nada). Un solo ciclo de 5200ms = 4 tramos
+   * de 1300ms (1100ms de transicion + 200ms de pausa, igual que STEP_MS/HOLD_MS del script
+   * viejo), en 0/25/50/75/100%. Easing identico al de siempre: cubic-bezier(0.22,1,0.36,1).
+   *
+   * Gateado por `[data-mosaico-visible]`, que pone el <script> de abajo con un
+   * IntersectionObserver — mismo threshold (0.25) y mismo gesto (parar al salir) que el
+   * script viejo, pero sin re-implementar el avance de estados a mano. */
+  .lab--nuevo .grid-wrapper { overflow: visible; }
+
+  @keyframes mm-mosaico-c1 { 0%,21%{flex-basis:50%} 25%,46%{flex-basis:70%} 50%,75%{flex-basis:30%} 96%,100%{flex-basis:50%} }
+  @keyframes mm-mosaico-c2 { 0%,21%{flex-basis:50%} 25%,46%{flex-basis:30%} 50%,75%{flex-basis:70%} 96%,100%{flex-basis:50%} }
+  @keyframes mm-mosaico-r1 { 0%,25%{height:50%} 46%,50%{height:70%} 71%,75%{height:30%} 96%,100%{height:50%} }
+  @keyframes mm-mosaico-r2 { 0%,25%{height:50%} 46%,50%{height:30%} 71%,75%{height:70%} 96%,100%{height:50%} }
+
+  .lab--nuevo .grid-column.column1 { animation: mm-mosaico-c1 5.2s cubic-bezier(0.22,1,0.36,1) infinite; animation-play-state: paused; }
+  .lab--nuevo .grid-column.column2 { animation: mm-mosaico-c2 5.2s cubic-bezier(0.22,1,0.36,1) infinite; animation-play-state: paused; }
+  .lab--nuevo .grid-row.row1 { animation: mm-mosaico-r1 5.2s cubic-bezier(0.22,1,0.36,1) infinite; animation-play-state: paused; }
+  .lab--nuevo .grid-row.row2 { animation: mm-mosaico-r2 5.2s cubic-bezier(0.22,1,0.36,1) infinite; animation-play-state: paused; }
+
+  .lab--nuevo .grid-wrapper[data-mosaico-visible] .grid-column,
+  .lab--nuevo .grid-wrapper[data-mosaico-visible] .grid-row { animation-play-state: running; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lab--nuevo .grid-column, .lab--nuevo .grid-row { animation: none; }
+  }
+</style>
+
+<script>
+  // Mismo gesto que el embed viejo: IntersectionObserver a 0.25, corre en vista, para al salir.
+  // A diferencia del viejo, esto no calcula nada — solo alterna un atributo, el @keyframes
+  // hace el resto. Se ata SOLO a `.lab--nuevo`: en produccion iria en Base.astro, sin ese scope.
+  const w = document.querySelector('.lab--nuevo .grid-wrapper');
+  if (w) {
+    new IntersectionObserver(
+      ([e]) => w.toggleAttribute('data-mosaico-visible', e.isIntersecting),
+      { threshold: 0.25 },
+    ).observe(w);
+  }
+</script>

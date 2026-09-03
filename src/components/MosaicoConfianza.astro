@@ -1,0 +1,19 @@
+---
+/**
+ * Arranca/para el bucle del mosaico de `.trusted-section` (src/styles/intro.css §5) al
+ * entrar/salir de vista — mismo threshold (0.25) y mismo gesto que traía el embed de Webflow
+ * que sustituye. Aparte de `Interacciones.astro`: ese fichero revela UNA VEZ y se desconecta
+ * (`unobserve` tras el primer disparo); esto es un bucle mientras la sección esté en pantalla,
+ * un tipo de movimiento distinto — mezclarlo ahí rompería su contrato.
+ */
+---
+
+<script>
+  const w = document.querySelector('.trusted-section .grid-wrapper');
+  if (w) {
+    new IntersectionObserver(
+      ([e]) => w.toggleAttribute('data-mosaico-visible', e.isIntersecting),
+      { threshold: 0.25 },
+    ).observe(w);
+  }
+</script>

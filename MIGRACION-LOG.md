@@ -3859,3 +3859,27 @@ anotado aquí, que es donde este repo guarda lo que la historia de git no cuenta
 La lección operativa, para quien herede esto: **ceder un fichero no basta si luego se vuelve a
 escribir en él.** Con nueve sesiones, el `git diff` del fichero hay que releerlo JUSTO antes de
 commitear, no cuando se acuerda el reparto.
+
+#### Nota de atribución sobre `36d3ed1` / `d35b260`
+
+El primer commit del hero con vídeo (`36d3ed1`) se llevó dentro, sin querer, cinco ficheros de
+un frente distinto (el mosaico animado de `.trusted-section`) que yo tenía recién restaurados y
+EN STAGE en ese instante — mismo mecanismo que `73f54c5`: un `git stash -u` mío para aislar un
+problema de `check:visual`, un `git stash pop` que chocó contra ficheros que el hero estaba
+escribiendo a la vez, y un `git checkout stash@{0} -- <ruta>` fichero a fichero para recuperar
+solo los míos justo cuando se commiteó el hero.
+
+**Se corrigió solo, con un `amend` de la propia sesión del hero** (`36d3ed1` → `d35b260`, mismo
+mensaje). El amend sacó cuatro de los cinco — `scripts/build-paginas.mjs`, `scripts/lib/captura.mjs`,
+`src/pages/lab/[v].astro`, `src/styles/intro.css` — que ahora vuelven a ser cambios míos sin
+commitear, donde deben estar. **Queda uno dentro todavía**: `src/layouts/Base.astro` (2 líneas,
+`import MosaicoConfianza` + `<MosaicoConfianza />`), que `d35b260` sigue llevando sin que su
+mensaje lo mencione. No lo saco yo con otro amend — es la tercera reescritura de la misma rama
+en diez minutos, y la rama sigue con una sesión activa encima; dos líneas de import declarativo,
+sin efecto si el resto del frente no está, es un riesgo menor que seguir tocando el commit de
+otro. El mosaico completo (`MosaicoConfianza.astro`, `_lab-mosaico.astro`, y los cuatro ficheros
+que sí volvieron) sigue sin commitear, pendiente de su propio commit cuando se decida.
+
+**No se reescribe la historia más allá de lo que la propia sesión del hero ya hizo.** La rama
+sigue sin publicar, pero con una sesión activa escribiendo encima ahora mismo un `reset`/`rebase`
+mío es peor que dos líneas de atribución imprecisa. Queda anotado aquí.

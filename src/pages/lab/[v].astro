@@ -32,12 +32,13 @@
  */
 const BANCOS = {
   secciones: () => import('../_lab-secciones.astro'),   // PULIDOR-2 · R10-SEC
+  mosaico: () => import('../_lab-mosaico.astro'),        // mosaico animado de .trusted-section
   // <tu-slug>: () => import('../_lab-<tu-slug>.astro'),
 };
 
 export function getStaticPaths() {
   if (!import.meta.env.DEV) return [];
-  return ['secciones'].map((v) => ({ params: { v } }));
+  return ['secciones', 'mosaico'].map((v) => ({ params: { v } }));
 }
 
 /* Nada de `return new Response(...)` aqui: en un proyecto `output: static` eso convierte la

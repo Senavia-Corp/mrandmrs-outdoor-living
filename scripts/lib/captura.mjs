@@ -41,6 +41,13 @@ export const CONGELAR_CSS = [
   '[class*="fs-marquee"] [class*="_list"]{transform:none!important}',
   // El cursor parpadeante de un <input> con foco entra en la captura.
   '*{caret-color:transparent!important}',
+  // El bucle del mosaico de .trusted-section (intro.css §5) es un @keyframes de verdad, no JS
+  // escribiendo estilo por fotograma como el marquee de arriba — así que animations:'disabled'
+  // de Playwright SÍ debería neutralizarlo, a diferencia del marquee. Pero el mecanismo que
+  // sustituye (el embed WAAPI viejo) dejó sospechado un problema de determinismo de captura sin
+  // diagnosticar del todo (MIGRACION-LOG.md, causa distinta), así que esto no se da por bueno
+  // sin probarlo: se clava también por CSS, sin esperar a que animations:'disabled' baste.
+  '.trusted-section .grid-column,.trusted-section .grid-row{animation-play-state:paused!important}',
 ].join('');
 
 /** Nombre de fichero de una ruta. `/` es `index`; el resto, la ruta sin la barra inicial. */

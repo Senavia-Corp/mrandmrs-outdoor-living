@@ -171,25 +171,60 @@
   outline-offset: var(--mm-foco-aire);
 }
 
-/* ── 5 · EL MOSAICO NO SE TOCA, Y ESTA MEDIDO POR QUE ─────────────────────────
+/* ── 5 · EL MOSAICO, YA NO ES EL EMBED DE WEBFLOW ─────────────────────────────
  *
- * EL MOTIVO ES EL PRESUPUESTO DE PIXELES, NO EL WAAPI. Conviene ser exacto porque la primera
- * version de este comentario culpaba al embed y NO se sostiene: el chat de intro leyo sus 4.459
- * caracteres enteros y solo escribe `col1/col2.style.flex` y `row1/row2.style.height`. NO toca
- * `border-radius` ni `.image`, asi que un radio unificado si funcionaria en las 80.
+ * Hasta aqui se dejaba fuera por un motivo real: el embed animaba con estilo EN LINEA (WAAPI,
+ * `fill:"forwards"`), que gana a cualquier regla de esta hoja sin `!important` — prohibido
+ * aqui. Una regla sobre `.grid-column`/`.grid-row` habria funcionado en 71 rutas y habria sido
+ * inerte, sin avisar, en las 9 de country/ que si traian el embed.
  *
- * Se deja fuera porque hoy los 8px de radio solo existen a partir de 1280 y unificarlo mueve
- * maqueta en 80 rutas por una mejora que nadie ha pedido. Entra cuando entre el resto, no de
- * pasada en una hoja que va a arreglar un suspenso de contraste.
+ * Se retira el embed (via `scripts/build-paginas.mjs`, no a mano en `_source/vivo/`) y el
+ * mosaico pasa a vivir aqui, como @keyframes de verdad — que si participa en la cascada. Con
+ * eso las 80 rutas quedan con el MISMO tratamiento por primera vez: el marcado ya era identico
+ * en las 80 (medido: `.grid-wrapper > .grid-column.column1/.column2 > .grid-row.row1/.row2` en
+ * las tres vias de generacion), solo faltaba el movimiento en 71.
  *
- * LO QUE SI HAY QUE SABER DEL EMBED, para quien venga a tocar el mosaico:
- *   · anima `flex` y `height` con `fill: "forwards"` y estilo EN LINEA, que gana a cualquier
- *     hoja sin `!important` — y `!important` esta prohibido aqui. Una regla sobre `.grid-column`
- *     o `.grid-row` funcionaria en 71 rutas y seria inerte en 9, sin avisar;
- *   · trae un `<style>` SIN AMBITO en el `<body>` que deja `.grid-wrapper` en
- *     `overflow: visible` contra el `hidden` de Webflow, ganando por orden a todo el `<head>`.
- *     Medido en navegador. */
+ * MISMOS 4 ESTADOS REALES QUE EL SCRIPT VIEJO, ni uno mas: `states[4]` del script viejo repetia
+ * `states[0]` byte a byte (50/50/50/50 dos veces), asi que 1,3s de cada 6,5s de bucle no movian
+ * un pixel. Aqui el ciclo es 5200ms = 4 tramos de 1300ms (1100ms de transicion + 200ms de pausa,
+ * los mismos STEP_MS/HOLD_MS del script viejo), en 0/25/50/75/100%, y en el 100% ya esta de
+ * vuelta en el estado inicial sin un tramo de mas.
+ *
+ * SIN `overflow:visible`. El embed viejo lo forzaba con un `<style>` sin ambito en el `<body>`
+ * porque no podia asumir nada del wrapper. Aqui si se puede medir: `.image` ya es
+ * `object-fit:cover;width:100%;height:100%` (webflow.css) y las cuatro parejas de porcentajes
+ * suman 100% en todo momento (columnas y filas), asi que nada pide salir de la caja — el
+ * `overflow:hidden` de Webflow se queda como estaba.
+ *
+ * EL OBSERVER que arranca/para el bucle vive en `src/scripts/mosaico-confianza.js`, cableado
+ * una vez en `Base.astro` — no en `Interacciones.astro`, que se da a si mismo un contrato
+ * cerrado (revelado de una sola vez, `data-w-id`/`porId`/`data-visto`) y esto es un bucle
+ * mientras este en pantalla, un tipo de movimiento distinto.
+ *
+ * ABIERTO, decidido con Sebastian y no resuelto aqui: el bucle sigue siendo infinito mientras
+ * la seccion este en pantalla — mismo caracter que ya tenia en las 9 rutas — lo que incumple
+ * WCAG 2.2.2 (movimiento automatico >5s sin pausa) en las 80, no solo en 9. Si se quiere cerrar
+ * el hueco, la via es acotar el bucle a 1-2 vueltas y asentarlo; no es parte de este cambio. */
+
+.trusted-section {
+  --mosaico-dur: 5.2s;
+  --mosaico-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes mm-mosaico-c1 { 0%, 21% { flex-basis: 50% } 25%, 46% { flex-basis: 70% } 50%, 75% { flex-basis: 30% } 96%, 100% { flex-basis: 50% } }
+@keyframes mm-mosaico-c2 { 0%, 21% { flex-basis: 50% } 25%, 46% { flex-basis: 30% } 50%, 75% { flex-basis: 70% } 96%, 100% { flex-basis: 50% } }
+@keyframes mm-mosaico-r1 { 0%, 25% { height: 50% } 46%, 50% { height: 70% } 71%, 75% { height: 30% } 96%, 100% { height: 50% } }
+@keyframes mm-mosaico-r2 { 0%, 25% { height: 50% } 46%, 50% { height: 30% } 71%, 75% { height: 70% } 96%, 100% { height: 50% } }
+
+.trusted-section .grid-column.column1 { animation: mm-mosaico-c1 var(--mosaico-dur) var(--mosaico-ease) infinite; animation-play-state: paused }
+.trusted-section .grid-column.column2 { animation: mm-mosaico-c2 var(--mosaico-dur) var(--mosaico-ease) infinite; animation-play-state: paused }
+.trusted-section .grid-row.row1 { animation: mm-mosaico-r1 var(--mosaico-dur) var(--mosaico-ease) infinite; animation-play-state: paused }
+.trusted-section .grid-row.row2 { animation: mm-mosaico-r2 var(--mosaico-dur) var(--mosaico-ease) infinite; animation-play-state: paused }
+
+.trusted-section .grid-wrapper[data-mosaico-visible] .grid-column,
+.trusted-section .grid-wrapper[data-mosaico-visible] .grid-row { animation-play-state: running }
 
 @media (prefers-reduced-motion: reduce) {
   .trusted-section .button-styles { transition: none }
+  .trusted-section .grid-column, .trusted-section .grid-row { animation: none }
 }

@@ -295,6 +295,13 @@ let blogsInsertados = 0;
  * comprobado al final contra 9. Los dos mecanismos son disjuntos por construccion: Condado no
  * pasa por el `if` de insercion y Estado/Servicios no tienen la seccion en su origen. */
 let blogsSustituidos = 0;
+/* El embed WAAPI del mosaico de `.trusted-section` (9 rutas de country/, huella `STEP_MS`
+ * dentro del `<script>` — mas fiable que la clase `.code-embed`, que es generica de Webflow y
+ * tambien la lleva el menu). Se retira aqui, no a mano en `_source/vivo/`: si algun dia se
+ * vuelve a correr `npm run vivo` contra el sitio real, un hand-edit se perderia y esto no.
+ * El bucle vive ahora en src/styles/intro.css §5 + src/components/MosaicoConfianza.astro,
+ * igual para las 80 rutas. Se COMPRUEBA al final contra 9. */
+let codeEmbedsEliminados = 0;
 const generadas = [];
 const porColeccion = {};
 const protegidas = [];
@@ -394,6 +401,12 @@ for (const [ruta] of RUTAS) {
     // regla de autor, asi que tambien romperia el revelado propio.
     //
     // No lo caza check:texto -innerText incluye lo que tiene opacity:0-; lo caza check:ix2.
+    for (const emb of [...n.querySelectorAll('.code-embed')]) {
+      if (/STEP_MS\s*=\s*1100/.test(emb.querySelector('script')?.textContent ?? '')) {
+        emb.remove();
+        codeEmbedsEliminados++;
+      }
+    }
     for (const el of n.querySelectorAll('[style*="opacity"]')) {
       const limpio = el.getAttribute('style').replace(/(^|;)\s*opacity\s*:\s*0(?!\.)\s*(?=;|$)/gi, '$1')
         .replace(/^;+|;+$/g, '').trim();
@@ -638,6 +651,9 @@ console.log('        esta en NO_REGENERAR y no se escribe: sigue con su propio S
 console.log('        Las 53 de pool-builders/ NO pasan por este generador — su migracion es');
 console.log('        manual, con scripts/migrar-blog-pool-builders.mjs (npm run plantillas la');
 console.log('        salta con «0 paginas · ya convertida»).\n');
+console.log(`  embed WAAPI del mosaico retirado en ${codeEmbedsEliminados} ficha(s) de country/`
+  + `${codeEmbedsEliminados === 9 ? '' : '   <<< SE ESPERABAN 9'}`);
+console.log('        El bucle nuevo vive en src/styles/intro.css §5, igual para las 80 rutas.\n');
 
 if (protegidas.length) {
   console.error('  ' + '='.repeat(74));
