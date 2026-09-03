@@ -454,6 +454,14 @@ for (const [ruta] of RUTAS) {
         hp.setAttribute('style', 'position:absolute;left:-9999px;width:1px;height:1px;opacity:0');
         form.appendChild(hp);
       }
+      // CASILLAS DE SERVICIO SIN VALOR. Las 14 de "Request Quote Form" comparten
+      // name="checkbox" y ninguna lleva `value`: el backend ve cuantas se marcaron, nunca
+      // cuales (docs/encargos/R12-EST.md, decision de Sebastian). Se corrige por texto de
+      // la etiqueta -no a mano por casilla- para que sobreviva si Webflow las reordena.
+      for (const cb of form.querySelectorAll('.services-form input[type="checkbox"][name="checkbox"]:not([value])')) {
+        const etiqueta = cb.closest('label')?.querySelector('strong')?.textContent?.trim();
+        if (etiqueta) cb.setAttribute('value', etiqueta);
+      }
     }
     for (const f of n.querySelectorAll('iframe[src^="https://mrandmrsoutdoorliving.com/"]')) {
       f.setAttribute('src', f.getAttribute('src').replace('https://mrandmrsoutdoorliving.com', ''));
