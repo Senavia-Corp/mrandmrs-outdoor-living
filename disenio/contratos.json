@@ -131,55 +131,55 @@
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/country/custom-pool-builders-broward-county-fl": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/country/custom-pool-builders-columbia-county-fl": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/country/custom-pool-builders-dixie-county-fl": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/country/custom-pool-builders-gilchrist-county-fl": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/country/custom-pool-builders-levy-county-fl": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/country/custom-pool-builders-marion-county-fl": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/country/custom-pool-builders-palm-beach-county-fl": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/country/custom-pool-builders-putnam-county-fl": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/industry-solutions": {
       "contrato": "rediseno",
@@ -191,319 +191,319 @@
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/archer-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/atlantis-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/beach-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/boca-raton-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/boynton-beach-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/cedar-key-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/chiefland-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/cross-city-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/dania-beach-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/davie-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/deerfield-beach-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/delray-beach-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/fanning-springs-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/fort-lauderdale-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/gainesville-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/gulf-stream-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/hallandale-beach-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/hawthorne-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/high-springs-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/hollywood-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/hypoluxo-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/juno-beach-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/jupiter-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/lake-city-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/lighthouse-point-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/manalapan-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/mcintosh-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/micanopy-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/miramar-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/newberry-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/north-palm-beach-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/ocala-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/ocean-ridge-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/old-town-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/palatka-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/palm-beach-gardens-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/parkland-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/pembroke-pines-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/plantation-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/pompano-beach-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/reddick-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/royal-palm-beach-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/south-palm-beach-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/southwest-ranches-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/tequesta-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/trenton-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/waldo-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/wellington-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/west-palm-beach-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/weston-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/williston-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/pool-builders/wilton-manors-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
     },
     "/services/custom-aluminum-pergola-builders-in-north-south-florida": {
       "contrato": "rediseno",
@@ -605,13 +605,13 @@
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): se añade el carrusel de blog, ausente hasta ahora en Estado — mismo componente CarruselBlog que ya usaban las 14 fichas de services/, con encabezado propio (\"Outdoor Living Insights for North/South Florida\"). Pendiente de aprobar mirando las capturas: el contrato sigue con la referencia del 31-ago-2026, que no tiene este bloque."
     },
     "/where-we-serves/custom-pool-builders-south-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
-      "motivo": "D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): se añade el carrusel de blog, ausente hasta ahora en Estado — mismo componente CarruselBlog que ya usaban las 14 fichas de services/, con encabezado propio (\"Outdoor Living Insights for North/South Florida\"). Pendiente de aprobar mirando las capturas: el contrato sigue con la referencia del 31-ago-2026, que no tiene este bloque."
     },
     "/blogs-tips": {
       "contrato": "rediseno",

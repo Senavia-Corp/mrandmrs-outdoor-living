@@ -127,31 +127,32 @@ function localizar(raiz) {
 }
 
 /**
- * JERARQUIA DE LA SECCION DE BLOG — R9-BLOG-01, y es una divergencia DELIBERADA respecto a
- * `_source/vivo/`.
+ * ENCABEZADO DEL CARRUSEL DE BLOG, POR RUTA — R11-BLOG-02.
  *
- * Webflow marca la cabecera de la seccion con `h2` y los titulos de las tarjetas con `h4`: se
- * salta el `h3`, asi que quien navegue por encabezados oye un nivel que no existe.
+ * `CarruselBlog.astro` ya no solo se inserta (R9-BLOG-01, `/services/`): tambien SUSTITUYE el
+ * `section.blog-section-page` que Condado ya traia en su origen, y se inserta de nuevo, esta
+ * vez en Estado. El generador solo puede dejar un marcador `<CarruselBlog />` SIN props -el
+ * mismo mecanismo que ya usa `ServiciosPorCategoria`-, asi que el encabezado propio de cada
+ * ruta (Estado a mano aqui abajo, Condado extraido de su `.header-blog` antes de descartarlo)
+ * se escribe a `src/data/blog-heading-por-ruta.json` y el componente se autolocaliza por
+ * `Astro.url.pathname`, exactamente como ya hace `ServiciosPorCategoria` con
+ * `servicios-categoria.json`.
  *
- * POR QUE VA EN EL GENERADOR Y NO A MANO. La seccion esta inlineada identica en 10 rutas, y 9
- * de ellas son DERIVADAS -llevan cabecera `// DERIVADO` y las reescribe este mismo script-.
- * Editarlas a mano dura hasta el siguiente `npm run paginas`, y se perderia en silencio. La
- * decima es `/`, que esta en NO_REGENERAR y por eso lleva el cambio escrito en su `.astro`.
- *
- * NO mueve `innerText`: cambia la etiqueta, no el texto. `check:texto` sigue al 100 %.
+ * ESTADO NO TIENE ENCABEZADO EN EL ORIGEN -la seccion no existe en `_source/vivo/where-we-serves_*.html`,
+ * es contenido nuevo- asi que el texto va a mano, calcado del patron ya usado en Condado
+ * (p.ej. Marion: "Outdoor Living Insights for Marion County" / "...tailored to North Florida
+ * homes."). Si Sebastian pide otro texto, es el UNICO contenido no derivado de todo el cambio.
  */
-function jerarquiaBlog(raiz) {
-  const titulos = raiz.matches?.('.blog-section-page')
-    ? [...raiz.querySelectorAll('h4')]
-    : [...(raiz.querySelectorAll?.('.blog-section-page h4') ?? [])];
-  for (const h4 of titulos) {
-    const h3 = h4.ownerDocument.createElement('h3');
-    for (const a of h4.attributes) h3.setAttribute(a.name, a.value);
-    h3.innerHTML = h4.innerHTML;
-    h4.replaceWith(h3);
-  }
-  return titulos.length;
-}
+const ENCABEZADOS_BLOG = {
+  '/where-we-serves/custom-pool-builders-north-florida': {
+    titulo: 'Outdoor Living Insights for North Florida',
+    entradilla: 'Explore expert tips on pool design, outdoor living trends, and maintenance strategies tailored to North Florida homes.',
+  },
+  '/where-we-serves/custom-pool-builders-south-florida': {
+    titulo: 'Outdoor Living Insights for South Florida',
+    entradilla: 'Explore expert tips on pool design, outdoor living trends, and maintenance strategies tailored to South Florida homes.',
+  },
+};
 
 /**
  * Saca los datos de `section.products-section`. Se llama YA LOCALIZADA, o sea despues de
@@ -286,11 +287,14 @@ const NO_REGENERAR = new Map([
 const protegida = (ruta) => [...NO_REGENERAR.keys()]
   .find((k) => (k !== '/' && k.endsWith('/') ? ruta.startsWith(k) : ruta === k));
 
-let titulosBlog = 0;   // h4 -> h3 de la seccion de blog (R9-BLOG-01)
-/* Cuenta las fichas de services/ que reciben el carrusel de blog. Se COMPRUEBA al final
- * contra 14: si sube, se ha colado en rutas que no son de servicio; si baja, alguna se ha
- * quedado sin el. Un «las que salgan» no comprobaria nada. */
+/* Cuenta las rutas de services/+where-we-serves/ que reciben el carrusel de blog POR
+ * INSERCION (§ mas abajo). Se COMPRUEBA al final contra 16: si sube, se ha colado en una ruta
+ * de mas; si baja, alguna se ha quedado sin el. Un «las que salgan» no comprobaria nada. */
 let blogsInsertados = 0;
+/* Y las que lo reciben por SUSTITUCION -Condado ya traia `.blog-section-page` en su origen-,
+ * comprobado al final contra 9. Los dos mecanismos son disjuntos por construccion: Condado no
+ * pasa por el `if` de insercion y Estado/Servicios no tienen la seccion en su origen. */
+let blogsSustituidos = 0;
 const generadas = [];
 const porColeccion = {};
 const protegidas = [];
@@ -312,7 +316,6 @@ for (const [ruta] of RUTAS) {
   const usados = new Set();
   const limpia = (n) => {
     localizar(n);
-    titulosBlog += jerarquiaBlog(n);
     /**
      * SERVICIOS POR CATEGORIA -> componente. Se sustituye la SECCION ENTERA, no un trozo, y eso
      * importa: el `<script>` de 6 KB que mueve las pestanas y el `<style>` que pinta la pestana
@@ -326,6 +329,27 @@ for (const [ruta] of RUTAS) {
       extraeServicios(n, ruta);
       usados.add('ServiciosPorCategoria');
       return MARCA + 'ServiciosPorCategoria' + MARCA;
+    }
+    /**
+     * CARRUSEL DE BLOG -> componente, por SUSTITUCION (R11-BLOG-02). Solo Condado trae esta
+     * seccion en su origen (y, en memoria, la home -protegida, nunca se escribe: ver
+     * `NO_REGENERAR`-). Antes de descartar el nodo se guarda su encabezado propio -"Outdoor
+     * Living Insights for Marion County"...- en `ENCABEZADOS_BLOG`, o `CarruselBlog` caeria al
+     * generico de la home y la ruta perderia su personalizacion.
+     *
+     * Se salta a proposito para rutas protegidas: la home usa su PROPIO `S_BLOG` cableado a
+     * mano -no el componente-, asi que una entrada `ENCABEZADOS_BLOG['/']` seria dato muerto
+     * que nadie lee, y ensuciaria el JSON derivado.
+     */
+    if (n.matches?.('section.blog-section-page')) {
+      if (!protegida(ruta)) {
+        const h2 = n.querySelector('.header-blog h2')?.textContent.trim();
+        const p = n.querySelector('.header-blog p')?.textContent.trim();
+        if (h2 && p) ENCABEZADOS_BLOG[ruta] = { titulo: h2, entradilla: p };
+        blogsSustituidos++;
+      }
+      usados.add('CarruselBlog');
+      return MARCA + 'CarruselBlog' + MARCA;
     }
     for (const s of n.querySelectorAll('script[src]')) {
       const src = s.getAttribute('src') ?? '';
@@ -443,29 +467,31 @@ for (const [ruta] of RUTAS) {
   }
 
   /**
-   * EL CARRUSEL DE BLOG EN LAS 14 FICHAS DE `services/` — y es una INSERCION, no una
-   * sustitucion, que es una capacidad que este generador no tenia.
+   * EL CARRUSEL DE BLOG EN LAS 14 FICHAS DE `services/` Y LAS 2 DE `where-we-serves/` — y es
+   * una INSERCION, no una sustitucion. R11-BLOG-02 sumo las 2 de Estado a la lista de R9-BLOG-01
+   * con el mismo mecanismo, para que tambien esas 2 acaben con el carrusel al final.
    *
-   * Hasta ahora solo REEMPLAZABA nodos que ya existian en el origen: `section.products-section`
-   * -> `ServiciosPorCategoria`, y los `div.elfsight-app-*` -> su widget. Aqui no hay nada que
-   * reemplazar: la seccion de blog NO existe en las fichas de servicio, y tampoco en el Webflow
-   * de origen -verificado, 0 coincidencias en `_source/vivo/services_*.html`-. Es contenido
-   * nuevo, no paridad.
+   * SIGUE SIN HABER NADA QUE REEMPLAZAR EN NINGUNA DE LAS 16: la seccion de blog no existe en
+   * `_source/vivo/services_*.html` NI en `_source/vivo/where-we-serves_*.html` -verificado, 0
+   * coincidencias en ambos-. Es contenido nuevo, no paridad. (Condado es la excepcion: SI la
+   * trae en su origen, y por eso va por SUSTITUCION mas arriba, no por aqui.)
    *
    * SE ACOTA POR PREFIJO DE RUTA y no por «si la pagina tiene .cta-footer»: ese `.cta-footer`
-   * esta en 114 paginas, asi que la condicion obvia habria puesto el carrusel en todas.
+   * esta en mas paginas de las 16, asi que la condicion obvia habria puesto el carrusel de mas.
    *
    * VA ANTES DE `.cta-footer` porque es donde lo pidio Sebastian: entre las reseñas y el CTA
    * del pie. En una ficha las secciones acaban en
    *     location -> testimonial-section -> social-media -> cta-footer -> logos-section
    *
-   * COSTE QUE HAY QUE TENER PRESENTE: son +32 lineas de `innerText` en cada una de las 14, y
+   * COSTE QUE HAY QUE TENER PRESENTE: son +32 lineas de `innerText` en cada una de las 16, y
    * `baseline/text/` NO se re-baseliniza nunca (§1.1). Por eso el bloque va DECLARADO en
-   * `check-texto.mjs`, derivado de `src/data/blogs.json`, igual que el de reseñas.
+   * `check-texto.mjs`, derivado de `src/data/blogs.json` (mas el encabezado por ruta de
+   * `blog-heading-por-ruta.json` para las 2 de Estado), igual que el de reseñas.
    */
+  const CON_BLOG_INSERTADO = ['/services/', '/where-we-serves/'];
   let acumulado = '';
   for (let n = menu.nextElementSibling; n && n !== pie; n = n.nextElementSibling) {
-    if (ruta.startsWith('/services/') && n.matches?.('section.cta-footer')) {
+    if (CON_BLOG_INSERTADO.some((p) => ruta.startsWith(p)) && n.matches?.('section.cta-footer')) {
       acumulado += MARCA + 'CarruselBlog' + MARCA;
       usados.add('CarruselBlog');
       blogsInsertados++;
@@ -584,6 +610,12 @@ fs.writeFileSync(path.join(RAIZ, 'src/data/servicios-categoria.json'),
   JSON.stringify(SERVICIOS, null, 2) + '\n');
 console.log(`\n  servicios-categoria.json  ${Object.keys(SERVICIOS).length} rutas`);
 
+// El encabezado del carrusel de blog, ruta a ruta (Estado a mano + Condado extraido). Lo lee
+// `CarruselBlog.astro` por `Astro.url.pathname`, mismo mecanismo que arriba.
+fs.writeFileSync(path.join(RAIZ, 'src/data/blog-heading-por-ruta.json'),
+  JSON.stringify(ENCABEZADOS_BLOG, null, 2) + '\n');
+console.log(`  blog-heading-por-ruta.json  ${Object.keys(ENCABEZADOS_BLOG).length} rutas`);
+
 if (sinMapear.size) {
   console.error(`\nROJO ${sinMapear.size} URLs del CDN sin entrada en el manifiesto:\n`);
   [...sinMapear].slice(0, 10).forEach((u) => console.error('   ' + u));
@@ -597,15 +629,15 @@ for (const [k, v] of Object.entries(porColeccion).sort((a, b) => b[1] - a[1])) {
 }
 const kb = generadas.reduce((a, [, , b]) => a + b, 0) / 1024;
 console.log(`\n  OK ${generadas.length} paginas · ${Math.round(kb)} kB de marcado`);
-// El numero cuenta lo TRANSFORMADO EN MEMORIA, no lo escrito: la seccion esta en 63 paginas de
-// `_source/vivo` (1 index + 9 country + 53 pool-builders) y de esas solo se escriben las 9. Sin
-// esta linea, un «630» al lado de «9 ficheros cambiados» parece un fallo y no lo es.
-console.log(`  blog: ${titulosBlog} titulo(s) h4 -> h3 en ${titulosBlog / 10} pagina(s) de _source`);
-console.log(`  carrusel de blog insertado en ${blogsInsertados} ficha(s) de services/`
-  + `${blogsInsertados === 14 ? '' : '   <<< SE ESPERABAN 14'}`);
-console.log('        se ESCRIBEN solo las que no estan en NO_REGENERAR (las 9 de country/).');
-console.log('        Las 53 de pool-builders/ llevan el cambio en src/data/plantilla-pool-builders.json,');
-console.log('        que ya no se rederiva: `npm run plantillas` la salta con «0 paginas · ya convertida».\n');
+console.log(`  carrusel de blog insertado en ${blogsInsertados} ficha(s) de services/+where-we-serves/`
+  + `${blogsInsertados === 16 ? '' : '   <<< SE ESPERABAN 16'}`);
+console.log(`  carrusel de blog sustituido en ${blogsSustituidos} ficha(s) de country/`
+  + `${blogsSustituidos === 9 ? '' : '   <<< SE ESPERABAN 9'}`);
+console.log('        (la home tambien trae la seccion en su origen y se cuenta en memoria, pero');
+console.log('        esta en NO_REGENERAR y no se escribe: sigue con su propio S_BLOG a mano.)');
+console.log('        Las 53 de pool-builders/ NO pasan por este generador — su migracion es');
+console.log('        manual, con scripts/migrar-blog-pool-builders.mjs (npm run plantillas la');
+console.log('        salta con «0 paginas · ya convertida»).\n');
 
 if (protegidas.length) {
   console.error('  ' + '='.repeat(74));

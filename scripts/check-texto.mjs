@@ -203,31 +203,51 @@ function lineasResenas() {
 }
 
 /**
- * ── EL CARRUSEL DE BLOG EN `services/` (R10) — bloque DECLARADO, acotado POR RUTA ──────
+ * ── EL CARRUSEL DE BLOG EN `services/`+`where-we-serves/` (R10+R11-BLOG-02) — bloque
+ * DECLARADO, acotado POR RUTA ──────────────────────────────────────────────────────────
  *
- * La seccion se añade a las 14 fichas de `services/` y aporta 32 lineas de `innerText`:
- * titulo, entradilla y 10 posts x 3 (titulo, resumen, «Read More»). `baseline/text/` NO se
- * re-baseliniza nunca (§1.1), asi que se DECLARA en vez de absorberse.
+ * La seccion se añade a las 14 fichas de `services/` y a las 2 de `where-we-serves/`, y aporta
+ * 32 lineas de `innerText`: titulo, entradilla y 10 posts x 3 (titulo, resumen, «Read More»).
+ * `baseline/text/` NO se re-baseliniza nunca (§1.1), asi que se DECLARA en vez de absorberse.
  *
  * SE ACOTA POR RUTA, y esta es la diferencia con el bloque de reseñas: en la HOME esta misma
  * seccion SI esta en el baseline —es contenido del Webflow de origen—, asi que descontarla
  * alli pondria `/` en rojo por 32 lineas que faltan. El de reseñas podia ir por marcador
  * porque las reseñas son nuevas en las 83; este no.
  *
+ * CONDADO Y CIUDAD NO ESTAN AQUI A PROPOSITO. Esas 9+53 rutas YA traian la seccion en su
+ * baseline -es contenido del Webflow de origen, R11-BLOG-02 solo cambio de donde sale el HTML,
+ * no el texto-, asi que la comparacion normal contra `baseline/text/` ya las cubre sin declarar
+ * nada. Si algun dia salen en rojo aqui, es señal real: el texto cambio de verdad.
+ *
  * El formateo se escribe AQUI y no se importa de `CarruselBlog.astro`, por lo mismo que en
  * reseñas: una puerta que deriva lo que espera del codigo que mide es `f(x) === f(x)`, verde
- * siempre. Se comparte el DATO (`src/data/blogs.json`), no el formateo.
+ * siempre. Se comparte el DATO (`src/data/blogs.json` + `blog-heading-por-ruta.json`), no el
+ * formateo.
  */
-const BLOG_RUTA = '/services/';
+const BLOG_RUTAS = ['/services/', '/where-we-serves/'];
 
-/** Las lineas de `innerText` que emite CarruselBlog, en orden. */
-function lineasBlog() {
+/**
+ * Las lineas de `innerText` que emite CarruselBlog, en orden, para `ruta`.
+ *
+ * El encabezado (2 primeras lineas) es el GENERICO de `blogs.json` salvo que `ruta` tenga
+ * entrada propia en `blog-heading-por-ruta.json` — que es justo lo que trae Estado (a mano,
+ * "Outdoor Living Insights for North/South Florida") y lo que el componente mira primero. Los
+ * 10 posts (30 lineas restantes) son SIEMPRE los mismos: nunca cambian por ruta.
+ */
+function lineasBlog(ruta) {
   const f = path.join(RAIZ, 'src/data/blogs.json');
   if (!fs.existsSync(f)) return [];
   const d = JSON.parse(fs.readFileSync(f, 'utf8'));
   const posts = d.posts ?? [];
   if (!posts.length) return [];
   const norm = (s) => (s ?? '').replace(/ /g, ' ').replace(/\s+/g, ' ').trim();
+  const encabezadosF = path.join(RAIZ, 'src/data/blog-heading-por-ruta.json');
+  const propio = ruta && fs.existsSync(encabezadosF)
+    ? JSON.parse(fs.readFileSync(encabezadosF, 'utf8'))[ruta]
+    : null;
+  const titulo = propio?.titulo ?? d.titulo;
+  const entradilla = propio?.entradilla ?? d.entradilla;
 
   /**
    * ⚠️ LOS TITULOS VAN CAPITALIZADOS, Y NO ES UN CAPRICHO DEL DATO.
@@ -256,8 +276,8 @@ function lineasBlog() {
   const capitaliza = (s) => s.replace(/(^|[\s(])(\p{Ll})/gu, (_, a, b) => a + b.toUpperCase());
 
   return [
-    capitaliza(norm(d.titulo)),
-    norm(d.entradilla),
+    capitaliza(norm(titulo)),
+    norm(entradilla),
     ...posts.flatMap((p) => [capitaliza(norm(p.titulo)), norm(p.resumen), norm(p.cta)]),
   ];
 }
@@ -304,9 +324,9 @@ function sinElBloque(ruta, hay) {
     if (lineas === null) { bloqueQueFallo = 'el bloque de reseñas (src/data/resenas.json)'; return null; }
   }
 
-  // 3 · el carrusel de blog, SOLO en las fichas de services/. Los tres bloques son disjuntos.
-  if (ruta.startsWith(BLOG_RUTA)) {
-    const bl = lineasBlog();
+  // 3 · el carrusel de blog, SOLO en services/+where-we-serves/. Los tres bloques son disjuntos.
+  if (BLOG_RUTAS.some((p) => ruta.startsWith(p))) {
+    const bl = lineasBlog(ruta);
     if (bl.length) {
       lineas = quitaBloque(lineas, bl);
       if (lineas === null) { bloqueQueFallo = 'el bloque de blog (src/data/blogs.json)'; return null; }
@@ -350,9 +370,10 @@ const rojos = [];
  */
 const RESENAS_ESPERADAS = lineasResenas().length ? 83 : 0;
 
-/** Las 14 fichas de `services/`. Derivado del estado, igual que el de reseñas: si el dato se
- *  vacia, se esperan 0 y apagar la seccion no obliga a editar la puerta. */
-const BLOG_ESPERADAS = lineasBlog().length ? 14 : 0;
+/** Las 14 fichas de `services/` + las 2 de `where-we-serves/`. Derivado del estado, igual que
+ *  el de reseñas: si el dato se vacia, se esperan 0 y apagar la seccion no obliga a editar la
+ *  puerta. */
+const BLOG_ESPERADAS = lineasBlog().length ? 16 : 0;
 
 for (const ruta of RUTAS) {
   const slug = aSlug(ruta);
@@ -437,8 +458,8 @@ for (const ruta of RUTAS) {
     .filter((l) => !declaradas.has(l)).map(traduce).join('\n');
   const bruto = (await textoNormalizado(pag)).trimEnd();
   if (bruto.includes(RESENAS_MARCADOR)) conResenas++;
-  if (ruta.startsWith(BLOG_RUTA) && lineasBlog().length
-      && bruto.includes(lineasBlog()[0])) conBlog++;
+  if (BLOG_RUTAS.some((p) => ruta.startsWith(p)) && lineasBlog(ruta).length
+      && bruto.includes(lineasBlog(ruta)[0])) conBlog++;
   const hay = sinElBloque(ruta, bruto);
   if (hay === null) {
     mal++;
@@ -515,7 +536,7 @@ if (filtro.length) {
   console.log(`\n  ROJO blog: el bloque sale en ${conBlog} ruta(s) y se esperaban ${BLOG_ESPERADAS}.`);
 } else if (BLOG_ESPERADAS) {
   console.log(`  ok   blog: bloque declarado de ${lineasBlog().length} lineas, `
-    + `descontado en las ${conBlog} fichas de services/`);
+    + `descontado en las ${conBlog} fichas de services/+where-we-serves/`);
 }
 
 if (noCargaron) {

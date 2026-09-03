@@ -1,10 +1,14 @@
 ---
 // DERIVADO - no editar a mano. Lo genera scripts/build-plantillas.mjs por diff de las
 // 53 paginas que habia antes; la autocomprobacion las reprodujo 53/53 byte a byte.
-// Regenerar: npm run plantillas
+// Regenerar: npm run plantillas — SALVO el carrusel de blog: ese pipeline ya no puede
+// re-derivarse (las 53 paginas de origen no existen desde la Fase 6b, `npm run plantillas`
+// sale con «0 paginas · ya convertida»), asi que R11-BLOG-02 lo migro a mano, una vez, con
+// scripts/migrar-blog-pool-builders.mjs. Ese cambio puntual SI hay que mantenerlo a mano.
 import Base from '../../layouts/Base.astro';
 import ResenasGoogle from '../../components/widgets/ResenasGoogle.astro';
 import FeedInstagram from '../../components/widgets/FeedInstagram.astro';
+import CarruselBlog from '../../components/widgets/CarruselBlog.astro';
 import SEO_RUTAS from '../../data/seo-pool-builders.json';
 import LIT from '../../data/plantilla-pool-builders.json';
 
@@ -40,7 +44,7 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 const d = aplanar(Astro.props.doc);
-const CAMPOS = [[null,{"c":"h1Title","tx":"","p":["",""]},null,{"c":"h2Title","tx":"","p":["",""]},null,{"c":"intro","tx":"","p":["",""]},null,{"c":"imagenIntro1.alt","tx":"","p":["<img src=\"/images/pool-builders/alachua-florida/custom-pool-pergola-outdoor-living-contractors-fl-1-.webp\" loading=\"lazy\" data-w-id=\"f72979fc-9196-9930-356a-1756486557d5\" alt=\"","\" class=\"image\">"]},null,{"c":"imagenIntro2.alt","tx":"","p":["<img src=\"/images/pool-builders/alachua-florida/luxury-outdoor-kitchen-pool-backyard-design-florida-1-.webp\" loading=\"lazy\" data-w-id=\"53f4d2e0-9a7a-0e16-e20a-ab8f9e03c935\" alt=\"","\" class=\"image\">"]},null,{"c":"imagenIntro3.alt","tx":"","p":["<img src=\"/images/pool-builders/alachua-florida/luxury-pool-builders-outdoor-living-florida-1-.webp\" loading=\"lazy\" data-w-id=\"8bad508e-9f02-2bc9-bf6d-6ac47990da3b\" alt=\"","\" class=\"image\">"]},null,{"c":"headingIntro","tx":"","p":["",""]},null,{"c":"paragraphIntro","tx":"","p":["",""]},null,{"c":"heading3DRendering","tx":"","p":["",""]},null,{"c":"paragraphReviews","tx":"","p":["",""]},null,{"c":"headingFeature","tx":"","p":["",""]},null,{"c":"paragraphFeatures","tx":"","p":["",""]},null,{"c":"headingPortfolio","tx":"","p":["",""]},null,{"c":"paragraphPortfolio","tx":"","p":["",""]},null,{"c":"headingReviews","tx":"","p":["",""]},null,{"c":"paragraphReviews","tx":"","p":["",""]},null],[null,{"c":"headingBlog","tx":"","p":["",""]},null,{"c":"paragraphBlog","tx":"","p":["",""]},null],[null]];
+const CAMPOS = [[null,{"c":"h1Title","tx":"","p":["",""]},null,{"c":"h2Title","tx":"","p":["",""]},null,{"c":"intro","tx":"","p":["",""]},null,{"c":"imagenIntro1.alt","tx":"","p":["<img src=\"/images/pool-builders/alachua-florida/custom-pool-pergola-outdoor-living-contractors-fl-1-.webp\" loading=\"lazy\" data-w-id=\"f72979fc-9196-9930-356a-1756486557d5\" alt=\"","\" class=\"image\">"]},null,{"c":"imagenIntro2.alt","tx":"","p":["<img src=\"/images/pool-builders/alachua-florida/luxury-outdoor-kitchen-pool-backyard-design-florida-1-.webp\" loading=\"lazy\" data-w-id=\"53f4d2e0-9a7a-0e16-e20a-ab8f9e03c935\" alt=\"","\" class=\"image\">"]},null,{"c":"imagenIntro3.alt","tx":"","p":["<img src=\"/images/pool-builders/alachua-florida/luxury-pool-builders-outdoor-living-florida-1-.webp\" loading=\"lazy\" data-w-id=\"8bad508e-9f02-2bc9-bf6d-6ac47990da3b\" alt=\"","\" class=\"image\">"]},null,{"c":"headingIntro","tx":"","p":["",""]},null,{"c":"paragraphIntro","tx":"","p":["",""]},null,{"c":"heading3DRendering","tx":"","p":["",""]},null,{"c":"paragraphReviews","tx":"","p":["",""]},null,{"c":"headingFeature","tx":"","p":["",""]},null,{"c":"paragraphFeatures","tx":"","p":["",""]},null,{"c":"headingPortfolio","tx":"","p":["",""]},null,{"c":"paragraphPortfolio","tx":"","p":["",""]},null,{"c":"headingReviews","tx":"","p":["",""]},null,{"c":"paragraphReviews","tx":"","p":["",""]},null],[],[],[null]];
 
 
 const TX = { '': esc, url: encodeURIComponent };
@@ -58,12 +62,19 @@ const B = LIT.map((tr, b) => tr.map((x, i) => {
   return valor(h, d);
 }).join(''));
 
+// headingBlog/paragraphBlog ya no son huecos de CAMPOS (R11-BLOG-02, pasaron a props
+// directas de CarruselBlog); esta guarda reemplaza la que perdian al salir de CAMPOS —
+// un campo vacio en Sanity revienta el build en vez de dejar un carrusel mudo.
+if (!d['headingBlog'] || !d['paragraphBlog']) throw new Error(`${slug}: falta headingBlog/paragraphBlog`);
+
 const { seo: SEO, ldCrudo: LD_CRUDO } = SEO_RUTAS[slug];
 ---
 <Base titulo={d["seo.title"]} descripcion={d["seo.description"]} ruta={`/pool-builders/${slug}`} seo={SEO} jsonLdCrudo={LD_CRUDO}>
   <Fragment set:html={B[0]} />
   <ResenasGoogle />
   <Fragment set:html={B[1]} />
-  <FeedInstagram />
+  <CarruselBlog titulo={d['headingBlog']} entradilla={d['paragraphBlog']} />
   <Fragment set:html={B[2]} />
+  <FeedInstagram />
+  <Fragment set:html={B[3]} />
 </Base>

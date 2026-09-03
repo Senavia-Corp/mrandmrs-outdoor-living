@@ -9,6 +9,18 @@
         "dev"
       ],
       "port": 4325
+    },
+    {
+      "name": "mrandmrs-dist",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4326",
+        "--directory",
+        ".vercel/output/static"
+      ],
+      "port": 4326
     }
   ]
 }

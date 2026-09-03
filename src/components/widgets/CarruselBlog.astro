@@ -18,16 +18,35 @@
  *
  * El motor del slider ya existe: `Componentes.astro` engancha por `[fs-slider-element="list"]`
  * y `src/data/sliders.json` ya trae la configuracion de `fs-slider-blog`.
+ *
+ * ENCABEZADO POR RUTA — Estado (2) y Condado (9). Esas paginas ya tenian, en el Webflow de
+ * origen, un titulo/entradilla propios ("Outdoor Living Insights for Marion County"...). El
+ * generador (`scripts/build-paginas.mjs`) solo inserta un marcador `<CarruselBlog />` SIN
+ * props — el mismo mecanismo que ya usa `ServiciosPorCategoria` — asi que el componente se
+ * autolocaliza por `Astro.url.pathname` contra `src/data/blog-heading-por-ruta.json`, IGUAL
+ * que hace `ServiciosPorCategoria.astro:62-67` con `servicios-categoria.json`. Ciudad, que SI
+ * renderiza el componente a mano en `[slug].astro`, pasa `titulo`/`entradilla` como props
+ * directas — de ahi que ambas vias convivan.
  */
 import datos from '../../data/blogs.json';
+import encabezados from '../../data/blog-heading-por-ruta.json';
 
 interface Props {
   /** Filtra por categoria de servicio. HOY NO SE PASA y no hay categorias en el dato:
    *  `blogs.json` las emite en `null`. Sin prop, o sin coincidencias, salen todos — que es
    *  lo decidido con Sebastian: los 10 ahora, el filtro cuando existan las categorias. */
   categoria?: string;
+  /** Encabezado propio. Si no viene, se busca por ruta en `blog-heading-por-ruta.json` y, si
+   *  tampoco hay entrada ahi (home, /services/), cae al generico de `blogs.json`. */
+  titulo?: string;
+  entradilla?: string;
 }
-const { categoria } = Astro.props;
+const { categoria, titulo, entradilla } = Astro.props;
+
+const ruta = Astro.url.pathname.replace(/(.)\/$/, '$1');
+const propio = (encabezados as Record<string, { titulo: string; entradilla: string }>)[ruta];
+const tituloFinal = titulo ?? propio?.titulo ?? datos.titulo;
+const entradillaFinal = entradilla ?? propio?.entradilla ?? datos.entradilla;
 
 const todos = datos.posts;
 const filtrados = categoria ? todos.filter((p) => p.categoria === categoria) : todos;
@@ -38,8 +57,8 @@ const posts = filtrados.length ? filtrados : todos;
 <section class="blog-section-page">
   <div class="w-layout-blockcontainer container-blog w-container">
     <div class="header-blog">
-      <h2>{datos.titulo}</h2>
-      <p>{datos.entradilla}</p>
+      <h2>{tituloFinal}</h2>
+      <p>{entradillaFinal}</p>
     </div>
     <div>
       <div fs-slider-type="cms" fs-slider-instance="fs-slider-blog" class="fs-slider-blog_instance">

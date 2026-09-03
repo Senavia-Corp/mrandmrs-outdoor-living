@@ -148,7 +148,18 @@ const SLIDERS = JSON.stringify(
 
   @media (prefers-reduced-motion: reduce) {
     [fs-marquee-element="list"][data-mm-marquee] { animation: none }
-    [fs-slider-element="list"][data-mm-slider] { scroll-behavior: auto }
+    /**
+     * `!important`, Y NO ES ESTILO: sin el, esta regla no hacia NADA. MEDIDO con
+     * `reducedMotion:'reduce'` en Playwright: `matchMedia(...).matches` daba `true` pero
+     * `getComputedStyle(lista).scrollBehavior` seguia devolviendo `smooth` — la regla perdia
+     * SIEMPRE contra el `lista.style.scrollBehavior = 'smooth'` que pone el script de mas
+     * abajo, porque un estilo en linea solo lo gana otro estilo en linea o un `!important`.
+     * Es la MISMA lección que ya dejo escrita `scripts/lib/captura.mjs` sobre el marquee -"el
+     * congelado le gana por !important, por eso los pixeles salen identicos"- aplicada aqui
+     * donde todavia faltaba: un visitante con "reducir movimiento" seguia viendo el slider
+     * deslizarse suave en cada clic, que es exactamente lo que esa preferencia pide evitar.
+     */
+    [fs-slider-element="list"][data-mm-slider] { scroll-behavior: auto !important }
   }
   @media print { .mm-lb { display: none } }
 </style>
@@ -320,6 +331,23 @@ const SLIDERS = JSON.stringify(
         const titulo = inst.closest('section')?.querySelector('h1, h2')?.textContent?.trim();
         lista.setAttribute('aria-label', titulo ? `${titulo} — carousel` : 'Carousel');
       }
+      /**
+       * HOME/END SE QUEDABAN FUERA DEL WCAG 2.1.1 DE ARRIBA.
+       *
+       * `←`/`→` ya funcionan solos -Chromium enruta las flechas al contenedor scrollable con
+       * foco, y de paso respetan `scroll-snap-type`, medido: un `ArrowRight` mueve exactamente
+       * un `paso()`, no un scroll de linea-. Home/End NO: son un atajo de PAGINA en Chromium
+       * (saltar arriba/abajo del documento) que no se redirige al elemento enfocado solo por
+       * tener foco y overflow horizontal. MEDIDO en /country/…-marion-…: con el foco en la
+       * lista, `End` dejaba `track.scrollLeft` en 0 -sin moverse- y `scrollY` de la PAGINA
+       * saltaba de 2347 a 6656 (el fondo del documento). Un usuario de teclado que llega al
+       * carrusel y pulsa End para ir a la ultima tarjeta se encontraria la pagina entera
+       * saltando al pie, no el carrusel avanzando.
+       */
+      lista.addEventListener('keydown', (ev) => {
+        if (ev.key === 'Home') { ev.preventDefault(); lista.scrollLeft = 0; }
+        else if (ev.key === 'End') { ev.preventDefault(); lista.scrollLeft = lista.scrollWidth; }
+      });
 
       /**
        * EL ANCHO DE LAS DIAPOSITIVAS NO ES UNA DECISION MIA.
@@ -346,11 +374,29 @@ const SLIDERS = JSON.stringify(
       const prev = inst.querySelector('[fs-slider-element="previous"]');
       const next = inst.querySelector('[fs-slider-element="next"]');
       const drag = inst.querySelector('[fs-slider-element="scrollbar-drag"]');
+      /**
+       * EL PASO TIENE DOS FUENTES DE SEPARACION POSIBLES, Y SOLO SE MEDIA UNA.
+       *
+       * `dimensiona()` escribe `marginRight` en linea SOLO cuando la instancia tiene entrada en
+       * sliders.json/sliders-diseno.json (`conf`). `fs-slider-resenas` no la tiene -no es un
+       * slider heredado de Finsweet, es el widget nativo de reseñas- y separa sus tarjetas con
+       * `gap` en `.mm-resenas__lista` (CSS, no JS). Con la formula vieja, `paso()` devolvia solo
+       * 380 (el ancho) y el clic pedia `scrollLeft += 380`; MEDIDO en /country/…-marion-…: el
+       * salto real que se veia en pantalla era 400 (380 + los 20px de gap), no por que esto
+       * funcionara, sino porque `scroll-snap-type:x mandatory` reencarrilaba el destino al punto
+       * de snap mas cercano -aqui, uno por delante, porque 380 cae mas cerca de 400 que de 0-.
+       * Funcionaba DE CASUALIDAD: con una tarjeta mas ancha o un gap mayor, esos mismos 380
+       * habrian caido mas cerca de 0 que de 400 y el clic en «next» no habria movido nada.
+       * Se suma el `column-gap` del propio contenedor: 0 en los sliders que ya vienen de
+       * `dimensiona()` (su gap vive en el marginRight en linea, no en CSS), y el de verdad en
+       * los que no tienen `conf` y separan por CSS. Ninguna instancia usa las dos vias a la vez.
+       */
       const paso = () => {
         const p = lista.firstElementChild;
         if (!p) return lista.clientWidth;
         const r = p.getBoundingClientRect();
-        return r.width + parseFloat(getComputedStyle(p).marginRight || 0);
+        const gapCss = parseFloat(getComputedStyle(lista).columnGap) || 0;
+        return r.width + parseFloat(getComputedStyle(p).marginRight || 0) + gapCss;
       };
 
       const refresca = () => {
@@ -372,6 +418,64 @@ const SLIDERS = JSON.stringify(
           if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); b.click(); }
         });
       }
+
+      /**
+       * LA BARRA ERA UN INDICADOR, NO UN CONTROL — MEDIDO, no supuesto.
+       *
+       * `refresca()`, arriba, ya la pinta -ancho y posicion siguen a `scrollLeft`-, pero nada
+       * escuchaba al reves: agarrar el pulgar y arrastrar no movia un pixel el track. Lo
+       * confirme con un arrastre de raton sintetico en las 3 instancias de una pagina de
+       * condado (`fs-slider-gallery`, `-projects`, `-resenas`): `scrollLeft` antes y despues,
+       * identico los 3 casos. El pedido explicito era «scrollbar arrastrable», asi que esto
+       * completa lo que `refresca()` ya daba por sentado que existia.
+       *
+       * Pointer Events, no mousedown/touchmove: un solo listener cubre raton y dedo, y
+       * `setPointerCapture` mantiene el arrastre aunque el puntero salga del pulgar -sin eso,
+       * un arrastre rapido lo pierde a medio camino, que es peor que no tener arrastre-.
+       * `touch-action:none` en el pulgar evita que el propio gesto intente ademas paginar la
+       * pantalla en movil: el area es pequena (1rem de alto) y facil de rozar en diagonal.
+       *
+       * Al soltar, redondea al `paso()` mas cercano. Sin esto el arrastre deja el track en
+       * cualquier `scrollLeft` -el mandatory de scroll-snap no se aplica a una escritura
+       * directa de `scrollLeft`, solo a gestos que el navegador reconoce como tales-, y una
+       * tarjeta a medias tras soltar es exactamente el «salto» que este auditor existe para
+       * cazar.
+       */
+      if (drag) {
+        const barra = inst.querySelector('[fs-slider-element="scrollbar"]') ?? drag.parentElement;
+        drag.style.touchAction = 'none';
+        let activo = false, inicioX = 0, inicioScroll = 0;
+        drag.addEventListener('pointerdown', (ev) => {
+          const max = lista.scrollWidth - lista.clientWidth;
+          if (max <= 0) return;
+          activo = true;
+          inicioX = ev.clientX;
+          inicioScroll = lista.scrollLeft;
+          drag.setPointerCapture(ev.pointerId);
+          lista.style.scrollBehavior = 'auto';   // arrastre 1:1 con el dedo/raton, sin inercia de por medio
+          ev.preventDefault();
+        });
+        drag.addEventListener('pointermove', (ev) => {
+          if (!activo) return;
+          const max = lista.scrollWidth - lista.clientWidth;
+          const pista = barra.clientWidth - drag.offsetWidth;
+          if (max <= 0 || pista <= 0) return;
+          const dx = ev.clientX - inicioX;
+          lista.scrollLeft = Math.min(max, Math.max(0, inicioScroll + dx * (max / pista)));
+        });
+        const soltar = (ev) => {
+          if (!activo) return;
+          activo = false;
+          try { drag.releasePointerCapture(ev.pointerId); } catch { /* ya liberado */ }
+          const reducido = matchMedia('(prefers-reduced-motion: reduce)').matches;
+          lista.style.scrollBehavior = reducido ? 'auto' : 'smooth';
+          const p = paso();
+          if (p > 0) lista.scrollLeft = Math.round(lista.scrollLeft / p) * p;
+        };
+        drag.addEventListener('pointerup', soltar);
+        drag.addEventListener('pointercancel', soltar);
+      }
+
       lista.addEventListener('scroll', refresca, { passive: true });
       addEventListener('resize', () => { dimensiona(); refresca(); }, { passive: true });
       refresca();
