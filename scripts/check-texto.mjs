@@ -79,6 +79,45 @@ const QUITADAS_A_PROPOSITO = [
 ];
 
 /**
+ * ── TEXTO TRADUCIDO A PROPÓSITO ──────────────────────────────────────────────────────────
+ *
+ * DECISIÓN (Sebastian, 3-sep-2026): **el sitio entero va en inglés.** El Webflow de origen
+ * traía dos cadenas en español, y estaban en el baseline porque el baseline ES el Webflow de
+ * origen. Barrido de las 115 rutas buscando acentos, `¿`, `¡` y palabras funcionales del
+ * español: aparecieron EXACTAMENTE estas dos y ninguna más.
+ *
+ * POR QUÉ SE DECLARA AQUÍ Y NO SE RE-BASELINIZA `baseline/text/`.
+ *
+ * Es la única puerta al 100 % que no se re-baseliniza nunca (§1.1), y esa propiedad es lo que
+ * da permiso de reescribir el markup de las 114 páginas. Re-baselinizarla por dos líneas
+ * convertiría la barandilla en un fichero que se actualiza cuando molesta, y a partir de ahí
+ * ya no demuestra nada. Declarando la sustitución, la puerta sigue exigiendo el 100 %: si
+ * mañana se cae una palabra CUALQUIERA —incluidas estas dos— vuelve a rojo.
+ *
+ * Se declara la sustitución EXACTA, vieja -> nueva. No un «ignora esta línea»: si el texto
+ * nuevo no aparece tal cual, sale rojo igual que cualquier otro.
+ *
+ * OJO AL `capitalize`: `webflow.css` lo pone en `h2` y en `.button-styles`, y **capitalize SÍ
+ * altera `innerText`**. Las dos cadenas nuevas se escriben ya capitalizadas palabra a palabra
+ * para que coincidan con lo que renderiza el navegador. Es la cuarta vez que esto muerde en
+ * este repo; ver el comentario de `lineasBlog()`.
+ */
+const TRADUCIDAS_A_PROPOSITO = [
+  ['Artículos Más Leídos', 'Most Read Articles',
+    'el h2 del raíl de artículos relacionados, en las 10 fichas de /blogs/. Estaba en español '
+    + 'en páginas escritas íntegramente en inglés: era una fuga del Webflow de origen'],
+  ['¡View More!', 'View More!',
+    'el botón de /brochures. El texto ya era inglés; lo que sobraba era el signo de apertura '
+    + '«¡», que es puntuación exclusiva del español'],
+];
+
+/** Aplica las sustituciones declaradas a UNA línea del baseline. */
+const traduce = (l) => {
+  const t = TRADUCIDAS_A_PROPOSITO.find(([viejo]) => viejo === l);
+  return t ? t[1] : l;
+};
+
+/**
  * Texto que APARECE a propósito, por ruta. Se declara un BLOQUE SEGUIDO, no unas líneas
  * sueltas ni la ruta entera.
  *
@@ -395,7 +434,7 @@ for (const ruta of RUTAS) {
 
   const declaradas = new Set(QUITADAS_A_PROPOSITO.map(([l]) => l));
   const esperado = fs.readFileSync(ref, 'utf8').trimEnd().split('\n')
-    .filter((l) => !declaradas.has(l)).join('\n');
+    .filter((l) => !declaradas.has(l)).map(traduce).join('\n');
   const bruto = (await textoNormalizado(pag)).trimEnd();
   if (bruto.includes(RESENAS_MARCADOR)) conResenas++;
   if (ruta.startsWith(BLOG_RUTA) && lineasBlog().length

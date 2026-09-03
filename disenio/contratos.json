@@ -31,6 +31,84 @@
   ],
   "porDefecto": "paridad",
   "rutas": {
+    "/blogs/commercial-pool-construction-in-florida-what-decision-makers-must-know": {
+      "contrato": "rediseno",
+      "fecha": "2026-09-03",
+      "sha": "82b4229",
+      "motivo": "R12-FICHA: rediseno de la experiencia de lectura. El alto crece ~53% de media (+48,9% a +58,6% segun la ficha) y NO es deriva: la medida baja de 89 a 67 caracteres por linea, el interlineado sube de 1,4 a 1,65, y los encabezados pasan de `margin-top: 0` —lo que dejaba Webflow en los 29 de la ficha mas larga— a 64px los h2 y 32px los h3. El crecimiento correlaciona con el NUMERO DE ENCABEZADOS (r=0,788) por encima de con la longitud del texto (r=0,710): esa es la firma de que manda el margen de encabezado y no la medida. Ademas, DECISION de Sebastian del 3-sep-2026: el h2 del rail pasa de «Articulos Mas Leidos» a «Most Read Articles», porque el sitio entero va en ingles. Ese cambio de texto va DECLARADO en `check-texto.mjs` (TRADUCIDAS_A_PROPOSITO) y NO re-baselinizado: `baseline/text/` sigue sin tocarse."
+    },
+    "/blogs/common-pool-construction-mistakes-we-see-in-florida": {
+      "contrato": "rediseno",
+      "fecha": "2026-09-03",
+      "sha": "82b4229",
+      "motivo": "R12-FICHA: misma capa de lectura. Ver el motivo de /blogs/commercial-pool-construction-in-florida-what-decision-makers-must-know."
+    },
+    "/blogs/complete-guide-to-pool-construction-in-florida-costs-timeline-process": {
+      "contrato": "rediseno",
+      "fecha": "2026-09-03",
+      "sha": "82b4229",
+      "motivo": "R12-FICHA: misma capa de lectura. Es la ficha mas larga (29.838 chars, 85 p, 10 h2, 19 h3) y la que mas crece: +58,6%. Ver el motivo de /blogs/commercial-pool-construction-in-florida-what-decision-makers-must-know."
+    },
+    "/blogs/how-outdoor-living-spaces-increase-property-value-in-florida": {
+      "contrato": "rediseno",
+      "fecha": "2026-09-03",
+      "sha": "82b4229",
+      "motivo": "R12-FICHA: misma capa de lectura. Ver el motivo de /blogs/commercial-pool-construction-in-florida-what-decision-makers-must-know."
+    },
+    "/blogs/new-pool-construction-vs-pool-remodeling-which-is-right-for-you": {
+      "contrato": "rediseno",
+      "fecha": "2026-09-03",
+      "sha": "82b4229",
+      "motivo": "R12-FICHA: misma capa de lectura. Ver el motivo de /blogs/commercial-pool-construction-in-florida-what-decision-makers-must-know."
+    },
+    "/blogs/outdoor-living-design-guide-for-florida-homes": {
+      "contrato": "rediseno",
+      "fecha": "2026-09-03",
+      "sha": "82b4229",
+      "motivo": "R12-FICHA: misma capa de lectura. Ver el motivo de /blogs/commercial-pool-construction-in-florida-what-decision-makers-must-know."
+    },
+    "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish": {
+      "contrato": "rediseno",
+      "fecha": "2026-09-03",
+      "sha": "82b4229",
+      "motivo": "R12-FICHA: misma capa de lectura. Ver el motivo de /blogs/commercial-pool-construction-in-florida-what-decision-makers-must-know."
+    },
+    "/blogs/residential-vs-commercial-pool-construction-in-florida": {
+      "contrato": "rediseno",
+      "fecha": "2026-09-03",
+      "sha": "82b4229",
+      "motivo": "R12-FICHA: misma capa de lectura. Ver el motivo de /blogs/commercial-pool-construction-in-florida-what-decision-makers-must-know."
+    },
+    "/blogs/top-10-luxury-pool-designs-for-florida-homes": {
+      "contrato": "rediseno",
+      "fecha": "2026-09-03",
+      "sha": "82b4229",
+      "motivo": "R12-FICHA: misma capa de lectura. Es la unica de las 10 con figuras (4 img) y la mas densa en HTML (325 strong). Ver el motivo de /blogs/commercial-pool-construction-in-florida-what-decision-makers-must-know."
+    },
+    "/blogs/what-permits-are-required-for-pool-construction-in-florida": {
+      "contrato": "rediseno",
+      "fecha": "2026-09-03",
+      "sha": "82b4229",
+      "motivo": "R12-FICHA: misma capa de lectura. Ver el motivo de /blogs/commercial-pool-construction-in-florida-what-decision-makers-must-know."
+    },
+    "/articles/accessibility": {
+      "contrato": "rediseno",
+      "fecha": "2026-09-03",
+      "sha": "82b4229",
+      "motivo": "R12-FICHA: la misma capa de lectura, anclada a `.article-body` en vez de a `.blog-section`. El richtext pasa de 1250px a 650 y el interlineado de 1,4 a 1,65; el h1 NO se toca, porque `--mm-paso-6` no reproduce el escalon de Webflow (-10px a 991) y no habia motivo para gastar esa diferencia aqui. Crecimiento medido +22% a +30%, menor que en las fichas de blog porque son textos cortos con pocos encabezados: proporcional al contenido, que es lo que confirma que el mecanismo es el declarado y no una deriva."
+    },
+    "/articles/privacy-policy": {
+      "contrato": "rediseno",
+      "fecha": "2026-09-03",
+      "sha": "82b4229",
+      "motivo": "R12-FICHA: misma capa de lectura sobre `.article-body`. Ver el motivo de /articles/accessibility."
+    },
+    "/articles/terms-conditions": {
+      "contrato": "rediseno",
+      "fecha": "2026-09-03",
+      "sha": "82b4229",
+      "motivo": "R12-FICHA: misma capa de lectura sobre `.article-body`. Ver el motivo de /articles/accessibility."
+    },
     "/financing": {
       "contrato": "rediseno",
       "fecha": "2026-09-02",
