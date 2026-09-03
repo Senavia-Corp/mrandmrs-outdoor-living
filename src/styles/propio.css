@@ -218,3 +218,75 @@
   );
 }
 
+
+/* ══ R13-COLOR · LOS DOS LITERALES AJENOS CON MAS ALCANCE QUE QUEDABAN VIVOS ══
+ *
+ * Los dos salen del inventario de color del sitio (R13-COLOR §1) y los dos estaban
+ * en `webflow.css`, que es DERIVADO y no se edita: se ganan por orden de carga.
+ *
+ * ── 1 · EL FILETE DEL PIE, en 114 rutas ─────────────────────────────────────
+ * `.footer{border-bottom:1px solid #e4ebf3}` y `.footer-divider{background-color:#e4ebf3}`.
+ * `#e4ebf3` esta en H212, once grados por debajo del navy de marca (H223), y era el
+ * literal fuera de paleta con mas alcance REAL que seguia pintando. El bloque de arriba
+ * ya habia sustituido el degradado del pie, pero solo `background-image`: estas dos
+ * declaraciones de la MISMA regla seguian intactas.
+ *
+ * Sustituto `--mm-borde` (#e0e4ec, H220), que es navy al 12 % sobre blanco. Medido contra
+ * las dos paradas del degradado que este mismo fichero define:
+ *
+ *     filete       contra #1173b5 (arriba)   contra #1d4bbf (abajo)
+ *     #e4ebf3            4,22:1                   6,22:1     <- lo que habia
+ *     #e0e4ec            3,98:1                   5,86:1     <- lo que queda
+ *
+ * Sigue por encima de los 3:1 de WCAG 1.4.11 en el punto mas exigente, y es un separador
+ * decorativo, no un limite que identifique un control. */
+.footer { border-bottom-color: var(--mm-borde); }
+.footer-divider { background-color: var(--mm-borde); }
+
+/* ── 2 · EL FONDO DE RESERVA DE `.trusted-section` (80 rutas) Y `.gallery` (24) ──
+ *
+ * Las dos declaran `background-color:#3185ca` DEBAJO de
+ * `background-image:url(/images/site/animateddivs-image.webp)` con `background-size:cover`.
+ * Hoy no se ve porque la imagen existe (67 KB) y la tapa. Pero no es una decision, es un
+ * fallback: el dia que esa webp se renombre o se pierda, 104 rutas se vuelven azul de golpe
+ * — y con el `color:var(--white)` que las dos traen, ese azul SUSPENDE:
+ *
+ *     blanco sobre #3185ca ....... 3,93:1   <- por debajo de 4,5
+ *     blanco sobre --mm-azul-500 . 7,47:1   <- AA con margen
+ *
+ * O sea que esto arregla dos cosas a la vez: mete el reserva en el eje de marca (H207 -> H223)
+ * y convierte un fallo de contraste latente en un aprobado. Ademas la imagen que lo tapa se
+ * retinto en este mismo encargo de H208 a H223, asi que ahora reserva e imagen coinciden en
+ * tono en vez de discrepar en quince grados. */
+.trusted-section, .gallery { background-color: var(--mm-azul-500); }
+
+/* ── 3 · `.link-4` — oro como TEXTO sobre el panel azul, en /contact-us ──────
+ *
+ * Los enlaces «Terms» y «Privacy Policy» de la letra pequena del formulario. Sacaban su
+ * color de `.link-4{color:var(--_apps---sidebar--sidebar-border)}` de webflow.css, que
+ * resuelve a `var(--yellow-1)`, o sea el oro. Y el panel de `.form-section` es el degradado
+ * azul que este mismo fichero y `contacto.css` definen. Medido sobre sus dos paradas:
+ *
+ *     candidato                    #1173b5 (arriba)   #1d4bbf (abajo)
+ *     --mm-oro (lo que habia) ....... 2,73:1 FALLA ....... 4,02:1 FALLA
+ *     --mm-oro-claro ................ 2,77:1 FALLA ....... 4,08:1 FALLA
+ *     --mm-blanco ................... 5,07:1 AA .......... 7,47:1 AA
+ *
+ * Es el mismo caso que ya cerro `tokens.css` por escrito —«EL ORO NUNCA MARCA ESTADO», 1,86:1
+ * sobre blanco— visto desde el otro lado: tampoco vale como texto sobre el azul de la casa.
+ * Ningun oro de la marca pasa ahi, asi que el enlace va en blanco con subrayado, que es lo que
+ * lo sigue distinguiendo de la prosa que lo rodea.
+ *
+ * NO PISA /request-estimated: alli existe `.appointment-section .link-4` (0,2,0) de
+ * `estimacion.css`, que gana a este `.link-4` (0,1,0) por especificidad, no por orden. Esa
+ * ruta tiene el panel claro y su enlace en `--mm-enlace` esta bien; sobre ESTE azul daria
+ * 1,47:1, o sea que la regla de alla NO se puede generalizar. Por eso esta es aparte. */
+.link-4 {
+  color: var(--mm-tinta-inversa);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.link-4:focus-visible {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco-inverso);
+  outline-offset: var(--mm-foco-aire);
+}

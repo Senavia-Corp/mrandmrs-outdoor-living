@@ -554,7 +554,7 @@
  * En una captura no se nota: la pantalla se ve bien, solo que en el momento equivocado.
  * El aire va en los margenes de los hijos, que no dependen del modo de caja. */
 .form-block .success-message-form {
-  background-color: var(--mm-fondo-tenue);   /* titular y parrafo navy encima .. 13,72:1 */
+  background-color: var(--mm-fondo-tenue);   /* titular y parrafo navy encima .. 13,68:1 */
   border: 1px solid var(--mm-tinta-atenuada);/* vs panel blanco 5,26 · vs relleno 4,62 */
   border-radius: var(--mm-r-16);
   padding: var(--mm-e-48) var(--mm-e-32);

@@ -67,24 +67,37 @@ const hay = items.length > 0;
     display: flex; align-items: center; gap: .75rem;
     margin-bottom: 1.25rem;
   }
-  .mm-ig__logo { width: 26px; height: 26px; flex: none; color: var(--blue_dark, #001c63) }
+  /* El navy de marca sobre el fondo de la seccion. Ratios MEDIDOS con la formula de
+     luminancia relativa de WCAG 2.x (script en el informe), no estimados:
+       navy / blanco ......... 15,60:1     navy / --mm-azul-50 ... 14,30:1
+       navy / --mm-azul-100 .. 13,68:1
+     La seccion no fija fondo aqui, asi que hereda el de la pagina; los tres papeles
+     claros del sistema pasan AA de sobra. */
+  .mm-ig__logo { width: 26px; height: 26px; flex: none; color: var(--mm-navy) }
   .mm-ig__usuario {
     font-family: Montserrat, sans-serif;
     font-size: 16px; font-weight: 700; text-decoration: none;
-    color: var(--blue_dark, #001c63);
+    color: var(--mm-navy);
   }
   .mm-ig__usuario:hover { text-decoration: underline }
   .mm-ig__seguir {
     margin-left: auto;
     padding: .5rem 1.1rem; border-radius: 8px;
     font-size: 14px; font-weight: 700; text-decoration: none;
-    color: var(--blue_dark, #001c63);
+    color: var(--mm-navy);
     background-image: linear-gradient(135deg,
-      var(--yellow-1, #f4b248), var(--yellow-2, #d99933) 25%,
-      var(--yellow-3, #edb660) 50%, var(--yellow-2, #d99933) 75%, var(--yellow-1, #f4b248));
+      var(--mm-oro), var(--mm-oro-hondo) 25%,
+      var(--mm-oro-claro) 50%, var(--mm-oro-hondo) 75%, var(--mm-oro));
   }
   .mm-ig__seguir:focus-visible,
-  .mm-ig__usuario:focus-visible { outline: 3px solid var(--upcolor, #1cadeb); outline-offset: 2px }
+  /* OJO, HEREDADO — no lo introduce esta migracion: `--upcolor` ya valia #1cadeb y el
+     token de valor IDENTICO es --mm-cian, asi que el foco no se mueve ni un pixel. Pero
+     medido no llega a los 3:1 de WCAG 1.4.11 contra lo que lo rodea:
+       cian / blanco .. 2,55:1 SUSPENSO   cian / --mm-oro .. 1,37:1 SUSPENSO
+       cian / navy .... 6,11:1 ok
+     El sistema tiene --mm-foco (navy: 15,60 sobre blanco, 8,40 sobre oro) justo para esto.
+     Cambiarlo es un cambio de VALOR, no una migracion: queda pedido en el informe. */
+  .mm-ig__usuario:focus-visible { outline: 3px solid var(--mm-cian); outline-offset: 2px }
 
   .mm-ig__rejilla {
     list-style: none; margin: 0; padding: 0;
@@ -110,14 +123,19 @@ const hay = items.length > 0;
   .mm-ig__velo {
     position: absolute; inset: 0;
     display: grid; place-items: center;
-    background-color: #001c6300;
-    color: #fff;
+    /* Era #001c6300: alfa 0x00 = 0/255 = 0 %. Velo apagado. */
+    background-color: color-mix(in srgb, var(--mm-navy) 0%, transparent);
+    color: var(--mm-blanco);
     transition: background-color .25s ease;
   }
   .mm-ig__velo svg { width: 34px; height: 34px; opacity: 0; transition: opacity .25s ease }
-  .mm-ig__celda a:hover .mm-ig__velo { background-color: #001c6373 }
+  /* Era #001c6373: alfa 0x73 = 115/255 = 45,098 % -> 45 %. El redondeo mueve 0,00098 de
+     alfa, o sea 0,25 niveles de 8 bits como MUCHO en un canal (peor caso: foto blanca).
+     Blanco encima del velo: 2,85:1 sobre foto blanca, 19,22:1 sobre foto negra — el icono
+     es decorativo (`aria-hidden`) y duplica el enlace, asi que no transporta informacion. */
+  .mm-ig__celda a:hover .mm-ig__velo { background-color: color-mix(in srgb, var(--mm-navy) 45%, transparent) }
   .mm-ig__celda a:hover .mm-ig__velo svg { opacity: 1 }
-  .mm-ig__celda a:focus-visible { outline: 3px solid var(--upcolor, #1cadeb); outline-offset: 3px }
+  .mm-ig__celda a:focus-visible { outline: 3px solid var(--mm-cian); outline-offset: 3px }
 
   @media (max-width: 479px) {
     .mm-ig__rejilla { grid-template-columns: repeat(2, 1fr) }

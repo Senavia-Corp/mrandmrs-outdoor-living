@@ -50,6 +50,10 @@ const hay = videos.length > 0;
             {/* La duración va aquí, antes del título, porque así está en el original. */}
             <span class="mm-yt__duracion">{v.duracion}</span>
             <span class="mm-yt__play" aria-hidden="true">
+              {/* LOS DOS HEX DE ESTE SVG NO SON TOKENIZABLES: son el logotipo de YOUTUBE, marca
+                  de un tercero. #f00 es su rojo y #fff el triangulo de play que lleva dentro.
+                  Retonarlos al eje de la casa seria falsificar la marca de otro, asi que se
+                  quedan como literal a proposito. */}
               <svg viewBox="0 0 68 48"><path fill="#f00" d="M66.5 7.7a8.6 8.6 0 0 0-6-6C55.2 0 34 0 34 0S12.8 0 7.5 1.7a8.6 8.6 0 0 0-6 6A89.6 89.6 0 0 0 0 24a89.6 89.6 0 0 0 1.5 16.3 8.6 8.6 0 0 0 6 6C12.8 48 34 48 34 48s21.2 0 26.5-1.7a8.6 8.6 0 0 0 6-6A89.6 89.6 0 0 0 68 24a89.6 89.6 0 0 0-1.5-16.3Z"/><path fill="#fff" d="M27 34.3 45.6 24 27 13.7v20.6Z"/></svg>
             </span>
           </a>
@@ -70,6 +74,42 @@ const hay = videos.length > 0;
 )}
 
 <style>
+  /* COLOR — este bloque no tiene ni un literal propio: todo sale de disenio/tokens.css.
+   * Los que habia eran de DOS clases y ninguna sobrevivio como hex:
+   *
+   *  · FALLBACKS MUERTOS dentro de var(--x, #hex). La variable siempre esta definida, asi
+   *    que el fallback no se evaluaba nunca — y ademas MENTIA: disenio/puente.css redeclara
+   *    --grey a --mm-azul-50 (#f1f5ff), no al #ececec que decia el fallback. Sustituido el
+   *    var() ENTERO por el token de la casa, no solo el literal, que es lo unico que quita
+   *    el segundo vocabulario en vez de mudarlo de sitio.
+   *  · HEX SUELTOS: la insignia de duracion y el degradado de la mascara.
+   *
+   * PIXELES: cero. Los seis tokens resuelven HOY al mismo valor que resolvia la expresion
+   * que sustituyen (--blue_dark=#001c63, --yellow-1/2/3=#f4b248/#d99933/#edb660,
+   * --upcolor=#1cadeb, --grey=#f1f5ff), y 0xCC = 204/255 = 80,0000 % exacto.
+   *
+   * RATIOS, medidos con la luminancia relativa de WCAG 2.x (L=,2126R+,7152G+,0722B sobre
+   * canal linealizado), no estimados. Reproducibles a mano desde los hex de tokens.css:
+   *
+   *     par                                                     ratio
+   *     ---------------------------------------------------------------
+   *     --mm-navy  sobre la pagina blanca .................... 15,60:1
+   *     --mm-navy  sobre --mm-gris (#f1f5ff, la tarjeta) ..... 14,30:1
+   *     --mm-navy  sobre --mm-oro (arranque del degradado) .... 8,40:1
+   *     --mm-navy  sobre --mm-oro-hondo (el stop mas oscuro) .. 6,35:1
+   *     --mm-navy  sobre --mm-oro-claro (el stop central) ..... 8,51:1
+   *     --mm-blanco sobre la insignia, peor caso .............. 12,63:1
+   *
+   * La insignia se compone sobre una FOTO, asi que su peor caso es la miniatura blanca:
+   * negro al 80 % encima de blanco resuelve a rgb(51 51 51) y el blanco de la hora da ahi
+   * 12,63:1. Sobre miniatura negra son 21,00:1. O sea que no hay ningun fotograma en el que
+   * la duracion baje de AA; por eso el 80 % no se toca.
+   *
+   * EL FOCO SE QUEDA EN --mm-cian Y NO PASA 1.4.11: 2,55:1 contra el blanco y 2,34:1 contra
+   * la tarjeta, cuando WCAG pide 3:1. NO es una regresion de esta migracion —var(--upcolor)
+   * ya resolvia a ese mismo #1cadeb— y cambiarlo a --mm-foco moveria pixeles, que es
+   * justo lo que este encargo no hace. Queda dicho para que lo arregle quien pueda. */
+
   .mm-yt { width: 100%; max-width: 1250px; margin-inline: auto }
 
   .mm-yt__cab { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.75rem }
@@ -77,7 +117,7 @@ const hay = videos.length > 0;
   .mm-yt__canal { display: flex; flex-direction: column; gap: .15rem; min-width: 0 }
   .mm-yt__titulo {
     font-family: Montserrat, sans-serif; font-size: 20px; font-weight: 700;
-    color: var(--blue_dark, #001c63); text-decoration: none;
+    color: var(--mm-navy); text-decoration: none;   /* sobre la pagina blanca 15,60:1 */
   }
   .mm-yt__titulo:hover { text-decoration: underline }
   .mm-yt__props { margin: 0; font-size: 14px; opacity: .7 }
@@ -85,14 +125,14 @@ const hay = videos.length > 0;
     margin-left: auto; flex: none;
     padding: .55rem 1.2rem; border-radius: 8px;
     display: grid; place-items: center;
-    color: var(--blue_dark, #001c63);
+    color: var(--mm-navy);
     background-image: linear-gradient(135deg,
-      var(--yellow-1, #f4b248), var(--yellow-2, #d99933) 25%,
-      var(--yellow-3, #edb660) 50%, var(--yellow-2, #d99933) 75%, var(--yellow-1, #f4b248));
+      var(--mm-oro), var(--mm-oro-hondo) 25%,
+      var(--mm-oro-claro) 50%, var(--mm-oro-hondo) 75%, var(--mm-oro));
   }
   .mm-yt__sub svg { width: 22px; height: 22px }
   .mm-yt__sub:focus-visible,
-  .mm-yt__titulo:focus-visible { outline: 3px solid var(--upcolor, #1cadeb); outline-offset: 2px }
+  .mm-yt__titulo:focus-visible { outline: 3px solid var(--mm-cian); outline-offset: 2px }
 
   .mm-yt__lista {
     list-style: none; margin: 0; padding: 0;
@@ -103,7 +143,7 @@ const hay = videos.length > 0;
     display: flex; flex-direction: column;
     border-radius: 15px;                     /* el radio de .card del sitio */
     overflow: hidden;
-    background-color: var(--grey, #ececec);
+    background-color: var(--mm-gris);        /* tinta navy encima 14,30:1 */
   }
 
   .mm-yt__previa { position: relative; display: block; aspect-ratio: 16 / 9; overflow: hidden }
@@ -112,12 +152,13 @@ const hay = videos.length > 0;
     transition: transform .35s cubic-bezier(.165,.84,.44,1);
   }
   .mm-yt__previa:hover img { transform: scale(1.04) }
-  .mm-yt__previa:focus-visible { outline: 3px solid var(--upcolor, #1cadeb); outline-offset: -3px }
+  .mm-yt__previa:focus-visible { outline: 3px solid var(--mm-cian); outline-offset: -3px }
 
   .mm-yt__duracion {
     position: absolute; right: .6rem; bottom: .6rem;
     padding: .15rem .45rem; border-radius: 4px;
-    background-color: #000000cc; color: #fff;
+    background-color: color-mix(in srgb, var(--mm-tinta-cuerpo) 80%, transparent);
+    color: var(--mm-blanco);
     font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums;
   }
   .mm-yt__play {
@@ -132,15 +173,15 @@ const hay = videos.length > 0;
      "for Hotel & Resort" en "For Hotel & Resort" — o sea, cambiaba el TEXTO, que es lo que
      check:texto compara caracter a caracter. Los titulos de los videos van tal cual vienen. */
   .mm-yt__vtitulo { margin: 0; font-size: 17px; line-height: 1.3; text-transform: none }
-  .mm-yt__vtitulo a { color: var(--blue_dark, #001c63); text-decoration: none }
+  .mm-yt__vtitulo a { color: var(--mm-navy); text-decoration: none }   /* sobre la tarjeta 14,30:1 */
   .mm-yt__vtitulo a:hover { text-decoration: underline }
   .mm-yt__fecha { margin: 0; font-size: 13px; opacity: .65 }
 
   .mm-yt__desc {
     font-size: 14px; line-height: 1.5;
     max-height: 7.5em; overflow: hidden;
-    -webkit-mask-image: linear-gradient(#000 70%, transparent);
-    mask-image: linear-gradient(#000 70%, transparent);
+    -webkit-mask-image: linear-gradient(var(--mm-tinta-cuerpo) 70%, transparent);
+    mask-image: linear-gradient(var(--mm-tinta-cuerpo) 70%, transparent);
   }
   .mm-yt__desc p { margin: 0 0 .35rem }
 

@@ -161,7 +161,13 @@ export async function asentar(pag) {
    *
    * EL ARREGLO NO REESCRIBE `asentar()`: pregunta si el clic surtio efecto y reintenta. El
    * estado es observable porque el propio script lo pinta — el circulo del paso activo recibe
-   * `background = '#0D1C3F'` en linea, o sea `rgb(13, 28, 63)` computado.
+   * `background = '#001C63'` en linea, o sea `rgb(0, 28, 99)` computado.
+   *
+   * ⚠️ ESTE VALOR ESTA ACOPLADO AL COLOR DEL WIDGET, y el acoplamiento es invisible: si alguien
+   * cambia el navy de los 14 `services/*.astro` y no toca esta linea, la sonda deja de casar,
+   * el bucle agota sus 10 intentos y las 14 fichas se capturan con el paso mal fijado. Paso en
+   * R13-COLOR: el color era `#0D1C3F` (rgb(13, 28, 63)) y se llevo al navy del logo. Quien lo
+   * vuelva a mover, mueve tambien la linea de abajo.
    *
    * Se reintenta cada 450 ms, muy por debajo de los 5 000 del autoplay, asi que el bucle gana
    * siempre que la pagina responda. Si tras 10 intentos no lo fija, LO DICE: un paso que no se
@@ -172,7 +178,7 @@ export async function asentar(pag) {
     const primeroActivo = () => pag.evaluate(() => {
       const d = document.querySelector('.process-step-item');
       const c = d?.querySelector('[class*="tab-circle"], [class*="Tab-Circle"]');
-      return !!c && getComputedStyle(c).backgroundColor === 'rgb(13, 28, 63)';
+      return !!c && getComputedStyle(c).backgroundColor === 'rgb(0, 28, 99)';
     });
     let fijado = await primeroActivo();
     for (let i = 0; i < 10 && !fijado; i++) {

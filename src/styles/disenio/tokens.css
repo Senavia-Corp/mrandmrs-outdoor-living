@@ -39,18 +39,97 @@
  * ========================================================================== */
 
 :root {
+  /* ── COLOR · LA RAMPA DE MARCA ────────────────────────────────────────────
+   * UN SOLO TONO PARA TODO EL AZUL DEL SITIO: H223, el del logo. Medido:
+   *
+   *     $ grep -ohiE 'fill="[^"]*"' public/images/site/logo-mr-mr.svg | sort | uniq -c
+   *       19 fill="#001C63"          <- H 223,0 · S 100 · L 19,4
+   *        1 fill="white"
+   *
+   * El logo es UN color. No hay nada que elegir: la marca ya estaba elegida y lo
+   * que faltaba era que el resto del sitio viviera en su eje.
+   *
+   * POR QUE UNA RAMPA Y NO MAS TOKENS SUELTOS. Lo que rompia la union no era «muchos
+   * colores», era MUCHOS TONOS. Habia CUATRO cianes en CUATRO tonos distintos:
+   * #1cadeb (H198), #31c2f6 (H196), #3898ec (H208 — el azul por DEFECTO de Webflow,
+   * que no es de esta marca) y #1f77ea (H214). Mas #3b79c3, #3185ca, #54abd9 y
+   * #1173b5 sueltos. Cada seccion estaba bien por separado y el conjunto no casaba.
+   *
+   * ANCLADA EN DOS COLORES QUE EL SITIO YA USABA, no en dos inventados:
+   *   · el 900 es el logo;
+   *   · el 500 es #1d4bbf, el unico azul de la casa que pasa AA como texto.
+   * Y no es casualidad que encajen: los dos estan en H223,0, al decimal. #1d4bbf no
+   * es «otro azul», es el navy de marca aclarado hasta cruzar el 4,5:1. Los nueve
+   * restantes salen de interpolar la luminosidad con el tono y la saturacion fijos.
+   *
+   * TODOS LOS RATIOS DE ESTE BLOQUE ESTAN MEDIDOS con la formula de luminancia
+   * relativa de WCAG 2.x, no estimados. Se comprueban solos: son aritmetica sobre
+   * los hex de al lado.
+   *
+   *     paso   hex        blanco    navy    apto como texto sobre blanco
+   *     -----------------------------------------------------------------
+   *      50   #f1f5ff     1,09    14,30    no — es una superficie
+   *     100   #edf0f8     1,14    13,68    no — es una superficie
+   *     200   #c5d2f1     1,51    10,30    no — borde decorativo
+   *     300   #86a2ea     2,51     6,22    no — relleno sobre navy
+   *     400   #3767e1     5,01     3,11    SI, AA
+   *     500   #1d4bbf     7,47     2,09    SI, AA
+   *     600   #0e37a0    10,13     1,54    SI, AA
+   *     700   #062984    12,67     1,23    SI, AA
+   *     800   #002175    14,24     1,10    SI, AA
+   *     900   #001c63    15,60     1,00    SI, AA
+   *     950   #00113d    18,30     1,17    SI, AA
+   */
+  --mm-azul-50:   #f1f5ff;  /* H223. Superficie clara. --mm-tinta-suave encima 4,82:1 */
+  --mm-azul-100:  #edf0f8;  /* H224. Superficie alterna. --mm-tinta-suave encima 4,61:1 */
+  --mm-azul-200:  #c5d2f1;  /* H222. Borde decorativo: 1,51:1, no transporta informacion */
+  --mm-azul-300:  #86a2ea;  /* H223. Relleno sobre navy (6,22:1). NUNCA texto sobre blanco */
+  --mm-azul-400:  #3767e1;  /* H223. Texto secundario y borde de control sobre claro */
+  --mm-azul-500:  #1d4bbf;  /* H223. El enlace de texto corrido. Es el --mm-azul de siempre */
+  --mm-azul-600:  #0e37a0;  /* H223. Hover del enlace */
+  --mm-azul-700:  #062984;  /* H223. Superficie oscura levantada */
+  --mm-azul-800:  #002175;  /* H223. Superficie oscura */
+  --mm-azul-900:  #001c63;  /* H223. EL LOGO */
+  --mm-azul-950:  #00113d;  /* H223. Fondo hondo */
+
   /* ── COLOR · LOS 13 REALES ────────────────────────────────────────────────
    * Copiados textualmente de :root de webflow.css. El numero es cuantas veces
-   * los usa Webflow hoy (`var(--x)` fuera de :root), no una estimacion. */
-  --mm-navy:        #001c63;  /* --blue_dark   71 usos — el color de la marca */
+   * los usa Webflow hoy (`var(--x)` fuera de :root), no una estimacion.
+   *
+   * DOS CORRECCIONES DE LA CABECERA ORIGINAL, medidas:
+   *  · de color hay CATORCE, no trece. Falta `--blue_light: #1f77ea` (H214), que
+   *    esta muerto en Webflow (0 usos var()) pero existe. Quien use este numero
+   *    para auditar daba por completo un inventario al que le faltaba un color.
+   *    Nace ya en el eje en `disenio/puente.css`.
+   *  · «LOS 13» encabeza ONCE lineas y no es un error de cuenta: son 13 propiedades
+   *    de Webflow colapsadas a 11 valores unicos (#f4b248 esta en --gold y en
+   *    --yellow-1; #edb660 en --gold-light y en --yellow-3).
+   *
+   * CUATRO DE ESTOS ONCE PASAN A SER ALIAS DE LA RAMPA. No cambia su valor —salvo
+   * los dos que se dicen abajo— y elimina la duplicidad: un color, un sitio. */
+  --mm-navy:        var(--mm-azul-900);  /* --blue_dark   71 usos — el color de la marca */
   --mm-oro:         #f4b248;  /* --gold/--yellow-1  28+23 */
   --mm-oro-hondo:   #d99933;  /* --yellow-2    25 */
   --mm-oro-claro:   #edb660;  /* --yellow-3/--gold-light  17+5 */
   --mm-cian:        #1cadeb;  /* --upcolor      4 */
   --mm-cian-claro:  #31c2f6;  /* --blue-500     2 */
-  --mm-azul:        #1d4bbf;  /* --downcolor    5 */
-  --mm-azul-tenue:  #e9f1fd;  /* --blue-50-2    4 */
-  --mm-gris:        #ececec;  /* --grey         5 */
+  --mm-azul:        var(--mm-azul-500);  /* --downcolor    5 — mismo valor, ahora con sitio en la rampa */
+  /* ERA #e9f1fd, y estaba en H216: siete grados por debajo del navy y el UNICO
+   * papel de SUPERFICIE del sistema fuera del eje de marca. El sustituto es
+   * ISOLUMICO a proposito —misma luminancia, solo cambia el tono— para no mover ni
+   * uno de los ratios que este fichero ya declaraba contra el:
+   *     --mm-tinta-suave  4,62 -> 4,61   --mm-enlace  6,57 -> 6,55
+   *     --mm-error        5,75 -> 5,73   --mm-tinta  13,72 -> 13,68 */
+  --mm-azul-tenue:  var(--mm-azul-100);  /* --blue-50-2    4 */
+  /* AVISO PARA QUIEN LEA UN RATIO VIEJO EN OTRA HOJA: cualquier cifra escrita en el repo
+   * contra la superficie tenue ANTES de R13-COLOR se midio sobre #e9f1fd. Con #edf0f8 las
+   * cuatro que importan bajan cuatro centesimas —13,72->13,68 · 4,62->4,61 · 6,57->6,55 ·
+   * 5,75->5,73— y las cuatro siguen cumpliendo. Se han puesto al dia las lineas que nombran
+   * la superficie; si encuentras una que no, es de este desfase y no de un error de medida. */
+  /* ERA #ececec, un gris NEUTRO (S 0 %) en un sistema cuyos otros seis grises son
+   * navy rebajado (H220-224, S24-27). Cantaba, y es de los pocos sitios donde el
+   * ojo nota la diferencia sin comparar. */
+  --mm-gris:        var(--mm-azul-50);  /* --grey         5 */
   --mm-blanco:      #ffffff;  /* --white       86 */
   --mm-negro:       #000000;  /* --black        4 — color de `body` en Webflow */
 
@@ -63,7 +142,7 @@
 
   /* navy al 65 % sobre blanco. El 65 no es gusto: es el alfa MAS BAJO que pasa
    * 4,5:1 sobre las DOS superficies claras a la vez —blanco 5,26:1 y
-   * --mm-azul-tenue 4,62:1—. Al 60 % cae a 3,91:1 sobre el tenue y deja de valer
+   * --mm-azul-tenue 4,61:1—. Al 60 % cae a 3,91:1 sobre el tenue y deja de valer
    * para texto normal. */
   --mm-tinta-suave: #596b9a;
 
@@ -110,11 +189,11 @@
   --mm-superficie:       var(--mm-blanco);  /* fondo de tarjeta/panel. `.mm-inverso` lo cambia */
 
   --mm-tinta:            var(--mm-navy);   /* sobre --mm-fondo ......... 15,60:1 */
-                                           /* sobre --mm-fondo-tenue ... 13,72:1 */
+                                           /* sobre --mm-fondo-tenue ... 13,68:1 */
                                            /* sobre --mm-gris .......... 13,20:1 */
   --mm-tinta-cuerpo:     var(--mm-negro);  /* sobre --mm-fondo ......... 21,00:1 */
                                            /* es el color de `body` en Webflow */
-  --mm-tinta-atenuada:   var(--mm-tinta-suave);      /* blanco 5,26 · tenue 4,62 */
+  --mm-tinta-atenuada:   var(--mm-tinta-suave);      /* blanco 5,26 · tenue 4,61 */
   --mm-tinta-inversa:    var(--mm-blanco); /* sobre --mm-fondo-navy .... 15,60:1 */
                                            /* sobre --mm-fondo-hondo ... 18,72:1 */
   --mm-tinta-inversa-2:  var(--mm-tinta-suave-inversa);  /* sobre navy .. 9,81:1 */
@@ -131,13 +210,34 @@
   --mm-frio-claro:       var(--mm-cian-claro); /* texto navy encima .... 7,56:1 */
   --mm-sobre-frio:       var(--mm-navy);
 
+  /* ── EL DEGRADADO DE LA BANDA CTA ─────────────────────────────────────────
+   * `.cta-footer` se pinta en 102 rutas y `.cta-page-section` en 12: es la
+   * superficie de color mas repetida del sitio despues del nav. Y estaba escrita
+   * de CUATRO formas distintas, con dos parejas de color diferentes:
+   *
+   *     linear-gradient(#1cadeb,#1d4bbf)        x4
+   *     linear-gradient(#1d4bbf,#1cadeb)        x2   <- invertido
+   *     linear-gradient(90deg,#1cadeb,#1d4bbf)  x1
+   *     linear-gradient(#5acef8,#0cace5)        x2   <- otros dos cianes (H196)
+   *
+   * Cuatro escrituras para un mismo gesto es como se pierde una linea grafica:
+   * nadie decide cambiarla, se va desdibujando sola. Aqui es UNA, y la direccion
+   * se elige consumiendo la variante que toque.
+   *
+   * MEDIDO en todo el recorrido, no solo en los extremos: barriendo t de 0 a 1 en
+   * pasos de 0,01, el blanco encima NO baja de 5,07:1 en ningun punto del
+   * degradado. O sea que un texto blanco es legible en cualquier altura de la
+   * banda, que es justo lo que no se puede afirmar mirando solo los dos stops. */
+  --mm-degradado-frio:    linear-gradient(var(--mm-cian), var(--mm-azul-500));
+  --mm-degradado-frio-90: linear-gradient(90deg, var(--mm-cian), var(--mm-azul-500));
+
   /* Enlace en texto corrido. #1d4bbf es el unico azul de la casa que pasa AA
    * como TEXTO: 7,47:1 sobre blanco y 6,57:1 sobre --mm-fondo-tenue. */
   --mm-enlace:           var(--mm-azul);
   --mm-enlace-inverso:   var(--mm-oro-claro);  /* sobre navy ........... 8,51:1 */
 
   /* Foco. Tiene que dar >=3:1 contra lo que lo rodea; por eso es navy y no oro.
-   * navy/blanco 15,60:1 · navy/oro 8,40:1 · navy/--mm-fondo-tenue 13,72:1.
+   * navy/blanco 15,60:1 · navy/oro 8,40:1 · navy/--mm-fondo-tenue 13,68:1.
    * En oscuro se invierte: blanco/navy 15,60:1. */
   --mm-foco:             var(--mm-navy);
   --mm-foco-inverso:     var(--mm-blanco);

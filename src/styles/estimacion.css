@@ -102,7 +102,7 @@
 }
 .appointment-section .header-form-block > div,
 .appointment-section .header-form > div {
-  color: var(--mm-tinta-atenuada);   /* #596b9a — blanco 5,26:1 · tenue 4,62:1 */
+  color: var(--mm-tinta-atenuada);   /* #596b9a — blanco 5,26:1 · tenue 4,61:1 */
   font-size: var(--mm-paso-3);
   line-height: var(--mm-alto-cuerpo);
   text-wrap: pretty;
@@ -121,7 +121,7 @@
   padding-bottom: var(--mm-e-32);
 }
 .appointment-section .msf-step {
-  background-color: var(--mm-fondo-tenue);   /* #e9f1fd · navy encima 13,72:1 */
+  background-color: var(--mm-fondo-tenue);   /* #edf0f8 · navy encima 13,68:1 */
   border: 1px solid var(--mm-borde);
   border-radius: var(--mm-r-16);
   padding: var(--mm-e-24);
@@ -307,7 +307,7 @@
 .appointment-section .checkbox-label-3 {
   font-size: var(--mm-paso-1);
   line-height: var(--mm-alto-cuerpo);
-  color: var(--mm-tinta-atenuada);   /* 4,62:1 sobre el panel tenue */
+  color: var(--mm-tinta-atenuada);   /* 4,61:1 sobre el panel tenue */
   text-wrap: pretty;
 }
 
@@ -347,7 +347,7 @@
 .appointment-section .msf-back:focus-visible,
 .appointment-section .msf-next:focus-visible {
   outline: var(--mm-foco-grosor) solid var(--mm-foco);
-  outline-offset: var(--mm-foco-aire);   /* el hueco deja ver el panel: navy/tenue 13,72:1 */
+  outline-offset: var(--mm-foco-aire);   /* el hueco deja ver el panel: navy/tenue 13,68:1 */
 }
 
 /* ── 9 · EL BOTON DE ENVIO ──────────────────────────────────────────────────

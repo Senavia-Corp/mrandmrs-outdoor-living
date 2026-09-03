@@ -177,8 +177,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const AUTOPLAY_DELAY = 5000;
 
-  const COLOR_ACTIVE   = '#0D1C3F';
-  const COLOR_INACTIVE = '#C9A84C';
+  const COLOR_ACTIVE   = '#001C63';
+  const COLOR_INACTIVE = '#D99933';
 
   const dots  = document.querySelectorAll('.process-step-item');
   const steps = document.querySelectorAll('.process-content-item');
@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (i === currentStep) {
         circle.style.background = COLOR_ACTIVE;
         circle.style.transform  = 'scale(1.15)';
-        circle.style.boxShadow  = '0 4px 16px rgba(13,28,63,0.25)';
+        circle.style.boxShadow  = '0 4px 16px rgba(0,28,99,0.25)';
         circle.style.transition = 'all 0.35s ease';
         if (number) number.style.color = '#FFFFFF'; // ✅ Blanco activo
       } else {
@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', function () {
         circle.style.transform  = 'scale(1)';
         circle.style.boxShadow  = 'none';
         circle.style.transition = 'all 0.35s ease';
-        if (number) number.style.color = '#0D1C3F'; // ✅ Navy inactivo
+        if (number) number.style.color = '#001C63'; // ✅ Navy inactivo
       }
     });
 

@@ -8,8 +8,9 @@
  * manda al visitante del sur a la oficina equivocada. Por eso se despliega en vez de
  * marcar directo.
  *
- * DISEÑO: círculo de 65 px en --blue_dark, que es exactamente el `.btn-cta` que ya usa el
- * sitio, y el panel con el degradado dorado de `.button-styles`. Nada inventado.
+ * DISEÑO: círculo de 65 px en --mm-navy (el --blue_dark de Webflow), que es exactamente
+ * el `.btn-cta` que ya usa el sitio, y el panel con el degradado dorado de
+ * `.button-styles`. Nada inventado.
  */
 import telefonos from '../../data/telefonos.json';
 const { items } = telefonos;
@@ -43,6 +44,27 @@ const { items } = telefonos;
 </div>
 
 <style>
+  /* ── COLOR ────────────────────────────────────────────────────────────────
+   * Todo por token (§5). No queda ni un literal: los que habia eran cuatro FALLBACKS
+   * muertos —`disenio/puente.css` define --blue_dark, --yellow-1 y --grey, asi que la
+   * rama del fallback no se toma nunca— y tres alfas de 8 digitos.
+   *
+   * PARES MEDIDOS con la formula de luminancia relativa de WCAG 2.x
+   * (L = 0,2126R + 0,7152G + 0,0722B sobre canal linealizado), no estimados:
+   *
+   *     navy sobre blanco ................ 15,60:1   cifras y titulo del panel
+   *     blanco sobre navy ................ 15,60:1   icono dentro del boton
+   *     navy sobre --mm-azul-50 .......... 14,30:1   la fila en hover
+   *     navy al 70 % sobre blanco .........  6,17:1   la zona (lleva opacity .7)
+   *     navy al 70 % sobre --mm-azul-50 ...  5,91:1   la zona en hover
+   *     oro sobre navy ...................  8,40:1   el foco CONTRA el boton
+   *     oro sobre blanco .................  1,86:1   el foco contra el panel — ver aviso
+   *
+   * AVISO, y NO se arregla aqui porque cambiar el color del foco no es migrarlo: --mm-oro
+   * da 1,86:1 contra blanco, o sea que el anillo de `.mm-llamar__num:focus-visible` no
+   * llega a los 3:1 que pide WCAG 1.4.11 contra el papel del panel. El sistema ya tiene
+   * --mm-foco (navy, 15,60:1) para exactamente esto. Decision del director.
+   */
   .mm-llamar {
     position: fixed;
     right: 1.25rem;
@@ -57,15 +79,15 @@ const { items } = telefonos;
   .mm-llamar__btn {
     width: 65px; height: 65px;        /* .btn-cta del sitio */
     border: 0; border-radius: 100%;
-    background-color: var(--blue_dark, #001c63);
-    color: #fff;
+    background-color: var(--mm-navy);
+    color: var(--mm-blanco);
     cursor: pointer;
     display: grid; place-items: center;
-    box-shadow: 0 6px 22px #001c6359;
+    box-shadow: 0 6px 22px color-mix(in srgb, var(--mm-navy) 35%, transparent);  /* alfa 0x59 = 89/255 = 34,9 % */
     transition: transform .18s ease, box-shadow .18s ease;
   }
-  .mm-llamar__btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px #001c6373 }
-  .mm-llamar__btn:focus-visible { outline: 3px solid var(--yellow-1, #f4b248); outline-offset: 3px }
+  .mm-llamar__btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px color-mix(in srgb, var(--mm-navy) 45%, transparent) }  /* 0x73 = 115/255 = 45,1 % */
+  .mm-llamar__btn:focus-visible { outline: 3px solid var(--mm-oro); outline-offset: 3px }
 
   .mm-llamar__icono { width: 28px; height: 28px }
   .mm-llamar__icono--cerrar { display: none }
@@ -73,11 +95,14 @@ const { items } = telefonos;
   .mm-llamar__btn[aria-expanded='true'] .mm-llamar__icono--cerrar { display: block }
 
   .mm-llamar__panel {
-    background: #fff;
+    background: var(--mm-blanco);
     border-radius: 15px;              /* el radio de .card del sitio */
     padding: 1rem;
     min-width: 250px;
-    box-shadow: 0 12px 34px #00000026;
+    /* 0x26 = 38/255 = 14,9 %. Es NEGRO, y el sistema pide la sombra TENIDA DE NAVY
+       (tokens.css, bloque SOMBRA). Se migra el valor tal cual: retenirla cambiaria el color
+       pintado y eso ya no es migrar. Queda dicho en el informe. */
+    box-shadow: 0 12px 34px color-mix(in srgb, var(--mm-tinta-cuerpo) 15%, transparent);
     animation: mm-llamar-entra .18s cubic-bezier(.165,.84,.44,1) backwards;
   }
   /* `backwards`, nunca `both`: con fill hacia delante el transform se queda serializado
@@ -90,7 +115,7 @@ const { items } = telefonos;
     font-family: Montserrat, sans-serif;
     font-size: 13px; font-weight: 700;
     letter-spacing: .08em; text-transform: uppercase;
-    color: var(--blue_dark, #001c63);
+    color: var(--mm-navy);
   }
 
   .mm-llamar__num {
@@ -98,12 +123,12 @@ const { items } = telefonos;
     padding: .55rem .75rem;
     border-radius: 10px;
     text-decoration: none;
-    color: var(--blue_dark, #001c63);
+    color: var(--mm-navy);
     transition: background-color .15s ease;
   }
   .mm-llamar__num + .mm-llamar__num { margin-top: .25rem }
-  .mm-llamar__num:hover { background-color: var(--grey, #ececec) }
-  .mm-llamar__num:focus-visible { outline: 2px solid var(--yellow-1, #f4b248); outline-offset: 1px }
+  .mm-llamar__num:hover { background-color: var(--mm-azul-50) }
+  .mm-llamar__num:focus-visible { outline: 2px solid var(--mm-oro); outline-offset: 1px }
 
   .mm-llamar__zona { font-size: 12px; font-weight: 600; opacity: .7 }
   .mm-llamar__cifra { font-size: 17px; font-weight: 700; letter-spacing: .01em }

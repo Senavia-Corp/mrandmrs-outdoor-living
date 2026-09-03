@@ -44,6 +44,18 @@ import '../styles/webflow.css';
  * que 0 elementos casan y 0 reglas se aplican. Medido en la barrida de R7.
  */
 import '../styles/disenio/tokens.css';
+/**
+ * EL PUENTE (R13-COLOR). Va DESPUES de tokens.css —consume sus `--mm-*`— y despues de
+ * webflow.css, que es a quien corrige. Redeclara las 15 custom properties de color del
+ * :root de Webflow para que apunten al vocabulario de la casa: eso retona el 54 % de las
+ * referencias de color de webflow.css (282 usos `var()` de 518) sin tocar una linea del
+ * derivado y sin un solo `!important`.
+ *
+ * Trece de las quince ya valian lo mismo que su token: mueven CERO pixeles. Solo `--grey`
+ * (5 usos, era un gris neutro) y `--blue-50-2` (4 usos, estaba en H216) cambian de valor,
+ * y las dos a proposito. Los ratios de las dos estan medidos en la cabecera del fichero.
+ */
+import '../styles/disenio/puente.css';
 import '../styles/disenio/base.css';
 // La capa de la HOME (fase R9 paso 2), propiedad exclusiva del chat de diseño. Va DESPUES de
 // disenio/base.css para poder ajustar sus clases sin pelearse con ellas, y ANTES de propio.css,

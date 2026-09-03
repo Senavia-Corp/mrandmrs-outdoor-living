@@ -152,9 +152,32 @@ const posicion = (sv) => visibles.findIndex((v) => v.id === sv.id) + 1;
 </section>
 
 <style>
-  /* Paleta del sitio, sin tocar: navy #001c63, oro #f4b248, cian #31c2f6, azul-50 #e9f1fd.
+  /* Los CINCO nombres locales se quedan —los consume media hoja—; lo que cambia es de dónde
+   * sale el valor: del vocabulario de `src/styles/disenio/tokens.css`, no de un hex repetido.
+   *
+   * TRES no mueven un píxel, porque el token vale exactamente lo mismo:
+   *   --navy  #001c63 = --mm-navy (que es --mm-azul-900, el color del logo)
+   *   --oro   #f4b248 = --mm-oro
+   *   --cian  #31c2f6 = --mm-cian-CLARO. Ojo con el nombre: --mm-cian es #1cadeb, otro color.
+   *
+   * DOS SÍ MUEVEN, y es deliberado: los dos estaban fuera del eje de marca.
+   *   --azul50  #e9f1fd -> --mm-azul-100 #edf0f8. #e9f1fd vivía en H216, siete grados por
+   *             debajo del navy. El sustituto es ISOLÚMICO a propósito, así que los pares que
+   *             esta hoja ya declaraba apenas se mueven (medidos con la fórmula de luminancia
+   *             relativa de WCAG 2.x, no estimados):
+   *                 navy encima ... 13,72:1 -> 13,68:1     oro encima ... 1,63:1 -> 1,63:1
+   *   --linea   #dfe6f3 -> --mm-borde #e0e4ec. Contra el blanco, 1,25:1 -> 1,27:1. Es un borde
+   *             DECORATIVO —separa filas, no identifica un control—, así que WCAG 1.4.11 no le
+   *             exige 3:1; para lo que sí lo exige está el raíl navy de más abajo.
+   *
    * Inter va auto-alojada en `src/styles/fuentes.css`; aquí no se pide ni una fuente. */
-  .svc { --navy: #001c63; --oro: #f4b248; --cian: #31c2f6; --azul50: #e9f1fd; --linea: #dfe6f3 }
+  .svc {
+    --navy:   var(--mm-navy);
+    --oro:    var(--mm-oro);
+    --cian:   var(--mm-cian-claro);
+    --azul50: var(--mm-azul-100);
+    --linea:  var(--mm-borde);
+  }
 
   /* Un `hidden` tiene que ganarle SIEMPRE al `display` de la clase: es lo que sostiene el
    * estado servido y, con él, que `innerText` sea el mismo que el del original. */
@@ -190,10 +213,21 @@ const posicion = (sv) => visibles.findIndex((v) => v.id === sv.id) + 1;
     transition: background-color .18s ease, color .18s ease;
   }
 
-  /* Navy relleno: 15,58:1 con el blanco. La regla que sustituye pintaba blanco sobre cian y
-   * daba 1,81:1 — lo seleccionado era lo menos legible de la sección. */
-  .svc-cat[aria-selected='true'] { background: var(--navy); color: #fff }
-  .svc-cat[aria-selected='false']:hover { background: #d8e6fb }
+  /* Navy relleno: 15,60:1 con el blanco. (Aquí ponía 15,58; remedido con la fórmula de
+   * luminancia relativa de WCAG 2.x sobre #001c63 y #ffffff da 15,60, que es además la cifra
+   * que declara `tokens.css`.) La regla que sustituye pintaba blanco sobre cian y daba
+   * 1,81:1 — lo seleccionado era lo menos legible de la sección. */
+  .svc-cat[aria-selected='true'] { background: var(--navy); color: var(--mm-blanco) }
+
+  /* EL HOVER ERA #d8e6fb, un literal suelto que no correspondía a ningún token. Se va a
+   * --mm-borde (#e0e4ec), que es el token MÁS CERCANO POR LUMINANCIA que existe y no por poco:
+   *     #d8e6fb  L = 0,7816       --mm-borde     #e0e4ec  L = 0,7739   |ΔL| = 0,008
+   *                               --mm-azul-100  #edf0f8  L = 0,8710   |ΔL| = 0,089
+   *                               --mm-azul-50   #f1f5ff  L = 0,9123   |ΔL| = 0,131
+   * Lo que este color tiene que hacer es SEPARARSE del fondo del control, y ese salto se
+   * conserva: 1,11:1 antes (#d8e6fb sobre #e9f1fd), 1,12:1 ahora (#e0e4ec sobre #edf0f8). El
+   * rótulo navy encima pasa de 12,35:1 a 12,24:1. Todo medido con WCAG 2.x. */
+  .svc-cat[aria-selected='false']:hover { background: var(--mm-borde) }
 
   /* ── El cuerpo ─────────────────────────────────────────────────────────────────────────
    * La ficha sigue siendo absoluta, como en el original, pero SIN altura fija: su alto es el
@@ -242,7 +276,7 @@ const posicion = (sv) => visibles.findIndex((v) => v.id === sv.id) + 1;
     padding: 3px;
     border: 1px solid var(--oro);
     border-radius: 100%;
-    background: #fff;
+    background: var(--mm-blanco);
     margin-left: .75rem;
   }
 
@@ -265,7 +299,8 @@ const posicion = (sv) => visibles.findIndex((v) => v.id === sv.id) + 1;
    *
    * EL RAÍL ES NAVY Y NO ORO, Y ESO NO ES GUSTO. WCAG 1.4.11 pide 3:1 a lo que identifica el
    * ESTADO de un control, y el oro de la marca no llega: #f4b248 da 1,63:1 sobre el tinte de
-   * la fila y 1,86:1 sobre el blanco. En navy son 13,72:1 y 15,60:1. El oro se queda donde sí
+   * la fila y 1,86:1 sobre el blanco. En navy son 13,68:1 y 15,60:1 (el primero era 13,72
+   * cuando el tinte de fila era #e9f1fd; con --mm-azul-100 son 13,68, remedido). El oro se queda donde sí
    * cumple —el fondo del CTA, con texto navy a 8,40:1— y como refuerzo decorativo en el
    * chevron y en el aro del icono, que ya no cargan con el estado. */
   .svc-fila[aria-current='true'] {
@@ -284,7 +319,7 @@ const posicion = (sv) => visibles.findIndex((v) => v.id === sv.id) + 1;
   .svc-cat:focus-visible,
   .svc-cta:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--navy);
+    box-shadow: 0 0 0 2px var(--mm-blanco), 0 0 0 4px var(--navy);
     border-radius: 4px;
   }
 
@@ -320,10 +355,12 @@ const posicion = (sv) => visibles.findIndex((v) => v.id === sv.id) + 1;
     margin: 0;
     padding: .25rem .6rem;
     border-radius: 999px;
-    /* 80 % de navy: sobre el peor fondo posible -una foto blanca- el compuesto es
-     * rgb(51,73,130) y el blanco encima da 8,65:1. */
-    background: #001c63cc;
-    color: #fff;
+    /* 80 % de navy. El alfa del hex era `cc` = 204/255 = 0,8000 exacto, así que el color-mix
+     * al 80 % es el MISMO color, no una aproximación: sobre el peor fondo posible -una foto
+     * blanca- el compuesto sigue siendo rgb(51,73,130) y el blanco encima da 8,69:1 (aquí
+     * ponía 8,65; remedido con la fórmula de luminancia relativa de WCAG 2.x). */
+    background: color-mix(in srgb, var(--mm-navy) 80%, transparent);
+    color: var(--mm-blanco);
     font-size: 12px;
     font-weight: 600;
     letter-spacing: .02em;

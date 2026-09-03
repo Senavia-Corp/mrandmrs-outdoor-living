@@ -51,6 +51,175 @@ const DERIVADOS_A_PROPOSITO = {
   '/videos/bg-video-1-webm.webm':
     'La pista WebM del mismo recorte, VP8 a 2389 kbps como el original. 26,36 s. '
     + 'Mismo motivo y misma aprobación que el mp4.',
+
+  /* ── R13-COLOR · los 23 tintes de diseno ──────────────────────────────────
+   * NO entran aqui, y es la mitad de la decision: los logos de terceros (Sunbrella H14,
+   * Alumawood H205, NPT H213, Zodiac H227), los folletos de fabricante, ni las fotos reales
+   * de obra de projects/, residentials/ e images/. Retonar la marca de otro es falsificarla,
+   * y retonar el trabajo del cliente es peor. Tampoco `design3`: mide H198, que es el tono
+   * EXACTO de --mm-cian, o sea el acento frio deliberado del sistema, no una superficie de
+   * marca que se hubiera desviado. */
+  '/images/site/animateddivs-image-p-1080.webp':
+    'R13-COLOR (3-sep-2026): tinte de diseno llevado al eje de marca. El tinte de esta imagen '
+    + 'estaba HORNEADO en el fichero, no en CSS, asi que ninguna regla lo alcanzaba y el sitio no '
+    + 'podia verse uniforme por mucho token que se escribiera. Girado de su tono original al H223 '
+    + 'del logo (#001C63) conservando luminancia, y reencodado a webp q95. Dimensiones y formato '
+    + 'intactos, verificados uno a uno contra HEAD. La entrada REMOTA conserva el hash del original '
+    + 'de Webflow —unica prueba de la migracion, no regenerable—; la LOCAL dice lo que se sirve.',
+  '/images/site/animateddivs-image-p-1600.webp':
+    'R13-COLOR (3-sep-2026): tinte de diseno llevado al eje de marca. El tinte de esta imagen '
+    + 'estaba HORNEADO en el fichero, no en CSS, asi que ninguna regla lo alcanzaba y el sitio no '
+    + 'podia verse uniforme por mucho token que se escribiera. Girado de su tono original al H223 '
+    + 'del logo (#001C63) conservando luminancia, y reencodado a webp q95. Dimensiones y formato '
+    + 'intactos, verificados uno a uno contra HEAD. La entrada REMOTA conserva el hash del original '
+    + 'de Webflow —unica prueba de la migracion, no regenerable—; la LOCAL dice lo que se sirve.',
+  '/images/site/animateddivs-image-p-500.webp':
+    'R13-COLOR (3-sep-2026): tinte de diseno llevado al eje de marca. El tinte de esta imagen '
+    + 'estaba HORNEADO en el fichero, no en CSS, asi que ninguna regla lo alcanzaba y el sitio no '
+    + 'podia verse uniforme por mucho token que se escribiera. Girado de su tono original al H223 '
+    + 'del logo (#001C63) conservando luminancia, y reencodado a webp q95. Dimensiones y formato '
+    + 'intactos, verificados uno a uno contra HEAD. La entrada REMOTA conserva el hash del original '
+    + 'de Webflow —unica prueba de la migracion, no regenerable—; la LOCAL dice lo que se sirve.',
+  '/images/site/animateddivs-image-p-800.webp':
+    'R13-COLOR (3-sep-2026): tinte de diseno llevado al eje de marca. El tinte de esta imagen '
+    + 'estaba HORNEADO en el fichero, no en CSS, asi que ninguna regla lo alcanzaba y el sitio no '
+    + 'podia verse uniforme por mucho token que se escribiera. Girado de su tono original al H223 '
+    + 'del logo (#001C63) conservando luminancia, y reencodado a webp q95. Dimensiones y formato '
+    + 'intactos, verificados uno a uno contra HEAD. La entrada REMOTA conserva el hash del original '
+    + 'de Webflow —unica prueba de la migracion, no regenerable—; la LOCAL dice lo que se sirve.',
+  '/images/site/animateddivs-image.webp':
+    'R13-COLOR (3-sep-2026): tinte de diseno llevado al eje de marca. El tinte de esta imagen '
+    + 'estaba HORNEADO en el fichero, no en CSS, asi que ninguna regla lo alcanzaba y el sitio no '
+    + 'podia verse uniforme por mucho token que se escribiera. Girado de su tono original al H223 '
+    + 'del logo (#001C63) conservando luminancia, y reencodado a webp q95. Dimensiones y formato '
+    + 'intactos, verificados uno a uno contra HEAD. La entrada REMOTA conserva el hash del original '
+    + 'de Webflow —unica prueba de la migracion, no regenerable—; la LOCAL dice lo que se sirve.',
+  '/images/site/checked.png':
+    'R13-COLOR (3-sep-2026): tinte de diseno llevado al eje de marca. El tinte de esta imagen '
+    + 'estaba HORNEADO en el fichero, no en CSS, asi que ninguna regla lo alcanzaba y el sitio no '
+    + 'podia verse uniforme por mucho token que se escribiera. Girado de su tono original al H223 '
+    + 'del logo (#001C63) conservando luminancia, y reencodado a webp q95. Dimensiones y formato '
+    + 'intactos, verificados uno a uno contra HEAD. La entrada REMOTA conserva el hash del original '
+    + 'de Webflow —unica prueba de la migracion, no regenerable—; la LOCAL dice lo que se sirve.',
+  '/images/site/cta-footer-image-p-1080.webp':
+    'R13-COLOR (3-sep-2026): tinte de diseno llevado al eje de marca. El tinte de esta imagen '
+    + 'estaba HORNEADO en el fichero, no en CSS, asi que ninguna regla lo alcanzaba y el sitio no '
+    + 'podia verse uniforme por mucho token que se escribiera. Girado de su tono original al H223 '
+    + 'del logo (#001C63) conservando luminancia, y reencodado a webp q95. Dimensiones y formato '
+    + 'intactos, verificados uno a uno contra HEAD. La entrada REMOTA conserva el hash del original '
+    + 'de Webflow —unica prueba de la migracion, no regenerable—; la LOCAL dice lo que se sirve.',
+  '/images/site/cta-footer-image-p-1600.webp':
+    'R13-COLOR (3-sep-2026): tinte de diseno llevado al eje de marca. El tinte de esta imagen '
+    + 'estaba HORNEADO en el fichero, no en CSS, asi que ninguna regla lo alcanzaba y el sitio no '
+    + 'podia verse uniforme por mucho token que se escribiera. Girado de su tono original al H223 '
+    + 'del logo (#001C63) conservando luminancia, y reencodado a webp q95. Dimensiones y formato '
+    + 'intactos, verificados uno a uno contra HEAD. La entrada REMOTA conserva el hash del original '
+    + 'de Webflow —unica prueba de la migracion, no regenerable—; la LOCAL dice lo que se sirve.',
+  '/images/site/cta-footer-image-p-500.webp':
+    'R13-COLOR (3-sep-2026): tinte de diseno llevado al eje de marca. El tinte de esta imagen '
+    + 'estaba HORNEADO en el fichero, no en CSS, asi que ninguna regla lo alcanzaba y el sitio no '
+    + 'podia verse uniforme por mucho token que se escribiera. Girado de su tono original al H223 '
+    + 'del logo (#001C63) conservando luminancia, y reencodado a webp q95. Dimensiones y formato '
+    + 'intactos, verificados uno a uno contra HEAD. La entrada REMOTA conserva el hash del original '
+    + 'de Webflow —unica prueba de la migracion, no regenerable—; la LOCAL dice lo que se sirve.',
+  '/images/site/cta-footer-image-p-800.webp':
+    'R13-COLOR (3-sep-2026): tinte de diseno llevado al eje de marca. El tinte de esta imagen '
+    + 'estaba HORNEADO en el fichero, no en CSS, asi que ninguna regla lo alcanzaba y el sitio no '
+    + 'podia verse uniforme por mucho token que se escribiera. Girado de su tono original al H223 '
+    + 'del logo (#001C63) conservando luminancia, y reencodado a webp q95. Dimensiones y formato '
+    + 'intactos, verificados uno a uno contra HEAD. La entrada REMOTA conserva el hash del original '
+    + 'de Webflow —unica prueba de la migracion, no regenerable—; la LOCAL dice lo que se sirve.',
+  '/images/site/cta-footer-image.webp':
+    'R13-COLOR (3-sep-2026): tinte de diseno llevado al eje de marca. El tinte de esta imagen '
+    + 'estaba HORNEADO en el fichero, no en CSS, asi que ninguna regla lo alcanzaba y el sitio no '
+    + 'podia verse uniforme por mucho token que se escribiera. Girado de su tono original al H223 '
+    + 'del logo (#001C63) conservando luminancia, y reencodado a webp q95. Dimensiones y formato '
+    + 'intactos, verificados uno a uno contra HEAD. La entrada REMOTA conserva el hash del original '
+    + 'de Webflow —unica prueba de la migracion, no regenerable—; la LOCAL dice lo que se sirve.',
+  '/images/site/design2-p-1080.webp':
+    'R13-COLOR (3-sep-2026): tinte de diseno llevado al eje de marca. El tinte de esta imagen '
+    + 'estaba HORNEADO en el fichero, no en CSS, asi que ninguna regla lo alcanzaba y el sitio no '
+    + 'podia verse uniforme por mucho token que se escribiera. Girado de su tono original al H223 '
+    + 'del logo (#001C63) conservando luminancia, y reencodado a webp q95. Dimensiones y formato '
+    + 'intactos, verificados uno a uno contra HEAD. La entrada REMOTA conserva el hash del original '
+    + 'de Webflow —unica prueba de la migracion, no regenerable—; la LOCAL dice lo que se sirve.',
+  '/images/site/design2-p-1600.webp':
+    'R13-COLOR (3-sep-2026): tinte de diseno llevado al eje de marca. El tinte de esta imagen '
+    + 'estaba HORNEADO en el fichero, no en CSS, asi que ninguna regla lo alcanzaba y el sitio no '
+    + 'podia verse uniforme por mucho token que se escribiera. Girado de su tono original al H223 '
+    + 'del logo (#001C63) conservando luminancia, y reencodado a webp q95. Dimensiones y formato '
+    + 'intactos, verificados uno a uno contra HEAD. La entrada REMOTA conserva el hash del original '
+    + 'de Webflow —unica prueba de la migracion, no regenerable—; la LOCAL dice lo que se sirve.',
+  '/images/site/design2-p-500.webp':
+    'R13-COLOR (3-sep-2026): tinte de diseno llevado al eje de marca. El tinte de esta imagen '
+    + 'estaba HORNEADO en el fichero, no en CSS, asi que ninguna regla lo alcanzaba y el sitio no '
+    + 'podia verse uniforme por mucho token que se escribiera. Girado de su tono original al H223 '
+    + 'del logo (#001C63) conservando luminancia, y reencodado a webp q95. Dimensiones y formato '
+    + 'intactos, verificados uno a uno contra HEAD. La entrada REMOTA conserva el hash del original '
+    + 'de Webflow —unica prueba de la migracion, no regenerable—; la LOCAL dice lo que se sirve.',
+  '/images/site/design2-p-800.webp':
+    'R13-COLOR (3-sep-2026): tinte de diseno llevado al eje de marca. El tinte de esta imagen '
+    + 'estaba HORNEADO en el fichero, no en CSS, asi que ninguna regla lo alcanzaba y el sitio no '
+    + 'podia verse uniforme por mucho token que se escribiera. Girado de su tono original al H223 '
+    + 'del logo (#001C63) conservando luminancia, y reencodado a webp q95. Dimensiones y formato '
+    + 'intactos, verificados uno a uno contra HEAD. La entrada REMOTA conserva el hash del original '
+    + 'de Webflow —unica prueba de la migracion, no regenerable—; la LOCAL dice lo que se sirve.',
+  '/images/site/design2.webp':
+    'R13-COLOR (3-sep-2026): tinte de diseno llevado al eje de marca. El tinte de esta imagen '
+    + 'estaba HORNEADO en el fichero, no en CSS, asi que ninguna regla lo alcanzaba y el sitio no '
+    + 'podia verse uniforme por mucho token que se escribiera. Girado de su tono original al H223 '
+    + 'del logo (#001C63) conservando luminancia, y reencodado a webp q95. Dimensiones y formato '
+    + 'intactos, verificados uno a uno contra HEAD. La entrada REMOTA conserva el hash del original '
+    + 'de Webflow —unica prueba de la migracion, no regenerable—; la LOCAL dice lo que se sirve.',
+  '/images/site/favicon.png':
+    'R13-COLOR (3-sep-2026): tinte de diseno llevado al eje de marca. El tinte de esta imagen '
+    + 'estaba HORNEADO en el fichero, no en CSS, asi que ninguna regla lo alcanzaba y el sitio no '
+    + 'podia verse uniforme por mucho token que se escribiera. Girado de su tono original al H223 '
+    + 'del logo (#001C63) conservando luminancia, y reencodado a webp q95. Dimensiones y formato '
+    + 'intactos, verificados uno a uno contra HEAD. La entrada REMOTA conserva el hash del original '
+    + 'de Webflow —unica prueba de la migracion, no regenerable—; la LOCAL dice lo que se sirve.',
+  '/images/site/testimonial-image-p-1080.webp':
+    'R13-COLOR (3-sep-2026): tinte de diseno llevado al eje de marca. El tinte de esta imagen '
+    + 'estaba HORNEADO en el fichero, no en CSS, asi que ninguna regla lo alcanzaba y el sitio no '
+    + 'podia verse uniforme por mucho token que se escribiera. Girado de su tono original al H223 '
+    + 'del logo (#001C63) conservando luminancia, y reencodado a webp q95. Dimensiones y formato '
+    + 'intactos, verificados uno a uno contra HEAD. La entrada REMOTA conserva el hash del original '
+    + 'de Webflow —unica prueba de la migracion, no regenerable—; la LOCAL dice lo que se sirve.',
+  '/images/site/testimonial-image-p-1600.webp':
+    'R13-COLOR (3-sep-2026): tinte de diseno llevado al eje de marca. El tinte de esta imagen '
+    + 'estaba HORNEADO en el fichero, no en CSS, asi que ninguna regla lo alcanzaba y el sitio no '
+    + 'podia verse uniforme por mucho token que se escribiera. Girado de su tono original al H223 '
+    + 'del logo (#001C63) conservando luminancia, y reencodado a webp q95. Dimensiones y formato '
+    + 'intactos, verificados uno a uno contra HEAD. La entrada REMOTA conserva el hash del original '
+    + 'de Webflow —unica prueba de la migracion, no regenerable—; la LOCAL dice lo que se sirve.',
+  '/images/site/testimonial-image-p-500.webp':
+    'R13-COLOR (3-sep-2026): tinte de diseno llevado al eje de marca. El tinte de esta imagen '
+    + 'estaba HORNEADO en el fichero, no en CSS, asi que ninguna regla lo alcanzaba y el sitio no '
+    + 'podia verse uniforme por mucho token que se escribiera. Girado de su tono original al H223 '
+    + 'del logo (#001C63) conservando luminancia, y reencodado a webp q95. Dimensiones y formato '
+    + 'intactos, verificados uno a uno contra HEAD. La entrada REMOTA conserva el hash del original '
+    + 'de Webflow —unica prueba de la migracion, no regenerable—; la LOCAL dice lo que se sirve.',
+  '/images/site/testimonial-image-p-800.webp':
+    'R13-COLOR (3-sep-2026): tinte de diseno llevado al eje de marca. El tinte de esta imagen '
+    + 'estaba HORNEADO en el fichero, no en CSS, asi que ninguna regla lo alcanzaba y el sitio no '
+    + 'podia verse uniforme por mucho token que se escribiera. Girado de su tono original al H223 '
+    + 'del logo (#001C63) conservando luminancia, y reencodado a webp q95. Dimensiones y formato '
+    + 'intactos, verificados uno a uno contra HEAD. La entrada REMOTA conserva el hash del original '
+    + 'de Webflow —unica prueba de la migracion, no regenerable—; la LOCAL dice lo que se sirve.',
+  '/images/site/testimonial-image.webp':
+    'R13-COLOR (3-sep-2026): tinte de diseno llevado al eje de marca. El tinte de esta imagen '
+    + 'estaba HORNEADO en el fichero, no en CSS, asi que ninguna regla lo alcanzaba y el sitio no '
+    + 'podia verse uniforme por mucho token que se escribiera. Girado de su tono original al H223 '
+    + 'del logo (#001C63) conservando luminancia, y reencodado a webp q95. Dimensiones y formato '
+    + 'intactos, verificados uno a uno contra HEAD. La entrada REMOTA conserva el hash del original '
+    + 'de Webflow —unica prueba de la migracion, no regenerable—; la LOCAL dice lo que se sirve.',
+  '/images/site/webclip.png':
+    'R13-COLOR (3-sep-2026): tinte de diseno llevado al eje de marca. El tinte de esta imagen '
+    + 'estaba HORNEADO en el fichero, no en CSS, asi que ninguna regla lo alcanzaba y el sitio no '
+    + 'podia verse uniforme por mucho token que se escribiera. Girado de su tono original al H223 '
+    + 'del logo (#001C63) conservando luminancia, y reencodado a webp q95. Dimensiones y formato '
+    + 'intactos, verificados uno a uno contra HEAD. La entrada REMOTA conserva el hash del original '
+    + 'de Webflow —unica prueba de la migracion, no regenerable—; la LOCAL dice lo que se sirve.',
 };
 const derivado = (a) => Object.hasOwn(DERIVADOS_A_PROPOSITO, a.publico);
 /** true solo para la entrada REMOTA congelada de un activo derivado (la clave es su URL). */

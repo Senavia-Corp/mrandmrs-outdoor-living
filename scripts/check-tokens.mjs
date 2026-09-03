@@ -156,7 +156,37 @@ for (const raiz of RAICES_BLOQUES) {
   }(dir));
 }
 
-console.log(`\ncheck:tokens — ${capa.length} hojas en la capa · ${componentes.length} bloques <style>\n`);
+/**
+ * ── los bloques <script>, en las MISMAS cuatro raices ───────────────────────
+ *
+ * POR QUE EXISTE ESTO, y por que no estaba: la puerta vigilaba `<style>` y daba VERDE
+ * mientras las 14 fichas de `src/pages/services/` llevaban meses con una paleta paralela
+ * entera —#0D1C3F y #C9A84C, ni el navy ni el oro de la casa— porque NO entraron por un
+ * `<style>`: las 14 tienen CERO bloques `<style>`. Entraron por un `<script>` en linea que
+ * pinta con `element.style.background = '#0D1C3F'`.
+ *
+ * Y contra un `style` en linea no gana ninguna hoja sin `!important`, que §5 prohibe. O sea
+ * que era el unico sitio del proyecto donde el color podia pudrirse SIN que nada lo viera y
+ * SIN que la capa de diseno pudiera corregirlo. Es el patron de §8 otra vez: la ausencia de
+ * senal leida como senal buena.
+ */
+const guiones = [];
+for (const raiz of RAICES_BLOQUES) {
+  const dir = path.join(RAIZ, raiz);
+  if (!fs.existsSync(dir)) continue;
+  (function barrer(d) {
+    for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+      const p = path.join(d, e.name);
+      if (e.isDirectory()) { barrer(p); continue; }
+      if (!EXT_BLOQUES.has(path.extname(e.name))) continue;
+      const crudo = fs.readFileSync(p, 'utf8').replace(/\\n/g, '\n').replace(/\\"/g, '"');
+      for (const m of crudo.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/g))
+        guiones.push({ rel: path.relative(RAIZ, p), txt: sinComentarios(m[1]) });
+    }
+  }(dir));
+}
+
+console.log(`\ncheck:tokens — ${capa.length} hojas en la capa · ${componentes.length} bloques <style> · ${guiones.length} bloques <script>\n`);
 
 const hits = (fuente, re, filtro = () => true) => fuente.flatMap(({ rel, txt }) =>
   [...txt.matchAll(re)].filter((m) => filtro(rel, m))
@@ -192,6 +222,78 @@ const col = capa.filter(({ rel }) => rel !== 'disenio/tokens.css')
   .flatMap(({ rel, txt }) => { const t = sinVar(txt); return [...t.matchAll(colorLiteral)]
     .map((m) => `${rel}:${t.slice(0, m.index).split('\n').length}  ${m[0].trim().slice(0, 56)}`); });
 check('literales de color solo en disenio/tokens.css', col.length === 0, `${col.length} fuera`); lista(col);
+
+/**
+ * ── 3b · el color dentro de `<script>` NO CRECE ─────────────────────────────
+ *
+ * NO exige cero, y es a proposito: hoy hay literales legitimos ahi (los 14 widgets de pasos
+ * de `services/` asignan color en linea desde JS, que es la unica forma de pintar un estado
+ * que no tiene clase). Exigir cero pondria la puerta roja el dia que nace, y una puerta que
+ * nace roja se desactiva en una semana. Lo que hace es CLAVAR la cifra: si alguien mete un
+ * color nuevo en un `<script>`, la puerta lo caza.
+ *
+ * DEUDA DECLARADA, no perdonada: el arreglo bueno es amputar el estilo en linea del widget
+ * (que el script alterne una CLASE) y poner el color en `src/styles/servicios.css`. Eso exige
+ * tocar `scripts/build-paginas.mjs` y correr `npm run paginas`, que reescribe 61 paginas —
+ * con varias sesiones en este arbol, no cabia en R13-COLOR. Cuando se haga, este techo baja
+ * a 0 y esta regla pasa a exigir cero.
+ *
+ * SEIS U OCHO DIGITOS, NUNCA TRES, y no es pereza: `#312` casa un hex de 3 digitos y en
+ * `src/pages/blogs/pool-construction-timeline-…` aparece dentro de la PROSA —«Shell #4 8" OC
+ * Deck #3 12" OC», separacion de varilla—. Con `{3,8}` esta regla convertiria un articulo
+ * tecnico en un fallo de color. Medido antes de escribir el rango.
+ */
+const COLOR_EN_JS = /#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?\b|\brgba?\(\s*\d+\s*,[^)]*\)|\bhsla?\(\s*\d+[^)]*\)/g;
+/* 70 = las 14 fichas de `services/` x 5 literales (#001c63 x2, #d99933, rgba(0,28,99,.25),
+ * #ffffff). Los CINCO son ya el color correcto de la casa tras R13-COLOR; lo que sigue mal es
+ * que vivan en un `<script>` y no en una hoja. Contado, no estimado, y sin un solo falso
+ * positivo de prosa. */
+const TECHO_JS = 70;
+const enJs = guiones.flatMap(({ rel, txt }) => [...txt.matchAll(COLOR_EN_JS)]
+  .map((m) => `${rel}:${txt.slice(0, m.index).split('\n').length}  ${m[0].trim().slice(0, 56)}`));
+check(`el color en bloques <script> no crece (techo ${TECHO_JS})`, enJs.length <= TECHO_JS,
+  `${enJs.length} de ${TECHO_JS}`);
+if (enJs.length > TECHO_JS) lista(enJs);
+
+/**
+ * ── 3c · los 152 SVG siguen diciendo el color que dice el token ─────────────
+ *
+ * `public/**.svg` son 152 ficheros con 168 literales de color a fuego: 125 `#f4b248`
+ * (el oro) en 123 iconos y 41 `#001c63` (el navy) en 20. Son los iconos de las 14 fichas
+ * de servicio, los ~118 de subservicio, los 11 del submenu del nav, location/mail/phone y
+ * los dos logos. Es la superficie de color mas repetida del sitio.
+ *
+ * NINGUN `var()` los alcanza: un SVG servido como `<img src>` no hereda las custom
+ * properties de la pagina. Asi que el dia que `--mm-oro` o `--mm-navy` se muevan, 143
+ * ficheros se quedan con el color viejo y NO lo dice nadie. Esta regla es lo que lo dice.
+ *
+ * NO comprueba contraste, y es deliberado: los 152 se insertan con `alt=""` y clase
+ * `icon-deco`, o sea DECLARADOS decorativos por su propio marcado, y WCAG 1.4.11 solo
+ * exige 3:1 a lo que hace falta entender. El oro a 1,86:1 sobre blanco es legitimo ahi —
+ * es el mismo criterio que `tokens.css` ya tiene escrito para el oro.
+ */
+const VALOR_TOKEN = (nombre) => {
+  const m = fs.readFileSync(path.join(ESTILOS, 'disenio/tokens.css'), 'utf8')
+    .match(new RegExp(`^\\s*${nombre}\\s*:\\s*(#[0-9a-fA-F]{3,8})`, 'm'));
+  return m ? m[1].toLowerCase() : null;
+};
+const svgs = [];
+(function barrer(d) {
+  if (!fs.existsSync(d)) return;
+  for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+    const p = path.join(d, e.name);
+    if (e.isDirectory()) barrer(p);
+    else if (e.name.endsWith('.svg')) svgs.push(p);
+  }
+}(path.join(RAIZ, 'public')));
+const ORO = VALOR_TOKEN('--mm-oro'), NAVY = VALOR_TOKEN('--mm-azul-900');
+const PERMITIDOS = new Set([ORO, NAVY, '#2e2e2e', '#242424'].filter(Boolean));
+const svgMal = svgs.flatMap((f) => [...fs.readFileSync(f, 'utf8').matchAll(/#[0-9a-fA-F]{6}\b/g)]
+  .filter((m) => !PERMITIDOS.has(m[0].toLowerCase()))
+  .map((m) => `${path.relative(RAIZ, f)}  ${m[0]}`));
+check(`los ${svgs.length} SVG usan el color que dicen los tokens (${ORO} / ${NAVY})`,
+  svgMal.length === 0 && !!ORO && !!NAVY, `${svgMal.length} fuera`);
+lista(svgMal.slice(0, 12));
 
 // ── 4 · los ~66 tokens shadcn muertos no se consumen ────────────────────────
 const apps = hits(capa, /--_apps---[\w-]*/g);

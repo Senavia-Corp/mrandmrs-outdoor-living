@@ -196,7 +196,7 @@
 }
 .mm-tarjeta--alta { box-shadow: var(--mm-sombra-2); }
 
-/* Bloque tenido: la superficie clara alternativa (#e9f1fd, token real de
+/* Bloque tenido: la superficie clara alternativa (#edf0f8, token real de
  * Webflow). Texto navy encima = 13,72:1. */
 .mm-tono {
   background-color: var(--mm-fondo-tenue);

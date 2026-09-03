@@ -54,6 +54,11 @@ const fmt = (f?: string) => (f
 {hay && (
   <div class="mm-resenas">
     <div class="mm-resenas__resumen">
+      {/* LOS CUATRO HEX DE LA G SON DE GOOGLE Y NO SE TOCAN. Son los colores oficiales
+          de su logotipo: #4285F4 azul, #34A853 verde, #FBBC05 amarillo, #EA4335 rojo.
+          Retonarlos al eje de marca de esta casa seria repintar la marca de un tercero,
+          asi que se quedan como literal a proposito: no pueden vivir en
+          `disenio/tokens.css`, que es el vocabulario de Mr & Mrs, no el de Google. */}
       <svg class="mm-resenas__g" viewBox="0 0 24 24" aria-hidden="true">
         <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5a5.6 5.6 0 0 1-2.4 3.7v3h3.9c2.3-2.1 3.5-5.2 3.5-8.9Z"/>
         <path fill="#34A853" d="M12 24c3.2 0 5.9-1.1 7.9-2.9l-3.9-3a7.2 7.2 0 0 1-10.7-3.8H1.3v3.1A12 12 0 0 0 12 24Z"/>
@@ -137,13 +142,26 @@ const fmt = (f?: string) => (f
     padding: .5rem 1.1rem;
     border-radius: 8px;
     font-size: 14px; font-weight: 700; text-decoration: none;
-    color: var(--blue_dark, #001c63);
-    /* el degradado dorado de .button-styles del sitio, literal */
+    color: var(--mm-navy);
+    /* El degradado dorado de .button-styles del sitio, ahora en tokens. Los tres
+       oros resuelven a los MISMOS hex que habia (#f4b248 / #d99933 / #edb660), asi
+       que no mueve un pixel. Ratios MEDIDOS con la formula de luminancia relativa de
+       WCAG 2.x sobre esos hex, no estimados — coinciden al decimal con los que ya
+       declara `disenio/tokens.css`:
+           var(--mm-navy) sobre --mm-oro ......... 8,40:1
+           var(--mm-navy) sobre --mm-oro-hondo ... 6,35:1   <- el peor punto (25/75 %)
+           var(--mm-navy) sobre --mm-oro-claro ... 8,51:1
+       El peor punto del recorrido pasa AA y AAA para texto normal. */
     background-image: linear-gradient(135deg,
-      var(--yellow-1, #f4b248), var(--yellow-2, #d99933) 25%,
-      var(--yellow-3, #edb660) 50%, var(--yellow-2, #d99933) 75%, var(--yellow-1, #f4b248));
+      var(--mm-oro), var(--mm-oro-hondo) 25%,
+      var(--mm-oro-claro) 50%, var(--mm-oro-hondo) 75%, var(--mm-oro));
   }
-  .mm-resenas__enlace:focus-visible { outline: 3px solid #fff; outline-offset: 2px }
+  /* MEDIDO Y NO TOCADO (era `#fff`, mismo valor). Este anillo vale sobre el fondo
+     oscuro de la home, pero el componente tambien vive en /testimonials y /contact-us,
+     con seccion BLANCA: ahi es blanco sobre blanco = 1,00:1 y suspende los 3:1 de WCAG
+     1.4.11. Cambiar el color es una decision de diseno —el hermano de abajo usa
+     `currentColor`, que si se adapta—, no una traduccion a tokens; queda anotado. */
+  .mm-resenas__enlace:focus-visible { outline: 3px solid var(--mm-blanco); outline-offset: 2px }
 
   /* ── estrellas ────────────────────────────────────────────────────────── */
   .mm-resenas__estrellas { display: flex; gap: 2px }
@@ -151,7 +169,7 @@ const fmt = (f?: string) => (f
      la home y en fondo BLANCO en /testimonials y /contact-us. Con #ffffff3d la
      estrella vacia era invisible en la mitad de las rutas. */
   .mm-resenas__estrellas svg { width: 18px; height: 18px; fill: currentColor; opacity: .24 }
-  .mm-resenas__estrellas svg.llena { fill: var(--yellow-1, #f4b248); opacity: 1 }
+  .mm-resenas__estrellas svg.llena { fill: var(--mm-oro); opacity: 1 }
 
   /* ── el carrusel ──────────────────────────────────────────────────────────
      El motor vive en Componentes.astro y es global: se activa solo con los
@@ -176,13 +194,22 @@ const fmt = (f?: string) => (f
     display: flex; flex-direction: column; gap: .85rem;
     padding: 1.5rem;
     border-radius: 15px;                        /* el radio de .card del sitio */
-    /* Vidrio que se adapta al fondo. El primer valor es el respaldo para quien
-       no entienda color-mix; el segundo tiñe con el color de texto heredado, asi
-       que funciona igual sobre el fondo oscuro de la home que sobre el blanco de
-       /testimonials, donde un #ffffff14 era invisible. */
-    background-color: #ffffff14;
+    /* Vidrio que se adapta al fondo: la primera declaracion de cada par pone el velo
+       BLANCO y la segunda lo retiñe con el color de texto heredado, asi que funciona
+       igual sobre el fondo oscuro de la home que sobre el blanco de /testimonials.
+       Los dos velos blancos eran hex de 8 digitos y ahora son EL MISMO valor escrito
+       con token: alfa 0x14 = 20/255 = 7,84 % -> 8 %; alfa 0x29 = 41/255 = 16,08 % -> 16 %.
+       EL 16 % NO ES ERRATA: es lo que valia el literal. Que la linea de debajo diga 18 %
+       ya pasaba antes de esta migracion; igualarlos es una decision de diseno, no de
+       traduccion, y no se toma aqui.
+       LO QUE CUESTA, dicho: la primera declaracion ya no es respaldo para navegadores
+       sin color-mix, porque ahora tambien lo usa. Ahi la tarjeta se queda sin velo en
+       vez de con el blanco. Se acepta porque color-mix es linea base del repo —lo usan
+       `disenio/propio.css` y la SEGUNDA declaracion de cada par de aqui mismo, o sea
+       que en ese navegador el vidrio adaptativo no existia igualmente. */
+    background-color: color-mix(in srgb, var(--mm-blanco) 8%, transparent);
     background-color: color-mix(in srgb, currentColor 8%, transparent);
-    border: 1px solid #ffffff29;
+    border: 1px solid color-mix(in srgb, var(--mm-blanco) 16%, transparent);
     border-color: color-mix(in srgb, currentColor 18%, transparent);
     backdrop-filter: blur(6px);
     /* `flex: none` + `height` fijo: el motor escribe el `width` en linea a partir
@@ -209,10 +236,10 @@ const fmt = (f?: string) => (f
     width: 3rem; height: 3rem; flex: none;
     display: grid; place-items: center;
     border: 0; border-radius: 100%; cursor: pointer;
-    color: var(--blue_dark, #001c63);
+    color: var(--mm-navy);
     background-image: linear-gradient(135deg,
-      var(--yellow-1, #f4b248), var(--yellow-2, #d99933) 25%,
-      var(--yellow-3, #edb660) 50%, var(--yellow-2, #d99933) 75%, var(--yellow-1, #f4b248));
+      var(--mm-oro), var(--mm-oro-hondo) 25%,
+      var(--mm-oro-claro) 50%, var(--mm-oro-hondo) 75%, var(--mm-oro));
   }
   .mm-resenas__flecha svg { width: 1.35rem; height: 1.35rem }
   .mm-resenas__flecha:focus-visible { outline: 3px solid currentColor; outline-offset: 3px }
@@ -221,14 +248,15 @@ const fmt = (f?: string) => (f
 
   .mm-resenas__barra {
     height: 1rem; margin-top: 1rem; border-radius: 1rem;
-    background-color: #ffffff29; overflow: hidden;
+    background-color: color-mix(in srgb, var(--mm-blanco) 16%, transparent);
+    overflow: hidden;
     background-color: color-mix(in srgb, currentColor 18%, transparent);
   }
   .mm-resenas__barra-drag {
     width: 20%; height: 1rem; border-radius: 1rem;
     background-image: linear-gradient(135deg,
-      var(--yellow-1, #f4b248), var(--yellow-2, #d99933) 25%,
-      var(--yellow-3, #edb660) 50%, var(--yellow-2, #d99933) 75%, var(--yellow-1, #f4b248));
+      var(--mm-oro), var(--mm-oro-hondo) 25%,
+      var(--mm-oro-claro) 50%, var(--mm-oro-hondo) 75%, var(--mm-oro));
   }
 
   .mm-resenas__autor { display: flex; align-items: center; gap: .7rem; margin-top: auto }
@@ -239,8 +267,8 @@ const fmt = (f?: string) => (f
   }
   .mm-resenas__inicial {
     display: grid; place-items: center;
-    background-color: var(--yellow-1, #f4b248);
-    color: var(--blue_dark, #001c63);
+    background-color: var(--mm-oro);
+    color: var(--mm-navy);
     font-weight: 700; font-size: 17px;
   }
   /* Contenido generado a proposito: como <span> de texto, `display:grid` lo

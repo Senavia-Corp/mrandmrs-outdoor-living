@@ -116,9 +116,12 @@
  * entero: la separacion la hace el TONO, no la sombra. Un panel tenido no necesita
  * elevarse para leerse como pieza.
  *
- * Ratios medidos dentro de la tarjeta (fondo `--mm-fondo-tenue`, #e9f1fd):
- *     `--mm-tinta` (navy) ............... 13,72:1
- *     `--mm-tinta-atenuada` (#596b9a) ...  4,62:1   AA para texto normal
+ * Ratios medidos dentro de la tarjeta (fondo `--mm-fondo-tenue`, #edf0f8):
+ *     `--mm-tinta` (navy) ............... 13,68:1
+ *     `--mm-tinta-atenuada` (#596b9a) ...  4,61:1   AA para texto normal
+ * (Eran 13,72 y 4,62 cuando el fondo tenue era #e9f1fd. R13-COLOR lo llevo al eje de
+ *  marca con un sustituto ISOLUMICO, asi que los dos se mueven cuatro centesimas y las
+ *  dos promesas siguen en pie.)
  * El 65 % de alfa de la tinta atenuada se eligio en R7 por ser el mas bajo que pasa
  * 4,5:1 sobre las DOS superficies claras a la vez; esta es la segunda. */
 
