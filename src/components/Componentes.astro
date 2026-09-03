@@ -178,6 +178,7 @@ const SLIDERS = JSON.stringify(
       const grupos = new Map();
       const enlaces = [...document.querySelectorAll('a.w-lightbox')];
       for (const a of enlaces) {
+        if (a.closest('.gallery-page')) continue;   // split-panel lightbox (GalleryLeadLightbox.astro) owns these
         let datos;
         try { datos = JSON.parse(a.querySelector('script.w-json')?.textContent ?? '{}'); } catch { continue; }
         const items = (datos.items ?? []).filter((i) => i.type === 'image' && i.url);

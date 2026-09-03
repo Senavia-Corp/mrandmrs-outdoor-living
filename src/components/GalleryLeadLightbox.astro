@@ -1,0 +1,416 @@
+---
+/**
+ * Lightbox partido de /gallery: foto+nav a la izquierda, el mismo formulario de 3 pasos de
+ * /request-estimated a la derecha (bottom-sheet en movil). Ruta-limitado a proposito -no solo
+ * autolimitado por DOM como Componentes.astro/Formularios.astro- porque si esto se pintara en
+ * TODA pagina, /request-estimated tendria dos formularios "Request Quote Form" a la vez y
+ * cualquier codigo por id chocaria. Aqui no hay ids -ver el <script>- pero el marcado tampoco
+ * tiene por que existir donde no hace falta.
+ *
+ * El formulario embebido es una COPIA adaptada del de request-estimated.astro (que es DERIVADO
+ * -ver scripts/build-paginas.mjs- y no se puede importar ni enlazar desde aqui sin arriesgarse a
+ * que `npm run paginas` lo borre). Los 14 value= de las casillas de servicio ya vienen del mismo
+ * arreglo que build-paginas.mjs le aplica a la pagina real -mismo texto, mismo orden-.
+ */
+const enGaleria = Astro.url.pathname === '/gallery';
+---
+{enGaleria && (
+  <dialog class="mm-lbx" aria-label="Photo and project estimate request">
+    <button class="mm-lbx__x" type="button" aria-label="Close">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/></svg>
+    </button>
+    <div class="mm-lbx__panel">
+      <div class="mm-lbx__visor">
+        <button class="mm-lbx__nav mm-lbx__nav--prev" type="button" aria-label="Previous image">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </button>
+        <img class="mm-lbx__img" alt="" />
+        <button class="mm-lbx__nav mm-lbx__nav--next" type="button" aria-label="Next image">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </button>
+        <p class="mm-lbx__cuenta" aria-live="polite"></p>
+      </div>
+
+      <div class="mm-lbx__formulario">
+        <form data-name="Request Quote Form" method="post" action="/api/formulario" data-mm-envia="1">
+          <div class="step-wrapper">
+            <div data-step="1" class="msf-step">
+              <div class="header-form"><h2>Select Services &amp; Estimate Your Project Budget</h2></div>
+              <div class="bugget-form">
+                <div class="text-block-6">Estimated Project Budget:</div>
+                <select name="Estimated-Project-Budget" data-name="Estimated Project Budget" data-required="true" class="select-field w-select">
+                  <option value="">Select one...</option>
+                  <option value="Under $25,000">Under $25,000</option>
+                  <option value="$25,000 – $50,000">$25,000 – $50,000</option>
+                  <option value="$50,000 – $75,000">$50,000 – $75,000</option>
+                  <option value="$75,000 – $100,000">$75,000 – $100,000</option>
+                  <option value="$100,000 – $150,000">$100,000 – $150,000</option>
+                  <option value="$150,000+">$150,000+</option>
+                </select>
+              </div>
+              <div class="services-form">
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="New Pool and Spa Construction"><span class="w-form-label"><strong>New Pool and Spa Construction</strong></span></label>
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Pool Remodeling and Renovation"><span class="w-form-label"><strong>Pool Remodeling and Renovation</strong></span></label>
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Pool Screen Enclosures"><span class="w-form-label"><strong>Pool Screen Enclosures</strong></span></label>
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Aluminum and Wood Pergolas"><span class="w-form-label"><strong>Aluminum and Wood Pergolas</strong></span></label>
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Louvered Roof Systems"><span class="w-form-label"><strong>Louvered Roof Systems</strong></span></label>
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Pole Barn and Steel Buildings"><span class="w-form-label"><strong>Pole Barn and Steel Buildings</strong></span></label>
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Landscaping"><span class="w-form-label"><strong>Landscaping</strong></span></label>
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Automated Irrigation"><span class="w-form-label"><strong>Automated Irrigation</strong></span></label>
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Smart Soffit LED Lighting"><span class="w-form-label"><strong>Smart Soffit LED Lighting</strong></span></label>
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Custom Decks"><span class="w-form-label"><strong>Custom Decks</strong></span></label>
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Patio Screen Rooms"><span class="w-form-label"><strong>Patio Screen Rooms</strong></span></label>
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Retractable Screens"><span class="w-form-label"><strong>Retractable Screens</strong></span></label>
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Outdoor Kitchens"><span class="w-form-label"><strong>Outdoor Kitchens</strong></span></label>
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Outdoor Furniture"><span class="w-form-label"><strong>Outdoor Furniture</strong></span></label>
+              </div>
+            </div>
+
+            <div data-step="2" class="msf-step">
+              <div class="header-form"><h2>Project Property Address</h2></div>
+              <input data-required="true" class="text-field-form w-input" maxlength="256" name="Street-Address" data-name="Street Address" placeholder="Enter the street address" type="text">
+              <input data-required="true" class="text-field-form w-input" maxlength="256" name="City" data-name="City" placeholder="Enter the city" type="text">
+              <input class="text-field-form w-input" maxlength="256" name="State" data-name="State" placeholder="Enter the state" type="text">
+              <input data-required="true" class="text-field-form w-input" maxlength="256" name="ZIP-Code" data-name="ZIP Code" placeholder="Enter ZIP code" type="text">
+            </div>
+
+            <div data-step="3" class="msf-step">
+              <div class="header-form"><h2>Contact Information</h2></div>
+              <input data-required="true" class="text-field-form w-input" maxlength="256" name="Full-Name" data-name="Full Name" placeholder="Enter your full name" type="text">
+              <input data-required="true" class="text-field-form w-input" maxlength="256" name="email" data-name="Email" placeholder="Enter your email" type="email" data-type="email">
+              <input data-required="true" class="text-field-form w-input" maxlength="256" name="Phone" data-name="Phone" placeholder="Enter your phone" type="tel" data-type="phone">
+              <label class="w-checkbox checkbox-field">
+                <input type="checkbox" name="Checkbox" data-name="Checkbox" required class="w-checkbox-input">
+                <span class="checkbox-label-3 w-form-label">I agree to receive SMS messages related to project updates, promotions, and company communications from Mr. &amp; Mrs. Outdoor Living. I understand that I may opt out at any time by replying STOP. Message and data rates may apply.</span>
+              </label>
+              <div class="wrapper-buttons-center">
+                <input type="submit" data-wait="Please wait..." class="button w-button msf-submit" value="Request My Estimate">
+              </div>
+              <div class="text-block-7">By submitting this form, you agree to our <a href="https://mrandmrsoutdoorsliving.com/terms-of-service" target="_blank" class="link-4">Terms</a> &amp; <a href="https://mrandmrsoutdoorsliving.com/privacy-policy-page" target="_blank" class="link-4">Privacy Policy.</a></div>
+            </div>
+
+            <div class="msf-buttons">
+              <a href="#" class="msf-back w-button">Back</a>
+              <a href="#" class="msf-next w-button">Next</a>
+            </div>
+          </div>
+          <input type="text" name="ref_id" tabindex="-1" autocomplete="off" aria-hidden="true"
+                 style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        </form>
+
+        <div class="success-message-form w-form-done">
+          <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="none" viewBox="0 0 18 20"><path fill="currentColor" d="m17.351 3.063-8-3a1.009 1.009 0 0 0-.7 0l-8 3A1 1 0 0 0 0 4a19.394 19.394 0 0 0 8.47 15.848 1 1 0 0 0 1.06 0A19.394 19.394 0 0 0 18 4a1 1 0 0 0-.649-.937Zm-3.644 4.644-5 5A1 1 0 0 1 8 13c-.033 0-.065 0-.1-.005a1.001 1.001 0 0 1-.733-.44l-2-3a1 1 0 0 1 1.664-1.11l1.323 1.986 4.138-4.138a1 1 0 0 1 1.414 1.414h.001Z"/></svg>
+          <h2>Thank you! Your request has been successfully received.</h2>
+          <div>Our team is reviewing your project details and will contact you shortly with next steps and recommendations.</div>
+        </div>
+        <div class="w-form-fail"><div>Oops! Something went wrong while submitting the form.</div></div>
+      </div>
+    </div>
+  </dialog>
+)}
+
+<style is:global>
+  .mm-lbx { border: 0; padding: 0; background: transparent; max-width: 100vw }
+  .mm-lbx::backdrop { background-color: color-mix(in srgb, var(--mm-tinta-cuerpo) 90%, transparent) }
+
+  /* mobile-first: bottom sheet, anchored via margin within the native fixed modal box */
+  .mm-lbx[open] {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: 90dvh;
+    margin: auto 0 0;
+    border-radius: var(--mm-r-24) var(--mm-r-24) 0 0;
+    background-color: var(--mm-superficie);
+    box-shadow: var(--mm-sombra-3);
+    overflow: hidden;
+  }
+  .mm-lbx__panel { display: flex; flex-direction: column; min-height: 0; flex: 1 1 auto }
+
+  .mm-lbx__visor {
+    position: relative;
+    flex: 0 0 auto;
+    height: min(38vh, 320px);
+    background-color: var(--mm-tinta-cuerpo);
+  }
+  .mm-lbx__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain }
+  .mm-lbx__nav, .mm-lbx__x {
+    position: absolute;
+    background-color: color-mix(in srgb, var(--mm-blanco) 12%, transparent); border: 0; color: var(--mm-blanco); cursor: pointer;
+    width: 44px; height: 44px; border-radius: 100%;
+    display: grid; place-items: center; z-index: 1;
+  }
+  .mm-lbx__nav:hover, .mm-lbx__x:hover { background-color: color-mix(in srgb, var(--mm-blanco) 20%, transparent) }
+  .mm-lbx__nav:focus-visible, .mm-lbx__x:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco-inverso); outline-offset: var(--mm-foco-aire) }
+  .mm-lbx__nav svg, .mm-lbx__x svg { width: 22px; height: 22px }
+  .mm-lbx__nav--prev { top: 50%; left: var(--mm-e-12); transform: translateY(-50%) }
+  .mm-lbx__nav--next { top: 50%; right: var(--mm-e-12); transform: translateY(-50%) }
+  .mm-lbx__x { top: var(--mm-e-12); right: var(--mm-e-12) }
+  .mm-lbx__cuenta { position: absolute; bottom: var(--mm-e-12); left: 0; right: 0; text-align: center; color: var(--mm-blanco); margin: 0; font-size: var(--mm-paso-0) }
+
+  .mm-lbx__formulario { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: var(--mm-e-24) }
+  .mm-lbx__formulario .header-form h2 { font-size: var(--mm-paso-4); line-height: var(--mm-alto-titulo); margin: 0 0 var(--mm-e-16); color: var(--mm-tinta) }
+  .mm-lbx__formulario .msf-step[style*="none"] { display: none }
+
+  .mm-lbx__formulario .step-wrapper { display: flex; flex-direction: column; gap: var(--mm-e-16) }
+  .mm-lbx__formulario .step-wrapper::before {
+    content: "";
+    align-self: stretch;
+    height: var(--mm-e-8);
+    border-radius: var(--mm-r-pastilla);
+    background-repeat: no-repeat;
+    background-image: linear-gradient(to right,
+      var(--mm-tinta) 0 32%, transparent 32% 34%,
+      var(--mm-borde-control) 34% 66%, transparent 66% 68%,
+      var(--mm-borde-control) 68% 100%);
+  }
+  .mm-lbx__formulario .step-wrapper:has(.msf-step:nth-child(2):not([style*="none"]))::before {
+    background-image: linear-gradient(to right,
+      var(--mm-tinta) 0 32%, transparent 32% 34%,
+      var(--mm-tinta) 34% 66%, transparent 66% 68%,
+      var(--mm-borde-control) 68% 100%);
+  }
+  .mm-lbx__formulario .step-wrapper:has(.msf-step:nth-child(3):not([style*="none"]))::before {
+    background-image: linear-gradient(to right,
+      var(--mm-tinta) 0 32%, transparent 32% 34%,
+      var(--mm-tinta) 34% 66%, transparent 66% 68%,
+      var(--mm-tinta) 68% 100%);
+  }
+
+  .mm-lbx__formulario .bugget-form { display: flex; flex-direction: column; gap: var(--mm-e-8); margin-bottom: var(--mm-e-16) }
+  .mm-lbx__formulario .text-block-6 { font-weight: var(--mm-peso-fuerte); color: var(--mm-tinta) }
+
+  .mm-lbx__formulario .text-field-form,
+  .mm-lbx__formulario .select-field {
+    display: block; width: 100%; min-height: 48px; margin-bottom: var(--mm-e-12);
+    background-color: var(--mm-superficie); color: var(--mm-tinta);
+    border: 1px solid var(--mm-tinta-suave); border-radius: var(--mm-r-8);
+    padding: var(--mm-e-12) var(--mm-e-16); font-size: var(--mm-paso-3); font-family: inherit;
+  }
+  .mm-lbx__formulario .text-field-form:focus-visible,
+  .mm-lbx__formulario .select-field:focus-visible {
+    outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire);
+  }
+
+  .mm-lbx__formulario .services-form { display: grid; grid-template-columns: 1fr; gap: var(--mm-e-8) }
+  @media (min-width: 480px) {
+    .mm-lbx__formulario .services-form { grid-template-columns: 1fr 1fr }
+  }
+  .mm-lbx__formulario .services-form .w-checkbox,
+  .mm-lbx__formulario .checkbox-field {
+    display: flex; align-items: center; gap: var(--mm-e-8); cursor: pointer;
+    padding: var(--mm-e-12); border: 1px solid var(--mm-borde); border-radius: var(--mm-r-8);
+    background-color: var(--mm-superficie);
+  }
+  .mm-lbx__formulario .services-form .w-checkbox:has(:checked) {
+    border-color: var(--mm-tinta); background-color: var(--mm-fondo-tenue);
+  }
+  .mm-lbx__formulario .w-checkbox-input { accent-color: var(--mm-navy); width: 20px; height: 20px; flex-shrink: 0 }
+  .mm-lbx__formulario .services-form .w-form-label { font-size: var(--mm-paso-2) }
+  .mm-lbx__formulario .checkbox-field { margin: var(--mm-e-16) 0; align-items: flex-start }
+  .mm-lbx__formulario .checkbox-field .w-checkbox-input { margin-top: 2px }
+  .mm-lbx__formulario .checkbox-field .w-form-label { font-size: var(--mm-paso-0); color: var(--mm-tinta-atenuada) }
+
+  .mm-lbx__formulario .msf-error-input { outline: none; box-shadow: inset 0 0 0 1px var(--mm-error) }
+  .mm-lbx__formulario .msf-error { color: var(--mm-error); font-size: var(--mm-paso-0); font-weight: var(--mm-peso-fuerte); margin-top: calc(var(--mm-e-4) * -2) }
+
+  .mm-lbx__formulario .msf-buttons { display: flex; gap: var(--mm-e-12); margin-top: var(--mm-e-8) }
+  .mm-lbx__formulario .wrapper-buttons-center { display: flex; justify-content: flex-end; margin-top: var(--mm-e-8) }
+  .mm-lbx__formulario .msf-back,
+  .mm-lbx__formulario .msf-next,
+  .mm-lbx__formulario .msf-submit {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 48px; padding: 0 var(--mm-e-24);
+    border-radius: var(--mm-r-pastilla);
+    font-weight: var(--mm-peso-fuerte); font-size: var(--mm-paso-2);
+    cursor: pointer; border: none; text-decoration: none;
+  }
+  .mm-lbx__formulario .msf-back { background-color: transparent; color: var(--mm-tinta); border: 1px solid var(--mm-tinta-suave) }
+  .mm-lbx__formulario .msf-next,
+  .mm-lbx__formulario .msf-submit { background-color: var(--mm-accion); color: var(--mm-sobre-accion); margin-left: auto }
+  .mm-lbx__formulario .msf-next:hover,
+  .mm-lbx__formulario .msf-submit:hover { background-color: var(--mm-accion-hover) }
+  .mm-lbx__formulario .msf-back:focus-visible,
+  .mm-lbx__formulario .msf-next:focus-visible,
+  .mm-lbx__formulario .msf-submit:focus-visible {
+    outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire);
+  }
+  .mm-lbx__formulario .text-block-7 { font-size: var(--mm-paso-0); color: var(--mm-tinta-atenuada); margin-top: var(--mm-e-16) }
+  .mm-lbx__formulario .text-block-7 a { color: var(--mm-enlace) }
+
+  .mm-lbx__formulario .success-message-form {
+    display: none; text-align: center;
+    background-color: var(--mm-fondo-navy); color: var(--mm-tinta-inversa);
+    border-radius: var(--mm-r-16); padding: var(--mm-e-24);
+  }
+  .mm-lbx__formulario .success-message-form svg { color: var(--mm-accion) }
+  .mm-lbx__formulario .success-message-form h2 { color: var(--mm-tinta-inversa); margin: var(--mm-e-16) 0 var(--mm-e-8) }
+  .mm-lbx__formulario .w-form-fail {
+    display: none; background-color: var(--mm-fondo-tenue); color: var(--mm-error);
+    border: 2px solid var(--mm-error); border-radius: var(--mm-r-8);
+    padding: var(--mm-e-12) var(--mm-e-16); margin-top: var(--mm-e-16); font-size: var(--mm-paso-2);
+  }
+
+  @media (min-width: 992px) {
+    .mm-lbx[open] {
+      width: min(92vw, 1200px);
+      max-height: 88vh;
+      margin: auto;
+      border-radius: var(--mm-r-24);
+    }
+    .mm-lbx__panel { flex-direction: row }
+    .mm-lbx__visor { flex: 1 1 55%; height: auto }
+    .mm-lbx__formulario { flex: 1 1 45%; max-height: 88vh }
+  }
+
+  html.mm-scroll-lock { overflow: hidden }
+
+  @media print { .mm-lbx { display: none } }
+</style>
+
+<script>
+  (function () {
+    'use strict';
+    const dlg = document.querySelector('.mm-lbx');
+    if (!dlg) return;   // absent on the other 114 pages by construction (route-gate in frontmatter)
+
+    const img = dlg.querySelector('.mm-lbx__img');
+    const cuenta = dlg.querySelector('.mm-lbx__cuenta');
+
+    // Same anchors Componentes.astro's guard skips (a.closest('.gallery-page')) — never double-bound.
+    const enlaces = [...document.querySelectorAll('a.w-lightbox')].filter((a) => a.closest('.gallery-page'));
+    const fotos = enlaces.map((a) => {
+      let d;
+      try { d = JSON.parse(a.querySelector('script.w-json')?.textContent ?? '{}'); } catch { d = {}; }
+      return { url: d.items?.[0]?.url ?? '', alt: a.querySelector('img')?.alt ?? '' };
+    });
+
+    let i = 0;
+    let disparador = null;
+    const pinta = () => {
+      if (!fotos[i]) return;
+      img.src = fotos[i].url;
+      img.alt = fotos[i].alt;
+      cuenta.textContent = fotos.length > 1 ? `${i + 1} / ${fotos.length}` : '';
+      for (const b of dlg.querySelectorAll('.mm-lbx__nav')) b.hidden = fotos.length < 2;
+    };
+    const mueve = (d) => {
+      if (fotos.length < 2) return;
+      i = (i + d + fotos.length) % fotos.length;
+      pinta();
+    };
+
+    enlaces.forEach((a, idx) => a.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      ev.stopPropagation();
+      i = idx;
+      disparador = a;
+      pinta();
+      document.documentElement.classList.add('mm-scroll-lock');
+      dlg.showModal();
+    }));
+
+    dlg.querySelector('.mm-lbx__x')?.addEventListener('click', () => dlg.close());
+    dlg.querySelector('.mm-lbx__nav--prev')?.addEventListener('click', () => mueve(-1));
+    dlg.querySelector('.mm-lbx__nav--next')?.addEventListener('click', () => mueve(1));
+    dlg.addEventListener('click', (ev) => { if (ev.target === dlg) dlg.close(); });
+    dlg.addEventListener('keydown', (ev) => {
+      if (ev.key === 'ArrowLeft') mueve(-1);
+      if (ev.key === 'ArrowRight') mueve(1);
+    });
+    dlg.addEventListener('close', () => {
+      document.documentElement.classList.remove('mm-scroll-lock');
+      disparador?.focus();   // a gap Componentes.astro's own .mm-lb doesn't close today
+    });
+
+    // Root-scoped step engine — same algorithm as request-estimated.astro's P0, closed over
+    // `root` instead of `document`/getElementById, so no ids are needed at all.
+    const raiz = dlg.querySelector('.mm-lbx__formulario');
+    if (raiz) initPasoAPaso(raiz);
+
+    function initPasoAPaso(root) {
+      const pasos = [...root.querySelectorAll('[data-step]')]
+        .sort((a, b) => Number(a.dataset.step) - Number(b.dataset.step));
+      const btnNext = root.querySelector('.msf-next');
+      const btnBack = root.querySelector('.msf-back');
+      const btnSubmit = root.querySelector('.msf-submit');
+      const wrapper = root.querySelector('.step-wrapper');
+      let actual = 0;
+
+      const isVisible = (el) => !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+
+      const showStep = (index) => {
+        pasos.forEach((p, k) => { p.style.display = k === index ? 'block' : 'none'; });
+        if (btnBack) btnBack.style.display = index === 0 ? 'none' : 'inline-flex';
+        if (btnNext) btnNext.style.display = index === pasos.length - 1 ? 'none' : 'inline-flex';
+        if (btnSubmit) btnSubmit.style.display = index === pasos.length - 1 ? 'inline-flex' : 'none';
+      };
+
+      const setFieldError = (field, message) => {
+        field.classList.add('msf-error-input');
+        field.setAttribute('aria-invalid', 'true');
+        let msg = field.parentElement?.querySelector('.msf-error');
+        if (!msg) {
+          msg = document.createElement('div');
+          msg.className = 'msf-error';
+          field.parentElement?.appendChild(msg);
+        }
+        msg.textContent = message || 'Required';
+      };
+      const clearFieldError = (field) => {
+        field.classList.remove('msf-error-input');
+        field.removeAttribute('aria-invalid');
+        const msg = field.parentElement?.querySelector('.msf-error');
+        if (msg) msg.remove();
+      };
+      const validateField = (field) => {
+        clearFieldError(field);
+        const type = (field.dataset.type || '').toLowerCase();
+        const tag = field.tagName.toLowerCase();
+        const value = (field.value || '').trim();
+        if (!value) { setFieldError(field, 'Required'); return false; }
+        if (tag === 'select' && value.toLowerCase().startsWith('select')) {
+          setFieldError(field, 'Please select an option'); return false;
+        }
+        if (type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          setFieldError(field, 'Enter a valid email'); return false;
+        }
+        if (type === 'phone' && !/^[0-9()+\-\s]{7,}$/.test(value)) {
+          setFieldError(field, 'Enter a valid phone'); return false;
+        }
+        return true;
+      };
+      const validateStep = (index) => {
+        const requiredFields = Array.from(pasos[index].querySelectorAll("[data-required='true']")).filter(isVisible);
+        let ok = true;
+        requiredFields.forEach((field) => { if (!validateField(field)) ok = false; });
+        return ok;
+      };
+
+      wrapper?.addEventListener('input', (e) => {
+        const field = e.target;
+        if (field && field.matches("[data-required='true']")) clearFieldError(field);
+      });
+
+      btnNext?.addEventListener('click', (ev) => {
+        ev.preventDefault();
+        if (!validateStep(actual)) return;
+        if (actual < pasos.length - 1) {
+          actual++;
+          showStep(actual);
+          pasos[actual].querySelector('input, select, textarea')?.focus?.();
+        }
+      });
+      btnBack?.addEventListener('click', (ev) => {
+        ev.preventDefault();
+        if (actual > 0) {
+          actual--;
+          showStep(actual);
+          pasos[actual].querySelector('input, select, textarea')?.focus?.();
+        }
+      });
+
+      showStep(actual);
+    }
+  }());
+</script>

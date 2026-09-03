@@ -100,8 +100,10 @@ console.log(`     ${sinAlt.length} anclas llegan con alt="" y dependen del aria-
 // ════════════════════════════════════════════════════════════════════════════
 const filtro = process.argv[2];
 /** Una ruta por CLASE de ancla: son tres marcados distintos, no tres copias del mismo. */
+// /gallery salio de la muestra: sus 137 gallery-picture ya no abren dialog.mm-lb -las excluye
+// el guard de Componentes.astro (a.closest('.gallery-page'))-, las abre el lightbox partido de
+// GalleryLeadLightbox.astro/.mm-lbx en su lugar. Cubierto por check-galeria-formulario.mjs.
 const MUESTRA = filtro ? [filtro] : [
-  '/gallery',                                                    // gallery-picture, grupo «Image»
   '/country/custom-pool-builders-alachua-county-fl',             // lightbox-link, grupo «images»
   '/project/luxury-pool-spa-screen-enclosure-north-florida',     // lightbox-link-2, grupo «Gallery»
 ];

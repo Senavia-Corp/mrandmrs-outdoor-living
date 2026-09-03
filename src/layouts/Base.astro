@@ -23,6 +23,7 @@ import ClickToCall from '../components/widgets/ClickToCall.astro';
 import Interacciones from '../components/Interacciones.astro';
 import MosaicoConfianza from '../components/MosaicoConfianza.astro';
 import Componentes from '../components/Componentes.astro';
+import GalleryLeadLightbox from '../components/GalleryLeadLightbox.astro';
 import Formularios from '../components/Formularios.astro';
 // Las fuentes son los .woff2 EXACTOS de Google, no @fontsource: con el Inter variable de
 // fontsource el nav salía al 95,85 % contra el baseline porque un a.nav-link medía 57,35 px
@@ -215,6 +216,7 @@ const jsonLd = seo.jsonLd ?? [];
     <Interacciones />
     <MosaicoConfianza />
     <Componentes />
+    <GalleryLeadLightbox />
     <Formularios />
   </body>
 </html>
