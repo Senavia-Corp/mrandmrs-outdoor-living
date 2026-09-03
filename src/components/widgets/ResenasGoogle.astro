@@ -161,7 +161,7 @@ const fmt = (f?: string) => (f
      con seccion BLANCA: ahi es blanco sobre blanco = 1,00:1 y suspende los 3:1 de WCAG
      1.4.11. Cambiar el color es una decision de diseno —el hermano de abajo usa
      `currentColor`, que si se adapta—, no una traduccion a tokens; queda anotado. */
-  .mm-resenas__enlace:focus-visible { outline: 3px solid var(--mm-blanco); outline-offset: 2px }
+  .mm-resenas__enlace:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); box-shadow: var(--mm-foco-halo) }
 
   /* ── estrellas ────────────────────────────────────────────────────────── */
   .mm-resenas__estrellas { display: flex; gap: 2px }

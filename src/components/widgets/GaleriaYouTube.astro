@@ -132,7 +132,7 @@ const hay = videos.length > 0;
   }
   .mm-yt__sub svg { width: 22px; height: 22px }
   .mm-yt__sub:focus-visible,
-  .mm-yt__titulo:focus-visible { outline: 3px solid var(--mm-cian); outline-offset: 2px }
+  .mm-yt__titulo:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); box-shadow: var(--mm-foco-halo) }
 
   .mm-yt__lista {
     list-style: none; margin: 0; padding: 0;
@@ -152,7 +152,9 @@ const hay = videos.length > 0;
     transition: transform .35s cubic-bezier(.165,.84,.44,1);
   }
   .mm-yt__previa:hover img { transform: scale(1.04) }
-  .mm-yt__previa:focus-visible { outline: 3px solid var(--mm-cian); outline-offset: -3px }
+  .mm-yt__previa:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco);
+    outline-offset: calc(-1 * (var(--mm-foco-grosor) + var(--mm-foco-aire)));
+    box-shadow: inset 0 0 0 calc(var(--mm-foco-grosor) * 2 + var(--mm-foco-aire) * 2) var(--mm-foco-inverso) }
 
   .mm-yt__duracion {
     position: absolute; right: .6rem; bottom: .6rem;

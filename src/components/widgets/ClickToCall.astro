@@ -87,7 +87,7 @@ const { items } = telefonos;
     transition: transform .18s ease, box-shadow .18s ease;
   }
   .mm-llamar__btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px color-mix(in srgb, var(--mm-navy) 45%, transparent) }  /* 0x73 = 115/255 = 45,1 % */
-  .mm-llamar__btn:focus-visible { outline: 3px solid var(--mm-oro); outline-offset: 3px }
+  .mm-llamar__btn:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); box-shadow: var(--mm-foco-halo) }
 
   .mm-llamar__icono { width: 28px; height: 28px }
   .mm-llamar__icono--cerrar { display: none }
@@ -128,7 +128,7 @@ const { items } = telefonos;
   }
   .mm-llamar__num + .mm-llamar__num { margin-top: .25rem }
   .mm-llamar__num:hover { background-color: var(--mm-azul-50) }
-  .mm-llamar__num:focus-visible { outline: 2px solid var(--mm-oro); outline-offset: 1px }
+  .mm-llamar__num:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); box-shadow: var(--mm-foco-halo) }
 
   .mm-llamar__zona { font-size: 12px; font-weight: 600; opacity: .7 }
   .mm-llamar__cifra { font-size: 17px; font-weight: 700; letter-spacing: .01em }

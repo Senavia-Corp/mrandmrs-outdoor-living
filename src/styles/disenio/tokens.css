@@ -244,6 +244,30 @@
   --mm-foco-grosor:      2px;
   --mm-foco-aire:        2px;
 
+  /* ── EL ANILLO DE DOS TONOS ───────────────────────────────────────────────
+   * Un anillo de UN color solo funciona si sabes lo que hay detras, y un componente
+   * que se pinta en varias secciones NO lo sabe. Medido en las reseñas, que viven en
+   * la home (fondo oscuro), en /testimonials y en /contact-us (seccion blanca):
+   *
+   *     anillo blanco sobre blanco ......... 1,00:1   invisible
+   *     anillo blanco sobre el oro del CTA . 1,86:1   suspende los 3:1 de 1.4.11
+   *     anillo blanco sobre navy .......... 15,60:1   perfecto
+   *
+   * Y `currentColor` tampoco lo arregla: en ese boton resuelve a navy, o sea navy
+   * sobre navy en la home. El mismo fallo, del otro lado.
+   *
+   * La solucion es no depender del fondo: DOS bandas concentricas, navy dentro y
+   * blanco fuera. Como las dos contrastan ENTRE SI a 15,60:1, sobre cualquier fondo
+   * imaginable al menos una de las dos pasa los 3:1. Es la tecnica que pide WCAG 2.4.13
+   * y aqui sale gratis porque los dos colores ya son tokens.
+   *
+   * SE USA EN PAREJA, siempre las tres lineas juntas:
+   *     outline: var(--mm-foco-grosor) solid var(--mm-foco);
+   *     outline-offset: var(--mm-foco-aire);
+   *     box-shadow: var(--mm-foco-halo);
+   * El halo va por fuera del outline: 2 px de grosor + 2 px de aire + 2 px de halo. */
+  --mm-foco-halo: 0 0 0 calc(var(--mm-foco-grosor) + var(--mm-foco-aire) + 2px) var(--mm-foco-inverso);
+
   /* ── SOMBRA ───────────────────────────────────────────────────────────────
    * Dos capas y TENIDAS DE NAVY, nunca negro puro (§6). Webflow usa `0 2px 5px
    * #0003` —negro al 20 %— en 18 sitios; eso ensucia. El navy a alfa bajo cae

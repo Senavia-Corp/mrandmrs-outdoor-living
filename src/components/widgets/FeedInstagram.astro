@@ -97,7 +97,7 @@ const hay = items.length > 0;
        cian / navy .... 6,11:1 ok
      El sistema tiene --mm-foco (navy: 15,60 sobre blanco, 8,40 sobre oro) justo para esto.
      Cambiarlo es un cambio de VALOR, no una migracion: queda pedido en el informe. */
-  .mm-ig__usuario:focus-visible { outline: 3px solid var(--mm-cian); outline-offset: 2px }
+  .mm-ig__usuario:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); box-shadow: var(--mm-foco-halo) }
 
   .mm-ig__rejilla {
     list-style: none; margin: 0; padding: 0;
@@ -135,7 +135,7 @@ const hay = items.length > 0;
      es decorativo (`aria-hidden`) y duplica el enlace, asi que no transporta informacion. */
   .mm-ig__celda a:hover .mm-ig__velo { background-color: color-mix(in srgb, var(--mm-navy) 45%, transparent) }
   .mm-ig__celda a:hover .mm-ig__velo svg { opacity: 1 }
-  .mm-ig__celda a:focus-visible { outline: 3px solid var(--mm-cian); outline-offset: 3px }
+  .mm-ig__celda a:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); box-shadow: var(--mm-foco-halo) }
 
   @media (max-width: 479px) {
     .mm-ig__rejilla { grid-template-columns: repeat(2, 1fr) }
