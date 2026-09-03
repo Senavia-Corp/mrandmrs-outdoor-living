@@ -241,6 +241,19 @@ const REVEALS = JSON.stringify(reveals.porId);
         d.querySelector('.w-dropdown-toggle')?.setAttribute('aria-expanded', 'false');
       }
     };
+    // WEBKIT TACTIL: `relatedTarget` en `focusout` llega `null` al tocar un enlace DENTRO de un
+    // desplegable ya abierto -medido en Safari/WebKit real, no en Chromium, que si lo rellena-.
+    // Sin saber a donde fue el foco, `nav.contains(null)` es siempre `false` y el desplegable se
+    // cerraba con CUALQUIER toque, incluido uno a un enlace suyo: se perdia el `click` sintetico
+    // por la misma mecanica que ya arreglo `01a186b`, pero sin necesitar un segundo desplegable.
+    // `pointerdown` llega SIEMPRE antes que el cambio de foco -orden que garantiza la spec de UI
+    // Events, no un margen de tiempo-, asi que sirve de respaldo cuando `relatedTarget` no dice
+    // nada. No sustituye el chequeo de `relatedTarget`: solo cubre el hueco que deja cuando es nulo.
+    let ultimoToqueEnNav = false;
+    document.addEventListener('pointerdown', (ev) => {
+      ultimoToqueEnNav = !!ev.target.closest('section.menu');
+    }, true);
+
     let nLista = 0;
     for (const d of document.querySelectorAll('.w-dropdown')) {
       const boton = d.querySelector('.w-dropdown-toggle');
@@ -296,7 +309,9 @@ const REVEALS = JSON.stringify(reveals.porId);
       const nav = d.closest('section.menu');
       if (nav) {
         d.addEventListener('focusout', (ev) => {
-          if (!nav.contains(ev.relatedTarget)) alterna(false);
+          if (nav.contains(ev.relatedTarget)) return;
+          if (ev.relatedTarget === null && ultimoToqueEnNav) return;
+          alterna(false);
         });
       }
     }

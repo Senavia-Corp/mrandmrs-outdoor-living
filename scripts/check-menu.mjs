@@ -147,7 +147,7 @@ if (!portada.includes('mrandmrsoutdoorliving')) {
 }
 
 const navegador = await chromium.launch();
-const problemas = { fuera: [], pequenos: [], tapados: [], noNavega: [], noCierra: [], atraviesa: [], panel: [], encadenado: [] };
+const problemas = { fuera: [], pequenos: [], tapados: [], noNavega: [], noCierra: [], atraviesa: [], panel: [], encadenado: [], enlacePlano: [] };
 /** Cobertura: que se midio de verdad, para que un cero no se pueda confundir con «no mire». */
 const medidosTotal = new Set();
 const ocultosPorOrigen = new Set();
@@ -358,6 +358,40 @@ for (const [ancho, alto] of ANCHOS) {
       if (!abierto) problemas.encadenado.push(`${ruta} @${ancho} el desplegable #${k} no abre con otro abierto`);
     }
     await pag2.close();
+
+    // ── 2g · un desplegable abierto + tocar un ENLACE PLANO del nav (no otro desplegable) ────
+    // El caso que de verdad reporto el usuario no siempre es un desplegable contra otro: puede
+    // ser cualquier enlace normal del nav, o uno DENTRO del mismo desplegable ya abierto.
+    const pag3 = await ctx.newPage();
+    const objetivoPlano = ruta === '/contact-us'
+      ? { href: '/', sel: 'a.nav-link[href="/"]' }
+      : { href: '/contact-us', sel: 'a.nav-link[href="/contact-us"]' };
+    await pag3.goto(`http://localhost:${PUERTO}${ruta}`, { waitUntil: 'load' });
+    await pag3.evaluate(() => window.scrollTo(0, 0));
+    await pag3.waitForFunction(() => {
+      const m = document.querySelector('.menu');
+      return m && !m.hasAttribute('data-oculto') && getComputedStyle(m).opacity === '1';
+    }, null, { timeout: 10000 });
+    await pag3.tap('.w-nav-button');
+    await pag3.waitForFunction(() => {
+      const p = document.querySelector('[data-nav-menu-open]');
+      return p && getComputedStyle(p).transform === 'matrix(1, 0, 0, 1, 0, 0)';
+    }, null, { timeout: 5000 }).catch(() => {});
+    const primerToggle = await pag3.$('.w-nav-overlay .w-dropdown-toggle');
+    if (primerToggle) {
+      await primerToggle.tap();
+      await pag3.waitForFunction(() => document.querySelector('.w-nav-overlay .w-dropdown-list.w--open'), null, { timeout: 5000 }).catch(() => {});
+    }
+    const enlacePlano = await pag3.$(`.w-nav-overlay ${objetivoPlano.sel}`);
+    if (enlacePlano && (await enlacePlano.isVisible())) {
+      await enlacePlano.tap();
+      try {
+        await pag3.waitForURL((u) => new URL(u).pathname === objetivoPlano.href, { timeout: 8000 });
+      } catch {
+        problemas.enlacePlano.push(`${ruta} @${ancho} "${objetivoPlano.href}" no navega con un desplegable abierto -> quedo en ${new URL(pag3.url()).pathname}`);
+      }
+    }
+    await pag3.close();
   }
   await ctx.close();
 }
@@ -386,6 +420,8 @@ check('el ultimo enlace de servicios navega al tocarlo', problemas.noNavega.leng
 lista(problemas.noNavega);
 check('cada desplegable abre aunque haya otro abierto', problemas.encadenado.length === 0, `${problemas.encadenado.length}`);
 lista(problemas.encadenado);
+check('un enlace plano del nav navega con un desplegable abierto', problemas.enlacePlano.length === 0, `${problemas.enlacePlano.length}`);
+lista(problemas.enlacePlano);
 
 console.log(fallos ? `\nPUERTA ROJA — ${fallos} fallos\n` : '\nPUERTA VERDE\n');
 process.exit(fallos ? 1 : 0);

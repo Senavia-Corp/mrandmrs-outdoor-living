@@ -3883,3 +3883,80 @@ que sí volvieron) sigue sin commitear, pendiente de su propio commit cuando se 
 **No se reescribe la historia más allá de lo que la propia sesión del hero ya hizo.** La rama
 sigue sin publicar, pero con una sesión activa escribiendo encima ahora mismo un `reset`/`rebase`
 mío es peor que dos líneas de atribución imprecisa. Queda anotado aquí.
+
+---
+
+### MENÚ — WebKit se comía el toque en cualquier enlace con un desplegable abierto (3-sep-2026)
+
+Encargo: reporte directo del usuario, después de haber probado en su iPhone real el arreglo de
+`01a186b`. La puerta `check:menu` (motor Chromium) seguía en VERDE — la causa no estaba en lo que
+esa puerta mide.
+
+#### Causa — `relatedTarget` nulo en WebKit, no solo entre desplegables distintos
+
+El arreglo de `01a186b` (causa 2) escribió `nav.contains(ev.relatedTarget)` para no cerrar un
+desplegable cuando el foco se movía a OTRO desplegable del mismo nav. Pero en Safari/WebKit real,
+`FocusEvent.relatedTarget` llega **`null`** en el `focusout` que dispara un toque — no solo al
+saltar de un desplegable a otro, sino al tocar CUALQUIER enlace, incluido uno dentro del mismo
+desplegable que se está cerrando. `nav.contains(null)` es siempre `false`, así que la condición
+que debía proteger el caso normal nunca se cumplía en WebKit: cualquier toque cerraba el
+desplegable antes de que el `click` sintético llegara a su destino.
+
+Instrumentado en el sitio en vivo con WebKit real (script suelto, no versionado, solo para
+diagnóstico), la secuencia exacta:
+
+    POINTERDOWN en .text-link-submenu (dentro del enlace "New Pool Construction")
+    FOCUSOUT en .w-dropdown   relatedTarget = null
+    CLICK en .divider-navs-links   <- no en el enlace: el layout ya habia saltado
+
+Confirmado con un script nuevo, `scripts/check-menu-webkit.mjs` (mismos escenarios que
+`check-menu.mjs`, motor WebKit): **ROJO en `webkit`, VERDE en `chromium`**, mismo build, mismos
+dos escenarios — tocar un enlace plano del nav con un desplegable abierto, y tocar un enlace
+DENTRO del propio desplegable abierto. Chromium sí rellena `relatedTarget` en toque; WebKit no.
+
+#### El arreglo
+
+`pointerdown` llega SIEMPRE antes que el cambio de foco — orden que garantiza la spec de UI
+Events, no una carrera de tiempos. Se usa como respaldo, solo cuando `relatedTarget` es `null`:
+un listener de `pointerdown` en todo `section.menu` (captura) que registra si el último toque
+cayó dentro del nav, y el `focusout` lo consulta antes de cerrar. `src/components/Interacciones.astro`,
+~10 líneas nuevas junto al bucle de desplegables; la vía rápida existente (`relatedTarget`
+correcto, que es lo que ya usan teclado y ratón) queda intacta.
+
+| Escenario (WebKit, 390×844) | Antes | Después |
+|---|---|---|
+| Enlace plano del nav con un desplegable abierto | no navega | navega |
+| Enlace dentro del propio desplegable abierto | no navega | navega |
+| (control) desplegable contra desplegable, ambos motores | ya funcionaba | sigue igual |
+
+#### La puerta nueva: `npm run check:menu:webkit`
+
+Fuera de `npm run check` por defecto — instalar WebKit es una dependencia local nueva
+(`npx playwright install webkit`) y `check:visual` ya cuesta ~65 min; sumar un segundo motor al
+camino de las 9 sesiones concurrentes de este repo tiene un coste real para un caso que, arreglado,
+es poco probable que reaparezca con cambios normales de nav. Mismo patrón que `check:cascaron`.
+Se documenta en la cabecera del script cuándo toca correrla: cualquier cambio a la lógica de
+foco/toque/viewport de `Interacciones.astro`.
+
+También se añadió el escenario "enlace plano con un desplegable abierto" a `check-menu.mjs`
+existente (sección 2g) — ese hueco no dependía del motor, y en Chromium ya pasaba, pero no había
+ninguna comprobación que lo hubiera detectado si alguna vez dejara de pasar.
+
+#### Auditoría de los 13 commits entre `01a186b` y este arreglo
+
+Antes de tocar nada se revisó cada commit posterior a `01a186b` buscando una regresión de CSS o
+layout compartido (z-index, `position:fixed`/`sticky`, unidades `vh`) que pudiera chocar con
+`.w-nav-overlay` o `.mm-llamar`. Los cinco que tocan algo remotamente relevante quedan
+descartados: una ruta de laboratorio que nunca se construye fuera de `DEV`, un comentario, el
+mismo checkbox oculto de un filtro sin relación (z-index `-1`), y un `<dialog>` con su propio
+contexto de apilamiento. **No era una regresión de las sesiones concurrentes** — el bug ya venía
+de antes de `01a186b`, solo que nunca se había probado con un motor que reprodujera el
+comportamiento de Safari.
+
+#### Fuera de alcance, no confirmado
+
+La barra de direcciones dinámica de iOS Safari (`position:fixed` con `inset:85px 0 0` y
+`height:auto`) sigue siendo una hipótesis sin confirmar ni descartar: el WebKit que empaqueta
+Playwright en macOS no simula una barra real que se colapse, así que ni este script ni
+`check-menu.mjs` pueden hablar de eso. Si vuelve a reportarse un fallo de menú en iPhone con esta
+puerta en verde, empezar por ahí.
