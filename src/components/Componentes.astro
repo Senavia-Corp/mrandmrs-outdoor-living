@@ -78,12 +78,18 @@ const SLIDERS = JSON.stringify(
      6,60:1 y contra el velo 9,42:1, los dos muy por encima de los 3:1 de WCAG 1.4.11. Es oro
      y no `--mm-foco` porque aqui el fondo es el velo negro: el navy del foco claro no se
      veria. */
-  .mm-lb__nav:focus-visible, .mm-lb__x:focus-visible { outline: 3px solid var(--mm-oro); outline-offset: 2px }
+  .mm-lb__nav:focus-visible, .mm-lb__x:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); box-shadow: var(--mm-foco-halo) }
   .mm-lb__nav svg, .mm-lb__x svg { width: 26px; height: 26px }
   .mm-lb__x { position: fixed; top: 1rem; right: 1rem }
   .mm-lb__cuenta { position: fixed; bottom: 1rem; left: 0; right: 0; text-align: center; color: var(--mm-blanco); margin: 0; font-size: 14px }
   @media (max-width: 767px) {
-    .mm-lb__nav { width: 40px; height: 40px }
+    /* 44, NO 40. Aqui ponia 40x40 y el suelo tactil son 44 (WCAG 2.2 AA, 2.5.8): medido en
+       produccion a 360, 390 y 479, los tres por debajo. El de Cerrar ya cumplia con sus 48.
+       Encoger los OTROS dos era justo al reves de lo que pide un movil, que es donde el dedo
+       tapa el control. Los 8 px que se le devuelven a cada flecha salen del ancho de la foto:
+       a 390 px pasa de ~299 a ~291, un 2,7 % menos de imagen a cambio de dos controles que se
+       pueden acertar. */
+    .mm-lb__nav { width: 44px; height: 44px }
     .mm-lb[open] { gap: .35rem; padding: .35rem }
   }
 
@@ -171,6 +177,31 @@ const SLIDERS = JSON.stringify(
         a.dataset.mmLbGrupo = g;
         a.dataset.mmLbIndice = String(lista.length);
         lista.push({ url: items[0].url, alt: a.querySelector('img')?.alt ?? '' });
+      }
+
+      /**
+       * EL NOMBRE ACCESIBLE, para las que se quedaban mudas.
+       *
+       * 59 de las 433 anclas -las de `/project/*`- envuelven una imagen con `alt=""`. Y el
+       * `alt` de una imagen que es el UNICO contenido de un enlace ES el nombre de ese enlace:
+       * con el vacio, el lector de pantalla anuncia el `href`, que aqui es «#». WCAG 2.4.4 y
+       * 4.1.2. Las otras 374 traen `alt` con texto y no se tocan: ese nombre ya es mejor que
+       * cualquiera que pongamos aqui.
+       *
+       * SE ETIQUETA POR PROPOSITO, NO DESCRIBIENDO LA FOTO. El propósito del enlace es abrir
+       * el visor, y ese es su nombre correcto; inventar texto alternativo para 59 fotos que
+       * nadie ha mirado seria peor que el defecto, porque un `alt` falso no se distingue de
+       * uno bueno. La descripcion, si algun dia se escribe, va en el origen.
+       *
+       * Va en una segunda pasada y no en el bucle de arriba porque `lista.length` -el «de N»-
+       * no es definitivo hasta que el grupo esta entero.
+       */
+      for (const a of enlaces) {
+        if (!a.dataset.mmLbGrupo || a.getAttribute('aria-label')) continue;
+        if ((a.querySelector('img')?.alt ?? '').trim()) continue;
+        const n = grupos.get(a.dataset.mmLbGrupo)?.length ?? 0;
+        const i = Number(a.dataset.mmLbIndice) + 1;
+        a.setAttribute('aria-label', n > 1 ? `Open image ${i} of ${n}` : 'Open image');
       }
 
       let actual = { grupo: null, i: 0 };

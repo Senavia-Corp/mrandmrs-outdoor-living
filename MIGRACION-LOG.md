@@ -3825,8 +3825,20 @@ cada fallo. La primera versión REVENTABA en vez de reportar, y eso lo encontró
 
 #### Fuera de alcance, medido y no tocado
 
-- **433 anclas de galería/lightbox inertes** en 35 páginas: el build no carga `webflow.js` y
-  `Interacciones.astro` no implementa `w-lightbox`. Clicar una foto no abre nada y salta arriba.
+- ~~433 anclas de galería/lightbox inertes~~ **FALSO, y lo escribí yo. Corregido el 3-sep-2026.**
+  El lightbox SÍ existe y SÍ funciona: vive en `src/components/Componentes.astro:40` (un `<dialog
+  class="mm-lb">` con su JS), no en `Interacciones.astro`, que es donde lo buscó el informe. Las 35
+  páginas con anclas embarcan el diálogo y el script: 433 de 433, ninguna sin implementación.
+  Medido en producción con clic y con dedo, a 360/390/479/768/992 y en las tres clases de ancla
+  (`gallery-picture`, `lightbox-link`, `lightbox-link-2`): abre como modal real, **salto de scroll
+  0 px**, las flechas cambian de imagen, Escape cierra, tocar el velo cierra y el foco vuelve al
+  ancla que lo abrió. Las 433 llevan su `w-json` con la URL y el grupo, sin una sola anomalía.
+  **Lo único roto de verdad**: los botones Anterior/Siguiente miden 40×40 por debajo de 768 px
+  (`Componentes.astro`, la `@media (max-width: 767px)`), y el suelo táctil son 44 — WCAG 2.2 AA
+  2.5.8. El de Cerrar sí cumple, 48×48 en todos los anchos.
+  La lección, que es la de siempre: **el informe dedujo la ausencia de una implementación de no
+  encontrarla donde esperaba**, en vez de probar el comportamiento. Ausencia de señal leída como
+  señal.
 - 2 `<a href="#">info@mrandmrsoutdoorliving.com</a>` que deberían ser `mailto:`.
 - `mrandmrsoutdoorsliving.com` (con «s») **no es errata**: responde 200 y sirve el Terms of
   Service real del cliente por Cloudflare. El sitio tiene además `/articles/terms-conditions` y

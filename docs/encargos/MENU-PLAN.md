@@ -89,8 +89,11 @@ es decisión de negocio del cliente, no de migración.
 
 ## Fuera de alcance — se reporta, no se toca
 
-- **433 anclas de galería/lightbox inertes** en 35 páginas: no hay implementación de `w-lightbox`.
-  Clicar una foto hoy no abre nada y salta al principio de la página. Frente propio.
+- ~~433 anclas de galería/lightbox inertes~~ **FALSO. Corregido el 3-sep-2026 tras probarlo.**
+  El lightbox existe en `src/components/Componentes.astro:40` y funciona en las 35 páginas y en las
+  tres clases de ancla; el salto de scroll es 0 px. El informe dedujo que no había implementación
+  porque buscó en `Interacciones.astro`. Lo único real: Anterior/Siguiente miden 40×40 bajo 768 px
+  (mínimo 44, WCAG 2.2 AA 2.5.8).
 - 2 `<a href="#">info@mrandmrsoutdoorliving.com</a>` que deberían ser `mailto:`.
 - Dos fuentes de verdad para las páginas legales: el pie manda al segundo dominio mientras el sitio
   tiene `/articles/terms-conditions` y `/articles/privacy-policy` propias.
