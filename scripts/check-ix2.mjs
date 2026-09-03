@@ -76,12 +76,23 @@ const HUERFANAS_ESPERADAS = 14;
   }
 }
 
-/** Un arquetipo de cada tipo de página, no las 115: esto abre navegador y cuesta minutos. */
+/**
+ * Un arquetipo de cada tipo de página, no las 115: esto abre navegador y cuesta minutos.
+ *
+ * `/financing` entra aunque NO tenga ni un `data-w-id` —no lleva reveals, ver la cabecera de
+ * `src/pages/financing.astro`—, y precisamente por eso. De esta puerta le importan las dos
+ * comprobaciones que no son de IX2: `scrollX` a 479 y 991, y que el nav siga visible. Es la
+ * primera página escrita a mano sobre `Base.astro`, o sea la única cuyo marcado no salió de
+ * Webflow ya cuadrado, y sin esta línea NINGUNA puerta mediría su desbordamiento horizontal
+ * —`check:visual` compara píxeles contra una referencia nuestra, que es otra cosa—.
+ * Cuesta 4 cargas más de 44 a 48.
+ */
 const RUTAS = ['/', '/about', '/gallery', '/contact-us', '/videos', '/brochures',
   '/services/custom-deck-builders-in-north-south-florida',
   '/pool-builders/alachua-florida', '/project/modern-pool-motorized-pergola-south-florida',
   '/blogs/top-10-luxury-pool-designs-for-florida-homes',
-  '/country/custom-pool-builders-alachua-county-fl'];
+  '/country/custom-pool-builders-alachua-county-fl',
+  '/financing'];
 const ANCHOS = [[1920, 1080], [1440, 900], [991, 800], [479, 850]];
 
 const TIPO = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript',
