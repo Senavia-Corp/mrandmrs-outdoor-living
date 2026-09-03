@@ -53,8 +53,8 @@ const PASOS = [
   {
     n: '3',
     titulo: 'Review your financing options',
-    texto: 'With the price already settled, you review options through our lending partner. Approval and terms come from the lender, not from us.',
-    marca: 'This is the only step where financing comes up',
+    texto: 'With the price settled, you review options through our lending partner. Approval and terms come from the lender.',
+    clave: true,
   },
   {
     n: '4',
@@ -147,7 +147,16 @@ const SEO = {
     </div>
   </section>
 
-  {/* LA SECUENCIA. Es la pieza propia de la pagina y su unico acento. */}
+  {/* LA SECUENCIA. Es la pieza propia de la pagina y su unico acento.
+
+      EL PASO 3 SE MARCA SOLO CON EL FILETE DE ORO, y el color no es el unico indicador
+      (WCAG 1.4.1) porque el titular de la propia tarjeta lo dice: «Review your financing
+      options». La informacion la lleva el texto; el oro solo la subraya.
+
+      Hubo un rotulo extra dentro de esa tarjeta y se quito con una medida delante: al llevar
+      UN ELEMENTO MAS que las otras tres, la rejilla igualaba las cuatro a su altura y dejaba
+      entre 74 y 111 px de blanco muerto en las otras tres —el 34% de la tarjeta a 1280—.
+      Acortar el texto no bastaba: el coste no era el largo del rotulo, era su existencia. */}
   <section class="mm-seccion">
     <div class="mm-caja mm-pila mm-pila--32">
       <div class="mm-pila mm-pila--16 mm-medida">
@@ -159,13 +168,12 @@ const SEO = {
         </p>
       </div>
 
-      <ol class="mm-rejilla fin-lista">
+      <ol class="mm-rejilla fin-lista fin-pasos">
         {PASOS.map((p) => (
-          <li class:list={['mm-tarjeta', 'mm-pila', 'fin-paso', p.marca && 'fin-paso--clave']}>
+          <li class:list={['mm-tarjeta', 'mm-pila', 'fin-paso', p.clave && 'fin-paso--clave']}>
             <span class="fin-paso__n" aria-hidden="true">{p.n}</span>
             <h3 class="mm-tit-3">{p.titulo}</h3>
             <p class="mm-txt">{p.texto}</p>
-            {p.marca && <p class="mm-rotulo fin-paso__marca">{p.marca}</p>}
           </li>
         ))}
       </ol>
@@ -292,10 +300,18 @@ const SEO = {
               Review options with Acorn Finance
             </a>
           </div>
-          <p class="mm-txt-menudo">
+          {/* EL `{' '}` NO SOBRA. Astro se come el salto de linea contiguo a una etiqueta —entre
+              dos nodos de texto si lo convierte en espacio, por eso el resto del parrafo sale
+              bien—, y sin el se servia «Get a free estimateif you would rather». Estaba en el
+              HTML construido, no era un artefacto de render, y justo en la letra pequeña de
+              responsabilidad legal, que es donde peor sienta una errata.
+              `.mm-medida` porque sin ella este parrafo era la linea mas larga de la pagina:
+              1186 px medidos a 1440, contra los 850 de `.text-block-3` del que cuelga. Los dos
+              van centrados, asi que la diferencia se veia. */}
+          <p class="mm-txt-menudo mm-medida fin-legal">
             Financing is provided by Acorn Finance, a third-party lending partner. Approval,
             terms, and servicing are determined by the lender. Mr &amp; Mrs Outdoor Living is
-            not a lender. <a class="mm-vinculo" href="/request-estimated">Get a free estimate</a>
+            not a lender. <a class="mm-vinculo" href="/request-estimated">Get a free estimate</a>{' '}
             if you would rather start with the design.
           </p>
         </div>

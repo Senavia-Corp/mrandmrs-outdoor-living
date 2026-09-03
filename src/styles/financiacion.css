@@ -20,14 +20,34 @@
  * la persona hace, y es justo el que la competencia entierra. Si algun dia el orden deja de
  * importar, los numeros se van con el.
  *
- * EL PASO 3 ES EL ACENTO Y EL UNICO. Filete de oro arriba y un rotulo que lo dice con
- * palabras: el color NO es el unico indicador (WCAG 1.4.1). El oro vive en fondos y filetes,
- * nunca en texto —sobre blanco da 1,86:1—, asi que el numero y el titulo del paso marcado
- * siguen en tinta navy como los otros tres. */
+ * EL PASO 3 ES EL ACENTO Y EL UNICO. Filete de oro arriba, y nada mas. El color no queda como
+ * unico indicador (WCAG 1.4.1) porque el titular de esa tarjeta ya lo dice: «Review your
+ * financing options». La informacion la lleva el texto; el oro solo la subraya. Hubo ahi un
+ * rotulo extra y salio con una medida delante — ver la nota al final del fichero.
+ *
+ * El oro vive en fondos y filetes, nunca en texto —sobre blanco da 1,86:1—, asi que el numero
+ * y el titulo del paso marcado siguen en tinta navy como los otros tres. */
 
-/* La rejilla la pone `.mm-rejilla` (auto-fit, minmax 280px): a 1250px de contenedor entran
- * los 4 pasos en fila —4x280 + 3x24 = 1192— y por debajo se reparten solos. No hace falta
- * declarar columnas por breakpoint, asi que no se declaran. */
+/* LA SECUENCIA NO PUEDE IR NUNCA A 3 COLUMNAS, y por eso es la unica rejilla de la pagina que
+ * declara columnas a mano en vez de dejar `auto-fit`.
+ *
+ * Lo que decia aqui antes —«por debajo se reparten solos, no hace falta declarar columnas por
+ * breakpoint»— era falso para CUATRO elementos, y esta medido: con el minmax(280px) de
+ * `.mm-rejilla`, auto-fit da 1 col por debajo de 632px, 2 de 632 a 951, **3 de 952 a 1255** y
+ * 4 a partir de 1256. En esa banda de 304px —que incluye el iPad apaisado a 1024 y cualquier
+ * portatil sin maximizar— el paso 4, que es el final del proceso, queda SOLO en una segunda
+ * fila ocupando un tercio del ancho. Una secuencia rota en 3+1 deja de leerse como secuencia.
+ *
+ * 4 no divide entre 3. Con `auto-fit` no hay minimo que impida el tramo de 3: si caben 3,
+ * los pone. La unica forma de saltarselo es decir las columnas.
+ *
+ * Los cortes son los del sistema (480 / 768 / 992) y no los medidos arriba: mezclar un 1256
+ * propio con los `max-width` 479/767/991 de Webflow es justo lo que la capa prohibe. A 992 las
+ * cuatro tarjetas caen a ~214px, que es estrecho pero entra —el paso mas largo son dos lineas
+ * de cuerpo—, y a 1280 vuelven a 296px. */
+.fin-pasos { grid-template-columns: 1fr; }
+@media (min-width: 480px) { .fin-pasos { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 992px) { .fin-pasos { grid-template-columns: repeat(4, 1fr); } }
 
 /* Las tres rejillas de la pagina son listas de verdad (`<ol>` la secuencia, `<ul>` las otras
  * dos): el lector de pantalla anuncia cuantos elementos hay, que en una secuencia de pasos
@@ -91,11 +111,15 @@
   line-height: var(--mm-alto-cuerpo);
 }
 
-/* El rotulo que dice con palabras lo que dice el filete. Va DESPUES del titulo en el DOM
- * —es una anotacion sobre el paso, no su encabezado—, y `margin-top:auto` lo pega al fondo
- * de la tarjeta para que los cuatro pasos sigan alineados aunque este tenga una linea mas. */
-.fin-paso__marca {
-  margin-top: auto;
-  padding-top: var(--mm-e-12);
-  border-top: 1px solid var(--mm-borde);
-}
+/* El descargo legal del cierre. `.mm-medida` le pone el tope de 650px; esto lo centra dentro
+ * de la banda, que va centrada. Sin las dos cosas media 1186px a 1440 —336 mas que el
+ * `.text-block-3` que tiene justo encima— y era la linea mas larga de la pagina. */
+.fin-legal { margin-inline: auto; }
+
+/* NOTA DE LO QUE SE QUITO, porque el hueco vuelve si alguien lo reintroduce.
+ * Aqui vivio `.fin-paso__marca`, un rotulo dentro de la tarjeta del paso 3. Al ser UN ELEMENTO
+ * MAS que en las otras tres, la rejilla igualaba las cuatro a su altura: 74 px de blanco
+ * muerto a 1280 y 111 a 1024, en tres tarjetas de cuatro. `margin-top: auto` no lo arreglaba
+ * —solo ancla dentro de SU tarjeta— y acortar el texto tampoco: el coste era su existencia,
+ * no su largo. Si hace falta volver a anotar el paso marcado, que sea FUERA de la rejilla
+ * (un pie bajo la seccion), o las cuatro tarjetas pagan la altura de una. */

@@ -3713,3 +3713,38 @@ oro con tinta navy 8,40:1).
   cuotas, hay obligaciones de disclosure (TILA/Reg Z) que este sitio no tiene escritas.
 - La doble verdad del sitemap: `baseline/sitemap.xml` manda en el build, y la columna
   `enSitemap` de `routes.csv` no la lee nadie.
+
+### Auditoría `ui-qa` sobre `/financing` (3-sep-2026) — 16 anchos entre 360 y 1440
+
+Cuatro defectos eran de la página y están corregidos, con la medida antes/después:
+
+| Defecto | Antes | Después |
+|---|---|---|
+| Falta un espacio en el descargo legal: «Get a free estimate**if** you would rather» | roto en el HTML servido | `…estimate</a> if you…` |
+| La secuencia caía en **3+1** entre 952 y 1255 px (incluye iPad apaisado) | banda de 304 px con el paso 4 huérfano | columnas declaradas 1/2/4, **cero filas huérfanas** en los 9 anchos |
+| Hueco muerto en las tarjetas de paso | 113 px a 1280 (34 % de la tarjeta) | **27 px** a 1280, 21 a 768 |
+| El descargo era la línea más larga de la página | 1186 px a 1440 | **650 px** (`.mm-medida`) |
+
+El del hueco muerto es el que enseña algo: el rótulo extra dentro de la tarjeta del paso 3 le
+daba **un elemento más** que a las otras tres, y la rejilla igualaba las cuatro a su altura.
+Ni `margin-top: auto` —que solo ancla dentro de su propia tarjeta— ni acortar el texto lo
+arreglaban: **el coste era su existencia, no su largo.** Se quitó, y el paso 3 se marca solo
+con el filete de oro; el color no queda como único indicador porque el titular de la tarjeta
+ya dice «Review your financing options».
+
+#### Del cascarón, NO de esta página — abierto para otro frente
+
+1. **El anillo de foco de los acordeones es invisible por debajo de 992 px.**
+   `src/styles/propio.css:79-83` pone `outline-color: var(--mm-foco-inverso)` (blanco) sobre
+   fondo `#f2f2f7`: **1,12:1**, contra los 3:1 que pide WCAG 2.2 SC 2.4.11. A 992 y arriba el
+   mismo anillo es navy y da 13,98:1. El comentario de la regla dice que persigue a
+   `.nav-menu`, pero el selector es `.w-dropdown-toggle` a secas y alcanza a todos los
+   `.dropdown-faq` del documento: **afecta también a las 14 fichas de `/services/`.**
+2. **Cualquier clic fuera cierra la respuesta que estás leyendo.** `Interacciones.astro:235`
+   cierra todos los `.w-dropdown` ante un clic que no caiga dentro de uno. Para un menú es
+   correcto; para un acordeón de FAQ, no. El mismo fichero ya acota ese comportamiento a
+   `section.menu` para `focusout` (`:220`) y no lo hizo para el clic.
+3. **Contraste 2,01:1 en `.mm-resenas__pie`** («Updated Aug 2026»), idéntico en la home.
+4. 6 `link-name` sin texto accesible (logo, `tel:`, `#` y 3 sociales) en las 116 rutas.
+
+Ninguno se tocó: caen sobre rutas con contrato de paridad y arreglarlos exige re-baselinizar.
