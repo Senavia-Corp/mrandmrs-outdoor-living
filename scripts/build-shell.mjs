@@ -35,6 +35,16 @@ const html = await (await fetch('https://mrandmrsoutdoorliving.com/')).text();
 const doc = new JSDOM(html).window.document;
 
 const sinMapear = [];
+
+/**
+ * ENLACES EXTERNOS DEL CASCARON QUE YA TIENEN PAGINA PROPIA. `[destino de fuera, ruta nuestra]`.
+ * Los aplica `limpiar()`; el motivo largo esta alli, junto al bucle.
+ */
+const CON_PAGINA_PROPIA = [
+  ['https://your.acornfinance.com', '/financing'],
+];
+/** Cuantos se reapuntaron, por destino. Si alguno sale a 0 el marcado de origen ha cambiado. */
+const reapuntados = new Map();
 /** URL del CDN -> ruta local, con el manifiesto de la Fase 2 como única fuente. */
 function local(url) {
   if (!url || !/^https?:\/\//.test(url)) return url;
@@ -54,6 +64,31 @@ function limpiar(nodo) {
   // cada clic del nav se saldria al sitio viejo de Webflow.
   for (const a of nodo.querySelectorAll('a[href^="https://mrandmrsoutdoorliving.com"]')) {
     a.setAttribute('href', a.getAttribute('href').replace('https://mrandmrsoutdoorliving.com', '') || '/');
+  }
+  /**
+   * ENLACES DEL NAV QUE YA TIENEN PAGINA PROPIA. El origen manda «Financing» directo a
+   * Acorn Finance con `target="_blank"`: desde las 115 rutas, cada clic salia del sitio sin
+   * que nadie hubiera explicado nada. Desde el 2-sep-2026 hay `/financing`, y el enlace
+   * externo vive solo en el CTA de esa pagina.
+   *
+   * ESTO NO ES COSMETICO NI OPCIONAL: sin esta transformacion, el dia que alguien regenere el
+   * cascaron el nav volveria a apuntar fuera en las 116 rutas y `/financing` se quedaria
+   * huerfana, accesible solo por el sitemap. No daria error en ninguna consola.
+   *
+   * El `target` se va con el `href`: un enlace interno que abre pestaña nueva es un tic de
+   * Webflow, no una decision, y rompe el boton de atras.
+   *
+   * Se declara por DESTINO y no por texto: el rotulo del nav puede cambiar, la URL de Acorn
+   * es la que identifica el enlace. Si algun dia no casa con nada, esta funcion no lo avisa
+   * —`build-shell.mjs` solo aborta por imagenes sin mapear—, asi que el conteo se comprueba
+   * abajo, junto al de `sinMapear`.
+   */
+  for (const [fuera, dentro] of CON_PAGINA_PROPIA) {
+    for (const a of nodo.querySelectorAll(`a[href^="${fuera}"]`)) {
+      a.setAttribute('href', dentro);
+      a.removeAttribute('target');
+      reapuntados.set(fuera, (reapuntados.get(fuera) ?? 0) + 1);
+    }
   }
   // LA TRAMPA DE AMS, y aqui estaba: el HTML servido trae `style="opacity:0"` EN LINEA en
   // los elementos que anima IX2 -270 repartidos por 35 paginas-. Es el anti-FOUC de Webflow:
@@ -107,6 +142,22 @@ if (sinMapear.length) {
   console.error('\n   No se genera un cascarón que apunte al CDN de Webflow.\n');
   process.exit(1);
 }
+
+/**
+ * Y ABORTA IGUAL SI UN REAPUNTADO NO CASÓ CON NADA. Una transformación declarada que no se
+ * aplica es peor que no declararla: deja el cascarón apuntando fuera y no lo dice. El único
+ * modo de que esto salte es que el marcado del origen haya cambiado —que el enlace ya no
+ * exista, o que la URL de destino sea otra—, y entonces lo que hay que revisar es la
+ * declaración, no silenciar la comprobación.
+ */
+const sinCasar = CON_PAGINA_PROPIA.filter(([fuera]) => !reapuntados.get(fuera));
+if (sinCasar.length) {
+  console.error(`\n🔴 ${sinCasar.length} enlace(s) declarado(s) en CON_PAGINA_PROPIA que no casaron:\n`);
+  sinCasar.forEach(([fuera, dentro]) => console.error(`   ${fuera} -> ${dentro}`));
+  console.error('\n   El cascarón seguiría enlazando fuera. Revisa si el origen cambió el enlace.\n');
+  process.exit(1);
+}
+for (const [fuera, n] of reapuntados) console.log(`  reapuntados ${n} enlace(s) de ${fuera}`);
 
 /**
  * El marcado va en un `set:html` sobre una plantilla: el HTML de Webflow lleva atributos que

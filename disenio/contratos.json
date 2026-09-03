@@ -31,6 +31,12 @@
   ],
   "porDefecto": "paridad",
   "rutas": {
+    "/financing": {
+      "contrato": "rediseno",
+      "fecha": "2026-09-02",
+      "sha": "00f2ca9",
+      "motivo": "RUTA DE AUTORIA PROPIA, la primera del sitio: no existe en el origen de Webflow, asi que no hay captura de paridad contra la que medirla y `paridad` la saltaria en silencio para siempre. El contrato `rediseno` es lo que la pone ROJA hasta que haya una referencia aprobada, que es el estado correcto. `sha` es el HEAD sobre el que se escribio la pagina. PENDIENTE de la aprobacion visual de Sebastian ante el director antes de re-baselinizar: hasta entonces `check:visual` sale roja en /financing A PROPOSITO, y eso no es un fallo que arreglar sino la puerta haciendo su trabajo. Ver `scripts/lib/rutas-propias.mjs`."
+    },
     "/": {
       "contrato": "rediseno",
       "fecha": "2026-09-02",

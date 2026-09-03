@@ -97,6 +97,11 @@ import '../styles/folletos.css';       // .brochures-section-page 1             
 import '../styles/blog-indice.css';    // .articles-section 1                      -> BLOG-INDICE
 import '../styles/contacto.css';       // .form-section 1 (+4 clases en 2 rutas)    -> CONTACTO
 import '../styles/estimacion.css';     // .appointment-section 1 (+7 clases en 2)   -> ESTIMACION
+// LA PRIMERA RUTA DE AUTORIA PROPIA. `/financing` no existe en el origen de Webflow: no es una
+// hoja que rediseña marcado heredado, es la unica que viste marcado nuestro. Va aqui, al final
+// de la capa de diseño, porque solo tiene que ganar a `disenio/base.css` — con `propio.css`,
+// que parchea clases de Webflow, no se cruza: ni un selector en comun.
+import '../styles/financiacion.css';   // .fin-* 1                                  -> FINANCIACION
 // CSS de autor, DESPUES de webflow.css para ganar por orden y sin `!important`.
 // Hoy solo lleva el arreglo del solape del logo del nav entre 992 y 1204 px.
 import '../styles/propio.css';

@@ -24,6 +24,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { JSDOM } from 'jsdom';
+import { esPropia, conPropias } from './lib/rutas-propias.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const ESTATICO = path.join(RAIZ, '.vercel/output/static');
@@ -56,6 +57,16 @@ const RUTAS = csv.trim().split('\n').slice(1).map((l) => l.match(/"((?:[^"]|"")*
  */
 const SIN_HEAD_DE_WEBFLOW = new Set(['/pool-investment-estimator']);
 
+/**
+ * LAS RUTAS DE AUTORIA PROPIA no tienen entrada en `baseline/seo.json` y no pueden tenerla:
+ * no existen en el origen. La tentacion es saltarlas enteras, y seria un error — la canonica
+ * y el `noindex` son justo lo que hay que vigilar en una pagina nueva, porque es la que puede
+ * colarse indexada desde una preview. Asi que se les cambia el criterio, no se les quita:
+ * donde a las 115 se les exige que el `<head>` COINCIDA con el del origen, a estas se les
+ * exige que ESTE — titulo y descripcion no vacios— y despues pasan por el mismo bloque de
+ * canonica/noindex que todas. Ver `lib/rutas-propias.mjs`.
+ */
+
 let fallos = 0, ok = 0;
 const rojos = [];
 const nombre = (u) => String(u).split('/').pop().split('?')[0].toLowerCase();
@@ -63,20 +74,27 @@ const ordena = (v) => (Array.isArray(v) ? v.map(ordena)
   : v && typeof v === 'object'
     ? Object.fromEntries(Object.keys(v).sort().map((k) => [k, ordena(v[k])])) : v);
 
-for (const ruta of RUTAS) {
+for (const ruta of conPropias(RUTAS)) {
   const f = [path.join(ESTATICO, ruta + '.html'), path.join(ESTATICO, ruta, 'index.html'),
     path.join(ESTATICO, ruta === '/' ? 'index.html' : '')].find((c) => c && fs.existsSync(c));
   if (!f) { rojos.push([ruta, ['no esta construida']]); fallos++; continue; }
+  const propia = esPropia(ruta);
   const esperado = ref[ruta];
-  if (!esperado) { rojos.push([ruta, ['no hay baseline de SEO']]); fallos++; continue; }
+  if (!esperado && !propia) { rojos.push([ruta, ['no hay baseline de SEO']]); fallos++; continue; }
 
   const d = new JSDOM(fs.readFileSync(f, 'utf8')).window.document;
   const problemas = [];
 
   const titulo = d.querySelector('title')?.textContent ?? '';
-  if (titulo !== esperado.title) problemas.push(`title: "${esperado.title}" -> "${titulo}"`);
+  if (propia) {
+    // No hay con que comparar: se exige que EXISTAN, no que coincidan.
+    if (!titulo.trim()) problemas.push('title vacio');
+    if (!(d.querySelector('meta[name=description]')?.content ?? '').trim()) {
+      problemas.push('meta description vacia');
+    }
+  } else if (titulo !== esperado.title) problemas.push(`title: "${esperado.title}" -> "${titulo}"`);
 
-  if (!SIN_HEAD_DE_WEBFLOW.has(ruta)) {
+  if (!propia && !SIN_HEAD_DE_WEBFLOW.has(ruta)) {
     const hay = {};
     for (const m of d.head.querySelectorAll('meta[property],meta[name]')) {
       const k = m.getAttribute('property') || m.getAttribute('name');
@@ -128,7 +146,12 @@ for (const ruta of RUTAS) {
 }
 
 console.log(`\n  modo: ${PROD ? 'PRODUCCION (canonica si, noindex no)' : 'preview (noindex si, canonica no)'}`);
-console.log(`  ${ok}/${RUTAS.length} paginas con el head identico al origen\n`);
+// Se cuentan por separado a proposito: a las del origen se les exige el `<head>` IDENTICO, a
+// las propias solo que este y que la indexacion sea correcta. Un unico total las mezclaria y
+// diria «116/115», que ademas de raro sugiere que hay una pagina de mas.
+const nPropias = conPropias(RUTAS).length - RUTAS.length;
+console.log(`  ${ok - nPropias}/${RUTAS.length} paginas con el head identico al origen`);
+console.log(`  ${nPropias} de autoria propia: head propio, indexacion vigilada igual\n`);
 for (const [r, ps] of rojos.slice(0, 10)) {
   console.log(`  ROJO ${r}`);
   ps.slice(0, 5).forEach((p) => console.log(`       ${p}`));

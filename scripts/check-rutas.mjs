@@ -11,10 +11,17 @@
  *     fixture del cascarón), y por eso el fixture acabó siendo una ruta dinámica que solo se
  *     construye con MM_FIXTURES=1: confiar en acordarse de borrar un fichero no es un plan.
  *
+ * DESDE EL 2-SEP-2026 SON 115 + LAS PROPIAS. «Ninguna de más» sigue significando lo mismo —una
+ * ruta que nadie ha declarado es una ruta que se coló—, pero ya no todas las legítimas vienen
+ * del origen: `/financing` la escribimos nosotros. Las declaradas salen de
+ * `lib/rutas-propias.mjs`, y ahí está el motivo de cada una. Lo que esta puerta NO permite es
+ * que aparezca una que no figure en ningún sitio, que es de lo que protegía el día uno.
+ *
  * Se mide sobre `.vercel/output/static`, que es LO QUE SE DESPLIEGA, no sobre `src/pages`.
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { RUTAS_PROPIAS, conPropias } from './lib/rutas-propias.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const ESTATICO = path.join(RAIZ, '.vercel/output/static');
@@ -51,10 +58,19 @@ const enDisco = [];
   }
 }(ESTATICO));
 
-const esperadas = new Set(RUTAS);
+// Las del origen MAS las de autoria propia: las dos son legitimas, la diferencia es que las
+// segundas hay que declararlas a mano porque no salen de ningun inventario derivado.
+const esperadas = new Set(conPropias(RUTAS));
 const extras = enDisco.filter((r) => !esperadas.has(r) && !NO_SON_PAGINAS.test(r));
 check(`${enDisco.length} paginas en el build, 0 de mas`, extras.length === 0, `${extras.length} extra`);
 lista(extras);
+
+// Que la propia este CONSTRUIDA, no solo permitida. Sin esto, declararla aqui la eximiria de
+// la mitad 1 de la puerta —que solo mira las 115 del CSV— y podria desaparecer del build sin
+// que nada se pusiera rojo: el permiso para existir no es la prueba de que existe.
+for (const [ruta, motivo] of Object.entries(RUTAS_PROPIAS)) {
+  check(`ruta propia ${ruta} construida`, Boolean(resuelve(ruta)), motivo.slice(0, 60) + '…');
+}
 
 // ── 3 · el estimador ────────────────────────────────────────────────────────
 // Desde la Fase 12c SÍ lo genera Astro (`src/pages/pool-investment-estimator.astro` +

@@ -1,0 +1,101 @@
+/* LA PAGINA DE FINANCIACION (/financing). NO es derivado: `/financing` es la primera ruta
+ * de autoria propia del sitio, no existe en el origen de Webflow.
+ *
+ * ALCANCE: 1 ruta. Todos los selectores cuelgan de `.fin-`, y ese prefijo no existe en
+ * ninguna otra pagina — comprobado con grep sobre `src/pages` y `src/components`. Se cablea
+ * en `Base.astro` despues de `estimacion.css` y antes de `propio.css`, que es donde le toca
+ * por orden: gana a la capa de diseno y pierde contra los parches sobre Webflow.
+ *
+ * ESTA HOJA ES DELIBERADAMENTE PEQUENA. La pagina se construye con la gramatica que ya
+ * existe —`.mm-seccion`, `.mm-caja`, `.mm-rejilla`, `.mm-tarjeta`, `.mm-inverso`,
+ * `.mm-accion`— y con el heroe, el acordeon de FAQ y el CTA que el sitio ya tiene
+ * estilados. Aqui solo vive lo que de verdad no existia: la secuencia numerada.
+ *
+ * ─────────────────────────────────────────────────────────────────────────────
+ * POR QUE HAY NUMEROS, QUE NO ES OBVIO
+ *
+ * Un `01 / 02 / 03` decorativo es el recurso mas manido que hay. Aqui la numeracion se gana
+ * porque el ORDEN ES EL CONTENIDO: el homeowner solicita financiacion DESPUES de tener un
+ * precio cerrado por escrito, no antes. Ese es el unico dato de la pagina que cambia lo que
+ * la persona hace, y es justo el que la competencia entierra. Si algun dia el orden deja de
+ * importar, los numeros se van con el.
+ *
+ * EL PASO 3 ES EL ACENTO Y EL UNICO. Filete de oro arriba y un rotulo que lo dice con
+ * palabras: el color NO es el unico indicador (WCAG 1.4.1). El oro vive en fondos y filetes,
+ * nunca en texto —sobre blanco da 1,86:1—, asi que el numero y el titulo del paso marcado
+ * siguen en tinta navy como los otros tres. */
+
+/* La rejilla la pone `.mm-rejilla` (auto-fit, minmax 280px): a 1250px de contenedor entran
+ * los 4 pasos en fila —4x280 + 3x24 = 1192— y por debajo se reparten solos. No hace falta
+ * declarar columnas por breakpoint, asi que no se declaran. */
+
+/* Las tres rejillas de la pagina son listas de verdad (`<ol>` la secuencia, `<ul>` las otras
+ * dos): el lector de pantalla anuncia cuantos elementos hay, que en una secuencia de pasos
+ * es informacion. Lo que sobra es la presentacion por defecto — Webflow deja
+ * `ul, ol { padding-left: 40px }` en su normalize, y el sangrado descuadraria la rejilla
+ * contra el resto de la seccion. */
+.fin-lista {
+  list-style: none;
+  padding-inline-start: 0;
+  margin-block: 0;
+}
+
+/* LOS SEIS SERVICIOS. Con el minimo de 280px de `.mm-rejilla` entran 4 por fila a 1250px de
+ * contenedor y la ultima fila queda con dos tarjetas y un hueco de media seccion. Subiendo el
+ * minimo a 320px salen 3 y 3: 3x320 + 2x24 = 1008 cabe, 4x320 + 3x24 = 1352 no.
+ *
+ * Se corrige el MINIMO y no se declaran columnas por breakpoint a proposito — es la misma
+ * razon que da `disenio/base.css` para usar `auto-fit`: el dia que se añada o se quite un
+ * servicio, esto sigue repartiendo solo en vez de dejar un hueco que hay que ir a buscar. */
+.fin-servicios { grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); }
+
+/* El paso apoya en `.mm-pila` para el flujo vertical (y de paso hereda su `margin-block: 0`
+ * sobre los hijos, que es lo que neutraliza los margenes de `h3` y `p` de Webflow). Lo unico
+ * propio es el filete de arriba, que es donde se marca cual de los cuatro es el de dinero. */
+.fin-paso { border-top: 3px solid var(--mm-borde); }
+
+/* El numero. Tinta atenuada (#596b9a sobre blanco = 4,62:1, AA) porque es la etiqueta del
+ * paso, no su titulo: si compitiera con el `h3` se leeria primero el numero y despues la
+ * idea, que es al reves de como se lee un proceso.
+ * Tabular para que los cuatro numeros ocupen exactamente lo mismo y la columna no baile. */
+.fin-paso__n {
+  font-family: var(--mm-fuente);
+  font-size: var(--mm-paso-4);
+  font-weight: var(--mm-peso-negro);
+  line-height: var(--mm-alto-apretado);
+  color: var(--mm-tinta-atenuada);
+  font-variant-numeric: tabular-nums;
+}
+
+/* EL PASO DE LA FINANCIACION. El filete pasa a oro y el paso levanta la sombra. */
+.fin-paso--clave {
+  border-top-color: var(--mm-accion);
+  box-shadow: var(--mm-sombra-2);
+}
+
+/* EL ENLACE DE LA TARJETA DE SERVICIO. Medido a 479 px antes de escribir esto: el `<a>`
+ * heredaba `line-height: 12px` de la cascada de Webflow y quedaba en 381x12 px. Doce pixeles
+ * de alto incumplen WCAG 2.5.8 (AA pide 24x24), y la excepcion de «enlace dentro de una
+ * frase» NO aplica: estos van sueltos al pie de su tarjeta, no incrustados en un parrafo.
+ *
+ * Se arregla aqui y no tocando la regla de Webflow porque esa regla sirve a las otras 115
+ * rutas y no es asunto de esta pagina. `inline-flex` + `min-height` da el objetivo tactil sin
+ * estirar la caja a todo el ancho de la tarjeta, que dejaria una zona pulsable enorme y vacia
+ * a la derecha del texto. El alto de linea vuelve al del cuerpo para que el subrayado de
+ * `.mm-vinculo` no corte las descendentes. */
+.fin-mas {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  min-height: 44px;
+  line-height: var(--mm-alto-cuerpo);
+}
+
+/* El rotulo que dice con palabras lo que dice el filete. Va DESPUES del titulo en el DOM
+ * —es una anotacion sobre el paso, no su encabezado—, y `margin-top:auto` lo pega al fondo
+ * de la tarjeta para que los cuatro pasos sigan alineados aunque este tenga una linea mas. */
+.fin-paso__marca {
+  margin-top: auto;
+  padding-top: var(--mm-e-12);
+  border-top: 1px solid var(--mm-borde);
+}

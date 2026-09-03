@@ -1,0 +1,291 @@
+---
+/**
+ * `/financing` — LA PRIMERA RUTA DE AUTORIA PROPIA DEL SITIO.
+ *
+ * Las otras 115 son la migracion de Webflow y se miden contra el origen. Esta no existe alli:
+ * el nav apuntaba fuera, a Acorn, y esta pagina es lo que se puso en medio. Por eso hay que
+ * declararla a mano en las puertas — `scripts/lib/rutas-propias.mjs` es donde se hace, en un
+ * solo sitio para que check:rutas, check:seo y check:visual no discrepen.
+ *
+ * NO ES DERIVADA. `build-paginas.mjs` no la toca: itera `_source/routes.csv` y
+ * `_source/vivo/*.html` (`:297-300`), y `/financing` no esta en ninguno de los dos.
+ * TIENE que quedarse en la raiz de `src/pages`: `build-plantillas.mjs:357,648` hace
+ * readdirSync + unlinkSync sobre las 7 carpetas de familia y la borraria.
+ *
+ * SIN UN SOLO `data-w-id`, A PROPOSITO. El sistema de reveals oculta con
+ * `html[data-anim] [data-w-id][data-rev]:not([data-visto]) { opacity: 0 }`
+ * (`Interacciones.astro:41`) y el `data-rev` lo pone el JS al casar el `data-w-id` contra
+ * `src/data/reveals.json`. Un `data-w-id` inventado no casa con nada: no recibe `data-rev`,
+ * asi que el selector no le aplica y el elemento se ve — pero seria una entrada por scroll
+ * que no anima nunca, o sea marcado que miente. Esta pagina no lleva reveals y no los finge.
+ * Es ademas la trampa de AMS que documenta `Base.astro:15-20`.
+ *
+ * MARCADO REUTILIZADO, no inventado:
+ *   · el heroe    -> `.hero-section` de las 8 paginas indice, estilado por `hero-indice.css`
+ *   · el acordeon -> `.dropdown-faq` de las 14 fichas de `/services/`, movido por
+ *                    `Interacciones.astro:180-235` (aria-expanded, aria-controls y Esc)
+ *   · el cierre   -> `.cta-footer`, el remate de conversion de 102 rutas
+ * Lo unico nuevo es la secuencia numerada (`.fin-*`, en `src/styles/financiacion.css`).
+ *
+ * NI UNA CIFRA FINANCIERA, por decision de Sebastian del 2-sep-2026: ni APR, ni plazos, ni
+ * cuotas, ni importes, ni tiempos de aprobacion. Nombrar una tasa o una cuota dispara
+ * obligaciones de disclosure (TILA/Reg Z) que este sitio no tiene escritas. Todo lo que la
+ * pagina afirma es sobre lo que hace MR & MRS —precio cerrado por escrito antes de
+ * solicitar—, no sobre lo que hace el prestamista.
+ */
+import Base from '../layouts/Base.astro';
+import ResenasGoogle from '../components/widgets/ResenasGoogle.astro';
+
+const ACORN = 'https://your.acornfinance.com/apply?d=NXJVM';
+
+/** Los 4 pasos. El orden ES el contenido: la financiacion va DESPUES del precio cerrado. */
+const PASOS = [
+  {
+    n: '1',
+    titulo: 'Design consultation',
+    texto: 'We walk your property, talk through how you want to use the space, and put a design on paper.',
+  },
+  {
+    n: '2',
+    titulo: 'Written scope and fixed price',
+    texto: 'You get the scope in writing and a fixed project price. This is the number you build on.',
+  },
+  {
+    n: '3',
+    titulo: 'Review your financing options',
+    texto: 'With the price already settled, you review options through our lending partner. Approval and terms come from the lender, not from us.',
+    marca: 'This is the only step where financing comes up',
+  },
+  {
+    n: '4',
+    titulo: 'Permitting and construction',
+    texto: 'Engineering, permits, and the build itself, managed by a licensed Florida contractor.',
+  },
+];
+
+/** Solo servicios que el sitio construye de verdad, enlazando a su ficha. */
+const SERVICIOS = [
+  ['Pools and spas', 'Custom inground pools and spas, engineered and permitted.', '/services/custom-pool-spa-builders-in-north-south-florida'],
+  ['Pergolas', 'Custom aluminum pergolas built for Florida sun and wind.', '/services/custom-aluminum-pergola-builders-in-north-south-florida'],
+  ['Outdoor kitchens', 'Built-in cooking, storage, and counter space.', '/services/custom-outdoor-kitchens-for-north-south-florida-homes'],
+  ['Decks', 'Composite and wood decks built for the climate.', '/services/custom-deck-builders-in-north-south-florida'],
+  ['Screen enclosures', 'Pool cages and patio enclosures.', '/services/pool-screen-enclosures-for-north-south-florida-pools'],
+  ['Louvered roofs', 'Motorized louvered roof systems for shade on demand.', '/services/motorized-louvered-roof-systems-in-north-south-florida'],
+];
+
+/** El FAQ. Ninguna respuesta menciona una cifra, un plazo ni un tiempo de aprobacion. */
+const FAQ = [
+  [
+    'Do I need financing approved before I can get a price?',
+    'No. We design the project and give you a written scope with a fixed price first. You review financing with a real number in hand instead of an estimate.',
+  ],
+  [
+    'Who actually provides the financing?',
+    'A third-party lending partner, Acorn Finance. Mr & Mrs Outdoor Living builds your project; the lender reviews your application and sets the terms. We are not a lender and we do not decide approvals.',
+  ],
+  [
+    'Which projects can I finance?',
+    'Any project we build — pools and spas, pergolas, outdoor kitchens, decks, screen enclosures, louvered roofs, and full outdoor living builds.',
+  ],
+  [
+    'Does financing change my project price?',
+    'No. The price in your written scope is the price. How you choose to pay for the project does not change what we quoted.',
+  ],
+  [
+    'Can I get an estimate if I am not financing?',
+    'Yes. Most of our clients start with the design and the estimate. Financing is optional and it is a separate decision.',
+  ],
+];
+
+const SEO = {
+  meta: {
+    'og:title': 'Financing Your Outdoor Project | Mr & Mrs Outdoor Living',
+    'og:description': 'Get your design and a fixed project price first, then review financing options for your Florida pool, pergola, or outdoor living build.',
+    'og:type': 'website',
+  },
+  jsonLd: [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: FAQ.map(([pregunta, respuesta]) => ({
+        '@type': 'Question',
+        name: pregunta,
+        acceptedAnswer: { '@type': 'Answer', text: respuesta },
+      })),
+    },
+  ],
+};
+---
+
+<Base
+  titulo="Financing Your Outdoor Project | Mr & Mrs Outdoor Living"
+  descripcion="Get your design and a fixed project price first, then review financing options for your Florida pool, pergola, or outdoor living build with a licensed contractor."
+  ruta="/financing"
+  seo={SEO}
+>
+  {/* HEROE — mismo marcado que las 8 paginas indice, estilado por `hero-indice.css`. */}
+  <section class="hero-section">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="header-hero-page">
+        <h1 class="heading-hero-page">Financing your outdoor project</h1>
+        <div class="text-block-4">
+          Design your project and settle the price first. Then review financing options with
+          our lending partner, working from a fixed number instead of a rough estimate.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* LA SECUENCIA. Es la pieza propia de la pagina y su unico acento. */}
+  <section class="mm-seccion">
+    <div class="mm-caja mm-pila mm-pila--32">
+      <div class="mm-pila mm-pila--16 mm-medida">
+        <p class="mm-rotulo">The order matters</p>
+        <h2 class="mm-tit-2">Where financing fits in your build</h2>
+        <p class="mm-txt">
+          Financing is the third step, not the first. You settle the design and the price
+          before it ever comes up, so you know exactly what you are financing.
+        </p>
+      </div>
+
+      <ol class="mm-rejilla fin-lista">
+        {PASOS.map((p) => (
+          <li class:list={['mm-tarjeta', 'mm-pila', 'fin-paso', p.marca && 'fin-paso--clave']}>
+            <span class="fin-paso__n" aria-hidden="true">{p.n}</span>
+            <h3 class="mm-tit-3">{p.titulo}</h3>
+            <p class="mm-txt">{p.texto}</p>
+            {p.marca && <p class="mm-rotulo fin-paso__marca">{p.marca}</p>}
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  {/* QUE SE PUEDE FINANCIAR. Cada tarjeta enlaza a su ficha real de servicio. */}
+  <section class="mm-seccion">
+    <div class="mm-caja mm-pila mm-pila--32">
+      <div class="mm-pila mm-pila--16 mm-medida">
+        <h2 class="mm-tit-2">What you can finance</h2>
+        <p class="mm-txt">
+          Anything we build, from a single structure to a full outdoor living project.
+        </p>
+      </div>
+
+      <ul class="mm-rejilla fin-lista fin-servicios">
+        {SERVICIOS.map(([nombre, texto, href]) => (
+          <li class="mm-tarjeta mm-pila mm-pila--16">
+            <h3 class="mm-tit-3">{nombre}</h3>
+            <p class="mm-txt">{texto}</p>
+            <a class="mm-vinculo fin-mas" href={href}>See {nombre.toLowerCase()}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  {/* POR QUE IMPORTA QUIEN LO CONSTRUYE. Banda oscura: `.mm-inverso` redefine los papeles
+      de color en su ambito, asi que las tarjetas de dentro se vuelven oscuras solas. */}
+  <section class="mm-seccion mm-seccion--holgada mm-inverso">
+    <div class="mm-caja mm-pila mm-pila--32">
+      <div class="mm-pila mm-pila--16 mm-medida">
+        <h2 class="mm-tit-2">Why it matters who builds it</h2>
+        <p class="mm-txt">
+          Financing pays for the project. It does not protect it. That part is on the
+          contractor you hire.
+        </p>
+      </div>
+
+      <ul class="mm-rejilla fin-lista">
+        <li class="mm-tarjeta mm-pila mm-pila--16">
+          <h3 class="mm-tit-3">Licensed and insured</h3>
+          <p class="mm-txt">
+            We are a licensed Florida contractor. Your project is pulled under our license,
+            with the insurance that goes with it.
+          </p>
+        </li>
+        <li class="mm-tarjeta mm-pila mm-pila--16">
+          <h3 class="mm-tit-3">Engineered and permitted</h3>
+          <p class="mm-txt">
+            Structures are engineered and permitted for Florida wind and soil conditions
+            before anything gets built.
+          </p>
+        </li>
+        <li class="mm-tarjeta mm-pila mm-pila--16">
+          <h3 class="mm-tit-3">One contract, one point of contact</h3>
+          <p class="mm-txt">
+            Design, permitting, and construction run through us. You are not coordinating
+            separate trades against a payment schedule.
+          </p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  {/* PRUEBA SOCIAL. El mismo componente nativo que ya sirve a 83 rutas. */}
+  <section class="testimonial-section">
+    <div class="w-layout-blockcontainer container w-container">
+      <ResenasGoogle />
+    </div>
+  </section>
+
+  {/* FAQ — marcado de las 14 fichas de `/services/`, sin `data-w-id`. Lo mueve
+      `Interacciones.astro:180-235`, que le pone role, aria-expanded y aria-controls. */}
+  <section class="faq-section">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="header-faq">
+        <h2>Financing FAQs</h2>
+        <div>
+          Common questions from Florida homeowners about paying for an outdoor living
+          project over time.
+        </div>
+      </div>
+      <div class="wrapper-faq-components">
+        {FAQ.map(([pregunta, respuesta]) => (
+          <div data-delay="0" data-hover="false" class="dropdown-faq w-dropdown">
+            <div class="dropdown-toggle w-dropdown-toggle">
+              <div class="block-arrow-faq">
+                <img loading="lazy" src="/images/site/open-toggle.svg" alt="" class="icon-dropdown-open" />
+                <img loading="lazy" src="/images/site/close-toggle.svg" alt="" class="icon-dropdown-close" />
+              </div>
+              <h3 class="dropdown-text">{pregunta}</h3>
+            </div>
+            <nav class="dropdown-list w-dropdown-list">
+              <p class="grey">{respuesta}</p>
+            </nav>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* CIERRE — `.cta-footer`, el remate que ya usan 102 rutas. El enlace a Acorn es el UNICO
+      enlace externo de la pagina, y desde que el nav apunta aqui, el unico del sitio. */}
+  <section class="cta-footer">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="wrapper-cta-footer">
+        <div class="wrapper-vertical-text">
+          <h2>Review your financing options</h2>
+          <div class="text-block-3">
+            Already have your scope and price? Review options with our lending partner.
+            Still deciding what to build? Start with the design and the estimate.
+          </div>
+          <div class="wrapper-buttons-center">
+            {/* `.mm-accion` y no el `.button-styles` de Webflow, que mide 36 px de alto: el
+                boton de la casa trae `min-height: 44px` y oro con tinta navy a 8,40:1 (AAA).
+                Es el CTA principal de la primera pagina propia del sitio; usar aqui el boton
+                heredado seria estrenar la gramatica en todo menos en lo que se pulsa. */}
+            <a href={ACORN} target="_blank" rel="noopener" class="mm-accion">
+              Review options with Acorn Finance
+            </a>
+          </div>
+          <p class="mm-txt-menudo">
+            Financing is provided by Acorn Finance, a third-party lending partner. Approval,
+            terms, and servicing are determined by the lender. Mr &amp; Mrs Outdoor Living is
+            not a lender. <a class="mm-vinculo" href="/request-estimated">Get a free estimate</a>
+            if you would rather start with the design.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

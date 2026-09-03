@@ -36,6 +36,7 @@ import sharp from 'sharp';
 import pixelmatch from 'pixelmatch';
 import { ANCHOS, ARGS_NAVEGADOR, aSlug, asentar, disparar, aJpeg } from './lib/captura.mjs';
 import { leerContratos, contratoDe, redisenadas } from './lib/contratos.mjs';
+import { conPropias } from './lib/rutas-propias.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const ESTATICO = path.join(RAIZ, '.vercel/output/static');
@@ -157,8 +158,16 @@ await new Promise((r) => servidor.listen(0, r));
 const BASE = `http://localhost:${servidor.address().port}`;
 
 const csv = fs.readFileSync(path.join(RAIZ, '_source/routes.csv'), 'utf8');
-const RUTAS = csv.trim().split('\n').slice(1)
-  .map((l) => l.match(/"((?:[^"]|"")*)"/g)[0].slice(1, -1))
+/**
+ * Las del origen MAS las de autoria propia (`lib/rutas-propias.mjs`). Sin sumarlas aqui, una
+ * ruta propia declarada en `disenio/contratos.json` no se mediria NUNCA: este bucle recorre
+ * `routes.csv`, asi que su contrato seria letra muerta y el rojo que promete —«contrato
+ * rediseno y NO hay referencia aprobada»— no llegaria a saltar jamas. Es la misma familia de
+ * fallo que §2.1, un piso mas abajo: alli el silencio lo daba una referencia que faltaba;
+ * aqui lo daria la ruta entera, que ni se visita.
+ */
+const RUTAS = conPropias(csv.trim().split('\n').slice(1)
+  .map((l) => l.match(/"((?:[^"]|"")*)"/g)[0].slice(1, -1)))
   .filter(casa);
 
 const cruda = (s) => s.ensureAlpha().raw().toBuffer();
