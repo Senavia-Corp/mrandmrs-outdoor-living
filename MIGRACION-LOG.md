@@ -3748,3 +3748,86 @@ ya dice «Review your financing options».
 4. 6 `link-name` sin texto accesible (logo, `tel:`, `#` y 3 sociales) en las 116 rutas.
 
 Ninguno se tocó: caen sobre rutas con contrato de paridad y arreglarlos exige re-baselinizar.
+
+---
+
+### MENÚ — los enlaces que no llevaban a ningún sitio y los toques que se perdían (3-sep-2026)
+
+Encargo: `PROMPT-MENU.md`. Plan y medidas: `docs/encargos/MENU-PLAN.md`.
+
+Diagnóstico con 38 agentes: 28 causas candidatas, **3 supervivientes tras refutación
+adversarial**, y las tres eran la misma. Medido con Playwright headless sobre el build servido,
+tacto real, 2 páginas × 3 anchos × 33 enlaces.
+
+#### Causa 1 — el overlay perdía la cascada por ESPECIFICIDAD
+
+`.w-nav-overlay[data-abierto]` vale (0,2,0). En `src/styles/webflow.css`:
+`.w-nav[data-animation=over-right] .w-nav-overlay {z-index:1; top:0; left:auto}` y `{width:auto}`
+valen (0,3,0), y el `.navbar` sí lleva ese atributo. **Ganaba Webflow.** Computado real con el
+menú abierto: `top:0; left:390px; width:0px; z-index:1` — un listón de cero píxeles pegado al
+borde derecho, no el telón que el código creía poner.
+
+| Síntoma | Antes | Después |
+|---|---|---|
+| Tocar fuera cierra el menú | no cerraba nunca (`ev.target === overlay` imposible sin superficie) | cierra |
+| El toque llega a la página de detrás | a 991, tocar «Get A Free Estimate» **navegaba** con el menú abierto | no la alcanza |
+| Enlaces fuera de pantalla | 3 a 390 px, 4 a 991 px | **0** |
+| Alto del panel | 85 px más que la ventana | cabe |
+
+Se arregla subiendo a (0,4,0) — **repetir el selector no basta, pierde por especificidad, no por
+orden** — más `margin-top:0` en el panel, porque el `margin-top:85px` de `.nav-menu` era lo único
+que lo bajaba y con el `inset:85px` recuperado se sumarían.
+
+**El velo se quitó, no se dejó aparecer.** El `background-color:#00000059` que había ahí no se
+pintó nunca en la vida del fichero, porque su caja medía 0 px. Al recuperar la superficie habría
+aparecido de golpe un 35 % de negro en las 115 páginas; el Webflow de origen no tiene velo y el
+encargo era arreglar enlaces, no cambiar el aspecto. Transparente captura el toque igual.
+
+#### Causa 2 — el `focusout` se tragaba el toque entero
+
+`touchstart` → el foco pasa al destino → `focusout` en el desplegable abierto → se cierra → su
+lista es `display:flex` **en flujo** en móvil, así que la página **pega un salto de cientos de
+píxeles** → el `click` se despacha donde el dedo tocó, que ya no es el destino. Medido: con
+«Services» abierto, **«About Us» no abría**. Se arregla mirando el nav entero en vez del
+desplegable: el cierre pasa a ser consecuencia del clic, que ocurre después.
+
+#### Lo demás
+
+- **345 enlaces a `/commercial-services/…`** (no 342, y **ninguno en el pie** pese a lo que decía
+  el comentario de la puerta): tres **301** en `vercel.json` a `/industry-solutions` ×2 y a
+  `/services/pool-remodeling-renovation-…`.
+- **`ROTOS_EN_ORIGEN` eliminado.** Perdonaba por prefijo y para siempre, con un motivo que ya era
+  falso en la mitad. Lo sustituye una condición falsable: un enlace que no resuelve se acepta
+  sólo si tiene 301 declarado **y** el destino existe. Y se vigila el caso simétrico, el redirect
+  huérfano que ya no usa nadie.
+- **8 enlaces medían 264×16 y el CTA 256×32.** El suelo táctil son 44 (WCAG 2.2 AA 2.5.8). Se
+  agrandó el área **sin mover un píxel**: el `gap:28px` del contenedor pasa a ser `padding` dentro
+  del enlace (`.item-submenu` computa `overflow:hidden`, así que un `::after` quedaría recortado);
+  el botón, que sí es `overflow:visible`, se amplía con un `::after` invisible.
+- **`.mm-llamar`** se aparta mientras el menú está abierto: pisaba el enlace de Smart Soffit LED
+  en x∈[316,362].
+- **El logo del pie iba a `href="#"`** en las 114 páginas con pie. Ahora a `/`, declarado en
+  `build-shell.mjs` (`ANCLAS_MUERTAS`) y editado a mano en `Footer.astro`, como se hizo con
+  financing.
+- **`build-shell.mjs` no corría**: `ReferenceError` por una `n` donde tocaba `nodo`, en la
+  línea 104 (no la 65). Arreglado, aunque la regeneración sigue haciendo `fetch` al sitio vivo y
+  traería su deriva, así que el cascarón se editó a mano igual.
+
+#### La puerta nueva: `npm run check:menu`
+
+Estática (todo el cascarón resuelve o tiene 301; cero `href="#"`; cero `.html`) **y táctil**
+(geometría del overlay, alcance real con `elementFromPoint`, 44 px medidos preguntando al
+navegador y no leyendo el rect, tocar fuera, no atravesar, navegar de verdad, y que cada
+desplegable abra con otro abierto). Enganchada a `npm run check`.
+
+**Probada en rojo antes de darla por buena**: deshechos los tres arreglos, da 5 rojos y nombra
+cada fallo. La primera versión REVENTABA en vez de reportar, y eso lo encontró la falsificación.
+
+#### Fuera de alcance, medido y no tocado
+
+- **433 anclas de galería/lightbox inertes** en 35 páginas: el build no carga `webflow.js` y
+  `Interacciones.astro` no implementa `w-lightbox`. Clicar una foto no abre nada y salta arriba.
+- 2 `<a href="#">info@mrandmrsoutdoorliving.com</a>` que deberían ser `mailto:`.
+- `mrandmrsoutdoorsliving.com` (con «s») **no es errata**: responde 200 y sirve el Terms of
+  Service real del cliente por Cloudflare. El sitio tiene además `/articles/terms-conditions` y
+  `/articles/privacy-policy` propias: dos fuentes de verdad para lo legal, decisión del cliente.

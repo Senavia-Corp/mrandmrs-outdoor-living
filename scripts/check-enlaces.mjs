@@ -37,20 +37,30 @@ const csv = fs.readFileSync(path.join(RAIZ, '_source/routes.csv'), 'utf8');
 const RUTAS = new Set(csv.trim().split('\n').slice(1).map((l) => l.match(/"((?:[^"]|"")*)"/g)[0].slice(1, -1)));
 
 /**
- * Enlaces que YA ESTÁN ROTOS EN EL ORIGEN. Se replican, no se arreglan: el contrato dice que
- * el sitio nuevo queda exactamente igual, y arreglarlos sería inventarse páginas.
+ * AQUÍ HUBO UNA LISTA DE PERDONES, Y ERA UNA PUERTA QUE FALLABA ABIERTA.
  *
- * Comprobado contra el sitio vivo, no supuesto:
- *     GET https://mrandmrsoutdoorliving.com/commercial-services/...  -> 404
+ * `ROTOS_EN_ORIGEN` perdonaba el prefijo `/commercial-services/` porque esas 3 fichas también
+ * dan 404 en el Webflow del que se migró: se replicaba el fallo en vez de arreglarlo. El perdón
+ * tenía dos problemas, los dos medidos el 3-sep-2026:
  *
- * Está anotado como mejora candidata: son 342 enlaces en el pie y en los menús que llevan a
- * ninguna parte, y cada uno es un visitante perdido.
+ *   · Su motivo era FALSO en la mitad. Decía «desde el menú y el pie de las 114 páginas», y el
+ *     pie no los enlaza: `Footer.astro` tiene 80 anclas y CERO `commercial`. Las 345 apariciones
+ *     (no 342) salen todas de `Nav.astro`. Un perdón cuyo motivo nadie vuelve a medir envejece
+ *     mal, y este ya había envejecido.
+ *   · Perdonaba POR PREFIJO y para siempre. El día que el enlace se arreglara, el perdón
+ *     quedaría huérfano tapando cualquier `/commercial-services/…` nuevo que se colara. Eso es
+ *     la ausencia de señal leída como señal buena, que es justo lo que estas puertas existen
+ *     para impedir.
+ *
+ * Lo sustituye una condición que se puede FALSAR: un enlace que no resuelve a fichero se acepta
+ * SOLO si `vercel.json` declara su 301 y el destino de ese 301 sí existe. Si alguien borra el
+ * redirect, el enlace vuelve a estar roto y la puerta lo dice. Si alguien deja un redirect que
+ * ya no usa nadie, también lo dice: un redirect huérfano es la siguiente versión de este mismo
+ * fallo.
  */
-const ROTOS_EN_ORIGEN = [
-  ['/commercial-services/', '404 en el sitio vivo. `commercial-services` es una coleccion SIN '
-    + 'pagina propia -PROMPT.md lo dice y se ha verificado-, pero el sitio enlaza sus 3 fichas '
-    + 'desde el menu y el pie de las 114 paginas'],
-];
+const REDIRECTS = new Map((JSON.parse(fs.readFileSync(path.join(RAIZ, 'vercel.json'), 'utf8'))
+  .redirects || []).map((r) => [r.source, r]));
+const usados = new Set();
 
 const ficheros = [];
 (function barrer(d) {
@@ -75,16 +85,33 @@ for (const f of ficheros.filter((x) => x.endsWith('.html'))) {
     const h = m[1];
     if (/^\/\//.test(h)) continue;
     if (/\.html($|[?#])/.test(h)) conHtml.add(`${path.relative(ESTATICO, f)} -> ${h}`);
-    if (!existe(h) && !ROTOS_EN_ORIGEN.some(([pref]) => h.startsWith(pref))) {
-      rotos.add(`${path.relative(ESTATICO, f)} -> ${h}`);
+    if (!existe(h)) {
+      const ruta = decodeURIComponent(h.split('?')[0].split('#')[0]);
+      if (REDIRECTS.has(ruta)) usados.add(ruta);
+      else rotos.add(`${path.relative(ESTATICO, f)} -> ${h}`);
     }
   }
 }
-check('0 enlaces internos rotos (sin contar los del origen)', rotos.size === 0, `${rotos.size}`);
+check('0 enlaces internos rotos (sin contar los que tienen 301)', rotos.size === 0, `${rotos.size}`);
 lista([...rotos]);
-for (const [pref, motivo] of ROTOS_EN_ORIGEN) {
-  console.log(`     declarado ${pref} — ${motivo.slice(0, 96)}...`);
-}
+
+// Un 301 no vale por estar declarado: vale si lleva a algun sitio y si alguien lo usa.
+const sinDestino = [...REDIRECTS.values()].filter((r) => !existe(r.destination));
+check(`${REDIRECTS.size} redirects declarados, todos a un destino que existe`,
+  sinDestino.length === 0, `${sinDestino.length} apuntan a la nada`);
+lista(sinDestino.map((r) => `${r.source} -> ${r.destination} (NO EXISTE)`));
+
+const noPermanentes = [...REDIRECTS.values()].filter((r) => r.permanent !== true);
+check('todos los redirects son 301 permanentes', noPermanentes.length === 0,
+  `${noPermanentes.length} son 307 temporales`);
+lista(noPermanentes.map((r) => r.source));
+
+// Huerfanos: la trampa que tenia la lista de perdones que habia aqui antes.
+const huerfanos = [...REDIRECTS.keys()].filter((s) => !usados.has(s));
+check('0 redirects huerfanos (declarados y que ya no enlaza nadie)', huerfanos.length === 0,
+  `${huerfanos.length} sobran`);
+lista(huerfanos);
+for (const s of usados) console.log(`     301 ${s} -> ${REDIRECTS.get(s).destination}`);
 check('0 enlaces a .html', conHtml.size === 0, `${conHtml.size}`);
 lista([...conHtml]);
 

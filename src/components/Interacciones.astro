@@ -72,7 +72,22 @@ const REVEALS = JSON.stringify(reveals.porId);
      diseñador puso en Webflow en vez de unos inventados por mi.
      Lo unico que se añade es el deslizamiento `over-right` de 400 ms, que webflow.js hacia
      por JS y aqui es una transicion. */
-  .w-nav-overlay[data-abierto] {
+  /* LA CADENA `.w-nav[data-animation]` NO ES ADORNO: ES LO QUE HACE QUE ESTA REGLA EXISTA.
+     Escrita como `.w-nav-overlay[data-abierto]` valia (0,2,0), y en `webflow.css` viven
+       .w-nav[data-animation=over-right] .w-nav-overlay { width:auto }
+       .w-nav[data-animation=over-right] .w-nav-overlay,... { z-index:1; top:0; left:auto }
+     que valen (0,3,0). El `.navbar` lleva `data-animation="over-right"`, asi que ganaban ellas
+     y el overlay computaba `top:0; left:390px; width:0px; z-index:1`: un liston de CERO pixeles
+     pegado al borde derecho en vez del telon a pantalla completa que este bloque creia poner.
+     Pierde por ESPECIFICIDAD, no por orden — repetir el selector no bastaba, habia que subir.
+     Medido con el menu abierto a 390x844, y de ahi salian tres fallos a la vez:
+       · tocar fuera NO cerraba  -> `ev.target === overlay` era imposible sin superficie;
+       · el toque ATRAVESABA a la pagina de detras -> a 991 se navegaba a /request-estimated
+         con el menu abierto;
+       · el panel media 85px MAS que la ventana (`height:100%` de un overlay pegado a top:0,
+         mas el `margin-top:85px` de `.nav-menu`), asi que sus 3 ultimos enlaces caian fuera
+         de pantalla e INTOCABLES. Eso era el «algunos links no funcionan en movil». */
+  .w-nav[data-animation] .w-nav-overlay[data-abierto] {
     /* `fixed`, no el `absolute; top:100%` de Webflow: su overlay hereda `overflow:hidden` y
        recorta el panel a la altura del nav. El nav mide 85px y es fixed, asi que el panel
        cuelga justo debajo y cubre el resto de la ventana. */
@@ -83,11 +98,23 @@ const REVEALS = JSON.stringify(reveals.porId);
        aunque su caja estuviera en su sitio. El overlay arranca en y=85, asi que aunque este
        por encima del nav no lo tapa. */
     z-index: 9999;
-    background-color: #00000059;
+    /* SIN velo, y es deliberado. Aqui hubo un `background-color:#00000059` que NUNCA llego a
+       pintarse -su caja media 0 px-, asi que nadie lo ha visto jamas. Al recuperar la
+       superficie habria aparecido de golpe un 35% de negro en las 115 paginas: el Webflow de
+       origen no tiene velo (`webflow.css` declara el overlay sin `background`), y el encargo
+       era arreglar enlaces, no cambiar el aspecto. Transparente captura el toque igual. */
   }
+  /* Se queda en (0,3,0) A PROPOSITO: subirla le haria ganar al bloque de
+     `@media (prefers-reduced-motion)` de mas abajo, que usa esta misma cadena para anular la
+     transicion, y el menu volveria a deslizarse para quien pide que no se mueva nada. */
   .w-nav-overlay[data-abierto] [data-nav-menu-open] {
     position: absolute; inset: 0 0 0 auto;
     width: min(320px, 90vw); height: 100%;
+    /* `.nav-menu` trae `margin-top:85px` de Webflow (@media <=991). Mientras el overlay estaba
+       pegado a `top:0` ese margen era lo UNICO que bajaba el panel hasta debajo del nav, y por
+       accidente cuadraba. Con el `inset:85px` ya efectivo se sumarian los dos y el panel caeria
+       a y=170, dejando una franja muerta entre el nav y el menu. */
+    margin-top: 0;
     overflow-y: auto;
     /* SIN background propio: el menu movil del sitio lleva su texto en blanco, y ponerle un
        fondo blanco lo dejaba invisible -el panel pintaba, pero vacio-. El fondo lo pone el
@@ -96,6 +123,36 @@ const REVEALS = JSON.stringify(reveals.porId);
     transition: transform 400ms ease;
   }
   .w-nav-overlay[data-abierto][data-desliza] [data-nav-menu-open] { transform: translateX(0) }
+
+  /* El boton flotante de llamada se aparta mientras el menu esta abierto. No es cosmetica:
+     `.mm-llamar` es `fixed` con z-index 900 y cuelga de `body`, o sea que NO compite con el
+     overlay (encerrado en `section.menu`, z-index 10) sino que gana siempre. Medido a 390x844:
+     pisa el enlace de Smart Soffit LED en x entre 316 y 362. Su centro queda libre y por eso
+     el enlace todavia navega, pero es un blanco mordido, y ademas el boton se pinta sobre un
+     menu que ya cubre la pantalla. Con el menu cerrado vuelve intacto. */
+  body:has(.w-nav-overlay[data-abierto]) .mm-llamar { display: none }
+
+  /* ── el area tactil, sin mover un pixel ────────────────────────────────
+     Ocho enlaces del menu movil median 264x16 y el CTA 256x32. El suelo tactil son 44 px
+     (WCAG 2.2 AA, 2.5.8): a 16 px de alto, acertar es una moneda al aire, y eso tambien es
+     «el enlace no funciona». Los dos casos piden tecnicas distintas, y la diferencia esta
+     medida, no supuesta:
+
+     · `.item-submenu` computa `overflow:hidden`, asi que un `::after` que se salga de la caja
+       QUEDA RECORTADO y no serviria de nada. Se hace con el hueco que ya existe: el contenedor
+       separa sus hijos con `gap:28px`, o sea 14 arriba y 14 abajo de cada uno. Ese hueco pasa
+       a ser padding DENTRO del enlace (16+28 = 44) y el `gap` se pone a cero. El texto queda
+       exactamente donde estaba —44 px entre lineas, igual que antes— y lo unico que crece es
+       la superficie que responde al dedo. El `margin-block` negativo del contenedor devuelve
+       los 14 px de los extremos, para que el bloque entero ocupe lo mismo que ocupaba.
+
+     · `.button-styles` si computa `overflow:visible`, y ademas es un boton con fondo propio:
+       darle padding le cambiaria el aspecto. Ahi el area se extiende con un `::after`
+       invisible, que no pinta nada y no toca la caja. */
+  .w-nav-overlay[data-abierto] .wrapper-submenu-mini { gap: 0; margin-block: -14px }
+  .w-nav-overlay[data-abierto] .item-submenu { padding-block: 14px }
+  .w-nav-overlay[data-abierto] .button-styles { position: relative }
+  .w-nav-overlay[data-abierto] .button-styles::after { content: ""; position: absolute; inset: -6px 0 }
 
   /* ── los desplegables ─────────────────────────────────────────────────── */
   .w-dropdown-list { display: none }
@@ -217,9 +274,29 @@ const REVEALS = JSON.stringify(reveals.porId);
       // preguntas frecuentes, 9 en una pagina de servicio—. Un MENU se cierra cuando el foco
       // sale; un ACORDEON no: cerrarle la respuesta al usuario por tabular a la siguiente
       // pregunta es justo lo contrario de lo que espera.
-      if (d.closest('section.menu')) {
+      //
+      // Y SE MIRA EL NAV ENTERO, NO ESTE DESPLEGABLE. Con `d.contains(relatedTarget)` esto se
+      // tragaba toques enteros en movil, medido el 3-sep-2026 a 390x844 con tacto real:
+      //
+      //   con «Services» abierto, tocar «Contact Us» dejaba al usuario en la misma pagina.
+      //
+      // La cadena es: `touchstart` -> el foco pasa al enlace -> `focusout` en el desplegable
+      // abierto -> `alterna(false)` -> su lista es `display:flex` EN FLUJO en movil, asi que
+      // al cerrarse la pagina PEGA UN SALTO de varios cientos de pixeles -> el navegador
+      // despacha el `click` en las coordenadas del dedo, que ya no apuntan al enlace. El toque
+      // se pierde. Lo mismo pasaba al tocar otro desplegable: «About Us» no abria si «Services»
+      // estaba abierto.
+      //
+      // Mirando el nav completo, el foco que se mueve DENTRO del menu no cierra nada: la
+      // pagina no se mueve durante el gesto y el `click` llega a su destino. El cierre sigue
+      // ocurriendo, pero como consecuencia del clic (`cierraTodos` en `alterna`), que es
+      // despues. Y el caso que motivo este manejador -tabular FUERA del menu- sigue cubierto,
+      // porque entonces `relatedTarget` ya no esta en el nav. Con `relatedTarget` nulo -el
+      // foco se pierde del todo- `contains` da false y tambien cierra.
+      const nav = d.closest('section.menu');
+      if (nav) {
         d.addEventListener('focusout', (ev) => {
-          if (!d.contains(ev.relatedTarget)) alterna(false);
+          if (!nav.contains(ev.relatedTarget)) alterna(false);
         });
       }
     }

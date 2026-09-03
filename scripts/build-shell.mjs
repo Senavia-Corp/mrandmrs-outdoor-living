@@ -47,6 +47,20 @@ const sinMapear = [];
 const CON_PAGINA_PROPIA = [
   ['https://your.acornfinance.com', '/financing'],
 ];
+/**
+ * ANCLAS MUERTAS DEL CASCARON. `[selector, ruta a la que deberian ir]`.
+ *
+ * El logo del pie sale de Webflow con `href="#"`: en las 114 paginas con pie, pulsarlo salta
+ * al principio de la pagina en vez de ir a la portada, que es lo que todo el mundo espera de
+ * un logo. No es un enlace roto para ninguna puerta —`#` resuelve siempre— y por eso llevaba
+ * ahi desde la migracion sin que nadie lo viera.
+ *
+ * Se declara por SELECTOR y no por destino, al reves que `CON_PAGINA_PROPIA`: todos los `#`
+ * son iguales, lo que distingue a este es quien lo lleva.
+ */
+const ANCLAS_MUERTAS = [
+  ['a.footer-brand[href="#"]', '/'],
+];
 /** Cuantos se reapuntaron, por destino. Si alguno sale a 0 el marcado de origen ha cambiado. */
 const reapuntados = new Map();
 /** URL del CDN -> ruta local, con el manifiesto de la Fase 2 como única fuente. */
@@ -94,6 +108,12 @@ function limpiar(nodo) {
       reapuntados.set(fuera, (reapuntados.get(fuera) ?? 0) + 1);
     }
   }
+  for (const [selector, dentro] of ANCLAS_MUERTAS) {
+    for (const a of nodo.querySelectorAll(selector)) {
+      a.setAttribute('href', dentro);
+      reapuntados.set(selector, (reapuntados.get(selector) ?? 0) + 1);
+    }
+  }
   // LA TRAMPA DE AMS, y aqui estaba: el HTML servido trae `style="opacity:0"` EN LINEA en
   // los elementos que anima IX2 -270 repartidos por 35 paginas-. Es el anti-FOUC de Webflow:
   // «manten esto invisible hasta que arranque la interaccion». Sin webflow.js no arranca
@@ -101,7 +121,7 @@ function limpiar(nodo) {
   // regla de autor, asi que tambien romperia el revelado propio.
   //
   // No lo caza check:texto -innerText incluye lo que tiene opacity:0-; lo caza check:ix2.
-  for (const el of n.querySelectorAll('[style*="opacity"]')) {
+  for (const el of nodo.querySelectorAll('[style*="opacity"]')) {
     const limpio = el.getAttribute('style').replace(/(^|;)\s*opacity\s*:\s*0(?!\.)\s*(?=;|$)/gi, '$1')
     .replace(/^;+|;+$/g, '').trim();
     if (limpio) el.setAttribute('style', limpio); else el.removeAttribute('style');
@@ -154,9 +174,9 @@ if (sinMapear.length) {
  * exista, o que la URL de destino sea otra—, y entonces lo que hay que revisar es la
  * declaración, no silenciar la comprobación.
  */
-const sinCasar = CON_PAGINA_PROPIA.filter(([fuera]) => !reapuntados.get(fuera));
+const sinCasar = [...CON_PAGINA_PROPIA, ...ANCLAS_MUERTAS].filter(([clave]) => !reapuntados.get(clave));
 if (sinCasar.length) {
-  console.error(`\n🔴 ${sinCasar.length} enlace(s) declarado(s) en CON_PAGINA_PROPIA que no casaron:\n`);
+  console.error(`\n🔴 ${sinCasar.length} enlace(s) declarado(s) que no casaron con nada:\n`);
   sinCasar.forEach(([fuera, dentro]) => console.error(`   ${fuera} -> ${dentro}`));
   console.error('\n   El cascarón seguiría enlazando fuera. Revisa si el origen cambió el enlace.\n');
   process.exit(1);

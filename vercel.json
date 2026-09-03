@@ -1,5 +1,22 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "trailingSlash": false,
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/commercial-services/commercial-pool-construction-north-south-florida",
+      "destination": "/industry-solutions",
+      "permanent": true
+    },
+    {
+      "source": "/commercial-services/commercial-pool-contractors-north-south-florida",
+      "destination": "/industry-solutions",
+      "permanent": true
+    },
+    {
+      "source": "/commercial-services/commercial-pool-renovations-north-south-florida",
+      "destination": "/services/pool-remodeling-renovation-in-north-south-florida",
+      "permanent": true
+    }
+  ]
 }
