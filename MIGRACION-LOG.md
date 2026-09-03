@@ -3843,3 +3843,19 @@ cada fallo. La primera versión REVENTABA en vez de reportar, y eso lo encontró
 - `mrandmrsoutdoorsliving.com` (con «s») **no es errata**: responde 200 y sirve el Terms of
   Service real del cliente por Cloudflare. El sitio tiene además `/articles/terms-conditions` y
   `/articles/privacy-policy` propias: dos fuentes de verdad para lo legal, decisión del cliente.
+
+#### Nota de atribución sobre `73f54c5`
+
+Ese commit lleva dentro **un cambio que no es del frente MENU/GALERÍA y cuyo mensaje no lo
+describe**: la línea de `.mm-lb__nav:focus-visible` / `.mm-lb__x:focus-visible` que pasa el anillo
+del visor de oro a `--mm-foco` + `--mm-foco-halo`. Es el octavo anillo de R13-COLOR; los otros
+siete están en `184abd8`. Se coló porque ese frente volvió a escribir en `Componentes.astro`
+después de cedérmelo, y yo commiteé el fichero sin volver a mirar el diff.
+
+**No se reescribe la historia para sacarlo.** La rama es compartida y hay nueve sesiones tirando
+de ella: un `--force` sobre `origin/main` es bastante peor que un mensaje incompleto. Queda
+anotado aquí, que es donde este repo guarda lo que la historia de git no cuenta bien.
+
+La lección operativa, para quien herede esto: **ceder un fichero no basta si luego se vuelve a
+escribir en él.** Con nueve sesiones, el `git diff` del fichero hay que releerlo JUSTO antes de
+commitear, no cuando se acuerda el reparto.
