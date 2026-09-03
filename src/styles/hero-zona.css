@@ -64,7 +64,58 @@
    que era el parche de un velo sin fuerza real. */
 .hero-glass-section h1,
 .hero-glass-section .paragraph-2{color:var(--mm-blanco)}
-.hero-glass-section .yellow{text-shadow:none}
+
+/* LA H1, FLUIDA. Webflow la da a escalones —45 / 45 (<=991) / 35 (<=767) / 30 (<=479)— y aqui el
+   h1 es un elemento DESNUDO, asi que `.hero-glass-section h1` es 0-1-1 contra el 0-0-1 de `h1`.
+   Las media queries no suman especificidad: al declarar `font-size` los cuatro escalones quedan
+   anulados y el `clamp` los cubre el solo. Suelo = los 30px de 479.
+   768 -> 30px  ·  991 -> 31,9  ·  1280 -> 34,4  ·  1440 -> 35,8  ·  1920 -> 40px, y 30px fijos
+   por debajo de 768.
+
+   EL ANCLA ESTA EN 768 Y NO EN 479, y es una medida, no una preferencia: barriendo tamanos con
+   `Range.getClientRects()` sobre el build, el titular de palm-beach-gardens a 768px de viewport
+   sale en 3 lineas a 32px y en 2 a partir de 30px abajo. Anclando en 479 el clamp daba 32,006
+   justo ahi — 6 milesimas al lado malo del umbral. Anclado en 768 da 30,000 y la ciudad mas
+   larga entra en 2 lineas desde 768 arriba.
+
+   El techo son 40px y no los 45 de hoy porque el titular de la ciudad mas larga
+   («…In Palm Beach Gardens, Florida», 80 caracteres) mide 1793px en una linea a 45px: para dos
+   lineas pedia 896px de columna y solo habia 816. `text-wrap:balance` no reduce lineas, solo las
+   iguala — la linea la quita la columna mas ancha y el tamano menor, no el balance. */
+.hero-glass-section h1{
+  font-size:clamp(30px, calc(30px + (100vw - 768px) * 10 / 1152), 40px);
+  text-wrap:balance;margin-bottom:var(--mm-e-16)}
+
+/* EL H2 `.yellow` — el cambio de mayor impacto del encargo. A 35px competia en peso con un h1 de
+   45: no habia jerarquia, eran dos bloques grandes apilados, y entre los dos sumaban 6 lineas de
+   texto grande antes de llegar al parrafo. Sus 115 caracteres salian en 3 lineas.
+
+   ⚠️ NO se usa `--mm-paso-5` pese a que el encargo lo propone: `disenio/tokens.css` lo define
+   como `clamp(20px,…,25px)` en la base PERO lo REDEFINE en `min-width:992` como
+   `clamp(25px,…,35px)`, o sea que a 1920 daria los mismos 35px de hoy y no arreglaria nada. El
+   paso que si da los 22-26px que el encargo quiere es `--mm-paso-4`: 20px a 992, 22,4 a 1440,
+   25 a 1920. Con la h1 a 40px eso es una razon de 1,6 — jerarquia de verdad.
+
+   `text-shadow:none` sigue siendo el parche de un velo sin fuerza que ya no hace falta. El color
+   NO se toca: `.yellow` ya pinta blanco por su propia regla de webflow.css, y esa clase se
+   escapa del heroe (vive tambien en Componentes.astro, ClickToCall y GaleriaYouTube), por eso
+   todo va acotado bajo `.hero-glass-section`. */
+.hero-glass-section .yellow{text-shadow:none;font-size:var(--mm-paso-4);text-wrap:balance;
+  margin-top:0;margin-bottom:var(--mm-e-24)}
+
+/* LA MEDIDA DEL PARRAFO, EN `ch`. Hoy mide 653px a 18px (~60 caracteres) por accidente: lo
+   estrangula el `width:80%` de `.text-divider-hero-city`, no su propio `max-width:850px`. Al
+   ensanchar la columna a 1100 ese 80% pasa a 880 y el parrafo se iria a los 850 de su max-width,
+   ~95 caracteres, fuera del rango legible de 45-75. En `ch` la medida SIGUE al tamano de letra
+   en vez de pelearse con el, y el 62ch deja la linea donde ya estaba.
+
+   El ritmo, con los pasos del sistema en vez de los margenes fijos de Webflow (`h2{margin-top:
+   20px}`, `h1,h2,…{margin-bottom:10px}`, `.text-divider-hero-city{margin-bottom:1rem}`), que al
+   encoger la tipografia pesaban proporcionalmente mas. Queda: h1 -(16)- h2 -(24)- parrafo
+   -(24)- botones, y cero al pie porque de eso ya se ocupa el `padding-bottom` de la seccion. */
+.hero-glass-section .paragraph-2{max-width:62ch;margin-bottom:0}
+.hero-glass-section .text-divider-hero-city{margin-bottom:0;
+  grid-column-gap:var(--mm-e-24);grid-row-gap:var(--mm-e-24)}
 
 /* Layout — columna izquierda, anclada abajo. Mismo mecanismo que `.mm-hero` en home.css:
    `align-items:flex-end` de arriba ancla abajo (la seccion es flex fila); estas de aqui
@@ -73,11 +124,73 @@
    centrado viejo: con el bloque ya anclado abajo, esa cantidad dejaba un hueco vacio de
    mas de 200px antes del pie del heroe (medido en movil, 375px). 48px = mismo valor que
    usa Pergola Plus en el mismo sitio de su propio hero (padding-bottom: 3rem). */
-.hero-glass-section .hero-home-block{margin-left:0;max-width:800px}
-.hero-glass-section .wrapper-main-hero-page{text-align:left;align-items:flex-start}
+/* LA COLUMNA — misma causa raiz y mismo arreglo que en home.css (ver alli el porque de que no
+   haga falta un termino `vw`: el `.container` de 1250px ya aporta el crecimiento).
+   ⚠️ Y una asimetria que el comentario de arriba —«con los mismos valores, a proposito»— no
+   dice: el mismo `max-width` NO da la misma medida en los dos heroes. Home usa
+   `.wrapper-main-hero{padding-top/bottom:2rem}`, sin padding lateral; zona usa
+   `.wrapper-main-hero-page{padding:2rem}`, con 32px a cada lado. Con la columna a 1100, el texto
+   de home mide 1100 y el de zona 1036. */
+.hero-glass-section .hero-home-block{margin-left:0;max-width:1100px}
+/* `padding-top` a cero por el mismo motivo que en home.css: Webflow da aqui `padding:2rem` a los
+   CUATRO lados, y con el bloque anclado abajo el de arriba es espacio muerto que solo sirve para
+   que el bloque empiece mas arriba. Los laterales se quedan (son los 32px que hacen que la
+   medida real de zona sea 1036 y no 1100) y el de abajo tambien (los 32 que, con el
+   `padding-bottom:48` de la seccion, dejan el CTA por encima de la franja blanca de logos). */
+.hero-glass-section .wrapper-main-hero-page{text-align:left;align-items:flex-start;padding-top:0}
 .hero-glass-section .text-divider-hero-city{align-items:flex-start}
 .hero-glass-section .wrapper-buttons-center{justify-content:flex-start}
 
+/* ═══ EL VELO A PARTIR DE 992px — ANCLADO EN PX DESDE ABAJO ════════════════════════
+   Aqui esta la trampa de silencio de este subsistema, y estaba VIVA en produccion antes de
+   este encargo. El velo de arriba tiene las paradas en % de la altura del heroe, fijadas
+   midiendo a 1280x720. Pero a partir de 992 el heroe es `height:100vh` y el bloque de texto
+   esta anclado abajo, o sea que su posicion **en px desde el pie es constante y en % NO**.
+   Medido con getBoundingClientRect sobre el build, la caja del texto sin fondo propio:
+
+     ancho    h1 arriba   texto abajo    en % de la altura
+     1920       393px        168px        de 63,6% a 84,4%
+     1440       375px        168px        de 58,3% a 81,3%
+     1280       369px        168px        de 53,8% a 79,0%
+      992       359px        168px        de 40,2% a 72,0%
+
+   La ventana en px se mueve 34px entre 992 y 1920; la misma ventana en % se mueve 23 PUNTOS.
+   Con la banda oscura en 27-73% eso dejaba el parrafo de zona fuera del velo a 1920 (caia en
+   78-85%, donde el alfa vale 33,4% en vez del 60,3% que pide el suelo de 4,5:1): ~2,06:1
+   contra el peor pixel real del video, que es blanco puro. No era
+   una hipotesis: estaba desplegado.
+
+   Recalibrar los porcentajes no lo arregla — los deja bien en UN alto de ventana y mal en el
+   siguiente. Lo que estaba mal era la UNIDAD. Por debajo de 992 el heroe es `height:auto` y
+   crece con su contenido, asi que alli los % SI siguen al texto y la regla de arriba se queda
+   tal cual: medido, el texto cae dentro de 27-73% en 991, 768 y 390.
+
+   TRES COSAS QUE HAY QUE ESCRIBIR BIEN O EL ARREGLO SE CONVIERTE EN EL PROBLEMA:
+     · `background-image`, NUNCA el atajo `background`: resetearia el `background-color` que
+       Webflow pone en la seccion.
+     · SUSTITUYE el gradiente entero, no anade una capa mas separada por coma: dos capas al 78%
+       componen ~95% y el objetivo «que se vea el video» se muere.
+     · Las paradas por debajo de ~67px son dinero tirado: `.wrapper-logos` es
+       `position:absolute;inset:auto 0 0` con fondo BLANCO OPACO y `z-index:auto`, o sea que
+       pinta encima del fondo de la seccion y tapa esos 67px. El degradado que ve el ojo
+       empieza ahi.
+   Y ninguna crea contexto de apilamiento: un `background-image` no lo crea nunca, tampoco
+   dentro de una media query. El <video> con `z-index:-100` sigue escapando a la raiz.
+
+   Si la ventana fuera mas corta que la ultima parada, la regla de la spec sube las paradas
+   posteriores a la mayor anterior: el heroe se queda entero en el 78% de la meseta. Falla
+   hacia MAS proteccion, que es el lado correcto en el que fallar. */
 @media (min-width:992px){
-  .hero-glass-section .hero-home-block{max-width:880px}
+  /* Aqui el texto sin fondo propio son TRES elementos —h1, h2 y parrafo, los tres blancos
+     directamente sobre el video— y la caja va de 162px (pie del parrafo) a 426px (techo del h1
+     en la ciudad de nombre mas largo, a 1920). Banda oscura de 140 a 450: ~22px de margen por
+     abajo y ~24 por arriba. Debajo de 140 estan los botones (80-120px) sobre oro/blanco opacos
+     y la franja de logos; encima de 450 no hay texto y el video se aprecia al 18%. */
+  .hero-glass-section{background-image:linear-gradient(to top,
+    color-mix(in srgb,var(--mm-navy) 35%,transparent) 0,
+    color-mix(in srgb,var(--mm-navy) 30%,transparent) 90px,
+    color-mix(in srgb,var(--mm-navy) 78%,transparent) 140px,
+    color-mix(in srgb,var(--mm-navy) 78%,transparent) 450px,
+    color-mix(in srgb,var(--mm-navy) 18%,transparent) 540px,
+    color-mix(in srgb,var(--mm-navy) 30%,transparent) 100%)}
 }
