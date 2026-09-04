@@ -4180,3 +4180,108 @@ forma de declararlo:
   razón por la que estas 5 sí pueden vivir en `src/pages/project/`. El aviso sigue siendo válido a
   futuro: si algún día la Fase 6b convierte la familia `project` a plantilla de Sanity, se llevaría
   por delante los `.astro` estáticos — los 5 nuestros y también los 10 migrados.
+
+## R15-IG — el feed de Instagram deja de estar vacío, y se coloca donde toca (4-sep-2026)
+
+El encargo llegó como «añade el mini-feed de Instagram al final de la home, antes del CTA, y
+también en las páginas de área de servicio». Medido, no había nada que añadir: `FeedInstagram`
+está montado en **79 rutas** desde R10-SOC. Lo que había era un feed **vacío a propósito** y una
+sección que, según la familia, no estaba donde el encargo la quería.
+
+### Lo que se encontró antes de tocar nada
+
+`src/data/instagram.json` tenía `items: []`, el componente tiene guarda de vacío
+(`FeedInstagram.astro:27`) y `social.css` cuelga TODO su padding de `:has(.mm-ig)`. Resultado:
+`<section class="social-media"></section>`, altura 0, y el carrusel de blog pegado al CTA. Por eso
+parecía que el feed «no estaba». Consecuencia menos obvia y más importante: **ninguna puerta había
+medido el feed jamás** — `docs/encargos/R10-SEC.md:47-48` ya lo avisaba («0 nodos `.mm-ig` en las
+115 construidas»). Todo lo que lo tocaba salía verde en vacío.
+
+Y la posición, medida sobre el build, no era la misma en las cinco familias:
+
+| familia | rutas | orden ANTES | orden AHORA |
+|---|---|---|---|
+| `/` | 1 | blog → IG → cta-footer | igual (ya estaba bien) |
+| `country/*` | 9 | blog → IG → (sin cta-footer) | igual (ya cerraba la página) |
+| `services/*` | 14 | **IG → blog → cta-footer** | blog → IG → cta-footer |
+| `where-we-serve/*` | 2 | **IG → blog → cta-footer** | blog → IG → cta-footer |
+| `pool-builders/*` | 53 | **blog → cta-footer → IG** | blog → IG → cta-footer |
+
+### Qué se hizo
+
+- **`src/data/instagram.json` — 12 fotos de obra del repo**, una por obra, `alt` en inglés y
+  `ancho`/`alto` reales leídos con `sharp` (1250×698, no el `?? 640` del componente). Elegidas por
+  **hoja de contactos del RECORTE CUADRADO**, que es lo único que se ve: `aspect-ratio:1` +
+  `object-fit:cover` se come el 44 % del ancho. Son **12 y no 8** porque `social.css:37` fija la
+  rejilla en 4/4/3/2 «todos divisores de 12 → 0 huecos en los 7 anchos»: con 8, la banda de
+  480-767 px cerraba a 2 de 3, y es justo la banda que `check:visual` **no muestrea** (mide a
+  1920/1440/991/479). Comprobado: 0 huecos a 2, 3 y 4 columnas.
+- **`build-paginas.mjs` — el ancla del `CarruselBlog` pasa de `section.cta-footer` a
+  `section.social-media`** (1 línea). No se mueve ningún nodo: en el origen de las 16 fichas el
+  orden ya es `testimonial → social-media → cta-footer`, y lo que rompía esa pareja era la propia
+  inserción del carrusel. El cambio **restaura el origen**. `npm run paginas` reescribió 14
+  ficheros (las 2 de Estado están en `NO_REGENERAR`).
+- **`src/lib/feed-social.mjs`** — tres páginas traen la apertura `<section class="social-media">`
+  pegada al final de otro bloque `set:html` y su `</section>` suelto en otro. Para meter algo en
+  medio hay que despegarlas. Se parte **por el marcador**, no cableando las dos mitades: si un
+  generador cambia la forma del bloque, **tira el build con el nombre de la ruta puesto** en vez de
+  reordenar mal en silencio. Vive en `src/lib/` por lo mismo que `estimador.js`: lo leen tres.
+- **`pool-builders/[slug].astro`** — segundo cambio a mano de ese fichero. El origen de Webflow
+  traía el feed DEBAJO del CTA, así que subirlo **no es paridad: es rediseño deliberado**, y va
+  declarado como tal. Con guarda: `B[3] !== '</section>'` revienta si la plantilla derivada dejara
+  de ser el cierre suelto, para no tirar contenido en silencio.
+- **`where-we-serve/{north,south}-florida.astro`** — las 2 protegidas, a mano, con la nota en la
+  cabecera. Son las únicas 2 páginas de R15-IG escritas a mano; las otras 77 salen de generadores.
+- **`check-texto.mjs` — bloque DECLARADO del feed**, derivado de `instagram.json` en cada corrida
+  igual que el de reseñas. Son 2 líneas: `@mrandmrsoutdoorliving` y `Follow`. Los `alt` no entran
+  en `innerText` y el glifo del velo es `aria-hidden`. Va **por marcador y no por ruta** —al revés
+  que el de blog— porque puede: `grep -c "^Follow$" baseline/text/*` y `grep -c "^@"` dan **0** en
+  las 115, así que no hay ruta donde descontarlo de más.
+
+### Dos defectos encontrados por el camino, y arreglados
+
+1. **El contador del feed casaba por SUBCADENA.** `bruto.includes('@mrandmrsoutdoorliving')` casa
+   dentro de `info@mrandmrsoutdoorliving.com`, que está en el pie de `/contact-us`,
+   `/articles/terms-conditions` y `/articles/accessibility` — tres rutas que no montan el feed. El
+   contador daba **82** y la puerta salía ROJA acusando de «se ha colado en alguna ruta de mas».
+   Ahora compara por línea y da **79**. El descuento nunca estuvo afectado: allí se compara sobre
+   el array, o sea línea completa.
+2. **`check:visual` tenía un perdón DUPLICADO sobre las 2 de Estado.**
+   `DISTINTAS_A_PROPOSITO` las declaraba para los 4 anchos «hasta que se re-baselinicen ellas» —
+   pero ya se re-baselinizaron: sus capturas de Webflow llevan archivadas en
+   `baseline/webflow-2026-08/shots/` desde el 31-ago, y `contratos.json` las tiene en `rediseno`.
+   La condición del perdón se había cumplido y nadie lo retiró. Costaba esto: la puerta se tragaba
+   cualquier delta de alto de esas 2 en los 4 anchos, **y son justo las 2 únicas páginas de esta
+   fase editadas a mano**. Los dos motivos se mudaron VERBATIM a `contratos.json` (§5.3) y las
+   entradas se retiraron.
+
+### Puertas
+
+```
+build · tokens · assets · rutas · enlaces · seo · resenas · estimador
+menu · galeria · galeria-formulario · ix2 · carrusel                    13 VERDES
+```
+
+`check:ix2` importaba especialmente: su regla 3 (0 barra de scroll horizontal a 479 y 991) nunca
+se había ejercitado con el feed pintado. Sale `ok 0 barra de scroll horizontal` en los 4 arquetipos.
+Y `check:texto` da `ok feed: bloque declarado de 2 lineas, descontado en las 79 rutas que lo montan`.
+
+**`check:texto` sale ROJA con 56 rutas, y 54 no son de esta fase.** Demostrado: con
+`git stash -u` y el árbol en HEAD, `/` y `/pool-builders/alachua-florida` salen rojas **igual**,
+con el mismo mensaje. Las 54 (`/` + las 53 de Ciudad) fallan todas en la misma línea del baseline
+—«Trusted By Florida's Finest Homeowners», o sea `.trusted-section`— con `faltan 0, sobran 0`, que
+es como esta puerta reporta un cambio de ORDEN. Las otras 2 (`/services/pool-remodeling-…` y
+`/services/motorized-retractable-screens-…`) son **inestables**: rojas en la barrida de 115, verdes
+en dos pasadas seguidas corridas solas. Es la familia de fallo de «Fase 1 (reabierta) — el carrusel
+de pasos autoavanzaba, y la captura no lo paraba».
+
+### Abierto
+
+- **`check:visual`**: 79 rutas × 4 anchos por re-aprobar. Necesita árbol limpio, y que un humano
+  las mire antes: es el único acto irreversible del sistema.
+- **Las 54 rojas de `.trusted-section`**, preexistentes y de otro subsistema.
+- **Peso**: las 12 fotos son **1 674 KB** (media 140 KB) a 1250×698, pintadas en celdas de ~300 px
+  y sin `srcset`. Van `loading="lazy"` y bajo el pliegue, y son las mismas 12 en las 79 rutas, así
+  que se cachean una vez por visitante. Derivadas cuadradas a ~600 px lo bajarían ~10×, pero eso
+  mete una clase de activo nueva fuera de `_source/assets-manifest.json` y no estaba en el encargo:
+  queda **decidido por Sebastian**, no hecho a escondidas.

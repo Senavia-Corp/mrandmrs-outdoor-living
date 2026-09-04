@@ -243,6 +243,47 @@ function lineasResenas() {
 }
 
 /**
+ * ── EL FEED DE INSTAGRAM (R15-IG) — bloque DECLARADO, derivado del JSON ─────────────────
+ *
+ * `FeedInstagram` monta `section.social-media` en 79 rutas y, una vez poblado, aporta DOS
+ * lineas de `innerText`: el `@usuario` y el boton `Follow` (`FeedInstagram.astro:35-36`). Ni
+ * una mas: los `alt` de las 8 fotos NO entran en `innerText` y el glifo del velo es
+ * `aria-hidden`.
+ *
+ * HASTA HOY ESTA PUERTA NO HABIA MEDIDO EL FEED NI UNA VEZ, y no por descuido: con
+ * `src/data/instagram.json` vacio el componente tiene guarda de vacio y emite CERO nodos, asi
+ * que las 79 salian verdes sin que hubiera nada que comparar (`docs/encargos/R10-SEC.md:47-48`
+ * ya lo avisaba: «el feed tiene 0 nodos .mm-ig en las 115 construidas»). Al poblarlo empieza a
+ * medirse de verdad.
+ *
+ * SE DECLARA, NO SE RE-BASELINIZA: `baseline/text/` no se toca jamas (§1.1), y estas dos lineas
+ * son NUESTRAS —el Webflow de origen traia un widget de Elfsight que no pintaba, asi que el
+ * baseline retrata el hueco vacio—.
+ *
+ * VA POR MARCADOR Y NO POR RUTA, al reves que el bloque de blog. Puede: las dos lineas no
+ * existen en NINGUN baseline como linea suelta —medido: 0 coincidencias de `^@…$` y de
+ * `^Follow$` en las 115—, asi que no hay ruta donde descontarlas de mas. El de blog no podia
+ * porque en la home esa seccion SI esta en el baseline.
+ *
+ * EL FORMATEO SE ESCRIBE AQUI y no se importa del componente, por el mismo motivo que en
+ * reseñas y en blog: una puerta que deriva lo que espera del codigo que mide es
+ * `f(x) === f(x)`, verde siempre. Se comparte el DATO (`instagram.json`), no el formateo. Si
+ * el componente cambiara el texto visible —`Follow` a `Follow us`, por ejemplo— esto se pone
+ * ROJO en 79 rutas: correcto, porque el texto visible de 79 paginas ha cambiado y alguien
+ * tiene que aprobarlo.
+ */
+const FEED_MARCADOR_PREFIJO = '@';
+
+/** Las lineas de `innerText` que emite el feed, en orden. Vacio si no hay publicaciones. */
+function lineasFeed() {
+  const f = path.join(RAIZ, 'src/data/instagram.json');
+  if (!fs.existsSync(f)) return [];
+  const d = JSON.parse(fs.readFileSync(f, 'utf8'));
+  if (!(d.items ?? []).length || !d.usuario) return [];
+  return [`${FEED_MARCADOR_PREFIJO}${d.usuario}`, 'Follow'];
+}
+
+/**
  * ── EL CARRUSEL DE BLOG EN `services/`+`where-we-serves/` (R10+R11-BLOG-02) — bloque
  * DECLARADO, acotado POR RUTA ──────────────────────────────────────────────────────────
  *
@@ -465,7 +506,15 @@ function sinElBloque(ruta, hay) {
     }
   }
 
-  // 4 · las obras de autoria propia (§ OBRAS_PROPIAS_EN). Disjunto de los tres anteriores: ni
+  // 4 · el feed de Instagram, derivado del JSON. Disjunto de los tres anteriores: sus dos
+  //     lineas no salen en ningun baseline ni las produce ningun otro bloque declarado.
+  const fd = lineasFeed();
+  if (fd.length && lineas.includes(fd[0])) {
+    lineas = quitaBloque(lineas, fd);
+    if (lineas === null) { bloqueQueFallo = 'el bloque del feed (src/data/instagram.json)'; return null; }
+  }
+
+  // 5 · las obras de autoria propia (§ OBRAS_PROPIAS_EN). Disjunto de los cuatro anteriores: ni
   //     `/projects` ni `/` reciben el carrusel de blog por insercion, y el marcador de reseñas
   //     de `/` cae muy por debajo del carrusel de proyectos.
   const ob = lineasObras(ruta);
@@ -479,8 +528,8 @@ function sinElBloque(ruta, hay) {
     conObras++;
   }
 
-  // 5 · las lineas sueltas declaradas (§ LINEAS_ANADIDAS). Van al final: las cuatro anteriores
-  //     son bloques del origen y estas son nuestras, asi que quitarlas antes movería sus anclas.
+  // 6 · las lineas sueltas declaradas (§ LINEAS_ANADIDAS). Van al final: los cinco anteriores
+  //     son bloques enteros y estas son lineas sueltas, asi que quitarlas antes movería sus anclas.
   for (const d of LINEAS_ANADIDAS) {
     if (d.rutas && !d.rutas.includes(ruta)) continue;
     // El pie no esta en las rutas con `conPie={false}`; ahi no hay nada que quitar.
@@ -516,7 +565,7 @@ const ctx = await nav.newContext({ viewport: { width: 1920, height: 1080 },
   deviceScaleFactor: 1, reducedMotion: 'no-preference' });
 const pag = await ctx.newPage();
 
-let ok = 0, mal = 0, noCargaron = 0, conResenas = 0, conBlog = 0, conObras = 0;
+let ok = 0, mal = 0, noCargaron = 0, conResenas = 0, conBlog = 0, conObras = 0, conFeed = 0;
 const rojos = [];
 
 /**
@@ -534,6 +583,11 @@ const RESENAS_ESPERADAS = lineasResenas().length ? 83 : 0;
  *  el de reseñas: si el dato se vacia, se esperan 0 y apagar la seccion no obliga a editar la
  *  puerta. */
 const BLOG_ESPERADAS = lineasBlog().length ? 16 : 0;
+
+/** Las 79 rutas que montan `section.social-media`: home + 53 Ciudad + 14 servicios + 9 Condado
+ *  + 2 Estado. Derivado del estado igual que los otros dos: con `items: []` se esperan 0, asi
+ *  que vaciar el feed no obliga a editar la puerta. */
+const FEED_ESPERADAS = lineasFeed().length ? 79 : 0;
 
 for (const ruta of RUTAS) {
   const slug = aSlug(ruta);
@@ -620,6 +674,13 @@ for (const ruta of RUTAS) {
   if (bruto.includes(RESENAS_MARCADOR)) conResenas++;
   if (BLOG_RUTAS.some((p) => ruta.startsWith(p)) && lineasBlog(ruta).length
       && bruto.includes(lineasBlog(ruta)[0])) conBlog++;
+  /* POR LINEA, NO POR SUBCADENA, y no es purismo: `bruto` es una cadena y el marcador es
+   * `@mrandmrsoutdoorliving`, que vive DENTRO de `info@mrandmrsoutdoorliving.com` en el pie
+   * de /contact-us, /articles/terms-conditions y /articles/accessibility — tres rutas que no
+   * montan el feed. Con `bruto.includes` el contador daba 82 y esta puerta salia ROJA
+   * acusando de «se ha colado en alguna ruta de mas». El descuento de `sinElBloque` nunca
+   * estuvo afectado: alli se compara sobre el ARRAY, o sea linea completa. */
+  if (lineasFeed().length && bruto.split('\n').includes(lineasFeed()[0])) conFeed++;
   const hay = sinElBloque(ruta, bruto);
   if (hay === null) {
     mal++;
@@ -697,6 +758,20 @@ if (filtro.length) {
 } else if (BLOG_ESPERADAS) {
   console.log(`  ok   blog: bloque declarado de ${lineasBlog().length} lineas, `
     + `descontado en las ${conBlog} fichas de services/+where-we-serves/`);
+}
+
+/* Contador del feed. Mismo criterio que los dos anteriores y misma omision en corrida acotada. */
+if (filtro.length) {
+  if (conFeed) console.log(`\n  --   feed: contador OMITIDO (corrida acotada). Salio en ${conFeed}.`);
+} else if (conFeed !== FEED_ESPERADAS) {
+  mal++;
+  console.log(`\n  ROJO feed: el bloque sale en ${conFeed} ruta(s) y se esperaban ${FEED_ESPERADAS}.`
+    + `\n       ${conFeed > FEED_ESPERADAS
+      ? 'se ha colado en alguna ruta de mas'
+      : 'alguna de las 79 ha dejado de montar el feed'}.`);
+} else if (FEED_ESPERADAS) {
+  console.log(`  ok   feed: bloque declarado de ${lineasFeed().length} lineas, `
+    + `descontado en las ${conFeed} rutas que lo montan`);
 }
 
 /**

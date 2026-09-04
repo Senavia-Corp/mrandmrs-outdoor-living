@@ -709,12 +709,31 @@ for (const [ruta] of RUTAS) {
    * coincidencias en ambos-. Es contenido nuevo, no paridad. (Condado es la excepcion: SI la
    * trae en su origen, y por eso va por SUSTITUCION mas arriba, no por aqui.)
    *
-   * SE ACOTA POR PREFIJO DE RUTA y no por «si la pagina tiene .cta-footer»: ese `.cta-footer`
-   * esta en mas paginas de las 16, asi que la condicion obvia habria puesto el carrusel de mas.
+   * SE ACOTA POR PREFIJO DE RUTA y no por «si la pagina tiene la seccion ancla»: tanto
+   * `.cta-footer` como `.social-media` estan en mas paginas de las 16, asi que la condicion
+   * obvia habria puesto el carrusel de mas.
    *
-   * VA ANTES DE `.cta-footer` porque es donde lo pidio Sebastian: entre las reseñas y el CTA
-   * del pie. En una ficha las secciones acaban en
+   * VA ANTES DE `.social-media`, Y HASTA R15-IG IBA ANTES DE `.cta-footer`. Lo que Sebastian
+   * pidio -«entre las reseñas y el CTA del pie»- se sigue cumpliendo; lo unico que cambia es el
+   * orden relativo con el feed de Instagram. Anclado al CTA, el carrusel se colaba EN MEDIO de
+   * una pareja que el origen trae PEGADA (medido en `_source/vivo/services_*.html` y
+   * `where-we-serve_{north,south}-florida.html`, las 16):
    *     location -> testimonial-section -> social-media -> cta-footer -> logos-section
+   * Eso no se veia porque `src/data/instagram.json` estaba vacio y `.social-media` medía 0 px
+   * -`social.css` cuelga todo su padding de `:has(.mm-ig)`-. Al poblarlo en R15-IG, las 16
+   * habrian quedado con el feed separado del CTA por el carrusel entero. Anclarlo a
+   * `.social-media` RESTAURA la adyacencia del origen y deja el mismo orden que la home:
+   *     testimonial-section -> [CarruselBlog] -> social-media -> cta-footer -> logos-section
+   *
+   * QUE VALIDA `blogsInsertados` Y QUE NO — importa, porque es facil leerlo de mas. Se compara
+   * contra 16 al final y eso SI comprueba que las 16 tienen la seccion ancla: si a alguna le
+   * faltara `.social-media`, el contador baja y la corrida lo dice en vez de reordenar en
+   * silencio. Lo que NO comprueba es que las 16 se hayan ESCRITO: este `++` esta en el recorrido
+   * del DOM y la guarda de `NO_REGENERAR` corta mas abajo, al ir a escribir el fichero. Hoy
+   * `/where-we-serve/{north,south}-florida` estan protegidas (heroe a mano desde el 3-sep-2026),
+   * asi que el contador dice 16 y los ficheros tocados son 14. Esas 2 llevan el mismo reorden
+   * HECHO A MANO en su `.astro`, y ahi no hay contador que lo defienda: lo defiende
+   * `check:visual` una vez re-aprobadas.
    *
    * COSTE QUE HAY QUE TENER PRESENTE: son +32 lineas de `innerText` en cada una de las 16, y
    * `baseline/text/` NO se re-baseliniza nunca (§1.1). Por eso el bloque va DECLARADO en
@@ -724,7 +743,7 @@ for (const [ruta] of RUTAS) {
   const CON_BLOG_INSERTADO = ['/services/', '/where-we-serve/'];
   let acumulado = '';
   for (let n = menu.nextElementSibling; n && n !== pie; n = n.nextElementSibling) {
-    if (CON_BLOG_INSERTADO.some((p) => ruta.startsWith(p)) && n.matches?.('section.cta-footer')) {
+    if (CON_BLOG_INSERTADO.some((p) => ruta.startsWith(p)) && n.matches?.('section.social-media')) {
       acumulado += MARCA + 'CarruselBlog' + MARCA;
       usados.add('CarruselBlog');
       blogsInsertados++;

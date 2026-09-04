@@ -5,11 +5,17 @@
 // re-derivarse (las 53 paginas de origen no existen desde la Fase 6b, `npm run plantillas`
 // sale con «0 paginas · ya convertida»), asi que R11-BLOG-02 lo migro a mano, una vez, con
 // scripts/migrar-blog-pool-builders.mjs. Ese cambio puntual SI hay que mantenerlo a mano.
+// SEGUNDO CAMBIO A MANO (R15-IG): el feed de Instagram sube por encima del `.cta-footer`.
+// El origen de Webflow lo traia DEBAJO (`blog -> cta-footer -> social-media`, medido en
+// _source/vivo/pool-builders_*.html), asi que esto NO es paridad: es rediseno deliberado,
+// para que las 53 acaben como la home y como las 16 de services/+Estado. Con el feed vacio
+// -altura 0- la diferencia no se veia; poblado, el CTA quedaba a media pagina.
 import Base from '../../layouts/Base.astro';
 import ResenasGoogle from '../../components/widgets/ResenasGoogle.astro';
 import FeedInstagram from '../../components/widgets/FeedInstagram.astro';
 import CarruselBlog from '../../components/widgets/CarruselBlog.astro';
 import SEO_RUTAS from '../../data/seo-pool-builders.json';
+import { sinAperturaDelFeed } from '../../lib/feed-social.mjs';
 import LIT from '../../data/plantilla-pool-builders.json';
 
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -67,6 +73,17 @@ const B = LIT.map((tr, b) => tr.map((x, i) => {
 // un campo vacio en Sanity revienta el build en vez de dejar un carrusel mudo.
 if (!d['headingBlog'] || !d['paragraphBlog']) throw new Error(`${slug}: falta headingBlog/paragraphBlog`);
 
+// R15-IG: B[2] pega el `.cta-footer` a la apertura de `.social-media`, y el feed tiene que
+// ir DELANTE del CTA. B[3] era el `</section>` suelto que lo cerraba; ya no se renderiza,
+// porque la seccion se escribe entera abajo — el mismo marcado literal que usa la home.
+const CTA_PIE = sinAperturaDelFeed(B[2], `/pool-builders/${slug} B[2]`);
+// Y B[3] deja de renderizarse, asi que hay que AFIRMAR que no era mas que ese cierre: si la
+// plantilla derivada le metiera contenido algun dia, se perderia sin un solo rojo.
+if (B[3] !== '</section>') {
+  throw new Error(`${slug}: B[3] ya no es el cierre suelto del feed, es ${JSON.stringify(B[3])}. `
+    + 'Al dejar de renderizarlo se estaria tirando contenido — revisa scripts/build-plantillas.mjs.');
+}
+
 const { seo: SEO, ldCrudo: LD_CRUDO } = SEO_RUTAS[slug];
 ---
 <Base titulo={d["seo.title"]} descripcion={d["seo.description"]} ruta={`/pool-builders/${slug}`} seo={SEO} jsonLdCrudo={LD_CRUDO}>
@@ -74,7 +91,8 @@ const { seo: SEO, ldCrudo: LD_CRUDO } = SEO_RUTAS[slug];
   <ResenasGoogle />
   <Fragment set:html={B[1]} />
   <CarruselBlog titulo={d['headingBlog']} entradilla={d['paragraphBlog']} />
-  <Fragment set:html={B[2]} />
-  <FeedInstagram />
-  <Fragment set:html={B[3]} />
+  <section class="social-media">
+    <FeedInstagram />
+  </section>
+  <Fragment set:html={CTA_PIE} />
 </Base>
