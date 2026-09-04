@@ -150,6 +150,17 @@
    medida real de zona sea 1036 y no 1100) y el de abajo tambien (los 32 que, con el
    `padding-bottom:48` de la seccion, dejan el CTA por encima de la franja blanca de logos). */
 .hero-glass-section .wrapper-main-hero-page{text-align:left;align-items:flex-start;padding-top:0}
+/* LA CAJA DE VIDRIO, NEUTRALIZADA DESDE EL CSS. El rediseno R9 la quito del marcado de las 3
+   fuentes del heroe porque el velo hace su trabajo y ella lo estorbaba. El pase de R15-SEO
+   regenero las 2 rutas de estado desde `_source/vivo/` y la devolvio, con este resultado
+   visible en produccion: un panel blanco al 80% con `backdrop-filter:blur(20px)` por detras del
+   texto, encima del video.
+   Se apaga aqui y no en el marcado A PROPOSITO: ya se ha colado dos veces por regeneracion, y
+   una regla en la capa la deja apagada pase lo que pase con los ficheros derivados. La regla de
+   `webflow.css` NO esta bajo media query -al contrario de lo que dice el comentario de mas
+   abajo-, asi que aplicaba en los cuatro anchos.
+   No crea contexto de apilamiento sobre la seccion: es un hijo de `.hero-home-block`. */
+.hero-glass-section .glass-effect-block{display:none}
 .hero-glass-section .text-divider-hero-city{align-items:flex-start}
 .hero-glass-section .wrapper-buttons-center{justify-content:flex-start}
 

@@ -105,6 +105,19 @@ const SLIDERS = JSON.stringify(
     animation: mm-marquee var(--mm-dur, 30s) linear infinite;
   }
   [fs-marquee-element="wrapper"][data-mm-marquee] { overflow: hidden }
+  /* EL ANCHO DEL LOGO LO PONE LA RAZON DE ASPECTO, NUNCA EL ATRIBUTO `width`.
+     `webflow.css` solo le da altura (`.fs-marquee-logoscms_logo{height:35px}`) y confiaba en
+     que el <img> no trajera `width`. El pase de CLS de R15-SEO se lo anadio en 27 ficheros
+     -las 9 de country, las 14 de services, las 2 de estado, /about y /request-estimated- y
+     ese atributo es una PISTA DE PRESENTACION que, sin un `width` en CSS que la gane, pasa a
+     ser el ancho usado: el logo salia a 700px en vez de 111 y la lista media 43011px en vez de
+     6009. Con `--mm-dur` calculado sobre ese ancho, la vuelta pasaba de 33s a 239s: el
+     carrusel parecia parado, que es justo como se reporto.
+     `width:auto` devuelve el ancho a la razon de aspecto y NO renuncia al CLS: el par
+     width/height del atributo sigue dando la proporcion con la que el navegador reserva sitio
+     antes de cargar. Medido: 700px -> 111px de logo y 732 -> 143 de item, clavado en los
+     valores de las paginas que nunca se rompieron. Donde no habia atributo, no cambia nada. */
+  .fs-marquee-logoscms_logo { width: auto }
   /* Un TERCIO, no la mitad: se triplica el contenido como hace Finsweet, asi que el bucle
      cierra cuando la primera copia ha salido entera. */
   @keyframes mm-marquee { to { transform: translateX(-33.3333%) } }
