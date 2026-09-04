@@ -1257,7 +1257,7 @@
     "1920": 2113
    }
   },
-  "/where-we-serves/custom-pool-builders-north-florida": {
+  "/where-we-serve/north-florida": {
    "slug": "where-we-serves_custom-pool-builders-north-florida",
    "sha256Html": "d5a803b988b017c4b4943dfa622d2a5ad85d983417afd5092e24b71d2f5b1b31",
    "sha256Texto": "64c5c8d9c651d63e780aaa575a4d19345b2a28b5f3489ac1cc390302c8908844",
@@ -1268,7 +1268,7 @@
     "1920": 7193
    }
   },
-  "/where-we-serves/custom-pool-builders-south-florida": {
+  "/where-we-serve/south-florida": {
    "slug": "where-we-serves_custom-pool-builders-south-florida",
    "sha256Html": "bd14ea22b41317a37ecd42d1bbcc019f3d92b800a3350f1dd40273b8915d9336",
    "sha256Texto": "f36783aea1730760099b27fe7d54144bf53f020431220b447b9a8efd00550ad1",

@@ -123,6 +123,24 @@ const miles = (n: number) => n.toLocaleString('en-US');
 ---
 
 <div id="pool-estimator" class={suelta ? 'pe-suelta' : undefined} data-pe>
+  {/*
+    EL <h1> QUE LAS DOS PAGINAS NO TENIAN (D7 en MIGRACION-LOG.md).
+
+    `/pool-cost-estimator` y `/pool-investment-estimator` salen de Webflow con CERO encabezados
+    -0 h1 y 0 h2, medido sobre el build; los unicos son los 6 `h3.pe-h3` de los pasos-. Sin
+    encabezado no hay senal de tema para el crawler en las dos paginas que mas conversion
+    mueven (SEO-URLS-PLAN.md hallazgo 5).
+
+    VA OCULTO A LA VISTA, Y ESO ES DELIBERADO. Un h1 pintado seria una seccion visible que el
+    diseno del origen no tiene: rompe el Principio 1 -no inventar secciones- y pone `check:visual`
+    en rojo en dos rutas con contrato de PARIDAD. Oculto da exactamente lo que pedia el hallazgo
+    -la senal semantica para el crawler y para un lector de pantalla- sin mover un pixel.
+    Si Sebastian lo quiere visible, es un cambio de diseno y va con su re-aprobacion visual.
+
+    Lo que SI cuesta es texto: `innerText` incluye el texto recortado -comprobado en Chromium-,
+    asi que la linea va declarada en `check-texto.mjs`. Ninguna puerta se apaga.
+  */}
+  <h1 class="pe-sr">{suelta ? 'Pool Investment Estimator' : 'Custom Inground Pool Cost Estimator'}</h1>
   <div class="pe-ancho">
     <div class="pe-rejilla">
 

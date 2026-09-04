@@ -26,9 +26,16 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { JSDOM } from 'jsdom';
+import { renombra } from './lib/renombradas.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const man = JSON.parse(fs.readFileSync(path.join(RAIZ, '_source/assets-manifest.json'), 'utf8')).assets;
+/* El manifiesto ya trae `dim:{w,h}` de 1877 de los 2000 assets. Indexado por ruta publica,
+ * sirve para reservar el hueco de una imagen que no declara tamano (§ limpia()). */
+const DIM = new Map(Object.values(man).filter((a) => a.dim?.w).map((a) => [a.publico, a.dim]));
+/* Las clases de `<img>` a las que se les reserva el hueco (§ limpia()). Enumeradas y medidas:
+ * cada una entro aqui con una cifra de `layout-shift` detras, no por precaucion. */
+const RESERVAN_HUECO = ['fs-marquee-logoscms_logo', 'image-whereweserve'];
 
 /** Widgets de Elfsight -> componentes nativos. El click-to-call ya vive en el layout. */
 const WIDGETS = {
@@ -144,11 +151,11 @@ function localizar(raiz) {
  * homes."). Si Sebastian pide otro texto, es el UNICO contenido no derivado de todo el cambio.
  */
 const ENCABEZADOS_BLOG = {
-  '/where-we-serves/custom-pool-builders-north-florida': {
+  '/where-we-serve/north-florida': {
     titulo: 'Outdoor Living Insights for North Florida',
     entradilla: 'Explore expert tips on pool design, outdoor living trends, and maintenance strategies tailored to North Florida homes.',
   },
-  '/where-we-serves/custom-pool-builders-south-florida': {
+  '/where-we-serve/south-florida': {
     titulo: 'Outdoor Living Insights for South Florida',
     entradilla: 'Explore expert tips on pool design, outdoor living trends, and maintenance strategies tailored to South Florida homes.',
   },
@@ -278,7 +285,58 @@ const NO_REGENERAR = new Map([
   ['/pool-builders/', 'la familia entera la sirve src/pages/pool-builders/[slug].astro leyendo '
       + 'de Sanity desde la Fase 6b, que borro los 53 .astro a proposito. Regenerarlos los '
       + 'repone sin versionar, ensombrece la plantilla y rompe check:rutas con 53 rutas de mas.'],
+  /**
+   * LA TERCERA: las 2 de Estado. Su heroe (T0) se edita A MANO desde el rediseno del 3-sep-2026
+   * y este generador las SOBRESCRIBIA en silencio — no era una hipotesis, paso en la sesion de
+   * SEO del 3-sep-2026 y hubo que restaurarlas de una instantanea. La cabecera del .astro ya lo
+   * avisaba; lo que faltaba era la guarda que lo impide.
+   */
+  ['/where-we-serve/north-florida', 'el heroe (T0) se edita A MANO desde el rediseno del '
+      + '3-sep-2026. Regenerarla lo borra: ya paso una vez.'],
+  ['/where-we-serve/south-florida', 'idem que la de North: heroe a mano desde el 3-sep-2026.'],
 ]);
+
+/**
+ * HUECOS DE SEO DEL ORIGEN QUE SE RELLENAN A PROPOSITO (D5 en MIGRACION-LOG.md).
+ *
+ * `/brochures` es la unica pagina de contenido real que sale de Webflow SIN meta description y
+ * SIN un solo bloque de JSON-LD (SEO-URLS-PLAN.md hallazgo 4). `/pool-investment-estimator`
+ * tambien los tiene vacios, pero ese ya esta declarado como excepcion en `check-seo.mjs`
+ * (`SIN_HEAD_DE_WEBFLOW`, cabecera propia de 4 etiquetas); este no: es un hueco de verdad.
+ *
+ * ESTO ROMPE LA PARIDAD A PROPOSITO, y por eso se declara aqui y no se arregla en
+ * `_source/vivo/brochures.html` -que es el origen y no se toca- ni a mano en el `.astro` -que
+ * es DERIVADO y se perderia en el siguiente `npm run paginas`-.
+ *
+ * LA DESCRIPCION NO ES COPY INVENTADO: es la entradilla que la propia pagina ya muestra en
+ * `div.text-block-4`, 150 caracteres, dentro de rango. Escribir texto nuevo es de la sesion de
+ * SEO de contenido, no de esta.
+ *
+ * El JSON-LD copia la forma de `/gallery` y `/videos`, que son las dos paginas indice
+ * comparables: `CollectionPage` con `about` -> `Organization`.
+ */
+const HUECOS_SEO = {
+  '/brochures': {
+    descripcion: 'Dive into the details. Explore our digital catalogs for in-depth details, '
+      + 'design inspiration, and premium materials for your custom backyard projects.',
+    jsonLd: [{
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      about: {
+        '@type': 'Organization',
+        description: 'Licensed design-build contractor specializing in luxury pool construction, '
+          + 'outdoor living spaces, pergolas, and custom outdoor projects across North and South '
+          + 'Florida.',
+        name: 'Mr. and Mrs. Outdoor Living',
+      },
+      description: 'Digital catalogs with materials, finishes and design details for custom pool '
+        + 'and outdoor living projects in North & South Florida.',
+      inLanguage: 'en',
+      name: 'Outdoor Living Brochures',
+      url: '/brochures',
+    }],
+  },
+};
 
 /**
  * Coincidencia EXACTA, o por prefijo si la clave acaba en `/`. `/` es un caso aparte: acaba en
@@ -295,6 +353,26 @@ let blogsInsertados = 0;
  * comprobado al final contra 9. Los dos mecanismos son disjuntos por construccion: Condado no
  * pasa por el `if` de insercion y Estado/Servicios no tienen la seccion en su origen. */
 let blogsSustituidos = 0;
+/* Anclas «Read More» del HTML crudo a las que se les pone `aria-label` (§ limpia()). Se
+ * COMPRUEBA al final contra 80: 10 de /blogs-tips + 7 x 10 de /blogs/. Si baja, el origen ha
+ * cambiado la forma de la tarjeta y hay enlaces sin etiquetar; si sube, se ha colado en otro
+ * sitio. `ctaSinTitulo` recoge las que no encontraron encabezado, que es el fallo silencioso. */
+let ctaEtiquetados = 0;
+const ctaSinTitulo = [];
+/* Bloques de JSON-LD del origen que no parseaban y se han reparado escapando el caracter de
+ * control (§ mas abajo). Se COMPRUEBA al final contra 8, las de SEO-URLS-PLAN.md hallazgo 2. */
+let ldReparados = 0;
+/* Rutas de `HUECOS_SEO` efectivamente rellenadas. Se COMPRUEBA al final contra el tamano de
+ * la tabla: si baja, una ruta declarada ya no pasa por aqui y su hueco vuelve a estar abierto. */
+let huecosRellenados = 0;
+/* Imagenes de `RESERVAN_HUECO` a las que se les fija width+height. `imgSinDim` recoge las que
+ * el manifiesto no conoce, que serian las que siguen desplazando sin que nadie lo diga. */
+let huecosReservados = 0;
+const imgSinDim = [];
+/* Heroes que dejan de ser `lazy` por ser la imagen LCP de su ruta. */
+let heroesDesperezados = 0;
+/* Enlaces reescritos a una ruta renombrada (§ scripts/lib/renombradas.mjs). */
+let enlacesRenombrados = 0;
 /* El embed WAAPI del mosaico de `.trusted-section` (9 rutas de country/, huella `STEP_MS`
  * dentro del `<script>` — mas fiable que la clase `.code-embed`, que es generica de Webflow y
  * tambien la lleva el menu). Se retira aqui, no a mano en `_source/vivo/`: si algun dia se
@@ -473,6 +551,80 @@ for (const [ruta] of RUTAS) {
     for (const a of n.querySelectorAll('a[href^="https://mrandmrsoutdoorliving.com"]')) {
       a.setAttribute('href', a.getAttribute('href').replace('https://mrandmrsoutdoorliving.com', '') || '/');
     }
+
+    /* Y las rutas que hemos RENOMBRADO despues del scrape. `_source/vivo/` es el origen y no se
+     * toca, asi que sus enlaces apuntan —y seguiran apuntando— a la ruta vieja. Sin esto, los 44
+     * enlaces internos que se actualizaron a mano volverian atras en el siguiente `npm run
+     * paginas`, y el sintoma seria 44 redirects de mas en produccion, no un rojo. */
+    for (const a of n.querySelectorAll('a[href]')) {
+      const h = a.getAttribute('href');
+      const r = renombra(h);
+      if (r !== h) { a.setAttribute('href', r); enlacesRenombrados++; }
+    }
+
+    /**
+     * TEXTO DE ENLACE NO DESCRIPTIVO — el unico audit que separa el sitio del 100/100 de SEO
+     * en Lighthouse (`link-text`; SEO-URLS-PLAN.md hallazgo 1). Son 80 anclas «Read More» en
+     * HTML crudo scrapeado: 10 en `/blogs-tips` y 7 en cada una de las 10 de `/blogs/`.
+     *
+     * NO SE TOCA EL TEXTO VISIBLE -Principio 2, `check:texto` compara innerText al 100 %-.
+     * Se anade `aria-label`, que es lo que evaluan Lighthouse y un lector de pantalla y que
+     * NO entra en innerText.
+     *
+     * EL TITULO SALE DEL DOM, NO DE UNA TABLA. Las 80 tarjetas comparten forma
+     * -`<h3|h4>TITULO</h3> ... <div class="wrapper-buttons"><a>Read More</a>`-, asi que el
+     * encabezado se busca hacia arriba desde el propio enlace. Una tabla ruta->titulo se
+     * desincronizaria del origen sin avisar; esto se rompe RUIDOSAMENTE (el contador de abajo).
+     */
+    /**
+     * RESERVAR EL HUECO DE LAS IMAGENES QUE DESPLAZAN — el CLS de SEO-URLS-PLAN.md hallazgo 8.
+     *
+     * MEDIDO, no supuesto. Con `PerformanceObserver({type:'layout-shift'})` sobre el build, a
+     * 412x823, las fuentes de desplazamiento reales son estas dos:
+     *   · `/where-we-serve` — `SECTION.trusted-section` pasa de `y=485,alto=338` a
+     *     `y=766,alto=57` a los 53 ms: **0.1403** de su CLS de 0.153. Lo empuja el heroe de
+     *     arriba, `img.image-whereweserve`, que ademas de no declarar tamano es la imagen LCP
+     *     y venia con `loading="lazy"` — lo peor de los dos mundos.
+     *   · `/` — `DIV.fs-marquee-logoscms_item`: **0.0210**. `.fs-marquee-logoscms_logo` declara
+     *     `height:35px` en CSS y NO declara ancho, asi que hasta que carga ocupa 0 px y empuja a
+     *     sus 27 hermanas; y la lista esta EN FLUJO a proposito (`Componentes.astro:103-106`).
+     *     El propio codigo ya lo sabia: «Los logos no llevan width/height, asi que antes de
+     *     cargar ocupan 0» (`Componentes.astro:266-268`). Van de 1.00 a 4.63 de proporcion —de
+     *     35 a 162 px de ancho—, que es la medida del salto.
+     *
+     * POR LISTA DECLARADA, NO A TODAS LAS IMAGENES. Darle proporcion a un `<img>` cuyo CSS ya
+     * le fija alto Y ancho no cambia nada, pero a uno al que solo le fija uno de los dos SI
+     * puede cambiar lo pintado, y son 115 rutas con contrato de paridad. Aqui el radio de
+     * impacto es enumerable y esta medido. Si mañana aparece otra, se anade con su cifra.
+     *
+     * `width`/`height` NO cambian un pixel de lo pintado: el CSS sigue mandando, y la
+     * proporcion que reserva el navegador es la misma que tendria la imagen ya cargada.
+     */
+    for (const img of n.querySelectorAll(RESERVAN_HUECO.map((c) => `img.${c}:not([width])`).join(','))) {
+      const d = DIM.get(img.getAttribute('src'));
+      if (!d) { imgSinDim.push(`${ruta} :: ${img.getAttribute('src')}`); continue; }
+      img.setAttribute('width', String(d.w));
+      img.setAttribute('height', String(d.h));
+      huecosReservados++;
+    }
+    /* Y la del heroe, que ademas NO puede ir en `lazy`: es la imagen LCP de la ruta. Webflow
+     * pone `loading="lazy"` en TODAS por defecto, incluida esa. */
+    for (const img of n.querySelectorAll('img.image-whereweserve[loading="lazy"]')) {
+      img.setAttribute('loading', 'eager');
+      img.setAttribute('fetchpriority', 'high');
+      heroesDesperezados++;
+    }
+
+    for (const a of n.querySelectorAll('a')) {
+      const rotulo = a.textContent.trim();
+      if (!/^(read|see|learn|view) more$/i.test(rotulo) || a.hasAttribute('aria-label')) continue;
+      let h = null;
+      for (let c = a.parentElement; c && !h; c = c.parentElement) h = c.querySelector('h1,h2,h3,h4');
+      if (!h) { ctaSinTitulo.push(`${ruta} :: ${rotulo}`); continue; }
+      a.setAttribute('aria-label', `${rotulo}: ${h.textContent.trim()}`);
+      ctaEtiquetados++;
+    }
+
     return n.outerHTML;
   };
 
@@ -509,7 +661,7 @@ for (const [ruta] of RUTAS) {
    * `check-texto.mjs`, derivado de `src/data/blogs.json` (mas el encabezado por ruta de
    * `blog-heading-por-ruta.json` para las 2 de Estado), igual que el de reseñas.
    */
-  const CON_BLOG_INSERTADO = ['/services/', '/where-we-serves/'];
+  const CON_BLOG_INSERTADO = ['/services/', '/where-we-serve/'];
   let acumulado = '';
   for (let n = menu.nextElementSibling; n && n !== pie; n = n.nextElementSibling) {
     if (CON_BLOG_INSERTADO.some((p) => ruta.startsWith(p)) && n.matches?.('section.cta-footer')) {
@@ -545,7 +697,7 @@ for (const [ruta] of RUTAS) {
   const partesAntes = trocear(antesNav);
 
   const titulo = doc.querySelector('title')?.textContent ?? '';
-  const desc = doc.querySelector('meta[name="description"]')?.getAttribute('content') ?? '';
+  let desc = doc.querySelector('meta[name="description"]')?.getAttribute('content') ?? '';
 
   // Todo lo demas del <head> que es SEO, tal cual lo sirve el origen. `description` va aparte
   // porque Base ya la emite; repetirla daria dos etiquetas.
@@ -554,19 +706,47 @@ for (const [ruta] of RUTAS) {
     const k = m.getAttribute('property') || m.getAttribute('name');
     if (!/^(og:|twitter:|robots$|keywords$)/.test(k)) continue;
     if (k === 'description') continue;
-    metaSeo[k] = local(m.getAttribute('content') ?? '');
+    metaSeo[k] = renombra(local(m.getAttribute('content') ?? ''));
   }
   // El JSON-LD se reserializa con las claves ORDENADAS para que un diff no falle por el orden.
-  // Los 8 bloques que NO parsean se dejan CRUDOS: son un defecto del origen (un salto de linea
-  // literal dentro de la cadena) y el contrato dice replicarlo, no arreglarlo.
   const ordena = (v) => (Array.isArray(v) ? v.map(ordena)
     : v && typeof v === 'object'
       ? Object.fromEntries(Object.keys(v).sort().map((k) => [k, ordena(v[k])])) : v);
+
+  /**
+   * LOS 8 BLOQUES ROTOS DEL ORIGEN — reparados aqui desde el 3-sep-2026 (D4 en MIGRACION-LOG).
+   *
+   * 8 de las 10 `/project/*` traen del scrape de Webflow un SALTO DE LINEA LITERAL dentro del
+   * valor de `description`, y JSON prohibe caracteres de control sin escapar dentro de una
+   * cadena. Resultado: `Bad control character in string literal ... (line 6 ...)` en las 8, y
+   * Google Rich Results no puede leer ninguna.
+   *
+   * Hasta hoy se replicaban CRUDAS por el contrato de paridad. Es una desviacion deliberada:
+   * replicar un defecto del origen que solo perjudica, cuando la reparacion es SINTACTICA y no
+   * cambia ni una palabra del contenido -el valor de la cadena es identico; lo unico que cambia
+   * es como se codifica el salto de linea-.
+   *
+   * SE INTENTA PRIMERO SIN SANEAR, a proposito: las 2 sanas nunca pasan por el saneador, asi
+   * que no hay forma de que este arreglo les toque un byte. Y si algun dia llega un bloque roto
+   * de otra manera, el segundo `catch` lo devuelve a CRUDO como siempre: el mecanismo viejo
+   * sigue debajo, no se ha borrado.
+   *
+   * LIMITE CONOCIDO del saneador: recorre literales de cadena con una expresion regular
+   * (`"..."` con escapes), no con un analizador. Basta para este defecto -medido: repara 8/8
+   * sobre `_source/vivo/project_*.html`- y falla hacia el lado seguro, porque lo que no repare
+   * sale por el `catch` de siempre.
+   */
+  const sanea = (t) => t.replace(/"((?:[^"\\]|\\.)*)"/g, (m) => m
+    .replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, '\\t'));
+
   const jsonLd = [];
   const jsonLdCrudo = [];
   for (const sc of doc.head.querySelectorAll('script[type="application/ld+json"]')) {
-    const t = sc.textContent.replace(reUrlGlobal, (u) => local(equilibra(u)));
-    try { jsonLd.push(ordena(JSON.parse(t))); } catch { jsonLdCrudo.push(t); }
+    const t = sc.textContent.replace(reUrlGlobal, (u) => renombra(local(equilibra(u))));
+    try { jsonLd.push(ordena(JSON.parse(t))); } catch {
+      try { jsonLd.push(ordena(JSON.parse(sanea(t)))); ldReparados++; }
+      catch { jsonLdCrudo.push(t); }
+    }
   }
 
   // La profundidad importa: /blogs/{slug} vive en src/pages/blogs/, asi que necesita ../../
@@ -595,6 +775,17 @@ for (const [ruta] of RUTAS) {
    * Aqui abajo ya se ha hecho todo el trabajo de lectura y solo queda tocar el disco, que es
    * exactamente lo unico que hay que impedir.
    */
+  // Los huecos declarados se rellenan justo antes de escribir, para que se vean en el diff del
+  // fichero generado y no escondidos dentro de la extraccion del <head>.
+  const hueco = HUECOS_SEO[ruta];
+  if (hueco) {
+    if (desc) { console.error(`\n  ROJO ${ruta} ya trae description del origen: quita su entrada de HUECOS_SEO\n`); process.exit(1); }
+    if (jsonLd.length) { console.error(`\n  ROJO ${ruta} ya trae JSON-LD del origen: quita su entrada de HUECOS_SEO\n`); process.exit(1); }
+    desc = hueco.descripcion;
+    jsonLd.push(...hueco.jsonLd.map(ordena));
+    huecosRellenados++;
+  }
+
   const clave = protegida(ruta);
   if (clave) { protegidas.push([ruta, clave]); continue; }
 
@@ -659,6 +850,27 @@ console.log('        esta en NO_REGENERAR y no se escribe: sigue con su propio S
 console.log('        Las 53 de pool-builders/ NO pasan por este generador — su migracion es');
 console.log('        manual, con scripts/migrar-blog-pool-builders.mjs (npm run plantillas la');
 console.log('        salta con «0 paginas · ya convertida»).\n');
+console.log(`  enlaces reescritos a una ruta renombrada: ${enlacesRenombrados}`);
+console.log(`  imagenes con hueco reservado (width+height): ${huecosReservados}`);
+console.log(`  heroes que dejan de ser lazy (imagen LCP): ${heroesDesperezados}`);
+if (imgSinDim.length) {
+  console.error(`\n  ROJO ${imgSinDim.length} imagen(es) declarada(s) sin dim en el manifiesto —`
+    + ' siguen desplazando y esto no lo dice ninguna puerta:');
+  imgSinDim.slice(0, 6).forEach((x) => console.error(`      ${x}`));
+  process.exit(1);
+}
+console.log(`  huecos de SEO rellenados: ${huecosRellenados} de ${Object.keys(HUECOS_SEO).length}`
+  + `${huecosRellenados === Object.keys(HUECOS_SEO).length ? '' : '   <<< FALTA ALGUNA'}`);
+console.log(`  JSON-LD del origen reparado (caracter de control): ${ldReparados}`
+  + `${ldReparados === 8 ? '' : '   <<< SE ESPERABAN 8'}`);
+console.log(`  «Read More» del HTML crudo con aria-label: ${ctaEtiquetados}`
+  + `${ctaEtiquetados === 80 ? '' : '   <<< SE ESPERABAN 80'}`);
+if (ctaSinTitulo.length) {
+  console.error(`\n  ROJO ${ctaSinTitulo.length} enlace(s) generico(s) sin encabezado del que sacar`
+    + ' el aria-label. La forma de la tarjeta ha cambiado en el origen:');
+  ctaSinTitulo.slice(0, 8).forEach((x) => console.error(`      ${x}`));
+  process.exit(1);
+}
 console.log(`  embed WAAPI del mosaico retirado en ${codeEmbedsEliminados} ficha(s) de country/`
   + `${codeEmbedsEliminados === 9 ? '' : '   <<< SE ESPERABAN 9'}`);
 console.log('        El bucle nuevo vive en src/styles/intro.css §5, igual para las 80 rutas.\n');

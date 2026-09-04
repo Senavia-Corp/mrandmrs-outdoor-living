@@ -120,7 +120,6 @@ for (const ruta of conPropias(RUTAS)) {
     } else {
       for (const [i, b] of bloques.entries()) {
         const e = espLd[i];
-        if (e.__sinParsear !== undefined) continue;    // los 8 rotos del origen: se replican crudos
         let mio; try { mio = ordena(JSON.parse(b.textContent)); } catch { problemas.push(`JSON-LD ${i} no parsea`); continue; }
         const a = JSON.stringify(mio);
         const c = aLocal(JSON.stringify(ordena(e)));

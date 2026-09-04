@@ -144,6 +144,46 @@ const ANADIDAS_A_PROPOSITO = {
 };
 
 /**
+ * ── LINEAS SUELTAS ANADIDAS A PROPOSITO ──────────────────────────────────────────────────
+ *
+ * `ANADIDAS_A_PROPOSITO` solo sabe leer un bloque del baseline de OTRA ruta. Esto es para lo
+ * otro: una o dos lineas que NO existen en ningun baseline porque son nuestras.
+ *
+ * NO ES UNA REBAJA DEL UMBRAL. Se quitan EXACTAMENTE esas lineas, SEGUIDAS y EN ORDEN, y todo
+ * lo demas de la pagina se sigue comparando al 100 %. Si el texto cambia una coma, la
+ * declaracion deja de casar y esto vuelve a rojo — que es justo lo que tiene que pasar.
+ *
+ * `tras` ancla la linea a la que la precede, y hace falta de verdad: «Accessibility» tambien es
+ * el encabezado propio de `/articles/accessibility`, asi que sin ancla se quitaria ESE y el del
+ * pie se quedaria, desordenando la comparacion de esa ruta. Con `tras` se quita el del pie, que
+ * es el que hemos anadido. Sin `tras` se quita la primera aparicion, que basta cuando el texto
+ * no existe en ninguna otra parte (comprobado: los dos h1 del estimador salen a 0 en el
+ * baseline entero).
+ */
+const LINEAS_ANADIDAS = [
+  {
+    rutas: null,                                        // null = todas las que tengan pie
+    tras: ['Terms of Service', 'Privacy Policy'],
+    lineas: ['Accessibility'],
+    motivo: 'D6: el pie enlaza `/articles/accessibility`, que antes no enlazaba nadie. Las otras '
+      + 'dos legales solo cambian de href y no cuestan texto; esta es un enlace NUEVO.',
+  },
+  {
+    rutas: ['/pool-cost-estimator'],
+    tras: [],
+    lineas: ['Custom Inground Pool Cost Estimator'],
+    motivo: 'D7: la pagina salia de Webflow con 0 encabezados. El <h1> es semantico y va oculto '
+      + 'a la vista, pero `innerText` incluye el texto recortado y por eso se declara aqui.',
+  },
+  {
+    rutas: ['/pool-investment-estimator'],
+    tras: [],
+    lineas: ['Pool Investment Estimator'],
+    motivo: 'D7: idem, la pagina desnuda del mismo estimador.',
+  },
+];
+
+/**
  * ── LAS RESEÑAS DE GOOGLE (D2) — bloque DECLARADO, no absorbido ──────────────────────────
  *
  * La sección de reseñas es texto NUEVO en 83 rutas, y `baseline/text/` NO SE RE-BASELINIZA
@@ -203,10 +243,10 @@ function lineasResenas() {
 }
 
 /**
- * ── EL CARRUSEL DE BLOG EN `services/`+`where-we-serves/` (R10+R11-BLOG-02) — bloque
+ * ── EL CARRUSEL DE BLOG EN `services/`+`where-we-serve/` (R10+R11-BLOG-02) — bloque
  * DECLARADO, acotado POR RUTA ──────────────────────────────────────────────────────────
  *
- * La seccion se añade a las 14 fichas de `services/` y a las 2 de `where-we-serves/`, y aporta
+ * La seccion se añade a las 14 fichas de `services/` y a las 2 de `where-we-serve/`, y aporta
  * 32 lineas de `innerText`: titulo, entradilla y 10 posts x 3 (titulo, resumen, «Read More»).
  * `baseline/text/` NO se re-baseliniza nunca (§1.1), asi que se DECLARA en vez de absorberse.
  *
@@ -225,7 +265,7 @@ function lineasResenas() {
  * siempre. Se comparte el DATO (`src/data/blogs.json` + `blog-heading-por-ruta.json`), no el
  * formateo.
  */
-const BLOG_RUTAS = ['/services/', '/where-we-serves/'];
+const BLOG_RUTAS = ['/services/', '/where-we-serve/'];
 
 /**
  * Las lineas de `innerText` que emite CarruselBlog, en orden, para `ruta`.
@@ -297,6 +337,22 @@ function quitaBloque(lineas, bloque) {
   return null;
 }
 
+/**
+ * Quita `anadidas` solo donde vayan PRECEDIDAS por `contexto`. Con `contexto` vacio equivale a
+ * `quitaBloque`. `null` si no casa, igual que su hermana: un declarado que no aplica es rojo.
+ */
+function quitaTras(lineas, contexto, anadidas) {
+  if (!contexto.length) return quitaBloque(lineas, anadidas);
+  const bloque = [...contexto, ...anadidas];
+  for (let i = 0; i + bloque.length <= lineas.length; i++) {
+    if (bloque.every((l, j) => lineas[i + j] === l)) {
+      const k = i + contexto.length;
+      return [...lineas.slice(0, k), ...lineas.slice(k + anadidas.length)];
+    }
+  }
+  return null;
+}
+
 /** Cual de los bloques declarados fallo, para que el rojo diga la verdad. Antes el mensaje
  *  etiquetaba TODO fallo como «bloque de reseñas» y me mando a depurar el bloque equivocado. */
 let bloqueQueFallo = null;
@@ -324,12 +380,26 @@ function sinElBloque(ruta, hay) {
     if (lineas === null) { bloqueQueFallo = 'el bloque de reseñas (src/data/resenas.json)'; return null; }
   }
 
-  // 3 · el carrusel de blog, SOLO en services/+where-we-serves/. Los tres bloques son disjuntos.
+  // 3 · el carrusel de blog, SOLO en services/+where-we-serve/. Los tres bloques son disjuntos.
   if (BLOG_RUTAS.some((p) => ruta.startsWith(p))) {
     const bl = lineasBlog(ruta);
     if (bl.length) {
       lineas = quitaBloque(lineas, bl);
       if (lineas === null) { bloqueQueFallo = 'el bloque de blog (src/data/blogs.json)'; return null; }
+    }
+  }
+
+  // 4 · las lineas sueltas declaradas (§ LINEAS_ANADIDAS). Van al final: las tres anteriores
+  //     son bloques del origen y estas son nuestras, asi que quitarlas antes movería sus anclas.
+  for (const d of LINEAS_ANADIDAS) {
+    if (d.rutas && !d.rutas.includes(ruta)) continue;
+    // El pie no esta en las rutas con `conPie={false}`; ahi no hay nada que quitar.
+    if (!d.rutas && !d.lineas.every((l) => lineas.includes(l))) continue;
+    lineas = quitaTras(lineas, d.tras, d.lineas);
+    if (lineas === null) {
+      bloqueQueFallo = `las lineas declaradas [${d.lineas.join(' / ')}]`
+        + (d.tras.length ? ` tras [${d.tras.join(' / ')}]` : '');
+      return null;
     }
   }
 
@@ -370,7 +440,7 @@ const rojos = [];
  */
 const RESENAS_ESPERADAS = lineasResenas().length ? 83 : 0;
 
-/** Las 14 fichas de `services/` + las 2 de `where-we-serves/`. Derivado del estado, igual que
+/** Las 14 fichas de `services/` + las 2 de `where-we-serve/`. Derivado del estado, igual que
  *  el de reseñas: si el dato se vacia, se esperan 0 y apagar la seccion no obliga a editar la
  *  puerta. */
 const BLOG_ESPERADAS = lineasBlog().length ? 16 : 0;
@@ -536,7 +606,7 @@ if (filtro.length) {
   console.log(`\n  ROJO blog: el bloque sale en ${conBlog} ruta(s) y se esperaban ${BLOG_ESPERADAS}.`);
 } else if (BLOG_ESPERADAS) {
   console.log(`  ok   blog: bloque declarado de ${lineasBlog().length} lineas, `
-    + `descontado en las ${conBlog} fichas de services/+where-we-serves/`);
+    + `descontado en las ${conBlog} fichas de services/+where-we-serve/`);
 }
 
 if (noCargaron) {
@@ -547,6 +617,10 @@ if (noCargaron) {
 }
 for (const [r, d] of Object.entries(ANADIDAS_A_PROPOSITO)) {
   console.log(`     declarado ${r}: el bloque de ${d.bloque} — ${d.motivo}`);
+}
+for (const d of LINEAS_ANADIDAS) {
+  console.log(`     declarado ${d.rutas ? d.rutas.join(' ') : '(todas con pie)'}:`
+    + ` [${d.lineas.join(' / ')}] — ${d.motivo}`);
 }
 console.log(`\n${mal === 0 ? 'PUERTA VERDE' : `PUERTA ROJA — ${mal} pagina(s)`}\n`);
 process.exit(mal ? 1 : 0);

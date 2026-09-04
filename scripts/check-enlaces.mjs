@@ -106,11 +106,43 @@ check('todos los redirects son 301 permanentes', noPermanentes.length === 0,
   `${noPermanentes.length} son 307 temporales`);
 lista(noPermanentes.map((r) => r.source));
 
+/**
+ * LOS 301 QUE NADIE ENLAZA A PROPOSITO. Un renombrado publico.
+ *
+ * La comprobacion de abajo asume que un redirect existe para tapar un enlace interno que no se
+ * actualizo, y por eso un redirect sin enlaces es basura. Cierto — salvo cuando la URL vieja
+ * ERA publica: entonces el 301 esta para el trafico externo y para el indice de Google, y lo
+ * correcto es justo lo contrario, que ningun enlace interno lo use.
+ *
+ * Se declara ENUMERADO, ruta por ruta y con su motivo, NO por prefijo. La cabecera de este
+ * fichero cuenta como la lista de perdones anterior fallaba precisamente por ser un prefijo
+ * («/commercial-services/ para siempre») con un motivo que resulto ser falso a medias. Una
+ * entrada de mas aqui es una linea que alguien puede leer y discutir; un prefijo, no.
+ *
+ * Sigue siendo falsable: si el destino desaparece, la comprobacion de arriba lo dice igual.
+ */
+const SIN_ENLACE_INTERNO = new Map([
+  ['/where-we-serves/custom-pool-builders-north-florida',
+    'Tier 1 de SEO-URLS-PLAN.md: renombrada a /where-we-serve/north-florida el 3-sep-2026. Los '
+    + 'enlaces internos apuntan ya a la nueva; este 301 es para el indice de Google.'],
+  ['/where-we-serves/custom-pool-builders-south-florida',
+    'idem, renombrada a /where-we-serve/south-florida. Ademas estaba en el sitemap del Webflow '
+    + 'vivo, o sea que tiene URL publica indexada.'],
+]);
+
 // Huerfanos: la trampa que tenia la lista de perdones que habia aqui antes.
-const huerfanos = [...REDIRECTS.keys()].filter((s) => !usados.has(s));
+const huerfanos = [...REDIRECTS.keys()].filter((s) => !usados.has(s) && !SIN_ENLACE_INTERNO.has(s));
 check('0 redirects huerfanos (declarados y que ya no enlaza nadie)', huerfanos.length === 0,
   `${huerfanos.length} sobran`);
 lista(huerfanos);
+// Y al reves: un declarado que SI resulta enlazado ya no es un renombrado limpio — o queda un
+// enlace interno sin actualizar, o la declaracion sobra. Las dos cosas hay que mirarlas.
+const declaradosEnlazados = [...SIN_ENLACE_INTERNO.keys()].filter((s) => usados.has(s));
+check(`${SIN_ENLACE_INTERNO.size} renombrados declarados sin enlace interno, y asi siguen`,
+  declaradosEnlazados.length === 0, `${declaradosEnlazados.length} SI estan enlazados`);
+lista(declaradosEnlazados.map((s) => `${s} — queda algun enlace interno a la ruta vieja`));
+for (const [s, m] of SIN_ENLACE_INTERNO) console.log(`     301 sin enlace interno ${s}
+        ${m}`);
 for (const s of usados) console.log(`     301 ${s} -> ${REDIRECTS.get(s).destination}`);
 check('0 enlaces a .html', conHtml.size === 0, `${conHtml.size}`);
 lista([...conHtml]);

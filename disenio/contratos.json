@@ -119,7 +119,7 @@
       "contrato": "rediseno",
       "fecha": "2026-09-02",
       "sha": "b8fc30c",
-      "motivo": "R9-HERO: el heroe de la portada elevado —velo navy con linea de agua en lugar del linear-gradient(#0006,#0006) plano, fuera la regla de oro de 1100 px bajo el h1, subtitulo de 950 a 650 px para que deje de competir con el titular, CTA de 181x38,4 a 266x56 px y bullets de 7 px a 14 px a 479. Texto intacto: innerText 321 B identico. Commiteado o aplicado por el propio frente; PENDIENTE de la aprobacion visual de Sebastian ante el director antes de re-baselinizar. · R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "motivo": "R9-HERO: el heroe de la portada elevado —velo navy con linea de agua en lugar del linear-gradient(#0006,#0006) plano, fuera la regla de oro de 1100 px bajo el h1, subtitulo de 950 a 650 px para que deje de competir con el titular, CTA de 181x38,4 a 266x56 px y bullets de 7 px a 14 px a 479. Texto intacto: innerText 321 B identico. Commiteado o aplicado por el propio frente; PENDIENTE de la aprobacion visual de Sebastian ante el director antes de re-baselinizar. · R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R14-OBRAS (3-sep-2026): ademas, el carrusel «Project Showcase» pasa de 10 a 15 slides. El alto NO cambia —el slider enseña 1 slide por vista y desborda en horizontal—, pero el contenido si, y vale el mismo razonamiento que en /projects."
     },
     "/contact-us": {
       "contrato": "rediseno",
@@ -601,13 +601,13 @@
       "sha": "527b5f0",
       "motivo": "D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
     },
-    "/where-we-serves/custom-pool-builders-north-florida": {
+    "/where-we-serve/north-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
       "motivo": "D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): se añade el carrusel de blog, ausente hasta ahora en Estado — mismo componente CarruselBlog que ya usaban las 14 fichas de services/, con encabezado propio (\"Outdoor Living Insights for North/South Florida\"). Pendiente de aprobar mirando las capturas: el contrato sigue con la referencia del 31-ago-2026, que no tiene este bloque."
     },
-    "/where-we-serves/custom-pool-builders-south-florida": {
+    "/where-we-serve/south-florida": {
       "contrato": "rediseno",
       "fecha": "2026-08-31",
       "sha": "527b5f0",
@@ -635,13 +635,43 @@
       "contrato": "rediseno",
       "fecha": "2026-09-02",
       "sha": "por-asignar",
-      "motivo": "R12-HERO: Arrastrada por el heroe de las paginas indice: `.hero-section` se pinta identica en 8 rutas y /projects es una de ellas. No tiene trabajo propio todavia —su lote R10-PROY sigue pausado—, pero su captura de referencia cambia igual y sin contrato la puerta la mediria contra el Webflow original. Commiteado o aplicado por el propio frente; PENDIENTE de la aprobacion visual de Sebastian ante el director antes de re-baselinizar."
+      "motivo": "R12-HERO: Arrastrada por el heroe de las paginas indice: `.hero-section` se pinta identica en 8 rutas y /projects es una de ellas. No tiene trabajo propio todavia —su lote R10-PROY sigue pausado—, pero su captura de referencia cambia igual y sin contrato la puerta la mediria contra el Webflow original. Commiteado o aplicado por el propio frente; PENDIENTE de la aprobacion visual de Sebastian ante el director antes de re-baselinizar. · R14-OBRAS (3-sep-2026): ademas, la rejilla pasa de 10 a 15 tarjetas al publicarse las 5 obras de autoria propia, asi que la captura de pagina completa crece por contenido y no solo por el heroe. Se anota aqui porque aprobar esta ruta con un motivo que solo hablara del heroe perdonaria de paso un cambio de contenido que nadie ha mirado."
     },
     "/request-estimated": {
       "contrato": "rediseno",
       "fecha": "2026-09-02",
       "sha": "por-asignar",
       "motivo": "R12-EST: La pagina de conversion, elevada entera. De 24 pares de color, 18 suspendian 4,5:1; ahora 0. Objetivos tactiles: casilla de 13 a 24 px, boton de envio de 36,4 a 53 px a 479, y cero controles por debajo del suelo en los seis anchos. Y un defecto que no ve ninguna captura: con el widget de Turnstile pintado el boton de envio quedaba LADO A LADO con el, y el CTA se salia de la pantalla (scrollWidth 485 contra 479 de ventana; 433 contra 375). Apilado en los seis anchos. Commiteado o aplicado por el propio frente; PENDIENTE de la aprobacion visual de Sebastian ante el director antes de re-baselinizar."
+    },
+    "/project/luxury-pool-raised-spa-travertine-deck-south-florida": {
+      "contrato": "rediseno",
+      "fecha": "2026-09-03",
+      "sha": "370f684",
+      "motivo": "R14-OBRAS: ruta de AUTORIA PROPIA, no migrada. El Webflow de origen nunca la sirvio, asi que no hay captura de paridad contra la que compararla — piscina rectangular con spa elevado de gresite azul y terraza de travertino. Sin esta entrada el contrato por defecto seria `paridad`, check:visual no encontraria referencia y la SALTARIA EN SILENCIO para siempre, que es exactamente el defecto que cerro R6. PENDIENTE de que Sebastian la mire a 1440 y 479 px antes de aprobarla con scripts/aprobar-diseno.mjs; hasta entonces sale ROJA y esta bien que salga."
+    },
+    "/project/estate-pool-spa-sun-shelf-north-florida": {
+      "contrato": "rediseno",
+      "fecha": "2026-09-03",
+      "sha": "370f684",
+      "motivo": "R14-OBRAS: ruta de AUTORIA PROPIA, no migrada. El Webflow de origen nunca la sirvio, asi que no hay captura de paridad contra la que compararla — piscina geometrica con banco solar y spa elevado sobre finca abierta. Sin esta entrada el contrato por defecto seria `paridad`, check:visual no encontraria referencia y la SALTARIA EN SILENCIO para siempre, que es exactamente el defecto que cerro R6. PENDIENTE de que Sebastian la mire a 1440 y 479 px antes de aprobarla con scripts/aprobar-diseno.mjs; hasta entonces sale ROJA y esta bien que salga."
+    },
+    "/project/pool-raised-spa-marble-deck-south-florida": {
+      "contrato": "rediseno",
+      "fecha": "2026-09-03",
+      "sha": "370f684",
+      "motivo": "R14-OBRAS: ruta de AUTORIA PROPIA, no migrada. El Webflow de origen nunca la sirvio, asi que no hay captura de paridad contra la que compararla — piscina con banco de entrada, tumbonas dentro del agua y spa elevado alicatado en blanco. Sin esta entrada el contrato por defecto seria `paridad`, check:visual no encontraria referencia y la SALTARIA EN SILENCIO para siempre, que es exactamente el defecto que cerro R6. PENDIENTE de que Sebastian la mire a 1440 y 479 px antes de aprobarla con scripts/aprobar-diseno.mjs; hasta entonces sale ROJA y esta bien que salga."
+    },
+    "/project/luxury-pool-spa-aluminum-pergola-south-florida": {
+      "contrato": "rediseno",
+      "fecha": "2026-09-03",
+      "sha": "370f684",
+      "motivo": "R14-OBRAS: ruta de AUTORIA PROPIA, no migrada. El Webflow de origen nunca la sirvio, asi que no hay captura de paridad contra la que compararla — piscina y spa con pergola de aluminio de lamas y chorros de terraza. Sin esta entrada el contrato por defecto seria `paridad`, check:visual no encontraria referencia y la SALTARIA EN SILENCIO para siempre, que es exactamente el defecto que cerro R6. PENDIENTE de que Sebastian la mire a 1440 y 479 px antes de aprobarla con scripts/aprobar-diseno.mjs; hasta entonces sale ROJA y esta bien que salga."
+    },
+    "/project/aluminum-patio-cover-pool-deck-south-florida": {
+      "contrato": "rediseno",
+      "fecha": "2026-09-03",
+      "sha": "370f684",
+      "motivo": "R14-OBRAS: ruta de AUTORIA PROPIA, no migrada. El Webflow de origen nunca la sirvio, asi que no hay captura de paridad contra la que compararla — cubierta de aluminio de techo solido a todo lo ancho de la fachada trasera. Sin esta entrada el contrato por defecto seria `paridad`, check:visual no encontraria referencia y la SALTARIA EN SILENCIO para siempre, que es exactamente el defecto que cerro R6. PENDIENTE de que Sebastian la mire a 1440 y 479 px antes de aprobarla con scripts/aprobar-diseno.mjs; hasta entonces sale ROJA y esta bien que salga."
     }
   }
 }

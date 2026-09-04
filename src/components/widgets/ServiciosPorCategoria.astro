@@ -72,6 +72,15 @@ const esVisible = (sv) => sv.categorias.includes(d.defecto);
 const visibles = d.servicios.filter(esVisible);
 const activo = visibles[0]?.id;
 const posicion = (sv) => visibles.findIndex((v) => v.id === sv.id) + 1;
+
+/**
+ * TEXTO PLANO PARA UN `aria-label`. Los campos del JSON viajan como HTML -se pintan con
+ * `set:html`- y traen entidades: «Pool Remodeling &amp; Renovation». En un ATRIBUTO no se
+ * decodifican, asi que un lector de pantalla leeria «ampersand a-m-p». Se decodifican las seis
+ * que produce Webflow; si algun dia apareciera otra, saldria literal y se veria.
+ */
+const texto = (h) => String(h).replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+  .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&nbsp;/g, ' ').trim();
 ---
 
 <section class="products-section svc">
@@ -141,7 +150,8 @@ const posicion = (sv) => visibles.findIndex((v) => v.id === sv.id) + 1;
                 <h3 class="svc-ficha-titulo" set:html={sv.titulo} />
                 <p class="svc-ficha-texto" set:html={sv.texto} />
               </div>
-              <a class="svc-cta button w-button" href={sv.enlace} set:html={sv.cta} />
+              <a class="svc-cta button w-button" href={sv.enlace}
+                aria-label={`${texto(sv.cta)}: ${texto(sv.titulo)}`} set:html={sv.cta} />
             </div>
           </article>
         </>
