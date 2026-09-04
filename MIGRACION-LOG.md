@@ -4521,3 +4521,213 @@ robots          Sitemap: …/sitemap.xml      sitemap <loc>   119
 noindex contact 0          redirect pergola 308 → 200
 antibot         {"ok":true,"entregado":false}   (honeypot: sin correo, sin conversion)
 ```
+
+---
+
+## FASE LETTERHEAD — el aviso de lead, el origen del lead y la auditoría de medición
+
+**4-sep-2026.** Rama `r16-proy-carrusel`, commit `102942c`, desplegada en **preview**.
+Producción **NO** se ha tocado.
+
+### Decisiones tomadas antes de escribir código
+
+| Decisión | Elegido | Motivo |
+|---|---|---|
+| Idioma del aviso | inglés | Lo lee un contratista de Florida y las etiquetas de `FORMULARIOS` ya eran inglesas |
+| `utm_*` al dataLayer | **no** | GA4 ya hace atribución nativa. Duplicarlo obliga a 3 dimensiones más y crea dos verdades. El origen va **solo al correo** |
+| Host canónico | **`www`** | Medido: el apex responde `308 → https://www.…`; `www` responde `200`. La canónica tiene que nombrar el host que sirve. Sin tocar DNS |
+| Consent Mode v2 | **fuera por decisión, no por olvido** | Audiencia de Florida, tráfico del EEE despreciable |
+
+### Fase 1 · El aviso deja de ser texto plano
+
+`src/lib/aviso-correo.ts` (nuevo) construye asunto, texto **y** HTML. No cuelga de
+`src/pages/`: ahí Astro publicaría el módulo como endpoint.
+
+- **La hora es la de Florida.** Antes `Recibido: 2026-09-04T22:33:56.886Z`; ahora
+  `Sep 4, 2026 · 6:33 PM EDT`, con `America/New_York`, que resuelve solo el salto EDT/EST.
+- **El asunto tría sin abrir**: `New lead · Estimate request · Ocala 34471`. El nombre sale del
+  id corto (`__form_id`), así que el lead del visor de la galería ya no se titula igual que el
+  de `/request-estimated`. El formulario de contacto no pide ciudad ni ZIP: allí queda en dos
+  partes.
+- **Se mandan `text:` y `html:`**. El texto plano es accesibilidad y además los filtros
+  antispam penalizan el correo solo-HTML.
+- `from:` sigue siendo `SMTP_USER`. Ponerlo como `info@…` rompería SPF/DKIM y con
+  `_dmarc p=quarantine` los avisos irían a spam.
+- **El logo, en PNG** (`scripts/build-logo-correo.mjs`, 480×206, se pinta a 240). Gmail y
+  Outlook no pintan SVG. El navy va **horneado dentro del fichero**: con el logo blanco sobre
+  transparente, un cliente que invierte el fondo lo haría desaparecer.
+
+Colores con su ratio medido al lado: navy `#001c63` 15,60:1 sobre blanco · negro 21,00:1 ·
+`#596b9a` 5,26:1 · oro `#f4b248` **solo como banda de fondo de 4 px, jamás tinta** (1,86:1).
+
+### Fase 2 · Origen del lead — atribución de PRIMER TOQUE
+
+Tercer bloque de script en `Formularios.astro`, **aparte a propósito**: el primero sale con
+`if (!forms.length) return` justo en las páginas de aterrizaje, que son donde hay que capturar.
+
+Verificado en el preview, con el salto SMTP aislado:
+
+```
+1 · CAPTURA en pagina de aterrizaje SIN formulario
+    {"utm_source":"google","utm_medium":"cpc","utm_campaign":"pool-remodel-fl",
+     "gclid":"TEST_GCLID_123","landing_page":"/pool-builders/ocala-florida",
+     "first_seen":"2026-09-04T23:45:54.878Z"}
+2 · TRAS NAVEGAR a /contact-us (la URL ya no lleva utm)
+    origen sigue : SI, intacto (primer toque)
+3 · ENVIO  ->  /thank-you?f=contact
+4 · VIAJARON: __ruta __form_id origen_utm_source origen_utm_medium origen_utm_campaign
+              origen_gclid origen_landing_page origen_first_seen
+5 · generate_lead: 1 vez
+    {"event":"generate_lead","form_name":"contact","form_location":"/contact-us",
+     "project_type":"Residential","user_type":"homeowner","budget_range":"","service_interest":""}
+6 · GUARDA  tras F5: 0    entrada directa: 0
+7 · PII EN EL dataLayer
+    marcus.whitfield ausente · Marcus ausente · Whitfield ausente · 954 ausente
+    913-7112 ausente · TEST_GCLID_123 ausente · pool-remodel-fl ausente · google ausente
+```
+
+Y sobre lo **construido**, no sobre el código:
+
+```
+  ficheros construidos revisados : 123
+  dataLayer.push encontrados     : 245
+  claves empujadas (union)       : budget_range, event, form_location, form_name,
+                                   link_text, phone_region, project_type,
+                                   service_interest, tel, user_type
+  coincidencias con PII          : 0
+  ✅ CERO PII EN EL dataLayer
+```
+
+### Fase 3 · Auditoría
+
+**3.0 · Unificado a `www`.** `astro.config.mjs`, `scripts/build-seo-ficheros.mjs` (tenía el
+host **a fuego**) y las dos URLs de apex del JSON-LD de `/thank-you`. **Puerta nueva en
+`check:seo`**: el host del sitemap tiene que ser el de las canónicas. Cazó de inmediato que
+las 113 del origen seguían en apex mientras las 6 adiciones ya estaban en `www`.
+
+**3.1 · Cobertura en PRODUCCIÓN**, las 122 rutas por `curl`:
+
+```
+paginas medidas en produccion : 122
+con el id GTM-N9BWB3BV        : 122
+SIN el id                     : 0
+--- reparto: ocurrencias del id / snippets gtm.js / noscript ns.html ---
+   1   id=1  gtm.js=1  noscript=0      <- /pool-investment-estimator (excepcion declarada)
+ 121   id=2  gtm.js=1  noscript=1
+--- DOBLE etiquetado (>1 snippet) ---  ninguna
+--- noscript DUPLICADO (>1) ---        ninguna
+```
+
+**3.2 · Metaetiquetas en PRODUCCIÓN**, las 122:
+
+```
+con <title> no vacio     : 122
+con description no vacia : 121      (falta solo /pool-investment-estimator)
+con canonical            : 122
+canonical ABSOLUTA       : 122
+--- host de las canonicas EN PRODUCCION ---
+ 122 https://mrandmrsoutdoorliving.com      <- apex: el cambio a www esta en la rama, no en prod
+--- noindex ---  /thank-you   (y solo esa)
+--- titulos repetidos ---
+  Luxury Pool &amp; Spa with Screen Enclosure | North Florida
+  Luxury Pool with Motorized Pergola | North Florida
+```
+
+Sitemap **119** (113 del origen + 6 adiciones), verificado en `build-seo-ficheros.mjs`. **No
+son 113.**
+
+> ⚠️ **Los dos títulos repetidos son del ORIGEN y aquí no se pueden arreglar**: `check:seo`
+> exige el `<title>` idéntico a `baseline/seo.json` carácter a carácter, así que cambiarlos
+> pondría roja una puerta más fuerte. Son cuatro fichas de `/project/`. Es un defecto real de
+> posicionamiento —Google elige una y la otra compite consigo misma— y **la decisión de
+> separarse del origen es de Sebastian**. Declarados por su nombre en `check:medicion`.
+
+**3.3 · Los 6 eventos, en navegador.**
+
+```
+page_view             1 hit g/collect  tid=G-7VHTVG2Q7G           (produccion)
+click_to_call         phone_region: north (352) / south (954)
+brochure_download     artisan-brochure · coyote-brochure · classic-modern-catalog   (57 PDFs)
+view_project_gallery  link_text = alt real de la foto
+estimator_complete    budget_range: $75,000 – $100,000 — UNA vez, aun yendo atras y volviendo
+generate_lead         1 por envio, 6 parametros; F5 -> 0, entrada directa -> 0
+```
+
+> `brochure_download` en **producción** todavía manda `link_text: "View More!"` en los 57:
+> el arreglo del nombre de fichero está en la rama, no desplegado. En el preview manda ya el
+> nombre correcto.
+
+**3.4 · GA4 `506563956` / `G-7VHTVG2Q7G` — pendiente, no automatizable.** Lista para Sebastian:
+`generate_lead` como key event · las **7 dimensiones de ámbito evento** (`form_name`,
+`form_location`, `project_type`, `user_type`, `budget_range`, `service_interest`,
+`phone_region`) · retención a **14 meses** · **excluir `challenges.cloudflare.com`** de
+referencias · enlace con Search Console.
+🚨 **Ningún `form_start`/`lead_form_start`**: Enhanced Measurement ya los emite.
+
+**3.5 · GTM.** Sobre `gtm-container.json`, los dos arreglos **siguen puestos**:
+`BLOQUEO - Entornos de preview` es **`CUSTOM_EVENT`** con `customEventFilter` regex `.*`, y
+`Meta Pixel - Lead` lleva `content_name: '{{DLV - form_name}}'` **entrecomillado**. Un solo
+`googtag` en el JSON. **No se ha publicado ninguna versión** — eso es de Sebastian.
+
+### Puertas — lo que corrió y lo que NO
+
+| Puerta | Estado |
+|---|---|
+| `check:resenas` `check:aviso` `check:estimador` `check:tokens` `check:assets` `check:rutas` `check:enlaces` | ✅ verdes |
+| `check:seo` | ✅ **115/115**, y el host coherente en canónicas y sitemap |
+| `check:medicion` (nueva) | ✅ verde, con sus 3 excepciones impresas |
+| `check:galeria-formulario` | 🔴 **rojo — NO es de este encargo**, ver abajo |
+| `check:texto` | 🔴 rojo en `/` (`línea 16: orden cambiado`) — **también rojo en HEAD**, verificado en worktree limpio |
+| `check:visual` | 🔴 8 diferencias en `/` y `/gallery`, ambas dentro del contrato `rediseno` de 107 rutas |
+| `check:menu` `check:galeria` `check:ix2` `check:carrusel` | ⚠️ **NO CORRIERON** |
+
+> 🚨 **Lo que no corrió falla ABIERTO.** El barrido completo son 115 rutas × 4 anchos con
+> navegador **VISIBLE** (`headless: false`, y los baselines se capturaron así, no se puede
+> cambiar sin invalidarlos): ~90 min de pantalla secuestrada. Se corrió una **muestra acotada**
+> a las 4 rutas del sistema de captación (`=/`, `/contact-us`, `/request-estimated`,
+> `/gallery`) por decisión de Sebastian. Las otras 111 **no están medidas**.
+>
+> Argumento —que no es medición—: este encargo **no añade una sola etiqueta de marcado ni una
+> línea de CSS**. Comprobado: `git diff` sobre `Formularios.astro` da **0** etiquetas de
+> marcado añadidas; los ficheros tocados son configuración, scripts de puerta, `package.json`
+> y el endpoint.
+
+### Dos hallazgos que NO son de este encargo
+
+1. **`check:galeria-formulario` ROJO: el paso 3 del visor necesita scroll en los 4 anchos.**
+   Diagnosticado hasta la causa raíz en un worktree limpio: **HEAD está verde**. El rojo
+   aparece con el arreglo de Turnstile de la sesión de tracking. HEAD hacía
+   `ts.render(caja, { action: form.dataset.name })` y `action` **no admite espacios**: con
+   «Request Quote Form» Cloudflare rechazaba el parámetro, el widget **nunca se pintaba**, y
+   por eso su margen no llegaba a aplicarse — costaba 0 px. Ahora el widget sí se pinta y el
+   panel se queda corto. **No es una regresión de layout: es el coste real de que el antibot
+   por fin funcione**, y nunca se midió porque las puertas de navegador de aquella sesión «no
+   corrieron». En producción el iframe mide ~65 px, así que **el desbordamiento real es mayor
+   que el que reporta la puerta**.
+2. **Un `astro dev` ajeno corriendo sobre este mismo árbol** (PID 55481) borra
+   `.vercel/output` a media construcción. Costó dos builds fallidos con
+   `Cannot find module … /.prerender/chunks/…`. No se ha matado: es de otra sesión.
+
+### Lo único que sigue sin comprobarse
+
+**La entrega SMTP del HTML.** El endpoint del preview responde:
+
+```
+$ curl -X POST …/api/formulario  -F '__form=Contact Page Form' …
+{"ok":false,"error":"el correo no esta configurado"}
+HTTP 500
+```
+
+O sea: **`SMTP_USER` y `SMTP_PASS` no están en el scope Preview** de Vercel. Todo lo anterior
+al envío sí quedó probado en esa misma llamada —Turnstile falló abierto, la validación de
+servidor pasó, los `origen_*` llegaron—; lo que falta es el salto a Gmail. En producción no se
+puede probar: hay `TURNSTILE_SECRET`, así que sin token da 403, y un antibot no se sortea.
+
+El HTML sí está verificado por otra vía: 24 comprobaciones en `check:aviso` (hora en EDT, en
+EST y en la **hora repetida** del cambio de horario; lint de correo) y capturas a 700 px, a
+**375 px** y **con las imágenes bloqueadas** — donde la cabecera se pliega al texto alternativo
+y no se pierde ningún dato.
+
+**Outlook queda sin verificar visualmente**: no hay cuenta. Se cubre por lint duro (solo
+`<table>`, CSS en línea, cero flex/grid/`<style>`/clases/SVG/`background-image`/`src` relativa,
+y `nowrap` prohibido porque fijaba un ancho mínimo que desbordaba 27 px a 375).

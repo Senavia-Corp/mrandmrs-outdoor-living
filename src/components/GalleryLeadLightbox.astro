@@ -133,7 +133,7 @@ const enGaleria = Astro.url.pathname === '/gallery';
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: min(90dvh, 760px);
+    height: min(96dvh, 820px);
     margin: auto 0 0;
     border-radius: var(--mm-r-24) var(--mm-r-24) 0 0;
     background-color: var(--mm-superficie);
@@ -161,7 +161,7 @@ const enGaleria = Astro.url.pathname === '/gallery';
        el calculo hacia el ancho-. Hace falta porque el layout en columna llega hasta 991: sin
        cap, a 991 de ancho la banda 16:9 pedia 557px de los 720 del dialogo y dejaba el
        formulario en 163. Medido. */
-    max-height: min(28dvh, 240px);
+    max-height: min(22dvh, 240px);
     background-color: var(--mm-tinta-cuerpo);
     overflow: hidden;
   }
@@ -270,9 +270,15 @@ const enGaleria = Astro.url.pathname === '/gallery';
   .mm-lbx__formulario .bugget-form { display: flex; flex-direction: column; gap: var(--mm-e-8); margin-bottom: var(--mm-e-16) }
   .mm-lbx__formulario .text-block-6 { font-weight: var(--mm-peso-fuerte); color: var(--mm-tinta) }
 
+  /* OJO con el alto: el `min-height: 48px` de aqui NO decide nada, porque .text-field-form
+     trae de Webflow un `height: 55px` que gana siempre. Tocar el padding vertical no cambia el
+     alto del campo ni un pixel -probado-: si algun dia hace falta bajarlo, es el `height`.
+     `margin: 0 0 8px` en vez de solo `margin-bottom`: .w-input trae de Webflow un
+     `margin-top: 10px` que aqui solo sirve para desajustar el ritmo -8 abajo, 10 arriba- y
+     para colar 10px sueltos encima del primer campo de cada paso. */
   .mm-lbx__formulario .text-field-form,
   .mm-lbx__formulario .select-field {
-    display: block; width: 100%; min-height: 48px; margin-bottom: var(--mm-e-8);
+    display: block; width: 100%; min-height: 48px; margin: 0 0 var(--mm-e-8);
     background-color: var(--mm-superficie); color: var(--mm-tinta);
     border: 1px solid var(--mm-tinta-suave); border-radius: var(--mm-r-8);
     padding: var(--mm-e-12) var(--mm-e-16); font-size: var(--mm-paso-3); font-family: inherit;
@@ -318,7 +324,7 @@ const enGaleria = Astro.url.pathname === '/gallery';
   .mm-lbx__formulario .services-form .w-form-label { font-size: var(--mm-paso-2); line-height: var(--mm-alto-cuerpo); color: var(--mm-tinta) }
   /* El <strong> de Webflow a 700 en las 14 etiquetas no es enfasis, es ruido (estimacion.css:259). */
   .mm-lbx__formulario .services-form .w-form-label strong { font-weight: var(--mm-peso-medio) }
-  .mm-lbx__formulario .checkbox-field { margin: var(--mm-e-12) 0; align-items: flex-start; padding: var(--mm-e-12) }
+  .mm-lbx__formulario .checkbox-field { margin: var(--mm-e-12) 0 0; align-items: flex-start; padding: var(--mm-e-12) }
   .mm-lbx__formulario .checkbox-field .w-checkbox-input { margin-top: 2px }
   .mm-lbx__formulario .checkbox-field .w-form-label { font-size: var(--mm-paso-0); color: var(--mm-tinta-atenuada); text-wrap: pretty }
 
@@ -326,7 +332,20 @@ const enGaleria = Astro.url.pathname === '/gallery';
   .mm-lbx__formulario .msf-error { color: var(--mm-error); font-size: var(--mm-paso-0); font-weight: var(--mm-peso-fuerte); margin-top: calc(var(--mm-e-4) * -2) }
 
   .mm-lbx__formulario .msf-buttons { display: flex; gap: var(--mm-e-12); margin-top: auto }
-  .mm-lbx__formulario .wrapper-buttons-center { display: flex; justify-content: flex-end }
+  /* TURNSTILE. Formularios.astro mete el widget aqui dentro -antes del boton de envio- y desde
+     que le pasa un `action` sin espacios se pinta DE VERDAD: 300x70 reales, no un div vacio.
+     Compartir linea con el boton no cabe en NINGUN ancho -300+200 no entran ni en los 486 de
+     1440-: a 390 el widget se salia de la pantalla por la izquierda y a 992 se metia encima de
+     la foto. Medido, con capturas. Linea propia, y el aire lo pone el `gap`, no el
+     `margin:.75rem 0` en linea que Formularios.astro escribe al pintarlo -de ahi el
+     !important: un estilo en linea no se gana de otra forma-.
+     Y fuera el `margin-top:1em/2em` que .wrapper-buttons-center trae de Webflow (Base.css, 112
+     rutas lo usan): aqui son 18-28px de aire que nadie pidio, justo donde no sobra ni uno. */
+  .mm-lbx__formulario .wrapper-buttons-center {
+    display: flex; flex-wrap: wrap; justify-content: flex-end;
+    gap: var(--mm-e-12); margin-top: 0;
+  }
+  .mm-lbx__formulario .mm-turnstile { flex: 0 0 100%; margin: 0 !important }
   .mm-lbx__formulario .msf-back,
   .mm-lbx__formulario .msf-next,
   .mm-lbx__formulario .msf-submit {
@@ -381,7 +400,7 @@ const enGaleria = Astro.url.pathname === '/gallery';
        trampa de aspect-ratio+height. */
     .mm-lbx[open] {
       width: min(94vw, 1280px);
-      height: min(88vh, 600px);
+      height: min(90vh, 720px);
       margin: auto;
       border-radius: var(--mm-r-24);
     }
