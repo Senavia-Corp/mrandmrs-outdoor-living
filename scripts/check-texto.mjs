@@ -440,6 +440,75 @@ const OBRAS_PROPIAS_EN = {
   },
 };
 
+/**
+ * ── R16-PROY: LAS MISMAS 5 OBRAS, PERO EN LAS 66 RUTAS DEL CARRUSEL ──────────────────────
+ *
+ * Hasta R16 el carrusel «Project Showcase» no era un componente: era el mismo bloque de HTML
+ * pegado en siete sitios, y solo la copia de `/` se actualizo cuando entraron las 5 obras. Por
+ * eso arriba solo estaban declaradas `/` y `/projects`: eran las dos unicas paginas donde las
+ * obras salian. Ahora salen en las 66, o sea que las otras 65 ganan las MISMAS 10 lineas
+ * (5 titulos + 5 «See Project») y necesitan la misma declaracion.
+ *
+ * SE DECLARAN EN BLOQUE, PERO NO A CIEGAS. Escribir 65 entradas a mano seria copiar 130 lineas
+ * de texto que ya viven en otro sitio —justo lo que el § de arriba rechaza para `LINEAS_ANADIDAS`—
+ * asi que la lista de rutas se deriva de dos ficheros de CODIGO, nunca del build:
+ *   · `src/data/proyectos-heading-por-ruta.json`  las 12 estaticas (+ `/`, ya declarada)
+ *   · `src/data/seo-pool-builders.json`           las 53 de Ciudad
+ * Si una ruta empieza a pintar el carrusel y no esta en ninguno de los dos, no se declara y
+ * sale ROJA. Fallar cerrado es la unica forma de que esto no se convierta en un perdon general.
+ *
+ * Y EL ANCLA SIGUE SALIENDO DEL BASELINE CONGELADO, ruta a ruta. No se copia a mano porque son
+ * 65 encabezados distintos —los de Ciudad vienen de Sanity y ni siquiera estan en el repo—,
+ * pero tampoco se lee del HTML recien construido, que seria la tautologia que este fichero
+ * lleva tres parrafos rechazando: se leen las DOS LINEAS QUE PRECEDEN al primer slide migrado
+ * en `baseline/text/<ruta>.txt`, que es un fichero de agosto que nadie re-baseliniza. Si el
+ * encabezado de una ruta cambiara, el ancla dejaria de casar y la ruta se pondria roja.
+ *
+ * El titulo del primer slide migrado se deriva de `obras-migradas.json` y se capitaliza AQUI,
+ * como todo lo demas en este fichero: se comparte el dato, nunca el formateo.
+ */
+const PRIMER_SLIDE_MIGRADO = (() => {
+  const f = path.join(RAIZ, 'src/data/obras-migradas.json');
+  if (!fs.existsSync(f)) return null;
+  const o = JSON.parse(fs.readFileSync(f, 'utf8')).obras?.[0];
+  return o ? capitaliza(o.tituloHtml.replace(/&amp;/g, '&')) : null;
+})();
+
+/** Las dos lineas que preceden al carrusel en el baseline CONGELADO de `ruta`. `null` si no
+ *  se pueden leer: entonces la ruta NO se declara y sale roja, que es el fallo correcto. */
+function anclaCarrusel(ruta) {
+  if (!PRIMER_SLIDE_MIGRADO) return null;
+  const f = path.join(RAIZ, 'baseline/text', aSlug(ruta) + '.txt');
+  if (!fs.existsSync(f)) return null;
+  const lineas = fs.readFileSync(f, 'utf8').split('\n').map((l) => l.trim());
+  const i = lineas.indexOf(PRIMER_SLIDE_MIGRADO);
+  return i >= 2 ? [lineas[i - 2], lineas[i - 1]] : null;
+}
+
+const RUTAS_CARRUSEL = (() => {
+  const lee = (rel) => {
+    const f = path.join(RAIZ, rel);
+    return fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')) : {};
+  };
+  const estaticas = Object.keys(lee('src/data/proyectos-heading-por-ruta.json'))
+    .filter((k) => k.startsWith('/'));
+  const ciudad = Object.keys(lee('src/data/seo-pool-builders.json'))
+    .map((s) => `/pool-builders/${s}`);
+  return [...estaticas, ...ciudad];
+})();
+
+for (const ruta of RUTAS_CARRUSEL) {
+  if (OBRAS_PROPIAS_EN[ruta]) continue;           // `/` ya viene declarada arriba
+  const tras = anclaCarrusel(ruta);
+  if (!tras) continue;                            // sin ancla no se declara -> roja
+  OBRAS_PROPIAS_EN[ruta] = {
+    forma: 'slide',
+    tras,
+    motivo: 'R16-PROY: el carrusel pasa a componente y esta ruta gana las 5 obras propias que '
+      + 'antes solo tenia la home. Ancla leida de su baseline congelado.',
+  };
+}
+
 /** Las lineas que aportan las obras propias en `ruta`, en orden. Vacio si la ruta no declara. */
 function lineasObras(ruta) {
   const d = OBRAS_PROPIAS_EN[ruta];

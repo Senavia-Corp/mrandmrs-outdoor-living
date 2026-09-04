@@ -32,7 +32,9 @@
  * Y la de arriba de todas: se ELEVA la base de Webflow, no se sustituye. El TEXTO no se toca.
  *
  * VARIANTE ELEGIDA POR SEBASTIAN el 2-sep-2026 mirando las capturas a 1440 y 479:
- * **B, «placa navy»** — el panel pasa al navy de la marca, la foto se lleva 2/3 del ancho.
+ * **B, «placa»** — el panel pasa a color plano de marca, la foto se lleva 2/3 del ancho. El
+ * COLOR de esa placa cambio el 4-sep-2026 (R16-PROY): era navy, es `--mm-azul-500`. El §3 de
+ * mas abajo cuenta las dos decisiones seguidas y trae los ratios de las dos.
  *
  * ANCLAJE, Y POR QUE NO ES BUROCRACIA. Contado sobre las 115 paginas construidas, partiendo
  * el atributo `class` por espacios y comparando el TOKEN ENTERO:
@@ -85,29 +87,52 @@
  * `.fs-slider-projects_list` viene con `align-items: start`. */
 .projects-section .fs-slider-projects_list { align-items: stretch }
 
-/* ── 3 · LA PLACA NAVY ────────────────────────────────────────────────────────
+/* ── 3 · LA PLACA AZUL ────────────────────────────────────────────────────────
  *
- * El panel era `linear-gradient(#1cadeb, #1d4bbf)`: cian arriba, azul abajo. Con el titular
- * BLANCO encima, el peor pixel bajo el h3 da 3,84:1 a 1440 (25px/400 es texto grande, umbral
- * 3:1, asi que HOY CUMPLE — por 0,84). A 991 da 5,88:1 y a 479, 5,14:1.
+ * HISTORIA CORTA, porque este bloque ya ha cambiado de opinion dos veces y conviene que se
+ * lea entera. El panel salio de Webflow como `linear-gradient(#1cadeb, #1d4bbf)` -cian arriba,
+ * azul abajo-. El 2-sep-2026 Sebastian eligio la variante B, «placa navy», mirando capturas a
+ * 1440 y 479, y el degradado se sustituyo por `--mm-fondo-navy` plano: 15,60:1 en toda la
+ * tarjeta. El 4-sep-2026 (R16-PROY) pidio otra cosa, senalando la seccion de intro: que la
+ * tarjeta lleve EL AZUL de `.trusted-section`, no el navy.
  *
- * En navy plano el peor pixel es el navy mismo: 15,60:1 en toda la tarjeta, a cualquier ancho
- * y bajo cualquier titular. Y el oro del CTA encima da 8,40:1, el unico par de la marca que
- * pasa AAA. No es un color nuevo: `--blue_dark` tiene 71 usos en webflow.css y es EL color de
- * la marca; lo que se va es un degradado de plantilla. */
+ * Y ese azul es `--mm-azul-500`. Conviene decir que NO es el degradado que habia: la intro no
+ * tiene ninguno. Lo que se ve alli son tres capas —la foto `animateddivs-image.webp` de
+ * `webflow.css`, este mismo `--mm-azul-500` de `propio.css:261` debajo, y el velo navy al 50 %
+ * de `intro.css:50-52`—, asi que «el mismo azul» es este color plano, no una copia del efecto.
+ * Sigue sin haber literal: el token ya existia (`tokens.css:88`) y es el azul de marca.
+ *
+ * LOS RATIOS, TODOS MEDIDOS, NAVY -> AZUL:
+ *   blanco del h3 sobre la tarjeta      15,60:1 -> 7,47:1   texto, pide 4,5   OK
+ *   anillo de foco blanco del CTA        15,60:1 -> 7,47:1   no textual, 3    OK
+ *   halo blanco de las flechas, por dentro de la tarjeta
+ *                                        15,60:1 -> 7,47:1   no textual, 3    OK
+ *   limite del CTA dorado contra la tarjeta, por parada del degradado:
+ *     #f4b248                             8,40:1 -> 4,02:1   no textual, 3    OK
+ *     #edb660                             8,51:1 -> 4,08:1   no textual, 3    OK
+ *     #d99933                             6,35:1 -> 3,04:1   no textual, 3    JUSTO
+ *
+ * ESE 3,04 ES EL NUMERO A VIGILAR y va dicho aqui para que nadie lo descubra por accidente: la
+ * parada mas oscura del oro contra el azul cumple 1.4.11 por 0,04. Sobre navy sobraba (6,35).
+ * No baja de 3, o sea que no es un fallo, pero es el margen mas estrecho de esta hoja: cualquier
+ * retoque futuro del oro o del azul hay que RE-MEDIRLO aqui antes de aplicarlo, no despues.
+ *
+ * Lo que NO se mueve, y por eso no se re-mide: el texto navy DENTRO del CTA (8,40:1) y el icono
+ * navy de la flecha sobre el oro (8,40:1) no tocan el fondo de la tarjeta. El anillo navy contra
+ * su halo blanco sigue dando 15,60:1 por los dos lados. */
 .projects-section .block-item-project {
   background-image: none;
-  background-color: var(--mm-fondo-navy);
+  background-color: var(--mm-azul-500);
   box-shadow: var(--mm-sombra-3);
 }
 /* NO se re-declara `border-radius`: Webflow ya da 16px y `--mm-r-16` vale 16px, o sea que la
  * declaracion no moveria un pixel. Medido con y sin esta hoja: `16px` en los dos casos. El
  * radio que quiere la variante B ES el que ya hay. */
 
-/* La columna de texto: aire de la escala y titular con jerarquia de verdad. El `1px` del
- * filete es la UNICA longitud fuera de `--mm-e-*`/`--mm-r-*`/`--mm-paso-*` de este fichero, y
- * es deliberado: un filete de pelo no es una decision de espaciado y no hay token de 1px.
- * Igual el `44px`, que es la receta de la casa (intro.css:161-166) y el numero de WCAG 2.2. */
+/* La columna de texto: aire de la escala y titular con jerarquia de verdad. Desde R16-PROY,
+ * que se llevo el filete de 1px, la UNICA longitud de este fichero fuera de
+ * `--mm-e-*`/`--mm-r-*`/`--mm-paso-*` es el `44px` del CTA — y ese no es una decision de
+ * espaciado sino la receta de la casa (intro.css:161-166) y el numero de WCAG 2.2. */
 .projects-section .block-right-project { padding: var(--mm-e-32) }
 /* NO se pone `gap` aqui ni en `.wrapper-vertical-text`, y merece explicacion porque es lo
  * primero que uno escribe: `.block-right-project` es flex pero tiene UN SOLO hijo, asi que un
@@ -126,12 +151,15 @@
   line-height: var(--mm-alto-titulo);
   text-wrap: balance;
 }
+/* SIN FILETE (R16-PROY). Aqui hubo un `border-top: 1px solid var(--mm-borde-inverso)` -blanco
+ * al 16 % sobre navy, 1,57:1, decorativo- entre el titular y el CTA. Se va porque Sebastian lo
+ * pidio el 4-sep-2026: «se ve raro». No habia argumento de accesibilidad que lo sostuviera -no
+ * identificaba ningun control, asi que 1.4.11 nunca le pidio 3:1- ni de espaciado: el aire lo
+ * pone el `padding-top`, que se QUEDA. Ojo con confundirlo con el filete de la seccion de
+ * intro: ese es `.text-divider` y no se toca. */
 .projects-section .wrapper-buttons {
   margin-top: 0;
   padding-top: var(--mm-e-24);
-  border-top: 1px solid var(--mm-borde-inverso);   /* blanco al 16 % sobre navy: 1,57:1, borde
-                                                    * DECORATIVO. No identifica ningun control,
-                                                    * asi que 1.4.11 no le pide 3:1. */
 }
 
 /* El reparto 66/34 es SOLO de la fila. Por debajo de 992 la tarjeta es una COLUMNA y la foto
@@ -162,9 +190,13 @@
 .projects-section .fs-slider-projects_next:hover { filter: brightness(.94) }
 
 /* Anillo SANDWICH blanco/navy/blanco. Un anillo de un solo color no vale aqui: la flecha
- * cuelga medio dentro de la tarjeta (navy) y medio fuera (blanco de la seccion), o sea que sus
- * dos vecinos son opuestos. Navy contra el halo blanco da 15,60:1 por los dos lados, caiga
- * donde caiga. El oro no marca estado en ningun sitio: 1,86:1 sobre blanco. */
+ * cuelga medio dentro de la tarjeta (azul `--mm-azul-500`) y medio fuera (blanco de la
+ * seccion), o sea que sus dos vecinos son opuestos. El razonamiento aguanta el cambio de color
+ * de R16-PROY sin tocar una declaracion, y los numeros que lo sostienen no se mueven: el
+ * anillo navy contra SU halo blanco da 15,60:1 caiga donde caiga, que es de lo que depende
+ * este sandwich. Lo que si cambia es el borde exterior del halo por el lado de dentro —blanco
+ * contra la tarjeta, de 15,60:1 a 7,47:1—, y sigue muy por encima de los 3:1 que pide 1.4.11.
+ * El oro no marca estado en ningun sitio: 1,86:1 sobre blanco. */
 .projects-section .fs-slider-projects_previous:focus-visible,
 .projects-section .fs-slider-projects_next:focus-visible {
   outline: var(--mm-foco-grosor) solid var(--mm-foco);
@@ -178,8 +210,11 @@
  * padding que ya tienen, sin tocar tipografia ni ancho.
  *
  * EL ANILLO SOLO CAMBIA EN EL DE DENTRO, y no por gusto: `propio.css:62` ya pone uno navy a
- * todo `.button-styles` del sitio, y sobre el panel navy de la tarjeta ese anillo daria
- * 1,00:1 — invisible. En blanco da 15,60:1. El del PIE se queda con el de propio.css, porque
+ * todo `.button-styles` del sitio, y sobre la placa de la tarjeta ese anillo no se ve. Medido
+ * en los dos colores que ha tenido la placa: sobre navy daba 1,00:1 —el mismo color— y sobre
+ * el `--mm-azul-500` de R16-PROY da 2,09:1, que sigue por debajo de los 3:1 de 1.4.11. O sea
+ * que el cambio de color NO rescata el anillo heredado y esta anulacion sigue haciendo falta.
+ * El blanco, en cambio, da 7,47:1 sobre el azul (daba 15,60:1 sobre navy). El del PIE se queda con el de propio.css, porque
  * vive sobre fondo blanco, donde el navy da 15,60:1 y uno blanco daria 1,00:1. Heredar un
  * anillo sin mirar donde cae es como se fabrica un foco invisible. La especificidad 0-4-0 es
  * la que hace falta para ganar a propio.css, que carga DESPUES (Base.astro:102 contra :84). */

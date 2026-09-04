@@ -1,0 +1,68 @@
+{
+  "_lee_esto": "Las 10 obras MIGRADAS de Webflow que salen en el carrusel «Project Showcase», detras de las 5 de autoria propia. Hasta R16 vivian como HTML pegado en 7 sitios a la vez —index.astro, industry-solutions, las 2 de estado, las 9 de condado y plantilla-pool-builders.json— y por eso las obras nuevas solo aparecian en el home: no habia una fuente, habia siete copias. Medido antes de extraerlas: el tramo era byte a byte identico en los 7 (6103 bytes, sha1 76930c21c9bf). Ahora lo lee un solo sitio, src/components/widgets/CarruselProyectos.astro.",
+  "_ojo": "NO se mezclan con src/data/proyectos-propios.json, y no es manía de orden. Aquel fichero declara ser la fuente unica de la autoria PROPIA y de el deriva check-texto.mjs (lineasObras) las lineas que espera en /projects: meter aqui estas 10 pondria esa ruta en rojo pidiendo 10 tarjetas que no existen. Son dos cosas distintas y viven en dos ficheros distintos.",
+  "_alt": "Los 10 alt vienen VACIOS del origen de Webflow y se conservan asi, a proposito: cambiarlos moveria innerText en 66 rutas y check:texto compara al 100 % sin tolerancia. Es deuda de accesibilidad REAL y esta apuntada como tal — se paga en un encargo de texto, no de contrato. Las 5 propias si llevan alt escrito (proyectos-propios.json).",
+  "_orden": "Este array es el orden en que salen, detras de las 5 propias. Coincide con el que tenia el blob original.",
+  "obras": [
+    {
+      "slug": "luxury-pool-motorized-pergola-screen-enclosure-north-florida",
+      "tituloHtml": "Luxury Pool with Motorized Pergola &amp; Screen Enclosure",
+      "portada": "/images/site/luxury-pool-motorized-pergola-screen-enclosure-north-florida-1.avif",
+      "alt": ""
+    },
+    {
+      "slug": "luxury-pool-spa-with-screen-enclosure-north-florida",
+      "tituloHtml": "Luxury Pool &amp; Spa with Screen Enclosure North Florida",
+      "portada": "/images/site/luxury-pool-spa-screen-enclosure-north-florida-project-1.avif",
+      "alt": ""
+    },
+    {
+      "slug": "luxury-pool-motorized-pergola-outdoor-kitchen-north-florida",
+      "tituloHtml": "Luxury Pool with Motorized Pergola &amp; Outdoor Kitchen",
+      "portada": "/images/site/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-1.avif",
+      "alt": ""
+    },
+    {
+      "slug": "luxury-pool-motorized-pergola-screens-south-florida",
+      "tituloHtml": "Luxury Pool &amp; Motorized Pergola with Screens South Florida",
+      "portada": "/images/site/luxury-pool-motorized-pergola-screens-south-florida-1.avif",
+      "alt": ""
+    },
+    {
+      "slug": "luxury-pool-pergola-outdoor-living-south-florida",
+      "tituloHtml": "Luxury Pool &amp; Pergola Outdoor Living South Florida",
+      "portada": "/images/site/luxury-pool-pergola-outdoor-living-south-florida-1.avif",
+      "alt": ""
+    },
+    {
+      "slug": "luxury-pool-pergola-outdoor-kitchen-south-florida",
+      "tituloHtml": "Luxury Pool, Pergola &amp; Outdoor Kitchen South Florida",
+      "portada": "/images/site/luxury-pool-pergola-outdoor-kitchen-south-florida-1.avif",
+      "alt": ""
+    },
+    {
+      "slug": "modern-pool-motorized-pergola-south-florida",
+      "tituloHtml": "Modern Pool &amp; Motorized Pergola – South Florida",
+      "portada": "/images/site/modern-pool-motorized-pergola-south-florida-project-1.avif",
+      "alt": ""
+    },
+    {
+      "slug": "south-florida-backyard-pool-wood-pergola",
+      "tituloHtml": "South Florida Backyard Pool &amp; Wood Pergola Project",
+      "portada": "/images/site/south-florida-pool-wood-pergola-outdoor-living-1.avif",
+      "alt": ""
+    },
+    {
+      "slug": "residential-pool-pergola-outdoor-dining-north-florida",
+      "tituloHtml": "Residential Pool with Pergola &amp; Outdoor Dining",
+      "portada": "/images/site/residential-pool-pergola-outdoor-dining-north-florida-1.avif",
+      "alt": ""
+    },
+    {
+      "slug": "luxury-pool-spa-screen-enclosure-north-florida",
+      "tituloHtml": "Luxury Pool &amp; Spa with Screen Enclosure North Florida",
+      "portada": "/images/site/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-1.avif",
+      "alt": ""
+    }
+  ]
+}

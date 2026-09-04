@@ -1,0 +1,107 @@
+---
+/**
+ * CarruselProyectos — la seccion «Project Showcase», una sola vez para las 66 rutas.
+ *
+ * POR QUE EXISTE. Hasta R16 esta seccion NO era un componente: era el mismo HTML pegado en 7
+ * origenes —`index.astro`, `industry-solutions.astro`, las 2 de estado, las 9 de condado y
+ * `plantilla-pool-builders.json`— y solo el primero se toco cuando entraron las 5 obras
+ * propias de R14. De ahi el sintoma que lo destapo: en `/` salian 15 obras y en
+ * `/pool-builders/reddick-florida` seguian saliendo 10. Medido antes de tocar nada, el tramo
+ * de los 10 slides era byte a byte IDENTICO en los 7 (6103 bytes, sha1 76930c21c9bf) y la cola
+ * de flechas + barra + CTA tambien (1581 bytes, sha1 3c5989650bad): lo unico que cambiaba
+ * entre paginas eran el `<h2>` y el `<p>`. O sea que no habia siete variantes, habia siete
+ * copias — y por eso esto es exactamente el mismo movimiento que hizo R11-BLOG-02 con
+ * `CarruselBlog`, con el mismo reparto de responsabilidades.
+ *
+ * DOS FUENTES DE SLIDES, Y NO SE FUSIONAN EN UNA. `proyectos-propios.json` es la autoria
+ * PROPIA y de el deriva `check-texto.mjs` (`lineasObras`) lo que espera ver en `/projects`;
+ * `obras-migradas.json` son las 10 que vinieron de Webflow. Meter las 10 en el primero pondria
+ * `/projects` en rojo pidiendo 10 tarjetas que esa pagina no tiene. El ORDEN —propias delante—
+ * lo manda el `_ojo` de `proyectos-propios.json`.
+ *
+ * SI EMITE LOS DOS `data-w-id`, al reves que `CarruselBlog`. Alli eran una seccion NUEVA y un
+ * id inventado habria quedado huerfano en `reveals.json`. Aqui los dos ids ya estan HOY en las
+ * 66 rutas y tienen su clave: quitarlos apagaria la entrada por scroll y moveria el contador de
+ * `check:ix2`. Lo que en aquel caso era prudencia, aqui seria una regresion.
+ *
+ * `set:html` EN EL `<h3>`, Y SOLO AHI. Los 15 `tituloHtml` traen `&amp;` ya escapado del
+ * origen; interpolarlos normal pintaria «&amp;amp;» y eso SI mueve `innerText`. En cambio el
+ * titulo y la entradilla van en texto plano y los escapa Astro, que da el mismo byte.
+ *
+ * El motor del slider ya existe: `Componentes.astro` engancha por `[fs-slider-element="list"]`
+ * y `sliders.json` ya trae la instancia `fs-slider-projects`. Los slides tienen que seguir
+ * siendo hijos DIRECTOS de la lista: `check-carrusel.mjs` lee `track.children` como las
+ * tarjetas, y un `<div>` de mas colapsaria el recuento a 1 y tumbaria sus 8 aserciones de paso.
+ */
+import PROPIAS from '../../data/proyectos-propios.json';
+import MIGRADAS from '../../data/obras-migradas.json';
+import ENCABEZADOS from '../../data/proyectos-heading-por-ruta.json';
+
+interface Props {
+  /** Encabezado propio. Sin el se busca por ruta; las 53 de /pool-builders/ lo pasan siempre
+   *  porque el suyo sale de Sanity (`headingPortfolio`), que es de donde viene «Reddick». */
+  titulo?: string;
+  entradilla?: string;
+}
+const { titulo, entradilla } = Astro.props;
+
+const ruta = Astro.url.pathname.replace(/(.)\/$/, '$1');
+const propio = (ENCABEZADOS as Record<string, { titulo: string; entradilla: string }>)[ruta];
+const tituloFinal = titulo ?? propio?.titulo ?? ENCABEZADOS._defecto.titulo;
+const entradillaFinal = entradilla ?? propio?.entradilla ?? ENCABEZADOS._defecto.entradilla;
+
+const slides = [...PROPIAS.obras, ...MIGRADAS.obras];
+---
+<section class="projects-section">
+  <div class="w-layout-blockcontainer container w-container">
+    <div data-w-id="1b3f0000-6760-ab5a-e8a8-0451b5923b92" class="header-projects">
+      <h2>{tituloFinal}</h2>
+      <p>{entradillaFinal}</p>
+    </div>
+    <div fs-slider-type="cms" fs-slider-instance="fs-slider-projects" data-w-id="c6964fce-5218-8f0d-f211-580d83969ae1" class="fs-slider-projects_instance">
+      <div fs-slider-element="list-wrapper" class="fs-slider-projects_list-wrapper w-dyn-list">
+        <div fs-slider-element="list" role="list" class="fs-slider-projects_list w-dyn-items">
+          {slides.map((o) => (
+            <div fs-slider-element="slide" role="listitem" class="fs-slider-projects_slide w-dyn-item">
+              <div class="block-item-project">
+                <div class="block-left-project">
+                  <img src={o.portada} loading="lazy" alt={o.alt} class="img-project" />
+                </div>
+                <div class="block-right-project">
+                  <div class="wrapper-vertical-text">
+                    <h3 class="white" set:html={o.tituloHtml} />
+                    <div class="wrapper-buttons">
+                      <a href={`/project/${o.slug}`} class="button-styles w-button">See Project</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div fs-slider-element="navigation" class="fs-slider-projects_navigation">
+        <button fs-slider-element="previous" class="fs-slider-projects_previous">
+          <div class="fs-slider-projects_arrow w-embed">
+            <svg width="100%" height="100%" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.0019 3.80378C16.5119 3.31378 15.7219 3.31378 15.2319 3.80378L6.92189 12.1138C6.53189 12.5038 6.53189 13.1338 6.92189 13.5238L15.2319 21.8338C15.7219 22.3238 16.5119 22.3238 17.0019 21.8338C17.4919 21.3438 17.4919 20.5538 17.0019 20.0638L9.76189 12.8138L17.0119 5.56378C17.4919 5.08378 17.4919 4.28378 17.0019 3.80378Z" fill="currentColor"></path>
+            </svg>
+          </div>
+        </button>
+        <button fs-slider-element="next" class="fs-slider-projects_next">
+          <div class="fs-slider-projects_arrow w-embed">
+            <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.99811 21.0151C7.48811 21.5051 8.27811 21.5051 8.76811 21.0151L17.0781 12.7051C17.4681 12.3151 17.4681 11.6851 17.0781 11.2951L8.7681 2.98507C8.2781 2.49507 7.4881 2.49507 6.9981 2.98507C6.5081 3.47507 6.5081 4.26507 6.9981 4.75507L14.2381 12.0051L6.98811 19.2551C6.50811 19.7351 6.5081 20.5351 6.99811 21.0151Z" fill="currentColor"></path>
+            </svg>
+          </div>
+        </button>
+      </div>
+      <div fs-slider-element="scrollbar" class="fs-slider-projects_scrollbar">
+        <div fs-slider-element="scrollbar-drag" class="fs-slider-projects_scrollbar-drag"></div>
+      </div>
+    </div>
+    <div class="wrapper-buttons-center-page">
+      <a href="/projects" class="button button-styles w-button">See all Projects</a>
+    </div>
+  </div>
+</section>
