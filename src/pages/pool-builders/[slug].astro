@@ -14,8 +14,10 @@ import Base from '../../layouts/Base.astro';
 import ResenasGoogle from '../../components/widgets/ResenasGoogle.astro';
 import FeedInstagram from '../../components/widgets/FeedInstagram.astro';
 import CarruselBlog from '../../components/widgets/CarruselBlog.astro';
+import CarruselProyectos from '../../components/widgets/CarruselProyectos.astro';
 import SEO_RUTAS from '../../data/seo-pool-builders.json';
 import { sinAperturaDelFeed } from '../../lib/feed-social.mjs';
+import { partirPorElCarrusel } from '../../lib/carrusel-proyectos.mjs';
 import LIT from '../../data/plantilla-pool-builders.json';
 
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -76,6 +78,15 @@ if (!d['headingBlog'] || !d['paragraphBlog']) throw new Error(`${slug}: falta he
 // R15-IG: B[2] pega el `.cta-footer` a la apertura de `.social-media`, y el feed tiene que
 // ir DELANTE del CTA. B[3] era el `</section>` suelto que lo cerraba; ya no se renderiza,
 // porque la seccion se escribe entera abajo — el mismo marcado literal que usa la home.
+// R16-PROY: el carrusel «Project Showcase» viaja DENTRO de B[0] y pasa a componente. Se abre
+// la cadena por donde estaba y el tramo viejo -los 10 slides de Webflow- se descarta: el
+// componente emite esos 10 mas las 5 obras propias, que a estas 53 rutas les faltaban. El
+// encabezado sigue saliendo de Sanity y ahora va por props, igual que en CarruselBlog; sus dos
+// campos (`headingPortfolio`/`paragraphPortfolio`) SIGUEN siendo huecos de CAMPOS, asi que la
+// guarda de `valor()` -un campo vacio revienta el build- se mantiene sola y no hace falta
+// repetir aqui la de headingBlog.
+const [P_ANTES, P_DESPUES] = partirPorElCarrusel(B[0], `/pool-builders/${slug} B[0]`);
+
 const CTA_PIE = sinAperturaDelFeed(B[2], `/pool-builders/${slug} B[2]`);
 // Y B[3] deja de renderizarse, asi que hay que AFIRMAR que no era mas que ese cierre: si la
 // plantilla derivada le metiera contenido algun dia, se perderia sin un solo rojo.
@@ -87,7 +98,9 @@ if (B[3] !== '</section>') {
 const { seo: SEO, ldCrudo: LD_CRUDO } = SEO_RUTAS[slug];
 ---
 <Base titulo={d["seo.title"]} descripcion={d["seo.description"]} ruta={`/pool-builders/${slug}`} seo={SEO} jsonLdCrudo={LD_CRUDO}>
-  <Fragment set:html={B[0]} />
+  <Fragment set:html={P_ANTES} />
+  <CarruselProyectos titulo={d['headingPortfolio']} entradilla={d['paragraphPortfolio']} />
+  <Fragment set:html={P_DESPUES} />
   <ResenasGoogle />
   <Fragment set:html={B[1]} />
   <CarruselBlog titulo={d['headingBlog']} entradilla={d['paragraphBlog']} />

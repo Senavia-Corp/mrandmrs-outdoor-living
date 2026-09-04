@@ -1,0 +1,61 @@
+{
+  "_lee_esto": "El encabezado del carrusel «Project Showcase» de cada ruta. Es lo UNICO que cambiaba entre paginas: el bloque de 10 slides y la cola de flechas + barra + CTA eran byte a byte identicos en los 7 sitios donde estaba pegado (6103 y 1581 bytes, sha1 76930c21c9bf y 3c5989650bad). Espejo de blog-heading-por-ruta.json, y lo lee igual: CarruselProyectos.astro se autolocaliza por Astro.url.pathname. DERIVADO: lo escribe scripts/build-paginas.mjs.",
+  "_ojo": "El texto va DECODIFICADO (ampersand suelto, no la entidad): lo escapa Astro al pintar, y sale el mismo byte que habia en el blob. Escribir aqui la entidad pintaria una entidad doblemente escapada y romperia check:texto, que compara innerText al 100 % y no se re-baseliniza nunca.",
+  "_quien_no_esta_aqui": "Las 53 rutas de /pool-builders/ NO estan: su titulo y su entradilla salen de Sanity (campos headingPortfolio y paragraphPortfolio, huecos 25 y 27 de CAMPOS en [slug].astro) y por eso Reddick dice «Reddick portfolio». Esas pasan las dos como props. _defecto solo existe para que una ruta sin entrada y sin props no pinte una cabecera vacia.",
+  "_defecto": {
+    "titulo": "Project showcase",
+    "entradilla": "Browse our completed residential & Commercial projects and transformations"
+  },
+  "/": {
+    "titulo": "Project showcase",
+    "entradilla": "Browse our completed residential & Commercial projects and transformations"
+  },
+  "/where-we-serve/north-florida": {
+    "titulo": "Project showcase",
+    "entradilla": "Explore completed North Florida projects featuring custom pools and refined outdoor living spaces."
+  },
+  "/where-we-serve/south-florida": {
+    "titulo": "Project showcase",
+    "entradilla": "Explore completed South Florida projects featuring custom inground pools and refined outdoor living spaces built through our fully managed design-build process."
+  },
+  "/industry-solutions": {
+    "titulo": "Our Resort Pool Projects Across Florida",
+    "entradilla": "Browse our completed residential & Commercial projects and transformations"
+  },
+  "/country/custom-pool-builders-alachua-county-fl": {
+    "titulo": "Recent Projects Across Alachua County",
+    "entradilla": "Projects Designed for Your Property"
+  },
+  "/country/custom-pool-builders-broward-county-fl": {
+    "titulo": "Projects Designed Around Your Home",
+    "entradilla": "Each project is customized to your property, lifestyle, and vision for high-end outdoor living."
+  },
+  "/country/custom-pool-builders-columbia-county-fl": {
+    "titulo": "Projects Built for Everyday Living",
+    "entradilla": "Each project is designed around your property, usage needs, and goals for comfortable outdoor living."
+  },
+  "/country/custom-pool-builders-dixie-county-fl": {
+    "titulo": "Projects Built for Practical Living",
+    "entradilla": "Each project is designed to match your property, daily use, and goals for comfortable outdoor living."
+  },
+  "/country/custom-pool-builders-gilchrist-county-fl": {
+    "titulo": "Projects Designed for Simple Living",
+    "entradilla": "Each project is thoughtfully designed to match your property, lifestyle, and vision for comfortable outdoor living."
+  },
+  "/country/custom-pool-builders-levy-county-fl": {
+    "titulo": "Projects Designed for Relaxed Living",
+    "entradilla": "Each project is thoughtfully designed to fit your property, lifestyle, and vision for comfortable outdoor living."
+  },
+  "/country/custom-pool-builders-marion-county-fl": {
+    "titulo": "Projects Designed Around Your Property",
+    "entradilla": "Each project is tailored to your land, lifestyle, and vision for elegant outdoor living."
+  },
+  "/country/custom-pool-builders-palm-beach-county-fl": {
+    "titulo": "Projects Designed Around Your Home",
+    "entradilla": "Each project is tailored to your property, lifestyle, and vision for luxury outdoor living."
+  },
+  "/country/custom-pool-builders-putnam-county-fl": {
+    "titulo": "Projects Built for Real Lifestyles",
+    "entradilla": "Each project is thoughtfully designed to fit your property, usage needs, and vision for outdoor living."
+  }
+}

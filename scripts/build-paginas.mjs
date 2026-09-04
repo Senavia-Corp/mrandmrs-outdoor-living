@@ -150,6 +150,47 @@ function localizar(raiz) {
  * (p.ej. Marion: "Outdoor Living Insights for Marion County" / "...tailored to North Florida
  * homes."). Si Sebastian pide otro texto, es el UNICO contenido no derivado de todo el cambio.
  */
+/**
+ * LO MISMO PARA EL CARRUSEL «Project Showcase» (R16-PROY), y por el mismo motivo.
+ *
+ * Esta seccion SI venia en el origen de las 10 rutas derivadas, pero venia SIETE VECES: el
+ * mismo bloque de 10 slides pegado en `index.astro`, `industry-solutions`, las 2 de Estado,
+ * las 9 de Condado y `plantilla-pool-builders.json`. Medido antes de tocarlo, el tramo era
+ * byte a byte identico en los siete (6103 bytes, sha1 76930c21c9bf): no eran siete variantes,
+ * eran siete copias. Por eso las 5 obras propias de R14 solo salian en la home, que fue la
+ * unica copia que se actualizo.
+ *
+ * Ahora se SUSTITUYE por un marcador, igual que el carrusel de blog, y el encabezado propio de
+ * cada ruta -lo unico que de verdad cambiaba entre paginas- se extrae de su `.header-projects`
+ * antes de descartar el nodo.
+ *
+ * LAS TRES DE AQUI ABAJO VAN A MANO porque el generador nunca las escribe: `/` y las 2 de
+ * Estado estan en `NO_REGENERAR`. Sin seed, `npm run paginas` las borraria del JSON derivado y
+ * las tres caerian a `_defecto` en silencio. El texto es el que ya tenian, extraido de su
+ * propio marcado, no redactado aqui.
+ */
+const ENCABEZADOS_PROYECTOS = {
+  _lee_esto: 'El encabezado del carrusel «Project Showcase» de cada ruta. Es lo UNICO que cambiaba entre paginas: el bloque de 10 slides y la cola de flechas + barra + CTA eran byte a byte identicos en los 7 sitios donde estaba pegado (6103 y 1581 bytes, sha1 76930c21c9bf y 3c5989650bad). Espejo de blog-heading-por-ruta.json, y lo lee igual: CarruselProyectos.astro se autolocaliza por Astro.url.pathname. DERIVADO: lo escribe scripts/build-paginas.mjs.',
+  _ojo: 'El texto va DECODIFICADO (ampersand suelto, no la entidad): lo escapa Astro al pintar, y sale el mismo byte que habia en el blob. Escribir aqui la entidad pintaria una entidad doblemente escapada y romperia check:texto, que compara innerText al 100 % y no se re-baseliniza nunca.',
+  _quien_no_esta_aqui: 'Las 53 rutas de /pool-builders/ NO estan: su titulo y su entradilla salen de Sanity (campos headingPortfolio y paragraphPortfolio, huecos 25 y 27 de CAMPOS en [slug].astro) y por eso Reddick dice «Reddick portfolio». Esas pasan las dos como props. _defecto solo existe para que una ruta sin entrada y sin props no pinte una cabecera vacia.',
+  _defecto: {
+    titulo: 'Project showcase',
+    entradilla: 'Browse our completed residential & Commercial projects and transformations',
+  },
+  '/': {
+    titulo: 'Project showcase',
+    entradilla: 'Browse our completed residential & Commercial projects and transformations',
+  },
+  '/where-we-serve/north-florida': {
+    titulo: 'Project showcase',
+    entradilla: 'Explore completed North Florida projects featuring custom pools and refined outdoor living spaces.',
+  },
+  '/where-we-serve/south-florida': {
+    titulo: 'Project showcase',
+    entradilla: 'Explore completed South Florida projects featuring custom inground pools and refined outdoor living spaces built through our fully managed design-build process.',
+  },
+};
+
 const ENCABEZADOS_BLOG = {
   '/where-we-serve/north-florida': {
     titulo: 'Outdoor Living Insights for North Florida',
@@ -388,6 +429,7 @@ let blogsInsertados = 0;
  * comprobado al final contra 9. Los dos mecanismos son disjuntos por construccion: Condado no
  * pasa por el `if` de insercion y Estado/Servicios no tienen la seccion en su origen. */
 let blogsSustituidos = 0;
+let proyectosSustituidos = 0;
 /* Anclas «Read More» del HTML crudo a las que se les pone `aria-label` (§ limpia()). Se
  * COMPRUEBA al final contra 80: 10 de /blogs-tips + 7 x 10 de /blogs/. Si baja, el origen ha
  * cambiado la forma de la tarjeta y hay enlaces sin etiquetar; si sube, se ha colado en otro
@@ -495,6 +537,28 @@ for (const [ruta] of RUTAS) {
       }
       usados.add('CarruselBlog');
       return MARCA + 'CarruselBlog' + MARCA;
+    }
+
+    /**
+     * CARRUSEL «Project Showcase» -> componente, por SUSTITUCION (R16-PROY). Mismo mecanismo
+     * exacto que el de blog de aqui arriba: se guarda el encabezado propio de la ruta y se
+     * descarta el nodo, que ya no aporta nada -sus 10 slides son los mismos 10 que emite el
+     * componente, byte a byte, mas las 5 obras propias que a esta ruta le faltaban-.
+     *
+     * Se salta para rutas protegidas por el mismo motivo que alli, pero con la diferencia que
+     * importa: `/` y las 2 de Estado SI llevan entrada en el JSON, escrita a mano en el seed.
+     * Alli la home no la necesitaba porque usa su propio `S_BLOG`; aqui la home usa ESTE
+     * componente, asi que sin seed se quedaria sin encabezado.
+     */
+    if (n.matches?.('section.projects-section')) {
+      if (!protegida(ruta)) {
+        const h2 = n.querySelector('.header-projects h2')?.textContent.trim();
+        const p = n.querySelector('.header-projects p')?.textContent.trim();
+        if (h2 && p) ENCABEZADOS_PROYECTOS[ruta] = { titulo: h2, entradilla: p };
+        proyectosSustituidos++;
+      }
+      usados.add('CarruselProyectos');
+      return MARCA + 'CarruselProyectos' + MARCA;
     }
     for (const s of n.querySelectorAll('script[src]')) {
       const src = s.getAttribute('src') ?? '';
@@ -928,6 +992,14 @@ fs.writeFileSync(path.join(RAIZ, 'src/data/blog-heading-por-ruta.json'),
   JSON.stringify(ENCABEZADOS_BLOG, null, 2) + '\n');
 console.log(`  blog-heading-por-ruta.json  ${Object.keys(ENCABEZADOS_BLOG).length} rutas`);
 
+// Idem para el carrusel de proyectos. Lo lee `CarruselProyectos.astro`, tambien por
+// `Astro.url.pathname`. Las claves `_*` del seed no son rutas: son la documentacion del
+// fichero derivado, y por eso el recuento las descuenta.
+fs.writeFileSync(path.join(RAIZ, 'src/data/proyectos-heading-por-ruta.json'),
+  JSON.stringify(ENCABEZADOS_PROYECTOS, null, 2) + '\n');
+console.log(`  proyectos-heading-por-ruta.json  `
+  + `${Object.keys(ENCABEZADOS_PROYECTOS).filter((k) => k.startsWith('/')).length} rutas`);
+
 if (sinMapear.size) {
   console.error(`\nROJO ${sinMapear.size} URLs del CDN sin entrada en el manifiesto:\n`);
   [...sinMapear].slice(0, 10).forEach((u) => console.error('   ' + u));
@@ -943,6 +1015,8 @@ const kb = generadas.reduce((a, [, , b]) => a + b, 0) / 1024;
 console.log(`\n  OK ${generadas.length} paginas · ${Math.round(kb)} kB de marcado`);
 console.log(`  carrusel de blog insertado en ${blogsInsertados} ficha(s) de services/+where-we-serves/`
   + `${blogsInsertados === 16 ? '' : '   <<< SE ESPERABAN 16'}`);
+console.log(`  carrusel de proyectos sustituido en ${proyectosSustituidos} ruta(s)`
+  + `${proyectosSustituidos === 10 ? '' : '   <<< SE ESPERABAN 10'}`);
 console.log(`  carrusel de blog sustituido en ${blogsSustituidos} ficha(s) de country/`
   + `${blogsSustituidos === 9 ? '' : '   <<< SE ESPERABAN 9'}`);
 const OBRAS_ESPERADAS = OBRAS_PROPIAS.length * Object.keys(OBRAS_EN).length;
