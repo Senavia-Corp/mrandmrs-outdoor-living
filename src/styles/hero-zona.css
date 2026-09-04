@@ -57,12 +57,34 @@
   /* Y EL VELO LLEGA AL PIE, mismo defecto y mismo arreglo que en home.css (ver alli el metodo):
      se aclaraba del 78% al 30% a partir del 84% de la altura, justo donde estan los botones, y
      como la franja blanca de logos tapa los primeros 67px lo que se veia era una banda palida
-     entre las dos. La banda oscura baja al 100%; el borde de arriba (30/18/78 de 0 a 20) no se
-     toca. El 20% aguanta: medido en 991/768/430/390/360 con la ciudad de nombre mas largo, el
+     entre las dos. La banda oscura baja al 100%.
+     El 20% aguanta: medido en 991/768/430/390/360 con la ciudad de nombre mas largo, el
      texto de zona a <=991 cae entre el 24,6% y el 64,1% de la altura. */
+  /* R9-VELO-BORDE (4-sep-2026) — EL BORDE DE ARRIBA, rehecho. Mismo defecto que en home.css y
+     mismo arreglo; ver alli el diagnostico largo. El 30/18/78 tenia los dos fallos: rampa corta
+     (60 puntos de alfa en el 8% de la altura) y sobre todo NO MONOTONA — leida hacia arriba iba
+     78% -> 18% -> 30%, o sea que volvia a oscurecerse arriba del todo. Ese minimo local es lo que
+     el ojo lee como una raya. Medido con `node scripts/diag-velo.mjs /pool-builders/ocala-florida
+     --sin-contraste`: hoyo de 11,8 puntos, igual en los seis anchos de la matriz.
+
+     Ahora sube monotona del 78% al 0% con la misma S de 5 paradas que home (alfa 78/63/34/11/0 en
+     t=0/,26/,52/,78/1), con t recorriendo del 20% —el techo de la meseta— al 0%. Las paradas
+     salen del 20% escaladas, no redondeadas a ojo: 20*0,74=14,8 · 20*0,48=9,6 · 20*0,22=4,4.
+
+     ESTE ES EL TRAMO MAS APRETADO DE LOS CUATRO y conviene saberlo antes de tocarlo: la rampa
+     solo puede vivir en el 20% de arriba, porque el texto empieza en el 24,6% y el techo de la
+     meseta no puede subir. Medido a 991/768/390, la pendiente maxima baja de 1,373 a ~1,0 %/px:
+     mejora, pero mucho menos que el 6x de >=992. Lo que si desaparece del todo es el hoyo. Si
+     algun dia se ve una raya en movil, es AQUI, y el unico margen que queda son los 4,6 puntos
+     entre el 20% de la meseta y el 24,6% donde arranca el texto — margen de seguridad de las 53
+     ciudades, cuyo h1 cambia de largo. No lo gastes sin volver a medir las 53.
+
+     De 20% a 100% no se toca nada: sigue plano al 78%, que es lo que tapa el texto. */
   background-image:linear-gradient(to bottom,
-    color-mix(in srgb,var(--mm-navy) 30%,transparent) 0%,
-    color-mix(in srgb,var(--mm-navy) 18%,transparent) 12%,
+    color-mix(in srgb,var(--mm-navy)  0%,transparent) 0%,
+    color-mix(in srgb,var(--mm-navy) 11%,transparent) 4.4%,
+    color-mix(in srgb,var(--mm-navy) 34%,transparent) 9.6%,
+    color-mix(in srgb,var(--mm-navy) 63%,transparent) 14.8%,
     color-mix(in srgb,var(--mm-navy) 78%,transparent) 20%,
     color-mix(in srgb,var(--mm-navy) 78%,transparent) 100%)
 }
@@ -213,9 +235,17 @@
      padding: el texto sin fondo propio —aqui son TRES elementos— cae entre 194 y 458px del pie
      en la ciudad de nombre mas largo, asi que los 480 dejan 22px de margen. El techo sube de
      450 a 480 porque el padding nuevo levanta el bloque 16px. */
+  /* R9-VELO-BORDE (4-sep-2026) — la rampa de arriba, rehecha. Ver home.css (bloque de >=992)
+     para el porque de la unidad; aqui vale palabra por palabra, con 480 en vez de 415.
+     El 78%->18% en 90px y la vuelta al 30% daban 0,686 %/px y un hoyo de 11,8 puntos a 580px del
+     pie. Las dos primeras paradas NO SE TOCAN: 78% del pixel 0 al 480, la banda que tapa los
+     TRES textos sin fondo propio (194-458px del pie en la ciudad de nombre mas largo).
+       t=0,26 -> 480*0,74 = 355px   ·   t=0,52 -> 480*0,48 = 230px   ·   t=0,78 -> 480*0,22 = 106px */
   .hero-glass-section{background-image:linear-gradient(to top,
     color-mix(in srgb,var(--mm-navy) 78%,transparent) 0,
     color-mix(in srgb,var(--mm-navy) 78%,transparent) 480px,
-    color-mix(in srgb,var(--mm-navy) 18%,transparent) 570px,
-    color-mix(in srgb,var(--mm-navy) 30%,transparent) 100%)}
+    color-mix(in srgb,var(--mm-navy) 63%,transparent) calc(26% + 355px),
+    color-mix(in srgb,var(--mm-navy) 34%,transparent) calc(52% + 230px),
+    color-mix(in srgb,var(--mm-navy) 11%,transparent) calc(78% + 106px),
+    color-mix(in srgb,var(--mm-navy)  0%,transparent) 100%)}
 }
