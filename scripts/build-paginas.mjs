@@ -348,6 +348,41 @@ const protegida = (ruta) => [...NO_REGENERAR.keys()]
 /* Cuenta las rutas de services/+where-we-serves/ que reciben el carrusel de blog POR
  * INSERCION (§ mas abajo). Se COMPRUEBA al final contra 16: si sube, se ha colado en una ruta
  * de mas; si baja, alguna se ha quedado sin el. Un «las que salgan» no comprobaria nada. */
+/**
+ * ── LAS OBRAS DE AUTORIA PROPIA EN EL INDICE DE PORTAFOLIO ──────────────────────────────────
+ *
+ * 5 obras publicadas el 3-sep-2026 que el Webflow de origen nunca tuvo. Su FICHA es una pagina
+ * propia escrita a mano (`src/pages/project/*.astro`, declaradas en `lib/rutas-propias.mjs`),
+ * pero su TARJETA vive en `/projects`, que SI se sigue derivando de `_source/vivo/projects.html`.
+ * De ahi que la insercion tenga que ocurrir aqui.
+ *
+ * POR QUE AQUI Y NO EN `NO_REGENERAR`. Meter `/projects` en `NO_REGENERAR` congelaria un fichero
+ * cuyo `T0` es UNA sola cadena de 12 kB en una linea: a partir de ese dia se mantiene a mano.
+ * Los dos precedentes no se parecen —`/` se congelo DESPUES de descomprimirse en constantes
+ * editables, y `/pool-builders/` porque sus 53 estaticos ya no existen—. Declarandolo aqui,
+ * `/projects` sigue siendo derivable: el dia que alguien corra `npm run vivo` y traiga el origen
+ * fresco, estas 5 se vuelven a poner solas.
+ *
+ * LA TARJETA NO SE ESCRIBE A MANO: SE CLONA LA PRIMERA DEL ORIGEN Y SE LE CAMBIA EL TEXTO. Asi
+ * el marcado —las clases, el `data-w-id` que la anima, el `loading="lazy"`, los envoltorios—
+ * sigue saliendo del origen y no de mi memoria, y si Webflow cambiara la forma de la tarjeta,
+ * estas 5 cambiarian con ella. El `style="opacity:0"` que trae el molde lo limpia despues el
+ * mismo paso que limpia las 10 (`:458-474`), sin excepcion para estas.
+ */
+const OBRAS_PROPIAS = JSON.parse(
+  fs.readFileSync(path.join(RAIZ, 'src/data/proyectos-propios.json'), 'utf8')).obras;
+
+/** Ruta -> donde se inyectan y por que. Hoy solo `/projects`; `/` lleva las suyas a mano
+ *  porque esta en NO_REGENERAR y ya no pasa por aqui. */
+const OBRAS_EN = {
+  '/projects': {
+    lista: '.cms-list-work',
+    motivo: 'El indice de portafolio. Las 5 obras propias van al PRINCIPIO: son lo ultimo '
+      + 'construido, y el orden del indice es el de publicacion, de mas nuevo a mas viejo.',
+  },
+};
+let obrasInsertadas = 0;
+
 let blogsInsertados = 0;
 /* Y las que lo reciben por SUSTITUCION -Condado ya traia `.blog-section-page` en su origen-,
  * comprobado al final contra 9. Los dos mecanismos son disjuntos por construccion: Condado no
@@ -388,6 +423,31 @@ for (const [ruta] of RUTAS) {
   const fichero = path.join(RAIZ, '_source/vivo', `${slug}.html`);
   if (!fs.existsSync(fichero)) { console.error(`  ROJO falta _source/vivo/${slug}.html`); continue; }
   const doc = new JSDOM(fs.readFileSync(fichero, 'utf8')).window.document;
+
+  // Las obras de autoria propia, al principio de la lista (§ OBRAS_PROPIAS).
+  const inj = OBRAS_EN[ruta];
+  if (inj) {
+    const lista = doc.querySelector(inj.lista);
+    const molde = lista?.firstElementChild;
+    // Falla RUIDOSAMENTE y para el generador: sin molde no hay tarjeta que clonar, y publicar
+    // `/projects` con 10 obras cuando el sitio dice tener 15 es peor que no publicarla.
+    if (!molde) {
+      console.error(`\n  ROJO ${ruta}: no encuentro «${inj.lista} > primera tarjeta» en el origen\n`);
+      process.exit(1);
+    }
+    for (const o of [...OBRAS_PROPIAS].reverse()) {   // al reves: cada una entra la primera
+      const n = molde.cloneNode(true);
+      const img = n.querySelector('.img-work');
+      img.setAttribute('src', o.portada);
+      img.setAttribute('alt', o.alt);
+      n.querySelector('.title-work').textContent = o.titulo;
+      [...n.querySelectorAll('.block-content-work > div')]
+        .find((x) => !x.classList.contains('wrapper-buttons')).textContent = o.resumen;
+      n.querySelector('.wrapper-buttons a').setAttribute('href', `/project/${o.slug}`);
+      lista.insertBefore(n, lista.firstElementChild);
+      obrasInsertadas++;
+    }
+  }
 
   const menu = doc.querySelector('section.menu');
   const pie = doc.querySelector('section.footer');
@@ -749,6 +809,27 @@ for (const [ruta] of RUTAS) {
     }
   }
 
+  /**
+   * EL `hasPart` CRECE CON LAS TARJETAS, o el JSON-LD miente: la pagina enseñaria 15 obras y le
+   * diria a Google que tiene 10. Van al principio y en el mismo orden que las tarjetas.
+   * `check-seo.mjs` lo tiene declarado en PARTES_PROPIAS y sigue comparando las 10 del origen
+   * caracter a caracter: lo que se declara es que estas 5 estan, no que el bloque no se mire.
+   */
+  if (inj && jsonLd.length) {
+    const b = jsonLd[0];
+    if (!Array.isArray(b.hasPart)) {
+      console.error(`\n  ROJO ${ruta}: el JSON-LD del origen ya no trae hasPart que ampliar\n`);
+      process.exit(1);
+    }
+    b.hasPart = [...OBRAS_PROPIAS.map((o) => ordena({
+      '@type': 'CreativeWork',
+      description: o.resumen,
+      image: { '@type': 'ImageObject', caption: o.alt, url: o.portada },
+      name: o.titulo,
+      url: `/project/${o.slug}`,
+    })), ...b.hasPart];
+  }
+
   // La profundidad importa: /blogs/{slug} vive en src/pages/blogs/, asi que necesita ../../
   const arriba = '../'.repeat((ruta.match(/\//g) ?? []).length);
   const imports = [...usados].map((c) => `import ${c} from '${arriba}components/widgets/${c}.astro';`).join('\n');
@@ -845,6 +926,9 @@ console.log(`  carrusel de blog insertado en ${blogsInsertados} ficha(s) de serv
   + `${blogsInsertados === 16 ? '' : '   <<< SE ESPERABAN 16'}`);
 console.log(`  carrusel de blog sustituido en ${blogsSustituidos} ficha(s) de country/`
   + `${blogsSustituidos === 9 ? '' : '   <<< SE ESPERABAN 9'}`);
+const OBRAS_ESPERADAS = OBRAS_PROPIAS.length * Object.keys(OBRAS_EN).length;
+console.log(`  obras propias insertadas en el indice: ${obrasInsertadas}`
+  + `${obrasInsertadas === OBRAS_ESPERADAS ? '' : `   <<< SE ESPERABAN ${OBRAS_ESPERADAS}`}`);
 console.log('        (la home tambien trae la seccion en su origen y se cuenta en memoria, pero');
 console.log('        esta en NO_REGENERAR y no se escribe: sigue con su propio S_BLOG a mano.)');
 console.log('        Las 53 de pool-builders/ NO pasan por este generador — su migracion es');

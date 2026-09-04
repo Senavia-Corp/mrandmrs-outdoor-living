@@ -58,6 +58,44 @@ const RUTAS = csv.trim().split('\n').slice(1).map((l) => l.match(/"((?:[^"]|"")*
 const SIN_HEAD_DE_WEBFLOW = new Set(['/pool-investment-estimator']);
 
 /**
+ * ── PARTES DE JSON-LD ANADIDAS A PROPOSITO ────────────────────────────────────────────────
+ *
+ * `/projects` enseña 15 obras desde que se publicaron las 5 propias (3-sep-2026), y su
+ * `hasPart` crece con ellas: dejarlo en 10 seria decirle a Google que la pagina tiene 10 partes
+ * mientras muestra 15, o sea marcado que miente. El baseline tiene 10 y no se re-baseliniza —es
+ * el `<head>` del Webflow de origen—, asi que la diferencia se DECLARA aqui.
+ *
+ * NO ES «IGNORA ESTE BLOQUE», y la diferencia importa. Se quitan EXACTAMENTE las N primeras
+ * entradas de la clave declarada, exigiendo que sean ESTAS y EN ESTE ORDEN; a partir de ahi el
+ * bloque entero —las 10 partes del origen, su orden y todas las demas claves— se compara
+ * caracter a caracter como siempre. Si el origen pierde una parte, sigue saliendo rojo.
+ *
+ * A LAS PARTES ANADIDAS SE LES CAMBIA EL CRITERIO, NO SE LES QUITA. Es el mismo trato que esta
+ * puerta da ya a una ruta propia: como no hay baseline contra el que compararlas, se exige que
+ * ESTEN —`name`, `description` e `image.url` no vacios—. Una parte vacia es un `hasPart` que
+ * ocupa sitio y no dice nada, y es justo lo que nadie iria a mirar.
+ *
+ * El orden tiene que ser el mismo que el de las tarjetas, y lo es por construccion: las dos
+ * listas salen de `src/data/proyectos-propios.json` en `build-paginas.mjs` (§ OBRAS_PROPIAS).
+ */
+const PARTES_PROPIAS = {
+  '/projects': {
+    bloque: 0,
+    clave: 'hasPart',
+    urls: [
+      '/project/luxury-pool-raised-spa-travertine-deck-south-florida',
+      '/project/estate-pool-spa-sun-shelf-north-florida',
+      '/project/pool-raised-spa-marble-deck-south-florida',
+      '/project/luxury-pool-spa-aluminum-pergola-south-florida',
+      '/project/aluminum-patio-cover-pool-deck-south-florida',
+    ],
+    motivo: 'Las 5 obras de autoria propia del 3-sep-2026. Las inserta `build-paginas.mjs` '
+      + '(§ OBRAS_PROPIAS) al principio del `hasPart`, en el mismo orden que sus tarjetas.',
+  },
+};
+let partesCasadas = 0;
+
+/**
  * LAS RUTAS DE AUTORIA PROPIA no tienen entrada en `baseline/seo.json` y no pueden tenerla:
  * no existen en el origen. La tentacion es saltarlas enteras, y seria un error — la canonica
  * y el `noindex` son justo lo que hay que vigilar en una pagina nueva, porque es la que puede
@@ -92,6 +130,18 @@ for (const ruta of conPropias(RUTAS)) {
     if (!(d.querySelector('meta[name=description]')?.content ?? '').trim()) {
       problemas.push('meta description vacia');
     }
+    /**
+     * QUE EL JSON-LD ESTE Y PARSEE. Es lo unico exigible sin baseline, y tapa un agujero real:
+     * el resto de este fichero NO corre para una ruta propia —se salta og/twitter y el JSON-LD
+     * entero—, asi que si alguien clona una de las 8 fichas de `/project/` que emiten JSON-LD
+     * roto (salto de linea literal sin escapar, heredado del scrape), la ficha nueva heredaria
+     * el defecto Y la exencion, y no lo cazaria nadie.
+     */
+    const bl = [...d.head.querySelectorAll('script[type="application/ld+json"]')];
+    if (!bl.length) problemas.push('sin JSON-LD');
+    bl.forEach((b, i) => {
+      try { JSON.parse(b.textContent); } catch { problemas.push(`JSON-LD ${i} NO PARSEA`); }
+    });
   } else if (titulo !== esperado.title) problemas.push(`title: "${esperado.title}" -> "${titulo}"`);
 
   if (!propia && !SIN_HEAD_DE_WEBFLOW.has(ruta)) {
@@ -121,6 +171,29 @@ for (const ruta of conPropias(RUTAS)) {
       for (const [i, b] of bloques.entries()) {
         const e = espLd[i];
         let mio; try { mio = ordena(JSON.parse(b.textContent)); } catch { problemas.push(`JSON-LD ${i} no parsea`); continue; }
+
+        // Las partes anadidas a proposito (§ PARTES_PROPIAS): se exigen y se descuentan.
+        const pp = PARTES_PROPIAS[ruta];
+        if (pp && i === pp.bloque) {
+          const arr = mio[pp.clave];
+          const cabeza = Array.isArray(arr) ? arr.slice(0, pp.urls.length) : [];
+          const malas = [];
+          if (cabeza.length !== pp.urls.length) {
+            malas.push(`${pp.clave}: ${cabeza.length} parte(s) propia(s) de ${pp.urls.length}`);
+          }
+          cabeza.forEach((x, k) => {
+            if (x?.url !== pp.urls[k]) malas.push(`parte propia ${k}: url "${x?.url}" != "${pp.urls[k]}"`);
+            for (const c of ['name', 'description']) {
+              if (!String(x?.[c] ?? '').trim()) malas.push(`parte propia ${k}: ${c} vacio`);
+            }
+            if (!String(x?.image?.url ?? '').trim()) malas.push(`parte propia ${k}: image.url vacia`);
+          });
+          if (malas.length) { problemas.push(...malas); continue; }
+          // `ordena` ya dejo las claves ordenadas; sustituir una existente conserva su sitio.
+          mio = { ...mio, [pp.clave]: arr.slice(pp.urls.length) };
+          partesCasadas++;
+        }
+
         const a = JSON.stringify(mio);
         const c = aLocal(JSON.stringify(ordena(e)));
         if (a !== c) {
@@ -145,6 +218,14 @@ for (const ruta of conPropias(RUTAS)) {
 }
 
 console.log(`\n  modo: ${PROD ? 'PRODUCCION (canonica si, noindex no)' : 'preview (noindex si, canonica no)'}`);
+// La excepcion se DICE por pantalla. Una declaracion que no sale en la salida deja de estar
+// declarada el dia que nadie abre el fichero.
+for (const [r, d] of Object.entries(PARTES_PROPIAS)) {
+  const bien = partesCasadas > 0;
+  console.log(`  ${bien ? 'ok  ' : 'ROJO'} declarado ${r}: ${d.urls.length} parte(s) propia(s) `
+    + `en ${d.clave}, descontadas antes de comparar con el baseline`);
+  if (!bien) fallos++;
+}
 // Se cuentan por separado a proposito: a las del origen se les exige el `<head>` IDENTICO, a
 // las propias solo que este y que la indexacion sea correcta. Un unico total las mezclaria y
 // diria «116/115», que ademas de raro sugiere que hay una pagina de mas.

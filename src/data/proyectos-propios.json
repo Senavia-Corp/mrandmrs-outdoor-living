@@ -1,0 +1,206 @@
+{
+ "_lee_esto": "Las obras de AUTORIA PROPIA. No salen de Webflow ni de Sanity: son contenido nuestro, y este fichero es su UNICA fuente. Lo leen cinco sitios y por eso vive aqui y no repetido en cada uno: las 5 fichas de src/pages/project/, la inyeccion de tarjetas de scripts/build-paginas.mjs (OBRAS_EN), los slides de src/pages/index.astro, la derivacion del bloque declarado de scripts/check-texto.mjs (OBRAS_PROPIAS_EN) y las urls de scripts/check-seo.mjs (PARTES_PROPIAS).",
+ "_ojo": "El ORDEN de este array es el orden en que salen en /projects y en el carrusel del home, delante de las 10 del origen. Cambiarlo aqui las mueve en los dos sitios a la vez, que es justo lo que se queria.",
+ "_receta": "Los AVIF los produjo scripts/importar-obras-propias.mjs, que guarda que foto de origen, en que posicion y con que recorte. Aqui esta el RESULTADO; alli, la receta.",
+ "obras": [
+  {
+   "slug": "luxury-pool-raised-spa-travertine-deck-south-florida",
+   "titulo": "Luxury Pool & Raised Spa with Travertine Deck",
+   "tituloFicha": "Luxury Pool & Raised Spa Project in South Florida",
+   "resumen": "This South Florida project pairs a rectangular pool with a raised spa finished in deep blue glass mosaic that spills into the main body of water. A wide travertine deck, a full-length sun shelf and poolside basketball hoops turn the backyard into a space built for daily family use.",
+   "ubicacion": "South Florida",
+   "estilo": "Modern Florida Contemporary",
+   "tipo": "Residential",
+   "seo": {
+    "titulo": "Luxury Pool & Raised Spa Project | South Florida",
+    "descripcion": "Custom South Florida pool with a raised glass-mosaic spa, spillway, sun shelf and travertine deck, built for year-round family outdoor living."
+   },
+   "galeria": [
+    {
+     "src": "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-1.avif",
+     "alt": "Rectangular pool with a raised blue glass mosaic spa spilling into the water, framed by a travertine paver deck in a South Florida backyard."
+    },
+    {
+     "src": "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-2.avif",
+     "alt": "Pool and raised spa seen from the covered lanai, with the shaded dining set and clipped hedges along the property line."
+    },
+    {
+     "src": "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-3.avif",
+     "alt": "Overhead view of the pool, sun shelf and raised spa, with turf strips and paver steppers around the travertine deck."
+    },
+    {
+     "src": "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-4.avif",
+     "alt": "Wide view of the backyard showing the pool, the raised spa and the two poolside basketball hoops."
+    },
+    {
+     "src": "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-5.avif",
+     "alt": "Pool and spa from the house side, with the covered patio, dining area and screened neighbouring lanais behind."
+    }
+   ],
+   "tituloHtml": "Luxury Pool &amp; Raised Spa with Travertine Deck",
+   "portada": "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-1.avif",
+   "alt": "Rectangular pool with a raised blue glass mosaic spa spilling into the water, framed by a travertine paver deck in a South Florida backyard.",
+   "publicado": "2026-09-03"
+  },
+  {
+   "slug": "estate-pool-spa-sun-shelf-north-florida",
+   "titulo": "Estate Pool & Spa with Sun Shelf",
+   "tituloFicha": "Estate Pool & Spa Project in North Florida",
+   "resumen": "Set on open acreage in North Florida, this project centers on a large geometric pool with a full-width sun shelf and a raised spa. The marble-look deck is banded with a dark stone inlay and a river-rock border that traces the entire perimeter.",
+   "ubicacion": "North Florida",
+   "estilo": "Modern Geometric",
+   "tipo": "Residential",
+   "seo": {
+    "titulo": "Estate Pool & Spa with Sun Shelf | North Florida",
+    "descripcion": "Large geometric pool with a sun shelf, raised spa and banded marble deck on open North Florida acreage, designed and built for estate-scale outdoor living."
+   },
+   "galeria": [
+    {
+     "src": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-1.avif",
+     "alt": "Large geometric pool with a sun shelf and raised spa on open North Florida acreage, framed by a banded marble deck."
+    },
+    {
+     "src": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-2.avif",
+     "alt": "Close view of the pool showing the sun shelf, the tiled waterline and the river-rock border along the deck."
+    },
+    {
+     "src": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-3.avif",
+     "alt": "The full property from the pasture side, with the pool, the lounge area and the single-story home."
+    },
+    {
+     "src": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-4.avif",
+     "alt": "Raised spa clad in blue glass mosaic, spilling into the pool beside the outdoor lounge seating."
+    },
+    {
+     "src": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-5.avif",
+     "alt": "Lap-length pool seen from the far end, with the marble deck, the stone inlay band and the home behind."
+    }
+   ],
+   "tituloHtml": "Estate Pool &amp; Spa with Sun Shelf",
+   "portada": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-1.avif",
+   "alt": "Large geometric pool with a sun shelf and raised spa on open North Florida acreage, framed by a banded marble deck.",
+   "publicado": "2026-09-03"
+  },
+  {
+   "slug": "pool-raised-spa-marble-deck-south-florida",
+   "titulo": "Pool & Raised Spa with Marble Deck",
+   "tituloFicha": "Pool & Raised Spa with Marble Deck in South Florida",
+   "resumen": "A South Florida backyard organized around a clean rectangular pool, a broad entry shelf with in-pool loungers and a raised spa clad in white tile. Large-format marble pavers carry the same light tone from the covered lanai out to the edge of the lawn.",
+   "ubicacion": "South Florida",
+   "estilo": "Modern Coastal",
+   "tipo": "Residential",
+   "seo": {
+    "titulo": "Pool & Raised Spa with Marble Deck | South Florida",
+    "descripcion": "South Florida pool with a tanning shelf, in-pool loungers and a white-tiled raised spa, finished with large-format marble pavers throughout the deck."
+   },
+   "galeria": [
+    {
+     "src": "/images/projects/pool-raised-spa-marble-deck-south-florida/pool-raised-spa-marble-deck-south-florida-project-1.avif",
+     "alt": "Pool with a raised white-tiled spa in the foreground and the covered lanai of the South Florida home behind."
+    },
+    {
+     "src": "/images/projects/pool-raised-spa-marble-deck-south-florida/pool-raised-spa-marble-deck-south-florida-project-2.avif",
+     "alt": "Entry steps and tanning shelf with two white in-pool loungers, beside the bubbling raised spa."
+    },
+    {
+     "src": "/images/projects/pool-raised-spa-marble-deck-south-florida/pool-raised-spa-marble-deck-south-florida-project-3.avif",
+     "alt": "Pool and spa from the lanai, with the sliding glass doors and the marble deck running to the lawn."
+    },
+    {
+     "src": "/images/projects/pool-raised-spa-marble-deck-south-florida/pool-raised-spa-marble-deck-south-florida-project-4.avif",
+     "alt": "The pool seen along its length, with the sun shelf on the left and the white picket fence at the property line."
+    },
+    {
+     "src": "/images/projects/pool-raised-spa-marble-deck-south-florida/pool-raised-spa-marble-deck-south-florida-project-5.avif",
+     "alt": "Wide view of the pool, the raised spa and the large-format marble deck pavers."
+    }
+   ],
+   "tituloHtml": "Pool &amp; Raised Spa with Marble Deck",
+   "portada": "/images/projects/pool-raised-spa-marble-deck-south-florida/pool-raised-spa-marble-deck-south-florida-project-1.avif",
+   "alt": "Pool with a raised white-tiled spa in the foreground and the covered lanai of the South Florida home behind.",
+   "publicado": "2026-09-03"
+  },
+  {
+   "slug": "luxury-pool-spa-aluminum-pergola-south-florida",
+   "titulo": "Luxury Pool, Spa & Aluminum Pergola",
+   "tituloFicha": "Luxury Pool, Spa & Aluminum Pergola in South Florida",
+   "resumen": "This South Florida project combines a custom pool and raised spa with a slatted aluminum pergola that shades the full length of the lanai. Glass mosaic tile lines the spa and the pool waterline, and deck jets arc over the shallow end.",
+   "ubicacion": "South Florida",
+   "estilo": "Modern Florida Contemporary",
+   "tipo": "Residential",
+   "seo": {
+    "titulo": "Luxury Pool, Spa & Aluminum Pergola | South Florida",
+    "descripcion": "South Florida pool and raised spa with glass mosaic tile, deck jets and a slatted aluminum pergola shading the lanai, by licensed pool builders."
+   },
+   "galeria": [
+    {
+     "src": "/images/projects/luxury-pool-spa-aluminum-pergola-south-florida/luxury-pool-spa-aluminum-pergola-south-florida-project-1.avif",
+     "alt": "Slatted aluminum pergola shading the lanai beside a pool with a raised glass mosaic spa in a South Florida backyard."
+    },
+    {
+     "src": "/images/projects/luxury-pool-spa-aluminum-pergola-south-florida/luxury-pool-spa-aluminum-pergola-south-florida-project-2.avif",
+     "alt": "The pergola and pool seen from the lawn, with the two-story home and the hedge along the property line."
+    },
+    {
+     "src": "/images/projects/luxury-pool-spa-aluminum-pergola-south-florida/luxury-pool-spa-aluminum-pergola-south-florida-project-3.avif",
+     "alt": "Deck jets arcing over the shallow end of the pool, with the pergola and the covered patio behind."
+    },
+    {
+     "src": "/images/projects/luxury-pool-spa-aluminum-pergola-south-florida/luxury-pool-spa-aluminum-pergola-south-florida-project-4.avif",
+     "alt": "Raised spa clad in blue glass mosaic spilling into the pool, under the aluminum pergola."
+    },
+    {
+     "src": "/images/projects/luxury-pool-spa-aluminum-pergola-south-florida/luxury-pool-spa-aluminum-pergola-south-florida-project-5.avif",
+     "alt": "The aluminum pergola from beneath, framing the pool and the mature trees at the rear of the lot."
+    },
+    {
+     "src": "/images/projects/luxury-pool-spa-aluminum-pergola-south-florida/luxury-pool-spa-aluminum-pergola-south-florida-project-6.avif",
+     "alt": "Pool and spa seen from the covered patio, looking out across the travertine deck."
+    }
+   ],
+   "tituloHtml": "Luxury Pool, Spa &amp; Aluminum Pergola",
+   "portada": "/images/projects/luxury-pool-spa-aluminum-pergola-south-florida/luxury-pool-spa-aluminum-pergola-south-florida-project-1.avif",
+   "alt": "Slatted aluminum pergola shading the lanai beside a pool with a raised glass mosaic spa in a South Florida backyard.",
+   "publicado": "2026-09-03"
+  },
+  {
+   "slug": "aluminum-patio-cover-pool-deck-south-florida",
+   "titulo": "Aluminum Patio Cover & Pool Deck",
+   "tituloFicha": "Aluminum Patio Cover & Pool Deck in South Florida",
+   "resumen": "A South Florida outdoor living project built around a solid-roof aluminum patio cover that runs the full width of the rear elevation. The structure shades the sliding glass doors and the lounge area while leaving the marble deck and the pool open to the sky.",
+   "ubicacion": "South Florida",
+   "estilo": "Modern Florida Contemporary",
+   "tipo": "Residential",
+   "seo": {
+    "titulo": "Aluminum Patio Cover & Pool Deck | South Florida",
+    "descripcion": "Solid-roof aluminum patio cover and marble pool deck for a South Florida home, shading the lanai while leaving the pool open to the sky."
+   },
+   "galeria": [
+    {
+     "src": "/images/projects/aluminum-patio-cover-pool-deck-south-florida/aluminum-patio-cover-pool-deck-south-florida-project-1.avif",
+     "alt": "Solid-roof aluminum patio cover running the full width of a South Florida home, beside the pool and marble deck."
+    },
+    {
+     "src": "/images/projects/aluminum-patio-cover-pool-deck-south-florida/aluminum-patio-cover-pool-deck-south-florida-project-2.avif",
+     "alt": "The patio cover from the deck, shading the sliding glass doors, the lounge chairs and the dining area."
+    },
+    {
+     "src": "/images/projects/aluminum-patio-cover-pool-deck-south-florida/aluminum-patio-cover-pool-deck-south-florida-project-3.avif",
+     "alt": "Pool and marble deck in the foreground with the aluminum cover and the barrel-tile roof of the home behind."
+    },
+    {
+     "src": "/images/projects/aluminum-patio-cover-pool-deck-south-florida/aluminum-patio-cover-pool-deck-south-florida-project-4.avif",
+     "alt": "The covered lanai seen along the rear elevation, with the pool steps and the lounge seating."
+    },
+    {
+     "src": "/images/projects/aluminum-patio-cover-pool-deck-south-florida/aluminum-patio-cover-pool-deck-south-florida-project-5.avif",
+     "alt": "Wide view of the pool, the marble deck and the aluminum patio cover on a clear day."
+    }
+   ],
+   "tituloHtml": "Aluminum Patio Cover &amp; Pool Deck",
+   "portada": "/images/projects/aluminum-patio-cover-pool-deck-south-florida/aluminum-patio-cover-pool-deck-south-florida-project-1.avif",
+   "alt": "Solid-roof aluminum patio cover running the full width of a South Florida home, beside the pool and marble deck.",
+   "publicado": "2026-09-03"
+  }
+ ]
+}
