@@ -384,3 +384,39 @@
 .hero-about h2 {
   color: var(--mm-tinta-cuerpo);
 }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * EL H1 DE /about: EL TEXTO PISABA LA FOTO, Y ENCIMA CAMBIA DE FONDO EN EL BREAKPOINT
+ *
+ * Dos cosas distintas, y la primera es la que de verdad rompia:
+ *
+ * 1. A PARTIR DE 992 EL TEXTO SE MONTA SOBRE LA FOTO. `.block-hero-about-picture` es
+ *    `position:absolute` y ocupa el 50 % del VIEWPORT; el texto arranca al 48 % del
+ *    CONTENEDOR, que es otra caja. Medido en nueve anchos: se solapan entre 18 y 25 px en
+ *    TODOS los anchos >=992. Normalmente esos 25 px caen sobre la parte azul de la foto y no
+ *    se nota, pero a 1200 px caen sobre una zona clara -rgb(168,163,157)- y ahi el h1 se
+ *    queda en 2,50:1 contra un minimo de 3. No es «poco margen»: es un fallo.
+ *    El 52 % deja el texto por delante de la foto en los nueve anchos medidos, con 18-25 px de
+ *    aire, a cambio de estrechar la columna de 650 a 600 px a 1440.
+ *
+ * 2. EL FONDO DEL H1 CAMBIA DE LADO EN 992. El degradado de la seccion es azul arriba y CIAN
+ *    abajo. Por debajo de 992 la maqueta es en columna -foto arriba, texto debajo- y el h1 cae
+ *    sobre el cian; a partir de 992 es en fila y cae sobre el azul. Por eso ninguna tinta sola
+ *    gana en todos los anchos: en blanco daba 3,00:1 a 991 (el minimo exacto, sin margen) y en
+ *    oscuro se queda en 3,18 a 992.
+ *    La tinta sigue al fondo, y el corte coincide con el de la maqueta: oscura donde el fondo
+ *    es cian, blanca donde es azul. Por debajo de 992 el heroe queda entero en tinta oscura
+ *    -h1, h2 y parrafo-, que es ademas lo coherente.
+ *
+ * Medido despues en 13 anchos de 360 a 1920, con los flotantes ocultos y capturando la caja
+ * real de cada elemento: cero fallos y el margen mas ajustado es +14 % sobre su umbral.
+ * El h1 pasa de 2,50-3,00 en el peor caso a 4,28-6,15.
+ * ───────────────────────────────────────────────────────────────────────────── */
+.hero-about h1 {
+  color: var(--mm-tinta-cuerpo);
+}
+
+@media (min-width: 992px) {
+  .hero-about .block-hero-about { padding-left: 52%; }
+  .hero-about h1 { color: var(--mm-blanco); }
+}
