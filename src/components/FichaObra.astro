@@ -1,0 +1,88 @@
+---
+/**
+ * LA FICHA DE UNA OBRA DE AUTORIA PROPIA.
+ *
+ * Reproduce el cuerpo de las 10 fichas derivadas de `/project/` —heroe, galeria con lightbox,
+ * «Project Details» y CTA— para que una obra nuestra no se distinga de una migrada. El marcado
+ * se copio de la ficha SANA `modern-pool-motorized-pergola-south-florida`, no de una de las 8
+ * que emiten JSON-LD roto.
+ *
+ * TRES `data-w-id` REUTILIZADOS, NO INVENTADOS. Son los mismos que llevan las 10 fichas y estan
+ * los tres en `src/data/reveals.json`, asi que la entrada por scroll funciona sin tocar nada.
+ * Un `data-w-id` nuevo no casaria con ninguna clave, no recibiria `data-rev` y seria marcado
+ * que miente: una entrada por scroll que no anima nunca (`Interacciones.astro:41` y la cabecera
+ * de `src/pages/financing.astro`).
+ *
+ * DOS COSAS DEL ORIGEN QUE NO SE COPIAN, y por que:
+ *   · `<script type="text/x-wf-template">` — es el andamio del repetidor del CMS de Webflow,
+ *     una copia URL-codificada del primer item. Aqui no hay repetidor que hidratar.
+ *   · `<div class="w-dyn-hide w-dyn-empty">No items found.</div>` — el estado vacio de una
+ *     coleccion que aqui no existe: la galeria la escribimos nosotros y nunca esta vacia.
+ *
+ * Y UNA QUE SE CORRIGE: el `alt` de la galeria. En las 10 del origen viene VACIO en todas las
+ * imagenes. `check:galeria` solo lo informa, no falla por ello, pero replicar eso en contenido
+ * nuestro seria heredar un defecto a proposito. Aqui cada foto lleva su alt real.
+ */
+interface Props { obra: { tituloFicha: string; resumen: string; ubicacion: string;
+  estilo: string; tipo: string; galeria: { src: string; alt: string }[] } }
+const { obra } = Astro.props;
+---
+<section class="hero-project">
+  <div class="w-layout-blockcontainer container w-container">
+    <div class="wrapper-hero-project">
+      <div data-w-id="4e3ac630-04d8-ebcf-c5f5-c24ea7e9ba56" class="block-right-hero">
+        <h1 class="white">{obra.tituloFicha}</h1>
+        <p>{obra.resumen}</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="project-gallery">
+  <div class="w-layout-blockcontainer container w-container">
+    <div class="wrapper-project-gallery">
+      <div class="block-left-project-page">
+        <div class="w-dyn-list">
+          <div role="list" class="cms-list-workgallery w-dyn-items">
+            {obra.galeria.map((f) => (
+              <div data-w-id="333e7244-2382-3d5a-9f96-e9d5e0ad3eae" role="listitem" class="collection-item-2 w-dyn-item w-dyn-repeater-item">
+                <a href="#" class="lightbox-link-2 w-inline-block w-lightbox">
+                  <img src={f.src} loading="lazy" alt={f.alt} class="image-animation" />
+                  <script type="application/json" class="w-json" is:inline set:html={JSON.stringify({ items: [{ url: f.src, type: 'image' }], group: 'Gallery' })} />
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div class="block-right-project-page">
+        <div class="block-cta">
+          <div class="div-block-5">
+            <h2 class="blue">Project Details </h2>
+            <div class="heading-deco">Location</div>
+            <div>{obra.ubicacion}</div>
+            <div class="heading-deco">Design Style</div>
+            <div>{obra.estilo}</div>
+            <div class="heading-deco">Project Type</div>
+            <div>{obra.tipo}</div>
+          </div>
+        </div>
+        <div class="wrapper-buttons">
+          <a href="/request-estimated" class="button-styles w-button">Get a Free Estimate</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="cta-footer">
+  <div class="w-layout-blockcontainer container w-container">
+    <div class="wrapper-cta-footer">
+      <div data-w-id="1751d21a-c7f6-4875-4d5c-669cd0d5b935" class="wrapper-vertical-text">
+        <h2>Request a Design-Build Project Evaluation</h2>
+        <div class="text-block-3">Share your property details, project scope, and investment range. Our licensed design-build pool builders will review your request and confirm alignment before next steps.</div>
+        <div class="wrapper-buttons-center">
+          <a href="/request-estimated" class="button button-styles w-button">Get a Free Estimate</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

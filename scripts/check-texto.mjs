@@ -243,10 +243,10 @@ function lineasResenas() {
 }
 
 /**
- * ── EL CARRUSEL DE BLOG EN `services/`+`where-we-serve/` (R10+R11-BLOG-02) — bloque
+ * ── EL CARRUSEL DE BLOG EN `services/`+`where-we-serves/` (R10+R11-BLOG-02) — bloque
  * DECLARADO, acotado POR RUTA ──────────────────────────────────────────────────────────
  *
- * La seccion se añade a las 14 fichas de `services/` y a las 2 de `where-we-serve/`, y aporta
+ * La seccion se añade a las 14 fichas de `services/` y a las 2 de `where-we-serves/`, y aporta
  * 32 lineas de `innerText`: titulo, entradilla y 10 posts x 3 (titulo, resumen, «Read More»).
  * `baseline/text/` NO se re-baseliniza nunca (§1.1), asi que se DECLARA en vez de absorberse.
  *
@@ -313,7 +313,7 @@ function lineasBlog(ruta) {
    * que es lo que hace CSS: `Decision-Makers` se queda igual en los dos lados. Validada contra
    * el render real, no contra la especificacion.
    */
-  const capitaliza = (s) => s.replace(/(^|[\s(])(\p{Ll})/gu, (_, a, b) => a + b.toUpperCase());
+  // (la funcion vive en ambito de modulo: la usan dos derivaciones, blog y obras propias)
 
   return [
     capitaliza(norm(titulo)),
@@ -335,6 +335,82 @@ function quitaBloque(lineas, bloque) {
     }
   }
   return null;
+}
+
+/**
+ * `text-transform: capitalize` de Webflow, aplicado al DATO para poder compararlo con el
+ * `innerText` del build. Estaba dentro de `lineasBlog()`; se subio aqui al aparecer la segunda
+ * derivacion que lo necesita (§ OBRAS_PROPIAS_EN). El razonamiento largo —por que capitalize SI
+ * altera `innerText`, y por que la aproximacion «tras inicio, espacio o parentesis» coincide con
+ * lo que hace el navegador— sigue donde estaba, en la cabecera de `lineasBlog()`.
+ */
+const capitaliza = (s) => s.replace(/(^|[\s(])(\p{Ll})/gu, (_, a, b) => a + b.toUpperCase());
+
+/**
+ * ── LAS OBRAS DE AUTORIA PROPIA EN `/projects` Y EN `/` — bloque DECLARADO y DERIVADO ──────
+ *
+ * 5 obras publicadas el 3-sep-2026 que el Webflow de origen nunca tuvo. Su TARJETA aporta 3
+ * lineas a `/projects` (titulo, resumen y «View Full Project») y su SLIDE aporta 2 a `/`
+ * (titulo y «See Project»): 15 y 10 lineas de `innerText` que no estan en `baseline/text/`.
+ *
+ * Y `baseline/text/` NO SE RE-BASELINIZA NUNCA (§1.1): es la unica puerta con esa propiedad, y
+ * es lo que da permiso de reescribir marcado en las 114. Absorberlas habria sido quedarnos sin
+ * barandilla justo para estrenarla.
+ *
+ * POR QUE NO VALE NINGUNO DE LOS MECANISMOS QUE YA HAY:
+ *   · `TRADUCIDAS_A_PROPOSITO` sustituye UNA linea por OTRA. Cardinalidad 1->1: no puede
+ *     producir una linea de mas.
+ *   · `QUITADAS_A_PROPOSITO` va en la direccion contraria.
+ *   · `ANADIDAS_A_PROPOSITO` lee el bloque del `baseline/text/` de OTRA ruta, o sea de un
+ *     fichero congelado. Estas lineas no estan en el baseline de ninguna ruta: son nuestras.
+ *   · `LINEAS_ANADIDAS` cablea el texto a mano. Serian 25 lineas de copy copiadas aqui, o sea
+ *     una TERCERA copia del mismo texto —ya vive en `proyectos-propios.json` y sale de ahi al
+ *     marcado—, y tres copias empiezan iguales y dejan de serlo al primer arreglo.
+ *
+ * ASI QUE SE HACE COMO RESEÑAS Y BLOG: se DERIVA del mismo JSON que genera el marcado, y el
+ * FORMATEO se reescribe aqui. Eso ultimo no es descuido: es el parrafo de la tautologia de
+ * § reseñas —una puerta que deriva lo que espera del codigo que mide siempre sale verde—. Se
+ * comparte el DATO, nunca el formateo. Si el componente cambia el rotulo del boton o el orden
+ * de las lineas, esto se pone ROJO, que es exactamente lo que tiene que pasar: ha cambiado el
+ * texto visible de dos paginas y alguien tiene que aprobarlo.
+ *
+ * EL ANCLA `tras` HACE FALTA DE VERDAD. Las obras entran al PRINCIPIO de su lista, asi que sin
+ * ancla `quitaBloque` podria casar mas abajo. El ancla es la linea que en el baseline precede a
+ * la primera tarjeta/slide, copiada VERBATIM de `baseline/text/`.
+ *
+ * NO ES UNA REBAJA DEL UMBRAL: se quitan EXACTAMENTE esas lineas, SEGUIDAS, EN ORDEN y TRAS su
+ * ancla. El resto de las dos paginas se sigue comparando al 100 %, y si el texto cambia una
+ * coma la declaracion deja de casar y esto vuelve a rojo.
+ */
+const OBRAS_PROPIAS_EN = {
+  '/projects': {
+    forma: 'tarjeta',
+    tras: ['Explore completed pool and outdoor living projects across Florida. Discover custom '
+      + 'design, quality construction, and the craftsmanship of Mr & Mrs Outdoor Living.'],
+    motivo: 'Las 5 obras propias entran al principio de la rejilla. Las inserta '
+      + '`build-paginas.mjs` (§ OBRAS_PROPIAS) sobre el HTML del origen, que no las tiene.',
+  },
+  '/': {
+    forma: 'slide',
+    tras: ['Project Showcase',
+      'Browse our completed residential & Commercial projects and transformations'],
+    motivo: 'Las mismas 5, al principio del carrusel «Project Showcase». `/` esta en '
+      + 'NO_REGENERAR desde R9 y se mantiene a mano; sus slides se derivan del mismo JSON.',
+  },
+};
+
+/** Las lineas que aportan las obras propias en `ruta`, en orden. Vacio si la ruta no declara. */
+function lineasObras(ruta) {
+  const d = OBRAS_PROPIAS_EN[ruta];
+  if (!d) return [];
+  const f = path.join(RAIZ, 'src/data/proyectos-propios.json');
+  if (!fs.existsSync(f)) return [];
+  const obras = JSON.parse(fs.readFileSync(f, 'utf8')).obras ?? [];
+  // El titulo pasa por `capitaliza` porque va en un h2/h3 con capitalize; el resumen no, va en
+  // un <div> pelado; los rotulos de boton se escriben ya capitalizados, como en el origen.
+  return obras.flatMap((o) => (d.forma === 'tarjeta'
+    ? [capitaliza(o.titulo), o.resumen, 'View Full Project']
+    : [capitaliza(o.titulo), 'See Project']));
 }
 
 /**
@@ -380,7 +456,7 @@ function sinElBloque(ruta, hay) {
     if (lineas === null) { bloqueQueFallo = 'el bloque de reseñas (src/data/resenas.json)'; return null; }
   }
 
-  // 3 · el carrusel de blog, SOLO en services/+where-we-serve/. Los tres bloques son disjuntos.
+  // 3 · el carrusel de blog, SOLO en services/+where-we-serves/. Los tres bloques son disjuntos.
   if (BLOG_RUTAS.some((p) => ruta.startsWith(p))) {
     const bl = lineasBlog(ruta);
     if (bl.length) {
@@ -389,7 +465,21 @@ function sinElBloque(ruta, hay) {
     }
   }
 
-  // 4 · las lineas sueltas declaradas (§ LINEAS_ANADIDAS). Van al final: las tres anteriores
+  // 4 · las obras de autoria propia (§ OBRAS_PROPIAS_EN). Disjunto de los tres anteriores: ni
+  //     `/projects` ni `/` reciben el carrusel de blog por insercion, y el marcador de reseñas
+  //     de `/` cae muy por debajo del carrusel de proyectos.
+  const ob = lineasObras(ruta);
+  if (ob.length) {
+    lineas = quitaTras(lineas, OBRAS_PROPIAS_EN[ruta].tras, ob);
+    if (lineas === null) {
+      bloqueQueFallo = `el bloque de ${OBRAS_PROPIAS_EN[ruta].forma}s de las obras propias `
+        + '(src/data/proyectos-propios.json)';
+      return null;
+    }
+    conObras++;
+  }
+
+  // 5 · las lineas sueltas declaradas (§ LINEAS_ANADIDAS). Van al final: las cuatro anteriores
   //     son bloques del origen y estas son nuestras, asi que quitarlas antes movería sus anclas.
   for (const d of LINEAS_ANADIDAS) {
     if (d.rutas && !d.rutas.includes(ruta)) continue;
@@ -426,7 +516,7 @@ const ctx = await nav.newContext({ viewport: { width: 1920, height: 1080 },
   deviceScaleFactor: 1, reducedMotion: 'no-preference' });
 const pag = await ctx.newPage();
 
-let ok = 0, mal = 0, noCargaron = 0, conResenas = 0, conBlog = 0;
+let ok = 0, mal = 0, noCargaron = 0, conResenas = 0, conBlog = 0, conObras = 0;
 const rojos = [];
 
 /**
@@ -440,7 +530,7 @@ const rojos = [];
  */
 const RESENAS_ESPERADAS = lineasResenas().length ? 83 : 0;
 
-/** Las 14 fichas de `services/` + las 2 de `where-we-serve/`. Derivado del estado, igual que
+/** Las 14 fichas de `services/` + las 2 de `where-we-serves/`. Derivado del estado, igual que
  *  el de reseñas: si el dato se vacia, se esperan 0 y apagar la seccion no obliga a editar la
  *  puerta. */
 const BLOG_ESPERADAS = lineasBlog().length ? 16 : 0;
@@ -606,7 +696,24 @@ if (filtro.length) {
   console.log(`\n  ROJO blog: el bloque sale en ${conBlog} ruta(s) y se esperaban ${BLOG_ESPERADAS}.`);
 } else if (BLOG_ESPERADAS) {
   console.log(`  ok   blog: bloque declarado de ${lineasBlog().length} lineas, `
-    + `descontado en las ${conBlog} fichas de services/+where-we-serve/`);
+    + `descontado en las ${conBlog} fichas de services/+where-we-serves/`);
+}
+
+/**
+ * Las obras propias salen en DOS rutas y en ninguna mas. Si sube, se ha montado el bloque donde
+ * no tocaba; si baja, se ha caido de `/projects` o del carrusel de `/` sin que nadie lo note —
+ * que es el fallo silencioso que este contador existe para cazar.
+ */
+const OBRAS_ESPERADAS = lineasObras('/projects').length ? Object.keys(OBRAS_PROPIAS_EN).length : 0;
+if (filtro.length) {
+  if (conObras) console.log(`\n  --   obras propias: contador OMITIDO (corrida acotada). Salio en ${conObras}.`);
+} else if (conObras !== OBRAS_ESPERADAS) {
+  mal++;
+  console.log(`\n  ROJO obras propias: el bloque sale en ${conObras} ruta(s) y se esperaban ${OBRAS_ESPERADAS}`
+    + ` (${Object.keys(OBRAS_PROPIAS_EN).join(' y ')}).`);
+} else if (OBRAS_ESPERADAS) {
+  console.log(`  ok   obras propias: bloque declarado de ${lineasObras('/projects').length}+`
+    + `${lineasObras('/').length} lineas, descontado en ${conObras} rutas`);
 }
 
 if (noCargaron) {

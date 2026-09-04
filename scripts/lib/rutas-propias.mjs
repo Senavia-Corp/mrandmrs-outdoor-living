@@ -52,11 +52,47 @@
  * como `paridad`, no encuentra referencia y la SALTA EN SILENCIO.
  */
 
+/**
+ * LAS 5 OBRAS DE 2026-09-03 SON UN CASO NUEVO, y conviene verlo antes de leer la lista.
+ *
+ * `/financing` vive en la RAIZ de `src/pages`: es una pagina suelta, sin familia. Las 5 obras
+ * viven en `src/pages/project/`, o sea DENTRO de una familia de coleccion migrada, al lado de
+ * las 10 fichas que si vienen de Webflow. Son la misma URL de cara al visitante y dos cosas
+ * distintas de cara a las puertas, y es justo eso lo que hay que tener presente:
+ *
+ *   · NO estan en `_source/cms/projects.csv` ni en `routes.csv`, y no deben estarlo. Meterlas
+ *     alli les exigiria un baseline de texto y de SEO que no puede existir, y dejaria
+ *     `npm run vivo` en rojo pidiendo 5 URLs que el sitio vivo devuelve como 404.
+ *   · Sus TARJETAS en `/projects` y sus SLIDES en `/` si tocan dos paginas que SI tienen
+ *     baseline. Eso no se arregla aqui: va declarado en `check-texto.mjs` (OBRAS_PROPIAS_EN) y
+ *     en `check-seo.mjs` (PARTES_PROPIAS), cada una con su motivo.
+ *   · El dato de las 5 —titulo, resumen, portada, galeria— vive en un solo sitio,
+ *     `src/data/proyectos-propios.json`, que es lo que leen esas dos puertas y el generador.
+ */
+
 /** Ruta -> por que existe. El motivo no es adorno: es lo que hace auditable la excepcion. */
 export const RUTAS_PROPIAS = {
   '/financing': 'Escrita el 2-sep-2026. El nav mandaba a Acorn Finance con `target="_blank"` '
     + 'desde las 115 rutas: cada clic en «Financing» salia del sitio antes de explicar nada. '
     + 'Esta pagina se pone en medio y el enlace externo se queda solo en su CTA.',
+
+  // Las 5 obras publicadas el 3-sep-2026. Fotografia del cliente, copy escrito mirandola;
+  // el Webflow de origen se migro con 10 fichas y estas nunca estuvieron alli.
+  '/project/luxury-pool-raised-spa-travertine-deck-south-florida':
+    'Obra propia (3-sep-2026). Piscina rectangular con spa elevado de gresite azul y terraza '
+    + 'de travertino, en el sur de Florida.',
+  '/project/estate-pool-spa-sun-shelf-north-florida':
+    'Obra propia (3-sep-2026). Piscina geometrica con banco solar y spa elevado sobre finca '
+    + 'abierta, en el norte de Florida. Es la unica de las 5 que no es del sur.',
+  '/project/pool-raised-spa-marble-deck-south-florida':
+    'Obra propia (3-sep-2026). Piscina con banco de entrada, tumbonas dentro del agua y spa '
+    + 'elevado alicatado en blanco, con terraza de marmol de formato grande.',
+  '/project/luxury-pool-spa-aluminum-pergola-south-florida':
+    'Obra propia (3-sep-2026). Piscina y spa con pergola de aluminio de lamas sobre el porche '
+    + 'y chorros de terraza. La unica de las 5 con 6 fotos en galeria, no 5.',
+  '/project/aluminum-patio-cover-pool-deck-south-florida':
+    'Obra propia (3-sep-2026). Cubierta de aluminio de techo solido a todo lo ancho de la '
+    + 'fachada trasera, con terraza de marmol alrededor de la piscina.',
 };
 
 /** `true` si la ruta la hemos escrito nosotros y no tiene origen en Webflow. */

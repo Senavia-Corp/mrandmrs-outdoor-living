@@ -4073,3 +4073,110 @@ La barra de direcciones dinámica de iOS Safari (`position:fixed` con `inset:85p
 Playwright en macOS no simula una barra real que se colapse, así que ni este script ni
 `check-menu.mjs` pueden hablar de eso. Si vuelve a reportarse un fallo de menú en iPhone con esta
 puerta en verde, empezar por ahí.
+
+---
+
+## R14-OBRAS — 5 obras de autoría propia dentro de una familia migrada (3-sep-2026)
+
+Segunda vez que se escribe contenido que el Webflow de origen nunca tuvo, y la primera **dentro
+de una familia de colección**: `/financing` vivía suelta en la raíz de `src/pages`, y estas cinco
+viven en `src/pages/project/`, al lado de las 10 fichas migradas. Misma URL para el visitante, dos
+cosas distintas para las puertas, y ahí está todo el trabajo.
+
+### Por qué
+El cliente entregó fotografía de cinco obras terminadas. El portafolio llevaba 10 fichas desde la
+migración y ninguna posterior, así que el sitio contaba una empresa parada.
+
+### Qué se hizo
+- `src/data/proyectos-propios.json` — **la fuente única**. La leen cinco sitios: las 5 fichas,
+  `build-paginas.mjs` (tarjetas de `/projects`), `index.astro` (slides del home), `check-texto.mjs`
+  (bloque declarado) y `check-seo.mjs` (urls de las partes propias). El orden del array es el orden
+  en que salen en los dos sitios a la vez.
+- `scripts/importar-obras-propias.mjs` — la **receta** de los 26 AVIF: qué foto de origen, en qué
+  posición y con qué recorte. Se queda en el árbol aunque sea de un solo uso: sin él, rehacer una
+  imagen sería adivinar. Origen 4:3 (2400×1792) → 16:9 (1250×698), `top` elegido **por imagen
+  mirando la hoja de contactos**, nunca centrado por defecto.
+- `src/components/FichaObra.astro` + 5 `.astro` a mano en `src/pages/project/`. Reutilizan los 3
+  `data-w-id` que ya están en `reveals.json`; no se inventa ninguno. **No** se copian del origen el
+  `<script type="text/x-wf-template">` (andamio del repetidor de Webflow) ni el `w-dyn-empty` (el
+  estado vacío de una colección que aquí no existe). Sí se corrige el `alt`: las 10 del origen lo
+  traen vacío en todas las fotos de galería; estas llevan alt real.
+- `build-paginas.mjs` § `OBRAS_PROPIAS` / `OBRAS_EN` — la tarjeta **se clona de la primera del
+  origen y se le cambia el texto**, para que el marcado siga saliendo del origen y no de la memoria
+  de quien escribe. Con contador comprobado contra 5, como los otros tres del fichero. Se descartó
+  meter `/projects` en `NO_REGENERAR`: congelaría un `T0` de 12 kB en una línea y le quitaría a la
+  página la posibilidad de volver a derivarse tras un `npm run vivo`.
+- `index.astro` — `S_PROYECTOS` partida en dos literales, con los 5 slides derivados del JSON en
+  medio. A mano habría duplicado `href` y `src` justo donde ninguna puerta los compara.
+- `lib/rutas-propias.mjs` (5 entradas), `disenio/contratos.json` (5 nuevas + cláusula añadida al
+  motivo de `/projects` y de `/`), `build-seo-ficheros.mjs` (sitemap 114 → 119), `check-ix2.mjs`
+  (1 arquetipo, no 5: las cinco salen del mismo componente).
+
+### Los dos mecanismos que hubo que inventar
+`/projects` y `/` **sí** tienen baseline congelado, y ganan texto y partes de JSON-LD. No había
+forma de declararlo:
+
+- **`check-texto.mjs` § `OBRAS_PROPIAS_EN`.** `TRADUCIDAS_A_PROPOSITO` es 1 línea → 1 línea,
+  `QUITADAS_A_PROPOSITO` va al revés, `ANADIDAS_A_PROPOSITO` lee de un baseline congelado y
+  `LINEAS_ANADIDAS` cablearía 25 líneas de copy a mano — una tercera copia del mismo texto. Se hizo
+  como reseñas y blog: **se deriva del mismo JSON y el formateo se reescribe en la puerta**, por el
+  párrafo de la tautología de § reseñas. `capitaliza()` subió a ámbito de módulo al aparecer la
+  segunda derivación que lo necesita.
+- **`check-seo.mjs` § `PARTES_PROPIAS`.** Se descuentan las 5 primeras entradas de `hasPart`
+  exigiendo que sean ésas y en ese orden, y el resto del bloque se compara carácter a carácter como
+  siempre. A las añadidas se les cambia el criterio, no se les quita: `name`, `description` e
+  `image.url` no vacíos.
+- **De paso, un agujero tapado:** `check:seo` se saltaba *todo* el JSON-LD de una ruta propia. Si
+  alguien clonaba una de las 8 fichas que emiten JSON-LD roto, heredaba el defecto **y la exención**
+  y no lo veía nadie. Ahora a una ruta propia se le exige que el JSON-LD esté y parsee.
+
+### Qué se midió, y con qué comando
+
+    node scripts/importar-obras-propias.mjs   26 AVIF · 1250×698 · 99–177 KB de media por obra
+                                              (las 108 ya publicadas van de 79 a 272 KB)
+    npm run paginas                           obras propias insertadas en el indice: 5
+                                              2ª corrida idéntica: el generador es idempotente
+    PUBLIC_ES_PRODUCCION=1 npm run build      121 páginas
+    npm run check:rutas                       PUERTA VERDE — 121 en el build, 0 de más ·
+                                              las 6 rutas propias construidas
+    PUBLIC_ES_PRODUCCION=1 npm run check:seo  PUERTA VERDE — 115/115 con el head idéntico
+                                              (tras descontar las 5 partes declaradas) + 6 propias
+    npm run check:enlaces                     PUERTA VERDE — 0 assets rotos · 754/754 en git ls-files
+    npm run check:galeria                     PUERTA VERDE — 459 anclas (433 + 26), todas con su
+                                              w-json y su url
+    npm run check:ix2                         PUERTA VERDE — 13 arquetipos, 0 [data-w-id] en
+                                              opacity:0 en los 4 anchos
+
+### Qué NO se midió, y por qué
+1. **`check:assets` no ve los 26 AVIF nuevos.** Itera `_source/assets-manifest.json`, que es un
+   insumo derivado y congelado, y darlos de alta exigiría un `sanityMaster` JPEG por cada uno
+   (`check-assets.mjs:256-269`) — una comprobación que existe porque Sanity no procesa AVIF, y
+   estas obras no van a Sanity. Serían 26 JPEG en una carpeta que además está en `.gitignore`.
+   Coste real: nadie vigila bytes, sha256 ni dimensiones de estas 26. Quien quiera cerrarlo, el
+   sitio no es el manifiesto: es una comprobación nueva sobre `public/images/projects/`.
+2. **`check:texto` no mide las 5 fichas.** No tienen baseline y no pueden tenerlo. No es una
+   medición omitida: es que no hay medición posible.
+3. **Nadie comprueba que el `og:image` sea la foto correcta**, ni que el copy diga la verdad, ni
+   que el recorte 16:9 no decapite nada, ni que la foto sea de la obra que dice. Si la portada de
+   la obra 3 acabara en la ficha de la 4, todas las puertas seguirían verdes. Los 26 recortes se
+   revisaron **mirándolos** en hoja de contactos, entrada y salida; eso es todo lo que hay.
+4. **`check:carrusel` no cubre `/projects`** (sus 5 rutas fijas no la incluyen) y la parte 2 de
+   `check:galeria` sólo ejercita 2 rutas cableadas: el lightbox de las fichas nuevas no se prueba
+   de extremo a extremo.
+5. **`_source/vivo/projects.html` sigue sin las 5 tarjetas**, y así debe ser: es el origen y no se
+   toca. Las repone el generador en cada corrida, que es justo el motivo de haberlo hecho ahí.
+
+### Abierto
+- **Aprobación visual pendiente.** Las 5 fichas salen ROJAS en `check:visual` por contrato
+  `rediseno` sin referencia aprobada, y eso es lo correcto: sólo lo cierra
+  `node scripts/aprobar-diseno.mjs /project/<slug> --si` después de que Sebastián las mire a 1440
+  y 479 px. `/projects` y `/` **no se aprueban aquí**: siguen pendientes de R12/R9 y hornearlas
+  ahora congelaría un estado que esos encargos todavía van a cambiar.
+- **La cabecera de `src/pages/financing.astro` está caducada.** Dice que
+  `build-plantillas.mjs:357,648` hace `readdirSync` + `unlinkSync` sobre las carpetas de familia y
+  que por eso la página tiene que vivir en la raíz. Hoy ese fichero (656 líneas) **no escribe ni
+  borra nada**: no tiene `unlink`, ni `readdir`, ni una sola llamada de escritura, y el único
+  `unlinkSync` de todo `scripts/` está en `download-assets.mjs:119` sobre un `.tmp.avif`. Esa es la
+  razón por la que estas 5 sí pueden vivir en `src/pages/project/`. El aviso sigue siendo válido a
+  futuro: si algún día la Fase 6b convierte la familia `project` a plantilla de Sanity, se llevaría
+  por delante los `.astro` estáticos — los 5 nuestros y también los 10 migrados.

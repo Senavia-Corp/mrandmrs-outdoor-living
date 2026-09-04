@@ -92,7 +92,14 @@ const RUTAS = ['/', '/about', '/gallery', '/contact-us', '/videos', '/brochures'
   '/pool-builders/alachua-florida', '/project/modern-pool-motorized-pergola-south-florida',
   '/blogs/top-10-luxury-pool-designs-for-florida-homes',
   '/country/custom-pool-builders-alachua-county-fl',
-  '/financing'];
+  '/financing',
+  // Arquetipo de las 5 fichas de autoria propia de `/project/`: las cinco salen del mismo
+  // componente (`src/components/FichaObra.astro`) con el mismo marcado, asi que una las
+  // representa. Entra por lo que NO es de IX2 —el `scrollX` a 479 y 991 px—, igual que
+  // `/financing`: es marcado nuestro, no marcado de Webflow ya cuadrado, y su desbordamiento
+  // horizontal no lo mide ninguna otra puerta (check:visual compara pixeles contra una
+  // referencia nuestra, que es otra cosa).
+  '/project/luxury-pool-spa-aluminum-pergola-south-florida'];
 const ANCHOS = [[1920, 1080], [1440, 900], [991, 800], [479, 850]];
 
 const TIPO = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript',

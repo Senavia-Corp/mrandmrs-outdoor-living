@@ -1,0 +1,35 @@
+---
+/**
+ * RUTA DE AUTORIA PROPIA — NO ES DERIVADA, y por eso no lleva la cabecera «no editar a mano»
+ * que si llevan sus 10 hermanas de esta carpeta.
+ *
+ * `build-paginas.mjs` no la toca: itera `_source/routes.csv` (`:239-244`) y este slug no esta
+ * ahi. Y NO se da de alta alli a proposito: `routes.csv` es derivado de `_source/cms/*.csv`,
+ * asi que meter una fila crearia una ruta que `check:texto` y `check:seo` exigirian comparar
+ * contra un baseline que NO PUEDE EXISTIR —el Webflow de origen nunca sirvio esta pagina—, y
+ * ademas dejaria `npm run vivo` en rojo pidiendo una URL que devuelve 404.
+ *
+ * Donde SI esta declarada, que es lo que la hace legitima ante las puertas:
+ *   · `scripts/lib/rutas-propias.mjs`  -> check:rutas deja de contarla como «de mas»;
+ *                                          check:seo la mide con criterio propio;
+ *                                          check:visual llega a mirarla.
+ *   · `disenio/contratos.json`          -> contrato `rediseno`: sin el, check:visual la trataria
+ *                                          como `paridad` y la saltaria EN SILENCIO para siempre.
+ *   · `scripts/build-seo-ficheros.mjs`  -> adicion deliberada al sitemap.
+ *
+ * `LD_CRUDO` VACIO Y NO ES UN OLVIDO: 8 de las 10 fichas derivadas emiten JSON-LD que no parsea
+ * y lo replican crudo por contrato. El nuestro sale de `seoDeObra()` como objeto y lo serializa
+ * `Base.astro:182`, asi que no hay nada crudo que emitir.
+ */
+import Base from '../../layouts/Base.astro';
+import FichaObra from '../../components/FichaObra.astro';
+import { seoDeObra } from '../../lib/obras.mjs';
+import OBRAS from '../../data/proyectos-propios.json';
+
+const OBRA = OBRAS.obras.find((o) => o.slug === 'luxury-pool-raised-spa-travertine-deck-south-florida');
+const SEO = seoDeObra(OBRA);
+const LD_CRUDO = [];
+---
+<Base titulo={OBRA.seo.titulo} descripcion={OBRA.seo.descripcion} ruta={`/project/${OBRA.slug}`} seo={SEO} jsonLdCrudo={LD_CRUDO}>
+  <FichaObra obra={OBRA} />
+</Base>
