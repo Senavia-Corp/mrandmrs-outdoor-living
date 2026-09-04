@@ -29,6 +29,7 @@ import Formularios from '../components/Formularios.astro';
 // fontsource el nav salía al 95,85 % contra el baseline porque un a.nav-link medía 57,35 px
 // en vez de 59,54. Ver scripts/fetch-fuentes.mjs.
 import '../styles/fuentes.css';
+import fuentesCrudo from '../styles/fuentes.css?raw';
 import '../styles/webflow.css';
 /**
  * LA CAPA DE DISENO (fase R7). El orden es el contrato, y gana por ORDEN, no por peso:
@@ -155,6 +156,36 @@ const { titulo, descripcion, ruta = Astro.url.pathname, conPie = true, seo = {},
  * en preview no se emite canónica y se emite noindex.
  */
 const ES_PRODUCCION = import.meta.env.PUBLIC_ES_PRODUCCION === '1';
+
+/**
+ * PRECARGA DE LAS DOS CARAS DE INTER QUE PINTA EL NAV.
+ *
+ * MEDIDO: el mayor desplazamiento de 4 de las 6 plantillas es `div.wrapper-menu` —los enlaces
+ * del nav— y Lighthouse lo atribuye a `inter-…woff2`. Es un reflujo HORIZONTAL: `y,alto` no
+ * cambian (`0,85 -> 0,85`), cambia el ancho del texto cuando la fuente entra y sustituye a
+ * Arial. Con `font-display: swap` y sin precarga, esa ventana dura lo que tarde la fuente, y
+ * bajo el estrangulamiento de Lighthouse eso son 0.0978 (`/`) a 0.1564 (`/services/*`) de CLS.
+ *
+ * LAS URLS SE SACAN DE `fuentes.css`, NO SE CABLEAN. Ese fichero es DERIVADO
+ * (`scripts/fetch-fuentes.mjs`) y los nombres llevan el hash de Google: cablearlos aqui
+ * significa que la proxima regeneracion deja dos `<link rel=preload>` apuntando a ficheros que
+ * ya no existen —y un preload roto no da error, solo deja de servir—. Se filtra por
+ * `unicode-range` del subconjunto `latin` (empieza en U+0000-00FF), que es el unico que pinta
+ * texto ingles, y por las dos familias que usa el cascaron.
+ *
+ * SALEN DOS, uno por familia, y no por recorte: las 5 caras latinas de Inter comparten el
+ * MISMO .woff2 —es variable— y otro tanto Montserrat. Precargar las 46 declaraciones seria
+ * pelear con la propia pagina por el ancho de banda; aqui no hay nada que recortar.
+ */
+const FUENTES_PRECARGA = [...new Set([...String(fuentesCrudo).matchAll(/@font-face\s*\{([^}]*)\}/g)]
+  .map((m) => m[1])
+  // El subconjunto `latin` es el unico que pinta texto ingles; su rango empieza en U+0000-00FF.
+  .filter((b) => /unicode-range:\s*U\+0000-00FF/.test(b))
+  // Y solo la redonda: la cursiva no la pinta nada del cascaron, y un preload que el
+  // navegador no usa en los primeros segundos sale en consola como aviso y gasta banda.
+  .filter((b) => /font-style:\s*normal/.test(b))
+  .map((b) => b.match(/url\((\/fonts\/[^)]+)\)/)?.[1])
+  .filter(Boolean))];
 const canonica = ES_PRODUCCION ? new URL(ruta, Astro.site).href : null;
 /**
  * `og:image` y `twitter:image` tienen que ser ABSOLUTAS: los rastreadores sociales no
@@ -172,6 +203,9 @@ const jsonLd = seo.jsonLd ?? [];
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {FUENTES_PRECARGA.map((u) => (
+      <link rel="preload" href={u} as="font" type="font/woff2" crossorigin="anonymous" />
+    ))}
     <title>{titulo}</title>
     {descripcion && <meta name="description" content={descripcion} />}
     {Object.entries(meta).map(([k, v]) => (k.startsWith('og:')

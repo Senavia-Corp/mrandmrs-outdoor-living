@@ -4,6 +4,7 @@
 // Ambos son idempotentes: mismas entradas -> mismo fichero, byte a byte.
 import fs from 'node:fs';
 import path from 'node:path';
+import { RENOMBRADAS } from './lib/renombradas.mjs';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const CMS = path.join(ROOT, '_source/cms');
@@ -64,7 +65,7 @@ for (const [base, col, tpl] of COLECCIONES) {
   for (const item of load(col)) {
     if (item.Archived === 'true') continue;
     const r = `${base}/${item.Slug}`;
-    rutas.push([r, 'coleccion', col, tpl, enSitemap(r)]);
+    rutas.push([RENOMBRADAS.get(r) ?? r, 'coleccion', col, tpl, enSitemap(r)]);
   }
 }
 fs.writeFileSync(path.join(ROOT, '_source/routes.csv'), csv(rutas));

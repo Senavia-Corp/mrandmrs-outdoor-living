@@ -17,6 +17,16 @@
       "source": "/commercial-services/commercial-pool-renovations-north-south-florida",
       "destination": "/services/pool-remodeling-renovation-in-north-south-florida",
       "permanent": true
+    },
+    {
+      "source": "/where-we-serves/custom-pool-builders-north-florida",
+      "destination": "/where-we-serve/north-florida",
+      "permanent": true
+    },
+    {
+      "source": "/where-we-serves/custom-pool-builders-south-florida",
+      "destination": "/where-we-serve/south-florida",
+      "permanent": true
     }
   ]
 }

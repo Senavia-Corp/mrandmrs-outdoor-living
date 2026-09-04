@@ -98,6 +98,119 @@ componentes propios: **click-to-call**, **reseñas de Google** y **feed de Insta
    visitante**; el contenido se hornea en el build. Pendiente de los accesos del cliente. No
    bloquea las Fases 4, 5 ni 6.
 
+### D4 · El JSON-LD roto de las 8 `/project/*` se REPARA, no se replica   — Sebastian, 03-sep-2026 ✅
+El contrato de paridad decía replicar el origen byte a byte, y por eso 8 de las 10 fichas de
+proyecto publicaban structured data que **ningún parser acepta**: el `description` del CMS de
+Webflow acaba en salto de línea y Webflow lo interpola CRUDO dentro de la cadena JSON.
+Reproducido en las 8, mismo error y misma línea:
+
+```
+$ node -e '...JSON.parse sobre LD_CRUDO de src/pages/project/*.astro...'
+FALLA luxury-pool-motorized-pergola-screens-south-florida [0] :: Bad control character in
+      string literal in JSON at position 443 (line 6 column 307)
+   (... 7 más, todas «line 6», que es la línea del campo `description`)
+```
+
+No es una mejora de contenido: es **sintáctica**. El valor de la cadena es idéntico —lo único
+que cambia es cómo se codifica el salto de línea—, así que no se toca ni una palabra. Replicar
+un defecto que solo perjudica, cuando repararlo no cambia el contenido, era paridad mal
+entendida: Google Rich Results no puede leer esos 8 bloques y nadie gana nada.
+
+**Esto es una desviación deliberada de la paridad, y arrastra cuatro cosas:**
+
+1. **El arreglo va en el GENERADOR, no en los `.astro`.** Las 10 de `/project/` están marcadas
+   `DERIVADO - no editar a mano`; escapar el carácter a mano se pierde en el próximo
+   `npm run paginas`. `build-paginas.mjs` intenta `JSON.parse` **primero sin sanear** —así las 2
+   sanas no pasan por el saneador y no hay forma de que esto les toque un byte— y solo si falla
+   escapa los caracteres de control dentro de los literales de cadena. Lo que no repare sigue
+   saliendo CRUDO por el `catch` de siempre: el mecanismo viejo no se ha borrado.
+2. **`baseline/seo.json` deja de guardar el envoltorio.** Las 8 entradas guardaban
+   `{__sinParsear, __error}` con el texto crudo. Ahora guardan el objeto parseado con las claves
+   ordenadas, derivado del origen versionado `_source/vivo/project_*.html`. Comprobado antes de
+   sustituir: la cadena del baseline y la del origen coinciden **byte a byte en las 8**, y
+   ninguna llegaba al tope de 2000 caracteres de `capture-baseline.mjs:213`, o sea que no había
+   truncado que reconstruir.
+3. **`check-seo.mjs` deja de saltarse esos bloques.** Su línea `if (e.__sinParsear !== undefined)
+   continue;` era un agujero declarado: los 8 no se comparaban con nada. Retirada — ahora los 10
+   se comparan como todos los demás. La puerta gana cobertura, no la pierde.
+4. **`check-baseline.mjs` invierte su criterio.** Exigía que el conjunto roto fuera EXACTAMENTE
+   esas 8; ahora exige que **no haya ninguna**. Si el capturador vuelve a traer un bloque que no
+   parsea, sigue saliendo rojo. Ojo: **`check:baseline` no está en `npm run check`** y hay que
+   lanzarlo aparte.
+
+### D5 · `/brochures` recibe la meta description y el JSON-LD que el origen no tiene   — Sebastian, 03-sep-2026 ✅
+Es la **única** página de contenido real que sale de Webflow sin ninguno de los dos
+(`SEO-URLS-PLAN.md` hallazgo 4). `/pool-investment-estimator` también los tiene vacíos, pero ese
+ya estaba declarado como excepción (`SIN_HEAD_DE_WEBFLOW` en `check-seo.mjs`, cabecera propia de
+4 etiquetas); este no: es un hueco de verdad.
+
+**Esto es una desviación deliberada de la paridad, y arrastra dos cosas:**
+
+1. **Va en el generador, en una tabla declarada.** `HUECOS_SEO` en `build-paginas.mjs`, aplicada
+   justo antes de escribir y con guarda: si algún día el origen SÍ trae description o JSON-LD
+   para esa ruta, la corrida se para y avisa de que sobra la entrada. No se toca
+   `_source/vivo/brochures.html` —que es el origen— ni el `.astro`, que es DERIVADO.
+2. **La descripción NO es copy inventado.** Es la entradilla que la propia página ya muestra en
+   `div.text-block-4`, 150 caracteres, dentro de rango. Escribir texto nuevo es de la sesión de
+   SEO de contenido, no de esta. El JSON-LD copia la forma de `/gallery` y `/videos`
+   (`CollectionPage` con `about` → `Organization`), que son las dos páginas índice comparables.
+   `baseline/seo.json` recoge las dos adiciones, o `check:seo` saldría rojo por «meta de más» y
+   por número de bloques.
+
+### D6 · El pie enlaza las 3 legales PROPIAS, y una de ellas cuesta texto   — Sebastian, 03-sep-2026 ✅
+`/articles/accessibility`, `/articles/privacy-policy` y `/articles/terms-conditions` existían,
+estaban en el sitemap y **no las enlazaba nadie**: 0 enlaces internos en las 116 páginas, medido
+por BFS desde `/` sobre todos los `href` del body (`SEO-URLS-PLAN.md` hallazgo 3). El pie
+enlazaba las legales a `mrandmrsoutdoorsliving.com` —con «s», otro dominio que responde 200 con
+contenido real del cliente—, o sea dos dominios sirviendo el mismo contenido legal en paralelo.
+
+**Esto NO decide qué hacer con el dominio con «s»** (301 o canonical cruzada). Eso sigue
+pendiente de Sebastian. El propio `SEO-URLS-PLAN.md` deja el pie enlazando la ruta local en LAS
+DOS ramas de esa decisión: una página sin ningún enlace interno no se arregla con una canonical,
+se arregla enlazándola.
+
+**Esto es una desviación deliberada de la paridad, y arrastra tres cosas:**
+
+1. **Dos de las tres cuestan CERO texto.** «Terms of Service» y «Privacy Policy» ya existían en
+   el pie: solo cambia su `href` (y se les cae el `target="_blank"`, que en un enlace interno
+   rompe el botón de atrás). Se declaran en `CON_PAGINA_PROPIA` de `build-shell.mjs`, la tabla
+   que ya existía para el enlace de financing.
+2. **La tercera es TEXTO VISIBLE NUEVO en las 114 rutas con pie.** El origen no trae ningún
+   enlace de accesibilidad que reapuntar, así que hay que **añadirlo**: `<a class="link-3">
+   Accessibility</a>` al final de `div.div-block-8`, que es flex con gap y donde `.link-3` ya
+   está estilada —cero CSS nuevo—. Va declarado en `LINEAS_ANADIDAS` de `check-texto.mjs`,
+   anclado a las dos líneas que lo preceden. **El ancla hace falta de verdad**: «Accessibility»
+   es también el encabezado propio de `/articles/accessibility`, y sin ancla se quitaría ESE y
+   el del pie se quedaría, desordenando la comparación de esa ruta.
+3. **`Footer.astro` se edita A MANO y ADEMÁS se declara en el generador**, que es el patrón que
+   ya dejó escrito el arreglo del logo del pie: `build-shell.mjs` hace `fetch` al sitio vivo, así
+   que regenerar arrastraría cualquier deriva que Webflow haya tenido desde la migración. La
+   declaración (`CON_PAGINA_PROPIA` + la tabla nueva `ENLACES_ANADIDOS`) está para que el día
+   que alguien SÍ regenere, el arreglo siga puesto — y hereda el aborto duro de las declaraciones
+   que no casan con nada.
+
+### D7 · Los dos estimadores reciben un `<h1>`, oculto a la vista   — Sebastian, 03-sep-2026 ✅
+`/pool-cost-estimator` y `/pool-investment-estimator` salían de Webflow con **cero encabezados**
+—0 `<h1>` y 0 `<h2>`, medido sobre el build; los únicos son los 6 `h3.pe-h3` de los pasos—. Sin
+encabezado no hay señal de tema para el crawler en las dos páginas que probablemente más
+conversión mueven (`SEO-URLS-PLAN.md` hallazgo 5). Y no había nada que promocionar: la primera
+línea de texto de `baseline/text/pool-investment-estimator.txt` es «Step 1 of 7».
+
+**Esto es una desviación deliberada de la paridad, y arrastra dos cosas:**
+
+1. **VA OCULTO A LA VISTA, y es una decisión, no un descuido.** Un `<h1>` pintado sería una
+   sección visible que el diseño del origen no tiene: rompe el Principio 1 —no inventar
+   secciones— y pondría `check:visual` en rojo en dos rutas con contrato de PARIDAD, que habría
+   que re-aprobar. Oculto da exactamente lo que pedía el hallazgo —la señal semántica para el
+   crawler y para un lector de pantalla— sin mover un píxel. Si se quiere visible, es un cambio
+   de diseño y va con su re-aprobación visual, no aquí.
+2. **`innerText` SÍ incluye el texto recortado** —comprobado en el mismo Chromium que usa la
+   puerta: un `<h1>` con `clip-path:inset(50%)` sale en `document.body.innerText`—, así que
+   ocultarlo no esquiva `check:texto`. La línea va declarada por ruta en `LINEAS_ANADIDAS`. El
+   mecanismo es nuevo pero **no rebaja el umbral**: quita EXACTAMENTE esa línea y todo lo demás
+   se sigue comparando al 100 %. Los dos textos salen a 0 en el baseline entero, comprobado,
+   así que no hay ambigüedad sobre qué línea se quita.
+
 
 ---
 

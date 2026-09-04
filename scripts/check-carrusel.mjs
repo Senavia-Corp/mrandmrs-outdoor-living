@@ -64,7 +64,7 @@ const casa = (r) => !filtro.length || filtro.some((f) => r.includes(f));
 
 const RUTAS = [
   '/',
-  '/where-we-serves/custom-pool-builders-north-florida',
+  '/where-we-serve/north-florida',
   '/country/custom-pool-builders-marion-county-fl',
   '/pool-builders/gainesville-florida',
 ].filter(casa);

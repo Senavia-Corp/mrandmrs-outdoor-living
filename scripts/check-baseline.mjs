@@ -156,29 +156,24 @@ console.log('\n── 5. el SEO capturado tiene sentido');
 const sinTitulo = RUTAS.filter((r) => !seo[r]?.title?.trim());
 check(`${N - sinTitulo.length}/${N} con <title>`, sinTitulo.length === 0, `${sinTitulo.length} sin título`);
 lista(sinTitulo);
-// El JSON-LD de estas 8 fichas de proyecto NO parsea, y el defecto es DEL ORIGEN: el campo
-// `description` del CMS acaba en salto de línea y Webflow lo interpola crudo dentro de la
+// El JSON-LD de estas 8 fichas de proyecto NO parsea EN EL ORIGEN, y el defecto es de Webflow:
+// el campo `description` del CMS acaba en salto de línea y lo interpola crudo dentro de la
 // cadena JSON. Error real, medido sobre el HTML servido:
 //     Bad control character in string literal in JSON at position 443
-// O sea que esas 8 páginas publican structured data que ningún parser acepta, Google
-// incluido. Se replica tal cual (contrato) y está anotado como mejora candidata.
+// O sea que esas 8 páginas publican structured data que ningún parser acepta, Google incluido.
 //
-// No se baja el listón: se exige que el conjunto sea EXACTAMENTE este. Si aparece una novena
-// o una de estas se arregla sola, el baseline ya no describe el mismo sitio y hay que mirarlo.
-const LD_ROTO_EN_ORIGEN = new Set([
-  '/project/luxury-pool-motorized-pergola-screens-south-florida',
-  '/project/luxury-pool-pergola-outdoor-living-south-florida',
-  '/project/luxury-pool-spa-screen-enclosure-north-florida',
-  '/project/luxury-pool-spa-with-screen-enclosure-north-florida',
-  '/project/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida',
-  '/project/luxury-pool-motorized-pergola-screen-enclosure-north-florida',
-  '/project/luxury-pool-pergola-outdoor-kitchen-south-florida',
-  '/project/residential-pool-pergola-outdoor-dining-north-florida',
-]);
+// SE REPARAN DESDE EL 3-SEP-2026 (D4 en MIGRACION-LOG.md). `build-paginas.mjs` escapa el
+// carácter de control antes de parsear, y `baseline/seo.json` guarda ya el objeto parseado en
+// vez del envoltorio `{__sinParsear, __error}`. Por eso el conjunto esperado es VACÍO.
+//
+// No se baja el listón — se invierte: antes se exigía que fueran EXACTAMENTE esas 8; ahora se
+// exige que NO HAYA NINGUNA. Si el capturador vuelve a traer un bloque que no parsea, esto sale
+// rojo igual que antes, y ademas `check-seo.mjs` ya no se salta ningún bloque.
+const LD_ROTO_EN_ORIGEN = new Set([]);
 const ldMal = RUTAS.filter((r) => (seo[r]?.jsonLd ?? []).some((x) => x.__sinParsear));
 const ldNuevas = ldMal.filter((r) => !LD_ROTO_EN_ORIGEN.has(r));
 const ldArregladas = [...LD_ROTO_EN_ORIGEN].filter((r) => !ldMal.includes(r));
-check(`JSON-LD roto: exactamente las ${LD_ROTO_EN_ORIGEN.size} del origen`,
+check(`JSON-LD roto: ninguno (las ${8} del origen, reparadas — D4)`,
   ldNuevas.length === 0 && ldArregladas.length === 0,
   `${ldNuevas.length} nuevas · ${ldArregladas.length} que ya no lo están`);
 lista([...ldNuevas.map((r) => `NUEVA ${r}`), ...ldArregladas.map((r) => `YA NO ${r}`)]);

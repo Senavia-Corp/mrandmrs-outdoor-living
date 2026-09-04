@@ -309,12 +309,27 @@
   "lang": "en",
   "meta": {
    "og:title": "Brochures",
-   "twitter:title": "Brochures"
+   "twitter:title": "Brochures",
+   "description": "Dive into the details. Explore our digital catalogs for in-depth details, design inspiration, and premium materials for your custom backyard projects."
   },
   "h1": [
    "Outdoor Living Brochures"
   ],
-  "jsonLd": []
+  "jsonLd": [
+   {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "about": {
+     "@type": "Organization",
+     "description": "Licensed design-build contractor specializing in luxury pool construction, outdoor living spaces, pergolas, and custom outdoor projects across North and South Florida.",
+     "name": "Mr. and Mrs. Outdoor Living"
+    },
+    "description": "Digital catalogs with materials, finishes and design details for custom pool and outdoor living projects in North & South Florida.",
+    "inLanguage": "en",
+    "name": "Outdoor Living Brochures",
+    "url": "/brochures"
+   }
+  ]
  },
  "/contact-us": {
   "title": "Contact Florida Pool Builders & Outdoor Living Design-Build Contractors",
@@ -5061,8 +5076,31 @@
   ],
   "jsonLd": [
    {
-    "__sinParsear": "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"WebPage\",\n  \"name\": \"Luxury Pool &amp; Motorized Pergola with Screens South Florida\",\n  \"description\": \"This luxury outdoor living project in South Florida features a custom pool paired with a motorized pergola, integrated LED lighting, and retractable screens. The design creates a shaded, climate-controlled space ideal for entertaining while maintaining a clean, modern architectural look.\n\",\n  \"url\": \"/project/luxury-pool-motorized-pergola-screens-south-florida\",\n  \"inLanguage\": \"en\",\n  \"datePublished\": \"2025-12-28T18:32:33.401Z\",\n  \"dateModified\": \"2025-12-28T18:32:33.401Z\",\n  \"image\": {\n    \"@type\": \"ImageObject\",\n    \"url\": \"https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/6951777bfebab37abc8cb3d0_luxury-pool-motorized-pergola-screens-south-florida-1.avif\",\n    \"description\": \"Luxury pool with motorized pergola, LED lighting, and retractable screens in a modern South Florida backyard.\"\n  },\n  \"about\": {\n    \"@type\": \"Project\",\n    \"name\": \"Luxury Pool &amp; Motorized Pergola with Screens South Florida\",\n    \"description\": \"This luxury outdoor living project in South Florida features a custom pool paired with a motorized pergola, integrated LED lighting, and retractable screens. The design creates a shaded, climate-controlled space ideal for entertaining while maintaining a clean, modern architectural look.\n\",\n    \"location\": {\n      \"@type\": \"Place\",\n      \"name\": \"South Florida\"\n    },\n    \"additionalType\": \"Residential\",\n    \"image\": \"https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/6951777bfebab37abc8cb3d0_luxury-pool-motorized-pergola-screens-south-florida-1.avif\",\n    \"keywords\": \"Modern Contemporary\"\n  }\n}\n",
-    "__error": "Bad control character in string literal in JSON at position 443 (line 6 column 307)"
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "about": {
+     "@type": "Project",
+     "additionalType": "Residential",
+     "description": "This luxury outdoor living project in South Florida features a custom pool paired with a motorized pergola, integrated LED lighting, and retractable screens. The design creates a shaded, climate-controlled space ideal for entertaining while maintaining a clean, modern architectural look.\n",
+     "image": "https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/6951777bfebab37abc8cb3d0_luxury-pool-motorized-pergola-screens-south-florida-1.avif",
+     "keywords": "Modern Contemporary",
+     "location": {
+      "@type": "Place",
+      "name": "South Florida"
+     },
+     "name": "Luxury Pool &amp; Motorized Pergola with Screens South Florida"
+    },
+    "dateModified": "2025-12-28T18:32:33.401Z",
+    "datePublished": "2025-12-28T18:32:33.401Z",
+    "description": "This luxury outdoor living project in South Florida features a custom pool paired with a motorized pergola, integrated LED lighting, and retractable screens. The design creates a shaded, climate-controlled space ideal for entertaining while maintaining a clean, modern architectural look.\n",
+    "image": {
+     "@type": "ImageObject",
+     "description": "Luxury pool with motorized pergola, LED lighting, and retractable screens in a modern South Florida backyard.",
+     "url": "https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/6951777bfebab37abc8cb3d0_luxury-pool-motorized-pergola-screens-south-florida-1.avif"
+    },
+    "inLanguage": "en",
+    "name": "Luxury Pool &amp; Motorized Pergola with Screens South Florida",
+    "url": "/project/luxury-pool-motorized-pergola-screens-south-florida"
    }
   ]
  },
@@ -5086,8 +5124,31 @@
   ],
   "jsonLd": [
    {
-    "__sinParsear": "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"WebPage\",\n  \"name\": \"Luxury Pool &amp; Pergola Outdoor Living South Florida\",\n  \"description\": \"This luxury outdoor living project in South Florida features a custom swimming pool with integrated spa, aluminum pergola, and expansive patio. The design balances modern architecture with tropical landscaping, creating a refined outdoor environment for relaxation and entertaining.\n\",\n  \"url\": \"/project/luxury-pool-pergola-outdoor-living-south-florida\",\n  \"inLanguage\": \"en\",\n  \"datePublished\": \"2025-12-28T18:25:28.527Z\",\n  \"dateModified\": \"2025-12-28T18:25:15.195Z\",\n  \"image\": {\n    \"@type\": \"ImageObject\",\n    \"url\": \"https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/695175762b48d3ab1d8f808a_luxury-pool-pergola-outdoor-living-south-florida-1.avif\",\n    \"description\": \"Luxury pool with spa and aluminum pergola surrounded by tropical landscaping in South Florida residential outdoor living project.\"\n  },\n  \"about\": {\n    \"@type\": \"Project\",\n    \"name\": \"Luxury Pool &amp; Pergola Outdoor Living South Florida\",\n    \"description\": \"This luxury outdoor living project in South Florida features a custom swimming pool with integrated spa, aluminum pergola, and expansive patio. The design balances modern architecture with tropical landscaping, creating a refined outdoor environment for relaxation and entertaining.\n\",\n    \"location\": {\n      \"@type\": \"Place\",\n      \"name\": \"South Florida\"\n    },\n    \"additionalType\": \"Residential\",\n    \"image\": \"https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/695175762b48d3ab1d8f808a_luxury-pool-pergola-outdoor-living-south-florida-1.avif\",\n    \"keywords\": \"Modern Tropical\"\n  }\n}\n",
-    "__error": "Bad control character in string literal in JSON at position 429 (line 6 column 301)"
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "about": {
+     "@type": "Project",
+     "additionalType": "Residential",
+     "description": "This luxury outdoor living project in South Florida features a custom swimming pool with integrated spa, aluminum pergola, and expansive patio. The design balances modern architecture with tropical landscaping, creating a refined outdoor environment for relaxation and entertaining.\n",
+     "image": "https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/695175762b48d3ab1d8f808a_luxury-pool-pergola-outdoor-living-south-florida-1.avif",
+     "keywords": "Modern Tropical",
+     "location": {
+      "@type": "Place",
+      "name": "South Florida"
+     },
+     "name": "Luxury Pool &amp; Pergola Outdoor Living South Florida"
+    },
+    "dateModified": "2025-12-28T18:25:15.195Z",
+    "datePublished": "2025-12-28T18:25:28.527Z",
+    "description": "This luxury outdoor living project in South Florida features a custom swimming pool with integrated spa, aluminum pergola, and expansive patio. The design balances modern architecture with tropical landscaping, creating a refined outdoor environment for relaxation and entertaining.\n",
+    "image": {
+     "@type": "ImageObject",
+     "description": "Luxury pool with spa and aluminum pergola surrounded by tropical landscaping in South Florida residential outdoor living project.",
+     "url": "https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/695175762b48d3ab1d8f808a_luxury-pool-pergola-outdoor-living-south-florida-1.avif"
+    },
+    "inLanguage": "en",
+    "name": "Luxury Pool &amp; Pergola Outdoor Living South Florida",
+    "url": "/project/luxury-pool-pergola-outdoor-living-south-florida"
    }
   ]
  },
@@ -5111,8 +5172,31 @@
   ],
   "jsonLd": [
    {
-    "__sinParsear": "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"WebPage\",\n  \"name\": \"Luxury Pool &amp; Spa with Screen Enclosure North Florida\",\n  \"description\": \"This luxury outdoor living project in North Florida features a custom pool and spa enclosed within a full screen structure, paired with a modern outdoor kitchen. The design maximizes comfort, privacy, and protection while creating a functional space ideal for year-round enjoyment.\n\",\n  \"url\": \"/project/luxury-pool-spa-screen-enclosure-north-florida\",\n  \"inLanguage\": \"en\",\n  \"datePublished\": \"2025-12-28T19:27:12.294Z\",\n  \"dateModified\": \"2025-12-28T18:42:44.853Z\",\n  \"image\": {\n    \"@type\": \"ImageObject\",\n    \"url\": \"https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/6951790ed422d65521219e78_luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-1.avif\",\n    \"description\": \"Luxury pool and spa with screen enclosure and outdoor kitchen in a North Florida backyard.\"\n  },\n  \"about\": {\n    \"@type\": \"Project\",\n    \"name\": \"Luxury Pool &amp; Spa with Screen Enclosure North Florida\",\n    \"description\": \"This luxury outdoor living project in North Florida features a custom pool and spa enclosed within a full screen structure, paired with a modern outdoor kitchen. The design maximizes comfort, privacy, and protection while creating a functional space ideal for year-round enjoyment.\n\",\n    \"location\": {\n      \"@type\": \"Place\",\n      \"name\": \"North Florida\"\n    },\n    \"additionalType\": \"Residential\",\n    \"image\": \"https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/6951790ed422d65521219e78_luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-1.avif\",\n    \"keywords\": \"Modern Florida\"\n  }\n}\n",
-    "__error": "Bad control character in string literal in JSON at position 431 (line 6 column 300)"
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "about": {
+     "@type": "Project",
+     "additionalType": "Residential",
+     "description": "This luxury outdoor living project in North Florida features a custom pool and spa enclosed within a full screen structure, paired with a modern outdoor kitchen. The design maximizes comfort, privacy, and protection while creating a functional space ideal for year-round enjoyment.\n",
+     "image": "https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/6951790ed422d65521219e78_luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-1.avif",
+     "keywords": "Modern Florida",
+     "location": {
+      "@type": "Place",
+      "name": "North Florida"
+     },
+     "name": "Luxury Pool &amp; Spa with Screen Enclosure North Florida"
+    },
+    "dateModified": "2025-12-28T18:42:44.853Z",
+    "datePublished": "2025-12-28T19:27:12.294Z",
+    "description": "This luxury outdoor living project in North Florida features a custom pool and spa enclosed within a full screen structure, paired with a modern outdoor kitchen. The design maximizes comfort, privacy, and protection while creating a functional space ideal for year-round enjoyment.\n",
+    "image": {
+     "@type": "ImageObject",
+     "description": "Luxury pool and spa with screen enclosure and outdoor kitchen in a North Florida backyard.",
+     "url": "https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/6951790ed422d65521219e78_luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-1.avif"
+    },
+    "inLanguage": "en",
+    "name": "Luxury Pool &amp; Spa with Screen Enclosure North Florida",
+    "url": "/project/luxury-pool-spa-screen-enclosure-north-florida"
    }
   ]
  },
@@ -5136,8 +5220,31 @@
   ],
   "jsonLd": [
    {
-    "__sinParsear": "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"WebPage\",\n  \"name\": \"Luxury Pool &amp; Spa with Screen Enclosure North Florida\",\n  \"description\": \"This North Florida outdoor living project features a custom pool and raised spa enclosed within a full screen structure. The design enhances comfort, privacy, and protection while creating a seamless transition between indoor and outdoor living spaces.\n\",\n  \"url\": \"/project/luxury-pool-spa-with-screen-enclosure-north-florida\",\n  \"inLanguage\": \"en\",\n  \"datePublished\": \"2025-12-28T19:27:12.294Z\",\n  \"dateModified\": \"2025-12-28T19:03:56.472Z\",\n  \"image\": {\n    \"@type\": \"ImageObject\",\n    \"url\": \"https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/69517e321b15c0725b372070_luxury-pool-spa-screen-enclosure-north-florida-project-1.avif\",\n    \"description\": \"Luxury pool and spa with screen enclosure in a modern North Florida backyard.\"\n  },\n  \"about\": {\n    \"@type\": \"Project\",\n    \"name\": \"Luxury Pool &amp; Spa with Screen Enclosure North Florida\",\n    \"description\": \"This North Florida outdoor living project features a custom pool and raised spa enclosed within a full screen structure. The design enhances comfort, privacy, and protection while creating a seamless transition between indoor and outdoor living spaces.\n\",\n    \"location\": {\n      \"@type\": \"Place\",\n      \"name\": \"North Florida\"\n    },\n    \"additionalType\": \"Residential\",\n    \"image\": \"https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/69517e321b15c0725b372070_luxury-pool-spa-screen-enclosure-north-florida-project-1.avif\",\n    \"keywords\": \"Modern Florida\"\n  }\n}\n",
-    "__error": "Bad control character in string literal in JSON at position 402 (line 6 column 271)"
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "about": {
+     "@type": "Project",
+     "additionalType": "Residential",
+     "description": "This North Florida outdoor living project features a custom pool and raised spa enclosed within a full screen structure. The design enhances comfort, privacy, and protection while creating a seamless transition between indoor and outdoor living spaces.\n",
+     "image": "https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/69517e321b15c0725b372070_luxury-pool-spa-screen-enclosure-north-florida-project-1.avif",
+     "keywords": "Modern Florida",
+     "location": {
+      "@type": "Place",
+      "name": "North Florida"
+     },
+     "name": "Luxury Pool &amp; Spa with Screen Enclosure North Florida"
+    },
+    "dateModified": "2025-12-28T19:03:56.472Z",
+    "datePublished": "2025-12-28T19:27:12.294Z",
+    "description": "This North Florida outdoor living project features a custom pool and raised spa enclosed within a full screen structure. The design enhances comfort, privacy, and protection while creating a seamless transition between indoor and outdoor living spaces.\n",
+    "image": {
+     "@type": "ImageObject",
+     "description": "Luxury pool and spa with screen enclosure in a modern North Florida backyard.",
+     "url": "https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/69517e321b15c0725b372070_luxury-pool-spa-screen-enclosure-north-florida-project-1.avif"
+    },
+    "inLanguage": "en",
+    "name": "Luxury Pool &amp; Spa with Screen Enclosure North Florida",
+    "url": "/project/luxury-pool-spa-with-screen-enclosure-north-florida"
    }
   ]
  },
@@ -5161,8 +5268,31 @@
   ],
   "jsonLd": [
    {
-    "__sinParsear": "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"WebPage\",\n  \"name\": \"Luxury Pool with Motorized Pergola &amp; Outdoor Kitchen\",\n  \"description\": \"This North Florida luxury outdoor living project features a custom pool paired with a motorized pergola and integrated outdoor kitchen. The layout provides shade, airflow, and functionality while creating a refined space ideal for entertaining and everyday relaxation.\n\",\n  \"url\": \"/project/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida\",\n  \"inLanguage\": \"en\",\n  \"datePublished\": \"2025-12-28T19:27:12.294Z\",\n  \"dateModified\": \"2025-12-28T19:26:41.350Z\",\n  \"image\": {\n    \"@type\": \"ImageObject\",\n    \"url\": \"https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/69517b62f17e6a5a37dc6708_luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-1.avif\",\n    \"description\": \"Luxury pool with motorized pergola and outdoor kitchen in a modern North Florida backyard.\"\n  },\n  \"about\": {\n    \"@type\": \"Project\",\n    \"name\": \"Luxury Pool with Motorized Pergola &amp; Outdoor Kitchen\",\n    \"description\": \"This North Florida luxury outdoor living project features a custom pool paired with a motorized pergola and integrated outdoor kitchen. The layout provides shade, airflow, and functionality while creating a refined space ideal for entertaining and everyday relaxation.\n\",\n    \"location\": {\n      \"@type\": \"Place\",\n      \"name\": \"North Florida\"\n    },\n    \"additionalType\": \"Residential\",\n    \"image\": \"https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/69517b62f17e6a5a37dc6708_luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-1.avif\",\n    \"keywords\": \"Modern Contemporary\"\n  }\n}\n",
-    "__error": "Bad control character in string literal in JSON at position 417 (line 6 column 287)"
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "about": {
+     "@type": "Project",
+     "additionalType": "Residential",
+     "description": "This North Florida luxury outdoor living project features a custom pool paired with a motorized pergola and integrated outdoor kitchen. The layout provides shade, airflow, and functionality while creating a refined space ideal for entertaining and everyday relaxation.\n",
+     "image": "https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/69517b62f17e6a5a37dc6708_luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-1.avif",
+     "keywords": "Modern Contemporary",
+     "location": {
+      "@type": "Place",
+      "name": "North Florida"
+     },
+     "name": "Luxury Pool with Motorized Pergola &amp; Outdoor Kitchen"
+    },
+    "dateModified": "2025-12-28T19:26:41.350Z",
+    "datePublished": "2025-12-28T19:27:12.294Z",
+    "description": "This North Florida luxury outdoor living project features a custom pool paired with a motorized pergola and integrated outdoor kitchen. The layout provides shade, airflow, and functionality while creating a refined space ideal for entertaining and everyday relaxation.\n",
+    "image": {
+     "@type": "ImageObject",
+     "description": "Luxury pool with motorized pergola and outdoor kitchen in a modern North Florida backyard.",
+     "url": "https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/69517b62f17e6a5a37dc6708_luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-1.avif"
+    },
+    "inLanguage": "en",
+    "name": "Luxury Pool with Motorized Pergola &amp; Outdoor Kitchen",
+    "url": "/project/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida"
    }
   ]
  },
@@ -5186,8 +5316,31 @@
   ],
   "jsonLd": [
    {
-    "__sinParsear": "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"WebPage\",\n  \"name\": \"Luxury Pool with Motorized Pergola &amp; Screen Enclosure\",\n  \"description\": \"This North Florida luxury outdoor living project features a custom pool and spa combined with a motorized pergola and full screen enclosure. The design provides shade, airflow, and protection while creating a modern, functional space ideal for entertaining and daily outdoor enjoyment.\n\",\n  \"url\": \"/project/luxury-pool-motorized-pergola-screen-enclosure-north-florida\",\n  \"inLanguage\": \"en\",\n  \"datePublished\": \"2025-12-28T19:27:12.294Z\",\n  \"dateModified\": \"2025-12-28T19:08:47.075Z\",\n  \"image\": {\n    \"@type\": \"ImageObject\",\n    \"url\": \"https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/69517ffc9f6e96d717b1c5a6_luxury-pool-motorized-pergola-screen-enclosure-north-florida-1.avif\",\n    \"description\": \"Luxury pool with motorized pergola and screen enclosure in a North Florida backyard.\"\n  },\n  \"about\": {\n    \"@type\": \"Project\",\n    \"name\": \"Luxury Pool with Motorized Pergola &amp; Screen Enclosure\",\n    \"description\": \"This North Florida luxury outdoor living project features a custom pool and spa combined with a motorized pergola and full screen enclosure. The design provides shade, airflow, and protection while creating a modern, functional space ideal for entertaining and daily outdoor enjoyment.\n\",\n    \"location\": {\n      \"@type\": \"Place\",\n      \"name\": \"North Florida\"\n    },\n    \"additionalType\": \"Residential\",\n    \"image\": \"https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/69517ffc9f6e96d717b1c5a6_luxury-pool-motorized-pergola-screen-enclosure-north-florida-1.avif\",\n    \"keywords\": \"Modern Contemporary\"\n  }\n}\n",
-    "__error": "Bad control character in string literal in JSON at position 435 (line 6 column 304)"
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "about": {
+     "@type": "Project",
+     "additionalType": "Residential",
+     "description": "This North Florida luxury outdoor living project features a custom pool and spa combined with a motorized pergola and full screen enclosure. The design provides shade, airflow, and protection while creating a modern, functional space ideal for entertaining and daily outdoor enjoyment.\n",
+     "image": "https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/69517ffc9f6e96d717b1c5a6_luxury-pool-motorized-pergola-screen-enclosure-north-florida-1.avif",
+     "keywords": "Modern Contemporary",
+     "location": {
+      "@type": "Place",
+      "name": "North Florida"
+     },
+     "name": "Luxury Pool with Motorized Pergola &amp; Screen Enclosure"
+    },
+    "dateModified": "2025-12-28T19:08:47.075Z",
+    "datePublished": "2025-12-28T19:27:12.294Z",
+    "description": "This North Florida luxury outdoor living project features a custom pool and spa combined with a motorized pergola and full screen enclosure. The design provides shade, airflow, and protection while creating a modern, functional space ideal for entertaining and daily outdoor enjoyment.\n",
+    "image": {
+     "@type": "ImageObject",
+     "description": "Luxury pool with motorized pergola and screen enclosure in a North Florida backyard.",
+     "url": "https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/69517ffc9f6e96d717b1c5a6_luxury-pool-motorized-pergola-screen-enclosure-north-florida-1.avif"
+    },
+    "inLanguage": "en",
+    "name": "Luxury Pool with Motorized Pergola &amp; Screen Enclosure",
+    "url": "/project/luxury-pool-motorized-pergola-screen-enclosure-north-florida"
    }
   ]
  },
@@ -5211,8 +5364,31 @@
   ],
   "jsonLd": [
    {
-    "__sinParsear": "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"WebPage\",\n  \"name\": \"Luxury Pool, Pergola &amp; Outdoor Kitchen South Florida\",\n  \"description\": \"This luxury outdoor living project in South Florida combines a custom swimming pool, modern aluminum pergola, and a fully equipped outdoor kitchen. Designed for comfort and entertaining, the layout delivers a clean, functional, and high-end residential backyard experience.\n\",\n  \"url\": \"/project/luxury-pool-pergola-outdoor-kitchen-south-florida\",\n  \"inLanguage\": \"en\",\n  \"datePublished\": \"2025-12-28T18:25:28.527Z\",\n  \"dateModified\": \"2025-12-28T18:25:15.191Z\",\n  \"image\": {\n    \"@type\": \"ImageObject\",\n    \"url\": \"https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/6951743688e8d33a1ee2672f_luxury-pool-pergola-outdoor-kitchen-south-florida-1.avif\",\n    \"description\": \"Luxury pool with aluminum pergola and outdoor kitchen in South Florida. Clean modern design built for comfort and entertaining.\"\n  },\n  \"about\": {\n    \"@type\": \"Project\",\n    \"name\": \"Luxury Pool, Pergola &amp; Outdoor Kitchen South Florida\",\n    \"description\": \"This luxury outdoor living project in South Florida combines a custom swimming pool, modern aluminum pergola, and a fully equipped outdoor kitchen. Designed for comfort and entertaining, the layout delivers a clean, functional, and high-end residential backyard experience.\n\",\n    \"location\": {\n      \"@type\": \"Place\",\n      \"name\": \"South Florida\"\n    },\n    \"additionalType\": \"Residential\",\n    \"image\": \"https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/6951743688e8d33a1ee2672f_luxury-pool-pergola-outdoor-kitchen-south-florida-1.avif\",\n    \"keywords\": \"Modern / Contemporary\"\n  }\n}\n",
-    "__error": "Bad control character in string literal in JSON at position 422 (line 6 column 292)"
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "about": {
+     "@type": "Project",
+     "additionalType": "Residential",
+     "description": "This luxury outdoor living project in South Florida combines a custom swimming pool, modern aluminum pergola, and a fully equipped outdoor kitchen. Designed for comfort and entertaining, the layout delivers a clean, functional, and high-end residential backyard experience.\n",
+     "image": "https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/6951743688e8d33a1ee2672f_luxury-pool-pergola-outdoor-kitchen-south-florida-1.avif",
+     "keywords": "Modern / Contemporary",
+     "location": {
+      "@type": "Place",
+      "name": "South Florida"
+     },
+     "name": "Luxury Pool, Pergola &amp; Outdoor Kitchen South Florida"
+    },
+    "dateModified": "2025-12-28T18:25:15.191Z",
+    "datePublished": "2025-12-28T18:25:28.527Z",
+    "description": "This luxury outdoor living project in South Florida combines a custom swimming pool, modern aluminum pergola, and a fully equipped outdoor kitchen. Designed for comfort and entertaining, the layout delivers a clean, functional, and high-end residential backyard experience.\n",
+    "image": {
+     "@type": "ImageObject",
+     "description": "Luxury pool with aluminum pergola and outdoor kitchen in South Florida. Clean modern design built for comfort and entertaining.",
+     "url": "https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/6951743688e8d33a1ee2672f_luxury-pool-pergola-outdoor-kitchen-south-florida-1.avif"
+    },
+    "inLanguage": "en",
+    "name": "Luxury Pool, Pergola &amp; Outdoor Kitchen South Florida",
+    "url": "/project/luxury-pool-pergola-outdoor-kitchen-south-florida"
    }
   ]
  },
@@ -5284,8 +5460,31 @@
   ],
   "jsonLd": [
    {
-    "__sinParsear": "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"WebPage\",\n  \"name\": \"Residential Pool with Pergola &amp; Outdoor Dining\",\n  \"description\": \"This North Florida residential project features a custom pool paired with a pergola-covered outdoor dining area. The layout creates a functional backyard designed for family gatherings, relaxation, and daily outdoor living while maintaining a clean and practical design.\n\",\n  \"url\": \"/project/residential-pool-pergola-outdoor-dining-north-florida\",\n  \"inLanguage\": \"en\",\n  \"datePublished\": \"2025-12-28T19:27:12.294Z\",\n  \"dateModified\": \"2025-12-28T19:11:48.193Z\",\n  \"image\": {\n    \"@type\": \"ImageObject\",\n    \"url\": \"https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/695180b24707d4d901ff0e9b_residential-pool-pergola-outdoor-dining-north-florida-1.avif\",\n    \"description\": \"Residential pool with pergola and outdoor dining space in a North Florida backyard.\"\n  },\n  \"about\": {\n    \"@type\": \"Project\",\n    \"name\": \"Residential Pool with Pergola &amp; Outdoor Dining\",\n    \"description\": \"This North Florida residential project features a custom pool paired with a pergola-covered outdoor dining area. The layout creates a functional backyard designed for family gatherings, relaxation, and daily outdoor living while maintaining a clean and practical design.\n\",\n    \"location\": {\n      \"@type\": \"Place\",\n      \"name\": \"North Florida\"\n    },\n    \"additionalType\": \"Residential\",\n    \"image\": \"https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/695180b24707d4d901ff0e9b_residential-pool-pergola-outdoor-dining-north-florida-1.avif\",\n    \"keywords\": \"Classic Florida\"\n  }\n}\n",
-    "__error": "Bad control character in string literal in JSON at position 413 (line 6 column 289)"
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "about": {
+     "@type": "Project",
+     "additionalType": "Residential",
+     "description": "This North Florida residential project features a custom pool paired with a pergola-covered outdoor dining area. The layout creates a functional backyard designed for family gatherings, relaxation, and daily outdoor living while maintaining a clean and practical design.\n",
+     "image": "https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/695180b24707d4d901ff0e9b_residential-pool-pergola-outdoor-dining-north-florida-1.avif",
+     "keywords": "Classic Florida",
+     "location": {
+      "@type": "Place",
+      "name": "North Florida"
+     },
+     "name": "Residential Pool with Pergola &amp; Outdoor Dining"
+    },
+    "dateModified": "2025-12-28T19:11:48.193Z",
+    "datePublished": "2025-12-28T19:27:12.294Z",
+    "description": "This North Florida residential project features a custom pool paired with a pergola-covered outdoor dining area. The layout creates a functional backyard designed for family gatherings, relaxation, and daily outdoor living while maintaining a clean and practical design.\n",
+    "image": {
+     "@type": "ImageObject",
+     "description": "Residential pool with pergola and outdoor dining space in a North Florida backyard.",
+     "url": "https://cdn.prod.website-files.com/68f18633d5478a29ee1522e9/695180b24707d4d901ff0e9b_residential-pool-pergola-outdoor-dining-north-florida-1.avif"
+    },
+    "inLanguage": "en",
+    "name": "Residential Pool with Pergola &amp; Outdoor Dining",
+    "url": "/project/residential-pool-pergola-outdoor-dining-north-florida"
    }
   ]
  },
@@ -6957,7 +7156,7 @@
    }
   ]
  },
- "/where-we-serves/custom-pool-builders-north-florida": {
+ "/where-we-serve/north-florida": {
   "title": "Luxury Pool Builders in North Florida | Design-Build Contractors",
   "canonical": null,
   "lang": "en",
@@ -7049,11 +7248,11 @@
      "url": "https://mrandmrsoutdoorliving.com/"
     },
     "name": "Luxury Pool Builders in North Florida",
-    "url": "/where-we-serves/custom-pool-builders-north-florida"
+    "url": "/where-we-serve/north-florida"
    }
   ]
  },
- "/where-we-serves/custom-pool-builders-south-florida": {
+ "/where-we-serve/south-florida": {
   "title": "Luxury Pool Builders in South Florida | Design-Build Contractors",
   "canonical": null,
   "lang": "en",
@@ -7145,7 +7344,7 @@
      "url": "https://mrandmrsoutdoorliving.com/"
     },
     "name": "Luxury Pool Builders in South Florida",
-    "url": "/where-we-serves/custom-pool-builders-south-florida"
+    "url": "/where-we-serve/south-florida"
    }
   ]
  }

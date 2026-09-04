@@ -41,7 +41,7 @@ const COLECCION = {
   '/blogs/': 'blogPost',
   '/country/': 'county',
   '/articles/': 'article',
-  '/where-we-serves/': 'serviceRegion',
+  '/where-we-serve/': 'serviceRegion',
   '/brochures/': 'brochure',
 };
 

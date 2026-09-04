@@ -46,6 +46,23 @@ const sinMapear = [];
  */
 const CON_PAGINA_PROPIA = [
   ['https://your.acornfinance.com', '/financing'],
+  /**
+   * LAS DOS LEGALES DEL PIE (D6 en MIGRACION-LOG.md). El pie las enlazaba a
+   * `mrandmrsoutdoorsliving.com` —con «s», otro dominio— mientras nuestras propias
+   * `/articles/terms-conditions` y `/articles/privacy-policy` existian, estaban en el sitemap
+   * y NO LAS ENLAZABA NADIE: 0 enlaces internos en las 116 paginas (SEO-URLS-PLAN.md
+   * hallazgo 3). Dos dominios sirviendo el mismo contenido legal en paralelo.
+   *
+   * ESTO NO DECIDE QUE HACER CON EL DOMINIO CON «s» —301 o canonical cruzada, decision de
+   * Sebastian y sigue pendiente—. El propio plan deja el pie enlazando la ruta local en LAS
+   * DOS ramas de esa decision: una pagina sin ningun enlace interno no se arregla con una
+   * canonical, se arregla enlazandola.
+   *
+   * Coste en texto visible: CERO. El rotulo no cambia, solo el `href` (y el `target`, que se
+   * va solo: un enlace interno que abre pestana nueva rompe el boton de atras).
+   */
+  ['https://mrandmrsoutdoorsliving.com/terms-of-service', '/articles/terms-conditions'],
+  ['https://mrandmrsoutdoorsliving.com/privacy-policy-page', '/articles/privacy-policy'],
 ];
 /**
  * ANCLAS MUERTAS DEL CASCARON. `[selector, ruta a la que deberian ir]`.
@@ -60,6 +77,24 @@ const CON_PAGINA_PROPIA = [
  */
 const ANCLAS_MUERTAS = [
   ['a.footer-brand[href="#"]', '/'],
+];
+/**
+ * ENLACES QUE EL CASCARON NO TIENE Y HAY QUE ANADIR. `[selector del contenedor, href, texto]`.
+ *
+ * La tercera huerfana, `/articles/accessibility`, no tiene enlace de origen que reapuntar: el
+ * pie de Webflow solo trae Terms y Privacy. Aqui no se reapunta, se ANADE — y por eso es la
+ * unica de las tres que cuesta TEXTO VISIBLE NUEVO en las 115 rutas, declarado en
+ * `check-texto.mjs` (D6). Va al final de `div.div-block-8`, que es flex con gap y donde
+ * `.link-3` ya esta estilada: cero CSS nuevo.
+ *
+ * Comparte el contador `reapuntados` y por tanto el aborto duro de mas abajo: si el contenedor
+ * desaparece del origen, esto para la corrida en vez de dejar la huerfana sin enlace en silencio.
+ */
+const ENLACES_ANADIDOS = [
+  // El selector NO puede llevar `section.footer` delante: `limpiar()` recibe YA ese nodo y
+  // `querySelectorAll` solo mira descendientes, nunca al propio elemento. `div-block-8` no
+  // existe en el nav, comprobado, asi que no hay ambiguedad.
+  ['div.div-block-8', '/articles/accessibility', 'Accessibility', 'link-3'],
 ];
 /** Cuantos se reapuntaron, por destino. Si alguno sale a 0 el marcado de origen ha cambiado. */
 const reapuntados = new Map();
@@ -111,6 +146,17 @@ function limpiar(nodo) {
   for (const [selector, dentro] of ANCLAS_MUERTAS) {
     for (const a of nodo.querySelectorAll(selector)) {
       a.setAttribute('href', dentro);
+      reapuntados.set(selector, (reapuntados.get(selector) ?? 0) + 1);
+    }
+  }
+  for (const [selector, href, rotulo, clase] of ENLACES_ANADIDOS) {
+    for (const cont of nodo.querySelectorAll(selector)) {
+      if (cont.querySelector(`a[href="${href}"]`)) continue;   // idempotente
+      const a = cont.ownerDocument.createElement('a');
+      a.setAttribute('href', href);
+      a.setAttribute('class', clase);
+      a.textContent = rotulo;
+      cont.appendChild(a);
       reapuntados.set(selector, (reapuntados.get(selector) ?? 0) + 1);
     }
   }
@@ -174,7 +220,8 @@ if (sinMapear.length) {
  * exista, o que la URL de destino sea otra—, y entonces lo que hay que revisar es la
  * declaración, no silenciar la comprobación.
  */
-const sinCasar = [...CON_PAGINA_PROPIA, ...ANCLAS_MUERTAS].filter(([clave]) => !reapuntados.get(clave));
+const sinCasar = [...CON_PAGINA_PROPIA, ...ANCLAS_MUERTAS, ...ENLACES_ANADIDOS]
+  .filter(([clave]) => !reapuntados.get(clave));
 if (sinCasar.length) {
   console.error(`\n🔴 ${sinCasar.length} enlace(s) declarado(s) que no casaron con nada:\n`);
   sinCasar.forEach(([fuera, dentro]) => console.error(`   ${fuera} -> ${dentro}`));
