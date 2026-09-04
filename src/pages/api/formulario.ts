@@ -24,11 +24,17 @@
  *      **Cloudflare inalcanzable, FALLA ABIERTO**: perder leads es peor que colar un bot.
  *   4. **Rate-limit por IP en memoria, 8 s.**
  *
- * La clave de sitio ya existe (`0x4AAAAAAAQTptj2So4dx43e`, la tenía el propio Webflow). La
- * SECRETA vive en `TURNSTILE_SECRET` y hay que sacarla del panel de Cloudflare del cliente.
- * Sin ella, esto NO valida y lo dice en el arranque.
+ * 🚨 LA CLAVE DE SITIO ES `0x4AAAAAAEnkUHbX6ap29qsu` (`Formularios.astro`, `CLAVE_SITIO`).
+ * NO es `0x4AAAAAAAQTptj2So4dx43e`: esa era la de Webflow y solo sobrevive como atributo
+ * `data-turnstile-sitekey` muerto en 4 sitios del marcado heredado. No la lee nadie.
+ * `TURNSTILE_SECRET` tiene que ser la secreta del PRIMER widget. Cruzarlas devuelve
+ * `invalid-input-secret` -> `'invalido'` -> 403 en TODOS los leads, que es peor que no ponerla.
+ * Sin secreta, esto NO valida y falla abierto.
  */
 import type { APIRoute } from 'astro';
+// Especificador LITERAL y estatico: el rastreador del adaptador de Vercel tiene que ver este
+// import para empaquetar el modulo. Un import dinamico con la ruta en variable no lo ve.
+import { construyeAviso, type CampoAviso } from '../../lib/aviso-correo';
 
 export const prerender = false;
 
@@ -104,6 +110,22 @@ const FORMULARIOS: Record<string, { titulo: string; campos: [string, string][] }
   },
 };
 
+/**
+ * ORIGEN DEL LEAD — lista blanca, y no un volcado de todo lo que llegue.
+ *
+ * Estos campos los escribe el NAVEGADOR (`Formularios.astro`, bloque de captura) y viajan como
+ * `origen_*` en el formulario, asi que son entrada no confiable: cualquiera puede inventarse un
+ * POST con mil claves. Se aceptan estas doce, recortadas, y se descarta el resto.
+ *
+ * 🚨 ESTO VA AL CORREO Y SOLO AL CORREO. El aviso de lead puede llevar datos personales —para
+ * eso existe—; el `dataLayer` NO. `gclid` y el referrer no se acercan a GA4.
+ */
+const CLAVES_ORIGEN = [
+  'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content',
+  'gclid', 'fbclid', 'wbraid', 'gbraid',
+  'referrer', 'landing_page', 'first_seen',
+] as const;
+
 const responde = (estado: number, cuerpo: Record<string, unknown>) =>
   new Response(JSON.stringify(cuerpo), { status: estado, headers: { 'content-type': 'application/json' } });
 
@@ -119,6 +141,11 @@ async function validaTurnstile(token: string | null, ip: string): Promise<'ok' |
       signal: AbortSignal.timeout(5000),
     });
     const j = await r.json();
+    // Los `error-codes` de Cloudflare son la unica forma de distinguir «el visitante fallo el
+    // reto» (`invalid-input-response`, normal y sin importancia) de «la SECRETA no es la de
+    // este widget» (`invalid-input-secret`), que rechaza el 100% de los leads y desde fuera se
+    // ve exactamente igual: un 403. Sin esta linea, esa diferencia no se puede diagnosticar.
+    if (!j.success) console.error('[turnstile] rechazado:', JSON.stringify(j['error-codes'] ?? j));
     return j.success ? 'ok' : 'invalido';
   } catch {
     // Cloudflare inalcanzable: FALLA ABIERTO. Perder leads es peor que colar un bot.
@@ -133,11 +160,11 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   if (!datos) return responde(400, { ok: false, error: 'cuerpo ilegible' });
 
   // 1 · honeypot: se descarta EN SILENCIO (200), para que el bot no aprenda
-  if (String(datos.get('ref_id') ?? '').trim()) return responde(200, { ok: true });
+  if (String(datos.get('ref_id') ?? '').trim()) return responde(200, { ok: true, entregado: false });
 
   // 2 · time-trap: idem
   const transcurrido = Number(datos.get('elapsedMs') ?? 0);
-  if (!Number.isFinite(transcurrido) || transcurrido < 1000) return responde(200, { ok: true });
+  if (!Number.isFinite(transcurrido) || transcurrido < 1000) return responde(200, { ok: true, entregado: false });
 
   // 3 · Turnstile
   const veredicto = await validaTurnstile(String(datos.get('turnstileToken') ?? '') || null, ip);
@@ -159,25 +186,47 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     return responde(400, { ok: false, error: 'correo no valido' });
   }
 
-  const lineas: string[] = [];
+  const campos: CampoAviso[] = [];
   for (const [campo, etiqueta] of def.campos) {
     const valores = datos.getAll(campo).map((v) => String(v).trim()).filter(Boolean);
-    if (valores.length) lineas.push(`${etiqueta}: ${valores.join(', ')}`);
+    if (valores.length) campos.push({ campo, etiqueta, valor: valores.join(', ') });
   }
-  if (!lineas.length) return responde(400, { ok: false, error: 'formulario vacio' });
+  if (!campos.length) return responde(400, { ok: false, error: 'formulario vacio' });
 
-  const cuerpo = [
-    `${def.titulo} — mrandmrsoutdoorliving.com`, '',
-    ...lineas, '',
-    `IP: ${ip}`,
-    `Recibido: ${new Date().toISOString()}`,
-  ].join('\n');
+  const origen: Record<string, string> = {};
+  for (const k of CLAVES_ORIGEN) {
+    const v = String(datos.get(`origen_${k}`) ?? '').trim().slice(0, 200);
+    if (v) origen[k] = v;
+  }
+
+  /**
+   * El id CORTO lo calcula el cliente (`Formularios.astro`), que es el unico que sabe
+   * distinguir los tres «Request Quote Form» — comparten `data-name` y solo la ruta los
+   * separa. Si no llegara, el aviso cae al titulo de `FORMULARIOS` y sigue siendo legible.
+   */
+  const { asunto, texto, html } = construyeAviso({
+    formId: String(datos.get('__form_id') ?? '').trim(),
+    tituloRespaldo: def.titulo,
+    campos,
+    // La ruta del ENVIO, que no es la de aterrizaje: `landing_page` es el primer toque y
+    // esta es donde acabo rellenando. Las dos juntas cuentan el recorrido.
+    ruta: String(datos.get('__ruta') ?? '').trim() || '/',
+    origen,
+    ip,
+    fecha: new Date(),
+  });
 
   // ── el envio. `ok` solo es true si esto SALE. ──────────────────────────
-  const usuario = env('SMTP_USER');
-  const clave = env('SMTP_PASS');
+  // 🚨 Se LIMPIAN los dos. Google ensena la contrasena de aplicacion en grupos de cuatro
+  // («abcd efgh ijkl mnop») y se pega tal cual una y otra vez; Gmail entonces responde
+  // `535-5.7.8 Username and Password not accepted` y NINGUN lead se entrega. El sintoma es
+  // identico al de una clave de verdad equivocada, asi que cuesta horas encontrarlo.
+  // Una contrasena de aplicacion de Google son 16 letras sin espacios: quitarlos no puede
+  // romper una clave valida, y arregla el error de copiado mas comun que existe.
+  const usuario = env('SMTP_USER').trim();
+  const clave = env('SMTP_PASS').replace(/\s+/g, '');
   if (!usuario || !clave) {
-    console.error('[formulario] faltan SMTP_USER / SMTP_PASS: el lead NO se ha entregado', { lineas });
+    console.error('[formulario] faltan SMTP_USER / SMTP_PASS: el lead NO se ha entregado', { texto });
     return responde(500, { ok: false, error: 'el correo no esta configurado' });
   }
 
@@ -197,15 +246,19 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       from: `"Mr & Mrs Outdoor Living" <${usuario}>`,
       to: DESTINO,
       replyTo: correo,
-      subject: `${def.titulo} — ${String(datos.get('First-Name') ?? datos.get('Full-Name') ?? correo)}`,
-      text: cuerpo,
+      subject: asunto,
+      // 🚨 LOS DOS, SIEMPRE. El texto plano es accesibilidad y ademas los filtros antispam
+      // penalizan el correo solo-HTML: quitarlo manda los avisos a la carpeta de spam y el
+      // sintoma —«ya no me llegan leads»— no apunta a esta linea.
+      text: texto,
+      html,
     });
     // Si el servidor rechaza al destinatario, esto NO es una entrega.
     if (!info.accepted?.length) {
       console.error('[formulario] el servidor no acepto ningun destinatario', info);
       return responde(502, { ok: false, error: 'el correo no fue aceptado' });
     }
-    return responde(200, { ok: true });
+    return responde(200, { ok: true, entregado: true });
   } catch (e) {
     console.error('[formulario] fallo el envio, el lead NO se ha entregado:', e);
     return responde(502, { ok: false, error: 'fallo el envio' });

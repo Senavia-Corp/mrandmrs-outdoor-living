@@ -27,6 +27,51 @@
       "source": "/where-we-serves/custom-pool-builders-south-florida",
       "destination": "/where-we-serve/south-florida",
       "permanent": true
+    },
+    {
+      "source": "/services/custom-aluminum-wood-pergola-builders-in-north-south-florida",
+      "destination": "/services/custom-aluminum-pergola-builders-in-north-south-florida",
+      "permanent": true
+    },
+    {
+      "source": "/excavation",
+      "destination": "/services/custom-pool-spa-builders-in-north-south-florida",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/pool-builders-southwest-ranches-florida",
+      "destination": "/pool-builders/southwest-ranches-florida",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/pool-builders-hallandale-beach-florida",
+      "destination": "/pool-builders/hallandale-beach-florida",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/pool-builders-ocala-florida",
+      "destination": "/pool-builders/ocala-florida",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/pool-builders-north-palm-beach-florida",
+      "destination": "/pool-builders/north-palm-beach-florida",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/pool-builders-micanopy-florida",
+      "destination": "/pool-builders/micanopy-florida",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/pool-builders-west-palm-beach-florida",
+      "destination": "/pool-builders/west-palm-beach-florida",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/pool-builders-mcintosh-florida",
+      "destination": "/pool-builders/mcintosh-florida",
+      "permanent": true
     }
   ]
 }

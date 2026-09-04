@@ -10,8 +10,11 @@
  * ANTIBOT: el honeypot y el time-trap se rellenan aquí; el servidor es quien decide. La
  * validación del navegador es comodidad, no seguridad.
  *
- * TURNSTILE: la clave de sitio (`0x4AAAAAAAQTptj2So4dx43e`) ya existía — la tenía el propio
- * Webflow en `data-turnstile-sitekey`. El widget se renderiza **explícitamente**, no por
+ * TURNSTILE: la clave de sitio es `0x4AAAAAAEnkUHbX6ap29qsu` (`CLAVE_SITIO`, más abajo).
+ * ⚠️ NO es `0x4AAAAAAAQTptj2So4dx43e`: ésa era la de Webflow y solo sobrevive como atributo
+ * `data-turnstile-sitekey` MUERTO en 4 sitios del marcado heredado — no la lee nadie.
+ * `TURNSTILE_SECRET` tiene que ser la secreta de la PRIMERA. Cruzarlas da 403 en todos los
+ * leads. El widget se renderiza **explícitamente**, no por
  * `class="cf-turnstile"`: el render implícito FALLA sobre un elemento oculto, y estos
  * formularios viven dentro de secciones que pueden empezar ocultas. Medido en AB Aluminum.
  */
@@ -20,7 +23,13 @@
 <script>
   (function () {
     'use strict';
-    const CLAVE_SITIO = '0x4AAAAAAAQTptj2So4dx43e';
+    const CLAVE_SITIO = '0x4AAAAAAEnkUHbX6ap29qsu';
+    /** data-name del formulario -> id corto que viaja a GA4 como `form_name`. */
+    const MAPA_FORM = {
+      'Contact Page Form':   'contact',
+      'Request Quote Form':  'estimate',   // se afina por ruta al enviar
+      'Pool Estimator Form': 'estimator',
+    };
     const forms = [...document.querySelectorAll('form[data-name]')].filter((f) => f.dataset.mmEnvia === '1');
     if (!forms.length) return;
 
@@ -30,10 +39,22 @@
     const cargaTurnstile = () => {
       if (turnstileListo) return turnstileListo;
       turnstileListo = new Promise((res, rej) => {
+        // 🚨 EL `onload` DEL <script> NO SIGNIFICA «API LISTA», y esto costaba TODOS los leads.
+        // Con `render=explicit` y carga en frio, llamar a `render()` desde el onload del script
+        // no pinta el widget: `idWidget` quedaba `undefined`, `getResponse()` lanzaba, el envio
+        // salia SIN TOKEN y el servidor respondia 403. Ni un solo lead entraba, y el `.catch`
+        // mudo de abajo lo tapaba. Reproducido en /contact-us y /request-estimated.
+        //
+        // Y `turnstile.ready()` TAMPOCO vale aqui: con async/defer, Cloudflare lo rechaza
+        // —«Remove async/defer from the Turnstile api.js script tag before using
+        // turnstile.ready()»—. El gancho correcto cuando el script va async es el parametro
+        // `onload=` de la URL, que Cloudflare llama cuando la API esta de verdad inicializada.
+        // El async se conserva: bloquear la pintura por el captcha seria peor.
+        const cb = '__mmTurnstileListo';
+        window[cb] = () => res(window.turnstile);
         const s = document.createElement('script');
-        s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+        s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=' + cb;
         s.async = true; s.defer = true;
-        s.onload = () => res(window.turnstile);
         s.onerror = () => rej(new Error('turnstile no carga'));
         document.head.appendChild(s);
       });
@@ -59,16 +80,57 @@
 
       cargaTurnstile()
         .then((ts) => {
-          idWidget = ts.render(caja, { sitekey: CLAVE_SITIO, action: form.dataset.name });
+          // 🚨 `action` NO admite espacios: solo [a-zA-Z0-9_-] y 32 caracteres. Pasarle el
+          // `data-name` crudo («Contact Page Form») hace que Cloudflare lance
+          // «Invalid input for optional parameter "action"», el widget NO se pinta, el envio
+          // sale sin token y el servidor devuelve 403. Era la causa de que NINGUN lead entrara.
+          // Se usa el id corto de MAPA_FORM, que ya es limpio y ademas es el mismo `form_name`
+          // que viaja a GA4: una sola nomenclatura para las dos cosas.
+          const accion = MAPA_FORM[form.dataset.name] || 'other';
+          idWidget = ts.render(caja, { sitekey: CLAVE_SITIO, action: accion });
           caja.style.margin = '.75rem 0';
         })
-        .catch(() => { /* Cloudflare caido: el servidor falla ABIERTO, no bloqueamos el envio */ });
+        // ⚠️ Si el SCRIPT no carga (bloqueador, extension de privacidad, firewall corporativo:
+        // hay listas que bloquean challenges.cloudflare.com) no hay widget, no hay token, y el
+        // servidor responde 403 -`sin-token`-: el lead SE PIERDE. El fail-open de
+        // `formulario.ts` cubre otra cosa distinta -que el SERVIDOR no alcance a siteverify-,
+        // no esto. Se acepta a proposito: colar bots es peor. Por eso el panel de fallo lleva
+        // los dos telefonos, para que ese visitante tenga una salida.
+        .catch((e) => {
+          // RUIDOSO A PROPOSITO. Este catch mudo es lo que escondio el fallo de arriba: sin
+          // widget no hay token y el servidor rechaza TODOS los envios con 403. Si vuelve a
+          // pasar, que se vea en la consola en vez de perder leads en silencio.
+          console.error('[turnstile] el widget NO se ha pintado: los envios iran sin token y el servidor los rechazara con 403.', e);
+        });
 
       form.addEventListener('submit', async (ev) => {
         ev.preventDefault();
         const datos = new FormData(form);
         datos.set('__form', form.dataset.name ?? '');
         datos.set('elapsedMs', String(Date.now() - inicio));
+        datos.set('__ruta', location.pathname);
+
+        // 'Request Quote Form' vive en tres sitios y NO se distinguen por data-name.
+        // La ruta si los distingue, y es lo unico que los distingue.
+        // Se calcula AQUI, antes del envio, y no despues como hasta ahora: el aviso de correo
+        // necesita el id para titularse «Gallery request» en vez de «Request a quote». Mas
+        // abajo lo reutiliza `mm_lead`, asi que hay UNA sola definicion para las dos cosas.
+        var idForm = MAPA_FORM[form.dataset.name] || 'other';
+        if (idForm === 'estimate') {
+          var ruta = location.pathname;
+          if (ruta.indexOf('gallery') !== -1) idForm = 'gallery';
+          else if (ruta.indexOf('brochures') !== -1) idForm = 'brochures';
+        }
+        datos.set('__form_id', idForm);
+
+        // ORIGEN DE PRIMER TOQUE. Lo escribio el tercer bloque de este fichero en el primer
+        // pageview de esta pestana, cuando los `utm_*` todavia estaban en la URL.
+        // 🚨 VIAJA SOLO AL CORREO. Ni una de estas claves se acerca al dataLayer: `gclid` y el
+        // referrer identifican a una persona en cuanto se cruzan con la plataforma de anuncios.
+        try {
+          var org = JSON.parse(sessionStorage.getItem('mm_origen') || '{}');
+          for (var k in org) if (org[k]) datos.set('origen_' + k, String(org[k]));
+        } catch (e) { /* modo privado: se pierde el origen, nunca el lead */ }
         try {
           const ts = window.turnstile;
           if (ts && idWidget !== null) datos.set('turnstileToken', ts.getResponse(idWidget) ?? '');
@@ -78,24 +140,210 @@
         if (boton) { boton.disabled = true; boton.value = boton.dataset.wait || 'Please wait...'; }
 
         let ok = false;
+        // `entregado` NO es lo mismo que `ok`. El honeypot y el time-trap del servidor
+        // descartan devolviendo 200 {ok:true} A PROPOSITO, para no ensenarle al bot cual de
+        // sus campos lo delato. Si el cliente solo mirara `ok`, cada bot cazado por esas dos
+        // capas escribiria `mm_lead`, aterrizaria en /thank-you y contaria un `generate_lead`
+        // en GA4 y un `Lead` en Meta: justo el trafico que el antibot existe para quitar.
+        let entregado = false;
         try {
           const r = await fetch('/api/formulario', { method: 'POST', body: datos });
-          ok = r.ok && (await r.json().catch(() => ({}))).ok === true;
+          const j = await r.json().catch(() => ({}));
+          ok = r.ok && j.ok === true;
+          entregado = ok && j.entregado === true;
         } catch { ok = false; }
 
         if (boton) { boton.disabled = false; if (textoBoton !== undefined) boton.value = textoBoton; }
         // Los estados usan el marcado del sitio, con sus clases. Webflow los conmuta con
         // display; aqui igual.
         if (ok) {
+          // Los paneles se conmutan IGUAL que antes. No es decorativo: si `location.assign`
+          // no llegara a navegar (extension, bfcache raro, red muerta), el visitante ve su
+          // confirmacion en vez de un formulario que parece no haber hecho nada. Y el marcado
+          // tiene que seguir existiendo: `check:galeria-formulario` lo comprueba.
           form.style.display = 'none';
           if (done) done.style.display = 'block';
           if (fail) fail.style.display = 'none';
+
+          // Descartado en silencio por el antibot (honeypot / time-trap): el panel de exito ya
+          // esta puesto -el bot no aprende nada- pero aqui se corta. NADA de `mm_lead` y nada
+          // de /thank-you: sin entrega no hay lead, y una llave huerfana en sessionStorage
+          // dispararia la conversion la proxima vez que alguien pisara /thank-you.
+          if (!entregado) { form.reset(); return; }
+
+          // 🚨 SOLO CATEGORICOS. Ni email, ni telefono, ni nombre, ni direccion.
+          // Mandar PII a GA4 es motivo de borrado de la propiedad por parte de Google, y
+          // ademas es un problema legal. Si algun dia hace falta identidad para Ads, eso es
+          // Enhanced Conversions con hash EN SERVIDOR, no aqui.
+          var cat = function (n) { return String(datos.get(n) || '').trim(); };
+          try {
+            sessionStorage.setItem('mm_lead', JSON.stringify({
+              form_name: idForm,
+              form_location: location.pathname,
+              project_type: cat('Project-Type'),
+              user_type: cat('Type'),
+              // Los dos estimadores NO llevan el <select> de presupuesto: llevan el oculto
+              // `Estimate-Range` que escribe el propio estimador («$45,000 - $65,000»). Sin este
+              // respaldo, el lead de MAYOR intencion del sitio llegaba a GA4 sin `budget_range`.
+              // Se reduce al mismo tramo por el PUNTO MEDIO, igual que `estimator_complete`, para
+              // que la dimension tenga un solo juego de valores en los 5 formularios.
+              budget_range: cat('Estimated-Project-Budget') || (function () {
+                var n = String(datos.get('Estimate-Range') || '').match(/\d[\d,]*/g);
+                if (!n || !n.length) return '';
+                var v = n.map(function (x) { return Number(x.replace(/,/g, '')); });
+                var m = (v[0] + v[v.length - 1]) / 2;
+                return m < 25000 ? 'Under $25,000'
+                  : m < 50000 ? '$25,000 – $50,000'
+                    : m < 75000 ? '$50,000 – $75,000'
+                      : m < 100000 ? '$75,000 – $100,000'
+                        : m < 150000 ? '$100,000 – $150,000'
+                          : '$150,000+';
+              }()),
+              // minuscula: son los servicios del lightbox. El `Checkbox` con mayuscula del
+              // formulario de contacto es el consentimiento de SMS y NO se manda.
+              service_interest: datos.getAll('checkbox').join('|'),
+            }));
+          } catch (e) { /* modo privado: se pierde la atribucion, nunca el lead */ }
+
           form.reset();
+          location.assign('/thank-you?f=' + encodeURIComponent(idForm));
+          return;
         } else {
-          if (fail) fail.style.display = 'block';
+          // El panel de Webflow dice «Oops! Something went wrong» y ahi se acaba: el visitante
+          // no tiene ninguna salida. Y el caso mas probable NO es culpa suya -un bloqueador que
+          // impide cargar Turnstile da 403 sin que el pueda hacer nada-, asi que se le da el
+          // telefono. Un lead que llama vale igual que uno que rellena.
+          // Se escribe AQUI y no en el marcado: el mismo panel esta en 6 ficheros heredados de
+          // Webflow y tocar sus cadenas literales arriesga mas de lo que arregla. El panel es
+          // display:none, asi que este texto no entra en `innerText` ni en el baseline.
+          if (fail) {
+            var salida = fail.querySelector('[data-mm-salida]');
+            if (!salida) {
+              salida = document.createElement('p');
+              salida.setAttribute('data-mm-salida', '');
+              salida.style.margin = '.5rem 0 0';
+              fail.appendChild(salida);
+            }
+            salida.innerHTML = 'Prefer to talk to us? Call '
+              + '<a href="tel:+13527403361">+1 (352) 740-3361</a> (North Florida) or '
+              + '<a href="tel:+19549137112">+1 (954) 913-7112</a> (South Florida).';
+            fail.style.display = 'block';
+          }
           try { window.turnstile?.reset(idWidget); } catch { /* nada */ }
         }
       });
     }
+  }());
+</script>
+
+<script>
+  /**
+   * FASE TRACKING — `click_to_call` y `brochure_download`.
+   *
+   * BLOQUE APARTE A PROPOSITO. El de arriba empieza con `if (!forms.length) return;` y en las
+   * paginas SIN formulario sale antes de hacer nada — que son justo las paginas donde mas
+   * `tel:` hay (el nav los lleva en las 122).
+   *
+   * DELEGADO EN `document`, no un listener por enlace: los `tel:` del nav y del pie viven
+   * dentro de cadenas HTML literales heredadas de Webflow (`Nav.astro`), donde no se puede
+   * anotar el marcado. Delegar tambien cubre lo que se inserte despues (el panel de
+   * `ClickToCall.astro`, el enlace que este mismo componente escribe en el panel de fallo).
+   *
+   * Este componente lo incluye `Base.astro` (121 paginas) y lo importa aparte
+   * `pool-investment-estimator.astro` (la 122a): un solo sitio cubre las 122.
+   *
+   * 🚨 SOLO CATEGORICOS. `phone_region` es la zona, no el numero. Ningun dato del visitante.
+   */
+  (function () {
+    'use strict';
+    var dl = function (evento, datos) {
+      window.dataLayer = window.dataLayer || [];
+      datos.event = evento;
+      window.dataLayer.push(datos);
+    };
+
+    document.addEventListener('click', function (ev) {
+      var a = ev.target instanceof Element ? ev.target.closest('a[href]') : null;
+      if (!a) return;
+      var href = a.getAttribute('href') || '';
+
+      // Los dos numeros del negocio. 352 = North Florida, 954 = South Florida (data/telefonos.json).
+      // Se mira el prefijo sobre los digitos, no la cadena: `tel:` admite espacios y guiones.
+      if (href.indexOf('tel:') === 0) {
+        var digitos = href.replace(/\D/g, '');
+        var zona = 'unknown';
+        if (digitos.indexOf('1352') === 0 || digitos.indexOf('352') === 0) zona = 'north';
+        else if (digitos.indexOf('1954') === 0 || digitos.indexOf('954') === 0) zona = 'south';
+        dl('click_to_call', { phone_region: zona, form_location: location.pathname });
+        return;
+      }
+
+      // Los 57 folletos de /brochures. El `file_download` de Enhanced Measurement tambien
+      // dispara en .pdf: son eventos con NOMBRE distinto, no se duplican entre si, pero no se
+      // suman en un informe. Este es el bueno porque lleva `link_text`.
+      if (/\.pdf(\?|#|$)/i.test(href)) {
+        // El texto del enlace es «View More!» en LOS 57 folletos: como dimension no distingue
+        // nada y el evento no serviria para saber que folleto tira. El nombre del fichero si
+        // identifica («artisan-brochure»), asi que manda ese y el texto queda de respaldo.
+        var fichero = (href.split('/').pop() || '').replace(/[?#].*$/, '').replace(/\.pdf$/i, '');
+        dl('brochure_download', { link_text: fichero || (a.textContent || '').trim().slice(0, 100) });
+      }
+    }, true);
+  }());
+</script>
+
+<script>
+  /**
+   * FASE ORIGEN — atribucion de PRIMER TOQUE.
+   *
+   * 🚨 SE CAPTURA EN LA PRIMERA PAGINA QUE PISA EL VISITANTE, NO AL ENVIAR. Cuando alguien
+   * llega por un anuncio y navega dos paginas antes de rellenar el formulario, los `utm_*` y
+   * el `gclid` ya no estan en la URL: leerlos en el submit devuelve vacio siempre, y el lead
+   * de pago se contabiliza como directo. Por eso esto corre en cada pageview.
+   *
+   * BLOQUE APARTE, Y ES OBLIGATORIO. El primer bloque de este fichero empieza con
+   * `if (!forms.length) return` y saldria antes de hacer nada en las paginas SIN formulario —
+   * que son justo las de aterrizaje de una campana. Mismo motivo que el bloque de
+   * `click_to_call`. `Base.astro` incluye el componente en 121 paginas y
+   * `pool-investment-estimator.astro` lo importa aparte: un solo sitio cubre las 122.
+   *
+   * SOLO SI NO HABIA NADA. La segunda pagina de la sesion no puede pisar el origen de la
+   * primera: eso convertiria «vino de Google Ads» en «vino de una pagina nuestra».
+   *
+   * 🚨 ESTO NO TOCA EL dataLayer. Ni una linea. El origen viaja como campos ocultos al
+   * endpoint y se pinta en el correo, que es donde los datos personales estan permitidos.
+   * `gclid` y el referrer en GA4 serian identificadores; los `utm_*` los captura GA4 solo.
+   */
+  (function () {
+    'use strict';
+    try {
+      if (sessionStorage.getItem('mm_origen')) return;
+
+      var o = {};
+      var p = new URLSearchParams(location.search);
+      var CLAVES = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content',
+        'gclid', 'fbclid', 'wbraid', 'gbraid'];
+      for (var i = 0; i < CLAVES.length; i++) {
+        var v = p.get(CLAVES[i]);
+        // Recortado a 200: el servidor recorta igual, pero una URL con basura de 8 KB no tiene
+        // por que ocupar la cuota de sessionStorage de la pestana.
+        if (v) o[CLAVES[i]] = String(v).trim().slice(0, 200);
+      }
+
+      // EL DOMINIO, NO LA URL ENTERA. La ruta completa de la pagina que enlaza puede llevar
+      // identificadores de sesion o terminos de busqueda; el host es lo unico que hace falta
+      // para saber quien nos manda trafico.
+      if (document.referrer) {
+        try {
+          var h = new URL(document.referrer).hostname;
+          if (h && h !== location.hostname) o.referrer = h;
+        } catch (e) { /* referrer ilegible: no es motivo para perder el resto */ }
+      }
+
+      o.landing_page = location.pathname;
+      o.first_seen = new Date().toISOString();
+
+      sessionStorage.setItem('mm_origen', JSON.stringify(o));
+    } catch (e) { /* modo privado o cuota llena: se pierde la atribucion, nunca el lead */ }
   }());
 </script>

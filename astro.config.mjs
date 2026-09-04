@@ -14,7 +14,17 @@ import vercel from '@astrojs/vercel';
 export default defineConfig({
   output: 'static',
   adapter: vercel(),
-  site: process.env.PUBLIC_SITE_URL || 'https://mrandmrsoutdoorliving.com',
+  /**
+   * CON `www`, Y ESTA MEDIDO. Vercel sirve `www` con 200 y el apex responde
+   * `308 -> https://www.mrandmrsoutdoorliving.com`. Una canonica que nombra el apex apunta
+   * por tanto a una URL que redirige: Google lo resuelve, pero gasta rastreo y mete un salto
+   * extra justo en el trafico de pago, que es el que llega con prisa y desde el movil.
+   *
+   * 🚨 SI ESTE VALOR CAMBIA, CAMBIA TAMBIEN `scripts/build-seo-ficheros.mjs`. Aquel escribe el
+   * sitemap y llevaba el host A FUEGO; con los dos desincronizados, las canonicas dicen un
+   * host y el sitemap otro. `check:seo` tiene ahora una puerta que lo impide.
+   */
+  site: process.env.PUBLIC_SITE_URL || 'https://www.mrandmrsoutdoorliving.com',
   trailingSlash: 'never',
   build: { format: 'file' },
 });

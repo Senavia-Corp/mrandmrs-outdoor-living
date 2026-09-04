@@ -4285,3 +4285,239 @@ de pasos autoavanzaba, y la captura no lo paraba».
   que se cachean una vez por visitante. Derivadas cuadradas a ~600 px lo bajarían ~10×, pero eso
   mete una clase de activo nueva fuera de `_source/assets-manifest.json` y no estaba en el encargo:
   queda **decidido por Sebastian**, no hecho a escondidas.
+
+---
+
+## R17-TRACKING — medición desplegada, y el fallo que impedía TODOS los leads
+
+Fecha: 4-sep-2026. Despliegues de producción: `2ykibx0wz` → `79phr6p2l`.
+
+### Lo que estaba pasando de verdad
+
+El encargo (`PROMPT-TRACKING.md`) daba por urgente que producción estuviera en `noindex`.
+**Ya no lo estaba** (verificado en vivo: `robots.txt` con la línea `Sitemap:`, sitemap con 119
+`<loc>`, 0 `noindex` en `/contact-us`). Lo que sí estaba roto era otra cosa, y peor:
+
+- **0 `gtm.js?id=` en producción.** Solo sobrevivía el `<noscript>` de Webflow, que no dispara
+  para nadie con JS. Cero medición desde el corte del DNS.
+- **9 URLs legacy en 404**, no 4 como decía el encargo. 7 bajo `/pool-builders/`. 11 307
+  impresiones en 6 meses, una en posición 2,2.
+- **`/thank-you` en 404.**
+
+### 🔴 La causa raíz: ningún lead podía entrar
+
+`Formularios.astro` llamaba a `turnstile.render()` con `action: form.dataset.name`, o sea
+`"Contact Page Form"` **con espacios**. El parámetro `action` de Turnstile solo admite
+`[a-zA-Z0-9_-]`: Cloudflare lanzaba
+
+```
+[Cloudflare Turnstile] Invalid input for optional parameter "action", got "Contact Page Form"
+```
+
+el widget **no se pintaba**, `idWidget` quedaba `undefined`, `getResponse()` lanzaba, el envío
+salía **sin token** y el servidor respondía **403**. En los cinco formularios del sitio.
+
+Lo tapaba un `.catch(() => {})` mudo. Se arregla usando el id corto de `MAPA_FORM` como `action`
+—que además es el mismo `form_name` que viaja a GA4— y **el catch pasa a ser ruidoso**: fue
+volverlo ruidoso y el navegador cantó la causa en el primer intento.
+
+Dos hipótesis intermedias quedaron descartadas por el camino y están anotadas en el código:
+`turnstile.ready()` **no vale** con `async`/`defer` (Cloudflare lo rechaza explícitamente); el
+gancho correcto con script asíncrono es el parámetro **`onload=` de la URL**, que es como quedó.
+
+### 🔴 El antibot contaba sus propias capturas como conversiones
+
+El honeypot y el time-trap descartan devolviendo `200 {ok:true}` a propósito, para no enseñarle
+al bot cuál de sus campos lo delató. Pero el cliente solo miraba `ok`, así que **escribía
+`mm_lead`, saltaba a `/thank-you` y contaba un `generate_lead` en GA4 y un `Lead` en Meta** por
+cada bot cazado — justo el tráfico que el antibot existe para quitar.
+
+Ahora la respuesta lleva `entregado`, y la conversión cuelga de él, no de `ok`. La guarda va
+**antes** de escribir `mm_lead`: ponerla antes de navegar dejaba la llave huérfana en
+`sessionStorage` y la conversión saltaba la próxima vez que alguien pisara `/thank-you`.
+Verificado en producción:
+
+```
+honeypot      → 200 {"ok":true,"entregado":false}
+time-trap     → 200 {"ok":true,"entregado":false}
+sin token     → 403 {"ok":false,"error":"verificacion fallida"}
+```
+
+### Turnstile: la clave, resuelta sin mandar un correo
+
+El repo se documentaba a sí mismo con la clave **equivocada**: los comentarios de
+`Formularios.astro` y `formulario.ts` decían los dos `0x4AAAAAAAQTptj2So4dx43e` (la de Webflow,
+que solo sobrevive como 4 atributos `data-turnstile-sitekey` muertos), cuando la que renderiza es
+`0x4AAAAAAEnkUHbX6ap29qsu`. Quien hubiera sacado `TURNSTILE_SECRET` siguiendo esa documentación
+habría cogido la secreta del widget que no es → 403 en todo.
+
+Se comprobó **sin envío real**: se registran los `error-codes` de Cloudflare y se sondeó con un
+token falso. Devolvió `["invalid-input-response"]` — o sea, **la secreta fue aceptada**; si fuera
+la cruzada habría dicho `invalid-input-secret`. La secreta es la correcta. Los comentarios,
+corregidos.
+
+Ese registro de `error-codes` se queda: es la única forma de distinguir «el visitante falló el
+reto» de «la secreta no es la de este widget», que desde fuera se ven idénticos (un 403).
+
+### Una quinta capa antibot que no estaba documentada
+
+`checkOrigin` de Astro rechaza los POST cross-site antes de llegar al endpoint
+(`Cross-site POST form submissions are forbidden`). El endpoint documentaba «LAS CUATRO CAPAS»;
+son cinco.
+
+### Los 4 eventos que faltaban
+
+- `click_to_call` y `brochure_download` — listener **delegado en `document`**, en un bloque
+  aparte de `Formularios.astro` (el existente hace `if (!forms.length) return` y saldría antes en
+  las páginas sin formulario, que son donde más `tel:` hay). Cubre las 122.
+- `view_project_gallery` — en la apertura del visor de `GalleryLeadLightbox.astro`.
+- `estimator_complete` — al llegar al último paso, **una vez por carga**, no en `recalcula()`,
+  que corre en cada arrastre. `budget_range` se bucketiza a los 6 tramos del
+  `<select name="Estimated-Project-Budget">` por el **punto medio** del rango: así la dimensión
+  tiene un solo juego de valores en `generate_lead` y en `estimator_complete` y se pueden
+  comparar. El rango crudo es continuo y como dimensión de GA4 sería inservible.
+
+`grep` sobre todos los `dataLayer.push`: **cero** email, teléfono, nombre o dirección.
+
+### `gtm-container.json`: dos fallos, corregidos antes de importarlo
+
+- **El bloqueo de preview no protegía 6 de los 8 tags.** El disparador era de tipo `PAGEVIEW`
+  pero se usaba como excepción en tags que disparan por `CUSTOM_EVENT`, y GTM evalúa las
+  excepciones **por evento**: en `generate_lead` no se evaluaba nunca. Convertido a
+  `CUSTOM_EVENT` con nombre por regex `.*`, que casa con todos los eventos incluido el `gtm.js`
+  de la vista de página. Ahora protege 8/8.
+- **`Meta Pixel - Lead` reventaba.** `content_name: {{DLV - form_name}}` sin comillas: GTM
+  sustituye textualmente, así que quedaba `{ content_name: contact }` → `ReferenceError`. El
+  evento `Lead` no habría llegado nunca. Entrecomillado.
+
+### Correcciones al encargo, para que no se repitan
+
+- El sitemap son **119** URLs (113 del origen + 6 `ADICIONES`), no 113. La comprobación del
+  encargo habría dado falsa alarma contra un sitemap correcto.
+- `/thank-you` no queda fuera del sitemap por «lista explícita»: **no existe tal lista**. El
+  sitemap se compone por *allowlist*, así que lo que no se añade, no sale. El mito estaba
+  propagándose a `rutas-propias.mjs`; corregido ahí también.
+- **`/brochures` no tiene formulario de lead**, solo el filtro `GET`. `form_name: 'brochures'`
+  es inalcanzable y esa rama de `Formularios.astro` es código muerto (se deja, es defensiva).
+  El 5º punto real es **`/pool-cost-estimator`**, que el encargo no menciona.
+
+### Verificado en producción
+
+```
+robots.txt        Sitemap: https://mrandmrsoutdoorliving.com/sitemap.xml
+sitemap <loc>     119          thank-you en el sitemap   0
+noindex contact   0            noindex thank-you         1
+GTM home / est1 / est2         1 / 1 / 1
+las 9 legacy      308 → 200, y a los destinos correctos (comodín, pérgola sin «wood», excavation)
+```
+
+Puertas estáticas: `check:estimador`, `check:tokens`, `check:assets`, `check:rutas`,
+`check:enlaces`, `check:galeria-formulario`, `check:seo` — **las 7 VERDES**.
+
+### Abierto — y lo que NO se comprobó
+
+> 🚨 **`check:texto`, `check:visual`, `check:menu`, `check:galeria`, `check:ix2` y
+> `check:carrusel` NO CORRIERON.** Las barridas se pararon a petición de Sebastian a mitad de
+> pasada. **Se saltaron, no pasaron.** Ningún cambio de esta fase toca texto visible ni marcado
+> que pinte (el panel de fallo es `display:none`), pero eso es un argumento, no una medición.
+
+- **Los 5 envíos reales siguen sin hacer.** El reto de Turnstile no carga en navegador
+  automatizado, así que la entrega del correo y el `generate_lead` en DebugView **no están
+  verificados de punta a punta**. Necesita un humano con navegador real.
+- **`LEAD_TO` está puesta a `sebastian@senaviacorp.com` SOLO para esas pruebas.** Cuando estén
+  verdes hay que dejarla en `info@mrandmrsoutdoorliving.com,sebastian@senaviacorp.com`: con un
+  único buzón, si ese buzón filtra o se llena, los leads desaparecen sin que nadie se entere.
+- **No hay persistencia del lead.** Si el SMTP falla, el endpoint devuelve 502 y el lead existe
+  solo como `console.error` en los logs de Vercel. Es deliberado (mejor que un «gracias»
+  mentiroso), pero hay que saber dónde mirar.
+- **Sin acuse al visitante** y la validación de servidor solo exige correo válido + un campo con
+  contenido: un lead puede llegar sin teléfono ni nombre. **Decisión de Sebastian**, no hecha a
+  escondidas.
+- **Fase M entera** (importar el contenedor, dimensiones de GA4, key event, retención a 14 meses,
+  excluir `challenges.cloudflare.com`, Search Console, Meta Pixel Helper). No automatizable.
+
+### Verificación funcional de los 5 formularios (4-sep-2026, en producción)
+
+Con la respuesta del servidor interceptada (`{ok:true,entregado:true}`) para aislar el cliente
+del salto SMTP. Cada envío redirigió a `/thank-you?f=…` y disparó **exactamente un**
+`generate_lead`:
+
+| Ruta | `form_name` | `budget_range` | otros |
+|---|---|---|---|
+| `/contact-us` | `contact` | — | `project_type: Residential` |
+| `/request-estimated` | `estimate` | `$50,000 – $75,000` | `service_interest: New Pool and Spa Construction` |
+| `/gallery` (lightbox) | `gallery` | `$100,000 – $150,000` | 2 servicios unidos con `\|` |
+| `/pool-investment-estimator` | `estimator` | `$75,000 – $100,000` | `project_type: New Custom Pool` |
+| `/pool-cost-estimator` | `estimator` | `$75,000 – $100,000` | ídem, separado por `form_location` |
+
+**Cero PII en los cinco.** Se rellenaron a propósito `Street-Address`, `City`, `Phone` y `Email`
+y **ninguno** aparece en el `dataLayer`. El `mm_lead` queda consumido (`null`) tras la conversión.
+
+Guarda de `/thank-you`: entrada directa y recarga → **0** `generate_lead`.
+
+### Dos huecos encontrados AL PROBAR, no leyendo código
+
+- **`budget_range` llegaba vacío en los dos estimadores.** Esos formularios no tienen el
+  `<select name="Estimated-Project-Budget">`, sino el oculto `Estimate-Range` que escribe el
+  propio estimador. O sea: el lead de **mayor intención** del sitio llegaba a GA4 sin la
+  dimensión de presupuesto. Ahora hay respaldo que reduce `Estimate-Range` al mismo tramo por
+  punto medio. Verificado: `$75,000 – $100,000`.
+- **`brochure_download` mandaba `link_text: "View More!"`** — el texto es idéntico en **los 57**
+  folletos, así que el evento no decía cuál se descargó y era inservible para decidir nada.
+  Ahora manda el nombre del fichero. Verificado: `artisan-brochure`, `coyote-brochure`,
+  `classic-modern-catalog`.
+
+### Los 4 eventos nuevos, verificados en producción
+
+```
+click_to_call         phone_region: north   (tel:+13527403361)
+click_to_call         phone_region: south   (tel:+19549137112)
+brochure_download     link_text: artisan-brochure         (57 PDFs en la pagina)
+view_project_gallery  link_text: <alt real de la foto>    + el visor abre
+estimator_complete    budget_range: $75,000 – $100,000    desde "$83,000 – $102,000" en pantalla
+```
+
+`estimator_complete` dispara **una sola vez**: llegar al paso 7, volver atrás y avanzar otra vez
+deja el contador en 1.
+
+### Lo único que sigue sin comprobarse
+
+**La entrega SMTP.** Exige un token real de Turnstile y Cloudflare bloquea el navegador
+automatizado; sortear un antibot no se hace. Se prueba en una **preview** (donde
+`TURNSTILE_SECRET` no existe y `formulario.ts:112` salta la validación por diseño) en cuanto
+`SMTP_USER`/`SMTP_PASS` estén también en scope Preview. `LEAD_TO` ya está en los dos entornos
+apuntando a `sebastian@senaviacorp.com`.
+
+### Cierre: el envío SMTP, resuelto
+
+El fallo final **no estaba en el código**. Los logs de Vercel lo dieron sin ambigüedad:
+
+```
+Invalid login: 535-5.7.8 Username and Password not accepted
+code: 'EAUTH'   responseCode: 535   command: 'AUTH PLAIN'
+```
+
+Gmail rechazaba las credenciales: `SMTP_USER` llevaba la contraseña de aplicación en vez de la
+dirección de correo. Corregidas las dos variables, el aviso llega y se ha visto en la bandeja.
+
+De paso se **sanea la credencial en el servidor** (`formulario.ts`): `SMTP_USER` con `.trim()` y
+`SMTP_PASS` con `.replace(/\s+/g,'')`. Google enseña la contraseña de aplicación en grupos de
+cuatro y se pega con espacios una y otra vez; el síntoma es un 535 idéntico al de una clave
+equivocada, y cuesta horas distinguirlos. Una contraseña de aplicación son 16 letras sin
+espacios: quitarlos no puede romper una válida.
+
+Que los logs sirvieran para diagnosticar en un minuto es consecuencia directa de dos decisiones
+de esta fase: el `.catch` ruidoso de Turnstile y el registro de `error-codes`. El `.catch` mudo
+que había antes es lo que mantuvo oculto el fallo del `action` durante todo el corte.
+
+**`LEAD_TO` queda en `info@mrandmrsoutdoorliving.com,sebastian@senaviacorp.com`** — dos
+destinatarios, para que un solo buzón que filtre o se llene no haga desaparecer los leads.
+
+### Verificación final en producción
+
+```
+GTM home        1          thank-you        200
+robots          Sitemap: …/sitemap.xml      sitemap <loc>   119
+noindex contact 0          redirect pergola 308 → 200
+antibot         {"ok":true,"entregado":false}   (honeypot: sin correo, sin conversion)
+```

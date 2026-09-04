@@ -423,6 +423,28 @@ const miles = (n: number) => n.toLocaleString('en-US');
     const tarjetas = qa<HTMLElement>('[data-pe-tarjeta]');
     const TOTAL = tarjetas.length;
     let paso = 1;
+    /** `estimator_complete` se manda UNA vez por carga, no cada vez que se vuelve al final. */
+    let completado = false;
+
+    /**
+     * El rango del estimador es CONTINUO (`rangoTexto` da «$45,000 – $65,000» y cambia con cada
+     * posición del deslizador): como dimensión de GA4 sería de cardinalidad altísima e
+     * inservible en un informe. Se reduce a los MISMOS 6 tramos del `<select
+     * name="Estimated-Project-Budget">` de los formularios de lead, para que `budget_range`
+     * tenga un solo juego de valores en `generate_lead` y en `estimator_complete` y los dos se
+     * puedan comparar.
+     *
+     * Se clasifica por el PUNTO MEDIO, no por el extremo alto: es el valor que ese mismo
+     * visitante elegiría en el desplegable si rellenara el formulario, que es justamente la
+     * comparación que esta dimensión existe para permitir. El extremo alto sesgaría al alza.
+     */
+    const tramo = (n: number) => (
+      n < 25000 ? 'Under $25,000'
+        : n < 50000 ? '$25,000 – $50,000'
+          : n < 75000 ? '$50,000 – $75,000'
+            : n < 100000 ? '$75,000 – $100,000'
+              : n < 150000 ? '$100,000 – $150,000'
+                : '$150,000+');
 
     /**
      * El estado sale del DOM, no de una variable paralela. Los `<input>` nativos YA son el
@@ -511,6 +533,19 @@ const miles = (n: number) => n.toLocaleString('en-US');
       // El cierre solo existe al final: pedir los datos antes de enseñar el número es pedirlos
       // a cambio de nada.
       q<HTMLElement>('[data-pe-cierre]')!.hidden = paso !== TOTAL;
+
+      // TRACKING — `estimator_complete`. Aquí y no en `recalcula()`: aquélla corre en CADA
+      // arrastre de cada deslizador y mandaría cientos de eventos por sesión. Llegar al último
+      // paso es el único momento que significa algo: es donde se enseña el número y se pide
+      // el contacto. UNA vez por carga, aunque se navegue adelante y atrás.
+      if (paso === TOTAL && !completado) {
+        completado = true;
+        try {
+          const r = calcula(lee());
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'estimator_complete', budget_range: tramo((r.min + r.max) / 2) });
+        } catch (e) { /* la medición nunca puede romper el estimador */ }
+      }
     }
 
     raiz.addEventListener('input', recalcula);

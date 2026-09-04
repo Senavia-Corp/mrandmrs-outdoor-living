@@ -456,6 +456,19 @@ const enGaleria = Astro.url.pathname === '/gallery';
       pinta();
       document.documentElement.classList.add('mm-scroll-lock');
       dlg.showModal();
+
+      // TRACKING. La apertura del visor es la senal de intencion de esta pagina: mirar la obra
+      // de cerca es el paso previo al formulario que vive en este mismo dialogo.
+      // `link_text` sale del alt de la foto -es lo unico descriptivo que hay aqui-, nunca del
+      // nombre del fichero. Solo categorico: ni un dato del visitante.
+      try {
+        var img = a.querySelector('img');
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'view_project_gallery',
+          link_text: ((img && img.getAttribute('alt')) || a.textContent || '').trim().slice(0, 100),
+        });
+      } catch (e) { /* la medicion nunca puede romper el visor */ }
     }));
 
     dlg.querySelector('.mm-lbx__x')?.addEventListener('click', () => dlg.close());

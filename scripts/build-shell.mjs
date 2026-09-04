@@ -96,6 +96,33 @@ const ENLACES_ANADIDOS = [
   // existe en el nav, comprobado, asi que no hay ambiguedad.
   ['div.div-block-8', '/articles/accessibility', 'Accessibility', 'link-3'],
 ];
+/**
+ * NOMBRE ACCESIBLE PARA LOS ENLACES QUE SOLO LLEVAN UN ICONO. `[selector, aria-label]`.
+ *
+ * Webflow saca nueve enlaces del cascaron SIN NOMBRE: los dos logos -su <img> lleva `alt=""`
+ * a proposito, que es correcto para una imagen decorativa pero deja al <a> mudo-, el `tel:`
+ * del nav y los tres sociales de nav y pie, que son SVG pelados. Con un lector de pantalla
+ * eran seis «link» seguidos sin decir a donde van, y Lighthouse los cuenta en `link-name`:
+ * 5 nodos en la home y 7 puntos enteros de Accessibility.
+ *
+ * Va aqui y no solo a mano en el .astro para que una regeneracion lo reproduzca en vez de
+ * revertirlo, igual que `CON_PAGINA_PROPIA` y `ANCLAS_MUERTAS`. Comparte el contador
+ * `reapuntados`, o sea el aborto duro: si el origen renombra una clase, esto para la corrida.
+ *
+ * `aria-label` NO es `innerText`: `check:texto` no lo ve y sigue midiendo al 100 %. Y no pinta
+ * nada, asi que `check:visual` tampoco se entera. Por eso es la moneda barata aqui.
+ *
+ * El `&` va crudo: lo escapa el serializador de JSDOM al escribir el marcado.
+ */
+const MARCA = 'Mr & Mrs Outdoor Living';
+const NOMBRES_ACCESIBLES = [
+  ['a.navbar-logo', `${MARCA} — home`],
+  ['a.footer-brand', `${MARCA} — home`],
+  ['a.phone-link', 'Call (352) 740-3361'],
+  ['a[href*="facebook.com/mrandmrsoutdoorliving"]', `${MARCA} on Facebook`],
+  ['a[href*="instagram.com/mrandmrsoutdoorliving"]', `${MARCA} on Instagram`],
+  ['a[href*="youtube.com/channel/"]', `${MARCA} on YouTube`],
+];
 /** Cuantos se reapuntaron, por destino. Si alguno sale a 0 el marcado de origen ha cambiado. */
 const reapuntados = new Map();
 /** URL del CDN -> ruta local, con el manifiesto de la Fase 2 como única fuente. */
@@ -146,6 +173,13 @@ function limpiar(nodo) {
   for (const [selector, dentro] of ANCLAS_MUERTAS) {
     for (const a of nodo.querySelectorAll(selector)) {
       a.setAttribute('href', dentro);
+      reapuntados.set(selector, (reapuntados.get(selector) ?? 0) + 1);
+    }
+  }
+  for (const [selector, etiqueta] of NOMBRES_ACCESIBLES) {
+    for (const a of nodo.querySelectorAll(selector)) {
+      if (a.hasAttribute('aria-label')) continue;              // idempotente
+      a.setAttribute('aria-label', etiqueta);
       reapuntados.set(selector, (reapuntados.get(selector) ?? 0) + 1);
     }
   }
@@ -220,7 +254,7 @@ if (sinMapear.length) {
  * exista, o que la URL de destino sea otra—, y entonces lo que hay que revisar es la
  * declaración, no silenciar la comprobación.
  */
-const sinCasar = [...CON_PAGINA_PROPIA, ...ANCLAS_MUERTAS, ...ENLACES_ANADIDOS]
+const sinCasar = [...CON_PAGINA_PROPIA, ...ANCLAS_MUERTAS, ...ENLACES_ANADIDOS, ...NOMBRES_ACCESIBLES]
   .filter(([clave]) => !reapuntados.get(clave));
 if (sinCasar.length) {
   console.error(`\n🔴 ${sinCasar.length} enlace(s) declarado(s) que no casaron con nada:\n`);

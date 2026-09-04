@@ -35,11 +35,28 @@ import path from 'node:path';
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const PUB = path.join(RAIZ, 'public');
 const PROD = process.env.PUBLIC_ES_PRODUCCION === '1';
-const SITIO = 'https://mrandmrsoutdoorliving.com';
+/**
+ * MISMA EXPRESION, PALABRA POR PALABRA, QUE `astro.config.mjs`. Estaba A FUEGO y con el apex,
+ * mientras las canonicas salian de `astro.config.mjs`: dos ficheros que tenian que decir lo
+ * mismo y solo uno leia la variable. `check:seo` compara ahora el host del sitemap con el de
+ * las canonicas, asi que separarlos pone la puerta roja en vez de irse en silencio a Google.
+ */
+const SITIO = process.env.PUBLIC_SITE_URL || 'https://www.mrandmrsoutdoorliving.com';
 
 // Las 113 del sitemap del origen, tal cual, para no inventarse el orden ni el conjunto.
 const original = fs.readFileSync(path.join(RAIZ, 'baseline/sitemap.xml'), 'utf8');
-const delOrigen = [...original.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+/**
+ * SE REESCRIBE EL HOST, Y NADA MAS. El baseline guarda las 113 con el APEX, que es lo que
+ * publicaba Webflow. Al unificar las canonicas a `www` el sitemap se quedaba con 113 en apex
+ * y 6 en www: dos hosts en el mismo fichero, que es peor que cualquiera de los dos solo.
+ *
+ * La regla de arriba —«tal cual, para no inventarse el orden ni el conjunto»— sigue intacta:
+ * el conjunto y el orden son los del origen; lo unico que cambia es el nombre del servidor,
+ * que es un dato de despliegue y no del contenido. Lo caza `check:seo`, que compara el host
+ * del sitemap con el de las canonicas.
+ */
+const delOrigen = [...original.matchAll(/<loc>([^<]+)<\/loc>/g)]
+  .map((m) => m[1].replace(/^https?:\/\/[^/]+/, SITIO));
 
 /**
  * ADICIONES DELIBERADAS: rutas de autoría propia, que por definición no están en el sitemap

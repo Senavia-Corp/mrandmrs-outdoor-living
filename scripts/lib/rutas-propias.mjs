@@ -93,6 +93,18 @@ export const RUTAS_PROPIAS = {
   '/project/aluminum-patio-cover-pool-deck-south-florida':
     'Obra propia (3-sep-2026). Cubierta de aluminio de techo solido a todo lo ancho de la '
     + 'fachada trasera, con terraza de marmol alrededor de la piscina.',
+
+  '/thank-you':
+    'Escrita el 4-sep-2026 para el sistema de medicion. El sitio vivo nunca tuvo pagina de '
+    + 'gracias: conmutaba el panel `.w-form-done` en su sitio, y un div que cambia de display '
+    + 'no lo ve GA4, ni Google Ads, ni Meta. Una URL de conversion si. La reciben los CINCO '
+    + 'formularios de captacion, que se distinguen por el parametro `?f=`. Lleva `noindex` '
+    + 'SIEMPRE —una pagina de gracias indexada la alcanza gente que no ha enviado nada, y eso '
+    + 'o cuenta conversiones falsas o desplaza en Google a la pagina de servicio que si vende— '
+    + 'y esta fuera del sitemap por CONSTRUCCION, no por exclusion: `build-seo-ficheros.mjs` '
+    + 'compone el sitemap con una ALLOWLIST -las 113 de baseline/sitemap.xml mas las ADICIONES '
+    + 'declaradas ahi mismo-, asi que no hay «lista de excluidas» que mantener: lo que no se '
+    + 'anade, no sale. Para que /thank-you se colara habria que meterla en ADICIONES a mano.',
 };
 
 /** `true` si la ruta la hemos escrito nosotros y no tiene origen en Webflow. */

@@ -332,15 +332,27 @@ const SLIDERS = JSON.stringify(
        * ya se podian tabular, pero llevan al mismo sitio por saltos; esto da el recorrido
        * fino y, sobre todo, hace que el contenido se pueda leer sin raton.
        *
-       * `role="group"` + nombre, porque un contenedor enfocable sin nombre no dice al llegar
-       * que es. El nombre sale del encabezado de la seccion: `aria-label` NO es `innerText`,
-       * asi que `check:texto` no lo ve y sigue midiendo al 100 %.
+       * Nombre para el contenedor enfocable, porque uno sin nombre no dice al llegar que es.
+       * El nombre sale del encabezado de la seccion: `aria-label` NO es `innerText`, asi que
+       * `check:texto` no lo ve y sigue midiendo al 100 %.
        *
        * Alcanza a los 8 sliders del sitio, no solo al del blog. Es deliberado: el defecto
        * era del mecanismo, no de una instancia.
+       *
+       * EL ROL DEL TRACK NO SE PISA — MEDIDO. Hasta aqui esta linea ponia `role="group"`, y
+       * el track ya venia del marcado con `role="list"` (o es un <ul>, como el de reseñas).
+       * Pisarlo dejaba HUERFANOS a todos los `role="listitem"` de dentro: axe-core exige que
+       * el padre de un `listitem` exponga `list` (`aria-required-parent`), y Lighthouse mide
+       * el DOM despues de ejecutar JS. Coste medido: 2699 nodos en 84 paginas, 33 solo en la
+       * home, y los 10 puntos enteros del audit. Un contenedor con `role="list"` admite
+       * `aria-label` y `tabindex` igual de bien que uno con `group`, asi que no se perdia
+       * nada a cambio. Se garantiza el rol en vez de imponerlo: si el marcado no trae ninguno
+       * -y sus hijos si son `listitem`-, se pone `list`; si ya trae uno, manda el marcado.
        */
       lista.tabIndex = 0;
-      lista.setAttribute('role', 'group');
+      if (!lista.hasAttribute('role') && !lista.matches('ul, ol, menu')) {
+        lista.setAttribute('role', 'list');
+      }
       if (!lista.hasAttribute('aria-label')) {
         const titulo = inst.closest('section')?.querySelector('h1, h2')?.textContent?.trim();
         lista.setAttribute('aria-label', titulo ? `${titulo} — carousel` : 'Carousel');
@@ -423,10 +435,31 @@ const SLIDERS = JSON.stringify(
           drag.style.transform = `translateX(${(lista.scrollLeft / max) * (100 / visible - 100)}%)`;
         }
       };
+      /**
+       * NOMBRE ACCESIBLE DE LAS FLECHAS — `button-name`, 10 puntos de A11y.
+       *
+       * Las flechas son <button> con un icono de fondo y CERO texto dentro, o sea sin nombre
+       * accesible. Cuatro de ellas fallaban en la home (proyectos y blog) y el defecto es del
+       * MECANISMO: alcanza a proyectos (66 rutas), galeria (24), blog de la home (1) e
+       * industries (1). Ponerlo aqui las cubre todas de una vez, en vez de en los 24 strings
+       * derivados donde tambien vive ese marcado.
+       *
+       * `hasAttribute` manda: `CarruselBlog.astro` y `ResenasGoogle.astro` ya traen el suyo
+       * del marcado («Previous posts», «Previous reviews») y no se pisan.
+       *
+       * El nombre se cuelga del que ya tiene la lista -el encabezado de la seccion-, asi que
+       * dos carruseles de la misma pagina no acaban con flechas homonimas. `aria-label` no es
+       * `innerText`: `check:texto` no lo ve.
+       */
+      const nombreLista = (lista.getAttribute('aria-label') ?? '').replace(/\s+—\s+carousel$/, '');
       for (const [b, d] of [[prev, -1], [next, 1]]) {
         if (!b) continue;
         b.setAttribute('role', 'button');
         b.setAttribute('tabindex', '0');
+        if (!b.hasAttribute('aria-label') && !b.textContent.trim()) {
+          const sentido = d < 0 ? 'Previous' : 'Next';
+          b.setAttribute('aria-label', nombreLista ? `${sentido} — ${nombreLista}` : sentido);
+        }
         b.addEventListener('click', () => { lista.scrollLeft += d * paso(); });
         b.addEventListener('keydown', (ev) => {
           if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); b.click(); }

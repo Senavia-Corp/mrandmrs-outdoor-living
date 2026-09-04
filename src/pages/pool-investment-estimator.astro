@@ -33,6 +33,21 @@ const canonica = ES_PRODUCCION ? new URL('/pool-investment-estimator', Astro.sit
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Pool Investment Estimator - Mr &amp; Mrs Outdoor Living</title>
+    {/* GTM. Esta pagina NO pasa por Base.astro —es su propio documento, sin cascaron— asi que
+        el snippet del layout no la alcanza y se quedaba como la UNICA de las 122 sin medir.
+        Importa porque AQUI hay captacion: lleva el `Pool Estimator Form`. El generate_lead se
+        registraba igual (ocurre en /thank-you, que si tiene GTM), pero su page_view y su
+        form_start no existian, y sin la entrada del embudo el ratio de conversion de esta
+        pagina era incalculable.
+
+        Es el MISMO contenedor y el mismo snippet que Base.astro; si cambia alli, cambia aqui. */}
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+      j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+      f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-N9BWB3BV');
+    </script>
     {canonica && <link rel="canonical" href={canonica} />}
     {!ES_PRODUCCION && <meta name="robots" content="noindex, nofollow" />}
     <link rel="icon" type="image/png" href="/images/site/favicon.png" />

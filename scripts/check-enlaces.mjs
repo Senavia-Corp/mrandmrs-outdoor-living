@@ -128,6 +128,43 @@ const SIN_ENLACE_INTERNO = new Map([
   ['/where-we-serves/custom-pool-builders-south-florida',
     'idem, renombrada a /where-we-serve/south-florida. Ademas estaba en el sitemap del Webflow '
     + 'vivo, o sea que tiene URL publica indexada.'],
+
+  ['/pool-builders/pool-builders-southwest-ranches-florida',
+    'Legacy de Webflow (slug con el prefijo repetido). Webflow la redirigia y vercel.json no, '
+    + 'asi que al cortar el DNS empezo a dar 404. 4428 impresiones en 6 meses en Search '
+    + 'Console: es trafico externo, y lo correcto es que ningun enlace interno la use.'],
+  ['/pool-builders/pool-builders-hallandale-beach-florida',
+    'Legacy de Webflow (slug con el prefijo repetido). Webflow la redirigia y vercel.json no, '
+    + 'asi que al cortar el DNS empezo a dar 404. 2072 impresiones en 6 meses en Search '
+    + 'Console: es trafico externo, y lo correcto es que ningun enlace interno la use.'],
+  ['/pool-builders/pool-builders-ocala-florida',
+    'Legacy de Webflow (slug con el prefijo repetido). Webflow la redirigia y vercel.json no, '
+    + 'asi que al cortar el DNS empezo a dar 404. 1547 impresiones en 6 meses en Search '
+    + 'Console: es trafico externo, y lo correcto es que ningun enlace interno la use.'],
+  ['/pool-builders/pool-builders-north-palm-beach-florida',
+    'Legacy de Webflow (slug con el prefijo repetido). Webflow la redirigia y vercel.json no, '
+    + 'asi que al cortar el DNS empezo a dar 404. 1390 impresiones en 6 meses en Search '
+    + 'Console: es trafico externo, y lo correcto es que ningun enlace interno la use.'],
+  ['/pool-builders/pool-builders-micanopy-florida',
+    'Legacy de Webflow (slug con el prefijo repetido). Webflow la redirigia y vercel.json no, '
+    + 'asi que al cortar el DNS empezo a dar 404. 1235 impresiones en 6 meses en Search '
+    + 'Console: es trafico externo, y lo correcto es que ningun enlace interno la use.'],
+  ['/pool-builders/pool-builders-west-palm-beach-florida',
+    'Legacy de Webflow (slug con el prefijo repetido). Webflow la redirigia y vercel.json no, '
+    + 'asi que al cortar el DNS empezo a dar 404. 353 impresiones en 6 meses en Search '
+    + 'Console: es trafico externo, y lo correcto es que ningun enlace interno la use.'],
+  ['/pool-builders/pool-builders-mcintosh-florida',
+    'Legacy de Webflow (slug con el prefijo repetido). Webflow la redirigia y vercel.json no, '
+    + 'asi que al cortar el DNS empezo a dar 404. 146 impresiones en 6 meses en Search '
+    + 'Console: es trafico externo, y lo correcto es que ningun enlace interno la use.'],
+  ['/services/custom-aluminum-wood-pergola-builders-in-north-south-florida',
+    'Slug viejo del servicio de pergolas, con «wood» en medio. Ya devolvia 404 en el Webflow '
+    + 'vivo y aun asi rankea en POSICION 2,2 con 125 impresiones: este 301 es un arreglo, no '
+    + 'paridad. Destino: el mismo servicio con el slug actual.'],
+  ['/excavation',
+    'Ruta heredada que ya devolvia 404 antes de la migracion. 11 impresiones en posicion 8,3. '
+    + 'Destino a criterio: la excavacion es parte de la construccion de piscina. Si se decide '
+    + 'que no procede, se borra la entrada y se deja el 404 — pero que sea una decision.'],
 ]);
 
 // Huerfanos: la trampa que tenia la lista de perdones que habia aqui antes.

@@ -151,7 +151,8 @@ const texto = (h) => String(h).replace(/&amp;/g, '&').replace(/&lt;/g, '<').repl
                 <p class="svc-ficha-texto" set:html={sv.texto} />
               </div>
               <a class="svc-cta button w-button" href={sv.enlace}
-                aria-label={`${texto(sv.cta)}: ${texto(sv.titulo)}`} set:html={sv.cta} />
+                aria-label={`${texto(sv.cta)}: ${texto(sv.titulo)}`}
+              ><Fragment set:html={sv.cta} /><span class="mm-sr" set:html={`: ${sv.titulo}`} /></a>
             </div>
           </article>
         </>

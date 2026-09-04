@@ -206,6 +206,27 @@ const jsonLd = seo.jsonLd ?? [];
     {FUENTES_PRECARGA.map((u) => (
       <link rel="preload" href={u} as="font" type="font/woff2" crossorigin="anonymous" />
     ))}
+    {/* GOOGLE TAG MANAGER — la unica fuente de medicion del sitio.
+        `is:inline` es OBLIGATORIO: sin el, Astro lo empaqueta como modulo, lo mueve al final
+        y deja de ser el snippet sincrono que Google espera; el contenedor cargaria tarde y
+        los eventos de la primera pintura se perderian.
+
+        VA DESPUES DE LAS PRECARGAS DE FUENTE, no antes. Google dice «lo mas alto posible»,
+        pero las dos precargas de Inter son las que sostienen el CLS medido del nav (0,0978 a
+        0,1564 sin ellas). GTM es `async` y no las bloquea yendo detras.
+
+        CARGA EN TODOS LOS ENTORNOS A PROPOSITO. Bloquear aqui impediria depurar con Tag
+        Assistant en las preview de Vercel. Quien filtra el ruido de preview es el disparador
+        de bloqueo por hostname DENTRO del contenedor, no este script.
+
+        El <noscript> hermano YA existe en el <body>, dentro de section.code. No pongas otro. */}
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+      j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+      f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-N9BWB3BV');
+    </script>
     <title>{titulo}</title>
     {descripcion && <meta name="description" content={descripcion} />}
     {Object.entries(meta).map(([k, v]) => (k.startsWith('og:')

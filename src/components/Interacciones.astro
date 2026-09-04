@@ -189,14 +189,50 @@ const REVEALS = JSON.stringify(reveals.porId);
 
     // ── 1 · entradas por scroll ─────────────────────────────────────────
     try {
-      const observados = [];
+      const candidatos = [];
       for (const [id, entradas] of Object.entries(porId)) {
         for (const el of document.querySelectorAll(`[data-w-id="${id}"]`)) {
           const e = entradas.find((x) => x.bps.some(enRango));
           if (!e) continue;                       // en este ancho, ese elemento no anima
-          el.setAttribute('data-rev', e.anim);
-          observados.push(el);
+          candidatos.push([el, e.anim]);
         }
+      }
+
+      /**
+       * LO QUE YA SE VE AL CARGAR NO SE SELLA — Y ESTO VALE 9 PUNTOS DE LIGHTHOUSE.
+       *
+       * Una entrada POR SCROLL sobre contenido que ya esta en pantalla no es una entrada por
+       * scroll: el IntersectionObserver dispara en el primer tick, o sea que lo unico que hace
+       * es esconder el heroe y volver a enseñarlo. El coste estaba MEDIDO en la home:
+       *
+       *     FCP observado    397 ms
+       *     LCP observado   1366 ms   <- el <h1 class="heading-hero">
+       *     diferencia       969 ms  ~ los 1000 ms exactos de `mm-growIn`
+       *
+       * El LCP no esperaba a la red -esa medicion es contra localhost, TTFB de 6 ms- ni a un
+       * script: esperaba a su propia animacion. `lcp-breakdown` lo confirmaba con las fases,
+       * 6 ms de TTFB y 1360 de `elementRenderDelay`. Sobre la preview eran 1988 ms de LCP y
+       * 91 de Performance, con TBT ya en 0: el unico audit que restaba puntos.
+       *
+       * Asi que a lo que nace dentro del viewport no se le pone `data-rev`. Sin `data-rev` no
+       * casa el selector del sello ni el de la animacion: el elemento se pinta y ya esta. Lo
+       * de mas abajo sigue animando igual, que es donde la entrada por scroll significa algo.
+       *
+       * EL ESTADO FINAL NO CAMBIA UN PIXEL -por eso `check:visual`, que asienta antes de
+       * capturar, sigue verde-. Lo que cambia es el TRANSITORIO: el heroe aparece en vez de
+       * crecer. Es un cambio de MOVIMIENTO y va dicho, no colado.
+       *
+       * LAS LECTURAS VAN EN BLOQUE Y ANTES DE TODA ESCRITURA. Intercalar `getBoundingClientRect`
+       * con `setAttribute` fuerza un reflow por elemento; asi es uno para los 79.
+       */
+      const alto = innerHeight;
+      const yaEnPantalla = candidatos.map(([el]) => el.getBoundingClientRect().top < alto);
+
+      const observados = [];
+      for (let i = 0; i < candidatos.length; i++) {
+        if (yaEnPantalla[i]) continue;
+        candidatos[i][0].setAttribute('data-rev', candidatos[i][1]);
+        observados.push(candidatos[i][0]);
       }
 
       const obs = new IntersectionObserver((filas) => {

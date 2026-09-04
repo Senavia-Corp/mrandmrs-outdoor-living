@@ -82,7 +82,8 @@ const posts = filtrados.length ? filtrados : todos;
                     <p class="paragraph-mini">{p.resumen}</p>
                     <div class="wrapper-buttons">
                       <a href={p.enlace} class="button-styles w-button"
-                         aria-label={`${p.cta}: ${p.titulo}`}>{p.cta}</a>
+                         aria-label={`${p.cta}: ${p.titulo}`}
+                      >{p.cta}<span class="mm-sr">: {p.titulo}</span></a>
                     </div>
                   </div>
                 </div>

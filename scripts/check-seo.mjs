@@ -58,6 +58,28 @@ const RUTAS = csv.trim().split('\n').slice(1).map((l) => l.match(/"((?:[^"]|"")*
 const SIN_HEAD_DE_WEBFLOW = new Set(['/pool-investment-estimator']);
 
 /**
+ * `/thank-you` LLEVA `noindex` TAMBIEN EN PRODUCCION, y es lo correcto: una pagina de gracias
+ * indexada la alcanza gente que no ha enviado nada, y entonces o cuenta conversiones falsas o
+ * —peor— sale en Google en vez de la pagina de servicio que si vende.
+ *
+ * Estaba sin declarar, asi que esta puerta la daba ROJA en cada pasada en modo produccion por
+ * hacer exactamente lo que se le pide. Se declara aqui, y ademas al reves: si algun dia PIERDE
+ * el noindex, tambien es rojo.
+ */
+const NOINDEX_A_PROPOSITO = new Set(['/thank-you']);
+
+/**
+ * EL HOST DE LAS CANONICAS, para cotejarlo despues con el del sitemap.
+ *
+ * POR QUE ES UNA PUERTA Y NO UN COMENTARIO. Las canonicas salen de `astro.config.mjs` y el
+ * sitemap de `scripts/build-seo-ficheros.mjs`, y hasta hoy el segundo llevaba el host A FUEGO.
+ * O sea: se podia cambiar el dominio en un sitio y dejar el otro atras sin que nada fallara,
+ * y el sintoma —Google recibe dos hosts distintos para el mismo sitio y reparte la autoridad
+ * entre ambos— no aparece en ningun rojo, solo semanas despues en Search Console.
+ */
+const hostsCanonicos = new Set();
+
+/**
  * ── PARTES DE JSON-LD ANADIDAS A PROPOSITO ────────────────────────────────────────────────
  *
  * `/projects` enseña 15 obras desde que se publicaron las 5 propias (3-sep-2026), y su
@@ -208,11 +230,13 @@ for (const ruta of conPropias(RUTAS)) {
 
   // La canonica: adicion deliberada, solo en produccion.
   const can = d.querySelector('link[rel=canonical]')?.getAttribute('href');
+  if (can) { try { hostsCanonicos.add(new URL(can).host); } catch { problemas.push(`canonica ilegible: ${can}`); } }
   if (PROD && !can) problemas.push('falta la canonica (PUBLIC_ES_PRODUCCION=1)');
   if (!PROD && can) problemas.push('hay canonica fuera de produccion: en preview no debe emitirse');
   const noindex = /noindex/.test(d.querySelector('meta[name=robots]')?.content ?? '');
   if (!PROD && !noindex) problemas.push('falta noindex fuera de produccion');
-  if (PROD && noindex) problemas.push('hay noindex EN PRODUCCION');
+  if (PROD && noindex && !NOINDEX_A_PROPOSITO.has(ruta)) problemas.push('hay noindex EN PRODUCCION');
+  if (PROD && !noindex && NOINDEX_A_PROPOSITO.has(ruta)) problemas.push('FALTA el noindex declarado');
 
   if (problemas.length) { rojos.push([ruta, problemas]); fallos++; } else ok++;
 }
@@ -237,6 +261,29 @@ for (const [r, ps] of rojos.slice(0, 10)) {
   ps.slice(0, 5).forEach((p) => console.log(`       ${p}`));
 }
 if (rojos.length > 10) console.log(`  ... y ${rojos.length - 10} paginas mas`);
+
+for (const r of NOINDEX_A_PROPOSITO) {
+  console.log(`  ok   declarado ${r}: noindex TAMBIEN en produccion, a proposito`);
+}
+
+// ── EL HOST, UNO SOLO, EN LOS DOS SITIOS ──────────────────────────────────────
+// Solo tiene sentido en produccion: fuera de ella no se emiten canonicas y el sitemap sale
+// vacio a proposito.
+if (PROD) {
+  const sm = path.join(ESTATICO, 'sitemap.xml');
+  const hostsSitemap = new Set(fs.existsSync(sm)
+    ? [...fs.readFileSync(sm, 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => new URL(m[1]).host)
+    : []);
+  const uno = (x) => [...x].sort().join(', ') || '(ninguno)';
+  const coherente = hostsCanonicos.size === 1 && hostsSitemap.size === 1
+    && [...hostsCanonicos][0] === [...hostsSitemap][0];
+  console.log(`  ${coherente ? 'ok  ' : 'ROJO'} un solo host: canonicas [${uno(hostsCanonicos)}] `
+    + `= sitemap [${uno(hostsSitemap)}]`);
+  if (!coherente) {
+    fallos++;
+    console.log('       astro.config.mjs y scripts/build-seo-ficheros.mjs tienen que decir LO MISMO.');
+  }
+}
 
 console.log(`\n${fallos === 0 ? 'PUERTA VERDE' : `PUERTA ROJA — ${fallos} pagina(s)`}\n`);
 process.exit(fallos ? 1 : 0);

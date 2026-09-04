@@ -1,0 +1,336 @@
+---
+/**
+ * FASE 10 — la pagina que ve TODO lead despues de enviar cualquiera de los 5 formularios.
+ *
+ * NO ES PARIDAD CON WEBFLOW: el sitio vivo nunca tuvo pagina de gracias, conmutaba el panel
+ * `.w-form-done` en su sitio. Es una adicion deliberada del encargo de medicion, porque una
+ * URL de conversion es lo que GA4, Google Ads y Meta saben consumir; un div que cambia de
+ * display no lo ve nadie.
+ *
+ * POR ESO NO TIENE BASELINE. `check:visual` y `check:texto` NO la cubren: no hay referencia
+ * en `baseline/shots/` contra la que comparar. Esas puertas se SALTAN aqui, no pasan. Dicho
+ * en voz alta porque una puerta que se salta por falta de referencia falla ABIERTO.
+ *
+ * `noindex` SIEMPRE, y no por costumbre: una pagina de gracias indexada la alcanza gente que
+ * no ha enviado nada, y entonces o cuenta conversiones falsas o —peor— sale en Google en vez
+ * de la pagina de servicio que si vende. Se consigue con la prop `seo` que Base.astro ya
+ * tiene, sin tocar el layout. Y esta fuera del sitemap porque `build-seo-ficheros.mjs` va con
+ * lista explicita: no la anadas alli.
+ *
+ * EL TEXTO NO VARIA POR FORMULARIO A PROPOSITO. El `?f=` viaja para la ANALITICA, no para la
+ * copia: renderizar 5 variantes en una pagina estatica obliga a conmutarlas por JS y eso da
+ * un parpadeo de texto en la primera pintura. Si algun dia hace falta un mensaje propio por
+ * formulario, se hace con 5 rutas, no con 5 ramas de JS.
+ */
+import Base from '../layouts/Base.astro';
+import telefonos from '../data/telefonos.json';
+
+const { items } = telefonos;
+/* El host sale de `Astro.site` y no de un literal: eran las dos ultimas URLs a fuego del
+   repo y se habrian quedado en el apex al unificar a `www`, dejando el JSON-LD nombrando un
+   host distinto del de su propia canonica. */
+const SITIO = String(Astro.site ?? 'https://www.mrandmrsoutdoorliving.com').replace(/\/$/, '');
+
+const SEO = {
+  meta: {
+    robots: 'noindex, nofollow',
+    'og:title': 'Thank you | Mr. & Mrs. Outdoor Living',
+    'og:description': 'Your request is with our design-build team.',
+    'og:type': 'website',
+  },
+  /* `check:seo` exige JSON-LD tambien en las rutas propias, y tiene razon: la vigilancia no
+     puede aflojarse justo en la pagina que no viene del origen. Es un WebPage escueto y
+     `noindex` a la vez — no hay contradiccion: el bloque describe la pagina para quien la
+     lea, y el robots dice que no la indexe. */
+  jsonLd: [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: 'Thank you',
+      description: 'Your request is with our design-build team.',
+      url: `${SITIO}/thank-you`,
+      inLanguage: 'en',
+      isPartOf: {
+        '@type': 'WebSite',
+        name: 'Mr & Mrs Outdoor Living',
+        url: SITIO,
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'Mr & Mrs Outdoor Living',
+        logo: { '@type': 'ImageObject', url: '/images/site/logo-mr-mr.svg' },
+      },
+    },
+  ],
+};
+
+/** Lo que pasa despues, que es LO UNICO que el visitante se pregunta al llegar aqui.
+ *  Es una secuencia de verdad —una cosa detras de otra, en el tiempo—, y por eso va
+ *  numerada. Si no lo fuera, el numero seria decoracion. */
+const PASOS = [
+  { titulo: 'We review your project',
+    texto: 'Our design-build team reads through the details you sent and checks them against the work we do in your area.' },
+  { titulo: 'We call to confirm scope',
+    texto: 'A short call to go over the space, the timeline and the investment range, so the estimate you get is a real one.' },
+  { titulo: 'We schedule your site visit',
+    texto: 'We meet at the property, take measurements, and turn the conversation into a design and a firm number.' },
+];
+---
+
+<Base
+  titulo="Thank you | Mr. & Mrs. Outdoor Living"
+  descripcion="Your request is with our design-build team."
+  ruta="/thank-you"
+  seo={SEO}
+>
+  <section class="ty-hero">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="ty-hero__caja">
+        <svg class="ty-marca" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4"
+                stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <h1 class="ty-titulo">Your request is in.</h1>
+        <p class="ty-entrada">
+          A member of our design-build team will review your project and get back to you
+          within one business day.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ty-cuerpo">
+    <div class="w-layout-blockcontainer container w-container">
+      <h2 class="ty-h2">What happens next</h2>
+      <ol class="ty-pasos">
+        {PASOS.map((p, i) => (
+          <li class="ty-paso">
+            <span class="ty-paso__n" aria-hidden="true">{i + 1}</span>
+            <div>
+              <h3 class="ty-paso__t">{p.titulo}</h3>
+              <p class="ty-paso__p">{p.texto}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <div class="ty-ahora">
+        <h2 class="ty-h2 ty-h2--ajustado">Rather talk now?</h2>
+        <p class="ty-ahora__p">Both offices answer during business hours.</p>
+        <div class="ty-tels">
+          {items.map((t) => (
+            <a class="ty-tel" href={`tel:${t.tel}`}>
+              <span class="ty-tel__zona">{t.zona}</span>
+              <span class="ty-tel__cifra">{t.visible}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="ty-salidas">
+        <a href="/projects" class="button button-styles w-button">See recent projects</a>
+        <a href="/gallery" class="ty-enlace">Browse the gallery</a>
+      </div>
+    </div>
+  </section>
+
+  {/* LA CONVERSION. Se dispara UNA vez por envio REAL, y la guarda no es paranoia:
+        · recargar esta pagina contaria un lead nuevo en cada F5
+        · un marcador guardado los contaria para siempre
+        · los rastreadores que siguen la URL inflarian el numero
+      `Formularios.astro` escribe `mm_lead` en sessionStorage JUSTO antes de redirigir; aqui
+      se consume y se borra. Sin esa llave la pagina se ve igual y NO cuenta nada, que es el
+      comportamiento correcto: sin envio no hay lead.
+
+      `is:inline` para que Astro no lo empaquete ni lo aplace: tiene que empujar al dataLayer
+      antes de que GTM procese la cola. */}
+  <script is:inline>
+    (function () {
+      var carga = null;
+      try {
+        carga = sessionStorage.getItem('mm_lead');
+        sessionStorage.removeItem('mm_lead');
+      } catch (e) { return; }
+      if (!carga) return;
+      var d;
+      try { d = JSON.parse(carga); } catch (e) { return; }
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'generate_lead',
+        form_name: d.form_name || 'unknown',
+        form_location: d.form_location || '',
+        project_type: d.project_type || '',
+        user_type: d.user_type || '',
+        budget_range: d.budget_range || '',
+        service_interest: d.service_interest || ''
+      });
+    }());
+  </script>
+</Base>
+
+<style>
+  /* Sin un solo literal de color: todo por token (§1.3 de tokens.css). La identidad es la
+     que ya tiene el sitio —navy de marca H223 y el oro de `.button-styles`—, no una nueva.
+     Aqui lo unico que se decide es la COMPOSICION. */
+
+  /* ── ENTRADA ──────────────────────────────────────────────────────────────
+   * Navy a sangre y centrado. Es el unico momento centrado del sitio y esta justificado:
+   * la pagina tiene UN mensaje y ninguna eleccion que ofrecer todavia. */
+  .ty-hero {
+    background: var(--mm-fondo-navy);
+    color: var(--mm-tinta-inversa);
+    padding: calc(var(--mm-nav-alto) + var(--mm-e-64)) 0 var(--mm-e-64);
+  }
+  .ty-hero__caja {
+    max-width: 34rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+  /* El tic es la unica pieza grafica y por eso carga el acento. Nada mas en la pagina
+     usa el oro, que es como se consigue que se mire aqui primero. */
+  .ty-marca {
+    width: 3.25rem;
+    height: 3.25rem;
+    color: var(--mm-oro);
+    margin-bottom: var(--mm-e-24);
+  }
+  .ty-titulo {
+    font-size: var(--mm-paso-5);
+    line-height: var(--mm-alto-titulo);
+    font-weight: var(--mm-peso-negro);
+    color: var(--mm-tinta-inversa);
+    margin: 0 0 var(--mm-e-16);
+  }
+  .ty-entrada {
+    font-size: var(--mm-paso-1);
+    line-height: var(--mm-alto-cuerpo);
+    color: var(--mm-tinta-suave-inversa);
+    margin: 0;
+  }
+
+  /* ── CUERPO ───────────────────────────────────────────────────────────── */
+  .ty-cuerpo {
+    background: var(--mm-fondo);
+    padding: var(--mm-e-64) 0 var(--mm-e-96);
+  }
+  .ty-h2 {
+    font-size: var(--mm-paso-3);
+    line-height: var(--mm-alto-titulo);
+    font-weight: var(--mm-peso-fuerte);
+    color: var(--mm-tinta);
+    margin: 0 0 var(--mm-e-32);
+  }
+  .ty-h2--ajustado { margin-bottom: var(--mm-e-8); }
+
+  /* Los pasos. Rejilla de dos columnas por fila: el numero manda el ancho y el texto
+     ocupa el resto, asi las tres entradas alinean su cuerpo aunque el numero cambie. */
+  .ty-pasos {
+    list-style: none;
+    margin: 0 0 var(--mm-e-64);
+    padding: 0;
+    display: grid;
+    gap: var(--mm-e-32);
+    max-width: var(--mm-medida);
+  }
+  .ty-paso {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--mm-e-16);
+    align-items: start;
+  }
+  .ty-paso__n {
+    display: grid;
+    place-items: center;
+    inline-size: 2.25rem;
+    block-size: 2.25rem;
+    border-radius: 50%;
+    background: var(--mm-navy);
+    color: var(--mm-tinta-inversa);
+    font-size: var(--mm-paso-0);
+    font-weight: var(--mm-peso-fuerte);
+    /* La cifra centrada optica: sin esto baila medio pixel contra el circulo. */
+    line-height: 1;
+  }
+  .ty-paso__t {
+    font-size: var(--mm-paso-1);
+    line-height: var(--mm-alto-apretado);
+    font-weight: var(--mm-peso-fuerte);
+    color: var(--mm-tinta);
+    margin: 0 0 var(--mm-e-4);
+  }
+  .ty-paso__p {
+    font-size: var(--mm-paso-0);
+    line-height: var(--mm-alto-cuerpo);
+    color: var(--mm-tinta-cuerpo);
+    margin: 0;
+  }
+
+  /* ── LLAMAR AHORA ─────────────────────────────────────────────────────── */
+  .ty-ahora {
+    border-top: 1px solid var(--mm-borde);
+    padding-top: var(--mm-e-32);
+    margin-bottom: var(--mm-e-48);
+  }
+  .ty-ahora__p {
+    font-size: var(--mm-paso-0);
+    color: var(--mm-tinta-cuerpo);
+    margin: 0 0 var(--mm-e-24);
+  }
+  .ty-tels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--mm-e-16);
+  }
+  /* Los dos numeros son objetivos tactiles de primera: alto real, no un enlace de texto.
+     El negocio tiene DOS oficinas y mandar al del sur a la del norte es perder el lead. */
+  .ty-tel {
+    display: grid;
+    gap: 2px;
+    padding: var(--mm-e-12) var(--mm-e-24);
+    min-block-size: 44px;
+    align-content: center;
+    border: 1px solid var(--mm-borde-control);
+    border-radius: var(--mm-r-8);
+    background: var(--mm-superficie);
+    text-decoration: none;
+    transition: border-color .18s ease, background-color .18s ease;
+  }
+  .ty-tel:hover { border-color: var(--mm-navy); background: var(--mm-fondo-tenue); }
+  .ty-tel:focus-visible {
+    outline: var(--mm-foco-grosor) solid var(--mm-foco);
+    outline-offset: var(--mm-foco-aire);
+  }
+  .ty-tel__zona {
+    font-size: var(--mm-paso-0);
+    color: var(--mm-tinta-atenuada);
+  }
+  .ty-tel__cifra {
+    font-size: var(--mm-paso-1);
+    font-weight: var(--mm-peso-fuerte);
+    color: var(--mm-navy);
+  }
+
+  /* ── SALIDAS ──────────────────────────────────────────────────────────────
+   * Un callejon sin salida desperdicia a alguien que acaba de demostrar interes. */
+  .ty-salidas {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--mm-e-24);
+  }
+  .ty-enlace {
+    color: var(--mm-enlace);
+    font-weight: var(--mm-peso-medio);
+    text-underline-offset: 3px;
+  }
+  .ty-enlace:focus-visible {
+    outline: var(--mm-foco-grosor) solid var(--mm-foco);
+    outline-offset: var(--mm-foco-aire);
+  }
+
+  @media (min-width: 768px) {
+    .ty-hero { padding: calc(var(--mm-nav-alto) + var(--mm-e-96)) 0 var(--mm-e-96); }
+    .ty-titulo { font-size: var(--mm-paso-6); }
+    .ty-pasos { gap: var(--mm-e-48); }
+  }
+</style>

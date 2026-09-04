@@ -1,0 +1,167 @@
+{
+  "exportFormatVersion": 2,
+  "containerVersion": {
+    "container": {
+      "publicId": "GTM-N9BWB3BV",
+      "name": "Mr and Mrs Outdoor Living",
+      "usageContext": ["WEB"]
+    },
+    "variable": [
+      { "variableId": "10", "name": "DLV - form_name", "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "BOOLEAN", "key": "setDefaultValue", "value": "true" },
+          { "type": "TEMPLATE", "key": "defaultValue", "value": "(not set)" },
+          { "type": "TEMPLATE", "key": "name", "value": "form_name" } ] },
+      { "variableId": "11", "name": "DLV - form_location", "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "BOOLEAN", "key": "setDefaultValue", "value": "true" },
+          { "type": "TEMPLATE", "key": "defaultValue", "value": "(not set)" },
+          { "type": "TEMPLATE", "key": "name", "value": "form_location" } ] },
+      { "variableId": "12", "name": "DLV - project_type", "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "BOOLEAN", "key": "setDefaultValue", "value": "true" },
+          { "type": "TEMPLATE", "key": "defaultValue", "value": "(not set)" },
+          { "type": "TEMPLATE", "key": "name", "value": "project_type" } ] },
+      { "variableId": "13", "name": "DLV - user_type", "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "BOOLEAN", "key": "setDefaultValue", "value": "true" },
+          { "type": "TEMPLATE", "key": "defaultValue", "value": "(not set)" },
+          { "type": "TEMPLATE", "key": "name", "value": "user_type" } ] },
+      { "variableId": "14", "name": "DLV - budget_range", "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "BOOLEAN", "key": "setDefaultValue", "value": "true" },
+          { "type": "TEMPLATE", "key": "defaultValue", "value": "(not set)" },
+          { "type": "TEMPLATE", "key": "name", "value": "budget_range" } ] },
+      { "variableId": "15", "name": "DLV - service_interest", "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "BOOLEAN", "key": "setDefaultValue", "value": "true" },
+          { "type": "TEMPLATE", "key": "defaultValue", "value": "(not set)" },
+          { "type": "TEMPLATE", "key": "name", "value": "service_interest" } ] },
+      { "variableId": "16", "name": "DLV - phone_region", "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "BOOLEAN", "key": "setDefaultValue", "value": "true" },
+          { "type": "TEMPLATE", "key": "defaultValue", "value": "(not set)" },
+          { "type": "TEMPLATE", "key": "name", "value": "phone_region" } ] },
+      { "variableId": "17", "name": "DLV - link_text", "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "BOOLEAN", "key": "setDefaultValue", "value": "true" },
+          { "type": "TEMPLATE", "key": "defaultValue", "value": "(not set)" },
+          { "type": "TEMPLATE", "key": "name", "value": "link_text" } ] },
+      { "variableId": "20", "name": "CONST - GA4 Measurement ID", "type": "c",
+        "parameter": [ { "type": "TEMPLATE", "key": "value", "value": "G-7VHTVG2Q7G" } ] },
+      { "variableId": "21", "name": "CONST - Meta Pixel ID", "type": "c",
+        "parameter": [ { "type": "TEMPLATE", "key": "value", "value": "863379502909192" } ] }
+    ],
+    "trigger": [
+      { "triggerId": "30", "name": "BLOQUEO - Entornos de preview", "type": "CUSTOM_EVENT",
+        "customEventFilter": [ { "type": "MATCH_REGEX", "parameter": [
+          { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+          { "type": "TEMPLATE", "key": "arg1", "value": ".*" } ] } ],
+        "filter": [ { "type": "MATCH_REGEX", "parameter": [
+          { "type": "TEMPLATE", "key": "arg0", "value": "{{Page Hostname}}" },
+          { "type": "TEMPLATE", "key": "arg1", "value": "(vercel\\.app|localhost|127\\.0\\.0\\.1|webflow\\.io)$" } ] } ] },
+      { "triggerId": "31", "name": "CE - generate_lead", "type": "CUSTOM_EVENT",
+        "customEventFilter": [ { "type": "EQUALS", "parameter": [
+          { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+          { "type": "TEMPLATE", "key": "arg1", "value": "generate_lead" } ] } ] },
+      { "triggerId": "32", "name": "CE - click_to_call", "type": "CUSTOM_EVENT",
+        "customEventFilter": [ { "type": "EQUALS", "parameter": [
+          { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+          { "type": "TEMPLATE", "key": "arg1", "value": "click_to_call" } ] } ] },
+      { "triggerId": "33", "name": "CE - estimator_complete", "type": "CUSTOM_EVENT",
+        "customEventFilter": [ { "type": "EQUALS", "parameter": [
+          { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+          { "type": "TEMPLATE", "key": "arg1", "value": "estimator_complete" } ] } ] },
+      { "triggerId": "34", "name": "CE - brochure_download", "type": "CUSTOM_EVENT",
+        "customEventFilter": [ { "type": "EQUALS", "parameter": [
+          { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+          { "type": "TEMPLATE", "key": "arg1", "value": "brochure_download" } ] } ] },
+      { "triggerId": "35", "name": "CE - view_project_gallery", "type": "CUSTOM_EVENT",
+        "customEventFilter": [ { "type": "EQUALS", "parameter": [
+          { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+          { "type": "TEMPLATE", "key": "arg1", "value": "view_project_gallery" } ] } ] }
+    ],
+    "tag": [
+      { "tagId": "40", "name": "Google Tag - GA4", "type": "googtag",
+        "parameter": [ { "type": "TEMPLATE", "key": "tagId", "value": "{{CONST - GA4 Measurement ID}}" } ],
+        "firingTriggerId": ["2147479553"], "blockingTriggerId": ["30"] },
+
+      { "tagId": "41", "name": "GA4 - generate_lead", "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "generate_lead" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{CONST - GA4 Measurement ID}}" },
+          { "type": "LIST", "key": "eventParameters", "list": [
+            { "type": "MAP", "map": [ { "type": "TEMPLATE", "key": "name", "value": "form_name" },
+              { "type": "TEMPLATE", "key": "value", "value": "{{DLV - form_name}}" } ] },
+            { "type": "MAP", "map": [ { "type": "TEMPLATE", "key": "name", "value": "form_location" },
+              { "type": "TEMPLATE", "key": "value", "value": "{{DLV - form_location}}" } ] },
+            { "type": "MAP", "map": [ { "type": "TEMPLATE", "key": "name", "value": "project_type" },
+              { "type": "TEMPLATE", "key": "value", "value": "{{DLV - project_type}}" } ] },
+            { "type": "MAP", "map": [ { "type": "TEMPLATE", "key": "name", "value": "user_type" },
+              { "type": "TEMPLATE", "key": "value", "value": "{{DLV - user_type}}" } ] },
+            { "type": "MAP", "map": [ { "type": "TEMPLATE", "key": "name", "value": "budget_range" },
+              { "type": "TEMPLATE", "key": "value", "value": "{{DLV - budget_range}}" } ] },
+            { "type": "MAP", "map": [ { "type": "TEMPLATE", "key": "name", "value": "service_interest" },
+              { "type": "TEMPLATE", "key": "value", "value": "{{DLV - service_interest}}" } ] } ] } ],
+        "firingTriggerId": ["31"], "blockingTriggerId": ["30"] },
+
+      { "tagId": "42", "name": "GA4 - click_to_call", "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "click_to_call" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{CONST - GA4 Measurement ID}}" },
+          { "type": "LIST", "key": "eventParameters", "list": [
+            { "type": "MAP", "map": [ { "type": "TEMPLATE", "key": "name", "value": "phone_region" },
+              { "type": "TEMPLATE", "key": "value", "value": "{{DLV - phone_region}}" } ] },
+            { "type": "MAP", "map": [ { "type": "TEMPLATE", "key": "name", "value": "form_location" },
+              { "type": "TEMPLATE", "key": "value", "value": "{{Page Path}}" } ] } ] } ],
+        "firingTriggerId": ["32"], "blockingTriggerId": ["30"] },
+
+      { "tagId": "43", "name": "GA4 - estimator_complete", "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "estimator_complete" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{CONST - GA4 Measurement ID}}" },
+          { "type": "LIST", "key": "eventParameters", "list": [
+            { "type": "MAP", "map": [ { "type": "TEMPLATE", "key": "name", "value": "budget_range" },
+              { "type": "TEMPLATE", "key": "value", "value": "{{DLV - budget_range}}" } ] } ] } ],
+        "firingTriggerId": ["33"], "blockingTriggerId": ["30"] },
+
+      { "tagId": "44", "name": "GA4 - brochure_download", "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "brochure_download" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{CONST - GA4 Measurement ID}}" },
+          { "type": "LIST", "key": "eventParameters", "list": [
+            { "type": "MAP", "map": [ { "type": "TEMPLATE", "key": "name", "value": "link_text" },
+              { "type": "TEMPLATE", "key": "value", "value": "{{DLV - link_text}}" } ] } ] } ],
+        "firingTriggerId": ["34"], "blockingTriggerId": ["30"] },
+
+      { "tagId": "45", "name": "GA4 - view_project_gallery", "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "view_project_gallery" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "{{CONST - GA4 Measurement ID}}" },
+          { "type": "LIST", "key": "eventParameters", "list": [
+            { "type": "MAP", "map": [ { "type": "TEMPLATE", "key": "name", "value": "link_text" },
+              { "type": "TEMPLATE", "key": "value", "value": "{{DLV - link_text}}" } ] } ] } ],
+        "firingTriggerId": ["35"], "blockingTriggerId": ["30"] },
+
+      { "tagId": "50", "name": "Meta Pixel - Base", "type": "html",
+        "parameter": [
+          { "type": "BOOLEAN", "key": "supportDocumentWrite", "value": "false" },
+          { "type": "TEMPLATE", "key": "html", "value": "<script>\n!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?\nn.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;\nn.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;\nt.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,\ndocument,'script','https://connect.facebook.net/en_US/fbevents.js');\nfbq('init', '{{CONST - Meta Pixel ID}}');\nfbq('track', 'PageView');\n</script>" } ],
+        "firingTriggerId": ["2147479553"], "blockingTriggerId": ["30"] },
+
+      { "tagId": "51", "name": "Meta Pixel - Lead", "type": "html",
+        "parameter": [
+          { "type": "BOOLEAN", "key": "supportDocumentWrite", "value": "false" },
+          { "type": "TEMPLATE", "key": "html", "value": "<script>\n/* SIN datos personales: solo el nombre categorico del formulario.\n   Nada de em/ph/fn: es la misma linea roja que en GA4. */\nif (window.fbq) { fbq('track', 'Lead', { content_name: '{{DLV - form_name}}' }); }\n</script>" } ],
+        "firingTriggerId": ["31"], "blockingTriggerId": ["30"] }
+    ]
+  }
+}

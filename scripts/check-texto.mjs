@@ -388,6 +388,90 @@ function quitaBloque(lineas, bloque) {
 const capitaliza = (s) => s.replace(/(^|[\s(])(\p{Ll})/gu, (_, a, b) => a + b.toUpperCase());
 
 /**
+ * ── EL SUFIJO OCULTO DE LOS CTA GENERICOS (`.mm-sr`) — DECLARADO, NO ABSORBIDO ───────────
+ *
+ * DE DONDE SALE. El audit SEO `link-text` de Lighthouse compara el texto del ancla contra una
+ * lista negra cerrada -«read more», «see more», «learn more»...- y **no mira `aria-label`**:
+ * comprobado en la fuente, `anchor-elements.js` recoge `text: node.innerText`. Los CTA de
+ * blog y de servicios ya llevaban un `aria-label` descriptivo desde hace frentes, o sea que
+ * el NOMBRE ACCESIBLE ya era correcto y el audit seguia rojo igual: 24 nodos en la home.
+ *
+ * La unica salida sin tocar lo que se ve es que el TEXTO deje de ser generico sin que cambie
+ * el pixel: un `<span class="mm-sr">` fuera de flujo con el titulo detras del rotulo. Se ve
+ * igual, se lee mejor, y `innerText` SI lo incluye -por eso esta este bloque-.
+ *
+ * SE DECLARA, NO SE RE-BASELINIZA: `baseline/text/` no se toca jamas (§1.1).
+ *
+ * POR QUE NO VALE NINGUN MECANISMO DE LOS QUE YA HAY:
+ *   · `LINEAS_ANADIDAS` cablea el texto a mano: serian ~25 titulos copiados aqui, o sea una
+ *     TERCERA copia de un texto que ya vive en dos sitios.
+ *   · `TRADUCIDAS_A_PROPOSITO` es 1->1 y esto produce una linea de MAS.
+ *   · `quitaBloque` no sirve tal cual: en las 16 rutas de `BLOG_RUTAS` el sufijo cae DENTRO
+ *     del bloque que declara `lineasBlog()`, y lo partiria. Por eso esto va de PRIMERO, antes
+ *     que los demas bloques: los quita y deja el bloque de blog otra vez contiguo.
+ *
+ * SE DERIVA DEL MISMO DATO Y SE FORMATEA AQUI, como reseñas y blog. Si el componente cambia
+ * el separador o el orden, esto se pone ROJO — que es lo que tiene que pasar.
+ *
+ * ⚠️ CAPITALIZE OTRA VEZ. Los titulos de blog salen capitalizados palabra a palabra porque el
+ * `capitalize` de `.button-styles` alcanza al span heredado; los de servicios NO, porque
+ * `.svc-cta` no lleva esa clase. Medido, no supuesto: 10 lineas de blog discrepaban sin
+ * capitalizar y las de servicios discrepaban CON. Por eso la lista lleva las dos formas y se
+ * acepta cualquiera de ellas para el mismo dato.
+ *
+ * NO ES UNA REBAJA DEL UMBRAL. Solo se quita una linea si es EXACTAMENTE `: <titulo>` de un
+ * titulo conocido Y la de encima es su propio rotulo. Un sufijo inventado, un titulo que ya
+ * no existe o un rotulo que cambio dejan la linea puesta y la ruta se pone roja.
+ */
+function sufijosSr() {
+  const norm = (s) => (s ?? '').replace(/ /g, ' ').replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/<[^>]*>/g, ' ')
+    .replace(/\s+/g, ' ').trim();
+  const lee = (rel) => {
+    const f = path.join(RAIZ, rel);
+    return fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')) : null;
+  };
+  const pares = [];
+  const anota = (cta, titulo) => {
+    const c = norm(cta); const t = norm(titulo);
+    if (!c || !t) return;
+    pares.push([c, `: ${t}`]);
+    pares.push([c, `: ${capitaliza(t)}`]);          // la variante con el capitalize de Webflow
+  };
+
+  for (const p of lee('src/data/blogs.json')?.posts ?? []) anota(p.cta, p.titulo);
+
+  const svc = lee('src/data/servicios-categoria.json') ?? {};
+  const recorre = (o) => {
+    if (Array.isArray(o)) { o.forEach(recorre); return; }
+    if (!o || typeof o !== 'object') return;
+    if (o.cta && o.titulo) anota(o.cta, o.titulo);
+    else Object.values(o).forEach(recorre);
+  };
+  recorre(svc);
+  return pares;
+}
+
+/** Quita las lineas de sufijo oculto. Devuelve `[lineas, cuantas]`. */
+function quitaSufijosSr(lineas) {
+  const pares = sufijosSr();
+  if (!pares.length) return [lineas, 0];
+  const esperado = new Map();
+  for (const [cta, suf] of pares) {
+    if (!esperado.has(suf)) esperado.set(suf, new Set());
+    esperado.get(suf).add(cta);
+  }
+  const out = []; let n = 0;
+  for (let i = 0; i < lineas.length; i++) {
+    const ctas = esperado.get(lineas[i]);
+    if (ctas && out.length && ctas.has(out[out.length - 1])) { n++; continue; }
+    out.push(lineas[i]);
+  }
+  return [out, n];
+}
+
+
+/**
  * ── LAS OBRAS DE AUTORIA PROPIA EN `/projects` Y EN `/` — bloque DECLARADO y DERIVADO ──────
  *
  * 5 obras publicadas el 3-sep-2026 que el Webflow de origen nunca tuvo. Su TARJETA aporta 3
@@ -543,10 +627,21 @@ function quitaTras(lineas, contexto, anadidas) {
  *  etiquetaba TODO fallo como «bloque de reseñas» y me mando a depurar el bloque equivocado. */
 let bloqueQueFallo = null;
 
+/** Cuantas lineas de sufijo oculto (§ .mm-sr) se quitaron en toda la corrida, para el resumen. */
+let sufijosQuitados = 0;
+
 /** Quita de `hay` los bloques declarados para esa ruta. `null` si alguno falla. */
 function sinElBloque(ruta, hay) {
   bloqueQueFallo = null;
   let lineas = hay.split('\n');
+
+  // 0 · los sufijos ocultos de los CTA genericos (§ .mm-sr). VAN LOS PRIMEROS a proposito:
+  //     en las 16 rutas de BLOG_RUTAS caen DENTRO del bloque que declara `lineasBlog()` y lo
+  //     partirian. Quitandolos aqui, ese bloque vuelve a ser contiguo para `quitaBloque`.
+  {
+    const [sinSuf, n] = quitaSufijosSr(lineas);
+    lineas = sinSuf; sufijosQuitados += n;
+  }
 
   // 1 · el bloque tomado del baseline de OTRA ruta (hoy solo /pool-cost-estimator)
   const d = ANADIDAS_A_PROPOSITO[ruta];
@@ -827,6 +922,14 @@ if (filtro.length) {
 } else if (BLOG_ESPERADAS) {
   console.log(`  ok   blog: bloque declarado de ${lineasBlog().length} lineas, `
     + `descontado en las ${conBlog} fichas de services/+where-we-serves/`);
+}
+
+/* Contador del sufijo oculto. No hay numero esperado: depende de cuantos CTA genericos monte
+ * cada ruta y de cual sea la ficha de servicios abierta. Lo que si esta cerrado es el otro
+ * lado — un sufijo que no case se queda puesto y pone la ruta roja. */
+if (sufijosQuitados) {
+  console.log(`  ok   sufijos: ${sufijosQuitados} linea(s) de \`.mm-sr\` descontadas `
+    + '(derivadas de blogs.json + servicios-categoria.json)');
 }
 
 /* Contador del feed. Mismo criterio que los dos anteriores y misma omision en corrida acotada. */
