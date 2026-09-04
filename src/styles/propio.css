@@ -290,3 +290,33 @@
   outline: var(--mm-foco-grosor) solid var(--mm-foco-inverso);
   outline-offset: var(--mm-foco-aire);
 }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * EL CTA DEL HEROE SE QUEDABA EN 36 px DE ALTO — objetivo tactil, 24 rutas
+ *
+ * Medido en produccion a 390 y 360 px con un iPhone emulado: el «Get a Free Estimate» del
+ * heroe mide 162x36 px en `.hero-country` (9 rutas de country/), `.hero-services` (14 de
+ * services/) y `.half-hero-section` (/where-we-serve). WCAG 2.2 pide 44.
+ *
+ * Es EXACTAMENTE el mismo fallo que R9 ya cerro en los heroes con video, y por la misma causa:
+ * `.button-styles` trae `line-height:100%` de Webflow y a 14 px de fuente eso deja 14 px de
+ * caja de linea; con los 11,2 px de relleno arriba y abajo salen 36,4. En los de video el
+ * mismo boton mide 189x66 desde entonces.
+ *
+ * Se arregla el TAMANO y nada mas: no se tocan color, fondo, radio ni sombra. Estos tres
+ * heroes no los ha redisenado nadie todavia y restilarlos aqui seria decidir por el frente que
+ * los toque. `min-height` + `inline-flex` es lo minimo que sube la caja a 48 px dejando el
+ * texto centrado; con solo el interlineado se habria quedado en 42.
+ *
+ * Va acotado a los tres heroes y NUNCA suelto: `.button-styles` esta en 59 ficheros y una
+ * regla sin ancla repintaria los CTA de todo el sitio.
+ * ───────────────────────────────────────────────────────────────────────────── */
+.hero-country .button-styles,
+.hero-services .button-styles,
+.half-hero-section .button-styles {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--mm-e-48);
+  line-height: var(--mm-alto-cuerpo);
+}
