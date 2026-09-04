@@ -101,32 +101,120 @@
    anclado abajo eso dejaba un hueco vacio de mas de 200px antes del pie del heroe, medido
    en 375px. 48px = el mismo valor que usa Pergola Plus en su propio hero (padding-bottom:
    3rem).  */
-.mm-hero{align-items:flex-end;padding-bottom:var(--mm-e-48);background-image:linear-gradient(to bottom,
+/* AIRE BAJO EL CTA — pedido por Sebastian el 3-sep-2026 viendo produccion: «los botones estan
+   muy en el borde de abajo». Medido alli: el CTA acababa a 80px del pie y `.wrapper-logos` es una
+   franja BLANCA OPACA de 67px pegada al pie, o sea que quedaban 25-34px de aire, y a 2000px de
+   ventana se leia como que el boton toca la franja.
+   80px = `--mm-e-64` + `--mm-e-16`. Con los 32 del `padding-bottom` del bloque, el CTA queda a
+   112px del pie y el aire sobre la franja pasa a 45px. No mas: se pidio «un espacio pequeno».
+   Ojo al editar esto: el bloque esta anclado abajo, asi que cada pixel de aqui SUBE el texto un
+   pixel y desalinea el velo. Las paradas de abajo estan calibradas contra ESTE valor. */
+/* Y EL VELO LLEGA AL PIE. Antes se aclaraba por los DOS lados: por arriba a proposito (es donde
+   el video se aprecia) y por abajo sin motivo — del 78% caia al 30% en el 86% de la altura, o sea
+   justo donde estan los botones. Medido en produccion: el alfa a 67px del pie valia 31%. Como la
+   franja blanca tapa esos 67px, lo que se veia era una banda PALIDA entre la franja y la banda
+   oscura, y de ahi el «el degradado no llega abajo».
+   La banda oscura baja ahora hasta el 100% (el pie). El borde de ARRIBA no se toca: sigue el
+   35%/20%/78% de 0 a 27, que es lo que estaba bien. Y esto solo puede SUBIR el contraste, nunca
+   bajarlo: la banda se extiende, no se recorta.
+   El 27% aguanta: medido en 991/768/430/390/360, el texto de home a <=991 cae entre el 38,6% y
+   el 64% de la altura. */
+.mm-hero{align-items:flex-end;padding-bottom:calc(var(--mm-e-64) + var(--mm-e-16));
+  background-image:linear-gradient(to bottom,
   color-mix(in srgb,var(--mm-navy) 35%,transparent) 0%,
   color-mix(in srgb,var(--mm-navy) 20%,transparent) 14%,
   color-mix(in srgb,var(--mm-navy) 78%,transparent) 27%,
-  color-mix(in srgb,var(--mm-navy) 78%,transparent) 73%,
-  color-mix(in srgb,var(--mm-navy) 30%,transparent) 86%,
-  color-mix(in srgb,var(--mm-navy) 35%,transparent) 100%)}
-.mm-hero .hero-home-block{margin-left:0;max-width:800px}
-.mm-hero .wrapper-main-hero{text-align:left;align-items:flex-start}
+  color-mix(in srgb,var(--mm-navy) 78%,transparent) 100%)}
+/* LA COLUMNA — la causa raiz del encargo R9-HERO-AJUSTE.
+   Los 800/880px venian copiados del heroe de Pergola Plus, cuyo titular («Live Outdoors.
+   Beautifully.») son 26 caracteres; el de aqui son 69 y el de la ciudad mas larga 80. A 880px
+   el h1 salia en 3 lineas: el texto en una linea mide 2056px a 60px, o sea que 2 lineas piden
+   1028px de columna.
+
+   NO hace falta un termino `vw`. Medido: el padre `.container` es `width:100%;max-width:1250px`
+   y ya mide 1250/1250/1216/959/704/358 en los seis anchos de la matriz, o sea que el ancho
+   disponible YA crece con el viewport — el que no crecia era el cap del hijo. Un
+   `min(1100px,76vw)` seria PEOR que hoy en tres anchos: 753 contra 800 a 991, 584 contra 704 a
+   768 y 296 contra 326 a 390. `max-width` a secas no baja nunca de lo que habia. */
+.mm-hero .hero-home-block{margin-left:0;max-width:1100px}
+/* `padding-top` a cero: Webflow le da 2rem arriba Y abajo. Con el bloque anclado abajo el de
+   arriba es espacio MUERTO —nadie lo ve, solo hace el bloque 32px mas alto y por tanto lo hace
+   EMPEZAR 32px mas arriba, que es justo lo contrario de lo que pide el punto 3 del encargo—. El
+   de abajo se queda y no es simetria: son los 32px que, sumados al `padding-bottom:48` de la
+   seccion, dejan los botones a 80px del pie del heroe cuando la franja blanca de `.wrapper-logos`
+   mide 67 — o sea 13px de aire. Quitarlo metia el CTA debajo de la franja. */
+.mm-hero .wrapper-main-hero{text-align:left;align-items:flex-start;padding-top:0}
 
 /* Punto 5 — el `text-shadow: 1px 1px 3px/4px #000` de 991 y 479 era el parche de quien
    notó el punto 4 y lo tapó solo en móvil. Con velo de verdad sobra.
    Punto 6 — fuera la regla de oro de 2 px a lo ancho de los 1100 px de la h1. */
 .mm-hero .subheading-hero{text-shadow:none}
-.mm-hero .heading-hero{border-bottom-width:0;padding-bottom:0;text-wrap:balance}
+/* LA H1, FLUIDA. Webflow la da a escalones —60 / 45 (<=991) / 35 (<=767) / 30 (<=479)— y este
+   selector es 0-2-0 contra los 0-1-0 de Webflow: las media queries NO suman especificidad, asi
+   que al declarar `font-size` aqui los cuatro escalones quedan anulados de golpe y el `clamp`
+   tiene que cubrirlos EL SOLO. Por eso el suelo son los 30px de 479 y no un numero redondo.
+
+   La forma es la de `disenio/tokens.css`: `s + (100vw - Wpx) * dS/dW` con enteros, no decimales
+   de vw — con enteros el numero cae clavado en los anchos de la puerta.
+   479 -> 30px  ·  768 -> 34,8  ·  991 -> 38,5  ·  1280 -> 43,3  ·  1440 -> 46,0  ·  1920 -> 54px
+
+   `letter-spacing` pasa de `-1px` fijo a `em`: a 60px ese pixel era -1,7% pero a 30px habria
+   sido -3,3%, o sea que el titular se apretaba justo cuando encogia. Y el peso se declara
+   porque Webflow lo salta de 700 a 600 en el escalon de 991: un tamano continuo con un peso a
+   escalones se nota en la frontera. */
+.mm-hero .heading-hero{border-bottom-width:0;padding-bottom:0;text-wrap:balance;
+  font-size:clamp(30px, calc(30px + (100vw - 479px) * 24 / 1441), 54px);
+  font-weight:var(--mm-peso-negro);letter-spacing:-.02em;margin-bottom:var(--mm-e-16)}
 
 /* Punto 7 — dos bloques centrados de anchura parecida compiten: la h1 medía 1100 px y
    el subtítulo 950, el 86 %. Se resuelve por MEDIDA, no por tamaño: a --mm-medida
    (650 px) el subtítulo pasa a 3 líneas cortas y se lee como pie de titular. La h1 NO
    se toca — ya son 60 px, por encima de cualquier paso del sistema. */
-.mm-hero .subheading-hero{max-width:var(--mm-medida);margin-inline:0}
+/* MEDIDA DEL SUBTITULO — 800px, y esto REVISA a proposito lo que decia el parrafo de arriba.
+   Medido sobre produccion a 1920 y 2000: con `--mm-medida` (650px) sus 152 caracteres salen en
+   3 lineas a 25px. Barrido de anchos sobre la pagina viva: 650->3L, 700->3L, 750->2L. 800 es el
+   umbral con margen para el swap de fuente.
+   La razon del 650 era la medida tipografica y sigue siendo buena; lo que manda encima es que
+   Sebastian pidio compactar el bloque (3-sep-2026, viendo el sitio desplegado). A 800px el
+   subtitulo queda en el 75% del ancho del h1: el problema que arreglo el punto 7 era que estaban
+   al 86%, o sea que sigue por debajo del umbral en que los dos bloques compiten.
+   De 1440 abajo esto no cambia nada: alli el subtitulo ya mide 568-630px, por debajo del cap. */
+.mm-hero .subheading-hero{max-width:800px;margin-inline:0}
+/* RITMO — Webflow da `h2{margin-top:20px}` y `h1,h2,…{margin-bottom:10px}`, valores FIJOS. Al
+   bajar la h1 de 60 a ~46px esos pixeles pesan proporcionalmente mas y el bloque queda mas
+   suelto justo donde se pide compactarlo. El aire pasa a los pasos del sistema, y queda:
+   badges -(32/48)- h1 -(16)- subtitulo -(32/48)- botones. */
+.mm-hero .subheading-hero{margin-top:0;margin-bottom:0}
+/* EL SUBTITULO, al paso de subtitulo del sistema — el mismo `--mm-paso-4` que usa el h2 del
+   heroe de zona, para que los dos heroes hablen la misma escala. Medido con un barrido de
+   tamanos sobre el build a 1280: sus 152 caracteres salen en 3 lineas a 25px y en 2 desde 22px
+   abajo, y `--mm-paso-4` da 21,6 ahi. Esa linea que se ahorra son 30px de alto, que es
+   exactamente lo que le faltaba al bloque para entrar en la mitad inferior a 1280x800 — y se
+   consigue con el paso del sistema, no rebajando margenes hasta que el numero salga.
+   A 1920 el paso vale 25px y el subtitulo sigue en 3 lineas: alli sobra sitio y no hace falta. */
+.mm-hero .subheading-hero{font-size:var(--mm-paso-4)}
 
 /* Punto 2 — el bloque ocupaba 401 px de 900 (44,6 %). El aire se reparte en tres zonas
    en vez de acumularse arriba y abajo. Medido después: 55,3 %. */
+/* LAS BADGES — el bug mas limpio de los seis, y esta medido al pixel: `.text-divider-hero`
+   heredaba `width:80%` de Webflow, o sea 704px de un bloque de 880. Las 4 pastillas suman
+   679,9px + 24 de gaps = 704,0 EXACTOS: estan a cero del limite. Y el contenedor es
+   `flex-wrap:nowrap`, asi que en vez de envolverse enteras se ENCOGEN y rompen su propia
+   etiqueta («Licensed &» / «Insurance»). Por eso median 56-61px de alto en vez de ~40.
+   Se ve en TODOS los anchos de 768 a 1920; a 390 no, porque ahi Webflow ya pone `flex-flow:wrap`
+   en su regla de max-width:479.
+
+   Los tres arreglos son el mismo arreglo: que la fila pueda ocupar lo que necesita (`width:auto`
+   en vez del 80%), que envuelva pastillas ENTERAS en vez de encogerlas (`wrap` + `flex-shrink:0`)
+   y que la etiqueta no se parta nunca (`nowrap`). Con la columna a 1100 caben las cuatro en una
+   fila desde 991 arriba; a 768 salen en dos filas de pastillas enteras, que es lo que el criterio
+   pide, y a 390 siguen en las tres de hoy. El gap sube de 8 a 12px porque con envoltura hay que
+   distinguir el hueco ENTRE pastillas del hueco entre filas. */
 .mm-hero .text-divider-hero{justify-content:flex-start;margin-bottom:var(--mm-e-32);
-  grid-column-gap:var(--mm-e-8);grid-row-gap:var(--mm-e-8)}
+  width:auto;flex-wrap:wrap;
+  grid-column-gap:var(--mm-e-12);grid-row-gap:var(--mm-e-12)}
+.mm-hero .block-value-bullets{flex-shrink:0}
+.mm-hero .heading-mini-hero{white-space:nowrap}
 .mm-hero .wrapper-buttons-center{justify-content:flex-start;margin-top:var(--mm-e-32)}
 
 /* Punto 1 — el CTA medía 181×38,4 px: el 0,53 % del héroe, y a 479 caía a 162×36,4,
@@ -153,10 +241,61 @@
 .mm-hero .block-value-bullets{padding:var(--mm-e-8) var(--mm-e-12);
   border-radius:var(--mm-r-pastilla);background-color:var(--mm-blanco)}
 
+
+/* ═══ EL VELO A PARTIR DE 992px — ANCLADO EN PX DESDE ABAJO ════════════════════════
+   Aqui esta la trampa de silencio de este subsistema, y estaba VIVA en produccion antes de
+   este encargo. El velo de arriba tiene las paradas en % de la altura del heroe, fijadas
+   midiendo a 1280x720. Pero a partir de 992 el heroe es `height:100vh` y el bloque de texto
+   esta anclado abajo, o sea que su posicion **en px desde el pie es constante y en % NO**.
+   Medido con getBoundingClientRect sobre el build, la caja del texto sin fondo propio:
+
+     ancho    h1 arriba   texto abajo    en % de la altura
+     1920       393px        168px        de 63,6% a 84,4%
+     1440       375px        168px        de 58,3% a 81,3%
+     1280       369px        168px        de 53,8% a 79,0%
+      992       359px        168px        de 40,2% a 72,0%
+
+   La ventana en px se mueve 34px entre 992 y 1920; la misma ventana en % se mueve 23 PUNTOS.
+   Con la banda oscura en 27-73% eso dejaba el subtitulo de home fuera del velo a 1920 (caia en
+   74,6-84,4%, donde el alfa vale 44,8% en vez del 60,3% que pide el suelo de 4,5:1) y el
+   parrafo de zona a 33,4% de alfa, o sea ~2,06:1 contra el peor pixel real del video. No era
+   una hipotesis: estaba desplegado.
+
+   Recalibrar los porcentajes no lo arregla — los deja bien en UN alto de ventana y mal en el
+   siguiente. Lo que estaba mal era la UNIDAD. Por debajo de 992 el heroe es `height:auto` y
+   crece con su contenido, asi que alli los % SI siguen al texto y la regla de arriba se queda
+   tal cual: medido, el texto cae dentro de 27-73% en 991, 768 y 390.
+
+   TRES COSAS QUE HAY QUE ESCRIBIR BIEN O EL ARREGLO SE CONVIERTE EN EL PROBLEMA:
+     · `background-image`, NUNCA el atajo `background`: resetearia el `background-color` que
+       Webflow pone en la seccion.
+     · SUSTITUYE el gradiente entero, no anade una capa mas separada por coma: dos capas al 78%
+       componen ~95% y el objetivo «que se vea el video» se muere.
+     · Las paradas por debajo de ~67px son dinero tirado: `.wrapper-logos` es
+       `position:absolute;inset:auto 0 0` con fondo BLANCO OPACO y `z-index:auto`, o sea que
+       pinta encima del fondo de la seccion y tapa esos 67px. El degradado que ve el ojo
+       empieza ahi.
+   Y ninguna crea contexto de apilamiento: un `background-image` no lo crea nunca, tampoco
+   dentro de una media query. El <video> con `z-index:-100` sigue escapando a la raiz.
+
+   Si la ventana fuera mas corta que la ultima parada, la regla de la spec sube las paradas
+   posteriores a la mayor anterior: el heroe se queda entero en el 78% de la meseta. Falla
+   hacia MAS proteccion, que es el lado correcto en el que fallar. */
 @media (min-width:992px){
   .mm-hero .wrapper-buttons-center .button-styles{
     min-height:calc(var(--mm-e-48) + var(--mm-e-8));padding-inline:var(--mm-e-48)}
-  .mm-hero .text-divider-hero{margin-bottom:var(--mm-e-48)}
-  .mm-hero .wrapper-buttons-center{margin-top:var(--mm-e-48)}
-  .mm-hero .hero-home-block{max-width:880px}
+  /* Banda oscura de 145 a 415px desde el pie: cubre los 168-393 del texto con ~23px de margen
+     por cada lado. Debajo de 145 viven los botones (80-136px) sobre oro/blanco OPACOS y la
+     franja de logos, que no dependen del velo; encima de 415 estan las badges (424-464) sobre
+     pastilla blanca opaca, que tampoco. Ahi se aclara al 20%, que es donde mas se aprecia el
+     video — el mismo criterio del gradiente de arriba, con la unidad correcta. */
+  /* Arranca al 78% en el pixel 0 —ver el porque en la regla base— y solo se aclara hacia
+     ARRIBA. Re-medido tras subir el padding y pasar el subtitulo a 2 lineas: el texto sin fondo
+     propio cae entre 200 y 395px del pie en los cuatro anchos de >=992, asi que los 415 dejan
+     20px de margen por arriba. Por abajo ya no hay margen que dar: es el pie. */
+  .mm-hero{background-image:linear-gradient(to top,
+    color-mix(in srgb,var(--mm-navy) 78%,transparent) 0,
+    color-mix(in srgb,var(--mm-navy) 78%,transparent) 415px,
+    color-mix(in srgb,var(--mm-navy) 20%,transparent) 505px,
+    color-mix(in srgb,var(--mm-navy) 35%,transparent) 100%)}
 }

@@ -92,7 +92,10 @@ const nav = await chromium.launch();
 const mal = {
   noAbre: [], dosALaVez: [], sinLock: [], lockPersiste: [], noPasa: [],
   noCierraEsc: [], noCierraVelo: [], noCierraX: [], foco: [], noPasos: [], sinTurnstile: [], layout: [],
+  scroll: [], tactil: [], solape: [],
 };
+// WCAG 2.2 AA 2.5.8, el mismo suelo que check-galeria.mjs mide sobre el lightbox simple.
+const MINIMO_TACTIL = 44;
 const ANCHOS = [[390, 844], [991, 800], [992, 800], [1440, 900]];
 
 for (const [ancho, alto] of ANCHOS) {
@@ -135,16 +138,66 @@ for (const [ancho, alto] of ANCHOS) {
 
   // Cada paso valida sus campos data-required='true' antes de dejar avanzar -igual que
   // request-estimated.astro-, asi que la sonda tiene que rellenarlos, no solo pulsar Next.
-  const llego = await p.evaluate(() => {
+  //
+  // R13-LBX. De paso mide, EN CADA UNO DE LOS TRES PASOS, lo que el rediseno prometio y que
+  // hasta ahora no medía nadie: que el panel no NECESITA scroll, que ningun control baja de
+  // 44px, y que el boton X no pisa el formulario. Se mide aqui y no en un evaluate aparte
+  // porque llegar al paso 2 y al 3 cuesta rellenar campos: repetirlo seria repetir la sonda.
+  const pasoAPaso = await p.evaluate((MIN) => {
     const root = document.querySelector('.mm-lbx__formulario');
     const next = root?.querySelector('.msf-next');
     const submit = root?.querySelector('.msf-submit');
-    if (!next || !submit) return false;
-    const disp = (el) => new Event('input', { bubbles: true }) && el.dispatchEvent(new Event('input', { bubbles: true }));
+    if (!next || !submit) return null;
+    const disp = (el) => el.dispatchEvent(new Event('input', { bubbles: true }));
 
+    const scroll = [], tactil = [], solape = [];
+    const CONTROLES = [
+      '.mm-lbx button',
+      '.mm-lbx .services-form .w-checkbox',
+      '.mm-lbx .checkbox-field',
+      '.mm-lbx .select-field',
+      '.mm-lbx .text-field-form',
+      '.mm-lbx .msf-back', '.mm-lbx .msf-next', '.mm-lbx .msf-submit',
+    ].join(', ');
+
+    const mide = (paso) => {
+      // 1 · CERO SCROLL. Es el criterio de aceptacion del encargo, no una aspiracion: si un
+      //     paso no cabe, el diseno esta mal. +1 de holgura por el redondeo subpixel.
+      if (root.scrollHeight > root.clientHeight + 1) {
+        scroll.push(`paso ${paso}: ${root.scrollHeight}px de contenido en ${root.clientHeight}px de panel`);
+      }
+
+      // 2 · OBJETIVO TACTIL. El objetivo de una casilla de servicio es su ETIQUETA entera -que
+      //     es lo que se pulsa-, no el cuadrito de 20px de dentro. El honeypot ref_id no entra
+      //     en la muestra: no lleva .text-field-form. Turnstile pinta en un iframe, pero su
+      //     contenedor se salta por si algun dia mete algo propio.
+      for (const c of document.querySelectorAll(CONTROLES)) {
+        if (c.closest('.mm-turnstile')) continue;
+        if (c.hidden || getComputedStyle(c).display === 'none') continue;
+        const r = c.getBoundingClientRect();
+        if (r.width === 0 && r.height === 0) continue;   // vive en un paso que ahora no toca
+        if (r.width < MIN || r.height < MIN) {
+          tactil.push(`paso ${paso}: ${c.className || c.tagName} mide ${Math.round(r.width)}x${Math.round(r.height)}`);
+        }
+      }
+
+      // 3 · SIN SOLAPE. Es el bug que origino R13-LBX: a 1440 la X caia en (1264,66) y la
+      //     barra de progreso del formulario empezaba en (804,78) — se pisaban.
+      const x = document.querySelector('.mm-lbx__x');
+      const w = document.querySelector('.mm-lbx .step-wrapper');
+      if (x && w) {
+        const a = x.getBoundingClientRect(), b = w.getBoundingClientRect();
+        if (a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top) {
+          solape.push(`paso ${paso}: la X en (${Math.round(a.left)},${Math.round(a.top)}) pisa el formulario`);
+        }
+      }
+    };
+
+    mide(1);
     const presupuesto = root.querySelector('[name="Estimated-Project-Budget"]');
     if (presupuesto) { presupuesto.value = 'Under $25,000'; disp(presupuesto); }
     next.click();
+    mide(2);
 
     const calle = root.querySelector('[name="Street-Address"]');
     const ciudad = root.querySelector('[name="City"]');
@@ -153,10 +206,14 @@ for (const [ancho, alto] of ANCHOS) {
     if (ciudad) { ciudad.value = 'Ocala'; disp(ciudad); }
     if (zip) { zip.value = '34470'; disp(zip); }
     next.click();
+    mide(3);
 
-    return getComputedStyle(submit).display !== 'none';
-  });
-  if (!llego) mal.noPasos.push(`@${ancho} paso 1->2->3 (con campos requeridos rellenos) no llega al boton de envio`);
+    return { llego: getComputedStyle(submit).display !== 'none', scroll, tactil, solape };
+  }, MINIMO_TACTIL);
+  if (!pasoAPaso?.llego) mal.noPasos.push(`@${ancho} paso 1->2->3 (con campos requeridos rellenos) no llega al boton de envio`);
+  for (const s of pasoAPaso?.scroll ?? []) mal.scroll.push(`@${ancho} ${s}`);
+  for (const s of pasoAPaso?.tactil ?? []) mal.tactil.push(`@${ancho} ${s}`);
+  for (const s of pasoAPaso?.solape ?? []) mal.solape.push(`@${ancho} ${s}`);
 
   // El boton X es el tercer camino de cierre -ademas de Esc y el velo- y el unico que usa
   // realmente un visitante en desktop sin teclado. Se comprueba aparte porque es el que un
@@ -230,6 +287,12 @@ check('las flechas pasan de imagen', mal.noPasa.length === 0, `${mal.noPasa.leng
 lista(mal.noPasa);
 check('los 3 pasos del formulario son navegables', mal.noPasos.length === 0, `${mal.noPasos.length}`);
 lista(mal.noPasos);
+check('NINGUN paso necesita scroll dentro del dialogo', mal.scroll.length === 0, `${mal.scroll.length}`);
+lista(mal.scroll);
+check(`todo control del dialogo mide >=${MINIMO_TACTIL}px (WCAG 2.2 AA 2.5.8)`, mal.tactil.length === 0, `${mal.tactil.length}`);
+lista(mal.tactil);
+check('el boton X no pisa el formulario en ningun paso', mal.solape.length === 0, `${mal.solape.length}`);
+lista(mal.solape);
 check('el boton X cierra', mal.noCierraX.length === 0, `${mal.noCierraX.length}`);
 lista(mal.noCierraX);
 check('Escape cierra', mal.noCierraEsc.length === 0, `${mal.noCierraEsc.length}`);

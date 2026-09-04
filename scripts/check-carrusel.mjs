@@ -11,11 +11,15 @@
  * puerta no mide solo el blog: mide el mecanismo, y de paso cubre `fs-slider-resenas`,
  * `fs-slider-projects` y `fs-slider-gallery`, que viven en las mismas paginas.
  *
- * 4 RUTAS FIJAS, NO 64. La regla dura del repo es no barrer las 115 (ni siquiera las 64 de
+ * 5 RUTAS FIJAS, NO 64. La regla dura del repo es no barrer las 115 (ni siquiera las 64 de
  * area de servicio) en una puerta que corre en cada `npm run check`: portada (el carrusel ya
- * existia ahi) + una de cada nivel nuevo -Estado, Condado, Ciudad-. Estado es la unica con TRES
- * instancias del motor en la misma pagina (`-projects`, `-resenas`, `-blog`) mas las pestañas
- * propias de `ServiciosPorCategoria`, asi que es donde un cruce de instancias se veria primero.
+ * existia ahi) + una de cada nivel nuevo -Estado, Condado, Ciudad- + `/industry-solutions`.
+ * Estado es la unica con TRES instancias del motor en la misma pagina (`-projects`, `-resenas`,
+ * `-blog`) mas las pestañas propias de `ServiciosPorCategoria`, asi que es donde un cruce de
+ * instancias se veria primero. `/industry-solutions` se sumo el 3-sep-2026: es la UNICA ruta
+ * de las 115 con la instancia `fs-slider-sliderindustries` (la 5a de las 5 `fs-slider-*` que
+ * existen en el repo) y se habia quedado huerfana del gate -un defecto reportado ahi no lo
+ * hubiera detectado ninguna corrida de `npm run check`-.
  *
  * LO QUE MIDE, y por que estos 8 numeros y no otros (medido en /country/…-marion-…, 3-sep-2026):
  *   1. la tarjeta entrante queda a <=2px del borde util tras un clic en «next»
@@ -67,6 +71,7 @@ const RUTAS = [
   '/where-we-serve/north-florida',
   '/country/custom-pool-builders-marion-county-fl',
   '/pool-builders/gainesville-florida',
+  '/industry-solutions',
 ].filter(casa);
 if (!RUTAS.length) { console.error(`\nROJO ninguna de las 4 rutas fijas casa el filtro "${filtro.join(' ')}"\n`); process.exit(1); }
 

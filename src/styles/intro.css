@@ -186,9 +186,22 @@
  *
  * MISMOS 4 ESTADOS REALES QUE EL SCRIPT VIEJO, ni uno mas: `states[4]` del script viejo repetia
  * `states[0]` byte a byte (50/50/50/50 dos veces), asi que 1,3s de cada 6,5s de bucle no movian
- * un pixel. Aqui el ciclo es 5200ms = 4 tramos de 1300ms (1100ms de transicion + 200ms de pausa,
- * los mismos STEP_MS/HOLD_MS del script viejo), en 0/25/50/75/100%, y en el 100% ya esta de
- * vuelta en el estado inicial sin un tramo de mas.
+ * un pixel. Aqui el ciclo es 12000ms = 4 tramos de 3000ms (750ms de reposo + 2250ms de
+ * transicion), en 0/25/50/75/100%, y en el 100% ya esta de vuelta en el estado inicial sin un
+ * tramo de mas. Ya NO son los STEP_MS/HOLD_MS del script viejo (1100/200): el cliente vio el
+ * bucle "muy rapido y brusco" en produccion, asi que va x2,3 mas lento y con mas reposo, y la
+ * curva paso de una ease-out de UI a una casi simetrica.
+ *
+ * LOS CUATRO CARRILES SE MUEVEN A LA VEZ, y eso es lo que quita el tiron de la segunda foto.
+ * El embed viejo alternaba -primero columnas, luego filas, nunca las dos-, y ese turno se
+ * habia conservado. La foto 1 (`column1`) solo necesita el eje X y la foto 3 (`row2`) solo el
+ * Y, asi que cada una abria en un gesto; pero la foto 2 (`row1`) necesita LOS DOS -crecer de
+ * alto Y de ancho- y por turnos le tocaban dos tramos separados por 2,25s: se veia abrir en
+ * dos tiempos. Ahora las cuatro reglas comparten las mismas ventanas de movimiento
+ * (6,25->25%, 31,25->50%, 56,25->75%, 81,25->100%) y el carril que no cambia en un tramo
+ * repite su valor en vez de esperar su turno. Cada foto abre en UN movimiento y las tres
+ * vuelven a la vez. Efecto secundario buscado: las columnas ya no van 3x mas rapidas que las
+ * filas -eran 750ms contra 2250ms-, ahora los cuatro tramos duran 2250ms.
  *
  * SIN `overflow:visible`. El embed viejo lo forzaba con un `<style>` sin ambito en el `<body>`
  * porque no podia asumir nada del wrapper. Aqui si se puede medir: `.image` ya es
@@ -207,14 +220,14 @@
  * el hueco, la via es acotar el bucle a 1-2 vueltas y asentarlo; no es parte de este cambio. */
 
 .trusted-section {
-  --mosaico-dur: 5.2s;
-  --mosaico-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --mosaico-dur: 12s;
+  --mosaico-ease: cubic-bezier(0.45, 0, 0.55, 1);
 }
 
-@keyframes mm-mosaico-c1 { 0%, 21% { flex-basis: 50% } 25%, 46% { flex-basis: 70% } 50%, 75% { flex-basis: 30% } 96%, 100% { flex-basis: 50% } }
-@keyframes mm-mosaico-c2 { 0%, 21% { flex-basis: 50% } 25%, 46% { flex-basis: 30% } 50%, 75% { flex-basis: 70% } 96%, 100% { flex-basis: 50% } }
-@keyframes mm-mosaico-r1 { 0%, 25% { height: 50% } 46%, 50% { height: 70% } 71%, 75% { height: 30% } 96%, 100% { height: 50% } }
-@keyframes mm-mosaico-r2 { 0%, 25% { height: 50% } 46%, 50% { height: 30% } 71%, 75% { height: 70% } 96%, 100% { height: 50% } }
+@keyframes mm-mosaico-c1 { 0%, 6.25% { flex-basis: 50% } 25%, 31.25% { flex-basis: 70% } 50%, 81.25% { flex-basis: 30% } 100% { flex-basis: 50% } }
+@keyframes mm-mosaico-c2 { 0%, 6.25% { flex-basis: 50% } 25%, 31.25% { flex-basis: 30% } 50%, 81.25% { flex-basis: 70% } 100% { flex-basis: 50% } }
+@keyframes mm-mosaico-r1 { 0%, 31.25% { height: 50% } 50%, 56.25% { height: 70% } 75%, 81.25% { height: 30% } 100% { height: 50% } }
+@keyframes mm-mosaico-r2 { 0%, 31.25% { height: 50% } 50%, 56.25% { height: 30% } 75%, 81.25% { height: 70% } 100% { height: 50% } }
 
 .trusted-section .grid-column.column1 { animation: mm-mosaico-c1 var(--mosaico-dur) var(--mosaico-ease) infinite; animation-play-state: paused }
 .trusted-section .grid-column.column2 { animation: mm-mosaico-c2 var(--mosaico-dur) var(--mosaico-ease) infinite; animation-play-state: paused }

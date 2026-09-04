@@ -11,6 +11,14 @@
  * -ver scripts/build-paginas.mjs- y no se puede importar ni enlazar desde aqui sin arriesgarse a
  * que `npm run paginas` lo borre). Los 14 value= de las casillas de servicio ya vienen del mismo
  * arreglo que build-paginas.mjs le aplica a la pagina real -mismo texto, mismo orden-.
+ *
+ * R13-LBX. Las ETIQUETAS visibles de las casillas son cortas y las de la pagina real no: el
+ * `value=` -lo que viaja al backend y sale en el correo del lead- es identico en las dos. El
+ * texto de dentro del dialogo es libre porque check:texto compara `innerText` y un <dialog>
+ * cerrado no pinta (display:none del UA), asi que aporta CERO lineas al baseline. Medido:
+ * baseline/text/gallery.txt son 110 lineas y ninguna es del formulario.
+ * La etiqueta larga partia en DOS lineas y ponia la ficha en 76px; en una linea mide 44 y es lo
+ * que hace que los 14 servicios quepan sin scroll. Ver el bloque de la rejilla, mas abajo.
  */
 const enGaleria = Astro.url.pathname === '/gallery';
 ---
@@ -21,6 +29,7 @@ const enGaleria = Astro.url.pathname === '/gallery';
     </button>
     <div class="mm-lbx__panel">
       <div class="mm-lbx__visor">
+        <img class="mm-lbx__ambiente" alt="" aria-hidden="true" decoding="async" />
         <button class="mm-lbx__nav mm-lbx__nav--prev" type="button" aria-label="Previous image">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
         </button>
@@ -35,7 +44,27 @@ const enGaleria = Astro.url.pathname === '/gallery';
         <form data-name="Request Quote Form" method="post" action="/api/formulario" data-mm-envia="1">
           <div class="step-wrapper">
             <div data-step="1" class="msf-step">
-              <div class="header-form"><h2>Select Services &amp; Estimate Your Project Budget</h2></div>
+              <div class="header-form"><h2>What are you planning?</h2></div>
+              <div class="services-form">
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="New Pool and Spa Construction"><span class="w-form-label"><strong>Pool &amp; Spa</strong></span></label>
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Pool Remodeling and Renovation"><span class="w-form-label"><strong>Pool Remodel</strong></span></label>
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Pool Screen Enclosures"><span class="w-form-label"><strong>Pool Enclosure</strong></span></label>
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Aluminum and Wood Pergolas"><span class="w-form-label"><strong>Pergolas</strong></span></label>
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Louvered Roof Systems"><span class="w-form-label"><strong>Louvered Roof</strong></span></label>
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Pole Barn and Steel Buildings"><span class="w-form-label"><strong>Pole Barns</strong></span></label>
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Landscaping"><span class="w-form-label"><strong>Landscaping</strong></span></label>
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Automated Irrigation"><span class="w-form-label"><strong>Irrigation</strong></span></label>
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Smart Soffit LED Lighting"><span class="w-form-label"><strong>LED Lighting</strong></span></label>
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Custom Decks"><span class="w-form-label"><strong>Decks</strong></span></label>
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Patio Screen Rooms"><span class="w-form-label"><strong>Screen Rooms</strong></span></label>
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Retractable Screens"><span class="w-form-label"><strong>Retractables</strong></span></label>
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Outdoor Kitchens"><span class="w-form-label"><strong>Kitchens</strong></span></label>
+                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Outdoor Furniture"><span class="w-form-label"><strong>Furniture</strong></span></label>
+              </div>
+            </div>
+
+            <div data-step="2" class="msf-step">
+              <div class="header-form"><h2>Tell us about the project</h2></div>
               <div class="bugget-form">
                 <div class="text-block-6">Estimated Project Budget:</div>
                 <select name="Estimated-Project-Budget" data-name="Estimated Project Budget" data-required="true" class="select-field w-select">
@@ -48,26 +77,6 @@ const enGaleria = Astro.url.pathname === '/gallery';
                   <option value="$150,000+">$150,000+</option>
                 </select>
               </div>
-              <div class="services-form">
-                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="New Pool and Spa Construction"><span class="w-form-label"><strong>New Pool and Spa Construction</strong></span></label>
-                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Pool Remodeling and Renovation"><span class="w-form-label"><strong>Pool Remodeling and Renovation</strong></span></label>
-                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Pool Screen Enclosures"><span class="w-form-label"><strong>Pool Screen Enclosures</strong></span></label>
-                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Aluminum and Wood Pergolas"><span class="w-form-label"><strong>Aluminum and Wood Pergolas</strong></span></label>
-                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Louvered Roof Systems"><span class="w-form-label"><strong>Louvered Roof Systems</strong></span></label>
-                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Pole Barn and Steel Buildings"><span class="w-form-label"><strong>Pole Barn and Steel Buildings</strong></span></label>
-                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Landscaping"><span class="w-form-label"><strong>Landscaping</strong></span></label>
-                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Automated Irrigation"><span class="w-form-label"><strong>Automated Irrigation</strong></span></label>
-                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Smart Soffit LED Lighting"><span class="w-form-label"><strong>Smart Soffit LED Lighting</strong></span></label>
-                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Custom Decks"><span class="w-form-label"><strong>Custom Decks</strong></span></label>
-                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Patio Screen Rooms"><span class="w-form-label"><strong>Patio Screen Rooms</strong></span></label>
-                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Retractable Screens"><span class="w-form-label"><strong>Retractable Screens</strong></span></label>
-                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Outdoor Kitchens"><span class="w-form-label"><strong>Outdoor Kitchens</strong></span></label>
-                <label class="w-checkbox"><input type="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input" value="Outdoor Furniture"><span class="w-form-label"><strong>Outdoor Furniture</strong></span></label>
-              </div>
-            </div>
-
-            <div data-step="2" class="msf-step">
-              <div class="header-form"><h2>Project Property Address</h2></div>
               <input data-required="true" class="text-field-form w-input" maxlength="256" name="Street-Address" data-name="Street Address" placeholder="Enter the street address" type="text">
               <input data-required="true" class="text-field-form w-input" maxlength="256" name="City" data-name="City" placeholder="Enter the city" type="text">
               <input class="text-field-form w-input" maxlength="256" name="State" data-name="State" placeholder="Enter the state" type="text">
@@ -75,7 +84,7 @@ const enGaleria = Astro.url.pathname === '/gallery';
             </div>
 
             <div data-step="3" class="msf-step">
-              <div class="header-form"><h2>Contact Information</h2></div>
+              <div class="header-form"><h2>How can we reach you?</h2></div>
               <input data-required="true" class="text-field-form w-input" maxlength="256" name="Full-Name" data-name="Full Name" placeholder="Enter your full name" type="text">
               <input data-required="true" class="text-field-form w-input" maxlength="256" name="email" data-name="Email" placeholder="Enter your email" type="email" data-type="email">
               <input data-required="true" class="text-field-form w-input" maxlength="256" name="Phone" data-name="Phone" placeholder="Enter your phone" type="tel" data-type="phone">
@@ -110,49 +119,130 @@ const enGaleria = Astro.url.pathname === '/gallery';
 )}
 
 <style is:global>
+  /* El dialogo CERRADO no declara `display` a proposito: hereda el display:none de la hoja de
+     agente de usuario. Si aqui se escribiera un `display` sin `[open]`, las ~40 lineas del
+     formulario entrarian en `innerText` y check:texto -que compara al 100 % y cuyo
+     baseline/text/ NO se re-baseliniza nunca- se pondria rojo en /gallery. */
   .mm-lbx { border: 0; padding: 0; background: transparent; max-width: 100vw }
   .mm-lbx::backdrop { background-color: color-mix(in srgb, var(--mm-tinta-cuerpo) 90%, transparent) }
 
-  /* mobile-first: bottom sheet, anchored via margin within the native fixed modal box */
+  /* mobile-first: bottom sheet, anclado abajo por margin dentro de la caja fixed del modal.
+     ALTURA FIJA, no max-height: con altura de contenido, el dialogo encogia 100px al pasar del
+     paso 1 al 2 y la banda de foto saltaba hacia abajo. */
   .mm-lbx[open] {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-height: 90dvh;
+    height: min(90dvh, 760px);
     margin: auto 0 0;
     border-radius: var(--mm-r-24) var(--mm-r-24) 0 0;
     background-color: var(--mm-superficie);
     box-shadow: var(--mm-sombra-3);
     overflow: hidden;
   }
+  /* flex-direction es CONTRATO: check-galeria-formulario.mjs exige `column` por debajo de 992 y
+     `row` a partir de 992, medido en los dos anchos frontera. Nada de Grid aqui. */
   .mm-lbx__panel { display: flex; flex-direction: column; min-height: 0; flex: 1 1 auto }
 
+  /* VISOR. `aspect-ratio` SIN `height` en la misma caja: la trampa documentada en
+     galeria.css:102-106 es que con la altura ya en pie, aspect-ratio calcula el ANCHO y
+     desborda la columna. 16/9 no es un numero redondo elegido a ojo: de las 137 fotos, 82 estan
+     en 1,791 (=16:9 a un 0,7 %) y solo 3 son verticales.
+         $ ... | sips -g pixelWidth -g pixelHeight | awk '{w/h}' | sort -n | uniq -c
+           82 1.791   29 1.340   8 1.490   15 resto apaisado   3 verticales (0,80 0,75 0,62)
+     Por eso `object-fit` sigue siendo `contain` -la convencion de .mm-lb en Componentes.astro-:
+     `cover` recortaria el 25 % de las 29 fotos a 4:3 y el 65 % de las verticales, y son obras
+     reales de clientes. Lo que el `contain` deja libre no se deja en negro: se llena. */
   .mm-lbx__visor {
     position: relative;
     flex: 0 0 auto;
-    height: min(38vh, 320px);
+    aspect-ratio: 16 / 9;
+    /* `max-height` SI se puede combinar con aspect-ratio -la trampa es `height`, que invierte
+       el calculo hacia el ancho-. Hace falta porque el layout en columna llega hasta 991: sin
+       cap, a 991 de ancho la banda 16:9 pedia 557px de los 720 del dialogo y dejaba el
+       formulario en 163. Medido. */
+    max-height: min(28dvh, 240px);
     background-color: var(--mm-tinta-cuerpo);
+    overflow: hidden;
+  }
+
+  /* SANGRADO AMBIENTAL. La misma foto, desenfocada y bajada de brillo, ocupa lo que `contain`
+     deja libre. Antes eran 423px de negro muerto -el 53 % del panel a 1440x900-; ahora es el
+     color de la propia foto, distinto en cada una de las 137. Cero recorte y cero negro.
+     Va PRIMERO en el DOM: los dos <img> son `absolute` con z-index auto, asi que el orden de
+     pintado es el orden del arbol y la foto nitida queda encima. El scale() esconde los bordes
+     blandos que deja el blur en el perimetro. */
+  .mm-lbx__ambiente {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    filter: blur(32px) saturate(1.2) brightness(.55);
+    transform: scale(1.15);
   }
   .mm-lbx__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain }
+
+  /* Los tres controles del visor viven SOBRE la foto, asi que el velo tiene que ser oscuro. El
+     blanco al 12 % de antes era invisible sobre las fotos claras -travertino, cielos quemados,
+     y hay muchas- y ademas el boton X cae en escritorio sobre el panel BLANCO del formulario:
+     era blanco sobre blanco. Con el velo negro al 60 %, el peor caso -foto blanca pura- resuelve
+     el compuesto a #666666 y el blanco encima da 5,74:1: pasa los 4,5:1 de TEXTO (el contador) y
+     de sobra los 3:1 de WCAG 1.4.11 (las flechas y la X). Se descarto el navy al 60 %, que da
+     4,46:1 y solo habria valido para los iconos. */
   .mm-lbx__nav, .mm-lbx__x {
     position: absolute;
-    background-color: color-mix(in srgb, var(--mm-blanco) 12%, transparent); border: 0; color: var(--mm-blanco); cursor: pointer;
+    background-color: color-mix(in srgb, var(--mm-tinta-cuerpo) 60%, transparent); border: 0; color: var(--mm-blanco); cursor: pointer;
     width: 44px; height: 44px; border-radius: 100%;
     display: grid; place-items: center; z-index: 1;
+    transition: background-color 150ms ease-out, transform 150ms ease-out;
   }
-  .mm-lbx__nav:hover, .mm-lbx__x:hover { background-color: color-mix(in srgb, var(--mm-blanco) 20%, transparent) }
+  .mm-lbx__x:active { transform: scale(.94) }
+  /* Las flechas ya van centradas con translateY: el :active lo REPITE en vez de sustituirlo,
+     porque `transform` es una sola propiedad y escribir solo el scale las descolocaria. */
+  .mm-lbx__nav--prev:active { transform: translateY(-50%) scale(.94) }
+  .mm-lbx__nav--next:active { transform: translateY(-50%) scale(.94) }
+  .mm-lbx__nav:hover, .mm-lbx__x:hover { background-color: color-mix(in srgb, var(--mm-tinta-cuerpo) 78%, transparent) }
   .mm-lbx__nav:focus-visible, .mm-lbx__x:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco-inverso); outline-offset: var(--mm-foco-aire) }
   .mm-lbx__nav svg, .mm-lbx__x svg { width: 22px; height: 22px }
   .mm-lbx__nav--prev { top: 50%; left: var(--mm-e-12); transform: translateY(-50%) }
   .mm-lbx__nav--next { top: 50%; right: var(--mm-e-12); transform: translateY(-50%) }
-  .mm-lbx__x { top: var(--mm-e-12); right: var(--mm-e-12) }
-  .mm-lbx__cuenta { position: absolute; bottom: var(--mm-e-12); left: 0; right: 0; text-align: center; color: var(--mm-blanco); margin: 0; font-size: var(--mm-paso-0) }
+  .mm-lbx__x { top: var(--mm-e-12); right: var(--mm-e-12); z-index: 2 }
+  .mm-lbx__cuenta {
+    position: absolute; bottom: var(--mm-e-12); left: 50%; transform: translateX(-50%);
+    margin: 0; padding: var(--mm-e-4) var(--mm-e-12);
+    border-radius: var(--mm-r-pastilla);
+    background-color: color-mix(in srgb, var(--mm-tinta-cuerpo) 60%, transparent);
+    color: var(--mm-blanco); font-size: var(--mm-paso-0);
+    font-variant-numeric: tabular-nums;
+  }
 
-  .mm-lbx__formulario { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: var(--mm-e-24) }
-  .mm-lbx__formulario .header-form h2 { font-size: var(--mm-paso-4); line-height: var(--mm-alto-titulo); margin: 0 0 var(--mm-e-16); color: var(--mm-tinta) }
-  .mm-lbx__formulario .msf-step[style*="none"] { display: none }
+  /* La cadena flex llega hasta .msf-buttons para que Back/Next queden clavados en el borde
+     inferior del panel en los TRES pasos, en vez de bailar segun lo que mida cada uno. En movil
+     ademas los deja al alcance del pulgar. `overflow-y: auto` se queda como red de seguridad
+     -nunca atrapar contenido-, aunque la puerta exige que no haga falta usarlo. */
+  .mm-lbx__formulario {
+    flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: var(--mm-e-16);
+    display: flex; flex-direction: column;
+  }
+  .mm-lbx__formulario form { display: flex; flex-direction: column; flex: 1 1 auto; min-height: 0 }
+  /* Dos herencias de Webflow que hay que apagar a mano en el h2:
+       · `text-transform: capitalize` — convertia "What are you planning?" en "What Are You
+         Planning?". Es la trampa que check-texto.mjs:100 documenta como "la cuarta vez que
+         esto muerde en este repo"; aqui no rompe la puerta -el dialogo cerrado no pinta- pero
+         se lleva por delante la decision de copia.
+       · `text-align: center` — un titulo centrado en una columna estrecha y con todo lo demas
+         alineado a la izquierda es ruido: la vista tiene que volver al margen en cada bloque. */
+  .mm-lbx__formulario .header-form h2 {
+    font-size: var(--mm-paso-4); line-height: var(--mm-alto-titulo);
+    margin: 0 0 var(--mm-e-12); color: var(--mm-tinta);
+    text-transform: none; text-align: left; text-wrap: balance;
+  }
 
-  .mm-lbx__formulario .step-wrapper { display: flex; flex-direction: column; gap: var(--mm-e-16) }
+  /* Webflow le pone 32px de padding a .msf-step. Aqui son 64px de alto tirados en cada paso y
+     -peor- 64px de ancho menos para la rejilla, que es lo que partia las etiquetas en dos
+     lineas y ponia la ficha en 57px en vez de 44. El panel del paso lo pinta el DIALOGO, no el
+     paso (a diferencia de estimacion.css:123, donde el paso si es una tarjeta). */
+  .mm-lbx__formulario .msf-step { padding: 0; background: transparent }
+
+  .mm-lbx__formulario .step-wrapper { display: flex; flex-direction: column; gap: var(--mm-e-12); flex: 1 1 auto; min-height: 0; align-items: stretch }
   .mm-lbx__formulario .step-wrapper::before {
     content: "";
     align-self: stretch;
@@ -182,7 +272,7 @@ const enGaleria = Astro.url.pathname === '/gallery';
 
   .mm-lbx__formulario .text-field-form,
   .mm-lbx__formulario .select-field {
-    display: block; width: 100%; min-height: 48px; margin-bottom: var(--mm-e-12);
+    display: block; width: 100%; min-height: 48px; margin-bottom: var(--mm-e-8);
     background-color: var(--mm-superficie); color: var(--mm-tinta);
     border: 1px solid var(--mm-tinta-suave); border-radius: var(--mm-r-8);
     padding: var(--mm-e-12) var(--mm-e-16); font-size: var(--mm-paso-3); font-family: inherit;
@@ -192,30 +282,51 @@ const enGaleria = Astro.url.pathname === '/gallery';
     outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire);
   }
 
-  .mm-lbx__formulario .services-form { display: grid; grid-template-columns: 1fr; gap: var(--mm-e-8) }
-  @media (min-width: 480px) {
-    .mm-lbx__formulario .services-form { grid-template-columns: 1fr 1fr }
-  }
+  /* LA REJILLA DE SERVICIOS es de donde salio el desbordamiento: medía 567px de los 744 utiles
+     en escritorio, y 1168 de los 440 en movil. Dos cambios, los dos medidos:
+       · 2 columnas DESDE 0px, no desde 480. En movil eran 14 filas; ahora son 7. Ahi esta el
+         95 % de los 802px que desbordaban a 390. (No es un breakpoint nuevo: es la base.)
+       · la ficha pasa de 76px a 44. Los 76 no eran padding, era la etiqueta partiendo en DOS
+         lineas -"New Pool and Spa Construction" en una columna de 230px-. Con la etiqueta corta
+         cabe en una linea y la altura la fija el suelo tactil.
+     El objetivo tactil de WCAG 2.2 AA 2.5.8 es la ETIQUETA entera -que es lo que se pulsa-, y
+     mide >=44. Por eso la casilla se queda en 20x20 y no sube a los 24x24 de estimacion.css:242:
+     alli la ficha lleva pictograma y otra caja; aqui subirla solo robaria ancho a la etiqueta. */
+  .mm-lbx__formulario .services-form { display: grid; grid-template-columns: 1fr 1fr; gap: var(--mm-e-8) }
+  /* De 480 a 991 el formulario ocupa la hoja ENTERA (el layout no pasa a dos columnas hasta
+     992), asi que ahi caben mas: 14 servicios son 7 filas a 2 columnas, 5 a 3 y 4 a 4. */
+  @media (min-width: 480px) { .mm-lbx__formulario .services-form { grid-template-columns: repeat(3, 1fr) } }
+  @media (min-width: 768px) { .mm-lbx__formulario .services-form { grid-template-columns: repeat(4, 1fr) } }
   .mm-lbx__formulario .services-form .w-checkbox,
   .mm-lbx__formulario .checkbox-field {
     display: flex; align-items: center; gap: var(--mm-e-8); cursor: pointer;
-    padding: var(--mm-e-12); border: 1px solid var(--mm-borde); border-radius: var(--mm-r-8);
+    min-height: 44px; padding: var(--mm-e-8);
+    border: 1px solid var(--mm-borde); border-radius: var(--mm-r-8);
     background-color: var(--mm-superficie);
+    transition: border-color 150ms ease-out, background-color 150ms ease-out;
   }
+  .mm-lbx__formulario .services-form .w-checkbox:hover { border-color: var(--mm-borde-control) }
+  /* navy sobre la superficie tenue: 13,68:1 */
   .mm-lbx__formulario .services-form .w-checkbox:has(:checked) {
     border-color: var(--mm-tinta); background-color: var(--mm-fondo-tenue);
   }
+  /* El anillo va en la FICHA, no en la casilla de 20px: es la caja que se pulsa. */
+  .mm-lbx__formulario .services-form .w-checkbox:has(:focus-visible) {
+    outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire);
+  }
   .mm-lbx__formulario .w-checkbox-input { accent-color: var(--mm-navy); width: 20px; height: 20px; flex-shrink: 0 }
-  .mm-lbx__formulario .services-form .w-form-label { font-size: var(--mm-paso-2) }
-  .mm-lbx__formulario .checkbox-field { margin: var(--mm-e-16) 0; align-items: flex-start }
+  .mm-lbx__formulario .services-form .w-form-label { font-size: var(--mm-paso-2); line-height: var(--mm-alto-cuerpo); color: var(--mm-tinta) }
+  /* El <strong> de Webflow a 700 en las 14 etiquetas no es enfasis, es ruido (estimacion.css:259). */
+  .mm-lbx__formulario .services-form .w-form-label strong { font-weight: var(--mm-peso-medio) }
+  .mm-lbx__formulario .checkbox-field { margin: var(--mm-e-12) 0; align-items: flex-start; padding: var(--mm-e-12) }
   .mm-lbx__formulario .checkbox-field .w-checkbox-input { margin-top: 2px }
-  .mm-lbx__formulario .checkbox-field .w-form-label { font-size: var(--mm-paso-0); color: var(--mm-tinta-atenuada) }
+  .mm-lbx__formulario .checkbox-field .w-form-label { font-size: var(--mm-paso-0); color: var(--mm-tinta-atenuada); text-wrap: pretty }
 
   .mm-lbx__formulario .msf-error-input { outline: none; box-shadow: inset 0 0 0 1px var(--mm-error) }
   .mm-lbx__formulario .msf-error { color: var(--mm-error); font-size: var(--mm-paso-0); font-weight: var(--mm-peso-fuerte); margin-top: calc(var(--mm-e-4) * -2) }
 
-  .mm-lbx__formulario .msf-buttons { display: flex; gap: var(--mm-e-12); margin-top: var(--mm-e-8) }
-  .mm-lbx__formulario .wrapper-buttons-center { display: flex; justify-content: flex-end; margin-top: var(--mm-e-8) }
+  .mm-lbx__formulario .msf-buttons { display: flex; gap: var(--mm-e-12); margin-top: auto }
+  .mm-lbx__formulario .wrapper-buttons-center { display: flex; justify-content: flex-end }
   .mm-lbx__formulario .msf-back,
   .mm-lbx__formulario .msf-next,
   .mm-lbx__formulario .msf-submit {
@@ -224,7 +335,11 @@ const enGaleria = Astro.url.pathname === '/gallery';
     border-radius: var(--mm-r-pastilla);
     font-weight: var(--mm-peso-fuerte); font-size: var(--mm-paso-2);
     cursor: pointer; border: none; text-decoration: none;
+    transition: background-color 150ms ease-out, transform 150ms ease-out;
   }
+  .mm-lbx__formulario .msf-back:active,
+  .mm-lbx__formulario .msf-next:active,
+  .mm-lbx__formulario .msf-submit:active { transform: scale(.97) }
   .mm-lbx__formulario .msf-back { background-color: transparent; color: var(--mm-tinta); border: 1px solid var(--mm-tinta-suave) }
   .mm-lbx__formulario .msf-next,
   .mm-lbx__formulario .msf-submit { background-color: var(--mm-accion); color: var(--mm-sobre-accion); margin-left: auto }
@@ -235,9 +350,14 @@ const enGaleria = Astro.url.pathname === '/gallery';
   .mm-lbx__formulario .msf-submit:focus-visible {
     outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire);
   }
-  .mm-lbx__formulario .text-block-7 { font-size: var(--mm-paso-0); color: var(--mm-tinta-atenuada); margin-top: var(--mm-e-16) }
+  .mm-lbx__formulario .text-block-7 { font-size: var(--mm-paso-0); color: var(--mm-tinta-atenuada); margin-top: var(--mm-e-8); text-wrap: pretty }
   .mm-lbx__formulario .text-block-7 a { color: var(--mm-enlace) }
 
+  /* Al enviar, Formularios.astro:90-91 esconde el <form> y pone el panel de exito en `block`.
+     Sin esto, la tarjeta de gracias se quedaba pegada arriba con medio panel en blanco debajo.
+     La tecnica -leer el `style` en linea con :has()- es la misma que ya usa la barra de
+     progreso unas lineas mas arriba. */
+  .mm-lbx__formulario:has(.success-message-form[style*="block"]) { justify-content: center }
   .mm-lbx__formulario .success-message-form {
     display: none; text-align: center;
     background-color: var(--mm-fondo-navy); color: var(--mm-tinta-inversa);
@@ -252,15 +372,40 @@ const enGaleria = Astro.url.pathname === '/gallery';
   }
 
   @media (min-width: 992px) {
+    /* 62/38 y no el 55/45 de antes. El negro no salia de que sobrara foto: salia de que la CAJA
+       es mas alta que ancha para una foto apaisada, asi que ensanchar el formulario lo empeora y
+       ensanchar la foto lo arregla. A 1280 de dialogo: la columna de foto mide 794 y una foto
+       16:9 pinta 447 de los 600 de alto -26 % de sangrado-; a 55/45 pintaria 381 -36 %-.
+       `height` fija, no `max-height`: es lo que evita que el dialogo encoja al cambiar de paso.
+       El visor pierde aqui su aspect-ratio -se estira a la fila-, y por eso tampoco toca la
+       trampa de aspect-ratio+height. */
     .mm-lbx[open] {
-      width: min(92vw, 1200px);
-      max-height: 88vh;
+      width: min(94vw, 1280px);
+      height: min(88vh, 600px);
       margin: auto;
       border-radius: var(--mm-r-24);
     }
     .mm-lbx__panel { flex-direction: row }
-    .mm-lbx__visor { flex: 1 1 55%; height: auto }
-    .mm-lbx__formulario { flex: 1 1 45%; max-height: 88vh }
+    .mm-lbx__visor { flex: 1 1 62%; min-width: 0; aspect-ratio: auto; max-height: none }
+    /* El padding-top de 64 es lo que mata el solape del boton X con la barra de progreso: la X
+       ocupa hasta y=56 (12 de offset + 44 de alto) y el contenido arranca en 64. */
+    .mm-lbx__formulario { flex: 1 1 38%; min-width: 0; padding: var(--mm-e-64) var(--mm-e-24) var(--mm-e-24) }
+    /* La columna del formulario vuelve a ser estrecha: 2 columnas otra vez. */
+    .mm-lbx__formulario .services-form { grid-template-columns: 1fr 1fr }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mm-lbx__nav, .mm-lbx__x,
+    .mm-lbx__formulario .services-form .w-checkbox,
+    .mm-lbx__formulario .msf-back,
+    .mm-lbx__formulario .msf-next,
+    .mm-lbx__formulario .msf-submit { transition: none }
+    .mm-lbx__x:active,
+    .mm-lbx__formulario .msf-back:active,
+    .mm-lbx__formulario .msf-next:active,
+    .mm-lbx__formulario .msf-submit:active { transform: none }
+    /* No es `none`: las flechas siguen necesitando su centrado vertical. */
+    .mm-lbx__nav--prev:active, .mm-lbx__nav--next:active { transform: translateY(-50%) }
   }
 
   html.mm-scroll-lock { overflow: hidden }
@@ -275,6 +420,7 @@ const enGaleria = Astro.url.pathname === '/gallery';
     if (!dlg) return;   // absent on the other 114 pages by construction (route-gate in frontmatter)
 
     const img = dlg.querySelector('.mm-lbx__img');
+    const ambiente = dlg.querySelector('.mm-lbx__ambiente');
     const cuenta = dlg.querySelector('.mm-lbx__cuenta');
 
     // Same anchors Componentes.astro's guard skips (a.closest('.gallery-page')) — never double-bound.
@@ -290,6 +436,8 @@ const enGaleria = Astro.url.pathname === '/gallery';
     const pinta = () => {
       if (!fotos[i]) return;
       img.src = fotos[i].url;
+      // Misma URL que la foto nitida: la segunda decodificacion sale de cache, no de la red.
+      if (ambiente) ambiente.src = fotos[i].url;
       img.alt = fotos[i].alt;
       cuenta.textContent = fotos.length > 1 ? `${i + 1} / ${fotos.length}` : '';
       for (const b of dlg.querySelectorAll('.mm-lbx__nav')) b.hidden = fotos.length < 2;
