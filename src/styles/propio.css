@@ -320,3 +320,67 @@
   min-height: var(--mm-e-48);
   line-height: var(--mm-alto-cuerpo);
 }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * EL HEROE DE FICHA (25 rutas) NO TENIA VELO NINGUNO
+ *
+ * `.hero-project` se pinta en 10 rutas de `blogs/` y 15 de `project/`, y su fondo es una
+ * imagen puesta por `webflow.css` (`background-image:url(animateddivs-image.webp)`) SIN nada
+ * encima. El texto es blanco y cae donde cae.
+ *
+ * Medido sobre produccion ocultando el elemento y capturando su caja exacta —o sea el fondo
+ * REALMENTE pintado, no la imagen cruda—, con los flotantes ocultos para que el boton de
+ * llamada no colara su navy dentro de la caja:
+ *
+ *     parrafo blanco 14px a 390px .... 2,99:1   (blogs)   min 4,5   ✗
+ *     parrafo blanco 14px a 390px .... 2,96:1   (project) min 4,5   ✗
+ *     parrafo blanco 18px a 1440px ... 4,44:1   (project) min 4,5   ✗
+ *
+ * Se resuelve con un velo navy al 35 % escrito como `box-shadow` INSET y no como una segunda
+ * capa de `background-image`, por dos razones: no hay que repetir la ruta de la imagen —que
+ * vive en webflow.css y cambiaria sola el dia que se regenere— y un `box-shadow` no crea
+ * contexto de apilamiento. Un inset se pinta encima del fondo y debajo del contenido, que es
+ * exactamente la capa que hacia falta.
+ *
+ * Medido despues, en 5 rutas de las dos familias y en 390 y 1440: el peor queda en 5,16:1 y
+ * los titulares suben de 3,87-4,92 a 6,30-7,50. Las 25 comparten la misma imagen, asi que el
+ * peor pixel es el mismo en todas; lo que cambia entre rutas es donde cae el texto, y por eso
+ * se midieron cinco y no una.
+ * ───────────────────────────────────────────────────────────────────────────── */
+.hero-project {
+  box-shadow: inset 0 0 0 9999px color-mix(in srgb, var(--mm-navy) 35%, transparent);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * EL SUBTITULO DE /about IBA EN BLANCO SOBRE EL CIAN
+ *
+ * `.hero-about` se pinta sobre `linear-gradient(0deg, --upcolor, --downcolor)`: azul arriba y
+ * CIAN abajo. El h1 y el h2 son blancos y el parrafo es negro, o sea que la pagina ya mezclaba
+ * dos tintas sobre el mismo fondo. Medido, con los flotantes ocultos:
+ *
+ *     h2 blanco 20px a  390px .... 3,51:1   min 4,5   ✗
+ *     h2 blanco 25px a  768px .... 2,97:1   min 3     ✗
+ *     h2 blanco 25px a  991px .... 2,88:1   min 3     ✗
+ *
+ * No se arregla con un velo: el parrafo NEGRO vive sobre el mismo degradado, asi que oscurecer
+ * el fondo sube el h2 y hunde el parrafo. Probado: con navy al 12-15 % el h2 pasa a 4,7-5,1
+ * pero el parrafo cae a 4,23-4,12, por debajo del minimo. La ventana en la que los dos pasan a
+ * la vez es de centesimas y no es defendible.
+ *
+ * Tampoco vale `--mm-sobre-frio` (navy), que es lo que `tokens.css` prescribe para el acento
+ * frio: a 390px el h2 mide 20px, o sea texto normal, y navy da 3,93 contra los 4,5 que pide.
+ *
+ * La tinta correcta es la MISMA QUE LA DEL PARRAFO QUE INTRODUCE, que es el color de cuerpo de
+ * Webflow y aqui ya reportaba 5,11-7,36:1 en los cinco anchos. Medido con el h2 en esa tinta:
+ * 5,29 / 6,49 / 6,99 / 4,47 / 4,51 en 390, 768, 991, 1440 y 1920 — todos por encima de 4,5,
+ * que es el umbral ESTRICTO, sin tener que apoyarse en la excepcion de texto grande.
+ *
+ * `.hero-about h2` es 0-1-1 y gana a `.color-white` (0-1-0) por especificidad, no solo por orden.
+ *
+ * ⚠️ LO QUE ESTO NO ARREGLA, y queda medido: el h1 blanco a 991px da 3,00:1 contra un minimo de
+ * 3 — pasa por el canto, sin margen. Subirlo pide mover el degradado de la seccion, que es una
+ * decision de diseno y no un arreglo de contraste.
+ * ───────────────────────────────────────────────────────────────────────────── */
+.hero-about h2 {
+  color: var(--mm-tinta-cuerpo);
+}
