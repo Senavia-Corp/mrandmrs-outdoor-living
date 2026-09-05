@@ -4731,3 +4731,57 @@ y no se pierde ningún dato.
 **Outlook queda sin verificar visualmente**: no hay cuenta. Se cubre por lint duro (solo
 `<table>`, CSS en línea, cero flex/grid/`<style>`/clases/SVG/`background-image`/`src` relativa,
 y `nowrap` prohibido porque fijaba un ancho mínimo que desbordaba 27 px a 375).
+
+### CIERRE — desplegado en PRODUCCIÓN (4-sep-2026)
+
+`main` en `2d33207` (merge de la rama del letterhead con las 5 commits de diseño que main
+llevaba por delante). Los 9 conflictos eran las páginas GENERADAS de `country/`: el mismo
+trabajo de R16-PROY commiteado dos veces. Se tomó **la versión de main** en las nueve, porque
+además lleva horneados los cuatro arreglos posteriores (alto del CTA del héroe, contraste de
+ficha y de `/about`, borde del velo); esta rama no aportaba nada propio a esos ficheros.
+
+Puertas sobre el merge, construido en worktree aislado para que no lo pisara el `astro dev`
+ajeno: `check:aviso` `check:tokens` `check:rutas` `check:enlaces` `check:seo` (**115/115**)
+`check:medicion` — **las 6 verdes**.
+
+**Estado real de producción, medido después del despliegue:**
+
+```
+sitemap en produccion : 119 <loc>
+host del sitemap      : https://www.mrandmrsoutdoorliving.com
+paginas medidas       : 122
+con snippet GTM       : 122
+--- host de las canonicas ---
+ 122 https://www.mrandmrsoutdoorliving.com
+--- brochure_download en PRODUCCION ---
+    {"link_text":"artisan-brochure","event":"brochure_download"}
+    {"link_text":"coyote-brochure","event":"brochure_download"}
+    {"link_text":"classic-modern-catalog","event":"brochure_download"}
+```
+
+La unificación a `www` **está viva**: las 122 canónicas y las 119 del sitemap en el mismo host,
+que es el que sirve. Se acabó el salto de rastreo por el 308 del apex.
+
+### Los 5 correos: verificados POR SEBASTIAN, no por mí
+
+Probó los formularios a mano y llegan. **Esa es mejor prueba que la mía**, porque es el camino
+real con un humano y un token de Turnstile de verdad.
+
+Queda anotado por qué yo no pude:
+
+- **En producción, 403.** Medido: el widget de Turnstile **sí pinta (71,2 px de alto)** pero
+  **no emite token** a un navegador automatizado, así que el servidor rechaza el envío. Un
+  antibot no se sortea.
+- **En preview, `500 el correo no esta configurado`** hasta el final. Vercel **hornea las
+  variables de entorno en el deployment**: añadirlas al panel no alcanza a un preview ya
+  construido. Se forzó un build nuevo con un commit vacío (`997beea`, solo en la rama) y aun
+  así el sondeo no llegó a verde antes de cerrar.
+
+> 📌 El dato que hay que recordar de aquí: **añadir una variable en Vercel NO afecta a los
+> deployments existentes.** Hace falta volver a desplegar. Cuesta media hora descubrirlo cada
+> vez.
+
+Un dato que sale gratis de la medición de arriba y que **confirma el hallazgo del visor**: el
+iframe de Turnstile mide **71,2 px** en producción. La puerta `check:galeria-formulario` medía
+el desbordamiento del paso 3 con el widget a 0 px de alto sobre `file://` (solo sus 24 px de
+margen). El desbordamiento real es **~47 px peor** que el que reporta la puerta.
