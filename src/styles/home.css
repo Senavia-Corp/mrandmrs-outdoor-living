@@ -114,15 +114,40 @@
    justo donde estan los botones. Medido en produccion: el alfa a 67px del pie valia 31%. Como la
    franja blanca tapa esos 67px, lo que se veia era una banda PALIDA entre la franja y la banda
    oscura, y de ahi el «el degradado no llega abajo».
-   La banda oscura baja ahora hasta el 100% (el pie). El borde de ARRIBA no se toca: sigue el
-   35%/20%/78% de 0 a 27, que es lo que estaba bien. Y esto solo puede SUBIR el contraste, nunca
+   La banda oscura baja ahora hasta el 100% (el pie). Y esto solo puede SUBIR el contraste, nunca
    bajarlo: la banda se extiende, no se recorta.
    El 27% aguanta: medido en 991/768/430/390/360, el texto de home a <=991 cae entre el 38,6% y
    el 64% de la altura. */
+/* R9-VELO-BORDE (4-sep-2026) — EL BORDE DE ARRIBA. Lo de encima decia «el borde de ARRIBA no se
+   toca: sigue el 35%/20%/78%, que es lo que estaba bien». No lo estaba: visto en produccion,
+   Sebastian pidio quitar la linea horizontal que se ve donde termina la banda oscura. Medido con
+   `node scripts/diag-velo.mjs / --sin-contraste` sobre el build, el 35/20/78 tenia DOS defectos
+   que se sumaban, y el segundo es el gordo:
+
+     1. La rampa era corta — 58 puntos de alfa en el 13% de la altura.
+     2. NO ERA MONOTONA. Leida hacia arriba iba 78% -> 20% (en el 14%) -> 35% (en el 0%), o sea
+        que despues de aclararse VOLVIA a oscurecerse. Eso deja un minimo local de alfa: una
+        franja CLARA con algo mas oscuro encima Y debajo. El ojo lee ese minimo como una raya.
+        `diag-velo.mjs` lo cifra: un hoyo de 14,9 puntos, en los 6 anchos de la matriz.
+
+   Ahora sube monotona del 78% al 0% en 5 paradas con forma de S: sale despacio de la meseta
+   (que es el canto que hay que esconder), acelera en el centro y llega plana al borde de arriba.
+   La S en vez de una ease-out literal es decision de Sebastian: una ease-out pone su tramo mas
+   empinado JUSTO en la union con la meseta, que es el sitio exacto donde no interesa.
+   Las paradas son la misma curva del bloque de >=992: alfa 78/63/34/11/0 en t=0/,26/,52/,78/1,
+   con t recorriendo del 27% (techo de la meseta) al 0% (borde de arriba). Terminar en 0% es
+   legitimo porque arriba del 27% no vive ningun texto que dependa del velo para leerse.
+
+   LO QUE NO CAMBIA, y por eso el contraste no puede bajar: del 27% al 100% sigue plano al 78%,
+   parada por parada. El texto de home a <=991 cae entre el 38,6% y el 64%, o sea DENTRO de esa
+   meseta, asi que el alfa bajo el texto es identico al de antes. Medido: 8,10:1 antes y despues,
+   contra el peor pixel real del video, que es blanco puro. */
 .mm-hero{align-items:flex-end;padding-bottom:calc(var(--mm-e-64) + var(--mm-e-16));
   background-image:linear-gradient(to bottom,
-  color-mix(in srgb,var(--mm-navy) 35%,transparent) 0%,
-  color-mix(in srgb,var(--mm-navy) 20%,transparent) 14%,
+  color-mix(in srgb,var(--mm-navy)  0%,transparent) 0%,
+  color-mix(in srgb,var(--mm-navy) 11%,transparent) 6%,
+  color-mix(in srgb,var(--mm-navy) 34%,transparent) 13%,
+  color-mix(in srgb,var(--mm-navy) 63%,transparent) 20%,
   color-mix(in srgb,var(--mm-navy) 78%,transparent) 27%,
   color-mix(in srgb,var(--mm-navy) 78%,transparent) 100%)}
 /* LA COLUMNA — la causa raiz del encargo R9-HERO-AJUSTE.
@@ -293,9 +318,31 @@
      ARRIBA. Re-medido tras subir el padding y pasar el subtitulo a 2 lineas: el texto sin fondo
      propio cae entre 200 y 395px del pie en los cuatro anchos de >=992, asi que los 415 dejan
      20px de margen por arriba. Por abajo ya no hay margen que dar: es el pie. */
+  /* R9-VELO-BORDE (4-sep-2026) — la rampa de arriba, rehecha. Ver el diagnostico completo en la
+     regla base. Aqui la version corta: el 78%->20% en 90px y la vuelta al 35% en el techo eran
+     0,686 %/px de pendiente y un hoyo de 14,9 puntos de alfa a 515px del pie, iguales en los
+     seis anchos de la matriz (`node scripts/diag-velo.mjs / --sin-contraste`).
+
+     LAS DOS PRIMERAS PARADAS NO SE TOCAN: 78% del pixel 0 al 415, que es la banda que tapa el
+     texto. Lo que se rehace es de 415px arriba, con la misma S del bloque base.
+
+     POR QUE `calc(t% + (1-t)*415px)` Y NO PIXELS A SECAS. A >=992 el heroe es `height:100vh`
+     (webflow.css): la meseta se ancla en px desde el pie porque el texto va anclado abajo, pero
+     el FINAL de la rampa es el borde de arriba, que se mueve con la ventana. Escribiendo el
+     final en `100%` y las paradas intermedias interpolando entre 415px y 100%, la rampa se
+     alarga sola con el alto de la ventana: cuanto mas sitio hay, mas suave cae. Con paradas en
+     px fijos la rampa mediria lo mismo a 720 que a 1400 y el resto seria meseta plana arriba —
+     otra vez un canto, el mismo error de unidad que documenta el bloque de aqui arriba.
+       t=0,26 -> 415*0,74 = 307px   ·   t=0,52 -> 415*0,48 = 199px   ·   t=0,78 -> 415*0,22 = 91px
+
+     Y el caso degenerado sigue fallando hacia el lado bueno: si la ventana midiera menos de
+     415px, la regla de la spec sube cada parada a la mayor anterior y el heroe entero se queda
+     al 78%. Mas proteccion, no menos. */
   .mm-hero{background-image:linear-gradient(to top,
     color-mix(in srgb,var(--mm-navy) 78%,transparent) 0,
     color-mix(in srgb,var(--mm-navy) 78%,transparent) 415px,
-    color-mix(in srgb,var(--mm-navy) 20%,transparent) 505px,
-    color-mix(in srgb,var(--mm-navy) 35%,transparent) 100%)}
+    color-mix(in srgb,var(--mm-navy) 63%,transparent) calc(26% + 307px),
+    color-mix(in srgb,var(--mm-navy) 34%,transparent) calc(52% + 199px),
+    color-mix(in srgb,var(--mm-navy) 11%,transparent) calc(78% + 91px),
+    color-mix(in srgb,var(--mm-navy)  0%,transparent) 100%)}
 }
