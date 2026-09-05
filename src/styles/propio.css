@@ -281,8 +281,36 @@
  * `estimacion.css`, que gana a este `.link-4` (0,1,0) por especificidad, no por orden. Esa
  * ruta tiene el panel claro y su enlace en `--mm-enlace` esta bien; sobre ESTE azul daria
  * 1,47:1, o sea que la regla de alla NO se puede generalizar. Por eso esta es aparte. */
+/* ── M1 (auditoria 5-sep-2026): el panel azul de arriba YA NO EXISTE ─────────
+ *
+ * Todo el bloque de arriba razona sobre «el degradado azul de `.form-section`». Ese panel
+ * lo sustituyo R12-CON por la variante B, «tarjeta clara sobre banda honda»
+ * (`contacto.css:7`). El enlace se quedo en blanco. Sobre la tarjeta clara eso es
+ * BLANCO SOBRE BLANCO: medido `rgb(255,255,255)` sobre `rgb(255,255,255)`, **1:1**, en los
+ * seis anchos. El aviso legal se lee «By submitting this form, you agree to our  &» —los dos
+ * enlaces desaparecen— y se pide aceptar unas condiciones que no se pueden ni leer ni abrir,
+ * en la pagina de conversion.
+ *
+ * Ninguna puerta podia verlo: `contacto.css:33` deja escrito que /contact-us esta en
+ * `DISTINTAS_A_PROPOSITO` a los cuatro anchos porque Turnstile no pinta fuera del dominio
+ * registrado, asi que «verde aqui no prueba nada». Lo caza `audit-sondas.mjs`, que mide el
+ * contraste del pixel pintado en vez de comparar capturas.
+ *
+ * SE MIDIO DONDE PINTA `.link-4` ANTES DE ELEGIR COLOR — las tres rutas que la traen:
+ *
+ *     /contact-us ....... blanco  sobre rgb(255,255,255) ....  1,00:1   <- rota
+ *     /gallery .......... #1d4bbf sobre rgb(255,255,255) ....  7,47:1   ya correcta
+ *     /request-estimated  #1d4bbf sobre rgb(237,240,248) ....  7,10:1   ya correcta
+ *
+ * O sea: no queda ni un fondo oscuro bajo `.link-4` en todo el sitio. La regla blanca es el
+ * ultimo resto de un panel retirado, y solo alcanza a la ruta donde hace dano. Se alinea con
+ * las dos reglas acotadas que ya existen (`estimacion.css:436` y la del visor), que usan
+ * `--mm-enlace` justamente porque su superficie es clara.
+ *
+ * Si algun dia vuelve un panel oscuro bajo este enlace, la regla correcta NO es volver aqui:
+ * es una regla acotada a ese ancestro con `--mm-enlace-inverso`, como manda `tokens.css`. */
 .link-4 {
-  color: var(--mm-tinta-inversa);
+  color: var(--mm-enlace);            /* #1d4bbf sobre blanco ......... 7,47:1  AA */
   text-decoration: underline;
   text-underline-offset: 2px;
 }
