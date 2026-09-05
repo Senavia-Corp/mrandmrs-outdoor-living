@@ -124,6 +124,65 @@ const DISTINTAS_A_PROPOSITO = {
     + 'videos y mismo texto -check:texto lo exige al 100%- pero otra maqueta.',
 };
 
+/**
+ * ── AUDITORIA 5-sep-2026 (M8): LOS 80 px DEL BOTON DE LLAMAR, SOLO A 479 ─────────────────
+ *
+ * `.mm-llamar` es fijo, 58x58, abajo a la derecha. Que un boton flotante pase por encima
+ * mientras se scrollea es normal; abajo del todo ya no queda scroll, asi que lo que le toca
+ * debajo queda tapado PARA SIEMPRE. Medido al final de `/` a 375: tapaba los tres enlaces
+ * legales del pie, incluido el de accesibilidad.
+ *
+ * El arreglo reserva 80 px al final del pie y esta acotado en el CSS a `max-width: 767px`,
+ * asi que **solo puede aparecer en el ancho de 479**. Los otros tres anchos siguen
+ * comparandose al 100 % en estas 28 rutas: las tres salen VERDES ahi, que es la prueba de que
+ * el cambio es exactamente el que se declara y nada mas.
+ *
+ * La puerta ve **+20 px** porque mide la captura a 1/4. Verificado que los reales son 80:
+ * /articles/accessibility 3052 -> 3132, /articles/privacy-policy 3371 -> 3451,
+ * /blogs-tips 6977 -> 7057, comparando contra el build del estado anterior (33baf7e).
+ *
+ * SON ESTAS 28 Y NO MAS. Las otras 88 que salen rojas a 479 ya lo estaban antes de la
+ * auditoria por el rediseño de R9-R16, y esas NO se declaran aqui: se arreglan mirandolas y
+ * re-aprobando su referencia, que es lo que pide PROMPT-REDISENO §5.3.
+ */
+const M8_479 = [
+  '/articles/accessibility',
+  '/articles/privacy-policy',
+  '/articles/terms-conditions',
+  '/blogs/commercial-pool-construction-in-florida-what-decision-makers-must-know',
+  '/blogs/common-pool-construction-mistakes-we-see-in-florida',
+  '/blogs/complete-guide-to-pool-construction-in-florida-costs-timeline-process',
+  '/blogs/how-outdoor-living-spaces-increase-property-value-in-florida',
+  '/blogs/new-pool-construction-vs-pool-remodeling-which-is-right-for-you',
+  '/blogs/outdoor-living-design-guide-for-florida-homes',
+  '/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish',
+  '/blogs/residential-vs-commercial-pool-construction-in-florida',
+  '/blogs/top-10-luxury-pool-designs-for-florida-homes',
+  '/blogs/what-permits-are-required-for-pool-construction-in-florida',
+  '/project/aluminum-patio-cover-pool-deck-south-florida',
+  '/project/estate-pool-spa-sun-shelf-north-florida',
+  '/project/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida',
+  '/project/luxury-pool-motorized-pergola-screen-enclosure-north-florida',
+  '/project/luxury-pool-motorized-pergola-screens-south-florida',
+  '/project/luxury-pool-pergola-outdoor-kitchen-south-florida',
+  '/project/luxury-pool-pergola-outdoor-living-south-florida',
+  '/project/luxury-pool-raised-spa-travertine-deck-south-florida',
+  '/project/luxury-pool-spa-aluminum-pergola-south-florida',
+  '/project/luxury-pool-spa-screen-enclosure-north-florida',
+  '/project/luxury-pool-spa-with-screen-enclosure-north-florida',
+  '/project/modern-pool-motorized-pergola-south-florida',
+  '/project/pool-raised-spa-marble-deck-south-florida',
+  '/project/residential-pool-pergola-outdoor-dining-north-florida',
+  '/project/south-florida-backyard-pool-wood-pergola',
+];
+const MOTIVO_M8 = 'AUDITORIA M8: 80 px de hueco al final del pie para que el boton flotante de '
+  + 'llamada no tape los enlaces legales, que abajo del todo no se pueden apartar con scroll. '
+  + 'Acotado a max-width:767px, asi que solo aparece a 479; los otros 3 anchos siguen verdes.';
+for (const r of M8_479) {
+  if (DISTINTAS_A_PROPOSITO[r]) throw new Error(`M8_479 pisa una declaracion que ya existia: ${r}`);
+  DISTINTAS_A_PROPOSITO[r] = { anchos: [479], motivo: MOTIVO_M8 };
+}
+
 /** ¿Está declarada esta ruta PARA ESTE ANCHO? Devuelve el motivo, o null. */
 const declarada = (ruta, ancho) => {
   const d = DISTINTAS_A_PROPOSITO[ruta];
