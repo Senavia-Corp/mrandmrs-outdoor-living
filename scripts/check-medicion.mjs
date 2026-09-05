@@ -34,7 +34,14 @@ const PROD = process.env.PUBLIC_ES_PRODUCCION === '1';
 
 const GTM = 'GTM-N9BWB3BV';
 const PAGINAS_ESPERADAS = 122;
-const LOCS_ESPERADAS = 119;          // 113 del sitemap del origen + 6 adiciones deliberadas
+/**
+ * 121 = 113 del sitemap del origen + 6 adiciones de autoria propia + 2 de la auditoria
+ * (5-sep-2026). Las dos nuevas son rutas DEL ORIGEN que el sitemap del origen no listaba:
+ * /where-we-serve/north-florida (M20) y /pool-investment-estimator (M7). Se replicaba esa
+ * ausencia por paridad; Sebastian levanto esa proteccion. El motivo de cada una esta escrito
+ * en el ADICIONES de build-seo-ficheros.mjs, que es quien las escribe.
+ */
+const LOCS_ESPERADAS = 121;
 const SOLO_NOINDEX = new Set(['/thank-you']);
 
 /**
@@ -57,8 +64,11 @@ const SIN_HEAD_DE_WEBFLOW = new Set(['/pool-investment-estimator']);
  * suya, porque implica separarse del origen.
  */
 const DUPLICADOS_DEL_ORIGEN = new Set([
-  'Luxury Pool with Motorized Pergola | North Florida',
-  'Luxury Pool &amp; Spa with Screen Enclosure | North Florida',
+  // ARREGLADOS el 5-sep-2026 (M2). Estaban los dos pares que el cliente publico duplicados en
+  // Webflow. Ya no hay ninguno: check-seo.mjs los declara en TITULO_PROPIO y ademas EXIGE que
+  // ninguno de los 122 titulos se repita, que es una puerta mas dura que este perdon.
+  // La lista se deja vacia a proposito, no se borra: si vuelve a aparecer un duplicado, esta
+  // puerta lo cantara como excepcion NUEVA y saldra roja, que es justo lo que tiene que pasar.
 ]);
 
 let fallos = 0;
@@ -150,21 +160,28 @@ const sm = path.join(ESTATICO, 'sitemap.xml');
 if (!fs.existsSync(sm)) check('existe sitemap.xml', false);
 else {
   const locs = [...fs.readFileSync(sm, 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-  if (PROD) check(`${LOCS_ESPERADAS} <loc> (113 del origen + 6 adiciones)`, locs.length === LOCS_ESPERADAS, `hay ${locs.length}`);
+  if (PROD) check(`${LOCS_ESPERADAS} <loc> (113 del origen + 6 propias + 2 de la auditoria)`, locs.length === LOCS_ESPERADAS, `hay ${locs.length}`);
   else check('vacio fuera de produccion', locs.length === 0, `hay ${locs.length}`);
 }
 
 console.log('\n  EXCEPCIONES DECLARADAS — se imprimen siempre, no se perdonan callando');
 for (const r of SIN_HEAD_DE_WEBFLOW) {
-  console.log(`  --   ${r}: sin description ni <noscript>. No pasa por Base.astro y reproduce`);
-  console.log('       el <head> de 4 etiquetas del origen. Mismo trato que en check:seo.');
+  console.log(`  --   ${r}: sin <noscript> de GTM. No pasa por Base.astro. Desde el 5-sep-2026 SI`);
+  console.log('       lleva description y tarjeta social propias (M7); el <noscript> sigue');
+  console.log('       fuera porque su GTM va en linea. Mismo trato que en check:seo.');
 }
 for (const t of DUPLICADOS_DEL_ORIGEN) {
   const n = (titulos.get(t) || []).length;
   console.log(`  --   titulo repetido x${n} HEREDADO: "${t.slice(0, 56)}"`);
 }
-console.log('       Son del origen y check:seo exige el <title> identico, asi que no se tocan');
-console.log('       aqui. Defecto real de posicionamiento anotado para Sebastian.');
+if (DUPLICADOS_DEL_ORIGEN.size) {
+  console.log('       Son del origen y check:seo exige el <title> identico, asi que no se tocan');
+  console.log('       aqui. Defecto real de posicionamiento anotado para Sebastian.');
+} else {
+  console.log('  ok   0 titulos duplicados heredados — los dos pares de /project/ se arreglaron');
+  console.log('       el 5-sep-2026 (M2). check:seo los declara y ademas exige que NINGUNO de');
+  console.log('       los 122 titulos se repita, que es mas duro que este perdon.');
+}
 
 console.log(`\n${fallos === 0 ? 'PUERTA VERDE' : `PUERTA ROJA — ${fallos} fallo(s)`}\n`);
 process.exit(fallos ? 1 : 0);

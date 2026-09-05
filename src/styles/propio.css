@@ -448,3 +448,68 @@
   .hero-about .block-hero-about { padding-left: 52%; }
   .hero-about h1 { color: var(--mm-blanco); }
 }
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+ * M4 (auditoria 5-sep-2026) — EL AREA TACTIL DEL PIE, SIN MOVER UN PIXEL
+ *
+ * `.footer-link` sale de `webflow.css` con `font-size:12px; line-height:16px`, o sea **16 px
+ * de alto**. WCAG 2.2 AA 2.5.8 pide **24×24**. Medido por la sonda: 4 654 apariciones en las
+ * 122 paginas y los 6 anchos — es el hallazgo mas repetido del informe, y es UN componente.
+ *
+ * POR QUE PADDING + MARGIN NEGATIVO Y NO OTRA COSA. Habia tres caminos y solo uno sirve aqui:
+ *
+ *   · `padding` a secas ................ el pie crece 8 px por enlace. Son ~60 enlaces por
+ *                                        columna: el pie se dispara y **107 rutas con contrato
+ *                                        `rediseno` se ponen ROJAS** en `check:visual` hasta
+ *                                        re-aprobarlas una a una. Coste desproporcionado.
+ *   · un `::after` que extienda el area  el clic si funciona, pero `getBoundingClientRect()`
+ *                                        del enlace sigue devolviendo 16 px: la sonda —y
+ *                                        cualquier auditor— lo seguiria contando como fallo.
+ *                                        Arregla el sintoma para el dedo y no para la medida.
+ *   · padding + margin que se ANULAN     la caja del enlace pasa a 24 px de verdad, y el flujo
+ *                                        no se entera porque los 8 px que suma el padding los
+ *                                        resta el margen. Es lo que se hace aqui.
+ *
+ * GEOMETRIA MEDIDA, y por eso los 4 px salen justos: los enlaces van en un contenedor flex en
+ * columna con `gap:10px`, alto 16, o sea **paso de 26 px**. Al crecer 4 px por lado la caja
+ * ocupa 24 y quedan 2 px libres entre vecinos: llega al minimo de AA y **no se solapan**, que
+ * es lo que invalidaria el objetivo por la otra puerta de la misma regla.
+ *
+ * No cambia ni un pixel pintado: el enlace no tiene fondo ni borde, y el texto se queda donde
+ * estaba (el padding lo baja 4, el margen lo sube 4). `check:visual` no deberia moverse. */
+.footer-link {
+  padding-block: 4px;
+  margin-block: -4px;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+ * M8 (auditoria 5-sep-2026) — EL BOTON DE LLAMAR TAPA EL PIE, Y AHI NO SE PUEDE SCROLLEAR
+ *
+ * `.mm-llamar` es `position:fixed`, 58x58, `bottom:16px right:16px`, `z-index:900`. Que un
+ * boton flotante pase por encima del contenido mientras se scrollea es normal. Lo que no es
+ * normal es lo de ABAJO DEL TODO: alli ya no queda scroll, asi que lo que le toca debajo
+ * queda tapado **para siempre**.
+ *
+ * MEDIDO al final de `/`, con la pagina scrolleada a tope:
+ *
+ *     375 px .... tapa 3: `div.div-block-8` (Terms of Service · Privacy Policy ·
+ *                 Accessibility) y la linea «Developed by Senavia Corp.»
+ *     768 px .... **no tapa nada**. La primera medida decia que si, comparando la caja del
+ *                 `div`, que ocupa los 712 px de ancho. La caja del TEXTO va centrada en
+ *                 x 297..471 y el boton esta en x 683..748: no se tocan. Corregido midiendo
+ *                 con `Range.getBoundingClientRect()` sobre el contenido.
+ *     991 px .... tampoco
+ *    1440 px .... tampoco
+ *
+ * O sea que el enlace a la declaracion de **accesibilidad** es de los que quedan debajo, que
+ * tiene su guasa. Y es un problema de pantalla estrecha, no del sitio entero.
+ *
+ * Se reserva sitio al final, y SOLO donde el choque existe: por debajo de 768, que es el
+ * breakpoint `small` de Webflow. Asi el cambio de pixeles alcanza a la referencia de 479 y
+ * deja intactas las de 991, 1440 y 1920 — tres de las cuatro que compara `check:visual`.
+ *
+ * 80 px = 58 del boton + 16 de su separacion + 6 de aire. */
+@media (max-width: 767px) {
+  .wrapper-footer-info { padding-bottom: 80px; }
+}

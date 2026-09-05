@@ -48,7 +48,26 @@ const canonica = ES_PRODUCCION ? new URL('/pool-investment-estimator', Astro.sit
       j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
       f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-N9BWB3BV');
     </script>
-    {canonica && <link rel="canonical" href={canonica} />}
+    {/* ── M7 (auditoria 5-sep-2026) — LA CABECERA COMPLETA ──────────────────────
+        El origen servia aqui 4 etiquetas y ninguna de SEO, porque esta ruta no era una pagina:
+        era el iframe que `/pool-cost-estimator` embebia. Migrada, el iframe ya no existe —su
+        gemela monta el mismo `Estimador.astro` con cascaron— asi que esto quedo como una
+        pagina de verdad, indexable, **sin descripcion, sin tarjeta social y sin que la enlazara
+        nadie**: 0 enlaces internos entrantes, medido sobre las 122 construidas.
+
+        Sebastian decidio el 4-sep-2026 darle cabecera completa y enlazarla, en vez de mandarla
+        a `noindex`. Se le pone lo que le faltaba. El texto sale de lo que la pagina ES, no se
+        inventa. */}
+    <meta name="description" content="Estimate the cost of your custom inground pool in North & South Florida. Free, instant, and built by licensed pool builders — no obligation." />
+    <meta property="og:title" content="Pool Investment Estimator | Mr & Mrs Outdoor Living" />
+    <meta property="og:description" content="Estimate the cost of your custom inground pool in North & South Florida. Free, instant, and built by licensed pool builders." />
+    <meta property="og:image" content="/images/site/webclip.png" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Pool Investment Estimator | Mr & Mrs Outdoor Living" />
+    <meta name="twitter:description" content="Estimate the cost of your custom inground pool in North & South Florida. Free, instant, and built by licensed pool builders." />
+    <meta name="twitter:image" content="/images/site/webclip.png" />
+{canonica && <link rel="canonical" href={canonica} />}
     {!ES_PRODUCCION && <meta name="robots" content="noindex, nofollow" />}
     <link rel="icon" type="image/png" href="/images/site/favicon.png" />
   </head>

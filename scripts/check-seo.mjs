@@ -30,6 +30,21 @@ const RAIZ = path.resolve(import.meta.dirname, '..');
 const ESTATICO = path.join(RAIZ, '.vercel/output/static');
 const PROD = process.env.PUBLIC_ES_PRODUCCION === '1';
 
+/**
+ * M2 — los `<title>` que se apartan del origen, con su motivo. Tiene que casar con
+ * `TITULO_PROPIO` de `build-paginas.mjs`, que es quien los escribe.
+ */
+const TITULO_PROPIO = new Map([
+  ['/project/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida',
+    'Luxury Pool with Motorized Pergola & Outdoor Kitchen | North Florida'],
+  ['/project/luxury-pool-motorized-pergola-screen-enclosure-north-florida',
+    'Luxury Pool with Motorized Pergola & Screen Enclosure | North Florida'],
+  ['/project/luxury-pool-spa-screen-enclosure-north-florida',
+    'Luxury Pool & Spa with Screen Enclosure & Outdoor Kitchen | North Florida'],
+]);
+/** Todos los titulos vistos, para exigir que NINGUNO se repita. */
+const titulosVistos = new Map();
+
 const ref = JSON.parse(fs.readFileSync(path.join(RAIZ, 'baseline/seo.json'), 'utf8'));
 const man = JSON.parse(fs.readFileSync(path.join(RAIZ, '_source/assets-manifest.json'), 'utf8')).assets;
 
@@ -164,7 +179,22 @@ for (const ruta of conPropias(RUTAS)) {
     bl.forEach((b, i) => {
       try { JSON.parse(b.textContent); } catch { problemas.push(`JSON-LD ${i} NO PARSEA`); }
     });
+  } else if (TITULO_PROPIO.has(ruta)) {
+    /**
+     * M2 — TRES TITULOS QUE SE APARTAN DEL ORIGEN A PROPOSITO.
+     *
+     * El origen repetia el mismo `<title>` en dos pares de fichas de `/project/`, asi que la
+     * paridad estricta obligaba a repetirlo tambien aqui: dos paginas compitiendo por la misma
+     * consulta, con el defecto blindado por la puerta que deberia protegerlo.
+     *
+     * Lo que se exige a estas tres NO se relaja, cambia de referencia: en vez de «igual al
+     * origen», **el titulo declarado**, que ademas tiene que seguir siendo UNICO en el sitio.
+     * Sin la segunda mitad, esta excepcion seria una puerta abierta.
+     */
+    const esperadoPropio = TITULO_PROPIO.get(ruta);
+    if (titulo !== esperadoPropio) problemas.push(`title propio: "${esperadoPropio}" -> "${titulo}"`);
   } else if (titulo !== esperado.title) problemas.push(`title: "${esperado.title}" -> "${titulo}"`);
+  titulosVistos.set(titulo, [...(titulosVistos.get(titulo) ?? []), ruta]);
 
   if (!propia && !SIN_HEAD_DE_WEBFLOW.has(ruta)) {
     const hay = {};
@@ -261,6 +291,24 @@ for (const [r, ps] of rojos.slice(0, 10)) {
   ps.slice(0, 5).forEach((p) => console.log(`       ${p}`));
 }
 if (rojos.length > 10) console.log(`  ... y ${rojos.length - 10} paginas mas`);
+
+/**
+ * M2 — NINGUN `<title>` SE REPITE. Es la otra mitad de `TITULO_PROPIO`: sin esto, la
+ * excepcion seria una puerta abierta —bastaria declarar un titulo y volver a duplicarlo—, y
+ * ademas el defecto que se acaba de arreglar podria reaparecer por otra ruta sin que nadie
+ * lo viera. Se mide sobre las 122 construidas, no solo sobre las declaradas.
+ */
+{
+  const repes = [...titulosVistos.entries()].filter(([, rs]) => rs.length > 1);
+  if (repes.length) {
+    fallos++;
+    console.log(`  ROJO ${repes.length} titulo(s) repetido(s)`);
+    repes.slice(0, 5).forEach(([t, rs]) => console.log(`       "${t.slice(0, 58)}"  ->  ${rs.join('  ')}`));
+  } else console.log(`  ok   los ${titulosVistos.size} <title> son unicos — 0 repetidos`);
+}
+for (const r of TITULO_PROPIO.keys()) {
+  console.log(`  ok   declarado ${r}: <title> propio, distinto al del origen (el origen lo repetia)`);
+}
 
 for (const r of NOINDEX_A_PROPOSITO) {
   console.log(`  ok   declarado ${r}: noindex TAMBIEN en produccion, a proposito`);

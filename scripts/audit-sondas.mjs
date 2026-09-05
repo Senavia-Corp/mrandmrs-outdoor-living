@@ -142,9 +142,31 @@ const SONDA = () => {
   // ── 2. objetivos tactiles < 44 px
   const SEL_TACTIL = 'a[href], button, input:not([type=hidden]), select, textarea, [role="button"], [onclick]';
   const tactiles = [];
+  /**
+   * EL OBJETIVO ES LA ETIQUETA, NO LA CASILLA.
+   *
+   * WCAG 2.2 2.5.8 mide el area que ACTIVA el control. En un `<label>` que envuelve un
+   * `<input>` —o que lo apunta con `for`— pulsar la etiqueta entera conmuta la casilla, asi
+   * que el objetivo es la etiqueta. Midiendo el `<input>` a secas salian 204 falsos:
+   *
+   *   /brochures ......... input 13x13 `position:absolute` (la casilla nativa que Webflow
+   *                        esconde bajo su casilla dibujada) — label **157x44**
+   *   /pool-cost-estimator input 16x16 — label **293x172**, la tarjeta entera
+   *   /contact-us .......  input 24x24 — label 279x44, ya cumplia
+   *
+   * Ninguno era un fallo. Se mide la etiqueta cuando existe, que es lo que toca el dedo.
+   */
+  const objetivo = (el) => {
+    if (!/^(INPUT|SELECT|TEXTAREA)$/.test(el.tagName)) return el.getBoundingClientRect();
+    const lab = el.closest('label') || (el.id && document.querySelector(`label[for="${CSS.escape(el.id)}"]`));
+    if (!lab) return el.getBoundingClientRect();
+    const a = el.getBoundingClientRect(), b = lab.getBoundingClientRect();
+    return b.width * b.height >= a.width * a.height ? b : a;
+  };
+
   for (const el of document.querySelectorAll(SEL_TACTIL)) {
     if (!visible(el)) continue;
-    const r = el.getBoundingClientRect();
+    const r = objetivo(el);
     if (r.width >= 44 && r.height >= 44) continue;
     /**
      * DOS CUBOS, y la diferencia importa.
