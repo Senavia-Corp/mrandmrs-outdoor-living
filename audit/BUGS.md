@@ -243,3 +243,39 @@ Nada de esto se calla. Cada fila lleva la medida que llevó a no tocarlo.
 | ID | Hallazgo |
 |---|---|
 | **M32** | **`check:carrusel` es inestable.** Dos pasadas seguidas sobre el MISMO build, sin tocar nada: la primera «ROJO — 2 fallo(s)», la segunda «OK». Mide tiempos de scroll y tareas largas, así que compite con cualquier otra cosa que use CPU. Una puerta que cambia de color sin que cambie el código no puede bloquear una entrega: o se estabiliza, o se declara informativa. |
+
+## Verificación de que no hay regresión — medida, no supuesta
+
+El cambio de la Ola 1 que más alcance tiene es el del pie: toca las **122 páginas**. Se midió la
+altura del documento y del pie en 5 rutas × los 4 anchos de referencia, construyendo el estado
+**anterior** en un worktree aparte y comparando:
+
+```
+  ruta@ancho          docAntes  docDesp   delta    pieAntes  pieDesp  delta
+  /about@1920            7835     7835        0        705      705       0
+  /@1920                10207    10207        0        705      705       0
+  /gallery@1920         19378    19378        0        705      705       0
+  /videos@1920           3999     3999        0        705      705       0
+  /projects@1920         6951     6951        0        705      705       0
+  ... 1440 y 991: delta 0 en las cinco rutas ...
+  /about@479             9394     9474      +80       1565     1645     +80
+  /@479                 10543    10623      +80       1565     1645     +80
+```
+
+**Delta 0 en 1920, 1440 y 991.** El truco de `padding` + `margin` negativo es pixel-neutro, como
+se diseñó. El +80 de 479 es exactamente el hueco declarado para el botón flotante (M8), acotado
+a `max-width: 767px`.
+
+### M33 *(nuevo)* — `/about` tiene contrato `paridad` pero está rediseñada
+
+`check:visual` sale **ROJA en `/about` a los 4 anchos**, y **no es de esta auditoría**: se corrió
+la misma puerta sobre el commit anterior (`33baf7e`, worktree aislado) y da **exactamente los
+mismos números**: −17 px a 1920, −29 px a 1440.
+
+La causa es de catálogo: `/about` sigue en contrato `paridad` —se compara contra la captura del
+Webflow original— pero las fases R9 y R13 la rediseñaron (el h1 que pisaba la foto, el contraste
+del subtítulo). Una ruta rediseñada comparada contra el origen está roja por definición.
+
+**Arreglo**: moverla a contrato `rediseno` en `disenio/contratos.json` con su motivo, mirarla y
+aprobar la referencia (`node scripts/aprobar-diseno.mjs /about --si`). Eso exige que un humano la
+mire, así que **queda para la sesión de aprobación con Sebastian**, no se decide aquí.
