@@ -70,3 +70,8 @@ _source/sanity-docs.json
 studio/dist/
 _source/sanity-assets.json
 .vercel
+
+# Auditoria integral (5-sep-2026): la salida cruda de la sonda son ~14 MB de geometria
+# regenerable con `node scripts/audit-sondas.mjs`. Los .md y las capturas si se versionan.
+audit/sondas.json
+audit/sondas.log

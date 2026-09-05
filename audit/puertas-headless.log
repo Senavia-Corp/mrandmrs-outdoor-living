@@ -1,0 +1,29 @@
+════════ check:menu ════════
+  ok   el ultimo enlace de servicios navega al tocarlo — 0
+  ok   cada desplegable abre aunque haya otro abierto — 0
+  ok   un enlace plano del nav navega con un desplegable abierto — 0
+
+PUERTA VERDE
+
+════════ check:galeria ════════
+  ok   Escape cierra — 0
+  ok   tocar el velo cierra — 0
+  ok   al cerrar, el foco vuelve al ancla que lo abrio — 0
+
+PUERTA VERDE
+
+════════ check:galeria-formulario ════════
+  ok   Escape cierra — 0
+  ok   tocar el velo cierra — 0
+  ok   al cerrar, el foco vuelve al ancla que lo abrio — 0
+
+PUERTA VERDE
+
+════════ check:carrusel ════════
+
+──────────────────────────────────────────────────────────────────────
+cobertura: 17 instancias de carrusel medidas en 5 rutas
+
+OK  check:carrusel — mecanica, teclado, tactil y reduced-motion correctos
+
+FIN-PUERTAS

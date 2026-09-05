@@ -839,7 +839,38 @@ for (const [ruta] of RUTAS) {
   const partesTras = trocear(trasPie);
   const partesAntes = trocear(antesNav);
 
-  const titulo = doc.querySelector('title')?.textContent ?? '';
+  /**
+   * M2 (auditoria 5-sep-2026) — DOS PARES DE FICHAS COMPARTEN `<title>`, Y VIENE DEL ORIGEN.
+   *
+   * El Webflow del que se migro repetia el titulo en dos pares de obras. Al replicarlo carácter
+   * a carácter se replico tambien el defecto: dos paginas distintas compitiendo por la misma
+   * consulta. `check:medicion` lo viene avisando desde que existe —«defecto real de
+   * posicionamiento anotado para Sebastian»— pero la paridad lo protegia.
+   *
+   * Sebastian levanto esa proteccion el 4-sep-2026: el sitio es producto propio, no espejo.
+   *
+   * LOS TITULOS NUEVOS NO SE INVENTAN: salen de lo que cada ficha YA dice de si misma. Su
+   * `meta description` y el `about.name` de su JSON-LD distinguen las cuatro; era el
+   * `<title>` el unico campo que no lo hacia.
+   *
+   *   ...-motorized-pergola-outdoor-kitchen-...  desc: «... and outdoor kitchen»
+   *   ...-motorized-pergola-screen-enclosure-... desc: «... and screen enclosure»
+   *   luxury-pool-spa-screen-enclosure-...       desc: «... screen enclosure and outdoor kitchen»
+   *   luxury-pool-spa-with-screen-enclosure-...  desc: «... screen enclosure»   <- se queda igual
+   *
+   * Solo cambia `<title>`. `og:title` y `twitter:title` conservan el texto del origen: no
+   * pesan en posicionamiento y tocarlos ensancharia la desviacion de paridad sin ganar nada.
+   * `check-seo.mjs` lo tiene declarado en `TITULO_PROPIO` y lo dice por pantalla.
+   */
+  const TITULO_PROPIO = new Map([
+    ['/project/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida',
+      'Luxury Pool with Motorized Pergola & Outdoor Kitchen | North Florida'],
+    ['/project/luxury-pool-motorized-pergola-screen-enclosure-north-florida',
+      'Luxury Pool with Motorized Pergola & Screen Enclosure | North Florida'],
+    ['/project/luxury-pool-spa-screen-enclosure-north-florida',
+      'Luxury Pool & Spa with Screen Enclosure & Outdoor Kitchen | North Florida'],
+  ]);
+  const titulo = TITULO_PROPIO.get(ruta) ?? doc.querySelector('title')?.textContent ?? '';
   let desc = doc.querySelector('meta[name="description"]')?.getAttribute('content') ?? '';
 
   // Todo lo demas del <head> que es SEO, tal cual lo sirve el origen. `description` va aparte

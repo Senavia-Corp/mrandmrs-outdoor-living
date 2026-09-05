@@ -81,6 +81,24 @@ const ADICIONES = [
     'Obra propia: piscina y spa con pérgola de aluminio de lamas, sur de Florida.'],
   [`${SITIO}/project/aluminum-patio-cover-pool-deck-south-florida`,
     'Obra propia: cubierta de aluminio y terraza de mármol, sur de Florida.'],
+
+  /**
+   * ── AUDITORIA 5-sep-2026: dos rutas del ORIGEN que el sitemap del origen tampoco listaba.
+   *
+   * Hasta hoy se replicaba esa ausencia por paridad. Sebastian levanto esa proteccion: el
+   * sitio es producto propio, no espejo, y estas dos responden 200, son indexables y no
+   * llevan noindex. Dejarlas fuera del sitemap no las esconde de Google —las encuentra por
+   * enlaces igual— solo les quita prioridad de rastreo sin ganar nada a cambio.
+   */
+  [`${SITIO}/where-we-serve/north-florida`,
+    'M20: zona de servicio entera. Responde 200, esta en el menu y es indexable, pero el '
+    + 'sitemap del origen no la listaba mientras SI listaba su gemela south-florida. La '
+    + 'asimetria no tenia motivo: media zona de negocio quedaba sin declarar.'],
+  [`${SITIO}/pool-investment-estimator`,
+    'M7: en el origen era el iframe que embebia /pool-cost-estimator, no una pagina. '
+    + 'Migrada, el iframe ya no existe y quedo indexable, sin descripcion y sin que la '
+    + 'enlazara nadie (0 entrantes de las 122). Sebastian decidio darle cabecera completa '
+    + 'y hacerla descubrible en vez de mandarla a noindex.'],
 ];
 
 // Van al final y no intercaladas: el orden de las 113 es el del origen y no se toca.
@@ -98,8 +116,21 @@ ${locs.map((u) => `    <url>\n        <loc>${u}</loc>\n    </url>`).join('\n')}
 `;
 
 // El original es una sola linea con `Sitemap:` y sin salto final. Se replica.
+/**
+ * M14 (auditoria 5-sep-2026) — EL robots.txt DE PRODUCCION NO TENIA NINGUN User-agent.
+ *
+ * Se replicaba el del origen, que es una sola linea con Sitemap:. Segun la RFC 9309 eso es
+ * valido —Sitemap es un campo fuera de grupo, y un fichero sin reglas significa «todo
+ * permitido»— asi que no rompia nada. Pero es un fichero que leen validadores, auditorias
+ * de cliente y rastreadores de terceros, y varios se quejan de un robots.txt sin grupo.
+ * Declararlo dice lo mismo, explicitamente y sin coste.
+ *
+ * El de preview NO se toca: sigue siendo Disallow: /, y esa es la red de seguridad del
+ * repo — lo COMMITEADO en public/robots.txt es la version bloqueada, asi que un build de
+ * preview no puede publicar un sitio abierto por descuido.
+ */
 const robots = PROD
-  ? `Sitemap: ${SITIO}/sitemap.xml`
+  ? `User-agent: *\nAllow: /\n\nSitemap: ${SITIO}/sitemap.xml\n`
   : 'User-agent: *\nDisallow: /\n';
 
 fs.writeFileSync(path.join(PUB, 'sitemap.xml'), sitemap);

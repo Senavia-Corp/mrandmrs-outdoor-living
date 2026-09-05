@@ -193,7 +193,36 @@
 /* Los dos telefonos, uno debajo del otro: con cifras de ancho fijo los prefijos se alinean en
  * columna en vez de bailar. `tabular-nums` es un rasgo de la fuente, no toca el innerText. */
 .phone-wrapper { gap: var(--mm-e-4); }
-.phone-wrapper a.label { font-variant-numeric: tabular-nums; }
+
+/* ── M9 (auditoria 5-sep-2026): el subrayado atravesaba los digitos ──────────
+ *
+ * Medido a 375 y 390: el enlace mide **249 px** en negrita y el contenedor **232/247**, asi
+ * que parte. Partia por el guion —«North Florida: +1 (352) 740-» / «3361»— y con
+ * `line-height: 12px` heredado sobre una fuente de **15 px** la caja de linea es MAS PEQUEÑA
+ * que la letra: la raya del subrayado de la primera linea cae justo sobre los cuatro digitos
+ * de la segunda. No es que se vea apretado, es que el numero queda tachado.
+ *
+ * Dos arreglos, y hacen falta los dos:
+ *   · el numero es una unidad — se envuelve en `.mm-tel` y se le prohibe partir, asi que
+ *     ahora rompe por el espacio: «North Florida:» / «+1 (352) 740-3361». Mide 133 px y cabe
+ *     de sobra en los 232 del ancho mas estrecho.
+ *   · `line-height` deja de ser menor que la fuente. 1.35 sobre 15 px son ~20 px de caja.
+ *
+ * El `<span>` NO cambia `innerText`, asi que `check:texto` sigue comparando el mismo texto
+ * contra `baseline/text/`. A 768 y mas ancho cabe entero en una linea y esto no pinta nada. */
+.phone-wrapper a.label {
+  font-variant-numeric: tabular-nums;
+  line-height: 1.35;
+  /* El enlace hereda `display:flex` de `.label`. Con flex, el texto y el `<span>` del
+   * numero pasan a ser DOS items de caja: se colocan uno al lado del otro y «North Florida:»
+   * se parte en dos lineas. Ademas un item de caja mete salto en `innerText`, y eso si
+   * habria roto `check:texto`, que compara contra `baseline/text/`. Medido: pasaba de
+   * «North Florida: +1 (352) 740-3361» a «North Florida:\n+1 (352) 740-3361».
+   * Con `block` el contenido vuelve a flujo en linea: el `<span>` es inline, no hay salto,
+   * y la linea rompe por el espacio con el numero entero. */
+  display: block;
+}
+.phone-wrapper .mm-tel { white-space: nowrap; }
 
 /* Los tres iconos: 35x35 con 5 de padding. Se dejan como estan (son decorativos, alt="") y
  * solo se impide que se encojan cuando la etiqueta ocupa dos lineas en movil. */

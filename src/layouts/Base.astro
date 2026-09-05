@@ -196,6 +196,23 @@ const meta = Object.fromEntries(Object.entries(seo.meta ?? {}).map(([k, v]) => [
   k, /^(og:image|twitter:image)/.test(k) && typeof v === 'string' && v.startsWith('/')
     ? new URL(v, Astro.site).href : v,
 ]));
+/**
+ * M18 (auditoria 5-sep-2026) — 18 PAGINAS SE COMPARTIAN SIN IMAGEN.
+ *
+ * El origen no emitia og:image en sus paginas estaticas, y la paridad lo replicaba. Efecto
+ * real: al pegar /, /about, /contact-us, /gallery o /request-estimated en WhatsApp, Facebook
+ * o Slack, la tarjeta sale sin foto — justo en las paginas que mas se comparten a mano.
+ *
+ * Se rellena SOLO cuando la pagina no trae la suya. Las 104 que si la traen del origen no se
+ * tocan, asi que `check:seo` sigue comparando su og:image caracter a caracter contra el
+ * baseline. Anadir una clave que el baseline NO tiene no rompe esa comparacion: recorre las
+ * claves del baseline, no las del build.
+ */
+const OG_POR_DEFECTO = '/images/site/webclip.png';
+if (!meta['og:image']) meta['og:image'] = new URL(OG_POR_DEFECTO, Astro.site).href;
+if (!meta['twitter:image']) meta['twitter:image'] = new URL(OG_POR_DEFECTO, Astro.site).href;
+if (!meta['twitter:card']) meta['twitter:card'] = 'summary_large_image';
+
 const jsonLd = seo.jsonLd ?? [];
 ---
 <!doctype html>
