@@ -4785,3 +4785,97 @@ Un dato que sale gratis de la medición de arriba y que **confirma el hallazgo d
 iframe de Turnstile mide **71,2 px** en producción. La puerta `check:galeria-formulario` medía
 el desbordamiento del paso 3 con el widget a 0 px de alto sobre `file://` (solo sus 24 px de
 margen). El desbordamiento real es **~47 px peor** que el que reporta la puerta.
+
+---
+
+## FASE AUDITORÍA — auditoría integral y entrega (4/5-sep-2026)
+
+Encargo de Sebastian: auditar el sitio entero, código y diseño, móvil y escritorio; arreglar lo
+que salga; dejar el repositorio limpio y desplegar.
+
+### El instrumento, porque el hueco era real
+
+Las 15 puertas defienden la **paridad** a los 4 anchos de Webflow. Medido antes de escribir nada,
+**ninguna** cubría: desborde horizontal por página, solapes, área táctil, contraste del píxel
+pintado, errores de consola ni peticiones fallidas. Y ninguna visita 375 / 390 / 768 / 1280.
+
+`scripts/audit-sondas.mjs` cubre ese hueco. **Headless a propósito**: no compara contra ninguna
+referencia, así que no la ata la receta congelada de `lib/captura.mjs` y puede correr en segundo
+plano sin secuestrar la pantalla. **122 rutas × 6 anchos = 732 mediciones**, 12 min.
+
+### El resultado, y es bueno
+
+`0` desbordes · `0` solapes · `0` imágenes rotas · `0` peticiones propias fallidas · `0` errores
+de consola · `0` páginas sin `<title>` o sin canónica · `0` H1 duplicados. El sitio es
+**responsive-limpio**.
+
+### La sonda mintió seis veces antes de ser fiable
+
+Se deja escrito porque es lo más caro de aprender aquí. Cada corrección se verificó con captura
+o geometría **antes** de aplicarla:
+
+1. `visible()` no miraba a los **ancestros** → 94 objetivos táctiles y 2 contrastes de 1:1 en la
+   home que vivían dentro de `.svc-cuerpo`, un panel con `opacity:0`.
+2. Cajas de elementos **en línea**: dos `<strong>` multilínea del mismo párrafo se «solapan» por
+   caja sin pisarse. 251 falsos de 397.
+3. Texto recortado por `overflow:hidden` cuya caja cae sobre la tarjeta vecina → `rectVisto()`.
+4. El parser leía `oklch(...)` como si fuera `rgb()` → 36 contrastes inventados en el estimador.
+5. Al arreglar (4) de más, rechazaba `color(srgb 0 0 0 / .8)` → 48 falsos en la insignia de
+   `/videos`, sobre una placa negra perfectamente visible.
+6. El objetivo táctil de una casilla es su **`<label>`**, no el `<input>`: en `/brochures` el
+   input es la casilla nativa que Webflow esconde (13×13, `position:absolute`) mientras la
+   etiqueta mide 157×44. 204 falsos.
+
+> **La lección**: un número que sale de una sonda nueva no es una medida hasta que se ha
+> contrastado contra algo que no sea la propia sonda.
+
+### Lo arreglado (13), con la puerta que lo cierra
+
+| | |
+|---|---|
+| **M1** | `/contact-us`: «Terms» y «Privacy Policy» en **blanco sobre blanco**, 1:1, los 6 anchos. El aviso se leía «you agree to our  &». `propio.css` los pintaba blanco para un panel azul que **R12-CON retiró**. Ninguna puerta podía verlo: `contacto.css:33` deja escrito que esa ruta está en `DISTINTAS_A_PROPOSITO` a los cuatro anchos |
+| **M9** | El teléfono salía **tachado**: `line-height:12px` sobre fuente de 15 px, así que el subrayado de la primera línea caía sobre los dígitos de la segunda |
+| **M4** | El pie no llegaba al mínimo táctil de AA en las 122 páginas. `padding` + `margin` negativo que se anulan: caja real de 24 px, **cero píxeles movidos** |
+| **M8** | El botón flotante tapaba los enlaces legales **para siempre** al final de la página |
+| **M2** | Dos pares de fichas compartían `<title>`. `check:seo` ahora **exige unicidad de los 122** |
+| **M7** | El estimador: huérfano, indexable, sin descripción. Cabecera completa y al sitemap |
+| **M10 M11 M13 M14 M16 M18 M20** | Contraste, `noopener`, cabeceras de seguridad, `robots.txt`, manifiesto, tarjeta social y `north-florida` al sitemap |
+
+**Las puertas salen reforzadas, no relajadas.** Toda desviación de la paridad está declarada por
+su nombre y se imprime en cada pasada.
+
+### La prueba de que no hay regresión
+
+Construido el estado **anterior** en un worktree aparte y comparadas alturas en 5 rutas × 4 anchos:
+**delta 0 a 1920, 1440 y 991**; **+80 px exactos a 479**, que es el hueco declarado del botón.
+
+### Puertas
+
+Verdes: `tokens` `rutas` `enlaces` `seo` `medicion` `assets` `aviso` `estimador` `menu`
+`galeria` `galeria-formulario` `carrusel`.
+
+🔴 `check:visual` roja en `/about` — **y está medido que ya lo estaba**: la misma puerta sobre
+`33baf7e` da los mismos −17 px a 1920. `/about` sigue en contrato `paridad` estando rediseñada
+desde R9/R13 (**M33**).
+
+⚠️ `check:texto` `check:ix2` `check:cascaron` **NO CORRIERON**: navegador visible, ~90 min de
+pantalla. Falla ABIERTO y se dice.
+
+### Dos hallazgos del propio proceso
+
+- **M32**: `check:carrusel` da ROJO y OK en dos pasadas seguidas sobre el mismo build. Mide
+  tiempos, así que compite con cualquier cosa que use CPU.
+- La causa apareció sola: **seis bucles `while :; do :; done`** de otra sesión, lanzados a las
+  11:46 por un `scripts/_probe-pasos.mjs` que ya no existe, cuyo `kill` falló. **12 h 44 min al
+  70 % de CPU cada uno.** Matados con permiso de Sebastian.
+
+### Despliegue
+
+`main` mergeada (entra también `r16-proy-carrusel`, que llevaba 2 commits sin subir) y empujada:
+`2d33207..d140db7`. **La integración de GitHub desplegó sola** — el `vercel deploy --prebuilt`
+manual sobraba (y su primer intento falló con `Not authorized` por faltarle `--scope senaviacorp`).
+
+Verificado sobre el dominio real: **121/121 URLs del sitemap responden 200**, apex → www con 308,
+las 5 cabeceras de seguridad vivas, `robots.txt` con su `User-agent`, canónicas correctas,
+`noindex` solo en `/thank-you`, y el endpoint devuelve **403 sin token de Turnstile**, que es lo
+que tiene que hacer.
