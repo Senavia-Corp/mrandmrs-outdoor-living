@@ -162,6 +162,97 @@ const ANADIDAS_A_PROPOSITO = {
  */
 const LINEAS_ANADIDAS = [
   {
+    /**
+     * AUDITORIA 5-sep-2026 — EL SEGUNDO CTA DEL HEROE, QUE NADIE HABIA DECLARADO.
+     *
+     * Esta puerta NO se habia corrido entera nunca: el ultimo cierre solo midio una muestra de
+     * 4 rutas y dejo el resto «sin medir». Al correrla completa salen **56 paginas rojas**, las
+     * 53 de /pool-builders/, las 2 de /where-we-serve/ y la home, todas con el mismo sintoma:
+     * «faltan 0 lineas, sobran 0» + «linea 13 (o 16): orden cambiado».
+     *
+     * Diagnosticado comparando linea a linea contra `baseline/text/`: el heroe del rediseño
+     * lleva DOS botones —«Get A Free Estimate» y «Project Gallery»— y el origen solo llevaba el
+     * primero. «Project Gallery» ya existia en el baseline, pero en el MENU (linea 4), asi que
+     * el conjunto de lineas no cambia y por eso ni faltan ni sobran: lo que cambia es el orden,
+     * porque hay una linea nueva insertada en medio y todo lo de debajo baja un puesto.
+     *
+     * MEDIDO QUE ES ANTERIOR A ESTA AUDITORIA: se construyo el estado previo (33baf7e) en un
+     * worktree aparte y /pool-builders/ocala-florida, /where-we-serve/north-florida y / salen
+     * rojas exactamente igual. No lo introduce ningun cambio de esta sesion.
+     *
+     * Se declara, no se perdona: se quita EXACTAMENTE esa linea y solo cuando va detras de
+     * «Get A Free Estimate». Todo lo demas de las 56 paginas se sigue comparando al 100 %.
+     */
+    /**
+     * LA LISTA VA CERRADA, NO `null`. Con `null` la declaracion se aplica a las 122 y pone
+     * ROJAS las 26 que tienen «Get A Free Estimate» seguido de otra cosa: la puerta exige que
+     * la secuencia declarada case EXACTA, y hace bien. Son las 56 medidas, ni una mas.
+     */
+    rutas: [
+      '/',
+      '/pool-builders/alachua-florida',
+      '/pool-builders/archer-florida',
+      '/pool-builders/atlantis-florida',
+      '/pool-builders/beach-florida',
+      '/pool-builders/boca-raton-florida',
+      '/pool-builders/boynton-beach-florida',
+      '/pool-builders/cedar-key-florida',
+      '/pool-builders/chiefland-florida',
+      '/pool-builders/cross-city-florida',
+      '/pool-builders/dania-beach-florida',
+      '/pool-builders/davie-florida',
+      '/pool-builders/deerfield-beach-florida',
+      '/pool-builders/delray-beach-florida',
+      '/pool-builders/fanning-springs-florida',
+      '/pool-builders/fort-lauderdale-florida',
+      '/pool-builders/gainesville-florida',
+      '/pool-builders/gulf-stream-florida',
+      '/pool-builders/hallandale-beach-florida',
+      '/pool-builders/hawthorne-florida',
+      '/pool-builders/high-springs-florida',
+      '/pool-builders/hollywood-florida',
+      '/pool-builders/hypoluxo-florida',
+      '/pool-builders/juno-beach-florida',
+      '/pool-builders/jupiter-florida',
+      '/pool-builders/lake-city-florida',
+      '/pool-builders/lighthouse-point-florida',
+      '/pool-builders/manalapan-florida',
+      '/pool-builders/mcintosh-florida',
+      '/pool-builders/micanopy-florida',
+      '/pool-builders/miramar-florida',
+      '/pool-builders/newberry-florida',
+      '/pool-builders/north-palm-beach-florida',
+      '/pool-builders/ocala-florida',
+      '/pool-builders/ocean-ridge-florida',
+      '/pool-builders/old-town-florida',
+      '/pool-builders/palatka-florida',
+      '/pool-builders/palm-beach-gardens-florida',
+      '/pool-builders/parkland-florida',
+      '/pool-builders/pembroke-pines-florida',
+      '/pool-builders/plantation-florida',
+      '/pool-builders/pompano-beach-florida',
+      '/pool-builders/reddick-florida',
+      '/pool-builders/royal-palm-beach-florida',
+      '/pool-builders/south-palm-beach-florida',
+      '/pool-builders/southwest-ranches-florida',
+      '/pool-builders/tequesta-florida',
+      '/pool-builders/trenton-florida',
+      '/pool-builders/waldo-florida',
+      '/pool-builders/wellington-florida',
+      '/pool-builders/west-palm-beach-florida',
+      '/pool-builders/weston-florida',
+      '/pool-builders/williston-florida',
+      '/pool-builders/wilton-manors-florida',
+      '/where-we-serve/north-florida',
+      '/where-we-serve/south-florida',
+    ],
+    tras: ['Get A Free Estimate'],
+    lineas: ['Project Gallery'],
+    motivo: 'AUDITORIA: el heroe del rediseño lleva un segundo CTA que el origen no tenia. '
+      + '«Project Gallery» ya estaba en el baseline pero en el MENU, asi que el conjunto no '
+      + 'cambia y solo se desordena. Verificado que es anterior a la auditoria (33baf7e).',
+  },
+  {
     rutas: null,                                        // null = todas las que tengan pie
     tras: ['Terms of Service', 'Privacy Policy'],
     lineas: ['Accessibility'],
