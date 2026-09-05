@@ -4879,3 +4879,95 @@ Verificado sobre el dominio real: **121/121 URLs del sitemap responden 200**, ap
 las 5 cabeceras de seguridad vivas, `robots.txt` con su `User-agent`, canónicas correctas,
 `noindex` solo en `/thank-you`, y el endpoint devuelve **403 sin token de Turnstile**, que es lo
 que tiene que hacer.
+
+---
+
+## AUDITORÍA INTEGRAL — cierre (5-sep-2026)
+
+Encargo: auditar código y diseño en móvil y escritorio, arreglar lo que saliera y dejarlo
+listo para entregar al cliente, con el repositorio limpio y desplegado.
+
+### Lo que se midió
+
+Instrumento nuevo: `scripts/audit-sondas.mjs`, **headless**, 122 rutas × 6 anchos
+(375/390/768/1280/1440/1920) = **732 mediciones**. Mide lo que ninguna de las 15 puertas
+miraba: desbordamiento horizontal y quién lo causa, objetivos táctiles < 44 px, contraste real
+del píxel pintado, solapes entre textos, errores de consola, peticiones fallidas e imágenes
+rotas. Corre en segundo plano sin secuestrar la pantalla, que es lo que `CLAUDE.md` §1 pide.
+
+### El hallazgo mayor: los redirects y las cabeceras iban al vacío
+
+Medido en producción **antes** del arreglo:
+
+```
+GET /excavation                                          -> 404
+GET /where-we-serves/custom-pool-builders-north-florida   -> 404
+GET /pool-builders/pool-builders-ocala-florida            -> 404
+curl -I /   ->   solo strict-transport-security
+```
+
+`vercel deploy --prebuilt --prod` **no lee `vercel.json`**. Con `--prebuilt`, Vercel sirve
+`.vercel/output/` tal cual y el enrutado sale entero de `.vercel/output/config.json`, que
+escribe el adaptador de Astro y que no sabe nada de `vercel.json`. Los **14 redirects
+permanentes** y las **5 cabeceras de seguridad** estaban bien escritos desde el principio y
+nunca llegaron al servidor.
+
+Duele donde más: esas 14 son las URLs viejas de Webflow que Google todavía tiene indexadas.
+Cada una servía un 404 a tráfico orgánico real en vez del 308 al destino nuevo.
+
+Ninguna puerta lo vio porque `check:enlaces` valida que los redirects estén **declarados** y
+que ningún enlace interno use la URL vieja — las dos cosas eran ciertas. Lo que nadie medía es
+que el redirect **llegue**. Es un fallo de acoplamiento build↔despliegue, la misma familia que
+el de Pergola Plus que documenta la cabecera de `check-enlaces.mjs`.
+
+Cerrado con `scripts/build-vercel-config.mjs`, al final de `npm run build`. Verificado en
+producción: **14/14 en 308**, destinos en 200, y las **6 cabeceras vivas**.
+
+> 📌 El dato que hay que recordar: **`--prebuilt` ignora `vercel.json`.** Todo lo que ese
+> fichero promete —redirects, cabeceras, `cleanUrls`, `trailingSlash`— hay que llevarlo a
+> `.vercel/output/config.json` o no existe.
+
+### Las 15 puertas, todas corridas por primera vez
+
+En el cierre anterior, cuatro no corrieron y se dieron por buenas. Aquí corrieron las quince:
+
+- **14 verdes.**
+- `check:texto` **corrida entera por primera vez**: **56 páginas rojas**, las 53 de
+  `/pool-builders/`, las 2 de `/where-we-serve/` y la home. Síntoma idéntico en todas: «faltan
+  0 líneas, sobran 0» + «línea 13 (o 16): orden cambiado». Diagnosticado línea a línea contra
+  `baseline/text/`: el héroe del rediseño lleva **un segundo CTA, «Project Gallery»**, que el
+  origen no tenía. La línea ya existía en el baseline pero en el MENÚ, así que el conjunto no
+  cambia y solo se desordena. **Verificado que es anterior**: construido `33baf7e` en un
+  worktree aparte, las tres clases salen rojas exactamente igual. Declarado con el mecanismo
+  `LINEAS_ANADIDAS`, acotado a esas 56 rutas — con `rutas: null` se ponían rojas otras 26 que
+  antes estaban bien, porque la puerta exige que la secuencia declarada case exacta.
+- `check:ix2` y `check:cascaron`: **no habían corrido nunca**. Las dos verdes.
+- `check:visual`: **356 comparaciones rojas, medido que son anteriores**. `/gallery` da los
+  mismos deltas exactos sobre `33baf7e` (+1319 px a 1920, +742 a 1440, +2537 a 991, +1139 a
+  479). Es la deriva de R9–R16 contra el baseline de Webflow: páginas rediseñadas a propósito
+  cuya referencia aprobada nunca se repuso. Se cierra mirándolas y re-aprobando con
+  `aprobar-diseno.mjs --si`, que **exige un humano**; no se firma desde un agente.
+
+### Otros arreglos que entraron
+
+- `robots.txt` de producción era **solo la línea `Sitemap:`**, sin `User-agent`. Ahora
+  `User-agent: *` + `Allow: /`.
+- `public/robots.txt` y `public/sitemap.xml` están **trackeados y son generados**, y lo
+  commiteado era la versión de PREVIEW: `Disallow: /` y 0 `<loc>`. Un clon limpio partía de un
+  robots que prohíbe el sitio entero. Ahora guardan la de producción.
+- Área táctil del pie (M4) y 80 px de hueco para el botón flotante de llamada (M8), que abajo
+  del todo tapaba los tres enlaces legales **para siempre** porque ya no queda scroll.
+
+### Estado de producción tras el despliegue
+
+```
+las 121 URLs del sitemap : 121/121 en 200
+los 14 redirects         : 14/14 en 308, destinos en 200
+cabeceras de seguridad   : 6 vivas
+robots.txt               : User-agent: * / Allow: / / Sitemap:
+canonicas                : 122/122 en www, mismo host que el sitemap
+apex -> www              : 308
+```
+
+Repositorio: una rama (`main`, sincronizada), un worktree, sin stashes, sin secretos en el
+historial. `ensayo-merge` y `r16-proy-carrusel` borradas tras verificar que no aportaban nada.
