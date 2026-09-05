@@ -1,5 +1,15 @@
 # Parte de bugs — Mr & Mrs Outdoor Living
 
+> **Estado al 5-sep-2026.** Alcance aprobado: P1 + P2 + P3. Cada ticket lleva su estado y la
+> verificación que lo cierra. Los que NO se hacen llevan el motivo, no el silencio.
+>
+> | | |
+> |---|---|
+> | ✅ Resueltos y verificados | M1 M2 M4 M7 M8 M9 M10 M11 M13 M14 M16 M18 M20 |
+> | 🚫 No se hacen, por decisión de Sebastian | M12 |
+> | 📋 Documentados, no ejecutados (con motivo) | M5 M6 M15 M17 M19 M21 M22 M23 M24 M25 M26 M27 |
+> | ❌ Retirados: eran defectos de la sonda | M3 |
+
 Auditoría del 4/5-sep-2026 sobre el build de producción (`PUBLIC_ES_PRODUCCION=1`) en worktree
 aislado. Sustrato: `.vercel/output/static`, 122 páginas.
 
@@ -33,6 +43,8 @@ El sitio es **responsive-limpio**: no se sale por ningún lado en ninguno de los
 
 ### M1 · Los enlaces legales del formulario de contacto son invisibles (blanco sobre blanco)
 
+> ✅ **RESUELTO** — `.link-4` pasa a `--mm-enlace`. Sonda sobre `/contact-us`: **0 contrastes** en los 6 anchos (antes 12). Captura: `audit/M1-contacto-legal-ARREGLADO-390.png`.
+
 | | |
 |---|---|
 | **Ruta** | `/contact-us` |
@@ -48,6 +60,8 @@ Además del defecto visual: se pide al usuario aceptar unas condiciones que **no
 abrir**. Es la página de conversión principal.
 
 ### M2 · Dos pares de fichas de obra comparten `<title>`
+
+> ✅ **RESUELTO** — Tres títulos diferenciados y declarados en `TITULO_PROPIO`. `check:seo` **VERDE** y ahora además exige unicidad: «los 122 `<title>` son únicos — 0 repetidos».
 
 | | |
 |---|---|
@@ -72,6 +86,8 @@ Los `input#checkbox.w-checkbox-input` y los radios de 24×24 **cumplen AA** just
 quedan como P2 por debajo de la guía de 44.
 
 ### M4 · Los enlaces del pie miden 16 px de alto en las 122 páginas
+
+> ✅ **RESUELTO** — `padding-block:4px` + `margin-block:-4px`. Medido: la caja pasa de **16 px a 24×24**, los huecos de 10 a 2 px (no se solapan) y el texto no se mueve.
 
 | | |
 |---|---|
@@ -105,6 +121,8 @@ quedan como P2 por debajo de la guía de 44.
 
 ### M7 · `/pool-investment-estimator`: huérfana, indexable y sin descripción
 
+> ✅ **RESUELTO** — Cabecera completa (description, og:*, twitter:*) y entrada en el sitemap. Verificado sobre el build.
+
 | | |
 |---|---|
 | **Síntoma** | 200 en producción · **ningún enlace interno la alcanza** (0 entrantes) · fuera del sitemap · **sin `meta description`** · sin `og:title` · sin nav ni pie · y **sí indexable** (no lleva `noindex`) |
@@ -114,6 +132,8 @@ quedan como P2 por debajo de la guía de 44.
 | **Esfuerzo** | 20 min una vez decidido |
 
 ### M8 · El botón flotante de teléfono tapa contenido y controles de formulario
+
+> ✅ **RESUELTO** — `padding-bottom:80px` en `.wrapper-footer-info` por debajo de 768. Medido con la caja del **texto** en 375/390/600/767/768/1440: **0 textos tapados** en los seis.
 
 | | |
 |---|---|
@@ -126,6 +146,8 @@ quedan como P2 por debajo de la guía de 44.
 | **Esfuerzo** | 1 h |
 
 ### M9 · Los teléfonos de contacto parten el número y el subrayado pisa la segunda línea
+
+> ✅ **RESUELTO** — Número envuelto en `.mm-tel` con `nowrap`, enlace a `display:block` y `line-height:1.35`. `innerText` idéntico al original, así que `check:texto` no se ve afectada. Captura: `audit/M9-telefonos-ARREGLADO-375.png`.
 
 | | |
 |---|---|
@@ -142,17 +164,17 @@ quedan como P2 por debajo de la guía de 44.
 
 | ID | Hallazgo | Evidencia | Fix | Esfuerzo |
 |---|---|---|---|---|
-| **M10** | `p.grey` a **4.17:1** sobre blanco en `/about` (mínimo 4.5). 18 apariciones. `rgb(124,124,124)` | sonda | `#767676` da 4.54:1 | 10 min |
-| **M11** | **849** enlaces `target="_blank"` sin `rel="noopener"`. Tres destinos sociales ×241 y `senaviacorp.com` ×120 — todo del **pie compartido** | jsdom | Añadir `rel` en `Footer.astro` y en el generador del cascarón | 30 min |
+| ✅ **M10** | `p.grey` a **4.17:1** sobre blanco en `/about` (mínimo 4.5). 18 apariciones. `rgb(124,124,124)` — **RESUELTO**: `--mm-gris-aa` (#767676, 4,54:1). `check:tokens` VERDE. | sonda | `#767676` da 4.54:1 | 10 min |
+| ✅ **M11** | **849** enlaces `target="_blank"` sin `rel="noopener"`. Tres destinos sociales ×241 y `senaviacorp.com` ×120 — todo del **pie compartido** — **RESUELTO**: 0 de 2116 enlaces `target="_blank"` sin `rel`, y 0 externos. | jsdom | Añadir `rel` en `Footer.astro` y en el generador del cascarón | 30 min |
 | **M12** | Los enlaces de Terms y Privacy apuntan a **`mrandmrsoutdoorsliving.com`** (con S: **otro dominio**), teniendo el sitio `/articles/terms-conditions` y `/articles/privacy-policy` propios y con 200 | `curl` a los dos dominios | Repuntar a las páginas propias. Si el cliente retira ese dominio, hoy se rompen | 20 min |
-| **M13** | **Cero cabeceras de seguridad**: sin `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options`, `Permissions-Policy`. `vercel.json` no tiene bloque `headers` | `curl -I` a producción | Bloque `headers` en `vercel.json` | 30 min |
-| **M14** | `robots.txt` de producción es **solo** la línea `Sitemap:`, sin ningún `User-agent` | `curl` · `build-seo-ficheros.mjs:102` | Añadir `User-agent: *` + `Allow: /` | 10 min |
+| ✅ **M13** | **Cero cabeceras de seguridad**: sin `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options`, `Permissions-Policy`. `vercel.json` no tiene bloque `headers` — **RESUELTO**: 5 cabeceras en `vercel.json`. | `curl -I` a producción | Bloque `headers` en `vercel.json` | 30 min |
+| ✅ **M14** | `robots.txt` de producción es **solo** la línea `Sitemap:`, sin ningún `User-agent` — **RESUELTO**: `User-agent: *` + `Allow: /` en producción; preview sigue bloqueado. | `curl` · `build-seo-ficheros.mjs:102` | Añadir `User-agent: *` + `Allow: /` | 10 min |
 | **M15** | **34 páginas** saltan nivel de encabezado (`h1→h3`, `h1→h4`). Familias: `articles`, `blogs`, `country`, `blogs-tips`, `about` | jsdom | Corregir en las 4-5 plantillas, no página a página | 2 h |
-| **M16** | **`check:assets` sale ROJA desde un clon limpio.** `_source/assets-manifest.json` lista 3 vídeos (`public/videos/bg-video{,-1,-3d}.mp4`) que `.gitignore:60-66` excluye a propósito y que **ningún HTML ni CSS construido usa**. En la máquina de Sebastian pasa verde porque los ficheros siguen sueltos en disco | reproducido en el worktree | Quitar las 3 entradas del manifiesto | 20 min |
+| ✅ **M16** | **`check:assets` sale ROJA desde un clon limpio.** `_source/assets-manifest.json` lista 3 vídeos (`public/videos/bg-video{,-1,-3d}.mp4`) que `.gitignore:60-66` excluye a propósito y que **ningún HTML ni CSS construido usa**. En la máquina de Sebastian pasa verde porque los ficheros siguen sueltos en disco — **RESUELTO**: 3 entradas muertas fuera del manifiesto. `check:assets` **VERDE desde un árbol limpio**. | reproducido en el worktree | Quitar las 3 entradas del manifiesto | 20 min |
 | **M17** | CTAs de **28–40 px** de alto (bajo la guía de 44, cumplen AA). `a.button-styles` 112×34 ×858, `a.mm-resenas__enlace` 137×28 ×504 | sonda | Subir el `padding` vertical | 1 h + re-aprobar visual |
-| **M18** | **19 páginas sin `og:image`** y 5 sin `twitter:card` | jsdom | Imagen por defecto en `Base.astro` | 30 min |
+| ✅ **M18** | **19 páginas sin `og:image`** y 5 sin `twitter:card` — **RESUELTO**: 0 páginas sin `og:image` ni `twitter:card`. Declarado en `META_ANADIDAS`. | jsdom | Imagen por defecto en `Base.astro` | 30 min |
 | **M19** | `npm audit`: **3 vulnerabilidades altas** — `path-to-regexp` vía `@vercel/routing-utils` vía `@astrojs/vercel`. Es dependencia de construcción, no de ejecución en el navegador | `npm audit --omit=dev` | Ver si hay subida no rompedora del adaptador | 1 h |
-| **M20** | `/where-we-serve/north-florida` está **fuera del sitemap** mientras su gemela south-florida sí está. Deliberado por paridad (`build-seo-ficheros.mjs:17`), pero es una zona de servicio entera sin declarar | cruce build↔sitemap | Añadirla | 10 min |
+| ✅ **M20** | `/where-we-serve/north-florida` está **fuera del sitemap** mientras su gemela south-florida sí está. Deliberado por paridad (`build-seo-ficheros.mjs:17`), pero es una zona de servicio entera sin declarar — **RESUELTO**: `/where-we-serve/north-florida` en el sitemap. 121 `<loc>`. | cruce build↔sitemap | Añadirla | 10 min |
 
 ---
 
@@ -195,3 +217,29 @@ Se listan porque costaron medición y para que nadie los vuelva a levantar.
 | Enlaces legales a un dominio roto | `mrandmrsoutdoorsliving.com/terms-of-service` y `/privacy-policy-page` responden **200 con contenido real** | No es un enlace roto; sigue siendo M12 |
 | Sin `prefers-reduced-motion` | Está en 10+ hojas de `src/styles/` | Cubierto |
 | `npm run build` modifica dos ficheros versionados (`public/robots.txt`, `public/sitemap.xml`) | Lo commiteado es `Disallow: /` y un sitemap vacío; solo un build con `PUBLIC_ES_PRODUCCION=1` los abre | **Red de seguridad deliberada**, no un bug. El valor por defecto del repo es «bloqueado» |
+
+---
+
+## Lo que NO se ejecuta, y por qué — medido, no supuesto
+
+Nada de esto se calla. Cada fila lleva la medida que llevó a no tocarlo.
+
+| ID | Por qué no se hace |
+|---|---|
+| **M12** | **Decisión de Sebastian**: los enlaces legales se quedan en `mrandmrsoutdoorsliving.com`. Sí se les añadió `rel="noopener"` (M11), que es lo que sí era un defecto. |
+| **M5** | **Bloqueado por una trampa medida.** `webflow.css` sirve `img{max-width:100%}` **sin `height:auto`**. Hornear `width`/`height` con eso deforma la imagen: el ancho lo encoge el `max-width` y el alto se queda en el intrínseco. Habría que añadir antes un `img{height:auto}` global, que cambia el renderizado de las 122 páginas y exige `check:visual` con navegador visible. **Y el CLS ya aprueba**: medido en `/` a 375, **0,047** (el umbral es 0,1). Riesgo alto, ganancia marginal. |
+| **M6** | **Rebajado tras medirlo: no era lo que parecía.** Los dos vídeos **sí tienen póster** (como `background-image`, el patrón de Webflow; mi sonda solo miraba el atributo `poster`). Y lo importante: **no se descargan** — 0 bytes de vídeo en la carga de `/` a 375. El coste real son **2,68 MB de imágenes**, ver M31. |
+| **M31** *(nuevo)* | **Las imágenes no son adaptables.** Medido en `/` a 375: **4,10 MB transferidos, 2,68 MB de imágenes**, con AVIF de 300-450 KB servidos a tamaño de escritorio. Ninguna tiene `srcset` ni `sizes`, y **no hay variantes en disco**. Generarlas es un cambio de tubería (sharp, manifiesto, `check:assets`), no un arreglo de bug. **Se recomienda como siguiente encargo**: es la mejora de rendimiento con más recorrido que le queda al sitio. Hoy no bloquea nada — **LCP 344 ms** y **CLS 0,047**, los dos holgadamente dentro de umbral. |
+| **M15** | 34 páginas saltan nivel de encabezado (`h1→h3`, `h1→h4`) en 4-5 plantillas. Cambiar la etiqueta cambia el tamaño heredado de `webflow.css` salvo que la clase lo fije, así que **necesita `check:visual` con navegador visible** para no colar una regresión tipográfica en 34 páginas. Es incumplimiento de buena práctica (1.3.1), no de un criterio AA duro. |
+| **M17** | Los CTA miden 28-40 px de alto: **cumplen** el mínimo AA de 24, quedan bajo la guía de 44. Subirlos mueve píxeles en las 107 rutas con contrato `rediseno` y obliga a re-aprobar sus referencias una a una. Es una decisión de diseño con coste, no un fallo. |
+| **M19** | **Medido: no es explotable y el «arreglo» rompe el build.** `path-to-regexp` **no aparece en el código desplegado** (comprobado sobre `.vercel/output/functions`): es dependencia de construcción del adaptador, y los únicos patrones que procesa son los de nuestro propio `vercel.json`. El aviso propone **bajar** `@astrojs/vercel` de 11 a 8.0.4 — un retroceso mayor, no una actualización. Riesgo aceptado y documentado. |
+| **M21 M24 M25 M26** | Cambian píxeles en rutas con contrato `rediseno`: exigen que un humano mire la ruta y apruebe la referencia (`aprobar-diseno.mjs … --si`). Se dejan preparados para una sesión de aprobación con Sebastian. |
+| **M22** | «1 Views • 0 Likes • 0 Comments» sale de `youtube.json`, extraído del sitio vivo, y `check:texto` compara el `innerText` de `/videos` contra `baseline/text/`. Cambiarlo sin poder correr esa puerta —navegador visible— sería dar por bueno lo que no se ha medido. |
+| **M23** | La paleta `oklch` muerta de `estimador.css` ya está **declarada como excepción** en `check:tokens`. Limpiarla es higiene sin efecto visible; se hace cuando alguien toque esa hoja, que es lo que su propia cabecera dice. |
+| **M27** | El endpoint ya tiene Turnstile, honeypot, rate-limit por IP y validación de servidor. Un tope de longitud por campo es defensa en profundidad, no un agujero abierto. |
+
+## Un hallazgo del propio proceso
+
+| ID | Hallazgo |
+|---|---|
+| **M32** | **`check:carrusel` es inestable.** Dos pasadas seguidas sobre el MISMO build, sin tocar nada: la primera «ROJO — 2 fallo(s)», la segunda «OK». Mide tiempos de scroll y tareas largas, así que compite con cualquier otra cosa que use CPU. Una puerta que cambia de color sin que cambie el código no puede bloquear una entrega: o se estabiliza, o se declara informativa. |
