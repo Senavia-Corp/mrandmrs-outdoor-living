@@ -145,6 +145,14 @@
    * --mm-azul-tenue 4,61:1—. Al 60 % cae a 3,91:1 sobre el tenue y deja de valer
    * para texto normal. */
   --mm-tinta-suave: #596b9a;
+  /**
+   * M10 (auditoria 5-sep-2026). El gris de Webflow `.grey{color:#7c7c7c}` da **4,17:1** sobre
+   * blanco: suspenso de WCAG 2.2 AA, que pide 4,5. Este es el gris MAS CLARO que aprueba —
+   * **4,54:1**— para corregir el contraste sin repintar la pagina mas de lo imprescindible.
+   * Se usa en `propio.css` para elevar `.grey`, que solo pinta en los tres parrafos de valores
+   * de /about.
+   */
+  --mm-gris-aa:     #767676;
 
   /* navy al 12 % sobre blanco. Borde decorativo: no transporta informacion, asi
    * que 1,27:1 es legitimo (WCAG 1.4.11 solo exige 3:1 a lo que IDENTIFICA un

@@ -513,3 +513,20 @@
 @media (max-width: 767px) {
   .wrapper-footer-info { padding-bottom: 80px; }
 }
+
+/* ══════════════════════════════════════════════════════════════════════════════
+ * M10 (auditoria 5-sep-2026) — `.grey` NO LLEGA AL MINIMO DE CONTRASTE
+ *
+ * `webflow.css` la sirve como `.grey{color:#7c7c7c}`. Medido por la sonda sobre el pixel
+ * pintado: **4,17:1 sobre blanco**, cuando WCAG 2.2 AA pide 4,5 para texto normal. Son los
+ * tres parrafos de los valores de /about («At Mr & Mrs Outdoor Living, our project…»,
+ * «We believe in open communication…», «We take pride in doing things right…»), 18
+ * apariciones contando los seis anchos.
+ *
+ * No falla por mucho, y por eso llevaba ahi: a ojo se lee. Pero 4,17 es un suspenso
+ * medible, y el arreglo son dos digitos hexadecimales.
+ *
+ * `#767676` es el gris MAS CLARO que aprueba sobre blanco: **4,54:1**. Se elige ese y no
+ * uno mas oscuro para no cambiar el tono de la pagina mas de lo imprescindible — el
+ * encargo es corregir el contraste, no repintar /about. */
+.grey { color: var(--mm-gris-aa); }   /* 4,54:1 sobre blanco — era #7c7c7c y daba 4,17:1 */

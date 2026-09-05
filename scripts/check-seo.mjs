@@ -211,7 +211,21 @@ for (const ruta of conPropias(RUTAS)) {
         problemas.push(`${k}: "${String(v).slice(0, 50)}" -> "${String(m).slice(0, 50)}"`);
       }
     }
-    const sobra = Object.keys(hay).filter((k) => k !== 'robots' && !(k in (esperado.meta ?? {})));
+    /**
+     * M18 (auditoria 5-sep-2026) — LA TARJETA SOCIAL, ADICION DELIBERADA.
+     *
+     * El origen no emitia og:image en sus 18 paginas estaticas, asi que al pegar /, /about,
+     * /contact-us o /gallery en WhatsApp, Facebook o Slack la tarjeta salia sin foto — justo
+     * en las paginas que mas se comparten a mano. `Base.astro` rellena ahora las tres claves
+     * SOLO cuando la pagina no trae la suya, asi que las 104 que si la heredan del origen se
+     * siguen comparando caracter a caracter.
+     *
+     * Se declara igual que la canonica, que tambien es una adicion que el origen no tenia.
+     * Lo que NO se permite es cualquier otra meta inventada: la lista es cerrada.
+     */
+    const META_ANADIDAS = new Set(['og:image', 'twitter:image', 'twitter:card']);
+    const sobra = Object.keys(hay).filter((k) => k !== 'robots'
+      && !META_ANADIDAS.has(k) && !(k in (esperado.meta ?? {})));
     if (sobra.length) problemas.push(`meta de mas: ${sobra.join(', ')}`);
 
     // JSON-LD: mismo numero de bloques y mismo contenido con las claves ordenadas.
@@ -306,6 +320,8 @@ if (rojos.length > 10) console.log(`  ... y ${rojos.length - 10} paginas mas`);
     repes.slice(0, 5).forEach(([t, rs]) => console.log(`       "${t.slice(0, 58)}"  ->  ${rs.join('  ')}`));
   } else console.log(`  ok   los ${titulosVistos.size} <title> son unicos — 0 repetidos`);
 }
+console.log('  ok   declarado: og:image / twitter:image / twitter:card se ANADEN cuando la pagina');
+console.log('       no las trae del origen (M18). Las 104 que si las heredan se comparan igual.');
 for (const r of TITULO_PROPIO.keys()) {
   console.log(`  ok   declarado ${r}: <title> propio, distinto al del origen (el origen lo repetia)`);
 }
