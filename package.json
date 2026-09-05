@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev --port 4325",
-    "build": "npm run seo:ficheros && astro build",
+    "build": "npm run seo:ficheros && astro build && node scripts/build-vercel-config.mjs",
     "check": "npm run check:resenas && npm run check:aviso && npm run check:estimador && npm run build && npm run check:tokens && npm run check:assets && npm run check:rutas && npm run check:enlaces && npm run check:menu && npm run check:galeria && npm run check:galeria-formulario && npm run check:seo && npm run check:medicion && npm run check:texto && npm run check:ix2 && npm run check:visual && npm run check:carrusel",
     "resenas:fetch": "node scripts/fetch-resenas.mjs",
     "check:resenas": "node scripts/lib/resenas-normalize.test.mjs && node scripts/check-resenas.mjs",
