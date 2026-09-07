@@ -4971,3 +4971,91 @@ apex -> www              : 308
 
 Repositorio: una rama (`main`, sincronizada), un worktree, sin stashes, sin secretos en el
 historial. `ensayo-merge` y `r16-proy-carrusel` borradas tras verificar que no aportaban nada.
+
+---
+
+## SEO-AEO-GEO F0 — línea base de datos y mapa keyword→URL   🟡 en curso
+**Fecha:** 2026-09-07 · **Commit:** el de esta entrada
+
+### Objetivo
+Dejar escrito, a partir de datos reales de GSC y GA4 y no de intuición, qué URL debe ganar qué
+intención — y medir el punto de partida antes de tocar nada.
+
+### Qué se hizo
+- `docs/encargos/SEO-AEO-GEO-PLAN.md` (nuevo, 210 líneas): mapa keyword→URL por cluster,
+  canibalizaciones, las 39 keywords de pago mapeadas a sus 4 landing pages, línea base de medición
+  y prioridad de ejecución.
+- Verificadas las cinco conexiones del encargo. Corregido el **Hallazgo 11 de `SEO-URLS-PLAN.md`,
+  que estaba obsoleto**: sí hay propiedad de esta marca.
+- Desbloqueadas las puertas de navegador en este entorno (ver Desviaciones).
+
+### Números medidos
+| Métrica | Esperado (encargo) | Medido (90 d, 2026-06-09→09-07) |
+|---|---|---|
+| Clics | «~20 / 28 días» | ~130 / 90 días |
+| Cluster genérico «best pool * near me» | sin dato | ~490 impr, pos 7,7-17,7, **0 clics** |
+| CTR de `/pool-builders/pembroke-pines-florida` | sin dato | 7.916 impr · 2 clics · **0,025 %** |
+| Eventos de conversión propios en GA4 | sin dato | **0** — solo `form_submit` automático (48) |
+| Doble conteo de inicio de formulario | sin dato | `lead_form_start` 73 + `form_start` 72 |
+| `phone_click` en 90 días | sin dato | **2** |
+| Sitemap enviado a GSC vs. servido | 113 vs 121 | confirmado: descarga del 2026-08-29 |
+
+### Evidencia
+```
+$ GOOGLE_SEARCH_CONSOLE_SEARCH_ANALYTICS_QUERY  sc-domain:mrandmrsoutdoorliving.com
+  2026-06-09→2026-09-07  dimensions=[query,page]  rowLimit=120
+  best pool builders                    88 impr  pos 11,06  → /pool-builders/pembroke-pines-florida
+  best inground pool installers near me 84 impr  pos  7,74  → /pool-builders/pembroke-pines-florida
+  best pool companies near me           82 impr  pos 11,82  → /pool-builders/pembroke-pines-florida
+  best pool builder near me             81 impr  pos 17,70  → /pool-builders/pembroke-pines-florida
+  best pool installers near me          77 impr  pos  9,68  → /pool-builders/pembroke-pines-florida
+  best pool contractor near me          76 impr  pos 11,00  → /pool-builders/pembroke-pines-florida
+  todas con clicks=0
+
+$ GOOGLE_ANALYTICS_RUN_REPORT  properties/506563956  dimensions=[eventName]
+  page_view 5240 · user_engagement 4416 · scroll 3982 · session_start 1102 · first_visit 934
+  lead_form_start 73 · form_start 72 · form_submit 48 · click 36 · file_download 10
+  video_progress 4 · phone_click 2 · video_complete 1 · video_start 1
+
+$ GOOGLE_SEARCH_CONSOLE_LIST_SITEMAPS
+  sitemap.xml       submitted=113  errors=0  lastDownloaded=2026-08-29
+  page-sitemap.xml  submitted=17+1004img  errors=1  lastDownloaded=2025-09-29   ← zombi de Webflow
+  (campo `indexed` = "0" en los dos: Google ya no lo puebla, no es un dato)
+```
+
+### Gate
+**Criterio:** el mapa keyword→URL sale de datos medidos, con su comando al lado, y no de intuición.
+**Resultado:** ✅ verde. Ninguna puerta del repo aplica todavía: F0 no toca código.
+
+### Desviaciones
+- **Playwright 1.62.1 del repo espera `chromium-1234`; la imagen del entorno trae `chromium-1194`.**
+  Las cuatro puertas de navegador (`texto`, `visual`, `ix2`, `cascaron`) no arrancaban. Resuelto
+  **fuera del repo**, sin tocar código ni `package.json`: enlace
+  `/opt/pw-browsers/chromium-1234/chrome-linux64` → `/opt/pw-browsers/chromium-1194/chrome-linux`.
+  Verificado: lanza Chromium 141.0.7390.37. Además este entorno no tiene `DISPLAY` y los scripts
+  lanzan `headless: false`, así que **van envueltos en `xvfb-run -a`, una puerta a la vez**.
+- Una afirmación del borrador («`does an above ground pool require a permit` en posición 1 es el
+  activo AEO más maduro») se **retiró antes de publicar**: era posición 1 sobre **1 sola
+  impresión**. Señal de forma, no de volumen.
+
+### Rarezas del original replicadas a propósito
+Ninguna nueva. Se anota una del entorno actual, no del origen: `/cascaron` —ruta de fixture, no
+una de las 122— recibe 16 sesiones reales en GA4.
+
+### Abierto — F0b y todo lo siguiente están BLOQUEADOS
+```
+m273z6jc.api.sanity.io:443         403 CONNECT (denegación de política del proxy de egress)
+www.mrandmrsoutdoorliving.com:443  403 CONNECT
+mrandmrsoutdoorliving.com:443      403 CONNECT
+```
+- **Sin Sanity no hay build**: `npm run build` revienta en el `getStaticPaths` de
+  `src/pages/pool-builders/[slug].astro:36-50`, que falla cerrado a propósito. Y sin build no corre
+  **ninguna** puerta: todas leen `.vercel/output/static`.
+- **Sin el dominio** no hay verificación de producción, ni Lighthouse/PSI contra ella, ni
+  comprobación de que las URLs finales de anuncio dan 200 sin redirect intermedio.
+- **Falta el fichero de campaña.** `Mr_Mrs_Outdoor_Living_Google_Ads_FINAL_LAUNCH_MASTER_2026-09-07.xlsx`
+  no está ni en la máquina ni en Drive (`title contains 'LAUNCH_MASTER'` → vacío). Lo más parecido
+  en Drive es `FINAL_BUILD_2026-09-03.xlsx`, cuatro días más viejo, que **no** se usa. Bloquea A4
+  (titulares RSA, 11 sitelinks) y las metas por LP de la hoja 22.
+
+Depende de Sebastian: ampliar el egress del entorno y subir el xlsx.
