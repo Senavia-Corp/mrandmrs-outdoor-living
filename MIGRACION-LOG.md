@@ -5059,3 +5059,88 @@ mrandmrsoutdoorliving.com:443      403 CONNECT
   (titulares RSA, 11 sitelinks) y las metas por LP de la hoja 22.
 
 Depende de Sebastian: ampliar el egress del entorno y subir el xlsx.
+
+---
+
+## SEO-AEO-GEO F0b — construir sin red hacia Sanity, y el inventario de partida   ✅ cerrada
+**Fecha:** 2026-09-08 · **Commit:** el de esta entrada
+
+### Objetivo
+Poder construir y medir en un entorno cuyo proxy de egress deniega `m273z6jc.api.sanity.io`, sin
+debilitar la guarda que hoy para el build cuando Sanity no responde.
+
+### Qué se hizo
+- `scripts/cache-sanity.mjs` (nuevo): vuelca los 53 `poolBuilder` a
+  `src/data/pool-builders-sanity.json`. Fuente normal: Sanity. Con `--desde-csv` los deriva de
+  `_source/cms/pool-builders.csv`, que es el export que `scripts/import.mjs` cargó en Sanity. El
+  mapeo columna→campo **no se inventa**: es el `camel()` de `scripts/schema-map.mjs:30` y la tabla
+  `SEO` de `:71`.
+- `src/pages/pool-builders/[slug].astro`: `getStaticPaths` acepta la caché **solo** si el fetch
+  falla **y** se pide con `MM_SANITY_CACHE=1`, y lo avisa por pantalla. **La guarda que para el
+  build sin datos no se tocó**: sin esa variable el comportamiento es idéntico al de siempre, así
+  que la caché no puede enmascarar una caída real de Sanity. Anotado en la cabecera como tercer
+  cambio a mano deliberado, junto a R11-BLOG-02 y R15-IG.
+
+### Números medidos
+| Métrica | Esperado | Medido |
+|---|---|---|
+| Documentos en la caché | 53 | 53 |
+| Rutas construidas | 122 | 122 |
+| `/pool-builders/*` construidas | 53 | 53 |
+| `<loc>` en el sitemap | 121 | 121 |
+| Campos idénticos caché vs. Sanity (3 ciudades) | todos | **64 de 64, 0 distintos** |
+| `check:texto` sobre las 53 | 53 verdes | **53 idénticas · 0 en rojo** |
+
+### Evidencia
+```
+$ node scripts/cache-sanity.mjs --desde-csv
+cache escrita: src/data/pool-builders-sanity.json · 53 documentos · fuente: CSV de _source/cms
+
+$ SANITY_QUERY_DOCUMENTS (Composio, cuenta sanity_raker-uranic) → diff campo a campo
+alachua-florida: 22 campos identicos, 0 distintos, 0 ausentes
+ocala-florida: 21 identicos, 0 distintos
+pembroke-pines-florida: 21 identicos, 0 distintos
+campos de mas en la cache: ninguno
+
+$ MM_SANITY_CACHE=1 PUBLIC_ES_PRODUCCION=1 npm run build
+[build] Complete!
+  vercel-config: 14 redirect(s) y 1 bloque(s) de cabeceras inyectados en config.json
+
+$ PUBLIC_ES_PRODUCCION=1 npm run check:seo
+115/115 paginas con el head identico al origen
+ok   los 122 <title> son unicos — 0 repetidos
+ok   un solo host: canonicas [www.mrandmrsoutdoorliving.com] = sitemap [www.mrandmrsoutdoorliving.com]
+PUERTA VERDE
+
+$ PUBLIC_ES_PRODUCCION=1 npm run check:medicion   → PUERTA VERDE
+$ npm run check:tokens · check:rutas · check:enlaces → PUERTA VERDE (las tres)
+
+$ xvfb-run -a node scripts/check-texto.mjs /pool-builders/
+53 identicas · 0 en rojo   (53/53 rutas medidas)
+PUERTA VERDE
+```
+
+### Gate
+**Criterio:** la caché tiene que producir exactamente lo mismo que el CMS vivo, y probarlo con una
+puerta, no con una afirmación.
+**Resultado:** ✅ verde. `check:seo` da 115/115 con el head idéntico al origen y `check:texto` da
+las 53 idénticas contra `baseline/text/`. Si la caché mintiera, esas 53 saldrían rojas.
+
+### Desviaciones
+- **Las puertas hay que correrlas con el MISMO `PUBLIC_ES_PRODUCCION` que el build.** Corridas sin
+  la variable sobre un build de producción, `check:seo` da 122 rojas y `check:medicion` 1, todas
+  con la forma «hay canónica fuera de producción» / «falta noindex fuera de producción». No es un
+  fallo del sitio: es la puerta midiendo contra el modo equivocado. Con la variable, las dos verdes.
+- Playwright 1.62.1 espera `chromium-1234` y la imagen del entorno trae `1194`. Resuelto **fuera
+  del repo** con un enlace, y las puertas de navegador van bajo `xvfb-run -a`, una a la vez.
+
+### Rarezas del original replicadas a propósito
+Ninguna nueva.
+
+### Abierto
+- El fichero de campaña `…FINAL_LAUNCH_MASTER_2026-09-07.xlsx` **no existe en Drive** (buscado en
+  todas las unidades). Bloquea A4. La cuenta de Google Ads tampoco es alcanzable
+  (`USER_PERMISSION_DENIED`: la conexión es de otra marca).
+- **Verificar contra producción sigue sin ser posible**: `curl`, `WebFetch` y el MCP de Vercel
+  fallan los tres contra el dominio, y no hay scraping conectado. Queda `INSPECT_URL` de GSC, que
+  da el veredicto de Google pero no códigos HTTP. Es un hueco declarado, no un verde.

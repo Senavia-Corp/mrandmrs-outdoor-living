@@ -10,6 +10,10 @@
 // _source/vivo/pool-builders_*.html), asi que esto NO es paridad: es rediseno deliberado,
 // para que las 53 acaben como la home y como las 16 de services/+Estado. Con el feed vacio
 // -altura 0- la diferencia no se veia; poblado, el CTA quedaba a media pagina.
+// TERCER CAMBIO A MANO (SEO-AEO-GEO F0b): `getStaticPaths` admite una CACHE declarada.
+// Sanity sigue siendo la fuente; la cache solo entra si el fetch falla Y se pide con
+// `MM_SANITY_CACHE=1`, y avisa por pantalla. La guarda que para el build sin datos NO se toco.
+// La genera `scripts/cache-sanity.mjs`; su fidelidad la prueba `check:texto` sobre las 53.
 import Base from '../../layouts/Base.astro';
 import ResenasGoogle from '../../components/widgets/ResenasGoogle.astro';
 import FeedInstagram from '../../components/widgets/FeedInstagram.astro';
@@ -42,8 +46,25 @@ export async function getStaticPaths() {
   // Las listas se piden con su proyeccion: las de REFERENCIAS con `->` para traer el documento
   // destino, porque el marcado pinta su nombre y su slug, no el identificador.
   const q = '*[_type=="poolBuilder" && defined(slug.current)]{..., "slug": slug.current}';
-  const r = await fetch(`https://${PID}.api.sanity.io/v2024-01-01/data/query/${DS}?query=${encodeURIComponent(q)}`);
-  const { result, error } = await r.json();
+  let result, error;
+  try {
+    const r = await fetch(`https://${PID}.api.sanity.io/v2024-01-01/data/query/${DS}?query=${encodeURIComponent(q)}`);
+    ({ result, error } = await r.json());
+  } catch (e) {
+    // La red puede no existir siquiera -contenedor con egress cerrado-. Se trata igual que un
+    // error de Sanity: cae en la guarda de abajo, salvo que la cache este pedida a proposito.
+    error = { message: String(e?.message ?? e) };
+  }
+  // CACHE DECLARADA, NUNCA AUTOMATICA. Solo con `MM_SANITY_CACHE=1` se construye desde
+  // `src/data/pool-builders-sanity.json` (lo genera `scripts/cache-sanity.mjs`). Sin esa
+  // variable el comportamiento es el de siempre: si Sanity no responde, el build se para. Asi
+  // la cache no puede enmascarar una caida real, que es justo lo que la guarda de abajo evita.
+  if ((error || !result?.length) && process.env.MM_SANITY_CACHE === '1') {
+    const { default: cache } = await import('../../data/pool-builders-sanity.json');
+    console.warn(`>>> Sanity no responde y MM_SANITY_CACHE=1: se construyen las ${cache.length} de /pool-builders/ desde la cache. NO es el CMS vivo.`);
+    result = cache;
+    error = null;
+  }
   // Sin datos no se construye media coleccion: se para el build. 53 URLs que
   // desaparecen en silencio son 53 404 con el despliegue en verde.
   if (error || !result?.length) throw new Error('Sanity no devolvio poolBuilder: ' + JSON.stringify(error ?? 'vacio'));
