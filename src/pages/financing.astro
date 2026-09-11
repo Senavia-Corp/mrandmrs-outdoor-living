@@ -25,7 +25,8 @@
  *   · el acordeon -> `.dropdown-faq` de las 14 fichas de `/services/`, movido por
  *                    `Interacciones.astro:180-235` (aria-expanded, aria-controls y Esc)
  *   · el cierre   -> `.cta-footer`, el remate de conversion de 102 rutas
- * Lo unico nuevo es la secuencia numerada (`.fin-*`, en `src/styles/financiacion.css`).
+ * Lo nuevo vive en `.fin-*` (`src/styles/financiacion.css`): la secuencia numerada, los
+ * iconos de `src/iconos/financing/` y las fotos de obra de las tarjetas de servicio.
  *
  * NI UNA CIFRA FINANCIERA, por decision de Sebastian del 2-sep-2026: ni APR, ni plazos, ni
  * cuotas, ni importes, ni tiempos de aprobacion. Nombrar una tasa o una cuota dispara
@@ -36,6 +37,18 @@
 import Base from '../layouts/Base.astro';
 import ResenasGoogle from '../components/widgets/ResenasGoogle.astro';
 
+/* LOS 7 ICONOS. Generados en Higgsfield (Recraft V4.1, modo vector) con UN SOLO prompt base para
+ * que salgan de la misma familia, y convertidos a `<mask>` + `currentColor`: Recraft dibuja por
+ * capas —silueta negra, hueco blanco encima, detalle negro encima— y quitar los blancos rellenaba
+ * los huecos. Asi el color lo pone el CSS: navy en los pasos, oro en la banda oscura. */
+import Plano from '../iconos/financing/plano.svg';
+import Contrato from '../iconos/financing/contrato.svg';
+import Calculadora from '../iconos/financing/calculadora.svg';
+import Casco from '../iconos/financing/casco.svg';
+import Escudo from '../iconos/financing/escudo.svg';
+import Compas from '../iconos/financing/compas.svg';
+import Manos from '../iconos/financing/manos.svg';
+
 const ACORN = 'https://your.acornfinance.com/apply?d=NXJVM';
 
 /** Los 4 pasos. El orden ES el contenido: la financiacion va DESPUES del precio cerrado. */
@@ -44,34 +57,64 @@ const PASOS = [
     n: '1',
     titulo: 'Design consultation',
     texto: 'We walk your property, talk through how you want to use the space, and put a design on paper.',
+    icono: Plano,
   },
   {
     n: '2',
     titulo: 'Written scope and fixed price',
     texto: 'You get the scope in writing and a fixed project price. This is the number you build on.',
+    icono: Contrato,
   },
   {
     n: '3',
     titulo: 'Review your financing options',
     texto: 'With the price settled, you review options through our lending partner. Approval and terms come from the lender.',
+    icono: Calculadora,
     clave: true,
   },
   {
     n: '4',
     titulo: 'Permitting and construction',
     texto: 'Engineering, permits, and the build itself, managed by a licensed Florida contractor.',
+    icono: Casco,
   },
 ];
 
+/**
+ * Foto de obra real, de las que ya sirve /gallery. `src` es el original de 1250w; si Webflow le
+ * genero variantes, estan en `/images/site/<nombre>-p-500|800|1080.jpg` y van al `srcset`.
+ * Elegidas por hoja de contactos recortada a 4:3 —lo que ensena la tarjeta—, no por nombre.
+ * El `alt` describe lo que se ve: el de /gallery no siempre casa con su foto (el del techo de
+ * lamas dice «over pool deck» y es un patio de adoquin junto a una pista de tenis).
+ */
+const foto = (src, ancho, alto, alt, variantes = true) => {
+  const nombre = src.split('/').pop().replace(/\.\w+$/, '');
+  const srcset = variantes
+    ? [500, 800, 1080].map((w) => `/images/site/${nombre}-p-${w}.jpg ${w}w`).concat(`${src} ${ancho}w`).join(', ')
+    : undefined;
+  return { src, srcset, ancho, alto, alt };
+};
+
 /** Solo servicios que el sitio construye de verdad, enlazando a su ficha. */
 const SERVICIOS = [
-  ['Pools and spas', 'Custom inground pools and spas, engineered and permitted.', '/services/custom-pool-spa-builders-in-north-south-florida'],
-  ['Pergolas', 'Custom aluminum pergolas built for Florida sun and wind.', '/services/custom-aluminum-pergola-builders-in-north-south-florida'],
-  ['Outdoor kitchens', 'Built-in cooking, storage, and counter space.', '/services/custom-outdoor-kitchens-for-north-south-florida-homes'],
-  ['Decks', 'Composite and wood decks built for the climate.', '/services/custom-deck-builders-in-north-south-florida'],
-  ['Screen enclosures', 'Pool cages and patio enclosures.', '/services/pool-screen-enclosures-for-north-south-florida-pools'],
-  ['Louvered roofs', 'Motorized louvered roof systems for shade on demand.', '/services/motorized-louvered-roof-systems-in-north-south-florida'],
+  ['Pools and spas', 'Custom inground pools and spas, engineered and permitted.', '/services/custom-pool-spa-builders-in-north-south-florida',
+    foto('/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg', 1250, 933, 'Rectangular pool with a raised spa, surrounded by lawn')],
+  ['Pergolas', 'Custom aluminum pergolas built for Florida sun and wind.', '/services/custom-aluminum-pergola-builders-in-north-south-florida',
+    foto('/images/images/pergolas-2/custom-pergola-patio-cover-builders-florida-02.jpg', 1250, 933, 'Dark aluminum pergola with a slatted privacy screen beside a pool and spa')],
+  ['Outdoor kitchens', 'Built-in cooking, storage, and counter space.', '/services/custom-outdoor-kitchens-for-north-south-florida-homes',
+    foto('/images/images/kitchen-2/custom-outdoor-kitchen-poolside-florida.avif', 1250, 698, 'L-shaped outdoor kitchen with a built-in grill and stainless steel doors under a covered patio', false)],
+  ['Decks', 'Composite and wood decks built for the climate.', '/services/custom-deck-builders-in-north-south-florida',
+    foto('/images/images/deck-9/custom-deck-builders-contractors-north-south-florida-09.jpg', 1250, 698, 'Wood deck with a timber pergola along the back of a white house')],
+  ['Screen enclosures', 'Pool cages and patio enclosures.', '/services/pool-screen-enclosures-for-north-south-florida-pools',
+    foto('/images/images/pool-screen-3/pool-screen-enclosure-builders-florida-03.jpg', 1250, 698, 'Screen enclosure over a pool and spa with a view of a lake and fountain')],
+  ['Louvered roofs', 'Motorized louvered roof systems for shade on demand.', '/services/motorized-louvered-roof-systems-in-north-south-florida',
+    foto('/images/images/motorized-louvered-roof-8/motorized-louvered-roof-installers-florida-08.jpg', 1250, 682, 'Freestanding louvered roof with white louvers over a paver patio')],
 ];
+
+/* A que ancho se pinta la foto, medido sobre la rejilla de `.fin-servicios` (minmax 320px, gap
+ * 24, canal 24 -> 32 desde 768): 3 columnas desde 1072px de viewport (~320-400px cada una),
+ * 2 desde 712 y 1 por debajo. */
+const TAMANOS_FOTO = '(min-width: 1072px) 400px, (min-width: 712px) calc(50vw - 36px), calc(100vw - 48px)';
 
 /** El FAQ. Ninguna respuesta menciona una cifra, un plazo ni un tiempo de aprobacion. */
 const FAQ = [
@@ -156,8 +199,12 @@ const SEO = {
       Hubo un rotulo extra dentro de esa tarjeta y se quito con una medida delante: al llevar
       UN ELEMENTO MAS que las otras tres, la rejilla igualaba las cuatro a su altura y dejaba
       entre 74 y 111 px de blanco muerto en las otras tres —el 34% de la tarjeta a 1280—.
-      Acortar el texto no bastaba: el coste no era el largo del rotulo, era su existencia. */}
-  <section class="mm-seccion">
+      Acortar el texto no bastaba: el coste no era el largo del rotulo, era su existencia.
+      El icono no repite ese error: lo llevan LAS CUATRO, asi que la altura sube igual en todas.
+
+      `fin-sin-techo`: el heroe ya deja 96px de suelo a >=992, y sumarle los 96 de techo de esta
+      seccion daba 192px de blanco. Lo mismo entre esta y la siguiente, que es blanca tambien. */}
+  <section class="mm-seccion fin-sin-techo">
     <div class="mm-caja mm-pila mm-pila--32">
       <div class="mm-pila mm-pila--16 mm-medida">
         <p class="mm-rotulo">The order matters</p>
@@ -169,8 +216,9 @@ const SEO = {
       </div>
 
       <ol class="mm-rejilla fin-lista fin-pasos">
-        {PASOS.map((p) => (
+        {PASOS.map(({ icono: Icono, ...p }) => (
           <li class:list={['mm-tarjeta', 'mm-pila', 'fin-paso', p.clave && 'fin-paso--clave']}>
+            <span class="fin-icono" aria-hidden="true"><Icono focusable="false" /></span>
             <span class="fin-paso__n" aria-hidden="true">{p.n}</span>
             <h3 class="mm-tit-3">{p.titulo}</h3>
             <p class="mm-txt">{p.texto}</p>
@@ -180,8 +228,9 @@ const SEO = {
     </div>
   </section>
 
-  {/* QUE SE PUEDE FINANCIAR. Cada tarjeta enlaza a su ficha real de servicio. */}
-  <section class="mm-seccion">
+  {/* QUE SE PUEDE FINANCIAR. Cada tarjeta enlaza a su ficha real de servicio y abre con una
+      foto de obra propia: la tarjeta entera es el enlace (el `::after` de «See …»). */}
+  <section class="mm-seccion fin-sin-techo">
     <div class="mm-caja mm-pila mm-pila--32">
       <div class="mm-pila mm-pila--16 mm-medida">
         <h2 class="mm-tit-2">What you can finance</h2>
@@ -191,8 +240,20 @@ const SEO = {
       </div>
 
       <ul class="mm-rejilla fin-lista fin-servicios">
-        {SERVICIOS.map(([nombre, texto, href]) => (
-          <li class="mm-tarjeta mm-pila mm-pila--16">
+        {SERVICIOS.map(([nombre, texto, href, f]) => (
+          <li class="mm-tarjeta mm-pila mm-pila--16 fin-servicio">
+            <div class="fin-servicio__foto">
+              <img
+                src={f.src}
+                srcset={f.srcset}
+                sizes={f.srcset && TAMANOS_FOTO}
+                width={f.ancho}
+                height={f.alto}
+                alt={f.alt}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
             <h3 class="mm-tit-3">{nombre}</h3>
             <p class="mm-txt">{texto}</p>
             <a class="mm-vinculo fin-mas" href={href}>See {nombre.toLowerCase()}</a>
@@ -203,8 +264,10 @@ const SEO = {
   </section>
 
   {/* POR QUE IMPORTA QUIEN LO CONSTRUYE. Banda oscura: `.mm-inverso` redefine los papeles
-      de color en su ambito, asi que las tarjetas de dentro se vuelven oscuras solas. */}
-  <section class="mm-seccion mm-seccion--holgada mm-inverso">
+      de color en su ambito, asi que las tarjetas de dentro se vuelven oscuras solas.
+      Sin `mm-seccion--holgada`: sus 128px eran el unico escalon distinto de la pagina, y ahora
+      todas las secciones respiran lo mismo (96 / 64 / 48). */}
+  <section class="mm-seccion mm-inverso">
     <div class="mm-caja mm-pila mm-pila--32">
       <div class="mm-pila mm-pila--16 mm-medida">
         <h2 class="mm-tit-2">Why it matters who builds it</h2>
@@ -216,6 +279,7 @@ const SEO = {
 
       <ul class="mm-rejilla fin-lista">
         <li class="mm-tarjeta mm-pila mm-pila--16">
+          <span class="fin-icono fin-icono--oro" aria-hidden="true"><Escudo focusable="false" /></span>
           <h3 class="mm-tit-3">Licensed and insured</h3>
           <p class="mm-txt">
             We are a licensed Florida contractor. Your project is pulled under our license,
@@ -223,6 +287,7 @@ const SEO = {
           </p>
         </li>
         <li class="mm-tarjeta mm-pila mm-pila--16">
+          <span class="fin-icono fin-icono--oro" aria-hidden="true"><Compas focusable="false" /></span>
           <h3 class="mm-tit-3">Engineered and permitted</h3>
           <p class="mm-txt">
             Structures are engineered and permitted for Florida wind and soil conditions
@@ -230,6 +295,7 @@ const SEO = {
           </p>
         </li>
         <li class="mm-tarjeta mm-pila mm-pila--16">
+          <span class="fin-icono fin-icono--oro" aria-hidden="true"><Manos focusable="false" /></span>
           <h3 class="mm-tit-3">One contract, one point of contact</h3>
           <p class="mm-txt">
             Design, permitting, and construction run through us. You are not coordinating

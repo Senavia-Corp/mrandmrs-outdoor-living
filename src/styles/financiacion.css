@@ -9,7 +9,8 @@
  * ESTA HOJA ES DELIBERADAMENTE PEQUENA. La pagina se construye con la gramatica que ya
  * existe —`.mm-seccion`, `.mm-caja`, `.mm-rejilla`, `.mm-tarjeta`, `.mm-inverso`,
  * `.mm-accion`— y con el heroe, el acordeon de FAQ y el CTA que el sitio ya tiene
- * estilados. Aqui solo vive lo que de verdad no existia: la secuencia numerada.
+ * estilados. Aqui solo vive lo que de verdad no existia: la secuencia numerada, los iconos, las
+ * tarjetas de servicio con foto y el ajuste de ritmo entre secciones.
  *
  * ─────────────────────────────────────────────────────────────────────────────
  * POR QUE HAY NUMEROS, QUE NO ES OBVIO
@@ -109,6 +110,137 @@
   align-self: flex-start;
   min-height: 44px;
   line-height: var(--mm-alto-cuerpo);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * EL RITMO. Dos secciones blancas seguidas sumaban el suelo de una y el techo de la otra:
+ * 96 + 96 = 192px de blanco a >=992 entre el heroe y los pasos, y otros 192 entre los pasos y
+ * los servicios. Quitando el techo de la segunda queda un solo escalon, el mismo que ya deja el
+ * heroe (48 / 64 / 96). Clase propia y no `.hero-section + .mm-seccion`: el heroe sirve a 9
+ * rutas y `.mm-seccion` es la capa. */
+.mm-seccion.fin-sin-techo { padding-block-start: 0; }
+
+/* Los titulos de tarjeta, equilibrados: sin esto «One contract, one point of contact» dejaba
+ * «Contact» solo en la segunda linea a 1280. No cambia ni una letra, solo donde se parte. */
+.fin-lista .mm-tit-3 { text-wrap: balance; }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * LOS ICONOS. Un circulo de 64px con el dibujo a 44px, igual en los pasos y en la banda navy
+ * (a 40 el trazo se quedaba en ~1,5px y el casco y las manos, que son anchos, se veian menudos):
+ * es la misma familia (un solo prompt, `src/iconos/financing/`) y tiene que medir lo mismo.
+ * El SVG pinta en `currentColor`, asi que el color lo decide esta hoja y no el fichero.
+ * `align-self` porque `.mm-pila` es flex en columna y estiraria el circulo a todo el ancho.
+ *
+ * Contraste, medido (son decorativos —`aria-hidden`, el titular dice lo mismo— y WCAG 1.4.11
+ * no les exige 3:1, pero se anota como el resto de pares de la capa):
+ *   navy sobre navy al 8% sobre blanco ........ 13,30:1
+ *   navy sobre oro al 20% sobre blanco ........ 13,82:1
+ *   oro sobre oro al 10% sobre --mm-navy-lomo .. 5,44:1  (el oro solo sobre el lomo: 6,41:1)
+ *   el circulo contra la tarjeta: 1,17:1 (navy 8%) y 1,13:1 (oro 20%) — fondo, no frontera */
+.fin-icono {
+  display: grid;
+  place-items: center;
+  align-self: flex-start;
+  inline-size: var(--mm-e-64);
+  block-size: var(--mm-e-64);
+  border-radius: var(--mm-r-pastilla);
+  background-color: color-mix(in srgb, var(--mm-navy) 8%, transparent);
+  color: var(--mm-navy);
+}
+.fin-icono svg {
+  inline-size: calc(var(--mm-e-32) + var(--mm-e-12));
+  block-size: calc(var(--mm-e-32) + var(--mm-e-12));
+}
+
+/* El paso de la financiacion lleva el circulo en oro suave, a juego con su filete. Es el mismo
+ * acento que ya tenia —no un estado—, y el icono sigue en navy como los otros tres. */
+.fin-paso--clave .fin-icono { background-color: color-mix(in srgb, var(--mm-oro) 20%, transparent); }
+
+/* En la banda oscura: dibujo en oro, relleno de oro al 10% y un aro fino de oro al 35%
+ * (1,93:1 contra el lomo — dibuja el borde del circulo, no transporta informacion). */
+.fin-icono--oro {
+  color: var(--mm-oro);
+  background-color: color-mix(in srgb, var(--mm-oro) 10%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--mm-oro) 35%, transparent);
+}
+
+/* EL HILO DE LA SECUENCIA, solo a >=992, que es cuando los cuatro pasos van en una fila: une el
+ * centro de cada circulo con el siguiente cruzando el hueco de la rejilla. Por debajo las
+ * tarjetas se apilan en 2x2 o en columna y un hilo horizontal uniria cosas que no estan al lado.
+ * Geometria, desde la caja de relleno del paso (el `::after` se ancla a ella):
+ *   top   = relleno 24 + medio circulo 32
+ *   left  = relleno 24 + circulo 64 + aire 8
+ *   right = -(hueco 24 + relleno del siguiente 24 - aire 8) - 2 bordes de 1px
+ * `z-index: 1` para que pase por encima del fondo de la tarjeta siguiente y llegue a su circulo.
+ * #8794b6 sobre blanco = 3,03:1. */
+@media (min-width: 992px) {
+  .fin-paso { position: relative; }
+  .fin-paso:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    inset-block-start: calc(var(--mm-e-24) + var(--mm-e-32) - 1px);
+    inset-inline-start: calc(var(--mm-e-24) + var(--mm-e-64) + var(--mm-e-8));
+    inset-inline-end: calc((var(--mm-e-24) + var(--mm-e-24) - var(--mm-e-8)) * -1 - 2px);
+    block-size: 2px;
+    background-image: repeating-linear-gradient(90deg, var(--mm-borde-control) 0 6px, transparent 6px 12px);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * LAS TARJETAS DE SERVICIO CON FOTO. La foto sangra hasta el borde de la tarjeta: el margen
+ * negativo deshace el relleno de 24 de `.mm-tarjeta`, y el radio de arriba es el de la tarjeta
+ * menos su borde de 1px (16 - 1 = 15), para que la esquina de la foto case con la de la caja.
+ * `overflow: hidden` solo en el marco de la foto, no en la tarjeta: en la tarjeta recortaria el
+ * anillo de foco del `::after`.
+ * El margen va con dos clases para ganar a `.mm-pila > * { margin-block: 0 }` sin depender del
+ * orden de carga. */
+.fin-servicio { position: relative; }
+.fin-servicio .fin-servicio__foto {
+  margin: calc(var(--mm-e-24) * -1) calc(var(--mm-e-24) * -1) 0;
+  overflow: hidden;
+  border-radius: calc(var(--mm-r-16) - 1px) calc(var(--mm-r-16) - 1px) 0 0;
+}
+
+/* 4:3 con `height: auto` y SIN altura fija: con la altura puesta, `aspect-ratio` calcularia el
+ * ANCHO y desbordaria la columna. Los `width`/`height` del marcado son los del fichero y dan la
+ * reserva de espacio antes de que llegue la imagen; `aspect-ratio` los recorta a 4:3. */
+.fin-servicio__foto img {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform .3s ease-out;
+}
+
+/* La unica respuesta al raton de la pagina, y solo aqui porque solo aqui la tarjeta entera es
+ * un enlace. Sin movimiento si se ha pedido menos movimiento, y sin hover en tactil. */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .fin-servicio:hover .fin-servicio__foto img { transform: scale(1.03); }
+}
+
+/* LA TARJETA ENTERA ES EL ENLACE, con el patron de `blog-indice.css:253-262`: el `::after` del
+ * «See …» cubre la tarjeta, asi que hay UNA parada de tabulador y el objetivo tactil es la caja
+ * entera, no los 14px del texto.
+ * ⚠️ `position: static` es obligatorio: `webflow.css` pone `a { position: relative }` y sin
+ * neutralizarlo el `::after` se ancla al enlace y no a la tarjeta (medido en blog-indice).
+ * `margin-block-start: auto` alinea los «See …» de una fila aunque los textos midan distinto.
+ * El foco se dibuja en el `::after` —el contorno de la tarjeta—, no alrededor de las letras. */
+.fin-servicio .fin-mas {
+  position: static;
+  margin-block-start: auto;
+}
+.fin-servicio .fin-mas::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--mm-r-16);
+}
+.fin-servicio .fin-mas:focus-visible { outline: none; }
+.fin-servicio .fin-mas:focus-visible::after {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco);
+  outline-offset: var(--mm-foco-aire);
 }
 
 /* El descargo legal del cierre. `.mm-medida` le pone el tope de 650px; esto lo centra dentro
