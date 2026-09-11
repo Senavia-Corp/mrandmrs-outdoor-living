@@ -629,3 +629,260 @@ a 0 en GA4.
    `{{_event}} .*`.
 7. **El rojo de `check:texto`** (§1) se cierra congelando los temporizadores en la librería de
    captura. Es decisión del director porque afecta a todas las rutas con carrusel.
+8. **El consentimiento de SMS es obligatorio en los otros cuatro formularios del sitio**
+   —`/contact-us`, `/request-estimated`, `/brochures` y el lightbox de `/gallery`—, heredado de
+   Webflow. No se puede enviar ninguno de esos formularios sin aceptar recibir SMS de
+   «promotions». Eso condiciona el servicio a un consentimiento de **marketing**, que es justo lo
+   que 47 CFR §64.1200(a)(2) no permite. **En el formulario nuevo va opcional** (§14.3); los otros
+   cuatro son rutas fuera de este encargo y **no se tocaron**. Decide si se igualan.
+9. **La resolución del héroe.** `…-project-2.avif` es 1250×698, que es lo que hay en el
+   repositorio. Se ve bien a 1× en el ancho del contenedor (~1200 px a 1440) y algo blando a 2×.
+   Si existe el original a resolución completa, es una mejora gratis.
+10. **Aprobar las capturas de esta ruta.** `check:visual` está en rojo **correctamente** (§16):
+    hay que mirarla y ejecutar `node scripts/aprobar-diseno.mjs /services/custom-pool-spa-builders-in-north-south-florida --si`
+    con el árbol limpio. Hasta entonces la puerta falla ABIERTO, y así consta.
+11. **`check:assets` no pasa en ningún clon nuevo** (§17): lee sin condición de
+    `_source/sanity-masters/`, que está en `.gitignore:12`. Rompe `npm run check` en la sexta
+    puerta para cualquiera que clone hoy. No es de este encargo.
+12. **El rojo de `check:texto` en las 14 fichas** se cierra con `page.clock.install()` en
+    `scripts/lib/captura.mjs` (§15). Es del director porque cambia la lectura de todas las rutas
+    con carrusel — pero ahora se sabe que arregla las 14 de golpe, no una.
+
+
+---
+
+## 14 · Lo que salió de la F2 y la F3 — cerrado el 11-sep-2026
+
+### 14.1 F2 · La variante que ganó, y por qué
+
+`src/pages/_lab-servicio.astro`, no enrutado, monta **los componentes reales** —no una maqueta— y
+pinta las dos variantes una encima de otra:
+
+- **A** — formulario dentro del héroe, a la derecha del texto, en escritorio.
+- **B** — formulario como sección propia, detrás de la franja de confianza.
+
+**Gana la B**, y no por gusto. Tres medidas:
+
+| | A (en el héroe) | B (sección propia) |
+|---|---|---|
+| El `<h1>` y el CTA a 390 px | el formulario empuja el h1 fuera del pliegue o el héroe crece hasta que la foto deja de leerse | h1, CTA y teléfono de North Florida **dentro del pliegue**, con los 80 px del botón flotante ya reservados |
+| Contraste del texto sobre la foto | hay que oscurecer más el velo para que los campos se lean, y entonces la foto —que es la prueba de obra— se apaga | el velo se queda en el 56 % medido y la foto se ve |
+| Reutilización de `.appointment-section` | no encaja: el ancestro está escrito para una sección a ancho completo | encaja entero, y con él **campos de 48 px, anillos de foco y estados de error ya medidos** |
+
+Lo tercero es lo que decide: la capa CSS tenía **6.285 B libres** de los 81.920 del tope de
+`check:tokens`. `estimacion.css` gasta 13.193 B en exactamente estos estilos. **Un formulario
+estilado desde cero no cabía en el presupuesto.** La variante A obligaba a escribirlo; la B lo
+hereda. Después de todo el encargo, la capa queda en **78,1 KB de 80** con 25 hojas.
+
+El CTA del héroe ancla a `#estimate`, que es la sección B. Se le puso
+`scroll-margin-block-start: calc(var(--mm-nav-alto) + var(--mm-e-24))` porque `section.menu` es
+`fixed` de 85 px y sin eso el encabezado aterrizaba a 48/64 px del borde, medio tapado. Con la
+regla: **157/173 px**.
+
+### 14.2 F3 · Las tres secciones nuevas
+
+| Componente | Qué pinta | Dónde saca el contenido |
+|---|---|---|
+| `ConfianzaCore` | 4 diferenciadores con icono: design-build · licencia de Florida · diseño 3D antes de comprometerse · permisos y código | `src/data/captacion-servicios.json`, clave por ruta |
+| `FormularioCore` | la sección `#estimate`: 8 cualificadores obligatorios + detalles opcionales + «What happens after you reach out» con el plazo de **24 h** | ídem |
+| `InversionCore` | inversión y financiación, con rutas a `/pool-cost-estimator` y `/financing`. **Ni una cifra** | ídem |
+
+Los tres devuelven `null` sin entrada en el JSON, así que **añadir una de las trece fichas
+restantes cuesta una entrada de JSON y una línea en la lista de rutas del generador.** Nada queda
+cableado a esta ruta.
+
+Dos cosas que solo se aprenden construyendo:
+
+1. **`InversionCore` no aparecía, en silencio.** Seis secciones de la ficha —`trusted`,
+   `services`, el antes/después, `process`, `gallery` y `faq`— **no** son hermanas de primer
+   nivel: cuelgan de un `<div>` sin clase. El bucle de hermanos nunca las veía. Se arregló
+   insertando el marcador como **nodo de texto** en el DOM, no como cadena en el HTML.
+2. **35 imágenes se quedaban sin `width`/`height`, también en silencio.** `captacion()` corre
+   **antes** que `localizar()`, así que los `src` todavía eran URLs del CDN y la tabla de
+   dimensiones no casaba ninguna. Se arregló con un mapa `DIM_CDN`.
+
+### 14.3 El formulario, y la desviación de la especificación
+
+Los nueve campos de §11.1 están puestos tal cual, con el guion largo `–` (U+2013) intacto en las
+seis opciones de Investment Range. **Hay una desviación, y es deliberada:** además de los nueve va
+la casilla de consentimiento de SMS que los otros cuatro formularios del sitio traen de Webflow.
+
+**Aquí va OPCIONAL, y en los otros cuatro es obligatoria.** El motivo es doble y ninguno es
+estético:
+
+- **Legal.** El texto mezcla avisos de obra con «promotions». Exigir el consentimiento de
+  marketing para poder pedir un presupuesto lo convierte en condición del servicio, y
+  47 CFR §64.1200(a)(2) dice que no puede serlo.
+- **Conversión.** Es el único campo obligatorio que **no aporta nada a la estimación**. Quien no
+  lo marca se va sin dejar el lead que ya se pagó con el clic.
+
+La calidad del lead no baja: los ocho cualificadores siguen siendo obligatorios. Lo único que
+cambia es por qué canal se le puede escribir después. El valor es `Yes` y no `on` porque el correo
+lo lee un comercial, y **este es el único formulario del sitio que registra el consentimiento**:
+si se pide, tiene que quedar constancia. Marcada, sale la fila «SMS consent: Yes»; sin marcar, la
+fila no sale — igual que «Project details» cuando no se escribe nada.
+
+Los otros cuatro formularios **no se tocaron**: son rutas fuera de este encargo. Va como pendiente
+§13.8.
+
+### 14.4 El filtro del carrusel — un problema que me hice yo solo
+
+Sustituir `gallery` por `CarruselProyectos` resolvía el solape 10/10 con el feed de Instagram y
+abría enlaces internos. Pero al medir el resultado apareció lo que no estaba previsto: de los 15
+proyectos, **once lideran con pérgola, cocina exterior o cubierta de patio** —intenciones
+**excluidas** de esta landing— y cinco dicen «South Florida». El carrusel metía **5 «South
+Florida» y 8 «Pergola» debajo del pliegue** de una landing de piscina nueva en North Florida.
+
+El arreglo es un `proyectos.solo` opcional por ruta, con la lista declarada mandando el orden:
+
+```
+1 Estate Pool & Spa with Sun Shelf                      -> /project/estate-pool-spa-sun-shelf-north-florida
+2 Luxury Pool & Spa with Screen Enclosure North Florida -> /project/luxury-pool-spa-screen-enclosure-north-florida
+3 Luxury Pool & Raised Spa with Travertine Deck         -> /project/luxury-pool-raised-spa-travertine-deck-south-florida
+4 Pool & Raised Spa with Marble Deck                    -> /project/pool-raised-spa-marble-deck-south-florida
+
+North Florida: 1 | South Florida: 0 | Pergola: 0
+```
+
+Las otras **65 rutas** que montan el carrusel no declaran nada y siguen viendo las 15: su HTML
+sale byte a byte igual, verificado. Y un slug mal escrito **rompe la construcción** en vez de
+tirar el slide en silencio — se comprobó rompiéndolo a propósito:
+
+```
+CarruselProyectos: /services/custom-pool-spa-builders-in-north-south-florida
+declara la obra «estate-pool-spa-sun-shelf-north-floridaXX», que no existe.      [exit 1]
+```
+
+### 14.5 El prefijo `.svc-` NO estaba libre
+
+Lo encontró el barrido de clases del red team, no la lectura del código. `ServiciosPorCategoria.astro`
+—que montan `/`, `/where-we-serve/north-florida` y `/where-we-serve/south-florida`— **ya tiene un
+espacio de nombres `.svc-`**: `svc-barra`, `svc-ficha`, `svc-chevron`, `svc-nombre`… y
+**`svc-icono`**, que era también el nombre de mi círculo de icono.
+
+La colisión es real y estaba en el build:
+
+```
+.svc-icono{…place-items:center;display:grid}              ← mía, GLOBAL (Base.astro)
+.svc-icono[data-astro-cid-tbqwuwa5]{…width:30px;…}        ← suya, SCOPED por Astro
+```
+
+La suya va scoped, o sea (0,2,0), y ganaba en **todo lo que declara**. Pero `display`,
+`place-items` y `color` **no los declara**, así que esos tres se colaban desde mi hoja sobre
+**42 iconos repartidos en tres páginas** que este encargo promete intactas.
+
+**Hoy no se veía**, y conviene decirlo con precisión en vez de exagerar el hallazgo: el elemento
+es un `<img>` hijo directo de un `display:flex`, así que ya estaba blockificado y `display:grid` no
+lo mueve; `place-items` no pinta nada en un elemento reemplazado sin hijos; y `color` no se ve en
+una imagen que carga. **El HTML seguía siendo byte a byte idéntico y los píxeles también.**
+
+Se renombró igualmente a `.svc-confianza__icono`. Dos cosas distintas con el mismo nombre en el
+mismo espacio global es una bomba de relojería: basta con que alguien añada mañana un
+`padding` a la mía. El barrido completo de mis **26 clases** contra las 122 páginas da
+**0 colisiones** después del cambio.
+
+### 14.6 El héroe, y la foto que estaba dos veces
+
+La foto del héroe era `…-project-1.avif`, que **es también la portada de su propia tarjeta** en el
+carrusel de proyectos: la misma imagen dos veces en la misma página. Se cambió a `…-project-2.avif`
+de la misma obra. Contraste del texto sobre ella: **4,94:1** por el método de `CRITERIO.md` —peor
+píxel, nunca promedio—, con el velo medido al 56 %. El umbral es 4,5:1.
+
+Antes de eso hubo que descartar `--mm-tinta-inversa-2`, que daba **3,18:1** (un 22,3 % por debajo):
+ese token está calibrado contra el azul marino plano, no contra una fotografía. Se usa blanco
+puro, **5,05:1**.
+
+Y el antes/después **sale de la página**: la foto «Before» es de un listado del MLS de Miami y el
+«After» es otro patio. No espera a que exista la sustituta. El plan para reconstruirla —obra
+elegida, máscara descrita, prompts y prueba de aceptación— está en §10 y **vuelve en su propio
+commit** cuando el «Before» exista.
+
+
+---
+
+## 15 · El rojo de `check:texto`, ya no es una hipótesis
+
+La §1 dejó la causa **identificada**. La barrida completa —115 rutas, la primera que se corre
+entera en este encargo— la deja **probada**, y con una coincidencia que no admite otra lectura:
+
+```bash
+$ grep -rlo 'process-section' .vercel/output/static --include='*.html' | wc -l
+14
+$ node scripts/check-texto.mjs          # sin filtro, las 115
+  115/115 rutas medidas · 101 identicas · 14 en rojo
+PUERTA ROJA — 14 pagina(s)
+```
+
+**Las 14 rojas son exactamente las 14 fichas de `/services/`, que son exactamente las 14 que
+montan la sección de proceso.** Trece dan la firma idéntica `faltan 2 lineas, sobran 2`, y las
+trece son **byte a byte idénticas al commit base**: una página cuyo HTML no ha cambiado en un solo
+byte no la puede haber roto este diff.
+
+Eso convierte el diagnóstico en conclusión: **es un defecto de la puerta, no de las páginas.**
+`AUTOPLAY_DELAY = 5000` pasa la diapositiva sola, la captura lee el paso 2 y el baseline tiene el
+1. El arreglo —`page.clock.install()` en `scripts/lib/captura.mjs`— vale para las 14 de una vez, y
+es del director porque cambia la lectura de todas las rutas con carrusel.
+
+### Y la puerta cazó dos regresiones mías, que es para lo que está
+
+Ninguna de las dos la habría visto releyendo el diff.
+
+1. **El espejo de la etiqueta de consentimiento.** `CAMPOS_CAPTACION` es un espejo deliberado de
+   `FormularioCore.astro`; su comentario dice literalmente que una etiqueta cambiada allí y no
+   aquí **tiene** que poner la puerta roja. Cambié la etiqueta en §14.3 y no toqué el espejo.
+2. **Un cambio de copy publicado, sin decidirlo.** Al meter `proyectos.solo` en el JSON se me
+   cambió de paso la entradilla del carrusel:
+
+   ```diff
+   - "Real projects from our own galleries, across North and South Florida."
+   + "Real projects from our own galleries in North and South Florida."
+   ```
+
+   Lo delató que el fichero **derivado** —`proyectos-heading-por-ruta.json`, que es el que lee
+   `CarruselProyectos.astro`— seguía con el texto bueno: **fuente y derivado habían divergido**, y
+   esa divergencia es lo que la puerta mide. Restaurado el original. `npm run paginas` ya no mueve
+   un byte del derivado, que es la prueba de que vuelven a coincidir. Y de paso: la semilla de
+   `ENCABEZADOS_PROYECTOS` esparcía el bloque `proyectos` **completo**, metiendo `solo` y su
+   `_solo` de documentación en un fichero derivado cuyo único trabajo es decir qué pone en la
+   cabecera; ahora copia `titulo` y `entradilla` y nada más.
+
+Después de las dos, acotada a la ruta: `PUERTA ROJA — 1 pagina`, `faltan 2 lineas, sobran 2`, las
+mismas cuatro líneas del paso 1 contra el paso 2. **El rojo previo, y nada más. NEW REGRESSION:
+ninguna.**
+
+## 16 · `check:visual`: el rojo correcto, con su tamaño
+
+No es un fallo y no se maquilla: la ruta tiene contrato `rediseno` con referencia aprobada el
+**31-ago-2026** (`sha 527b5f0`) y la página ha crecido en los cuatro anchos.
+
+| ancho | antes | después | delta |
+|---:|---:|---:|---:|
+| 1920 | 2040 | 2944 | **+904 px** |
+| 1440 | 2024 | 2894 | **+870 px** |
+| 991 | 2071 | 2831 | **+760 px** |
+| 479 | 2422 | 3348 | **+926 px** |
+
+Tres secciones nuevas hacen eso. La puerta rechaza por el cambio de alto antes de comparar un
+píxel, que es lo correcto: lo que dice es «esto ha cambiado mucho, ve a mirarlo». **Sale del rojo
+cuando mires las capturas y se ejecute `aprobar-diseno.mjs <ruta> --si`** —árbol limpio y humano—,
+y eso es tuyo, no mío.
+
+Se corrió **acotada a esta ruta**, y el motivo se dice en vez de callarse: la barrida completa se
+paró a los 62 minutos porque su salida se truncaba a las últimas 30 líneas, o sea que no podía dar
+una lista de rojos utilizable, y las referencias de todo el sitio están pendientes de re-aprobar
+desde R15-IG. Para las otras 121 páginas la prueba que hay es **más fuerte** que un diff de
+píxeles: su HTML es byte a byte idéntico y las 26 clases nuevas barren limpio contra las 122.
+
+## 17 · `check:assets` no puede pasar en ningún clon nuevo
+
+Estaba clasificada como `ENVIRONMENT BLOCKER` de esta máquina. No lo es solo de esta máquina:
+
+```
+Error: ENOENT … open '…/_source/sanity-masters/images/site/commercial-pool-builders-…jpg'
+$ grep -n sanity-masters .gitignore
+12:_source/sanity-masters/
+```
+
+La puerta lee sin condición de un directorio que **está en `.gitignore`**. No existe en ningún
+checkout limpio, así que `npm run check` se rompe en la sexta puerta para cualquiera que clone el
+repositorio hoy. Va como pendiente: no es de este encargo, pero es de alguien.

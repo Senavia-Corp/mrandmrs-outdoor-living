@@ -5576,3 +5576,244 @@ con `aprobar-diseno.mjs`.
 
 Ojo al construir en local: sin `PUBLIC_ES_PRODUCCION=1`, `npm run build` reescribe
 `public/robots.txt` (Disallow) y `public/sitemap.xml` (vacío). Se devolvieron a HEAD.
+
+---
+
+## R17-CORE — la landing de pago del ad group «Pool Builders Core» deja de mandar el tráfico a otra página (11-sep-2026)   ✅ cerrada
+
+**Encargo:** ENCARGO MAESTRO de Sebastian · **Informe:** [`docs/encargos/R17-CORE.md`](docs/encargos/R17-CORE.md)
+**Rama:** `claude/happy-hamilton-u7vqjy` · **Base:** `7d49b21`
+
+### Objetivo
+
+Que `/services/custom-pool-spa-builders-in-north-south-florida` —Final URL de 20 de las 39
+keywords de una campaña de $1.600/mes parada esperando al sitio— **capte el lead en la propia
+página**, y que todo lo que se construya para ella sirva ya para las **catorce** fichas de
+`/services/`, aunque solo se encienda una.
+
+### Por qué era urgente
+
+El encargo SEO+AEO+GEO cerró el 11-sep en producción y dejó `<title>`, `<h1>`, teléfono y schema
+correctos, **con la fuga mayor abierta: cero `<form>` en la página.** El tráfico de pago tenía que
+dar un **segundo clic** hasta `/request-estimated` — un clic que ya se había pagado.
+
+### Qué se hizo
+
+- **Tres secciones nuevas**, como componentes Astro en `src/components/widgets/`:
+  `ConfianzaCore`, `FormularioCore`, `InversionCore`. Los tres devuelven `null` sin entrada en
+  `src/data/captacion-servicios.json`, que es donde vive su contenido **con clave por ruta**.
+- **Una hoja nueva**, `src/styles/servicio-core.css`, prefijo `.svc-`, escrita para las 14.
+- **El generador**, `scripts/build-paginas.mjs`: una función `captacion(doc, ruta)` acotada por
+  **lista de rutas** —no un `if (ruta === …)`— que reordena secciones, sustituye cadenas, arregla
+  atributos de `<img>` e inserta los marcadores de componente.
+- **El formulario**, de punta a punta y **sin circuito paralelo**: alta en `FORMULARIOS`
+  (`src/pages/api/formulario.ts`), en `MAPA_FORM` (`src/components/Formularios.astro`) y en
+  `NOMBRES` (`src/lib/aviso-correo.ts`), más 4 aserciones nuevas en `scripts/test-aviso.mjs`.
+- **Cinco puertas ampliadas**: `check-ads-landing-pages.mjs` (3 reglas nuevas + un defecto suyo
+  arreglado), `check-texto.mjs` (declaraciones **por ruta**), `check-seo.mjs`
+  (`JSONLD_ARREGLADO`), `check-ix2.mjs` (la ruta entra en la lista).
+- **La ruta sigue DERIVADA.** No pasa a autoría propia: `build-plantillas.mjs:358,648` hace
+  `readdirSync` + `unlinkSync` sobre `src/pages/services/` y la borraría, y `RUTAS_PROPIAS`
+  **apagaría `check:texto` y la comparación de `<head>` de `check:seo`** justo en la página que
+  más vigilancia necesita.
+
+### Lo que estaba mal y nadie sabía
+
+| # | Hallazgo | Qué se hizo |
+|---:|---|---|
+| 1 | La foto **«Before» del antes/después es de un listado del MLS de Miami** (lleva `A11…… © Miami MLS© 202…` incrustado sobre el césped) y el «After» es **otro patio distinto**. 2 PNG de 1408×768, **4,2 MB** | la sección **sale de la página**, sin esperar a la sustituta. El plan para reconstruirla está en `R17-CORE.md` §10 y vuelve en su propio commit |
+| 2 | `For projects ranging from $75,000 residential pools to $500,000+` en el cuerpo **y dentro del `FAQPage`**, sin verificar | fuera. Y **regla 11 nueva** en `check:ads` para que no vuelva: las regex viejas buscaban `$55K` y `$20K+` y no lo cazaban |
+| 3 | El `FAQPage` no coincidía con lo visible: la 5.ª `Question` se llamaba literalmente `"construction"`, el `serviceType` era **el de otra ficha**, `name` con doble espacio, `image` con una URL donde va el alt y `dateModified` **anterior** a `datePublished` | seis correcciones, declaradas en `JSONLD_ARREGLADO` con **el valor viejo y el nuevo**: si el origen cambia, la puerta se entera |
+| 4 | «South Florida» 9 veces en texto visible, la primera en el **carácter 97**; «North Florida» suelta no salía hasta el **6053**. Y `location` ponía South Florida delante | North Florida delante en héroe, teléfonos y `location` |
+| 5 | **Ni un teléfono en el cuerpo.** El invariante «North Florida primero» pasaba solo por el cromo | 7 `href="tel:"` en el cuerpo, con el de North Florida primero |
+| 6 | `gallery` y el feed de Instagram pintaban **las mismas 10 fotos** (solape 10/10 verificado fichero a fichero) | `gallery` → `CarruselProyectos`, con 4 enlaces a `/project/<slug>` |
+| 7 | Los **8 subservicios no enlazaban a nada**, y 6 de los 8 eran de remodelación | reordenados (obra nueva delante) y los 6 de remodelación enlazan a la landing de Remodeling |
+| 8 | El héroe **es el LCP y iba `loading="lazy"`**, sin `fetchpriority` y sin dimensiones | `eager` + `fetchpriority="high"` + `1250`/`698`. **Regla 12 nueva** para que no se repita |
+
+### Números medidos
+
+| Métrica | Esperado | Medido |
+|---|---|---|
+| `<form data-mm-envia="1">` en la ruta | 1 | **1** (antes 0) |
+| Páginas del build que cambian | 1 de 122 | **1 de 122** |
+| `href="tel:"` en el cuerpo | ≥1, North Florida primero | **7**, North Florida primero |
+| `<img>` sin `width`/`height` en la ruta | menos que la ficha sin tocar | **59**, contra **97** de `/services/pool-remodeling-renovation-…` |
+| Slides del carrusel tras filtrar | 4, sin intenciones excluidas | **4** · North Florida 1 · South Florida 0 · pérgolas 0 |
+| Contraste del texto del héroe sobre la foto | ≥4,5:1 (peor píxel) | **4,94:1**, velo al 56 % |
+| Ancla `#estimate` bajo el nav `fixed` de 85 px | visible | **157/173 px** desde el borde (antes 48/64) |
+| Capa CSS contra el tope de `check:tokens` | <80 KB | **78,1 KB**, 25 hojas |
+| Score interno de la landing | ≥95 | **95** (era 88), criterio estricto de móvil |
+
+### Evidencia
+
+**1 de 122 páginas cambia.** Se construyó el commit base en un worktree aparte y se compararon
+sha1 por página, normalizando **exactamente dos deltas declarados**: el hash del bundle CSS
+—añadir una hoja a la capa lo cambia en las 122, y el criterio de aceptación lo admite— y una
+clave nueva en el objeto `MAPA_FORM` del `<script>` compartido, que es el coste inherente de
+reutilizar el circuito de formularios existente en vez de montar uno paralelo:
+
+```bash
+$ diff <(sort i2-antes.txt) <(sort i2-final.txt) | grep -E '^[<>]' | awk '{print $1, $3}'
+< /services/custom-pool-spa-builders-in-north-south-florida/index.html
+> /services/custom-pool-spa-builders-in-north-south-florida/index.html
+```
+
+Nada más. Las otras **121 salen byte a byte idénticas**, incluidas las **65** que montan
+`CarruselProyectos` y no declaran filtro.
+
+**El filtro del carrusel falla ruidosamente**, comprobado rompiendo un slug a propósito:
+
+```
+CarruselProyectos: /services/custom-pool-spa-builders-in-north-south-florida
+declara la obra «estate-pool-spa-sun-shelf-north-floridaXX», que no existe.      [exit 1]
+```
+
+**Las dimensiones del cuerpo, contra la ficha hermana sin tocar:**
+
+```
+/services/pool-remodeling-renovation-…  (sin tocar)  135 <img>,  97 sin dimensiones
+/services/custom-pool-spa-builders-…    (Core, hoy)  133 <img>,  59 sin dimensiones
+```
+
+Las 59 que quedan son **todas de cromo compartido**, con recuento idéntico al de la ficha sin
+tocar: tocarlas cambiaría las otras 121 páginas.
+
+### Gate
+
+**Criterio:** las 17 puertas de `npm run check` sobre `.vercel/output/static` construido con
+`MM_SANITY_CACHE=1 PUBLIC_ES_PRODUCCION=1`. Un rojo vale **solo** si queda clasificado, y una
+puerta que no corrió **no es una puerta verde**.
+
+**14 VERDES.** `resenas` · `aviso` · `estimador` · `tokens` · `rutas` · `enlaces` · `menu` ·
+`galeria` · `galeria-formulario` · `seo` · `ads` · `medicion` · `ix2` · `carrusel`.
+
+```
+check:tokens    la capa pesa 78.1 KB de 80 KB — 1.9 KB libres · 25 hojas
+check:rutas     115/115 rutas construidas · 122 paginas · 0 de mas
+check:ads       PUERTA VERDE (las 4 landings) + las 3 reglas nuevas
+check:ix2       PUERTA VERDE  (con la ruta nueva en su lista: 4 cargas mas)
+check:carrusel  17 instancias de carrusel medidas en 5 rutas · jank: 0 long tasks >50ms
+```
+
+`check:carrusel` es la que importa para el filtro del carrusel: sus 5 rutas son **fijas** y la
+ruta del Core **no** está entre ellas, así que mide justo lo que había que medir — que
+`CarruselProyectos` sigue funcionando en las rutas que **no** declaran filtro.
+
+**`check:texto` — PUERTA ROJA, 14 páginas. `PRE-EXISTING KNOWN RED`.** La barrida completa, la
+primera de este encargo: `115/115 rutas medidas · 101 idénticas · 14 en rojo`. La clasificación
+la decide una coincidencia exacta:
+
+```bash
+$ grep -rlo 'process-section' .vercel/output/static --include='*.html' | wc -l
+14
+$ node scripts/check-texto.mjs   # sin filtro
+PUERTA ROJA — 14 pagina(s)       # y son exactamente esas 14: las fichas de /services/
+```
+
+**Trece dan la firma idéntica `faltan 2 lineas, sobran 2`, y las trece son byte a byte idénticas
+al commit base.** Una página cuyo HTML no ha cambiado en un solo byte no la puede haber roto este
+diff. La causa ya estaba escrita en `R17-CORE.md` §1: `AUTOPLAY_DELAY = 5000` en el `<script>` de
+`section.process-section` pasa la diapositiva sola cada 5 s, así que la captura lee el paso 2
+donde el baseline grabó el 1. **Es la puerta leyendo un carrusel en marcha, no un defecto de las
+páginas**, y no se arregla aquí: `scripts/lib/captura.mjs` es del director. Recomendación:
+`page.clock.install()` antes de cargar, y volver a medir las 115.
+
+La catorceava era **mía**, y la puerta hizo su trabajo. Dos causas, las dos arregladas en `F3f`:
+
+1. `CAMPOS_CAPTACION` es un **espejo deliberado** de `FormularioCore.astro`. Cambié la etiqueta
+   del consentimiento y no toqué el espejo.
+2. Al meter `proyectos.solo` en el JSON **se me cambió de paso una línea de copy publicada**
+   (`«…galleries, across North and South Florida.»` → `«…galleries in North and South
+   Florida.»`). La delató que el fichero **derivado** seguía con el texto bueno: fuente y derivado
+   habían divergido. Restaurado; `npm run paginas` ya no mueve un byte del derivado.
+
+Acotada a la ruta después de los dos arreglos: `PUERTA ROJA — 1 pagina`, `faltan 2 lineas, sobran
+2`, con las mismas cuatro líneas del paso 1 contra el paso 2. O sea **exactamente el rojo previo
+de las otras trece. NEW REGRESSION: ninguna.**
+
+**`check:visual` — PUERTA ROJA, 4 comparaciones. `ROJO CORRECTO`, no es un fallo.** La ruta tiene
+contrato `rediseno` con referencia aprobada el **31-ago-2026** (`sha 527b5f0`), y la página ha
+crecido:
+
+```
+1920  alto 2040 -> 2944  (+904px)      991  alto 2071 -> 2831  (+760px)
+1440  alto 2024 -> 2894  (+870px)      479  alto 2422 -> 3348  (+926px)
+```
+
+Tres secciones nuevas hacen eso. **Solo sale del rojo cuando Sebastian mire las capturas y se
+ejecute `aprobar-diseno.mjs <ruta> --si`**, que exige árbol limpio y humano. Se corrió **acotada a
+esta ruta** y se dice por qué: la barrida completa se paró a los 62 minutos porque su salida se
+estaba truncando a las últimas 30 líneas —o sea que no podía dar una lista de rojos utilizable— y
+las referencias de todo el sitio están pendientes de re-aprobar desde R15-IG. Para las otras 121
+páginas hay prueba **más fuerte** que un diff de píxeles: su HTML es byte a byte idéntico y las
+26 clases nuevas barren limpio contra las 122 páginas.
+
+**`check:assets` — `ENVIRONMENT BLOCKER`, y además un defecto de la puerta.**
+
+```
+Error: ENOENT: no such file or directory, open
+  '…/_source/sanity-masters/images/site/commercial-pool-builders-…jpg'
+$ grep -n sanity-masters .gitignore
+12:_source/sanity-masters/
+```
+
+El directorio está **en `.gitignore`**, así que no existe en ningún clon nuevo y la puerta
+**no puede pasar en ningún checkout limpio** — no solo aquí. Merece su propio arreglo.
+
+`check:cascaron` **no se corrió, a propósito**: reescribe `public/robots.txt` y
+`public/sitemap.xml` con las versiones de preview. Se verificó que los dos siguen intactos
+(`Allow: /` y el sitemap con sus `<loc>`).
+
+### Desviaciones
+
+1. **El consentimiento de SMS va OPCIONAL**, y en los otros cuatro formularios del sitio es
+   obligatorio. No estaba en la especificación (`R17-CORE.md` §11.1) y es una decisión, no un
+   descuido: el texto mezcla avisos de obra con «promotions», y exigir el consentimiento de
+   marketing para pedir un presupuesto lo convierte en condición del servicio —47 CFR
+   §64.1200(a)(2) dice que no puede serlo—. Es además el único campo obligatorio que no aporta
+   nada a la estimación. **Los otros cuatro no se tocaron**: son rutas fuera de este encargo.
+   Pendiente §13.8 del informe.
+2. **La foto del héroe pasó de `…-project-1.avif` a `…-project-2.avif`** porque la primera es
+   **también la portada de su propia tarjeta** en el carrusel: la misma imagen dos veces en la
+   misma página.
+3. **`CarruselProyectos` recibió un filtro por ruta** que el plan no preveía. Salió de medir el
+   resultado: sin filtrar metía **5 «South Florida» y 8 «Pergola»** debajo del pliegue de una
+   landing de piscina nueva en North Florida.
+4. **El prefijo `.svc-` NO estaba libre.** `ServiciosPorCategoria.astro` —que montan `/` y las dos
+   de `/where-we-serve/`— ya tiene su propio `svc-barra`, `svc-ficha`, `svc-chevron`… y
+   **`svc-icono`**, que era también el nombre de mi círculo de icono. Su regla va scoped por Astro
+   (`.svc-icono[data-astro-cid-tbqwuwa5]`, 0-2-0) y ganaba en todo lo que declara, pero `display`,
+   `place-items` y `color` **no los declara**: esos tres se colaban desde mi hoja global sobre
+   **42 iconos en tres páginas**. Con precisión: **no se veía** —el elemento es un `<img>` hijo de
+   un `display:flex`, ya blockificado, y las otras dos propiedades no pintan nada en un elemento
+   reemplazado sin hijos— y el HTML seguía byte a byte idéntico. Se renombró igualmente a
+   `.svc-confianza__icono`: dos cosas distintas con el mismo nombre en un espacio global es una
+   bomba de relojería. Barrido de las **26 clases** contra las 122 páginas: **0 colisiones**.
+5. **F5 —extender a Gainesville, Ocala y Remodeling— queda PARADA**, como manda el encargo. Las
+   dos landings de ciudad no son de esta familia: salen de `pool-builders/[slug].astro` con datos
+   de Sanity y necesitan el mecanismo de override por ciudad.
+
+### Rarezas del original replicadas a propósito
+
+- **El slug sigue diciendo `north-south-florida`** aunque el anuncio prometa North Florida.
+  Renombrarlo rompería la Final URL del anuncio. Cuesta 2 puntos de Geographic Relevance y se
+  declaran como no recuperables.
+- **Los 14 logos se pintan dos veces** (28 de las imágenes son el mismo marquee). Es cromo
+  compartido: arreglarlo cambia las otras 121 páginas.
+- **`CarruselProyectos` no declara `width`/`height`** en sus slides. Lo montan 66 rutas; hornearlas
+  es un frente de las 66, no de esta ficha. Aun así la ruta **mejora**: la `gallery` que sustituyó
+  traía 10 imágenes sin dimensiones y el carrusel trae 4.
+
+### Abierto
+
+Nueve pendientes, todos de Sebastian, en `R17-CORE.md` §13. Los tres que bloquean de verdad:
+
+1. **El lanzamiento sigue bloqueado por GTM**, no por el sitio: `generate_lead` a **0** en ocho
+   meses y medio con `/thank-you` en 18 páginas vistas. Sospechoso principal, el trigger
+   `BLOQUEO - Entornos de preview` con condición `{{_event}} .*`. **No se arregla desde este
+   repositorio.**
+2. **La imagen «Before»** no se puede generar aquí: Higgsfield vive en el Mac y las herramientas
+   de Adobe conectadas no hacen relleno generativo con máscara. Obra elegida, máscara descrita,
+   prompts y prueba de aceptación están escritos.
+3. **Medir LCP/INP/CLS contra producción sigue bloqueado** por el proxy. Se reporta
+   `PRODUCTION PERFORMANCE VERIFICATION BLOCKED`, nunca PASSED.
