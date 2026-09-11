@@ -62,10 +62,15 @@
  * recuento no puede crecer al estrechar la pantalla, que es el defecto que R12 documento en
  * el feed (6/5/3/2, con tablet mas grande que escritorio). Aqui: 1 -> 2 -> 4, y cuatro
  * tarjetas llenan fila completa en los tres tramos. */
-/* La franja y el formulario son vecinos inmediatos y sus dos paddings se suman: 96 + 64 = 160 px
- * de aire muerto a 992, medido en el laboratorio. Se recorta el de abajo de la franja y se deja
- * que mande el de arriba del formulario, que es la seccion que tiene que respirar. */
-.svc-confianza { padding-block-end: var(--mm-e-32); }
+/* R18 — AQUI HABIA UN `padding-block-end: var(--mm-e-32)` Y SE HA QUITADO.
+ * Su motivo era bueno cuando lo escribi y dejo de serlo con el fondo navy: decia que la franja
+ * y el formulario eran dos secciones BLANCAS vecinas cuyos paddings sumaban 160 px de aire
+ * muerto, asi que recortaba el de abajo. Con la franja tenida eso deja de ser aire entre
+ * secciones y pasa a ser el margen INTERIOR de un bloque de color: medido, 96 px arriba contra
+ * 32 abajo a 1440, una asimetria de 3 a 1 que hace que la banda parezca recortada y no
+ * compuesta. El aire de abajo ya no se suma al de la seccion siguiente porque entre los dos hay
+ * un cambio de plano, que es lo que cierra una seccion tenida. Se deja mandar a `.mm-seccion`
+ * y queda simetrico: 48 / 64 / 96. Quitar la regla ADEMAS devuelve bytes. */
 .svc-confianza__tit { text-wrap: balance; }
 
 .svc-confianza__lista {
@@ -117,6 +122,11 @@
  * blockificado, y `place-items`/`color` no pintan nada en un elemento reemplazado sin hijos—,
  * pero dos cosas distintas con el mismo nombre en el mismo espacio es una bomba de relojeria.
  * El prefijo `.svc-` NO era libre. */
+/* AVISO PARA QUIEN ANADA UN ENLACE A ESTA FRANJA: dentro de `.mm-inverso` el oro ES el color de
+ * enlace (`--mm-enlace-inverso`, base.css). Hoy no hay conflicto -la banda tiene 0 enlaces y 0
+ * botones, y los cuatro glifos van `aria-hidden`-, pero el dia que entre un `<a>` aqui, un
+ * glifo dorado decorativo y un enlace dorado hablaran el mismo idioma. Si eso pasa, el enlace
+ * se distingue por subrayado (`.mm-vinculo`), no por color. */
 .svc-confianza__icono { display: block; color: var(--mm-oro); }
 .svc-confianza__icono svg { inline-size: var(--mm-e-48); block-size: var(--mm-e-48); }
 
@@ -180,6 +190,27 @@
 
 .svc-form__consentimiento { margin-block: var(--mm-e-24) var(--mm-e-16); }
 .svc-form__envio { margin-top: var(--mm-e-16); }
+
+/* EL BANNER DE EXITO IBA A 1,35:1, Y ES LA PANTALLA QUE VE QUIEN ACABA DE DEJAR EL LEAD.
+ *
+ * No se ve en ninguna captura ni la mide ninguna puerta porque solo existe DESPUES de enviar:
+ * `Formularios.astro` esconde el `<form>` y ensena este `<div>`. Medido forzandolo visible:
+ * negro sobre navy, 1,35:1.
+ *
+ * La cascada, que es donde estaba la trampa. Dos hojas se disputan el fondo con la MISMA
+ * especificidad (0-2-0) y gana la ultima cargada:
+ *     contacto.css:585   .form-block .success-message-form          -> fondo TENUE   (hoja 120)
+ *     estimacion.css:454 .appointment-section .success-message-form -> fondo NAVY    (hoja 121)
+ * El marcado casa con las dos -el panel lleva `form-block` y la seccion `appointment-section`-,
+ * asi que el fondo acaba siendo navy. Y las reglas con las que `estimacion.css` compensa ese
+ * navy apuntan a `h2` (:459) y a `> div` (:466); aqui el texto es un `<p class="mm-txt">`, que
+ * no es ninguna de las dos, y `.mm-txt` pinta `--mm-tinta-cuerpo`, o sea NEGRO.
+ *
+ * Se arregla por color y no cambiando el `<p>` a `<div>` para colarlo en el selector ajeno:
+ * depender de la forma de la etiqueta para heredar un color de OTRA hoja es justo el tipo de
+ * atadura que hoy ha fallado. (0-2-1) le gana a `.mm-txt` (0-1-0) sin `!important`.
+ * #c7cddd sobre navy = 9,81:1. */
+.svc-captacion .success-message-form p { color: var(--mm-tinta-inversa-2); }
 
 /* ══ 3 · «WHAT HAPPENS AFTER YOU REACH OUT» ═══════════════════════════════════════════════
  * Ya no es tarjeta: es una TIRA sobre el suelo gris, delante del formulario. Sin fondo propio
