@@ -25,6 +25,16 @@
   ],
 
   "/services/custom-pool-spa-builders-in-north-south-florida": {
+    "heroe": {
+      "apoyo": "New custom inground pools for North Florida homeowners — 3D design, permits, construction and final start-up, from one licensed team. We also build across South Florida.",
+      "foto": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-1.avif",
+      "alt": "Custom inground pool and raised spa built on North Florida acreage by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698,
+      "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
+      "ancla": "#estimate"
+    },
+
     "confianza": {
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
@@ -61,6 +71,58 @@
         "We walk your property and put a 3D design on paper.",
         "You get the scope in writing and a fixed project price before you commit."
       ]
+    },
+
+    "servicios": {
+      "rotulo": "What we do",
+      "construccionPrimero": [
+        "Custom Pool Design & Engineering",
+        "Pool Plumbing & Circulation Systems Installation",
+        "Pool Equipment Installation & Automation",
+        "Pool Finishes & Interior Surface Installation",
+        "Pool Tile & Coping Installation"
+      ],
+      "remodelacion": [
+        "Inground Pool Remodeling",
+        "Integrated Spa Remodeling",
+        "Pool Deck & Hardscape Remodeling"
+      ],
+      "remodelacionHref": "/services/pool-remodeling-renovation-in-north-south-florida",
+      "textos": {
+        "Custom Pool Design & Engineering": "Custom pool design engineered for Florida homes and code compliance.",
+        "Pool Plumbing & Circulation Systems Installation": "Plumbing and circulation built for proper water flow and filtration.",
+        "Pool Tile & Coping Installation": "Tile and coping that improve pool safety, durability, and modern design."
+      },
+      "cta": { "texto": "Get a Free Estimate", "href": "#estimate" }
+    },
+
+    "faq": {
+      "sustituye": {
+        "Can I finance a custom pool project in Florida?": "Yes. We connect Florida homeowners with lending partners, and the order matters: you get your design and a fixed project price in writing first, and only then review how to pay for it. Approval and terms come from the lender."
+      },
+      "anade": [
+        {
+          "pregunta": "How much does a custom pool cost in North Florida?",
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+        },
+        {
+          "pregunta": "Who pulls the permits for a pool in Florida?",
+          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
+        },
+        {
+          "pregunta": "What is included in a custom pool project?",
+          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
+        }
+      ]
+    },
+
+    "schema": {
+      "serviceType": "Custom Pool Construction"
+    },
+
+    "proyectos": {
+      "titulo": "Custom pools we have built",
+      "entradilla": "Real projects from our own galleries, across North and South Florida."
     },
 
     "inversion": {

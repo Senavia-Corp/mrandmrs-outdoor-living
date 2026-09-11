@@ -172,7 +172,62 @@ const PARTES_PROPIAS = {
       + '(§ OBRAS_PROPIAS) al principio del `hasPart`, en el mismo orden que sus tarjetas.',
   },
 };
+
+/**
+ * ── JSON-LD ARREGLADO A PROPOSITO (R17-CORE) ─────────────────────────────────────────────
+ *
+ * Esta puerta compara el JSON-LD del origen CARACTER A CARACTER, y hace bien: es lo que impide
+ * que una regeneracion se lleve por delante un dato estructurado sin que nadie se entere. El
+ * efecto secundario es que tambien replica fielmente los DEFECTOS del origen, y la landing de
+ * pago del Core traia cinco:
+ *
+ *   · `about.serviceType` decia «Smart Soffit LED Lighting Installation» — el serviceType de
+ *     OTRA ficha, dentro del dato estructurado de la pagina de piscinas;
+ *   · `about.name` llevaba un doble espacio;
+ *   · `about.image` llevaba un TEXTO ALT en un campo que espera una URL;
+ *   · `dateModified` era ANTERIOR a `datePublished`;
+ *   · la quinta `Question` del `FAQPage` se llamaba literalmente «construction», y su respuesta
+ *     publicaba «$75,000 … $500,000+» — que la hoja 18 del libro de Ads marca DATA NOT
+ *     AVAILABLE y que choca con la decision TILA/Reg Z del 2-sep-2026.
+ *
+ * NO ES «IGNORA ESTE BLOQUE», y esa es toda la diferencia. Se declara el valor VIEJO y el
+ * NUEVO: si el origen deja de traer el viejo -porque alguien lo arreglo en Webflow, o porque
+ * cambio otra cosa- la declaracion deja de casar y esto vuelve a ROJO. Y el valor nuevo se
+ * exige tal cual en el build. Todo lo demas del bloque se sigue comparando caracter a caracter.
+ */
+const JSONLD_ARREGLADO = {
+  '/services/custom-pool-spa-builders-in-north-south-florida': {
+    bloque: 0,
+    motivo: 'R17-CORE: cinco defectos del origen en la landing de pago del ad group «Pool '
+      + 'Builders Core», mas las 3 preguntas anadidas para que el FAQPage siga coincidiendo con '
+      + 'lo que se ve.',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation', 'Custom Pool Construction'],
+      ['about.name', 'Pool  Construction', 'Pool Construction'],
+      ['about.image', 'New pool and spa construction in Florida by licensed custom pool builders',
+        '/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-1.avif'],
+      ['dateModified', '2026-05-18T19:50:50.150Z', '2026-05-18T19:55:49.094Z'],
+      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:50:50.150Z'],
+      ['mainEntity.mainEntity.4.name', 'construction', 'Can I finance a custom pool project in Florida?'],
+    ],
+    /* La respuesta 5 se sustituye entera y las tres nuevas se anaden al final. Se EXIGE que las
+     * anadidas tengan nombre y respuesta no vacios y que no repitan cifras de dinero: una
+     * declaracion que no comprueba nada es un agujero con comentario. */
+    respuestaSustituida: { camino: 'mainEntity.mainEntity.4.acceptedAnswer.text', empiezaPor: 'We connect qualified Florida homeowners' },
+    anadidas: { camino: 'mainEntity.mainEntity', n: 3 },
+  },
+};
+
+/** Lee/escribe por camino con puntos: `mainEntity.mainEntity.4.name`. */
+const porCamino = (o, c) => c.split('.').reduce((x, k) => (x == null ? x : x[k]), o);
+const ponCamino = (o, c, v) => {
+  const ks = c.split('.');
+  const ult = ks.pop();
+  const padre = ks.reduce((x, k) => (x == null ? x : x[k]), o);
+  if (padre != null) padre[ult] = v;
+};
 let partesCasadas = 0;
+let arregladosCasados = 0;
 
 /**
  * LAS RUTAS DE AUTORIA PROPIA no tienen entrada en `baseline/seo.json` y no pueden tenerla:
@@ -329,7 +384,7 @@ for (const ruta of conPropias(RUTAS)) {
       problemas.push(`JSON-LD: ${espLd.length} bloque(s) -> ${bloques.length}`);
     } else {
       for (const [i, b] of bloques.entries()) {
-        const e = espLd[i];
+        let e = espLd[i];
         let mio; try { mio = ordena(JSON.parse(b.textContent)); } catch { problemas.push(`JSON-LD ${i} no parsea`); continue; }
 
         // Las partes anadidas a proposito (§ PARTES_PROPIAS): se exigen y se descuentan.
@@ -352,6 +407,47 @@ for (const ruta of conPropias(RUTAS)) {
           // `ordena` ya dejo las claves ordenadas; sustituir una existente conserva su sitio.
           mio = { ...mio, [pp.clave]: arr.slice(pp.urls.length) };
           partesCasadas++;
+        }
+
+        /* R17-CORE — se aplica la declaracion al BASELINE y se comprueba el build. */
+        const ja = JSONLD_ARREGLADO[ruta];
+        if (ja && i === ja.bloque) {
+          const esperado = JSON.parse(JSON.stringify(e));
+          const malas = [];
+          for (const [camino, era, es] of ja.cambios) {
+            const enBase = porCamino(esperado, camino);
+            if (enBase !== era) malas.push(`arreglo "${camino}": el origen ya no dice "${era}" sino "${enBase}" — revisa la declaracion`);
+            const enBuild = porCamino(mio, camino);
+            if (enBuild !== es) malas.push(`arreglo "${camino}": el build dice "${enBuild}", se declaro "${es}"`);
+            ponCamino(esperado, camino, es);
+          }
+          if (ja.respuestaSustituida) {
+            const { camino, empiezaPor } = ja.respuestaSustituida;
+            const enBase = String(porCamino(esperado, camino) ?? '');
+            const enBuild = String(porCamino(mio, camino) ?? '');
+            if (!enBase.startsWith(empiezaPor)) malas.push(`respuesta sustituida: el origen ya no empieza por "${empiezaPor}"`);
+            if (!enBuild.trim()) malas.push('respuesta sustituida: el build la deja vacia');
+            if (/\$\s?\d/.test(enBuild)) malas.push('respuesta sustituida: vuelve a traer una cifra de dinero');
+            ponCamino(esperado, camino, enBuild);
+          }
+          if (ja.anadidas) {
+            const arr = porCamino(mio, ja.anadidas.camino);
+            const base = porCamino(esperado, ja.anadidas.camino);
+            if (!Array.isArray(arr) || !Array.isArray(base)) malas.push('anadidas: el camino no es un array');
+            else if (arr.length !== base.length + ja.anadidas.n) {
+              malas.push(`anadidas: ${arr.length - base.length} de ${ja.anadidas.n} declarada(s)`);
+            } else {
+              for (const q of arr.slice(base.length)) {
+                if (!String(q?.name ?? '').trim()) malas.push('anadida sin pregunta');
+                if (!String(q?.acceptedAnswer?.text ?? '').trim()) malas.push('anadida sin respuesta');
+                if (/\$\s?\d/.test(String(q?.acceptedAnswer?.text ?? ''))) malas.push('anadida con cifra de dinero');
+              }
+              base.push(...arr.slice(base.length));
+            }
+          }
+          if (malas.length) { problemas.push(...malas); continue; }
+          e = esperado;
+          arregladosCasados++;
         }
 
         const a = JSON.stringify(mio);
@@ -386,6 +482,15 @@ for (const [r, d] of Object.entries(PARTES_PROPIAS)) {
   const bien = partesCasadas > 0;
   console.log(`  ${bien ? 'ok  ' : 'ROJO'} declarado ${r}: ${d.urls.length} parte(s) propia(s) `
     + `en ${d.clave}, descontadas antes de comparar con el baseline`);
+  if (!bien) fallos++;
+}
+/* R17-CORE. Misma regla: si no sale por pantalla, deja de estar declarado el dia que nadie abre
+ * el fichero. Y si el contador no sube, la declaracion no se aplico y hay que decirlo. */
+for (const [r, d] of Object.entries(JSONLD_ARREGLADO)) {
+  const bien = arregladosCasados > 0;
+  console.log(`  ${bien ? 'ok  ' : 'ROJO'} declarado ${r}: ${d.cambios.length} arreglo(s) en el `
+    + `JSON-LD del origen + ${d.anadidas?.n ?? 0} pregunta(s) anadida(s)`);
+  console.log(`       ${d.motivo}`);
   if (!bien) fallos++;
 }
 // Se cuentan por separado a proposito: a las del origen se les exige el `<head>` IDENTICO, a
