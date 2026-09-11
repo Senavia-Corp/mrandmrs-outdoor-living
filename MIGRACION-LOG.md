@@ -5397,6 +5397,14 @@ de `services/`): deshace el `sizes="200px"` de los logos, que se arregló despu�
 `.astro`. Es deriva previa a este encargo. Se revirtieron; no entran en este commit. Antes de
 volver a correr `npm run paginas`, eso tiene que volver a la fuente o al generador.
 
+**Cerrada (11-sep-2026): los arreglos pasan al generador** (`limpia()` en `build-paginas.mjs`).
+Eran TRES arreglos hechos a mano, no uno: `sizes="200px"` en los logos (102942c; 16 páginas),
+`rel="noopener"` (M11, 7f0a2c6; brochures, contact-us, request-estimated) y el `.mm-tel` del
+teléfono (M9, 9356a5f; contact-us). Las 18 salen ya byte a byte iguales. Y el daño ya había
+pasado una vez: ff5f142 (R16-PROY) regeneró las 9 de `country/` y les quitó el `sizes`, que
+102942c también les había puesto. Vuelven a llevarlo: 63 logos, sin ningún otro cambio.
+Comprobado: dos corridas seguidas de `npm run paginas` dejan `src/pages` igual.
+
 ### Puertas
 
 `check:tokens`, `check:rutas`, `check:enlaces`, `check:seo`, `check:galeria-formulario`: verdes.

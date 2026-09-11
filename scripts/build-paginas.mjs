@@ -448,6 +448,10 @@ let huecosReservados = 0;
 const imgSinDim = [];
 /* Heroes que dejan de ser `lazy` por ser la imagen LCP de su ruta. */
 let heroesDesperezados = 0;
+/* Los tres arreglos que antes vivian a mano en el `.astro` (§ limpia()). */
+let logosConSizes = 0;
+let relAnadidos = 0;
+let telefonosEnvueltos = 0;
 /* Enlaces reescritos a una ruta renombrada (§ scripts/lib/renombradas.mjs). */
 let enlacesRenombrados = 0;
 /* El embed WAAPI del mosaico de `.trusted-section` (9 rutas de country/, huella `STEP_MS`
@@ -737,6 +741,47 @@ for (const [ruta] of RUTAS) {
       img.setAttribute('loading', 'eager');
       img.setAttribute('fetchpriority', 'high');
       heroesDesperezados++;
+    }
+
+    /**
+     * TRES ARREGLOS QUE SE HICIERON A MANO SOBRE EL `.astro` DERIVADO, y que cada `npm run
+     * paginas` deshacia en silencio (MIGRACION-LOG, «/gallery — orden de la rejilla»). No es
+     * hipotesis: ff5f142 regenero las 9 de country/ y les quito el `sizes` del primero.
+     * Viven aqui para que regenerar salga byte a byte igual que lo commiteado.
+     *
+     * 1 · `sizes` de los logos del marquee (102942c). Webflow les pone el `sizes` de una imagen a
+     *     todo el ancho -`100vw` en movil- y el navegador baja la variante mas grande del `srcset`
+     *     para pintar un logo de 35-45 px de alto (webflow.css). El mas apaisado es 4:1, o sea
+     *     180 px como mucho: `200px` los cubre a todos. Solo los que traen `sizes`: ponerlo en
+     *     uno sin `srcset` no hace nada y ensucia el diff.
+     */
+    for (const img of n.querySelectorAll('img.fs-marquee-logoscms_logo[sizes]')) {
+      img.setAttribute('sizes', '200px');
+      logosConSizes++;
+    }
+    /* 2 · M11 (7f0a2c6): `target="_blank"` sin `rel`. El `rel` va JUSTO DETRAS de `target`,
+     *     que es donde quedo a mano; `setAttribute` lo pondria al final y cambiaria 62 enlaces. */
+    for (const a of n.querySelectorAll('a[target="_blank"]:not([rel])')) {
+      const at = [...a.attributes];
+      const tras = at.slice(at.findIndex((x) => x.name === 'target') + 1).map((x) => [x.name, x.value]);
+      for (const [k] of tras) a.removeAttribute(k);
+      a.setAttribute('rel', 'noopener');
+      for (const [k, v] of tras) a.setAttribute(k, v);
+      relAnadidos++;
+    }
+    /* 3 · M9 (9356a5f): el telefono de /contact-us partia por el guion y salia tachado. El
+     *     numero va en `.mm-tel` (nowrap, contacto.css:225) y el `&nbsp;` de South pasa a
+     *     espacio, o no podria partir por ahi. Por clase y no por ruta: la CSS que hace
+     *     inofensivo el `<span>` -`display:block`- tambien cuelga de `.phone-wrapper`. */
+    for (const a of n.querySelectorAll('.phone-wrapper a[href^="tel:"]')) {
+      const m = a.textContent.match(/^(.*?:)\s+(\+[\d ()-]+)$/);
+      if (!m) continue;
+      const tel = doc.createElement('span');
+      tel.className = 'mm-tel';
+      tel.textContent = m[2];
+      a.textContent = `${m[1]} `;
+      a.append(tel);
+      telefonosEnvueltos++;
     }
 
     for (const a of n.querySelectorAll('a')) {
@@ -1061,6 +1106,8 @@ console.log('        salta con «0 paginas · ya convertida»).\n');
 console.log(`  enlaces reescritos a una ruta renombrada: ${enlacesRenombrados}`);
 console.log(`  imagenes con hueco reservado (width+height): ${huecosReservados}`);
 console.log(`  heroes que dejan de ser lazy (imagen LCP): ${heroesDesperezados}`);
+console.log(`  logos con sizes="200px": ${logosConSizes} · rel="noopener" anadidos: ${relAnadidos}`
+  + ` · telefonos en .mm-tel: ${telefonosEnvueltos}`);
 if (imgSinDim.length) {
   console.error(`\n  ROJO ${imgSinDim.length} imagen(es) declarada(s) sin dim en el manifiesto —`
     + ' siguen desplazando y esto no lo dice ninguna puerta:');
