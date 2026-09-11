@@ -67,6 +67,7 @@ const NOMBRES: Record<string, string> = {
   gallery: 'Gallery request',
   brochures: 'Brochure request',
   estimator: 'Pool estimator',
+  core: 'Pool builders core lead',
 };
 
 /** Los campos que se convierten en enlace, por NOMBRE de campo y no por etiqueta. */

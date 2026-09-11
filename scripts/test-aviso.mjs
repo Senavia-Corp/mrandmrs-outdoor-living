@@ -159,6 +159,56 @@ ok('sin ciudad ni ZIP el asunto no queda cojo', () => {
 ok('el lightbox de la galeria no se llama «Request a quote»', () =>
   assert.equal(construyeAviso({ ...EJEMPLO, formId: 'gallery' }).asunto, 'New lead · Gallery request · Ocala 34471'));
 
+/**
+ * R17-CORE — EL LEAD DE LA LANDING DE PAGO, ENTERO.
+ *
+ * No basta con que `core` tenga nombre en `NOMBRES`: lo que hay que demostrar es que los CINCO
+ * cualificadores de A1 -ZIP, Homeowner, Project Type, Investment Range y Timeline- llegan al
+ * correo con su etiqueta. Es el fallo silencioso que el propio endpoint documenta: un campo que
+ * no esta en la lista blanca de `FORMULARIOS` no da error, simplemente **no sale**, y el lead
+ * llega mutilado sin que nadie se entere. Esta prueba es lo que lo haria ruidoso.
+ *
+ * El guion del rango es U+2013, igual que en el desplegable: si alguien lo copia con un guion
+ * normal, la dimension `budget_range` se parte en dos juegos de valores en GA4.
+ */
+const CORE = {
+  ...EJEMPLO,
+  formId: 'core',
+  tituloRespaldo: 'Pool builders core lead',
+  ruta: '/services/custom-pool-spa-builders-in-north-south-florida',
+  campos: [
+    { campo: 'Full-Name', etiqueta: 'Full name', valor: 'Dana Reyes' },
+    { campo: 'Phone', etiqueta: 'Phone', valor: '(352) 555-0134' },
+    { campo: 'email', etiqueta: 'Email', valor: 'dana.reyes@example.com' },
+    { campo: 'ZIP-Code', etiqueta: 'ZIP code', valor: '32608' },
+    { campo: 'Type', etiqueta: 'Homeowner', valor: 'Yes, I own this property' },
+    { campo: 'Project-Type', etiqueta: 'Project type', valor: 'New Custom Pool' },
+    { campo: 'Estimated-Project-Budget', etiqueta: 'Investment range', valor: '$75,000 – $100,000' },
+    { campo: 'Timeline', etiqueta: 'Timeline', valor: '3-6 months' },
+    { campo: 'checkbox', etiqueta: 'Services of interest', valor: 'New Pool and Spa Construction' },
+    { campo: 'Checkbox', etiqueta: 'SMS consent', valor: 'on' },
+  ],
+};
+const avisoCore = construyeAviso(CORE);
+
+/* El asunto se queda en ZIP y sin ciudad, y es CORRECTO: el formulario del Core no pide
+ * direccion -son 9 campos, no 13, para no anadir friccion en una landing de pago-, asi que
+ * `donde` solo puede componerse con el ZIP. Sigue triando sin abrir el correo. */
+ok('el lead del Core no se llama «Request a quote»', () =>
+  assert.equal(avisoCore.asunto, 'New lead · Pool builders core lead · 32608'));
+ok('los 5 cualificadores de A1 llegan al correo, con su etiqueta', () => {
+  for (const e of ['ZIP code', 'Homeowner', 'Project type', 'Investment range', 'Timeline']) {
+    assert.ok(avisoCore.html.includes(e), `falta la etiqueta: ${e}`);
+  }
+  for (const c of CORE.campos) {
+    assert.ok(avisoCore.texto.includes(c.valor), `falta el valor: ${c.etiqueta}`);
+  }
+});
+ok('el consentimiento de SMS queda registrado', () =>
+  assert.ok(avisoCore.html.includes('SMS consent')));
+ok('el rango de inversion conserva el guion largo U+2013', () =>
+  assert.ok(avisoCore.texto.includes('$75,000 \u2013 $100,000')));
+
 // ── FIXTURES para las capturas ────────────────────────────────────────────────
 const DIR = path.join(os.tmpdir(), 'mm-aviso');
 fs.mkdirSync(DIR, { recursive: true });
@@ -176,6 +226,9 @@ fs.writeFileSync(path.join(DIR, 'aviso-contact.html'), construyeAviso({
     { campo: 'Message', etiqueta: 'Message', valor: 'Looking to remodel a 1990s pool deck and add a screen enclosure before the summer.' },
   ],
 }).html);
+
+fs.writeFileSync(path.join(DIR, 'aviso-core.html'), avisoCore.html);
+fs.writeFileSync(path.join(DIR, 'aviso-core.txt'), avisoCore.texto);
 
 console.log(`\n  fixtures  : ${DIR}`);
 console.log(`  resultado : ${fallos ? `🔴 ${fallos} fallo(s)` : '✅ todo verde'}\n`);

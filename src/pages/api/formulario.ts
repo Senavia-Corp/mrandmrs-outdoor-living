@@ -79,6 +79,35 @@ const FORMULARIOS: Record<string, { titulo: string; campos: [string, string][] }
     ],
   },
   /**
+   * R17-CORE — EL FORMULARIO DE LA LANDING DE PAGO.
+   *
+   * `data-name` PROPIO y no reutilizado. Con «Request Quote Form» el `form_name` de GA4
+   * saldria `estimate`, indistinguible del de `/request-estimated`, y esta es la Final URL de
+   * un ad group: separar sus leads es media razon de existir del formulario. El id corto es
+   * `core`, y va tambien en `MAPA_FORM` (Formularios.astro) y en `NOMBRES` (aviso-correo.ts).
+   *
+   * LOS CINCO CUALIFICADORES DE A1 ESTAN AQUI, y ese es el punto: un campo que NO este en esta
+   * lista desaparece EN SILENCIO del correo -el bucle solo itera la lista blanca-, o sea que el
+   * lead llegaria mutilado y nadie se enteraria.
+   *
+   * `Checkbox` -el consentimiento de SMS- SI se registra aqui, y es el unico formulario que lo
+   * hace. En los otros tres se pide y no se guarda. Si se pide un consentimiento, tiene que
+   * quedar constancia de que se dio: es un formulario de captacion de pago y ese registro es
+   * justo lo que hace falta el dia que alguien pregunte. No cambia nada en los otros tres.
+   *
+   * El orden es el del correo: con quien hay que hablar, donde, que quiere, cuanto y cuando.
+   */
+  'Pool Builders Core Form': {
+    titulo: 'Pool builders core lead',
+    campos: [
+      ['Full-Name', 'Full name'], ['Phone', 'Phone'], ['email', 'Email'],
+      ['ZIP-Code', 'ZIP code'], ['Type', 'Homeowner'],
+      ['Project-Type', 'Project type'], ['Estimated-Project-Budget', 'Investment range'],
+      ['Timeline', 'Timeline'], ['Message', 'Project details'],
+      ['checkbox', 'Services of interest'], ['Checkbox', 'SMS consent'],
+    ],
+  },
+  /**
    * FASE 12d — el cierre del estimador de piscinas.
    *
    * Antes, el paso 7 acababa en un enlace a `/request-estimated` que **se llevaba por delante

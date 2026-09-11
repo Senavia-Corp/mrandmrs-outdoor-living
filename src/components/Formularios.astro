@@ -29,6 +29,11 @@
       'Contact Page Form':   'contact',
       'Request Quote Form':  'estimate',   // se afina por ruta al enviar
       'Pool Estimator Form': 'estimator',
+      // R17-CORE: el formulario de la landing de pago del ad group «Pool Builders Core». Id
+      // propio a proposito: con `estimate` sus leads no se distinguirian de los de
+      // /request-estimated en GA4 mas que por `form_location`. Tambien es la `action` de
+      // Turnstile, que solo admite [a-zA-Z0-9_-].
+      'Pool Builders Core Form': 'core',
     };
     const forms = [...document.querySelectorAll('form[data-name]')].filter((f) => f.dataset.mmEnvia === '1');
     if (!forms.length) return;
