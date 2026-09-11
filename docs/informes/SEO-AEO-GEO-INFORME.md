@@ -204,6 +204,43 @@ Facebook/Houzz/BBB/Yelp para `sameAs`, si hay dirección postal publicable, y si
 
 ---
 
+## 8.bis · F11 — Search Console, lo hecho y lo que queda a mano
+
+**Hecho (11-sep-2026 11:45 UTC):** `sitemap.xml` reenviado y **ya descargado por Google**.
+
+| | antes | después |
+|---|---|---|
+| `sitemap.xml` enviadas | 113 (descarga del 29-ago) | **121 · 0 errores** (descarga del 11-sep) |
+
+El desfase de 8 URLs que arrastraba el encargo queda cerrado.
+
+**Queda a mano, y no por olvido:** retirar `page-sitemap.xml` —el zombi de Webflow con 1 error,
+17 URLs web y 1.004 de imagen, todas muertas, sin descargar desde el 29-sep-2025—. **El toolkit
+de Composio no expone borrado de sitemaps** (`GOOGLE_SEARCH_CONSOLE_DELETE_SITEMAP` no existe;
+solo `SUBMIT` y `GET`). Se borra en la interfaz de Search Console, en Sitemaps → los tres puntos
+→ Eliminar sitemap.
+
+**Un dato de indexación que confirma el diagnóstico.** `INSPECT_URL` sobre
+`/pool-builders/gainesville-florida`:
+
+```
+coverageState : "Discovered - currently not indexed"
+referringUrls : ["https://www.mrandmrsoutdoorliving.com/where-we-serve/south-florida"]
+verdict       : NEUTRAL
+```
+
+Google **conoce** la página —le llegó desde `/where-we-serve/south-florida`— y ha decidido **no
+indexarla**. «Discovered, currently not indexed» en una página de ciudad es la respuesta típica
+a contenido que el rastreador juzga redundante, y encaja exactamente con el 82,9 % de solape
+medido entre las 53. Es la mejor prueba de que la diferenciación de A3 y el trabajo de F6 atacan
+la causa correcta, y también de por qué las 51 restantes necesitan contenido propio antes que
+metas nuevas.
+
+Recordatorio que sigue vigente: el campo `indexed` de la API devuelve `"0"` siempre, en los dos
+sitemaps. **No es un dato.** La indexación real se mide con `INSPECT_URL`, como aquí.
+
+---
+
 ## 9 · Qué esperar, y cuándo
 
 Sin promesas de posición: depende de competencia, autoridad de dominio y tiempo, que no
