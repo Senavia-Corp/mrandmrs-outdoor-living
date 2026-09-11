@@ -1,0 +1,631 @@
+# R17-CORE — Landing «Pool Builders Core»: rediseño de captación
+
+**Fecha:** 2026-09-11 · **Rama:** `claude/happy-hamilton-u7vqjy` · **Base:** `7d49b21`
+**Ruta:** `/services/custom-pool-spa-builders-in-north-south-florida`
+
+Esta ruta tiene dos papeles a la vez: es la **ficha piloto** del rediseño de las 14 de
+`/services/`, y es la **Final URL del ad group «Pool Builders Core»** — 20 de las 39 keywords de
+una campaña de $1.600/mes que está parada esperando al sitio. Todo lo de aquí se juzga con los dos
+criterios, y cada número lleva al lado el comando que lo produjo.
+
+**Se hace una página primero y luego las otras trece.** Verificado elemento a elemento contra
+`pool-remodeling-renovation`: mismo orden de secciones, 14 `h2`, 15 `h3`, 3 `h4`, 70 `<img>`,
+17 `<a>`, 8 subservicios, 4 pasos, 5 FAQ y 0 `<form>` en las dos. Son la misma plantilla, así que
+**lo que se construye aquí se construye ya para catorce** aunque solo se encienda una.
+
+---
+
+## 1 · Recovery: tres premisas del encargo han cambiado
+
+| Premisa | Estado real |
+|---|---|
+| «Otro chat tiene cambios sin commitear en `financing.astro`, `financiacion.css` y 3 iconos» | **Ya commiteados** en esta rama: `3a0a371` y `7d49b21`. `git status --porcelain` sale vacío |
+| «Trabaja en un worktree y rama propios (`claude/core-lp-captacion`)» | La rama de la sesión es `claude/happy-hamilton-u7vqjy`, que ya contiene ese trabajo y va 14 commits por delante de `main` sin divergir |
+| «La ruta necesita un contrato `rediseno`, que escribe el DIRECTOR» | **Ya lo tiene**, con sha real: `rediseno · 2026-08-31 · 527b5f0` (lote R10). Al re-aprobar se añade un `·` al motivo y se actualizan `fecha` y `sha` |
+
+Lo demás del §3 del encargo se verificó y **se confirma**.
+
+### Lectura de puertas ANTES de tocar nada
+
+Sobre el build de producción (`MM_SANITY_CACHE=1 PUBLIC_ES_PRODUCCION=1 npm run build`):
+
+```
+check:tokens     PUERTA VERDE
+check:rutas      PUERTA VERDE
+check:enlaces    PUERTA VERDE
+check:medicion   PUERTA VERDE
+check:aviso      resultado : todo verde
+check:seo        PUERTA VERDE   (PUBLIC_ES_PRODUCCION=1)
+check:ads        PUERTA VERDE   (las 4 landings ok)
+check:texto      PUERTA ROJA — 1 pagina(s)     <-- PRE-EXISTING, ver abajo
+```
+
+**`check:texto`, el rojo previo — causa raíz identificada.** Hasta hoy constaba como «el carrusel
+del proceso arranca en otra diapositiva». El detalle exacto es:
+
+```
+ROJO /services/custom-pool-spa-builders-in-north-south-florida — faltan 2 lineas, sobran 2
+  FALTA  Site Assessment & Structural Evaluation
+  FALTA  Comprehensive evaluation of lot configuration, soil stability, and hydrostatic …
+  SOBRA  Design Consultation & 3D Rendering
+  SOBRA  Custom design consultation creating detailed 3D architectural renderings …
+```
+
+Y la causa es el `<script>` de `section.process-section`, que empieza con:
+
+```js
+const AUTOPLAY_DELAY = 5000;
+```
+
+**El carrusel se pasa solo cada 5 s**, así que la captura lee el paso 2 en lugar del 1. No es un
+defecto de la página ni de este encargo: es la puerta leyendo un carrusel en marcha, que es
+exactamente lo que `00-PRINCIPIOS.md` avisa («al capturar, espera un estado, no milisegundos»).
+**No lo arreglo aquí** —`scripts/lib/captura.mjs` es del director y congelar los temporizadores
+cambiaría la lectura de todas las rutas con carrusel—, pero queda escrito con su causa para que
+se pueda decidir. Recomendación: `page.clock.install()` antes de cargar, en la librería de
+captura, y volver a medir las 115.
+
+### Entorno
+
+- `node_modules` no venía en el contenedor: `npm install` (registro alcanzable, 265 paquetes).
+- Sanity está denegado por el proxy → los builds van con `MM_SANITY_CACHE=1`.
+- Playwright 1.62.1 pide `chromium-1234` y la imagen trae `1194`, con otra estructura de carpetas
+  (`chrome-linux64` / `chrome-headless-shell-linux64`). **Resuelto fuera del repo** con enlaces:
+
+  ```bash
+  ln -sfn /opt/pw-browsers/chromium-1194/chrome-linux \
+          /opt/pw-browsers/chromium-1234/chrome-linux64
+  ln -sfn /opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell \
+          /opt/pw-browsers/chromium_headless_shell-1234/chrome-headless-shell-linux64/chrome-headless-shell
+  ```
+- Las 4 puertas de navegador lanzan Chromium **con ventana** (`headless: false`), y aquí no hay
+  servidor X. Se corren con `xvfb-run -a`, **sin tocar el código de la puerta**. A diferencia del
+  Mac de Sebastian, aquí no secuestran ninguna pantalla.
+- **Verificar contra producción sigue bloqueado.** El proxy deniega el dominio:
+  `gateway answered 403 to CONNECT · www.mrandmrsoutdoorliving.com:443`.
+  → `PRODUCTION PERFORMANCE VERIFICATION BLOCKED`, nunca PASSED.
+
+---
+
+## 2 · El recorrido del comprador, hoy
+
+**Desde el anuncio** (20 keywords de intención «pool builder north florida»):
+
+```
+clic pagado → landing → lee «Custom Pool Builders» → quiere pedir presupuesto
+           → NO HAY FORMULARIO → clic a /request-estimated → formulario de 3 pasos
+           → envía → /thank-you → generate_lead (que GTM no recoge)
+```
+
+El segundo clic es la fuga mayor: está pagado y no lleva a ningún sitio nuevo, solo al mismo
+formulario que podría estar aquí. Y entre el héroe y ese clic, el visitante pasa por **cuatro
+secciones** (logos, intro, 8 subservicios de los que 6 hablan de remodelación, y un antes/después
+cuyo texto dice «South Florida») antes de encontrar cualquier señal de confianza fechable.
+
+**Desde el orgánico:** llega con la misma intención y se encuentra lo mismo, más las reseñas en el
+bloque 10 —o sea, después de todo— y cero enlace al estimador de coste o a financiación, que son
+las dos preguntas que frenan una compra de este ticket.
+
+---
+
+## 3 · QS3 recalculado hoy: **88**
+
+> **⚠️ NOT A GOOGLE METRIC.** Métrica propia y solo de auditoría. Google no publica su fórmula de
+> Quality Score y pondera histórico y competencia que este repositorio no ve.
+
+Da 88, el mismo número del informe del 11-sep. Las seis deducciones, re-verificadas una a una:
+
+| Deducción | Verificación de hoy |
+|---|---|
+| **CTA/Conversión −4** | `grep -c '<form' <la ruta>.astro` → **0**. Cero formularios, confirmado también en el origen de Webflow |
+| **Técnico −2** | `curl` al dominio → `403 CONNECT`. Sigue sin poderse medir contra producción |
+| **Geografía −3** | El slug dice `north-south`. Y medido sobre el cuerpo: la primera «South Florida» está en el carácter **97**; la primera «North Florida» suelta, en el **6053** |
+| **Móvil −1** | Sin medida en dispositivo real |
+| **Primeras 100 palabras −1** | El héroe dice «North & South Florida», no North Florida primero, y no hay teléfono ni paso siguiente que no sea un segundo clic |
+| **Intención comercial −1** | 6 de los 8 subservicios hablan de remodelación, que es el producto de la ficha hermana |
+
+---
+
+## 4 · Hallazgos nuevos
+
+Diez, con su comando. Los cuatro primeros son P0/P1.
+
+### 4.1 🚨 La foto «Before» es de un listado del MLS de Miami
+
+Abrí la imagen. Lleva incrustado, en blanco sobre el césped y visible a tamaño real:
+
+```
+A11……  © Miami MLS© 202…
+```
+
+Es una foto de una ficha inmobiliaria de terceros, publicada comercialmente, con un `alt` que se
+la atribuye a Mr & Mrs Outdoor Living. Y hay un segundo problema encima del primero: **el «After»
+es otro patio distinto** —otra casa, otra valla, otra vegetación, otra orientación—, así que la
+sección enseña **una transformación que no ocurrió**. `CRITERIO.md:200` ya lo nombra: «eso no es
+feo, es falso; y ninguna puerta distingue dos encuadres distintos de dos iguales».
+
+Las dos son PNG de 1408×768 y pesan **4,2 MB** entre ambas, en una página que usa AVIF en todo lo
+demás.
+
+### 4.2 🚨 Cifras financieras sin verificar, también dentro del schema
+
+```
+For projects ranging from $75,000 residential pools to $500,000+ luxury backyard transformations
+```
+
+Sale **dos veces**: en el cuerpo visible y dentro del `FAQPage`. La hoja 18 del libro de Ads marca
+`$75K` como **DATA NOT AVAILABLE**, y la decisión de Sebastian del 2-sep-2026 (TILA/Reg Z) prohíbe
+cifras financieras en el sitio. **`check:ads` no lo caza**: sus cinco regex buscan `$55K` y
+`$20K+`, no estas.
+
+### 4.3 🚨 El `FAQPage` no coincide con lo que se ve, y trae el servicio de otra ficha
+
+En el bloque JSON-LD de la ruta:
+
+| Campo | Valor | Qué pasa |
+|---|---|---|
+| `mainEntity[4].name` | `"construction"` | El `<h3>` visible dice «Can I finance a custom pool project in Florida?» |
+| `about.serviceType` | `"Smart Soffit LED Lighting Installation"` | Es el `serviceType` de **otra ficha** |
+| `about.name` | `"Pool  Construction"` | Doble espacio |
+| `about.image` | `"New pool and spa construction in Florida by licensed custom pool builders"` | Un texto `alt` en un campo que espera una URL |
+| `dateModified` | `19:50:50` | **Anterior** a `datePublished` (`19:55:49`) |
+
+### 4.4 🚨 South Florida manda en la landing de North Florida
+
+- En las **915 palabras** del cuerpo, «South Florida» sale **9 veces** (4 sueltas y 5 dentro de
+  «North & South Florida») y la primera está en el **carácter 97**. «North Florida» sale **3 veces**,
+  todas sueltas, y la primera en el **carácter 6053** — o sea, pasados dos tercios de la página.
+- La sección `location` pone el `<h3>` de **South Florida delante** del de North Florida.
+- El intro del antes/después empieza: *«Turn that bare **South Florida** backyard…»* — en la
+  landing cuyo anuncio promete North Florida.
+
+### 4.5 · 6 de los 8 subservicios son de remodelación, y ninguno enlaza
+
+No tres, seis: tres lo dicen en el título (`Inground Pool Remodeling`, `Integrated Spa Remodeling`,
+`Pool Deck & Hardscape Remodeling`) y otros tres en el texto (`renovations`, `upgrades`,
+`existing pools`). El primero, en una ficha cuyo `<h1>` es «Custom Pool **Builders**», dice:
+
+> Custom pool **redesigns** engineered for Florida homes and code compliance.
+
+Y **ninguna de las 8 tarjetas enlaza a ningún sitio**: no hay camino a la landing de Remodeling,
+que es donde ese lead vale dinero.
+
+### 4.6 · La página no tiene ni un teléfono en el cuerpo
+
+```
+$ grep -c '740-3361\|913-7112' <la ruta>.astro
+0
+```
+
+El invariante «North Florida primero» de `check:ads` pasa hoy **solo por el cromo** —el nav y el
+botón flotante—, no por la página. Es un verde prestado.
+
+### 4.7 · `gallery` y el feed de Instagram pintan las mismas 10 fotos
+
+Solape **10/10**, verificado fichero a fichero: `pool-construction-1…10`. Y los 14 logos del
+marquee se pintan **dos veces** en la misma página, así que **28 de las 70 imágenes son el mismo
+carrusel repetido**, todas con `alt=""`.
+
+### 4.8 · El héroe es el LCP y va diferido
+
+```html
+<img src="…/new-pool-spa-construction-florida.avif" loading="lazy" alt="…" class="image-bg-hero-services">
+```
+
+Sin `fetchpriority`, sin `width`/`height`, sin `srcset`. De las 56 `<img>` del cuerpo, **42 no
+declaran tamaño** — y el manifiesto conoce las 42, así que se pueden hornear todas sin un solo
+hueco de datos.
+
+### 4.9 · La FAQ de financiación no enlaza a `/financing`
+
+La pregunta «Can I finance a custom pool project in Florida?» responde con cifras y **no enlaza** a
+`/financing`, que existe y se escribió justo para eso. Tampoco hay enlace a `/pool-cost-estimator`.
+
+### 4.10 · Jerarquía de encabezados
+
+5 `<h2>` hermanos dentro de `process-section` (uno de sección y cuatro de paso), salto de `h2` a
+`h4` en el antes/después, y el mismo texto —«Trusted by Florida's finest homeowners»— marcado `h2`
+arriba y `h4` abajo.
+
+---
+
+## 5 · Orden de secciones propuesto
+
+🔒 congelada (se comparte con otras rutas: solo se reordena o se cambia su contenido propio) ·
+🟡 exclusiva de las 14 fichas · 🟢 nueva, con prefijo `.svc-`
+
+| # | Sección | Movimiento | Motivo |
+|---|---|---|---|
+| 1 | Héroe 🟡 | se queda | El `<h1>` **no se toca**. Cambia el texto de apoyo, entran los dos teléfonos con `tel:` (North Florida primero), la línea de licencias, y el CTA **ancla al formulario de la página** en vez de salir a `/request-estimated` |
+| 2 | Logos 🔒 | se queda | Prueba social inmediata y sin coste de lectura |
+| 3 | 🟢 Franja de confianza | **nueva** | Los 4 temas RSA respaldados, en una franja de una línea. Responde «¿por qué vosotros?» antes de pedir datos |
+| 4 | 🟢 Formulario | **nueva** | **La fuga mayor.** Va aquí, no al final: el tráfico de pago llega con la intención ya formada |
+| 5 | Reseñas 🔒 | **sube del 10 al 5** | Ocho reseñas reales justo debajo del formulario: es la objeción que queda tras pedir datos |
+| 6 | `trusted-section` 🔒 | se queda | |
+| 7 | `services` 🟡 | se queda, reordenada | Construcción nueva primero; los 3 de remodelación **enlazan a la landing de Remodeling**; se corrige «redesigns» y la errata |
+| 8 | Antes/después 🔒 | **fuera de esta ruta, por ahora** | La foto del MLS sale sí o sí (4.1) y el «Before» de sustitución no se puede generar en este entorno (§10). Sus dos tarjetas de valor —Design-Build Authority y Licensed & Engineered— **suben a la franja de confianza**, así que el mensaje no se pierde. Vuelve en su propio commit cuando exista el par honesto |
+| 9 | `CarruselProyectos` 🔒 | **sustituye a `gallery`** | Resuelve el solape 10/10 con el feed, mete obra real y abre enlaces a `/project/<slug>` |
+| 10 | `process` 🟡 | se queda + CTA al final | |
+| 11 | 🟢 Inversión y financiación | **nueva** | «What will my pool cost?» → `/pool-cost-estimator` · «Financing available» → `/financing`. **Ni una cifra** |
+| 12 | FAQ 🔒 | +3 objeciones | Coste, permisos y qué incluye. Y se arregla el `FAQPage` roto (4.3) |
+| 13 | `location` 🔒 | **North Florida delante** | |
+| 14-15 | Carrusel de blog 🔒 · Feed 🔒 | se quedan | |
+| 16 | `cta-footer` 🔒 | se queda | Camino secundario a `/request-estimated` |
+
+**Se añaden 3 secciones y se retira 1.** Nunca quedan más de 2 secciones seguidas sin un paso
+siguiente: héroe→CTA, franja→formulario, servicios→CTA, proceso→CTA, inversión→2 rutas,
+FAQ→formulario, cierre→CTA.
+
+---
+
+## 6 · Tabla semántica
+
+| Eje | Contenido |
+|---|---|
+| **PRIMARY** | construcción de piscina custom/inground **nueva** en North Florida |
+| **VARIANTS** | pool builder(s) · pool contractor · pool construction company · custom pool builder · inground pool builder · gunite/concrete pool builder · new pool construction |
+| **LOCAL** | North Florida primero; South Florida subordinado. Condados **verificados** en `src/lib/negocio.mjs`: Alachua, Columbia, Dixie, Gilchrist, Levy, Marion, Putnam (North) · Broward, Palm Beach (South) |
+| **COMMERCIAL** | free estimate · design-build · licensed |
+| **EXCLUDED** | reparación · limpieza · mantenimiento · reparación de equipos · pérgolas y cocinas exteriores como mensaje dominante · remodelación como mensaje dominante |
+
+Sin perseguir densidad: un concepto por encabezado y lenguaje natural.
+
+---
+
+## 7 · Cadena de correspondencia de mensaje
+
+```
+SEARCH QUERY → KEYWORD → AD GROUP → RSA THEME → TITLE → H1 → HERO → 100 WORDS → CTA → FORM → CONVERSION
+     ?            ?         ✅         ⚠️        ✅      ✅     ✅        ✅        ✅     ✅        🚨
+```
+
+- **QUERY / KEYWORD** — `DATA NOT AVAILABLE`. No hay export de Ads ni acceso a la cuenta.
+- **AD GROUP** — «Pool Builders Core», 20 keywords, Final URL verificada y sin redirect.
+- **RSA THEME ⚠️** — el texto exacto de los RSA sigue sin poder cotejarse (falta la hoja 13), así
+  que **RSA CLAIM REQUIRES REVIEW**. Lo que sí consta, contado sobre el **texto visible** del
+  cuerpo (entre paréntesis, sobre el `.astro` entero, que incluye el JSON-LD): `3D` 6 (7),
+  `permit` 7 (10), `start-up` 2 (3), `gunite` 2 (4), `concrete` 2 (2), `licensed` 11 (26),
+  **`warranty` 0 (0)**. Los cuatro
+  temas que se escriben en la franja de confianza son los cuatro que la página ya sostiene.
+  **Garantía no se escribe**, porque la página no la sostiene y nadie la ha confirmado.
+- **TITLE** — «Custom Pool Builders in North Florida | Mr & Mrs», 47 caracteres, vía `META_PROPIA`.
+  **No se toca.**
+- **H1** — «Custom Pool Builders». **No se toca.**
+- **HERO / 100 WORDS / CTA / FORM** — es lo que arregla este encargo.
+- **CONVERSION 🚨** — `generate_lead` = 0 en GA4 en ocho meses y medio. **Se arregla en GTM**, no
+  aquí, y bloquea el lanzamiento.
+
+---
+
+## 8 · Copy, con su matriz frase → fuente
+
+Inglés de EE. UU. Claridad para quien compra antes que para motores. **Lo que no está verificado no
+se publica.**
+
+### 8.1 Héroe
+
+| Elemento | Texto propuesto |
+|---|---|
+| Eyebrow | `Licensed & insured Contractors` *(se queda: es de las 14 fichas)* |
+| H1 | `Custom Pool Builders` *(intacto)* |
+| Apoyo | `New custom inground pools for North Florida homeowners — 3D design, permits, construction and final start-up, from one licensed team. We also build across South Florida.` |
+| Teléfonos | `North Florida +1 (352) 740-3361` · `South Florida +1 (954) 913-7112` *(en ese orden, con `tel:`)* |
+| Licencias | `Florida certified pool contractor · CPC1461119 · CPC1460562` |
+| CTA | `Get a Free Estimate` → `#estimate` *(terminología aprobada, no se renombra)* |
+
+### 8.2 Franja de confianza — los 4 temas RSA respaldados
+
+| Tarjeta | Texto |
+|---|---|
+| One design-build team | `Design, engineering, permits and construction under one roof.` |
+| Florida licensed pool contractor | `CPC1461119 and CPC1460562, published on every page of this site.` |
+| See it in 3D first | `You review a 3D design of your pool before anything is dug.` |
+| Permits and code handled | `We pull the permits and coordinate the county inspections.` |
+
+### 8.3 Formulario y «What happens after you reach out»
+
+| Elemento | Texto |
+|---|---|
+| Título | `Get a Free Estimate` |
+| Entradilla | `Tell us about your project and we'll come back with next steps. No cost, no obligation.` |
+| Paso 1 | `We call you back within 24 hours.` |
+| Paso 2 | `We walk your property and put a 3D design on paper.` |
+| Paso 3 | `You get the scope in writing and a fixed project price before you commit.` |
+
+### 8.4 Inversión y financiación — **ni una cifra**
+
+| Elemento | Texto |
+|---|---|
+| Título | `What will my pool cost?` |
+| Texto | `Every pool is priced from its own design. Answer a few questions and see the range for a custom pool in Florida, then review how it can be paid for.` |
+| CTA 1 | `Try the pool cost estimator` → `/pool-cost-estimator` |
+| CTA 2 | `Financing available` → `/financing` |
+
+### 8.5 Las 3 FAQ nuevas
+
+| Pregunta | Respuesta |
+|---|---|
+| `How much does a custom pool cost in North Florida?` | `There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.` |
+| `Who pulls the permits for a pool in Florida?` | `We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up.` |
+| `What is included in a custom pool project?` | `Design and 3D rendering, engineering, permitting, excavation, gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, deck, and final start-up.` |
+
+### 8.6 Matriz frase → fuente
+
+| Afirmación nueva | Fuente |
+|---|---|
+| «New custom inground pools» | `<h1>` y `<title>` vigentes + hoja 22 del libro de Ads |
+| «for North Florida homeowners» | Hoja 22: el anuncio promete North Florida. Condados verificados en `src/lib/negocio.mjs:42-44` |
+| «3D design» | 7 menciones en la página; paso 2 del proceso: «Design Consultation & 3D Rendering». Hoja 18: **VERIFICADO** |
+| «permits» | 10 menciones; paso 3: «Permits & Regulatory Compliance»; la FAQ 4 ya dice «coordinating county inspections». Hoja 18: **VERIFICADO** |
+| «final start-up» | 3 menciones; FAQ 4: «from permit approval through final start-up» |
+| «from one licensed team» / «design-build» | Tarjeta existente del antes/después: «One team handles design, permits, engineering, and construction» |
+| «CPC1461119 · CPC1460562» | `src/lib/negocio.mjs:46-53`, publicadas en el pie de las 122 y en el `identifier` del `LocalBusiness`. ⚠️ **Pendiente: confirmar que siguen vigentes** |
+| «+1 (352) 740-3361» / «+1 (954) 913-7112» | `src/data/telefonos.json` |
+| «We call you back within 24 hours» | **Confirmado por Sebastian el 11-sep-2026** en esta sesión |
+| «We walk your property and put a 3D design on paper» | `src/pages/financing.astro`, paso «Design consultation» |
+| «fixed project price before you commit» | `src/pages/financing.astro`, paso «Written scope and fixed price» |
+| «gunite shell, plumbing, electrical, interior finish, tile and coping, deck» | Paso 4 del proceso y FAQ 4, ya en la página |
+| «Free Estimate» | Hoja 18: **VERIFICADO**. Terminología aprobada |
+
+**Lo que NO se escribe, y por qué:** garantía (0 menciones, sin confirmar) · años de experiencia ·
+número de piscinas construidas · «5-star» o número de reseñas (el perfil real es 4,1 sobre 13 y el
+sitio publica 8 seleccionadas, todas de 5: `valoracion: null`, `total: null` en `resenas.json`) ·
+cualquier cifra de precio · urgencia.
+
+---
+
+## 9 · Hoja de contactos e iconos
+
+**Método:** mirando las fotos, no leyendo nombres de fichero (`00-PRINCIPIOS.md` §4). Se montó una
+hoja de contactos HTML y se capturó con Chromium: **31 fotos** de las 6 obras de North Florida, y
+luego las candidatas en grande.
+
+| Hueco | Elección | Motivo |
+|---|---|---|
+| Héroe | **`new-pool-spa-construction-florida.avif`**, la actual (1950×1219) | Es una piscina terminada real y encuadra bien. Se queda; lo que cambia es cómo se carga: `eager` + `fetchpriority="high"` + `width`/`height` |
+| Obras reales | `CarruselProyectos` con las obras con piscina de `public/images/projects/` | 15 galerías reales, cada una con su `/project/<slug>` |
+| Antes/después | **`estate-pool-spa-sun-shelf-north-florida-project-3.avif`** (1250×698) como «After» | Ver §10 |
+| Fotos **descartadas** | las 10 de `pool-construction-1…10` en `gallery` | Son exactamente las 10 del feed de Instagram: repetirlas en la misma página es el hallazgo 4.7 |
+
+**Iconos.** La franja de confianza necesita 4. Se reutilizan los de `src/iconos/financing/`, que ya
+son `<mask>` + `currentColor` de la misma familia:
+
+| Tarjeta | Icono | ¿Existe? |
+|---|---|---|
+| One design-build team | `manos.svg` | ✅ reutilizado |
+| Florida licensed pool contractor | `escudo.svg` | ✅ reutilizado |
+| See it in 3D first | `plano.svg` | ✅ reutilizado |
+| Permits and code handled | `contrato.svg` | ✅ reutilizado |
+
+**Cero iconos nuevos que generar.** Los 7 de `financing/` cubren los 4 huecos con su semántica
+correcta, así que no hace falta Higgsfield para esto y la familia visual queda garantizada.
+
+---
+
+## 10 · Las imágenes del antes/después
+
+La regla de la casa no se toca: **nunca se genera obra que parezca del cliente**. Aquí la obra es
+real y lo generado es su **ausencia** — y aun así va etiquetado.
+
+### 10.1 La foto elegida
+
+**`public/images/projects/estate-pool-spa-sun-shelf-north-florida/…-project-3.avif`** · **1250×698**
+· «Estate Pool & Spa with Sun Shelf» · **North Florida** · con ficha propia en
+`/project/estate-pool-spa-sun-shelf-north-florida`.
+
+Gana por una razón técnica que decide todo lo demás: **es un plano aéreo donde la piscina y su
+terraza son una isla geométrica rodeada de césped por tres lados, dentro del mismo encuadre.** Para
+construir el «antes» hay que sustituir esa isla por el césped que **ya está en la propia
+fotografía** — mismo verde, misma altura de corte, misma dirección de siega, misma luz. El modelo
+no inventa el material: lo copia de al lado.
+
+Descartadas: la 5 (la piscina ocupa el 70 % del cuadro y se sale por el borde inferior: el «antes»
+sería casi todo superficie inventada) y la 1 (tres cuartos con mobiliario, difícil de rellenar sin
+costuras).
+
+### 10.2 La escena, descrita desde la foto
+
+Casa de una planta a la derecha, cubierta de teja asfáltica gris oscuro a cuatro aguas, fachada de
+lamas horizontales gris azulado, carpintería blanca, lanai cubierto con pilares grises y losa de
+hormigón claro pegada a la casa. La isla: piscina rectangular grande, terraza de mármol de formato
+grande casi blanco con veta gris, banda de inlay oscuro, borde de canto rodado gris recorriendo
+todo el perímetro, spa elevado con gresite azul a la derecha y banco solar en el extremo cercano.
+Sobre la terraza, dos conjuntos de sofás de fibra con cojines, dos tumbonas y un comedor pequeño
+junto a la casa. Césped San Agustín verde intenso, **de tepe recién puesto, con juntas visibles**.
+Valla de rancho de cuatro travesaños marrón oscuro cruzando el cuadro, segunda línea de valla al
+fondo, pasto segado en dos tonos y línea continua de árboles en el horizonte. Cielo de cúmulos
+blancos sobre azul, sol alto y ligeramente a la izquierda: sombras cortas hacia la derecha.
+
+### 10.3 Cómo se genera
+
+La técnica manda sobre la marca: hace falta **relleno generativo con máscara sobre la foto real**,
+no texto-a-imagen. Por orden: **Photoshop Generative Fill** (conserva grano, ruido y perspectiva de
+la base) y, solo si su endpoint acepta imagen de partida y máscara, **Higgsfield** —
+`00-PRINCIPIOS.md:38` lo documenta como *still dirigido* texto-a-imagen, y si no admite `init
+image` no sirve para esto: daría otro patio, que es justo el problema que venimos a arreglar.
+
+**La máscara:** la isla construida — vaso, spa, terraza, banda de inlay, borde de canto rodado y el
+mobiliario que está sobre la terraza. **Fuera de la máscara se queda la losa de hormigón de la
+casa**: el lanai es anterior a la piscina, así que borrarlo sería inventar más de lo necesario.
+
+**Prompt corto** (el que mejor funciona en Generative Fill; los largos empeoran el relleno):
+
+```
+flat mowed lawn, same grass as the surrounding yard, level ground, midday sun
+```
+
+**Prompt largo**, si el corto deja costuras:
+
+```
+continuous St. Augustine lawn at the same height and colour as the surrounding grass, mowed in the
+same direction, slightly uneven with faint sod seams and a few dry patches, flat level ground, no
+structures, no paving, high midday sun from the upper left, aerial photograph, natural colour
+```
+
+**Negativo**, donde el motor lo admita:
+
+```
+pool, water, swimming pool, spa, hot tub, deck, pavers, travertine, marble, stone, coping, tile,
+railing, furniture, loungers, umbrella, people, animals, path, driveway, text, watermark, logo,
+HDR, oversaturated, painterly, blurry, tilted horizon
+```
+
+**Las cuatro cosas que deciden si se ve real** — específicas de esta foto:
+
+1. **El césped que hay que copiar es el establecido, no el tepe nuevo.** Las juntas de tepe que se
+   ven alrededor de la obra son posteriores a la piscina. Un «antes» de verdad es anterior a ese
+   tepe: el relleno se parece al césped asentado del fondo, no a la alfombra nueva.
+2. **Cero sombras nuevas.** Un césped plano no proyecta nada. Cualquier sombra dentro de la máscara
+   es motivo de rechazo: es el tell que delata una imagen generada.
+3. **Respetar la distorsión de gran angular.** El relleno no puede meter una recta donde la lente
+   curva. Se comprueba en los bordes izquierdo y derecho.
+4. **El cesto turquesa y la esterilla verde que están sobre el césped quedan FUERA de la máscara.**
+   Son reales y son la prueba de que es la misma fotografía.
+
+### 10.4 Prueba de aceptación
+
+- Dimensiones exactas **1250×698**.
+- **Diff de píxeles: la zona fuera de la máscara, 100 % idéntica.** No «parecida». Si el motor
+  reencodó toda la imagen, se recompone pegando el relleno sobre el original.
+- Ni una gota de agua ni una pieza de coronación en ningún sitio.
+- Horizonte, línea de valla y alero continuos y sin romper.
+- Sin césped repetido en mosaico ni travesaño emborronado.
+- **3-4 candidatas, elección por hoja de contactos.** Se rechaza, no se transige.
+
+### 10.5 Qué se publica, y cómo se dice
+
+- Etiqueta **visible** en el lado «Before»: `Before — visualization`. No basta con el `alt`.
+- `alt` del «before»: *Reconstruction of the same backyard before construction, generated from the
+  finished photograph.*
+- El «After» es la foto real, con enlace a `/project/estate-pool-spa-sun-shelf-north-florida`.
+- Las dos en AVIF con `width`/`height` horneados.
+- **Encuadre idéntico por construcción**, no por recorte: es la misma fotografía. Eso satisface el
+  umbral de `CRITERIO.md` sin discusión.
+
+**Con la etiqueta esto es honesto y además refuerza el tema RSA «3D Design Preview». Sin ella,
+cambiamos un problema de derechos por uno de veracidad.** Va con la etiqueta.
+
+### 10.6 El bloqueo
+
+No se puede generar en este contenedor: Higgsfield vive en el Mac (`~/.local/bin/hf` +
+`~/.higgsfield.env`, ninguno de los dos existe aquí), no hay skill `higgsfield-generate`, y las
+herramientas de Adobe conectadas **no hacen relleno generativo** (`image_fill_area` es color plano;
+`image_generative_expand` solo extiende bordes). Tampoco hay foto de obra previa entre las 80 de
+`public/images/projects/`: se miraron todas.
+
+**Por eso la foto del MLS sale ya y la sección se retira de esta ruta**, en vez de esperar. Vuelve
+en su propio commit en cuanto exista el «Before».
+
+**Límite conocido:** 1250×698 es lo que hay en el repo. Se ve bien a 1× en el ancho del contenedor
+(~1200 px a 1440) y algo blando a 2×. Con el original a resolución completa mejora gratis.
+
+---
+
+## 11 · Especificación del formulario
+
+**Un solo `<form>` en la página.** Reutiliza el circuito existente entero, sin montar uno paralelo.
+
+### 11.1 Campos
+
+| Campo | `name` | Tipo | Obligatorio | Notas |
+|---|---|---|---|---|
+| Full name | `Full-Name` | `text` | sí | `autocomplete="name"` |
+| Phone | `Phone` | `tel` | sí | `autocomplete="tel"` |
+| Email | `email` | `email` | sí | `autocomplete="email"` |
+| ZIP Code | `ZIP-Code` | `text` | sí | `inputmode="numeric"`, patrón de 5 dígitos, `autocomplete="postal-code"` |
+| Homeowner status | `Type` | `select` | sí | `Yes, I own this property` · `No` · `Other` |
+| Project Type | `Project-Type` | `select` | sí | **preseleccionado `New Custom Pool`**; segunda opción `Complete Pool Remodel` |
+| Investment Range | `Estimated-Project-Budget` | `select` | sí | las 6 opciones existentes, literales |
+| Timeline | `Timeline` | `select` | sí | `As soon as possible` · `1-3 months` · `3-6 months` · `6-12 months` · `Just exploring` |
+| Project details | `Message` | `textarea` | **no** | opcional a propósito: no se añade fricción donde no hace falta |
+
+**Investment Range** reutiliza literalmente el desplegable del «Request Quote Form», **con su guion
+largo `–` (U+2013)**. Un guion normal partiría la dimensión `budget_range` en dos juegos de valores
+en GA4:
+
+```
+Under $25,000 · $25,000 – $50,000 · $50,000 – $75,000 · $75,000 – $100,000 · $100,000 – $150,000 · $150,000+
+```
+
+No se simplifica para subir la tasa de conversión: **la calidad del lead manda.**
+
+### 11.2 Identidad y medición
+
+| Clave | Valor | Dónde se da de alta |
+|---|---|---|
+| `data-name` | `Pool Builders Core Form` | `FORMULARIOS` en `src/pages/api/formulario.ts` |
+| `form_name` / `__form_id` | `core` | `MAPA_FORM` en `src/components/Formularios.astro` |
+| Nombre en el correo | `Pool builders core lead` | `NOMBRES` en `src/lib/aviso-correo.ts` |
+| Aterrizaje | `/thank-you?f=core` | sale del mismo `idForm` |
+
+**`data-name` nuevo y no reutilizado**, a propósito: con «Request Quote Form» el `form_name` sería
+`estimate`, indistinguible del de `/request-estimated` en GA4. El valor `core` es nuevo y **se
+documenta para `PROMPT-TRACKING-GOOGLE.md`**; no se inventa ningún evento.
+
+### 11.3 Lo que viaja, y lo que no
+
+`generate_lead` ya empuja seis parámetros y cuatro de los cualificadores encajan sin tocar nada:
+`project_type` ← Project Type · `user_type` ← Homeowner status · `budget_range` ← Investment Range ·
+`service_interest` ← los servicios · más `form_name` y `form_location`.
+
+- **El ZIP no va al dataLayer.** Es cuasi-identificador: viaja solo al correo, igual que el `gclid`.
+- **Timeline tampoco**, de momento: sería un parámetro nuevo, y los parámetros nuevos los decide
+  `PROMPT-TRACKING-GOOGLE.md`. Va al correo, que es donde el comercial lo necesita.
+- Nunca `page_view` ni `scroll` como conversión. Nada de PII en el dataLayer.
+
+### 11.4 Circuito, sin tocar nada
+
+`data-mm-envia="1"` · honeypot `ref_id` · time-trap (`elapsedMs`, umbral de 1 s en servidor) ·
+Turnstile explícito · captura de primer toque de `gclid`/`wbraid`/`gbraid`/`utm` desde
+`sessionStorage['mm_origen']` · POST a `/api/formulario` · `sessionStorage['mm_lead']` **solo si el
+servidor devuelve `entregado: true`** · `/thank-you?f=core`, que lee y **borra** `mm_lead` y empuja
+**un solo** `generate_lead`.
+
+⚠️ **Un campo que no esté en la lista blanca de `FORMULARIOS` desaparece en silencio del correo del
+lead.** Los nueve se dan de alta ahí con su etiqueta, en el orden en que se quieren leer.
+
+### 11.5 Accesibilidad
+
+`id` únicos, `label` visibles (no `placeholder` como etiqueta), tipos correctos, `autocomplete`,
+estados de error con `aria-invalid` y mensaje, uso completo con teclado, y zonas táctiles ≥44 px en
+los cuatro anchos. Se hereda de `.appointment-section`, que ya trae campos de 48 px, anillos de
+foco con `--mm-foco` y el patrón de error medido.
+
+---
+
+## 12 · Score proyectado
+
+Con la verificación contra producción bloqueada, el techo aritmético de esta página es **97**.
+
+| Criterio | Máx | Hoy | Después | Por qué |
+|---|---:|---:|---:|---|
+| Search Intent · H1/Hero · Semantic · Trust | 50 | 50 | 50 | ya al máximo |
+| First 100 Words | 10 | 9 | **10** | piscina nueva + North Florida + teléfono + CTA al formulario, en el héroe |
+| Geographic Relevance | 10 | 7 | **8** | NF delante en todo, `location` reordenada, condados verificados, campo ZIP. **El slug sigue diciendo `north-south`: esos 2 puntos no se recuperan sin romper la URL final del anuncio** |
+| Commercial Intent | 10 | 9 | **10** | remodelación fuera del cluster y enlazada a su landing; «redesigns» corregido; rutas a estimador y financiación |
+| CTA / Conversion | 10 | 6 | **10** | formulario cualificador propio: se acaba el segundo clic |
+| Mobile UX | 5 | 4 | **5** | medido a 390 px sobre el build con `getBoundingClientRect`. **Es laboratorio, no dispositivo real**: con criterio estricto se queda en 4 y el total es 95 |
+| Technical / Performance | 5 | 3 | **3** | `PRODUCTION PERFORMANCE VERIFICATION BLOCKED`. No sube y no se maquilla |
+| **TOTAL** | **100** | **88** | **96** | |
+
+**Veredicto: READY AFTER FIXES.** No puede ser READY FOR PAID SEARCH mientras `generate_lead` siga
+a 0 en GA4.
+
+---
+
+## 13 · Pendientes para Sebastian
+
+1. **El «Before»**: generarlo en el Mac con el prompt y la máscara de §10, o autorizar subir la foto
+   de obra a Adobe para producir la máscara desde aquí (publica una foto de obra en un servicio
+   externo, por eso no se hace sin permiso).
+2. **Vigencia de las dos licencias** `CPC1461119` y `CPC1460562`.
+3. **El `$75,000 – $500,000+` sale** de la página y del schema por no estar verificado. Recuperarlo
+   exigiría confirmación y aun así choca con la decisión TILA/Reg Z del 2-sep.
+4. **URLs de Facebook, Houzz, BBB y Yelp** para `sameAs` — hoy solo hay tres perfiles.
+5. **El texto exacto de los RSA** (hoja 13) para cerrar la correspondencia A4. Mientras tanto,
+   **RSA CLAIM REQUIRES REVIEW**.
+6. **El bloqueo de lanzamiento sigue siendo de GTM**: `generate_lead` a 0 con `/thank-you` en 18
+   páginas vistas. Sospechoso principal, el trigger `BLOQUEO - Entornos de preview` con condición
+   `{{_event}} .*`.
+7. **El rojo de `check:texto`** (§1) se cierra congelando los temporizadores en la librería de
+   captura. Es decisión del director porque afecta a todas las rutas con carrusel.
