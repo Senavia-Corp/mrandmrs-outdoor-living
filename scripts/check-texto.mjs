@@ -331,9 +331,12 @@ const LINEAS_ANADIDAS = [
   {
     rutas: ['/pool-cost-estimator'],
     tras: [],
-    lineas: ['Custom Inground Pool Cost Estimator'],
-    motivo: 'D7: la pagina salia de Webflow con 0 encabezados. El <h1> es semantico y va oculto '
-      + 'a la vista, pero `innerText` incluye el texto recortado y por eso se declara aqui.',
+    lineas: [
+      'Custom Inground Pool Cost Estimator',
+      'Answer 7 quick questions to see what your custom pool in Florida could cost.',
+    ],
+    motivo: 'D8: la pagina salia de Webflow con 0 encabezados. D7 le puso un <h1> oculto; D8 lo '
+      + 'pinta, con una linea de intro debajo. Las dos lineas son nuestras y no estan en ningun baseline.',
   },
   {
     rutas: ['/pool-investment-estimator'],

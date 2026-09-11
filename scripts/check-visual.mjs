@@ -102,7 +102,10 @@ const DISTINTAS_A_PROPOSITO = {
     + 'se pidio. Ademas ahora hay un formulario de lead aqui, y su Turnstile no pinta fuera del '
     + 'dominio registrado, igual que en /contact-us. El texto NO se declara entero: '
     + 'check:texto sigue comparando las 90 lineas de la pagina al 100% y solo se le declara el '
-    + 'bloque de 13 del estimador, seguido y en orden.',
+    + 'bloque de 13 del estimador, seguido y en orden. '
+    + 'DECISION D8 (Sebastian, 11-sep-2026): encima del estimador se pinta su <h1> -antes oculto '
+    + 'por D7- con una linea de intro. Anade altura en los 4 anchos: es la segunda desviacion '
+    + 'deliberada de esta ruta.',
   '/contact-us': 'el widget de Turnstile NO renderiza fuera del dominio registrado. Medido: el '
     + 'script carga y `window.turnstile` existe, pero `render()` no pinta nada en localhost, '
     + 'asi que la pagina sale ~16 px mas corta que el baseline, donde SI estaba pintado. '

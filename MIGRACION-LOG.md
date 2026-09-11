@@ -189,7 +189,7 @@ se arregla enlazándola.
    que alguien SÍ regenere, el arreglo siga puesto — y hereda el aborto duro de las declaraciones
    que no casan con nada.
 
-### D7 · Los dos estimadores reciben un `<h1>`, oculto a la vista   — Sebastian, 03-sep-2026 ✅
+### D7 · Los dos estimadores reciben un `<h1>`, oculto a la vista   — Sebastian, 03-sep-2026 ✅ · en `/pool-cost-estimator` la corrige D8
 `/pool-cost-estimator` y `/pool-investment-estimator` salían de Webflow con **cero encabezados**
 —0 `<h1>` y 0 `<h2>`, medido sobre el build; los únicos son los 6 `h3.pe-h3` de los pasos—. Sin
 encabezado no hay señal de tema para el crawler en las dos páginas que probablemente más
@@ -210,6 +210,59 @@ línea de texto de `baseline/text/pool-investment-estimator.txt` es «Step 1 of 
    mecanismo es nuevo pero **no rebaja el umbral**: quita EXACTAMENTE esa línea y todo lo demás
    se sigue comparando al 100 %. Los dos textos salen a 0 en el baseline entero, comprobado,
    así que no hay ambigüedad sobre qué línea se quita.
+
+### D8 · El `<h1>` de `/pool-cost-estimator` se pinta, con una línea de intro   — Sebastian, 11-sep-2026 🟡 falta su visto bueno a las capturas
+Sebastian lo pide visible, para el SEO y porque lo primero que leía el visitante era «Step 1 of
+7». Es la re-aprobación visual que D7 dejó pendiente. Encargo en `PROMPT-TITULO-ESTIMADOR.md`.
+**Solo en esta ruta**: `/pool-investment-estimator` conserva su `<h1>` oculto, tal como decidió D7.
+
+- **H1:** «Custom Inground Pool Cost Estimator», el mismo que ya estaba oculto y el del `<title>`.
+- **Intro:** «Answer 7 quick questions to see what your custom pool in Florida could cost.»
+- Van dentro de `.pe-ancho`, alineados con el borde de las tarjetas. Los estilos van en un
+  `<style is:global>` de `Estimador.astro`, solo con tokens y sin media queries.
+  **No van en `estimador.css`**: quien la edita tiene que limpiarla entera
+  (`scripts/check-tokens.mjs:23`).
+
+**La intro corta la decidió el móvil.** Medida con Playwright sobre el sitio vivo, inyectando el
+bloque en el DOM, y confirmada después sobre el build (sonda en `.vercel/output/static`,
+esperando `document.fonts.ready`): dónde termina la primera `.pe-opcion` a 375×667.
+
+| | termina en | líneas de intro en móvil |
+|---|---|---|
+| sin título (hoy en producción) | 522 px | — |
+| intro larga del encargo («…and outdoor living project in Florida.») | 683 px ✗ | 3 |
+| **intro corta (la elegida)** | **662 px ✓** | **2** |
+
+Sonda sobre el build, 9 anchos: 0 px de desborde en todos, un solo `<h1>` en el DOM, y el H1 en
+el mismo `left` que la tarjeta. H1 de 30 px en 2 líneas de 320 a 479 y en 1 línea desde 768
+(35 px a 991, 40 a 1440). Intro de 15 px en 2 líneas en móvil y 1 línea desde 768. A 320×568 la
+primera opción ya no entraba antes del cambio (terminaba en 562), y ahora tampoco (702). Ahí
+se ve el título de «Project Type».
+
+(El `grep '<h1'` sobre el HTML da 2: el segundo es texto de un comentario dentro de un script en
+línea, `Interacciones.astro:209`. El DOM tiene 1.)
+
+**Puertas** (build del 11-sep):
+
+```
+check:tokens                                   PUERTA VERDE
+check-texto pool-cost-estimator     ANTES de declarar la intro:  ROJO — sobran 1 (la intro)
+                                    después:                     PUERTA VERDE
+check-texto pool-investment-estimator          PUERTA VERDE
+check:estimador   el oráculo coincidió 10/10   PUERTA VERDE
+check:seo · check:rutas · check:enlaces        PUERTA VERDE
+check-visual pool-cost-estimator    declarada (D3+D8), alto 418->393, 418->391, 602->557, 821->805
+check-visual pool-investment-estimator         100,00 · 100,00 · 100,00 · 99,99 %  PUERTA VERDE
+```
+
+`check:visual` mide a 1/4. El título suma unos 90 px reales en escritorio y unos 140 en móvil,
+y la página **sigue siendo más corta que el original** en los 4 anchos por el iframe que quitó
+D3. Las declaraciones de `check-texto.mjs` (`LINEAS_ANADIDAS`) y `check-visual.mjs`
+(`DISTINTAS_A_PROPOSITO`) pasan a D8. No se ha bajado ningún umbral.
+
+**Mejora candidata NO aplicada:** los títulos de paso son `div.pe-titulo`, así que la jerarquía
+salta de `h1` a `h3`. Pasarlos a `<h2>` exige blindarlos contra el `h2` de Webflow
+(`estimador.css:68-87`) y volver a medir.
 
 
 ---

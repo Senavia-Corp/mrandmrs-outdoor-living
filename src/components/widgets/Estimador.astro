@@ -124,24 +124,32 @@ const miles = (n: number) => n.toLocaleString('en-US');
 
 <div id="pool-estimator" class={suelta ? 'pe-suelta' : undefined} data-pe>
   {/*
-    EL <h1> QUE LAS DOS PAGINAS NO TENIAN (D7 en MIGRACION-LOG.md).
+    EL <h1> QUE LAS DOS PAGINAS NO TENIAN (D7 y D8 en MIGRACION-LOG.md).
 
     `/pool-cost-estimator` y `/pool-investment-estimator` salen de Webflow con CERO encabezados
     -0 h1 y 0 h2, medido sobre el build; los unicos son los 6 `h3.pe-h3` de los pasos-. Sin
     encabezado no hay senal de tema para el crawler en las dos paginas que mas conversion
     mueven (SEO-URLS-PLAN.md hallazgo 5).
 
-    VA OCULTO A LA VISTA, Y ESO ES DELIBERADO. Un h1 pintado seria una seccion visible que el
-    diseno del origen no tiene: rompe el Principio 1 -no inventar secciones- y pone `check:visual`
-    en rojo en dos rutas con contrato de PARIDAD. Oculto da exactamente lo que pedia el hallazgo
-    -la senal semantica para el crawler y para un lector de pantalla- sin mover un pixel.
-    Si Sebastian lo quiere visible, es un cambio de diseno y va con su re-aprobacion visual.
+    D7 lo puso en las dos OCULTO, para no mover un pixel en rutas con contrato de paridad.
+    D8 (Sebastian, 11-sep-2026) lo PINTA en `/pool-cost-estimator`, con una linea de intro: lo
+    primero que leia el visitante era «Step 1 of 7». Va dentro de `.pe-ancho` para alinearse
+    con el borde de las tarjetas. La pagina desnuda lo conserva oculto, como decidio D7.
 
-    Lo que SI cuesta es texto: `innerText` incluye el texto recortado -comprobado en Chromium-,
-    asi que la linea va declarada en `check-texto.mjs`. Ninguna puerta se apaga.
+    La intro es la corta a proposito: la larga ocupaba 3 lineas en movil y a 375x667 dejaba la
+    primera opcion 16 px bajo el pliegue (termina en 683). Con esta, 2 lineas y termina en 662.
+
+    `innerText` incluye tambien el texto recortado -comprobado en Chromium-, asi que las lineas
+    van declaradas en `check-texto.mjs` en las dos rutas. Ninguna puerta se apaga.
   */}
-  <h1 class="pe-sr">{suelta ? 'Pool Investment Estimator' : 'Custom Inground Pool Cost Estimator'}</h1>
+  {suelta && <h1 class="pe-sr">Pool Investment Estimator</h1>}
   <div class="pe-ancho">
+    {!suelta && (
+      <Fragment>
+        <h1 class="pe-h1">Custom Inground Pool Cost Estimator</h1>
+        <p class="pe-intro">Answer {PASOS.length} quick questions to see what your custom pool in Florida could cost.</p>
+      </Fragment>
+    )}
     <div class="pe-rejilla">
 
       <div class="pe-izq">
@@ -413,6 +421,31 @@ const miles = (n: number) => n.toLocaleString('en-US');
     </div>
   </div>
 </div>
+
+<style is:global>
+  /* El titulo visible de D8. NO va en `estimador.css`: esa hoja esta fuera de `check:tokens` con
+     la condicion de que quien la edite la mueve a la capa y la limpia entera
+     (`scripts/check-tokens.mjs:23`). Aqui solo tokens y sin @media: los dos pasos ya son
+     fluidos. Cuelga de `#pool-estimator`, como todo el componente, para ganar al `h1` de
+     Webflow y del normalize. */
+  #pool-estimator .pe-h1 {
+    font-size: var(--mm-paso-6);
+    line-height: var(--mm-alto-apretado);
+    font-weight: var(--mm-peso-negro);
+    color: var(--mm-tinta);
+    margin: 0 0 var(--mm-e-8);
+    text-wrap: balance;
+  }
+  #pool-estimator .pe-intro {
+    font-size: var(--mm-paso-3);
+    /* Explicito: `#pool-estimator` hereda un line-height FIJO (140 % de su base, 19,6 px en movil). */
+    line-height: var(--mm-alto-cuerpo);
+    color: var(--mm-tinta-atenuada);
+    margin: 0 0 var(--mm-e-24);
+    max-width: 60ch;
+    text-wrap: pretty;
+  }
+</style>
 
 <script>
   import { PRECIOS, calcula, rangoTexto, subtitulo, dolares, LINEAS_DESGLOSE, SLIDERS } from '../../lib/estimador.js';
