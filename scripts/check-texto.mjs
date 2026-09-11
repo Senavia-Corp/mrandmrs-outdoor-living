@@ -76,6 +76,38 @@ const RUTAS = csv.trim().split('\n').slice(1)
 const QUITADAS_A_PROPOSITO = [
   ['12', 'la paginación del widget de Elfsight en /videos: la galería nativa los pinta todos'],
   ['Free YouTube Video Gallery Widget', 'la marca de Elfsight en /videos. Se va con el widget'],
+
+  /**
+   * ── R17-CORE · EL ANTES/DESPUES Y LA GALERIA, SOLO EN LA LANDING DE PAGO ───────────────
+   *
+   * 🚨 EL CUARTO ELEMENTO ES `rutas`, Y ES NUEVO. Hasta hoy esta lista era GLOBAL: la linea se
+   * quitaba del baseline de las 122. Servia porque las dos primeras entradas son de `/videos` y
+   * no existen en ningun otro sitio. Aqui NO vale: «Before», «After» y las dos tarjetas del
+   * antes/despues estan en LAS 14 FICHAS de `/services/`, asi que una declaracion global las
+   * quitaria tambien de las otras trece y las pondria las trece en rojo. Con `rutas`, se quita
+   * solo donde se quito de verdad. Sin el campo, el comportamiento es exactamente el de antes.
+   *
+   * POR QUE SE QUITA LA SECCION. La foto «Before» es de un listado del MLS de Miami -marca de
+   * agua `A11…… © Miami MLS© 202…` incrustada y visible- y el «After» es OTRO patio. Vuelve
+   * cuando exista el par honesto (`docs/encargos/R17-CORE.md` §10).
+   *
+   * Y `gallery` se sustituye por `CarruselProyectos` porque pintaba LAS MISMAS 10 fotos que el
+   * feed de Instagram de mas abajo: solape 10/10, verificado fichero a fichero.
+   */
+  ...[
+    ['Before', 'el antes/despues sale de la landing de pago: la foto era de un listado del MLS'],
+    ['After', 'idem'],
+    ['From Empty Backyard To Your Dream Custom Pool', 'idem'],
+    ['Turn that bare South Florida backyard into the pool you have always envisioned. Mr. & Mrs. Outdoor Living handles everything from 3D design and permits to construction and start-up — delivering a luxury custom pool from the ground up.',
+      'idem. Y decia «South Florida» en la landing cuyo anuncio promete North Florida'],
+    ['Design-Build Authority', 'idem: este tema sube a la franja de confianza, dicho mas corto'],
+    ['One team handles design, permits, engineering, and construction. No subcontractor surprises, no gaps in accountability.', 'idem'],
+    ['Licensed & Engineered', 'idem: sube a la franja de confianza'],
+    ['Florida licensed and insured professionals. Every project is built to code, built to last, and built to impress.', 'idem'],
+    ['View All Projects', 'idem. El enlace a obra lo repone CarruselProyectos'],
+    ['Custom Pool Project Gallery', '`gallery` se sustituye por CarruselProyectos: pintaba las mismas 10 fotos que el feed'],
+    ['Custom pool builds across Florida — from resort-style lagoons to sleek modern lap pools.', 'idem'],
+  ].map(([l, m]) => [l, m, ['/services/custom-pool-spa-builders-in-north-south-florida']]),
 ];
 
 /**
@@ -135,11 +167,51 @@ const TRADUCIDAS_A_PROPOSITO = [
   ['Licensed Pool Builders & Outdoor Living Contractors In Ocala',
     'Licensed Pool Builders In Ocala, Florida',
     'h2 de intro de Ocala, misma razón'],
+
+  /**
+   * ── R17-CORE · LA LANDING DE PAGO DEL AD GROUP «POOL BUILDERS CORE» ───────────────────
+   *
+   * Las cuatro llevan `rutas`, y las dos ultimas LO NECESITAN: «What Do We Do!» esta en las 14
+   * fichas de `/services/` y una sustitucion global pondria las otras trece en rojo.
+   *
+   * Escritas ya con la forma que RENDERIZA. `webflow.css` pone `text-transform: capitalize` en
+   * `h1,h2,h3,h4,.button,.button-styles,.heading-deco` y **capitalize SI altera `innerText`**:
+   * por eso el rotulo se declara «What We Do» y no «What we do». Es la sexta vez que esto
+   * muerde en este repo.
+   */
+  ['Custom pool and spa builders serving North & South Florida, delivering high-quality construction and long-term outdoor value.',
+    'New custom inground pools for North Florida homeowners — 3D design, permits, construction and final start-up, from one licensed team. We also build across South Florida.',
+    'apoyo del heroe: resuelve QUE, DONDE, PARA QUIEN y QUE HACER AHORA, con North Florida '
+    + 'delante. El anterior decia «North & South Florida» en la landing cuyo anuncio promete '
+    + 'North Florida', ['/services/custom-pool-spa-builders-in-north-south-florida']],
+  ['What Do We Do!', 'What We Do',
+    'la errata del rotulo de la rejilla de subservicios: exclamacion por interrogacion. Se '
+    + 'corrige SOLO en la landing de pago; en las otras 13 fichas sigue igual', ['/services/custom-pool-spa-builders-in-north-south-florida']],
+  ['Custom pool redesigns engineered for Florida homes and code compliance.',
+    'Custom pool design engineered for Florida homes and code compliance.',
+    '«redesigns» en la PRIMERA tarjeta de una ficha cuyo h1 es «Custom Pool BUILDERS»: es la '
+    + 'intencion de la ficha hermana de remodelacion', ['/services/custom-pool-spa-builders-in-north-south-florida']],
+  ['Plumbing and circulation upgrades for proper water flow and filtration.',
+    'Plumbing and circulation built for proper water flow and filtration.',
+    '«upgrades» es lenguaje de remodelacion en una ficha de obra nueva', ['/services/custom-pool-spa-builders-in-north-south-florida']],
+  ['Tile and coping upgrades that improve pool safety, durability, and modern design.',
+    'Tile and coping that improve pool safety, durability, and modern design.',
+    'idem', ['/services/custom-pool-spa-builders-in-north-south-florida']],
 ];
 
-/** Aplica las sustituciones declaradas a UNA línea del baseline. */
-const traduce = (l) => {
-  const t = TRADUCIDAS_A_PROPOSITO.find(([viejo]) => viejo === l);
+/**
+ * Aplica las sustituciones declaradas a UNA línea del baseline, PARA UNA RUTA.
+ *
+ * 🚨 EL PARAMETRO `ruta` ES NUEVO (R17-CORE). Antes esta funcion no lo recibia, asi que toda
+ * sustitucion era GLOBAL. Funcionaba porque las que habia -dos cadenas en espanol y los
+ * encabezados de Gainesville y Ocala- solo existen en una pagina cada una. Deja de funcionar en
+ * cuanto hay que cambiar una linea que EXISTE EN VARIAS: «What Do We Do!» esta en las 14 fichas
+ * de `/services/`, y declararla global dejaria las otras trece esperando un texto que no van a
+ * tener. El cuarto elemento de la tupla acota la sustitucion; sin el, global como siempre.
+ */
+const traduce = (ruta, l) => {
+  const t = TRADUCIDAS_A_PROPOSITO.find(([viejo, , , rutas]) =>
+    viejo === l && (!rutas || rutas.includes(ruta)));
   return t ? t[1] : l;
 };
 
@@ -169,6 +241,83 @@ const REORDENADAS_A_PROPOSITO = [
       'Custom Decks', 'Outdoor Furniture'],
     motivo: 'el filtro de la galeria sigue el orden comercial de la rejilla (piscinas primero). '
       + 'Mismas 15 opciones: solo cambia el orden',
+  },
+
+  /**
+   * R17-CORE — LOS SUBSERVICIOS DE LA LANDING DE PAGO. Seis de los ocho hablaban de
+   * remodelacion en la ficha de obra NUEVA. Se reordenan: construccion delante, remodelacion
+   * detras. No se borra ninguno (Principio 1) y el texto de los tres que se movieron no cambia,
+   * asi que esto es EXACTAMENTE un reorden — si no lo fuera, la guarda de arriba reventaria al
+   * arrancar. Los tres textos que SI cambian van declarados en TRADUCIDAS, y por eso aqui
+   * aparecen ya con su forma nueva: `reordena()` corre DESPUES de `traduce()`.
+   */
+  {
+    ruta: '/services/custom-pool-spa-builders-in-north-south-florida',
+    antes: [
+      'Custom Pool Design & Engineering',
+      'Custom pool design engineered for Florida homes and code compliance.',
+      'Inground Pool Remodeling',
+      'Complete inground pool renovations focused on performance and aesthetics.',
+      'Integrated Spa Remodeling',
+      'Spa remodeling seamlessly integrated into existing pools for comfort and style.',
+      'Pool Plumbing & Circulation Systems Installation',
+      'Plumbing and circulation built for proper water flow and filtration.',
+      'Pool Equipment Installation & Automation',
+      'Modern pumps, filters, heaters, and automation systems for efficient pool use.',
+      'Pool Finishes & Interior Surface Installation',
+      'Interior pool finishes including plaster, quartz, and pebble for lasting beauty.',
+      'Pool Tile & Coping Installation',
+      'Tile and coping that improve pool safety, durability, and modern design.',
+      'Pool Deck & Hardscape Remodeling',
+      'Pool deck remodeling using pavers or concrete for safety and durability.',
+    ],
+    despues: [
+      'Custom Pool Design & Engineering',
+      'Custom pool design engineered for Florida homes and code compliance.',
+      'Pool Plumbing & Circulation Systems Installation',
+      'Plumbing and circulation built for proper water flow and filtration.',
+      'Pool Equipment Installation & Automation',
+      'Modern pumps, filters, heaters, and automation systems for efficient pool use.',
+      'Pool Finishes & Interior Surface Installation',
+      'Interior pool finishes including plaster, quartz, and pebble for lasting beauty.',
+      'Pool Tile & Coping Installation',
+      'Tile and coping that improve pool safety, durability, and modern design.',
+      'Inground Pool Remodeling',
+      'Complete inground pool renovations focused on performance and aesthetics.',
+      'Integrated Spa Remodeling',
+      'Spa remodeling seamlessly integrated into existing pools for comfort and style.',
+      'Pool Deck & Hardscape Remodeling',
+      'Pool deck remodeling using pavers or concrete for safety and durability.',
+    ],
+    motivo: 'obra nueva delante, remodelacion detras, en la Final URL del ad group «Pool '
+      + 'Builders Core». Mismos 8 subservicios: solo cambia el orden',
+  },
+
+  /**
+   * R17-CORE — `location`. La seccion ponia South Florida DELANTE en la landing cuyo anuncio
+   * promete North Florida y cuyo `<title>` dice «Custom Pool Builders in North Florida».
+   * Medido sobre el cuerpo antes de tocar nada: la primera «South Florida» estaba en el
+   * caracter 97 y la primera «North Florida» suelta en el 6053.
+   */
+  {
+    ruta: '/services/custom-pool-spa-builders-in-north-south-florida',
+    antes: [
+      'South Florida',
+      'Licensed luxury pool builders in South Florida specializing in custom inground pools and outdoor living design-build projects, engineered, permitted, and built for high-end residential properties.',
+      'View South Florida Service Areas',
+      'North Florida',
+      'Licensed luxury pool builders in North Florida specializing in custom inground pools and outdoor living design-build projects, engineered for structural integrity and long-term durability.',
+      'View North Florida Service Areas',
+    ],
+    despues: [
+      'North Florida',
+      'Licensed luxury pool builders in North Florida specializing in custom inground pools and outdoor living design-build projects, engineered for structural integrity and long-term durability.',
+      'View North Florida Service Areas',
+      'South Florida',
+      'Licensed luxury pool builders in South Florida specializing in custom inground pools and outdoor living design-build projects, engineered, permitted, and built for high-end residential properties.',
+      'View South Florida Service Areas',
+    ],
+    motivo: 'North Florida delante en la landing de pago. Mismas 6 lineas: solo cambia el orden',
   },
 ];
 for (const d of REORDENADAS_A_PROPOSITO) {
@@ -548,7 +697,23 @@ function quitaBloque(lineas, bloque) {
  * altera `innerText`, y por que la aproximacion «tras inicio, espacio o parentesis» coincide con
  * lo que hace el navegador— sigue donde estaba, en la cabecera de `lineasBlog()`.
  */
-const capitaliza = (s) => s.replace(/(^|[\s(])(\p{Ll})/gu, (_, a, b) => a + b.toUpperCase());
+/**
+ * EL GUION ENTRA EN LA CLASE, Y NO ES COSMETICA (R17-CORE).
+ *
+ * `text-transform: capitalize` del navegador pone en mayuscula la primera letra de cada
+ * PALABRA, y para el navegador el guion separa palabras: «design-build» se pinta
+ * «Design-Build». Esta aproximacion solo miraba inicio, espacio y parentesis, asi que derivaba
+ * «Design-build» y la declaracion no casaba. Salio midiendo, con la franja de confianza:
+ *
+ *     FALTA  el bloque de captacion que empieza en "Why Homeowners Pick Us"
+ *     derivado: One Design-build Team   ·   real: One Design-Build Team
+ *
+ * COMPROBADO ANTES DE TOCARLO que no mueve nada de lo que ya estaba declarado: se recorrieron
+ * los titulos de `proyectos-propios`, `obras-migradas`, `blogs.json` y los dos
+ * `*-heading-por-ruta.json` -que son los UNICOS sitios donde se aplica `capitaliza`, nunca a un
+ * `resumen`- y el guion cambia el resultado en 0 de ellos.
+ */
+const capitaliza = (s) => s.replace(/(^|[\s(-])(\p{Ll})/gu, (_, a, b) => a + b.toUpperCase());
 
 /**
  * ── EL SUFIJO OCULTO DE LOS CTA GENERICOS (`.mm-sr`) — DECLARADO, NO ABSORBIDO ───────────
@@ -792,6 +957,8 @@ let bloqueQueFallo = null;
 
 /** Cuantas lineas de sufijo oculto (§ .mm-sr) se quitaron en toda la corrida, para el resumen. */
 let sufijosQuitados = 0;
+/** Bloques de la capa de captacion descontados (R17-CORE), para el resumen. */
+let conCaptacion = 0;
 
 /** Quita de `hay` los bloques declarados para esa ruta. `null` si alguno falla. */
 function sinElBloque(ruta, hay) {
@@ -855,6 +1022,112 @@ function sinElBloque(ruta, hay) {
     conObras++;
   }
 
+/**
+ * ── LA CAPA DE CAPTACION DE LAS FICHAS DE `/services/` (R17-CORE) ────────────────────────
+ *
+ * Cuatro bloques de texto que NO existen en ningun baseline porque son nuestros: la franja de
+ * confianza, el formulario con sus pasos, la banda de inversion y el carrusel de obras que
+ * sustituye a `gallery`, mas las dos lineas del heroe y las tres preguntas nuevas de la FAQ.
+ *
+ * SE DERIVAN DEL JSON, NO SE COPIAN A MANO. Es lo que ya hacen `lineasResenas()`,
+ * `lineasBlog()` y `lineasFeed()`, y por la misma razon: `LINEAS_ANADIDAS` cablea el texto
+ * aqui, y serian ~90 lineas duplicadas de `src/data/captacion-servicios.json`. Derivandolas, el
+ * dia que cambie una frase alli esta puerta sigue midiendo sin tocarla — y si el componente
+ * deja de pintar lo que el JSON dice, sale ROJA, que es justo lo que tiene que pasar.
+ *
+ * `capitaliza()` NO ES ADORNO: `webflow.css` pone `text-transform: capitalize` en h1..h4 y en
+ * `.button-styles`, y capitalize SI altera `innerText`. Los titulos se declaran ya capitalizados
+ * palabra a palabra; los parrafos y las etiquetas, no.
+ *
+ * LO QUE NO SALE DEL JSON son las etiquetas y las opciones del formulario, que viven en
+ * `FormularioCore.astro`. Se declaran aqui como espejo, a proposito: si alguien cambia una
+ * etiqueta alli y no aqui, esta puerta se pone roja. Esa es la deteccion de deriva, no un
+ * descuido.
+ */
+const CAPTACION_JSON = (() => {
+  const f = path.join(RAIZ, 'src/data/captacion-servicios.json');
+  return fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')) : {};
+})();
+
+/** Espejo de `src/components/widgets/FormularioCore.astro`. Un cambio alli sin cambio aqui = ROJA. */
+const CAMPOS_CAPTACION = [
+  'Full name', 'Phone', 'Email', 'ZIP code',
+  'Project type', 'New Custom Pool', 'Complete Pool Remodel',
+  'Do you own this property?', 'Select one...', 'Yes, I own this property', 'No', 'Other',
+  'Investment range', 'Select one...',
+  'Under $25,000', '$25,000 – $50,000', '$50,000 – $75,000',
+  '$75,000 – $100,000', '$100,000 – $150,000', '$150,000+',
+  'Timeline', 'Select one...',
+  'As soon as possible', '1-3 months', '3-6 months', '6-12 months', 'Just exploring',
+  'Project details (optional)',
+  'I agree to receive SMS messages related to project updates, promotions, and company '
+  + 'communications from Mr. & Mrs. Outdoor Living. I understand that I may opt out at any '
+  + 'time by replying STOP. Message and data rates may apply.',
+];
+
+/** Los 15 slides del carrusel de obras, en el orden del componente: propias y luego migradas. */
+const SLIDES_OBRAS = (() => {
+  const lee = (rel) => {
+    const f = path.join(RAIZ, rel);
+    return fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')).obras ?? [] : [];
+  };
+  return [...lee('src/data/proyectos-propios.json'), ...lee('src/data/obras-migradas.json')]
+    .flatMap((o) => [capitaliza(String(o.tituloHtml).replace(/&amp;/g, '&')), 'See Project']);
+})();
+
+/** Los bloques contiguos que aporta la capa de captacion en `ruta`. Vacio si no la lleva. */
+function bloquesCaptacion(ruta) {
+  const c = CAPTACION_JSON[ruta];
+  if (!c) return [];
+  const bloques = [];
+
+  // 1 · las dos lineas del heroe, detras del apoyo (que ya viene sustituido por `traduce`).
+  bloques.push([
+    `${'+1 (352) 740-3361'} North Florida · ${'+1 (954) 913-7112'} South Florida`,
+    c.heroe.licencias,
+  ]);
+
+  // 2 · franja de confianza + formulario + «what happens», todo seguido.
+  bloques.push([
+    capitaliza(c.confianza.rotulo),
+    ...c.confianza.tarjetas.flatMap((t) => [capitaliza(t.titulo), t.texto]),
+    capitaliza(c.formulario.titulo),
+    c.formulario.entradilla,
+    ...CAMPOS_CAPTACION,
+    capitaliza(c.formulario.pasosTitulo),
+    ...c.formulario.pasos.flatMap((p, i) => [String(i + 1), p]),
+  ]);
+
+  // 3 · banda de inversion + carrusel de obras, tambien seguidos.
+  bloques.push([
+    capitaliza(c.inversion.titulo),
+    c.inversion.texto,
+    ...c.inversion.ctas.map((x) => x.texto),
+    capitaliza(c.proyectos.titulo),
+    c.proyectos.entradilla,
+    ...SLIDES_OBRAS,
+    'See All Projects',
+  ]);
+
+  // 4 · las tres preguntas nuevas. Solo el `<h3>`: la respuesta vive en un desplegable cerrado
+  //     y `innerText` no la ve.
+  bloques.push(c.faq.anade.map((q) => capitaliza(q.pregunta)));
+
+  return bloques;
+}
+
+  // 5.bis · la capa de captacion (§ bloquesCaptacion). Disjunta de las cinco anteriores: sus
+  //          lineas no salen en ningun baseline ni las produce ningun otro bloque declarado.
+  for (const bl of bloquesCaptacion(ruta)) {
+    lineas = quitaBloque(lineas, bl);
+    if (lineas === null) {
+      bloqueQueFallo = `el bloque de captacion que empieza en "${bl[0]}" `
+        + '(src/data/captacion-servicios.json + FormularioCore.astro)';
+      return null;
+    }
+    conCaptacion++;
+  }
+
   // 6 · las lineas sueltas declaradas (§ LINEAS_ANADIDAS). Van al final: los cinco anteriores
   //     son bloques enteros y estas son lineas sueltas, asi que quitarlas antes movería sus anclas.
   for (const d of LINEAS_ANADIDAS) {
@@ -873,9 +1146,11 @@ function sinElBloque(ruta, hay) {
 }
 
 /** Diferencia legible entre dos textos, línea a línea. */
-function diferencias(esperado, hay) {
+function diferencias(ruta, esperado, hay) {
   const a = esperado.split('\n'), b = hay.split('\n');
-  const declaradas = new Set(QUITADAS_A_PROPOSITO.map(([l]) => l));
+  const declaradas = new Set(QUITADAS_A_PROPOSITO
+    .filter(([, , rutas]) => !rutas || rutas.includes(ruta))
+    .map(([l]) => l));
   const falta = a.filter((l) => !b.includes(l) && !declaradas.has(l));
   const sobra = b.filter((l) => !a.includes(l));
   const fuera = [];
@@ -994,9 +1269,11 @@ for (const ruta of RUTAS) {
   }
   if (!est.valida) { console.log(`  ROJO ${ruta} — medicion invalida ${JSON.stringify(est.sonda)}`); mal++; continue; }
 
-  const declaradas = new Set(QUITADAS_A_PROPOSITO.map(([l]) => l));
+  const declaradas = new Set(QUITADAS_A_PROPOSITO
+    .filter(([, , rutas]) => !rutas || rutas.includes(ruta))
+    .map(([l]) => l));
   const esperado = reordena(ruta, fs.readFileSync(ref, 'utf8').trimEnd().split('\n')
-    .filter((l) => !declaradas.has(l)).map(traduce)).join('\n');
+    .filter((l) => !declaradas.has(l)).map((l) => traduce(ruta, l))).join('\n');
   const bruto = (await textoNormalizado(pag)).trimEnd();
   if (bruto.includes(RESENAS_MARCADOR)) conResenas++;
   if (BLOG_RUTAS.some((p) => ruta.startsWith(p)) && lineasBlog(ruta).length
@@ -1027,7 +1304,7 @@ for (const ruta of RUTAS) {
   }
 
   mal++;
-  const d = diferencias(esperado, hay);
+  const d = diferencias(ruta, esperado, hay);
   rojos.push({ ruta, ...d });
   console.log(`  ROJO ${ruta} — faltan ${d.falta.length} lineas, sobran ${d.sobra.length}`);
 }

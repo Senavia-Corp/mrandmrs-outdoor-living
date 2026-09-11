@@ -106,6 +106,13 @@
  * al lado, no debajo, para que se lea ANTES de rellenar y no despues. Por debajo de 992 se
  * apilan y los pasos van primero en el DOM? No: van DESPUES, para que el pulgar llegue al
  * primer campo sin scroll. El orden del documento es el orden de lectura. */
+/* EL ANCLA DEL CTA DEL HEROE, MEDIDA. `section.menu` es `position: fixed` de 85 px, asi que
+ * saltar a `#estimate` dejaba el `<h2>` del formulario en top 48 px a 390 y 64 px a 1440 —
+ * DEBAJO del nav, o sea tapado. El CTA principal de una landing de pago llevaba a un titulo que
+ * no se ve. Se reserva el alto del nav mas un respiro; el mismo remedio que ya usa
+ * `financiacion.css:248`. */
+.svc-captacion { scroll-margin-block-start: calc(var(--mm-nav-alto) + var(--mm-e-24)); }
+
 .svc-captacion__rejilla {
   display: grid;
   grid-template-columns: 1fr;
