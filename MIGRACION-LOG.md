@@ -5369,3 +5369,35 @@ diapositiva distinta a la que capturó el baseline de Webflow. **Verificado que 
 guardaron los cambios con `git stash`, se reconstruyó `432f07e` limpio y la roja sale
 **idéntica**. No es una regresión de F3; es la misma deriva de rediseño que ya tienen las ~356
 comparaciones de `check:visual`, y se cierra re-aprobando con un humano, no desde un agente.
+## /gallery — orden de la rejilla por servicio (11-sep-2026)
+
+Sebastian fijó el orden: primero lo que más vende. Las 137 fotos **ya estaban agrupadas** en 14
+bloques contiguos; el cambio es una permutación de bloques, sin añadir, quitar ni recortar nada.
+
+```
+construction 10 · remodeling 10 · kitchen 8 · pergolas 10 · screens 10 · light 10 · louvered 10
+resto en su orden previo: rooms 10 · enclosures 10 · pole 9 · landscaping 10 · irrigation 10 · furniture 10 · decks 10
+```
+
+- «Motorized Screens» es `screens` (Retractable Screens), decidido por los `alt`
+  («motorized retractable screen»), no por el nombre. `enclosures` y `rooms` son cerramientos.
+- **Son DOS `.cms-list-pictures` apiladas** (99 + 38), no una. Cada una conserva su tamaño, así
+  que la rejilla no cambia de forma en ningún ancho: solo cambia qué foto va en cada celda.
+- El `<select id="service-filter">` sigue el mismo orden, con `All` primero.
+- Tocados `_source/vivo/gallery.html` y `src/pages/gallery.astro` con la misma permutación.
+  Mi `gallery.astro` es **byte a byte** el que regenera `npm run paginas` desde la fuente.
+
+### Trampa: `npm run paginas` ya no es idempotente
+
+Regenerar reescribe **18 páginas más** (about, brochures, contact-us, request-estimated y las 14
+de `services/`): deshace el `sizes="200px"` de los logos, que se arregló después a mano sobre el
+`.astro`. Es deriva previa a este encargo. Se revirtieron; no entran en este commit. Antes de
+volver a correr `npm run paginas`, eso tiene que volver a la fuente o al generador.
+
+### Puertas
+
+`check:tokens`, `check:rutas`, `check:enlaces`, `check:seo`, `check:galeria-formulario`: verdes.
+`check-texto /gallery`: **ROJO declarado aquí** — «faltan 0, sobran 0, línea 14: orden
+cambiado». Es el desplegable reordenado a propósito. No se ha tocado ni el baseline ni la puerta.
+`check:visual /gallery` **no se corrió**: ya estaba en rojo antes (contrato `rediseno`,
+`sha: por-asignar`, sin referencia aprobada). Sigue pendiente de `aprobar-diseno.mjs --si`.
