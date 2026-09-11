@@ -144,6 +144,49 @@ const traduce = (l) => {
 };
 
 /**
+ * ── ORDEN CAMBIADO A PROPÓSITO ───────────────────────────────────────────────────────────
+ *
+ * DECISIÓN (Sebastian, 11-sep-2026): el desplegable de /gallery sigue el orden comercial de la
+ * rejilla, piscinas primero. Son las mismas 15 opciones en otro orden, y por eso la puerta daba
+ * «faltan 0, sobran 0» + «orden cambiado».
+ *
+ * Se declara el bloque EXACTO, antes -> después, y solo puede REORDENAR: si las dos listas no
+ * tienen las mismas líneas, esto revienta al arrancar. Si el baseline deja de traer `antes`
+ * seguido, no se aplica y la ruta vuelve a rojo. Todo lo demás se sigue comparando al 100 %.
+ */
+const REORDENADAS_A_PROPOSITO = [
+  {
+    ruta: '/gallery',
+    antes: ['All', 'New Pool and Spa Construction', 'Pool Remodeling and Renovation',
+      'Aluminum and Wood Pergolas', 'Louvered Roof Systems', 'Pool Screen Enclosures',
+      'Patio Screen Rooms', 'Pole Barn and Steel Buildings', 'Landscaping', 'Automated Irrigation',
+      'Custom Decks', 'Outdoor Furniture', 'Outdoor Kitchens', 'Retractable Screens',
+      'Smart Soffit LED Lighting'],
+    despues: ['All', 'New Pool and Spa Construction', 'Pool Remodeling and Renovation',
+      'Outdoor Kitchens', 'Aluminum and Wood Pergolas', 'Retractable Screens',
+      'Smart Soffit LED Lighting', 'Louvered Roof Systems', 'Pool Screen Enclosures',
+      'Patio Screen Rooms', 'Pole Barn and Steel Buildings', 'Landscaping', 'Automated Irrigation',
+      'Custom Decks', 'Outdoor Furniture'],
+    motivo: 'el filtro de la galeria sigue el orden comercial de la rejilla (piscinas primero). '
+      + 'Mismas 15 opciones: solo cambia el orden',
+  },
+];
+for (const d of REORDENADAS_A_PROPOSITO) {
+  if ([...d.antes].sort().join('\n') !== [...d.despues].sort().join('\n')) {
+    throw new Error(`REORDENADAS_A_PROPOSITO ${d.ruta}: antes y despues no son las mismas lineas`);
+  }
+}
+
+/** Aplica el reorden declarado de UNA ruta sobre sus líneas del baseline. */
+const reordena = (ruta, lineas) => {
+  for (const d of REORDENADAS_A_PROPOSITO.filter((x) => x.ruta === ruta)) {
+    const i = lineas.findIndex((_, k) => d.antes.every((l, j) => lineas[k + j] === l));
+    if (i >= 0) lineas.splice(i, d.antes.length, ...d.despues);
+  }
+  return lineas;
+};
+
+/**
  * Texto que APARECE a propósito, por ruta. Se declara un BLOQUE SEGUIDO, no unas líneas
  * sueltas ni la ruta entera.
  *
@@ -949,8 +992,8 @@ for (const ruta of RUTAS) {
   if (!est.valida) { console.log(`  ROJO ${ruta} — medicion invalida ${JSON.stringify(est.sonda)}`); mal++; continue; }
 
   const declaradas = new Set(QUITADAS_A_PROPOSITO.map(([l]) => l));
-  const esperado = fs.readFileSync(ref, 'utf8').trimEnd().split('\n')
-    .filter((l) => !declaradas.has(l)).map(traduce).join('\n');
+  const esperado = reordena(ruta, fs.readFileSync(ref, 'utf8').trimEnd().split('\n')
+    .filter((l) => !declaradas.has(l)).map(traduce)).join('\n');
   const bruto = (await textoNormalizado(pag)).trimEnd();
   if (bruto.includes(RESENAS_MARCADOR)) conResenas++;
   if (BLOG_RUTAS.some((p) => ruta.startsWith(p)) && lineasBlog(ruta).length
@@ -1092,6 +1135,9 @@ for (const [r, d] of Object.entries(ANADIDAS_A_PROPOSITO)) {
 for (const d of LINEAS_ANADIDAS) {
   console.log(`     declarado ${d.rutas ? d.rutas.join(' ') : '(todas con pie)'}:`
     + ` [${d.lineas.join(' / ')}] — ${d.motivo}`);
+}
+for (const d of REORDENADAS_A_PROPOSITO) {
+  console.log(`     declarado ${d.ruta}: orden de [${d.despues.length} lineas] — ${d.motivo}`);
 }
 console.log(`\n${mal === 0 ? 'PUERTA VERDE' : `PUERTA ROJA — ${mal} pagina(s)`}\n`);
 process.exit(mal ? 1 : 0);

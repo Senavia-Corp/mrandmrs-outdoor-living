@@ -5369,6 +5369,9 @@ diapositiva distinta a la que capturó el baseline de Webflow. **Verificado que 
 guardaron los cambios con `git stash`, se reconstruyó `432f07e` limpio y la roja sale
 **idéntica**. No es una regresión de F3; es la misma deriva de rediseño que ya tienen las ~356
 comparaciones de `check:visual`, y se cierra re-aprobando con un humano, no desde un agente.
+
+---
+
 ## /gallery — orden de la rejilla por servicio (11-sep-2026)
 
 Sebastian fijó el orden: primero lo que más vende. Las 137 fotos **ya estaban agrupadas** en 14
@@ -5397,7 +5400,9 @@ volver a correr `npm run paginas`, eso tiene que volver a la fuente o al generad
 ### Puertas
 
 `check:tokens`, `check:rutas`, `check:enlaces`, `check:seo`, `check:galeria-formulario`: verdes.
-`check-texto /gallery`: **ROJO declarado aquí** — «faltan 0, sobran 0, línea 14: orden
-cambiado». Es el desplegable reordenado a propósito. No se ha tocado ni el baseline ni la puerta.
+`check-texto /gallery`: verde. Daba «faltan 0, sobran 0, línea 14: orden cambiado» por el
+desplegable reordenado a propósito. Se declara en `REORDENADAS_A_PROPOSITO` (nuevo en
+`check-texto.mjs`): bloque exacto antes -> después, que **solo puede reordenar** —si las dos
+listas no traen las mismas líneas, revienta al arrancar—. El baseline no se ha tocado.
 `check:visual /gallery` **no se corrió**: ya estaba en rojo antes (contrato `rediseno`,
 `sha: por-asignar`, sin referencia aprobada). Sigue pendiente de `aprobar-diseno.mjs --si`.
