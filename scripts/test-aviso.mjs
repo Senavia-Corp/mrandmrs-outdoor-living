@@ -186,7 +186,7 @@ const CORE = {
     { campo: 'Estimated-Project-Budget', etiqueta: 'Investment range', valor: '$75,000 – $100,000' },
     { campo: 'Timeline', etiqueta: 'Timeline', valor: '3-6 months' },
     { campo: 'checkbox', etiqueta: 'Services of interest', valor: 'New Pool and Spa Construction' },
-    { campo: 'Checkbox', etiqueta: 'SMS consent', valor: 'on' },
+    { campo: 'Checkbox', etiqueta: 'SMS consent', valor: 'Yes' },
   ],
 };
 const avisoCore = construyeAviso(CORE);

@@ -89,8 +89,19 @@
 .svc-confianza__rotulo { margin: 0; }
 
 /* El circulo del icono. Mismo patron que `.fin-icono`, en su propio nombre para no cruzar
- * dos familias: el dia que una cambie, la otra no se entera. */
-.svc-icono {
+ * dos familias: el dia que una cambie, la otra no se entera.
+ *
+ * SE LLAMA `.svc-confianza__icono` Y NO `.svc-icono` POR UNA COLISION REAL, MEDIDA.
+ * `ServiciosPorCategoria.astro` ya tiene un `.svc-icono` propio —un `<img>` de 30 px dentro de
+ * `.svc-barra`— y lo montan `/`, `/where-we-serve/north-florida` y `/where-we-serve/south-florida`:
+ * 42 iconos en tres paginas que este encargo promete intactas. Su regla va SCOPED por Astro
+ * (`.svc-icono[data-astro-cid-tbqwuwa5]`, 0-2-0) y ganaba en todo lo que declara, pero
+ * `display`, `place-items` y `color` NO los declara: esos tres se colaban desde esta hoja, que
+ * es global. Hoy no se veia —el `<img>` es hijo de un `display:flex`, asi que ya estaba
+ * blockificado, y `place-items`/`color` no pintan nada en un elemento reemplazado sin hijos—,
+ * pero dos cosas distintas con el mismo nombre en el mismo espacio es una bomba de relojeria.
+ * El prefijo `.svc-` NO era libre. */
+.svc-confianza__icono {
   display: grid;
   place-items: center;
   inline-size: calc(var(--mm-e-48) + var(--mm-e-8));
@@ -99,7 +110,7 @@
   background-color: color-mix(in srgb, var(--mm-navy) 8%, transparent);
   color: var(--mm-navy);
 }
-.svc-icono svg { inline-size: var(--mm-e-32); block-size: var(--mm-e-32); }
+.svc-confianza__icono svg { inline-size: var(--mm-e-32); block-size: var(--mm-e-32); }
 
 /* ══ 2 · EL FORMULARIO ════════════════════════════════════════════════════════════════════
  * Dos columnas a partir de 992: el formulario manda y «What happens after you reach out» va

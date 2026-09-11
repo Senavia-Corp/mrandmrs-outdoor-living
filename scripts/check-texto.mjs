@@ -1065,15 +1065,18 @@ const CAMPOS_CAPTACION = [
   + 'time by replying STOP. Message and data rates may apply.',
 ];
 
-/** Los 15 slides del carrusel de obras, en el orden del componente: propias y luego migradas. */
-const SLIDES_OBRAS = (() => {
+/** Los slides del carrusel de obras, en el orden del componente. Si la ruta declara `solo`,
+ *  manda esa lista y ese orden; si no, las 15 (propias y luego migradas). */
+const slidesObras = (ruta) => {
   const lee = (rel) => {
     const f = path.join(RAIZ, rel);
     return fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')).obras ?? [] : [];
   };
-  return [...lee('src/data/proyectos-propios.json'), ...lee('src/data/obras-migradas.json')]
-    .flatMap((o) => [capitaliza(String(o.tituloHtml).replace(/&amp;/g, '&')), 'See Project']);
-})();
+  const todas = [...lee('src/data/proyectos-propios.json'), ...lee('src/data/obras-migradas.json')];
+  const solo = CAPTACION_JSON[ruta]?.proyectos?.solo;
+  const usadas = solo ? solo.map((sg) => todas.find((o) => o.slug === sg)).filter(Boolean) : todas;
+  return usadas.flatMap((o) => [capitaliza(String(o.tituloHtml).replace(/&amp;/g, '&')), 'See Project']);
+};
 
 /** Los bloques contiguos que aporta la capa de captacion en `ruta`. Vacio si no la lleva. */
 function bloquesCaptacion(ruta) {
@@ -1105,7 +1108,7 @@ function bloquesCaptacion(ruta) {
     ...c.inversion.ctas.map((x) => x.texto),
     capitaliza(c.proyectos.titulo),
     c.proyectos.entradilla,
-    ...SLIDES_OBRAS,
+    ...slidesObras(ruta),
     'See All Projects',
   ]);
 

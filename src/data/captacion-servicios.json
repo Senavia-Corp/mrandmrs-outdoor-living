@@ -27,7 +27,7 @@
   "/services/custom-pool-spa-builders-in-north-south-florida": {
     "heroe": {
       "apoyo": "New custom inground pools for North Florida homeowners — 3D design, permits, construction and final start-up, from one licensed team. We also build across South Florida.",
-      "foto": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-1.avif",
+      "foto": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-2.avif",
       "alt": "Custom inground pool and raised spa built on North Florida acreage by Mr & Mrs Outdoor Living",
       "ancho": 1250,
       "alto": 698,
@@ -122,7 +122,22 @@
 
     "proyectos": {
       "titulo": "Custom pools we have built",
-      "entradilla": "Real projects from our own galleries, across North and South Florida."
+      "entradilla": "Real projects from our own galleries in North and South Florida.",
+      "_solo": [
+        "De las 15 obras del carrusel, SOLO estas cuatro tienen un titulo dominado por la",
+        "PISCINA. Las once restantes lideran con pergola, cocina exterior o cubierta de patio",
+        "-que son intenciones EXCLUIDAS de esta landing- y cinco de ellas dicen «South Florida»",
+        "en el titulo, en la ficha cuyo anuncio promete North Florida. Sin filtrar, el carrusel",
+        "metia 5 «South Florida» y 8 «Pergola» debajo del pliegue de una landing de piscina",
+        "nueva. Con el filtro: 1 «North Florida», 0 «South Florida», 0 pergolas.",
+        "Las otras 66 rutas que montan el carrusel no declaran `solo` y siguen viendo las 15."
+      ],
+      "solo": [
+        "estate-pool-spa-sun-shelf-north-florida",
+        "luxury-pool-spa-screen-enclosure-north-florida",
+        "luxury-pool-raised-spa-travertine-deck-south-florida",
+        "pool-raised-spa-marble-deck-south-florida"
+      ]
     },
 
     "inversion": {

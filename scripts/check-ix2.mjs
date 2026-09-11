@@ -99,7 +99,14 @@ const RUTAS = ['/', '/about', '/gallery', '/contact-us', '/videos', '/brochures'
   // `/financing`: es marcado nuestro, no marcado de Webflow ya cuadrado, y su desbordamiento
   // horizontal no lo mide ninguna otra puerta (check:visual compara pixeles contra una
   // referencia nuestra, que es otra cosa).
-  '/project/luxury-pool-spa-aluminum-pergola-south-florida'];
+  '/project/luxury-pool-spa-aluminum-pergola-south-florida',
+  // R17-CORE — LA LANDING DE PAGO DEL AD GROUP «Pool Builders Core». Entra por la misma razon
+  // que `/financing` y la ficha de obra: desde este encargo lleva marcado NUESTRO —tres
+  // secciones `.svc-*` y un formulario de nueve campos— y su desbordamiento horizontal no lo
+  // medía ninguna puerta. El arquetipo de `/services/` sigue siendo custom-deck, que es una
+  // ficha sin tocar; esta es la unica de las 14 que ya no es solo marcado de Webflow.
+  // Cuesta 4 cargas mas.
+  '/services/custom-pool-spa-builders-in-north-south-florida'];
 const ANCHOS = [[1920, 1080], [1440, 900], [991, 800], [479, 850]];
 
 const TIPO = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript',

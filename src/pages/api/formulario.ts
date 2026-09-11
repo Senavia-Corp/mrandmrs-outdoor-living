@@ -95,6 +95,11 @@ const FORMULARIOS: Record<string, { titulo: string; campos: [string, string][] }
    * quedar constancia de que se dio: es un formulario de captacion de pago y ese registro es
    * justo lo que hace falta el dia que alguien pregunte. No cambia nada en los otros tres.
    *
+   * Aqui el consentimiento es OPCIONAL (ver `FormularioCore.astro`), asi que la fila puede NO
+   * salir: el bucle de abajo descarta los valores vacios y una casilla sin marcar no se envia.
+   * La ausencia de la fila «SMS consent» ES el registro de que no se dio, igual que la ausencia
+   * de «Project details» dice que no escribio nada. Marcada, el valor es `Yes`, no `on`.
+   *
    * El orden es el del correo: con quien hay que hablar, donde, que quiere, cuanto y cuando.
    */
   'Pool Builders Core Form': {

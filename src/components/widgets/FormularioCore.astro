@@ -159,10 +159,25 @@ const PROPIEDAD = ['Yes, I own this property', 'No', 'Other'];
               sale del vocabulario aprobado de 14 servicios, no se inventa. */}
           <input type="hidden" name="checkbox" value="New Pool and Spa Construction" />
 
+          {/* EL CONSENTIMIENTO DE SMS ES OPCIONAL AQUI, Y ES UNA DESVIACION DELIBERADA.
+              Los otros cuatro formularios del sitio (`/contact-us`, `/request-estimated`,
+              `/brochures` y el lightbox de `/gallery`) lo traen `required` desde Webflow: no se
+              puede enviar sin aceptar SMS de «promotions». Eso condiciona un servicio a un
+              consentimiento de MARKETING, que es justo lo que 47 CFR 64.1200(a)(2) no permite
+              -el consentimiento no puede exigirse como condicion de compra-, y ademas es el
+              unico campo obligatorio que no aporta NADA a la estimacion: quien no lo marca se
+              va sin dejar el lead que ya se pago con el clic.
+
+              Aqui va opcional. La calidad del lead no baja -los ocho cualificadores siguen
+              siendo obligatorios-; lo unico que cambia es por que canal se le puede escribir
+              despues. El valor es `Yes` y no `on` porque el correo lo lee un comercial.
+
+              Las OTRAS CUATRO no se tocan: son rutas fuera de este encargo y el patron es del
+              origen. Va como pendiente para Sebastian en `R17-CORE.md`. */}
           <label class="w-checkbox checkbox-field svc-form__consentimiento">
             <input type="checkbox" id="svc-Checkbox" name="Checkbox" data-name="Checkbox"
-              class="w-checkbox-input" required />
-            <span class="checkbox-label-3 w-form-label" for="svc-Checkbox">I agree to receive SMS messages related to project updates, promotions, and company communications from Mr. &amp; Mrs. Outdoor Living. I understand that I may opt out at any time by replying STOP. Message and data rates may apply.</span>
+              value="Yes" class="w-checkbox-input" />
+            <span class="checkbox-label-3 w-form-label" for="svc-Checkbox">I agree to receive SMS messages related to project updates, promotions, and company communications from Mr. &amp; Mrs. Outdoor Living. This is optional and is not required to get an estimate. I understand that I may opt out at any time by replying STOP. Message and data rates may apply.</span>
           </label>
 
           <div class="svc-form__envio">
