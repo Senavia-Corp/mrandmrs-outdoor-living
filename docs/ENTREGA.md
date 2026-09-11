@@ -55,7 +55,7 @@ sigue sin conectar (ver más abajo), el push sube el código pero no despliega.
 ### 1. Credenciales (bloquean la Fase 8)
 | Variable | De dónde sale |
 |---|---|
-| `SMTP_USER` / `SMTP_PASS` | Gmail App Password. **Exige 2FA activa** y debe ser de la cuenta que autentica. Ahora bloquean **tres** formularios, no dos: el de contacto, el de presupuesto y el nuevo del estimador |
+| `SMTP_USER` / `SMTP_PASS` | Gmail App Password. **Exige 2FA activa** y debe ser de la cuenta que autentica. Ahora bloquean **seis** formularios, contados sobre el build (`grep -rlo 'data-mm-envia="1"'`): `/contact-us`, `/request-estimated`, el lightbox de `/gallery`, los dos estimadores y —desde R17-CORE, 11-sep-2026— el de `/services/custom-pool-spa-builders-in-north-south-florida`. **Ese ultimo es la Final URL del ad group «Pool Builders Core»**: sin SMTP, el trafico de pago rellena el formulario y el lead no llega a nadie |
 | `LEAD_TO` | opcional; por defecto `info@mrandmrsoutdoorliving.com`, el del propio sitio |
 | `TURNSTILE_SECRET` | panel de Cloudflare del cliente. **La clave de SITIO ya existe** (`0x4AAAAAAAQTptj2So4dx43e`): la tenía Webflow |
 
