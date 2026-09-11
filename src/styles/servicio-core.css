@@ -79,14 +79,30 @@
 @media (min-width: 480px) { .svc-confianza__lista { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 992px) { .svc-confianza__lista { grid-template-columns: repeat(4, 1fr); } }
 
+/* EL FILETE DE ORO, Y POR QUE NO HAY CUATRO DISCOS. Cuatro circunferencias identicas con un
+ * icono dentro son exactamente el efecto «cuatro cajas iguales»: la vista no encuentra donde
+ * entrar. El filete superior hace de indice -como una tabla- y convierte la retahila en una
+ * lectura. Son 2 px porque 1 px de oro sobre navy se pierde a 1x.
+ *
+ * ES EL UNICO ORO DE ESTA PAGINA QUE NO ES EL BOTON, y cabe: `base.css` reserva el oro para
+ * `.mm-accion` porque sobre BLANCO da 1,86:1 y no marca nada. Aqui el fondo es navy y da
+ * 8,40:1. El propio `.mm-inverso` ya pone oro claro como color de enlace en su ambito, o sea
+ * que oro sobre oscuro es un registro que el sistema YA usa. El CTA dorado sigue viviendo solo
+ * en el fondo claro de abajo, asi que no se le hace competencia. */
 .svc-confianza__item {
   display: flex;
   flex-direction: column;
   gap: var(--mm-e-12);
+  padding-block-start: var(--mm-e-24);
+  border-block-start: 2px solid var(--mm-oro);
 }
 /* `capitalize` vive en `h3` (webflow.css) y SI altera el innerText: el rotulo se pinta en
- * Title Case y asi esta declarado en `check-texto.mjs`. No se toca esa regla. */
-.svc-confianza__rotulo { margin: 0; }
+ * Title Case y asi esta declarado en `check-texto.mjs`. No se toca esa regla.
+ *
+ * `2lh` NO es adorno: «Florida Licensed Pool Contractor» y «3D Design Before You Commit» ocupan
+ * dos lineas y los otros dos una, asi que los cuerpos arrancaban a cuatro alturas distintas.
+ * Reservando dos lineas comparten linea base sin tocar el texto. */
+.svc-confianza__rotulo { margin: 0; min-block-size: 2lh; }
 
 /* El circulo del icono. Mismo patron que `.fin-icono`, en su propio nombre para no cruzar
  * dos familias: el dia que una cambie, la otra no se entera.
@@ -101,16 +117,8 @@
  * blockificado, y `place-items`/`color` no pintan nada en un elemento reemplazado sin hijos—,
  * pero dos cosas distintas con el mismo nombre en el mismo espacio es una bomba de relojeria.
  * El prefijo `.svc-` NO era libre. */
-.svc-confianza__icono {
-  display: grid;
-  place-items: center;
-  inline-size: calc(var(--mm-e-48) + var(--mm-e-8));
-  block-size: calc(var(--mm-e-48) + var(--mm-e-8));
-  border-radius: var(--mm-r-pastilla);
-  background-color: color-mix(in srgb, var(--mm-navy) 8%, transparent);
-  color: var(--mm-navy);
-}
-.svc-confianza__icono svg { inline-size: var(--mm-e-32); block-size: var(--mm-e-32); }
+.svc-confianza__icono { display: block; color: var(--mm-oro); }
+.svc-confianza__icono svg { inline-size: var(--mm-e-48); block-size: var(--mm-e-48); }
 
 /* ══ 2 · EL FORMULARIO ════════════════════════════════════════════════════════════════════
  * Dos columnas a partir de 992: el formulario manda y «What happens after you reach out» va
@@ -122,23 +130,36 @@
  * DEBAJO del nav, o sea tapado. El CTA principal de una landing de pago llevaba a un titulo que
  * no se ve. Se reserva el alto del nav mas un respiro; el mismo remedio que ya usa
  * `financiacion.css:248`. */
-.svc-captacion { scroll-margin-block-start: calc(var(--mm-nav-alto) + var(--mm-e-24)); }
+/* EL FONDO GRIS Y LA TARJETA BLANCA, no al reves. Probadas las dos sobre el build: con la
+ * seccion en blanco y la tarjeta gris, el panel de los pasos quedaba blanco sobre blanco y
+ * desaparecia. Con el suelo gris, la tarjeta blanca es lo unico levantado de la pagina y el ojo
+ * va ahi. Navy sobre este gris da 13,68:1.
+ *
+ * `margin-block-start: 0` NO es cosmetico: la seccion heredaba 65 px de margen y dejaba una
+ * costura BLANCA entre la franja navy y este gris -un tercer color de dos dedos que no pintaba
+ * nada-. Se anula aqui y solo aqui: `.svc-captacion` existe unicamente en esta ruta. */
+.svc-captacion {
+  scroll-margin-block-start: calc(var(--mm-nav-alto) + var(--mm-e-24));
+  margin-block-start: 0;
+  background-color: var(--mm-fondo-tenue);
+}
 
-.svc-captacion__rejilla {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--mm-e-32);
-}
-@media (min-width: 992px) {
-  .svc-captacion__rejilla {
-    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
-    gap: var(--mm-e-48);
-    align-items: start;
-  }
-}
+/* UNA SOLA COLUMNA. La rejilla de dos murio con el hueco del 65-72 %; ver el comentario de
+ * `FormularioCore.astro`. `56rem` es la medida: a 1440 el campo queda en 404 px en vez de los
+ * 800 que salian cuando el formulario ocupaba el ancho entero a 991. */
+.svc-captacion__rejilla { max-inline-size: 56rem; }
 
 .svc-captacion__intro { margin-bottom: var(--mm-e-24); }
-.svc-captacion__panel { min-width: 0; }
+
+/* La tarjeta. Sombra 3 y no borde: sobre el gris tenue el borde de la casa (#e0e4ec) da 1,12:1
+ * y no separa nada. Lo que levanta la tarjeta es la sombra. */
+.svc-captacion__panel {
+  min-width: 0;
+  background-color: var(--mm-superficie);
+  border-radius: var(--mm-r-24);
+  box-shadow: var(--mm-sombra-3);
+  padding: var(--mm-e-32);
+}
 
 /* Los ocho campos cortos, a dos columnas desde 768. `Project details` ocupa las dos. */
 .svc-form__rejilla {
@@ -160,13 +181,18 @@
 .svc-form__consentimiento { margin-block: var(--mm-e-24) var(--mm-e-16); }
 .svc-form__envio { margin-top: var(--mm-e-16); }
 
-/* ══ 3 · «WHAT HAPPENS AFTER YOU REACH OUT» ═══════════════════════════════════════════════ */
-.svc-captacion__pasos { padding: var(--mm-e-24); }
+/* ══ 3 · «WHAT HAPPENS AFTER YOU REACH OUT» ═══════════════════════════════════════════════
+ * Ya no es tarjeta: es una TIRA sobre el suelo gris, delante del formulario. Sin fondo propio
+ * ni sombra, porque competir con la tarjeta blanca seria pelearle la jerarquia a lo unico que
+ * tiene que destacar. */
+.svc-captacion__pasos { margin-block-end: var(--mm-e-32); }
 
+/* `auto-fit` y no tres columnas fijas: a 390 cae a una, a 768 a dos o tres segun quepa, y a
+ * 1440 a tres. Sin un solo punto de corte escrito. */
 .svc-pasos {
-  display: flex;
-  flex-direction: column;
-  gap: var(--mm-e-16);
+  display: grid;
+  gap: var(--mm-e-16) var(--mm-e-24);
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   margin: var(--mm-e-16) 0 0;
   padding: 0;
   list-style: none;

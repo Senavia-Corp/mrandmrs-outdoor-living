@@ -41,7 +41,7 @@ const ruta = (Astro.props.ruta ?? Astro.url.pathname).replace(/(.)\/$/, '$1');
 const d = DATOS[ruta]?.confianza;
 ---
 {d && (
-  <section class="svc-confianza mm-seccion">
+  <section class="svc-confianza mm-seccion mm-inverso">
     <div class="mm-caja mm-pila mm-pila--32">
       <h2 class="mm-tit-2 svc-confianza__tit">{d.rotulo}</h2>
       <ul class="svc-confianza__lista" role="list">

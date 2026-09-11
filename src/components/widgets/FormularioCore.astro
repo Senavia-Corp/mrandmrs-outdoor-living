@@ -74,6 +74,25 @@ const PROPIEDAD = ['Yes, I own this property', 'No', 'Other'];
   <section id="estimate" class="appointment-section svc-captacion">
     <div class="mm-caja svc-captacion__rejilla">
 
+      {/* LOS TRES PASOS VAN DELANTE DEL FORMULARIO, Y ES UNA DECISION MEDIDA.
+          Antes iban al lado en una rejilla de dos columnas, y eso fallaba por dos sitios a la
+          vez: de 992 para arriba la columna derecha se quedaba vacia entre 554 y 620 px -del
+          65 al 72 % de la fila, cuando la auditoria de /financing trato un 34 % como defecto-,
+          y de 992 para abajo la tira se apilaba DETRAS del boton de envio, o sea que la
+          tranquilidad llegaba despues de la decision. Delante y a lo ancho resuelve las dos: 0
+          de hueco, y se lee antes de rellenar a TODOS los anchos. De paso el campo baja de 800
+          a 404 px a 991, que es una medida de formulario y no una regla de un metro. */}
+      <aside class="svc-captacion__pasos">
+        <h3 class="mm-tit-3">{d.pasosTitulo}</h3>
+        <ol class="svc-pasos" role="list">
+          {d.pasos.map((p, i) => (
+            <li class="svc-pasos__item">
+              <span class="svc-pasos__n" aria-hidden="true">{i + 1}</span>
+              <p class="mm-txt-menudo">{p}</p>
+            </li>
+          ))}
+        </ol>
+      </aside>
       <div class="form-block w-form svc-captacion__panel">
         <div class="mm-pila svc-captacion__intro">
           <h2 class="mm-tit-2">{d.titulo}</h2>
@@ -200,17 +219,6 @@ const PROPIEDAD = ['Yes, I own this property', 'No', 'Other'];
         </div>
       </div>
 
-      <aside class="svc-captacion__pasos mm-tarjeta mm-tono">
-        <h3 class="mm-tit-3">{d.pasosTitulo}</h3>
-        <ol class="svc-pasos" role="list">
-          {d.pasos.map((p, i) => (
-            <li class="svc-pasos__item">
-              <span class="svc-pasos__n" aria-hidden="true">{i + 1}</span>
-              <p class="mm-txt-menudo">{p}</p>
-            </li>
-          ))}
-        </ol>
-      </aside>
 
     </div>
   </section>

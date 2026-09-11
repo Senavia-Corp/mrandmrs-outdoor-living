@@ -1093,15 +1093,19 @@ function bloquesCaptacion(ruta) {
     c.heroe.licencias,
   ]);
 
-  // 2 · franja de confianza + formulario + «what happens», todo seguido.
+  // 2 · franja de confianza + «what happens» + formulario, todo seguido.
+  //     R18: los pasos van DELANTE del formulario desde el rediseno de la seccion. No hace
+  //     falta declararlo en REORDENADAS_A_PROPOSITO porque estas lineas no salen de ningun
+  //     baseline: son de la capa de captacion y se declaran aqui enteras. Lo unico que cambia
+  //     es el orden de ESTA lista, que es la que dice que se espera ver y en que orden.
   bloques.push([
     capitaliza(c.confianza.rotulo),
     ...c.confianza.tarjetas.flatMap((t) => [capitaliza(t.titulo), t.texto]),
+    capitaliza(c.formulario.pasosTitulo),
+    ...c.formulario.pasos.flatMap((p, i) => [String(i + 1), p]),
     capitaliza(c.formulario.titulo),
     c.formulario.entradilla,
     ...CAMPOS_CAPTACION,
-    capitaliza(c.formulario.pasosTitulo),
-    ...c.formulario.pasos.flatMap((p, i) => [String(i + 1), p]),
   ]);
 
   // 3 · banda de inversion + carrusel de obras, tambien seguidos.
