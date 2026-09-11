@@ -211,7 +211,7 @@ línea de texto de `baseline/text/pool-investment-estimator.txt` es «Step 1 of 
    se sigue comparando al 100 %. Los dos textos salen a 0 en el baseline entero, comprobado,
    así que no hay ambigüedad sobre qué línea se quita.
 
-### D8 · El `<h1>` de `/pool-cost-estimator` se pinta, con una línea de intro   — Sebastian, 11-sep-2026 🟡 falta su visto bueno a las capturas
+### D8 · El `<h1>` de `/pool-cost-estimator` se pinta, con una línea de intro   — Sebastian, 11-sep-2026 ✅ · capturas aprobadas, en producción desde `1d79225`
 Sebastian lo pide visible, para el SEO y porque lo primero que leía el visitante era «Step 1 of
 7». Es la re-aprobación visual que D7 dejó pendiente. Encargo en `PROMPT-TITULO-ESTIMADOR.md`.
 **Solo en esta ruta**: `/pool-investment-estimator` conserva su `<h1>` oculto, tal como decidió D7.
