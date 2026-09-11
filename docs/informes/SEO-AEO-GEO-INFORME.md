@@ -121,16 +121,41 @@ hay una caché explícita tras `MM_SANITY_CACHE=1` que nunca puede enmascarar un
 
 ## 6 · Puertas
 
-**Verdes:** `check:tokens` · `check:rutas` · `check:enlaces` · `check:seo` · `check:medicion` ·
-`check:ads` (nueva) · `check:texto` sobre las 53 ciudades y las rutas tocadas.
+**Verdes — 13:** `check:resenas` · `check:aviso` · `check:estimador` · `check:tokens` ·
+`check:rutas` · `check:enlaces` · `check:menu` · `check:galeria` · `check:galeria-formulario` ·
+`check:seo` · `check:medicion` · `check:carrusel` · `check:ix2` · más `check:ads` (nueva) y
+`check:texto` sobre las 53 ciudades y las rutas tocadas.
 
-**Rojas, y ninguna es regresión de este trabajo:**
+**NEW REGRESSION: ninguna.** Las rojas que quedan son las tres de abajo, clasificadas con
+evidencia y no por conveniencia.
 
-1. **`check:texto` en `/services/custom-pool-spa-builders-…`** — el carrusel de proceso arranca
-   en otra diapositiva que la que capturó el baseline de Webflow. **Verificado con `git stash` +
-   reconstrucción de `432f07e` limpio: sale idéntica.** `PRE-EXISTING KNOWN RED`.
-2. **`check:visual`, ~356 comparaciones** — deriva deliberada de R9-R16 cuya referencia nunca se
-   repuso. Se cierra con `aprobar-diseno.mjs --si`, que **exige un humano**. `PRE-EXISTING`.
+1. **`check:texto` en `/services/custom-pool-spa-builders-…`** — `PRE-EXISTING KNOWN RED`.
+   El carrusel de proceso arranca en otra diapositiva que la que capturó el baseline de Webflow.
+   **Verificado**: `git stash` de los cambios, reconstrucción de `432f07e` limpio, y la roja sale
+   **idéntica**.
+2. **`check:cascaron`, 8 fallos** — `ENVIRONMENT BLOCKER`. Los ocho son **desviación de
+   geometría** en nav y pie. Pero: recuentos idénticos (303/303 y 180/180), **texto idéntico**, y
+   píxeles al **99,45 %** y **99,32 %**. Y se desvían **los 180 elementos del pie**, todos. Un
+   cambio de contenido no mueve 180 elementos dejando el píxel al 99,4 %; una métrica de fuente
+   distinta, sí. La referencia se capturó en la máquina macOS de Sebastian y esto corre en Linux.
+   Además **este diff no toca ni `Nav.astro` ni `Footer.astro` ni su CSS**, que es lo único que
+   esa puerta mira.
+3. **`check:visual`, ~356 comparaciones** — `PRE-EXISTING`. Deriva deliberada de R9-R16 cuya
+   referencia nunca se repuso. Se cierra con `aprobar-diseno.mjs --si`, que **exige un humano** y
+   no se firma desde un agente.
+4. **`check:assets`** — `ENVIRONMENT BLOCKER`. Busca `_source/sanity-masters/`, que está en
+   `.gitignore:12` y por tanto **no existe en un clon limpio**. Falla igual sobre HEAD sin mis
+   cambios (`exit=1`, verificado).
+
+### Dos trampas del entorno, resueltas y anotadas
+
+- **Playwright 1.62.1 espera `chromium-1234` y la imagen trae `1194`**, en dos paquetes distintos
+  (el navegador y el *headless shell*, con el binario llamado `headless_shell`). Resuelto **fuera
+  del repo** con enlaces; sin eso, seis puertas no arrancan.
+- 🚨 **`check:cascaron` reconstruye con `MM_FIXTURES=1` y eso sobrescribe `public/robots.txt` y
+  `public/sitemap.xml` con la versión de PREVIEW** — `Disallow: /` y 0 `<loc>`. Es la misma
+  trampa que la bitácora ya documentaba. **Hay que restaurarlos después de correrla**; commitear
+  eso publicaría un sitio que se prohíbe a sí mismo.
 
 Trampa que costó una vuelta y queda anotada: **las puertas hay que correrlas con el mismo
 `PUBLIC_ES_PRODUCCION` que el build.** Sin la variable sobre un build de producción, `check:seo`
