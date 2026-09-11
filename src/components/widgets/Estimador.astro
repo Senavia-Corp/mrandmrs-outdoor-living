@@ -168,7 +168,7 @@ const miles = (n: number) => n.toLocaleString('en-US');
             <div class="pe-cab">
               <div class="pe-cab-fila">
                 <Fragment set:html={svg(icono)} />
-                <div class="pe-titulo">{titulo}</div>
+                <h2 class="pe-titulo">{titulo}</h2>
               </div>
             </div>
             <div class="pe-cuerpo">
@@ -445,6 +445,12 @@ const miles = (n: number) => n.toLocaleString('en-US');
     max-width: 60ch;
     text-wrap: pretty;
   }
+  /* D9: los titulos de paso son `h2` (antes `div`), para que la jerarquia vaya h1 > h2 > h3.
+     Tamano, peso, alto y color ya los fija `.pe-titulo`; esto quita lo que un `h2` trae de
+     fuera. Medido con el volcado de estilos calculados de los 7 titulos: Webflow le pone
+     `margin-bottom:10px` y `capitalize` en /pool-cost-estimator, y el navegador 0,83em arriba
+     y abajo en la pagina desnuda. Con esto, 0 diferencias frente al `div`. */
+  #pool-estimator .pe-titulo { margin: 0; text-transform: none; }
 </style>
 
 <script>

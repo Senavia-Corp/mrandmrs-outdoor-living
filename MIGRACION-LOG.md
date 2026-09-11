@@ -260,9 +260,34 @@ y la página **sigue siendo más corta que el original** en los 4 anchos por el 
 D3. Las declaraciones de `check-texto.mjs` (`LINEAS_ANADIDAS`) y `check-visual.mjs`
 (`DISTINTAS_A_PROPOSITO`) pasan a D8. No se ha bajado ningún umbral.
 
-**Mejora candidata NO aplicada:** los títulos de paso son `div.pe-titulo`, así que la jerarquía
-salta de `h1` a `h3`. Pasarlos a `<h2>` exige blindarlos contra el `h2` de Webflow
-(`estimador.css:68-87`) y volver a medir.
+**Mejora candidata, aplicada después en D9:** los títulos de paso eran `div.pe-titulo`, así que
+la jerarquía saltaba de `h1` a `h3`.
+
+### D9 · Los 7 títulos de paso pasan a `<h2>`   — Sebastian, 11-sep-2026 ✅
+Con el `<h1>` visible de D8, la jerarquía de las dos rutas iba de `h1` a los 6 `h3.pe-h3` sin
+ningún `h2`. Ahora los títulos de paso («Project Type», «Pool Size»… «Outdoor Living & Site»)
+son `h2.pe-titulo`, y las dos páginas quedan con **1 `h1` > 7 `h2` > 6 `h3`**. Los 6 pasos
+ocultos también llegan al crawler, porque están en el HTML.
+
+Toca a las dos rutas, porque el componente es compartido. La página desnuda tiene contrato de
+paridad, así que la condición era **no mover un píxel**. Se midió con un volcado de TODOS los
+estilos calculados, más la posición y el texto, de los 7 títulos, en las dos rutas a 375 y 1440:
+
+```
+div (antes)  vs  h2 sin blindaje   100 diferencias
+  /pool-cost-estimator        margin-bottom 0 -> 10px · text-transform none -> capitalize (Webflow)
+                              el titulo sube 5 px (y 381 -> 376 a 1440)
+  /pool-investment-estimator  margin 0 -> 19.92px arriba y abajo (el 0,83em del navegador)
+div (antes)  vs  h2 con blindaje   0 diferencias en 4 vistas x 7 titulos x todas las propiedades
+```
+
+El blindaje es `#pool-estimator .pe-titulo { margin: 0; text-transform: none; }` y va en el
+`<style is:global>` de D8, no en `estimador.css`, por la misma razón que allí.
+
+**Puertas:** `check:tokens`, `check-texto` en las dos rutas, `check:estimador` (384/384 casos y
+el oráculo 10/10) y `check:seo`: PUERTA VERDE. `check-visual pool-investment-estimator`: 100,00 ·
+100,00 · 100,00 · 99,99 %, lo mismo que antes. `check-visual pool-cost-estimator`: los mismos
+altos que en D8 (393, 391, 557, 805).
 
 
 ---
