@@ -5764,6 +5764,27 @@ El directorio está **en `.gitignore`**, así que no existe en ningún clon nuev
 `public/sitemap.xml` con las versiones de preview. Se verificó que los dos siguen intactos
 (`Allow: /` y el sitemap con sus `<loc>`).
 
+**La auditoría a 4 anchos que pide el encargo: hecha a mano, porque `ui-qa` y `0.8.0:audit` no
+existen en este contenedor** —no hay `.claude/agents/`, no hay `.claude/skills/` y `package.json`
+no trae ningún script que case `audit` ni `qa`; viven en el Mac—. Se cubre lo mismo que la
+auditoría de `/financing` del 3-sep (`:3908`), a 390 · 768 · 1280 · 1440:
+
+| Medida | Resultado |
+|---|---|
+| Desbordamiento horizontal | **0 px** en los cuatro anchos |
+| `<h1>` | **1** |
+| Enlaces/botones sin nombre accesible | **0** |
+| Huérfanos en las 4 rejillas nuevas | **0** (filas reales 2\|2\|2\|2\|1 a 1440) |
+| Objetivos táctiles <44 px **en las secciones nuevas** | **0** — la casilla de 24×24 va dentro de un `<label>` de 740×63, que es el objetivo real |
+| Objetivos táctiles <44 px en el resto de la página | **95**, cromo del sitio: 73 son `a.footer-link`. No es de este encargo, y se dice |
+| Saltos de nivel en la jerarquía | **1**, cromo del pie. **Las otras 13 fichas tienen 2**: esta perdió uno al irse el antes/después |
+| Hueco muerto en tarjeta | **37 px de 186 (20 %)** a 1440 · 10 px a 390. El listón de `/financing` fue bajar de 34 % a 8 % |
+| Línea más larga en mis párrafos | **650 px**, por `.mm-medida` |
+
+El arnés marcó al principio un huérfano en `.svc-form__rejilla` y **era un falso positivo suyo**:
+contaba `n % columnas` sin ver que `Project details` ocupa las dos celdas por `.svc-form__ancho`.
+Medidas las filas por su `top`, no hay huérfanos. Detalle completo en `R17-CORE.md` §18.
+
 ### Desviaciones
 
 1. **El consentimiento de SMS va OPCIONAL**, y en los otros cuatro formularios del sitio es

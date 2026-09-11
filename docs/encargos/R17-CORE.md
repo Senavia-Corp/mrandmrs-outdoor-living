@@ -886,3 +886,79 @@ $ grep -n sanity-masters .gitignore
 La puerta lee sin condición de un directorio que **está en `.gitignore`**. No existe en ningún
 checkout limpio, así que `npm run check` se rompe en la sexta puerta para cualquiera que clone el
 repositorio hoy. Va como pendiente: no es de este encargo, pero es de alguien.
+
+
+---
+
+## 18 · La auditoría a 4 anchos que pide el encargo
+
+**`ui-qa` y `0.8.0:audit` no existen en este contenedor.** No hay `.claude/agents/`, no hay
+`.claude/skills/`, y `package.json` no tiene ningún script que case `audit` ni `qa`. Viven en el
+Mac. Así que **la auditoría se hace, pero a mano**, con un arnés headless que cubre lo mismo que
+cubrió la de `/financing` del 3-sep (`MIGRACION-LOG.md:3908`): desbordamiento, huérfanos de
+rejilla, hueco muerto, largo de línea, objetivos táctiles, nombre accesible y jerarquía. Cuatro
+anchos: **390 · 768 · 1280 · 1440**. Se dice que el agente no corrió en vez de dejarlo pasar por
+verde.
+
+### Lo que sale limpio en los cuatro anchos
+
+| Medida | Resultado |
+|---|---|
+| Desbordamiento horizontal | **0 px** en 390 / 768 / 1280 / 1440 |
+| `<h1>` | **1**, y solo 1 |
+| Enlaces y botones sin nombre accesible | **0** |
+| Huérfanos en las 4 rejillas nuevas | **0** |
+
+Sobre los huérfanos: el arnés los marcó al principio en `.svc-form__rejilla` («2 columnas × 9
+hijos») y **era un falso positivo del arnés, no un defecto de la página**: contaba `n % columnas`
+sin mirar quién ocupa dos celdas. Las filas reales, medidas por su `top`:
+
+```
+1440   2 | 2 | 2 | 2 | 1     <- «Project details» ocupa las dos por `.svc-form__ancho`
+ 390   1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1
+```
+
+### Los dos hallazgos que sí son reales, y de quién son
+
+**1 · 96 objetivos táctiles por debajo de 44×44. Noventa y cinco son cromo del sitio.**
+
+```
+ 73  a.footer-link          <- el pie, en las 122 paginas
+ 15  a.button-styles
+  4  a.button
+  3  a.w-inline-block · 3  a.link-3 · 1  a.mm-resenas__enlace · 1  a.link
+  1  input.w-checkbox-input <- MIO: la casilla de consentimiento
+```
+
+El único de mis secciones es la casilla, **24×24 px dentro de un `<label>` de 740×63 (1440) y
+342×137 (390)**. En una casilla envuelta por su etiqueta, el objetivo de activación es la etiqueta
+entera, así que WCAG 2.2 SC 2.5.8 se cumple. **Las secciones nuevas no introducen ni un objetivo
+táctil pequeño.** Los 95 restantes son de todo el sitio —73 de ellos del pie— y no son de este
+encargo; queda dicho, porque callarlo sería fingir que la página está mejor de lo que está.
+
+**2 · Un salto de nivel en la jerarquía… y la ruta está MEJOR que sus trece hermanas.**
+
+```bash
+$ # saltos de nivel por ficha, sobre el build
+ 2  custom-aluminum-pergola-builders…   h2->h4 «Design-Build Authority» · h2->h4 «Trusted by…»
+ 2  custom-deck-builders…              h2->h4 «Design-Build Authority» · h2->h4 «Trusted by…»
+ 1  custom-pool-spa-builders…                                            h2->h4 «Trusted by…»
+ 2  …las otras once, todas igual que las dos primeras
+```
+
+**Trece fichas tienen 2 saltos; esta tiene 1.** El que falta es el del antes/después
+(`h2 → h4 «Design-Build Authority»`), que se fue con la sección de la foto del MLS. El que queda
+—`h4 «Trusted by Florida's finest homeowners»` del marquee del pie— es cromo compartido, está en
+las catorce, y arreglarlo cambia las otras 121 páginas.
+
+### Hueco muerto y largo de línea, contra el listón de `/financing`
+
+| Medida | `/financing` (3-sep) | Aquí |
+|---|---|---|
+| Hueco muerto en tarjeta | era 113 px de 333 (**34 %**) → se dejó en 27 px | **37 px de 186 (20 %)** a 1440 · 10 px a 390 |
+| Línea más larga | descargo de 1186 px → 650 px con `.mm-medida` | **650 px** en mis dos párrafos, por `.mm-medida` |
+
+La línea de 750 px que aparece en la medición es el párrafo de apoyo del héroe, y vive en
+`.block-hero-services-page` —contenedor de Webflow, no mío—: 750 px a 1440 son ~90 caracteres, una
+medida normal para una entradilla de héroe. El caso de `/financing` era un **descargo legal** de
+1186 px, que es otra cosa.
