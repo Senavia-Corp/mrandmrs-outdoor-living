@@ -204,6 +204,66 @@ Facebook/Houzz/BBB/Yelp para `sameAs`, si hay dirección postal publicable, y si
 
 ---
 
+## 8.ter · Despliegue — hecho, y qué quedó sin verificar
+
+**Mergeado y en producción el 11-sep-2026.** PR #2 → `main` (`8502b2f`), y Vercel desplegó y
+**promovió**:
+
+```
+VERCEL_GET_DEPLOYMENT  dpl_E8cz5gsCW5LmCKCDsyhYioRf6Xhy
+  target        : production
+  readyState    : READY        readySubstate : PROMOTED
+  gitSource.sha : 8502b2fb6ece448ca751354be0efe0473cc752e9
+  aliasAssigned : true
+  alias         : www.mrandmrsoutdoorliving.com · mrandmrsoutdoorliving.com
+                  mrandmrs-outdoor-living.vercel.app
+  env           : …PUBLIC_ES_PRODUCCION…
+```
+
+Dato de paso que vale la pena: **los 5 despliegues de rama previos salieron `READY`**. O sea que
+el build funciona en Vercel con Sanity alcanzable, y la caché de F0b **nunca se usa allí** — la
+guarda que para el build sin datos sigue intacta en producción, que es exactamente como se
+diseñó.
+
+### 🚨 Lo que NO se verificó, y no se da por bueno
+
+`PRODUCTION HTTP VERIFICATION NOT PERFORMED`. El F10 del encargo pide comprobar, **contra el
+dominio**, las 121 URLs en 200, los redirects en 308 con destino en 200, `robots.txt`, que todas
+las canónicas estén en `www` y el apex→www en 308. **Nada de eso se ha hecho**: el proxy de
+egress deniega el dominio y también la URL de despliegue (`mcp__Vercel__web_fetch_vercel_url` da
+403 de scope sobre `senaviacorp`).
+
+Lo único que consta es lo de arriba: que la plataforma reporta el despliegue como READY y
+PROMOTED con el commit correcto y el alias de producción asignado. Es evidencia real, pero **no
+es lo mismo** que haber pedido las 121 URLs.
+
+**Los comandos, para correrlos desde una máquina con red:**
+```bash
+# las 121 del sitemap en 200
+curl -s https://www.mrandmrsoutdoorliving.com/sitemap.xml \
+  | grep -oP '(?<=<loc>)[^<]+' \
+  | xargs -P8 -I{} sh -c 'printf "%s %s\n" "$(curl -s -o /dev/null -w %{http_code} "{}")" "{}"' \
+  | grep -v '^200 ' ; echo "(vacio = las 121 en 200)"
+
+# los 14 redirects en 308 con destino en 200
+node -e 'JSON.parse(require("fs").readFileSync("vercel.json","utf8")).redirects
+  .forEach(r=>console.log(r.source, r.destination))' \
+  | while read s d; do
+      printf '%s -> %s  %s\n' "$s" "$d" \
+        "$(curl -s -o /dev/null -w %{http_code} https://www.mrandmrsoutdoorliving.com$s)"
+    done
+
+# robots, canonica y apex
+curl -s  https://www.mrandmrsoutdoorliving.com/robots.txt
+curl -s  https://www.mrandmrsoutdoorliving.com/ | grep -o '<link rel="canonical"[^>]*>'
+curl -sI https://mrandmrsoutdoorliving.com/ | head -2     # se espera 308 -> www
+```
+
+Y lo que sí se puede hacer sin red al dominio: `INSPECT_URL` de GSC sobre una muestra, dentro de
+unos días, cuando Google haya vuelto a rastrear.
+
+---
+
 ## 8.bis · F11 — Search Console, lo hecho y lo que queda a mano
 
 **Hecho (11-sep-2026 11:45 UTC):** `sitemap.xml` reenviado y **ya descargado por Google**.
