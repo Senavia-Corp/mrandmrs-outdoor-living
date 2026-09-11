@@ -1060,9 +1060,12 @@ const CAMPOS_CAPTACION = [
   'Timeline', 'Select one...',
   'As soon as possible', '1-3 months', '3-6 months', '6-12 months', 'Just exploring',
   'Project details (optional)',
+  /* R17-CORE F3e: la casilla paso a OPCIONAL y la etiqueta lo DICE. Esta puerta cazo la deriva
+   * -cambie la etiqueta en el componente y no aqui-, que es exactamente para lo que esta. */
   'I agree to receive SMS messages related to project updates, promotions, and company '
-  + 'communications from Mr. & Mrs. Outdoor Living. I understand that I may opt out at any '
-  + 'time by replying STOP. Message and data rates may apply.',
+  + 'communications from Mr. & Mrs. Outdoor Living. This is optional and is not required to get '
+  + 'an estimate. I understand that I may opt out at any time by replying STOP. Message and data '
+  + 'rates may apply.',
 ];
 
 /** Los slides del carrusel de obras, en el orden del componente. Si la ruta declara `solo`,

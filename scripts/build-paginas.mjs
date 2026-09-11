@@ -198,9 +198,13 @@ const ENCABEZADOS_PROYECTOS = {
    * sustituye-, asi que sin esta semilla el carrusel caeria a `_defecto` («Project showcase /
    * Browse our completed residential & Commercial projects…»), que ademas trae una mayuscula
    * suelta. El texto sale de `captacion-servicios.json`, que es donde vive el copy de la ruta. */
+  /* SOLO `titulo` y `entradilla`. El bloque `proyectos` del JSON lleva tambien `solo` -el filtro
+   * por ruta de R17-CORE F3e- y su `_solo` de documentacion, que NO son encabezado: los lee
+   * `CarruselProyectos.astro` del propio JSON. Copiarlos aqui metia dos claves de adorno en un
+   * fichero derivado que solo tiene que decir que pone en la cabecera. */
   ...Object.fromEntries(Object.entries(CAPTACION)
     .filter(([k, v]) => k.startsWith('/') && v.proyectos)
-    .map(([k, v]) => [k, v.proyectos])),
+    .map(([k, v]) => [k, { titulo: v.proyectos.titulo, entradilla: v.proyectos.entradilla }])),
 
   _lee_esto: 'El encabezado del carrusel «Project Showcase» de cada ruta. Es lo UNICO que cambiaba entre paginas: el bloque de 10 slides y la cola de flechas + barra + CTA eran byte a byte identicos en los 7 sitios donde estaba pegado (6103 y 1581 bytes, sha1 76930c21c9bf y 3c5989650bad). Espejo de blog-heading-por-ruta.json, y lo lee igual: CarruselProyectos.astro se autolocaliza por Astro.url.pathname. DERIVADO: lo escribe scripts/build-paginas.mjs.',
   _ojo: 'El texto va DECODIFICADO (ampersand suelto, no la entidad): lo escapa Astro al pintar, y sale el mismo byte que habia en el blob. Escribir aqui la entidad pintaria una entidad doblemente escapada y romperia check:texto, que compara innerText al 100 % y no se re-baseliniza nunca.',
