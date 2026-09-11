@@ -34,8 +34,12 @@ const man = JSON.parse(fs.readFileSync(path.join(RAIZ, '_source/assets-manifest.
  * sirve para reservar el hueco de una imagen que no declara tamano (§ limpia()). */
 const DIM = new Map(Object.values(man).filter((a) => a.dim?.w).map((a) => [a.publico, a.dim]));
 /* Las clases de `<img>` a las que se les reserva el hueco (§ limpia()). Enumeradas y medidas:
- * cada una entro aqui con una cifra de `layout-shift` detras, no por precaucion. */
-const RESERVAN_HUECO = ['fs-marquee-logoscms_logo', 'image-whereweserve'];
+ * cada una entro aqui con una cifra de `layout-shift` detras, no por precaucion.
+ *   · `cover-brochure-page` (/brochures, 57 portadas `lazy`): miden 0 px hasta cargar y la
+ *     lista va en `columns`, que re-equilibra en cada llegada. Con las portadas retenidas y
+ *     luego soltadas, cambian de columna 38 de 57 tarjetas a 1440 y 30 a 991 y 768; con
+ *     el hueco reservado, 0. Casi todo pasa bajo el pliegue, por eso el CLS no lo ve. */
+const RESERVAN_HUECO = ['fs-marquee-logoscms_logo', 'image-whereweserve', 'cover-brochure-page'];
 
 /** Widgets de Elfsight -> componentes nativos. El click-to-call ya vive en el layout. */
 const WIDGETS = {

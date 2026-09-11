@@ -209,6 +209,14 @@
   .filter_list { grid-template-columns: 1fr; }
 }
 
+/* 9 · El <script> del filtro no es una celda. ab1e888 (3-sep) lo metió como `div.w-embed`
+ *     ENTRE el panel y la lista, y `.filter_grid` pasó de 2 hijos a 3: el script ocupaba la
+ *     celda de la derecha y la lista caía a la fila 2, bajo el panel pegajoso, que le
+ *     quedaba encima al bajar. Medido a 1440: columnas `1234px 0px` -> dos columnas y una
+ *     fila. Por debajo de 768 era una fila de 0 px con su gap de 1rem.
+ *     Alcance: `.filter_grid` pinta 1 ruta. `display:none` no impide que el script corra. */
+.filter_grid > .w-embed { display: none; }
+
 /* ── B · MUESTRARIO · la variante elegida ──────────────────────────────────
  * La portada manda la altura y las tarjetas se empaquetan en columnas CSS.
  * Recuento por tramo 1/2/2/3, determinista, nunca auto-fill y nunca creciente

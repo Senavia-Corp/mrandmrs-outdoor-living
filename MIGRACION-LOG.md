@@ -5414,3 +5414,41 @@ desplegable reordenado a propósito. Se declara en `REORDENADAS_A_PROPOSITO` (nu
 listas no traen las mismas líneas, revienta al arrancar—. El baseline no se ha tocado.
 `check:visual /gallery` **no se corrió**: ya estaba en rojo antes (contrato `rediseno`,
 `sha: por-asignar`, sin referencia aprobada). Sigue pendiente de `aprobar-diseno.mjs --si`.
+
+## /brochures — la lista vuelve a su columna y las portadas reservan hueco (11-sep-2026)
+
+En producción los folletos caían **debajo** del panel «Filter by Category», la derecha quedaba
+vacía y el panel, pegajoso, se quedaba encima de las tarjetas al bajar.
+
+- **Causa:** ab1e888 (3-sep) metió el `<script>` del filtro como `div.w-embed` **dentro** de
+  `.filter_grid`, entre el panel y la lista. La rejilla (`auto 1fr`) pasó de 2 hijos a 3: el
+  script ocupaba la celda derecha y la lista caía a la fila 2, en la columna `auto`.
+  `folletos.css` (R12-FOL, 2-sep) se diseñó con 2 hijos.
+- **Arreglo 1:** `.filter_grid > .w-embed { display:none }` (`folletos.css` §9). El script
+  corre igual. `.filter_grid` pinta 1 ruta.
+- **Arreglo 2:** `cover-brochure-page` entra en `RESERVAN_HUECO` (`build-paginas.mjs`): las 57
+  portadas salen con `width`/`height` del manifiesto (53/53 con `dim`).
+
+Medido con una sonda headless que retiene las portadas y las suelta (lo que ve una red real):
+
+```
+            columnas         filas  panel/lista  tapadas  cambian de columna  a 0 px cargando
+antes 1440  1234px 0px       2      431 / 939    2        38 de 57            57
+desp. 1440  288px 946px      1      431 / 431    0        0                   0
+antes  991  911px 0px        2      356 / 852    2        30                  57
+desp.  991  288px 623px      1      356 / 356    0        0                   0
+antes  768  688px 0px        2      353 / 848    2        30                  57
+desp.  768  288px 400px      1      353 / 353    0        0                   0
+```
+
+767 y 479 siguen a una columna (esperado) y pierden la fila vacía del script: 16 px menos antes
+de la lista. Filtro: «Outdoor Kitchens» deja 8, desmarcar vuelve a 57, en los 5 anchos.
+El CLS de 0.0121 a 479 sale **igual antes y después**: no es de las portadas y no se ha tocado.
+
+### Puertas
+
+`check:tokens` verde. `check-texto brochures` verde. `check:visual brochures` **roja antes y
+después** (1920/1440/991): compara contra la captura de **Webflow** del 28-ago, porque la ruta
+está en `rediseno` con `sha: por-asignar` y nunca pasó por `aprobar-diseno.mjs`. Por eso nadie
+vio la regresión del 3-sep: la puerta ya estaba roja por el rediseño R12-FOL. Hasta que
+Sebastian apruebe la página mirándola, esa puerta no protege /brochures.
