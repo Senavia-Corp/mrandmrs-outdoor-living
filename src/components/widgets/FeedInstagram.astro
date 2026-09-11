@@ -6,9 +6,10 @@
  * Es la `section.social-media` entera de la home: hoy esa sección existe pero llega a
  * altura 0 porque el widget no pinta. Aquí se pinta desde datos propios.
  *
- * SI NO HAY DATOS, NO PINTA NADA. `src/data/instagram.json` está vacío a propósito: el
- * snapshot lo trae la integración en build time, nunca un token vivo en el navegador
- * —un token de Instagram caduca y apaga el feed un martes cualquiera sin avisar—.
+ * SI NO HAY DATOS, NO PINTA NADA. Hoy `src/data/instagram.json` lleva 10 fotos de obra de
+ * /gallery (su `_lee_esto` dice cuáles y por qué). El día que haya integración, el snapshot
+ * lo trae ella en build time, nunca un token vivo en el navegador —un token de Instagram
+ * caduca y apaga el feed un martes cualquiera sin avisar—.
  *
  * Las imágenes se sirven LOCALES: el CDN de Instagram firma sus URLs y caducan en horas,
  * así que apuntar ahí es un feed que se rompe solo. La integración las descarga.
@@ -20,7 +21,7 @@ interface Props {
   datosDemo?: typeof datos;
 }
 const d = (Astro.props.datosDemo ?? datos) as {
-  items: { id: string; imagen: string; alt?: string; enlace: string; ancho?: number; alto?: number }[];
+  items: { id: string; imagen: string; srcset?: string; alt?: string; enlace: string; ancho?: number; alto?: number }[];
   usuario: string; fuente: string;
 };
 const { items, usuario, fuente } = d;
@@ -40,8 +41,16 @@ const hay = items.length > 0;
       {items.map((p) => (
         <li class="mm-ig__celda">
           <a href={p.enlace} target="_blank" rel="noopener noreferrer">
+            {/* `sizes` = ANCHO PINTADO, no el de la celda: con `cover` en una celda cuadrada una
+                16:9 se pinta 1,79x más ancha. Celda = (contenido − huecos) / columnas, con el canal
+                de 32/24 px y gaps de 16 (social.css): a >=1314 es 237 px -> 425; a 768-1313,
+                (100vw−128)/5 × 1,79; por debajo, (100vw−80)/3 × 1,79.
+                ponytail: un solo `sizes` para todas, pensado para la 16:9. Las 4:3 (1,34x) bajan
+                una talla de más (~60 KB); si pesa, calcularlo por item con ancho/alto. */}
             <img
               src={p.imagen}
+              srcset={p.srcset}
+              sizes={p.srcset && '(min-width: 1314px) 425px, (min-width: 768px) calc((100vw - 128px) / 2.8), calc((100vw - 80px) / 1.68)'}
               alt={p.alt ?? ''}
               width={p.ancho ?? 640}
               height={p.alto ?? 640}

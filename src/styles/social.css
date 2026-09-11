@@ -34,8 +34,8 @@
  * LO QUE HACE, en corto (numeros y comandos en el informe R10-SOC):
  *   · guarda de vacio: con `items: []` no hay `.mm-ig`, no casa nada y los 79 HTML no mueven
  *     un pixel. Medido: la seccion vacia mide 0 px en los 7 anchos.
- *   · rejilla determinista 4/4/3/2, todos divisores de 12 -> 0 huecos en los 7 anchos (hoy
- *     `auto-fill` da 6/5/3/2 y deja 3 huecos de 184 px a 991).
+ *   · rejilla determinista de 2 FILAS: 5x2 a >=768 con los 10 items, 3x2 por debajo con los 6
+ *     primeros (11-sep-2026; antes 4/4/3/2 con 12, y `auto-fill` daba 6/5/3/2 con 3 huecos a 991).
  *   · velo del hover a navy 68 % (hoy 45,1 % -> 2,85:1 sobre la peor foto posible).
  *   · el foco deja de ser el `#1cadeb` que CRITERIO.md:26 prohibe.
  *
@@ -91,18 +91,42 @@ section.social-media .mm-ig .mm-ig__cabecera .mm-ig__seguir:focus-visible {
   outline-offset: var(--mm-foco-aire);
 }
 
+/* LA CABECERA NO CABIA EN MOVIL. Medido el 11-sep-2026 sobre la home: logo 26 + `@usuario` 217
+ * (16 px) + Follow 80 + 2 huecos de 12 = 347 px, y a 375 el canal deja 327: Follow se salia
+ * 19,7 px de la rejilla; a 360 metia 11 px de scroll horizontal en la PAGINA, y a 320, 51.
+ * Por debajo de 480: usuario a --mm-paso-1 (~190 px) y huecos de 8 -> 312 px, que cabe desde 360.
+ * Mas estrecho aun, `min-width:0` + `overflow-wrap:anywhere` parten el @usuario en dos lineas
+ * antes que empujar la pagina. A >=480 vuelve a lo del componente: 16 px y .75rem.
+ * rival `.mm-ig__cabecera[cid]` / `.mm-ig__usuario[cid]` (0,2,0) · mio (0,3,1) / (0,4,1) */
+section.social-media .mm-ig .mm-ig__cabecera { gap: var(--mm-e-8); }
+section.social-media .mm-ig .mm-ig__cabecera .mm-ig__usuario {
+  font-size: var(--mm-paso-1);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+@media (min-width: 480px) {
+  section.social-media .mm-ig .mm-ig__cabecera { gap: var(--mm-e-12); }
+  section.social-media .mm-ig .mm-ig__cabecera .mm-ig__usuario { font-size: 16px; }
+}
+
 /* ══ REJILLA DETERMINISTA ═════════════════════════════════════════════════════════════════
- * Nunca `auto-fill`: hoy da 6/5/3/2 y con 12 fotos deja 3 huecos de 184,12 px a 991.
- * 4 / 4 / 3 / 2 son todos DIVISORES DE 12, asi que las filas cierran en los cuatro anchos.
+ * Nunca `auto-fill`: da 6/5/3/2 y con 12 fotos dejaba 3 huecos de 184,12 px a 991.
+ * SIEMPRE 2 FILAS (Sebastian, 11-sep-2026): 10 items = 5x2 a >=768; por debajo, 3x2 con los 6
+ * primeros y las 4 ultimas en `display:none` —y como van `loading="lazy"`, ni se descargan—.
+ * 10 fotos a 5 columnas en un movil de 375 serian celdas de ~50 px.
  * Y el escalon va en 768, NO en 992: con el corte en 992 la celda se encogia un 34 % al
  * ensanchar la pantalla un solo pixel (219,8 px a 991 -> 148 px a 992). Medido.
  * rival `.mm-ig__rejilla[cid]` (0,2,0) y su `@media (max-width:479)` · mio (0,3,1) */
 section.social-media .mm-ig .mm-ig__rejilla {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--mm-e-16);
 }
-@media (min-width: 480px) { section.social-media .mm-ig .mm-ig__rejilla { grid-template-columns: repeat(3, 1fr); } }
-@media (min-width: 768px) { section.social-media .mm-ig .mm-ig__rejilla { grid-template-columns: repeat(4, 1fr); } }
+/* rival: ninguno —el componente no oculta celdas— · mio (0,4,1) */
+section.social-media .mm-ig .mm-ig__rejilla .mm-ig__celda:nth-child(n+7) { display: none; }
+@media (min-width: 768px) {
+  section.social-media .mm-ig .mm-ig__rejilla { grid-template-columns: repeat(5, 1fr); }
+  section.social-media .mm-ig .mm-ig__rejilla .mm-ig__celda:nth-child(n+7) { display: block; }
+}
 
 /* rival `.mm-ig__celda[cid] a[cid]` (0,3,1) · mio (0,4,2) */
 section.social-media .mm-ig .mm-ig__rejilla .mm-ig__celda a[href] { border-radius: var(--mm-r-16); }

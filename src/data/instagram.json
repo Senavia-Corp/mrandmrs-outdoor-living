@@ -1,101 +1,95 @@
 {
-  "_lee_esto": "Publicaciones del feed. NO son posts de la API de Instagram: son 12 FOTOS DE OBRA del propio repo (`public/images/projects/`), una por obra, elegidas por hoja de contactos mirando el RECORTE CUADRADO -que es lo unico que se ve: `aspect-ratio:1` + `object-fit:cover` se come el 44% del ancho de un 1250x698-. Por eso `enlace` apunta al PERFIL y no a un permalink: no hay post que enlazar. SON 12 Y NO 8 POR LA REJILLA: `social.css` la fija en 4/4/3/2 columnas, «todos divisores de 12 -> 0 huecos en los 7 anchos»; con 8 la banda de 480-767px cerraba a 2 de 3, y es justo la banda que `check:visual` no muestrea (mide a 1920/1440/991/479). Si algun dia se cambia el numero, que sea multiplo de 12. ANCHO/ALTO SON LOS REALES leidos con sharp, no el `?? 640` del componente. Y el texto visible que esto enciende -`@usuario` y `Follow`- va DECLARADO en `check-texto.mjs`, derivado de aqui; `baseline/text/` no se toca. El dia que exista la integracion de la Fase 8, este fichero lo reescribe ella con permalinks reales y las imagenes descargadas a local -el CDN de Instagram firma URLs que caducan en horas-, y este comentario se va con ellas.",
+  "_lee_esto": "Publicaciones del feed. NO son posts de la API de Instagram: son las 10 PRIMERAS FOTOS DE PISCINAS de /gallery (bloque `construction`, posiciones 1-10, en el orden en que las pinta la galeria), elegidas por hoja de contactos mirando el RECORTE CUADRADO -que es lo unico que se ve: `aspect-ratio:1` + `object-fit:cover`-. Son los MISMOS ficheros que sirve /gallery (`public/images/images/` + sus variantes -p-500/800/1080 de `public/images/site/`), no copias. Por eso `enlace` apunta al PERFIL y no a un permalink: no hay post que enlazar. SON 10 POR LA REJILLA: `social.css` la fija en 5 columnas a >=768px (5x2) y 3 a <768px, donde se ocultan las 4 ultimas (3x2): 2 filas completas en todos los anchos. Si algun dia se cambia el numero, que siga llenando las 2 filas en los dos tramos. ANCHO/ALTO SON LOS REALES leidos con sharp. Y el texto visible que esto enciende -`@usuario` y `Follow`- va DECLARADO en `check-texto.mjs`, derivado de aqui; `baseline/text/` no se toca. El dia que exista la integracion de la Fase 8, este fichero lo reescribe ella con permalinks reales y las imagenes descargadas a local -el CDN de Instagram firma URLs que caducan en horas-, y este comentario se va con ellas.",
   "fuente": "https://www.instagram.com/mrandmrsoutdoorliving/",
   "usuario": "mrandmrsoutdoorliving",
-  "actualizado": "2026-09-04",
+  "actualizado": "2026-09-11",
   "items": [
     {
-      "id": "luxury-pool-pergola-outdoor-living-south-florida-4",
-      "imagen": "/images/projects/luxury-pool-pergola-outdoor-living-south-florida/luxury-pool-pergola-outdoor-living-south-florida-4.avif",
-      "alt": "Raised spa finished in blue glass mosaic tile beside a custom pool, framed by an aluminum pergola and palms in South Florida.",
+      "id": "custom-pool-spa-builders-florida-10",
+      "imagen": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
+      "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
+      "alt": "Rectangular pool with a raised spa in dark blue glass tile, white coping and artificial turf, framed by palms.",
+      "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+      "ancho": 1250,
+      "alto": 933
+    },
+    {
+      "id": "custom-pool-spa-builders-florida-09",
+      "imagen": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
+      "srcset": "/images/site/custom-pool-spa-builders-florida-09-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-09-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-09-p-1080.jpg 1080w, /images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg 1250w",
+      "alt": "Long rectangular pool with an in-pool spa and loungers on the sun shelf, travertine deck and palm trees.",
+      "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+      "ancho": 1250,
+      "alto": 933
+    },
+    {
+      "id": "custom-pool-spa-builders-florida-08",
+      "imagen": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
+      "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
+      "alt": "Pool and spa with white loungers on the sun shelf and a travertine deck beside a covered patio.",
       "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
       "ancho": 1250,
       "alto": 698
     },
     {
-      "id": "estate-pool-spa-sun-shelf-north-florida-project-5",
-      "imagen": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-5.avif",
-      "alt": "Rectangular lap pool with a sun shelf and wide paver deck overlooking open pasture on a North Florida estate.",
+      "id": "custom-pool-spa-builders-florida-07",
+      "imagen": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
+      "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
+      "alt": "Raised spa in blue glass mosaic tile inside a pool with sun-shelf loungers, beside a white aluminum pergola.",
+      "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
+      "ancho": 1250,
+      "alto": 933
+    },
+    {
+      "id": "custom-pool-spa-builders-florida-06",
+      "imagen": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
+      "srcset": "/images/site/custom-pool-spa-builders-florida-06-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-06-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-06-p-1080.jpg 1080w, /images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg 1250w",
+      "alt": "Pool with a raised spa and tiled spillover wall on a travertine deck, lined with tall palms.",
       "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
       "ancho": 1250,
       "alto": 698
     },
     {
-      "id": "luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-3",
-      "imagen": "/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-3.avif",
-      "alt": "Outdoor kitchen with stainless appliances and bar seating under a screen enclosure beside a custom pool in North Florida.",
+      "id": "custom-pool-spa-builders-florida-05",
+      "imagen": "/images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg",
+      "srcset": "/images/site/custom-pool-spa-builders-florida-05-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-05-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-05-p-1080.jpg 1080w, /images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg 1250w",
+      "alt": "Pool with sheer-descent water features on a raised spa wall and a pergola lounge overlooking a lake.",
       "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
       "ancho": 1250,
       "alto": 698
     },
     {
-      "id": "luxury-pool-motorized-pergola-screen-enclosure-north-florida-6",
-      "imagen": "/images/projects/luxury-pool-motorized-pergola-screen-enclosure-north-florida/luxury-pool-motorized-pergola-screen-enclosure-north-florida-6.avif",
-      "alt": "Close-up of blue glass mosaic tile on the entry steps and sun shelf of a custom pool in North Florida.",
+      "id": "custom-pool-spa-builders-florida-04",
+      "imagen": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
+      "srcset": "/images/site/custom-pool-spa-builders-florida-04-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-04-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-04-p-1080.jpg 1080w, /images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg 1250w",
+      "alt": "Rectangular pool with a raised glass-tile spa and stone pavers set into artificial turf beside the patio.",
       "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
       "ancho": 1250,
       "alto": 698
     },
     {
-      "id": "modern-pool-motorized-pergola-south-florida-project-2",
-      "imagen": "/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-2.avif",
-      "alt": "Motorized louvered roof pergola with privacy screens shading a patio beside a modern pool in South Florida.",
+      "id": "custom-pool-spa-builders-florida-03",
+      "imagen": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
+      "srcset": "/images/site/custom-pool-spa-builders-florida-03-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-03-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-03-p-1080.jpg 1080w, /images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg 1250w",
+      "alt": "Travertine pool deck with a sun shelf and chaise lounges behind a one-story home framed by palms.",
       "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
       "ancho": 1250,
       "alto": 698
     },
     {
-      "id": "pool-raised-spa-marble-deck-south-florida-project-1",
-      "imagen": "/images/projects/pool-raised-spa-marble-deck-south-florida/pool-raised-spa-marble-deck-south-florida-project-1.avif",
-      "alt": "Raised spa with bubbling jets set into a large-format marble pool deck with in-water loungers in South Florida.",
+      "id": "custom-pool-spa-builders-florida-02",
+      "imagen": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
+      "srcset": "/images/site/custom-pool-spa-builders-florida-02-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-02-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-02-p-1080.jpg 1080w, /images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg 1250w",
+      "alt": "Aerial view of a rectangular pool with a centered spa, travertine deck and artificial turf.",
       "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
       "ancho": 1250,
-      "alto": 698
+      "alto": 937
     },
     {
-      "id": "south-florida-pool-wood-pergola-outdoor-living-3",
-      "imagen": "/images/projects/south-florida-backyard-pool-wood-pergola/south-florida-pool-wood-pergola-outdoor-living-3.avif",
-      "alt": "Wood pergola over a travertine patio with a sectional sofa beside a backyard pool in South Florida.",
-      "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
-      "ancho": 1250,
-      "alto": 698
-    },
-    {
-      "id": "luxury-pool-pergola-outdoor-kitchen-south-florida-3",
-      "imagen": "/images/projects/luxury-pool-pergola-outdoor-kitchen-south-florida/luxury-pool-pergola-outdoor-kitchen-south-florida-3.avif",
-      "alt": "Covered lanai with an outdoor kitchen island and bar seating beside a custom pool and palms in South Florida.",
-      "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
-      "ancho": 1250,
-      "alto": 698
-    },
-    {
-      "id": "luxury-pool-motorized-pergola-screens-south-florida-3",
-      "imagen": "/images/projects/luxury-pool-motorized-pergola-screens-south-florida/luxury-pool-motorized-pergola-screens-south-florida-3.avif",
-      "alt": "Aluminum pergola with motorized screens mirrored in the still water of a custom pool at a South Florida home.",
-      "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
-      "ancho": 1250,
-      "alto": 698
-    },
-    {
-      "id": "luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-2",
-      "imagen": "/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-2.avif",
-      "alt": "Aluminum louvered pergola over an outdoor kitchen and dining area beside a custom pool in North Florida.",
-      "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
-      "ancho": 1250,
-      "alto": 698
-    },
-    {
-      "id": "luxury-pool-spa-screen-enclosure-north-florida-project-2",
-      "imagen": "/images/projects/luxury-pool-spa-with-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-north-florida-project-2.avif",
-      "alt": "Screened lanai with lounge seating and a dining set opening onto a custom pool at a North Florida home.",
-      "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
-      "ancho": 1250,
-      "alto": 698
-    },
-    {
-      "id": "aluminum-patio-cover-pool-deck-south-florida-project-1",
-      "imagen": "/images/projects/aluminum-patio-cover-pool-deck-south-florida/aluminum-patio-cover-pool-deck-south-florida-project-1.avif",
-      "alt": "Aluminum patio cover spanning the rear elevation of a South Florida home with a marble pool deck.",
+      "id": "custom-pool-spa-builders-florida-01",
+      "imagen": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
+      "srcset": "/images/site/custom-pool-spa-builders-florida-01-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-01-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-01-p-1080.jpg 1080w, /images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg 1250w",
+      "alt": "Paver deck around a pool with a raised spa and bubblers behind a two-story white home.",
       "enlace": "https://www.instagram.com/mrandmrsoutdoorliving/",
       "ancho": 1250,
       "alto": 698

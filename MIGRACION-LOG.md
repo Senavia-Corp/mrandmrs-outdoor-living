@@ -5530,3 +5530,49 @@ después** (1920/1440/991): compara contra la captura de **Webflow** del 28-ago,
 está en `rediseno` con `sha: por-asignar` y nunca pasó por `aprobar-diseno.mjs`. Por eso nadie
 vio la regresión del 3-sep: la puerta ya estaba roja por el rediseño R12-FOL. Hasta que
 Sebastian apruebe la página mirándola, esa puerta no protege /brochures.
+
+---
+
+## Feed de Instagram — 2 filas con las 10 primeras piscinas de /gallery (11-sep-2026)
+
+Encargo de Sebastian: el feed (79 rutas, R15-IG) pasa de 12 fotos en 4/4/3/2 a **2 filas** con
+**las 10 primeras fotos de piscinas de /gallery**: `pool-construction-10` → `-1`, posiciones 1-10 de
+la galería, en su orden. Elegidas por hoja de contactos del RECORTE CUADRADO sobre las 30 de
+piscinas (posiciones 1-20 y 79-88). Las 10 primeras son reales y aguantan el recorte, así que no
+hubo que saltar ninguna. Un solo JSON + un solo CSS: **ninguna página ni generador tocado**.
+
+- `src/data/instagram.json`: 10 items con el `src` y el `srcset` que ya sirve /gallery (mismos
+  ficheros, no copias). Cada uno lleva `ancho`/`alto` reales y un `alt` nuevo, corto y
+  descriptivo (el de la galería va relleno de SEO).
+- `public/images/site/custom-pool-spa-builders-florida-0{2,3}-p-{500,800,1080}.jpg` — **6
+  ficheros nuevos**. Esas dos fotos solo existían a 1250 px (~1 MB) y el resto de la galería trae
+  variantes de Webflow; decidido por Sebastian generarlas. Receta, calibrada para que dé los
+  mismos pesos que las de Webflow (`-08`: 31/70/117 KB contra 31/71/120):
+  `sharp(src).resize({width:w}).jpeg({quality:85, mozjpeg:true})`. /gallery NO se ha cambiado
+  para usarlas: sigue sirviendo el original en esas dos.
+- `FeedInstagram.astro`: `srcset` + un `sizes` que es el ANCHO PINTADO. Con `cover`, una 16:9 en
+  una celda cuadrada se pinta 1,79x más ancha. Medido `currentSrc`: p-1080 a 1440@2x, p-500 a
+  768@2x, p-800 a 375@3x.
+- `social.css`: 5x2 a ≥768 y 3x2 por debajo, con `nth-child(n+7){display:none}`. Las 4 ocultas no
+  se descargan en móvil (0 entradas en `performance`).
+- `social.css`, **defecto previo arreglado**: la cabecera no cabía en móvil. Follow se salía
+  19,7 px de la rejilla a 375, y a 360/320 metía 11/51 px de scroll horizontal en la página. Por
+  debajo de 480 ahora van `--mm-paso-1` en el usuario y huecos de 8, con `overflow-wrap:anywhere`
+  como red: 0 px en 320/360/375/390/479/480.
+
+### Puertas
+
+`build` · `tokens` · `assets` · `rutas` · `enlaces` · `seo` verdes. `check-texto
+/services/custom-pool-spa /country/` 10/10 idénticas, y el bloque del feed se descuenta.
+
+Sonda headless (`/`, `pool-builders/alachua`, `services/custom-pool-spa`, `country/marion`) ×
+1440/768/375: 12/12 con celdas 10/10/6, 2 filas, cuadradas (237/128/98 px), 0 rotas y 0 px de
+overflow.
+
+`check:ix2` **NO VÁLIDA**: dio 404 en todas sus cargas, incluida `/`, y no se depuró.
+`check:visual` **no se corrió**: las 79 siguen pendientes de re-aprobar desde R15-IG (la
+referencia tiene la sección vacía). Falla ABIERTO hasta que Sebastian las mire y se re-baselinicen
+con `aprobar-diseno.mjs`.
+
+Ojo al construir en local: sin `PUBLIC_ES_PRODUCCION=1`, `npm run build` reescribe
+`public/robots.txt` (Disallow) y `public/sitemap.xml` (vacío). Se devolvieron a HEAD.
