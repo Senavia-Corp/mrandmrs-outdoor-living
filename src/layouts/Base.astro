@@ -18,6 +18,7 @@
  * literalmente lo que ya pasó una vez en AMS. Lo sustituye el sello de la Fase 7.
  */
 import Nav from '../components/Nav.astro';
+import META_PROPIA from '../data/meta-propia.json';
 import Footer from '../components/Footer.astro';
 import ClickToCall from '../components/widgets/ClickToCall.astro';
 import Interacciones from '../components/Interacciones.astro';
@@ -213,6 +214,31 @@ if (!meta['og:image']) meta['og:image'] = new URL(OG_POR_DEFECTO, Astro.site).hr
 if (!meta['twitter:image']) meta['twitter:image'] = new URL(OG_POR_DEFECTO, Astro.site).href;
 if (!meta['twitter:card']) meta['twitter:card'] = 'summary_large_image';
 
+/**
+ * SEO-AEO-GEO F1 — LAS META PROPIAS. `src/data/meta-propia.json` es la fuente UNICA de los
+ * `<title>` y `description` que se apartan del origen de Webflow, y la lee tambien
+ * `scripts/check-seo.mjs`: una sola copia, imposible que se desincronicen.
+ *
+ * Va aqui y no en `build-paginas.mjs` a proposito. El generador solo alcanza a las rutas
+ * derivadas, y las que mas falta hacian -la home y las 2 de `/where-we-serve/`- estan en
+ * `NO_REGENERAR`; ademas tocarlo obligaria a re-generar ~50 ficheros para cambiar una meta.
+ * Desde el layout llegan las 121 que pasan por el, con un solo mecanismo.
+ *
+ * `og:description` y `twitter:description` se pisan SOLO si la pagina ya las traia: anadir una
+ * clave que el baseline no tiene la contaria como «meta de mas» en check-seo.
+ */
+const propia = META_PROPIA[ruta];
+const tituloFinal = propia?.title ?? titulo;
+const descFinal = propia?.description ?? descripcion;
+if (propia?.description) {
+  if (meta['og:description']) meta['og:description'] = propia.description;
+  if (meta['twitter:description']) meta['twitter:description'] = propia.description;
+}
+if (propia?.title) {
+  if (meta['og:title']) meta['og:title'] = propia.title;
+  if (meta['twitter:title']) meta['twitter:title'] = propia.title;
+}
+
 const jsonLd = seo.jsonLd ?? [];
 ---
 <!doctype html>
@@ -244,8 +270,8 @@ const jsonLd = seo.jsonLd ?? [];
       j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
       f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-N9BWB3BV');
     </script>
-    <title>{titulo}</title>
-    {descripcion && <meta name="description" content={descripcion} />}
+    <title>{tituloFinal}</title>
+    {descFinal && <meta name="description" content={descFinal} />}
     {Object.entries(meta).map(([k, v]) => (k.startsWith('og:')
       ? <meta property={k} content={v} />
       : <meta name={k} content={v} />))}

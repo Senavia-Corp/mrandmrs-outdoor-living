@@ -1,0 +1,104 @@
+{
+  "_": "SEO-AEO-GEO F1 — DERIVADO DE NADA, ESCRITO A MANO. Fuente UNICA de los <title> y meta description que se apartan del origen de Webflow. Lo lee `src/layouts/Base.astro` (que los emite) y `scripts/check-seo.mjs` (que los exige): una sola copia, imposible que se desincronicen. Cada entrada lleva su motivo. Las 53 de /pool-builders/ NO van aqui: su meta vive en Sanity y es contenido del cliente.",
+
+  "/": {
+    "title": "Custom Pool Builders & Outdoor Living in Florida",
+    "description": "Custom inground pool builders and outdoor living design-build contractors serving North & South Florida. Licensed, engineered, and turnkey construction.",
+    "motivo": "titulo a 63 car. Se recorta y se pone la intencion delante; la description ya estaba en rango y no se toca."
+  },
+  "/where-we-serve": {
+    "title": "Pool Builders Serving North & South Florida",
+    "description": "Licensed pool builders serving 53 cities and 9 counties across North and South Florida, with custom inground pools and outdoor living design-build.",
+    "description_motivo": "description a 172 car. Ademas es la pagina que debe ganar el cluster generico («best pool builders / near me»), que hoy Google resuelve contra una ciudad al azar: las cifras 53 y 9 son verificables y dan a la pagina algo que ninguna ciudad puede decir."
+  },
+  "/where-we-serve/north-florida": {
+    "title": "Pool Builders in North Florida | Design-Build",
+    "description": "Licensed pool builders in North Florida building custom inground pools and outdoor living, engineered for local soil and long-term durability.",
+    "motivo": "titulo a 64 car y description a 188, la mas larga del sitio."
+  },
+  "/where-we-serve/south-florida": {
+    "title": "Pool Builders in South Florida | Design-Build",
+    "description": "Licensed pool builders in South Florida building custom inground pools and outdoor living, engineered for coastal conditions and durability.",
+    "motivo": "titulo a 64 car y description a 185."
+  },
+  "/services/custom-pool-spa-builders-in-north-south-florida": {
+    "title": "Custom Pool Builders in North Florida | Mr & Mrs",
+    "description": "Custom inground pool construction in North Florida, from 3D design through final startup. Licensed builders serving North & South Florida.",
+    "motivo": "LANDING DE PAGO. Manda la hoja 22 del libro de campana en titulo y encabezado; el anuncio promete «North Florida» y el slug dice north-south, asi que la correspondencia se resuelve por copy, no renombrando la URL final del anuncio."
+  },
+  "/services/pool-remodeling-renovation-in-north-south-florida": {
+    "title": "Pool Remodeling in North Florida | Mr & Mrs",
+    "description": "Complete pool remodeling in North Florida: resurfacing, equipment upgrades and safety improvements. Licensed contractors across Florida.",
+    "motivo": "LANDING DE PAGO. North Florida primero, por la misma razon que la anterior."
+  },
+  "/contact-us": {
+    "title": "Contact Florida Pool Builders | Free Estimate",
+    "motivo": "titulo a 71 car, el mas largo del sitio fuera de /project/."
+  },
+  "/videos": {
+    "title": "Pool & Outdoor Living Project Videos | Florida",
+    "description": "Watch real pool and outdoor living project videos by licensed Florida builders. Completed design-build projects, engineered and built end-to-end.",
+    "motivo": "titulo a 67 car, description a 157."
+  },
+  "/industry-solutions": {
+    "title": "Commercial Pool Construction in Florida",
+    "description": "Florida commercial pool construction and design-build contractors delivering code-compliant projects for developers, HOAs and commercial properties.",
+    "motivo": "titulo a 66 car, description a 164."
+  },
+  "/blogs-tips": {
+    "title": "Pool Construction Guides & Outdoor Living Tips",
+    "motivo": "titulo a 65 car."
+  },
+  "/projects": {
+    "title": "Custom Pool & Outdoor Living Projects | Florida",
+    "motivo": "titulo a 61 car."
+  },
+  "/about": {
+    "description": "Licensed Florida pool builders and outdoor living design-build contractors specializing in custom inground pools and engineered construction.",
+    "motivo": "description a 171 car."
+  },
+  "/testimonials": {
+    "description": "Read reviews from homeowners who hired licensed Florida pool builders for custom inground pools and full outdoor living design-build projects.",
+    "motivo": "description a 167 car."
+  },
+  "/gallery": {
+    "description": "Explore completed pool and outdoor living projects across Florida by licensed builders and design-build contractors. Custom, engineered, fully built.",
+    "motivo": "description a 165 car."
+  },
+  "/financing": {
+    "description": "Get your design and a fixed project price first, then review financing options for your Florida pool, pergola or outdoor living build.",
+    "motivo": "description a 162 car."
+  },
+  "/services/custom-outdoor-kitchens-for-north-south-florida-homes": {
+    "title": "Custom Outdoor Kitchen Builders in Florida",
+    "motivo": "titulo a 69 car."
+  },
+  "/services/professional-landscaping-services-in-north-south-florida": {
+    "title": "Landscaping Design & Installation in Florida",
+    "motivo": "titulo a 69 car."
+  },
+  "/services/motorized-louvered-roof-systems-in-north-south-florida": {
+    "title": "Motorized Louvered Roof Systems in Florida",
+    "motivo": "titulo a 65 car."
+  },
+  "/services/motorized-retractable-screens-in-north-south-florida": {
+    "title": "Motorized Retractable Screens in Florida",
+    "motivo": "titulo a 64 car. Es el servicio con mas cola larga de ciudad en GSC (automatic patio screens florida, 21 impr)."
+  },
+  "/services/patio-screen-rooms-enclosures-in-north-south-florida": {
+    "title": "Patio Screen Room Builders in Florida",
+    "motivo": "titulo a 64 car. Recibe la consulta en forma de pregunta con 44 impresiones en posicion 5,8 y cero clics."
+  },
+  "/country/custom-pool-builders-palm-beach-county-fl": {
+    "title": "Pool Builders in Palm Beach County, FL",
+    "motivo": "titulo a 62 car."
+  },
+  "/country/custom-pool-builders-gilchrist-county-fl": {
+    "title": "Pool Builders in Gilchrist County, FL",
+    "motivo": "titulo a 61 car."
+  },
+  "/blogs/commercial-pool-construction-in-florida-what-decision-makers-must-know": {
+    "title": "Commercial Pool Construction: What to Know",
+    "motivo": "titulo a 63 car. Distinto del de /industry-solutions a proposito: son intencion informativa y comercial, y check-seo exige que ningun titulo se repita."
+  }
+}

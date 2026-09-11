@@ -5144,3 +5144,66 @@ Ninguna nueva.
 - **Verificar contra producción sigue sin ser posible**: `curl`, `WebFetch` y el MCP de Vercel
   fallan los tres contra el dominio, y no hay scraping conectado. Queda `INSPECT_URL` de GSC, que
   da el veredicto de Google pero no códigos HTTP. Es un hueco declarado, no un verde.
+
+---
+
+## SEO-AEO-GEO F1 — `META_PROPIA`: metas propias con fuente única y puerta   ✅ cerrada
+**Fecha:** 2026-09-11 · **Commit:** el de esta entrada
+
+### Objetivo
+Poder apartarse del `<title>`/`description` del origen sin desactivar la paridad, con el
+mecanismo que el encargo pedía y que no existía — y aplicarlo donde el dato de GSC dice que
+importa, no en las 121 por igual.
+
+### Qué se hizo
+- `src/data/meta-propia.json` (nuevo): **fuente única**, 23 rutas, cada una con su motivo.
+- `src/layouts/Base.astro`: la lee y emite `<title>`/`description`; pisa `og:`/`twitter:` **solo
+  si la página ya las traía** (añadir una clave que el baseline no tiene contaría como «meta de
+  más»). Va en el layout y no en `build-paginas.mjs` a propósito: el generador no alcanza a la
+  home ni a las 2 de `/where-we-serve/` (están en `NO_REGENERAR`), y tocarlo obligaría a
+  regenerar ~50 ficheros para cambiar una meta.
+- `scripts/check-seo.mjs`: `META_PROPIA` y `TITULO_DE_META` **leen ese mismo JSON**, así que no
+  hay dos listas que mantener. Se unen con el `TITULO_PROPIO` de M2 en un solo Map; cada origen
+  se declara por pantalla con su motivo, como exige el fichero.
+
+### Números medidos
+| Métrica | Antes | Después |
+|---|---:|---:|
+| `<title>` > 60 caracteres | 21 | **4** |
+| `description` > 155 caracteres | 39 | **30** |
+| `<title>` duplicados en las 122 | 0 | 0 |
+| Páginas sin `<h1>` / con más de uno | 0 / 0 | 0 / 0 |
+
+### Evidencia
+```
+$ PUBLIC_ES_PRODUCCION=1 npm run check:seo
+115/115 paginas con el head identico al origen
+ok   los 122 <title> son unicos — 0 repetidos
+ok   declarado /: <title> propio (F1: longitud o intencion), via src/data/meta-propia.json
+     …19 rutas declaradas…
+PUERTA VERDE
+
+$ PUBLIC_ES_PRODUCCION=1 npm run check:medicion        → PUERTA VERDE
+$ npm run check:tokens · check:rutas · check:enlaces   → PUERTA VERDE (las tres)
+$ xvfb-run -a node scripts/check-texto.mjs '=/' /contact-us /where-we-serve → PUERTA VERDE
+```
+
+### Gate
+**Criterio:** ninguna meta se aparta del origen sin quedar declarada y dicha por pantalla.
+**Resultado:** ✅ verde, con las 23 declaraciones impresas.
+
+### Desviaciones
+- **Las 4 restantes por encima de 60 son deliberadas y quedan así**: 3 son `/project/*` ya
+  declaradas en `TITULO_PROPIO` por M2 (se alargaron para dejar de duplicarse, que es el defecto
+  peor), y la 4.ª es la landing de pago `/services/custom-pool-spa-builders-…` a 62 caracteres,
+  donde **manda la hoja 22 del libro de campaña** por la regla de precedencia del plan.
+- **Las 30 descripciones que siguen largas: 28 son las ciudades, y NO se tocan aquí.** Su meta
+  vive en Sanity y es contenido del cliente; el encargo dice explícitamente que no se publica en
+  Sanity lo que Sebastian no haya visto. Están entre 156 y 160 caracteres —de 1 a 5 por encima
+  del objetivo— así que el coste de dejarlas es bajo. Van propuestas en el informe, no escritas.
+
+### Rarezas del original replicadas a propósito
+Ninguna nueva.
+
+### Abierto
+Las 28 descripciones de ciudad, a decisión de Sebastian sobre Sanity.

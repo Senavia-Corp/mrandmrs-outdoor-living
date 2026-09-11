@@ -34,7 +34,7 @@ const PROD = process.env.PUBLIC_ES_PRODUCCION === '1';
  * M2 — los `<title>` que se apartan del origen, con su motivo. Tiene que casar con
  * `TITULO_PROPIO` de `build-paginas.mjs`, que es quien los escribe.
  */
-const TITULO_PROPIO = new Map([
+const TITULO_PROPIO_M2 = new Map([
   ['/project/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida',
     'Luxury Pool with Motorized Pergola & Outdoor Kitchen | North Florida'],
   ['/project/luxury-pool-motorized-pergola-screen-enclosure-north-florida',
@@ -42,6 +42,46 @@ const TITULO_PROPIO = new Map([
   ['/project/luxury-pool-spa-screen-enclosure-north-florida',
     'Luxury Pool & Spa with Screen Enclosure & Outdoor Kitchen | North Florida'],
 ]);
+
+/**
+ * SEO-AEO-GEO F1 — las `meta` que se apartan del origen, con su motivo. Espejo de
+ * `TITULO_PROPIO`, y por la misma razon: la paridad byte a byte con Webflow protegia tambien
+ * los defectos del origen, y una description de 188 caracteres que el SERP corta a la mitad es
+ * un defecto. Tiene que casar con `META_PROPIA` de `build-paginas.mjs`, que es quien las
+ * escribe en las rutas derivadas; en las de `NO_REGENERAR` (`/`, las 53 de `/pool-builders/`
+ * y las 2 de `/where-we-serve/`) la escribe su propio `.astro` o Sanity.
+ *
+ * Es un Map de ruta a un OBJETO por clave, no a una cadena: `og:description` y
+ * `twitter:description` tambien viven en `baseline/seo.json` y se pondrian rojas igual si solo
+ * se declarara `description`.
+ *
+ * La otra mitad de esta excepcion la pone `check-medicion.mjs`, que exige que las 122
+ * descripciones sean UNICAS y no tiene mecanismo de declaracion: una description nueva que
+ * choque con otra pagina sale roja alli aunque este declarada aqui.
+ */
+const META_PROPIA = new Map(
+  Object.entries(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/meta-propia.json'), 'utf8')))
+    .filter(([r]) => r !== '_')
+    .map(([r, v]) => [r, {
+      ...(v.title ? { 'og:title': v.title, 'twitter:title': v.title } : {}),
+      ...(v.description
+        ? { description: v.description, 'og:description': v.description, 'twitter:description': v.description }
+        : {}),
+    }]),
+);
+/** Los `<title>` propios salen de la misma fuente, para que no haya dos listas que mantener. */
+const TITULO_DE_META = new Map(
+  Object.entries(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/meta-propia.json'), 'utf8')))
+    .filter(([r, v]) => r !== '_' && v.title)
+    .map(([r, v]) => [r, v.title]),
+);
+
+/**
+ * Las dos fuentes de `<title>` declarado, unidas: M2 (los que el origen repetia) y F1 (los que
+ * el origen traia demasiado largos o apuntando a la intencion equivocada). El consumo es el
+ * mismo para las dos; lo que cambia es el motivo, y cada una lo dice por pantalla por separado.
+ */
+const TITULO_PROPIO = new Map([...TITULO_PROPIO_M2, ...TITULO_DE_META]);
 /** Todos los titulos vistos, para exigir que NINGUNO se repita. */
 const titulosVistos = new Map();
 
@@ -206,6 +246,15 @@ for (const ruta of conPropias(RUTAS)) {
       if (k === 'robots') continue;                    // lo gobierna el interruptor de indexacion
       const m = hay[k];
       if (m === undefined) { problemas.push(`falta ${k}`); continue; }
+      const propioMeta = META_PROPIA.get(ruta);
+      if (propioMeta && k in propioMeta) {
+        // Declarada: la referencia deja de ser el origen y pasa a ser el valor declarado. La
+        // regla NO se relaja, cambia de patron — igual que en `TITULO_PROPIO`.
+        if (m !== propioMeta[k]) {
+          problemas.push(`${k} propio: "${String(propioMeta[k]).slice(0, 50)}" -> "${String(m).slice(0, 50)}"`);
+        }
+        continue;
+      }
       const esImagen = /^(og:image|twitter:image)/.test(k);
       if (esImagen ? nombre(m) !== nombre(aLocal(v)) : m !== v) {
         problemas.push(`${k}: "${String(v).slice(0, 50)}" -> "${String(m).slice(0, 50)}"`);
@@ -322,8 +371,15 @@ if (rojos.length > 10) console.log(`  ... y ${rojos.length - 10} paginas mas`);
 }
 console.log('  ok   declarado: og:image / twitter:image / twitter:card se ANADEN cuando la pagina');
 console.log('       no las trae del origen (M18). Las 104 que si las heredan se comparan igual.');
-for (const r of TITULO_PROPIO.keys()) {
+for (const r of TITULO_PROPIO_M2.keys()) {
   console.log(`  ok   declarado ${r}: <title> propio, distinto al del origen (el origen lo repetia)`);
+}
+for (const r of TITULO_DE_META.keys()) {
+  console.log(`  ok   declarado ${r}: <title> propio (F1: longitud o intencion), via src/data/meta-propia.json`);
+}
+
+for (const [r, ms] of META_PROPIA) {
+  console.log(`  ok   declarado ${r}: ${Object.keys(ms).join(', ')} propia(s), distinta(s) a la del origen`);
 }
 
 for (const r of NOINDEX_A_PROPOSITO) {
