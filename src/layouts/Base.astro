@@ -124,6 +124,12 @@ import '../styles/estimacion.css';     // .appointment-section 1 (+7 clases en 2
 // de la capa de diseño, porque solo tiene que ganar a `disenio/base.css` — con `propio.css`,
 // que parchea clases de Webflow, no se cruza: ni un selector en comun.
 import '../styles/financiacion.css';   // .fin-* 1                                  -> FINANCIACION
+// LA CAPA DE CAPTACION DE LAS FICHAS DE `/services/` (R17-CORE). Las tres secciones nuevas que
+// montan ConfianzaCore, FormularioCore e InversionCore. Hoy la monta 1 ruta —la Final URL del ad
+// group «Pool Builders Core»—, porque `src/data/captacion-servicios.json` tiene 1 entrada; la
+// hoja ya esta escrita para las 14. Va DESPUES de `estimacion.css` porque el formulario reutiliza
+// el ancestro `.appointment-section` y aqui solo se ajusta la composicion.
+import '../styles/servicio-core.css';   // .svc-* 1 (14 cuando se extienda)           -> R17-CORE
 // CSS de autor, DESPUES de webflow.css para ganar por orden y sin `!important`.
 // Hoy solo lleva el arreglo del solape del logo del nav entre 992 y 1204 px.
 import '../styles/propio.css';

@@ -1,0 +1,75 @@
+{
+  "_lee_esto": [
+    "EL CONTENIDO DE CAPTACION DE LAS FICHAS DE /services/, POR RUTA.",
+    "",
+    "Lo leen los tres componentes de R17-CORE por `Astro.url.pathname`:",
+    "  components/widgets/ConfianzaCore.astro   -> `confianza`",
+    "  components/widgets/FormularioCore.astro  -> `formulario`",
+    "  components/widgets/InversionCore.astro   -> `inversion`",
+    "",
+    "POR QUE ES UN JSON POR RUTA Y NO TEXTO DENTRO DE LOS COMPONENTES. Las 14 fichas de",
+    "`/services/` son la MISMA plantilla -mismo orden de secciones, 14 h2, 15 h3, 70 img, 17 a,",
+    "8 subservicios, 4 pasos, 5 FAQ y 0 form en todas, verificado-. El piloto se enciende en una",
+    "sola, pero el dia que se extienda a las otras trece el coste tiene que ser UNA ENTRADA AQUI,",
+    "no un componente nuevo ni una hoja nueva. Quien anada una ruta toca: este fichero, la lista",
+    "`CON_CAPTACION` de `scripts/build-paginas.mjs`, y sus declaraciones en `check-texto.mjs`.",
+    "",
+    "UNA RUTA SIN ENTRADA NO PINTA NADA. Los tres componentes devuelven null: es lo que permite",
+    "que el marcador del generador solo se inserte donde hay contenido, y que las otras 13 fichas",
+    "sigan saliendo byte a byte iguales.",
+    "",
+    "LO QUE NO ESTA VERIFICADO NO SE ESCRIBE AQUI. Cada frase de este fichero tiene su fuente en",
+    "la matriz frase->fuente de `docs/encargos/R17-CORE.md` §8.6. Nada de garantias, anos de",
+    "experiencia, numero de piscinas, «5-star», ni una sola cifra financiera (decision de",
+    "Sebastian del 2-sep-2026, TILA/Reg Z)."
+  ],
+
+  "/services/custom-pool-spa-builders-in-north-south-florida": {
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, engineering, permits and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed pool contractor",
+          "texto": "CPC1461119 and CPC1460562, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "3D design before you commit",
+          "texto": "You review a 3D design of your pool before anything is dug."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "We pull the permits and coordinate the county inspections."
+        }
+      ]
+    },
+
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectoPorDefecto": "New Custom Pool",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back within 24 hours.",
+        "We walk your property and put a 3D design on paper.",
+        "You get the scope in writing and a fixed project price before you commit."
+      ]
+    },
+
+    "inversion": {
+      "titulo": "What will my pool cost?",
+      "texto": "Every pool is priced from its own design, size, finishes and site conditions. Answer a few questions to see the range for a custom pool in Florida, then review how it can be paid for.",
+      "ctas": [
+        { "texto": "Try the pool cost estimator", "href": "/pool-cost-estimator", "principal": true },
+        { "texto": "Financing available", "href": "/financing", "principal": false }
+      ]
+    }
+  }
+}

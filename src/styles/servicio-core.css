@@ -1,0 +1,250 @@
+/**
+ * servicio-core.css — LA CAPA DE CAPTACION DE LAS FICHAS DE `/services/`  ·  R17-CORE
+ *
+ * QUE PINTA, Y CUANTO. Las tres secciones nuevas que montan los componentes
+ * `ConfianzaCore`, `FormularioCore` e `InversionCore`. Hoy solo las monta UNA ruta
+ * -`/services/custom-pool-spa-builders-in-north-south-florida`, la Final URL del ad group
+ * «Pool Builders Core»- porque `src/data/captacion-servicios.json` tiene una sola entrada.
+ * El dia que se extienda a las otras trece fichas, esta hoja **no se toca**: ya esta escrita
+ * para catorce. Medido:
+ *
+ *     grep -rlo 'class="svc-confianza' .vercel/output/static --include='*.html' | wc -l
+ *
+ * ORDEN DE CARGA, y gana por ORDEN, nunca por `!important`:
+ *
+ *   fuentes -> webflow -> disenio/tokens -> disenio/base -> ... -> estimacion
+ *   -> financiacion -> servicio-core -> propio
+ *
+ * DESPUES de `estimacion.css` a proposito: el formulario de captacion reutiliza el ancestro
+ * `.appointment-section` para heredar sus campos de 48 px, sus anillos de foco y sus estados
+ * de error -todo ya medido y aprobado en R12-EST-, y esta hoja solo ajusta la COMPOSICION.
+ * ANTES de `propio.css`, que es donde viven los parches sobre clases de Webflow.
+ *
+ * ─────────────────────────────────────────────────────────────────────────────────────────
+ * POR QUE SE REUTILIZA `.appointment-section` EN VEZ DE ESTILAR EL FORMULARIO DESDE CERO
+ *
+ * No es comodidad: es el presupuesto de `check:tokens`. Medido el 11-sep-2026 antes de
+ * escribir una linea:
+ *
+ *     capa sin comentarios: 75.635 B de 81.920 (TOPE_BYTES)  ->  6.285 B libres
+ *     estimacion.css, que ya estila un formulario de lead:      13.193 B
+ *
+ * Un formulario estilado desde cero NO CABE, y subir el tope para que quepa mi trabajo es
+ * exactamente «la puerta que se actualiza cuando molesta». Reutilizando el ancestro, esta
+ * hoja solo paga lo que es nuevo de verdad: la composicion en dos columnas, la franja de
+ * cuatro tarjetas y la banda de inversion.
+ *
+ * ALCANCE QUE ESO AMPLIA, y se dice: `.appointment-section` pintaba 1 ruta
+ * (`/request-estimated`) y pasa a pintar 2. `estimacion.css` cuelga TODO de ese ancestro,
+ * asi que el radio sigue siendo enumerable. Lo que NO se hereda es el motor multipaso
+ * `msf-*`: vive en el `<script>` de `/request-estimated`, y aqui el formulario es de un solo
+ * paso y valida el navegador.
+ *
+ * ─────────────────────────────────────────────────────────────────────────────────────────
+ * DISCIPLINA DE CAPA
+ *
+ *   · TODO selector empieza por `.svc-` -> el radio de impacto es el de sus componentes
+ *   · cero literales de color: solo `var(--mm-*)`
+ *   · cero `!important`, cero `@layer`, cero `url()`
+ *   · breakpoints solo `min-width` 480 / 768 / 992, sin mezclar con los `max-width` de Webflow
+ *   · cero `opacity: 0` y cero `animation-fill-mode`
+ *
+ * CONTRASTES. No hay ni un par nuevo que inventar: todo sale de pares ya medidos en
+ * `disenio/tokens.css`. Tinta navy sobre blanco 15,60:1 · cuerpo negro sobre blanco 21,00:1 ·
+ * navy sobre el tenue de `.mm-tono` 13,26:1 · texto navy sobre el oro del CTA 8,40:1 · blanco
+ * sobre navy 15,60:1 en el numero de los pasos. El unico fondo nuevo es el circulo del icono,
+ * navy al 8 %: es FONDO, no frontera, y da 1,17:1 contra la tarjeta — el mismo criterio ya
+ * escrito para `.fin-icono` en `financiacion.css:131`.
+ */
+
+/* ══ 1 · FRANJA DE CONFIANZA ══════════════════════════════════════════════════════════════
+ * Cuatro diferenciadores. La rejilla es DETERMINISTA por breakpoint, nunca `auto-fit`: el
+ * recuento no puede crecer al estrechar la pantalla, que es el defecto que R12 documento en
+ * el feed (6/5/3/2, con tablet mas grande que escritorio). Aqui: 1 -> 2 -> 4, y cuatro
+ * tarjetas llenan fila completa en los tres tramos. */
+/* La franja y el formulario son vecinos inmediatos y sus dos paddings se suman: 96 + 64 = 160 px
+ * de aire muerto a 992, medido en el laboratorio. Se recorta el de abajo de la franja y se deja
+ * que mande el de arriba del formulario, que es la seccion que tiene que respirar. */
+.svc-confianza { padding-block-end: var(--mm-e-32); }
+.svc-confianza__tit { text-wrap: balance; }
+
+.svc-confianza__lista {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--mm-e-24);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 480px) { .svc-confianza__lista { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 992px) { .svc-confianza__lista { grid-template-columns: repeat(4, 1fr); } }
+
+.svc-confianza__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mm-e-12);
+}
+/* `capitalize` vive en `h3` (webflow.css) y SI altera el innerText: el rotulo se pinta en
+ * Title Case y asi esta declarado en `check-texto.mjs`. No se toca esa regla. */
+.svc-confianza__rotulo { margin: 0; }
+
+/* El circulo del icono. Mismo patron que `.fin-icono`, en su propio nombre para no cruzar
+ * dos familias: el dia que una cambie, la otra no se entera. */
+.svc-icono {
+  display: grid;
+  place-items: center;
+  inline-size: calc(var(--mm-e-48) + var(--mm-e-8));
+  block-size: calc(var(--mm-e-48) + var(--mm-e-8));
+  border-radius: var(--mm-r-pastilla);
+  background-color: color-mix(in srgb, var(--mm-navy) 8%, transparent);
+  color: var(--mm-navy);
+}
+.svc-icono svg { inline-size: var(--mm-e-32); block-size: var(--mm-e-32); }
+
+/* ══ 2 · EL FORMULARIO ════════════════════════════════════════════════════════════════════
+ * Dos columnas a partir de 992: el formulario manda y «What happens after you reach out» va
+ * al lado, no debajo, para que se lea ANTES de rellenar y no despues. Por debajo de 992 se
+ * apilan y los pasos van primero en el DOM? No: van DESPUES, para que el pulgar llegue al
+ * primer campo sin scroll. El orden del documento es el orden de lectura. */
+.svc-captacion__rejilla {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--mm-e-32);
+}
+@media (min-width: 992px) {
+  .svc-captacion__rejilla {
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: var(--mm-e-48);
+    align-items: start;
+  }
+}
+
+.svc-captacion__intro { margin-bottom: var(--mm-e-24); }
+.svc-captacion__panel { min-width: 0; }
+
+/* Los ocho campos cortos, a dos columnas desde 768. `Project details` ocupa las dos. */
+.svc-form__rejilla {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--mm-e-16);
+}
+@media (min-width: 768px) {
+  .svc-form__rejilla { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--mm-e-24); }
+  .svc-form__ancho   { grid-column: 1 / -1; }
+}
+
+/* `min-height` y NO `height`: con altura fija el campo no crece con el texto y el objetivo
+ * tactil deja de estar garantizado. Es la receta de la casa (`intro.css:161`). */
+.svc-form__area { min-height: var(--mm-e-96); resize: vertical; }
+
+.svc-form__opcional { color: var(--mm-tinta-atenuada); font-weight: var(--mm-peso-normal); }
+
+.svc-form__consentimiento { margin-block: var(--mm-e-24) var(--mm-e-16); }
+.svc-form__envio { margin-top: var(--mm-e-16); }
+
+/* ══ 3 · «WHAT HAPPENS AFTER YOU REACH OUT» ═══════════════════════════════════════════════ */
+.svc-captacion__pasos { padding: var(--mm-e-24); }
+
+.svc-pasos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mm-e-16);
+  margin: var(--mm-e-16) 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+.svc-pasos__item {
+  display: grid;
+  grid-template-columns: var(--mm-e-24) 1fr;
+  gap: var(--mm-e-12);
+  align-items: start;
+}
+/* Blanco sobre navy: 15,60:1. El numero es decorativo -el orden ya lo da el `<ol>`-, por eso
+ * va `aria-hidden` en el componente y no transporta informacion que falte sin el. */
+.svc-pasos__n {
+  display: grid;
+  place-items: center;
+  inline-size: var(--mm-e-24);
+  block-size: var(--mm-e-24);
+  border-radius: var(--mm-r-pastilla);
+  background-color: var(--mm-navy);
+  color: var(--mm-tinta-inversa);
+  font-family: var(--mm-fuente);
+  font-size: var(--mm-paso-0);
+  font-weight: var(--mm-peso-fuerte);
+}
+
+/* ══ 4 · INVERSION Y FINANCIACION ═════════════════════════════════════════════════════════ */
+.svc-inversion__caja { padding: var(--mm-e-32); }
+@media (min-width: 768px) { .svc-inversion__caja { padding: var(--mm-e-48); } }
+
+/* `wrap` para que a 390 los dos CTA se apilen en vez de encogerse por debajo del objetivo
+ * tactil. `.mm-accion` ya trae `min-height: 44px`. */
+.svc-inversion__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mm-e-16);
+  margin-top: var(--mm-e-8);
+}
+
+/* ══ 5 · EL HEROE DE LA LANDING DE PAGO ═══════════════════════════════════════════════════
+ * `.hero-services` lo comparten las 14 fichas y NO se toca: estas dos clases las anade el
+ * generador SOLO en la ruta de captacion, asi que el radio es esa ruta y nada mas.
+ *
+ * ─── EL VELO, MEDIDO ─────────────────────────────────────────────────────────────────────
+ * `webflow.css` ya trae `linear-gradient(#00000080,#00000080)`: negro al 50 %. Con la foto
+ * NUEVA -una piscina terminada, mucho mas clara que la excavacion que habia- ese 50 % no
+ * llega. Medido sobre el recorte real del heroe (1440x700, `object-fit: cover`) y sobre la
+ * banda central de 750 px, que es el `max-width` de `.block-hero-services-page`, o sea justo
+ * donde cae el texto blanco:
+ *
+ *     velo 50 %   peor 4,07:1   medio 10,57:1   area por debajo de 4,5:1  0,034 %
+ *     velo 54 %   peor 4,69:1   medio 11,30:1   area por debajo de 4,5:1  0,000 %
+ *     velo 56 %   peor 5,05:1   medio 11,68:1   area por debajo de 4,5:1  0,000 %   <- elegido
+ *     velo 60 %   peor 5,86:1   medio 12,49:1   area por debajo de 4,5:1  0,000 %
+ *
+ * Se elige 56 % y no 54 %: deja margen sobre el umbral sin apagar la foto, y el promedio NO
+ * decide nada -el peor pixel si-, que es el error que `CRITERIO.md` documenta con el 5,49:1
+ * de media contra el 3,11:1 de la teja real en `cta-footer-image.webp`.
+ *
+ * DATO QUE CONVIENE QUE CONSTE: con la foto ANTERIOR y el velo de 50 % el peor pixel daba
+ * 3,98:1 y el 1,11 % del area del texto quedaba por debajo de 4,5:1. O sea que el heroe ya
+ * incumplia antes de este encargo, y ninguna puerta lo veia: `check:visual` compara contra su
+ * propio baseline, asi que un texto que ya se leia mal se aprueba como «sin cambio». */
+.svc-heroe {
+  background-image: linear-gradient(
+    color-mix(in srgb, var(--mm-negro) 56%, transparent),
+    color-mix(in srgb, var(--mm-negro) 56%, transparent));
+}
+
+/* Los dos telefonos y las licencias. Sin esto heredan el azul de enlace de Webflow sobre una
+ * foto oscura -medido en el laboratorio: ilegible-. Blanco sobre el velo da los 5,05:1 de
+ * arriba, y el subrayado es lo que dice que son enlaces sin depender del color. */
+.svc-heroe__tel,
+.svc-heroe__lic {
+  margin: 0;
+  font-family: var(--mm-fuente);
+  font-size: var(--mm-paso-1);
+  line-height: var(--mm-alto-cuerpo);
+  color: var(--mm-tinta-inversa);
+}
+.svc-heroe__tel a {
+  color: var(--mm-tinta-inversa);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  /* 44 px de objetivo tactil sin cambiar la linea de texto: el relleno lo da el inline-flex,
+   * no una altura fija (receta de `intro.css:161`). */
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+/* LAS LICENCIAS VAN EN BLANCO PLENO, no en el tono atenuado. Parecia el sitio natural para
+ * `--mm-tinta-inversa-2`, y MEDIDO sobre esta misma foto con este mismo velo NO cumple:
+ *
+ *     blanco      #ffffff   peor 5,05:1   area por debajo de 4,5:1   0,000 %
+ *     inversa-2   #c7cddd   peor 3,18:1   area por debajo de 4,5:1  22,315 %
+ *
+ * El token esta calibrado contra `--mm-fondo-navy`, que es un color plano y siempre el mismo
+ * (9,81:1). Sobre una FOTOGRAFIA no hay tal garantia. Un token correcto en su fondo puede ser
+ * incorrecto en otro: eso se mide, no se hereda. */

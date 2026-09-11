@@ -1,0 +1,43 @@
+---
+/**
+ * INVERSION Y FINANCIACION — R17-CORE.
+ *
+ * Responde las dos preguntas que frenan una compra de este ticket y que la ficha no respondia:
+ * **cuanto cuesta** y **como se paga**. Las dos paginas que las contestan existen desde hace
+ * semanas -`/pool-cost-estimator` y `/financing`- y la landing de pago no enlazaba a ninguna:
+ * medido, 0 enlaces a cada una en el cuerpo de la ruta. La FAQ de financiacion tampoco.
+ *
+ * 🚨 NI UNA CIFRA FINANCIERA. Decision de Sebastian del 2-sep-2026: ni APR, ni plazos, ni
+ * cuotas, ni importes, ni tiempos de aprobacion. Nombrar una cifra dispara obligaciones de
+ * disclosure (TILA/Reg Z) que este sitio no tiene escritas. Es la misma regla que gobierna
+ * `/financing`, y aqui vale igual — con el agravante de que esta es una URL final de anuncio.
+ *
+ * Un rango de precio solo podria salir CALCULADO por `src/lib/estimador.js` y con el visto
+ * bueno de Sebastian. Por eso esta seccion no da numeros: **manda al estimador**, que es quien
+ * los calcula con las respuestas del propio visitante.
+ *
+ * SE LOCALIZA SOLA por `Astro.url.pathname`. Sin entrada en el JSON no pinta nada.
+ */
+import DATOS from '../../data/captacion-servicios.json';
+
+/* `Astro.props.ruta` existe SOLO para el laboratorio `_lab-servicio.astro`, que no esta
+ * enrutado y por tanto no tiene el pathname de la ficha. El generador no pasa props: en
+ * produccion siempre manda `Astro.url.pathname`. */
+const ruta = (Astro.props.ruta ?? Astro.url.pathname).replace(/(.)\/$/, '$1');
+const d = DATOS[ruta]?.inversion;
+---
+{d && (
+  <section class="svc-inversion mm-seccion">
+    <div class="mm-caja mm-tono svc-inversion__caja">
+      <div class="mm-pila mm-pila--24">
+        <h2 class="mm-tit-2">{d.titulo}</h2>
+        <p class="mm-txt mm-medida">{d.texto}</p>
+        <div class="svc-inversion__acciones">
+          {d.ctas.map((c) => (
+            <a href={c.href} class:list={['mm-accion', !c.principal && 'mm-accion--linea']}>{c.texto}</a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+)}
