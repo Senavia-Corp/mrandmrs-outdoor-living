@@ -207,3 +207,54 @@ Conversions quema $1.600/mes optimizando hacia ruido.
   estrellas» está marcado DATA NOT AVAILABLE en la hoja 18 del libro de Ads, y el perfil real está
   en 4,1 sobre 13. Si el dato no lo sostiene, no se marca.
 - **La cuenta de Google Ads:** no se toca. Ni crear, ni pausar, ni activar, ni pujas ni presupuestos.
+
+---
+
+# ADENDA — línea de trabajo de Google Ads Quality Score (QS1–QS8)
+
+Se **añade** al plan de arriba; no lo reestructura ni lo sustituye. Las decisiones ya tomadas
+siguen vigentes: el Tier 2 no se mueve, las URLs finales de anuncio no se renombran, el copy es
+aditivo salvo lo declarado, y la cuenta de Ads no se toca.
+
+**Precedencia:** ante conflicto entre la relevancia de una landing de pago y un refinamiento
+orgánico cosmético, en **esas 4 URLs** manda lo de pago. En las otras 118, manda lo orgánico.
+
+## Sobre el objetivo, una vez
+
+El Quality Score son tres señales. El sitio gobierna **Landing Page Experience** entera,
+**Ad Relevance** a medias (por correspondencia de mensaje) y **Expected CTR** casi nada, porque
+depende del histórico del anuncio, que hoy no existe. El objetivo exigible y medible es
+**«Above average» en Landing Page Experience y Ad Relevance**. **Un 10/10 no se promete.**
+
+| | Qué es | Estado |
+|---|---|---|
+| **QS1** | Inventario keyword → ad group → landing page | ⚠️ parcial — las 39 keywords son `DATA NOT AVAILABLE`; sí constan campañas, grupos, recuentos y URLs finales |
+| **QS2** | Matriz de Quality Score | ✅ [`docs/informes/GOOGLE-ADS-QUALITY-SCORE-MATRIX.md`](../informes/GOOGLE-ADS-QUALITY-SCORE-MATRIX.md), por ad group |
+| **QS3** | Internal LP Relevance Score (0-100) — **NOT A GOOGLE METRIC** | ✅ Core 88 · Gainesville 90 · Ocala 90 · Remodel 86, con cada deducción justificada |
+| **QS4** | Cadena de correspondencia de mensaje | ⚠️ completa salvo los eslabones bloqueados (keywords, temas RSA, evento de conversión) |
+| **QS5** | Optimización on-page de las 4 | ✅ título, meta, h1, héroe y primeras 100 palabras alineados con la intención de pago |
+| **QS6** | Móvil primero en las 4 | ⚠️ verificado estáticamente; sin dispositivo real ni campo |
+| **QS7** | Rendimiento (LCP/INP/CLS) | 🚫 `PRODUCTION PERFORMANCE VERIFICATION BLOCKED` — no se marca como aprobado |
+| **QS8** | Protección contra regresión | ✅ `npm run check:ads` (`scripts/check-ads-landing-pages.mjs`), en la suite |
+
+## QS8 — qué protege exactamente, y qué no
+
+`check:ads` **no finge un Quality Score**: Google no publica su fórmula y pondera histórico que
+este repositorio no ve. Fija los invariantes que el sitio **sí** controla, para que un cambio
+futuro no convierta en silencio «Custom Pool Builders In Gainesville» en «Outdoor Living
+Services». Comprueba, en las 4: que construyen, un solo `<h1>`, título y description presentes,
+canónica correcta, ausencia de `noindex`, la intención esperada arriba del pliegue, la **ausencia**
+de temas que compiten (pérgolas, cocinas exteriores, comercial), camino a conversión, teléfono de
+North Florida delante, JSON-LD válido, cero afirmaciones de la lista prohibida de la hoja 18,
+cero redirects sobre una URL final —que sería rechazo de anuncio— y que `/thank-you` sigue
+empujando `generate_lead`.
+
+**Y discrimina.** Contra el h1/h2 que había antes del override: `ROJO -> /pergola/i
+/outdoor kitchen/i`. Después: verde.
+
+## El bloqueo que manda sobre esta adenda entera
+
+🚨 **`generate_lead` tiene CERO eventos en GA4 en ocho meses y medio**, mientras `/thank-you`
+—que es quien lo empuja— tiene 18 páginas vistas. Los cinco tags de evento personalizado del
+contenedor están los cinco a cero. Se arregla en GTM, no aquí. **Mientras siga así, no se lanza:**
+las dos campañas son *Maximize Conversions* y no tendrían de qué aprender.

@@ -167,6 +167,36 @@ for (const r of DESTINOS) {
   else bien(`${r} construido`);
 }
 
+/**
+ * ── EL EVENTO DE CONVERSION, LA MITAD QUE EL SITIO SI CONTROLA ────────────────────────────
+ *
+ * La conversion es determinista: el formulario valida en servidor, redirige a `/thank-you`, y
+ * `/thank-you` empuja `generate_lead` al dataLayer. Un solo evento por envio valido, disparado
+ * despues del servidor y no en el submit del cliente.
+ *
+ * 🚨 LO QUE ESTA PUERTA NO PUEDE VER, Y HAY QUE DECIRLO: que GTM convierta ese push en un
+ * evento de GA4. Medido el 11-sep-2026 sobre `properties/506563956`, del 1-ene al 11-sep:
+ * `/thank-you` tiene 18 paginas vistas —o sea que SI se llega— y `generate_lead` tiene CERO
+ * eventos. Los cinco tags de evento personalizado de `gtm-container.json` estan los cinco a
+ * cero. El push sale del sitio; el tag no lo recoge. Eso se arregla en la interfaz de GTM, no
+ * aqui, y mientras siga asi Maximize Conversions no tiene de que aprender.
+ */
+console.log('\n── evento de conversion (lado del sitio) ──');
+{
+  const ty = leer('/thank-you') ?? '';
+  if (!/dataLayer\.push/.test(ty) || !/generate_lead/.test(ty)) {
+    mal('/thank-you', 'ya no empuja `generate_lead` al dataLayer. Es el unico evento de conversion del sitio: sin el, la campana optimiza a ciegas.');
+  } else bien('/thank-you empuja generate_lead (un solo evento, tras validar en servidor)');
+
+  // Nunca page_view ni scroll como conversion primaria: Maximize Conversions aprenderia de ruido.
+  for (const L of LANDINGS) {
+    const h = leer(L.ruta) ?? '';
+    if (/event:\s*['"](page_view|scroll)['"]/.test(h)) {
+      mal(L.ruta, 'empuja page_view o scroll como evento propio. Nunca deben ser conversion primaria.');
+    }
+  }
+}
+
 console.log(`\n${fallos ? `PUERTA ROJA — ${fallos} fallo(s)` : 'PUERTA VERDE'}\n`);
 console.log('  NOTA: esta puerta NO mide Quality Score. Mide los invariantes que el sitio SI');
 console.log('  controla. Expected CTR y el historico del anuncio no se ven desde aqui.');
