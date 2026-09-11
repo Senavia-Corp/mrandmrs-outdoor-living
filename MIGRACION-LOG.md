@@ -5288,3 +5288,84 @@ superficie de las puertas.
 ### Abierto
 A4 (correspondencia con los titulares RSA y las 11 URLs de sitelink) sigue **bloqueado**: el
 libro de campaña no está ni en la máquina ni en Drive, y la cuenta de Ads no es alcanzable.
+
+---
+
+## SEO-AEO-GEO F3 — la entidad del negocio, en las 122   ✅ cerrada
+**Fecha:** 2026-09-11 · **Commit:** el de esta entrada
+
+### Objetivo
+Que el sitio declare **quién es** de forma que un motor generativo pueda confirmarlo — que es lo
+que le faltaba para ser citable — sin inventar ni un dato.
+
+### Qué se hizo
+- `src/lib/negocio.mjs` (nuevo): fuente única del nodo `LocalBusiness` y del `BreadcrumbList`.
+- `src/layouts/Base.astro`: los **añade al final** del array de JSON-LD, con `@id` estables
+  (`#negocio` / `#miga`), para que la puerta pueda separarlos de los del origen por identidad y
+  no por posición. La miga se omite en la home y donde la página ya trae la suya: dos
+  `BreadcrumbList` en la misma página es peor que ninguna.
+- `src/pages/pool-investment-estimator.astro`: a mano, porque no pasa por `Base.astro` y era la
+  única de las 122 sin ningún JSON-LD. Misma fuente.
+- `scripts/check-seo.mjs`: declara los bloques inyectados **y los exige** — `@type` correcto,
+  `sameAs` no vacío, `telephone` presente, `name` presente, y ningún `address`/`geo`/
+  `aggregateRating` presente-pero-vacío. Descontarlos sin exigirlos habría sido un perdón general.
+
+### Números medidos — sobre las 122 construidas
+| Métrica | Antes | Después |
+|---|---:|---:|
+| `LocalBusiness` de la entidad | 0 | **122** |
+| **`sameAs` poblado** | **0** | **122** |
+| `telephone` dentro de JSON-LD | 0 | **122** |
+| `BreadcrumbList` | 1 | **120** |
+| Páginas sin ningún JSON-LD | 1 | **0** |
+| JSON-LD que no parsea | 0 | 0 |
+
+### Evidencia
+```
+$ PUBLIC_ES_PRODUCCION=1 npm run check:seo
+115/115 paginas con el head identico al origen
+ok   declarado: 226 bloque(s) de JSON-LD anadidos por Base.astro
+PUERTA VERDE
+
+$ node (recuento sobre .vercel/output/static, JSON.parse en las 122)
+  con LocalBusiness #negocio 122 · con sameAs poblado 122 · telephone 122
+  con BreadcrumbList #miga 120 · JSON-LD que NO parsea 0 · sin ningun JSON-LD 0
+```
+
+**Lo que hay en `sameAs`, y de dónde sale** — tres URLs que ya vivían en el repo, ninguna
+buscada ni supuesta: el perfil de Google (`resenas.json.enlacePerfil`, CID que
+`check-resenas.mjs:24` verifica en cada pasada), Instagram (`instagram.json.usuario`) y el canal
+de YouTube (`youtube.json`). Facebook, Houzz, BBB y Yelp **no están** porque no constan en
+ninguna fuente: se piden, no se inventan.
+
+Las dos licencias del pie (`CPC1461119`, `CPC1460562`) pasan a `identifier`. Un número de
+licencia es justo el dato que un motor puede atribuir; hasta hoy solo era texto del pie.
+
+### Gate
+**Criterio:** ningún bloque inyectado puede estar ausente ni vacío, y los del origen se siguen
+comparando carácter a carácter.
+**Resultado:** ✅ verde. `check:tokens`, `check:rutas`, `check:enlaces`, `check:seo`,
+`check:medicion` y `check:ads`, las seis.
+
+### Desviaciones
+- **Sin `address`, y es deliberado**: no hay ninguna dirección postal en el repo. Un negocio de
+  área de servicio se marca con `areaServed` y sin dirección — que es exactamente lo que queda.
+- **Sin `aggregateRating`**: el perfil real está en 4,1 sobre 13 y el sitio publica 8 reseñas,
+  todas de 5. Marcar 5,0/8 sería falso.
+
+### Rarezas del original replicadas a propósito
+Los 53 `LocalBusiness` de ciudad conservan su `geo` vacío y su `address` sin calle. Vienen del
+origen y **no se tocan en esta fase**: van propuestos en el informe. El nodo nuevo `#negocio`,
+que es el que lleva la entidad de verdad, sí cumple la regla de no emitir campos vacíos.
+
+### Abierto — UNA ROJA, ANTERIOR A ESTE TRABAJO, MEDIDA
+`check:texto` da roja `/services/custom-pool-spa-builders-in-north-south-florida`:
+```
+FALTA  Site Assessment & Structural Evaluation
+SOBRA  Design Consultation & 3D Rendering
+```
+Las dos cadenas viven en la misma página: es el carrusel de proceso, que arranca en una
+diapositiva distinta a la que capturó el baseline de Webflow. **Verificado que es anterior**: se
+guardaron los cambios con `git stash`, se reconstruyó `432f07e` limpio y la roja sale
+**idéntica**. No es una regresión de F3; es la misma deriva de rediseño que ya tienen las ~356
+comparaciones de `check:visual`, y se cierra re-aprobando con un humano, no desde un agente.

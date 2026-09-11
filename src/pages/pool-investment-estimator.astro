@@ -21,6 +21,7 @@
  * `build-estimador.mjs` y que se conserva aquí.
  */
 import Estimador from '../components/widgets/Estimador.astro';
+import { negocio, miga } from '../lib/negocio.mjs';
 import Formularios from '../components/Formularios.astro';
 import '../styles/fuentes.css';
 
@@ -33,6 +34,12 @@ const canonica = ES_PRODUCCION ? new URL('/pool-investment-estimator', Astro.sit
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Pool Investment Estimator - Mr &amp; Mrs Outdoor Living</title>
+    {/* SEO-AEO-GEO F3 — la entidad y la miga, a mano y por la misma razon que el GTM de abajo:
+        esta pagina no pasa por Base.astro, asi que la inyeccion del layout no la alcanza y se
+        quedaba como la UNICA de las 122 sin ningun JSON-LD. Misma fuente que las otras 121
+        (`src/lib/negocio.mjs`); si cambia alli, cambia aqui. */}
+    <script type="application/ld+json" set:html={JSON.stringify(negocio())} />
+    <script type="application/ld+json" set:html={JSON.stringify(miga('/pool-investment-estimator'))} />
     {/* GTM. Esta pagina NO pasa por Base.astro —es su propio documento, sin cascaron— asi que
         el snippet del layout no la alcanza y se quedaba como la UNICA de las 122 sin medir.
         Importa porque AQUI hay captacion: lleva el `Pool Estimator Form`. El generate_lead se

@@ -19,6 +19,7 @@
  */
 import Nav from '../components/Nav.astro';
 import META_PROPIA from '../data/meta-propia.json';
+import { negocio, miga } from '../lib/negocio.mjs';
 import Footer from '../components/Footer.astro';
 import ClickToCall from '../components/widgets/ClickToCall.astro';
 import Interacciones from '../components/Interacciones.astro';
@@ -239,7 +240,25 @@ if (propia?.title) {
   if (meta['twitter:title']) meta['twitter:title'] = propia.title;
 }
 
-const jsonLd = seo.jsonLd ?? [];
+/**
+ * SEO-AEO-GEO F3 — LA ENTIDAD Y LA MIGA, EN LAS 121 QUE PASAN POR AQUI.
+ *
+ * Se AÑADEN al final, nunca se mezclan con los bloques del origen: asi `check-seo.mjs` puede
+ * separarlos por su `@id` (`#negocio` / `#miga`), seguir comparando los del origen carácter a
+ * carácter, y exigir que estos dos estén y sean válidos. Declaración, no perdón.
+ *
+ * La miga se omite en la home (un solo escalón no dice nada) y en las rutas que ya traen la
+ * suya del origen — emitir dos `BreadcrumbList` en la misma página es peor que no emitir
+ * ninguna, porque Google no sabe cuál creer.
+ */
+const YA_TIENE_MIGA = (seo.jsonLd ?? []).some(
+  (b) => JSON.stringify(b ?? '').includes('BreadcrumbList'),
+);
+const inyectados = [negocio()];
+const laMiga = YA_TIENE_MIGA ? null : miga(ruta);
+if (laMiga) inyectados.push(laMiga);
+
+const jsonLd = [...(seo.jsonLd ?? []), ...inyectados];
 ---
 <!doctype html>
 <html lang="en">
