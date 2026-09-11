@@ -1,6 +1,5 @@
 {
   "_": "SEO-AEO-GEO F1 — DERIVADO DE NADA, ESCRITO A MANO. Fuente UNICA de los <title> y meta description que se apartan del origen de Webflow. Lo lee `src/layouts/Base.astro` (que los emite) y `scripts/check-seo.mjs` (que los exige): una sola copia, imposible que se desincronicen. Cada entrada lleva su motivo. Las 53 de /pool-builders/ NO van aqui: su meta vive en Sanity y es contenido del cliente.",
-
   "/": {
     "title": "Custom Pool Builders & Outdoor Living in Florida",
     "description": "Custom inground pool builders and outdoor living design-build contractors serving North & South Florida. Licensed, engineered, and turnkey construction.",
@@ -100,5 +99,15 @@
   "/blogs/commercial-pool-construction-in-florida-what-decision-makers-must-know": {
     "title": "Commercial Pool Construction: What to Know",
     "motivo": "titulo a 63 car. Distinto del de /industry-solutions a proposito: son intencion informativa y comercial, y check-seo exige que ningun titulo se repita."
+  },
+  "/pool-builders/gainesville-florida": {
+    "title": "Custom Pool Builders in Gainesville, FL | Mr & Mrs",
+    "description": "Custom inground pool construction in Gainesville and Alachua County, FL. Licensed pool builders serving North Florida. Request a free estimate.",
+    "motivo": "LANDING DE PAGO. El head decia «Luxury Pools & Outdoor Living», que compite con la intencion del anuncio. Piscina primero, condado verificable, CTA."
+  },
+  "/pool-builders/ocala-florida": {
+    "title": "Custom Pool Builders in Ocala, FL | Mr & Mrs",
+    "description": "Custom inground pool construction in Ocala and Marion County, FL. Licensed pool builders serving North Florida. Request a free estimate.",
+    "motivo": "LANDING DE PAGO. Misma razon que Gainesville."
   }
 }

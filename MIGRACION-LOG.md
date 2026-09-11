@@ -5207,3 +5207,84 @@ Ninguna nueva.
 
 ### Abierto
 Las 28 descripciones de ciudad, a decisión de Sebastian sobre Sanity.
+
+---
+
+## SEO-AEO-GEO A3 — las 4 landing pages de pago, y una puerta que las protege   ✅ cerrada
+**Fecha:** 2026-09-11 · **Commit:** el de esta entrada
+
+### Objetivo
+Que las 4 URLs finales de anuncio se reconozcan en segundos como lo que el anuncio promete, y
+que ningún cambio futuro pueda deshacerlo en silencio.
+
+### Qué se hizo
+- **Override por ciudad** (`bloques` en `src/data/seo-pool-builders.json`, aplicado en
+  `[slug].astro` con `Object.assign(d, …)`): las 53 comparten UNA plantilla, así que «héroe
+  pool-first para Gainesville» no era un cambio de una página. Solo lo usan **las 2 ciudades con
+  tráfico de pago**; las otras 51 no llevan `bloques` y salen exactamente igual.
+- **Arriba del pliegue, antes → después:**
+
+| | antes | después |
+|---|---|---|
+| h1 Gainesville | Luxury Pool Builders & Outdoor Living Contractors In Gainesville, Florida | **Custom Pool Builders In Gainesville, Florida** |
+| h2 Gainesville | All In One - Custom Pools, Pergolas & Outdoor Kitchens Contractors For Your Backyard… | **Custom Inground Pool Construction For Homes In Gainesville And Alachua County** |
+| title Gainesville | Luxury Pools & Outdoor Living in Gainesville, FL | Mr & Mrs | **Custom Pool Builders in Gainesville, FL | Mr & Mrs** |
+
+  Ídem Ocala con Marion County. **Los servicios secundarios no se borran: siguen más abajo**
+  (Principio 1). El condado es un dato local verificable, no una señal inventada.
+- **`scripts/check-ads-landing-pages.mjs` + `npm run check:ads`**, en la suite detrás de
+  `check:seo`. No finge un Quality Score —Google no publica su fórmula y pondera histórico que
+  este repo no ve—: fija los invariantes que el sitio **sí** controla.
+
+### Números medidos
+| Métrica | Medido |
+|---|---|
+| Landings con la intención correcta arriba del pliegue | 4 de 4 |
+| Ciudades con override | 2 de 53 (las de pago) |
+| `check:texto` sobre las 53 | **53 idénticas · 0 en rojo** |
+| Redirects sobre URLs finales de anuncio | 0 |
+| Afirmaciones prohibidas de la hoja 18 en las 4 | 0 |
+
+### Evidencia
+```
+$ PUBLIC_ES_PRODUCCION=1 node scripts/check-ads-landing-pages.mjs
+  ok   Pool Builders Core   /services/custom-pool-spa-builders-in-north-south-florida
+  ok   Gainesville          /pool-builders/gainesville-florida
+  ok   Ocala                /pool-builders/ocala-florida
+  ok   Full Remodel         /services/pool-remodeling-renovation-in-north-south-florida
+  ok   /contact-us · /request-estimated · /thank-you construidos
+PUERTA VERDE
+
+$ xvfb-run -a node scripts/check-texto.mjs /pool-builders/
+53 identicas · 0 en rojo   (53/53 rutas medidas)      PUERTA VERDE
+
+$ PUBLIC_ES_PRODUCCION=1 npm run check:seo   → PUERTA VERDE (115/115 head idéntico)
+```
+
+**La puerta discrimina** — no es una que apruebe cualquier cosa. Contra el h1/h2 que había antes
+del override:
+```
+ANTES    ROJO -> /pergola/i /outdoor kitchen/i
+DESPUES  verde
+```
+
+### Gate
+**Criterio:** las 4 reconocibles en segundos, sin redirect, sin noindex, sin afirmación
+prohibida, y con el teléfono de North Florida delante.
+**Resultado:** ✅ verde las 4.
+
+### Desviaciones
+- **Ninguna de las 4 lleva `<form>` propio**: el tráfico de pago tiene que hacer un segundo clic
+  hasta `/contact-us` o `/request-estimated`. La puerta exige por eso que exista camino a
+  conversión, no formulario en la landing. Queda anotado como hallazgo de CRO, no como fallo.
+- El `<title>` del Core queda en 62 caracteres, por encima del objetivo de 60: **manda la hoja 22
+  del libro de campaña**, por la regla de precedencia del plan.
+
+### Rarezas del original replicadas a propósito
+Las otras 51 ciudades conservan «Outdoor Living Contractors» en su h1. Es el texto del origen y
+no reciben tráfico de pago: tocarlas sería riesgo sin retorno y multiplicaría por 26 la
+superficie de las puertas.
+
+### Abierto
+A4 (correspondencia con los titulares RSA y las 11 URLs de sitelink) sigue **bloqueado**: el
+libro de campaña no está ni en la máquina ni en Drive, y la cuenta de Ads no es alcanzable.
