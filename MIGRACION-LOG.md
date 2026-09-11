@@ -4971,3 +4971,401 @@ apex -> www              : 308
 
 Repositorio: una rama (`main`, sincronizada), un worktree, sin stashes, sin secretos en el
 historial. `ensayo-merge` y `r16-proy-carrusel` borradas tras verificar que no aportaban nada.
+
+---
+
+## SEO-AEO-GEO F0 — línea base de datos y mapa keyword→URL   🟡 en curso
+**Fecha:** 2026-09-07 · **Commit:** el de esta entrada
+
+### Objetivo
+Dejar escrito, a partir de datos reales de GSC y GA4 y no de intuición, qué URL debe ganar qué
+intención — y medir el punto de partida antes de tocar nada.
+
+### Qué se hizo
+- `docs/encargos/SEO-AEO-GEO-PLAN.md` (nuevo, 210 líneas): mapa keyword→URL por cluster,
+  canibalizaciones, las 39 keywords de pago mapeadas a sus 4 landing pages, línea base de medición
+  y prioridad de ejecución.
+- Verificadas las cinco conexiones del encargo. Corregido el **Hallazgo 11 de `SEO-URLS-PLAN.md`,
+  que estaba obsoleto**: sí hay propiedad de esta marca.
+- Desbloqueadas las puertas de navegador en este entorno (ver Desviaciones).
+
+### Números medidos
+| Métrica | Esperado (encargo) | Medido (90 d, 2026-06-09→09-07) |
+|---|---|---|
+| Clics | «~20 / 28 días» | ~130 / 90 días |
+| Cluster genérico «best pool * near me» | sin dato | ~490 impr, pos 7,7-17,7, **0 clics** |
+| CTR de `/pool-builders/pembroke-pines-florida` | sin dato | 7.916 impr · 2 clics · **0,025 %** |
+| Eventos de conversión propios en GA4 | sin dato | **0** — solo `form_submit` automático (48) |
+| Doble conteo de inicio de formulario | sin dato | `lead_form_start` 73 + `form_start` 72 |
+| `phone_click` en 90 días | sin dato | **2** |
+| Sitemap enviado a GSC vs. servido | 113 vs 121 | confirmado: descarga del 2026-08-29 |
+
+### Evidencia
+```
+$ GOOGLE_SEARCH_CONSOLE_SEARCH_ANALYTICS_QUERY  sc-domain:mrandmrsoutdoorliving.com
+  2026-06-09→2026-09-07  dimensions=[query,page]  rowLimit=120
+  best pool builders                    88 impr  pos 11,06  → /pool-builders/pembroke-pines-florida
+  best inground pool installers near me 84 impr  pos  7,74  → /pool-builders/pembroke-pines-florida
+  best pool companies near me           82 impr  pos 11,82  → /pool-builders/pembroke-pines-florida
+  best pool builder near me             81 impr  pos 17,70  → /pool-builders/pembroke-pines-florida
+  best pool installers near me          77 impr  pos  9,68  → /pool-builders/pembroke-pines-florida
+  best pool contractor near me          76 impr  pos 11,00  → /pool-builders/pembroke-pines-florida
+  todas con clicks=0
+
+$ GOOGLE_ANALYTICS_RUN_REPORT  properties/506563956  dimensions=[eventName]
+  page_view 5240 · user_engagement 4416 · scroll 3982 · session_start 1102 · first_visit 934
+  lead_form_start 73 · form_start 72 · form_submit 48 · click 36 · file_download 10
+  video_progress 4 · phone_click 2 · video_complete 1 · video_start 1
+
+$ GOOGLE_SEARCH_CONSOLE_LIST_SITEMAPS
+  sitemap.xml       submitted=113  errors=0  lastDownloaded=2026-08-29
+  page-sitemap.xml  submitted=17+1004img  errors=1  lastDownloaded=2025-09-29   ← zombi de Webflow
+  (campo `indexed` = "0" en los dos: Google ya no lo puebla, no es un dato)
+```
+
+### Gate
+**Criterio:** el mapa keyword→URL sale de datos medidos, con su comando al lado, y no de intuición.
+**Resultado:** ✅ verde. Ninguna puerta del repo aplica todavía: F0 no toca código.
+
+### Desviaciones
+- **Playwright 1.62.1 del repo espera `chromium-1234`; la imagen del entorno trae `chromium-1194`.**
+  Las cuatro puertas de navegador (`texto`, `visual`, `ix2`, `cascaron`) no arrancaban. Resuelto
+  **fuera del repo**, sin tocar código ni `package.json`: enlace
+  `/opt/pw-browsers/chromium-1234/chrome-linux64` → `/opt/pw-browsers/chromium-1194/chrome-linux`.
+  Verificado: lanza Chromium 141.0.7390.37. Además este entorno no tiene `DISPLAY` y los scripts
+  lanzan `headless: false`, así que **van envueltos en `xvfb-run -a`, una puerta a la vez**.
+- Una afirmación del borrador («`does an above ground pool require a permit` en posición 1 es el
+  activo AEO más maduro») se **retiró antes de publicar**: era posición 1 sobre **1 sola
+  impresión**. Señal de forma, no de volumen.
+
+### Rarezas del original replicadas a propósito
+Ninguna nueva. Se anota una del entorno actual, no del origen: `/cascaron` —ruta de fixture, no
+una de las 122— recibe 16 sesiones reales en GA4.
+
+### Abierto — F0b y todo lo siguiente están BLOQUEADOS
+```
+m273z6jc.api.sanity.io:443         403 CONNECT (denegación de política del proxy de egress)
+www.mrandmrsoutdoorliving.com:443  403 CONNECT
+mrandmrsoutdoorliving.com:443      403 CONNECT
+```
+- **Sin Sanity no hay build**: `npm run build` revienta en el `getStaticPaths` de
+  `src/pages/pool-builders/[slug].astro:36-50`, que falla cerrado a propósito. Y sin build no corre
+  **ninguna** puerta: todas leen `.vercel/output/static`.
+- **Sin el dominio** no hay verificación de producción, ni Lighthouse/PSI contra ella, ni
+  comprobación de que las URLs finales de anuncio dan 200 sin redirect intermedio.
+- **Falta el fichero de campaña.** `Mr_Mrs_Outdoor_Living_Google_Ads_FINAL_LAUNCH_MASTER_2026-09-07.xlsx`
+  no está ni en la máquina ni en Drive (`title contains 'LAUNCH_MASTER'` → vacío). Lo más parecido
+  en Drive es `FINAL_BUILD_2026-09-03.xlsx`, cuatro días más viejo, que **no** se usa. Bloquea A4
+  (titulares RSA, 11 sitelinks) y las metas por LP de la hoja 22.
+
+Depende de Sebastian: ampliar el egress del entorno y subir el xlsx.
+
+---
+
+## SEO-AEO-GEO F0b — construir sin red hacia Sanity, y el inventario de partida   ✅ cerrada
+**Fecha:** 2026-09-08 · **Commit:** el de esta entrada
+
+### Objetivo
+Poder construir y medir en un entorno cuyo proxy de egress deniega `m273z6jc.api.sanity.io`, sin
+debilitar la guarda que hoy para el build cuando Sanity no responde.
+
+### Qué se hizo
+- `scripts/cache-sanity.mjs` (nuevo): vuelca los 53 `poolBuilder` a
+  `src/data/pool-builders-sanity.json`. Fuente normal: Sanity. Con `--desde-csv` los deriva de
+  `_source/cms/pool-builders.csv`, que es el export que `scripts/import.mjs` cargó en Sanity. El
+  mapeo columna→campo **no se inventa**: es el `camel()` de `scripts/schema-map.mjs:30` y la tabla
+  `SEO` de `:71`.
+- `src/pages/pool-builders/[slug].astro`: `getStaticPaths` acepta la caché **solo** si el fetch
+  falla **y** se pide con `MM_SANITY_CACHE=1`, y lo avisa por pantalla. **La guarda que para el
+  build sin datos no se tocó**: sin esa variable el comportamiento es idéntico al de siempre, así
+  que la caché no puede enmascarar una caída real de Sanity. Anotado en la cabecera como tercer
+  cambio a mano deliberado, junto a R11-BLOG-02 y R15-IG.
+
+### Números medidos
+| Métrica | Esperado | Medido |
+|---|---|---|
+| Documentos en la caché | 53 | 53 |
+| Rutas construidas | 122 | 122 |
+| `/pool-builders/*` construidas | 53 | 53 |
+| `<loc>` en el sitemap | 121 | 121 |
+| Campos idénticos caché vs. Sanity (3 ciudades) | todos | **64 de 64, 0 distintos** |
+| `check:texto` sobre las 53 | 53 verdes | **53 idénticas · 0 en rojo** |
+
+### Evidencia
+```
+$ node scripts/cache-sanity.mjs --desde-csv
+cache escrita: src/data/pool-builders-sanity.json · 53 documentos · fuente: CSV de _source/cms
+
+$ SANITY_QUERY_DOCUMENTS (Composio, cuenta sanity_raker-uranic) → diff campo a campo
+alachua-florida: 22 campos identicos, 0 distintos, 0 ausentes
+ocala-florida: 21 identicos, 0 distintos
+pembroke-pines-florida: 21 identicos, 0 distintos
+campos de mas en la cache: ninguno
+
+$ MM_SANITY_CACHE=1 PUBLIC_ES_PRODUCCION=1 npm run build
+[build] Complete!
+  vercel-config: 14 redirect(s) y 1 bloque(s) de cabeceras inyectados en config.json
+
+$ PUBLIC_ES_PRODUCCION=1 npm run check:seo
+115/115 paginas con el head identico al origen
+ok   los 122 <title> son unicos — 0 repetidos
+ok   un solo host: canonicas [www.mrandmrsoutdoorliving.com] = sitemap [www.mrandmrsoutdoorliving.com]
+PUERTA VERDE
+
+$ PUBLIC_ES_PRODUCCION=1 npm run check:medicion   → PUERTA VERDE
+$ npm run check:tokens · check:rutas · check:enlaces → PUERTA VERDE (las tres)
+
+$ xvfb-run -a node scripts/check-texto.mjs /pool-builders/
+53 identicas · 0 en rojo   (53/53 rutas medidas)
+PUERTA VERDE
+```
+
+### Gate
+**Criterio:** la caché tiene que producir exactamente lo mismo que el CMS vivo, y probarlo con una
+puerta, no con una afirmación.
+**Resultado:** ✅ verde. `check:seo` da 115/115 con el head idéntico al origen y `check:texto` da
+las 53 idénticas contra `baseline/text/`. Si la caché mintiera, esas 53 saldrían rojas.
+
+### Desviaciones
+- **Las puertas hay que correrlas con el MISMO `PUBLIC_ES_PRODUCCION` que el build.** Corridas sin
+  la variable sobre un build de producción, `check:seo` da 122 rojas y `check:medicion` 1, todas
+  con la forma «hay canónica fuera de producción» / «falta noindex fuera de producción». No es un
+  fallo del sitio: es la puerta midiendo contra el modo equivocado. Con la variable, las dos verdes.
+- Playwright 1.62.1 espera `chromium-1234` y la imagen del entorno trae `1194`. Resuelto **fuera
+  del repo** con un enlace, y las puertas de navegador van bajo `xvfb-run -a`, una a la vez.
+
+### Rarezas del original replicadas a propósito
+Ninguna nueva.
+
+### Abierto
+- El fichero de campaña `…FINAL_LAUNCH_MASTER_2026-09-07.xlsx` **no existe en Drive** (buscado en
+  todas las unidades). Bloquea A4. La cuenta de Google Ads tampoco es alcanzable
+  (`USER_PERMISSION_DENIED`: la conexión es de otra marca).
+- **Verificar contra producción sigue sin ser posible**: `curl`, `WebFetch` y el MCP de Vercel
+  fallan los tres contra el dominio, y no hay scraping conectado. Queda `INSPECT_URL` de GSC, que
+  da el veredicto de Google pero no códigos HTTP. Es un hueco declarado, no un verde.
+
+---
+
+## SEO-AEO-GEO F1 — `META_PROPIA`: metas propias con fuente única y puerta   ✅ cerrada
+**Fecha:** 2026-09-11 · **Commit:** el de esta entrada
+
+### Objetivo
+Poder apartarse del `<title>`/`description` del origen sin desactivar la paridad, con el
+mecanismo que el encargo pedía y que no existía — y aplicarlo donde el dato de GSC dice que
+importa, no en las 121 por igual.
+
+### Qué se hizo
+- `src/data/meta-propia.json` (nuevo): **fuente única**, 23 rutas, cada una con su motivo.
+- `src/layouts/Base.astro`: la lee y emite `<title>`/`description`; pisa `og:`/`twitter:` **solo
+  si la página ya las traía** (añadir una clave que el baseline no tiene contaría como «meta de
+  más»). Va en el layout y no en `build-paginas.mjs` a propósito: el generador no alcanza a la
+  home ni a las 2 de `/where-we-serve/` (están en `NO_REGENERAR`), y tocarlo obligaría a
+  regenerar ~50 ficheros para cambiar una meta.
+- `scripts/check-seo.mjs`: `META_PROPIA` y `TITULO_DE_META` **leen ese mismo JSON**, así que no
+  hay dos listas que mantener. Se unen con el `TITULO_PROPIO` de M2 en un solo Map; cada origen
+  se declara por pantalla con su motivo, como exige el fichero.
+
+### Números medidos
+| Métrica | Antes | Después |
+|---|---:|---:|
+| `<title>` > 60 caracteres | 21 | **4** |
+| `description` > 155 caracteres | 39 | **30** |
+| `<title>` duplicados en las 122 | 0 | 0 |
+| Páginas sin `<h1>` / con más de uno | 0 / 0 | 0 / 0 |
+
+### Evidencia
+```
+$ PUBLIC_ES_PRODUCCION=1 npm run check:seo
+115/115 paginas con el head identico al origen
+ok   los 122 <title> son unicos — 0 repetidos
+ok   declarado /: <title> propio (F1: longitud o intencion), via src/data/meta-propia.json
+     …19 rutas declaradas…
+PUERTA VERDE
+
+$ PUBLIC_ES_PRODUCCION=1 npm run check:medicion        → PUERTA VERDE
+$ npm run check:tokens · check:rutas · check:enlaces   → PUERTA VERDE (las tres)
+$ xvfb-run -a node scripts/check-texto.mjs '=/' /contact-us /where-we-serve → PUERTA VERDE
+```
+
+### Gate
+**Criterio:** ninguna meta se aparta del origen sin quedar declarada y dicha por pantalla.
+**Resultado:** ✅ verde, con las 23 declaraciones impresas.
+
+### Desviaciones
+- **Las 4 restantes por encima de 60 son deliberadas y quedan así**: 3 son `/project/*` ya
+  declaradas en `TITULO_PROPIO` por M2 (se alargaron para dejar de duplicarse, que es el defecto
+  peor), y la 4.ª es la landing de pago `/services/custom-pool-spa-builders-…` a 62 caracteres,
+  donde **manda la hoja 22 del libro de campaña** por la regla de precedencia del plan.
+- **Las 30 descripciones que siguen largas: 28 son las ciudades, y NO se tocan aquí.** Su meta
+  vive en Sanity y es contenido del cliente; el encargo dice explícitamente que no se publica en
+  Sanity lo que Sebastian no haya visto. Están entre 156 y 160 caracteres —de 1 a 5 por encima
+  del objetivo— así que el coste de dejarlas es bajo. Van propuestas en el informe, no escritas.
+
+### Rarezas del original replicadas a propósito
+Ninguna nueva.
+
+### Abierto
+Las 28 descripciones de ciudad, a decisión de Sebastian sobre Sanity.
+
+---
+
+## SEO-AEO-GEO A3 — las 4 landing pages de pago, y una puerta que las protege   ✅ cerrada
+**Fecha:** 2026-09-11 · **Commit:** el de esta entrada
+
+### Objetivo
+Que las 4 URLs finales de anuncio se reconozcan en segundos como lo que el anuncio promete, y
+que ningún cambio futuro pueda deshacerlo en silencio.
+
+### Qué se hizo
+- **Override por ciudad** (`bloques` en `src/data/seo-pool-builders.json`, aplicado en
+  `[slug].astro` con `Object.assign(d, …)`): las 53 comparten UNA plantilla, así que «héroe
+  pool-first para Gainesville» no era un cambio de una página. Solo lo usan **las 2 ciudades con
+  tráfico de pago**; las otras 51 no llevan `bloques` y salen exactamente igual.
+- **Arriba del pliegue, antes → después:**
+
+| | antes | después |
+|---|---|---|
+| h1 Gainesville | Luxury Pool Builders & Outdoor Living Contractors In Gainesville, Florida | **Custom Pool Builders In Gainesville, Florida** |
+| h2 Gainesville | All In One - Custom Pools, Pergolas & Outdoor Kitchens Contractors For Your Backyard… | **Custom Inground Pool Construction For Homes In Gainesville And Alachua County** |
+| title Gainesville | Luxury Pools & Outdoor Living in Gainesville, FL | Mr & Mrs | **Custom Pool Builders in Gainesville, FL | Mr & Mrs** |
+
+  Ídem Ocala con Marion County. **Los servicios secundarios no se borran: siguen más abajo**
+  (Principio 1). El condado es un dato local verificable, no una señal inventada.
+- **`scripts/check-ads-landing-pages.mjs` + `npm run check:ads`**, en la suite detrás de
+  `check:seo`. No finge un Quality Score —Google no publica su fórmula y pondera histórico que
+  este repo no ve—: fija los invariantes que el sitio **sí** controla.
+
+### Números medidos
+| Métrica | Medido |
+|---|---|
+| Landings con la intención correcta arriba del pliegue | 4 de 4 |
+| Ciudades con override | 2 de 53 (las de pago) |
+| `check:texto` sobre las 53 | **53 idénticas · 0 en rojo** |
+| Redirects sobre URLs finales de anuncio | 0 |
+| Afirmaciones prohibidas de la hoja 18 en las 4 | 0 |
+
+### Evidencia
+```
+$ PUBLIC_ES_PRODUCCION=1 node scripts/check-ads-landing-pages.mjs
+  ok   Pool Builders Core   /services/custom-pool-spa-builders-in-north-south-florida
+  ok   Gainesville          /pool-builders/gainesville-florida
+  ok   Ocala                /pool-builders/ocala-florida
+  ok   Full Remodel         /services/pool-remodeling-renovation-in-north-south-florida
+  ok   /contact-us · /request-estimated · /thank-you construidos
+PUERTA VERDE
+
+$ xvfb-run -a node scripts/check-texto.mjs /pool-builders/
+53 identicas · 0 en rojo   (53/53 rutas medidas)      PUERTA VERDE
+
+$ PUBLIC_ES_PRODUCCION=1 npm run check:seo   → PUERTA VERDE (115/115 head idéntico)
+```
+
+**La puerta discrimina** — no es una que apruebe cualquier cosa. Contra el h1/h2 que había antes
+del override:
+```
+ANTES    ROJO -> /pergola/i /outdoor kitchen/i
+DESPUES  verde
+```
+
+### Gate
+**Criterio:** las 4 reconocibles en segundos, sin redirect, sin noindex, sin afirmación
+prohibida, y con el teléfono de North Florida delante.
+**Resultado:** ✅ verde las 4.
+
+### Desviaciones
+- **Ninguna de las 4 lleva `<form>` propio**: el tráfico de pago tiene que hacer un segundo clic
+  hasta `/contact-us` o `/request-estimated`. La puerta exige por eso que exista camino a
+  conversión, no formulario en la landing. Queda anotado como hallazgo de CRO, no como fallo.
+- El `<title>` del Core queda en 62 caracteres, por encima del objetivo de 60: **manda la hoja 22
+  del libro de campaña**, por la regla de precedencia del plan.
+
+### Rarezas del original replicadas a propósito
+Las otras 51 ciudades conservan «Outdoor Living Contractors» en su h1. Es el texto del origen y
+no reciben tráfico de pago: tocarlas sería riesgo sin retorno y multiplicaría por 26 la
+superficie de las puertas.
+
+### Abierto
+A4 (correspondencia con los titulares RSA y las 11 URLs de sitelink) sigue **bloqueado**: el
+libro de campaña no está ni en la máquina ni en Drive, y la cuenta de Ads no es alcanzable.
+
+---
+
+## SEO-AEO-GEO F3 — la entidad del negocio, en las 122   ✅ cerrada
+**Fecha:** 2026-09-11 · **Commit:** el de esta entrada
+
+### Objetivo
+Que el sitio declare **quién es** de forma que un motor generativo pueda confirmarlo — que es lo
+que le faltaba para ser citable — sin inventar ni un dato.
+
+### Qué se hizo
+- `src/lib/negocio.mjs` (nuevo): fuente única del nodo `LocalBusiness` y del `BreadcrumbList`.
+- `src/layouts/Base.astro`: los **añade al final** del array de JSON-LD, con `@id` estables
+  (`#negocio` / `#miga`), para que la puerta pueda separarlos de los del origen por identidad y
+  no por posición. La miga se omite en la home y donde la página ya trae la suya: dos
+  `BreadcrumbList` en la misma página es peor que ninguna.
+- `src/pages/pool-investment-estimator.astro`: a mano, porque no pasa por `Base.astro` y era la
+  única de las 122 sin ningún JSON-LD. Misma fuente.
+- `scripts/check-seo.mjs`: declara los bloques inyectados **y los exige** — `@type` correcto,
+  `sameAs` no vacío, `telephone` presente, `name` presente, y ningún `address`/`geo`/
+  `aggregateRating` presente-pero-vacío. Descontarlos sin exigirlos habría sido un perdón general.
+
+### Números medidos — sobre las 122 construidas
+| Métrica | Antes | Después |
+|---|---:|---:|
+| `LocalBusiness` de la entidad | 0 | **122** |
+| **`sameAs` poblado** | **0** | **122** |
+| `telephone` dentro de JSON-LD | 0 | **122** |
+| `BreadcrumbList` | 1 | **120** |
+| Páginas sin ningún JSON-LD | 1 | **0** |
+| JSON-LD que no parsea | 0 | 0 |
+
+### Evidencia
+```
+$ PUBLIC_ES_PRODUCCION=1 npm run check:seo
+115/115 paginas con el head identico al origen
+ok   declarado: 226 bloque(s) de JSON-LD anadidos por Base.astro
+PUERTA VERDE
+
+$ node (recuento sobre .vercel/output/static, JSON.parse en las 122)
+  con LocalBusiness #negocio 122 · con sameAs poblado 122 · telephone 122
+  con BreadcrumbList #miga 120 · JSON-LD que NO parsea 0 · sin ningun JSON-LD 0
+```
+
+**Lo que hay en `sameAs`, y de dónde sale** — tres URLs que ya vivían en el repo, ninguna
+buscada ni supuesta: el perfil de Google (`resenas.json.enlacePerfil`, CID que
+`check-resenas.mjs:24` verifica en cada pasada), Instagram (`instagram.json.usuario`) y el canal
+de YouTube (`youtube.json`). Facebook, Houzz, BBB y Yelp **no están** porque no constan en
+ninguna fuente: se piden, no se inventan.
+
+Las dos licencias del pie (`CPC1461119`, `CPC1460562`) pasan a `identifier`. Un número de
+licencia es justo el dato que un motor puede atribuir; hasta hoy solo era texto del pie.
+
+### Gate
+**Criterio:** ningún bloque inyectado puede estar ausente ni vacío, y los del origen se siguen
+comparando carácter a carácter.
+**Resultado:** ✅ verde. `check:tokens`, `check:rutas`, `check:enlaces`, `check:seo`,
+`check:medicion` y `check:ads`, las seis.
+
+### Desviaciones
+- **Sin `address`, y es deliberado**: no hay ninguna dirección postal en el repo. Un negocio de
+  área de servicio se marca con `areaServed` y sin dirección — que es exactamente lo que queda.
+- **Sin `aggregateRating`**: el perfil real está en 4,1 sobre 13 y el sitio publica 8 reseñas,
+  todas de 5. Marcar 5,0/8 sería falso.
+
+### Rarezas del original replicadas a propósito
+Los 53 `LocalBusiness` de ciudad conservan su `geo` vacío y su `address` sin calle. Vienen del
+origen y **no se tocan en esta fase**: van propuestos en el informe. El nodo nuevo `#negocio`,
+que es el que lleva la entidad de verdad, sí cumple la regla de no emitir campos vacíos.
+
+### Abierto — UNA ROJA, ANTERIOR A ESTE TRABAJO, MEDIDA
+`check:texto` da roja `/services/custom-pool-spa-builders-in-north-south-florida`:
+```
+FALTA  Site Assessment & Structural Evaluation
+SOBRA  Design Consultation & 3D Rendering
+```
+Las dos cadenas viven en la misma página: es el carrusel de proceso, que arranca en una
+diapositiva distinta a la que capturó el baseline de Webflow. **Verificado que es anterior**: se
+guardaron los cambios con `git stash`, se reconstruyó `432f07e` limpio y la roja sale
+**idéntica**. No es una regresión de F3; es la misma deriva de rediseño que ya tienen las ~356
+comparaciones de `check:visual`, y se cierra re-aprobando con un humano, no desde un agente.

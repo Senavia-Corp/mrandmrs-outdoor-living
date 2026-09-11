@@ -34,7 +34,7 @@ const PROD = process.env.PUBLIC_ES_PRODUCCION === '1';
  * M2 — los `<title>` que se apartan del origen, con su motivo. Tiene que casar con
  * `TITULO_PROPIO` de `build-paginas.mjs`, que es quien los escribe.
  */
-const TITULO_PROPIO = new Map([
+const TITULO_PROPIO_M2 = new Map([
   ['/project/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida',
     'Luxury Pool with Motorized Pergola & Outdoor Kitchen | North Florida'],
   ['/project/luxury-pool-motorized-pergola-screen-enclosure-north-florida',
@@ -42,6 +42,46 @@ const TITULO_PROPIO = new Map([
   ['/project/luxury-pool-spa-screen-enclosure-north-florida',
     'Luxury Pool & Spa with Screen Enclosure & Outdoor Kitchen | North Florida'],
 ]);
+
+/**
+ * SEO-AEO-GEO F1 — las `meta` que se apartan del origen, con su motivo. Espejo de
+ * `TITULO_PROPIO`, y por la misma razon: la paridad byte a byte con Webflow protegia tambien
+ * los defectos del origen, y una description de 188 caracteres que el SERP corta a la mitad es
+ * un defecto. Tiene que casar con `META_PROPIA` de `build-paginas.mjs`, que es quien las
+ * escribe en las rutas derivadas; en las de `NO_REGENERAR` (`/`, las 53 de `/pool-builders/`
+ * y las 2 de `/where-we-serve/`) la escribe su propio `.astro` o Sanity.
+ *
+ * Es un Map de ruta a un OBJETO por clave, no a una cadena: `og:description` y
+ * `twitter:description` tambien viven en `baseline/seo.json` y se pondrian rojas igual si solo
+ * se declarara `description`.
+ *
+ * La otra mitad de esta excepcion la pone `check-medicion.mjs`, que exige que las 122
+ * descripciones sean UNICAS y no tiene mecanismo de declaracion: una description nueva que
+ * choque con otra pagina sale roja alli aunque este declarada aqui.
+ */
+const META_PROPIA = new Map(
+  Object.entries(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/meta-propia.json'), 'utf8')))
+    .filter(([r]) => r !== '_')
+    .map(([r, v]) => [r, {
+      ...(v.title ? { 'og:title': v.title, 'twitter:title': v.title } : {}),
+      ...(v.description
+        ? { description: v.description, 'og:description': v.description, 'twitter:description': v.description }
+        : {}),
+    }]),
+);
+/** Los `<title>` propios salen de la misma fuente, para que no haya dos listas que mantener. */
+const TITULO_DE_META = new Map(
+  Object.entries(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/meta-propia.json'), 'utf8')))
+    .filter(([r, v]) => r !== '_' && v.title)
+    .map(([r, v]) => [r, v.title]),
+);
+
+/**
+ * Las dos fuentes de `<title>` declarado, unidas: M2 (los que el origen repetia) y F1 (los que
+ * el origen traia demasiado largos o apuntando a la intencion equivocada). El consumo es el
+ * mismo para las dos; lo que cambia es el motivo, y cada una lo dice por pantalla por separado.
+ */
+const TITULO_PROPIO = new Map([...TITULO_PROPIO_M2, ...TITULO_DE_META]);
 /** Todos los titulos vistos, para exigir que NINGUNO se repita. */
 const titulosVistos = new Map();
 
@@ -93,6 +133,8 @@ const NOINDEX_A_PROPOSITO = new Set(['/thank-you']);
  * entre ambos— no aparece en ningun rojo, solo semanas despues en Search Console.
  */
 const hostsCanonicos = new Set();
+/** Cuantos bloques de JSON-LD se inyectaron, para decirlo por pantalla al final. */
+let ldInyectados = 0;
 
 /**
  * ── PARTES DE JSON-LD ANADIDAS A PROPOSITO ────────────────────────────────────────────────
@@ -206,6 +248,15 @@ for (const ruta of conPropias(RUTAS)) {
       if (k === 'robots') continue;                    // lo gobierna el interruptor de indexacion
       const m = hay[k];
       if (m === undefined) { problemas.push(`falta ${k}`); continue; }
+      const propioMeta = META_PROPIA.get(ruta);
+      if (propioMeta && k in propioMeta) {
+        // Declarada: la referencia deja de ser el origen y pasa a ser el valor declarado. La
+        // regla NO se relaja, cambia de patron — igual que en `TITULO_PROPIO`.
+        if (m !== propioMeta[k]) {
+          problemas.push(`${k} propio: "${String(propioMeta[k]).slice(0, 50)}" -> "${String(m).slice(0, 50)}"`);
+        }
+        continue;
+      }
       const esImagen = /^(og:image|twitter:image)/.test(k);
       if (esImagen ? nombre(m) !== nombre(aLocal(v)) : m !== v) {
         problemas.push(`${k}: "${String(v).slice(0, 50)}" -> "${String(m).slice(0, 50)}"`);
@@ -229,8 +280,51 @@ for (const ruta of conPropias(RUTAS)) {
     if (sobra.length) problemas.push(`meta de mas: ${sobra.join(', ')}`);
 
     // JSON-LD: mismo numero de bloques y mismo contenido con las claves ordenadas.
-    const bloques = [...d.head.querySelectorAll('script[type="application/ld+json"]')];
+    const todos = [...d.head.querySelectorAll('script[type="application/ld+json"]')];
+    /**
+     * ── BLOQUES DE JSON-LD INYECTADOS A PROPOSITO (F3) ──────────────────────────────────
+     *
+     * `Base.astro` anade a TODAS las paginas el nodo del negocio (`#negocio`) y, donde procede,
+     * la miga (`#miga`). El origen de Webflow no traia ninguno de los dos: `sameAs` valia 0 en
+     * las 122 y `BreadcrumbList` salia en 1 de 122.
+     *
+     * Se separan por su `@id`, no por posicion ni por contarlos: asi los del origen se siguen
+     * comparando caracter a caracter y esta excepcion no puede convertirse en un perdon
+     * general. Y no basta con descontarlos — se EXIGE que esten y que lleven lo que los hace
+     * utiles, porque un bloque inyectado vacio seria peor que ninguno.
+     */
+    const esInyectado = (b) => {
+      try { return /#(negocio|miga)$/.test(JSON.parse(b.textContent)['@id'] ?? ''); }
+      catch { return false; }
+    };
+    const inyectados = todos.filter(esInyectado);
+    const bloques = todos.filter((b) => !esInyectado(b));
     const espLd = esperado.jsonLd ?? [];
+
+    const neg = inyectados.map((b) => JSON.parse(b.textContent)).find((x) => x['@id'].endsWith('#negocio'));
+    if (!neg) problemas.push('falta el bloque de negocio (#negocio) que Base.astro debe inyectar');
+    else {
+      if (neg['@type'] !== 'LocalBusiness') problemas.push(`#negocio: @type "${neg['@type']}", se esperaba LocalBusiness`);
+      if (!Array.isArray(neg.sameAs) || !neg.sameAs.length) problemas.push('#negocio: sameAs vacio — es la pieza que sostiene la entidad');
+      if (!neg.telephone || !neg.telephone.length) problemas.push('#negocio: sin telephone');
+      if (!String(neg.name ?? '').trim()) problemas.push('#negocio: sin name');
+      // Nada de campos vacios: un GeoCoordinates o un PostalAddress sin contenido es ruido.
+      for (const c of ['address', 'geo', 'aggregateRating']) {
+        if (c in neg && !Object.keys(neg[c] ?? {}).filter((k) => k !== '@type').length) {
+          problemas.push(`#negocio: ${c} presente pero vacio — se omite o se rellena, no se deja a medias`);
+        }
+      }
+    }
+    const mig = inyectados.map((b) => JSON.parse(b.textContent)).find((x) => x['@id'].endsWith('#miga'));
+    if (mig) {
+      if (mig['@type'] !== 'BreadcrumbList') problemas.push(`#miga: @type "${mig['@type']}"`);
+      if (!Array.isArray(mig.itemListElement) || mig.itemListElement.length < 2) problemas.push('#miga: menos de 2 escalones');
+    } else if (ruta !== '/') {
+      // Sin miga solo se acepta si la pagina ya traia una del origen.
+      const propia = JSON.stringify(espLd).includes('BreadcrumbList');
+      if (!propia) problemas.push('sin BreadcrumbList: ni inyectada ni del origen');
+    }
+    ldInyectados += inyectados.length;
     if (bloques.length !== espLd.length) {
       problemas.push(`JSON-LD: ${espLd.length} bloque(s) -> ${bloques.length}`);
     } else {
@@ -322,8 +416,19 @@ if (rojos.length > 10) console.log(`  ... y ${rojos.length - 10} paginas mas`);
 }
 console.log('  ok   declarado: og:image / twitter:image / twitter:card se ANADEN cuando la pagina');
 console.log('       no las trae del origen (M18). Las 104 que si las heredan se comparan igual.');
-for (const r of TITULO_PROPIO.keys()) {
+for (const r of TITULO_PROPIO_M2.keys()) {
   console.log(`  ok   declarado ${r}: <title> propio, distinto al del origen (el origen lo repetia)`);
+}
+console.log(`  ok   declarado: ${ldInyectados} bloque(s) de JSON-LD anadidos por Base.astro`);
+console.log('       (#negocio en todas, #miga donde no habia una del origen). El origen no traia');
+console.log('       ninguno de los dos: sameAs valia 0 en las 122 y BreadcrumbList salia en 1.');
+
+for (const r of TITULO_DE_META.keys()) {
+  console.log(`  ok   declarado ${r}: <title> propio (F1: longitud o intencion), via src/data/meta-propia.json`);
+}
+
+for (const [r, ms] of META_PROPIA) {
+  console.log(`  ok   declarado ${r}: ${Object.keys(ms).join(', ')} propia(s), distinta(s) a la del origen`);
 }
 
 for (const r of NOINDEX_A_PROPOSITO) {

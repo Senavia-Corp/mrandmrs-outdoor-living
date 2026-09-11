@@ -109,6 +109,32 @@ const TRADUCIDAS_A_PROPOSITO = [
   ['¡View More!', 'View More!',
     'el botón de /brochures. El texto ya era inglés; lo que sobraba era el signo de apertura '
     + '«¡», que es puntuación exclusiva del español'],
+
+  // SEO-AEO-GEO A3 — las 2 ciudades que son LANDING DE PAGO. El origen encabezaba con
+  // «Outdoor Living Contractors» y «All In One - … Pergolas & Outdoor Kitchens», que compite
+  // con la intención del anuncio (piscina nueva) justo arriba del pliegue. Se antepone la
+  // piscina y se añade el condado, que es un dato local verificable. Sustitución 1→1, línea
+  // entera: no se añade ni se quita texto, se cambia. Los servicios secundarios siguen abajo.
+  // Escritas ya en Title Case palabra a palabra porque `capitalize` vive en h1/h2 y SÍ altera
+  // innerText — la quinta vez que esto muerde en este repo.
+  ['Luxury Pool Builders & Outdoor Living Contractors In Gainesville, Florida',
+    'Custom Pool Builders In Gainesville, Florida',
+    'h1 de /pool-builders/gainesville-florida, landing de pago del grupo Gainesville'],
+  ['All In One - Custom Pools, Pergolas & Outdoor Kitchens Contractors For Your Backyard In Gainesville, Florida',
+    'Custom Inground Pool Construction For Homes In Gainesville And Alachua County',
+    'h2 del héroe de Gainesville: fuera pérgolas y cocinas de arriba del pliegue'],
+  ['Licensed Pool Builders & Outdoor Living Contractors In Gainesville',
+    'Licensed Pool Builders In Gainesville, Florida',
+    'h2 de intro de Gainesville, misma razón'],
+  ['Luxury Pool Builders & Outdoor Living Contractors In Ocala, Florida',
+    'Custom Pool Builders In Ocala, Florida',
+    'h1 de /pool-builders/ocala-florida, landing de pago del grupo Ocala'],
+  ['All In One - Custom Pools, Pergolas & Outdoor Kitchens Contractors For Your Backyard In Ocala, Florida',
+    'Custom Inground Pool Construction For Homes In Ocala And Marion County',
+    'h2 del héroe de Ocala: fuera pérgolas y cocinas de arriba del pliegue'],
+  ['Licensed Pool Builders & Outdoor Living Contractors In Ocala',
+    'Licensed Pool Builders In Ocala, Florida',
+    'h2 de intro de Ocala, misma razón'],
 ];
 
 /** Aplica las sustituciones declaradas a UNA línea del baseline. */
