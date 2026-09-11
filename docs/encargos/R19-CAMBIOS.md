@@ -109,3 +109,63 @@ variante hermana: cruzar las claves da `invalid-input-secret`, *«que es peor qu
    `New lead · Pool builders core lead · <ZIP>`. Hay conexion de `gmail` en Composio.
 5. **Probar tambien que el anti-bots RECHAZA**: el honeypot `ref_id` relleno y el time-trap
    (envio antes de 1 s) tienen que dar rechazo. Eso se puede probar sin mandar correo.
+
+---
+
+## C3 · «What Will My Pool Cost?» a media/media: foto a la izquierda, fondo azul a la derecha
+
+**Lo que pide:** que la seccion de inversion deje de ser una tarjeta tenue sobre blanco y pase a
+una banda **50 / 50**: foto de un proyecto terminado **a altura completa** ocupando el 50 %
+izquierdo, y el 50 % derecho con **fondo azul** llevando el texto y los dos botones. Que impacte.
+
+**Y el motivo que da es el que de verdad importa, porque no es de esta seccion sino de la
+plantilla entera:**
+
+> «al hacer scroll se ve la pagina muy simple porque todo es fondo blanco»
+
+Eso convierte C1 y C3 en **el mismo problema**: la ficha no tiene ritmo cromatico. Cuatro
+secciones blancas seguidas y el ojo no encuentra donde empieza cada cosa. **Este principio manda
+tambien sobre las 13 fichas restantes**, no solo sobre esta: el rediseno de la plantilla tiene que
+alternar planos, no repetir blanco.
+
+### La foto: cual, y por que no vale cualquiera
+
+La pagina **ya usa** estas, y repetir una seria el mismo defecto que ya se corrigio una vez en el
+heroe (la foto salia dos veces, como portada de su propia tarjeta):
+
+```
+estate-pool-spa-sun-shelf-north-florida-project-2.avif    <- el HEROE
+estate-pool-spa-sun-shelf-north-florida-project-1.avif    <- portada en el carrusel
+luxury-pool-raised-spa-travertine-deck-south-florida-project-1.avif
+pool-raised-spa-marble-deck-south-florida-project-1.avif
+```
+
+Candidatas libres, y de obra de PISCINA en NORTH FLORIDA, que es la intencion de la landing:
+
+- `estate-pool-spa-sun-shelf-north-florida/…-project-3.avif` · `-4` · `-5`
+- `luxury-pool-spa-screen-enclosure-north-florida/…-outdoor-kitchen-florida-2..6.avif` (5)
+
+**Se elige por hoja de contactos, mirandolas**, como se eligio la del heroe. No a ojo desde el
+nombre del fichero.
+
+### Lo que hay que resolver, y medir
+
+1. **El recorte.** Las fotos son apaisadas (1250×698) y la columna es media pantalla a **altura
+   completa**, o sea vertical. `object-fit: cover` recorta los lados: hay que mirar que no se
+   coma la piscina. Es el criterio para elegir la foto, mas que la belleza.
+2. **`width`/`height` horneados** + `aspect-ratio`, o vuelve el CLS que costo 38 imagenes arreglar.
+3. **Que hace por debajo de 992.** Se apila, pero ¿foto primero o contenido primero? La foto
+   primero se ve mejor; el contenido primero pone antes los dos CTA. **Se decide midiendo**, no
+   por gusto.
+4. **Contraste sobre el azul**: titulo, cuerpo y los dos botones. El de contorno es
+   `.mm-accion--linea`, que dentro de `.mm-inverso` coge `--mm-tinta` = blanco: borde y texto a
+   15,60:1 sin escribir una regla. El dorado lleva tinta navy encima, 8,40:1.
+5. **`check:enlaces`** vera una referencia de imagen nueva: tiene que existir y estar en git.
+6. **Presupuesto**: de los tres cambios, este es el caro. Quedan ~1.900 B en la capa.
+
+### Lo que arrastra para las 13 fichas restantes
+
+La foto no puede estar cableada en el CSS ni en el componente: va en
+`captacion-servicios.json`, en el bloque `inversion`, con su `alt`. Cada ficha traera la suya
+—la de su propio servicio— y `InversionCore.astro` la lee por ruta, igual que ya hace con el
+titulo, el texto y los CTA. **Una entrada de JSON por ficha, cero CSS nuevo.**
