@@ -94,21 +94,14 @@
   box-shadow: var(--mm-sombra-2);
 }
 
-/* EL ENLACE DE LA TARJETA DE SERVICIO. Medido a 479 px antes de escribir esto: el `<a>`
- * heredaba `line-height: 12px` de la cascada de Webflow y quedaba en 381x12 px. Doce pixeles
- * de alto incumplen WCAG 2.5.8 (AA pide 24x24), y la excepcion de «enlace dentro de una
- * frase» NO aplica: estos van sueltos al pie de su tarjeta, no incrustados en un parrafo.
- *
- * Se arregla aqui y no tocando la regla de Webflow porque esa regla sirve a las otras 115
- * rutas y no es asunto de esta pagina. `inline-flex` + `min-height` da el objetivo tactil sin
- * estirar la caja a todo el ancho de la tarjeta, que dejaria una zona pulsable enorme y vacia
- * a la derecha del texto. El alto de linea vuelve al del cuerpo para que el subrayado de
- * `.mm-vinculo` no corte las descendentes. */
+/* EL ENLACE DE LA TARJETA DE SERVICIO. El `<a>` heredaba `line-height: 12px` de la cascada de
+ * Webflow (381x12 px medidos a 479). Aqui tuvo un `min-height: 44px` para cumplir WCAG 2.5.8;
+ * ya no hace falta: el objetivo tactil es la TARJETA ENTERA (el `::after` de mas abajo), y esos
+ * 44px solo engordaban el pie —38,8px del texto al borde de abajo contra 25 a los lados, medido
+ * a 1280—. El alto de linea vuelve al del cuerpo para que el subrayado de `.mm-vinculo` no corte
+ * las descendentes. */
 .fin-mas {
-  display: inline-flex;
-  align-items: center;
   align-self: flex-start;
-  min-height: 44px;
   line-height: var(--mm-alto-cuerpo);
 }
 
@@ -152,6 +145,18 @@
   block-size: calc(var(--mm-e-32) + var(--mm-e-12));
 }
 
+/* LOS ANCHOS, a 50px. Cada `viewBox` es un cuadrado ceñido al dibujo, asi que el lado mayor de
+ * todos mide ~40,7px a 44: los cuadrados llenan el circulo y los apaisados se quedan bajitos.
+ * Medido: el casco a 26,6px de alto y 1,5px de trazo, las manos a 25,4px y 12% de tinta, contra
+ * 33% del plano. A 50 ganan alto y trazo y siguen a 6-9px del borde del circulo.
+ * (Los otros dos ajustes opticos van en el propio SVG: al compas se le dio aire en el `viewBox`
+ * porque tocaba casi el aro, a 3,8px, y la calculadora va 2px a la derecha porque su masa
+ * —el cuerpo, no la moneda— la cargaba 4,6px a la izquierda del centro.) */
+.fin-icono--ancho svg {
+  inline-size: calc(var(--mm-e-48) + 2px);
+  block-size: calc(var(--mm-e-48) + 2px);
+}
+
 /* El paso de la financiacion lleva el circulo en oro suave, a juego con su filete. Es el mismo
  * acento que ya tenia —no un estado—, y el icono sigue en navy como los otros tres. */
 .fin-paso--clave .fin-icono { background-color: color-mix(in srgb, var(--mm-oro) 20%, transparent); }
@@ -172,7 +177,10 @@
  *   left  = relleno 24 + circulo 64 + aire 8
  *   right = -(hueco 24 + relleno del siguiente 24 - aire 8) - 2 bordes de 1px
  * `z-index: 1` para que pase por encima del fondo de la tarjeta siguiente y llegue a su circulo.
- * #8794b6 sobre blanco = 3,03:1. */
+ * #8794b6 sobre blanco = 3,03:1.
+ * EL TRAZO, SIMETRICO: la tesela es aire 3 + raya 6 + aire 3 y `round` la escala para que quepa
+ * un numero entero. Con un `repeating-linear-gradient` de raya+aire el hilo acababa en un muñon
+ * de 2px pegado al circulo siguiente (158px a 992, 230 a 1280) o en un aire de 12 contra 8. */
 @media (min-width: 992px) {
   .fin-paso { position: relative; }
   .fin-paso:not(:last-child)::after {
@@ -183,7 +191,7 @@
     inset-inline-start: calc(var(--mm-e-24) + var(--mm-e-64) + var(--mm-e-8));
     inset-inline-end: calc((var(--mm-e-24) + var(--mm-e-24) - var(--mm-e-8)) * -1 - 2px);
     block-size: 2px;
-    background-image: repeating-linear-gradient(90deg, var(--mm-borde-control) 0 6px, transparent 6px 12px);
+    background: linear-gradient(90deg, transparent 3px, var(--mm-borde-control) 3px 9px, transparent 9px) 0 0 / 12px 100% round;
   }
 }
 
@@ -230,6 +238,14 @@
 .fin-servicio .fin-mas {
   position: static;
   margin-block-start: auto;
+  /* AL TABULAR, LA TARJETA ENTERA A LA VISTA. El foco cae en el «See …», que esta al PIE de
+   * una tarjeta de 420-477px, y el navegador centra ese enlace: medido, la cabeza de la tarjeta
+   * quedaba bajo el nav fijo (85px) — 52px tapados a 375 y 115 a 1280, el 21% y el 39% de la
+   * foto. Pasa 2.4.11 (el enlace se ve) y falla 2.4.12. Este margen hace que el area que se
+   * centra sea la tarjeta y no el enlace: la cabeza queda en y=269 (375) y 206 (1280), las 6.
+   * El `min()` es para pantallas bajitas: un margen mayor que el viewport dejaria el propio
+   * enlace enfocado fuera de la pantalla. Medido a 812x375: el enlace cae en y=285-305. */
+  scroll-margin-block-start: min(448px, 100vh - 160px);
 }
 .fin-servicio .fin-mas::after {
   content: "";

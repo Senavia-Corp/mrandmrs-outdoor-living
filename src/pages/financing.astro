@@ -77,12 +77,15 @@ const PASOS = [
     titulo: 'Permitting and construction',
     texto: 'Engineering, permits, and the build itself, managed by a licensed Florida contractor.',
     icono: Casco,
+    ancho: true,
   },
 ];
 
 /**
  * Foto de obra real, de las que ya sirve /gallery. `src` es el original de 1250w; si Webflow le
- * genero variantes, estan en `/images/site/<nombre>-p-500|800|1080.jpg` y van al `srcset`.
+ * genero variantes, estan en `/images/site/<nombre>-p-500|800|1080.jpg` y SOLO ellas van al
+ * `srcset`: la ranura mide 400px como mucho y 1080w cubre DPR 2,7, mientras que el original de
+ * la piscina pesa 1,1 MB —4-5 veces sus hermanas— y solo lo pedia un DPR 3 de escritorio.
  * Elegidas por hoja de contactos recortada a 4:3 —lo que ensena la tarjeta—, no por nombre.
  * El `alt` describe lo que se ve: el de /gallery no siempre casa con su foto (el del techo de
  * lamas dice «over pool deck» y es un patio de adoquin junto a una pista de tenis).
@@ -90,7 +93,7 @@ const PASOS = [
 const foto = (src, ancho, alto, alt, variantes = true) => {
   const nombre = src.split('/').pop().replace(/\.\w+$/, '');
   const srcset = variantes
-    ? [500, 800, 1080].map((w) => `/images/site/${nombre}-p-${w}.jpg ${w}w`).concat(`${src} ${ancho}w`).join(', ')
+    ? [500, 800, 1080].map((w) => `/images/site/${nombre}-p-${w}.jpg ${w}w`).join(', ')
     : undefined;
   return { src, srcset, ancho, alto, alt };
 };
@@ -218,7 +221,7 @@ const SEO = {
       <ol class="mm-rejilla fin-lista fin-pasos">
         {PASOS.map(({ icono: Icono, ...p }) => (
           <li class:list={['mm-tarjeta', 'mm-pila', 'fin-paso', p.clave && 'fin-paso--clave']}>
-            <span class="fin-icono" aria-hidden="true"><Icono focusable="false" /></span>
+            <span class:list={['fin-icono', p.ancho && 'fin-icono--ancho']} aria-hidden="true"><Icono focusable="false" /></span>
             <span class="fin-paso__n" aria-hidden="true">{p.n}</span>
             <h3 class="mm-tit-3">{p.titulo}</h3>
             <p class="mm-txt">{p.texto}</p>
@@ -295,7 +298,7 @@ const SEO = {
           </p>
         </li>
         <li class="mm-tarjeta mm-pila mm-pila--16">
-          <span class="fin-icono fin-icono--oro" aria-hidden="true"><Manos focusable="false" /></span>
+          <span class="fin-icono fin-icono--oro fin-icono--ancho" aria-hidden="true"><Manos focusable="false" /></span>
           <h3 class="mm-tit-3">One contract, one point of contact</h3>
           <p class="mm-txt">
             Design, permitting, and construction run through us. You are not coordinating
