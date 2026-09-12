@@ -8,7 +8,11 @@ que el prompt final no tenga que re-investigar nada.
 
 ---
 
-## C1 · La franja «Why Homeowners Pick Us» tiene que usar el fondo de `.trusted-section`
+## C1 · ~~La franja «Why Homeowners Pick Us» tiene que usar el fondo de `.trusted-section`~~
+
+> ⚠️ **SUPERSEDIDO POR C4.** Sebastian lo mejoro: en vez de copiar el fondo de una seccion a
+> otra, se **funden las dos en una sola** y comparten fondo por construccion. Lo que sigue se
+> conserva porque **la medida del fondo y sus tres capas siguen valiendo** para C4.
 
 **Lo que pide:** el azul de la franja no es el mismo que el de la seccion «Custom Pool & Spa
 Builders Serving In North & South Florida». Replicar ESE fondo y ese efecto en la franja de
@@ -169,3 +173,70 @@ La foto no puede estar cableada en el CSS ni en el componente: va en
 `captacion-servicios.json`, en el bloque `inversion`, con su `alt`. Cada ficha traera la suya
 —la de su propio servicio— y `InversionCore.astro` la lee por ruta, igual que ya hace con el
 titulo, el texto y los CTA. **Una entrada de JSON por ficha, cero CSS nuevo.**
+
+---
+
+## C4 · Fundir «Why Homeowners Pick Us» y «Custom Pool & Spa Builders…» en UNA seccion
+
+**Sustituye a C1.** En vez de copiar un fondo de una seccion a otra, se juntan las dos en una
+sola que comparte fondo **por construccion**: primero «Why», debajo «Custom», mismo plano.
+El diseno interno de cada una **no cambia**; solo dejan de ser dos secciones y pasan a ser dos
+bloques de la misma.
+
+**Y van ARRIBA, antes del formulario.** El motivo que da es de experiencia de uso y es bueno:
+**asi se ven imagenes de obra ANTES de pedirle los datos a nadie.** El mosaico de fotos deja de
+estar enterrado detras del formulario.
+
+### El orden hoy, y el orden que queda
+
+```
+hoy                                     despues
+ 3 hero-services                         3 hero-services
+ 4 logos-section                         4 logos-section
+ 5 svc-confianza        «Why»            5 ┌ «Why»  ──┐ una sola seccion,
+ 6 svc-captacion        formulario       5 └ «Custom» ┘ mismo fondo
+ 7 testimonial-section  resenas          6 svc-captacion   formulario
+ 8 trusted-section      «Custom»         7 testimonial-section
+ 9 services                              8 services
+```
+
+O sea: **`trusted-section` sube del puesto 8 al 5**, y las resenas quedan justo detras del
+formulario.
+
+### ⚠️ Lo que hay que resolver, y NO es copiar y pegar
+
+**1 · `.trusted-section` la montan 121 rutas. No se toca su regla global.**
+Su fondo son las tres capas de C1 —imagen `animateddivs-image.webp`, reserva `--mm-azul-500` y
+el velo de navy al 50 % por `inset box-shadow`—, y las tres viven en reglas compartidas
+(`webflow.css`, `propio.css:261`, `intro.css:50`). Fundirlas obliga a **neutralizar el fondo de
+la interior solo en esta ruta**, con un selector `.svc-`. Cambiar `.trusted-section` a secas
+moveria las otras 120 paginas y rompe la promesa de identidad.
+
+**2 · LA MEDIDA DEL FONDO HAY QUE REHACERLA. La de C1 ya no vale.**
+El perfil por bandas de C1 se midio sobre `.trusted-section` con su altura actual (693 px). La
+seccion fundida es **mucho mas alta**, y `background-size: cover` escala y recorta la imagen
+segun la caja: **la banda de cian claro (`#98e2f1`) acabara en otro sitio**. Puede caer sobre el
+`<h2>` de «Why», sobre las tarjetas, o salirse del encuadre. Se vuelve a medir por bandas sobre
+la seccion fundida y se acredita el numero. Heredar la medida vieja seria dar por bueno un
+numero que ya no describe la caja.
+
+**3 · `check:texto`: esto SI es un reorden de lineas del baseline.**
+A diferencia del bloque de captacion —que son lineas declaradas y basto con reordenar su propia
+lista—, el texto de `.trusted-section` **viene del baseline de Webflow**. Moverlo delante del
+formulario lo mueve respecto a las resenas, y eso se declara en `REORDENADAS_A_PROPOSITO`, que
+exige el bloque EXACTO antes -> despues y **revienta al arrancar si las dos listas no tienen las
+mismas lineas**. Es una barandilla, no un formalismo: obliga a demostrar que solo se reordena.
+
+Las listas **se sacan de la salida real de la puerta**, no se escriben de memoria. Ojo al orden
+en que la puerta descuenta bloques: las resenas ya van descontadas por su propia declaracion
+(26 lineas en 83 rutas), asi que lo que queda por reordenar no es lo que se ve en pantalla.
+
+**4 · El generador.** `captacion()` en `build-paginas.mjs` ya reordena secciones de esta ruta
+(subservicios, `location`, resenas). Subir `trusted-section` es un paso mas del mismo tipo, y
+sigue acotado por lista de rutas: las otras 13 fichas no se enteran hasta que se declaren.
+
+### Para las 13 restantes
+
+Las 14 fichas comparten plantilla y **todas tienen `trusted-section`** en el mismo sitio. El paso
+del generador vale para las catorce sin cambios: se activa anadiendo la ruta a la lista. El
+contenido del mosaico ya es propio de cada ficha, asi que no hay copy nuevo que declarar.
