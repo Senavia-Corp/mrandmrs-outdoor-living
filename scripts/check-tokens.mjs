@@ -71,9 +71,38 @@ const EXT_BLOQUES = new Set(['.astro', '.json', '.ts']);
 const MIN_HOJAS = 15;
 const MIN_BLOQUES = 7;
 
-/** Presupuesto de peso de la capa, sin comentarios. `webflow.css` son 167 KB: una capa de
- *  autor que pase de la mitad ya no está elevando Webflow, lo está reescribiendo. */
-const TOPE_BYTES = 80 * 1024;
+/** Presupuesto de peso de la capa, sin comentarios.
+ *
+ *  DE DÓNDE SALÍA EL 80, porque el número tenía una derivación y conviene no perderla:
+ *  `webflow.css` son 171 095 B (167,1 KB), y la regla escrita era que una capa de autor que
+ *  pasara de LA MITAD ya no estaba elevando Webflow sino reescribiéndolo. La mitad son
+ *  85 547 B (83,5 KB); el 80 era ese número redondeado hacia abajo, o sea más estricto que
+ *  su propia regla.
+ *
+ *  POR QUÉ SUBE A 88 (12-sep-2026, lo decide Sebastian). Tres frentes —R17-CARAC, R17-CORE y
+ *  R19— midieron cada uno «cabe» contra su propia base y al fusionar salieron 84 473 B: 2 553
+ *  de más. La capa a 84 473 todavía cumplía la regla de la mitad (al 98,7 %); lo que la
+ *  bloqueaba era el redondeo. Con 88 KB (90 112 B) la CRUZA por 4 565 B, y eso va dicho aquí
+ *  en vez de dejar arriba un porqué que el valor de abajo contradice.
+ *
+ *  Y LA HEURÍSTICA DE LA MITAD YA NO APLICA, que es el fondo del asunto: la escribimos cuando
+ *  el contrato era replicar Webflow. Hoy `PROMPT-REDISENO.md` §0 dice lo contrario —«dejar de
+ *  replicar Webflow y superarlo»—, así que «reescribir Webflow» dejó de ser el modo de fallo
+ *  que este comentario temía; es el objetivo. Lo que el tope tiene que seguir haciendo es
+ *  obligar a pensar antes de añadir CSS, y para eso vale cualquier número con poco margen.
+ *
+ *  NO PROTEGE RENDIMIENTO, y conviene saberlo antes de discutir el número. Medido:
+ *      capa de autor    82,5 KB en crudo  ->  13,0 KB gzip  ·  11,0 KB brotli
+ *      webflow.css     167,1 KB en crudo  ->  29,0 KB gzip  ·  24,2 KB brotli
+ *  Los 8 KB de subida cuestan ~1,3 KB reales en el cable. Es disciplina, no un límite técnico.
+ *
+ *  EL MARGEN QUE DEJA son 5 639 B, que a los tamaños de ahora (`servicio-core.css` 4,6 KB,
+ *  `caracteristicas.css` 4,2 KB) son dos hojas de sección. Volverá a morder pronto, y es a
+ *  propósito: un presupuesto con margen de sobra no es un presupuesto. Cuando vuelva a tocar,
+ *  la pregunta primero es qué sobra —`cta.css` y `proyectos.css` están a 1 byte, y
+ *  `estimacion.css` (13,2 KB) y `contacto.css` (9,3 KB) son el 27 % de la capa entre las dos—
+ *  y solo después, subirlo otra vez. */
+const TOPE_BYTES = 88 * 1024;
 
 const sinComentarios = (s) => s.replace(/\/\*[\s\S]*?\*\//g, '');
 
