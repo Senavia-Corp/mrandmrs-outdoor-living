@@ -443,11 +443,12 @@
 /* ══════════════════════════════════════════════════════════════════════════════
  * FONDO AGUA (12-sep-2026) — UN SOLO FONDO AZUL PARA LAS SECCIONES NO BLANCAS
  *
- * NUEVE SECCIONES, no ocho: `.animated-divs-section` entro el mismo dia, unas horas mas tarde
- * (R17-CARAC). Esa banda se habia rediseñado copiando la receta VIEJA de `.trusted-section`
- * —la webp + `--mm-azul-500` + velo navy al 50 %— horas antes de que esta regla la retirase.
- * Se la trae aqui en vez de dejarla como noveno tratamiento suelto, que es justo lo que esto
- * vino a matar. Solo hubo que borrar su `box-shadow: inset`: el resto lo pisa esta regla.
+ * `.animated-divs-section` ESTUVO AQUI Y SALIO, el mismo dia. Entro con R17-CARAC porque su
+ * banda copiaba la receta vieja de `.trusted-section` y habia que unificarla; salio unas horas
+ * despues porque Sebastian decidio que esa seccion va sobre BLANCO: la cabecera en tinta oscura
+ * y las seis fotos poniendo el color. No es una vuelta atras del FONDO AGUA —el agua sigue
+ * siendo el unico azul del sitio— sino que esa banda deja de ser azul. Lo suyo vive entero en
+ * `caracteristicas.css` §2, incluido apagar la webp que `webflow.css` le pone.
  *
  * Aprobado por Sebastian sobre la propuesta visual: variante B (base + cresta + grano) y la
  * foto fuera del todo. Las tres capas viven en `disenio/tokens.css` (--agua-*); aqui solo se
@@ -479,7 +480,6 @@
  *     .hero-project ............ 6,36:1    h1 35 px a 767                            5,31
  *     .cta-page-section ........ 6,72:1    h2 25 px a 767                            2,54 ✗
  *     .cta-footer .............. todo su texto va en la tarjeta blanca
- *     .animated-divs-section ... 4,87:1    h2 20 px a 479 (cabecera; la banda va sobre foto)
  *
  *     Peor pixel del AGUA en todo el sistema: 4,92:1 (.footer a 479, y=62, rgb(60,105,222)).
  *     Cota inferior —techo sin cresta, mas grano—: 4,73:1. Las dos, AA.
@@ -488,7 +488,6 @@
  *
  * 🚨 MUEVE PIXELES EN 120 RUTAS. `check:visual` sale roja en todas y hay que re-baselinizar,
  * despues de la aprobacion visual de Sebastian. */
-.animated-divs-section,
 .trusted-section,
 .gallery,
 .testimonial-section,
@@ -509,7 +508,7 @@
   background-size: 100% 220px, 180px 180px, 100% 100%;
 }
 @media (min-width: 768px) {
-  .animated-divs-section, .trusted-section, .gallery, .testimonial-section,
+  .trusted-section, .gallery, .testimonial-section,
   .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer,
   .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section {
     background-size: 100% 340px, 180px 180px, 100% 100%;
@@ -541,12 +540,12 @@
  *
  * ⚠️ LA LISTA DE LA FAMILIA SE REPITE: en la regla de arriba, en su @media y en los `:is()` de
  * aqui abajo. Quien meta una banda nueva la mete en los tres sitios, o su junta volvera a cortar. */
-:is(.animated-divs-section, .trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section):has(+ :is(.animated-divs-section, .trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section)),
+:is(.trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section):has(+ :is(.trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section)),
 main:has(+ .footer) > .cta-footer:last-child {
   background-color: var(--mm-azul-500);
   background-image: var(--agua-cresta), var(--agua-grano), var(--agua-profundidad-alta);
 }
-:is(.animated-divs-section, .trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section) + :is(.animated-divs-section, .trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section),
+:is(.trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section) + :is(.trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section),
 main:has(> .cta-footer:last-child) + .footer {
   background-color: var(--mm-azul-800);
   background-image: var(--agua-grano), var(--agua-profundidad-honda);
@@ -554,7 +553,7 @@ main:has(> .cta-footer:last-child) + .footer {
   background-position: top left, top center;
   background-size: 180px 180px, 100% 100%;
 }
-:is(.animated-divs-section, .trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section) + :is(.animated-divs-section, .trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section):has(+ :is(.animated-divs-section, .trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section)) {
+:is(.trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section) + :is(.trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section):has(+ :is(.trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section)) {
   background-color: var(--mm-azul-500);
   background-image: var(--agua-grano);
   background-repeat: repeat;

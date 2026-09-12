@@ -109,53 +109,74 @@
   border-block-end: 3px solid var(--mm-oro);
 }
 
-/* ── 2 · EL FONDO: NO ES PROPIO, ES EL FONDO AGUA ────────────────────────────
+/* LAS DIVISORIAS, el mismo oro y el mismo grosor que el canto de abajo. Pedidas por Sebastian
+ * el 12-sep: «entre cada columna una linea amarilla de borde como la de abajo».
  *
- * Esta seccion NO declara fondo. Lo toma de la regla compartida FONDO AGUA del final de
- * `propio.css`, donde `.animated-divs-section` esta ahora en la lista junto a las otras ocho.
+ * VAN EN `border-inline-start` DE LA TARJETA, NO EN `gap`. El encargo fija `gap: 0` y ademas
+ * un hueco no es una linea: dejaria ver el fondo, que ahora es blanco. Con `border-box`
+ * —`webflow.css` lo pone en `*`— el borde cae DENTRO del ancho de la tarjeta, asi que los seis
+ * anchos siguen sumando la banda exacta y los huecos siguen en 0. Lo unico que cambia es que
+ * los 15 px de las cinco lineas salen del reparto flexible, no del total.
  *
- * HISTORIA, porque el cambio de criterio importa. El 12-sep Sebastian pidio «el azul y el
- * efecto de `.trusted-section`, no un navy plano», y esta hoja lo copio capa por capa: la webp
- * `animateddivs-image.webp` de `webflow.css`, `--mm-azul-500` de reserva debajo y un velo navy
- * al 50 % en `box-shadow: inset`. Ese mismo dia, mas tarde, FONDO AGUA retiro esa receta de
- * `.trusted-section` —y las otras seis— y la sustituyo por una sola superficie de tres capas.
- * O sea que la peticion se cumple mejor hoy siguiendo al original que conservando la copia:
- * copiar `.trusted-section` y quedarse quieto cuando `.trusted-section` cambia es exactamente
- * como el sitio acumulo los siete tratamientos azules que FONDO AGUA vino a matar.
+ * NO TAPA LA FOTO: `.feature-image` es `position:absolute; inset:0%`, y el bloque contenedor
+ * de un absoluto es la caja de RELLENO, no la de borde. La foto empieza donde acaba el oro.
  *
- * QUE SE RETIRA AQUI, y por que no hace falta apagarlo a mano:
- *   · `background-color: var(--mm-azul-500)`  -> lo pisa `--mm-azul-800` de la reserva del agua
- *   · la webp de `webflow.css`                -> la pisan las tres capas de `background-image`
- *   · el velo navy al 50 % en `box-shadow`    -> se BORRA. Es la unica que hay que quitar de
- *     verdad: `box-shadow` no es `background`, nadie la pisaria, y teñiria el agua al 50 %
- *     dejandola mas oscura que en las otras ocho secciones. Que es justo lo que no queremos.
+ * VA A PARTIR DE 768 Y CON DOS REGLAS DISTINTAS, porque la maqueta cambia:
+ *   · 768-991 hay rejilla de dos columnas, y ahi la linea que separa columnas es la de las
+ *     tarjetas PARES. `+ .feature-card` pondria borde tambien a las que abren fila nueva.
+ *   · desde 992 son seis en fila y la separacion es «todas menos la primera».
+ * Se acumulan, que es lo correcto: a >=992 las pares ya lo traen y la segunda regla añade las
+ * impares. La primera tarjeta no lleva nunca, y el canto exterior de la banda tampoco.
  *
- * El `inset` se pintaba por debajo de los descendientes, asi que solo teñia la cabecera; las
- * seis fotos de la banda nunca lo llevaron y no cambian. Lo que cambia es la franja de arriba.
+ * Por debajo de 768 las tarjetas se apilan y no hay columnas que separar: no lleva. */
+@media (min-width: 768px) {
+  .animated-divs-section .feature-card:nth-child(even) {
+    border-inline-start: 3px solid var(--mm-oro);
+  }
+}
+@media (min-width: 992px) {
+  .animated-divs-section .feature-card + .feature-card {
+    border-inline-start: 3px solid var(--mm-oro);
+  }
+}
+
+/* ── 2 · EL FONDO: BLANCO, Y LA TINTA SE DA LA VUELTA CON EL ───────────────
  *
- * GANA POR ORDEN DE CARGA, sin `!important` y sin subir especificidad: `propio.css` entra en
- * `Base.astro:136` y esta hoja en la 111. Misma especificidad (0,1,0), manda el ultimo.
+ * Decision de Sebastian el 12-sep, viendo la banda ya publicada: fuera el azul; la cabecera
+ * va sobre blanco y el color lo ponen las seis fotos. La seccion sale de la lista del FONDO
+ * AGUA en `propio.css` —de las cinco listas, no de una: la base, la del `@media` y las tres
+ * de juntas—. Eso NO deshace el FONDO AGUA: el agua sigue siendo el unico azul del sitio, lo
+ * que pasa es que esta banda deja de ser azul.
  *
- * MEDIDO el 12-sep-2026 sobre `.vercel/output/static`, peor pixel bajo la caja de glifo con el
- * texto vuelto transparente, en las dos rutas que no comparten plantilla, a seis anchos:
+ * DOS COSAS HAY QUE APAGAR A MANO, y las dos venian de `webflow.css`. Mientras la regla del
+ * agua estaba puesta las tapaba ella; al salir de la lista vuelven, y por eso se declaran:
  *
- *                                      479    767    768    991   1440   1920
- *     south-florida   h2 ......... .. 4,87   4,87   5,83   5,91   5,77   5,69
- *                     entradilla ... . 4,92   4,93   5,19   5,25   6,11   6,03
- *     ocala-florida   h2 ......... .. 5,61   5,48   6,73   6,74   6,28   6,18
- *                     entradilla ... . 4,98   4,93   5,19   5,26   5,94   5,85
+ *   · `background-image: url(animateddivs-image.webp)` — la foto de fondo del Webflow
+ *      original. Sin `none` reaparece a pantalla completa detras de la cabecera.
+ *   · `background-color: #3864d400` — transparente, o sea que dejaria ver lo que haya
+ *      debajo en vez de blanco. Se declara `--mm-fondo` y no se confia en la herencia.
  *
- * PEOR DE LAS 24: 4,87:1, el h2 a 479 en south-florida, pixel rgb(61,106,222). Ahi el h2 mide
- * 20 px peso 500: NO es «texto grande» (pide 24 px, o 18,66 en negrita), asi que el minimo que
- * se le aplica es 4,5 y no 3. Pasa por 0,37. A 1440 el h2 sube a 35 px y ya solo pediria 3.
+ * Y LA TINTA TIENE QUE DARSE LA VUELTA O NO SE LEE NADA. La seccion heredaba blanco por dos
+ * caminos, los dos de `webflow.css`: `.animated-divs-section{color:var(--white)}` para la
+ * entradilla y `.white{color:var(--white)}` para el h2. Sobre blanco eso es texto invisible
+ * —el fallo mas caro que puede dejar un cambio de fondo, porque ninguna puerta lo ve: el
+ * texto sigue en el DOM, `check:texto` sigue verde y solo se nota mirando—. Se declaran los
+ * dos, con los tokens que `disenio/base.css` ya usa para tinta sobre fondo claro: `--mm-tinta`
+ * (navy) en el titulo y `--mm-tinta-cuerpo` (negro) en el cuerpo.
  *
- * BAJA respecto al velo navy: con la receta anterior el peor de los cuatro puntos que se
- * midieron entonces (h2 y entradilla, a 1440, en las dos rutas) era 8,85:1. No se midio a 479,
- * asi que la comparacion honesta es esa y solo esa. Baja porque el agua es clara arriba —el
- * techo es `--mm-azul-400`, el paso mas claro de la rampa que aguanta blanco— y la cabecera cae
- * justo ahi. Es el mismo suelo que aceptan las otras ocho secciones: el peor pixel del agua en
- * todo el sistema es 4,92:1 y la cota inferior 4,73:1. Uniformidad tiene este precio y esta
- * pagado a proposito. */
+ * NO SE USA `.mm-inverso` NI SU CONTRARIO: ese ambito existe para volver la tinta CLARA sobre
+ * navy, y aqui hace falta lo de siempre, que es lo que ya vale por defecto en el resto del
+ * sitio. Bastan dos declaraciones de color, y ganan por especificidad (0,2,0 y 0,2,1 contra
+ * los 0,1,0 de Webflow) ademas de por orden de carga.
+ *
+ * LOS TITULOS DE LAS COLUMNAS NO SE TOCAN: siguen en blanco porque siguen sobre foto con velo,
+ * y ese contraste ya esta medido en la §5. Lo que cambia es la cabecera, nada mas. */
+.animated-divs-section {
+  background-color: var(--mm-fondo);
+  background-image: none;
+}
+.animated-divs-section .header-feature { color: var(--mm-tinta-cuerpo) }
+.animated-divs-section .header-feature h2 { color: var(--mm-tinta) }
 
 /* ── 3 · LA TARJETA: RECTANGULO, SIN ESQUINAS NI HUECOS ───────────────────────
  *
