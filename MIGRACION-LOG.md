@@ -5579,6 +5579,124 @@ Ojo al construir en local: sin `PUBLIC_ES_PRODUCCION=1`, `npm run build` reescri
 
 ---
 
+## R18 — la franja en navy con oro, y el formulario en un bloque (11-sep-2026)   ✅ cerrada
+
+**Encargo:** Sebastian, sobre la ficha piloto ya rediseñada por R17-CORE.
+**Commits:** `83774fd` (R18) · `5eb41a0` (R18b)
+
+### Objetivo
+
+Dos peticiones suyas: **fondo azul con iconos dorados** en la franja de confianza, y **fondo gris
+con sombra** en el formulario «para que se vea que está dentro de un bloque».
+
+### Qué se hizo
+
+- **El fondo azul salió gratis, porque ya estaba inventado.** `disenio/base.css` trae
+  `.mm-inverso`, que no repinta hijo a hijo sino que **redefine los papeles de su ámbito**:
+  tinta→blanco, atenuada→`#c7cddd`, superficie→`#1a3373`, borde→`#29407c` y **foco→blanco**. Ese
+  último importa: el anillo de foco se sigue viendo sobre navy sin escribir una regla. Una clase
+  en el marcado y ya.
+- **Fuera los cuatro discos.** Cuatro circunferencias idénticas con un icono dentro son el efecto
+  «cuatro cajas iguales». Se sustituyen por el glifo dorado más grande sobre el navy y un
+  **filete de oro de 2 px** encima de cada tarjeta: convierte una retahíla en un índice.
+- **`min-block-size: 2lh` en los rótulos.** Dos de los cuatro títulos ocupan dos líneas y los
+  otros dos una, así que los cuerpos arrancaban a cuatro alturas distintas.
+- **El formulario, a una sola columna** con los tres pasos en tira arriba, sobre suelo gris y con
+  la tarjeta blanca levantada por sombra (no por borde: `#e0e4ec` sobre el tenue da **1,12:1** y
+  no separa nada).
+
+### Números medidos
+
+| Métrica | Antes | Después |
+|---|---|---|
+| Hueco de la columna derecha | **554–620 px (65–72 %)** | **0** — la rejilla de dos desaparece |
+| Costura blanca entre franja y formulario | **65 px** (margen heredado) | **0** |
+| Ancho de campo a 991 | 800 px | **404 px** |
+| Orden en móvil y tablet | la tranquilidad caía **detrás** del botón | **delante**, a todos los anchos |
+| Peso de `servicio-core.css` sin comentarios | 4.388 B | **4.310 B** — *encogió 78* |
+| Desbordamiento horizontal | — | **0 px** en 320/479/768/991/1280/1440/1920 |
+| Objetivos táctiles <44 px en las secciones nuevas | — | **0** sin envoltorio alcanzable |
+
+Contrastes, peor píxel: blanco sobre navy **15,60:1** · cuerpo **15,60:1** · **icono de oro
+8,40:1** · navy sobre el gris **13,68:1** · etiqueta del consentimiento **5,26:1**.
+
+### La desviación, y por qué
+
+**El oro fuera del botón.** `base.css` lo reserva para `.mm-accion` — «es el único sitio donde
+vive el oro» — porque **sobre blanco da 1,86:1 y no marca nada**. Sobre navy da **8,40:1**, y el
+propio `.mm-inverso` ya usa oro claro como color de enlace en su ámbito: oro sobre oscuro es un
+registro que el sistema **ya** usa. El CTA dorado sigue viviendo solo en el fondo claro, así que
+no se le hace competencia. Queda escrito en la hoja con su motivo.
+
+### R18b — lo que encontró el panel adversarial
+
+Se corrió un panel de **cuatro diseños independientes, tres jueces y cuatro ataques
+adversariales** (12 agentes). Tres de los cuatro ataques gastaron su munición en un problema de
+orquestación —se implementó en paralelo mientras el panel corría, así que su plan quedó escrito
+contra un HEAD que ya no existía—. Pero uno encontró algo real, y grave:
+
+> **El banner de éxito iba a 1,35:1.** Es la pantalla que ve quien acaba de dejar el lead: negro
+> sobre navy.
+
+Sobrevivió a las 17 puertas, a una auditoría a cuatro anchos y al red team de F3e, **porque ese
+estado no existe hasta que se envía el formulario**: `Formularios.astro` esconde el `<form>` y
+enseña el `<div>`, así que no sale en ninguna captura y ninguna puerta lo renderiza. Lo cazó un
+agente razonando sobre la cascada, no mirando.
+
+La trampa era un empate de especificidad:
+
+```
+contacto.css:585    .form-block .success-message-form           -> fondo TENUE  (hoja 120)
+estimacion.css:454  .appointment-section .success-message-form  -> fondo NAVY   (hoja 121)
+```
+
+Las dos valen 0-2-0 y **gana la última cargada**. El marcado casa con ambas. Y las reglas con que
+`estimacion.css` compensa ese navy apuntan a `h2` (:459) y a `> div` (:466); aquí el texto es un
+`<p class="mm-txt">`, que no es ninguna de las dos, y `.mm-txt` pinta `--mm-tinta-cuerpo`, o sea
+**negro**.
+
+Verificado forzando el banner visible: **1,35:1 → 9,81:1**. El de fallo estaba bien (18,42:1).
+Se arregló **por color**, no cambiando el `<p>` a `<div>` para colarlo en el selector de la otra
+hoja: depender de la forma de la etiqueta para heredar un color ajeno es justo la atadura que
+acababa de fallar.
+
+Un segundo ataque vio que el `padding-block-end` recortado de la franja arrastraba una
+justificación que el propio rediseño invalidaba —servía cuando eran dos secciones **blancas**—.
+Medido: **96 px arriba contra 32 abajo**, tres a uno, que hace que la banda parezca recortada.
+Quitada la regla; simétrico 48/64/96 y **devuelve bytes**.
+
+### Gate
+
+`tokens` (78,1 KB de 80) · `rutas` · `enlaces` · `seo` · `ads` · `medicion` · `aviso` ·
+`resenas` · `estimador` · `ix2` · `carrusel` **verdes**.
+`check:texto` en **el rojo previo y sólo en él** (`faltan 2 líneas, sobran 2`, la firma del
+carrusel de proceso que comparten las 14 fichas). **NEW REGRESSION: ninguna.**
+`check:visual` **ROJA y correcta**: contrato `rediseno` con referencia del 31-ago; sale con
+`aprobar-diseno.mjs`, que exige árbol limpio y humano.
+
+**Identidad: 1 de 122 páginas cambia.** Las otras 121, byte a byte iguales.
+
+> **Y una corrección al reporte, porque el fallo fue de quien escribe.** `check:ix2` y
+> `check:carrusel` se dieron por verdes en su momento **apoyándose en la corrida anterior a R18**:
+> la suite completa corrió por última vez en `1e14163`, y después entraron `83774fd` y `5eb41a0`,
+> que cambian el build. Se lanzó `ix2` tras R18, se fue a segundo plano y **nunca reportó**. Lo
+> que sí estaba medido era el desbordamiento —0 px en 7 anchos, con arnés propio—, que es la
+> sustancia de lo que `ix2` vigila aquí, pero la puerta no había corrido.
+>
+> Corridas de verdad el 12-sep contra el build de `5eb41a0`: **`check:ix2` PUERTA VERDE** (exit 0,
+> incluida «0 barra de scroll horizontal») y **`check:carrusel` OK** (17 instancias en 5 rutas).
+> El resultado es el que se decía; lo que no existía era la prueba. Queda escrito porque una
+> puerta que no corrió no es una puerta verde, y eso vale también cuando el verde acaba saliendo.
+
+### Abierto
+
+El «Before» del antes/después · aprobar las capturas · el merge a `main` · el consentimiento SMS
+`required` en los otros cuatro formularios · `generate_lead` a 0 en GA4, que es de GTM.
+
+---
+
+---
+
 ## R19 — las catorce fichas de `/services/` captan el lead en su propia página (12-sep-2026)   ✅ cerrada
 
 **Encargo:** `docs/encargos/PROMPT-R19.md` + `docs/encargos/R19-CAMBIOS.md`, de Sebastian
@@ -5973,3 +6091,39 @@ Nueve pendientes, todos de Sebastian, en `R17-CORE.md` §13. Los tres que bloque
    prompts y prueba de aceptación están escritos.
 3. **Medir LCP/INP/CLS contra producción sigue bloqueado** por el proxy. Se reporta
    `PRODUCTION PERFORMANCE VERIFICATION BLOCKED`, nunca PASSED.
+
+---
+
+## Cierre en local — el encargo que este contenedor ya no puede ejecutar (12-sep-2026)   🟡 en curso
+
+**Encargo:** `docs/encargos/PROMPT-LOCAL.md`, escrito hoy · **Rama:** `claude/happy-hamilton-u7vqjy`
+
+No cambia ni una página: es **documentación**. Lo que quedaba abierto tras R19 necesita cosas que
+aquí no existen —un humano mirando, Photoshop, la cuenta de Google y un navegador con foco real—,
+así que se deja escrito para el chat de la Mac. Cinco tareas, ordenadas por lo que valen: GTM,
+aprobar las capturas de las catorce fichas, el consentimiento SMS, el «Before» y
+`page.clock.install()`.
+
+### Tres cosas que se midieron al escribirlo y corrigen el registro
+
+- **El consentimiento SMS está en TRES formularios, no en cuatro** —`_source/vivo/contact-us.html`,
+  `_source/vivo/request-estimated.html` y `GalleryLeadLightbox.astro:92`— y **el defecto es el
+  contrario del anotado**: sobra el `required`, no falta. Un `required` convierte el consentimiento
+  a marketing por SMS en condición para recibir el servicio, que es justo lo que **47 CFR
+  §64.1200(a)(2)** no permite. La ficha piloto ya lo hace bien (`FormularioCore.astro:214-217`); el
+  arreglo es replicarla. Dos de los tres son **derivados**: se editan en `_source/vivo/`.
+- **`check:texto` sólo vería una de las tres.** La frase aparece en 4 páginas del build pero sólo
+  `/contact-us` la tiene en `baseline/text/`: en `/request-estimated` vive en el paso 3 del
+  formulario multi-paso y en `/gallery` dentro del lightbox cerrado, y `innerText` no ve lo oculto.
+  Declarar **sólo `/contact-us`**, con lista cerrada. Que la puerta no vea las otras dos no es
+  permiso para no mirarlas — es el caso exacto del banner a 1.35:1.
+- **El `generate_lead` no cuelga sólo de GTM.** Cuelga de `sessionStorage['mm_lead']`, que se
+  escribe en `Formularios.astro:192` y se lee en `thank-you.astro:147-167`; si la llave no está,
+  `thank-you` hace `return` y no empuja nada. Las 18 páginas vistas de `/thank-you` dicen que al
+  menos a veces se llega, pero **no estaba probado** que sea «de GTM y de nada más». El prompt
+  manda cruzar esas páginas vistas contra las fechas de los leads reales antes de tocar GTM.
+
+### Verificación
+
+`check:tokens` **PUERTA VERDE**. Sin build: ningún `.md` de `docs/` entra en el artefacto, y el
+diff no toca `src/`, `public/`, `scripts/` ni `_source/`.

@@ -239,6 +239,33 @@
   --mm-degradado-frio:    linear-gradient(var(--mm-cian), var(--mm-azul-500));
   --mm-degradado-frio-90: linear-gradient(90deg, var(--mm-cian), var(--mm-azul-500));
 
+  /* ── EL FONDO AGUA — la superficie azul única del sitio ─────────────────────
+   * Sustituye a los cuatro tratamientos de R13. Tres capas, cero assets de red.
+   * CONCEPTO: profundidad. Clara en superficie, honda en el fondo.
+   * El techo es --mm-azul-400 porque es el paso más claro de la rampa que aguanta
+   * texto blanco (5,01:1). No es gusto: es el límite de la paleta.
+   * Los consume la regla FONDO AGUA del final de `propio.css`. */
+  --agua-profundidad: linear-gradient(180deg,
+    var(--mm-azul-400)  0%,    /* blanco encima  5,01:1 */
+    #2a55cf            17%,    /* blanco encima  6,37:1 — interpolada, H224 */
+    var(--mm-azul-500) 37%,    /* blanco encima  7,47:1 */
+    var(--mm-azul-600) 66%,    /* blanco encima 10,13:1 */
+    var(--mm-azul-800) 100%);  /* blanco encima 14,24:1 */
+
+  /* Dos curvas navy superpuestas: el solape crea tres tonos y eso es lo que lo
+   * hace leer como un menisco y no como una onda de dibujo animado.
+   * viewBox de 340 de alto + preserveAspectRatio='none': la clase le da alto FIJO
+   * en px, así que la curva cae a la misma distancia del borde superior en una
+   * sección de 260 px y en una de 900. Es el defecto del webp que esto cierra. */
+  --agua-cresta: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 340' preserveAspectRatio='none'%3E%3Cpath d='M0,0 H1440 V62 C1290,50 1170,80 1000,100 C830,120 690,116 500,106 C330,97 160,74 0,70 Z' fill='%23001c63' opacity='.17'/%3E%3Cpath d='M0,0 H1440 V94 C1290,82 1170,112 1000,132 C830,152 690,148 500,138 C330,129 160,106 0,102 Z' fill='%23001c63' opacity='.11'/%3E%3C/svg%3E");
+
+  /* Gris al 5 %. MEDIDO sobre el techo (#3767e1): mueve la luminancia de −0,8 % a
+   * +7,9 % (media +3,1 %), o sea que casi solo aclara. El peor píxel posible —techo
+   * sin cresta, más grano— da 4,73:1; en el sitio el techo siempre queda bajo la
+   * cresta y el peor punto medido es 4,92:1 (.footer a 479, y=62). Los dos siguen
+   * siendo AA. Sin él el degradado se bandea a 8 bits. */
+  --agua-grano: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
+
   /* Enlace en texto corrido. #1d4bbf es el unico azul de la casa que pasa AA
    * como TEXTO: 7,47:1 sobre blanco y 6,57:1 sobre --mm-fondo-tenue. */
   --mm-enlace:           var(--mm-azul);

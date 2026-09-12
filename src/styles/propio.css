@@ -186,37 +186,12 @@
   }
 }
 
-/* ══ EL PIE — el mismo 2,55:1 del formulario, pero en 113 rutas ═══════════════
+/* ══ EL DEGRADADO DEL PIE — RETIRADO (FONDO AGUA, 12-sep-2026) ════════════════════
  *
- * `.footer` traia de Webflow EXACTAMENTE el mismo degradado que el panel del formulario de
- * /contact-us: `linear-gradient(#1cadeb, #1d4bbf)`. Con el texto en blanco, la mitad de arriba
- * es ilegible. Medido en produccion sobre el pie real (705 px de alto, 83 textos):
- *
- *     56 de 83 textos por debajo de 4,5:1
- *     «Quick Links» / «Residential Services» / «Areas We Serve» ... 2,85:1
- *     «Home», «Smart Soffit LED Lighting», «Alachua» ............... 3,00 - 3,03:1
- *
- * LA CORRECCION ES LA MISMA QUE YA ESTA PUBLICADA en el formulario, y por la misma razon: el
- * techo de luminancia para que el BLANCO llegue a 4,5:1 es 0,1833, y el cian #1cadeb tiene
- * 0,3613 — el DOBLE de brillante. Bajado hacia el navy de la marca:
- *
- *     color-mix(in srgb, var(--mm-cian) 60%, var(--mm-navy)) = #1173b5   L = 0,1572
- *     blanco sobre el stop de arriba ..... 5,07:1   (era 2,55:1)
- *     blanco sobre el stop de abajo ...... 7,47:1   (sin cambio: el azul ya cumplia)
- *
- * No se toca la direccion del degradado, ni el stop inferior, ni el padding, ni nada mas: es
- * el MISMO pie, con el arranque a la luminancia que su propio texto necesita.
- *
- * 🚨 ESTO MUEVE PIXELES EN LAS 113 RUTAS. `check:visual` saldra en rojo para todo frente que
- * tenga baseline abierta, y hay que re-baselinizar. Autorizado por Sebastian el 2-sep-2026
- * despues de ensenarle los 56 de 83; el encargo R12-CON lo dejaba en ABIERTO justamente
- * porque el alcance excede una pagina. */
-.footer {
-  background-image: linear-gradient(
-    color-mix(in srgb, var(--mm-cian) 60%, var(--mm-navy)),
-    var(--mm-azul)
-  );
-}
+ * Aqui estaba `linear-gradient(color-mix(in srgb, var(--mm-cian) 60%, var(--mm-navy)),
+ * var(--mm-azul))`, que subio el arranque del pie de 2,55:1 a 5,07:1 (R12-CON, 2-sep-2026). El
+ * pie pasa al FONDO AGUA del final de esta hoja, que va en la direccion de toda banda azul del
+ * sitio —clara arriba, honda abajo— y arranca en 5,01:1 con blanco encima. */
 
 
 /* ══ R13-COLOR · LOS DOS LITERALES AJENOS CON MAS ALCANCE QUE QUEDABAN VIVOS ══
@@ -239,26 +214,20 @@
  *     #e0e4ec            3,98:1                   5,86:1     <- lo que queda
  *
  * Sigue por encima de los 3:1 de WCAG 1.4.11 en el punto mas exigente, y es un separador
- * decorativo, no un limite que identifique un control. */
+ * decorativo, no un limite que identifique un control.
+ *
+ * FONDO AGUA (12-sep-2026): el degradado contra el que se midio ya no existe. Contra el agua el
+ * mismo filete da 3,93:1 en el techo (#3767e1) y 11,18:1 en el fondo (#002175), que es donde
+ * cae de verdad el `border-bottom`. Sigue por encima de 3:1 en todo el recorrido. */
 .footer { border-bottom-color: var(--mm-borde); }
 .footer-divider { background-color: var(--mm-borde); }
 
-/* ── 2 · EL FONDO DE RESERVA DE `.trusted-section` (80 rutas) Y `.gallery` (24) ──
+/* ── 2 · LA RESERVA DE `.trusted-section` Y `.gallery` — RETIRADA (FONDO AGUA, 12-sep-2026) ──
  *
- * Las dos declaran `background-color:#3185ca` DEBAJO de
- * `background-image:url(/images/site/animateddivs-image.webp)` con `background-size:cover`.
- * Hoy no se ve porque la imagen existe (67 KB) y la tapa. Pero no es una decision, es un
- * fallback: el dia que esa webp se renombre o se pierda, 104 rutas se vuelven azul de golpe
- * — y con el `color:var(--white)` que las dos traen, ese azul SUSPENDE:
- *
- *     blanco sobre #3185ca ....... 3,93:1   <- por debajo de 4,5
- *     blanco sobre --mm-azul-500 . 7,47:1   <- AA con margen
- *
- * O sea que esto arregla dos cosas a la vez: mete el reserva en el eje de marca (H207 -> H223)
- * y convierte un fallo de contraste latente en un aprobado. Ademas la imagen que lo tapa se
- * retinto en este mismo encargo de H208 a H223, asi que ahora reserva e imagen coinciden en
- * tono en vez de discrepar en quince grados. */
-.trusted-section, .gallery { background-color: var(--mm-azul-500); }
+ * Aqui estaba `.trusted-section, .gallery { background-color: var(--mm-azul-500) }`: una reserva
+ * bajo `animateddivs-image.webp` para que, si la webp se perdia, el blanco siguiera en 7,47:1.
+ * Las dos pasan al FONDO AGUA del final de esta hoja, que trae su propia reserva
+ * (--mm-azul-800, 14,24:1) y ya no pinta la webp. */
 
 /* ── 3 · `.link-4` — oro como TEXTO sobre el panel azul, en /contact-us ──────
  *
@@ -350,103 +319,42 @@
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
- * EL HEROE DE FICHA (25 rutas) NO TENIA VELO NINGUNO
+ * EL VELO DEL HEROE DE FICHA (25 rutas) — RETIRADO (FONDO AGUA, 12-sep-2026)
  *
- * `.hero-project` se pinta en 10 rutas de `blogs/` y 15 de `project/`, y su fondo es una
- * imagen puesta por `webflow.css` (`background-image:url(animateddivs-image.webp)`) SIN nada
- * encima. El texto es blanco y cae donde cae.
- *
- * Medido sobre produccion ocultando el elemento y capturando su caja exacta —o sea el fondo
- * REALMENTE pintado, no la imagen cruda—, con los flotantes ocultos para que el boton de
- * llamada no colara su navy dentro de la caja:
- *
- *     parrafo blanco 14px a 390px .... 2,99:1   (blogs)   min 4,5   ✗
- *     parrafo blanco 14px a 390px .... 2,96:1   (project) min 4,5   ✗
- *     parrafo blanco 18px a 1440px ... 4,44:1   (project) min 4,5   ✗
- *
- * Se resuelve con un velo navy al 35 % escrito como `box-shadow` INSET y no como una segunda
- * capa de `background-image`, por dos razones: no hay que repetir la ruta de la imagen —que
- * vive en webflow.css y cambiaria sola el dia que se regenere— y un `box-shadow` no crea
- * contexto de apilamiento. Un inset se pinta encima del fondo y debajo del contenido, que es
- * exactamente la capa que hacia falta.
- *
- * Medido despues, en 5 rutas de las dos familias y en 390 y 1440: el peor queda en 5,16:1 y
- * los titulares suben de 3,87-4,92 a 6,30-7,50. Las 25 comparten la misma imagen, asi que el
- * peor pixel es el mismo en todas; lo que cambia entre rutas es donde cae el texto, y por eso
- * se midieron cinco y no una.
+ * Aqui estaba `box-shadow: inset 0 0 0 9999px color-mix(in srgb, var(--mm-navy) 35%,
+ * transparent)`: subia el parrafo blanco de 2,96:1 a 5,16:1 SOBRE `animateddivs-image.webp`.
+ * Sin foto sobra, y ademas oscureceria el degradado del agua fuera de sus ratios medidos.
  * ───────────────────────────────────────────────────────────────────────────── */
-.hero-project {
-  box-shadow: inset 0 0 0 9999px color-mix(in srgb, var(--mm-navy) 35%, transparent);
-}
 
 /* ─────────────────────────────────────────────────────────────────────────────
- * EL SUBTITULO DE /about IBA EN BLANCO SOBRE EL CIAN
+ * LA TINTA DE /about, «LA TINTA SIGUE AL FONDO» — RETIRADA (FONDO AGUA, 12-sep-2026)
  *
- * `.hero-about` se pinta sobre `linear-gradient(0deg, --upcolor, --downcolor)`: azul arriba y
- * CIAN abajo. El h1 y el h2 son blancos y el parrafo es negro, o sea que la pagina ya mezclaba
- * dos tintas sobre el mismo fondo. Medido, con los flotantes ocultos:
- *
- *     h2 blanco 20px a  390px .... 3,51:1   min 4,5   ✗
- *     h2 blanco 25px a  768px .... 2,97:1   min 3     ✗
- *     h2 blanco 25px a  991px .... 2,88:1   min 3     ✗
- *
- * No se arregla con un velo: el parrafo NEGRO vive sobre el mismo degradado, asi que oscurecer
- * el fondo sube el h2 y hunde el parrafo. Probado: con navy al 12-15 % el h2 pasa a 4,7-5,1
- * pero el parrafo cae a 4,23-4,12, por debajo del minimo. La ventana en la que los dos pasan a
- * la vez es de centesimas y no es defendible.
- *
- * Tampoco vale `--mm-sobre-frio` (navy), que es lo que `tokens.css` prescribe para el acento
- * frio: a 390px el h2 mide 20px, o sea texto normal, y navy da 3,93 contra los 4,5 que pide.
- *
- * La tinta correcta es la MISMA QUE LA DEL PARRAFO QUE INTRODUCE, que es el color de cuerpo de
- * Webflow y aqui ya reportaba 5,11-7,36:1 en los cinco anchos. Medido con el h2 en esa tinta:
- * 5,29 / 6,49 / 6,99 / 4,47 / 4,51 en 390, 768, 991, 1440 y 1920 — todos por encima de 4,5,
- * que es el umbral ESTRICTO, sin tener que apoyarse en la excepcion de texto grande.
- *
- * `.hero-about h2` es 0-1-1 y gana a `.color-white` (0-1-0) por especificidad, no solo por orden.
- *
- * ⚠️ LO QUE ESTO NO ARREGLA, y queda medido: el h1 blanco a 991px da 3,00:1 contra un minimo de
- * 3 — pasa por el canto, sin margen. Subirlo pide mover el degradado de la seccion, que es una
- * decision de diseno y no un arreglo de contraste.
+ * Aqui estaban `.hero-about h2` y `.hero-about h1` en --mm-tinta-cuerpo (negro), con el h1 en
+ * blanco solo a partir de 992. Tenia sentido sobre `linear-gradient(0deg, --upcolor,
+ * --downcolor)`: por debajo de 992 el texto caia sobre el CIAN y la tinta oscura era la unica
+ * que pasaba. El FONDO AGUA no tiene cian —va de #3767e1 a #002175— y negro encima da 4,19:1 en
+ * el techo y 1,47:1 en el fondo. La tinta pasa entera a --mm-tinta-inversa en el bloque del
+ * final de esta hoja, y con ella se cierra la deuda que quedaba medida aqui: el h1 blanco a 991
+ * en 3,00:1, sin margen.
  * ───────────────────────────────────────────────────────────────────────────── */
-.hero-about h2 {
-  color: var(--mm-tinta-cuerpo);
-}
 
 /* ─────────────────────────────────────────────────────────────────────────────
- * EL H1 DE /about: EL TEXTO PISABA LA FOTO, Y ENCIMA CAMBIA DE FONDO EN EL BREAKPOINT
+ * EL H1 DE /about: EL TEXTO PISABA LA FOTO
  *
- * Dos cosas distintas, y la primera es la que de verdad rompia:
+ * A PARTIR DE 992 EL TEXTO SE MONTA SOBRE LA FOTO. `.block-hero-about-picture` es
+ * `position:absolute` y ocupa el 50 % del VIEWPORT; el texto arranca al 48 % del
+ * CONTENEDOR, que es otra caja. Medido en nueve anchos: se solapan entre 18 y 25 px en
+ * TODOS los anchos >=992. Normalmente esos 25 px caen sobre la parte azul de la foto y no
+ * se nota, pero a 1200 px caen sobre una zona clara -rgb(168,163,157)- y ahi el h1 se
+ * queda en 2,50:1 contra un minimo de 3. No es «poco margen»: es un fallo.
+ * El 52 % deja el texto por delante de la foto en los nueve anchos medidos, con 18-25 px de
+ * aire, a cambio de estrechar la columna de 650 a 600 px a 1440.
  *
- * 1. A PARTIR DE 992 EL TEXTO SE MONTA SOBRE LA FOTO. `.block-hero-about-picture` es
- *    `position:absolute` y ocupa el 50 % del VIEWPORT; el texto arranca al 48 % del
- *    CONTENEDOR, que es otra caja. Medido en nueve anchos: se solapan entre 18 y 25 px en
- *    TODOS los anchos >=992. Normalmente esos 25 px caen sobre la parte azul de la foto y no
- *    se nota, pero a 1200 px caen sobre una zona clara -rgb(168,163,157)- y ahi el h1 se
- *    queda en 2,50:1 contra un minimo de 3. No es «poco margen»: es un fallo.
- *    El 52 % deja el texto por delante de la foto en los nueve anchos medidos, con 18-25 px de
- *    aire, a cambio de estrechar la columna de 650 a 600 px a 1440.
- *
- * 2. EL FONDO DEL H1 CAMBIA DE LADO EN 992. El degradado de la seccion es azul arriba y CIAN
- *    abajo. Por debajo de 992 la maqueta es en columna -foto arriba, texto debajo- y el h1 cae
- *    sobre el cian; a partir de 992 es en fila y cae sobre el azul. Por eso ninguna tinta sola
- *    gana en todos los anchos: en blanco daba 3,00:1 a 991 (el minimo exacto, sin margen) y en
- *    oscuro se queda en 3,18 a 992.
- *    La tinta sigue al fondo, y el corte coincide con el de la maqueta: oscura donde el fondo
- *    es cian, blanca donde es azul. Por debajo de 992 el heroe queda entero en tinta oscura
- *    -h1, h2 y parrafo-, que es ademas lo coherente.
- *
- * Medido despues en 13 anchos de 360 a 1920, con los flotantes ocultos y capturando la caja
- * real de cada elemento: cero fallos y el margen mas ajustado es +14 % sobre su umbral.
- * El h1 pasa de 2,50-3,00 en el peor caso a 4,28-6,15.
+ * (El segundo punto que llevaba este bloque —tinta oscura por debajo de 992 y blanca por
+ * encima— se retiro con el FONDO AGUA: ver la lapida de arriba.)
  * ───────────────────────────────────────────────────────────────────────────── */
-.hero-about h1 {
-  color: var(--mm-tinta-cuerpo);
-}
-
 @media (min-width: 992px) {
   .hero-about .block-hero-about { padding-left: 52%; }
-  .hero-about h1 { color: var(--mm-blanco); }
 }
 
 
@@ -530,3 +438,74 @@
  * uno mas oscuro para no cambiar el tono de la pagina mas de lo imprescindible — el
  * encargo es corregir el contraste, no repintar /about. */
 .grey { color: var(--mm-gris-aa); }   /* 4,54:1 sobre blanco — era #7c7c7c y daba 4,17:1 */
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+ * FONDO AGUA (12-sep-2026) — UN SOLO FONDO AZUL PARA LAS SECCIONES NO BLANCAS
+ *
+ * Aprobado por Sebastian sobre la propuesta visual: variante B (base + cresta + grano) y la
+ * foto fuera del todo. Las tres capas viven en `disenio/tokens.css` (--agua-*); aqui solo se
+ * aplican.
+ *
+ * Sustituye a siete tratamientos que no casaban entre si: `animateddivs-image.webp` + velo navy
+ * 50 % (.trusted-section), la misma webp con reserva --mm-azul-500 (.gallery),
+ * `testimonial-image.webp` (.testimonial-section), `cta-footer-image.webp` (.cta-footer y
+ * .cta-page-section), la webp + velo 35 % (.hero-project), `linear-gradient(0deg, --upcolor,
+ * --downcolor)` (.hero-about) y el degradado del pie (.footer). Las `url()` siguen en
+ * `webflow.css`, que es derivado: se gana por orden de carga, y el navegador no las descarga.
+ *
+ * `background-image` y NUNCA el atajo `background`: resetearia el `background-color` de reserva.
+ * La cresta lleva alto FIJO en px anclado arriba, asi que cae a la misma distancia del borde en
+ * una banda de 285 px y en una de 1694: la webp con `cover` se estiraba segun el alto.
+ *
+ * Mobile-first, no `max-width:767px` (00-PRINCIPIOS §5): por debajo de 768 la cresta mide 220 px,
+ * porque 340 px comprimidos en 375 de ancho dan una curva demasiado empinada.
+ *
+ * MEDIDO el 12-sep-2026 sobre `.vercel/output/static`: peor pixel bajo las cajas de glifo, con el
+ * texto vuelto transparente y los flotantes ocultos, a 479 / 767 / 768 / 991 / 1440 / 1920.
+ *
+ *     texto sobre el agua        peor      donde                                     antes
+ *     .trusted-section ......... 5,77:1    h2 35 px a 1440 (minimo 3)                7,66
+ *     .testimonial-section ..... 5,12:1    «Updated Aug 2026» 13 px a 1440           1,94 ✗
+ *     .footer .................. 5,33:1    .paragraph-mini 12 px a 479               4,58
+ *     .hero-about .............. 6,21:1    h1 45 px a 1440                           4,22 (h2 negro)
+ *     .gallery ................. 5,53:1    h2 25 px a 767                            4,39 ✗ a 1440
+ *     .hero-project ............ 6,36:1    h1 35 px a 767                            5,31
+ *     .cta-page-section ........ 6,72:1    h2 25 px a 767                            2,54 ✗
+ *     .cta-footer .............. todo su texto va en la tarjeta blanca
+ *
+ *     Peor pixel del AGUA en todo el sistema: 4,92:1 (.footer a 479, y=62, rgb(60,105,222)).
+ *     Cota inferior —techo sin cresta, mas grano—: 4,73:1. Las dos, AA.
+ *     Flechas del carrusel de resenas: oro contra el agua 5,15:1 y chevron contra el oro 7,94:1.
+ *     La cresta cae a y≈74 por debajo de 768 y a y≈112 desde 768, en bandas de 228 a 1694 px.
+ *
+ * 🚨 MUEVE PIXELES EN 120 RUTAS. `check:visual` sale roja en todas y hay que re-baselinizar,
+ * despues de la aprobacion visual de Sebastian. */
+.trusted-section,
+.gallery,
+.testimonial-section,
+.cta-footer,
+.cta-page-section,
+.hero-project,
+.hero-about,
+.footer {
+  background-color: var(--mm-azul-800);   /* reserva: si un data-URI fallara, sigue cumpliendo 14,24:1 */
+  background-image: var(--agua-cresta), var(--agua-grano), var(--agua-profundidad);
+  background-repeat: no-repeat, repeat, no-repeat;
+  background-position: top center, top left, top center;
+  background-size: 100% 220px, 180px 180px, 100% 100%;
+}
+@media (min-width: 768px) {
+  .trusted-section, .gallery, .testimonial-section, .cta-footer,
+  .cta-page-section, .hero-project, .hero-about, .footer {
+    background-size: 100% 340px, 180px 180px, 100% 100%;
+  }
+}
+
+/* El heroe de /about, entero en tinta inversa: el agua no tiene cian y la tinta oscura ya no pasa
+ * en ningun punto (ver la lapida de «la tinta sigue al fondo», mas arriba). Una declaracion en la
+ * seccion alcanza h1, h2 y el parrafo por herencia: no hay regla `p{color}` global que la gane,
+ * solo `body`, y `.white`/`.color-white` del h1 y el h2 ya son blancos.
+ * MEDIDO, peor elemento de la seccion (h1, h2 o parrafo) por ancho: 8,23 / 9,23 / 9,05 / 9,94 /
+ * 6,21 / 6,36:1 a 479 / 767 / 768 / 991 / 1440 / 1920. Antes, con la tinta oscura: 5,00 y 4,22. */
+.hero-about { color: var(--mm-tinta-inversa); }
