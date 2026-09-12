@@ -32,24 +32,13 @@
  * que el cuerpo de esta seccion no cumple contraste en las 80 rutas, desde la migracion.
  */
 
-/* ── 1 · CONTRASTE: UN VELO, NO UN CAMBIO DE COLOR ────────────────────────────
+/* ── 1 · EL VELO DE CONTRASTE — RETIRADO (FONDO AGUA, 12-sep-2026) ─────────────
  *
- * `box-shadow: inset` y no un `::before` ni un `background-image` nuevo, y las tres razones
- * importan:
- *   · una sombra inset se pinta ENCIMA del fondo y DEBAJO del contenido, que es exactamente
- *     donde tiene que ir un velo — sin tocar `position` ni crear contexto de apilamiento;
- *   · no necesita `url()`, asi que esta hoja sigue sin pedir un solo asset y no puede romper
- *     `check:enlaces`;
- *   · no añade un elemento, asi que no mueve el conteo del cascaron ni la firma posicional.
- *
- * El 50 % sale de la medicion del chat de intro: navy al 34 % deja el blanco en 4,50:1 —el
- * minimo justo— y al 50 % en 6,16:1, con margen para el punto mas claro de la foto. Se elige el
- * que tiene margen: un minimo exacto es un suspenso en cuanto la foto cambie.
- *
- * `100vmax` cubre la seccion entera a cualquier proporcion sin tener que saber su tamaño. */
-.trusted-section {
-  box-shadow: inset 0 0 0 100vmax color-mix(in srgb, var(--mm-navy) 50%, transparent);
-}
+ * Aqui estaba `box-shadow: inset 0 0 0 100vmax color-mix(in srgb, var(--mm-navy) 50%,
+ * transparent)`. Existia para rescatar el texto blanco SOBRE `animateddivs-image.webp`: navy al
+ * 50 % lo subia a 6,16:1 con margen para el punto mas claro de la foto. La seccion pasa al FONDO
+ * AGUA (final de `propio.css`) y ya no pinta la foto: el velo sobra, y ademas oscureceria el
+ * degradado fuera de los ratios medidos de sus paradas. */
 
 /* ── 2 · LA MEDIDA, QUE ES EL DEFECTO MAS CARO ────────────────────────────────
  *
