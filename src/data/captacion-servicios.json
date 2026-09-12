@@ -467,5 +467,236 @@
       "ancho": 1250,
       "alto": 698
     }
+  },
+  "/services/motorized-retractable-screens-in-north-south-florida": {
+    "heroe": {
+      "apoyo": "Motorized retractable screen installation contractors serving North & South Florida, delivering flexible shade and insect control.",
+      "foto": "/images/projects/luxury-pool-motorized-pergola-screens-south-florida/luxury-pool-motorized-pergola-screens-south-florida-4.avif",
+      "alt": "Motorized retractable screen partly lowered along a covered poolside patio, installed in South Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698,
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate"
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Certified MaestroShield dealer",
+          "texto": "Screens that deploy from compact overhead housings by remote or app."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Built for the Florida coast",
+          "texto": "Powder-coated aluminum tracks and UV-stabilized mesh for sun, humidity and salt air."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Motorized Screens",
+        "Screen Replacement or Repair"
+      ],
+      "proyectoPorDefecto": "New Motorized Screens",
+      "nombre": "Retractable Screens Form",
+      "aviso": "Retractable screens lead",
+      "ga4": "pantallas",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We measure the openings and specify the housings, tracks and mesh.",
+        "You get the scope in writing and a fixed project price before anything is ordered."
+      ]
+    },
+    "schema": {
+      "serviceType": "Motorized Retractable Screen Installation"
+    },
+    "inversion": {
+      "titulo": "What will my retractable screens cost?",
+      "texto": "Retractable screens are priced from the size of each opening, how many you need, the mesh you choose and whether they are motorized or manual. Tell us about the openings and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/projects/luxury-pool-motorized-pergola-screens-south-florida/luxury-pool-motorized-pergola-screens-south-florida-7.avif",
+      "alt": "Covered poolside patio with motorized retractable screens along the rear, installed in South Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698
+    }
+  },
+  "/services/patio-screen-rooms-enclosures-in-north-south-florida": {
+    "heroe": {
+      "apoyo": "Screen room builders and installation contractors in North & South Florida, creating comfortable, protected outdoor living areas.",
+      "foto": "/images/projects/luxury-pool-spa-with-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-north-florida-project-2.avif",
+      "alt": "Screened patio room with lounge seating beside a pool, built in North Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698,
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate"
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Aluminum frame, reinforced mesh",
+          "texto": "Rust-resistant powder-coated frames built to Florida hurricane and wind-load codes."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "One team takes the design through permits, engineering and construction."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Screen Room",
+        "Porch or Deck Conversion"
+      ],
+      "proyectoPorDefecto": "New Screen Room",
+      "nombre": "Screen Room Form",
+      "aviso": "Screen room lead",
+      "ga4": "sala",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the room for the opening and take it through permits.",
+        "You get the scope in writing and a fixed project price before anything is built."
+      ]
+    },
+    "schema": {
+      "serviceType": "Patio Screen Room Design & Construction"
+    },
+    "inversion": {
+      "titulo": "What will my screen room cost?",
+      "texto": "A screen room is priced from its footprint, the roof it carries, the frame and mesh you choose and the site conditions. Tell us about the space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/projects/luxury-pool-spa-with-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-north-florida-project-3.avif",
+      "alt": "Interior of a screened patio room looking out over a pool, built in North Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698
+    }
+  },
+  "/services/pool-screen-enclosures-for-north-south-florida-pools": {
+    "heroe": {
+      "apoyo": "Pool screen enclosure builders and installation contractors in North & South Florida, improving pool safety and cleanliness.",
+      "foto": "/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-2.avif",
+      "alt": "Screened pool enclosure over a freeform pool and raised spa with a travertine deck, built in North Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698,
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate"
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered for Florida wind",
+          "texto": "Powder-coated aluminum framing and reinforced mesh built to wind-load codes, HVHZ included."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "A permitted pool barrier",
+          "texto": "A permitted enclosure meets Florida Building Code Chapter 45 barrier requirements."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Pool Enclosure",
+        "Rescreening or Repair"
+      ],
+      "proyectoPorDefecto": "New Pool Enclosure",
+      "nombre": "Pool Enclosure Form",
+      "aviso": "Pool enclosure lead",
+      "ga4": "jaula",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We size the cage for the pool deck and take it through permits and inspection.",
+        "You get the scope in writing and a fixed project price before anything is fabricated."
+      ]
+    },
+    "schema": {
+      "serviceType": "Pool Screen Enclosure Design & Installation"
+    },
+    "inversion": {
+      "titulo": "What will my pool enclosure cost?",
+      "texto": "A pool enclosure is priced from the deck it has to cover, its height and roof shape, the mesh you choose and the wind-load zone of the site. Tell us about the pool and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/projects/luxury-pool-spa-with-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-north-florida-project-6.avif",
+      "alt": "Screen enclosure over a pool and raised spa seen from the deck, built in North Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698
+    }
   }
 }

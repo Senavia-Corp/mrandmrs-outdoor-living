@@ -278,6 +278,42 @@ const JSONLD_ARREGLADO = {
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:52:59.092Z'],
     ],
   },
+  '/services/motorized-retractable-screens-in-north-south-florida': {
+    bloque: 0,
+    motivo: 'R19: los tres defectos del origen en esta ficha.',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
+        'Motorized Retractable Screen Installation'],
+      ['about.image', 'Retractable screens installed by professional outdoor living contractors in Florida.',
+        '/images/projects/luxury-pool-motorized-pergola-screens-south-florida/luxury-pool-motorized-pergola-screens-south-florida-4.avif'],
+      ['dateModified', '2026-05-18T19:54:35.687Z', '2026-05-18T19:55:49.094Z'],
+      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:54:35.687Z'],
+    ],
+  },
+  '/services/patio-screen-rooms-enclosures-in-north-south-florida': {
+    bloque: 0,
+    motivo: 'R19: los tres defectos del origen en esta ficha.',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
+        'Patio Screen Room Design & Construction'],
+      ['about.image', 'Screened patio enclosure creating a comfortable outdoor living space in Florida.',
+        '/images/projects/luxury-pool-spa-with-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-north-florida-project-2.avif'],
+      ['dateModified', '2026-05-18T19:53:43.448Z', '2026-05-18T19:55:49.094Z'],
+      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:53:43.448Z'],
+    ],
+  },
+  '/services/pool-screen-enclosures-for-north-south-florida-pools': {
+    bloque: 0,
+    motivo: 'R19: los tres defectos del origen en esta ficha.',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
+        'Pool Screen Enclosure Design & Installation'],
+      ['about.image', 'Pool screen enclosures installed by licensed Florida enclosure contractors',
+        '/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-2.avif'],
+      ['dateModified', '2026-05-18T19:49:53.691Z', '2026-05-18T19:55:49.094Z'],
+      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:49:53.691Z'],
+    ],
+  },
 };
 
 /** Lee/escribe por camino con puntos: `mainEntity.mainEntity.4.name`. */
