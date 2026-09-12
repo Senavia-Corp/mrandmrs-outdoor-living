@@ -242,6 +242,42 @@ const JSONLD_ARREGLADO = {
       ['datePublished', '2026-05-19T13:23:24.377Z', '2026-05-19T13:22:48.310Z'],
     ],
   },
+  '/services/custom-deck-builders-in-north-south-florida': {
+    bloque: 0,
+    motivo: 'R19: los tres defectos del origen en esta ficha.',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
+        'Custom Deck Design & Construction'],
+      ['about.image', 'Custom deck construction by professional outdoor living contractors in Florida.',
+        '/images/projects/pool-raised-spa-marble-deck-south-florida/pool-raised-spa-marble-deck-south-florida-project-4.avif'],
+      ['dateModified', '2026-05-18T19:51:19.984Z', '2026-05-18T19:55:49.094Z'],
+      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:51:19.984Z'],
+    ],
+  },
+  '/services/custom-outdoor-kitchens-for-north-south-florida-homes': {
+    bloque: 0,
+    motivo: 'R19: los tres defectos del origen en esta ficha.',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
+        'Custom Outdoor Kitchen Design & Construction'],
+      ['about.image', 'Custom outdoor kitchen built by professional outdoor kitchen builders in Florida.',
+        '/images/projects/luxury-pool-pergola-outdoor-kitchen-south-florida/luxury-pool-pergola-outdoor-kitchen-south-florida-3.avif'],
+      ['dateModified', '2026-05-18T19:49:53.727Z', '2026-05-18T19:55:49.094Z'],
+      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:49:53.727Z'],
+    ],
+  },
+  '/services/motorized-louvered-roof-systems-in-north-south-florida': {
+    bloque: 0,
+    motivo: 'R19: los tres defectos del origen en esta ficha.',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
+        'Motorized Louvered Roof Design & Installation'],
+      ['about.image', 'Motorized louvered roof system installed by custom outdoor living contractors in Florida',
+        '/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-4.avif'],
+      ['dateModified', '2026-05-18T19:52:59.092Z', '2026-05-18T19:55:49.094Z'],
+      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:52:59.092Z'],
+    ],
+  },
 };
 
 /** Lee/escribe por camino con puntos: `mainEntity.mainEntity.4.name`. */

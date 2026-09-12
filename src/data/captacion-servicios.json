@@ -236,5 +236,236 @@
       "ancho": 1250,
       "alto": 698
     }
+  },
+  "/services/custom-deck-builders-in-north-south-florida": {
+    "heroe": {
+      "apoyo": "Professional deck builders and installation contractors serving North & South Florida with durable, stylish outdoor deck solutions.",
+      "foto": "/images/projects/pool-raised-spa-marble-deck-south-florida/pool-raised-spa-marble-deck-south-florida-project-4.avif",
+      "alt": "Wide marble pool deck with sun loungers around a rectangular pool and raised spa, built in South Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698,
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate"
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Built for the Florida climate",
+          "texto": "Composite that resists warping, fading and rot; pressure-treated wood sealed and stained."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "One team takes the design through permits, engineering and construction."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Custom Deck",
+        "Pool Deck Renovation"
+      ],
+      "proyectoPorDefecto": "New Custom Deck",
+      "nombre": "Custom Deck Form",
+      "aviso": "Custom deck lead",
+      "ga4": "deck",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the deck for your layout and take it through permits.",
+        "You get the scope in writing and a fixed project price before the first board goes down."
+      ]
+    },
+    "schema": {
+      "serviceType": "Custom Deck Design & Construction"
+    },
+    "inversion": {
+      "titulo": "What will my deck cost?",
+      "texto": "Every deck is priced from its size, the material, the level changes and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-2.avif",
+      "alt": "Travertine pool deck surrounding a rectangular pool with a raised spa, built in South Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698
+    }
+  },
+  "/services/custom-outdoor-kitchens-for-north-south-florida-homes": {
+    "heroe": {
+      "apoyo": "Outdoor kitchen builders and installation contractors serving North & South Florida with custom layouts for entertaining and daily use.",
+      "foto": "/images/projects/luxury-pool-pergola-outdoor-kitchen-south-florida/luxury-pool-pergola-outdoor-kitchen-south-florida-3.avif",
+      "alt": "Built-in outdoor kitchen with a grill and counter seating under a covered patio beside a pool, built in South Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698,
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate"
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Appliances made for outdoors",
+          "texto": "Outdoor-rated grills, smokers and refrigeration, engineered into the layout with their utilities."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits, HOA and ARB handled",
+          "texto": "We manage the full permitting process, including HOA and ARB submissions."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Outdoor Kitchen",
+        "Grilling Island or Bar"
+      ],
+      "proyectoPorDefecto": "New Outdoor Kitchen",
+      "nombre": "Outdoor Kitchen Form",
+      "aviso": "Outdoor kitchen lead",
+      "ga4": "cocina",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We lay out the kitchen around how you cook and take it through permits, HOA and ARB.",
+        "You get the scope in writing and a fixed project price before anything is built."
+      ]
+    },
+    "schema": {
+      "serviceType": "Custom Outdoor Kitchen Design & Construction"
+    },
+    "inversion": {
+      "titulo": "What will my outdoor kitchen cost?",
+      "texto": "Every outdoor kitchen is priced from its layout, the appliances, the countertops and the utility runs it needs. Tell us how you cook and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/projects/luxury-pool-pergola-outdoor-kitchen-south-florida/luxury-pool-pergola-outdoor-kitchen-south-florida-5.avif",
+      "alt": "Outdoor kitchen with a built-in grill and stone counter under a covered patio next to a pool, built in South Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698
+    }
+  },
+  "/services/motorized-louvered-roof-systems-in-north-south-florida": {
+    "heroe": {
+      "apoyo": "Motorized louvered roof builders and installation contractors in North & South Florida, offering adjustable shade and weather protection.",
+      "foto": "/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-4.avif",
+      "alt": "Motorized louvered aluminum roof with its blades open over a poolside patio, built in South Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698,
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate"
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered for Florida wind",
+          "texto": "Reinforced extruded aluminum and marine-grade stainless hardware, with wind-load engineering documentation."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permitted and inspected",
+          "texto": "Installed to local building codes, and the electrical additions are permitted too."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "Motorized Louvered Roof",
+        "Manual Adjustable Louvers"
+      ],
+      "proyectoPorDefecto": "Motorized Louvered Roof",
+      "nombre": "Louvered Roof Form",
+      "aviso": "Louvered roof lead",
+      "ga4": "louver",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We size the system for the opening and take it through permits and inspection.",
+        "You get the scope in writing and a fixed project price before anything is ordered."
+      ]
+    },
+    "schema": {
+      "serviceType": "Motorized Louvered Roof Design & Installation"
+    },
+    "inversion": {
+      "titulo": "What will my louvered roof cost?",
+      "texto": "Every louvered roof is priced from the span it has to cover, whether it is attached or freestanding, the automation it carries and the site conditions. Tell us about the opening and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-4.avif",
+      "alt": "Motorized louvered aluminum roof over an outdoor dining area beside a pool, built in North Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698
+    }
   }
 }

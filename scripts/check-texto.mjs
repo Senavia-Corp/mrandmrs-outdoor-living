@@ -24,6 +24,14 @@ import { chromium } from 'playwright';
 import { ARGS_NAVEGADOR, aSlug, asentar, textoNormalizado } from './lib/captura.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
+
+/* Se declara AQUI ARRIBA y no junto a la capa de captacion: el bucle de medicion lleva `await`
+ * de nivel superior, asi que la evaluacion del modulo se suspende antes de llegar a un `const`
+ * declarado mas abajo y `reordena()` lo encontraria en zona muerta. Costo un ReferenceError. */
+const CAPTACION_JSON = (() => {
+  const f = path.join(RAIZ, 'src/data/captacion-servicios.json');
+  return fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')) : {};
+})();
 const ESTATICO = path.join(RAIZ, '.vercel/output/static');
 
 /**
@@ -110,27 +118,18 @@ const QUITADAS_A_PROPOSITO = [
   ].map(([l, m]) => [l, m, ['/services/custom-pool-spa-builders-in-north-south-florida']]),
 
   /* ── R19 · LAS 13 FICHAS RESTANTES ──────────────────────────────────────────────────────
-   * El mismo antes/despues, la misma razon. `public/images/residentials/<slug>/<slug>-before.png`
-   * existe en las catorce y es el mismo montaje: el «Before» no es obra del cliente. Lo que
-   * cambia por ficha son las CUATRO lineas de copy propio (titulo, entradilla y los dos temas
-   * de la franja), que se leen de `baseline/text/services_<slug>.txt` y no de memoria.
+   * NO LLEVAN DECLARACIONES AQUI, Y ES A PROPOSITO. El antes/despues que pierden se quita del
+   * baseline crudo en `quitaAntesDespues()`, como BLOQUE CONTIGUO. La primera version de esto
+   * si las declaraba linea a linea -nueve por ficha, ~120 en las trece- y estaba MAL por dos
+   * razones que la puerta demostro:
    *
-   * Las cinco lineas restantes -«Before», «After», «Design-Build Authority», su parrafo,
-   * «Licensed & Engineered», su parrafo y «View All Projects»- son IDENTICAS en las catorce:
-   * el bloque es copy pegado. Se declaran una vez por ficha igualmente, porque `rutas` acota
-   * el perdon y un perdon global aqui taparia una desaparicion de verdad en otra ruta. */
-  ...[
-    ['Before', 'el antes/despues sale: el «Before» no es obra del cliente'],
-    ['After', 'idem'],
-    ['From Bare Patio To A Beautiful Shaded Pergola', 'idem'],
-    ['Escape the South Florida sun in style. Mr. & Mrs. Outdoor Living builds custom aluminum pergolas that add shade, architectural elegance, and lasting value to your outdoor space — engineered for Florida weather and built to endure.',
-      'idem'],
-    ['Design-Build Authority', 'idem: este tema sube a la franja de confianza, dicho mas corto'],
-    ['One team handles design, permits, engineering, and construction. No subcontractor surprises, no gaps in accountability.', 'idem'],
-    ['Licensed & Engineered', 'idem: sube a la franja de confianza'],
-    ['Florida licensed and insured professionals. Every project is built to code, built to last, and built to impress.', 'idem'],
-    ['View All Projects', 'idem. Esta ficha CONSERVA su galeria, asi que sus fotos propias siguen ahi'],
-  ].map(([l, m]) => [l, m, ['/services/custom-aluminum-pergola-builders-in-north-south-florida']]),
+   *   · la ultima linea del bloque es «Get A Free Estimate», que sale CUATRO veces en la
+   *     pagina; `QUITADAS_A_PROPOSITO` filtra por Set y habria borrado tambien la del heroe.
+   *   · nueve lineas de copy ajeno copiadas a mano por ficha son nueve lineas que se
+   *     desincronizan el dia que alguien toque el origen.
+   *
+   * Lo que SI sigue declarandose aqui es lo que no es un bloque entero y reconocible: por eso
+   * el piloto conserva sus once lineas, que incluyen ademas las dos de su `gallery`. */
 ];
 
 /**
@@ -368,7 +367,91 @@ const reordena = (ruta, lineas) => {
     const i = lineas.findIndex((_, k) => d.antes.every((l, j) => lineas[k + j] === l));
     if (i >= 0) lineas.splice(i, d.antes.length, ...d.despues);
   }
-  return lineas;
+  return ordenaZonas(ruta, subeResenas(ruta, lineas));
+};
+
+/**
+ * NORTH FLORIDA DELANTE DE SOUTH — derivado.
+ *
+ * `captacion()` reordena los dos `item-country` de `section.location` (bloque 7). Las catorce
+ * fichas traen LITERALMENTE las mismas seis lineas -es copy de piscina pegado en todas-, asi
+ * que declararlas por ruta seria repetir catorce veces el mismo bloque.
+ *
+ * Barandilla: los dos bloques tienen que existir, ser de tres lineas, estar pegados y en el
+ * orden South->North. Si no, no se toca nada y la puerta se pone roja por su cuenta.
+ */
+const ordenaZonas = (ruta, lineas) => {
+  if (!CAPTACION_JSON[ruta]) return lineas;
+  const s = lineas.indexOf('South Florida');
+  if (s < 0 || lineas[s + 2] !== 'View South Florida Service Areas') return lineas;
+  const nrt = s + 3;
+  if (lineas[nrt] !== 'North Florida' || lineas[nrt + 2] !== 'View North Florida Service Areas') return lineas;
+  return [...lineas.slice(0, s), ...lineas.slice(nrt, nrt + 3), ...lineas.slice(s, s + 3),
+    ...lineas.slice(nrt + 3)];
+};
+
+/**
+ * EL ANTES/DESPUES SE VA ENTERO — derivado, y se quita del BASELINE CRUDO.
+ *
+ * `captacion()` elimina `section.before-after-section` en todas las rutas de captacion: el
+ * «Before» es una foto de un listado del MLS de Miami -marca de agua visible- y el «After» es
+ * otro patio. Vuelve cuando exista el par honesto (`R17-CORE.md` §10).
+ *
+ * 🚨 POR QUE NO VALE `QUITADAS_A_PROPOSITO` PARA LA ULTIMA LINEA. El bloque acaba en «View All
+ * Projects» y «Get A Free Estimate», y esa segunda cadena SALE CUATRO VECES en la pagina (nav,
+ * heroe, antes/despues y el formulario nuevo). `QUITADAS_A_PROPOSITO` filtra por Set, o sea que
+ * declararla borraria LAS CUATRO, incluida la del heroe. Se quita el BLOQUE CONTIGUO, que es lo
+ * unico que distingue una ocurrencia de otra. La puerta lo cazo: «faltan 0, sobran 0» con
+ * «orden cambiado», porque el conteo por conjunto no ve que sobre una ocurrencia de cuatro.
+ *
+ * Barandilla: «Before» tiene que ir seguido de «After», el bloque tiene que cerrar en «View All
+ * Projects» dentro de una ventana corta, y solo se quita en rutas de captacion.
+ */
+const quitaAntesDespues = (ruta, lineas) => {
+  if (!CAPTACION_JSON[ruta]) return lineas;
+  const i = lineas.indexOf('Before');
+  if (i < 0 || lineas[i + 1] !== 'After') return lineas;
+  let j = -1;
+  for (let k = i + 2; k < Math.min(lineas.length, i + 16); k++) {
+    if (lineas[k] === 'View All Projects') { j = k; break; }
+  }
+  if (j < 0) return lineas;
+  if (lineas[j + 1] === 'Get A Free Estimate') j++;
+  return [...lineas.slice(0, i), ...lineas.slice(j + 1)];
+};
+
+/**
+ * LAS RESEÑAS SUBEN DETRAS DEL FORMULARIO — derivado, no copiado a mano.
+ *
+ * `captacion()` mueve `section.testimonial-section` justo detras de `logos-section` en TODAS las
+ * rutas de captacion (`build-paginas.mjs`, bloque 3): la objecion que queda despues de decidir
+ * dejar los datos son las reseñas, y estaban pasada la mitad de la pagina.
+ *
+ * El CONTENIDO de las reseñas ya se descuenta aparte (`lineasResenas`, que las busca esten
+ * donde esten), asi que lo unico que queda desordenado son las TRES lineas de cabecera de la
+ * seccion, que salen del baseline. Expresarlo con `REORDENADAS_A_PROPOSITO` obligaria a
+ * declarar el bloque contiguo que va desde el destino hasta el origen: 57 lineas por ficha,
+ * ~740 en las trece, y una lista copiada a mano es una lista que se desincroniza. Se deriva,
+ * que es lo que esta misma hoja ya hace con las reseñas, el blog, el feed y la capa de
+ * captacion, y por la misma razon.
+ *
+ * LA BARANDILLA SE CONSERVA: se exige que las tres lineas existan, que «What Do We Do!» exista,
+ * que las reseñas vayan DESPUES (si ya estuvieran delante no habria nada que mover) y que el
+ * resultado sea una PERMUTACION de la entrada. Si algo de eso falla no se toca nada, y la
+ * puerta se pone roja por su cuenta — que es lo correcto: un reorden que no se puede demostrar
+ * no se perdona.
+ */
+const subeResenas = (ruta, lineas) => {
+  if (!CAPTACION_JSON[ruta]) return lineas;
+  const i = lineas.indexOf('TESTIMONIALS');
+  const destino = lineas.indexOf('What Do We Do!');
+  if (i < 0 || destino < 0 || i <= destino) return lineas;
+  const cabecera = lineas.slice(i, i + 3);
+  if (cabecera.length !== 3) return lineas;
+  const resto = [...lineas.slice(0, i), ...lineas.slice(i + 3)];
+  const salida = [...resto.slice(0, destino), ...cabecera, ...resto.slice(destino)];
+  if ([...salida].sort().join('\n') !== [...lineas].sort().join('\n')) return lineas;
+  return salida;
 };
 
 /**
@@ -1080,10 +1163,6 @@ function sinElBloque(ruta, hay) {
  * etiqueta alli y no aqui, esta puerta se pone roja. Esa es la deteccion de deriva, no un
  * descuido.
  */
-const CAPTACION_JSON = (() => {
-  const f = path.join(RAIZ, 'src/data/captacion-servicios.json');
-  return fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')) : {};
-})();
 
 /** Espejo de `src/components/widgets/FormularioCore.astro`. Un cambio alli sin cambio aqui = ROJA. */
 /* R19: los tipos de proyecto DEPENDEN DE LA FICHA (`formulario.proyectos`), asi que esto deja
@@ -1339,8 +1418,9 @@ for (const ruta of RUTAS) {
   const declaradas = new Set(QUITADAS_A_PROPOSITO
     .filter(([, , rutas]) => !rutas || rutas.includes(ruta))
     .map(([l]) => l));
-  const esperado = reordena(ruta, fs.readFileSync(ref, 'utf8').trimEnd().split('\n')
-    .filter((l) => !declaradas.has(l)).map((l) => traduce(ruta, l))).join('\n');
+  const esperado = reordena(ruta,
+    quitaAntesDespues(ruta, fs.readFileSync(ref, 'utf8').trimEnd().split('\n'))
+      .filter((l) => !declaradas.has(l)).map((l) => traduce(ruta, l))).join('\n');
   const bruto = (await textoNormalizado(pag)).trimEnd();
   if (bruto.includes(RESENAS_MARCADOR)) conResenas++;
   if (BLOG_RUTAS.some((p) => ruta.startsWith(p)) && lineasBlog(ruta).length
