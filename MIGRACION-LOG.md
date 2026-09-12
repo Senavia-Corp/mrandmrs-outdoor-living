@@ -5659,6 +5659,44 @@ comandos que producen los números de la tabla de arriba, que hasta ahora no los
 contraste mide **bajo los glifos**, restando dos pasadas: medir la caja cobraba las esquinas
 redondeadas de un botón y daba un falso 1,00:1.
 
+### C2 · la prueba del formulario, resuelta por el correo real y no por una prueba sintética
+
+El encargo pedía un envío de prueba. **No hizo falta inventarlo: producción ya lo estaba
+demostrando.** Buscando en Gmail los avisos de lead (`subject:("New lead")`) salen entregas
+reales y recientes —4-sep, 7-sep, 8-sep y **11-sep**— a `info@mrandmrsoutdoorliving.com` y
+`sebastian@senaviacorp.com`. De donde se siguen tres cosas, medidas y no supuestas:
+
+1. **El circuito formulario → `/api/formulario` → SMTP → Gmail FUNCIONA en producción.**
+2. **Turnstile NO está bloqueando los leads.** Era el riesgo que `R19-CAMBIOS.md` §C2 marcaba
+   como «se pierde el 100 % de los leads en silencio»: secreto puesto + dominio sin registrar
+   daría 403 en todos. Con `TURNSTILE_SECRET` puesta en producción y leads llegando, el dominio
+   está de alta. El riesgo queda **descartado por evidencia**, no por una comprobación de API.
+3. **`generate_lead` a 0 en GA4 es de GTM y de nada más.** Llegan leads de verdad y el evento no
+   se dispara: el formulario no es el culpable. Refuerza el diagnóstico del trigger
+   `BLOQUEO - Entornos de preview`.
+
+**Y hay un lead que retrata exactamente la fuga que este encargo cierra** (7-sep-2026):
+
+```
+New lead · Estimate request · Coral Springs 33071
+  Landed on /services/smart-soffit-led-lighting-installation-…  ·  8:15 AM
+  Page:     https://www.mrandmrsoutdoorliving.com/request-estimated  ·  8:19 AM
+  Services of interest: Smart Soffit LED Lighting
+  Lead source: Referral from www.google.com
+```
+
+Un visitante de Google **aterrizó en la ficha de sofito y tuvo que irse a otra página** para
+dejar sus datos: cuatro minutos y un clic de más, sobre tráfico ya pagado. Desde hoy esa ficha
+tiene su propio formulario, y ese lead habría entrado con el asunto
+`New lead · Soffit lighting lead · <ZIP>` sin salir de la página.
+
+**Lo que queda sin probar, y se dice:** `FormularioCore` —el formulario NUEVO de las catorce
+fichas— no ha recibido todavía un envío real en producción, porque acaba de desplegarse. Desde
+este entorno no se puede enviar: la política de red bloquea el dominio vivo
+(`www.mrandmrsoutdoorliving.com:443` → 403 en CONNECT) y el navegador en la nube de Composio
+está cerrado por «Enhanced Controls». El circuito que comparte con los otros cuatro formularios
+sí está probado por los correos de arriba.
+
 ### Abierto
 
 1. **Diez fotos no son del servicio que ilustran** (muebles, paisajismo, riego, sofito, acero, y
