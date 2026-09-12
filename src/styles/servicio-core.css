@@ -288,22 +288,43 @@
 }
 
 /* ══ 4 · INVERSION Y FINANCIACION ═════════════════════════════════════════════════════════
- * A partir de 992 el texto y las acciones van en dos columnas. Con una sola, el parrafo se para
- * en `--mm-medida` (650 px) y la mitad derecha de la banda se queda vacia: medido en el QA a
- * 1440, ~600 px de caja tenida sin nada dentro. Los CTA al final del recorrido de lectura. */
-.svc-inversion__caja { padding: var(--mm-e-32); }
-@media (min-width: 768px) { .svc-inversion__caja { padding: var(--mm-e-48); } }
-@media (min-width: 992px) {
-  .svc-inversion__caja > .mm-pila {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: center;
-    column-gap: var(--mm-e-48);
-  }
-  .svc-inversion__caja > .mm-pila > h2 { grid-column: 1; }
-  .svc-inversion__caja > .mm-pila > p  { grid-column: 1; }
-  .svc-inversion__acciones { grid-column: 2; grid-row: 1 / span 2; flex-direction: column; }
+ * La maqueta de dos columnas DE TEXTO que habia aqui (texto a la izquierda, acciones a la
+ * derecha, dentro de una tarjeta tenue) se fue entera con C3: ahora las dos columnas son
+ * FOTO y PANEL, y las acciones vuelven a ir al final del recorrido de lectura, dentro del
+ * panel. El problema que aquella resolvia -el parrafo parandose en `--mm-medida` y dejando
+ * ~600 px de caja vacia a 1440- ya no existe, porque la mitad derecha es la foto. */
+/* ── C3 · LA BANDA 50/50 ───────────────────────────────────────────────────────────────
+ * Sustituye a la tarjeta tenue sobre blanco (`.svc-inversion__caja`, que se va entera: sus
+ * reglas de relleno y su rejilla de dos columnas ya no las monta nadie). Se recupera lo que
+ * pesaba, que es la unica razon por la que este cambio cabe en lo que queda de presupuesto.
+ *
+ * A partir de 992 son dos columnas iguales y la foto va a ALTURA COMPLETA: la altura la manda
+ * el panel, y la foto se estira a ella. `min-height: 0` hace falta porque un elemento de
+ * rejilla tiene `min-height: auto` y sin eso la imagen impone su alto intrinseco y desborda.
+ *
+ * `aspect-ratio` + `width`/`height` horneados por debajo de 992, que es donde la foto manda su
+ * propio alto: sin eso vuelve el CLS que costo 38 imagenes arreglar. Por encima de 992 la
+ * proporcion la impone la columna, asi que `aspect-ratio` estorba y se anula. */
+.svc-inversion__banda { display: grid; grid-template-columns: 1fr; }
+.svc-inversion__foto {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  min-block-size: 0;
+  object-fit: cover;
+  aspect-ratio: 1250 / 698;
 }
+.svc-inversion__panel {
+  display: flex;
+  align-items: center;
+  padding: var(--mm-e-48) var(--mm-canal);
+}
+@media (min-width: 992px) {
+  .svc-inversion__banda { grid-template-columns: 1fr 1fr; }
+  .svc-inversion__foto { aspect-ratio: auto; }
+  .svc-inversion__panel { padding: var(--mm-e-96) var(--mm-e-64); }
+}
+
 
 /* `wrap` para que a 390 los dos CTA se apilen en vez de encogerse por debajo del objetivo
  * tactil. `.mm-accion` ya trae `min-height: 44px`. */

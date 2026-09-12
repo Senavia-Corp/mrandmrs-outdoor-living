@@ -16,6 +16,20 @@
  * bueno de Sebastian. Por eso esta seccion no da numeros: **manda al estimador**, que es quien
  * los calcula con las respuestas del propio visitante.
  *
+ * R19 C3 — DEJA DE SER UNA TARJETA TENUE SOBRE BLANCO Y PASA A SER UNA BANDA 50/50: foto de
+ * obra a altura completa a la izquierda, plano navy con el texto y los dos botones a la
+ * derecha. El motivo que dio Sebastian no es de esta seccion sino de la plantilla entera —«al
+ * hacer scroll se ve la pagina muy simple porque todo es fondo blanco»—, asi que manda tambien
+ * sobre las trece fichas restantes: la plantilla tiene que ALTERNAR planos, no repetir blanco.
+ *
+ * LA FOTO VA EN EL JSON, NO CABLEADA. Cada ficha traera la de SU servicio (`inversion.foto`,
+ * con su `alt`, `ancho` y `alto`), y este componente la lee por ruta igual que ya lee el
+ * titulo, el texto y los CTA. Una entrada de JSON por ficha, cero CSS nuevo.
+ *
+ * `mm-inverso` en el panel no es decoracion: redefine `--mm-tinta` a blanco, y por eso el CTA
+ * de contorno (`.mm-accion--linea`, que toma `--mm-tinta` para borde y texto) sale a 15,60:1
+ * sin escribir una regla. El dorado lleva tinta navy encima: 8,40:1.
+ *
  * SE LOCALIZA SOLA por `Astro.url.pathname`. Sin entrada en el JSON no pinta nada.
  */
 import DATOS from '../../data/captacion-servicios.json';
@@ -27,15 +41,28 @@ const ruta = (Astro.props.ruta ?? Astro.url.pathname).replace(/(.)\/$/, '$1');
 const d = DATOS[ruta]?.inversion;
 ---
 {d && (
-  <section class="svc-inversion mm-seccion">
-    <div class="mm-caja mm-tono svc-inversion__caja">
-      <div class="mm-pila mm-pila--24">
-        <h2 class="mm-tit-2">{d.titulo}</h2>
-        <p class="mm-txt mm-medida">{d.texto}</p>
-        <div class="svc-inversion__acciones">
-          {d.ctas.map((c) => (
-            <a href={c.href} class:list={['mm-accion', !c.principal && 'mm-accion--linea']}>{c.texto}</a>
-          ))}
+  <section class="svc-inversion">
+    <div class="svc-inversion__banda">
+      {d.foto && (
+        <img
+          class="svc-inversion__foto"
+          src={d.foto}
+          alt={d.alt}
+          width={d.ancho}
+          height={d.alto}
+          loading="lazy"
+          decoding="async"
+        />
+      )}
+      <div class="svc-inversion__panel mm-inverso">
+        <div class="mm-pila mm-pila--24">
+          <h2 class="mm-tit-2">{d.titulo}</h2>
+          <p class="mm-txt mm-medida">{d.texto}</p>
+          <div class="svc-inversion__acciones">
+            {d.ctas.map((c) => (
+              <a href={c.href} class:list={['mm-accion', !c.principal && 'mm-accion--linea']}>{c.texto}</a>
+            ))}
+          </div>
         </div>
       </div>
     </div>

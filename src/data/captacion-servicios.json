@@ -146,7 +146,11 @@
       "ctas": [
         { "texto": "Try the pool cost estimator", "href": "/pool-cost-estimator", "principal": true },
         { "texto": "Financing available", "href": "/financing", "principal": false }
-      ]
+      ],
+      "foto": "/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-6.avif",
+      "alt": "Freeform pool with a raised spa and travertine deck inside a screened enclosure, built in North Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698
     }
   }
 }
