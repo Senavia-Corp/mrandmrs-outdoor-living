@@ -87,7 +87,10 @@
  * es el boceto —cabecera contenida, columnas a sangre— y ademas es la medida a la que la
  * entradilla se lee sin barrer con la vista. */
 .animated-divs-section {
-  padding-block: clamp(var(--mm-e-48), 6vw, var(--mm-e-96));
+  /* Solo ARRIBA. El aire de abajo lo pedia Sebastian fuera el 12-sep: la banda tiene que
+   * morir contra la seccion siguiente, sin franja de azul entre el canto de oro y el blanco
+   * de `.projects-section`. Sin `padding-block-end` la banda queda a hueso con lo de abajo. */
+  padding-block: clamp(var(--mm-e-48), 6vw, var(--mm-e-96)) 0;
   padding-inline: 0;
 }
 .animated-divs-section .header-feature {

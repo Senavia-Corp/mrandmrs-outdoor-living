@@ -473,6 +473,8 @@ const REVEALS = JSON.stringify(reveals.porId);
       const botones = tarjetas.map((t) => t.querySelector('.feature-boton'));
       const ancha = matchMedia('(min-width: 992px)');
 
+      // `i` a -1 cierra las seis, que es el estado de reposo: la banda arranca contraida y
+      // solo se abre una columna mientras el raton (o el foco) esta encima.
       const abre = (i) => {
         tarjetas.forEach((t, n) => t.classList.toggle('is-active', n === i));
         botones.forEach((b, n) => b?.setAttribute('aria-expanded', String(n === i)));
@@ -483,13 +485,38 @@ const REVEALS = JSON.stringify(reveals.porId);
       // algo que esta abierto. Se recalcula tambien al cruzar el limite, no solo al cargar.
       const sincroniza = () => {
         if (!ancha.matches) { botones.forEach((b) => b?.setAttribute('aria-expanded', 'true')); return; }
-        const i = tarjetas.findIndex((t) => t.classList.contains('is-active'));
-        abre(i < 0 ? 0 : i);
+        abre(tarjetas.findIndex((t) => t.classList.contains('is-active')));
       };
+
+      // EL RATON ABRE, Y AL SALIR SE VUELVE A CERRAR. Es lo que pidio Sebastian el 12-sep:
+      // las seis contraidas en reposo y la columna se despliega al pasar por encima.
+      //
+      // Va en JS y no en un `:hover` de CSS a proposito, y no es pereza: el estado abierto lo
+      // pintan SIETE reglas distintas (ancho, writing-mode del titulo, su paso tipografico, la
+      // linea de flotacion, el apilado de una celda, la opacidad del parrafo y su translate).
+      // Duplicarlas todas con `:hover` costaria el doble de bytes de un presupuesto que tiene
+      // 5,5 KB libres, y dejaria dos definiciones del mismo estado que se pueden desincronizar.
+      // Encaminando el hover por `is-active` hay UNA definicion y la comparten raton, teclado,
+      // click y tactil.
+      //
+      // `mouseenter`/`mouseleave` y no `mouseover`/`mouseout`: los primeros no burbujean desde
+      // los hijos, asi que cruzar del titulo a la foto dentro de la misma columna no dispara un
+      // cierre y una reapertura.
+      banda.addEventListener('mouseleave', () => {
+        // Si el foco esta dentro, mandalo el foco: cerrar aqui le quitaria al teclado la
+        // columna que esta leyendo solo porque el raton paso de largo.
+        if (ancha.matches && !banda.contains(document.activeElement)) abre(-1);
+      });
+
+      tarjetas.forEach((t, i) => {
+        t.addEventListener('mouseenter', () => { if (ancha.matches) abre(i); });
+      });
 
       botones.forEach((b, i) => {
         if (!b) return;
         b.addEventListener('click', () => { if (ancha.matches) abre(i); });
+        // El teclado abre al enfocar, que es el equivalente de pasar el raton por encima.
+        b.addEventListener('focus', () => { if (ancha.matches) abre(i); });
         // Flechas, Inicio y Fin mueven el foco Y abren, como hace el raton. Mover el foco sin
         // abrir dejaria al teclado enfocando una columna cerrada, con su titulo en vertical y
         // su parrafo invisible: el foco estaria en un sitio que no se puede leer.
