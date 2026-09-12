@@ -72,6 +72,14 @@ const LANDINGS = [
     exigeCuerpo: [/renovat|remodel/i, /pool/i],
     // Remodelacion NO es reparacion suelta ni limpieza: eso atrae el lead equivocado.
     prohibeArriba: [/leak repair/i, /pool cleaning/i, /weekly service/i, /pergola/i],
+    /* R19: esta landing YA tiene formulario propio y heroe con prioridad, asi que deja de salir
+     * en la lista de PENDIENTES y pasa por las trece comprobaciones como el Core. */
+    formulario: {
+      dataName: 'Pool Remodel Form',
+      campo: 'Project-Type',
+      preseleccion: 'Complete Pool Remodel',
+    },
+    heroe: 'img.image-bg-hero-services',
   },
 ];
 

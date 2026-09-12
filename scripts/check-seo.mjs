@@ -314,6 +314,18 @@ const JSONLD_ARREGLADO = {
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:49:53.691Z'],
     ],
   },
+  '/services/pool-remodeling-renovation-in-north-south-florida': {
+    bloque: 0,
+    motivo: 'R19: los tres defectos del origen en la Final URL del ad group «Full Remodel».',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
+        'Pool Remodeling & Renovation'],
+      ['about.image', 'Pool and spa renovation enhancing a Florida backyard outdoor living contractors space.',
+        '/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-3.avif'],
+      ['dateModified', '2026-05-18T19:54:16.970Z', '2026-05-18T19:55:49.094Z'],
+      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:54:16.970Z'],
+    ],
+  },
 };
 
 /** Lee/escribe por camino con puntos: `mainEntity.mainEntity.4.name`. */

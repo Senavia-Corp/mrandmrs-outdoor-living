@@ -698,5 +698,82 @@
       "ancho": 1250,
       "alto": 698
     }
+  },
+  "/services/pool-remodeling-renovation-in-north-south-florida": {
+    "heroe": {
+      "apoyo": "Pool remodeling contractors serving North & South Florida, upgrading pools with modern finishes, energy-efficient systems, and lasting results.",
+      "foto": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-3.avif",
+      "alt": "Custom pool and raised spa with a wide paver deck on North Florida acreage, built by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698,
+      "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
+      "ancla": "#estimate"
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida certified pool contractor",
+          "texto": "CPC1461119 and CPC1460562, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Modern finishes and equipment",
+          "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Brought up to current code",
+          "texto": "VGB-compliant safety features, with the permits and inspections handled."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your pool and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "Complete Pool Remodel",
+        "Resurfacing or Tile Only"
+      ],
+      "proyectoPorDefecto": "Complete Pool Remodel",
+      "nombre": "Pool Remodel Form",
+      "aviso": "Pool remodel lead",
+      "ga4": "remodel",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back within 24 hours.",
+        "We look at the pool as it is today and put the scope of the renovation on paper.",
+        "You get the scope in writing and a fixed project price before any demolition starts."
+      ]
+    },
+    "schema": {
+      "serviceType": "Pool Remodeling & Renovation"
+    },
+    "inversion": {
+      "titulo": "What will my pool remodel cost?",
+      "texto": "Every renovation is priced from the condition of the pool, the finish and tile you choose, the equipment being replaced and the deck work around it. Answer a few questions to see the range for a custom pool in Florida, then review how it can be paid for.",
+      "ctas": [
+        {
+          "texto": "Try the pool cost estimator",
+          "href": "/pool-cost-estimator",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-3.avif",
+      "alt": "Rectangular pool with a raised spa and travertine deck in South Florida, built by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698
+    }
   }
 }
