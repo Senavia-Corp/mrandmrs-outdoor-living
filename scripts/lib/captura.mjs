@@ -153,6 +153,8 @@ export async function asentar(pag) {
     previa = ahora;
   }
 
+  let carrusel = null;   // se rellena solo si el carrusel de pasos no se deja fijar
+
   // 5a · EL CARRUSEL DE PASOS DEL PROCESO — la sexta fuente de no determinismo.
   //
   // Las 14 fichas de `/services` traen código propio del sitio que autoavanza los pasos cada
@@ -203,27 +205,54 @@ export async function asentar(pag) {
    * pudo fijar es una captura que no vale, y callarlo seria repetir el fallo que estamos
    * cerrando.
    */
+  /**
+   * ⚠️ Y QUEDABA UNA CARRERA, la que T5 de PROMPT-LOCAL atribuia al reloj — cerrada el 12-sep-2026.
+   *
+   * El orden era «mirar, pulsar, esperar 900 ms y SOLO ENTONCES parar». Si al llegar aqui el
+   * autoplay ya estaba por casualidad en el primer paso, la sonda lo daba por fijado, NO se
+   * pulsaba —y pulsar es lo unico que reinicia el temporizador— y el tic de los 5 s podia caer
+   * dentro de esos 900 ms: la captura se congelaba en el SEGUNDO paso. Medido sobre fe4dae0,
+   * `check:texto '/services/'` dio 12/2: la de pergolas con «faltan 2, sobran 2» (paso 2 en vez
+   * del 1) y la piloto con el mismo cruce en la corrida siguiente. Es azar, no contenido.
+   *
+   * Ahora se PARA ANTES DE MIRAR, y cada clic va seguido del `mouseenter` EN LA MISMA TAREA de JS:
+   * el manejador del clic hace stopAutoplay() -> goToStep() -> startAutoplay(), y el intervalo
+   * que acaba de crear no puede correr entre dos sentencias sincronas. Parado el autoplay, el
+   * paso solo cambia porque lo cambia esta funcion.
+   *
+   * No se usa `page.clock.install()`, que es lo que proponia T5: el reloj falso tiene que entrar
+   * ANTES del primer `goto()` —el `setInterval` del carrusel nace en DOMContentLoaded—, asi que
+   * obligaba a tocar las tres puertas que navegan (check-texto, check-visual, aprobar-diseno),
+   * cambiaba la temporizacion de las 115 rutas y seguia necesitando esta misma coreografia para
+   * llevar el carrusel al primer paso. Este bloque solo corre donde hay `.process-section`.
+   *
+   * Y si tras 10 intentos no queda fijado, la captura NO VALE (`valida:false`, con el motivo en
+   * `sonda`): avisar por consola y seguir dejaba que `aprobar-diseno.mjs` horneara el paso
+   * equivocado como referencia aprobada.
+   */
   if (await pag.$('.process-section')) {
     const primeroActivo = () => pag.evaluate(() => {
       const d = document.querySelector('.process-step-item');
       const c = d?.querySelector('[class*="tab-circle"], [class*="Tab-Circle"]');
       return !!c && getComputedStyle(c).backgroundColor === 'rgb(0, 28, 99)';
     });
+    // parar primero; los 900 ms dejan acabar una transicion que ya estuviera en vuelo (300 + 420)
+    await pag.evaluate(() => document.querySelector('.process-section')
+      ?.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true })));
+    await pag.waitForTimeout(900);
     let fijado = await primeroActivo();
     for (let i = 0; i < 10 && !fijado; i++) {
-      await pag.evaluate(() => document.querySelector('.process-step-item')
-        ?.dispatchEvent(new MouseEvent('click', { bubbles: true })));
-      await pag.waitForTimeout(450);
+      await pag.evaluate(() => {
+        document.querySelector('.process-step-item')?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+        document.querySelector('.process-section')?.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+      });
+      await pag.waitForTimeout(900);
       fijado = await primeroActivo();
     }
     if (!fijado) {
-      console.log('  ⚠️  el carrusel de pasos NO se pudo fijar en el primero tras 10 intentos'
-        + ' — esta captura no es comparable');
+      carrusel = 'el carrusel de pasos NO se pudo fijar en el primero tras 10 intentos';
+      console.log(`  ⚠️  ${carrusel} — esta captura no vale`);
     }
-    await pag.waitForTimeout(900);   // 300 de salida + 420 de entrada, con margen
-    await pag.evaluate(() => document.querySelector('.process-section')
-      ?.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true })));
-    await pag.waitForTimeout(200);
   }
 
   // 5 · congelar lo que se mueve solo
@@ -283,6 +312,7 @@ export async function asentar(pag) {
     })
     .map((e) => ({ id: e.dataset.wId, clase: String(e.className).slice(0, 60) })));
 
+  if (carrusel) return { sonda: { ...sonda, carrusel }, valida: false, invisibles };
   return { sonda, valida: true, invisibles };
 }
 

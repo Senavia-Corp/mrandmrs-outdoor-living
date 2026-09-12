@@ -6127,3 +6127,45 @@ aprobar las capturas de las catorce fichas, el consentimiento SMS, el «Before»
 
 `check:tokens` **PUERTA VERDE**. Sin build: ningún `.md` de `docs/` entra en el artefacto, y el
 diff no toca `src/`, `public/`, `scripts/` ni `_source/`.
+
+### T5 · `scripts/lib/captura.mjs` — cerrada el 12-sep-2026, y sin `page.clock.install()`
+
+**El registro decía** que `check:texto` salía roja en «exactamente las catorce» fichas porque la
+captura pillaba el carrusel de pasos a medio girar, y proponía congelar el reloj. **Medido, las dos
+mitades eran inexactas:**
+
+- **No eran las catorce.** Sobre `fe4dae0`, `check:texto '/services/'` dio **12 idénticas y 2 rojas**,
+  y la roja cambiaba de ficha entre corridas: azar, no contenido. La de pérgolas se congeló en el
+  **paso 2** («faltan 2, sobran 2»).
+- **No era el reloj: era el orden.** El bloque 5a miraba, pulsaba, esperaba 900 ms y sólo entonces
+  paraba el autoplay. Si el carrusel ya estaba por casualidad en el primer paso no se pulsaba —y
+  pulsar es lo único que reinicia el temporizador—, así que el tic de los 5 s caía dentro de la
+  espera.
+
+**El arreglo:** se para antes de mirar, y cada clic va seguido del `mouseenter` en la misma tarea
+de JS. Si tras 10 intentos el paso no queda fijado, `asentar()` devuelve `valida:false` con el
+motivo en `sonda`; antes sólo avisaba por consola, y `aprobar-diseno.mjs` habría horneado el paso
+equivocado como referencia aprobada.
+
+**Por qué no `page.clock.install()`:** el reloj falso tiene que entrar antes del primer `goto()`
+—el `setInterval` nace en `DOMContentLoaded`—, así que obligaba a tocar las tres puertas que
+navegan, cambiaba la temporización de las 115 rutas y seguía necesitando esta misma coreografía.
+
+**Puertas:**
+
+- **Tiempo forzado junto al tic**, ejecutando el código real de los dos bloques (`HEAD` y árbol) en
+  `/services/custom-aluminum-pergola-…`: el viejo deja el primer paso en **2 de 4** desfases (falla a
+  4.600 y 4.850 ms de `DOMContentLoaded`); el nuevo, en **4 de 4**. La rama de fallo cerrado, forzada
+  con una sonda imposible de casar, devuelve `valida:false`.
+- **`check:texto '/services/'`**: **13 idénticas** y la piloto roja, **igual en tres corridas** (dos
+  antes de sincronizar con `origin` y una después).
+- **Rota a propósito:** una palabra del título del paso 1 de `custom-deck-builders` → **ROJO**
+  «faltan 1, sobran 1». El arreglo no ciega la puerta.
+
+**Abierto, y no es de T5:**
+
+- **La roja de la piloto es contenido real**: el reordenado de secciones de R19 (TESTIMONIALS sube
+  de la línea 59 a la 17) y un «Get A Free Estimate» de más. Hay que declararlo en `check-texto.mjs`,
+  y ninguna tarea de este encargo lo recoge.
+- **`check:visual` no se midió con este cambio.** `asentar()` también lo alimenta, pero las
+  referencias de las 14 son anteriores al rediseño y salen rojas igual: falla ABIERTO.
