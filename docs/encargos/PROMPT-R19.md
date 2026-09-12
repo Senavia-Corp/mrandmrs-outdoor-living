@@ -159,6 +159,66 @@ variante hermana: cruzar las claves da `invalid-input-secret`, «peor que no pon
 
 ---
 
+## 4.bis · ARREGLA LOS DEFECTOS DE DISENO QUE ENCUENTRES POR EL CAMINO
+
+Sebastian lo pide expresamente: **si al hacer un cambio ves un defecto de diseno, arreglalo.** No
+lo apuntes para luego. Pero con un limite, porque este sitio promete que 121 paginas salen byte a
+byte iguales y eso no se rompe por una mejora.
+
+### Lo que SI arreglas, sin preguntar
+
+Defectos **en las secciones que estas tocando** o **en la ruta en la que estas trabajando**, que
+puedas **demostrar con una medida**:
+
+- contraste por debajo de umbral (peor pixel, nunca promedio)
+- desbordamiento horizontal
+- objetivos tactiles por debajo de 44 px que no esten dentro de un envoltorio alcanzable
+- huecos muertos, ritmos rotos, asimetrias que no tienen motivo
+- costuras de color entre secciones vecinas
+- imagenes repetidas en la misma pagina
+- `width`/`height` que falten y provoquen CLS
+- saltos de nivel en la jerarquia de encabezados **que tu cambio introduzca**
+- colisiones de nombre de clase
+- textos que se salen, se parten mal o pierden su linea base
+
+**Y arreglalo con su medida escrita en el codigo**: «iba a X, ahora a Y», como esta el resto de
+la hoja. Un arreglo sin numero es una opinion.
+
+### Lo que NO arreglas: lo reportas
+
+**Si el defecto vive en marcado o CSS COMPARTIDO, tocarlo mueve las otras 121 paginas y rompe la
+garantia de identidad.** Eso no es tuyo: se documenta y se deja escrito de quien es.
+
+Ejemplos reales ya detectados en este repo, y ninguno se toco:
+
+- **73 enlaces del pie por debajo de 44×44** — cromo del sitio, en las 122 paginas.
+- **El salto `h2 -> h4` del marquee del pie** — esta en las catorce fichas.
+- **`CarruselProyectos` no declara `width`/`height`** en sus slides — lo montan 66 rutas.
+- **El anillo de foco de los acordeones es invisible por debajo de 992** (1,12:1) — alcanza a las
+  14 fichas.
+- **Cualquier clic fuera cierra la respuesta de la FAQ que estas leyendo.**
+
+**La regla para decidir:** ¿el selector que tendrias que tocar lo usa alguna otra ruta? Compruebalo
+—`grep -rlo 'la-clase' .vercel/output/static --include='*.html' | wc -l`— y si la respuesta es mas
+de una, **reportalo en vez de arreglarlo**.
+
+### El listo que hay que tener
+
+Los defectos que mas han dolido en este encargo **no se veian en una captura**:
+
+| Defecto | Por que no se veia |
+|---|---|
+| Banner de exito a **1,35:1** | ese estado no existe hasta que se envia el formulario |
+| Foto del heroe **repetida** como portada de su propia tarjeta | hay que mirar la pagina entera, no la seccion |
+| **65 px de costura blanca** entre dos secciones | solo aparece cuando una de las dos cambia de color |
+| Padding **96 arriba / 32 abajo** | la justificacion escrita era correcta… para el diseno anterior |
+| Colision de `.svc-icono` con otro componente | hay que barrer los nombres, no leer el diff |
+
+**Mide los estados que no se ven**: banners de exito y de fallo, estados de foco, `:hover`,
+`prefers-reduced-motion`, campos en error, formulario enviado, carruseles en marcha.
+
+---
+
 ## 5 · Y DESPUES, SIN PARAR: las 13 fichas restantes
 
 En cuanto la piloto este verde y commiteada, **sigue**. No preguntes.
