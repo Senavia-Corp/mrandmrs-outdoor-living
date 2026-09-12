@@ -8,6 +8,7 @@
  *   3. Las 93 entradas por scroll (growIn / slideInLeft / slideInRight / slideInBottom)
  *   4. El nav que se esconde al bajar y vuelve al subir (a-11 / a-12, 500 ms `easeInOut`)
  *   5. El botón play/pausa de los vídeos de fondo
+ *   6. El acordeón de «Pool Features & Upgrades» (`.wrapper-feature`, 55 rutas)
  *
  * ─────────────────────────────────────────────────────────────────────────────
  * EL ESTADO OCULTO CUELGA DE UN SELLO QUE ESCRIBE EL JS
@@ -449,6 +450,61 @@ const REVEALS = JSON.stringify(reveals.porId);
       if (!video) continue;
       b.setAttribute('aria-label', 'Play or pause the background video');
       b.addEventListener('click', () => { video.paused ? video.play() : video.pause(); });
+    }
+
+    // ── 6 · el acordeon de «Pool Features & Upgrades» ────────────────────
+    //
+    // Venia de TRES copias byte a byte del mismo script embebido en el marcado
+    // -`plantilla-pool-builders.json` y los `T2` de las dos `/where-we-serve/*-florida`-, o
+    // sea el mismo comportamiento mantenido en tres sitios. Aqui es uno.
+    //
+    // Lo que el original NO hacia y ahora si: la columna es un `<button>` de verdad, con
+    // `aria-expanded`, orden de foco natural y flechas. Antes era un `div` con
+    // `cursor: pointer`: ni tabulable, ni anunciado, ni visible al enfocar.
+    //
+    // Las consultas van ACOTADAS a `.wrapper-feature` a proposito: `.is-active` la usa
+    // tambien el intercambio de foto del mega-menu, 200 lineas mas arriba en este fichero.
+    //
+    // Sin JS la primera columna ya viene con `is-active` y `aria-expanded="true"` en el HTML
+    // estatico, asi que la seccion se lee entera igual: esto solo anade el poder cambiarla.
+    const banda = document.querySelector('.wrapper-feature');
+    if (banda) {
+      const tarjetas = [...banda.querySelectorAll('.feature-card')];
+      const botones = tarjetas.map((t) => t.querySelector('.feature-boton'));
+      const ancha = matchMedia('(min-width: 992px)');
+
+      const abre = (i) => {
+        tarjetas.forEach((t, n) => t.classList.toggle('is-active', n === i));
+        botones.forEach((b, n) => b?.setAttribute('aria-expanded', String(n === i)));
+      };
+
+      // Por debajo de 992 las seis columnas se ven ENTERAS -texto incluido-, asi que un
+      // `aria-expanded="false"` ahi seria mentira: el lector de pantalla anunciaria cerrado
+      // algo que esta abierto. Se recalcula tambien al cruzar el limite, no solo al cargar.
+      const sincroniza = () => {
+        if (!ancha.matches) { botones.forEach((b) => b?.setAttribute('aria-expanded', 'true')); return; }
+        const i = tarjetas.findIndex((t) => t.classList.contains('is-active'));
+        abre(i < 0 ? 0 : i);
+      };
+
+      botones.forEach((b, i) => {
+        if (!b) return;
+        b.addEventListener('click', () => { if (ancha.matches) abre(i); });
+        // Flechas, Inicio y Fin mueven el foco Y abren, como hace el raton. Mover el foco sin
+        // abrir dejaria al teclado enfocando una columna cerrada, con su titulo en vertical y
+        // su parrafo invisible: el foco estaria en un sitio que no se puede leer.
+        b.addEventListener('keydown', (ev) => {
+          const salto = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tarjetas.length - 1 }[ev.key];
+          if (salto === undefined || !ancha.matches) return;
+          ev.preventDefault();
+          const n = (salto + tarjetas.length) % tarjetas.length;
+          abre(n);
+          botones[n]?.focus();
+        });
+      });
+
+      ancha.addEventListener('change', sincroniza);
+      sincroniza();
     }
   }());
 </script>
