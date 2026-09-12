@@ -774,17 +774,24 @@ function captacion(doc, ruta) {
     if (norte && sur && norte.parentNode) norte.parentNode.insertBefore(norte, sur);
   }
 
-  /* ── 8 · LAS OBRAS REALES SUSTITUYEN A `gallery` ───────────────────────────────────────
-   * `gallery` pintaba `pool-construction-1…10` — LAS MISMAS DIEZ FOTOS que el feed de
-   * Instagram mas abajo. Solape 10/10, verificado fichero a fichero. Dos carruseles con las
-   * mismas imagenes en la misma pagina.
+  /* ── 8 · LAS OBRAS REALES SUSTITUYEN A `gallery` — PERO SOLO DONDE SE DECLARA ──────────
+   * En la ficha de piscina, `gallery` pintaba `pool-construction-1…10` — LAS MISMAS DIEZ FOTOS
+   * que el feed de Instagram mas abajo. Solape 10/10, verificado fichero a fichero. Dos
+   * carruseles con las mismas imagenes en la misma pagina, y por eso se sustituyo.
    *
-   * `CarruselProyectos` trae 15 obras reales con su enlace a `/project/<slug>`, y de paso
-   * repone los enlaces a obra que se fueron con el antes/despues. El marcador va como nodo de
-   * texto por lo mismo que el de la banda de inversion: `gallery` cuelga del `<div>` sin clase,
-   * no es hermana de primer nivel. */
+   * 🚨 ESA JUSTIFICACION ES DE LA FICHA DE PISCINA Y DE NINGUNA OTRA, Y POR ESO ESTO ES
+   * OPT-IN. En las otras trece, `gallery` trae las fotos DE SU PROPIO SERVICIO -pergolas,
+   * cubiertas, mosquiteras- y el feed de Instagram sigue trayendo piscinas: el solape es CERO.
+   * Quitarles la galeria las dejaria sin su unico bloque de fotos propio del servicio y se lo
+   * cambiaria por quince obras de piscina. Se declara con `proyectos.reemplazaGaleria: true`
+   * en `captacion-servicios.json`, ficha por ficha y con su motivo.
+   *
+   * `CarruselProyectos` trae obras reales con su enlace a `/project/<slug>`, y de paso repone
+   * los enlaces a obra que se fueron con el antes/despues. El marcador va como nodo de texto
+   * por lo mismo que el de la banda de inversion: `gallery` cuelga del `<div>` sin clase, no
+   * es hermana de primer nivel. */
   const galeria = doc.querySelector('section.gallery');
-  if (galeria && galeria.parentNode) {
+  if (galeria && galeria.parentNode && c.proyectos?.reemplazaGaleria) {
     galeria.parentNode.insertBefore(
       doc.createTextNode(MARCA + 'CarruselProyectos' + MARCA), galeria);
     galeria.remove();
@@ -855,7 +862,12 @@ function captacion(doc, ruta) {
     sc.textContent = JSON.stringify(bloque);
   }
 
-  return ['InversionCore', 'CarruselProyectos'];
+  /* Los componentes que esta ruta ha usado de verdad. `CarruselProyectos` solo si la ficha
+   * declaro el reemplazo de la galeria: declararlo sin usarlo dejaria un import muerto en el
+   * `.astro` generado, y `npm run paginas` avisa de los no usados. */
+  return c.proyectos?.reemplazaGaleria
+    ? ['InversionCore', 'CarruselProyectos']
+    : ['InversionCore'];
 }
 
 for (const [ruta] of RUTAS) {

@@ -135,6 +135,7 @@
         "nueva. Con el filtro: 1 «North Florida», 0 «South Florida», 0 pergolas.",
         "Las otras 66 rutas que montan el carrusel no declaran `solo` y siguen viendo las 15."
       ],
+      "reemplazaGaleria": true,
       "solo": [
         "estate-pool-spa-sun-shelf-north-florida",
         "luxury-pool-spa-screen-enclosure-north-florida",
