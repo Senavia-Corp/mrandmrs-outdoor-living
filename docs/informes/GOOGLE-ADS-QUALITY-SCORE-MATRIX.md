@@ -263,7 +263,29 @@ Y el héroe, que es el LCP:
 | Pool Builders Core | **READY AFTER FIXES** | verificar GTM (§0). **A1 hecho** el 11-sep |
 | Gainesville | **READY AFTER FIXES** | verificar GTM (§0) · A1 |
 | Ocala | **READY AFTER FIXES** | verificar GTM (§0) · A1 |
-| Full Remodel | **READY AFTER FIXES** | verificar GTM (§0) · A1 |
+| Full Remodel | **READY AFTER FIXES** | verificar GTM (§0). **A1 hecho** el 12-sep (R19) |
+
+### Actualización R19 — 12-sep-2026
+
+**`Full Remodel` deja de ser una landing a medias.** Hasta hoy salía en la lista de PENDIENTES de
+`check:ads`: sin formulario propio declarado y sin héroe que medir, o sea que solo se le corrían
+cinco de las trece comprobaciones. Ahora tiene **formulario propio en la página**
+(`data-name: 'Pool Remodel Form'`, preselección `Complete Pool Remodel`) y héroe con
+`fetchpriority="high"` y dimensiones horneadas, y **pasa las trece**. El tráfico de pago de sus
+9 keywords ya no necesita un segundo clic hasta `/request-estimated`.
+
+**Los leads de las dos landings de pago ya no se mezclan.** `data-name` estaba cableado a «Pool
+Builders Core Form» en el componente que montan las catorce fichas: los de remodelación habrían
+llegado con el asunto y el `form_name` del Core. Cada ficha trae ahora el suyo, así que
+«Pool builders core lead» y «Pool remodel lead» son distinguibles en el correo y en GA4.
+
+**Lo que sigue mandando sobre las cuatro:** mientras `generate_lead` siga a 0 en GA4 el veredicto
+es READY AFTER FIXES y **no** READY FOR PAID SEARCH. Es de GTM, no de este repo (§0).
+
+⚠️ **Las dos fotos de la landing de remodelación son de obra NUEVA, no de una remodelación**, y
+su `alt` lo dice sin llamarlo remodelación: no existe ni una obra de remodelación en
+`public/images/projects/`. Decisión de Sebastian del 12-sep. Son las primeras a cambiar cuando
+haya fotografía real.
 
 Las cuatro pasan `npm run check:ads`: intención correcta arriba del pliegue, un solo `<h1>`,
 canónica correcta, sin `noindex`, con camino a conversión, con el teléfono de North Florida

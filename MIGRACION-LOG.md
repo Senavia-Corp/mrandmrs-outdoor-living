@@ -5579,6 +5579,103 @@ Ojo al construir en local: sin `PUBLIC_ES_PRODUCCION=1`, `npm run build` reescri
 
 ---
 
+## R19 — las catorce fichas de `/services/` captan el lead en su propia página (12-sep-2026)   ✅ cerrada
+
+**Encargo:** `docs/encargos/PROMPT-R19.md` + `docs/encargos/R19-CAMBIOS.md`, de Sebastian
+**Rama:** `claude/happy-hamilton-u7vqjy` · **Base:** `28d392e`
+
+### Objetivo
+
+Cerrar los cinco cambios de diseño que Sebastian dictó sobre la ficha piloto y **extender el
+tratamiento a las trece restantes**. R17-CORE construyó la capa para las catorce y encendió una;
+esto enciende las catorce.
+
+### Qué se hizo
+
+- **C5 · el ritmo del héroe.** Teléfonos, licencias y CTA salían a **0 px** unos de otros.
+  Quedan en **8 / 24**, con la escala de la casa y **una sola declaración (66 B)**.
+- **C4 · «Why» y «Custom» son una sección.** Fundidas en un plano navy y subidas **delante del
+  formulario**, para que se vea obra antes de pedir los datos.
+- **C3 · la banda de inversión a 50/50.** Foto de obra a altura completa a la izquierda, plano
+  navy con texto y los dos CTA a la derecha. La maqueta anterior se fue entera y **lo que pesaba
+  pagó lo nuevo**.
+- **Las trece fichas restantes**, una entrada de JSON cada una.
+- **Cada ficha con su propio formulario** (`data-name`, asunto de correo e id de GA4 propios) y
+  **su propio desplegable de tipo de proyecto**, que estaba cableado a las dos opciones de
+  piscina.
+
+### Lo que estaba mal y nadie sabía
+
+1. **Los catorce servicios iban a compartir cubo de leads.** `data-name` estaba fijo a «Pool
+   Builders Core Form» y es la clave de enrutado en tres ficheros más. Catorce servicios, un
+   asunto de correo, indistinguibles en GA4.
+2. **El desplegable pedía elegir «New Custom Pool» para presupuestar una pérgola.**
+3. **Quitar la galería habría dejado a trece fichas sin fotos de su servicio.** La justificación
+   escrita («pinta las mismas 10 fotos que Instagram») es de la ficha de piscina: en las otras
+   trece el solape es **cero**. Pasó a ser opt-in.
+4. **`about.serviceType` decía «Smart Soffit LED Lighting Installation» en las catorce fichas**,
+   también en la de piscinas. Valor pegado en el Webflow de origen.
+5. **El bloque del antes/después acaba en «Get A Free Estimate», que sale cuatro veces en la
+   página.** Declararla en `QUITADAS_A_PROPOSITO` —que filtra por Set— habría borrado también la
+   del héroe. Lo cazó la comprobación de ORDEN, que solo corre cuando el conjunto cuadra.
+6. **Dos reordenes estructurales sin declarar** (las reseñas suben; North antes que South), que
+   la roja conocida del carrusel de proceso llevaba tapando.
+
+### Números medidos
+
+| Qué | Comando | Resultado |
+|---|---|---|
+| Ritmo del héroe | `node scripts/diag-ritmo.mjs <ruta> '.block-hero-services-page' 390 768 1440` | 8/10/10/**0/0** → 8/10/10/**8/24** |
+| Composición del héroe | `node scripts/diag-ritmo.mjs <ruta> 'section.hero-services' --composicion 1440x900` | aire visible **145 / 145**, desequilibrio **0** |
+| Contraste, peor píxel bajo los glifos | `node scripts/diag-contraste.mjs <ruta> 'section.svc-confianza, section.svc-intro, section.svc-inversion' 1440` | blanco/navy **15,60:1**, oro **8,40:1**, peor caso **6,35:1** (umbral 4,5) |
+| Presupuesto CSS | `npm run check:tokens` | **78,4 KB de 80 · 1,6 KB libres** |
+| Identidad | `node scripts/diag-identidad.mjs --compara antes.json` | **13 cambian · 109 idénticas byte a byte** |
+| Pliegue móvil | `node scripts/diag-ritmo.mjs <ruta> … --pliegue 390x844 --reserva 80` | todo entra (CTA acaba en 485, flotación 764) |
+
+### La mitad de C5 que NO se hizo, y por qué
+
+`R19-CAMBIOS.md` §C5 pedía «componer el héroe verticalmente en vez de apoyarlo arriba», leyendo
+`padding-block: 85px / 0px`. **Medido, esa lectura no se sostiene:** el nav se superpone —la
+sección empieza en y=0 y `section.menu` ocupa los primeros 85—, así que el padding es
+compensación y `align-items: center` ya centra el contenido en la zona visible: **145 y 145** a
+1440, **31 y 31** a 390. Añadir aire abajo lo habría descentrado 42 px.
+
+### Gate
+
+| Puerta | Estado |
+|---|---|
+| `check:tokens` `check:rutas` `check:enlaces` `check:aviso` `check:carrusel` `check:resenas` `check:estimador` | ✅ verde |
+| `check:seo` `check:ads` `check:medicion` (con `PUBLIC_ES_PRODUCCION=1`) | ✅ verde |
+| `check:ads` — la landing «Full Remodel» pasa de PENDIENTE a sus **13 comprobaciones** | ✅ verde |
+| `check:texto` | 🟡 **5 fichas verdes enteras**; las otras 9 en `faltan 2, sobran 2` = **PRE-EXISTING KNOWN RED** (`AUTOPLAY_DELAY = 5000`) |
+| `check:visual` | 🔴 **roja CORRECTA** — contrato `rediseño`, espera a `aprobar-diseno.mjs`, que exige humano |
+| `check:assets` | 🔴 **ENVIRONMENT BLOCKER** — lee de `_source/sanity-masters/`, que está en `.gitignore` |
+| `check:cascaron` | ⬜ **no se corre**: reescribe `robots.txt` y `sitemap.xml` |
+
+### Herramientas nuevas
+
+`scripts/diag-ritmo.mjs`, `scripts/diag-contraste.mjs` y `scripts/diag-identidad.mjs`. Son los
+comandos que producen los números de la tabla de arriba, que hasta ahora no los daba nada. El de
+contraste mide **bajo los glifos**, restando dos pasadas: medir la caja cobraba las esquinas
+redondeadas de un botón y daba un falso 1,00:1.
+
+### Abierto
+
+1. **Diez fotos no son del servicio que ilustran** (muebles, paisajismo, riego, sofito, acero, y
+   las dos de la landing de remodelación). No existe obra propia de esos servicios: las quince
+   son de piscina y patio. Sebastian decidió usar la más cercana; el `alt` describe lo que hay en
+   el encuadre y no reclama el servicio. **Son las primeras que hay que cambiar cuando haya
+   fotografía real.**
+2. **El antes/después sigue fuera** en las catorce, por la foto del MLS de Miami. **De Sebastian.**
+3. **`aprobar-diseno.mjs`** para cerrar `check:visual`. **De Sebastian.**
+4. **`page.clock.install()`** en `scripts/lib/captura.mjs` cerraría la roja de `check:texto` en
+   las nueve fichas de golpe. **Del director.**
+5. **El copy de `location` habla de piscinas en las catorce fichas** («Licensed luxury pool
+   builders…» en la de pérgolas). Es copy pegado en el origen; cambiarlo es texto nuevo en 14
+   rutas. **De Sebastian.**
+
+---
+
 ## R17-CORE — la landing de pago del ad group «Pool Builders Core» deja de mandar el tráfico a otra página (11-sep-2026)   ✅ cerrada
 
 **Encargo:** ENCARGO MAESTRO de Sebastian · **Informe:** [`docs/encargos/R17-CORE.md`](docs/encargos/R17-CORE.md)
