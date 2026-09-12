@@ -612,6 +612,32 @@ function captacion(doc, ruta) {
     logos.parentNode.insertBefore(testimonios, logos.nextSibling);
   }
 
+  /* ── 3.bis · «WHY» Y «CUSTOM» SE FUNDEN, Y SUBEN DELANTE DEL FORMULARIO (C4) ───────────
+   * Sebastian lo pidio por experiencia de uso, y el motivo es bueno: asi se ven imagenes de
+   * obra ANTES de pedirle los datos a nadie. El mosaico de fotos dejaba de estar enterrado
+   * detras del formulario.
+   *
+   * `trusted-section` NO es hermana de primer nivel -cuelga del `<div>` sin clase, ver el
+   * bloque 4-, asi que esto la SACA de ahi y la deja como hermana justo detras de
+   * `logos-section`. Se hace despues del bloque 3 a proposito: `logos.nextSibling` ya son las
+   * resenas, asi que la intro queda entre las dos y el orden final es
+   *
+   *     logos · «Why» (ConfianzaCore) · «Custom» (intro) · formulario · resenas
+   *
+   * Y al ser hermana de primer nivel, el bucle de mas abajo SI la ve, que es lo que permite
+   * colgar de ella el marcador del formulario sin nodos de texto.
+   *
+   * 🚨 `.trusted-section` LA MONTAN 80 PAGINAS CONSTRUIDAS
+   * (`grep -rlo 'trusted-section' .vercel/output/static --include='*.html' | wc -l`), asi que
+   * su regla global NO se toca. La marca `svc-intro` es lo que permite corregirla SOLO aqui;
+   * y `mm-inverso` le da el navy y, sobre todo, redefine los papeles del ambito -tinta,
+   * enlace, borde y foco- por cero bytes. */
+  const intro = doc.querySelector('section.trusted-section');
+  if (logos && intro && logos.parentNode) {
+    logos.parentNode.insertBefore(intro, logos.nextSibling);
+    intro.classList.add('svc-intro', 'mm-inverso');
+  }
+
   /* ── 4 · EL MARCADOR DE LA BANDA DE INVERSION ──────────────────────────────────────────
    * 🚨 SEIS SECCIONES DE ESTA FICHA NO SON HERMANAS DE PRIMER NIVEL: `trusted-section`,
    * `services`, `before-after-section`, `process-section`, `gallery` y `faq-section` cuelgan
@@ -1251,8 +1277,14 @@ for (const [ruta] of RUTAS) {
     acumulado += limpia(n);
     if (CAPTACION[ruta] && n.matches?.('section.logos-section') && primerLogos) {
       primerLogos = false;
-      acumulado += MARCA + 'ConfianzaCore' + MARCA + MARCA + 'FormularioCore' + MARCA;
+      acumulado += MARCA + 'ConfianzaCore' + MARCA;
       usados.add('ConfianzaCore');
+    }
+    /* El formulario va DETRAS de la intro, no pegado a `ConfianzaCore`: entre los dos queda la
+     * seccion fundida de C4. `trusted-section` es hermana de primer nivel porque el bloque
+     * 3.bis la subio ahi; antes de eso este `matches` no casaba nunca. */
+    if (CAPTACION[ruta] && n.matches?.('section.trusted-section')) {
+      acumulado += MARCA + 'FormularioCore' + MARCA;
       usados.add('FormularioCore');
     }
     if (CAPTACION[ruta] && n.matches?.('section.process-section')) {

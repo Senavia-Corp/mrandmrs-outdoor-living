@@ -365,6 +365,53 @@
   align-items: center;
   min-height: 44px;
 }
+/* ═══ C4 · LA SECCION FUNDIDA: «Why homeowners pick us» + «Custom Pool & Spa Builders…» ═══
+ *
+ * Las dos eran secciones distintas con fondos distintos, y Sebastian pidio que fueran UNA.
+ * El generador las deja pegadas y le pone a la intro las marcas `svc-intro` y `mm-inverso`
+ * (`build-paginas.mjs`, bloque 3.bis). Aqui se corrige lo que queda.
+ *
+ * POR QUE NO SE COPIA EL FONDO DE ONDA, QUE ERA LO PRIMERO QUE SE PENSO (C1). Tres razones,
+ * y las tres son medidas, no gusto:
+ *
+ * 1 · NO HAY CAJA COMUN. Las dos son secciones HERMANAS; no existe un envoltorio al que
+ *     colgarle un solo fondo. Dos cajas con `background-size: cover` son DOS recortes
+ *     distintos de la misma imagen, y el salto entre ambos es una costura horizontal justo
+ *     donde el diseno promete continuidad. Fundir es precisamente lo que no admite costura.
+ * 2 · LA BANDA DE CIAN. `R19-CAMBIOS.md` §C1 midio el fondo aislado por bandas a 1440: el 10 %
+ *     superior es `#98e2f1` y da 1,45:1 con blanco -y 1,10:1 con el cuerpo atenuado-. Sobre
+ *     `.trusted-section` no se notaba porque su texto cae en la zona seca; el `<h2>` de «Why»
+ *     va arriba del todo, o sea JUSTO en la banda mala. Y como la seccion fundida es mas alta,
+ *     `cover` reescala y la banda se muda de sitio: heredar la medida vieja seria dar por
+ *     bueno un numero que ya no describe la caja.
+ * 3 · EL COLOR PLANO NO TIENE ESE PROBLEMA Y CUESTA CERO. `mm-inverso` ya da el navy y ademas
+ *     redefine tinta, enlace, borde y foco del ambito. Medido en `disenio/base.css`:
+ *     blanco 15,60:1 · atenuada `#c7cddd` 9,81:1 · oro claro 8,51:1. Los tres pasan con
+ *     margen en CUALQUIER banda, porque no hay bandas: es un plano.
+ *
+ * OJO A LA TRAMPA QUE CASI CUELA: poner la intro `transparent` NO la vuelve navy, la vuelve
+ * BLANCA — son hermanas, debajo esta el fondo de pagina. Tiene que TOMAR el navy, no perder
+ * el suyo.
+ *
+ * Y EL FONDO SE DECLARA AQUI AUNQUE `mm-inverso` YA LO PONGA, con doble clase (0-2-0).
+ * `propio.css:261` lleva `.trusted-section { background-color: var(--mm-azul-500) }` y se
+ * carga DESPUES de esta hoja (`Base.astro:132` frente a `:135`), asi que a igualdad de peso
+ * gana el azul. `intro.css` y `webflow.css` cargan antes y con 0-1-0 basta para ellos; este
+ * es el unico que necesita el empate roto. */
+.svc-intro.svc-intro {
+  background-color: var(--mm-fondo-navy);
+  background-image: none;
+  box-shadow: none;
+  padding-block-start: var(--mm-e-64);
+}
+
+/* La costura de aire. Fundidas, las dos sumaban su relleno: 96 de `mm-seccion` abajo mas 96
+ * de `.trusted-section` arriba = 192 px de hueco muerto EN MEDIO de una seccion que dice ser
+ * una. Se anula el de la franja y la intro entra con 64, que es menos que los 96 que la
+ * seccion deja por fuera: asi el bloque se lee como uno con dos partes, y no como dos cosas
+ * que se tocan. */
+.svc-confianza { padding-block-end: 0; }
+
 /* C5 - EL RITMO DE LAS TRES ULTIMAS LINEAS. Medido antes de tocar nada, a tres anchos:
  *
  *     node scripts/diag-ritmo.mjs /services/custom-pool-spa-builders-in-north-south-florida \

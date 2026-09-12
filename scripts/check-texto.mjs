@@ -1093,14 +1093,27 @@ function bloquesCaptacion(ruta) {
     c.heroe.licencias,
   ]);
 
-  // 2 · franja de confianza + «what happens» + formulario, todo seguido.
+  // 2 · franja de confianza. SOLA, y esto es el cambio de R19 C4.
   //     R18: los pasos van DELANTE del formulario desde el rediseno de la seccion. No hace
   //     falta declararlo en REORDENADAS_A_PROPOSITO porque estas lineas no salen de ningun
   //     baseline: son de la capa de captacion y se declaran aqui enteras. Lo unico que cambia
   //     es el orden de ESTA lista, que es la que dice que se espera ver y en que orden.
+  //
+  //     🚨 R19 C4 PARTIO ESTE BLOQUE EN DOS, Y NO ES COSMETICO. Antes confianza y formulario
+  //     eran UN bloque contiguo; ahora entre los dos va la intro («Custom Pool & Spa
+  //     Builders…»), que se subio ahi para que se vea obra ANTES de pedir los datos. Como
+  //     `quitaBloque` exige que las lineas del bloque salgan SEGUIDAS, dejarlo entero daba
+  //     exactamente el error que dio: «esta, pero PARTIDO o DESORDENADO». Son dos bloques
+  //     contiguos cada uno por su lado, y asi se declaran. El texto de la intro que ahora
+  //     queda en medio sale del baseline, no de aqui, y su reorden va en
+  //     REORDENADAS_A_PROPOSITO.
   bloques.push([
     capitaliza(c.confianza.rotulo),
     ...c.confianza.tarjetas.flatMap((t) => [capitaliza(t.titulo), t.texto]),
+  ]);
+
+  // 2.bis · «what happens» + formulario, detras de la intro.
+  bloques.push([
     capitaliza(c.formulario.pasosTitulo),
     ...c.formulario.pasos.flatMap((p, i) => [String(i + 1), p]),
     capitaliza(c.formulario.titulo),
