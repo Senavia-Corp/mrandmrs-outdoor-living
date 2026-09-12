@@ -216,6 +216,32 @@ const JSONLD_ARREGLADO = {
     respuestaSustituida: { camino: 'mainEntity.mainEntity.4.acceptedAnswer.text', empiezaPor: 'We connect qualified Florida homeowners' },
     anadidas: { camino: 'mainEntity.mainEntity', n: 3 },
   },
+
+  /* R19 — LAS 13 FICHAS RESTANTES. Los mismos tres defectos del origen, ficha por ficha y con
+   * sus valores REALES, sacados de comparar el JSON-LD construido contra `baseline/seo.json`
+   * y no de suponer que son iguales:
+   *
+   *   · `about.serviceType` dice otro servicio. En las catorce fichas pone el mismo texto,
+   *     «Smart Soffit LED Lighting Installation», tambien en la de pergolas y en la de
+   *     piscinas: es un valor pegado en el Webflow de origen.
+   *   · `about.image` trae una FRASE donde va una URL. Un `ImageObject`/`image` con prosa no
+   *     es una imagen para nadie que lea el marcado.
+   *   · `dateModified` y `datePublished` van CAMBIADOS: el origen publica despues de modificar.
+   *
+   * Aqui NO hay `respuestaSustituida` ni `anadidas`: esta ficha no reescribe ni anade preguntas
+   * -no se inventa una FAQ para rellenar-, asi que su `FAQPage` es el del origen intacto. */
+  '/services/custom-aluminum-pergola-builders-in-north-south-florida': {
+    bloque: 0,
+    motivo: 'R19: los tres defectos del origen en la ficha de pergolas de aluminio.',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
+        'Custom Aluminum Pergola Design & Installation'],
+      ['about.image', 'Custom aluminum pergolas built by outdoor living contractors in Florida.',
+        '/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-3.avif'],
+      ['dateModified', '2026-05-19T13:22:48.310Z', '2026-05-19T13:23:24.377Z'],
+      ['datePublished', '2026-05-19T13:23:24.377Z', '2026-05-19T13:22:48.310Z'],
+    ],
+  },
 };
 
 /** Lee/escribe por camino con puntos: `mainEntity.mainEntity.4.name`. */

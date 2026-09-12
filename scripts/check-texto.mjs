@@ -108,6 +108,29 @@ const QUITADAS_A_PROPOSITO = [
     ['Custom Pool Project Gallery', '`gallery` se sustituye por CarruselProyectos: pintaba las mismas 10 fotos que el feed'],
     ['Custom pool builds across Florida — from resort-style lagoons to sleek modern lap pools.', 'idem'],
   ].map(([l, m]) => [l, m, ['/services/custom-pool-spa-builders-in-north-south-florida']]),
+
+  /* ── R19 · LAS 13 FICHAS RESTANTES ──────────────────────────────────────────────────────
+   * El mismo antes/despues, la misma razon. `public/images/residentials/<slug>/<slug>-before.png`
+   * existe en las catorce y es el mismo montaje: el «Before» no es obra del cliente. Lo que
+   * cambia por ficha son las CUATRO lineas de copy propio (titulo, entradilla y los dos temas
+   * de la franja), que se leen de `baseline/text/services_<slug>.txt` y no de memoria.
+   *
+   * Las cinco lineas restantes -«Before», «After», «Design-Build Authority», su parrafo,
+   * «Licensed & Engineered», su parrafo y «View All Projects»- son IDENTICAS en las catorce:
+   * el bloque es copy pegado. Se declaran una vez por ficha igualmente, porque `rutas` acota
+   * el perdon y un perdon global aqui taparia una desaparicion de verdad en otra ruta. */
+  ...[
+    ['Before', 'el antes/despues sale: el «Before» no es obra del cliente'],
+    ['After', 'idem'],
+    ['From Bare Patio To A Beautiful Shaded Pergola', 'idem'],
+    ['Escape the South Florida sun in style. Mr. & Mrs. Outdoor Living builds custom aluminum pergolas that add shade, architectural elegance, and lasting value to your outdoor space — engineered for Florida weather and built to endure.',
+      'idem'],
+    ['Design-Build Authority', 'idem: este tema sube a la franja de confianza, dicho mas corto'],
+    ['One team handles design, permits, engineering, and construction. No subcontractor surprises, no gaps in accountability.', 'idem'],
+    ['Licensed & Engineered', 'idem: sube a la franja de confianza'],
+    ['Florida licensed and insured professionals. Every project is built to code, built to last, and built to impress.', 'idem'],
+    ['View All Projects', 'idem. Esta ficha CONSERVA su galeria, asi que sus fotos propias siguen ahi'],
+  ].map(([l, m]) => [l, m, ['/services/custom-aluminum-pergola-builders-in-north-south-florida']]),
 ];
 
 /**
@@ -321,14 +344,27 @@ const REORDENADAS_A_PROPOSITO = [
   },
 ];
 for (const d of REORDENADAS_A_PROPOSITO) {
+  if (!d.ruta && !d.rutas?.length) {
+    throw new Error('REORDENADAS_A_PROPOSITO: una declaracion sin `ruta` ni `rutas`');
+  }
   if ([...d.antes].sort().join('\n') !== [...d.despues].sort().join('\n')) {
-    throw new Error(`REORDENADAS_A_PROPOSITO ${d.ruta}: antes y despues no son las mismas lineas`);
+    throw new Error(`REORDENADAS_A_PROPOSITO ${d.ruta ?? d.rutas.join(' ')}: `
+      + 'antes y despues no son las mismas lineas');
   }
 }
 
-/** Aplica el reorden declarado de UNA ruta sobre sus líneas del baseline. */
+/**
+ * Aplica el reorden declarado de UNA ruta sobre sus líneas del baseline.
+ *
+ * R19: una declaracion puede traer `ruta` (una) o `rutas` (varias). Las catorce fichas de
+ * `/services/` comparten LITERALMENTE las seis lineas del bloque `location` -es el mismo copy
+ * pegado en las catorce-, y el generador las reordena igual en todas. Con una sola entrada por
+ * ruta habria que repetir catorce veces el mismo bloque de seis lineas, y una lista repetida
+ * es una lista que se desincroniza.
+ */
 const reordena = (ruta, lineas) => {
-  for (const d of REORDENADAS_A_PROPOSITO.filter((x) => x.ruta === ruta)) {
+  const casa = (x) => x.ruta === ruta || x.rutas?.includes(ruta);
+  for (const d of REORDENADAS_A_PROPOSITO.filter(casa)) {
     const i = lineas.findIndex((_, k) => d.antes.every((l, j) => lineas[k + j] === l));
     if (i >= 0) lineas.splice(i, d.antes.length, ...d.despues);
   }
@@ -1050,9 +1086,12 @@ const CAPTACION_JSON = (() => {
 })();
 
 /** Espejo de `src/components/widgets/FormularioCore.astro`. Un cambio alli sin cambio aqui = ROJA. */
-const CAMPOS_CAPTACION = [
+/* R19: los tipos de proyecto DEPENDEN DE LA FICHA (`formulario.proyectos`), asi que esto deja
+ * de ser una lista y pasa a ser una funcion de la ficha. Lo demas es identico en las catorce
+ * porque lo pinta un solo componente. El respaldo es el par de la ruta piloto. */
+const camposCaptacion = (c) => [
   'Full name', 'Phone', 'Email', 'ZIP code',
-  'Project type', 'New Custom Pool', 'Complete Pool Remodel',
+  'Project type', ...(c.formulario.proyectos ?? ['New Custom Pool', 'Complete Pool Remodel']),
   'Do you own this property?', 'Select one...', 'Yes, I own this property', 'No', 'Other',
   'Investment range', 'Select one...',
   'Under $25,000', '$25,000 – $50,000', '$50,000 – $75,000',
@@ -1118,23 +1157,28 @@ function bloquesCaptacion(ruta) {
     ...c.formulario.pasos.flatMap((p, i) => [String(i + 1), p]),
     capitaliza(c.formulario.titulo),
     c.formulario.entradilla,
-    ...CAMPOS_CAPTACION,
+    ...camposCaptacion(c),
   ]);
 
-  // 3 · banda de inversion + carrusel de obras, tambien seguidos.
+  // 3 · banda de inversion, y el carrusel de obras DETRAS solo si esta ficha sustituyo su
+  //     galeria por el (`proyectos.reemplazaGaleria`). Las que conservan su galeria propia no
+  //     pintan `CarruselProyectos`, asi que declarar sus lineas las daria por faltantes.
   bloques.push([
     capitaliza(c.inversion.titulo),
     c.inversion.texto,
     ...c.inversion.ctas.map((x) => x.texto),
-    capitaliza(c.proyectos.titulo),
-    c.proyectos.entradilla,
-    ...slidesObras(ruta),
-    'See All Projects',
+    ...(c.proyectos?.reemplazaGaleria ? [
+      capitaliza(c.proyectos.titulo),
+      c.proyectos.entradilla,
+      ...slidesObras(ruta),
+      'See All Projects',
+    ] : []),
   ]);
 
-  // 4 · las tres preguntas nuevas. Solo el `<h3>`: la respuesta vive en un desplegable cerrado
-  //     y `innerText` no la ve.
-  bloques.push(c.faq.anade.map((q) => capitaliza(q.pregunta)));
+  // 4 · las preguntas nuevas. Solo el `<h3>`: la respuesta vive en un desplegable cerrado y
+  //     `innerText` no la ve. Una ficha puede no anadir ninguna -no se inventa una pregunta
+  //     para rellenar-, y entonces no hay bloque que descontar.
+  if (c.faq?.anade?.length) bloques.push(c.faq.anade.map((q) => capitaliza(q.pregunta)));
 
   return bloques;
 }
@@ -1440,7 +1484,8 @@ for (const d of LINEAS_ANADIDAS) {
     + ` [${d.lineas.join(' / ')}] — ${d.motivo}`);
 }
 for (const d of REORDENADAS_A_PROPOSITO) {
-  console.log(`     declarado ${d.ruta}: orden de [${d.despues.length} lineas] — ${d.motivo}`);
+  console.log(`     declarado ${d.ruta ?? d.rutas.join(' ')}: orden de [${d.despues.length} lineas]`
+    + ` — ${d.motivo}`);
 }
 console.log(`\n${mal === 0 ? 'PUERTA VERDE' : `PUERTA ROJA — ${mal} pagina(s)`}\n`);
 process.exit(mal ? 1 : 0);

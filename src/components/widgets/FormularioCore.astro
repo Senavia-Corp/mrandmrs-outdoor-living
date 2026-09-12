@@ -74,7 +74,11 @@ const PRESUPUESTOS = [
 
 /* Los dos valores de A1. El de la landing va preseleccionado: es punto de conversion y de
  * correspondencia de mensaje a la vez (hoja 24). */
-const PROYECTOS = ['New Custom Pool', 'Complete Pool Remodel'];
+/* Los tipos de proyecto del desplegable. VIENEN DE LA FICHA: cableados eran los dos de
+ * piscina, y en las doce fichas que no son de piscina el visitante habria tenido que elegir
+ * entre «New Custom Pool» y «Complete Pool Remodel» para pedir presupuesto de una pergola.
+ * El respaldo mantiene el comportamiento de la ruta piloto si una ficha no los declara. */
+const PROYECTOS = d.proyectos ?? ['New Custom Pool', 'Complete Pool Remodel'];
 
 /* Rangos, nunca campo libre. */
 const PLAZOS = ['As soon as possible', '1-3 months', '3-6 months', '6-12 months', 'Just exploring'];

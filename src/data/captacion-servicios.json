@@ -23,7 +23,6 @@
     "experiencia, numero de piscinas, «5-star», ni una sola cifra financiera (decision de",
     "Sebastian del 2-sep-2026, TILA/Reg Z)."
   ],
-
   "/services/custom-pool-spa-builders-in-north-south-florida": {
     "heroe": {
       "apoyo": "New custom inground pools for North Florida homeowners — 3D design, permits, construction and final start-up, from one licensed team. We also build across South Florida.",
@@ -34,7 +33,6 @@
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate"
     },
-
     "confianza": {
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
@@ -60,7 +58,6 @@
         }
       ]
     },
-
     "formulario": {
       "titulo": "Get a Free Estimate",
       "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
@@ -75,7 +72,6 @@
         "You get the scope in writing and a fixed project price before you commit."
       ]
     },
-
     "servicios": {
       "rotulo": "What we do",
       "construccionPrimero": [
@@ -96,9 +92,11 @@
         "Pool Plumbing & Circulation Systems Installation": "Plumbing and circulation built for proper water flow and filtration.",
         "Pool Tile & Coping Installation": "Tile and coping that improve pool safety, durability, and modern design."
       },
-      "cta": { "texto": "Get a Free Estimate", "href": "#estimate" }
+      "cta": {
+        "texto": "Get a Free Estimate",
+        "href": "#estimate"
+      }
     },
-
     "faq": {
       "sustituye": {
         "Can I finance a custom pool project in Florida?": "Yes. We connect Florida homeowners with lending partners, and the order matters: you get your design and a fixed project price in writing first, and only then review how to pay for it. Approval and terms come from the lender."
@@ -118,11 +116,9 @@
         }
       ]
     },
-
     "schema": {
       "serviceType": "Custom Pool Construction"
     },
-
     "proyectos": {
       "titulo": "Custom pools we have built",
       "entradilla": "Real projects from our own galleries, across North and South Florida.",
@@ -143,16 +139,100 @@
         "pool-raised-spa-marble-deck-south-florida"
       ]
     },
-
     "inversion": {
       "titulo": "What will my pool cost?",
       "texto": "Every pool is priced from its own design, size, finishes and site conditions. Answer a few questions to see the range for a custom pool in Florida, then review how it can be paid for.",
       "ctas": [
-        { "texto": "Try the pool cost estimator", "href": "/pool-cost-estimator", "principal": true },
-        { "texto": "Financing available", "href": "/financing", "principal": false }
+        {
+          "texto": "Try the pool cost estimator",
+          "href": "/pool-cost-estimator",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
       ],
       "foto": "/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-6.avif",
       "alt": "Freeform pool with a raised spa and travertine deck inside a screened enclosure, built in North Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698
+    }
+  },
+  "/services/custom-aluminum-pergola-builders-in-north-south-florida": {
+    "heroe": {
+      "apoyo": "Custom pergola builders and installation company serving North & South Florida, delivering durable designs that enhance outdoor comfort and style.",
+      "foto": "/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-3.avif",
+      "alt": "Motorized louvered aluminum pergola over an outdoor kitchen and dining area beside a pool, built in North Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698,
+      "licencias": "Florida aluminum contractor · SCC131153553",
+      "ancla": "#estimate"
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida aluminum contractor",
+          "texto": "SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered to wind load",
+          "texto": "Every structure is engineered to local wind-load specifications."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Aluminum Pergola",
+        "Louvered & Adjustable Pergola"
+      ],
+      "proyectoPorDefecto": "New Aluminum Pergola",
+      "nombre": "Aluminum Pergola Form",
+      "aviso": "Aluminum pergola lead",
+      "ga4": "pergola",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the pergola for that space and take it through permits and HOA or ARB review.",
+        "You get the scope in writing and a fixed project price before anything is fabricated."
+      ]
+    },
+    "schema": {
+      "serviceType": "Custom Aluminum Pergola Design & Installation"
+    },
+    "inversion": {
+      "titulo": "What will my pergola cost?",
+      "texto": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-3.avif",
+      "alt": "Motorized louvered aluminum pergola attached to a home, shading a poolside patio in South Florida, built by Mr & Mrs Outdoor Living",
       "ancho": 1250,
       "alto": 698
     }
