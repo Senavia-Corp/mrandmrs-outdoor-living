@@ -20,9 +20,31 @@ export const ANCHO_DOM = 1920;
 export const ESCALA = 1 / 4;
 export const CALIDAD = 82;
 
-/** Argumentos que impiden que Chromium frene rAF y los temporizadores de la pestaña. */
+/** Argumentos que impiden que Chromium frene rAF y los temporizadores de la pestaña, mas
+ *  `--hide-scrollbars`, que es de otra familia y merece su parrafo.
+ *
+ *  LA BARRA DE SCROLL SE COME EL ANCHO DE LA MAQUETA, Y EN CADA SISTEMA SE LO COME DISTINTO.
+ *  El baseline se capturo en macOS, donde las barras son superpuestas y la pagina recibe el
+ *  viewport entero. En Linux —cualquier contenedor, cualquier CI— Chromium pinta una barra
+ *  clasica que RESERVA sitio. Medido con esta misma receta bajo Xvfb, 12-sep-2026:
+ *
+ *      viewport 1920  innerWidth 1920  clientWidth 1905   -> 15 px menos
+ *      viewport 1440  innerWidth 1440  clientWidth 1425   -> 15 px menos
+ *      viewport  991  innerWidth  991  clientWidth  976   -> 15 px menos
+ *      viewport  479  innerWidth  479  clientWidth  464   -> 15 px menos
+ *
+ *  Quince pixeles menos de ancho refluyen la pagina entera. En `/gallery` a 1440 eso son
+ *  +2 800 px de alto, y el JPEG sale de 356 px de ancho en vez de 360 (x4 = 1424, no 1440).
+ *  O sea que `check:visual` daba ROJO en TODA ruta corrida fuera de un Mac, sin que el sitio
+ *  tuviera nada. No es antialiasing ni fuentes: es geometria.
+ *
+ *  `--hide-scrollbars` quita la reserva y deja a Linux con el mismo ancho util que macOS. En
+ *  un Mac no cambia nada, porque alli ya era 0. Va AQUI y no en cada puerta a proposito: este
+ *  fichero es el que comparten la captura de referencia y la comparacion, y la regla de
+ *  `aprobar-diseno.mjs` es que las dos usen la MISMA receta o la comparacion no significa nada. */
 export const ARGS_NAVEGADOR = ['--disable-background-timer-throttling',
-  '--disable-renderer-backgrounding', '--disable-backgrounding-occluded-windows'];
+  '--disable-renderer-backgrounding', '--disable-backgrounding-occluded-windows',
+  '--hide-scrollbars'];
 
 /** Lo que se tapa, UNO A UNO con su motivo. Nunca se excluye una página entera. */
 export const MASCARAS = [

@@ -443,6 +443,12 @@
 /* ══════════════════════════════════════════════════════════════════════════════
  * FONDO AGUA (12-sep-2026) — UN SOLO FONDO AZUL PARA LAS SECCIONES NO BLANCAS
  *
+ * NUEVE SECCIONES, no ocho: `.animated-divs-section` entro el mismo dia, unas horas mas tarde
+ * (R17-CARAC). Esa banda se habia rediseñado copiando la receta VIEJA de `.trusted-section`
+ * —la webp + `--mm-azul-500` + velo navy al 50 %— horas antes de que esta regla la retirase.
+ * Se la trae aqui en vez de dejarla como noveno tratamiento suelto, que es justo lo que esto
+ * vino a matar. Solo hubo que borrar su `box-shadow: inset`: el resto lo pisa esta regla.
+ *
  * Aprobado por Sebastian sobre la propuesta visual: variante B (base + cresta + grano) y la
  * foto fuera del todo. Las tres capas viven en `disenio/tokens.css` (--agua-*); aqui solo se
  * aplican.
@@ -473,6 +479,7 @@
  *     .hero-project ............ 6,36:1    h1 35 px a 767                            5,31
  *     .cta-page-section ........ 6,72:1    h2 25 px a 767                            2,54 ✗
  *     .cta-footer .............. todo su texto va en la tarjeta blanca
+ *     .animated-divs-section ... 4,87:1    h2 20 px a 479 (cabecera; la banda va sobre foto)
  *
  *     Peor pixel del AGUA en todo el sistema: 4,92:1 (.footer a 479, y=62, rgb(60,105,222)).
  *     Cota inferior —techo sin cresta, mas grano—: 4,73:1. Las dos, AA.
@@ -481,6 +488,7 @@
  *
  * 🚨 MUEVE PIXELES EN 120 RUTAS. `check:visual` sale roja en todas y hay que re-baselinizar,
  * despues de la aprobacion visual de Sebastian. */
+.animated-divs-section,
 .trusted-section,
 .gallery,
 .testimonial-section,
@@ -496,8 +504,8 @@
   background-size: 100% 220px, 180px 180px, 100% 100%;
 }
 @media (min-width: 768px) {
-  .trusted-section, .gallery, .testimonial-section, .cta-footer,
-  .cta-page-section, .hero-project, .hero-about, .footer {
+  .animated-divs-section, .trusted-section, .gallery, .testimonial-section,
+  .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer {
     background-size: 100% 340px, 180px 180px, 100% 100%;
   }
 }
