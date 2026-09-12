@@ -240,3 +240,36 @@ sigue acotado por lista de rutas: las otras 13 fichas no se enteran hasta que se
 Las 14 fichas comparten plantilla y **todas tienen `trusted-section`** en el mismo sitio. El paso
 del generador vale para las catorce sin cambios: se activa anadiendo la ruta a la lista. El
 contenido del mosaico ya es propio de cada ficha, asi que no hay copy nuevo que declarar.
+
+---
+
+## Orden de secciones — CONFIRMADO por Sebastian, y cotejado contra el DOM
+
+Sebastian dicto el orden correcto y se comprobo elemento a elemento sobre el build, no de
+memoria. **Coincide con el actual en todo menos en un movimiento: el de C4.**
+
+| # | Orden final | Estado |
+|---:|---|---|
+| 1 | Hero | ✅ ya |
+| 2 | Carrusel de logos | ✅ ya |
+| 3 | **Why homeowners pick us** | ✅ ya |
+| 4 | **Intro** (`trusted-section`, «Custom Pool & Spa Builders…») | ⬆️ **sube 2 puestos** (C4) |
+| 5 | What happens after you reach out **+** Get a Free Estimate | ✅ ya — son **una sola** seccion desde R18 |
+| 6 | TESTIMONIALS | ✅ ya |
+| 7 | What we do (`services`) | ✅ ya |
+| 8 | `process` | ✅ ya |
+| 9 | What will my pool cost? (`svc-inversion`) | ✅ ya · rediseno en C3 |
+| 10 | `projects` | ✅ ya |
+| 11 | FAQ | ✅ ya |
+| 12 | Where We Serve (`location`) | ✅ ya |
+| 13 | blog | ✅ ya |
+| 14 | Carrusel de Instagram | ✅ ya |
+| 15 | CTA + logos del pie + footer | ✅ ya |
+
+**Lo unico estructural que queda es subir `trusted-section` del puesto 6 al 4.** De la 7 en
+adelante no se toca nada: ya esta como lo quiere.
+
+Nota de lectura: en la lista de Sebastian «What happens after you reach out» y «Get a Free
+Estimate» aparecen como dos entradas, pero **son una sola seccion** (`svc-captacion`) desde el
+rediseno de R18 —la tira de pasos va encima de la tarjeta del formulario—. Su lista lo describe
+bien; no pide separarlas.
