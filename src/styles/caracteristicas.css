@@ -101,26 +101,44 @@
   margin-top: clamp(var(--mm-e-32), 4vw, var(--mm-e-64));
 }
 
-/* ── 2 · FUERA LA FOTO DE FONDO ───────────────────────────────────────────────
+/* ── 2 · EL FONDO: LA MISMA RECETA DE TRES CAPAS QUE `.trusted-section` ───────
  *
- * `animateddivs-image.webp` es fondo decorativo de la seccion. Con la banda a sangre ya solo
- * asomaba como franja detras de la cabecera — y justo ahi esta la deuda: `CRITERIO.md:93-95`
- * la mide en 55,3 % de pixeles por debajo de 4,5:1 y 17,1 % por debajo de 3:1, con el h2 y la
- * entradilla en BLANCO encima. Decision de Sebastian el 12-sep-2026: fondo plano.
+ * Decision de Sebastian el 12-sep-2026, mirando la banda publicada: el azul y el efecto de
+ * `.trusted-section`, no un navy plano. Y no es una copia aproximada — es la MISMA receta,
+ * capa por capa, que ya vive repartida entre tres ficheros:
  *
- * RATIO MEDIDO, y por eso deja de ser deuda:
- *   blanco #ffffff sobre --mm-fondo-hondo #000f36 ....... 18,72:1   texto, pide 4,5   OK
+ *   1. la foto     `animateddivs-image.webp`, de `webflow.css`. Esta seccion YA la traia; lo
+ *                  unico que hay que hacer es no apagarla (una version anterior de esta hoja
+ *                  ponia `background-image: none`, y eso es lo que se retira aqui)
+ *   2. el azul     `--mm-azul-500` debajo, como en `propio.css:261` para `.trusted-section`
+ *                  y `.gallery`. Es reserva Y tono: si la webp falta, el fondo sigue siendo
+ *                  del eje de marca en vez de caer al `#3185ca` que da 3,93:1
+ *   3. el velo     navy al 50 % con `box-shadow: inset 0 0 0 100vmax`, como `intro.css:51`
  *
- * Medido ademas sobre la pagina construida, no solo calculado: el peor pixel bajo el h2 y
- * bajo la entradilla da 18,72:1 en /pool-builders/ocala-florida y en /where-we-serve/
- * south-florida, con UN solo color de fondo en toda la caja del texto (0,15,54).
+ * POR QUE EL VELO VA EN `box-shadow` Y NO EN UN PSEUDOELEMENTO, que es lo primero que uno
+ * escribe: asi no toca `position`, no crea contexto de apilamiento y no añade un elemento
+ * —o sea que no mueve el conteo del cascaron—. El razonamiento entero esta en `intro.css:36-49`.
+ * El `inset` se pinta por debajo de los descendientes, asi que el velo tiñe el fondo de la
+ * seccion y NO toca la banda: las seis fotos siguen limpias.
  *
- * Un solo gesto que cumple el «minimalista, menos ornamento» del encargo y cierra el contraste
- * de la cabecera. `background-image: none` hace falta explicito: `background-color` solo no
- * quita la foto, la deja debajo. */
+ * EL 50 % NO ES UN NUMERO SUELTO, viene medido del frente de intro: navy al 34 % deja el
+ * blanco en 4,50:1 —el minimo exacto— y al 50 % en 6,16:1. Se elige el que tiene margen,
+ * porque un minimo justo es un suspenso en cuanto la foto cambie. Medido AQUI, sobre esta
+ * seccion construida y con el peor pixel de la caja del texto:
+ *
+ *   /pool-builders/ocala-florida    h2 9,28:1   entradilla 8,97:1     texto, pide 4,5   OK
+ *   /where-we-serve/south-florida   h2 9,18:1   entradilla 8,85:1     texto, pide 4,5   OK
+ *
+ * Sale MEJOR que el 6,16 de intro porque aqui la franja de foto que queda detras de la
+ * cabecera es mas oscura que la que le toca a `.trusted-section`. Y la caja del texto ya no
+ * tiene un solo color de fondo sino 22-39 distintos: eso es el «efecto», la foto asomando
+ * bajo el velo, que es justo lo que no habia con el plano.
+ *
+ * Baja desde los 18,72:1 del navy plano anterior, y esta bien que baje: aquel aprobaba de
+ * sobra por ser casi negro. 8,85 es el peor de los cuatro y sigue casi al doble del minimo. */
 .animated-divs-section {
-  background-image: none;
-  background-color: var(--mm-fondo-hondo);
+  background-color: var(--mm-azul-500);
+  box-shadow: inset 0 0 0 100vmax color-mix(in srgb, var(--mm-navy) 50%, transparent);
 }
 
 /* ── 3 · LA TARJETA: RECTANGULO, SIN ESQUINAS NI HUECOS ───────────────────────
@@ -135,9 +153,9 @@
  * sea el del token, no el de la foto, gane la foto que gane. El tramo alto queda transparente
  * para que la foto siga siendo la protagonista.
  *
- *   peor pixel bajo el titulo de la columna abierta ...... 15,75:1   texto, pide 4,5   OK
- *   peor pixel bajo el parrafo de la columna abierta ..... 16,18:1   texto, pide 4,5   OK
- *   peor pixel bajo el titulo de una columna cerrada ..... 12,15:1   texto, pide 4,5   OK
+ *   peor pixel bajo el titulo de la columna abierta ......  9,79:1   texto, pide 4,5   OK
+ *   peor pixel bajo el parrafo de la columna abierta ..... 13,06:1   texto, pide 4,5   OK
+ *   peor pixel bajo el titulo de una columna cerrada .....  8,60:1   texto, pide 4,5   OK
  *
  * Los tres son el PEOR pixel de la caja del texto con la foto debajo, no la media, medidos
  * sobre `.vercel/output/static` a 1440 escondiendo el texto y leyendo lo que queda.
@@ -230,7 +248,9 @@
  * mañana las cambia: no se puede medir el contraste contra una foto que no existe todavia.
  * Por eso el velo no se calibra contra ESTAS fotos sino contra el peor caso posible: con la
  * parada minima del 38 % en la cima y del 70 % a media altura, un pixel BLANCO debajo del
- * texto sigue dando de sobra. `transparent` y `color-mix()` no son literales para
+ * texto sigue dando de sobra. Usa `--mm-navy`, el mismo token que el velo del fondo (§2),
+ * para que las dos capas oscuras de la seccion sean del mismo tono y no de dos negros
+ * distintos; los tres numeros de arriba son con ese token, re-medidos tras el cambio. `transparent` y `color-mix()` no son literales para
  * `check-tokens.mjs:213-220` (precedente en el repo: `hero-zona.css:84`).
  *
  * EL TRUCO DE LA REJILLA DE UNA CELDA, que es lo que permite juntar titulo y parrafo sin
@@ -255,9 +275,9 @@
   align-content: end;
   gap: var(--mm-e-12);
   padding: var(--mm-e-24);
-  background-image: linear-gradient(to top, var(--mm-fondo-hondo) 6%,
-    color-mix(in srgb, var(--mm-fondo-hondo) 70%, transparent) 58%,
-    color-mix(in srgb, var(--mm-fondo-hondo) 38%, transparent) 100%);
+  background-image: linear-gradient(to top, var(--mm-navy) 6%,
+    color-mix(in srgb, var(--mm-navy) 70%, transparent) 58%,
+    color-mix(in srgb, var(--mm-navy) 38%, transparent) 100%);
 }
 .animated-divs-section .title-feature {
   font-size: var(--mm-paso-5);
