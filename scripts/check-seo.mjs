@@ -326,6 +326,66 @@ const JSONLD_ARREGLADO = {
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:54:16.970Z'],
     ],
   },
+  '/services/premium-outdoor-furniture-for-north-south-florida-homes': {
+    bloque: 0,
+    motivo: 'R19: los tres defectos del origen en esta ficha.',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
+        'Premium Outdoor Furniture Supply & Installation'],
+      ['about.image', 'Teak dining set and wicker lounge chairs on Florida patio.',
+        '/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-3.avif'],
+      ['dateModified', '2026-05-18T19:53:23.229Z', '2026-05-18T19:55:49.094Z'],
+      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:53:23.229Z'],
+    ],
+  },
+  '/services/professional-landscaping-services-in-north-south-florida': {
+    bloque: 0,
+    motivo: 'R19: los tres defectos del origen en esta ficha.',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
+        'Landscape Design & Installation'],
+      ['about.image', 'Professional landscaping services designed for Florida residential properties.',
+        '/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-6.avif'],
+      ['dateModified', '2026-05-18T19:49:53.745Z', '2026-05-18T19:55:49.094Z'],
+      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:49:53.745Z'],
+    ],
+  },
+  '/services/smart-irrigation-system-installation-in-north-south-florida': {
+    bloque: 0,
+    motivo: 'R19: los tres defectos del origen en esta ficha.',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
+        'Smart Irrigation System Installation'],
+      ['about.image', 'Professional automated irrigation system installation for tropical landscapes in Florida. Efficient watering solutions designed to protect lawns, plants, and landscaping year-round',
+        '/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-4.avif'],
+      ['dateModified', '2026-05-18T19:50:08.396Z', '2026-05-18T19:55:49.094Z'],
+      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:50:08.396Z'],
+    ],
+  },
+  '/services/smart-soffit-led-lighting-installation-in-north-south-florida': {
+    bloque: 0,
+    motivo: 'R19: los tres defectos del origen en esta ficha.',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
+        'Smart Soffit & LED Lighting Installation'],
+      ['about.image', 'Smart soffit LED lighting installed by professional outdoor lighting contractors in Florida.',
+        '/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-5.avif'],
+      ['dateModified', '2026-05-18T19:55:20.436Z', '2026-05-18T19:55:49.094Z'],
+      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:55:20.436Z'],
+    ],
+  },
+  '/services/steel-building-pole-barn-construction-in-north-south-florida': {
+    bloque: 0,
+    motivo: 'R19: los tres defectos del origen en esta ficha.',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
+        'Steel Building & Pole Barn Construction'],
+      ['about.image', 'Steel building construction providing durable structures for Florida properties.',
+        '/images/projects/aluminum-patio-cover-pool-deck-south-florida/aluminum-patio-cover-pool-deck-south-florida-project-1.avif'],
+      ['dateModified', '2026-05-18T19:54:59.712Z', '2026-05-18T19:55:49.094Z'],
+      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:54:59.712Z'],
+    ],
+  },
 };
 
 /** Lee/escribe por camino con puntos: `mainEntity.mainEntity.4.name`. */
