@@ -29,6 +29,12 @@
  *     capa sin comentarios: 75.635 B de 81.920 (TOPE_BYTES)  ->  6.285 B libres
  *     estimacion.css, que ya estila un formulario de lead:      13.193 B
  *
+ * ACTUALIZADO 12-sep-2026 (R19), porque la cifra de arriba es la de ANTES de escribir esta
+ * hoja y heredarla es dar por bueno un numero que ya no describe la capa:
+ *
+ *     npm run check:tokens  ->  la capa pesa 78,1 KB de 80 KB - 1.949 B libres
+ *     servicio-core.css sin comentarios:                          4.336 B
+ *
  * Un formulario estilado desde cero NO CABE, y subir el tope para que quepa mi trabajo es
  * exactamente «la puerta que se actualiza cuando molesta». Reutilizando el ancestro, esta
  * hoja solo paga lo que es nuevo de verdad: la composicion en dos columnas, la franja de
@@ -359,6 +365,45 @@
   align-items: center;
   min-height: 44px;
 }
+/* C5 - EL RITMO DE LAS TRES ULTIMAS LINEAS. Medido antes de tocar nada, a tres anchos:
+ *
+ *     node scripts/diag-ritmo.mjs /services/custom-pool-spa-builders-in-north-south-florida \
+ *          '.block-hero-services-page' 390 768 1440
+ *
+ *                             390    768   1440
+ *     rotulo    -> h1          8 px   8 px   8 px
+ *     h1        -> apoyo      10 px  10 px  10 px
+ *     apoyo     -> telefonos  10 px  10 px  10 px
+ *     telefonos -> licencias   0 px   0 px   0 px   <- PEGADOS
+ *     licencias -> CTA         0 px   0 px   0 px   <- PEGADOS
+ *
+ * Arriba el ritmo es 8/10/10 y abajo se desploma a cero, justo en las tres lineas que deciden.
+ * El cero no es un descuido de Webflow: lo pone el `margin: 0` de la regla de aqui arriba, que
+ * se escribio para matar el margen heredado y se llevo tambien el ritmo por delante.
+ *
+ * Se reparan solo los dos huecos rotos, con la escala de la casa. El CTA lleva 24 y no 8
+ * porque cierra el bloque: telefono y licencia son la misma idea -como localizarnos- y van
+ * juntos; la llamada a la accion es otra cosa y necesita separarse. 8 / 24 = uno a tres,
+ * el mismo salto que la escala ya usa entre `--mm-e-8` y `--mm-e-24`.
+ *
+ * Queda: 8 / 10 / 10 / 8 / 24. Cero bytes por ficha: las clases son de la capa y las
+ * catorce fichas las heredan en cuanto se enciendan.
+ *
+ * LO QUE NO SE TOCA, Y POR QUE. `R19-CAMBIOS.md` §C5 pedia ademas «componer el heroe
+ * verticalmente en vez de apoyarlo arriba», leyendo `padding-block: 85px / 0px`. MEDIDO, esa
+ * lectura no se sostiene: el nav se superpone al heroe -la seccion empieza en y=0 y
+ * `section.menu` ocupa los primeros 85- asi que el padding es COMPENSACION, no aire de
+ * diseno, y `align-items: center` ya centra el contenido en la zona visible:
+ *
+ *     node scripts/diag-ritmo.mjs <ruta> 'section.hero-services' --composicion 1440x900
+ *     aire VISIBLE arriba 145  abajo 145  -> desequilibrio 0 px   <- COMPUESTO
+ *     (a 390x844: 31 y 31, desequilibrio 0)
+ *
+ * O sea que el heroe YA esta compuesto. Anadirle aire abajo lo descentraria 42 px. Es el
+ * mismo caso que el padding 96/32 de la hoja: la justificacion escrita era correcta para el
+ * diseno anterior. */
+.svc-heroe__lic { margin-block: var(--mm-e-8) var(--mm-e-24); }
+
 /* LAS LICENCIAS VAN EN BLANCO PLENO, no en el tono atenuado. Parecia el sitio natural para
  * `--mm-tinta-inversa-2`, y MEDIDO sobre esta misma foto con este mismo velo NO cumple:
  *
