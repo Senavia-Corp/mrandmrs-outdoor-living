@@ -89,6 +89,55 @@ verificado.
 
 ---
 
+## 3.bis · R17-CORE — la ficha piloto de `/services/` (11-sep-2026)
+
+Este encargo cerró `<title>`, `<h1>`, teléfono y schema de
+`/services/custom-pool-spa-builders-in-north-south-florida`, que es la Final URL del ad group
+«Pool Builders Core». **Dejó la fuga mayor abierta: la página no tenía ni un `<form>`.** R17-CORE
+la cierra, y de paso corrige cinco cosas que este informe daba por buenas porque no las miró.
+
+### Lo que estaba mal y no lo sabíamos
+
+| # | Hallazgo | Medido |
+|---:|---|---|
+| 1 | **La foto «Before» del antes/después es de un listado del MLS de Miami.** Lleva `A11…… © Miami MLS© 202…` incrustado sobre el césped. Y el «After» es **otro patio distinto** —otra casa, otra valla, otra vegetación— | 2 PNG de 1408×768, **4,2 MB** entre las dos. `CRITERIO.md:200` ya lo nombra: «eso no es feo, es falso» |
+| 2 | **Cifras financieras sin verificar, también dentro del schema.** `For projects ranging from $75,000 residential pools to $500,000+` salía en el cuerpo **y** en el `FAQPage` | la hoja 18 marca `$75K` como no verificado; la decisión del 2-sep (TILA/Reg Z) prohíbe cifras. `check:ads` **no lo cazaba**: buscaba `$55K` y `$20K+` |
+| 3 | **El `FAQPage` no coincidía con lo visible.** La 5.ª `Question` se llamaba literalmente `"construction"`; el `<h3>` decía «Can I finance a custom pool project in Florida?» | y el mismo bloque llevaba `"serviceType": "Smart Soffit LED Lighting Installation"` —**el de otra ficha**—, `name` con doble espacio, `image` con una URL donde va el alt, y `dateModified` **anterior** a `datePublished` |
+| 4 | **«South Florida» mandaba en la landing de North Florida** | 9 apariciones en texto visible, la primera en el **carácter 97**; «North Florida» suelta no aparecía hasta el **6053**. Y `location` ponía el `<h3>` de South Florida delante |
+| 5 | **La página no tenía ni un teléfono en el cuerpo** | el invariante «North Florida primero» pasaba solo por el cromo —nav y botón flotante—. Un verde prestado |
+
+Los cinco están corregidos. El `FAQPage` se arregla con una declaración nueva en `check:seo`
+(`JSONLD_ARREGLADO`) que exige **el valor viejo y el nuevo**: si el origen cambia, la puerta se
+entera en vez de callar.
+
+### Lo que cambia en la página, en clave SEO/AEO/GEO
+
+- **GEO.** North Florida delante en héroe, en los dos `tel:` del cuerpo —antes 0, ahora 7— y en
+  `location`. Campo ZIP obligatorio con `pattern="[0-9]{5}"`. **El slug sigue diciendo
+  `north-south`** y no se toca: es la Final URL del anuncio.
+- **AEO.** Tres FAQ nuevas contra objeciones reales, y el `FAQPage` vuelve a decir lo que la
+  página dice. Una respuesta de schema que no casa con su `<h3>` no es una respuesta: es ruido
+  que un motor generativo puede citar mal.
+- **SEO interno.** Los 8 subservicios **enlazaban a nada**; ahora los 6 de remodelación van a la
+  landing de Remodeling y la sección `gallery` —que pintaba **las mismas 10 fotos** que el feed
+  de Instagram, solape 10/10 verificado fichero a fichero— se sustituye por `CarruselProyectos`,
+  que abre 4 enlaces a `/project/<slug>`.
+- **Relevancia.** El carrusel se filtra **por ruta**: de los 15 proyectos, once lideran con
+  pérgola, cocina exterior o cubierta de patio —intenciones **excluidas** de esta landing— y
+  cinco dicen «South Florida». Sin filtrar metía 5 «South Florida» y 8 «Pergola» debajo del
+  pliegue; con filtro, **1 «North Florida», 0 «South Florida», 0 pérgolas**. Las otras 65 rutas
+  que montan el carrusel no declaran nada y siguen viendo las 15.
+
+### Lo que NO cambia
+
+Las otras **121 de 122 páginas salen byte a byte idénticas**, descontando exactamente dos deltas
+declarados: el hash del bundle CSS (añadir una hoja a la capa lo cambia en las 122) y una clave
+nueva en el objeto `MAPA_FORM` del `<script>` compartido —el coste inherente de reutilizar el
+circuito de formularios existente en vez de montar uno paralelo, que es lo que el encargo pedía—.
+Se comprobó construyendo el commit base en un worktree aparte y comparando sha1 por página.
+
+---
+
 ## 4 · Correcciones a lo que el encargo daba por cierto
 
 | Premisa | Medido |

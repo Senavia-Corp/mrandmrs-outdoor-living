@@ -29,7 +29,18 @@
       'Contact Page Form':   'contact',
       'Request Quote Form':  'estimate',   // se afina por ruta al enviar
       'Pool Estimator Form': 'estimator',
+      // R17-CORE: el formulario de la landing de pago del ad group «Pool Builders Core». Id
+      // propio a proposito: con `estimate` sus leads no se distinguirian de los de
+      // /request-estimated en GA4 mas que por `form_location`. Tambien es la `action` de
+      // Turnstile, que solo admite [a-zA-Z0-9_-].
+      'Pool Builders Core Form': 'core',
     };
+    /* R19: un formulario puede traer SU PROPIO id en `data-mm-id`. Los cuatro heredados de
+     * Webflow siguen resolviendose por `MAPA_FORM`; las fichas de `/services/` lo declaran en
+     * `captacion-servicios.json` y lo escribe `FormularioCore.astro`. Sin esto, `MAPA_FORM`
+     * tendria que crecer una linea por ficha —catorce— en un fichero compartido, y ademas los
+     * leads de los catorce servicios llegarian a GA4 con el mismo `form_name`. */
+    const idDe = (f) => f.dataset.mmId || MAPA_FORM[f.dataset.name] || 'other';
     const forms = [...document.querySelectorAll('form[data-name]')].filter((f) => f.dataset.mmEnvia === '1');
     if (!forms.length) return;
 
@@ -84,9 +95,10 @@
           // `data-name` crudo («Contact Page Form») hace que Cloudflare lance
           // «Invalid input for optional parameter "action"», el widget NO se pinta, el envio
           // sale sin token y el servidor devuelve 403. Era la causa de que NINGUN lead entrara.
-          // Se usa el id corto de MAPA_FORM, que ya es limpio y ademas es el mismo `form_name`
-          // que viaja a GA4: una sola nomenclatura para las dos cosas.
-          const accion = MAPA_FORM[form.dataset.name] || 'other';
+          // Se usa el id corto -de `data-mm-id` si el formulario lo trae, si no de MAPA_FORM-,
+          // que ya es limpio y ademas es el mismo `form_name` que viaja a GA4: una sola
+          // nomenclatura para las dos cosas.
+          const accion = idDe(form);
           idWidget = ts.render(caja, { sitekey: CLAVE_SITIO, action: accion });
           caja.style.margin = '.75rem 0';
         })
@@ -115,7 +127,7 @@
         // Se calcula AQUI, antes del envio, y no despues como hasta ahora: el aviso de correo
         // necesita el id para titularse «Gallery request» en vez de «Request a quote». Mas
         // abajo lo reutiliza `mm_lead`, asi que hay UNA sola definicion para las dos cosas.
-        var idForm = MAPA_FORM[form.dataset.name] || 'other';
+        var idForm = idDe(form);
         if (idForm === 'estimate') {
           var ruta = location.pathname;
           if (ruta.indexOf('gallery') !== -1) idForm = 'gallery';

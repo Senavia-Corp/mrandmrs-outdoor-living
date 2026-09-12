@@ -1,0 +1,61 @@
+---
+/**
+ * FRANJA DE CONFIANZA — R17-CORE, captacion de las fichas de `/services/`.
+ *
+ * Cuatro diferenciadores con icono, entre los logos y el formulario. Responde «¿por que
+ * vosotros?» ANTES de pedir datos, que es el orden en el que lo pregunta quien compra.
+ *
+ * LOS CUATRO SON LOS TEMAS DE LOS RSA QUE LA PAGINA YA SOSTIENE, y solo esos. Contado sobre
+ * el texto visible de la ruta: `3D` 6, `permit` 7, `licensed` 11, design-build en la tarjeta
+ * «One team handles design, permits, engineering, and construction». **`warranty` sale 0
+ * veces**, asi que garantia no se escribe aqui ni en ningun sitio: seria escribir en la pagina
+ * para que cuadre con un anuncio sin verificar, que es justo lo que prohibe el encargo.
+ *
+ * NO REPITE EL TEXTO de las dos tarjetas del antes/despues (`Design-Build Authority` y
+ * `Licensed & Engineered`): son los mismos dos temas dichos de otra forma, mas corta. Cuando
+ * esa seccion vuelva a la ruta con su par honesto, no habra dos parrafos iguales.
+ *
+ * SIN UN SOLO `data-w-id`, como `/financing`. El sistema de reveals pone `data-rev` casando el
+ * `data-w-id` contra `src/data/reveals.json`; uno inventado no casa con nada y seria marcado
+ * que miente. Esta seccion no lleva reveals y no los finge.
+ *
+ * SE LOCALIZA SOLA por `Astro.url.pathname`: el mecanismo de marcador de `build-paginas.mjs`
+ * no pasa props. Una ruta sin entrada en el JSON devuelve `null` y no pinta NADA — que es lo
+ * que deja a las otras 13 fichas byte a byte iguales.
+ */
+import DATOS from '../../data/captacion-servicios.json';
+import Manos from '../../iconos/financing/manos.svg';
+import Escudo from '../../iconos/financing/escudo.svg';
+import Plano from '../../iconos/financing/plano.svg';
+import Contrato from '../../iconos/financing/contrato.svg';
+
+/* Los 4 iconos salen de `src/iconos/financing/`, ya en `<mask>` + `currentColor` y de la misma
+ * familia de Recraft. Cero iconos generados para esto: los siete existentes cubren los cuatro
+ * huecos con su semantica correcta. */
+const ICONOS = { manos: Manos, escudo: Escudo, plano: Plano, contrato: Contrato };
+
+/* `Astro.props.ruta` existe SOLO para el laboratorio `_lab-servicio.astro`, que no esta
+ * enrutado y por tanto no tiene el pathname de la ficha. El generador no pasa props: en
+ * produccion siempre manda `Astro.url.pathname`. */
+const ruta = (Astro.props.ruta ?? Astro.url.pathname).replace(/(.)\/$/, '$1');
+const d = DATOS[ruta]?.confianza;
+---
+{d && (
+  <section class="svc-confianza mm-seccion mm-inverso">
+    <div class="mm-caja mm-pila mm-pila--32">
+      <h2 class="mm-tit-2 svc-confianza__tit">{d.rotulo}</h2>
+      <ul class="svc-confianza__lista" role="list">
+        {d.tarjetas.map(({ icono, titulo, texto }) => {
+          const Icono = ICONOS[icono];
+          return (
+            <li class="svc-confianza__item">
+              <span class="svc-confianza__icono" aria-hidden="true">{Icono && <Icono focusable="false" />}</span>
+              <h3 class="mm-tit-3 svc-confianza__rotulo">{titulo}</h3>
+              <p class="mm-txt-menudo">{texto}</p>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  </section>
+)}

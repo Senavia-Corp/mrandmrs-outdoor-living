@@ -1,0 +1,243 @@
+---
+/**
+ * EL FORMULARIO DE CAPTACION DE LA LANDING DE PAGO — R17-CORE.
+ *
+ * LA FUGA QUE CIERRA. La ficha tenia CERO `<form>`: el trafico de pago llegaba con la
+ * intencion ya formada y tenia que hacer un SEGUNDO CLIC hasta `/request-estimated`. Ese clic
+ * ya estaba pagado. Es la deduccion «CTA/Conversion -4» de la matriz de Quality Score y la
+ * unica de las seis que se puede recuperar entera.
+ *
+ * ─── NO MONTA UN CIRCUITO PARALELO. REUTILIZA EL QUE HAY ───────────────────────────────────
+ *
+ * `Formularios.astro` lo engancha solo, por `form[data-name][data-mm-envia="1"]`, y le pone el
+ * honeypot que ya trae el marcado, el time-trap, el widget de Turnstile y el origen de primer
+ * toque. Aqui no hay ni una linea de JS.
+ *
+ * CONTRATO ESTRUCTURAL, no negociable (`Formularios.astro:65-68`): `.w-form-done` y
+ * `.w-form-fail` tienen que ser HERMANOS del `<form>` dentro del mismo padre, y el boton de
+ * envio se busca con `form.querySelector('[type=submit]')` — el widget de Turnstile se inserta
+ * en `boton.parentElement`, justo antes del boton.
+ *
+ * VALIDACION NATIVA, no el motor multipaso. El wizard `msf-*` vive en el `<script>` de
+ * `/request-estimated` y es de esa pagina. Aqui el formulario es de UN paso, asi que valida el
+ * navegador con `required` + `type` + `pattern`, y el `submit` de `Formularios.astro` solo
+ * corre DESPUES de que esa validacion pase.
+ *
+ * ─── LOS CAMPOS SON LOS 5 CUALIFICADORES APROBADOS EN A1, Y NO SE SIMPLIFICAN ──────────────
+ *
+ * ZIP, Homeowner status, Project Type, Investment Range y Timeline, mas los tres de contacto.
+ * «Project details» se queda OPCIONAL: no se anade friccion donde no hace falta. Y no se
+ * recorta la lista para subir la tasa de conversion — en una piscina custom **la calidad del
+ * lead manda**, que es exactamente lo que la hoja 24 marca como Lead Quality Protection.
+ *
+ * 🚨 `Estimated-Project-Budget` reutiliza LITERALMENTE las 6 opciones del «Request Quote Form»,
+ * con su GUION LARGO `–` (U+2013). Con un guion normal la dimension `budget_range` se parte en
+ * dos juegos de valores distintos en GA4 y deja de poder agruparse.
+ *
+ * 🚨 UN CAMPO QUE NO ESTE EN LA LISTA BLANCA DE `FORMULARIOS` (`src/pages/api/formulario.ts`)
+ * DESAPARECE EN SILENCIO DEL CORREO DEL LEAD. Los nueve estan dados de alta alli, en el orden
+ * en que se quieren leer.
+ *
+ * SIN UN SOLO `data-w-id`, como `/financing`. Y sin reveals: un `data-w-id` inventado no casa
+ * con `src/data/reveals.json`, no recibe `data-rev` y seria marcado que miente.
+ */
+/* R19 — EL NOMBRE DEL FORMULARIO VIENE DEL JSON, NO CABLEADO.
+ *
+ * Estaba fijo a «Pool Builders Core Form», y ese literal es la CLAVE DE ENRUTADO en otros tres
+ * sitios: el mapa de GA4 (`Formularios.astro`), la tabla que arma el correo
+ * (`api/formulario.ts`) y la puerta de landings de pago. Con las catorce fichas montando este
+ * mismo componente, los leads de los catorce servicios caian en EL MISMO CUBO: mismo asunto de
+ * correo y, en GA4, indistinguibles salvo por `form_location`. Para un negocio que hace campana
+ * por servicio, eso es perder la atribucion en el sitio donde se paga por ella.
+ *
+ * Ahora cada ficha trae `formulario.nombre`, `formulario.aviso` y `formulario.ga4`, y el
+ * formulario LLEVA SU PROPIO ID ENCIMA (`data-mm-id`). Asi `Formularios.astro` no necesita un
+ * mapa que crezca con cada ficha —lee el atributo— y la API deriva su tabla del mismo JSON.
+ * Sigue siendo una entrada de JSON por ficha y ningun fichero compartido que editar. */
+import DATOS from '../../data/captacion-servicios.json';
+
+/* `Astro.props.ruta` existe SOLO para el laboratorio `_lab-servicio.astro`, que no esta
+ * enrutado y por tanto no tiene el pathname de la ficha. El generador no pasa props: en
+ * produccion siempre manda `Astro.url.pathname`. */
+const ruta = (Astro.props.ruta ?? Astro.url.pathname).replace(/(.)\/$/, '$1');
+const d = DATOS[ruta]?.formulario;
+
+/* Las 6 de `/request-estimated`, copiadas caracter a caracter. El separador es U+2013. */
+const PRESUPUESTOS = [
+  'Under $25,000',
+  '$25,000 – $50,000',
+  '$50,000 – $75,000',
+  '$75,000 – $100,000',
+  '$100,000 – $150,000',
+  '$150,000+',
+];
+
+/* Los dos valores de A1. El de la landing va preseleccionado: es punto de conversion y de
+ * correspondencia de mensaje a la vez (hoja 24). */
+/* Los tipos de proyecto del desplegable. VIENEN DE LA FICHA: cableados eran los dos de
+ * piscina, y en las doce fichas que no son de piscina el visitante habria tenido que elegir
+ * entre «New Custom Pool» y «Complete Pool Remodel» para pedir presupuesto de una pergola.
+ * El respaldo mantiene el comportamiento de la ruta piloto si una ficha no los declara. */
+const PROYECTOS = d.proyectos ?? ['New Custom Pool', 'Complete Pool Remodel'];
+
+/* Rangos, nunca campo libre. */
+const PLAZOS = ['As soon as possible', '1-3 months', '3-6 months', '6-12 months', 'Just exploring'];
+
+/* «Other» existe porque un no-propietario sigue siendo un lead valido -un promotor, una
+ * comunidad-: lo que importa es poder separarlo, no descartarlo en el formulario. */
+const PROPIEDAD = ['Yes, I own this property', 'No', 'Other'];
+---
+{d && (
+  <section id="estimate" class="appointment-section svc-captacion">
+    <div class="mm-caja svc-captacion__rejilla">
+
+      {/* LOS TRES PASOS VAN DELANTE DEL FORMULARIO, Y ES UNA DECISION MEDIDA.
+          Antes iban al lado en una rejilla de dos columnas, y eso fallaba por dos sitios a la
+          vez: de 992 para arriba la columna derecha se quedaba vacia entre 554 y 620 px -del
+          65 al 72 % de la fila, cuando la auditoria de /financing trato un 34 % como defecto-,
+          y de 992 para abajo la tira se apilaba DETRAS del boton de envio, o sea que la
+          tranquilidad llegaba despues de la decision. Delante y a lo ancho resuelve las dos: 0
+          de hueco, y se lee antes de rellenar a TODOS los anchos. De paso el campo baja de 800
+          a 404 px a 991, que es una medida de formulario y no una regla de un metro. */}
+      <aside class="svc-captacion__pasos">
+        <h3 class="mm-tit-3">{d.pasosTitulo}</h3>
+        <ol class="svc-pasos" role="list">
+          {d.pasos.map((p, i) => (
+            <li class="svc-pasos__item">
+              <span class="svc-pasos__n" aria-hidden="true">{i + 1}</span>
+              <p class="mm-txt-menudo">{p}</p>
+            </li>
+          ))}
+        </ol>
+      </aside>
+      <div class="form-block w-form svc-captacion__panel">
+        <div class="mm-pila svc-captacion__intro">
+          <h2 class="mm-tit-2">{d.titulo}</h2>
+          <p class="mm-txt mm-medida">{d.entradilla}</p>
+        </div>
+
+        <form
+          id={`wf-form-${d.nombre.replace(/\s+/g, '-')}`}
+          name={`wf-form-${d.nombre.replace(/\s+/g, '-')}`}
+          data-name={d.nombre}
+          data-mm-id={d.ga4}
+          method="post"
+          action="/api/formulario"
+          data-mm-envia="1"
+          class="svc-form"
+        >
+          <div class="svc-form__rejilla">
+            <div class="form-div">
+              <label for="svc-Full-Name">Full name</label>
+              <input class="text-field-form w-input" maxlength="256" type="text"
+                id="svc-Full-Name" name="Full-Name" data-name="Full Name"
+                autocomplete="name" required />
+            </div>
+            <div class="form-div">
+              <label for="svc-Phone">Phone</label>
+              <input class="text-field-form w-input" maxlength="256" type="tel"
+                id="svc-Phone" name="Phone" data-name="Phone"
+                autocomplete="tel" required />
+            </div>
+            <div class="form-div">
+              <label for="svc-email">Email</label>
+              <input class="text-field-form w-input" maxlength="256" type="email"
+                id="svc-email" name="email" data-name="Email"
+                autocomplete="email" required />
+            </div>
+            <div class="form-div">
+              <label for="svc-ZIP-Code">ZIP code</label>
+              <input class="text-field-form w-input" maxlength="5" type="text"
+                id="svc-ZIP-Code" name="ZIP-Code" data-name="ZIP Code"
+                inputmode="numeric" pattern="[0-9]{5}" autocomplete="postal-code" required />
+            </div>
+            <div class="form-div">
+              <label for="svc-Project-Type">Project type</label>
+              <select id="svc-Project-Type" name="Project-Type" data-name="Project Type"
+                class="select-field w-select" required>
+                {PROYECTOS.map((p) => (
+                  <option value={p} selected={p === d.proyectoPorDefecto}>{p}</option>
+                ))}
+              </select>
+            </div>
+            <div class="form-div">
+              <label for="svc-Type">Do you own this property?</label>
+              <select id="svc-Type" name="Type" data-name="Type" class="select-field w-select" required>
+                <option value="">Select one...</option>
+                {PROPIEDAD.map((o) => <option value={o}>{o}</option>)}
+              </select>
+            </div>
+            <div class="form-div">
+              <label for="svc-Estimated-Project-Budget">Investment range</label>
+              <select id="svc-Estimated-Project-Budget" name="Estimated-Project-Budget"
+                data-name="Estimated Project Budget" class="select-field w-select" required>
+                <option value="">Select one...</option>
+                {PRESUPUESTOS.map((o) => <option value={o}>{o}</option>)}
+              </select>
+            </div>
+            <div class="form-div">
+              <label for="svc-Timeline">Timeline</label>
+              <select id="svc-Timeline" name="Timeline" data-name="Timeline"
+                class="select-field w-select" required>
+                <option value="">Select one...</option>
+                {PLAZOS.map((o) => <option value={o}>{o}</option>)}
+              </select>
+            </div>
+            <div class="form-div svc-form__ancho">
+              <label for="svc-Message">Project details <span class="svc-form__opcional">(optional)</span></label>
+              <textarea id="svc-Message" name="Message" data-name="Message" maxlength="5000"
+                class="text-field-form svc-form__area w-input"></textarea>
+            </div>
+          </div>
+
+          {/* EL SERVICIO DE LA PAGINA, no una eleccion del visitante: esta ficha ES la de obra
+              nueva. Alimenta la dimension `service_interest`, que ya existe en `generate_lead`
+              y si no se quedaria vacia en el formulario de MAYOR intencion del sitio. El valor
+              sale del vocabulario aprobado de 14 servicios, no se inventa. */}
+          <input type="hidden" name="checkbox" value="New Pool and Spa Construction" />
+
+          {/* EL CONSENTIMIENTO DE SMS ES OPCIONAL AQUI, Y ES UNA DESVIACION DELIBERADA.
+              Los otros cuatro formularios del sitio (`/contact-us`, `/request-estimated`,
+              `/brochures` y el lightbox de `/gallery`) lo traen `required` desde Webflow: no se
+              puede enviar sin aceptar SMS de «promotions». Eso condiciona un servicio a un
+              consentimiento de MARKETING, que es justo lo que 47 CFR 64.1200(a)(2) no permite
+              -el consentimiento no puede exigirse como condicion de compra-, y ademas es el
+              unico campo obligatorio que no aporta NADA a la estimacion: quien no lo marca se
+              va sin dejar el lead que ya se pago con el clic.
+
+              Aqui va opcional. La calidad del lead no baja -los ocho cualificadores siguen
+              siendo obligatorios-; lo unico que cambia es por que canal se le puede escribir
+              despues. El valor es `Yes` y no `on` porque el correo lo lee un comercial.
+
+              Las OTRAS CUATRO no se tocan: son rutas fuera de este encargo y el patron es del
+              origen. Va como pendiente para Sebastian en `R17-CORE.md`. */}
+          <label class="w-checkbox checkbox-field svc-form__consentimiento">
+            <input type="checkbox" id="svc-Checkbox" name="Checkbox" data-name="Checkbox"
+              value="Yes" class="w-checkbox-input" />
+            <span class="checkbox-label-3 w-form-label" for="svc-Checkbox">I agree to receive SMS messages related to project updates, promotions, and company communications from Mr. &amp; Mrs. Outdoor Living. This is optional and is not required to get an estimate. I understand that I may opt out at any time by replying STOP. Message and data rates may apply.</span>
+          </label>
+
+          <div class="svc-form__envio">
+            <input type="submit" data-wait="Please wait..." class="button w-button" value="Get a Free Estimate" />
+          </div>
+
+          {/* HONEYPOT. En los derivados lo inyecta `build-paginas.mjs`; este componente no pasa
+              por el generador, asi que va escrito, igual que en `GalleryLeadLightbox.astro`.
+              Se llama `ref_id` a proposito: `company_url` y similares los autorellenan los
+              gestores de contrasenas y tiraban leads buenos. */}
+          <input type="text" name="ref_id" tabindex="-1" autocomplete="off" aria-hidden="true"
+            style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
+        </form>
+
+        <div class="success-message-form w-form-done">
+          <p class="mm-txt">Thank you. Your request has been received.</p>
+        </div>
+        <div class="w-form-fail">
+          <p class="mm-txt">Oops! Something went wrong while submitting the form.</p>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+)}

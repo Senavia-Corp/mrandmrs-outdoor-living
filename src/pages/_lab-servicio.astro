@@ -1,0 +1,123 @@
+---
+/**
+ * LABORATORIO DE LA F2 — R17-CORE. **NO ENRUTADO.**
+ *
+ * El prefijo `_` es lo que lo mantiene fuera del sitio: Astro no enruta los ficheros de
+ * `src/pages/` que empiezan por guion bajo. Asi no aparece en `_source/routes.csv`, no cuenta
+ * como «pagina de mas» en `check:rutas`, no entra en el sitemap y no necesita baseline.
+ *
+ * PARA QUE SIRVE. Comparar las DOS variantes de donde va el formulario, que es la unica
+ * decision que la F2 tenia que cerrar:
+ *
+ *   A — dentro del heroe en escritorio: texto a la izquierda, formulario a la derecha.
+ *   B — como seccion propia, detras de la franja de confianza.
+ *
+ * COMO SE MIRA. El fichero no se sirve por estar prefijado, asi que para capturarlo se copia a
+ * `lab-servicio.astro` (sin guion bajo), se construye, se captura y **se borra la copia**. El
+ * arbol que se commitea solo lleva la version con `_`. Queda escrito para que el siguiente no
+ * tenga que deducirlo.
+ *
+ * MONTA LOS COMPONENTES DE VERDAD, no una copia: `ConfianzaCore`, `FormularioCore` e
+ * `InversionCore` son exactamente los que usa la ruta. Por eso llevan la prop opcional `ruta`
+ * -aqui el `pathname` no es el de la ficha- y por eso lo que se ve aqui es lo que se vera alli.
+ *
+ * VEREDICTO (11-sep-2026, medido aqui): **GANA LA B**. Ver `docs/encargos/R17-CORE.md`.
+ *
+ * EL HEROE es el marcado REAL, copiado del build de la ruta, con el copy nuevo puesto. No es
+ * una maqueta parecida: si la composicion falla, falla igual aqui.
+ */
+import Base from '../layouts/Base.astro';
+import ConfianzaCore from '../components/widgets/ConfianzaCore.astro';
+import FormularioCore from '../components/widgets/FormularioCore.astro';
+import InversionCore from '../components/widgets/InversionCore.astro';
+
+const RUTA = '/services/custom-pool-spa-builders-in-north-south-florida';
+/* LA FOTO NUEVA. La que habia -`new-pool-spa-construction-florida.avif`- es una EXCAVACION:
+ * un hoyo con una miniexcavadora. Las cuatro fotos propias de la ruta son obra en curso, ni
+ * una piscina terminada (hoja de contactos en `docs/encargos/R17-CORE.md` §9). Esta es obra
+ * real de North Florida, con ficha propia en /project/. */
+const FOTO = '/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-2.avif';
+const ALT = 'Custom inground pool and raised spa built on North Florida acreage by Mr & Mrs Outdoor Living';
+
+/* El copy nuevo del heroe, el mismo que propone R17-CORE §8.1. */
+const APOYO = 'New custom inground pools for North Florida homeowners — 3D design, permits, construction and final start-up, from one licensed team. We also build across South Florida.';
+---
+<Base titulo="LAB · R17-CORE" descripcion="Laboratorio no enrutado de la F2." conPie={false}>
+
+  <section class="lab-rotulo"><p>VARIANTE A · formulario dentro del héroe en escritorio</p></section>
+
+  <section class="hero-services svc-heroe lab-heroe-a">
+    <img src={FOTO} alt={ALT} class="image-bg-hero-services" width="1250" height="698"
+      loading="eager" fetchpriority="high" />
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="wrapper-hero-services">
+        <div class="block-hero-services-page">
+          <div class="heading-deco-services">Licensed &amp; insured Contractors</div>
+          <h1 class="heading-hero-services">Custom Pool Builders</h1>
+          <p>{APOYO}</p>
+          <p class="svc-heroe__tel">
+            <a href="tel:+13527403361">+1 (352) 740-3361</a> North Florida ·
+            <a href="tel:+19549137112">+1 (954) 913-7112</a> South Florida
+          </p>
+          <p class="svc-heroe__lic">Florida certified pool contractor · CPC1461119 · CPC1460562</p>
+          <a href="#estimate" class="button button-styles w-button">Get a Free Estimate</a>
+        </div>
+        <div class="lab-heroe-a__form"><FormularioCore ruta={RUTA} /></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lab-rotulo"><p>VARIANTE B · formulario como sección, tras la franja de confianza</p></section>
+
+  <section class="hero-services svc-heroe">
+    <img src={FOTO} alt={ALT} class="image-bg-hero-services" width="1250" height="698"
+      loading="eager" fetchpriority="high" />
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="wrapper-hero-services">
+        <div class="block-hero-services-page">
+          <div class="heading-deco-services">Licensed &amp; insured Contractors</div>
+          <h1 class="heading-hero-services">Custom Pool Builders</h1>
+          <p>{APOYO}</p>
+          <p class="svc-heroe__tel">
+            <a href="tel:+13527403361">+1 (352) 740-3361</a> North Florida ·
+            <a href="tel:+19549137112">+1 (954) 913-7112</a> South Florida
+          </p>
+          <p class="svc-heroe__lic">Florida certified pool contractor · CPC1461119 · CPC1460562</p>
+          <a href="#estimate" class="button button-styles w-button">Get a Free Estimate</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ConfianzaCore ruta={RUTA} />
+  <FormularioCore ruta={RUTA} />
+  <InversionCore ruta={RUTA} />
+
+</Base>
+
+<style>
+  /* SOLO DEL LABORATORIO. Nada de esto viaja a la ruta: por eso vive aqui y no en
+     `servicio-core.css`, que tiene el presupuesto de `check:tokens` contado. */
+  .lab-rotulo {
+    background-color: var(--mm-navy);
+    color: var(--mm-tinta-inversa);
+    padding: var(--mm-e-12) var(--mm-canal);
+  }
+  .lab-rotulo p { margin: 0; font-family: var(--mm-fuente); font-size: var(--mm-paso-1); }
+  .lab-heroe-a__form { display: none; }
+  @media (min-width: 992px) {
+    .lab-heroe-a .wrapper-hero-services {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
+      gap: var(--mm-e-48);
+      align-items: center;
+    }
+    .lab-heroe-a__form {
+      display: block;
+      background-color: var(--mm-superficie);
+      border-radius: var(--mm-r-24);
+    }
+    .lab-heroe-a__form .appointment-section { padding-block: var(--mm-e-24); }
+    .lab-heroe-a__form .svc-captacion__rejilla { grid-template-columns: 1fr; gap: var(--mm-e-24); }
+  }
+</style>

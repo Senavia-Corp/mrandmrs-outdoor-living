@@ -172,7 +172,232 @@ const PARTES_PROPIAS = {
       + '(§ OBRAS_PROPIAS) al principio del `hasPart`, en el mismo orden que sus tarjetas.',
   },
 };
+
+/**
+ * ── JSON-LD ARREGLADO A PROPOSITO (R17-CORE) ─────────────────────────────────────────────
+ *
+ * Esta puerta compara el JSON-LD del origen CARACTER A CARACTER, y hace bien: es lo que impide
+ * que una regeneracion se lleve por delante un dato estructurado sin que nadie se entere. El
+ * efecto secundario es que tambien replica fielmente los DEFECTOS del origen, y la landing de
+ * pago del Core traia cinco:
+ *
+ *   · `about.serviceType` decia «Smart Soffit LED Lighting Installation» — el serviceType de
+ *     OTRA ficha, dentro del dato estructurado de la pagina de piscinas;
+ *   · `about.name` llevaba un doble espacio;
+ *   · `about.image` llevaba un TEXTO ALT en un campo que espera una URL;
+ *   · `dateModified` era ANTERIOR a `datePublished`;
+ *   · la quinta `Question` del `FAQPage` se llamaba literalmente «construction», y su respuesta
+ *     publicaba «$75,000 … $500,000+» — que la hoja 18 del libro de Ads marca DATA NOT
+ *     AVAILABLE y que choca con la decision TILA/Reg Z del 2-sep-2026.
+ *
+ * NO ES «IGNORA ESTE BLOQUE», y esa es toda la diferencia. Se declara el valor VIEJO y el
+ * NUEVO: si el origen deja de traer el viejo -porque alguien lo arreglo en Webflow, o porque
+ * cambio otra cosa- la declaracion deja de casar y esto vuelve a ROJO. Y el valor nuevo se
+ * exige tal cual en el build. Todo lo demas del bloque se sigue comparando caracter a caracter.
+ */
+const JSONLD_ARREGLADO = {
+  '/services/custom-pool-spa-builders-in-north-south-florida': {
+    bloque: 0,
+    motivo: 'R17-CORE: cinco defectos del origen en la landing de pago del ad group «Pool '
+      + 'Builders Core», mas las 3 preguntas anadidas para que el FAQPage siga coincidiendo con '
+      + 'lo que se ve.',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation', 'Custom Pool Construction'],
+      ['about.name', 'Pool  Construction', 'Pool Construction'],
+      ['about.image', 'New pool and spa construction in Florida by licensed custom pool builders',
+        '/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-2.avif'],
+      ['dateModified', '2026-05-18T19:50:50.150Z', '2026-05-18T19:55:49.094Z'],
+      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:50:50.150Z'],
+      ['mainEntity.mainEntity.4.name', 'construction', 'Can I finance a custom pool project in Florida?'],
+    ],
+    /* La respuesta 5 se sustituye entera y las tres nuevas se anaden al final. Se EXIGE que las
+     * anadidas tengan nombre y respuesta no vacios y que no repitan cifras de dinero: una
+     * declaracion que no comprueba nada es un agujero con comentario. */
+    respuestaSustituida: { camino: 'mainEntity.mainEntity.4.acceptedAnswer.text', empiezaPor: 'We connect qualified Florida homeowners' },
+    anadidas: { camino: 'mainEntity.mainEntity', n: 3 },
+  },
+
+  /* R19 — LAS 13 FICHAS RESTANTES. Los mismos tres defectos del origen, ficha por ficha y con
+   * sus valores REALES, sacados de comparar el JSON-LD construido contra `baseline/seo.json`
+   * y no de suponer que son iguales:
+   *
+   *   · `about.serviceType` dice otro servicio. En las catorce fichas pone el mismo texto,
+   *     «Smart Soffit LED Lighting Installation», tambien en la de pergolas y en la de
+   *     piscinas: es un valor pegado en el Webflow de origen.
+   *   · `about.image` trae una FRASE donde va una URL. Un `ImageObject`/`image` con prosa no
+   *     es una imagen para nadie que lea el marcado.
+   *   · `dateModified` y `datePublished` van CAMBIADOS: el origen publica despues de modificar.
+   *
+   * Aqui NO hay `respuestaSustituida` ni `anadidas`: esta ficha no reescribe ni anade preguntas
+   * -no se inventa una FAQ para rellenar-, asi que su `FAQPage` es el del origen intacto. */
+  '/services/custom-aluminum-pergola-builders-in-north-south-florida': {
+    bloque: 0,
+    motivo: 'R19: los tres defectos del origen en la ficha de pergolas de aluminio.',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
+        'Custom Aluminum Pergola Design & Installation'],
+      ['about.image', 'Custom aluminum pergolas built by outdoor living contractors in Florida.',
+        '/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-3.avif'],
+      ['dateModified', '2026-05-19T13:22:48.310Z', '2026-05-19T13:23:24.377Z'],
+      ['datePublished', '2026-05-19T13:23:24.377Z', '2026-05-19T13:22:48.310Z'],
+    ],
+  },
+  '/services/custom-deck-builders-in-north-south-florida': {
+    bloque: 0,
+    motivo: 'R19: los tres defectos del origen en esta ficha.',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
+        'Custom Deck Design & Construction'],
+      ['about.image', 'Custom deck construction by professional outdoor living contractors in Florida.',
+        '/images/projects/pool-raised-spa-marble-deck-south-florida/pool-raised-spa-marble-deck-south-florida-project-4.avif'],
+      ['dateModified', '2026-05-18T19:51:19.984Z', '2026-05-18T19:55:49.094Z'],
+      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:51:19.984Z'],
+    ],
+  },
+  '/services/custom-outdoor-kitchens-for-north-south-florida-homes': {
+    bloque: 0,
+    motivo: 'R19: los tres defectos del origen en esta ficha.',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
+        'Custom Outdoor Kitchen Design & Construction'],
+      ['about.image', 'Custom outdoor kitchen built by professional outdoor kitchen builders in Florida.',
+        '/images/projects/luxury-pool-pergola-outdoor-kitchen-south-florida/luxury-pool-pergola-outdoor-kitchen-south-florida-3.avif'],
+      ['dateModified', '2026-05-18T19:49:53.727Z', '2026-05-18T19:55:49.094Z'],
+      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:49:53.727Z'],
+    ],
+  },
+  '/services/motorized-louvered-roof-systems-in-north-south-florida': {
+    bloque: 0,
+    motivo: 'R19: los tres defectos del origen en esta ficha.',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
+        'Motorized Louvered Roof Design & Installation'],
+      ['about.image', 'Motorized louvered roof system installed by custom outdoor living contractors in Florida',
+        '/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-4.avif'],
+      ['dateModified', '2026-05-18T19:52:59.092Z', '2026-05-18T19:55:49.094Z'],
+      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:52:59.092Z'],
+    ],
+  },
+  '/services/motorized-retractable-screens-in-north-south-florida': {
+    bloque: 0,
+    motivo: 'R19: los tres defectos del origen en esta ficha.',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
+        'Motorized Retractable Screen Installation'],
+      ['about.image', 'Retractable screens installed by professional outdoor living contractors in Florida.',
+        '/images/projects/luxury-pool-motorized-pergola-screens-south-florida/luxury-pool-motorized-pergola-screens-south-florida-4.avif'],
+      ['dateModified', '2026-05-18T19:54:35.687Z', '2026-05-18T19:55:49.094Z'],
+      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:54:35.687Z'],
+    ],
+  },
+  '/services/patio-screen-rooms-enclosures-in-north-south-florida': {
+    bloque: 0,
+    motivo: 'R19: los tres defectos del origen en esta ficha.',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
+        'Patio Screen Room Design & Construction'],
+      ['about.image', 'Screened patio enclosure creating a comfortable outdoor living space in Florida.',
+        '/images/projects/luxury-pool-spa-with-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-north-florida-project-2.avif'],
+      ['dateModified', '2026-05-18T19:53:43.448Z', '2026-05-18T19:55:49.094Z'],
+      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:53:43.448Z'],
+    ],
+  },
+  '/services/pool-screen-enclosures-for-north-south-florida-pools': {
+    bloque: 0,
+    motivo: 'R19: los tres defectos del origen en esta ficha.',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
+        'Pool Screen Enclosure Design & Installation'],
+      ['about.image', 'Pool screen enclosures installed by licensed Florida enclosure contractors',
+        '/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-2.avif'],
+      ['dateModified', '2026-05-18T19:49:53.691Z', '2026-05-18T19:55:49.094Z'],
+      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:49:53.691Z'],
+    ],
+  },
+  '/services/pool-remodeling-renovation-in-north-south-florida': {
+    bloque: 0,
+    motivo: 'R19: los tres defectos del origen en la Final URL del ad group «Full Remodel».',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
+        'Pool Remodeling & Renovation'],
+      ['about.image', 'Pool and spa renovation enhancing a Florida backyard outdoor living contractors space.',
+        '/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-3.avif'],
+      ['dateModified', '2026-05-18T19:54:16.970Z', '2026-05-18T19:55:49.094Z'],
+      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:54:16.970Z'],
+    ],
+  },
+  '/services/premium-outdoor-furniture-for-north-south-florida-homes': {
+    bloque: 0,
+    motivo: 'R19: los tres defectos del origen en esta ficha.',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
+        'Premium Outdoor Furniture Supply & Installation'],
+      ['about.image', 'Teak dining set and wicker lounge chairs on Florida patio.',
+        '/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-3.avif'],
+      ['dateModified', '2026-05-18T19:53:23.229Z', '2026-05-18T19:55:49.094Z'],
+      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:53:23.229Z'],
+    ],
+  },
+  '/services/professional-landscaping-services-in-north-south-florida': {
+    bloque: 0,
+    motivo: 'R19: los tres defectos del origen en esta ficha.',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
+        'Landscape Design & Installation'],
+      ['about.image', 'Professional landscaping services designed for Florida residential properties.',
+        '/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-6.avif'],
+      ['dateModified', '2026-05-18T19:49:53.745Z', '2026-05-18T19:55:49.094Z'],
+      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:49:53.745Z'],
+    ],
+  },
+  '/services/smart-irrigation-system-installation-in-north-south-florida': {
+    bloque: 0,
+    motivo: 'R19: los tres defectos del origen en esta ficha.',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
+        'Smart Irrigation System Installation'],
+      ['about.image', 'Professional automated irrigation system installation for tropical landscapes in Florida. Efficient watering solutions designed to protect lawns, plants, and landscaping year-round',
+        '/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-4.avif'],
+      ['dateModified', '2026-05-18T19:50:08.396Z', '2026-05-18T19:55:49.094Z'],
+      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:50:08.396Z'],
+    ],
+  },
+  '/services/smart-soffit-led-lighting-installation-in-north-south-florida': {
+    bloque: 0,
+    motivo: 'R19: los tres defectos del origen en esta ficha.',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
+        'Smart Soffit & LED Lighting Installation'],
+      ['about.image', 'Smart soffit LED lighting installed by professional outdoor lighting contractors in Florida.',
+        '/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-5.avif'],
+      ['dateModified', '2026-05-18T19:55:20.436Z', '2026-05-18T19:55:49.094Z'],
+      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:55:20.436Z'],
+    ],
+  },
+  '/services/steel-building-pole-barn-construction-in-north-south-florida': {
+    bloque: 0,
+    motivo: 'R19: los tres defectos del origen en esta ficha.',
+    cambios: [
+      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
+        'Steel Building & Pole Barn Construction'],
+      ['about.image', 'Steel building construction providing durable structures for Florida properties.',
+        '/images/projects/aluminum-patio-cover-pool-deck-south-florida/aluminum-patio-cover-pool-deck-south-florida-project-1.avif'],
+      ['dateModified', '2026-05-18T19:54:59.712Z', '2026-05-18T19:55:49.094Z'],
+      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:54:59.712Z'],
+    ],
+  },
+};
+
+/** Lee/escribe por camino con puntos: `mainEntity.mainEntity.4.name`. */
+const porCamino = (o, c) => c.split('.').reduce((x, k) => (x == null ? x : x[k]), o);
+const ponCamino = (o, c, v) => {
+  const ks = c.split('.');
+  const ult = ks.pop();
+  const padre = ks.reduce((x, k) => (x == null ? x : x[k]), o);
+  if (padre != null) padre[ult] = v;
+};
 let partesCasadas = 0;
+let arregladosCasados = 0;
 
 /**
  * LAS RUTAS DE AUTORIA PROPIA no tienen entrada en `baseline/seo.json` y no pueden tenerla:
@@ -329,7 +554,7 @@ for (const ruta of conPropias(RUTAS)) {
       problemas.push(`JSON-LD: ${espLd.length} bloque(s) -> ${bloques.length}`);
     } else {
       for (const [i, b] of bloques.entries()) {
-        const e = espLd[i];
+        let e = espLd[i];
         let mio; try { mio = ordena(JSON.parse(b.textContent)); } catch { problemas.push(`JSON-LD ${i} no parsea`); continue; }
 
         // Las partes anadidas a proposito (§ PARTES_PROPIAS): se exigen y se descuentan.
@@ -352,6 +577,47 @@ for (const ruta of conPropias(RUTAS)) {
           // `ordena` ya dejo las claves ordenadas; sustituir una existente conserva su sitio.
           mio = { ...mio, [pp.clave]: arr.slice(pp.urls.length) };
           partesCasadas++;
+        }
+
+        /* R17-CORE — se aplica la declaracion al BASELINE y se comprueba el build. */
+        const ja = JSONLD_ARREGLADO[ruta];
+        if (ja && i === ja.bloque) {
+          const esperado = JSON.parse(JSON.stringify(e));
+          const malas = [];
+          for (const [camino, era, es] of ja.cambios) {
+            const enBase = porCamino(esperado, camino);
+            if (enBase !== era) malas.push(`arreglo "${camino}": el origen ya no dice "${era}" sino "${enBase}" — revisa la declaracion`);
+            const enBuild = porCamino(mio, camino);
+            if (enBuild !== es) malas.push(`arreglo "${camino}": el build dice "${enBuild}", se declaro "${es}"`);
+            ponCamino(esperado, camino, es);
+          }
+          if (ja.respuestaSustituida) {
+            const { camino, empiezaPor } = ja.respuestaSustituida;
+            const enBase = String(porCamino(esperado, camino) ?? '');
+            const enBuild = String(porCamino(mio, camino) ?? '');
+            if (!enBase.startsWith(empiezaPor)) malas.push(`respuesta sustituida: el origen ya no empieza por "${empiezaPor}"`);
+            if (!enBuild.trim()) malas.push('respuesta sustituida: el build la deja vacia');
+            if (/\$\s?\d/.test(enBuild)) malas.push('respuesta sustituida: vuelve a traer una cifra de dinero');
+            ponCamino(esperado, camino, enBuild);
+          }
+          if (ja.anadidas) {
+            const arr = porCamino(mio, ja.anadidas.camino);
+            const base = porCamino(esperado, ja.anadidas.camino);
+            if (!Array.isArray(arr) || !Array.isArray(base)) malas.push('anadidas: el camino no es un array');
+            else if (arr.length !== base.length + ja.anadidas.n) {
+              malas.push(`anadidas: ${arr.length - base.length} de ${ja.anadidas.n} declarada(s)`);
+            } else {
+              for (const q of arr.slice(base.length)) {
+                if (!String(q?.name ?? '').trim()) malas.push('anadida sin pregunta');
+                if (!String(q?.acceptedAnswer?.text ?? '').trim()) malas.push('anadida sin respuesta');
+                if (/\$\s?\d/.test(String(q?.acceptedAnswer?.text ?? ''))) malas.push('anadida con cifra de dinero');
+              }
+              base.push(...arr.slice(base.length));
+            }
+          }
+          if (malas.length) { problemas.push(...malas); continue; }
+          e = esperado;
+          arregladosCasados++;
         }
 
         const a = JSON.stringify(mio);
@@ -386,6 +652,15 @@ for (const [r, d] of Object.entries(PARTES_PROPIAS)) {
   const bien = partesCasadas > 0;
   console.log(`  ${bien ? 'ok  ' : 'ROJO'} declarado ${r}: ${d.urls.length} parte(s) propia(s) `
     + `en ${d.clave}, descontadas antes de comparar con el baseline`);
+  if (!bien) fallos++;
+}
+/* R17-CORE. Misma regla: si no sale por pantalla, deja de estar declarado el dia que nadie abre
+ * el fichero. Y si el contador no sube, la declaracion no se aplico y hay que decirlo. */
+for (const [r, d] of Object.entries(JSONLD_ARREGLADO)) {
+  const bien = arregladosCasados > 0;
+  console.log(`  ${bien ? 'ok  ' : 'ROJO'} declarado ${r}: ${d.cambios.length} arreglo(s) en el `
+    + `JSON-LD del origen + ${d.anadidas?.n ?? 0} pregunta(s) anadida(s)`);
+  console.log(`       ${d.motivo}`);
   if (!bien) fallos++;
 }
 // Se cuentan por separado a proposito: a las del origen se les exige el `<head>` IDENTICO, a

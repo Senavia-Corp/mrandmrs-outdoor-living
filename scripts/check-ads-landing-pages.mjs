@@ -34,6 +34,22 @@ const LANDINGS = [
     exige: [/custom pool/i, /builders?/i],
     exigeCuerpo: [/pool/i, /north .{0,3}south florida|north florida/i],
     prohibeArriba: [/pergola/i, /outdoor kitchen/i, /pole barn/i, /landscaping/i],
+    /**
+     * R17-CORE — LO QUE ESTA LANDING TIENE Y LAS OTRAS TRES TODAVIA NO.
+     *
+     * `formulario` y `heroe` se declaran POR LANDING y no se dan por supuestos para las cuatro:
+     * hoy solo el Core tiene formulario propio y heroe con prioridad. Exigirselo a las otras
+     * tres pondria la puerta roja por un trabajo que este encargo no hace — y una puerta roja
+     * por algo que nadie va a arreglar hoy deja de leerse. Lo que SI se hace es DECIRLO: las
+     * que no declaran salen con una linea PENDIENTE, medida, al final de la puerta. La ausencia
+     * de senal no es senal buena.
+     */
+    formulario: {
+      dataName: 'Pool Builders Core Form',
+      campo: 'Project-Type',
+      preseleccion: 'New Custom Pool',
+    },
+    heroe: 'img.image-bg-hero-services',
   },
   {
     grupo: 'Gainesville',
@@ -56,6 +72,14 @@ const LANDINGS = [
     exigeCuerpo: [/renovat|remodel/i, /pool/i],
     // Remodelacion NO es reparacion suelta ni limpieza: eso atrae el lead equivocado.
     prohibeArriba: [/leak repair/i, /pool cleaning/i, /weekly service/i, /pergola/i],
+    /* R19: esta landing YA tiene formulario propio y heroe con prioridad, asi que deja de salir
+     * en la lista de PENDIENTES y pasa por las trece comprobaciones como el Core. */
+    formulario: {
+      dataName: 'Pool Remodel Form',
+      campo: 'Project-Type',
+      preseleccion: 'Complete Pool Remodel',
+    },
+    heroe: 'img.image-bg-hero-services',
   },
 ];
 
@@ -94,6 +118,10 @@ for (const L of LANDINGS) {
   const html = leer(L.ruta);
   if (!html) { mal(L.ruta, `no se construyo. Es URL final del grupo «${L.grupo}»: sin pagina, el anuncio manda trafico a un 404.`); continue; }
   const d = new JSDOM(html).window.document;
+  /* DEFECTO ARREGLADO: esta linea usaba el contador GLOBAL `fallos`, asi que en cuanto una
+   * landing fallaba, NINGUNA de las siguientes imprimia su `ok` aunque estuviera perfecta.
+   * El veredicto seguia siendo correcto, pero la salida ocultaba que paso. */
+  const fallosAntes = fallos;
 
   // 1 · redirect sobre una URL final = rechazo de anuncio
   const red = redirects.find((r) => r.source.replace(/\/$/, '') === L.ruta);
@@ -158,7 +186,124 @@ for (const L of LANDINGS) {
     if (re.test(cuerpo)) mal(L.ruta, `afirmacion prohibida — ${por}`);
   }
 
-  if (!fallos) bien(`${L.grupo.padEnd(20)} ${L.ruta}`);
+  /**
+   * 11 · NI UNA CIFRA DE DINERO EN EL CUERPO (R17-CORE).
+   *
+   * Es el agujero por el que paso «$75,000 residential pools to $500,000+», que estuvo
+   * publicado en el cuerpo Y dentro del `FAQPage` de la landing del Core mientras esta puerta
+   * salia verde: las cinco `AFIRMACIONES_PROHIBIDAS` buscan `$55K` y `$20K+`, que son otras
+   * cadenas. Una cifra de precio en una landing de pago es una afirmacion sobre el precio, y
+   * la hoja 18 del libro de campana exige confirmacion para cualquiera de ellas.
+   *
+   * Los `<select>` se descuentan ANTES: las seis opciones del rango de inversion del formulario
+   * llevan importes a proposito -son el cualificador aprobado en A1, y reutilizan los rangos
+   * que ya existian- y no son una afirmacion de la pagina, sino una eleccion del visitante.
+   */
+  const sinSelects = new JSDOM(html).window.document;
+  sinSelects.querySelectorAll('script,style,noscript,nav,header,select').forEach((e) => e.remove());
+  const cifras = [...new Set((sinSelects.body?.textContent ?? '').match(/\$\s?[0-9][0-9,]*\+?/g) ?? [])];
+  if (cifras.length) {
+    mal(L.ruta, `cifra(s) de dinero en el cuerpo: ${cifras.join(', ')}. Un precio en una landing `
+      + 'de pago es una afirmacion sobre el precio, y la hoja 18 exige confirmarla. Si es un '
+      + 'cualificador del formulario, va dentro de un <select>.');
+  }
+
+  /**
+   * 12 · EL HEROE NO ES DIFERIBLE (R17-CORE).
+   *
+   * La imagen de fondo del heroe ES el LCP de estas paginas, y la del Core llevaba
+   * `loading="lazy"`: el navegador la trataba como algo que puede esperar. En todo el sitio
+   * habia UNA sola imagen con `fetchpriority`. En trafico de pago, mayoritariamente movil, el
+   * LCP entra directo en Landing Page Experience.
+   */
+  if (L.heroe) {
+    const hi = d.querySelector(L.heroe);
+    if (!hi) mal(L.ruta, `no encuentro la imagen del heroe (${L.heroe}).`);
+    else {
+      if (hi.getAttribute('loading') === 'lazy') {
+        mal(L.ruta, 'la imagen del heroe lleva loading="lazy" y es el LCP de la pagina.');
+      }
+      if (hi.getAttribute('fetchpriority') !== 'high') {
+        mal(L.ruta, 'la imagen del heroe no lleva fetchpriority="high".');
+      }
+      if (!hi.getAttribute('width') || !hi.getAttribute('height')) {
+        mal(L.ruta, 'la imagen del heroe no declara width/height: reserva 0 px y desplaza el resto.');
+      }
+    }
+  }
+
+  /**
+   * 13 · UN SOLO FORMULARIO, CUALIFICADO, Y CONTANDO COMO CAMINO A CONVERSION (R17-CORE).
+   *
+   * Es la deduccion «CTA/Conversion -4» de la matriz: sin formulario propio, el trafico de pago
+   * hace un SEGUNDO clic que ya ha pagado. Y «uno solo» no es un capricho: dos formularios en
+   * la misma pagina se disputan el envio y parten la medicion en dos.
+   *
+   * `preseleccion` es lo que la hoja 24 pide y a la vez correspondencia de mensaje: quien llega
+   * desde un anuncio de piscina nueva no tiene que elegir «piscina nueva».
+   */
+  if (L.formulario) {
+    const forms = [...d.querySelectorAll('form')].filter((f) => f.getAttribute('data-mm-envia') === '1');
+    if (forms.length !== 1) {
+      mal(L.ruta, `${forms.length} formulario(s) con data-mm-envia="1"; tiene que haber exactamente 1. `
+        + 'Sin el, el trafico de pago hace un segundo clic que el anuncio ya pago.');
+    } else {
+      const f = forms[0];
+      if (f.getAttribute('data-name') !== L.formulario.dataName) {
+        mal(L.ruta, `el formulario dice data-name="${f.getAttribute('data-name')}", se esperaba `
+          + `"${L.formulario.dataName}". Ese valor es la clave de FORMULARIOS en la API y el `
+          + 'form_name de GA4: si no casa, el lead se pierde o se mezcla con otro formulario.');
+      }
+      const sel = f.querySelector(`select[name="${L.formulario.campo}"] option[selected]`);
+      if (sel?.value !== L.formulario.preseleccion) {
+        mal(L.ruta, `${L.formulario.campo} preseleccionado en "${sel?.value ?? '(nada)'}", se `
+          + `esperaba "${L.formulario.preseleccion}".`);
+      }
+      // El formulario ES el camino a conversion de esta pagina: se comprueba que apunta a la API
+      // y que el aterrizaje sigue existiendo.
+      if (f.getAttribute('action') !== '/api/formulario') {
+        mal(L.ruta, `el formulario no envia a /api/formulario sino a "${f.getAttribute('action')}".`);
+      }
+      if (!f.querySelector('[name="ref_id"]')) mal(L.ruta, 'el formulario no lleva el honeypot ref_id.');
+      const padre = f.parentElement;
+      if (!padre?.querySelector('.w-form-done') || !padre?.querySelector('.w-form-fail')) {
+        mal(L.ruta, 'faltan los paneles .w-form-done/.w-form-fail HERMANOS del <form>: sin ellos '
+          + 'el JS de Formularios.astro no puede conmutar el estado.');
+      }
+    }
+  }
+
+  if (fallos === fallosAntes) bien(`${L.grupo.padEnd(20)} ${L.ruta}`);
+}
+
+/**
+ * LO QUE FALTA POR EXTENDER, DICHO EN VOZ ALTA (R17-CORE).
+ *
+ * Las reglas 12 y 13 son POR LANDING. Las tres que no las declaran no salen rojas -este encargo
+ * no las toca- pero tampoco salen en silencio: una puerta que no midio algo no puede parecer
+ * que lo midio y le dio el visto bueno. Esta es la lista de lo que queda, medida en cada pasada.
+ */
+console.log('\n── pendiente de extender (A1 / heroe) ──');
+{
+  let pendientes = 0;
+  for (const L of LANDINGS) {
+    if (L.formulario && L.heroe) continue;
+    const html = leer(L.ruta) ?? '';
+    const dd = new JSDOM(html).window.document;
+    const nForms = [...dd.querySelectorAll('form')].filter((f) => f.getAttribute('data-mm-envia') === '1').length;
+    const hi = dd.querySelector('img.image-bg-hero-services');
+    const falta = [];
+    if (!L.formulario) falta.push(`sin formulario propio declarado (${nForms} en la pagina)`);
+    if (!L.heroe) {
+      falta.push(hi
+        ? `heroe: loading="${hi.getAttribute('loading') ?? '-'}" fetchpriority="${hi.getAttribute('fetchpriority') ?? '-'}"`
+        : 'heroe: sin <img> de fondo que medir (plantilla distinta)');
+    }
+    console.log(`  --   ${L.grupo.padEnd(20)} ${falta.join(' · ')}`);
+    pendientes++;
+  }
+  console.log(`       ${pendientes} de ${LANDINGS.length} landings sin la capa de captacion. `
+    + 'No es un fallo de esta puerta: es trabajo que no se ha hecho todavia.');
 }
 
 console.log('\n── destinos de conversion ──');

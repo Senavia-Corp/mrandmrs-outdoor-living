@@ -36,6 +36,7 @@
 import PROPIAS from '../../data/proyectos-propios.json';
 import MIGRADAS from '../../data/obras-migradas.json';
 import ENCABEZADOS from '../../data/proyectos-heading-por-ruta.json';
+import CAPTACION from '../../data/captacion-servicios.json';
 
 interface Props {
   /** Encabezado propio. Sin el se busca por ruta; las 53 de /pool-builders/ lo pasan siempre
@@ -50,7 +51,30 @@ const propio = (ENCABEZADOS as Record<string, { titulo: string; entradilla: stri
 const tituloFinal = titulo ?? propio?.titulo ?? ENCABEZADOS._defecto.titulo;
 const entradillaFinal = entradilla ?? propio?.entradilla ?? ENCABEZADOS._defecto.entradilla;
 
-const slides = [...PROPIAS.obras, ...MIGRADAS.obras];
+/**
+ * R17-CORE — FILTRO POR RUTA, OPCIONAL.
+ *
+ * Las 66 rutas que montan este carrusel no declaran nada y siguen viendo las 15 obras: su HTML
+ * sale byte a byte igual. La landing de pago del ad group «Pool Builders Core» SI declara, y
+ * por una razon medida: de los 15 titulos, once lideran con pergola, cocina exterior o cubierta
+ * de patio -intenciones EXCLUIDAS de esa landing- y cinco dicen «South Florida», en la ficha
+ * cuyo anuncio promete North Florida. Sin filtrar, el carrusel metia 5 «South Florida» y 8
+ * «Pergola» debajo del pliegue. El filtro deja las cuatro cuyo titulo es de PISCINA.
+ *
+ * El orden lo manda la lista declarada, no el de los ficheros: asi la primera que se ve es la
+ * de North Florida.
+ */
+const solo = (CAPTACION as Record<string, { proyectos?: { solo?: string[] } }>)[ruta]?.proyectos?.solo;
+const todas = [...PROPIAS.obras, ...MIGRADAS.obras];
+/** Un slug mal escrito saldria por `find` como `undefined` y `filter(Boolean)` lo tiraria SIN
+ *  ruido: la landing perderia un slide y nadie se enteraria. Se cae la construccion. */
+const slides = solo
+  ? solo.map((sg) => {
+      const obra = todas.find((o) => o.slug === sg);
+      if (!obra) throw new Error(`CarruselProyectos: ${ruta} declara la obra «${sg}», que no existe.`);
+      return obra;
+    })
+  : todas;
 ---
 <section class="projects-section">
   <div class="w-layout-blockcontainer container w-container">

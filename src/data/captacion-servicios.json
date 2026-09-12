@@ -1,0 +1,1164 @@
+{
+  "_lee_esto": [
+    "EL CONTENIDO DE CAPTACION DE LAS FICHAS DE /services/, POR RUTA.",
+    "",
+    "Lo leen los tres componentes de R17-CORE por `Astro.url.pathname`:",
+    "  components/widgets/ConfianzaCore.astro   -> `confianza`",
+    "  components/widgets/FormularioCore.astro  -> `formulario`",
+    "  components/widgets/InversionCore.astro   -> `inversion`",
+    "",
+    "POR QUE ES UN JSON POR RUTA Y NO TEXTO DENTRO DE LOS COMPONENTES. Las 14 fichas de",
+    "`/services/` son la MISMA plantilla -mismo orden de secciones, 14 h2, 15 h3, 70 img, 17 a,",
+    "8 subservicios, 4 pasos, 5 FAQ y 0 form en todas, verificado-. El piloto se enciende en una",
+    "sola, pero el dia que se extienda a las otras trece el coste tiene que ser UNA ENTRADA AQUI,",
+    "no un componente nuevo ni una hoja nueva. Quien anada una ruta toca: este fichero, la lista",
+    "`CON_CAPTACION` de `scripts/build-paginas.mjs`, y sus declaraciones en `check-texto.mjs`.",
+    "",
+    "UNA RUTA SIN ENTRADA NO PINTA NADA. Los tres componentes devuelven null: es lo que permite",
+    "que el marcador del generador solo se inserte donde hay contenido, y que las otras 13 fichas",
+    "sigan saliendo byte a byte iguales.",
+    "",
+    "LO QUE NO ESTA VERIFICADO NO SE ESCRIBE AQUI. Cada frase de este fichero tiene su fuente en",
+    "la matriz frase->fuente de `docs/encargos/R17-CORE.md` §8.6. Nada de garantias, anos de",
+    "experiencia, numero de piscinas, «5-star», ni una sola cifra financiera (decision de",
+    "Sebastian del 2-sep-2026, TILA/Reg Z)."
+  ],
+  "/services/custom-pool-spa-builders-in-north-south-florida": {
+    "heroe": {
+      "apoyo": "New custom inground pools for North Florida homeowners — 3D design, permits, construction and final start-up, from one licensed team. We also build across South Florida.",
+      "foto": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-2.avif",
+      "alt": "Custom inground pool and raised spa built on North Florida acreage by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698,
+      "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
+      "ancla": "#estimate"
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, engineering, permits and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed pool contractor",
+          "texto": "CPC1461119 and CPC1460562, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "3D design before you commit",
+          "texto": "You review a 3D design of your pool before anything is dug."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "We pull the permits and coordinate the county inspections."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectoPorDefecto": "New Custom Pool",
+      "nombre": "Pool Builders Core Form",
+      "aviso": "Pool builders core lead",
+      "ga4": "core",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back within 24 hours.",
+        "We walk your property and put a 3D design on paper.",
+        "You get the scope in writing and a fixed project price before you commit."
+      ]
+    },
+    "servicios": {
+      "rotulo": "What we do",
+      "construccionPrimero": [
+        "Custom Pool Design & Engineering",
+        "Pool Plumbing & Circulation Systems Installation",
+        "Pool Equipment Installation & Automation",
+        "Pool Finishes & Interior Surface Installation",
+        "Pool Tile & Coping Installation"
+      ],
+      "remodelacion": [
+        "Inground Pool Remodeling",
+        "Integrated Spa Remodeling",
+        "Pool Deck & Hardscape Remodeling"
+      ],
+      "remodelacionHref": "/services/pool-remodeling-renovation-in-north-south-florida",
+      "textos": {
+        "Custom Pool Design & Engineering": "Custom pool design engineered for Florida homes and code compliance.",
+        "Pool Plumbing & Circulation Systems Installation": "Plumbing and circulation built for proper water flow and filtration.",
+        "Pool Tile & Coping Installation": "Tile and coping that improve pool safety, durability, and modern design."
+      },
+      "cta": {
+        "texto": "Get a Free Estimate",
+        "href": "#estimate"
+      }
+    },
+    "faq": {
+      "sustituye": {
+        "Can I finance a custom pool project in Florida?": "Yes. We connect Florida homeowners with lending partners, and the order matters: you get your design and a fixed project price in writing first, and only then review how to pay for it. Approval and terms come from the lender."
+      },
+      "anade": [
+        {
+          "pregunta": "How much does a custom pool cost in North Florida?",
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+        },
+        {
+          "pregunta": "Who pulls the permits for a pool in Florida?",
+          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
+        },
+        {
+          "pregunta": "What is included in a custom pool project?",
+          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
+        }
+      ]
+    },
+    "schema": {
+      "serviceType": "Custom Pool Construction"
+    },
+    "proyectos": {
+      "titulo": "Custom pools we have built",
+      "entradilla": "Real projects from our own galleries, across North and South Florida.",
+      "_solo": [
+        "De las 15 obras del carrusel, SOLO estas cuatro tienen un titulo dominado por la",
+        "PISCINA. Las once restantes lideran con pergola, cocina exterior o cubierta de patio",
+        "-que son intenciones EXCLUIDAS de esta landing- y cinco de ellas dicen «South Florida»",
+        "en el titulo, en la ficha cuyo anuncio promete North Florida. Sin filtrar, el carrusel",
+        "metia 5 «South Florida» y 8 «Pergola» debajo del pliegue de una landing de piscina",
+        "nueva. Con el filtro: 1 «North Florida», 0 «South Florida», 0 pergolas.",
+        "Las otras 66 rutas que montan el carrusel no declaran `solo` y siguen viendo las 15."
+      ],
+      "reemplazaGaleria": true,
+      "solo": [
+        "estate-pool-spa-sun-shelf-north-florida",
+        "luxury-pool-spa-screen-enclosure-north-florida",
+        "luxury-pool-raised-spa-travertine-deck-south-florida",
+        "pool-raised-spa-marble-deck-south-florida"
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my pool cost?",
+      "texto": "Every pool is priced from its own design, size, finishes and site conditions. Answer a few questions to see the range for a custom pool in Florida, then review how it can be paid for.",
+      "ctas": [
+        {
+          "texto": "Try the pool cost estimator",
+          "href": "/pool-cost-estimator",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-6.avif",
+      "alt": "Freeform pool with a raised spa and travertine deck inside a screened enclosure, built in North Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698
+    }
+  },
+  "/services/custom-aluminum-pergola-builders-in-north-south-florida": {
+    "heroe": {
+      "apoyo": "Custom pergola builders and installation company serving North & South Florida, delivering durable designs that enhance outdoor comfort and style.",
+      "foto": "/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-3.avif",
+      "alt": "Motorized louvered aluminum pergola over an outdoor kitchen and dining area beside a pool, built in North Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698,
+      "licencias": "Florida aluminum contractor · SCC131153553",
+      "ancla": "#estimate"
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida aluminum contractor",
+          "texto": "SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered to wind load",
+          "texto": "Every structure is engineered to local wind-load specifications."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Aluminum Pergola",
+        "Louvered & Adjustable Pergola"
+      ],
+      "proyectoPorDefecto": "New Aluminum Pergola",
+      "nombre": "Aluminum Pergola Form",
+      "aviso": "Aluminum pergola lead",
+      "ga4": "pergola",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the pergola for that space and take it through permits and HOA or ARB review.",
+        "You get the scope in writing and a fixed project price before anything is fabricated."
+      ]
+    },
+    "schema": {
+      "serviceType": "Custom Aluminum Pergola Design & Installation"
+    },
+    "inversion": {
+      "titulo": "What will my pergola cost?",
+      "texto": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-3.avif",
+      "alt": "Motorized louvered aluminum pergola attached to a home, shading a poolside patio in South Florida, built by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698
+    }
+  },
+  "/services/custom-deck-builders-in-north-south-florida": {
+    "heroe": {
+      "apoyo": "Professional deck builders and installation contractors serving North & South Florida with durable, stylish outdoor deck solutions.",
+      "foto": "/images/projects/pool-raised-spa-marble-deck-south-florida/pool-raised-spa-marble-deck-south-florida-project-4.avif",
+      "alt": "Wide marble pool deck with sun loungers around a rectangular pool and raised spa, built in South Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698,
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate"
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Built for the Florida climate",
+          "texto": "Composite that resists warping, fading and rot; pressure-treated wood sealed and stained."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "One team takes the design through permits, engineering and construction."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Custom Deck",
+        "Pool Deck Renovation"
+      ],
+      "proyectoPorDefecto": "New Custom Deck",
+      "nombre": "Custom Deck Form",
+      "aviso": "Custom deck lead",
+      "ga4": "deck",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the deck for your layout and take it through permits.",
+        "You get the scope in writing and a fixed project price before the first board goes down."
+      ]
+    },
+    "schema": {
+      "serviceType": "Custom Deck Design & Construction"
+    },
+    "inversion": {
+      "titulo": "What will my deck cost?",
+      "texto": "Every deck is priced from its size, the material, the level changes and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-2.avif",
+      "alt": "Travertine pool deck surrounding a rectangular pool with a raised spa, built in South Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698
+    }
+  },
+  "/services/custom-outdoor-kitchens-for-north-south-florida-homes": {
+    "heroe": {
+      "apoyo": "Outdoor kitchen builders and installation contractors serving North & South Florida with custom layouts for entertaining and daily use.",
+      "foto": "/images/projects/luxury-pool-pergola-outdoor-kitchen-south-florida/luxury-pool-pergola-outdoor-kitchen-south-florida-3.avif",
+      "alt": "Built-in outdoor kitchen with a grill and counter seating under a covered patio beside a pool, built in South Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698,
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate"
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Appliances made for outdoors",
+          "texto": "Outdoor-rated grills, smokers and refrigeration, engineered into the layout with their utilities."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits, HOA and ARB handled",
+          "texto": "We manage the full permitting process, including HOA and ARB submissions."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Outdoor Kitchen",
+        "Grilling Island or Bar"
+      ],
+      "proyectoPorDefecto": "New Outdoor Kitchen",
+      "nombre": "Outdoor Kitchen Form",
+      "aviso": "Outdoor kitchen lead",
+      "ga4": "cocina",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We lay out the kitchen around how you cook and take it through permits, HOA and ARB.",
+        "You get the scope in writing and a fixed project price before anything is built."
+      ]
+    },
+    "schema": {
+      "serviceType": "Custom Outdoor Kitchen Design & Construction"
+    },
+    "inversion": {
+      "titulo": "What will my outdoor kitchen cost?",
+      "texto": "Every outdoor kitchen is priced from its layout, the appliances, the countertops and the utility runs it needs. Tell us how you cook and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/projects/luxury-pool-pergola-outdoor-kitchen-south-florida/luxury-pool-pergola-outdoor-kitchen-south-florida-5.avif",
+      "alt": "Outdoor kitchen with a built-in grill and stone counter under a covered patio next to a pool, built in South Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698
+    }
+  },
+  "/services/motorized-louvered-roof-systems-in-north-south-florida": {
+    "heroe": {
+      "apoyo": "Motorized louvered roof builders and installation contractors in North & South Florida, offering adjustable shade and weather protection.",
+      "foto": "/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-4.avif",
+      "alt": "Motorized louvered aluminum roof with its blades open over a poolside patio, built in South Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698,
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate"
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered for Florida wind",
+          "texto": "Reinforced extruded aluminum and marine-grade stainless hardware, with wind-load engineering documentation."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permitted and inspected",
+          "texto": "Installed to local building codes, and the electrical additions are permitted too."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "Motorized Louvered Roof",
+        "Manual Adjustable Louvers"
+      ],
+      "proyectoPorDefecto": "Motorized Louvered Roof",
+      "nombre": "Louvered Roof Form",
+      "aviso": "Louvered roof lead",
+      "ga4": "louver",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We size the system for the opening and take it through permits and inspection.",
+        "You get the scope in writing and a fixed project price before anything is ordered."
+      ]
+    },
+    "schema": {
+      "serviceType": "Motorized Louvered Roof Design & Installation"
+    },
+    "inversion": {
+      "titulo": "What will my louvered roof cost?",
+      "texto": "Every louvered roof is priced from the span it has to cover, whether it is attached or freestanding, the automation it carries and the site conditions. Tell us about the opening and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-4.avif",
+      "alt": "Motorized louvered aluminum roof over an outdoor dining area beside a pool, built in North Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698
+    }
+  },
+  "/services/motorized-retractable-screens-in-north-south-florida": {
+    "heroe": {
+      "apoyo": "Motorized retractable screen installation contractors serving North & South Florida, delivering flexible shade and insect control.",
+      "foto": "/images/projects/luxury-pool-motorized-pergola-screens-south-florida/luxury-pool-motorized-pergola-screens-south-florida-4.avif",
+      "alt": "Motorized retractable screen partly lowered along a covered poolside patio, installed in South Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698,
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate"
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Certified MaestroShield dealer",
+          "texto": "Screens that deploy from compact overhead housings by remote or app."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Built for the Florida coast",
+          "texto": "Powder-coated aluminum tracks and UV-stabilized mesh for sun, humidity and salt air."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Motorized Screens",
+        "Screen Replacement or Repair"
+      ],
+      "proyectoPorDefecto": "New Motorized Screens",
+      "nombre": "Retractable Screens Form",
+      "aviso": "Retractable screens lead",
+      "ga4": "pantallas",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We measure the openings and specify the housings, tracks and mesh.",
+        "You get the scope in writing and a fixed project price before anything is ordered."
+      ]
+    },
+    "schema": {
+      "serviceType": "Motorized Retractable Screen Installation"
+    },
+    "inversion": {
+      "titulo": "What will my retractable screens cost?",
+      "texto": "Retractable screens are priced from the size of each opening, how many you need, the mesh you choose and whether they are motorized or manual. Tell us about the openings and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/projects/luxury-pool-motorized-pergola-screens-south-florida/luxury-pool-motorized-pergola-screens-south-florida-7.avif",
+      "alt": "Covered poolside patio with motorized retractable screens along the rear, installed in South Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698
+    }
+  },
+  "/services/patio-screen-rooms-enclosures-in-north-south-florida": {
+    "heroe": {
+      "apoyo": "Screen room builders and installation contractors in North & South Florida, creating comfortable, protected outdoor living areas.",
+      "foto": "/images/projects/luxury-pool-spa-with-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-north-florida-project-2.avif",
+      "alt": "Screened patio room with lounge seating beside a pool, built in North Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698,
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate"
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Aluminum frame, reinforced mesh",
+          "texto": "Rust-resistant powder-coated frames built to Florida hurricane and wind-load codes."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "One team takes the design through permits, engineering and construction."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Screen Room",
+        "Porch or Deck Conversion"
+      ],
+      "proyectoPorDefecto": "New Screen Room",
+      "nombre": "Screen Room Form",
+      "aviso": "Screen room lead",
+      "ga4": "sala",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the room for the opening and take it through permits.",
+        "You get the scope in writing and a fixed project price before anything is built."
+      ]
+    },
+    "schema": {
+      "serviceType": "Patio Screen Room Design & Construction"
+    },
+    "inversion": {
+      "titulo": "What will my screen room cost?",
+      "texto": "A screen room is priced from its footprint, the roof it carries, the frame and mesh you choose and the site conditions. Tell us about the space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/projects/luxury-pool-spa-with-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-north-florida-project-3.avif",
+      "alt": "Interior of a screened patio room looking out over a pool, built in North Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698
+    }
+  },
+  "/services/pool-screen-enclosures-for-north-south-florida-pools": {
+    "heroe": {
+      "apoyo": "Pool screen enclosure builders and installation contractors in North & South Florida, improving pool safety and cleanliness.",
+      "foto": "/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-2.avif",
+      "alt": "Screened pool enclosure over a freeform pool and raised spa with a travertine deck, built in North Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698,
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate"
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered for Florida wind",
+          "texto": "Powder-coated aluminum framing and reinforced mesh built to wind-load codes, HVHZ included."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "A permitted pool barrier",
+          "texto": "A permitted enclosure meets Florida Building Code Chapter 45 barrier requirements."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Pool Enclosure",
+        "Rescreening or Repair"
+      ],
+      "proyectoPorDefecto": "New Pool Enclosure",
+      "nombre": "Pool Enclosure Form",
+      "aviso": "Pool enclosure lead",
+      "ga4": "jaula",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We size the cage for the pool deck and take it through permits and inspection.",
+        "You get the scope in writing and a fixed project price before anything is fabricated."
+      ]
+    },
+    "schema": {
+      "serviceType": "Pool Screen Enclosure Design & Installation"
+    },
+    "inversion": {
+      "titulo": "What will my pool enclosure cost?",
+      "texto": "A pool enclosure is priced from the deck it has to cover, its height and roof shape, the mesh you choose and the wind-load zone of the site. Tell us about the pool and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/projects/luxury-pool-spa-with-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-north-florida-project-6.avif",
+      "alt": "Screen enclosure over a pool and raised spa seen from the deck, built in North Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698
+    }
+  },
+  "/services/pool-remodeling-renovation-in-north-south-florida": {
+    "heroe": {
+      "apoyo": "Pool remodeling contractors serving North & South Florida, upgrading pools with modern finishes, energy-efficient systems, and lasting results.",
+      "foto": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-3.avif",
+      "alt": "Custom pool and raised spa with a wide paver deck on North Florida acreage, built by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698,
+      "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
+      "ancla": "#estimate"
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida certified pool contractor",
+          "texto": "CPC1461119 and CPC1460562, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Modern finishes and equipment",
+          "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Brought up to current code",
+          "texto": "VGB-compliant safety features, with the permits and inspections handled."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your pool and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "Complete Pool Remodel",
+        "Resurfacing or Tile Only"
+      ],
+      "proyectoPorDefecto": "Complete Pool Remodel",
+      "nombre": "Pool Remodel Form",
+      "aviso": "Pool remodel lead",
+      "ga4": "remodel",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back within 24 hours.",
+        "We look at the pool as it is today and put the scope of the renovation on paper.",
+        "You get the scope in writing and a fixed project price before any demolition starts."
+      ]
+    },
+    "schema": {
+      "serviceType": "Pool Remodeling & Renovation"
+    },
+    "inversion": {
+      "titulo": "What will my pool remodel cost?",
+      "texto": "Every renovation is priced from the condition of the pool, the finish and tile you choose, the equipment being replaced and the deck work around it. Answer a few questions to see the range for a custom pool in Florida, then review how it can be paid for.",
+      "ctas": [
+        {
+          "texto": "Try the pool cost estimator",
+          "href": "/pool-cost-estimator",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-3.avif",
+      "alt": "Rectangular pool with a raised spa and travertine deck in South Florida, built by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698
+    }
+  },
+  "/services/premium-outdoor-furniture-for-north-south-florida-homes": {
+    "heroe": {
+      "apoyo": "Outdoor furniture installation company for North & South Florida homes, offering durable, premium solutions for modern outdoor living.",
+      "foto": "/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-3.avif",
+      "alt": "Teak dining set and grill on a covered patio beside a pool in North Florida, part of a project by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698,
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate"
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Materials that survive the sun",
+          "texto": "High-density polyethylene wicker that resists UV fading, moisture, cracking and mold."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Cushions that dry fast",
+          "texto": "Solution-dyed acrylic engineered for UV fading, mildew and moisture resistance."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "Full Patio Furnishing",
+        "A Few Key Pieces"
+      ],
+      "proyectoPorDefecto": "Full Patio Furnishing",
+      "nombre": "Outdoor Furniture Form",
+      "aviso": "Outdoor furniture lead",
+      "ga4": "muebles",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We measure the space and put a layout and a materials list together.",
+        "You get the scope in writing and a fixed price before anything is ordered."
+      ]
+    },
+    "schema": {
+      "serviceType": "Premium Outdoor Furniture Supply & Installation"
+    },
+    "inversion": {
+      "titulo": "What will furnishing my patio cost?",
+      "texto": "Furnishing a patio is priced from the size of the space, how many pieces it needs, the frame material and the cushion fabric you choose. Tell us about the space and we will come back with a layout and a fixed price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/projects/luxury-pool-pergola-outdoor-living-south-florida/luxury-pool-pergola-outdoor-living-south-florida-2.avif",
+      "alt": "Outdoor lounge seating under a pergola beside a pool in South Florida, part of a project by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698
+    }
+  },
+  "/services/professional-landscaping-services-in-north-south-florida": {
+    "heroe": {
+      "apoyo": "Landscaping design and installation company serving North & South Florida, providing complete outdoor solutions that improve curb appeal.",
+      "foto": "/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-6.avif",
+      "alt": "Palms, hedging and lawn around a pool and pergola in North Florida, part of a project by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698,
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate"
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Plants chosen for the site",
+          "texto": "Salt-tolerant, wind-resistant species selected for coastal and inland Florida."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Drainage sorted first",
+          "texto": "We improve soil drainage so the planting survives its first wet season."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "Full Landscape Installation",
+        "Sod or Planting Only"
+      ],
+      "proyectoPorDefecto": "Full Landscape Installation",
+      "nombre": "Landscaping Form",
+      "aviso": "Landscaping lead",
+      "ga4": "paisajismo",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We walk the property, check the drainage and put a planting plan on paper.",
+        "You get the scope in writing and a fixed project price before anything is planted."
+      ]
+    },
+    "schema": {
+      "serviceType": "Landscape Design & Installation"
+    },
+    "inversion": {
+      "titulo": "What will my landscaping cost?",
+      "texto": "Landscaping is priced from the area to be planted, the species and sizes you choose, the soil and drainage work the site needs and the access to it. Tell us about the property and we will come back with a plan and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-5.avif",
+      "alt": "Lap pool set into a wide lawn with mature trees on North Florida acreage, part of a project by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698
+    }
+  },
+  "/services/smart-irrigation-system-installation-in-north-south-florida": {
+    "heroe": {
+      "apoyo": "Smart irrigation installation contractors for North & South Florida properties, focused on efficient watering solutions and long-term landscape health",
+      "foto": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-4.avif",
+      "alt": "Pool edge and surrounding lawn on North Florida acreage, part of a project by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698,
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate"
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Controllers that watch the weather",
+          "texto": "Smart controllers, sprinkler zones and drip lines sized for the planting they serve."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "One design-build team",
+          "texto": "The irrigation is planned with the landscape, not bolted on afterwards."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Irrigation System",
+        "Repair or Upgrade"
+      ],
+      "proyectoPorDefecto": "New Irrigation System",
+      "nombre": "Irrigation Form",
+      "aviso": "Irrigation lead",
+      "ga4": "riego",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We zone the property by what each area actually needs.",
+        "You get the scope in writing and a fixed project price before anything is trenched."
+      ]
+    },
+    "schema": {
+      "serviceType": "Smart Irrigation System Installation"
+    },
+    "inversion": {
+      "titulo": "What will my irrigation system cost?",
+      "texto": "An irrigation system is priced from the area it has to cover, how many zones it needs, the controller you choose and the soil it has to be trenched into. Tell us about the property and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-7.avif",
+      "alt": "Pool, lawn and planted borders in a North Florida backyard, part of a project by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698
+    }
+  },
+  "/services/smart-soffit-led-lighting-installation-in-north-south-florida": {
+    "heroe": {
+      "apoyo": "Smart soffit and LED lighting installation company serving North & South Florida, enhancing curb appeal and exterior security.",
+      "foto": "/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-5.avif",
+      "alt": "Covered outdoor kitchen and dining area with recessed lighting in the ceiling, built in North Florida by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698,
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate"
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Certified Gemstone Lights dealer",
+          "texto": "Smart colour and brightness control from a permanently installed track."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Wired to code",
+          "texto": "Professional installation for safety, warranty and code compliance."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "Soffit LED Lighting",
+        "Permanent Holiday Lighting"
+      ],
+      "proyectoPorDefecto": "Soffit LED Lighting",
+      "nombre": "Soffit Lighting Form",
+      "aviso": "Soffit lighting lead",
+      "ga4": "luces",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We measure the runs and plan the circuits with the soffit line.",
+        "You get the scope in writing and a fixed project price before anything is wired."
+      ]
+    },
+    "schema": {
+      "serviceType": "Smart Soffit & LED Lighting Installation"
+    },
+    "inversion": {
+      "titulo": "What will my soffit lighting cost?",
+      "texto": "Soffit lighting is priced from the length of the runs, how many circuits it needs, the controller you choose and the access to the soffit. Tell us about the house and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-5.avif",
+      "alt": "Covered poolside patio with integrated ceiling lighting in South Florida, built by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698
+    }
+  },
+  "/services/steel-building-pole-barn-construction-in-north-south-florida": {
+    "heroe": {
+      "apoyo": "Steel building and pole barn construction company serving North & South Florida with durable, hurricane-rated structures.",
+      "foto": "/images/projects/aluminum-patio-cover-pool-deck-south-florida/aluminum-patio-cover-pool-deck-south-florida-project-1.avif",
+      "alt": "Large aluminum patio cover spanning a pool deck in South Florida, built by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698,
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate"
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered past 180 mph",
+          "texto": "Structures engineered to meet Florida building codes and withstand winds over 180 mph."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Built to outlast wood",
+          "texto": "Steel resists hurricanes, moisture, mold and pests, with less long-term maintenance."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Steel Building",
+        "Pole Barn"
+      ],
+      "proyectoPorDefecto": "New Steel Building",
+      "nombre": "Steel Building Form",
+      "aviso": "Steel building lead",
+      "ga4": "acero",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We size the structure for the span and the use, and take it through permits.",
+        "You get the scope in writing and a fixed project price before anything is fabricated."
+      ]
+    },
+    "schema": {
+      "serviceType": "Steel Building & Pole Barn Construction"
+    },
+    "inversion": {
+      "titulo": "What will my steel building cost?",
+      "texto": "A steel building is priced from its span and height, the use it has to take, the openings it needs and the wind-load zone of the site. Tell us what it is for and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/projects/aluminum-patio-cover-pool-deck-south-florida/aluminum-patio-cover-pool-deck-south-florida-project-3.avif",
+      "alt": "Aluminum covered structure over a patio and pool deck in South Florida, built by Mr & Mrs Outdoor Living",
+      "ancho": 1250,
+      "alto": 698
+    }
+  }
+}

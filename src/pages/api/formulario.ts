@@ -35,6 +35,7 @@ import type { APIRoute } from 'astro';
 // Especificador LITERAL y estatico: el rastreador del adaptador de Vercel tiene que ver este
 // import para empaquetar el modulo. Un import dinamico con la ruta en variable no lo ve.
 import { construyeAviso, type CampoAviso } from '../../lib/aviso-correo';
+import CAPTACION from '../../data/captacion-servicios.json';
 
 export const prerender = false;
 
@@ -60,6 +61,38 @@ const ultimaPorIp = new Map<string, number>();
 const VENTANA_MS = 8000;
 
 /** Los campos de cada formulario, con su etiqueta legible para el correo. */
+/**
+ * LAS CATORCE FICHAS DE `/services/` COMPARTEN ESTOS CAMPOS, Y SU TABLA SE DERIVA DEL JSON.
+ *
+ * Antes habia UNA entrada cableada, `'Pool Builders Core Form'`, y ese literal era la clave de
+ * enrutado tambien en `Formularios.astro` y en la puerta de landings de pago. Con las catorce
+ * fichas montando el MISMO `FormularioCore.astro`, todas emitian ese `data-name`: los leads de
+ * los catorce servicios llegaban con el mismo asunto de correo y, en GA4, indistinguibles salvo
+ * por `form_location`. Para un negocio que paga campanas POR SERVICIO, eso es perder justo la
+ * atribucion que se esta comprando.
+ *
+ * Los campos son identicos en las catorce -los pinta un solo componente-, asi que lo unico que
+ * cambia por ficha es el `data-name` y el titulo del aviso, y los dos salen del mismo JSON que
+ * ya trae el resto de la ficha. Anadir una ficha sigue siendo UNA entrada de JSON: esta tabla
+ * se rellena sola, y este fichero no se vuelve a tocar.
+ *
+ * El orden es el del correo: con quien hay que hablar, donde, que quiere, cuanto y cuando.
+ */
+const CAMPOS_FICHA: [string, string][] = [
+  ['Full-Name', 'Full name'], ['Phone', 'Phone'], ['email', 'Email'],
+  ['ZIP-Code', 'ZIP code'], ['Type', 'Homeowner'],
+  ['Project-Type', 'Project type'], ['Estimated-Project-Budget', 'Investment range'],
+  ['Timeline', 'Timeline'], ['Message', 'Project details'],
+  ['checkbox', 'Services of interest'], ['Checkbox', 'SMS consent'],
+];
+
+const FICHAS_CAPTACION: Record<string, { titulo: string; campos: [string, string][] }> =
+  Object.fromEntries(
+    Object.entries(CAPTACION as Record<string, any>)
+      .filter(([k, f]) => k.startsWith('/') && f?.formulario?.nombre && f?.formulario?.aviso)
+      .map(([, f]) => [f.formulario.nombre, { titulo: f.formulario.aviso, campos: CAMPOS_FICHA }]),
+  );
+
 const FORMULARIOS: Record<string, { titulo: string; campos: [string, string][] }> = {
   'Contact Page Form': {
     titulo: 'Contact form',
@@ -78,6 +111,31 @@ const FORMULARIOS: Record<string, { titulo: string; campos: [string, string][] }
       ['checkbox', 'Services of interest'],
     ],
   },
+  /**
+   * R17-CORE — EL FORMULARIO DE LA LANDING DE PAGO.
+   *
+   * `data-name` PROPIO y no reutilizado. Con «Request Quote Form» el `form_name` de GA4
+   * saldria `estimate`, indistinguible del de `/request-estimated`, y esta es la Final URL de
+   * un ad group: separar sus leads es media razon de existir del formulario. El id corto es
+   * `core`, y va tambien en `MAPA_FORM` (Formularios.astro) y en `NOMBRES` (aviso-correo.ts).
+   *
+   * LOS CINCO CUALIFICADORES DE A1 ESTAN AQUI, y ese es el punto: un campo que NO este en esta
+   * lista desaparece EN SILENCIO del correo -el bucle solo itera la lista blanca-, o sea que el
+   * lead llegaria mutilado y nadie se enteraria.
+   *
+   * `Checkbox` -el consentimiento de SMS- SI se registra aqui, y es el unico formulario que lo
+   * hace. En los otros tres se pide y no se guarda. Si se pide un consentimiento, tiene que
+   * quedar constancia de que se dio: es un formulario de captacion de pago y ese registro es
+   * justo lo que hace falta el dia que alguien pregunte. No cambia nada en los otros tres.
+   *
+   * Aqui el consentimiento es OPCIONAL (ver `FormularioCore.astro`), asi que la fila puede NO
+   * salir: el bucle de abajo descarta los valores vacios y una casilla sin marcar no se envia.
+   * La ausencia de la fila «SMS consent» ES el registro de que no se dio, igual que la ausencia
+   * de «Project details» dice que no escribio nada. Marcada, el valor es `Yes`, no `on`.
+   *
+   * El orden es el del correo: con quien hay que hablar, donde, que quiere, cuanto y cuando.
+   */
+  ...FICHAS_CAPTACION,
   /**
    * FASE 12d — el cierre del estimador de piscinas.
    *

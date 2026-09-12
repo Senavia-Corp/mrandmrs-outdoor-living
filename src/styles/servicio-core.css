@@ -1,0 +1,483 @@
+/**
+ * servicio-core.css — LA CAPA DE CAPTACION DE LAS FICHAS DE `/services/`  ·  R17-CORE
+ *
+ * QUE PINTA, Y CUANTO. Las tres secciones nuevas que montan los componentes
+ * `ConfianzaCore`, `FormularioCore` e `InversionCore`. Hoy solo las monta UNA ruta
+ * -`/services/custom-pool-spa-builders-in-north-south-florida`, la Final URL del ad group
+ * «Pool Builders Core»- porque `src/data/captacion-servicios.json` tiene una sola entrada.
+ * El dia que se extienda a las otras trece fichas, esta hoja **no se toca**: ya esta escrita
+ * para catorce. Medido:
+ *
+ *     grep -rlo 'class="svc-confianza' .vercel/output/static --include='*.html' | wc -l
+ *
+ * ORDEN DE CARGA, y gana por ORDEN, nunca por `!important`:
+ *
+ *   fuentes -> webflow -> disenio/tokens -> disenio/base -> ... -> estimacion
+ *   -> financiacion -> servicio-core -> propio
+ *
+ * DESPUES de `estimacion.css` a proposito: el formulario de captacion reutiliza el ancestro
+ * `.appointment-section` para heredar sus campos de 48 px, sus anillos de foco y sus estados
+ * de error -todo ya medido y aprobado en R12-EST-, y esta hoja solo ajusta la COMPOSICION.
+ * ANTES de `propio.css`, que es donde viven los parches sobre clases de Webflow.
+ *
+ * ─────────────────────────────────────────────────────────────────────────────────────────
+ * POR QUE SE REUTILIZA `.appointment-section` EN VEZ DE ESTILAR EL FORMULARIO DESDE CERO
+ *
+ * No es comodidad: es el presupuesto de `check:tokens`. Medido el 11-sep-2026 antes de
+ * escribir una linea:
+ *
+ *     capa sin comentarios: 75.635 B de 81.920 (TOPE_BYTES)  ->  6.285 B libres
+ *     estimacion.css, que ya estila un formulario de lead:      13.193 B
+ *
+ * ACTUALIZADO 12-sep-2026 (R19), porque la cifra de arriba es la de ANTES de escribir esta
+ * hoja y heredarla es dar por bueno un numero que ya no describe la capa:
+ *
+ *     npm run check:tokens  ->  la capa pesa 78,1 KB de 80 KB - 1.949 B libres
+ *     servicio-core.css sin comentarios:                          4.336 B
+ *
+ * Un formulario estilado desde cero NO CABE, y subir el tope para que quepa mi trabajo es
+ * exactamente «la puerta que se actualiza cuando molesta». Reutilizando el ancestro, esta
+ * hoja solo paga lo que es nuevo de verdad: la composicion en dos columnas, la franja de
+ * cuatro tarjetas y la banda de inversion.
+ *
+ * ALCANCE QUE ESO AMPLIA, y se dice: `.appointment-section` pintaba 1 ruta
+ * (`/request-estimated`) y pasa a pintar 2. `estimacion.css` cuelga TODO de ese ancestro,
+ * asi que el radio sigue siendo enumerable. Lo que NO se hereda es el motor multipaso
+ * `msf-*`: vive en el `<script>` de `/request-estimated`, y aqui el formulario es de un solo
+ * paso y valida el navegador.
+ *
+ * ─────────────────────────────────────────────────────────────────────────────────────────
+ * DISCIPLINA DE CAPA
+ *
+ *   · TODO selector empieza por `.svc-` -> el radio de impacto es el de sus componentes
+ *   · cero literales de color: solo `var(--mm-*)`
+ *   · cero `!important`, cero `@layer`, cero `url()`
+ *   · breakpoints solo `min-width` 480 / 768 / 992, sin mezclar con los `max-width` de Webflow
+ *   · cero `opacity: 0` y cero `animation-fill-mode`
+ *
+ * CONTRASTES. No hay ni un par nuevo que inventar: todo sale de pares ya medidos en
+ * `disenio/tokens.css`. Tinta navy sobre blanco 15,60:1 · cuerpo negro sobre blanco 21,00:1 ·
+ * navy sobre el tenue de `.mm-tono` 13,26:1 · texto navy sobre el oro del CTA 8,40:1 · blanco
+ * sobre navy 15,60:1 en el numero de los pasos. El unico fondo nuevo es el circulo del icono,
+ * navy al 8 %: es FONDO, no frontera, y da 1,17:1 contra la tarjeta — el mismo criterio ya
+ * escrito para `.fin-icono` en `financiacion.css:131`.
+ */
+
+/* ══ 1 · FRANJA DE CONFIANZA ══════════════════════════════════════════════════════════════
+ * Cuatro diferenciadores. La rejilla es DETERMINISTA por breakpoint, nunca `auto-fit`: el
+ * recuento no puede crecer al estrechar la pantalla, que es el defecto que R12 documento en
+ * el feed (6/5/3/2, con tablet mas grande que escritorio). Aqui: 1 -> 2 -> 4, y cuatro
+ * tarjetas llenan fila completa en los tres tramos. */
+/* R18 — AQUI HABIA UN `padding-block-end: var(--mm-e-32)` Y SE HA QUITADO.
+ * Su motivo era bueno cuando lo escribi y dejo de serlo con el fondo navy: decia que la franja
+ * y el formulario eran dos secciones BLANCAS vecinas cuyos paddings sumaban 160 px de aire
+ * muerto, asi que recortaba el de abajo. Con la franja tenida eso deja de ser aire entre
+ * secciones y pasa a ser el margen INTERIOR de un bloque de color: medido, 96 px arriba contra
+ * 32 abajo a 1440, una asimetria de 3 a 1 que hace que la banda parezca recortada y no
+ * compuesta. El aire de abajo ya no se suma al de la seccion siguiente porque entre los dos hay
+ * un cambio de plano, que es lo que cierra una seccion tenida. Se deja mandar a `.mm-seccion`
+ * y queda simetrico: 48 / 64 / 96. Quitar la regla ADEMAS devuelve bytes. */
+.svc-confianza__tit { text-wrap: balance; }
+
+.svc-confianza__lista {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--mm-e-24);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 480px) { .svc-confianza__lista { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 992px) { .svc-confianza__lista { grid-template-columns: repeat(4, 1fr); } }
+
+/* EL FILETE DE ORO, Y POR QUE NO HAY CUATRO DISCOS. Cuatro circunferencias identicas con un
+ * icono dentro son exactamente el efecto «cuatro cajas iguales»: la vista no encuentra donde
+ * entrar. El filete superior hace de indice -como una tabla- y convierte la retahila en una
+ * lectura. Son 2 px porque 1 px de oro sobre navy se pierde a 1x.
+ *
+ * ES EL UNICO ORO DE ESTA PAGINA QUE NO ES EL BOTON, y cabe: `base.css` reserva el oro para
+ * `.mm-accion` porque sobre BLANCO da 1,86:1 y no marca nada. Aqui el fondo es navy y da
+ * 8,40:1. El propio `.mm-inverso` ya pone oro claro como color de enlace en su ambito, o sea
+ * que oro sobre oscuro es un registro que el sistema YA usa. El CTA dorado sigue viviendo solo
+ * en el fondo claro de abajo, asi que no se le hace competencia. */
+.svc-confianza__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mm-e-12);
+  padding-block-start: var(--mm-e-24);
+  border-block-start: 2px solid var(--mm-oro);
+}
+/* `capitalize` vive en `h3` (webflow.css) y SI altera el innerText: el rotulo se pinta en
+ * Title Case y asi esta declarado en `check-texto.mjs`. No se toca esa regla.
+ *
+ * `2lh` NO es adorno: «Florida Licensed Pool Contractor» y «3D Design Before You Commit» ocupan
+ * dos lineas y los otros dos una, asi que los cuerpos arrancaban a cuatro alturas distintas.
+ * Reservando dos lineas comparten linea base sin tocar el texto. */
+.svc-confianza__rotulo { margin: 0; min-block-size: 2lh; }
+
+/* El circulo del icono. Mismo patron que `.fin-icono`, en su propio nombre para no cruzar
+ * dos familias: el dia que una cambie, la otra no se entera.
+ *
+ * SE LLAMA `.svc-confianza__icono` Y NO `.svc-icono` POR UNA COLISION REAL, MEDIDA.
+ * `ServiciosPorCategoria.astro` ya tiene un `.svc-icono` propio —un `<img>` de 30 px dentro de
+ * `.svc-barra`— y lo montan `/`, `/where-we-serve/north-florida` y `/where-we-serve/south-florida`:
+ * 42 iconos en tres paginas que este encargo promete intactas. Su regla va SCOPED por Astro
+ * (`.svc-icono[data-astro-cid-tbqwuwa5]`, 0-2-0) y ganaba en todo lo que declara, pero
+ * `display`, `place-items` y `color` NO los declara: esos tres se colaban desde esta hoja, que
+ * es global. Hoy no se veia —el `<img>` es hijo de un `display:flex`, asi que ya estaba
+ * blockificado, y `place-items`/`color` no pintan nada en un elemento reemplazado sin hijos—,
+ * pero dos cosas distintas con el mismo nombre en el mismo espacio es una bomba de relojeria.
+ * El prefijo `.svc-` NO era libre. */
+/* AVISO PARA QUIEN ANADA UN ENLACE A ESTA FRANJA: dentro de `.mm-inverso` el oro ES el color de
+ * enlace (`--mm-enlace-inverso`, base.css). Hoy no hay conflicto -la banda tiene 0 enlaces y 0
+ * botones, y los cuatro glifos van `aria-hidden`-, pero el dia que entre un `<a>` aqui, un
+ * glifo dorado decorativo y un enlace dorado hablaran el mismo idioma. Si eso pasa, el enlace
+ * se distingue por subrayado (`.mm-vinculo`), no por color. */
+.svc-confianza__icono { display: block; color: var(--mm-oro); }
+.svc-confianza__icono svg { inline-size: var(--mm-e-48); block-size: var(--mm-e-48); }
+
+/* ══ 2 · EL FORMULARIO ════════════════════════════════════════════════════════════════════
+ * Dos columnas a partir de 992: el formulario manda y «What happens after you reach out» va
+ * al lado, no debajo, para que se lea ANTES de rellenar y no despues. Por debajo de 992 se
+ * apilan y los pasos van primero en el DOM? No: van DESPUES, para que el pulgar llegue al
+ * primer campo sin scroll. El orden del documento es el orden de lectura. */
+/* EL ANCLA DEL CTA DEL HEROE, MEDIDA. `section.menu` es `position: fixed` de 85 px, asi que
+ * saltar a `#estimate` dejaba el `<h2>` del formulario en top 48 px a 390 y 64 px a 1440 —
+ * DEBAJO del nav, o sea tapado. El CTA principal de una landing de pago llevaba a un titulo que
+ * no se ve. Se reserva el alto del nav mas un respiro; el mismo remedio que ya usa
+ * `financiacion.css:248`. */
+/* EL FONDO GRIS Y LA TARJETA BLANCA, no al reves. Probadas las dos sobre el build: con la
+ * seccion en blanco y la tarjeta gris, el panel de los pasos quedaba blanco sobre blanco y
+ * desaparecia. Con el suelo gris, la tarjeta blanca es lo unico levantado de la pagina y el ojo
+ * va ahi. Navy sobre este gris da 13,68:1.
+ *
+ * `margin-block-start: 0` NO es cosmetico: la seccion heredaba 65 px de margen y dejaba una
+ * costura BLANCA entre la franja navy y este gris -un tercer color de dos dedos que no pintaba
+ * nada-. Se anula aqui y solo aqui: `.svc-captacion` existe unicamente en esta ruta. */
+.svc-captacion {
+  scroll-margin-block-start: calc(var(--mm-nav-alto) + var(--mm-e-24));
+  margin-block-start: 0;
+  background-color: var(--mm-fondo-tenue);
+}
+
+/* UNA SOLA COLUMNA. La rejilla de dos murio con el hueco del 65-72 %; ver el comentario de
+ * `FormularioCore.astro`. `56rem` es la medida: a 1440 el campo queda en 404 px en vez de los
+ * 800 que salian cuando el formulario ocupaba el ancho entero a 991. */
+.svc-captacion__rejilla { max-inline-size: 56rem; }
+
+.svc-captacion__intro { margin-bottom: var(--mm-e-24); }
+
+/* La tarjeta. Sombra 3 y no borde: sobre el gris tenue el borde de la casa (#e0e4ec) da 1,12:1
+ * y no separa nada. Lo que levanta la tarjeta es la sombra. */
+.svc-captacion__panel {
+  min-width: 0;
+  background-color: var(--mm-superficie);
+  border-radius: var(--mm-r-24);
+  box-shadow: var(--mm-sombra-3);
+  padding: var(--mm-e-32);
+}
+
+/* Los ocho campos cortos, a dos columnas desde 768. `Project details` ocupa las dos. */
+.svc-form__rejilla {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--mm-e-16);
+}
+@media (min-width: 768px) {
+  .svc-form__rejilla { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--mm-e-24); }
+  .svc-form__ancho   { grid-column: 1 / -1; }
+}
+
+/* `min-height` y NO `height`: con altura fija el campo no crece con el texto y el objetivo
+ * tactil deja de estar garantizado. Es la receta de la casa (`intro.css:161`). */
+.svc-form__area { min-height: var(--mm-e-96); resize: vertical; }
+
+.svc-form__opcional { color: var(--mm-tinta-atenuada); font-weight: var(--mm-peso-normal); }
+
+.svc-form__consentimiento { margin-block: var(--mm-e-24) var(--mm-e-16); }
+.svc-form__envio { margin-top: var(--mm-e-16); }
+
+/* EL BANNER DE EXITO IBA A 1,35:1, Y ES LA PANTALLA QUE VE QUIEN ACABA DE DEJAR EL LEAD.
+ *
+ * No se ve en ninguna captura ni la mide ninguna puerta porque solo existe DESPUES de enviar:
+ * `Formularios.astro` esconde el `<form>` y ensena este `<div>`. Medido forzandolo visible:
+ * negro sobre navy, 1,35:1.
+ *
+ * La cascada, que es donde estaba la trampa. Dos hojas se disputan el fondo con la MISMA
+ * especificidad (0-2-0) y gana la ultima cargada:
+ *     contacto.css:585   .form-block .success-message-form          -> fondo TENUE   (hoja 120)
+ *     estimacion.css:454 .appointment-section .success-message-form -> fondo NAVY    (hoja 121)
+ * El marcado casa con las dos -el panel lleva `form-block` y la seccion `appointment-section`-,
+ * asi que el fondo acaba siendo navy. Y las reglas con las que `estimacion.css` compensa ese
+ * navy apuntan a `h2` (:459) y a `> div` (:466); aqui el texto es un `<p class="mm-txt">`, que
+ * no es ninguna de las dos, y `.mm-txt` pinta `--mm-tinta-cuerpo`, o sea NEGRO.
+ *
+ * Se arregla por color y no cambiando el `<p>` a `<div>` para colarlo en el selector ajeno:
+ * depender de la forma de la etiqueta para heredar un color de OTRA hoja es justo el tipo de
+ * atadura que hoy ha fallado. (0-2-1) le gana a `.mm-txt` (0-1-0) sin `!important`.
+ * #c7cddd sobre navy = 9,81:1. */
+.svc-captacion .success-message-form p { color: var(--mm-tinta-inversa-2); }
+
+/* ══ 3 · «WHAT HAPPENS AFTER YOU REACH OUT» ═══════════════════════════════════════════════
+ * Ya no es tarjeta: es una TIRA sobre el suelo gris, delante del formulario. Sin fondo propio
+ * ni sombra, porque competir con la tarjeta blanca seria pelearle la jerarquia a lo unico que
+ * tiene que destacar. */
+.svc-captacion__pasos { margin-block-end: var(--mm-e-32); }
+
+/* `auto-fit` y no tres columnas fijas: a 390 cae a una, a 768 a dos o tres segun quepa, y a
+ * 1440 a tres. Sin un solo punto de corte escrito. */
+.svc-pasos {
+  display: grid;
+  gap: var(--mm-e-16) var(--mm-e-24);
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  margin: var(--mm-e-16) 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+.svc-pasos__item {
+  display: grid;
+  grid-template-columns: var(--mm-e-24) 1fr;
+  gap: var(--mm-e-12);
+  align-items: start;
+}
+/* Blanco sobre navy: 15,60:1. El numero es decorativo -el orden ya lo da el `<ol>`-, por eso
+ * va `aria-hidden` en el componente y no transporta informacion que falte sin el. */
+.svc-pasos__n {
+  display: grid;
+  place-items: center;
+  inline-size: var(--mm-e-24);
+  block-size: var(--mm-e-24);
+  border-radius: var(--mm-r-pastilla);
+  background-color: var(--mm-navy);
+  color: var(--mm-tinta-inversa);
+  font-family: var(--mm-fuente);
+  font-size: var(--mm-paso-0);
+  font-weight: var(--mm-peso-fuerte);
+}
+
+/* ══ 3.bis · LAS TRES TARJETAS DE REMODELACION, QUE AHORA SON ENLACES ═════════════════════
+ * El generador envuelve `.item-subservice` en un `<a>` a la landing de Remodeling. Sin esto el
+ * ancla hereda el subrayado de Webflow y subraya TAMBIEN el parrafo, que no es un enlace y
+ * parece un error. Se subraya solo el titulo -que es lo que se lee como enlace- y se le dan los
+ * estados que la tarjeta nunca tuvo: el `:hover` y el `:focus-visible` de la casa.
+ * El anillo va en el ancla, no en la tarjeta, para que el foco marque lo que se pulsa. */
+.svc-subservicio {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+  border-radius: var(--mm-r-16);
+}
+.svc-subservicio .heading-2 {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.svc-subservicio:hover .heading-2 { text-decoration-thickness: 2px; }
+.svc-subservicio:focus-visible {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco);
+  outline-offset: var(--mm-foco-aire);
+}
+
+/* El paso siguiente al final de la rejilla. Sin esto queda pegado a la esquina de la ultima
+ * tarjeta, que es donde nadie lo busca. */
+.svc-cierre {
+  margin: var(--mm-e-32) 0 0;
+  text-align: center;
+}
+
+/* ══ 4 · INVERSION Y FINANCIACION ═════════════════════════════════════════════════════════
+ * La maqueta de dos columnas DE TEXTO que habia aqui (texto a la izquierda, acciones a la
+ * derecha, dentro de una tarjeta tenue) se fue entera con C3: ahora las dos columnas son
+ * FOTO y PANEL, y las acciones vuelven a ir al final del recorrido de lectura, dentro del
+ * panel. El problema que aquella resolvia -el parrafo parandose en `--mm-medida` y dejando
+ * ~600 px de caja vacia a 1440- ya no existe, porque la mitad derecha es la foto. */
+/* ── C3 · LA BANDA 50/50 ───────────────────────────────────────────────────────────────
+ * Sustituye a la tarjeta tenue sobre blanco (`.svc-inversion__caja`, que se va entera: sus
+ * reglas de relleno y su rejilla de dos columnas ya no las monta nadie). Se recupera lo que
+ * pesaba, que es la unica razon por la que este cambio cabe en lo que queda de presupuesto.
+ *
+ * A partir de 992 son dos columnas iguales y la foto va a ALTURA COMPLETA: la altura la manda
+ * el panel, y la foto se estira a ella. `min-height: 0` hace falta porque un elemento de
+ * rejilla tiene `min-height: auto` y sin eso la imagen impone su alto intrinseco y desborda.
+ *
+ * `aspect-ratio` + `width`/`height` horneados por debajo de 992, que es donde la foto manda su
+ * propio alto: sin eso vuelve el CLS que costo 38 imagenes arreglar. Por encima de 992 la
+ * proporcion la impone la columna, asi que `aspect-ratio` estorba y se anula. */
+.svc-inversion__banda { display: grid; grid-template-columns: 1fr; }
+.svc-inversion__foto {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  min-block-size: 0;
+  object-fit: cover;
+  aspect-ratio: 1250 / 698;
+}
+.svc-inversion__panel {
+  display: flex;
+  align-items: center;
+  padding: var(--mm-e-48) var(--mm-canal);
+}
+@media (min-width: 992px) {
+  .svc-inversion__banda { grid-template-columns: 1fr 1fr; }
+  .svc-inversion__foto { aspect-ratio: auto; }
+  .svc-inversion__panel { padding: var(--mm-e-96) var(--mm-e-64); }
+}
+
+
+/* `wrap` para que a 390 los dos CTA se apilen en vez de encogerse por debajo del objetivo
+ * tactil. `.mm-accion` ya trae `min-height: 44px`. */
+.svc-inversion__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mm-e-16);
+  margin-top: var(--mm-e-8);
+}
+
+/* ══ 5 · EL HEROE DE LA LANDING DE PAGO ═══════════════════════════════════════════════════
+ * `.hero-services` lo comparten las 14 fichas y NO se toca: estas dos clases las anade el
+ * generador SOLO en la ruta de captacion, asi que el radio es esa ruta y nada mas.
+ *
+ * ─── EL VELO, MEDIDO ─────────────────────────────────────────────────────────────────────
+ * `webflow.css` ya trae `linear-gradient(#00000080,#00000080)`: negro al 50 %. Con la foto
+ * NUEVA -una piscina terminada, mucho mas clara que la excavacion que habia- ese 50 % no
+ * llega. Medido sobre el recorte real del heroe (1440x700, `object-fit: cover`) y sobre la
+ * banda central de 750 px, que es el `max-width` de `.block-hero-services-page`, o sea justo
+ * donde cae el texto blanco:
+ *
+ *     velo 50 %   peor 4,07:1   medio 10,57:1   area por debajo de 4,5:1  0,034 %
+ *     velo 54 %   peor 4,69:1   medio 11,30:1   area por debajo de 4,5:1  0,000 %
+ *     velo 56 %   peor 5,05:1   medio 11,68:1   area por debajo de 4,5:1  0,000 %   <- elegido
+ *     velo 60 %   peor 5,86:1   medio 12,49:1   area por debajo de 4,5:1  0,000 %
+ *
+ * Se elige 56 % y no 54 %: deja margen sobre el umbral sin apagar la foto, y el promedio NO
+ * decide nada -el peor pixel si-, que es el error que `CRITERIO.md` documenta con el 5,49:1
+ * de media contra el 3,11:1 de la teja real en `cta-footer-image.webp`.
+ *
+ * DATO QUE CONVIENE QUE CONSTE: con la foto ANTERIOR y el velo de 50 % el peor pixel daba
+ * 3,98:1 y el 1,11 % del area del texto quedaba por debajo de 4,5:1. O sea que el heroe ya
+ * incumplia antes de este encargo, y ninguna puerta lo veia: `check:visual` compara contra su
+ * propio baseline, asi que un texto que ya se leia mal se aprueba como «sin cambio». */
+.svc-heroe {
+  background-image: linear-gradient(
+    color-mix(in srgb, var(--mm-negro) 56%, transparent),
+    color-mix(in srgb, var(--mm-negro) 56%, transparent));
+}
+
+/* Los dos telefonos y las licencias. Sin esto heredan el azul de enlace de Webflow sobre una
+ * foto oscura -medido en el laboratorio: ilegible-. Blanco sobre el velo da los 5,05:1 de
+ * arriba, y el subrayado es lo que dice que son enlaces sin depender del color. */
+.svc-heroe__tel,
+.svc-heroe__lic {
+  margin: 0;
+  font-family: var(--mm-fuente);
+  font-size: var(--mm-paso-1);
+  line-height: var(--mm-alto-cuerpo);
+  color: var(--mm-tinta-inversa);
+}
+.svc-heroe__tel a {
+  color: var(--mm-tinta-inversa);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  /* 44 px de objetivo tactil sin cambiar la linea de texto: el relleno lo da el inline-flex,
+   * no una altura fija (receta de `intro.css:161`). */
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+/* ═══ C4 · LA SECCION FUNDIDA: «Why homeowners pick us» + «Custom Pool & Spa Builders…» ═══
+ *
+ * Las dos eran secciones distintas con fondos distintos, y Sebastian pidio que fueran UNA.
+ * El generador las deja pegadas y le pone a la intro las marcas `svc-intro` y `mm-inverso`
+ * (`build-paginas.mjs`, bloque 3.bis). Aqui se corrige lo que queda.
+ *
+ * POR QUE NO SE COPIA EL FONDO DE ONDA, QUE ERA LO PRIMERO QUE SE PENSO (C1). Tres razones,
+ * y las tres son medidas, no gusto:
+ *
+ * 1 · NO HAY CAJA COMUN. Las dos son secciones HERMANAS; no existe un envoltorio al que
+ *     colgarle un solo fondo. Dos cajas con `background-size: cover` son DOS recortes
+ *     distintos de la misma imagen, y el salto entre ambos es una costura horizontal justo
+ *     donde el diseno promete continuidad. Fundir es precisamente lo que no admite costura.
+ * 2 · LA BANDA DE CIAN. `R19-CAMBIOS.md` §C1 midio el fondo aislado por bandas a 1440: el 10 %
+ *     superior es `#98e2f1` y da 1,45:1 con blanco -y 1,10:1 con el cuerpo atenuado-. Sobre
+ *     `.trusted-section` no se notaba porque su texto cae en la zona seca; el `<h2>` de «Why»
+ *     va arriba del todo, o sea JUSTO en la banda mala. Y como la seccion fundida es mas alta,
+ *     `cover` reescala y la banda se muda de sitio: heredar la medida vieja seria dar por
+ *     bueno un numero que ya no describe la caja.
+ * 3 · EL COLOR PLANO NO TIENE ESE PROBLEMA Y CUESTA CERO. `mm-inverso` ya da el navy y ademas
+ *     redefine tinta, enlace, borde y foco del ambito. Medido en `disenio/base.css`:
+ *     blanco 15,60:1 · atenuada `#c7cddd` 9,81:1 · oro claro 8,51:1. Los tres pasan con
+ *     margen en CUALQUIER banda, porque no hay bandas: es un plano.
+ *
+ * OJO A LA TRAMPA QUE CASI CUELA: poner la intro `transparent` NO la vuelve navy, la vuelve
+ * BLANCA — son hermanas, debajo esta el fondo de pagina. Tiene que TOMAR el navy, no perder
+ * el suyo.
+ *
+ * Y EL FONDO SE DECLARA AQUI AUNQUE `mm-inverso` YA LO PONGA, con doble clase (0-2-0).
+ * `propio.css:261` lleva `.trusted-section { background-color: var(--mm-azul-500) }` y se
+ * carga DESPUES de esta hoja (`Base.astro:132` frente a `:135`), asi que a igualdad de peso
+ * gana el azul. `intro.css` y `webflow.css` cargan antes y con 0-1-0 basta para ellos; este
+ * es el unico que necesita el empate roto. */
+.svc-intro.svc-intro {
+  background-color: var(--mm-fondo-navy);
+  background-image: none;
+  box-shadow: none;
+  padding-block-start: var(--mm-e-64);
+}
+
+/* La costura de aire. Fundidas, las dos sumaban su relleno: 96 de `mm-seccion` abajo mas 96
+ * de `.trusted-section` arriba = 192 px de hueco muerto EN MEDIO de una seccion que dice ser
+ * una. Se anula el de la franja y la intro entra con 64, que es menos que los 96 que la
+ * seccion deja por fuera: asi el bloque se lee como uno con dos partes, y no como dos cosas
+ * que se tocan. */
+.svc-confianza { padding-block-end: 0; }
+
+/* C5 - EL RITMO DE LAS TRES ULTIMAS LINEAS. Medido antes de tocar nada, a tres anchos:
+ *
+ *     node scripts/diag-ritmo.mjs /services/custom-pool-spa-builders-in-north-south-florida \
+ *          '.block-hero-services-page' 390 768 1440
+ *
+ *                             390    768   1440
+ *     rotulo    -> h1          8 px   8 px   8 px
+ *     h1        -> apoyo      10 px  10 px  10 px
+ *     apoyo     -> telefonos  10 px  10 px  10 px
+ *     telefonos -> licencias   0 px   0 px   0 px   <- PEGADOS
+ *     licencias -> CTA         0 px   0 px   0 px   <- PEGADOS
+ *
+ * Arriba el ritmo es 8/10/10 y abajo se desploma a cero, justo en las tres lineas que deciden.
+ * El cero no es un descuido de Webflow: lo pone el `margin: 0` de la regla de aqui arriba, que
+ * se escribio para matar el margen heredado y se llevo tambien el ritmo por delante.
+ *
+ * Se reparan solo los dos huecos rotos, con la escala de la casa. El CTA lleva 24 y no 8
+ * porque cierra el bloque: telefono y licencia son la misma idea -como localizarnos- y van
+ * juntos; la llamada a la accion es otra cosa y necesita separarse. 8 / 24 = uno a tres,
+ * el mismo salto que la escala ya usa entre `--mm-e-8` y `--mm-e-24`.
+ *
+ * Queda: 8 / 10 / 10 / 8 / 24. Cero bytes por ficha: las clases son de la capa y las
+ * catorce fichas las heredan en cuanto se enciendan.
+ *
+ * LO QUE NO SE TOCA, Y POR QUE. `R19-CAMBIOS.md` §C5 pedia ademas «componer el heroe
+ * verticalmente en vez de apoyarlo arriba», leyendo `padding-block: 85px / 0px`. MEDIDO, esa
+ * lectura no se sostiene: el nav se superpone al heroe -la seccion empieza en y=0 y
+ * `section.menu` ocupa los primeros 85- asi que el padding es COMPENSACION, no aire de
+ * diseno, y `align-items: center` ya centra el contenido en la zona visible:
+ *
+ *     node scripts/diag-ritmo.mjs <ruta> 'section.hero-services' --composicion 1440x900
+ *     aire VISIBLE arriba 145  abajo 145  -> desequilibrio 0 px   <- COMPUESTO
+ *     (a 390x844: 31 y 31, desequilibrio 0)
+ *
+ * O sea que el heroe YA esta compuesto. Anadirle aire abajo lo descentraria 42 px. Es el
+ * mismo caso que el padding 96/32 de la hoja: la justificacion escrita era correcta para el
+ * diseno anterior. */
+.svc-heroe__lic { margin-block: var(--mm-e-8) var(--mm-e-24); }
+
+/* LAS LICENCIAS VAN EN BLANCO PLENO, no en el tono atenuado. Parecia el sitio natural para
+ * `--mm-tinta-inversa-2`, y MEDIDO sobre esta misma foto con este mismo velo NO cumple:
+ *
+ *     blanco      #ffffff   peor 5,05:1   area por debajo de 4,5:1   0,000 %
+ *     inversa-2   #c7cddd   peor 3,18:1   area por debajo de 4,5:1  22,315 %
+ *
+ * El token esta calibrado contra `--mm-fondo-navy`, que es un color plano y siempre el mismo
+ * (9,81:1). Sobre una FOTOGRAFIA no hay tal garantia. Un token correcto en su fondo puede ser
+ * incorrecto en otro: eso se mide, no se hereda. */

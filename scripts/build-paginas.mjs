@@ -33,6 +33,26 @@ const man = JSON.parse(fs.readFileSync(path.join(RAIZ, '_source/assets-manifest.
 /* El manifiesto ya trae `dim:{w,h}` de 1877 de los 2000 assets. Indexado por ruta publica,
  * sirve para reservar el hueco de una imagen que no declara tamano (§ limpia()). */
 const DIM = new Map(Object.values(man).filter((a) => a.dim?.w).map((a) => [a.publico, a.dim]));
+/* El MISMO mapa, pero indexado por la URL DEL CDN. Hace falta porque `captacion()` (R17-CORE)
+ * corre ANTES que `localizar()`: cuando toca esas imagenes todavia apuntan a
+ * `cdn.prod.website-files.com`, asi que buscarlas por ruta publica no encuentra ninguna. Salio
+ * en rojo midiendo: 35 imagenes de la ruta se quedaron sin `width`/`height` en silencio. */
+const DIM_CDN = new Map(Object.entries(man).filter(([, a]) => a.dim?.w).map(([u, a]) => [u, a.dim]));
+
+/**
+ * R17-CORE — LA CAPA DE CAPTACION DE LAS FICHAS DE `/services/`.
+ *
+ * `src/data/captacion-servicios.json` tiene UNA clave por ruta y hoy solo una entrada: la Final
+ * URL del ad group «Pool Builders Core». La lista se deriva del propio JSON —no se escribe dos
+ * veces— asi que **extender esto a otra ficha es anadir una entrada alli y nada mas**. Las 14
+ * son la misma plantilla, verificado elemento a elemento.
+ *
+ * TODO lo que hace `captacion()` esta dentro de `if (!c) return;`. Esa guarda es lo que
+ * garantiza que las otras 121 paginas salgan BYTE A BYTE iguales, y se comprueba con un diff de
+ * sha1 del build entero, no de palabra.
+ */
+const CAPTACION = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/captacion-servicios.json'), 'utf8'));
+const TELEFONOS = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/telefonos.json'), 'utf8')).items;
 /* Las clases de `<img>` a las que se les reserva el hueco (§ limpia()). Enumeradas y medidas:
  * cada una entro aqui con una cifra de `layout-shift` detras, no por precaucion.
  *   · `cover-brochure-page` (/brochures, 57 portadas `lazy`): miden 0 px hasta cargar y la
@@ -174,6 +194,18 @@ function localizar(raiz) {
  * propio marcado, no redactado aqui.
  */
 const ENCABEZADOS_PROYECTOS = {
+  /* R17-CORE. Esta ficha NO trae `projects-section` en su origen -llevaba `gallery`, que se
+   * sustituye-, asi que sin esta semilla el carrusel caeria a `_defecto` («Project showcase /
+   * Browse our completed residential & Commercial projects…»), que ademas trae una mayuscula
+   * suelta. El texto sale de `captacion-servicios.json`, que es donde vive el copy de la ruta. */
+  /* SOLO `titulo` y `entradilla`. El bloque `proyectos` del JSON lleva tambien `solo` -el filtro
+   * por ruta de R17-CORE F3e- y su `_solo` de documentacion, que NO son encabezado: los lee
+   * `CarruselProyectos.astro` del propio JSON. Copiarlos aqui metia dos claves de adorno en un
+   * fichero derivado que solo tiene que decir que pone en la cabecera. */
+  ...Object.fromEntries(Object.entries(CAPTACION)
+    .filter(([k, v]) => k.startsWith('/') && v.proyectos)
+    .map(([k, v]) => [k, { titulo: v.proyectos.titulo, entradilla: v.proyectos.entradilla }])),
+
   _lee_esto: 'El encabezado del carrusel «Project Showcase» de cada ruta. Es lo UNICO que cambiaba entre paginas: el bloque de 10 slides y la cola de flechas + barra + CTA eran byte a byte identicos en los 7 sitios donde estaba pegado (6103 y 1581 bytes, sha1 76930c21c9bf y 3c5989650bad). Espejo de blog-heading-por-ruta.json, y lo lee igual: CarruselProyectos.astro se autolocaliza por Astro.url.pathname. DERIVADO: lo escribe scripts/build-paginas.mjs.',
   _ojo: 'El texto va DECODIFICADO (ampersand suelto, no la entidad): lo escapa Astro al pintar, y sale el mismo byte que habia en el blob. Escribir aqui la entidad pintaria una entidad doblemente escapada y romperia check:texto, que compara innerText al 100 % y no se re-baseliniza nunca.',
   _quien_no_esta_aqui: 'Las 53 rutas de /pool-builders/ NO estan: su titulo y su entradilla salen de Sanity (campos headingPortfolio y paragraphPortfolio, huecos 25 y 27 de CAMPOS en [slug].astro) y por eso Reddick dice «Reddick portfolio». Esas pasan las dos como props. _defecto solo existe para que una ruta sin entrada y sin props no pinte una cabecera vacia.',
@@ -452,6 +484,10 @@ let huecosReservados = 0;
 const imgSinDim = [];
 /* Heroes que dejan de ser `lazy` por ser la imagen LCP de su ruta. */
 let heroesDesperezados = 0;
+/* Rutas con la capa de captacion aplicada (R17-CORE). Se COMPRUEBA al final contra el
+ * tamano de `CAPTACION`: si baja, una ruta declarada dejo de pasar por aqui y la landing
+ * de pago se quedo sin formulario sin que nadie lo dijera. */
+let captacionAplicada = 0;
 /* Los tres arreglos que antes vivian a mano en el `.astro` (§ limpia()). */
 let logosConSizes = 0;
 let relAnadidos = 0;
@@ -468,6 +504,372 @@ let codeEmbedsEliminados = 0;
 const generadas = [];
 const porColeccion = {};
 const protegidas = [];
+/**
+ * ── LA CIRUGIA DE LA LANDING DE PAGO (R17-CORE) ──────────────────────────────────────────
+ *
+ * Muta el DOM de la ruta ANTES de que el bucle de hermanos lo recorra, asi que todo lo que
+ * viene despues -`limpia()`, los marcadores, el troceo- ve ya la pagina reordenada.
+ *
+ * POR QUE AQUI Y NO A MANO EN EL `.astro`. El fichero lleva cabecera `// DERIVADO` y lo
+ * reescribe este generador: una edicion a mano se pierde en la siguiente corrida. Y NO se pasa
+ * a autoria propia -que seria la otra salida- por dos razones medidas:
+ *   · `build-plantillas.mjs:358,648` hace `readdirSync` + `unlinkSync` sobre `src/pages/services/`
+ *     y borraria el fichero. Es la trampa que documenta la cabecera de `financing.astro`.
+ *   · `RUTAS_PROPIAS` apagaria `check:texto` y la comparacion de `<head>` de `check:seo` justo
+ *     en la pagina que mas vigilancia necesita: es una URL final de anuncio.
+ *
+ * @param {Document} doc  el DOM de la ruta
+ * @param {string}   ruta
+ * @returns {boolean} si se aplico (para el contador-invariante del final)
+ */
+function captacion(doc, ruta) {
+  const c = CAPTACION[ruta];
+  if (!c) return false;
+
+  /* ── 1 · EL HEROE ──────────────────────────────────────────────────────────────────────
+   * Cuatro cosas, y cada una tiene su numero detras:
+   *
+   * LA FOTO. La que habia -`new-pool-spa-construction-florida.avif`- es una EXCAVACION: un
+   * hoyo con una miniexcavadora. Miradas en hoja de contactos las cuatro fotos propias de la
+   * ruta, LAS CUATRO son obra en curso y ninguna es una piscina terminada. En la imagen LCP de
+   * una landing de pago eso no vende nada. La nueva es obra real de North Florida con ficha
+   * propia en `/project/estate-pool-spa-sun-shelf-north-florida`.
+   *
+   * `eager` + `fetchpriority="high"`. Era el LCP y llevaba `loading="lazy"`: el navegador lo
+   * trataba como diferible. En todo el sitio solo UNA imagen llevaba `fetchpriority`.
+   *
+   * `width`/`height`. El manifiesto no conoce las fotos de `projects/` -no vienen de Webflow-,
+   * asi que las dimensiones van declaradas en el JSON y se hornean aqui.
+   *
+   * EL CTA ANCLA AL FORMULARIO DE ESTA PAGINA. Antes salia a `/request-estimated`: un segundo
+   * clic que el anuncio ya habia pagado. El camino a `/request-estimated` NO desaparece —sigue
+   * en `.cta-footer`, que es el cierre de 102 rutas—, asi que la regla 7 de `check:ads`
+   * («ningun enlace a los destinos de conversion») sigue satisfecha. */
+  const heroe = doc.querySelector('section.hero-services');
+  if (heroe) {
+    heroe.classList.add('svc-heroe');
+    const img = heroe.querySelector('img.image-bg-hero-services');
+    if (img) {
+      img.setAttribute('src', c.heroe.foto);
+      img.setAttribute('alt', c.heroe.alt);
+      img.setAttribute('loading', 'eager');
+      img.setAttribute('fetchpriority', 'high');
+      img.setAttribute('width', String(c.heroe.ancho));
+      img.setAttribute('height', String(c.heroe.alto));
+      heroesDesperezados++;
+    }
+    const bloque = heroe.querySelector('.block-hero-services-page');
+    const parrafo = bloque?.querySelector('p');
+    if (parrafo) parrafo.textContent = c.heroe.apoyo;
+    const cta = bloque?.querySelector('a.button');
+    if (cta) {
+      cta.setAttribute('href', c.heroe.ancla);
+      /* LOS DOS TELEFONOS, NORTH FLORIDA PRIMERO. La pagina no tenia NI UNO en el cuerpo: el
+       * invariante de `check:ads` («el de North Florida antes que el de South») lo cumplia solo
+       * el cromo -el nav y el boton flotante-. Era un verde prestado. Salen de
+       * `src/data/telefonos.json`, que es la fuente unica, y en su orden. */
+      const tel = doc.createElement('p');
+      tel.className = 'svc-heroe__tel';
+      tel.innerHTML = TELEFONOS
+        .map((t) => `<a href="tel:${t.tel}">${t.visible}</a> ${t.zona}`)
+        .join(' &middot; ');
+      const lic = doc.createElement('p');
+      lic.className = 'svc-heroe__lic';
+      lic.textContent = c.heroe.licencias;
+      cta.parentNode.insertBefore(tel, cta);
+      cta.parentNode.insertBefore(lic, cta);
+    }
+  }
+
+  /* ── 2 · FUERA EL ANTES/DESPUES ────────────────────────────────────────────────────────
+   * La foto «Before» es de un listado del MLS de Miami, con la marca de agua
+   * `A11…… © Miami MLS© 202…` incrustada y visible a tamano real, y un `alt` que atribuye la
+   * escena a Mr & Mrs. Encima, el «After» es OTRO patio: otra casa, otra valla, otra
+   * vegetacion. La seccion ensena una transformacion que NO OCURRIO, que es lo que
+   * `CRITERIO.md:200` llama «no es feo, es falso».
+   *
+   * Se retira de ESTA ruta; en las otras 13 sigue igual. Vuelve en su propio commit cuando
+   * exista el par honesto: obra real como «After» y el «Before» reconstruido por relleno
+   * generativo sobre esa misma foto, con etiqueta VISIBLE de visualizacion. El prompt, la
+   * mascara y la prueba de aceptacion estan escritos en `docs/encargos/R17-CORE.md` §10.
+   *
+   * Sus dos tarjetas de valor -«Design-Build Authority» y «Licensed & Engineered»- no se
+   * pierden: suben a la franja de confianza, dichas mas corto. */
+  doc.querySelector('section.before-after-section')?.remove();
+
+  /* ── 3 · LAS RESENAS SUBEN DEL BLOQUE 10 AL 5 ──────────────────────────────────────────
+   * Ocho resenas reales de Google Business Profile, y no se veian hasta pasada la mitad de la
+   * pagina. Justo debajo del formulario es donde sirven: son la objecion que queda despues de
+   * decidir dejar los datos.
+   *
+   * Se mueve la SECCION entera -`testimonial-section` lleva dentro el marcador del componente
+   * `ResenasGoogle`-, no el componente suelto, asi que su encabezado viaja con ella.
+   * `insertBefore` con el hermano siguiente de `logos-section` la deja justo detras de los dos
+   * marcadores que se anaden en el bucle. */
+  const logos = doc.querySelector('section.logos-section');
+  const testimonios = doc.querySelector('section.testimonial-section');
+  if (logos && testimonios && logos.parentNode) {
+    logos.parentNode.insertBefore(testimonios, logos.nextSibling);
+  }
+
+  /* ── 3.bis · «WHY» Y «CUSTOM» SE FUNDEN, Y SUBEN DELANTE DEL FORMULARIO (C4) ───────────
+   * Sebastian lo pidio por experiencia de uso, y el motivo es bueno: asi se ven imagenes de
+   * obra ANTES de pedirle los datos a nadie. El mosaico de fotos dejaba de estar enterrado
+   * detras del formulario.
+   *
+   * `trusted-section` NO es hermana de primer nivel -cuelga del `<div>` sin clase, ver el
+   * bloque 4-, asi que esto la SACA de ahi y la deja como hermana justo detras de
+   * `logos-section`. Se hace despues del bloque 3 a proposito: `logos.nextSibling` ya son las
+   * resenas, asi que la intro queda entre las dos y el orden final es
+   *
+   *     logos · «Why» (ConfianzaCore) · «Custom» (intro) · formulario · resenas
+   *
+   * Y al ser hermana de primer nivel, el bucle de mas abajo SI la ve, que es lo que permite
+   * colgar de ella el marcador del formulario sin nodos de texto.
+   *
+   * 🚨 `.trusted-section` LA MONTAN 80 PAGINAS CONSTRUIDAS
+   * (`grep -rlo 'trusted-section' .vercel/output/static --include='*.html' | wc -l`), asi que
+   * su regla global NO se toca. La marca `svc-intro` es lo que permite corregirla SOLO aqui;
+   * y `mm-inverso` le da el navy y, sobre todo, redefine los papeles del ambito -tinta,
+   * enlace, borde y foco- por cero bytes. */
+  const intro = doc.querySelector('section.trusted-section');
+  if (logos && intro && logos.parentNode) {
+    logos.parentNode.insertBefore(intro, logos.nextSibling);
+    intro.classList.add('svc-intro', 'mm-inverso');
+  }
+
+  /* ── 4 · EL MARCADOR DE LA BANDA DE INVERSION ──────────────────────────────────────────
+   * 🚨 SEIS SECCIONES DE ESTA FICHA NO SON HERMANAS DE PRIMER NIVEL: `trusted-section`,
+   * `services`, `before-after-section`, `process-section`, `gallery` y `faq-section` cuelgan
+   * TODAS de un `<div>` sin clase que si lo es. El bucle de hermanos no las ve una a una, asi
+   * que un `n.matches('section.process-section')` alli no casa nunca — comprobado en rojo: la
+   * primera version de esto dejo la pagina sin banda de inversion y sin que nada lo dijera.
+   *
+   * La salida es insertar el marcador COMO NODO DE TEXTO en el DOM, donde toca. Al serializar
+   * el `<div>`, `limpia()` se lo lleva dentro y el troceo de mas abajo lo convierte en
+   * `<InversionCore />`. `@` no se escapa en un nodo de texto, asi que el marcador sobrevive. */
+  const proceso = doc.querySelector('section.process-section');
+  if (proceso && proceso.parentNode) {
+    proceso.parentNode.insertBefore(
+      doc.createTextNode(MARCA + 'InversionCore' + MARCA), proceso.nextSibling);
+  }
+
+  /* ── 5 · LA REJILLA DE SUBSERVICIOS ────────────────────────────────────────────────────
+   * TRES arreglos, y el tercero es el que vale dinero.
+   *
+   * EL ORDEN. De los ocho subservicios, SEIS hablaban de remodelacion: tres lo dicen en el
+   * titulo y otros tres en el texto («renovations», «upgrades», «existing pools»). En la ficha
+   * cuyo `<h1>` es «Custom Pool BUILDERS» eso canibaliza la intencion de la ficha hermana. Se
+   * REORDENAN, no se borran (Principio 1): construccion nueva delante, remodelacion detras.
+   *
+   * EL TEXTO. La primera tarjeta decia «Custom pool REDESIGNS engineered for Florida homes».
+   * En una landing de obra nueva, eso es la intencion equivocada en la primera tarjeta que se
+   * lee. Igual con los dos «upgrades». Las sustituciones van en el JSON, no aqui.
+   *
+   * LOS ENLACES. Ninguna de las ocho tarjetas enlazaba a ningun sitio. Las tres de
+   * remodelacion pasan a llevar a la landing de Remodeling: separa los dos clusters y manda el
+   * lead donde vale, en vez de dejarlo muerto en una tarjeta sin salida. */
+  const svc = doc.querySelector('section.services');
+  if (svc && c.servicios) {
+    const deco = svc.querySelector('.heading-deco');
+    if (deco) deco.textContent = c.servicios.rotulo;   // la errata «What do we do!»
+
+    const lista = svc.querySelector('.cms-list-subservices');
+    const items = [...svc.querySelectorAll('.cms-item-subservices')];
+    const titulo = (el) => el.querySelector('h3')?.textContent?.replace(/\s+/g, ' ').trim() ?? '';
+    const porTitulo = new Map(items.map((el) => [titulo(el).replace(/&/g, '&'), el]));
+
+    for (const [t, nuevo] of Object.entries(c.servicios.textos)) {
+      const el = porTitulo.get(t);
+      const parrafo = el?.querySelector('.paragraph-mini');
+      if (parrafo) parrafo.textContent = nuevo;
+    }
+
+    /* Las de remodelacion se envuelven en un `<a>` que va a su landing. El ancla cuelga DENTRO
+     * de la tarjeta, alrededor de `.item-subservice`, para no romper la rejilla: el `<li>` de
+     * Webflow sigue siendo el hijo directo de la lista. */
+    for (const t of c.servicios.remodelacion) {
+      const el = porTitulo.get(t);
+      const caja = el?.querySelector('.item-subservice');
+      if (!caja) continue;
+      const a = doc.createElement('a');
+      a.setAttribute('href', c.servicios.remodelacionHref);
+      a.className = 'svc-subservicio';
+      caja.parentNode.insertBefore(a, caja);
+      a.appendChild(caja);
+    }
+
+    /* El reorden: primero los declarados de construccion, en su orden, y detras los de
+     * remodelacion. Un titulo que no este en ninguna de las dos listas se queda donde estaba,
+     * detras de los declarados: asi anadir un subservicio en el origen no rompe nada en
+     * silencio. */
+    if (lista) {
+      const orden = [...c.servicios.construccionPrimero, ...c.servicios.remodelacion];
+      const ordenados = [
+        ...orden.map((t) => porTitulo.get(t)).filter(Boolean),
+        ...items.filter((el) => !orden.includes(titulo(el))),
+      ];
+      for (const el of ordenados) lista.appendChild(el);
+    }
+
+    /* Un paso siguiente al final de la rejilla: ocho tarjetas y ninguna salida era dos
+     * secciones seguidas sin CTA. */
+    const cajaSvc = svc.querySelector('.block-page-service') ?? svc.querySelector('.container');
+    if (cajaSvc && c.servicios.cta) {
+      const p = doc.createElement('p');
+      p.className = 'svc-cierre';
+      const a = doc.createElement('a');
+      a.setAttribute('href', c.servicios.cta.href);
+      a.className = 'button button-styles w-button';
+      a.textContent = c.servicios.cta.texto;
+      p.appendChild(a);
+      cajaSvc.appendChild(p);
+    }
+  }
+
+  /* ── 6 · LA FAQ ────────────────────────────────────────────────────────────────────────
+   * La respuesta de financiacion publicaba «$75,000 … $500,000+». La hoja 18 del libro de Ads
+   * marca `$75K` como DATA NOT AVAILABLE y la decision de Sebastian del 2-sep-2026 (TILA/Reg Z)
+   * prohibe cifras financieras en el sitio. Sale de aqui Y del JSON-LD (paso 9).
+   *
+   * Y se anaden las tres objeciones que faltaban -coste, permisos y que incluye-, todas con
+   * respuesta que la propia pagina ya sostiene. El `FAQPage` se actualiza en el paso 9 para que
+   * siga coincidiendo con lo que se ve: dos listas distintas es peor que una sola. */
+  const faq = doc.querySelector('section.faq-section .wrapper-faq-components');
+  if (faq && c.faq) {
+    for (const [preg, resp] of Object.entries(c.faq.sustituye)) {
+      for (const d of faq.querySelectorAll('.dropdown-faq')) {
+        if (d.querySelector('h3')?.textContent?.trim() === preg) {
+          const p = d.querySelector('nav p');
+          if (p) p.textContent = resp;
+        }
+      }
+    }
+    const molde = faq.querySelector('.dropdown-faq');
+    for (const { pregunta, respuesta } of c.faq.anade) {
+      if (!molde) break;
+      const nuevo = molde.cloneNode(true);
+      /* SIN `data-w-id`, como `/financing`. El `data-rev` lo pone el JS casando el `data-w-id`
+       * contra `src/data/reveals.json`: duplicar el del molde daria dos elementos peleandose por
+       * la misma entrada, e inventar uno seria marcado que miente. El acordeon funciona por
+       * clase, no por ese atributo (`Interacciones.astro:180-235`). */
+      nuevo.removeAttribute('data-w-id');
+      const h3 = nuevo.querySelector('h3');
+      const p = nuevo.querySelector('nav p');
+      if (h3) h3.textContent = pregunta;
+      if (p) p.textContent = respuesta;
+      faq.appendChild(nuevo);
+    }
+  }
+
+  /* ── 7 · NORTH FLORIDA DELANTE EN `location` ───────────────────────────────────────────
+   * La seccion ponia South Florida primero. En la landing cuyo anuncio promete North Florida y
+   * cuyo `<title>` dice «Custom Pool Builders in North Florida». Medido sobre el cuerpo: la
+   * primera «South Florida» estaba en el caracter 97 y la primera «North Florida» suelta en el
+   * 6053. Se intercambian los dos bloques: MISMAS lineas, otro orden. */
+  const bloques = [...doc.querySelectorAll('section.location .item-country')];
+  if (bloques.length === 2) {
+    const norte = bloques.find((b) => /north florida/i.test(b.textContent ?? ''));
+    const sur = bloques.find((b) => b !== norte);
+    if (norte && sur && norte.parentNode) norte.parentNode.insertBefore(norte, sur);
+  }
+
+  /* ── 8 · LAS OBRAS REALES SUSTITUYEN A `gallery` — PERO SOLO DONDE SE DECLARA ──────────
+   * En la ficha de piscina, `gallery` pintaba `pool-construction-1…10` — LAS MISMAS DIEZ FOTOS
+   * que el feed de Instagram mas abajo. Solape 10/10, verificado fichero a fichero. Dos
+   * carruseles con las mismas imagenes en la misma pagina, y por eso se sustituyo.
+   *
+   * 🚨 ESA JUSTIFICACION ES DE LA FICHA DE PISCINA Y DE NINGUNA OTRA, Y POR ESO ESTO ES
+   * OPT-IN. En las otras trece, `gallery` trae las fotos DE SU PROPIO SERVICIO -pergolas,
+   * cubiertas, mosquiteras- y el feed de Instagram sigue trayendo piscinas: el solape es CERO.
+   * Quitarles la galeria las dejaria sin su unico bloque de fotos propio del servicio y se lo
+   * cambiaria por quince obras de piscina. Se declara con `proyectos.reemplazaGaleria: true`
+   * en `captacion-servicios.json`, ficha por ficha y con su motivo.
+   *
+   * `CarruselProyectos` trae obras reales con su enlace a `/project/<slug>`, y de paso repone
+   * los enlaces a obra que se fueron con el antes/despues. El marcador va como nodo de texto
+   * por lo mismo que el de la banda de inversion: `gallery` cuelga del `<div>` sin clase, no
+   * es hermana de primer nivel. */
+  const galeria = doc.querySelector('section.gallery');
+  if (galeria && galeria.parentNode && c.proyectos?.reemplazaGaleria) {
+    galeria.parentNode.insertBefore(
+      doc.createTextNode(MARCA + 'CarruselProyectos' + MARCA), galeria);
+    galeria.remove();
+  }
+
+  /* ── 9 · WIDTH/HEIGHT EN TODAS LAS IMAGENES DE LA RUTA ─────────────────────────────────
+   * De las 56 `<img>` del cuerpo, 42 no declaraban tamano. Son el motor del CLS, y el
+   * manifiesto conoce las 42 -comprobado antes de escribir esto: 0 desconocidas-, asi que se
+   * pueden hornear todas sin un solo hueco de datos.
+   *
+   * Esto NO se hace con `RESERVAN_HUECO` porque esa lista es GLOBAL POR CLASE y su propio
+   * comentario avisa del riesgo: dar proporcion a un `<img>` cuyo CSS le fija solo una de las
+   * dos dimensiones SI cambia lo pintado, y son 115 rutas con contrato de paridad. Aqui el
+   * radio es UNA ruta, que ademas se va a re-aprobar mirandola. */
+  for (const img of doc.querySelectorAll('img:not([width])')) {
+    const src = img.getAttribute('src');
+    const d = DIM.get(src) ?? DIM_CDN.get(src);
+    if (!d) continue;                 // las que el manifiesto no conoce se quedan como estaban
+    img.setAttribute('width', String(d.w));
+    img.setAttribute('height', String(d.h));
+  }
+
+  /* ── 10 · EL JSON-LD, QUE ESTABA ROTO DE CUATRO FORMAS ─────────────────────────────────
+   * Se arregla AQUI, sobre el `<script>` del `<head>`, porque la extraccion del SEO ocurre mas
+   * abajo en el bucle: cuando llegue, ya lee el bloque corregido. Los cuatro defectos venian
+   * del origen de Webflow y ninguna puerta los veia — `check:seo` compara el JSON-LD contra el
+   * baseline caracter a caracter, o sea que replicaba el defecto fielmente.
+   *
+   *   1. `about.serviceType` decia «Smart Soffit LED Lighting Installation» — EL SERVICIO DE
+   *      OTRA FICHA, en la pagina de piscinas y dentro de la landing de un anuncio de piscinas.
+   *   2. `about.name` decia «Pool  Construction», con doble espacio.
+   *   3. `about.image` llevaba un TEXTO ALT en un campo que espera una URL.
+   *   4. `dateModified` era ANTERIOR a `datePublished`.
+   *   5. La quinta `Question` del `FAQPage` se llamaba literalmente «construction», y su
+   *      respuesta publicaba «$75,000 … $500,000+».
+   *
+   * Y el `FAQPage` se pone al dia con las tres preguntas nuevas: si la pagina ensena ocho y el
+   * schema declara cinco, hay dos versiones de la verdad y Google no sabe cual creer. */
+  for (const sc of doc.head.querySelectorAll('script[type="application/ld+json"]')) {
+    let bloque;
+    try { bloque = JSON.parse(sc.textContent); } catch { continue; }
+    const about = bloque?.about;
+    if (about) {
+      if (c.schema?.serviceType) about.serviceType = c.schema.serviceType;
+      if (typeof about.name === 'string') about.name = about.name.replace(/\s{2,}/g, ' ').trim();
+      if (typeof about.image === 'string' && !about.image.startsWith('/') && !/^https?:/.test(about.image)) {
+        about.image = c.heroe.foto;
+      }
+    }
+    if (bloque.dateModified && bloque.datePublished
+        && Date.parse(bloque.dateModified) < Date.parse(bloque.datePublished)) {
+      const t = bloque.dateModified; bloque.dateModified = bloque.datePublished; bloque.datePublished = t;
+    }
+    const preguntas = bloque?.mainEntity?.mainEntity;
+    if (Array.isArray(preguntas) && c.faq) {
+      /* La `Question` rota se reconoce por su RESPUESTA, no por su nombre: el nombre es
+       * justamente lo que estaba mal. Se le pone la pregunta que se ve y la respuesta nueva. */
+      for (const [preg, resp] of Object.entries(c.faq.sustituye)) {
+        const q = preguntas.find((x) => /\$\s?\d|financ/i.test(x?.acceptedAnswer?.text ?? ''));
+        if (q) { q.name = preg; q.acceptedAnswer.text = resp; }
+      }
+      for (const { pregunta, respuesta } of c.faq.anade) {
+        if (preguntas.some((x) => x?.name === pregunta)) continue;
+        preguntas.push({ '@type': 'Question', name: pregunta,
+          acceptedAnswer: { '@type': 'Answer', text: respuesta } });
+      }
+    }
+    sc.textContent = JSON.stringify(bloque);
+  }
+
+  /* Los componentes que esta ruta ha usado de verdad. `CarruselProyectos` solo si la ficha
+   * declaro el reemplazo de la galeria: declararlo sin usarlo dejaria un import muerto en el
+   * `.astro` generado, y `npm run paginas` avisa de los no usados. */
+  return c.proyectos?.reemplazaGaleria
+    ? ['InversionCore', 'CarruselProyectos']
+    : ['InversionCore'];
+}
+
 for (const [ruta] of RUTAS) {
   const slug = aSlug(ruta);
   const fichero = path.join(RAIZ, '_source/vivo', `${slug}.html`);
@@ -507,6 +909,9 @@ for (const [ruta] of RUTAS) {
   // el mismo que monta `/pool-cost-estimator`. Aqui se salta: no hay nada que derivar.
   if (ruta === '/pool-investment-estimator') continue;
   if (!menu) { console.error(`  ROJO ${ruta}: no encuentro el nav`); continue; }
+
+  const inyectados = captacion(doc, ruta);
+  if (inyectados) captacionAplicada++;
 
   const usados = new Set();
   const limpia = (n) => {
@@ -854,6 +1259,26 @@ for (const [ruta] of RUTAS) {
    * `blog-heading-por-ruta.json` para las 2 de Estado), igual que el de reseñas.
    */
   const CON_BLOG_INSERTADO = ['/services/', '/where-we-serve/'];
+  /**
+   * R17-CORE — LOS TRES COMPONENTES DE CAPTACION, POR INSERCION.
+   *
+   * Mismo mecanismo que el carrusel de blog: un marcador en la cadena, que el troceo de mas
+   * abajo convierte en `<Componente />` con su import generado solo. NO se pasan props —el
+   * mecanismo no las tiene— y por eso los tres se localizan por `Astro.url.pathname`.
+   *
+   * DONDE, Y POR QUE AHI:
+   *   · la franja de confianza y el formulario van justo DESPUES de `logos-section`, o sea el
+   *     tercer y cuarto bloque de la pagina. El trafico de pago llega con la intencion ya
+   *     formada: cuanto antes pueda dejar sus datos, menos se pierde. Y la franja va DELANTE
+   *     porque «¿por que vosotros?» se pregunta antes de dar un telefono.
+   *   · la banda de inversion va DESPUES de `process-section`: cuando ya se ha visto como se
+   *     construye, la siguiente pregunta es cuanto cuesta y como se paga.
+   *
+   * `primerLogos` existe porque `logos-section` aparece DOS VECES en estas fichas -el marquee
+   * se repite al final, antes del pie- y sin la guarda los componentes se pintarian dos veces.
+   */
+  if (inyectados) for (const comp of inyectados) usados.add(comp);
+  let primerLogos = true;
   let acumulado = '';
   for (let n = menu.nextElementSibling; n && n !== pie; n = n.nextElementSibling) {
     if (CON_BLOG_INSERTADO.some((p) => ruta.startsWith(p)) && n.matches?.('section.social-media')) {
@@ -862,6 +1287,22 @@ for (const [ruta] of RUTAS) {
       blogsInsertados++;
     }
     acumulado += limpia(n);
+    if (CAPTACION[ruta] && n.matches?.('section.logos-section') && primerLogos) {
+      primerLogos = false;
+      acumulado += MARCA + 'ConfianzaCore' + MARCA;
+      usados.add('ConfianzaCore');
+    }
+    /* El formulario va DETRAS de la intro, no pegado a `ConfianzaCore`: entre los dos queda la
+     * seccion fundida de C4. `trusted-section` es hermana de primer nivel porque el bloque
+     * 3.bis la subio ahi; antes de eso este `matches` no casaba nunca. */
+    if (CAPTACION[ruta] && n.matches?.('section.trusted-section')) {
+      acumulado += MARCA + 'FormularioCore' + MARCA;
+      usados.add('FormularioCore');
+    }
+    if (CAPTACION[ruta] && n.matches?.('section.process-section')) {
+      acumulado += MARCA + 'InversionCore' + MARCA;
+      usados.add('InversionCore');
+    }
   }
 
   // 2 páginas llevan un <script>+<style> DESPUÉS del pie (el redimensionador del iframe del
@@ -1095,6 +1536,8 @@ const kb = generadas.reduce((a, [, , b]) => a + b, 0) / 1024;
 console.log(`\n  OK ${generadas.length} paginas · ${Math.round(kb)} kB de marcado`);
 console.log(`  carrusel de blog insertado en ${blogsInsertados} ficha(s) de services/+where-we-serves/`
   + `${blogsInsertados === 16 ? '' : '   <<< SE ESPERABAN 16'}`);
+console.log(`  captacion aplicada en ${captacionAplicada} ruta(s)`
+  + `${captacionAplicada === Object.keys(CAPTACION).filter((k) => !k.startsWith('_')).length ? '' : '   <<< NO CUADRA CON captacion-servicios.json'}`);
 console.log(`  carrusel de proyectos sustituido en ${proyectosSustituidos} ruta(s)`
   + `${proyectosSustituidos === 10 ? '' : '   <<< SE ESPERABAN 10'}`);
 console.log(`  carrusel de blog sustituido en ${blogsSustituidos} ficha(s) de country/`
