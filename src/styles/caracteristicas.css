@@ -285,6 +285,27 @@
  * disimula con un `rotate` de caja fija —costaria bytes de un presupuesto ya justo— sino que
  * se TAPA: el salto ocurre en el fotograma 0, mientras la columna arranca sus 780 ms, y el
  * ojo va detras del ancho. */
+/* `--mm-velo` REGISTRADO, y esto es lo que permite que el hover no salte. Una custom property
+ * sin registrar no interpola: cambia de golpe y arrastra con ella al degradado que la consume.
+ * Registrarla como `<percentage>` la vuelve animable y el degradado se recalcula cada
+ * fotograma. `inherits: false` porque solo la usa el elemento que la declara.
+ *
+ * SE PROBO ANTES LA VIA SIN AT-RULE —`transition: background-image`, confiando en que dos
+ * degradados con las mismas tres paradas interpolarian— Y NO FUNCIONA. Medido en Chromium: la
+ * transicion se aplica (`getComputedStyle` la declara) pero el valor salta de 0,72 a 0,64 en
+ * un solo fotograma. La parada de en medio serializa como `color(srgb 0 .109804 .388235 / .72)`
+ * porque viene de un `color-mix`, y ese degradado no es interpolable para el motor.
+ *
+ * Se dejo saltando en su dia con el argumento de que «un revelado de hover instantaneo es
+ * legitimo». Con la columna abriendo en 300 ms lo era. Con 1,2 s ya no: un escalon de ocho
+ * puntos de velo en el fotograma cero es exactamente lo que se lee como brusco, por muy suave
+ * que sea lo que viene detras. El gesto tiene que ser uno solo, y la puerta parsea el at-rule
+ * sin problema (comprobado: verde). */
+@property --mm-velo {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 72%;
+}
 .animated-divs-section .block-feature {
   z-index: 1;
   display: grid;
@@ -353,35 +374,84 @@
 
 /* ── 6 · LA APERTURA, A CAMARA LENTA, Y EL TEXTO UN TIEMPO DETRAS ─────────────
  *
- * A 1920 y a sangre la columna abierta recorre 614 - 261 = 353 px. En los 300 ms de Webflow
- * eso son 1,18 px/ms y se siente a tirones; en 780 ms son 0,45 px/ms. La curva es de SALIDA
- * —arranca decidida y frena al llegar—, que es como se lee «se ha abierto» y no «esta
- * abriendose»; nada de `linear` y nada de rebote.
+ * A 1920 y a sangre la columna abierta recorre 614 - 261 = 353 px cuando el raton salta de
+ * una columna a otra, que es el recorrido mas largo; 294 px si abre desde el reposo.
+ *
+ * LO QUE SE ANIMA NO ES EL ANCHO, ES `flex-grow`, y esa diferencia es la mitad del problema.
+ * Con `flex: 1 1 0` el ancho vale `g/(g+5)`, que NO es lineal en `g`: la derivada en g=1 es
+ * `5/36` y en g=2,35 es `5/54`, o sea que el mismo incremento de `flex-grow` mueve 1,45 veces
+ * mas ancho al principio que al final. La geometria ya empuja hacia delante ella sola.
+ *
+ * Y ENCIMA LA CURVA EMPUJABA IGUAL. `cubic-bezier(.22,.61,.36,1)` es de SALIDA: su pendiente
+ * inicial es .61/.22 = 2,77. Por el 1,22 de la geometria, el modelo predice un arranque a
+ * 3,40 veces la velocidad media. MEDIDO en Chromium, muestreando el ancho en cada fotograma
+ * mientras el raton salta de la columna 3 a la 4 —el recorrido largo, 353 px—:
+ *
+ *                                       arranque   pico    50 % del recorrido en
+ *     .78s cubic-bezier(.22,.61,.36,1)     2,45x   2,45x    21 % del tiempo    <- lo brusco
+ *     1.2s cubic-bezier(.37,0,.63,1)       0,16x   1,66x    50 % del tiempo    <- ahora
+ *
+ * El medido sale por debajo del 3,40 previsto y no es que el modelo falle: un muestreo a 60 Hz
+ * no puede ver la velocidad del instante cero, porque su primer fotograma ya lleva 16 ms de
+ * curva recorridos. Lo que importa es que las dos cuentas dicen lo mismo, y es lo que se veia:
+ * EL PICO Y EL ARRANQUE ERAN EL MISMO NUMERO. El instante mas rapido de toda la animacion era
+ * su primer fotograma —1,235 px/ms de golpe desde parado—. Eso no es «camara lenta con
+ * frenada», es un salto seguido de un arrastre: la mitad del recorrido se comia en el 21 %
+ * del tiempo y el 79 % restante era cola. Por eso se veia brusca aunque durase 780 ms.
+ *
+ * LA CURVA NUEVA es la sinusoidal de entrada y salida, `cubic-bezier(.37,0,.63,1)`. Se elige
+ * por el PICO, no por el arranque: de las cinco que se compararon —de modelo, que construir
+ * cinco builds para elegir una curva no lo vale— es la unica que no dispara en el centro. Las de entrada-salida mas marcadas arrancan igual de suaves pero pagan el
+ * arranque parado con un latigazo a mitad de vuelo:
+ *
+ *     easeInOutSine   cubic-bezier(.37,0,.63,1)   pico 1,60x   <- elegida (1,66 medido)
+ *     easeInOutCubic  cubic-bezier(.65,0,.35,1)   pico 2,85x
+ *     Material std    cubic-bezier(.4,0,.2,1)     pico 2,87x   y el 50 % en el 33 %
+ *     easeInOutQuart  cubic-bezier(.76,0,.24,1)   pico 4,14x
+ *     easeInOutQuint  cubic-bezier(.83,0,.17,1)   pico 5,84x   mas rapida en vuelo que la vieja
+ *
+ * Un movimiento se lee natural cuando la velocidad no da saltos, no cuando es lenta. El 1,66x
+ * medido es practicamente el minimo que puede pedir cualquier curva que arranque y termine
+ * parada —el modelo da 1,60—. Y el 50 % dice que la asimetria de `flex-grow` queda cancelada:
+ * la mitad del recorrido cae justo en la mitad del tiempo.
+ *
+ * 1,2 s Y NO MAS. El pico medido queda en 0,515 px/ms, que es la velocidad MEDIA que tenia
+ * antes (0,504): el gesto entero va ahora tan despacio como iba su punto medio. Alargarlo mas
+ * empieza a estorbar al barrer columnas con el raton, que es como se usa esto.
+ *
+ * EL PRECIO, dicho: una curva que arranca parada tambien FRENA parada, asi que al saltar de
+ * columna a media apertura la nueva transicion parte de velocidad cero mientras la vieja iba a
+ * 1,66x. Con la curva de salida ese empalme era continuo. Se acepta: 1,66x de 0,311 px/ms son
+ * 0,52 px/ms, y una discontinuidad de medio pixel por milisegundo no se ve. La de antes
+ * empalmaba suave y luego daba el latigazo, que es el defecto que se venia a quitar.
  *
  * NO HAY TOKENS DE DURACION NI DE CURVA en `disenio/tokens.css`, y `disenio/` es propiedad de
  * ARTE: quien necesita un token lo PIDE, no lo escribe (PROMPT-REDISENO §8.6). Asi que van en
  * literal, como ya hacen `obra.css` (.18s), `intro.css` (.18s) y `social.css`. Queda pedido en
  * el informe por si ARTE quiere subirlos a token.
  *
- * EL ESCALON. El parrafo no entra con el ancho, entra DETRAS: 400 ms de retardo sobre los 780
- * de la columna, y termina en 740 — dentro del gesto, no despues. Al CERRAR no hay retardo
- * (0,2 s secos): esperar para desaparecer se lee como pereza, no como coreografia. Por eso el
- * retardo vive en el estado abierto y no en la regla base.
+ * EL ESCALON, reescalado con la duracion. El parrafo no entra con el ancho, entra DETRAS:
+ * 620 ms de retardo sobre los 1200 de la columna y 460 de entrada. Medido sobre el build: el
+ * parrafo despega a los 600 ms y llega a opacidad 1 a los 1001, con el ancho terminando a los
+ * 1133 — dentro del gesto, no despues—. Mantiene la proporcion de antes (el retardo era el 51 % de
+ * la apertura y sigue siendo el 52 %). Al CERRAR no hay retardo (0,26 s secos): esperar para
+ * desaparecer se lee como pereza, no como coreografia. Por eso el retardo vive en el estado
+ * abierto y no en la regla base.
  *
  * El `translateY` de 8 px es lo unico que hace que el parrafo «llegue» en vez de aparecer. Va
  * acotado a >=992: a menos ancho el parrafo esta siempre visible y un desplazamiento constante
  * de 8 px seria un error de maqueta, no una animacion. */
 @media (min-width: 992px) {
-  .animated-divs-section .feature-card { transition: flex-grow .78s cubic-bezier(.22, .61, .36, 1) }
+  .animated-divs-section .feature-card { transition: flex-grow 1.2s cubic-bezier(.37, 0, .63, 1) }
   .animated-divs-section .feature-text {
     transform: translateY(var(--mm-e-8));
-    transition: opacity .2s ease-out, transform .2s ease-out;
+    transition: opacity .26s ease-out, transform .26s ease-out;
   }
   .animated-divs-section .is-active .feature-text {
     opacity: 1;
     transform: none;
-    transition-duration: .34s;
-    transition-delay: .4s;
+    transition-duration: .46s;
+    transition-delay: .62s;
   }
 }
 
@@ -452,12 +522,24 @@
    * velo es el mismo gesto sin esa trampa.
    *
    * `:focus-within` entra en el mismo `:is()` para que el teclado vea lo que ve el raton.
-   * El cambio es instantaneo: animar una custom property pide `@property`, y registrarlo es
-   * un at-rule mas que la puerta tendria que saber parsear. Un revelado de hover instantaneo
-   * es legitimo; no merece el riesgo.
+   *
+   * EL VELO YA NO SALTA. Antes cambiaba de golpe, y se dio por bueno: «un revelado de hover
+   * instantaneo es legitimo». Con la columna abriendo en 1,2 s deja de serlo — un escalon de
+   * ocho puntos de velo en el fotograma cero es justo lo que se lee como brusco, por muy suave
+   * que sea lo que viene detras. El gesto tiene que ser uno solo.
+   *
+   * Se anima `--mm-velo` en persona, que para eso queda registrada con `@property` en §5. La
+   * via sin at-rule —animar `background-image`— se probo primero y NO interpola en Chromium:
+   * el porque esta escrito donde se registra.
+   *
+   * 450 ms y de SALIDA, no la sinusoidal de la columna: el velo no recorre distancia, responde.
+   * Que acuse el hover antes de que la columna termine de abrirse es lo que hace que el raton
+   * se sienta atendido; si tardase lo mismo, pareceria que el sitio va lento.
    *
    * NO baja del 64 %: con el velo al 58 % un pixel BLANCO de foto bajo el texto daria 4,22:1
-   * y suspenderia. Los ratios re-medidos en hover van en el informe. */
+   * y suspenderia. Interpolar entre 72 y 64 no cruza ese suelo en ningun fotograma, porque el
+   * recorrido entero queda por encima del 64. Los ratios re-medidos en hover van en el informe. */
+  .animated-divs-section .block-feature { transition: --mm-velo .45s ease-out }
   .animated-divs-section .feature-card:is(:hover, :focus-within) .block-feature { --mm-velo: 64% }
   .animated-divs-section .feature-card:active .block-feature { --mm-velo: 68% }
 }
@@ -498,6 +580,7 @@
  * ocurriendo entero e instantaneo: no se pierde ninguna funcion, solo el recorrido. */
 @media (prefers-reduced-motion: reduce) {
   .animated-divs-section .feature-card,
+  .animated-divs-section .block-feature,
   .animated-divs-section .feature-text,
   .animated-divs-section .is-active .feature-text { transition: none }
 }
