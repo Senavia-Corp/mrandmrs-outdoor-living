@@ -41,6 +41,19 @@
  * SIN UN SOLO `data-w-id`, como `/financing`. Y sin reveals: un `data-w-id` inventado no casa
  * con `src/data/reveals.json`, no recibe `data-rev` y seria marcado que miente.
  */
+/* R19 — EL NOMBRE DEL FORMULARIO VIENE DEL JSON, NO CABLEADO.
+ *
+ * Estaba fijo a «Pool Builders Core Form», y ese literal es la CLAVE DE ENRUTADO en otros tres
+ * sitios: el mapa de GA4 (`Formularios.astro`), la tabla que arma el correo
+ * (`api/formulario.ts`) y la puerta de landings de pago. Con las catorce fichas montando este
+ * mismo componente, los leads de los catorce servicios caian en EL MISMO CUBO: mismo asunto de
+ * correo y, en GA4, indistinguibles salvo por `form_location`. Para un negocio que hace campana
+ * por servicio, eso es perder la atribucion en el sitio donde se paga por ella.
+ *
+ * Ahora cada ficha trae `formulario.nombre`, `formulario.aviso` y `formulario.ga4`, y el
+ * formulario LLEVA SU PROPIO ID ENCIMA (`data-mm-id`). Asi `Formularios.astro` no necesita un
+ * mapa que crezca con cada ficha —lee el atributo— y la API deriva su tabla del mismo JSON.
+ * Sigue siendo una entrada de JSON por ficha y ningun fichero compartido que editar. */
 import DATOS from '../../data/captacion-servicios.json';
 
 /* `Astro.props.ruta` existe SOLO para el laboratorio `_lab-servicio.astro`, que no esta
@@ -100,9 +113,10 @@ const PROPIEDAD = ['Yes, I own this property', 'No', 'Other'];
         </div>
 
         <form
-          id="wf-form-Pool-Builders-Core-Form"
-          name="wf-form-Pool-Builders-Core-Form"
-          data-name="Pool Builders Core Form"
+          id={`wf-form-${d.nombre.replace(/\s+/g, '-')}`}
+          name={`wf-form-${d.nombre.replace(/\s+/g, '-')}`}
+          data-name={d.nombre}
+          data-mm-id={d.ga4}
           method="post"
           action="/api/formulario"
           data-mm-envia="1"

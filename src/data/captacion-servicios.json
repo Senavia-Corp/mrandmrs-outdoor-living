@@ -65,6 +65,9 @@
       "titulo": "Get a Free Estimate",
       "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
       "proyectoPorDefecto": "New Custom Pool",
+      "nombre": "Pool Builders Core Form",
+      "aviso": "Pool builders core lead",
+      "ga4": "core",
       "pasosTitulo": "What happens after you reach out",
       "pasos": [
         "We call you back within 24 hours.",
