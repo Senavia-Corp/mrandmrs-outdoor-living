@@ -150,13 +150,10 @@
   position: relative;
   isolation: isolate;
 }
-.before-after-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-color: color-mix(in srgb, var(--mm-navy) 45%, transparent);
-}
+/* FONDO AGUA (12-sep-2026): el velo navy al 45 % de `::before` se retira. Se calculo por peor
+ * pixel de `animateddivs-image.webp`; la seccion pasa al fondo unico (final de `propio.css`) y
+ * ya no pinta la foto, asi que solo oscureceria el agua fuera de sus ratios medidos. Se conserva
+ * `position` + `isolation` de arriba para no mover el apilamiento del deslizador. */
 
 /* NO hay guarda de `prefers-reduced-motion` en este fichero, y es a proposito: no emite ni una
  * `transition` ni una `animation`. Una guarda sin nada que guardar es una declaracion inerte,

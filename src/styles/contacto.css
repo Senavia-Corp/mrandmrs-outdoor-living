@@ -450,12 +450,10 @@
 /* El degradado se muda a la banda. Aqui no hay texto encima: el h2 y el parrafo de la columna
  * izquierda si lo tienen, asi que la banda solo se tine POR DEBAJO del contenido y la columna
  * izquierda se resuelve con su propia superficie. */
-.form-section {
-  background-image: linear-gradient(
-    color-mix(in srgb, var(--mm-cian) 60%, var(--mm-navy)),
-    var(--mm-azul)
-  );
-}
+/* FONDO AGUA (12-sep-2026): aqui estaba `linear-gradient(color-mix(--mm-cian 60%, --mm-navy),
+ * --mm-azul)`. La banda entra en el fondo unico del sitio (final de `propio.css`) y, como toca
+ * a `.testimonial-section`, lo comparte con ella como un solo cuerpo de agua. Sigue sin haber
+ * texto sobre la banda: las dos columnas llevan su propia superficie. */
 
 /* La columna izquierda tambien se levanta: sobre la banda oscura, el texto navy de Webflow
  * seria ilegible. Se le da la misma superficie clara que al formulario, y asi las dos columnas

@@ -496,7 +496,12 @@
 .cta-page-section,
 .hero-project,
 .hero-about,
-.footer {
+.footer,
+.mm-seccion.mm-inverso,
+.meet-us-section,
+.form-section,
+.ty-hero,
+.before-after-section {
   background-color: var(--mm-azul-800);   /* reserva: si un data-URI fallara, sigue cumpliendo 14,24:1 */
   background-image: var(--agua-cresta), var(--agua-grano), var(--agua-profundidad);
   background-repeat: no-repeat, repeat, no-repeat;
@@ -505,9 +510,56 @@
 }
 @media (min-width: 768px) {
   .animated-divs-section, .trusted-section, .gallery, .testimonial-section,
-  .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer {
+  .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer,
+  .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section {
     background-size: 100% 340px, 180px 180px, 100% 100%;
   }
+}
+
+/* ══ TODAS LAS BANDAS AZULES (Sebastian, 12-sep-2026) ════════════════════════════
+ *
+ * «Te dije que cambiaras todas las secciones usando el mismo fondo.» Medido en las 122 paginas
+ * construidas —fondo computado de toda banda a sangre, a 1440—, quedaban siete azules sueltos
+ * fuera de la lista: `.svc-confianza` y `.svc-intro` en las 14 fichas (navy plano), `/about`
+ * (`.meet-us-section`, el cian->azul de Webflow), `/contact-us` (`.form-section`), `/financing`,
+ * `/thank-you` (`.ty-hero`) y el antes/despues de la home. Entran todas.
+ *
+ * `.mm-seccion.mm-inverso` y no `.mm-inverso`: la seccion oscura del sistema lleva las dos
+ * clases, y el panel de `InversionCore` —un recuadro a media anchura, no una banda— lleva solo
+ * la segunda y se queda en su navy plano, como pidio Sebastian.
+ *
+ * ── LAS JUNTAS: dos bandas azules que se tocan son UN solo cuerpo de agua ──────────
+ * Cada una con su agua entera dejaba un corte duro: la de arriba acaba en navy y la de abajo
+ * arranca clara con su cresta. Medido: pasaba en 108 rutas —`.cta-footer` -> `.footer` en 94,
+ * el bloque fundido de las 14 fichas, y /contact-us, /financing y /videos—. Ahora la de arriba
+ * conserva la cresta y baja solo hasta --mm-azul-500; la de abajo sigue desde ese mismo azul,
+ * sin cresta, hasta el fondo. En medio de tres (hoy solo /videos) se sostiene la junta.
+ *
+ * `+` casa EXACTAMENTE lo que se toca en pantalla: comprobado en las 122 paginas, 0 px de hueco
+ * y ninguna pareja de mas. La unica que se le escapa es /financing, la unica pagina con `<main>`:
+ * alli el CTA es el ultimo hijo de `<main>` y el pie queda fuera. Va con su selector propio.
+ *
+ * ⚠️ LA LISTA DE LA FAMILIA SE REPITE: en la regla de arriba, en su @media y en los `:is()` de
+ * aqui abajo. Quien meta una banda nueva la mete en los tres sitios, o su junta volvera a cortar. */
+:is(.animated-divs-section, .trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section):has(+ :is(.animated-divs-section, .trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section)),
+main:has(+ .footer) > .cta-footer:last-child {
+  background-color: var(--mm-azul-500);
+  background-image: var(--agua-cresta), var(--agua-grano), var(--agua-profundidad-alta);
+}
+:is(.animated-divs-section, .trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section) + :is(.animated-divs-section, .trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section),
+main:has(> .cta-footer:last-child) + .footer {
+  background-color: var(--mm-azul-800);
+  background-image: var(--agua-grano), var(--agua-profundidad-honda);
+  background-repeat: repeat, no-repeat;
+  background-position: top left, top center;
+  background-size: 180px 180px, 100% 100%;
+}
+:is(.animated-divs-section, .trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section) + :is(.animated-divs-section, .trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section):has(+ :is(.animated-divs-section, .trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section)) {
+  background-color: var(--mm-azul-500);
+  background-image: var(--agua-grano);
+  background-repeat: repeat;
+  background-position: top left;
+  background-size: 180px 180px;
 }
 
 /* El heroe de /about, entero en tinta inversa: el agua no tiene cian y la tinta oscura ya no pasa
@@ -517,3 +569,32 @@
  * MEDIDO, peor elemento de la seccion (h1, h2 o parrafo) por ancho: 8,23 / 9,23 / 9,05 / 9,94 /
  * 6,21 / 6,36:1 a 479 / 767 / 768 / 991 / 1440 / 1920. Antes, con la tinta oscura: 5,00 y 4,22. */
 .hero-about { color: var(--mm-tinta-inversa); }
+
+/* ── DOS SUSPENSOS QUE MIDIO EL CAMBIO, Y SE CIERRAN AQUI ─────────────────────────
+ *
+ * 1 · `/about`, `.meet-us-section`: el h2 hereda el `h2{color:var(--blue_dark)}` de Webflow. Sobre
+ *     el cian de antes el navy daba 6,11:1; sobre el agua, 1,37-2,08:1 en los seis anchos. Misma
+ *     salida que el heroe de /about: tinta inversa. El parrafo ya iba en `.white`.
+ *
+ * 2 · `/videos`, la unica pagina donde las reseñas son la banda de ARRIBA de una junta (reseñas
+ *     -> CTA -> pie). Con la junta en --mm-azul-500 la mitad baja de la banda se aclara, y las
+ *     reseñas llevan texto blanco TRASLUCIDO: «Updated Aug 2026» (60 %) cayo a 3,48-3,52:1 y las
+ *     fechas (75 %) a 4,30-4,49:1. En /contact-us y /financing, donde las reseñas son la de ABAJO,
+ *     salen a 5,26-5,42 y 6,49. Bajar la junta a --mm-azul-600 no basta: con el grano «Updated»
+ *     se queda en ~4,4. Asi que en esta cadena las reseñas conservan su agua ENTERA hasta el
+ *     fondo, y el CTA y el pie siguen desde ese navy con su grano. Sin corte, y sin tocar las
+ *     tarjetas de reseñas, que el encargo deja fuera.
+ *     La clase doble iguala el peso de la regla general de juntas (0-4-0 y 0-6-0) y gana por orden. */
+.meet-us-section h2 { color: var(--mm-tinta-inversa); }
+.testimonial-section.testimonial-section:has(+ .cta-footer.cta-footer) {
+  background-color: var(--mm-azul-800);
+  background-image: var(--agua-cresta), var(--agua-grano), var(--agua-profundidad);
+}
+.testimonial-section.testimonial-section + .cta-footer.cta-footer:has(+ .footer.footer),
+.testimonial-section.testimonial-section + .cta-footer + .footer {
+  background-color: var(--mm-azul-800);
+  background-image: var(--agua-grano);
+  background-repeat: repeat;
+  background-position: top left;
+  background-size: 180px 180px;
+}

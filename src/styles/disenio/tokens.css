@@ -252,6 +252,16 @@
     var(--mm-azul-600) 66%,    /* blanco encima 10,13:1 */
     var(--mm-azul-800) 100%);  /* blanco encima 14,24:1 */
 
+  /* LA MISMA RAMPA, PARTIDA EN DOS. Cuando dos bandas azules se tocan son UN solo cuerpo de
+   * agua repartido en dos cajas: la de arriba baja hasta --mm-azul-500 y la de abajo sigue
+   * desde ahí hasta el fondo. Se corta por la parada del 37 % y se reescalan las demás:
+   * 17/37 = 46 % arriba y (66-37)/63 = 46 % abajo. Ni un color nuevo, y la junta es
+   * --mm-azul-500: 7,47:1 con blanco encima a los dos lados. */
+  --agua-profundidad-alta:  linear-gradient(180deg,
+    var(--mm-azul-400) 0%, #2a55cf 46%, var(--mm-azul-500) 100%);
+  --agua-profundidad-honda: linear-gradient(180deg,
+    var(--mm-azul-500) 0%, var(--mm-azul-600) 46%, var(--mm-azul-800) 100%);
+
   /* Dos curvas navy superpuestas: el solape crea tres tonos y eso es lo que lo
    * hace leer como un menisco y no como una onda de dibujo animado.
    * viewBox de 340 de alto + preserveAspectRatio='none': la clase le da alto FIJO

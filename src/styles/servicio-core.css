@@ -419,10 +419,11 @@
  * carga DESPUES de esta hoja (`Base.astro:132` frente a `:135`), asi que a igualdad de peso
  * gana el azul. `intro.css` y `webflow.css` cargan antes y con 0-1-0 basta para ellos; este
  * es el unico que necesita el empate roto. */
+/* FONDO AGUA (12-sep-2026): el navy plano de aqui arriba se retira. Lo que protegia —las bandas
+ * de contraste de la foto con `cover`— ya no existe, porque la foto se fue; y el bloque fundido
+ * `.svc-confianza` + `.svc-intro` pasa a ser UN solo cuerpo de agua con la regla de juntas del
+ * final de `propio.css`. Queda el relleno, que es de maqueta. */
 .svc-intro.svc-intro {
-  background-color: var(--mm-fondo-navy);
-  background-image: none;
-  box-shadow: none;
   padding-block-start: var(--mm-e-64);
 }
 

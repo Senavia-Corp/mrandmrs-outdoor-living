@@ -176,8 +176,10 @@ const PASOS = [
   /* ── ENTRADA ──────────────────────────────────────────────────────────────
    * Navy a sangre y centrado. Es el unico momento centrado del sitio y esta justificado:
    * la pagina tiene UN mensaje y ninguna eleccion que ofrecer todavia. */
+  /* FONDO AGUA (12-sep-2026): el `background` navy se retira; la entrada toma el fondo unico
+     del sitio desde `propio.css`. Con estilo de ambito, `.ty-hero[data-astro-cid-…]` pesa
+     0-2-0 y le habria ganado a la regla compartida. */
   .ty-hero {
-    background: var(--mm-fondo-navy);
     color: var(--mm-tinta-inversa);
     padding: calc(var(--mm-nav-alto) + var(--mm-e-64)) 0 var(--mm-e-64);
   }
