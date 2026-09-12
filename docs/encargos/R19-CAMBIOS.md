@@ -273,3 +273,53 @@ Nota de lectura: en la lista de Sebastian «What happens after you reach out» y
 Estimate» aparecen como dos entradas, pero **son una sola seccion** (`svc-captacion`) desde el
 rediseno de R18 —la tira de pasos va encima de la tarjeta del formulario—. Su lista lo describe
 bien; no pide separarlas.
+
+---
+
+## C5 · El heroe: los telefonos pegados al CTA, y el aire en movil
+
+**Lo que pide:** el texto de los numeros esta muy pegado al boton. Que se vea mas pulido, y
+revisar espacios y encuadre del heroe **tambien en movil**.
+
+### Medido a tres anchos, y el ojo tenia razon
+
+```
+                        390     768    1440
+rotulo    -> h1          8 px    8 px    8 px
+h1        -> apoyo      10 px   10 px   10 px
+apoyo     -> telefonos  10 px   10 px   10 px
+telefonos -> licencias   0 px    0 px    0 px   <- PEGADOS
+licencias -> CTA         0 px    0 px    0 px   <- PEGADOS
+```
+
+`.svc-heroe__tel` y `.svc-heroe__lic` salen con `margin: 0px` computado. Arriba el ritmo es
+8/10/10 y **abajo se desploma a cero**, justo en las tres lineas que deciden: telefono, licencia
+y llamada a la accion.
+
+### Y el encuadre
+
+```
+seccion 500 px a 390 y a 768 · 700 px a 1440
+padding-block: 85px / 0px
+```
+
+Los 85 de arriba **son el nav fijo**, no aire de diseno: el contenido empieza pegado al nav. Y
+abajo hay **0**. O sea que el heroe no esta compuesto verticalmente, esta apoyado arriba.
+
+### Que hay que hacer
+
+1. **Dar ritmo a las tres ultimas lineas.** Escala de la casa (`--mm-e-*`), no numeros sueltos.
+   La jerarquia que pide el contenido: el CTA necesita mas aire por encima que el que separa
+   telefono de licencia, porque es el final de un bloque, no una linea mas.
+2. **Componer el heroe verticalmente** en vez de apoyarlo arriba: repartir el aire sobrante en
+   vez de dejarlo todo abajo.
+3. **Movil.** Se vuelve a medir el pliegue a 390×844 con los **80 px reservados** del boton
+   flotante de llamada: `h1`, CTA y el telefono de North Florida tienen que seguir cabiendo.
+   Esa medida ya existe y **no puede empeorar**.
+4. `check:visual` volvera a rojo: es correcto, y sale con `aprobar-diseno.mjs` cuando Sebastian
+   mire.
+
+### Para las 13 restantes
+
+`.svc-heroe__tel` y `.svc-heroe__lic` son clases de la capa, compartidas por las catorce fichas
+en cuanto se enciendan. **El arreglo se escribe una vez y vale para todas.** Cero coste por ficha.
