@@ -99,6 +99,11 @@
   gap: 0;
   align-items: stretch;
   margin-top: clamp(var(--mm-e-32), 4vw, var(--mm-e-64));
+  /* EL CANTO DE ORO, y solo el de abajo. Cierra la banda como objeto —una tira de contactos
+   * tiene bordes— y es el unico borde donde el oro esta garantizado: medido sobre el build,
+   * el peor pixel del canto INFERIOR da 8,40:1 porque ahi el velo es opaco, y el del canto
+   * SUPERIOR da 1,75:1 porque ahi manda la foto. Por eso arriba no lleva nada. */
+  border-block-end: 3px solid var(--mm-oro);
 }
 
 /* ── 2 · EL FONDO: LA MISMA RECETA DE TRES CAPAS QUE `.trusted-section` ───────
@@ -275,9 +280,13 @@
   align-content: end;
   gap: var(--mm-e-12);
   padding: var(--mm-e-24);
-  background-image: linear-gradient(to top, var(--mm-navy) 6%,
-    color-mix(in srgb, var(--mm-navy) 70%, transparent) 58%,
-    color-mix(in srgb, var(--mm-navy) 38%, transparent) 100%);
+  /* `--mm-velo` es LOCAL de esta regla, no un token del sistema: existe solo para que el
+   * hover (§7) cambie UNA parada del degradado en vez de reescribirlo entero. La parada del
+   * 42 % es la que cubre el titulo vertical, que llega hasta el 39 % de la altura. */
+  --mm-velo: 72%;
+  background-image: linear-gradient(to top, var(--mm-navy) 4%,
+    color-mix(in srgb, var(--mm-navy) var(--mm-velo), transparent) 42%,
+    transparent 68%);
 }
 .animated-divs-section .title-feature {
   font-size: var(--mm-paso-5);
@@ -293,10 +302,41 @@
     align-self: end;
   }
   .animated-divs-section .feature-card:not(.is-active) .feature-text { grid-area: 1 / 1 }
+  /* LA JERARQUIA QUE FALTABA. Medido antes de tocar nada: el titulo abierto y los cinco
+   * cerrados eran IDENTICOS —29,83 px, peso 500, sin tracking—, o sea que el sujeto y las
+   * etiquetas pesaban lo mismo y la seccion se leia plana. El abierto sube de paso y los
+   * cerrados bajan a etiqueta: mas pequenos, mas ligeros y con tracking, que es lo que hace
+   * que un rotulo vertical se lea como rotulo y no como un sexto titular compitiendo.
+   * El `letter-spacing` va en `em` —sigue al tamano de la fuente— y NO mueve `innerText`:
+   * comprobado en navegador, igual que los pseudo-elementos. `text-transform` SI lo mueve y
+   * por eso sigue vetado. */
+  .animated-divs-section .feature-card:not(.is-active) .title-feature {
+    font-size: var(--mm-paso-4);
+    font-weight: var(--mm-peso-normal);
+    letter-spacing: .06em;
+  }
   .animated-divs-section .is-active .title-feature {
     writing-mode: horizontal-tb;
     transform: none;
-    line-height: var(--mm-alto-titulo);
+    font-size: var(--mm-paso-6);
+    line-height: var(--mm-alto-apretado);
+    /* LA LINEA DE FLOTACION, el unico oro decorativo que esta casa tiene sancionado
+     * (`lectura.css:144-165`): un filete neutro con un tramo de oro montado en su extremo,
+     * «como el azulejo de la linea de flotacion de una piscina». Aqui ancla el bloque de
+     * texto de la columna abierta, que hasta ahora flotaba sobre la foto.
+     *
+     * Va con `background-image` y NO con un `::before` a proposito: posicionar el `h3`
+     * cambiaria el bloque contenedor de `.feature-boton::after` (§7), que es el que estira
+     * el area de click a la columna entera, y la encogeria al tamano del titulo. Ninguna
+     * puerta lo veria.
+     *
+     *   oro #f4b248 sobre el peor pixel bajo el titulo abierto ..... 6,71:1   pide 3   OK */
+    border-block-end: 1px solid var(--mm-borde-inverso);
+    padding-block-end: var(--mm-e-12);
+    background-image: linear-gradient(var(--mm-oro), var(--mm-oro));
+    background-repeat: no-repeat;
+    background-size: var(--mm-e-64) 3px;
+    background-position: left bottom;
   }
 }
 
@@ -382,7 +422,7 @@
 .animated-divs-section .feature-boton:focus-visible {
   outline: var(--mm-foco-grosor) solid var(--mm-foco-inverso);
   outline-offset: var(--mm-foco-aire);
-  box-shadow: 0 0 0 calc(var(--mm-foco-grosor) + var(--mm-foco-aire) * 2) var(--mm-foco);
+  box-shadow: var(--mm-foco-halo);
 }
 @media (min-width: 992px) {
   .animated-divs-section .feature-boton { min-width: 44px }
@@ -390,6 +430,25 @@
    * hay acordeon. Por debajo estorbaria — una capa invisible sobre las seis tarjetas impide
    * seleccionar el parrafo, y ahi no hay nada que abrir porque ya se ve todo. */
   .animated-divs-section .feature-boton::after { content: ""; position: absolute; inset: 0 }
+
+  /* ESTADOS, QUE HOY NO HABIA NINGUNO. Medido antes de tocar: 0 reglas `:hover` en toda la
+   * seccion. Seis columnas clicables sin una sola senal de que lo son.
+   *
+   * El hover ACLARA EL VELO y asoma la foto — patron de `social.css:151`, que hace lo mismo
+   * al reves—. Y no toca `filter`, `transform` ni `opacity`: `CRITERIO.md:192-194` avisa de
+   * que cualquiera de los tres crea contexto de apilamiento, pinta la foto ENCIMA del velo y
+   * hunde el contraste sin mover un pixel en reposo y sin senal en ninguna puerta. Aclarar el
+   * velo es el mismo gesto sin esa trampa.
+   *
+   * `:focus-within` entra en el mismo `:is()` para que el teclado vea lo que ve el raton.
+   * El cambio es instantaneo: animar una custom property pide `@property`, y registrarlo es
+   * un at-rule mas que la puerta tendria que saber parsear. Un revelado de hover instantaneo
+   * es legitimo; no merece el riesgo.
+   *
+   * NO baja del 64 %: con el velo al 58 % un pixel BLANCO de foto bajo el texto daria 4,22:1
+   * y suspenderia. Los ratios re-medidos en hover van en el informe. */
+  .animated-divs-section .feature-card:is(:hover, :focus-within) .block-feature { --mm-velo: 64% }
+  .animated-divs-section .feature-card:active .block-feature { --mm-velo: 68% }
 }
 
 /* ── 8 · POR DEBAJO DE 992: LA REJILLA QUE EL ENCARGO DESCRIBIA Y NO EXISTIA ──
