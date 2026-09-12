@@ -6091,3 +6091,39 @@ Nueve pendientes, todos de Sebastian, en `R17-CORE.md` §13. Los tres que bloque
    prompts y prueba de aceptación están escritos.
 3. **Medir LCP/INP/CLS contra producción sigue bloqueado** por el proxy. Se reporta
    `PRODUCTION PERFORMANCE VERIFICATION BLOCKED`, nunca PASSED.
+
+---
+
+## Cierre en local — el encargo que este contenedor ya no puede ejecutar (12-sep-2026)   🟡 en curso
+
+**Encargo:** `docs/encargos/PROMPT-LOCAL.md`, escrito hoy · **Rama:** `claude/happy-hamilton-u7vqjy`
+
+No cambia ni una página: es **documentación**. Lo que quedaba abierto tras R19 necesita cosas que
+aquí no existen —un humano mirando, Photoshop, la cuenta de Google y un navegador con foco real—,
+así que se deja escrito para el chat de la Mac. Cinco tareas, ordenadas por lo que valen: GTM,
+aprobar las capturas de las catorce fichas, el consentimiento SMS, el «Before» y
+`page.clock.install()`.
+
+### Tres cosas que se midieron al escribirlo y corrigen el registro
+
+- **El consentimiento SMS está en TRES formularios, no en cuatro** —`_source/vivo/contact-us.html`,
+  `_source/vivo/request-estimated.html` y `GalleryLeadLightbox.astro:92`— y **el defecto es el
+  contrario del anotado**: sobra el `required`, no falta. Un `required` convierte el consentimiento
+  a marketing por SMS en condición para recibir el servicio, que es justo lo que **47 CFR
+  §64.1200(a)(2)** no permite. La ficha piloto ya lo hace bien (`FormularioCore.astro:214-217`); el
+  arreglo es replicarla. Dos de los tres son **derivados**: se editan en `_source/vivo/`.
+- **`check:texto` sólo vería una de las tres.** La frase aparece en 4 páginas del build pero sólo
+  `/contact-us` la tiene en `baseline/text/`: en `/request-estimated` vive en el paso 3 del
+  formulario multi-paso y en `/gallery` dentro del lightbox cerrado, y `innerText` no ve lo oculto.
+  Declarar **sólo `/contact-us`**, con lista cerrada. Que la puerta no vea las otras dos no es
+  permiso para no mirarlas — es el caso exacto del banner a 1.35:1.
+- **El `generate_lead` no cuelga sólo de GTM.** Cuelga de `sessionStorage['mm_lead']`, que se
+  escribe en `Formularios.astro:192` y se lee en `thank-you.astro:147-167`; si la llave no está,
+  `thank-you` hace `return` y no empuja nada. Las 18 páginas vistas de `/thank-you` dicen que al
+  menos a veces se llega, pero **no estaba probado** que sea «de GTM y de nada más». El prompt
+  manda cruzar esas páginas vistas contra las fechas de los leads reales antes de tocar GTM.
+
+### Verificación
+
+`check:tokens` **PUERTA VERDE**. Sin build: ningún `.md` de `docs/` entra en el artefacto, y el
+diff no toca `src/`, `public/`, `scripts/` ni `_source/`.
