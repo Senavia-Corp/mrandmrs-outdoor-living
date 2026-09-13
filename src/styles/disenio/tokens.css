@@ -266,8 +266,14 @@
    * hace leer como un menisco y no como una onda de dibujo animado.
    * viewBox de 340 de alto + preserveAspectRatio='none': la clase le da alto FIJO
    * en px, así que la curva cae a la misma distancia del borde superior en una
-   * sección de 260 px y en una de 900. Es el defecto del webp que esto cierra. */
-  --agua-cresta: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 340' preserveAspectRatio='none'%3E%3Cpath d='M0,0 H1440 V62 C1290,50 1170,80 1000,100 C830,120 690,116 500,106 C330,97 160,74 0,70 Z' fill='%23001c63' opacity='.17'/%3E%3Cpath d='M0,0 H1440 V94 C1290,82 1170,112 1000,132 C830,152 690,148 500,138 C330,129 160,106 0,102 Z' fill='%23001c63' opacity='.11'/%3E%3C/svg%3E");
+   * sección de 260 px y en una de 900. Es el defecto del webp que esto cierra.
+   *
+   * LA SEGUNDA CURVA ES LA PRIMERA BAJADA 96 (variante B, aprobada por Sebastián el
+   * 12-sep-2026). Con 32 la franja del medio se leía como una línea; con 96 las tres
+   * franjas quedan parejas, porque la de arriba mide de 62 a 114. Bajarla solo extiende
+   * la capa navy, así que ningún punto pierde contraste. Se probó también 64: en las 14
+   * fichas su borde caía justo encima de los filetes dorados (164-178 contra 170). */
+  --agua-cresta: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 340' preserveAspectRatio='none'%3E%3Cpath d='M0,0 H1440 V62 C1290,50 1170,80 1000,100 C830,120 690,116 500,106 C330,97 160,74 0,70 Z' fill='%23001c63' opacity='.17'/%3E%3Cpath d='M0,0 H1440 V158 C1290,146 1170,176 1000,196 C830,216 690,212 500,202 C330,193 160,170 0,166 Z' fill='%23001c63' opacity='.11'/%3E%3C/svg%3E");
 
   /* Gris al 5 %. MEDIDO sobre el techo (#3767e1): mueve la luminancia de −0,8 % a
    * +7,9 % (media +3,1 %), o sea que casi solo aclara. El peor píxel posible —techo
