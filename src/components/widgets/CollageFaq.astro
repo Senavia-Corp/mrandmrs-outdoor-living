@@ -1,0 +1,119 @@
+---
+/**
+ * COLLAGE DE OBRA EN LA FAQ — FAQ-COLLAGE.
+ *
+ * La seccion de preguntas frecuentes pasa a dos columnas: a la izquierda un collage de cinco
+ * fotos REALES de obra terminada del servicio de esa ruta, a la derecha el titulo, la
+ * entradilla y los acordeones. Lo pinta este widget; la composicion entera vive en
+ * `src/styles/faq.css`.
+ *
+ * DONDE SE MONTA. En las **16 rutas** que tienen `.faq-section`: las 14 de `/services/`,
+ * `/about` y `/financing`. Medido:
+ *
+ *     grep -rl 'class="faq-section' .vercel/output/static --include='*.html' | wc -l
+ *
+ * En las quince derivadas lo inserta `scripts/build-paginas.mjs` con el marcador
+ * `@@WIDGET@@CollageFaq@@WIDGET@@`, entre `.header-faq` y `.wrapper-faq-components`. En
+ * `/financing`, que es de autoria propia, va escrito a mano en el mismo sitio.
+ *
+ * 🚨 SI UNA RUTA NO TIENE ENTRADA, EL BUILD FALLA CON SU NOMBRE. No se pinta vacio y no se
+ * pinta a medias: un collage ausente en una de las dieciseis no lo caza ninguna puerta
+ * —`check:texto` no ve imagenes y `check:visual` compararia contra un baseline ya
+ * re-baselinizado—, asi que la unica forma de que no pase inadvertido es parar el build.
+ *
+ * LAS FOTOS NO SE ELIGEN AQUI. Salen de `src/data/collage-faq-por-ruta.json`, cinco por ruta y
+ * SIEMPRE en el orden que consume el bento de `faq.css`:
+ *
+ *     [0] ancla     plano general, ancha arriba          (16/10, 494x309 a 1440)
+ *     [1] detalle   vertical                             (3/4,   243x324)
+ *     [2] detalle   vertical                             (3/4,   243x324)
+ *     [3] mediana                                        (3/2,   243x162)
+ *     [4] mediana                                        (3/2,   243x162)
+ *
+ * Por debajo de 992 solo se pintan las tres primeras, en una tira de 128 px de alto: el orden
+ * del DOM ya es el orden movil. Las dos ultimas se ocultan por CSS y NO se quitan del HTML,
+ * para que las cuatro puertas vean el mismo marcado en los cuatro anchos.
+ *
+ * NI UN TEXTO VISIBLE NUEVO, ni `data-w-id`, ni `w-lightbox`, ni `gallery-picture`, ni enlaces
+ * (encargo §7). El `alt` es el literal de la galeria: no es `innerText`, asi que `check:texto`
+ * no se mueve.
+ *
+ * ── LA ENTRADA AL HACER SCROLL ──────────────────────────────────────────────────────────
+ * El sello `data-entra` lo escribe el guion de abajo DESPUES de construir el observador, y un
+ * `try/catch` lo retira si algo falla. Sin guion no hay sello, sin sello no casa el
+ * `opacity: 0` de `faq.css` y SE VE TODO. Es el contrato de `Interacciones.astro`, y el motivo
+ * esta alli: en AMS el sitio se quedo invisible una vez por heredar el `opacity:0` sin su
+ * animacion.
+ *
+ * 🚨 NINGUNA PUERTA VIGILA ESO. `check:ix2` calcula sus dos comprobaciones buenas —«0 en
+ * opacity:0» y «0 transform residual»— SOLO sobre elementos con `data-w-id`
+ * (`check-ix2.mjs:139` y `141`), y el collage no lleva ninguno ni puede llevarlo: quedaria
+ * huerfano en `reveals.json`. El try/catch es la unica red.
+ */
+import DATOS from '../../data/collage-faq-por-ruta.json';
+
+/* `Astro.props.ruta` existe SOLO para el laboratorio `_lab-faq.astro`, que no esta enrutado y
+ * por tanto no tiene el pathname de la ficha. El generador no pasa props: en produccion
+ * siempre manda `Astro.url.pathname`. Mismo patron que `InversionCore.astro`. */
+const ruta = (Astro.props.ruta ?? Astro.url.pathname).replace(/(.)\/$/, '$1');
+const d = (DATOS as Record<string, { fotos: { src: string; srcset: string; alt: string; ancho: number; alto: number; pos: string }[] }>)[ruta];
+
+if (!d) {
+  throw new Error(
+    `CollageFaq: la ruta ${ruta} monta .faq-section pero no tiene entrada en `
+    + 'src/data/collage-faq-por-ruta.json. Son 16 y las 16 la necesitan: se para el build '
+    + 'antes que pintar la seccion a medias.');
+}
+if (d.fotos.length !== 5) {
+  throw new Error(`CollageFaq: ${ruta} trae ${d.fotos.length} fotos y el bento pide 5.`);
+}
+
+/* `sizes` con el ancho REAL de cada celda, medido sobre el contenedor de 1250 px:
+ *   ancla    5fr de (1250 - 64) = 494 px  ·  las otras cuatro  (494 - 8) / 2 = 243 px
+ * Por debajo de 992 la tira de tres ocupa 1.6fr / 1fr / 1fr del contenedor. */
+const SIZES_ANCLA = '(min-width: 992px) 494px, (min-width: 768px) 45vw, 44vw';
+const SIZES_CHICA = '(min-width: 992px) 243px, (min-width: 768px) 28vw, 27vw';
+---
+<div class="mm-collage" data-collage>
+  {d.fotos.map((f, i) => (
+    <img
+      src={f.src}
+      srcset={f.srcset}
+      sizes={i === 0 ? SIZES_ANCLA : SIZES_CHICA}
+      alt={f.alt}
+      width={f.ancho}
+      height={f.alto}
+      loading="lazy"
+      decoding="async"
+      style={`object-position:${f.pos}`}
+    />
+  ))}
+</div>
+
+<script>
+  /**
+   * EL SELLO SE ESCRIBE DESPUES DE OBSERVAR, Y SE RETIRA SI ALGO FALLA.
+   * Sellar antes y fallar despues es dejar el collage invisible para siempre.
+   *
+   * `rootMargin` negativo abajo: entra cuando se ve de verdad, no cuando asoma un pixel.
+   * `unobserve` al disparar: la entrada es de una vez, no un ida y vuelta con el scroll — eso
+   * seria mareante en un bloque que ademas esta `sticky`.
+   */
+  (function () {
+    const cajas = document.querySelectorAll('[data-collage]');
+    if (!cajas.length) return;
+    try {
+      const obs = new IntersectionObserver((filas) => {
+        for (const f of filas) {
+          if (!f.isIntersecting) continue;
+          f.target.setAttribute('data-visto', '');
+          obs.unobserve(f.target);
+        }
+      }, { rootMargin: '0px 0px -12% 0px' });
+      for (const c of cajas) obs.observe(c);
+      for (const c of cajas) c.setAttribute('data-entra', '');
+    } catch {
+      for (const c of cajas) c.removeAttribute('data-entra');
+    }
+  })();
+</script>

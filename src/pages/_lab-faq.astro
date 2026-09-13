@@ -5,209 +5,52 @@
  * El guion bajo lo saca del enrutado de Astro: no genera HTML, las 115 siguen siendo 115 y no
  * entra en `check:rutas` ni en el sitemap. Se mira por `/lab/faq` con `astro dev`, o se copia a
  * `lab-faq.astro` (sin guion bajo), se construye, se captura y **se borra la copia** — que es
- * como se capturo esto, para medir sobre `.vercel/output/static` y no sobre `dev` (CLAUDE.md §2).
+ * como se capturo todo lo de este encargo, para medir sobre `.vercel/output/static` y no sobre
+ * `dev` (CLAUDE.md §2).
  *
- * FASE 1, CERRADA. Servia para elegir entre dos composiciones de collage. Gano la **A**
- * (escalonada: ancla ancha arriba, 2 verticales de detalle, 2 medianas), decision de Sebastian
- * del 13-sep-2026. La variante B se ha retirado de aqui: su composicion esta en el informe y
- * mantener viva una maqueta descartada es como se acaba restilando lo que no se pinta.
+ * LO QUE YA NO HACE, y por que se ha vaciado. Este banco sirvio para cerrar las dos decisiones
+ * del encargo, y las dos estan cerradas:
  *
- * LA COMPOSICION YA NO VIVE AQUI. Desde que gano la A, las dos columnas, el `sticky`, la tira
- * movil y el pulido de los acordeones son `src/styles/faq.css`, cableada en `Base.astro`. Este
- * banco solo aporta el marcado del collage y lo que esta en prueba.
+ *   · la COMPOSICION del collage — gano la variante A (escalonada: ancla ancha arriba, dos
+ *     verticales de detalle, dos medianas), 13-sep-2026;
+ *   · la ANIMACION de entrada — gano P1 (opacity + translateY escalonados, con observador y
+ *     sello), sobre P2 (barrido con `clip-path`) y P3 (CSS puro con `animation-timeline`).
  *
- * LO QUE ESTA EN PRUEBA AHORA: **la animacion de entrada del collage al hacer scroll.**
- * Tres secciones, con el mismo marcado y las mismas cinco fotos, para poder compararlas y —lo
- * que de verdad importa— para pasarlas por `asentar()` y `disparar()` de `scripts/lib/
- * captura.mjs`, que es la maquinaria exacta de `check:visual`:
+ * Las dos viven ya en `src/styles/faq.css` y en `widgets/CollageFaq.astro`. Mantener aqui una
+ * copia de lo aprobado es como se acaba restilando lo que no se pinta, asi que se ha quitado:
+ * este fichero **no declara ni una regla de la seccion**. Lo unico suyo es el rotulo.
  *
- *   CONTROL — sin animacion. Es el estado que hay que reproducir en la captura.
- *   P1      — entrada escalonada: `opacity` + `translateY`, IntersectionObserver y sello.
- *   P2      — barrido con `clip-path`, sin tocar `opacity`.
+ * PARA QUE SIGUE SIRVIENDO. Para mirar la seccion aislada —sin bajar por una ficha entera— y
+ * para probar un cambio de `faq.css` contra el marcado REAL antes de tocar las 16 rutas. Monta
+ * el widget de verdad, con la prop `ruta` que existe justamente para esto (el banco no esta
+ * enrutado y no tiene el `pathname` de la ficha).
  *
- * EL SELLO NO ESTA EN EL MARCADO, y es la parte que no se puede copiar mal. `data-entra` lo
- * escribe el guion DESPUES de construir el observador, dentro de un `try/catch` que lo retira
- * si algo falla. Si el guion no corre, el selector del estado oculto no casa y **se ve todo**.
- * Es el mismo contrato que `Interacciones.astro` §«EL ESTADO OCULTO CUELGA DE UN SELLO», y el
- * motivo esta escrito alli: en AMS el sitio se quedo invisible una vez por heredar el
- * `opacity:0` sin su animacion.
- *
- * `animation` y no `transition`, y `backwards` y nunca `both`: los dos por el mismo sitio
- * (`Interacciones.astro`, cabecera). Un `transition-delay` se queda puesto y cualquier hover
- * posterior arrancaria cientos de ms tarde; y `both` lleva `forwards` dentro, que deja el
- * `transform` serializado como `matrix(1,0,0,1,0,0)` en vez de `none` — o sea contexto de
- * apilamiento permanente. `check:tokens` regla 5 lo prohibe en la capa **y en los bloques
- * `<style>`**, comprobado en el codigo de la puerta.
- *
- * LAS CINCO FOTOS SON REALES, de `/gallery`, del servicio de esta ruta (`data-service-id
- * ="construction"`, 10 fotos) y elegidas por hoja de contactos, no por el nombre del fichero
- * (00-PRINCIPIOS §4). La hoja con las cinco marcadas va en el informe de Fase 1.
+ * El FAQ tambien es el REAL y no una copia que se pueda quedar vieja: se lee `T9` de la ficha
+ * de piscinas con `?raw` y se parte por `.wrapper-faq-components`, que es exactamente donde
+ * `build-paginas.mjs` mete el marcador `@@WIDGET@@CollageFaq@@WIDGET@@`.
  */
 import Base from '../layouts/Base.astro';
+import CollageFaq from '../components/widgets/CollageFaq.astro';
 import fuente from './services/custom-pool-spa-builders-in-north-south-florida.astro?raw';
+
+const RUTA = '/services/custom-pool-spa-builders-in-north-south-florida';
 
 /* `T9` es la cadena que la ficha pinta con `<Fragment set:html>`: la seccion `.faq-section`
  * entera. Se recupera con el mismo `JSON.parse` que la escribio. */
 const T9 = JSON.parse('"' + /^const T9 = "((?:[^"\\]|\\.)*)";$/m.exec(fuente)[1] + '"');
 const CORTE = T9.indexOf('<div class="wrapper-faq-components">');
 if (CORTE < 0) throw new Error('_lab-faq: no aparece .wrapper-faq-components en T9');
-const CABECERA = T9.slice(0, CORTE);     // <section> + <div container> + .header-faq
-const PREGUNTAS = T9.slice(CORTE);       // .wrapper-faq-components + cierres
-
-/**
- * LAS CINCO, con el papel que cumple cada una. `n` es su numero en la hoja de contactos de
- * `construction`; `pos` es el `object-position` que pide su encuadre, foto a foto.
- */
-const FOTOS = [
-  { n: 3, papel: 'ancla',
-    src: '/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg',
-    base: 'custom-pool-spa-builders-florida-08', w: 1250, h: 698, pos: '50% 50%',
-    alt: 'High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.' },
-  { n: 1, papel: 'detalle',
-    src: '/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg',
-    base: 'custom-pool-spa-builders-florida-10', w: 1250, h: 933, pos: '35% 100%',
-    alt: 'Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.' },
-  { n: 6, papel: 'detalle',
-    src: '/images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg',
-    base: 'custom-pool-spa-builders-florida-05', w: 1250, h: 698, pos: '78% 50%',
-    alt: 'Luxury outdoor pool featuring waterfall spa and covered patio area, built by experienced custom pool and outdoor living contractors in Florida.' },
-  { n: 4, papel: 'mediana',
-    src: '/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg',
-    base: 'custom-pool-spa-builders-florida-07', w: 1250, h: 933, pos: '80% 70%',
-    alt: 'Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.' },
-  { n: 9, papel: 'mediana',
-    src: '/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg',
-    base: 'custom-pool-spa-builders-florida-02', w: 1250, h: 937, pos: '50% 45%',
-    alt: 'Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.' },
-];
-
-const srcset = (f) =>
-  `/images/site/${f.base}-p-500.jpg 500w, /images/site/${f.base}-p-800.jpg 800w, ` +
-  `/images/site/${f.base}-p-1080.jpg 1080w, ${f.src} ${f.w}w`;
-
-/* `sizes` con el ancho REAL de cada celda, medido sobre el contenedor de 1250 px:
- *   ancla    5fr de (1250 - 64) = 494 px  ·  detalle/mediana (494 - 8) / 2 = 243 px
- * Por debajo de 992 la tira de tres ocupa 1.6fr / 1fr / 1fr del contenedor. */
-const SIZES_ANCLA = '(min-width: 992px) 494px, (min-width: 768px) 45vw, 44vw';
-const SIZES_CHICA = '(min-width: 992px) 243px, (min-width: 768px) 28vw, 27vw';
-
-const BANCOS = [
-  ['CONTROL · sin animacion — el estado que la captura tiene que reproducir', ''],
-  ['P1 · entrada escalonada — opacity + translateY, sello e IntersectionObserver', 'p1'],
-  ['P2 · barrido con clip-path — sin tocar opacity', 'p2'],
-];
 ---
 <Base titulo="LAB · FAQ-COLLAGE" descripcion="Laboratorio no enrutado de FAQ-COLLAGE." conPie={false}>
-  {BANCOS.map(([rotulo, mod]) => (
-    <>
-      <section class="lab-rotulo"><p>{rotulo}</p></section>
-      <Fragment set:html={CABECERA} />
-      <div class:list={['mm-collage', mod && `mm-collage--${mod}`]} data-collage={mod || null}>
-        {FOTOS.map((f, i) => (
-          <img src={f.src} srcset={srcset(f)} sizes={i === 0 ? SIZES_ANCLA : SIZES_CHICA}
-            alt={f.alt} width={f.w} height={f.h} loading="lazy" decoding="async"
-            style={`object-position:${f.pos}`} />
-        ))}
-      </div>
-      <Fragment set:html={PREGUNTAS} />
-    </>
-  ))}
+  <section class="lab-rotulo"><p>FAQ-COLLAGE · variante A con la entrada P1, tal cual se pinta en las 16 rutas</p></section>
+  <Fragment set:html={T9.slice(0, CORTE)} />
+  <CollageFaq ruta={RUTA} />
+  <Fragment set:html={T9.slice(CORTE)} />
 </Base>
 
 <style is:global>
-  /* `is:global` porque el FAQ entra por `set:html` y NO lleva el `data-astro-cid-*` del
-     ambito. Nada de esto viaja a ninguna ruta: el fichero no esta enrutado. */
-
+  /* Lo UNICO del banco. La seccion entera la viste `src/styles/faq.css`. */
   .lab-rotulo { background-color: var(--mm-navy); color: var(--mm-tinta-inversa);
     padding: var(--mm-e-12) var(--mm-canal); }
   .lab-rotulo p { margin: 0; font-family: var(--mm-fuente); font-size: var(--mm-paso-1); }
-
-  /* ══ P1 · ENTRADA ESCALONADA ══════════════════════════════════════════════════════════
-   * El estado oculto cuelga del sello `[data-entra]`, que escribe el guion. La regla 7 de
-   * `check:tokens` lo exime por dos vias a la vez —el selector lleva `[data-` y ademas hay
-   * otra regla que vuelve a encender— pero eso es lo de menos: lo que importa es que sin
-   * guion no hay sello y sin sello se ve todo.
-   *
-   * 700 ms y `cubic-bezier(.165,.84,.44,1)` (outQuart) es el mismo catalogo que usan las 93
-   * entradas del sitio; algo mas corto que sus 1000 ms porque aqui entran cinco piezas
-   * escalonadas y la suma no puede pasar del segundo.
-   *
-   * `translateY` y nunca `translateX`: `check:ix2` mide barra de scroll horizontal a 479 y
-   * 767, y el deslizamiento lateral es justo lo que la mete (en LTR solo desborda el
-   * positivo). Esta escrito en la cabecera de `Interacciones.astro` y aqui vale igual.
-   *
-   * La animacion va sobre los `<img>`, NUNCA sobre `.mm-collage`: el contenedor es el
-   * elemento `sticky`, y un `transform` sobre el se compondria con el desplazamiento del
-   * pegado. */
-  .mm-collage--p1[data-entra]:not([data-visto]) > img { opacity: 0; }
-  .mm-collage--p1[data-visto] > img {
-    animation: 700ms cubic-bezier(.165, .84, .44, 1) backwards mm-collage-entra;
-  }
-  .mm-collage--p1[data-visto] > :nth-child(2) { animation-delay:  70ms; }
-  .mm-collage--p1[data-visto] > :nth-child(3) { animation-delay: 140ms; }
-  .mm-collage--p1[data-visto] > :nth-child(4) { animation-delay: 210ms; }
-  .mm-collage--p1[data-visto] > :nth-child(5) { animation-delay: 280ms; }
-  @keyframes mm-collage-entra { from { opacity: 0; transform: translateY(14px); } }
-
-  /* ══ P2 · BARRIDO CON CLIP-PATH ═══════════════════════════════════════════════════════
-   * Misma mecanica de sello y observador, pero sin tocar `opacity`: la foto se descubre de
-   * abajo arriba. `round var(--mm-r-16)` conserva las esquinas redondeadas del collage, que
-   * es lo unico que hacia falta comprobar de `inset()`.
-   *
-   * 🚨 AVISO QUE VA AL INFORME: esto pasa `check:tokens` en verde y NO deberia tranquilizar a
-   * nadie. La regla 7 vigila `opacity: 0` porque es «invisible para siempre»; un
-   * `clip-path: inset(0 0 100% 0)` es exactamente lo mismo y la puerta no lo mira. O sea que
-   * P2 cambia un peligro vigilado por uno que no lo esta. */
-  .mm-collage--p2[data-entra]:not([data-visto]) > img {
-    clip-path: inset(0 0 100% 0 round var(--mm-r-16));
-  }
-  .mm-collage--p2[data-visto] > img {
-    animation: 800ms cubic-bezier(.165, .84, .44, 1) backwards mm-collage-barrido;
-  }
-  .mm-collage--p2[data-visto] > :nth-child(2) { animation-delay:  70ms; }
-  .mm-collage--p2[data-visto] > :nth-child(3) { animation-delay: 140ms; }
-  .mm-collage--p2[data-visto] > :nth-child(4) { animation-delay: 210ms; }
-  .mm-collage--p2[data-visto] > :nth-child(5) { animation-delay: 280ms; }
-  @keyframes mm-collage-barrido { from { clip-path: inset(0 0 100% 0 round var(--mm-r-16)); } }
-
-  /* Repitiendo la misma cadena para ganar por orden, sin `!important`, igual que hace
-     `Interacciones.astro`. Un `animation: none` a secas no basta: comprime la duracion pero no
-     restablece el estado oculto, asi que hay que apagar tambien el `opacity`/`clip-path`. */
-  @media (prefers-reduced-motion: reduce) {
-    .mm-collage--p1[data-entra]:not([data-visto]) > img { opacity: 1; }
-    .mm-collage--p2[data-entra]:not([data-visto]) > img { clip-path: none; }
-    .mm-collage--p1[data-visto] > img,
-    .mm-collage--p2[data-visto] > img { animation: none; }
-  }
 </style>
-
-<script>
-  /**
-   * EL SELLO SE ESCRIBE DESPUES DE OBSERVAR, Y SE RETIRA SI ALGO FALLA.
-   * Sellar antes y fallar despues es dejar el collage invisible para siempre — el desastre de
-   * AMS por la puerta de atras. Ninguna puerta vigila esto: `check:ix2` solo cuenta
-   * `[data-w-id]` en `opacity:0`, y el collage no lleva ninguno (ni puede: quedaria huerfano
-   * en `reveals.json`). La red de seguridad es esta funcion, y por eso esta escrita asi.
-   *
-   * `rootMargin` negativo abajo: el collage entra cuando ya se ve de verdad, no cuando asoma
-   * un pixel. `unobserve` al disparar: la entrada es de una vez, no un ida y vuelta con el
-   * scroll — eso seria mareante en un bloque que ademas esta `sticky`.
-   */
-  (function () {
-    const cajas = document.querySelectorAll('[data-collage]');
-    if (!cajas.length) return;
-    try {
-      const obs = new IntersectionObserver((filas) => {
-        for (const f of filas) {
-          if (!f.isIntersecting) continue;
-          f.target.setAttribute('data-visto', '');
-          obs.unobserve(f.target);
-        }
-      }, { rootMargin: '0px 0px -12% 0px' });
-      for (const c of cajas) obs.observe(c);
-      for (const c of cajas) c.setAttribute('data-entra', '');
-    } catch {
-      for (const c of cajas) c.removeAttribute('data-entra');
-    }
-  })();
-</script>

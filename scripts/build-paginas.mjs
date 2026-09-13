@@ -504,6 +504,53 @@ let codeEmbedsEliminados = 0;
 const generadas = [];
 const porColeccion = {};
 const protegidas = [];
+/* Las 15 rutas DERIVADAS que montan `.faq-section` (la decimosexta, `/financing`, es de
+ * autoria propia y lo lleva escrito a mano). Se COMPRUEBA al final contra 15. */
+let collagesInsertados = 0;
+/**
+ * ── EL MARCADOR DEL COLLAGE DE LA FAQ (FAQ-COLLAGE) ──────────────────────────────────────
+ *
+ * Mete `@@WIDGET@@CollageFaq@@WIDGET@@` DENTRO del contenedor de `.faq-section`, entre
+ * `.header-faq` y `.wrapper-faq-components`, que es exactamente donde el bento de
+ * `src/styles/faq.css` espera encontrar el collage.
+ *
+ * COMO NODO DE TEXTO, por lo mismo que el marcador de la banda de inversion (bloque 4):
+ * `.faq-section` cuelga del `<div>` sin clase, no es hermana de primer nivel, asi que el bucle
+ * de hermanos no la ve una a una. Al serializar el `<div>`, `limpia()` se lleva el marcador
+ * dentro y el troceo lo convierte en `<CollageFaq />`. `@` no se escapa en un nodo de texto.
+ *
+ * EXIGE EXACTAMENTE UNA `.faq-section` Y PARA EL BUILD SI NO. Mismo criterio que
+ * `src/lib/carrusel-proyectos.mjs:42`, y aqui vale por partida doble: con dos secciones se
+ * pintarian dos collages —el widget se localiza por `pathname`, o sea las MISMAS cinco fotos
+ * repetidas en la misma pagina—; y si el marcador no entrara, NINGUNA puerta lo diria
+ * (`check:texto` no ve imagenes y `check:visual` compararia contra un baseline ya
+ * re-baselinizado con el collage puesto).
+ *
+ * NO decide que rutas llevan collage: eso lo decide tener o no `.faq-section`.
+ *
+ * @param {Document} doc  el DOM de la ruta
+ * @param {string}   ruta
+ * @returns {boolean} si se inserto (para el contador-invariante del final)
+ */
+function collageFaq(doc, ruta) {
+  const secciones = doc.querySelectorAll('section.faq-section');
+  if (secciones.length === 0) return false;
+  if (secciones.length > 1) {
+    console.error(`\n  ROJO ${ruta}: esperaba UNA section.faq-section y hay ${secciones.length}.`
+      + ' El collage se pintaria repetido; se para el build.\n');
+    process.exit(1);
+  }
+  const cabecera = secciones[0].querySelector('.header-faq');
+  const preguntas = secciones[0].querySelector('.wrapper-faq-components');
+  if (!cabecera || !preguntas || cabecera.parentNode !== preguntas.parentNode) {
+    console.error(`\n  ROJO ${ruta}: .faq-section no trae .header-faq y .wrapper-faq-components`
+      + ' como hermanas del mismo contenedor. El marcador no tiene donde ir.\n');
+    process.exit(1);
+  }
+  preguntas.parentNode.insertBefore(
+    doc.createTextNode(MARCA + 'CollageFaq' + MARCA), preguntas);
+  return true;
+}
 /**
  * ── LA CIRUGIA DE LA LANDING DE PAGO (R17-CORE) ──────────────────────────────────────────
  *
@@ -913,6 +960,9 @@ for (const [ruta] of RUTAS) {
   const inyectados = captacion(doc, ruta);
   if (inyectados) captacionAplicada++;
 
+  const conCollage = collageFaq(doc, ruta);
+  if (conCollage) collagesInsertados++;
+
   const usados = new Set();
   const limpia = (n) => {
     localizar(n);
@@ -1278,6 +1328,10 @@ for (const [ruta] of RUTAS) {
    * se repite al final, antes del pie- y sin la guarda los componentes se pintarian dos veces.
    */
   if (inyectados) for (const comp of inyectados) usados.add(comp);
+  /* El marcador del collage ya esta puesto como nodo de texto, pero el import lo genera
+   * `usados` y no el marcador: sin esta linea salen 15 ficheros con `<CollageFaq />` y sin
+   * importarlo. Cazado construyendo. */
+  if (conCollage) usados.add('CollageFaq');
   let primerLogos = true;
   let acumulado = '';
   for (let n = menu.nextElementSibling; n && n !== pie; n = n.nextElementSibling) {
@@ -1536,6 +1590,8 @@ const kb = generadas.reduce((a, [, , b]) => a + b, 0) / 1024;
 console.log(`\n  OK ${generadas.length} paginas · ${Math.round(kb)} kB de marcado`);
 console.log(`  carrusel de blog insertado en ${blogsInsertados} ficha(s) de services/+where-we-serves/`
   + `${blogsInsertados === 16 ? '' : '   <<< SE ESPERABAN 16'}`);
+console.log(`  collage de la FAQ insertado en ${collagesInsertados} ruta(s) derivada(s)`
+  + `${collagesInsertados === 15 ? '' : '   <<< SE ESPERABAN 15 (la 16a, /financing, va a mano)'}`);
 console.log(`  captacion aplicada en ${captacionAplicada} ruta(s)`
   + `${captacionAplicada === Object.keys(CAPTACION).filter((k) => !k.startsWith('_')).length ? '' : '   <<< NO CUADRA CON captacion-servicios.json'}`);
 console.log(`  carrusel de proyectos sustituido en ${proyectosSustituidos} ruta(s)`

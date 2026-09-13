@@ -89,6 +89,58 @@
 .mm-collage > :nth-child(4),
 .mm-collage > :nth-child(5) { display: none; }
 
+/* ══ 1.bis · LA ENTRADA, AL ASOMAR EN PANTALLA ════════════════════════════════════════════
+ * Las cinco fotos entran escalonadas cuando el collage llega a pantalla. Aprobada por
+ * Sebastian el 13-sep-2026 sobre tres prototipos medidos; el porque de descartar los otros
+ * dos esta en el informe, y lo esencial es que la opcion de CSS puro
+ * (`animation-timeline: view()`) esta bloqueada tres veces: `check:tokens` regla 5 prohibe el
+ * `both` que necesita, el minificador del build pliega `animation-timeline` DENTRO del atajo
+ * y la deja muerta sin avisar, y `disparar()` con `fullPage` la fotografia sin revelar.
+ *
+ * 🚨 EL SELLO `data-entra` LO ESCRIBE EL GUION DE `CollageFaq.astro`, DESPUES de construir el
+ * observador y dentro de un try/catch que lo retira si algo falla. Sin guion no hay sello,
+ * sin sello no casa el `opacity: 0` y SE VE TODO. Es el contrato de `Interacciones.astro`
+ * §«EL ESTADO OCULTO CUELGA DE UN SELLO», y el motivo esta alli: en AMS el sitio se quedo
+ * invisible una vez por heredar el `opacity:0` sin su animacion.
+ *
+ * 🚨 Y NINGUNA PUERTA VIGILA ESTO. `check:ix2` calcula «0 elementos en opacity:0» y «0
+ * transform residual» SOLO sobre elementos con `data-w-id` (check-ix2.mjs:139 y 141), y el
+ * collage no lleva ninguno — ni puede: quedaria huerfano en `reveals.json` (encargo §7). La
+ * unica red es ese try/catch.
+ *
+ * CUATRO DECISIONES QUE NO SON DE GUSTO:
+ *   · `animation` y no `transition`: un `transition-delay` se queda puesto y cualquier hover
+ *     posterior de esa foto arrancaria 280 ms tarde.
+ *   · `backwards` y nunca `both`: retiene el estado inicial durante el retardo —que es lo que
+ *     el escalonado necesita— y termina en `transform: none`, sin contexto de apilamiento
+ *     residual. `both` lleva `forwards` dentro y deja `matrix(1,0,0,1,0,0)`.
+ *   · `translateY` y jamas `translateX`: `check:ix2` mide barra de scroll horizontal a 479 y
+ *     767 en 15 rutas, una de ellas de `/services/`; en LTR solo desborda el positivo.
+ *   · sobre los `<img>` y nunca sobre `.mm-collage`, que es el elemento `sticky`: un
+ *     `transform` sobre el se compondria con el desplazamiento del pegado.
+ *
+ * 700 ms y `cubic-bezier(.165,.84,.44,1)` salen del catalogo IX2 que ya usan las 93 entradas
+ * del sitio. Ellas duran 1000; aqui entran cinco piezas y la suma no puede pasar del segundo:
+ * 280 + 700 = 980 ms. Verificado 100 % reproducible entre dos corridas de `asentar()` +
+ * `disparar()`, con opacidad `1,1,1,1,1` en el instante de la captura. */
+.mm-collage[data-entra]:not([data-visto]) > img { opacity: 0; }
+.mm-collage[data-visto] > img {
+  animation: 700ms cubic-bezier(.165, .84, .44, 1) backwards mm-collage-entra;
+}
+.mm-collage[data-visto] > :nth-child(2) { animation-delay:  70ms; }
+.mm-collage[data-visto] > :nth-child(3) { animation-delay: 140ms; }
+.mm-collage[data-visto] > :nth-child(4) { animation-delay: 210ms; }
+.mm-collage[data-visto] > :nth-child(5) { animation-delay: 280ms; }
+@keyframes mm-collage-entra { from { opacity: 0; transform: translateY(14px); } }
+
+/* Repitiendo la misma cadena para ganar por orden, sin `!important`, igual que hace
+ * `Interacciones.astro`. Un `animation: none` a secas no basta: comprime la duracion pero no
+ * restablece el estado oculto, asi que hay que apagar tambien el `opacity`. */
+@media (prefers-reduced-motion: reduce) {
+  .mm-collage[data-entra]:not([data-visto]) > img { opacity: 1; }
+  .mm-collage[data-visto] > img { animation: none; }
+}
+
 /* ══ 2 · PULIDO DE LOS ACORDEONES ═════════════════════════════════════════════════════════
  * Sin tocar marcado, ni texto, ni comportamiento: solo superficie y estados. Hoy
  * `.dropdown-toggle` tiene CERO reglas de `:hover` y CERO de `:focus-visible` — o sea que el
