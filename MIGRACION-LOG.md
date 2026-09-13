@@ -6127,3 +6127,142 @@ aprobar las capturas de las catorce fichas, el consentimiento SMS, el «Before»
 
 `check:tokens` **PUERTA VERDE**. Sin build: ningún `.md` de `docs/` entra en el artefacto, y el
 diff no toca `src/`, `public/`, `scripts/` ni `_source/`.
+
+---
+
+## FAQ-COLLAGE — la FAQ a dos columnas con collage de obra, en las 16 rutas (13-sep-2026)   ✅
+
+**Encargo:** FAQ-COLLAGE · **Rama:** `claude/faq-collage-two-columns-hkzdts` · **Commits:** `4726362`, `2ba59fe`, `d24acff`, `b78b889`
+
+`section.faq-section` era blanca, centrada y de una columna. Pasa a **dos columnas** en escritorio:
+a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, a la
+derecha el título, la entradilla y los acordeones. El collage es `sticky` y acompaña a las
+respuestas cuando se abren. Por debajo de 992 es una tira compacta de tres fotos de 128 px, con
+las preguntas justo detrás.
+
+### Lo que corrige el registro
+
+- **El contenedor de la FAQ no mide 940 px, mide 1250.** El encargo decía 940 y mandaba buscar
+  otro ancho en `propio.css`. No hacía falta: el contenedor lleva las dos clases
+  (`container w-container`) y `.container{max-width:1250px}` aparece DESPUÉS de
+  `.w-container{max-width:940px}` en `webflow.css`, así que gana por orden. Medido:
+  1920→1250 · 1440→1250 · 1200→1128 · 992→920 · 991→935 · 479→423. O sea que la sección ya vivía
+  en `--mm-ancho` y solo había que repartirlo en 5fr/7fr.
+- **`TOPE_BYTES` sube de 88 a 92 KB** (lo decide Sebastian). Con 88 la hoja no cabía **ni bien ni
+  mal**: la capa estaba a 89 435 B de 90 112 —677 B libres— y `faq.css` pide 2 219 B; compactada
+  entera son 1 907 B y recortada al mínimo 1 488 B, y ninguna de las tres entra. Con 92 KB quedan
+  2 554 B, que es una hoja de sección pequeña y no dos grandes. La derivación está en
+  `scripts/check-tokens.mjs`, no repetida aquí.
+
+### Tres cosas que se cazaron haciéndolo, y ninguna la habría dicho una puerta
+
+1. **La hoja sola partía las 16 rutas en dos columnas con la izquierda vacía**, porque el widget
+   que pinta el collage todavía no existía. Medido sobre la ficha construida: `display:grid`,
+   `.header-faq` a `w=691.8 x=653.2` y ni un `.mm-collage` en la página. Arreglado con
+   `:has(.mm-collage)` en el contenedor —la misma guarda de vacío que `CRITERIO.md` ya exige para
+   el feed de Instagram—; vuelto a medir da `display:block`, `w=750 x=345`, contenedor 1250, o sea
+   el estado de antes píxel a píxel.
+2. **El marcador entraba en las 15 derivadas y el import no.** Los imports los genera el conjunto
+   `usados`, no el marcador, así que salieron 15 ficheros con `<CollageFaq />` sin importarlo.
+   `npm run paginas` salía verde: es un fallo de compilación que solo aparece construyendo.
+3. **La opción de CSS puro para la animación está bloqueada tres veces**, y las tres se midieron:
+   `check:tokens` regla 5 prohíbe el `both` que `animation-timeline` necesita (rojo pegado en el
+   informe); el minificador del build **pliega `animation-timeline` dentro del atajo** y la deja
+   muerta sin avisar (`animation:linear both mm-collage-entra view()` → `animation-name:none`); y
+   `disparar()` con `fullPage` la fotografía sin revelar —opacidades `0,0,0,0,0` a 1440 y
+   `0,0,0,1,1` a 479—. Lo peor no es que sea inestable: **es reproducible**, así que la puerta se
+   re-baselinizaría contra un collage invisible y quedaría verde para siempre sobre algo que nunca
+   ha fotografiado.
+
+### El mecanismo
+
+Una sola fuente para las dieciséis. `widgets/CollageFaq.astro` lee `collage-faq-por-ruta.json` por
+`pathname` y **para el build con el nombre de la ruta** si falta una entrada (probado quitando una).
+`build-paginas.mjs` mete `@@WIDGET@@CollageFaq@@WIDGET@@` entre `.header-faq` y
+`.wrapper-faq-components`, exige **una** `.faq-section` por ruta y cuenta 15 derivadas; `/financing`
+lo lleva a mano por ser de autoría propia.
+
+**El diff de las 15 derivadas es SOLO el import y el marcador**, comprobado concatenando las
+cadenas `T` de antes y después y exigiendo que salgan byte a byte iguales: 15 de 15 limpias.
+
+### Las 80 fotos
+
+Reales, de `/gallery`, del servicio de cada ruta, elegidas por hoja de contactos y no por el nombre
+del fichero. **80 distintas de 80**: ni una se repite entre rutas. `/about` mezcla cinco servicios y
+`/financing` los cinco de ticket alto. Tres se cambiaron después de verlas montadas, que es cuando
+se ve: en `pole` la mediana salía como un rectángulo blanco, en `screens` la vertical como un gris
+vacío, y en `pergolas` la pérgola casi no entraba en el encuadre.
+
+### La entrada al hacer scroll
+
+Escalonada, 70 ms entre fotos, 700 ms y el `outQuart` del catálogo IX2. `animation` y no
+`transition`, `backwards` y nunca `both`, `translateY` y jamás `translateX`, y sobre los `<img>` y
+nunca sobre `.mm-collage`, que es el `sticky`. El sello `data-entra` lo escribe el guion **después**
+de construir el observador, con `try/catch` que lo retira si algo falla: sin guion se ve todo.
+
+🚨 **Ninguna puerta vigila que el collage no se quede invisible.** `check:ix2` calcula «0 en
+`opacity:0`» y «0 transform residual» **solo sobre elementos con `data-w-id`** (`check-ix2.mjs:139`
+y `141`), y el collage no lleva ninguno ni puede llevarlo. La red es ese `try/catch`.
+
+### Verificación
+
+**Se corrieron las 16 puertas, incluidas las cuatro de navegador** — este contenedor no tenía el
+Chromium que pide playwright 1.62.1 (pide la build 1234 y trae la 1194, y `cdn.playwright.dev`
+está bloqueado por la política de egress), así que se montó la 1194 donde playwright la busca y se
+lanzó bajo `xvfb-run`. **Verificado antes de fiarse de una sola medida:** `check:visual` sobre
+`/brochures`, una ruta intacta, da **100,00 % en los cuatro anchos**. O sea que este entorno
+reproduce el baseline y sus números valen.
+
+Y aquí **la barrida completa sale gratis**: lo que la prohíbe en la Mac es que secuestra la
+pantalla de Sebastian ~65 min, y en un contenedor no hay pantalla que secuestrar. Se corrieron las
+**115 rutas × 4 anchos**.
+
+- `check:visual` antes del re-baseline → **`PUERTA ROJA — 64 comparacion(es)`**, que son
+  **exactamente 16 rutas × 4 anchos**. Ni un rojo fuera de las dieciséis en las 460 comparaciones.
+- `check:visual` después del re-baseline, sobre las 16 → **64 ok · `PUERTA VERDE`**.
+- `check:ix2` → **PUERTA VERDE**: 0 `[data-w-id]` en `opacity:0`, 0 transform residual, 0 barra de
+  scroll horizontal, el sello puesto, el nav vuelve, y desplegable y menú móvil abren y cierran.
+- `check:tokens` → `la capa pesa 90.4 KB de 92 KB — 1.6 KB libres`. Verde.
+- `check:galeria` (entera, abriendo el lightbox), `check:galeria-formulario`, `check:menu`,
+  `check:carrusel`, `check:rutas`, `check:enlaces`, `check:estimador`, `check:resenas`,
+  `check:aviso` → verdes. `check:seo`, `check:medicion` y `check:ads` → verdes **con
+  `PUBLIC_ES_PRODUCCION=1`**: sin esa variable la puerta evalúa en modo preview contra un build de
+  producción y sale roja por desajuste, no por defecto.
+
+### 🔴 `check:texto` sale roja en 14 rutas, y NO es de este encargo
+
+Las 14 fichas de `/services/` fallan con «faltan 2 líneas, sobran 2». Las líneas son
+`Pergola Type & Style Selection` (falta) y `Customization Design & 3D Rendering` (sobra), y viven
+en **`section.process-section`**, que este encargo no toca. Comprobado, no deducido: se construyó
+`origin/main` en un worktree aparte, **sin esta rama**, y `check:texto` da el mismo rojo con las
+mismas dos líneas. Es un defecto heredado y ya está en producción; queda anotado.
+
+Lo que sí se midió de este encargo: se lee el `innerText` de la página construida, se quita el
+collage del DOM y se vuelve a leer, con `textoNormalizado()` importado de `scripts/lib/captura.mjs`.
+**Idéntico en las 16 rutas, a 1440 y a 479.** El collage no aporta ni un carácter.
+
+### Lo que no se pudo correr
+
+- **`check:assets`** revienta por `_source/sanity-masters/`, que está en `.gitignore` y no existe en
+  un clon. Es de la Mac.
+- **`check:cascaron`** no se corrió: regenera su propia referencia desde el Webflow vivo, y el
+  dominio no es alcanzable desde aquí (`curl` a `www.mrandmrsoutdoorliving.com` da 000, bloqueado
+  por el proxy de egress). Por lo mismo, **la verificación post-despliegue contra el dominio real
+  no se puede hacer desde este contenedor**.
+
+### Abierto — es de Sebastian
+
+- **El solape con el feed de Instagram en la ficha de piscinas.** `instagram.json` trae exactamente
+  las 10 fotos de `construction`, así que en esa ruta el collage repite 5 de 5 más abajo en la misma
+  página. En las otras trece el solape es 0.
+- **Dos galerías que no parecen obra del cliente.** `light` son diez casas de vinilo con dos aguas,
+  garaje delantero y árboles de hoja caduca —no son de Florida, y los `alt` dicen «Florida» en las
+  diez; en los logos del sitio está Gemstone Lights—. En `irrigation`, dos de las diez tienen arcos
+  de aspersor demasiado perfectos y parecen render, una es una casa azul con valla de piquetes y
+  otra un campo de golf.
+- **`light` es la única de las 16 con la luz incoherente.** En esa galería solo hay tres tomas de
+  blanco cálido; las otras siete son de cambio de color. Para cumplir la regla de coherencia hacen
+  falta fotos nuevas.
+- **Ninguna de las diez fotos de piscina es de detalle.** Las diez son planos generales; el registro
+  «detalle» se obtiene por encuadre vertical. `irrigation` es la única galería con primeros planos
+  de verdad y se nota: es el collage con mejor lectura de las dieciséis.
