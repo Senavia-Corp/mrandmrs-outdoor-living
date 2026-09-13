@@ -1,0 +1,218 @@
+---
+/**
+ * _lab-faq.astro — BANCO DE PRUEBAS de FAQ-COLLAGE. **NO ENRUTADO.**
+ *
+ * El guion bajo lo saca del enrutado de Astro: no genera HTML, las 115 siguen siendo 115 y no
+ * entra en `check:rutas` ni en el sitemap. Se mira por `/lab/faq` con `astro dev`, o se copia a
+ * `lab-faq.astro` (sin guion bajo), se construye, se captura y **se borra la copia** — que es
+ * como se capturo esto, para medir sobre `.vercel/output/static` y no sobre `dev` (CLAUDE.md §2).
+ *
+ * PARA QUE SIRVE. Cerrar la unica decision de la Fase 1: cual de las DOS composiciones de
+ * collage se extiende a las 16 rutas con `.faq-section`.
+ *
+ *   A — ESCALONADA.        Ancla ancha arriba, dos verticales de detalle, dos medianas.
+ *   B — COLUMNA DE DETALLE. Ancla + mediana apiladas, con una vertical alta al lado, y un
+ *                           par abajo. Mas asimetrica y ~25 % mas baja que la A.
+ *
+ * EL MARKUP DEL FAQ ES EL REAL, y no una copia que se pueda quedar vieja: se lee `T9` de la
+ * ficha de piscinas con `?raw` y se parte por `.wrapper-faq-components`, que es EXACTAMENTE
+ * donde ira el marcador `@@WIDGET@@CollageFaq@@WIDGET@@` en `build-paginas.mjs`. Si la ficha
+ * cambia, este banco cambia con ella.
+ *
+ * EL CSS VIVE AQUI Y NO EN `src/styles/faq.css` A PROPOSITO. `check:tokens` mide la capa de
+ * diseno sin comentarios contra un tope de 88 KB y hoy quedan **677 B libres** (medido, ver el
+ * informe): una hoja de seccion nueva no cabe. Los bloques `<style>` no entran en ese
+ * presupuesto, asi que el piloto se puede ver sin poner la puerta en rojo. La hoja definitiva
+ * es decision del director.
+ *
+ * LAS CINCO FOTOS SON REALES, de `/gallery`, del servicio de esta ruta (`data-service-id
+ * ="construction"`, 10 fotos) y elegidas por hoja de contactos, no por el nombre del fichero
+ * (00-PRINCIPIOS §4). La hoja va en el informe con las cinco marcadas.
+ */
+import Base from '../layouts/Base.astro';
+import fuente from './services/custom-pool-spa-builders-in-north-south-florida.astro?raw';
+
+/* `T9` es la cadena que la ficha pinta con `<Fragment set:html>`: la seccion `.faq-section`
+ * entera. Se recupera con el mismo `JSON.parse` que la escribio. */
+const T9 = JSON.parse('"' + /^const T9 = "((?:[^"\\]|\\.)*)";$/m.exec(fuente)[1] + '"');
+const CORTE = T9.indexOf('<div class="wrapper-faq-components">');
+if (CORTE < 0) throw new Error('_lab-faq: no aparece .wrapper-faq-components en T9');
+const CABECERA = T9.slice(0, CORTE);     // <section> + <div container> + .header-faq
+const PREGUNTAS = T9.slice(CORTE);       // .wrapper-faq-components + cierres
+
+/**
+ * LAS CINCO, con el papel que cumple cada una y el porque.
+ * `n` es su numero en la hoja de contactos de `construction`.
+ * `pos` es `object-position`: el encuadre que pide cada foto, no un valor por defecto.
+ */
+const FOTOS = [
+  { n: 3, papel: 'ancla',
+    src: '/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg',
+    base: 'custom-pool-spa-builders-florida-08', w: 1250, h: 698, pos: '50% 50%',
+    alt: 'High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.' },
+  { n: 1, papel: 'detalle',
+    src: '/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg',
+    base: 'custom-pool-spa-builders-florida-10', w: 1250, h: 933, pos: '35% 100%',
+    alt: 'Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.' },
+  { n: 6, papel: 'detalle',
+    src: '/images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg',
+    base: 'custom-pool-spa-builders-florida-05', w: 1250, h: 698, pos: '78% 50%',
+    alt: 'Luxury outdoor pool featuring waterfall spa and covered patio area, built by experienced custom pool and outdoor living contractors in Florida.' },
+  { n: 4, papel: 'mediana',
+    src: '/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg',
+    base: 'custom-pool-spa-builders-florida-07', w: 1250, h: 933, pos: '80% 70%',
+    alt: 'Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.' },
+  { n: 9, papel: 'mediana',
+    src: '/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg',
+    base: 'custom-pool-spa-builders-florida-02', w: 1250, h: 937, pos: '50% 45%',
+    alt: 'Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.' },
+];
+
+const srcset = (f) =>
+  `/images/site/${f.base}-p-500.jpg 500w, /images/site/${f.base}-p-800.jpg 800w, ` +
+  `/images/site/${f.base}-p-1080.jpg 1080w, ${f.src} ${f.w}w`;
+
+/* `sizes` con el ancho REAL de cada celda, medido sobre el contenedor de 1250 px:
+ *   ancla    5fr de (1250 - 64) = 494 px  ·  detalle/mediana (494 - 8) / 2 = 243 px
+ * Por debajo de 992 la tira de tres ocupa 1.6fr / 1fr / 1fr del contenedor. */
+const SIZES_ANCLA = '(min-width: 992px) 494px, (min-width: 768px) 45vw, 44vw';
+const SIZES_CHICA = '(min-width: 992px) 243px, (min-width: 768px) 28vw, 27vw';
+---
+<Base titulo="LAB · FAQ-COLLAGE" descripcion="Laboratorio no enrutado de FAQ-COLLAGE." conPie={false}>
+
+  <section class="lab-rotulo"><p>VARIANTE A · ESCALONADA — ancla ancha, 2 verticales, 2 medianas</p></section>
+  <Fragment set:html={CABECERA} />
+  <div class="mm-collage mm-collage--a">
+    {FOTOS.map((f, i) => (
+      <img src={f.src} srcset={srcset(f)} sizes={i === 0 ? SIZES_ANCLA : SIZES_CHICA}
+        alt={f.alt} width={f.w} height={f.h} loading="lazy" decoding="async"
+        style={`object-position:${f.pos}`} />
+    ))}
+  </div>
+  <Fragment set:html={PREGUNTAS} />
+
+  <section class="lab-rotulo"><p>VARIANTE B · COLUMNA DE DETALLE — ancla + mediana apiladas, vertical alta al lado</p></section>
+  <Fragment set:html={CABECERA} />
+  <div class="mm-collage mm-collage--b">
+    {FOTOS.map((f, i) => (
+      <img src={f.src} srcset={srcset(f)} sizes={i === 0 ? SIZES_ANCLA : SIZES_CHICA}
+        alt={f.alt} width={f.w} height={f.h} loading="lazy" decoding="async"
+        style={`object-position:${f.pos}`} />
+    ))}
+  </div>
+  <Fragment set:html={PREGUNTAS} />
+
+</Base>
+
+<style is:global>
+  /* `is:global` porque el FAQ entra por `set:html` y NO lleva el `data-astro-cid-*` del
+     ambito. Nada de esto viaja a ninguna ruta: el fichero no esta enrutado. */
+
+  .lab-rotulo { background-color: var(--mm-navy); color: var(--mm-tinta-inversa);
+    padding: var(--mm-e-12) var(--mm-canal); }
+  .lab-rotulo p { margin: 0; font-family: var(--mm-fuente); font-size: var(--mm-paso-1); }
+
+  /* ══ EL COLLAGE ═══════════════════════════════════════════════════════════════════════
+   * Hasta 991 es una TIRA COMPACTA de tres: la ancla y los dos detalles. Las dos medianas no
+   * se pintan. Alto fijo de 128 px (`--mm-e-128`), muy por debajo de los ~220 px de techo que
+   * pide el encargo, para que las preguntas no queden enterradas. El orden del DOM ya es el
+   * orden movil: cabecera, collage, preguntas. */
+  .mm-collage {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    grid-auto-rows: var(--mm-e-128);
+    gap: var(--mm-e-8);
+    margin-block-start: var(--mm-e-24);
+  }
+  .mm-collage > img {
+    display: block; width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: var(--mm-r-16);
+  }
+  .mm-collage > :nth-child(4), .mm-collage > :nth-child(5) { display: none; }
+
+  @media (min-width: 992px) {
+    /* DOS COLUMNAS. El contenedor de la seccion ya mide 1250 px medidos
+       (`.container{max-width:1250px}` gana a `.w-container{max-width:940px}` por orden de
+       aparicion en webflow.css), que es el mismo `--mm-ancho` de `.mm-caja`. No hace falta
+       inventar un ancho. */
+    section.faq-section .container {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      grid-template-areas: "collage cabecera" "collage preguntas";
+      grid-template-rows: auto 1fr;
+      align-items: start;
+      column-gap: var(--mm-e-64);
+      row-gap: var(--mm-e-24);
+      text-align: left;
+    }
+    /* 🪤 TRAMPA DE WEBFLOW. `.w-container::before/::after` llevan `grid-area:1/1/2/2` y
+       `display:table`: en cuanto el contenedor pasa a grid, esos dos pseudo-elementos se
+       convierten en items y se plantan en la primera celda. Se anulan. */
+    section.faq-section .container::before,
+    section.faq-section .container::after { content: none; }
+
+    section.faq-section .header-faq { grid-area: cabecera; max-width: none; margin-inline: 0; }
+    section.faq-section .wrapper-faq-components {
+      grid-area: preguntas; margin-top: 0; padding-inline: 0;
+    }
+
+    /* El collage acompana a la columna de preguntas cuando se abren respuestas. `align-self:
+       start` deja el item mas bajo que su celda, que es la condicion para que `sticky` tenga
+       recorrido. El nav es `position:fixed` y mide 85 px (`--mm-nav-alto`), asi que se resta. */
+    .mm-collage {
+      grid-area: collage;
+      align-self: start;
+      position: sticky;
+      top: calc(var(--mm-nav-alto) + var(--mm-e-24));
+      grid-auto-rows: auto;
+      gap: var(--mm-e-8);
+      margin-block-start: 0;
+    }
+    .mm-collage > :nth-child(4), .mm-collage > :nth-child(5) { display: block; }
+
+    /* ── A · ESCALONADA ──────────────────────────────────────────────────────────────── */
+    .mm-collage--a { grid-template-columns: 1fr 1fr; }
+    .mm-collage--a > :nth-child(1) { grid-column: 1 / 3; aspect-ratio: 16 / 10; }
+    .mm-collage--a > :nth-child(2),
+    .mm-collage--a > :nth-child(3) { aspect-ratio: 3 / 4; }
+    .mm-collage--a > :nth-child(4),
+    .mm-collage--a > :nth-child(5) { aspect-ratio: 3 / 2; }
+
+    /* ── B · COLUMNA DE DETALLE ──────────────────────────────────────────────────────── */
+    .mm-collage--b { grid-template-columns: 1.55fr 1fr; }
+    .mm-collage--b > :nth-child(1) { grid-area: 1 / 1; aspect-ratio: 16 / 10; }
+    .mm-collage--b > :nth-child(2) { grid-area: 1 / 2 / 3 / 3; }
+    .mm-collage--b > :nth-child(3) { grid-area: 3 / 2; aspect-ratio: 4 / 5; }
+    .mm-collage--b > :nth-child(4) { grid-area: 2 / 1; aspect-ratio: 16 / 9; }
+    .mm-collage--b > :nth-child(5) { grid-area: 3 / 1; }
+  }
+
+  /* ══ PULIDO DE LOS ACORDEONES ═════════════════════════════════════════════════════════
+   * Sin tocar markup, ni texto, ni comportamiento. Solo superficie y estados, que hoy no
+   * existen: `.dropdown-toggle` no tiene ni una regla de :hover ni de :focus-visible.
+   * El radio pasa de los 15 px sueltos de Webflow a `--mm-r-16`, el mismo que el collage.
+   * El borde pasa de navy pleno (15,60:1, que pesa como un boton) a `--mm-borde-control`
+   * (#8794b6, 3,03:1 sobre blanco), que es el minimo que pide WCAG 1.4.11 para el limite de
+   * un control. En hover y en abierto vuelve a navy. */
+  section.faq-section .dropdown-faq { border-radius: var(--mm-r-16); }
+  section.faq-section .dropdown-toggle {
+    border-color: var(--mm-borde-control);
+    border-radius: var(--mm-r-16);
+    align-items: center;
+    transition: border-color .18s ease, background-color .18s ease;
+  }
+  section.faq-section .dropdown-toggle:hover,
+  section.faq-section .dropdown-toggle.w--open {
+    border-color: var(--mm-navy);
+    background-color: var(--mm-fondo-tenue);
+  }
+  section.faq-section .dropdown-toggle:focus-visible {
+    outline: var(--mm-foco-grosor) solid var(--mm-foco);
+    outline-offset: var(--mm-foco-aire);
+    box-shadow: var(--mm-foco-halo);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    section.faq-section .dropdown-toggle { transition: none; }
+  }
+</style>
