@@ -68,11 +68,15 @@ if (d.fotos.length !== 5) {
   throw new Error(`CollageFaq: ${ruta} trae ${d.fotos.length} fotos y el bento pide 5.`);
 }
 
-/* `sizes` con el ancho REAL de cada celda, medido sobre el contenedor de 1250 px:
- *   ancla    5fr de (1250 - 64) = 494 px  ·  las otras cuatro  (494 - 8) / 2 = 243 px
+/* `sizes` con el ancho REAL de cada celda, MEDIDO sobre el build, no estimado:
+ *   >=1330   el contenedor topa en 1250 -> ancla 4fr de (1250 - 64) = 395 px · chicas 194 px
+ *   1200     ancla 355 · chica 173      |    992  ancla 285 · chica 139
+ * o sea ~30vw y ~15vw mientras el contenedor crece con la ventana, y fijo cuando topa. Eran
+ * 494/243 px con las columnas 5fr/7fr; `faq.css` §3 las paso a 4fr/8fr al derivar la altura del
+ * collage, y un `sizes` que miente hace que el navegador baje el fichero equivocado.
  * Por debajo de 992 la tira de tres ocupa 1.6fr / 1fr / 1fr del contenedor. */
-const SIZES_ANCLA = '(min-width: 992px) 494px, (min-width: 768px) 45vw, 44vw';
-const SIZES_CHICA = '(min-width: 992px) 243px, (min-width: 768px) 28vw, 27vw';
+const SIZES_ANCLA = '(min-width: 1330px) 395px, (min-width: 992px) 30vw, (min-width: 768px) 45vw, 44vw';
+const SIZES_CHICA = '(min-width: 1330px) 194px, (min-width: 992px) 15vw, (min-width: 768px) 28vw, 27vw';
 ---
 <div class="mm-collage" data-collage>
   {d.fotos.map((f, i) => (

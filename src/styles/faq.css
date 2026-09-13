@@ -116,8 +116,10 @@
  *     residual. `both` lleva `forwards` dentro y deja `matrix(1,0,0,1,0,0)`.
  *   · `translateY` y jamas `translateX`: `check:ix2` mide barra de scroll horizontal a 479 y
  *     767 en 15 rutas, una de ellas de `/services/`; en LTR solo desborda el positivo.
- *   · sobre los `<img>` y nunca sobre `.mm-collage`, que es el elemento `sticky`: un
- *     `transform` sobre el se compondria con el desplazamiento del pegado.
+ *   · sobre los `<img>` y nunca sobre `.mm-collage`: el contenedor es el item de rejilla
+ *     estirado de §3, y un `transform` sobre el moveria las cinco fotos a la vez -no habria
+ *     escalonado- ademas de crear contexto de apilamiento sobre una celda que se dimensiona
+ *     sola.
  *
  * 700 ms y `cubic-bezier(.165,.84,.44,1)` salen del catalogo IX2 que ya usan las 93 entradas
  * del sitio. Ellas duran 1000; aqui entran cinco piezas y la suma no puede pasar del segundo:
@@ -159,7 +161,23 @@ section.faq-section .dropdown-toggle {
   border-color: var(--mm-borde-control);
   border-radius: var(--mm-r-16);
   align-items: center;
+  column-gap: var(--mm-e-16);
+  padding: var(--mm-e-16) var(--mm-e-24);
   transition: border-color .18s ease, background-color .18s ease;
+}
+
+/* LA PREGUNTA BAJA UN PASO DE LA ESCALA. Medido a 1440 antes de esto: 25 px / 30 px de
+ * interlineado, o sea `--mm-paso-4` — a tres pixeles de la entradilla de la seccion (18) y a
+ * diez del `<h2>` (35). Una etiqueta de control repetida ocho veces no puede pesar casi lo
+ * mismo que el titulo de la seccion: en una columna de 692 px casi todas las preguntas se
+ * partian en dos lineas, cada acordeon cerrado median 126 px y la columna derecha se iba a
+ * 993. Con `--mm-paso-3` y el relleno de 16/24 en vez de los 32 sueltos de Webflow, la
+ * pregunta entra en una linea y el acordeon cerrado baja a ~60 px.
+ * `line-height` explicito: el heredado era 1,2, que a 20 px deja las dos lineas pegadas
+ * cuando una pregunta larga si se parte. */
+section.faq-section .dropdown-text {
+  font-size: var(--mm-paso-3);
+  line-height: 1.35;
 }
 section.faq-section .dropdown-toggle:hover,
 section.faq-section .dropdown-toggle.w--open {
@@ -177,13 +195,10 @@ section.faq-section .dropdown-toggle:focus-visible {
 }
 
 /* ══ 3 · DOS COLUMNAS, DE 992 PARA ARRIBA ═════════════════════════════════════════════════
- * `grid-template-areas` con el collage ocupando las DOS filas de la izquierda: asi la celda
- * del collage mide lo que mide la columna de preguntas entera, que es la condicion para que
- * el `sticky` tenga recorrido. Con `align-self: start` el collage queda mas bajo que su celda
- * y puede viajar dentro de ella.
- *
- * Medido a 1440: collage 494,2 x 811, columna de preguntas 691,8 x 993. O sea 308 px de
- * recorrido: al abrir respuestas la columna derecha crece y el collage la acompaña.
+ * `grid-template-areas` con el collage ocupando las DOS filas de la izquierda: asi su celda
+ * mide cabecera + preguntas, o sea la columna derecha entera. Esa es la celda a la que se
+ * estira el collage, y por eso las dos columnas acaban con el mismo alto sin que ninguna
+ * altura este escrita en ninguna parte.
  *
  * `text-align: left` solo aqui. En una columna (<=992) la cabecera sigue centrada, que es como
  * esta hoy y como debe estar: centrar tiene sentido cuando el bloque ocupa el ancho entero. */
@@ -199,7 +214,7 @@ section.faq-section .dropdown-toggle:focus-visible {
    * que es exactamente el estado de hoy: degrada bien. */
   section.faq-section .container:has(.mm-collage) {
     display: grid;
-    grid-template-columns: 5fr 7fr;
+    grid-template-columns: 4fr 8fr;
     grid-template-areas:
       "collage cabecera"
       "collage preguntas";
@@ -226,34 +241,62 @@ section.faq-section .dropdown-toggle:focus-visible {
     grid-area: preguntas;
     margin-top: 0;
     padding-inline: 0;
+    row-gap: var(--mm-e-24);
   }
 
-  /* EL COLLAGE ACOMPAÑA. El nav es `position:fixed` y mide 85 px (`--mm-nav-alto`), asi que se
-   * resta; y lleva `z-index:10` contra el `auto` de `.faq-section`, o sea que el collage pasa
-   * POR DEBAJO del nav y no por encima. Comprobado ademas que ningun ancestro tiene
-   * `overflow:hidden` (.faq-section -> div sin clase -> body -> html, los cuatro `visible`),
-   * que es lo unico que deja un `sticky` muerto sin avisar.
-   * Medido con cuatro respuestas abiertas: se clava en 109 px y no se mueve mas. */
+  /* LAS DOS COLUMNAS MIDEN LO MISMO, Y ES EL COLLAGE EL QUE CEDE (Sebastian, 13-sep-2026).
+   *
+   * Antes el collage tenia altura propia —cinco fotos con `aspect-ratio` fijo: 811 px a 1440— y
+   * se quedaba `align-self:start` dentro de una celda que medi­a lo que midiera la columna
+   * derecha. Eso deja un hueco que cambia de tamaño en cada ruta, y en los dos sentidos:
+   *
+   *     ficha de piscinas (8 preguntas)   izquierda 811 · derecha 1095  ->  284 px de hueco
+   *     las otras quince (5 preguntas)    izquierda 811 · derecha  ~580  ->  231 px al reves
+   *
+   * O sea que no hay ninguna altura fija que cuadre en las dieciseis: la unica que cuadra
+   * siempre es la que se DERIVA. El collage reparte en tres filas proporcionales lo que le den,
+   * y el encuadre lo hacen el `object-fit: cover` y el `object-position` que ya trae cada foto.
+   * Medido despues, `izquierda - derecha = 0` en las 16 rutas x 1920/1440/1200/992.
+   *
+   * `height: 0` + `min-height: 100%` Y NO `align-self: stretch`, que es lo que parece. Estirar
+   * NO basta, y esta medido: con `stretch` a secas el collage seguia aportando su altura
+   * intrinseca al dimensionado de las filas del contenedor —los `<img>` con `height:100%` contra
+   * una altura indefinida valen `auto`, o sea su tamaño natural— y la seccion crecia a 1102 px
+   * en vez de encogerse. Con `height: 0` su aportacion es cero, la fila la fija la columna
+   * derecha sola, y el `min-height: 100%` lo devuelve al alto ya resuelto de la celda. El
+   * `min-height: 0` de los `<img>` remata lo mismo un nivel mas abajo. Comprobado que
+   * `align-self: stretch` no aporta nada encima de esto: mismas cifras con y sin el.
+   *
+   * SE VA EL `sticky`, y no por gusto: con las dos columnas iguales no queda recorrido que
+   * acompañar —era su unica razon de ser— y un `position:sticky` sin recorrido es codigo muerto
+   * que hay que seguir manteniendo. El `top` con `--mm-nav-alto` se va con el.
+   *
+   * 4fr/8fr Y NO 5fr/7fr. La columna de fotos se estrecha de 494 a 395 px porque al derivar la
+   * altura manda la PROPORCION, no el tamaño: con 494 de ancho y las ~480 de alto de una ficha
+   * de cinco preguntas, el ancla salia a 2,63:1 —una franja— y los cuatro detalles a 1,75.
+   * Medido a 1440 con 395: ancla entre 1,31 (piscinas) y 2,18 (/about), detalles entre 0,86 y
+   * 1,44. Y de paso la columna de preguntas gana 99 px, con lo que NINGUNA pregunta de las 16
+   * rutas se parte en dos lineas (contado: 0 a 1920, 1440, 1200 y 992).
+   *
+   * `row-gap: --mm-e-24` entre preguntas por lo mismo: con los acordeones ya compactos, los 15
+   * px sueltos de Webflow apretaban, y esos 9 px por hueco son los que dejan el ancla por
+   * debajo de 2,2 en las fichas de cinco preguntas.
+   *
+   * Las filas siguen siendo los TRES ESCALONES de la variante A (el proyecto entero, los dos
+   * detalles, el contexto) y el ancla sigue siendo la foto mas grande del bloque: lo que cambia
+   * es que su alto sale de un reparto `fr` en vez de un `aspect-ratio`. La colocacion sigue
+   * siendo por `nth-child` y no por clase: el marcado del widget son cinco `<img>` hermanos y
+   * nada mas. */
   .mm-collage {
     grid-area: collage;
-    align-self: start;
-    position: sticky;
-    top: calc(var(--mm-nav-alto) + var(--mm-e-24));
+    height: 0;
+    min-height: 100%;
     grid-template-columns: 1fr 1fr;
-    grid-auto-rows: auto;
+    grid-template-rows: 1.35fr 1fr 1fr;
     margin-block-start: 0;
   }
-
-  /* EL BENTO — variante A, la que eligio Sebastian el 13-sep-2026.
-   * Tres escalones de arriba abajo: el proyecto entero, los dos detalles, el contexto. El
-   * ancla mide 494x309 y no deja duda de cual es la foto principal; ese era el motivo de
-   * descartar la variante B, donde el ancla bajaba a 296x185 y un detalle pasaba a ser la
-   * foto mas grande del bloque.
-   * La colocacion es por `nth-child` y no por clase: el marcado del widget son cinco `<img>`
-   * hermanos y nada mas, asi que no hay ni un byte de clase que mantener sincronizado. */
-  .mm-collage > :nth-child(1) { grid-column: 1 / 3; aspect-ratio: 16 / 10; }
-  .mm-collage > :nth-child(2),
-  .mm-collage > :nth-child(3) { aspect-ratio: 3 / 4; }
+  .mm-collage > img { min-height: 0; }
+  .mm-collage > :nth-child(1) { grid-column: 1 / 3; }
   .mm-collage > :nth-child(4),
-  .mm-collage > :nth-child(5) { display: block; aspect-ratio: 3 / 2; }
+  .mm-collage > :nth-child(5) { display: block; }
 }

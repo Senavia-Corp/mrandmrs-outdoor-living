@@ -6266,3 +6266,137 @@ collage del DOM y se vuelve a leer, con `textoNormalizado()` importado de `scrip
 - **Ninguna de las diez fotos de piscina es de detalle.** Las diez son planos generales; el registro
   «detalle» se obtiene por encuadre vertical. `irrigation` es la única galería con primeros planos
   de verdad y se nota: es el collage con mejor lectura de las dieciséis.
+
+---
+
+## PROCESO-CONGELADO — el rojo heredado de `check:texto` en `.process-section`, cerrado en su raíz (13-sep-2026)   ✅
+
+**Encargo:** «arregla el rojo heredado de `check:texto` en el process-section» (Sebastian) · **Rama:** `claude/faq-collage-two-columns-hkzdts` · **Ficheros:** `scripts/lib/captura.mjs`, `scripts/check-texto.mjs`
+
+Las 14 fichas de `/services/` llevaban meses en rojo con la misma firma —«faltan 2 lineas, sobran
+2»— y el registro lo daba por conocido e inarreglable desde aquí (`PRE-EXISTING KNOWN RED`,
+`AUTOPLAY_DELAY = 5000`). **No era inarreglable, y el diagnóstico que había era incompleto.** Las
+14 están verdes, y detrás aparecieron otros dos rojos que el primero tapaba.
+
+### 1 · La causa: el orden de `asentar()` §5a estaba al revés
+
+El bloque §5a de `scripts/lib/captura.mjs` fijaba el paso con un clic y paraba el autoplay **al
+final**. Entre las dos cosas había 900 ms de espera, y ahí caía el salto. Traza medida en
+`/services/custom-aluminum-pergola…` a 1920, con el navegador **headed** que es el que usan las
+puertas (`headless: false` en `check-texto.mjs:1310`):
+
+```
+ 1788 ms  mouseenter .process-section   isTrusted=true   -> stopAutoplay()
+ 1987 ms  mouseleave .process-section   isTrusted=true   -> startAutoplay(): REARMA los 5 s
+ 4704 ms  mouseenter .process-section   isTrusted=true
+ 4901 ms  mouseleave .process-section   isTrusted=true   -> rearma: saltará a 9901
+~9700 ms  la sonda dice «el primero está activo» -> no da clic, y sin clic no hay stopAutoplay
+ 9903 ms  el autoplay avanza al paso 2, DENTRO de la espera de 900 ms del bloque
+10124 ms  mouseenter sintético: para el autoplay, pero ya es tarde
+10203 ms  el paso 2 se hace visible  ->  `innerText` lee el paso 2 y el baseline tiene el 1
+```
+
+Dos cosas que no estaban escritas en ningún sitio:
+
+- **Los eventos de ratón del barrido son REALES.** Hay un puntero de verdad quieto en la ventana;
+  al barrer la página, la sección **pasa por debajo** y Chromium emite `mouseenter`/`mouseleave`
+  auténticos (`isTrusted:true`). Y `mouseleave` es el flanco que llama a `startAutoplay()`, que
+  **rearma los 5 s desde cero**: el instante del siguiente salto no depende de lo que tarde la
+  página en cargar, sino de por dónde acabó el barrido. **En headless no hay puntero, no hay esos
+  eventos, y la misma puerta sobre el mismo build sale VERDE** — que es justo por lo que esto
+  parecía arreglado en su día.
+- **Si la sonda pasaba, no se paraba nada.** El `stopAutoplay()` llegaba por el `click` (que el
+  bucle no daba si la sonda ya decía «bien») o por el `mouseenter` del final, 900 ms después.
+
+### 2 · El arreglo
+
+Mismo mecanismo del sitio, en el orden correcto: **primero se para, luego se fija.**
+
+- `mouseenter` **antes** de mirar nada, y otra vez **después de cada clic** — el manejador del clic
+  del sitio acaba en `startAutoplay()`, o sea que fijar el paso rearma el temporizador.
+- **Guardián del freno:** un oyente de `mouseleave` en **fase de captura** sobre
+  `.process-section`, que corta la propagación antes de que llegue el del sitio (fase de burbuja,
+  mismo nodo). No inventa comportamiento: sostiene el freno que se acaba de echar, para que un
+  `mouseleave` real posterior no lo suelte. **No escribe nada en el DOM** a propósito: un atributo
+  nuevo saldría en el `outerHTML` y pondría en rojo a las 14 fichas en `check:baseline`.
+- **La sonda mira el CONTENIDO, no el color del punto.** Antes comparaba el fondo del círculo
+  contra `rgb(0, 28, 99)`, acoplamiento que ya se rompió solo una vez (R13-COLOR) dejando las 14
+  capturas mal fijadas **y sin avisar**. Ahora pregunta lo que leen de verdad las dos puertas que
+  consumen esto: que el **único** `.process-content-item` visible sea el primero. No queda ninguna
+  constante que se pueda quedar vieja.
+
+Comprobado contra lo que ya estaba grabado: `baseline/html/services_custom-aluminum-pergola….html`
+tiene el paso 0 en `display:flex` y el 1 con `translateY(-10px)` — o sea que la referencia se
+capturó viniendo del paso 1 al 0. El arreglo deja **siempre** ese estado.
+
+### 3 · Detrás había otros dos rojos, tapados por el primero
+
+`diferencias()` solo mira el ORDEN cuando no falta ni sobra ninguna línea. Con el carrusel
+cambiando dos líneas, todo lo demás era invisible. Al arreglarlo, la ficha de piscinas —la landing
+de pago de R17-CORE— pasó a «faltan 0 líneas, sobran 0» + «línea 17: orden cambiado». **Los dos
+eran fallos de la maquinaria de declaraciones de la propia puerta, no del sitio:** verificado que
+las dos diferencias son estáticas en el HTML construido (`More About Us` 62727 < `TESTIMONIALS`
+68402 < rejilla 90943 < proceso 91357), o sea que ni el navegador ni el arreglo tienen nada que ver.
+
+- **`subeResenas()` no se aplicaba en la única ficha para la que hacía falta.** Su ancla era el
+  literal `'What Do We Do!'`, y `reordena()` corre **después** de `traduce()`: en la landing de pago
+  —y solo en ella— ese rótulo ya viene sustituido por «What We Do» (TRADUCIDAS, R17-CORE). El
+  `indexOf` devolvía −1, la barandilla hacía lo correcto (no tocar nada) y la cabecera de reseñas se
+  quedaba sin subir. Ahora el ancla se **deriva** de la tabla de traducciones:
+  `lineas.indexOf(traduce(ruta, 'What Do We Do!'))`.
+- **El CTA de la rejilla de subservicios no lo descontaba nadie.** R17-CORE §5 cierra la rejilla con
+  un paso siguiente y el dato ya lo declara (`servicios.cta.texto` en `captacion-servicios.json`,
+  solo en esa ficha), pero `bloquesCaptacion()` no lo recogía. Sobraba una ocurrencia de «Get A Free
+  Estimate» y, como `diferencias()` cuenta por CONJUNTO, una línea que ya sale otras tres veces no
+  «sobra»: por eso solo se quejaba del orden. Declarado en `LINEAS_ANADIDAS`, **anclado** a la última
+  tarjeta de la rejilla — va ahí y no en `bloquesCaptacion()` porque es UNA línea y «Get A Free
+  Estimate» sale cuatro veces: `quitaBloque` se llevaría la del héroe y desordenaría lo de debajo.
+
+### 4 · La FAQ, mas compacta y con las dos columnas a la misma altura
+
+**Encargo de Sebastian, con la ficha de piscinas delante:** «las letras de las FAQ son muy grandes
+y eso es lo que hace que la seccion se vea rara; que la altura de la columna izquierda sea la misma
+de la derecha; hacer los componentes mas pequeños o compactos si hace falta».
+
+**La tipografia.** Medido a 1440 antes de tocar nada: la pregunta salia a **25 px / 30 px de
+interlineado** (`--mm-paso-4`), a tres pixeles de la entradilla de la seccion (18) y a diez del
+`<h2>` (35). Una etiqueta de control repetida ocho veces no puede pesar casi lo mismo que el
+titulo. Baja a `--mm-paso-3` con `line-height: 1.35`, y el relleno del acordeon pasa de los 32 px
+sueltos de Webflow a 16/24. Resultado: **el acordeon cerrado pasa de 126 px a 59**, y **ninguna
+pregunta de las 16 rutas se parte en dos lineas** a 1920, 1440, 1200 ni 992 (contado: 0).
+
+**Las dos alturas.** No habia ninguna altura fija que cuadrara, porque el desajuste va en los dos
+sentidos: la ficha de piscinas tiene 8 preguntas (izquierda 811 · derecha 1095) y las otras quince
+tienen 5 (izquierda 811 · derecha ~580). La unica altura que cuadra siempre es la **derivada**: el
+collage deja de tener altura propia y reparte en tres filas `fr` lo que mida la columna de
+preguntas.
+
+El como importa, porque lo evidente no funciona: con `align-self: stretch` a secas la seccion
+**crecia** a 1102 px en vez de encogerse —los `<img>` con `height:100%` contra una altura
+indefinida valen `auto`, o sea que el collage seguia aportando su tamaño natural al dimensionado
+de la fila—. Se corta con `height: 0` (aportacion cero) + `min-height: 100%` (vuelve al alto ya
+resuelto de la celda), mas `min-height: 0` en los `<img>`. Comprobado que `align-self: stretch`
+encima de eso no aporta nada: mismas cifras con y sin el.
+
+**Se va el `sticky`:** con las dos columnas iguales no queda recorrido que acompañar, que era su
+unica razon de ser.
+
+**Y las columnas pasan de 5fr/7fr a 4fr/8fr**, porque al derivar la altura manda la PROPORCION y no
+el tamaño: con 494 px de ancho y las ~480 de alto de una ficha de cinco preguntas, el ancla salia a
+2,63:1 —una franja—. Con 395 queda entre 1,31 (piscinas) y 2,18 (`/about`). De paso la columna de
+preguntas gana 99 px. Los `sizes` del widget se recalculan a los anchos reales (395/194 px con el
+contenedor topado, ~30vw/~15vw mientras crece): un `sizes` que miente hace que el navegador baje el
+fichero equivocado.
+
+**Medido sobre el build, no estimado:** `izquierda - derecha = 0 px` en las **16 rutas x 4 anchos**.
+Y la seccion encoge: piscinas 1335 -> 982 px, pergolas ~1000 -> 733.
+
+### Puertas
+
+| Puerta | Resultado |
+|---|---|
+| `check:texto` | 🟢 **115/115, PUERTA VERDE** — la barrida completa. Era la que estaba en rojo |
+| `check:tokens` | 🟢 90,4 KB de 92 |
+| `check:rutas` · `check:enlaces` · `check:seo` · `check:galeria` | 🟢 |
+| `check:assets` | ⚠️ **NO SE PUEDE CORRER AQUI** — `_source/sanity-masters/` no esta versionado y no existe en el contenedor. Falla ABIERTO, no verde |
+| `check:visual` | 🔴 **esperado en las 16 rutas del FAQ, y solo en esas 16** — la seccion ha cambiado a proposito. Radio de impacto comprobado estaticamente: 30 selectores en `faq.css`, 0 fuera de `.faq-section`/`.mm-collage`, y las dos clases salen en exactamente 16 HTML. Las otras 99 rutas no pueden moverse. **Re-baselinizar es del director** |
