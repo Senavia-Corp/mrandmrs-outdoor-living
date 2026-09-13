@@ -480,11 +480,21 @@
  *     .hero-project ............ 6,36:1    h1 35 px a 767                            5,31
  *     .cta-page-section ........ 6,72:1    h2 25 px a 767                            2,54 ✗
  *     .cta-footer .............. todo su texto va en la tarjeta blanca
+ *     .svc-inversion__panel .... 6,74:1    h2 a 1920 (minimo 3); el parrafo, 7,04 a 479    15,60 (navy plano)
  *
  *     Peor pixel del AGUA en todo el sistema: 4,92:1 (.footer a 479, y=62, rgb(60,105,222)).
  *     Cota inferior —techo sin cresta, mas grano—: 4,73:1. Las dos, AA.
  *     Flechas del carrusel de resenas: oro contra el agua 5,15:1 y chevron contra el oro 7,94:1.
- *     La cresta cae a y≈74 por debajo de 768 y a y≈112 desde 768, en bandas de 228 a 1694 px.
+ *     La primera curva de la cresta cae a y≈74 por debajo de 768 y a y≈112 desde 768, en bandas de
+ *     228 a 1694 px; la segunda, desde la cresta B, a y≈136 y y≈210.
+ *
+ *     CRESTA B (12-sep-2026, noche). La segunda curva pasa de 32 a 96 por debajo de la primera. Se
+ *     comparo pixel a pixel contra el build anterior, con el texto transparente: .svc-confianza a
+ *     1920 y 479, resenas a 1440 y .cta-footer a 479. Se oscurece ~19 % de la cresta y ninguna
+ *     zona se aclara. Solo 93 px suben 1/255 en un canal, todos sobre el borde
+ *     antialiasado de la curva VIEJA: es redondeo del rasterizado, y en el peor de ellos el ratio
+ *     pasa de 6,29 a 6,23:1 (a 479, de 5,99 a 5,92). Ninguno queda por debajo de los peores de esta
+ *     tabla, asi que sus ratios siguen valiendo como minimos.
  *
  * 🚨 MUEVE PIXELES EN 120 RUTAS. `check:visual` sale roja en todas y hay que re-baselinizar,
  * despues de la aprobacion visual de Sebastian. */
@@ -500,7 +510,8 @@
 .meet-us-section,
 .form-section,
 .ty-hero,
-.before-after-section {
+.before-after-section,
+.svc-inversion__panel.mm-inverso {
   background-color: var(--mm-azul-800);   /* reserva: si un data-URI fallara, sigue cumpliendo 14,24:1 */
   background-image: var(--agua-cresta), var(--agua-grano), var(--agua-profundidad);
   background-repeat: no-repeat, repeat, no-repeat;
@@ -510,7 +521,8 @@
 @media (min-width: 768px) {
   .trusted-section, .gallery, .testimonial-section,
   .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer,
-  .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section {
+  .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section,
+  .svc-inversion__panel.mm-inverso {
     background-size: 100% 340px, 180px 180px, 100% 100%;
   }
 }
@@ -525,7 +537,10 @@
  *
  * `.mm-seccion.mm-inverso` y no `.mm-inverso`: la seccion oscura del sistema lleva las dos
  * clases, y el panel de `InversionCore` —un recuadro a media anchura, no una banda— lleva solo
- * la segunda y se queda en su navy plano, como pidio Sebastian.
+ * la segunda. Ese panel se quedo en navy plano hasta que Sebastian pidio pasarlo tambien al agua
+ * (12-sep-2026, al aprobar la cresta B): entra con su clase doble en la regla de arriba y en su
+ * @media, pero NO en los `:is()` de las juntas, porque su unico hermano es la foto y nunca toca
+ * otra banda.
  *
  * ── LAS JUNTAS: dos bandas azules que se tocan son UN solo cuerpo de agua ──────────
  * Cada una con su agua entera dejaba un corte duro: la de arriba acaba en navy y la de abajo
