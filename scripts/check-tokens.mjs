@@ -101,8 +101,32 @@ const MIN_BLOQUES = 7;
  *  propósito: un presupuesto con margen de sobra no es un presupuesto. Cuando vuelva a tocar,
  *  la pregunta primero es qué sobra —`cta.css` y `proyectos.css` están a 1 byte, y
  *  `estimacion.css` (13,2 KB) y `contacto.css` (9,3 KB) son el 27 % de la capa entre las dos—
- *  y solo después, subirlo otra vez. */
-const TOPE_BYTES = 88 * 1024;
+ *  y solo después, subirlo otra vez.
+ *
+ *  «VOLVERÁ A MORDER PRONTO» ERA LITERAL: mordió al día siguiente. POR QUÉ SUBE A 92
+ *  (13-sep-2026, lo decide Sebastian). FAQ-COLLAGE midió la capa antes de escribir una línea,
+ *  como pide la cabecera de `servicio-core.css`, y le salió esto:
+ *
+ *      capa sin comentarios .................. 89 435 B de 90 112  ->    677 B libres
+ *      src/styles/faq.css (variante A) .......  2 219 B
+ *      DÉFICIT ...............................  1 542 B
+ *
+ *  Y no se arregla apretando el CSS: compactada entera —sin saltos ni espacios, o sea ya
+ *  ilegible— la hoja son 1 907 B y SIGUE sin caber. Recortada al mínimo que hace el trabajo
+ *  (dos columnas + sticky + tira móvil, sin el pulido de los acordeones) son 1 488 B y tampoco.
+ *  O sea que con 88 KB la sección no se puede escribir, ni bien ni mal.
+ *
+ *  SE ELIGIÓ 92 Y NO 90 CON EL NÚMERO DELANTE. Con 90 KB (92 160 B) la hoja entra y quedan
+ *  506 B: menos de lo que había HOY, o sea que el siguiente encargo vuelve a esta línea antes
+ *  de escribir nada. Con 92 KB (94 208 B) quedan 2 554 B, que es una hoja de sección de las
+ *  pequeñas (`hero-zona.css` 1,9 KB, `render3d.css` 1,2 KB) y no dos de las grandes: sigue
+ *  obligando a pensar, que es lo único que este tope tiene que hacer.
+ *
+ *  LO QUE NO CAMBIA: la regla de qué se hace cuando vuelva a morder. Primero se mira qué
+ *  sobra —`estimacion.css` (13,2 KB) y `contacto.css` (9,1 KB) siguen siendo el 25 % de la
+ *  capa entre las dos— y solo después se sube. Subirlo dos veces seguidas ya es el máximo que
+ *  se puede hacer sin abrir esa pregunta. */
+const TOPE_BYTES = 92 * 1024;
 
 const sinComentarios = (s) => s.replace(/\/\*[\s\S]*?\*\//g, '');
 
