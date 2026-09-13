@@ -92,6 +92,8 @@
    * de `.projects-section`. Sin `padding-block-end` la banda queda a hueso con lo de abajo. */
   padding-block: clamp(var(--mm-e-48), 6vw, var(--mm-e-96)) 0;
   padding-inline: 0;
+  --mm-raya: linear-gradient(90deg, var(--mm-navy) 0 1px,
+    var(--mm-oro) 1px 4px, var(--mm-navy) 4px 5px);
 }
 .animated-divs-section .header-feature {
   max-width: var(--mm-medida);
@@ -112,31 +114,55 @@
 /* LAS DIVISORIAS, el mismo oro y el mismo grosor que el canto de abajo. Pedidas por Sebastian
  * el 12-sep: «entre cada columna una linea amarilla de borde como la de abajo».
  *
- * VAN EN `border-inline-start` DE LA TARJETA, NO EN `gap`. El encargo fija `gap: 0` y ademas
- * un hueco no es una linea: dejaria ver el fondo, que ahora es blanco. Con `border-box`
- * —`webflow.css` lo pone en `*`— el borde cae DENTRO del ancho de la tarjeta, asi que los seis
- * anchos siguen sumando la banda exacta y los huecos siguen en 0. Lo unico que cambia es que
- * los 15 px de las cinco lineas salen del reparto flexible, no del total.
+ * VAN ENCAJADAS ENTRE DOS FILETES NAVY, y esa es la parte que importa. La primera version era
+ * oro a pelo, 3 px, y MEDIDA contra la foto que tiene al lado daba entre 1,24:1 y 2,41:1 en su
+ * peor punto: la linea desaparecia donde la foto es clara. No es un fallo de accesibilidad
+ * —es decoracion, no un control ni texto, asi que 1.4.11 no la alcanza— pero si de oficio: una
+ * separacion que se borra a ratos no separa. El canto de ABAJO no tiene ese problema porque
+ * alli el velo es opaco y el oro sale a 8,40:1 garantizado; aqui arriba manda la foto.
  *
- * NO TAPA LA FOTO: `.feature-image` es `position:absolute; inset:0%`, y el bloque contenedor
- * de un absoluto es la caja de RELLENO, no la de borde. La foto empieza donde acaba el oro.
+ * El arreglo es el de toda la vida en cartografia: encajar la linea. 1 px navy + 3 px de oro +
+ * 1 px navy. El oro conserva su grosor, y lo que se gana es que la linea SIEMPRE tiene un canto
+ * duro contra lo que sea que haya detras: sobre foto clara la ve el navy, sobre foto oscura la
+ * ve el oro, y el oro contra el navy son 8,40:1 fijos pase lo que pase. Deja de depender de la
+ * foto, que era el problema.
  *
- * VA A PARTIR DE 768 Y CON DOS REGLAS DISTINTAS, porque la maqueta cambia:
- *   · 768-991 hay rejilla de dos columnas, y ahi la linea que separa columnas es la de las
- *     tarjetas PARES. `+ .feature-card` pondria borde tambien a las que abren fila nueva.
- *   · desde 992 son seis en fila y la separacion es «todas menos la primera».
- * Se acumulan, que es lo correcto: a >=992 las pares ya lo traen y la segunda regla añade las
- * impares. La primera tarjeta no lleva nunca, y el canto exterior de la banda tampoco.
+ * NO ES UN BORDE DE COLOR, ES UN FONDO BAJO UN BORDE TRANSPARENTE. Un `border` solo pinta un
+ * color, y aqui hacen falta tres bandas. El borde se declara `transparent` para que RESERVE los
+ * 5 px, y el degradado se pinta debajo. Dos detalles sin los que no funciona:
+ *   · `background-origin: border-box` — por defecto es `padding-box`, o sea que el degradado
+ *     empezaria DESPUES del borde y no debajo.
+ *   · `background-clip` se deja en su valor por defecto, que ya es `border-box`.
+ * Y no lo tapa la foto: `.feature-image` es `position:absolute; inset:0%`, y el bloque
+ * contenedor de un absoluto es la caja de RELLENO. La foto empieza donde acaba la raya.
+ *
+ * CON `border-box` —que `webflow.css` pone en `*`— los 5 px caen dentro del ancho de la
+ * tarjeta, asi que los seis anchos siguen sumando la banda exacta y los huecos siguen en 0.
+ *
+ * SE PINTA UNA SOLA VEZ Y SE QUITA DONDE SOBRA, en vez de escribir el degradado dos veces:
+ * `+ .feature-card` se lo pone a las cinco ultimas desde 768; `:nth-child(odd)` se lo quita a
+ * la 3 y la 5, que de 768 a 991 abren fila en la rejilla de dos columnas y ahi una raya a la
+ * izquierda seria un canto exterior, no una separacion; y desde 992, que ya son seis en fila,
+ * se les devuelve. La receta vive en `--mm-raya`, declarada en la seccion, para no repetirla.
  *
  * Por debajo de 768 las tarjetas se apilan y no hay columnas que separar: no lleva. */
 @media (min-width: 768px) {
-  .animated-divs-section .feature-card:nth-child(even) {
-    border-inline-start: 3px solid var(--mm-oro);
+  .animated-divs-section .feature-card + .feature-card {
+    border-inline-start: 5px solid transparent;
+    background-origin: border-box;
+    background-repeat: no-repeat;
+    background-size: 5px 100%;
+    background-image: var(--mm-raya);
+  }
+  .animated-divs-section .feature-card:nth-child(odd) {
+    border-inline-start-width: 0;
+    background-image: none;
   }
 }
 @media (min-width: 992px) {
-  .animated-divs-section .feature-card + .feature-card {
-    border-inline-start: 3px solid var(--mm-oro);
+  .animated-divs-section .feature-card:nth-child(odd):not(:first-child) {
+    border-inline-start-width: 5px;
+    background-image: var(--mm-raya);
   }
 }
 
