@@ -435,7 +435,8 @@ const quitaAntesDespues = (ruta, lineas) => {
  * que es lo que esta misma hoja ya hace con las reseñas, el blog, el feed y la capa de
  * captacion, y por la misma razon.
  *
- * LA BARANDILLA SE CONSERVA: se exige que las tres lineas existan, que «What Do We Do!» exista,
+ * LA BARANDILLA SE CONSERVA: se exige que las tres lineas existan, que el rotulo de la rejilla
+ * exista —en la forma que tenga tras `traduce()`—,
  * que las reseñas vayan DESPUES (si ya estuvieran delante no habria nada que mover) y que el
  * resultado sea una PERMUTACION de la entrada. Si algo de eso falla no se toca nada, y la
  * puerta se pone roja por su cuenta — que es lo correcto: un reorden que no se puede demostrar
@@ -444,7 +445,23 @@ const quitaAntesDespues = (ruta, lineas) => {
 const subeResenas = (ruta, lineas) => {
   if (!CAPTACION_JSON[ruta]) return lineas;
   const i = lineas.indexOf('TESTIMONIALS');
-  const destino = lineas.indexOf('What Do We Do!');
+  /**
+   * EL ANCLA SE PASA POR `traduce()`, y no es cosmetico — arreglado el 13-sep-2026.
+   *
+   * `reordena()` corre DESPUES de `traduce()`, y en la landing de pago —y SOLO en ella— el
+   * rotulo ya viene sustituido: «What Do We Do!» -> «What We Do» (TRADUCIDAS, R17-CORE). Con el
+   * literal a pelo, `indexOf` devolvia -1, la barandilla hacia lo que debe —no tocar nada— y la
+   * ficha salia «faltan 0 lineas, sobran 0» + «linea 17: orden cambiado», que es exactamente el
+   * sintoma de un reorden declarado que no se aplico.
+   *
+   * No se habia visto nunca porque esa ficha ya estaba roja por otra cosa: el carrusel del
+   * proceso (`lib/captura.mjs` §5a) le cambiaba dos lineas, y `diferencias()` solo mira el orden
+   * cuando no falta ni sobra ninguna. Al arreglar el carrusel salio esto debajo.
+   *
+   * Se DERIVA de la tabla de traducciones en vez de escribir las dos formas: asi la siguiente
+   * correccion de copy no puede volver a dejar el ancla vieja.
+   */
+  const destino = lineas.indexOf(traduce(ruta, 'What Do We Do!'));
   if (i < 0 || destino < 0 || i <= destino) return lineas;
   const cabecera = lineas.slice(i, i + 3);
   if (cabecera.length !== 3) return lineas;
@@ -595,6 +612,32 @@ const LINEAS_ANADIDAS = [
     lineas: ['Accessibility'],
     motivo: 'D6: el pie enlaza `/articles/accessibility`, que antes no enlazaba nadie. Las otras '
       + 'dos legales solo cambian de href y no cuestan texto; esta es un enlace NUEVO.',
+  },
+  {
+    /**
+     * R17-CORE · EL CTA DE LA REJILLA DE SUBSERVICIOS, que no lo descontaba nadie.
+     *
+     * El encargo cierra la rejilla con un paso siguiente («Nunca quedan mas de 2 secciones
+     * seguidas sin un paso siguiente: … servicios->CTA …», R17-CORE §5), y el dato ya lo
+     * declara: `servicios.cta.texto` en `src/data/captacion-servicios.json`, solo en esta ficha.
+     * `bloquesCaptacion()` no lo recogia, asi que sobraba una ocurrencia de «Get A Free
+     * Estimate» — y `diferencias()` cuenta por CONJUNTO, donde una linea que ya sale otras tres
+     * veces no «sobra»: por eso salia «faltan 0, sobran 0» y solo se quejaba del orden. Estaba
+     * tapado por el rojo del carrusel del proceso, igual que el ancla de `subeResenas()`.
+     *
+     * VA AQUI Y NO EN `bloquesCaptacion()`: es UNA linea, y «Get A Free Estimate» sale cuatro
+     * veces en la ficha, asi que `quitaBloque` se llevaria la primera —la del heroe— y
+     * desordenaria todo lo de debajo. Esta tabla es la que sabe anclar, y el ancla es la ultima
+     * tarjeta de la rejilla: si el CTA aparece en otro sitio, no casa y la ficha vuelve a rojo.
+     *
+     * Se escribe con la forma que RENDERIZA: el JSON dice «Get a Free Estimate» y
+     * `webflow.css` pone `text-transform: capitalize` en `.button`, que SI altera `innerText`.
+     */
+    rutas: ['/services/custom-pool-spa-builders-in-north-south-florida'],
+    tras: ['Pool deck remodeling using pavers or concrete for safety and durability.'],
+    lineas: ['Get A Free Estimate'],
+    motivo: 'R17-CORE: la rejilla de subservicios de la landing de pago cierra con un CTA '
+      + '(`servicios.cta` en captacion-servicios.json). Es la unica ficha que lo lleva.',
   },
   {
     rutas: ['/pool-cost-estimator'],

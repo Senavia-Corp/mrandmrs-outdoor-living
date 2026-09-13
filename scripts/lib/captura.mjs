@@ -158,72 +158,94 @@ export async function asentar(pag) {
   // Las 14 fichas de `/services` traen código propio del sitio que autoavanza los pasos cada
   // 5 s (`AUTOPLAY_DELAY`) y esconde los inactivos con `display:none`. Como `innerText` no ve
   // lo oculto, baseline y puerta leían PASOS DISTINTOS y `check:texto` salía en rojo con
-  // «faltan 2 líneas, sobran 2» en 9 páginas. No era un defecto del sitio nuevo: el script es
-  // el mismo en los dos lados; era la captura, que no lo paraba.
+  // «faltan 2 líneas, sobran 2» en las 14. No era un defecto del sitio nuevo: el script es el
+  // mismo en los dos lados; era la captura, que no lo paraba.
   //
   // Se para con SU PROPIO mecanismo, no con uno inventado: el sitio ya detiene el autoplay en
-  // el `mouseenter` de `.process-section`. Antes se pulsa el primer paso para fijar cuál es
-  // -pulsar reinicia el temporizador, por eso el `mouseenter` va DESPUÉS y no antes-.
+  // el `mouseenter` de `.process-section`, y ya fija el paso en el `click` de su punto.
   /**
-   * ⚠️ EL CLIC SE DESCARTABA EN SILENCIO, y era la causa REAL — arreglado el 1-sep-2026.
+   * ⚠️ EL ORDEN IMPORTA: PRIMERO SE PARA, LUEGO SE FIJA — arreglado el 13-sep-2026.
    *
-   * Un solo clic NO basta. El script del sitio empieza asi:
+   * Este bloque lo hacía al revés: fijaba el paso con un clic y paraba el autoplay AL FINAL.
+   * Por eso las 14 fichas seguían saliendo en rojo en `check:texto`, y por eso parecía
+   * intermitente. Traza medida en `/services/custom-aluminum-pergola…` a 1920, con el
+   * navegador HEADED que es el que usan las puertas:
    *
-   *     function goToStep(index) {
-   *       if (isAnimating) return;      // <- se traga el clic, sin avisar
-   *       isAnimating = true;
+   *      1788 ms  mouseenter .process-section   isTrusted=true   -> stopAutoplay()
+   *      1987 ms  mouseleave .process-section   isTrusted=true   -> startAutoplay(): REARMA
+   *      4704 ms  mouseenter .process-section   isTrusted=true
+   *      4901 ms  mouseleave .process-section   isTrusted=true   -> rearma: saltará a 9901
+   *     ~9700 ms  la sonda dice «el primero está activo» -> no da clic, y sin clic no hay stop
+   *      9903 ms  el autoplay avanza al paso 2, DENTRO de la espera de 900 ms de este bloque
+   *     10124 ms  mouseenter sintético: para el autoplay, pero ya es tarde
+   *     10203 ms  el paso 2 se hace visible  ->  `innerText` lee el paso 2 y el baseline el 1
    *
-   * Si el autoplay (5 s) tiene una transicion en vuelo cuando llega este paso, `goToStep()`
-   * DESCARTA el clic y devuelve. El `mouseenter` de despues congela entonces el paso donde
-   * estuviera el autoplay, no el primero. No es aleatorio: depende de en que fase del ciclo de
-   * 5 s pilla la pagina, o sea de lo que haya tardado en cargar y asentarse — por eso aparece
-   * y desaparece segun la carga de la maquina.
+   * Dos cosas que no se sabían, y que juntas explican el intermitente:
    *
-   * LO QUE PROVOCABA, medido, y son tres sintomas del mismo fallo:
-   *   · `check:texto` ROJO con «faltan 2 lineas, sobran 2» en 3 fichas de `/services`, que es
-   *     exactamente el sintoma que este bloque decia haber arreglado. La MISMA puerta sobre el
-   *     MISMO build dio 115/0 en una corrida y 112/3 en la siguiente;
-   *   · `.process-section` midiendo 754 px o 1106 px en la misma ruta segun la pasada, o sea
-   *     352 px reales de diferencia en el alto de la pagina;
-   *   · 8 de las 14 de `/services` en rojo en `check:visual` por diferencia de ALTO contra unas
-   *     referencias que habian congelado el otro paso.
+   *   · LOS EVENTOS DE RATÓN DEL BARRIDO SON DE VERDAD. `check:texto` y `check:visual` lanzan
+   *     Chromium con `headless:false`, así que hay un puntero real quieto en la ventana. Al
+   *     barrer la página (paso 2 de arriba) la sección PASA POR DEBAJO del puntero y Chromium
+   *     emite `mouseenter`/`mouseleave` auténticos (`isTrusted:true`). Y `mouseleave` es el
+   *     flanco que llama a `startAutoplay()`, que REARMA los 5 s desde cero: el instante del
+   *     siguiente salto no depende de lo que tarde la página en cargar, sino de por dónde acabó
+   *     el barrido. En headless no hay puntero, no hay esos eventos, y la MISMA puerta sobre el
+   *     MISMO build sale verde — que es exactamente por lo que esto parecía arreglado.
+   *   · SI LA SONDA PASABA, NO SE PARABA NADA. El `stopAutoplay()` llegaba por dos vías: el
+   *     `click` —que el bucle no daba si la sonda ya decía «bien»— y el `mouseenter` del final.
+   *     Entre sonda y `mouseenter` había 900 ms de espera, y el temporizador rearmado podía
+   *     caer justo ahí. Cara o cruz.
    *
-   * EL ARREGLO NO REESCRIBE `asentar()`: pregunta si el clic surtio efecto y reintenta. El
-   * estado es observable porque el propio script lo pinta — el circulo del paso activo recibe
-   * `background = '#001C63'` en linea, o sea `rgb(0, 28, 99)` computado.
+   * Y un tercer detalle obliga a parar DOS VECES: el manejador del clic del sitio acaba en
+   * `startAutoplay()`. O sea que fijar el paso REARMA el temporizador, y después de cada clic
+   * hay que volver a pararlo.
    *
-   * ⚠️ ESTE VALOR ESTA ACOPLADO AL COLOR DEL WIDGET, y el acoplamiento es invisible: si alguien
-   * cambia el navy de los 14 `services/*.astro` y no toca esta linea, la sonda deja de casar,
-   * el bucle agota sus 10 intentos y las 14 fichas se capturan con el paso mal fijado. Paso en
-   * R13-COLOR: el color era `#0D1C3F` (rgb(13, 28, 63)) y se llevo al navy del logo. Quien lo
-   * vuelva a mover, mueve tambien la linea de abajo.
+   * EL GUARDIÁN DEL FRENO no inventa comportamiento: sostiene el freno que acabamos de echar.
+   * Un `mouseleave` real posterior —otro barrido, la captura de `disparar()`— volvería a soltar
+   * el autoplay, así que se le pone a `.process-section` un oyente en FASE DE CAPTURA que corta
+   * la propagación antes de que el del sitio (que está en fase de burbuja, en el mismo nodo)
+   * llegue a correr. No escribe nada en el DOM a propósito: un atributo nuevo saldría en el
+   * `outerHTML` y pondría en rojo a las 14 fichas en la comparación de HTML.
    *
-   * Se reintenta cada 450 ms, muy por debajo de los 5 000 del autoplay, asi que el bucle gana
-   * siempre que la pagina responda. Si tras 10 intentos no lo fija, LO DICE: un paso que no se
-   * pudo fijar es una captura que no vale, y callarlo seria repetir el fallo que estamos
-   * cerrando.
+   * LA SONDA MIRA EL CONTENIDO, NO EL COLOR DEL PUNTO. Antes comparaba el fondo del círculo
+   * activo contra `rgb(0, 28, 99)`, y ese acoplamiento ya se rompió solo una vez (R13-COLOR,
+   * cuando el navy pasó de `#0D1C3F` al del logo) dejando las 14 capturas con el paso mal
+   * fijado y sin avisar. Ahora se pregunta por lo que leen de verdad las dos puertas que
+   * consumen esto —`innerText` y los píxeles—: que el ÚNICO `.process-content-item` visible sea
+   * el primero. No hay constante que se pueda quedar vieja.
+   *
+   * Los 900 ms de espera antes de cada lectura son los 300 de salida + 420 de entrada del
+   * script del sitio, con margen: con el autoplay ya parado no hay carrera de 5 s que ganar, y
+   * en cambio sí hay que dejar acabar la transición que estuviera en vuelo — si se lee a medias,
+   * el paso viejo todavía está en `display:flex` y la sonda diría «bien» estando mal.
+   *
+   * Si tras 10 intentos no lo fija, LO DICE: un paso que no se pudo fijar es una captura que no
+   * vale, y callarlo sería repetir el fallo que estamos cerrando.
    */
   if (await pag.$('.process-section')) {
-    const primeroActivo = () => pag.evaluate(() => {
-      const d = document.querySelector('.process-step-item');
-      const c = d?.querySelector('[class*="tab-circle"], [class*="Tab-Circle"]');
-      return !!c && getComputedStyle(c).backgroundColor === 'rgb(0, 28, 99)';
+    await pag.evaluate(() => document.querySelector('.process-section')
+      ?.addEventListener('mouseleave', (e) => e.stopImmediatePropagation(), true));
+    const parar = () => pag.evaluate(() => document.querySelector('.process-section')
+      ?.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true })));
+    const enElPrimero = () => pag.evaluate(() => {
+      const pasos = [...document.querySelectorAll('.process-content-item')];
+      return pasos.length > 0
+        && pasos.every((e, i) => (getComputedStyle(e).display !== 'none') === (i === 0));
     });
-    let fijado = await primeroActivo();
+
+    await parar();
+    await pag.waitForTimeout(900);
+    let fijado = await enElPrimero();
     for (let i = 0; i < 10 && !fijado; i++) {
       await pag.evaluate(() => document.querySelector('.process-step-item')
         ?.dispatchEvent(new MouseEvent('click', { bubbles: true })));
-      await pag.waitForTimeout(450);
-      fijado = await primeroActivo();
+      await parar();                 // el manejador del clic del sitio rearma el autoplay
+      await pag.waitForTimeout(900);
+      fijado = await enElPrimero();
     }
     if (!fijado) {
       console.log('  ⚠️  el carrusel de pasos NO se pudo fijar en el primero tras 10 intentos'
         + ' — esta captura no es comparable');
     }
-    await pag.waitForTimeout(900);   // 300 de salida + 420 de entrada, con margen
-    await pag.evaluate(() => document.querySelector('.process-section')
-      ?.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true })));
-    await pag.waitForTimeout(200);
   }
 
   // 5 · congelar lo que se mueve solo
