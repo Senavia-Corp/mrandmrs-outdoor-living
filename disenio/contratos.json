@@ -39,9 +39,9 @@
     },
     "/about": {
       "contrato": "rediseno",
-      "fecha": "2026-09-05",
-      "sha": "37e4f55",
-      "motivo": "AUDITORIA 5-sep-2026 (M33). La pagina se rediseño en R9 (heroe) y R13 (color) y se quedo en contrato `paridad`, o sea comparandose contra la captura de Webflow de agosto. Por eso `check:visual` lleva roja desde entonces sin que fuera una regresion: MEDIDO que el estado previo 33baf7e da los mismos deltas exactos, -17px a 1920 y -29px a 1440. Lo que faltaba no era el arreglo sino la declaracion. Aprobada tras mirarla: heroe con la pareja sobre degradado de marca, titular, entradilla y fila de logos de confianza; nada roto en los 4 anchos."
+      "fecha": "2026-09-13",
+      "sha": "b78b889",
+      "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
     },
     "/articles/accessibility": {
       "contrato": "rediseno",
@@ -195,9 +195,9 @@
     },
     "/financing": {
       "contrato": "rediseno",
-      "fecha": "2026-09-02",
-      "sha": "00f2ca9",
-      "motivo": "RUTA DE AUTORIA PROPIA, la primera del sitio: no existe en el origen de Webflow, asi que no hay captura de paridad contra la que medirla y `paridad` la saltaria en silencio para siempre. El contrato `rediseno` es lo que la pone ROJA hasta que haya una referencia aprobada, que es el estado correcto. `sha` es el HEAD sobre el que se escribio la pagina. PENDIENTE de la aprobacion visual de Sebastian ante el director antes de re-baselinizar: hasta entonces `check:visual` sale roja en /financing A PROPOSITO, y eso no es un fallo que arreglar sino la puerta haciendo su trabajo. Ver `scripts/lib/rutas-propias.mjs`."
+      "fecha": "2026-09-13",
+      "sha": "b78b889",
+      "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
     },
     "/gallery": {
       "contrato": "rediseno",
@@ -573,87 +573,87 @@
     },
     "/services/custom-aluminum-pergola-builders-in-north-south-florida": {
       "contrato": "rediseno",
-      "fecha": "2026-08-31",
-      "sha": "527b5f0",
-      "motivo": "R10 lote services: la seccion de subservicios -tarjeta tenida, placa de icono, tipografia y ritmo- · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "fecha": "2026-09-13",
+      "sha": "b78b889",
+      "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
     },
     "/services/custom-deck-builders-in-north-south-florida": {
       "contrato": "rediseno",
-      "fecha": "2026-08-31",
-      "sha": "527b5f0",
-      "motivo": "R10 lote services: la seccion de subservicios -tarjeta tenida, placa de icono, tipografia y ritmo- · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "fecha": "2026-09-13",
+      "sha": "b78b889",
+      "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
     },
     "/services/custom-outdoor-kitchens-for-north-south-florida-homes": {
       "contrato": "rediseno",
-      "fecha": "2026-08-31",
-      "sha": "527b5f0",
-      "motivo": "R10 lote services: la seccion de subservicios -tarjeta tenida, placa de icono, tipografia y ritmo- · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "fecha": "2026-09-13",
+      "sha": "b78b889",
+      "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
     },
     "/services/custom-pool-spa-builders-in-north-south-florida": {
       "contrato": "rediseno",
-      "fecha": "2026-08-31",
-      "sha": "527b5f0",
-      "motivo": "R10 lote services: la seccion de subservicios -tarjeta tenida, placa de icono, tipografia y ritmo- · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "fecha": "2026-09-13",
+      "sha": "b78b889",
+      "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
     },
     "/services/motorized-louvered-roof-systems-in-north-south-florida": {
       "contrato": "rediseno",
-      "fecha": "2026-08-31",
-      "sha": "527b5f0",
-      "motivo": "R10 lote services: la seccion de subservicios -tarjeta tenida, placa de icono, tipografia y ritmo- · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "fecha": "2026-09-13",
+      "sha": "b78b889",
+      "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
     },
     "/services/motorized-retractable-screens-in-north-south-florida": {
       "contrato": "rediseno",
-      "fecha": "2026-08-31",
-      "sha": "527b5f0",
-      "motivo": "R10 lote services: la seccion de subservicios -tarjeta tenida, placa de icono, tipografia y ritmo- · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "fecha": "2026-09-13",
+      "sha": "b78b889",
+      "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
     },
     "/services/patio-screen-rooms-enclosures-in-north-south-florida": {
       "contrato": "rediseno",
-      "fecha": "2026-08-31",
-      "sha": "527b5f0",
-      "motivo": "R10 lote services: la seccion de subservicios -tarjeta tenida, placa de icono, tipografia y ritmo- · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "fecha": "2026-09-13",
+      "sha": "b78b889",
+      "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
     },
     "/services/pool-remodeling-renovation-in-north-south-florida": {
       "contrato": "rediseno",
-      "fecha": "2026-08-31",
-      "sha": "527b5f0",
-      "motivo": "R10 lote services: la seccion de subservicios -tarjeta tenida, placa de icono, tipografia y ritmo- · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "fecha": "2026-09-13",
+      "sha": "b78b889",
+      "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
     },
     "/services/pool-screen-enclosures-for-north-south-florida-pools": {
       "contrato": "rediseno",
-      "fecha": "2026-08-31",
-      "sha": "527b5f0",
-      "motivo": "R10 lote services: la seccion de subservicios -tarjeta tenida, placa de icono, tipografia y ritmo- · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "fecha": "2026-09-13",
+      "sha": "b78b889",
+      "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
     },
     "/services/premium-outdoor-furniture-for-north-south-florida-homes": {
       "contrato": "rediseno",
-      "fecha": "2026-08-31",
-      "sha": "527b5f0",
-      "motivo": "R10 lote services: la seccion de subservicios -tarjeta tenida, placa de icono, tipografia y ritmo- · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "fecha": "2026-09-13",
+      "sha": "b78b889",
+      "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
     },
     "/services/professional-landscaping-services-in-north-south-florida": {
       "contrato": "rediseno",
-      "fecha": "2026-08-31",
-      "sha": "527b5f0",
-      "motivo": "R10 lote services: la seccion de subservicios -tarjeta tenida, placa de icono, tipografia y ritmo- · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "fecha": "2026-09-13",
+      "sha": "b78b889",
+      "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
     },
     "/services/smart-irrigation-system-installation-in-north-south-florida": {
       "contrato": "rediseno",
-      "fecha": "2026-08-31",
-      "sha": "527b5f0",
-      "motivo": "R10 lote services: la seccion de subservicios -tarjeta tenida, placa de icono, tipografia y ritmo- · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "fecha": "2026-09-13",
+      "sha": "b78b889",
+      "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
     },
     "/services/smart-soffit-led-lighting-installation-in-north-south-florida": {
       "contrato": "rediseno",
-      "fecha": "2026-08-31",
-      "sha": "527b5f0",
-      "motivo": "R10 lote services: la seccion de subservicios -tarjeta tenida, placa de icono, tipografia y ritmo- · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "fecha": "2026-09-13",
+      "sha": "b78b889",
+      "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
     },
     "/services/steel-building-pole-barn-construction-in-north-south-florida": {
       "contrato": "rediseno",
-      "fecha": "2026-08-31",
-      "sha": "527b5f0",
-      "motivo": "R10 lote services: la seccion de subservicios -tarjeta tenida, placa de icono, tipografia y ritmo- · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
+      "fecha": "2026-09-13",
+      "sha": "b78b889",
+      "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
     },
     "/testimonials": {
       "contrato": "rediseno",
