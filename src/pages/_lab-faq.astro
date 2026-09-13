@@ -1,0 +1,56 @@
+---
+/**
+ * _lab-faq.astro — BANCO DE PRUEBAS de FAQ-COLLAGE. **NO ENRUTADO.**
+ *
+ * El guion bajo lo saca del enrutado de Astro: no genera HTML, las 115 siguen siendo 115 y no
+ * entra en `check:rutas` ni en el sitemap. Se mira por `/lab/faq` con `astro dev`, o se copia a
+ * `lab-faq.astro` (sin guion bajo), se construye, se captura y **se borra la copia** — que es
+ * como se capturo todo lo de este encargo, para medir sobre `.vercel/output/static` y no sobre
+ * `dev` (CLAUDE.md §2).
+ *
+ * LO QUE YA NO HACE, y por que se ha vaciado. Este banco sirvio para cerrar las dos decisiones
+ * del encargo, y las dos estan cerradas:
+ *
+ *   · la COMPOSICION del collage — gano la variante A (escalonada: ancla ancha arriba, dos
+ *     verticales de detalle, dos medianas), 13-sep-2026;
+ *   · la ANIMACION de entrada — gano P1 (opacity + translateY escalonados, con observador y
+ *     sello), sobre P2 (barrido con `clip-path`) y P3 (CSS puro con `animation-timeline`).
+ *
+ * Las dos viven ya en `src/styles/faq.css` y en `widgets/CollageFaq.astro`. Mantener aqui una
+ * copia de lo aprobado es como se acaba restilando lo que no se pinta, asi que se ha quitado:
+ * este fichero **no declara ni una regla de la seccion**. Lo unico suyo es el rotulo.
+ *
+ * PARA QUE SIGUE SIRVIENDO. Para mirar la seccion aislada —sin bajar por una ficha entera— y
+ * para probar un cambio de `faq.css` contra el marcado REAL antes de tocar las 16 rutas. Monta
+ * el widget de verdad, con la prop `ruta` que existe justamente para esto (el banco no esta
+ * enrutado y no tiene el `pathname` de la ficha).
+ *
+ * El FAQ tambien es el REAL y no una copia que se pueda quedar vieja: se lee `T9` de la ficha
+ * de piscinas con `?raw` y se parte por `.wrapper-faq-components`, que es exactamente donde
+ * `build-paginas.mjs` mete el marcador `@@WIDGET@@CollageFaq@@WIDGET@@`.
+ */
+import Base from '../layouts/Base.astro';
+import CollageFaq from '../components/widgets/CollageFaq.astro';
+import fuente from './services/custom-pool-spa-builders-in-north-south-florida.astro?raw';
+
+const RUTA = '/services/custom-pool-spa-builders-in-north-south-florida';
+
+/* `T9` es la cadena que la ficha pinta con `<Fragment set:html>`: la seccion `.faq-section`
+ * entera. Se recupera con el mismo `JSON.parse` que la escribio. */
+const T9 = JSON.parse('"' + /^const T9 = "((?:[^"\\]|\\.)*)";$/m.exec(fuente)[1] + '"');
+const CORTE = T9.indexOf('<div class="wrapper-faq-components">');
+if (CORTE < 0) throw new Error('_lab-faq: no aparece .wrapper-faq-components en T9');
+---
+<Base titulo="LAB · FAQ-COLLAGE" descripcion="Laboratorio no enrutado de FAQ-COLLAGE." conPie={false}>
+  <section class="lab-rotulo"><p>FAQ-COLLAGE · variante A con la entrada P1, tal cual se pinta en las 16 rutas</p></section>
+  <Fragment set:html={T9.slice(0, CORTE)} />
+  <CollageFaq ruta={RUTA} />
+  <Fragment set:html={T9.slice(CORTE)} />
+</Base>
+
+<style is:global>
+  /* Lo UNICO del banco. La seccion entera la viste `src/styles/faq.css`. */
+  .lab-rotulo { background-color: var(--mm-navy); color: var(--mm-tinta-inversa);
+    padding: var(--mm-e-12) var(--mm-canal); }
+  .lab-rotulo p { margin: 0; font-family: var(--mm-fuente); font-size: var(--mm-paso-1); }
+</style>

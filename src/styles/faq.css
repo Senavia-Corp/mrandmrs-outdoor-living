@@ -1,0 +1,259 @@
+/**
+ * faq.css — LA SECCION DE PREGUNTAS FRECUENTES PASA A DOS COLUMNAS  ·  FAQ-COLLAGE
+ *
+ * QUE PINTA, Y CUANTO. `.faq-section` en **16 rutas**: las 14 de `/services/`, `/about` y
+ * `/financing`. Medido, no estimado:
+ *
+ *     grep -rl 'class="faq-section' .vercel/output/static --include='*.html' | wc -l
+ *     16
+ *
+ * Hay UNA sola variante de marcado y las 16 llevan JSON-LD `FAQPage`. Quince son DERIVADAS
+ * (las genera `scripts/build-paginas.mjs`); `/financing` es de autoria propia.
+ *
+ * DE DONDE SALE ESTE ANCHO, porque es la unica decision de composicion que se podia equivocar.
+ * El encargo decia «940 px en Webflow» y mandaba buscar otro contenedor. No hace falta: el
+ * contenedor de la seccion lleva las dos clases (`class="container w-container"`) y
+ * `.container{max-width:1250px}` aparece DESPUES de `.w-container{max-width:940px}` en
+ * `webflow.css`, asi que gana por orden de aparicion. Medido sobre `.vercel/output/static`:
+ *
+ *     1920 -> 1250   1440 -> 1250   1200 -> 1128   992 -> 920
+ *      991 ->  935    768 ->  712    600 ->  544   479 -> 423
+ *
+ * O sea que la seccion YA vive en `--mm-ancho` (1250 px), el mismo de `.mm-caja`. No se
+ * inventa un ancho nuevo: se reparte el que hay en 5fr / 7fr.
+ *
+ * ORDEN DE CARGA. Va la ultima de las hojas de seccion, justo antes de `propio.css`:
+ *
+ *   fuentes -> webflow -> disenio/tokens -> disenio/puente -> disenio/base -> ... ->
+ *   financiacion -> servicio-core -> **faq** -> propio
+ *
+ * DESPUES de `webflow.css`, que es a quien corrige (`.faq-section`, `.header-faq`,
+ * `.wrapper-faq-components`, `.dropdown-*`): gana por ORDEN, cero `!important`. Y no se cruza
+ * con ninguna otra hoja de la capa: ni un selector en comun.
+ *
+ * 🪤 LA TRAMPA DE WEBFLOW, y costaba un rojo silencioso. `.w-container::before` y
+ * `::after` llevan `grid-area:1/1/2/2; display:table` (son el clearfix de Webflow). Mientras
+ * el contenedor es `display:block` no molestan; en cuanto pasa a `grid` se convierten en items
+ * y se plantan los dos en la primera celda, empujando el collage. Se anulan con `content:none`
+ * dentro de esta seccion y solo dentro de ella.
+ *
+ * DISCIPLINA DE CAPA
+ *   · cero literales de color: solo `var(--mm-*)`
+ *   · cero `!important`, cero `@layer`, cero `url()`
+ *   · breakpoints solo `min-width` 992, sin mezclar con los `max-width` de Webflow
+ *   · cero `opacity: 0` y cero `animation-fill-mode`
+ *   · toda longitud sale de `--mm-e-*` o `--mm-r-*`; las proporciones van en `fr` y
+ *     `aspect-ratio`, que no son longitudes
+ *
+ * CONTRASTES. Ni un par nuevo que inventar. El unico color que esta hoja cambia es el borde
+ * del acordeon: pasa del navy pleno de Webflow (15,60:1 sobre blanco — pesa como un boton)
+ * a `--mm-borde-control` (#8794b6, **3,03:1**), que es el minimo que exige WCAG 1.4.11 para
+ * el limite de un control y que ya esta medido en `disenio/tokens.css`. En `:hover` y en
+ * abierto vuelve a navy (15,60:1). El fondo de esos dos estados es `--mm-fondo-tenue`
+ * (#edf0f8), con la tinta navy encima a 13,68:1. El oro no aparece: no marca estado.
+ *
+ * PESO. 88 KB no daban para esta hoja —la capa estaba a 89 435 B de 90 112, o sea 677 B
+ * libres— y Sebastian subio el tope a 92 KB el 13-sep-2026. La derivacion completa esta en
+ * `scripts/check-tokens.mjs`, no aqui, para que no haya dos versiones del mismo numero.
+ */
+
+/* ══ 1 · EL COLLAGE ═══════════════════════════════════════════════════════════════════════
+ * Hasta 991 es una TIRA COMPACTA de tres fotos —el ancla y los dos detalles—; las dos medianas
+ * no se pintan. Alto fijo de 128 px, muy por debajo de los ~220 px de techo que fija el
+ * encargo: un collage alto dejaria las preguntas enterradas, que es justo lo que esta seccion
+ * no puede permitirse en un movil.
+ *
+ * El orden del DOM ES el orden movil (cabecera, collage, preguntas), asi que aqui no se
+ * reordena nada. En escritorio se reordena con `grid-template-areas`, no con `order`: asi el
+ * orden de tabulacion y el de lectura siguen siendo el del documento.
+ *
+ * El reparto 1.6fr / 1fr / 1fr no es decorativo: da una foto guia y dos de apoyo, que es la
+ * misma jerarquia del bento de escritorio a otra escala. */
+.mm-collage {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  grid-auto-rows: var(--mm-e-128);
+  gap: var(--mm-e-8);
+  margin-block-start: var(--mm-e-24);
+}
+.mm-collage > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--mm-r-16);
+}
+/* Las dos medianas solo existen en el bento de escritorio. `display:none` y no un widget que
+ * pinte tres fotos en movil y cinco en escritorio: el HTML es UNO, y asi `check:texto` y
+ * `check:galeria` ven lo mismo en los cuatro anchos. */
+.mm-collage > :nth-child(4),
+.mm-collage > :nth-child(5) { display: none; }
+
+/* ══ 1.bis · LA ENTRADA, AL ASOMAR EN PANTALLA ════════════════════════════════════════════
+ * Las cinco fotos entran escalonadas cuando el collage llega a pantalla. Aprobada por
+ * Sebastian el 13-sep-2026 sobre tres prototipos medidos; el porque de descartar los otros
+ * dos esta en el informe, y lo esencial es que la opcion de CSS puro
+ * (`animation-timeline: view()`) esta bloqueada tres veces: `check:tokens` regla 5 prohibe el
+ * `both` que necesita, el minificador del build pliega `animation-timeline` DENTRO del atajo
+ * y la deja muerta sin avisar, y `disparar()` con `fullPage` la fotografia sin revelar.
+ *
+ * 🚨 EL SELLO `data-entra` LO ESCRIBE EL GUION DE `CollageFaq.astro`, DESPUES de construir el
+ * observador y dentro de un try/catch que lo retira si algo falla. Sin guion no hay sello,
+ * sin sello no casa el `opacity: 0` y SE VE TODO. Es el contrato de `Interacciones.astro`
+ * §«EL ESTADO OCULTO CUELGA DE UN SELLO», y el motivo esta alli: en AMS el sitio se quedo
+ * invisible una vez por heredar el `opacity:0` sin su animacion.
+ *
+ * 🚨 Y NINGUNA PUERTA VIGILA ESTO. `check:ix2` calcula «0 elementos en opacity:0» y «0
+ * transform residual» SOLO sobre elementos con `data-w-id` (check-ix2.mjs:139 y 141), y el
+ * collage no lleva ninguno — ni puede: quedaria huerfano en `reveals.json` (encargo §7). La
+ * unica red es ese try/catch.
+ *
+ * CUATRO DECISIONES QUE NO SON DE GUSTO:
+ *   · `animation` y no `transition`: un `transition-delay` se queda puesto y cualquier hover
+ *     posterior de esa foto arrancaria 280 ms tarde.
+ *   · `backwards` y nunca `both`: retiene el estado inicial durante el retardo —que es lo que
+ *     el escalonado necesita— y termina en `transform: none`, sin contexto de apilamiento
+ *     residual. `both` lleva `forwards` dentro y deja `matrix(1,0,0,1,0,0)`.
+ *   · `translateY` y jamas `translateX`: `check:ix2` mide barra de scroll horizontal a 479 y
+ *     767 en 15 rutas, una de ellas de `/services/`; en LTR solo desborda el positivo.
+ *   · sobre los `<img>` y nunca sobre `.mm-collage`, que es el elemento `sticky`: un
+ *     `transform` sobre el se compondria con el desplazamiento del pegado.
+ *
+ * 700 ms y `cubic-bezier(.165,.84,.44,1)` salen del catalogo IX2 que ya usan las 93 entradas
+ * del sitio. Ellas duran 1000; aqui entran cinco piezas y la suma no puede pasar del segundo:
+ * 280 + 700 = 980 ms. Verificado 100 % reproducible entre dos corridas de `asentar()` +
+ * `disparar()`, con opacidad `1,1,1,1,1` en el instante de la captura. */
+.mm-collage[data-entra]:not([data-visto]) > img { opacity: 0; }
+.mm-collage[data-visto] > img {
+  animation: 700ms cubic-bezier(.165, .84, .44, 1) backwards mm-collage-entra;
+}
+.mm-collage[data-visto] > :nth-child(2) { animation-delay:  70ms; }
+.mm-collage[data-visto] > :nth-child(3) { animation-delay: 140ms; }
+.mm-collage[data-visto] > :nth-child(4) { animation-delay: 210ms; }
+.mm-collage[data-visto] > :nth-child(5) { animation-delay: 280ms; }
+@keyframes mm-collage-entra { from { opacity: 0; transform: translateY(14px); } }
+
+/* Repitiendo la misma cadena para ganar por orden, sin `!important`, igual que hace
+ * `Interacciones.astro`. Un `animation: none` a secas no basta: comprime la duracion pero no
+ * restablece el estado oculto, asi que hay que apagar tambien el `opacity`. */
+@media (prefers-reduced-motion: reduce) {
+  .mm-collage[data-entra]:not([data-visto]) > img { opacity: 1; }
+  .mm-collage[data-visto] > img { animation: none; }
+}
+
+/* ══ 2 · PULIDO DE LOS ACORDEONES ═════════════════════════════════════════════════════════
+ * Sin tocar marcado, ni texto, ni comportamiento: solo superficie y estados. Hoy
+ * `.dropdown-toggle` tiene CERO reglas de `:hover` y CERO de `:focus-visible` — o sea que el
+ * unico control repetido de la seccion no tiene ni una afordancia.
+ *
+ * El radio pasa de los 15 px sueltos de Webflow a `--mm-r-16`. Un pixel de diferencia, pero
+ * deja de ser un numero magico y ademas iguala el radio del collage, que era lo que pedia el
+ * encargo («el mismo radio que las tarjetas del FAQ»).
+ *
+ * `align-items: center` corrige un defecto que aparece justo con esta composicion: a 691,8 px
+ * de columna las preguntas largas ocupan dos lineas, y con el `align-items:stretch` heredado
+ * la flecha se quedaba pegada arriba en vez de centrada con el bloque de texto. */
+section.faq-section .dropdown-faq { border-radius: var(--mm-r-16); }
+
+section.faq-section .dropdown-toggle {
+  border-color: var(--mm-borde-control);
+  border-radius: var(--mm-r-16);
+  align-items: center;
+  transition: border-color .18s ease, background-color .18s ease;
+}
+section.faq-section .dropdown-toggle:hover,
+section.faq-section .dropdown-toggle.w--open {
+  border-color: var(--mm-navy);
+  background-color: var(--mm-fondo-tenue);
+}
+/* El anillo de dos tonos del sistema, las tres lineas juntas como manda `disenio/tokens.css`. */
+section.faq-section .dropdown-toggle:focus-visible {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco);
+  outline-offset: var(--mm-foco-aire);
+  box-shadow: var(--mm-foco-halo);
+}
+@media (prefers-reduced-motion: reduce) {
+  section.faq-section .dropdown-toggle { transition: none; }
+}
+
+/* ══ 3 · DOS COLUMNAS, DE 992 PARA ARRIBA ═════════════════════════════════════════════════
+ * `grid-template-areas` con el collage ocupando las DOS filas de la izquierda: asi la celda
+ * del collage mide lo que mide la columna de preguntas entera, que es la condicion para que
+ * el `sticky` tenga recorrido. Con `align-self: start` el collage queda mas bajo que su celda
+ * y puede viajar dentro de ella.
+ *
+ * Medido a 1440: collage 494,2 x 811, columna de preguntas 691,8 x 993. O sea 308 px de
+ * recorrido: al abrir respuestas la columna derecha crece y el collage la acompaña.
+ *
+ * `text-align: left` solo aqui. En una columna (<=992) la cabecera sigue centrada, que es como
+ * esta hoy y como debe estar: centrar tiene sentido cuando el bloque ocupa el ancho entero. */
+@media (min-width: 992px) {
+  /* 🚨 GUARDA DE VACIO, INNEGOCIABLE — y esta se escribio DESPUES de verla fallar. Sin el
+   * `:has(.mm-collage)`, esta hoja sola ya partia el contenedor en dos en las 16 rutas y
+   * dejaba 494 px vacios a la izquierda, porque el widget que pinta el collage todavia no
+   * existe. Medido sobre la ficha de piscinas construida, antes de poner la guarda:
+   *     .container display:grid · .header-faq w=691.8 x=653.2 · sin ningun .mm-collage
+   * Es la misma regla que `CRITERIO.md` ya exige para el feed de Instagram
+   * (`.social-media:has(.mm-ig)`): con la seccion vacia, los HTML no mueven un pixel.
+   * Si `:has()` no estuviera soportado, el bloque entero se descarta y queda una columna,
+   * que es exactamente el estado de hoy: degrada bien. */
+  section.faq-section .container:has(.mm-collage) {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    grid-template-areas:
+      "collage cabecera"
+      "collage preguntas";
+    grid-template-rows: auto 1fr;
+    align-items: start;
+    column-gap: var(--mm-e-64);
+    row-gap: var(--mm-e-24);
+    text-align: left;
+  }
+  /* 🪤 Ver la cabecera: el clearfix de Webflow se vuelve item de rejilla. */
+  section.faq-section .container:has(.mm-collage)::before,
+  section.faq-section .container:has(.mm-collage)::after { content: none; }
+
+  /* `max-width:750px` y el auto-centrado de Webflow sobran cuando la cabecera ya vive en una
+   * columna de 691,8 px: dejarlos la descolgaria del borde de las preguntas. */
+  section.faq-section .container:has(.mm-collage) .header-faq {
+    grid-area: cabecera;
+    max-width: none;
+    margin-inline: 0;
+  }
+  /* El `margin-top:2em` y el `padding-inline:1em` de Webflow separaban las preguntas de una
+   * cabecera que ahora es su hermana de rejilla: el aire lo pone `row-gap`. */
+  section.faq-section .container:has(.mm-collage) .wrapper-faq-components {
+    grid-area: preguntas;
+    margin-top: 0;
+    padding-inline: 0;
+  }
+
+  /* EL COLLAGE ACOMPAÑA. El nav es `position:fixed` y mide 85 px (`--mm-nav-alto`), asi que se
+   * resta; y lleva `z-index:10` contra el `auto` de `.faq-section`, o sea que el collage pasa
+   * POR DEBAJO del nav y no por encima. Comprobado ademas que ningun ancestro tiene
+   * `overflow:hidden` (.faq-section -> div sin clase -> body -> html, los cuatro `visible`),
+   * que es lo unico que deja un `sticky` muerto sin avisar.
+   * Medido con cuatro respuestas abiertas: se clava en 109 px y no se mueve mas. */
+  .mm-collage {
+    grid-area: collage;
+    align-self: start;
+    position: sticky;
+    top: calc(var(--mm-nav-alto) + var(--mm-e-24));
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: auto;
+    margin-block-start: 0;
+  }
+
+  /* EL BENTO — variante A, la que eligio Sebastian el 13-sep-2026.
+   * Tres escalones de arriba abajo: el proyecto entero, los dos detalles, el contexto. El
+   * ancla mide 494x309 y no deja duda de cual es la foto principal; ese era el motivo de
+   * descartar la variante B, donde el ancla bajaba a 296x185 y un detalle pasaba a ser la
+   * foto mas grande del bloque.
+   * La colocacion es por `nth-child` y no por clase: el marcado del widget son cinco `<img>`
+   * hermanos y nada mas, asi que no hay ni un byte de clase que mantener sincronizado. */
+  .mm-collage > :nth-child(1) { grid-column: 1 / 3; aspect-ratio: 16 / 10; }
+  .mm-collage > :nth-child(2),
+  .mm-collage > :nth-child(3) { aspect-ratio: 3 / 4; }
+  .mm-collage > :nth-child(4),
+  .mm-collage > :nth-child(5) { display: block; aspect-ratio: 3 / 2; }
+}

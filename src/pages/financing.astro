@@ -36,6 +36,7 @@
  */
 import Base from '../layouts/Base.astro';
 import ResenasGoogle from '../components/widgets/ResenasGoogle.astro';
+import CollageFaq from '../components/widgets/CollageFaq.astro';
 
 /* LOS 7 ICONOS. Generados en Higgsfield (Recraft V4.1, modo vector) con UN SOLO prompt base para
  * que salgan de la misma familia, y convertidos a `<mask>` + `currentColor`: Recraft dibuja por
@@ -327,6 +328,12 @@ const SEO = {
           project over time.
         </div>
       </div>
+      {/* FAQ-COLLAGE. En las otras quince lo mete `build-paginas.mjs` con su marcador; esta
+          es de autoria propia y va a mano, en el MISMO sitio: entre `.header-faq` y
+          `.wrapper-faq-components`, que es donde lo espera el bento de `faq.css`.
+          Sus cinco fotos mezclan los servicios de ticket alto —piscina, cocina, techo de
+          lamas, cerramiento y remodelacion—, que son los que se financian. */}
+      <CollageFaq />
       <div class="wrapper-faq-components">
         {FAQ.map(([pregunta, respuesta]) => (
           <div data-delay="0" data-hover="false" class="dropdown-faq w-dropdown">
