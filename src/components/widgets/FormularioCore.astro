@@ -94,8 +94,16 @@ const PLAZOS = ['As soon as possible', '1-3 months', '3-6 months', '6-12 months'
  * comunidad-: lo que importa es poder separarlo, no descartarlo en el formulario. */
 const PROPIEDAD = ['Yes, I own this property', 'No', 'Other'];
 ---
+{/* `tabindex="-1"` PARA QUE EL ANCLA MUEVA TAMBIEN EL FOCO, NO SOLO EL SCROLL.
+    Los CTA de estas paginas apuntan a `#estimate`. Sin esto el navegador desplaza la pagina
+    pero deja el foco en el enlace, asi que quien navega con teclado o con lector sigue
+    «arriba»: pulsa Tab y vuelve al menu, no al primer campo del formulario. Es el arreglo
+    estandar de ancla, el mismo que un skip-link, y no anade un parada de tabulacion nueva
+    -`-1` es alcanzable por programa y por fragmento, nunca por Tab-.
+    Medido antes de escribirlo: `grep -rn "hashchange\|scrollIntoView" src/components/ src/layouts/`
+    devuelve CERO, o sea que no habia ningun manejador que ya lo hiciera. */}
 {d && (
-  <section id="estimate" class="appointment-section svc-captacion">
+  <section id="estimate" tabindex="-1" class="appointment-section svc-captacion">
     <div class="mm-caja svc-captacion__rejilla">
 
       {/* LOS TRES PASOS VAN DELANTE DEL FORMULARIO, Y ES UNA DECISION MEDIDA.

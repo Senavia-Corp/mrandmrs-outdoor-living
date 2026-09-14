@@ -153,7 +153,13 @@
  *
  * `margin-block-start: 0` NO es cosmetico: la seccion heredaba 65 px de margen y dejaba una
  * costura BLANCA entre la franja navy y este gris -un tercer color de dos dedos que no pintaba
- * nada-. Se anula aqui y solo aqui: `.svc-captacion` existe unicamente en esta ruta. */
+ * nada-. Se anula aqui y solo aqui.
+ *
+ * DONDE VIVE `.svc-captacion`, AL DIA: eran 1 ruta cuando se escribio esto (R17-CORE, la ficha
+ * piloto), pasaron a 14 con R19 y son 16 desde R20-CIUDADES, que enciende la capa en las dos
+ * landings de `/pool-builders/`. Se corrige porque un comentario que dice «solo en esta ruta»
+ * invita a tocar la regla creyendo que no alcanza a nadie mas. Medido, no supuesto:
+ *   grep -rlo 'svc-captacion' .vercel/output/static --include='*.html' | wc -l   ->  16 */
 .svc-captacion {
   scroll-margin-block-start: calc(var(--mm-nav-alto) + var(--mm-e-24));
   margin-block-start: 0;
@@ -217,6 +223,26 @@
  * atadura que hoy ha fallado. (0-2-1) le gana a `.mm-txt` (0-1-0) sin `!important`.
  * #c7cddd sobre navy = 9,81:1. */
 .svc-captacion .success-message-form p { color: var(--mm-tinta-inversa-2); }
+
+/* Y EL GEMELO DE FALLO, QUE SE QUEDO SIN ARREGLAR (R20-CIUDADES).
+ *
+ * La trampa de arriba tiene DOS victimas y solo se curo una. `estimacion.css:483` pinta
+ * `color: var(--mm-error)` en el `<div class="w-form-fail">`, pero el texto es un
+ * `<p class="mm-txt">` y `disenio/base.css:75` le declara el color DIRECTAMENTE: una
+ * declaracion directa gana a una heredada, asi que el rojo nunca llegaba a la frase.
+ *
+ * NO ERA UN FALLO DE CONTRASTE y conviene decirlo sin adornarlo: negro sobre el fondo tenue
+ * se lee de sobra. Lo que fallaba es la INTENCION — el banner anunciaba el fallo con borde
+ * rojo y la frase en negro de cuerpo, o sea el unico estado en el que se pierde un lead ya
+ * pagado contado con la voz de un parrafo cualquiera.
+ *
+ * Mismo remedio y mismo razonamiento que el exito: por color, no cambiando el `<p>` a `<div>`
+ * para colarlo en el selector ajeno. (0-2-1) le gana a `.mm-txt` (0-1-0) sin `!important`.
+ *
+ * ACOTADO A `.svc-captacion` Y NO A `.appointment-section`, que es lo que decide el radio:
+ * `/request-estimated`, `/contact-us`, `/brochures` y `/gallery` tambien montan `.w-form-fail`
+ * y NO se tocan. #b3261e sobre --mm-fondo-tenue = 5,75:1 (medido en estimacion.css:483). */
+.svc-captacion .w-form-fail p { color: var(--mm-error); }
 
 /* ══ 3 · «WHAT HAPPENS AFTER YOU REACH OUT» ═══════════════════════════════════════════════
  * Ya no es tarjeta: es una TIRA sobre el suelo gris, delante del formulario. Sin fondo propio
