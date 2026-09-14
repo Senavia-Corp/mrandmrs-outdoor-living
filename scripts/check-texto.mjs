@@ -32,6 +32,8 @@ const CAPTACION_JSON = (() => {
   const f = path.join(RAIZ, 'src/data/captacion-servicios.json');
   return fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')) : {};
 })();
+/** La fuente unica de los dos telefonos, la misma que lee la pagina (R20-CIUDADES). */
+const TELEFONOS = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/telefonos.json'), 'utf8'));
 const ESTATICO = path.join(RAIZ, '.vercel/output/static');
 
 /**
@@ -1285,9 +1287,21 @@ function bloquesCaptacion(ruta) {
   if (!c) return [];
   const bloques = [];
 
-  // 1 · las dos lineas del heroe, detras del apoyo (que ya viene sustituido por `traduce`).
+  /* 1 · las dos lineas del heroe, detras del apoyo (que ya viene sustituido por `traduce`).
+   *
+   * EL ORDEN DE LOS TELEFONOS SE DERIVA, NO SE CABLEA. Estaba escrito «North primero» a pelo,
+   * y la pagina lo saca de `heroe.zonas` (`src/lib/captacion-ciudad.mjs`). Mientras las unicas
+   * rutas con captacion fueron las 14 fichas y 2 ciudades de North Florida los dos coincidian.
+   * En cuanto la fase 2 encienda una ciudad de Broward o Palm Beach —que lleva el suyo delante—
+   * la puerta se pondria roja por un texto CORRECTO, y una puerta que da rojo por lo que debe
+   * pasar se acaba desactivando. Se lee de la misma fuente unica que la pagina. */
+  const zonas = c.heroe.zonas ?? TELEFONOS.items.map((x) => x.zona);
   bloques.push([
-    `${'+1 (352) 740-3361'} North Florida · ${'+1 (954) 913-7112'} South Florida`,
+    zonas.map((z) => {
+      const tel = TELEFONOS.items.find((x) => x.zona === z);
+      if (!tel) throw new Error(`check-texto: heroe.zonas pide «${z}» y telefonos.json no lo trae`);
+      return `${tel.visible} ${tel.zona}`;
+    }).join(' · '),
     c.heroe.licencias,
   ]);
 

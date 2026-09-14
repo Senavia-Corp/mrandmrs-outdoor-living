@@ -50,6 +50,10 @@ const LANDINGS = [
       preseleccion: 'New Custom Pool',
     },
     heroe: 'img.image-bg-hero-services',
+    /* La regla 14 existe POR ESTA LANDING: R17-CORE §4.3 la encontro publicando en su `FAQPage`
+     * una pregunta que no estaba en la pagina, con una cifra sin verificar dentro. Dejarla sin
+     * cubrir seria escribir la puerta y no cerrarla. Son 8: las 5 del origen mas las 3 de R17. */
+    faq: { n: 8 },
   },
   {
     grupo: 'Gainesville',
@@ -341,9 +345,15 @@ for (const L of LANDINGS) {
   if (L.faq) {
     const visibles = [...d.querySelectorAll('.faq-section h3.dropdown-text')]
       .map((h) => h.textContent.trim());
+    /* EL `FAQPage` PUEDE IR SUELTO O COLGADO DE UN `WebPage`, y hay que mirar los dos sitios.
+     * Las 2 ciudades lo emiten como bloque propio (el origen no traia ninguno); las 14 fichas de
+     * `/services/` lo traen DENTRO del `WebPage` de Webflow, en `mainEntity`. Buscar solo el
+     * suelto dejaba la regla sin correr justo en la landing cuyo defecto la hizo existir. */
     const bloque = LD
       .map((s) => { try { return JSON.parse(s); } catch { return null; } })
-      .find((o) => o && o['@type'] === 'FAQPage');
+      .map((o) => (o && o['@type'] === 'FAQPage' ? o
+        : (o && o.mainEntity && o.mainEntity['@type'] === 'FAQPage' ? o.mainEntity : null)))
+      .find(Boolean);
     if (visibles.length !== L.faq.n) {
       mal(L.ruta, `${visibles.length} pregunta(s) visibles en .faq-section y se declararon `
         + `${L.faq.n}. O falta una respuesta que el anuncio promete, o sobra marcado.`);

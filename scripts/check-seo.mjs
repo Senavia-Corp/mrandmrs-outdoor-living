@@ -266,8 +266,14 @@ function apartaBloquesPropios(ruta, lista, problemas) {
       }
     }
   }
-  if (!visto) problemas.push(`falta el bloque ${d.tipo} declarado en BLOQUES_PROPIOS`);
-  else propiosCasados++;
+  /* SE DECLARA UNO: SE EXIGE UNO. Con `visto > 1` la pagina emitiria dos `FAQPage` —dos veces
+   * la misma FAQ para el buscador— y los dos saldrian de la comparacion con el baseline sin que
+   * nada lo dijera. Una declaracion que dice «1 bloque» y tolera N no es una declaracion. */
+  if (visto !== 1) {
+    problemas.push(visto
+      ? `${visto} bloques ${d.tipo} y BLOQUES_PROPIOS declara 1`
+      : `falta el bloque ${d.tipo} declarado en BLOQUES_PROPIOS`);
+  } else propiosCasados++;
   return quedan;
 }
 
