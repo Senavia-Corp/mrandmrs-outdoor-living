@@ -85,51 +85,19 @@ const QUITADAS_A_PROPOSITO = [
   ['12', 'la paginación del widget de Elfsight en /videos: la galería nativa los pinta todos'],
   ['Free YouTube Video Gallery Widget', 'la marca de Elfsight en /videos. Se va con el widget'],
 
-  /**
-   * ── R17-CORE · EL ANTES/DESPUES Y LA GALERIA, SOLO EN LA LANDING DE PAGO ───────────────
-   *
-   * 🚨 EL CUARTO ELEMENTO ES `rutas`, Y ES NUEVO. Hasta hoy esta lista era GLOBAL: la linea se
-   * quitaba del baseline de las 122. Servia porque las dos primeras entradas son de `/videos` y
-   * no existen en ningun otro sitio. Aqui NO vale: «Before», «After» y las dos tarjetas del
-   * antes/despues estan en LAS 14 FICHAS de `/services/`, asi que una declaracion global las
-   * quitaria tambien de las otras trece y las pondria las trece en rojo. Con `rutas`, se quita
-   * solo donde se quito de verdad. Sin el campo, el comportamiento es exactamente el de antes.
-   *
-   * POR QUE SE QUITA LA SECCION. La foto «Before» es de un listado del MLS de Miami -marca de
-   * agua `A11…… © Miami MLS© 202…` incrustada y visible- y el «After» es OTRO patio. Vuelve
-   * cuando exista el par honesto (`docs/encargos/R17-CORE.md` §10).
-   *
-   * Y `gallery` se sustituye por `CarruselProyectos` porque pintaba LAS MISMAS 10 fotos que el
-   * feed de Instagram de mas abajo: solape 10/10, verificado fichero a fichero.
-   */
-  ...[
-    ['Before', 'el antes/despues sale de la landing de pago: la foto era de un listado del MLS'],
-    ['After', 'idem'],
-    ['From Empty Backyard To Your Dream Custom Pool', 'idem'],
-    ['Turn that bare South Florida backyard into the pool you have always envisioned. Mr. & Mrs. Outdoor Living handles everything from 3D design and permits to construction and start-up — delivering a luxury custom pool from the ground up.',
-      'idem. Y decia «South Florida» en la landing cuyo anuncio promete North Florida'],
-    ['Design-Build Authority', 'idem: este tema sube a la franja de confianza, dicho mas corto'],
-    ['One team handles design, permits, engineering, and construction. No subcontractor surprises, no gaps in accountability.', 'idem'],
-    ['Licensed & Engineered', 'idem: sube a la franja de confianza'],
-    ['Florida licensed and insured professionals. Every project is built to code, built to last, and built to impress.', 'idem'],
-    ['View All Projects', 'idem. El enlace a obra lo repone CarruselProyectos'],
-    ['Custom Pool Project Gallery', '`gallery` se sustituye por CarruselProyectos: pintaba las mismas 10 fotos que el feed'],
-    ['Custom pool builds across Florida — from resort-style lagoons to sleek modern lap pools.', 'idem'],
-  ].map(([l, m]) => [l, m, ['/services/custom-pool-spa-builders-in-north-south-florida']]),
-
-  /* ── R19 · LAS 13 FICHAS RESTANTES ──────────────────────────────────────────────────────
-   * NO LLEVAN DECLARACIONES AQUI, Y ES A PROPOSITO. El antes/despues que pierden se quita del
-   * baseline crudo en `quitaAntesDespues()`, como BLOQUE CONTIGUO. La primera version de esto
-   * si las declaraba linea a linea -nueve por ficha, ~120 en las trece- y estaba MAL por dos
-   * razones que la puerta demostro:
+  /* ── LAS 14 FICHAS DE `/services/` NO LLEVAN DECLARACIONES AQUI, Y ES A PROPOSITO ─────────
+   * El antes/despues que pierden se quita del baseline crudo en `quitaAntesDespues()`, como
+   * BLOQUE CONTIGUO. Declararlo linea a linea -nueve por ficha- estaba MAL por dos razones que
+   * la puerta demostro:
    *
    *   · la ultima linea del bloque es «Get A Free Estimate», que sale CUATRO veces en la
    *     pagina; `QUITADAS_A_PROPOSITO` filtra por Set y habria borrado tambien la del heroe.
    *   · nueve lineas de copy ajeno copiadas a mano por ficha son nueve lineas que se
    *     desincronizan el dia que alguien toque el origen.
    *
-   * Lo que SI sigue declarandose aqui es lo que no es un bloque entero y reconocible: por eso
-   * el piloto conserva sus once lineas, que incluyen ademas las dos de su `gallery`. */
+   * 13-sep-2026: la ficha de piscina, que era el piloto, tambien sale de aqui. Sus nueve lineas
+   * del antes/despues ya no quitaban nada -`quitaAntesDespues()` corre antes-, y las dos de su
+   * `gallery` vuelven: la galeria vuelve a la pagina (§ `bajaGaleria()`). */
 ];
 
 /**
@@ -367,7 +335,34 @@ const reordena = (ruta, lineas) => {
     const i = lineas.findIndex((_, k) => d.antes.every((l, j) => lineas[k + j] === l));
     if (i >= 0) lineas.splice(i, d.antes.length, ...d.despues);
   }
-  return ordenaZonas(ruta, subeResenas(ruta, lineas));
+  return ordenaZonas(ruta, subeResenas(ruta, bajaGaleria(ruta, lineas)));
+};
+
+/**
+ * LA GALERIA BAJA DETRAS DE LA FAQ — derivado (Sebastian, 13-sep-2026).
+ *
+ * `captacion()` mueve `section.gallery` detras de `section.faq-section` en las 14 fichas
+ * (`build-paginas.mjs`, bloque 8). En el baseline la galeria son DOS lineas -titulo acabado en
+ * «Gallery» y entradilla- pegadas encima del titulo de la FAQ, acabado en «FAQs» en las
+ * catorce; y la FAQ acaba justo antes de «Where We Serve». Declararlo en
+ * `REORDENADAS_A_PROPOSITO` obligaria a copiar a mano la FAQ entera de cada ficha, que es
+ * distinta en las catorce. Se deriva, como `subeResenas` y `ordenaZonas`.
+ *
+ * Barandilla: UN solo candidato, «Where We Serve» detras, y el resultado tiene que ser una
+ * PERMUTACION de la entrada. Si algo falla no se toca nada y la puerta se pone roja sola.
+ */
+const bajaGaleria = (ruta, lineas) => {
+  if (!CAPTACION_JSON[ruta]) return lineas;
+  const candidatas = lineas.flatMap((l, k) =>
+    (/Gallery$/.test(l) && /FAQs$/.test(lineas[k + 2] ?? '') ? [k] : []));
+  if (candidatas.length !== 1) return lineas;
+  const g = candidatas[0];
+  const w = lineas.indexOf('Where We Serve', g + 2);
+  if (w < 0) return lineas;
+  const resto = [...lineas.slice(0, g), ...lineas.slice(g + 2)];
+  const salida = [...resto.slice(0, w - 2), lineas[g], lineas[g + 1], ...resto.slice(w - 2)];
+  if ([...salida].sort().join('\n') !== [...lineas].sort().join('\n')) return lineas;
+  return salida;
 };
 
 /**
@@ -1187,9 +1182,9 @@ function sinElBloque(ruta, hay) {
 /**
  * ── LA CAPA DE CAPTACION DE LAS FICHAS DE `/services/` (R17-CORE) ────────────────────────
  *
- * Cuatro bloques de texto que NO existen en ningun baseline porque son nuestros: la franja de
- * confianza, el formulario con sus pasos, la banda de inversion y el carrusel de obras que
- * sustituye a `gallery`, mas las dos lineas del heroe y las tres preguntas nuevas de la FAQ.
+ * Tres bloques de texto que NO existen en ningun baseline porque son nuestros: la franja de
+ * confianza, el formulario con sus pasos y la banda de inversion, mas las dos lineas del heroe
+ * y las preguntas nuevas de la FAQ.
  *
  * SE DERIVAN DEL JSON, NO SE COPIAN A MANO. Es lo que ya hacen `lineasResenas()`,
  * `lineasBlog()` y `lineasFeed()`, y por la misma razon: `LINEAS_ANADIDAS` cablea el texto
@@ -1228,19 +1223,6 @@ const camposCaptacion = (c) => [
   + 'an estimate. I understand that I may opt out at any time by replying STOP. Message and data '
   + 'rates may apply.',
 ];
-
-/** Los slides del carrusel de obras, en el orden del componente. Si la ruta declara `solo`,
- *  manda esa lista y ese orden; si no, las 15 (propias y luego migradas). */
-const slidesObras = (ruta) => {
-  const lee = (rel) => {
-    const f = path.join(RAIZ, rel);
-    return fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')).obras ?? [] : [];
-  };
-  const todas = [...lee('src/data/proyectos-propios.json'), ...lee('src/data/obras-migradas.json')];
-  const solo = CAPTACION_JSON[ruta]?.proyectos?.solo;
-  const usadas = solo ? solo.map((sg) => todas.find((o) => o.slug === sg)).filter(Boolean) : todas;
-  return usadas.flatMap((o) => [capitaliza(String(o.tituloHtml).replace(/&amp;/g, '&')), 'See Project']);
-};
 
 /** Los bloques contiguos que aporta la capa de captacion en `ruta`. Vacio si no la lleva. */
 function bloquesCaptacion(ruta) {
@@ -1282,19 +1264,12 @@ function bloquesCaptacion(ruta) {
     ...camposCaptacion(c),
   ]);
 
-  // 3 · banda de inversion, y el carrusel de obras DETRAS solo si esta ficha sustituyo su
-  //     galeria por el (`proyectos.reemplazaGaleria`). Las que conservan su galeria propia no
-  //     pintan `CarruselProyectos`, asi que declarar sus lineas las daria por faltantes.
+  // 3 · banda de inversion. Desde el 13-sep-2026 ninguna ficha pinta `CarruselProyectos` detras:
+  //     las catorce llevan su `gallery`, y sus dos lineas salen del baseline (§ `bajaGaleria`).
   bloques.push([
     capitaliza(c.inversion.titulo),
     c.inversion.texto,
     ...c.inversion.ctas.map((x) => x.texto),
-    ...(c.proyectos?.reemplazaGaleria ? [
-      capitaliza(c.proyectos.titulo),
-      c.proyectos.entradilla,
-      ...slidesObras(ruta),
-      'See All Projects',
-    ] : []),
   ]);
 
   // 4 · las preguntas nuevas. Solo el `<h3>`: la respuesta vive en un desplegable cerrado y

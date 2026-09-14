@@ -6400,3 +6400,68 @@ Y la seccion encoge: piscinas 1335 -> 982 px, pergolas ~1000 -> 733.
 | `check:rutas` · `check:enlaces` · `check:seo` · `check:galeria` | 🟢 |
 | `check:assets` | ⚠️ **NO SE PUEDE CORRER AQUI** — `_source/sanity-masters/` no esta versionado y no existe en el contenedor. Falla ABIERTO, no verde |
 | `check:visual` | 🔴 **esperado en las 16 rutas del FAQ, y solo en esas 16** — la seccion ha cambiado a proposito. Radio de impacto comprobado estaticamente: 30 selectores en `faq.css`, 0 fuera de `.faq-section`/`.mm-collage`, y las dos clases salen en exactamente 16 HTML. Las otras 99 rutas no pueden moverse. **Re-baselinizar es del director** |
+
+---
+
+## FICHAS-ORDEN — las 14 fichas de `/services/` con un solo orden: galería detrás de la FAQ (13-sep-2026)   ✅ cerrada
+
+**Encargo:** pedido de Sebastian en chat (13-sep-2026) · **Base:** `71617b3` (`origin/main`) · **Rama:** `claude/fichas-orden-galeria` · **Commit, push y deploy:** pedidos por Sebastian; producción sale por la integración Git de Vercel al entrar en `main`.
+
+### Objetivo
+
+1. Las 14 fichas con la misma estructura y el mismo orden.
+2. Fuera `CarruselProyectos` de `/services/`: las 14 llevan su `gallery`.
+3. La galería va detrás de la FAQ y delante de `location`.
+
+Sustituye el orden de `docs/encargos/R19-CAMBIOS.md` (projects 10 · FAQ 11 · location 12), que queda anotado allí.
+
+### Qué se hizo
+
+- **`scripts/build-paginas.mjs`, bloque 8**
+  - Retira el opt-in `proyectos.reemplazaGaleria`.
+  - 8a: la Core rehace su galería con 8 fotos de obra propia (`galeria.fotos`). El `alt` sale de `proyectos-propios.json`; si una foto es el héroe, la de inversión o una del feed, el build se para.
+  - 8b: mueve `section.gallery` detrás de `section.faq-section` en las 14, con guardas y contador (sale 1 si no son 14).
+- **`CarruselProyectos.astro`:** fuera el filtro `solo`, que se quedó sin usuaria. Las 66 rutas que lo montan salen byte a byte iguales.
+- **`scripts/check-texto.mjs`**
+  - Nueva `bajaGaleria()`, derivada, con barandilla de permutación.
+  - Fuera las QUITADAS de la Core y las líneas del carrusel.
+  - Los arreglos de `subeResenas` y del CTA de la rejilla ya venían de PROCESO-CONGELADO (`b5409ed`): se quedan los suyos.
+- **Puerta nueva `npm run check:estructura`:** estática y <1 s. Exige un solo orden en las 14 y la galería con slides. Está en `npm run check` detrás de `check:tokens`. En la base sale **ROJA**: el orden viejo no pasa.
+- **`servicio-core.css` §6:** `location` tiene ahora una banda azul encima. La marca `svc-ubicacion` (14 páginas de las 17 con `.location`) le da `padding-top` 72 · 96 · 136 con tokens.
+
+### Números medidos
+
+| Métrica | Esperado | Medido |
+|---|---|---|
+| Fichas con el mismo orden (`check:estructura`) | 14 | **14** |
+| Páginas que cambian (`diag-identidad`, base `71617b3`) | 14 | **14** · 108 idénticas · solo cambia el hash de `Base.css` |
+| Galerías movidas por el generador · regeneración idempotente | 14 · sí | **14** · sí |
+| Costura de `location` (tinta a tinta, 479-767 / 768-991 / 992+) | ≤1,5x | antes **2,09x / 1,81x / 2,04x** → **1,37x / 1,19x / 1,43x** |
+| FAQ · galería (misma medida) | ≤1,5x | **1,0x** · **≤1,25x** |
+| Capa CSS | ≤92 KB | **90,7 KB** |
+
+Las costuras se midieron sobre la base `d185a51`, antes de FAQ-COLLAGE, en Core y custom-deck a 7 anchos. No se repitió la medida tras el rebase: Sebastian pidió cerrar sin más barridas.
+
+### Gate
+
+| Puerta | Estado |
+|---|---|
+| `check:estructura` · `check:tokens` · identidad | 🟢 sobre la base final `71617b3` |
+| `check:rutas` · `check:enlaces` · `check:seo` · `check:ads` (`PUBLIC_ES_PRODUCCION=1`) | 🟢 sobre `d185a51` y **repetidas en verde sobre la base final** (estáticas, sin navegador) |
+| `check:texto /services/` | 🟢 14/14 sobre `d185a51` · **no se repitió tras el rebase** |
+| `check:ix2` | 🟢 sobre `d185a51` · no se repitió |
+| `check:galeria` (la Core) | 🔴 1 · **PRE-EXISTING**: «salto de −271 px» al abrir. Custom-deck da el mismo salto en `d185a51` y en `71617b3`, sin este cambio. Con clic por DOM el salto es 0: es el clic de Playwright, no el `href="#"`. Todo lo demás 🟢: modal, 16 anclas con nombre, 44×44, Escape, velo, foco |
+| `check:visual` (Core + custom-deck) | 🔴 8 · **ROJO CORRECTO** (`rediseno`). Las otras 12 fichas no se corrieron, por decisión de Sebastian |
+
+**No corrieron:** `check:assets`, `check:menu`, `check:medicion`, `check:carrusel`, `check:galeria-formulario`, `check:resenas`, `check:aviso`, `check:estimador`. No cuentan como verdes.
+
+### Desviaciones
+
+1. **Rebase a mitad del encargo.** El trabajo se hizo sobre `d185a51`, pero `origin/main` iba 16 commits por delante: FAQ-COLLAGE y PROCESO-CONGELADO. Con permiso de Sebastian se avanzó `main` por *fast-forward* (sin commits propios) y se reaplicó el cambio encima.
+2. **Mis dos arreglos de `check-texto` sobraban.** Eran los mismos que `b5409ed` y se quitaron.
+
+### Abierto
+
+1. **Fotos repetidas seguidas.** El collage de la FAQ pinta 5 fotos de la galería de su ficha (en pool-remodeling: 08, 03, 09, 04 y 06). Con la galería justo debajo, esas fotos salen dos veces seguidas en 13 fichas. En la Core no pasa. **Decide Sebastian**; se dejó solo reportado.
+2. **Aprobar las capturas** de las 14 fichas con `aprobar-diseno.mjs`. `check:visual` sigue rojo en ellas hasta entonces, y el árbol tiene que estar limpio: `PROMPT-FONDO-AGUA.md` sin trackear lo bloquea.
+3. **`check:texto` e `check:ix2` no se repitieron sobre la base final** (verdes sobre `d185a51`). Sebastian pidió cerrar sin más barridas; toca en el próximo gate de fase.
