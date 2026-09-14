@@ -343,7 +343,27 @@ El red team corrió sobre las 2 rutas a 390 · 768 · 1280 · 1440 con `scripts/
 | El separador «·» de los teléfonos cuelga al final de línea a 390 | 1 línea a 1440; el corte es **idéntico en las 14 fichas** | **16** — PRE-EXISTING, no lo introduce R20 |
 | Las 5 fotos del collage salen otra vez en el feed de la misma página | `2x` cada una, medido | declarado: es el solape que Sebastian aceptó en FICHAS-ORDEN · 2 |
 
+**Una decisión de dirección de arte que se declara en vez de tocarla:** en el collage de Ocala, la foto `custom-pool-spa-builders-florida-03` lleva el `alt` que publica `/gallery`, y ese `alt` dice **«South Florida»** en una landing de North Florida. Se deja, y por tres razones medidas: es el `alt` que el sitio ya publica para ese fichero —cambiarlo sería escribir una descripción distinta de la misma foto en dos páginas—; describe **dónde se construyó la piscina**, que es cierto, y no afirma dónde damos servicio; y de las 10 del set es la única con esa mención, así que sustituirla obligaría o a repetir una foto en la misma página o a mezclar dos fuentes en un collage. Va en el índice 3, que el bento solo pinta en escritorio. Si alguna vez molesta, la salida limpia es una foto de `public/images/projects/*-north-florida/`, que sí trae `alt` declarado en `proyectos-propios.json`.
+
 **Y dos defectos del propio diagnóstico, corregidos antes de darlo por bueno:** medía el honeypot `ref_id` —1×1 con `opacity:0` a propósito— como «objetivo táctil de 8×6», y contaba como repetición los 14 logos que la marquesina pinta tres veces por diseño. Un falso rojo enseña a ignorar los rojos.
+
+### La revisión adversarial del diff, antes de mergear
+
+`main` es producción, así que el diff entero pasó por cuatro revisores —radio de impacto, guardas del código, cumplimiento del copy y contratos de las puertas— y cada hallazgo por tres refutadores independientes. **Nueve sobrevivieron**, y ninguno cambia la salida de hoy: todos son guardas, conteos y alcance.
+
+| # | Qué se le escapaba a quién | Consecuencia si no se arregla |
+|---|---|---|
+| 1 | `build-paginas.mjs` comparaba sus contadores contra **todas** las claves de `captacion-servicios.json` | **`npm run paginas` salía con 1**: «la gallery se movió en 14 fichas y hay 16». Rompí ese pipeline al añadir 2 claves de otra familia, y no lo vi porque este encargo no lo corre |
+| 2 | `check:estructura:ciudades` y `check:captacion` estaban fuera de `npm run check` | Dos puertas que nadie corre no son puertas |
+| 3 | El generador solo sabía **añadir** | Quitar una ciudad de las filas dejaba su entrada viva y `--check` seguía VERDE |
+| 4 | `String.replace` interpreta `$&` en el texto de sustitución, y ese texto sale del JSON | Un `$&` en el copy duplicaría el marcado del héroe en producción, en silencio |
+| 5 | El héroe guardaba el marcador pero no la **carga** (`esc(undefined)` → cadena vacía) | Una entrada sin `ancla` pintaba `href=""` en el CTA principal de una landing de pago |
+| 6 | El `slug` de la fila no se validaba contra las rutas reales | Una errata apaga la ciudad que se quería encender, con el generador en verde |
+| 7 | `check-texto` **cableaba** el orden de los teléfonos que la página deriva del dato | **Bloqueaba la fase 2**: la primera ciudad de Broward o Palm Beach pondría la puerta roja por un texto correcto |
+| 8 | La **regla 14** no corría en la landing cuyo defecto cita como razón de existir | Escribir la puerta y no cerrarla. Además su `FAQPage` va **anidado** en el `WebPage` del origen, así que no bastaba con declararla |
+| 9 | `check-seo` declaraba «1 bloque `FAQPage`» y toleraba N | Dos bloques pasarían sin que nada lo dijera |
+
+Las dos guardas nuevas (5 y 6) se rompieron a propósito antes de darlas por buenas.
 
 ### Desviaciones
 Qué se hizo distinto del plan y por qué. «Ninguna» es una respuesta válida.
