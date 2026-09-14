@@ -103,12 +103,12 @@ sin rehacer nada.
 | H1 Match | ✅ «Custom Pool Builders» | ✅ **corregido** | ✅ **corregido** | ✅ «Pool Remodeling & Renovation Services» |
 | Hero Match | ✅ | ✅ **corregido** | ✅ **corregido** | ✅ |
 | First 100 Words | ✅ **pool nueva + North Florida + teléfono + CTA** | ✅ inground + Alachua | ✅ inground + Marion | ✅ remodel + pool |
-| CTA Match | ✅ **ancla al formulario de la propia página** | ✅ Free Estimate (2.º clic) | ✅ Free Estimate (2.º clic) | ✅ Free Estimate (2.º clic) |
-| Local Match | **North Florida delante en héroe, teléfonos y `location`** | ✅ Gainesville + Alachua County | ✅ Ocala + Marion County | zona regional |
+| CTA Match | ✅ **ancla al formulario de la propia página** | ✅ **ancla a `#estimate`** | ✅ **ancla a `#estimate`** | ✅ Free Estimate (2.º clic) |
+| Local Match | **North Florida delante en héroe, teléfonos y `location`** | ✅ Gainesville + Alachua County **en héroe, franja, FAQ y los 2 teléfonos** | ✅ Ocala + Marion County **ídem** | zona regional |
 | Commercial Intent | ✅ **remodelación fuera del cluster y enlazada a su landing** | ✅ | ✅ | ✅ |
-| **Internal LP Score** | **95** (era 88) | **90** | **90** | **86** |
-| Main Gap | — el formulario propio está puesto | sin formulario propio | sin formulario propio | sin formulario propio |
-| Required Action | verificar GTM | A1 (5 campos) · verificar GTM | ídem | ídem |
+| **Internal LP Score** | **95** (era 88) | **95** (era 90) | **95** (era 90) | **86** |
+| Main Gap | — el formulario propio está puesto | — el formulario propio está puesto | — el formulario propio está puesto | sin formulario propio |
+| Required Action | verificar GTM | verificar GTM | verificar GTM | A1 · verificar GTM |
 | Priority | P0 (tracking) | P0 (tracking) | P0 (tracking) | P0 (tracking) |
 | Status | READY AFTER FIXES | READY AFTER FIXES | READY AFTER FIXES | READY AFTER FIXES |
 
@@ -261,8 +261,8 @@ Y el héroe, que es el LCP:
 | Landing | Veredicto | Qué falta |
 |---|---|---|
 | Pool Builders Core | **READY AFTER FIXES** | verificar GTM (§0). **A1 hecho** el 11-sep |
-| Gainesville | **READY AFTER FIXES** | verificar GTM (§0) · A1 |
-| Ocala | **READY AFTER FIXES** | verificar GTM (§0) · A1 |
+| Gainesville | **READY AFTER FIXES** | verificar GTM (§0). **A1 hecho** el 14-sep (R20-CIUDADES) |
+| Ocala | **READY AFTER FIXES** | verificar GTM (§0). **A1 hecho** el 14-sep (R20-CIUDADES) |
 | Full Remodel | **READY AFTER FIXES** | verificar GTM (§0). **A1 hecho** el 12-sep (R19) |
 
 ### Actualización R19 — 12-sep-2026
@@ -306,6 +306,38 @@ landing.
 
 La puerta dice en voz alta lo que todavía no está hecho — «3 de 4 landings sin la capa de
 captación» — en vez de callarlo: no es un fallo suyo, es trabajo pendiente, y se imprime.
+
+### Actualización R20-CIUDADES — 14-sep-2026
+
+**Las dos landings de ciudad dejan de mandar el lead a otra página.** Hasta hoy `Gainesville` y
+`Ocala` salían en la lista de PENDIENTES de `check:ads`: sin formulario propio declarado, o sea
+que solo se les corrían cinco de las trece comprobaciones. Ahora tienen formulario en la página
+con ancla `#estimate`, franja de confianza delante de él, banda de inversión **sin una sola
+cifra** y una FAQ con las tres objeciones locales —coste, permisos del condado y qué incluye—.
+El tráfico de sus dos ad groups ya no necesita un segundo clic hasta `/request-estimated`.
+
+**Pasan 12 de las 13, y la que falta se dice por qué.** La regla 12 —héroe `eager` con
+`fetchpriority="high"` y dimensiones— **NO APLICA** aquí: el héroe de las 53 ciudades es
+`.hero-glass-section`, que no tiene `<img>`; su fondo es un `<video>` autoplay con póster que
+comparten 57 rutas. Aplicarle la regla exigiría inventarse un selector para salir verde. Sale
+impresa en PENDIENTE, con el motivo. Decisión de Sebastian del 14-sep: el héroe se queda como
+está.
+
+**Los leads de las cuatro landings de pago ya son distinguibles.** `Ocala Pool Builders Form` /
+`ocala` y `Gainesville Pool Builders Form` / `gainesville`, cada uno con su asunto de correo. Es
+la misma lección de R19, aplicada antes de que costara nada.
+
+**Una regla nueva y dos defectos de la propia puerta**, y los tres se rompieron a propósito una
+vez para ver el rojo:
+
+| # | Qué exige / qué se arregló | Por qué existe |
+|---:|---|---|
+| 14 | el `FAQPage` casa **1:1** con los `<h3>` visibles, en orden y en cantidad | R17-CORE §4.3 encontró la landing del Core publicando en su `FAQPage` una pregunta que no estaba en la página, con una cifra sin verificar dentro |
+| 9 | recoger el JSON-LD **antes** de vaciar el DOM | `:180` borra todos los `<script>` para quedarse con el texto del cuerpo, así que la regla 9 recorría una lista **vacía** desde el 11-sep: no comprobaba nada y salía verde |
+| 10 y 11 | quitar el menú por `section.menu`, no por la etiqueta `nav` | en el marcado de Webflow la **respuesta** de cada FAQ es un `<nav class="dropdown-list">`: las dos reglas de cumplimiento nunca vieron una respuesta de FAQ. Y la 11 existe *precisamente* porque «$75,000 … $500,000+» estuvo publicado dentro de una. Medido: de los 8 `<nav>` de la página, los 5 del menú cuelgan de `section.menu` |
+
+**Lo que sigue mandando sobre las cuatro:** mientras `generate_lead` siga a 0 en GA4 el veredicto
+es READY AFTER FIXES y **no** READY FOR PAID SEARCH. Es de GTM, no de este repo (§0).
 
 ### Un hallazgo que no es de Quality Score y hay que decir igual
 
