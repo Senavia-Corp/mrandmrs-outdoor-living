@@ -15,6 +15,7 @@
     "shell": "node scripts/build-shell.mjs",
     "paginas": "node scripts/build-paginas.mjs",
     "plantillas": "node scripts/build-plantillas.mjs",
+    "captacion:ciudades": "node scripts/build-captacion-ciudades.mjs",
     "reveals": "node scripts/build-reveals.mjs",
     "youtube": "node scripts/extract-youtube.mjs",
     "orden": "node scripts/extract-orden.mjs",
@@ -44,6 +45,8 @@
     "sliders": "node scripts/build-sliders.mjs",
     "check:tokens": "node scripts/check-tokens.mjs",
     "check:estructura": "node scripts/check-estructura-servicios.mjs",
+    "check:estructura:ciudades": "node scripts/check-estructura-ciudades.mjs",
+    "check:captacion": "node scripts/build-captacion-ciudades.mjs --check",
     "check:aviso": "node scripts/test-aviso.mjs",
     "check:medicion": "node scripts/check-medicion.mjs",
     "check:carrusel": "node scripts/check-carrusel.mjs"

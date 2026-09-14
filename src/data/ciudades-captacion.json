@@ -1,0 +1,165 @@
+{
+  "_lee_esto": [
+    "LAS CIUDADES DE /pool-builders/ QUE LLEVAN LA CAPA DE CAPTACION, EN UNA FILA CADA UNA.",
+    "",
+    "Son 53 paginas de UNA plantilla. Encender la capa de R17-CORE en una ciudad no puede costar",
+    "un bloque de copy escrito a mano, porque entonces 53 ciudades son 53 bloques y el segundo se",
+    "escribe distinto que el primero. Por eso este fichero guarda lo UNICO que cambia de una",
+    "ciudad a otra -nombre, condado, region y que fotos le tocan- y `scripts/build-captacion-",
+    "ciudades.mjs` expande cada fila a su entrada completa en `src/data/captacion-servicios.json`",
+    "y en `src/data/collage-faq-por-ruta.json`.",
+    "",
+    "SE ESCRIBEN ENTRADAS LITERALES, NO SE EXPANDE AL PINTAR. `scripts/check-texto.mjs` lee el",
+    "JSON con `readFileSync` y `src/pages/api/formulario.ts` con `import`: una expansion en",
+    "tiempo de render seria invisible para los dos, y son justo los que dan de alta el texto",
+    "declarado y la lista blanca del correo del lead.",
+    "",
+    "PARA ANADIR UNA CIUDAD: una fila aqui y `npm run captacion:ciudades`. El modo `--check`",
+    "vuelve a expandir y compara: si alguien edita a mano las entradas generadas, sale rojo.",
+    "",
+    "SOLO VALEN LOS 9 CONDADOS DE `src/lib/negocio.mjs`. North: Alachua, Columbia, Dixie,",
+    "Gilchrist, Levy, Marion, Putnam. South: Broward, Palm Beach. Una ciudad cuyo condado no",
+    "este en esa lista NO se inventa: se queda sin condado en el copy y se marca para Sebastian.",
+    "",
+    "LAS FOTOS SE ELIGIERON MIRANDO, con hoja de contactos (`audit/r20-ciudades/`), nunca por el",
+    "nombre del fichero (00-PRINCIPIOS.md §4). `pos` es el `object-position` medido contra el",
+    "recorte REAL de la celda del bento (movil: 1.6fr y 1fr de 128 px de alto), no a ojo.",
+    "",
+    "EL SOLAPE ESTA DECLARADO: estas 10 son las mismas que pinta el feed de Instagram de la",
+    "propia pagina, asi que cada collage repite 5 mas abajo. Es el mismo solape que Sebastian",
+    "acepto en FICHAS-ORDEN · 2, y se dice en vez de callarlo."
+  ],
+  "fotos": {
+    "_lee_esto": "El set `construction` de /gallery (10). `alt` y `srcset` copiados VERBATIM del build de /gallery: es la fuente publicada de estos mismos ficheros, y ninguno situa la foto en una ciudad concreta.",
+    "construccion": {
+      "10": {
+        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
+        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "45% 80%"
+      },
+      "01": {
+        "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-01-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-01-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-01-p-1080.jpg 1080w, /images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg 1250w",
+        "alt": "Luxury custom pool and spa construction featuring modern design, premium pavers, and outdoor living spaces built by expert pool builders in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 60%"
+      },
+      "02": {
+        "src": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
+        "alt": "Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.",
+        "ancho": 1250,
+        "alto": 937,
+        "pos": "50% 50%"
+      },
+      "03": {
+        "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
+        "alt": "Elegant residential pool and spa design with premium finishes and tropical landscaping, crafted by custom pool builders in South Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 55%"
+      },
+      "04": {
+        "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-04-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-04-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-04-p-1080.jpg 1080w, /images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg 1250w",
+        "alt": "Modern pool renovation with raised spa and clean architectural lines, designed and installed by professional pool builders in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 60%"
+      },
+      "05": {
+        "src": "/images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-05-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-05-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-05-p-1080.jpg 1080w, /images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg 1250w",
+        "alt": "Luxury outdoor pool featuring waterfall spa and covered patio area, built by experienced custom pool and outdoor living contractors in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "78% 50%"
+      },
+      "06": {
+        "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-06-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-06-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-06-p-1080.jpg 1080w, /images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg 1250w",
+        "alt": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "65% 55%"
+      },
+      "07": {
+        "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
+        "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "70% 65%"
+      },
+      "08": {
+        "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
+        "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "55% 55%"
+      },
+      "09": {
+        "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-09-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-09-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-09-p-1080.jpg 1080w, /images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg 1250w",
+        "alt": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "50% 75%"
+      }
+    },
+    "inversion": {
+      "estate-sun-shelf": {
+        "src": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-5.avif",
+        "alt": "Lap-length pool seen from the far end, with the marble deck, the stone inlay band and the home behind.",
+        "ancho": 1250,
+        "alto": 698,
+        "region": "North Florida",
+        "_fuente": "alt DECLARADO en src/data/proyectos-propios.json (galeria de la obra propia). No es la portada del carrusel (project-1), que ya sale en esta misma pagina."
+      },
+      "screen-enclosure-nf": {
+        "src": "/images/projects/luxury-pool-spa-with-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-north-florida-project-5.avif",
+        "alt": "Pool with a stone-faced raised spa and a travertine deck beside a screened lanai, built in North Florida by Mr & Mrs Outdoor Living.",
+        "ancho": 1250,
+        "alto": 698,
+        "region": "North Florida",
+        "_fuente": "Obra de origen Webflow, sin alt declarado: escrito MIRANDO la foto. La unica afirmacion de lugar es «North Florida», que es como el propio sitio clasifica la carpeta — mismo criterio que el alt de la banda de inversion de la ficha Core."
+      }
+    }
+  },
+  "ciudades": [
+    {
+      "slug": "ocala-florida",
+      "ciudad": "Ocala",
+      "condado": "Marion",
+      "region": "North Florida",
+      "collage": [
+        "01",
+        "04",
+        "10",
+        "03",
+        "07"
+      ],
+      "inversion": "estate-sun-shelf",
+      "_fuente_condado": "Marion esta en CONDADOS de src/lib/negocio.mjs; el h2 del heroe ya publica «Ocala And Marion County» (seo-pool-builders.json, bloques, SEO-AEO-GEO A3)."
+    },
+    {
+      "slug": "gainesville-florida",
+      "ciudad": "Gainesville",
+      "condado": "Alachua",
+      "region": "North Florida",
+      "collage": [
+        "06",
+        "02",
+        "08",
+        "05",
+        "09"
+      ],
+      "inversion": "screen-enclosure-nf",
+      "_fuente_condado": "Alachua esta en CONDADOS de src/lib/negocio.mjs; el h2 del heroe ya publica «Gainesville And Alachua County»."
+    }
+  ]
+}
