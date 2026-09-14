@@ -48,7 +48,7 @@ const SIN = [
 ];
 const CON = [
   'hero-glass-section', 'svc-confianza', 'trusted-section', 'appointment-section',
-  '_3d-section', 'animated-divs-section', 'projects-section', 'testimonial-section',
+  '_3d-section', 'animated-divs-section', 'svc-cierre', 'projects-section', 'testimonial-section',
   'svc-inversion', 'faq-section', 'blog-section-page', 'social-media', 'cta-footer',
 ];
 

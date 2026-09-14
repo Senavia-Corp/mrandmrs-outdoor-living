@@ -220,9 +220,18 @@ const SEO = FAQ
   {/* NI UN CALLEJON SIN SALIDA. Entre el formulario y el pie hay cinco secciones seguidas —3D,
       Pool Features, obra, resenas, inversion— y la unica salida era «See all Projects», que
       lleva FUERA. Este ancla devuelve al formulario justo donde el deseo esta mas alto, que es
-      al acabar de leer las mejoras de la piscina. Reutiliza `.svc-cierre`, que ya existe. */}
+      al acabar de leer las mejoras de la piscina. Reutiliza `.svc-cierre`, que ya existe.
+
+      VA EN `<section>` Y NO EN `<p>` COMO SU GEMELO DE LA FAQ, y la diferencia es real: el de
+      la FAQ vive DENTRO de `section.faq-section`, y este cuelga entre dos `<Fragment>`, o sea
+      al nivel superior del documento. Un `<p>` suelto entre dos secciones es marcado que nadie
+      espera leer ahi, y ademas `check:estructura:ciudades` solo enumera `<section>`: en `<p>`
+      la puerta no lo veria. Cero CSS: `.svc-cierre` es un selector plano
+      (`servicio-core.css`), asi que pinta igual en los dos. Medido antes de moverlo: NO habia
+      costura que arreglar — `.animated-divs-section` y `.projects-section` son las dos
+      `#ffffff`, asi que esto es correccion semantica, no visual. */}
   {CAP && (
-    <p class="svc-cierre"><a href="#estimate" class="button button-styles w-button">Get a Free Estimate</a></p>
+    <section class="svc-cierre"><a href="#estimate" class="button button-styles w-button">Get a Free Estimate</a></section>
   )}
   <CarruselProyectos titulo={d['headingPortfolio']} entradilla={d['paragraphPortfolio']} />
   <Fragment set:html={P_DESPUES} />
