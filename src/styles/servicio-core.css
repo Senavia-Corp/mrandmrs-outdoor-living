@@ -482,3 +482,21 @@
  * El token esta calibrado contra `--mm-fondo-navy`, que es un color plano y siempre el mismo
  * (9,81:1). Sobre una FOTOGRAFIA no hay tal garantia. Un token correcto en su fondo puede ser
  * incorrecto en otro: eso se mide, no se hereda. */
+
+/* ══ 6 · «WHERE WE SERVE» DETRAS DE LA GALERIA (13-sep-2026) ════════════════════════════════
+ * Sebastian movio la `gallery` detras de la FAQ en las 14 fichas, asi que `location` tiene
+ * ahora una banda azul ENCIMA: arriba solo queda su propio padding y abajo el suyo + el del
+ * blog. Medido de tinta a tinta (headless, Core y custom-deck), CRITERIO pide <=1,5x:
+ *
+ *     ancho     arriba / abajo    antes           con esta regla
+ *     479-767     47 / 96         2,04-2,09x      72 px de padding
+ *     768-991     62 / 112        1,81x           96
+ *     992+        94 / 192        2,04x           136
+ *
+ * Solo el de ARRIBA: el de abajo es la costura con el blog, que no cambia y la comparten las
+ * 17 rutas de `.location`. `svc-ubicacion` la pone `build-paginas.mjs` (bloque 8b) solo en
+ * esas 14. `--mm-e-128` a secas quedaba en 1,52x: la tinta del titular cae 2 px por debajo
+ * del borde de la caja, por eso el `+ --mm-e-8`. */
+.location.svc-ubicacion { padding-top: calc(var(--mm-e-64) + var(--mm-e-8)); }
+@media (min-width: 768px) { .location.svc-ubicacion { padding-top: var(--mm-e-96); } }
+@media (min-width: 992px) { .location.svc-ubicacion { padding-top: calc(var(--mm-e-128) + var(--mm-e-8)); } }

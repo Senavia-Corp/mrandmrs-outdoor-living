@@ -269,6 +269,11 @@ memoria. **Coincide con el actual en todo menos en un movimiento: el de C4.**
 **Lo unico estructural que queda es subir `trusted-section` del puesto 6 al 4.** De la 7 en
 adelante no se toca nada: ya esta como lo quiere.
 
+> **13-sep-2026 — SUSTITUIDO en los puestos 10-12 por decision de Sebastian.** Las 14 fichas
+> llevan su `gallery` (fuera `projects` de `/services/`) y va detras de la FAQ: **10 FAQ ·
+> 11 galeria · 12 Where We Serve**. El orden completo lo fija ahora `npm run check:estructura`
+> (`scripts/check-estructura-servicios.mjs`); el detalle, en `MIGRACION-LOG.md`.
+
 Nota de lectura: en la lista de Sebastian «What happens after you reach out» y «Get a Free
 Estimate» aparecen como dos entradas, pero **son una sola seccion** (`svc-captacion`) desde el
 rediseno de R18 —la tira de pasos va encima de la tarjeta del formulario—. Su lista lo describe

@@ -194,18 +194,6 @@ function localizar(raiz) {
  * propio marcado, no redactado aqui.
  */
 const ENCABEZADOS_PROYECTOS = {
-  /* R17-CORE. Esta ficha NO trae `projects-section` en su origen -llevaba `gallery`, que se
-   * sustituye-, asi que sin esta semilla el carrusel caeria a `_defecto` («Project showcase /
-   * Browse our completed residential & Commercial projects…»), que ademas trae una mayuscula
-   * suelta. El texto sale de `captacion-servicios.json`, que es donde vive el copy de la ruta. */
-  /* SOLO `titulo` y `entradilla`. El bloque `proyectos` del JSON lleva tambien `solo` -el filtro
-   * por ruta de R17-CORE F3e- y su `_solo` de documentacion, que NO son encabezado: los lee
-   * `CarruselProyectos.astro` del propio JSON. Copiarlos aqui metia dos claves de adorno en un
-   * fichero derivado que solo tiene que decir que pone en la cabecera. */
-  ...Object.fromEntries(Object.entries(CAPTACION)
-    .filter(([k, v]) => k.startsWith('/') && v.proyectos)
-    .map(([k, v]) => [k, { titulo: v.proyectos.titulo, entradilla: v.proyectos.entradilla }])),
-
   _lee_esto: 'El encabezado del carrusel «Project Showcase» de cada ruta. Es lo UNICO que cambiaba entre paginas: el bloque de 10 slides y la cola de flechas + barra + CTA eran byte a byte identicos en los 7 sitios donde estaba pegado (6103 y 1581 bytes, sha1 76930c21c9bf y 3c5989650bad). Espejo de blog-heading-por-ruta.json, y lo lee igual: CarruselProyectos.astro se autolocaliza por Astro.url.pathname. DERIVADO: lo escribe scripts/build-paginas.mjs.',
   _ojo: 'El texto va DECODIFICADO (ampersand suelto, no la entidad): lo escapa Astro al pintar, y sale el mismo byte que habia en el blob. Escribir aqui la entidad pintaria una entidad doblemente escapada y romperia check:texto, que compara innerText al 100 % y no se re-baseliniza nunca.',
   _quien_no_esta_aqui: 'Las 53 rutas de /pool-builders/ NO estan: su titulo y su entradilla salen de Sanity (campos headingPortfolio y paragraphPortfolio, huecos 25 y 27 de CAMPOS en [slug].astro) y por eso Reddick dice «Reddick portfolio». Esas pasan las dos como props. _defecto solo existe para que una ruta sin entrada y sin props no pinte una cabecera vacia.',
@@ -488,6 +476,9 @@ let heroesDesperezados = 0;
  * tamano de `CAPTACION`: si baja, una ruta declarada dejo de pasar por aqui y la landing
  * de pago se quedo sin formulario sin que nadie lo dijera. */
 let captacionAplicada = 0;
+/* Fichas de `/services/` con la `gallery` movida detras de la FAQ (bloque 8b). Se COMPRUEBA al
+ * final contra el tamano de `CAPTACION`, con salida 1: las 14 tienen que tener el mismo orden. */
+let galeriasMovidas = 0;
 /* Los tres arreglos que antes vivian a mano en el `.astro` (§ limpia()). */
 let logosConSizes = 0;
 let relAnadidos = 0;
@@ -821,28 +812,78 @@ function captacion(doc, ruta) {
     if (norte && sur && norte.parentNode) norte.parentNode.insertBefore(norte, sur);
   }
 
-  /* ── 8 · LAS OBRAS REALES SUSTITUYEN A `gallery` — PERO SOLO DONDE SE DECLARA ──────────
-   * En la ficha de piscina, `gallery` pintaba `pool-construction-1…10` — LAS MISMAS DIEZ FOTOS
-   * que el feed de Instagram mas abajo. Solape 10/10, verificado fichero a fichero. Dos
-   * carruseles con las mismas imagenes en la misma pagina, y por eso se sustituyo.
+  /* ── 8 · LA GALERIA, EN LAS CATORCE Y DETRAS DE LA FAQ (Sebastian, 13-sep-2026) ─────────
+   * Las 14 fichas tienen que tener la misma estructura y el mismo orden. Hasta hoy la de
+   * piscina cambiaba `gallery` por `CarruselProyectos` (opt-in `proyectos.reemplazaGaleria`,
+   * R17-CORE) y en las otras trece la galeria iba entre la banda de inversion y la FAQ. Ahora
+   * las catorce llevan su `gallery`, detras de la FAQ y delante de `location`. Sustituye el
+   * orden confirmado en `docs/encargos/R19-CAMBIOS.md` (projects 10 · FAQ 11 · location 12).
    *
-   * 🚨 ESA JUSTIFICACION ES DE LA FICHA DE PISCINA Y DE NINGUNA OTRA, Y POR ESO ESTO ES
-   * OPT-IN. En las otras trece, `gallery` trae las fotos DE SU PROPIO SERVICIO -pergolas,
-   * cubiertas, mosquiteras- y el feed de Instagram sigue trayendo piscinas: el solape es CERO.
-   * Quitarles la galeria las dejaria sin su unico bloque de fotos propio del servicio y se lo
-   * cambiaria por quince obras de piscina. Se declara con `proyectos.reemplazaGaleria: true`
-   * en `captacion-servicios.json`, ficha por ficha y con su motivo.
-   *
-   * `CarruselProyectos` trae obras reales con su enlace a `/project/<slug>`, y de paso repone
-   * los enlaces a obra que se fueron con el antes/despues. El marcador va como nodo de texto
-   * por lo mismo que el de la banda de inversion: `gallery` cuelga del `<div>` sin clase, no
-   * es hermana de primer nivel. */
-  const galeria = doc.querySelector('section.gallery');
-  if (galeria && galeria.parentNode && c.proyectos?.reemplazaGaleria) {
-    galeria.parentNode.insertBefore(
-      doc.createTextNode(MARCA + 'CarruselProyectos' + MARCA), galeria);
-    galeria.remove();
+   * 8a · LAS FOTOS DE LA FICHA DE PISCINA. Su `gallery` de origen pinta
+   * `custom-pool-spa-builders-florida-01…10`, LAS MISMAS DIEZ FOTOS que el feed de Instagram de
+   * mas abajo (solape 10/10, R17-CORE §4.7): restaurarla tal cual repetiria las fotos en la
+   * misma pagina. Por eso la ficha declara `galeria.fotos` -obra propia de piscina nueva,
+   * elegida por hoja de contactos- y aqui se rehacen los slides con el primero como molde.
+   * El `alt` sale de `proyectos-propios.json`, donde ya vive: una sola fuente. */
+  if (c.proyectos) {
+    throw new Error(`${ruta}: \`proyectos\` ya no existe en captacion-servicios.json — las fichas `
+      + 'de /services/ llevan su `gallery` desde el 13-sep-2026');
   }
+  const galeria = doc.querySelector('section.gallery');
+  const seccionFaq = doc.querySelector('section.faq-section');
+  const ubicacion = doc.querySelector('section.location');
+  if (!galeria || !seccionFaq || !ubicacion) {
+    throw new Error(`${ruta}: falta ${[!galeria && 'section.gallery', !seccionFaq && 'section.faq-section',
+      !ubicacion && 'section.location'].filter(Boolean).join(' y ')} — sin las tres no hay mismo orden`);
+  }
+  if (c.galeria?.fotos?.length) {
+    const lista = galeria.querySelector('[fs-slider-element="list"]');
+    const molde = lista?.querySelector('[fs-slider-element="slide"]');
+    if (!molde) throw new Error(`${ruta}: la gallery no trae ningun slide que usar de molde`);
+    const prohibidas = new Map([
+      [c.heroe.foto, 'es la foto del heroe'],
+      [c.inversion.foto, 'es la foto de la banda de inversion'],
+      ...JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/instagram.json'), 'utf8')).items
+        .map((i) => [i.imagen, 'ya sale en el feed de Instagram']),
+    ]);
+    const slides = c.galeria.fotos.map((src) => {
+      const alt = OBRAS_PROPIAS.flatMap((o) => o.galeria ?? []).find((g) => g.src === src)?.alt;
+      if (!alt) throw new Error(`${ruta}: la foto de galeria ${src} no esta en proyectos-propios.json`);
+      if (!fs.existsSync(path.join(RAIZ, 'public', src))) throw new Error(`${ruta}: no existe public${src}`);
+      if (prohibidas.has(src)) throw new Error(`${ruta}: la foto de galeria ${src} ${prohibidas.get(src)}`);
+      const slide = molde.cloneNode(true);
+      const img = slide.querySelector('img');
+      img.setAttribute('alt', alt);
+      img.setAttribute('src', src);
+      img.removeAttribute('sizes');
+      img.removeAttribute('srcset');
+      img.setAttribute('width', String(c.galeria.ancho));
+      img.setAttribute('height', String(c.galeria.alto));
+      /* El `<script class="w-json">` se CONSERVA y solo cambia su texto: `check-galeria.mjs`
+       * casa el orden de sus atributos, y el lightbox de `Componentes.astro` lee de ahi la URL. */
+      slide.querySelector('script.w-json').textContent =
+        JSON.stringify({ items: [{ url: src, type: 'image' }], group: 'images' }, null, 2);
+      return slide;
+    });
+    lista.replaceChildren(...slides);
+  }
+
+  /* 8b · EL MOVIMIENTO. `gallery` y `faq-section` cuelgan del mismo `<div>` sin clase (bloque 4)
+   * y la FAQ es su ultima hija; `location` es la hermana siguiente de ese `<div>`. Insertar la
+   * galeria detras de la FAQ la deja justo antes del cierre: entre la FAQ y «Where We Serve».
+   * Las dos guardas convierten cualquier otra forma del origen en un error, no en un orden
+   * distinto en silencio. */
+  if (galeria.parentNode !== seccionFaq.parentNode) {
+    throw new Error(`${ruta}: gallery y faq-section ya no son hermanas — revisa el origen`);
+  }
+  seccionFaq.parentNode.insertBefore(galeria, seccionFaq.nextSibling);
+  if (galeria.nextElementSibling || galeria.parentNode.nextElementSibling !== ubicacion) {
+    throw new Error(`${ruta}: tras mover la gallery, lo siguiente no es section.location`);
+  }
+  /* Con la banda azul encima, `location` pierde el padding de la FAQ en su costura de arriba:
+   * la marca le da el suyo en `servicio-core.css` §6 sin tocar las otras 3 rutas que la montan. */
+  ubicacion.classList.add('svc-ubicacion');
+  galeriasMovidas++;
 
   /* ── 9 · WIDTH/HEIGHT EN TODAS LAS IMAGENES DE LA RUTA ─────────────────────────────────
    * De las 56 `<img>` del cuerpo, 42 no declaraban tamano. Son el motor del CLS, y el
@@ -909,12 +950,9 @@ function captacion(doc, ruta) {
     sc.textContent = JSON.stringify(bloque);
   }
 
-  /* Los componentes que esta ruta ha usado de verdad. `CarruselProyectos` solo si la ficha
-   * declaro el reemplazo de la galeria: declararlo sin usarlo dejaria un import muerto en el
-   * `.astro` generado, y `npm run paginas` avisa de los no usados. */
-  return c.proyectos?.reemplazaGaleria
-    ? ['InversionCore', 'CarruselProyectos']
-    : ['InversionCore'];
+  /* Los componentes que esta ruta ha usado de verdad. Desde el 13-sep-2026 ninguna ficha monta
+   * `CarruselProyectos` (bloque 8), asi que solo queda la banda de inversion. */
+  return ['InversionCore'];
 }
 
 for (const [ruta] of RUTAS) {
@@ -1632,6 +1670,15 @@ if (ctaSinTitulo.length) {
 console.log(`  embed WAAPI del mosaico retirado en ${codeEmbedsEliminados} ficha(s) de country/`
   + `${codeEmbedsEliminados === 9 ? '' : '   <<< SE ESPERABAN 9'}`);
 console.log('        El bucle nuevo vive en src/styles/intro.css §5, igual para las 80 rutas.\n');
+
+/* Va ANTES del aviso de NO_REGENERAR, que sale siempre con 1: detras no correria nunca. */
+const FICHAS_CAPTACION = Object.keys(CAPTACION).filter((k) => !k.startsWith('_')).length;
+console.log(`  gallery detras de la FAQ en ${galeriasMovidas} de ${FICHAS_CAPTACION} fichas de services/\n`);
+if (galeriasMovidas !== FICHAS_CAPTACION) {
+  console.error(`\n  ROJO la gallery se movio en ${galeriasMovidas} fichas y hay ${FICHAS_CAPTACION}:`
+    + ' las fichas de /services/ tienen que tener todas el mismo orden.\n');
+  process.exit(1);
+}
 
 if (protegidas.length) {
   console.error('  ' + '='.repeat(74));
