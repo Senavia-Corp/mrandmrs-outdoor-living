@@ -30,7 +30,7 @@
     "acepto en FICHAS-ORDEN · 2, y se dice en vez de callarlo."
   ],
   "fotos": {
-    "_lee_esto": "El set `construction` de /gallery (10). `alt` y `srcset` copiados VERBATIM del build de /gallery: es la fuente publicada de estos mismos ficheros, y ninguno situa la foto en una ciudad concreta.",
+    "_lee_esto": "El set `construction` de /gallery (10). `alt` copiado VERBATIM del build de /gallery: es la fuente publicada de estos mismos ficheros, y ninguno situa la foto en una ciudad concreta. `srcset` tambien, SALVO el de la 02 y la 03: /gallery no se lo emite -defecto suyo, 1 ruta, fuera de este encargo- y sin el el navegador se baja el original de 1250w para una celda de 194 px, o de 81 px en movil. Se escriben aqui con el mismo formato que los otros ocho: los tres `-p-500/-p-800/-p-1080` EXISTEN en disco, estan en `git ls-files` y su ancho declarado es el real, medido con sharp. No se inventa una variante que no exista.",
     "construccion": {
       "10": {
         "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
@@ -53,14 +53,16 @@
         "alt": "Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.",
         "ancho": 1250,
         "alto": 937,
-        "pos": "50% 50%"
+        "pos": "50% 50%",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-02-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-02-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-02-p-1080.jpg 1080w, /images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg 1250w"
       },
       "03": {
         "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
         "alt": "Elegant residential pool and spa design with premium finishes and tropical landscaping, crafted by custom pool builders in South Florida.",
         "ancho": 1250,
         "alto": 698,
-        "pos": "50% 55%"
+        "pos": "50% 55%",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-03-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-03-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-03-p-1080.jpg 1080w, /images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg 1250w"
       },
       "04": {
         "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",

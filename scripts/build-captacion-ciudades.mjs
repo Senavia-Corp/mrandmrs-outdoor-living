@@ -172,6 +172,17 @@ function entradaCollage(c, fotos) {
       throw new Error(`[captacion-ciudades] ${c.slug}: la foto "${k}" no esta en `
         + 'ciudades-captacion.json > fotos.construccion.');
     }
+    /* 🚨 SIN `srcset` NO PASA. La celda mas grande del bento mide 395 px y la mas pequena 81 px
+     * en movil: sin `srcset` el navegador se baja el original de 1250w -y hasta 1 MB- para
+     * pintarla. Es invisible en la pagina y carisimo en un movil que llega desde un anuncio.
+     * Paso una vez: `/gallery` no emite `srcset` para dos de las diez, y esas dos entraron en el
+     * collage con `undefined`. El `sizes` que calcula `CollageFaq` queda inerte y nadie avisa. */
+    for (const k2 of ['src', 'srcset', 'alt', 'ancho', 'alto', 'pos']) {
+      if (!f[k2]) {
+        throw new Error(`[captacion-ciudades] ${c.slug}: la foto "${k}" no trae "${k2}". `
+          + 'Sin `srcset` el navegador se baja el original de 1250w para una celda de 81-395 px.');
+      }
+    }
     return { src: f.src, srcset: f.srcset, alt: f.alt, ancho: f.ancho, alto: f.alto, pos: f.pos };
   });
   if (new Set(elegidas.map((f) => f.src)).size !== 5) {
