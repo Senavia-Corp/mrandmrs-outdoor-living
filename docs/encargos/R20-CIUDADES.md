@@ -122,6 +122,30 @@ Derivado criterio a criterio de la rúbrica de la matriz §3, no estimado:
 | Technical / Performance | 5 | 3 | 3 | sigue `PRODUCTION PERFORMANCE VERIFICATION BLOCKED` |
 | **TOTAL** | **100** | **90** | **95** | |
 
+## 8.bis · El QA, y los dos arreglos compartidos
+
+`scripts/diag-estados.mjs` (nuevo) mide **los estados que no existen en reposo**, que es donde
+ni `check:visual` ni `check:texto` llegan. En los 4 anchos y en las 2 rutas:
+
+**Limpio:** 0 desbordamiento · 1 `<h1>` · 0 saltos de nivel · éxito **9,81:1** · error **15,60:1**
+· foco `2px solid rgb(0,28,99)` · acordeón con clic, **Enter y Espacio** + `aria-expanded` · las 5
+fotos del collage visibles con `reduced-motion` · velo del héroe **monótono y sin canto**, peor
+píxel **7,48:1** sobre 28 s del bucle (`diag-velo`) · todo el héroe dentro del pliegue 390×844
+descontando los 80 px del flotante (`diag-ritmo`).
+
+**Arreglado, con permiso expreso** (van contra §4.bis, por eso se dice):
+
+| | Medido |
+|---|---|
+| **A** · el banner de **fallo** perdía el rojo | `rgb(0,0,0)` → **`rgb(179,38,30)`**, 5,73:1. **No era contraste** —negro sobre el tenue se lee— sino que el color de error nunca llegaba a la frase. Acotado a `.svc-captacion`: `/request-estimated`, `/contact-us`, `/brochures` y `/gallery` no se mueven |
+| **C** · `#estimate` sin `tabindex="-1"` | `activeElement = section#estimate` en los 4 anchos. Cuesta **+14 B** de HTML en cada una de las 16 rutas |
+
+**Reportado y NO arreglado, por compartido:** el CTA `.button-styles` mide 36–38 px de alto
+(**121 rutas** — subirlo solo aquí haría mis 2 CTA distintos del de arriba y el de abajo) · la
+casilla de consentimiento SMS mide 24×24 (**20 rutas**) · el acordeón pone `aria-haspopup` en una
+FAQ y cualquier clic la cierra (**121 rutas**, ya en `PROMPT-R19` §4.bis) · el separador «·»
+cuelga a 390 (**16 rutas**, y el corte es **idéntico en las 14 fichas**: no lo introduce R20).
+
 ## 9 · Lo que queda para Sebastian
 
 1. **Aprobar las capturas** de `audit/r20-ciudades/` con `aprobar-diseno.mjs` (exige humano y árbol

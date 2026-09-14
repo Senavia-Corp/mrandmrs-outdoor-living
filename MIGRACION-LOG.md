@@ -320,6 +320,31 @@ $ <comando>
 **Criterio:** <la condición exacta que tenía que cumplirse>
 **Resultado:** ✅ verde / 🔴 rojo — <por qué>
 
+### El QA, y los dos arreglos compartidos que salieron de él
+
+El red team corrió sobre las 2 rutas a 390 · 768 · 1280 · 1440 con `scripts/diag-estados.mjs`, que se escribió para esto y se queda: mide **los estados que no existen en reposo**, que es donde ninguna captura llega.
+
+**Lo que salió limpio, medido:** sin desbordamiento horizontal en los 4 anchos · un solo `<h1>` y 0 saltos de nivel · banner de éxito **9,81:1** · campo en error **15,60:1** · anillo de foco `2px solid rgb(0,28,99)` · el acordeón abre y cierra con clic, **con Enter y con Espacio**, y pone `aria-expanded` · las 5 fotos del collage visibles con `prefers-reduced-motion` · el velo del héroe **monótono, sin canto**, con el peor píxel sobre 28 s del bucle de vídeo en **7,48:1** (`diag-velo`) · todo el héroe dentro del pliegue de 390×844 descontando los 80 px del botón flotante (`diag-ritmo --pliegue 390x844 --reserva 80`).
+
+**Los dos arreglos que Sebastian autorizó el 14-sep**, contra la regla de §4.bis y por eso dichos aquí:
+
+| | Qué pasaba | Medido | Radio |
+|---|---|---|---|
+| **A** | El panel de **fallo** perdía el rojo: `estimacion.css:483` lo pinta en el `<div>` pero `base.css:75` pinta el `<p class="mm-txt">` **directamente**, y una declaración directa gana a una heredada. El gemelo de **éxito** ya lo tenía resuelto (`servicio-core.css:225`) y el de fallo se quedó sin ello | `rgb(0,0,0)` → **`rgb(179,38,30)`**, 5,73:1 sobre el fondo tenue. **No era un fallo de contraste** —negro sobre ese fondo se lee de sobra—: era que el color de error nunca llegaba a la frase | acotado a `.svc-captacion`, así que `/request-estimated`, `/contact-us`, `/brochures` y `/gallery` **no se mueven** |
+| **C** | `<section id="estimate">` sin `tabindex="-1"`: el CTA bajaba la página y el siguiente Tab devolvía al menú, no al primer campo. `grep -rn "hashchange\|scrollIntoView" src/components/ src/layouts/` → **0** | `activeElement = section#estimate` en los 4 anchos | 16 rutas publicadas, **+14 B** de HTML cada una |
+
+**Lo que se reporta y NO se arregla**, por compartido:
+
+| Hallazgo | Medida | Rutas |
+|---|---|---|
+| El CTA `.button-styles` mide **36–38 px** de alto, por debajo de 44 | `161x36` a 390/768 · `183x38` a 1280/1440 | **121** — es la altura de botón de toda la casa. Subirla solo en mis 2 CTA los haría distintos del que tienen encima y debajo |
+| La casilla de consentimiento SMS mide **24×24** | `24x24` en los 4 anchos | **20** |
+| El acordeón pone `aria-haspopup="true"` en una FAQ, cierra los hermanos al abrir, y un clic en cualquier parte cierra la respuesta | — | **121** (`Interacciones.astro`) — ya estaba en `PROMPT-R19` §4.bis |
+| El separador «·» de los teléfonos cuelga al final de línea a 390 | 1 línea a 1440; el corte es **idéntico en las 14 fichas** | **16** — PRE-EXISTING, no lo introduce R20 |
+| Las 5 fotos del collage salen otra vez en el feed de la misma página | `2x` cada una, medido | declarado: es el solape que Sebastian aceptó en FICHAS-ORDEN · 2 |
+
+**Y dos defectos del propio diagnóstico, corregidos antes de darlo por bueno:** medía el honeypot `ref_id` —1×1 con `opacity:0` a propósito— como «objetivo táctil de 8×6», y contaba como repetición los 14 logos que la marquesina pinta tres veces por diseño. Un falso rojo enseña a ignorar los rojos.
+
 ### Desviaciones
 Qué se hizo distinto del plan y por qué. «Ninguna» es una respuesta válida.
 
@@ -6533,7 +6558,7 @@ Las dos Final URL de los ad groups «Ocala» y «Gainesville» mandaban el lead 
 
 | Qué | Comando | Resultado |
 |---|---|---|
-| Páginas que cambian | `node scripts/diag-identidad.mjs --compara /tmp/r20-base.json` | **2 cambian · 0 nuevas · 0 borradas · 120 idénticas byte a byte** (+28 548 B Ocala, +28 645 B Gainesville) |
+| Páginas que cambian | `node scripts/diag-identidad.mjs --compara /tmp/r20-base.json` | **16 cambian · 0 nuevas · 0 borradas · 106 idénticas byte a byte**. Las 2 ciudades (+28 861 y +28 958 B) y las 14 fichas de `/services/` a **+14 B cada una**, que es exactamente el largo de ` tabindex="-1"` — ver «los dos arreglos compartidos» |
 | No-regresión del mecanismo | ídem, con el montaje puesto y **sin** las 2 entradas | **0 cambian · 122 idénticas** |
 | Presupuesto CSS | `npm run check:tokens` | **90,7 KB de 92 · 1,3 KB libres** — sin tocar: `servicio-core.css` lo importa `Base.astro` en las 115 y sus `.svc-*` son selectores planos. **0 bytes nuevos** |
 | Rutas con captación | `grep -rlo 'svc-captacion' .vercel/output/static --include='*.html' \| wc -l` | **16** (eran 14) |
@@ -6555,7 +6580,9 @@ Las dos Final URL de los ad groups «Ocala» y «Gainesville» mandaban el lead 
 | `check:estructura:ciudades` (nueva) | 🟢 — 2 con captación · 51 exactamente como estaban |
 | `check:captacion` (nueva) | 🟢 — las 2 entradas coinciden con su fila |
 | `check:texto` `/pool-builders/{ocala,gainesville}-florida` | 🟢 2/2 |
-| `check:texto` `/services/custom-pool-spa-…` | 🟢 — se corrió a propósito: se tocó `bloquesCaptacion()`, que es compartida |
+| `check:texto` `/services/` (las 14) | 🟢 **14/14 idénticas** — obligatorio: los arreglos A y C tocan componentes compartidos |
+| `check:carrusel` (Gainesville) | 🟢 — es 1 de sus 5 rutas fijas; los 3 carruseles siguen bien con las secciones nuevas en medio |
+| `diag-estados` (nuevo, las 2 rutas × 4 anchos) | 🟢 en todo salvo 2 hallazgos **compartidos** (abajo) |
 | `check:visual` (las 2, 4 anchos) | 🔴 8 · **ROJO CORRECTO** (`rediseno`). La página crece +677 a +987 px según el ancho; la referencia es del 31-ago-2026, ANTERIOR al cambio. Pendiente de `aprobar-diseno.mjs`, que exige humano |
 | `check:ix2` | **no se corrió**: es gate de fase y no lee argv. El acordeón nuevo lo verificó E ruta a ruta. **No cuenta como verde** |
 | `check:assets` | **`ENVIRONMENT BLOCKER`** — lee de `_source/sanity-masters/`, que está en `.gitignore` |
