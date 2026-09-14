@@ -119,31 +119,6 @@
     "schema": {
       "serviceType": "Custom Pool Construction"
     },
-    "galeria": {
-      "_motivo": [
-        "13-sep-2026 (Sebastian): las 14 fichas llevan su `gallery`; esta vuelve a tenerla en vez",
-        "de CarruselProyectos. Sus slides de origen son custom-pool-spa-builders-florida-01…10,",
-        "LAS MISMAS 10 fotos que src/data/instagram.json en la misma pagina (solape 10/10), asi que",
-        "se sustituyen por obra propia de piscina nueva, elegida por hoja de contactos. Fuera:",
-        "estate-3 (mismo encuadre aereo que estate-1), estate-5 (mismo carril y punto de vista que",
-        "el heroe, estate-2), travertine-4 (casi identica a travertine-3), travertine-5 (misma",
-        "composicion que la foto 04 del feed, que es la misma obra), marble-3 (repite marble-1) y",
-        "marble-5 (repite marble-4). El `alt` NO se copia aqui: lo pone el generador desde",
-        "proyectos-propios.json, que es donde ya vive."
-      ],
-      "ancho": 1250,
-      "alto": 698,
-      "fotos": [
-        "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-1.avif",
-        "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-1.avif",
-        "/images/projects/pool-raised-spa-marble-deck-south-florida/pool-raised-spa-marble-deck-south-florida-project-1.avif",
-        "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-4.avif",
-        "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-3.avif",
-        "/images/projects/pool-raised-spa-marble-deck-south-florida/pool-raised-spa-marble-deck-south-florida-project-2.avif",
-        "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-2.avif",
-        "/images/projects/pool-raised-spa-marble-deck-south-florida/pool-raised-spa-marble-deck-south-florida-project-4.avif"
-      ]
-    },
     "inversion": {
       "titulo": "What will my pool cost?",
       "texto": "Every pool is priced from its own design, size, finishes and site conditions. Answer a few questions to see the range for a custom pool in Florida, then review how it can be paid for.",

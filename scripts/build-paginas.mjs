@@ -819,12 +819,12 @@ function captacion(doc, ruta) {
    * las catorce llevan su `gallery`, detras de la FAQ y delante de `location`. Sustituye el
    * orden confirmado en `docs/encargos/R19-CAMBIOS.md` (projects 10 · FAQ 11 · location 12).
    *
-   * 8a · LAS FOTOS DE LA FICHA DE PISCINA. Su `gallery` de origen pinta
-   * `custom-pool-spa-builders-florida-01…10`, LAS MISMAS DIEZ FOTOS que el feed de Instagram de
-   * mas abajo (solape 10/10, R17-CORE §4.7): restaurarla tal cual repetiria las fotos en la
-   * misma pagina. Por eso la ficha declara `galeria.fotos` -obra propia de piscina nueva,
-   * elegida por hoja de contactos- y aqui se rehacen los slides con el primero como molde.
-   * El `alt` sale de `proyectos-propios.json`, donde ya vive: una sola fuente. */
+   * LAS FOTOS SON LAS DE ORIGEN EN LAS CATORCE, tambien en la de piscina (Sebastian, 14-sep-2026):
+   * su `gallery` pinta las 10 de «New Pool and Spa Construction» de `/gallery`
+   * (`custom-pool-spa-builders-florida-10…01`, mismo orden y mismo `alt`). Del 13 al 14-sep llevo
+   * 8 de obra propia; se retiro a peticion suya. SE ACEPTA, Y QUEDA DICHO, que esas 10 son
+   * tambien las del feed de Instagram de la misma pagina (solape 10/10, R17-CORE §4.7) y que 5
+   * salen en el collage de la FAQ, justo encima: el mismo patron que las otras trece fichas. */
   if (c.proyectos) {
     throw new Error(`${ruta}: \`proyectos\` ya no existe en captacion-servicios.json — las fichas `
       + 'de /services/ llevan su `gallery` desde el 13-sep-2026');
@@ -836,39 +836,8 @@ function captacion(doc, ruta) {
     throw new Error(`${ruta}: falta ${[!galeria && 'section.gallery', !seccionFaq && 'section.faq-section',
       !ubicacion && 'section.location'].filter(Boolean).join(' y ')} — sin las tres no hay mismo orden`);
   }
-  if (c.galeria?.fotos?.length) {
-    const lista = galeria.querySelector('[fs-slider-element="list"]');
-    const molde = lista?.querySelector('[fs-slider-element="slide"]');
-    if (!molde) throw new Error(`${ruta}: la gallery no trae ningun slide que usar de molde`);
-    const prohibidas = new Map([
-      [c.heroe.foto, 'es la foto del heroe'],
-      [c.inversion.foto, 'es la foto de la banda de inversion'],
-      ...JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/instagram.json'), 'utf8')).items
-        .map((i) => [i.imagen, 'ya sale en el feed de Instagram']),
-    ]);
-    const slides = c.galeria.fotos.map((src) => {
-      const alt = OBRAS_PROPIAS.flatMap((o) => o.galeria ?? []).find((g) => g.src === src)?.alt;
-      if (!alt) throw new Error(`${ruta}: la foto de galeria ${src} no esta en proyectos-propios.json`);
-      if (!fs.existsSync(path.join(RAIZ, 'public', src))) throw new Error(`${ruta}: no existe public${src}`);
-      if (prohibidas.has(src)) throw new Error(`${ruta}: la foto de galeria ${src} ${prohibidas.get(src)}`);
-      const slide = molde.cloneNode(true);
-      const img = slide.querySelector('img');
-      img.setAttribute('alt', alt);
-      img.setAttribute('src', src);
-      img.removeAttribute('sizes');
-      img.removeAttribute('srcset');
-      img.setAttribute('width', String(c.galeria.ancho));
-      img.setAttribute('height', String(c.galeria.alto));
-      /* El `<script class="w-json">` se CONSERVA y solo cambia su texto: `check-galeria.mjs`
-       * casa el orden de sus atributos, y el lightbox de `Componentes.astro` lee de ahi la URL. */
-      slide.querySelector('script.w-json').textContent =
-        JSON.stringify({ items: [{ url: src, type: 'image' }], group: 'images' }, null, 2);
-      return slide;
-    });
-    lista.replaceChildren(...slides);
-  }
 
-  /* 8b · EL MOVIMIENTO. `gallery` y `faq-section` cuelgan del mismo `<div>` sin clase (bloque 4)
+  /* EL MOVIMIENTO. `gallery` y `faq-section` cuelgan del mismo `<div>` sin clase (bloque 4)
    * y la FAQ es su ultima hija; `location` es la hermana siguiente de ese `<div>`. Insertar la
    * galeria detras de la FAQ la deja justo antes del cierre: entre la FAQ y «Where We Serve».
    * Las dos guardas convierten cualquier otra forma del origen en un error, no en un orden
