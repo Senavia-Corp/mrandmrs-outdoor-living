@@ -1,25 +1,50 @@
 {
   "_lee_esto": [
-    "EL CONTENIDO DE CAPTACION DE LAS FICHAS DE /services/, POR RUTA.",
+    "EL CONTENIDO DE CAPTACION, POR RUTA. YA NO ES SOLO DE /services/.",
     "",
-    "Lo leen los tres componentes de R17-CORE por `Astro.url.pathname`:",
+    "Lo leen los tres componentes de R17-CORE por `Astro.url.pathname` (o por la prop `ruta`):",
     "  components/widgets/ConfianzaCore.astro   -> `confianza`",
     "  components/widgets/FormularioCore.astro  -> `formulario`",
     "  components/widgets/InversionCore.astro   -> `inversion`",
     "",
+    "DOS FAMILIAS DE RUTAS, Y NO CONSUMEN LO MISMO (R20-CIUDADES, 14-sep-2026):",
+    "  · /services/<ficha>            14. Las genera `scripts/build-paginas.mjs`, que ademas usa",
+    "                                 `heroe.*`, `servicios.*`, `faq.sustituye` y `schema.*` para",
+    "                                 reescribir el marcado derivado y el `FAQPage` del origen.",
+    "  · /pool-builders/<ciudad>       2 hoy (Ocala y Gainesville, las Final URL de sus ad groups);",
+    "                                 53 cuando se extienda. Las pinta `src/pages/pool-builders/",
+    "                                 [slug].astro`, que NO pasa por el generador: monta los tres",
+    "                                 widgets, hace la cirugia del heroe con `src/lib/captacion-",
+    "                                 ciudad.mjs` y construye su `FAQPage` desde `faq.anade`.",
+    "",
+    "CLAVES INERTES FUERA DE /services/. `servicios.*`, `faq.sustituye` y `schema.*` los lee solo",
+    "el generador: en una ciudad no hacen nada y por eso no se escriben. `heroe.foto/alt/ancho/",
+    "alto` tampoco: el heroe de las ciudades es `.hero-glass-section`, que no tiene <img> -su fondo",
+    "es un <video> compartido por 57 rutas-. De `heroe` una ciudad usa `apoyo`, `licencias`,",
+    "`ancla` y `zonas` (el orden de los telefonos: el de SU region primero).",
+    "",
     "POR QUE ES UN JSON POR RUTA Y NO TEXTO DENTRO DE LOS COMPONENTES. Las 14 fichas de",
     "`/services/` son la MISMA plantilla -mismo orden de secciones, 14 h2, 15 h3, 70 img, 17 a,",
-    "8 subservicios, 4 pasos, 5 FAQ y 0 form en todas, verificado-. El piloto se enciende en una",
-    "sola, pero el dia que se extienda a las otras trece el coste tiene que ser UNA ENTRADA AQUI,",
-    "no un componente nuevo ni una hoja nueva. Quien anada una ruta toca: este fichero, la lista",
-    "`CON_CAPTACION` de `scripts/build-paginas.mjs`, y sus declaraciones en `check-texto.mjs`.",
+    "8 subservicios, 4 pasos, 5 FAQ y 0 form en todas, verificado-, y las 53 ciudades son OTRA",
+    "misma plantilla. Encender la capa en una ruta tiene que costar UNA ENTRADA AQUI, no un",
+    "componente nuevo ni una hoja nueva. Quien anada una ficha de `/services/` toca: este fichero,",
+    "la lista `CON_CAPTACION` de `scripts/build-paginas.mjs`, y sus declaraciones en",
+    "`check-texto.mjs`.",
+    "",
+    "LAS ENTRADAS DE /pool-builders/ NO SE EDITAN AQUI: SON DERIVADAS. Salen de una fila corta de",
+    "`src/data/ciudades-captacion.json` -ciudad, condado, region y que fotos le tocan- que expande",
+    "`npm run captacion:ciudades`. Llevan la marca `_derivado`, y `npm run check:captacion` vuelve",
+    "a expandir y sale ROJO si alguien las toco a mano. Una ciudad mas = una fila mas.",
     "",
     "UNA RUTA SIN ENTRADA NO PINTA NADA. Los tres componentes devuelven null: es lo que permite",
-    "que el marcador del generador solo se inserte donde hay contenido, y que las otras 13 fichas",
-    "sigan saliendo byte a byte iguales.",
+    "que el marcador del generador solo se inserte donde hay contenido, que las otras 13 fichas y",
+    "las otras 51 ciudades sigan saliendo byte a byte iguales, y que encender una ruta sea un",
+    "cambio de datos. `CollageFaq` es la EXCEPCION -sin entrada LANZA-, asi que se monta siempre",
+    "condicionado.",
     "",
     "LO QUE NO ESTA VERIFICADO NO SE ESCRIBE AQUI. Cada frase de este fichero tiene su fuente en",
-    "la matriz frase->fuente de `docs/encargos/R17-CORE.md` §8.6. Nada de garantias, anos de",
+    "la matriz frase->fuente de `docs/encargos/R17-CORE.md` §8.6 y, para las ciudades, en las",
+    "plantillas comentadas de `scripts/build-captacion-ciudades.mjs`. Nada de garantias, anos de",
     "experiencia, numero de piscinas, «5-star», ni una sola cifra financiera (decision de",
     "Sebastian del 2-sep-2026, TILA/Reg Z)."
   ],
@@ -1140,5 +1165,183 @@
       "ancho": 1250,
       "alto": 698
     }
+  },
+  "/pool-builders/ocala-florida": {
+    "heroe": {
+      "apoyo": "New custom inground pools for Ocala homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
+      "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
+      "ancla": "#estimate",
+      "zonas": [
+        "North Florida",
+        "South Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, engineering, permits and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed pool contractor",
+          "texto": "CPC1461119 and CPC1460562, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "3D design before you commit",
+          "texto": "You review a 3D design of your pool before anything is dug."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "We pull the permits and coordinate the Marion County inspections."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectoPorDefecto": "New Custom Pool",
+      "nombre": "Ocala Pool Builders Form",
+      "aviso": "Ocala pool builders lead",
+      "ga4": "ocala",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back within 24 hours.",
+        "We walk your property and put a 3D design on paper.",
+        "You get the scope in writing and a fixed project price before you commit."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my pool cost?",
+      "texto": "Every pool is priced from its own design, size, finishes and site conditions. Answer a few questions to see the range for a custom pool in Florida, then review how it can be paid for.",
+      "ctas": [
+        {
+          "texto": "Try the pool cost estimator",
+          "href": "/pool-cost-estimator",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-5.avif",
+      "alt": "Lap-length pool seen from the far end, with the marble deck, the stone inlay band and the home behind.",
+      "ancho": 1250,
+      "alto": 698
+    },
+    "faq": {
+      "titulo": "Ocala pool construction FAQs",
+      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool in Marion County.",
+      "anade": [
+        {
+          "pregunta": "How much does a custom pool cost in Ocala?",
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+        },
+        {
+          "pregunta": "Who pulls the permits for a pool in Marion County?",
+          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the Marion County inspections through to final start-up."
+        },
+        {
+          "pregunta": "What is included in a custom pool project?",
+          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
+  },
+  "/pool-builders/gainesville-florida": {
+    "heroe": {
+      "apoyo": "New custom inground pools for Gainesville homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
+      "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
+      "ancla": "#estimate",
+      "zonas": [
+        "North Florida",
+        "South Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, engineering, permits and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed pool contractor",
+          "texto": "CPC1461119 and CPC1460562, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "3D design before you commit",
+          "texto": "You review a 3D design of your pool before anything is dug."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "We pull the permits and coordinate the Alachua County inspections."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectoPorDefecto": "New Custom Pool",
+      "nombre": "Gainesville Pool Builders Form",
+      "aviso": "Gainesville pool builders lead",
+      "ga4": "gainesville",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back within 24 hours.",
+        "We walk your property and put a 3D design on paper.",
+        "You get the scope in writing and a fixed project price before you commit."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my pool cost?",
+      "texto": "Every pool is priced from its own design, size, finishes and site conditions. Answer a few questions to see the range for a custom pool in Florida, then review how it can be paid for.",
+      "ctas": [
+        {
+          "texto": "Try the pool cost estimator",
+          "href": "/pool-cost-estimator",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/projects/luxury-pool-spa-with-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-north-florida-project-5.avif",
+      "alt": "Pool with a stone-faced raised spa and a travertine deck beside a screened lanai, built in North Florida by Mr & Mrs Outdoor Living.",
+      "ancho": 1250,
+      "alto": 698
+    },
+    "faq": {
+      "titulo": "Gainesville pool construction FAQs",
+      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool in Alachua County.",
+      "anade": [
+        {
+          "pregunta": "How much does a custom pool cost in Gainesville?",
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+        },
+        {
+          "pregunta": "Who pulls the permits for a pool in Alachua County?",
+          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the Alachua County inspections through to final start-up."
+        },
+        {
+          "pregunta": "What is included in a custom pool project?",
+          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   }
 }

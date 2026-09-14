@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev --port 4325",
     "build": "npm run seo:ficheros && astro build && node scripts/build-vercel-config.mjs",
-    "check": "npm run check:resenas && npm run check:aviso && npm run check:estimador && npm run build && npm run check:tokens && npm run check:estructura && npm run check:assets && npm run check:rutas && npm run check:enlaces && npm run check:menu && npm run check:galeria && npm run check:galeria-formulario && npm run check:seo && npm run check:ads && npm run check:medicion && npm run check:texto && npm run check:ix2 && npm run check:visual && npm run check:carrusel",
+    "check": "npm run check:resenas && npm run check:aviso && npm run check:estimador && npm run build && npm run check:tokens && npm run check:estructura && npm run check:estructura:ciudades && npm run check:captacion && npm run check:assets && npm run check:rutas && npm run check:enlaces && npm run check:menu && npm run check:galeria && npm run check:galeria-formulario && npm run check:seo && npm run check:ads && npm run check:medicion && npm run check:texto && npm run check:ix2 && npm run check:visual && npm run check:carrusel",
     "resenas:fetch": "node scripts/fetch-resenas.mjs",
     "check:resenas": "node scripts/lib/resenas-normalize.test.mjs && node scripts/check-resenas.mjs",
     "vivo": "node scripts/fetch-vivo.mjs",
@@ -15,6 +15,7 @@
     "shell": "node scripts/build-shell.mjs",
     "paginas": "node scripts/build-paginas.mjs",
     "plantillas": "node scripts/build-plantillas.mjs",
+    "captacion:ciudades": "node scripts/build-captacion-ciudades.mjs",
     "reveals": "node scripts/build-reveals.mjs",
     "youtube": "node scripts/extract-youtube.mjs",
     "orden": "node scripts/extract-orden.mjs",
@@ -44,6 +45,8 @@
     "sliders": "node scripts/build-sliders.mjs",
     "check:tokens": "node scripts/check-tokens.mjs",
     "check:estructura": "node scripts/check-estructura-servicios.mjs",
+    "check:estructura:ciudades": "node scripts/check-estructura-ciudades.mjs",
+    "check:captacion": "node scripts/build-captacion-ciudades.mjs --check",
     "check:aviso": "node scripts/test-aviso.mjs",
     "check:medicion": "node scripts/check-medicion.mjs",
     "check:carrusel": "node scripts/check-carrusel.mjs"

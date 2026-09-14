@@ -14,14 +14,32 @@
 // Sanity sigue siendo la fuente; la cache solo entra si el fetch falla Y se pide con
 // `MM_SANITY_CACHE=1`, y avisa por pantalla. La guarda que para el build sin datos NO se toco.
 // La genera `scripts/cache-sanity.mjs`; su fidelidad la prueba `check:texto` sobre las 53.
+// QUINTO CAMBIO A MANO (R20-CIUDADES): LA CAPA DE CAPTACION, ENCENDIDA POR ENTRADA.
+// Las Final URL de los ad groups «Ocala» y «Gainesville» mandaban el lead a `/request-estimated`:
+// un SEGUNDO CLIC que el anuncio ya habia pagado, y la unica brecha que las separaba de la ficha
+// Core (matriz de Ads §2, «Main Gap: sin formulario propio»). Aqui se montan los tres widgets de
+// R17-CORE mas la FAQ, y se retoca el heroe. TODO va condicionado a que la ruta tenga entrada en
+// `src/data/captacion-servicios.json`: sin entrada los widgets no pintan nada, `B[0]` sale
+// intacto y las otras 51 ciudades salen BYTE A BYTE IGUALES —que es lo que prueba
+// `diag-identidad`, no lo que se supone—. La cirugia sobre el bloque derivado vive en
+// `src/lib/captacion-ciudad.mjs` y va con guarda: si la plantilla cambia de forma, revienta el
+// build con el slug puesto en vez de reordenar mal en silencio.
 import Base from '../../layouts/Base.astro';
 import ResenasGoogle from '../../components/widgets/ResenasGoogle.astro';
 import FeedInstagram from '../../components/widgets/FeedInstagram.astro';
 import CarruselBlog from '../../components/widgets/CarruselBlog.astro';
 import CarruselProyectos from '../../components/widgets/CarruselProyectos.astro';
+import ConfianzaCore from '../../components/widgets/ConfianzaCore.astro';
+import FormularioCore from '../../components/widgets/FormularioCore.astro';
+import InversionCore from '../../components/widgets/InversionCore.astro';
+import CollageFaq from '../../components/widgets/CollageFaq.astro';
 import SEO_RUTAS from '../../data/seo-pool-builders.json';
+import CAPTACION from '../../data/captacion-servicios.json';
+import COLLAGE from '../../data/collage-faq-por-ruta.json';
+import TELEFONOS from '../../data/telefonos.json';
 import { sinAperturaDelFeed } from '../../lib/feed-social.mjs';
 import { partirPorElCarrusel } from '../../lib/carrusel-proyectos.mjs';
+import { partirEn, heroeDeCaptacion } from '../../lib/captacion-ciudad.mjs';
 import LIT from '../../data/plantilla-pool-builders.json';
 
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -83,6 +101,17 @@ const d = aplanar(Astro.props.doc);
  * Cada linea cambiada va declarada en `TRADUCIDAS_A_PROPOSITO` de `check-texto.mjs`.
  */
 Object.assign(d, SEO_RUTAS[slug]?.bloques ?? {});
+/**
+ * Y EL APOYO DEL HEROE, POR EL MISMO MECANISMO Y POR LA MISMA RAZON (R20-CIUDADES).
+ * Sanity vende ahi «new pool construction, pool remodeling, and luxury pool design» en la tercera
+ * linea de la primera pantalla. En una landing cuyo ad group compra CONSTRUCCION NUEVA eso es
+ * ofrecer la puerta de al lado antes de que el visitante haya entendido esta —la remodelacion
+ * tiene su propia landing, con su propio formulario, desde R19—. Sustitucion 1->1, linea entera,
+ * y declarada en `TRADUCIDAS_A_PROPOSITO` de `check-texto.mjs`. Solo en las rutas con entrada.
+ */
+const RUTA = `/pool-builders/${slug}`;
+const CAP = CAPTACION[RUTA] ?? null;
+if (CAP?.heroe?.apoyo) d['intro'] = CAP.heroe.apoyo;
 const CAMPOS = [[null,{"c":"h1Title","tx":"","p":["",""]},null,{"c":"h2Title","tx":"","p":["",""]},null,{"c":"intro","tx":"","p":["",""]},null,{"c":"imagenIntro1.alt","tx":"","p":["<img src=\"/images/pool-builders/alachua-florida/custom-pool-pergola-outdoor-living-contractors-fl-1-.webp\" loading=\"lazy\" data-w-id=\"f72979fc-9196-9930-356a-1756486557d5\" alt=\"","\" class=\"image\">"]},null,{"c":"imagenIntro2.alt","tx":"","p":["<img src=\"/images/pool-builders/alachua-florida/luxury-outdoor-kitchen-pool-backyard-design-florida-1-.webp\" loading=\"lazy\" data-w-id=\"53f4d2e0-9a7a-0e16-e20a-ab8f9e03c935\" alt=\"","\" class=\"image\">"]},null,{"c":"imagenIntro3.alt","tx":"","p":["<img src=\"/images/pool-builders/alachua-florida/luxury-pool-builders-outdoor-living-florida-1-.webp\" loading=\"lazy\" data-w-id=\"8bad508e-9f02-2bc9-bf6d-6ac47990da3b\" alt=\"","\" class=\"image\">"]},null,{"c":"headingIntro","tx":"","p":["",""]},null,{"c":"paragraphIntro","tx":"","p":["",""]},null,{"c":"heading3DRendering","tx":"","p":["",""]},null,{"c":"paragraphReviews","tx":"","p":["",""]},null,{"c":"headingFeature","tx":"","p":["",""]},null,{"c":"paragraphFeatures","tx":"","p":["",""]},null,{"c":"headingPortfolio","tx":"","p":["",""]},null,{"c":"paragraphPortfolio","tx":"","p":["",""]},null,{"c":"headingReviews","tx":"","p":["",""]},null,{"c":"paragraphReviews","tx":"","p":["",""]},null],[],[],[null]];
 
 
@@ -116,7 +145,35 @@ if (!d['headingBlog'] || !d['paragraphBlog']) throw new Error(`${slug}: falta he
 // campos (`headingPortfolio`/`paragraphPortfolio`) SIGUEN siendo huecos de CAMPOS, asi que la
 // guarda de `valor()` -un campo vacio revienta el build- se mantiene sola y no hace falta
 // repetir aqui la de headingBlog.
-const [P_ANTES, P_DESPUES] = partirPorElCarrusel(B[0], `/pool-builders/${slug} B[0]`);
+/* ── R20-CIUDADES · LA CAPA DE CAPTACION ─────────────────────────────────────────────────────
+ * Sin entrada NO SE TOCA NADA: `b0` sigue siendo `B[0]`, los tres trozos nuevos quedan vacios y
+ * `<Fragment set:html="" />` no emite un solo byte. Es lo que permite encender 2 de 53.
+ *
+ * Los tres cortes, en el orden en que quedan en la pagina:
+ *   · antes de `.trusted-section`  -> entra la franja de confianza, que responde «¿por que
+ *     vosotros?» ANTES de pedir datos;
+ *   · antes de `._3d-section`      -> entra el formulario, detras de la intro, que es donde la
+ *     ficha Core lo puso tras medirlo (R19 C4: se ve obra antes de dar los datos);
+ *   · el corte del carrusel, que ya existia.
+ * Los tres marcadores aparecen UNA vez en `B[0]`, comprobado; `partirEn` lo exige igualmente. */
+let b0 = B[0];
+let ANTES_CONF = '', ANTES_FORM = '';
+if (CAP) {
+  b0 = heroeDeCaptacion(b0, CAP, TELEFONOS.items, `${RUTA} heroe`);
+  [ANTES_CONF, b0] = partirEn(b0, '<section class="trusted-section"', `${RUTA} B[0]`);
+  [ANTES_FORM, b0] = partirEn(b0, '<section class="_3d-section"', `${RUTA} B[0]`);
+}
+
+/* LA FAQ SE MONTA CON LAS DOS ENTRADAS O CON NINGUNA. `CollageFaq` no devuelve `null` cuando le
+ * falta su entrada: LANZA. Encontrarselo como «Cannot read properties of undefined» a mitad del
+ * build de 53 paginas no dice nada; esto dice exactamente que falta y donde. */
+const FAQ = CAP?.faq?.anade?.length ? CAP.faq : null;
+if (FAQ && !COLLAGE[RUTA]) {
+  throw new Error(`${slug}: tiene faq en captacion-servicios.json pero no entrada en `
+    + 'collage-faq-por-ruta.json, y el collage es media seccion. Se declaran las dos o ninguna.');
+}
+
+const [P_ANTES, P_DESPUES] = partirPorElCarrusel(b0, `${RUTA} B[0]`);
 
 const CTA_PIE = sinAperturaDelFeed(B[2], `/pool-builders/${slug} B[2]`);
 // Y B[3] deja de renderizarse, asi que hay que AFIRMAR que no era mas que ese cierre: si la
@@ -126,14 +183,92 @@ if (B[3] !== '</section>') {
     + 'Al dejar de renderizarlo se estaria tirando contenido — revisa scripts/build-plantillas.mjs.');
 }
 
-const { seo: SEO, ldCrudo: LD_CRUDO } = SEO_RUTAS[slug];
+const { seo: SEO_ORIGEN, ldCrudo: LD_CRUDO } = SEO_RUTAS[slug];
+
+/**
+ * EL `FAQPage`, CONSTRUIDO DE LA MISMA FUENTE QUE EL ACORDEON QUE SE VE.
+ *
+ * Va en SU PROPIO bloque y no colgado del `LocalBusiness` del origen, por dos motivos: meterlo
+ * dentro cambiaria un bloque que `check:seo` compara CARACTER A CARACTER contra el baseline, y
+ * ademas un `FAQPage` no es una propiedad del negocio, es de la pagina.
+ *
+ * 🚨 SE DERIVA DE `faq.anade`, NO SE ESCRIBE APARTE. R17-CORE §4.3 encontro la ficha Core
+ * publicando en su `FAQPage` una pregunta que no estaba en la pagina —y con una cifra sin
+ * verificar dentro—. Un schema que promete respuestas que el visitante no encuentra es marcado
+ * que miente, y Google lo trata como tal. Construyendolo del mismo array que pinta el acordeon,
+ * el 1:1 no es una promesa: es una consecuencia. La regla 14 de `check:ads` lo comprueba igual,
+ * porque «es imposible que se desvie» ya ha sido falso otras veces en este repo.
+ */
+const SEO = FAQ
+  ? { ...SEO_ORIGEN, jsonLd: [...(SEO_ORIGEN.jsonLd ?? []), {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: FAQ.anade.map((q) => ({
+        '@type': 'Question',
+        name: q.pregunta,
+        acceptedAnswer: { '@type': 'Answer', text: q.respuesta },
+      })),
+    }] }
+  : SEO_ORIGEN;
 ---
 <Base titulo={d["seo.title"]} descripcion={d["seo.description"]} ruta={`/pool-builders/${slug}`} seo={SEO} jsonLdCrudo={LD_CRUDO}>
+  <Fragment set:html={ANTES_CONF} />
+  <ConfianzaCore ruta={RUTA} />
+  <Fragment set:html={ANTES_FORM} />
+  <FormularioCore ruta={RUTA} />
   <Fragment set:html={P_ANTES} />
+  {/* NI UN CALLEJON SIN SALIDA. Entre el formulario y el pie hay cinco secciones seguidas —3D,
+      Pool Features, obra, resenas, inversion— y la unica salida era «See all Projects», que
+      lleva FUERA. Este ancla devuelve al formulario justo donde el deseo esta mas alto, que es
+      al acabar de leer las mejoras de la piscina. Reutiliza `.svc-cierre`, que ya existe.
+
+      VA EN `<section>` Y NO EN `<p>` COMO SU GEMELO DE LA FAQ, y la diferencia es real: el de
+      la FAQ vive DENTRO de `section.faq-section`, y este cuelga entre dos `<Fragment>`, o sea
+      al nivel superior del documento. Un `<p>` suelto entre dos secciones es marcado que nadie
+      espera leer ahi, y ademas `check:estructura:ciudades` solo enumera `<section>`: en `<p>`
+      la puerta no lo veria. Cero CSS: `.svc-cierre` es un selector plano
+      (`servicio-core.css`), asi que pinta igual en los dos. Medido antes de moverlo: NO habia
+      costura que arreglar — `.animated-divs-section` y `.projects-section` son las dos
+      `#ffffff`, asi que esto es correccion semantica, no visual. */}
+  {CAP && (
+    <section class="svc-cierre"><a href="#estimate" class="button button-styles w-button">Get a Free Estimate</a></section>
+  )}
   <CarruselProyectos titulo={d['headingPortfolio']} entradilla={d['paragraphPortfolio']} />
   <Fragment set:html={P_DESPUES} />
   <ResenasGoogle />
   <Fragment set:html={B[1]} />
+  <InversionCore ruta={RUTA} />
+  {/* LA FAQ, QUE ESTAS RUTAS NO TENIAN. Marcado de acordeon de la casa: `Interacciones.astro`
+      recorre TODOS los `.w-dropdown` del documento y les pone rol, `tabindex`, `aria-expanded`,
+      `aria-controls` y teclado. NO se copia el `data-w-id` de las fichas de `/services/`: ese
+      atributo es de IX2 —reveals y anti-FOUC—, no del desplegable, y duplicarlo es la via mas
+      corta a un elemento atrapado en `opacity:0` (regla 1 de `check:ix2`). */}
+  {FAQ && (
+    <section class="faq-section">
+      <div class="w-layout-blockcontainer container w-container">
+        <div class="header-faq">
+          <h2>{FAQ.titulo}</h2>
+          <div>{FAQ.entradilla}</div>
+        </div>
+        <CollageFaq ruta={RUTA} />
+        <div class="wrapper-faq-components">
+          {FAQ.anade.map((q) => (
+            <div data-delay="0" data-hover="false" class="dropdown-faq w-dropdown">
+              <div class="dropdown-toggle w-dropdown-toggle">
+                <div class="block-arrow-faq">
+                  <img loading="lazy" src="/images/site/open-toggle.svg" alt="" class="icon-dropdown-open" width="12" height="7" />
+                  <img loading="lazy" src="/images/site/close-toggle.svg" alt="" class="icon-dropdown-close" width="7" height="12" />
+                </div>
+                <h3 class="dropdown-text">{q.pregunta}</h3>
+              </div>
+              <nav class="dropdown-list w-dropdown-list"><p class="grey">{q.respuesta}</p></nav>
+            </div>
+          ))}
+        </div>
+        <p class="svc-cierre"><a href="#estimate" class="button button-styles w-button">Get a Free Estimate</a></p>
+      </div>
+    </section>
+  )}
   <CarruselBlog titulo={d['headingBlog']} entradilla={d['paragraphBlog']} />
   <section class="social-media">
     <FeedInstagram />

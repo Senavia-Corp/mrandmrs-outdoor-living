@@ -52,6 +52,20 @@ const DIM_CDN = new Map(Object.entries(man).filter(([, a]) => a.dim?.w).map(([u,
  * sha1 del build entero, no de palabra.
  */
 const CAPTACION = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/captacion-servicios.json'), 'utf8'));
+/**
+ * 🚨 ESTE GENERADOR SOLO HACE `/services/`, Y DESDE R20-CIUDADES EL JSON YA NO ES SOLO SUYO.
+ *
+ * `captacion-servicios.json` tenia 1 clave en R17-CORE y 14 desde R19, todas de `/services/`, asi
+ * que contar SUS CLAVES y contar «las fichas que paso por aqui» era lo mismo. R20-CIUDADES anadio
+ * `/pool-builders/ocala-florida` y `/pool-builders/gainesville-florida`, que las pinta
+ * `src/pages/pool-builders/[slug].astro` en tiempo de build y NO pasan por este generador.
+ *
+ * Con el conteo viejo las dos comprobaciones del final se creian 16 contra 14 y `npm run paginas`
+ * SALIA CON 1 —«la gallery se movio en 14 fichas y hay 16»— sin que nada estuviera roto. Una
+ * puerta que da rojo por un cambio legitimo en otra familia de rutas se acaba desactivando, que es
+ * peor que no tenerla.
+ */
+const RUTAS_CAPTACION_SERVICIOS = Object.keys(CAPTACION).filter((k) => k.startsWith('/services/'));
 const TELEFONOS = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/telefonos.json'), 'utf8')).items;
 /* Las clases de `<img>` a las que se les reserva el hueco (§ limpia()). Enumeradas y medidas:
  * cada una entro aqui con una cifra de `layout-shift` detras, no por precaucion.
@@ -1600,7 +1614,7 @@ console.log(`  carrusel de blog insertado en ${blogsInsertados} ficha(s) de serv
 console.log(`  collage de la FAQ insertado en ${collagesInsertados} ruta(s) derivada(s)`
   + `${collagesInsertados === 15 ? '' : '   <<< SE ESPERABAN 15 (la 16a, /financing, va a mano)'}`);
 console.log(`  captacion aplicada en ${captacionAplicada} ruta(s)`
-  + `${captacionAplicada === Object.keys(CAPTACION).filter((k) => !k.startsWith('_')).length ? '' : '   <<< NO CUADRA CON captacion-servicios.json'}`);
+  + `${captacionAplicada === RUTAS_CAPTACION_SERVICIOS.length ? '' : '   <<< NO CUADRA CON captacion-servicios.json'}`);
 console.log(`  carrusel de proyectos sustituido en ${proyectosSustituidos} ruta(s)`
   + `${proyectosSustituidos === 10 ? '' : '   <<< SE ESPERABAN 10'}`);
 console.log(`  carrusel de blog sustituido en ${blogsSustituidos} ficha(s) de country/`
@@ -1641,7 +1655,7 @@ console.log(`  embed WAAPI del mosaico retirado en ${codeEmbedsEliminados} ficha
 console.log('        El bucle nuevo vive en src/styles/intro.css §5, igual para las 80 rutas.\n');
 
 /* Va ANTES del aviso de NO_REGENERAR, que sale siempre con 1: detras no correria nunca. */
-const FICHAS_CAPTACION = Object.keys(CAPTACION).filter((k) => !k.startsWith('_')).length;
+const FICHAS_CAPTACION = RUTAS_CAPTACION_SERVICIOS.length;
 console.log(`  gallery detras de la FAQ en ${galeriasMovidas} de ${FICHAS_CAPTACION} fichas de services/\n`);
 if (galeriasMovidas !== FICHAS_CAPTACION) {
   console.error(`\n  ROJO la gallery se movio en ${galeriasMovidas} fichas y hay ${FICHAS_CAPTACION}:`

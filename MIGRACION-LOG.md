@@ -320,6 +320,51 @@ $ <comando>
 **Criterio:** <la condición exacta que tenía que cumplirse>
 **Resultado:** ✅ verde / 🔴 rojo — <por qué>
 
+### El QA, y los dos arreglos compartidos que salieron de él
+
+El red team corrió sobre las 2 rutas a 390 · 768 · 1280 · 1440 con `scripts/diag-estados.mjs`, que se escribió para esto y se queda: mide **los estados que no existen en reposo**, que es donde ninguna captura llega.
+
+**Lo que salió limpio, medido:** sin desbordamiento horizontal en los 4 anchos · un solo `<h1>` y 0 saltos de nivel · banner de éxito **9,81:1** · campo en error **15,60:1** · anillo de foco `2px solid rgb(0,28,99)` · el acordeón abre y cierra con clic, **con Enter y con Espacio**, y pone `aria-expanded` · las 5 fotos del collage visibles con `prefers-reduced-motion` · el velo del héroe **monótono, sin canto**, con el peor píxel sobre 28 s del bucle de vídeo en **7,48:1** (`diag-velo`) · todo el héroe dentro del pliegue de 390×844 descontando los 80 px del botón flotante (`diag-ritmo --pliegue 390x844 --reserva 80`).
+
+**Los dos arreglos que Sebastian autorizó el 14-sep**, contra la regla de §4.bis y por eso dichos aquí:
+
+| | Qué pasaba | Medido | Radio |
+|---|---|---|---|
+| **A** | El panel de **fallo** perdía el rojo: `estimacion.css:483` lo pinta en el `<div>` pero `base.css:75` pinta el `<p class="mm-txt">` **directamente**, y una declaración directa gana a una heredada. El gemelo de **éxito** ya lo tenía resuelto (`servicio-core.css:225`) y el de fallo se quedó sin ello | `rgb(0,0,0)` → **`rgb(179,38,30)`**, 5,73:1 sobre el fondo tenue. **No era un fallo de contraste** —negro sobre ese fondo se lee de sobra—: era que el color de error nunca llegaba a la frase | acotado a `.svc-captacion`, así que `/request-estimated`, `/contact-us`, `/brochures` y `/gallery` **no se mueven** |
+| **C** | `<section id="estimate">` sin `tabindex="-1"`: el CTA bajaba la página y el siguiente Tab devolvía al menú, no al primer campo. `grep -rn "hashchange\|scrollIntoView" src/components/ src/layouts/` → **0** | `activeElement = section#estimate` en los 4 anchos | 16 rutas publicadas, **+14 B** de HTML cada una |
+
+**Lo que se reporta y NO se arregla**, por compartido:
+
+| Hallazgo | Medida | Rutas |
+|---|---|---|
+| El CTA `.button-styles` mide **36–38 px** de alto, por debajo de 44 | `161x36` a 390/768 · `183x38` a 1280/1440 | **121** — es la altura de botón de toda la casa. Subirla solo en mis 2 CTA los haría distintos del que tienen encima y debajo |
+| La casilla de consentimiento SMS mide **24×24** | `24x24` en los 4 anchos | **20** |
+| El acordeón pone `aria-haspopup="true"` en una FAQ, cierra los hermanos al abrir, y un clic en cualquier parte cierra la respuesta | — | **121** (`Interacciones.astro`) — ya estaba en `PROMPT-R19` §4.bis |
+| El separador «·» de los teléfonos cuelga al final de línea a 390 | 1 línea a 1440; el corte es **idéntico en las 14 fichas** | **16** — PRE-EXISTING, no lo introduce R20 |
+| Las 5 fotos del collage salen otra vez en el feed de la misma página | `2x` cada una, medido | declarado: es el solape que Sebastian aceptó en FICHAS-ORDEN · 2 |
+
+**Una decisión de dirección de arte que se declara en vez de tocarla:** en el collage de Ocala, la foto `custom-pool-spa-builders-florida-03` lleva el `alt` que publica `/gallery`, y ese `alt` dice **«South Florida»** en una landing de North Florida. Se deja, y por tres razones medidas: es el `alt` que el sitio ya publica para ese fichero —cambiarlo sería escribir una descripción distinta de la misma foto en dos páginas—; describe **dónde se construyó la piscina**, que es cierto, y no afirma dónde damos servicio; y de las 10 del set es la única con esa mención, así que sustituirla obligaría o a repetir una foto en la misma página o a mezclar dos fuentes en un collage. Va en el índice 3, que el bento solo pinta en escritorio. Si alguna vez molesta, la salida limpia es una foto de `public/images/projects/*-north-florida/`, que sí trae `alt` declarado en `proyectos-propios.json`.
+
+**Y dos defectos del propio diagnóstico, corregidos antes de darlo por bueno:** medía el honeypot `ref_id` —1×1 con `opacity:0` a propósito— como «objetivo táctil de 8×6», y contaba como repetición los 14 logos que la marquesina pinta tres veces por diseño. Un falso rojo enseña a ignorar los rojos.
+
+### La revisión adversarial del diff, antes de mergear
+
+`main` es producción, así que el diff entero pasó por cuatro revisores —radio de impacto, guardas del código, cumplimiento del copy y contratos de las puertas— y cada hallazgo por tres refutadores independientes. **Nueve sobrevivieron**, y ninguno cambia la salida de hoy: todos son guardas, conteos y alcance.
+
+| # | Qué se le escapaba a quién | Consecuencia si no se arregla |
+|---|---|---|
+| 1 | `build-paginas.mjs` comparaba sus contadores contra **todas** las claves de `captacion-servicios.json` | **`npm run paginas` salía con 1**: «la gallery se movió en 14 fichas y hay 16». Rompí ese pipeline al añadir 2 claves de otra familia, y no lo vi porque este encargo no lo corre |
+| 2 | `check:estructura:ciudades` y `check:captacion` estaban fuera de `npm run check` | Dos puertas que nadie corre no son puertas |
+| 3 | El generador solo sabía **añadir** | Quitar una ciudad de las filas dejaba su entrada viva y `--check` seguía VERDE |
+| 4 | `String.replace` interpreta `$&` en el texto de sustitución, y ese texto sale del JSON | Un `$&` en el copy duplicaría el marcado del héroe en producción, en silencio |
+| 5 | El héroe guardaba el marcador pero no la **carga** (`esc(undefined)` → cadena vacía) | Una entrada sin `ancla` pintaba `href=""` en el CTA principal de una landing de pago |
+| 6 | El `slug` de la fila no se validaba contra las rutas reales | Una errata apaga la ciudad que se quería encender, con el generador en verde |
+| 7 | `check-texto` **cableaba** el orden de los teléfonos que la página deriva del dato | **Bloqueaba la fase 2**: la primera ciudad de Broward o Palm Beach pondría la puerta roja por un texto correcto |
+| 8 | La **regla 14** no corría en la landing cuyo defecto cita como razón de existir | Escribir la puerta y no cerrarla. Además su `FAQPage` va **anidado** en el `WebPage` del origen, así que no bastaba con declararla |
+| 9 | `check-seo` declaraba «1 bloque `FAQPage`» y toleraba N | Dos bloques pasarían sin que nada lo dijera |
+
+Las dos guardas nuevas (5 y 6) se rompieron a propósito antes de darlas por buenas.
+
 ### Desviaciones
 Qué se hizo distinto del plan y por qué. «Ninguna» es una respuesta válida.
 
@@ -6501,3 +6546,96 @@ La ficha queda como las otras 13: su galería son las fotos de su servicio.
 | `check:estructura` · `check:tokens` · `check:enlaces` · `check:ads` · `check:seo` | 🟢 |
 | `check:galeria` (la ficha) | 🟢 entero: 20 anclas con nombre, modal, 44×44, Escape, velo y foco. Esta vez tampoco hay salto: el `-271 px` de FICHAS-ORDEN depende de la geometría |
 | `check:texto` | **no se corrió**: el texto de la página no cambia (mismo título y entradilla de la galería; los slides no tienen texto) |
+
+---
+
+## R20-CIUDADES F1 — Ocala y Gainesville captan el lead en su propia página (14-sep-2026)   ✅ cerrada
+
+**Encargo:** `docs/encargos/R20-CIUDADES.md`, de Sebastian · **Base:** `0ea89ee` · **Rama:** `claude/fervent-cannon-wvrghf`
+**Commit, push, PR y merge a `main`:** autorizados en el encargo si se cumple «Listo».
+
+### Objetivo
+
+Las dos Final URL de los ad groups «Ocala» y «Gainesville» mandaban el lead a `/request-estimated`: un **segundo clic que el anuncio ya había pagado**. Es la brecha que la matriz de Ads declara («Main Gap: sin formulario propio», §2) y la única que las separaba de la ficha Core. Y que las otras 51 ciudades salgan **byte a byte iguales**.
+
+### Qué se hizo
+
+- **Quinto cambio a mano de `pool-builders/[slug].astro`**, documentado en su cabecera. Monta `ConfianzaCore`, `FormularioCore`, `InversionCore` y una FAQ nueva, **todo condicionado a que la ruta tenga entrada** en `captacion-servicios.json`.
+- **`src/lib/captacion-ciudad.mjs`**, con el patrón «partir con guarda» de `carrusel-proyectos.mjs`: parte `B[0]` en dos puntos nuevos y hace la cirugía del héroe (CTA → `#estimate`, los dos teléfonos con `tel:` y la línea de licencias). Ese marcado lo montan **57 rutas**: si la plantilla cambia de forma, revienta el build con el slug puesto.
+- **Una ciudad cuesta UNA FILA.** `src/data/ciudades-captacion.json` + `npm run captacion:ciudades` expanden a entradas literales; `npm run check:captacion` sale rojo si alguien las edita a mano. Las 2 de la fase 1 se generaron ya con el mecanismo de la fase 2.
+- **Cada ciudad, su propio cubo de leads** (`data-name`, asunto y `data-mm-id` propios), sin tocar un solo fichero compartido: `FICHAS_CAPTACION` se deriva de las claves del JSON y `aviso-correo.ts` cae en `tituloRespaldo`.
+- **Puerta nueva `npm run check:estructura:ciudades`** y **regla 14 de `check:ads`** (el `FAQPage` casa 1:1 con lo visible).
+
+### Lo que estaba mal y nadie sabía
+
+1. **`FormularioCore.astro:81` leía `d.proyectos` FUERA de su propio guard.** Mientras lo montaban solo las 14 fichas —todas con entrada— nadie lo veía; montarlo en las 53 tiraba el build de las 51 con `TypeError`.
+2. **La regla 9 de `check:ads` no comprobaba nada.** `:180` borra todos los `<script>` para quedarse con el texto del cuerpo y la regla buscaba el JSON-LD **después**: recorría una lista vacía desde el 11-sep y salía verde.
+3. **Las reglas 10 y 11 no veían una sola respuesta de FAQ.** En Webflow la respuesta es un `<nav class="dropdown-list">` y las dos quitaban `nav` entero. La 11 existe **precisamente** porque «$75,000 … $500,000+» estuvo publicado dentro de una respuesta de FAQ: la puerta escrita para cazar eso no podía mirar donde pasó.
+4. **El héroe de estas rutas no tiene `<img>`.** El encargo pedía «las 13 reglas» de `check:ads`; la 12 modela un héroe de imagen y aquí el fondo es un `<video>` compartido por 57 rutas. Son **12 de 13**, y la que falta sale impresa con su motivo.
+5. **`CollageFaq` no devuelve `null` sin entrada: lanza.** El encargo decía que los cuatro widgets devolvían `null`.
+
+### Números medidos
+
+| Qué | Comando | Resultado |
+|---|---|---|
+| Páginas que cambian | `node scripts/diag-identidad.mjs --compara /tmp/r20-base.json` | **16 cambian · 0 nuevas · 0 borradas · 106 idénticas byte a byte**. Las 2 ciudades (+28 861 y +28 958 B) y las 14 fichas de `/services/` a **+14 B cada una**, que es exactamente el largo de ` tabindex="-1"` — ver «los dos arreglos compartidos» |
+| No-regresión del mecanismo | ídem, con el montaje puesto y **sin** las 2 entradas | **0 cambian · 122 idénticas** |
+| Presupuesto CSS | `npm run check:tokens` | **90,7 KB de 92 · 1,3 KB libres** — sin tocar: `servicio-core.css` lo importa `Base.astro` en las 115 y sus `.svc-*` son selectores planos. **0 bytes nuevos** |
+| Rutas con captación | `grep -rlo 'svc-captacion' .vercel/output/static --include='*.html' \| wc -l` | **16** (eran 14) |
+| Rutas con FAQ | `grep -rlo 'class="faq-section' … \| wc -l` | **18** (eran 16) |
+| Anclas a `#estimate` por página | `grep -o 'href="#estimate"' …/ocala-florida/index.html \| wc -l` | **3** (héroe + 2 `.svc-cierre`) |
+| Contraste del héroe, peor píxel | `xvfb-run -a node scripts/diag-contraste.mjs /pool-builders/ocala-florida 'section.hero-glass-section' 1440` | h1 **10,11:1** · h2 **10,48:1** · apoyo **8,65:1** · `svc-heroe__tel` **8,76:1** · `svc-heroe__lic` **9,20:1** · peor caso **6,35:1** (umbral 4,5) |
+| ídem a 479 | mismo comando, `479` | apoyo **10,61:1** · tel **9,82:1** · lic **10,50:1** · peor caso **6,35:1** |
+| Contraste de las 4 secciones nuevas | ídem sobre `svc-confianza, appointment-section, svc-inversion, faq-section` | peor caso **5,26:1** a 1440 y **5,39:1** a 479 (umbral 4,5) |
+| Formularios dados de alta | derivación de `FICHAS_CAPTACION` sobre el JSON | **16** (eran 14); `Ocala pool builders lead` y `Gainesville pool builders lead` distinguibles |
+
+### Gate
+
+| Puerta | Estado |
+|---|---|
+| `check:tokens` · `check:rutas` · `check:enlaces` · `check:estructura` | 🟢 |
+| `check:seo` (`PUBLIC_ES_PRODUCCION=1`) | 🟢 — con `BLOQUES_PROPIOS` declarado y su examen propio |
+| `check:ads` (`PUBLIC_ES_PRODUCCION=1`) | 🟢 las 4 landings. **12 de 13 reglas** en las 2 ciudades + la 14 nueva; la 12 **NO APLICA** e imprime por qué |
+| `check:medicion` (`PUBLIC_ES_PRODUCCION=1`) · `check:aviso` | 🟢 |
+| `check:estructura:ciudades` (nueva) | 🟢 — 2 con captación · 51 exactamente como estaban |
+| `check:captacion` (nueva) | 🟢 — las 2 entradas coinciden con su fila |
+| `check:texto` `/pool-builders/{ocala,gainesville}-florida` | 🟢 2/2 |
+| `check:texto` `/services/` (las 14) | 🟢 **14/14 idénticas** — obligatorio: los arreglos A y C tocan componentes compartidos |
+| `check:carrusel` (Gainesville) | 🟢 — es 1 de sus 5 rutas fijas; los 3 carruseles siguen bien con las secciones nuevas en medio |
+| `diag-estados` (nuevo, las 2 rutas × 4 anchos) | 🟢 en todo salvo 2 hallazgos **compartidos** (abajo) |
+| `check:visual` (las 2, 4 anchos) | 🔴 8 · **ROJO CORRECTO** (`rediseno`). La página crece +677 a +987 px según el ancho; la referencia es del 31-ago-2026, ANTERIOR al cambio. Pendiente de `aprobar-diseno.mjs`, que exige humano |
+| `check:ix2` | **no se corrió**: es gate de fase y no lee argv. El acordeón nuevo lo verificó E ruta a ruta. **No cuenta como verde** |
+| `check:assets` | **`ENVIRONMENT BLOCKER`** — lee de `_source/sanity-masters/`, que está en `.gitignore` |
+| `check:cascaron` · `check:galeria` | **no se corrieron**: el primero reescribe `robots.txt` y `sitemap.xml`; no se monta `section.gallery` |
+
+`git diff --quiet public/robots.txt public/sitemap.xml` → **intactos**.
+
+### Las tres reglas nuevas, rotas a propósito antes de darlas por buenas
+
+| Regla | Cómo se rompió | Rojo que dio |
+|---|---|---|
+| `check:ads` 14 | el schema emite `q.pregunta + ' ROTO A PROPOSITO'` | «el FAQPage no coincide 1:1», con las dos listas enfrentadas |
+| `check:seo` `BLOQUES_PROPIOS` | `$25,000` en una respuesta de la FAQ | «FAQPage propio: la entrada 0 publica una cifra de dinero» |
+| `check:ads` 11 (arreglada) | la misma cifra | «cifra(s) de dinero en el cuerpo: $25,000» — **que antes no veía** |
+| `check:estructura:ciudades` | quitar la guarda `{CAP && …}` del `.svc-cierre` | **51 rojos**: «no tiene entrada y sin embargo pinta `.svc-cierre`» |
+
+### Desviaciones
+
+1. **`check:ads` pasa 12 de 13, no las 13 que pedía el encargo.** La regla 12 modela un héroe de imagen y el de estas rutas es un `<video>` compartido por 57. Se declara `NO APLICA` con su motivo en vez de inventarse un selector. Sebastian decidió el 14-sep que el héroe se queda como está.
+2. **`check:ix2` no se corrió.** Es gate de fase, no lee `argv`, y correrla es barrer el sitio. El acordeón nuevo —que es lo único interactivo que entra— lo verificó E ruta a ruta. **No cuenta como verde**; toca en el gate de la fase 2.
+3. **Verificación contra producción y contra la preview: BLOQUEADA.** El proxy de este contenedor deniega el `CONNECT` a los dos dominios:
+   ```
+   curl -sI https://www.mrandmrsoutdoorliving.com/pool-builders/ocala-florida   -> 403
+   curl -sS "$HTTPS_PROXY/__agentproxy/status"  -> connect_rejected · "gateway answered 403 to CONNECT"
+   ```
+   No es que el sitio falle: es que desde aquí no se ve. **`PRODUCTION VERIFICATION BLOCKED`, nunca PASSED.** El `mcp__Vercel__web_fetch_vercel_url` sobre la preview tampoco resuelve.
+4. **El lead de prueba de §5.6 no se envió.** Requiere alcanzar producción, y no se alcanza. El correo sí se podría confirmar (Gmail está disponible en esta sesión), pero no hay forma de provocar el envío. Queda para quien tenga red.
+5. **El apoyo del héroe se sustituye**, que no estaba pedido explícitamente. Es una línea, va declarada 1→1 en `TRADUCIDAS_A_PROPOSITO` y el motivo es de correspondencia de mensaje: ofrecía remodelación en la tercera línea de la primera pantalla de una landing de construcción nueva.
+
+### Abierto
+
+1. **Aprobar las capturas** de `audit/r20-ciudades/` con `aprobar-diseno.mjs`. Exige humano y árbol limpio. Hasta entonces `check:visual` sigue en 8 rojos, y son correctos.
+2. **`generate_lead` en GTM**, a 0 en GA4 desde enero. No es de este repo y **bloquea el lanzamiento** de las cuatro landings (matriz §0).
+3. **Verificar en producción** cuando haya red: `curl -sI` a las 2 URLs → 200 sin redirect, y `grep -c 'data-mm-envia="1"'` → 1. Más el lead de prueba por ciudad.
+4. **Fase 2**: las 51 restantes, una fila cada una en `src/data/ciudades-captacion.json`. Merge en PR por decisión de Sebastian.
+5. **La regla 12 de `check:ads`** sigue sin cubrir un héroe de vídeo. Si algún día se quiere el invariante del LCP también aquí, hay que modelarlo (póster declarado, `preload`), no forzar la regla de imagen.
