@@ -198,13 +198,34 @@ const CONDADOS = condadosVerificados();
 const captacion = leer(P_CAPTA);
 const collage = leer(P_COLLAGE);
 
-const nuevoCaptacion = { ...captacion };
-const nuevoCollage = { ...collage };
+/* SE RETIRAN LAS DERIVADAS ANTES DE VOLVER A ESCRIBIRLAS, Y ESA ES LA MITAD QUE FALTABA.
+ * Escribir sin borrar hace que el generador solo sepa ANADIR: quitar una ciudad de
+ * `ciudades-captacion.json` dejaria su entrada viva en los dos JSON y la pagina seguiria
+ * publicando el formulario, el collage y la FAQ de una ciudad que ya nadie declara — y
+ * `--check` saldria VERDE, porque lo que compara es que las filas que hay coincidan.
+ * Se borran solo las que llevan la marca `_derivado`: una entrada escrita a mano (las 14 de
+ * `/services/`) no se toca ni por error. */
+const esDerivada = (v) => typeof v?._derivado === 'string';
+const nuevoCaptacion = Object.fromEntries(
+  Object.entries(captacion).filter(([k, v]) => !(k.startsWith('/pool-builders/') && esDerivada(v))));
+const RUTAS_FILA = new Set(filas.ciudades.map((c) => `/pool-builders/${c.slug}`));
+const nuevoCollage = Object.fromEntries(
+  Object.entries(collage).filter(([k]) => !k.startsWith('/pool-builders/') || RUTAS_FILA.has(k)));
 const avisos = [];
 let n = 0;
 
+/* EL SLUG SE VALIDA CONTRA LAS RUTAS QUE EXISTEN DE VERDAD. Una errata —`ocla-florida`— no
+ * rompe nada visible: escribe una entrada para una ruta que no existe, nadie la pinta, y la
+ * ciudad que se queria encender se queda apagada con el generador en verde. Las 53 claves de
+ * `seo-pool-builders.json` son la lista de rutas reales de esta familia. */
+const RUTAS_REALES = new Set(Object.keys(leer(path.join(RAIZ, 'src/data/seo-pool-builders.json'))));
+
 for (const c of filas.ciudades) {
   const ruta = `/pool-builders/${c.slug}`;
+  if (!RUTAS_REALES.has(c.slug)) {
+    throw new Error(`[captacion-ciudades] "${c.slug}" no es una de las 53 ciudades de `
+      + 'src/data/seo-pool-builders.json. Una errata aqui apaga la ciudad en silencio.');
+  }
   if (c.condado && !CONDADOS.includes(c.condado)) {
     throw new Error(`[captacion-ciudades] ${c.slug}: condado "${c.condado}" NO esta en los 9 de `
       + `src/lib/negocio.mjs (${CONDADOS.join(', ')}). No se inventa un condado: se deja la fila `

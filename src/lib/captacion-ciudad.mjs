@@ -79,6 +79,18 @@ export function heroeDeCaptacion(cadena, cap, telefonos, donde) {
    * de North va delante; el dia que haya una ciudad de Broward o Palm Beach (fase 2) tiene que
    * ir delante el suyo, y eso no se decide desde aqui. Sin `zonas` declaradas se mantiene el
    * orden del origen, que es el de `telefonos.json`. */
+  /* LA GUARDA DEL MARCADOR NO BASTA: TAMBIEN SE COMPRUEBA LA CARGA.
+   * `esc()` convierte `undefined` en cadena vacia, asi que una entrada a la que le falte
+   * `licencias` o `ancla` no revienta: pinta un `<p>` mudo y un `href=""` en el CTA principal
+   * de una landing de pago. Es el mismo criterio que `valor()` en `[slug].astro` —«un campo
+   * vacio deja un hueco mudo en la pagina; mejor que reviente el build»— y aqui vale doble,
+   * porque el campo que se queda vacio es el camino a la conversion. */
+  for (const k of ['licencias', 'ancla']) {
+    if (!String(cap.heroe?.[k] ?? '').trim()) {
+      throw new Error(`[captacion-ciudad] ${donde}: falta heroe.${k} en `
+        + 'captacion-servicios.json. Sin `ancla` el CTA de la landing apunta a ninguna parte.');
+    }
+  }
   const zonas = cap.heroe?.zonas ?? telefonos.map((x) => x.zona);
   const orden = zonas.map((z) => telefonos.find((x) => x.zona === z));
   if (orden.some((x) => !x)) {
@@ -88,10 +100,14 @@ export function heroeDeCaptacion(cadena, cap, telefonos, donde) {
   const tel = orden
     .map((x) => `<a href="tel:${esc(x.tel)}">${esc(x.visible)}</a> ${esc(x.zona)}`)
     .join(' &middot; ');
-  return t.replace(
-    ANCLA_HEROE,
-    `<p class="svc-heroe__tel">${tel}</p>`
+  /* 🚨 EL REEMPLAZO VA POR FUNCION, NO POR CADENA, Y NO ES ESTILO.
+   * `String.prototype.replace` interpreta `$&`, `$\``, `$'` y `$1` DENTRO del texto de
+   * sustitucion. Ese texto sale de `captacion-servicios.json` —licencias y telefonos—, o sea de
+   * datos que un dia escribe otra persona. Con un `$&` en el copy, el reemplazo insertaria el
+   * marcador entero y el heroe saldria con el HTML duplicado, en produccion y sin ruido.
+   * Hoy no hay ningun `$` en esos campos; la forma con funcion hace que no importe. */
+  const trozo = `<p class="svc-heroe__tel">${tel}</p>`
     + `<p class="svc-heroe__lic">${esc(cap.heroe.licencias)}</p>`
-    + `<div class="wrapper-buttons-center"><a href="${esc(cap.heroe.ancla)}"`,
-  );
+    + `<div class="wrapper-buttons-center"><a href="${esc(cap.heroe.ancla)}"`;
+  return t.replace(ANCLA_HEROE, () => trozo);
 }
