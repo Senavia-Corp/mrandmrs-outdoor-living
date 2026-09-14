@@ -6465,3 +6465,39 @@ Las costuras se midieron sobre la base `d185a51`, antes de FAQ-COLLAGE, en Core 
 1. **Fotos repetidas seguidas.** El collage de la FAQ pinta 5 fotos de la galería de su ficha (en pool-remodeling: 08, 03, 09, 04 y 06). Con la galería justo debajo, esas fotos salen dos veces seguidas en 13 fichas. En la Core no pasa. **Decide Sebastian**; se dejó solo reportado.
 2. **Aprobar las capturas** de las 14 fichas con `aprobar-diseno.mjs`. `check:visual` sigue rojo en ellas hasta entonces, y el árbol tiene que estar limpio: `PROMPT-FONDO-AGUA.md` sin trackear lo bloquea.
 3. **`check:texto` e `check:ix2` no se repitieron sobre la base final** (verdes sobre `d185a51`). Sebastian pidió cerrar sin más barridas; toca en el próximo gate de fase.
+
+---
+
+## FICHAS-ORDEN · 2 — la galería de Custom Pools con las 10 fotos de `/gallery` (14-sep-2026)   ✅ cerrada
+
+**Encargo:** pedido de Sebastian en chat, mirando producción · **Base:** `9eac680` · **Rama:** `claude/core-galeria-de-gallery`
+
+### Qué se hizo
+
+Sebastian pidió que la galería de `/services/custom-pool-spa-builders-in-north-south-florida` usara las mejores fotos de `/gallery`. En `/gallery`, «New Pool and Spa Construction» (`data-service-id="construction"`) tiene **exactamente 10**, y son las mismas que la galería de origen de la ficha: mismo orden (`custom-pool-spa-builders-florida-10…01`) y mismo `alt`, comparado por script.
+
+Por eso el cambio es **quitar la sustitución**:
+- **`captacion-servicios.json`:** fuera `galeria.fotos`, las 8 de obra propia de FICHAS-ORDEN.
+- **`build-paginas.mjs`:** fuera el bloque 8a, que se quedó sin usuaria. Se quedan el movimiento detrás de la FAQ y sus guardas.
+
+La ficha queda como las otras 13: su galería son las fotos de su servicio.
+
+**Aceptado por Sebastian y dicho aquí:**
+- esas 10 son también las del feed de Instagram de la misma página (solape 10/10, la razón por la que R17-CORE quitó la galería);
+- 5 salen en el collage de la FAQ, justo encima.
+
+### Números medidos
+
+| Qué | Resultado |
+|---|---|
+| `diag-identidad` contra `9eac680` | **1 página cambia** (la ficha, +3.281 B) · 121 idénticas · bundle CSS sin tocar |
+| Slides de la galería de la ficha (`check:estructura`) | **10** |
+| Regeneración | idempotente; el diff solo toca el generador, el JSON y el `.astro` de la ficha |
+
+### Gate
+
+| Puerta | Estado |
+|---|---|
+| `check:estructura` · `check:tokens` · `check:enlaces` · `check:ads` · `check:seo` | 🟢 |
+| `check:galeria` (la ficha) | 🟢 entero: 20 anclas con nombre, modal, 44×44, Escape, velo y foco. Esta vez tampoco hay salto: el `-271 px` de FICHAS-ORDEN depende de la geometría |
+| `check:texto` | **no se corrió**: el texto de la página no cambia (mismo título y entradilla de la galería; los slides no tienen texto) |
