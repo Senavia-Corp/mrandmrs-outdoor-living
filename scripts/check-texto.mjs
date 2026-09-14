@@ -159,6 +159,28 @@ const TRADUCIDAS_A_PROPOSITO = [
     'h2 de intro de Ocala, misma razón'],
 
   /**
+   * ── R20-CIUDADES · EL APOYO DEL HÉROE DE LAS DOS LANDINGS DE PAGO ─────────────────────────
+   *
+   * A3 arregló el h1 y el h2; la TERCERA línea de la primera pantalla seguía vendiendo «new
+   * pool construction, pool remodeling, and luxury pool design» en la landing de un ad group
+   * que compra CONSTRUCCIÓN NUEVA. La remodelación tiene su propia landing con su propio
+   * formulario desde R19: ofrecerla aquí es abrir la puerta de al lado antes de que el
+   * visitante haya entendido ésta.
+   *
+   * Lo pisa `[slug].astro` desde `heroe.apoyo` de `captacion-servicios.json`, por el mismo
+   * mecanismo que `bloques`. Sustitución 1→1, línea entera: no se añade ni se quita texto.
+   * NO lleva `rutas` porque no hace falta —cada una de estas dos líneas solo existe en su
+   * propia página, igual que los encabezados de A3 de arriba—.
+   */
+  ['Professional custom pool builders in Ocala, Florida. We specialize in new pool construction, pool remodeling, and luxury pool design for homeowners in North Florida.',
+    'New custom inground pools for Ocala homeowners — 3D design, permits, construction and final start-up, from one licensed team.',
+    'apoyo del héroe de Ocala: resuelve QUÉ, DÓNDE, PARA QUIÉN y QUÉ HACER AHORA sin ofrecer '
+    + 'la remodelación, que compite con la intención del anuncio arriba del pliegue'],
+  ['Professional custom pool builders in Gainesville, Florida. We specialize in new pool construction, pool remodeling, and luxury pool design for homeowners in North Florida.',
+    'New custom inground pools for Gainesville homeowners — 3D design, permits, construction and final start-up, from one licensed team.',
+    'apoyo del héroe de Gainesville, misma razón'],
+
+  /**
    * ── R17-CORE · LA LANDING DE PAGO DEL AD GROUP «POOL BUILDERS CORE» ───────────────────
    *
    * Las cuatro llevan `rutas`, y las dos ultimas LO NECESITAN: «What Do We Do!» esta en las 14
@@ -600,6 +622,32 @@ const LINEAS_ANADIDAS = [
     motivo: 'AUDITORIA: el heroe del rediseño lleva un segundo CTA que el origen no tenia. '
       + '«Project Gallery» ya estaba en el baseline pero en el MENU, asi que el conjunto no '
       + 'cambia y solo se desordena. Verificado que es anterior a la auditoria (33baf7e).',
+  },
+  {
+    /**
+     * R20-CIUDADES · EL CTA A MEDIA PAGINA DE LAS LANDINGS DE CIUDAD.
+     *
+     * Entre el formulario y el pie quedaban SEIS secciones seguidas -3D, Pool Features, obra,
+     * resenas, inversion y FAQ- y el unico boton por el camino era «See all Projects», que
+     * lleva FUERA de la landing. Este ancla devuelve a `#estimate` justo al acabar de leer las
+     * mejoras de la piscina, que es donde el deseo esta mas alto. Reutiliza `.svc-cierre`.
+     *
+     * VA ANCLADO AL PARRAFO QUE LO PRECEDE, y no suelto: «Get A Free Estimate» sale ya cuatro
+     * veces en estas paginas -heroe, aqui, tras la FAQ y en el `.cta-footer`-, asi que un
+     * `quitaBloque` de una linea se llevaria por delante el del heroe y el baseline dejaria de
+     * casar por el otro extremo. El ancla es la ultima tarjeta de «Pool Features», identica en
+     * las 53 porque sale de la misma plantilla.
+     *
+     * La lista de rutas se DERIVA de `captacion-servicios.json`, no se copia: cuando la fase 2
+     * encienda las 51 restantes, esto no hay que tocarlo.
+     */
+    rutas: Object.keys(CAPTACION_JSON).filter((r) => r.startsWith('/pool-builders/')),
+    tras: ['Outdoor living design-build enhancements include outdoor kitchens, pergolas, '
+      + 'hardscaping, and architectural shade structures—fully integrated to create a cohesive, '
+      + 'high-end outdoor environment.'],
+    lineas: ['Get A Free Estimate'],
+    motivo: 'R20-CIUDADES: `.svc-cierre` a media pagina, detras de «Pool Features», para que no '
+      + 'haya seis secciones seguidas sin camino a #estimate.',
   },
   {
     rutas: null,                                        // null = todas las que tengan pie
@@ -1225,6 +1273,13 @@ const camposCaptacion = (c) => [
 ];
 
 /** Los bloques contiguos que aporta la capa de captacion en `ruta`. Vacio si no la lleva. */
+/**
+ * EL CTA QUE CIERRA UN BLOQUE DE LA CAPA DE CAPTACION (`.svc-cierre`). Un solo sitio donde
+ * escribirlo: sale dos veces en las landings de ciudad -tras «Pool Features» y tras la FAQ- y
+ * `webflow.css` lo pinta con `capitalize`, asi que se declara pasando por `capitaliza()`.
+ */
+const CTA_CIERRE = 'Get a Free Estimate';
+
 function bloquesCaptacion(ruta) {
   const c = CAPTACION_JSON[ruta];
   if (!c) return [];
@@ -1275,7 +1330,18 @@ function bloquesCaptacion(ruta) {
   // 4 · las preguntas nuevas. Solo el `<h3>`: la respuesta vive en un desplegable cerrado y
   //     `innerText` no la ve. Una ficha puede no anadir ninguna -no se inventa una pregunta
   //     para rellenar-, y entonces no hay bloque que descontar.
-  if (c.faq?.anade?.length) bloques.push(c.faq.anade.map((q) => capitaliza(q.pregunta)));
+  //
+  //     R20-CIUDADES: en `/pool-builders/` la FAQ no existia, asi que la seccion ENTERA es
+  //     nuestra -titulo, entradilla, las 3 preguntas y el CTA de cierre- y sale contigua. Se
+  //     distingue por `faq.titulo`, que solo traen las entradas que montan su propia seccion:
+  //     en las 14 fichas de `/services/` el titulo y la entradilla salen del baseline, porque
+  //     la FAQ ya venia del origen y alli solo se ANADEN preguntas.
+  if (c.faq?.anade?.length) {
+    bloques.push(c.faq.titulo
+      ? [capitaliza(c.faq.titulo), c.faq.entradilla,
+        ...c.faq.anade.map((q) => capitaliza(q.pregunta)), capitaliza(CTA_CIERRE)]
+      : c.faq.anade.map((q) => capitaliza(q.pregunta)));
+  }
 
   return bloques;
 }

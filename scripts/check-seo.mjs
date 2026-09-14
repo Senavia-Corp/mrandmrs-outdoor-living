@@ -195,6 +195,82 @@ const PARTES_PROPIAS = {
  * cambio otra cosa- la declaracion deja de casar y esto vuelve a ROJO. Y el valor nuevo se
  * exige tal cual en el build. Todo lo demas del bloque se sigue comparando caracter a caracter.
  */
+/**
+ * ── BLOQUES DE JSON-LD PROPIOS, QUE EL ORIGEN NO TRAIA (R20-CIUDADES) ────────────────────────
+ *
+ * La tercera categoria, y la que faltaba. `PARTES_PROPIAS` declara partes que CRECEN dentro de
+ * un bloque del origen; `JSONLD_ARREGLADO` declara valores del origen que se corrigen. Esto
+ * declara un bloque ENTERO que no existe en el baseline porque lo escribimos nosotros.
+ *
+ * El caso: las dos landings de pago de `/pool-builders/` ganan una FAQ y, con ella, su `FAQPage`.
+ * El origen de Webflow no traia ninguna de las dos cosas, asi que el baseline dice 1 bloque
+ * (`LocalBusiness`) y el build emite 2. Sin esta declaracion la puerta sale roja con
+ * «JSON-LD: 1 bloque(s) -> 2», que es EXACTAMENTE lo que debe hacer mientras nadie lo declare.
+ *
+ * NO ES «IGNORA ESTE BLOQUE», y es toda la diferencia. Se descuenta de la comparacion contra el
+ * baseline —no hay baseline contra el que compararlo— y a cambio SE LE EXIGE mas que al resto:
+ * tipo correcto, el numero de entradas declarado, y ni una pregunta o respuesta vacia. Un
+ * `FAQPage` con una `Question` sin `name` es marcado que ocupa sitio y no dice nada, y es
+ * justamente lo que nadie iria a mirar. Ademas se prohiben cifras de dinero dentro: R17-CORE
+ * §4.3 encontro el FAQPage de la ficha Core publicando «$75,000 … $500,000+» sin verificar, y
+ * un dato estructurado es tan publicable como el texto que se ve.
+ *
+ * La coincidencia 1:1 con las preguntas VISIBLES no se comprueba aqui sino en la regla 14 de
+ * `scripts/check-ads-landing-pages.mjs`, que ve el cuerpo ademas del `<head>`.
+ */
+const BLOQUES_PROPIOS = {
+  '/pool-builders/ocala-florida': {
+    tipo: 'FAQPage', clave: 'mainEntity', n: 3,
+    motivo: 'R20-CIUDADES: la landing de pago del ad group «Ocala» gana una FAQ con las tres '
+      + 'objeciones locales (coste sin cifras, permisos del condado y que incluye). El origen no '
+      + 'traia FAQ ni FAQPage en esta familia de rutas.',
+  },
+  '/pool-builders/gainesville-florida': {
+    tipo: 'FAQPage', clave: 'mainEntity', n: 3,
+    motivo: 'R20-CIUDADES: idem para el ad group «Gainesville».',
+  },
+};
+
+/** Cuantos bloques propios se casaron, para decir por pantalla si la declaracion se aplico. */
+let propiosCasados = 0;
+
+/**
+ * Saca los bloques propios declarados de `lista`, EXIGIENDOLES lo que los hace utiles.
+ * Devuelve los que quedan (los del origen) y empuja en `problemas` lo que no cuadre.
+ */
+function apartaBloquesPropios(ruta, lista, problemas) {
+  const d = BLOQUES_PROPIOS[ruta];
+  if (!d) return lista;
+  const quedan = [];
+  let visto = 0;
+  for (const b of lista) {
+    let o;
+    try { o = JSON.parse(b.textContent); } catch { quedan.push(b); continue; }
+    if (o['@type'] !== d.tipo) { quedan.push(b); continue; }
+    visto++;
+    const entradas = o[d.clave];
+    if (!Array.isArray(entradas) || entradas.length !== d.n) {
+      problemas.push(`${d.tipo} propio: ${d.n} entrada(s) declarada(s) en ${d.clave} y hay `
+        + `${Array.isArray(entradas) ? entradas.length : 'ninguna'}`);
+      continue;
+    }
+    for (const [i, q] of entradas.entries()) {
+      const nombre = String(q?.name ?? '').trim();
+      const texto = String(q?.acceptedAnswer?.text ?? '').trim();
+      if (!nombre || !texto) {
+        problemas.push(`${d.tipo} propio: la entrada ${i} va sin name o sin acceptedAnswer.text`);
+      }
+      if (/\$\s?[0-9]/.test(`${nombre} ${texto}`)) {
+        problemas.push(`${d.tipo} propio: la entrada ${i} publica una cifra de dinero. `
+          + 'Decision TILA/Reg Z del 2-sep-2026, y el dato estructurado publica igual que el texto');
+      }
+    }
+  }
+  if (!visto) problemas.push(`falta el bloque ${d.tipo} declarado en BLOQUES_PROPIOS`);
+  else propiosCasados++;
+  return quedan;
+}
+
 const JSONLD_ARREGLADO = {
   '/services/custom-pool-spa-builders-in-north-south-florida': {
     bloque: 0,
@@ -523,7 +599,8 @@ for (const ruta of conPropias(RUTAS)) {
       catch { return false; }
     };
     const inyectados = todos.filter(esInyectado);
-    const bloques = todos.filter((b) => !esInyectado(b));
+    // Los propios (§ BLOQUES_PROPIOS) salen de la comparacion DESPUES de pasar su propio examen.
+    const bloques = apartaBloquesPropios(ruta, todos.filter((b) => !esInyectado(b)), problemas);
     const espLd = esperado.jsonLd ?? [];
 
     const neg = inyectados.map((b) => JSON.parse(b.textContent)).find((x) => x['@id'].endsWith('#negocio'));
@@ -652,6 +729,15 @@ for (const [r, d] of Object.entries(PARTES_PROPIAS)) {
   const bien = partesCasadas > 0;
   console.log(`  ${bien ? 'ok  ' : 'ROJO'} declarado ${r}: ${d.urls.length} parte(s) propia(s) `
     + `en ${d.clave}, descontadas antes de comparar con el baseline`);
+  if (!bien) fallos++;
+}
+/* R20-CIUDADES. Misma regla, y el contador por ruta: un bloque propio que no se caso significa
+ * que la pagina dejo de emitirlo, y eso no puede pasar en silencio — es la FAQ entera. */
+for (const [r, d] of Object.entries(BLOQUES_PROPIOS)) {
+  const bien = propiosCasados >= Object.keys(BLOQUES_PROPIOS).length;
+  console.log(`  ${bien ? 'ok  ' : 'ROJO'} declarado ${r}: 1 bloque ${d.tipo} propio con `
+    + `${d.n} entrada(s), fuera de la comparacion con el baseline y con examen propio`);
+  console.log(`       ${d.motivo}`);
   if (!bien) fallos++;
 }
 /* R17-CORE. Misma regla: si no sale por pantalla, deja de estar declarado el dia que nadie abre

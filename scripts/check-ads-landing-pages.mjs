@@ -57,6 +57,19 @@ const LANDINGS = [
     exige: [/pool builders?/i, /gainesville/i],
     exigeCuerpo: [/inground|in-ground/i, /alachua|north florida/i],
     prohibeArriba: [/pergola/i, /outdoor kitchen/i, /commercial/i],
+    /**
+     * R20-CIUDADES. `formulario` SI; `heroe` NO, y no es un olvido: el heroe de las 53 ciudades
+     * es `.hero-glass-section`, que NO TIENE `<img>` —su fondo es un `<video>` autoplay con
+     * poster que comparten 57 rutas—. La regla 12 modela un heroe de imagen: aplicarsela aqui
+     * seria inventarse un selector para que salga verde. Sale en PENDIENTE, con el motivo, que
+     * es lo unico honesto mientras el heroe siga siendo vídeo.
+     */
+    formulario: {
+      dataName: 'Gainesville Pool Builders Form',
+      campo: 'Project-Type',
+      preseleccion: 'New Custom Pool',
+    },
+    faq: { n: 3 },
   },
   {
     grupo: 'Ocala',
@@ -64,6 +77,13 @@ const LANDINGS = [
     exige: [/pool builders?/i, /ocala/i],
     exigeCuerpo: [/inground|in-ground/i, /marion|north florida/i],
     prohibeArriba: [/pergola/i, /outdoor kitchen/i, /commercial/i],
+    /* Idem que Gainesville: formulario propio si, heroe de imagen no (ver alli el motivo). */
+    formulario: {
+      dataName: 'Ocala Pool Builders Form',
+      campo: 'Project-Type',
+      preseleccion: 'New Custom Pool',
+    },
+    faq: { n: 3 },
   },
   {
     grupo: 'Full Remodel',
@@ -156,6 +176,13 @@ for (const L of LANDINGS) {
     if (re.test(arriba)) mal(L.ruta, `el h1/h2 mete ${re} arriba del pliegue, compitiendo con la intencion del anuncio. Ese contenido va MAS ABAJO, no se borra.`);
   }
 
+  /* 🚨 EL JSON-LD SE RECOGE ANTES DE VACIAR EL DOM, Y ESO ARREGLA UN VERDE PRESTADO.
+   * La linea de abajo borra todos los `<script>` para quedarse con el texto del cuerpo, asi que
+   * la regla 9 -«todo JSON-LD parsea»- llevaba desde el 11-sep recorriendo una lista VACIA: no
+   * comprobaba nada y salia verde igual. Mismo genero de defecto que el contador global de
+   * `:161`, y con la misma consecuencia: la puerta decia que habia mirado. */
+  const LD = [...d.querySelectorAll('script[type="application/ld+json"]')].map((s) => s.textContent);
+
   // 6 · cuerpo
   d.querySelectorAll('script,style,noscript,nav,header').forEach((e) => e.remove());
   const cuerpo = (d.body?.textContent ?? '').replace(/\s+/g, ' ');
@@ -177,13 +204,32 @@ for (const L of LANDINGS) {
   else if (iSF >= 0 && iSF < iNF) mal(L.ruta, 'el telefono de South Florida sale antes que el de North Florida.');
 
   // 9 · JSON-LD valido
-  for (const s of d.querySelectorAll('script[type="application/ld+json"]')) {
-    try { JSON.parse(s.textContent); } catch (e) { mal(L.ruta, `JSON-LD que no parsea: ${e.message}`); }
+  if (!LD.length) mal(L.ruta, 'sin un solo bloque de JSON-LD.');
+  for (const s of LD) {
+    try { JSON.parse(s); } catch (e) { mal(L.ruta, `JSON-LD que no parsea: ${e.message}`); }
   }
+
+  /**
+   * 🚨 EL CUERPO PARA LAS REGLAS DE CUMPLIMIENTO INCLUYE LAS RESPUESTAS DE LA FAQ.
+   *
+   * `cuerpo` quita `nav` entero para que el menu del sitio no cuente como contenido de la
+   * pagina. El efecto colateral es grave y estuvo activo desde el 11-sep: en el marcado de
+   * Webflow la RESPUESTA de cada pregunta frecuente es un `<nav class="dropdown-list">`, asi
+   * que las reglas 10 y 11 —las dos de cumplimiento— nunca vieron una sola respuesta de FAQ.
+   * Y la regla 11 existe precisamente porque «$75,000 … $500,000+» estuvo publicado DENTRO de
+   * una respuesta de FAQ: la puerta que se escribio para cazar eso no podia mirar donde paso.
+   *
+   * Medido sobre el build: en `/pool-builders/ocala-florida` hay 8 `<nav>`, los 5 del menu
+   * cuelgan de `section.menu` y los 3 restantes son respuestas. Por eso se quita el menu por su
+   * seccion, que es lo que se queria quitar, y no por la etiqueta, que arrastraba contenido.
+   */
+  const dCumple = new JSDOM(html).window.document;
+  dCumple.querySelectorAll('script,style,noscript,header,section.menu').forEach((e) => e.remove());
+  const cuerpoCumple = (dCumple.body?.textContent ?? '').replace(/\s+/g, ' ');
 
   // 10 · afirmaciones prohibidas
   for (const [re, por] of AFIRMACIONES_PROHIBIDAS) {
-    if (re.test(cuerpo)) mal(L.ruta, `afirmacion prohibida — ${por}`);
+    if (re.test(cuerpoCumple)) mal(L.ruta, `afirmacion prohibida — ${por}`);
   }
 
   /**
@@ -200,7 +246,7 @@ for (const L of LANDINGS) {
    * que ya existian- y no son una afirmacion de la pagina, sino una eleccion del visitante.
    */
   const sinSelects = new JSDOM(html).window.document;
-  sinSelects.querySelectorAll('script,style,noscript,nav,header,select').forEach((e) => e.remove());
+  sinSelects.querySelectorAll('script,style,noscript,header,section.menu,select').forEach((e) => e.remove());
   const cifras = [...new Set((sinSelects.body?.textContent ?? '').match(/\$\s?[0-9][0-9,]*\+?/g) ?? [])];
   if (cifras.length) {
     mal(L.ruta, `cifra(s) de dinero en el cuerpo: ${cifras.join(', ')}. Un precio en una landing `
@@ -269,6 +315,47 @@ for (const L of LANDINGS) {
       if (!padre?.querySelector('.w-form-done') || !padre?.querySelector('.w-form-fail')) {
         mal(L.ruta, 'faltan los paneles .w-form-done/.w-form-fail HERMANOS del <form>: sin ellos '
           + 'el JS de Formularios.astro no puede conmutar el estado.');
+      }
+    }
+  }
+
+  /**
+   * 14 · EL `FAQPage` DICE EXACTAMENTE LO QUE SE VE, Y NADA MAS (R20-CIUDADES).
+   *
+   * Existe por un defecto REAL de este repo, no por completismo: R17-CORE §4.3 encontro la
+   * landing del Core publicando en su `FAQPage` una quinta pregunta llamada literalmente
+   * «construction», que no estaba en la pagina, y con «$75,000 … $500,000+» dentro. Google
+   * trata un rich result que promete respuestas ausentes como marcado enganoso, y ademas era
+   * una cifra sin verificar publicada en un sitio donde nadie la buscaba.
+   *
+   * Las dos landings de ciudad construyen su `FAQPage` del MISMO array que pinta el acordeon,
+   * asi que hoy no pueden desviarse. Esta regla existe para el dia que alguien las separe: en
+   * este repo «es imposible que se desvie» ya ha sido falso varias veces. Se comparan los
+   * `name` contra los `<h3 class="dropdown-text">` del cuerpo, en ORDEN y en cantidad.
+   *
+   * Se lee el `textContent`, no lo que se ve pintado: `webflow.css` pone `text-transform:
+   * capitalize` en los h3, y comparar contra el render exigiria que el schema publicase
+   * «How Much Does A Custom Pool Cost In Ocala?», que es la pregunta escrita en mayusculas de
+   * titular, no la pregunta.
+   */
+  if (L.faq) {
+    const visibles = [...d.querySelectorAll('.faq-section h3.dropdown-text')]
+      .map((h) => h.textContent.trim());
+    const bloque = LD
+      .map((s) => { try { return JSON.parse(s); } catch { return null; } })
+      .find((o) => o && o['@type'] === 'FAQPage');
+    if (visibles.length !== L.faq.n) {
+      mal(L.ruta, `${visibles.length} pregunta(s) visibles en .faq-section y se declararon `
+        + `${L.faq.n}. O falta una respuesta que el anuncio promete, o sobra marcado.`);
+    } else if (!bloque) {
+      mal(L.ruta, 'hay FAQ visible pero ningun bloque FAQPage: la pagina responde y el buscador '
+        + 'no se entera.');
+    } else {
+      const enSchema = (bloque.mainEntity ?? []).map((q) => String(q?.name ?? '').trim());
+      if (enSchema.length !== visibles.length || enSchema.some((q, i) => q !== visibles[i])) {
+        mal(L.ruta, 'el FAQPage no coincide 1:1 con las preguntas visibles.\n'
+          + `         schema:  ${JSON.stringify(enSchema)}\n`
+          + `         visible: ${JSON.stringify(visibles)}`);
       }
     }
   }
