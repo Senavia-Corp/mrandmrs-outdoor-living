@@ -233,14 +233,29 @@
    * bloque de texto: con los 250 px de antes el velo de §5 cubria casi la tarjeta entera a
    * 390 y la foto se perdia. Medido en captura, no supuesto.
    *
-   * TIENE UN COSTE QUE HAY QUE SABER, porque no se ve aqui: con `object-fit: cover` sobre
-   * fotos apaisadas (1251x682, relacion 1,834) el recorte lo decide el ALTO, no el ancho.
-   * Subir la tarjeta a 384 px a 390 sube lo que la imagen necesita de 460 a 706 px, y el
-   * `sizes` de `100vw` que ya tenia Webflow ahi elige el candidato de 500w. O sea 1,41x de
-   * ampliacion a dpr 1. NO se ha cambiado ese tramo del `sizes` a proposito: pedir 800w son
-   * ~28 KB mas por foto y seis fotos, y a dpr 2 saltaria al de 1251w. Queda para Sebastian
-   * junto al cambio de fotos. Lo mismo a 1920, donde hacen falta 1410 px y el candidato mas
-   * grande que existe es 1251w: 1,13x, y no hay fichero mayor que pedir. */
+   * AQUI HABIA UN COSTE APUNTADO, Y EL CAMBIO DE FOTOS LO HA CERRADO (R20-CIUDADES F2,
+   * 14-sep-2026). Decia que con `object-fit: cover` sobre las fotos APAISADAS de Webflow
+   * (1251x682, relacion 1,834) el recorte lo decidia el ALTO: a 390 la tarjeta pide 384 px de
+   * alto, o sea 704 px de ancho de imagen, y el `sizes` de `100vw` elegia el candidato de
+   * 500w — 1,41x de AMPLIACION a dpr 1. Quedaba «para Sebastian junto al cambio de fotos».
+   *
+   * Las fotos nuevas son VERTICALES (941x1672, relacion 0,563) y eso da la vuelta al recorte:
+   * por debajo de 992 la tarjeta es mas ancha que alta en proporcion, asi que manda el ANCHO y
+   * lo que la imagen necesita pasa a ser exactamente el ancho de la tarjeta. Medido en las
+   * cinco anchuras de la casa:
+   *
+   *     1920  316x768  0,41   manda el alto   -> necesita 432 px
+   *     1440  236x662  0,36   manda el alto   -> necesita 373 px
+   *      991  496x512  0,97   manda el ancho  -> necesita 496 px   <- el maximo
+   *      479  479x460  1,04   manda el ancho  -> necesita 479 px
+   *      390  390x384  1,02   manda el ancho  -> necesita 390 px
+   *
+   * El maximo a dpr 1 son 496 px, asi que el candidato de 500w cubre LAS CINCO sin ampliar
+   * nada. El `sizes` se reescribio en consecuencia -declaraba 1250 px para una tarjeta de 236-
+   * y la escalera se queda en 500w / 800w / 941w: no se emite un 1080w porque el original mide
+   * 941 y seria inventarse pixeles, y `check-enlaces` exigiria en disco un fichero que no debe
+   * existir. A dpr 2 y 991 hacen falta 992 px y el mayor que hay son 941: 1,05x, y ahi si que
+   * no hay fichero mayor que pedir. */
   min-height: clamp(calc(var(--mm-e-128) * 3), 96vw, calc(var(--mm-e-128) * 4));
 }
 
