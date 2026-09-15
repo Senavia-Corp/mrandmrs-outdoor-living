@@ -41,14 +41,26 @@ const leerJson = (p) => JSON.parse(fs.readFileSync(path.join(RAIZ, p), 'utf8'));
  * recorrido del comprador (R17-CORE §5). Confianza ANTES del formulario -responde «¿por que
  * vosotros?» antes de pedir datos-, formulario detras de la intro -se ve obra antes de dar los
  * datos, R19 C4-, e inversion y FAQ detras de la prueba social.
+ *
+ * R20-CIUDADES F2 (Sebastian, 14-sep-2026) mueve la prueba social DELANTE del carrusel de obra
+ * en LOS DOS ordenes: `testimonial-section` pasa por delante de `projects-section`. Quien acaba
+ * de leer las mejoras de la piscina lee la opinion de otros antes de ponerse a mirar fotos, y el
+ * carrusel -cuya unica salida lleva fuera de la pagina- deja de ser lo primero tras las mejoras.
+ * Va en las 53 y no solo en las 2 porque «las 53 deben tener la misma estructura»: por eso
+ * cambian las dos listas, no una.
+ *
+ * Y en el orden CON desaparece `svc-cierre`: el «Get a Free Estimate» que iba entre las mejoras
+ * y la obra se quito a peticion de Sebastian. OJO, `.svc-cierre` SIGUE en la lista de selectores
+ * prohibidos de SIN mas abajo, y no es contradiccion: el gemelo de la FAQ -un `<p>`, no una
+ * `<section>`- sigue vivo en las rutas con captacion, y esta puerta solo enumera `<section>`.
  */
 const SIN = [
   'hero-glass-section', 'trusted-section', '_3d-section', 'animated-divs-section',
-  'projects-section', 'testimonial-section', 'blog-section-page', 'social-media', 'cta-footer',
+  'testimonial-section', 'projects-section', 'blog-section-page', 'social-media', 'cta-footer',
 ];
 const CON = [
   'hero-glass-section', 'svc-confianza', 'trusted-section', 'appointment-section',
-  '_3d-section', 'animated-divs-section', 'svc-cierre', 'projects-section', 'testimonial-section',
+  '_3d-section', 'animated-divs-section', 'testimonial-section', 'projects-section',
   'svc-inversion', 'faq-section', 'blog-section-page', 'social-media', 'cta-footer',
 ];
 

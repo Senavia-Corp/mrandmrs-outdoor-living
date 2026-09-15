@@ -154,3 +154,31 @@ cuelga a 390 (**16 rutas**, y el corte es **idéntico en las 14 fichas**: no lo 
    lanzamiento** de las cuatro landings, no solo de estas dos (matriz §0).
 3. **El merge de la fase 2**, que queda en PR por decisión suya.
 4. **Las ciudades marcadas** en la tabla condado → región de la fase 2, si alguna cae fuera de los 9.
+
+---
+
+## 10 · Los cuatro cambios de Sebastian del 14-sep, ya en producción
+
+Después de ver la fase 1 en vivo, Sebastian pidió cuatro cambios sobre las páginas de ciudad.
+Van en la rama `claude/r20-ciudades-f2`, PR #16, y su entrada de bitácora está en
+`MIGRACION-LOG.md`.
+
+> ⚠️ **CUIDADO CON EL NOMBRE.** Esos commits llevan el prefijo `R20-CIUDADES F2:`, pero **no son
+> la «fase 2» de este encargo.** La fase 2 de aquí son **las 51 ciudades restantes** con capa de
+> captación, y **sigue sin empezar**. El prefijo se eligió mal: léase «segunda tanda».
+
+| | Cambio | Radio |
+|---|---|---|
+| 1 | Las reseñas suben delante de «Project Showcase» | las 53 |
+| 2 | Fuera el «Get A Free Estimate» de media página | las 2 de pago |
+| 3 | Las 3 fotos de `trusted-section` → `/gallery` | las 53 |
+| 4 | Las 6 fotos de «Pool Features & Upgrades» → verticales | **las 55** |
+
+**Tres de los cuatro arreglaron defectos que nadie había pedido arreglar** y que llevaban
+publicados desde la migración: imágenes sin `width`/`height` (salto de maquetación en una landing
+de pago), sin `srcset`, un `alt` que afirmaba la ciudad sobre un fichero compartido por las 53, y
+el reescalado de 1,41× que `caracteristicas.css` llevaba apuntado desde R17-CARAC esperando
+«al cambio de fotos».
+
+**Lo del punto 1 de §9 sigue igual de abierto, y ahora en más rutas:** `check:visual` está rojo por
+contrato `rediseno` en las 55, y solo Sebastian puede cerrarlo con `aprobar-diseno.mjs`.

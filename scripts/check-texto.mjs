@@ -359,7 +359,7 @@ const reordena = (ruta, lineas) => {
     const i = lineas.findIndex((_, k) => d.antes.every((l, j) => lineas[k + j] === l));
     if (i >= 0) lineas.splice(i, d.antes.length, ...d.despues);
   }
-  return ordenaZonas(ruta, subeResenas(ruta, bajaGaleria(ruta, lineas)));
+  return ordenaZonas(ruta, subeResenasCiudad(ruta, subeResenas(ruta, bajaGaleria(ruta, lineas))));
 };
 
 /**
@@ -484,6 +484,47 @@ const subeResenas = (ruta, lineas) => {
   if (i < 0 || destino < 0 || i <= destino) return lineas;
   const cabecera = lineas.slice(i, i + 3);
   if (cabecera.length !== 3) return lineas;
+  const resto = [...lineas.slice(0, i), ...lineas.slice(i + 3)];
+  const salida = [...resto.slice(0, destino), ...cabecera, ...resto.slice(destino)];
+  if ([...salida].sort().join('\n') !== [...lineas].sort().join('\n')) return lineas;
+  return salida;
+};
+
+/**
+ * LAS RESEÑAS SUBEN DELANTE DE «PROJECT SHOWCASE» EN LAS 53 CIUDADES — derivado
+ * (R20-CIUDADES F2, Sebastian 14-sep-2026).
+ *
+ * POR QUE DERIVADO Y NO 53 ENTRADAS EN `REORDENADAS_A_PROPOSITO`. La tercera linea de la
+ * cabecera lleva la ciudad dentro («…in Ocala. Read our reviews.»), asi que una declaracion
+ * literal serian 53 entradas con su propio array de lineas — y 53 listas escritas a mano es
+ * una lista que se desincroniza, el mismo motivo por el que `bajaGaleria` es derivado para las
+ * catorce fichas. Aqui se ancla por las DOS lineas que NO cambian de ciudad a ciudad y la
+ * tercera se arrastra con `slice`, sin nombrarla.
+ *
+ * POR QUE NO VALE `subeResenas`, que hace justo esto. Aquel esta acotado con
+ * `if (!CAPTACION_JSON[ruta])` y aqui hacen falta las 53, incluidas las 51 que NO llevan capa
+ * de captacion: el reorden lo pidio Sebastian para todas («las 53 deben tener la misma
+ * estructura»). Ademas su ancla de destino es «What Do We Do!», que estas 53 no tienen —
+ * comprobado: en `baseline/text/pool-builders_*.txt` no sale— asi que alli sale por `destino < 0`
+ * y los dos movimientos no se pisan.
+ *
+ * LA BARANDILLA ES LA DE `subeResenas`, ENTERA: las dos anclas tienen que existir —pasadas por
+ * `traduce()`, porque `reordena` corre DESPUES—, la cabecera tiene que traer sus 3 lineas con
+ * «What Our Clients Say» en medio, las reseñas tienen que ir HOY detras (si ya estuvieran
+ * delante no habria nada que mover) y la salida tiene que ser una PERMUTACION de la entrada.
+ * Si algo de eso falla no se toca nada y la puerta se pone roja por su cuenta, que es lo
+ * correcto: un reorden que no se puede demostrar no se perdona.
+ */
+const ES_CIUDAD = (r) => /^\/pool-builders\/[a-z0-9-]+$/.test(r);
+
+const subeResenasCiudad = (ruta, lineas) => {
+  if (!ES_CIUDAD(ruta)) return lineas;
+  const i = lineas.indexOf(traduce(ruta, 'TESTIMONIALS'));
+  const destino = lineas.indexOf(traduce(ruta, 'Project Showcase'));
+  if (i < 0 || destino < 0 || i <= destino) return lineas;
+  const cabecera = lineas.slice(i, i + 3);
+  if (cabecera.length !== 3 || cabecera[1] !== traduce(ruta, 'What Our Clients Say')) return lineas;
+  /* `i > destino`, asi que quitar la cabecera NO desplaza `destino`. */
   const resto = [...lineas.slice(0, i), ...lineas.slice(i + 3)];
   const salida = [...resto.slice(0, destino), ...cabecera, ...resto.slice(destino)];
   if ([...salida].sort().join('\n') !== [...lineas].sort().join('\n')) return lineas;
@@ -624,32 +665,6 @@ const LINEAS_ANADIDAS = [
     motivo: 'AUDITORIA: el heroe del rediseño lleva un segundo CTA que el origen no tenia. '
       + '«Project Gallery» ya estaba en el baseline pero en el MENU, asi que el conjunto no '
       + 'cambia y solo se desordena. Verificado que es anterior a la auditoria (33baf7e).',
-  },
-  {
-    /**
-     * R20-CIUDADES · EL CTA A MEDIA PAGINA DE LAS LANDINGS DE CIUDAD.
-     *
-     * Entre el formulario y el pie quedaban SEIS secciones seguidas -3D, Pool Features, obra,
-     * resenas, inversion y FAQ- y el unico boton por el camino era «See all Projects», que
-     * lleva FUERA de la landing. Este ancla devuelve a `#estimate` justo al acabar de leer las
-     * mejoras de la piscina, que es donde el deseo esta mas alto. Reutiliza `.svc-cierre`.
-     *
-     * VA ANCLADO AL PARRAFO QUE LO PRECEDE, y no suelto: «Get A Free Estimate» sale ya cuatro
-     * veces en estas paginas -heroe, aqui, tras la FAQ y en el `.cta-footer`-, asi que un
-     * `quitaBloque` de una linea se llevaria por delante el del heroe y el baseline dejaria de
-     * casar por el otro extremo. El ancla es la ultima tarjeta de «Pool Features», identica en
-     * las 53 porque sale de la misma plantilla.
-     *
-     * La lista de rutas se DERIVA de `captacion-servicios.json`, no se copia: cuando la fase 2
-     * encienda las 51 restantes, esto no hay que tocarlo.
-     */
-    rutas: Object.keys(CAPTACION_JSON).filter((r) => r.startsWith('/pool-builders/')),
-    tras: ['Outdoor living design-build enhancements include outdoor kitchens, pergolas, '
-      + 'hardscaping, and architectural shade structures—fully integrated to create a cohesive, '
-      + 'high-end outdoor environment.'],
-    lineas: ['Get A Free Estimate'],
-    motivo: 'R20-CIUDADES: `.svc-cierre` a media pagina, detras de «Pool Features», para que no '
-      + 'haya seis secciones seguidas sin camino a #estimate.',
   },
   {
     rutas: null,                                        // null = todas las que tengan pie

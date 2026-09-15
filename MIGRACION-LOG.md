@@ -6639,3 +6639,64 @@ Las dos Final URL de los ad groups «Ocala» y «Gainesville» mandaban el lead 
 3. **Verificar en producción** cuando haya red: `curl -sI` a las 2 URLs → 200 sin redirect, y `grep -c 'data-mm-envia="1"'` → 1. Más el lead de prueba por ciudad.
 4. **Fase 2**: las 51 restantes, una fila cada una en `src/data/ciudades-captacion.json`. Merge en PR por decisión de Sebastian.
 5. **La regla 12 de `check:ads`** sigue sin cubrir un héroe de vídeo. Si algún día se quiere el invariante del LCP también aquí, hay que modelarlo (póster declarado, `preload`), no forzar la regla de imagen.
+
+---
+
+## R20-CIUDADES F2 — cuatro cambios de Sebastian mirando el sitio en vivo (14/15-sep-2026)   ✅ cerrada
+
+**Pedido:** en chat, tras ver la fase 1 en producción · **Base:** `9ab8f28` · **Rama:** `claude/r20-ciudades-f2` · **PR:** #16
+**Commit, push, PR y merge a `main`:** autorizados por Sebastian («haz deploy a producción»).
+
+### Objetivo
+
+Tres de los cuatro no son estética: arreglan cosas **mal medidas** que llevaban publicadas desde la migración. El cuarto es un reorden de recorrido que pidió expresamente.
+
+### Qué se hizo
+
+- **Las reseñas suben delante del carrusel de obra, en las 53.** Quien acaba de leer las mejoras de la piscina se encuentra la opinión de otros **antes** de ponerse a mirar fotos, y «Project Showcase» —cuya única salida, «See all Projects», lleva **fuera** de la página— deja de ser lo primero tras las mejoras.
+- **Fuera el `<section class="svc-cierre">` de media página.** Lo pidió Sebastian; el gemelo de la FAQ (un `<p>`) sigue en pie.
+- **Las 3 fotos de `trusted-section`** pasan a las 03/05/07 del set `construction` de `/gallery`.
+- **Las 6 fotos de «Pool Features & Upgrades»**, verticales, en las **55** rutas.
+
+### Lo que estaba mal y nadie sabía
+
+1. **Las 3 fotos de `trusted-section` no tenían `width`/`height`.** Medido: `undefined`. Salto de maquetación en las Final URL de dos ad groups activos.
+2. **Tampoco `srcset`:** el navegador se bajaba el original de 1250w para una celda de **299 px**.
+3. **El `alt` afirmaba la ciudad.** En Boca Raton decía «…in Boca Raton, FL.» sobre un fichero de la carpeta `alachua-florida` que es **el mismo en las 53**. Una foto no puede decir dónde se hizo si es la misma en 53 sitios. Se sustituye **en la página**, sin tocar Sanity.
+4. **Los 6 paneles eran fotos apaisadas en una franja vertical.** A 1440 la tarjeta es 236×662 (relación 0,36) y la foto 1251×682 (1,834): **se tiraba el 80 % del ancho**.
+5. **El reescalado de 1,41× que `caracteristicas.css` llevaba apuntado desde R17-CARAC** —«queda para Sebastian junto al cambio de fotos»— **se cierra aquí**, y no por un ajuste: al ser verticales, por debajo de 992 el recorte pasa a decidirlo el ANCHO y lo que la imagen necesita es exactamente el ancho de la tarjeta.
+
+### Números medidos
+
+| Qué | Comando | Resultado |
+|---|---|---|
+| Páginas que cambian | `node scripts/diag-identidad.mjs --compara /tmp/r20-f2-base.json` | **55 cambian · 0 nuevas · 0 borradas · 67 idénticas byte a byte** — las 53 ciudades + los 2 `where-we-serve` |
+| Coste del reorden | ídem, tras el commit del reorden | las 51 orgánicas a **+0 B** (un reorden puro no pesa); Ocala y Gainesville a **−119 B**, el largo **exacto** del `<section>` borrado |
+| Texto, las 53 + where-we-serve | `xvfb-run -a node scripts/check-texto.mjs '/pool-builders/' '/where-we-serve/'` | **55 idénticas · 0 en rojo** |
+| Las 14 fichas no se mueven | `xvfb-run -a node scripts/check-texto.mjs '/services/'` | **14 idénticas · 0 en rojo** |
+| IX2 | `xvfb-run -a npm run check:ix2` | huérfanas **14 (esperadas 14)** · 0 `[data-w-id]` en `opacity:0` |
+| Presupuesto CSS | `npm run check:tokens` | **90,7 KB de 92**, sin mover: el comentario reescrito no cuesta bytes |
+| Geometría real del panel | DOM sobre `.feature-card`, 5 anchos | 1920 316×768 · 1440 236×662 · 991 496×512 · 479 479×460 · 390 390×384 |
+| Ancho de imagen necesario | derivado de lo anterior con relación 0,563 | 432 · 373 · **496** · 479 · 390 px → el candidato de **500w cubre los cinco sin ampliar nada** |
+| Peso en móvil | `ls` sobre los `-p-500.webp` | **415 KB** las seis contra **156 KB** las viejas → **+259 KB**, en carga diferida y bajo el pliegue |
+| Rutas con las fotos nuevas | `grep -rlo 'pool-feature-energy-efficient-systems' … \| wc -l` | **55** · **0** referencias a las viejas |
+
+### Cómo se eligieron las fotos
+
+**Mirando el recorte REAL de cada celda**, no la foto entera (`00-PRINCIPIOS.md` §4). Con el centro por defecto, la 4 se quedaba **sin fuego** —los dos braseros están a los lados y la franja central de 0,36 caía justo entre ellos— y la 5 perdía el **pasamanos**, que es el objeto que ilustra «Safety». De ahí los `object-position` de 75 % y 25 %. La Y se queda en 50 %: por debajo de 992 manda el ancho y no pinta nada.
+
+### Las puertas que se enteraron, y cómo se probaron
+
+- **`check-estructura-ciudades.mjs`** enumera el orden A MANO: cambian **las dos** listas, y de la de captación sale `svc-cierre`. `.svc-cierre` **sigue** en los selectores prohibidos de SIN, y no es contradicción: el gemelo de la FAQ vive solo en las rutas con captación y esta puerta solo enumera `<section>`.
+- **`check-texto.mjs`**: un reorden mueve el `innerText`. **No se re-baseliniza: se declara.** Como la tercera línea de la cabecera lleva la ciudad dentro, una entrada literal serían 53 listas a mano — se escribe un movimiento **derivado**, `subeResenasCiudad`, calcado de `subeResenas` pero **sin** su acotación a captación, porque hacen falta también las 51 orgánicas. Ancla por las dos líneas que no cambian de ciudad («TESTIMONIALS» y «Project Showcase», pasadas por `traduce()`) y arrastra la tercera con `slice`. Si no puede demostrar que la salida es una **permutación** de la entrada, no toca nada.
+- Y se cae la entrada de `LINEAS_ANADIDAS` del botón, que **sí** era `innerText`. No se usa `QUITADAS_A_PROPOSITO`: filtra por conjunto y se llevaría por delante las otras tres ocurrencias de «Get A Free Estimate» de esas páginas.
+
+**Las dos reglas nuevas se rompieron a propósito antes de darlas por buenas:** la de estructura dice «puesto 5: se esperaba projects-section y hay testimonial-section»; la de texto, «línea 33: orden cambiado».
+
+### Lo que queda abierto
+
+1. **`check:visual`** sale rojo en las 55 por contrato `rediseno`: **ROJO CORRECTO**, y no se corrió porque no probaría nada hasta que Sebastian apruebe las capturas con `aprobar-diseno.mjs` (exige humano).
+2. **`check:assets`** revienta en su §5 por un `_source/sanity-masters/…` que no está en el contenedor: **`ENVIRONMENT BLOCKER`**, pre-existente y ajeno a este trabajo.
+3. **Verificación en producción: `BLOCKED`, nunca `PASSED`.** El proxy deniega el `CONNECT` a `www.mrandmrsoutdoorliving.com` (medido, `403`). No es que el sitio falle: es que desde aquí no se ve.
+4. **Las `adobe-express-file*` quedan huérfanas** en `/images/site/`. No se borran: siguen en `_source/assets-manifest.json` y quitarlas pondría roja `check:assets`.
+5. **El `alt` de los 6 paneles se queda vacío** a propósito: son imágenes **generadas**, y un alt descriptivo afirmaría una obra real que no existe.

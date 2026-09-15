@@ -37,6 +37,7 @@ import SEO_RUTAS from '../../data/seo-pool-builders.json';
 import CAPTACION from '../../data/captacion-servicios.json';
 import COLLAGE from '../../data/collage-faq-por-ruta.json';
 import TELEFONOS from '../../data/telefonos.json';
+import FOTOS_CIUDAD from '../../data/ciudades-captacion.json';
 import { sinAperturaDelFeed } from '../../lib/feed-social.mjs';
 import { partirPorElCarrusel } from '../../lib/carrusel-proyectos.mjs';
 import { partirEn, heroeDeCaptacion } from '../../lib/captacion-ciudad.mjs';
@@ -114,6 +115,57 @@ const CAP = CAPTACION[RUTA] ?? null;
 if (CAP?.heroe?.apoyo) d['intro'] = CAP.heroe.apoyo;
 const CAMPOS = [[null,{"c":"h1Title","tx":"","p":["",""]},null,{"c":"h2Title","tx":"","p":["",""]},null,{"c":"intro","tx":"","p":["",""]},null,{"c":"imagenIntro1.alt","tx":"","p":["<img src=\"/images/pool-builders/alachua-florida/custom-pool-pergola-outdoor-living-contractors-fl-1-.webp\" loading=\"lazy\" data-w-id=\"f72979fc-9196-9930-356a-1756486557d5\" alt=\"","\" class=\"image\">"]},null,{"c":"imagenIntro2.alt","tx":"","p":["<img src=\"/images/pool-builders/alachua-florida/luxury-outdoor-kitchen-pool-backyard-design-florida-1-.webp\" loading=\"lazy\" data-w-id=\"53f4d2e0-9a7a-0e16-e20a-ab8f9e03c935\" alt=\"","\" class=\"image\">"]},null,{"c":"imagenIntro3.alt","tx":"","p":["<img src=\"/images/pool-builders/alachua-florida/luxury-pool-builders-outdoor-living-florida-1-.webp\" loading=\"lazy\" data-w-id=\"8bad508e-9f02-2bc9-bf6d-6ac47990da3b\" alt=\"","\" class=\"image\">"]},null,{"c":"headingIntro","tx":"","p":["",""]},null,{"c":"paragraphIntro","tx":"","p":["",""]},null,{"c":"heading3DRendering","tx":"","p":["",""]},null,{"c":"paragraphReviews","tx":"","p":["",""]},null,{"c":"headingFeature","tx":"","p":["",""]},null,{"c":"paragraphFeatures","tx":"","p":["",""]},null,{"c":"headingPortfolio","tx":"","p":["",""]},null,{"c":"paragraphPortfolio","tx":"","p":["",""]},null,{"c":"headingReviews","tx":"","p":["",""]},null,{"c":"paragraphReviews","tx":"","p":["",""]},null],[],[],[null]];
 
+
+/**
+ * LAS TRES FOTOS DE `trusted-section` SALEN DE /gallery (R20-CIUDADES F2, Sebastian 14-sep-2026).
+ *
+ * QUE HABIA. Tres `.webp` de `/images/pool-builders/alachua-florida/`, LAS MISMAS en las 53
+ * -comprobado en Ocala, Gainesville, Boca Raton y Palatka- y con tres defectos medidos:
+ *   1. sin `width`/`height` -> salto de maquetacion en una landing de pago;
+ *   2. sin `srcset` -> el navegador se bajaba el original para una celda de 299 px;
+ *   3. el `alt` de Sanity AFIRMA LA CIUDAD («…in Boca Raton, FL.») sobre un fichero que es el
+ *      mismo en las 53. Esa es la razon de peso: una foto no puede decir donde se hizo si es la
+ *      misma en 53 sitios. Las de /gallery no situan la obra en ninguna ciudad.
+ *
+ * POR QUE SE DERIVA DEL CATALOGO Y NO SE CABLEA EL `<img>`. `ciudades-captacion.json` ya trae
+ * `src`, `srcset`, `alt`, `ancho`, `alto` y `pos` verificados contra disco para las 10 del set
+ * `construction`, y es la misma fuente que pinta el collage de la FAQ. Cablear aqui una segunda
+ * copia es la forma habitual de que las dos dejen de coincidir.
+ *
+ * EL `data-w-id` SE LEE DEL MARCADO VIEJO Y SE VUELVE A PONER, no se copia a mano: es el gancho
+ * de IX2 y perderlo deja la imagen atrapada en `opacity:0` (regla 1 de `check:ix2`). Si algun dia
+ * no esta, esto revienta el build en vez de publicar una foto invisible.
+ *
+ * LA `Y` DE `object-position` ES INERTE AQUI, y por eso se fuerza a 50 %. Las tres celdas son mas
+ * ESTRECHAS que el original en proporcion -299x500 (0,60) y 299x250 (1,20) contra 1,33/1,79-, asi
+ * que `object-fit:cover` escala por altura y recorta SOLO a lo ancho, en los cuatro anchos. Se
+ * conserva la X del catalogo, que es la que decide que franja se ve. Va en `style` y no en CSS
+ * porque `check:tokens` mide un presupuesto de 92 KB y esto son tres reglas de una ruta.
+ *
+ * LAS FOTOS SE ELIGIERON MIRANDO el recorte REAL de cada celda, no por el nombre del fichero
+ * (00-PRINCIPIOS.md §4): 03 en la celda alta -casa, agua y palmeras llenan la franja vertical-,
+ * 05 y 07 en las dos bajas -la cascada y la pergola con spa, que es lo que mejor se lee a 299x250-.
+ * El solape esta declarado: el feed de Instagram de esta misma pagina pinta las 10, asi que estas
+ * tres vuelven a salir mas abajo. Se reparten entre los dos collages -03 y 07 son del de Ocala,
+ * 05 del de Gainesville- para que ninguna de las dos rutas de pago se lleve las tres.
+ */
+const FOTOS_INTRO = { 'imagenIntro1.alt': '03', 'imagenIntro2.alt': '05', 'imagenIntro3.alt': '07' };
+const SIZES_INTRO = '(min-width: 992px) 300px, 50vw';
+for (const h of CAMPOS[0]) {
+  if (!h || !(h.c in FOTOS_INTRO)) continue;
+  const f = FOTOS_CIUDAD.fotos.construccion[FOTOS_INTRO[h.c]];
+  if (!f) throw new Error(`${slug}: la foto ${FOTOS_INTRO[h.c]} no esta en ciudades-captacion.json`);
+  const wid = (h.p[0].match(/data-w-id="([^"]+)"/) ?? [])[1];
+  if (!wid) {
+    throw new Error(`${slug}: el <img> de ${h.c} ya no trae data-w-id. Es el gancho de IX2: `
+      + 'sin el, la foto se queda en opacity:0. Revisa CAMPOS antes de seguir.');
+  }
+  const x = String(f.pos).split(' ')[0];
+  h.p[0] = `<img src="${f.src}" loading="lazy" data-w-id="${wid}" width="${f.ancho}" `
+    + `height="${f.alto}" sizes="${SIZES_INTRO}" srcset="${f.srcset}" `
+    + `style="object-position:${x} 50%" alt="`;
+  d[h.c] = f.alt;   // el alt de /gallery, que no situa la obra en ninguna ciudad. NO toca Sanity.
+}
 
 const TX = { '': esc, url: encodeURIComponent };
 const valor = (h, o) => {
@@ -217,26 +269,30 @@ const SEO = FAQ
   <Fragment set:html={ANTES_FORM} />
   <FormularioCore ruta={RUTA} />
   <Fragment set:html={P_ANTES} />
-  {/* NI UN CALLEJON SIN SALIDA. Entre el formulario y el pie hay cinco secciones seguidas —3D,
-      Pool Features, obra, resenas, inversion— y la unica salida era «See all Projects», que
-      lleva FUERA. Este ancla devuelve al formulario justo donde el deseo esta mas alto, que es
-      al acabar de leer las mejoras de la piscina. Reutiliza `.svc-cierre`, que ya existe.
+  {/* LA PRUEBA SOCIAL, DELANTE DE LA OBRA (R20-CIUDADES F2, decision de Sebastian 14-sep-2026).
+      El orden era Pool Features -> Project Showcase -> resenas. Ahora las resenas van EN MEDIO:
+      quien acaba de leer las mejoras de la piscina se encuentra la opinion de otros ANTES de
+      ponerse a mirar fotos, y el carrusel -cuya unica salida, «See all Projects», lleva FUERA
+      de la pagina- deja de ser lo primero que aparece despues de las mejoras.
 
-      VA EN `<section>` Y NO EN `<p>` COMO SU GEMELO DE LA FAQ, y la diferencia es real: el de
-      la FAQ vive DENTRO de `section.faq-section`, y este cuelga entre dos `<Fragment>`, o sea
-      al nivel superior del documento. Un `<p>` suelto entre dos secciones es marcado que nadie
-      espera leer ahi, y ademas `check:estructura:ciudades` solo enumera `<section>`: en `<p>`
-      la puerta no lo veria. Cero CSS: `.svc-cierre` es un selector plano
-      (`servicio-core.css`), asi que pinta igual en los dos. Medido antes de moverlo: NO habia
-      costura que arreglar — `.animated-divs-section` y `.projects-section` son las dos
-      `#ffffff`, asi que esto es correccion semantica, no visual. */}
-  {CAP && (
-    <section class="svc-cierre"><a href="#estimate" class="button button-styles w-button">Get a Free Estimate</a></section>
-  )}
-  <CarruselProyectos titulo={d['headingPortfolio']} entradilla={d['paragraphPortfolio']} />
+      ESTO NO ABRE NI UN CORTE NUEVO, y por eso es barato: `partirPorElCarrusel` ya dejaba las
+      piezas sueltas. `P_ANTES` cierra en `</section>` tras `animated-divs-section`; `P_DESPUES`
+      son los 250 B que ABREN `testimonial-section`; `<ResenasGoogle>` la llena; `B[1]` es el
+      `</div></section>` que la cierra. Adelantar ese trio al componente es reordenar CUATRO
+      lineas, no cirugia sobre el HTML derivado — ni marcador nuevo, ni guarda nueva, ni CSS.
+
+      LAS 53, NO SOLO LAS 2: «las 53 deben tener la misma estructura» (Sebastian). Por eso esto
+      NO va acotado con `CAP`, y por eso cambian las DOS listas de `check-estructura-ciudades.mjs`
+      —la de con captacion y la de sin—, no solo una.
+
+      AQUI ESTABA EL `<section class="svc-cierre">` con «Get a Free Estimate», quitado a peticion
+      de Sebastian. Lo que se pierde queda dicho, no callado: entre el formulario y los dos CTA de
+      `svc-inversion` quedan cuatro secciones sin vuelta al `#estimate`. El gemelo de la FAQ
+      -`<p class="svc-cierre">`- sigue en pie y es el que devuelve al formulario. */}
   <Fragment set:html={P_DESPUES} />
   <ResenasGoogle />
   <Fragment set:html={B[1]} />
+  <CarruselProyectos titulo={d['headingPortfolio']} entradilla={d['paragraphPortfolio']} />
   <InversionCore ruta={RUTA} />
   {/* LA FAQ, QUE ESTAS RUTAS NO TENIAN. Marcado de acordeon de la casa: `Interacciones.astro`
       recorre TODOS los `.w-dropdown` del documento y les pone rol, `tabindex`, `aria-expanded`,
