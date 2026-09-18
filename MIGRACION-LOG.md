@@ -6796,17 +6796,20 @@ grep -rlE 'images/site/(luxury-pool-designs|pool-construction-permits|…)' \
 
 ### Queda abierto
 
-1. **RE-BASELINE PENDIENTE.** `aprobar-diseno.mjs` exige árbol limpio y no lo hay. Decisión de
-   Sebastian (18-sep): R22 primero, `PROMPT-FONDO-AGUA` después.
+1. **RE-BASELINE HECHO** — 44 referencias (11 rutas × 4 anchos), y `check:visual blogs` queda
+   VERDE. Se hizo desde un **git worktree** aparte, que es lo que permitió tener árbol limpio
+   mientras otra sesión trabajaba en el principal. Decisión de Sebastian (18-sep): R22 primero,
+   `PROMPT-FONDO-AGUA` después — ese encargo tocará `.hero-project`, las mismas 10 rutas, y
+   recogerá su propio rojo.
 2. **`npm run paginas` estaba ROTO en `main`** y este encargo lo desbloqueó. `captacion()` se
    aplicaba a `/pool-builders/{ocala,gainesville}-florida` —que R20 metió en
    `captacion-servicios.json`— y su `_source/vivo/` no tiene las 3 secciones que el bloque 8b
    exige, así que abortaba en la ruta 44 de 115 y **nunca se llegaba a las 10 de `/blogs/`**
    (93-102). Reproducible con el generador de HEAD y árbol limpio. Arreglado con la guarda que
    ya describía el comentario de `CAPTACION` y exigía su invariante: `if (!ruta.startsWith('/services/')) return false;`
-3. **18 ficheros versionados están borrados del árbol de trabajo**, todos `pool-feature-*`. Ponen
-   `check:enlaces` en rojo con 36 assets que `dist/` pide y no existen. **No son de R22** y no se
-   restauraron: son trabajo en curso de otra sesión.
+3. ~~18 ficheros `pool-feature-*` borrados del árbol~~ — era R21 moviéndolos a
+   `/images/obra/paneles/`. **Resuelto** al entrar `27bc66e` en `main`; esta rama va rebasada
+   sobre él y `check:enlaces` sale VERDE (749/749 en git).
 4. **105 de las 1.097 imágenes del sitio llevan el marcador de medio generado**, incluidas 40 en
    `residentials/`, 39 en `procesos/` y las 10 de `images/commercial-*`. Encargo aparte.
 5. **7 de los 10 artículos se enlazan a sí mismos** en «Most Read Articles». Arreglarlo quita
