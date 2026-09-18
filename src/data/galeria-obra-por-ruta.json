@@ -1,0 +1,125 @@
+{
+  "_lee_esto": [
+    "GALERIA DE OBRA de las landings de captacion (R21-CIUDADES, 18-sep-2026).",
+    "Las fotos salen del banco de imagen del cliente (MrMrs_Outdoor_Living_Image_Bank), no de",
+    "public/images/images/*: son originales de camara de 3019-6000 px derivados a 1600x1067, o sea",
+    "1,28x lo que habia (el techo de toda la obra del sitio era 1250 px).",
+    "",
+    "CASTING, hecho mirando 07_contact_sheets/by-service/, nunca por nombre ni por puntuacion",
+    "(00-PRINCIPIOS §4). Se alternan las dos propiedades foto a foto -nunca dos seguidas de la",
+    "misma casa- y se dejan FUERA los 3 fotogramas de renovation_in_progress: el vaso vaciado en",
+    "pleno resanado es la foto de mas puntuacion del banco (q89) y es el sujeto equivocado para la",
+    "Final URL de un ad group de piscina NUEVA.",
+    "",
+    "RUTA NEUTRA A PROPOSITO. El banco propone /images/projects/south-fl/<id>/ y sus ficheros se",
+    "llaman ...-south-fl-...: eso afirma la region en la URL, y estas dos landings son North",
+    "Florida. Se copian a /images/obra/<id>/ sin el token de region. El `alt` es el del banco",
+    "palabra por palabra (suggested_alt_gallery) y NO nombra ciudad ni region, que es lo que ya",
+    "decidio R20-CIUDADES F2 para trusted-section.",
+    "",
+    "_asset y _proyecto no se pintan: son la trazabilidad al banco (08_ai_index/page_asset_usage.csv).",
+    "18-sep-2026, CORRECCION SOBRE MI PROPIA SELECCION: 3 de las 12 primeras salian con MANGUERA DE ASPIRADORA cruzando el fondo de la piscina (IMG_3831, IMG_3834) o eso mas cielo gris plano (IMG_3759). En la hoja de contactos NO se ve -a ese tamano una manguera no existe- y al abrir el fichero al 100 % es lo primero que salta. Sustituidas por DSC07655, DSC07642 y DSC07644, de otra sesion y con el vaso limpio. Extiende 00-PRINCIPIOS §4: la hoja de contactos vale para DESCARTAR, pero antes de publicar hay que ABRIR EL FICHERO."
+  ],
+  "_defecto": {
+    "titulo": "Custom Pool Project Gallery",
+    "entradilla": "Completed inground pools, raised spas and finished decks built by our own licensed crews.",
+    "fotos": [
+      {
+        "src": "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-15.webp",
+        "alt": "Completed backyard pool with raised spa",
+        "ancho": 1600,
+        "alto": 1067,
+        "_asset": "ag-2c2e308515",
+        "_proyecto": "project-062"
+      },
+      {
+        "src": "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-29.webp",
+        "alt": "Completed backyard pool with raised spa",
+        "ancho": 1600,
+        "alto": 1067,
+        "_asset": "ag-f7f60e36d6",
+        "_proyecto": "project-059"
+      },
+      {
+        "src": "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-18.webp",
+        "alt": "Completed backyard pool with raised spa",
+        "ancho": 1600,
+        "alto": 1067,
+        "_asset": "ag-cd1064a0aa",
+        "_proyecto": "project-062"
+      },
+      {
+        "src": "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-01.webp",
+        "alt": "Aerial view of a backyard pool with raised spa",
+        "ancho": 1600,
+        "alto": 1067,
+        "_asset": "ag-f3930ac1cc",
+        "_proyecto": "project-059"
+      },
+      {
+        "src": "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-20.webp",
+        "alt": "Completed backyard pool with raised spa",
+        "ancho": 1600,
+        "alto": 1067,
+        "_asset": "ag-8ed6f32282",
+        "_proyecto": "project-062"
+      },
+      {
+        "src": "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-20.webp",
+        "alt": "Completed backyard pool with raised spa",
+        "ancho": 1600,
+        "alto": 1067,
+        "_asset": "ag-650f7e215f",
+        "_proyecto": "project-059"
+      },
+      {
+        "src": "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-16.webp",
+        "alt": "Completed backyard pool with raised spa",
+        "ancho": 1600,
+        "alto": 1067,
+        "_asset": "ag-939d5f6462",
+        "_proyecto": "project-062"
+      },
+      {
+        "src": "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-21.webp",
+        "alt": "Completed backyard pool with raised spa",
+        "ancho": 1600,
+        "alto": 1067,
+        "_asset": "ag-03f420a2f5",
+        "_proyecto": "project-059"
+      },
+      {
+        "src": "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-14.webp",
+        "alt": "Completed backyard pool with raised spa",
+        "ancho": 1600,
+        "alto": 1067,
+        "_asset": "ag-e0b9d262ef",
+        "_proyecto": "project-062"
+      },
+      {
+        "src": "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-10.webp",
+        "alt": "Completed backyard pool with raised spa",
+        "ancho": 1600,
+        "alto": 1067,
+        "_asset": "ag-41140b5763",
+        "_proyecto": "project-059"
+      },
+      {
+        "src": "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-22.webp",
+        "alt": "Completed backyard pool with raised spa",
+        "ancho": 1600,
+        "alto": 1067,
+        "_asset": "ag-31022e4884",
+        "_proyecto": "project-062"
+      },
+      {
+        "src": "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-11.webp",
+        "alt": "Aerial view of a backyard pool with raised spa",
+        "ancho": 1600,
+        "alto": 1067,
+        "_asset": "ag-7df5dc1c64",
+        "_proyecto": "project-059"
+      }
+    ]
+  }
+}

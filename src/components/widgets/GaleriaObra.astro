@@ -1,0 +1,97 @@
+---
+/**
+ * LA GALERIA DE OBRA DE LAS LANDINGS DE CAPTACION (R21-CIUDADES, pedido de Sebastian 18-sep-2026:
+ * «colocar debajo del Contact Form y antes del 3D rendering la seccion de Gallery que se usa en
+ * las paginas de servicio»).
+ *
+ * POR QUE ES UN COMPONENTE Y NO 11 KB COPIADOS. `section.gallery` NO era un componente: son
+ * ~11-13 KB de marcado derivado de Webflow que viven en la constante `T10` de cada una de las 14
+ * fichas de `/services/`, y `build-paginas.mjs:862` solo lo MUEVE detras de la FAQ (bloque 8b),
+ * no lo construye. Copiar esos 11 KB al template de ciudad es la forma conocida de que las dos
+ * copias dejen de coincidir. Se extrae igual que R16-PROY hizo con «Project Showcase» ->
+ * `CarruselProyectos.astro`: fotos por JSON, encabezado por props, `data-w-id` literal.
+ *
+ * COSTE DE JAVASCRIPT: CERO, Y ESTA VERIFICADO, NO SUPUESTO.
+ *   · `Componentes.astro` va en `Base.astro:349`, o sea que las 122 rutas ya lo cargan.
+ *   · El slider se mueve POR ATRIBUTO (`[fs-slider-element="list"]`), no por instancia: la ficha
+ *     corre tres a la vez (blog, gallery, resenas) con el mismo motor.
+ *   · Ocala ya corria `fs-slider-blog` antes de esto. La maquinaria estaba cargada y probada ahi.
+ *   · El lightbox lo rehace el mismo `Componentes.astro` con `<dialog>` (:185), generico sobre
+ *     `a.w-lightbox`.
+ * O sea que montar una cuarta instancia no pide ni un `<script>` nuevo ni una linea de cableado.
+ *
+ * 🚨 LOS SLIDES TIENEN QUE SER HIJOS DIRECTOS de `[fs-slider-element="list"]`. Si se envuelven en
+ * cualquier cosa —un `<Fragment>` que emita un nodo, un `.map` dentro de un div—,
+ * `check-carrusel.mjs` colapsa `track.children` a 1 y el carrusel deja de navegar. Es la misma
+ * nota que lleva `CarruselProyectos.astro:33-34`.
+ *
+ * EL `<h2>` SE QUEDA EN OBRA, NO EN REMODELACION, y no es un detalle de copy: estas dos rutas son
+ * la Final URL de ad groups de *new pool construction*. La mitad de las fotos son de una
+ * remodelacion —material real y de la mejor calidad del banco—, pero un titular que diga
+ * «remodeling» reintroduce la puerta de al lado, que es exactamente lo que R20-CIUDADES F1 quito
+ * del apoyo del heroe.
+ *
+ * SU CSS VA EN EL `<style>` DE ABAJO, y eso tiene una consecuencia medida: `check-tokens.mjs:429`
+ * suma SOLO las hojas de `src/styles/` para el presupuesto de 92 KB, no los bloques `<style>` de
+ * componente. Esta seccion no gasta presupuesto. Las reglas siguen pasando el resto de la puerta
+ * (cero literales de color, cero `!important`, cero `opacity:0`).
+ */
+import DATOS from '../../data/galeria-obra-por-ruta.json';
+
+interface Props {
+  /** Encabezado propio de la ruta. Sin el se busca por ruta y luego el `_defecto`. */
+  titulo?: string;
+  entradilla?: string;
+}
+const { titulo, entradilla } = Astro.props;
+
+const ruta = Astro.url.pathname.replace(/(.)\/$/, '$1');
+/* Cascada igual que `CarruselProyectos.astro:48-51`, y sin `throw`: una ruta que monte esto sin
+ * entrada propia cae al `_defecto`, que es el de las landings de ciudad. El que SI revienta es
+ * el `_defecto` ausente, porque eso ya no es una ruta sin personalizar: es el fichero roto. */
+const propio = DATOS[ruta];
+if (!DATOS._defecto) throw new Error('GaleriaObra: falta `_defecto` en galeria-obra-por-ruta.json.');
+const d = { ...DATOS._defecto, ...(propio ?? {}) };
+const tituloFinal = titulo ?? d.titulo;
+const entradillaFinal = entradilla ?? d.entradilla;
+if (!d.fotos?.length) throw new Error(`GaleriaObra (${ruta}): 0 fotos. El carrusel saldria vacio.`);
+
+/* El JSON del lightbox que Webflow deja en cada ancla. `Componentes.astro` lo lee para montar su
+ * `<dialog>`; se emite con la misma forma que las 14 fichas para que el gate `check:galeria` mida
+ * lo mismo aqui que alli. */
+const wjson = (src: string) =>
+  JSON.stringify({ items: [{ url: src, type: 'image' }], group: 'images' });
+---
+
+<section class="gallery svc-galeria">
+  <div class="block-gallery">
+    <div fs-slider-type="cms" fs-slider-instance="fs-slider-gallery" class="slider-gallery-page">
+      <div data-w-id="3e7b68e7-e033-ed34-b3a7-e87aed50972d" class="header-gallery">
+        <div>
+          <h2 class="white">{tituloFinal}</h2>
+          <div>{entradillaFinal}</div>
+        </div>
+        <div fs-slider-element="navigation" class="fs-slider-gallery_navigation">
+          <button fs-slider-element="previous" class="fs-slider-gallery_button" aria-label="Previous project">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 1024 1024" app="ikonik" class="icon-arrow" aria-hidden="true" focusable="false"><path fill="currentColor" d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm104 316.9c0 10.2-4.9 19.9-13.2 25.9L457.4 512l145.4 105.2c8.3 6 13.2 15.6 13.2 25.9V690c0 6.5-7.4 10.3-12.7 6.5l-246-178a7.95 7.95 0 0 1 0-12.9l246-178a8 8 0 0 1 12.7 6.5v46.8z" app="ikonik" class="path-x7uxa"></path></svg>
+          </button>
+          <button fs-slider-element="next" class="fs-slider-gallery_button" aria-label="Next project">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 1024 1024" app="ikonik" class="icon-arrow" aria-hidden="true" focusable="false"><path fill="currentColor" d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm154.7 454.5l-246 178c-5.3 3.8-12.7 0-12.7-6.5v-46.9c0-10.2 4.9-19.9 13.2-25.9L566.6 512 421.2 406.8c-8.3-6-13.2-15.6-13.2-25.9V334c0-6.5 7.4-10.3 12.7-6.5l246 178c4.4 3.2 4.4 9.8 0 13z" app="ikonik" class="path-5odzh"></path></svg>
+          </button>
+        </div>
+      </div>
+      <div class="block-gallery-absolute">
+        <div fs-slider-element="list-wrapper" class="fs-slider-gallery_list-wrapper w-dyn-list">
+          <div fs-slider-element="list" role="list" class="fs-slider-gallery_list w-dyn-items">
+            {d.fotos.map((f) => (
+              <div fs-slider-element="slide" role="listitem" class="fs-slider-gallery_slide w-dyn-item"><a href="#" class="lightbox-link w-inline-block w-lightbox"><img alt={f.alt} loading="lazy" src={f.src} class="image-gallery" width={f.ancho} height={f.alto} /><script type="application/json" class="w-json" set:html={wjson(f.src)} /></a></div>
+            ))}
+          </div>
+        </div>
+        <div fs-slider-element="scrollbar" class="fs-slider-gallery_scrollbar">
+          <div fs-slider-element="scrollbar-drag" class="fs-slider-gallery_scrollbar_drag"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

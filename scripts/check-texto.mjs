@@ -34,6 +34,75 @@ const CAPTACION_JSON = (() => {
 })();
 /** La fuente unica de los dos telefonos, la misma que lee la pagina (R20-CIUDADES). */
 const TELEFONOS = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/telefonos.json'), 'utf8'));
+/**
+ * ── EL INTRO DE LAS 51 CIUDADES: PAR VIEJO -> NUEVO, DECLARADO ───────────────────────────────
+ *
+ * R21 cambia `headingIntro` y `paragraphIntro` en las 53 para que nombren pergolas y cocinas
+ * exteriores (peticion de Sebastian, 18-sep-2026). Las dos piloto se declararon a mano arriba;
+ * estas 51 se derivan, y el valor VIEJO sale de `copy-intro-anterior.json`, que es una foto fija
+ * tomada ANTES del cambio. No se lee del cache de Sanity a proposito: ese cache se refresca con el
+ * copy nuevo y la declaracion se quedaria sin su mitad izquierda.
+ *
+ * El h2 viejo decia «Licensed Pool Builders & Outdoor living contractors In <Ciudad>», que ademas
+ * duplicaba casi palabra por palabra el h1 de la propia pagina.
+ */
+const INTRO_ANTERIOR = JSON.parse(
+  fs.readFileSync(path.join(RAIZ, 'src/data/copy-intro-anterior.json'), 'utf8')).ciudades;
+const SEO_CIUDADES = JSON.parse(
+  fs.readFileSync(path.join(RAIZ, 'src/data/seo-pool-builders.json'), 'utf8'));
+
+/* `webflow.css` pone `text-transform: capitalize` en los h2, y ESO SI altera `innerText`: el
+ * baseline guarda «Outdoor Living Contractors» mientras que Sanity tiene «Outdoor living
+ * contractors». La regla es la misma que `capitaliza()` (definida mas abajo en este fichero), y se
+ * repite aqui —en vez de reusarla— porque `TRADUCIDAS_A_PROPOSITO` se evalua ANTES de esa
+ * definicion y una `const` en zona muerta temporal reventaria al arrancar. */
+const capitalizaH2 = (t) => String(t).replace(/(^|[\s(-])(\p{Ll})/gu, (_, a, b) => a + b.toUpperCase());
+
+const INTRO_CIUDAD = Object.entries(INTRO_ANTERIOR).flatMap(([slug, v]) => {
+  const b = SEO_CIUDADES[slug]?.bloques ?? {};
+  const ruta = `/pool-builders/${slug}`;
+  const pares = [];
+  if (b.headingIntro && v.headingIntro && b.headingIntro !== v.headingIntro) {
+    pares.push([capitalizaH2(v.headingIntro), capitalizaH2(b.headingIntro),
+      `h2 de intro de ${v.name}: vuelven pergolas y cocinas, pero AQUI y no en el heroe (Principio 1 `
+      + 'de A3). De paso deja de duplicar casi palabra por palabra el h1 de la pagina', [ruta]]);
+  }
+  if (b.paragraphIntro && v.paragraphIntro && b.paragraphIntro !== v.paragraphIntro) {
+    pares.push([v.paragraphIntro, b.paragraphIntro,
+      `parrafo de intro de ${v.name}: entra el alcance real del negocio, contrastado con los 14 `
+      + 'servicios de servicios-categoria.json', [ruta]]);
+  }
+  return pares;
+});
+
+const SANITY_CIUDADES = JSON.parse(
+  fs.readFileSync(path.join(RAIZ, 'src/data/pool-builders-sanity.json'), 'utf8'));
+
+/**
+ * ── EL APOYO DEL HEROE DE LAS 53 CIUDADES, DERIVADO ──────────────────────────────────────────
+ *
+ * R20 declaro a mano las dos landings piloto. R21 enciende la capa en las 53, y escribir 51
+ * entradas identicas a mano es exactamente la lista paralela que se desincroniza al mes: el
+ * `intro` viejo vive en Sanity y el nuevo lo genera `build-captacion-ciudades.mjs`, asi que se
+ * cruzan las DOS FUENTES y se declara lo que realmente cambia, ruta por ruta.
+ *
+ * Si una ciudad no tiene capa de captacion, no aparece aqui y su texto se compara sin tocar.
+ * Si el `intro` de Sanity cambiara, esta declaracion deja de casar y la puerta lo dice — que es
+ * justo lo que se quiere de una declaracion.
+ */
+const APOYOS_CIUDAD = SANITY_CIUDADES
+  .map((d) => [`/pool-builders/${d.slug}`, d])
+  .filter(([ruta]) => CAPTACION_JSON[ruta]?.heroe?.apoyo)
+  .filter(([ruta, d]) => d.intro && d.intro !== CAPTACION_JSON[ruta].heroe.apoyo)
+  .map(([ruta, d]) => [d.intro, CAPTACION_JSON[ruta].heroe.apoyo,
+    `apoyo del heroe de ${d.name}: resuelve QUE, DONDE, PARA QUIEN y QUE HACER AHORA sin ofrecer `
+    + 'la remodelacion, que compite con la intencion del anuncio arriba del pliegue',
+    [ruta]]);
+
+const SERVICIOS_CAT = JSON.parse(
+  fs.readFileSync(path.join(RAIZ, 'src/data/servicios-categoria.json'), 'utf8'));
+const GALERIA_OBRA = JSON.parse(
+  fs.readFileSync(path.join(RAIZ, 'src/data/galeria-obra-por-ruta.json'), 'utf8'));
 const ESTATICO = path.join(RAIZ, '.vercel/output/static');
 
 /**
@@ -147,9 +216,35 @@ const TRADUCIDAS_A_PROPOSITO = [
   ['All In One - Custom Pools, Pergolas & Outdoor Kitchens Contractors For Your Backyard In Gainesville, Florida',
     'Custom Inground Pool Construction For Homes In Gainesville And Alachua County',
     'h2 del héroe de Gainesville: fuera pérgolas y cocinas de arriba del pliegue'],
+  /**
+   * ── R21 · EL PÁRRAFO DEL INTRO DE LAS DOS LANDINGS ───────────────────────────────────────
+   *
+   * Pedido de Sebastian (18-sep-2026): «mejorar el copy de las dos páginas para que también sepan
+   * que se hacen pergolas, outdoor kitchens». El párrafo venía DEL BASELINE sin traducir y sólo
+   * nombraba construcción y remodelación de piscina, así que un visitante que llega por «pool
+   * builders» no se enteraba de que la casa hace el patio entero.
+   *
+   * SOLO SE NOMBRA LO QUE SE VENDE DE VERDAD, comprobado contra los 14 de
+   * `servicios-categoria.json`: Pool Construction, Pool Remodeling, Aluminum Pergolas, Louvered
+   * Roof Systems, Outdoor Kitchens, Custom Decks, Pool Screen Enclosures. Nada inventado.
+   *
+   * La última frase se conserva palabra por palabra: es la que ya cerraba el párrafo y no había
+   * motivo para tocarla.
+   */
+  ['As premier outdoor living contractors in Ocala, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value.',
+    'We build the whole backyard, not just the pool. Our licensed crews handle custom inground pools and spas, aluminum pergolas and louvered roof systems, outdoor kitchens, custom decks and screen enclosures for Ocala homeowners — designed, permitted and built by one team. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value.',
+    'párrafo de intro de Ocala: entra el alcance real del negocio',
+    ['/pool-builders/ocala-florida']],
+  ['As premier outdoor living contractors in Gainesville, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value.',
+    'We build the whole backyard, not just the pool. Our licensed crews handle custom inground pools and spas, aluminum pergolas and louvered roof systems, outdoor kitchens, custom decks and screen enclosures for Gainesville homeowners — designed, permitted and built by one team. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value.',
+    'párrafo de intro de Gainesville: entra el alcance real del negocio',
+    ['/pool-builders/gainesville-florida']],
   ['Licensed Pool Builders & Outdoor Living Contractors In Gainesville',
-    'Licensed Pool Builders In Gainesville, Florida',
-    'h2 de intro de Gainesville, misma razón'],
+    'Pools, Pergolas & Outdoor Kitchens In Gainesville, Florida',
+    'h2 de intro de Gainesville. R21 (Sebastian, 18-sep): vuelven pérgolas y cocinas, pero AQUÍ '
+    + 'y no en el héroe. A3 las quitó «de arriba del pliegue» y el héroe sigue limpio; esta '
+    + 'sección es el «más abajo» del Principio 1 de A3, donde los servicios secundarios sí '
+    + 'viven. De paso deja de duplicar casi palabra por palabra el h1 de la página'],
   ['Luxury Pool Builders & Outdoor Living Contractors In Ocala, Florida',
     'Custom Pool Builders In Ocala, Florida',
     'h1 de /pool-builders/ocala-florida, landing de pago del grupo Ocala'],
@@ -157,8 +252,11 @@ const TRADUCIDAS_A_PROPOSITO = [
     'Custom Inground Pool Construction For Homes In Ocala And Marion County',
     'h2 del héroe de Ocala: fuera pérgolas y cocinas de arriba del pliegue'],
   ['Licensed Pool Builders & Outdoor Living Contractors In Ocala',
-    'Licensed Pool Builders In Ocala, Florida',
-    'h2 de intro de Ocala, misma razón'],
+    'Pools, Pergolas & Outdoor Kitchens In Ocala, Florida',
+    'h2 de intro de Ocala. R21 (Sebastian, 18-sep): vuelven pérgolas y cocinas, pero AQUÍ '
+    + 'y no en el héroe. A3 las quitó «de arriba del pliegue» y el héroe sigue limpio; esta '
+    + 'sección es el «más abajo» del Principio 1 de A3, donde los servicios secundarios sí '
+    + 'viven. De paso deja de duplicar casi palabra por palabra el h1 de la página'],
 
   /**
    * ── R20-CIUDADES · EL APOYO DEL HÉROE DE LAS DOS LANDINGS DE PAGO ─────────────────────────
@@ -174,13 +272,10 @@ const TRADUCIDAS_A_PROPOSITO = [
    * NO lleva `rutas` porque no hace falta —cada una de estas dos líneas solo existe en su
    * propia página, igual que los encabezados de A3 de arriba—.
    */
-  ['Professional custom pool builders in Ocala, Florida. We specialize in new pool construction, pool remodeling, and luxury pool design for homeowners in North Florida.',
-    'New custom inground pools for Ocala homeowners — 3D design, permits, construction and final start-up, from one licensed team.',
-    'apoyo del héroe de Ocala: resuelve QUÉ, DÓNDE, PARA QUIÉN y QUÉ HACER AHORA sin ofrecer '
-    + 'la remodelación, que compite con la intención del anuncio arriba del pliegue'],
-  ['Professional custom pool builders in Gainesville, Florida. We specialize in new pool construction, pool remodeling, and luxury pool design for homeowners in North Florida.',
-    'New custom inground pools for Gainesville homeowners — 3D design, permits, construction and final start-up, from one licensed team.',
-    'apoyo del héroe de Gainesville, misma razón'],
+  /* Las 53, derivadas arriba: el `intro` de Sanity -> el `apoyo` que genera la capa. */
+  ...APOYOS_CIUDAD,
+  /* Y el h2 + parrafo de la seccion de intro de las 51 (las 2 piloto van a mano, mas arriba). */
+  ...INTRO_CIUDAD,
 
   /**
    * ── R17-CORE · LA LANDING DE PAGO DEL AD GROUP «POOL BUILDERS CORE» ───────────────────
@@ -1310,6 +1405,20 @@ function bloquesCaptacion(ruta) {
    * En cuanto la fase 2 encienda una ciudad de Broward o Palm Beach —que lleva el suyo delante—
    * la puerta se pondria roja por un texto CORRECTO, y una puerta que da rojo por lo que debe
    * pasar se acaba desactivando. Se lee de la misma fuente unica que la pagina. */
+  /* 🚨 R21 PARTIO ESTE BLOQUE EN DOS, Y ES EL MISMO CASO QUE R19 C4 DE MAS ABAJO.
+   * Hasta R20 los telefonos y las licencias salian SEGUIDOS, los dos detras del apoyo, y por eso
+   * eran un bloque contiguo de dos lineas. R21 sube la licencia a insignia ENCIMA del `<h1>`
+   * (`src/lib/captacion-ciudad.mjs`, ancla `.wrapper-main-hero-page`) y deja los telefonos donde
+   * estaban, junto a los CTA. Entre las dos lineas quedan ahora el h1, el h2 y el apoyo, que
+   * salen del baseline. Como `quitaBloque` exige que las lineas de un bloque salgan SEGUIDAS,
+   * dejarlo entero daria exactamente «esta, pero PARTIDO o DESORDENADO».
+   *
+   * NO hace falta `REORDENADAS_A_PROPOSITO`: esa lista es para reordenar lineas que vienen del
+   * BASELINE, y estas dos no vienen de ningun baseline — las declara esta funcion entera. El
+   * residuo que se compara caracter a caracter (h1, h2, apoyo y los dos CTA) no se ha movido.
+   *
+   * Y el ` · ` de los telefonos SIGUE AHI. La forma nueva son dos chips, pero el separador no se
+   * quita: `innerText` lo ve y el texto no se toca (Principio 2). */
   const zonas = c.heroe.zonas ?? TELEFONOS.items.map((x) => x.zona);
   bloques.push([
     zonas.map((z) => {
@@ -1317,8 +1426,8 @@ function bloquesCaptacion(ruta) {
       if (!tel) throw new Error(`check-texto: heroe.zonas pide «${z}» y telefonos.json no lo trae`);
       return `${tel.visible} ${tel.zona}`;
     }).join(' · '),
-    c.heroe.licencias,
   ]);
+  bloques.push([c.heroe.licencias]);
 
   // 2 · franja de confianza. SOLA, y esto es el cambio de R19 C4.
   //     R18: los pasos van DELANTE del formulario desde el rediseno de la seccion. No hace
@@ -1355,6 +1464,48 @@ function bloquesCaptacion(ruta) {
     c.inversion.texto,
     ...c.inversion.ctas.map((x) => x.texto),
   ]);
+
+  /* 3.bis · EL PANEL DE SERVICIOS DE LA HOME (R21, pedido de Sebastian 18-sep-2026).
+   *
+   * Solo en `/pool-builders/`: las 14 fichas de `/services/` tambien pasan por esta funcion y
+   * NO montan el panel. Se distingue por la ruta y no por un campo nuevo en
+   * `captacion-servicios.json`, porque el panel no lleva ni una linea propia de la ciudad —es
+   * literalmente la entrada `/` de `servicios-categoria.json`— y meterle un campo por ruta seria
+   * declarar 53 veces lo que es uno.
+   *
+   * 🚨 EL TEXTO NO ES EL DE `/`, Y ESA ES LA TRAMPA. Parecia que si —mismo componente, misma
+   * entrada del JSON—, pero `innerText` NO VE lo que lleva `hidden`, y el componente oculta los
+   * servicios que no son de la pestana abierta y todas las fichas menos la activa. La home abre
+   * por «Outdoor Living» y la landing por «Pool Solutions», asi que el conjunto VISIBLE es
+   * distinto. Por eso se deriva con el mismo `defecto` que pasa `[slug].astro`, y no se copia.
+   *
+   * EL ORDEN ES EL ENTRELAZADO DEL DOM, no «primero las filas y luego las fichas»: boton,
+   * ficha activa, boton, boton… Esta razonado en la cabecera del propio componente.
+   *
+   * La ultima linea es el `.svc-cierre` que devuelve al `#estimate`, gemelo del de la FAQ. */
+  if (ruta.startsWith('/pool-builders/')) {
+    const dp = SERVICIOS_CAT['/'];
+    const DEFECTO = 'pool-spa';
+    const nm = (x) => (x ?? '').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ')
+      .replace(/\s+/g, ' ').trim();
+    const visibles = dp.servicios.filter((sv) => sv.categorias.includes(DEFECTO));
+    const activo = visibles[0]?.id;
+    bloques.push([
+      capitaliza(nm(dp.titulo)),
+      nm(dp.subtitulo),
+      ...dp.categorias.map((c) => nm(c.nombre)),
+      ...visibles.flatMap((sv) => (sv.id === activo
+        ? [nm(sv.nombre), capitaliza(nm(sv.titulo)), nm(sv.texto), nm(sv.cta)]
+        : [nm(sv.nombre)])),
+      capitaliza(CTA_CIERRE),
+    ]);
+
+    /* 3.ter · LA GALERIA DE OBRA, entre el formulario y el 3D. Solo dos lineas: el `<h2>` y su
+     * entradilla. Las 12 fotos no aportan `innerText` —su texto vive en `alt`, que `innerText` no
+     * ve— y el lightbox se monta en un `<dialog>` que nace cerrado. */
+    const g = { ...GALERIA_OBRA._defecto, ...(GALERIA_OBRA[ruta] ?? {}) };
+    bloques.push([capitaliza(nm(g.titulo)), nm(g.entradilla)]);
+  }
 
   // 4 · las preguntas nuevas. Solo el `<h3>`: la respuesta vive en un desplegable cerrado y
   //     `innerText` no la ve. Una ficha puede no anadir ninguna -no se inventa una pregunta

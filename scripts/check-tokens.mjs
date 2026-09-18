@@ -125,8 +125,34 @@ const MIN_BLOQUES = 7;
  *  LO QUE NO CAMBIA: la regla de qué se hace cuando vuelva a morder. Primero se mira qué
  *  sobra —`estimacion.css` (13,2 KB) y `contacto.css` (9,1 KB) siguen siendo el 25 % de la
  *  capa entre las dos— y solo después se sube. Subirlo dos veces seguidas ya es el máximo que
- *  se puede hacer sin abrir esa pregunta. */
-const TOPE_BYTES = 92 * 1024;
+ *  se puede hacer sin abrir esa pregunta.
+ *
+ *  ── 18-sep-2026 · SUBE A 94 (R21-CIUDADES). LO DECIDE SEBASTIAN, Y ES LA TERCERA SEGUIDA ───
+ *
+ *  O sea que esto YA rebasa el «máximo sin abrir esa pregunta» que dice el párrafo de arriba.
+ *  Se sube igual porque se preguntó y se contestó, pero queda escrito que la pregunta sigue
+ *  abierta y que le toca al director, no al siguiente encargo que pase por aquí.
+ *
+ *  Medido antes de subir nada, que es el orden que pide la cabecera de `servicio-core.css`:
+ *
+ *      capa sin comentarios .................. 95 026 B de 94 208  ->    818 B de MÁS
+ *      lo que emite R21 (héroe + ritmo) ......  2 099 B
+ *      con 94 KB (96 256 B) .................. quedan 1 230 B libres
+ *
+ *  POR QUÉ 94 Y NO MÁS. 1 230 B libres es prácticamente lo que había ANTES de este encargo
+ *  (1 281 B), así que el tope sigue mordiendo al siguiente que escriba una regla — que es lo
+ *  único que este número tiene que hacer. Con 96 KB quedarían 3,2 KB y dejaría de doler.
+ *
+ *  LO QUE R21 *NO* GASTÓ, Y CONVIENE SABERLO PARA LA PRÓXIMA: la galería de obra
+ *  (`GaleriaObra.astro`) lleva su CSS en su propio `<style>` de componente, y la regla 10 de
+ *  abajo suma SOLO `capa` —las hojas de `src/styles/`—, no los bloques `<style>`. Una sección
+ *  nueva que nazca como componente no toca este presupuesto. No es un agujero: es que Astro
+ *  solo envía ese CSS a la ruta que monta el componente, mientras que una hoja viaja a las 122.
+ *
+ *  LA DEUDA, CUANTIFICADA, PARA CUANDO SE ABRA LA PREGUNTA: `estimacion.css` (12,9 KB) y
+ *  `contacto.css` (8,9 KB) son 21,8 KB entre las dos — el 23 % de la capa para 2 rutas y
+ *  1 formulario. Ahí está el presupuesto de las tres próximas secciones. */
+const TOPE_BYTES = 94 * 1024;
 
 const sinComentarios = (s) => s.replace(/\/\*[\s\S]*?\*\//g, '');
 

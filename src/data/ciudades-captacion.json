@@ -29,6 +29,31 @@
     "propia pagina, asi que cada collage repite 5 mas abajo. Es el mismo solape que Sebastian",
     "acepto en FICHAS-ORDEN · 2, y se dice en vez de callarlo."
   ],
+  "_paneles_pool_features": [
+    "LAS 6 DE «Pool Features & Upgrades» (18-sep-2026). NO viven aqui -son de la plantilla y de las",
+    "2 rutas de /where-we-serve/, o sea 55 rutas- pero se anota aqui porque es el fichero que",
+    "gobierna la imagen de estas landings y porque el motivo importa:",
+    "",
+    "LAS 6 ANTERIORES ERAN GENERADAS CON IA (Higgsfield, R20-F2) y representaban obra del cliente.",
+    "Eso es la linea roja de 00-PRINCIPIOS §3. Confirmado por Sebastian el 18-sep. Sustituidas por",
+    "obra real recortada a 9:16 desde los heroes de servicio de residentials/ (1950x1219 y",
+    "1792x1792) y de images/pool-remodeling-8, en /images/obra/paneles/.",
+    "",
+    "POR QUE ESAS Y NO OTRAS. La celda es una tira vertical (0,356 a 1440) y el velo de",
+    "caracteristicas.css:381 tapa de navy hasta el 42 % de la altura: el motivo TIENE que vivir en",
+    "el tercio superior. Se eligieron componiendo la celda real -recorte + velo- y mirando el",
+    "render, no el fichero. El dossier completo y los descartes, en el informe de R21.",
+    "",
+    "LO QUE SIGUE ABIERTO: «Energy Efficient Systems» no tiene foto que le corresponda porque NO",
+    "EXISTE una sola fotografia de equipo de piscina -bomba, filtro, calentador, cuadro- ni en",
+    "public/images/** ni en el banco de 420 activos. Comprobado dos veces. La que hay es una piscina",
+    "acabada: real y del cliente, pero generica para esa etiqueta. Lo cierra una sesion de fotos.",
+    "",
+    "Y HAY MAS IA EN EL SITIO: varias de public/images/procesos/*.avif estan generadas -verificado a",
+    "pixel: dedos fundidos, escalera geometricamente imposible, un impreso de permiso inventado- y",
+    "site/outdoor-living-final-inspection-handover-florida.webp. No entran en este encargo; quedan",
+    "reportadas."
+  ],
   "fotos": {
     "_lee_esto": "El set `construction` de /gallery (10). `alt` copiado VERBATIM del build de /gallery: es la fuente publicada de estos mismos ficheros, y ninguno situa la foto en una ciudad concreta. `srcset` tambien, SALVO el de la 02 y la 03: /gallery no se lo emite -defecto suyo, 1 ruta, fuera de este encargo- y sin el el navegador se baja el original de 1250w para una celda de 194 px, o de 81 px en movil. Se escriben aqui con el mismo formato que los otros ocho: los tres `-p-500/-p-800/-p-1080` EXISTEN en disco, estan en `git ls-files` y su ancho declarado es el real, medido con sharp. No se inventa una variante que no exista.",
     "construccion": {
@@ -129,6 +154,54 @@
         "alto": 698,
         "region": "North Florida",
         "_fuente": "Obra de origen Webflow, sin alt declarado: escrito MIRANDO la foto. La unica afirmacion de lugar es «North Florida», que es como el propio sitio clasifica la carpeta — mismo criterio que el alt de la banda de inversion de la ficha Core."
+      },
+      "raised-spa-travertine-sf": {
+        "src": "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-5.avif",
+        "alt": "Pool and spa from the house side, with the covered patio, dining area and screened neighbouring lanais behind.",
+        "ancho": 1250,
+        "alto": 698,
+        "region": "South Florida",
+        "_fuente": "alt DECLARADO en src/data/proyectos-propios.json (galeria de obra propia), mismo criterio que `estate-sun-shelf`. Se anade porque las 33 ciudades de South Florida no tenian foto de inversion de SU region y el generador -con razon- se niega a poner una obra de otra region en una landing local. Es project-5, no la portada (project-1), que ya sale en el carrusel de la misma pagina."
+      }
+    },
+    "intro": {
+      "_lee_esto": [
+        "LAS 3 DEL INTRO (trusted-section), pedido de Sebastian 18-sep-2026: «usar las mismas fotos que",
+        "se usan en la home page».  Son LITERALMENTE los 3 ficheros que pinta `/` en su trusted-section.",
+        "",
+        "LO QUE SE GANA: el mismo relato que la home -obra en curso, proceso y proyecto acabado- en vez",
+        "de tres piscinas terminadas, y un `alt` que no situa la obra en ninguna ciudad (que era la razon",
+        "de peso de R20-F2).  Y la geometria mejora: son CUADRADAS 1250x1250, y las celdas son 299x500",
+        "(0,60) y 299x250 (1,20); `cover` escala por altura y a DPR2 la celda alta pide 598x1000 y hay",
+        "1250x1250. Sobra resolucion en las tres, cosa que con las apaisadas de 1250x698 no pasaba.",
+        "",
+        "LO QUE SE PIERDE, Y QUEDA DICHO: estos 3 ficheros viven en `/images/site/` y `/images/",
+        "residentials/`, o sea CROMO sin procedencia verificada, mientras que las que sustituyen",
+        "(construction 03/05/07) son obra real del export de Webflow. Es decision de Sebastian con el",
+        "coste sobre la mesa.  Ademas no tienen derivados -no existe ni un -p-500-, asi que van SIN",
+        "`srcset`: a 1250 para una celda que en DPR2 pide 1000 no se desperdicia casi nada, pero si",
+        "algun dia se generan los derivados, aqui es donde se anaden."
+      ],
+      "1": {
+        "src": "/images/site/custom-pool-construction-florida-1custom-pool-construction-florida.avif",
+        "alt": "Florida specialists in custom pool construction. Work in progress showcasing the concrete and rebar foundation for a unique, custom design.",
+        "ancho": 1250,
+        "alto": 1250,
+        "pos": "50% 50%"
+      },
+      "2": {
+        "src": "/images/residentials/custom-pool-spa-builders-in-north-south-florida/pool-remodeling-contractors-florida.avif",
+        "alt": "Explore the pool remodeling process in Florida. Expert contractors working on the excavation and structure of a new backyard design.",
+        "ancho": 1250,
+        "alto": 1250,
+        "pos": "50% 50%"
+      },
+      "3": {
+        "src": "/images/site/outdoor-living-pool-contractors-fl-1outdoor-living-pool-contractors-fl.avif",
+        "alt": "Transform your backyard. Florida pool contractors specializing in outdoor living spaces. Completed project featuring a custom spa and luxury finishes.",
+        "ancho": 1250,
+        "alto": 1250,
+        "pos": "50% 50%"
       }
     }
   },
@@ -162,6 +235,720 @@
       ],
       "inversion": "screen-enclosure-nf",
       "_fuente_condado": "Alachua esta en CONDADOS de src/lib/negocio.mjs; el h2 del heroe ya publica «Gainesville And Alachua County»."
+    },
+    {
+      "slug": "alachua-florida",
+      "ciudad": "Alachua",
+      "region": "North Florida",
+      "collage": [
+        "04",
+        "07",
+        "10",
+        "03",
+        "06"
+      ],
+      "inversion": "estate-sun-shelf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "archer-florida",
+      "ciudad": "Archer",
+      "region": "North Florida",
+      "collage": [
+        "03",
+        "06",
+        "09",
+        "02",
+        "05"
+      ],
+      "inversion": "estate-sun-shelf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "atlantis-florida",
+      "ciudad": "Atlantis",
+      "region": "South Florida",
+      "collage": [
+        "10",
+        "03",
+        "06",
+        "09",
+        "02"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "beach-florida",
+      "ciudad": "Hillsboro Beach",
+      "region": "South Florida",
+      "collage": [
+        "04",
+        "07",
+        "10",
+        "03",
+        "06"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "boca-raton-florida",
+      "ciudad": "Boca Raton",
+      "region": "South Florida",
+      "collage": [
+        "06",
+        "09",
+        "02",
+        "05",
+        "08"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "boynton-beach-florida",
+      "ciudad": "Boynton Beach",
+      "region": "South Florida",
+      "collage": [
+        "09",
+        "02",
+        "05",
+        "08",
+        "01"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "cedar-key-florida",
+      "ciudad": "Cedar Key",
+      "region": "North Florida",
+      "collage": [
+        "10",
+        "03",
+        "06",
+        "09",
+        "02"
+      ],
+      "inversion": "estate-sun-shelf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "chiefland-florida",
+      "ciudad": "Chiefland",
+      "region": "North Florida",
+      "collage": [
+        "08",
+        "01",
+        "04",
+        "07",
+        "10"
+      ],
+      "inversion": "estate-sun-shelf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "cross-city-florida",
+      "ciudad": "Cross City",
+      "region": "North Florida",
+      "collage": [
+        "07",
+        "10",
+        "03",
+        "06",
+        "09"
+      ],
+      "inversion": "estate-sun-shelf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "dania-beach-florida",
+      "ciudad": "Dania Beach",
+      "region": "South Florida",
+      "collage": [
+        "01",
+        "04",
+        "07",
+        "10",
+        "03"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "davie-florida",
+      "ciudad": "Davie",
+      "region": "South Florida",
+      "collage": [
+        "06",
+        "09",
+        "02",
+        "05",
+        "08"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "deerfield-beach-florida",
+      "ciudad": "Deerfield Beach",
+      "region": "South Florida",
+      "collage": [
+        "09",
+        "02",
+        "05",
+        "08",
+        "01"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "delray-beach-florida",
+      "ciudad": "Delray Beach",
+      "region": "South Florida",
+      "collage": [
+        "08",
+        "01",
+        "04",
+        "07",
+        "10"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "fanning-springs-florida",
+      "ciudad": "Fanning Springs",
+      "region": "North Florida",
+      "collage": [
+        "03",
+        "06",
+        "09",
+        "02",
+        "05"
+      ],
+      "inversion": "estate-sun-shelf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "fort-lauderdale-florida",
+      "ciudad": "Fort Lauderdale",
+      "region": "South Florida",
+      "collage": [
+        "10",
+        "03",
+        "06",
+        "09",
+        "02"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "gulf-stream-florida",
+      "ciudad": "Gulf Stream",
+      "region": "South Florida",
+      "collage": [
+        "10",
+        "03",
+        "06",
+        "09",
+        "02"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "hallandale-beach-florida",
+      "ciudad": "Hallandale Beach",
+      "region": "South Florida",
+      "collage": [
+        "10",
+        "03",
+        "06",
+        "09",
+        "02"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "hawthorne-florida",
+      "ciudad": "Hawthorne",
+      "region": "North Florida",
+      "collage": [
+        "09",
+        "02",
+        "05",
+        "08",
+        "01"
+      ],
+      "inversion": "estate-sun-shelf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "high-springs-florida",
+      "ciudad": "High Springs",
+      "region": "North Florida",
+      "collage": [
+        "10",
+        "03",
+        "06",
+        "09",
+        "02"
+      ],
+      "inversion": "estate-sun-shelf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "hollywood-florida",
+      "ciudad": "Hollywood",
+      "region": "South Florida",
+      "collage": [
+        "10",
+        "03",
+        "06",
+        "09",
+        "02"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "hypoluxo-florida",
+      "ciudad": "Hypoluxo",
+      "region": "South Florida",
+      "collage": [
+        "03",
+        "06",
+        "09",
+        "02",
+        "05"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "juno-beach-florida",
+      "ciudad": "Juno Beach",
+      "region": "South Florida",
+      "collage": [
+        "09",
+        "02",
+        "05",
+        "08",
+        "01"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "jupiter-florida",
+      "ciudad": "Jupiter",
+      "region": "South Florida",
+      "collage": [
+        "10",
+        "03",
+        "06",
+        "09",
+        "02"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "lake-city-florida",
+      "ciudad": "Lake City",
+      "region": "North Florida",
+      "collage": [
+        "06",
+        "09",
+        "02",
+        "05",
+        "08"
+      ],
+      "inversion": "estate-sun-shelf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "lighthouse-point-florida",
+      "ciudad": "Lighthouse Point",
+      "region": "South Florida",
+      "collage": [
+        "01",
+        "04",
+        "07",
+        "10",
+        "03"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "manalapan-florida",
+      "ciudad": "Manalapan",
+      "region": "South Florida",
+      "collage": [
+        "01",
+        "04",
+        "07",
+        "10",
+        "03"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "mcintosh-florida",
+      "ciudad": "McIntosh",
+      "region": "North Florida",
+      "collage": [
+        "03",
+        "06",
+        "09",
+        "02",
+        "05"
+      ],
+      "inversion": "estate-sun-shelf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "micanopy-florida",
+      "ciudad": "Micanopy",
+      "region": "North Florida",
+      "collage": [
+        "04",
+        "07",
+        "10",
+        "03",
+        "06"
+      ],
+      "inversion": "estate-sun-shelf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "miramar-florida",
+      "ciudad": "Miramar",
+      "region": "South Florida",
+      "collage": [
+        "08",
+        "01",
+        "04",
+        "07",
+        "10"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "newberry-florida",
+      "ciudad": "Newberry",
+      "region": "North Florida",
+      "collage": [
+        "09",
+        "02",
+        "05",
+        "08",
+        "01"
+      ],
+      "inversion": "estate-sun-shelf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "north-palm-beach-florida",
+      "ciudad": "North Palm Beach",
+      "region": "South Florida",
+      "collage": [
+        "06",
+        "09",
+        "02",
+        "05",
+        "08"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "ocean-ridge-florida",
+      "ciudad": "Ocean Ridge",
+      "region": "South Florida",
+      "collage": [
+        "08",
+        "01",
+        "04",
+        "07",
+        "10"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "old-town-florida",
+      "ciudad": "Old Town",
+      "region": "North Florida",
+      "collage": [
+        "08",
+        "01",
+        "04",
+        "07",
+        "10"
+      ],
+      "inversion": "estate-sun-shelf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "palatka-florida",
+      "ciudad": "Palatka",
+      "region": "North Florida",
+      "collage": [
+        "10",
+        "03",
+        "06",
+        "09",
+        "02"
+      ],
+      "inversion": "estate-sun-shelf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "palm-beach-gardens-florida",
+      "ciudad": "Palm Beach Gardens",
+      "region": "South Florida",
+      "collage": [
+        "07",
+        "10",
+        "03",
+        "06",
+        "09"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "parkland-florida",
+      "ciudad": "Parkland",
+      "region": "South Florida",
+      "collage": [
+        "07",
+        "10",
+        "03",
+        "06",
+        "09"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "pembroke-pines-florida",
+      "ciudad": "Pembroke Pines",
+      "region": "South Florida",
+      "collage": [
+        "08",
+        "01",
+        "04",
+        "07",
+        "10"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "plantation-florida",
+      "ciudad": "Plantation",
+      "region": "South Florida",
+      "collage": [
+        "04",
+        "07",
+        "10",
+        "03",
+        "06"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "pompano-beach-florida",
+      "ciudad": "Pompano Beach",
+      "region": "South Florida",
+      "collage": [
+        "04",
+        "07",
+        "10",
+        "03",
+        "06"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "reddick-florida",
+      "ciudad": "Reddick",
+      "region": "North Florida",
+      "collage": [
+        "09",
+        "02",
+        "05",
+        "08",
+        "01"
+      ],
+      "inversion": "estate-sun-shelf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "royal-palm-beach-florida",
+      "ciudad": "Royal Palm Beach",
+      "region": "South Florida",
+      "collage": [
+        "09",
+        "02",
+        "05",
+        "08",
+        "01"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "south-palm-beach-florida",
+      "ciudad": "South Palm Beach",
+      "region": "South Florida",
+      "collage": [
+        "10",
+        "03",
+        "06",
+        "09",
+        "02"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "southwest-ranches-florida",
+      "ciudad": "Southwest Ranches",
+      "region": "South Florida",
+      "collage": [
+        "08",
+        "01",
+        "04",
+        "07",
+        "10"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "tequesta-florida",
+      "ciudad": "Tequesta",
+      "region": "South Florida",
+      "collage": [
+        "08",
+        "01",
+        "04",
+        "07",
+        "10"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "trenton-florida",
+      "ciudad": "Trenton",
+      "region": "North Florida",
+      "collage": [
+        "08",
+        "01",
+        "04",
+        "07",
+        "10"
+      ],
+      "inversion": "estate-sun-shelf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "waldo-florida",
+      "ciudad": "Waldo",
+      "region": "North Florida",
+      "collage": [
+        "10",
+        "03",
+        "06",
+        "09",
+        "02"
+      ],
+      "inversion": "estate-sun-shelf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "wellington-florida",
+      "ciudad": "Wellington",
+      "region": "South Florida",
+      "collage": [
+        "06",
+        "09",
+        "02",
+        "05",
+        "08"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "west-palm-beach-florida",
+      "ciudad": "West Palm Beach",
+      "region": "South Florida",
+      "collage": [
+        "03",
+        "06",
+        "09",
+        "02",
+        "05"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "weston-florida",
+      "ciudad": "Weston",
+      "region": "South Florida",
+      "collage": [
+        "09",
+        "02",
+        "05",
+        "08",
+        "01"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "williston-florida",
+      "ciudad": "Williston",
+      "region": "North Florida",
+      "collage": [
+        "01",
+        "04",
+        "07",
+        "10",
+        "03"
+      ],
+      "inversion": "estate-sun-shelf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
+    },
+    {
+      "slug": "wilton-manors-florida",
+      "ciudad": "Wilton Manors",
+      "region": "South Florida",
+      "collage": [
+        "08",
+        "01",
+        "04",
+        "07",
+        "10"
+      ],
+      "inversion": "raised-spa-travertine-sf",
+      "_sin_condado": "El sitio no publica el condado de esta ciudad en ningun sitio (comprobado en seo-pool-builders.json y en el contenido de Sanity). Segun la regla del generador, una ciudad sin condado publicado es CORRECTA y una con el condado equivocado no: el copy se escribe sin condado hasta que Sebastian aporte el mapa verificado."
     }
   ]
 }

@@ -526,3 +526,219 @@
 .location.svc-ubicacion { padding-top: calc(var(--mm-e-64) + var(--mm-e-8)); }
 @media (min-width: 768px) { .location.svc-ubicacion { padding-top: var(--mm-e-96); } }
 @media (min-width: 992px) { .location.svc-ubicacion { padding-top: calc(var(--mm-e-128) + var(--mm-e-8)); } }
+
+/* ═══ R21-CIUDADES · EL HEROE DE LAS DOS LANDINGS DE PAGO ════════════════════════════════════
+ *
+ * ALCANCE, MEDIDO ANTES DE ESCRIBIR LA PRIMERA REGLA. Todo cuelga de `.svc-heroe--ciudad`, que
+ * emite `src/lib/captacion-ciudad.mjs` sobre `.wrapper-main-hero-page` y que HOY solo existe en
+ * las rutas con entrada en `captacion-servicios.json` — o sea 2. Escrito contra el selector
+ * pelado, lo de aqui movería 57 rutas (`.hero-glass-section`) o 16 (`.svc-heroe__lic`, que
+ * pintan tambien las 14 fichas de `/services/`):
+ *
+ *     grep -rlo 'svc-heroe--ciudad' .vercel/output/static --include='*.html' | wc -l
+ *
+ * POR QUE ESTA HOJA Y NO `hero-zona.css`. `Base.astro` carga `hero-zona.css` en :74 y esta en
+ * :133. Aqui se gana por ORDEN, no por peso (00-PRINCIPIOS §5), asi que ante empate de
+ * especificidad con las reglas del heroe hay que cargar DESPUES. En `hero-zona.css` estas
+ * reglas perderian contra `.svc-heroe__*`.
+ *
+ * EL DIAGNOSTICO. Bajo el h1 habia CUATRO parrafos seguidos con el mismo peso visual —h2,
+ * apoyo, telefonos, licencias—: seis lineas de prosa plana en las que no destacaba ninguno,
+ * porque los cuatro trabajos del heroe se estaban entregando con la misma FORMA. No faltaba
+ * adorno; faltaba que cada trabajo tuviera la suya. La licencia sube a insignia encima del h1,
+ * los telefonos bajan a chips junto a los CTA, y en la columna de prosa quedan dos bloques.
+ *
+ * LO QUE NO SE TOCA, Y POR QUE:
+ *   · El `padding-bottom` de `.hero-glass-section` (`hero-zona.css:56`) esta calibrado contra
+ *     las paradas del velo: cada pixel que se le sume sube el texto y desalinea el degradado.
+ *     El grupo baja apretando huecos, no moviendo el suelo.
+ *   · El h2 `.yellow`. El encargo pedia bajarlo un paso «porque compite con el h1», pero eso ya
+ *     se hizo: `hero-zona.css:123-137` lo bajo de 35px a `--mm-paso-4` (20px a 992, 22,4 a 1440,
+ *     25 a 1920) contra un h1 de 40 — razon 1,6. Bajarlo otro paso lo dejaria en 15-16px, por
+ *     DEBAJO del parrafo de apoyo. El encargo describe un problema ya resuelto.
+ *   · El parrafo de apoyo sigue siendo prosa. Convertirlo en 4 chips cambiaria el texto
+ *     (Principio 2) y metería un tercer grupo de iconos en la primera pantalla.
+ *   · `z-index`, `transform`, `filter`, `backdrop-filter`, `opacity<1`, `isolation` ni
+ *     `will-change` sobre el heroe (`hero-zona.css:14-18`): el `<video>` va a `z-index:-100` y
+ *     depende de escapar a la raiz. La translucidez se hace con `color-mix`, que es lo que la
+ *     casa ya usa en el propio velo. */
+
+/* EL RITMO INTERNO, EN UNA SOLA ESCALA. Antes se sumaban dos: el `row-gap:24` del contenedor
+ * (`hero-zona.css:151`) mas el `margin-block:8 24` propio de las licencias (:500 de esta hoja).
+ * Con la insignia fuera de la columna quedan tres filas —apoyo, chips, botones— y 16 las junta
+ * sin apelmazarlas. Esto es lo que produce «compacto hacia abajo» sin tocar nada calibrado. */
+.svc-heroe--ciudad .text-divider-hero-city { grid-row-gap: var(--mm-e-16); }
+
+/* ── LA INSIGNIA ─────────────────────────────────────────────────────────────────────────────
+ * Conserva la clase `svc-heroe__lic`: mismo texto y mismo trabajo, solo cambia la forma. Asi
+ * las 14 fichas de `/services/` se quedan exactamente como estaban —alli el selector es plano y
+ * sigue cayendo su regla de siempre— y no se gasta un nombre nuevo que no explicaria nada.
+ *
+ * `--mm-r-8` y no los 4px de `.pe-insignia`: el estimador es una isla con su propio juego de
+ * tokens (`--pe-*`), y en la capa de diseno el radio mas pequeno que existe es 8. Un token que
+ * falta se PIDE al director, no se inventa (00-PRINCIPIOS §5).
+ *
+ * ── CONTRASTE, MEDIDO POR EL PEOR PIXEL DEL BUCLE, NO POR EL PROMEDIO ────────────────────────
+ * `diag-velo` tiene su lista de elementos fija y no conoce estos dos, asi que se midio aparte:
+ * 10 muestras de los 28 s del bucle, muestreando el fondo COMPUESTO (video + velo + relleno
+ * translucido) en la banda de relleno, donde no hay tinta. El filete se mide contra SUS DOS
+ * vecinos, que es lo que pide CRITERIO.
+ *
+ *     @1440x900                       peor pixel        ratio     minimo
+ *     insignia · texto blanco         rgb(5,36,105)     14,36:1   4,5  ✓
+ *     insignia · filete               rgb(117,134,172)   3,15:1   3    ✓  (dentro 3,99 · fuera 3,15)
+ *     chip     · texto blanco         rgb(6,33,96)      15,06:1   4,5  ✓
+ *     chip     · filete               rgb(118,133,167)   3,92:1   3    ✓  (dentro 4,17 · fuera 3,92)
+ *
+ *     @390x844
+ *     insignia · texto blanco         rgb(17,43,108)    13,24:1   4,5  ✓
+ *     insignia · filete               rgb(117,132,170)   3,61:1   3    ✓
+ *     chip     · texto blanco         rgb(0,34,104)     14,70:1   4,5  ✓
+ *     chip     · filete               rgb(115,133,172)   3,36:1   3    ✓
+ *
+ * Identico en Gainesville (mismo velo, mismo video). El relleno navy al 72 % es lo que sube el
+ * texto de los 8,10:1 que da el velo solo (`diag-velo`) a los 14-15 de aqui: la insignia y los
+ * chips son mas legibles que el h1 que tienen debajo, no menos. */
+.svc-heroe--ciudad .svc-heroe__lic {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mm-e-8);
+  margin-block: 0 var(--mm-e-16);
+  padding: var(--mm-e-8) var(--mm-e-12);
+  border: 1px solid color-mix(in srgb, var(--mm-blanco) 45%, transparent);
+  border-radius: var(--mm-r-8);
+  background-color: color-mix(in srgb, var(--mm-navy) 72%, transparent);
+  font-size: var(--mm-paso-0);
+}
+.svc-heroe--ciudad .svc-heroe__escudo {
+  flex: none;
+  inline-size: var(--mm-e-16);
+  block-size: var(--mm-e-16);
+  color: var(--mm-oro);
+}
+
+/* ── LOS CHIPS DE TELEFONO ───────────────────────────────────────────────────────────────────
+ * `inline-block`, NUNCA `inline-flex`, y el motivo esta escrito entero en `captacion-ciudad.mjs`:
+ * en un contenedor flex el nodo de texto ` North Florida` se vuelve item anonimo, el espacio de
+ * delante se come, e `innerText` pasaria a decir «…740-3361North Florida». La puerta se pondria
+ * roja por un texto que en pantalla se lee bien.
+ *
+ * El objetivo tactil ya lo cumple el `<a>` de :405-414 (`inline-flex` + `min-height:44px`), que
+ * es lo que se pulsa. El chip es la caja que lo rodea, y hereda esa altura por la linea. */
+.svc-heroe--ciudad .svc-heroe__chip {
+  display: inline-block;
+  padding-inline: var(--mm-e-12);
+  border: 1px solid color-mix(in srgb, var(--mm-blanco) 45%, transparent);
+  border-radius: var(--mm-r-8);
+  background-color: color-mix(in srgb, var(--mm-navy) 72%, transparent);
+}
+/* Los dos chips se apilan en cuanto no caben, y entonces el separador sobra: sin esto se queda
+ * huerfano a la derecha del primero. A partir de 768 vuelven a la misma linea y vuelve con
+ * ellos. `check:texto` mide a 1920, donde el separador esta: no se esquiva ninguna puerta. */
+.svc-heroe--ciudad .svc-heroe__tel { display: flex; flex-wrap: wrap; gap: var(--mm-e-8); }
+.svc-heroe--ciudad .svc-heroe__sep { display: none; }
+@media (min-width: 768px) {
+  .svc-heroe--ciudad .svc-heroe__tel { display: block; }
+  .svc-heroe--ciudad .svc-heroe__sep { display: inline; }
+}
+.svc-heroe--ciudad .svc-heroe__glifo {
+  inline-size: var(--mm-e-16);
+  block-size: var(--mm-e-16);
+  vertical-align: -0.18em;
+  margin-inline-end: var(--mm-e-8);
+  color: var(--mm-oro);
+}
+
+/* ── EL OBJETIVO TACTIL DE LOS DOS CTA ───────────────────────────────────────────────────────
+ * Median 36-38px y CRITERIO pide >=44 en los cuatro anchos. Es la receta literal de
+ * `intro.css:150-162`: el relleno lo da el `inline-flex`, nunca una altura fija ni un
+ * `aspect-ratio` con la altura ya declarada — con la altura puesta, `aspect-ratio` calcula el
+ * ANCHO y desborda la columna.
+ *
+ * ACOTADO A LAS 2 A PROPOSITO. `.button-styles` pinta 121 rutas; subirlo ahi es un encargo
+ * propio y queda REPORTADO al director, no arreglado de tapadillo desde aqui. */
+.svc-heroe--ciudad .wrapper-buttons-center .button-styles {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+}
+.svc-heroe--ciudad .wrapper-buttons-center .button-styles:focus-visible {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco-inverso);
+  outline-offset: var(--mm-foco-aire);
+}
+
+/* ═══ R21-CIUDADES · EL RITMO VERTICAL DE LA LANDING ═════════════════════════════════════════
+ *
+ * LO QUE SE PIDIO: «en la FAQ no hay casi espacio arriba y abajo hay mas; todas las secciones
+ * deben estar separadas con el mismo espacio, que se vea simetrico al hacer scroll».
+ *
+ * LO QUE SE MIDIO (`.vercel/output/static`, /pool-builders/ocala-florida, hueco = padding-bottom
+ * de la de arriba + padding-top de la de abajo):
+ *
+ *     @1440                       arriba   abajo        @991     @992
+ *     svc-inversion -> faq-section   —      108          42       108
+ *     faq-section   -> blog          —      204          90       204
+ *
+ * O sea 108 arriba contra 204 abajo: exactamente lo que se ve. Y son DOS defectos distintos,
+ * no uno, por eso hay dos reglas:
+ *
+ *   1 · `.faq-section` es la UNICA seccion del sitio con el padding en `em` (`padding: 6em 2em`
+ *       en `webflow.css`). `em` resuelve contra el cuerpo, y webflow declara DOS: 18px en
+ *       escritorio y 14px a `max-width:991`. Sale 108 arriba de 992 y 84 debajo, mientras sus
+ *       vecinas se quedan quietas en 96. Es la unica seccion cuyo ritmo cambia al cruzar el
+ *       breakpoint: por construccion no puede casar con nadie. Misma familia que el `.cta-page-
+ *       section` que DIRECTOR.md ya tenia fichado.
+ *
+ *   2 · `.svc-inversion` llega con `padding-block: 0` —su aire lo lleva por dentro, en
+ *       `.svc-inversion__panel`—, asi que el hueco de ENCIMA de la FAQ lo ponia la FAQ sola. El
+ *       de abajo lo ponian dos secciones. De ahi el 108 contra 204: no era la FAQ la que tenia
+ *       poco arriba, era que arriba solo pagaba una seccion y abajo pagaban dos. Se le da el
+ *       padding por los DOS lados, no solo por abajo: con solo abajo, la banda quedaba a 96 de
+ *       lo de arriba y a 192 de lo de abajo, o sea la misma asimetria girada.
+ *
+ * CON ESTAS DOS: 192 arriba y 192 abajo a >=992, 96 y 96 a <=991, y el salto 991/992 desaparece.
+ *
+ * LO QUE NO SE TOCA, Y ES DELIBERADO, NO OLVIDO:
+ *   · `.animated-divs-section` sigue con `padding-block-end: 0`. Lo pidio Sebastian el 12-sep y
+ *     esta escrito en `caracteristicas.css:90-93`: «la banda tiene que morir contra la seccion
+ *     siguiente, sin franja de azul entre el canto de oro y el blanco». Igualar ese hueco seria
+ *     deshacer una peticion suya para cumplir otra.
+ *   · `.svc-confianza` cierra a 0 por el mismo motivo: es banda azul y su canto es el limite.
+ *     El padding de una banda de color se lee DENTRO de la banda; el de dos secciones blancas
+ *     seguidas se lee ENTRE ellas y se suma. Por eso «el mismo numero en todas» no da «simetrico
+ *     al hacer scroll»: lo que hay que igualar es el hueco entre BORDES DE CONTENIDO, y donde
+ *     hay un canto de color el canto ya hace de borde.
+ *
+ * ALCANCE. `body:has(.svc-heroe--ciudad)` son las 2 rutas con capa de captacion, y seran las 53
+ * el dia que se extienda — sin tocar una linea mas. `:has()` no es un experimento aqui: la capa
+ * ya lo usa en `estimador.css:167` y en `estimacion.css:154,260,542`, con su `@supports
+ * selector(:has(*))` en :267. Si algun navegador no lo soportara, el ritmo cae al de hoy: se
+ * degrada, no se rompe.
+ *
+ * Y APARTE, REPORTADO AL DUENO DE `faq.css`, NO HECHO AQUI: ese `6em` deberia pasar a `rem` o a
+ * token en su hoja. Son 18 rutas —las 14 fichas de /services/ mas /about, /financing y estas 2—
+ * y mientras siga vivo, el dia que alguien toque el tamano del cuerpo se mueve el ritmo de las
+ * 18 sin que nadie lo pida. Aqui solo se arregla donde el encargo llega. */
+body:has(.svc-heroe--ciudad) > section.faq-section { padding-block: var(--mm-e-48); }
+body:has(.svc-heroe--ciudad) > section.svc-inversion { padding-block: var(--mm-e-48); }
+@media (min-width: 992px) {
+  body:has(.svc-heroe--ciudad) > section.faq-section { padding-block: var(--mm-e-96); }
+  body:has(.svc-heroe--ciudad) > section.svc-inversion { padding-block: var(--mm-e-96); }
+}
+
+/* EL CTA DE CIERRE, A >=44 px EN LAS DOS LANDINGS.
+ * Medido con `getBoundingClientRect()` sobre `.vercel/output/static`: `.svc-cierre a` daba 36,4 px
+ * a <=991 y 38,4 a partir de 992 — es `.button-styles`, que pinta 121 rutas y arrastra ese alto
+ * desde el origen. R21 ANADE uno de estos al pie del panel de servicios, y anadir un control nuevo
+ * por debajo del umbral no se hace: se arregla el que se anade y, de paso, el gemelo de la FAQ que
+ * ya estaba en la misma pagina. Acotado a las 2 rutas, con la receta de `intro.css:150-162`.
+ *
+ * LAS OTRAS 121 SIGUEN A 36-38 px Y QUEDA REPORTADO, no arreglado de tapadillo: subir
+ * `.button-styles` a secas mueve el sitio entero y es encargo del director. */
+body:has(.svc-heroe--ciudad) .svc-cierre a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+}

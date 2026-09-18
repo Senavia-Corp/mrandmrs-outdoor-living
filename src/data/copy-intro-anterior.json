@@ -1,0 +1,274 @@
+{
+  "_lee_esto": [
+    "EL COPY DE INTRO QUE TENIAN LAS 51 CIUDADES ANTES DE R21, declarado ANTES de cambiarlo.",
+    "",
+    "POR QUE EXISTE ESTE FICHERO. `check:texto` compara contra `baseline/` y el cambio se declara en",
+    "`TRADUCIDAS_A_PROPOSITO` como par viejo -> nuevo. El valor NUEVO es deterministico (sale del",
+    "nombre de la ciudad por plantilla), pero el VIEJO vivia solo en el cache de Sanity, y ese cache",
+    "se refresca justamente con el copy nuevo. Sin esta foto fija la declaracion se quedaria sin su",
+    "mitad izquierda, y la puerta no podria distinguir «cambio declarado» de «texto que se movio solo».",
+    "",
+    "Mismo criterio que `JSONLD_ARREGLADO` en check-seo.mjs: se guarda el valor VIEJO y el NUEVO, para",
+    "que dentro de tres meses el cambio siga siendo atribuible.",
+    "",
+    "Ocala y Gainesville NO estan aqui: su cambio se declaro a mano en check-texto.mjs cuando eran las",
+    "dos rutas piloto, y su copy ademas vive en seo-pool-builders.json."
+  ],
+  "ciudades": {
+    "alachua-florida": {
+      "name": "Alachua",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Alachua",
+      "paragraphIntro": "As premier outdoor living contractors in Alachua, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "archer-florida": {
+      "name": "Archer",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Archer",
+      "paragraphIntro": "As premier outdoor living contractors in Archer, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "atlantis-florida": {
+      "name": "Atlantis",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Atlantis",
+      "paragraphIntro": "As premier outdoor living contractors in Atlantis, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "beach-florida": {
+      "name": "Hillsboro Beach",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Hillsboro Beach",
+      "paragraphIntro": "As premier outdoor living contractors in Hillsboro Beach, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "boca-raton-florida": {
+      "name": "Boca Raton",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Boca Raton",
+      "paragraphIntro": "As premier outdoor living contractors in Boca Raton, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "boynton-beach-florida": {
+      "name": "Boynton Beach",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Boynton Beach",
+      "paragraphIntro": "As premier outdoor living contractors in Boynton Beach, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "cedar-key-florida": {
+      "name": "Cedar Key",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Cedar Key",
+      "paragraphIntro": "As premier outdoor living contractors in Cedar Key, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "chiefland-florida": {
+      "name": "Chiefland",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Chiefland",
+      "paragraphIntro": "As premier outdoor living contractors in Chiefland, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "cross-city-florida": {
+      "name": "Cross City",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Cross City",
+      "paragraphIntro": "As premier outdoor living contractors in Cross City, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "dania-beach-florida": {
+      "name": "Dania Beach",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Dania Beach",
+      "paragraphIntro": "As premier outdoor living contractors in Dania Beach, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "davie-florida": {
+      "name": "Davie",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Davie",
+      "paragraphIntro": "As premier outdoor living contractors in Davie, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "deerfield-beach-florida": {
+      "name": "Deerfield Beach",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Deerfield Beach",
+      "paragraphIntro": "As premier outdoor living contractors in Deerfield Beach, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "delray-beach-florida": {
+      "name": "Delray Beach",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Delray Beach",
+      "paragraphIntro": "As premier outdoor living contractors in Delray Beach, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "fanning-springs-florida": {
+      "name": "Fanning Springs",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Fanning Springs",
+      "paragraphIntro": "As premier outdoor living contractors in Fanning Springs, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "fort-lauderdale-florida": {
+      "name": "Fort Lauderdale",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Fort Lauderdale",
+      "paragraphIntro": "As premier outdoor living contractors in Fort Lauderdale, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "gulf-stream-florida": {
+      "name": "Gulf Stream",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Gulf Stream",
+      "paragraphIntro": "As premier outdoor living contractors in Gulf Stream, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "hallandale-beach-florida": {
+      "name": "Hallandale Beach",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Hallandale Beach",
+      "paragraphIntro": "As premier outdoor living contractors in Hallandale Beach, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "hawthorne-florida": {
+      "name": "Hawthorne",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Hawthorne",
+      "paragraphIntro": "As premier outdoor living contractors in Hawthorne, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "high-springs-florida": {
+      "name": "High Springs",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In High Springs",
+      "paragraphIntro": "As premier outdoor living contractors in High Springs, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "hollywood-florida": {
+      "name": "Hollywood",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Hollywood",
+      "paragraphIntro": "As premier outdoor living contractors in Hollywood, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "hypoluxo-florida": {
+      "name": "Hypoluxo",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Hypoluxo",
+      "paragraphIntro": "As premier outdoor living contractors in Hypoluxo, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "juno-beach-florida": {
+      "name": "Juno Beach",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Juno Beach",
+      "paragraphIntro": "As premier outdoor living contractors in Juno Beach, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "jupiter-florida": {
+      "name": "Jupiter",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Jupiter",
+      "paragraphIntro": "As premier outdoor living contractors in Jupiter, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "lake-city-florida": {
+      "name": "Lake City",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Lake City",
+      "paragraphIntro": "As premier outdoor living contractors in Lake City, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "lighthouse-point-florida": {
+      "name": "Lighthouse Point",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Lighthouse Point",
+      "paragraphIntro": "As premier outdoor living contractors in Lighthouse Point, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "manalapan-florida": {
+      "name": "Manalapan",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Manalapan",
+      "paragraphIntro": "As premier outdoor living contractors in Manalapan, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "mcintosh-florida": {
+      "name": "McIntosh",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In McIntosh",
+      "paragraphIntro": "As premier outdoor living contractors in McIntosh, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "micanopy-florida": {
+      "name": "Micanopy",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Micanopy",
+      "paragraphIntro": "As premier outdoor living contractors in Micanopy, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "miramar-florida": {
+      "name": "Miramar",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Miramar",
+      "paragraphIntro": "As premier outdoor living contractors in Miramar, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "newberry-florida": {
+      "name": "Newberry",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Newberry",
+      "paragraphIntro": "As premier outdoor living contractors in Newberry, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "north-palm-beach-florida": {
+      "name": "North Palm Beach",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In North Palm Beach",
+      "paragraphIntro": "As premier outdoor living contractors in North Palm Beach, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "ocean-ridge-florida": {
+      "name": "Ocean Ridge",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Ocean Ridge",
+      "paragraphIntro": "As premier outdoor living contractors in Ocean Ridge, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "old-town-florida": {
+      "name": "Old Town",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Old Town",
+      "paragraphIntro": "As premier outdoor living contractors in Old Town, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "palatka-florida": {
+      "name": "Palatka",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Palatka",
+      "paragraphIntro": "As premier outdoor living contractors in Palatka, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "palm-beach-gardens-florida": {
+      "name": "Palm Beach Gardens",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Palm Beach Gardens",
+      "paragraphIntro": "As premier outdoor living contractors in Palm Beach Gardens, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "parkland-florida": {
+      "name": "Parkland",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Parkland",
+      "paragraphIntro": "As premier outdoor living contractors in Parkland, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "pembroke-pines-florida": {
+      "name": "Pembroke Pines",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Pembroke Pines",
+      "paragraphIntro": "As premier outdoor living contractors in Pembroke Pines, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "plantation-florida": {
+      "name": "Plantation",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Plantation",
+      "paragraphIntro": "As premier outdoor living contractors in Plantation, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "pompano-beach-florida": {
+      "name": "Pompano Beach",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Pompano Beach",
+      "paragraphIntro": "As premier outdoor living contractors in Pompano Beach, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "reddick-florida": {
+      "name": "Reddick",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Reddick",
+      "paragraphIntro": "As premier outdoor living contractors in Reddick, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "royal-palm-beach-florida": {
+      "name": "Royal Palm Beach",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Royal Palm Beach",
+      "paragraphIntro": "As premier outdoor living contractors in Royal Palm Beach, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "south-palm-beach-florida": {
+      "name": "South Palm Beach",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In South Palm Beach",
+      "paragraphIntro": "As premier outdoor living contractors in South Palm Beach, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "southwest-ranches-florida": {
+      "name": "Southwest Ranches",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Southwest Ranches",
+      "paragraphIntro": "As premier outdoor living contractors in Southwest Ranches, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "tequesta-florida": {
+      "name": "Tequesta",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Tequesta",
+      "paragraphIntro": "As premier outdoor living contractors in Tequesta, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "trenton-florida": {
+      "name": "Trenton",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Trenton",
+      "paragraphIntro": "As premier outdoor living contractors in Trenton, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "waldo-florida": {
+      "name": "Waldo",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Waldo",
+      "paragraphIntro": "As premier outdoor living contractors in Waldo, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "wellington-florida": {
+      "name": "Wellington",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Wellington",
+      "paragraphIntro": "As premier outdoor living contractors in Wellington, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "west-palm-beach-florida": {
+      "name": "West Palm Beach",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In West Palm Beach",
+      "paragraphIntro": "As premier outdoor living contractors in West Palm Beach, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "weston-florida": {
+      "name": "Weston",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Weston",
+      "paragraphIntro": "As premier outdoor living contractors in Weston, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "williston-florida": {
+      "name": "Williston",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Williston",
+      "paragraphIntro": "As premier outdoor living contractors in Williston, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    },
+    "wilton-manors-florida": {
+      "name": "Wilton Manors",
+      "headingIntro": "Licensed Pool Builders & Outdoor living contractors In Wilton Manors",
+      "paragraphIntro": "As premier outdoor living contractors in Wilton Manors, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value."
+    }
+  }
+}
