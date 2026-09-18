@@ -81,10 +81,10 @@
    "enlace": "/blogs/residential-vs-commercial-pool-construction-in-florida",
    "cta": "Read More: Residential vs Commercial Pool Construction in Florida",
    "imagen": {
-    "src": "/images/site/residential-vs-commercial-pool-construction-florida.webp",
-    "srcset": "/images/site/residential-vs-commercial-pool-construction-florida-p-500.webp 500w, /images/site/residential-vs-commercial-pool-construction-florida-p-800.webp 800w, /images/site/residential-vs-commercial-pool-construction-florida-p-1080.webp 1080w, /images/site/residential-vs-commercial-pool-construction-florida-p-1600.webp 1600w, /images/site/residential-vs-commercial-pool-construction-florida-p-2000.webp 2000w, /images/site/residential-vs-commercial-pool-construction-florida-p-2600.webp 2600w, /images/site/residential-vs-commercial-pool-construction-florida.webp 3168w",
-    "sizes": "(max-width: 767px) 100vw, (max-width: 991px) 727px, 940px",
-    "alt": "Residential and commercial pool construction comparison showing private home pool and large Florida commercial pool."
+    "src": "/images/blog/residential-vs-commercial-pool-construction-in-florida/mrandmrs-pool-spa-a2-blog-project-062-06-800.webp",
+    "srcset": "/images/blog/residential-vs-commercial-pool-construction-in-florida/mrandmrs-pool-spa-a2-blog-project-062-06-400.webp 400w, /images/blog/residential-vs-commercial-pool-construction-in-florida/mrandmrs-pool-spa-a2-blog-project-062-06-800.webp 800w",
+    "sizes": "(min-width: 768px) 400px, 100vw",
+    "alt": "Aerial view of a rectangular backyard pool with a raised spa and a wide stone deck."
    },
    "categoria": null
   },
@@ -107,10 +107,10 @@
    "enlace": "/blogs/commercial-pool-construction-in-florida-what-decision-makers-must-know",
    "cta": "Read More: Commercial Pool Construction in Florida: What Decision-Makers Must Know",
    "imagen": {
-    "src": "/images/site/commercial-pool-construction-florida.webp",
-    "srcset": "/images/site/commercial-pool-construction-florida-p-500.webp 500w, /images/site/commercial-pool-construction-florida-p-800.webp 800w, /images/site/commercial-pool-construction-florida-p-1080.webp 1080w, /images/site/commercial-pool-construction-florida-p-1600.webp 1600w, /images/site/commercial-pool-construction-florida-p-2000.webp 2000w, /images/site/commercial-pool-construction-florida-p-2600.webp 2600w, /images/site/commercial-pool-construction-florida.webp 2752w",
-    "sizes": "(max-width: 767px) 100vw, (max-width: 991px) 727px, 940px",
-    "alt": "Commercial pool construction project in Florida designed for hotels, resorts, and multifamily properties."
+    "src": "/images/blog/commercial-pool-construction-in-florida-what-decision-makers-must-know/mrandmrs-pool-spa-a7-blog-project-061-08-800.webp",
+    "srcset": "/images/blog/commercial-pool-construction-in-florida-what-decision-makers-must-know/mrandmrs-pool-spa-a7-blog-project-061-08-400.webp 400w, /images/blog/commercial-pool-construction-in-florida-what-decision-makers-must-know/mrandmrs-pool-spa-a7-blog-project-061-08-800.webp 800w",
+    "sizes": "(min-width: 768px) 400px, 100vw",
+    "alt": "Aerial view of a long lap pool alongside a covered lanai, with stepping-stone pavers across the lawn."
    },
    "categoria": null
   },

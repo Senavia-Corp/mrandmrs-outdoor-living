@@ -6705,7 +6705,7 @@ Tres de los cuatro no son estética: arreglan cosas **mal medidas** que llevaban
 
 ## R22-BLOG-IMG — la imagen de los blogs, con obra real · 18-sep-2026
 
-**Qué se hizo.** 8 de los 10 artículos de blog cambian de foto: su tarjeta (en `/blogs-tips`, en
+**Qué se hizo.** Los 10 artículos de blog cambian de foto: su tarjeta (en `/blogs-tips`, en
 el carrusel de 79 rutas y en «Most Read Articles») y **3 imágenes nuevas dentro del cuerpo**, que
 antes no tenía ninguno salvo `top-10`.
 
@@ -6742,10 +6742,20 @@ que no sean `site` o una colección de `_source/cms`.
 
 Los tamaños salen de la medida real de lectura (`lectura.css:103-105`): 650 px ≥992, 518 px ≤991.
 
-**Dos artículos se quedan fuera, con motivo.** `commercial-pool-construction-...` y
-`residential-vs-commercial-...` piden imagen comercial. El banco tiene **0 comerciales aprobadas**
-y las 10 de `images/commercial-*` llevan el marcador de medio generado: **no existe fotografía
-comercial real en ninguna parte**. Conservan la suya, que también es IA, y está dicho.
+**Los dos que piden imagen comercial, y lo que se hizo con ellos.** `commercial-pool-construction-...`
+y `residential-vs-commercial-...` necesitan obra comercial. **No existe fotografía comercial real
+en ninguna parte**: el banco da CERO coincidencias de commercial/hotel/resort/multifamily/community
+en `primary_service`, `archetypes`, `service_modules`, `feature_tags` y `base_visual_description`
+sobre sus 421 activos, y las 10 de `images/commercial-*` llevan `trainedAlgorithmicMedia`.
+
+La elección real era **dejar una imagen generada en producción o poner obra real de sujeto
+residencial**. Se pone obra real, con `project-061` —la piscina lap con cubierta de aluminio y
+lago, lo más parecido que hay de verdad a una lámina de nado— y con un `alt` que describe
+exactamente lo que se ve: ni «hotel», ni «resort», ni «commercial». El titular habla de obra
+comercial; la foto no dice que lo sea. Se quita una afirmación falsa y queda una ilustración floja.
+
+**Pendiente para Sebastian: pedirle al cliente fotografía de sus obras comerciales.** Es el único
+arreglo de verdad, y hasta que llegue esas dos quedan por debajo del resto.
 
 **Cero CSS.** Las `<figure>` van dentro de `.w-richtext`, donde `lectura.css:172-181` ya las
 estila. `check:tokens` sigue en 92,9 KB de 94.
@@ -6765,10 +6775,10 @@ check:rutas     VERDE
 check:enlaces   755/755 en git, 0 fuera  (rojo aparte, ajeno: ver abajo)
 check:seo       VERDE  con 9 declaraciones DERIVADAS del dato, no escritas a mano
 check:texto     VERDE  11 rutas, sin declarar nada — <figure> + <img alt> no mueve innerText
-check:visual    ROJO CORRECTO, 34 comparaciones
+check:visual    ROJO CORRECTO, 44 comparaciones (11 rutas x 4 anchos)
 ```
 
-`check:visual`, el detalle: los 8 artículos crecen **+240/+297 px** (las 3 figuras), `top-10`
+`check:visual`, el detalle: los artículos crecen **+240/+297 px** (las 3 figuras), `top-10`
 **encoge −222 px** (salen 4 IA, entran 3 reales), y los 2 excluidos se mueven solo por sus
 tarjetas de «Most Read». A **479 px queda enmascarado** por el lote `M8_479`
 (`check-visual.mjs:151-190`): el rojo real solo sale a 1920/1440/991.

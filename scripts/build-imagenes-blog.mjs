@@ -124,8 +124,8 @@ const galeria = (rel, alt) => {
  *
  * FUERA DEL ENCARGO, con motivo: `commercial-pool-construction-...` y
  * `residential-vs-commercial-...` necesitan imagen comercial. El banco tiene CERO comerciales
- * aprobadas y las 10 de `images/commercial-*` son IA. No hay fotografia comercial real en
- * ninguna parte, asi que conservan la imagen que tienen -que tambien es IA, y esta dicho-.
+ * aprobadas y las 10 de `images/commercial-*` son IA. Ver el bloque del final: entran con obra
+ * real de sujeto residencial y `alt` que no afirma nada comercial.
  */
 const CASTING = {
   '/blogs/top-10-luxury-pool-designs-for-florida-homes': {
@@ -206,6 +206,46 @@ const CASTING = {
       galeria('images/deck-6/custom-deck-builders-contractors-north-south-florida-06.jpg', 'Hardwood deck stepping down from a house toward a pool, with planting along the edge.'),
       galeria('images/kitchen-4/custom-outdoor-kitchen-with-grill-florida.avif', 'Outdoor kitchen island with a built-in grill and stone cladding, under a covered patio beside palms.'),
       galeria('images/pergolas-2/custom-pergola-patio-cover-builders-florida-02.jpg', 'Glass-topped aluminium pergola beside a pool, with a slatted privacy screen at one end.'),
+    ],
+  },
+
+  /* ── LOS DOS QUE PEDIAN IMAGEN COMERCIAL ────────────────────────────────────────────────
+   *
+   * NO EXISTE FOTOGRAFIA COMERCIAL REAL. Comprobado sobre los 421 activos del banco, por
+   * `primary_service`, `archetypes`, `service_modules`, `feature_tags` y
+   * `base_visual_description`: CERO coincidencias de commercial/hotel/resort/multifamily/
+   * community. Y las 10 de `images/commercial-*` llevan `trainedAlgorithmicMedia`.
+   *
+   * Asi que la eleccion real era: dejar una imagen GENERADA en produccion, o poner obra real
+   * cuyo sujeto es residencial. Se pone obra real, y el `alt` describe EXACTAMENTE lo que se ve
+   * sin afirmar nada comercial — ni «hotel», ni «resort», ni «commercial». El titular del
+   * articulo habla de obra comercial; la foto no dice que lo sea. Lo que se quita es una
+   * afirmacion falsa sobre el trabajo del cliente; lo que queda es una ilustracion floja, y esta
+   * dicho en la bitacora.
+   *
+   * SE ELIGE `project-061` -la piscina lap con cubierta de aluminio y lago- porque es lo mas
+   * parecido que hay de verdad: una lamina larga de nado, no un patio trasero con spa. Sigue
+   * siendo residencial y por eso el `alt` no lo disfraza.
+   *
+   * PENDIENTE PARA SEBASTIAN: pedirle al cliente fotografia de sus obras comerciales. Es el
+   * unico arreglo de verdad, y hasta que llegue estas dos quedan por debajo del resto. */
+  '/blogs/commercial-pool-construction-in-florida-what-decision-makers-must-know': {
+    tarjeta: banco('project-061', '08', 'Aerial view of a long lap pool alongside a covered lanai, with stepping-stone pavers across the lawn.'),
+    figuras: [
+      banco('project-061', '01', 'Lap pool seen from above, with a dark-framed aluminium patio cover running along the rear of the building.'),
+      banco('project-061', '14', 'Covered lanai with an aluminium patio cover, looking out over the lap pool toward the lake.'),
+      banco('project-061', '04', 'Lap pool and lawn from above, bordered by a removable mesh safety fence.'),
+    ],
+  },
+  '/blogs/residential-vs-commercial-pool-construction-in-florida': {
+    /* El unico que alterna DOS propiedades por el contenido y no por variedad: el articulo
+     * compara dos cosas, asi que se ensenan dos obras distintas -un patio trasero con spa y una
+     * lamina de nado-, una en cada figura. */
+    tarjeta: banco('project-062', '06', 'Aerial view of a rectangular backyard pool with a raised spa and a wide stone deck.'),
+    figuras: [
+      banco('project-061', '10', 'Long lap pool from above, set in a lawn beside a covered lanai and a lake.'),
+      banco('project-062', '25', 'Backyard pool and raised spa seen from the deck, with the house and palms behind.'),
+      banco('project-061', '13', 'Lap pool seen from under the aluminium patio cover, with loungers on the paved deck.'),
     ],
   },
 };
@@ -327,9 +367,9 @@ for (const [ruta, c] of Object.entries(CASTING)) {
 const nRutas = Object.keys(salida.rutas).length;
 const nImg = Object.values(salida.rutas).reduce((a, r) => a + 1 + r.figuras.length, 0);
 const alts = new Set(Object.values(salida.rutas).flatMap((r) => [r.tarjeta.alt, ...r.figuras.map((f) => f.alt)]));
-if (nRutas !== 8) mal(`${nRutas} rutas, se esperaban 8`);
-if (nImg !== 32) mal(`${nImg} imagenes, se esperaban 32`);
-if (alts.size !== 32) mal(`${alts.size} alt distintos de 32 — hay alt repetido`);
+if (nRutas !== 10) mal(`${nRutas} rutas, se esperaban 10`);
+if (nImg !== 40) mal(`${nImg} imagenes, se esperaban 40`);
+if (alts.size !== 40) mal(`${alts.size} alt distintos de 40 — hay alt repetido`);
 for (const [ruta, r] of Object.entries(salida.rutas)) {
   if (r.figuras.length !== 3) mal(`${ruta}: ${r.figuras.length} figuras, se esperaban 3`);
 }

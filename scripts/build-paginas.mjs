@@ -527,12 +527,10 @@ const ESP_SEO = N_BLOG * 3 + 1;          // + el hasPart de /blogs-tips
  * ojo y el contador dijo 78-:
  *
  *   80 tarjetas de blog en total = 10 en `/blogs-tips` + 7 en cada uno de los 10 articulos.
- *   78 apuntan a una de las 8 rutas con entrada.
+ *   80 apuntan a una ruta con entrada, desde que los 10 articulos la tienen.
  *
- * Los 2 que faltan son las 2 tarjetas de `/blogs-tips` de los articulos que se quedan fuera del
- * encargo. En «Most Read Articles» NO aparece ninguno de los dos: los 70 enlaces de esa seccion
- * van los 70 a rutas que si cambian. */
-const ESP_FOTOS = 78;
+ * Fue 78 mientras 2 se quedaban fuera por falta de imagen comercial real. */
+const ESP_FOTOS = 80;
 /**
  * ── EL MARCADOR DEL COLLAGE DE LA FAQ (FAQ-COLLAGE) ──────────────────────────────────────
  *
