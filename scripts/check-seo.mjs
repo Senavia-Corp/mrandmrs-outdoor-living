@@ -480,6 +480,71 @@ const JSONLD_ARREGLADO = {
   },
 };
 
+/**
+ * ── R22-BLOG-IMG · LA IMAGEN DE LOS BLOGS, DECLARADA DESDE EL DATO ───────────────────────
+ *
+ * Los 10 articulos de blog cambian de foto, y con ella su `og:image`, su `twitter:image` y
+ * el `image` de su JSON-LD. El baseline sigue trayendo la del origen, asi que hay que declararlo.
+ *
+ * POR QUE LAS FOTOS VIEJAS NO SE PODIAN QUEDAR. Las 10 tarjetas de blog que hay hoy en
+ * produccion llevan `Iptc4xmpExt:DigitalSourceType = trainedAlgorithmicMedia`: son imagenes
+ * GENERADAS, publicadas como obra del cliente, y el `og:image` es justo lo que se ve al
+ * compartir el articulo por WhatsApp o Slack. Comprobable:
+ *
+ *   strings public/images/site/pool-construction-permits-florida.webp | grep trainedAlgorithmicMedia
+ *
+ * ESTO NO ES «IGNORA ESTAS RUTAS», y la diferencia esta en que la declaracion NO SE ESCRIBE A
+ * MANO: sale de `src/data/imagenes-blog-por-ruta.json`, el mismo fichero que usa
+ * `build-paginas.mjs` para pintarlas. Si el build y el dato dejan de coincidir, esto vuelve a
+ * rojo; si el origen deja de decir lo que decia, tambien. No hay dos listas que mantener.
+ *
+ * Los dos articulos comerciales entran con obra real de sujeto residencial (no existe
+ * fotografia comercial real en ninguna parte) y su `alt` no afirma nada comercial. Ver el
+ * casting en `scripts/build-imagenes-blog.mjs`.
+ */
+const IMG_BLOG_R22 = JSON.parse(
+  fs.readFileSync(path.join(RAIZ, 'src/data/imagenes-blog-por-ruta.json'), 'utf8')).rutas;
+const SITIO_R22 = process.env.PUBLIC_SITE_URL || 'https://www.mrandmrsoutdoorliving.com';
+{
+  const base = JSON.parse(fs.readFileSync(path.join(RAIZ, 'baseline/seo.json'), 'utf8'));
+  /* (a) La tarjeta social de cada articulo. `META_PROPIA` ya es el canal para «la referencia
+   *     deja de ser el origen y pasa a ser el valor declarado». */
+  for (const [ruta, d] of Object.entries(IMG_BLOG_R22)) {
+    const abs = SITIO_R22 + d.tarjeta.src;
+    META_PROPIA.set(ruta, {
+      ...(META_PROPIA.get(ruta) ?? {}), 'og:image': abs, 'twitter:image': abs,
+    });
+  }
+  /* (b) El `image` del BlogPosting de cada articulo. */
+  for (const [ruta, d] of Object.entries(IMG_BLOG_R22)) {
+    const era = base[ruta]?.jsonLd?.[0]?.image;
+    if (era === undefined) continue;          // sin baseline: la puerta ya lo trata aparte
+    const camino = typeof era === 'string' ? 'image' : 'image.url';
+    JSONLD_ARREGLADO[ruta] = {
+      bloque: 0,
+      motivo: 'R22-BLOG-IMG: la foto del articulo pasa a obra real; la del origen es generada.',
+      cambios: [[camino, typeof era === 'string' ? era : era.url, d.tarjeta.src]],
+    };
+  }
+  /* (c) El `hasPart` de `/blogs-tips`: solo las partes cuya `url` tiene entrada. */
+  const partes = base['/blogs-tips']?.jsonLd?.[0]?.hasPart ?? [];
+  const cambios = [];
+  partes.forEach((p, i) => {
+    const d = IMG_BLOG_R22[String(p.url ?? '').replace(/(.)\/$/, '$1')];
+    if (!d) return;                            // los 2 que conservan la suya
+    const era = typeof p.image === 'string' ? p.image : p.image?.url;
+    cambios.push([typeof p.image === 'string' ? `hasPart.${i}.image` : `hasPart.${i}.image.url`,
+      era, d.tarjeta.src]);
+  });
+  if (cambios.length) {
+    JSONLD_ARREGLADO['/blogs-tips'] = {
+      bloque: 0,
+      motivo: `R22-BLOG-IMG: ${cambios.length} de las 10 partes cambian de foto a obra real.`,
+      cambios,
+    };
+  }
+}
+
 /** Lee/escribe por camino con puntos: `mainEntity.mainEntity.4.name`. */
 const porCamino = (o, c) => c.split('.').reduce((x, k) => (x == null ? x : x[k]), o);
 const ponCamino = (o, c, v) => {

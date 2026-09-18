@@ -6700,3 +6700,117 @@ Tres de los cuatro no son estética: arreglan cosas **mal medidas** que llevaban
 3. **Verificación en producción: `BLOCKED`, nunca `PASSED`.** El proxy deniega el `CONNECT` a `www.mrandmrsoutdoorliving.com` (medido, `403`). No es que el sitio falle: es que desde aquí no se ve.
 4. **Las `adobe-express-file*` quedan huérfanas** en `/images/site/`. No se borran: siguen en `_source/assets-manifest.json` y quitarlas pondría roja `check:assets`.
 5. **El `alt` de los 6 paneles se queda vacío** a propósito: son imágenes **generadas**, y un alt descriptivo afirmaría una obra real que no existe.
+
+---
+
+## R22-BLOG-IMG — la imagen de los blogs, con obra real · 18-sep-2026
+
+PR [#18](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/18) · rama `r22-blog-img`, rebasada sobre `27bc66e` (R21-CIUDADES).
+
+**Qué se hizo.** Los 10 artículos de blog cambian de foto: su tarjeta (en `/blogs-tips`, en
+el carrusel de 79 rutas y en «Most Read Articles») y **3 imágenes nuevas dentro del cuerpo**, que
+antes no tenía ninguno salvo `top-10`.
+
+**El hallazgo que justifica el encargo, medido.** Las 10 tarjetas de blog que había en producción
+llevan `Iptc4xmpExt:DigitalSourceType = trainedAlgorithmicMedia`: son **generadas por IA**,
+publicadas como obra del cliente en 90 de las 122 rutas.
+
+```bash
+for f in public/images/site/*.webp; do strings "$f" | grep -q trainedAlgorithmicMedia && echo "$f"; done
+# → las 10 tarjetas de blog + la variante --blogs-tips
+```
+
+Detector validado contra los dos conjuntos que el banco ya etiqueta: **6/6** en
+`generated_design_concept`, **0/6** en `real_completed_project`.
+
+**Y falla ABIERTO.** Los 4 `.jpg` que ilustraban el cuerpo de `top-10` **no** llevan el marcador y
+son IA sin discusión: infinity pools frente al mar con puestas de sol imposibles, en una empresa
+que construye patios traseros tierra adentro. Se detectaron **mirándolos**, no leyendo metadatos.
+Por eso el casting se hizo sobre 11 hojas de contactos (7 del banco + 4 fabricadas para las
+galerías del sitio) y no por nombre de fichero.
+
+**Arquitectura: no se tocó `public/images/site/` ni el manifiesto.** Sustituir en sitio habría
+costado 69 entradas `local:` a mano, 69 declaraciones en `DERIVADOS_A_PROPOSITO` y dejaba una mina
+(`download-assets.mjs:184` re-descarga del CDN lo que no case por sha256). En vez de eso, ficheros
+nuevos en `public/images/blog/`, fuera del manifiesto — el mismo patrón que R21 con
+`/images/obra/`, que tiene 0 entradas y `check:assets` verde. El check 10 además RECHAZA destinos
+que no sean `site` o una colección de `_source/cms`.
+
+| | antes | ahora |
+|---|---|---|
+| ficheros | 69 | 64 |
+| peso | **23,5 MB** | **4,9 MB** |
+| escalera | hasta 2752 px para pintar 380 | 400/800 (tarjeta) · 704/1280 (figura) |
+
+Los tamaños salen de la medida real de lectura (`lectura.css:103-105`): 650 px ≥992, 518 px ≤991.
+
+**Los dos que piden imagen comercial, y lo que se hizo con ellos.** `commercial-pool-construction-...`
+y `residential-vs-commercial-...` necesitan obra comercial. **No existe fotografía comercial real
+en ninguna parte**: el banco da CERO coincidencias de commercial/hotel/resort/multifamily/community
+en `primary_service`, `archetypes`, `service_modules`, `feature_tags` y `base_visual_description`
+sobre sus 421 activos, y las 10 de `images/commercial-*` llevan `trainedAlgorithmicMedia`.
+
+La elección real era **dejar una imagen generada en producción o poner obra real de sujeto
+residencial**. Se pone obra real, con `project-061` —la piscina lap con cubierta de aluminio y
+lago, lo más parecido que hay de verdad a una lámina de nado— y con un `alt` que describe
+exactamente lo que se ve: ni «hotel», ni «resort», ni «commercial». El titular habla de obra
+comercial; la foto no dice que lo sea. Se quita una afirmación falsa y queda una ilustración floja.
+
+**Pendiente para Sebastian: pedirle al cliente fotografía de sus obras comerciales.** Es el único
+arreglo de verdad, y hasta que llegue esas dos quedan por debajo del resto.
+
+**Cero CSS.** Las `<figure>` van dentro de `.w-richtext`, donde `lectura.css:172-181` ya las
+estila. `check:tokens` sigue en 92,9 KB de 94.
+
+**Cómo se hizo, y por qué en el generador.** Las 11 rutas de blog no están en `NO_REGENERAR`: un
+hand-edit se pierde. Y «componente + marcador» no sirve porque el troceo emite `<Componente />`
+sin props. Cirugía DOM como `collageFaq()`: `fotosBlog`, `figurasBlog` y `seoBlog` en
+`build-paginas.mjs`, gobernadas por `src/data/imagenes-blog-por-ruta.json`, que emite
+`scripts/build-imagenes-blog.mjs` (el casting vive en su cabecera, con su motivo).
+
+**Puertas.**
+
+```
+check:tokens    VERDE  92.9 KB de 94 — sin CSS nuevo
+check:assets    VERDE  sin tocar el manifiesto (esa es la prueba)
+check:rutas     VERDE
+check:enlaces   755/755 en git, 0 fuera  (rojo aparte, ajeno: ver abajo)
+check:seo       VERDE  con 9 declaraciones DERIVADAS del dato, no escritas a mano
+check:texto     VERDE  11 rutas, sin declarar nada — <figure> + <img alt> no mueve innerText
+check:visual    ROJO CORRECTO, 44 comparaciones (11 rutas x 4 anchos)
+```
+
+`check:visual`, el detalle: los artículos crecen **+240/+297 px** (las 3 figuras), `top-10`
+**encoge −222 px** (salen 4 IA, entran 3 reales), y los 2 excluidos se mueven solo por sus
+tarjetas de «Most Read». A **479 px queda enmascarado** por el lote `M8_479`
+(`check-visual.mjs:151-190`): el rojo real solo sale a 1920/1440/991.
+
+Y la prueba que `check:visual` NO da, porque su umbral es 99 % y la sección es una fracción de
+muchas páginas:
+
+```bash
+grep -rlo '/images/blog/' .vercel/output/static --include='*.html' | wc -l    # 90
+grep -rlE 'images/site/(luxury-pool-designs|pool-construction-permits|…)' \
+  .vercel/output/static --include='*.html' | wc -l                            # 0
+```
+
+### Queda abierto
+
+1. **RE-BASELINE HECHO** — 44 referencias (11 rutas × 4 anchos), y `check:visual blogs` queda
+   VERDE. Se hizo desde un **git worktree** aparte, que es lo que permitió tener árbol limpio
+   mientras otra sesión trabajaba en el principal. Decisión de Sebastian (18-sep): R22 primero,
+   `PROMPT-FONDO-AGUA` después — ese encargo tocará `.hero-project`, las mismas 10 rutas, y
+   recogerá su propio rojo.
+2. **`npm run paginas` estaba ROTO en `main`** y este encargo lo desbloqueó. `captacion()` se
+   aplicaba a `/pool-builders/{ocala,gainesville}-florida` —que R20 metió en
+   `captacion-servicios.json`— y su `_source/vivo/` no tiene las 3 secciones que el bloque 8b
+   exige, así que abortaba en la ruta 44 de 115 y **nunca se llegaba a las 10 de `/blogs/`**
+   (93-102). Reproducible con el generador de HEAD y árbol limpio. Arreglado con la guarda que
+   ya describía el comentario de `CAPTACION` y exigía su invariante: `if (!ruta.startsWith('/services/')) return false;`
+3. ~~18 ficheros `pool-feature-*` borrados del árbol~~ — era R21 moviéndolos a
+   `/images/obra/paneles/`. **Resuelto** al entrar `27bc66e` en `main`; esta rama va rebasada
+   sobre él y `check:enlaces` sale VERDE (749/749 en git).
+4. **105 de las 1.097 imágenes del sitio llevan el marcador de medio generado**, incluidas 40 en
+   `residentials/`, 39 en `procesos/` y las 10 de `images/commercial-*`. Encargo aparte.
+5. **7 de los 10 artículos se enlazan a sí mismos** en «Most Read Articles». Arreglarlo quita
+   texto → `check:texto`. Encargo aparte.
