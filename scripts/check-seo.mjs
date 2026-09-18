@@ -218,18 +218,28 @@ const PARTES_PROPIAS = {
  * La coincidencia 1:1 con las preguntas VISIBLES no se comprueba aqui sino en la regla 14 de
  * `scripts/check-ads-landing-pages.mjs`, que ve el cuerpo ademas del `<head>`.
  */
-const BLOQUES_PROPIOS = {
-  '/pool-builders/ocala-florida': {
-    tipo: 'FAQPage', clave: 'mainEntity', n: 3,
-    motivo: 'R20-CIUDADES: la landing de pago del ad group «Ocala» gana una FAQ con las tres '
-      + 'objeciones locales (coste sin cifras, permisos del condado y que incluye). El origen no '
-      + 'traia FAQ ni FAQPage en esta familia de rutas.',
-  },
-  '/pool-builders/gainesville-florida': {
-    tipo: 'FAQPage', clave: 'mainEntity', n: 3,
-    motivo: 'R20-CIUDADES: idem para el ad group «Gainesville».',
-  },
-};
+/* SE DERIVA DE `captacion-servicios.json`, NO SE ENUMERA A MANO, por el mismo motivo por el que
+ * `check-estructura-ciudades.mjs:70` deriva sus rutas de ese fichero: la lista de ciudades con FAQ
+ * cambia cada vez que se enciende una, y dos listas que hay que mantener a mano se desincronizan.
+ * R21 paso de 2 ciudades a 53 de golpe; enumerarlas aqui habria sido escribir 51 entradas
+ * identicas y dejar sin declarar la siguiente que se encienda.
+ *
+ * El `n` sale de las preguntas REALMENTE declaradas para esa ruta, no de un numero fijo: si una
+ * ciudad anade cuatro objeciones en vez de tres, la puerta exige cuatro.
+ *
+ * Y solo entran las rutas con `faq.titulo`, que es lo que distingue a quien MONTA su propia FAQ
+ * —las ciudades— de quien solo ANADE preguntas a una que ya venia del origen: las 14 fichas de
+ * `/services/`, que no emiten un `FAQPage` nuevo y por tanto no van declaradas aqui. */
+const BLOQUES_PROPIOS = Object.fromEntries(
+  Object.entries(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/captacion-servicios.json'), 'utf8')))
+    .filter(([ruta, c]) => ruta.startsWith('/pool-builders/') && c?.faq?.titulo && c.faq.anade?.length)
+    .map(([ruta, c]) => [ruta, {
+      tipo: 'FAQPage', clave: 'mainEntity', n: c.faq.anade.length,
+      motivo: 'R20/R21-CIUDADES: la landing de ciudad monta su propia FAQ con las objeciones '
+        + 'locales (coste sin cifras, permisos y que incluye) y con ella su `FAQPage`. El origen '
+        + 'no traia FAQ ni FAQPage en esta familia de rutas.',
+    }]),
+);
 
 /** Cuantos bloques propios se casaron, para decir por pantalla si la declaracion se aplico. */
 let propiosCasados = 0;

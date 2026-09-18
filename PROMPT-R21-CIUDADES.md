@@ -804,6 +804,102 @@ captación. Queda **reportado, no hecho**: está fuera del alcance de este encar
 
 ---
 
+## EJECUTADO — 18-sep-2026, rama `r21-ciudades` sobre `5c74909`
+
+Los cuatro cambios están hechos y medidos. Lo que sigue son las cosas que **no** coinciden con lo
+que este documento daba por supuesto, porque se midieron sobre el árbol en vez de deducirse.
+
+### Lo que el documento tenía mal, y se comprobó antes de tocar nada
+
+| § | Lo que decía | Lo que hay |
+|---|---|---|
+| 1.2 d | «el h2 mide casi lo mismo que el h1, bájalo un paso» | Ya se hizo. `hero-zona.css:123-137` lo bajó de 35 px a `--mm-paso-4` (20/22,4/25) contra un h1 de 40 — razón 1,6. Bajarlo otro paso lo dejaría **por debajo** del párrafo de apoyo. **No se tocó** |
+| 0.3 | «todo cuelga de `.svc-heroe--ciudad`» | Esa clase **no existía**, y el héroe de ciudad tampoco lleva `.svc-heroe`. Se emite ahora desde un ancla nueva en `.wrapper-main-hero-page`, que sale **una** vez en `B[0]` y da modificador y hueco de la insignia de una sola vez |
+| 2.6 | «montar Servicios en las 53: la re-baseline se paga una vez» | Se acotó con `CAP` a **2**. Las otras 51 van a recibir héroe, ritmo y galería cuando les toque su fila: montarlo ahora en las 53 las re-baseliniza **dos** veces. Así este PR re-baseliniza 2 rutas (~3 min) en vez de 53 (~50 min de Chromium) |
+| — (no aparecía) | — | **El presupuesto de CSS era el bloqueo real.** `check:tokens` tope 92 KB, quedaban **1 281 B**. Es lo primero que se pone rojo al escribir una regla |
+| 3B | «igualar el padding de todas las secciones» | `caracteristicas.css:90-93` guarda una petición **tuya** del 12-sep: `.animated-divs-section` sin aire abajo, «la banda muere contra la sección siguiente». Igualar a ciegas deshacía una petición tuya para cumplir otra. Se arreglaron los **dos defectos** (el `em` de la FAQ y el `padding:0` de `svc-inversion`) y se dejó esa como está |
+| 7.3 | «12 fotogramas de hora dorada, se vende la tarde» | La etiqueta `lighting` **no es de fiar**: varios `golden_hour_or_twilight` son mediodía con nubes en la hoja de contactos. Y el de más puntuación (q89) es **el vaso vaciado en resanado**. Se castó mirando, no por etiqueta ni por puntuación |
+| 6.1 | «el banco son fotos de marketing» | Mixto. `project-061` es documentación (vallas de seguridad, obra); `project-062` y los acabados de `project-059` sí son publicables. Por eso la galería sale de esos dos y **no** de los 74 |
+
+### Alcance real, medido sobre el árbol construido
+
+```
+svc-heroe--ciudad   2      svc-galeria   2      images/obra/   2      products-section   5 (3 + 2)
+```
+
+### Puertas
+
+| Puerta | Resultado |
+|---|---|
+| `check:tokens` | **VERDE** 92,9 KB de 94 KB · tope subido 92→94 con el motivo escrito. **Es la tercera subida seguida**, o sea que rebasa el «máximo sin abrir la pregunta» que el propio fichero fijaba: la deuda (`estimacion.css` 12,9 KB + `contacto.css` 8,9 KB = 23 % de la capa) queda cuantificada ahí |
+| `check:texto` | **VERDE** en las 5 rutas tocadas: Ocala, Gainesville, `/` y las 2 de `/where-we-serve/` |
+| `check:estructura:ciudades` | **VERDE** — 2 con captación, **51 exactamente como estaban** |
+| `check:galeria` | **VERDE** en la ruta nueva · 24 anclas, todas ≥44×44, modal, Escape, velo y foco de vuelta |
+| `check:captacion` `check:rutas` `check:enlaces` `check:assets` `check:seo` `check:carrusel` `check:ix2` | **VERDE** |
+| `check:ads` | 4 rojos por `noindex` — **no es de este encargo**: `Base.astro:312` lo emite en todo build que no sea producción, y 2 de los 4 rojos son fichas de `/services/` que no se han tocado |
+| `check:visual` | **rojo correcto** en las 2 rutas: el diseño ha cambiado. El re-baseline es tuyo |
+
+### Contraste, medido por el peor píxel de los 28 s del bucle (no por el promedio)
+
+`diag-velo` tiene su lista de elementos fija y no conoce la insignia ni los chips, así que se
+midió aparte muestreando el fondo **compuesto** en la banda de relleno:
+
+```
+@1440   insignia 14,36:1 · filete 3,15:1      @390   insignia 13,24:1 · filete 3,61:1
+        chip     15,06:1 · filete 3,92:1             chip     14,70:1 · filete 3,36:1
+```
+
+El relleno navy al 72 % sube el texto de los 8,10:1 que da el velo solo a 14-15: la insignia y los
+chips se leen **mejor** que el h1 que tienen debajo.
+
+### Objetivo táctil y desborde — a los 9 anchos, incluidos los 3 que `check:visual` no mira
+
+```
+390 · 479 · 600 · 767 · 768 · 991 · 992 · 1440 · 1920
+CTA héroe ≥44 ✓   ·   teléfonos 44 ✓   ·   flechas galería 51,6-53,2 ✓   ·   CTA servicios 44 ✓
+desborde horizontal 0 en los nueve ✓
+```
+
+El CTA de cierre del panel salía a 36,4 px: es `.button-styles` (121 rutas). Se subió **solo en
+estas 2**, porque añadir un control nuevo por debajo del umbral no se hace. Las otras 121 siguen a
+36-38 px y queda **reportado**, no arreglado de tapadillo.
+
+### El ritmo, antes y después (huecos entre bordes de contenido)
+
+```
+                          @1440 antes        @1440 ahora     @991        @992
+svc-inversion -> faq         108                192            96         192
+faq -> blog                  204                192            96         192
+```
+
+Toda la tirada `products → testimonial → projects → svc-inversion → faq → blog` queda en **192 a
+≥992 y 96 a ≤991**, y el salto 991/992 deja de existir. Era lo que veías: arriba pagaba una sección
+y abajo pagaban dos.
+
+### Decisiones que tomé yo para no pararlo, por si alguna no te cuadra
+
+1. **El párrafo del héroe se queda como frase**, no como 4 chips: cambiaba el texto (Principio 2) y
+   metía un tercer grupo de iconos en la primera pantalla.
+2. **Pestaña abierta «Pool Solutions»** en las 2 landings. No es invento: es lo que ya hacen las 2
+   rutas de `/where-we-serve/`.
+3. **El panel cierra con `.svc-cierre` a `#estimate`**, gemelo del de la FAQ: reparte 14 salidas a
+   `/services/*` y justo debajo queda «Project Showcase» con la suya.
+4. **La geometría de `trusted-section` (decisión 7) NO se tocó.** Con el banco no hace falta para la
+   definición; sigue en pie el argumento de casting del §7.2 y es tuya.
+5. **Los `alt` son los del banco palabra por palabra.** Eso deja 12 fotos con 3 textos distintos:
+   flojo para accesibilidad, pero inventar `alt` sobre fotos que solo he visto en hoja de contactos
+   es peor y es justo lo que el banco existe para evitar. **Reportado.**
+
+### Abierto
+
+- **`aprobar-diseno.mjs` exige árbol limpio y `PROMPT-FONDO-AGUA.md` sigue sin trackear.** No lo he
+  metido en esta rama porque es otro frente. Commitéalo o guárdalo antes de aprobar.
+- Commit, merge y re-baseline son tuyos (`DIRECTOR.md:35`): aquí se entrega el diff.
+- El `6em` de `.faq-section` → `rem`/token en su hoja, 18 rutas, dueño de `faq.css`.
+- Las 6 galerías `-north-florida` del sitio (§6.4): sigue sin contestar y afecta a 72 rutas vivas.
+
+---
+
 ## Registro
 
 | Fecha | Cambio | Estado |
