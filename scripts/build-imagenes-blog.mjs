@@ -62,6 +62,8 @@ const SIZES_FIGURA = '(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw'
 const ALTO = (w) => Math.round((w * 9) / 16);
 
 let fallos = 0;
+/** Las que reciben el levantado de sombra, para ENSEÑARLAS al final y no callarlas. */
+const ajustadas = [];
 const mal = (m) => { console.log(`  🔴 ${m}`); fallos++; };
 
 /* ── las fuentes ─────────────────────────────────────────────────────────── */
@@ -132,8 +134,12 @@ const CASTING = {
     tarjeta: banco('project-062', '04', 'Aerial view of a rectangular pool with a raised mosaic-clad spa and a wide white stone deck in a fenced Florida backyard.'),
     figuras: [
       banco('project-062', '28', 'Raised square spa clad in pale mosaic tile spilling into a rectangular pool, seen from the pool deck.'),
+      /* El `alt` de 062-21 y 062-23 NO dice «dusk» ni «late afternoon» aunque el banco las marque
+       * `golden_hour_or_twilight`: miradas, son midday SUBEXPUESTAS -cielo medido, sujeto en
+       * sombra-, y ademas aqui se les levanta la sombra. Un `alt` que dijera atardecer describiria
+       * una foto que no es la que se publica. El metadato del banco se equivoca; la hoja no. */
       banco('project-062', '11', 'Two-storey Florida home with a geometric pool, raised spa and white stone deck running the width of the backyard.'),
-      banco('project-062', '21', 'Pool and raised spa at dusk, the stone deck lit by low evening light.'),
+      banco('project-062', '21', 'Pool and raised spa seen across the lawn, with palms and the rear of the house behind.'),
     ],
   },
   '/blogs/complete-guide-to-pool-construction-in-florida-costs-timeline-process': {
@@ -150,7 +156,7 @@ const CASTING = {
      * las 32 derivadas, no en el metadato. La aerea baja a figura, donde no compite con nada. */
     tarjeta: banco('project-062', '17', 'Finished pool and raised spa alongside the rear of the house, with loungers on the stone deck.'),
     figuras: [
-      banco('project-062', '23', 'Pool, raised spa and stone deck in late afternoon light, with the house and palms behind.'),
+      banco('project-062', '23', 'Pool and raised spa beside a covered lanai, with loungers on the stone deck and trees behind.'),
       banco('project-062', '29', 'Close view of the raised spa mosaic cladding and the spillway into the pool.'),
       banco('project-062', '05', 'Aerial view of a finished pool and raised spa, showing the full deck layout and the surrounding fence line.'),
     ],
@@ -220,12 +226,60 @@ async function peldanos(im, ruta, anchos) {
    * es feo de leer y es la medida real. */
   const techo = Math.min(src.width, Math.floor((src.height * 16) / 9));
   const anchosReales = [...new Set(anchos.map((w) => Math.min(w, techo)))].sort((a, b) => a - b);
+
+  /* ── EXPOSICION: SE LEVANTA LA SOMBRA DE LAS SUBEXPUESTAS ────────────────────────────────
+   *
+   * Varias fotos del banco estan medidas para el cielo y dejan el sujeto en sombra. Se corrigen,
+   * y la decision es POR MEDIDA, no a ojo, sobre el RECORTE ya hecho -el encuadre cambia la
+   * media, asi que medir el master daria otro numero-.
+   *
+   * LOS DOS FILTROS. `media < 105` sola no vale: `059-08` da 92 y NO esta subexpuesta -es una
+   * piscina azul brillante rodeada de seto en sombra, y subirla la lava-. Por eso ademas
+   * `saturacion < 30`, que es lo que distingue «todo apagado» de «sujeto vivo, fondo oscuro».
+   *
+   * LA RECETA: `linear(0.90, 26)` + 8 % de saturacion. Es una RECTA de pendiente <1, o sea que
+   * levanta los negros y comprime un poco las altas luces: 255 -> 255. Medido contra la
+   * alternativa obvia -`modulate({lightness})`, que es una subida global-:
+   *
+   *     062-23   sin tocar  media  79  quemado 0,01 %
+   *              L+6        media  94  quemado 4,61 %   <- revienta el cielo
+   *              a.90 b26   media  97  quemado 0,01 %   <- y el negro baja de 4,75 % a 0 %
+   *
+   * Se probo tambien `a.86 b34`: sube mas, pero deja un velo gris en la lanai. Visto en hoja
+   * comparativa de las tres, no deducido.
+   *
+   * 🚨 NO SE TOCA EL TONO. `R13-COLOR` dejo fuera a proposito las fotos reales de obra
+   * (`check-assets.mjs`: «retonar el trabajo del cliente es peor»). Esto es exposicion y
+   * saturacion, no rotacion de tono: la foto sigue diciendo el color que tenia. */
+  const AJUSTE = { a: 0.90, b: 26, sat: 1.08 };
+  /**
+   * 🚨 EL DESPLAZAMIENTO VA EN LA ESCALA DEL PIPELINE, NO EN 0-255. Los `.avif` de galeria entran
+   * como `depth=ushort` / `space=rgb16`, asi que un `+26` se aplica sobre 0-65535 y DESAPARECE:
+   * queda solo la pendiente 0,90, que OSCURECE. Medido en la cocina exterior:
+   *
+   *     sin tocar            media 104,0
+   *     linear(0.90, 26)     media  93,7   <- mas oscura que antes, justo lo contrario
+   *     linear(0.90, 26*257) media 119,6   <- lo que se buscaba
+   *
+   * 257 = 65535/255. Cazado midiendo el RESULTADO, no leyendo el codigo: la puerta de este
+   * script solo cuenta ficheros, y 64 webp mas oscuros de lo que estaban habrian salido verdes.
+   */
+  const escala = src.depth === 'ushort' ? 257 : 1;
+  const muestra = await sharp(im.fuente)
+    .resize(400, ALTO(400), { fit: 'cover', position: 'centre' }).toBuffer();
+  const [cr, cg, cb] = (await sharp(muestra).stats()).channels;
+  const media = 0.2126 * cr.mean + 0.7152 * cg.mean + 0.0722 * cb.mean;
+  const sat = (Math.abs(cr.mean - cg.mean) + Math.abs(cg.mean - cb.mean) + Math.abs(cr.mean - cb.mean)) / 3;
+  const subexpuesta = media < 105 && sat < 30;
+  if (subexpuesta) ajustadas.push(`${im.base}  media ${media.toFixed(0)} sat ${sat.toFixed(0)}`);
+
   const partes = [];
   for (const w of anchosReales) {
     const destino = path.join(dir, `${im.base}-${w}.webp`);
     if (!SOLO_CHECK) {
-      await sharp(im.fuente).resize(w, ALTO(w), { fit: 'cover', position: 'centre' })
-        .webp({ quality: 82 }).toFile(destino);
+      let t = sharp(im.fuente).resize(w, ALTO(w), { fit: 'cover', position: 'centre' });
+      if (subexpuesta) t = t.linear(AJUSTE.a, AJUSTE.b * escala).modulate({ saturation: AJUSTE.sat });
+      await t.webp({ quality: 82 }).toFile(destino);
     }
     if (!fs.existsSync(destino)) { mal(`falta ${path.relative(RAIZ, destino)}`); continue; }
     partes.push(`/images/blog/${slug}/${im.base}-${w}.webp ${w}w`);
@@ -286,6 +340,8 @@ const ficheros = fs.existsSync(SALIDA)
   ? execFileSync('bash', ['-c', `find ${SALIDA} -name '*.webp' | wc -l`]).toString().trim() : '0';
 const peso = fs.existsSync(SALIDA)
   ? execFileSync('bash', ['-c', `du -sk ${SALIDA} | cut -f1`]).toString().trim() : '0';
+console.log(`\n  exposicion levantada en ${ajustadas.length} de ${nImg} imagenes (media <105 y sat <30):`);
+for (const a of ajustadas) console.log(`     ${a}`);
 console.log(`\n  ${nRutas} rutas · ${nImg} imagenes · ${alts.size} alt distintos`);
 console.log(`  ${ficheros} ficheros webp · ${(peso / 1024).toFixed(1)} MB en public/images/blog/`);
 console.log(fallos === 0 ? '\n✅ VERDE\n' : `\n🔴 ROJO — ${fallos} fallo(s)\n`);
