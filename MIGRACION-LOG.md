@@ -6705,6 +6705,8 @@ Tres de los cuatro no son estética: arreglan cosas **mal medidas** que llevaban
 
 ## R22-BLOG-IMG — la imagen de los blogs, con obra real · 18-sep-2026
 
+PR [#18](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/18) · rama `r22-blog-img`, rebasada sobre `27bc66e` (R21-CIUDADES).
+
 **Qué se hizo.** Los 10 artículos de blog cambian de foto: su tarjeta (en `/blogs-tips`, en
 el carrusel de 79 rutas y en «Most Read Articles») y **3 imágenes nuevas dentro del cuerpo**, que
 antes no tenía ninguno salvo `top-10`.
