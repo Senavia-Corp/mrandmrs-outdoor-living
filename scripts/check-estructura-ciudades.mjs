@@ -59,9 +59,18 @@ const SIN = [
   'testimonial-section', 'projects-section', 'blog-section-page', 'social-media', 'cta-footer',
 ];
 const CON = [
-  'hero-glass-section', 'svc-confianza', 'trusted-section', 'appointment-section',
-  '_3d-section', 'animated-divs-section', 'testimonial-section', 'projects-section',
-  'svc-inversion', 'faq-section', 'blog-section-page', 'social-media', 'cta-footer',
+  /* R21: `products-section` es el panel de servicios de la home (`ServiciosPorCategoria.astro`,
+   * cuya seccion es `class="products-section svc"`), que Sebastian pidio entre «Pool Features &
+   * Upgrades» y los testimonios. Va SOLO en `CON`: acotado con `CAP`, las otras 51 no lo montan
+   * y por eso `SIN` no se toca. Cuando las 51 reciban su fila de captacion lo heredaran con el
+   * resto, sin re-baselinizarlas dos veces. */
+  /* R21: `gallery` es la galeria de obra (`GaleriaObra.astro`), que Sebastian pidio entre el
+   * formulario y el 3D. Misma primera clase que la de las 14 fichas de `/services/` —para que
+   * `check:galeria` mida lo mismo aqui que alli— mas `svc-galeria`, que es el hook de `restos`. */
+  'hero-glass-section', 'svc-confianza', 'trusted-section', 'appointment-section', 'gallery',
+  '_3d-section', 'animated-divs-section', 'products-section', 'testimonial-section',
+  'projects-section', 'svc-inversion', 'faq-section', 'blog-section-page', 'social-media',
+  'cta-footer',
 ];
 
 const CAPTACION = leerJson('src/data/captacion-servicios.json');
@@ -121,7 +130,12 @@ for (const ruta of TODAS) {
     /* Y AL REVES, QUE ES LA MITAD QUE IMPORTA: una ciudad sin entrada no puede haber ganado NADA.
      * Si un widget se monta sin su guarda, aqui se ve — y se ve sin capturas y sin baseline. */
     const restos = ['form[data-mm-envia="1"]', '.svc-confianza', '.svc-inversion',
-      '.svc-captacion', '.faq-section', '.mm-collage', '.svc-cierre', '.svc-heroe__tel']
+      '.svc-captacion', '.faq-section', '.mm-collage', '.svc-cierre', '.svc-heroe__tel',
+      /* R21: el modificador del heroe y la galeria de obra. El modificador es la prueba mas
+       * barata de las dos — es UNA clase, la emite `captacion-ciudad.mjs` sobre
+       * `.wrapper-main-hero-page`, y de el cuelgan TODAS las reglas nuevas del heroe: si
+       * apareciera aqui, la insignia, los chips y el ritmo se habrian ido a 51 paginas. */
+      '.svc-heroe--ciudad', '.svc-galeria', '.products-section']
       .filter((s) => d.querySelector(s));
     if (restos.length) {
       mal(ruta, `no tiene entrada en captacion-servicios.json y sin embargo pinta ${restos.join(', ')}. `

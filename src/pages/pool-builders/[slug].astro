@@ -33,6 +33,8 @@ import ConfianzaCore from '../../components/widgets/ConfianzaCore.astro';
 import FormularioCore from '../../components/widgets/FormularioCore.astro';
 import InversionCore from '../../components/widgets/InversionCore.astro';
 import CollageFaq from '../../components/widgets/CollageFaq.astro';
+import ServiciosPorCategoria from '../../components/widgets/ServiciosPorCategoria.astro';
+import GaleriaObra from '../../components/widgets/GaleriaObra.astro';
 import SEO_RUTAS from '../../data/seo-pool-builders.json';
 import CAPTACION from '../../data/captacion-servicios.json';
 import COLLAGE from '../../data/collage-faq-por-ruta.json';
@@ -149,11 +151,20 @@ const CAMPOS = [[null,{"c":"h1Title","tx":"","p":["",""]},null,{"c":"h2Title","t
  * tres vuelven a salir mas abajo. Se reparten entre los dos collages -03 y 07 son del de Ocala,
  * 05 del de Gainesville- para que ninguna de las dos rutas de pago se lleve las tres.
  */
-const FOTOS_INTRO = { 'imagenIntro1.alt': '03', 'imagenIntro2.alt': '05', 'imagenIntro3.alt': '07' };
+/* R21 (Sebastian, 18-sep-2026): las tres pasan a ser LAS MISMAS QUE PINTA LA HOME en su
+ * `trusted-section`. El catalogo cambia de `fotos.construccion` a `fotos.intro`; el mecanismo
+ * —derivar del catalogo en vez de cablear el `<img>`— no cambia, que es lo que impide que las dos
+ * copias dejen de coincidir. El porque, y lo que cuesta, esta escrito en `fotos.intro._lee_esto`.
+ *
+ * SE MANTIENE TODO LO QUE F2 ARREGLO, y esto es lo que hay que vigilar al cambiar de fotos:
+ * `width`/`height` horneados (la home las pinta SIN ellos y por eso ahi sigue habiendo salto de
+ * maquetacion), el `alt` que no situa la obra en ninguna ciudad, y el `data-w-id` releido del
+ * marcado viejo. Lo unico que decae es el `srcset`: estos tres ficheros no tienen derivados. */
+const FOTOS_INTRO = { 'imagenIntro1.alt': '1', 'imagenIntro2.alt': '2', 'imagenIntro3.alt': '3' };
 const SIZES_INTRO = '(min-width: 992px) 300px, 50vw';
 for (const h of CAMPOS[0]) {
   if (!h || !(h.c in FOTOS_INTRO)) continue;
-  const f = FOTOS_CIUDAD.fotos.construccion[FOTOS_INTRO[h.c]];
+  const f = FOTOS_CIUDAD.fotos.intro[FOTOS_INTRO[h.c]];
   if (!f) throw new Error(`${slug}: la foto ${FOTOS_INTRO[h.c]} no esta en ciudades-captacion.json`);
   const wid = (h.p[0].match(/data-w-id="([^"]+)"/) ?? [])[1];
   if (!wid) {
@@ -161,8 +172,11 @@ for (const h of CAMPOS[0]) {
       + 'sin el, la foto se queda en opacity:0. Revisa CAMPOS antes de seguir.');
   }
   const x = String(f.pos).split(' ')[0];
+  /* `srcset` solo si el catalogo lo trae. Sin esta guarda se emitia `srcset="undefined"`, que el
+   * navegador intenta descargar: una peticion rota por foto y por ruta. */
+  const resp = f.srcset ? `sizes="${SIZES_INTRO}" srcset="${f.srcset}" ` : '';
   h.p[0] = `<img src="${f.src}" loading="lazy" data-w-id="${wid}" width="${f.ancho}" `
-    + `height="${f.alto}" sizes="${SIZES_INTRO}" srcset="${f.srcset}" `
+    + `height="${f.alto}" ${resp}`
     + `style="object-position:${x} 50%" alt="`;
   d[h.c] = f.alt;   // el alt de /gallery, que no situa la obra en ninguna ciudad. NO toca Sanity.
 }
@@ -268,6 +282,23 @@ const SEO = FAQ
   <ConfianzaCore ruta={RUTA} />
   <Fragment set:html={ANTES_FORM} />
   <FormularioCore ruta={RUTA} />
+  {CAP && (
+    /* LA GALERIA DE OBRA, ENTRE EL FORMULARIO Y EL 3D (R21, pedido de Sebastian 18-sep-2026).
+       El corte ya existia: `partirEn(b0, '<section class="_3d-section"')` lo dejo hecho F1, asi
+       que esto es una linea y no cirugia sobre el HTML derivado.
+
+       R20 DECLINO ESTA SECCION A PROPOSITO (`R20-CIUDADES.md` §3: `section.gallery` -> NO CHANGE,
+       «el carrusel de obra y el feed ya ensenan resultado»). Sebastian lo ha visto en produccion y
+       lo revierte; ademas hay un argumento que entonces no existia: LA POSICION. Alli se descarto
+       ponerla abajo, compitiendo con «Project Showcase». Aqui va ARRIBA, pegada al formulario:
+       quien no lo ha rellenado ve obra inmediatamente.
+
+       Las fotos son del banco del cliente, no de `public/images/images/*`: 1600x1067 contra los
+       1250 px que eran el techo de TODA la obra del sitio, y con procedencia verificada. Eso
+       ademas rompe el solape que arrastraba esta pagina, donde el set `construction` ya salia
+       tres veces (trusted-section, collage de la FAQ y feed de Instagram). */
+    <GaleriaObra />
+  )}
   <Fragment set:html={P_ANTES} />
   {/* LA PRUEBA SOCIAL, DELANTE DE LA OBRA (R20-CIUDADES F2, decision de Sebastian 14-sep-2026).
       El orden era Pool Features -> Project Showcase -> resenas. Ahora las resenas van EN MEDIO:
@@ -289,6 +320,32 @@ const SEO = FAQ
       de Sebastian. Lo que se pierde queda dicho, no callado: entre el formulario y los dos CTA de
       `svc-inversion` quedan cuatro secciones sin vuelta al `#estimate`. El gemelo de la FAQ
       -`<p class="svc-cierre">`- sigue en pie y es el que devuelve al formulario. */}
+  {CAP && (
+    /* EL PANEL DE SERVICIOS DE LA HOME, ENTRE «Pool Features» Y LOS TESTIMONIOS (R21, pedido de
+       Sebastian 18-sep-2026). El sitio que pide es EXACTAMENTE la juntura que F2 ya dejo abierta
+       entre `P_ANTES` y `P_DESPUES`: ni marcador nuevo, ni `partirEn` nuevo, ni cirugia sobre el
+       HTML derivado. Una linea.
+
+       `clave="/"` PORQUE EL JSON NO TIENE CIUDADES y no puede tenerlas: `build-paginas.mjs:1581`
+       reescribe `servicios-categoria.json` desde el origen, asi que una clave a mano se pierde a
+       la siguiente generacion. El panel es identico al de la home; lo unico propio de la landing
+       es que abre por «Pool Solutions», que es correspondencia con el ad group.
+
+       ACOTADO CON `CAP`, Y AQUI ME SEPARO DE LO QUE PEDIA EL ENCARGO. `PROMPT-R21` §2.6 proponia
+       montarlo en las 53 «porque la re-baseline se paga una vez». Pero las otras 51 van a recibir
+       heroe, ritmo y galeria cuando les toque su fila de captacion, y entonces habria que
+       re-baselinizarlas OTRA VEZ. Acotado, este PR re-baseliniza 2 rutas; las 51 se re-baselinizan
+       una sola vez, ya en su forma final. La doctrina de F2 —«las 53, la misma estructura»— es
+       sobre el estado final, y la cabecera del propio encargo ya separa las 51 en su fase.
+
+       CIERRA CON `.svc-cierre`. La seccion mete 14 enlaces de salida a `/services/*` y justo
+       debajo queda «Project Showcase» con la suya: dos fugas seguidas antes de la prueba social,
+       en una pagina que se paga por clic. El cierre lo mitiga por una linea y es el gemelo
+       literal del que ya vive al pie de la FAQ. */
+    <ServiciosPorCategoria clave="/" defecto="pool-spa">
+      <p slot="cierre" class="svc-cierre"><a href="#estimate" class="button button-styles w-button">Get a Free Estimate</a></p>
+    </ServiciosPorCategoria>
+  )}
   <Fragment set:html={P_DESPUES} />
   <ResenasGoogle />
   <Fragment set:html={B[1]} />

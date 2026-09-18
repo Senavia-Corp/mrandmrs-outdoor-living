@@ -61,14 +61,48 @@
  */
 import DATOS from '../../data/servicios-categoria.json';
 
-// El mecanismo de marcador del generador (`@@WIDGET@@Nombre@@WIDGET@@`) no pasa props, así que
-// el componente se localiza solo. Se normaliza la barra final: Astro sirve
-// `/where-we-serves/x/` y en el JSON la clave es `/where-we-serves/x`.
-const ruta = Astro.url.pathname.replace(/(.)\/$/, '$1');
+/**
+ * LAS DOS PROPS SON DE R21-CIUDADES, Y NINGUNA ES COMODIDAD.
+ *
+ * `clave` — este componente se localizaba SOLO por `Astro.url.pathname` porque el mecanismo de
+ * marcador del generador (`@@WIDGET@@Nombre@@WIDGET@@`) no pasa props, y `DATOS` solo tiene tres
+ * claves: `/` y las dos de `/where-we-serve/`. O sea que montarlo en una ciudad TIRABA EL BUILD
+ * en el `throw` de abajo. La alternativa era generar 53 entradas en `servicios-categoria.json`,
+ * y no vale: ese fichero lo reescribe `build-paginas.mjs:1581` desde el origen, asi que una
+ * clave puesta a mano se pierde en la siguiente generacion. Las ciudades reusan la entrada de
+ * `/`, que es literalmente el mismo panel. Es el patron de `CarruselProyectos.astro:48-51`.
+ *
+ * `defecto` — la pestana abierta al llegar. En la home «Outdoor Living» es lo correcto; en una
+ * landing cuyo ad group es «pool builders» lo correcto es «Pool Solutions», que es
+ * correspondencia con el anuncio y lo que mide la matriz de Quality Score. No es invento: las
+ * dos rutas de `/where-we-serve/` ya traen `defecto: "pool-spa"` en el JSON. Aqui no se puede
+ * sacar del JSON porque las ciudades reusan la entrada de `/`, y por eso viaja como prop.
+ *
+ * Las dos son OPCIONALES: sin ellas el componente se comporta exactamente como antes, que es lo
+ * que deja `/` y las dos de `/where-we-serve/` intactas byte a byte.
+ */
+interface Props {
+  clave?: string;
+  defecto?: string;
+}
+const { clave, defecto: defectoProp } = Astro.props;
+
+// Se normaliza la barra final: Astro sirve `/where-we-serves/x/` y en el JSON la clave es
+// `/where-we-serves/x`.
+const ruta = (clave ?? Astro.url.pathname).replace(/(.)\/$/, '$1');
 const d = DATOS[ruta];
 if (!d) throw new Error(`ServiciosPorCategoria: no hay datos para ${ruta}. Corre \`npm run paginas\`.`);
 
-const esVisible = (sv) => sv.categorias.includes(d.defecto);
+/* La pestana abierta tiene que existir entre las categorias, o el panel sale VACIO: `esVisible`
+ * no casaria con ninguna y la lista quedaria en blanco sin que nada se queje. Es el mismo
+ * criterio que `valor()` en `[slug].astro` — mejor que reviente el build. */
+const defecto = defectoProp ?? d.defecto;
+if (!d.categorias.some((c) => c.slug === defecto)) {
+  throw new Error(`ServiciosPorCategoria (${ruta}): la pestana por defecto «${defecto}» no esta `
+    + `entre las categorias (${d.categorias.map((c) => c.slug).join(', ')}). El panel saldria vacio.`);
+}
+
+const esVisible = (sv) => sv.categorias.includes(defecto);
 const visibles = d.servicios.filter(esVisible);
 const activo = visibles[0]?.id;
 const posicion = (sv) => visibles.findIndex((v) => v.id === sv.id) + 1;
@@ -100,8 +134,8 @@ const texto = (h) => String(h).replace(/&amp;/g, '&').replace(/&lt;/g, '<').repl
             class="svc-cat"
             data-cat={c.slug}
             aria-controls="svc-panel"
-            aria-selected={c.slug === d.defecto ? 'true' : 'false'}
-            tabindex={c.slug === d.defecto ? 0 : -1}
+            aria-selected={c.slug === defecto ? 'true' : 'false'}
+            tabindex={c.slug === defecto ? 0 : -1}
             set:html={c.nombre}
           />
         ))}
@@ -111,7 +145,7 @@ const texto = (h) => String(h).replace(/&amp;/g, '&').replace(/&lt;/g, '<').repl
     <div
       id="svc-panel"
       role="tabpanel"
-      aria-labelledby={`svc-cat-${d.defecto}`}
+      aria-labelledby={`svc-cat-${defecto}`}
       data-w-id={d.wIdCuerpo}
       class="svc-cuerpo"
     >
@@ -158,6 +192,14 @@ const texto = (h) => String(h).replace(/&amp;/g, '&').replace(/&lt;/g, '<').repl
         </>
       ))}
     </div>
+
+    {/* R21: hueco para un cierre propio de la ruta. Vacio en `/` y en las dos de
+        `/where-we-serve/`, asi que esas tres salen byte a byte como antes. Lo usan las landings
+        de ciudad para devolver al `#estimate`: la seccion reparte 14 salidas a `/services/*` y
+        justo debajo queda «Project Showcase» con la suya, o sea dos fugas seguidas antes de la
+        prueba social en una pagina que se paga por clic. Va DENTRO del contenedor, no suelto
+        entre dos secciones, porque fuera saldria a sangre y sin la medida de la columna. */}
+    <slot name="cierre" />
 
   </div>
 </section>
