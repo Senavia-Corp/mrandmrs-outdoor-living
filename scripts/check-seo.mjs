@@ -483,7 +483,7 @@ const JSONLD_ARREGLADO = {
 /**
  * ── R22-BLOG-IMG · LA IMAGEN DE LOS BLOGS, DECLARADA DESDE EL DATO ───────────────────────
  *
- * 8 de los 10 articulos de blog cambian de foto, y con ella su `og:image`, su `twitter:image` y
+ * Los 10 articulos de blog cambian de foto, y con ella su `og:image`, su `twitter:image` y
  * el `image` de su JSON-LD. El baseline sigue trayendo la del origen, asi que hay que declararlo.
  *
  * POR QUE LAS FOTOS VIEJAS NO SE PODIAN QUEDAR. Las 10 tarjetas de blog que hay hoy en
@@ -498,10 +498,9 @@ const JSONLD_ARREGLADO = {
  * `build-paginas.mjs` para pintarlas. Si el build y el dato dejan de coincidir, esto vuelve a
  * rojo; si el origen deja de decir lo que decia, tambien. No hay dos listas que mantener.
  *
- * Los otros 2 articulos -`commercial-pool-construction-...` y `residential-vs-commercial-...`-
- * NO tienen entrada y se siguen comparando contra el origen caracter a caracter. Conservan su
- * imagen porque no existe fotografia comercial real: el banco tiene 0 comerciales aprobadas y
- * las 10 de `images/commercial-*` llevan el mismo marcador de medio generado.
+ * Los dos articulos comerciales entran con obra real de sujeto residencial (no existe
+ * fotografia comercial real en ninguna parte) y su `alt` no afirma nada comercial. Ver el
+ * casting en `scripts/build-imagenes-blog.mjs`.
  */
 const IMG_BLOG_R22 = JSON.parse(
   fs.readFileSync(path.join(RAIZ, 'src/data/imagenes-blog-por-ruta.json'), 'utf8')).rutas;
