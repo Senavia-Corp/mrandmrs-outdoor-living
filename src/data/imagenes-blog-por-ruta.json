@@ -1,0 +1,389 @@
+{
+ "_lee_esto": [
+  "DERIVADO por scripts/build-imagenes-blog.mjs. No editar a mano: el casting y su motivo",
+  "viven en la cabecera de ese script, y cualquier cambio aqui se pierde al rederivar.",
+  "",
+  "Lo consume scripts/build-paginas.mjs, que (a) sustituye la foto de las tarjetas de blog y",
+  "(b) inserta las 3 <figure> dentro de .w-richtext. Las 11 rutas de blog son DERIVADAS: un",
+  "hand-edit sobre src/pages/blogs/*.astro se pierde en el siguiente `npm run paginas`.",
+  "",
+  "Faltan 2 de los 10 articulos a proposito -commercial-pool-construction y",
+  "residential-vs-commercial-: piden imagen comercial, el banco tiene 0 comerciales aprobadas",
+  "y las 10 de images/commercial-* llevan trainedAlgorithmicMedia. Conservan la suya."
+ ],
+ "rutas": {
+  "/blogs/top-10-luxury-pool-designs-for-florida-homes": {
+   "reemplaza_figuras": true,
+   "tarjeta": {
+    "src": "/images/blog/top-10-luxury-pool-designs-for-florida-homes/mrandmrs-pool-spa-a2-blog-project-062-04-800.webp",
+    "srcset": "/images/blog/top-10-luxury-pool-designs-for-florida-homes/mrandmrs-pool-spa-a2-blog-project-062-04-400.webp 400w, /images/blog/top-10-luxury-pool-designs-for-florida-homes/mrandmrs-pool-spa-a2-blog-project-062-04-800.webp 800w",
+    "alt": "Aerial view of a rectangular pool with a raised mosaic-clad spa and a wide white stone deck in a fenced Florida backyard.",
+    "ancho": 800,
+    "alto": 450,
+    "_origen": "banco",
+    "_asset": "ag-4c9bad982e",
+    "_proyecto": "project-062",
+    "sizes": "(min-width: 768px) 400px, 100vw"
+   },
+   "figuras": [
+    {
+     "src": "/images/blog/top-10-luxury-pool-designs-for-florida-homes/mrandmrs-pool-spa-a2-blog-project-062-28-1280.webp",
+     "srcset": "/images/blog/top-10-luxury-pool-designs-for-florida-homes/mrandmrs-pool-spa-a2-blog-project-062-28-704.webp 704w, /images/blog/top-10-luxury-pool-designs-for-florida-homes/mrandmrs-pool-spa-a2-blog-project-062-28-1280.webp 1280w",
+     "alt": "Raised square spa clad in pale mosaic tile spilling into a rectangular pool, seen from the pool deck.",
+     "ancho": 1280,
+     "alto": 720,
+     "_origen": "banco",
+     "_asset": "ag-665005a255",
+     "_proyecto": "project-062",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/top-10-luxury-pool-designs-for-florida-homes/mrandmrs-pool-spa-a2-blog-project-062-11-1280.webp",
+     "srcset": "/images/blog/top-10-luxury-pool-designs-for-florida-homes/mrandmrs-pool-spa-a2-blog-project-062-11-704.webp 704w, /images/blog/top-10-luxury-pool-designs-for-florida-homes/mrandmrs-pool-spa-a2-blog-project-062-11-1280.webp 1280w",
+     "alt": "Two-storey Florida home with a geometric pool, raised spa and white stone deck running the width of the backyard.",
+     "ancho": 1280,
+     "alto": 720,
+     "_origen": "banco",
+     "_asset": "ag-dbde332f4c",
+     "_proyecto": "project-062",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/top-10-luxury-pool-designs-for-florida-homes/mrandmrs-pool-spa-a2-blog-project-062-21-1280.webp",
+     "srcset": "/images/blog/top-10-luxury-pool-designs-for-florida-homes/mrandmrs-pool-spa-a2-blog-project-062-21-704.webp 704w, /images/blog/top-10-luxury-pool-designs-for-florida-homes/mrandmrs-pool-spa-a2-blog-project-062-21-1280.webp 1280w",
+     "alt": "Pool and raised spa at dusk, the stone deck lit by low evening light.",
+     "ancho": 1280,
+     "alto": 720,
+     "_origen": "banco",
+     "_asset": "ag-603bc67010",
+     "_proyecto": "project-062",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    }
+   ]
+  },
+  "/blogs/complete-guide-to-pool-construction-in-florida-costs-timeline-process": {
+   "tarjeta": {
+    "src": "/images/blog/complete-guide-to-pool-construction-in-florida-costs-timeline-process/mrandmrs-pool-spa-a7-blog-project-061-12-800.webp",
+    "srcset": "/images/blog/complete-guide-to-pool-construction-in-florida-costs-timeline-process/mrandmrs-pool-spa-a7-blog-project-061-12-400.webp 400w, /images/blog/complete-guide-to-pool-construction-in-florida-costs-timeline-process/mrandmrs-pool-spa-a7-blog-project-061-12-800.webp 800w",
+    "alt": "Lap pool behind a Florida home, enclosed by a removable black mesh safety fence, with a dark-framed aluminium patio cover over the lanai.",
+    "ancho": 800,
+    "alto": 450,
+    "_origen": "banco",
+    "_asset": "ag-bbb5840099",
+    "_proyecto": "project-061",
+    "sizes": "(min-width: 768px) 400px, 100vw"
+   },
+   "figuras": [
+    {
+     "src": "/images/blog/complete-guide-to-pool-construction-in-florida-costs-timeline-process/mrandmrs-pool-spa-a7-blog-project-061-09-1280.webp",
+     "srcset": "/images/blog/complete-guide-to-pool-construction-in-florida-costs-timeline-process/mrandmrs-pool-spa-a7-blog-project-061-09-704.webp 704w, /images/blog/complete-guide-to-pool-construction-in-florida-costs-timeline-process/mrandmrs-pool-spa-a7-blog-project-061-09-1280.webp 1280w",
+     "alt": "Aerial view of a narrow lap pool set in a lawn, with stepping-stone pavers and a covered lanai along the back of the house.",
+     "ancho": 1280,
+     "alto": 720,
+     "_origen": "banco",
+     "_asset": "ag-2ec3537184",
+     "_proyecto": "project-061",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/complete-guide-to-pool-construction-in-florida-costs-timeline-process/mrandmrs-pool-spa-a7-blog-project-061-11-1280.webp",
+     "srcset": "/images/blog/complete-guide-to-pool-construction-in-florida-costs-timeline-process/mrandmrs-pool-spa-a7-blog-project-061-11-704.webp 704w, /images/blog/complete-guide-to-pool-construction-in-florida-costs-timeline-process/mrandmrs-pool-spa-a7-blog-project-061-11-1280.webp 1280w",
+     "alt": "Lap pool and covered lanai seen from the lawn, with a mesh safety fence around the water.",
+     "ancho": 1280,
+     "alto": 720,
+     "_origen": "banco",
+     "_asset": "ag-980f94193b",
+     "_proyecto": "project-061",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/complete-guide-to-pool-construction-in-florida-costs-timeline-process/mrandmrs-pool-spa-a7-blog-project-061-07-1280.webp",
+     "srcset": "/images/blog/complete-guide-to-pool-construction-in-florida-costs-timeline-process/mrandmrs-pool-spa-a7-blog-project-061-07-704.webp 704w, /images/blog/complete-guide-to-pool-construction-in-florida-costs-timeline-process/mrandmrs-pool-spa-a7-blog-project-061-07-1280.webp 1280w",
+     "alt": "View from under an aluminium patio cover toward the lap pool and the lake behind the property.",
+     "ancho": 1280,
+     "alto": 720,
+     "_origen": "banco",
+     "_asset": "ag-d044bca847",
+     "_proyecto": "project-061",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    }
+   ]
+  },
+  "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish": {
+   "tarjeta": {
+    "src": "/images/blog/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish/mrandmrs-pool-spa-a2-blog-project-062-17-800.webp",
+    "srcset": "/images/blog/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish/mrandmrs-pool-spa-a2-blog-project-062-17-400.webp 400w, /images/blog/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish/mrandmrs-pool-spa-a2-blog-project-062-17-800.webp 800w",
+    "alt": "Finished pool and raised spa alongside the rear of the house, with loungers on the stone deck.",
+    "ancho": 800,
+    "alto": 450,
+    "_origen": "banco",
+    "_asset": "ag-efb9a32b91",
+    "_proyecto": "project-062",
+    "sizes": "(min-width: 768px) 400px, 100vw"
+   },
+   "figuras": [
+    {
+     "src": "/images/blog/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish/mrandmrs-pool-spa-a2-blog-project-062-23-1280.webp",
+     "srcset": "/images/blog/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish/mrandmrs-pool-spa-a2-blog-project-062-23-704.webp 704w, /images/blog/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish/mrandmrs-pool-spa-a2-blog-project-062-23-1280.webp 1280w",
+     "alt": "Pool, raised spa and stone deck in late afternoon light, with the house and palms behind.",
+     "ancho": 1280,
+     "alto": 720,
+     "_origen": "banco",
+     "_asset": "ag-0239237575",
+     "_proyecto": "project-062",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish/mrandmrs-pool-spa-a2-blog-project-062-29-1280.webp",
+     "srcset": "/images/blog/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish/mrandmrs-pool-spa-a2-blog-project-062-29-704.webp 704w, /images/blog/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish/mrandmrs-pool-spa-a2-blog-project-062-29-1280.webp 1280w",
+     "alt": "Close view of the raised spa mosaic cladding and the spillway into the pool.",
+     "ancho": 1280,
+     "alto": 720,
+     "_origen": "banco",
+     "_asset": "ag-c55cab7ee3",
+     "_proyecto": "project-062",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish/mrandmrs-pool-spa-a2-blog-project-062-05-1280.webp",
+     "srcset": "/images/blog/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish/mrandmrs-pool-spa-a2-blog-project-062-05-704.webp 704w, /images/blog/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish/mrandmrs-pool-spa-a2-blog-project-062-05-1280.webp 1280w",
+     "alt": "Aerial view of a finished pool and raised spa, showing the full deck layout and the surrounding fence line.",
+     "ancho": 1280,
+     "alto": 720,
+     "_origen": "banco",
+     "_asset": "ag-6796af4733",
+     "_proyecto": "project-062",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    }
+   ]
+  },
+  "/blogs/common-pool-construction-mistakes-we-see-in-florida": {
+   "tarjeta": {
+    "src": "/images/blog/common-pool-construction-mistakes-we-see-in-florida/mrandmrs-pool-remodeling-a2-blog-project-059-08-800.webp",
+    "srcset": "/images/blog/common-pool-construction-mistakes-we-see-in-florida/mrandmrs-pool-remodeling-a2-blog-project-059-08-400.webp 400w, /images/blog/common-pool-construction-mistakes-we-see-in-florida/mrandmrs-pool-remodeling-a2-blog-project-059-08-800.webp 800w",
+    "alt": "Remodelled rectangular pool with a raised spa clad in deep-blue mosaic, a pale travertine deck and a poolside basketball hoop.",
+    "ancho": 800,
+    "alto": 450,
+    "_origen": "banco",
+    "_asset": "ag-b52e6e2d46",
+    "_proyecto": "project-059",
+    "sizes": "(min-width: 768px) 400px, 100vw"
+   },
+   "figuras": [
+    {
+     "src": "/images/blog/common-pool-construction-mistakes-we-see-in-florida/mrandmrs-pool-remodeling-a2-blog-project-059-02-1280.webp",
+     "srcset": "/images/blog/common-pool-construction-mistakes-we-see-in-florida/mrandmrs-pool-remodeling-a2-blog-project-059-02-704.webp 704w, /images/blog/common-pool-construction-mistakes-we-see-in-florida/mrandmrs-pool-remodeling-a2-blog-project-059-02-1280.webp 1280w",
+     "alt": "Aerial view of a remodelled pool and raised spa framed by a travertine deck, clipped hedge and artificial turf.",
+     "ancho": 1280,
+     "alto": 720,
+     "_origen": "banco",
+     "_asset": "ag-b2c16fa558",
+     "_proyecto": "project-059",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/common-pool-construction-mistakes-we-see-in-florida/mrandmrs-pool-remodeling-a2-blog-project-059-19-1280.webp",
+     "srcset": "/images/blog/common-pool-construction-mistakes-we-see-in-florida/mrandmrs-pool-remodeling-a2-blog-project-059-19-704.webp 704w, /images/blog/common-pool-construction-mistakes-we-see-in-florida/mrandmrs-pool-remodeling-a2-blog-project-059-19-1280.webp 1280w",
+     "alt": "Remodelled pool seen from the deck, with the raised spa spilling into the main body of water.",
+     "ancho": 1280,
+     "alto": 720,
+     "_origen": "banco",
+     "_asset": "ag-eced31ad78",
+     "_proyecto": "project-059",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/common-pool-construction-mistakes-we-see-in-florida/mrandmrs-pool-remodeling-a2-blog-project-059-24-1280.webp",
+     "srcset": "/images/blog/common-pool-construction-mistakes-we-see-in-florida/mrandmrs-pool-remodeling-a2-blog-project-059-24-704.webp 704w, /images/blog/common-pool-construction-mistakes-we-see-in-florida/mrandmrs-pool-remodeling-a2-blog-project-059-24-1280.webp 1280w",
+     "alt": "Rear of a Florida home with the remodelled pool, raised spa and stepping-stone pavers across the turf.",
+     "ancho": 1280,
+     "alto": 720,
+     "_origen": "banco",
+     "_asset": "ag-c6658ce4bf",
+     "_proyecto": "project-059",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    }
+   ]
+  },
+  "/blogs/new-pool-construction-vs-pool-remodeling-which-is-right-for-you": {
+   "tarjeta": {
+    "src": "/images/blog/new-pool-construction-vs-pool-remodeling-which-is-right-for-you/mrandmrs-pool-remodeling-a2-blog-project-059-09-800.webp",
+    "srcset": "/images/blog/new-pool-construction-vs-pool-remodeling-which-is-right-for-you/mrandmrs-pool-remodeling-a2-blog-project-059-09-400.webp 400w, /images/blog/new-pool-construction-vs-pool-remodeling-which-is-right-for-you/mrandmrs-pool-remodeling-a2-blog-project-059-09-800.webp 800w",
+    "alt": "Remodelled pool with a deep-blue mosaic spa and resurfaced interior, finished with a travertine deck.",
+    "ancho": 800,
+    "alto": 450,
+    "_origen": "banco",
+    "_asset": "ag-06ed841531",
+    "_proyecto": "project-059",
+    "sizes": "(min-width: 768px) 400px, 100vw"
+   },
+   "figuras": [
+    {
+     "src": "/images/blog/new-pool-construction-vs-pool-remodeling-which-is-right-for-you/mrandmrs-pool-spa-a2-blog-project-062-10-1280.webp",
+     "srcset": "/images/blog/new-pool-construction-vs-pool-remodeling-which-is-right-for-you/mrandmrs-pool-spa-a2-blog-project-062-10-704.webp 704w, /images/blog/new-pool-construction-vs-pool-remodeling-which-is-right-for-you/mrandmrs-pool-spa-a2-blog-project-062-10-1280.webp 1280w",
+     "alt": "Aerial view of a newly built pool and raised spa, with the deck and fence laid out around fresh lawn.",
+     "ancho": 1280,
+     "alto": 720,
+     "_origen": "banco",
+     "_asset": "ag-df80398b66",
+     "_proyecto": "project-062",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/new-pool-construction-vs-pool-remodeling-which-is-right-for-you/mrandmrs-pool-remodeling-a2-blog-project-059-27-1280.webp",
+     "srcset": "/images/blog/new-pool-construction-vs-pool-remodeling-which-is-right-for-you/mrandmrs-pool-remodeling-a2-blog-project-059-27-704.webp 704w, /images/blog/new-pool-construction-vs-pool-remodeling-which-is-right-for-you/mrandmrs-pool-remodeling-a2-blog-project-059-27-1280.webp 1280w",
+     "alt": "Remodelled pool and raised spa seen from the corner of the deck, with mature hedge behind.",
+     "ancho": 1280,
+     "alto": 720,
+     "_origen": "banco",
+     "_asset": "ag-f010f711d8",
+     "_proyecto": "project-059",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/new-pool-construction-vs-pool-remodeling-which-is-right-for-you/mrandmrs-pool-spa-a2-blog-project-062-08-1280.webp",
+     "srcset": "/images/blog/new-pool-construction-vs-pool-remodeling-which-is-right-for-you/mrandmrs-pool-spa-a2-blog-project-062-08-704.webp 704w, /images/blog/new-pool-construction-vs-pool-remodeling-which-is-right-for-you/mrandmrs-pool-spa-a2-blog-project-062-08-1280.webp 1280w",
+     "alt": "Newly built pool and raised spa from above, showing the finished stone deck and planting.",
+     "ancho": 1280,
+     "alto": 720,
+     "_origen": "banco",
+     "_asset": "ag-777f506567",
+     "_proyecto": "project-062",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    }
+   ]
+  },
+  "/blogs/what-permits-are-required-for-pool-construction-in-florida": {
+   "tarjeta": {
+    "src": "/images/blog/what-permits-are-required-for-pool-construction-in-florida/custom-pool-spa-builders-florida-02-800.webp",
+    "srcset": "/images/blog/what-permits-are-required-for-pool-construction-in-florida/custom-pool-spa-builders-florida-02-400.webp 400w, /images/blog/what-permits-are-required-for-pool-construction-in-florida/custom-pool-spa-builders-florida-02-800.webp 800w",
+    "alt": "Overhead view of a rectangular pool with an inset spa, bordered by a stone deck, clipped hedge and palms.",
+    "ancho": 800,
+    "alto": 450,
+    "_origen": "galeria",
+    "_fuente": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
+    "sizes": "(min-width: 768px) 400px, 100vw"
+   },
+   "figuras": [
+    {
+     "src": "/images/blog/what-permits-are-required-for-pool-construction-in-florida/custom-pool-spa-builders-florida-04-1240.webp",
+     "srcset": "/images/blog/what-permits-are-required-for-pool-construction-in-florida/custom-pool-spa-builders-florida-04-704.webp 704w, /images/blog/what-permits-are-required-for-pool-construction-in-florida/custom-pool-spa-builders-florida-04-1240.webp 1240w",
+     "alt": "Pool with a raised spa and dark tile detail beside a covered patio, with stepping-stone pavers over turf.",
+     "ancho": 1240,
+     "alto": 698,
+     "_origen": "galeria",
+     "_fuente": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/what-permits-are-required-for-pool-construction-in-florida/custom-pool-spa-builders-florida-08-1240.webp",
+     "srcset": "/images/blog/what-permits-are-required-for-pool-construction-in-florida/custom-pool-spa-builders-florida-08-704.webp 704w, /images/blog/what-permits-are-required-for-pool-construction-in-florida/custom-pool-spa-builders-florida-08-1240.webp 1240w",
+     "alt": "Pool and spa on a stone deck with loungers, overlooking a lake at the rear of the property.",
+     "ancho": 1240,
+     "alto": 698,
+     "_origen": "galeria",
+     "_fuente": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/what-permits-are-required-for-pool-construction-in-florida/custom-pool-spa-builders-florida-10-1250.webp",
+     "srcset": "/images/blog/what-permits-are-required-for-pool-construction-in-florida/custom-pool-spa-builders-florida-10-704.webp 704w, /images/blog/what-permits-are-required-for-pool-construction-in-florida/custom-pool-spa-builders-florida-10-1250.webp 1250w",
+     "alt": "Rectangular pool with a raised spa clad in blue tile, set in turf behind a screening hedge.",
+     "ancho": 1250,
+     "alto": 703,
+     "_origen": "galeria",
+     "_fuente": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    }
+   ]
+  },
+  "/blogs/outdoor-living-design-guide-for-florida-homes": {
+   "tarjeta": {
+    "src": "/images/blog/outdoor-living-design-guide-for-florida-homes/custom-outdoor-kitchen-poolside-florida-800.webp",
+    "srcset": "/images/blog/outdoor-living-design-guide-for-florida-homes/custom-outdoor-kitchen-poolside-florida-400.webp 400w, /images/blog/outdoor-living-design-guide-for-florida-homes/custom-outdoor-kitchen-poolside-florida-800.webp 800w",
+    "alt": "Poolside outdoor kitchen with a built-in grill and stainless cabinetry under a covered patio.",
+    "ancho": 800,
+    "alto": 450,
+    "_origen": "galeria",
+    "_fuente": "/images/images/kitchen-2/custom-outdoor-kitchen-poolside-florida.avif",
+    "sizes": "(min-width: 768px) 400px, 100vw"
+   },
+   "figuras": [
+    {
+     "src": "/images/blog/outdoor-living-design-guide-for-florida-homes/custom-pergola-patio-cover-builders-florida-06-1240.webp",
+     "srcset": "/images/blog/outdoor-living-design-guide-for-florida-homes/custom-pergola-patio-cover-builders-florida-06-704.webp 704w, /images/blog/outdoor-living-design-guide-for-florida-homes/custom-pergola-patio-cover-builders-florida-06-1240.webp 1240w",
+     "alt": "Dark aluminium pergola over a paved pool deck, with palms and water beyond.",
+     "ancho": 1240,
+     "alto": 698,
+     "_origen": "galeria",
+     "_fuente": "/images/images/pergolas-6/custom-pergola-patio-cover-builders-florida-06.jpg",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/outdoor-living-design-guide-for-florida-homes/patio-screen-enclosure-builders-contractors-north-south-florida-08-1250.webp",
+     "srcset": "/images/blog/outdoor-living-design-guide-for-florida-homes/patio-screen-enclosure-builders-contractors-north-south-florida-08-704.webp 704w, /images/blog/outdoor-living-design-guide-for-florida-homes/patio-screen-enclosure-builders-contractors-north-south-florida-08-1250.webp 1250w",
+     "alt": "Furnished lanai behind retractable screens, with a sofa, armchairs and a dining table overlooking the pool.",
+     "ancho": 1250,
+     "alto": 703,
+     "_origen": "galeria",
+     "_fuente": "/images/images/patio-screen-8/patio-screen-enclosure-builders-contractors-north-south-florida-08.jpg",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/outdoor-living-design-guide-for-florida-homes/modern-custom-outdoor-kitchen-design-florida-1240.webp",
+     "srcset": "/images/blog/outdoor-living-design-guide-for-florida-homes/modern-custom-outdoor-kitchen-design-florida-704.webp 704w, /images/blog/outdoor-living-design-guide-for-florida-homes/modern-custom-outdoor-kitchen-design-florida-1240.webp 1240w",
+     "alt": "Outdoor kitchen with stainless appliances and a stone pizza oven, built under cover beside a pool.",
+     "ancho": 1240,
+     "alto": 698,
+     "_origen": "galeria",
+     "_fuente": "/images/images/kitchen-7/modern-custom-outdoor-kitchen-design-florida.avif",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    }
+   ]
+  },
+  "/blogs/how-outdoor-living-spaces-increase-property-value-in-florida": {
+   "tarjeta": {
+    "src": "/images/blog/how-outdoor-living-spaces-increase-property-value-in-florida/custom-pergola-patio-cover-builders-florida-05-800.webp",
+    "srcset": "/images/blog/how-outdoor-living-spaces-increase-property-value-in-florida/custom-pergola-patio-cover-builders-florida-05-400.webp 400w, /images/blog/how-outdoor-living-spaces-increase-property-value-in-florida/custom-pergola-patio-cover-builders-florida-05-800.webp 800w",
+    "alt": "Timber pavilion with a vaulted roof and ceiling fan, sheltering an outdoor kitchen and bar seating.",
+    "ancho": 800,
+    "alto": 450,
+    "_origen": "galeria",
+    "_fuente": "/images/images/pergolas-5/custom-pergola-patio-cover-builders-florida-05.jpg",
+    "sizes": "(min-width: 768px) 400px, 100vw"
+   },
+   "figuras": [
+    {
+     "src": "/images/blog/how-outdoor-living-spaces-increase-property-value-in-florida/custom-deck-builders-contractors-north-south-florida-06-1240.webp",
+     "srcset": "/images/blog/how-outdoor-living-spaces-increase-property-value-in-florida/custom-deck-builders-contractors-north-south-florida-06-704.webp 704w, /images/blog/how-outdoor-living-spaces-increase-property-value-in-florida/custom-deck-builders-contractors-north-south-florida-06-1240.webp 1240w",
+     "alt": "Hardwood deck stepping down from a house toward a pool, with planting along the edge.",
+     "ancho": 1240,
+     "alto": 698,
+     "_origen": "galeria",
+     "_fuente": "/images/images/deck-6/custom-deck-builders-contractors-north-south-florida-06.jpg",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/how-outdoor-living-spaces-increase-property-value-in-florida/custom-outdoor-kitchen-with-grill-florida-1240.webp",
+     "srcset": "/images/blog/how-outdoor-living-spaces-increase-property-value-in-florida/custom-outdoor-kitchen-with-grill-florida-704.webp 704w, /images/blog/how-outdoor-living-spaces-increase-property-value-in-florida/custom-outdoor-kitchen-with-grill-florida-1240.webp 1240w",
+     "alt": "Outdoor kitchen island with a built-in grill and stone cladding, under a covered patio beside palms.",
+     "ancho": 1240,
+     "alto": 698,
+     "_origen": "galeria",
+     "_fuente": "/images/images/kitchen-4/custom-outdoor-kitchen-with-grill-florida.avif",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/how-outdoor-living-spaces-increase-property-value-in-florida/custom-pergola-patio-cover-builders-florida-02-1250.webp",
+     "srcset": "/images/blog/how-outdoor-living-spaces-increase-property-value-in-florida/custom-pergola-patio-cover-builders-florida-02-704.webp 704w, /images/blog/how-outdoor-living-spaces-increase-property-value-in-florida/custom-pergola-patio-cover-builders-florida-02-1250.webp 1250w",
+     "alt": "Glass-topped aluminium pergola beside a pool, with a slatted privacy screen at one end.",
+     "ancho": 1250,
+     "alto": 703,
+     "_origen": "galeria",
+     "_fuente": "/images/images/pergolas-2/custom-pergola-patio-cover-builders-florida-02.jpg",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    }
+   ]
+  }
+ }
+}
