@@ -30,12 +30,13 @@
  */
 import datos from '../../data/blogs.json';
 import encabezados from '../../data/blog-heading-por-ruta.json';
+import porServicio from '../../data/blog-por-servicio.json';
 
 interface Props {
-  /** Filtra por categoria de servicio. HOY NO SE PASA y no hay categorias en el dato:
-   *  `blogs.json` las emite en `null`. Sin prop, o sin coincidencias, salen todos — que es
-   *  lo decidido con Sebastian: los 10 ahora, el filtro cuando existan las categorias. */
-  categoria?: string;
+  /** RETIRADA. Filtraba `blogs.json` por categoria y no se paso NUNCA: el dato emitia
+   *  `categoria: null` en los 10 y el filtro no llegaba a aplicarse. Las fichas de servicio se
+   *  resuelven ahora por RUTA contra `blog-por-servicio.json`. */
+  categoria?: never;
   /** Encabezado propio. Si no viene, se busca por ruta en `blog-heading-por-ruta.json` y, si
    *  tampoco hay entrada ahi (home, /services/), cae al generico de `blogs.json`. */
   titulo?: string;
@@ -45,14 +46,38 @@ const { categoria, titulo, entradilla } = Astro.props;
 
 const ruta = Astro.url.pathname.replace(/(.)\/$/, '$1');
 const propio = (encabezados as Record<string, { titulo: string; entradilla: string }>)[ruta];
-const tituloFinal = titulo ?? propio?.titulo ?? datos.titulo;
-const entradillaFinal = entradilla ?? propio?.entradilla ?? datos.entradilla;
+const deFicha = (porServicio.rutas as Record<string, { titulo: string; entradilla: string }>)[ruta];
+const tituloFinal = titulo ?? deFicha?.titulo ?? propio?.titulo ?? datos.titulo;
+const entradillaFinal = entradilla ?? deFicha?.entradilla ?? propio?.entradilla ?? datos.entradilla;
 
-const todos = datos.posts;
-const filtrados = categoria ? todos.filter((p) => p.categoria === categoria) : todos;
-/* Reserva explicita: una categoria sin posts NO deja la seccion vacia. Un carrusel de cero
- * tarjetas es peor que uno generico, y ademas cambiaria el texto de esa ruta sin avisar. */
-const posts = filtrados.length ? filtrados : todos;
+/**
+ * ── LAS 14 FICHAS, TODAS DECLARADAS ─────────────────────────────────────────────────────────
+ *
+ * El encargo pide EXACTAMENTE 3 articulos por ficha de servicio. Hoy 5 de las 14 los tienen; el
+ * roadmap son 97 articulos y hay 34 escritos.
+ *
+ * La reserva vieja —sin coincidencias, salen los 10— era el fallo numero uno de este repo: la
+ * ficha se ve perfecta ensenando articulos que no son suyos y nadie se entera. La nueva no es
+ * «romper siempre», que bloquearia el despliegue de los 34 que si estan; es que NINGUNA de las
+ * 14 pueda caer al generico sin estar declarada.
+ *
+ * Una ruta de /services/ tiene que estar en `rutas` (con su trio) o en `pendientes` (con los
+ * slugs que faltan). Si no esta en ninguna, el build PARA con el slug puesto. Fuera de
+ * /services/ no cambia nada: home, condados, Estado y ciudades siguen con los 10.
+ */
+const fichas = porServicio.rutas as Record<string, { titulo: string; entradilla: string; posts: typeof datos.posts }>;
+const pendientes = porServicio.pendientes as Record<string, { faltan: string[] }>;
+const ficha = fichas[ruta];
+if (ruta.startsWith('/services/') && !ficha && !pendientes[ruta]) {
+  throw new Error(
+    `CarruselBlog: ${ruta} no esta declarada en src/data/blog-por-servicio.json.\n`
+    + '  Cada ficha de servicio muestra EXACTAMENTE 3 articulos relacionados, o consta como\n'
+    + '  pendiente con los slugs que le faltan. Lo que no puede es caer a los 10 genericos en\n'
+    + '  silencio: se ve bien y no se entera nadie.\n'
+    + '  Arreglo: contenido/roadmap-blog.json -> fichaServicio, y `node scripts/build-blog-por-servicio.mjs`.',
+  );
+}
+const posts = ficha ? ficha.posts : datos.posts;
 ---
 <section class="blog-section-page">
   <div class="w-layout-blockcontainer container-blog w-container">

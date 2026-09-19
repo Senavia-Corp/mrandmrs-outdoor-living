@@ -1,0 +1,128 @@
+{
+ "_lee_esto": [
+  "DERIVADO por scripts/build-blog-por-servicio.mjs desde contenido/roadmap-blog.json y",
+  "src/data/blogs.json (que a su vez sale de Sanity). No editar a mano.",
+  "",
+  "Lo lee src/components/widgets/CarruselBlog.astro, que se autolocaliza por pathname. Una",
+  "Las 14 fichas estan DECLARADAS: o con su trio en `rutas`, o en `pendientes` con los slugs",
+  "que faltan por escribir. Una ruta de /services/ que no este en ninguna de las dos hace",
+  "FALLAR el build — es preferible a que la ficha ensene 10 articulos genericos sin que nadie",
+  "se entere, que es el fallo numero uno de este repo."
+ ],
+ "rutas": {},
+ "pendientes": {
+  "/services/custom-pool-spa-builders-in-north-south-florida": {
+   "faltan": [
+    "pool-upgrades-worth-planning-before-construction"
+   ],
+   "escritos": [
+    "how-much-does-a-custom-pool-cost-in-florida",
+    "before-you-build-a-pool-in-florida"
+   ]
+  },
+  "/services/pool-remodeling-renovation-in-north-south-florida": {
+   "faltan": [
+    "how-much-does-a-pool-remodel-cost-in-florida",
+    "pool-resurfacing-vs-full-pool-renovation",
+    "pool-remodeling-decisions-that-transform-an-old-pool"
+   ],
+   "escritos": []
+  },
+  "/services/custom-aluminum-pergola-builders-in-north-south-florida": {
+   "faltan": [
+    "how-much-does-an-aluminum-pergola-cost-in-florida",
+    "aluminum-vs-wood-pergolas-in-florida",
+    "pergola-vs-louvered-roof"
+   ],
+   "escritos": []
+  },
+  "/services/motorized-louvered-roof-systems-in-north-south-florida": {
+   "faltan": [
+    "is-a-motorized-louvered-roof-worth-it-in-florida",
+    "how-much-does-a-motorized-louvered-roof-cost",
+    "pergola-vs-louvered-roof"
+   ],
+   "escritos": []
+  },
+  "/services/custom-outdoor-kitchens-for-north-south-florida-homes": {
+   "faltan": [
+    "how-much-does-an-outdoor-kitchen-cost-in-florida",
+    "grill-island-vs-full-outdoor-kitchen",
+    "outdoor-kitchen-layout-guide"
+   ],
+   "escritos": []
+  },
+  "/services/pool-screen-enclosures-for-north-south-florida-pools": {
+   "faltan": [
+    "how-much-does-a-pool-screen-enclosure-cost-in-florida",
+    "replace-a-pool-cage-or-keep-rescreening-it",
+    "panoramic-vs-traditional-pool-enclosures"
+   ],
+   "escritos": []
+  },
+  "/services/patio-screen-rooms-enclosures-in-north-south-florida": {
+   "faltan": [
+    "screen-room-vs-screened-patio-vs-pool-enclosure",
+    "how-much-does-a-screen-room-cost-in-florida",
+    "before-you-enclose-your-patio"
+   ],
+   "escritos": []
+  },
+  "/services/motorized-retractable-screens-in-north-south-florida": {
+   "faltan": [
+    "are-motorized-retractable-screens-worth-it",
+    "motorized-screens-vs-a-fixed-screen-room",
+    "choosing-the-right-screen-mesh"
+   ],
+   "escritos": []
+  },
+  "/services/custom-deck-builders-in-north-south-florida": {
+   "faltan": [
+    "composite-vs-wood-decking-in-florida",
+    "how-much-does-a-custom-deck-cost-in-florida",
+    "deck-layout-mistakes-to-avoid"
+   ],
+   "escritos": []
+  },
+  "/services/professional-landscaping-services-in-north-south-florida": {
+   "faltan": [
+    "landscaping-around-a-pool",
+    "privacy-landscaping-around-a-pool",
+    "designing-landscaping-around-a-new-pool"
+   ],
+   "escritos": []
+  },
+  "/services/smart-irrigation-system-installation-in-north-south-florida": {
+   "faltan": [
+    "is-a-smart-irrigation-system-worth-it-in-florida",
+    "irrigation-fixes-before-new-landscaping",
+    "smart-irrigation-vs-traditional-sprinklers"
+   ],
+   "escritos": []
+  },
+  "/services/premium-outdoor-furniture-for-north-south-florida-homes": {
+   "faltan": [
+    "best-outdoor-furniture-materials-for-florida",
+    "how-to-furnish-a-pool-area",
+    "outdoor-living-areas-that-feel-like-real-rooms"
+   ],
+   "escritos": []
+  },
+  "/services/steel-building-pole-barn-construction-in-north-south-florida": {
+   "faltan": [
+    "pole-barn-vs-steel-building-in-florida",
+    "how-much-does-a-steel-building-cost-in-florida",
+    "slab-drainage-and-site-prep-for-a-steel-building"
+   ],
+   "escritos": []
+  },
+  "/services/smart-soffit-led-lighting-installation-in-north-south-florida": {
+   "faltan": [
+    "permanent-soffit-lighting-vs-landscape-lighting",
+    "how-much-does-permanent-soffit-lighting-cost",
+    "how-to-light-a-florida-home-without-overdoing-it"
+   ],
+   "escritos": []
+  }
+ }
+}

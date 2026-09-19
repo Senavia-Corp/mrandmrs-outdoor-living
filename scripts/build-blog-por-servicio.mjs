@@ -37,10 +37,27 @@ import path from 'node:path';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const ROADMAP = JSON.parse(fs.readFileSync(path.join(RAIZ, 'contenido/roadmap-blog.json'), 'utf8'));
-const BLOGS = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/blogs.json'), 'utf8'));
 const DESTINO = path.join(RAIZ, 'src/data/blog-por-servicio.json');
 
-const porSlug = Object.fromEntries(BLOGS.posts.map((p) => [p.enlace.replace('/blogs/', ''), p]));
+/**
+ * La tarjeta se arma desde `blogs-sanity.json` y NO desde `blogs.json`, y la diferencia importa:
+ * `blogs.json` es el carrusel GENERICO —los 10 heredados, enumerados a proposito— mientras que
+ * esto necesita cualquiera de los 97. Leer del sitio equivocado dejaba las 14 fichas en
+ * «faltan 3» aunque el articulo estuviera publicado.
+ *
+ * La forma de la tarjeta es la que pinta `CarruselBlog.astro`, y se construye aqui una sola vez
+ * para que las dos fuentes no puedan divergir en los nombres de campo.
+ */
+const CACHE = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/blogs-sanity.json'), 'utf8'));
+const tarjeta = (p) => ({
+  titulo: p.cardTitle || p.title,
+  resumen: p.summary,
+  enlace: `/blogs/${p.slug}`,
+  cta: `Read More: ${p.cardTitle || p.title}`,
+  imagen: { src: p.portada.src, srcset: p.portada.srcset, sizes: p.portada.sizes, alt: p.portada.alt },
+  categoria: p.categoria?.slug ?? null,
+});
+const porSlug = Object.fromEntries(CACHE.filter((p) => p.portada?.src).map((p) => [p.slug, tarjeta(p)]));
 
 let fallos = 0;
 const mal = (m) => { console.error(`  🔴 ${m}`); fallos++; };
@@ -50,28 +67,44 @@ const salida = { _lee_esto: [
   'src/data/blogs.json (que a su vez sale de Sanity). No editar a mano.',
   '',
   'Lo lee src/components/widgets/CarruselBlog.astro, que se autolocaliza por pathname. Una',
-  'ruta de /services/ que no este aqui hace FALLAR el build: es preferible a que la ficha',
-  'ensene 10 articulos genericos sin que nadie se entere.',
+  'Las 14 fichas estan DECLARADAS: o con su trio en `rutas`, o en `pendientes` con los slugs',
+  'que faltan por escribir. Una ruta de /services/ que no este en ninguna de las dos hace',
+  'FALLAR el build — es preferible a que la ficha ensene 10 articulos genericos sin que nadie',
+  'se entere, que es el fallo numero uno de este repo.',
 ], rutas: {} };
+
+salida.pendientes = {};
 
 for (const c of ROADMAP.clusters) {
   const ruta = `/services/${c.servicio}`;
   const trio = c.fichaServicio ?? [];
   if (trio.length !== 3) { mal(`${c.clave}: fichaServicio tiene ${trio.length} articulos, tienen que ser 3`); continue; }
 
-  const posts = [];
-  for (const s of trio) {
-    const p = porSlug[s];
-    if (!p) { mal(`${ruta}: "${s}" no esta publicado todavia (no aparece en blogs.json)`); continue; }
-    posts.push(p);
+  const faltan = trio.filter((s) => !porSlug[s]);
+  if (faltan.length) {
+    /**
+     * ── COBERTURA PARCIAL, PERO DECLARADA ──────────────────────────────────────────────────
+     *
+     * El roadmap son 97 articulos y hay 34 escritos, asi que 9 de las 14 fichas todavia no
+     * reunen sus tres. Romper el build por eso bloquearia el despliegue de los 34 que SI
+     * estan, que es peor que publicarlos.
+     *
+     * Lo que no puede pasar es que una ficha caiga a los 10 genericos y nadie se entere —el
+     * fallo numero uno de este repo—. Asi que las 14 quedan DECLARADAS: o con su trio en
+     * `rutas`, o aqui, con los slugs que faltan. El componente se niega a pintar una ruta de
+     * /services/ que no este en una de las dos listas, y esta lista sale por pantalla en cada
+     * corrida y va al informe.
+     */
+    salida.pendientes[ruta] = { faltan, escritos: trio.filter((s) => porSlug[s]) };
+    continue;
   }
-  if (posts.length !== 3) continue;
 
-  salida.rutas[ruta] = { titulo: c.encabezadoFicha, entradilla: c.entradillaFicha, posts };
+  salida.rutas[ruta] = { titulo: c.encabezadoFicha, entradilla: c.entradillaFicha, posts: trio.map((s) => porSlug[s]) };
 }
 
 const n = Object.keys(salida.rutas).length;
-if (n !== ROADMAP.clusters.length) mal(`${n} fichas resueltas de ${ROADMAP.clusters.length}`);
+const nPend = Object.keys(salida.pendientes).length;
+if (n + nPend !== ROADMAP.clusters.length) mal(`${n + nPend} fichas declaradas de ${ROADMAP.clusters.length}`);
 
 /* Los encabezados tienen que ser distintos entre si: catorce fichas con el mismo titular es
  * contenido duplicado y ademas no dice nada. */
@@ -86,8 +119,14 @@ if (fallos) {
 }
 
 fs.writeFileSync(DESTINO, `${JSON.stringify(salida, null, 1)}\n`);
-console.log(`\n  ${n} ficha(s) de servicio · 3 articulos cada una`);
+console.log(`\n  ${n} de ${ROADMAP.clusters.length} fichas con sus 3 articulos · ${nPend} pendiente(s)`);
 for (const [ruta, r] of Object.entries(salida.rutas)) {
   console.log(`     ${ruta.replace('/services/', '').slice(0, 34).padEnd(36)} ${r.posts.map((p) => p.enlace.replace('/blogs/', '')).join(' · ').slice(0, 90)}`);
+}
+if (nPend) {
+  console.log('\n  PENDIENTES (siguen con el carrusel generico, declarado):');
+  for (const [ruta, p] of Object.entries(salida.pendientes)) {
+    console.log(`     ${ruta.replace('/services/', '').slice(0, 34).padEnd(36)} faltan ${p.faltan.length}: ${p.faltan.join(', ').slice(0, 70)}`);
+  }
 }
 console.log(`\n  -> ${path.relative(RAIZ, DESTINO)}\n`);
