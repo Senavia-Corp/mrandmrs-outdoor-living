@@ -33,7 +33,19 @@ const ESTATICO = path.join(RAIZ, '.vercel/output/static');
 const PROD = process.env.PUBLIC_ES_PRODUCCION === '1';
 
 const GTM = 'GTM-N9BWB3BV';
-const PAGINAS_ESPERADAS = 122;
+/**
+ * 122 del origen + las de blog propias, DERIVADAS de `src/data/blogs-rutas.json`.
+ *
+ * Cablear el numero obligaba a acordarse de subirlo con cada articulo publicado, y el dia que
+ * alguien se olvidara esta puerta saldria roja por una razon que no es un defecto — que es
+ * exactamente como se pierde una puerta: relajandola.
+ */
+const BLOGS_PROPIOS = (() => {
+  const f = path.join(RAIZ, 'src/data/blogs-rutas.json');
+  if (!fs.existsSync(f)) return 0;
+  return Object.keys(JSON.parse(fs.readFileSync(f, 'utf8')).rutas).length;
+})();
+const PAGINAS_ESPERADAS = 122 + BLOGS_PROPIOS;
 /**
  * 121 = 113 del sitemap del origen + 6 adiciones de autoria propia + 2 de la auditoria
  * (5-sep-2026). Las dos nuevas son rutas DEL ORIGEN que el sitemap del origen no listaba:

@@ -1,0 +1,12 @@
+{
+ "_lee_esto": [
+  "DERIVADO de Sanity por scripts/build-blogs-rutas.mjs. No editar a mano.",
+  "",
+  "Son las rutas de /blogs/ que NO vienen de Webflow. De aqui derivan sus CUATRO",
+  "declaraciones: rutas-propias.mjs, disenio/contratos.json, el sitemap y PAGINAS_ESPERADAS.",
+  "",
+  "Los 10 articulos heredados NO estan aqui a proposito: ya tienen baseline de texto, de SEO",
+  "y capturas, y declararlos «propios» haria que check:seo dejara de compararlos con el origen."
+ ],
+ "rutas": {}
+}

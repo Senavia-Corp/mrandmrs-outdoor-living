@@ -101,8 +101,26 @@ const ADICIONES = [
     + 'y hacerla descubrible en vez de mandarla a noindex.'],
 ];
 
+/**
+ * Y LAS DE BLOG, DERIVADAS de `src/data/blogs-rutas.json`.
+ *
+ * El sitemap es una ALLOWLIST: lo que no se anade, no sale. Con 90 articulos, enumerarlos aqui
+ * a mano garantiza que el numero 47 se quede fuera de Google sin que nadie lo note — no hay
+ * puerta que avise de una URL que falta en un sitemap, porque falta en silencio.
+ *
+ * Se derivan del MISMO fichero del que sale su entrada en `rutas-propias.mjs`, asi que una
+ * ruta no puede existir sin estar en el sitemap ni al reves.
+ */
+const ADICIONES_BLOG = (() => {
+  const f = path.join(RAIZ, 'src/data/blogs-rutas.json');
+  if (!fs.existsSync(f)) return [];
+  const { rutas } = JSON.parse(fs.readFileSync(f, 'utf8'));
+  return Object.entries(rutas).map(([r, d]) => [`${SITIO}${r}`, d.motivo]);
+})();
+
+
 // Van al final y no intercaladas: el orden de las 113 es el del origen y no se toca.
-const locs = [...delOrigen, ...ADICIONES.map(([u]) => u)];
+const locs = [...delOrigen, ...ADICIONES.map(([u]) => u), ...ADICIONES_BLOG.map(([u]) => u)];
 
 const sitemap = PROD
   ? `<?xml version="1.0" encoding="UTF-8"?>
