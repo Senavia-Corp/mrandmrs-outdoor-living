@@ -27,20 +27,20 @@
   },
   "summary": "The shape is the last decision, not the first. Four things about your site rule out most layouts before anyone draws one, and the counter that gets cut to fit the appliances is the part you will miss every single time you cook.",
   "portada": {
-    "ref": "kitchen-8",
+    "ref": "kitchen-0",
     "alt": "U-shaped outdoor kitchen under a slatted aluminum pergola, with a built-in grill in the back run, a sink and stainless refrigerator on the right wing, and a white fence and hedge behind."
   },
   "figuras": [
     {
-      "ref": "kitchen-5",
+      "ref": "kitchen-3",
       "alt": "Long single-wall outdoor kitchen run against a dark textured wall: side burner, built-in grill, drawers, glass-front beverage refrigerator and a wall-mounted television above the counter."
     },
     {
-      "ref": "kitchen-1",
+      "ref": "kitchen-7",
       "alt": "Outdoor kitchen under a thatched chickee roof with slatted wood cabinet fronts, a dark countertop wrapping into a bar, a stainless hood over the grill and a sink at the far left."
     },
     {
-      "ref": "kitchen-2",
+      "ref": "kitchen-6",
       "alt": "L-shaped outdoor kitchen on a travertine deck with black granite counters and a waterfall end, a dark roof post beside the grill run, and a lake and palms behind."
     }
   ],
@@ -109,7 +109,7 @@ Here is what happens instead. The appliance list gets fixed early, because appli
 
 That is the wrong end to trim. An empty cabinet is the cheapest foot of outdoor kitchen you will ever buy; the price sits in the cut-outs, which is the subject of [what actually drives an outdoor kitchen's price](/blogs/how-much-does-an-outdoor-kitchen-cost-in-florida). So when a run has to get shorter, take out an appliance and keep the counter. You use counter every time you cook anything. You use the second side burner roughly as often as you imagined you would.
 
-{{figura: kitchen-5}}
+{{figura: kitchen-3}}
 
 ## Which way the cook faces
 
@@ -121,7 +121,7 @@ Facing outward fixes that. The cook is part of the party, watches the water, and
 
 In a lot of Florida yards this is settled by one fact that rarely makes it into the design meeting: when the pool is in use, the person cooking is usually also the person keeping an eye on it. If that describes your house, orientation is decided and the rest of the layout works around it.
 
-{{figura: kitchen-1}}
+{{figura: kitchen-7}}
 
 ## Bar seating changes a layout more than any appliance
 
@@ -144,7 +144,7 @@ Once the constraints are on the drawing, the shape is close to decided. This is 
 
 The U renders beautifully and is the one most people point at. The L with the seating on the short wing is the one that tends to survive a crowd and two cooks. If your yard gives you a corner, start there before you commit to wrapping three sides.
 
-{{figura: kitchen-2}}
+{{figura: kitchen-6}}
 
 ## The posts are part of the layout
 

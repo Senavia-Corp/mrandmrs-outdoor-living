@@ -95,6 +95,13 @@ entero pegado. `check:enlaces` comprueba que la ruta existe: un slug inventado r
 Salen de `/gallery`, que son fotos de obra **real del cliente**. Se referencian por nombre:
 `construction-7` = servicio `construction`, índice 7 en `src/data/gallery-procedencia.json`.
 
+🚨 **El índice NO es el número del fichero, y van AL REVÉS.** `construction-0` es
+`…-florida-10.jpg` y `construction-9` es `…-florida-01.jpg`. Un redactor ya escribió cuatro
+`alt` correctos apuntando a cuatro fotos equivocadas por usar el número del fichero: el guarda
+solo cazó el que se salía de rango, y los otros tres habrían publicado la foto de otro con el
+texto de ésta. **Cuenta la posición dentro del array de `gallery-procedencia.json`, no leas el
+nombre del fichero.**
+
 **Solo valen las que tienen `"usable": true`.** El resto son generadas, de banco, o no son obra
 suya — y el script se niega a publicarlas. Mira el JSON antes de elegir; ahí está el `altGaleria`
 original de cada una, que dice qué se ve.

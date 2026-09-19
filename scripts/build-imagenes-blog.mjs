@@ -541,6 +541,28 @@ console.log(`\n  R23 · portadas graduadas: ${graduadas.length} de ${nRutas}`);
 for (const g of graduadas) console.log(`     ${g}`);
 console.log(`\n  exposicion levantada en ${ajustadas.length} figuras de cuerpo (media <105 y sat <30):`);
 for (const a of ajustadas) console.log(`     ${a}`);
+/* ── LEYENDA ref -> FICHERO ─────────────────────────────────────────────────
+ *
+ * Se imprime porque el indice del JSON y el numero del fichero VAN AL REVES —`construction-0`
+ * es `…-florida-10.jpg`— y eso ya escribio cuatro alt correctos sobre cuatro fotos
+ * equivocadas. El guarda de procedencia solo caza el ref que se sale de rango; uno dentro de
+ * rango pero del reves publica la foto de otro con el texto de esta, y se ve perfecto.
+ *
+ * Con la leyenda delante, comprobar un articulo es leer dos columnas. */
+const usados = new Map();
+for (const [, r] of articulos) {
+  for (const f of [r.tarjeta, ...r.figuras]) {
+    const m = (f._ref ?? f.src).match(/mm-([a-z]+)-(\d+)/);
+    if (m) usados.set(`${m[1]}-${m[2]}`, (f._fuente ?? '').split('/').pop());
+  }
+}
+if (usados.size) {
+  console.log(`\n  leyenda ref -> fichero (el indice y el numero del fichero van AL REVES):`);
+  const porSvc = {};
+  for (const [ref, fich] of usados) { const svc = ref.replace(/-\d+$/, ''); (porSvc[svc] ??= []).push(`${ref} = ${fich?.replace(/^.*-(\d+)\.(jpg|webp|avif|png)$/, '$1') ?? '?'}`); }
+  for (const [svc, xs] of Object.entries(porSvc)) console.log(`     ${svc.padEnd(13)} ${xs.sort().join('  ')}`);
+}
+
 console.log(`\n  ${nRutas} rutas · ${nImg} imagenes`);
 console.log(`     ${heredadas.length} heredadas (casting de R22/R23) · ${articulos.length} articulos de contenido/blog/`);
 console.log(`     ${yaDerivadas.size} escaleras distintas en public/images/blog/${BANCO_COMPARTIDO}/ para ${articulos.reduce((a, [, r]) => a + 1 + r.figuras.length, 0)} usos`);
