@@ -4,31 +4,64 @@
   "title": "How Much Does a Custom Pool Really Cost in Florida? 8 Decisions That Move the Price",
   "cardTitle": "What Will Your Pool Really Cost?",
   "categoria": "new-pool-construction",
-  "servicios": ["custom-pool-spa-builders-in-north-south-florida"],
+  "servicios": [
+    "custom-pool-spa-builders-in-north-south-florida"
+  ],
   "ordenEnServicio": 1,
   "ordenIndice": 20,
   "searchIntent": "commercial",
   "funnelStage": "consideration",
-  "tags": ["pool cost", "budgeting", "planning"],
+  "tags": [
+    "pool cost",
+    "budgeting",
+    "planning"
+  ],
   "seo": {
     "title": "Custom Pool Cost in Florida: 8 Decisions That Set the Price",
     "description": "See what actually moves the price of a custom pool in Florida — size, style, finish, decking, spa and site conditions — with the numbers behind each decision."
   },
   "summary": "Eight decisions account for most of the difference between one Florida pool quote and another. Here is what each one adds or removes, and which ones are worth spending on.",
-  "portada": { "ref": "construction-2", "alt": "Rectangular pool with a sun shelf and loungers on a pale stone deck, with a lake behind the screened boundary." },
+  "portada": {
+    "ref": "construction-1",
+    "alt": "Rectangular pool with a raised spa and water spouts, set in a herringbone travertine deck, with neighbouring barrel-tile roofs behind the hedge."
+  },
   "figuras": [
-    { "ref": "construction-6", "alt": "Pool with a raised spa and spillway, set in a travertine deck beside a single-storey Florida home." },
-    { "ref": "construction-3", "alt": "Raised spa clad in dark glass tile spilling into the pool, with a black aluminium pergola over the adjacent patio." },
-    { "ref": "construction-9", "alt": "Two-storey Florida home with a rectangular pool, raised spa and a wide paver deck running the width of the yard." }
+    {
+      "ref": "construction-7",
+      "alt": "Raised spa with a spillway returning to the pool, framed by a travertine deck beside a single-storey home."
+    },
+    {
+      "ref": "construction-3",
+      "alt": "Pool with in-water loungers and an aluminium pergola attached to the house, with newly laid turf around the deck."
+    },
+    {
+      "ref": "construction-9",
+      "alt": "Two-storey Florida home with a pool, raised spa and bubblers, on a wide paver deck running the width of the yard."
+    }
   ],
   "faq": [
-    { "question": "Does the estimate include permits and engineering?", "answer": "Yes. Permitting and engineering are calculated as a percentage of the pool and deck scope rather than a flat fee, because the drawings and reviews a project needs scale with what is being built. What it does not include is anything your county or HOA charges you directly, or work triggered by a condition nobody can see until excavation starts." },
-    { "question": "Why do two pools the same size quote so differently?", "answer": "Because size is only one of eight decisions. Two 450-square-foot pools can differ by more than the price of a car once style, interior finish, deck material, deck size and spa are settled. The estimator exists to show which of those decisions is moving your number." },
-    { "question": "Is a remodel cheaper than building new?", "answer": "For the same finished result, yes, because the shell, the excavation and much of the plumbing already exist. The saving is proportional rather than fixed, and it disappears if the existing shell has structural problems that only surface once the old surface comes off." },
-    { "question": "When is an estimate not useful yet?", "answer": "When the site has not been looked at. Access, grade, water table, soil and utility routing are all things that change scope and none of them can be judged from a satellite image. An estimate is a planning tool for comparing decisions; a site visit is what turns it into a price." }
+    {
+      "question": "Does the estimate include permits and engineering?",
+      "answer": "Yes. Permitting and engineering are calculated as a percentage of the pool and deck scope rather than a flat fee, because the drawings and reviews a project needs scale with what is being built. What it does not include is anything your county or HOA charges you directly, or work triggered by a condition nobody can see until excavation starts."
+    },
+    {
+      "question": "Why do two pools the same size quote so differently?",
+      "answer": "Because size is only one of eight decisions. Two 450-square-foot pools can differ by more than the price of a car once style, interior finish, deck material, deck size and spa are settled. The estimator exists to show which of those decisions is moving your number."
+    },
+    {
+      "question": "Is a remodel cheaper than building new?",
+      "answer": "For the same finished result, yes, because the shell, the excavation and much of the plumbing already exist. The saving is proportional rather than fixed, and it disappears if the existing shell has structural problems that only surface once the old surface comes off."
+    },
+    {
+      "question": "When is an estimate not useful yet?",
+      "answer": "When the site has not been looked at. Access, grade, water table, soil and utility routing are all things that change scope and none of them can be judged from a satellite image. An estimate is a planning tool for comparing decisions; a site visit is what turns it into a price."
+    }
   ],
   "fuentes": [
-    { "label": "Mr & Mrs Outdoor Living — Pool Cost Estimator", "url": "https://www.mrandmrsoutdoorliving.com/pool-cost-estimator" }
+    {
+      "label": "Mr & Mrs Outdoor Living — Pool Cost Estimator",
+      "url": "https://www.mrandmrsoutdoorliving.com/pool-cost-estimator"
+    }
   ]
 }
 ---
@@ -57,7 +90,7 @@ From the same starting point, dropping to a 250-square-foot pool takes about **$
 
 This is worth deciding early for a reason that has nothing to do with money: the pool has to leave room for everything else you want in the yard. A pool sized to the maximum the setbacks allow can leave no space for the covered seating or the kitchen you also wanted.
 
-{{figura: construction-6}}
+{{figura: construction-7}}
 
 ## 2. Pool style, which is really a construction method
 
