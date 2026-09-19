@@ -115,14 +115,38 @@ for (const [svc, fotos] of Object.entries(porSvc)) {
   if (!v) { console.error(`  ROJO ${svc}: el panel no lo clasifico`); faltan++; continue; }
   salida.servicios[svc] = fotos.map((f, i) => {
     const d = v.find((x) => x.indice === i);
+    /**
+     * ── SOLO SE PUBLICA LO UNANIME ──────────────────────────────────────────────────────
+     *
+     * El panel discrepa en 11 de las 137, y en las DOS direcciones: en 5 los refutadores
+     * dicen que el clasificador rechazo obra real (miraron el original a resolucion nativa,
+     * no la miniatura de 340 px de la hoja), y en 6 dicen lo contrario.
+     *
+     * Quien escribe esto las miro tambien y no coincide del todo con ninguno de los dos. Eso
+     * es la senal: cuando tres miradas expertas no se ponen de acuerdo, la respuesta no es
+     * que una desempate.
+     *
+     * El coste de equivocarse es ASIMETRICO. Publicar una generada como obra del cliente es
+     * publicidad enganosa y la linea roja del proyecto; no usar una foto real solo deja menos
+     * fotos. Asi que la regla es la conservadora: **usable solo si el clasificador dice
+     * obra_real Y ningun refutador lo contradice**.
+     *
+     * Las discutidas NO se tiran: quedan marcadas `en_disputa` con lo que dijo cada lente,
+     * para que las resuelva quien puede hacerlo de verdad — el cliente reconoce su propia
+     * obra, y ninguno de nosotros puede.
+     */
+    const contra = d?.discrepancias ?? [];
+    const base = d?.veredicto ?? 'sin_clasificar';
+    const disputada = contra.length > 0;
     return {
       indice: i,
       src: f.src,
       altGaleria: f.alt,
-      veredicto: d?.veredicto ?? 'sin_clasificar',
+      veredicto: disputada ? 'en_disputa' : base,
+      usable: !disputada && base === 'obra_real',
       confianza: d?.confianza ?? null,
       motivo: d?.motivo ?? 'el panel no devolvio veredicto para este indice',
-      refutado: Boolean(d?.discrepancias?.length),
+      discrepancias: contra.map((c) => ({ lente: c.lente?.split(':')[0] ?? c.lente, veredicto: c.veredicto, motivo: c.motivo })),
     };
   });
 }
@@ -139,12 +163,13 @@ if (sinClasificar.length) {
 fs.writeFileSync(DESTINO, `${JSON.stringify(salida, null, 1)}\n`);
 const n = (v) => todas.filter((x) => x.veredicto === v).length;
 console.log(`\n  ${todas.length} fotos · ${Object.keys(salida.servicios).length} servicios`);
-console.log(`     obra real .......... ${n('obra_real')}`);
+console.log(`     USABLES (unanimes) . ${todas.filter((x) => x.usable).length}`);
 console.log(`     generada o stock ... ${n('generada_o_stock')}`);
 console.log(`     dudosa ............. ${n('dudosa')}`);
+console.log(`     EN DISPUTA ......... ${n('en_disputa')}   <- las resuelve el cliente`);
 console.log('');
 for (const [svc, fotos] of Object.entries(salida.servicios)) {
-  const ok = fotos.filter((f) => f.veredicto === 'obra_real').map((f) => f.indice);
+  const ok = fotos.filter((f) => f.usable).map((f) => f.indice);
   const marca = ok.length === 0 ? '  <<< SIN FOTOGRAFIA REAL' : '';
   console.log(`     ${svc.padEnd(13)} ${String(ok.length).padStart(2)}/${fotos.length} usables [${ok.join(',')}]${marca}`);
 }
