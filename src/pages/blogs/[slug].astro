@@ -34,35 +34,14 @@
  */
 import Base from '../../layouts/Base.astro';
 import { aHtml } from '../../lib/portable-text.mjs';
-import { CONSULTA_BLOG } from '../../lib/blog-groq.mjs';
 
 export async function getStaticPaths() {
-  /* DENTRO de la funcion a proposito: Astro extrae `getStaticPaths` a su propio modulo para el
-   * prerender y alli no existe nada declarado fuera. Ya dio `PID is not defined` una vez. */
-  const PID = import.meta.env.PUBLIC_SANITY_PROJECT_ID ?? 'm273z6jc';
-  const DS = import.meta.env.PUBLIC_SANITY_DATASET ?? 'production';
-
-  /* La consulta vive en `src/lib/blog-groq.mjs` y la comparte la cache de escape: dos
-   * copias de una GROQ divergen el dia que nadie mira. */
-  let result; let error;
-  try {
-    const r = await fetch(`https://${PID}.api.sanity.io/v2024-01-01/data/query/${DS}`
-      + `?query=${encodeURIComponent(CONSULTA_BLOG)}`);
-    ({ result, error } = await r.json());
-  } catch (e) {
-    error = { message: `no se pudo hablar con Sanity: ${e.message}` };
-  }
-
-  if ((error || !result?.length) && process.env.MM_SANITY_CACHE === '1') {
-    const { default: cache } = await import('../../data/blogs-sanity.json');
-    console.warn(`>>> Sanity no responde y MM_SANITY_CACHE=1: se construyen los ${cache.length} `
-      + 'articulos de la cache. Es una copia versionada, NO es el CMS vivo.');
-    return cache.map((doc) => ({ params: { slug: doc.slug }, props: { doc } }));
-  }
-  if (error || !result?.length) {
-    throw new Error('Sanity no devolvio blogPost: ' + JSON.stringify(error ?? 'vacio'));
-  }
-  return result.map((doc) => ({ params: { slug: doc.slug }, props: { doc } }));
+  /* El `fetch`, la guarda de fallo cerrado y la cache de escape viven en
+   * `src/lib/blog-datos.mjs`, compartidos con `/blogs-tips`: dos copias de «que pasa si Sanity
+   * no responde» divergen, y la que falle ABIERTA sera la que nadie mira. */
+  const { traeBlog } = await import('../../lib/blog-datos.mjs');
+  const docs = await traeBlog();
+  return docs.map((doc) => ({ params: { slug: doc.slug }, props: { doc } }));
 }
 
 const { doc } = Astro.props;

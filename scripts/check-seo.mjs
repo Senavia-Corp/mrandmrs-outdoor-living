@@ -526,20 +526,52 @@ const SITIO_R22 = process.env.PUBLIC_SITE_URL || 'https://www.mrandmrsoutdoorliv
       cambios: [[camino, typeof era === 'string' ? era : era.url, d.tarjeta.src]],
     };
   }
-  /* (c) El `hasPart` de `/blogs-tips`: solo las partes cuya `url` tiene entrada. */
+  /**
+   * (c) El `hasPart` de `/blogs-tips`.
+   *
+   * R22 solo cambiaba la FOTO de cada parte, emparejando por posicion. BLOG-SANITY ademas
+   * REORDENA el indice —por categoria, en el orden de los chips, en vez de por el orden de
+   * importacion de Webflow—, asi que la posicion `i` del baseline y la del build ya no son el
+   * mismo articulo y un arreglo por posicion decia cosas como «el build dice la foto de
+   * complete-guide y se declaro la de top-10».
+   *
+   * Se declara entonces la parte ENTERA en cada posicion: `url`, `headline`, `description` e
+   * `image`. Derivado de `src/data/blogs-sanity.json` con EL MISMO orden que
+   * `ordenaIndice()` en `src/lib/blog-datos.mjs`. Si los dos ordenes divergieran, esto sale
+   * rojo — que es exactamente lo que debe pasar.
+   */
   const partes = base['/blogs-tips']?.jsonLd?.[0]?.hasPart ?? [];
+  const cacheBlog = path.join(RAIZ, 'src/data/blogs-sanity.json');
   const cambios = [];
-  partes.forEach((p, i) => {
-    const d = IMG_BLOG_R22[String(p.url ?? '').replace(/(.)\/$/, '$1')];
-    if (!d) return;                            // los 2 que conservan la suya
-    const era = typeof p.image === 'string' ? p.image : p.image?.url;
-    cambios.push([typeof p.image === 'string' ? `hasPart.${i}.image` : `hasPart.${i}.image.url`,
-      era, d.tarjeta.src]);
-  });
+  if (partes.length && fs.existsSync(cacheBlog)) {
+    const posts = JSON.parse(fs.readFileSync(cacheBlog, 'utf8'));
+    const orden = [...posts].sort((a, b) => {
+      if (Boolean(a.destacadoIndice) !== Boolean(b.destacadoIndice)) return a.destacadoIndice ? -1 : 1;
+      const oa = a.ordenIndice ?? 9999; const ob = b.ordenIndice ?? 9999;
+      return oa !== ob ? oa - ob : a.slug.localeCompare(b.slug);
+    });
+    /* Solo se declara cuando el conjunto coincide. El dia que se publique un articulo nuevo,
+     * el build tendra mas partes que el baseline y esto NO lo tapa: se para y se declara
+     * aparte, porque una parte que aparece de la nada no es un reordenamiento. */
+    if (orden.length === partes.length) {
+      orden.forEach((p, i) => {
+        const era = partes[i];
+        const url = `/blogs/${p.slug}`;
+        const img = typeof era.image === 'string' ? 'image' : 'image.url';
+        const eraImg = typeof era.image === 'string' ? era.image : era.image?.url;
+        if (era.url !== url) cambios.push([`hasPart.${i}.url`, era.url, url]);
+        if (era.headline !== p.title) cambios.push([`hasPart.${i}.headline`, era.headline, p.title]);
+        if (era.description !== p.summary) cambios.push([`hasPart.${i}.description`, era.description, p.summary]);
+        if (eraImg !== p.portada?.src) cambios.push([`hasPart.${i}.${img}`, eraImg, p.portada?.src]);
+      });
+    }
+  }
   if (cambios.length) {
     JSONLD_ARREGLADO['/blogs-tips'] = {
       bloque: 0,
-      motivo: `R22-BLOG-IMG: ${cambios.length} de las 10 partes cambian de foto a obra real.`,
+      motivo: `R22-BLOG-IMG + BLOG-SANITY: ${cambios.length} cambios en hasPart — foto real en `
+        + 'lugar de la generada, y el indice ordenado por categoria en vez de por el orden de '
+        + 'importacion de Webflow. Derivado de blogs-sanity.json, no escrito a mano.',
       cambios,
     };
   }
