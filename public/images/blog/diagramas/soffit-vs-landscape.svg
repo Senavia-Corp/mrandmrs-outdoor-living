@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 1060" role="img" aria-labelledby="t d">
+<title id="t">Soffit lighting and landscape lighting light different surfaces</title>
+<desc id="d">Two elevations of the same house, one above the other. In the first, lights recessed in the eave wash down the facade in overlapping cones that pool on the deck. In the second, fixtures set in the planting beds throw light upward into a palm and two shrubs, and everything above the first floor stays dark.</desc>
+<defs>
+<linearGradient id="abajo" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#f4b248" stop-opacity=".75"/><stop offset="1" stop-color="#f4b248" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="arriba" x1="0" y1="1" x2="0" y2="0">
+<stop offset="0" stop-color="#f4b248" stop-opacity=".75"/><stop offset="1" stop-color="#f4b248" stop-opacity="0"/>
+</linearGradient>
+<style>
+.f{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+.h{font-size:23px;font-weight:650;fill:#000f36}
+.p{font-size:17px;fill:#1a3373}
+.s{font-size:15px;fill:#596b9a}
+.n{font-size:13px;fill:#596b9a}
+</style>
+</defs>
+<rect width="700" height="1060" fill="#ffffff"/>
+
+<!-- ══ ARRIBA · soffit ══ -->
+<text class="f h" x="36" y="40">Soffit lighting</text>
+<text class="f s" x="36" y="66">Recessed in the eave, aimed down the wall</text>
+
+<g transform="translate(36,92)">
+  <path d="M82 30 L46 300 L138 300 Z" fill="url(#abajo)"/>
+  <path d="M212 30 L176 300 L268 300 Z" fill="url(#abajo)"/>
+  <path d="M342 30 L306 300 L398 300 Z" fill="url(#abajo)"/>
+  <path d="M472 30 L436 300 L528 300 Z" fill="url(#abajo)"/>
+  <path d="M10 36 L287 -4 L564 36 Z" fill="#eef1f7" stroke="#000f36" stroke-width="3" stroke-linejoin="round"/>
+  <rect x="42" y="36" width="490" height="264" fill="none" stroke="#000f36" stroke-width="3"/>
+  <line x1="10" y1="36" x2="564" y2="36" stroke="#000f36" stroke-width="4"/>
+  <rect x="92" y="86" width="82" height="66" fill="#f6f7fa" stroke="#8794b6" stroke-width="2"/>
+  <rect x="246" y="86" width="82" height="66" fill="#f6f7fa" stroke="#8794b6" stroke-width="2"/>
+  <rect x="400" y="86" width="82" height="66" fill="#f6f7fa" stroke="#8794b6" stroke-width="2"/>
+  <rect x="246" y="196" width="82" height="104" fill="#f6f7fa" stroke="#8794b6" stroke-width="2"/>
+  <g fill="#000f36">
+    <circle cx="82" cy="30" r="7"/><circle cx="212" cy="30" r="7"/>
+    <circle cx="342" cy="30" r="7"/><circle cx="472" cy="30" r="7"/>
+  </g>
+  <line x1="0" y1="300" x2="574" y2="300" stroke="#000f36" stroke-width="3"/>
+  <rect x="0" y="300" width="574" height="26" fill="#f3f5f9"/>
+  <line x1="82" y1="354" x2="212" y2="354" stroke="#1a3373" stroke-width="2"/>
+  <line x1="82" y1="347" x2="82" y2="361" stroke="#1a3373" stroke-width="2"/>
+  <line x1="212" y1="347" x2="212" y2="361" stroke="#1a3373" stroke-width="2"/>
+  <text class="f n" x="224" y="359">spacing sets how even the wall reads</text>
+</g>
+
+<text class="f p" x="36" y="506">Soffit lighting draws the shape of the building.</text>
+<text class="f s" x="36" y="530">It works from the eave down, so it needs an eave to work from.</text>
+
+<line x1="36" y1="558" x2="664" y2="558" stroke="#e0e4ec" stroke-width="2"/>
+
+<!-- ══ ABAJO · landscape ══ -->
+<text class="f h" x="36" y="600">Landscape lighting</text>
+<text class="f s" x="36" y="626">Set in the beds, aimed up into the planting</text>
+
+<g transform="translate(36,652)">
+  <path d="M104 300 L64 132 L152 132 Z" fill="url(#arriba)"/>
+  <path d="M306 300 L266 104 L354 104 Z" fill="url(#arriba)"/>
+  <path d="M494 300 L454 156 L542 156 Z" fill="url(#arriba)"/>
+  <path d="M10 36 L287 -4 L564 36 Z" fill="#fbfcfd" stroke="#c7cddd" stroke-width="3" stroke-linejoin="round"/>
+  <rect x="42" y="36" width="490" height="264" fill="none" stroke="#c7cddd" stroke-width="3"/>
+  <line x1="10" y1="36" x2="564" y2="36" stroke="#c7cddd" stroke-width="4"/>
+  <rect x="92" y="86" width="82" height="66" fill="#fbfcfd" stroke="#e0e4ec" stroke-width="2"/>
+  <rect x="246" y="86" width="82" height="66" fill="#fbfcfd" stroke="#e0e4ec" stroke-width="2"/>
+  <rect x="400" y="86" width="82" height="66" fill="#fbfcfd" stroke="#e0e4ec" stroke-width="2"/>
+  <line x1="42" y1="188" x2="532" y2="188" stroke="#e0e4ec" stroke-width="2" stroke-dasharray="7 6"/>
+  <text class="f n" x="42" y="180">dark above this line</text>
+  <g stroke="#000f36" stroke-width="3" fill="none" stroke-linecap="round">
+    <path d="M306 300 L306 172"/>
+    <path d="M306 172 C276 148 256 144 244 156"/>
+    <path d="M306 172 C336 148 356 144 368 156"/>
+    <path d="M306 172 C290 140 276 126 262 122"/>
+    <path d="M306 172 C322 140 336 126 350 122"/>
+  </g>
+  <path d="M70 300 C70 254 92 234 120 234 C148 234 170 254 170 300 Z" fill="#eef1f7" stroke="#000f36" stroke-width="3"/>
+  <path d="M460 300 C460 264 480 248 502 248 C524 248 544 264 544 300 Z" fill="#eef1f7" stroke="#000f36" stroke-width="3"/>
+  <g fill="#000f36">
+    <rect x="98" y="292" width="12" height="14"/><rect x="300" y="292" width="12" height="14"/><rect x="488" y="292" width="12" height="14"/>
+  </g>
+  <line x1="0" y1="300" x2="574" y2="300" stroke="#000f36" stroke-width="3"/>
+  <rect x="0" y="300" width="574" height="26" fill="#f3f5f9"/>
+</g>
+
+<text class="f p" x="36" y="1014">Landscape lighting draws what stands in front of it.</text>
+<text class="f s" x="36" y="1038">It stops where the planting stops.</text>
+</svg>

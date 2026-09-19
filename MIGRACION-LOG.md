@@ -3,6 +3,45 @@
 Webflow → Astro 5 + Sanity + Vercel. Una entrada por fase, **escrita al cerrar la fase**,
 nunca al empezarla. Si una fase se reabre, se añade una entrada nueva; no se edita la vieja.
 
+## BLOG-SANITY — Sanity como fuente unica del blog (PR #20, 19-sep-2026)
+
+Sanity pasa a ser la fuente unica. Desaparecen los 10 `.astro` con el HTML de Webflow horneado
+y el raspado de la home con JSDOM. **121 de 122 paginas no movieron un byte**; el unico cambio
+fue reparar 8 bytes de JSON-LD (`&amp;` -> `&`: el contenido de `<script>` es texto crudo).
+
+**34 articulos nuevos** de los 97 del roadmap (`contenido/roadmap-blog.json`), 70.269 palabras.
+`/blogs-tips` pasa a biblioteca con buscador, chips y «Load more», sin crear una sola URL nueva.
+5 de las 14 fichas de servicio con sus 3 articulos; las otras 9 DECLARADAS como pendientes.
+
+**Las 137 fotos de /gallery se miraron una a una: 37 son generadas o de banco.** El panel
+discrepaba en 20 y las resolvio el dueno de la obra (11 suyas, las 9 de soffit LED no).
+`src/data/gallery-procedencia.json` es una GUARDA, no una nota: `porRef()` se niega a publicar
+lo que no sea obra real. Soffit LED y mobiliario se ilustran con 9 diagramas dibujados, con pie
+visible. Higgsfield esta SIN CREDITOS.
+
+### Lo que hay que saber antes de tocar esto
+
+- **El indice de una foto y el orden en que se ve VAN AL REVES.** `construction-0` es
+  `…-florida-10.jpg`. Ya publico cuatro fotos cambiadas con cuatro alt perfectos, y el guarda
+  solo caza la que se sale de rango. `build-imagenes-blog.mjs` imprime la leyenda ref -> fichero.
+- **El articulo se escribe en Markdown** (`contenido/blog/*.md`) y `publica-blog.mjs` lo empuja.
+  Editar en el Studio se pierde en la siguiente publicacion.
+- **`publishedAt` se CONSERVA** al republicar: corregir una coma no vuelve a estrenar el
+  articulo para Google.
+- El worktree va en `.claude/worktrees/`, NO en `/tmp`: la limpieza del sistema se llevo el
+  anterior entero a mitad de encargo. Necesita symlinks a `.env`, `node_modules` y
+  `_source/sanity-masters`, los tres gitignorados.
+
+### Abierto
+
+1. **`check:visual` NO ha corrido sobre las 34 rutas nuevas** — 136 capturas, y `CLAUDE.md` pide
+  la aprobacion de Sebastian antes de re-baselinizar. Tienen contrato, asi que la puerta las ve.
+  Una puerta que no corrio no es una puerta verde.
+2. **63 articulos** del roadmap sin escribir.
+3. **Dos heredados** no pueden enlazar a su ficha: su texto de Webflow no nombra su servicio y
+  esta congelado por `check:texto`. Enumerados en `check-blog.mjs`.
+4. **Falta fotografia** de soffit LED y mobiliario exterior, y de obra comercial (abierta en R22).
+
 ## Regla de la bitácora
 
 Una entrada vale si un ingeniero que no estuvo aquí puede, solo con ella:

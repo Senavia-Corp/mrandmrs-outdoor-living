@@ -1,0 +1,1584 @@
+{
+ "_lee_esto": [
+  "DERIVADO por scripts/build-gallery-procedencia.mjs desde la salida del panel de procedencia.",
+  "",
+  "Dice que foto de /gallery se puede publicar como obra del cliente y cual NO.",
+  "Lo LEE el casting de imagenes y RECHAZA las que no sean obra_real: es una guarda,",
+  "no una nota. 37 de las 137 son generadas o de stock."
+ ],
+ "servicios": {
+  "construction": [
+   {
+    "indice": 0,
+    "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
+    "altGaleria": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): la reconoce como obra propia. Manda sobre el panel.",
+    "discrepancias": [
+     {
+      "lente": "Física y luz",
+      "veredicto": "obra_real",
+      "motivo": "Dice «el spa no tiene ni un jet en su interior». Sí los tiene y están en marcha: a resolución nativa (recorte 120-200 x 86-114) la lámina del spa muestra una hilera de penachos blancos de alturas y separaciones DESIGUALES, con la espuma extendiéndose en velo hacia la coronación cercana — es un hervor de borboteadores, no una mancha pintada; una mancha generada no varía de altura penacho a penacho ni produce velo asimétrico. La luz además cierra: el sol entra alto por la izquierda (la fachada de la casa y la parte alta del seto están iluminadas, la sombra del cerco cae hacia la derecha sobre el césped), la cara izquierda del muro del spa está más clara que la derecha, y el muro proyecta una banda oscura sobre el agua a su derecha. Y los reflejos son coherentes en los dos lados del muro: el gresite oscuro se espeja hacia abajo tanto en el agua de la repisa izquierda como en el vaso derecho, y las losas de paso del fondo tienen su banda clara espejada justo debajo. Nada de eso lo resuelve solo una imagen generada."
+     }
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "La coronación blanca es una cinta continua sin una sola junta en todo su perímetro, el césped la corta en línea matemáticamente perfecta, y no hay skimmer, retornos, sumidero ni foco en ningún punto del vaso; el spa elevado no tiene ni un jet en su interior ni vertedero, y los escalones del lado izquierdo se disuelven bajo el muro del spa."
+   },
+   {
+    "indice": 1,
+    "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
+    "altGaleria": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Foto de móvil con gran angular evidente: pavimento de travertino en espiga con veteado y manchas reales, sombras duras de mediodía, cúmulos irregulares, palmeras con hojas secas y casas vecinas concretas con teja roja al fondo.",
+    "discrepancias": []
+   },
+   {
+    "indice": 2,
+    "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
+    "altGaleria": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): la reconoce como obra propia. Manda sobre el panel.",
+    "discrepancias": [
+     {
+      "lente": "Física y luz",
+      "veredicto": "obra_real",
+      "motivo": "Dos de sus observaciones no resisten el zoom. (a) «El borde del vaso abajo a la derecha se desvanece sin línea de agua»: en el recorte 860-960 x 150-180 hay línea de agua nítida con su banda de gresite oscuro, la esquina del vaso cerrada y hasta una junta transversal en la coronación. (b) «Una repisa vuela sobre el agua sin apoyo»: es un vertedero, y se ve funcionando — lámina vertical gris clara cayendo desde la coronación del spa y, justo debajo en el vaso, una mancha turbulenta aireada en el punto de impacto. Secuencia origen→caída→turbulencia completa. A esto se suma lo que más pesa en mi lente: la superficie del vaso carga un reflejo detallado y NO repetitivo de la copa de los árboles que están detrás, con los claros de cielo en su sitio y estirados hacia la cámara como corresponde a agua con rizo; y el lago del fondo espeja las palmeras y la orilla con la misma dirección. Un reflejo así, consistente con la vegetación concreta del encuadre, es firma de fotografía."
+     },
+     {
+      "lente": "Detalle constructivo",
+      "veredicto": "dudosa",
+      "motivo": "Su motivo concreto no se sostiene, aunque no me da para afirmar obra real. A 12x sobre custom-pool-spa-builders-florida-08.jpg, la 'L que no cierra' y la 'repisa que vuela sin apoyo' son un vertedero de spa estandar: la tapa del pilar de la izquierda queda a cota alta, un retorno vertical corto cierra el escalon, y el labio rebajado es una losa con espesor y sombra proyectada apoyada sobre la viga de coronacion forrada de gresite que se ve justo debajo. El gresite tampoco 'pierde la reticula' al girar la esquina: las hiladas continuan, lo que brilla es reflejo del vidrio. Dicho esto, a 1250 px no distingo ni un herraje (skimmer, retorno, foco, jet) que permita afirmar en positivo que es obra real, asi que la dejo en dudosa: lo que cae es su razonamiento, no necesariamente su conclusion."
+     }
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "El spa tiene geometría imposible: la coronación forma una L que no cierra y una repisa vuela sobre el agua sin apoyo; el gresite pierde la retícula al girar la esquina y se convierte en ruido, y el borde del vaso abajo a la derecha se desvanece sin línea de agua."
+   },
+   {
+    "indice": 3,
+    "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
+    "altGaleria": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Cielo velado y quemado de foto de móvil, jardín con calvas de tierra y mantillo, césped recién puesto, pérgola de aluminio anclada a la casa, tumbonas dentro del agua y una silla blanca entrando en el encuadre por abajo con su estructura visible.",
+    "discrepancias": []
+   },
+   {
+    "indice": 4,
+    "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
+    "altGaleria": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): la reconoce como obra propia. Manda sobre el panel.",
+    "discrepancias": [
+     {
+      "lente": "Física y luz",
+      "veredicto": "obra_real",
+      "motivo": "Su veredicto se apoya entero en una afirmación física, y es falsa en los dos extremos. «No tienen origen en la coronación»: en el recorte 1450-1560 x 96-140 las láminas blancas arrancan exactamente bajo la banda de la coronación, que es donde van los vertederos, y se ensanchan al bajar. «No producen ninguna espuma ni turbulencia al llegar al agua»: en la línea de agua al pie de cada lámina hay una banda pálida aireada de textura irregular, y en el vaso salen ondas que se propagan alejándose del muro; en el spa de la derecha (recorte 1550-1665) hay además un blanco de salpicadura concentrado al pie del chorro derecho. La escena entera es coherente con sol alto: cáusticas densas e irregulares en todo el fondo del vaso, lanai en sombra profunda con su mobiliario, y palmeras con hojas secas. El campo de golf al fondo no es «sujeto equivocado»: es un patio trasero residencial que linda con el campo, tras su propia verja."
+     },
+     {
+      "lente": "Detalle constructivo",
+      "veredicto": "obra_real",
+      "motivo": "Su argumento era que las cascadas no salen de ningun vertedero y no producen turbulencia. A 11x sobre el original (custom-pool-spa-builders-florida-06.jpg) las dos cosas son falsas. El spa SI tiene vertedero: la coronacion de travertino baja a una losa-labio rebajada, flanqueada a izquierda y derecha por dos tapas a cota alta; el escalon entre tapa y labio esta cerrado con su pieza vertical, el labio tiene espesor visible y proyecta sombra sobre el gresite. La lamina arranca exactamente en ese labio, no a media pared. En el muro de agua de la izquierda los chorros nacen bajo el vuelo de la coronacion (ranura oculta detras del goteron, que es como se monta) y al pie hay espuma aireada coincidente en planta con cada chorro. Ademas, bajo el porche hay un cajon empotrado de mosquitera motorizada con el rodillo visible dentro de la ranura de la viga, y las palmeras se ven correctamente atenuadas a traves de la malla: eso es fotografia de una obra montada, no sintesis."
+     }
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Las cascadas son manchas blancas translúcidas pintadas sobre el gresite: no salen de ningún vertedero ni rebosadero, no tienen origen en la coronación y no producen ninguna espuma ni turbulencia al llegar al agua."
+   },
+   {
+    "indice": 5,
+    "src": "/images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg",
+    "altGaleria": "Luxury outdoor pool featuring waterfall spa and covered patio area, built by experienced custom pool and outdoor living contractors in Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Los chorros arquean con caudales distintos y rompen en espuma irregular al entrar al agua; hay una manguera negra tirada sobre el césped tras la valla, hierbajos y calvas marrones, sombras moteadas de palmera sobre el pavimento y una hamaca y un sofá de exterior reales bajo la cubierta.",
+    "discrepancias": []
+   },
+   {
+    "indice": 6,
+    "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
+    "altGaleria": "Modern pool renovation with raised spa and clean architectural lines, designed and installed by professional pool builders in Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): la reconoce como obra propia. Manda sobre el panel.",
+    "discrepancias": [
+     {
+      "lente": "Física y luz",
+      "veredicto": "dudosa",
+      "motivo": "No lo doy por real, pero su confianza «alta» se apoya en parte en una observación física que sí puedo refutar: «el agua de la piscina tiene manchas blancas sin fuente que las produzca». Tienen fuente y se comportan como reflejos. En el recorte 440-540 x 300-345 la mancha principal es un trazo blanco VERTICAL estirado hacia la cámara — el espejo del pilar/pared blanca de la casa que está a la izquierda, en el lado correcto — acompañado de estriaciones verticales más tenues que siguen el ritmo de los huecos del porche, todo sobre un rizo fino de viento; y el muro de gresite oscuro de la derecha también se espeja. Comprobé además la coherencia de la luz (fachada iluminada de frente-izquierda, lanai en sombra profunda, seto iluminado por arriba) y la perspectiva de los peldaños sumergidos, y no encontré ninguna violación. Lo que no puedo es afirmar lo contrario: el agua está demasiado inerte y la resolución demasiado baja para que mi lente dé un positivo. Queda en dudosa, no en generada de alta confianza."
+     },
+     {
+      "lente": "Detalle constructivo",
+      "veredicto": "obra_real",
+      "motivo": "Su argumento era hiladas de gresite a la deriva sin junta coherente y un banco blanco sin espesor. A 12-13x sobre custom-pool-spa-builders-florida-04.jpg el gresite es un 1x2 a matajunta perfectamente regular, con retícula de llaga legible; la variacion que se ve es reflejo especular del vidrio, no deriva de hiladas. Y al pie del muro del spa, bajo el agua, hay escalones con banda de gresite oscuro en el borde de huella — el marcador de contraste de peldaño que exige el codigo — continua y coherente en los dos escalones: nadie pone eso por decoracion. En el pavimento, junto al recorte de cesped, hay una tapa circular enrasada (registro/desague) con su ranura, y suciedad suelta en las juntas del travertino. De fondo, el cerramiento de mosquitera del vecino tiene la geometria correcta de mansarda con tornapunta diagonal desde cada montante hasta la viga de alero: detalle constructivo que no sale de un generador."
+     }
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Las hiladas de gresite del spa cambian de tamaño y se van a la deriva sin junta coherente, dentro del spa flota un banco blanco sin espesor, no hay un solo jet ni toma de aspiración, y el agua de la piscina tiene manchas blancas sin fuente que las produzca."
+   },
+   {
+    "indice": 7,
+    "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
+    "altGaleria": "Elegant residential pool and spa design with premium finishes and tropical landscaping, crafted by custom pool builders in South Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Travertino con picado y cavidades reales en el revestimiento del spa, rebosadero dorado con turbulencia asimétrica de burbujas al caer, y en la casa hay condensadora de aire, canalón con juntas, caja eléctrica en el estuco y barandilla de cable con tensores.",
+    "discrepancias": []
+   },
+   {
+    "indice": 8,
+    "src": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
+    "altGaleria": "Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Vuelo de dron con sombras de palmera proyectadas coherentes sobre césped y pavimento, travertino de despiece irregular y tonos desiguales, espuma asimétrica del spa rebosando, objetos sueltos en el borde (manguera verde, pieza blanca) y mobiliario cortado por el encuadre.",
+    "discrepancias": []
+   },
+   {
+    "indice": 9,
+    "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
+    "altGaleria": "Luxury custom pool and spa construction featuring modern design, premium pavers, and outdoor living spaces built by expert pool builders in Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Foto inmobiliaria real: barbacoa y caja de almacenaje bajo el porche, condensadora de aire en el lateral, sumidero de pavimento visible, adoquín con manchas y piezas descantilladas, y borboteadores con alturas y salpicaduras distintas entre sí.",
+    "discrepancias": []
+   }
+  ],
+  "remodeling": [
+   {
+    "indice": 0,
+    "src": "/images/images/pool-remodeling-10/custom-pool-remodeling-contractors-florida-10.jpg",
+    "altGaleria": "Custom inground pool installation with pergola and safety fencing, built by licensed Florida pool builders.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Patio vivido en foto de dron: valla de malla removible de seguridad para ninos con postes algo torcidos, tobogan de plastico amarillo de juegos, parrilla de gas, mochila tirada en el piso, cajas de juguetes bajo el lanai y kayak naranja; sombras duras de mediodia coherentes en pergola, casa y valla.",
+    "discrepancias": []
+   },
+   {
+    "indice": 1,
+    "src": "/images/images/pool-remodeling-9/custom-pool-remodeling-contractors-florida-09.jpg",
+    "altGaleria": "Custom inground pool installation with pergola and safety fencing, built by licensed Florida pool builders.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Piscina con spa y borde de travertino donde la linea de agua corta correctamente las patas de las chaises Ledge Lounger con refraccion real; al fondo se ve valla metalica del vecino, mulch y muebles de patio bajo el lanai, y las nubes se reflejan en el agua de forma coherente.",
+    "discrepancias": []
+   },
+   {
+    "indice": 2,
+    "src": "/images/images/pool-remodeling-8/custom-pool-remodeling-contractors-florida-08.jpg",
+    "altGaleria": "Modern pool renovation with clean lines, integrated spa and minimalist deck, completed by Florida pool remodeling experts.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "media",
+    "motivo": "Es la mas de catalogo del lote, pero al acercarme los tres vertederos no estan corriendo ni son clones: cada nicho tiene manchas distintas y proyecta su sombra diagonal segun el sol; hay sillas de patio asomando tras el muro, bugambilia, flamboyan en flor y plato de fuego con piedra de rio.",
+    "discrepancias": []
+   },
+   {
+    "indice": 3,
+    "src": "/images/images/pool-remodeling-7/custom-pool-remodeling-contractors-florida-07.jpg",
+    "altGaleria": "Resort-style pool with tanning ledges and water features, showcasing custom pool construction in South Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Desorden propio de obra entregada: sombrilla envuelta en funda blanca sobre base negra, parrilla tapada, camara de seguridad en la pared, valla de vinilo blanco y casa del vecino; las sombras de las lamas de la pergola caen sobre el estuco con el angulo correcto.",
+    "discrepancias": []
+   },
+   {
+    "indice": 4,
+    "src": "/images/images/pool-remodeling-6/custom-pool-remodeling-contractors-florida-06.jpg",
+    "altGaleria": "High-end residential pool with covered patio and outdoor kitchen, installed by professional pool contractors in Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Canasta de baloncesto portatil de piscina con base azul, sillas Adirondack desalineadas, ventiladores de techo en el lanai y borde de sombrilla cortado por el encuadre; el verde del fondo es el comun de la comunidad tras la valla de aluminio, no un resort.",
+    "discrepancias": []
+   },
+   {
+    "indice": 5,
+    "src": "/images/images/pool-remodeling-5/custom-pool-remodeling-contractors-florida-05.jpg",
+    "altGaleria": "Contemporary pool installation with raised spa and outdoor lounge space, designed for luxury Florida backyard living.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Casa concreta con ducha exterior en la pared, comedor de exterior, cocina con parrilla, canasta portatil y flotador azul dentro del agua, mas hojas sueltas en el deck; las sombras de los arboles sobre el marmol siguen todas la misma direccion.",
+    "discrepancias": []
+   },
+   {
+    "indice": 6,
+    "src": "/images/images/pool-remodeling-4/custom-pool-remodeling-contractors-florida-04.jpg",
+    "altGaleria": "Large custom pool and spa design with expansive deck and seating areas, built by expert pool builders in North Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Dron sobre finca de North Florida: manguera de jardin cruzando el deck hasta la casa, carrete verde junto al borde, calvas de tierra en el cesped, valla de madera de rancho y franjas de corte en el potrero; zafacon y chimenea de ladrillo junto a la casa.",
+    "discrepancias": []
+   },
+   {
+    "indice": 7,
+    "src": "/images/images/pool-remodeling-3/custom-pool-remodeling-contractors-florida-03.jpg",
+    "altGaleria": "Luxury backyard pool and spa installation in South Florida featuring custom tile, palm landscaping and clean architectural lines.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "El spa esta con los jets prendidos y la espuma es turbulenta e irregular, no simetrica; se ven motas de suciedad hundidas en el fondo de la piscina, manchas en las losas, parrilla y carrito bajo el lanai y una hamaca naranja en el patio.",
+    "discrepancias": []
+   },
+   {
+    "indice": 8,
+    "src": "/images/images/pool-remodeling-2/custom-pool-remodeling-contractors-florida-02.jpg",
+    "altGaleria": "Luxury backyard pool and spa installation in South Florida featuring custom tile, palm landscaping and clean architectural lines.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Foto de dron de casa residencial con tabla de cornhole roja tirada en el cesped, robot limpiafondos, daybed bajo el porche, cocina exterior bajo techo metalico y calvas en la grama; las sombras de las palmas y de la casa coinciden en angulo.",
+    "discrepancias": []
+   },
+   {
+    "indice": 9,
+    "src": "/images/images/pool-remodeling-1/custom-pool-remodeling-contractors-florida-01.jpg",
+    "altGaleria": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Se ve el cerramiento de malla del vecino con su propia piscina detras y otra piscina a la derecha, mas manguera verde enrollada junto a la puerta, sombrilla y comedor usados y dos canastas portatiles; distorsion de gran angular tipica de dron.",
+    "discrepancias": []
+   }
+  ],
+  "kitchen": [
+   {
+    "indice": 0,
+    "src": "/images/images/kitchen-8/premium-outdoor-kitchen-installation-florida.avif",
+    "altGaleria": "Premium custom outdoor kitchen installation completed in Florida",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Ampliando el borde izquierdo aparece franja de grava de drenaje, hierba invadiendo el canto del pavimento y un objeto blanco de plástico tirado en el césped; la parrilla lleva placa ovalada de marca real y las puertas de acero reflejan coherentemente el hormigón.",
+    "discrepancias": []
+   },
+   {
+    "indice": 1,
+    "src": "/images/images/kitchen-7/modern-custom-outdoor-kitchen-design-florida.avif",
+    "altGaleria": "Custom outdoor kitchen installed near a pool for Florida outdoor living",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "El horno de leña lleva el logotipo legible de Fontana Forni y el panel negro de la derecha no es un televisor sino un granito que refleja ese mismo horno con la perspectiva correcta; el frente de los muebles tiene veta de tablero compuesto tipo Trex.",
+    "discrepancias": []
+   },
+   {
+    "indice": 2,
+    "src": "/images/images/kitchen-6/luxury-custom-outdoor-kitchen-florida.avif",
+    "altGaleria": "High-end custom outdoor kitchen layout designed for luxury Florida homes",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Enchufe negro empotrado en el frente del mueble, caja de registro sobre la valla de madera y hierba creciendo en las juntas de las losas; nitidez de vídeo/móvil, no de render.",
+    "discrepancias": []
+   },
+   {
+    "indice": 3,
+    "src": "/images/images/kitchen-5/high-end-outdoor-kitchen-layout-florida.avif",
+    "altGaleria": "Modern custom outdoor kitchen design for Florida residential properties",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "El cable del televisor cuelga suelto por la pared hasta la encimera (detalle que ningún render pone), electrodomésticos con placas DCS visibles y nevera de bebidas con botellas reales dentro.",
+    "discrepancias": []
+   },
+   {
+    "indice": 4,
+    "src": "/images/images/kitchen-4/custom-outdoor-kitchen-with-grill-florida.avif",
+    "altGaleria": "Custom outdoor kitchen with built-in grill for Florida outdoor entertaining",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Parrilla Lynx con la marca legible en el panel de mandos, rejillas de ventilación y roces en el acero, cesto de alambre apoyado en la base y urbanización de Florida con lago y casas de teja al fondo.",
+    "discrepancias": []
+   },
+   {
+    "indice": 5,
+    "src": "/images/images/kitchen-3/custom-outdoor-kitchens-florida.avif",
+    "altGaleria": "Covered custom outdoor kitchen designed for year-round use in Florida",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Puerta de acceso Cal Flame con placa visible, travertino del suelo manchado y desgastado, y registro de pared descuadrado: cero perfección de catálogo.",
+    "discrepancias": []
+   },
+   {
+    "indice": 6,
+    "src": "/images/images/kitchen-2/custom-outdoor-kitchen-poolside-florida.avif",
+    "altGaleria": "Luxury custom outdoor kitchen with premium finishes for Florida outdoor living",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Parcela real frente a lago con casas y valla de aluminio al otro lado, veta del granito negro asimétrica y sin repetirse en las dos alas, rejilla de ventilación en el mueble bajo.",
+    "discrepancias": []
+   },
+   {
+    "indice": 7,
+    "src": "/images/images/kitchen-1/covered-custom-outdoor-kitchen-florida.avif",
+    "altGaleria": "Custom outdoor kitchen built by professional outdoor kitchen builders in Florida",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "La cubierta es un chickee auténtico: hojas de palma reales, vigas envejecidas, alambres de atado colgando y ventilador polvoriento; la nevera empotrada tiene huellas y manchas en el acero y el mármol del suelo lleva veta distinta losa a losa.",
+    "discrepancias": []
+   }
+  ],
+  "pergolas": [
+   {
+    "indice": 0,
+    "src": "/images/images/pergolas-10/custom-pergola-patio-cover-builders-florida-10.jpg",
+    "altGaleria": "White aluminum modern insulated pergola installation with bar seating by Florida builders, creating functional and stylish outdoor living.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Pergola blanca sobre patio: se ve el tejado de teja del vecino a traves de las lamas, una caja de enchufe exterior en la pared de estuco y el borde real de cesped con mantillo; sombras coherentes con el sol de la izquierda.",
+    "discrepancias": []
+   },
+   {
+    "indice": 1,
+    "src": "/images/images/pergolas-9/custom-pergola-patio-cover-builders-florida-09.jpg",
+    "altGaleria": "Custom pergola installation over backyard deck by Florida contractors, blending landscape design and outdoor structure.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Cubierta adosada con paneles translucidos: hay un conducto electrico bajando por la fachada, la unidad de aire al fondo, una rejilla de desague en el suelo de ladrillo y distorsion de gran angular de movil.",
+    "discrepancias": []
+   },
+   {
+    "indice": 2,
+    "src": "/images/images/pergolas-8/custom-pergola-patio-cover-builders-florida-08.jpg",
+    "altGaleria": "Poolside pergola installation in Florida backyard, designed by expert pergola builders for shade and comfort.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "media",
+    "motivo": "Cocina exterior bajo pergola: es la foto mas de catalogo del lote (cero desgaste, neveras montadas para el retrato), pero la piedra tiene veteado irregular sin clonar, hay un taburete descolocado a la derecha y tierra pelada en el borde del cesped; no encuentro ninguna senal concreta de generacion.",
+    "discrepancias": []
+   },
+   {
+    "indice": 3,
+    "src": "/images/images/pergolas-7/custom-pergola-patio-cover-builders-florida-07.jpg",
+    "altGaleria": "Contemporary pergola construction for residential patio in Florida, built by licensed outdoor living contractors.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Piscina con pergola oscura: cables aereos cruzando el encuadre y un poste con transformadores a la derecha, ademas de una puerta de madera vieja y descolorida en la valla del fondo.",
+    "discrepancias": []
+   },
+   {
+    "indice": 4,
+    "src": "/images/images/pergolas-6/custom-pergola-patio-cover-builders-florida-06.jpg",
+    "altGaleria": "Aluminum pergola installation over pool area by Florida contractors, providing shade and modern outdoor design.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Pergola junto a canal: las palmeras de la izquierda llevan puntales de plantacion recien puestos y hay focos de jardin sueltos sobre la grava de la derecha, detalles que nadie inventa.",
+    "discrepancias": []
+   },
+   {
+    "indice": 5,
+    "src": "/images/images/pergolas-5/custom-pergola-patio-cover-builders-florida-05.jpg",
+    "altGaleria": "Timber pavilion installation with outdoor kitchen by Florida builders, combining pergola structure and entertainment space.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Pabellon de madera: vigas con nudos y veta irregular, placas de union de acero atornilladas y una nevera portatil con silla plegable arrinconadas detras de la barra; el cesped tiene calvas de paso.",
+    "discrepancias": []
+   },
+   {
+    "indice": 6,
+    "src": "/images/images/pergolas-4/custom-pergola-patio-cover-builders-florida-04.jpg",
+    "altGaleria": "Custom wood pavilion construction by Florida pergola contractors, showcasing exposed beams and premium craftsmanship.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Pabellon junto a caseta blanca: la pared de panel esta sin rematar con un recorte a la vista, hay herrajes sueltos clavados en el pilar y un monton de escombros y un remolque al fondo entre robles con barba espanola.",
+    "discrepancias": []
+   },
+   {
+    "indice": 7,
+    "src": "/images/images/pergolas-3/custom-pergola-patio-cover-builders-florida-03.jpg",
+    "altGaleria": "Backyard pergola and patio cover installation in Florida home, designed by professional outdoor living builders.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Cubierta de aluminio junto a piscina: valla de malla desmontable de seguridad, plastico de obra y restos tirados en el cesped del primer plano, y bajante acanalada real en la esquina.",
+    "discrepancias": []
+   },
+   {
+    "indice": 8,
+    "src": "/images/images/pergolas-2/custom-pergola-patio-cover-builders-florida-02.jpg",
+    "altGaleria": "Modern aluminum pergola installed beside pool by Florida contractors, featuring clean lines and durable outdoor construction.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Pergola moderna junto a piscina: cuelgan dos cables electricos negros sin rematar de la estructura, esperando las luminarias; es un detalle de instalacion a medio terminar.",
+    "discrepancias": []
+   },
+   {
+    "indice": 9,
+    "src": "/images/images/pergolas-1/custom-pergola-patio-cover-builders-florida-01.jpg",
+    "altGaleria": "Custom aluminum patio cover installation by Florida pergola builders, providing shaded outdoor living space with modern structure.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Cubierta a dos aguas adosada: manchas y marcas en el estuco, farol de pared con desgaste, valla de PVC con juntas irregulares y una hoja de planta metida en el encuadre a lo movil.",
+    "discrepancias": []
+   }
+  ],
+  "screens": [
+   {
+    "indice": 0,
+    "src": "/images/images/retractable-screen-10/retractable-screen-installation-contractors-florida-10.jpg",
+    "altGaleria": "Custom motorized retractable screen system enclosing an outdoor kitchen and dining space, designed to enhance comfort, privacy, and year-round outdoor living in Florida residential properties.",
+    "veredicto": "generada_o_stock",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "Generada: a traves de la malla flota una campana extractora sobre la barbacoa que NO existe bajo el faldon de la pantalla, donde la misma pared solo tiene salpicadero de granito; ademas el panel derecho baja hasta el suelo sin guia lateral y su fichero de origen es 'Generated Image December 21, 2025 - 1_46PM (1).jpeg'.",
+    "discrepancias": []
+   },
+   {
+    "indice": 1,
+    "src": "/images/images/retractable-screen-9/retractable-screen-installation-contractors-florida-09.jpg",
+    "altGaleria": "Modern outdoor living space featuring a louvered roof pergola with integrated motorized retractable screens, providing shade, insect protection, and weather control for South Florida homes.",
+    "veredicto": "generada_o_stock",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "Generada: las lamas de los dos vanos del techo se cruzan con inclinaciones que no resuelven y pasan por encima de la viga perimetral en vez de morir en ella, las tres pantallas caen a tres alturas distintas sin motivo, y su fichero de origen es 'Generated Image December 21, 2025 - 1_44PM.jpeg'.",
+    "discrepancias": []
+   },
+   {
+    "indice": 2,
+    "src": "/images/images/retractable-screen-8/retractable-screen-installation-contractors-florida-8.jpg",
+    "altGaleria": "High-end pergola system with motorized retractable screens designed for luxury outdoor living in modern Florida homes.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Foto de movil real de 2021 (origen 'WhatsApp Image 2021-10-06'): cubo de basura de acero dejado en medio del porche, trastos sobre la encimera, una hoja en el fondo de la piscina y mobiliario descabalado (mimbre mas madera).",
+    "discrepancias": []
+   },
+   {
+    "indice": 3,
+    "src": "/images/images/retractable-screen-7/retractable-screen-installation-contractors-florida-7.jpg",
+    "altGaleria": "Professionally installed motorized patio screen system providing insect protection, shade, and enhanced comfort for South Florida outdoor living spaces.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Foto de movil real: puro a medio fumar con ceniza en el cenicero de la mesa, adoquines desiguales y manchados, tejado del vecino y muro perimetral blanco al fondo, y reflejos del entorno en la tela de la pantalla.",
+    "discrepancias": []
+   },
+   {
+    "indice": 4,
+    "src": "/images/images/retractable-screen-6/retractable-screen-installation-contractors-florida-6.jpg",
+    "altGaleria": "Motorized screen enclosure protecting an outdoor kitchen and dining area, ideal for Florida homeowners looking to extend outdoor living year-round.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Foto de movil real, del mismo dia y 28 s antes que la 3: cable de corriente negro colgando suelto por la pared derecha, etiqueta de tienda aun puesta en la funda de la barbacoa y camara de seguridad en el techo.",
+    "discrepancias": []
+   },
+   {
+    "indice": 5,
+    "src": "/images/images/retractable-screen-5/retractable-screen-installation-contractors-florida-5.jpg",
+    "altGaleria": "Custom motorized retractable screens installed on a backyard patio, creating a comfortable outdoor environment for families in South Florida.",
+    "veredicto": "dudosa",
+    "usable": false,
+    "confianza": "media",
+    "motivo": "La foto es real (moire autentico en la malla, horno de pizza desgastado en primer plano, tela de proteccion tirada dentro), pero su fichero de origen es 'ABC-Very-Nice-Pergola-Bronze-11-1200x797.jpg', un recorte de WordPress con marca ajena: parece sacada de la web de otra empresa, no del movil del cliente.",
+    "discrepancias": []
+   },
+   {
+    "indice": 6,
+    "src": "/images/images/retractable-screen-4/retractable-screen-installation-contractors-florida-4.jpg",
+    "altGaleria": "Exterior motorized retractable screen system designed for sun control, privacy, and weather protection on patios and outdoor kitchens in Florida homes.",
+    "veredicto": "dudosa",
+    "usable": false,
+    "confianza": "media",
+    "motivo": "La foto es real (bajante de pluviales, manchas de escorrentia en los adoquines, logotipo del fabricante en el perfil inferior), pero su fichero de origen es 'ABC-POOL-1-1200x798.jpg', otro recorte de WordPress con la misma marca ajena: procedencia de terceros sin verificar.",
+    "discrepancias": []
+   },
+   {
+    "indice": 7,
+    "src": "/images/images/retractable-screen-3/retractable-screen-installation-contractors-florida-3.jpg",
+    "altGaleria": "Contemporary pergola with integrated motorized retractable screens, enhancing comfort and usability of outdoor spaces in South Florida residential properties.",
+    "veredicto": "generada_o_stock",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "Sujeto equivocado: no es Florida sino norte de Europa — casa de ladrillo visto con cubierta a dos aguas muy inclinada y chimenea metalica, setos de carpe recortados, estanque formal con pasaderas de basalto y luz rasante nortena. Es foto de catalogo del fabricante, no obra del cliente.",
+    "discrepancias": []
+   },
+   {
+    "indice": 8,
+    "src": "/images/images/retractable-screen-2/retractable-screen-installation-contractors-florida-2.jpg",
+    "altGaleria": "High-quality motorized retractable screens installed on a residential lanai, providing shade, privacy, and insect protection for outdoor living spaces in Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): la reconoce como obra propia. Manda sobre el panel.",
+    "discrepancias": [
+     {
+      "lente": "Detalle constructivo",
+      "veredicto": "dudosa",
+      "motivo": "La construccion es impecable y le doy la razon en eso: gran angular de movil real, columnas y jambas coherentes, guias laterales visibles, correderas y cerramiento montables. Pero su veredicto de 'alta' no aguanta por procedencia, y el dato esta dentro del fichero: /Users/senavia/Sites/mrandmrs-outdoor-living/public/images/images/retractable-screen-2/retractable-screen-installation-contractors-florida-2.jpg es LA UNICA de las diez que lleva el bloque photoshop:Instructions=\"FBMD01000a9001000058ba0000466d02005a990200acd10200955f0600fc530a0025760a00eea50a0034e30a00b1430f00\". FBMD es la huella que Facebook estampa al procesar/descargar una imagen: este JPEG paso por Facebook antes de llegar al repo, no vino de la camara ni del catalogo del fotografo. Verificado con grep sobre las diez: file-2 la tiene, las otras nueve no. Puede ser el Facebook del propio cliente o el de un tercero, y el fichero no lo resuelve. Es exactamente la misma clase de duda de procedencia por la que usted bajo las 5 y 6 a 'dudosa' (recortes de WordPress con marca ajena), solo que aqui no la busco: su motivo para la 8 fue puramente visual (la S.Pellegrino, el mobiliario de forja). Por consistencia con su propio criterio, 8 es dudosa, no obra_real alta."
+     }
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Foto de movil real con distorsion de gran angular (paredes y techo curvados): botella de S.Pellegrino a medias sobre la mesa, mobiliario de forja antiguo con cojines gastados, travertino manchado y valla infantil de piscina."
+   },
+   {
+    "indice": 9,
+    "src": "/images/images/retractable-screen-1/retractable-screen-installation-contractors-florida-1.jpg",
+    "altGaleria": "Modern residential patio featuring a motorized retractable screen system designed to protect outdoor living areas from insects, sun, and weather. Ideal solution for pool patios in South Florida homes.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Reportaje profesional de obra real en dia nublado: arruga marcada en la tela del panel superior izquierdo, foco y camara de seguridad atornillados a la viga, y tubo del motor con sus soportes a la vista.",
+    "discrepancias": []
+   }
+  ],
+  "light": [
+   {
+    "indice": 0,
+    "src": "/images/images/light-10/smart-soffit-led-lighting-installation-contractors-florida-10.jpg",
+    "altGaleria": "Custom smart soffit LED lighting installation providing elegant exterior illumination and smart home integration in North and South Florida.",
+    "veredicto": "no_es_del_cliente",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): no tiene fotografia de soffit LED, asi que no es obra suya.",
+    "discrepancias": [
+     {
+      "lente": "Física y luz",
+      "veredicto": "dudosa",
+      "motivo": "La luminaria SÍ está: en los dos hastiales se ve el perfil continuo del canal con las bombillas alojadas y el paso acortándose al alejarse, que es escorzo correcto. Y el reproche de color compara zonas que no se corresponden: la tira corre un DEGRADADO RGB (cian → blanco → magenta → azul → cian) y cada zona de pared coincide con SU tramo. Bajo el dintel del porche las bombillas son turquesa y la mampostería contigua está lavada de turquesa; el morado procede del tramo magenta del faldón derecho, no de esas turquesa. Refuerzo físico fuerte: el relieve de la piedra está modelado bombilla a bombilla —cada canto con la cara superior iluminada y la inferior en sombra, cientos de facetas consistentes con la fuente de arriba— y hay tres iluminantes independientes con su propio cono (tira RGB, plafón cálido sobre la puerta, luz interior cálida por los laterales)."
+     }
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "En el alero izquierdo la tira de bombillas se deshace en un borrón azul sin luminaria ni bajante, y el lavado morado de la pared no corresponde al turquesa de las bombillas que lo iluminan; el fichero original se llamaba \"Generated Image December 19, 2025 - 8_55PM.jpeg\"."
+   },
+   {
+    "indice": 1,
+    "src": "/images/images/light-9/smart-soffit-led-lighting-installation-contractors-florida-09.jpg",
+    "altGaleria": "Energy-efficient smart soffit LED lighting highlighting roof architecture and entrances on a Florida home exterior.",
+    "veredicto": "no_es_del_cliente",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): no tiene fotografia de soffit LED, asi que no es obra suya.",
+    "discrepancias": [
+     {
+      "lente": "Física y luz",
+      "veredicto": "dudosa",
+      "motivo": "El \"paso que cambia a mitad del recorrido\" es escorzo: la hilera gira del plano del alero al canto vertical de la buhardilla, que se aleja de la cámara y se mira desde abajo, así que un paso físico constante se proyecta comprimido — el cambio ocurre justo en la transición de plano, que es donde debe ocurrir. Y la fotometría de toda la escena es correcta: gradiente limpio de dos iluminantes (ámbar pegado a las bombillas, gris azulado del cielo donde no llegan) con caída por distancia sobre el estuco; la ménsula bajo el alero está iluminada por su cara superior y en sombra por la inferior; el alero proyecta su banda de sombra sobre el muro; y el vidrio refleja especularmente el cielo azul y NO el ámbar, que es lo que corresponde a ese ángulo. El argumento del follaje descansa en una fecha de captura que sale de un nombre de fichero que no consta en el repositorio."
+     }
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Una hilera de bombillas baja en vertical por la esquina de la buhardilla sin cable, canal ni clip visible y con el paso cambiando a mitad del recorrido; el original era \"Generated Image December 19, 2025 - 8_53PM.jpeg\" y el follaje es de verano pese a llevar fecha de captura del 19 de diciembre."
+   },
+   {
+    "indice": 2,
+    "src": "/images/images/light-8/smart-soffit-led-lighting-installation-contractors-florida-08.jpg",
+    "altGaleria": "High-end residential project featuring smart LED soffit lighting with custom color options, installed by expert lighting contractors in Florida.",
+    "veredicto": "no_es_del_cliente",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): no tiene fotografia de soffit LED, asi que no es obra suya.",
+    "discrepancias": [
+     {
+      "lente": "Física y luz",
+      "veredicto": "dudosa",
+      "motivo": "La \"placa de pseudoletras\" mide unos 30 x 10 px en un original de 1080 de ancho que abarca una casa entera: a esa escala ninguna combinación de óptica y sensor resolvería letras, así que la ilegibilidad es límite de resolución, no texto deformado por un generador. Las \"dos filas que se desalinean\" son tiras de PLANOS DE CUBIERTA DISTINTOS —alero del garaje, alero del cuerpo bajo, faldón y retorno del mirador—, que por geometría no pueden alinearse en proyección. Y la física sostiene el conjunto: cada paño está más claro justo bajo SU tira y cae hacia abajo, y la pilastra entre las dos puertas de garaje está azul-fría en la cara que mira a la tira y rosa-cálida en la que mira a una fuente cálida fuera de cuadro. Dos iluminantes de temperatura distinta asignados correctamente cara por cara es difícil de falsificar y aquí está bien resuelto."
+     }
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "La placa blanca sobre la puerta del garaje es un borrón de pseudoletras ilegibles (texto deformado) y encima la tira se duplica en dos filas que se desalinean sin canal que las sostenga; original \"Generated Image December 19, 2025 - 8_52PM.jpeg\"."
+   },
+   {
+    "indice": 3,
+    "src": "/images/images/light-7/smart-soffit-led-lighting-installation-contractors-florida-07.jpg",
+    "altGaleria": "Smart soffit LED lighting installed along roof edges to enhance nighttime curb appeal and exterior safety for Florida residential properties.",
+    "veredicto": "no_es_del_cliente",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): no tiene fotografia de soffit LED, asi que no es obra suya.",
+    "discrepancias": [
+     {
+      "lente": "Física y luz",
+      "veredicto": "dudosa",
+      "motivo": "Los tres reproches son artefactos de perspectiva y de reflexión, no de generación. La hilera \"se funde en una mancha blanca\" precisamente donde el faldón se aleja de la cámara: el escorzo comprime el paso hasta que los halos se solapan, mientras el mismo hilo visto casi de frente conserva el paso ancho — un paso físico constante se proyecta variable. Y la bombilla \"fuera de línea\" no es una bombilla: en los vidrios hay REFLEJOS especulares de la tira, puntos verdes, rojos y blancos dentro de los paños, más tenues que las fuentes directas y en posiciones DISTINTAS en cada ventana según la orientación de su plano. Reflejos coherentes y distintos por plano de vidrio son de lo que peor sale generado, y aquí están. La hilera termina donde acaba la fascia, junto al codo de la bajante."
+     }
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "En el extremo derecho del alero del garaje la hilera se funde en una mancha blanca y termina en el aire sobre la bajante, con el paso entre bombillas irregular y una fuera de línea; original \"Generated Image December 19, 2025 - 8_51PM.jpeg\"."
+   },
+   {
+    "indice": 4,
+    "src": "/images/images/light-6/smart-soffit-led-lighting-installation-contractors-florida-06.jpg",
+    "altGaleria": "Modern two-story home with programmable smart soffit LED lighting designed for energy-efficient exterior lighting in Florida.",
+    "veredicto": "no_es_del_cliente",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): no tiene fotografia de soffit LED, asi que no es obra suya.",
+    "discrepancias": [
+     {
+      "lente": "Física y luz",
+      "veredicto": "dudosa",
+      "motivo": "Las \"columnas verticales de borde duro\" son exactamente lo que produce luz rasante sobre un muro de board-and-batten: cada listón vertical sobresale y proyecta su sombra recta hacia abajo, de ahí las bandas alternas de borde neto. Arrancan en el faldón (donde está la fuente), se abren en abanico desde un punto y se desvanecen hacia abajo por distancia. El \"foco que no existe\" es la propia hilera del faldón justo encima. Y el color sí coincide por tramos: donde las bombillas son rojas las bandas de debajo son rojas, donde son verdes son verdes, y eso se cumple en los dos faldones del hastial central, en el alero del ala izquierda y en el del garaje. Además conviven fuentes independientes bien resueltas: balizas cálidas de jardín con su cono y su sombra, y un plafón bajo el pórtico de entrada."
+     }
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Los lavados rojo y verde caen sobre el board-and-batten como columnas verticales de borde duro sin foco que las produzca, y el color del lavado no coincide con el de las bombillas del alero que tiene encima; original \"Generated Image December 19, 2025 - 8_50PM.jpeg\"."
+   },
+   {
+    "indice": 5,
+    "src": "/images/images/light-5/smart-soffit-led-lighting-installation-contractors-florida-05.jpg",
+    "altGaleria": "Exterior smart soffit LED lighting system illuminating rooflines and garage areas, ideal for custom homes in North and South Florida.",
+    "veredicto": "no_es_del_cliente",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): no tiene fotografia de soffit LED, asi que no es obra suya.",
+    "discrepancias": [
+     {
+      "lente": "Física y luz",
+      "veredicto": "dudosa",
+      "motivo": "Dos errores. (1) El canal SÍ se ve: un perfil extruido continuo recorre el faldón con las bombillas ALOJADAS dentro y el bus oscuro visible entre ellas; no son bloques posados al aire. (2) El ejemplo de color está mal registrado. Sobre un faldón inclinado el charco no cae en vertical bajo la bombilla, cae abajo-y-a-la-izquierda siguiendo la pendiente. La mancha naranja está bajo la bombilla ROJA, no bajo la azul; bajo la azul lo que hay es verde-azulado. Verde→verde, azul/magenta→violeta, ámbar→cálido: la correspondencia se sostiene una vez corregido el desplazamiento. Refuerzo: en el faldón izquierdo, en sombra, cada bombilla deja sobre la tabla un charco de SU color (la amarilla amarillo, la magenta magenta), que es iluminación local correcta. Y el lavado sigue los surcos y los solapes del revestimiento con microsombra coherente."
+     }
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Las bombillas son bloques rectangulares posados sobre el filo del alero sin carcasa ni cable, y las manchas pastel del frontón son borrones difusos cuyo color no casa con la bombilla que tienen justo encima (bombilla azul, mancha naranja); original \"Generated Image December 19, 2025 - 8_48PM.jpeg\"."
+   },
+   {
+    "indice": 6,
+    "src": "/images/images/light-4/smart-soffit-led-lighting-installation-contractors-florida-04.jpg",
+    "altGaleria": "Residential property featuring color-changing smart soffit LED lights installed by professional contractors in Florida for accent and security lighting.",
+    "veredicto": "no_es_del_cliente",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): no tiene fotografia de soffit LED, asi que no es obra suya.",
+    "discrepancias": [
+     {
+      "lente": "Física y luz",
+      "veredicto": "dudosa",
+      "motivo": "El \"lavado rosa uniforme\" es suma aditiva, no una incoherencia: a distancia los charcos de una tira densa multicolor (rojo, blanco, ámbar, azul, verde) se solapan y tienden a blanco-rosado, y el estuco es ya beige cálido. En campo cercano NO es uniforme: en el techo del porche, justo bajo la tira, se ven escalopes individuales de color, y en la fascia del garaje se distinguen manchas rojas y azuladas sueltas. Es decir, color por bombilla cerca y mezcla al alejarse, que es la óptica correcta. Las buhardillas tampoco son clones: cada una está vista con escorzo distinto (la izquierda enseña su costado izquierdo, la central casi de frente, la derecha el contrario) y las cuadrículas de las ventanas convergen en sentidos opuestos. El vidrio tiene interior real: persianas a distinta altura en cada hoja, objetos en el alféizar y el respaldo de una silla."
+     }
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Las tres buhardillas son clones (mismo dintel, misma jamba, mismo alféizar repetidos), la tira de la buhardilla central desciende por el faldón y se disuelve sin remate, y el lavado rosa uniforme no corresponde a bombillas multicolor; original \"Generated Image December 19, 2025 - 8_46PM.jpeg\"."
+   },
+   {
+    "indice": 7,
+    "src": "/images/images/light-3/smart-soffit-led-lighting-installation-contractors-florida-03.jpg",
+    "altGaleria": "Luxury home with warm white smart soffit LED lighting highlighting architectural details and improving nighttime visibility in Florida residences.",
+    "veredicto": "generada_o_stock",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "Las bombillas están incrustadas en las vigas de la cercha decorativa del frontón, en el aire y sin cable, y el paño de shingle bajo la cercha aparece bañado desde arriba por una fuente que no existe en la imagen; original \"Generated Image December 19, 2025 - 8_45PM.jpeg\".",
+    "discrepancias": []
+   },
+   {
+    "indice": 8,
+    "src": "/images/images/light-2/smart-soffit-led-lighting-installation-contractors-florida-02.jpg",
+    "altGaleria": "Close-up of smart LED soffit lighting installation under roof eaves, providing modern exterior illumination for homes in North and South Florida.",
+    "veredicto": "no_es_del_cliente",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): no tiene fotografia de soffit LED, asi que no es obra suya.",
+    "discrepancias": [
+     {
+      "lente": "Física y luz",
+      "veredicto": "dudosa",
+      "motivo": "Los tres motivos fallan por óptica. (1) El \"mismo destello de estrella clonado\" es difracción de diafragma: la produce el OBJETIVO, no el sujeto, así que aparece sobre TODA fuente puntual brillante del encuadre con el mismo número de rayos y la misma orientación angular, escalada solo por brillo. Que sean idénticos es la prueba de que hay una cámara real detrás; lo anómalo sería que variaran. Control interno dentro de esta misma serie: en la imagen 7 hay UNA sola bombilla con estrella de ~12 rayos y decenas de bombillas igual de brillantes a 200 px sin ninguna — eso sí es ópticamente imposible, y es justo lo que aquí no pasa. (2) El cielo malva-magenta no es una \"puesta de sol imposible\": es un crepúsculo civil con el gradiente correcto, más claro y cálido abajo hacia el poniente y azul en altura, con una nube real recortada. (3) La bajante no sale \"del centro de la fascia\": arranca con codo en la esquina del alero y baja por la CARA del muro, que es como se resuelve una bajante en un hastial cuando el canalón está en el faldón de vuelta. Además el sofito sobre cada bombilla lleva su escalope caliente y el revestimiento de abajo cae por distancia: fotometría correcta."
+     }
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Detalle constructivo imposible: la bajante sale del centro de la fascia y baja por delante del sofito sin canalón que la alimente; además cada bombilla lleva el mismo destello de estrella clonado, no hay cable ni clip en ninguna, y el cielo malva-magenta es el mismo tipo de puesta de sol imposible del precedente R22; original \"Generated Image December 19, 2025 - 8_43PM.jpeg\"."
+   },
+   {
+    "indice": 9,
+    "src": "/images/images/light-1/smart-soffit-led-lighting-installation-contractors-florida-01.jpg",
+    "altGaleria": "Smart soffit LED lighting installed on a residential home exterior in Florida, enhancing curb appeal, energy efficiency, and smart outdoor lighting design.",
+    "veredicto": "no_es_del_cliente",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): no tiene fotografia de soffit LED, asi que no es obra suya.",
+    "discrepancias": [
+     {
+      "lente": "Física y luz",
+      "veredicto": "dudosa",
+      "motivo": "El reproche central —\"bombillas blancas y ámbar que emiten verde\"— se cae al ampliar. Las hileras NO son blancas: van por TRAMOS, rojo y verde, y cada lavado está debajo de SU tramo. Faldón izquierdo del hastial principal: tramo verde arriba → paño verde debajo. Faldón derecho: tramo rojo → paño naranja-rojo debajo. Lo mismo en el alero del porche (izquierda) y en el del garaje. Que algunos núcleos se vean blancos es recorte de altas luces: en una exposición nocturna la fuente puntual satura a blanco mientras el reflejo difuso sobre el revestimiento conserva el tono — el color de la fuente y el de la luz emitida no tienen por qué coincidir EN LA FOTO. Los escalopes tienen caída elíptica correcta desde cada bombilla. Y los \"tres frontones que no encajan\" comparten pendiente, las líneas de alero son horizontales y coherentes y los retornos de fascia rematan donde deben: es un apilado de hastiales normal."
+     }
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Manchones verdes enormes y saturados sobre el lap siding proyectados por bombillas que en la propia foto se ven blancas y ámbar —el color de la fuente no casa con el de la luz que emite— y la pila de tres frontones centrales no encaja geométricamente entre sí; original \"Generated Image December 19, 2025 - 8_41PM.jpeg\"."
+   }
+  ],
+  "louvered": [
+   {
+    "indice": 0,
+    "src": "/images/images/motorized-louvered-roof-10/motorized-louvered-roof-installers-florida-10.jpg",
+    "altGaleria": "Large motorized louvered roof covering patio seating area, offering flexible shade and rain protection for Florida homes.",
+    "veredicto": "generada_o_stock",
+    "usable": false,
+    "confianza": "media",
+    "motivo": "Foto real pero fuera de mercado: siding horizontal de fibrocemento, conifera de aguja fina arriba a la izquierda y cesped de temporada fria con paja marron; no es Florida, donde el resto del set es estuco, teja de barril y St. Augustine.",
+    "discrepancias": []
+   },
+   {
+    "indice": 1,
+    "src": "/images/images/motorized-louvered-roof-9/motorized-louvered-roof-installers-florida-09.jpg",
+    "altGaleria": "Louvered roof installation with modern frame and rotating panels, built for shade control and outdoor comfort.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Parrilla empotrada con calcomania de advertencia de gas LP, nevera de acero inoxidable, deck de madera con junta al concreto y teja de barril del vecino entre las palmas.",
+    "discrepancias": []
+   },
+   {
+    "indice": 2,
+    "src": "/images/images/motorized-louvered-roof-8/motorized-louvered-roof-installers-florida-08.jpg",
+    "altGaleria": "Motorized pergola with adjustable louvers over pool deck, enhancing outdoor living and sun management in Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): la reconoce como obra propia. Manda sobre el panel.",
+    "discrepancias": [
+     {
+      "lente": "Detalle constructivo",
+      "veredicto": "generada_o_stock",
+      "motivo": "El fondo es una foto real (el carrete rojo, la cancha, los setos, el aspersor verde), pero la pergola que se monta encima no es un objeto construible. Cinco puntos concretos, todos verificados ampliando el original (1250x682): (1) ANCLAJE INEXISTENTE. Los postes mueren directamente sobre la cara del adoquin: sin placa base, sin pernos, sin zapata y — decisivo — sin un solo adoquin cortado alrededor. En la ampliacion del pie del poste central y del derecho las juntas del adoquinado pasan enteras por debajo del perfil, como si el poste se hubiera apoyado encima del pavimento ya terminado. Una pergola de lamas EXENTA de este tamano en Florida es una vela: va atornillada con placa base a zapata de hormigon y el adoquin siempre se recorta o se ve el dado. (2) CERO TORNILLERIA EN TODA LA ESTRUCTURA. La union poste-viga es un ingle perfecto, continuo, sin brida, sin escuadra, sin perno ni tapa, y el poste ademas queda metido hacia dentro de la esquina, o sea que la esquina vuela sobre un tubo somero sin ningun herraje que transmita el momento. En las otras nueve fotos del set la tornilleria se ve sin buscarla: filas de pernos en la 0, en la 4 (placas de empalme en los extremos de viga), en la 5 (canto superior de la viga), en la 8 (cabeza del poste) y en la 9 (esquina del bastidor). (3) NO HAY DESAGUE. Una cubierta de lamas cerrada es una cubierta estanca: las vigas perimetrales son canalon y al menos un poste hace de bajante. En esta unidad no hay escupidor, ni codo, ni salida en ningun poste ni en ninguna viga; el agua no tiene por donde irse. En la 3 se ve el escupidor en el poste, en la 4 el bajante embutido con su codo al pie, en la 5 el desague en la columna. (4) NO HAY MOTOR. Es una toma cenital, de dron: la caja del accionamiento sobre la viga se veria si existiera. En la 0 se ven los cilindros de los actuadores y el tubo de cableado sobre la viga; en la 5 se ve la caja gris del motor. Aqui, nada. (5) SOMBRA DE CONTACTO AUSENTE. Ni sobre el adoquin ni sobre el cesped hay oscurecimiento donde el poste apoya. El carrete de cable, que es lo que convencio al otro analista, pertenece al patio, no a la pergola: es exactamente la trampa de un render compuesto sobre foto real."
+     }
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Carrete de extension electrica rojo con el cable tendido sobre los adoquines: sobra de la instalacion recien terminada, mas cortes irregulares de adoquin junto al jardin."
+   },
+   {
+    "indice": 3,
+    "src": "/images/images/motorized-louvered-roof-7/motorized-louvered-roof-installers-florida-07.jpg",
+    "altGaleria": "Black aluminum louvered roof system covering seating area by water, designed for durability and weather resistance.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Muebles tapados con funda protectora a la izquierda, camara de seguridad en la pared, pasamanos de piscina y cenefa de mosaico decorativo; sombras coherentes con el sol alto.",
+    "discrepancias": []
+   },
+   {
+    "indice": 4,
+    "src": "/images/images/motorized-louvered-roof-6/motorized-louvered-roof-installers-florida-06.jpg",
+    "altGaleria": "Motorized louvered roof installed on modern property, providing adjustable sunlight control and contemporary outdoor design.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): la reconoce como obra propia. Manda sobre el panel.",
+    "discrepancias": [
+     {
+      "lente": "Física y luz",
+      "veredicto": "generada_o_stock",
+      "motivo": "La imagen tiene dos iluminaciones incompatibles. (1) NO HAY ESCALÓN DE SOMBRA bajo la pérgola: medido sobre el travertino, dentro de la huella del techo RGB 178/177/183 y fuera de ella 175/177/185 — idénticos. La misma medición en la imagen 2 da 214 al sol contra 138 en sombra, o sea que el método sí detecta sombras cuando existen. (2) NADA proyecta sombra sobre el deck: ni los cuatro postes, ni el techo, ni el arco de madera de la hamaca que cruza el encuadre entero a ras de piso, ni el juego de comedor, ni la maceta blanca del borde del lago (que además no tiene ni terminador de forma ni sombra de contacto). Con contraste forzado el deck sale blanco uniforme de lado a lado. (3) El fondo sí está al sol y con OTRA luz: el estuco de las casas de la orilla opuesta mide R101 G90 B53 y el césped R104 G90 B38 — luz cálida y baja (B−R de −47 a −67) — mientras el deck en primer plano es neutro-frío (B−R de +6 a +10) y un 70 % MÁS brillante que ese estuco iluminado, de albedo parecido. Eso es imposible: si el deck estuviera en sombra abierta sería más oscuro que el estuco al sol; si le llegara ese sol bajo, habría sombras largas y cálidas de los postes y de la hamaca. No lo explica la bruma atmosférica, que aclara y azulea lo lejano, aquí ocurre lo contrario. Es un primer plano renderizado/compuesto sobre un fondo fotográfico, o una imagen generada."
+     }
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Bajante de desague integrado en la columna, guirnalda de luces con catenaria natural y casas de Florida al otro lado del lago; mobiliario de sling desparejado."
+   },
+   {
+    "indice": 5,
+    "src": "/images/images/motorized-louvered-roof-5/motorized-louvered-roof-installers-florida-05.jpg",
+    "altGaleria": "Custom patio cover with integrated LED lighting and motorized louvers for day and night outdoor comfort in Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Se ve la caja del motor sobre la viga y el escupidor de desague en la columna; sombra de palma proyectada en la viga y juntas de cesped nuevo en tiras.",
+    "discrepancias": []
+   },
+   {
+    "indice": 6,
+    "src": "/images/images/motorized-louvered-roof-4/motorized-louvered-roof-installers-florida-04.jpg",
+    "altGaleria": "Modern aluminum louvered roof attached to luxury home, offering shade, ventilation, and sleek outdoor coverage.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "media",
+    "motivo": "Foto de movil plana y a contraluz, con teja de barril del vecino asomando sobre el seto, mosquiteros oscuros y aplique bajo el techo; es la mas limpia del set, sin desgaste visible.",
+    "discrepancias": []
+   },
+   {
+    "indice": 7,
+    "src": "/images/images/motorized-louvered-roof-3/motorized-louvered-roof-installers-florida-03.jpg",
+    "altGaleria": "Adjustable louvered roof panels allowing airflow and rain protection, ideal for poolside patios in South Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Pavimento mojado despues de la lluvia, frondas de palma secas y marrones, desague embutido en el piso y paneles solares en el techo del vecino.",
+    "discrepancias": []
+   },
+   {
+    "indice": 8,
+    "src": "/images/images/motorized-louvered-roof-2/motorized-louvered-roof-installers-florida-02.jpg",
+    "altGaleria": "White motorized louvered roof system covering outdoor dining area, designed for sun control and modern backyard living in Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Juegos de comedor desparejados, parches de cesped desgastado junto al patio, bocinas y ventiladores ya instalados bajo el porche existente.",
+    "discrepancias": []
+   },
+   {
+    "indice": 9,
+    "src": "/images/images/motorized-louvered-roof-1/motorized-louvered-roof-installers-florida-01.jpg",
+    "altGaleria": "Motorized louvered roof installed over patio, providing adjustable shade, ventilation, and weather protection in Florida homes.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Pelota de tenis olvidada en el cesped, cerca de madera blanca envejecida, persianas de aluminio viejas en las ventanas y adoquines manchados con un claro de tierra.",
+    "discrepancias": []
+   }
+  ],
+  "rooms": [
+   {
+    "indice": 0,
+    "src": "/images/images/patio-screen-10/patio-screen-enclosure-builders-contractors-north-south-florida-10.jpg",
+    "altGaleria": "Complete patio screen enclosure installation offering full protection, durability, and enhanced outdoor living for North and South Florida homeowners.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Misma casa que 1 y 2 (tejado de teja, barandilla blanca de aros, pavimento de marmol y piscina identicos); se ve el canto de la cremallera del zip-track y una caja de control en la pared.",
+    "discrepancias": []
+   },
+   {
+    "indice": 1,
+    "src": "/images/images/patio-screen-9/patio-screen-enclosure-builders-contractors-north-south-florida-09.jpg",
+    "altGaleria": "Patio screen enclosure built adjacent to a pool area, creating a protected and comfortable outdoor environment for Florida homes.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Al ampliar la esquina aparece un empalme de viga atornillado con la fila de tornillos visible, camara de seguridad en el soffit y bajante blanco sobre el estuco: herraje concreto, no inventado.",
+    "discrepancias": []
+   },
+   {
+    "indice": 2,
+    "src": "/images/images/patio-screen-8/patio-screen-enclosure-builders-contractors-north-south-florida-08.jpg",
+    "altGaleria": "Custom patio screen enclosure solution providing partial enclosure for enhanced airflow, shade, and insect control in Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Interior del mismo proyecto que 0 y 1: se reconocen la misma barandilla blanca de aros y la misma piscina; mobiliario de mimbre con cojines desiguales y desgastados.",
+    "discrepancias": []
+   },
+   {
+    "indice": 3,
+    "src": "/images/images/patio-screen-7/patio-screen-enclosure-builders-contractors-north-south-florida-07.jpg",
+    "altGaleria": "Flat roof patio screen enclosure designed for modern Florida homes, offering a clean architectural look and outdoor protection.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Recorte cuadrado de movil con HDR fuerte; cesped con calvas de tierra, sillas plegables de gravedad cero desparejadas, alfombra barata y guirnalda de bombillas dentro.",
+    "discrepancias": []
+   },
+   {
+    "indice": 4,
+    "src": "/images/images/patio-screen-6/patio-screen-enclosure-builders-contractors-north-south-florida-06.jpg",
+    "altGaleria": "Side patio screen enclosure installed to expand usable outdoor space and improve privacy for Florida homeowners.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Obra sobre casa vieja: estuco agrietado y parcheado, zocalo desconchado, ventana de aluminio antigua y una pertiga de piscina turquesa apoyada en el rincon.",
+    "discrepancias": []
+   },
+   {
+    "indice": 5,
+    "src": "/images/images/patio-screen-5/patio-screen-enclosure-builders-contractors-north-south-florida-05.jpg",
+    "altGaleria": "Modern patio screen enclosure featuring a sleek black aluminum frame, enhancing outdoor living areas across North and South Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "media",
+    "motivo": "Foto muy pulida, pero dentro se ven barbacoa, un manometro en la pared, sillas desparejadas y borde de grava volcanica; casas de vecinos reales al fondo.",
+    "discrepancias": []
+   },
+   {
+    "indice": 6,
+    "src": "/images/images/patio-screen-4/patio-screen-enclosure-builders-contractors-north-south-florida-04.jpg",
+    "altGaleria": "Durable covered patio screen enclosure designed to protect outdoor spaces from insects and weather in Florida residential homes.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Registro de PVC asomando al pie del muro, aplique de pared, franjas de corte del cesped y casa del vecino con siding a la derecha.",
+    "discrepancias": []
+   },
+   {
+    "indice": 7,
+    "src": "/images/images/patio-screen-3/patio-screen-enclosure-builders-contractors-north-south-florida-03.jpg",
+    "altGaleria": "Custom-built patio screen enclosure with pergola-style roof structure, providing shade and outdoor comfort for North and South Florida homeowners.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "media",
+    "motivo": "Las sombras de las lamas del techo caen coherentes sobre solera y escalon; hay murete de ladrillo, tubo de riego y grava. Textura algo sobreprocesada, pero la estructura cuadra.",
+    "discrepancias": []
+   },
+   {
+    "indice": 8,
+    "src": "/images/images/patio-screen-2/patio-screen-enclosure-builders-contractors-north-south-florida-02.jpg",
+    "altGaleria": "Professional patio screen enclosure installation designed to improve comfort, airflow, and insect protection for Florida residential properties.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Casa de comunidad de jubilados de Florida: coche y cochera al fondo derecha, toldo del vecino a la izquierda y losa de hormigon nueva sin envejecer junto al lanai.",
+    "discrepancias": []
+   },
+   {
+    "indice": 9,
+    "src": "/images/images/patio-screen-1/patio-screen-enclosure-builders-contractors-north-south-florida-01.jpg",
+    "altGaleria": "Custom patio screen enclosure built with durable aluminum framing, ideal for protecting outdoor living spaces in North and South Florida homes.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Hojarasca en el suelo, tubo de drenaje corrugado negro en el margen inferior izquierdo y valla de madera blanca desgastada, con contraluz de sol bajo.",
+    "discrepancias": []
+   }
+  ],
+  "enclosures": [
+   {
+    "indice": 0,
+    "src": "/images/images/pool-screen-10/pool-screen-enclosure-builders-florida-10.jpg",
+    "altGaleria": "Luxury pool and spa screen enclosure with premium finishes built by Florida pool enclosure construction experts.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Estructura coherente (cables tensores, super gutter, montantes); las dos caídas de agua tienen espuma y aireación DISTINTA en cada lado, no un arco clonado, y las sombras de la malla sobre el travertino cuadran con el sol.",
+    "discrepancias": []
+   },
+   {
+    "indice": 1,
+    "src": "/images/images/pool-screen-9/pool-screen-enclosure-builders-florida-09.jpg",
+    "altGaleria": "Spacious pool screen enclosure with lounge seating built by trusted pool enclosure installers in South Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Gran angular de inmobiliaria con columna de la casa recortando el encuadre, sombrilla plegada, mobiliario desparejado y bandas de mosaico gastadas en el deck; nada de perfección de catálogo.",
+    "discrepancias": []
+   },
+   {
+    "indice": 2,
+    "src": "/images/images/pool-screen-8/pool-screen-enclosure-builders-florida-08.jpg",
+    "altGaleria": "Custom pool enclosure with curved pool design and patio installed by expert pool screen contractors in Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Casa antigua de madera con escalera exterior, deck de hormigón pintado con manchas y parches, mochila tirada junto a la piscina y sillas de plástico dispares: imperfecciones propias de obra real.",
+    "discrepancias": []
+   },
+   {
+    "indice": 3,
+    "src": "/images/images/pool-screen-7/pool-screen-enclosure-builders-florida-07.jpg",
+    "altGaleria": "Lakefront pool screen enclosure designed for airflow and views by licensed pool enclosure builders in Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Toma al anochecer tipo flambient con interior encendido; el reflejo de las vigas del cerramiento en el agua coincide con la geometría real de la cubierta y la teja.",
+    "discrepancias": []
+   },
+   {
+    "indice": 4,
+    "src": "/images/images/pool-screen-6/pool-screen-enclosure-builders-florida-06.jpg",
+    "altGaleria": "Pool screen enclosure with covered living space and ceiling fans, built by professional builders in North Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Cerramiento panorámico recién terminado: al ampliar la viga se ve la placa de empalme atornillada (retícula de tornillos) y el cable tensor diagonal, herraje real de un panoramic screen, no inventado.",
+    "discrepancias": []
+   },
+   {
+    "indice": 5,
+    "src": "/images/images/pool-screen-5/pool-screen-enclosure-builders-florida-05.jpg",
+    "altGaleria": "White aluminum pool screen enclosure protecting pool and patio, installed by Florida pool enclosure contractors.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Vivienda antigua con toldo retráctil descolorido, teja desgastada, pasamanos y bordillo de ladrillo con marcas de uso, setos irregulares y estatuas del propietario.",
+    "discrepancias": []
+   },
+   {
+    "indice": 6,
+    "src": "/images/images/pool-screen-4/pool-screen-enclosure-builders-florida-04.jpg",
+    "altGaleria": "High-end pool cage enclosure with spa and lounge area built by experienced pool screen installers in Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Farolillos colgados de la propia estructura, plantas de jardín sin recortar y lanai con mobiliario dispar; las sombras de la malla sobre el travertino siguen una sola dirección de sol.",
+    "discrepancias": []
+   },
+   {
+    "indice": 7,
+    "src": "/images/images/pool-screen-3/pool-screen-enclosure-builders-florida-03.jpg",
+    "altGaleria": "Modern pool screen enclosure overlooking lake views, designed and installed by pool enclosure contractors in Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Aireador de lago comunitario al fondo, cerramiento del vecino entrando por la izquierda y tumbona cortada por el borde del encuadre: escena real sin limpiar.",
+    "discrepancias": []
+   },
+   {
+    "indice": 8,
+    "src": "/images/images/pool-screen-2/pool-screen-enclosure-builders-florida-02.jpg",
+    "altGaleria": "Custom pool screen enclosure with outdoor kitchen and seating installed by licensed Florida pool enclosure builders.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Tendido eléctrico de alta tensión cruzando el fondo del lago, canasta de baloncesto montada en la jaula y parrilla de la cocina exterior con uso; señales inequívocas de fotografía real.",
+    "discrepancias": []
+   },
+   {
+    "indice": 9,
+    "src": "/images/images/pool-screen-1/pool-screen-enclosure-builders-florida-01.jpg",
+    "altGaleria": "Luxury pool screen enclosure with covered patio built by professional pool enclosure contractors in North and South Florida.",
+    "veredicto": "generada_o_stock",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "Lleva estampada la marca de agua \"Stellar MLS\" sobre el montante oscuro de la derecha (x≈1160-1250, y≈320): es foto de ficha inmobiliaria de terceros, no obra documentada del cliente, y se publica con el watermark visible.",
+    "discrepancias": []
+   }
+  ],
+  "pole": [
+   {
+    "indice": 0,
+    "src": "/images/images/pole-barn-10/pole-barn-steel-building-contractors-florida-10.jpg",
+    "altGaleria": "Wood and steel pole barn structure under construction, designed and installed by expert Florida building contractors.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Estructura de postes tratados con cerchas de acero coherentes y herrajes negros reales; cruza el cielo una linea electrica con su poste arriostrado, la arena del pad esta desigual y hay restos de madera y piedras en la hierba.",
+    "discrepancias": []
+   },
+   {
+    "indice": 1,
+    "src": "/images/images/pole-barn-9/pole-barn-steel-building-contractors-florida-09.jpg",
+    "altGaleria": "Aerial view of metal roof pole barn construction, showcasing professional steel building installation in Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Cenital de dron en dia nublado sobre cubierta metalica: sin sombras duras que cuadrar, pero con cesped irregular, calvas de tierra, arena removida y una valla que entra por el borde izquierdo.",
+    "discrepancias": []
+   },
+   {
+    "indice": 2,
+    "src": "/images/images/pole-barn-8/pole-barn-steel-building-contractors-florida-08.jpg",
+    "altGaleria": "Custom-built steel pole barn with open sides, offering versatile coverage solutions across South Florida properties.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Doble faldon metalico sobre postes de madera con pad de arena pisoteado; a la derecha entran una cancela de tubo galvanizado, un cubo y recortes de madera tirados, y el cesped tiene zonas quemadas.",
+    "discrepancias": []
+   },
+   {
+    "indice": 3,
+    "src": "/images/images/pole-barn-7/pole-barn-steel-building-contractors-florida-07.jpg",
+    "altGaleria": "Extended pole barn with steel panels and wood framing, built for agricultural and residential properties in North Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Interior con suelo de arena y monton de tierra sin retirar; al fondo casa movil, valla de madera envejecida, valla blanca de piquetes, antena parabolica y poste de servicio con tendido y viento.",
+    "discrepancias": []
+   },
+   {
+    "indice": 4,
+    "src": "/images/images/pole-barn-6/pole-barn-steel-building-contractors-florida-06.jpg",
+    "altGaleria": "Steel pole barn installation with high-clearance design, perfect for equipment, vehicles, and commercial operations in Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Obra a medio hacer: cada poste tiene su monton de arena de relleno sin compactar, hay una herramienta apoyada en la valla, un arbol recien plantado atado a tutor y luz de atardecer real sobre la casa vecina.",
+    "discrepancias": []
+   },
+   {
+    "indice": 5,
+    "src": "/images/images/pole-barn-5/pole-barn-steel-building-contractors-florida-05.jpg",
+    "altGaleria": "Custom pole barn construction over concrete slab, engineered for long-term durability by Florida building contractors.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Cobertizo largo visto con dron: la arena bajo cada poste es distinta en cada vano, el cesped alterna verde y seco y el fondo es plantacion de pinos de Florida con un poste de linea.",
+    "discrepancias": []
+   },
+   {
+    "indice": 6,
+    "src": "/images/images/pole-barn-4/pole-barn-steel-building-contractors-florida-04.jpg",
+    "altGaleria": "Covered pole barn with steel roof and treated wood posts, providing durable outdoor storage solutions in Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Distorsion de gran angular de movil, losa de hormigon con juntas y arena alrededor sin terminar; detras casa movil con zocalo negro, escalera de madera, luminaria en el alero y cobertizo rojo entre los arboles.",
+    "discrepancias": []
+   },
+   {
+    "indice": 7,
+    "src": "/images/images/pole-barn-3/pole-barn-steel-building-contractors-florida-03.jpg",
+    "altGaleria": "Large open-span pole barn with steel roofing, designed for storage, workshops, and commercial use across North & South Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Foto vertical de movil a contraluz de tarde: roderas de maquinaria en el barro, monton de ramas y un objeto naranja al fondo, y la cubierta metalica muestra ondulaciones y suciedad reales.",
+    "discrepancias": []
+   },
+   {
+    "indice": 8,
+    "src": "/images/images/pole-barn-1/pole-barn-steel-building-contractors-florida-01.jpg",
+    "altGaleria": "Custom pole barn construction with steel roof and concrete slab, built by licensed contractors in North & South Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Es la misma parcela del indice 3 en fase posterior (misma valla de madera, misma valla blanca, misma casa movil) ya con la losa vertida: seguimiento de un proyecto concreto, no una imagen suelta.",
+    "discrepancias": []
+   }
+  ],
+  "landscaping": [
+   {
+    "indice": 0,
+    "src": "/images/images/landscaping-10/luxury-landscaping-construction-contractors-florida-10.jpg",
+    "altGaleria": "Residential front yard landscaping construction with palms and pavers by Florida landscape professionals.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): la reconoce como obra propia. Manda sobre el panel.",
+    "discrepancias": [
+     {
+      "lente": "Física y luz",
+      "veredicto": "generada_o_stock",
+      "motivo": "Archivo: /Users/senavia/Sites/mrandmrs-outdoor-living/public/images/images/landscaping-10/luxury-landscaping-construction-contractors-florida-10.jpg. Fallo decisivo: LAS SOMBRAS SE CORTAN EN EL BORDE DE MATERIAL. En el cesped hay cunas de sombra bien marcadas, y en el asfalto hay manchones oscuros; pero la franja de adoquin que cruza ese mismo cesped esta uniformemente clara de punta a punta, y la sombra del asfalto termina EXACTAMENTE en la junta con el delantal de adoquin, sin continuar ni un centimetro sobre el. Una sombra no se detiene en un cambio de material. Solo hay sombra sobre cesped y asfalto; sobre ningun pavimento. Segundo fallo, independiente: con el sol claramente directo (cielo azul saturado, cumulos de borde duro, altas luces quemadas en las palmas), el cono de podocarpus de ~1,80 m plantado contra la puerta del garaje no proyecta NADA sobre la puerta, la jamba ni la calzada; los dos faroles de pared, que sobresalen del estuco iluminado, tampoco proyectan; el buzon y su poste tampoco. Ni siquiera con sol cenital se sostiene: un farol sobre pared vertical a mediodia deja una raya vertical bajo el, y el alero de 45 cm deja una banda dura sobre el estuco; aqui solo hay un degradado blando. Tercero: la hoja de palma que cuelga sobre el tejado no imprime sombra en la teja, y las tejas arabes estan modeladas de forma simetrica, sin lado de sol. Los detalles que cito el otro analista (borde de plastico con estacas, tubo de goteo, poste torcido, manchas en el estuco) son textura fina, que es justo lo que un generador si acierta; no sobreviven a la prueba de la luz."
+     }
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Borde de plastico negro con juntas y estacas visibles, tubo de riego por goteo cruzando la grava, buzon sobre poste torcido, manchas de humedad en el estuco y puerta de garaje con abolladuras."
+   },
+   {
+    "indice": 1,
+    "src": "/images/images/landscaping-9/luxury-landscaping-construction-contractors-florida-09.jpg",
+    "altGaleria": "Custom landscape walkway with stone steps and greenery installed by Florida landscaping contractors.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): la reconoce como obra propia. Manda sobre el panel.",
+    "discrepancias": [
+     {
+      "lente": "Física y luz",
+      "veredicto": "generada_o_stock",
+      "motivo": "Archivo: /Users/senavia/Sites/mrandmrs-outdoor-living/public/images/images/landscaping-9/luxury-landscaping-construction-contractors-florida-09.jpg. Cero sombras proyectadas en todo el encuadre, con el tejado de teja de cara a camara claramente al sol (o sea, el sol esta de este lado). No proyecta NADA: las cuatro palmas reales delantales, el tronco grande del cantero (a 60 cm del seto, que queda parejo), los ~12 arbustos del borde del cesped, el cono del garaje, el farol de pared, el buzon con poste, la chimenea de patio ni los sillones. La calzada de adoquin es una superficie amplia y soleada justo debajo de las palmas y no tiene ni una sombra: es un lavado tonal liso. Ademas, en la entrada retranqueada, dos paramentos que se encuentran en esquina a ~90 grados estan pintados al mismo valor — no hay contraste de esquina — y el alero no deja linea de sombra dura sobre el muro, solo un degradado. Dos planos perpendiculares no pueden tener el mismo brillo bajo un unico sol. El control esta dentro del propio lote: el indice 8 imprime una sombra de palma con penumbra y dedos de fronda sobre su asfalto, y el indice 7 tiene sombras blandas anchas de palma sobre sus adoquines. La ausencia no es una propiedad de la luz de este servicio. Nota: comparte con el indice 0 el mismo motivo exacto (garaje + cono + farol + buzon con poste + adoquin) y el mismo fallo de luz, lo que apunta a dos muestras del mismo generador."
+     }
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Chiminea de patio con tubo, cojines floreados desgastados, planta colgante, buzon con poste de metal y un cartelito clavado en el cantero; arbustos de tamanos desiguales."
+   },
+   {
+    "indice": 2,
+    "src": "/images/images/landscaping-8/luxury-landscaping-construction-contractors-florida-08.jpg",
+    "altGaleria": "Coastal luxury landscaping project with turf and walkways designed by Florida landscape builders.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "media",
+    "motivo": "Luminaria bullet de dos cabezas con collarin real, vidrio del barandal con huellas y polvo, columna de piedra con poros y sombras coherentes con el sol; la imagen esta blanda por reescalado, pero no hay artefactos.",
+    "discrepancias": []
+   },
+   {
+    "indice": 3,
+    "src": "/images/images/landscaping-7/luxury-landscaping-construction-contractors-florida-07.jpg",
+    "altGaleria": "Custom home landscaping with palm trees and garden beds by North and South Florida contractors.",
+    "veredicto": "dudosa",
+    "usable": false,
+    "confianza": "media",
+    "motivo": "Es fotografia real (aspersor doblado, tutores de madera en las palmas, pisadas en la arena), pero el sujeto es la terraza de un condominio de gran altura frente al mar con putting green y salida a la playa, no un patio trasero residencial.",
+    "discrepancias": []
+   },
+   {
+    "indice": 4,
+    "src": "/images/images/landscaping-6/luxury-landscaping-construction-contractors-florida-06.jpg",
+    "altGaleria": "Luxury residential landscaping construction featuring custom plant selection and stone elements in Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Luminaria bullet suelta dentro del cantero, conduit gris y caja electrica en la pared detras de la palma, estuco con manchas y hojarasca caida sobre el mantillo.",
+    "discrepancias": []
+   },
+   {
+    "indice": 5,
+    "src": "/images/images/landscaping-5/luxury-landscaping-construction-contractors-florida-05.jpg",
+    "altGaleria": "High-end garden landscaping with water features and stone paths built by Florida landscape contractors.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Foto de movil con distorsion de gran angular: travertino manchado y mojado, alga en la linea de agua de la fuente, basura y un accesorio suelto tirado entre la cobertera.",
+    "discrepancias": []
+   },
+   {
+    "indice": 6,
+    "src": "/images/images/landscaping-4/luxury-landscaping-construction-contractors-florida-04.jpg",
+    "altGaleria": "Luxury pool landscaping construction with tropical plants and hardscape by Florida landscaping builders.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Parche de estuco descolorido en el faldon del spa, cal en los bloques de vidrio, cables aereos cruzando el cielo, cerca de madera detras y un camastro cortado por el borde del encuadre.",
+    "discrepancias": []
+   },
+   {
+    "indice": 7,
+    "src": "/images/images/landscaping-3/luxury-landscaping-construction-contractors-florida-03.jpg",
+    "altGaleria": "Custom tropical landscaping project for residential property built by South Florida landscape contractors.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Bandera con campo de estrellas y franjas correctas, placa de direccion, crotones en maceta con hojas secas y cerca de madera con veteado de intemperie.",
+    "discrepancias": []
+   },
+   {
+    "indice": 8,
+    "src": "/images/images/landscaping-2/luxury-landscaping-construction-contractors-florida-02.jpg",
+    "altGaleria": "Residential front yard landscaping with palm trees, plants, and pavers by Florida landscaping contractors.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Al fondo aparecen la misma casa amarilla con bandera y la misma cerca de madera del indice 7 (mismo proyecto); bromelias con hojas quemadas y ramitas sueltas sobre el mantillo.",
+    "discrepancias": []
+   },
+   {
+    "indice": 9,
+    "src": "/images/images/landscaping-1/luxury-landscaping-construction-contractors-florida-01.jpg",
+    "altGaleria": "Custom pergola and luxury patio landscaping project by professional contractors serving North and South Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "media",
+    "motivo": "Parrilla de acero con perillas y fregadero con llave, ventiladores montados bajo la pergola, hundimiento leve del adoquin y una luminaria tumbada en el mantillo; el entorno es area comun de condominio, no patio trasero.",
+    "discrepancias": []
+   }
+  ],
+  "irrigation": [
+   {
+    "indice": 0,
+    "src": "/images/images/irrigation-10/automated-irrigation-system-installers-florida-10.jpg",
+    "altGaleria": "Professional irrigation system installation for landscaped gardens and walkways in South Florida, enhancing curb appeal and plant health.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "media",
+    "motivo": "Foto coherente con Florida: seto de ixora con floracion irregular, palmeras reales y cola de zorro, muro de estuco y acera de adoquines; el chorro se rompe en gotas irregulares y todas las sombras caen en la misma direccion de sol alto.",
+    "discrepancias": []
+   },
+   {
+    "indice": 1,
+    "src": "/images/images/irrigation-9/automated-irrigation-system-installers-florida-09.jpg",
+    "altGaleria": "Close-up of precision irrigation sprinkler head installation in Florida landscape, providing targeted watering and reduced water waste.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "media",
+    "motivo": "Primer plano fotografico de un emergente real: cuerpo estriado, boquilla con el orificio visible y un solo chorro que se deshace en gotas a contraluz, con bokeh optico de fondo y agua salpicada sobre el bordillo.",
+    "discrepancias": []
+   },
+   {
+    "indice": 2,
+    "src": "/images/images/irrigation-8/automated-irrigation-system-installers-florida-08.jpg",
+    "altGaleria": "Residential irrigation system contractors installing efficient sprinklers for front yard lawns across North and South Florida homes.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "media",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): la reconoce como obra propia. Manda sobre el panel.",
+    "discrepancias": [
+     {
+      "lente": "Detalle constructivo",
+      "veredicto": "obra_real",
+      "motivo": "Su duda se apoya en especie de cesped y \"encuadre de catalogo sin ningun elemento que identifique la obra\". Con la lente constructiva hay tres cosas concretas que lo desmienten, todas en el original -08.jpg. (1) A 11x sobre el bordillo (x=200-340, y=540-650 del original) no hay un bordillo continuo: hay una JUNTA A TOPE entre dos tramos de hormigon extruido, con escalon — el tramo cercano queda mas bajo y retranqueado respecto al de detras, y la testa muestra arido visto y el canto desmoronado. Ademas cada tramo esta envejecido distinto: el de detras tiene floracion de algas verde en la cara superior y el cercano esta limpio. Eso es un tramo repuesto o vertido en otra fecha; es un accidente de obra, no un patron, y no sale de un generador. (2) A 16x sobre el emergente (x=855-945, y=415-505) hay una boquilla granate asentada y con collarin propio sobre el cuerpo negro, y por debajo la costura del retenedor del vastago: es una pieza real, comprable y correctamente montada, no un cilindro sin boquilla como en los indices 4, 6 y 7. (3) La cara vertical del bordillo tiene mancha de tierra en la base y agua encharcada en la cara superior, y en el fondo desenfocado hay un segundo emergente bien situado en la linea del bordillo. La seccion completa (cesped -> bordillo de corte -> lecho de canto rodado -> acera de adoquines) es un detalle de drenaje normal y montable. Aparte, su argumento de materiales no se sostiene: bordillo de hormigon extruido y lecho de canto rodado pulido son precisamente el estandar de jardineria en Florida. Con mi lente no queda nada dudoso: la obra existe y se podria montar tal cual."
+     }
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Es foto real sin artefactos, pero el cesped es de hoja fina de clima frio y el borde es hormigon extruido con canto rodado pulido: paleta de materiales poco propia de Florida y encuadre de catalogo, sin ningun elemento que identifique la obra."
+   },
+   {
+    "indice": 3,
+    "src": "/images/images/irrigation-7/automated-irrigation-system-installers-florida-07.jpg",
+    "altGaleria": "Automated lawn irrigation system installed in a modern residential home, improving water efficiency and landscape maintenance in Florida.",
+    "veredicto": "generada_o_stock",
+    "usable": false,
+    "confianza": "media",
+    "motivo": "Fotografia real pero de otra region: granero rojo al fondo, valla de piquete blanca, casa de tablilla vertical con porche mosquitero de madera y cesped de clima frio; es vernaculo rural del norte, no una vivienda de Florida.",
+    "discrepancias": []
+   },
+   {
+    "indice": 4,
+    "src": "/images/images/irrigation-6/automated-irrigation-system-installers-florida-06.jpg",
+    "altGaleria": "Custom irrigation installation for landscaped hedges and gardens in North Florida, ensuring precise moisture control and plant health.",
+    "veredicto": "generada_o_stock",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "El agua sale como cintas lisas de ancho constante que recorren todo el jardin sin romperse en gotas, los aspersores son cilindros negros apoyados sobre el cesped en vez de emergentes a ras, el cesped tiene textura de moqueta y la casa es un render sin canalones, contador, numero ni buzon.",
+    "discrepancias": []
+   },
+   {
+    "indice": 5,
+    "src": "/images/images/irrigation-5/automated-irrigation-system-installers-florida-05.jpg",
+    "altGaleria": "Landscape irrigation system designed for residential properties in South Florida, maintaining healthy grass with optimized watering schedules.",
+    "veredicto": "generada_o_stock",
+    "usable": false,
+    "confianza": "media",
+    "motivo": "Parterre formal de boj recortado en anillo con aspersores de impacto: jardin ornamental de estilo europeo, sin una sola especie ni material de Florida, y la imagen esta muy reescalada como copia de catalogo.",
+    "discrepancias": []
+   },
+   {
+    "indice": 6,
+    "src": "/images/images/irrigation-4/automated-irrigation-system-installers-florida-04.jpg",
+    "altGaleria": "Professional irrigation system installation for residential lawns in Florida, delivering uniform spray patterns and water-efficient performance.",
+    "veredicto": "generada_o_stock",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "Abanico de chorros vectoriales identicos que nace de un cilindro negro sin boquilla, con un segundo abanico clonado a la izquierda; el jardin es de coniferas recortadas y lavanda del norte de Europa y la casa es un render.",
+    "discrepancias": []
+   },
+   {
+    "indice": 7,
+    "src": "/images/images/irrigation-3/automated-irrigation-system-installers-florida-03.jpg",
+    "altGaleria": "Smart irrigation sprinkler system installed in modern residential property, designed for efficient lawn watering across North and South Florida.",
+    "veredicto": "generada_o_stock",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "De un unico emisor salen arcos concentricos perfectamente anidados y de curva identica, fisicamente imposible; la casa es un render moderno con barandilla de vidrio y las plantas son gramineas ornamentales de clima templado.",
+    "discrepancias": []
+   },
+   {
+    "indice": 8,
+    "src": "/images/images/irrigation-2/automated-irrigation-system-installers-florida-02.jpg",
+    "altGaleria": "Residential irrigation system installation along walkways and lawn areas in South Florida, ensuring even coverage and efficient water use.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Pergola de madera con columnas de piedra y cadena de lluvia, magnolia y palmeras, arriates de loropetalo sobre mantillo, acera de hormigon con juntas de control y cesped desigual con calvas: imperfecciones propias de una obra terminada de verdad.",
+    "discrepancias": []
+   },
+   {
+    "indice": 9,
+    "src": "/images/images/irrigation-1/automated-irrigation-system-installers-florida-01.jpg",
+    "altGaleria": "Automated irrigation system installed on commercial golf course landscape in North Florida, providing precise watering and healthy turf management.",
+    "veredicto": "generada_o_stock",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "No es un patio residencial sino un green de campo de golf con bunker de arena y monticulos de fairway; el propio texto alternativo lo reconoce al hablar de 'commercial golf course'.",
+    "discrepancias": []
+   }
+  ],
+  "furniture": [
+   {
+    "indice": 0,
+    "src": "/images/images/furniture-10/custom-outdoor-furniture-builders-florida-10.jpg",
+    "altGaleria": "Custom outdoor sofa and seating set installed near pool and spa in North Florida, designed for durable and elegant outdoor living.",
+    "veredicto": "generada_o_stock",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "Foto real pero de catalogo de mobiliario: el sofa va montado sobre una alfombra de hoja de palma azul que reaparece en el indice 4 en colorway naranja en la MISMA finca, con botellas de cristal decorativas colocadas de atrezo; es merchandising de marca, no obra entregada.",
+    "discrepancias": []
+   },
+   {
+    "indice": 1,
+    "src": "/images/images/furniture-9/custom-outdoor-furniture-builders-florida-09.jpg",
+    "altGaleria": "Modern outdoor cabana-style seating installed next to infinity pool in South Florida, built for high-end residential projects.",
+    "veredicto": "generada_o_stock",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "Hero de producto: la cama-cupula sola, centrada y sin una sola arruga, al borde de una piscina infinita en acantilado con mar abierto y un skyline lejano al otro lado del agua; Mr & Mrs hace patios traseros, no miradores sobre el oceano.",
+    "discrepancias": []
+   },
+   {
+    "indice": 2,
+    "src": "/images/images/furniture-8/custom-outdoor-furniture-builders-florida-08.jpg",
+    "altGaleria": "Luxury outdoor lounge pod installed beside waterfront pool in North Florida, showcasing custom-built relaxation furniture.",
+    "veredicto": "generada_o_stock",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "La cama redonda esta iluminada plana y de frente mientras la gruta de roca y los arboles detras estan a la sombra, y el borde del toldo recorta duro contra el fondo: es un recorte de producto compuesto sobre una foto de localizacion.",
+    "discrepancias": []
+   },
+   {
+    "indice": 3,
+    "src": "/images/images/furniture-7/custom-outdoor-furniture-builders-florida-07.jpg",
+    "altGaleria": "Outdoor conversation set with fire feature installed in South Florida, enhancing backyard living with premium furniture solutions.",
+    "veredicto": "generada_o_stock",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "El jardin no es de Florida: arces y robles de hoja caduca, valla de tablas de cedro, seto de arborvitae y losa de bluestone, cero palmeras y cero St. Augustine; el alt dice \"installed in South Florida\".",
+    "discrepancias": []
+   },
+   {
+    "indice": 4,
+    "src": "/images/images/furniture-6/custom-outdoor-furniture-builders-florida-06.jpg",
+    "altGaleria": "Custom curved outdoor sofa set installed in a tropical North Florida backyard, designed for comfort and luxury entertaining.",
+    "veredicto": "generada_o_stock",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "Misma finca de bahia que el indice 0 (mismo spa redondo elevado, mismo travertino, mismo malecon) con la misma alfombra de hoja de palma en naranja: dos sets del mismo shooting de catalogo, no dos trabajos.",
+    "discrepancias": []
+   },
+   {
+    "indice": 5,
+    "src": "/images/images/furniture-5/custom-outdoor-furniture-builders-florida-05.jpg",
+    "altGaleria": "Hanging outdoor lounge chair installed on coastal patio in South Florida, blending modern design with durable outdoor materials.",
+    "veredicto": "generada_o_stock",
+    "usable": false,
+    "confianza": "media",
+    "motivo": "Un unico producto centrado en una terraza sobre el mar, impecable y sin contexto de instalacion —ni casa, ni desagues, ni desgaste—, con acabado blando de render; no hay fallo fisico concreto, pero no documenta ninguna obra.",
+    "discrepancias": []
+   },
+   {
+    "indice": 6,
+    "src": "/images/images/furniture-4/custom-outdoor-furniture-builders-florida-04.jpg",
+    "altGaleria": "Wicker outdoor sofa set overlooking the ocean in North Florida, ideal for upscale patio and terrace furniture installations.",
+    "veredicto": "generada_o_stock",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "La mesa y el sofa de tejido calado no proyectan sombra sobre la loseta clara a pleno sol: una celosia asi tendria que dibujar una sombra densa y reticulada; son recortes compuestos sobre el fondo.",
+    "discrepancias": []
+   },
+   {
+    "indice": 7,
+    "src": "/images/images/furniture-3/custom-outdoor-furniture-builders-florida-03.jpg",
+    "altGaleria": "Custom outdoor daybed installed near an infinity pool in South Florida, designed for luxury residential outdoor living spaces.",
+    "veredicto": "generada_o_stock",
+    "usable": false,
+    "confianza": "media",
+    "motivo": "Producto centrado junto a una piscina infinita sobre el oceano con un coctel de atrezo servido y hielo intacto; el fondo va notablemente mas blando que el mueble en primer plano, patron de composicion de catalogo.",
+    "discrepancias": []
+   },
+   {
+    "indice": 8,
+    "src": "/images/images/furniture-2/custom-outdoor-furniture-builders-florida-02.jpg",
+    "altGaleria": "Modern poolside lounge chairs with ocean views in South Florida, featuring high-end outdoor furniture installation for luxury properties.",
+    "veredicto": "generada_o_stock",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "Es un resort del sudeste asiatico, no Florida: Pandanus tectorius con raices zanco, sombrillas y tumbonas de hotel al otro lado, piscina infinita en acantilado y servicio de tetera blanca sobre la mesa.",
+    "discrepancias": []
+   },
+   {
+    "indice": 9,
+    "src": "/images/images/furniture-1/custom-outdoor-furniture-builders-florida-01.jpg",
+    "altGaleria": "Luxury outdoor seating set installed on pool deck in North Florida, showcasing custom outdoor furniture for residential poolside projects.",
+    "veredicto": "generada_o_stock",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "Jardin mediterraneo: olivo podado de tronco retorcido, pinos pineros, seto de cipres recortado y farola de calle europea; el alt lo vende como \"North Florida\".",
+    "discrepancias": []
+   }
+  ],
+  "decks": [
+   {
+    "indice": 0,
+    "src": "/images/images/deck-10/custom-deck-builders-contractors-north-south-florida-10.jpg",
+    "altGaleria": "Luxury covered deck construction using premium materials by custom deck builders in North & South Florida.",
+    "veredicto": "generada_o_stock",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "Render CGI: bosque caducifolio templado con hojas de arce (no es Florida), luz ambiental plana sin sol, cero tornilleria y cero herrajes en postes y tarima, y las correderas reflejan el bosque sobre un interior beige vacio con montantes de anchos incoherentes.",
+    "discrepancias": []
+   },
+   {
+    "indice": 1,
+    "src": "/images/images/deck-9/custom-deck-builders-contractors-north-south-florida-09.jpg",
+    "altGaleria": "Custom wood deck with pergola integration built by professional deck contractors in North & South Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Casa concreta de Florida con cubos de basura, tendido electrico, bajante, techo metalico y hojas de uva de playa caidas sobre la tarima de ipe recien instalada.",
+    "discrepancias": []
+   },
+   {
+    "indice": 2,
+    "src": "/images/images/deck-8/custom-deck-builders-contractors-north-south-florida-08.jpg",
+    "altGaleria": "Coastal composite deck installation for Florida homes by experienced deck builders and contractors.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Detalle constructivo verificable al ampliar: pilares de hormigon bajo la rampa, perno a la vista en la estructura, pintura blanca cuarteada en los postes y tapa de riego en el cesped.",
+    "discrepancias": []
+   },
+   {
+    "indice": 3,
+    "src": "/images/images/deck-7/custom-deck-builders-contractors-north-south-florida-07.jpg",
+    "altGaleria": "Waterfront custom deck with cable railing designed and installed by deck contractors in North & South Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Casa residencial junto a canal con barcos y muro de contencion, travertino con hojarasca y arbol existente rodeado por la baranda de cable; nada esta limpio de mas.",
+    "discrepancias": []
+   },
+   {
+    "indice": 4,
+    "src": "/images/images/deck-6/custom-deck-builders-contractors-north-south-florida-06.jpg",
+    "altGaleria": "Modern pool deck installation with premium wood by licensed deck builders serving North & South Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Patio trasero real: casa vecina rosa con rejas en las ventanas, cables aereos cruzando el cielo y edificios reflejados en la corredera; la tarima de ipe encaja con el escalon de hormigon existente.",
+    "discrepancias": []
+   },
+   {
+    "indice": 5,
+    "src": "/images/images/deck-5/custom-deck-builders-contractors-north-south-florida-05.jpg",
+    "altGaleria": "Custom wood deck walkway with integrated seating built by residential deck builders in North & South Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Tronco con liquen atravesando el banco perimetral, celosia de madera envejecida, mantillo y setos desiguales; iluminacion de sombra irregular bajo el arbol.",
+    "discrepancias": []
+   },
+   {
+    "indice": 6,
+    "src": "/images/images/deck-4/custom-deck-builders-contractors-north-south-florida-04.jpg",
+    "altGaleria": "Poolside deck construction using durable decking materials by professional deck contractors in North & South Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Al ampliar, el corte alrededor del tronco es una abertura real con holgura oscura y musgo en la base; hay macetas, valla de madera y manchas de uso en las tablas compuestas.",
+    "discrepancias": []
+   },
+   {
+    "indice": 7,
+    "src": "/images/images/deck-3/custom-deck-builders-contractors-north-south-florida-03.jpg",
+    "altGaleria": "Elevated composite deck with railing system installed by expert deck builders in North & South Florida.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "media",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): la reconoce como obra propia. Manda sobre el panel.",
+    "discrepancias": [
+     {
+      "lente": "Física y luz",
+      "veredicto": "generada_o_stock",
+      "motivo": "Fichero: /Users/senavia/Sites/mrandmrs-outdoor-living/public/images/images/deck-3/custom-deck-builders-contractors-north-south-florida-03.jpg. La escena NO TIENE NI UNA SOLA SOMBRA PROYECTADA, y sin embargo el cielo es azul saturado y los verdes van a tope. Cuatro observaciones concretas, todas verificadas ampliando: (1) La base del poste de esquina apoya sobre la tarima y el tablón de al lado tiene EXACTAMENTE la misma luminancia que el de tres metros más allá: ni sombra proyectada ni oclusión de contacto. Una baranda de balaustres verticales a pleno sol tumba siempre un rayado sobre la tarima; aquí no hay ni una raya, ni sobre la tarima ni sobre el césped, y no existe posición del sol que lo explique. (2) Los árboles del parque están plantados en césped abierto y ninguno proyecta sombra: lo que hay en la base de cada tronco son alcorques de mantillo, centrados y simétricos, sin dirección. Tampoco el mango de la derecha, con copa densa, oscurece el suelo bajo él. (3) El lago es un plano cian liso: cero reflejo de la hilera de árboles que llega hasta la misma orilla, cero rizado, cero brillo especular del sol. Agua junto a arbolado bajo cielo azul siempre espeja la ribera. (4) La baranda negra no tiene cara iluminada ni brillo en el pasamanos: todos los balaustres son el mismo negro plano. Sin especular no hay foco direccional. El modelo de luz es ambiente puro — la firma de un render o de un composite de catálogo (baranda de fabricante montada sobre un fondo de parque). CONTROL INTERNO que lo cierra: el índice 3 (deck-7) lleva herrajes negros equivalentes y allí SÍ se ven la sombra corta de la placa base de cada poste hacia la derecha, el brillo en el remate y los reflejos del malecón y del casco blanco en el canal. Misma familia de hardware, física opuesta. Y un apunte sobre el razonamiento original: cita «césped con marcas de siega» como marcador de realidad — ampliado no hay franjas de siega, el césped es una alfombra uniforme sin textura. Esa observación no sostiene el veredicto de obra real."
+     }
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Sistema de baranda de aluminio real con zocalo de poste y soporte del pasamanos inferior a la vista, cesped con marcas de siega y palmeras con hojas secas; solo levanta duda el acabado de catalogo, sin desgaste."
+   },
+   {
+    "indice": 8,
+    "src": "/images/images/deck-2/custom-deck-builders-contractors-north-south-florida-02.jpg",
+    "altGaleria": "Custom composite deck with pergola structure built by licensed deck contractors serving North & South Florida homes.",
+    "veredicto": "obra_real",
+    "usable": true,
+    "confianza": "alta",
+    "motivo": "Pergola de pino tratado con cubierta de policarbonato ondulado sobre porche mosquitero existente, valla roja disparega, bajante, tierra removida y restos de obra en el lateral.",
+    "discrepancias": []
+   },
+   {
+    "indice": 9,
+    "src": "/images/images/deck-1/custom-deck-builders-contractors-north-south-florida-01.jpg",
+    "altGaleria": "Custom composite deck with pergola structure installed by licensed deck builders in South Florida.",
+    "veredicto": "generada_o_stock",
+    "usable": false,
+    "confianza": "alta",
+    "motivo": "Imagen generada: los montantes de la corredera cambian de grosor sin logica y el alero sobre el volumen se funde con la teja, los peldanos no resuelven el inglete en la esquina (las tablas se disuelven) y la madera tratada no tiene ni un tornillo; ademas un cable sale de la pared y no va a ningun sitio.",
+    "discrepancias": []
+   }
+  ]
+ }
+}

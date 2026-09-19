@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 1010" role="img" aria-labelledby="t d">
+<title id="t">How fixture spacing changes the light on the wall</title>
+<desc id="d">Three elevations of the same wall and eave, one above the other, lit by the same downlight at three different spacings. In the first the pools of light overlap into one flat wash whose lower edge runs almost straight across the wall. In the second, spaced half again as wide, they form even scallops that meet at their edges. In the third, spaced two and a half times as wide, bright scallops are separated by stretches of unlit wall.</desc>
+<defs>
+<linearGradient id="luz" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#f4b248" stop-opacity=".78"/>
+<stop offset=".7" stop-color="#f4b248" stop-opacity=".66"/>
+<stop offset="1" stop-color="#f4b248" stop-opacity=".46"/>
+</linearGradient>
+<clipPath id="muro"><rect x="0" y="0" width="576" height="146"/></clipPath>
+<style>
+.f{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+.h{font-size:23px;font-weight:650;fill:#000f36}
+.p{font-size:17px;fill:#1a3373}
+.s{font-size:15px;fill:#596b9a}
+.n{font-size:13px;fill:#596b9a}
+</style>
+</defs>
+<rect width="700" height="1010" fill="#ffffff"/>
+
+<text class="f h" x="46" y="44">Spacing is the decision</text>
+<text class="f s" x="46" y="70">Same fixture, same beam width. Only the distance between them changes.</text>
+
+<g transform="translate(62,190)">
+  <text class="f p" x="-16" y="-84">Too close — the scallops merge into one flat wash</text>
+  <g stroke="#1a3373" stroke-width="2">
+    <line x1="32" y1="-40" x2="96" y2="-40"/>
+    <line x1="32" y1="-46" x2="32" y2="-34"/>
+    <line x1="96" y1="-46" x2="96" y2="-34"/>
+  </g>
+  <g stroke="#c7cddd" stroke-width="2">
+    <line x1="32" y1="-34" x2="32" y2="-24"/>
+    <line x1="96" y1="-34" x2="96" y2="-24"/>
+  </g>
+  <text class="f n" x="64" y="-52" text-anchor="middle">s</text>
+  <rect x="0" y="0" width="576" height="146" fill="#eef1f7"/>
+  <g clip-path="url(#muro)">
+    <path d="M0 0L576 0L576 102q-32 12 -64 0q-32 12 -64 0q-32 12 -64 0q-32 12 -64 0q-32 12 -64 0q-32 12 -64 0q-32 12 -64 0q-32 12 -64 0q-32 12 -64 0L0 0Z" fill="url(#luz)"/>
+  </g>
+  <rect x="0" y="0" width="576" height="146" fill="none" stroke="#000f36" stroke-width="3"/>
+  <line x1="-16" y1="146" x2="592" y2="146" stroke="#000f36" stroke-width="3"/>
+  <rect x="-16" y="146" width="608" height="18" fill="#f3f5f9"/>
+  <rect x="-16" y="-18" width="608" height="18" fill="#f6f7fa" stroke="#000f36" stroke-width="3"/>
+  <g fill="#000f36"><circle cx="32" cy="-9" r="5"/><circle cx="96" cy="-9" r="5"/><circle cx="160" cy="-9" r="5"/><circle cx="224" cy="-9" r="5"/><circle cx="288" cy="-9" r="5"/><circle cx="352" cy="-9" r="5"/><circle cx="416" cy="-9" r="5"/><circle cx="480" cy="-9" r="5"/><circle cx="544" cy="-9" r="5"/></g>
+</g>
+
+<g transform="translate(62,469)">
+  <text class="f p" x="-16" y="-84">Spaced right — even scallops that meet at their edges</text>
+  <g stroke="#1a3373" stroke-width="2">
+    <line x1="48" y1="-40" x2="144" y2="-40"/>
+    <line x1="48" y1="-46" x2="48" y2="-34"/>
+    <line x1="144" y1="-46" x2="144" y2="-34"/>
+  </g>
+  <g stroke="#c7cddd" stroke-width="2">
+    <line x1="48" y1="-34" x2="48" y2="-24"/>
+    <line x1="144" y1="-34" x2="144" y2="-24"/>
+  </g>
+  <text class="f n" x="96" y="-52" text-anchor="middle">1.5 s</text>
+  <rect x="0" y="0" width="576" height="146" fill="#eef1f7"/>
+  <g clip-path="url(#muro)">
+    <path d="M0 0L0 70Q48 186 96 70L96 0Z" fill="url(#luz)"/>
+    <path d="M96 0L96 70Q144 186 192 70L192 0Z" fill="url(#luz)"/>
+    <path d="M192 0L192 70Q240 186 288 70L288 0Z" fill="url(#luz)"/>
+    <path d="M288 0L288 70Q336 186 384 70L384 0Z" fill="url(#luz)"/>
+    <path d="M384 0L384 70Q432 186 480 70L480 0Z" fill="url(#luz)"/>
+    <path d="M480 0L480 70Q528 186 576 70L576 0Z" fill="url(#luz)"/>
+  </g>
+  <rect x="0" y="0" width="576" height="146" fill="none" stroke="#000f36" stroke-width="3"/>
+  <line x1="-16" y1="146" x2="592" y2="146" stroke="#000f36" stroke-width="3"/>
+  <rect x="-16" y="146" width="608" height="18" fill="#f3f5f9"/>
+  <rect x="-16" y="-18" width="608" height="18" fill="#f6f7fa" stroke="#000f36" stroke-width="3"/>
+  <g fill="#000f36"><circle cx="48" cy="-9" r="5"/><circle cx="144" cy="-9" r="5"/><circle cx="240" cy="-9" r="5"/><circle cx="336" cy="-9" r="5"/><circle cx="432" cy="-9" r="5"/><circle cx="528" cy="-9" r="5"/></g>
+</g>
+
+<g transform="translate(62,748)">
+  <text class="f p" x="-16" y="-84">Too far — bright scallops with dark wall between them</text>
+  <g stroke="#1a3373" stroke-width="2">
+    <line x1="48" y1="-40" x2="208" y2="-40"/>
+    <line x1="48" y1="-46" x2="48" y2="-34"/>
+    <line x1="208" y1="-46" x2="208" y2="-34"/>
+  </g>
+  <g stroke="#c7cddd" stroke-width="2">
+    <line x1="48" y1="-34" x2="48" y2="-24"/>
+    <line x1="208" y1="-34" x2="208" y2="-24"/>
+  </g>
+  <text class="f n" x="128" y="-52" text-anchor="middle">2.5 s</text>
+  <rect x="0" y="0" width="576" height="146" fill="#eef1f7"/>
+  <g clip-path="url(#muro)">
+    <path d="M0 0L0 70Q48 186 96 70L96 0Z" fill="url(#luz)"/>
+    <path d="M160 0L160 70Q208 186 256 70L256 0Z" fill="url(#luz)"/>
+    <path d="M320 0L320 70Q368 186 416 70L416 0Z" fill="url(#luz)"/>
+    <path d="M480 0L480 70Q528 186 576 70L576 0Z" fill="url(#luz)"/>
+  </g>
+  <rect x="0" y="0" width="576" height="146" fill="none" stroke="#000f36" stroke-width="3"/>
+  <line x1="-16" y1="146" x2="592" y2="146" stroke="#000f36" stroke-width="3"/>
+  <rect x="-16" y="146" width="608" height="18" fill="#f3f5f9"/>
+  <rect x="-16" y="-18" width="608" height="18" fill="#f6f7fa" stroke="#000f36" stroke-width="3"/>
+  <g fill="#000f36"><circle cx="48" cy="-9" r="5"/><circle cx="208" cy="-9" r="5"/><circle cx="368" cy="-9" r="5"/><circle cx="528" cy="-9" r="5"/></g>
+</g>
+
+<text class="f p" x="46" y="956">You read the spacing on the wall, not on the product sheet.</text>
+<text class="f s" x="46" y="982">The beam width comes with the fixture. What you choose is s.</text>
+</svg>

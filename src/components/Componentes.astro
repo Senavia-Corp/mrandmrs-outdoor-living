@@ -131,6 +131,13 @@ const SLIDERS = JSON.stringify(
     scrollbar-width: none; -ms-overflow-style: none;
   }
   [fs-slider-element="list"][data-mm-slider]::-webkit-scrollbar { display: none }
+
+  /* Ver `refresca()`: cuando el contenido cabe entero no hay nada que desplazar, y unas flechas
+   * que nunca van a poder habilitarse mas una barra que dibuja un cuarto lleno se leen como un
+   * carrusel roto. `display:none` y no `visibility` para sacarlas tambien del tabulador. */
+  [fs-slider-instance][data-mm-sin-desplazar] [fs-slider-element="previous"],
+  [fs-slider-instance][data-mm-sin-desplazar] [fs-slider-element="next"],
+  [fs-slider-instance][data-mm-sin-desplazar] [fs-slider-element="scrollbar"] { display: none }
   [fs-slider-element="list"][data-mm-slider] > * { scroll-snap-align: start }
   [fs-slider-element="previous"], [fs-slider-element="next"] { cursor: pointer }
   [fs-slider-element="previous"][aria-disabled="true"],
@@ -427,6 +434,31 @@ const SLIDERS = JSON.stringify(
 
       const refresca = () => {
         const max = lista.scrollWidth - lista.clientWidth;
+        /**
+         * ── SI NO HAY NADA QUE DESPLAZAR, NO SE PINTAN LOS MANDOS ────────────────────────
+         *
+         * Medido en `/services/custom-pool-spa-builders-…` a 1920, con las 3 tarjetas que el
+         * encargo pide por ficha de servicio:
+         *
+         *     slides 3 · clientWidth 1250 · scrollWidth 1250 · max 0 · el clic movia 0 px
+         *
+         * Las dos flechas salian igual, con `aria-disabled="true"` las dos, y la barra de
+         * progreso SIN anchura calculada —`refresca()` solo la pinta cuando `max > 0`— o sea
+         * enseñando su valor por defecto de CSS, que dibuja un cuarto lleno y promete tarjetas
+         * que no existen. Desde fuera eso no se lee como «no hay mas»: se lee como «el
+         * carrusel esta roto», que es exactamente como lo reporto Sebastian.
+         *
+         * Un control deshabilitado que NUNCA va a poder habilitarse no es un estado: es ruido.
+         * Se ocultan con `display:none` desde el CSS del componente, que ademas los saca del
+         * orden de tabulacion — un <button> inerte al que se puede llegar con el teclado es
+         * peor que no tenerlo.
+         *
+         * Va en el MECANISMO y no en el carrusel del blog: alcanza a los 8 sliders del sitio y
+         * se dispara solo cuando el contenido cabe, en el ancho en que cabe. Un slider de 10
+         * tarjetas sigue enseñando sus flechas en movil y las oculta en un monitor donde
+         * entran todas — que es lo correcto en los dos casos.
+         */
+        inst.toggleAttribute('data-mm-sin-desplazar', max <= 1);
         prev?.setAttribute('aria-disabled', String(lista.scrollLeft <= 1));
         next?.setAttribute('aria-disabled', String(lista.scrollLeft >= max - 1));
         if (drag && max > 0) {

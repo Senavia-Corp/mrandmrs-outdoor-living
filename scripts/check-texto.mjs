@@ -335,7 +335,66 @@ const traduce = (ruta, l) => {
  * tienen las mismas líneas, esto revienta al arrancar. Si el baseline deja de traer `antes`
  * seguido, no se aplica y la ruta vuelve a rojo. Todo lo demás se sigue comparando al 100 %.
  */
+/**
+ * ── BLOG-SANITY · EL INDICE REORDENA SUS TARJETAS ───────────────────────────────────────────
+ *
+ * El orden del baseline es el que tenia la coleccion en Webflow, que no responde a nada. El
+ * indice nuevo ordena por CATEGORIA, en el mismo orden en que salen los chips: construccion
+ * nueva, remodelacion, diseño, outdoor living y comercial. Asi la rejilla y la fila de filtros
+ * cuentan la misma historia, y quien baja sin filtrar recorre las categorias en orden de
+ * decision de compra en vez de en orden de importacion.
+ *
+ * ES UNA PERMUTACION, NO UNA EDICION: las mismas 10 tarjetas, las mismas 30 lineas. La guarda
+ * de arranque de este fichero lo exige (`antes` y `despues` ordenados tienen que coincidir) y
+ * por eso esta declaracion no puede colar un cambio de texto disfrazado de reordenamiento.
+ *
+ * SE DERIVA, y el texto SE LEE DEL BASELINE en vez de copiarse: los titulos salen capitalizados
+ * por `text-transform: capitalize` y transcribirlos a mano es como se cuelan las erratas. Las
+ * tarjetas se emparejan por su RESUMEN, que es unico y no lo toca la capitalizacion.
+ *
+ * Si manana se publica un articulo nuevo, sus lineas NO estan en el baseline y esta declaracion
+ * no las toca: las declara `INDICE_BLOG` como añadidas. Las dos cosas son disjuntas.
+ */
+const INDICE_BLOG_ORDEN = (() => {
+  const ref = path.join(RAIZ, 'baseline/text/blogs-tips.txt');
+  const cache = path.join(RAIZ, 'src/data/blogs-sanity.json');
+  if (!fs.existsSync(ref) || !fs.existsSync(cache)) return [];
+  const base = fs.readFileSync(ref, 'utf8').trimEnd().split('\n');
+
+  /* Las tarjetas del baseline: [titulo, resumen, «Read More»], leidas hacia atras desde cada
+   * «Read More». Si el baseline cambiara de forma, `bloques` sale vacio y no se declara nada. */
+  const bloques = [];
+  base.forEach((l, i) => { if (l === 'Read More' && i >= 2) bloques.push(base.slice(i - 2, i + 1)); });
+  if (bloques.length < 2) return [];
+
+  const posts = JSON.parse(fs.readFileSync(cache, 'utf8'));
+  const orden = [...posts].sort((a, b) => {
+    if (Boolean(a.destacadoIndice) !== Boolean(b.destacadoIndice)) return a.destacadoIndice ? -1 : 1;
+    const oa = a.ordenIndice ?? 9999; const ob = b.ordenIndice ?? 9999;
+    return oa !== ob ? oa - ob : a.slug.localeCompare(b.slug);
+  });
+
+  const porResumen = new Map(bloques.map((b) => [b[1], b]));
+  const despuesBloques = orden.map((p) => porResumen.get(p.summary)).filter(Boolean);
+  /* Solo se declara si TODAS las tarjetas del baseline se emparejaron. Con una sin emparejar el
+   * `antes`/`despues` no serian el mismo conjunto y la guarda de arranque abortaria el fichero
+   * entero — mejor no declarar nada y que la puerta hable. */
+  if (despuesBloques.length !== bloques.length) return [];
+
+  const antes = bloques.flat();
+  const despues = despuesBloques.flat();
+  if (antes.join('\n') === despues.join('\n')) return [];   // ya estaban en ese orden
+  return [{
+    ruta: '/blogs-tips',
+    antes,
+    despues,
+    motivo: 'BLOG-SANITY: el indice ordena por categoria, en el mismo orden que los chips, en vez '
+      + 'de por el orden de importacion de Webflow. Mismas 10 tarjetas: solo cambia el orden.',
+  }];
+})();
+
 const REORDENADAS_A_PROPOSITO = [
+  ...INDICE_BLOG_ORDEN,
   {
     ruta: '/gallery',
     antes: ['All', 'New Pool and Spa Construction', 'Pool Remodeling and Renovation',
@@ -669,7 +728,73 @@ const ANADIDAS_A_PROPOSITO = {
  * no existe en ninguna otra parte (comprobado: los dos h1 del estimador salen a 0 en el
  * baseline entero).
  */
+/**
+ * ── BLOG-SANITY · LO QUE AÑADE EL INDICE EDITORIAL ──────────────────────────────────────────
+ *
+ * `/blogs-tips` pasa de ser una rejilla de 10 tarjetas horneadas en el HTML de Webflow a una
+ * biblioteca servida desde Sanity, con buscador, chips de categoria y «Load more». Eso añade
+ * texto que NO existe en `baseline/text/blogs-tips.txt`:
+ *
+ *     el recuento («10 articles»), el chip «All», un chip por categoria CON ARTICULOS,
+ *     y la categoria de cada tarjeta.
+ *
+ * SE DERIVA, NO SE ENUMERA. Es la misma decision que `APOYOS_CIUDAD` y que `BLOQUES_PROPIOS`
+ * de `check-seo.mjs`: una lista escrita a mano se desincroniza con el dato. Aqui ademas es
+ * obligatorio — con ~100 articulos serian ~100 entradas que habria que editar cada vez que se
+ * publica uno, y la primera que alguien olvidara dejaria la puerta roja sin motivo real.
+ *
+ * LA FUENTE ES `src/data/blogs-sanity.json`, que es la cache versionada del dataset. Si alguien
+ * publica en Sanity y no la regenera (`node scripts/cache-blog-sanity.mjs`), esta declaracion
+ * deja de casar y la puerta sale ROJA. Es lo correcto: falla CERRADO.
+ *
+ * ANCLAJE. La categoria de la tarjeta `i` se ancla al RESUMEN de la tarjeta `i-1` mas su «Read
+ * More», que es un par unico. No vale anclar solo en «Read More» (sale 10 veces) ni quitar por
+ * primera aparicion: «Pool Remodeling» YA EXISTE en el baseline —una vez, en el menu— y una
+ * eliminacion sin ancla se llevaria ESA y descuadraria el resto. Medido.
+ */
+const INDICE_BLOG = (() => {
+  const f = path.join(RAIZ, 'src/data/blogs-sanity.json');
+  if (!fs.existsSync(f)) return [];
+  const posts = JSON.parse(fs.readFileSync(f, 'utf8'));
+  /* El MISMO orden que `ordenaIndice()` en `src/lib/blog-datos.mjs`: destacado primero, luego
+   * `ordenIndice` y, a igualdad, slug. Si divergiera, las anclas caerian en otra tarjeta. */
+  const orden = [...posts].sort((a, b) => {
+    if (Boolean(a.destacadoIndice) !== Boolean(b.destacadoIndice)) return a.destacadoIndice ? -1 : 1;
+    const oa = a.ordenIndice ?? 9999; const ob = b.ordenIndice ?? 9999;
+    return oa !== ob ? oa - ob : a.slug.localeCompare(b.slug);
+  });
+  const cats = [...new Map(orden.filter((x) => x.categoria?.slug)
+    .map((x) => [x.categoria.slug, x.categoria])).values()]
+    .sort((a, b) => (a.orden ?? 999) - (b.orden ?? 999));
+
+  const INTRO = 'Explore expert insights, project tips, and industry updates on pool construction'
+    + ' and outdoor living across Florida, written to help property owners and professionals make'
+    + ' informed decisions.';
+  const MOTIVO = 'BLOG-SANITY: el indice pasa a biblioteca servida desde Sanity. Derivado de '
+    + 'src/data/blogs-sanity.json, no escrito a mano.';
+
+  const entradas = [{
+    rutas: ['/blogs-tips'],
+    tras: [INTRO],
+    lineas: [`${orden.length} article${orden.length === 1 ? '' : 's'}`, 'All', ...cats.map((c) => c.name)],
+    motivo: `${MOTIVO} Recuento + chip «All» + ${cats.length} categorias con articulos.`,
+  }];
+
+  orden.forEach((p, i) => {
+    if (!p.categoria?.name) return;
+    const prev = orden[i - 1];
+    entradas.push({
+      rutas: ['/blogs-tips'],
+      tras: i === 0 ? [INTRO] : [prev.summary, 'Read More'],
+      lineas: [p.categoria.name],
+      motivo: `${MOTIVO} La categoria de la tarjeta de «${p.slug}».`,
+    });
+  });
+  return entradas;
+})();
+
 const LINEAS_ANADIDAS = [
+  ...INDICE_BLOG,
   {
     /**
      * AUDITORIA 5-sep-2026 — EL SEGUNDO CTA DEL HEROE, QUE NADIE HABIA DECLARADO.
@@ -949,6 +1074,35 @@ function lineasBlog(ruta) {
   const f = path.join(RAIZ, 'src/data/blogs.json');
   if (!fs.existsSync(f)) return [];
   const d = JSON.parse(fs.readFileSync(f, 'utf8'));
+
+  /**
+   * ── LAS 5 FICHAS CON SU TRIO SIRVEN OTRO BLOQUE, Y SE DECLARA DERIVANDOLO ─────────────────
+   *
+   * BLOG-SANITY 6b: una ficha de servicio con sus 3 articulos deja de pintar el carrusel
+   * generico de 10. Eso mueve el `innerText` de esa ruta —encabezado propio y 3 tarjetas en
+   * vez de 10—, y `check:texto` compara al 100 %.
+   *
+   * Se declara DERIVANDOLO de `src/data/blog-por-servicio.json`, que es la misma fuente que
+   * pinta la pagina, en vez de escribir 5 bloques a mano: asi el dia que se escriban los 63
+   * articulos que faltan y las otras 9 fichas reunan su trio, esto las cubre sin tocar nada.
+   * Si la fuente y la pagina divergieran, sale rojo — que es lo que debe pasar.
+   *
+   * Las 9 fichas pendientes NO entran aqui: siguen sirviendo los 10 genericos y su bloque es
+   * el de siempre.
+   */
+  const fFicha = path.join(RAIZ, 'src/data/blog-por-servicio.json');
+  if (ruta && fs.existsSync(fFicha)) {
+    const ficha = JSON.parse(fs.readFileSync(fFicha, 'utf8')).rutas?.[ruta];
+    if (ficha) {
+      const n = (x) => (x ?? '').replace(/ /g, ' ').replace(/\s+/g, ' ').trim();
+      return [
+        capitaliza(n(ficha.titulo)),
+        n(ficha.entradilla),
+        ...ficha.posts.flatMap((p) => [capitaliza(n(p.titulo)), n(p.resumen), capitaliza(n(p.cta))]),
+      ];
+    }
+  }
+
   const posts = d.posts ?? [];
   if (!posts.length) return [];
   const norm = (s) => (s ?? '').replace(/ /g, ' ').replace(/\s+/g, ' ').trim();
@@ -988,7 +1142,11 @@ function lineasBlog(ruta) {
   return [
     capitaliza(norm(titulo)),
     norm(entradilla),
-    ...posts.flatMap((p) => [capitaliza(norm(p.titulo)), norm(p.resumen), norm(p.cta)]),
+    /* El CTA va CAPITALIZADO igual que los titulos: vive en un `.button-styles` y
+     * `webflow.css` le aplica `text-transform: capitalize`. Medido: la pagina sirve
+     * «…Property Value In Florida» y la declaracion decia «…in Florida». El resumen NO, que
+     * va en un `<p>` y no lleva la regla. */
+    ...posts.flatMap((p) => [capitaliza(norm(p.titulo)), norm(p.resumen), capitaliza(norm(p.cta))]),
   ];
 }
 
@@ -1080,11 +1238,24 @@ function sufijosSr() {
   const anota = (cta, titulo) => {
     const c = norm(cta); const t = norm(titulo);
     if (!c || !t) return;
-    pares.push([c, `: ${t}`]);
-    pares.push([c, `: ${capitaliza(t)}`]);          // la variante con el capitalize de Webflow
+    /* CUATRO variantes, no dos. `capitalize` no pinta solo el sufijo: el CTA vive en un
+     * `.button-styles`, que Webflow tambien capitaliza, asi que la linea anterior que hay que
+     * reconocer llega como «Read More: … Value In Florida» y no como «… in Florida». Con la
+     * clave sin capitalizar el sufijo no se quitaba NUNCA en estas rutas, y el bloque de blog
+     * salia «PARTIDO o DESORDENADO» en las 14 fichas — por una mayuscula. */
+    for (const clave of new Set([c, capitaliza(c)])) {
+      pares.push([clave, `: ${t}`]);
+      pares.push([clave, `: ${capitaliza(t)}`]);
+    }
   };
 
   for (const p of lee('src/data/blogs.json')?.posts ?? []) anota(p.cta, p.titulo);
+
+  /* Y los de las fichas con su trio: sus tarjetas NO salen de `blogs.json`, asi que sin esto
+   * sus tres sufijos ocultos se quedaban en la pagina y partian el bloque igual. */
+  for (const f of Object.values(lee('src/data/blog-por-servicio.json')?.rutas ?? {})) {
+    for (const x of f.posts ?? []) anota(x.cta, x.titulo);
+  }
 
   const svc = lee('src/data/servicios-categoria.json') ?? {};
   const recorre = (o) => {

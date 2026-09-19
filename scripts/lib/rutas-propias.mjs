@@ -70,8 +70,32 @@
  *     `src/data/proyectos-propios.json`, que es lo que leen esas dos puertas y el generador.
  */
 
+import fs from 'node:fs';
+import path from 'node:path';
+
+/**
+ * ── LAS RUTAS DE BLOG PROPIAS, DERIVADAS ────────────────────────────────────────────────────
+ *
+ * `src/data/blogs-rutas.json` lo escribe `scripts/build-blogs-rutas.mjs` desde Sanity, y trae
+ * SOLO los articulos que no existen en el Webflow de origen. De ahi salen las cuatro
+ * declaraciones que cuesta cada URL nueva en este repo, y esta es la primera.
+ *
+ * Se lee con `readFileSync` y no con `import ... with {type:'json'}` a proposito: este modulo
+ * lo cargan el generador y cuatro puertas, y un fallo de sintaxis de import assertions los
+ * tiraria todos a la vez. Si el fichero no esta, se sigue con las de siempre — no hay articulos
+ * propios y no hay nada que declarar.
+ */
+const rutasDeBlog = () => {
+  const f = path.join(path.dirname(new URL(import.meta.url).pathname), '../../src/data/blogs-rutas.json');
+  if (!fs.existsSync(f)) return {};
+  const { rutas } = JSON.parse(fs.readFileSync(f, 'utf8'));
+  return Object.fromEntries(Object.entries(rutas).map(([r, d]) => [r, d.motivo]));
+};
+
 /** Ruta -> por que existe. El motivo no es adorno: es lo que hace auditable la excepcion. */
 export const RUTAS_PROPIAS = {
+  ...rutasDeBlog(),
+
   '/financing': 'Escrita el 2-sep-2026. El nav mandaba a Acorn Finance con `target="_blank"` '
     + 'desde las 115 rutas: cada clic en «Financing» salia del sitio antes de explicar nada. '
     + 'Esta pagina se pone en medio y el enlace externo se queda solo en su CTA.',

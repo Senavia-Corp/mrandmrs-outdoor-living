@@ -370,6 +370,23 @@ const NO_REGENERAR = new Map([
    * SEO del 3-sep-2026 y hubo que restaurarlas de una instantanea. La cabecera del .astro ya lo
    * avisaba; lo que faltaba era la guarda que lo impide.
    */
+  /**
+   * LA CUARTA Y LA QUINTA: el blog entero, y por el mismo motivo que `/pool-builders/`.
+   *
+   * BLOG-SANITY paso las fichas a `src/pages/blogs/[slug].astro`, que lee de Sanity, y borro
+   * los 10 `.astro`. Regenerarlos los repone SIN VERSIONAR, ensombrece la ruta dinamica y
+   * rompe `check:rutas` con 10 rutas de mas — exactamente lo que le paso a `/pool-builders/`
+   * el dia que se probo la guarda de `/`.
+   *
+   * `/blogs-tips` no se borra: pasa a editarse A MANO (buscador, filtros y «Load More» sobre
+   * un indice horneado desde Sanity). Regenerarlo lo borraria, igual que le paso a las 2 de
+   * Estado el 3-sep-2026.
+   */
+  ['/blogs/', 'la familia entera la sirve src/pages/blogs/[slug].astro leyendo de Sanity desde '
+      + 'BLOG-SANITY, que borro los 10 .astro a proposito. Regenerarlos los repone sin '
+      + 'versionar y rompe check:rutas con 10 rutas de mas.'],
+  ['/blogs-tips', 'el indice se edita A MANO desde BLOG-SANITY: buscador, filtros por categoria '
+      + 'y «Load More» sobre un indice horneado desde Sanity. Regenerarlo lo borra.'],
   ['/where-we-serve/north-florida', 'el heroe (T0) se edita A MANO desde el rediseno del '
       + '3-sep-2026. Regenerarla lo borra: ya paso una vez.'],
   ['/where-we-serve/south-florida', 'idem que la de North: heroe a mano desde el 3-sep-2026.'],
@@ -512,25 +529,23 @@ const protegidas = [];
 /* Las 15 rutas DERIVADAS que montan `.faq-section` (la decimosexta, `/financing`, es de
  * autoria propia y lo lleva escrito a mano). Se COMPRUEBA al final contra 15. */
 let collagesInsertados = 0;
-/* R22-BLOG-IMG. Se comprueban al final contra numeros que salen de la forma del sitio, no de
- * una expectativa: 8 rutas con entrada, 7 tarjetas por articulo de `/blogs/` y 10 en
- * `/blogs-tips`, y 3 figuras por articulo. */
-let fotosBlogCambiadas = 0;
-let figurasBlogInsertadas = 0;
-let seoBlogTocado = 0;
-/* Dos de los tres se DERIVAN del dato -no se escriben a mano- y el tercero se midio. */
-const N_BLOG = Object.keys(JSON.parse(
-  fs.readFileSync(path.join(RAIZ, 'src/data/imagenes-blog-por-ruta.json'), 'utf8')).rutas).length;
-const ESP_FIGURAS = N_BLOG * 3;
-const ESP_SEO = N_BLOG * 3 + 1;          // + el hasPart de /blogs-tips
-/* MEDIDO recorriendo el DOM de las 11 rutas con JSDOM, no supuesto -la primera vez puse 63 a
- * ojo y el contador dijo 78-:
+/* R22-BLOG-IMG · RETIRADO EN BLOG-SANITY, y no por obsoleto: por quedarse SIN SUPERFICIE.
  *
- *   80 tarjetas de blog en total = 10 en `/blogs-tips` + 7 en cada uno de los 10 articulos.
- *   80 apuntan a una ruta con entrada, desde que los 10 articulos la tienen.
+ * `fotosBlog`, `figurasBlog` y `seoBlog` solo actuaban sobre `/blogs-tips` y `/blogs/*` -la
+ * propia guarda de `fotosBlog` lo decia: `if (ruta !== '/blogs-tips' && !ruta.startsWith(
+ * '/blogs/')) return 0;`-. Las dos familias acaban de entrar en NO_REGENERAR, asi que las tres
+ * funciones pasarian por 0 rutas y su invariante (80/30/31) reventaria el build diciendo que
+ * «la cuenta no cuadra», cuando lo que ha pasado es que ya no hay nada que contar.
  *
- * Fue 78 mientras 2 se quedaban fuera por falta de imagen comercial real. */
-const ESP_FOTOS = 80;
+ * EL TRABAJO DE R22 NO SE PIERDE: las mismas fotos y las mismas 3 figuras por articulo viven
+ * ahora EN SANITY (campo `portada` y bloques `image` dentro de `blog`), puestas por
+ * `scripts/backfill-blog-sanity.mjs` desde el mismo `src/data/imagenes-blog-por-ruta.json`.
+ * El casting -que foto va en que hueco y por que- sigue donde estaba: en la cabecera de
+ * `scripts/build-imagenes-blog.mjs`. Las figuras se insertan en las MISMAS posiciones que
+ * calculaba `figurasBlog()`, verificado articulo a articulo.
+ *
+ * Las otras 79 rutas no se enteran: su carrusel sale de `src/data/blogs.json`, no de aqui.
+ */
 /**
  * ── EL MARCADOR DEL COLLAGE DE LA FAQ (FAQ-COLLAGE) ──────────────────────────────────────
  *
@@ -576,153 +591,6 @@ function collageFaq(doc, ruta) {
   return true;
 }
 
-/**
- * ── R22-BLOG-IMG · LA IMAGEN DE LOS BLOGS ────────────────────────────────────────────────
- *
- * POR QUE VIVE AQUI Y NO EN LOS `.astro`. Las 11 rutas de blog -`/blogs-tips` y las 10 de
- * `/blogs/`- NO estan en `NO_REGENERAR`: este generador las reescribe enteras en cada corrida,
- * asi que un hand-edit se pierde. Tampoco vale el patron «componente + marcador»: la emision de
- * marcadores (§ troceo) escribe `<Componente />` SIN PROPS, y las tres figuras de un articulo
- * son distintas entre si. Queda la cirugia sobre el DOM, como `collageFaq()`.
- *
- * QUE HACE, EN TRES PIEZAS:
- *   · `fotosBlog`   — cambia la foto de las tarjetas. Casa por el `href` de la tarjeta, NO por
- *     el nombre del fichero: `luxury-pool-designs-florida-homes.webp` es la tarjeta de «Complete
- *     Guide» Y, con sufijo `--blogs-tips`, la de «Top 10». Por nombre se cambiarian cruzadas.
- *   · `figurasBlog` — inserta 3 `<figure>` dentro de `.w-richtext`.
- *   · `seoBlog`     — el `image` del JSON-LD y el `og:image`/`twitter:image`, emparejando por
- *     `url`. Sin esto el dato estructurado seguiria apuntando a la imagen vieja, que es la que
- *     lee Google, y en estas 8 rutas la vieja es una imagen generada por IA.
- *
- * EL `alt` SE RESPETA POR SUPERFICIE. Las tarjetas de «Most Read Articles» traen `alt=""` del
- * origen y se quedan asi: son miniaturas al lado de un enlace de texto que ya dice el titulo, y
- * ponerles descripcion hace que un lector de pantalla lo lea dos veces. Solo se rellena el `alt`
- * donde el origen ya traia uno.
- *
- * CERO CSS. La `<figure>` va DENTRO de `.w-richtext`, que es donde `src/styles/lectura.css`
- * §7 (:172-181) ya estila `figure` y `figure img`, y donde §3 (:112-115) le da su ritmo. El
- * presupuesto de `check:tokens` esta en 92,9 KB de 94: no habia sitio para una hoja nueva.
- */
-const IMG_BLOG = JSON.parse(
-  fs.readFileSync(path.join(RAIZ, 'src/data/imagenes-blog-por-ruta.json'), 'utf8')).rutas;
-const rutaLimpia = (h) => (h || '').replace(/[?#].*$/, '').replace(/(.)\/$/, '$1');
-
-/**
- * Cambia la foto de toda tarjeta de blog que tenga entrada. Devuelve cuantas.
- *
- * SOLO EN LAS 11 RUTAS DE BLOG, y no es una optimizacion: es correccion. Las otras 79 rutas
- * traen el carrusel de blog HORNEADO en el origen -con sus 10 tarjetas- y `limpia()` lo
- * sustituye ENTERO por el marcador `<CarruselBlog />` un momento despues. Tocar esas tarjetas
- * es trabajo que se tira, y encima inflaba el contador: 582 en vez de 63, con lo que el
- * invariante dejaba de medir nada. Esas 79 se sirven de `src/data/blogs.json`, que sale de
- * `src/pages/index.astro` por `scripts/build-blogs.mjs`.
- */
-function fotosBlog(doc, ruta) {
-  if (ruta !== '/blogs-tips' && !ruta.startsWith('/blogs/')) return 0;
-  let n = 0;
-  for (const card of doc.querySelectorAll('.card')) {
-    const a = card.querySelector('a[href^="/blogs/"]');
-    const img = card.querySelector('img');
-    if (!a || !img) continue;
-    const d = IMG_BLOG[rutaLimpia(a.getAttribute('href'))];
-    if (!d) continue;                    // las 2 que se quedan fuera del encargo
-    img.setAttribute('src', d.tarjeta.src);
-    img.setAttribute('srcset', d.tarjeta.srcset);
-    img.setAttribute('sizes', d.tarjeta.sizes);
-    if (img.getAttribute('alt')) img.setAttribute('alt', d.tarjeta.alt);
-    n++;
-  }
-  return n;
-}
-
-/**
- * Inserta las 3 `<figure>` del articulo. Devuelve cuantas.
- *
- * DONDE CAEN, y la regla sale de la forma real del documento: hay UN `.w-richtext` por
- * articulo, sus `h2` son hijos directos, «Most Read Articles» queda FUERA, y el ultimo `h2` de
- * dentro es siempre «Frequently Asked Questions». Entonces:
- *   fig1 -> tras el primer h2      (dentro del pliegue a 390 px)
- *   fig2 -> tras el h2 central     (el tercio de en medio)
- *   fig3 -> ANTES del h2 de la FAQ (cierra el cuerpo, no se cuela entre preguntas)
- * Van pegadas al `h2`, que es donde el propio Webflow las pone en `top-10`: se conserva la
- * forma de la casa (`00-PRINCIPIOS §1`), no se inventa una nueva.
- */
-function figurasBlog(doc, ruta) {
-  const d = IMG_BLOG[ruta];
-  if (!d) return 0;
-  const rt = doc.querySelectorAll('.w-richtext');
-  if (rt.length !== 1) {
-    console.error(`\n  ROJO ${ruta}: esperaba UN .w-richtext y hay ${rt.length}.`
-      + ' Las figuras no tienen donde ir; se para el build.\n');
-    process.exit(1);
-  }
-  /* `top-10` trae 4 `<figure>` del origen y se van: son infinity pools frente al mar al
-   * atardecer, o sea IA, en una empresa que construye patios traseros tierra adentro. No llevan
-   * `trainedAlgorithmicMedia` -el marcador falla abierto- y por eso esto va declarado aqui. */
-  if (d.reemplaza_figuras) for (const f of rt[0].querySelectorAll('figure')) f.remove();
-
-  const h2 = [...rt[0].children].filter((e) => e.tagName === 'H2');
-  if (h2.length < 3) {
-    console.error(`\n  ROJO ${ruta}: ${h2.length} h2 en .w-richtext, hacen falta 3 para repartir.\n`);
-    process.exit(1);
-  }
-  const anclas = [h2[0], h2[Math.floor((h2.length - 1) / 2)], h2[h2.length - 1]];
-  let n = 0;
-  d.figuras.forEach((f, i) => {
-    const fig = doc.createElement('figure');
-    fig.className = 'w-richtext-align-center w-richtext-figure-type-image';
-    const caja = doc.createElement('div');
-    const img = doc.createElement('img');
-    img.setAttribute('src', f.src);
-    img.setAttribute('srcset', f.srcset);
-    img.setAttribute('sizes', f.sizes);
-    img.setAttribute('alt', f.alt);
-    /* `width`/`height` literales: sin ellos hay CLS, y las 4 figuras que habia no los traian. */
-    img.setAttribute('width', String(f.ancho));
-    img.setAttribute('height', String(f.alto));
-    img.setAttribute('loading', 'lazy');
-    img.setAttribute('decoding', 'async');
-    caja.appendChild(img);
-    fig.appendChild(caja);
-    const ancla = anclas[i];
-    /* La tercera va ANTES de su ancla (el h2 de la FAQ); las otras dos, detras del suyo. */
-    if (i === 2) ancla.parentNode.insertBefore(fig, ancla);
-    else ancla.parentNode.insertBefore(fig, ancla.nextSibling);
-    n++;
-  });
-  return n;
-}
-
-/** JSON-LD y og:image. Empareja por `url`, no por la ruta de la imagen vieja. Devuelve cuantos. */
-function seoBlog(doc, ruta) {
-  let n = 0;
-  const propia = IMG_BLOG[ruta];
-  for (const sc of doc.head.querySelectorAll('script[type="application/ld+json"]')) {
-    let b;
-    try { b = JSON.parse(sc.textContent); } catch { continue; }
-    let tocado = false;
-    const pon = (obj, src) => {
-      if (!obj) return;
-      if (typeof obj.image === 'string') { obj.image = src; tocado = true; }
-      else if (obj.image && typeof obj.image === 'object') { obj.image.url = src; tocado = true; }
-    };
-    /* La pagina del articulo: su propio BlogPosting. */
-    if (propia && rutaLimpia(b.url) === ruta) pon(b, propia.tarjeta.src);
-    /* `/blogs-tips`: cada parte, por su url. Las 2 sin entrada se quedan como estan. */
-    for (const p of Array.isArray(b.hasPart) ? b.hasPart : []) {
-      const d = IMG_BLOG[rutaLimpia(p.url)];
-      if (d) pon(p, d.tarjeta.src);
-    }
-    if (tocado) { sc.textContent = JSON.stringify(b); n++; }
-  }
-  if (propia) {
-    for (const m of doc.head.querySelectorAll('meta[property="og:image"], meta[name="twitter:image"]')) {
-      m.setAttribute('content', propia.tarjeta.src);
-      n++;
-    }
-  }
-  return n;
-}
 
 /**
  * ── LA CIRUGIA DE LA LANDING DE PAGO (R17-CORE) ──────────────────────────────────────────
@@ -1169,11 +1037,6 @@ for (const [ruta] of RUTAS) {
   const conCollage = collageFaq(doc, ruta);
   if (conCollage) collagesInsertados++;
 
-  /* R22-BLOG-IMG. Va aqui, antes del bucle de hermanos, por lo mismo que `captacion()`: todo lo
-   * que viene detras -`limpia()`, `localizar()`, el troceo- tiene que ver ya el DOM cambiado. */
-  fotosBlogCambiadas += fotosBlog(doc, ruta);
-  figurasBlogInsertadas += figurasBlog(doc, ruta);
-  seoBlogTocado += seoBlog(doc, ruta);
 
   const usados = new Set();
   const limpia = (n) => {
@@ -1811,24 +1674,6 @@ console.log(`  carrusel de proyectos sustituido en ${proyectosSustituidos} ruta(
 console.log(`  carrusel de blog sustituido en ${blogsSustituidos} ficha(s) de country/`
   + `${blogsSustituidos === 9 ? '' : '   <<< SE ESPERABAN 9'}`);
 
-/* R22-BLOG-IMG. Los tres numeros salen de la forma del sitio, no de una expectativa:
- *   · 78 tarjetas = 8 en `/blogs-tips` + 70 en «Most Read Articles» (10 articulos x 7 tarjetas,
- *     menos las que apuntan a los 2 articulos que se quedan fuera del encargo).
- *   · 24 figuras  = 8 articulos x 3.
- *   · 25 bloques de SEO = 8 articulos x 3 (JSON-LD + og:image + twitter:image) + 1 el hasPart
- *     de `/blogs-tips`.
- * Si alguno se mueve, o el origen cambio de forma o el casting dejo de cuadrar. */
-console.log(`  R22 · foto de tarjeta de blog cambiada ${fotosBlogCambiadas} vez(ces)`
-  + `${fotosBlogCambiadas === ESP_FOTOS ? '' : `   <<< SE ESPERABAN ${ESP_FOTOS}`}`);
-console.log(`  R22 · figuras insertadas en el cuerpo: ${figurasBlogInsertadas}`
-  + `${figurasBlogInsertadas === ESP_FIGURAS ? '' : `   <<< SE ESPERABAN ${ESP_FIGURAS}`}`);
-console.log(`  R22 · bloques de SEO con imagen nueva: ${seoBlogTocado}`
-  + `${seoBlogTocado === ESP_SEO ? '' : `   <<< SE ESPERABAN ${ESP_SEO}`}`);
-if (fotosBlogCambiadas !== ESP_FOTOS || figurasBlogInsertadas !== ESP_FIGURAS || seoBlogTocado !== ESP_SEO) {
-  console.error('\n  ROJO R22-BLOG-IMG: la cuenta no cuadra. O el origen cambio de forma, o'
-    + ' src/data/imagenes-blog-por-ruta.json dejo de casar con las rutas que existen.\n');
-  process.exit(1);
-}
 const OBRAS_ESPERADAS = OBRAS_PROPIAS.length * Object.keys(OBRAS_EN).length;
 console.log(`  obras propias insertadas en el indice: ${obrasInsertadas}`
   + `${obrasInsertadas === OBRAS_ESPERADAS ? '' : `   <<< SE ESPERABAN ${OBRAS_ESPERADAS}`}`);

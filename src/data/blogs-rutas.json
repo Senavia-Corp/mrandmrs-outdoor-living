@@ -1,0 +1,251 @@
+{
+ "_lee_esto": [
+  "DERIVADO de Sanity por scripts/build-blogs-rutas.mjs. No editar a mano.",
+  "",
+  "Son las rutas de /blogs/ que NO vienen de Webflow. De aqui derivan sus CUATRO",
+  "declaraciones: rutas-propias.mjs, disenio/contratos.json, el sitemap y PAGINAS_ESPERADAS.",
+  "",
+  "Los 10 articulos heredados NO estan aqui a proposito: ya tienen baseline de texto, de SEO",
+  "y capturas, y declararlos «propios» haria que check:seo dejara de compararlos con el origen."
+ ],
+ "rutas": {
+  "/blogs/aluminum-vs-wood-pergolas-in-florida": {
+   "titulo": "Aluminum vs. Wood Pergolas in Florida: Which Makes More Sense Long Term?",
+   "categoria": "pergolas-louvered-roofs",
+   "servicio": "custom-aluminum-pergola-builders-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Pergolas & Louvered Roofs», escrito para la ficha de Aluminum Pergolas. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/attached-vs-freestanding-pergola": {
+   "titulo": "Attached vs. Freestanding Pergola: Which Layout Works Better for Your Backyard?",
+   "categoria": "pergolas-louvered-roofs",
+   "servicio": "custom-aluminum-pergola-builders-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Pergolas & Louvered Roofs», escrito para la ficha de Aluminum Pergolas. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/before-and-after-pool-remodel-ideas": {
+   "titulo": "Before & After Pool Remodel Ideas: 10 Changes With the Biggest Visual Impact",
+   "categoria": "pool-remodeling",
+   "servicio": "pool-remodeling-renovation-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Pool Remodeling», escrito para la ficha de Pool Remodeling. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/before-you-build-a-pool-in-florida": {
+   "titulo": "Before You Build a Pool in Florida: 12 Decisions to Make Before Excavation",
+   "categoria": "new-pool-construction",
+   "servicio": "custom-pool-spa-builders-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «New Pool Construction», escrito para la ficha de Pool  Construction. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/best-outdoor-kitchen-materials-for-florida": {
+   "titulo": "Best Outdoor Kitchen Materials for Florida Heat, Humidity & Rain",
+   "categoria": "outdoor-kitchens",
+   "servicio": "custom-outdoor-kitchens-for-north-south-florida-homes",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Outdoor Kitchens», escrito para la ficha de Outdoor Kitchens. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/building-a-pool-in-north-florida": {
+   "titulo": "Building a Pool in North Florida? What Gainesville & Ocala Homeowners Should Plan For",
+   "categoria": "new-pool-construction",
+   "servicio": "custom-pool-spa-builders-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «New Pool Construction», escrito para la ficha de Pool  Construction. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/designing-a-complete-louvered-roof-system": {
+   "titulo": "Lights, Fans, Screens & More: How to Design a Complete Louvered Roof System",
+   "categoria": "pergolas-louvered-roofs",
+   "servicio": "motorized-louvered-roof-systems-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Pergolas & Louvered Roofs», escrito para la ficha de Louvered Roof Systems. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/do-you-need-a-permit-for-a-pergola-in-florida": {
+   "titulo": "Do You Need a Permit for a Pergola in Florida? What Homeowners Should Know",
+   "categoria": "pergolas-louvered-roofs",
+   "servicio": "custom-aluminum-pergola-builders-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Pergolas & Louvered Roofs», escrito para la ficha de Aluminum Pergolas. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/features-to-compare-before-buying-a-louvered-roof": {
+   "titulo": "7 Features to Compare Before Buying a Motorized Louvered Roof",
+   "categoria": "pergolas-louvered-roofs",
+   "servicio": "motorized-louvered-roof-systems-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Pergolas & Louvered Roofs», escrito para la ficha de Louvered Roof Systems. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/gas-electric-and-plumbing-for-an-outdoor-kitchen": {
+   "titulo": "Gas, Electric, Plumbing: What Your Outdoor Kitchen Needs Before Construction",
+   "categoria": "outdoor-kitchens",
+   "servicio": "custom-outdoor-kitchens-for-north-south-florida-homes",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Outdoor Kitchens», escrito para la ficha de Outdoor Kitchens. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/grill-island-vs-full-outdoor-kitchen": {
+   "titulo": "Built-In Grill Island vs. Full Outdoor Kitchen: Which One Fits How You Entertain?",
+   "categoria": "outdoor-kitchens",
+   "servicio": "custom-outdoor-kitchens-for-north-south-florida-homes",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Outdoor Kitchens», escrito para la ficha de Outdoor Kitchens. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/how-long-does-a-pool-remodel-take-in-florida": {
+   "titulo": "How Long Does a Complete Pool Remodel Take in Florida?",
+   "categoria": "pool-remodeling",
+   "servicio": "pool-remodeling-renovation-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Pool Remodeling», escrito para la ficha de Pool Remodeling. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/how-much-does-a-custom-pool-cost-in-florida": {
+   "titulo": "How Much Does a Custom Pool Really Cost in Florida? 8 Decisions That Move the Price",
+   "categoria": "new-pool-construction",
+   "servicio": "custom-pool-spa-builders-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «New Pool Construction», escrito para la ficha de Pool  Construction. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/how-much-does-a-motorized-louvered-roof-cost": {
+   "titulo": "How Much Does a Motorized Louvered Roof Cost? 7 Factors That Change the Project",
+   "categoria": "pergolas-louvered-roofs",
+   "servicio": "motorized-louvered-roof-systems-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Pergolas & Louvered Roofs», escrito para la ficha de Louvered Roof Systems. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/how-much-does-a-pool-remodel-cost-in-florida": {
+   "titulo": "How Much Does a Complete Pool Remodel Cost in Florida? What Actually Changes the Scope",
+   "categoria": "pool-remodeling",
+   "servicio": "pool-remodeling-renovation-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Pool Remodeling», escrito para la ficha de Pool Remodeling. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/how-much-does-a-pool-screen-enclosure-cost-in-florida": {
+   "titulo": "How Much Does a New Pool Screen Enclosure Cost in Florida? What Changes the Scope",
+   "categoria": "screens-enclosures",
+   "servicio": "pool-screen-enclosures-for-north-south-florida-pools",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Screens & Enclosures», escrito para la ficha de Pool Screen Enclosures. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/how-much-does-an-aluminum-pergola-cost-in-florida": {
+   "titulo": "How Much Does an Aluminum Pergola Cost in Florida? What Changes the Price",
+   "categoria": "pergolas-louvered-roofs",
+   "servicio": "custom-aluminum-pergola-builders-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Pergolas & Louvered Roofs», escrito para la ficha de Aluminum Pergolas. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/how-much-does-an-outdoor-kitchen-cost-in-florida": {
+   "titulo": "How Much Does a Custom Outdoor Kitchen Cost in Florida? What Actually Drives the Price",
+   "categoria": "outdoor-kitchens",
+   "servicio": "custom-outdoor-kitchens-for-north-south-florida-homes",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Outdoor Kitchens», escrito para la ficha de Outdoor Kitchens. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/how-to-choose-a-pool-builder-in-florida": {
+   "titulo": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign",
+   "categoria": "new-pool-construction",
+   "servicio": "custom-pool-spa-builders-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «New Pool Construction», escrito para la ficha de Pool  Construction. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/is-a-motorized-louvered-roof-worth-it-in-florida": {
+   "titulo": "Is a Motorized Louvered Roof Worth It in Florida?",
+   "categoria": "pergolas-louvered-roofs",
+   "servicio": "motorized-louvered-roof-systems-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Pergolas & Louvered Roofs», escrito para la ficha de Louvered Roof Systems. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/louvered-roof-in-florida-rain-and-high-winds": {
+   "titulo": "What Happens to a Louvered Roof During Florida Rain and High Winds?",
+   "categoria": "pergolas-louvered-roofs",
+   "servicio": "motorized-louvered-roof-systems-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Pergolas & Louvered Roofs», escrito para la ficha de Louvered Roof Systems. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/outdoor-kitchen-appliance-decisions": {
+   "titulo": "9 Decisions to Make Before You Choose Your Outdoor Kitchen Appliances",
+   "categoria": "outdoor-kitchens",
+   "servicio": "custom-outdoor-kitchens-for-north-south-florida-homes",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Outdoor Kitchens», escrito para la ficha de Outdoor Kitchens. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/outdoor-kitchen-layout-guide": {
+   "titulo": "The Outdoor Kitchen Layout Guide: How to Design Around the Way You Actually Cook",
+   "categoria": "outdoor-kitchens",
+   "servicio": "custom-outdoor-kitchens-for-north-south-florida-homes",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Outdoor Kitchens», escrito para la ficha de Outdoor Kitchens. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/pergola-beside-a-pool-features-to-plan-together": {
+   "titulo": "Building a Pergola Beside a Pool? 8 Features Worth Planning Together",
+   "categoria": "pergolas-louvered-roofs",
+   "servicio": "custom-aluminum-pergola-builders-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Pergolas & Louvered Roofs», escrito para la ficha de Aluminum Pergolas. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/pergola-design-decisions-before-construction": {
+   "titulo": "7 Pergola Design Decisions to Make Before Construction Starts",
+   "categoria": "pergolas-louvered-roofs",
+   "servicio": "custom-aluminum-pergola-builders-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Pergolas & Louvered Roofs», escrito para la ficha de Aluminum Pergolas. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/pergola-vs-louvered-roof": {
+   "titulo": "Pergola vs. Louvered Roof: Which One Should You Build?",
+   "categoria": "pergolas-louvered-roofs",
+   "servicio": "custom-aluminum-pergola-builders-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Pergolas & Louvered Roofs», escrito para la ficha de Aluminum Pergolas. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/pool-and-spa-or-pool-only": {
+   "titulo": "Pool & Spa or Pool Only? How to Decide Before Your Design Is Final",
+   "categoria": "new-pool-construction",
+   "servicio": "custom-pool-spa-builders-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «New Pool Construction», escrito para la ficha de Pool  Construction. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/pool-remodeling-decisions-that-transform-an-old-pool": {
+   "titulo": "9 Pool Remodeling Decisions That Can Make an Old Pool Feel Completely New",
+   "categoria": "pool-remodeling",
+   "servicio": "pool-remodeling-renovation-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Pool Remodeling», escrito para la ficha de Pool Remodeling. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/pool-resurfacing-vs-full-pool-renovation": {
+   "titulo": "Pool Resurfacing vs. Full Pool Renovation: What's the Difference?",
+   "categoria": "pool-remodeling",
+   "servicio": "pool-remodeling-renovation-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Pool Remodeling», escrito para la ficha de Pool Remodeling. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/pool-upgrades-worth-planning-before-construction": {
+   "titulo": "10 Pool Upgrades Worth Planning Before Construction Begins",
+   "categoria": "new-pool-construction",
+   "servicio": "custom-pool-spa-builders-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «New Pool Construction», escrito para la ficha de Pool  Construction. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/questions-to-ask-a-louvered-roof-installer": {
+   "titulo": "Questions to Ask Before Hiring a Louvered Roof Installer in Florida",
+   "categoria": "pergolas-louvered-roofs",
+   "servicio": "motorized-louvered-roof-systems-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Pergolas & Louvered Roofs», escrito para la ficha de Louvered Roof Systems. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/remodel-or-rebuild-your-pool": {
+   "titulo": "Remodel or Rebuild? How to Decide What Your Existing Pool Really Needs",
+   "categoria": "pool-remodeling",
+   "servicio": "pool-remodeling-renovation-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Pool Remodeling», escrito para la ficha de Pool Remodeling. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/what-makes-a-pool-look-custom": {
+   "titulo": "What Makes a Pool Look Custom? 9 Design Choices That Transform the Backyard",
+   "categoria": "new-pool-construction",
+   "servicio": "custom-pool-spa-builders-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «New Pool Construction», escrito para la ficha de Pool  Construction. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/what-to-upgrade-during-a-complete-pool-remodel": {
+   "titulo": "What Should You Upgrade During a Complete Pool Remodel?",
+   "categoria": "pool-remodeling",
+   "servicio": "pool-remodeling-renovation-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «Pool Remodeling», escrito para la ficha de Pool Remodeling. No existe en el Webflow de origen: es contenido nuevo."
+  }
+ }
+}
