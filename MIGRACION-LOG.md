@@ -6814,3 +6814,70 @@ grep -rlE 'images/site/(luxury-pool-designs|pool-construction-permits|…)' \
    `residentials/`, 39 en `procesos/` y las 10 de `images/commercial-*`. Encargo aparte.
 5. **7 de los 10 artículos se enlazan a sí mismos** en «Most Read Articles». Arreglarlo quita
    texto → `check:texto`. Encargo aparte.
+
+
+---
+
+## R23-PORTADAS — grado fotográfico de las 10 imágenes de portada · 18-sep-2026
+
+**Qué se hizo.** Las 10 imágenes de **portada** del blog —las que salen en `/blogs-tips`, en el
+carrusel de 79 rutas y en «Most Read Articles»— pasan por un grado fotográfico completo:
+exposición, sombras, iluminación, contraste y saturación. Las 30 figuras del cuerpo **no** se
+tocan: el encargo era de portadas.
+
+**Por qué no hay una receta única.** Cada una llegaba con un problema distinto, medido sobre su
+histograma:
+
+| imagen | diagnóstico |
+|---|---|
+| `062-06` | negro en 29 y blanco en 214 — lavada por los dos lados |
+| `pergola-05` | negro en 25 — sin punto negro |
+| `kitchen-2` | **3,90 %** de negro empastado y saturación 4 |
+| `061-08` | **1,83 %** de altas luces ya quemadas — no se puede subir |
+| `061-12` | mediana en 78 — subexpuesta de verdad |
+| `059-08/09` | media baja pero saturación 39 — sujeto vivo, no tocar color |
+
+Una sola curva habría quemado unas y lavado otras.
+
+**La cadena** (`scripts/lib/grado-portada.mjs`): niveles por percentiles (p0.5 → 6, p99.5 → 249)
+· gamma de medios **que solo aclara** · curva S aflojada en lo que ya viene vivo · saturación
+inversa a la que ya tiene · CLAHE suave · nitidez ligera. La LUT se aplica **igual a R, G y B**:
+mueve luminosidad y contraste **sin rotar el tono** — `R13-COLOR` dejó fuera a propósito las fotos
+reales de obra («retonar el trabajo del cliente es peor»).
+
+**Y se mide, con lazo.** Si el grado empasta el negro, sube el punto negro y repite. Topes:
+≤1,0 % de negro y ≤0,9 % de altas luces. Las 10 pasan a la primera.
+
+```
+                                    media      sat    quemado        negro
+061-12 (subexpuesta)              90 → 125   12 → 13   0,23→0,64   1,04 → 0,02
+kitchen-2 (sombras sucias)       119 → 127    4 →  6   0,11→0,45   3,90 → 0,59
+061-08 (altas luces quemadas)    115 → 121    8 → 10   1,83→0,35   0,00 → 0,42
+062-06 (lavada)                  130 → 139   28 → 36   0,00→0,45   0,00 → 0,60
+```
+
+**Tres fallos de librería cazados midiendo el resultado, no leyendo el código:**
+
+1. `sharp.gamma(g)` con un solo argumento fija entrada **y** salida: el tono casi no se movía
+   (`061-12` se quedaba en media 90 con g=1,56). El gamma va en la LUT.
+2. CLAHE exige 8 bits y los `.avif` entran como `ushort`/`rgb16`:
+   `hist_local: image must be VIPS_FORMAT_UCHAR`.
+3. Forzar todas a la misma mediana **oscurecía** `062-06`, que venía correcta. El gamma solo
+   aclara.
+
+**Verificación.** No hay HTML nuevo —mismas rutas y dimensiones—, así que `texto`, `seo`,
+`enlaces` y `assets` no se mueven. Y **`check:visual` está CIEGO a este cambio**: las páginas de
+blog miden 14.000-22.000 px de alto y la tarjeta queda por debajo del umbral del 99 %
+(`CRITERIO.md:157`). Sale verde, y eso **no** prueba nada en ningún sentido. La verificación real
+son las medidas de arriba y dos hojas miradas: las 10 antes/después, y recortes **1:1** en tejado
+contra cielo, postes contra lago y madera — sin halos de CLAHE ni bordes crujientes.
+
+**No se re-baseliniza**, justamente porque la puerta no ve el cambio.
+
+### Queda abierto
+
+1. **Las rutas de `/services/` y familia están ROJAS y no es de R23.** Medido en
+   `/services/custom-pool-spa-builders-in-north-south-florida`: 4 de 4 anchos en rojo con
+   cambios de **altura** (−127 px, −131 px, −22 px, +14 px), y un cambio de imagen no mueve la
+   altura. Es **R21, que se fusionó a producción sin re-baselinizar sus rutas**. Re-baselinizarlas
+   sería aprobar su diseño, y eso es de Sebastian.
