@@ -122,7 +122,7 @@ const pintaHijos = (b, ctx) => pintaSpans(b.children ?? [], b.markDefs, ctx);
  * literales: sin ellos hay CLS, y las 4 figuras que habia no los traian.
  */
 function pintaFigura(b, ctx) {
-  const { src, srcset, sizes, alt, ancho, alto } = b;
+  const { src, srcset, sizes, alt, ancho, alto, pie } = b;
   if (!src) revienta(ctx, 'bloque `image` sin `src` resuelto');
   if (alt === undefined || alt === null) revienta(ctx, `la imagen ${src} no tiene alt`);
   if (!ancho || !alto) revienta(ctx, `la imagen ${src} no trae ancho/alto: habria CLS`);
@@ -134,8 +134,23 @@ function pintaFigura(b, ctx) {
     `width="${ancho}"`, `height="${alto}"`,
     'loading="lazy"', 'decoding="async"',
   ].filter(Boolean).join(' ');
+  /**
+   * `pie` — el texto VISIBLE bajo la imagen. Ninguna de las 40 figuras heredadas lo trae, asi
+   * que su marcado no se mueve un byte; existe para lo que no puede publicarse sin decir lo
+   * que es.
+   *
+   * El caso concreto: iluminacion soffit y mobiliario exterior no tienen ni una foto de obra
+   * del cliente —el dueno lo confirmo: «No tengo»— y sus articulos se ilustran con material
+   * generado. La linea roja del proyecto (`00-PRINCIPIOS §3`) prohibe publicar como obra del
+   * cliente algo que no lo es; no prohibe ilustrar. La diferencia entre una cosa y la otra es
+   * exactamente este texto, y por eso es visible y no solo un `alt`.
+   *
+   * Webflow ya lo estila: `.w-richtext figure.w-richtext-figure-type-image > figcaption` con
+   * `display:table-caption` y `caption-side:bottom`. Cero CSS nuevo.
+   */
+  const leyenda = pie ? `<figcaption>${esc(pie)}</figcaption>` : '';
   return '<figure class="w-richtext-align-center w-richtext-figure-type-image">'
-    + `<div><img ${attrs}></div></figure>`;
+    + `<div><img ${attrs}></div>${leyenda}</figure>`;
 }
 
 /**
