@@ -541,6 +541,7 @@ const SITIO_R22 = process.env.PUBLIC_SITE_URL || 'https://www.mrandmrsoutdoorliv
    * rojo — que es exactamente lo que debe pasar.
    */
   const partes = base['/blogs-tips']?.jsonLd?.[0]?.hasPart ?? [];
+  let ordenIndice = [];
   const cacheBlog = path.join(RAIZ, 'src/data/blogs-sanity.json');
   const cambios = [];
   if (partes.length && fs.existsSync(cacheBlog)) {
@@ -550,11 +551,19 @@ const SITIO_R22 = process.env.PUBLIC_SITE_URL || 'https://www.mrandmrsoutdoorliv
       const oa = a.ordenIndice ?? 9999; const ob = b.ordenIndice ?? 9999;
       return oa !== ob ? oa - ob : a.slug.localeCompare(b.slug);
     });
-    /* Solo se declara cuando el conjunto coincide. El dia que se publique un articulo nuevo,
-     * el build tendra mas partes que el baseline y esto NO lo tapa: se para y se declara
-     * aparte, porque una parte que aparece de la nada no es un reordenamiento. */
-    if (orden.length === partes.length) {
-      orden.forEach((p, i) => {
+    /* ESE DIA LLEGO. El indice ya no tiene 10 partes sino tantas como articulos publicados, y
+     * las dos cosas que pasan son distintas y se declaran distintas:
+     *
+     *   · las 10 primeras posiciones siguen existiendo y CAMBIAN de contenido (el indice se
+     *     reordena por categoria) -> `cambios`, campo a campo, como hasta ahora;
+     *   · de la 11 en adelante hay partes que en el origen NO EXISTIAN -> `anadidas`, que
+     *     comprueba que cada una trae url, titular, descripcion e imagen.
+     *
+     * Lo que sigue sin poder pasar es que el indice ENCOJA: menos partes que el baseline es un
+     * articulo que ha desaparecido, y eso no es un reordenamiento ni una adicion. */
+    ordenIndice = orden;
+    if (orden.length >= partes.length) {
+      orden.slice(0, partes.length).forEach((p, i) => {
         const era = partes[i];
         const url = `/blogs/${p.slug}`;
         const img = typeof era.image === 'string' ? 'image' : 'image.url';
@@ -566,10 +575,14 @@ const SITIO_R22 = process.env.PUBLIC_SITE_URL || 'https://www.mrandmrsoutdoorliv
       });
     }
   }
-  if (cambios.length) {
+  const nAnadidas = Math.max(0, ordenIndice.length - partes.length);
+  if (cambios.length || nAnadidas) {
     JSONLD_ARREGLADO['/blogs-tips'] = {
       bloque: 0,
-      motivo: `R22-BLOG-IMG + BLOG-SANITY: ${cambios.length} cambios en hasPart — foto real en `
+      ...(nAnadidas
+        ? { anadidas: { camino: 'hasPart', n: nAnadidas, campos: ['url', 'headline', 'description', 'image'] } }
+        : {}),
+      motivo: `R22-BLOG-IMG + BLOG-SANITY: ${cambios.length} cambios y ${nAnadidas} adicion(es) en hasPart — foto real en `
         + 'lugar de la generada, y el indice ordenado por categoria en vez de por el orden de '
         + 'importacion de Webflow. Derivado de blogs-sanity.json, no escrito a mano.',
       cambios,
@@ -841,10 +854,17 @@ for (const ruta of conPropias(RUTAS)) {
             else if (arr.length !== base.length + ja.anadidas.n) {
               malas.push(`anadidas: ${arr.length - base.length} de ${ja.anadidas.n} declarada(s)`);
             } else {
+              /* Los campos que tiene que traer cada elemento anadido. Por defecto los de una
+               * FAQPage, que es para lo que nacio esto; `/blogs-tips` declara los suyos porque
+               * una parte de `hasPart` es un BlogPosting y no tiene `name` ni respuesta. Una
+               * adicion que no se comprueba es una adicion que puede entrar vacia. */
+              const campos = ja.anadidas.campos ?? ['name', 'acceptedAnswer.text'];
               for (const q of arr.slice(base.length)) {
-                if (!String(q?.name ?? '').trim()) malas.push('anadida sin pregunta');
-                if (!String(q?.acceptedAnswer?.text ?? '').trim()) malas.push('anadida sin respuesta');
-                if (/\$\s?\d/.test(String(q?.acceptedAnswer?.text ?? ''))) malas.push('anadida con cifra de dinero');
+                for (const c of campos) {
+                  const v = String(porCamino(q, c) ?? '').trim();
+                  if (!v) malas.push(`anadida sin ${c}`);
+                  if (/\$\s?\d/.test(v)) malas.push(`anadida con cifra de dinero en ${c}`);
+                }
               }
               base.push(...arr.slice(base.length));
             }
