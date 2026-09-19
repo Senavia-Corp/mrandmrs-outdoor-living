@@ -1074,6 +1074,35 @@ function lineasBlog(ruta) {
   const f = path.join(RAIZ, 'src/data/blogs.json');
   if (!fs.existsSync(f)) return [];
   const d = JSON.parse(fs.readFileSync(f, 'utf8'));
+
+  /**
+   * ── LAS 5 FICHAS CON SU TRIO SIRVEN OTRO BLOQUE, Y SE DECLARA DERIVANDOLO ─────────────────
+   *
+   * BLOG-SANITY 6b: una ficha de servicio con sus 3 articulos deja de pintar el carrusel
+   * generico de 10. Eso mueve el `innerText` de esa ruta —encabezado propio y 3 tarjetas en
+   * vez de 10—, y `check:texto` compara al 100 %.
+   *
+   * Se declara DERIVANDOLO de `src/data/blog-por-servicio.json`, que es la misma fuente que
+   * pinta la pagina, en vez de escribir 5 bloques a mano: asi el dia que se escriban los 63
+   * articulos que faltan y las otras 9 fichas reunan su trio, esto las cubre sin tocar nada.
+   * Si la fuente y la pagina divergieran, sale rojo — que es lo que debe pasar.
+   *
+   * Las 9 fichas pendientes NO entran aqui: siguen sirviendo los 10 genericos y su bloque es
+   * el de siempre.
+   */
+  const fFicha = path.join(RAIZ, 'src/data/blog-por-servicio.json');
+  if (ruta && fs.existsSync(fFicha)) {
+    const ficha = JSON.parse(fs.readFileSync(fFicha, 'utf8')).rutas?.[ruta];
+    if (ficha) {
+      const n = (x) => (x ?? '').replace(/ /g, ' ').replace(/\s+/g, ' ').trim();
+      return [
+        capitaliza(n(ficha.titulo)),
+        n(ficha.entradilla),
+        ...ficha.posts.flatMap((p) => [capitaliza(n(p.titulo)), n(p.resumen), capitaliza(n(p.cta))]),
+      ];
+    }
+  }
+
   const posts = d.posts ?? [];
   if (!posts.length) return [];
   const norm = (s) => (s ?? '').replace(/ /g, ' ').replace(/\s+/g, ' ').trim();
@@ -1113,7 +1142,11 @@ function lineasBlog(ruta) {
   return [
     capitaliza(norm(titulo)),
     norm(entradilla),
-    ...posts.flatMap((p) => [capitaliza(norm(p.titulo)), norm(p.resumen), norm(p.cta)]),
+    /* El CTA va CAPITALIZADO igual que los titulos: vive en un `.button-styles` y
+     * `webflow.css` le aplica `text-transform: capitalize`. Medido: la pagina sirve
+     * «…Property Value In Florida» y la declaracion decia «…in Florida». El resumen NO, que
+     * va en un `<p>` y no lleva la regla. */
+    ...posts.flatMap((p) => [capitaliza(norm(p.titulo)), norm(p.resumen), capitaliza(norm(p.cta))]),
   ];
 }
 
@@ -1205,11 +1238,24 @@ function sufijosSr() {
   const anota = (cta, titulo) => {
     const c = norm(cta); const t = norm(titulo);
     if (!c || !t) return;
-    pares.push([c, `: ${t}`]);
-    pares.push([c, `: ${capitaliza(t)}`]);          // la variante con el capitalize de Webflow
+    /* CUATRO variantes, no dos. `capitalize` no pinta solo el sufijo: el CTA vive en un
+     * `.button-styles`, que Webflow tambien capitaliza, asi que la linea anterior que hay que
+     * reconocer llega como «Read More: … Value In Florida» y no como «… in Florida». Con la
+     * clave sin capitalizar el sufijo no se quitaba NUNCA en estas rutas, y el bloque de blog
+     * salia «PARTIDO o DESORDENADO» en las 14 fichas — por una mayuscula. */
+    for (const clave of new Set([c, capitaliza(c)])) {
+      pares.push([clave, `: ${t}`]);
+      pares.push([clave, `: ${capitaliza(t)}`]);
+    }
   };
 
   for (const p of lee('src/data/blogs.json')?.posts ?? []) anota(p.cta, p.titulo);
+
+  /* Y los de las fichas con su trio: sus tarjetas NO salen de `blogs.json`, asi que sin esto
+   * sus tres sufijos ocultos se quedaban en la pagina y partian el bloque igual. */
+  for (const f of Object.values(lee('src/data/blog-por-servicio.json')?.rutas ?? {})) {
+    for (const x of f.posts ?? []) anota(x.cta, x.titulo);
+  }
 
   const svc = lee('src/data/servicios-categoria.json') ?? {};
   const recorre = (o) => {
