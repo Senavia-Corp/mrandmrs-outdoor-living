@@ -23,7 +23,7 @@ const lista = (xs, n = 6) => xs.slice(0, n).join(', ') + (xs.length > n ? ` …y
 
 const posts = await groq(`*[_type == "blogPost" && ${SIN_BORRADORES}]{
   _id, title, cardTitle, summary, seo, portada, publishedAt, updatedAt,
-  destacadoIndice, ordenIndice, ordenEnServicio, blog,
+  destacadoIndice, ordenIndice, ordenEnServicio, blog, faq,
   "slug": slug.current,
   "categoria": categoria->{ "slug": slug.current, name },
   "servicios": relatedServices[]->{ "slug": slug.current },
@@ -187,6 +187,93 @@ if (sinNada.length) {
   console.log(`       faltan ${sinNada.length}: ${lista(sinNada.map((s) => s.slice(0, 34)), 4)}`);
   console.log('       (informativo: es el roadmap editorial, no un defecto del dato)');
 }
+
+/**
+ * 12 · INGLES AMERICANO, Y AQUI NO ES UNA PREFERENCIA DE ESTILO.
+ *
+ * Un contratista de Florida que escribe «aluminium» o «licence» se lee como alguien de fuera, y
+ * el sitio VENDE pergolas de aluminio: el termino esta en el nombre del servicio. Es la clase de
+ * detalle que nadie revisa articulo por articulo cuando hay noventa.
+ *
+ * Se mide sobre el texto PUBLICADO —el Portable Text, que es lo que se sirve—, no sobre el
+ * Markdown: si alguien edita en el Studio, el defecto entra por ahi.
+ */
+const textoDe = (p) => (p.blog ?? []).filter((b) => b._type === 'block')
+  .flatMap((b) => (b.children ?? []).map((c) => c.text ?? '')).join(' ')
+  + ' ' + (p.faq ?? []).map((f) => `${f.question} ${f.answer}`).join(' ')
+  + ' ' + (p.summary ?? '');
+
+/**
+ * Con LIMITE DE PALABRA y sin raices ambiguas. La primera version casaba por subcadena y dio
+ * cuatro falsos rojos en una corrida: «realis» dentro de *realistic*, «analys» dentro de
+ * *analysis* —que es la grafia americana correcta— y «tyre» dentro de otra palabra. Una puerta
+ * que grita por palabras que estan bien se desactiva sola a la tercera.
+ */
+const BRITANICO = [
+  [/\baluminium\b/, 'aluminum'], [/\blicence[sd]?\b/, 'license'], [/\bcolour/, 'color'],
+  [/\bfavourite/, 'favorite'], [/\bmetres?\b/, 'meters'], [/\bcentres?\b/, 'center'],
+  [/\borganis(e|ed|ing|ation)\b/, 'organiz…'], [/\brealis(e|ed|ing|ation)\b/, 'realiz…'],
+  [/\brecognis(e|ed|ing)\b/, 'recogniz…'], [/\banalys(e|ed|ing)\b/, 'analyz…'],
+  [/\bbehaviour/, 'behavior'], [/\bneighbour/, 'neighbor'], [/\bfibre[sd]?\b/, 'fiber'],
+  [/\blitres?\b/, 'liter'], [/\bstoreys?\b/, 'story'], [/\bpractis(e|ed|ing)\b/, 'practice'],
+  [/\bdefence\b/, 'defense'], [/\bgrey(ish)?\b/, 'gray'], [/\bprogramme\b/, 'program'],
+  [/\bkerb\b/, 'curb'], [/\btyres?\b/, 'tire'], [/\bmould(ing|ed)?\b/, 'mold'],
+  [/\bwhilst\b/, 'while'], [/\bamongst\b/, 'among'], [/\btravelled?\b/, 'traveled'],
+  [/\blabelled\b/, 'labeled'], [/\bmodelling\b/, 'modeling'],
+  [/\bspecialis(e|ed|ing|ation)\b/, 'specializ…'], [/\butilis(e|ed|ing)\b/, 'utiliz…'],
+];
+
+/**
+ * Y SOLO SOBRE LOS ARTICULOS NUEVOS. Los 10 heredados traen el texto de Webflow tal cual, y
+ * `check:texto` los compara al 100 % contra un baseline que NO se re-baseliniza nunca
+ * (`00-PRINCIPIOS §2`). Cambiarles una letra pone esa puerta roja en 10 rutas. O sea que aqui
+ * no son un defecto que arreglar: son texto congelado, y la puerta tiene que saberlo o gritaria
+ * para siempre por algo que nadie puede tocar. Se enumeran, como todo lo demas en este repo.
+ */
+const HEREDADOS = new Set([
+  'commercial-pool-construction-in-florida-what-decision-makers-must-know',
+  'common-pool-construction-mistakes-we-see-in-florida',
+  'complete-guide-to-pool-construction-in-florida-costs-timeline-process',
+  'how-outdoor-living-spaces-increase-property-value-in-florida',
+  'new-pool-construction-vs-pool-remodeling-which-is-right-for-you',
+  'outdoor-living-design-guide-for-florida-homes',
+  'pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish',
+  'residential-vs-commercial-pool-construction-in-florida',
+  'top-10-luxury-pool-designs-for-florida-homes',
+  'what-permits-are-required-for-pool-construction-in-florida',
+]);
+
+const britanicos = [];
+let heredadosConBritanismo = 0;
+for (const p of posts) {
+  const t = textoDe(p).toLowerCase();
+  const hits = BRITANICO.filter(([re]) => re.test(t)).map(([re, bien]) => `"${re.source.replace(/\\b/g, '')}" -> ${bien}`);
+  if (!hits.length) continue;
+  if (HEREDADOS.has(p.slug)) { heredadosConBritanismo++; continue; }
+  britanicos.push(`${p.slug}: ${hits.join(', ')}`);
+}
+console.log('');
+check('ingles americano en los articulos nuevos', britanicos.length === 0, lista(britanicos, 8));
+console.log(`  --   ${heredadosConBritanismo} heredado(s) con britanismos: texto de Webflow, congelado por check:texto`);
+
+/**
+ * 13 · los adjetivos de folleto, que el BRIEF prohibe.
+ *
+ * INFORMATIVO, no rojo, y a proposito: «transform» esta en un titulo del roadmap aprobado y
+ * «elevate» puede ser literal —elevar un spa—. Una puerta que suspende por una palabra obliga
+ * a pelearse con ella en vez de con el texto. Lo que hace falta es que se VEA cuantos hay.
+ */
+const FOLLETO = ['stunning', 'breathtaking', 'gorgeous', 'dream backyard', 'oasis',
+  'nestled', 'unparalleled', 'state-of-the-art', 'cutting-edge', 'elevate your',
+  'transform your', 'stunningly', 'luxurious retreat', 'tranquil retreat'];
+const conFolleto = [];
+for (const p of posts) {
+  const t = textoDe(p).toLowerCase();
+  const hits = FOLLETO.filter((w) => t.includes(w));
+  if (hits.length) conFolleto.push(`${p.slug}: ${hits.join(', ')}`);
+}
+console.log(`  --   adjetivos de folleto: ${conFolleto.length} articulo(s)`);
+for (const c of conFolleto.slice(0, 6)) console.log(`       ${c}`);
 
 console.log(`\n${fallos ? `PUERTA ROJA — ${fallos} comprobacion(es)` : 'PUERTA VERDE'}\n`);
 process.exit(fallos ? 1 : 0);

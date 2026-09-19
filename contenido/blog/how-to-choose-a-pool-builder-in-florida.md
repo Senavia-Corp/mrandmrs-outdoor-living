@@ -43,7 +43,7 @@
   "faq": [
     {
       "question": "How do I check a Florida pool contractor's license?",
-      "answer": "Through the state licensing authority's public lookup, using the license number the contractor gives you. Check that the licence is active, that it covers pool and spa construction rather than general contracting alone, and that the name on it matches the company you are contracting with — not an affiliated one."
+      "answer": "Through the state licensing authority's public lookup, using the license number the contractor gives you. Check that the license is active, that it covers pool and spa construction rather than general contracting alone, and that the name on it matches the company you are contracting with — not an affiliated one."
     },
     {
       "question": "Is the lowest bid usually the problem?",

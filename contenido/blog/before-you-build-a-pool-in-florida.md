@@ -86,7 +86,7 @@ Setbacks decide what is legal. Sun, sightlines and the house decide what is plea
 
 A pool pushed to the rear setback maximizes deck between the house and the water, which is usually where people actually sit. A pool close to the house shortens the plumbing run and keeps the kids in view from the kitchen. Both are defensible; they are different houses to live in.
 
-Worth checking before you commit: where the afternoon sun lands in summer, and what the neighbours see.
+Worth checking before you commit: where the afternoon sun lands in summer, and what the neighbors see.
 
 ## 2. Spa or no spa
 
@@ -104,7 +104,7 @@ If an enclosure is likely within a few years, building the deck to take it costs
 
 ## 4. How equipment gets to the back yard
 
-This one surprises people. If a mini-excavator cannot physically reach your yard — a narrow side gate, a neighbour's wall, a mature tree in the only route — the work happens by hand or by crane, and the whole project carries a surcharge.
+This one surprises people. If a mini-excavator cannot physically reach your yard — a narrow side gate, a neighbor's wall, a mature tree in the only route — the work happens by hand or by crane, and the whole project carries a surcharge.
 
 Walk the route yourself before anyone quotes. Measure the narrowest point. If it is tight, say so early: it changes the number, and a builder who discovers it on day one has to change the number anyway.
 
@@ -114,7 +114,7 @@ Rock, a high water table and old fill all change excavation. None of them are vi
 
 ## 6. Where the water goes
 
-Florida rain arrives fast and in quantity. A new pool and a new deck replace absorbent yard with hard surface, which has to drain somewhere that is not your slab or your neighbour's.
+Florida rain arrives fast and in quantity. A new pool and a new deck replace absorbent yard with hard surface, which has to drain somewhere that is not your slab or your neighbor's.
 
 Drainage is designed alongside the deck, not added to it. If you are also planning [landscaping](/services/professional-landscaping-services-in-north-south-florida), plan the two together — the grading serves both.
 
