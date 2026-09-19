@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 564" role="img" aria-labelledby="t d">
+<title id="t">What a dining table needs around it</title>
+<desc id="d">Plan view of a six-seat outdoor table. A band one chair deep runs all around it so a chair can be pulled back and someone can stand up, and a second band half a chair deep sits outside that one for walking behind a seated guest. The terrace railing falls at the outer edge of the first band, so the second band runs off the deck and the two end up sharing the same strip of floor.</desc>
+<defs>
+<pattern id="rayado" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+  <line x1="0" y1="0" x2="0" y2="9" stroke="#f4b248" stroke-width="3" stroke-opacity=".6"/>
+</pattern>
+<style>
+.f{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+.h{font-size:23px;font-weight:650;fill:#000f36}
+.p{font-size:17px;fill:#1a3373}
+.s{font-size:15px;fill:#596b9a}
+.n{font-size:13px;fill:#596b9a}
+</style>
+</defs>
+<rect width="700" height="564" fill="#ffffff"/>
+
+<text class="f h" x="36" y="40">Clearance around a dining table</text>
+<text class="f s" x="36" y="66">Plan view, measured in chairs, because the chair is the thing that moves</text>
+
+<g transform="translate(36,56)">
+
+  <text class="f n" x="0" y="62">house wall</text>
+
+  <!-- banda de paso por detras -->
+  <path d="M17 84 H383 V360 H17 Z M43 110 H357 V334 H43 Z" fill-rule="evenodd" fill="#f4b248" fill-opacity=".3"/>
+  <rect x="17" y="334" width="366" height="26" fill="#ffffff"/>
+  <rect x="17" y="334" width="366" height="26" fill="none" stroke="#f4b248" stroke-width="2" stroke-dasharray="8 6"/>
+  <path d="M17 334 V84 H383 V334" fill="none" stroke="#f4b248" stroke-width="2.5"/>
+
+  <!-- banda de retirar la silla -->
+  <path d="M43 110 H357 V334 H43 Z M95 162 H305 V282 H95 Z" fill-rule="evenodd" fill="#eef1f7"/>
+  <rect x="43" y="110" width="314" height="224" fill="none" stroke="#8794b6" stroke-width="2"/>
+
+  <!-- donde las dos bandas se pisan -->
+  <rect x="43" y="282" width="314" height="52" fill="url(#rayado)"/>
+
+  <!-- mesa -->
+  <rect x="95" y="162" width="210" height="120" fill="#ffffff" stroke="#000f36" stroke-width="3"/>
+
+  <!-- sillas -->
+  <g fill="#ffffff" stroke="#000f36" stroke-width="2">
+    <rect x="113" y="140" width="46" height="52" rx="5"/>
+    <rect x="177" y="140" width="46" height="52" rx="5"/>
+    <rect x="241" y="140" width="46" height="52" rx="5"/>
+    <rect x="73" y="199" width="52" height="46" rx="5"/>
+    <rect x="275" y="199" width="52" height="46" rx="5"/>
+    <rect x="177" y="252" width="46" height="52" rx="5"/>
+    <rect x="241" y="252" width="46" height="52" rx="5"/>
+    <rect x="113" y="282" width="46" height="52" rx="5"/>
+  </g>
+  <g stroke="#8794b6" stroke-width="2" stroke-linecap="round">
+    <line x1="119" y1="149" x2="153" y2="149"/>
+    <line x1="183" y1="149" x2="217" y2="149"/>
+    <line x1="247" y1="149" x2="281" y2="149"/>
+    <line x1="82" y1="205" x2="82" y2="239"/>
+    <line x1="318" y1="205" x2="318" y2="239"/>
+    <line x1="183" y1="295" x2="217" y2="295"/>
+    <line x1="247" y1="295" x2="281" y2="295"/>
+    <line x1="119" y1="325" x2="153" y2="325"/>
+  </g>
+
+  <!-- borde de la terraza y pared -->
+  <rect x="0" y="334" width="400" height="8" fill="#c7cddd" stroke="#000f36" stroke-width="2.5"/>
+  <rect x="0" y="70" width="400" height="14" fill="#c7cddd" stroke="#000f36" stroke-width="2.5"/>
+
+  <!-- cotas -->
+  <g stroke="#1a3373" stroke-width="2">
+    <line x1="305" y1="176" x2="357" y2="176"/>
+    <line x1="305" y1="170" x2="305" y2="182"/>
+    <line x1="357" y1="170" x2="357" y2="182"/>
+    <line x1="357" y1="264" x2="383" y2="264"/>
+    <line x1="357" y1="258" x2="357" y2="270"/>
+    <line x1="383" y1="258" x2="383" y2="270"/>
+  </g>
+  <g stroke="#1a3373" stroke-width="1.5">
+    <line x1="357" y1="176" x2="400" y2="176"/>
+    <line x1="383" y1="264" x2="400" y2="264"/>
+  </g>
+
+  <text class="f p" x="406" y="171">one chair</text>
+  <text class="f n" x="406" y="190">to pull back and stand up</text>
+
+  <text class="f p" x="406" y="259">half a chair more</text>
+  <text class="f n" x="406" y="278">to pass behind someone seated</text>
+
+  <text class="f n" x="406" y="347">terrace edge</text>
+
+  <rect x="0" y="392" width="24" height="16" fill="url(#rayado)" stroke="#c7cddd" stroke-width="1.5"/>
+  <text class="f s" x="32" y="404">Short terrace: the two bands share one strip, so somebody has to move.</text>
+
+</g>
+
+<text class="f p" x="36" y="506">The table almost always fits. The people around it are what doesn’t.</text>
+<text class="f s" x="36" y="530">One chair to stand up; a chair and a half to get past someone seated.</text>
+</svg>

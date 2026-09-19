@@ -106,6 +106,20 @@ for (const nombre of svgs) {
     }
   }
 
+  /* Ingles americano tambien AQUI. El texto de un diagrama es texto publicado igual que el del
+   * articulo, y `check-blog.mjs` solo mira el Portable Text: un «Greys in one season» dentro de
+   * un SVG se le escapa entero. Paso justo eso en la primera tanda. */
+  const AMERICANO = [
+    [/\baluminium\b/i, 'aluminum'], [/\blicence/i, 'license'], [/\bcolour/i, 'color'],
+    [/\bgrey(s|ish|ing|ed)?\b/i, 'gray'], [/\bcentres?\b/i, 'center'], [/\bmetres?\b/i, 'meter'],
+    [/\bstoreys?\b/i, 'story'], [/\bfibre/i, 'fiber'], [/\bmould/i, 'mold'],
+    [/\bneighbour/i, 'neighbor'], [/\bwhilst\b/i, 'while'], [/\bkerb\b/i, 'curb'],
+  ];
+  const texto = [...doc.querySelectorAll('text, title, desc')].map((n) => n.textContent).join(' ');
+  for (const [re, bien] of AMERICANO) {
+    if (re.test(texto)) mal(nombre, `"${re.source.replace(/\\b/g, '')}" -> "${bien}" (ingles americano)`);
+  }
+
   if (doc.querySelector('image')) mal(nombre, 'lleva un <image> incrustado: un raster dentro de un dibujo es una foto disfrazada');
   if (doc.querySelector('foreignObject')) mal(nombre, 'lleva <foreignObject>: no se renderiza igual en todas partes');
   if (/<script/i.test(bruto)) mal(nombre, 'lleva <script>: un SVG servido como <img> no lo ejecuta, y si se inserta inline es un agujero');

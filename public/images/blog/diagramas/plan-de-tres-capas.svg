@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 848" role="img" aria-labelledby="t d">
+<title id="t">A lighting plan is decided in three layers</title>
+<desc id="d">A site plan seen from above. The eave line around the house and porch is drawn in gold with evenly spaced downlights along it, marked one. Small squares mark the walk in from the driveway, the steps and the pool edge, marked two. Triangles aim at the palm, the shade tree and a textured wall, marked three.</desc>
+<defs>
+<style>
+.f{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+.h{font-size:23px;font-weight:650;fill:#000f36}
+.p{font-size:17px;fill:#1a3373}
+.s{font-size:15px;fill:#596b9a}
+.n{font-size:13px;fill:#596b9a}
+.num{font-size:17px;font-weight:650;fill:#000f36}
+</style>
+</defs>
+<rect width="700" height="848" fill="#ffffff"/>
+
+<text class="f h" x="36" y="40">A lighting plan is three decisions</text>
+<text class="f s" x="36" y="66">Seen from above, in the order they get made</text>
+
+<g transform="translate(36,92)">
+  <rect x="20" y="16" width="608" height="414" fill="#fbfcfd"/>
+
+  <!-- driveway -->
+  <rect x="34" y="240" width="70" height="190" fill="#f3f5f9" stroke="#c7cddd" stroke-width="2"/>
+  <text class="f n" x="38" y="300">driveway</text>
+
+  <!-- walk in from the drive -->
+  <path d="M104 379 L232 379 L232 300 L206 300 L206 405 L104 405 Z" fill="#f3f5f9" stroke="#c7cddd" stroke-width="2"/>
+  <g stroke="#000f36" stroke-width="2">
+    <line x1="206" y1="322" x2="232" y2="322"/>
+    <line x1="206" y1="332" x2="232" y2="332"/>
+    <line x1="206" y1="342" x2="232" y2="342"/>
+  </g>
+  <text class="f n" x="240" y="340">steps</text>
+
+  <!-- planting bed -->
+  <rect x="116" y="250" width="74" height="24" fill="#f6f7fa" stroke="#c7cddd" stroke-width="2"/>
+  <text class="f n" x="122" y="268">beds</text>
+
+  <!-- house and porch -->
+  <path d="M48 44 L286 44 L286 116 L372 116 L372 300 L204 300 L204 226 L48 226 Z" fill="#eef1f7"/>
+  <rect x="204" y="226" width="168" height="74" fill="#f6f7fa"/>
+  <path d="M48 44 L286 44 L286 116 L372 116 L372 300 L204 300 L204 226 L48 226 Z" fill="none" stroke="#000f36" stroke-width="3" stroke-linejoin="round"/>
+  <line x1="204" y1="226" x2="372" y2="226" stroke="#000f36" stroke-width="3"/>
+  <text class="f s" x="167" y="140" text-anchor="middle">house</text>
+  <text class="f n" x="288" y="268" text-anchor="middle">porch</text>
+
+  <!-- pool deck and pool -->
+  <rect x="430" y="176" width="170" height="176" rx="16" fill="#f6f7fa" stroke="#c7cddd" stroke-width="2"/>
+  <rect x="446" y="192" width="138" height="144" rx="12" fill="#eef1f7" stroke="#000f36" stroke-width="3"/>
+  <text class="f s" x="515" y="270" text-anchor="middle">pool</text>
+
+  <!-- palm -->
+  <g stroke="#000f36" stroke-width="3" stroke-linecap="round">
+    <line x1="436" y1="118" x2="461" y2="118"/>
+    <line x1="436" y1="118" x2="454" y2="100"/>
+    <line x1="436" y1="118" x2="436" y2="93"/>
+    <line x1="436" y1="118" x2="418" y2="100"/>
+    <line x1="436" y1="118" x2="411" y2="118"/>
+    <line x1="436" y1="118" x2="418" y2="136"/>
+    <line x1="436" y1="118" x2="436" y2="143"/>
+    <line x1="436" y1="118" x2="454" y2="136"/>
+  </g>
+  <circle cx="436" cy="118" r="5" fill="#eef1f7" stroke="#000f36" stroke-width="3"/>
+  <text class="f n" x="410" y="82">palm</text>
+
+  <!-- shade tree -->
+  <path d="M592 92 A 11 11 0 0 1 586.6 112 A 11 11 0 0 1 572 126.6 A 11 11 0 0 1 552 132 A 11 11 0 0 1 532 126.6 A 11 11 0 0 1 517.4 112 A 11 11 0 0 1 512 92 A 11 11 0 0 1 517.4 72 A 11 11 0 0 1 532 57.4 A 11 11 0 0 1 552 52 A 11 11 0 0 1 572 57.4 A 11 11 0 0 1 586.6 72 A 11 11 0 0 1 592 92 Z" fill="#eef1f7" stroke="#000f36" stroke-width="3"/>
+  <circle cx="552" cy="92" r="4" fill="#000f36"/>
+  <text class="f n" x="516" y="44">shade tree</text>
+
+  <!-- textured wall -->
+  <rect x="430" y="392" width="170" height="12" fill="#eef1f7" stroke="#000f36" stroke-width="2"/>
+  <g stroke="#8794b6" stroke-width="2">
+    <line x1="434" y1="404" x2="446" y2="392"/>
+    <line x1="453" y1="404" x2="465" y2="392"/>
+    <line x1="472" y1="404" x2="484" y2="392"/>
+    <line x1="491" y1="404" x2="503" y2="392"/>
+    <line x1="510" y1="404" x2="522" y2="392"/>
+    <line x1="529" y1="404" x2="541" y2="392"/>
+    <line x1="548" y1="404" x2="560" y2="392"/>
+    <line x1="567" y1="404" x2="579" y2="392"/>
+  </g>
+  <text class="f n" x="430" y="424">wall with texture</text>
+
+  <!-- layer 2 · where you walk -->
+  <g fill="#000f36">
+    <rect x="136" y="375" width="8" height="8"/>
+    <rect x="228" y="348" width="8" height="8"/>
+    <rect x="476" y="188" width="8" height="8"/>
+    <rect x="546" y="188" width="8" height="8"/>
+    <rect x="476" y="332" width="8" height="8"/>
+    <rect x="546" y="332" width="8" height="8"/>
+  </g>
+
+  <!-- layer 3 · what you look at -->
+  <g fill="#000f36">
+    <path d="M432 166 L448 166 L440 148 Z"/>
+    <path d="M544 160 L560 160 L552 142 Z"/>
+    <path d="M470 375 L486 375 L478 389 Z"/>
+    <path d="M544 375 L560 375 L552 389 Z"/>
+  </g>
+
+  <!-- layer 1 · the building, drawn last so the eave reads as one line -->
+  <path d="M34 30 L300 30 L300 102 L386 102 L386 314 L190 314 L190 240 L34 240 Z" fill="none" stroke="#f4b248" stroke-width="5" stroke-linejoin="round"/>
+  <g fill="#f4b248" stroke="#000f36" stroke-width="2">
+    <circle cx="70" cy="30" r="5.5"/><circle cx="130" cy="30" r="5.5"/>
+    <circle cx="190" cy="30" r="5.5"/><circle cx="250" cy="30" r="5.5"/>
+    <circle cx="300" cy="66" r="5.5"/><circle cx="343" cy="102" r="5.5"/>
+    <circle cx="386" cy="150" r="5.5"/><circle cx="386" cy="208" r="5.5"/>
+    <circle cx="386" cy="266" r="5.5"/>
+    <circle cx="350" cy="314" r="5.5"/><circle cx="298" cy="314" r="5.5"/>
+    <circle cx="246" cy="314" r="5.5"/>
+    <circle cx="190" cy="278" r="5.5"/>
+    <circle cx="145" cy="240" r="5.5"/><circle cx="90" cy="240" r="5.5"/>
+    <circle cx="34" cy="190" r="5.5"/><circle cx="34" cy="130" r="5.5"/>
+    <circle cx="34" cy="70" r="5.5"/>
+  </g>
+
+  <!-- the three markers -->
+  <line x1="329" y1="66" x2="309" y2="66" stroke="#000f36" stroke-width="2"/>
+  <circle cx="344" cy="66" r="14" fill="#f4b248" stroke="#000f36" stroke-width="2"/>
+  <text class="f num" x="344" y="72" text-anchor="middle">1</text>
+
+  <line x1="160" y1="358" x2="160" y2="379" stroke="#000f36" stroke-width="2"/>
+  <circle cx="160" cy="344" r="14" fill="#ffffff" stroke="#000f36" stroke-width="2"/>
+  <text class="f num" x="160" y="350" text-anchor="middle">2</text>
+
+  <line x1="486" y1="154" x2="454" y2="154" stroke="#000f36" stroke-width="2"/>
+  <circle cx="500" cy="154" r="14" fill="#ffffff" stroke="#000f36" stroke-width="2"/>
+  <text class="f num" x="500" y="160" text-anchor="middle">3</text>
+</g>
+
+<line x1="36" y1="540" x2="664" y2="540" stroke="#e0e4ec" stroke-width="2"/>
+
+<circle cx="48" cy="572" r="6.5" fill="#f4b248" stroke="#000f36" stroke-width="2"/>
+<text class="f p" x="76" y="578">1 · The building</text>
+<text class="f s" x="76" y="600">The eave line, and the fixtures spaced evenly along it. Decided first.</text>
+
+<rect x="43.5" y="627.5" width="9" height="9" fill="#000f36"/>
+<text class="f p" x="76" y="638">2 · Where you walk</text>
+<text class="f s" x="76" y="660">Steps, the grade change, the pool edge, the walk in from the drive.</text>
+
+<path d="M40 700 L56 700 L48 684 Z" fill="#000f36"/>
+<text class="f p" x="76" y="698">3 · What you look at</text>
+<text class="f s" x="76" y="720">The palm, the shade tree, the wall with texture. This one can wait.</text>
+
+<line x1="36" y1="752" x2="664" y2="752" stroke="#e0e4ec" stroke-width="2"/>
+
+<text class="f p" x="36" y="790">The first two decide the plan. The third can be added a season later.</text>
+<text class="f s" x="36" y="814">Lit in the wrong order, you get a lit palm and a step nobody can see.</text>
+</svg>

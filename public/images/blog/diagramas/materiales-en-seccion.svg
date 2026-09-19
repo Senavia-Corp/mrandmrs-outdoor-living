@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 792" role="img" aria-labelledby="t d">
+<title id="t">Four outdoor furniture materials in section</title>
+<desc id="d">Four cut sections side by side. A powder-coated aluminum tube with a hollow core and a thin coat around it, a teak plank with grain and a weathered top face, a solid block of HDPE synthetic lumber that is the same material all the way through, and a steel bar with a core, a galvanized skin and paint over it. In each one the layer that decides how long the piece lasts is filled in gold, and a line underneath says how that material gives in Florida.</desc>
+<defs>
+<style>
+.f{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+.h{font-size:23px;font-weight:650;fill:#000f36}
+.p{font-size:17px;fill:#1a3373}
+.b{font-weight:650;fill:#000f36}
+.s{font-size:15px;fill:#596b9a}
+.n{font-size:13px;fill:#596b9a}
+.nd{font-size:13px;fill:#1a3373}
+</style>
+</defs>
+<rect width="700" height="792" fill="#ffffff"/>
+
+<text class="f h" x="36" y="42">Four outdoor furniture materials, cut through</text>
+<text class="f s" x="36" y="68">Gold marks the layer that decides how long each one lasts.</text>
+
+<!-- ══ aluminio ══ -->
+<g transform="translate(36,116)">
+  <text class="f p b" x="0" y="0">Powder-coated aluminum</text>
+  <g transform="translate(16,40)">
+    <rect x="-8" y="-8" width="166" height="108" fill="#f4b248" stroke="#d99933" stroke-width="2"/>
+    <rect x="0" y="0" width="150" height="92" fill="#eef1f7" stroke="#000f36" stroke-width="3"/>
+    <rect x="17" y="17" width="116" height="58" fill="#ffffff" stroke="#000f36" stroke-width="3"/>
+    <text class="f nd" x="75" y="50" text-anchor="middle">hollow</text>
+  </g>
+  <rect x="0" y="181" width="13" height="13" fill="#f4b248" stroke="#d99933" stroke-width="2"/>
+  <text class="f n" x="22" y="192">the coat, a few microns thick</text>
+  <text class="f s" x="0" y="222">A scratch exposes bare aluminum,</text>
+  <text class="f s" x="0" y="242">and the coat lifts from there.</text>
+</g>
+
+<!-- ══ teca ══ -->
+<g transform="translate(366,116)">
+  <text class="f p b" x="0" y="0">Teak</text>
+  <g transform="translate(16,40)">
+    <rect x="0" y="0" width="150" height="92" fill="#f6f7fa" stroke="#000f36" stroke-width="3"/>
+    <rect x="2" y="2" width="146" height="13" fill="#f4b248"/>
+    <line x1="2" y1="16" x2="148" y2="16" stroke="#d99933" stroke-width="2"/>
+    <g fill="none" stroke="#8794b6" stroke-width="2">
+      <path d="M4 88 C4 46 40 24 75 24 C110 24 146 46 146 88"/>
+      <path d="M22 88 C22 56 46 40 75 40 C104 40 128 56 128 88"/>
+      <path d="M40 88 C40 66 55 55 75 55 C95 55 110 66 110 88"/>
+      <path d="M58 88 C58 76 65 70 75 70 C85 70 92 76 92 88"/>
+    </g>
+  </g>
+  <rect x="0" y="181" width="13" height="13" fill="#f4b248" stroke="#d99933" stroke-width="2"/>
+  <text class="f n" x="22" y="192">the weathered face</text>
+  <text class="f s" x="0" y="222">Grays in one season. It stays</text>
+  <text class="f s" x="0" y="242">sound; the color needs oil.</text>
+</g>
+
+<!-- ══ HDPE ══ -->
+<g transform="translate(36,424)">
+  <text class="f p b" x="0" y="0">HDPE synthetic lumber</text>
+  <g transform="translate(16,40)">
+    <rect x="0" y="0" width="150" height="92" fill="#f4b248" stroke="#000f36" stroke-width="3"/>
+    <text class="f nd" x="75" y="42" text-anchor="middle">no core,</text>
+    <text class="f nd" x="75" y="60" text-anchor="middle">no grain</text>
+  </g>
+  <rect x="0" y="181" width="13" height="13" fill="#f4b248" stroke="#d99933" stroke-width="2"/>
+  <text class="f n" x="22" y="192">all of it, the same throughout</text>
+  <text class="f s" x="0" y="222">Nothing to rot. But it is heavy</text>
+  <text class="f s" x="0" y="242">and it sags in full sun.</text>
+</g>
+
+<!-- ══ acero ══ -->
+<g transform="translate(366,424)">
+  <text class="f p b" x="0" y="0">Steel</text>
+  <g transform="translate(16,40)">
+    <rect x="-15" y="-15" width="180" height="122" fill="#c7cddd" stroke="#8794b6" stroke-width="2"/>
+    <rect x="-8" y="-8" width="166" height="108" fill="#f4b248" stroke="#d99933" stroke-width="2"/>
+    <rect x="0" y="0" width="150" height="92" fill="#f3f5f9" stroke="#000f36" stroke-width="3"/>
+    <text class="f nd" x="75" y="50" text-anchor="middle">steel</text>
+    <line x1="165" y1="-4" x2="186" y2="-4" stroke="#596b9a" stroke-width="2"/>
+    <text class="f n" x="192" y="0">paint</text>
+  </g>
+  <rect x="0" y="181" width="13" height="13" fill="#f4b248" stroke="#d99933" stroke-width="2"/>
+  <text class="f n" x="22" y="192">the galvanizing, under the paint</text>
+  <text class="f s" x="0" y="222">Salt air rusts it inward from any</text>
+  <text class="f s" x="0" y="242">scratch, under the paint.</text>
+</g>
+
+<line x1="36" y1="700" x2="664" y2="700" stroke="#e0e4ec" stroke-width="2"/>
+<text class="f p" x="36" y="736">The material is not chosen by how it looks the first year.</text>
+<text class="f s" x="36" y="760">It is chosen by the layer marked in gold — that is the one that wears out.</text>
+</svg>

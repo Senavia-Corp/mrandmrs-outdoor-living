@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 826" role="img" aria-labelledby="t d">
+<title id="t">What has to stay clear on a pool deck</title>
+<desc id="d">Plan of a pool deck with the house along the top. A shaded band runs without a break all the way around the pool and spa coping and passes under the sliding door. The furniture sits outside it: loungers on the wide side, a table under the cover, two chairs in the far corner. Two marked points show where that band is the whole width there is.</desc>
+<defs>
+<style>
+.f{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+.h{font-size:23px;font-weight:650;fill:#000f36}
+.p{font-size:17px;fill:#1a3373}
+.s{font-size:15px;fill:#596b9a}
+.n{font-size:13px;fill:#596b9a}
+</style>
+</defs>
+<rect width="700" height="826" fill="#ffffff"/>
+
+<text class="f h" x="36" y="40">What has to stay clear</text>
+<text class="f s" x="36" y="66">Plan view. The shaded band is the way round, walked wet and barefoot.</text>
+
+<g transform="translate(36,92)">
+
+  <!-- deck and house -->
+  <rect x="0" y="0" width="628" height="576" fill="#f6f7fa"/>
+  <rect x="0" y="0" width="628" height="56" fill="#eef1f7"/>
+  <rect x="0" y="0" width="628" height="576" fill="none" stroke="#000f36" stroke-width="3"/>
+  <line x1="0" y1="56" x2="380" y2="56" stroke="#000f36" stroke-width="4"/>
+  <line x1="500" y1="56" x2="628" y2="56" stroke="#000f36" stroke-width="4"/>
+  <line x1="380" y1="48" x2="380" y2="64" stroke="#000f36" stroke-width="2"/>
+  <line x1="500" y1="48" x2="500" y2="64" stroke="#000f36" stroke-width="2"/>
+  <line x1="380" y1="50" x2="446" y2="50" stroke="#000f36" stroke-width="4"/>
+  <line x1="434" y1="62" x2="500" y2="62" stroke="#000f36" stroke-width="4"/>
+  <text class="f s" x="16" y="36">house</text>
+  <text class="f n" x="380" y="40">sliding door</text>
+
+  <!-- covered area, dining -->
+  <rect x="24" y="56" width="324" height="140" fill="#f3f5f9" stroke="#8794b6" stroke-width="2" stroke-dasharray="7 6"/>
+  <text class="f s" x="38" y="78">dining, under cover</text>
+  <circle cx="226" cy="140" r="30" fill="#ffffff" stroke="#8794b6" stroke-width="2"/>
+  <g fill="#ffffff" stroke="#8794b6" stroke-width="2">
+    <rect x="213" y="86" width="26" height="20" rx="4"/>
+    <rect x="213" y="174" width="26" height="20" rx="4"/>
+    <rect x="170" y="127" width="20" height="26" rx="4"/>
+    <rect x="262" y="127" width="20" height="26" rx="4"/>
+  </g>
+
+  <!-- la franja de circulacion -->
+  <path d="M 380 92 H 548 V 474 H 332 V 530 H 176 V 226 H 380 Z"
+        fill="none" stroke="#f4b248" stroke-opacity=".5" stroke-width="44" stroke-linejoin="round"/>
+
+  <!-- spa -->
+  <rect x="404" y="116" width="120" height="134" fill="#eef1f7" stroke="#000f36" stroke-width="3"/>
+  <rect x="420" y="132" width="88" height="102" fill="#c7cddd"/>
+  <text class="f s" x="464" y="188" text-anchor="middle" fill="#000f36">spa</text>
+
+  <!-- vaso y coronacion, con el escalon en la esquina -->
+  <path d="M 200 250 H 524 V 450 H 308 V 506 H 200 Z" fill="#eef1f7" stroke="#000f36" stroke-width="3"/>
+  <path d="M 218 268 H 506 V 432 H 290 V 488 H 218 Z" fill="#c7cddd"/>
+  <g stroke="#8794b6" stroke-width="2">
+    <line x1="218" y1="448" x2="290" y2="448"/>
+    <line x1="218" y1="468" x2="290" y2="468"/>
+  </g>
+  <text class="f s" x="362" y="356" text-anchor="middle" fill="#000f36">pool</text>
+
+  <!-- tumbonas, el lado ancho -->
+  <rect x="10" y="238" width="124" height="224" fill="none" stroke="#8794b6" stroke-width="2" stroke-dasharray="7 6"/>
+  <g fill="#ffffff" stroke="#8794b6" stroke-width="2">
+    <rect x="24" y="252" width="38" height="88" rx="6"/>
+    <rect x="82" y="252" width="38" height="88" rx="6"/>
+    <rect x="24" y="360" width="38" height="88" rx="6"/>
+    <rect x="82" y="360" width="38" height="88" rx="6"/>
+  </g>
+  <g stroke="#8794b6" stroke-width="2">
+    <line x1="24" y1="274" x2="62" y2="274"/>
+    <line x1="82" y1="274" x2="120" y2="274"/>
+    <line x1="24" y1="382" x2="62" y2="382"/>
+    <line x1="82" y1="382" x2="120" y2="382"/>
+  </g>
+  <text class="f s" x="14" y="486">loungers</text>
+
+  <!-- dos sillones en la esquina -->
+  <g fill="#ffffff" stroke="#8794b6" stroke-width="2">
+    <rect x="524" y="504" width="44" height="44" rx="8"/>
+    <rect x="576" y="504" width="44" height="44" rx="8"/>
+  </g>
+  <g stroke="#8794b6" stroke-width="2">
+    <line x1="524" y1="518" x2="568" y2="518"/>
+    <line x1="576" y1="518" x2="620" y2="518"/>
+  </g>
+  <text class="f s" x="524" y="568">two chairs</text>
+
+  <!-- cota de la franja -->
+  <g stroke="#1a3373" stroke-width="2">
+    <line x1="440" y1="452" x2="440" y2="496"/>
+    <line x1="433" y1="452" x2="447" y2="452"/>
+    <line x1="433" y1="496" x2="447" y2="496"/>
+  </g>
+  <text class="f n" x="440" y="516" text-anchor="middle">3 ft clear</text>
+
+  <!-- estrangulamientos -->
+  <circle cx="464" cy="92" r="12" fill="#000f36"/>
+  <text class="f n" x="464" y="97" text-anchor="middle" fill="#ffffff">1</text>
+  <circle cx="254" cy="530" r="12" fill="#000f36"/>
+  <text class="f n" x="254" y="535" text-anchor="middle" fill="#ffffff">2</text>
+</g>
+
+<circle cx="48" cy="700" r="12" fill="#000f36"/>
+<text class="f n" x="48" y="705" text-anchor="middle" fill="#ffffff">1</text>
+<text class="f s" x="70" y="705">Beside the spa the band is the whole gap: nothing else fits there.</text>
+<circle cx="48" cy="732" r="12" fill="#000f36"/>
+<text class="f n" x="48" y="737" text-anchor="middle" fill="#ffffff">2</text>
+<text class="f s" x="70" y="737">At the step corner, one lounger closes the loop.</text>
+
+<text class="f p" x="36" y="778">A deck is not furnished by filling it.</text>
+<text class="f s" x="36" y="802">Reserve the way around the water first; the furniture goes in what is left.</text>
+</svg>

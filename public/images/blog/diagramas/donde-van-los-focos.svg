@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 584" role="img" aria-labelledby="t d">
+<title id="t">Where a permanent light belongs on a facade</title>
+<desc id="d">Elevation of a house with an eave that steps down over a side wing. Solid dots mark the spots where a downlight works, each washing the wall with a cone of light: near the corner, along the long run of the eave, over the entrance, and where the eave changes level. Crossed circles mark three spots that give trouble, drawn with the beam they would throw: straight into a bedroom window, into a recess narrower than the cone, and off the last corner across the neighbor's line.</desc>
+<defs>
+<linearGradient id="haz" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#f4b248" stop-opacity=".75"/><stop offset="1" stop-color="#f4b248" stop-opacity="0"/>
+</linearGradient>
+<style>
+.f{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+.h{font-size:23px;font-weight:650;fill:#000f36}
+.p{font-size:17px;fill:#1a3373}
+.s{font-size:15px;fill:#596b9a}
+.n{font-size:13px;fill:#596b9a}
+</style>
+</defs>
+<rect width="700" height="584" fill="#ffffff"/>
+
+<text class="f h" x="36" y="40">Where a permanent light belongs</text>
+<text class="f s" x="36" y="66">The same eave holds the good spots and the bad ones</text>
+
+<g transform="translate(36,92)">
+
+  <!-- el retranqueo, hueco en sombra -->
+  <rect x="108" y="60" width="34" height="258" fill="#e0e4ec"/>
+
+  <!-- la luz que hace su trabajo -->
+  <path d="M36 60 L2 318 L70 318 Z" fill="url(#haz)"/>
+  <path d="M200 60 L166 318 L234 318 Z" fill="url(#haz)"/>
+  <path d="M280 60 L246 318 L314 318 Z" fill="url(#haz)"/>
+  <path d="M360 60 L326 318 L394 318 Z" fill="url(#haz)"/>
+  <path d="M422 158 L400 318 L444 318 Z" fill="url(#haz)"/>
+
+  <!-- el volumen -->
+  <path d="M0 60 L398 60 L398 158 L586 158 L586 318 L0 318 Z" fill="none" stroke="#000f36" stroke-width="3"/>
+  <rect x="-14" y="44" width="426" height="16" fill="#eef1f7" stroke="#000f36" stroke-width="3"/>
+  <rect x="396" y="142" width="204" height="16" fill="#eef1f7" stroke="#000f36" stroke-width="3"/>
+
+  <!-- huecos -->
+  <rect x="32" y="226" width="60" height="70" fill="#f6f7fa" stroke="#8794b6" stroke-width="2"/>
+  <rect x="246" y="206" width="68" height="112" fill="#f6f7fa" stroke="#8794b6" stroke-width="2"/>
+  <rect x="232" y="306" width="96" height="12" fill="#eef1f7" stroke="#8794b6" stroke-width="2"/>
+  <rect x="330" y="226" width="60" height="70" fill="#f6f7fa" stroke="#8794b6" stroke-width="2"/>
+  <rect x="448" y="190" width="72" height="64" fill="#f6f7fa" stroke="#8794b6" stroke-width="2"/>
+
+  <line x1="114" y1="66" x2="114" y2="318" stroke="#8794b6" stroke-width="2"/>
+  <line x1="136" y1="66" x2="136" y2="318" stroke="#8794b6" stroke-width="2"/>
+  <line x1="108" y1="60" x2="108" y2="318" stroke="#000f36" stroke-width="3"/>
+  <line x1="142" y1="60" x2="142" y2="318" stroke="#000f36" stroke-width="3"/>
+
+  <line x1="-12" y1="318" x2="640" y2="318" stroke="#000f36" stroke-width="3"/>
+  <rect x="-12" y="318" width="652" height="26" fill="#f3f5f9"/>
+
+  <!-- la luz que se va donde no debe -->
+  <g fill="none" stroke="#8794b6" stroke-width="2" stroke-dasharray="6 5">
+    <path d="M91 318 L125 60 L159 318"/>
+    <path d="M462 318 L484 158 L506 318"/>
+    <path d="M566 318 L572 158 L634 318"/>
+  </g>
+
+  <!-- donde el foco trabaja -->
+  <g fill="#000f36">
+    <circle cx="36" cy="60" r="7"/><circle cx="200" cy="60" r="7"/>
+    <circle cx="280" cy="60" r="7"/><circle cx="360" cy="60" r="7"/>
+    <circle cx="422" cy="158" r="7"/>
+  </g>
+
+  <!-- donde molesta -->
+  <g fill="#ffffff" stroke="#8794b6" stroke-width="2">
+    <circle cx="125" cy="60" r="8.5"/><circle cx="484" cy="158" r="8.5"/><circle cx="572" cy="158" r="8.5"/>
+  </g>
+  <g stroke="#8794b6" stroke-width="2" stroke-linecap="round">
+    <path d="M119 54 L131 66 M131 54 L119 66"/>
+    <path d="M478 152 L490 164 M490 152 L478 164"/>
+    <path d="M566 152 L578 164 M578 152 L566 164"/>
+  </g>
+
+  <!-- notas -->
+  <g stroke="#c7cddd" stroke-width="2">
+    <line x1="125" y1="30" x2="125" y2="52"/>
+    <line x1="484" y1="118" x2="484" y2="150"/>
+    <line x1="572" y1="82" x2="572" y2="150"/>
+  </g>
+  <text class="f n" x="125" y="24" text-anchor="middle">a recess narrower than the cone</text>
+  <text class="f n" x="484" y="112" text-anchor="middle">a bedroom window</text>
+  <text class="f n" x="628" y="76" text-anchor="end">throws over the neighbor's line</text>
+  <line x1="612" y1="88" x2="612" y2="350" stroke="#8794b6" stroke-width="2" stroke-dasharray="8 6"/>
+
+  <!-- leyenda -->
+  <circle cx="10" cy="372" r="7" fill="#000f36"/>
+  <text class="f n" x="26" y="377">light that does its job</text>
+  <circle cx="216" cy="372" r="8.5" fill="#ffffff" stroke="#8794b6" stroke-width="2"/>
+  <path d="M210 366 L222 378 M222 366 L210 378" stroke="#8794b6" stroke-width="2" stroke-linecap="round"/>
+  <text class="f n" x="234" y="377">light that lands where it should not</text>
+</g>
+
+<text class="f p" x="36" y="512">A regular grid of lights is not the answer.</text>
+<text class="f s" x="36" y="536">Corners, the entrance and the step in the eave ask for light.</text>
+<text class="f s" x="36" y="558">A bedroom window, a tight recess and the property line give it straight back.</text>
+</svg>

@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 530" role="img" aria-labelledby="t d">
+<title id="t">Section through an eave, showing where a soffit light sits</title>
+<desc id="d">A vertical cut through a tile roof, the fascia at its edge, and the soffit panel below it. A channel is recessed into the thickness of the panel with its diffuser flush with the underside, and its cable runs up into the vented eave cavity, back through the wall, and into a driver mounted inside. The usable depth of the eave is dimensioned from the wall face to the fascia.</desc>
+<defs>
+<style>
+.f{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+.h{font-size:23px;font-weight:650;fill:#000f36}
+.p{font-size:17px;fill:#1a3373}
+.s{font-size:15px;fill:#596b9a}
+.n{font-size:13px;fill:#596b9a}
+</style>
+</defs>
+<rect width="700" height="530" fill="#ffffff"/>
+
+<text class="f h" x="36" y="42">Where a soffit light actually sits</text>
+<text class="f s" x="36" y="68">Vertical section through a Florida eave</text>
+
+<!-- interior -->
+<path d="M48 113 L236 160 L236 386 L48 386 Z" fill="#f6f7fa"/>
+<!-- eave cavity -->
+<path d="M266 167.5 L500 226 L500 320 L266 320 Z" fill="#fbfcfd"/>
+
+<!-- exterior wall, cut -->
+<rect x="236" y="140" width="30" height="246" fill="#eef1f7"/>
+<path d="M236 140 L236 386 M266 140 L266 386" stroke="#000f36" stroke-width="3" fill="none"/>
+
+<!-- fascia -->
+<rect x="500" y="222" width="16" height="114" fill="#eef1f7" stroke="#000f36" stroke-width="3"/>
+
+<!-- roof: tile over deck -->
+<path d="M48 91 a12 12 0 0 1 22 5.5 a12 12 0 0 1 22 5.5 a12 12 0 0 1 22 5.5 a12 12 0 0 1 22 5.5 a12 12 0 0 1 22 5.5 a12 12 0 0 1 22 5.5 a12 12 0 0 1 22 5.5 a12 12 0 0 1 22 5.5 a12 12 0 0 1 22 5.5 a12 12 0 0 1 22 5.5 a12 12 0 0 1 22 5.5 a12 12 0 0 1 22 5.5 a12 12 0 0 1 22 5.5 a12 12 0 0 1 22 5.5 a12 12 0 0 1 22 5.5 a12 12 0 0 1 22 5.5 a12 12 0 0 1 22 5.5 a12 12 0 0 1 22 5.5 a12 12 0 0 1 22 5.5 a12 12 0 0 1 22 5.5 a12 12 0 0 1 22 5.5 a12 12 0 0 1 22 5.5 L532 234 L48 113 Z" fill="#eef1f7" stroke="#000f36" stroke-width="3" stroke-linejoin="round"/>
+
+<!-- soffit panel, interrupted where the channel is let in -->
+<rect x="266" y="320" width="154" height="16" fill="#eef1f7" stroke="#000f36" stroke-width="3"/>
+<rect x="472" y="320" width="28" height="16" fill="#eef1f7" stroke="#000f36" stroke-width="3"/>
+
+<!-- vent perforations and the air they let up -->
+<g stroke="#8794b6" stroke-width="2">
+  <path d="M276 322 L276 334 M285 322 L285 334 M294 322 L294 334 M303 322 L303 334 M312 322 L312 334"/>
+  <path d="M294 316 L294 286"/>
+</g>
+<path d="M294 276 L288.5 287 L299.5 287 Z" fill="#8794b6"/>
+<text class="f s" x="312" y="290">vented eave cavity</text>
+
+<!-- THE SUBJECT: channel recessed into the panel, diffuser flush -->
+<rect x="420" y="302" width="52" height="34" fill="#f4b248" fill-opacity="0.16" stroke="#f4b248" stroke-width="3"/>
+<rect x="422" y="329" width="48" height="7" fill="#f4b248"/>
+
+<!-- cable: up out of the channel, back through the eave, into the driver -->
+<path d="M466 302 L466 268 C466 254 454 245 434 245 L234 245" fill="none" stroke="#000f36" stroke-width="2.5" stroke-linecap="round"/>
+
+<!-- driver -->
+<rect x="162" y="224" width="72" height="38" fill="#eef1f7" stroke="#000f36" stroke-width="3"/>
+<path d="M198 264 L198 278" stroke="#c7cddd" stroke-width="2"/>
+<text class="f s" x="56" y="290">driver, mounted inside</text>
+
+<!-- callouts -->
+<path d="M518 296 L527 296" stroke="#c7cddd" stroke-width="2"/>
+<text class="f s" x="532" y="301">fascia</text>
+
+<path d="M300 338 L300 352" stroke="#c7cddd" stroke-width="2"/>
+<text class="f s" x="278" y="368">soffit panel</text>
+
+<path d="M472 336 L472 346 L524 346" fill="none" stroke="#c7cddd" stroke-width="2"/>
+<text class="f s" x="530" y="352">recessed channel</text>
+<text class="f n" x="530" y="372">the diffuser sits flush</text>
+
+<!-- usable eave depth -->
+<path d="M500 356 L500 412" stroke="#c7cddd" stroke-width="2"/>
+<g stroke="#1a3373" stroke-width="2">
+  <path d="M266 400 L500 400"/>
+  <path d="M266 394 L266 406 M500 394 L500 406"/>
+</g>
+<text class="f s" x="383" y="392" text-anchor="middle">usable eave depth</text>
+<text class="f n" x="383" y="420" text-anchor="middle">wall face to fascia, 16 to 24 in is typical</text>
+
+<text class="f p" x="36" y="470">The channel goes inside the soffit panel, not onto it.</text>
+<text class="f s" x="36" y="494">Close the soffit before the cable is run and it has to come back open.</text>
+</svg>
