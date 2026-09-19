@@ -27,20 +27,20 @@
   "summary": "Most homeowners settle this by looks. On site it gets settled by the height of your door head, what the wall is actually made of, and what is buried where the posts would land.",
   "portada": {
     "ref": "pergolas-0",
-    "alt": "White aluminum pergola over a paved patio against a stucco house, with bar seating underneath and a neighbor's tile roof visible through the slats."
+    "alt": "White aluminum pergola with a solid roof over a paver patio against a stucco house, white barstools at a bar counter underneath, and a louvered side screen with a neighboring tile roof visible through it."
   },
   "figuras": [
     {
       "ref": "pergolas-1",
-      "alt": "Attached patio cover with translucent roof panels over brick paving, an electrical conduit running down the stucco wall and an air conditioning unit at the back."
+      "alt": "Patio cover with translucent corrugated roof panels on a dark frame over a brick paver patio at the back of a tile-roofed stucco house, with french doors and two chairs underneath."
     },
     {
       "ref": "pergolas-4",
-      "alt": "Freestanding pergola on a waterfront lot beside a canal, with newly staked palms on one side and loose landscape spotlights sitting on gravel."
+      "alt": "Dark bronze freestanding pergola with open slats on a stone pool deck beside an infinity-edge pool, with palms around it and a canal lined with houses behind."
     },
     {
       "ref": "pergolas-3",
-      "alt": "Dark-framed pergola beside a backyard pool, with overhead power lines crossing above the yard and a weathered wooden gate in the back fence."
+      "alt": "Dark-framed pergola beside a kidney-shaped backyard pool, with overhead power lines crossing above the yard and a wooden louvered privacy screen and a bench underneath it."
     }
   ],
   "faq": [
@@ -102,7 +102,7 @@ The price of that freedom is that you have to know what is underground. Posts la
 
 ### The door head
 
-The beam of an attached pergola has to clear the top of the slider or french door it passes over, and it has to tuck under the soffit. On a single-storey Florida house those two lines are often only a few inches apart. If the beam will not fit between them, attached is finished as an option — no design gets you around it.
+The beam of an attached pergola has to clear the top of the slider or french door it passes over, and it has to tuck under the soffit. On a single-story Florida house those two lines are often only a few inches apart. If the beam will not fit between them, attached is finished as an option — no design gets you around it.
 
 Measure both heights before anyone draws anything. That gap is your entire attached option, expressed as a number.
 
@@ -110,7 +110,7 @@ Measure both heights before anyone draws anything. That gap is your entire attac
 
 Walk it and write down what is there: windows, the condenser, the electrical panel, the gas meter, the hose bib, the dryer vent. Building over a condenser means roofing over equipment that needs clearance and service access.
 
-Building over a window means the room behind it gets permanently darker. That is the consequence homeowners discover last and regret most, and it is the reason a fair number of attached pergolas should have been freestanding by six feet.
+Building over a window means the room behind it gets permanently darker. That is the consequence homeowners discover last and regret most, and it is the reason a fair number of attached pergolas should have been set off the wall instead.
 
 ### Where the roof sheds water
 
@@ -140,7 +140,7 @@ If the area you are covering faces west, understand before you commit that an op
 
 An attached pergola's height is dictated to you by the soffit above and the door head below. A freestanding one lets you choose it, and that choice does more work than it looks like.
 
-Higher feels airier, moves more air, and lets more low sun underneath. Lower shades better late in the day and traps more heat. In between sits the clearance a ceiling fan needs, which on a Florida patio is the single most effective comfort item you can hang — and which an attached pergola sometimes cannot fit under a low eave.
+Higher feels airier, moves more air, and lets more low sun underneath. Lower shades better late in the day and traps more heat. In between sits the clearance a ceiling fan needs, which on a Florida patio does more for comfort than anything else you can hang — and which an attached pergola sometimes cannot fit under a low eave.
 
 ## What each one actually costs you
 
@@ -168,7 +168,7 @@ It stops working when the eave is low enough that the beam cannot fit under it a
 
 An attached pergola gives you three sides to screen, because the house is the fourth. A freestanding one needs four, plus a header detail at the top of that fourth side.
 
-Decide it now even if you build the screens later. The post spacing and beam depth a screen track needs are cheap to build in and expensive to retrofit. [When to add motorized screens to a pergola](/blogs/when-to-add-motorized-screens-to-a-pergola-or-kitchen) covers what to leave room for.
+Decide it now even if you build the screens later. The post spacing and beam depth a screen track needs are cheap to build in and expensive to retrofit. If a full enclosure is what you are really after, [what a pool screen enclosure costs in Florida](/blogs/how-much-does-a-pool-screen-enclosure-cost-in-florida) covers that route instead.
 
 ## Beside a pool, two constraints get added
 

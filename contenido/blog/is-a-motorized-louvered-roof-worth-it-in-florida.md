@@ -28,20 +28,20 @@
   "summary": "The motor is not what makes a louvered roof expensive or cheap. What decides it is whether the covered area is beyond the shade your house already throws at the hour you use the yard.",
   "portada": {
     "ref": "louvered-8",
-    "alt": "White aluminum louvered roof over an outdoor dining set, built out from an existing porch that already has ceiling fans and speakers, with worn grass along the edge of the patio."
+    "alt": "White aluminum louvered roof over a long outdoor dining table, built out from the covered lanai of a two-story house that already has ceiling fans, with lawn on both sides and a white fence and palms behind."
   },
   "figuras": [
     {
       "ref": "louvered-5",
-      "alt": "Aluminum louvered roof with the motor housing sitting on top of the beam, a drainage spout at the base of the column and new sod laid in strips along the patio."
+      "alt": "Dark bronze-framed louvered roof with pale blades tilted partly open, seen from underneath against a blue sky, in front of a modern glass-walled house with a black pool fence and clipped hedges."
     },
     {
       "ref": "louvered-1",
-      "alt": "Louvered roof over a built-in grill and stainless steel refrigerator on a wood deck, with a neighbouring barrel tile roof showing through the palms."
+      "alt": "Louvered roof with two ceiling fans over a wood deck, gray lounge furniture in front and a built-in grill island with bar stools and a tall stucco chimney behind, a barrel tile roof showing through the palms."
     },
     {
       "ref": "louvered-7",
-      "alt": "Louvered roof over a poolside patio with the paving still wet after rain, a drain set into the floor and solar panels on the roof behind."
+      "alt": "White louvered roof attached to a two-story house over a poolside patio, the pavers still wet after rain, with the pool edge in the corner, a white fence and a roof with solar panels behind."
     }
   ],
   "faq": [
@@ -51,7 +51,7 @@
     },
     {
       "question": "Does a louvered roof add value to a Florida home?",
-      "answer": "Treat it as something you buy to use, not as a return. Buyers price finished outdoor space differently depending on the house, the neighbourhood and how the work was permitted, so nobody can promise you a number. If you are selling within a couple of years, that alone is a reason to think twice."
+      "answer": "Treat it as something you buy to use, not as a return. Buyers price finished outdoor space differently depending on the house, the neighborhood and how the work was permitted, so nobody can promise you a number. If you are selling within a couple of years, that alone is a reason to think twice."
     },
     {
       "question": "Where is a louvered roof usually wasted?",
@@ -72,7 +72,7 @@ Our estimator prices a motorized louvered roof at $18,000 and an aluminum pergol
 
 ## First, find the line your house already throws
 
-Most Florida homes built in the last forty years came with a covered lanai under the main roof. That changes the question completely. You are almost never deciding between cover and no cover. You are deciding whether to extend the usable footprint past the roofline the builder gave you.
+A great many Florida homes were built with a covered lanai under the main roof. That changes the question completely. You are almost never deciding between cover and no cover. You are deciding whether to extend the usable footprint past the roofline the builder gave you.
 
 So go out at the hour you actually use the yard — for most households that is somewhere between four and seven — and mark where the house's shade ends. Chalk, a hose, a row of chairs, anything. That line is the only measurement that matters at this stage.
 
@@ -81,15 +81,15 @@ Everything inside the line is already covered at the hour you care about. A louv
 Two things distort the line and are worth checking before you trust it:
 
 - **The shade moves through the year.** The line you mark in June sits much closer to the house in January. Mark it twice if you can, or at least understand which way it travels.
-- **Low sun goes under a roof, not through it.** Past about five, the sun comes in from the side. A roof — any roof — does nothing about that. The fix is a vertical one: a solid end panel, or [a motorized screen planned into the structure rather than added later](/blogs/when-to-add-motorized-screens-to-a-pergola-or-kitchen).
+- **Low sun goes under a roof, not through it.** Past about five, the sun comes in from the side. A roof — any roof — does nothing about that. The fix is a vertical one: a solid end panel, or a motorized screen planned into the structure rather than added later, which is one of [the features worth comparing before you buy](/blogs/features-to-compare-before-buying-a-louvered-roof).
 
 ## Second, name the hours out loud
 
 The honest version of "is it worth it" is arithmetic, and it is arithmetic only you can do.
 
-Count the occasions in a normal year when the yard would have been used and was not, and you know why: it was too hot at five, it rained at six, the table was in full sun, the furniture was wet from the morning. Not a feeling — a number you would defend. Most people land somewhere between a dozen and forty.
+Count the occasions in a normal year when the yard would have been used and was not, and you know why: it was too hot at five, it rained at six, the table was in full sun, the furniture was wet from the morning. Not a feeling — a number you would defend, because it is the only input in this calculation that nobody can supply for you.
 
-Now put $9,500 against that number over the ten years you will own the structure. Thirty occasions a year is three hundred afternoons; twelve is a hundred and twenty. Neither number tells you the answer, but both turn a vague want into something you can weigh against the other thing that $9,500 buys in the same backyard.
+Now put $9,500 against that number across the years you expect to own the house. Thirty occasions a year over ten years is three hundred afternoons; twelve a year is a hundred and twenty. Neither number tells you the answer, but both turn a vague want into something you can weigh against the other thing that $9,500 buys in the same backyard.
 
 This exercise is also the fastest way to discover that the answer is a different product. If every occasion on your list is rain, you are describing a fixed cover, which sheds water for less money and has nothing to service. If every occasion is heat at five, you are describing a screen or an end panel. [The full comparison between a pergola, a louvered roof and a fixed panel cover](/blogs/pergola-vs-louvered-roof) walks the three of them against each other. The motor is worth paying for when your list has occasions of both kinds on it, because that is the only case where one structure has to do two jobs.
 
@@ -126,7 +126,7 @@ The sequence matters here more than most people expect. Deciding to cover a kitc
 2. **Rain is the only item on your list.** A fixed solid or translucent cover sheds water, costs less, and has no motor, no dedicated circuit and no actuators. You give up the sky. If you were never going to open it, you were not giving up anything. What a closed louvered roof actually does in a Florida storm is in [rain, wind and what happens to a louvered roof](/blogs/louvered-roof-in-florida-rain-and-high-winds).
 3. **The space is used almost entirely after dark.** Shade control is worth nothing at nine at night. Lighting, fans and screens are what change that space, and they cost a fraction of the structure.
 4. **Nobody in the house is going to touch the control.** This is a real pattern and nobody warns you about it. Some households set the blades once, in the position that is right most of the time, and never move them again. That is a perfectly good outcome for a fixed structure and an expensive way to buy one. If you already know that is your household, say so out loud before you sign.
-5. **You are selling inside a couple of years.** Buy it to use it. How buyers price finished outdoor space varies enough by house and neighbourhood that no one can honestly hand you a percentage, and [what outdoor living does and does not do for a Florida property](/blogs/how-outdoor-living-spaces-increase-property-value-in-florida) is the longer version of that caution.
+5. **You are selling inside a couple of years.** Buy it to use it. How buyers price finished outdoor space varies enough by house and neighborhood that no one can honestly hand you a percentage. If the space still needs covering, [what an aluminum pergola costs in Florida](/blogs/how-much-does-an-aluminum-pergola-cost-in-florida) is the more defensible spend on a short horizon.
 
 ## Three cases where it clearly is
 
@@ -146,9 +146,9 @@ That is not an argument against the system. It is an argument for asking three s
 - How long do replacement parts take to arrive, and are they stocked in Florida?
 - How many actuators does this layout use, and what happens to the roof if one fails?
 
-The answer to the second question is what turns a failed actuator into a two-week inconvenience or a two-month one, and it predicts your satisfaction in year six better than any feature on a brochure. [The rest of the questions worth asking an installer](/blogs/questions-to-ask-a-louvered-roof-installer) go through the contract, the permit and the warranty in the same spirit.
+The answer to the second question is what turns a failed actuator into a short inconvenience or a whole season without the roof you paid for, and it predicts your satisfaction in year six better than any feature on a brochure. [The rest of the questions worth asking an installer](/blogs/questions-to-ask-a-louvered-roof-installer) go through the contract, the permit and the warranty in the same spirit.
 
-One item specific to here: blade seals and the drainage channels in the beams have to be kept clear of leaf litter. Under live oaks that is not optional, and it is ten minutes a few times a year that somebody has to actually do.
+One item specific to here: blade seals and the drainage channels in the beams have to be kept clear of leaf litter. Under live oaks that is not optional, and it is a short job a few times a year that somebody has to actually do.
 
 ## Deciding this week, without a quote
 

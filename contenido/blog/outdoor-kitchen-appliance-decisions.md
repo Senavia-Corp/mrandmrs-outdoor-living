@@ -32,7 +32,7 @@
   "figuras": [
     {
       "ref": "kitchen-3",
-      "alt": "Long covered outdoor kitchen against a dark wall: built-in grill, side griddle, warming drawers and a glass-front beverage refrigerator stocked with bottles, with a television mounted above the counter."
+      "alt": "Long covered outdoor kitchen against a dark wall: built-in grill, a flat side burner, a stack of stainless drawers and a glass-front beverage refrigerator stocked with bottles, with a television mounted above the counter."
     },
     {
       "ref": "kitchen-7",
@@ -110,11 +110,11 @@ An outdoor kitchen is rarely one circuit. Refrigeration wants its own, because a
 
 The constraint people hit is not the island — it is the house panel. If there is no spare capacity, the project includes a sub-panel, and a sub-panel is a cost and a lead time, not a detail to sort out later. Find out early enough that it is a line in the estimate instead of a change order.
 
-Everything in this section has to be in conduit before anything is poured. Retrofitting a circuit into a finished island means either opening its face or running surface conduit down a wall you will be looking at for the next fifteen years.
+Everything in this section has to be in conduit before anything is poured. Retrofitting a circuit into a finished island means either opening its face or running surface conduit down a wall you will be looking at for as long as you own the house.
 
 ## 4. Covered or open — this is really the hood question
 
-Whether to roof the kitchen is a bigger decision than appliances, and it is [its own trade-off in Florida](/blogs/covered-vs-uncovered-outdoor-kitchen). But it has to be answered before the appliances, because it decides whether there is a vent hood.
+Whether to roof the kitchen is a bigger decision than appliances, and it is [its own trade-off in Florida](/blogs/pergola-vs-louvered-roof). But it has to be answered before the appliances, because it decides whether there is a vent hood.
 
 {{figura: kitchen-7}}
 
@@ -124,7 +124,7 @@ If the ceiling above the grill is wood, the clearance is not a preference. It is
 
 ## 5. Which second cooking appliance earns its counter space
 
-Almost everyone wants three. Most people use one.
+Three usually go on the wish list. The number that matters is how many get used.
 
 The honest version of this decision starts with a count: in the last twelve months, how many times did you cook outdoors, and what did you cook? A pizza oven is a Saturday appliance and a genuinely good one for people who entertain. A side burner is a Tuesday appliance. A kamado is a different cooking method, not a second grill, and it gets used by people who already own one.
 
@@ -152,7 +152,7 @@ Worth saying plainly: a lot of outdoor kitchens are better without one. If the b
 
 This is the decision that ruins islands, and it is the least glamorous one here.
 
-A "30-inch grill" is a category. The cutout is a number on that specific model's spec sheet, and it is not 30 inches. Different manufacturers in the same nominal size need different openings, different depths and different clearances to combustible material underneath. Masons build to the drawing they were given, so the appliances have to be selected, and their spec sheets in the builder's hands, before block goes up.
+A "30-inch grill" is a category. The cutout is a number on that specific model's spec sheet, and it is rarely exactly 30 inches. Different manufacturers in the same nominal size need different openings, different depths and different clearances to combustible material underneath. Masons build to the drawing they were given, so the appliances have to be selected, and their spec sheets in the builder's hands, before block goes up.
 
 The same applies to everything with a door. Which way does it swing, does it clear the walkway when open, is the drawer stack on the side you actually stand on, and does the access door in front of the gas valve leave enough room to reach the valve. These are five-minute conversations at the drawing stage and demolition afterwards.
 
@@ -162,7 +162,7 @@ One more thing belongs here: lead time. An appliance on a long backorder stops b
 
 Stainless steel is not one material, and outdoor kitchens are where the difference shows.
 
-The grades usually quoted for outdoor appliances and cabinetry are written as 304 and 430. The cheaper one goes first at the welds and the fasteners, often within a couple of seasons in coastal air, and it is what most bargain door-and-drawer sets are made from. Near salt water that is not a cosmetic issue; it is the reason a kitchen looks tired at year three.
+The grades usually quoted for outdoor appliances and cabinetry are written as 304 and 430. The cheaper one gives up first at the welds and the fasteners, which is where salt collects and where the protective layer is thinnest, and it is what most bargain door-and-drawer sets are made from. Near salt water that is not a cosmetic issue: it decides how soon the hardware starts staining and how soon it stops closing properly.
 
 Ask for the grade in writing, and ask for it twice: once for the appliances and once for the access doors, drawers and hardware, because they are frequently not the same and the doors are where the saving is made. A rough field check is that the cheaper grade is magnetic and the better one usually is not — useful for catching the obvious case, useless as a certificate.
 

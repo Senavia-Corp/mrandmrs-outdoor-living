@@ -28,20 +28,20 @@
   "summary": "Four connections have to reach the island, and they are finished and buried before the surface goes down. What the house can actually supply, what the run between the two costs, and which of the four you can still add later.",
   "portada": {
     "ref": "kitchen-0",
-    "alt": "Built-in grill and stainless access doors in an outdoor kitchen island, standing on concrete paving with a gravel drainage strip and grass creeping over the paving edge."
+    "alt": "L-shaped outdoor kitchen under a dark slatted pergola, with a stainless grill, drawers and undercounter doors set into grey tile-clad cabinets, a sink and faucet at the far end, and a white picket fence and a large tree branch behind it."
   },
   "figuras": [
     {
       "ref": "kitchen-2",
-      "alt": "Outdoor kitchen island with a black electrical outlet recessed into the cabinet front, a junction box on the wooden fence behind it and grass growing in the paving joints."
+      "alt": "Straight-run outdoor kitchen with dark wood-slat cabinet fronts, a stainless grill, a small sink and a white counter, under a white pergola with wood slats and recessed downlights, with a white louvered privacy screen behind it and grass strips between the pavers."
     },
     {
       "ref": "kitchen-6",
-      "alt": "Poolside outdoor kitchen with black granite counters and a ventilation grille in the base cabinet, facing a lake with homes and an aluminum fence on the far bank."
+      "alt": "L-shaped outdoor kitchen with black granite counters and white cabinet fronts, a stainless grill and an undercounter refrigerator, under a covered structure with a ceiling fan, looking out past palms and a black aluminum fence to a lake with houses on the far bank."
     },
     {
       "ref": "kitchen-3",
-      "alt": "Outdoor kitchen counter with a glass-front beverage refrigerator and stainless appliances, and a television cable running loose down the wall to the countertop."
+      "alt": "Long outdoor kitchen run against a dark textured wall, with wood-slat cabinet fronts, black stone counters, a stainless grill and side burner, a glass-front beverage refrigerator, and a wall-mounted television above the counter."
     }
   ],
   "faq": [
@@ -70,7 +70,7 @@
 }
 ---
 
-A full outdoor kitchen asks four things of the house: gas sized for every burner that can run at once, at least two electrical circuits, a water supply, and a drain that falls to a discharge point your county accepts. All four are underground. All four are inspected before they are buried. All four are finished before the slab, deck or pavers go over them.
+A full outdoor kitchen asks four things of the house: gas sized for every burner that can run at once, more electrical capacity than one circuit carries, a water supply, and a drain that falls to a discharge point your county accepts. All four are underground. All four are inspected before they are buried. All four are finished before the slab, deck or pavers go over them.
 
 So the deadline that governs the project is not the day you choose a grill. It is the day the trench closes.
 
@@ -105,8 +105,6 @@ Two more questions people skip. Buried or above ground — buried disappears but
 
 If a cylinder lives inside the island, that cabinet has to be ventilated, because propane is heavier than air and has to be able to leave at the bottom. The grille in a base cabinet is not trim.
 
-{{figura: kitchen-6}}
-
 ### Electric: the panel is the constraint
 
 Refrigeration wants its own circuit. Countertop receptacles are another. Lighting, a hood and a television add more. The island can hold all of it; the question is whether the house panel has the spaces and the capacity, and that is usually answered by an electrician standing in front of it rather than by anyone in the backyard.
@@ -119,7 +117,7 @@ Two details that are cheap now and impossible later. Every outdoor receptacle ne
 
 A cold supply is the simplest of the four lines. Hot water is the one that gets waved through at the design meeting and then costs something.
 
-There are two ways to get it, and both have a consequence. Run it from the house water heater, and every use starts with the wait for that whole pipe run to clear — which, at forty feet, is most of a minute for a hand rinse. Or put a point-of-use heater under the counter, which is a compact appliance and its own dedicated circuit, added to a panel that may already be full.
+There are two ways to get it, and both have a consequence. Run it from the house water heater, and every use starts with the wait for that whole pipe run to clear: the longer the run, the longer the wait, and a hand rinse is usually over before the hot water arrives. Or put a point-of-use heater under the counter, which is a compact appliance and its own dedicated circuit, added to a panel that may already be full.
 
 There is a third answer, and for many outdoor kitchens it is the right one: cold only. Decide deliberately rather than by default.
 
@@ -148,11 +146,13 @@ So when you compare quotes, look for what the estimate says about the run. "Util
 
 The trench does not cross empty ground. Between a Florida house and its backyard there is usually irrigation piping and wiring, low-voltage lighting, and — if there is a pool — its plumbing and its bonding grid.
 
-Irrigation is the one that gets cut, because the laterals are shallow and unmapped. The cheap precaution is to run every zone before the first shovel and mark the heads and lines, so a cut is found and repaired the same afternoon instead of appearing in June as a dry stripe across the lawn. If the irrigation is being touched anyway, [designing irrigation around pools and outdoor living areas](/blogs/designing-irrigation-around-pools-and-outdoor-living) is the moment to fix its layout rather than patch it.
+Irrigation is the one that gets cut, because the laterals are shallow and unmapped. The cheap precaution is to run every zone before the first shovel and mark the heads and lines, so a cut is found and repaired the same afternoon instead of appearing in June as a dry stripe across the lawn. If the irrigation is being touched anyway, that is the moment to fix its layout rather than patch it.
 
 ## An island near the pool is under the pool's electrical rules
 
 If the kitchen sits close to the water, the electrical work changes character. Metal within the area around a pool has to be bonded into the pool's grid, and that includes structural metal in a nearby island. The connection is buried and tied in before concrete.
+
+{{figura: kitchen-6}}
 
 You do not need to know where that boundary falls. You need to ask the question — *is this island inside the bonded area?* — of your electrician, early enough that the answer is a wire in a trench rather than a finding at inspection. It is one of the very few items on a backyard project that genuinely cannot be retrofitted without demolition.
 
@@ -170,7 +170,7 @@ Each trade usually has its own review and its own inspection, and they gate each
 
 One habit pays for itself: before backfill, photograph the open trench with a tape measure running to a fixed point — a house corner, not a plant. Two years from now, when somebody wants to add a fire feature or replace a paver, those photos are the difference between a careful dig and a guess.
 
-If a deck is part of the project, its build sequence and the utility sequence are the same sequence — [designing a deck for an outdoor kitchen](/blogs/designing-a-deck-for-an-outdoor-kitchen) covers where they interlock. And the surface you choose decides how forgiving a later change will be, which is one of the practical differences between [a grill island and a full kitchen](/blogs/grill-island-vs-full-outdoor-kitchen).
+If a deck is part of the project, its build sequence and the utility sequence are the same sequence: the surface goes down over a trench that has already been signed off. What that surface is made of decides how forgiving a later change will be, which is part of [choosing materials that survive Florida heat, rain and salt](/blogs/best-outdoor-kitchen-materials-for-florida) and one of the practical differences between [a grill island and a full kitchen](/blogs/grill-island-vs-full-outdoor-kitchen).
 
 ## The conduit nobody asks for
 

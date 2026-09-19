@@ -27,12 +27,12 @@
   "summary": "Two quotes for the same patio can be thousands apart and read identically. Seven things explain the gap, and five of them are decided the day the posts go in.",
   "portada": {
     "ref": "louvered-3",
-    "alt": "Black aluminum louvered roof over a seating area beside the water, with furniture under protective covers, a pool handrail and a mosaic tile band at the water's edge."
+    "alt": "White aluminum louvered roof attached to a beige stucco house, covering a patio with lounge chairs beside a pool, a curved handrail at the steps and a mosaic tile band at the waterline."
   },
   "figuras": [
     {
       "ref": "louvered-7",
-      "alt": "Louvered roof over a poolside patio after rain, the paving still wet, a drain set into the floor and solar panels on the neighboring roof."
+      "alt": "White louvered roof on slim posts over large-format paving still wet after rain, with an aluminum fence, a lake behind it and solar panels on the neighboring tile roof."
     },
     {
       "ref": "louvered-9",
@@ -40,7 +40,7 @@
     },
     {
       "ref": "louvered-5",
-      "alt": "Aluminum louvered roof over a patio with lighting integrated into the frame, the motor housing sitting on the beam and a drainage spout at the base of the column."
+      "alt": "Bronze-framed louvered roof with white blades over a paved courtyard, the motor housing sitting on top of the beam and a modern glass-walled house behind it."
     }
   ],
   "faq": [
@@ -67,7 +67,7 @@
 
 Two motorized louvered roof quotes for the same patio can be thousands of dollars apart and read almost identically on paper. Seven things explain the gap — and **five of them are structure, fixed the day the posts go in. Only two are parts you can replace later.** Compare hardest on the five.
 
-That is close to the opposite of how most of these purchases get decided. What gets demonstrated is the remote and the motor, because those are the parts that move. They are also the parts that get swapped out in year eight. The blade span, the way the roof seals, the drainage path, the metal and the anchorage are what you are actually buying, and none of them can be changed without taking the structure down.
+That is close to the opposite of how most of these purchases get decided. What gets demonstrated is the remote and the motor, because those are the parts that move. They are also the parts that can be serviced or replaced later without touching the structure. The blade span, the way the roof seals, the drainage path, the metal and the anchorage are what you are actually buying, and none of them can be changed without taking the structure down.
 
 Our estimator prices a motorized louvered roof at $18,000 and shows it as a range of about ±10%. When two quotes for the same footprint sit well outside that band, one of these seven is different between them. This is the list to find it on.
 
@@ -128,7 +128,7 @@ All of these systems are aluminum. They are not the same aluminum, and the way t
 
 You are not trying to hit a number. You are making the two quotes comparable, and a bidder who cannot produce these on request is quoting something they have not specified either.
 
-The fastener answer matters more than people expect near salt. Stainless hardware into aluminum behaves differently over a decade than plated steel does, and the failure shows up as staining and seized bolts long before anything structural happens. If the house is close to the coast, say so and ask what changes in the specification because of it.
+The fastener answer matters more than people expect near salt. Stainless hardware into aluminum behaves differently over time than plated steel does, and the failure shows up as staining and seized bolts long before anything structural happens. If the house is close to the coast, say so and ask what changes in the specification because of it.
 
 Finish is the part you will look at every day. Ask what the warranty on the coating covers specifically — chalking, fading and adhesion are separate things, and they are often covered for different lengths of time.
 
@@ -138,7 +138,7 @@ A closed louvered roof catches wind like a sail, and the uplift ends up in the f
 
 What to compare:
 
-- **What each post lands on.** A poured footing sized for this structure, or the existing slab. If it is the existing slab, ask what the basis is for believing that slab is adequate, because a four-inch patio slab and a footing are not the same thing.
+- **What each post lands on.** A poured footing sized for this structure, or the existing slab. If it is the existing slab, ask what the basis is for believing that slab is adequate, because a patio slab poured for foot traffic and a footing sized for uplift are not the same thing.
 - **How the post meets it.** A base plate with anchors, and paving cut around it. Posts that appear to sit on top of finished pavers, with the joints running uninterrupted underneath, are not anchored to anything.
 - **If it attaches to the house, how.** A ledger into structure, flashed, with a path for water to leave — not into stucco and hope.
 - **What engineering comes with it.** These systems are sold as approved configurations, and the approval is tied to specific spans, post spacings and attachment details. The permit reviewer will want to see that your configuration sits inside it. Ask which approval the system is sold under and who is signing the engineering for your site.
@@ -155,7 +155,7 @@ Compare four things:
 
 - **How many motors, and how many zones.** A single drive turning every blade means the whole roof is one setting. Two zones means the dining end can be closed while the lounge end is open. On a long roof that is a real difference in how the space gets used, and it is decided now because the zoning is built into the frame.
 - **Where the drive sits.** Inside the beam, or in a housing on top of it. Both work. The housing is visible, and on some installations it is the only thing you notice from the yard.
-- **Actuators or a driven tube.** Ask which, and ask what a replacement costs and how long one takes to arrive. The second answer decides whether a failure in year six is a two-week nuisance or a two-month one.
+- **Actuators or a driven tube.** Ask which, and ask what a replacement part costs and how long one takes to arrive. That second answer decides whether a failure is a service call or a roof stuck in one position until the part ships.
 - **What happens when the power is out.** There should be a manual way to move the blades, or a defined safe position the roof holds. Ask to be shown it rather than told about it.
 
 {{figura: louvered-5}}

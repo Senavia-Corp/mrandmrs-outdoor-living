@@ -28,20 +28,20 @@
   "summary": "Two outdoor kitchens the same length can be very different projects. The number our estimator uses, the three things that actually move it, and the order to decide them in.",
   "portada": {
     "ref": "kitchen-6",
-    "alt": "L-shaped outdoor kitchen with black granite counters and stainless doors on a paver patio, facing a lake with houses on the far shore."
+    "alt": "L-shaped outdoor kitchen under a dark wood cover with a ceiling fan, black granite counters, a built-in stainless grill and stainless doors, on a grey stone-tile floor beside a lake with palms and houses on the far shore."
   },
   "figuras": [
     {
       "ref": "kitchen-4",
-      "alt": "Built-in stainless grill set into a stone-faced counter, with a lake and tile-roofed houses behind it."
+      "alt": "L-shaped outdoor kitchen under a white louvered roof with a ceiling fan, with a stainless grill, a refrigerator, drawers and a sink cut into a white stone-clad counter, and tile-roofed houses beyond the fence."
     },
     {
       "ref": "kitchen-5",
-      "alt": "Covered outdoor kitchen under a solid roof, with a stainless access door in the stone base and a worn travertine floor."
+      "alt": "Outdoor kitchen on a covered lanai under a solid white roof, with a black granite counter over a white stucco base, a built-in stainless grill, a stainless under-counter door and a travertine floor."
     },
     {
       "ref": "kitchen-1",
-      "alt": "Poolside outdoor kitchen with a domed wood-fired oven on the counter and wood-grain cabinet fronts."
+      "alt": "Poolside outdoor kitchen under a dark-framed cover, with a domed stainless oven and its chimney on the back counter, a built-in grill and side burners, and a front island with a sink and wood-grain cabinet fronts."
     }
   ],
   "faq": [
@@ -72,7 +72,7 @@
 
 Our estimator carries a custom outdoor kitchen as a single $25,000 line, and it shows every total in a band of plus or minus 10 percent. That is a planning figure for a built-in kitchen on a site where the utilities are already close. It is not a quote, and it is not a rate per foot.
 
-The rate-per-foot part is the useful bit. An outdoor kitchen's price barely tracks how long the counter is. It tracks three other things: how many appliances get cut into it, how far the gas, power and water have to travel to reach it, and whether it ends up under a solid roof. Two kitchens of identical length can be entirely different projects on those three questions — the cover over one of them is priced by the same estimator at $8,500 for an aluminum pergola or $18,000 for a motorized louvered roof, before a single appliance is chosen.
+The rate-per-foot part is the useful bit. An outdoor kitchen's price barely tracks how long the counter is. It tracks three other things: how many appliances get cut into it, how far the gas, power and water have to travel to reach it, and whether it ends up under a solid roof. Two kitchens of identical length can be entirely different projects on those three questions — the cover over one of them is priced by the same estimator at $8,500 for a pergola or $18,000 for a louvered roof, before a single appliance is chosen.
 
 So the number to carry into your first meeting is not a total. It is an order of decisions, and it is at the end of this article.
 
@@ -129,7 +129,7 @@ Some sites answer it in a few feet. Some do not answer it cheaply at all. If you
 
 ## Covered or open changes the number twice
 
-First, the cover is its own project with its own price. Our estimator prices an aluminum pergola at $8,500 and a motorized louvered roof at $18,000. Against a $25,000 kitchen line, that is roughly a third again, or roughly three-quarters again, on top — before anything about the kitchen itself changes.
+First, the cover is its own project with its own price. Our estimator prices a pergola at $8,500 and a louvered roof at $18,000. Against a $25,000 kitchen line, that is roughly a third again, or roughly three-quarters again, on top — before anything about the kitchen itself changes.
 
 Second, it changes the kitchen. A built-in grill under a solid roof brings ventilation into the scope: a hood and a path for the air to leave, plus clearances that open sky does not require. An open-slat pergola is a different situation from a solid roof, and the two get quoted differently even when they look similar in a rendering.
 

@@ -28,20 +28,20 @@
   "summary": "Most remodel lists rank by cost or by what shows up in a photo. These nine are ranked by what is different about a Saturday once the crew has gone, which is why the interior finish comes ninth.",
   "portada": {
     "ref": "remodeling-2",
-    "alt": "Pool with three metal spouts set into a rendered raised wall, a shallow ledge holding two in-water loungers, a fire bowl on white stone and a clipped hedge behind."
+    "alt": "Pool with three metal spouts set into a rendered raised wall, two white loungers on a sun shelf at the near corner, a long recess filled with dark stones running along the wall to the left, and a clipped hedge and palms behind a black metal fence."
   },
   "figuras": [
     {
       "ref": "remodeling-7",
-      "alt": "Raised spa clad in small white tile with its jets running, beside a rectangular pool with two chaises standing in the shallow end and a grill under the covered lanai."
+      "alt": "Raised spa clad in small white tile with its jets running, beside a rectangular pool with two white loungers standing on the deck at the top of its wide entry steps, and two grills under the covered lanai behind."
     },
     {
       "ref": "remodeling-4",
-      "alt": "Rectangular pool with a shallow shelf at the near end and a travertine deck, a covered lanai with ceiling fans to the left and palms behind an aluminum fence."
+      "alt": "Rectangular pool with a shallow shelf at the near end and a travertine paver deck, a basketball hoop at the far edge, a covered lanai with ceiling fans to the left and palms behind a black metal fence."
     },
     {
       "ref": "remodeling-1",
-      "alt": "Pool and spa on a pale stone deck, with two white chaise loungers standing in the shallow shelf and a single-storey house and covered lanai behind."
+      "alt": "Pool with two white chaise loungers standing in its shallow shelf, a spa trimmed in dark blue tile at the near left, a pale stone deck around both, and a single-story house with a covered lanai behind."
     }
   ],
   "faq": [
@@ -88,7 +88,7 @@ The remodel worth avoiding is the one that changes everything you look at and no
 | 6 | Sanitizing and controls | What the weekly routine is | Weekly |
 | 7 | The edge: coping and tile | How the pool reads, and what you grab and sit on | Every time you look at it or get out |
 | 8 | Light | Whether the pool has an evening at all | After dark, half the year |
-| 9 | The interior finish | Texture underfoot, and when you do this again | Daily, and once a decade |
+| 9 | The interior finish | Texture underfoot, and when you do this again | Daily, and again at the next refinish |
 
 ## The three that decide how often anyone gets in
 

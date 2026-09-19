@@ -28,20 +28,20 @@
   "summary": "Both builds use the same stone, the same appliances and the same crew. What separates them is a trench you cannot add later, and a trip count that tells you which one you actually need.",
   "portada": {
     "ref": "kitchen-6",
-    "alt": "L-shaped outdoor kitchen in black granite with two counter wings and a ventilation grille in the base cabinet, facing a lake with an aluminum fence and houses on the far bank."
+    "alt": "L-shaped outdoor kitchen with white cabinet fronts, a black veined stone countertop and a ventilation grille in the base cabinet, under a dark-beamed cover with a ceiling fan, looking across a lawn to a lake with a white fence at the water's edge and houses on the far bank."
   },
   "figuras": [
     {
       "ref": "kitchen-4",
-      "alt": "Built-in grill set into a stone-faced island with a wire basket resting at its base, looking out over a lakefront Florida neighborhood of tile-roofed houses."
+      "alt": "Built-in stainless grill and an undercounter refrigerator set into a white stacked-stone island with a sink and faucet in the return, under a white louvered roof with a ceiling fan, facing a fenced Florida neighborhood of tile-roofed houses."
     },
     {
       "ref": "kitchen-3",
-      "alt": "Outdoor kitchen counter with a wall-mounted television whose cable runs loose down the wall to the countertop, stainless appliances below and a glass-front beverage refrigerator stocked with bottles."
+      "alt": "Outdoor kitchen run against a dark plaster wall with slatted wood cabinet fronts and a black stone counter: built-in grill, side burner, stainless drawers and a glass-front beverage refrigerator, with a wall-mounted television whose cables hang loose down to the countertop."
     },
     {
       "ref": "kitchen-7",
-      "alt": "Outdoor kitchen under a thatched palm-leaf chickee roof with aged beams and a ceiling fan, a built-in stainless refrigerator in the cabinetry and veined marble floor tiles."
+      "alt": "Outdoor kitchen under a thatched palm-leaf chickee roof with wood rafters and a ceiling fan: a slatted-wood island with a black stone counter, a built-in grill under a stainless hood, a tropical leaf-patterned wall behind it, an undercounter stainless refrigerator and veined gray floor tiles."
     }
   ],
   "faq": [
@@ -90,7 +90,7 @@ The trips sort themselves into five buckets, and each one maps to a piece of equ
 | A second cooking method: boiling, frying, a burner | A side burner or a second appliance |
 | Throwing something away | A trash pull-out, the cheapest fix on this list |
 
-Three trips an evening, mostly for storage and drinks, is an island with drawers and a refrigerator. Eight trips, half of them at the sink, is a kitchen. What the exercise really buys you is the **appliance list**, which is normally chosen from a showroom rather than from evidence. Most people over-buy cooking equipment and under-buy storage and cold, then discover the pattern two summers later. Take the list that comes out of this into [the nine decisions that come before you choose appliances](/blogs/outdoor-kitchen-appliance-decisions), where each item turns into a cutout, a circuit and a gas load.
+If the trips are few and they are mostly for storage and cold drinks, an island with drawers and a refrigerator removes them. If the sink bucket is the one that fills up, no amount of cabinetry will fix it and you are looking at a kitchen. What the exercise really buys you is the **appliance list**, which is normally chosen from a showroom rather than from evidence. Most people over-buy cooking equipment and under-buy storage and cold, then find the pattern once the space is in weekly use. Take the list that comes out of this into [the nine decisions that come before you choose appliances](/blogs/outdoor-kitchen-appliance-decisions), where each item turns into a cutout, a circuit and a gas load.
 
 {{figura: kitchen-4}}
 
@@ -108,13 +108,13 @@ This is why the honest way to compare the two prices is by scope and not by tota
 
 Order matters more here than in most backyard projects, because the layers go in a fixed sequence: utilities, then the slab or deck, then the cabinetry, then the appliances.
 
-Everything above the deck is reversible. Appliances swap. Doors and drawers get replaced. A cabinet run can be extended by a mason in a few days. What cannot be changed cheaply is the layer underneath, and that layer is decided first — usually before anyone has finalized whether it is an island or a kitchen.
+Everything above the deck is reversible. Appliances swap. Doors and drawers get replaced. A cabinet run can be extended by a mason without disturbing what is under it. What cannot be changed cheaply is the layer underneath, and that layer is decided first — usually before anyone has finalized whether it is an island or a kitchen.
 
 Deck material is what sets the size of that mistake. Our estimator prices concrete at $12 per square foot, pavers at $22 and travertine at $35. Those are not just three prices, they are three different degrees of forgiveness:
 
 - **Pavers lift and relay.** A crew can open a channel, run the line and put the same stones back. This is the cheap one to change your mind under.
 - **Poured concrete gets cut.** The patch will be visible for as long as the slab lasts, whatever anyone promises about matching.
-- **Travertine set in mortar comes up broken.** You are buying replacement stone, and a lot on the shelf two years later will not match the lot on the ground.
+- **Travertine set in mortar comes up broken.** You are buying replacement stone, and a lot bought later will not match the lot on the ground.
 
 So the cheap insurance is specific and it costs almost nothing while the ditch is open: run water, drain, gas and electrical to the **future** kitchen footprint, cap them, and photograph where they are before backfill. Build only the island this year. The trench is the decision you cannot defer; the cabinetry is the one you can.
 
@@ -124,7 +124,7 @@ So the cheap insurance is specific and it costs almost nothing while the ditch i
 
 Cover is treated as a style question and it is really a durability question. Sun, rain and salt-carrying air age everything outside; what sits under a roof ages slower, and what sits in the open ages at the rate Florida sets.
 
-It is also a separate project with its own price. Our estimator puts a pergola at $8,500, a motorized louvered roof at $18,000 and a screen enclosure at $15,000. Against a $25,000 kitchen, the cover is not a detail — it can be most of the difference between the two builds you are comparing, and it deserves to be in the conversation on day one rather than after the layout is fixed. [Covered against uncovered in Florida](/blogs/covered-vs-uncovered-outdoor-kitchen) is the comparison in full.
+It is also a separate project with its own price. Our estimator puts a pergola at $8,500, a motorized louvered roof at $18,000 and a screen enclosure at $15,000. Against a $25,000 kitchen, the cover is not a detail — it can be most of the difference between the two builds you are comparing, and it deserves to be in the conversation on day one rather than after the layout is fixed. [Pergola against louvered roof](/blogs/pergola-vs-louvered-roof) compares the two covers that get chosen most often, and what each one costs to run.
 
 Two consequences worth knowing before you choose:
 
@@ -157,7 +157,7 @@ A grill island is close to maintenance-free. It is masonry, stone and one applia
 
 A full kitchen has more that can go wrong, and all of it is ordinary: a drain that needs clearing, seals and gaskets that age, refrigeration working much harder outdoors in August than the same unit would indoors, and stainless that wants rinsing if you are near salt air. None of it is a reason not to build one. It is a reason to ask who services the appliances locally before you choose them, which is a question worth asking while you can still pick a different brand.
 
-## Deciding in about ten minutes
+## Five questions that settle it
 
 Answer these out loud:
 

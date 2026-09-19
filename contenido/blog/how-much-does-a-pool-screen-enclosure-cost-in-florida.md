@@ -8,9 +8,9 @@
     "pool-screen-enclosures-for-north-south-florida-pools"
   ],
   "relacionados": [
-    "replace-a-pool-cage-or-keep-rescreening-it",
-    "panoramic-vs-traditional-pool-enclosures",
-    "pool-enclosure-wind-ratings-in-florida"
+    "what-permits-are-required-for-pool-construction-in-florida",
+    "pool-upgrades-worth-planning-before-construction",
+    "how-much-does-a-custom-pool-cost-in-florida"
   ],
   "ordenEnServicio": 1,
   "ordenIndice": 55,
@@ -28,20 +28,20 @@
   "summary": "A pool cage is not priced by the size of your deck. Here is the number our estimator uses, the three things that actually move it, and the one that stops being cheap the day the concrete sets.",
   "portada": {
     "ref": "enclosures-4",
-    "alt": "Newly finished pool screen enclosure over a covered seating area with ceiling fans, its beams joined by bolted splice plates and braced with a diagonal cable."
+    "alt": "Pool with a raised spa finished in blue tile inside a screen enclosure, on a gray travertine deck, the frame braced with thin diagonal cables and a lake filling the view behind."
   },
   "figuras": [
     {
       "ref": "enclosures-0",
-      "alt": "Pool and spa inside a screen enclosure, with two spillways breaking the water and the mesh casting a grid of shadows across the travertine deck."
+      "alt": "Pool and raised spa inside a screen enclosure, with a stone water feature spilling into the pool at one end, lounge chairs and a fire table on the travertine deck, and a lake beyond the mesh."
     },
     {
       "ref": "enclosures-2",
-      "alt": "Curved pool under a screen enclosure beside an older wood-sided house, on a painted concrete deck showing patches and staining."
+      "alt": "Curved pool and raised spa under a white-framed screen enclosure, with white Adirondack chairs around a round table on a painted concrete deck and an exterior staircase climbing to the teal-sided upper floor of the house."
     },
     {
       "ref": "enclosures-8",
-      "alt": "Screen enclosure over a pool and built-in outdoor kitchen beside a lake, with a basketball hoop mounted on the cage frame and power lines crossing the far shore."
+      "alt": "Screen enclosure meeting the house at a covered lanai with a ceiling fan and a built-in grill island, the paver deck running down to a freeform pool, with a lake and power lines beyond the cage."
     }
   ],
   "faq": [
@@ -92,7 +92,7 @@ The screen on a pool enclosure is the roof plus the walls. Your deck footprint s
 
 Raise a cage two feet over the same deck and you have not added two feet. You have added a band of screen around the entire perimeter, longer posts, and — because those posts are now carrying more load over more distance — a heavier post and beam schedule underneath the whole thing. Height is the single most common reason two enclosures over identical decks are priced well apart.
 
-Clear span does the same work sideways. Every upright you take out of a sightline has to be paid for in a deeper beam. That is the honest trade behind wide-panel and panoramic framing: the view is real, and so is the aluminum it takes to hold the opening. Which one suits the yard is a look-and-feel question, answered in [panoramic compared with traditional enclosure framing](/blogs/panoramic-vs-traditional-pool-enclosures), and there are cheaper ways to buy openness that are covered in [seven design decisions that make an enclosure feel more open](/blogs/design-decisions-that-make-a-pool-enclosure-feel-open).
+Clear span does the same work sideways. Every upright you take out of a sightline has to be paid for in a deeper beam. That is the honest trade behind wide-panel and panoramic framing: the view is real, and so is the aluminum it takes to hold the opening. Which one suits the yard is a look-and-feel question. What it costs is an engineering one, and it is settled by where the uprights land — so ask for the post layout on the drawing, not a description of the view.
 
 Roof profile is the third dimension of the same question. A flatter profile carries a shorter span and looks lower from the yard; a steeper one sheds rain and debris more readily and adds height at the ridge, along with everything height brings with it. These are not interchangeable styling options with one price.
 
@@ -105,9 +105,9 @@ A pool enclosure is an engineered structure. Somebody seals drawings for your ad
 Two inputs into those drawings change the aluminum, and both are specific to your lot rather than to the state:
 
 - **The design wind speed at your address.** It is not uniform across Florida, and it is not uniform across a county either.
-- **The exposure the site actually has.** A lot backing onto open water or a wide lake is not in the same situation as an identical lot screened by two-storey houses on three sides. The engineer takes a position on that, and the position shows up as extrusion sizes, anchor spacing and cable bracing.
+- **The exposure the site actually has.** A lot backing onto open water or a wide lake is not in the same situation as an identical lot screened by two-story houses on three sides. The engineer takes a position on that, and the position shows up as extrusion sizes, anchor spacing and cable bracing.
 
-This gives you the most useful question in the entire comparison, and almost nobody asks it: **what design wind speed and what exposure category was this quote engineered to?** Two bidders who answered that differently have not given you two prices. They have given you two structures. What those ratings mean and how to read them is the whole subject of [what to know about wind ratings before building an enclosure](/blogs/pool-enclosure-wind-ratings-in-florida).
+This gives you the most useful question in the entire comparison, and almost nobody asks it: **what design wind speed and what exposure category was this quote engineered to?** Two bidders who answered that differently have not given you two prices. They have given you two structures. Ask for both figures in writing, on the quote itself.
 
 Be equally direct about what happens afterwards. A cage is a permitted, inspected structure, and it should be permitted under the license of the contractor building it — which you can confirm yourself in the state's public register before signing anything. [What permits are required for pool construction in Florida](/blogs/what-permits-are-required-for-pool-construction-in-florida) covers how the reviews stack up when the pool and the enclosure are happening together.
 
@@ -121,7 +121,7 @@ Which side of this you land on is decided by timing, not by budget.
 
 **If the deck is already finished,** the work becomes demolition. Cores get drilled; where the slab turns out to be too thin or unreinforced, sections are cut out, new footings are poured, and the surface is put back. Our estimator prices decking at $12 a square foot for concrete, $22 for pavers and $35 for travertine, which gives you a sense of what is being cut into — and the patch never quite matches the field around it, no matter which of the three it is. Pavers are the forgiving case, because they can be lifted and reset. Poured concrete and travertine are not forgiving.
 
-So the decision that saves the most money here costs almost nothing to make and has to be made early: **if an enclosure is even a possibility, have the deck designed for one.** That belongs on the same list as the other things worth settling while the design is still on paper, in [upgrades worth planning before construction begins](/blogs/pool-upgrades-worth-planning-before-construction), and the sequencing itself is in [planning a pool deck and screen enclosure together](/blogs/planning-a-pool-deck-and-screen-enclosure-together).
+So the decision that saves the most money here costs almost nothing to make and has to be made early: **if an enclosure is even a possibility, have the deck designed for one.** That belongs on the same list as the other things worth settling while the design is still on paper, in [upgrades worth planning before construction begins](/blogs/pool-upgrades-worth-planning-before-construction), and next to the questions to answer before any of it starts, in [what to decide before you build a pool in Florida](/blogs/before-you-build-a-pool-in-florida).
 
 {{figura: enclosures-2}}
 
@@ -137,13 +137,13 @@ One related habit worth naming, because it shows up on finished cages constantly
 
 ## Screen, doors, and the question the county answers
 
-Mesh is normally presented last, as a comfort preference. It is worth moving earlier for one reason that rarely gets explained: tighter weaves stop more insects and more light, and they also pass less air, which means the frame catches more wind. That makes the mesh an engineering input, not a finish. Choose it before the drawings are sealed, and see [how to choose the right screen mesh](/blogs/choosing-the-right-screen-mesh) for what each weave costs you in airflow and view.
+Mesh is normally presented last, as a comfort preference. It is worth moving earlier for one reason that rarely gets explained: tighter weaves stop more insects and more light, and they also pass less air, which means the frame catches more wind. That makes the mesh an engineering input, not a finish. Choose it before the drawings are sealed, and ask what each weave costs you in airflow and view before picking the tightest one on the shelf.
 
 Doors are a count, and the count matters more than the door. Each one is an opening in the structure, hardware, and a place the mesh gets handled every day. Two doors on a cage that needs one is a small permanent expense in a place that takes wear.
 
 Then there is the question that is not yours to answer: whether the enclosure is being counted as the pool's safety barrier. Where it is, the door hardware becomes part of the plan review rather than a preference, and that is settled by the reviewer in your county rather than by the catalogue. Ask your builder which way it is being submitted, and get the answer before the doors are ordered.
 
-If there is an existing cage coming down first, its removal and disposal is a separate line and should appear as one. Whether it needs to come down at all is a real question with a real answer, and it is in [replacing an old pool cage compared with rescreening it](/blogs/replace-a-pool-cage-or-keep-rescreening-it).
+If there is an existing cage coming down first, its removal and disposal is a separate line and should appear as one. Whether it needs to come down at all is worth asking before it is assumed: a frame that is still sound and a screen that is finished are two different jobs at two different prices.
 
 ## Eight lines that make two quotes comparable
 
@@ -158,13 +158,13 @@ Enclosure bids are famously hard to read side by side because most of them descr
 7. Door count, hardware, and whether the enclosure is being submitted as the barrier.
 8. Removal and disposal of the existing cage, if there is one.
 
-None of these are traps. A builder who runs these projects will answer all eight quickly, and the speed of the answers tells you nearly as much as their content.
+None of these are traps. A builder who runs these projects will answer all eight quickly, and the speed of the answers tells you nearly as much as their content — which is most of [how to tell one pool builder from another](/blogs/how-to-choose-a-pool-builder-in-florida).
 
 ## The order that keeps this from going wrong
 
 Three decisions, in this sequence:
 
-1. **Whether you want one at all.** A cage changes how the yard looks and how it is used, in both directions. That trade-off is [enclosure or open pool](/blogs/pool-enclosure-or-open-pool), and it is worth settling before anyone measures. It is also where a screen enclosure gets compared with the alternatives that are not really alternatives: our estimator prices an aluminum pergola at $8,500 and a motorized louvered roof at $18,000, and none of the three does the other's job.
+1. **Whether you want one at all.** A cage changes how the yard looks and how it is used, in both directions, and that trade-off is worth settling before anyone measures. It is also where a screen enclosure gets compared with the alternatives that are not really alternatives: our estimator prices an aluminum pergola at $8,500 and a motorized louvered roof at $18,000, and none of the three does the other's job — the two alternatives are priced out in [what an aluminum pergola costs in Florida](/blogs/how-much-does-an-aluminum-pergola-cost-in-florida) and [what a motorized louvered roof costs](/blogs/how-much-does-a-motorized-louvered-roof-cost).
 2. **How high and how open.** Height, panel width and roof profile, decided together, because each one moves the other two and all three move the price.
 3. **What it stands on.** The deck detail and the footings — which has a deadline, and the deadline is the pour.
 

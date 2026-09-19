@@ -22,25 +22,25 @@
   ],
   "seo": {
     "title": "Pergola Design Decisions: 7 to Make Before You Build",
-    "description": "The seven pergola decisions that close the day the posts are set: size, post placement, shade hours, roof and drainage, footings, wiring, and future provisions."
+    "description": "The seven pergola decisions that close before the posts are set: size, post placement, shade hours, roof and drainage, footings, wiring and future provisions."
   },
-  "summary": "A pergola is a small project with a very short window. Six of these seven decisions are permanent the day the posts go into concrete, and most people never realize they made them.",
+  "summary": "A pergola is a small project with a very short window. These seven decisions close before anything is built, most of them the day the posts go into concrete, and most people never realize they made them.",
   "portada": {
     "ref": "pergolas-0",
-    "alt": "White aluminum pergola attached to a stucco house, with a solid roof panel and a louvered side screen, over a paver patio where a row of white bar stools lines a counter."
+    "alt": "White aluminum pergola beside a stucco house, with a solid roof panel and a slatted side panel, over a paver patio where a row of white bar stools lines a counter."
   },
   "figuras": [
     {
       "ref": "pergolas-5",
-      "alt": "Timber pavilion with a gable roof and exposed trusses bolted with steel plates, covering an outdoor kitchen with two built-in grills, a stone island with bar stools and two large ceiling fans."
+      "alt": "Timber pavilion with a gable roof and exposed trusses bolted with steel plates, covering an outdoor kitchen with two built-in grills, a stone island with bar stools and ceiling fans hung along the ridge."
     },
     {
       "ref": "pergolas-1",
-      "alt": "Attached patio cover with translucent roof panels over a red brick paver patio, with a long drain grate set into the paving in front of the French doors of a tile-roofed stucco house."
+      "alt": "Attached patio cover with translucent roof panels over a red brick paver patio, with two blue planters and a pair of metal chairs in front of the French doors of a tile-roofed stucco house."
     },
     {
       "ref": "pergolas-8",
-      "alt": "Freestanding dark aluminum pergola on a stone pool deck, with a slatted privacy panel beneath it and two black electrical cables left hanging from the frame where light fixtures will go."
+      "alt": "Freestanding dark aluminum pergola with translucent roof panels beside a pool, with a slatted privacy panel under it and two thin black cables left hanging from the frame."
     }
   ],
   "faq": [
@@ -62,14 +62,14 @@
     },
     {
       "question": "Should I build a pergola now and upgrade to a louvered roof later?",
-      "answer": "Only if the upgrade is genuinely years away. Our estimator prices a pergola at $8,500 and a motorized louvered roof at $18,000, but replacing one with the other later also means paying for footings, permitting and installation a second time. If the louvered roof is the real goal, the cheaper path is usually building it once."
+      "answer": "Only if the upgrade is genuinely years away. Our estimator prices a pergola at $8,500 and a louvered roof at $18,000, but replacing one with the other later also means paying for footings, permitting and installation a second time. If the louvered roof is the real goal, the cheaper path is usually building it once."
     }
   ],
   "fuentes": []
 }
 ---
 
-Six of the seven decisions below are locked the day the posts go into concrete. The seventh, what runs inside the structure, is locked earlier than that, when the frame is fabricated. That short window is the whole problem with a pergola: it is a small project next to a pool or a kitchen, it gets decided quickly, and most of the regret afterwards comes from decisions nobody knew they were making.
+Six of the seven decisions below are locked the day the posts go into concrete. The one about what runs inside the frame is locked earlier than that, when the frame is fabricated. That short window is the whole problem with a pergola: it is a small project next to a pool or a kitchen, it gets decided quickly, and most of the regret afterwards comes from decisions nobody knew they were making.
 
 Take them in the order below. Each one narrows the next, and running them out of order is how a pergola ends up the right size in the wrong place.
 
@@ -136,7 +136,7 @@ Three things follow from the answer:
 
 - **Roof density.** Widely spaced slats read as an open frame and shade very little at midday. Tighter spacing shades more and darkens the space under it. If the hours you named are the hot middle of the day, you are probably looking for more density than the drawing shows.
 - **Which way the slats run.** Fixed slats block sun from one direction better than the other. Running them the wrong way relative to the sun at your hours produces stripes when you wanted shade.
-- **What no roof can fix.** Late afternoon sun comes in low and sideways, under any roof at any density. A west-facing patio at six o'clock is not a roof problem. It is a side problem, solved with planting, a privacy panel, or [motorized screens added to a pergola or an outdoor kitchen](/blogs/when-to-add-motorized-screens-to-a-pergola-or-kitchen) — and if screens are even a possibility, that has consequences in decision seven.
+- **What no roof can fix.** Late afternoon sun comes in low and sideways, under any roof at any density. A west-facing patio at six o'clock is not a roof problem. It is a side problem, solved with planting, a privacy panel, or [motorized retractable screens](/services/motorized-retractable-screens-in-north-south-florida) — and if screens are even a possibility, that has consequences in decision seven.
 
 The cheapest way to check any of this is to stand on the spot at the hour in question, a week before the drawing is approved. Photographs of finished structures are useful for a different purpose — our [project gallery](/gallery) shows how the same roof density reads on different houses — but they cannot tell you where your own sun is at five.
 
@@ -198,7 +198,7 @@ Provisions are cheap while the frame is being made and expensive afterwards. The
 - **Conduit toward the house** for a controller, a television, or lighting you have not chosen yet.
 - Enough **footing and frame capacity** for a heavier roof, if the roof might change.
 
-That last one is where the money is. Our estimator prices a pergola at $8,500 and a motorized louvered roof at $18,000 as line items on a backyard project, and the arithmetic looks like it favors starting small. It usually does not, because replacing one structure with the other means paying twice for footings, permitting and installation, and the second set is more expensive than the first — it happens inside a finished yard. If a louvered roof is what you actually want, the comparison to make now rather than later is in [pergola versus louvered roof](/blogs/pergola-vs-louvered-roof).
+That last one is where the money is. Our estimator prices a pergola at $8,500 and a louvered roof at $18,000 as line items on a backyard project, and the arithmetic looks like it favors starting small. It usually does not, because replacing one structure with the other means paying twice for footings, permitting and installation, and the second set is more expensive than the first — it happens inside a finished yard. If a louvered roof is what you actually want, the comparison to make now rather than later is in [pergola versus louvered roof](/blogs/pergola-vs-louvered-roof).
 
 Those estimator figures are starting configurations, not quotes, and the estimator shows every total as a range of plus or minus ten percent for exactly that reason. What moves a pergola away from its starting figure — span, roof type, footings, finish — is broken down in [what changes an aluminum pergola's price](/blogs/how-much-does-an-aluminum-pergola-cost-in-florida). You can run your own combination through the [backyard project estimator](/pool-cost-estimator).
 
@@ -212,6 +212,6 @@ Those estimator figures are starting configurations, not quotes, and the estimat
 6. Put the footings in before the paving.
 7. Put the wire and the blocking in before the frame is cut, and leave the provisions for later in while it is cheap.
 
-Six of those seven are permanent. None of them are expensive to get right at the drawing stage, and all of them are expensive to correct afterwards — which is the only real argument for spending an afternoon on a roll of tape and a broom handle before anything is ordered.
+Every one of those seven is permanent once the structure is up. None of them are expensive to get right at the drawing stage, and all of them are expensive to correct afterwards — which is the only real argument for spending an afternoon on a roll of tape and a broom handle before anything is ordered.
 
 How we work through this sequence, and what ends up on the drawing before anything is fabricated, is on the [custom aluminum pergola builders](/services/custom-aluminum-pergola-builders-in-north-south-florida) page. A [project estimate](/request-estimated) starts with a site visit, because decisions two through five cannot be made from a floor plan.

@@ -29,16 +29,16 @@
   "summary": "Both give you shade. Only one lets you stay outside while it rains. That difference decides the project faster than any feature list, and it explains the price gap.",
   "portada": {
     "ref": "pergolas-0",
-    "alt": "White aluminum pergola over a patio with bar seating, the neighboring tile roof visible through the open slats."
+    "alt": "White aluminum pergola with a solid roof panel over a paver patio, white bar stools lined up at the counter and a slatted privacy screen closing the back."
   },
   "figuras": [
     {
       "ref": "louvered-5",
-      "alt": "Aluminum louvered roof over a patio, with the motor housing sitting on the beam and a drainage spout at the base of the column."
+      "alt": "Louvered roof with white blades tilted partly open in a dark bronze frame, attached to a modern glass-walled house over a concrete patio behind a black pool fence."
     },
     {
       "ref": "pergolas-1",
-      "alt": "Attached patio cover with translucent roof panels over a brick paver patio, with an electrical conduit running down the house wall and a drain grate in the paving."
+      "alt": "Attached patio cover with translucent roof panels on a dark aluminum frame over a brick paver patio, a drain grate set into the brick and the barrel-tile roof of the house behind it."
     }
   ],
   "faq": [
@@ -83,11 +83,11 @@ If what sits underneath is an outdoor kitchen, a television, upholstered furnitu
 
 ## The second question: what time of day do you use it?
 
-Fixed slats block sun coming from overhead. Florida backyards get used late — roughly four to seven — when the sun is low and coming in from the side, under the structure rather than through it.
+Fixed slats block sun coming from overhead. Florida backyards get used late in the day, when the sun is low and coming in from the side, under the structure rather than through it.
 
 Fixed slats do nothing about low sun. Louvers rotate to a steep angle and block it from one direction, which is a different job than shading noon.
 
-This is behind the most common complaint we hear about a pergola somebody else built: it is still hot at five. That is not a build-quality problem, it is geometry, and it is solvable while the structure is still on paper — by which way the slats run, by a solid end panel on the west face, or by [adding a motorized screen during the design rather than after it](/blogs/when-to-add-motorized-screens-to-a-pergola-or-kitchen). A screen on one face of a pergola costs far less than a louvered roof and solves the afternoon problem without solving the rain problem. Be clear about which problem you actually have.
+This is where a pergola most often disappoints: it is still hot at the hour the space actually gets used. That is not a build-quality problem, it is geometry, and it is solvable while the structure is still on paper — by which way the slats run, by a solid end panel on the west face, or by [planning a screen into the structure from the start](/blogs/pergola-beside-a-pool-features-to-plan-together). A screen on one face of a pergola costs far less than a louvered roof and solves the afternoon problem without solving the rain problem. Be clear about which problem you actually have.
 
 ## What the two prices leave out
 
@@ -122,9 +122,9 @@ A louvered roof has motors, actuators, a controller, usually a rain sensor, and 
 - Who services this system locally, and are they the installer or a third party?
 - How long do replacement parts take to arrive?
 
-The second answer decides whether a failed actuator is a two-week inconvenience or a two-month one. It predicts how you will feel about the roof in year six far better than any spec sheet.
+The second answer decides whether a failed actuator is a short inconvenience or a season without a working roof. It predicts how you will feel about the system years from now far better than any spec sheet.
 
-One item specific to here: leaves. Blade seals and the drainage channels in the beams have to be kept clear, and under oaks that is not optional. It is ten minutes a few times a year — but it is ten minutes somebody has to do.
+One item specific to here: leaves. Blade seals and the drainage channels in the beams have to be kept clear, and under oaks that is not optional. It is a short job a few times a year — but it is a job somebody has to do.
 
 ## If you choose the louvered roof, settle these before the posts are set
 
@@ -149,7 +149,7 @@ Answer these out loud:
 - Is the problem specifically the low afternoon sun? That is a screen or an end panel, on either structure.
 - Is budget the constraint, and was rain the only reason you were considering louvers? Look hard at the fixed panel cover before you compromise on size.
 
-Size is the wrong thing to cut, by the way. A structure that ends up a foot short in each direction stops covering the table it was built for, and nobody has ever told us the roof came out too big.
+Size is the wrong thing to cut, by the way. A structure that ends up a foot short in each direction stops covering the table it was built for, and that is the one thing you cannot correct once the footings are poured.
 
 ## Where to take the decision next
 

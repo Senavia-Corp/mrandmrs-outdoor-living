@@ -27,20 +27,20 @@
   "summary": "A louvered roof is bought, not built. That changes the questions: which system, approved for what, drained where, and serviced by whom in year six.",
   "portada": {
     "ref": "louvered-3",
-    "alt": "Black aluminum louvered roof over a seating area beside the water, with a pool handrail, a security camera on the wall and furniture under protective covers."
+    "alt": "White aluminum louvered roof attached to a cream stucco house, seen from across a turquoise pool with a chrome handrail at the steps, loungers on the deck and a neighbor's barrel tile roof to the right."
   },
   "figuras": [
     {
       "ref": "louvered-7",
-      "alt": "Louvered roof over a poolside patio after rain, the paving still wet and a drain grate set into the floor, with dry palm fronds overhead."
+      "alt": "White louvered roof on slim posts over a pale tile patio still wet from rain, with a white perimeter fence, a canal and palms behind it and solar panels on a neighbor's roof."
     },
     {
       "ref": "louvered-5",
-      "alt": "Aluminum louvered roof with the motor housing sitting on top of the beam and a drainage spout at the base of the column, over newly laid strips of sod."
+      "alt": "Louvered roof with a dark bronze frame and white blades over a concrete courtyard, in front of a modern white house with floor-to-ceiling glass, a black safety fence and a clipped hedge in the foreground."
     },
     {
       "ref": "louvered-6",
-      "alt": "Louvered roof attached to the back of a house, photographed against the light, with a light fixture under the frame and the neighbor's barrel tile roof above the hedge."
+      "alt": "White louvered roof attached to the back of a two-story white house, covering a gray tile terrace with a low white daybed and a dining table, with a tall hedge at left, a neighbor's barrel tile roof beyond it and lawn in the foreground."
     }
   ],
   "faq": [
@@ -160,7 +160,7 @@ If the person quoting cannot tell you what is behind that fascia, they have not 
 | Installation, anchorage, flashing | The installer | How long, and what happens to it if the company closes? |
 | Electrical | Whoever performed it | Which of the two above is that? |
 
-The gap that catches people is the third row. A five-year part on a motor sounds generous until a failure in year four means a free actuator and a paid service call to fit it. Ask which it is, in writing, before the money moves.
+The gap that catches people is the third row. A part warranty on a motor sounds generous until a failure inside the term means a free actuator and a paid service call to fit it. Ask which it is, in writing, before the money moves.
 
 ## 7. Who services it in year six?
 

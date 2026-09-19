@@ -25,23 +25,23 @@
     "title": "Aluminum vs. Wood Pergolas in Florida: Long-Term View",
     "description": "Aluminum and wood pergolas fail in different places. How Florida sun, humidity, termites and wind uplift decide which one is still worth having in year ten."
   },
-  "summary": "Both materials work on day one. They diverge somewhere around year three, and the thing that separates them is not durability in the abstract — it is who is going to refinish the underside, and whether the look you want is achievable in the material you are choosing.",
+  "summary": "Both materials work on day one. They diverge once maintenance starts coming due, and the thing that separates them is not durability in the abstract — it is who is going to refinish the underside, and whether the look you want is achievable in the material you are choosing.",
   "portada": {
     "ref": "pergolas-8",
-    "alt": "Modern aluminum pergola standing beside a pool, with two black light cables still hanging from the frame where the fixtures have not been fitted yet."
+    "alt": "Dark aluminum pergola with a slatted roof standing at the corner of a pool and raised spa, a matching louvered privacy screen beneath it, palms and a rendered boundary wall behind."
   },
   "figuras": [
     {
       "ref": "pergolas-5",
-      "alt": "Timber pavilion over an outdoor kitchen, its knotted beams joined with bolted steel plates, a cooler and a folding chair tucked in behind the bar."
+      "alt": "Timber pavilion with a gable roof, its exposed trusses joined by black steel plates and hung with ceiling fans, covering an outdoor kitchen with two built-in grills, four bar stools and a herringbone wood back wall."
     },
     {
       "ref": "pergolas-4",
-      "alt": "Aluminum pergola on a waterfront lot beside a canal, with newly staked palms to one side and loose garden spotlights lying on the gravel."
+      "alt": "Dark aluminum pergola with a slatted top beside a pool on a canal-front lot, marble paving underfoot, black landscape uplights set in the rock bed to the right and palms lining the far bank."
     },
     {
       "ref": "pergolas-6",
-      "alt": "Wood pavilion with exposed beams beside a white outbuilding, loose hardware fixed to one post and a debris pile at the back under live oaks hung with Spanish moss."
+      "alt": "Timber pavilion on a paver patio, its exposed trusses joined by black steel plates and its posts set on black metal bases, built against a white outbuilding with live oaks draped in Spanish moss behind."
     }
   ],
   "faq": [
@@ -108,7 +108,7 @@ Any page that says "zero maintenance" is selling. Factory-finished aluminum has 
 
 - **The coating, at the cut ends and the fastener penetrations.** A factory finish is applied to a whole extrusion. Everywhere the installer cut or drilled is a place where the coating meets bare metal, and those are the points to look at.
 - **Chalking and fade under sustained UV.** Slow, gradual, and a function of the coating rather than the metal.
-- **The hardware.** Fixings are usually the shortest-lived part of an aluminum assembly, especially near salt air, where dissimilar metals in contact set up galvanic corrosion. On a waterfront lot the metallurgy of the screws is a more consequential specification than anything about the beams.
+- **The hardware.** Fixings tend to need attention before the beams do, especially near salt air, where dissimilar metals in contact set up galvanic corrosion. On a waterfront lot the metallurgy of the screws is a more consequential specification than anything about the beams.
 
 {{figura: pergolas-4}}
 
@@ -143,7 +143,7 @@ Pressure treatment resists them. Two qualifications, both of which cause real pr
 - **Every cut end and drilled hole exposes untreated wood** and has to be field-treated. That is a step that gets skipped when a crew is finishing on a Friday.
 - **Copper-based treatments are corrosive to ordinary fasteners.** Wood-to-hardware compatibility is a specification, not a preference, and getting it wrong corrodes the connection from inside the timber where nobody can see it.
 
-Then there is the detail that quietly decides the lifespan of a wood post: **where the irrigation heads spray.** A post standing in the arc of a rotor gets wet every single morning, which is a very different life from the same post two feet outside it. Walk the yard at run time before the posts are set, or move the heads.
+Then there is the detail that quietly decides the lifespan of a wood post: **where the irrigation heads spray.** A post standing in the arc of a rotor gets wet every single morning, which is a very different life from the same post standing clear of it. Walk the yard at run time before the posts are set, or move the heads.
 
 {{figura: pergolas-6}}
 
@@ -156,7 +156,7 @@ Then there is the detail that quietly decides the lifespan of a wood post: **whe
 | Maintenance | Rinse; inspect fasteners and cut ends | Clean and refinish on a schedule, overhead, underside included | Who is holding the brush in year eight |
 | Clear span | Stiffer material, and wall thickness is a variable, so fewer posts | Deeper beam or another post for the same opening | How much open floor you want underneath |
 | Movement | With temperature, along the run | With moisture, in every direction | The connection has to allow whichever applies |
-| Hardware | The shortest-lived part, especially near salt air | Must match the treatment chemistry or it corrodes unseen | Distance to salt water |
+| Hardware | Needs attention before the beams do, especially near salt air | Must match the treatment chemistry or it corrodes unseen | Distance to salt water |
 | Permit path | Usually an engineered system with approval documentation behind it | Usually site-specific sealed drawings | Time in review, not difficulty |
 | Look | Clean lines, slim members, even painted finish | Mass, grain, visible joinery | The one row where wood wins outright |
 
@@ -175,7 +175,7 @@ Our estimator carries a single pergola line at **$8,500**, shown — like every 
 What you can compare without a second price is the shape of the spend:
 
 - **Aluminum** front-loads it. The structure costs what it costs, and the obligation afterwards is inspection.
-- **Wood** spreads it. The initial build is generally the cheaper of the two, and it carries a recurring cost — materials, access equipment and labor, or your own weekends — for as long as you own the house.
+- **Wood** spreads it. Whatever the build comes to, it carries a recurring cost after it — materials, access equipment and labor, or your own weekends — for as long as you own the house.
 
 Two things decide which shape suits you: how long you intend to be there, and whether the recurring work is something you will actually do or something you will pay someone else to do. If it is the latter, get a price for one round of it before you treat wood as the cheaper option, because that is the figure the comparison actually turns on and it is the one nobody asks for.
 

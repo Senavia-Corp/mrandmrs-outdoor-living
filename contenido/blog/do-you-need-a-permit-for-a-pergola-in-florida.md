@@ -27,16 +27,16 @@
   "summary": "The answer is almost always yes. The part worth your time is which reviews a pergola triggers, because that is what decides the drawings you need and the two inspections that can stop the job.",
   "portada": {
     "ref": "pergolas-0",
-    "alt": "White aluminum pergola with open slats over a patio bar, the neighbor's tile roof visible through the roof and a mulched lawn edge behind."
+    "alt": "White aluminum pergola with a solid roof panel over a bar counter and a row of white barstools, horizontal louvered privacy screens on the back side, and a flowering tree beside the lawn."
   },
   "figuras": [
     {
       "ref": "pergolas-9",
-      "alt": "Gable patio cover attached along a stucco house wall, beside a white PVC fence and a weathered wall lantern."
+      "alt": "Gable patio cover on dark metal posts attached to a cream stucco house wall, over a travertine paver patio, with white French doors and a white vinyl fence alongside."
     },
     {
       "ref": "pergolas-8",
-      "alt": "Modern aluminum pergola beside a pool with two black electrical cables left hanging from the frame, waiting for light fixtures."
+      "alt": "Freestanding dark bronze aluminum pergola with a louvered roof beside a pool and spa, one black electrical cable left hanging from a beam where a fixture will go, and a louvered privacy screen underneath."
     },
     {
       "ref": "pergolas-7",
@@ -69,7 +69,7 @@
 }
 ---
 
-Yes. In practice a pergola in Florida is permitted work, attached or freestanding, aluminum or timber, on a new slab or an existing patio. The more useful question is not whether but **which**: a pergola does not get one review, it gets somewhere between two and five, and which ones apply is decided by where it sits, what it touches, and whether anything electrical goes into it. That is what sets the drawings you have to produce and whether the file clears in one comment cycle or three.
+Yes. In practice a pergola in Florida is permitted work, attached or freestanding, aluminum or timber, on a new slab or an existing patio. The more useful question is not whether but **which**: a pergola does not get one review, it gets a set of them, and which ones apply is decided by where it sits, what it touches, and whether anything electrical goes into it. That is what sets the drawings you have to produce and whether the file clears in one comment cycle or three.
 
 This covers what gets reviewed, the order things happen in, and the two inspections that stop a job if you miss them. Permits for the pool itself are a different set, covered in [what permits are required for pool construction](/blogs/what-permits-are-required-for-pool-construction-in-florida).
 
@@ -112,7 +112,7 @@ Florida structures are designed to a wind speed specific to the address, so an o
 1. **Sealed drawings.** A Florida-licensed engineer designs or evaluates the structure for your site and seals the drawings. This is the route for custom timber work, unusual spans and anything modified from its standard configuration.
 2. **A product approval.** A manufactured system already carries documentation for the conditions it was tested under, and the submittal shows your installation sits inside those limits. This is faster, and it is a large part of why an aluminum system typically moves through a building department more easily than a one-off timber pavilion.
 
-If a contractor cannot immediately tell you which of the two applies to your project, that is the answer to a different question you were going to ask later. The durability side of the same choice is in [aluminum versus wood pergolas](/blogs/aluminum-vs-wood-pergolas-in-florida).
+A contractor who cannot tell you which of the two applies to your project has not priced the engineering, which means the number you were given is not the number. The durability side of the same choice is in [aluminum versus wood pergolas](/blogs/aluminum-vs-wood-pergolas-in-florida).
 
 ## Electrical is where the paperwork doubles
 
@@ -130,7 +130,7 @@ A pool barrier is its own permitted, inspected thing, and a pergola built next t
 
 Reviewers look for exactly this, which is the good news: it is caught at plan review rather than at final inspection, as long as the pergola and the barrier are drawn on the same sheet. Drawn separately, it gets caught later and costs more. What else is worth deciding at the same time is in [planning a pergola beside a pool](/blogs/pergola-beside-a-pool-features-to-plan-together).
 
-The same applies to a new deck underneath: a raised deck is its own permitted item with its own structural review, covered in [do you need a permit to build a deck in Florida](/blogs/do-you-need-a-permit-to-build-a-deck-in-florida).
+The same logic applies to anything else added over the same footprint. A raised deck underneath is its own permitted item with its own structural review, and swapping the open roof for a motorized one puts a motor and its wiring into the electrical review as well; that comparison is in [pergola versus louvered roof](/blogs/pergola-vs-louvered-roof).
 
 {{figura: pergolas-7}}
 
@@ -164,8 +164,6 @@ Permit fees are set by the jurisdiction, so there is no honest single number for
 What the estimator does carry for this cluster is **$8,500 for a pergola** as a starting structure and the **$1,500 HOA submittal** above, with everything it shows held to a ±10% range. Those are the figures behind [the pool cost estimator](/pool-cost-estimator), and what moves them for a pergola specifically is broken down in [what changes an aluminum pergola's price](/blogs/how-much-does-an-aluminum-pergola-cost-in-florida).
 
 ## What skipping it costs later
-
-It is worth being concrete about why this matters, because the structure itself will stand up either way for a while.
 
 - **At resale.** An unpermitted structure surfaces in disclosure and in the appraisal. A buyer's lender can make it a condition of closing, which puts you on somebody else's deadline.
 - **After a storm.** A claim involving a structure with no permit history is a harder claim, and the questions arrive at the worst possible moment.

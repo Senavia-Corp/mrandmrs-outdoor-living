@@ -9,7 +9,7 @@
   ],
   "relacionados": [
     "how-much-does-an-outdoor-kitchen-cost-in-florida",
-    "covered-vs-uncovered-outdoor-kitchen",
+    "outdoor-kitchen-layout-guide",
     "gas-electric-and-plumbing-for-an-outdoor-kitchen"
   ],
   "ordenIndice": 51,
@@ -27,20 +27,20 @@
   "summary": "Everyone spends their design time on the countertop, which is the part least likely to fail. The frame and the fasteners are what decide whether the kitchen still looks right in year ten, and both are buried inside the island.",
   "portada": {
     "ref": "kitchen-6",
-    "alt": "L-shaped outdoor kitchen with a black granite countertop and a ventilation grille in the base cabinet, on a lot facing open water."
+    "alt": "L-shaped outdoor kitchen under a dark covered structure, with a black stone countertop, a built-in stainless grill, stainless doors and drawers in white cabinet fronts, and a travertine floor, facing a lake lined with palms."
   },
   "figuras": [
     {
       "ref": "kitchen-7",
-      "alt": "Outdoor kitchen under a palm-thatch roof with exposed beams and a ceiling fan, a built-in stainless refrigerator below the counter and a marble tile floor."
+      "alt": "Outdoor kitchen under a palm-thatch roof with a ceiling fan: a dark countertop over a slatted wood island, a built-in grill and vent hood against a tropical leaf-patterned wall, an under-counter stainless refrigerator and a pale tile floor."
     },
     {
       "ref": "kitchen-5",
-      "alt": "Stainless access door set into the side of an outdoor kitchen island, standing on a travertine floor with visible staining and wear."
+      "alt": "Covered lanai outdoor kitchen: a built-in stainless grill and a small stainless access door set into a white stucco base under a dark countertop, an under-counter stainless unit at the end of the run, and a travertine floor."
     },
     {
       "ref": "kitchen-4",
-      "alt": "Built-in stainless grill in an outdoor kitchen island, a wire basket leaning against the base, with a lake and tile-roofed houses behind."
+      "alt": "L-shaped outdoor kitchen clad in white stacked stone under a white louvered roof with a ceiling fan, with a built-in stainless grill and stainless doors and drawers, and a pond with tile-roofed houses behind."
     }
   ],
   "faq": [
@@ -90,7 +90,7 @@ A single kitchen run almost never lives in one climate. Under a solid roof, set 
 
 Most kitchens are specified as though the whole run were the sheltered part. That is why you see an island where one end still looks new and the other has chalked door fronts and a faded countertop, on the same job, installed on the same day.
 
-The rule is simple and it costs almost nothing to follow: **spec the entire run for its worst zone.** Mixing grades along one island saves a small amount of money and guarantees a visible line between the two halves within a few seasons. Whether you get a sheltered core at all is the subject of [covered versus uncovered outdoor kitchens](/blogs/covered-vs-uncovered-outdoor-kitchen), and it is worth settling that before you choose a single material.
+The rule is simple and it costs almost nothing to follow: **spec the entire run for its worst zone.** Mixing grades along one island saves a small amount of money and guarantees a visible line between the two halves within a few seasons. Where the island sits relative to the roof line, and therefore how many zones it has to survive, is settled in the [outdoor kitchen layout guide](/blogs/outdoor-kitchen-layout-guide) — and it is worth settling before you choose a single material.
 
 {{figura: kitchen-7}}
 
@@ -112,7 +112,7 @@ Marine-grade polymer is the one homeowners are most skeptical of and most often 
 
 Welded aluminum sits between the two, and it is the right answer when the kitchen has to be light, on a raised deck or a screened enclosure slab rather than on grade.
 
-The last two rows are not there to be rude about anyone's work. Wood framing with cement board over it is extremely common, and it is the construction we most often find quietly failing when we open up an island during a remodel. Cement board is not what rots. The frame behind it is.
+Wood framing with cement board over it is extremely common, and it is the construction we most often find quietly failing when we open up an island during a remodel. Cement board is not what rots. The frame behind it is.
 
 ## Salt does most of the work, and it does it to hardware
 
@@ -126,7 +126,7 @@ Two things follow from that, and both get missed.
 
 Even good stainless discolors near the coast. Surface staining on 304 in marine air is normal and it is cosmetic, not structural, as long as the steel underneath is sound. It responds to washing. Anything that will be near salt should be planned as something you rinse occasionally rather than something you never touch.
 
-And a saltwater pool counts. A salt chlorination system puts chloride in the water, and splash carries it to whatever is within range. An inland kitchen eight feet from a salt pool is closer to a coastal environment than an owner in Ocala expects.
+And a saltwater pool counts. A salt chlorination system puts chloride in the water, and splash carries it to whatever is within range. A kitchen within splash range of a salt pool is closer to a coastal environment than an owner inland in Ocala expects.
 
 {{figura: kitchen-5}}
 

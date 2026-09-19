@@ -28,20 +28,20 @@
   "summary": "The estimator gives one number for a motorized louvered roof: $18,000. That is the structure. What moves the rest is bays, drainage, the circuit and the permit — and none of it is on the product page.",
   "portada": {
     "ref": "louvered-3",
-    "alt": "Black aluminum louvered roof over a seating area beside a pool, with two chairs under protective covers, a security camera on the wall and a mosaic tile band at the waterline."
+    "alt": "White aluminum louvered roof attached to the back of a beige tile-roof house, covering a patio with sliding glass doors, seen across a pool with a mosaic tile band at the waterline and a chrome handrail at the steps."
   },
   "figuras": [
     {
       "ref": "louvered-7",
-      "alt": "Louvered roof over a poolside patio after rain, the paving still wet, a drain set into the floor and dry brown palm fronds hanging above the frame."
+      "alt": "White louvered roof on square posts seen from below against a clear sky, over paving still wet after rain, with a square drain grate set into the floor and palms with dry brown fronds beyond the far edge of the roof."
     },
     {
       "ref": "louvered-5",
-      "alt": "Aluminum louvered roof with the motor housing sitting on top of the beam and a drainage spout at the base of the column, a palm shadow falling across the beam."
+      "alt": "Louvered roof with a dark bronze frame and cream blades seen from below, attached to a modern white house with floor-to-ceiling black-framed glass, a palm frond shadow falling across the blades and a black safety fence behind the posts."
     },
     {
       "ref": "louvered-8",
-      "alt": "White louvered roof over an outdoor dining area beside an existing porch, with ceiling fans and speakers already mounted under the porch and two mismatched dining sets below."
+      "alt": "White louvered roof over an outdoor dining area next to the covered porch of a two-story house, with a ceiling fan under the adjoining porch, two mismatched dining sets below and palms over a white picket fence."
     }
   ],
   "faq": [
@@ -97,7 +97,7 @@ A louvered blade is a structural member. It spans unsupported between two beams,
 Four consequences, all of which show up in the price:
 
 - **The number steps, it does not slope.** Crossing from one bay to two costs more than the extra area suggests, because what you are buying is structure rather than surface.
-- **A foot of size is free or expensive depending on which side of the span it falls.** Ask for the rated blade span early and size the roof against it on purpose. Shrinking a plan by eighteen inches to stay in one bay is a real option; discovering the limit at the quote is not.
+- **A foot of size is free or expensive depending on which side of the span it falls.** Ask for the rated blade span early and size the roof against it on purpose. Shrinking a plan slightly to stay inside one bay is a real option; discovering the limit at the quote is not.
 - **The intermediate beam lands over something.** Nobody thinks about where until it is over the middle of the dining table. Draw the furniture on the plan before the beam line is fixed.
 - **Each bay can be its own drive, or not.** Two bays linked to one control cost less than two driven separately. Separate drives mean you can close the half over the kitchen and leave the half over the loungers open, which is either worth the money to you or is not — but decide it as a feature, not by accident.
 
@@ -155,7 +155,7 @@ The frame is hollow, so the sleeves and conduit for those runs go in while the s
 
 {{figura: louvered-8}}
 
-One item genuinely cannot be retrofitted cleanly: **side screens**. Their channels mount to the posts, so adding them later means opening finished work. Decide where they go even if you buy them in two years — the same rule that applies to [adding motorized screens to any outdoor structure](/blogs/when-to-add-motorized-screens-to-a-pergola-or-kitchen). How the lights, fans and screens work together as one system is [its own subject](/blogs/designing-a-complete-louvered-roof-system), and it is worth reading before you finalize the frame rather than after.
+One item genuinely cannot be retrofitted cleanly: **side screens**. Their channels mount to the posts, so adding them later means opening finished work. Decide where they go even if you buy them in two years — the same rule that applies to [the features worth planning alongside a poolside pergola](/blogs/pergola-beside-a-pool-features-to-plan-together). How the lights, fans and screens work together as one system is [its own subject](/blogs/designing-a-complete-louvered-roof-system), and it is worth reading before you finalize the frame rather than after.
 
 ## 6. Engineering, the permit, and which county you are in
 

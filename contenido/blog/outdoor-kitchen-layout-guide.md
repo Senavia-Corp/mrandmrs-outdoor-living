@@ -28,7 +28,7 @@
   "summary": "The shape is the last decision, not the first. Four things about your site rule out most layouts before anyone draws one, and the counter that gets cut to fit the appliances is the part you will miss every single time you cook.",
   "portada": {
     "ref": "kitchen-0",
-    "alt": "U-shaped outdoor kitchen under a slatted aluminum pergola, with a built-in grill in the back run, a sink and stainless refrigerator on the right wing, and a white fence and hedge behind."
+    "alt": "L-shaped outdoor kitchen on a tiled patio under a dark slatted pergola, with a side burner, built-in grill and drawers along the back run, a sink and stainless refrigerator on the wing that turns toward the camera, and a white fence, a hedge and a large tree behind."
   },
   "figuras": [
     {
@@ -91,7 +91,7 @@ The breeze is the one people discover afterwards. Smoke is not a nuisance you ge
 
 ## The work triangle does not survive the trip outside
 
-The kitchen work triangle assumes a refrigerator, a sink and a range in one room, one cook, and everything else within arm's reach in cabinets. Outdoors, almost none of that holds. Cold storage is a fraction of the volume and the real refrigerator is still in the house. The pantry is in the house. There are usually between two and eight people in the space and only one of them is cooking. And most of the traffic crossing the area has nothing to do with the meal.
+The kitchen work triangle assumes a refrigerator, a sink and a range in one room, one cook, and everything else within arm's reach in cabinets. Outdoors, almost none of that holds. Cold storage is a fraction of the volume and the real refrigerator is still in the house. The pantry is in the house. The space usually holds a group and only one of them is cooking. And most of the traffic crossing the area has nothing to do with the meal.
 
 What works instead is simpler. Draw **one line, one direction**: raw food comes in, gets prepped, gets cooked, gets plated, and leaves toward the table. Lay the run so that line travels from one end to the other without doubling back. Then draw the second line — door, drinks, seats — and cross the two as few times as you can.
 
@@ -152,7 +152,7 @@ If the kitchen is going under a pergola, a louvered roof or a screen enclosure, 
 
 Our estimator prices a pergola at $8,500, a motorized louvered roof at $18,000 and a screen enclosure at $15,000, against $25,000 for a custom outdoor kitchen. For layout purposes the numbers matter less than the geometry: post spacing, beam direction and where water comes off the roof are fixed by the cover, and a post landing mid-run — or exactly where two bar seats were drawn — is the most common collision between two otherwise competent designs.
 
-Both drawings need to exist at the same time, before the concrete crew leaves the site. Whether to cover the kitchen at all is a separate question, covered in [covered against uncovered outdoor kitchens](/blogs/covered-vs-uncovered-outdoor-kitchen). What cannot wait is the coordination, because the footings go in first and they do not move.
+Both drawings need to exist at the same time, before the concrete crew leaves the site. Which cover you build is a separate question, and it changes the post grid: [a pergola compared with a louvered roof](/blogs/pergola-vs-louvered-roof) sets out that choice. What cannot wait is the coordination, because the footings go in first and they do not move.
 
 A solid roof adds one more layout consequence: heat and smoke need a path out, and how that is handled can shift where the grill sits within the run. That decision is part of [the nine decisions that come before you choose appliances](/blogs/outdoor-kitchen-appliance-decisions).
 

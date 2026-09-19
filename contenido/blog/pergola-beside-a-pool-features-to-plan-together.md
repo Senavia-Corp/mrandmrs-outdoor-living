@@ -37,7 +37,7 @@
     },
     {
       "ref": "pergolas-8",
-      "alt": "Modern white aluminum pergola beside a pool, with two black electrical cables left hanging from the frame where the light fixtures will go."
+      "alt": "Dark bronze aluminum pergola with pale translucent roof panels beside a pool and spa, with a black electrical cable left hanging from the frame where a light fixture will go."
     },
     {
       "ref": "pergolas-7",
@@ -88,7 +88,7 @@ None of those is a bad place to be. The third one just costs more to change your
 
 ### 1. Where the posts land
 
-A pergola post is not held down by its own weight. In Florida it is engineered against uplift, which means a footing sized for the structure — not an anchor bolt into four inches of pool deck.
+A pergola post is not held down by its own weight. In Florida it is engineered against uplift, which means a footing sized for the structure — not an anchor bolt into a thin deck slab.
 
 Beside a pool, that footing has to miss three buried things: the pool's bond beam and shell, the plumbing runs between the skimmer, the returns and the equipment pad, and the conduit feeding the light niche. Where those run is known precisely on exactly one day — the day they go in. After that it is memory, a drawing if someone kept one, and a locator.
 
@@ -122,9 +122,9 @@ Pool lighting is priced in our estimator at $450 per fixture. Lighting a pergola
 
 ### 4. Where the rain goes
 
-An open slat roof lets rain through and nothing changes. A solid panel or a louvered roof does not, and that is the point of it — but it also takes everything that used to fall across two hundred square feet and delivers it in a line at one edge.
+An open slat roof lets rain through and nothing changes. A solid panel or a louvered roof does not, and that is the point of it — but it also takes everything that used to fall across the whole roof and delivers it in a line at one edge.
 
-Three things follow. The roof should not drain toward the pool, or every storm puts roof water and whatever was on the roof into the water you are balancing. Many aluminum systems drain internally through the posts, which is elegant and requires knowing where the post is going before the deck slope is set. And the discharge point has to exist somewhere — a deck poured to drain away from the pool does not automatically have a place for a concentrated flow.
+Three things follow. The roof should not drain toward the pool, or every storm puts roof water and whatever was on the roof into the water you are balancing. Many aluminum systems drain internally through the posts, which is tidy and requires knowing where the post is going before the deck slope is set. And the discharge point has to exist somewhere — a deck poured to drain away from the pool does not automatically have a place for a concentrated flow.
 
 Pool decks are poured with slope in them. That slope is set once.
 
@@ -158,7 +158,7 @@ If an [outdoor kitchen](/services/custom-outdoor-kitchens-for-north-south-florid
 
 ### 8. What the structure has to carry later
 
-A pergola is a frame, and frames get things hung on them for the next twenty years.
+A pergola is a frame, and frames get things hung on them for years afterwards.
 
 - A ceiling fan needs a beam and a box designed for it, not a bracket added later.
 - [Motorized screens](/services/motorized-retractable-screens-in-north-south-florida) need track space inside the beam and power at the head. Specified now, it is a detail; retrofitted, it is a different frame.

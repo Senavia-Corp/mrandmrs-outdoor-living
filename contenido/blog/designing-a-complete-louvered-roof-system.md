@@ -28,20 +28,20 @@
   "summary": "A louvered roof has two states and three mounting surfaces, and two of those surfaces are already doing another job. Almost every accessory decision closes when the frame is fabricated, not when it is installed.",
   "portada": {
     "ref": "louvered-5",
-    "alt": "Aluminum louvered roof with LED lighting built into the beams, the louver motor housing sitting on top of the beam and a drainage spout at the column, over a patio with newly laid sod."
+    "alt": "Louvered roof with a dark bronze frame and white louvers, partly open, over a concrete patio attached to a modern white house with floor-to-ceiling glass, a black pool safety fence and a clipped hedge in front."
   },
   "figuras": [
     {
       "ref": "louvered-8",
-      "alt": "White louvered roof over an outdoor dining area, beside an existing covered porch that already has ceiling fans and speakers mounted underneath it."
+      "alt": "White louvered roof over an outdoor dining table and chairs, built alongside an existing covered porch that already has a ceiling fan mounted under it, with a white picket fence and palms behind."
     },
     {
       "ref": "louvered-1",
-      "alt": "Built-in grill with an LP gas warning decal and a stainless steel refrigerator set into a counter under a louvered roof, on a wood deck meeting a concrete slab."
+      "alt": "Cream louvered roof over a wood deck, with two ceiling fans hanging under it, a stainless steel built-in grill in a masonry counter and a tall outdoor fireplace at the far end."
     },
     {
       "ref": "louvered-7",
-      "alt": "Black aluminum louvered roof beside a pool with the paving still wet after rain and a drain set into the deck floor."
+      "alt": "White louvered roof attached to a house over a light stone patio still wet from rain, with a white fence and a canal behind it."
     }
   ],
   "faq": [
@@ -70,7 +70,7 @@
 }
 ---
 
-Decide the accessories before the frame is fabricated, not before it is installed. On a motorized louvered roof there are only three places anything can be mounted, and two of them are already doing a second job: the beams are the gutter and the wiring chase, and the posts are usually the downspouts. The louvers themselves move, so nothing fixes to them at all. Once the frame is cut, drilled and anodized, those surfaces are finished, and a fan or a screen track added afterwards is surface-mounted hardware on a structure that was supposed to look built-in.
+Decide the accessories before the frame is fabricated, not before it is installed. On a motorized louvered roof there are only three places anything can be mounted, and two of them are already doing a second job: the beams are the gutter and the wiring chase, and the posts are usually the downspouts. The louvers themselves move, so nothing fixes to them at all. Once the frame is cut, drilled and finished, those surfaces are done, and a fan or a screen track added afterwards is surface-mounted hardware on a structure that was supposed to look built-in.
 
 The second thing that shapes every one of these decisions is that the roof has two states. Open, it is a pergola: heat rises out, light escapes upward, rain comes through. Closed, it is a solid roof: it sheds water into the beams, it traps heat and smoke underneath, and it gives you a ceiling. Everything you put under it has to work in both, because you will use both, often in the same evening.
 
@@ -127,7 +127,7 @@ Understand what screens change once they are down, because it is more than bugs:
 - **It changes the wind story.** A structure that can be enclosed on its sides is loaded differently from an open one, and that belongs in the drawings that get reviewed, not in a conversation afterwards.
 - **One side usually matters more than four.** Late sun comes in low from the west, under any roof at any louver angle. That is a side problem, and it is the side worth screening first.
 
-Which mesh, and whether screens are worth it at all, is worked through in [choosing the right screen mesh](/blogs/choosing-the-right-screen-mesh) and on the [motorized retractable screens](/services/motorized-retractable-screens-in-north-south-florida) page.
+Which mesh, and how a retractable screen differs from a fixed enclosure, is on the [motorized retractable screens](/services/motorized-retractable-screens-in-north-south-florida) page. What the fixed alternative costs is in [what a pool screen enclosure costs in Florida](/blogs/how-much-does-a-pool-screen-enclosure-cost-in-florida).
 
 ## Heat and fire under a roof that seals
 
@@ -159,7 +159,7 @@ Write a single list of everything electrical that will ever live under this stru
 
 The list matters because the buried half of the work is the expensive half. Conduit, trench and panel capacity are the parts you cannot defer cheaply. The devices hanging off them can be bought over several years without penalty, as long as the capacity is there.
 
-Then decide the control layer, because nobody does and everybody regrets it. The roof arrives with its own controller. Screens usually come with a second. Lighting often brings a third. Unless somebody says at the start that all of it lands on one keypad or one app, you finish a $30,000 outdoor room with a drawer full of remotes — and some of that consolidation depends on which components get bought, which is why it belongs at the order stage rather than at the handover.
+Then decide the control layer, because nobody does and everybody regrets it. The roof arrives with its own controller. Screens usually come with a second. Lighting often brings a third. Unless somebody says at the start that all of it lands on one keypad or one app, you finish the project with a drawer full of remotes — and some of that consolidation depends on which components get bought, which is why it belongs at the order stage rather than at the handover.
 
 Two questions to ask while you are there: what closes the roof by itself, and what happens to the screens when it does.
 

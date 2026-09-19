@@ -27,7 +27,7 @@
   "summary": "The options list on a pool proposal looks like one decision about money. It is really three decisions about timing: what closes at the shell, what needs something buried, and what can wait.",
   "portada": {
     "ref": "construction-4",
-    "alt": "Pool with two sheets of water falling from a raised mosaic wall, a mosaic-clad spa at the far end, and a cushioned lounger on the pale stone deck, with palms and mown turf beyond a black metal fence."
+    "alt": "Pool with a row of water sheets falling from a long raised wall clad in blue-green mosaic, a white bowl on the pillar at its left end, a mosaic-clad spa spilling in from the right, and a cushioned lounger on the pale stone deck, with palms and mown turf beyond a black metal fence."
   },
   "figuras": [
     {

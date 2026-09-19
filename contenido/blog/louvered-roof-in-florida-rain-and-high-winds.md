@@ -28,20 +28,20 @@
   "summary": "Closed it is a roof. Open it is a frame the wind goes through. The two kinds of Florida weather want opposite positions, and the rain sensor only knows about one of them.",
   "portada": {
     "ref": "louvered-7",
-    "alt": "Aluminum louvered roof over a poolside patio with the paving still wet after rain, a drain set into the deck and a neighbor's solar panels beyond the palms."
+    "alt": "White aluminum louvered roof on white posts over a poolside patio, the edge of the pool at the near corner, a white perimeter fence and palms behind it, and a neighbor's tile roof with solar panels off to the left."
   },
   "figuras": [
     {
       "ref": "louvered-5",
-      "alt": "Louvered roof over a patio with the motor housing sitting on top of the beam and a drainage spout at the base of the column, beside new sod laid in strips."
+      "alt": "Louvered roof with a dark bronze frame and white blades reaching out over the paved entry court of a modern white house with floor-to-ceiling glass, clipped hedges in the foreground."
     },
     {
       "ref": "louvered-8",
-      "alt": "White louvered roof over an outdoor dining area, with speakers and ceiling fans already mounted under the adjoining porch and worn patches of grass at the patio edge."
+      "alt": "White louvered roof over an outdoor dining table and chairs beside a two-story stucco house, with ceiling fans mounted under the adjoining covered porch and lawn running up to the patio on both sides."
     },
     {
       "ref": "louvered-3",
-      "alt": "Black aluminum louvered roof over a seating area beside the water, with furniture under a protective cover, a security camera on the wall and a pool handrail at the tiled edge."
+      "alt": "White louvered roof over a covered patio on the far side of a pool, with lounge chairs on the deck to the left and a handrail at the pool steps on the right."
     }
   ],
   "faq": [
@@ -100,17 +100,17 @@ A closed louvered roof stops rain that falls. It does very little about rain tha
 
 The practical result: the covered space is dry in the middle and wet for some distance in from whichever faces are open. The dry zone is smaller than the roof, and how much smaller depends on how exposed the lot is and which way the structure faces.
 
-That matters for what you mount underneath. Televisions, speakers, ceiling fans, pendant lights and the cushions that stay outside all belong inside the genuinely dry zone, not merely under the frame. It is also the reason to settle screens during design rather than after: the side channels for a motorized screen mount to the posts, so adding them later means opening finished work. How the screens themselves behave in weather is a separate question with its own answer, in [what happens to retractable screens in wind and storms](/blogs/retractable-screens-in-wind-and-storms), and the rest of what goes inside the frame is in [designing the whole louvered roof system](/blogs/designing-a-complete-louvered-roof-system).
+That matters for what you mount underneath. Televisions, speakers, ceiling fans, pendant lights and the cushions that stay outside all belong inside the genuinely dry zone, not merely under the frame. It is also the reason to settle screens during design rather than after: the side channels for a motorized screen mount to the posts, so adding them later means opening finished work. Screens, lighting, fans and the rest of what goes inside the frame are covered in [designing the whole louvered roof system](/blogs/designing-a-complete-louvered-roof-system).
 
 {{figura: louvered-8}}
 
 ### What actually fails is the gutter, not the blade
 
-In our experience of these systems here, the blades and the seals are rarely the problem. The drainage channels inside the beams are.
+The blades and the seals are rarely the problem. The drainage channels inside the beams are.
 
 They fill with leaf litter, pollen and the fine grit that comes off a shingle roof next to them. The channel backs up, and a backed-up gutter on a closed roof overflows in the only place it can — at the joint between blades. The owner sees water dripping through a closed roof and reports a leak. What it needs is clearing.
 
-Under live oaks this is a few times a year, and it is ten minutes with a hose and a gloved hand. Under a clear sky with nothing overhanging, it is annual. Either way it is somebody's job, and it should be a question you ask before you buy rather than a discovery you make in year two.
+How often it needs clearing is set by what is overhead: a live oak or a pine dropping onto the roof is a different regime from an open sky with nothing above it, and a shingle roof next door adds grit that a tile roof does not. It is a hose and a gloved hand rather than a service call, but it is somebody's job, and it should be a question you ask before you buy rather than a discovery you make in year two.
 
 ## Wind: the rating is two numbers
 
@@ -144,7 +144,7 @@ Systems differ on what you can do with no power: some have a manual override, so
 
 None of those is wrong. Not knowing which one you bought is. It belongs on the comparison list before you choose a system, along with who services it locally and how long parts take — all of which is in [the features worth comparing before you buy](/blogs/features-to-compare-before-buying-a-louvered-roof).
 
-## The ten-minute walk after a storm
+## The walk-around after a storm
 
 Not a maintenance schedule. Five things, once the weather clears:
 
