@@ -11,7 +11,8 @@
   "relacionados": [
     "how-much-does-a-pool-remodel-cost-in-florida",
     "pool-resurfacing-vs-full-pool-renovation",
-    "new-pool-construction-vs-pool-remodeling-which-is-right-for-you"
+    "new-pool-construction-vs-pool-remodeling-which-is-right-for-you",
+    "how-outdoor-living-spaces-increase-property-value-in-florida"
   ],
   "ordenIndice": 29,
   "searchIntent": "informational",

@@ -10,7 +10,8 @@
   "relacionados": [
     "how-much-does-a-custom-pool-cost-in-florida",
     "before-you-build-a-pool-in-florida",
-    "top-10-luxury-pool-designs-for-florida-homes"
+    "top-10-luxury-pool-designs-for-florida-homes",
+    "residential-vs-commercial-pool-construction-in-florida"
   ],
   "ordenIndice": 24,
   "searchIntent": "informational",

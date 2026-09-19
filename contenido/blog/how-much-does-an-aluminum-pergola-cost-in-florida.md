@@ -124,7 +124,7 @@ Aluminum posts are hollow, and the wire for lights, fans, retractable screens, a
 
 It is small only once. The same fixtures added afterwards mean surface conduit down a finished post, or a trench across a deck that is already laid — and that second bill lands against the deck, not against the pergola, which is why it never appears in the comparison people think they are making. You do not have to buy the fixtures up front. You do have to leave them somewhere to go.
 
-Which provisions are worth leaving, and why it is settled at fabrication rather than at purchase, is [decision six of the seven that close before construction](/blogs/pergola-design-decisions-before-construction). [Motorized screens](/blogs/when-to-add-motorized-screens-to-a-pergola-or-kitchen) follow the same logic on the sides.
+Which provisions are worth leaving, and why it is settled at fabrication rather than at purchase, is [decision six of the seven that close before construction](/blogs/pergola-design-decisions-before-construction). Screens, lights and fans follow the same logic on the sides and overhead: [they are designed into the frame, not added to it](/blogs/designing-a-complete-louvered-roof-system).
 
 {{figura: pergolas-8}}
 

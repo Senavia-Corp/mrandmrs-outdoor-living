@@ -10,7 +10,8 @@
   "relacionados": [
     "how-much-does-an-outdoor-kitchen-cost-in-florida",
     "outdoor-kitchen-layout-guide",
-    "gas-electric-and-plumbing-for-an-outdoor-kitchen"
+    "gas-electric-and-plumbing-for-an-outdoor-kitchen",
+    "commercial-pool-construction-in-florida-what-decision-makers-must-know"
   ],
   "ordenIndice": 51,
   "searchIntent": "informational",

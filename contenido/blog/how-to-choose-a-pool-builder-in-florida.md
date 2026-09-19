@@ -10,7 +10,8 @@
   "relacionados": [
     "how-much-does-a-custom-pool-cost-in-florida",
     "what-permits-are-required-for-pool-construction-in-florida",
-    "common-pool-construction-mistakes-we-see-in-florida"
+    "common-pool-construction-mistakes-we-see-in-florida",
+    "pool-and-spa-or-pool-only"
   ],
   "ordenEnServicio": 3,
   "ordenIndice": 22,

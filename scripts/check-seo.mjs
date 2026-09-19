@@ -580,7 +580,7 @@ const SITIO_R22 = process.env.PUBLIC_SITE_URL || 'https://www.mrandmrsoutdoorliv
     JSONLD_ARREGLADO['/blogs-tips'] = {
       bloque: 0,
       ...(nAnadidas
-        ? { anadidas: { camino: 'hasPart', n: nAnadidas, campos: ['url', 'headline', 'description', 'image'] } }
+        ? { anadidas: { camino: 'hasPart', n: nAnadidas, campos: ['url', 'headline', 'description', 'image'], sinDinero: false } }
         : {}),
       motivo: `R22-BLOG-IMG + BLOG-SANITY: ${cambios.length} cambios y ${nAnadidas} adicion(es) en hasPart — foto real en `
         + 'lugar de la generada, y el indice ordenado por categoria en vez de por el orden de '
@@ -863,7 +863,16 @@ for (const ruta of conPropias(RUTAS)) {
                 for (const c of campos) {
                   const v = String(porCamino(q, c) ?? '').trim();
                   if (!v) malas.push(`anadida sin ${c}`);
-                  if (/\$\s?\d/.test(v)) malas.push(`anadida con cifra de dinero en ${c}`);
+                  /* La cifra de dinero se prohibe donde nacio la regla: en una respuesta de
+                   * FAQPage, porque ahi un precio inventado se lee como compromiso. En el
+                   * `hasPart` de /blogs-tips NO: la entradilla de un articulo de coste cita a
+                   * proposito la tabla del estimador —«The estimator gives one number for a
+                   * pergola: $8,500»— y esa cifra es el dato, no un adorno. Se declara por
+                   * campo en vez de ser global, que es como una regla buena en un sitio se
+                   * vuelve un falso rojo en otro. */
+                  if (ja.anadidas.sinDinero !== false && /\$\s?\d/.test(v)) {
+                    malas.push(`anadida con cifra de dinero en ${c}`);
+                  }
                 }
               }
               base.push(...arr.slice(base.length));

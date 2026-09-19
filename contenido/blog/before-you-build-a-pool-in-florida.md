@@ -10,7 +10,8 @@
   "relacionados": [
     "how-much-does-a-custom-pool-cost-in-florida",
     "how-to-choose-a-pool-builder-in-florida",
-    "pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish"
+    "pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+    "building-a-pool-in-north-florida"
   ],
   "ordenEnServicio": 2,
   "ordenIndice": 21,

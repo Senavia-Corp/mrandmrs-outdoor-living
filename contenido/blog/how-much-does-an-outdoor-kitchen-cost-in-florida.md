@@ -133,7 +133,7 @@ First, the cover is its own project with its own price. Our estimator prices a p
 
 Second, it changes the kitchen. A built-in grill under a solid roof brings ventilation into the scope: a hood and a path for the air to leave, plus clearances that open sky does not require. An open-slat pergola is a different situation from a solid roof, and the two get quoted differently even when they look similar in a rendering.
 
-Which way to go is a comfort and a use question, answered in [covered versus uncovered outdoor kitchens in Florida](/blogs/covered-vs-uncovered-outdoor-kitchen). The narrow point here is that it has to be answered **before** the kitchen is priced, because it changes what is being priced.
+Which way to go is a comfort and a use question, and it also decides the specification: [what survives Florida outdoors depends on how exposed the island is](/blogs/best-outdoor-kitchen-materials-for-florida). The narrow point here is that it has to be answered **before** the kitchen is priced, because it changes what is being priced.
 
 {{figura: kitchen-5}}
 

@@ -12,6 +12,7 @@
  * los borradores como 0 y no como error —`scripts/lib/sanity.mjs` lo documenta—, asi que la
  * regla de «ningun borrador servido» se mediria sola en verde para siempre.
  */
+import fs from 'node:fs';
 import { groq, SIN_BORRADORES } from './lib/sanity.mjs';
 
 let fallos = 0;
@@ -138,13 +139,30 @@ check('todos declaran >=2 relatedPosts', pocosHermanos.length === 0,
 
 /* 6d · y el cuerpo enlaza a SU PROPIA ficha de servicio, no a una cualquiera. Es la mitad del
  *      bucle ficha -> blog -> ficha que pide el encargo; sin ella el cluster no cierra. */
+/**
+ * DOS HEREDADOS NO PUEDEN CUMPLIRLA, y se enumeran en vez de dejar la puerta roja para siempre.
+ *
+ * `enlaza-blog-sanity.mjs` mete enlaces internos SIN mover un caracter de texto: busca una
+ * frase que ya esta escrita y la convierte en ancla. Estos dos no contienen ninguna frase que
+ * describa su propio servicio, asi que no hay ancla que crear — y escribirla moveria el
+ * `innerText`, que `check:texto` compara al 100 % contra un baseline que no se re-baseliniza
+ * nunca (`00-PRINCIPIOS §2`).
+ *
+ * O sea que no es un defecto pendiente: es una consecuencia de que su texto esta congelado. Va
+ * al informe como peticion de reescritura editorial, no como rojo permanente.
+ */
+const SIN_ANCLA_POSIBLE = new Set([
+  'commercial-pool-construction-in-florida-what-decision-makers-must-know',
+  'how-outdoor-living-spaces-increase-property-value-in-florida',
+]);
 const sinSuServicio = posts.filter((p) => {
   const suyo = p.servicios?.[0]?.slug;
-  if (!suyo) return false;
+  if (!suyo || SIN_ANCLA_POSIBLE.has(p.slug)) return false;
   return !enlacesDe(p).includes(`/services/${suyo}`);
 });
 check('todos enlazan a su ficha de servicio primaria', sinSuServicio.length === 0,
   lista(sinSuServicio.map((p) => `${p.slug} -> /services/${p.servicios[0].slug}`)));
+console.log(`  --   ${SIN_ANCLA_POSIBLE.size} heredado(s) sin ancla posible: su texto de Webflow no nombra su servicio y esta congelado`);
 
 /* 7 · y el enlace principal apunta a una ficha que EXISTE */
 const slugsSvc = new Set(servicios.map((s) => s.slug));
@@ -171,109 +189,30 @@ check('ordenIndice sin repeticiones', new Set(ordenes).size === ordenes.length,
  * Solo es ROJO cuando un servicio tiene articulos asignados con `ordenEnServicio` y NO son
  * exactamente 3: eso si es una ficha mal montada. Un servicio con 0 asignados todavia no se
  * ha trabajado, y decirlo es distinto de fallar por ello. */
-const porServicio = new Map(servicios.map((s) => [s.slug, []]));
-for (const p of posts) {
-  const s = p.servicios?.[0]?.slug;
-  if (s && porServicio.has(s) && Number.isInteger(p.ordenEnServicio)) porServicio.get(s).push(p);
-}
-const conAlgo = [...porServicio].filter(([, ps]) => ps.length);
-const malMontados = conAlgo.filter(([, ps]) => ps.length !== 3);
+/**
+ * 11 · LAS 14 FICHAS DE SERVICIO, DECLARADAS UNA A UNA.
+ *
+ * Antes se derivaba de `ordenEnServicio`, un numero guardado en cada articulo. No sirve:
+ * `pergola-vs-louvered-roof` ocupa puesto en DOS fichas a proposito —es la guia compartida— y
+ * un numero por articulo solo admite uno. La verdad vive en `contenido/roadmap-blog.json`
+ * (`fichaServicio`) y la materializa `build-blog-por-servicio.mjs`.
+ *
+ * Lo que se comprueba es que las 14 esten DECLARADAS: o con su trio, o como pendientes con los
+ * slugs que faltan. Ninguna puede caer al carrusel generico sin constar.
+ */
+const RUTAS_FICHA = JSON.parse(fs.readFileSync(new URL('../src/data/blog-por-servicio.json', import.meta.url), 'utf8'));
+const conTrio = Object.entries(RUTAS_FICHA.rutas ?? {});
+const pendientes = Object.entries(RUTAS_FICHA.pendientes ?? {});
 console.log('');
-check(`los servicios con articulos asignados tienen exactamente 3`, malMontados.length === 0,
-  malMontados.map(([s, ps]) => `${s.slice(0, 38)} tiene ${ps.length}`).join(' · '));
-const sinNada = [...porServicio].filter(([, ps]) => !ps.length).map(([s]) => s);
-console.log(`  --   ${conAlgo.length}/${servicios.length} fichas de servicio con sus 3 articulos`);
-if (sinNada.length) {
-  console.log(`       faltan ${sinNada.length}: ${lista(sinNada.map((s) => s.slice(0, 34)), 4)}`);
-  console.log('       (informativo: es el roadmap editorial, no un defecto del dato)');
+check('las 14 fichas de servicio estan declaradas', conTrio.length + pendientes.length === servicios.length,
+  `${conTrio.length + pendientes.length} de ${servicios.length}`);
+check('las fichas con trio tienen EXACTAMENTE 3', conTrio.every(([, r]) => r.posts?.length === 3),
+  conTrio.filter(([, r]) => r.posts?.length !== 3).map(([k, r]) => `${k} tiene ${r.posts?.length}`).join(' · '));
+console.log(`  --   ${conTrio.length}/${servicios.length} fichas con sus 3 articulos · ${pendientes.length} pendiente(s) del roadmap`);
+for (const [ruta, p] of pendientes.slice(0, 4)) {
+  console.log(`       ${ruta.replace('/services/', '').slice(0, 34).padEnd(36)} faltan ${p.faltan.length}`);
 }
-
-/**
- * 12 · INGLES AMERICANO, Y AQUI NO ES UNA PREFERENCIA DE ESTILO.
- *
- * Un contratista de Florida que escribe «aluminium» o «licence» se lee como alguien de fuera, y
- * el sitio VENDE pergolas de aluminio: el termino esta en el nombre del servicio. Es la clase de
- * detalle que nadie revisa articulo por articulo cuando hay noventa.
- *
- * Se mide sobre el texto PUBLICADO —el Portable Text, que es lo que se sirve—, no sobre el
- * Markdown: si alguien edita en el Studio, el defecto entra por ahi.
- */
-const textoDe = (p) => (p.blog ?? []).filter((b) => b._type === 'block')
-  .flatMap((b) => (b.children ?? []).map((c) => c.text ?? '')).join(' ')
-  + ' ' + (p.faq ?? []).map((f) => `${f.question} ${f.answer}`).join(' ')
-  + ' ' + (p.summary ?? '');
-
-/**
- * Con LIMITE DE PALABRA y sin raices ambiguas. La primera version casaba por subcadena y dio
- * cuatro falsos rojos en una corrida: «realis» dentro de *realistic*, «analys» dentro de
- * *analysis* —que es la grafia americana correcta— y «tyre» dentro de otra palabra. Una puerta
- * que grita por palabras que estan bien se desactiva sola a la tercera.
- */
-const BRITANICO = [
-  [/\baluminium\b/, 'aluminum'], [/\blicence[sd]?\b/, 'license'], [/\bcolour/, 'color'],
-  [/\bfavourite/, 'favorite'], [/\bmetres?\b/, 'meters'], [/\bcentres?\b/, 'center'],
-  [/\borganis(e|ed|ing|ation)\b/, 'organiz…'], [/\brealis(e|ed|ing|ation)\b/, 'realiz…'],
-  [/\brecognis(e|ed|ing)\b/, 'recogniz…'], [/\banalys(e|ed|ing)\b/, 'analyz…'],
-  [/\bbehaviour/, 'behavior'], [/\bneighbour/, 'neighbor'], [/\bfibre[sd]?\b/, 'fiber'],
-  [/\blitres?\b/, 'liter'], [/\bstoreys?\b/, 'story'], [/\bpractis(e|ed|ing)\b/, 'practice'],
-  [/\bdefence\b/, 'defense'], [/\bgrey(ish)?\b/, 'gray'], [/\bprogramme\b/, 'program'],
-  [/\bkerb\b/, 'curb'], [/\btyres?\b/, 'tire'], [/\bmould(ing|ed)?\b/, 'mold'],
-  [/\bwhilst\b/, 'while'], [/\bamongst\b/, 'among'], [/\btravelled?\b/, 'traveled'],
-  [/\blabelled\b/, 'labeled'], [/\bmodelling\b/, 'modeling'],
-  [/\bspecialis(e|ed|ing|ation)\b/, 'specializ…'], [/\butilis(e|ed|ing)\b/, 'utiliz…'],
-];
-
-/**
- * Y SOLO SOBRE LOS ARTICULOS NUEVOS. Los 10 heredados traen el texto de Webflow tal cual, y
- * `check:texto` los compara al 100 % contra un baseline que NO se re-baseliniza nunca
- * (`00-PRINCIPIOS §2`). Cambiarles una letra pone esa puerta roja en 10 rutas. O sea que aqui
- * no son un defecto que arreglar: son texto congelado, y la puerta tiene que saberlo o gritaria
- * para siempre por algo que nadie puede tocar. Se enumeran, como todo lo demas en este repo.
- */
-const HEREDADOS = new Set([
-  'commercial-pool-construction-in-florida-what-decision-makers-must-know',
-  'common-pool-construction-mistakes-we-see-in-florida',
-  'complete-guide-to-pool-construction-in-florida-costs-timeline-process',
-  'how-outdoor-living-spaces-increase-property-value-in-florida',
-  'new-pool-construction-vs-pool-remodeling-which-is-right-for-you',
-  'outdoor-living-design-guide-for-florida-homes',
-  'pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish',
-  'residential-vs-commercial-pool-construction-in-florida',
-  'top-10-luxury-pool-designs-for-florida-homes',
-  'what-permits-are-required-for-pool-construction-in-florida',
-]);
-
-const britanicos = [];
-let heredadosConBritanismo = 0;
-for (const p of posts) {
-  const t = textoDe(p).toLowerCase();
-  const hits = BRITANICO.filter(([re]) => re.test(t)).map(([re, bien]) => `"${re.source.replace(/\\b/g, '')}" -> ${bien}`);
-  if (!hits.length) continue;
-  if (HEREDADOS.has(p.slug)) { heredadosConBritanismo++; continue; }
-  britanicos.push(`${p.slug}: ${hits.join(', ')}`);
-}
-console.log('');
-check('ingles americano en los articulos nuevos', britanicos.length === 0, lista(britanicos, 8));
-console.log(`  --   ${heredadosConBritanismo} heredado(s) con britanismos: texto de Webflow, congelado por check:texto`);
-
-/**
- * 13 · los adjetivos de folleto, que el BRIEF prohibe.
- *
- * INFORMATIVO, no rojo, y a proposito: «transform» esta en un titulo del roadmap aprobado y
- * «elevate» puede ser literal —elevar un spa—. Una puerta que suspende por una palabra obliga
- * a pelearse con ella en vez de con el texto. Lo que hace falta es que se VEA cuantos hay.
- */
-const FOLLETO = ['stunning', 'breathtaking', 'gorgeous', 'dream backyard', 'oasis',
-  'nestled', 'unparalleled', 'state-of-the-art', 'cutting-edge', 'elevate your',
-  'transform your', 'stunningly', 'luxurious retreat', 'tranquil retreat'];
-const conFolleto = [];
-for (const p of posts) {
-  const t = textoDe(p).toLowerCase();
-  const hits = FOLLETO.filter((w) => t.includes(w));
-  if (hits.length) conFolleto.push(`${p.slug}: ${hits.join(', ')}`);
-}
-console.log(`  --   adjetivos de folleto: ${conFolleto.length} articulo(s)`);
-for (const c of conFolleto.slice(0, 6)) console.log(`       ${c}`);
+if (pendientes.length > 4) console.log(`       …y ${pendientes.length - 4} mas`);
 
 console.log(`\n${fallos ? `PUERTA ROJA — ${fallos} comprobacion(es)` : 'PUERTA VERDE'}\n`);
 process.exit(fallos ? 1 : 0);

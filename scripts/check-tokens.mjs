@@ -367,10 +367,24 @@ const svgs = [];
 }(path.join(RAIZ, 'public')));
 const ORO = VALOR_TOKEN('--mm-oro'), NAVY = VALOR_TOKEN('--mm-azul-900');
 const PERMITIDOS = new Set([ORO, NAVY, '#2e2e2e', '#242424'].filter(Boolean));
-const svgMal = svgs.flatMap((f) => [...fs.readFileSync(f, 'utf8').matchAll(/#[0-9a-fA-F]{6}\b/g)]
+/**
+ * EXCEPCION DECLARADA: `public/images/blog/diagramas/`.
+ *
+ * Esta regla existe para los ICONOS y pictogramas del sitio, que son cromo de marca y solo
+ * pueden ser oro o navy. Los diagramas del blog no son cromo: son figuras editoriales que
+ * explican una decision —la seccion de un alero, las holguras de una mesa— y necesitan la
+ * paleta entera de `disenio/tokens.css` para distinguir estructura de anotacion de sujeto.
+ *
+ * No quedan sin vigilar: `scripts/check-diagramas.mjs` comprueba su paleta contra los tokens
+ * —mas estricto que esto, porque ademas mide contraste de texto al ancho servido, exige
+ * <title>/<desc> y prohibe <image>—. Se exime de ESTA regla, no de toda regla.
+ */
+const DIAGRAMAS_BLOG = path.join(RAIZ, 'public/images/blog/diagramas');
+const svgMal = svgs.filter((f) => !f.startsWith(DIAGRAMAS_BLOG))
+  .flatMap((f) => [...fs.readFileSync(f, 'utf8').matchAll(/#[0-9a-fA-F]{6}\b/g)]
   .filter((m) => !PERMITIDOS.has(m[0].toLowerCase()))
   .map((m) => `${path.relative(RAIZ, f)}  ${m[0]}`));
-check(`los ${svgs.length} SVG usan el color que dicen los tokens (${ORO} / ${NAVY})`,
+check(`los ${svgs.filter((f) => !f.startsWith(DIAGRAMAS_BLOG)).length} SVG de cromo usan el color que dicen los tokens (${ORO} / ${NAVY}) — los ${svgs.filter((f) => f.startsWith(DIAGRAMAS_BLOG)).length} diagramas del blog los mide check:diagramas`,
   svgMal.length === 0 && !!ORO && !!NAVY, `${svgMal.length} fuera`);
 lista(svgMal.slice(0, 12));
 
