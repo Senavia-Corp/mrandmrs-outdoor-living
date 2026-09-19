@@ -98,7 +98,12 @@ for (const a of ARTICULOS) {
 
   /* Las figuras se resuelven POR NOMBRE contra la escalera derivada, no por posicion: si algun
    * dia el cuerpo reordena sus figuras, el articulo sigue siendo correcto. */
-  const porRef = Object.fromEntries(img.figuras.map((f) => [f.src.match(/mm-([a-z]+-\d+)-\d+\.webp$/)?.[1] ?? f.src, f]));
+  const porRef = Object.fromEntries(img.figuras.map((f) => [
+    f.src.match(/mm-([a-z]+-\d+)-\d+\.webp$/)?.[1]
+      ?? f.src.match(/blog\/diagramas\/(.+)\.svg$/)?.[1]?.replace(/^/, 'diagrama-')
+      ?? f.src,
+    f,
+  ]));
   const bloques = [];
   let roto = false;
   for (const b of markdownAPortable(cuerpo, slug)) {
@@ -108,6 +113,7 @@ for (const a of ARTICULOS) {
       bloques.push({
         _type: 'image', _key: b._key,
         src: f.src, srcset: f.srcset, sizes: f.sizes, alt: f.alt, ancho: f.ancho, alto: f.alto,
+        ...(f.pie ? { pie: f.pie } : {}),
       });
       continue;
     }
@@ -139,6 +145,7 @@ for (const a of ARTICULOS) {
     portada: {
       src: img.tarjeta.src, srcset: img.tarjeta.srcset, sizes: img.tarjeta.sizes,
       alt: img.tarjeta.alt, ancho: img.tarjeta.ancho, alto: img.tarjeta.alto,
+      ...(img.tarjeta.pie ? { pie: img.tarjeta.pie } : {}),
     },
     categoria: { _type: 'reference', _ref: `blogCategory-${frente.categoria}` },
     relatedServices: refsServicio,

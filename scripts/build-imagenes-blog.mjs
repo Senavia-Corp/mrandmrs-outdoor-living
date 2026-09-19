@@ -133,6 +133,40 @@ const galeria = (rel, alt) => {
 const PROCEDENCIA = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/gallery-procedencia.json'), 'utf8')).servicios;
 const BANCO_COMPARTIDO = 'banco';
 
+/* ── DIAGRAMAS: LO QUE SE PUBLICA CUANDO NO HAY FOTO Y NO PUEDE HABERLA ─────
+ *
+ * Dos servicios no tienen ni una fotografia de obra propia: `light` (soffit LED) y `furniture`.
+ * El dueno lo confirmo por escrito — «No tengo» — y pidio generar lo que hiciera falta. La
+ * generacion por IA no esta disponible (Higgsfield responde `not_enough_credits`, y el unico
+ * otro motor conectado solo edita), asi que sus articulos se ilustran con DIAGRAMAS dibujados:
+ * donde caen los focos en un alero, que holgura pide una mesa, como es la seccion de un
+ * material.
+ *
+ * Y es mejor asi, no un apano. Una figura que explica una decision gana siendo exacta: un SVG
+ * mide 4 KB, escala a cualquier ancho sin escalera de imagenes, y —lo que importa aqui— NADIE
+ * lo confunde con una foto de obra del cliente. La linea roja no se roza siquiera.
+ *
+ * Por eso un diagrama EXIGE `pie`: el texto visible bajo la figura que dice lo que es. Sin el,
+ * `articulo.mjs` se niega a leer el articulo. Un `alt` no basta porque la mayoria no lo lee.
+ */
+const esDiagrama = (ref) => ref.startsWith('diagrama-');
+
+const diagrama = (ref, alt, pie) => {
+  const rel = `blog/diagramas/${ref.replace('diagrama-', '')}.svg`;
+  const abs = path.join(RAIZ, 'public/images', rel);
+  if (!fs.existsSync(abs)) throw new Error(`diagrama "${ref}": falta public/images/${rel}`);
+  if (!pie || !pie.trim()) {
+    throw new Error(`diagrama "${ref}" sin \`pie\`. Un diagrama se publica DICIENDO que es un diagrama.`);
+  }
+  const svg = fs.readFileSync(abs, 'utf8');
+  const vb = svg.match(/viewBox="0 0 ([\d.]+) ([\d.]+)"/);
+  if (!vb) throw new Error(`diagrama "${ref}": el SVG no declara viewBox="0 0 W H"; sin medidas hay CLS`);
+  return {
+    src: `/images/${rel}`, srcset: '', sizes: '', alt, pie,
+    ancho: Math.round(Number(vb[1])), alto: Math.round(Number(vb[2])), _origen: 'diagrama',
+  };
+};
+
 const porRef = (ref, alt, esPortada = false) => {
   const m = ref.match(/^([a-z]+)-(\d+)$/);
   if (!m) throw new Error(`ref "${ref}" no tiene la forma servicio-indice (p. ej. construction-7)`);
@@ -445,15 +479,22 @@ for (const a of ARTICULOS) {
   const ruta = `/blogs/${a.frente.slug}`;
   if (salida.rutas[ruta]) { mal(`${ruta}: ya existe en el CASTING heredado`); continue; }
   try {
-    const portada = await peldanosCache(porRef(a.frente.portada.ref, a.frente.portada.alt, true), TARJETA, true);
+    const pRef = a.frente.portada.ref;
+    const portada = esDiagrama(pRef)
+      ? diagrama(pRef, a.frente.portada.alt, a.frente.portada.pie)
+      : await peldanosCache(porRef(pRef, a.frente.portada.alt, true), TARJETA, true);
     const figuras = [];
     /* EN EL ORDEN DEL CUERPO, no en el del frontmatter: `publica-blog.mjs` resuelve cada
      * `{{figura: ref}}` por nombre, pero el indice de esta lista es lo que ve quien depura. */
     for (const ref of a.usadas) {
-      const alt = a.figuras.find((f) => f.ref === ref).alt;
-      figuras.push({ ...(await peldanosCache(porRef(ref, alt), FIGURA, false)), sizes: SIZES_FIGURA, alt });
+      const d = a.figuras.find((f) => f.ref === ref);
+      figuras.push(esDiagrama(ref)
+        ? diagrama(ref, d.alt, d.pie)
+        : { ...(await peldanosCache(porRef(ref, d.alt), FIGURA, false)), sizes: SIZES_FIGURA, alt: d.alt });
     }
-    salida.rutas[ruta] = { _articulo: true, tarjeta: { ...portada, alt: a.frente.portada.alt, sizes: SIZES_TARJETA }, figuras };
+    salida.rutas[ruta] = { _articulo: true,
+      tarjeta: esDiagrama(pRef) ? portada : { ...portada, alt: a.frente.portada.alt, sizes: SIZES_TARJETA },
+      figuras };
   } catch (e) {
     mal(`${ruta}: ${e.message}`);
   }

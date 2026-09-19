@@ -92,8 +92,18 @@ export function leeArticulo(fichero) {
   }
 
   const figuras = frente.figuras ?? [];
+  /* Un `ref` que empieza por `diagrama-` no es una foto de obra: es un dibujo. Se publica
+   * DICIENDO que lo es, en texto visible bajo la figura, y por eso el `pie` es obligatorio ahi
+   * y solo ahi. Es la diferencia entre ilustrar y hacer pasar algo por lo que no es. */
+  const exigePie = (f, donde) => {
+    if (f.ref.startsWith('diagrama-') && !String(f.pie ?? '').trim()) {
+      throw new Error(`${esperado}: ${donde} usa el diagrama "${f.ref}" sin \`pie\`. Un diagrama se publica diciendo que es un diagrama.`);
+    }
+  };
+  exigePie(frente.portada, 'portada');
   for (const [i, f] of figuras.entries()) {
     if (!f?.ref || !f?.alt) throw new Error(`${esperado}: figuras[${i}] necesita { ref, alt }`);
+    exigePie(f, `figuras[${i}]`);
   }
 
   /* Toda figura invocada en el cuerpo tiene que estar declarada, y al reves. Una `{{figura:}}`
