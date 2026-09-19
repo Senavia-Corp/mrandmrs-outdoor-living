@@ -211,14 +211,47 @@ export default defineType({
       validation: (Rule) => Rule.required().min(1),
     },
     {
-      name: 'image',
-      title: 'Image',
+      name: 'portada',
+      title: 'Portada',
       description:
-        'La portada. Obra REAL del cliente: nada generado por IA donde el visitante entienda '
-        + '«esto lo construimos nosotros» (00-PRINCIPIOS §3).',
+        'La imagen de la tarjeta y del og:image. Obra REAL del cliente: nada generado por IA '
+        + 'donde el visitante entienda «esto lo construimos nosotros» (00-PRINCIPIOS §3). '
+        + 'Los `-400`/`-800` los deriva `scripts/build-imagenes-blog.mjs` de la medida real de '
+        + 'la tarjeta (~380 px), y el casting —qué foto va en qué hueco y por qué— vive en la '
+        + 'cabecera de ese script.',
+      type: 'object',
+      group: 'contenido',
+      fields: [
+        { name: 'src', title: 'Ruta', type: 'string', validation: (Rule) => Rule.required() },
+        { name: 'srcset', title: 'Srcset', type: 'string' },
+        { name: 'sizes', title: 'Sizes', type: 'string' },
+        {
+          name: 'alt',
+          title: 'Alt',
+          type: 'string',
+          description:
+            'Describe lo que SE VE, no lo que se quiere posicionar. Bien: «Custom rectangular '
+            + 'swimming pool with raised spa and light stone deck». Mal: «Best pool builder '
+            + 'Gainesville Ocala Florida».',
+          validation: (Rule) => Rule.required(),
+        },
+        { name: 'ancho', title: 'Ancho', type: 'number', validation: (Rule) => Rule.required() },
+        { name: 'alto', title: 'Alto', type: 'number', validation: (Rule) => Rule.required() },
+      ],
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: 'image',
+      title: 'Image (LEGADO de Webflow — no se pinta)',
+      description:
+        'La imagen que trajo la migracion de Webflow. NO SE RENDERIZA: en 8 de los 10 articulos '
+        + 'era una imagen generada por IA publicada como obra del cliente, y R22-BLOG-IMG '
+        + '(18-sep-2026) las sustituyo. Lo que se pinta es «Portada». Se conserva porque es el '
+        + 'dato del origen y borrarlo perderia la trazabilidad de qué había antes.',
       type: 'image',
       options: { hotspot: true },
-      group: 'contenido',
+      group: 'seo',
+      readOnly: true,
       fields: [
         {
           name: 'alt',
