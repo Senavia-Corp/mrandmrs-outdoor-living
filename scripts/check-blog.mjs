@@ -106,6 +106,46 @@ const huerfanos = posts.filter((p) => !enlacesDe(p).some((h) => h.startsWith('/'
 check('ningun articulo huerfano (>=1 enlace interno en el cuerpo)', huerfanos.length === 0,
   lista(huerfanos.map((p) => p.slug)));
 
+/**
+ * 6b · HUERFANO ES NO RECIBIR, NO NO DAR.
+ *
+ * La regla 6 mide enlaces que SALEN, y eso no es lo que dice «ningun blog huerfano». Un
+ * articulo que enlaza a diez sitios y al que no apunta nadie es exactamente un huerfano: no
+ * hay camino hasta el que no sea el indice, y Google lo lee igual que un lector.
+ *
+ * Asi que se mide lo que ENTRA, por las dos vias por las que se puede llegar: un enlace en el
+ * cuerpo de otro articulo, o una referencia en su `relatedPosts`. Basta una.
+ */
+const entrantes = new Map(posts.map((p) => [p.slug, 0]));
+for (const p of posts) {
+  const vistos = new Set();
+  for (const h of enlacesDe(p)) {
+    const m = h.match(/^\/blogs\/([a-z0-9-]+)$/);
+    if (m && m[1] !== p.slug) vistos.add(m[1]);
+  }
+  for (const r of p.relacionados ?? []) if (r?.slug && r.slug !== p.slug) vistos.add(r.slug);
+  for (const s of vistos) if (entrantes.has(s)) entrantes.set(s, entrantes.get(s) + 1);
+}
+const sinEntrada = [...entrantes].filter(([, n]) => n === 0).map(([s]) => s);
+check('ningun articulo sin enlaces ENTRANTES', sinEntrada.length === 0,
+  `${lista(sinEntrada)} — nadie apunta a ellos, ni en cuerpo ni en relatedPosts`);
+
+/* 6c · y cada uno declara al menos 2 hermanos: es el salto a la siguiente pregunta, que es
+ *      lo que convierte diez articulos sueltos en un cluster. */
+const pocosHermanos = posts.filter((p) => (p.relacionados ?? []).filter((r) => r?.slug !== p.slug).length < 2);
+check('todos declaran >=2 relatedPosts', pocosHermanos.length === 0,
+  lista(pocosHermanos.map((p) => `${p.slug} (${(p.relacionados ?? []).length})`)));
+
+/* 6d · y el cuerpo enlaza a SU PROPIA ficha de servicio, no a una cualquiera. Es la mitad del
+ *      bucle ficha -> blog -> ficha que pide el encargo; sin ella el cluster no cierra. */
+const sinSuServicio = posts.filter((p) => {
+  const suyo = p.servicios?.[0]?.slug;
+  if (!suyo) return false;
+  return !enlacesDe(p).includes(`/services/${suyo}`);
+});
+check('todos enlazan a su ficha de servicio primaria', sinSuServicio.length === 0,
+  lista(sinSuServicio.map((p) => `${p.slug} -> /services/${p.servicios[0].slug}`)));
+
 /* 7 · y el enlace principal apunta a una ficha que EXISTE */
 const slugsSvc = new Set(servicios.map((s) => s.slug));
 const svcMalos = posts.flatMap((p) => (p.servicios ?? [])
