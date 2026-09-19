@@ -7,7 +7,12 @@
   "fotos publicables de ese cluster. `light` y `furniture` estan a CERO fotos reales.",
   "",
   "`pergola-vs-louvered-roof` aparece UNA sola vez, en el cluster de pergolas, y el de",
-  "louvered lo enlaza. El encargo lo pide expresamente: «una sola guia fuerte compartida»."
+  "louvered lo enlaza. El encargo lo pide expresamente: «una sola guia fuerte compartida».",
+  "",
+  "`fichaServicio` son los EXACTAMENTE 3 articulos que muestra la ficha de ese servicio, en ese",
+  "orden. Salen del encargo (FASE 6), no de una heuristica. `pergola-vs-louvered-roof` aparece en",
+  "DOS fichas a proposito: es la guia compartida, y por eso el trio no puede derivarse de un",
+  "numero guardado en el articulo — un articulo no tiene un solo puesto."
  ],
  "clusters": [
   {
@@ -74,7 +79,13 @@
      "funnelStage": "consideration",
      "ordenIndice": 27
     }
-   ]
+   ],
+   "fichaServicio": [
+    "how-much-does-a-custom-pool-cost-in-florida",
+    "before-you-build-a-pool-in-florida",
+    "pool-upgrades-worth-planning-before-construction"
+   ],
+   "entradillaFicha": "What it costs, what to decide before excavation, and what to plan while the design is still on paper."
   },
   {
    "clave": "pool-remodeling",
@@ -140,7 +151,13 @@
      "funnelStage": "awareness",
      "ordenIndice": 34
     }
-   ]
+   ],
+   "fichaServicio": [
+    "how-much-does-a-pool-remodel-cost-in-florida",
+    "pool-resurfacing-vs-full-pool-renovation",
+    "pool-remodeling-decisions-that-transform-an-old-pool"
+   ],
+   "entradillaFicha": "What a full renovation changes, how it differs from resurfacing, and what is worth upgrading while the pool is open."
   },
   {
    "clave": "pergolas",
@@ -206,7 +223,13 @@
      "funnelStage": "consideration",
      "ordenIndice": 41
     }
-   ]
+   ],
+   "fichaServicio": [
+    "how-much-does-an-aluminum-pergola-cost-in-florida",
+    "aluminum-vs-wood-pergolas-in-florida",
+    "pergola-vs-louvered-roof"
+   ],
+   "entradillaFicha": "What drives the price, how aluminum compares to wood over a Florida decade, and when a louvered roof is the better build."
   },
   {
    "clave": "louvered",
@@ -264,7 +287,13 @@
      "funnelStage": "decision",
      "ordenIndice": 47
     }
-   ]
+   ],
+   "fichaServicio": [
+    "is-a-motorized-louvered-roof-worth-it-in-florida",
+    "how-much-does-a-motorized-louvered-roof-cost",
+    "pergola-vs-louvered-roof"
+   ],
+   "entradillaFicha": "Whether the motor earns its keep in Florida, what moves the price, and how it compares to a fixed pergola."
   },
   {
    "clave": "kitchen",
@@ -330,7 +359,13 @@
      "funnelStage": "consideration",
      "ordenIndice": 54
     }
-   ]
+   ],
+   "fichaServicio": [
+    "how-much-does-an-outdoor-kitchen-cost-in-florida",
+    "grill-island-vs-full-outdoor-kitchen",
+    "outdoor-kitchen-layout-guide"
+   ],
+   "entradillaFicha": "What actually drives the price, where a grill island stops being enough, and how to lay one out around the way you cook."
   },
   {
    "clave": "enclosures",
@@ -396,7 +431,13 @@
      "funnelStage": "consideration",
      "ordenIndice": 61
     }
-   ]
+   ],
+   "fichaServicio": [
+    "how-much-does-a-pool-screen-enclosure-cost-in-florida",
+    "replace-a-pool-cage-or-keep-rescreening-it",
+    "panoramic-vs-traditional-pool-enclosures"
+   ],
+   "entradillaFicha": "What changes the scope of a new cage, when rescreening stops making sense, and how panoramic framing changes the view."
   },
   {
    "clave": "rooms",
@@ -462,7 +503,13 @@
      "funnelStage": "consideration",
      "ordenIndice": 68
     }
-   ]
+   ],
+   "fichaServicio": [
+    "screen-room-vs-screened-patio-vs-pool-enclosure",
+    "how-much-does-a-screen-room-cost-in-florida",
+    "before-you-enclose-your-patio"
+   ],
+   "entradillaFicha": "What separates a screen room from a screened patio, what the project costs, and what to settle before you enclose."
   },
   {
    "clave": "screens",
@@ -528,7 +575,13 @@
      "funnelStage": "decision",
      "ordenIndice": 75
     }
-   ]
+   ],
+   "fichaServicio": [
+    "are-motorized-retractable-screens-worth-it",
+    "motorized-screens-vs-a-fixed-screen-room",
+    "choosing-the-right-screen-mesh"
+   ],
+   "entradillaFicha": "Whether motorized screens are worth it on a Florida patio, how they compare to a fixed room, and which mesh to choose."
   },
   {
    "clave": "decks",
@@ -594,7 +647,13 @@
      "funnelStage": "consideration",
      "ordenIndice": 82
     }
-   ]
+   ],
+   "fichaServicio": [
+    "composite-vs-wood-decking-in-florida",
+    "how-much-does-a-custom-deck-cost-in-florida",
+    "deck-layout-mistakes-to-avoid"
+   ],
+   "entradillaFicha": "How composite and wood hold up in Florida, what moves the price, and the layout mistakes that are expensive to undo."
   },
   {
    "clave": "landscaping",
@@ -660,7 +719,13 @@
      "funnelStage": "consideration",
      "ordenIndice": 89
     }
-   ]
+   ],
+   "fichaServicio": [
+    "landscaping-around-a-pool",
+    "privacy-landscaping-around-a-pool",
+    "designing-landscaping-around-a-new-pool"
+   ],
+   "entradillaFicha": "What to plant near the water, how to get privacy without closing in the yard, and why the pool and the landscape are one project."
   },
   {
    "clave": "irrigation",
@@ -726,7 +791,13 @@
      "funnelStage": "consideration",
      "ordenIndice": 96
     }
-   ]
+   ],
+   "fichaServicio": [
+    "is-a-smart-irrigation-system-worth-it-in-florida",
+    "irrigation-fixes-before-new-landscaping",
+    "smart-irrigation-vs-traditional-sprinklers"
+   ],
+   "entradillaFicha": "Whether smart control earns its cost here, what to fix before new plants go in, and how it compares to a standard timer."
   },
   {
    "clave": "furniture",
@@ -792,7 +863,13 @@
      "funnelStage": "consideration",
      "ordenIndice": 103
     }
-   ]
+   ],
+   "fichaServicio": [
+    "best-outdoor-furniture-materials-for-florida",
+    "how-to-furnish-a-pool-area",
+    "outdoor-living-areas-that-feel-like-real-rooms"
+   ],
+   "entradillaFicha": "Which materials survive Florida outdoors, how to furnish a pool deck without crowding it, and what makes a patio read as a room."
   },
   {
    "clave": "pole",
@@ -858,7 +935,13 @@
      "funnelStage": "decision",
      "ordenIndice": 110
     }
-   ]
+   ],
+   "fichaServicio": [
+    "pole-barn-vs-steel-building-in-florida",
+    "how-much-does-a-steel-building-cost-in-florida",
+    "slab-drainage-and-site-prep-for-a-steel-building"
+   ],
+   "entradillaFicha": "How a pole barn differs from a steel building, what changes the scope, and what has to happen before the steel arrives."
   },
   {
    "clave": "light",
@@ -924,7 +1007,13 @@
      "funnelStage": "decision",
      "ordenIndice": 117
     }
-   ]
+   ],
+   "fichaServicio": [
+    "permanent-soffit-lighting-vs-landscape-lighting",
+    "how-much-does-permanent-soffit-lighting-cost",
+    "how-to-light-a-florida-home-without-overdoing-it"
+   ],
+   "entradillaFicha": "Where permanent soffit lighting beats landscape lighting, what the installation costs, and how to light a house without overdoing it."
   }
  ]
 }
