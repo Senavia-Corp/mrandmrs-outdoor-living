@@ -545,6 +545,50 @@ const SITIO_R22 = process.env.PUBLIC_SITE_URL || 'https://www.mrandmrsoutdoorliv
   }
 }
 
+/**
+ * ── BLOG-SANITY · EL UNICO ARTICULO CON `&` EN EL TITULO, Y SALIA ROTO ───────────────────────
+ *
+ * El origen de Webflow entregaba el `headline` y el `name` del BlogPosting con el ampersand
+ * DOBLEMENTE ESCAPADO: dentro del JSON-LD ponia literalmente `&amp;`, no `&`.
+ *
+ * Por que es un defecto y no una diferencia de codificacion: el contenido de un
+ * `<script type="application/ld+json">` es RAW TEXT para el parser de HTML, o sea que las
+ * entidades NO se decodifican. Lo que lee Google es «Costs, Timeline &amp; Process», con las
+ * cinco letras dentro. En el `<title>` y en el `<h1>` de la misma pagina pone «&», bien.
+ *
+ * Se REPARA, no se replica: es la decision D4 del 3-sep-2026 para el JSON-LD roto de las 8
+ * `/project/*` -«replicar un defecto que solo perjudica, cuando repararlo no cambia el
+ * contenido, era paridad mal entendida»-. Aqui ademas el valor bueno ya estaba en Sanity.
+ *
+ * VA DESPUES DEL BLOQUE DE R22 Y **FUSIONA**, no asigna. R22 hace `JSONLD_ARREGLADO[ruta] = {…}`
+ * en bucle para las 10 rutas de blog, asi que una entrada estatica arriba se pierde en silencio
+ * — comprobado: la puerta seguia roja con la declaracion puesta.
+ *
+ * Y NO SE FIA: si el baseline dejara de traer el valor malo, aborta. Una declaracion que
+ * sobrevive a la desaparicion de lo que declaraba es un agujero con comentario.
+ */
+{
+  const ruta = '/blogs/complete-guide-to-pool-construction-in-florida-costs-timeline-process';
+  const MALO = 'Complete Guide to Pool Construction in Florida: Costs, Timeline &amp; Process';
+  const BUENO = 'Complete Guide to Pool Construction in Florida: Costs, Timeline & Process';
+  const base = JSON.parse(fs.readFileSync(path.join(RAIZ, 'baseline/seo.json'), 'utf8'));
+  const b = base[ruta]?.jsonLd?.[0];
+  const campos = ['headline', 'name'].filter((k) => b?.[k] === MALO);
+  if (campos.length !== 2) {
+    console.error(`\n  ROJO check-seo: la declaracion del ampersand de ${ruta} ya no casa con el`
+      + ` baseline (${campos.length} de 2 campos). O se arreglo en el origen y sobra, o cambio de`
+      + ' forma. Reviselo antes de seguir.\n');
+    process.exit(1);
+  }
+  const ya = JSONLD_ARREGLADO[ruta];
+  JSONLD_ARREGLADO[ruta] = {
+    bloque: 0,
+    motivo: `${ya?.motivo ? `${ya.motivo} · ` : ''}BLOG-SANITY: el \`&\` del titulo salia `
+      + 'doblemente escapado (`&amp;`) dentro del JSON-LD, donde las entidades no se decodifican.',
+    cambios: [...(ya?.cambios ?? []), ...campos.map((k) => [k, MALO, BUENO])],
+  };
+}
+
 /** Lee/escribe por camino con puntos: `mainEntity.mainEntity.4.name`. */
 const porCamino = (o, c) => c.split('.').reduce((x, k) => (x == null ? x : x[k]), o);
 const ponCamino = (o, c, v) => {

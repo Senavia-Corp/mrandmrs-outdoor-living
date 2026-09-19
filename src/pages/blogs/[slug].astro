@@ -1,0 +1,145 @@
+---
+/**
+ * LAS FICHAS DE BLOG, SERVIDAS DESDE SANITY.
+ *
+ * Sustituye a los 10 `.astro` derivados que habia aqui, cuyo cuerpo entero era una constante
+ * `T0` con el HTML horneado de Webflow. El precedente exacto es la Fase 6b con
+ * `src/pages/pool-builders/[slug].astro`, que borro los 53 estaticos de ciudad por lo mismo.
+ *
+ * ─────────────────────────────────────────────────────────────────────────────
+ * FALLA CERRADO, Y ES A PROPOSITO
+ *
+ * Sin datos no se construye media coleccion: N URLs que desaparecen en silencio son N errores
+ * 404 con el despliegue en VERDE. La cache de escape (`MM_SANITY_CACHE=1`) existe para poder
+ * construir sin red, pero se pide A MANO: si se activara sola, una caida de Sanity se serviria
+ * como si fuera el CMS vivo y nadie se enteraria.
+ *
+ * ─────────────────────────────────────────────────────────────────────────────
+ * QUE NO SALE DE SANITY, Y POR QUE
+ *
+ *   · El `<title>` de `/blogs/commercial-pool-construction-...` lo pisa
+ *     `src/data/meta-propia.json`. NO es una segunda fuente de verdad: es la DECLARACION que
+ *     `check-seo.mjs` deriva (`TITULO_DE_META`) para saber que ese titulo se aparta del
+ *     baseline de Webflow a proposito. Quitar la entrada pondria la puerta roja.
+ *   · El `BreadcrumbList` lo inyecta `Base.astro`, que ademas desduplica: emitir dos en la
+ *     misma pagina es peor que no emitir ninguno.
+ *
+ * ─────────────────────────────────────────────────────────────────────────────
+ * EL RAIL «MOST READ ARTICLES» SALE DE `relatedPosts`
+ *
+ * En los 10 heredados esa lista es, byte a byte, la que ya servia el sitio — incluidos los 7
+ * articulos que se enlazan A SI MISMOS. No se arregla aqui: este fichero es una migracion de
+ * render y tiene que poder demostrar que no cambia nada. El autoenlace es un defecto de
+ * CONTENIDO y se arregla como contenido, declarado, en el paso editorial.
+ */
+import Base from '../../layouts/Base.astro';
+import { aHtml } from '../../lib/portable-text.mjs';
+import { CONSULTA_BLOG } from '../../lib/blog-groq.mjs';
+
+export async function getStaticPaths() {
+  /* DENTRO de la funcion a proposito: Astro extrae `getStaticPaths` a su propio modulo para el
+   * prerender y alli no existe nada declarado fuera. Ya dio `PID is not defined` una vez. */
+  const PID = import.meta.env.PUBLIC_SANITY_PROJECT_ID ?? 'm273z6jc';
+  const DS = import.meta.env.PUBLIC_SANITY_DATASET ?? 'production';
+
+  /* La consulta vive en `src/lib/blog-groq.mjs` y la comparte la cache de escape: dos
+   * copias de una GROQ divergen el dia que nadie mira. */
+  let result; let error;
+  try {
+    const r = await fetch(`https://${PID}.api.sanity.io/v2024-01-01/data/query/${DS}`
+      + `?query=${encodeURIComponent(CONSULTA_BLOG)}`);
+    ({ result, error } = await r.json());
+  } catch (e) {
+    error = { message: `no se pudo hablar con Sanity: ${e.message}` };
+  }
+
+  if ((error || !result?.length) && process.env.MM_SANITY_CACHE === '1') {
+    const { default: cache } = await import('../../data/blogs-sanity.json');
+    console.warn(`>>> Sanity no responde y MM_SANITY_CACHE=1: se construyen los ${cache.length} `
+      + 'articulos de la cache. Es una copia versionada, NO es el CMS vivo.');
+    return cache.map((doc) => ({ params: { slug: doc.slug }, props: { doc } }));
+  }
+  if (error || !result?.length) {
+    throw new Error('Sanity no devolvio blogPost: ' + JSON.stringify(error ?? 'vacio'));
+  }
+  return result.map((doc) => ({ params: { slug: doc.slug }, props: { doc } }));
+}
+
+const { doc } = Astro.props;
+const ruta = `/blogs/${doc.slug}`;
+
+/* Guardas de forma. Un articulo al que le falte esto no se pinta a medias: se para el build con
+ * el slug puesto, que es lo que permite arreglarlo en Sanity en treinta segundos. */
+for (const campo of ['title', 'summary', 'blog', 'portada', 'seo']) {
+  if (!doc[campo]) throw new Error(`${ruta}: falta "${campo}" en Sanity`);
+}
+if (!doc.seo.title || !doc.seo.description) throw new Error(`${ruta}: seo incompleto en Sanity`);
+if (!doc.portada.src || !doc.portada.alt) throw new Error(`${ruta}: la portada no tiene src o alt`);
+
+const cuerpo = aHtml(doc.blog, ruta);
+
+/**
+ * EL RAIL, Y EL ENLACE A SI MISMO.
+ *
+ * 7 de los 10 heredados se enlazan a SI MISMOS en «Most Read Articles» (R22-BLOG-IMG lo dejo
+ * abierto en su punto 5). Aqui se conserva tal cual —este fichero es una migracion de render y
+ * tiene que poder demostrar que no cambia un byte—, incluido el par de atributos que Webflow le
+ * ponia al enlace cuyo `href` es la pagina actual:
+ *
+ *     aria-current="page"   y   la clase `w--current`
+ *
+ * `w--current` resulta ser COSMETICAMENTE INERTE aqui: las 11 reglas que la usan en webflow.css
+ * son de `.w-nav-link`, `.w-dropdown-link`, `.w-tab-link`, `.nav-link`, `.link-2`, `.link-3`,
+ * `.tab-*`, `.navbar-logo` y `.item-submenu`, y ninguna casa con
+ * `.button.button-styles.secundary.w-button`. O sea que no mueve un pixel. Se reproduce de todos
+ * modos porque `aria-current="page"` SI dice algo —«este enlace es la pagina en la que estas»— y
+ * perderlo en silencio seria una regresion de accesibilidad colada dentro de un refactor.
+ *
+ * Cuando el paso editorial quite los autoenlaces, esto dejara de dispararse solo.
+ */
+const relacionados = (doc.relacionados ?? [])
+  .filter((r) => r?.slug && r?.portada)
+  .map((r) => ({ ...r, esActual: r.slug === doc.slug }));
+
+/* El JSON-LD conserva EXACTAMENTE la forma que ya servia: mismas claves, mismo orden, y
+ * `description` del `summary` (no de `seo.description`, que es la que va al og). */
+const SEO = {
+  meta: {
+    'og:title': doc.seo.title,
+    'og:description': doc.seo.description,
+    'og:image': doc.portada.src,
+    'twitter:title': doc.seo.title,
+    'twitter:description': doc.seo.description,
+    'twitter:image': doc.portada.src,
+    'og:type': 'website',
+    'twitter:card': 'summary_large_image',
+  },
+  jsonLd: [{
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    author: { '@type': 'Organization', name: 'Mr. and Mrs. Outdoor Living' },
+    dateModified: doc.updatedAt ?? doc.publishedAt,
+    datePublished: doc.publishedAt,
+    description: doc.summary,
+    headline: doc.title,
+    image: { '@type': 'ImageObject', url: doc.portada.src },
+    inLanguage: 'en',
+    name: doc.title,
+    publisher: {
+      '@type': 'Organization',
+      logo: { '@type': 'ImageObject', url: '/images/site/logo-mr-mr.svg' },
+      name: 'Mr. and Mrs. Outdoor Living',
+    },
+    url: ruta,
+  }],
+};
+---
+<Base titulo={doc.seo.title} descripcion={doc.seo.description} ruta={ruta} seo={SEO} jsonLdCrudo={[]}>
+  <section class="hero-project"><div class="w-layout-blockcontainer container w-container"><div class="wrapper-hero-project"><div data-w-id="4e3ac630-04d8-ebcf-c5f5-c24ea7e9ba56" class="block-right-hero"><h1 class="white">{doc.title}</h1><p>{doc.summary}</p></div></div></div></section>
+
+  <section class="blog-section"><div class="w-layout-blockcontainer container w-container"><div class="wrapper-cms-blog"><div class="blog-block"><div class="w-richtext" set:html={cuerpo} /></div><div class="cms-blogs-block"><h2>Most Read Articles</h2><div class="cms-related-articles w-dyn-list"><div role="list" class="list-related-articles w-dyn-items">{relacionados.map((r) => (
+    <div role="listitem" class="w-dyn-item"><div class="card related-blogs"><img src={r.portada.src} loading="lazy" alt="" sizes={r.portada.sizes} srcset={r.portada.srcset} class="related-image" /><div class="wrapper-content-related-blogs"><h3>{r.title}</h3><p class="paragraph-mini">{r.summary}</p><div class="wrapper-buttons right"><a href={`/blogs/${r.slug}`} aria-current={r.esActual ? 'page' : undefined} class={r.esActual ? 'button button-styles secundary w-button w--current' : 'button button-styles secundary w-button'} aria-label={`Read More: ${r.title}`}>Read More</a></div></div></div></div>
+  ))}</div></div></div></div></div></section>
+
+  <section class="cta-footer"><div class="w-layout-blockcontainer container w-container"><div class="wrapper-cta-footer"><div data-w-id="1751d21a-c7f6-4875-4d5c-669cd0d5b935" class="wrapper-vertical-text"><h2>Request a Design-Build Project Evaluation</h2><div class="text-block-3">Share your property details, project scope, and investment range. Our licensed design-build pool builders will review your request and confirm alignment before next steps.</div><div class="wrapper-buttons-center"><a href="/request-estimated" class="button button-styles w-button">Get a Free Estimate</a></div></div></div></div></section>
+</Base>

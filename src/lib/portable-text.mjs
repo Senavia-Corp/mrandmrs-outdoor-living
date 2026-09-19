@@ -39,13 +39,20 @@
  * Lo que anade son `link` y `image`, que es justo lo que el encargo viene a arreglar.
  */
 
-/** Escape de texto. `"` y `'` no hacen falta fuera de atributos, pero salen gratis. */
+/**
+ * Escape de TEXTO. Solo `&`, `<` y `>`.
+ *
+ * `"` NO se escapa, y no es una omision: dentro de un nodo de texto la comilla no significa
+ * nada, y escaparla cambia los BYTES del HTML sin cambiar lo que se ve. Se pillo comparando la
+ * salida contra la que ya servia el sitio: `52-60" blades` salia como `52-60&quot; blades` y las
+ * paginas con pulgadas en el cuerpo crecian entre 10 y 30 bytes. Dentro de un atributo si hace
+ * falta, y de eso se ocupa `escAttr`.
+ */
 const esc = (s) => String(s)
-  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-  .replace(/"/g, '&quot;');
+  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-/** Escape de valor de atributo. */
-const escAttr = (s) => esc(s).replace(/'/g, '&#39;');
+/** Escape de valor de atributo: ahi `"` y `'` SI cierran el valor. */
+const escAttr = (s) => esc(s).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 
 const ESTILOS = { normal: 'p', h2: 'h2', h3: 'h3', h4: 'h4' };
 const MARCAS = { strong: 'strong', em: 'em', underline: 'u', 'strike-through': 's', code: 'code' };
