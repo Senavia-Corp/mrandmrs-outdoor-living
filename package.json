@@ -46,6 +46,7 @@
     "check:tokens": "node scripts/check-tokens.mjs",
     "check:portable": "node scripts/check-portable-text.mjs",
     "check:encabezados": "node scripts/check-encabezados.mjs",
+    "check:blog": "node scripts/check-blog.mjs",
     "check:estructura": "node scripts/check-estructura-servicios.mjs",
     "check:estructura:ciudades": "node scripts/check-estructura-ciudades.mjs",
     "check:captacion": "node scripts/build-captacion-ciudades.mjs --check",
