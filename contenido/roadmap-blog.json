@@ -1,0 +1,930 @@
+{
+ "_lee_esto": [
+  "EL ROADMAP EDITORIAL, como dato. Sale de PROMPT-BLOG-SANITY.md (FASE 5) y de las 14",
+  "secciones de ficha de servicio de la FASE 6.",
+  "",
+  "`galeria` es la clave del servicio en src/data/gallery-procedencia.json: de ahi salen las",
+  "fotos publicables de ese cluster. `light` y `furniture` estan a CERO fotos reales.",
+  "",
+  "`pergola-vs-louvered-roof` aparece UNA sola vez, en el cluster de pergolas, y el de",
+  "louvered lo enlaza. El encargo lo pide expresamente: «una sola guia fuerte compartida»."
+ ],
+ "clusters": [
+  {
+   "clave": "new-pool-construction",
+   "categoria": "new-pool-construction",
+   "servicio": "custom-pool-spa-builders-in-north-south-florida",
+   "galeria": "construction",
+   "nombre": "New Pool Construction",
+   "encabezadoFicha": "Planning Your New Pool? Start Here",
+   "articulos": [
+    {
+     "slug": "how-much-does-a-custom-pool-cost-in-florida",
+     "title": "How Much Does a Custom Pool Really Cost in Florida? 8 Decisions That Move the Price",
+     "cardTitle": "What Really Moves a Pool's Price",
+     "searchIntent": "commercial",
+     "funnelStage": "consideration",
+     "ordenIndice": 21
+    },
+    {
+     "slug": "before-you-build-a-pool-in-florida",
+     "title": "Before You Build a Pool in Florida: 12 Decisions to Make Before Excavation",
+     "cardTitle": "12 Decisions Before Excavation",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 22
+    },
+    {
+     "slug": "how-to-choose-a-pool-builder-in-florida",
+     "title": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign",
+     "cardTitle": "10 Questions Before You Sign",
+     "searchIntent": "commercial",
+     "funnelStage": "decision",
+     "ordenIndice": 23
+    },
+    {
+     "slug": "what-makes-a-pool-look-custom",
+     "title": "What Makes a Pool Look Custom? 9 Design Choices That Transform the Backyard",
+     "cardTitle": "9 Choices That Read as Custom",
+     "searchIntent": "informational",
+     "funnelStage": "awareness",
+     "ordenIndice": 24
+    },
+    {
+     "slug": "pool-and-spa-or-pool-only",
+     "title": "Pool & Spa or Pool Only? How to Decide Before Your Design Is Final",
+     "cardTitle": "Pool & Spa, or Pool Only?",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 25
+    },
+    {
+     "slug": "building-a-pool-in-north-florida",
+     "title": "Building a Pool in North Florida? What Gainesville & Ocala Homeowners Should Plan For",
+     "cardTitle": "Building in Gainesville & Ocala",
+     "searchIntent": "local",
+     "funnelStage": "consideration",
+     "ordenIndice": 26
+    },
+    {
+     "slug": "pool-upgrades-worth-planning-before-construction",
+     "title": "10 Pool Upgrades Worth Planning Before Construction Begins",
+     "cardTitle": "10 Upgrades to Plan Up Front",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 27
+    }
+   ]
+  },
+  {
+   "clave": "pool-remodeling",
+   "categoria": "pool-remodeling",
+   "servicio": "pool-remodeling-renovation-in-north-south-florida",
+   "galeria": "remodeling",
+   "nombre": "Complete Pool Remodeling",
+   "encabezadoFicha": "Considering a Pool Renovation? Read These First",
+   "articulos": [
+    {
+     "slug": "how-much-does-a-pool-remodel-cost-in-florida",
+     "title": "How Much Does a Complete Pool Remodel Cost in Florida? What Actually Changes the Scope",
+     "cardTitle": "What Changes a Remodel's Scope",
+     "searchIntent": "commercial",
+     "funnelStage": "consideration",
+     "ordenIndice": 28
+    },
+    {
+     "slug": "remodel-or-rebuild-your-pool",
+     "title": "Remodel or Rebuild? How to Decide What Your Existing Pool Really Needs",
+     "cardTitle": "Remodel or Rebuild?",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 29
+    },
+    {
+     "slug": "pool-remodeling-decisions-that-transform-an-old-pool",
+     "title": "9 Pool Remodeling Decisions That Can Make an Old Pool Feel Completely New",
+     "cardTitle": "9 Decisions That Change Everything",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 30
+    },
+    {
+     "slug": "pool-resurfacing-vs-full-pool-renovation",
+     "title": "Pool Resurfacing vs. Full Pool Renovation: What's the Difference?",
+     "cardTitle": "Resurfacing vs. Full Renovation",
+     "searchIntent": "informational",
+     "funnelStage": "awareness",
+     "ordenIndice": 31
+    },
+    {
+     "slug": "what-to-upgrade-during-a-complete-pool-remodel",
+     "title": "What Should You Upgrade During a Complete Pool Remodel?",
+     "cardTitle": "What to Upgrade While It's Open",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 32
+    },
+    {
+     "slug": "how-long-does-a-pool-remodel-take-in-florida",
+     "title": "How Long Does a Complete Pool Remodel Take in Florida?",
+     "cardTitle": "How Long a Remodel Takes",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 33
+    },
+    {
+     "slug": "before-and-after-pool-remodel-ideas",
+     "title": "Before & After Pool Remodel Ideas: 10 Changes With the Biggest Visual Impact",
+     "cardTitle": "10 Changes You Actually See",
+     "searchIntent": "informational",
+     "funnelStage": "awareness",
+     "ordenIndice": 34
+    }
+   ]
+  },
+  {
+   "clave": "pergolas",
+   "categoria": "pergolas-louvered-roofs",
+   "servicio": "custom-aluminum-pergola-builders-in-north-south-florida",
+   "galeria": "pergolas",
+   "nombre": "Aluminum Pergolas",
+   "encabezadoFicha": "Planning a Pergola? Start With These",
+   "articulos": [
+    {
+     "slug": "how-much-does-an-aluminum-pergola-cost-in-florida",
+     "title": "How Much Does an Aluminum Pergola Cost in Florida? What Changes the Price",
+     "cardTitle": "What Changes a Pergola's Price",
+     "searchIntent": "commercial",
+     "funnelStage": "consideration",
+     "ordenIndice": 35
+    },
+    {
+     "slug": "aluminum-vs-wood-pergolas-in-florida",
+     "title": "Aluminum vs. Wood Pergolas in Florida: Which Makes More Sense Long Term?",
+     "cardTitle": "Aluminum vs. Wood, Long Term",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 36
+    },
+    {
+     "slug": "attached-vs-freestanding-pergola",
+     "title": "Attached vs. Freestanding Pergola: Which Layout Works Better for Your Backyard?",
+     "cardTitle": "Attached or Freestanding?",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 37
+    },
+    {
+     "slug": "pergola-vs-louvered-roof",
+     "title": "Pergola vs. Louvered Roof: Which One Should You Build?",
+     "cardTitle": "Pergola vs. Louvered Roof",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 38
+    },
+    {
+     "slug": "do-you-need-a-permit-for-a-pergola-in-florida",
+     "title": "Do You Need a Permit for a Pergola in Florida? What Homeowners Should Know",
+     "cardTitle": "Do You Need a Permit?",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 39
+    },
+    {
+     "slug": "pergola-design-decisions-before-construction",
+     "title": "7 Pergola Design Decisions to Make Before Construction Starts",
+     "cardTitle": "7 Decisions Before You Build",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 40
+    },
+    {
+     "slug": "pergola-beside-a-pool-features-to-plan-together",
+     "title": "Building a Pergola Beside a Pool? 8 Features Worth Planning Together",
+     "cardTitle": "Pergola + Pool: Plan Them Together",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 41
+    }
+   ]
+  },
+  {
+   "clave": "louvered",
+   "categoria": "pergolas-louvered-roofs",
+   "servicio": "motorized-louvered-roof-systems-in-north-south-florida",
+   "galeria": "louvered",
+   "nombre": "Motorized Louvered Roofs",
+   "encabezadoFicha": "Thinking About a Louvered Roof?",
+   "articulos": [
+    {
+     "slug": "is-a-motorized-louvered-roof-worth-it-in-florida",
+     "title": "Is a Motorized Louvered Roof Worth It in Florida?",
+     "cardTitle": "Is It Worth It in Florida?",
+     "searchIntent": "commercial",
+     "funnelStage": "consideration",
+     "ordenIndice": 42
+    },
+    {
+     "slug": "how-much-does-a-motorized-louvered-roof-cost",
+     "title": "How Much Does a Motorized Louvered Roof Cost? 7 Factors That Change the Project",
+     "cardTitle": "7 Factors That Change the Price",
+     "searchIntent": "commercial",
+     "funnelStage": "consideration",
+     "ordenIndice": 43
+    },
+    {
+     "slug": "louvered-roof-in-florida-rain-and-high-winds",
+     "title": "What Happens to a Louvered Roof During Florida Rain and High Winds?",
+     "cardTitle": "Rain, Wind and What Happens",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 44
+    },
+    {
+     "slug": "features-to-compare-before-buying-a-louvered-roof",
+     "title": "7 Features to Compare Before Buying a Motorized Louvered Roof",
+     "cardTitle": "7 Features Worth Comparing",
+     "searchIntent": "commercial",
+     "funnelStage": "decision",
+     "ordenIndice": 45
+    },
+    {
+     "slug": "designing-a-complete-louvered-roof-system",
+     "title": "Lights, Fans, Screens & More: How to Design a Complete Louvered Roof System",
+     "cardTitle": "Designing the Whole System",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 46
+    },
+    {
+     "slug": "questions-to-ask-a-louvered-roof-installer",
+     "title": "Questions to Ask Before Hiring a Louvered Roof Installer in Florida",
+     "cardTitle": "Questions Before You Hire",
+     "searchIntent": "commercial",
+     "funnelStage": "decision",
+     "ordenIndice": 47
+    }
+   ]
+  },
+  {
+   "clave": "kitchen",
+   "categoria": "outdoor-kitchens",
+   "servicio": "custom-outdoor-kitchens-for-north-south-florida-homes",
+   "galeria": "kitchen",
+   "nombre": "Outdoor Kitchens",
+   "encabezadoFicha": "Designing an Outdoor Kitchen? Read These",
+   "articulos": [
+    {
+     "slug": "how-much-does-an-outdoor-kitchen-cost-in-florida",
+     "title": "How Much Does a Custom Outdoor Kitchen Cost in Florida? What Actually Drives the Price",
+     "cardTitle": "What Drives the Price",
+     "searchIntent": "commercial",
+     "funnelStage": "consideration",
+     "ordenIndice": 48
+    },
+    {
+     "slug": "outdoor-kitchen-appliance-decisions",
+     "title": "9 Decisions to Make Before You Choose Your Outdoor Kitchen Appliances",
+     "cardTitle": "9 Decisions Before Appliances",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 49
+    },
+    {
+     "slug": "grill-island-vs-full-outdoor-kitchen",
+     "title": "Built-In Grill Island vs. Full Outdoor Kitchen: Which One Fits How You Entertain?",
+     "cardTitle": "Grill Island or Full Kitchen?",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 50
+    },
+    {
+     "slug": "best-outdoor-kitchen-materials-for-florida",
+     "title": "Best Outdoor Kitchen Materials for Florida Heat, Humidity & Rain",
+     "cardTitle": "Materials That Survive Florida",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 51
+    },
+    {
+     "slug": "gas-electric-and-plumbing-for-an-outdoor-kitchen",
+     "title": "Gas, Electric, Plumbing: What Your Outdoor Kitchen Needs Before Construction",
+     "cardTitle": "Utilities to Run First",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 52
+    },
+    {
+     "slug": "outdoor-kitchen-layout-guide",
+     "title": "The Outdoor Kitchen Layout Guide: How to Design Around the Way You Actually Cook",
+     "cardTitle": "Layout Around How You Cook",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 53
+    },
+    {
+     "slug": "covered-vs-uncovered-outdoor-kitchen",
+     "title": "Covered vs. Uncovered Outdoor Kitchen: What Works Better in Florida?",
+     "cardTitle": "Covered or Uncovered?",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 54
+    }
+   ]
+  },
+  {
+   "clave": "enclosures",
+   "categoria": "screens-enclosures",
+   "servicio": "pool-screen-enclosures-for-north-south-florida-pools",
+   "galeria": "enclosures",
+   "nombre": "Pool Screen Enclosures",
+   "encabezadoFicha": "Planning a Pool Enclosure? Start Here",
+   "articulos": [
+    {
+     "slug": "how-much-does-a-pool-screen-enclosure-cost-in-florida",
+     "title": "How Much Does a New Pool Screen Enclosure Cost in Florida? What Changes the Scope",
+     "cardTitle": "What Changes the Scope",
+     "searchIntent": "commercial",
+     "funnelStage": "consideration",
+     "ordenIndice": 55
+    },
+    {
+     "slug": "replace-a-pool-cage-or-keep-rescreening-it",
+     "title": "Should You Replace an Old Pool Cage or Keep Rescreening It?",
+     "cardTitle": "Replace or Keep Rescreening?",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 56
+    },
+    {
+     "slug": "panoramic-vs-traditional-pool-enclosures",
+     "title": "Panoramic vs. Traditional Pool Enclosures: Which Look Is Right for Your Backyard?",
+     "cardTitle": "Panoramic vs. Traditional",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 57
+    },
+    {
+     "slug": "pool-enclosure-wind-ratings-in-florida",
+     "title": "What Should You Know About Wind Ratings Before Building a Pool Enclosure?",
+     "cardTitle": "Wind Ratings, Explained",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 58
+    },
+    {
+     "slug": "design-decisions-that-make-a-pool-enclosure-feel-open",
+     "title": "7 Design Decisions That Make a Pool Enclosure Feel More Open",
+     "cardTitle": "7 Ways to Keep It Open",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 59
+    },
+    {
+     "slug": "pool-enclosure-or-open-pool",
+     "title": "Pool Enclosure or Open Pool? The Florida Homeowner's Trade-Off Guide",
+     "cardTitle": "Enclosure or Open Pool?",
+     "searchIntent": "informational",
+     "funnelStage": "awareness",
+     "ordenIndice": 60
+    },
+    {
+     "slug": "planning-a-pool-deck-and-screen-enclosure-together",
+     "title": "Planning a Pool Deck and Screen Enclosure Together? Start With These Decisions",
+     "cardTitle": "Deck + Enclosure Together",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 61
+    }
+   ]
+  },
+  {
+   "clave": "rooms",
+   "categoria": "screens-enclosures",
+   "servicio": "patio-screen-rooms-enclosures-in-north-south-florida",
+   "galeria": "rooms",
+   "nombre": "Patio Screen Rooms",
+   "encabezadoFicha": "Enclosing Your Patio? Read These First",
+   "articulos": [
+    {
+     "slug": "screen-room-vs-screened-patio-vs-pool-enclosure",
+     "title": "Screen Room vs. Screened Patio vs. Pool Enclosure: What's the Difference?",
+     "cardTitle": "Three Things, Three Names",
+     "searchIntent": "informational",
+     "funnelStage": "awareness",
+     "ordenIndice": 62
+    },
+    {
+     "slug": "how-much-does-a-screen-room-cost-in-florida",
+     "title": "How Much Does a Screen Room Cost in Florida? What Changes the Project",
+     "cardTitle": "What Changes the Project",
+     "searchIntent": "commercial",
+     "funnelStage": "consideration",
+     "ordenIndice": 63
+    },
+    {
+     "slug": "before-you-enclose-your-patio",
+     "title": "Before You Enclose Your Patio: 8 Decisions Florida Homeowners Should Make First",
+     "cardTitle": "8 Decisions to Make First",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 64
+    },
+    {
+     "slug": "which-screen-mesh-for-a-florida-patio",
+     "title": "Which Screen Mesh Should You Choose for a Florida Patio?",
+     "cardTitle": "Choosing the Mesh",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 65
+    },
+    {
+     "slug": "can-a-screen-room-make-a-patio-comfortable-year-round",
+     "title": "Can a Screen Room Make Your Patio More Comfortable Year-Round?",
+     "cardTitle": "Comfortable Year-Round?",
+     "searchIntent": "informational",
+     "funnelStage": "awareness",
+     "ordenIndice": 66
+    },
+    {
+     "slug": "do-you-need-a-permit-to-enclose-a-patio-in-florida",
+     "title": "Do You Need a Permit to Enclose a Patio in Florida?",
+     "cardTitle": "Do You Need a Permit?",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 67
+    },
+    {
+     "slug": "screen-room-and-outdoor-kitchen-together",
+     "title": "Screen Room + Outdoor Kitchen: How to Design Both Without Compromising the Space",
+     "cardTitle": "Screen Room + Kitchen",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 68
+    }
+   ]
+  },
+  {
+   "clave": "screens",
+   "categoria": "screens-enclosures",
+   "servicio": "motorized-retractable-screens-in-north-south-florida",
+   "galeria": "screens",
+   "nombre": "Motorized Retractable Screens",
+   "encabezadoFicha": "Considering Motorized Screens?",
+   "articulos": [
+    {
+     "slug": "are-motorized-retractable-screens-worth-it",
+     "title": "Are Motorized Retractable Screens Worth It for a Florida Patio?",
+     "cardTitle": "Are They Worth It?",
+     "searchIntent": "commercial",
+     "funnelStage": "consideration",
+     "ordenIndice": 69
+    },
+    {
+     "slug": "how-much-do-motorized-patio-screens-cost",
+     "title": "How Much Do Motorized Patio Screens Cost? What Changes the Installation",
+     "cardTitle": "What Changes the Install",
+     "searchIntent": "commercial",
+     "funnelStage": "consideration",
+     "ordenIndice": 70
+    },
+    {
+     "slug": "motorized-screens-vs-a-fixed-screen-room",
+     "title": "Motorized Screens vs. a Fixed Screen Room: Which Is Better for Your Space?",
+     "cardTitle": "Motorized or Fixed?",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 71
+    },
+    {
+     "slug": "choosing-the-right-screen-mesh",
+     "title": "Privacy, Shade or Insect Control? How to Choose the Right Screen Mesh",
+     "cardTitle": "Privacy, Shade or Insects",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 72
+    },
+    {
+     "slug": "retractable-screens-in-wind-and-storms",
+     "title": "What Happens to Retractable Screens in Wind and Stormy Weather?",
+     "cardTitle": "Wind, Storms and Screens",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 73
+    },
+    {
+     "slug": "when-to-add-motorized-screens-to-a-pergola-or-kitchen",
+     "title": "Designing a Pergola or Outdoor Kitchen? When to Add Motorized Screens",
+     "cardTitle": "When to Add Them",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 74
+    },
+    {
+     "slug": "questions-to-ask-a-motorized-screen-installer",
+     "title": "7 Questions to Ask Before Choosing a Motorized Screen Installer",
+     "cardTitle": "7 Questions Before You Hire",
+     "searchIntent": "commercial",
+     "funnelStage": "decision",
+     "ordenIndice": 75
+    }
+   ]
+  },
+  {
+   "clave": "decks",
+   "categoria": "decks",
+   "servicio": "custom-deck-builders-in-north-south-florida",
+   "galeria": "decks",
+   "nombre": "Custom Decks",
+   "encabezadoFicha": "Planning a Deck? Start With These",
+   "articulos": [
+    {
+     "slug": "composite-vs-wood-decking-in-florida",
+     "title": "Composite vs. Wood Decking in Florida: Which Holds Up Better?",
+     "cardTitle": "Composite vs. Wood",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 76
+    },
+    {
+     "slug": "how-much-does-a-custom-deck-cost-in-florida",
+     "title": "How Much Does a Custom Deck Cost in Florida? 7 Factors That Change the Price",
+     "cardTitle": "7 Factors That Move the Price",
+     "searchIntent": "commercial",
+     "funnelStage": "consideration",
+     "ordenIndice": 77
+    },
+    {
+     "slug": "best-deck-materials-for-florida",
+     "title": "Best Deck Materials for Florida Heat, Rain & Humidity",
+     "cardTitle": "Materials for Florida Weather",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 78
+    },
+    {
+     "slug": "do-you-need-a-permit-to-build-a-deck-in-florida",
+     "title": "Do You Need a Permit to Build a Deck in Florida?",
+     "cardTitle": "Do You Need a Permit?",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 79
+    },
+    {
+     "slug": "deck-layout-mistakes-to-avoid",
+     "title": "7 Deck Layout Mistakes to Avoid Before Construction Starts",
+     "cardTitle": "7 Layout Mistakes to Avoid",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 80
+    },
+    {
+     "slug": "planning-a-deck-and-pergola-together",
+     "title": "Deck + Pergola: How to Plan Both as One Outdoor Living Space",
+     "cardTitle": "Deck + Pergola as One Space",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 81
+    },
+    {
+     "slug": "designing-a-deck-for-an-outdoor-kitchen",
+     "title": "Designing a Deck for an Outdoor Kitchen? Plan These Details First",
+     "cardTitle": "Deck Under a Kitchen",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 82
+    }
+   ]
+  },
+  {
+   "clave": "landscaping",
+   "categoria": "landscaping-irrigation",
+   "servicio": "professional-landscaping-services-in-north-south-florida",
+   "galeria": "landscaping",
+   "nombre": "Landscaping",
+   "encabezadoFicha": "Planning Your Landscape? Read These",
+   "articulos": [
+    {
+     "slug": "landscaping-around-a-pool",
+     "title": "Landscaping Around a Pool: What to Plant—and What to Keep Away From the Water",
+     "cardTitle": "What to Plant Near Water",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 83
+    },
+    {
+     "slug": "what-drives-the-cost-of-a-backyard-landscape-project",
+     "title": "What Actually Drives the Cost of a Complete Backyard Landscape Project?",
+     "cardTitle": "What Drives the Cost",
+     "searchIntent": "commercial",
+     "funnelStage": "consideration",
+     "ordenIndice": 84
+    },
+    {
+     "slug": "low-maintenance-luxury-landscaping-in-florida",
+     "title": "Luxury Florida Landscaping Without the Constant Maintenance: What to Choose",
+     "cardTitle": "Luxury, Low Maintenance",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 85
+    },
+    {
+     "slug": "privacy-landscaping-around-a-pool",
+     "title": "Privacy Landscaping Around a Pool: 9 Ways to Create Seclusion Without Closing In the Yard",
+     "cardTitle": "9 Ways to Get Privacy",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 86
+    },
+    {
+     "slug": "drainage-before-landscaping",
+     "title": "Drainage Before Landscaping: The Expensive Problem Homeowners Often Discover Too Late",
+     "cardTitle": "Drainage Comes First",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 87
+    },
+    {
+     "slug": "landscaping-vs-hardscaping",
+     "title": "Landscaping vs. Hardscaping: Where Should You Invest in Your Backyard?",
+     "cardTitle": "Where to Put the Budget",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 88
+    },
+    {
+     "slug": "designing-landscaping-around-a-new-pool",
+     "title": "Designing Landscaping Around a New Pool? Plan These Two Projects Together",
+     "cardTitle": "Pool + Landscape Together",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 89
+    }
+   ]
+  },
+  {
+   "clave": "irrigation",
+   "categoria": "landscaping-irrigation",
+   "servicio": "smart-irrigation-system-installation-in-north-south-florida",
+   "galeria": "irrigation",
+   "nombre": "Smart Irrigation",
+   "encabezadoFicha": "Rethinking Your Irrigation?",
+   "articulos": [
+    {
+     "slug": "is-a-smart-irrigation-system-worth-it-in-florida",
+     "title": "Is a Smart Irrigation System Worth It for a Florida Home?",
+     "cardTitle": "Is It Worth It?",
+     "searchIntent": "commercial",
+     "funnelStage": "consideration",
+     "ordenIndice": 90
+    },
+    {
+     "slug": "smart-irrigation-vs-traditional-sprinklers",
+     "title": "Smart Irrigation vs. Traditional Sprinklers: What Actually Changes?",
+     "cardTitle": "What Actually Changes",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 91
+    },
+    {
+     "slug": "irrigation-fixes-before-new-landscaping",
+     "title": "Installing New Landscaping? Fix These Irrigation Issues Before the Plants Go In",
+     "cardTitle": "Fix These Before Planting",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 92
+    },
+    {
+     "slug": "designing-irrigation-around-pools-and-outdoor-living",
+     "title": "How to Design Irrigation Around Pools, Decks and Outdoor Living Areas",
+     "cardTitle": "Irrigation Around Hardscape",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 93
+    },
+    {
+     "slug": "using-less-water-without-losing-a-green-lawn",
+     "title": "Can You Use Less Water Without Sacrificing a Green Florida Landscape?",
+     "cardTitle": "Less Water, Same Lawn",
+     "searchIntent": "informational",
+     "funnelStage": "awareness",
+     "ordenIndice": 94
+    },
+    {
+     "slug": "signs-your-irrigation-system-needs-a-redesign",
+     "title": "7 Signs Your Irrigation System Needs a Redesign—not Another Small Repair",
+     "cardTitle": "7 Signs It Needs a Redesign",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 95
+    },
+    {
+     "slug": "planning-landscaping-and-irrigation-together",
+     "title": "Planning Landscaping and Irrigation Together: What Homeowners Often Miss",
+     "cardTitle": "Plan Them Together",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 96
+    }
+   ]
+  },
+  {
+   "clave": "furniture",
+   "categoria": "outdoor-living",
+   "servicio": "premium-outdoor-furniture-for-north-south-florida-homes",
+   "galeria": "furniture",
+   "nombre": "Outdoor Furniture",
+   "encabezadoFicha": "Furnishing the Backyard?",
+   "articulos": [
+    {
+     "slug": "best-outdoor-furniture-materials-for-florida",
+     "title": "Best Outdoor Furniture Materials for Florida Sun, Rain & Humidity",
+     "cardTitle": "Materials That Last Outside",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 97
+    },
+    {
+     "slug": "how-to-furnish-a-pool-area",
+     "title": "How to Furnish a Pool Area Without Making It Feel Crowded",
+     "cardTitle": "Furnishing Without Crowding",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 98
+    },
+    {
+     "slug": "built-in-seating-vs-outdoor-furniture",
+     "title": "Built-In Seating vs. Outdoor Furniture: What Works Better for Your Backyard?",
+     "cardTitle": "Built-In or Loose?",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 99
+    },
+    {
+     "slug": "choosing-outdoor-fabrics-for-florida-weather",
+     "title": "Choosing Outdoor Fabrics That Can Handle Florida Weather",
+     "cardTitle": "Fabrics for Florida",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 100
+    },
+    {
+     "slug": "how-much-space-around-an-outdoor-dining-table",
+     "title": "How Much Space Do You Really Need Around an Outdoor Dining Table?",
+     "cardTitle": "Space Around a Table",
+     "searchIntent": "informational",
+     "funnelStage": "awareness",
+     "ordenIndice": 101
+    },
+    {
+     "slug": "outdoor-living-areas-that-feel-like-real-rooms",
+     "title": "How Designers Create Outdoor Living Areas That Feel Like Real Rooms",
+     "cardTitle": "Making It Feel Like a Room",
+     "searchIntent": "informational",
+     "funnelStage": "awareness",
+     "ordenIndice": 102
+    },
+    {
+     "slug": "when-to-choose-furniture-in-a-backyard-design-build",
+     "title": "When Should You Choose Furniture During a Backyard Design-Build Project?",
+     "cardTitle": "When to Choose Furniture",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 103
+    }
+   ]
+  },
+  {
+   "clave": "pole",
+   "categoria": "structures-lighting",
+   "servicio": "steel-building-pole-barn-construction-in-north-south-florida",
+   "galeria": "pole",
+   "nombre": "Steel Buildings & Pole Barns",
+   "encabezadoFicha": "Planning a Steel Building?",
+   "articulos": [
+    {
+     "slug": "pole-barn-vs-steel-building-in-florida",
+     "title": "Pole Barn vs. Steel Building in Florida: Which Structure Fits Your Property?",
+     "cardTitle": "Pole Barn or Steel Building?",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 104
+    },
+    {
+     "slug": "how-much-does-a-steel-building-cost-in-florida",
+     "title": "How Much Does a Steel Building Project Cost? What Changes the Scope",
+     "cardTitle": "What Changes the Scope",
+     "searchIntent": "commercial",
+     "funnelStage": "consideration",
+     "ordenIndice": 105
+    },
+    {
+     "slug": "wind-load-for-metal-buildings-in-florida",
+     "title": "What Florida Homeowners Should Know About Wind Load Before Building a Metal Structure",
+     "cardTitle": "Wind Load, Explained",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 106
+    },
+    {
+     "slug": "do-you-need-a-permit-for-a-pole-barn-in-florida",
+     "title": "Do You Need a Permit for a Pole Barn or Steel Building in Florida?",
+     "cardTitle": "Do You Need a Permit?",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 107
+    },
+    {
+     "slug": "slab-drainage-and-site-prep-for-a-steel-building",
+     "title": "Concrete Slab, Drainage & Site Prep: What Has to Happen Before the Building Goes Up",
+     "cardTitle": "What Happens Before the Steel",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 108
+    },
+    {
+     "slug": "planning-a-steel-building-for-rv-boat-or-workshop-storage",
+     "title": "How to Plan a Steel Building for RV, Boat, Equipment or Workshop Storage",
+     "cardTitle": "Planning for What Goes Inside",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 109
+    },
+    {
+     "slug": "questions-to-ask-a-steel-building-contractor",
+     "title": "7 Questions to Ask a Steel Building Contractor Before You Sign",
+     "cardTitle": "7 Questions Before You Sign",
+     "searchIntent": "commercial",
+     "funnelStage": "decision",
+     "ordenIndice": 110
+    }
+   ]
+  },
+  {
+   "clave": "light",
+   "categoria": "structures-lighting",
+   "servicio": "smart-soffit-led-lighting-installation-in-north-south-florida",
+   "galeria": "light",
+   "nombre": "Smart Soffit & LED Lighting",
+   "encabezadoFicha": "Planning Exterior Lighting?",
+   "articulos": [
+    {
+     "slug": "permanent-soffit-lighting-vs-landscape-lighting",
+     "title": "Permanent Soffit Lighting vs. Landscape Lighting: Where Does Each Work Best?",
+     "cardTitle": "Soffit vs. Landscape Lighting",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 111
+    },
+    {
+     "slug": "how-much-does-permanent-soffit-lighting-cost",
+     "title": "How Much Does Permanent Soffit Lighting Cost? What Changes the Installation",
+     "cardTitle": "What Changes the Install",
+     "searchIntent": "commercial",
+     "funnelStage": "consideration",
+     "ordenIndice": 112
+    },
+    {
+     "slug": "smart-led-features-worth-considering",
+     "title": "7 Smart LED Features Worth Considering Before Installation",
+     "cardTitle": "7 Features Worth Having",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 113
+    },
+    {
+     "slug": "how-to-light-a-florida-home-without-overdoing-it",
+     "title": "How to Light a Florida Home Without Making It Look Overdone",
+     "cardTitle": "Lighting Without Overdoing It",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 114
+    },
+    {
+     "slug": "where-to-install-permanent-exterior-lights",
+     "title": "Where Should Permanent Exterior Lights Actually Be Installed?",
+     "cardTitle": "Where the Lights Go",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 115
+    },
+    {
+     "slug": "when-to-plan-exterior-lighting-in-a-renovation",
+     "title": "Renovating Your Backyard? This Is When Exterior Lighting Should Be Planned",
+     "cardTitle": "When to Plan the Lighting",
+     "searchIntent": "informational",
+     "funnelStage": "consideration",
+     "ordenIndice": 116
+    },
+    {
+     "slug": "questions-to-ask-before-installing-permanent-outdoor-led-lighting",
+     "title": "Questions to Ask Before Installing Permanent Outdoor LED Lighting",
+     "cardTitle": "Questions Before You Hire",
+     "searchIntent": "commercial",
+     "funnelStage": "decision",
+     "ordenIndice": 117
+    }
+   ]
+  }
+ ]
+}
