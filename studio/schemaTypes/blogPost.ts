@@ -163,7 +163,51 @@ export default defineType({
         + 'serializador falla cerrado y el build se para con el tipo puesto.',
       type: 'array',
       group: 'contenido',
-      of: [{ type: 'block' }, { type: 'image', options: { hotspot: true } }],
+      of: [
+        {
+          type: 'block',
+          // Los estilos y marcas se declaran A PROPOSITO y son EXACTAMENTE los que sabe pintar
+          // `src/lib/portable-text.mjs`. Si el Studio ofreciera un `blockquote` que el
+          // serializador no conoce, el editor lo usaria y el build se pararia; peor aun seria
+          // que el parrafo desapareciera. Los dos lados se declaran juntos o no se declaran.
+          styles: [
+            { title: 'Párrafo', value: 'normal' },
+            { title: 'Sección (H2)', value: 'h2' },
+            { title: 'Subsección (H3)', value: 'h3' },
+            { title: 'Apartado (H4)', value: 'h4' },
+          ],
+          lists: [
+            { title: 'Viñetas', value: 'bullet' },
+            { title: 'Numerada', value: 'number' },
+          ],
+          marks: {
+            decorators: [
+              { title: 'Negrita', value: 'strong' },
+              { title: 'Cursiva', value: 'em' },
+            ],
+            annotations: [{
+              name: 'link',
+              type: 'object',
+              title: 'Enlace',
+              fields: [{
+                name: 'href',
+                type: 'string',
+                title: 'URL',
+                description:
+                  'Interna sin dominio: /services/custom-deck-builders-in-north-south-florida. '
+                  + 'Es `string` y no `url` a propósito: el tipo `url` de Sanity RECHAZA las '
+                  + 'relativas, y el enlazado interno es el objetivo de este sistema. '
+                  + '`check:enlaces` valida después que la ruta existe de verdad.',
+                validation: (Rule) => Rule.required().custom((v) =>
+                  (typeof v === 'string' && (v.startsWith('/') || /^https?:\/\//i.test(v)))
+                    ? true
+                    : 'Tiene que empezar por / (interna) o por http(s):// (externa)'),
+              }],
+            }],
+          },
+        },
+        { type: 'image', options: { hotspot: true } },
+      ],
       validation: (Rule) => Rule.required().min(1),
     },
     {

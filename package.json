@@ -44,6 +44,7 @@
     "diag:visual": "node scripts/diag-visual.mjs",
     "sliders": "node scripts/build-sliders.mjs",
     "check:tokens": "node scripts/check-tokens.mjs",
+    "check:portable": "node scripts/check-portable-text.mjs",
     "check:estructura": "node scripts/check-estructura-servicios.mjs",
     "check:estructura:ciudades": "node scripts/check-estructura-ciudades.mjs",
     "check:captacion": "node scripts/build-captacion-ciudades.mjs --check",
