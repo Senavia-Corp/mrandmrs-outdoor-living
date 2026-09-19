@@ -75,8 +75,21 @@ function comoInnerText(nodo) {
 const ETIQUETAS = ['P', 'H2', 'H3', 'H4', 'UL', 'OL', 'LI', 'STRONG', 'EM', 'A', 'FIGURE', 'TABLE'];
 const perfil = (nodo) => Object.fromEntries(
   ETIQUETAS.map((t) => [t, nodo.querySelectorAll(t.toLowerCase()).length]).filter(([, n]) => n));
+/**
+ * `A` PUEDE CRECER; TODO LO DEMAS TIENE QUE CASAR EXACTO.
+ *
+ * El enlazado interno (`scripts/enlaza-blog-sanity.mjs`) añade `<a>` al cuerpo, y eso es el
+ * objetivo del encargo, no una deriva: los 10 articulos salian de Webflow con CERO enlaces.
+ * Un `<a>` envuelve texto que ya estaba, asi que no mueve el `innerText` ni un byte — por eso
+ * `check:texto` sigue verde sin declarar nada.
+ *
+ * Se permite entonces que `a` SUBA, y solo que suba. Si bajara, se habria perdido un enlace; y
+ * cualquier otra etiqueta que cambie sigue siendo roja. Lo que esta puerta demuestra despues
+ * del enlazado ya no es «el cuerpo es identico» sino «no se ha perdido nada del cuerpo», que es
+ * lo que de verdad hay que proteger a partir de aqui.
+ */
 const difPerfil = (a, b) => ETIQUETAS
-  .filter((t) => (a[t] ?? 0) !== (b[t] ?? 0))
+  .filter((t) => (t === 'A' ? (b[t] ?? 0) < (a[t] ?? 0) : (a[t] ?? 0) !== (b[t] ?? 0)))
   .map((t) => `${t.toLowerCase()} ${a[t] ?? 0}->${b[t] ?? 0}`);
 
 const cuerpoDeOrigen = (slug) => {

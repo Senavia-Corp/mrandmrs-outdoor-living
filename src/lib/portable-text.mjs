@@ -65,30 +65,56 @@ const revienta = (ctx, msg) => {
     + 'motivo.');
 };
 
+/** Abre y cierra UNA marca alrededor de un HTML ya pintado. */
+function envuelve(m, dentro, markDefs, ctx) {
+  if (MARCAS[m]) return `<${MARCAS[m]}>${dentro}</${MARCAS[m]}>`;
+  const def = (markDefs ?? []).find((d) => d._key === m);
+  if (!def) revienta(ctx, `marca "${m}" sin declarar y sin markDef que la defina`);
+  if (def._type !== 'link') revienta(ctx, `anotacion de tipo "${def._type}"; solo se sabe pintar "link"`);
+  if (!def.href) revienta(ctx, 'un link sin href');
+  /* Externo: `rel` por seguridad. Interno (empieza por `/`): nada, que es navegacion del sitio
+   * y un `target=_blank` en un enlace interno rompe el boton de atras. */
+  const externo = /^https?:\/\//i.test(def.href);
+  const extra = externo ? ' target="_blank" rel="noopener noreferrer"' : '';
+  return `<a href="${escAttr(def.href)}"${extra}>${dentro}</a>`;
+}
+
 /**
- * Un `span` con sus marcas. Las marcas se aplican en el orden en que vienen, que es el que
- * Sanity garantiza estable; anidarlas al reves cambiaria el HTML sin cambiar el texto, y este
- * fichero existe precisamente para que el HTML no se mueva.
+ * Los `span` de un bloque, con sus marcas ANIDADAS y no repetidas.
+ *
+ * Portable Text guarda las marcas PLANAS, una lista por span. Pintar cada span por separado
+ * daria `<em>A </em><em><a>x</a></em><em> B</em>`: mismo texto, pero tres `<em>` donde el
+ * origen tenia uno.
+ *
+ * NO ES COSMETICA. Lo encontro `check-portable-text.mjs` al comparar el perfil de etiquetas
+ * despues del enlazado interno: «em 7->8». El enlazador parte un span para envolver la frase y,
+ * si ese span ya llevaba `em`, los tres trozos lo heredaban. El texto no se movia —por eso
+ * `check:texto` seguia verde— pero el marcado se multiplicaba en silencio.
+ *
+ * Asi que se agrupa: se toma la primera marca del span actual, se busca hasta donde llega la
+ * racha de spans contiguos que TAMBIEN la llevan, se envuelve la racha entera una sola vez y se
+ * recurre con esa marca ya quitada. Es la forma en que se hace en cualquier serializador serio,
+ * y ademas deja el anidamiento estable: el orden de marcas que da Sanity manda.
  */
-function pintaSpan(span, markDefs, ctx) {
-  if (span._type !== 'span') revienta(ctx, `hijo de bloque de tipo "${span._type}", solo se espera "span"`);
-  let html = esc(span.text ?? '');
-  for (const m of span.marks ?? []) {
-    if (MARCAS[m]) { html = `<${MARCAS[m]}>${html}</${MARCAS[m]}>`; continue; }
-    const def = (markDefs ?? []).find((d) => d._key === m);
-    if (!def) revienta(ctx, `marca "${m}" sin declarar y sin markDef que la defina`);
-    if (def._type !== 'link') revienta(ctx, `anotacion de tipo "${def._type}"; solo se sabe pintar "link"`);
-    if (!def.href) revienta(ctx, 'un link sin href');
-    /* Externo: `rel` por seguridad. Interno (empieza por `/`): nada, que es navegacion del sitio
-     * y un `target=_blank` en un enlace interno rompe el boton de atras. */
-    const externo = /^https?:\/\//i.test(def.href);
-    const extra = externo ? ' target="_blank" rel="noopener noreferrer"' : '';
-    html = `<a href="${escAttr(def.href)}"${extra}>${html}</a>`;
+function pintaSpans(spans, markDefs, ctx) {
+  let html = '';
+  let i = 0;
+  while (i < spans.length) {
+    const sp = spans[i];
+    if (sp._type !== 'span') revienta(ctx, `hijo de bloque de tipo "${sp._type}", solo se espera "span"`);
+    const marcas = sp.marks ?? [];
+    if (!marcas.length) { html += esc(sp.text ?? ''); i++; continue; }
+    const m = marcas[0];
+    let j = i;
+    while (j < spans.length && (spans[j].marks ?? []).includes(m)) j++;
+    const racha = spans.slice(i, j).map((s) => ({ ...s, marks: (s.marks ?? []).filter((x) => x !== m) }));
+    html += envuelve(m, pintaSpans(racha, markDefs, ctx), markDefs, ctx);
+    i = j;
   }
   return html;
 }
 
-const pintaHijos = (b, ctx) => (b.children ?? []).map((s) => pintaSpan(s, b.markDefs, ctx)).join('');
+const pintaHijos = (b, ctx) => pintaSpans(b.children ?? [], b.markDefs, ctx);
 
 /**
  * Una `<figure>` con la forma EXACTA que emite `figurasBlog()` en `build-paginas.mjs:650`, que
