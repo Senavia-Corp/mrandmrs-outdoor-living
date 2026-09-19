@@ -16,7 +16,7 @@
  *     build sin pintar un pixel mas.
  */
 export const CONSULTA_BLOG = `*[_type == "blogPost" && defined(slug.current) && !(_id in path("drafts.**"))]{
-    _id, title, cardTitle, titlePage, summary, blog, portada, seo,
+    _id, title, cardTitle, titlePage, summary, blog, portada, seo, faq, fuentes,
     publishedAt, updatedAt, ordenIndice, destacadoIndice, ordenEnServicio, tags,
     "slug": slug.current,
     "categoria": categoria->{ "slug": slug.current, name, orden },

@@ -55,7 +55,47 @@ for (const campo of ['title', 'summary', 'blog', 'portada', 'seo']) {
 if (!doc.seo.title || !doc.seo.description) throw new Error(`${ruta}: seo incompleto en Sanity`);
 if (!doc.portada.src || !doc.portada.alt) throw new Error(`${ruta}: la portada no tiene src o alt`);
 
-const cuerpo = aHtml(doc.blog, ruta);
+const cuerpoBase = aHtml(doc.blog, ruta);
+
+/**
+ * ── LA FAQ Y LAS FUENTES ────────────────────────────────────────────────────────────────────
+ *
+ * Se CONCATENAN al richtext en vez de ir en una seccion propia, y son tres razones:
+ *
+ *   1. Heredan la tipografia del articulo. `lectura.css` ya fija la medida de 37em, el ritmo de
+ *      h2/h3 y el interlineado dentro de `.w-richtext`; una seccion nueva pediria CSS nuevo para
+ *      parecerse a lo que ya hay.
+ *   2. NO se emite un solo `data-w-id`. Las fichas de servicio pintan su FAQ con dropdowns de
+ *      Webflow, que llevan `data-w-id` y `data-delay`; `check:ix2` fija las huerfanas en 14 y
+ *      emitir uno nuevo mueve ese contador. Aqui son encabezados y parrafos: cero JS, cero ids.
+ *   3. Una respuesta plegada es una respuesta que Google ve y el lector no. En un articulo cuyo
+ *      trabajo entero es responder, esconder las respuestas detras de un acordeon es al reves.
+ *
+ * Y de ahi sale gratis la disciplina que pide el esquema: el `FAQPage` se emite SOLO si hay
+ * `faq`, y lo que emite es exactamente lo que esta pintado. No hay forma de que diverjan porque
+ * salen del mismo array.
+ *
+ * En los 10 heredados `faq` y `fuentes` son `null`, asi que no se anade un byte a su HTML — que
+ * es lo que permite seguir demostrando que la migracion de render no cambio nada.
+ */
+const esc = (x) => String(x ?? '')
+  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const escAttr = (x) => esc(x).replace(/"/g, '&quot;');
+
+const faq = (doc.faq ?? []).filter((f) => f?.question?.trim() && f?.answer?.trim());
+const fuentes = (doc.fuentes ?? []).filter((f) => f?.label?.trim() && f?.url?.trim());
+
+const bloqueFaq = faq.length
+  ? '<h2>Common questions</h2>'
+    + faq.map((f) => `<h3>${esc(f.question)}</h3><p>${esc(f.answer)}</p>`).join('')
+  : '';
+const bloqueFuentes = fuentes.length
+  ? '<h2>Sources</h2><ul role="list">'
+    + fuentes.map((f) => `<li><a href="${escAttr(f.url)}" rel="nofollow noopener">${esc(f.label)}</a></li>`).join('')
+    + '</ul>'
+  : '';
+
+const cuerpo = cuerpoBase + bloqueFaq + bloqueFuentes;
 
 /**
  * EL RAIL, Y EL ENLACE A SI MISMO.
@@ -110,7 +150,19 @@ const SEO = {
       name: 'Mr. and Mrs. Outdoor Living',
     },
     url: ruta,
-  }],
+  },
+  /* El FAQPage va SOLO si hay FAQ pintada, y sale del mismo array que se pinto arriba. La
+   * regla 14 de `check:ads` exige que el schema case 1:1 con lo visible; aqui no puede no
+   * casar. `Base.astro` desduplica, asi que dos bloques en la misma pagina son seguros. */
+  ...(faq.length ? [{
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((f) => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: { '@type': 'Answer', text: f.answer },
+    })),
+  }] : [])],
 };
 ---
 <Base titulo={doc.seo.title} descripcion={doc.seo.description} ruta={ruta} seo={SEO} jsonLdCrudo={[]}>
