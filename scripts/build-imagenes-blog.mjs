@@ -47,6 +47,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import sharp from 'sharp';
+import { graduarPortada } from './lib/grado-portada.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const BANCO = path.join(process.env.HOME, 'Downloads/MrMrs_Outdoor_Living_Image_Bank');
@@ -64,6 +65,8 @@ const ALTO = (w) => Math.round((w * 9) / 16);
 let fallos = 0;
 /** Las que reciben el levantado de sombra, para ENSEÑARLAS al final y no callarlas. */
 const ajustadas = [];
+/** R23 · las portadas, con su medida antes y despues. Tambien se enseñan. */
+const graduadas = [];
 const mal = (m) => { console.log(`  🔴 ${m}`); fallos++; };
 
 /* ── las fuentes ─────────────────────────────────────────────────────────── */
@@ -254,7 +257,7 @@ const CASTING = {
 
 const slugDe = (ruta) => ruta.split('/').pop();
 
-async function peldanos(im, ruta, anchos) {
+async function peldanos(im, ruta, anchos, esPortada = false) {
   const slug = slugDe(ruta);
   const dir = path.join(SALIDA, slug);
   if (!SOLO_CHECK) fs.mkdirSync(dir, { recursive: true });
@@ -311,15 +314,28 @@ async function peldanos(im, ruta, anchos) {
   const media = 0.2126 * cr.mean + 0.7152 * cg.mean + 0.0722 * cb.mean;
   const sat = (Math.abs(cr.mean - cg.mean) + Math.abs(cg.mean - cb.mean) + Math.abs(cr.mean - cb.mean)) / 3;
   const subexpuesta = media < 105 && sat < 30;
-  if (subexpuesta) ajustadas.push(`${im.base}  media ${media.toFixed(0)} sat ${sat.toFixed(0)}`);
+  if (subexpuesta && !esPortada) ajustadas.push(`${im.base}  media ${media.toFixed(0)} sat ${sat.toFixed(0)}`);
 
   const partes = [];
   for (const w of anchosReales) {
     const destino = path.join(dir, `${im.base}-${w}.webp`);
     if (!SOLO_CHECK) {
-      let t = sharp(im.fuente).resize(w, ALTO(w), { fit: 'cover', position: 'centre' });
-      if (subexpuesta) t = t.linear(AJUSTE.a, AJUSTE.b * escala).modulate({ saturation: AJUSTE.sat });
-      await t.webp({ quality: 82 }).toFile(destino);
+      if (esPortada) {
+        /* R23 — grado fotografico completo. Sustituye al levantado de sombra: lo incluye y
+         * ademas fija niveles, medios, contraste local y saturacion. Solo las portadas. */
+        const g = await graduarPortada(im.fuente, w, ALTO(w), 86);
+        fs.writeFileSync(destino, g.out);
+        if (w === anchosReales[anchosReales.length - 1]) {
+          graduadas.push(`${im.base}  media ${g.antes.media.toFixed(0)}->${g.despues.media.toFixed(0)}`
+            + `  sat ${g.antes.sat.toFixed(0)}->${g.despues.sat.toFixed(0)}`
+            + `  quemado ${g.antes.quemado.toFixed(2)}->${g.despues.quemado.toFixed(2)}%`
+            + `  negro ${g.antes.negro.toFixed(2)}->${g.despues.negro.toFixed(2)}%`);
+        }
+      } else {
+        let t = sharp(im.fuente).resize(w, ALTO(w), { fit: 'cover', position: 'centre' });
+        if (subexpuesta) t = t.linear(AJUSTE.a, AJUSTE.b * escala).modulate({ saturation: AJUSTE.sat });
+        await t.webp({ quality: 82 }).toFile(destino);
+      }
     }
     if (!fs.existsSync(destino)) { mal(`falta ${path.relative(RAIZ, destino)}`); continue; }
     partes.push(`/images/blog/${slug}/${im.base}-${w}.webp ${w}w`);
@@ -355,7 +371,7 @@ const salida = {
 for (const [ruta, c] of Object.entries(CASTING)) {
   salida.rutas[ruta] = {
     ...(c.reemplaza_figuras ? { reemplaza_figuras: true } : {}),
-    tarjeta: { ...(await peldanos(c.tarjeta, ruta, TARJETA)), sizes: SIZES_TARJETA },
+    tarjeta: { ...(await peldanos(c.tarjeta, ruta, TARJETA, true)), sizes: SIZES_TARJETA },
     figuras: [],
   };
   for (const f of c.figuras) {
@@ -380,7 +396,9 @@ const ficheros = fs.existsSync(SALIDA)
   ? execFileSync('bash', ['-c', `find ${SALIDA} -name '*.webp' | wc -l`]).toString().trim() : '0';
 const peso = fs.existsSync(SALIDA)
   ? execFileSync('bash', ['-c', `du -sk ${SALIDA} | cut -f1`]).toString().trim() : '0';
-console.log(`\n  exposicion levantada en ${ajustadas.length} de ${nImg} imagenes (media <105 y sat <30):`);
+console.log(`\n  R23 · portadas graduadas: ${graduadas.length} de ${nRutas}`);
+for (const g of graduadas) console.log(`     ${g}`);
+console.log(`\n  exposicion levantada en ${ajustadas.length} figuras de cuerpo (media <105 y sat <30):`);
 for (const a of ajustadas) console.log(`     ${a}`);
 console.log(`\n  ${nRutas} rutas · ${nImg} imagenes · ${alts.size} alt distintos`);
 console.log(`  ${ficheros} ficheros webp · ${(peso / 1024).toFixed(1)} MB en public/images/blog/`);
