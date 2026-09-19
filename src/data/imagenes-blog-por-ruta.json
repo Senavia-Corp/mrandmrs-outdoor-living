@@ -480,6 +480,131 @@
      "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
     }
    ]
+  },
+  "/blogs/before-you-build-a-pool-in-florida": {
+   "_articulo": true,
+   "tarjeta": {
+    "src": "/images/blog/banco/mm-construction-8-p-800.webp",
+    "srcset": "/images/blog/banco/mm-construction-8-p-400.webp 400w, /images/blog/banco/mm-construction-8-p-800.webp 800w",
+    "alt": "Aerial view of a pool and raised spa on a travertine deck, with a garden hose coiled at the edge of the lawn.",
+    "ancho": 800,
+    "alto": 450,
+    "_origen": "gallery",
+    "_fuente": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
+    "sizes": "(min-width: 768px) 400px, 100vw"
+   },
+   "figuras": [
+    {
+     "src": "/images/blog/banco/mm-construction-5-1240.webp",
+     "srcset": "/images/blog/banco/mm-construction-5-704.webp 704w, /images/blog/banco/mm-construction-5-1240.webp 1240w",
+     "alt": "Pool with arcing water spouts and a covered seating area, with a lake and palms beyond the boundary.",
+     "ancho": 1240,
+     "alto": 698,
+     "_origen": "gallery",
+     "_fuente": "/images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/banco/mm-construction-3-1250.webp",
+     "srcset": "/images/blog/banco/mm-construction-3-704.webp 704w, /images/blog/banco/mm-construction-3-1250.webp 1250w",
+     "alt": "Pool with in-water loungers and an aluminium pergola attached to the house, with newly laid turf around the deck.",
+     "ancho": 1250,
+     "alto": 703,
+     "_origen": "gallery",
+     "_fuente": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/banco/mm-construction-1-1250.webp",
+     "srcset": "/images/blog/banco/mm-construction-1-704.webp 704w, /images/blog/banco/mm-construction-1-1250.webp 1250w",
+     "alt": "Rectangular pool with a raised spa and water spouts, set in a herringbone travertine deck.",
+     "ancho": 1250,
+     "alto": 703,
+     "_origen": "gallery",
+     "_fuente": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    }
+   ]
+  },
+  "/blogs/how-much-does-a-custom-pool-cost-in-florida": {
+   "_articulo": true,
+   "tarjeta": {
+    "src": "/images/blog/banco/mm-construction-1-p-800.webp",
+    "srcset": "/images/blog/banco/mm-construction-1-p-400.webp 400w, /images/blog/banco/mm-construction-1-p-800.webp 800w",
+    "alt": "Rectangular pool with a raised spa and water spouts, set in a herringbone travertine deck, with neighbouring barrel-tile roofs behind the hedge.",
+    "ancho": 800,
+    "alto": 450,
+    "_origen": "gallery",
+    "_fuente": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
+    "sizes": "(min-width: 768px) 400px, 100vw"
+   },
+   "figuras": [
+    {
+     "src": "/images/blog/banco/mm-construction-7-1240.webp",
+     "srcset": "/images/blog/banco/mm-construction-7-704.webp 704w, /images/blog/banco/mm-construction-7-1240.webp 1240w",
+     "alt": "Raised spa with a spillway returning to the pool, framed by a travertine deck beside a single-storey home.",
+     "ancho": 1240,
+     "alto": 698,
+     "_origen": "gallery",
+     "_fuente": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/banco/mm-construction-3-1250.webp",
+     "srcset": "/images/blog/banco/mm-construction-3-704.webp 704w, /images/blog/banco/mm-construction-3-1250.webp 1250w",
+     "alt": "Pool with in-water loungers and an aluminium pergola attached to the house, with newly laid turf around the deck.",
+     "ancho": 1250,
+     "alto": 703,
+     "_origen": "gallery",
+     "_fuente": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/banco/mm-construction-9-1240.webp",
+     "srcset": "/images/blog/banco/mm-construction-9-704.webp 704w, /images/blog/banco/mm-construction-9-1240.webp 1240w",
+     "alt": "Two-storey Florida home with a pool, raised spa and bubblers, on a wide paver deck running the width of the yard.",
+     "ancho": 1240,
+     "alto": 698,
+     "_origen": "gallery",
+     "_fuente": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    }
+   ]
+  },
+  "/blogs/how-to-choose-a-pool-builder-in-florida": {
+   "_articulo": true,
+   "tarjeta": {
+    "src": "/images/blog/banco/mm-construction-9-p-800.webp",
+    "srcset": "/images/blog/banco/mm-construction-9-p-400.webp 400w, /images/blog/banco/mm-construction-9-p-800.webp 800w",
+    "alt": "Two-storey Florida home with a pool, raised spa and bubblers, on a wide paver deck running the width of the yard.",
+    "ancho": 800,
+    "alto": 450,
+    "_origen": "gallery",
+    "_fuente": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
+    "sizes": "(min-width: 768px) 400px, 100vw"
+   },
+   "figuras": [
+    {
+     "src": "/images/blog/banco/mm-construction-7-1240.webp",
+     "srcset": "/images/blog/banco/mm-construction-7-704.webp 704w, /images/blog/banco/mm-construction-7-1240.webp 1240w",
+     "alt": "Raised spa with a spillway returning to the pool, framed by a travertine deck beside a single-storey home.",
+     "ancho": 1240,
+     "alto": 698,
+     "_origen": "gallery",
+     "_fuente": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/banco/mm-construction-8-1250.webp",
+     "srcset": "/images/blog/banco/mm-construction-8-704.webp 704w, /images/blog/banco/mm-construction-8-1250.webp 1250w",
+     "alt": "Aerial view of a pool and raised spa on a travertine deck, with a garden hose coiled at the edge of the lawn.",
+     "ancho": 1250,
+     "alto": 703,
+     "_origen": "gallery",
+     "_fuente": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    }
+   ]
   }
  }
 }

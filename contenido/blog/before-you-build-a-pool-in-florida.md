@@ -4,28 +4,63 @@
   "title": "Before You Build a Pool in Florida: 12 Decisions to Make Before Excavation",
   "cardTitle": "Decide These 12 Things First",
   "categoria": "new-pool-construction",
-  "servicios": ["custom-pool-spa-builders-in-north-south-florida"],
+  "servicios": [
+    "custom-pool-spa-builders-in-north-south-florida"
+  ],
+  "relacionados": [
+    "how-much-does-a-custom-pool-cost-in-florida",
+    "how-to-choose-a-pool-builder-in-florida",
+    "pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish"
+  ],
   "ordenEnServicio": 2,
   "ordenIndice": 21,
   "searchIntent": "informational",
   "funnelStage": "consideration",
-  "tags": ["planning", "pre-construction", "site conditions"],
+  "tags": [
+    "planning",
+    "pre-construction",
+    "site conditions"
+  ],
   "seo": {
     "title": "Before You Build a Pool in Florida: 12 Decisions First",
     "description": "Twelve decisions worth settling before excavation starts on a Florida pool — placement, access, drainage, equipment, screening and the ones that are expensive to change later."
   },
   "summary": "Once the excavator arrives, some decisions stop being decisions. These are the twelve worth settling first, and which of them are genuinely hard to undo.",
-  "portada": { "ref": "construction-8", "alt": "Aerial view of a pool and raised spa on a travertine deck, with a garden hose coiled at the edge of the lawn." },
+  "portada": {
+    "ref": "construction-8",
+    "alt": "Aerial view of a pool and raised spa on a travertine deck, with a garden hose coiled at the edge of the lawn."
+  },
   "figuras": [
-    { "ref": "construction-5", "alt": "Pool with arcing water spouts and a covered seating area, with a lake and palms beyond the boundary." },
-    { "ref": "construction-3", "alt": "Pool with in-water loungers and an aluminium pergola attached to the house, with newly laid turf around the deck." },
-    { "ref": "construction-1", "alt": "Rectangular pool with a raised spa and water spouts, set in a herringbone travertine deck." }
+    {
+      "ref": "construction-5",
+      "alt": "Pool with arcing water spouts and a covered seating area, with a lake and palms beyond the boundary."
+    },
+    {
+      "ref": "construction-3",
+      "alt": "Pool with in-water loungers and an aluminium pergola attached to the house, with newly laid turf around the deck."
+    },
+    {
+      "ref": "construction-1",
+      "alt": "Rectangular pool with a raised spa and water spouts, set in a herringbone travertine deck."
+    }
   ],
   "faq": [
-    { "question": "How early does the pool location have to be final?", "answer": "Before the survey goes to the county. Placement drives the setbacks, the equipment run, the drainage plan and the screen enclosure footprint, so moving it after submission usually means resubmitting rather than adjusting." },
-    { "question": "Can I add a screen enclosure later?", "answer": "Yes, but the deck has to have been poured to carry it. An enclosure is anchored into the deck, and a deck that was not designed for those loads either limits what can be built or needs cutting and reworking. Deciding early costs nothing; deciding late costs deck." },
-    { "question": "What usually delays a Florida pool project?", "answer": "Inspections and weather far more often than construction itself. The build is a sequence of stages separated by inspections, and each one has to pass before the next begins, so a single failed inspection moves everything behind it." },
-    { "question": "Do I need to decide on heating before the shell is built?", "answer": "Yes, because heating changes the plumbing and the electrical service, not just the equipment pad. Adding it later means opening up runs that are already buried." }
+    {
+      "question": "How early does the pool location have to be final?",
+      "answer": "Before the survey goes to the county. Placement drives the setbacks, the equipment run, the drainage plan and the screen enclosure footprint, so moving it after submission usually means resubmitting rather than adjusting."
+    },
+    {
+      "question": "Can I add a screen enclosure later?",
+      "answer": "Yes, but the deck has to have been poured to carry it. An enclosure is anchored into the deck, and a deck that was not designed for those loads either limits what can be built or needs cutting and reworking. Deciding early costs nothing; deciding late costs deck."
+    },
+    {
+      "question": "What usually delays a Florida pool project?",
+      "answer": "Inspections and weather far more often than construction itself. The build is a sequence of stages separated by inspections, and each one has to pass before the next begins, so a single failed inspection moves everything behind it."
+    },
+    {
+      "question": "Do I need to decide on heating before the shell is built?",
+      "answer": "Yes, because heating changes the plumbing and the electrical service, not just the equipment pad. Adding it later means opening up runs that are already buried."
+    }
   ],
   "fuentes": []
 }

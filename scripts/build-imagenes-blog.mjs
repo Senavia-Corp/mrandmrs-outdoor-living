@@ -47,6 +47,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import sharp from 'sharp';
+import { leeArticulos } from './lib/articulo.mjs';
 import { graduarPortada } from './lib/grado-portada.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
@@ -109,6 +110,45 @@ const galeria = (rel, alt) => {
   }
   return { origen: 'galeria', fuente: abs, base: path.basename(rel).replace(/\.(avif|jpg|webp|png)$/, ''),
     alt, _fuente_publica: `/images/${rel}` };
+};
+
+
+/* ── EL BANCO DE /gallery, POR REFERENCIA ────────────────────────────────────
+ *
+ * Los 90 articulos nuevos no tienen obra en el banco aprobado: se ilustran con las fotos que
+ * `/gallery` ya publica, que es lo decidido («foto real del sitio, repitiendo» dentro del
+ * cluster). Se nombran `servicio-indice` —`construction-7`— porque es como las vio el panel de
+ * procedencia y como las escribe quien redacta.
+ *
+ * Y se RECHAZA lo que no sea obra del cliente. El veredicto vive en
+ * `src/data/gallery-procedencia.json`: 137 fotos miradas una a una por un panel, 20 discutidas
+ * y resueltas por el dueno de la obra. Aqui no se re-juzga nada; se obedece.
+ *
+ * UNA SOLA ESCALERA POR FOTO, COMPARTIDA. Una foto reutilizada en cinco articulos del cluster
+ * derivaria cinco copias identicas si la carpeta fuera la del slug: ~22 MB de duplicado y cinco
+ * descargas distintas para el visitante que lee dos articulos. Van a `public/images/blog/banco/`
+ * y se sirven las mismas. Los 10 heredados NO se mueven: su salida es byte a byte la que ya
+ * esta publicada, y moverla seria un cambio sin motivo.
+ */
+const PROCEDENCIA = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/gallery-procedencia.json'), 'utf8')).servicios;
+const BANCO_COMPARTIDO = 'banco';
+
+const porRef = (ref, alt, esPortada = false) => {
+  const m = ref.match(/^([a-z]+)-(\d+)$/);
+  if (!m) throw new Error(`ref "${ref}" no tiene la forma servicio-indice (p. ej. construction-7)`);
+  const [, svc, i] = m;
+  const fotos = PROCEDENCIA[svc];
+  if (!fotos) throw new Error(`ref "${ref}": el servicio "${svc}" no existe en gallery-procedencia.json (hay: ${Object.keys(PROCEDENCIA).join(', ')})`);
+  const f = fotos.find((x) => x.indice === Number(i));
+  if (!f) throw new Error(`ref "${ref}": el servicio "${svc}" solo tiene ${fotos.length} fotos (0-${fotos.length - 1})`);
+  if (!f.usable) {
+    throw new Error(`🔴 ref "${ref}" NO ES PUBLICABLE como obra del cliente.\n`
+      + `        veredicto: ${f.veredicto}\n`
+      + `        motivo:    ${f.motivo}`);
+  }
+  const abs = path.join(RAIZ, 'public', f.src.replace(/^\//, ''));
+  if (!fs.existsSync(abs)) throw new Error(`ref "${ref}": ${f.src} no existe en disco`);
+  return { origen: 'gallery', fuente: abs, base: `mm-${ref}${esPortada ? '-p' : ''}`, alt, _fuente_publica: f.src, _ref: ref };
 };
 
 /* ── EL CASTING ──────────────────────────────────────────────────────────────
@@ -257,8 +297,8 @@ const CASTING = {
 
 const slugDe = (ruta) => ruta.split('/').pop();
 
-async function peldanos(im, ruta, anchos, esPortada = false) {
-  const slug = slugDe(ruta);
+async function peldanos(im, ruta, anchos, esPortada = false, carpeta = null) {
+  const slug = carpeta ?? slugDe(ruta);
   const dir = path.join(SALIDA, slug);
   if (!SOLO_CHECK) fs.mkdirSync(dir, { recursive: true });
   const src = await sharp(im.fuente).metadata();
@@ -379,15 +419,75 @@ for (const [ruta, c] of Object.entries(CASTING)) {
   }
 }
 
-/* ── invariantes: un numero sin comando es una opinion ───────────────────── */
+
+/* ── LOS ARTICULOS NUEVOS ────────────────────────────────────────────────────
+ *
+ * No hay tabla de casting para ellos: cada articulo declara SUS imagenes en su propio
+ * frontmatter, junto al texto que ilustran. Es lo unico que escala a noventa — una tabla
+ * central de 90 entradas se desincroniza del cuerpo el dia que alguien mueve una figura.
+ *
+ * El reparto sigue siendo auditable: `contenido/blog/<slug>.md` dice que `ref` usa y con que
+ * `alt`, y `porRef()` se niega si esa foto no es obra del cliente.
+ */
+const ARTICULOS = leeArticulos(path.join(RAIZ, 'contenido/blog'));
+
+/* Una foto reutilizada en cinco articulos deriva UNA escalera, no cinco. La clave incluye el
+ * ancho y el tratamiento: una portada va graduada y una figura no, asi que aunque compartan
+ * `ref` no comparten fichero (de ahi el sufijo `-p`). */
+const yaDerivadas = new Map();
+const peldanosCache = async (im, anchos, esPortada) => {
+  const k = `${im.base}|${anchos.join(',')}|${esPortada}`;
+  if (!yaDerivadas.has(k)) yaDerivadas.set(k, await peldanos(im, null, anchos, esPortada, BANCO_COMPARTIDO));
+  return yaDerivadas.get(k);
+};
+
+for (const a of ARTICULOS) {
+  const ruta = `/blogs/${a.frente.slug}`;
+  if (salida.rutas[ruta]) { mal(`${ruta}: ya existe en el CASTING heredado`); continue; }
+  try {
+    const portada = await peldanosCache(porRef(a.frente.portada.ref, a.frente.portada.alt, true), TARJETA, true);
+    const figuras = [];
+    /* EN EL ORDEN DEL CUERPO, no en el del frontmatter: `publica-blog.mjs` resuelve cada
+     * `{{figura: ref}}` por nombre, pero el indice de esta lista es lo que ve quien depura. */
+    for (const ref of a.usadas) {
+      const alt = a.figuras.find((f) => f.ref === ref).alt;
+      figuras.push({ ...(await peldanosCache(porRef(ref, alt), FIGURA, false)), sizes: SIZES_FIGURA, alt });
+    }
+    salida.rutas[ruta] = { _articulo: true, tarjeta: { ...portada, alt: a.frente.portada.alt, sizes: SIZES_TARJETA }, figuras };
+  } catch (e) {
+    mal(`${ruta}: ${e.message}`);
+  }
+}
+
+/* ── invariantes: un numero sin comando es una opinion ─────────────────────
+ *
+ * DERIVADAS, no escritas. La version anterior codificaba `!== 10` y `!== 40`: con 90 articulos
+ * mas, esos dos numeros habrian puesto la puerta en rojo para siempre o —peor— habrian tenido
+ * que subirse a mano cada vez, que es exactamente como un numero deja de comprobar nada.
+ *
+ * Lo que se comprueba ahora es la FORMA, que si es invariante: los 10 heredados siguen siendo
+ * 10 con 3 figuras y 40 alt distintos (su salida esta publicada y no puede moverse), y cada
+ * articulo nuevo tiene portada, al menos una figura, y ningun alt repetido dentro de si mismo.
+ */
+const heredadas = Object.entries(salida.rutas).filter(([, r]) => !r._articulo);
+const articulos = Object.entries(salida.rutas).filter(([, r]) => r._articulo);
 const nRutas = Object.keys(salida.rutas).length;
 const nImg = Object.values(salida.rutas).reduce((a, r) => a + 1 + r.figuras.length, 0);
-const alts = new Set(Object.values(salida.rutas).flatMap((r) => [r.tarjeta.alt, ...r.figuras.map((f) => f.alt)]));
-if (nRutas !== 10) mal(`${nRutas} rutas, se esperaban 10`);
-if (nImg !== 40) mal(`${nImg} imagenes, se esperaban 40`);
-if (alts.size !== 40) mal(`${alts.size} alt distintos de 40 — hay alt repetido`);
-for (const [ruta, r] of Object.entries(salida.rutas)) {
-  if (r.figuras.length !== 3) mal(`${ruta}: ${r.figuras.length} figuras, se esperaban 3`);
+
+if (heredadas.length !== 10) mal(`${heredadas.length} rutas heredadas, se esperaban 10`);
+const altsHeredados = new Set(heredadas.flatMap(([, r]) => [r.tarjeta.alt, ...r.figuras.map((f) => f.alt)]));
+if (altsHeredados.size !== 40) mal(`${altsHeredados.size} alt distintos en las heredadas, se esperaban 40`);
+for (const [ruta, r] of heredadas) {
+  if (r.figuras.length !== 3) mal(`${ruta}: ${r.figuras.length} figuras, las heredadas llevan 3`);
+}
+if (articulos.length !== ARTICULOS.length) {
+  mal(`${articulos.length} articulos derivados de ${ARTICULOS.length} ficheros en contenido/blog/`);
+}
+for (const [ruta, r] of articulos) {
+  if (!r.figuras.length) mal(`${ruta}: ningun articulo se publica sin al menos una figura`);
+  const suyos = [r.tarjeta.alt, ...r.figuras.map((f) => f.alt)];
+  if (new Set(suyos).size !== suyos.length) mal(`${ruta}: tiene un alt repetido dentro del mismo articulo`);
+  if (suyos.some((x) => !x || !x.trim())) mal(`${ruta}: hay un alt vacio`);
 }
 
 if (!SOLO_CHECK && fallos === 0) fs.writeFileSync(DATO, `${JSON.stringify(salida, null, 1)}\n`);
@@ -400,7 +500,9 @@ console.log(`\n  R23 · portadas graduadas: ${graduadas.length} de ${nRutas}`);
 for (const g of graduadas) console.log(`     ${g}`);
 console.log(`\n  exposicion levantada en ${ajustadas.length} figuras de cuerpo (media <105 y sat <30):`);
 for (const a of ajustadas) console.log(`     ${a}`);
-console.log(`\n  ${nRutas} rutas · ${nImg} imagenes · ${alts.size} alt distintos`);
+console.log(`\n  ${nRutas} rutas · ${nImg} imagenes`);
+console.log(`     ${heredadas.length} heredadas (casting de R22/R23) · ${articulos.length} articulos de contenido/blog/`);
+console.log(`     ${yaDerivadas.size} escaleras distintas en public/images/blog/${BANCO_COMPARTIDO}/ para ${articulos.reduce((a, [, r]) => a + 1 + r.figuras.length, 0)} usos`);
 console.log(`  ${ficheros} ficheros webp · ${(peso / 1024).toFixed(1)} MB en public/images/blog/`);
 console.log(fallos === 0 ? '\n✅ VERDE\n' : `\n🔴 ROJO — ${fallos} fallo(s)\n`);
 process.exit(fallos === 0 ? 0 : 1);

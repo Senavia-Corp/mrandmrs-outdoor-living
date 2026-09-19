@@ -8,5 +8,27 @@
   "Los 10 articulos heredados NO estan aqui a proposito: ya tienen baseline de texto, de SEO",
   "y capturas, y declararlos «propios» haria que check:seo dejara de compararlos con el origen."
  ],
- "rutas": {}
+ "rutas": {
+  "/blogs/before-you-build-a-pool-in-florida": {
+   "titulo": "Before You Build a Pool in Florida: 12 Decisions to Make Before Excavation",
+   "categoria": "new-pool-construction",
+   "servicio": "custom-pool-spa-builders-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «New Pool Construction», escrito para la ficha de Pool  Construction. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/how-much-does-a-custom-pool-cost-in-florida": {
+   "titulo": "How Much Does a Custom Pool Really Cost in Florida? 8 Decisions That Move the Price",
+   "categoria": "new-pool-construction",
+   "servicio": "custom-pool-spa-builders-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «New Pool Construction», escrito para la ficha de Pool  Construction. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/how-to-choose-a-pool-builder-in-florida": {
+   "titulo": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign",
+   "categoria": "new-pool-construction",
+   "servicio": "custom-pool-spa-builders-in-north-south-florida",
+   "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «New Pool Construction», escrito para la ficha de Pool  Construction. No existe en el Webflow de origen: es contenido nuevo."
+  }
+ }
 }

@@ -207,6 +207,34 @@ export default defineType({
           },
         },
         { type: 'image', options: { hotspot: true } },
+        {
+          // La pinta `pintaTabla()` de `src/lib/portable-text.mjs`, que ya existía y no estaba
+          // declarada aquí: el serializador sabía dibujar una tabla que el Studio no dejaba
+          // crear. Se declaran los dos lados juntos, igual que los estilos de arriba.
+          type: 'object',
+          name: 'tabla',
+          title: 'Tabla',
+          fields: [{
+            name: 'filas',
+            title: 'Filas',
+            description: 'La primera es la cabecera. Todas tienen que tener el mismo número de celdas.',
+            type: 'array',
+            of: [{
+              type: 'object',
+              name: 'fila',
+              fields: [{ name: 'celdas', title: 'Celdas', type: 'array', of: [{ type: 'string' }] }],
+              preview: { select: { c: 'celdas' }, prepare: ({ c }) => ({ title: (c ?? []).join(' · ') }) },
+            }],
+            validation: (Rule) => Rule.required().min(2),
+          }],
+          preview: {
+            select: { filas: 'filas' },
+            prepare: ({ filas }) => ({
+              title: (filas?.[0]?.celdas ?? []).join(' · ') || 'Tabla',
+              subtitle: `${(filas?.length ?? 1) - 1} fila(s)`,
+            }),
+          },
+        },
       ],
       validation: (Rule) => Rule.required().min(1),
     },

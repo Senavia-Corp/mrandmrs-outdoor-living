@@ -7,6 +7,11 @@
   "servicios": [
     "custom-pool-spa-builders-in-north-south-florida"
   ],
+  "relacionados": [
+    "before-you-build-a-pool-in-florida",
+    "how-to-choose-a-pool-builder-in-florida",
+    "complete-guide-to-pool-construction-in-florida-costs-timeline-process"
+  ],
   "ordenEnServicio": 1,
   "ordenIndice": 20,
   "searchIntent": "commercial",

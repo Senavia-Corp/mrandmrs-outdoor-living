@@ -12,17 +12,19 @@
     "indice": 0,
     "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
     "altGaleria": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
-    "veredicto": "en_disputa",
-    "usable": false,
+    "veredicto": "obra_real",
+    "usable": true,
     "confianza": "alta",
-    "motivo": "La coronación blanca es una cinta continua sin una sola junta en todo su perímetro, el césped la corta en línea matemáticamente perfecta, y no hay skimmer, retornos, sumidero ni foco en ningún punto del vaso; el spa elevado no tiene ni un jet en su interior ni vertedero, y los escalones del lado izquierdo se disuelven bajo el muro del spa.",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): la reconoce como obra propia. Manda sobre el panel.",
     "discrepancias": [
      {
       "lente": "Física y luz",
       "veredicto": "obra_real",
       "motivo": "Dice «el spa no tiene ni un jet en su interior». Sí los tiene y están en marcha: a resolución nativa (recorte 120-200 x 86-114) la lámina del spa muestra una hilera de penachos blancos de alturas y separaciones DESIGUALES, con la espuma extendiéndose en velo hacia la coronación cercana — es un hervor de borboteadores, no una mancha pintada; una mancha generada no varía de altura penacho a penacho ni produce velo asimétrico. La luz además cierra: el sol entra alto por la izquierda (la fachada de la casa y la parte alta del seto están iluminadas, la sombra del cerco cae hacia la derecha sobre el césped), la cara izquierda del muro del spa está más clara que la derecha, y el muro proyecta una banda oscura sobre el agua a su derecha. Y los reflejos son coherentes en los dos lados del muro: el gresite oscuro se espeja hacia abajo tanto en el agua de la repisa izquierda como en el vaso derecho, y las losas de paso del fondo tienen su banda clara espejada justo debajo. Nada de eso lo resuelve solo una imagen generada."
      }
-    ]
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "La coronación blanca es una cinta continua sin una sola junta en todo su perímetro, el césped la corta en línea matemáticamente perfecta, y no hay skimmer, retornos, sumidero ni foco en ningún punto del vaso; el spa elevado no tiene ni un jet en su interior ni vertedero, y los escalones del lado izquierdo se disuelven bajo el muro del spa."
    },
    {
     "indice": 1,
@@ -38,10 +40,10 @@
     "indice": 2,
     "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
     "altGaleria": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
-    "veredicto": "en_disputa",
-    "usable": false,
+    "veredicto": "obra_real",
+    "usable": true,
     "confianza": "alta",
-    "motivo": "El spa tiene geometría imposible: la coronación forma una L que no cierra y una repisa vuela sobre el agua sin apoyo; el gresite pierde la retícula al girar la esquina y se convierte en ruido, y el borde del vaso abajo a la derecha se desvanece sin línea de agua.",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): la reconoce como obra propia. Manda sobre el panel.",
     "discrepancias": [
      {
       "lente": "Física y luz",
@@ -53,7 +55,9 @@
       "veredicto": "dudosa",
       "motivo": "Su motivo concreto no se sostiene, aunque no me da para afirmar obra real. A 12x sobre custom-pool-spa-builders-florida-08.jpg, la 'L que no cierra' y la 'repisa que vuela sin apoyo' son un vertedero de spa estandar: la tapa del pilar de la izquierda queda a cota alta, un retorno vertical corto cierra el escalon, y el labio rebajado es una losa con espesor y sombra proyectada apoyada sobre la viga de coronacion forrada de gresite que se ve justo debajo. El gresite tampoco 'pierde la reticula' al girar la esquina: las hiladas continuan, lo que brilla es reflejo del vidrio. Dicho esto, a 1250 px no distingo ni un herraje (skimmer, retorno, foco, jet) que permita afirmar en positivo que es obra real, asi que la dejo en dudosa: lo que cae es su razonamiento, no necesariamente su conclusion."
      }
-    ]
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "El spa tiene geometría imposible: la coronación forma una L que no cierra y una repisa vuela sobre el agua sin apoyo; el gresite pierde la retícula al girar la esquina y se convierte en ruido, y el borde del vaso abajo a la derecha se desvanece sin línea de agua."
    },
    {
     "indice": 3,
@@ -69,10 +73,10 @@
     "indice": 4,
     "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
     "altGaleria": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
-    "veredicto": "en_disputa",
-    "usable": false,
+    "veredicto": "obra_real",
+    "usable": true,
     "confianza": "alta",
-    "motivo": "Las cascadas son manchas blancas translúcidas pintadas sobre el gresite: no salen de ningún vertedero ni rebosadero, no tienen origen en la coronación y no producen ninguna espuma ni turbulencia al llegar al agua.",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): la reconoce como obra propia. Manda sobre el panel.",
     "discrepancias": [
      {
       "lente": "Física y luz",
@@ -84,7 +88,9 @@
       "veredicto": "obra_real",
       "motivo": "Su argumento era que las cascadas no salen de ningun vertedero y no producen turbulencia. A 11x sobre el original (custom-pool-spa-builders-florida-06.jpg) las dos cosas son falsas. El spa SI tiene vertedero: la coronacion de travertino baja a una losa-labio rebajada, flanqueada a izquierda y derecha por dos tapas a cota alta; el escalon entre tapa y labio esta cerrado con su pieza vertical, el labio tiene espesor visible y proyecta sombra sobre el gresite. La lamina arranca exactamente en ese labio, no a media pared. En el muro de agua de la izquierda los chorros nacen bajo el vuelo de la coronacion (ranura oculta detras del goteron, que es como se monta) y al pie hay espuma aireada coincidente en planta con cada chorro. Ademas, bajo el porche hay un cajon empotrado de mosquitera motorizada con el rodillo visible dentro de la ranura de la viga, y las palmeras se ven correctamente atenuadas a traves de la malla: eso es fotografia de una obra montada, no sintesis."
      }
-    ]
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Las cascadas son manchas blancas translúcidas pintadas sobre el gresite: no salen de ningún vertedero ni rebosadero, no tienen origen en la coronación y no producen ninguna espuma ni turbulencia al llegar al agua."
    },
    {
     "indice": 5,
@@ -100,10 +106,10 @@
     "indice": 6,
     "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
     "altGaleria": "Modern pool renovation with raised spa and clean architectural lines, designed and installed by professional pool builders in Florida.",
-    "veredicto": "en_disputa",
-    "usable": false,
+    "veredicto": "obra_real",
+    "usable": true,
     "confianza": "alta",
-    "motivo": "Las hiladas de gresite del spa cambian de tamaño y se van a la deriva sin junta coherente, dentro del spa flota un banco blanco sin espesor, no hay un solo jet ni toma de aspiración, y el agua de la piscina tiene manchas blancas sin fuente que las produzca.",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): la reconoce como obra propia. Manda sobre el panel.",
     "discrepancias": [
      {
       "lente": "Física y luz",
@@ -115,7 +121,9 @@
       "veredicto": "obra_real",
       "motivo": "Su argumento era hiladas de gresite a la deriva sin junta coherente y un banco blanco sin espesor. A 12-13x sobre custom-pool-spa-builders-florida-04.jpg el gresite es un 1x2 a matajunta perfectamente regular, con retícula de llaga legible; la variacion que se ve es reflejo especular del vidrio, no deriva de hiladas. Y al pie del muro del spa, bajo el agua, hay escalones con banda de gresite oscuro en el borde de huella — el marcador de contraste de peldaño que exige el codigo — continua y coherente en los dos escalones: nadie pone eso por decoracion. En el pavimento, junto al recorte de cesped, hay una tapa circular enrasada (registro/desague) con su ranura, y suciedad suelta en las juntas del travertino. De fondo, el cerramiento de mosquitera del vecino tiene la geometria correcta de mansarda con tornapunta diagonal desde cada montante hasta la viga de alero: detalle constructivo que no sale de un generador."
      }
-    ]
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Las hiladas de gresite del spa cambian de tamaño y se van a la deriva sin junta coherente, dentro del spa flota un banco blanco sin espesor, no hay un solo jet ni toma de aspiración, y el agua de la piscina tiene manchas blancas sin fuente que las produzca."
    },
    {
     "indice": 7,
@@ -519,17 +527,19 @@
     "indice": 8,
     "src": "/images/images/retractable-screen-2/retractable-screen-installation-contractors-florida-2.jpg",
     "altGaleria": "High-quality motorized retractable screens installed on a residential lanai, providing shade, privacy, and insect protection for outdoor living spaces in Florida.",
-    "veredicto": "en_disputa",
-    "usable": false,
+    "veredicto": "obra_real",
+    "usable": true,
     "confianza": "alta",
-    "motivo": "Foto de movil real con distorsion de gran angular (paredes y techo curvados): botella de S.Pellegrino a medias sobre la mesa, mobiliario de forja antiguo con cojines gastados, travertino manchado y valla infantil de piscina.",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): la reconoce como obra propia. Manda sobre el panel.",
     "discrepancias": [
      {
       "lente": "Detalle constructivo",
       "veredicto": "dudosa",
       "motivo": "La construccion es impecable y le doy la razon en eso: gran angular de movil real, columnas y jambas coherentes, guias laterales visibles, correderas y cerramiento montables. Pero su veredicto de 'alta' no aguanta por procedencia, y el dato esta dentro del fichero: /Users/senavia/Sites/mrandmrs-outdoor-living/public/images/images/retractable-screen-2/retractable-screen-installation-contractors-florida-2.jpg es LA UNICA de las diez que lleva el bloque photoshop:Instructions=\"FBMD01000a9001000058ba0000466d02005a990200acd10200955f0600fc530a0025760a00eea50a0034e30a00b1430f00\". FBMD es la huella que Facebook estampa al procesar/descargar una imagen: este JPEG paso por Facebook antes de llegar al repo, no vino de la camara ni del catalogo del fotografo. Verificado con grep sobre las diez: file-2 la tiene, las otras nueve no. Puede ser el Facebook del propio cliente o el de un tercero, y el fichero no lo resuelve. Es exactamente la misma clase de duda de procedencia por la que usted bajo las 5 y 6 a 'dudosa' (recortes de WordPress con marca ajena), solo que aqui no la busco: su motivo para la 8 fue puramente visual (la S.Pellegrino, el mobiliario de forja). Por consistencia con su propio criterio, 8 es dudosa, no obra_real alta."
      }
-    ]
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Foto de movil real con distorsion de gran angular (paredes y techo curvados): botella de S.Pellegrino a medias sobre la mesa, mobiliario de forja antiguo con cojines gastados, travertino manchado y valla infantil de piscina."
    },
    {
     "indice": 9,
@@ -547,113 +557,127 @@
     "indice": 0,
     "src": "/images/images/light-10/smart-soffit-led-lighting-installation-contractors-florida-10.jpg",
     "altGaleria": "Custom smart soffit LED lighting installation providing elegant exterior illumination and smart home integration in North and South Florida.",
-    "veredicto": "en_disputa",
+    "veredicto": "no_es_del_cliente",
     "usable": false,
     "confianza": "alta",
-    "motivo": "En el alero izquierdo la tira de bombillas se deshace en un borrón azul sin luminaria ni bajante, y el lavado morado de la pared no corresponde al turquesa de las bombillas que lo iluminan; el fichero original se llamaba \"Generated Image December 19, 2025 - 8_55PM.jpeg\".",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): no tiene fotografia de soffit LED, asi que no es obra suya.",
     "discrepancias": [
      {
       "lente": "Física y luz",
       "veredicto": "dudosa",
       "motivo": "La luminaria SÍ está: en los dos hastiales se ve el perfil continuo del canal con las bombillas alojadas y el paso acortándose al alejarse, que es escorzo correcto. Y el reproche de color compara zonas que no se corresponden: la tira corre un DEGRADADO RGB (cian → blanco → magenta → azul → cian) y cada zona de pared coincide con SU tramo. Bajo el dintel del porche las bombillas son turquesa y la mampostería contigua está lavada de turquesa; el morado procede del tramo magenta del faldón derecho, no de esas turquesa. Refuerzo físico fuerte: el relieve de la piedra está modelado bombilla a bombilla —cada canto con la cara superior iluminada y la inferior en sombra, cientos de facetas consistentes con la fuente de arriba— y hay tres iluminantes independientes con su propio cono (tira RGB, plafón cálido sobre la puerta, luz interior cálida por los laterales)."
      }
-    ]
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "En el alero izquierdo la tira de bombillas se deshace en un borrón azul sin luminaria ni bajante, y el lavado morado de la pared no corresponde al turquesa de las bombillas que lo iluminan; el fichero original se llamaba \"Generated Image December 19, 2025 - 8_55PM.jpeg\"."
    },
    {
     "indice": 1,
     "src": "/images/images/light-9/smart-soffit-led-lighting-installation-contractors-florida-09.jpg",
     "altGaleria": "Energy-efficient smart soffit LED lighting highlighting roof architecture and entrances on a Florida home exterior.",
-    "veredicto": "en_disputa",
+    "veredicto": "no_es_del_cliente",
     "usable": false,
     "confianza": "alta",
-    "motivo": "Una hilera de bombillas baja en vertical por la esquina de la buhardilla sin cable, canal ni clip visible y con el paso cambiando a mitad del recorrido; el original era \"Generated Image December 19, 2025 - 8_53PM.jpeg\" y el follaje es de verano pese a llevar fecha de captura del 19 de diciembre.",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): no tiene fotografia de soffit LED, asi que no es obra suya.",
     "discrepancias": [
      {
       "lente": "Física y luz",
       "veredicto": "dudosa",
       "motivo": "El \"paso que cambia a mitad del recorrido\" es escorzo: la hilera gira del plano del alero al canto vertical de la buhardilla, que se aleja de la cámara y se mira desde abajo, así que un paso físico constante se proyecta comprimido — el cambio ocurre justo en la transición de plano, que es donde debe ocurrir. Y la fotometría de toda la escena es correcta: gradiente limpio de dos iluminantes (ámbar pegado a las bombillas, gris azulado del cielo donde no llegan) con caída por distancia sobre el estuco; la ménsula bajo el alero está iluminada por su cara superior y en sombra por la inferior; el alero proyecta su banda de sombra sobre el muro; y el vidrio refleja especularmente el cielo azul y NO el ámbar, que es lo que corresponde a ese ángulo. El argumento del follaje descansa en una fecha de captura que sale de un nombre de fichero que no consta en el repositorio."
      }
-    ]
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Una hilera de bombillas baja en vertical por la esquina de la buhardilla sin cable, canal ni clip visible y con el paso cambiando a mitad del recorrido; el original era \"Generated Image December 19, 2025 - 8_53PM.jpeg\" y el follaje es de verano pese a llevar fecha de captura del 19 de diciembre."
    },
    {
     "indice": 2,
     "src": "/images/images/light-8/smart-soffit-led-lighting-installation-contractors-florida-08.jpg",
     "altGaleria": "High-end residential project featuring smart LED soffit lighting with custom color options, installed by expert lighting contractors in Florida.",
-    "veredicto": "en_disputa",
+    "veredicto": "no_es_del_cliente",
     "usable": false,
     "confianza": "alta",
-    "motivo": "La placa blanca sobre la puerta del garaje es un borrón de pseudoletras ilegibles (texto deformado) y encima la tira se duplica en dos filas que se desalinean sin canal que las sostenga; original \"Generated Image December 19, 2025 - 8_52PM.jpeg\".",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): no tiene fotografia de soffit LED, asi que no es obra suya.",
     "discrepancias": [
      {
       "lente": "Física y luz",
       "veredicto": "dudosa",
       "motivo": "La \"placa de pseudoletras\" mide unos 30 x 10 px en un original de 1080 de ancho que abarca una casa entera: a esa escala ninguna combinación de óptica y sensor resolvería letras, así que la ilegibilidad es límite de resolución, no texto deformado por un generador. Las \"dos filas que se desalinean\" son tiras de PLANOS DE CUBIERTA DISTINTOS —alero del garaje, alero del cuerpo bajo, faldón y retorno del mirador—, que por geometría no pueden alinearse en proyección. Y la física sostiene el conjunto: cada paño está más claro justo bajo SU tira y cae hacia abajo, y la pilastra entre las dos puertas de garaje está azul-fría en la cara que mira a la tira y rosa-cálida en la que mira a una fuente cálida fuera de cuadro. Dos iluminantes de temperatura distinta asignados correctamente cara por cara es difícil de falsificar y aquí está bien resuelto."
      }
-    ]
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "La placa blanca sobre la puerta del garaje es un borrón de pseudoletras ilegibles (texto deformado) y encima la tira se duplica en dos filas que se desalinean sin canal que las sostenga; original \"Generated Image December 19, 2025 - 8_52PM.jpeg\"."
    },
    {
     "indice": 3,
     "src": "/images/images/light-7/smart-soffit-led-lighting-installation-contractors-florida-07.jpg",
     "altGaleria": "Smart soffit LED lighting installed along roof edges to enhance nighttime curb appeal and exterior safety for Florida residential properties.",
-    "veredicto": "en_disputa",
+    "veredicto": "no_es_del_cliente",
     "usable": false,
     "confianza": "alta",
-    "motivo": "En el extremo derecho del alero del garaje la hilera se funde en una mancha blanca y termina en el aire sobre la bajante, con el paso entre bombillas irregular y una fuera de línea; original \"Generated Image December 19, 2025 - 8_51PM.jpeg\".",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): no tiene fotografia de soffit LED, asi que no es obra suya.",
     "discrepancias": [
      {
       "lente": "Física y luz",
       "veredicto": "dudosa",
       "motivo": "Los tres reproches son artefactos de perspectiva y de reflexión, no de generación. La hilera \"se funde en una mancha blanca\" precisamente donde el faldón se aleja de la cámara: el escorzo comprime el paso hasta que los halos se solapan, mientras el mismo hilo visto casi de frente conserva el paso ancho — un paso físico constante se proyecta variable. Y la bombilla \"fuera de línea\" no es una bombilla: en los vidrios hay REFLEJOS especulares de la tira, puntos verdes, rojos y blancos dentro de los paños, más tenues que las fuentes directas y en posiciones DISTINTAS en cada ventana según la orientación de su plano. Reflejos coherentes y distintos por plano de vidrio son de lo que peor sale generado, y aquí están. La hilera termina donde acaba la fascia, junto al codo de la bajante."
      }
-    ]
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "En el extremo derecho del alero del garaje la hilera se funde en una mancha blanca y termina en el aire sobre la bajante, con el paso entre bombillas irregular y una fuera de línea; original \"Generated Image December 19, 2025 - 8_51PM.jpeg\"."
    },
    {
     "indice": 4,
     "src": "/images/images/light-6/smart-soffit-led-lighting-installation-contractors-florida-06.jpg",
     "altGaleria": "Modern two-story home with programmable smart soffit LED lighting designed for energy-efficient exterior lighting in Florida.",
-    "veredicto": "en_disputa",
+    "veredicto": "no_es_del_cliente",
     "usable": false,
     "confianza": "alta",
-    "motivo": "Los lavados rojo y verde caen sobre el board-and-batten como columnas verticales de borde duro sin foco que las produzca, y el color del lavado no coincide con el de las bombillas del alero que tiene encima; original \"Generated Image December 19, 2025 - 8_50PM.jpeg\".",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): no tiene fotografia de soffit LED, asi que no es obra suya.",
     "discrepancias": [
      {
       "lente": "Física y luz",
       "veredicto": "dudosa",
       "motivo": "Las \"columnas verticales de borde duro\" son exactamente lo que produce luz rasante sobre un muro de board-and-batten: cada listón vertical sobresale y proyecta su sombra recta hacia abajo, de ahí las bandas alternas de borde neto. Arrancan en el faldón (donde está la fuente), se abren en abanico desde un punto y se desvanecen hacia abajo por distancia. El \"foco que no existe\" es la propia hilera del faldón justo encima. Y el color sí coincide por tramos: donde las bombillas son rojas las bandas de debajo son rojas, donde son verdes son verdes, y eso se cumple en los dos faldones del hastial central, en el alero del ala izquierda y en el del garaje. Además conviven fuentes independientes bien resueltas: balizas cálidas de jardín con su cono y su sombra, y un plafón bajo el pórtico de entrada."
      }
-    ]
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Los lavados rojo y verde caen sobre el board-and-batten como columnas verticales de borde duro sin foco que las produzca, y el color del lavado no coincide con el de las bombillas del alero que tiene encima; original \"Generated Image December 19, 2025 - 8_50PM.jpeg\"."
    },
    {
     "indice": 5,
     "src": "/images/images/light-5/smart-soffit-led-lighting-installation-contractors-florida-05.jpg",
     "altGaleria": "Exterior smart soffit LED lighting system illuminating rooflines and garage areas, ideal for custom homes in North and South Florida.",
-    "veredicto": "en_disputa",
+    "veredicto": "no_es_del_cliente",
     "usable": false,
     "confianza": "alta",
-    "motivo": "Las bombillas son bloques rectangulares posados sobre el filo del alero sin carcasa ni cable, y las manchas pastel del frontón son borrones difusos cuyo color no casa con la bombilla que tienen justo encima (bombilla azul, mancha naranja); original \"Generated Image December 19, 2025 - 8_48PM.jpeg\".",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): no tiene fotografia de soffit LED, asi que no es obra suya.",
     "discrepancias": [
      {
       "lente": "Física y luz",
       "veredicto": "dudosa",
       "motivo": "Dos errores. (1) El canal SÍ se ve: un perfil extruido continuo recorre el faldón con las bombillas ALOJADAS dentro y el bus oscuro visible entre ellas; no son bloques posados al aire. (2) El ejemplo de color está mal registrado. Sobre un faldón inclinado el charco no cae en vertical bajo la bombilla, cae abajo-y-a-la-izquierda siguiendo la pendiente. La mancha naranja está bajo la bombilla ROJA, no bajo la azul; bajo la azul lo que hay es verde-azulado. Verde→verde, azul/magenta→violeta, ámbar→cálido: la correspondencia se sostiene una vez corregido el desplazamiento. Refuerzo: en el faldón izquierdo, en sombra, cada bombilla deja sobre la tabla un charco de SU color (la amarilla amarillo, la magenta magenta), que es iluminación local correcta. Y el lavado sigue los surcos y los solapes del revestimiento con microsombra coherente."
      }
-    ]
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Las bombillas son bloques rectangulares posados sobre el filo del alero sin carcasa ni cable, y las manchas pastel del frontón son borrones difusos cuyo color no casa con la bombilla que tienen justo encima (bombilla azul, mancha naranja); original \"Generated Image December 19, 2025 - 8_48PM.jpeg\"."
    },
    {
     "indice": 6,
     "src": "/images/images/light-4/smart-soffit-led-lighting-installation-contractors-florida-04.jpg",
     "altGaleria": "Residential property featuring color-changing smart soffit LED lights installed by professional contractors in Florida for accent and security lighting.",
-    "veredicto": "en_disputa",
+    "veredicto": "no_es_del_cliente",
     "usable": false,
     "confianza": "alta",
-    "motivo": "Las tres buhardillas son clones (mismo dintel, misma jamba, mismo alféizar repetidos), la tira de la buhardilla central desciende por el faldón y se disuelve sin remate, y el lavado rosa uniforme no corresponde a bombillas multicolor; original \"Generated Image December 19, 2025 - 8_46PM.jpeg\".",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): no tiene fotografia de soffit LED, asi que no es obra suya.",
     "discrepancias": [
      {
       "lente": "Física y luz",
       "veredicto": "dudosa",
       "motivo": "El \"lavado rosa uniforme\" es suma aditiva, no una incoherencia: a distancia los charcos de una tira densa multicolor (rojo, blanco, ámbar, azul, verde) se solapan y tienden a blanco-rosado, y el estuco es ya beige cálido. En campo cercano NO es uniforme: en el techo del porche, justo bajo la tira, se ven escalopes individuales de color, y en la fascia del garaje se distinguen manchas rojas y azuladas sueltas. Es decir, color por bombilla cerca y mezcla al alejarse, que es la óptica correcta. Las buhardillas tampoco son clones: cada una está vista con escorzo distinto (la izquierda enseña su costado izquierdo, la central casi de frente, la derecha el contrario) y las cuadrículas de las ventanas convergen en sentidos opuestos. El vidrio tiene interior real: persianas a distinta altura en cada hoja, objetos en el alféizar y el respaldo de una silla."
      }
-    ]
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Las tres buhardillas son clones (mismo dintel, misma jamba, mismo alféizar repetidos), la tira de la buhardilla central desciende por el faldón y se disuelve sin remate, y el lavado rosa uniforme no corresponde a bombillas multicolor; original \"Generated Image December 19, 2025 - 8_46PM.jpeg\"."
    },
    {
     "indice": 7,
@@ -669,33 +693,37 @@
     "indice": 8,
     "src": "/images/images/light-2/smart-soffit-led-lighting-installation-contractors-florida-02.jpg",
     "altGaleria": "Close-up of smart LED soffit lighting installation under roof eaves, providing modern exterior illumination for homes in North and South Florida.",
-    "veredicto": "en_disputa",
+    "veredicto": "no_es_del_cliente",
     "usable": false,
     "confianza": "alta",
-    "motivo": "Detalle constructivo imposible: la bajante sale del centro de la fascia y baja por delante del sofito sin canalón que la alimente; además cada bombilla lleva el mismo destello de estrella clonado, no hay cable ni clip en ninguna, y el cielo malva-magenta es el mismo tipo de puesta de sol imposible del precedente R22; original \"Generated Image December 19, 2025 - 8_43PM.jpeg\".",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): no tiene fotografia de soffit LED, asi que no es obra suya.",
     "discrepancias": [
      {
       "lente": "Física y luz",
       "veredicto": "dudosa",
       "motivo": "Los tres motivos fallan por óptica. (1) El \"mismo destello de estrella clonado\" es difracción de diafragma: la produce el OBJETIVO, no el sujeto, así que aparece sobre TODA fuente puntual brillante del encuadre con el mismo número de rayos y la misma orientación angular, escalada solo por brillo. Que sean idénticos es la prueba de que hay una cámara real detrás; lo anómalo sería que variaran. Control interno dentro de esta misma serie: en la imagen 7 hay UNA sola bombilla con estrella de ~12 rayos y decenas de bombillas igual de brillantes a 200 px sin ninguna — eso sí es ópticamente imposible, y es justo lo que aquí no pasa. (2) El cielo malva-magenta no es una \"puesta de sol imposible\": es un crepúsculo civil con el gradiente correcto, más claro y cálido abajo hacia el poniente y azul en altura, con una nube real recortada. (3) La bajante no sale \"del centro de la fascia\": arranca con codo en la esquina del alero y baja por la CARA del muro, que es como se resuelve una bajante en un hastial cuando el canalón está en el faldón de vuelta. Además el sofito sobre cada bombilla lleva su escalope caliente y el revestimiento de abajo cae por distancia: fotometría correcta."
      }
-    ]
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Detalle constructivo imposible: la bajante sale del centro de la fascia y baja por delante del sofito sin canalón que la alimente; además cada bombilla lleva el mismo destello de estrella clonado, no hay cable ni clip en ninguna, y el cielo malva-magenta es el mismo tipo de puesta de sol imposible del precedente R22; original \"Generated Image December 19, 2025 - 8_43PM.jpeg\"."
    },
    {
     "indice": 9,
     "src": "/images/images/light-1/smart-soffit-led-lighting-installation-contractors-florida-01.jpg",
     "altGaleria": "Smart soffit LED lighting installed on a residential home exterior in Florida, enhancing curb appeal, energy efficiency, and smart outdoor lighting design.",
-    "veredicto": "en_disputa",
+    "veredicto": "no_es_del_cliente",
     "usable": false,
     "confianza": "alta",
-    "motivo": "Manchones verdes enormes y saturados sobre el lap siding proyectados por bombillas que en la propia foto se ven blancas y ámbar —el color de la fuente no casa con el de la luz que emite— y la pila de tres frontones centrales no encaja geométricamente entre sí; original \"Generated Image December 19, 2025 - 8_41PM.jpeg\".",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): no tiene fotografia de soffit LED, asi que no es obra suya.",
     "discrepancias": [
      {
       "lente": "Física y luz",
       "veredicto": "dudosa",
       "motivo": "El reproche central —\"bombillas blancas y ámbar que emiten verde\"— se cae al ampliar. Las hileras NO son blancas: van por TRAMOS, rojo y verde, y cada lavado está debajo de SU tramo. Faldón izquierdo del hastial principal: tramo verde arriba → paño verde debajo. Faldón derecho: tramo rojo → paño naranja-rojo debajo. Lo mismo en el alero del porche (izquierda) y en el del garaje. Que algunos núcleos se vean blancos es recorte de altas luces: en una exposición nocturna la fuente puntual satura a blanco mientras el reflejo difuso sobre el revestimiento conserva el tono — el color de la fuente y el de la luz emitida no tienen por qué coincidir EN LA FOTO. Los escalopes tienen caída elíptica correcta desde cada bombilla. Y los \"tres frontones que no encajan\" comparten pendiente, las líneas de alero son horizontales y coherentes y los retornos de fascia rematan donde deben: es un apilado de hastiales normal."
      }
-    ]
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Manchones verdes enormes y saturados sobre el lap siding proyectados por bombillas que en la propia foto se ven blancas y ámbar —el color de la fuente no casa con el de la luz que emite— y la pila de tres frontones centrales no encaja geométricamente entre sí; original \"Generated Image December 19, 2025 - 8_41PM.jpeg\"."
    }
   ],
   "louvered": [
@@ -723,17 +751,19 @@
     "indice": 2,
     "src": "/images/images/motorized-louvered-roof-8/motorized-louvered-roof-installers-florida-08.jpg",
     "altGaleria": "Motorized pergola with adjustable louvers over pool deck, enhancing outdoor living and sun management in Florida.",
-    "veredicto": "en_disputa",
-    "usable": false,
+    "veredicto": "obra_real",
+    "usable": true,
     "confianza": "alta",
-    "motivo": "Carrete de extension electrica rojo con el cable tendido sobre los adoquines: sobra de la instalacion recien terminada, mas cortes irregulares de adoquin junto al jardin.",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): la reconoce como obra propia. Manda sobre el panel.",
     "discrepancias": [
      {
       "lente": "Detalle constructivo",
       "veredicto": "generada_o_stock",
       "motivo": "El fondo es una foto real (el carrete rojo, la cancha, los setos, el aspersor verde), pero la pergola que se monta encima no es un objeto construible. Cinco puntos concretos, todos verificados ampliando el original (1250x682): (1) ANCLAJE INEXISTENTE. Los postes mueren directamente sobre la cara del adoquin: sin placa base, sin pernos, sin zapata y — decisivo — sin un solo adoquin cortado alrededor. En la ampliacion del pie del poste central y del derecho las juntas del adoquinado pasan enteras por debajo del perfil, como si el poste se hubiera apoyado encima del pavimento ya terminado. Una pergola de lamas EXENTA de este tamano en Florida es una vela: va atornillada con placa base a zapata de hormigon y el adoquin siempre se recorta o se ve el dado. (2) CERO TORNILLERIA EN TODA LA ESTRUCTURA. La union poste-viga es un ingle perfecto, continuo, sin brida, sin escuadra, sin perno ni tapa, y el poste ademas queda metido hacia dentro de la esquina, o sea que la esquina vuela sobre un tubo somero sin ningun herraje que transmita el momento. En las otras nueve fotos del set la tornilleria se ve sin buscarla: filas de pernos en la 0, en la 4 (placas de empalme en los extremos de viga), en la 5 (canto superior de la viga), en la 8 (cabeza del poste) y en la 9 (esquina del bastidor). (3) NO HAY DESAGUE. Una cubierta de lamas cerrada es una cubierta estanca: las vigas perimetrales son canalon y al menos un poste hace de bajante. En esta unidad no hay escupidor, ni codo, ni salida en ningun poste ni en ninguna viga; el agua no tiene por donde irse. En la 3 se ve el escupidor en el poste, en la 4 el bajante embutido con su codo al pie, en la 5 el desague en la columna. (4) NO HAY MOTOR. Es una toma cenital, de dron: la caja del accionamiento sobre la viga se veria si existiera. En la 0 se ven los cilindros de los actuadores y el tubo de cableado sobre la viga; en la 5 se ve la caja gris del motor. Aqui, nada. (5) SOMBRA DE CONTACTO AUSENTE. Ni sobre el adoquin ni sobre el cesped hay oscurecimiento donde el poste apoya. El carrete de cable, que es lo que convencio al otro analista, pertenece al patio, no a la pergola: es exactamente la trampa de un render compuesto sobre foto real."
      }
-    ]
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Carrete de extension electrica rojo con el cable tendido sobre los adoquines: sobra de la instalacion recien terminada, mas cortes irregulares de adoquin junto al jardin."
    },
    {
     "indice": 3,
@@ -749,17 +779,19 @@
     "indice": 4,
     "src": "/images/images/motorized-louvered-roof-6/motorized-louvered-roof-installers-florida-06.jpg",
     "altGaleria": "Motorized louvered roof installed on modern property, providing adjustable sunlight control and contemporary outdoor design.",
-    "veredicto": "en_disputa",
-    "usable": false,
+    "veredicto": "obra_real",
+    "usable": true,
     "confianza": "alta",
-    "motivo": "Bajante de desague integrado en la columna, guirnalda de luces con catenaria natural y casas de Florida al otro lado del lago; mobiliario de sling desparejado.",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): la reconoce como obra propia. Manda sobre el panel.",
     "discrepancias": [
      {
       "lente": "Física y luz",
       "veredicto": "generada_o_stock",
       "motivo": "La imagen tiene dos iluminaciones incompatibles. (1) NO HAY ESCALÓN DE SOMBRA bajo la pérgola: medido sobre el travertino, dentro de la huella del techo RGB 178/177/183 y fuera de ella 175/177/185 — idénticos. La misma medición en la imagen 2 da 214 al sol contra 138 en sombra, o sea que el método sí detecta sombras cuando existen. (2) NADA proyecta sombra sobre el deck: ni los cuatro postes, ni el techo, ni el arco de madera de la hamaca que cruza el encuadre entero a ras de piso, ni el juego de comedor, ni la maceta blanca del borde del lago (que además no tiene ni terminador de forma ni sombra de contacto). Con contraste forzado el deck sale blanco uniforme de lado a lado. (3) El fondo sí está al sol y con OTRA luz: el estuco de las casas de la orilla opuesta mide R101 G90 B53 y el césped R104 G90 B38 — luz cálida y baja (B−R de −47 a −67) — mientras el deck en primer plano es neutro-frío (B−R de +6 a +10) y un 70 % MÁS brillante que ese estuco iluminado, de albedo parecido. Eso es imposible: si el deck estuviera en sombra abierta sería más oscuro que el estuco al sol; si le llegara ese sol bajo, habría sombras largas y cálidas de los postes y de la hamaca. No lo explica la bruma atmosférica, que aclara y azulea lo lejano, aquí ocurre lo contrario. Es un primer plano renderizado/compuesto sobre un fondo fotográfico, o una imagen generada."
      }
-    ]
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Bajante de desague integrado en la columna, guirnalda de luces con catenaria natural y casas de Florida al otro lado del lago; mobiliario de sling desparejado."
    },
    {
     "indice": 5,
@@ -1113,33 +1145,37 @@
     "indice": 0,
     "src": "/images/images/landscaping-10/luxury-landscaping-construction-contractors-florida-10.jpg",
     "altGaleria": "Residential front yard landscaping construction with palms and pavers by Florida landscape professionals.",
-    "veredicto": "en_disputa",
-    "usable": false,
+    "veredicto": "obra_real",
+    "usable": true,
     "confianza": "alta",
-    "motivo": "Borde de plastico negro con juntas y estacas visibles, tubo de riego por goteo cruzando la grava, buzon sobre poste torcido, manchas de humedad en el estuco y puerta de garaje con abolladuras.",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): la reconoce como obra propia. Manda sobre el panel.",
     "discrepancias": [
      {
       "lente": "Física y luz",
       "veredicto": "generada_o_stock",
       "motivo": "Archivo: /Users/senavia/Sites/mrandmrs-outdoor-living/public/images/images/landscaping-10/luxury-landscaping-construction-contractors-florida-10.jpg. Fallo decisivo: LAS SOMBRAS SE CORTAN EN EL BORDE DE MATERIAL. En el cesped hay cunas de sombra bien marcadas, y en el asfalto hay manchones oscuros; pero la franja de adoquin que cruza ese mismo cesped esta uniformemente clara de punta a punta, y la sombra del asfalto termina EXACTAMENTE en la junta con el delantal de adoquin, sin continuar ni un centimetro sobre el. Una sombra no se detiene en un cambio de material. Solo hay sombra sobre cesped y asfalto; sobre ningun pavimento. Segundo fallo, independiente: con el sol claramente directo (cielo azul saturado, cumulos de borde duro, altas luces quemadas en las palmas), el cono de podocarpus de ~1,80 m plantado contra la puerta del garaje no proyecta NADA sobre la puerta, la jamba ni la calzada; los dos faroles de pared, que sobresalen del estuco iluminado, tampoco proyectan; el buzon y su poste tampoco. Ni siquiera con sol cenital se sostiene: un farol sobre pared vertical a mediodia deja una raya vertical bajo el, y el alero de 45 cm deja una banda dura sobre el estuco; aqui solo hay un degradado blando. Tercero: la hoja de palma que cuelga sobre el tejado no imprime sombra en la teja, y las tejas arabes estan modeladas de forma simetrica, sin lado de sol. Los detalles que cito el otro analista (borde de plastico con estacas, tubo de goteo, poste torcido, manchas en el estuco) son textura fina, que es justo lo que un generador si acierta; no sobreviven a la prueba de la luz."
      }
-    ]
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Borde de plastico negro con juntas y estacas visibles, tubo de riego por goteo cruzando la grava, buzon sobre poste torcido, manchas de humedad en el estuco y puerta de garaje con abolladuras."
    },
    {
     "indice": 1,
     "src": "/images/images/landscaping-9/luxury-landscaping-construction-contractors-florida-09.jpg",
     "altGaleria": "Custom landscape walkway with stone steps and greenery installed by Florida landscaping contractors.",
-    "veredicto": "en_disputa",
-    "usable": false,
+    "veredicto": "obra_real",
+    "usable": true,
     "confianza": "alta",
-    "motivo": "Chiminea de patio con tubo, cojines floreados desgastados, planta colgante, buzon con poste de metal y un cartelito clavado en el cantero; arbustos de tamanos desiguales.",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): la reconoce como obra propia. Manda sobre el panel.",
     "discrepancias": [
      {
       "lente": "Física y luz",
       "veredicto": "generada_o_stock",
       "motivo": "Archivo: /Users/senavia/Sites/mrandmrs-outdoor-living/public/images/images/landscaping-9/luxury-landscaping-construction-contractors-florida-09.jpg. Cero sombras proyectadas en todo el encuadre, con el tejado de teja de cara a camara claramente al sol (o sea, el sol esta de este lado). No proyecta NADA: las cuatro palmas reales delantales, el tronco grande del cantero (a 60 cm del seto, que queda parejo), los ~12 arbustos del borde del cesped, el cono del garaje, el farol de pared, el buzon con poste, la chimenea de patio ni los sillones. La calzada de adoquin es una superficie amplia y soleada justo debajo de las palmas y no tiene ni una sombra: es un lavado tonal liso. Ademas, en la entrada retranqueada, dos paramentos que se encuentran en esquina a ~90 grados estan pintados al mismo valor — no hay contraste de esquina — y el alero no deja linea de sombra dura sobre el muro, solo un degradado. Dos planos perpendiculares no pueden tener el mismo brillo bajo un unico sol. El control esta dentro del propio lote: el indice 8 imprime una sombra de palma con penumbra y dedos de fronda sobre su asfalto, y el indice 7 tiene sombras blandas anchas de palma sobre sus adoquines. La ausencia no es una propiedad de la luz de este servicio. Nota: comparte con el indice 0 el mismo motivo exacto (garaje + cono + farol + buzon con poste + adoquin) y el mismo fallo de luz, lo que apunta a dos muestras del mismo generador."
      }
-    ]
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Chiminea de patio con tubo, cojines floreados desgastados, planta colgante, buzon con poste de metal y un cartelito clavado en el cantero; arbustos de tamanos desiguales."
    },
    {
     "indice": 2,
@@ -1247,17 +1283,19 @@
     "indice": 2,
     "src": "/images/images/irrigation-8/automated-irrigation-system-installers-florida-08.jpg",
     "altGaleria": "Residential irrigation system contractors installing efficient sprinklers for front yard lawns across North and South Florida homes.",
-    "veredicto": "en_disputa",
-    "usable": false,
+    "veredicto": "obra_real",
+    "usable": true,
     "confianza": "media",
-    "motivo": "Es foto real sin artefactos, pero el cesped es de hoja fina de clima frio y el borde es hormigon extruido con canto rodado pulido: paleta de materiales poco propia de Florida y encuadre de catalogo, sin ningun elemento que identifique la obra.",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): la reconoce como obra propia. Manda sobre el panel.",
     "discrepancias": [
      {
       "lente": "Detalle constructivo",
       "veredicto": "obra_real",
       "motivo": "Su duda se apoya en especie de cesped y \"encuadre de catalogo sin ningun elemento que identifique la obra\". Con la lente constructiva hay tres cosas concretas que lo desmienten, todas en el original -08.jpg. (1) A 11x sobre el bordillo (x=200-340, y=540-650 del original) no hay un bordillo continuo: hay una JUNTA A TOPE entre dos tramos de hormigon extruido, con escalon — el tramo cercano queda mas bajo y retranqueado respecto al de detras, y la testa muestra arido visto y el canto desmoronado. Ademas cada tramo esta envejecido distinto: el de detras tiene floracion de algas verde en la cara superior y el cercano esta limpio. Eso es un tramo repuesto o vertido en otra fecha; es un accidente de obra, no un patron, y no sale de un generador. (2) A 16x sobre el emergente (x=855-945, y=415-505) hay una boquilla granate asentada y con collarin propio sobre el cuerpo negro, y por debajo la costura del retenedor del vastago: es una pieza real, comprable y correctamente montada, no un cilindro sin boquilla como en los indices 4, 6 y 7. (3) La cara vertical del bordillo tiene mancha de tierra en la base y agua encharcada en la cara superior, y en el fondo desenfocado hay un segundo emergente bien situado en la linea del bordillo. La seccion completa (cesped -> bordillo de corte -> lecho de canto rodado -> acera de adoquines) es un detalle de drenaje normal y montable. Aparte, su argumento de materiales no se sostiene: bordillo de hormigon extruido y lecho de canto rodado pulido son precisamente el estandar de jardineria en Florida. Con mi lente no queda nada dudoso: la obra existe y se podria montar tal cual."
      }
-    ]
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Es foto real sin artefactos, pero el cesped es de hoja fina de clima frio y el borde es hormigon extruido con canto rodado pulido: paleta de materiales poco propia de Florida y encuadre de catalogo, sin ningun elemento que identifique la obra."
    },
    {
     "indice": 3,
@@ -1507,17 +1545,19 @@
     "indice": 7,
     "src": "/images/images/deck-3/custom-deck-builders-contractors-north-south-florida-03.jpg",
     "altGaleria": "Elevated composite deck with railing system installed by expert deck builders in North & South Florida.",
-    "veredicto": "en_disputa",
-    "usable": false,
+    "veredicto": "obra_real",
+    "usable": true,
     "confianza": "media",
-    "motivo": "Sistema de baranda de aluminio real con zocalo de poste y soporte del pasamanos inferior a la vista, cesped con marcas de siega y palmeras con hojas secas; solo levanta duda el acabado de catalogo, sin desgaste.",
+    "motivo": "ADJUDICADA POR EL CLIENTE (19-sep-2026): la reconoce como obra propia. Manda sobre el panel.",
     "discrepancias": [
      {
       "lente": "Física y luz",
       "veredicto": "generada_o_stock",
       "motivo": "Fichero: /Users/senavia/Sites/mrandmrs-outdoor-living/public/images/images/deck-3/custom-deck-builders-contractors-north-south-florida-03.jpg. La escena NO TIENE NI UNA SOLA SOMBRA PROYECTADA, y sin embargo el cielo es azul saturado y los verdes van a tope. Cuatro observaciones concretas, todas verificadas ampliando: (1) La base del poste de esquina apoya sobre la tarima y el tablón de al lado tiene EXACTAMENTE la misma luminancia que el de tres metros más allá: ni sombra proyectada ni oclusión de contacto. Una baranda de balaustres verticales a pleno sol tumba siempre un rayado sobre la tarima; aquí no hay ni una raya, ni sobre la tarima ni sobre el césped, y no existe posición del sol que lo explique. (2) Los árboles del parque están plantados en césped abierto y ninguno proyecta sombra: lo que hay en la base de cada tronco son alcorques de mantillo, centrados y simétricos, sin dirección. Tampoco el mango de la derecha, con copa densa, oscurece el suelo bajo él. (3) El lago es un plano cian liso: cero reflejo de la hilera de árboles que llega hasta la misma orilla, cero rizado, cero brillo especular del sol. Agua junto a arbolado bajo cielo azul siempre espeja la ribera. (4) La baranda negra no tiene cara iluminada ni brillo en el pasamanos: todos los balaustres son el mismo negro plano. Sin especular no hay foco direccional. El modelo de luz es ambiente puro — la firma de un render o de un composite de catálogo (baranda de fabricante montada sobre un fondo de parque). CONTROL INTERNO que lo cierra: el índice 3 (deck-7) lleva herrajes negros equivalentes y allí SÍ se ven la sombra corta de la placa base de cada poste hacia la derecha, el brillo en el remate y los reflejos del malecón y del casco blanco en el canal. Misma familia de hardware, física opuesta. Y un apunte sobre el razonamiento original: cita «césped con marcas de siega» como marcador de realidad — ampliado no hay franjas de siega, el césped es una alfombra uniforme sin textura. Esa observación no sostiene el veredicto de obra real."
      }
-    ]
+    ],
+    "adjudicadoPorElCliente": true,
+    "motivoPanel": "Sistema de baranda de aluminio real con zocalo de poste y soporte del pasamanos inferior a la vista, cesped con marcas de siega y palmeras con hojas secas; solo levanta duda el acabado de catalogo, sin desgaste."
    },
    {
     "indice": 8,

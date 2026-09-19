@@ -4,27 +4,59 @@
   "title": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign",
   "cardTitle": "10 Questions Before You Sign",
   "categoria": "new-pool-construction",
-  "servicios": ["custom-pool-spa-builders-in-north-south-florida"],
+  "servicios": [
+    "custom-pool-spa-builders-in-north-south-florida"
+  ],
+  "relacionados": [
+    "how-much-does-a-custom-pool-cost-in-florida",
+    "what-permits-are-required-for-pool-construction-in-florida",
+    "common-pool-construction-mistakes-we-see-in-florida"
+  ],
   "ordenEnServicio": 3,
   "ordenIndice": 22,
   "searchIntent": "commercial",
   "funnelStage": "decision",
-  "tags": ["hiring", "contracts", "licensing"],
+  "tags": [
+    "hiring",
+    "contracts",
+    "licensing"
+  ],
   "seo": {
     "title": "How to Choose a Pool Builder in Florida: 10 Questions",
     "description": "Ten questions that separate pool builders in Florida — licensing, who runs your job, how change orders work, and what a contract should say before you sign it."
   },
   "summary": "Most pool contracts are signed after comparing three prices. These are the ten questions that tell you more than the prices do, and what a good answer sounds like.",
-  "portada": { "ref": "construction-9", "alt": "Two-storey Florida home with a pool, raised spa and bubblers, on a wide paver deck running the width of the yard." },
+  "portada": {
+    "ref": "construction-9",
+    "alt": "Two-storey Florida home with a pool, raised spa and bubblers, on a wide paver deck running the width of the yard."
+  },
   "figuras": [
-    { "ref": "construction-7", "alt": "Raised spa with a spillway returning to the pool, framed by a travertine deck beside a single-storey home." },
-    { "ref": "construction-8", "alt": "Aerial view of a pool and raised spa on a travertine deck, with a garden hose coiled at the edge of the lawn." }
+    {
+      "ref": "construction-7",
+      "alt": "Raised spa with a spillway returning to the pool, framed by a travertine deck beside a single-storey home."
+    },
+    {
+      "ref": "construction-8",
+      "alt": "Aerial view of a pool and raised spa on a travertine deck, with a garden hose coiled at the edge of the lawn."
+    }
   ],
   "faq": [
-    { "question": "How do I check a Florida pool contractor's license?", "answer": "Through the state licensing authority's public lookup, using the license number the contractor gives you. Check that the licence is active, that it covers pool and spa construction rather than general contracting alone, and that the name on it matches the company you are contracting with — not an affiliated one." },
-    { "question": "Is the lowest bid usually the problem?", "answer": "Not by itself. The problem is a bid that is lower because it covers less. Two quotes are only comparable when they list the same scope, so the useful exercise is putting them side by side line by line rather than comparing totals." },
-    { "question": "What should a change order look like?", "answer": "In writing, priced, and signed before the work happens. A verbal change that appears on the final invoice is the single most common source of disputes, and the fix is procedural rather than adversarial: agree at the start that nothing changes without a signed order." },
-    { "question": "Should I pay a large deposit up front?", "answer": "Payments should track progress rather than arrive ahead of it. A schedule tied to completed, inspected stages protects both sides — you are never far ahead of the work, and the contractor is never far behind on materials." }
+    {
+      "question": "How do I check a Florida pool contractor's license?",
+      "answer": "Through the state licensing authority's public lookup, using the license number the contractor gives you. Check that the licence is active, that it covers pool and spa construction rather than general contracting alone, and that the name on it matches the company you are contracting with — not an affiliated one."
+    },
+    {
+      "question": "Is the lowest bid usually the problem?",
+      "answer": "Not by itself. The problem is a bid that is lower because it covers less. Two quotes are only comparable when they list the same scope, so the useful exercise is putting them side by side line by line rather than comparing totals."
+    },
+    {
+      "question": "What should a change order look like?",
+      "answer": "In writing, priced, and signed before the work happens. A verbal change that appears on the final invoice is the single most common source of disputes, and the fix is procedural rather than adversarial: agree at the start that nothing changes without a signed order."
+    },
+    {
+      "question": "Should I pay a large deposit up front?",
+      "answer": "Payments should track progress rather than arrive ahead of it. A schedule tied to completed, inspected stages protects both sides — you are never far ahead of the work, and the contractor is never far behind on materials."
+    }
   ],
   "fuentes": []
 }

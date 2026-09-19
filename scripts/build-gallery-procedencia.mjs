@@ -42,6 +42,97 @@ import { JSDOM } from 'jsdom';
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const DESTINO = path.join(RAIZ, 'src/data/gallery-procedencia.json');
 const PANEL = process.argv[2];
+/* ─────────────────────────────────────────────────────────────────────────────
+ * EL CLIENTE RESOLVIO LAS 20 EN DISPUTA · 19-sep-2026
+ *
+ * El panel discrepaba en 20 fotos y el criterio conservador las dejo fuera, marcadas para que
+ * las resolviera la unica persona que puede de verdad: el dueno reconoce su propia obra.
+ *
+ * Su respuesta, literal: «si las 11 son mias» —las de construction, screens, louvered,
+ * landscaping, irrigation y decks— y, sobre las 9 de iluminacion soffit, «No tengo».
+ *
+ * Eso da la razon al refutador en las 11: miro el original a resolucion nativa y vio lo que la
+ * miniatura de 340 px escondia (el labio del vertedero, el rodillo de la mosquitera dentro de
+ * la ranura de la viga). Y CIERRA las 9 de `light` en la otra direccion: no son obra suya, asi
+ * que no pueden publicarse como tal. `light` y `furniture` se quedan a cero fotos reales.
+ *
+ * Esta tabla MANDA sobre el panel. Tres agentes mirando pixeles no le ganan al dueno de la obra.
+ * ──────────────────────────────────────────────────────────────────────────── */
+const ADJUDICADO = {
+  obra_real: {
+    construction: [0, 2, 4, 6],
+    screens: [8],
+    louvered: [2, 4],
+    landscaping: [0, 1],
+    irrigation: [2],
+    decks: [7],
+  },
+  no_es_del_cliente: {
+    light: [0, 1, 2, 3, 4, 5, 6, 8, 9],
+  },
+};
+const MOTIVO_CLIENTE = {
+  obra_real:
+    'ADJUDICADA POR EL CLIENTE (19-sep-2026): la reconoce como obra propia. Manda sobre el panel.',
+  no_es_del_cliente:
+    'ADJUDICADA POR EL CLIENTE (19-sep-2026): no tiene fotografia de soffit LED, asi que no es obra suya.',
+};
+
+/** Aplica la palabra del cliente sobre el veredicto del panel. Si una referencia no existe NO
+ *  corrige a medias: se niega, porque una adjudicacion que cae en el indice equivocado es peor
+ *  que no haberla aplicado. */
+function aplicaAdjudicacion(servicios) {
+  let n = 0;
+  for (const [veredicto, porSvc] of Object.entries(ADJUDICADO)) {
+    for (const [svc, indices] of Object.entries(porSvc)) {
+      for (const i of indices) {
+        const f = servicios[svc]?.find((x) => x.indice === i);
+        if (!f) {
+          console.error(`\n  ROJO adjudicacion del cliente: ${svc}[${i}] no existe. No se escribe nada.\n`);
+          process.exit(1);
+        }
+        f.veredicto = veredicto;
+        f.usable = veredicto === 'obra_real';
+        f.adjudicadoPorElCliente = true;
+        f.motivoPanel = f.motivoPanel ?? f.motivo;
+        f.motivo = MOTIVO_CLIENTE[veredicto];
+        n++;
+      }
+    }
+  }
+  return n;
+}
+
+function resumen(servicios, adjudicadas) {
+  const todas = Object.values(servicios).flat();
+  const n = (v) => todas.filter((x) => x.veredicto === v).length;
+  console.log(`\n  ${todas.length} fotos · ${Object.keys(servicios).length} servicios`);
+  console.log(`     USABLES ............ ${todas.filter((x) => x.usable).length}`);
+  console.log(`     generada o stock ... ${n('generada_o_stock')}`);
+  console.log(`     dudosa ............. ${n('dudosa')}`);
+  console.log(`     no es del cliente .. ${n('no_es_del_cliente')}`);
+  console.log(`     EN DISPUTA ......... ${n('en_disputa')}`);
+  console.log(`     adjudicadas por el cliente: ${adjudicadas}`);
+  console.log('');
+  for (const [svc, fotos] of Object.entries(servicios)) {
+    const ok = fotos.filter((f) => f.usable).map((f) => f.indice);
+    const marca = ok.length === 0 ? '  <<< SIN FOTOGRAFIA REAL' : '';
+    console.log(`     ${svc.padEnd(13)} ${String(ok.length).padStart(2)}/${fotos.length} usables [${ok.join(',')}]${marca}`);
+  }
+}
+
+/* El fichero del panel es efimero —vive en el scratchpad de la sesion que lo produjo—; el
+ * veredicto derivado no lo es: esta versionado. De ahi este modo, que re-aplica la palabra del
+ * cliente sobre el JSON ya escrito sin necesitar ni el panel ni un build de /gallery. */
+if (process.argv[2] === '--solo-adjudicar') {
+  const actual = JSON.parse(fs.readFileSync(DESTINO, 'utf8'));
+  const n = aplicaAdjudicacion(actual.servicios);
+  fs.writeFileSync(DESTINO, `${JSON.stringify(actual, null, 1)}\n`);
+  resumen(actual.servicios, n);
+  console.log(`  -> ${path.relative(RAIZ, DESTINO)}   (solo adjudicacion del cliente)\n`);
+  process.exit(0);
+}
+
 
 if (!PANEL || !fs.existsSync(PANEL)) {
   console.error('\n  uso: node scripts/build-gallery-procedencia.mjs <salida-del-panel.json>\n');
@@ -152,6 +243,8 @@ for (const [svc, fotos] of Object.entries(porSvc)) {
 }
 if (faltan) { console.error('\n  no se escribe nada: hay servicios sin clasificar\n'); process.exit(1); }
 
+const adjudicadas = aplicaAdjudicacion(salida.servicios);
+
 const todas = Object.values(salida.servicios).flat();
 const sinClasificar = todas.filter((x) => x.veredicto === 'sin_clasificar');
 if (sinClasificar.length) {
@@ -161,16 +254,5 @@ if (sinClasificar.length) {
 }
 
 fs.writeFileSync(DESTINO, `${JSON.stringify(salida, null, 1)}\n`);
-const n = (v) => todas.filter((x) => x.veredicto === v).length;
-console.log(`\n  ${todas.length} fotos · ${Object.keys(salida.servicios).length} servicios`);
-console.log(`     USABLES (unanimes) . ${todas.filter((x) => x.usable).length}`);
-console.log(`     generada o stock ... ${n('generada_o_stock')}`);
-console.log(`     dudosa ............. ${n('dudosa')}`);
-console.log(`     EN DISPUTA ......... ${n('en_disputa')}   <- las resuelve el cliente`);
-console.log('');
-for (const [svc, fotos] of Object.entries(salida.servicios)) {
-  const ok = fotos.filter((f) => f.usable).map((f) => f.indice);
-  const marca = ok.length === 0 ? '  <<< SIN FOTOGRAFIA REAL' : '';
-  console.log(`     ${svc.padEnd(13)} ${String(ok.length).padStart(2)}/${fotos.length} usables [${ok.join(',')}]${marca}`);
-}
+resumen(salida.servicios, adjudicadas);
 console.log(`\n  -> ${path.relative(RAIZ, DESTINO)}\n`);
