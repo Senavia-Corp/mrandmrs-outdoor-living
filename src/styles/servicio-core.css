@@ -313,6 +313,132 @@
   text-align: center;
 }
 
+/* ══ 3.ter · LAS FILAS DE DETALLE ═════════════════════════════════════════════════════════
+ * Solo existen donde `captacion-servicios.json` trae `servicios.detalle`, o sea HOY en UNA
+ * ruta. Las otras trece fichas siguen con la rejilla de tarjetas y `servicios.css` intacta:
+ * todo lo de aqui cuelga de `.svc-detalle`, que alli no existe.
+ *
+ * ─── LA DIRECCION, Y LO QUE SE DESCARTO ──────────────────────────────────────────────────
+ *
+ * El reflejo era copiar `.svc-inversion__banda`: cuatro bandas 50/50 a sangre con panel
+ * tenido. Se descarta por dos medidas, no por gusto:
+ *
+ *   1. La pagina tendria CINCO bandas 50/50 a sangre seguidas (intro, estas cuatro, inversion)
+ *      y el ritmo se vuelve un acordeon.
+ *   2. `servicios.css:66` declara que el BLANCO de esta seccion es el respiro entre las dos
+ *      bandas azules que la rodean. Tenirla lo gasta.
+ *
+ * Asi que las filas se quedan DENTRO del contenedor y sobre blanco, y la unica audacia se
+ * gasta en la lista: el icono dorado sale del texto y COLGA en el margen, de modo que el
+ * borde izquierdo de la lista son los iconos y no las letras. Es la «placa» de R10 destilada
+ * -se va la pastilla tenida, se queda la marca dorada- y lee como una hoja de especificacion,
+ * que es lo que la seccion es.
+ *
+ * NO SE NUMERAN. Cuatro filas parecen una secuencia y no lo son: la secuencia de esta ficha
+ * es `.process-section`, que va dos secciones mas abajo y ya lleva sus 1-2-3-4. Numerar aqui
+ * seria decir dos veces cosas distintas con el mismo signo.
+ *
+ * EL FILETE ENTRE FILAS es la unica estructura anadida, y dice algo cierto: las cuatro filas
+ * son UN alcance de obra, no cuatro tarjetas sueltas. `--mm-borde` sobre blanco da 1,17:1 —no
+ * transporta informacion, solo agrupa— y por eso no marca ningun estado.
+ *
+ * ─── CONTRASTES MEDIDOS (todos sobre `--mm-fondo`, #ffffff) ──────────────────────────────
+ *     `--mm-tinta` (navy #001c63) ............ 15,60:1   titulos
+ *     `--mm-tinta-cuerpo` (#000000) .......... 21,00:1   parrafo de la fila
+ *     `--mm-tinta-atenuada` (#596b9a) ......... 5,26:1   resumen del subservicio (AA normal)
+ * El oro sigue viviendo SOLO dentro del dibujo del icono: 1,86:1 sobre blanco no marca nada. */
+
+.svc-detalle__fila { display: grid; gap: var(--mm-e-24); }
+
+/* El filete: entre filas, nunca antes de la primera ni despues de la ultima. Lleva el aire a
+ * los dos lados en la MISMA regla —margen arriba, relleno abajo— y no repartido entre un
+ * `gap` del padre y un relleno del hijo, que es como se descuadra el dia que se toca uno. */
+.svc-detalle__fila + .svc-detalle__fila {
+  margin-top: var(--mm-e-48);
+  border-top: 1px solid var(--mm-borde);
+  padding-top: var(--mm-e-48);
+}
+
+/* LA PROPORCION NO SE DECLARA AQUI, Y ES UNA DECISION, NO UN OLVIDO.
+ *
+ * Primero se escribio `aspect-ratio: 1250 / 698` porque las cuatro fotos de la ficha de
+ * piscina son 1250x698. Al extender esto a las otras trece salio que el banco NO es uniforme:
+ * hay 1950x1219, 1250x933, 1250x1007 y 1250x682 entre las 52. Un `aspect-ratio` fijo sobre un
+ * `<img>` sin `object-fit` NO recorta, DEFORMA — y `object-fit: cover` habria recortado por el
+ * centro 52 encuadres que nadie ha revisado uno a uno.
+ *
+ * La salida es no declarar nada: los atributos `width`/`height` que el generador ya escribe le
+ * dan al navegador la proporcion intrinseca, y con `block-size: auto` el hueco queda reservado
+ * igual de bien. Cero CLS, cero deformacion, y cada foto con su encuadre.
+ *
+ * `block-size: auto` NO ES REDUNDANTE, y quitarlo por ahorrar 20 B fue un fallo que salio en
+ * el navegador: los `width`/`height` son PISTAS DE PRESENTACION y el navegador las mapea a
+ * `width: 1250px; height: 698px` con especificidad cero. `inline-size: 100%` pisa la primera,
+ * pero la segunda sobrevive y la foto sale a 609x698 en vez de a su proporcion. */
+.svc-detalle__foto {
+  inline-size: 100%;
+  block-size: auto;
+  border-radius: var(--mm-r-16);
+}
+
+/* El `h3` ya llega navy y a `line-height` 120% desde `webflow.css`; aqui solo se le pone el
+ * cuerpo y el peso. Paso 5 (20->25 px) contra el paso 4 del titulo de subservicio: la fila
+ * manda sobre sus items sin gritar. */
+.svc-detalle__tit {
+  margin: 0 0 var(--mm-e-12);
+  font-size: var(--mm-paso-5);
+}
+.svc-detalle__intro {
+  margin: 0;
+  max-inline-size: var(--mm-medida);
+  font-size: var(--mm-paso-4);
+  line-height: var(--mm-alto-cuerpo);
+}
+
+/* ── LA LISTA ─────────────────────────────────────────────────────────────────────────────
+ * AQUI NO SE ANULA NADA, Y ESA ES LA DECISION. La piel de tarjeta (`webflow.css`: relleno de
+ * 2em, radio, sombra; `servicios.css`: fondo tenido y borde) no se apaga con seis
+ * declaraciones: el generador RENOMBRA la clase a `.svc-detalle__caja` y deja de casar. Son
+ * 190 B menos en una capa que `check:tokens` deja hoy con ~1 KB libre, y una anulacion menos
+ * que mantener el dia que `servicios.css` cambie.
+ *
+ * LO QUE SI SE HEREDA, Y ES A PROPOSITO: `div-block-2`, `heading-2` y `paragraph-mini` SE
+ * QUEDAN con su nombre, porque `servicios.css:208-222` ya las deja como esta fila las quiere
+ * —sin margen superior, resumen a 14 px en `--mm-tinta-atenuada` (5,26:1 sobre blanco, AA)—.
+ * Lo unico que se pisa es el cuerpo del titulo del item, para que no compita con el `h3`.
+ *
+ * EL ICONO NO SE REDIMENSIONA, Y LA PRIMERA VERSION DE ESTO ESTABA MAL. Se escribio un
+ * `block-size: 32px` creyendo que `webflow.css` (`height: 65px`) era la unica regla en juego,
+ * y el icono salio de 72x32: `servicios.css:236` le pone ademas `width: 72px` y la PLACA
+ * -fondo `--mm-superficie`, borde `--mm-borde`, radio 16- que es la firma de R10. Medido en el
+ * navegador, no leido. La salida no es anadir un `inline-size` que la desmonte: la placa ya
+ * esta disenada y contrastada, y a 72 px junto a un titulo de 16-20 px hace exactamente de
+ * marca colgada en el margen. Se hereda entera y esta hoja no dice nada de ella.
+ *
+ * `align-items: flex-start` para que la placa se alinee con la PRIMERA LINEA del titulo y no
+ * se centre contra el bloque de dos lineas. */
+.svc-detalle__lista {
+  list-style: none;
+  display: grid;
+  gap: var(--mm-e-16);
+  margin: var(--mm-e-24) 0 0;
+  padding: 0;
+}
+.svc-detalle__caja { display: flex; gap: var(--mm-e-16); align-items: flex-start; }
+.svc-detalle .heading-2 { font-size: var(--mm-paso-3); }
+
+/* A partir de 768 la fila son dos columnas y ALTERNA. El orden del MARCADO es siempre
+ * foto -> cuerpo, asi que la lectura sin CSS y la del lector de pantalla no cambian nunca;
+ * lo que cambia de lado es la PINTURA, con `order`. Por debajo se apila, foto primero. */
+@media (min-width: 768px) {
+  .svc-detalle__fila {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--mm-e-32);
+    align-items: center;
+  }
+  .svc-detalle__fila--derecha .svc-detalle__foto { order: 2; }
+}
+
 /* ══ 4 · INVERSION Y FINANCIACION ═════════════════════════════════════════════════════════
  * La maqueta de dos columnas DE TEXTO que habia aqui (texto a la izquierda, acciones a la
  * derecha, dentro de una tarjeta tenue) se fue entera con C3: ahora las dos columnas son

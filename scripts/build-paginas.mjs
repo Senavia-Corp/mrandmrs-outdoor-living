@@ -776,15 +776,20 @@ function captacion(doc, ruta) {
    * lead donde vale, en vez de dejarlo muerto en una tarjeta sin salida. */
   const svc = doc.querySelector('section.services');
   if (svc && c.servicios) {
+    /* Las cuatro claves de abajo son OPCIONALES desde R22-DETALLE. La ficha de piscina las
+     * trae todas porque R17-CORE arreglo ahi la errata del rotulo, reescribio tres resumenes
+     * y mando las tres tarjetas de remodelacion a su landing. Las otras trece solo traen
+     * `detalle`: su rotulo y sus textos son los del origen y no se tocan, asi que pedirles
+     * las claves que no tienen solo serviria para reventar el generador. */
     const deco = svc.querySelector('.heading-deco');
-    if (deco) deco.textContent = c.servicios.rotulo;   // la errata «What do we do!»
+    if (deco && c.servicios.rotulo) deco.textContent = c.servicios.rotulo;   // la errata «What do we do!»
 
     const lista = svc.querySelector('.cms-list-subservices');
     const items = [...svc.querySelectorAll('.cms-item-subservices')];
     const titulo = (el) => el.querySelector('h3')?.textContent?.replace(/\s+/g, ' ').trim() ?? '';
     const porTitulo = new Map(items.map((el) => [titulo(el).replace(/&/g, '&'), el]));
 
-    for (const [t, nuevo] of Object.entries(c.servicios.textos)) {
+    for (const [t, nuevo] of Object.entries(c.servicios.textos ?? {})) {
       const el = porTitulo.get(t);
       const parrafo = el?.querySelector('.paragraph-mini');
       if (parrafo) parrafo.textContent = nuevo;
@@ -793,7 +798,7 @@ function captacion(doc, ruta) {
     /* Las de remodelacion se envuelven en un `<a>` que va a su landing. El ancla cuelga DENTRO
      * de la tarjeta, alrededor de `.item-subservice`, para no romper la rejilla: el `<li>` de
      * Webflow sigue siendo el hijo directo de la lista. */
-    for (const t of c.servicios.remodelacion) {
+    for (const t of c.servicios.remodelacion ?? []) {
       const el = porTitulo.get(t);
       const caja = el?.querySelector('.item-subservice');
       if (!caja) continue;
@@ -804,12 +809,119 @@ function captacion(doc, ruta) {
       a.appendChild(caja);
     }
 
-    /* El reorden: primero los declarados de construccion, en su orden, y detras los de
-     * remodelacion. Un titulo que no este en ninguna de las dos listas se queda donde estaba,
-     * detras de los declarados: asi anadir un subservicio en el origen no rompe nada en
-     * silencio. */
-    if (lista) {
-      const orden = [...c.servicios.construccionPrimero, ...c.servicios.remodelacion];
+    /* ── LAS FILAS DE DETALLE (`servicios.detalle`) ────────────────────────────────────
+     * La rejilla de ocho tarjetas decia QUE se hace y no decia nada mas: ocho resumenes de
+     * una linea, sin foto y sin contexto, en la ficha donde el visitante esta decidiendo una
+     * obra de cinco cifras. `detalle` la sustituye por filas alternas foto/texto, y cada fila
+     * AGRUPA los subservicios que de verdad van juntos en la obra.
+     *
+     * LOS SUBSERVICIOS NO SE REESCRIBEN NI SE COPIAN AL JSON: `items` son REFERENCIAS por
+     * titulo a las tarjetas que ya estan en el marcado de origen. Asi el texto que se publica
+     * sigue siendo el del origen al 100 % -que es lo que `check:texto` exige-, y el dia que
+     * alguien toque un subservicio en Webflow esto no se queda mintiendo. Si un titulo
+     * referenciado no aparece, ABORTA: un subservicio perdido en silencio es justo el fallo
+     * que esta capa existe para no tener.
+     *
+     * LOS `h3` BAJAN A `h4`. La fila estrena el `h3`, asi que los ocho titulos pasan a `h4`
+     * para que la jerarquia sea real. NO cambia `innerText`: `webflow.css` pone
+     * `text-transform: capitalize` en los CUATRO niveles de encabezado, asi que el texto
+     * renderizado es el mismo antes y despues. Comprobado en la hoja, no supuesto.
+     *
+     * SIN `detalle` NO PASA NADA DE ESTO y se aplica el reorden plano de siempre: es lo que
+     * mantiene identicas las trece fichas que aun no tienen la clave. */
+    if (c.servicios.detalle && lista) {
+      const usados = new Set();
+      const banda = doc.createElement('div');
+      banda.className = 'svc-detalle';
+
+      for (const fila of c.servicios.detalle) {
+        const f = doc.createElement('div');
+        f.className = `svc-detalle__fila svc-detalle__fila--${fila.lado}`;
+
+        const foto = doc.createElement('img');
+        foto.className = 'svc-detalle__foto';
+        foto.setAttribute('src', fila.foto);
+        foto.setAttribute('alt', fila.alt);
+        foto.setAttribute('width', String(fila.ancho));
+        foto.setAttribute('height', String(fila.alto));
+        foto.setAttribute('loading', 'lazy');
+        f.appendChild(foto);
+
+        const cuerpo = doc.createElement('div');
+        cuerpo.className = 'svc-detalle__cuerpo';
+        const h = doc.createElement('h3');
+        h.className = 'svc-detalle__tit';
+        h.textContent = fila.titulo;
+        cuerpo.appendChild(h);
+        const p = doc.createElement('p');
+        p.className = 'svc-detalle__intro';
+        p.textContent = fila.parrafo;
+        cuerpo.appendChild(p);
+
+        const ul = doc.createElement('ul');
+        ul.className = 'svc-detalle__lista';
+        for (const t of fila.items) {
+          const el = porTitulo.get(t);
+          if (!el) {
+            console.error(`\n  ROJO ${ruta}: \`servicios.detalle\` referencia el subservicio `
+              + `«${t}» y no esta en el marcado de origen\n`);
+            process.exit(1);
+          }
+          usados.add(t);
+          const li = doc.createElement('li');
+          li.className = 'svc-detalle__item';
+          /* EL `data-w-id` SE MUDA CON LA TARJETA, y esto no es cosmetico: `reveals.json` lo
+           * mapea a `growIn`, y al tirar el envoltorio `.cms-item-subservices` la clave se
+           * quedaba SIN ELEMENTO en las catorce fichas a la vez. `check:ix2` lo caza contando
+           * claves huerfanas (salio 15 contra un umbral de 14) y tiene razon: sin esto los ocho
+           * subservicios entran planos mientras todo lo que los rodea aparece con su reveal.
+           * Subir el umbral habria tapado el sintoma; la animacion se mueve con lo que animaba. */
+          const wid = el.getAttribute('data-w-id');
+          if (wid) li.setAttribute('data-w-id', wid);
+          /* `firstElementChild` es el `<a class="svc-subservicio">` en los de remodelacion y
+           * `.item-subservice` en los demas: el envoltorio de Webflow se queda fuera. */
+          li.appendChild(el.firstElementChild);
+          /* `.item-subservice` es la PIEL DE TARJETA: `webflow.css` le pone relleno de 2em,
+           * radio y sombra, y `servicios.css` fondo tenido y borde. Dentro de una fila que ya
+           * trae foto, eso es una caja dentro de otra caja. Se RENOMBRA en vez de anularse
+           * declaracion a declaracion: seis anulaciones en `servicio-core.css` costaban 190 B
+           * de un presupuesto de capa que `check:tokens` deja hoy en 1 KB. Las otras clases
+           * (`div-block-2`, `heading-2`, `paragraph-mini`) SE QUEDAN: ahi `servicios.css` ya
+           * dice lo que esta fila quiere. */
+          const caja = li.querySelector('.item-subservice');
+          if (caja) caja.className = 'svc-detalle__caja';
+          const t3 = li.querySelector('h3.heading-2');
+          if (t3) {
+            const t4 = doc.createElement('h4');
+            t4.className = t3.className;
+            t4.textContent = t3.textContent;
+            t3.replaceWith(t4);
+          }
+          ul.appendChild(li);
+        }
+        cuerpo.appendChild(ul);
+        f.appendChild(cuerpo);
+        banda.appendChild(f);
+      }
+
+      /* Los titulos salen de `porTitulo`, que se construyo ANTES de mover nada. Leerlos ahora
+       * del DOM con `items.map(titulo)` devuelve ocho cadenas vacias: el `<h3>` ya vive dentro
+       * de su `<li>` y el envoltorio de Webflow se ha quedado hueco. Salio en rojo. */
+      const huerfanos = [...porTitulo.keys()].filter((t) => !usados.has(t));
+      if (huerfanos.length) {
+        console.error(`\n  ROJO ${ruta}: \`servicios.detalle\` deja fuera ${huerfanos.length} `
+          + `subservicio(s) -> ${huerfanos.join(', ')}\n`);
+        process.exit(1);
+      }
+
+      const envoltorio = svc.querySelector('.cms-wrapper-subservices');
+      (envoltorio ?? lista).replaceWith(banda);
+    } else if (lista && c.servicios.construccionPrimero) {
+      /* El reorden: primero los declarados de construccion, en su orden, y detras los de
+       * remodelacion. Un titulo que no este en ninguna de las dos listas se queda donde
+       * estaba, detras de los declarados: asi anadir un subservicio en el origen no rompe
+       * nada en silencio. */
+      const orden = [...c.servicios.construccionPrimero, ...(c.servicios.remodelacion ?? [])];
       const ordenados = [
         ...orden.map((t) => porTitulo.get(t)).filter(Boolean),
         ...items.filter((el) => !orden.includes(titulo(el))),

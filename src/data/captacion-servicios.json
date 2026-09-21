@@ -112,6 +112,60 @@
         "Pool Deck & Hardscape Remodeling"
       ],
       "remodelacionHref": "/services/pool-remodeling-renovation-in-north-south-florida",
+      "detalle": [
+        {
+          "titulo": "Designed Around Your Lot",
+          "parrafo": "Every pool starts with your lot, not a catalog shape. We survey the site, model the pool in 3D against setbacks, soil conditions and the Florida Building Code, and you approve the rendering before we pull a permit.",
+          "foto": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-1.avif",
+          "alt": "Aerial view of a custom pool and spa sited on a North Florida acreage lot",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "derecha",
+          "items": [
+            "Custom Pool Design & Engineering"
+          ]
+        },
+        {
+          "titulo": "Plumbing, Equipment, Automation",
+          "parrafo": "What keeps the water clear is buried before the plaster goes in. Lines are sized to your pool rather than to habit, and the pumps, filters and heaters come back to one app instead of a wall of valves.",
+          "foto": "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-3.avif",
+          "alt": "Raised spa with glass tile spilling into a custom pool on a travertine deck in South Florida",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "izquierda",
+          "items": [
+            "Pool Plumbing & Circulation Systems Installation",
+            "Pool Equipment Installation & Automation"
+          ]
+        },
+        {
+          "titulo": "Finishes, Tile & Coping",
+          "parrafo": "The finish is what you touch and what you look at for the next twenty years. We build in plaster, quartz and pebble, and match tile and coping to the deck so the pool reads as part of the house.",
+          "foto": "/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-7.avif",
+          "alt": "Close view of pool tile and coping meeting the deck of a North Florida pool",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "derecha",
+          "items": [
+            "Pool Finishes & Interior Surface Installation",
+            "Pool Tile & Coping Installation"
+          ]
+        },
+        {
+          "titulo": "Remodeling & Spa Additions",
+          "parrafo": "If the shell is sound, a remodel gets you there faster than a new build. Same licensed crew and the same permits, applied to the pool you already own.",
+          "foto": "/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-6.avif",
+          "alt": "Existing North Florida backyard pool with a pergola and outdoor dining area",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "izquierda",
+          "items": [
+            "Inground Pool Remodeling",
+            "Integrated Spa Remodeling",
+            "Pool Deck & Hardscape Remodeling"
+          ]
+        }
+      ],
       "textos": {
         "Custom Pool Design & Engineering": "Custom pool design engineered for Florida homes and code compliance.",
         "Pool Plumbing & Circulation Systems Installation": "Plumbing and circulation built for proper water flow and filtration.",
@@ -200,6 +254,62 @@
         }
       ]
     },
+    "servicios": {
+      "detalle": [
+        {
+          "titulo": "Designed For Homes & Businesses",
+          "parrafo": "Every pergola starts from the space it has to cover. We set column positions, beam depth and rafter spacing around your patio dimensions, door swings and sightlines, whether the structure shades a backyard in Gainesville or a restaurant terrace in Fort Lauderdale.",
+          "foto": "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/aluminum-pergolas-contractors-florida.avif",
+          "alt": "Dark aluminum pergola shading an outdoor kitchen island in a Florida backyard",
+          "ancho": 1950,
+          "alto": 1219,
+          "lado": "derecha",
+          "items": [
+            "Custom Pergola Design",
+            "Residential & Commercial Pergolas"
+          ]
+        },
+        {
+          "titulo": "Aluminum & Treated Wood",
+          "parrafo": "Aluminum handles most of what we build here: it will not rot, swell or feed termites, and a powder-coated finish stands up to salt air and Florida UV. When a client wants wood grain overhead, we frame in treated lumber and detail the connections to shed water.",
+          "foto": "/images/images/pergolas-9/custom-pergola-patio-cover-builders-florida-09.jpg",
+          "alt": "White attached pergola over the patio of a tile-roof Florida home",
+          "ancho": 1250,
+          "alto": 976,
+          "lado": "izquierda",
+          "items": [
+            "Aluminum Pergola Construction",
+            "Pergola Construction"
+          ]
+        },
+        {
+          "titulo": "Standalone Structures & Roofline Extensions",
+          "parrafo": "A freestanding pergola sits on its own footings, anchored against uplift, so it can stand out by the pool or in the middle of the yard. An attached one carries a ledger into the wall framing, and we flash that joint so the roofline extension does not trap water.",
+          "foto": "/images/images/pergolas-7/custom-pergola-patio-cover-builders-florida-07.jpg",
+          "alt": "Freestanding dark pergola beside a curved swimming pool",
+          "ancho": 1250,
+          "alto": 933,
+          "lado": "derecha",
+          "items": [
+            "Freestanding Pergolas",
+            "Attached Pergolas"
+          ]
+        },
+        {
+          "titulo": "Louvered Roofs & Night Lighting",
+          "parrafo": "Louvered roofs rotate from open sky to a closed, water-shedding ceiling, so an afternoon storm does not clear the patio. We run wiring through the beams and columns for wet-rated downlights and fan boxes, which keeps conduit off the finished surfaces and the space usable after dark.",
+          "foto": "/images/images/pergolas-4/custom-pergola-patio-cover-builders-florida-04.jpg",
+          "alt": "Timber gable pavilion with open sides over a paver patio",
+          "ancho": 1250,
+          "alto": 933,
+          "lado": "izquierda",
+          "items": [
+            "Louvered & Adjustable Pergolas",
+            "Pergola Lighting Integration"
+          ]
+        }
+      ]
+    },
     "formulario": {
       "titulo": "Get a Free Estimate",
       "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
@@ -274,6 +384,62 @@
           "icono": "contrato",
           "titulo": "Permits and code handled",
           "texto": "One team takes the design through permits, engineering and construction."
+        }
+      ]
+    },
+    "servicios": {
+      "detalle": [
+        {
+          "titulo": "Composite & Treated Wood Decking",
+          "parrafo": "We frame decks in pressure-treated pine rated for ground contact and surface them in capped composite or sealed wood. Salt air and UV punish fasteners first, so we specify hot-dipped galvanized or stainless hardware and hidden clips that hold through Florida's wet season.",
+          "foto": "/images/images/deck-9/custom-deck-builders-contractors-north-south-florida-09.jpg",
+          "alt": "Wood deck platform wrapping the rear of a modern Florida home",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "derecha",
+          "items": [
+            "Composite Deck Installation",
+            "Pressure‑Treated Wood Deck Builders"
+          ]
+        },
+        {
+          "titulo": "Multi-Level & Rooftop Decks",
+          "parrafo": "Multi-level decks split the grill, the table and the lounge across platforms instead of crowding one. A rooftop deck sits over living space, so it gets a waterproof membrane, flashed edges, and guardrails and attachments engineered for the design wind speed the code assigns your address, which rises inside Broward's High-Velocity Hurricane Zone.",
+          "foto": "/images/images/deck-10/custom-deck-builders-contractors-north-south-florida-10.jpg",
+          "alt": "Long covered wood deck with seating along a screened Florida house",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "izquierda",
+          "items": [
+            "Multi‑Level Deck Design & Construction",
+            "Rooftop Deck Builders"
+          ]
+        },
+        {
+          "titulo": "Pool Decks & Railings",
+          "parrafo": "Around a pool we lay slip-resistant surfaces that stay cool underfoot and slope drainage away from the house. Railings come in powder-coated aluminum, stainless cable or tempered glass, sized and spaced to meet guard and pool-barrier requirements, and set in anchors that resist chlorine and salt.",
+          "foto": "/images/images/deck-4/custom-deck-builders-contractors-north-south-florida-04.jpg",
+          "alt": "Wood pool deck built around a mature tree",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "derecha",
+          "items": [
+            "Pool Deck Installation & Renovation",
+            "Deck Railing Installation"
+          ]
+        },
+        {
+          "titulo": "Lighting, Remodels & Expansions",
+          "parrafo": "Low-voltage LEDs in posts, stair risers and rail caps keep the deck usable after dark, on GFCI circuits with wet-rated fixtures that survive Florida humidity. On older decks we open the framing, replace what has rotted, and extend the footprint your setbacks allow.",
+          "foto": "/images/images/deck-1/custom-deck-builders-contractors-north-south-florida-01.jpg",
+          "alt": "Wide multi-level deck steps leading up to a sunroom",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "izquierda",
+          "items": [
+            "Deck Lighting Installation",
+            "Deck Remodeling & Expansion"
+          ]
         }
       ]
     },
@@ -354,6 +520,62 @@
         }
       ]
     },
+    "servicios": {
+      "detalle": [
+        {
+          "titulo": "Layout, Design & Modules",
+          "parrafo": "We build outdoor kitchens two ways. Modular cabinetry drops into a straight run along a lanai or pool deck; full masonry handles L-shapes, curves, and tight setbacks against a screen enclosure. Either layout keeps the grill venting away from the house and the prep space within reach of it.",
+          "foto": "/images/residentials/custom-outdoor-kitchens-for-north-south-florida-homes/covered-custom-outdoor-kitchen-florida.avif",
+          "alt": "Covered outdoor kitchen with a long island under a white pergola",
+          "ancho": 1950,
+          "alto": 1219,
+          "lado": "derecha",
+          "items": [
+            "Custom Outdoor Kitchen Design",
+            "Modular Kitchen Installation"
+          ]
+        },
+        {
+          "titulo": "Grill Islands & Pizza Ovens",
+          "parrafo": "Built-in grills need code clearance to combustibles, a rated hood where the island sits under a solid roof, and gas and electrical runs sized for the appliance. Wood-fired and gas ovens weigh hundreds of pounds, so they land on a slab that carries the load or on footings we pour.",
+          "foto": "/images/images/kitchen-7/modern-custom-outdoor-kitchen-design-florida.avif",
+          "alt": "Outdoor kitchen with a built-in pizza oven beside a Florida pool",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "izquierda",
+          "items": [
+            "Grilling Island Construction",
+            "Outdoor Pizza Oven Builders"
+          ]
+        },
+        {
+          "titulo": "Bars, Beverages & Remodels",
+          "parrafo": "Bars and beverage centers add plumbing and power to the island: a sink, a drain line, GFCI circuits in weatherproof covers, refrigeration rated for outdoor use. Remodels run the same trades through an existing shell, and salt air has usually gone after its fasteners and framing.",
+          "foto": "/images/images/kitchen-5/high-end-outdoor-kitchen-layout-florida.avif",
+          "alt": "Outdoor kitchen with dark cabinetry, a built-in grill and a wall-mounted TV",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "derecha",
+          "items": [
+            "Outdoor Bar & Beverage Centers",
+            "Outdoor Kitchen Remodeling"
+          ]
+        },
+        {
+          "titulo": "Materials, Permits & Trades",
+          "parrafo": "Coastal exposure ruins ordinary cabinetry, so we build with marine-grade polymer, 316 stainless, and quartzite or porcelain tops that hold color under Florida UV. We pull the gas, electrical, and plumbing permits under our own license, and the licensed trades on site answer to us.",
+          "foto": "/images/images/kitchen-2/custom-outdoor-kitchen-poolside-florida.avif",
+          "alt": "Poolside outdoor kitchen island under a thatched roof with palms",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "izquierda",
+          "items": [
+            "Durable Material Installation",
+            "Permit & Contractor Coordination"
+          ]
+        }
+      ]
+    },
     "formulario": {
       "titulo": "Get a Free Estimate",
       "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
@@ -428,6 +650,62 @@
           "icono": "contrato",
           "titulo": "Permitted and inspected",
           "texto": "Installed to local building codes, and the electrical additions are permitted too."
+        }
+      ]
+    },
+    "servicios": {
+      "detalle": [
+        {
+          "titulo": "Motorized & Manual Louvers",
+          "parrafo": "We build extruded aluminum louvered roofs that rotate closed against rain and open for airflow. We engineer every frame to Florida Building Code wind loads, with High-Velocity Hurricane Zone product approval where Broward requires it. Powder-coated finishes and stainless fasteners resist salt air and UV.",
+          "foto": "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/louvered-roof-systems-florida.avif",
+          "alt": "Motorized louvered roof over a patio beside a Florida home",
+          "ancho": 1950,
+          "alto": 1219,
+          "lado": "derecha",
+          "items": [
+            "Motorized Louvered Roof Installation",
+            "Manual Adjustable Louver Builders"
+          ]
+        },
+        {
+          "titulo": "Automation, Lighting, Fans",
+          "parrafo": "Rain sensors close the louvers on their own when a storm moves in, so the furniture underneath stays dry. We run low-voltage wiring inside the beams for LED lighting, ceiling fans, and motorized screens, and a licensed electrician ties the wet-rated fixtures into your panel.",
+          "foto": "/images/images/motorized-louvered-roof-9/motorized-louvered-roof-installers-florida-09.jpg",
+          "alt": "Louvered roof with the slats open above patio loungers",
+          "ancho": 1250,
+          "alto": 933,
+          "lado": "izquierda",
+          "items": [
+            "Smart Sensor Roof Integration",
+            "LED Lighting & Fan Installation"
+          ]
+        },
+        {
+          "titulo": "Layouts, Finishes, Approvals",
+          "parrafo": "Post spacing, beam spans, and blade direction all change with your roof line, so we draw each layout to the house you already have. Wood-grain aluminum reads like cypress and will not rot in Florida humidity, which is why HOA architectural boards clear it when real timber gets rejected.",
+          "foto": "/images/images/motorized-louvered-roof-8/motorized-louvered-roof-installers-florida-08.jpg",
+          "alt": "Freestanding black louvered pavilion on a paver deck",
+          "ancho": 1250,
+          "alto": 682,
+          "lado": "derecha",
+          "items": [
+            "Custom Layout & Design Services",
+            "Wood‑Look Aluminum Finish Installation",
+            "HOA & Permit Processing"
+          ]
+        },
+        {
+          "titulo": "Ongoing Service & Repairs",
+          "parrafo": "Louvers ride on gearboxes and pivot bearings that collect salt, pollen, and sand. We clean the tracks, flush the integrated gutters, re-torque hardware, and swap worn motors so the roof still closes when the afternoon storm arrives. After hurricane season we check the blades and seals.",
+          "foto": "/images/images/motorized-louvered-roof-3/motorized-louvered-roof-installers-florida-03.jpg",
+          "alt": "White freestanding louvered roof beside a screened pool",
+          "ancho": 1250,
+          "alto": 933,
+          "lado": "izquierda",
+          "items": [
+            "Seasonal Maintenance & Repair"
+          ]
         }
       ]
     },
@@ -508,6 +786,62 @@
         }
       ]
     },
+    "servicios": {
+      "detalle": [
+        {
+          "titulo": "Motorized Openings & Automation",
+          "parrafo": "We install MaestroShield motorized screens on patios and lanais, with side tracks and housings anchored into the existing structure. Broward openings sit in the High-Velocity Hurricane Zone, so we match tracks, fasteners and motors to the product approval covering that opening. Wall switches, remotes or a smart hub handle daily operation.",
+          "foto": "/images/residentials/motorized-retractable-screens-in-north-south-florida/retractable-screens-florida.avif",
+          "alt": "Motorized retractable screens lowered across a covered Florida lanai",
+          "ancho": 1950,
+          "alto": 1219,
+          "lado": "derecha",
+          "items": [
+            "Motorized Patio Screen Installation",
+            "Smart Remote Screen Integration"
+          ]
+        },
+        {
+          "titulo": "Manual Screens, Lanais, Garages",
+          "parrafo": "Not every opening needs a motor. We fit hand-operated retractable screens on lanais, porches and entry openings, and we screen garage bays so the space ventilates with the door up. All of them run in the same guided tracks and close on an insect-tight bottom seal.",
+          "foto": "/images/images/retractable-screen-9/retractable-screen-installation-contractors-florida-09.jpg",
+          "alt": "Dark pergola fitted with retractable screens beside a pool",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "izquierda",
+          "items": [
+            "Manual Retractable Screen Installers",
+            "Lanai & Porch Enclosure Installation",
+            "Garage Retractable Screen Installation"
+          ]
+        },
+        {
+          "titulo": "Custom Frames, Mesh Options",
+          "parrafo": "We build each screen to the measured opening and powder-coat frames to match the trim already on the house. Mesh is the decision that matters: tight weaves stop no-see-ums, solar fabrics cut UV and afternoon glare on west-facing lanais, and clear vinyl blocks wind-driven rain.",
+          "foto": "/images/images/retractable-screen-5/retractable-screen-installation-contractors-florida-5.jpg",
+          "alt": "Retractable screens closing a modern patio opening",
+          "ancho": 1250,
+          "alto": 830,
+          "lado": "derecha",
+          "items": [
+            "Custom Screen Design & Fabrication",
+            "Upgraded Mesh & Fabric Replacement"
+          ]
+        },
+        {
+          "titulo": "Repairs, Motors & Rescreening",
+          "parrafo": "Salt air and UV finish off mesh, motors and hardware long before the tracks give out. We rescreen torn fabric, replace corroded rollers and burned-out motors, and service systems other contractors installed, moving coastal openings onto stainless fasteners that survive the exposure.",
+          "foto": "/images/images/retractable-screen-1/retractable-screen-installation-contractors-florida-1.jpg",
+          "alt": "Screened lanai with seating and a pool beyond",
+          "ancho": 1250,
+          "alto": 833,
+          "lado": "izquierda",
+          "items": [
+            "Screen Replacement & Repair Contractors"
+          ]
+        }
+      ]
+    },
     "formulario": {
       "titulo": "Get a Free Estimate",
       "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
@@ -582,6 +916,62 @@
           "icono": "contrato",
           "titulo": "Permits and code handled",
           "texto": "One team takes the design through permits, engineering and construction."
+        }
+      ]
+    },
+    "servicios": {
+      "detalle": [
+        {
+          "titulo": "Sized To Your Slab",
+          "parrafo": "We size every screen room to your slab, your roofline and the setbacks on your lot, then pick a frame gauge that matches the wind load at your address. In Broward that means High-Velocity Hurricane Zone framing and anchors. Mesh runs 18/14 insect screen or tighter no-see-um cloth.",
+          "foto": "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/screened-patio-enclosure-florida.avif",
+          "alt": "Screen room attached to the side of a two-storey Florida home",
+          "ancho": 1950,
+          "alto": 1219,
+          "lado": "derecha",
+          "items": [
+            "Screen Room Design & Installation",
+            "Free Design Consultation Services"
+          ]
+        },
+        {
+          "titulo": "Insulated & Screen Roofs",
+          "parrafo": "Insulated panels sandwich a foam core between aluminum skins, holding heat off the room through an August afternoon and carrying the live load the Florida Building Code requires. When you want daylight and airflow instead, we frame a non-insulated screen roof on lighter beams and the same anchored posts.",
+          "foto": "/images/images/patio-screen-8/patio-screen-enclosure-builders-contractors-north-south-florida-08.jpg",
+          "alt": "Inside a patio screen room with a sofa and dining set",
+          "ancho": 1250,
+          "alto": 839,
+          "lado": "izquierda",
+          "items": [
+            "Insulated Patio Roof Builders",
+            "Non‑Insulated Screen Roof Installation"
+          ]
+        },
+        {
+          "titulo": "Converting Porches & Decks",
+          "parrafo": "An existing porch or deck becomes a screen room without new footings when the slab measures thick enough and the framing underneath carries the load. We tie the enclosure into your fascia or block wall with through-bolted anchors, then match posts, gutter line and finish color to the house.",
+          "foto": "/images/images/patio-screen-3/patio-screen-enclosure-builders-contractors-north-south-florida-03.jpg",
+          "alt": "Large gabled screen enclosure over a Florida patio",
+          "ancho": 1250,
+          "alto": 1007,
+          "lado": "derecha",
+          "items": [
+            "Porch & Deck Screen Room Conversion",
+            "Structural Tie‑In & Matching"
+          ]
+        },
+        {
+          "titulo": "Remodels By Licensed Crews",
+          "parrafo": "On an older enclosure we replace torn screen, add a swing door or vinyl windows, and re-anchor framing that salt air and UV have chalked. Aluminum pitted past repair gets swapped for new extrusion, and the whole job carries our Florida license and liability coverage.",
+          "foto": "/images/images/patio-screen-1/patio-screen-enclosure-builders-contractors-north-south-florida-01.jpg",
+          "alt": "Inside a wood-framed screened porch with wicker seating",
+          "ancho": 1250,
+          "alto": 933,
+          "lado": "izquierda",
+          "items": [
+            "Screen Room Remodeling & Upgrades",
+            "Licensed & Insured Installation"
+          ]
         }
       ]
     },
@@ -662,6 +1052,62 @@
         }
       ]
     },
+    "servicios": {
+      "detalle": [
+        {
+          "titulo": "Cage Framing & Roof Profiles",
+          "parrafo": "We frame pool cages from extruded aluminum sized to the deck, the roofline, and the setbacks on the lot. Mansard, gable, and hip screen roofs shed water differently, so we pick the profile that suits the house and keeps the clear span within what the framing carries.",
+          "foto": "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/pool-screen-enclosures-florida.avif",
+          "alt": "Aerial view of a screened pool enclosure beside a Florida lake",
+          "ancho": 1950,
+          "alto": 1219,
+          "lado": "derecha",
+          "items": [
+            "Custom Pool Cage Builders"
+          ]
+        },
+        {
+          "titulo": "Lanais, Patios, Screen Rooms",
+          "parrafo": "Screening a lanai or converting an open patio adds usable square footage without adding walls. We tie new framing into the existing columns and slab, add kickplates where foot traffic lands, and hang self-closing, self-latching doors so the enclosure holds up as a pool barrier.",
+          "foto": "/images/images/pool-screen-9/pool-screen-enclosure-builders-florida-09.jpg",
+          "alt": "Inside a tall pool cage with loungers and a lake view",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "izquierda",
+          "items": [
+            "Lanai & Patio Enclosure Installation",
+            "Patio Screen Room Conversion"
+          ]
+        },
+        {
+          "titulo": "Wind Load, Engineering, Permits",
+          "parrafo": "Every cage is engineered to the design wind speed the Florida Building Code assigns its address, rising inside Broward's High-Velocity Hurricane Zone and easing farther north. Heavier uprights, tighter beam spacing, and larger concrete anchors follow from that, with sealed drawings for the permit file.",
+          "foto": "/images/images/pool-screen-5/pool-screen-enclosure-builders-florida-05.jpg",
+          "alt": "Pool cage over a pool and spa at a tile-roof Florida home",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "derecha",
+          "items": [
+            "High‑Wind Enclosure Installation",
+            "Permit & Engineering Management"
+          ]
+        },
+        {
+          "titulo": "Rescreening, Repairs & Remodels",
+          "parrafo": "Florida sun and salt air break down screen mesh and fasteners long before the aluminum frame gives out. We rescreen whole cages in 18/14 or no-see-um mesh, swap corroded screws and torn panels, rehang sagging doors, and rebuild dated frames with new uprights and color.",
+          "foto": "/images/images/pool-screen-3/pool-screen-enclosure-builders-florida-03.jpg",
+          "alt": "Panoramic screen enclosure over a pool with a lake view",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "izquierda",
+          "items": [
+            "Rescreening & Mesh Replacement",
+            "Screen Enclosure Repair Services",
+            "Pool Enclosure Remodeling"
+          ]
+        }
+      ]
+    },
     "formulario": {
       "titulo": "Get a Free Estimate",
       "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
@@ -736,6 +1182,62 @@
           "icono": "contrato",
           "titulo": "Brought up to current code",
           "texto": "VGB-compliant safety features, with the permits and inspections handled."
+        }
+      ]
+    },
+    "servicios": {
+      "detalle": [
+        {
+          "titulo": "Structural Repairs & Shell Rebuilds",
+          "parrafo": "An older pool needs more than a new surface. We probe for cracks, leaks, and shell movement, then repair or rebuild the gunite and bring plumbing and safety barriers up to current Florida Building Code. Every finish and fixture we install rides on that structure.",
+          "foto": "/images/residentials/pool-remodeling-renovation-in-north-south-florida/pool-spa-renovation-backyard-florida.avif",
+          "alt": "Aerial view of a remodeled pool and raised spa on a paver deck",
+          "ancho": 1950,
+          "alto": 1219,
+          "lado": "derecha",
+          "items": [
+            "Complete Pool Renovation",
+            "Structural Pool Repairs"
+          ]
+        },
+        {
+          "titulo": "Resurfacing, Tile & Coping",
+          "parrafo": "We strip the old interior down to sound gunite and apply plaster, quartz, or pebble finishes rated for Florida sun and salt systems. We replace waterline tile and coping in the same pass, sealing the bond beam and leaving an edge that stays cool underfoot.",
+          "foto": "/images/images/pool-remodeling-9/custom-pool-remodeling-contractors-florida-09.jpg",
+          "alt": "Remodeled pool with a raised spa against a modern Florida home",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "izquierda",
+          "items": [
+            "Pool Resurfacing & Finishes",
+            "Tile & Coping Replacement"
+          ]
+        },
+        {
+          "titulo": "Equipment & LED Lighting Upgrades",
+          "parrafo": "Salt air and year-round run times are hard on pool equipment. We swap single-speed pumps for variable-speed units, upgrade filters, heaters, and salt cells, and replace incandescent fixtures with low-voltage LED. New wiring lands on GFCI-protected circuits bonded to the deck grid, as code requires.",
+          "foto": "/images/images/pool-remodeling-5/custom-pool-remodeling-contractors-florida-05.jpg",
+          "alt": "Remodeled pool with a sun shelf and loungers",
+          "ancho": 1250,
+          "alto": 933,
+          "lado": "derecha",
+          "items": [
+            "Pool Equipment Upgrades",
+            "LED Pool Lighting Systems"
+          ]
+        },
+        {
+          "titulo": "Pool Decks & Spa Integration",
+          "parrafo": "A renovated pool beside a cracked, slick deck still looks tired. We resurface decks with textured, UV-stable coatings or pavers that stay walkable in South Florida heat, and we tie a new or remodeled spa into the pool so both share one plumbing and heating system.",
+          "foto": "/images/images/pool-remodeling-2/custom-pool-remodeling-contractors-florida-02.jpg",
+          "alt": "Aerial view of a remodeled pool with a pergola and palms",
+          "ancho": 1250,
+          "alto": 946,
+          "lado": "izquierda",
+          "items": [
+            "Pool Deck Resurfacing",
+            "Spa Remodeling & Integration"
+          ]
         }
       ]
     },
@@ -816,6 +1318,62 @@
         }
       ]
     },
+    "servicios": {
+      "detalle": [
+        {
+          "titulo": "Custom Layouts, Modular Seating",
+          "parrafo": "We size dining sets, sectionals, and chaises to the lanai, pool deck, or terrace they will sit on, so walkways, door swings, and screen enclosure posts stay clear. Modular sections rearrange for a family dinner or a twenty-person party, so one set covers both.",
+          "foto": "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/outdoor-furniture-florida.avif",
+          "alt": "Wicker seating set on a pool deck under a wood pergola",
+          "ancho": 1950,
+          "alto": 1219,
+          "lado": "derecha",
+          "items": [
+            "Custom Patio Furniture Design",
+            "Modular Seating Design & Installation"
+          ]
+        },
+        {
+          "titulo": "Teak, Hardwood & Aluminum",
+          "parrafo": "Teak and dense tropical hardwoods hold up to Florida humidity and weather down to a gray patina you can leave alone or re-oil. Powder-coated aluminum stays light enough to carry indoors and resists salt-air corrosion. We use stainless hardware on both, since plated fasteners corrode first.",
+          "foto": "/images/images/furniture-7/custom-outdoor-furniture-builders-florida-07.jpg",
+          "alt": "Outdoor sectional arranged around a fire pit table",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "izquierda",
+          "items": [
+            "Teak & Hardwood Furniture Installation",
+            "Aluminum Furniture Assembly Services"
+          ]
+        },
+        {
+          "titulo": "Wicker Lounges, Sustainable Sourcing",
+          "parrafo": "All-weather resin wicker woven over aluminum frames keeps its color under Florida UV instead of turning brittle like natural rattan. We cover cushions in solution-dyed acrylic that sheds an afternoon downpour and resists mildew, and we source FSC-certified teak and recycled-content frames on request.",
+          "foto": "/images/images/furniture-4/custom-outdoor-furniture-builders-florida-04.jpg",
+          "alt": "Wicker sofa set on a terrace overlooking the ocean",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "derecha",
+          "items": [
+            "Wicker Lounge Set Installation",
+            "Sustainable Outdoor Furniture Solutions"
+          ]
+        },
+        {
+          "titulo": "Refinishing, Delivery & Placement",
+          "parrafo": "Good frames outlast their finish, so we sand and re-oil teak, re-strap aluminum, and rebuild cushions rather than replace a set that still fits. Our crews deliver, assemble, and place each piece, keep egress paths clear, and leave lightweight items easy to stow when a storm watch goes up.",
+          "foto": "/images/images/furniture-2/custom-outdoor-furniture-builders-florida-02.jpg",
+          "alt": "Pair of loungers beside an infinity pool",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "izquierda",
+          "items": [
+            "Outdoor Furniture Renovation Services",
+            "Professional Furniture Installation & Staging"
+          ]
+        }
+      ]
+    },
     "formulario": {
       "titulo": "Get a Free Estimate",
       "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
@@ -890,6 +1448,62 @@
           "icono": "contrato",
           "titulo": "Drainage sorted first",
           "texto": "We improve soil drainage so the planting survives its first wet season."
+        }
+      ]
+    },
+    "servicios": {
+      "detalle": [
+        {
+          "titulo": "Site Design & Plant Selection",
+          "parrafo": "Our designs set the planting beds, lawn areas and sight lines to scale, with plant palettes built on Florida natives, xeriscape groupings and rain gardens. Those species take the salt drift, UV and summer downpours of a coastal lot, so the yard fills in instead of thinning out.",
+          "foto": "/images/residentials/professional-landscaping-services-in-north-south-florida/landscaping-services-florida.avif",
+          "alt": "Landscaped entry walkway with palms and flowering beds",
+          "ancho": 1950,
+          "alto": 1219,
+          "lado": "derecha",
+          "items": [
+            "Landscape Design & Consultation",
+            "Native Plant & Sustainable Landscaping"
+          ]
+        },
+        {
+          "titulo": "Sod, Trees & Planting Beds",
+          "parrafo": "We lay certified sod over graded, amended soil so roots knit into the base instead of sitting on loose sand. Trees and shrubs go in at nursery depth, staked against Florida wind, and beds get defined edges plus mulch that holds moisture through the dry season.",
+          "foto": "/images/images/landscaping-9/luxury-landscaping-construction-contractors-florida-09.jpg",
+          "alt": "Front-yard planting beds with palms along a paver drive",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "izquierda",
+          "items": [
+            "Sod Installation Contractors",
+            "Plant & Tree Installation Services",
+            "Mulching & Edging Services"
+          ]
+        },
+        {
+          "titulo": "Pavers, Patios & Walkways",
+          "parrafo": "We build paver patios, walkways and retaining walls on a compacted limerock base with aluminum edge restraint and polymeric sand, so the surface holds its line after heavy rain. Wall heights, drainage behind the wall and soil loads follow the Florida Building Code.",
+          "foto": "/images/images/landscaping-5/luxury-landscaping-construction-contractors-florida-05.jpg",
+          "alt": "Formal clipped hedges beside a Florida pool",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "derecha",
+          "items": [
+            "Hardscape & Paver Patio Construction"
+          ]
+        },
+        {
+          "titulo": "Drainage & Night Lighting",
+          "parrafo": "French drains, catch basins and regrading pull water off the lawn and away from the slab, which matters on flat lots where the water table sits close to the surface. Low-voltage LED path lights, uplights and security fixtures use marine-grade wire and sealed housings that survive salt air.",
+          "foto": "/images/images/landscaping-2/luxury-landscaping-construction-contractors-florida-02.jpg",
+          "alt": "Paver driveway with a planting bed and river rock border",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "izquierda",
+          "items": [
+            "Drainage System Installation",
+            "Landscape Lighting Installation"
+          ]
         }
       ]
     },
@@ -970,6 +1584,62 @@
         }
       ]
     },
+    "servicios": {
+      "detalle": [
+        {
+          "titulo": "Controllers, Sensors & Scheduling",
+          "parrafo": "We install Wi-Fi controllers that pull local weather data and skip a cycle when a storm moves through. Florida law requires a working rain shutoff device, so we wire rain and soil-moisture sensors into the valve circuit and set run times that match your water management district's watering days.",
+          "foto": "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/automated-irrigation-florida.avif",
+          "alt": "Aerial view of sprinklers running across the lawn of a Florida home",
+          "ancho": 1950,
+          "alto": 1219,
+          "lado": "derecha",
+          "items": [
+            "Smart Irrigation Controller Installation",
+            "Weather‑Sensing Irrigation Upgrades"
+          ]
+        },
+        {
+          "titulo": "Sprinklers & Drip Lines",
+          "parrafo": "Pipe, heads, and zone count follow the pressure and flow at your point of connection, where a backflow preventer protects the potable line. Rotors and spray heads overlap head to head instead of leaving dry rings, and drip tubing runs under mulch to feed beds, hedges, and palms at the root.",
+          "foto": "/images/images/irrigation-9/automated-irrigation-system-installers-florida-09.jpg",
+          "alt": "Close view of a sprinkler head spraying beside a hedge",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "izquierda",
+          "items": [
+            "Sprinkler System Installation & Repair",
+            "Drip Irrigation System Installers"
+          ]
+        },
+        {
+          "titulo": "Zoning, Rerouting & Redesign",
+          "parrafo": "St. Augustine turf, tropical beds, and potted color each drink differently, so each one gets its own valve, heads, and run time instead of a single blanket schedule. When a new pool deck or paver patio cuts a lateral, we reroute the line, cap orphaned heads, and rebalance the zone.",
+          "foto": "/images/images/irrigation-8/automated-irrigation-system-installers-florida-08.jpg",
+          "alt": "Lawn edge with a rock border and an in-ground sprinkler head",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "derecha",
+          "items": [
+            "Landscape Zoning & Redesign",
+            "Irrigation Rerouting for Pools & Hardscapes"
+          ]
+        },
+        {
+          "titulo": "Leak Repair & Seasonal Service",
+          "parrafo": "Salt air and UV crack fittings, roots tilt heads, and a buried break shows up as a soft spot in the lawn or a spike on the meter. We pressure-test zone by zone, rebuild valves with new diaphragms and solenoids, and reset schedules for the dry season and the summer rains.",
+          "foto": "/images/images/irrigation-2/automated-irrigation-system-installers-florida-02.jpg",
+          "alt": "Sprinkler watering a lawn beside a walkway at golden hour",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "izquierda",
+          "items": [
+            "Leak Detection & System Repair",
+            "Seasonal Maintenance & Optimization"
+          ]
+        }
+      ]
+    },
     "formulario": {
       "titulo": "Get a Free Estimate",
       "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
@@ -1047,6 +1717,62 @@
         }
       ]
     },
+    "servicios": {
+      "detalle": [
+        {
+          "titulo": "Custom Runs & Concealed Channels",
+          "parrafo": "We mount the LED run tight to the soffit line in aluminum channel finished to match your fascia, so the diodes stay out of sight and only the light shows. Crews pull low-voltage wire inside the soffit, seal every penetration against water, and mount the transformer where you can reach it.",
+          "foto": "/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/smart-soffit-led-lighting-florida.avif",
+          "alt": "Warm soffit LED lighting along the eaves of a modern Florida home",
+          "ancho": 1950,
+          "alto": 1219,
+          "lado": "derecha",
+          "items": [
+            "Custom Soffit LED Installation",
+            "Low‑Profile LED Channel Installation"
+          ]
+        },
+        {
+          "titulo": "Sealed Housings & LED Retrofits",
+          "parrafo": "Salt air and UV break down open fixtures, so we install IP68-rated channel and stainless fasteners anchored into framing rather than bare soffit panel, which is what holds a run together in coastal Florida wind. Retrofits pull aging halogen strands and put LED diodes on a low-voltage circuit.",
+          "foto": "/images/images/light-2/smart-soffit-led-lighting-installation-contractors-florida-02.jpg",
+          "alt": "Close view of eave lighting at sunset",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "izquierda",
+          "items": [
+            "Weather‑Resistant Soffit Lighting",
+            "Energy‑Efficient Soffit LED Upgrades"
+          ]
+        },
+        {
+          "titulo": "Controllers, Zones & RGBW Color",
+          "parrafo": "Each node on the track carries its own RGBW diode, so one run gives you warm white for a regular night and full color when you want it. The controller mounts by the panel and talks to your phone, and we split the run into zones that follow the elevations of the house.",
+          "foto": "/images/images/light-8/smart-soffit-led-lighting-installation-contractors-florida-08.jpg",
+          "alt": "Colour-changing LED lighting across a two-storey home at night",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "derecha",
+          "items": [
+            "Smartphone‑Controlled Lighting Setup",
+            "Custom Color & Pattern LED Systems"
+          ]
+        },
+        {
+          "titulo": "Security Lighting & Holiday Color",
+          "parrafo": "Soffit LEDs wash the walls, entry, and driveway, which removes the dark corners a camera cannot resolve and keeps light off your neighbor's windows. The same permanent track carries holiday color, so nobody is on a ladder in December stapling strands to the fascia.",
+          "foto": "/images/images/light-3/smart-soffit-led-lighting-installation-contractors-florida-03.jpg",
+          "alt": "Warm LED lighting on a stone and timber home at dusk",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "izquierda",
+          "items": [
+            "Security Accent Lighting Contractors",
+            "Permanent Holiday Lighting Installers"
+          ]
+        }
+      ]
+    },
     "formulario": {
       "titulo": "Get a Free Estimate",
       "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
@@ -1121,6 +1847,62 @@
           "icono": "contrato",
           "titulo": "Built to outlast wood",
           "texto": "Steel resists hurricanes, moisture, mold and pests, with less long-term maintenance."
+        }
+      ]
+    },
+    "servicios": {
+      "detalle": [
+        {
+          "titulo": "Pole Barns & Livestock Shelters",
+          "parrafo": "We frame pole barns on treated posts or steel columns, then sheet them with ribbed panels and fasteners that carry Florida Building Code product approval. For horses and livestock we detail open bays, ridge vents and kickboards, and we specify galvanized hardware that survives salt air and daily washdowns.",
+          "foto": "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/steel-building-construction-florida.avif",
+          "alt": "Aerial view of a steel-roofed pole barn on Florida pasture",
+          "ancho": 1950,
+          "alto": 1219,
+          "lado": "derecha",
+          "items": [
+            "Custom Pole Barn Builders",
+            "Agricultural Barn Installation"
+          ]
+        },
+        {
+          "titulo": "Garages, Workshops, Storage Buildings",
+          "parrafo": "Steel garages and workshops sit on a slab we pour with thickened edges, with anchor bolts set to the column layout. Insulated panels and a vented ridge hold down the radiant heat these buildings trap in a Florida summer, and we size doors around the trucks, boats or equipment going inside.",
+          "foto": "/images/images/pole-barn-10/pole-barn-steel-building-contractors-florida-10.jpg",
+          "alt": "Pole barn frame with timber posts and roof trusses",
+          "ancho": 1250,
+          "alto": 933,
+          "lado": "izquierda",
+          "items": [
+            "Steel Garage Construction",
+            "Custom Workshop & Storage Buildings"
+          ]
+        },
+        {
+          "titulo": "Engineered Kits, Wind Ratings",
+          "parrafo": "Pre-engineered kits arrive with sealed engineering, and we erect them to those drawings exactly, with no field substitutions on connections or anchor bolts. We match each building to the design wind speed at its address, and inside Broward's High-Velocity Hurricane Zone we use approved assemblies, bracing and hold-downs.",
+          "foto": "/images/images/pole-barn-7/pole-barn-steel-building-contractors-florida-07.jpg",
+          "alt": "Inside an open pole barn with timber columns",
+          "ancho": 1250,
+          "alto": 698,
+          "lado": "derecha",
+          "items": [
+            "Pre‑Engineered Steel Kit Assembly",
+            "Weather‑Rated Steel Building Installation"
+          ]
+        },
+        {
+          "titulo": "Commercial Builds & Renovations",
+          "parrafo": "For home businesses and equipment yards we build commercial-grade frames with taller eaves, wider bays and slabs rated for loaders and trailers. On an existing barn we replace corroded purlins and rusted skin, add a lean-to or enclose open bays, and bring the older structure up to current code.",
+          "foto": "/images/images/pole-barn-4/pole-barn-steel-building-contractors-florida-04.jpg",
+          "alt": "Pole barn with a concrete slab and an open bay",
+          "ancho": 1250,
+          "alto": 933,
+          "lado": "izquierda",
+          "items": [
+            "Commercial‑Grade Metal Buildings",
+            "Steel Building Renovation Services"
+          ]
         }
       ]
     },

@@ -21,6 +21,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import http from 'node:http';
 import { chromium } from 'playwright';
+import { JSDOM } from 'jsdom';
 import { ARGS_NAVEGADOR, aSlug, asentar, textoNormalizado } from './lib/captura.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
@@ -393,7 +394,75 @@ const INDICE_BLOG_ORDEN = (() => {
   }];
 })();
 
+/**
+ * ── R22-DETALLE · EL REORDEN DE LOS SUBSERVICIOS EN LAS 14 FICHAS, DERIVADO ──────────────
+ *
+ * Las cuatro filas de `servicios.detalle` AGRUPAN los ocho subservicios por lo que va junto en
+ * la obra, y agrupar es reordenar: sus dieciseis renglones -titulo y resumen de cada uno-
+ * salen en otro orden que en el origen. No se pierde ni se inventa texto, asi que es
+ * EXACTAMENTE un reorden y va aqui.
+ *
+ * SE DERIVA, NO SE COPIA. Escribir doce entradas a mano serian 12 x 16 = 192 renglones de
+ * copy ajeno duplicados, y se desincronizarian el dia que alguien toque un resumen en el
+ * origen. Las dos mitades salen de las dos fuentes que ya mandan:
+ *
+ *   `antes`   del MISMO `_source/vivo/services_*.html` que lee `build-paginas.mjs`
+ *   `despues` del orden de `servicios.detalle[].items` en `captacion-servicios.json`
+ *
+ * Si alguien anade un subservicio en el origen o cambia un titulo en el JSON, esto se entera
+ * solo. Y si dejan de ser una permutacion -si falta un titulo o sobra uno-, ABORTA aqui en vez
+ * de dejar pasar una declaracion que miente.
+ *
+ * LA FICHA DE PISCINA SE EXCLUYE A PROPOSITO: su reorden ya lo declara R17-CORE mas abajo, con
+ * los tres resumenes reescritos incluidos. Declararlo dos veces no rompe nada -el segundo no
+ * encontraria su `antes` y seria un no-op- pero deja en el fichero una entrada que no hace
+ * nada, que es justo como se pudre una tabla de declaraciones.
+ */
+const YA_DECLARADA = '/services/custom-pool-spa-builders-in-north-south-florida';
+const ORDEN_SUBSERVICIOS = Object.entries(CAPTACION_JSON)
+  .filter(([ruta, c]) => ruta.startsWith('/services/') && ruta !== YA_DECLARADA
+    && Array.isArray(c?.servicios?.detalle))
+  .map(([ruta, c]) => {
+    const slug = ruta.slice('/services/'.length);
+    const f = path.join(RAIZ, `_source/vivo/services_${slug}.html`);
+    if (!fs.existsSync(f)) throw new Error(`check-texto: falta el origen de ${ruta}`);
+    const sec = new JSDOM(fs.readFileSync(f, 'utf8')).window.document.querySelector('section.services');
+    const limpia = (el) => (el?.textContent ?? '').replace(/\s+/g, ' ').trim();
+    /* EL TITULO VA CAPITALIZADO Y EL RESUMEN NO, y la diferencia la pone el CSS, no el dato.
+     * `webflow.css` tiene `text-transform: capitalize` en `h1`-`h4` —el titulo es un `h3` en el
+     * origen— y NO en `div`, que es lo que es `.paragraph-mini`. Como el baseline es `innerText`
+     * REAL, ahi el titulo ya viene capitalizado y aqui hay que modelarlo.
+     *
+     * Solo mordio en UNA de las catorce: `smart-irrigation`, que es la unica con una palabra
+     * funcional en minuscula en un titulo («Irrigation Rerouting for Pools & Hardscapes» ->
+     * «... For ...»). En las otras trece el capitalize es un no-op y por eso pasaron. Es la
+     * cuarta vez que esto muerde en este repo; ver la cabecera de `lineasBlog()`.
+     *
+     * Se usa `capitalizaH2` y no `capitaliza`: esta constante se evalua ANTES de la definicion
+     * de `capitaliza`, y una `const` en zona muerta temporal revienta al arrancar. */
+    const pares = [...sec.querySelectorAll('.item-subservice')].map((el) => [
+      capitalizaH2(limpia(el.querySelector('h3'))), limpia(el.querySelector('.paragraph-mini')),
+    ]);
+    const resumen = new Map(pares);
+    const orden = c.servicios.detalle.flatMap((fila) => fila.items).map(capitalizaH2);
+    const antes = pares.flat();
+    const despues = orden.flatMap((t) => {
+      if (!resumen.has(t)) {
+        throw new Error(`check-texto: ${ruta} declara el subservicio «${t}» y no esta en el origen`);
+      }
+      return [t, resumen.get(t)];
+    });
+    if ([...antes].sort().join('\n') !== [...despues].sort().join('\n')) {
+      throw new Error(`check-texto: el reorden de ${ruta} NO es una permutacion`);
+    }
+    return { ruta, antes, despues,
+      motivo: 'R22-DETALLE: las 4 filas agrupan los 8 subservicios, y agrupar los reordena. '
+        + 'Mismos 16 renglones: solo cambia el orden. Derivado del origen y del JSON.' };
+  })
+  .filter((d) => d.antes.join('\n') !== d.despues.join('\n'));
+
 const REORDENADAS_A_PROPOSITO = [
+  ...ORDEN_SUBSERVICIOS,
   ...INDICE_BLOG_ORDEN,
   {
     ruta: '/gallery',
@@ -934,6 +1003,773 @@ const LINEAS_ANADIDAS = [
     tras: [],
     lineas: ['Pool Investment Estimator'],
     motivo: 'D7: idem, la pagina desnuda del mismo estimador.',
+  },
+
+  /**
+   * ── R22-DETALLE · LAS CUATRO FILAS DE LA REJILLA DE SUBSERVICIOS ────────────────────────
+   *
+   * La rejilla de ocho tarjetas pasa a ser cuatro filas foto/texto (`servicios.detalle` en
+   * `captacion-servicios.json`). Los OCHO SUBSERVICIOS NO SE TOCAN: siguen siendo los mismos
+   * dieciseis renglones, con el mismo texto y en el mismo orden que ya declara
+   * `REORDENADAS_A_PROPOSITO` para esta ruta. Medido linea a linea contra el estado anterior:
+   * sobran 8, faltan 0. Lo unico nuevo es el encabezado y la entradilla de cada fila.
+   *
+   * POR QUE CUATRO ENTRADAS Y NO UNA DE OCHO LINEAS. Las ocho NO van seguidas: cada par abre
+   * su fila y detras van los subservicios de esa fila. Una sola entrada de ocho exige el
+   * bloque contiguo y no casaria nunca.
+   *
+   * EL ANCLA DE CADA UNA es el ULTIMO renglon de la fila anterior, o la entradilla de la
+   * seccion en la primera. Con ancla y no sin ella porque ninguna de las cuatro cabeceras es
+   * unica por accidente: si manana una de estas frases aparece en otro sitio de la ficha, sin
+   * `tras` se quitaria la equivocada y el desorden saldria en otra parte.
+   *
+   * LAS CUATRO CABECERAS VAN EN TITLE CASE PALABRA A PALABRA, y no es estilo: `webflow.css`
+   * pone `text-transform: capitalize` en `h1`-`h4` y eso SI altera `innerText`. Estan escritas
+   * sin conjunciones ni articulos justamente para que el capitalize sea un no-op. COMPROBADO
+   * EN EL NAVEGADOR sobre el HTML construido, no deducido: es la sexta vez que esto muerde.
+   */
+  {
+    rutas: ['/services/custom-pool-spa-builders-in-north-south-florida'],
+    tras: ['We design and build custom inground pools, spas, and hardscapes for discerning '
+      + 'homeowners across North and South Florida.'],
+    lineas: [
+      'Designed Around Your Lot',
+      'Every pool starts with your lot, not a catalog shape. We survey the site, model the pool '
+        + 'in 3D against setbacks, soil conditions and the Florida Building Code, and you '
+        + 'approve the rendering before we pull a permit.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de la fila 1 (diseno e ingenieria).',
+  },
+  {
+    rutas: ['/services/custom-pool-spa-builders-in-north-south-florida'],
+    tras: ['Custom pool design engineered for Florida homes and code compliance.'],
+    lineas: [
+      'Plumbing, Equipment, Automation',
+      'What keeps the water clear is buried before the plaster goes in. Lines are sized to your '
+        + 'pool rather than to habit, and the pumps, filters and heaters come back to one app '
+        + 'instead of a wall of valves.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de la fila 2 (hidraulica y automatizacion).',
+  },
+  {
+    rutas: ['/services/custom-pool-spa-builders-in-north-south-florida'],
+    tras: ['Modern pumps, filters, heaters, and automation systems for efficient pool use.'],
+    lineas: [
+      'Finishes, Tile & Coping',
+      'The finish is what you touch and what you look at for the next twenty years. We build in '
+        + 'plaster, quartz and pebble, and match tile and coping to the deck so the pool reads '
+        + 'as part of the house.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de la fila 3 (acabados, gresite y remate).',
+  },
+  {
+    rutas: ['/services/custom-pool-spa-builders-in-north-south-florida'],
+    tras: ['Tile and coping that improve pool safety, durability, and modern design.'],
+    lineas: [
+      'Remodeling & Spa Additions',
+      'If the shell is sound, a remodel gets you there faster than a new build. Same licensed '
+        + 'crew and the same permits, applied to the pool you already own.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de la fila 4, la que recoge los tres '
+      + 'subservicios de remodelacion y los manda a su landing.',
+  },
+
+
+  /* ── R22-DETALLE · LAS OTRAS TRECE FICHAS ───────────────────────────────────────────────
+   *
+   * Mismo cambio que arriba, extendido: cada ficha estrena 4 encabezados y 4 entradillas, y
+   * sus 8 subservicios siguen intactos, con el mismo texto y en el mismo orden que ya tenian.
+   * Son 52 pares, uno por fila, y van EN ORDEN de aparicion dentro de cada ficha.
+   *
+   * LAS ANCLAS NO SE ESCRIBIERON A MANO: se leyeron del `innerText` REAL de la pagina
+   * construida, en Chromium, y se comprobo una a una que la linea aparece EXACTAMENTE UNA VEZ
+   * en la ruta y que va seguida del encabezado y de la entradilla. 52 de 52 verdes.
+   *
+   * IGUAL QUE ARRIBA, LOS 52 ENCABEZADOS SE COMPROBARON CONTRA `text-transform: capitalize`
+   * en el navegador: ninguno cambia al renderizar. Estan escritos sin conjunciones ni
+   * articulos en minuscula precisamente para eso.
+   */
+  // /services/pool-remodeling-renovation-in-north-south-florida
+  {
+    rutas: ['/services/pool-remodeling-renovation-in-north-south-florida'],
+    tras: ['We remodel and renovate pools across North & South Florida, upgrading finishes, '
+        + 'equipment, and features for safety and efficiency.'],
+    lineas: [
+      'Structural Repairs & Shell Rebuilds',
+      'An older pool needs more than a new surface. We probe for cracks, leaks, and shell '
+        + 'movement, then repair or rebuild the gunite and bring plumbing and safety barriers '
+        + 'up to current Florida Building Code. Every finish and fixture we install rides on '
+        + 'that structure.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/pool-remodeling-renovation-in-north-south-florida'],
+    tras: ['Professional pool repairs addressing cracks, leaks, and structural issues for '
+        + 'lasting performance.'],
+    lineas: [
+      'Resurfacing, Tile & Coping',
+      'We strip the old interior down to sound gunite and apply plaster, quartz, or '
+        + 'pebble finishes rated for Florida sun and salt systems. We replace waterline tile '
+        + 'and coping in the same pass, sealing the bond beam and leaving an edge that stays '
+        + 'cool underfoot.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/pool-remodeling-renovation-in-north-south-florida'],
+    tras: ['Tile and coping upgrades that enhance pool safety, aesthetics, and long-term '
+        + 'structural protection.'],
+    lineas: [
+      'Equipment & LED Lighting Upgrades',
+      'Salt air and year-round run times are hard on pool equipment. We swap single-speed '
+        + 'pumps for variable-speed units, upgrade filters, heaters, and salt cells, and '
+        + 'replace incandescent fixtures with low-voltage LED. New wiring lands on '
+        + 'GFCI-protected circuits bonded to the deck grid, as code requires.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/pool-remodeling-renovation-in-north-south-florida'],
+    tras: ['Energy-efficient LED pool lighting designed to enhance visibility, ambiance, and '
+        + 'nighttime safety.'],
+    lineas: [
+      'Pool Decks & Spa Integration',
+      'A renovated pool beside a cracked, slick deck still looks tired. We resurface '
+        + 'decks with textured, UV-stable coatings or pavers that stay walkable in South '
+        + 'Florida heat, and we tie a new or remodeled spa into the pool so both share one '
+        + 'plumbing and heating system.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  // /services/motorized-retractable-screens-in-north-south-florida
+  {
+    rutas: ['/services/motorized-retractable-screens-in-north-south-florida'],
+    tras: ['We install motorized MaestroShield retractable screens for North and South Florida '
+        + 'estates with smart automation and UV-blocking fabrics.'],
+    lineas: [
+      'Motorized Openings & Automation',
+      'We install MaestroShield motorized screens on patios and lanais, with side tracks '
+        + 'and housings anchored into the existing structure. Broward openings sit in the '
+        + 'High-Velocity Hurricane Zone, so we match tracks, fasteners and motors to the '
+        + 'product approval covering that opening. Wall switches, remotes or a smart hub '
+        + 'handle daily operation.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/motorized-retractable-screens-in-north-south-florida'],
+    tras: ['Installers integrate remote controls or smart devices to operate retractable '
+        + 'screens seamlessly.'],
+    lineas: [
+      'Manual Screens, Lanais, Garages',
+      'Not every opening needs a motor. We fit hand-operated retractable screens on '
+        + 'lanais, porches and entry openings, and we screen garage bays so the space '
+        + 'ventilates with the door up. All of them run in the same guided tracks and close '
+        + 'on an insect-tight bottom seal.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/motorized-retractable-screens-in-north-south-florida'],
+    tras: ['Builders install retractable screens for garages to improve airflow and keep '
+        + 'insects out.'],
+    lineas: [
+      'Custom Frames, Mesh Options',
+      'We build each screen to the measured opening and powder-coat frames to match the '
+        + 'trim already on the house. Mesh is the decision that matters: tight weaves stop '
+        + 'no-see-ums, solar fabrics cut UV and afternoon glare on west-facing lanais, and '
+        + 'clear vinyl blocks wind-driven rain.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/motorized-retractable-screens-in-north-south-florida'],
+    tras: ['Renovation experts replace screen mesh with upgraded, durable fabrics for improved '
+        + 'visibility and protection.'],
+    lineas: [
+      'Repairs, Motors & Rescreening',
+      'Salt air and UV finish off mesh, motors and hardware long before the tracks give '
+        + 'out. We rescreen torn fabric, replace corroded rollers and burned-out motors, and '
+        + 'service systems other contractors installed, moving coastal openings onto '
+        + 'stainless fasteners that survive the exposure.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  // /services/premium-outdoor-furniture-for-north-south-florida-homes
+  {
+    rutas: ['/services/premium-outdoor-furniture-for-north-south-florida-homes'],
+    tras: ['We curate and install premium outdoor furniture in teak, aluminum, and wicker for '
+        + 'North and South Florida homes and estates.'],
+    lineas: [
+      'Custom Layouts, Modular Seating',
+      'We size dining sets, sectionals, and chaises to the lanai, pool deck, or terrace '
+        + 'they will sit on, so walkways, door swings, and screen enclosure posts stay clear. '
+        + 'Modular sections rearrange for a family dinner or a twenty-person party, so one '
+        + 'set covers both.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/premium-outdoor-furniture-for-north-south-florida-homes'],
+    tras: ['Installers create modular seating arrangements to maximize patio space and flexibility'],
+    lineas: [
+      'Teak, Hardwood & Aluminum',
+      'Teak and dense tropical hardwoods hold up to Florida humidity and weather down to '
+        + 'a gray patina you can leave alone or re-oil. Powder-coated aluminum stays light '
+        + 'enough to carry indoors and resists salt-air corrosion. We use stainless hardware '
+        + 'on both, since plated fasteners corrode first.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/premium-outdoor-furniture-for-north-south-florida-homes'],
+    tras: ['Contractors install lightweight, rust‑resistant aluminum furniture for '
+        + 'long‑lasting outdoor use.'],
+    lineas: [
+      'Wicker Lounges, Sustainable Sourcing',
+      'All-weather resin wicker woven over aluminum frames keeps its color under Florida '
+        + 'UV instead of turning brittle like natural rattan. We cover cushions in '
+        + 'solution-dyed acrylic that sheds an afternoon downpour and resists mildew, and we '
+        + 'source FSC-certified teak and recycled-content frames on request.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/premium-outdoor-furniture-for-north-south-florida-homes'],
+    tras: ['Designers recommend eco‑friendly materials and accessories for environmentally '
+        + 'conscious homeowners'],
+    lineas: [
+      'Refinishing, Delivery & Placement',
+      'Good frames outlast their finish, so we sand and re-oil teak, re-strap aluminum, '
+        + 'and rebuild cushions rather than replace a set that still fits. Our crews deliver, '
+        + 'assemble, and place each piece, keep egress paths clear, and leave lightweight '
+        + 'items easy to stow when a storm watch goes up.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  // /services/custom-deck-builders-in-north-south-florida
+  {
+    rutas: ['/services/custom-deck-builders-in-north-south-florida'],
+    tras: ['Our team designs and builds composite and wood decks across North & South Florida, '
+        + 'combining durability with modern outdoor style.'],
+    lineas: [
+      'Composite & Treated Wood Decking',
+      'We frame decks in pressure-treated pine rated for ground contact and surface them '
+        + 'in capped composite or sealed wood. Salt air and UV punish fasteners first, so we '
+        + 'specify hot-dipped galvanized or stainless hardware and hidden clips that hold '
+        + 'through Florida\'s wet season.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/custom-deck-builders-in-north-south-florida'],
+    tras: ['Contractors build pressure‑treated pine decks, sealing and staining for natural beauty'],
+    lineas: [
+      'Multi-Level & Rooftop Decks',
+      'Multi-level decks split the grill, the table and the lounge across platforms '
+        + 'instead of crowding one. A rooftop deck sits over living space, so it gets a '
+        + 'waterproof membrane, flashed edges, and guardrails and attachments engineered for '
+        + 'the design wind speed the code assigns your address, which rises inside Broward\'s '
+        + 'High-Velocity Hurricane Zone.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/custom-deck-builders-in-north-south-florida'],
+    tras: ['Contractors build rooftop decks that maximize outdoor space with privacy and '
+        + 'scenic views'],
+    lineas: [
+      'Pool Decks & Railings',
+      'Around a pool we lay slip-resistant surfaces that stay cool underfoot and slope '
+        + 'drainage away from the house. Railings come in powder-coated aluminum, stainless '
+        + 'cable or tempered glass, sized and spaced to meet guard and pool-barrier '
+        + 'requirements, and set in anchors that resist chlorine and salt.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/custom-deck-builders-in-north-south-florida'],
+    tras: ['Builders install wood, metal, cable, or glass railings to enhance safety and style'],
+    lineas: [
+      'Lighting, Remodels & Expansions',
+      'Low-voltage LEDs in posts, stair risers and rail caps keep the deck usable after '
+        + 'dark, on GFCI circuits with wet-rated fixtures that survive Florida humidity. On '
+        + 'older decks we open the framing, replace what has rotted, and extend the footprint '
+        + 'your setbacks allow.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  // /services/professional-landscaping-services-in-north-south-florida
+  {
+    rutas: ['/services/professional-landscaping-services-in-north-south-florida'],
+    tras: ['We provide full-service landscaping in North & South Florida, using native plants '
+        + 'and sustainable designs to enhance curb appeal.'],
+    lineas: [
+      'Site Design & Plant Selection',
+      'Our designs set the planting beds, lawn areas and sight lines to scale, with plant '
+        + 'palettes built on Florida natives, xeriscape groupings and rain gardens. Those '
+        + 'species take the salt drift, UV and summer downpours of a coastal lot, so the yard '
+        + 'fills in instead of thinning out.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/professional-landscaping-services-in-north-south-florida'],
+    tras: ['Designers incorporate native plants, xeriscaping, and rain gardens for '
+        + 'eco‑friendly, low‑maintenance yards'],
+    lineas: [
+      'Sod, Trees & Planting Beds',
+      'We lay certified sod over graded, amended soil so roots knit into the base instead '
+        + 'of sitting on loose sand. Trees and shrubs go in at nursery depth, staked against '
+        + 'Florida wind, and beds get defined edges plus mulch that holds moisture through '
+        + 'the dry season.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/professional-landscaping-services-in-north-south-florida'],
+    tras: ['Landscape teams apply mulch and define edges to retain moisture and polish planting beds'],
+    lineas: [
+      'Pavers, Patios & Walkways',
+      'We build paver patios, walkways and retaining walls on a compacted limerock base '
+        + 'with aluminum edge restraint and polymeric sand, so the surface holds its line '
+        + 'after heavy rain. Wall heights, drainage behind the wall and soil loads follow the '
+        + 'Florida Building Code.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/professional-landscaping-services-in-north-south-florida'],
+    tras: ['Builders install paver patios, walkways, and retaining walls to enhance outdoor '
+        + 'living spaces'],
+    lineas: [
+      'Drainage & Night Lighting',
+      'French drains, catch basins and regrading pull water off the lawn and away from '
+        + 'the slab, which matters on flat lots where the water table sits close to the '
+        + 'surface. Low-voltage LED path lights, uplights and security fixtures use '
+        + 'marine-grade wire and sealed housings that survive salt air.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  // /services/pool-screen-enclosures-for-north-south-florida-pools
+  {
+    rutas: ['/services/pool-screen-enclosures-for-north-south-florida-pools'],
+    tras: ['We build pool screen enclosures in North & South Florida, protecting pools from '
+        + 'debris, insects, and harsh sun exposure.'],
+    lineas: [
+      'Cage Framing & Roof Profiles',
+      'We frame pool cages from extruded aluminum sized to the deck, the roofline, and '
+        + 'the setbacks on the lot. Mansard, gable, and hip screen roofs shed water '
+        + 'differently, so we pick the profile that suits the house and keeps the clear span '
+        + 'within what the framing carries.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/pool-screen-enclosures-for-north-south-florida-pools'],
+    tras: ['Licensed contractors design and construct pool screen enclosures that blend with '
+        + 'residential architecture'],
+    lineas: [
+      'Lanais, Patios, Screen Rooms',
+      'Screening a lanai or converting an open patio adds usable square footage without '
+        + 'adding walls. We tie new framing into the existing columns and slab, add '
+        + 'kickplates where foot traffic lands, and hang self-closing, self-latching doors so '
+        + 'the enclosure holds up as a pool barrier.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/pool-screen-enclosures-for-north-south-florida-pools'],
+    tras: ['Contractors convert patios into enclosed screen rooms, creating multi‑use outdoor '
+        + 'spaces.'],
+    lineas: [
+      'Wind Load, Engineering, Permits',
+      'Every cage is engineered to the design wind speed the Florida Building Code '
+        + 'assigns its address, rising inside Broward\'s High-Velocity Hurricane Zone and '
+        + 'easing farther north. Heavier uprights, tighter beam spacing, and larger concrete '
+        + 'anchors follow from that, with sealed drawings for the permit file.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/pool-screen-enclosures-for-north-south-florida-pools'],
+    tras: ['Professionals handle permits and engineering for pool cage installations and '
+        + 'renovations.'],
+    lineas: [
+      'Rescreening, Repairs & Remodels',
+      'Florida sun and salt air break down screen mesh and fasteners long before the '
+        + 'aluminum frame gives out. We rescreen whole cages in 18/14 or no-see-um mesh, swap '
+        + 'corroded screws and torn panels, rehang sagging doors, and rebuild dated frames '
+        + 'with new uprights and color.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  // /services/patio-screen-rooms-enclosures-in-north-south-florida
+  {
+    rutas: ['/services/patio-screen-rooms-enclosures-in-north-south-florida'],
+    tras: ['We install custom patio screen rooms in North & South Florida using aluminum '
+        + 'frames and fine mesh for comfort and airflow.'],
+    lineas: [
+      'Sized To Your Slab',
+      'We size every screen room to your slab, your roofline and the setbacks on your '
+        + 'lot, then pick a frame gauge that matches the wind load at your address. In '
+        + 'Broward that means High-Velocity Hurricane Zone framing and anchors. Mesh runs '
+        + '18/14 insect screen or tighter no-see-um cloth.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/patio-screen-rooms-enclosures-in-north-south-florida'],
+    tras: ['Licensed pros offer free consultations and custom designs for patio screen room projects'],
+    lineas: [
+      'Insulated & Screen Roofs',
+      'Insulated panels sandwich a foam core between aluminum skins, holding heat off the '
+        + 'room through an August afternoon and carrying the live load the Florida Building '
+        + 'Code requires. When you want daylight and airflow instead, we frame a '
+        + 'non-insulated screen roof on lighter beams and the same anchored posts.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/patio-screen-rooms-enclosures-in-north-south-florida'],
+    tras: ['Contractors install cost‑effective, non‑insulated patio roofs that still offer '
+        + 'bug‑free outdoor living'],
+    lineas: [
+      'Converting Porches & Decks',
+      'An existing porch or deck becomes a screen room without new footings when the slab '
+        + 'measures thick enough and the framing underneath carries the load. We tie the '
+        + 'enclosure into your fascia or block wall with through-bolted anchors, then match '
+        + 'posts, gutter line and finish color to the house.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/patio-screen-rooms-enclosures-in-north-south-florida'],
+    tras: ['Contractors tie screen rooms into existing structures and match the home’s '
+        + 'architectural style'],
+    lineas: [
+      'Remodels By Licensed Crews',
+      'On an older enclosure we replace torn screen, add a swing door or vinyl windows, '
+        + 'and re-anchor framing that salt air and UV have chalked. Aluminum pitted past '
+        + 'repair gets swapped for new extrusion, and the whole job carries our Florida '
+        + 'license and liability coverage.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  // /services/motorized-louvered-roof-systems-in-north-south-florida
+  {
+    rutas: ['/services/motorized-louvered-roof-systems-in-north-south-florida'],
+    tras: ['We design and install motorized louvered roof systems in North & South Florida, '
+        + 'offering adjustable shade and rain protection year-round.'],
+    lineas: [
+      'Motorized & Manual Louvers',
+      'We build extruded aluminum louvered roofs that rotate closed against rain and open '
+        + 'for airflow. We engineer every frame to Florida Building Code wind loads, with '
+        + 'High-Velocity Hurricane Zone product approval where Broward requires it. '
+        + 'Powder-coated finishes and stainless fasteners resist salt air and UV.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/motorized-louvered-roof-systems-in-north-south-florida'],
+    tras: ['Builders construct manual louvered roofs that tilt for sun control and ventilation'],
+    lineas: [
+      'Automation, Lighting, Fans',
+      'Rain sensors close the louvers on their own when a storm moves in, so the '
+        + 'furniture underneath stays dry. We run low-voltage wiring inside the beams for LED '
+        + 'lighting, ceiling fans, and motorized screens, and a licensed electrician ties the '
+        + 'wet-rated fixtures into your panel.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/motorized-louvered-roof-systems-in-north-south-florida'],
+    tras: ['Contractors integrate LED lights, ceiling fans, and privacy screens into louvered '
+        + 'roof systems'],
+    lineas: [
+      'Layouts, Finishes, Approvals',
+      'Post spacing, beam spans, and blade direction all change with your roof line, so '
+        + 'we draw each layout to the house you already have. Wood-grain aluminum reads like '
+        + 'cypress and will not rot in Florida humidity, which is why HOA architectural '
+        + 'boards clear it when real timber gets rejected.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/motorized-louvered-roof-systems-in-north-south-florida'],
+    tras: ['Professionals handle HOA approvals and city permits for louvered roof construction'],
+    lineas: [
+      'Ongoing Service & Repairs',
+      'Louvers ride on gearboxes and pivot bearings that collect salt, pollen, and sand. '
+        + 'We clean the tracks, flush the integrated gutters, re-torque hardware, and swap '
+        + 'worn motors so the roof still closes when the afternoon storm arrives. After '
+        + 'hurricane season we check the blades and seals.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  // /services/custom-outdoor-kitchens-for-north-south-florida-homes
+  {
+    rutas: ['/services/custom-outdoor-kitchens-for-north-south-florida-homes'],
+    tras: ['We design and construct custom outdoor kitchens in North & South Florida, '
+        + 'integrating durable finishes and modern cooking appliances.'],
+    lineas: [
+      'Layout, Design & Modules',
+      'We build outdoor kitchens two ways. Modular cabinetry drops into a straight run '
+        + 'along a lanai or pool deck; full masonry handles L-shapes, curves, and tight '
+        + 'setbacks against a screen enclosure. Either layout keeps the grill venting away '
+        + 'from the house and the prep space within reach of it.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/custom-outdoor-kitchens-for-north-south-florida-homes'],
+    tras: ['Contractors install prefabricated outdoor kitchen modules for quick, '
+        + 'cost‑effective setups.'],
+    lineas: [
+      'Grill Islands & Pizza Ovens',
+      'Built-in grills need code clearance to combustibles, a rated hood where the island '
+        + 'sits under a solid roof, and gas and electrical runs sized for the appliance. '
+        + 'Wood-fired and gas ovens weigh hundreds of pounds, so they land on a slab that '
+        + 'carries the load or on footings we pour.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/custom-outdoor-kitchens-for-north-south-florida-homes'],
+    tras: ['Builders install wood‑fired or gas pizza ovens, adding artisan cooking options to '
+        + 'outdoor kitchens'],
+    lineas: [
+      'Bars, Beverages & Remodels',
+      'Bars and beverage centers add plumbing and power to the island: a sink, a drain '
+        + 'line, GFCI circuits in weatherproof covers, refrigeration rated for outdoor use. '
+        + 'Remodels run the same trades through an existing shell, and salt air has usually '
+        + 'gone after its fasteners and framing.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/custom-outdoor-kitchens-for-north-south-florida-homes'],
+    tras: ['Renovation experts upgrade existing outdoor kitchens with new finishes, '
+        + 'appliances, and layouts'],
+    lineas: [
+      'Materials, Permits & Trades',
+      'Coastal exposure ruins ordinary cabinetry, so we build with marine-grade polymer, '
+        + '316 stainless, and quartzite or porcelain tops that hold color under Florida UV. '
+        + 'We pull the gas, electrical, and plumbing permits under our own license, and the '
+        + 'licensed trades on site answer to us.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  // /services/smart-irrigation-system-installation-in-north-south-florida
+  {
+    rutas: ['/services/smart-irrigation-system-installation-in-north-south-florida'],
+    tras: ['We install smart irrigation systems in North & South Florida, optimizing water '
+        + 'usage with automated schedules tailored to your landscape.'],
+    lineas: [
+      'Controllers, Sensors & Scheduling',
+      'We install Wi-Fi controllers that pull local weather data and skip a cycle when a '
+        + 'storm moves through. Florida law requires a working rain shutoff device, so we '
+        + 'wire rain and soil-moisture sensors into the valve circuit and set run times that '
+        + 'match your water management district\'s watering days.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/smart-irrigation-system-installation-in-north-south-florida'],
+    tras: ['Contractors retrofit systems with soil moisture sensors and rain sensors to '
+        + 'optimize watering'],
+    lineas: [
+      'Sprinklers & Drip Lines',
+      'Pipe, heads, and zone count follow the pressure and flow at your point of '
+        + 'connection, where a backflow preventer protects the potable line. Rotors and spray '
+        + 'heads overlap head to head instead of leaving dry rings, and drip tubing runs '
+        + 'under mulch to feed beds, hedges, and palms at the root.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/smart-irrigation-system-installation-in-north-south-florida'],
+    tras: ['Installers design drip systems that deliver water directly to roots, saving up to '
+        + '90% efficiency'],
+    lineas: [
+      'Zoning, Rerouting & Redesign',
+      'St. Augustine turf, tropical beds, and potted color each drink differently, so '
+        + 'each one gets its own valve, heads, and run time instead of a single blanket '
+        + 'schedule. When a new pool deck or paver patio cuts a lateral, we reroute the line, '
+        + 'cap orphaned heads, and rebalance the zone.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/smart-irrigation-system-installation-in-north-south-florida'],
+    tras: ['North Florida experts reroute irrigation lines around new pools or hardscapes to '
+        + 'maintain even coverage'],
+    lineas: [
+      'Leak Repair & Seasonal Service',
+      'Salt air and UV crack fittings, roots tilt heads, and a buried break shows up as a '
+        + 'soft spot in the lawn or a spike on the meter. We pressure-test zone by zone, '
+        + 'rebuild valves with new diaphragms and solenoids, and reset schedules for the dry '
+        + 'season and the summer rains.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  // /services/steel-building-pole-barn-construction-in-north-south-florida
+  {
+    rutas: ['/services/steel-building-pole-barn-construction-in-north-south-florida'],
+    tras: ['We construct steel buildings and pole barns in North & South Florida, engineered '
+        + 'for hurricane resistance and long-term durability.'],
+    lineas: [
+      'Pole Barns & Livestock Shelters',
+      'We frame pole barns on treated posts or steel columns, then sheet them with ribbed '
+        + 'panels and fasteners that carry Florida Building Code product approval. For horses '
+        + 'and livestock we detail open bays, ridge vents and kickboards, and we specify '
+        + 'galvanized hardware that survives salt air and daily washdowns.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/steel-building-pole-barn-construction-in-north-south-florida'],
+    tras: ['Contractors construct metal barns for horses and livestock, using durable, '
+        + 'pest‑resistant materials.'],
+    lineas: [
+      'Garages, Workshops, Storage Buildings',
+      'Steel garages and workshops sit on a slab we pour with thickened edges, with '
+        + 'anchor bolts set to the column layout. Insulated panels and a vented ridge hold '
+        + 'down the radiant heat these buildings trap in a Florida summer, and we size doors '
+        + 'around the trucks, boats or equipment going inside.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/steel-building-pole-barn-construction-in-north-south-florida'],
+    tras: ['South Florida builders design custom steel workshops and storage buildings with '
+        + 'energy‑efficient insulation.'],
+    lineas: [
+      'Engineered Kits, Wind Ratings',
+      'Pre-engineered kits arrive with sealed engineering, and we erect them to those '
+        + 'drawings exactly, with no field substitutions on connections or anchor bolts. We '
+        + 'match each building to the design wind speed at its address, and inside Broward\'s '
+        + 'High-Velocity Hurricane Zone we use approved assemblies, bracing and hold-downs.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/steel-building-pole-barn-construction-in-north-south-florida'],
+    tras: ['Builders install hurricane‑rated steel buildings engineered to handle heavy winds '
+        + 'and rain.'],
+    lineas: [
+      'Commercial Builds & Renovations',
+      'For home businesses and equipment yards we build commercial-grade frames with '
+        + 'taller eaves, wider bays and slabs rated for loaders and trailers. On an existing '
+        + 'barn we replace corroded purlins and rusted skin, add a lean-to or enclose open '
+        + 'bays, and bring the older structure up to current code.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  // /services/smart-soffit-led-lighting-installation-in-north-south-florida
+  {
+    rutas: ['/services/smart-soffit-led-lighting-installation-in-north-south-florida'],
+    tras: ['We install smart soffit and LED lighting systems in North & South Florida, '
+        + 'boosting curb appeal, security, and energy efficiency.'],
+    lineas: [
+      'Custom Runs & Concealed Channels',
+      'We mount the LED run tight to the soffit line in aluminum channel finished to '
+        + 'match your fascia, so the diodes stay out of sight and only the light shows. Crews '
+        + 'pull low-voltage wire inside the soffit, seal every penetration against water, and '
+        + 'mount the transformer where you can reach it.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/smart-soffit-led-lighting-installation-in-north-south-florida'],
+    tras: ['Custom installers conceal wiring in color‑matched aluminum channels for a sleek '
+        + 'residential finish.'],
+    lineas: [
+      'Sealed Housings & LED Retrofits',
+      'Salt air and UV break down open fixtures, so we install IP68-rated channel and '
+        + 'stainless fasteners anchored into framing rather than bare soffit panel, which is '
+        + 'what holds a run together in coastal Florida wind. Retrofits pull aging halogen '
+        + 'strands and put LED diodes on a low-voltage circuit.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/smart-soffit-led-lighting-installation-in-north-south-florida'],
+    tras: ['South Florida installers retrofit existing soffit lighting with energy‑efficient '
+        + 'LED technology.'],
+    lineas: [
+      'Controllers, Zones & RGBW Color',
+      'Each node on the track carries its own RGBW diode, so one run gives you warm white '
+        + 'for a regular night and full color when you want it. The controller mounts by the '
+        + 'panel and talks to your phone, and we split the run into zones that follow the '
+        + 'elevations of the house.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/smart-soffit-led-lighting-installation-in-north-south-florida'],
+    tras: ['Builders install LED systems offering millions of colors and patterns for '
+        + 'personalized illumination.'],
+    lineas: [
+      'Security Lighting & Holiday Color',
+      'Soffit LEDs wash the walls, entry, and driveway, which removes the dark corners a '
+        + 'camera cannot resolve and keeps light off your neighbor\'s windows. The same '
+        + 'permanent track carries holiday color, so nobody is on a ladder in December '
+        + 'stapling strands to the fascia.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  // /services/custom-aluminum-pergola-builders-in-north-south-florida
+  {
+    rutas: ['/services/custom-aluminum-pergola-builders-in-north-south-florida'],
+    tras: ['We design and build custom aluminum pergolas for Florida homes, delivering shade, '
+        + 'durability, and elevated outdoor living.'],
+    lineas: [
+      'Designed For Homes & Businesses',
+      'Every pergola starts from the space it has to cover. We set column positions, beam '
+        + 'depth and rafter spacing around your patio dimensions, door swings and sightlines, '
+        + 'whether the structure shades a backyard in Gainesville or a restaurant terrace in '
+        + 'Fort Lauderdale.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/custom-aluminum-pergola-builders-in-north-south-florida'],
+    tras: ['Pergola solutions designed for residential homes and commercial outdoor environments.'],
+    lineas: [
+      'Aluminum & Treated Wood',
+      'Aluminum handles most of what we build here: it will not rot, swell or feed '
+        + 'termites, and a powder-coated finish stands up to salt air and Florida UV. When a '
+        + 'client wants wood grain overhead, we frame in treated lumber and detail the '
+        + 'connections to shed water.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/custom-aluminum-pergola-builders-in-north-south-florida'],
+    tras: ['Custom pergolas crafted with treated materials for natural beauty and structural '
+        + 'reliability.'],
+    lineas: [
+      'Standalone Structures & Roofline Extensions',
+      'A freestanding pergola sits on its own footings, anchored against uplift, so it '
+        + 'can stand out by the pool or in the middle of the yard. An attached one carries a '
+        + 'ledger into the wall framing, and we flash that joint so the roofline extension '
+        + 'does not trap water.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
+  },
+  {
+    rutas: ['/services/custom-aluminum-pergola-builders-in-north-south-florida'],
+    tras: ['Attached pergolas designed to seamlessly extend patios and covered outdoor spaces.'],
+    lineas: [
+      'Louvered Roofs & Night Lighting',
+      'Louvered roofs rotate from open sky to a closed, water-shedding ceiling, so an '
+        + 'afternoon storm does not clear the patio. We run wiring through the beams and '
+        + 'columns for wet-rated downlights and fan boxes, which keeps conduit off the '
+        + 'finished surfaces and the space usable after dark.',
+    ],
+    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
 ];
 
