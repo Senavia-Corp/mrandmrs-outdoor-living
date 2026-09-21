@@ -53,15 +53,19 @@ const entradillaFinal = entradilla ?? deFicha?.entradilla ?? propio?.entradilla 
 /**
  * ── LAS 14 FICHAS, TODAS DECLARADAS ─────────────────────────────────────────────────────────
  *
- * El encargo pide EXACTAMENTE 3 articulos por ficha de servicio. Hoy 5 de las 14 los tienen; el
- * roadmap son 97 articulos y hay 34 escritos.
+ * El encargo pide EXACTAMENTE 5 articulos por ficha de servicio. Hoy 5 de las 14 los tienen; el
+ * roadmap son 97 articulos y hay 44 escritos.
+ *
+ * FUERON 3 HASTA EL 21-sep-2026. Con 3 y 3 tarjetas por vista desde 991 px no habia nada que
+ * desplazar, asi que el mecanismo ocultaba flechas y barra (`Componentes.astro`, `max <= 1`) y
+ * la ficha se leia como un carrusel roto. Con 5 hay desplazamiento real y vuelven solas.
  *
  * La reserva vieja —sin coincidencias, salen los 10— era el fallo numero uno de este repo: la
  * ficha se ve perfecta ensenando articulos que no son suyos y nadie se entera. La nueva no es
- * «romper siempre», que bloquearia el despliegue de los 34 que si estan; es que NINGUNA de las
+ * «romper siempre», que bloquearia el despliegue de los 44 que si estan; es que NINGUNA de las
  * 14 pueda caer al generico sin estar declarada.
  *
- * Una ruta de /services/ tiene que estar en `rutas` (con su trio) o en `pendientes` (con los
+ * Una ruta de /services/ tiene que estar en `rutas` (con sus 5) o en `pendientes` (con los
  * slugs que faltan). Si no esta en ninguna, el build PARA con el slug puesto. Fuera de
  * /services/ no cambia nada: home, condados, Estado y ciudades siguen con los 10.
  */
@@ -71,7 +75,7 @@ const ficha = fichas[ruta];
 if (ruta.startsWith('/services/') && !ficha && !pendientes[ruta]) {
   throw new Error(
     `CarruselBlog: ${ruta} no esta declarada en src/data/blog-por-servicio.json.\n`
-    + '  Cada ficha de servicio muestra EXACTAMENTE 3 articulos relacionados, o consta como\n'
+    + '  Cada ficha de servicio muestra EXACTAMENTE 5 articulos relacionados, o consta como\n'
     + '  pendiente con los slugs que le faltan. Lo que no puede es caer a los 10 genericos en\n'
     + '  silencio: se ve bien y no se entera nadie.\n'
     + '  Arreglo: contenido/roadmap-blog.json -> fichaServicio, y `node scripts/build-blog-por-servicio.mjs`.',

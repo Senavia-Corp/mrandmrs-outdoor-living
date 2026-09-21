@@ -28,17 +28,23 @@
  * Por eso el carrusel generico es una lista ENUMERADA de slugs, en su orden actual, con su
  * motivo. Cuando otro encargo quiera cambiarlo, se cambia aqui y se ve en el diff.
  *
- * ⚠️ EL `cta` LLEVA EL TITULO DENTRO, Y ES UN DEFECTO QUE SE CONSERVA A PROPOSITO.
+ * EL `cta` YA NO LLEVA EL TITULO DENTRO — ARREGLADO EL 21-sep-2026.
  *
- * Hoy en produccion cada enlace del carrusel dice, VISIBLE:
+ * Hasta esa fecha cada enlace del carrusel decia, VISIBLE:
  *     «Read More: How Outdoor Living Spaces Increase Property Value in Florida»
- * mas un `<span class="mm-sr">` que REPITE el titulo, mas un `aria-label` que lo repite OTRA
- * vez. El titulo sale tres veces. Paso porque este script scrapeaba `a.textContent` DESPUES de
+ * mas un `<span class="mm-sr">` que REPETIA el titulo, mas un `aria-label` que lo repetia OTRA
+ * vez. El titulo salia tres veces. Paso porque este script scrapeaba `a.textContent` DESPUES de
  * que se anadiera el `mm-sr` al marcado de la home, asi que se trago el span.
  *
- * NO se arregla aqui: cambiar `cta` a «Read More» mueve el texto visible de las 79 rutas, y
- * este encargo esta acotado a 14. El arreglo es una linea -`cta: 'Read More'`- y queda dicho
- * en el informe para que Sebastian lo acote cuando quiera.
+ * Quedo pendiente un tiempo porque mueve el texto visible de las 79 rutas y el encargo de
+ * entonces estaba acotado a 14. El reparto de trabajo ahora es el correcto, y es el que hay:
+ *
+ *     visible      -> «Read More»                       (el `cta` de aqui)
+ *     innerText    -> «Read More: <titulo>»              (el `<span class="mm-sr">` del marcado)
+ *     aria-label   -> «Read More: <titulo>»              (CarruselBlog.astro)
+ *
+ * El del medio es el que importa para el audit `link-text`: Lighthouse lee `innerText` y NO
+ * lee `aria-label` (ver src/styles/disenio/base.css, bloque de `.mm-sr`).
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -89,8 +95,9 @@ const posts = GENERICO.map((slug) => {
     titulo,
     resumen: d.summary,
     enlace: `/blogs/${slug}`,
-    /* Ver el aviso de la cabecera: el titulo dentro del `cta` es un defecto conservado. */
-    cta: `Read More: ${titulo}`,
+    /* El titulo NO va aqui: lo pone el `<span class="mm-sr">` de CarruselBlog.astro, que sale
+     * en `innerText` y no en pantalla. Ver el bloque de la cabecera. */
+    cta: 'Read More',
     imagen: {
       src: d.portada.src,
       srcset: d.portada.srcset,
@@ -110,7 +117,8 @@ const salida = {
     'la cabecera del script con su motivo: Sebastian acoto el cambio de carrusel a las 14',
     'fichas de /services/, asi que las otras 65 no se mueven.',
     '',
-    '`cta` lleva el titulo dentro y es un defecto conservado a proposito. Ver el script.',
+    '`cta` es solo «Read More»: el titulo lo pone el <span class="mm-sr"> del marcado, que sale',
+    'en innerText y no en pantalla. Arreglado el 21-sep-2026; ver la cabecera del script.',
   ],
   titulo: TITULO,
   entradilla: ENTRADILLA,

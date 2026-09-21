@@ -4,7 +4,7 @@
   "src/data/blogs.json (que a su vez sale de Sanity). No editar a mano.",
   "",
   "Lo lee src/components/widgets/CarruselBlog.astro, que se autolocaliza por pathname. Una",
-  "Las 14 fichas estan DECLARADAS: o con su trio en `rutas`, o en `pendientes` con los slugs",
+  "Las 14 fichas estan DECLARADAS: o con su reparto de 5 en `rutas`, o en `pendientes` con los",
   "que faltan por escribir. Una ruta de /services/ que no este en ninguna de las dos hace",
   "FALLAR el build — es preferible a que la ficha ensene 10 articulos genericos sin que nadie",
   "se entere, que es el fallo numero uno de este repo."
@@ -18,7 +18,7 @@
      "titulo": "What Will Your Pool Really Cost?",
      "resumen": "Eight decisions account for most of the difference between one Florida pool quote and another. Here is what each one adds or removes, and which ones are worth spending on.",
      "enlace": "/blogs/how-much-does-a-custom-pool-cost-in-florida",
-     "cta": "Read More: What Will Your Pool Really Cost?",
+     "cta": "Read More",
      "imagen": {
       "src": "/images/blog/banco/mm-construction-1-p-800.webp",
       "srcset": "/images/blog/banco/mm-construction-1-p-400.webp 400w, /images/blog/banco/mm-construction-1-p-800.webp 800w",
@@ -31,7 +31,7 @@
      "titulo": "Decide These 12 Things First",
      "resumen": "Once the excavator arrives, some decisions stop being decisions. These are the twelve worth settling first, and which of them are genuinely hard to undo.",
      "enlace": "/blogs/before-you-build-a-pool-in-florida",
-     "cta": "Read More: Decide These 12 Things First",
+     "cta": "Read More",
      "imagen": {
       "src": "/images/blog/banco/mm-construction-8-p-800.webp",
       "srcset": "/images/blog/banco/mm-construction-8-p-400.webp 400w, /images/blog/banco/mm-construction-8-p-800.webp 800w",
@@ -44,12 +44,38 @@
      "titulo": "10 Upgrades to Plan Up Front",
      "resumen": "The options list on a pool proposal looks like one decision about money. It is really three decisions about timing: what closes at the shell, what needs something buried, and what can wait.",
      "enlace": "/blogs/pool-upgrades-worth-planning-before-construction",
-     "cta": "Read More: 10 Upgrades to Plan Up Front",
+     "cta": "Read More",
      "imagen": {
       "src": "/images/blog/banco/mm-construction-4-p-800.webp",
       "srcset": "/images/blog/banco/mm-construction-4-p-400.webp 400w, /images/blog/banco/mm-construction-4-p-800.webp 800w",
       "sizes": "(min-width: 768px) 400px, 100vw",
       "alt": "Pool with a row of water sheets falling from a long raised wall clad in blue-green mosaic, a white bowl on the pillar at its left end, a mosaic-clad spa spilling in from the right, and a cushioned lounger on the pale stone deck, with palms and mown turf beyond a black metal fence."
+     },
+     "categoria": "new-pool-construction"
+    },
+    {
+     "titulo": "10 Questions Before You Sign",
+     "resumen": "Most pool contracts are signed after comparing three prices. These are the ten questions that tell you more than the prices do, and what a good answer sounds like.",
+     "enlace": "/blogs/how-to-choose-a-pool-builder-in-florida",
+     "cta": "Read More",
+     "imagen": {
+      "src": "/images/blog/banco/mm-construction-9-p-800.webp",
+      "srcset": "/images/blog/banco/mm-construction-9-p-400.webp 400w, /images/blog/banco/mm-construction-9-p-800.webp 800w",
+      "sizes": "(min-width: 768px) 400px, 100vw",
+      "alt": "Two-storey Florida home with a pool, raised spa and bubblers, on a wide paver deck running the width of the yard."
+     },
+     "categoria": "new-pool-construction"
+    },
+    {
+     "titulo": "9 Choices That Read as Custom",
+     "resumen": "The choices that make a pool look custom are mostly early, mostly cheap, and mostly decided on the layout drawing. The ones that cost the most show the least. Here are the nine, in the order they get locked.",
+     "enlace": "/blogs/what-makes-a-pool-look-custom",
+     "cta": "Read More",
+     "imagen": {
+      "src": "/images/blog/banco/mm-construction-0-p-800.webp",
+      "srcset": "/images/blog/banco/mm-construction-0-p-400.webp 400w, /images/blog/banco/mm-construction-0-p-800.webp 800w",
+      "sizes": "(min-width: 768px) 400px, 100vw",
+      "alt": "Rectangular pool with a raised spa clad in dark blue glass mosaic tile, jets running inside it, edged by a narrow white coping band with lawn running straight up to the stone on every side."
      },
      "categoria": "new-pool-construction"
     }
@@ -63,7 +89,7 @@
      "titulo": "What Changes a Remodel's Scope",
      "resumen": "A remodel is not priced from what is wrong with your pool. It is priced from the finished result you are buying. Here is what that costs, and the four things that decide how far the scope goes.",
      "enlace": "/blogs/how-much-does-a-pool-remodel-cost-in-florida",
-     "cta": "Read More: What Changes a Remodel's Scope",
+     "cta": "Read More",
      "imagen": {
       "src": "/images/blog/banco/mm-remodeling-2-p-800.webp",
       "srcset": "/images/blog/banco/mm-remodeling-2-p-400.webp 400w, /images/blog/banco/mm-remodeling-2-p-800.webp 800w",
@@ -76,7 +102,7 @@
      "titulo": "Resurfacing vs. Full Renovation",
      "resumen": "Resurfacing and a full renovation are not two budgets for the same job. One changes the surface; the other changes the pool. Here is where the line falls and the question that decides which side of it you are on.",
      "enlace": "/blogs/pool-resurfacing-vs-full-pool-renovation",
-     "cta": "Read More: Resurfacing vs. Full Renovation",
+     "cta": "Read More",
      "imagen": {
       "src": "/images/blog/banco/mm-remodeling-2-p-800.webp",
       "srcset": "/images/blog/banco/mm-remodeling-2-p-400.webp 400w, /images/blog/banco/mm-remodeling-2-p-800.webp 800w",
@@ -89,12 +115,38 @@
      "titulo": "9 Decisions That Change Everything",
      "resumen": "Most remodel lists rank by cost or by what shows up in a photo. These nine are ranked by what is different about a Saturday once the crew has gone, which is why the interior finish comes ninth.",
      "enlace": "/blogs/pool-remodeling-decisions-that-transform-an-old-pool",
-     "cta": "Read More: 9 Decisions That Change Everything",
+     "cta": "Read More",
      "imagen": {
       "src": "/images/blog/banco/mm-remodeling-2-p-800.webp",
       "srcset": "/images/blog/banco/mm-remodeling-2-p-400.webp 400w, /images/blog/banco/mm-remodeling-2-p-800.webp 800w",
       "sizes": "(min-width: 768px) 400px, 100vw",
       "alt": "Pool with three metal spouts set into a rendered raised wall, two white loungers on a sun shelf at the near corner, a long recess filled with dark stones running along the wall to the left, and a clipped hedge and palms behind a black metal fence."
+     },
+     "categoria": "pool-remodeling"
+    },
+    {
+     "titulo": "Remodel or Rebuild?",
+     "resumen": "Two findings make a rebuild the honest answer. Everything else is remodel work, and the gap is about $16,600 on a typical project. Here is the order to check in, and what each finding actually means.",
+     "enlace": "/blogs/remodel-or-rebuild-your-pool",
+     "cta": "Read More",
+     "imagen": {
+      "src": "/images/blog/banco/mm-remodeling-2-p-800.webp",
+      "srcset": "/images/blog/banco/mm-remodeling-2-p-400.webp 400w, /images/blog/banco/mm-remodeling-2-p-800.webp 800w",
+      "sizes": "(min-width: 768px) 400px, 100vw",
+      "alt": "Rectangular pool with an integrated spa and three spillway niches set into a rendered wall, with a fire bowl on the deck and a flowering tree behind it."
+     },
+     "categoria": "pool-remodeling"
+    },
+    {
+     "titulo": "What to Upgrade While It's Open",
+     "resumen": "A remodel is not a shopping list. It is a window in which the shell, the deck and the ground between them are open. Here is what belongs in that window, and what you can buy any year without penalty.",
+     "enlace": "/blogs/what-to-upgrade-during-a-complete-pool-remodel",
+     "cta": "Read More",
+     "imagen": {
+      "src": "/images/blog/banco/mm-remodeling-1-p-800.webp",
+      "srcset": "/images/blog/banco/mm-remodeling-1-p-400.webp 400w, /images/blog/banco/mm-remodeling-1-p-800.webp 800w",
+      "sizes": "(min-width: 768px) 400px, 100vw",
+      "alt": "Pool with an attached spa and travertine coping, with two lounge chairs standing in the shallow water at the edge."
      },
      "categoria": "pool-remodeling"
     }
@@ -108,7 +160,7 @@
      "titulo": "What Changes a Pergola's Price",
      "resumen": "The estimator gives one number for a pergola: $8,500. This is what that number assumes, which six decisions push it up, and how to tell two pergola quotes apart when both totals look the same.",
      "enlace": "/blogs/how-much-does-an-aluminum-pergola-cost-in-florida",
-     "cta": "Read More: What Changes a Pergola's Price",
+     "cta": "Read More",
      "imagen": {
       "src": "/images/blog/banco/mm-pergolas-0-p-800.webp",
       "srcset": "/images/blog/banco/mm-pergolas-0-p-400.webp 400w, /images/blog/banco/mm-pergolas-0-p-800.webp 800w",
@@ -121,7 +173,7 @@
      "titulo": "Aluminum vs. Wood, Long Term",
      "resumen": "Both materials work on day one. They diverge once maintenance starts coming due, and the thing that separates them is not durability in the abstract — it is who is going to refinish the underside, and whether the look you want is achievable in the material you are choosing.",
      "enlace": "/blogs/aluminum-vs-wood-pergolas-in-florida",
-     "cta": "Read More: Aluminum vs. Wood, Long Term",
+     "cta": "Read More",
      "imagen": {
       "src": "/images/blog/banco/mm-pergolas-8-p-800.webp",
       "srcset": "/images/blog/banco/mm-pergolas-8-p-400.webp 400w, /images/blog/banco/mm-pergolas-8-p-800.webp 800w",
@@ -134,12 +186,38 @@
      "titulo": "Pergola vs. Louvered Roof",
      "resumen": "Both give you shade. Only one lets you stay outside while it rains. That difference decides the project faster than any feature list, and it explains the price gap.",
      "enlace": "/blogs/pergola-vs-louvered-roof",
-     "cta": "Read More: Pergola vs. Louvered Roof",
+     "cta": "Read More",
      "imagen": {
       "src": "/images/blog/banco/mm-pergolas-0-p-800.webp",
       "srcset": "/images/blog/banco/mm-pergolas-0-p-400.webp 400w, /images/blog/banco/mm-pergolas-0-p-800.webp 800w",
       "sizes": "(min-width: 768px) 400px, 100vw",
       "alt": "White aluminum pergola with a solid roof panel over a paver patio, white bar stools lined up at the counter and a slatted privacy screen closing the back."
+     },
+     "categoria": "pergolas-louvered-roofs"
+    },
+    {
+     "titulo": "Attached or Freestanding?",
+     "resumen": "Most homeowners settle this by looks. On site it gets settled by the height of your door head, what the wall is actually made of, and what is buried where the posts would land.",
+     "enlace": "/blogs/attached-vs-freestanding-pergola",
+     "cta": "Read More",
+     "imagen": {
+      "src": "/images/blog/banco/mm-pergolas-0-p-800.webp",
+      "srcset": "/images/blog/banco/mm-pergolas-0-p-400.webp 400w, /images/blog/banco/mm-pergolas-0-p-800.webp 800w",
+      "sizes": "(min-width: 768px) 400px, 100vw",
+      "alt": "White aluminum pergola with a solid roof over a paver patio against a stucco house, white barstools at a bar counter underneath, and a louvered side screen with a neighboring tile roof visible through it."
+     },
+     "categoria": "pergolas-louvered-roofs"
+    },
+    {
+     "titulo": "Do You Need a Permit?",
+     "resumen": "The answer is almost always yes. The part worth your time is which reviews a pergola triggers, because that is what decides the drawings you need and the two inspections that can stop the job.",
+     "enlace": "/blogs/do-you-need-a-permit-for-a-pergola-in-florida",
+     "cta": "Read More",
+     "imagen": {
+      "src": "/images/blog/banco/mm-pergolas-0-p-800.webp",
+      "srcset": "/images/blog/banco/mm-pergolas-0-p-400.webp 400w, /images/blog/banco/mm-pergolas-0-p-800.webp 800w",
+      "sizes": "(min-width: 768px) 400px, 100vw",
+      "alt": "White aluminum pergola with a solid roof panel over a bar counter and a row of white barstools, horizontal louvered privacy screens on the back side, and a flowering tree beside the lawn."
      },
      "categoria": "pergolas-louvered-roofs"
     }
@@ -153,7 +231,7 @@
      "titulo": "Is It Worth It in Florida?",
      "resumen": "The motor is not what makes a louvered roof expensive or cheap. What decides it is whether the covered area is beyond the shade your house already throws at the hour you use the yard.",
      "enlace": "/blogs/is-a-motorized-louvered-roof-worth-it-in-florida",
-     "cta": "Read More: Is It Worth It in Florida?",
+     "cta": "Read More",
      "imagen": {
       "src": "/images/blog/banco/mm-louvered-8-p-800.webp",
       "srcset": "/images/blog/banco/mm-louvered-8-p-400.webp 400w, /images/blog/banco/mm-louvered-8-p-800.webp 800w",
@@ -166,7 +244,7 @@
      "titulo": "7 Factors That Change the Price",
      "resumen": "The estimator gives one number for a motorized louvered roof: $18,000. That is the structure. What moves the rest is bays, drainage, the circuit and the permit — and none of it is on the product page.",
      "enlace": "/blogs/how-much-does-a-motorized-louvered-roof-cost",
-     "cta": "Read More: 7 Factors That Change the Price",
+     "cta": "Read More",
      "imagen": {
       "src": "/images/blog/banco/mm-louvered-3-p-800.webp",
       "srcset": "/images/blog/banco/mm-louvered-3-p-400.webp 400w, /images/blog/banco/mm-louvered-3-p-800.webp 800w",
@@ -179,12 +257,38 @@
      "titulo": "Pergola vs. Louvered Roof",
      "resumen": "Both give you shade. Only one lets you stay outside while it rains. That difference decides the project faster than any feature list, and it explains the price gap.",
      "enlace": "/blogs/pergola-vs-louvered-roof",
-     "cta": "Read More: Pergola vs. Louvered Roof",
+     "cta": "Read More",
      "imagen": {
       "src": "/images/blog/banco/mm-pergolas-0-p-800.webp",
       "srcset": "/images/blog/banco/mm-pergolas-0-p-400.webp 400w, /images/blog/banco/mm-pergolas-0-p-800.webp 800w",
       "sizes": "(min-width: 768px) 400px, 100vw",
       "alt": "White aluminum pergola with a solid roof panel over a paver patio, white bar stools lined up at the counter and a slatted privacy screen closing the back."
+     },
+     "categoria": "pergolas-louvered-roofs"
+    },
+    {
+     "titulo": "Rain, Wind and What Happens",
+     "resumen": "Closed it is a roof. Open it is a frame the wind goes through. The two kinds of Florida weather want opposite positions, and the rain sensor only knows about one of them.",
+     "enlace": "/blogs/louvered-roof-in-florida-rain-and-high-winds",
+     "cta": "Read More",
+     "imagen": {
+      "src": "/images/blog/banco/mm-louvered-7-p-800.webp",
+      "srcset": "/images/blog/banco/mm-louvered-7-p-400.webp 400w, /images/blog/banco/mm-louvered-7-p-800.webp 800w",
+      "sizes": "(min-width: 768px) 400px, 100vw",
+      "alt": "White aluminum louvered roof on white posts over a poolside patio, the edge of the pool at the near corner, a white perimeter fence and palms behind it, and a neighbor's tile roof with solar panels off to the left."
+     },
+     "categoria": "pergolas-louvered-roofs"
+    },
+    {
+     "titulo": "7 Features Worth Comparing",
+     "resumen": "Two quotes for the same patio can be thousands apart and read identically. Seven things explain the gap, and five of them are decided the day the posts go in.",
+     "enlace": "/blogs/features-to-compare-before-buying-a-louvered-roof",
+     "cta": "Read More",
+     "imagen": {
+      "src": "/images/blog/banco/mm-louvered-3-p-800.webp",
+      "srcset": "/images/blog/banco/mm-louvered-3-p-400.webp 400w, /images/blog/banco/mm-louvered-3-p-800.webp 800w",
+      "sizes": "(min-width: 768px) 400px, 100vw",
+      "alt": "White aluminum louvered roof attached to a beige stucco house, covering a patio with lounge chairs beside a pool, a curved handrail at the steps and a mosaic tile band at the waterline."
      },
      "categoria": "pergolas-louvered-roofs"
     }
@@ -198,7 +302,7 @@
      "titulo": "What Drives the Price",
      "resumen": "Two outdoor kitchens the same length can be very different projects. The number our estimator uses, the three things that actually move it, and the order to decide them in.",
      "enlace": "/blogs/how-much-does-an-outdoor-kitchen-cost-in-florida",
-     "cta": "Read More: What Drives the Price",
+     "cta": "Read More",
      "imagen": {
       "src": "/images/blog/banco/mm-kitchen-6-p-800.webp",
       "srcset": "/images/blog/banco/mm-kitchen-6-p-400.webp 400w, /images/blog/banco/mm-kitchen-6-p-800.webp 800w",
@@ -211,7 +315,7 @@
      "titulo": "Grill Island or Full Kitchen?",
      "resumen": "Both builds use the same stone, the same appliances and the same crew. What separates them is a trench you cannot add later, and a trip count that tells you which one you actually need.",
      "enlace": "/blogs/grill-island-vs-full-outdoor-kitchen",
-     "cta": "Read More: Grill Island or Full Kitchen?",
+     "cta": "Read More",
      "imagen": {
       "src": "/images/blog/banco/mm-kitchen-6-p-800.webp",
       "srcset": "/images/blog/banco/mm-kitchen-6-p-400.webp 400w, /images/blog/banco/mm-kitchen-6-p-800.webp 800w",
@@ -224,12 +328,38 @@
      "titulo": "Layout Around How You Cook",
      "resumen": "The shape is the last decision, not the first. Four things about your site rule out most layouts before anyone draws one, and the counter that gets cut to fit the appliances is the part you will miss every single time you cook.",
      "enlace": "/blogs/outdoor-kitchen-layout-guide",
-     "cta": "Read More: Layout Around How You Cook",
+     "cta": "Read More",
      "imagen": {
       "src": "/images/blog/banco/mm-kitchen-0-p-800.webp",
       "srcset": "/images/blog/banco/mm-kitchen-0-p-400.webp 400w, /images/blog/banco/mm-kitchen-0-p-800.webp 800w",
       "sizes": "(min-width: 768px) 400px, 100vw",
       "alt": "L-shaped outdoor kitchen on a tiled patio under a dark slatted pergola, with a side burner, built-in grill and drawers along the back run, a sink and stainless refrigerator on the wing that turns toward the camera, and a white fence, a hedge and a large tree behind."
+     },
+     "categoria": "outdoor-kitchens"
+    },
+    {
+     "titulo": "9 Decisions Before Appliances",
+     "resumen": "Appliances are not what you add at the end of an outdoor kitchen. They are the cutout dimensions, the gas line size and the number of circuits. These are the nine decisions that come before any model number, in the order they have to be made.",
+     "enlace": "/blogs/outdoor-kitchen-appliance-decisions",
+     "cta": "Read More",
+     "imagen": {
+      "src": "/images/blog/banco/mm-kitchen-4-p-800.webp",
+      "srcset": "/images/blog/banco/mm-kitchen-4-p-400.webp 400w, /images/blog/banco/mm-kitchen-4-p-800.webp 800w",
+      "sizes": "(min-width: 768px) 400px, 100vw",
+      "alt": "L-shaped outdoor kitchen island faced in white stacked stone, with a built-in grill, a sink and stainless doors, under a white louvered roof looking out to palms and a lake."
+     },
+     "categoria": "outdoor-kitchens"
+    },
+    {
+     "titulo": "Materials That Survive Florida",
+     "resumen": "Everyone spends their design time on the countertop, which is the part least likely to fail. The frame and the fasteners are what decide whether the kitchen still looks right in year ten, and both are buried inside the island.",
+     "enlace": "/blogs/best-outdoor-kitchen-materials-for-florida",
+     "cta": "Read More",
+     "imagen": {
+      "src": "/images/blog/banco/mm-kitchen-6-p-800.webp",
+      "srcset": "/images/blog/banco/mm-kitchen-6-p-400.webp 400w, /images/blog/banco/mm-kitchen-6-p-800.webp 800w",
+      "sizes": "(min-width: 768px) 400px, 100vw",
+      "alt": "L-shaped outdoor kitchen under a dark covered structure, with a black stone countertop, a built-in stainless grill, stainless doors and drawers in white cabinet fronts, and a travertine floor, facing a lake lined with palms."
      },
      "categoria": "outdoor-kitchens"
     }
@@ -240,7 +370,9 @@
   "/services/pool-screen-enclosures-for-north-south-florida-pools": {
    "faltan": [
     "replace-a-pool-cage-or-keep-rescreening-it",
-    "panoramic-vs-traditional-pool-enclosures"
+    "panoramic-vs-traditional-pool-enclosures",
+    "pool-enclosure-wind-ratings-in-florida",
+    "design-decisions-that-make-a-pool-enclosure-feel-open"
    ],
    "escritos": [
     "how-much-does-a-pool-screen-enclosure-cost-in-florida"
@@ -250,7 +382,9 @@
    "faltan": [
     "screen-room-vs-screened-patio-vs-pool-enclosure",
     "how-much-does-a-screen-room-cost-in-florida",
-    "before-you-enclose-your-patio"
+    "before-you-enclose-your-patio",
+    "which-screen-mesh-for-a-florida-patio",
+    "can-a-screen-room-make-a-patio-comfortable-year-round"
    ],
    "escritos": []
   },
@@ -258,7 +392,9 @@
    "faltan": [
     "are-motorized-retractable-screens-worth-it",
     "motorized-screens-vs-a-fixed-screen-room",
-    "choosing-the-right-screen-mesh"
+    "choosing-the-right-screen-mesh",
+    "how-much-do-motorized-patio-screens-cost",
+    "retractable-screens-in-wind-and-storms"
    ],
    "escritos": []
   },
@@ -266,7 +402,9 @@
    "faltan": [
     "composite-vs-wood-decking-in-florida",
     "how-much-does-a-custom-deck-cost-in-florida",
-    "deck-layout-mistakes-to-avoid"
+    "deck-layout-mistakes-to-avoid",
+    "best-deck-materials-for-florida",
+    "do-you-need-a-permit-to-build-a-deck-in-florida"
    ],
    "escritos": []
   },
@@ -274,7 +412,9 @@
    "faltan": [
     "landscaping-around-a-pool",
     "privacy-landscaping-around-a-pool",
-    "designing-landscaping-around-a-new-pool"
+    "designing-landscaping-around-a-new-pool",
+    "what-drives-the-cost-of-a-backyard-landscape-project",
+    "low-maintenance-luxury-landscaping-in-florida"
    ],
    "escritos": []
   },
@@ -282,7 +422,9 @@
    "faltan": [
     "is-a-smart-irrigation-system-worth-it-in-florida",
     "irrigation-fixes-before-new-landscaping",
-    "smart-irrigation-vs-traditional-sprinklers"
+    "smart-irrigation-vs-traditional-sprinklers",
+    "designing-irrigation-around-pools-and-outdoor-living",
+    "using-less-water-without-losing-a-green-lawn"
    ],
    "escritos": []
   },
@@ -290,7 +432,9 @@
    "faltan": [
     "best-outdoor-furniture-materials-for-florida",
     "how-to-furnish-a-pool-area",
-    "outdoor-living-areas-that-feel-like-real-rooms"
+    "outdoor-living-areas-that-feel-like-real-rooms",
+    "built-in-seating-vs-outdoor-furniture",
+    "choosing-outdoor-fabrics-for-florida-weather"
    ],
    "escritos": []
   },
@@ -298,7 +442,9 @@
    "faltan": [
     "pole-barn-vs-steel-building-in-florida",
     "how-much-does-a-steel-building-cost-in-florida",
-    "slab-drainage-and-site-prep-for-a-steel-building"
+    "slab-drainage-and-site-prep-for-a-steel-building",
+    "wind-load-for-metal-buildings-in-florida",
+    "do-you-need-a-permit-for-a-pole-barn-in-florida"
    ],
    "escritos": []
   },
@@ -306,7 +452,9 @@
    "faltan": [
     "permanent-soffit-lighting-vs-landscape-lighting",
     "how-much-does-permanent-soffit-lighting-cost",
-    "how-to-light-a-florida-home-without-overdoing-it"
+    "how-to-light-a-florida-home-without-overdoing-it",
+    "smart-led-features-worth-considering",
+    "where-to-install-permanent-exterior-lights"
    ],
    "escritos": []
   }
