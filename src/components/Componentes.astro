@@ -402,7 +402,11 @@ const SLIDERS = JSON.stringify(
         }
       };
       dimensiona();
-      addEventListener('resize', dimensiona, { passive: true });
+      /* ponytail: aqui habia un `addEventListener('resize', dimensiona)` que sobraba — mas
+         abajo hay otro oyente de `resize` que ya hace `dimensiona(); refresca();`, asi que
+         cada instancia redimensionaba sus tarjetas DOS VECES por evento, y `resize` llega a
+         rafagas mientras se arrastra el borde de la ventana o se gira el movil. Se queda el
+         que ademas refresca, que es el que hace falta entero. */
 
       const prev = inst.querySelector('[fs-slider-element="previous"]');
       const next = inst.querySelector('[fs-slider-element="next"]');
@@ -461,10 +465,33 @@ const SLIDERS = JSON.stringify(
         inst.toggleAttribute('data-mm-sin-desplazar', max <= 1);
         prev?.setAttribute('aria-disabled', String(lista.scrollLeft <= 1));
         next?.setAttribute('aria-disabled', String(lista.scrollLeft >= max - 1));
+        /**
+         * ── EL RECORRIDO DEL PULGAR SE CALCULA CON EL ANCHO QUE ACABA TENIENDO ───────────
+         *
+         * El ancho del pulgar tiene un SUELO del 10 % -sin el, un carrusel muy largo dibuja
+         * una raya de dos pixeles que no se puede agarrar-, pero el desplazamiento se seguia
+         * calculando con la fraccion SIN clampar. Cuando las dos no coinciden, el pulgar se
+         * sale de su barra. MEDIDO en la portada a 1440, `fs-slider-projects` (15 tarjetas,
+         * `clientWidth` 1250 sobre `scrollWidth` 18974, o sea 6,59 % visible < 10 %):
+         *
+         *     scrollLeft 0       posicion relativa 0      pegado al inicio      ok
+         *     scrollLeft max/2   posicion relativa 0,788  deberia ser 0,5       miente
+         *     scrollLeft max     posicion relativa 1,575  647,4 px FUERA de la barra
+         *
+         * O sea que la barra de progreso de la portada deja de decir donde estas en cuanto te
+         * mueves, y al final del carrusel el pulgar se ha ido de la pista. Las otras cuatro
+         * instancias (19,7 % a 59,7 % visible) no llegan al suelo y salian exactas: 0 · 0,5 · 1.
+         *
+         * Con `anchoPct` el recorrido en unidades del PROPIO pulgar es `(100 - anchoPct) /
+         * anchoPct`, que para una instancia sin clampar da exactamente `100 / visible - 100`
+         * —la formula de antes— asi que a las cuatro que ya estaban bien no les cambia ni un
+         * pixel. Y en `scrollLeft = 0`, que es donde captura `check:visual`, el transform es
+         * 0 en los dos casos: esto no mueve la referencia de diseño.
+         */
         if (drag && max > 0) {
-          const visible = lista.clientWidth / lista.scrollWidth;
-          drag.style.width = `${Math.max(10, visible * 100)}%`;
-          drag.style.transform = `translateX(${(lista.scrollLeft / max) * (100 / visible - 100)}%)`;
+          const anchoPct = Math.max(10, (lista.clientWidth / lista.scrollWidth) * 100);
+          drag.style.width = `${anchoPct}%`;
+          drag.style.transform = `translateX(${(lista.scrollLeft / max) * ((100 - anchoPct) / anchoPct) * 100}%)`;
         }
       };
       /**
@@ -576,22 +603,66 @@ const SLIDERS = JSON.stringify(
         };
 
         /**
-         * DOS ESTADOS DISTINTOS, y por eso hay dos variables en vez de un `null` con dos
+         * TRES ESTADOS DISTINTOS, y por eso hay tres variables en vez de un `null` con varios
          * significados: `detenido` es la parada DEFINITIVA que pedia `disableOnInteraction`
-         * del config del sitio, y `tick` es solo si ahora mismo corre o no. Con una sola
-         * variable, «pausado por hover» y «parado porque el visitante toco» se confunden, y
-         * el sintoma seria un carrusel que revive al sacar el raton despues de que alguien
-         * lo hubiera parado a proposito.
+         * del config del sitio, `pausado` es la pausa TEMPORAL de WCAG 2.2.2 (hover/foco), y
+         * `tick` es solo si ahora mismo corre o no. Con una sola variable, «pausado por hover»
+         * y «parado porque el visitante toco» se confunden, y el sintoma seria un carrusel que
+         * revive al sacar el raton despues de que alguien lo hubiera parado a proposito.
+         *
+         * `pausado` es NUEVO y lo obliga el `resize` de mas abajo: sin el, redimensionar la
+         * ventana con el raton encima rearmaba el temporizador que el hover acababa de pausar.
          */
         let tick = null;
         let detenido = false;
-        const arranca = () => { if (!detenido && tick === null) tick = setInterval(avanza, conf.autoplayMs); };
+        let pausado = false;
+
+        /**
+         * ── EL AUTOPLAY NO GIRA EN VACIO ─────────────────────────────────────────────────
+         *
+         * `arranca()` montaba el `setInterval` SIEMPRE, hubiera o no adonde ir. MEDIDO en
+         * `/services/custom-pool-spa-…` a 1440 con el carrusel del blog recortado a 3
+         * tarjetas —el estado exacto de las 9 fichas que todavia no llegan a 5 articulos—:
+         *
+         *     tarjetas 3 · clientWidth 1250 · scrollWidth 1250 · max 0
+         *     data-mm-sin-desplazar SI · las flechas en `display:none`
+         *     temporizador de 3000 ms VIVO, 4 disparos en 12 s, scrollLeft 0 -> 0
+         *
+         * O sea: cuatro despertares del hilo principal para mover cero pixeles, y sin final,
+         * porque lo unico que lo apagaba era la interaccion (`pointerdown`/`keydown`/`wheel`
+         * sobre la lista, o un clic en las flechas) y las flechas estan OCULTAS justo en ese
+         * estado. Un visitante que solo lee la ficha deja el temporizador latiendo mientras
+         * la pestaña siga abierta. Cada tick ademas fuerza un reflow: lee `scrollWidth` y
+         * `clientWidth` y escribe `scrollLeft`.
+         *
+         * Es el MISMO umbral que ya usa `refresca()` para ocultar los mandos (`max <= 1`), no
+         * uno nuevo: si no hay mandos que enseñar es que no hay nada que recorrer, y entonces
+         * tampoco hay nada que autoavanzar. Se comprueba en cada `arranca()` y no una sola vez
+         * al cargar, porque `dimensiona()` cambia el ancho de las tarjetas con el viewport: el
+         * mismo carrusel tiene recorrido en movil y no lo tiene en un monitor ancho.
+         */
+        const hayRecorrido = () => lista.scrollWidth - lista.clientWidth > 1;
+        const arranca = () => {
+          if (detenido || pausado || tick !== null || !hayRecorrido()) return;
+          tick = setInterval(avanza, conf.autoplayMs);
+        };
         const frena = () => { if (tick !== null) { clearInterval(tick); tick = null; } };
         const para = () => { detenido = true; frena(); };
+        const pausa = () => { pausado = true; frena(); };
+        const reanuda = () => { pausado = false; arranca(); };
 
         arranca();
         for (const ev of ['pointerdown', 'keydown', 'wheel']) lista.addEventListener(ev, para, { once: true, passive: true });
         for (const b of [prev, next]) b?.addEventListener('click', para, { once: true });
+
+        /**
+         * Y LO MISMO AL REDIMENSIONAR. Un carrusel puede PERDER el recorrido al ensanchar la
+         * ventana (`dimensiona()` mete mas tarjetas por vista) y ganarlo al estrecharla, asi
+         * que el temporizador tiene que seguir a la geometria en los dos sentidos. Va despues
+         * del `resize` que hace `dimensiona(); refresca();` —los oyentes corren en orden de
+         * registro— para leer la geometria YA recalculada, no la de antes.
+         */
+        addEventListener('resize', () => { if (hayRecorrido()) arranca(); else frena(); }, { passive: true });
 
         /**
          * PAUSA — WCAG 2.2.2, que pide poder parar lo que se mueve solo y dura mas de 5 s.
@@ -603,10 +674,10 @@ const SLIDERS = JSON.stringify(
          * `focusin`/`focusout` y no `focus`/`blur`: estos no burbujean, y quien recibe el
          * foco es un hijo -la lista o un boton-, nunca la instancia.
          */
-        inst.addEventListener('mouseenter', frena);
-        inst.addEventListener('mouseleave', arranca);
-        inst.addEventListener('focusin', frena);
-        inst.addEventListener('focusout', arranca);
+        inst.addEventListener('mouseenter', pausa);
+        inst.addEventListener('mouseleave', reanuda);
+        inst.addEventListener('focusin', pausa);
+        inst.addEventListener('focusout', reanuda);
       }
     }
 

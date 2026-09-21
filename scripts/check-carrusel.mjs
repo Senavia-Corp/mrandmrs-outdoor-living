@@ -44,6 +44,12 @@
  *      que otro estilo en linea-. Se comprueba que el computed-style gana Y que el clic no dea
  *      trabajo pendiente
  *   8. cero long tasks >50ms durante un recorrido completo de "next" (jank de layout)
+ *   9. el pulgar de la barra esta pegado al inicio en `scrollLeft 0` y al final en `max` — el
+ *      suelo del 10 % de su anchura lo desincronizaba del recorrido y en la portada acababa
+ *      647,4 px FUERA de la barra (21-sep-2026)
+ *  10. sin nada que desplazar NO queda autoplay encendido; se pausa en hover Y en foco de
+ *      teclado (WCAG 2.2.2, que es la mitigacion declarada del autoplay de 3000 ms); y
+ *      `prefers-reduced-motion: reduce` no enciende ninguno. Seccion D, una sola ruta.
  *
  * ORACULO INDEPENDIENTE: no importa nada de `Componentes.astro`. Mide geometria y ARIA en un
  * navegador real, con touch de verdad via CDP -un mouse.move no dispara el pan nativo, asi que
@@ -63,8 +69,15 @@ if (!fs.existsSync(ESTATICO)) { console.error('\nROJO falta .vercel/output/stati
 const ARGS_NAVEGADOR = ['--disable-background-timer-throttling',
   '--disable-renderer-backgrounding', '--disable-backgrounding-occluded-windows'];
 
+/**
+ * El filtro casa por subcadena, como `check:texto`. Y con `=` delante, EXACTO — la misma
+ * convencion que `check:visual`, por el mismo motivo: `/` es subcadena de las cinco rutas, asi
+ * que pedir la portada sin coincidencia exacta las corre todas creyendo que corres una.
+ * Comillas obligatorias, que zsh se come `=/` suelto:  node scripts/check-carrusel.mjs '=/'
+ */
 const filtro = process.argv.slice(2).filter((a) => !a.startsWith('--'));
-const casa = (r) => !filtro.length || filtro.some((f) => r.includes(f));
+const casa = (r) => !filtro.length
+  || filtro.some((f) => (f.startsWith('=') ? r === f.slice(1) : r.includes(f)));
 
 const RUTAS = [
   '/',
@@ -73,7 +86,7 @@ const RUTAS = [
   '/pool-builders/gainesville-florida',
   '/industry-solutions',
 ].filter(casa);
-if (!RUTAS.length) { console.error(`\nROJO ninguna de las 4 rutas fijas casa el filtro "${filtro.join(' ')}"\n`); process.exit(1); }
+if (!RUTAS.length) { console.error(`\nROJO ninguna de las 5 rutas fijas casa el filtro "${filtro.join(' ')}"\n`); process.exit(1); }
 
 let fallos = 0;
 const check = (n, ok, d = '') => { console.log(`  ${ok ? 'ok  ' : 'ROJO'} ${n}${d ? ' — ' + d : ''}`); if (!ok) fallos++; return ok; };
@@ -213,6 +226,45 @@ for (const ruta of RUTAS) {
       await page.keyboard.press('Home');
       const kHome = await pollUntilStable(() => page.evaluate((s) => document.querySelector(s).querySelector('[fs-slider-element="list"]').scrollLeft, sel));
       check(`  ${nombre}: Home vuelve a 0`, kHome.value <= 3, `scrollLeft ${kHome.value}`);
+
+      /**
+       * 6b · LA BARRA DICE DONDE ESTAS — los dos extremos, que son los unicos puntos que se
+       * pueden exigir sin adivinar. Los intermedios NO valen de oraculo: `scroll-snap-type:x
+       * mandatory` reencarrila una escritura de `scrollLeft` al punto de snap mas cercano, asi
+       * que pedir el 50 % devuelve el snap de al lado y el numero sale «mal» estando bien.
+       *
+       * El fallo que cierra: el ancho del pulgar tiene un suelo del 10 % y el desplazamiento
+       * se calculaba con la fraccion SIN clampar. MEDIDO en la portada a 1280,
+       * `fs-slider-projects` (6,59 % visible, por debajo del suelo): al final del carrusel el
+       * pulgar quedaba 647,4 px FUERA de su barra, y a mitad de recorrido marcaba 0,788 donde
+       * tocaba 0,5. Las instancias por encima del 10 % salian exactas, o sea que el defecto
+       * solo aparece en los carruseles largos — justo los que mas necesitan la barra.
+       */
+      if (base.hasDrag && base.hasBarra && base.maxScroll > 0) {
+        await resetInstant(page, sel);
+        const extremos = await page.evaluate((s) => {
+          const inst = document.querySelector(s);
+          const l = inst.querySelector('[fs-slider-element="list"]');
+          const b = inst.querySelector('[fs-slider-element="scrollbar"]');
+          const d = inst.querySelector('[fs-slider-element="scrollbar-drag"]');
+          const previo = l.style.scrollBehavior;
+          l.style.scrollBehavior = 'auto';
+          const max = l.scrollWidth - l.clientWidth;
+          const mide = () => { const rb = b.getBoundingClientRect(), rd = d.getBoundingClientRect(); return { izq: rd.left - rb.left, der: rd.right - rb.right }; };
+          l.scrollLeft = 0; l.dispatchEvent(new Event('scroll'));
+          const inicio = mide();
+          l.scrollLeft = max; l.dispatchEvent(new Event('scroll'));
+          const fin = mide();
+          l.scrollLeft = 0; l.dispatchEvent(new Event('scroll'));
+          l.style.scrollBehavior = previo;
+          return { inicio, fin, visiblePct: (l.clientWidth / l.scrollWidth) * 100 };
+        }, sel);
+        check(`  ${nombre}: en scrollLeft 0 el pulgar esta pegado al inicio de la barra`,
+          Math.abs(extremos.inicio.izq) <= 2, `${extremos.inicio.izq.toFixed(1)}px`);
+        check(`  ${nombre}: en el final el pulgar esta pegado al final de la barra`,
+          Math.abs(extremos.fin.der) <= 2,
+          `${extremos.fin.der.toFixed(1)}px fuera (pulgar al ${extremos.visiblePct.toFixed(2)}% visible)`);
+      }
 
       // 6 (adaptado, desktop): el pulgar de la barra se puede arrastrar y queda alineado
       if (base.hasDrag && base.hasBarra) {
@@ -399,6 +451,172 @@ for (const ruta of RUTAS) {
         `a 50ms: ${inmediato}, a 550ms: ${despues} (antes: ${before})`);
       await resetInstant(page, sel);
     }
+    await ctx.close();
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════════════════════
+// D · EL AUTOPLAY: NI GIRA EN VACIO, NI SE SALTA LA PAUSA, NI IGNORA `reduced-motion`
+//
+// UNA SOLA RUTA -la primera de las que pasen el filtro- y no las 5. El autoplay es del
+// MECANISMO, no de la instancia, y cada comprobacion de aqui cuesta una carga entera de
+// pagina; repetirlo en 5 rutas mediria cinco veces el mismo codigo. La portada trae
+// `fs-slider-blog`, que es la instancia con `autoplayMs: 3000`, asi que hay algo que medir.
+//
+// ORACULO SIN INTERNALS, como el resto de este fichero. No se busca un `setInterval` por su
+// retardo (3000 ms es una decision de diseño que puede cambiar) ni por el nombre de la funcion
+// que lo crea. Se cuenta cuantos TEMPORIZADORES VIVOS desaparecen cuando se toca el carrusel,
+// porque eso es el contrato que el propio sitio declara -`disableOnInteraction: true` en la
+// configuracion de Finsweet-: los que mueren al tocar son los autoplays. Sobre esa resta se
+// arma todo lo demas, y por eso vale igual si mañana el motor se reescribe entero.
+//
+// LO QUE CIERRA. MEDIDO el 21-sep-2026 en `/services/custom-pool-spa-…` a 1440, con el
+// carrusel del blog recortado a 3 tarjetas -el estado exacto de las 9 fichas que todavia no
+// llegan a 5 articulos-:
+//
+//     max 0 · data-mm-sin-desplazar SI · flechas en display:none
+//     temporizador de 3000 ms VIVO · 4 disparos en 12 s · scrollLeft 0 -> 0
+//
+// Cuatro despertares del hilo principal para mover cero pixeles, cada uno forzando un reflow
+// (lee `scrollWidth`/`clientWidth`, escribe `scrollLeft`), y sin final posible: lo unico que
+// apagaba el temporizador era la interaccion, y en ese estado las flechas estan OCULTAS.
+// ══════════════════════════════════════════════════════════════════════════════════════════
+{
+  const ruta = RUTAS[0];
+  console.log(`\n── ${ruta}  · autoplay`);
+
+  /** Censo de temporizadores vivos. Se instala ANTES de que corra ningun script de la pagina. */
+  const CENSO = () => {
+    const vivos = new Set();
+    const si = window.setInterval.bind(window);
+    const ci = window.clearInterval.bind(window);
+    window.__mmVivos = vivos;
+    window.setInterval = function (...a) { const h = si(...a); vivos.add(h); return h; };
+    window.clearInterval = function (h) { vivos.delete(h); return ci(h); };
+  };
+  const cuenta = (page) => page.evaluate(() => window.__mmVivos.size);
+  /** Toca TODAS las listas: por el contrato del sitio, eso apaga todos los autoplays. */
+  const tocaTodo = (page) => page.evaluate(() => {
+    for (const l of document.querySelectorAll('[fs-slider-element="list"]')) {
+      l.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true }));
+    }
+  });
+  const abre = async (extra = {}) => {
+    const ctx = await navegador.newContext({ viewport: { width: 1280, height: 800 }, ...extra });
+    await ctx.addInitScript(CENSO);
+    const page = await ctx.newPage();
+    await page.goto(`http://localhost:${PUERTO}${ruta}`, { waitUntil: 'load' });
+    await page.waitForTimeout(400);
+    return { ctx, page };
+  };
+
+  // d1 · cuantos autoplays tiene esta pagina cuando SI hay recorrido. Si sale 0, lo de abajo
+  //      no comprueba nada y hay que decirlo en vez de pintarlo verde.
+  let autoplaysConRecorrido = 0;
+  {
+    const { ctx, page } = await abre();
+    const antes = await cuenta(page);
+    await tocaTodo(page);
+    await page.waitForTimeout(150);
+    autoplaysConRecorrido = antes - (await cuenta(page));
+    check(`  la pagina tiene autoplay que medir`, autoplaysConRecorrido >= 1,
+      `${autoplaysConRecorrido} temporizador(es) se apagan al tocar los carruseles`);
+    await ctx.close();
+  }
+
+  // d2 · SIN RECORRIDO, NINGUN AUTOPLAY ENCENDIDO.
+  //      Se recortan las tarjetas hasta que el contenido cabe -que es lo que le pasa a una
+  //      ficha con menos articulos de los que caben por vista- y se dispara `resize`, que es
+  //      el flanco que reevalua la geometria. Luego se vuelve a preguntar lo mismo: si tocar
+  //      no apaga NADA, es que no quedaba nada encendido.
+  {
+    const { ctx, page } = await abre();
+    const geo = await page.evaluate(async () => {
+      const esperar = () => new Promise((r) => setTimeout(r, 60));
+      for (const l of document.querySelectorAll('[fs-slider-element="list"]')) {
+        let guarda = 0;
+        while (l.children.length > 1 && l.scrollWidth - l.clientWidth > 1 && guarda++ < 40) {
+          l.lastElementChild.remove();
+          dispatchEvent(new Event('resize'));
+          await esperar();
+        }
+      }
+      return [...document.querySelectorAll('[fs-slider-instance]')].map((i) => ({
+        nombre: i.getAttribute('fs-slider-instance'),
+        max: (() => { const l = i.querySelector('[fs-slider-element="list"]'); return l ? l.scrollWidth - l.clientWidth : null; })(),
+        sinDesplazar: i.hasAttribute('data-mm-sin-desplazar'),
+      }));
+    });
+    await page.waitForTimeout(300);
+    const todosSinRecorrido = geo.every((g) => g.max === null || g.max <= 1);
+    check(`  el recorte deja los ${geo.length} carruseles sin nada que desplazar`, todosSinRecorrido,
+      geo.map((g) => `${g.nombre}:max=${g.max}${g.sinDesplazar ? '' : ' (SIN marcar)'}`).join(' · '));
+    const antes = await cuenta(page);
+    await tocaTodo(page);
+    await page.waitForTimeout(150);
+    const encendidos = antes - (await cuenta(page));
+    check(`  sin nada que desplazar NO queda autoplay encendido`, encendidos === 0,
+      `${encendidos} temporizador(es) seguian vivos girando en vacio`);
+    await ctx.close();
+  }
+
+  // d3 · PAUSA EN HOVER Y EN FOCO — WCAG 2.2.2. Es la mitigacion declarada del autoplay de
+  //      3000 ms, o sea que si se cae, se cae la justificacion entera. Se mide con la misma
+  //      resta: pasar el raton (o tabular) tiene que apagar EXACTAMENTE los autoplays de esa
+  //      instancia, y salir (o desenfocar) tiene que devolverlos.
+  {
+    const { ctx, page } = await abre();
+    const instancias = await page.evaluate(() =>
+      [...document.querySelectorAll('[fs-slider-instance]')].map((i) => i.getAttribute('fs-slider-instance')));
+    for (const nombre of instancias) {
+      const sel = `[fs-slider-instance="${nombre}"]`;
+      await page.mouse.move(2, 2);
+      await page.locator(`${sel} [fs-slider-element="list"]`).scrollIntoViewIfNeeded();
+      await page.waitForTimeout(200);
+      const v0 = await cuenta(page);
+
+      const caja = await page.locator(`${sel} [fs-slider-element="list"]`).boundingBox();
+      await page.mouse.move(caja.x + caja.width / 2, caja.y + caja.height / 2);
+      await page.waitForTimeout(200);
+      const vHover = await cuenta(page);
+      await page.mouse.move(2, 2);
+      await page.waitForTimeout(200);
+      const vSalir = await cuenta(page);
+
+      await page.evaluate((s) => document.querySelector(s).querySelector('[fs-slider-element="list"]').focus(), sel);
+      await page.waitForTimeout(200);
+      const vFoco = await cuenta(page);
+      await page.evaluate(() => document.activeElement?.blur());
+      await page.waitForTimeout(200);
+      const vBlur = await cuenta(page);
+
+      // cuantos autoplays son SUYOS: los que se apagan al tocar SOLO esta lista
+      await page.evaluate((s) => document.querySelector(s).querySelector('[fs-slider-element="list"]')
+        .dispatchEvent(new PointerEvent('pointerdown', { bubbles: true })), sel);
+      await page.waitForTimeout(150);
+      const propios = vBlur - (await cuenta(page));
+
+      check(`  ${nombre}: el hover pausa sus ${propios} autoplay(s)`, v0 - vHover === propios,
+        `vivos ${v0} -> ${vHover}`);
+      check(`  ${nombre}: al salir el raton vuelven`, vSalir === v0, `vivos ${vSalir} vs ${v0}`);
+      check(`  ${nombre}: el foco de teclado pausa sus ${propios} autoplay(s)`, vSalir - vFoco === propios,
+        `vivos ${vSalir} -> ${vFoco}`);
+      check(`  ${nombre}: al perder el foco vuelven`, vBlur === vSalir, `vivos ${vBlur} vs ${vSalir}`);
+    }
+    await ctx.close();
+  }
+
+  // d4 · `prefers-reduced-motion: reduce` NO ENCIENDE NINGUNO. Un carrusel que se mueve solo
+  //      es exactamente lo que esa preferencia pide evitar, y el §C de arriba solo comprueba
+  //      el `scroll-behavior` del clic, que es otra cosa.
+  {
+    const { ctx, page } = await abre({ reducedMotion: 'reduce' });
+    const antes = await cuenta(page);
+    await tocaTodo(page);
+    await page.waitForTimeout(150);
+    const encendidos = antes - (await cuenta(page));
+    check(`  con reduced-motion no se enciende ningun autoplay`, encendidos === 0,
+      `${encendidos} encendido(s); sin la preferencia eran ${autoplaysConRecorrido}`);
     await ctx.close();
   }
 }
