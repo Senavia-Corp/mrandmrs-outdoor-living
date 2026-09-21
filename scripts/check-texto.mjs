@@ -169,7 +169,7 @@ const QUITADAS_A_PROPOSITO = [
    *
    * 13-sep-2026: la ficha de piscina, que era el piloto, tambien sale de aqui. Sus nueve lineas
    * del antes/despues ya no quitaban nada -`quitaAntesDespues()` corre antes-, y las dos de su
-   * `gallery` vuelven: la galeria vuelve a la pagina (§ `bajaGaleria()`). */
+   * `gallery` vuelven: la galeria vuelve a la pagina (§ `subeGaleria()`). */
 ];
 
 /**
@@ -582,32 +582,46 @@ const reordena = (ruta, lineas) => {
     const i = lineas.findIndex((_, k) => d.antes.every((l, j) => lineas[k + j] === l));
     if (i >= 0) lineas.splice(i, d.antes.length, ...d.despues);
   }
-  return ordenaZonas(ruta, subeResenasCiudad(ruta, subeResenas(ruta, bajaGaleria(ruta, lineas))));
+  return ordenaZonas(ruta, subeResenasCiudad(ruta, bajaResenas(ruta, subeGaleria(ruta, lineas))));
 };
 
+/** Las 14 fichas de `/services/`. Explicito, y NO `CAPTACION_JSON[ruta]`: ese mapa trae TAMBIEN
+ *  las 53 ciudades, asi que como guarda de «solo las fichas» siempre fue PRESTADA — funcionaba
+ *  porque las anclas no existen en las ciudades, no porque la guarda lo dijera. */
+const ES_FICHA = (r) => /^\/services\//.test(r);
+
 /**
- * LA GALERIA BAJA DETRAS DE LA FAQ — derivado (Sebastian, 13-sep-2026).
+ * LA GALERIA SUBE DELANTE DE LA REJILLA DE SUBSERVICIOS — derivado (Sebastian, 21-sep-2026).
  *
- * `captacion()` mueve `section.gallery` detras de `section.faq-section` en las 14 fichas
- * (`build-paginas.mjs`, bloque 8). En el baseline la galeria son DOS lineas -titulo acabado en
- * «Gallery» y entradilla- pegadas encima del titulo de la FAQ, acabado en «FAQs» en las
- * catorce; y la FAQ acaba justo antes de «Where We Serve». Declararlo en
- * `REORDENADAS_A_PROPOSITO` obligaria a copiar a mano la FAQ entera de cada ficha, que es
- * distinta en las catorce. Se deriva, como `subeResenas` y `ordenaZonas`.
+ * Hasta hoy `captacion()` la bajaba detras de `section.faq-section` y esto se llamaba
+ * `bajaGaleria`. El canje 1:1 con las reseñas la manda al hueco que ocupaban ellas: entre el
+ * formulario y la rejilla de subservicios (`build-paginas.mjs`, bloque 8b).
  *
- * Barandilla: UN solo candidato, «Where We Serve» detras, y el resultado tiene que ser una
- * PERMUTACION de la entrada. Si algo falla no se toca nada y la puerta se pone roja sola.
+ * 🚨 LO QUE **NO** CAMBIA ES COMO SE ENCUENTRA LA GALERIA, y no es un descuido. En el BASELINE
+ * —que no se re-baseliniza nunca— la galeria SIGUE siendo las DOS lineas pegadas encima del
+ * titulo de la FAQ. La pareja `/Gallery$/` + `/FAQs$/` en `k+2` describe el ORIGEN de Webflow,
+ * no el orden que construimos, asi que mover la seccion en el generador no la invalida.
+ * «Actualizarla para que case con el orden nuevo» es el error que hay que NO cometer.
+ *
+ * Y ES LA PAREJA LO QUE IDENTIFICA, no el sufijo: `/Gallery$/` casa TAMBIEN «Project Gallery»
+ * del MENU en las catorce. Sin el `/FAQs$/` de `k+2` hay DOS candidatas y esto se queda quieto
+ * — o, peor, mueve la del menu.
+ *
+ * Barandilla: UN solo candidato, el ancla de la rejilla DELANTE —pasada por `traduce()`, porque
+ * `reordena()` corre DESPUES— y el resultado tiene que ser una PERMUTACION de la entrada. Si
+ * algo falla no se toca nada y la puerta se pone roja sola.
  */
-const bajaGaleria = (ruta, lineas) => {
-  if (!CAPTACION_JSON[ruta]) return lineas;
+const subeGaleria = (ruta, lineas) => {
+  if (!ES_FICHA(ruta)) return lineas;
   const candidatas = lineas.flatMap((l, k) =>
     (/Gallery$/.test(l) && /FAQs$/.test(lineas[k + 2] ?? '') ? [k] : []));
   if (candidatas.length !== 1) return lineas;
   const g = candidatas[0];
-  const w = lineas.indexOf('Where We Serve', g + 2);
-  if (w < 0) return lineas;
+  const destino = lineas.indexOf(traduce(ruta, 'What Do We Do!'));
+  if (destino < 0 || g <= destino) return lineas;
+  /* `g > destino`, asi que quitar la galeria NO desplaza `destino`. */
   const resto = [...lineas.slice(0, g), ...lineas.slice(g + 2)];
-  const salida = [...resto.slice(0, w - 2), lineas[g], lineas[g + 1], ...resto.slice(w - 2)];
+  const salida = [...resto.slice(0, destino), lineas[g], lineas[g + 1], ...resto.slice(destino)];
   if ([...salida].sort().join('\n') !== [...lineas].sort().join('\n')) return lineas;
   return salida;
 };
@@ -663,11 +677,13 @@ const quitaAntesDespues = (ruta, lineas) => {
 };
 
 /**
- * LAS RESEÑAS SUBEN DETRAS DEL FORMULARIO — derivado, no copiado a mano.
+ * LAS RESEÑAS BAJAN AL CIERRE DEL BLOQUE CENTRAL — derivado, no copiado a mano.
  *
- * `captacion()` mueve `section.testimonial-section` justo detras de `logos-section` en TODAS las
- * rutas de captacion (`build-paginas.mjs`, bloque 3): la objecion que queda despues de decidir
- * dejar los datos son las reseñas, y estaban pasada la mitad de la pagina.
+ * Hasta el 21-sep-2026 `captacion()` solo las subia detras de `logos-section` y esto se llamaba
+ * `subeResenas`. El bloque 3 SIGUE subiendolas ahi —hace falta para que el hueco a nivel de
+ * `<body>` exista donde toca—, pero el bloque 8b las baja despues al hueco que dejo la galeria:
+ * ultima hija del `<div>`, entre la FAQ y «Where We Serve». Contra el BASELINE, que es lo unico
+ * que mide esta funcion, el neto es un descenso corto: de DETRAS de `location` a DELANTE.
  *
  * El CONTENIDO de las reseñas ya se descuenta aparte (`lineasResenas`, que las busca esten
  * donde esten), asi que lo unico que queda desordenado son las TRES lineas de cabecera de la
@@ -677,16 +693,24 @@ const quitaAntesDespues = (ruta, lineas) => {
  * que es lo que esta misma hoja ya hace con las reseñas, el blog, el feed y la capa de
  * captacion, y por la misma razon.
  *
- * LA BARANDILLA SE CONSERVA: se exige que las tres lineas existan, que el rotulo de la rejilla
- * exista —en la forma que tenga tras `traduce()`—,
- * que las reseñas vayan DESPUES (si ya estuvieran delante no habria nada que mover) y que el
- * resultado sea una PERMUTACION de la entrada. Si algo de eso falla no se toca nada, y la
- * puerta se pone roja por su cuenta — que es lo correcto: un reorden que no se puede demostrar
- * no se perdona.
+ * 🚨 LA ASERCION DE `cabecera[1]` ES NUEVA Y NO ES ADORNO. La version vieja solo comprobaba
+ * `cabecera.length !== 3`, y ese `if` NO SALTA NUNCA: `slice` devuelve menos de 3 solo si
+ * «TESTIMONIALS» cae a dos lineas del final, y cae a ~15. O sea que arrastraba `i+1` e `i+2`
+ * fueran lo que fueran. El dia que dejaran de ser el h2 y la entradilla se llevaria la primera
+ * linea del `cta-footer` SIN DECIR NADA: conjunto intacto, «faltan 0, sobran 0» y un «orden
+ * cambiado» apuntando lejos de la causa. Se cierra como ya lo tenia `subeResenasCiudad`.
+ *
+ * LA BARANDILLA, ENTERA: las dos anclas existen —pasadas por `traduce()`, porque `reordena`
+ * corre DESPUES—, la cabecera trae sus 3 lineas con su h2 en medio, las reseñas van HOY detras
+ * de «Where We Serve» (si ya estuvieran delante no habria nada que mover) y la salida es una
+ * PERMUTACION de la entrada. Si algo de eso falla no se toca nada, y la puerta se pone roja por
+ * su cuenta — que es lo correcto: un reorden que no se puede demostrar no se perdona.
  */
-const subeResenas = (ruta, lineas) => {
-  if (!CAPTACION_JSON[ruta]) return lineas;
-  const i = lineas.indexOf('TESTIMONIALS');
+const H2_RESENAS_FICHA = 'What Our Clients Say About Mr & Mrs Outdoor Living';
+
+const bajaResenas = (ruta, lineas) => {
+  if (!ES_FICHA(ruta)) return lineas;
+  const i = lineas.indexOf(traduce(ruta, 'TESTIMONIALS'));
   /**
    * EL ANCLA SE PASA POR `traduce()`, y no es cosmetico — arreglado el 13-sep-2026.
    *
@@ -703,10 +727,15 @@ const subeResenas = (ruta, lineas) => {
    * Se DERIVA de la tabla de traducciones en vez de escribir las dos formas: asi la siguiente
    * correccion de copy no puede volver a dejar el ancla vieja.
    */
-  const destino = lineas.indexOf(traduce(ruta, 'What Do We Do!'));
+  /* `indexOf` SIN offset de arranque, y esto muerde al copiar de la version vieja: alli el
+   * destino iba DEBAJO del origen y se buscaba desde `g + 2`. Ahora el destino va ENCIMA; con
+   * offset saldria -1, el helper no tocaria nada y habria que depurar un rojo por la razon
+   * equivocada. «Where We Serve» es unico en los 14 baselines (comprobado). */
+  const destino = lineas.indexOf(traduce(ruta, 'Where We Serve'));
   if (i < 0 || destino < 0 || i <= destino) return lineas;
   const cabecera = lineas.slice(i, i + 3);
-  if (cabecera.length !== 3) return lineas;
+  if (cabecera.length !== 3 || cabecera[1] !== traduce(ruta, H2_RESENAS_FICHA)) return lineas;
+  /* `i > destino`, asi que quitar la cabecera NO desplaza `destino`. */
   const resto = [...lineas.slice(0, i), ...lineas.slice(i + 3)];
   const salida = [...resto.slice(0, destino), ...cabecera, ...resto.slice(destino)];
   if ([...salida].sort().join('\n') !== [...lineas].sort().join('\n')) return lineas;
@@ -720,18 +749,18 @@ const subeResenas = (ruta, lineas) => {
  * POR QUE DERIVADO Y NO 53 ENTRADAS EN `REORDENADAS_A_PROPOSITO`. La tercera linea de la
  * cabecera lleva la ciudad dentro («…in Ocala. Read our reviews.»), asi que una declaracion
  * literal serian 53 entradas con su propio array de lineas — y 53 listas escritas a mano es
- * una lista que se desincroniza, el mismo motivo por el que `bajaGaleria` es derivado para las
+ * una lista que se desincroniza, el mismo motivo por el que `subeGaleria` es derivado para las
  * catorce fichas. Aqui se ancla por las DOS lineas que NO cambian de ciudad a ciudad y la
  * tercera se arrastra con `slice`, sin nombrarla.
  *
- * POR QUE NO VALE `subeResenas`, que hace justo esto. Aquel esta acotado con
- * `if (!CAPTACION_JSON[ruta])` y aqui hacen falta las 53, incluidas las 51 que NO llevan capa
- * de captacion: el reorden lo pidio Sebastian para todas («las 53 deben tener la misma
- * estructura»). Ademas su ancla de destino es «What Do We Do!», que estas 53 no tienen —
- * comprobado: en `baseline/text/pool-builders_*.txt` no sale— asi que alli sale por `destino < 0`
- * y los dos movimientos no se pisan.
+ * POR QUE NO VALE `bajaResenas`, que hace justo esto. Aquel esta acotado a `/services/` y aqui
+ * hacen falta las 53, incluidas las 51 que NO llevan capa de captacion: el reorden lo pidio
+ * Sebastian para todas («las 53 deben tener la misma estructura»). Y desde el canje del
+ * 21-sep-2026 su ancla de destino es «Where We Serve», que estas 53 tampoco tienen —comprobado
+ * sobre `baseline/text/pool-builders_*.txt`— asi que alli saldria por `destino < 0` aunque la
+ * guarda de ruta no estuviera. Los dos movimientos no se pisan.
  *
- * LA BARANDILLA ES LA DE `subeResenas`, ENTERA: las dos anclas tienen que existir —pasadas por
+ * LA BARANDILLA ES LA MISMA QUE LA DE `bajaResenas`, ENTERA: las dos anclas tienen que existir —pasadas por
  * `traduce()`, porque `reordena` corre DESPUES—, la cabecera tiene que traer sus 3 lineas con
  * «What Our Clients Say» en medio, las reseñas tienen que ir HOY detras (si ya estuvieran
  * delante no habria nada que mover) y la salida tiene que ser una PERMUTACION de la entrada.
@@ -972,7 +1001,7 @@ const LINEAS_ANADIDAS = [
      * `bloquesCaptacion()` no lo recogia, asi que sobraba una ocurrencia de «Get A Free
      * Estimate» — y `diferencias()` cuenta por CONJUNTO, donde una linea que ya sale otras tres
      * veces no «sobra»: por eso salia «faltan 0, sobran 0» y solo se quejaba del orden. Estaba
-     * tapado por el rojo del carrusel del proceso, igual que el ancla de `subeResenas()`.
+     * tapado por el rojo del carrusel del proceso, igual que el ancla de `bajaResenas()`.
      *
      * VA AQUI Y NO EN `bloquesCaptacion()`: es UNA linea, y «Get A Free Estimate» sale cuatro
      * veces en la ficha, asi que `quitaBloque` se llevaria la primera —la del heroe— y
@@ -2465,7 +2494,7 @@ function bloquesCaptacion(ruta) {
   ]);
 
   // 3 · banda de inversion. Desde el 13-sep-2026 ninguna ficha pinta `CarruselProyectos` detras:
-  //     las catorce llevan su `gallery`, y sus dos lineas salen del baseline (§ `bajaGaleria`).
+  //     las catorce llevan su `gallery`, y sus dos lineas salen del baseline (§ `subeGaleria`).
   bloques.push([
     capitaliza(c.inversion.titulo),
     c.inversion.texto,

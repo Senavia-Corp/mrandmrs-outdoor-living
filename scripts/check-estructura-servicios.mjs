@@ -8,7 +8,8 @@
  * cambiaba `gallery` por `CarruselProyectos` y las otras trece no: dos estructuras, y verde en
  * todo. `check:texto` compara texto contra el origen de CADA ficha, asi que una ficha distinta de
  * sus hermanas no le parece rara. Esta puerta compara las catorce entre ellas y contra el orden
- * que decidio Sebastian ese dia: la galeria detras de la FAQ y delante de «Where We Serve».
+ * que decidio Sebastian: desde el 21-sep-2026, la GALERIA justo debajo del formulario y las
+ * RESENAS detras de la FAQ, delante de «Where We Serve» — las dos bandas azules canjeadas.
  *
  * Estatica, sin navegador, <1 s. Sobre `.vercel/output/static`, como las demas.
  *
@@ -23,11 +24,12 @@ import { JSDOM } from 'jsdom';
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const ESTATICO = path.join(RAIZ, '.vercel/output/static');
 
-/** El orden de Sebastian (13-sep-2026). Escrito aqui a mano a proposito: derivarlo del generador
- *  que lo produce seria comparar la salida consigo misma. */
+/** El orden de Sebastian (13-sep-2026; galeria y resenas canjeadas el 21-sep-2026). Escrito aqui
+ *  a mano a proposito: derivarlo del generador que lo produce seria comparar la salida consigo
+ *  misma. */
 const ESPERADO = [
   'hero-services', 'logos-section', 'svc-confianza', 'trusted-section', 'appointment-section',
-  'testimonial-section', 'services', 'process-section', 'svc-inversion', 'faq-section', 'gallery',
+  'gallery', 'services', 'process-section', 'svc-inversion', 'faq-section', 'testimonial-section',
   'location', 'blog-section-page', 'social-media', 'cta-footer', 'logos-section',
 ];
 

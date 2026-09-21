@@ -1011,25 +1011,47 @@ function captacion(doc, ruta) {
   const galeria = doc.querySelector('section.gallery');
   const seccionFaq = doc.querySelector('section.faq-section');
   const ubicacion = doc.querySelector('section.location');
-  if (!galeria || !seccionFaq || !ubicacion) {
+  const resenas = doc.querySelector('section.testimonial-section');
+  if (!galeria || !seccionFaq || !ubicacion || !resenas) {
     throw new Error(`${ruta}: falta ${[!galeria && 'section.gallery', !seccionFaq && 'section.faq-section',
-      !ubicacion && 'section.location'].filter(Boolean).join(' y ')} — sin las tres no hay mismo orden`);
+      !ubicacion && 'section.location', !resenas && 'section.testimonial-section'].filter(Boolean).join(' y ')}`
+      + ' — sin las cuatro no hay mismo orden');
   }
 
-  /* EL MOVIMIENTO. `gallery` y `faq-section` cuelgan del mismo `<div>` sin clase (bloque 4)
-   * y la FAQ es su ultima hija; `location` es la hermana siguiente de ese `<div>`. Insertar la
-   * galeria detras de la FAQ la deja justo antes del cierre: entre la FAQ y «Where We Serve».
-   * Las dos guardas convierten cualquier otra forma del origen en un error, no en un orden
-   * distinto en silencio. */
+  /* EL CANJE (21-sep-2026). Sebastian pide las dos bandas azules intercambiadas: la GALERIA
+   * pasa a ir justo debajo del formulario —donde estaban las resenas— y las RESENAS bajan
+   * detras de la FAQ, donde estaba la galeria.
+   *
+   * Es un canje 1:1 de POSICION, y eso es lo que lo hace barato. Las dos secciones son bandas
+   * de la familia «fondo agua» (`propio.css` §juntas): mientras cada una siga teniendo vecinos
+   * NO azules por arriba y por abajo, ninguna junta se dispara y ningun color se mueve. Si en
+   * vez de canjear se aplanase el `<div>`, las resenas quedarian pegadas a otra banda azul y
+   * «Updated Aug 2026» caeria a ~3,5:1 — suspenso AA, medido en `propio.css` §593-601.
+   *
+   * ANCLADO A ELEMENTOS, NO A POSICIONES. `insertBefore(galeria, resenas)` deja la galeria
+   * exactamente donde estaba la otra, sea cual sea el puesto; y como la FAQ es la ultima hija
+   * del `<div>` una vez sale la galeria, insertar tras ella equivale a cerrar el `<div>`.
+   *
+   * Las guardas convierten cualquier otra forma del origen en un error, no en un orden distinto
+   * en silencio — que es el modo de fallo que este repo lleva siete casos matando. */
   if (galeria.parentNode !== seccionFaq.parentNode) {
     throw new Error(`${ruta}: gallery y faq-section ya no son hermanas — revisa el origen`);
   }
-  seccionFaq.parentNode.insertBefore(galeria, seccionFaq.nextSibling);
-  if (galeria.nextElementSibling || galeria.parentNode.nextElementSibling !== ubicacion) {
-    throw new Error(`${ruta}: tras mover la gallery, lo siguiente no es section.location`);
+  if (resenas.parentNode !== galeria.parentNode.parentNode) {
+    throw new Error(`${ruta}: testimonial-section no cuelga de donde se espera — revisa el bloque 3`);
+  }
+  resenas.parentNode.insertBefore(galeria, resenas);
+  seccionFaq.parentNode.insertBefore(resenas, seccionFaq.nextSibling);
+  if (resenas.nextElementSibling || resenas.parentNode.nextElementSibling !== ubicacion) {
+    throw new Error(`${ruta}: tras el canje, lo que sigue a las resenas no es section.location`);
+  }
+  if (galeria.nextElementSibling !== resenas.parentNode) {
+    throw new Error(`${ruta}: tras el canje, la galeria no quedo delante del <div> de contenido`);
   }
   /* Con la banda azul encima, `location` pierde el padding de la FAQ en su costura de arriba:
-   * la marca le da el suyo en `servicio-core.css` §6 sin tocar las otras 3 rutas que la montan. */
+   * la marca le da el suyo en `servicio-core.css` §6 sin tocar las otras 3 rutas que la montan.
+   * Tras el canje la banda de encima son las RESENAS en vez de la galeria — sigue siendo azul,
+   * asi que la clase sigue haciendo falta igual. */
   ubicacion.classList.add('svc-ubicacion');
   galeriasMovidas++;
 
@@ -1823,9 +1845,9 @@ console.log('        El bucle nuevo vive en src/styles/intro.css §5, igual para
 
 /* Va ANTES del aviso de NO_REGENERAR, que sale siempre con 1: detras no correria nunca. */
 const FICHAS_CAPTACION = RUTAS_CAPTACION_SERVICIOS.length;
-console.log(`  gallery detras de la FAQ en ${galeriasMovidas} de ${FICHAS_CAPTACION} fichas de services/\n`);
+console.log(`  gallery y resenas canjeadas en ${galeriasMovidas} de ${FICHAS_CAPTACION} fichas de services/\n`);
 if (galeriasMovidas !== FICHAS_CAPTACION) {
-  console.error(`\n  ROJO la gallery se movio en ${galeriasMovidas} fichas y hay ${FICHAS_CAPTACION}:`
+  console.error(`\n  ROJO el canje se hizo en ${galeriasMovidas} fichas y hay ${FICHAS_CAPTACION}:`
     + ' las fichas de /services/ tienen que tener todas el mismo orden.\n');
   process.exit(1);
 }
