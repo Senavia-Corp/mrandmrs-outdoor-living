@@ -328,8 +328,15 @@ salta en `/thank-you`.
 
 - **Tocar DNS.** Ninguna fase, ninguna excusa.
 - **Publicar la versión de GTM.** Se deja preparada; publica Sebastian.
-- **Crear tags `AW-` o acciones de conversión de Google Ads.** Todavía no hay campañas. La
-  infraestructura queda lista: cuando se activen, se importa `generate_lead` desde GA4.
+- ~~**Crear tags `AW-` o acciones de conversión de Google Ads.**~~ **YA NO — hecho el
+  22-sep-2026.** Se escribió cuando no había campañas; ahora hay 3 activas. Sebastian creó las
+  dos acciones de llamada (`AW-18420694908`, una por teléfono) y el tag vive en el `<head>` de
+  `Base.astro`, NO en el contenedor: allí sigue habiendo 0 tags `AW-` y así debe seguir, porque
+  el mismo tag en los dos sitios cuenta cada llamada dos veces. Las etiquetas están en
+  `telefonos.json` junto al número que las genera, y `check:medicion` exige que toda página que
+  enseña un teléfono lleve su config y que ninguna lo lleve dos veces. **No lo muevas a GTM ni
+  lo quites de aquí sin leer esto antes.** Lo de importar `generate_lead` desde GA4 sigue
+  pendiente y es independiente.
 - **Conversions API de Meta / Enhanced Conversions.** Son servidor y necesitan hash de PII.
 - **Consent Mode v2.** Deliberadamente fuera: audiencia de Florida, tráfico del EEE
   despreciable. Anótalo en el log **como decisión, no como olvido**.
