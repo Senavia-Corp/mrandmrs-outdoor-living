@@ -21,6 +21,11 @@
  *   · `noindex` FUERA DE `/thank-you`. `check:seo` prohibe el noindex en produccion pagina a
  *     pagina; aqui se dice ademas CUAL es la unica que debe llevarlo, para que quitarselo
  *     tambien sea rojo.
+ *   · EL TAG DE LLAMADAS DE GOOGLE ADS. Mismo fallo perfecto que el de GTM y una vuelta mas
+ *     retorcido: Google solo sustituye el numero por el de reenvio si la cadena del snippet es
+ *     EXACTAMENTE la que hay pintada en el HTML. Una pagina que ensena un telefono y no lleva
+ *     su `gtag config` no cuenta ni una llamada, y la pagina se ve perfecta. Duplicarlo es
+ *     peor: cuenta la misma llamada dos veces y el coste por lead sale barato mintiendo.
  *   · EL RECUENTO DEL SITEMAP. 119, no 113.
  *
  * ⚠️ Esto mide `.vercel/output/static`, el artefacto CONSTRUIDO. Nunca `astro dev`.
@@ -33,6 +38,16 @@ const ESTATICO = path.join(RAIZ, '.vercel/output/static');
 const PROD = process.env.PUBLIC_ES_PRODUCCION === '1';
 
 const GTM = 'GTM-N9BWB3BV';
+
+/**
+ * GOOGLE ADS. Los telefonos salen de la MISMA fuente que los pinta (`telefonos.json`), no de
+ * una copia aqui: si la puerta guardara su propia version de la cadena, el dia que cambie el
+ * formato del numero saldria verde mientras Google deja de sustituir en silencio, que es
+ * justo el fallo que esta puerta existe para cazar.
+ */
+const ADS = 'AW-18420694908';
+const TELEFONOS = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/telefonos.json'), 'utf8'))
+  .items.filter((t) => t.ads);
 /**
  * 122 del origen + las de blog propias, DERIVADAS de `src/data/blogs-rutas.json`.
  *
@@ -110,6 +125,7 @@ console.log(`\n  ETIQUETADO — ${htmls.length} paginas construidas`);
 check(`${PAGINAS_ESPERADAS} paginas`, htmls.length === PAGINAS_ESPERADAS, `hay ${htmls.length}`);
 
 const sinGtm = [], dobleGtm = [], sinNoscript = [], dobleNoscript = [];
+const sinAds = [], dobleAds = [], sinCargador = [], dobleCargador = [];
 const titulos = new Map(), descripciones = new Map();
 const noindexIndebido = [], sinNoindex = [];
 
@@ -128,6 +144,24 @@ for (const f of htmls) {
   const ns = (html.match(/googletagmanager\.com\/ns\.html/g) || []).length;
   if (ns === 0 && !SIN_HEAD_DE_WEBFLOW.has(r)) sinNoscript.push(r);
   else if (ns > 1) dobleNoscript.push(`${r} (${ns})`);
+
+  // ADS. Google solo sustituye TEXTO PINTADO, asi que el numero se busca en el HTML SIN los
+  // <script>. Contarlo entero daba rojo en `/pool-investment-estimator`: los dos telefonos
+  // estan alli dentro del aviso que `Formularios.astro` inyecta si falla el envio — una
+  // cadena de JS que no se ve al cargar y que Google no toca ni con tag. Una pagina sin
+  // telefono a la vista no necesita config: no hay nada que sustituir.
+  const pintable = html.replace(/<script[\s\S]*?<\/script>/g, '');
+  let configs = 0;
+  for (const t of TELEFONOS) {
+    const c = (html.match(new RegExp(`${ADS}/${t.ads}`, 'g')) || []).length;
+    const pintado = pintable.split(t.visible).length - 1;
+    configs += c;
+    if (pintado > 0 && c === 0) sinAds.push(`${r} (${t.zona})`);
+    else if (c > 1) dobleAds.push(`${r} (${t.zona} x${c})`);
+  }
+  const cargador = (html.match(new RegExp(`gtag/js\\?id=${ADS}`, 'g')) || []).length;
+  if (configs > 0 && cargador === 0) sinCargador.push(r);
+  else if (cargador > 1) dobleCargador.push(`${r} (${cargador})`);
 
   const t = (html.match(/<title>([\s\S]*?)<\/title>/) || [, ''])[1].trim();
   if (t) titulos.set(t, [...(titulos.get(t) || []), r]);
@@ -150,6 +184,13 @@ check(`las ${htmls.length} con el snippet de ${GTM}`, sinGtm.length === 0, sinGt
 check('cero doble etiquetado', dobleGtm.length === 0, dobleGtm.slice(0, 5).join(', '));
 check(`${htmls.length - SIN_HEAD_DE_WEBFLOW.size} con el <noscript> heredado`, sinNoscript.length === 0, sinNoscript.slice(0, 5).join(', '));
 check('el <noscript> no esta duplicado', dobleNoscript.length === 0, dobleNoscript.slice(0, 5).join(', '));
+
+console.log(`\n  LLAMADAS — ${ADS}, ${TELEFONOS.length} numero(s) con accion de conversion`);
+check('toda pagina que ensena un telefono lleva su gtag config', sinAds.length === 0, sinAds.slice(0, 5).join(', '));
+check('cero configs duplicados (contarian la llamada dos veces)', dobleAds.length === 0, dobleAds.slice(0, 5).join(', '));
+check('el cargador gtag.js va una sola vez donde hay config', sinCargador.length === 0 && dobleCargador.length === 0,
+  [...sinCargador.map((r) => `falta en ${r}`), ...dobleCargador.map((r) => `duplicado en ${r}`)].slice(0, 5).join(', '));
+for (const t of TELEFONOS) console.log(`  --   ${t.zona}: ${t.visible} -> ${ADS}/${t.ads}`);
 
 console.log('\n  METAETIQUETAS');
 const repes = (m) => [...m.entries()].filter(([, rs]) => rs.length > 1);

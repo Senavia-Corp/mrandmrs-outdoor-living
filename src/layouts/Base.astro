@@ -19,6 +19,7 @@
  */
 import Nav from '../components/Nav.astro';
 import META_PROPIA from '../data/meta-propia.json';
+import TELEFONOS from '../data/telefonos.json';
 import { negocio, miga } from '../lib/negocio.mjs';
 import Footer from '../components/Footer.astro';
 import ClickToCall from '../components/widgets/ClickToCall.astro';
@@ -303,6 +304,40 @@ const jsonLd = [...(seo.jsonLd ?? []), ...inyectados];
       j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
       f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-N9BWB3BV');
     </script>
+
+    {/* GOOGLE ADS `AW-18420694908` — conversión de llamada con Número de Reenvío (GFN).
+        Google sustituye en caliente el número pintado por uno suyo cuando la visita viene de
+        un anuncio, y cuenta la llamada. Sin tag no hay sustitución: Ads decía «No tag found
+        for this account».
+
+        VA EN CÓDIGO Y NO EN EL CONTENEDOR A PROPÓSITO. `GTM-N9BWB3BV` tiene 0 tags `AW-`
+        (PROMPT-TRACKING.md:97) y Composio no trae toolkit de GTM, así que allí es trabajo a
+        mano en la interfaz; aquí es un diff que se revisa. COROLARIO: se pone en un sitio o
+        en el otro, NUNCA en los dos, o cada llamada se cuenta dos veces.
+
+        EL NÚMERO SALE DE `telefonos.json` — el mismo que pintan ClickToCall, el nav y el pie.
+        No lo escribas a mano aquí: el intercambio sólo ocurre si la cadena del snippet es
+        EXACTAMENTE la del DOM, y el día que las dos copias se separen deja de sustituir sin
+        avisar de nada.
+
+        Sólo alcanza texto horneado en el HTML. Se quedan con el número real, y está bien que
+        así sea: el `"telephone"` del JSON-LD (es el del negocio, no el de una campaña) y el
+        aviso que `Formularios.astro` inyecta si falla el envío, que nace después de la carga.
+
+        Carga en todos los entornos por el mismo motivo que GTM: depurar con Tag Assistant en
+        las preview. Aquí no hay disparador de hostname que filtre, pero una conversión sólo
+        cuenta con `gclid` de un clic real y las preview van noindex. */}
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=AW-18420694908"></script>
+    <script is:inline set:html={`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-18420694908');
+      ${TELEFONOS.items
+        .filter((t) => t.ads)
+        .map((t) => `gtag('config', 'AW-18420694908/${t.ads}', { 'phone_conversion_number': '${t.visible}' });`)
+        .join('\n      ')}
+    `} />
     <title>{tituloFinal}</title>
     {descFinal && <meta name="description" content={descFinal} />}
     {Object.entries(meta).map(([k, v]) => (k.startsWith('og:')
