@@ -66,17 +66,17 @@ impressions, two are Ads Final URLs, and the Tier 2 consolidation was already de
 | URL | Source | Location stated | Alt text | Status |
 |---|---|---|---|---|
 | 5 own: `luxury-pool-raised-spa-travertine-deck-south-florida`, `estate-pool-spa-sun-shelf-north-florida`, `pool-raised-spa-marble-deck-south-florida`, `luxury-pool-spa-aluminum-pergola-south-florida`, `aluminum-patio-cover-pool-deck-south-florida` | `src/data/proyectos-propios.json` | region only | written | KEEP; schema fields for verified city added (empty) |
-| 10 Webflow: `luxury-pool-motorized-pergola-*`, `luxury-pool-spa-*`, `luxury-pool-pergola-*`, `modern-pool-motorized-pergola-south-florida`, `residential-pool-pergola-outdoor-dining-north-florida`, `south-florida-backyard-pool-wood-pergola` | Sanity `project` + `obras-migradas.json` | region only | **empty** (origin) | KEEP; alt text needs client input (`REQUIRES_CLIENT_CONFIRMATION` #9) |
+| 10 Webflow: `luxury-pool-motorized-pergola-*`, `luxury-pool-spa-*`, `luxury-pool-pergola-*`, `modern-pool-motorized-pergola-south-florida`, `residential-pool-pergola-outdoor-dining-north-florida`, `south-florida-backyard-pool-wood-pergola` | Sanity `project` + `obras-migradas.json` | region only | showcase covers **filled 1-Oct-2026** (copied from `/projects`); cross-sell thumbnails inside `/project/*` still empty | KEEP (`REQUIRES_CLIENT_CONFIRMATION` #9) |
 
-## 5. Blog (44 published, Sanity; GSC impr/clicks)
+## 5. Blog (44 published at audit time, 47 after this implementation; GSC impr/clicks)
 
 ### New Pool Construction (11)
 | Slug | Origin | GSC | FAQ | Sources | Status |
 |---|---|---|---|---|---|
-| `what-permits-are-required-for-pool-construction-in-florida` | legacy | 3,398 / 15 | 0 | 0 | **REWRITE** |
-| `complete-guide-to-pool-construction-in-florida-costs-timeline-process` | legacy | 2,172 / 7 | 0 | 0 | **REWRITE** |
-| `pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish` | legacy | 1,406 / 13 | 0 | 0 | **REWRITE** |
-| `common-pool-construction-mistakes-we-see-in-florida` | legacy | 336 / 6 | 0 | 0 | **REWRITE** |
+| `what-permits-are-required-for-pool-construction-in-florida` | legacy | 3,398 / 15 | 0 | 0 | **REWRITTEN** — published 1-Oct-2026 |
+| `complete-guide-to-pool-construction-in-florida-costs-timeline-process` | legacy | 2,172 / 7 | 0 | 0 | **REWRITTEN** — published 1-Oct-2026 |
+| `pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish` | legacy | 1,406 / 13 | 0 | 0 | **REWRITTEN** — published 1-Oct-2026 |
+| `common-pool-construction-mistakes-we-see-in-florida` | legacy | 336 / 6 | 0 | 0 | **REWRITTEN** — published 1-Oct-2026 |
 | `how-much-does-a-custom-pool-cost-in-florida` | new | — | 4 | 1 | KEEP |
 | `before-you-build-a-pool-in-florida` | new | 4 / 0 | 4 | 0 | KEEP |
 | `how-to-choose-a-pool-builder-in-florida` | new | 8 / 0 | 4 | 0 | KEEP |
@@ -88,7 +88,7 @@ impressions, two are Ads Final URLs, and the Tier 2 consolidation was already de
 ### Pool Remodeling (8)
 | Slug | Origin | GSC | Status |
 |---|---|---|---|
-| `new-pool-construction-vs-pool-remodeling-which-is-right-for-you` | legacy | 137 / 1 | **REWRITE** |
+| `new-pool-construction-vs-pool-remodeling-which-is-right-for-you` | legacy | 137 / 1 | **REWRITTEN** — published 1-Oct-2026 |
 | `remodel-or-rebuild-your-pool` | new | 6 / 0 | KEEP |
 | `how-much-does-a-pool-remodel-cost-in-florida` | new | 18 / 0 | KEEP |
 | `pool-resurfacing-vs-full-pool-renovation` | new | 2 / 0 | KEEP |
@@ -100,11 +100,11 @@ impressions, two are Ads Final URLs, and the Tier 2 consolidation was already de
 ### Pool Design & Planning (1) · Outdoor Living (2) · Commercial (2)
 | Slug | Origin | GSC | Status |
 |---|---|---|---|
-| `top-10-luxury-pool-designs-for-florida-homes` | legacy | 397 / 4 | **UPDATE** |
-| `how-outdoor-living-spaces-increase-property-value-in-florida` | legacy | 315 / 2 | **REWRITE** |
-| `outdoor-living-design-guide-for-florida-homes` | legacy | 80 / 0 | **REWRITE** |
-| `commercial-pool-construction-in-florida-what-decision-makers-must-know` | legacy | 140 / 0 | **UPDATE** |
-| `residential-vs-commercial-pool-construction-in-florida` | legacy | 229 / 1 | **UPDATE** |
+| `top-10-luxury-pool-designs-for-florida-homes` | legacy | 397 / 4 | **UPDATED** — published 1-Oct-2026 |
+| `how-outdoor-living-spaces-increase-property-value-in-florida` | legacy | 315 / 2 | **REWRITTEN** — published 1-Oct-2026 |
+| `outdoor-living-design-guide-for-florida-homes` | legacy | 80 / 0 | **REWRITTEN** — published 1-Oct-2026 |
+| `commercial-pool-construction-in-florida-what-decision-makers-must-know` | legacy | 140 / 0 | **UPDATED** — published 1-Oct-2026 |
+| `residential-vs-commercial-pool-construction-in-florida` | legacy | 229 / 1 | **UPDATED** — published 1-Oct-2026 |
 
 ### Pergolas & Louvered Roofs (13) · Outdoor Kitchens (6) · Screens & Enclosures (1)
 All 20 are new (Sep-2026), carry FAQ, no fabricated figures found → **KEEP / NO ACTION**:
@@ -119,7 +119,7 @@ All 20 are new (Sep-2026), carry FAQ, no fabricated figures found → **KEEP / N
 `gas-electric-and-plumbing-for-an-outdoor-kitchen`, `outdoor-kitchen-layout-guide`,
 `how-much-does-a-pool-screen-enclosure-cost-in-florida`.
 
-### Created in this implementation (3)
+### Created in this implementation (3) — published in Sanity 1-Oct-2026, in the sitemap (158 URLs)
 `cold-plunge-integration-florida-pool-construction` (P1), `dark-pool-finishes-in-florida` (P1),
 `pool-automation-for-new-construction` (P2). See `SEO_BLOG_GAP_ANALYSIS.md`.
 

@@ -3,6 +3,56 @@
 Webflow → Astro 5 + Sanity + Vercel. Una entrada por fase, **escrita al cerrar la fase**,
 nunca al empezarla. Si una fase se reabre, se añade una entrada nueva; no se edita la vieja.
 
+## SEO-SAFE — implementacion segura de la guia SEO (rama `claude/zen-lovelace-9vd0pi`, 1-oct-2026)
+
+Encargo de la *Final Guide for Safe Implementation*: proteger lo que ya posiciona, corregir lo que
+estaba inventado y crear solo lo que no existia. **Ninguna URL, slug ni H1 cambia.** Entregables en
+la raiz: `SEO_IMPLEMENTATION_AUDIT.md`, `SEO_CONTENT_INVENTORY.md`, `SEO_KEYWORD_URL_MAP.md`,
+`SEO_BLOG_GAP_ANALYSIS.md`, `SEO_INTERNAL_LINKING_MAP.md`, `SEO_HIGH_RISK_CHANGES.md`,
+`REQUIRES_CLIENT_CONFIRMATION.md` y `SEO_IMPLEMENTATION_REPORT.md` (el informe de 15 puntos).
+
+**10 articulos heredados reescritos** desde el mismo slug (permisos, guia de proceso, plazos,
+errores, valor de la propiedad, disenos de lujo, los dos comerciales, guia de diseno,
+nuevo-vs-remodelar): fuera la clase de licencia inexistente «CPCG», la edicion equivocada del
+codigo, las estadisticas y tablas de tasas inventadas, los modelos de producto y las cifras de
+coste sin fuente; dentro una FAQ de 4 preguntas, fuentes oficiales y `relatedPosts` sin el
+autoenlace (eran 7). **3 articulos nuevos** (cold plunge —confirmado por Sebastian—, acabados
+oscuros, automatizacion en obra nueva): 44 -> 47 en Sanity, sitemap 155 -> 158. El hub de
+remodelacion dice «completa» en titulo, hero y FAQ (5 -> 8 preguntas; la de financiacion sin
+cifras). Gainesville y Ocala responden que oficina revisa el permiso. 17 escrituras en Sanity,
+todas por el MCP (el proxy bloquea `api.sanity.io`): 47 publicados, 0 borradores.
+
+Tecnico: redirect 308 por host de `mrandmrs-outdoor-living.vercel.app` a www (15.º redirect;
+`build-vercel-config.mjs` ya pasa `has`); BlogPosting con URLs absolutas y `mainEntityOfPage` en
+las 47 fichas; `Service.provider.@id = #negocio` en las 14 de servicio; `public/llms.txt`
+derivado (solo PROD); campos opcionales de verificacion en los esquemas `blogPost` y `project`
+(Studio SIN desplegar); los 10 alt vacios del carrusel de obras rellenados con el alt que la
+misma foto ya llevaba en `/projects` (660 `<img>` en 66 rutas; `innerText` no lee `alt`).
+
+### Lo que hay que saber antes de tocar esto
+
+- **Publicar sin red**: `node scripts/publica-blog.mjs --emitir <json>` escribe el documento que
+  mandaria `--escribir`; se empuja por el MCP de Sanity (100 KB por llamada; publicar antes el
+  destino de cualquier referencia) y despues `cache-blog-sanity.mjs --local`,
+  `build-blogs-rutas.mjs --local` y `build-blog-por-servicio.mjs`. El Markdown sigue siendo el
+  origen.
+- **Los 10 heredados ya no se comparan contra Webflow**: `src/data/blog-reescritos.json` los
+  lista y `check-texto.mjs` (`reescribeArticulo`) y `check-seo.mjs` (bloque SEO-SAFE) derivan lo
+  esperado del cache. Quitar una ruta de ahi devuelve la puerta al baseline de Webflow.
+- **`check:seo` y `check:medicion` van con `PUBLIC_ES_PRODUCCION=1`** si el build se hizo asi;
+  sin la variable dicen «vacio fuera de produccion — hay 158» y parece rojo sin serlo.
+- Las puertas de navegador necesitan `xvfb-run -a` y los symlinks de Chromium 1234 -> 1194 en
+  `/opt/pw-browsers` (el contenedor trae otra revision); `check:texto` corrio asi.
+
+### Abierto
+
+1. **`check:visual` y `check:menu` NO corrieron** (director). Superficies: hub de remodelacion,
+   Gainesville, Ocala, los 13 articulos tocados y las 66 rutas del carrusel.
+2. Studio sin desplegar (los campos nuevos no se ven en el editor); «Request indexing» del hub
+   de obra nueva en Search Console; comprobar el 308 del alias vercel.app tras el deploy.
+3. `/where-we-serve` sigue sin enlaces editoriales y el hub regional norte no enlaza a las dos
+   ciudades: el cuerpo es Webflow congelado (`SEO_INTERNAL_LINKING_MAP.md` §4).
+
 ## BLOG-SANITY — Sanity como fuente unica del blog (PR #20, 19-sep-2026)
 
 Sanity pasa a ser la fuente unica. Desaparecen los 10 `.astro` con el HTML de Webflow horneado

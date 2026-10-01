@@ -94,7 +94,7 @@ See `SEO_KEYWORD_URL_MAP.md`.
 | ID | Finding | Action |
 |---|---|---|
 | P1-1 | `mrandmrs-outdoor-living.vercel.app` answers 200 with the production build | Host-conditioned 308 → www in `vercel.json`; extend `build-vercel-config.mjs` to emit `has: [{type:"host",…}]`. |
-| P1-2 | 7 of the 10 legacy articles link to themselves in «Most Read Articles»; all 10 have no FAQ, no sources, no `searchIntent`/`funnelStage` | Fixed by the rewrite (relatedPosts without self, FAQ 3-5, `fuentes`). |
+| P1-2 | 7 of the 10 legacy articles link to themselves in «Most Read Articles»; all 10 have no FAQ, no sources, no `searchIntent`/`funnelStage` | Fixed by the rewrite (relatedPosts without self, FAQ of 4, `fuentes`). |
 | P1-3 | Service pages' `BlogPosting`/`Service` schema: blog `publisher.logo.url` and `url` are relative paths (`/images/site/logo-mr-mr.svg`, `/blogs/…`) | Absolute URLs in `src/pages/blogs/[slug].astro`. |
 | P1-4 | Hubs have no `Service` node tied to `#negocio` (the Webflow block carries `about.serviceType` only) | Add `Service` JSON-LD with `provider: {@id: #negocio}`, `areaServed`, `serviceType` on the two hubs (declared in `check-seo.mjs`). |
 | P1-5 | City `LocalBusiness` blocks (53) still carry an empty `geo: {@type: GeoCoordinates}` and a city-only address | Out of scope for a safe change (Webflow block compared byte-for-byte by `check:seo`); logged as P2 for a declared fix. |
