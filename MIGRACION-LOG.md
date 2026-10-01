@@ -6920,3 +6920,5 @@ contra cielo, postes contra lago y madera — sin halos de CLAHE ni bordes cruji
    cambios de **altura** (−127 px, −131 px, −22 px, +14 px), y un cambio de imagen no mueve la
    altura. Es **R21, que se fusionó a producción sin re-baselinizar sus rutas**. Re-baselinizarlas
    sería aprobar su diseño, y eso es de Sebastian.
+
+- **1-oct-2026 · Banco de imágenes.** 1.269 originales de `~/Documents/Pictures Mr and Mrs Outdoor Living` clasificados (etapa × servicio × proyecto): 514 aprobadas derivadas a `public/images/banco/` (WebP 1600 px, sin EXIF), 80 dudosas en `banco/DUDOSAS.md`, 474 rechazadas (340 de fabricante/stock/IA/ajenas), 201 duplicados. Índice `src/data/banco-imagenes.json`, puerta `node scripts/build-banco.mjs --check` (probada en rojo). No se cambió ninguna foto del sitio. Sin build ni commit. Ver `BANCO-IMAGENES.md`.

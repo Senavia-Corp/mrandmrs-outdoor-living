@@ -56,3 +56,8 @@ auditoría a mano — ver §1.
 otros chats sobre este mismo árbol a la vez. Los tres actos son del director
 (`docs/encargos/DIRECTOR.md:35`). Si tu encargo te los autoriza, adelante; si no, entrega el
 diff y para.
+
+## 4. Fotos: hay banco
+
+Antes de proponer o cambiar una foto, lee `BANCO-IMAGENES.md`. El índice es
+`src/data/banco-imagenes.json`; se elige por él y por `banco/hojas/`, no escaneando carpetas.

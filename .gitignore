@@ -75,3 +75,6 @@ _source/sanity-assets.json
 # regenerable con `node scripts/audit-sondas.mjs`. Los .md y las capturas si se versionan.
 audit/sondas.json
 audit/sondas.log
+
+# banco de imágenes: previews e inventario de trabajo (regenerables desde los originales)
+banco/.trabajo/
