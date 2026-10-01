@@ -151,11 +151,86 @@ const robots = PROD
   ? `User-agent: *\nAllow: /\n\nSitemap: ${SITIO}/sitemap.xml\n`
   : 'User-agent: *\nDisallow: /\n';
 
+/**
+ * ── SEO-SAFE (1-oct-2026) · `llms.txt` ───────────────────────────────────────────────────────
+ *
+ * Un indice en Markdown para los agentes y motores generativos que lo piden (la convencion
+ * llmstxt.org): que es el negocio, que paginas importan y que guias hay, con la URL de cada
+ * una. No sustituye a nada —el sitemap sigue siendo el sitemap— y no cuesta rastreo.
+ *
+ * SE DERIVA, NO SE ESCRIBE A MANO: los titulos y descripciones salen de `baseline/seo.json`
+ * (los del origen) pisados por `src/data/meta-propia.json` (los propios), exactamente como
+ * los emite `Base.astro`; las guias salen de `src/data/blogs-sanity.json`. Lo UNICO escrito
+ * aqui es la frase de presentacion, y cada dato de esa frase tiene fuente: las licencias son
+ * las del pie (`src/lib/negocio.mjs`), los servicios son las 14 fichas de `/services/`, y la
+ * cobertura es `areaServed` del mismo `negocio.mjs`. Ni cifras, ni anos, ni «#1».
+ *
+ * Mismo interruptor que el sitemap: fuera de produccion se escribe vacio, para que una
+ * preview no se presente como el sitio.
+ */
+const llms = PROD ? (() => {
+  const lee = (rel) => JSON.parse(fs.readFileSync(path.join(RAIZ, rel), 'utf8'));
+  const base = lee('baseline/seo.json');
+  const propia = lee('src/data/meta-propia.json');
+  /* Una ruta propia sin entrada en `meta-propia.json` (hoy solo /financing) lleva su titulo
+   * en su propio `.astro`; se lee de ahi en vez de inventarlo o de dejar la URL como titulo. */
+  const tituloAstro = (r) => {
+    const f = path.join(RAIZ, 'src/pages', `${r.replace(/^\//, '')}.astro`);
+    const m = fs.existsSync(f) && fs.readFileSync(f, 'utf8').match(/\btitulo=(?:"([^"]+)"|\{"([^"]+)"\})/);
+    return m ? (m[1] ?? m[2]) : r;
+  };
+  const titulo = (r) => propia[r]?.title ?? base[r]?.title ?? tituloAstro(r);
+  const desc = (r) => propia[r]?.description ?? base[r]?.meta?.description ?? '';
+  const linea = (r, t = titulo(r), d = desc(r)) => `- [${t}](${SITIO}${r})${d ? `: ${d}` : ''}`;
+  const servicios = Object.keys(base).filter((r) => r.startsWith('/services/')).sort();
+  const condados = Object.keys(base).filter((r) => r.startsWith('/country/')).sort();
+  const posts = fs.existsSync(path.join(RAIZ, 'src/data/blogs-sanity.json'))
+    ? lee('src/data/blogs-sanity.json') : [];
+  const guias = [...posts].sort((a, b) => a.title.localeCompare(b.title))
+    .map((p) => linea(`/blogs/${p.slug}`, p.title, p.seo?.description ?? ''));
+  return [
+    '# Mr & Mrs Outdoor Living',
+    '',
+    '> Florida-licensed design-build contractor (pool contractor licenses CPC1461119 and '
+      + 'CPC1460562) building custom inground pools and spas, complete pool remodels, aluminum '
+      + 'pergolas, louvered roofs, screen enclosures, outdoor kitchens, decks and landscaping for '
+      + 'homeowners across North and South Florida.',
+    '',
+    `Site: ${SITIO} · Sitemap: ${SITIO}/sitemap.xml`,
+    '',
+    '## Key pages',
+    linea('/'),
+    linea('/services/custom-pool-spa-builders-in-north-south-florida'),
+    linea('/services/pool-remodeling-renovation-in-north-south-florida'),
+    linea('/pool-cost-estimator'),
+    linea('/financing'),
+    linea('/projects'),
+    linea('/contact-us'),
+    '',
+    '## Services',
+    ...servicios.map((r) => linea(r)),
+    '',
+    '## Where we serve',
+    linea('/where-we-serve'),
+    linea('/where-we-serve/north-florida'),
+    linea('/where-we-serve/south-florida'),
+    ...condados.map((r) => linea(r)),
+    `- City pages (${Object.keys(base).filter((r) => r.startsWith('/pool-builders/')).length}) are linked from ${SITIO}/where-we-serve`,
+    '',
+    `## Guides and articles (${guias.length})`,
+    linea('/blogs-tips'),
+    ...guias,
+    '',
+  ].join('\n');
+})() : '# vacio a proposito: PUBLIC_ES_PRODUCCION no vale "1", asi que esto NO es produccion\n';
+
 fs.writeFileSync(path.join(PUB, 'sitemap.xml'), sitemap);
 fs.writeFileSync(path.join(PUB, 'robots.txt'), robots);
+fs.writeFileSync(path.join(PUB, 'llms.txt'), llms);
 
 console.log(`\n  modo      : ${PROD ? 'PRODUCCION' : 'preview (bloqueado)'}`);
 console.log(`  sitemap   : ${PROD ? locs.length : 0} URLs`
   + `${PROD ? ` (${delOrigen.length} del origen + ${ADICIONES.length} propia(s))` : ''}`);
 console.log(`  robots.txt: ${robots.split('\n')[0]}`);
+console.log(`  llms.txt  : ${PROD ? `${llms.split('\n').length} lineas` : 'vacio (preview)'}`);
 console.log('');

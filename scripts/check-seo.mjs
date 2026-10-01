@@ -522,8 +522,9 @@ const SITIO_R22 = process.env.PUBLIC_SITE_URL || 'https://www.mrandmrsoutdoorliv
     const camino = typeof era === 'string' ? 'image' : 'image.url';
     JSONLD_ARREGLADO[ruta] = {
       bloque: 0,
-      motivo: 'R22-BLOG-IMG: la foto del articulo pasa a obra real; la del origen es generada.',
-      cambios: [[camino, typeof era === 'string' ? era : era.url, d.tarjeta.src]],
+      motivo: 'R22-BLOG-IMG: la foto del articulo pasa a obra real; la del origen es generada. '
+        + 'SEO-SAFE: y la URL es absoluta, como el resto del BlogPosting.',
+      cambios: [[camino, typeof era === 'string' ? era : era.url, SITIO_R22 + d.tarjeta.src]],
     };
   }
   /**
@@ -688,6 +689,17 @@ const SITIO_R22 = process.env.PUBLIC_SITE_URL || 'https://www.mrandmrsoutdoorliv
       for (const k of ['headline', 'name']) {
         if (ld[k] !== p.title && !yaDeclarado.has(k)) cambios.push([k, ld[k], p.title]);
       }
+      /* Las URLs absolutas y los dos nodos nuevos que `[slug].astro` emite desde SEO-SAFE. El
+       * `era` se LEE del baseline, no se escribe aqui: si el origen cambiara de forma, la
+       * declaracion deja de casar y la puerta lo dice. */
+      const abs = (u) => (typeof u === 'string' && u.startsWith('/') ? SITIO_R22 + u : u);
+      if (ld.url !== abs(ld.url)) cambios.push(['url', ld.url, abs(ld.url)]);
+      if (ld.publisher?.logo?.url !== undefined) {
+        cambios.push(['publisher.logo.url', ld.publisher.logo.url, `${SITIO_R22}/images/site/logo-mr-mr.svg`]);
+      }
+      cambios.push(['publisher.url', ld.publisher?.url, `${SITIO_R22}/`]);
+      cambios.push(['mainEntityOfPage.@type', ld.mainEntityOfPage?.['@type'], 'WebPage']);
+      cambios.push(['mainEntityOfPage.@id', ld.mainEntityOfPage?.['@id'], `${SITIO_R22}${ruta}`]);
       if (cambios.length) {
         JSONLD_ARREGLADO[ruta] = {
           ...(ya ?? {}),
@@ -704,12 +716,31 @@ const SITIO_R22 = process.env.PUBLIC_SITE_URL || 'https://www.mrandmrsoutdoorliv
   }
 }
 
+/**
+ * ── SEO-SAFE (1-oct-2026) · EL `Service` DE LAS 14 FICHAS SABE QUIEN LO PRESTA ───────────────
+ *
+ * `build-paginas.mjs` (paso 10) anade al `provider` del `about` de cada ficha el `@id` de
+ * `#negocio`, y al `about` su `url`. El origen no los traia, asi que son claves NUEVAS con `era` undefined, declaradas
+ * sobre la entrada que cada ficha YA tiene en `JSONLD_ARREGLADO` (R17 la de piscinas, R19 las
+ * otras trece): si una ficha dejara de tener entrada, no se declara y sale roja.
+ */
+for (const ruta of Object.keys(JSONLD_ARREGLADO).filter((r) => r.startsWith('/services/'))) {
+  const ja = JSONLD_ARREGLADO[ruta];
+  ja.motivo += ' · SEO-SAFE: el Service lleva provider (#negocio) y url.';
+  ja.cambios.push(
+    ['about.provider.@id', undefined, `${SITIO_R22}/#negocio`],
+    ['about.url', undefined, `${SITIO_R22}${ruta}`],
+  );
+}
+
 /** Lee/escribe por camino con puntos: `mainEntity.mainEntity.4.name`. */
 const porCamino = (o, c) => c.split('.').reduce((x, k) => (x == null ? x : x[k]), o);
+/* Crea los intermedios que falten: un arreglo declarado como `about.provider.@id` con `era`
+ * undefined es una clave NUEVA dentro de un objeto NUEVO, y sin esto se perdia en silencio. */
 const ponCamino = (o, c, v) => {
   const ks = c.split('.');
   const ult = ks.pop();
-  const padre = ks.reduce((x, k) => (x == null ? x : x[k]), o);
+  const padre = ks.reduce((x, k) => (x == null ? x : (x[k] ??= {})), o);
   if (padre != null) padre[ult] = v;
 };
 let partesCasadas = 0;
