@@ -160,6 +160,12 @@ function entradaCaptacion(c) {
           respuesta: 'Design and 3D rendering, engineering, permitting, excavation, the gunite '
             + 'shell, plumbing and circulation, electrical and equipment, interior finish, tile '
             + 'and coping, the deck, and final start-up.' },
+        /* SEO-SAFE (1-oct-2026): LA PREGUNTA LOCAL, SOLO DONDE HAY ALGO LOCAL QUE DECIR. La fila
+         * puede traer `faqExtra`: objeciones propias de esa ciudad (que oficina revisa el permiso,
+         * septico y caliza en North Florida) con su `_fuente` al lado, que no se publica. Hoy la
+         * traen Gainesville y Ocala, las dos landings de pago con condado verificado; las otras
+         * 51 siguen con las tres de la plantilla y no inventan una cuarta. */
+        ...(c.faqExtra ?? []).map(({ pregunta, respuesta }) => ({ pregunta, respuesta })),
       ],
     },
   };

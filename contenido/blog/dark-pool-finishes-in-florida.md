@@ -16,6 +16,12 @@
   "ordenIndice": 11,
   "searchIntent": "informational",
   "funnelStage": "consideration",
+  "primaryService": "custom-pool-spa-builders-in-north-south-florida",
+  "targetRegion": "florida",
+  "contentStatus": "published",
+  "factChecked": true,
+  "factCheckedAt": "2026-10-01T00:00:00.000Z",
+  "lastSeoAuditDate": "2026-10-01T00:00:00.000Z",
   "tags": [
     "finishes",
     "plaster",
@@ -64,7 +70,10 @@
     }
   ],
   "fuentes": [
-    { "label": "Florida Administrative Code, Chapter 64E-9 — Public Swimming Pools and Bathing Places", "url": "https://www.flrules.org/gateway/ChapterHome.asp?Chapter=64E-9" }
+    {
+      "label": "Florida Administrative Code, Chapter 64E-9 — Public Swimming Pools and Bathing Places",
+      "url": "https://www.flrules.org/gateway/ChapterHome.asp?Chapter=64E-9"
+    }
   ]
 }
 ---

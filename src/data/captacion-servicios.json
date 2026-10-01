@@ -1152,7 +1152,7 @@
   },
   "/services/pool-remodeling-renovation-in-north-south-florida": {
     "heroe": {
-      "apoyo": "Pool remodeling contractors serving North & South Florida, upgrading pools with modern finishes, energy-efficient systems, and lasting results.",
+      "apoyo": "Complete pool remodeling for North Florida homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team. We also remodel across South Florida.",
       "foto": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-3.avif",
       "alt": "Custom pool and raised spa with a wide paver deck on North Florida acreage, built by Mr & Mrs Outdoor Living",
       "ancho": 1250,
@@ -1257,6 +1257,25 @@
         "We call you back within 24 hours.",
         "We look at the pool as it is today and put the scope of the renovation on paper.",
         "You get the scope in writing and a fixed project price before any demolition starts."
+      ]
+    },
+    "faq": {
+      "sustituye": {
+        "Do you offer financing options for outdoor projects?": "Yes. We connect Florida homeowners with lending partners, and the order matters: you get the scope of the renovation and a fixed project price in writing first, and only then review how to pay for it. Approval and terms come from the lender."
+      },
+      "anade": [
+        {
+          "pregunta": "How much does a complete pool remodel cost in North Florida?",
+          "respuesta": "There is no single number: a remodel is priced from the condition of the shell, the finish and tile you choose, the equipment being replaced and the deck work around it. Our estimator walks you through those choices, and you get a fixed project price in writing before any demolition starts."
+        },
+        {
+          "pregunta": "Does a pool remodel need a permit in Florida?",
+          "respuesta": "Usually, yes. Work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code; resurfacing alone is treated differently by different jurisdictions. We confirm the scope with the building department and pull the permits under our license."
+        },
+        {
+          "pregunta": "What is included in a complete pool remodel?",
+          "respuesta": "An assessment of the shell and plumbing, then the scope you choose: interior finish, waterline tile and coping, equipment and lighting, a spa added or rebuilt, deck resurfacing or replacement, and a code-compliant barrier, finished with start-up and a walk-through of the new equipment."
+        }
       ]
     },
     "schema": {
@@ -2032,6 +2051,10 @@
         {
           "pregunta": "What is included in a custom pool project?",
           "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
+        },
+        {
+          "pregunta": "Which office reviews a pool permit in Ocala?",
+          "respuesta": "It depends on the address. Inside the City of Ocala, the city's building division reviews the plans and inspects the pool; in unincorporated Marion County, the county's building department does. Many lots in the area sit on limestone close to the surface and on septic systems or wells, so we probe the site and locate the tank and drainfield before the design is drawn, and we pull the permit under our state license either way."
         }
       ]
     },
@@ -2121,6 +2144,10 @@
         {
           "pregunta": "What is included in a custom pool project?",
           "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
+        },
+        {
+          "pregunta": "Which office reviews a pool permit in Gainesville?",
+          "respuesta": "It depends on the address. Inside the City of Gainesville, the city's building division reviews the plans and inspects the pool; in unincorporated Alachua County, the county's building division does. Many lots here are also on a septic system or a well, and the state onsite sewage program reviews the separation from the drainfield before the building permit. We confirm which jurisdiction applies before the design is drawn, and we pull the permit under our state license either way."
         }
       ]
     },

@@ -121,6 +121,9 @@ for (const a of ARTICULOS) {
     refsServicio.push({ _type: 'reference', _ref: servicios[s], _key: clave(`svc:${slug}:${s}`) });
   }
   if (refsServicio.length !== frente.servicios.length) continue;
+  if (frente.primaryService && !frente.servicios.includes(frente.primaryService)) {
+    ctx(`primaryService "${frente.primaryService}" no esta en \`servicios\``); continue;
+  }
 
   /* Las figuras se resuelven POR NOMBRE contra la escalera derivada, no por posicion: si algun
    * dia el cuerpo reordena sus figuras, el articulo sigue siendo correcto. */
@@ -190,6 +193,15 @@ for (const a of ARTICULOS) {
       : {}),
     searchIntent: frente.searchIntent,
     funnelStage: frente.funnelStage,
+    /* SEO-SAFE (1-oct-2026): los campos de verificacion del esquema (`studio/schemaTypes/
+     * blogPost.ts`). Opcionales: solo se emiten si el Markdown los trae, y ninguno se inventa
+     * aqui. `primaryService` es un slug de servicio y se resuelve a referencia como los demas. */
+    ...(frente.targetRegion ? { targetRegion: frente.targetRegion } : {}),
+    ...(frente.contentStatus ? { contentStatus: frente.contentStatus } : {}),
+    ...(frente.factChecked === true ? { factChecked: true, ...(frente.factCheckedAt ? { factCheckedAt: frente.factCheckedAt } : {}) } : {}),
+    ...(frente.reviewedBy ? { reviewedBy: frente.reviewedBy } : {}),
+    ...(frente.lastSeoAuditDate ? { lastSeoAuditDate: frente.lastSeoAuditDate } : {}),
+    ...(frente.primaryService && servicios[frente.primaryService] ? { primaryService: { _type: 'reference', _ref: servicios[frente.primaryService] } } : {}),
     ordenIndice: frente.ordenIndice ?? 100,
     destacadoIndice: frente.destacadoIndice === true,
     feature: false,

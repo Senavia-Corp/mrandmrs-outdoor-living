@@ -15,6 +15,12 @@
   "ordenIndice": 3,
   "searchIntent": "informational",
   "funnelStage": "consideration",
+  "primaryService": "custom-pool-spa-builders-in-north-south-florida",
+  "targetRegion": "florida",
+  "contentStatus": "updated",
+  "factChecked": true,
+  "factCheckedAt": "2026-10-01T00:00:00.000Z",
+  "lastSeoAuditDate": "2026-10-01T00:00:00.000Z",
   "tags": [
     "mistakes",
     "site-conditions",
@@ -63,9 +69,18 @@
     }
   ],
   "fuentes": [
-    { "label": "Florida Building Commission — Florida Building Code, 8th Edition (2023)", "url": "https://www.floridabuilding.org/" },
-    { "label": "Florida Statutes, Chapter 515 — Residential Swimming Pool Safety Act", "url": "http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0500-0599/0515/0515.html" },
-    { "label": "Florida DBPR — Verify a contractor license", "url": "https://www.myfloridalicense.com/wl11.asp" }
+    {
+      "label": "Florida Building Commission — Florida Building Code, 8th Edition (2023)",
+      "url": "https://www.floridabuilding.org/"
+    },
+    {
+      "label": "Florida Statutes, Chapter 515 — Residential Swimming Pool Safety Act",
+      "url": "http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0500-0599/0515/0515.html"
+    },
+    {
+      "label": "Florida DBPR — Verify a contractor license",
+      "url": "https://www.myfloridalicense.com/wl11.asp"
+    }
   ]
 }
 ---

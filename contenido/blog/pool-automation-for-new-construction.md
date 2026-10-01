@@ -15,6 +15,12 @@
   "ordenIndice": 12,
   "searchIntent": "informational",
   "funnelStage": "consideration",
+  "primaryService": "custom-pool-spa-builders-in-north-south-florida",
+  "targetRegion": "florida",
+  "contentStatus": "published",
+  "factChecked": true,
+  "factCheckedAt": "2026-10-01T00:00:00.000Z",
+  "lastSeoAuditDate": "2026-10-01T00:00:00.000Z",
   "tags": [
     "automation",
     "equipment",
@@ -63,8 +69,14 @@
     }
   ],
   "fuentes": [
-    { "label": "U.S. Department of Energy — Energy conservation standards for dedicated-purpose pool pumps (10 CFR 431, Subpart Y)", "url": "https://www.ecfr.gov/current/title-10/chapter-II/subchapter-D/part-431/subpart-Y" },
-    { "label": "Florida Building Commission — Florida Building Code, 8th Edition (2023)", "url": "https://www.floridabuilding.org/" }
+    {
+      "label": "U.S. Department of Energy — Energy conservation standards for dedicated-purpose pool pumps (10 CFR 431, Subpart Y)",
+      "url": "https://www.ecfr.gov/current/title-10/chapter-II/subchapter-D/part-431/subpart-Y"
+    },
+    {
+      "label": "Florida Building Commission — Florida Building Code, 8th Edition (2023)",
+      "url": "https://www.floridabuilding.org/"
+    }
   ]
 }
 ---

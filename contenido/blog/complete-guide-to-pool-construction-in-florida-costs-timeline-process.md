@@ -17,6 +17,12 @@
   "destacadoIndice": true,
   "searchIntent": "informational",
   "funnelStage": "awareness",
+  "primaryService": "custom-pool-spa-builders-in-north-south-florida",
+  "targetRegion": "florida",
+  "contentStatus": "updated",
+  "factChecked": true,
+  "factCheckedAt": "2026-10-01T00:00:00.000Z",
+  "lastSeoAuditDate": "2026-10-01T00:00:00.000Z",
   "tags": [
     "pool-construction",
     "process",
@@ -65,8 +71,14 @@
     }
   ],
   "fuentes": [
-    { "label": "Florida Building Commission — Florida Building Code, 8th Edition (2023)", "url": "https://www.floridabuilding.org/" },
-    { "label": "Florida DBPR — Verify a contractor license", "url": "https://www.myfloridalicense.com/wl11.asp" }
+    {
+      "label": "Florida Building Commission — Florida Building Code, 8th Edition (2023)",
+      "url": "https://www.floridabuilding.org/"
+    },
+    {
+      "label": "Florida DBPR — Verify a contractor license",
+      "url": "https://www.myfloridalicense.com/wl11.asp"
+    }
   ]
 }
 ---

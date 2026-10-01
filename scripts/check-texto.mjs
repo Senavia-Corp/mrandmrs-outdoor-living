@@ -289,6 +289,13 @@ const TRADUCIDAS_A_PROPOSITO = [
    * por eso el rotulo se declara «What We Do» y no «What we do». Es la sexta vez que esto
    * muerde en este repo.
    */
+  /* SEO-SAFE (1-oct-2026): la landing de remodelacion dice QUE (remodelacion COMPLETA, que es la
+   * intencion que la distingue de un resurfacing suelto), PARA QUIEN (North Florida delante, como
+   * el anuncio) y QUE INCLUYE, igual que la de piscinas desde R17. */
+  ['Pool remodeling contractors serving North & South Florida, upgrading pools with modern finishes, energy-efficient systems, and lasting results.',
+    'Complete pool remodeling for North Florida homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team. We also remodel across South Florida.',
+    'apoyo del heroe de la landing «Full Remodel»: remodelacion completa, North Florida delante, '
+    + 'y el alcance en una frase', ['/services/pool-remodeling-renovation-in-north-south-florida']],
   ['Custom pool and spa builders serving North & South Florida, delivering high-quality construction and long-term outdoor value.',
     'New custom inground pools for North Florida homeowners — 3D design, permits, construction and final start-up, from one licensed team. We also build across South Florida.',
     'apoyo del heroe: resuelve QUE, DONDE, PARA QUIEN y QUE HACER AHORA, con North Florida '

@@ -219,7 +219,14 @@
         "07"
       ],
       "inversion": "estate-sun-shelf",
-      "_fuente_condado": "Marion esta en CONDADOS de src/lib/negocio.mjs; el h2 del heroe ya publica «Ocala And Marion County» (seo-pool-builders.json, bloques, SEO-AEO-GEO A3)."
+      "_fuente_condado": "Marion esta en CONDADOS de src/lib/negocio.mjs; el h2 del heroe ya publica «Ocala And Marion County» (seo-pool-builders.json, bloques, SEO-AEO-GEO A3).",
+      "faqExtra": [
+        {
+          "pregunta": "Which office reviews a pool permit in Ocala?",
+          "respuesta": "It depends on the address. Inside the City of Ocala, the city's building division reviews the plans and inspects the pool; in unincorporated Marion County, the county's building department does. Many lots in the area sit on limestone close to the surface and on septic systems or wells, so we probe the site and locate the tank and drainfield before the design is drawn, and we pull the permit under our state license either way.",
+          "_fuente": "City of Ocala (ocalafl.gov) y Marion County (marionfl.org) tienen cada uno su building department; la caliza somera y los sistemas septicos de Marion estan en la guia building-a-pool-in-north-florida y en el articulo de permisos. Sin cifras ni plazos."
+        }
+      ]
     },
     {
       "slug": "gainesville-florida",
@@ -234,7 +241,14 @@
         "09"
       ],
       "inversion": "screen-enclosure-nf",
-      "_fuente_condado": "Alachua esta en CONDADOS de src/lib/negocio.mjs; el h2 del heroe ya publica «Gainesville And Alachua County»."
+      "_fuente_condado": "Alachua esta en CONDADOS de src/lib/negocio.mjs; el h2 del heroe ya publica «Gainesville And Alachua County».",
+      "faqExtra": [
+        {
+          "pregunta": "Which office reviews a pool permit in Gainesville?",
+          "respuesta": "It depends on the address. Inside the City of Gainesville, the city's building division reviews the plans and inspects the pool; in unincorporated Alachua County, the county's building division does. Many lots here are also on a septic system or a well, and the state onsite sewage program reviews the separation from the drainfield before the building permit. We confirm which jurisdiction applies before the design is drawn, and we pull the permit under our state license either way.",
+          "_fuente": "City of Gainesville (gainesvillefl.gov) y Alachua County (alachuacounty.us) tienen cada uno su building division; el programa estatal de onsite sewage (FDEP) revisa la separacion del drainfield. Sin cifras, sin plazos, sin nombres de oficina que puedan cambiar."
+        }
+      ]
     },
     {
       "slug": "alachua-florida",

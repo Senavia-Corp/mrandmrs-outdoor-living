@@ -17,6 +17,12 @@
   "ordenIndice": 7,
   "searchIntent": "informational",
   "funnelStage": "awareness",
+  "primaryService": "custom-deck-builders-in-north-south-florida",
+  "targetRegion": "florida",
+  "contentStatus": "updated",
+  "factChecked": true,
+  "factCheckedAt": "2026-10-01T00:00:00.000Z",
+  "lastSeoAuditDate": "2026-10-01T00:00:00.000Z",
   "tags": [
     "property-value",
     "outdoor-living",

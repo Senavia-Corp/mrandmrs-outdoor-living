@@ -15,6 +15,12 @@
   "ordenIndice": 8,
   "searchIntent": "commercial",
   "funnelStage": "consideration",
+  "primaryService": "custom-pool-spa-builders-in-north-south-florida",
+  "targetRegion": "florida",
+  "contentStatus": "updated",
+  "factChecked": true,
+  "factCheckedAt": "2026-10-01T00:00:00.000Z",
+  "lastSeoAuditDate": "2026-10-01T00:00:00.000Z",
   "tags": [
     "commercial",
     "public-pool",
@@ -63,10 +69,22 @@
     }
   ],
   "fuentes": [
-    { "label": "Florida Department of Health — Swimming Pools and Bathing Places program", "url": "https://www.floridahealth.gov/" },
-    { "label": "Florida Administrative Code, Chapter 64E-9 — Public Swimming Pools and Bathing Places", "url": "https://www.flrules.org/gateway/ChapterHome.asp?Chapter=64E-9" },
-    { "label": "Florida Building Commission — Florida Building Code, 8th Edition (2023)", "url": "https://www.floridabuilding.org/" },
-    { "label": "U.S. Department of Justice — ADA Standards for Accessible Design (swimming pools)", "url": "https://www.ada.gov/" }
+    {
+      "label": "Florida Department of Health — Swimming Pools and Bathing Places program",
+      "url": "https://www.floridahealth.gov/"
+    },
+    {
+      "label": "Florida Administrative Code, Chapter 64E-9 — Public Swimming Pools and Bathing Places",
+      "url": "https://www.flrules.org/gateway/ChapterHome.asp?Chapter=64E-9"
+    },
+    {
+      "label": "Florida Building Commission — Florida Building Code, 8th Edition (2023)",
+      "url": "https://www.floridabuilding.org/"
+    },
+    {
+      "label": "U.S. Department of Justice — ADA Standards for Accessible Design (swimming pools)",
+      "url": "https://www.ada.gov/"
+    }
   ]
 }
 ---

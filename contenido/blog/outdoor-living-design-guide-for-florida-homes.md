@@ -18,6 +18,12 @@
   "ordenIndice": 6,
   "searchIntent": "informational",
   "funnelStage": "awareness",
+  "primaryService": "custom-outdoor-kitchens-for-north-south-florida-homes",
+  "targetRegion": "florida",
+  "contentStatus": "updated",
+  "factChecked": true,
+  "factCheckedAt": "2026-10-01T00:00:00.000Z",
+  "lastSeoAuditDate": "2026-10-01T00:00:00.000Z",
   "tags": [
     "outdoor-living",
     "design",
@@ -66,7 +72,10 @@
     }
   ],
   "fuentes": [
-    { "label": "Florida Building Commission — Florida Building Code, 8th Edition (2023)", "url": "https://www.floridabuilding.org/" }
+    {
+      "label": "Florida Building Commission — Florida Building Code, 8th Edition (2023)",
+      "url": "https://www.floridabuilding.org/"
+    }
   ]
 }
 ---

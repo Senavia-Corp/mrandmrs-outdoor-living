@@ -15,6 +15,12 @@
   "ordenIndice": 9,
   "searchIntent": "informational",
   "funnelStage": "awareness",
+  "primaryService": "custom-pool-spa-builders-in-north-south-florida",
+  "targetRegion": "florida",
+  "contentStatus": "updated",
+  "factChecked": true,
+  "factCheckedAt": "2026-10-01T00:00:00.000Z",
+  "lastSeoAuditDate": "2026-10-01T00:00:00.000Z",
   "tags": [
     "commercial",
     "residential",
@@ -63,10 +69,22 @@
     }
   ],
   "fuentes": [
-    { "label": "Florida Administrative Code, Chapter 64E-9 — Public Swimming Pools and Bathing Places", "url": "https://www.flrules.org/gateway/ChapterHome.asp?Chapter=64E-9" },
-    { "label": "Florida Building Commission — Florida Building Code, 8th Edition (2023)", "url": "https://www.floridabuilding.org/" },
-    { "label": "Florida Statutes, Chapter 515 — Residential Swimming Pool Safety Act", "url": "http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0500-0599/0515/0515.html" },
-    { "label": "Florida DBPR — Verify a contractor license", "url": "https://www.myfloridalicense.com/wl11.asp" }
+    {
+      "label": "Florida Administrative Code, Chapter 64E-9 — Public Swimming Pools and Bathing Places",
+      "url": "https://www.flrules.org/gateway/ChapterHome.asp?Chapter=64E-9"
+    },
+    {
+      "label": "Florida Building Commission — Florida Building Code, 8th Edition (2023)",
+      "url": "https://www.floridabuilding.org/"
+    },
+    {
+      "label": "Florida Statutes, Chapter 515 — Residential Swimming Pool Safety Act",
+      "url": "http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0500-0599/0515/0515.html"
+    },
+    {
+      "label": "Florida DBPR — Verify a contractor license",
+      "url": "https://www.myfloridalicense.com/wl11.asp"
+    }
   ]
 }
 ---

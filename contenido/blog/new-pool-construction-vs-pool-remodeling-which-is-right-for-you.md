@@ -17,6 +17,12 @@
   "ordenIndice": 4,
   "searchIntent": "commercial",
   "funnelStage": "consideration",
+  "primaryService": "pool-remodeling-renovation-in-north-south-florida",
+  "targetRegion": "florida",
+  "contentStatus": "updated",
+  "factChecked": true,
+  "factCheckedAt": "2026-10-01T00:00:00.000Z",
+  "lastSeoAuditDate": "2026-10-01T00:00:00.000Z",
   "tags": [
     "remodel",
     "new-construction",

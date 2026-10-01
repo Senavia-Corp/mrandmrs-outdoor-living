@@ -98,6 +98,54 @@ export default defineType({
       type: 'seo',
       description: 'Webflow: Title SEO / Metadescripcion SEO',
     },
+    /* ── SEO-SAFE (1-oct-2026): DONDE Y CUANDO SE HIZO LA OBRA, COMO DATO VERIFICABLE ────────
+     * Cinco campos OPCIONALES y retrocompatibles. `location` (Webflow) sigue siendo el texto
+     * que se ve; estos existen para que una obra pueda afirmar una ciudad SOLO cuando alguien
+     * la verificó, y para que una landing de ciudad pueda enseñar obra de ESA ciudad en vez de
+     * «Florida Project Showcase». Hoy ninguna obra publicada tiene ciudad verificada: todas
+     * dicen region (REQUIRES_CLIENT_CONFIRMATION.md). Ningún render los lee todavía. */
+    {
+      name: 'verifiedCity',
+      title: 'Ciudad verificada',
+      description: 'Solo si el cliente confirma la ciudad de la obra. Vacío = se publica la región.',
+      type: 'string',
+    },
+    {
+      name: 'county',
+      title: 'Condado',
+      description: 'Uno de los 9 condados de `src/lib/negocio.mjs` (areaServed del LocalBusiness).',
+      type: 'string',
+      options: {
+        list: ['Alachua', 'Broward', 'Columbia', 'Dixie', 'Gilchrist', 'Levy', 'Marion', 'Palm Beach', 'Putnam']
+          .map((c) => ({ title: `${c} County`, value: c })),
+      },
+    },
+    {
+      name: 'completionYear',
+      title: 'Año de entrega',
+      type: 'number',
+      validation: (Rule) => Rule.integer().min(2000).max(2100),
+    },
+    {
+      name: 'classification',
+      title: 'Clasificación',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Residential', value: 'residential' },
+          { title: 'Commercial / multifamily', value: 'commercial' },
+        ],
+        layout: 'radio',
+      },
+    },
+    {
+      name: 'locationDisclosure',
+      title: 'Aviso de ubicación',
+      description:
+        'Lo que se publica junto a la obra cuando NO hay ciudad verificada, p. ej. «Built in North '
+        + 'Florida; exact location withheld at the homeowner\'s request».',
+      type: 'string',
+    },
   ],
   preview: { select: { title: 'name', subtitle: 'slug.current' } },
 })

@@ -416,7 +416,15 @@ const JSONLD_ARREGLADO = {
         '/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-3.avif'],
       ['dateModified', '2026-05-18T19:54:16.970Z', '2026-05-18T19:55:49.094Z'],
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:54:16.970Z'],
+      ['mainEntity.mainEntity.4.name', 'remodeling', 'Do you offer financing options for outdoor projects?'],
     ],
+    /* SEO-SAFE (1-oct-2026): la landing de remodelacion gana las tres objeciones que ya tenia la
+     * de piscinas -coste sin cifras, permiso y que incluye- y su FAQPage crece con ellas. Y al
+     * declarar la FAQ en check:ads (regla 14) aparecio el MISMO defecto del origen que R17 arreglo
+     * en el Core: la quinta Question se llamaba literalmente «remodeling», con la respuesta de
+     * financiacion dentro. Se le pone la pregunta que se ve y la respuesta sin promesas. */
+    anadidas: { camino: 'mainEntity.mainEntity', n: 3 },
+    respuestaSustituida: { camino: 'mainEntity.mainEntity.4.acceptedAnswer.text', empiezaPor: "We partner with trusted lending provider" },
   },
   '/services/premium-outdoor-furniture-for-north-south-florida-homes': {
     bloque: 0,
