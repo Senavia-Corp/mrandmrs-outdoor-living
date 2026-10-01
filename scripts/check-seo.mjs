@@ -634,6 +634,76 @@ const SITIO_R22 = process.env.PUBLIC_SITE_URL || 'https://www.mrandmrsoutdoorliv
   };
 }
 
+/**
+ * ── SEO-SAFE (1-oct-2026) · LOS HEREDADOS REESCRITOS: TITULO, DESCRIPTION, BlogPosting y FAQPage ──
+ *
+ * Los 10 articulos heredados se reescribieron con fuentes (ver `src/data/blog-reescritos.json`,
+ * que es la lista EXPLICITA y lleva el motivo de cada uno). Cambian cuatro cosas en su `<head>`:
+ *
+ *   · el `<title>` y la `description` (y sus og:/twitter:), que ahora viven en Sanity (`seo`),
+ *     igual que las 53 de /pool-builders/: por eso NO van en `meta-propia.json`, que es para lo
+ *     que se escribe a mano aqui en el repo;
+ *   · la `description` del BlogPosting, que es el `summary` nuevo, y su `dateModified`;
+ *   · un `FAQPage` que el origen no traia, porque los articulos ahora llevan FAQ visible.
+ *
+ * SE DERIVA DE `src/data/blogs-sanity.json`, NO SE ENUMERA A MANO, como R22 y BLOG-SANITY: una
+ * lista escrita a mano se desincroniza con el dato. Y NO ES «IGNORA ESTAS RUTAS»: solo entran
+ * las declaradas por su nombre; en ellas la referencia deja de ser el origen y pasa a ser el
+ * valor del cache, que se EXIGE tal cual en el build. El resto del bloque (headline, author,
+ * publisher, url, image ya declarada por R22) se sigue comparando caracter a caracter. Y el
+ * `FAQPage` pasa el examen de `apartaBloquesPropios`: n entradas, ninguna vacia, sin dinero.
+ *
+ * Y NO SE FIA: una ruta declarada que no este en el baseline o no este en el cache ABORTA.
+ */
+{
+  const decl = path.join(RAIZ, 'src/data/blog-reescritos.json');
+  const cacheBlog = path.join(RAIZ, 'src/data/blogs-sanity.json');
+  if (fs.existsSync(decl)) {
+    const base = JSON.parse(fs.readFileSync(path.join(RAIZ, 'baseline/seo.json'), 'utf8'));
+    const posts = fs.existsSync(cacheBlog) ? JSON.parse(fs.readFileSync(cacheBlog, 'utf8')) : [];
+    for (const [ruta, d] of Object.entries(JSON.parse(fs.readFileSync(decl, 'utf8')).rutas ?? {})) {
+      const p = posts.find((x) => `/blogs/${x.slug}` === ruta);
+      const b = base[ruta];
+      if (!p || !b) {
+        console.error(`\n  ROJO check-seo: ${ruta} esta en blog-reescritos.json pero ${!p ? 'no esta en blogs-sanity.json' : 'no tiene baseline'}.\n`);
+        process.exit(1);
+      }
+      const motivo = `SEO-SAFE (${d.fecha}): ${d.motivo}`;
+      const mp = () => META_PROPIA.get(ruta) ?? {};
+      if (p.seo?.title && p.seo.title !== b.title) {
+        TITULO_PROPIO.set(ruta, p.seo.title);
+        META_PROPIA.set(ruta, { ...mp(), 'og:title': p.seo.title, 'twitter:title': p.seo.title });
+      }
+      if (p.seo?.description && p.seo.description !== b.meta?.description) {
+        META_PROPIA.set(ruta, { ...mp(), description: p.seo.description,
+          'og:description': p.seo.description, 'twitter:description': p.seo.description });
+      }
+      const ld = b.jsonLd?.[0] ?? {};
+      const ya = JSONLD_ARREGLADO[ruta];
+      const yaDeclarado = new Set((ya?.cambios ?? []).map((c) => c[0]));
+      const cambios = [];
+      const modificado = p.updatedAt ?? p.publishedAt;
+      if (ld.description !== p.summary && !yaDeclarado.has('description')) cambios.push(['description', ld.description, p.summary]);
+      if (ld.dateModified !== modificado && !yaDeclarado.has('dateModified')) cambios.push(['dateModified', ld.dateModified, modificado]);
+      for (const k of ['headline', 'name']) {
+        if (ld[k] !== p.title && !yaDeclarado.has(k)) cambios.push([k, ld[k], p.title]);
+      }
+      if (cambios.length) {
+        JSONLD_ARREGLADO[ruta] = {
+          ...(ya ?? {}),
+          bloque: 0,
+          motivo: `${ya?.motivo ? `${ya.motivo} · ` : ''}${motivo}`,
+          cambios: [...(ya?.cambios ?? []), ...cambios],
+        };
+      }
+      const faq = (p.faq ?? []).filter((f) => f?.question?.trim() && f?.answer?.trim());
+      if (faq.length) {
+        BLOQUES_PROPIOS[ruta] = { tipo: 'FAQPage', clave: 'mainEntity', n: faq.length, motivo };
+      }
+    }
+  }
+}
+
 /** Lee/escribe por camino con puntos: `mainEntity.mainEntity.4.name`. */
 const porCamino = (o, c) => c.split('.').reduce((x, k) => (x == null ? x : x[k]), o);
 const ponCamino = (o, c, v) => {

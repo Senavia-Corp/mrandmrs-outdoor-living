@@ -41,11 +41,23 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { leeArticulos } from './lib/articulo.mjs';
 import { markdownAPortable } from './lib/markdown-a-portable.mjs';
-import { groq, mutar } from './lib/sanity.mjs';
-
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const ESCRIBIR = process.argv.includes('--escribir');
-const SOLO = process.argv.slice(2).filter((a) => !a.startsWith('--'));
+/**
+ * SEO-SAFE (1-oct-2026) — `--emitir <fichero>`: SIN RED.
+ *
+ * Escribe el array de documentos que `--escribir` mandaria a Sanity, pero a un fichero, y
+ * resuelve lo que antes pedia a Sanity (ids de categorias y servicios, `_id` y `publishedAt` de
+ * los existentes, campos de los 10 heredados) desde `src/data/sanity-ids.json` y
+ * `src/data/blogs-sanity.json`. Existe porque desde el contenedor de Claude el proxy bloquea
+ * `*.sanity.io`: el fichero se empuja despues por el MCP de Sanity (create/patch + publish) y la
+ * cache se regenera con `cache-blog-sanity.mjs --local <fichero>`. Las dos vias —esta y
+ * `--escribir`— parten del mismo Markdown y del mismo `_id` determinista, asi que producen el
+ * mismo documento.
+ */
+const EMITIR = (() => { const i = process.argv.indexOf('--emitir'); return i > 0 ? process.argv[i + 1] : null; })();
+const SOLO = process.argv.slice(2).filter((a, i, all) => !a.startsWith('--') && all[i - 1] !== '--emitir');
+const { groq, mutar } = EMITIR ? { groq: null, mutar: null } : await import('./lib/sanity.mjs');
 
 const IMAGENES = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/imagenes-blog-por-ruta.json'), 'utf8')).rutas;
 
@@ -58,14 +70,28 @@ const mal = (m) => { console.error(`  🔴 ${m}`); fallos++; };
 const idDerivado = (slug) => `blogPost-${crypto.createHash('sha1').update(slug).digest('hex').slice(0, 24)}`;
 const clave = (s) => `k${crypto.createHash('sha1').update(s).digest('hex').slice(0, 10)}`;
 
-const existentes = Object.fromEntries(
-  (await groq('*[_type=="blogPost"]{ "slug": slug.current, _id, publishedAt }'))
-    .map((d) => [d.slug, d]),
-);
-const categorias = new Set((await groq('*[_type=="blogCategory"].slug.current')));
-const servicios = Object.fromEntries(
-  (await groq('*[_type=="service"]{ "slug": slug.current, _id }')).map((d) => [d.slug, d._id]),
-);
+/* Los 10 heredados de Webflow llevan campos que el Markdown no conoce (legacyId, image, feature,
+ * titlePage). Un `createOrReplace` sin ellos los borraria: se CONSERVAN del documento previo. */
+const CONSERVA = ['legacyId', 'image', 'feature', 'titlePage', 'date'];
+const conserva = (previo) => Object.fromEntries(CONSERVA.filter((k) => previo?.[k] !== undefined && previo[k] !== null).map((k) => [k, previo[k]]));
+
+let existentes, categorias, servicios;
+if (EMITIR) {
+  const IDS = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/sanity-ids.json'), 'utf8'));
+  const cache = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/blogs-sanity.json'), 'utf8'));
+  existentes = Object.fromEntries(cache.map((d) => [d.slug, { slug: d.slug, _id: d._id, publishedAt: d.publishedAt, ...(IDS.legado[d.slug] ?? {}), ...(IDS.legado[d.slug] ? { titlePage: d.titlePage ?? d.title } : {}) }]));
+  categorias = new Set(Object.keys(IDS.categorias));
+  servicios = Object.fromEntries(Object.entries(IDS.servicios).map(([s, v]) => [s, v._id]));
+} else {
+  existentes = Object.fromEntries(
+    (await groq(`*[_type=="blogPost"]{ "slug": slug.current, _id, publishedAt, ${CONSERVA.join(', ')} }`))
+      .map((d) => [d.slug, d]),
+  );
+  categorias = new Set((await groq('*[_type=="blogCategory"].slug.current')));
+  servicios = Object.fromEntries(
+    (await groq('*[_type=="service"]{ "slug": slug.current, _id }')).map((d) => [d.slug, d._id]),
+  );
+}
 
 const idDe = (slug) => existentes[slug]?._id ?? idDerivado(slug);
 
@@ -98,10 +124,12 @@ for (const a of ARTICULOS) {
 
   /* Las figuras se resuelven POR NOMBRE contra la escalera derivada, no por posicion: si algun
    * dia el cuerpo reordena sus figuras, el articulo sigue siendo correcto. */
+  /* Las heredadas (R22/R23) no llevan `mm-`: se referencian por el nombre base de su escalera,
+   * p. ej. `custom-pool-spa-builders-florida-04` o `mrandmrs-pool-spa-a2-blog-project-062-28`. */
   const porRef = Object.fromEntries(img.figuras.map((f) => [
     f.src.match(/mm-([a-z]+-\d+)-\d+\.webp$/)?.[1]
       ?? f.src.match(/blog\/diagramas\/(.+)\.svg$/)?.[1]?.replace(/^/, 'diagrama-')
-      ?? f.src,
+      ?? path.basename(f.src).replace(/-\d+\.webp$/, ''),
     f,
   ]));
   const bloques = [];
@@ -168,6 +196,7 @@ for (const a of ARTICULOS) {
     publishedAt: previo?.publishedAt ?? AHORA,
     updatedAt: AHORA,
     seo: { _type: 'seo', title: frente.seo.title, description: frente.seo.description },
+    ...conserva(previo),
   });
 }
 
@@ -189,6 +218,18 @@ for (const d of documentos) {
 
 if (fallos) { console.error(`\n  🔴 ROJO — ${fallos} fallo(s). No se escribe nada.\n`); process.exit(1); }
 if (!documentos.length) { console.log('\n  nada que publicar\n'); process.exit(0); }
+
+if (EMITIR) {
+  const salida = {
+    _lee_esto: 'Emitido por scripts/publica-blog.mjs --emitir. Mismo documento que mandaria --escribir; '
+      + 'se empuja por el MCP de Sanity y luego cache-blog-sanity.mjs --local lo mete en la cache.',
+    emitidoEn: AHORA,
+    documentos,
+  };
+  fs.writeFileSync(EMITIR, JSON.stringify(salida, null, 1) + '\n');
+  console.log(`\n  EMITIDO ${documentos.length} documento(s) -> ${path.relative(RAIZ, EMITIR)}. Nada se ha escrito en Sanity.\n`);
+  process.exit(0);
+}
 
 if (!ESCRIBIR) {
   console.log('\n  SECO. Nada se ha escrito. Anade --escribir para publicar.');

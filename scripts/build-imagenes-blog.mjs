@@ -72,12 +72,26 @@ const mal = (m) => { console.log(`  🔴 ${m}`); fallos++; };
 
 /* ── las fuentes ─────────────────────────────────────────────────────────── */
 
+/**
+ * SEO-SAFE (1-oct-2026) — SIN EL BANCO NO SE PARA, SE CONSERVA.
+ *
+ * Antes, sin `~/Downloads/MrMrs_Outdoor_Living_Image_Bank` el script salia con exit 2 y el JSON
+ * no se tocaba. Eso hacia imposible dar de alta un articulo nuevo desde una maquina sin el banco
+ * aunque sus fotos fueran de /gallery, que ya tienen su escalera versionada. Ahora, sin banco:
+ *   · las 10 heredadas del CASTING se CONSERVAN tal cual del JSON anterior (no se re-derivan:
+ *     sus fuentes viven en el banco y no hay con que re-derivarlas);
+ *   · los articulos de contenido/blog/ con refs de /gallery o diagramas se resuelven normalmente,
+ *     reutilizando los .webp que ya existen y derivando solo los que falten.
+ * Un ref de banco en un articulo nuevo sigue REVENTANDO sin banco: no se inventa un fichero.
+ */
+let SIN_BANCO = false;
 const idxBanco = () => {
   const db = path.join(BANCO, '08_ai_index/image_bank.sqlite');
   if (!fs.existsSync(db)) {
     console.error(`\n  El banco no esta en ${BANCO}.`);
-    console.error('  Los .webp ya derivados estan versionados; esto solo hace falta para REDERIVAR.\n');
-    process.exit(2);
+    console.error('  Las 10 heredadas se conservan del JSON anterior; solo se derivan refs de /gallery que falten.\n');
+    SIN_BANCO = true;
+    return new Map();
   }
   const sql = `select a.project_id, a.asset_id, d.seo_filename, d.local_path
                from assets a join derivatives d using(asset_id)
@@ -95,6 +109,7 @@ const BCO = idxBanco();
 /** Foto del banco. El token de region sale del nombre: estas rutas no dicen region
  *  y afirmarla en la URL seria decir algo que el articulo no dice (igual que R21). */
 const banco = (proy, n, alt) => {
+  if (SIN_BANCO) throw new Error(`banco: ${proy}:${n} necesita el banco de imagenes, que no esta en esta maquina`);
   const v = BCO.get(`${proy}:${n}`);
   if (!v) throw new Error(`banco: no hay ${proy}:${n} aprobada con derivado blog`);
   return { origen: 'banco', fuente: v.local, base: v.seo.replace('-south-fl', '').replace('.webp', ''),
@@ -204,7 +219,7 @@ const porRef = (ref, alt, esPortada = false) => {
  * aprobadas y las 10 de `images/commercial-*` son IA. Ver el bloque del final: entran con obra
  * real de sujeto residencial y `alt` que no afirma nada comercial.
  */
-const CASTING = {
+const casting = () => ({
   '/blogs/top-10-luxury-pool-designs-for-florida-homes': {
     /* Sustituye ademas los 4 `-tccm-` del cuerpo: son IA (mar, atardecer, arquitectura imposible). */
     reemplaza_figuras: true,
@@ -325,7 +340,9 @@ const CASTING = {
       banco('project-061', '13', 'Lap pool seen from under the aluminium patio cover, with loungers on the paved deck.'),
     ],
   },
-};
+});
+/* Sin banco el CASTING no se evalua: sus `banco()` reventarian. Las heredadas se leen del JSON. */
+const CASTING = SIN_BANCO ? null : casting();
 
 /* ── derivar ─────────────────────────────────────────────────────────────── */
 
@@ -393,7 +410,8 @@ async function peldanos(im, ruta, anchos, esPortada = false, carpeta = null) {
   const partes = [];
   for (const w of anchosReales) {
     const destino = path.join(dir, `${im.base}-${w}.webp`);
-    if (!SOLO_CHECK) {
+    /* Sin banco se reutiliza lo ya derivado: re-derivar movería bytes versionados sin motivo. */
+    if (!SOLO_CHECK && !(SIN_BANCO && fs.existsSync(destino))) {
       if (esPortada) {
         /* R23 — grado fotografico completo. Sustituye al levantado de sombra: lo incluye y
          * ademas fija niveles, medios, contraste local y saturacion. Solo las portadas. */
@@ -442,7 +460,12 @@ const salida = {
   rutas: {},
 };
 
-for (const [ruta, c] of Object.entries(CASTING)) {
+const PREVIO = fs.existsSync(DATO) ? JSON.parse(fs.readFileSync(DATO, 'utf8')).rutas : {};
+if (CASTING === null) {
+  for (const [ruta, e] of Object.entries(PREVIO)) if (!e._articulo) salida.rutas[ruta] = e;
+  console.log(`  sin banco: ${Object.keys(salida.rutas).length} heredadas conservadas del JSON anterior`);
+}
+for (const [ruta, c] of Object.entries(CASTING ?? {})) {
   salida.rutas[ruta] = {
     ...(c.reemplaza_figuras ? { reemplaza_figuras: true } : {}),
     tarjeta: { ...(await peldanos(c.tarjeta, ruta, TARJETA, true)), sizes: SIZES_TARJETA },
@@ -475,9 +498,27 @@ const peldanosCache = async (im, anchos, esPortada) => {
   return yaDerivadas.get(k);
 };
 
+/* SEO-SAFE (1-oct-2026) — LOS 10 HEREDADOS TAMBIEN SE ESCRIBEN EN MARKDOWN.
+ * Su casting de R22/R23 no se mueve (esta publicado y se eligio mirando las fotos), asi que el
+ * Markdown tiene que REFERENCIAR esas mismas fotos por el nombre base de su escalera
+ * (`custom-pool-spa-builders-florida-04`, `mrandmrs-pool-spa-a2-blog-project-062-28`…) y con el
+ * MISMO alt. Si no casa, rojo: dos verdades para la misma foto es como se publica un alt de otra. */
+let heredadasConMd = 0;
+const base = (src) => path.basename(src).replace(/-\d+\.webp$/, '');
 for (const a of ARTICULOS) {
   const ruta = `/blogs/${a.frente.slug}`;
-  if (salida.rutas[ruta]) { mal(`${ruta}: ya existe en el CASTING heredado`); continue; }
+  if (salida.rutas[ruta]) {
+    const h = salida.rutas[ruta];
+    const esperado = [[base(h.tarjeta.src), h.tarjeta.alt], ...h.figuras.map((f) => [base(f.src), f.alt])];
+    const declarado = [[a.frente.portada.ref, a.frente.portada.alt],
+      ...a.usadas.map((ref) => [ref, a.figuras.find((f) => f.ref === ref)?.alt])];
+    const mismo = JSON.stringify(esperado) === JSON.stringify(declarado);
+    if (!mismo) {
+      mal(`${ruta}: es heredada y su Markdown no referencia el casting publicado.\n`
+        + `        casting:  ${JSON.stringify(esperado)}\n        markdown: ${JSON.stringify(declarado)}`);
+    } else heredadasConMd++;
+    continue;
+  }
   try {
     const pRef = a.frente.portada.ref;
     const portada = esDiagrama(pRef)
@@ -521,8 +562,8 @@ if (altsHeredados.size !== 40) mal(`${altsHeredados.size} alt distintos en las h
 for (const [ruta, r] of heredadas) {
   if (r.figuras.length !== 3) mal(`${ruta}: ${r.figuras.length} figuras, las heredadas llevan 3`);
 }
-if (articulos.length !== ARTICULOS.length) {
-  mal(`${articulos.length} articulos derivados de ${ARTICULOS.length} ficheros en contenido/blog/`);
+if (articulos.length + heredadasConMd !== ARTICULOS.length) {
+  mal(`${articulos.length} articulos derivados + ${heredadasConMd} heredados con Markdown, de ${ARTICULOS.length} ficheros en contenido/blog/`);
 }
 for (const [ruta, r] of articulos) {
   if (!r.figuras.length) mal(`${ruta}: ningun articulo se publica sin al menos una figura`);

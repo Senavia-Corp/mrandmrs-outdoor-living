@@ -751,6 +751,96 @@
     }
    ]
   },
+  "/blogs/cold-plunge-integration-florida-pool-construction": {
+   "_articulo": true,
+   "tarjeta": {
+    "src": "/images/blog/banco/mm-construction-7-p-800.webp",
+    "srcset": "/images/blog/banco/mm-construction-7-p-400.webp 400w, /images/blog/banco/mm-construction-7-p-800.webp 800w",
+    "alt": "Raised spa with a spillway returning to the pool, framed by a travertine deck beside a single-storey home.",
+    "ancho": 800,
+    "alto": 450,
+    "_origen": "gallery",
+    "_fuente": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
+    "sizes": "(min-width: 768px) 400px, 100vw"
+   },
+   "figuras": [
+    {
+     "src": "/images/blog/banco/mm-construction-8-1250.webp",
+     "srcset": "/images/blog/banco/mm-construction-8-704.webp 704w, /images/blog/banco/mm-construction-8-1250.webp 1250w",
+     "alt": "Overhead view of a rectangular pool with a square spa set into it, water spilling over the spa rim on all four sides in a band of white foam, on a travertine deck with handrails at the pool edges and a lounger and blue umbrella at the bottom of the frame.",
+     "ancho": 1250,
+     "alto": 703,
+     "_origen": "gallery",
+     "_fuente": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/banco/mm-remodeling-7-1250.webp",
+     "srcset": "/images/blog/banco/mm-remodeling-7-704.webp 704w, /images/blog/banco/mm-remodeling-7-1250.webp 1250w",
+     "alt": "Raised spa clad in small white tile with its jets running, beside a rectangular pool with two white loungers standing on the deck at the top of its wide entry steps, and two grills under the covered lanai behind.",
+     "ancho": 1250,
+     "alto": 703,
+     "_origen": "gallery",
+     "_fuente": "/images/images/pool-remodeling-3/custom-pool-remodeling-contractors-florida-03.jpg",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/banco/mm-construction-3-1250.webp",
+     "srcset": "/images/blog/banco/mm-construction-3-704.webp 704w, /images/blog/banco/mm-construction-3-1250.webp 1250w",
+     "alt": "Pool with in-water loungers and an aluminium pergola attached to the house, with newly laid turf around the deck.",
+     "ancho": 1250,
+     "alto": 703,
+     "_origen": "gallery",
+     "_fuente": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    }
+   ]
+  },
+  "/blogs/dark-pool-finishes-in-florida": {
+   "_articulo": true,
+   "tarjeta": {
+    "src": "/images/blog/banco/mm-construction-0-p-800.webp",
+    "srcset": "/images/blog/banco/mm-construction-0-p-400.webp 400w, /images/blog/banco/mm-construction-0-p-800.webp 800w",
+    "alt": "Rectangular pool with a raised spa clad in dark blue glass mosaic tile, jets running inside it, edged by a narrow white coping band with lawn running straight up to the stone on every side.",
+    "ancho": 800,
+    "alto": 450,
+    "_origen": "gallery",
+    "_fuente": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
+    "sizes": "(min-width: 768px) 400px, 100vw"
+   },
+   "figuras": [
+    {
+     "src": "/images/blog/banco/mm-construction-6-1240.webp",
+     "srcset": "/images/blog/banco/mm-construction-6-704.webp 704w, /images/blog/banco/mm-construction-6-1240.webp 1240w",
+     "alt": "Rectangular pool with a pale blue interior and a step edged in dark tile, beside a raised spa clad in dark blue mosaic and a pale stone deck running out to a strip of lawn.",
+     "ancho": 1240,
+     "alto": 698,
+     "_origen": "gallery",
+     "_fuente": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/banco/mm-remodeling-2-1250.webp",
+     "srcset": "/images/blog/banco/mm-remodeling-2-704.webp 704w, /images/blog/banco/mm-remodeling-2-1250.webp 1250w",
+     "alt": "Rectangular pool with three spillway scuppers set into a rendered wall, a fire bowl on the deck and bougainvillea behind it.",
+     "ancho": 1250,
+     "alto": 703,
+     "_origen": "gallery",
+     "_fuente": "/images/images/pool-remodeling-8/custom-pool-remodeling-contractors-florida-08.jpg",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/banco/mm-construction-1-1250.webp",
+     "srcset": "/images/blog/banco/mm-construction-1-704.webp 704w, /images/blog/banco/mm-construction-1-1250.webp 1250w",
+     "alt": "Rectangular pool with a raised spa and water spouts, set in a herringbone travertine deck, with neighbouring barrel-tile roofs behind the hedge.",
+     "ancho": 1250,
+     "alto": 703,
+     "_origen": "gallery",
+     "_fuente": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    }
+   ]
+  },
   "/blogs/designing-a-complete-louvered-roof-system": {
    "_articulo": true,
    "tarjeta": {
@@ -1672,6 +1762,51 @@
      "alto": 703,
      "_origen": "gallery",
      "_fuente": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    }
+   ]
+  },
+  "/blogs/pool-automation-for-new-construction": {
+   "_articulo": true,
+   "tarjeta": {
+    "src": "/images/blog/banco/mm-construction-4-p-800.webp",
+    "srcset": "/images/blog/banco/mm-construction-4-p-400.webp 400w, /images/blog/banco/mm-construction-4-p-800.webp 800w",
+    "alt": "Curved pool with three sheet waterfalls falling from a long raised wall of pale blue mosaic tile, a matching raised spa spilling into the water alongside it, and tall palms and a fairway beyond a black metal fence.",
+    "ancho": 800,
+    "alto": 450,
+    "_origen": "gallery",
+    "_fuente": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
+    "sizes": "(min-width: 768px) 400px, 100vw"
+   },
+   "figuras": [
+    {
+     "src": "/images/blog/banco/mm-construction-5-1240.webp",
+     "srcset": "/images/blog/banco/mm-construction-5-704.webp 704w, /images/blog/banco/mm-construction-5-1240.webp 1240w",
+     "alt": "Three sheer-descent waterfalls falling from a raised tiled wall into a pool, with an aluminum pergola and lounge seating on the travertine deck to the left.",
+     "ancho": 1240,
+     "alto": 698,
+     "_origen": "gallery",
+     "_fuente": "/images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/banco/mm-remodeling-8-1250.webp",
+     "srcset": "/images/blog/banco/mm-remodeling-8-704.webp 704w, /images/blog/banco/mm-remodeling-8-1250.webp 1250w",
+     "alt": "Aerial view of a backyard pool with a robotic cleaner on the floor, a daybed under the porch and an outdoor kitchen beneath a metal roof.",
+     "ancho": 1250,
+     "alto": 703,
+     "_origen": "gallery",
+     "_fuente": "/images/images/pool-remodeling-2/custom-pool-remodeling-contractors-florida-02.jpg",
+     "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
+    },
+    {
+     "src": "/images/blog/banco/mm-construction-9-1240.webp",
+     "srcset": "/images/blog/banco/mm-construction-9-704.webp 704w, /images/blog/banco/mm-construction-9-1240.webp 1240w",
+     "alt": "Two-storey Florida home with a pool, raised spa and bubblers, on a wide paver deck running the width of the yard.",
+     "ancho": 1240,
+     "alto": 698,
+     "_origen": "gallery",
+     "_fuente": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
      "sizes": "(min-width: 992px) 650px, (min-width: 768px) 518px, 100vw"
     }
    ]

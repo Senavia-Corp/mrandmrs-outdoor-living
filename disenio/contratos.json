@@ -888,6 +888,24 @@
    "fecha": "2026-09-19",
    "sha": "28cd23d",
    "motivo": "BLOG-SANITY: articulo del cluster «Pool Remodeling», escrito para la ficha de Pool Remodeling. No existe en el Webflow de origen: es contenido nuevo. Ruta NUEVA: no hay captura de Webflow contra la que comparar, asi que su referencia se aprueba con scripts/aprobar-diseno.mjs."
+  },
+  "/blogs/cold-plunge-integration-florida-pool-construction": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-01",
+   "sha": "7300075",
+   "motivo": "SEO-SAFE: articulo nuevo del cluster «New Pool Construction» (categoria new-pool-construction), escrito para la ficha de Pool  Construction tras el analisis de huecos (SEO_BLOG_GAP_ANALYSIS.md). No existe en el Webflow de origen: es contenido nuevo. Ruta NUEVA: no hay captura de Webflow contra la que comparar, asi que su referencia se aprueba con scripts/aprobar-diseno.mjs."
+  },
+  "/blogs/dark-pool-finishes-in-florida": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-01",
+   "sha": "7300075",
+   "motivo": "SEO-SAFE: articulo nuevo del cluster «New Pool Construction» (categoria pool-design-planning), escrito para la ficha de Pool  Construction tras el analisis de huecos (SEO_BLOG_GAP_ANALYSIS.md). No existe en el Webflow de origen: es contenido nuevo. Ruta NUEVA: no hay captura de Webflow contra la que comparar, asi que su referencia se aprueba con scripts/aprobar-diseno.mjs."
+  },
+  "/blogs/pool-automation-for-new-construction": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-01",
+   "sha": "7300075",
+   "motivo": "SEO-SAFE: articulo nuevo del cluster «New Pool Construction» (categoria new-pool-construction), escrito para la ficha de Pool  Construction tras el analisis de huecos (SEO_BLOG_GAP_ANALYSIS.md). No existe en el Webflow de origen: es contenido nuevo. Ruta NUEVA: no hay captura de Webflow contra la que comparar, asi que su referencia se aprueba con scripts/aprobar-diseno.mjs."
   }
  }
 }
