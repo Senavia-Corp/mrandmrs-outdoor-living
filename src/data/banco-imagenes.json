@@ -2812,7 +2812,9 @@
     "defectos": [
       "reflejos en el ventanal"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/about"
+    ],
     "origen": "DECKING/Pavers/20251013_141750000_iOS 1.jpg",
     "sha256": "aa0a5a41eb943271e994ae83f19c73b5e4ed5b997a398d3d99005029e4bffbca"
   },
@@ -8561,7 +8563,9 @@
       "flotador en la piscina",
       "cielo nublado"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/about"
+    ],
     "origen": "EQUINOX LOUVERED ROOF/IMG_6579.JPG",
     "sha256": "66e3cdde5cf28ae93e5507f9110c8c542ff2e8b034069289008a6c7f43bc0964"
   },
@@ -10594,7 +10598,9 @@
       "4:5"
     ],
     "defectos": [],
-    "usada_en": [],
+    "usada_en": [
+      "/about"
+    ],
     "origen": "LANDSCAPING/20160806_151704.jpg",
     "sha256": "7fc6b311fca5505d5a9482a5880530cf880f49aa0aad1b325ccc6d1a9824ee18"
   },
@@ -17930,7 +17936,9 @@
       "4:5"
     ],
     "defectos": [],
-    "usada_en": [],
+    "usada_en": [
+      "/about"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Curtis/Tile1.jpeg",
     "sha256": "58beca2f32c5f3b4b6fa1a821f59045d0f963a249d83a62764b564db50481f41"
   },
@@ -18841,7 +18849,9 @@
     "defectos": [
       "marca de la máquina visible"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/about"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Darr Pool/20260314_174745259_iOS.heic",
     "sha256": "7cf98854329206ab286334351b11c4fba4206e76f97c5541d7712681a94e879e"
   },

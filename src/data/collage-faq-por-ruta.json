@@ -706,13 +706,14 @@
         "_hoja": "decks:6"
       },
       {
-        "src": "/images/images/landscaping-10/luxury-landscaping-construction-contractors-florida-10.jpg",
-        "srcset": "/images/site/luxury-landscaping-construction-contractors-florida-10-p-500.jpg 500w, /images/site/luxury-landscaping-construction-contractors-florida-10-p-800.jpg 800w, /images/site/luxury-landscaping-construction-contractors-florida-10-p-1080.jpg 1080w, /images/images/landscaping-10/luxury-landscaping-construction-contractors-florida-10.jpg 1250w",
-        "alt": "Residential front yard landscaping construction with palms and pavers by Florida landscape professionals.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 50%",
-        "_hoja": "landscaping:1"
+        "src": "/images/banco/landscaping/landscaping-front-yard-bromeliad-bed-palm-cluster-florida-01.webp",
+        "srcset": "/images/obra/obra-039/landscaping-front-yard-bromeliad-bed-palm-cluster-florida-01-500.webp 500w, /images/obra/obra-039/landscaping-front-yard-bromeliad-bed-palm-cluster-florida-01-800.webp 800w, /images/banco/landscaping/landscaping-front-yard-bromeliad-bed-palm-cluster-florida-01.webp 1600w",
+        "alt": "Front yard bed with pink bromeliads, crotons and boulders under a palm cluster by a paver driveway.",
+        "ancho": 1600,
+        "alto": 900,
+        "pos": "45% 70%",
+        "_banco": "bi-0305",
+        "_por_que": "PROMPT-IMAGENES-ABOUT: sustituye a landscaping-10.jpg, copia retocada con IA de bi-0326. Derivados 500/800 con sharp (webp q80) para no bajar 342 KB en una celda de 194 px."
       },
       {
         "src": "/images/images/pergolas-5/custom-pergola-patio-cover-builders-florida-05.jpg",

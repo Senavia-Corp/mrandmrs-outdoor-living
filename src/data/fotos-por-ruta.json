@@ -1,0 +1,49 @@
+{
+  "_lee_esto": "Sustituye <img> del origen por fotos del banco, por ruta y por selector, en orden DOM. null = se queda la del origen. Lo lee scripts/build-paginas.mjs fotosPorRuta(), que comprueba cada `_banco` contra src/data/banco-imagenes.json (src, ancho, alto, obra_real, aprobada, usada_en con la ruta). Las rutas que no salen aqui quedan byte a byte iguales. Encargo PROMPT-IMAGENES-ABOUT, 2-oct-2026.",
+  "/about": {
+    "section.whatsetus-section img.image-left": [
+      {
+        "src": "/images/banco/louvered/louvered-pergola-bronze-waterfront-pool-deck-florida-01.webp",
+        "alt": "Bronze louvered pergola over a dining area on a travertine pool deck beside a canal",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 35%",
+        "ratio": "1007/1250",
+        "_banco": "bi-0237",
+        "_por_que": "Obra terminada con estructura + piscina en el mismo plano (el «one-stop shop» del texto). `ratio` fija la caja en 548x680 como el render de antes: sin el, la caja de escritorio toma la proporcion del fichero y crece 51 px."
+      }
+    ],
+    "section.aboutus-section img.image-about": [
+      {
+        "src": "/images/banco/construction/pool-construction-excavation-excavator-backyard-florida-01.webp",
+        "alt": "Mini excavator digging a new pool beside a white brick home with a screened patio.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0557",
+        "_bloque": "Project Management",
+        "_por_que": "Obra en curso con el vaso replanteado. No subir la pos: en la tira de 3,7 (991 px) la cabina queda a 10 px del borde. bi-0558, del mismo dia, ya sale en un blog."
+      },
+      {
+        "src": "/images/banco/remodeling/pool-remodeling-step-tile-trim-detail-florida-01.webp",
+        "alt": "Pool steps and bench with new blue glass tile trim set before plaster, with the travertine deck above.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 45%",
+        "_banco": "bi-0533",
+        "_bloque": "Project Monitoring",
+        "_por_que": "Un punto que se inspecciona antes del plaster. bi-0567 (ferralla de obra-049) descartada: pala en primer plano visible de 992 a 1270 px."
+      },
+      {
+        "src": "/images/banco/decks/limestone-pool-deck-round-spa-trellis-wall-florida-01.webp",
+        "alt": "Wet limestone pavers cut to follow the curve of a round spa with a blue glass mosaic tile band, beside a vine trellis wall and bromeliads.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "0% 50%",
+        "_banco": "bi-0077",
+        "_bloque": "Quality",
+        "_por_que": "Piedra cortada al radio del spa y banda de mosaico: el acabado. Ninguna terminada de obra-049 pasa (manguera, tierra, capturas de pantalla)."
+      }
+    ]
+  }
+}
