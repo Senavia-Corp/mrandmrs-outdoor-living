@@ -2793,11 +2793,415 @@
       "id": "pole",
       "tipo": "ficha",
       "ruta": "/services/steel-building-pole-barn-construction-in-north-south-florida",
-      "estado": "en-curso",
-      "commit": null,
+      "estado": "hecha",
+      "commit": "8a65e36",
       "portada_menu": null,
       "portada_full": null,
-      "huecos": []
+      "huecos": [
+        {
+          "hueco": "faq[0]",
+          "selector": ".mm-collage img",
+          "antes": "/images/images/pole-barn-1/pole-barn-steel-building-contractors-florida-01.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": "actual",
+          "descartadas": [
+            {
+              "_banco": "bi-1089",
+              "clase": "dentro-del-recorte",
+              "motivo": "manguera, herramienta y un depósito oscuro al pie de la puerta en el lado derecho, visibles en 768, 991 y 1440"
+            }
+          ],
+          "motivo": "la candidata cae por dentro-del-recorte; la actual es obra_real",
+          "falta": "Detalle de cerca de cerchas, postes o cerramiento metálico terminado",
+          "consulta": null
+        },
+        {
+          "hueco": "faq[1]",
+          "selector": ".mm-collage img",
+          "antes": "/images/images/pole-barn-3/pole-barn-steel-building-contractors-florida-03.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "canjeada",
+          "despues": "/images/banco/pole/pole-barn-lean-to-steel-trusses-tan-siding-wall-florida-01.webp",
+          "_banco": "bi-1084",
+          "pos": "50% 50%",
+          "_ajuste": null,
+          "juez": "candidata",
+          "descartadas": [],
+          "motivo": null,
+          "falta": null,
+          "consulta": null
+        },
+        {
+          "hueco": "faq[2]",
+          "selector": ".mm-collage img",
+          "antes": "/images/images/pole-barn-7/pole-barn-steel-building-contractors-florida-07.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": "actual",
+          "descartadas": [
+            {
+              "_banco": "bi-1095",
+              "clase": "juez-prefiere-actual",
+              "motivo": "A es un interior soleado con cerchas y postes bien definidos que se lee en la tesela; B es un cobertizo a contraluz con cielo plomizo y una camioneta al fondo."
+            }
+          ],
+          "motivo": "juez prefiere la actual, que ya es obra real",
+          "falta": "Detalle de cerca de cerchas, postes o cerramiento metálico terminado",
+          "consulta": null
+        },
+        {
+          "hueco": "faq[3]",
+          "selector": ".mm-collage img",
+          "antes": "/images/images/pole-barn-8/pole-barn-steel-building-contractors-florida-08.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": "actual",
+          "descartadas": [
+            {
+              "_banco": "bi-1103",
+              "clase": "juez-prefiere-actual",
+              "motivo": "B es un cobertizo terminado en campo abierto con sol, limpio; A tiene losa recién vertida con charcos, camionetas y valla al fondo, se lee como obra en curso en un hueco de acompañamiento."
+            }
+          ],
+          "motivo": "juez prefiere la actual, que ya es obra real",
+          "falta": "Detalle de cerca de cerchas, postes o cerramiento metálico terminado",
+          "consulta": null
+        },
+        {
+          "hueco": "faq[4]",
+          "selector": ".mm-collage img",
+          "antes": "/images/images/pole-barn-6/pole-barn-steel-building-contractors-florida-06.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": "actual",
+          "descartadas": [
+            {
+              "_banco": "bi-1106",
+              "clase": "juez-prefiere-actual",
+              "motivo": "B es un cobertizo terminado, nítido y luminoso junto a la casa del cliente; A es más oscuro y mete un coche y una casa pegados a la estructura."
+            }
+          ],
+          "motivo": "juez prefiere la actual, que ya es obra real",
+          "falta": "Detalle de cerca de cerchas, postes o cerramiento metálico terminado",
+          "consulta": null
+        },
+        {
+          "hueco": "galeria[0]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/pole-barn-10/pole-barn-steel-building-contractors-florida-10.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": "actual",
+          "descartadas": [
+            {
+              "_banco": "bi-1082",
+              "clase": "dentro-del-recorte",
+              "motivo": "pila de madera sobrante y tablones tirados junto al poste izquierdo, visibles en los 4 anchos en un hueco de obra terminada"
+            }
+          ],
+          "motivo": "la candidata cae por dentro-del-recorte; la actual es obra_real",
+          "falta": "Nave o cobertizo de postes terminado, de día, con la estructura entera en cuadro y el terreno recogido",
+          "consulta": null
+        },
+        {
+          "hueco": "galeria[1]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/pole-barn-9/pole-barn-steel-building-contractors-florida-09.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": null,
+          "descartadas": [],
+          "motivo": "ya es obra real y no se repite con las secciones intocables",
+          "falta": "ninguna: ya es obra real",
+          "consulta": "obra real ya publicada y sin repeticion con intro/What we do: prioridad 4 de §6.1, no se abrio casting"
+        },
+        {
+          "hueco": "galeria[2]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/pole-barn-8/pole-barn-steel-building-contractors-florida-08.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": null,
+          "descartadas": [],
+          "motivo": "ya es obra real y no se repite con las secciones intocables",
+          "falta": "ninguna: ya es obra real",
+          "consulta": "obra real ya publicada y sin repeticion con intro/What we do: prioridad 4 de §6.1, no se abrio casting"
+        },
+        {
+          "hueco": "galeria[3]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/pole-barn-7/pole-barn-steel-building-contractors-florida-07.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "canjeada",
+          "despues": "/images/banco/pole/pole-barn-open-equipment-shed-steel-trusses-florida-01.webp",
+          "_banco": "bi-1094",
+          "pos": "50% 50%",
+          "_ajuste": null,
+          "juez": "candidata",
+          "descartadas": [],
+          "motivo": null,
+          "falta": null,
+          "consulta": null
+        },
+        {
+          "hueco": "galeria[4]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/pole-barn-6/pole-barn-steel-building-contractors-florida-06.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": null,
+          "descartadas": [],
+          "motivo": "ya es obra real y no se repite con las secciones intocables",
+          "falta": "ninguna: ya es obra real",
+          "consulta": "obra real ya publicada y sin repeticion con intro/What we do: prioridad 4 de §6.1, no se abrio casting"
+        },
+        {
+          "hueco": "galeria[5]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/pole-barn-5/pole-barn-steel-building-contractors-florida-05.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": null,
+          "descartadas": [],
+          "motivo": "ya es obra real y no se repite con las secciones intocables",
+          "falta": "ninguna: ya es obra real",
+          "consulta": "obra real ya publicada y sin repeticion con intro/What we do: prioridad 4 de §6.1, no se abrio casting"
+        },
+        {
+          "hueco": "galeria[6]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/pole-barn-4/pole-barn-steel-building-contractors-florida-04.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": "actual",
+          "descartadas": [
+            {
+              "_banco": "bi-1098",
+              "clase": "dentro-del-recorte",
+              "motivo": "caja de almacenaje de plástico tirada en el césped junto a la valla, visible en 768, 991 y 1440"
+            }
+          ],
+          "motivo": "la candidata cae por dentro-del-recorte; la actual es obra_real",
+          "falta": "Nave o cobertizo de postes terminado, de día, con la estructura entera en cuadro y el terreno recogido",
+          "consulta": null
+        },
+        {
+          "hueco": "galeria[7]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/pole-barn-3/pole-barn-steel-building-contractors-florida-03.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": null,
+          "descartadas": [],
+          "motivo": "ya es obra real y no se repite con las secciones intocables",
+          "falta": "ninguna: ya es obra real",
+          "consulta": "obra real ya publicada y sin repeticion con intro/What we do: prioridad 4 de §6.1, no se abrio casting"
+        },
+        {
+          "hueco": "galeria[8]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/pole-barn-1/pole-barn-steel-building-contractors-florida-01.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": null,
+          "descartadas": [],
+          "motivo": "ya es obra real y no se repite con las secciones intocables",
+          "falta": "ninguna: ya es obra real",
+          "consulta": "obra real ya publicada y sin repeticion con intro/What we do: prioridad 4 de §6.1, no se abrio casting"
+        },
+        {
+          "hueco": "heroe",
+          "selector": "img.image-bg-hero-services",
+          "antes": "/images/projects/aluminum-patio-cover-pool-deck-south-florida/aluminum-patio-cover-pool-deck-south-florida-project-1.avif",
+          "procedencia_antes": "sin_verificar",
+          "estado": "canjeada",
+          "despues": "/images/obra/suelta/pole-barn-narrow-open-shelter-new-wood-posts-florida-heroe.avif",
+          "_banco": "bi-1104",
+          "pos": "50% 45%",
+          "_ajuste": {
+            "recorte": "16/9",
+            "pos": "50% 45%",
+            "ancho": 1200,
+            "q": 50,
+            "de": "/images/banco/pole/pole-barn-narrow-open-shelter-new-wood-posts-florida-01.webp"
+          },
+          "juez": "candidata",
+          "descartadas": [],
+          "motivo": null,
+          "falta": null,
+          "consulta": null
+        },
+        {
+          "hueco": "inversion",
+          "selector": "img.svc-inversion__foto",
+          "antes": "/images/projects/aluminum-patio-cover-pool-deck-south-florida/aluminum-patio-cover-pool-deck-south-florida-project-3.avif",
+          "procedencia_antes": "sin_verificar",
+          "estado": "canjeada",
+          "despues": "/images/obra/suelta/pole-barn-long-equipment-shed-metal-roof-aerial-florida-inversion.avif",
+          "_banco": "bi-1096",
+          "pos": "50% 50%",
+          "_ajuste": {
+            "recorte": "1250/698",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/pole/pole-barn-long-equipment-shed-metal-roof-aerial-florida-01.webp"
+          },
+          "juez": "candidata",
+          "descartadas": [],
+          "motivo": null,
+          "falta": null,
+          "consulta": null
+        },
+        {
+          "hueco": "proceso[0]",
+          "selector": "img.img-process",
+          "antes": "/images/procesos/pole-barn-step-1/pole-barn-steel-buildings-site-evaluation-structural-assessment.avif",
+          "procedencia_antes": "ia_probada",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-045/pole-barn-construction-slab-prep-aerial-florida-proceso0.avif",
+          "_banco": "bi-0488",
+          "pos": "50% 50%",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/pole/pole-barn-construction-slab-prep-aerial-florida-01.webp"
+          },
+          "juez": "candidata",
+          "descartadas": [],
+          "motivo": null,
+          "falta": null,
+          "consulta": null
+        },
+        {
+          "hueco": "proceso[1]",
+          "selector": "img.img-process",
+          "antes": "/images/procesos/pole-barn-step-2/pole-barn-steel-buildings-custom-design-structural-engineering.avif",
+          "procedencia_antes": "ia_probada",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-114/pole-barn-construction-posts-steel-trusses-aerial-florida-proceso1.avif",
+          "_banco": "bi-1113",
+          "pos": "50% 50%",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/pole/pole-barn-construction-posts-steel-trusses-aerial-florida-01.webp"
+          },
+          "juez": "candidata",
+          "descartadas": [],
+          "motivo": null,
+          "falta": null,
+          "consulta": null
+        },
+        {
+          "hueco": "proceso[2]",
+          "selector": "img.img-process",
+          "antes": "/images/procesos/pole-barn-step-3/pole-barn-steel-buildings-building-permits-code-compliance.avif",
+          "procedencia_antes": "ia_probada",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-114/pole-barn-construction-roof-purlins-crew-florida-proceso2.avif",
+          "_banco": "bi-1118",
+          "pos": "50% 50%",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/pole/pole-barn-construction-roof-purlins-crew-florida-01.webp"
+          },
+          "juez": "candidata",
+          "descartadas": [],
+          "motivo": null,
+          "falta": null,
+          "consulta": null
+        },
+        {
+          "hueco": "proceso[3]",
+          "selector": "img.img-process",
+          "antes": "/images/procesos/pole-barn-step-4/pole-barn-steel-buildings-construction-final-inspection.avif",
+          "procedencia_antes": "ia_probada",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-114/pole-barn-construction-metal-roof-install-aerial-florida-proceso3.avif",
+          "_banco": "bi-1122",
+          "pos": "50% 50%",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/pole/pole-barn-construction-metal-roof-install-aerial-florida-01.webp"
+          },
+          "juez": "candidata",
+          "descartadas": [],
+          "motivo": null,
+          "falta": null,
+          "consulta": null
+        }
+      ],
+      "puertas": {
+        "check:tokens": "verde",
+        "check:estructura": "verde",
+        "check:assets": "verde",
+        "check:seo": "verde",
+        "build-banco --check": "verde",
+        "check:galeria (ficha)": "verde",
+        "check-texto (ficha)": "verde",
+        "check-visual": "ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:-146 991:-192 1440:+0)"
+      },
+      "alto_antes_despues": "479:+0 768:-146 991:-192 1440:+0"
     },
     {
       "id": "construction",

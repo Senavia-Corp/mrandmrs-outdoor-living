@@ -2388,12 +2388,22 @@
   "/services/steel-building-pole-barn-construction-in-north-south-florida": {
     "heroe": {
       "apoyo": "Steel building and pole barn construction company serving North & South Florida with durable, hurricane-rated structures.",
-      "foto": "/images/projects/aluminum-patio-cover-pool-deck-south-florida/aluminum-patio-cover-pool-deck-south-florida-project-1.avif",
-      "alt": "Large aluminum patio cover spanning a pool deck in South Florida, built by Mr & Mrs Outdoor Living",
-      "ancho": 1250,
-      "alto": 698,
+      "foto": "/images/obra/suelta/pole-barn-narrow-open-shelter-new-wood-posts-florida-heroe.avif",
+      "alt": "Narrow open pole barn with new wood posts, black steel trusses and metal roof beside a farmhouse.",
+      "ancho": 1200,
+      "alto": 675,
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
-      "ancla": "#estimate"
+      "ancla": "#estimate",
+      "_banco": "bi-1104",
+      "_proyecto": null,
+      "_ajuste": {
+        "recorte": "16/9",
+        "pos": "50% 45%",
+        "ancho": 1200,
+        "q": 50,
+        "de": "/images/banco/pole/pole-barn-narrow-open-shelter-new-wood-posts-florida-01.webp"
+      },
+      "og": "/images/obra/og/steel-building-pole-barn-construction-in-north-south-florida.jpg"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -2512,10 +2522,88 @@
           "principal": false
         }
       ],
-      "foto": "/images/projects/aluminum-patio-cover-pool-deck-south-florida/aluminum-patio-cover-pool-deck-south-florida-project-3.avif",
-      "alt": "Aluminum covered structure over a patio and pool deck in South Florida, built by Mr & Mrs Outdoor Living",
-      "ancho": 1250,
-      "alto": 698
+      "foto": "/images/obra/suelta/pole-barn-long-equipment-shed-metal-roof-aerial-florida-inversion.avif",
+      "alt": "Aerial view of a long single-slope pole barn with galvanized metal roof and open front bays.",
+      "ancho": 1600,
+      "alto": 893,
+      "pos": "50% 50%",
+      "_banco": "bi-1096",
+      "_proyecto": null,
+      "_ajuste": {
+        "recorte": "1250/698",
+        "pos": "50% 50%",
+        "ancho": 1600,
+        "q": 52,
+        "de": "/images/banco/pole/pole-barn-long-equipment-shed-metal-roof-aerial-florida-01.webp"
+      }
+    },
+    "proceso": {
+      "fotos": [
+        {
+          "foto": "/images/obra/obra-045/pole-barn-construction-slab-prep-aerial-florida-proceso0.avif",
+          "alt": "Aerial view of a compacted sand pad being prepared for a concrete slab beside pole framing on a rural lot.",
+          "ancho": 1600,
+          "alto": 873,
+          "pos": "50% 50%",
+          "_banco": "bi-0488",
+          "_proyecto": "obra-045",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/pole/pole-barn-construction-slab-prep-aerial-florida-01.webp"
+          }
+        },
+        {
+          "foto": "/images/obra/obra-114/pole-barn-construction-posts-steel-trusses-aerial-florida-proceso1.avif",
+          "alt": "Aerial view of pole barn posts with three steel trusses set, braced with lumber, and an auger skid steer.",
+          "ancho": 1600,
+          "alto": 873,
+          "pos": "50% 50%",
+          "_banco": "bi-1113",
+          "_proyecto": "obra-114",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/pole/pole-barn-construction-posts-steel-trusses-aerial-florida-01.webp"
+          }
+        },
+        {
+          "foto": "/images/obra/obra-114/pole-barn-construction-roof-purlins-crew-florida-proceso2.avif",
+          "alt": "Crew installing wood roof purlins on a pole barn frame, with metal roofing panels staged on the grass.",
+          "ancho": 1600,
+          "alto": 873,
+          "pos": "50% 50%",
+          "_banco": "bi-1118",
+          "_proyecto": "obra-114",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/pole/pole-barn-construction-roof-purlins-crew-florida-01.webp"
+          }
+        },
+        {
+          "foto": "/images/obra/obra-114/pole-barn-construction-metal-roof-install-aerial-florida-proceso3.avif",
+          "alt": "Aerial view of galvanized metal roof panels being installed over the purlins of a pole barn.",
+          "ancho": 1600,
+          "alto": 873,
+          "pos": "50% 50%",
+          "_banco": "bi-1122",
+          "_proyecto": "obra-114",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/pole/pole-barn-construction-metal-roof-install-aerial-florida-01.webp"
+          }
+        }
+      ]
     }
   },
   "/pool-builders/ocala-florida": {

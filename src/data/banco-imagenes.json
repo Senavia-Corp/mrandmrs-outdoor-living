@@ -16511,9 +16511,14 @@
       "camioneta en primer plano",
       "marca visible en la minicargadora"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/steel-building-pole-barn-construction-in-north-south-florida"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Brannen/Concrete SLAB prep.jpg",
-    "sha256": "bcf95fc573794a2510cb2f3d38e917b7bf01da9042131518ea42a6ad686328d7"
+    "sha256": "bcf95fc573794a2510cb2f3d38e917b7bf01da9042131518ea42a6ad686328d7",
+    "publicada_como": [
+      "/images/obra/obra-045/pole-barn-construction-slab-prep-aerial-florida-proceso0.avif"
+    ]
   },
   {
     "id": "bi-0489",
@@ -38123,7 +38128,9 @@
     "defectos": [
       "remolque con perfiles en el borde inferior (recortar)"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/steel-building-pole-barn-construction-in-north-south-florida"
+    ],
     "origen": "POLE BARN 2/11.jpg",
     "sha256": "91ed0ac34e801f5da582b7d07cb05a9d28ded2afe0600598e0560ffa18f548f7"
   },
@@ -38482,7 +38489,8 @@
     "defectos": [],
     "usada_en": [
       "/gallery",
-      "/gallery/pole-barns"
+      "/gallery/pole-barns",
+      "/services/steel-building-pole-barn-construction-in-north-south-florida"
     ],
     "origen": "POLE BARN 2/19.jpg",
     "sha256": "dfbcdaab8d52c9df64e8944cbb2cc75004b544104451dd82265cf9e89fb8a866"
@@ -38561,10 +38569,14 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/pole-barns"
+      "/gallery/pole-barns",
+      "/services/steel-building-pole-barn-construction-in-north-south-florida"
     ],
     "origen": "POLE BARN 2/20.jpg",
-    "sha256": "2d2bb9dcf1faaaf89b1ebe7a53d0f1c9595d23c9dd3add86300bd9d1ed681f38"
+    "sha256": "2d2bb9dcf1faaaf89b1ebe7a53d0f1c9595d23c9dd3add86300bd9d1ed681f38",
+    "publicada_como": [
+      "/images/obra/suelta/pole-barn-long-equipment-shed-metal-roof-aerial-florida-inversion.avif"
+    ]
   },
   {
     "id": "bi-1097",
@@ -38848,9 +38860,15 @@
       "1:1"
     ],
     "defectos": [],
-    "usada_en": [],
+    "usada_en": [
+      "/services/steel-building-pole-barn-construction-in-north-south-florida"
+    ],
     "origen": "POLE BARN 2/6.jpg",
-    "sha256": "afb3b9fbf75bb7f03259934a66144c5adc270fed538c341af94c49e7418bfe47"
+    "sha256": "afb3b9fbf75bb7f03259934a66144c5adc270fed538c341af94c49e7418bfe47",
+    "publicada_como": [
+      "/images/obra/suelta/pole-barn-narrow-open-shelter-new-wood-posts-florida-heroe.avif",
+      "/images/obra/og/steel-building-pole-barn-construction-in-north-south-florida.jpg"
+    ]
   },
   {
     "id": "bi-1105",
@@ -39164,9 +39182,14 @@
       "4:5"
     ],
     "defectos": [],
-    "usada_en": [],
+    "usada_en": [
+      "/services/steel-building-pole-barn-construction-in-north-south-florida"
+    ],
     "origen": "POLE BARN 2/HOVER_20250816_1755363012487.JPG",
-    "sha256": "15508bc432466d4f061d42ae7259a162df00a0c8e791c70d922eacc80922e4d8"
+    "sha256": "15508bc432466d4f061d42ae7259a162df00a0c8e791c70d922eacc80922e4d8",
+    "publicada_como": [
+      "/images/obra/obra-114/pole-barn-construction-posts-steel-trusses-aerial-florida-proceso1.avif"
+    ]
   },
   {
     "id": "bi-1114",
@@ -39346,9 +39369,14 @@
       "montón de tierra en primer plano",
       "operarios lejanos, caras no identificables"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/steel-building-pole-barn-construction-in-north-south-florida"
+    ],
     "origen": "POLE BARN 2/HOVER_20250817_1755448856852.JPG",
-    "sha256": "d35324863a1b751aaaef11ef3f635465ae8c140a8b3a135ff2a4352eae9bbcd6"
+    "sha256": "d35324863a1b751aaaef11ef3f635465ae8c140a8b3a135ff2a4352eae9bbcd6",
+    "publicada_como": [
+      "/images/obra/obra-114/pole-barn-construction-roof-purlins-crew-florida-proceso2.avif"
+    ]
   },
   {
     "id": "bi-1119",
@@ -39478,9 +39506,14 @@
       "mucho césped seco en primer plano",
       "camioneta y remolque arriba a la derecha"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/steel-building-pole-barn-construction-in-north-south-florida"
+    ],
     "origen": "POLE BARN 2/HOVER_20250817_1755448858439.JPG",
-    "sha256": "2f82d415d723a4d96f38fca1da71564f121dfb91d5671a5aaf95689d5393363f"
+    "sha256": "2f82d415d723a4d96f38fca1da71564f121dfb91d5671a5aaf95689d5393363f",
+    "publicada_como": [
+      "/images/obra/obra-114/pole-barn-construction-metal-roof-install-aerial-florida-proceso3.avif"
+    ]
   },
   {
     "id": "bi-1123",

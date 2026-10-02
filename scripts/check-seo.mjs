@@ -484,7 +484,7 @@ const JSONLD_ARREGLADO = {
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Steel Building & Pole Barn Construction'],
       ['about.image', 'Steel building construction providing durable structures for Florida properties.',
-        '/images/projects/aluminum-patio-cover-pool-deck-south-florida/aluminum-patio-cover-pool-deck-south-florida-project-1.avif'],
+        '/images/obra/suelta/pole-barn-narrow-open-shelter-new-wood-posts-florida-heroe.avif'],
       ['dateModified', '2026-05-18T19:54:59.712Z', '2026-05-18T19:55:49.094Z'],
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:54:59.712Z'],
     ],

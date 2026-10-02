@@ -452,13 +452,13 @@
         "_hoja": "pole:9"
       },
       {
-        "src": "/images/images/pole-barn-3/pole-barn-steel-building-contractors-florida-03.jpg",
-        "srcset": "/images/site/pole-barn-steel-building-contractors-florida-03-p-500.jpg 500w, /images/site/pole-barn-steel-building-contractors-florida-03-p-800.jpg 800w, /images/images/pole-barn-3/pole-barn-steel-building-contractors-florida-03.jpg 933w",
-        "alt": "Large open-span pole barn with steel roofing, designed for storage, workshops, and commercial use across North & South Florida.",
-        "ancho": 933,
-        "alto": 1250,
+        "src": "/images/banco/pole/pole-barn-lean-to-steel-trusses-tan-siding-wall-florida-01.webp",
+        "srcset": "/images/banco/pole/pole-barn-lean-to-steel-trusses-tan-siding-wall-florida-01.webp 1600w",
+        "alt": "Tan metal gable wall with a walk door under a pole barn lean-to roof with black steel trusses.",
+        "ancho": 1600,
+        "alto": 1200,
         "pos": "50% 50%",
-        "_hoja": "pole:8"
+        "_banco": "bi-1084"
       },
       {
         "src": "/images/images/pole-barn-7/pole-barn-steel-building-contractors-florida-07.jpg",

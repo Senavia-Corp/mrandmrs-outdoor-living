@@ -171,5 +171,26 @@
       },
       null
     ]
+  },
+  "/services/steel-building-pole-barn-construction-in-north-south-florida": {
+    "section.gallery img.image-gallery": [
+      null,
+      null,
+      null,
+      {
+        "src": "/images/banco/pole/pole-barn-open-equipment-shed-steel-trusses-florida-01.webp",
+        "alt": "Long three-sided pole barn with wood posts, black steel trusses and metal walls on a dirt floor.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-1094",
+        "_por_que": null
+      },
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
   }
 }
