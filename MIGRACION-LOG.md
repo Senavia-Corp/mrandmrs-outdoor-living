@@ -58,9 +58,9 @@ Declaraciones en las puertas:
 - **Las dos fichas pasan `check:seo`.**
 - **`check:visual` ROJA en las 2** (New Pool +144..+218 px, Remodel +482..+579 px): es lo esperado y ya lo
   estaba desde R21. El re-baseline es de Sebastian, una vez, cuando las mire (FONDO-AGUA T2).
+- **`check:enlaces` verde** tras fusionar #22, que trajo la portada `mm-construction-7` que faltaba.
 - **Rojas que NO son de R24:** esta rama no toca ningún fichero de blog.
   - `check:rutas` (3 artículos de Sanity sin declarar);
-  - `check:enlaces` (`mm-construction-7` no existe);
   - `check:seo` (11 páginas de blog);
   - `check:ads` (un «$16,600» en la tarjeta de blog de Remodel);
   - `check:medicion` (121 vs 155 `<loc>`, desde `549bb9c`).
