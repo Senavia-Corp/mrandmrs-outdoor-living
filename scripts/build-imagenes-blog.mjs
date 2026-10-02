@@ -44,7 +44,7 @@ import { execFileSync } from 'node:child_process';
 import sharp from 'sharp';
 import { leeArticulos } from './lib/articulo.mjs';
 import { graduarPortada } from './lib/grado-portada.mjs';
-import { dhash, distancia, MISMA, DUDOSA } from './lib/parecido.mjs';
+import { dhash, dhashEntera, ventanas, distancia, MISMA, DUDOSA } from './lib/parecido.mjs';
 import { ordenaIndice } from '../src/lib/blog-datos.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
@@ -463,18 +463,37 @@ for (const [ruta, r] of rutas) {
 const elegibles = BANCO.filter((e) => e.estado.startsWith('aprobada') && e.procedencia === 'obra_real');
 await enLotes([...huecos.map((h) => h.abs), ...elegibles.map((e) => path.join(RAIZ, 'public', e.src))], huellaDe);
 
-/* 4 · calibracion: lo que se sabe que es la misma foto tiene que salir como la misma foto. */
+/* 4 · calibracion: lo que se sabe que es la misma foto tiene que salir como la misma foto.
+ *
+ * Cada fichero publicado se compara ENTERO contra las ventanas del original con SU proporcion: las
+ * fichas de R24 publican og 1200x630, verticales y recortes con object-position, y un recorte
+ * descentrado comparado centro contra centro da 11-21 siendo la misma foto (medido el 2-oct-2026).
+ * Una entrada `…-{640,960,1280}.avif` es una plantilla de srcset: vale el peldaño mayor que exista. */
+const sinPlantilla = (p) => {
+  const m = p.match(/^(.*)\{([\d,]+)\}(.*)$/);
+  if (!m) return p;
+  return m[2].split(',').map((w) => `${m[1]}${w}${m[3]}`).reverse().find((x) => fs.existsSync(path.join(RAIZ, 'public', x))) ?? p;
+};
+/* Las fichas de R24 publican bajo /images/obra/ recortes de DIRECCION DE ARTE (zoom hasta ~0,5, og,
+ * encuadre desplazado). El blog nunca compara esa clase de fichero, asi que no calibran su metodo: se
+ * miden y se enseñan, pero no cuentan. Medido el 2-oct-2026: 17 parejas en 0-6, y las 6 de arte en 9-24. */
+const ARTE = /^\/images\/obra\//;
+const arte = [];
 let parejas = 0;
 for (const e of elegibles) {
-  for (const p of [].concat(e.publicada_como ?? [])) {
+  for (const bruto of [].concat(e.publicada_como ?? [])) {
+    const p = sinPlantilla(bruto);
     const otra = path.join(RAIZ, 'public', p);
-    if (!fs.existsSync(otra)) { mal(`calibracion: ${e.id} dice publicada_como ${p} y ese fichero no existe`); continue; }
-    const d = distancia(await huellaDe(path.join(RAIZ, 'public', e.src)), await huellaDe(otra));
+    if (!fs.existsSync(otra)) { mal(`calibracion: ${e.id} dice publicada_como ${bruto} y ese fichero no existe`); continue; }
+    const { width, height } = await sharp(otra).metadata();
+    const hb = await dhashEntera(otra);
+    const d = Math.min(...(await ventanas(path.join(RAIZ, 'public', e.src), width / height)).map((h) => distancia(h, hb)));
+    if (ARTE.test(p)) { arte.push(`${e.id} d=${d}`); continue; }
     parejas++;
     if (d > MISMA) mal(`puerta DESCALIBRADA: ${e.id} y ${p} son la misma foto y dan d=${d} (> ${MISMA})`);
   }
 }
-if (!parejas) mal('puerta sin calibrar: ninguna pareja de publicada_como con fichero servido');
+if (parejas < 10) mal(`puerta sin calibrar: ${parejas} parejas de publicada_como con fichero servido (minimo 10)`);
 
 /* Identidades: union de huecos por ref y por parecido. */
 const padre = huecos.map((_, i) => i);
@@ -627,7 +646,7 @@ console.log(`\n  ${rutas.length} articulos · ${nImg} imagenes · ${huecos.lengt
 console.log(`     portadas distintas ................. ${enPortada.length} de ${rutas.length}`);
 console.log(`     fotos de cuerpo en >1 articulo ..... ${cuerpoRepetido.length}`);
 console.log(`     portadas reusadas en otro cuerpo ... ${portadaEnOtroCuerpo.length}`);
-console.log(`     puerta calibrada con ${parejas} parejas conocidas (misma foto <= ${MISMA}, a mirar <= ${DUDOSA})`);
+console.log(`     puerta calibrada con ${parejas} parejas conocidas (misma foto <= ${MISMA}, a mirar <= ${DUDOSA}); ${arte.length} de direccion de arte medidas aparte: ${arte.join(' · ')}`);
 console.log(`  ${yaDerivadas.size} escaleras en public/images/blog/${BANCO_COMPARTIDO}/ · ${ficheros} ficheros webp · ${(peso / 1024).toFixed(1)} MB en public/images/blog/`);
 console.log(fallos === 0 ? '\n✅ VERDE\n' : `\n🔴 ROJO — ${fallos} fallo(s)\n`);
 process.exit(fallos === 0 ? 0 : 1);

@@ -669,9 +669,13 @@ const ordenaZonas = (ruta, lineas) => {
  *
  * Barandilla: «Before» tiene que ir seguido de «After», el bloque tiene que cerrar en «View All
  * Projects» dentro de una ventana corta, y solo se quita en rutas de captacion.
+ *
+ * Donde la entrada declara `antesDespues` (R24-FOTO-PISCINAS: la de remodelacion, con el par real
+ * del banco) el generador NO lo quita: solo canjea las dos fotos. El texto es el del origen y el
+ * baseline ya lo trae en su sitio, asi que aqui no se descuenta nada.
  */
 const quitaAntesDespues = (ruta, lineas) => {
-  if (!CAPTACION_JSON[ruta]) return lineas;
+  if (!CAPTACION_JSON[ruta] || CAPTACION_JSON[ruta].antesDespues) return lineas;
   const i = lineas.indexOf('Before');
   if (i < 0 || lineas[i + 1] !== 'After') return lineas;
   let j = -1;

@@ -46,17 +46,26 @@
     "la matriz frase->fuente de `docs/encargos/R17-CORE.md` §8.6 y, para las ciudades, en las",
     "plantillas comentadas de `scripts/build-captacion-ciudades.mjs`. Nada de garantias, anos de",
     "experiencia, numero de piscinas, «5-star», ni una sola cifra financiera (decision de",
-    "Sebastian del 2-sep-2026, TILA/Reg Z)."
+    "Sebastian del 2-sep-2026, TILA/Reg Z).",
+    "",
+    "R24-FOTO-PISCINAS (1-oct-2026) — CLAVES OPT-IN DE FOTO, solo en las dos fichas de piscina. Las lee",
+    "`scripts/build-paginas.mjs` `captacion()`; donde no se declaran, la ficha sale como siempre:",
+    "  heroe.og           JPEG 1200x630 del heroe -> og:image y twitter:image (el origen traia IA).",
+    "  proceso.fotos[4]   las 4 <img class=\"img-process\"> en orden; `pos` = object-position opcional.",
+    "  antesDespues       {antes, despues} con srcset; mismas medidas o el generador para en ROJO.",
+    "  galeria.alts       {fichero: alt} para la galeria de origen (las fotos no cambian).",
+    "  `_banco` y `_proyecto` no se pintan: son la trazabilidad al banco (`banco-imagenes.json`)."
   ],
   "/services/custom-pool-spa-builders-in-north-south-florida": {
     "heroe": {
       "apoyo": "New custom inground pools for North Florida homeowners — 3D design, permits, construction and final start-up, from one licensed team. We also build across South Florida.",
       "foto": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-2.avif",
-      "alt": "Custom inground pool and raised spa built on North Florida acreage by Mr & Mrs Outdoor Living",
+      "alt": "Custom inground pool and raised spa on a Florida acreage lot, built by Mr & Mrs Outdoor Living",
       "ancho": 1250,
       "alto": 698,
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
-      "ancla": "#estimate"
+      "ancla": "#estimate",
+      "og": "/images/obra/og/custom-pool-spa-builders-florida.jpg"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -117,7 +126,7 @@
           "titulo": "Designed Around Your Lot",
           "parrafo": "Every pool starts with your lot, not a catalog shape. We survey the site, model the pool in 3D against setbacks, soil conditions and the Florida Building Code, and you approve the rendering before we pull a permit.",
           "foto": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-1.avif",
-          "alt": "Aerial view of a custom pool and spa sited on a North Florida acreage lot",
+          "alt": "Aerial view of a custom pool and spa sited on a Florida acreage lot",
           "ancho": 1250,
           "alto": 698,
           "lado": "derecha",
@@ -155,7 +164,7 @@
           "titulo": "Remodeling & Spa Additions",
           "parrafo": "If the shell is sound, a remodel gets you there faster than a new build. Same licensed crew and the same permits, applied to the pool you already own.",
           "foto": "/images/servicios/pool-remodeling-raised-spa-travertine-deck-south-florida.avif",
-          "alt": "Remodeled South Florida pool with a raised spa clad in blue glass mosaic spilling into the water, on a travertine deck",
+          "alt": "Remodeled pool with a raised spa clad in blue glass mosaic spilling into the water, on a travertine deck in Florida",
           "ancho": 1250,
           "alto": 703,
           "lado": "izquierda",
@@ -214,9 +223,61 @@
         }
       ],
       "foto": "/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-6.avif",
-      "alt": "Freeform pool with a raised spa and travertine deck inside a screened enclosure, built in North Florida by Mr & Mrs Outdoor Living",
+      "alt": "Freeform pool with a raised spa and travertine deck inside a screened enclosure in Florida, built by Mr & Mrs Outdoor Living",
       "ancho": 1250,
       "alto": 698
+    },
+    "proceso": {
+      "fotos": [
+        {
+          "foto": "/images/obra/obra-065/custom-pool-construction-backyard-lot-before-excavation.avif",
+          "alt": "Backyard lot behind a new farmhouse with materials staged on the sand before excavation, custom pool construction in Florida",
+          "ancho": 1600,
+          "alto": 1200,
+          "_banco": "bi-0683",
+          "_proyecto": "obra-065"
+        },
+        {
+          "foto": "/images/obra/obra-065/custom-pool-and-spa-layout-painted-on-site-aerial.avif",
+          "alt": "Top-down drone view of the approved pool and spa layout painted on the sand next to the house, new pool build in Florida",
+          "ancho": 1600,
+          "alto": 1200,
+          "pos": "60% 60%",
+          "_banco": "bi-0685",
+          "_proyecto": "obra-065"
+        },
+        {
+          "foto": "/images/obra/obra-065/custom-pool-steel-rebar-and-drains-before-gunite.avif",
+          "alt": "Steel rebar cage tied over wood forms with main drains and plumbing ready for inspection, custom pool builders in Florida",
+          "ancho": 1600,
+          "alto": 1200,
+          "_banco": "bi-0711",
+          "_proyecto": "obra-065"
+        },
+        {
+          "foto": "/images/obra/obra-065/custom-pool-gunite-shell-being-sprayed-aerial.avif",
+          "alt": "Top-down view of a crew spraying the gunite shell beside the spa form, custom pool construction in Florida",
+          "ancho": 1600,
+          "alto": 1200,
+          "pos": "40% 50%",
+          "_banco": "bi-0727",
+          "_proyecto": "obra-065"
+        }
+      ]
+    },
+    "galeria": {
+      "alts": {
+        "custom-pool-spa-builders-florida-01.jpg": "Freeform pool with an attached spa and herringbone paver deck behind a two-story home, custom pool construction in Florida",
+        "custom-pool-spa-builders-florida-02.jpg": "Overhead view of a rectangular pool with a mosaic-tile spa and travertine border between hedges, custom pool built in Florida",
+        "custom-pool-spa-builders-florida-03.jpg": "L-shaped pool with a sun shelf, raised spa and travertine deck beside a white single-story home, new pool built in Florida",
+        "custom-pool-spa-builders-florida-04.jpg": "Rectangular pool with a raised glass-tile spa, stepping stones in the lawn and a covered patio, custom pool in Florida",
+        "custom-pool-spa-builders-florida-05.jpg": "Pool with three sheer-descent water features on a raised wall and a lake view, custom pool construction in Florida",
+        "custom-pool-spa-builders-florida-06.jpg": "Pool with a raised tiled spa and lounge chairs facing a palm-lined golf course, custom pool and spa construction in Florida",
+        "custom-pool-spa-builders-florida-07.jpg": "Pool with a tiled raised spa, in-water loungers and a pergola-covered patio, new custom pool built in Florida",
+        "custom-pool-spa-builders-florida-08.jpg": "Rectangular pool with a sun shelf, loungers and an attached spa overlooking a lake, custom pool construction in Florida",
+        "custom-pool-spa-builders-florida-09.jpg": "Wide pool with a sun shelf and travertine deck in a palm-lined backyard, custom pool built in Florida",
+        "custom-pool-spa-builders-florida-10.jpg": "Rectangular pool with a raised mosaic spa set in artificial turf with a hedge border, custom pool and spa built in Florida"
+      }
     }
   },
   "/services/custom-aluminum-pergola-builders-in-north-south-florida": {
@@ -1153,12 +1214,15 @@
   "/services/pool-remodeling-renovation-in-north-south-florida": {
     "heroe": {
       "apoyo": "Complete pool remodeling for North Florida homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team. We also remodel across South Florida.",
-      "foto": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-3.avif",
-      "alt": "Custom pool and raised spa with a wide paver deck on North Florida acreage, built by Mr & Mrs Outdoor Living",
-      "ancho": 1250,
-      "alto": 698,
+      "foto": "/images/obra/obra-048/pool-remodeling-travertine-deck-glass-tile-completed.avif",
+      "alt": "Pool remodeling in Florida: blue glass waterline tile and travertine deck behind a stucco home, by Mr & Mrs Outdoor Living",
+      "ancho": 2048,
+      "alto": 1152,
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
-      "ancla": "#estimate"
+      "ancla": "#estimate",
+      "og": "/images/obra/og/pool-remodeling-renovation-florida.jpg",
+      "_banco": "bi-0521",
+      "_proyecto": "obra-048"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -1190,15 +1254,17 @@
         {
           "titulo": "Structural Repairs & Shell Rebuilds",
           "parrafo": "An older pool needs more than a new surface. We probe for cracks, leaks, and shell movement, then repair or rebuild the gunite and bring plumbing and safety barriers up to current Florida Building Code. Every finish and fixture we install rides on that structure.",
-          "foto": "/images/residentials/pool-remodeling-renovation-in-north-south-florida/pool-spa-renovation-backyard-florida.avif",
-          "alt": "Aerial view of a remodeled pool and raised spa on a paver deck",
-          "ancho": 1950,
-          "alto": 1219,
+          "foto": "/images/obra/obra-064/pool-shell-repair-spa-bond-beam-rebuild.avif",
+          "alt": "Spa with a newly poured concrete bond beam and exposed plumbing beside a drained pool, structural pool repair in Florida",
+          "ancho": 1200,
+          "alto": 670,
           "lado": "derecha",
           "items": [
             "Complete Pool Renovation",
             "Structural Pool Repairs"
-          ]
+          ],
+          "_banco": "bi-0676",
+          "_proyecto": "obra-064"
         },
         {
           "titulo": "Resurfacing, Tile & Coping",
@@ -1297,9 +1363,81 @@
         }
       ],
       "foto": "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-3.avif",
-      "alt": "Rectangular pool with a raised spa and travertine deck in South Florida, built by Mr & Mrs Outdoor Living",
+      "alt": "Rectangular pool with a raised spa and travertine deck in Florida, built by Mr & Mrs Outdoor Living",
       "ancho": 1250,
       "alto": 698
+    },
+    "proceso": {
+      "fotos": [
+        {
+          "foto": "/images/obra/obra-064/pool-remodeling-assessment-old-spa-inspection.avif",
+          "alt": "Technician inspecting an old tiled spa with a broken brick coping before a pool remodel in Florida",
+          "ancho": 1800,
+          "alto": 1200,
+          "_banco": "bi-0680",
+          "_proyecto": "obra-064"
+        },
+        {
+          "foto": "/images/obra/obra-053/pool-renovation-travertine-deck-cobalt-tile-spa.avif",
+          "alt": "French-pattern travertine deck and cobalt tile around a raised spa, materials for a pool renovation in Florida",
+          "ancho": 1800,
+          "alto": 1200,
+          "_banco": "bi-0617",
+          "_proyecto": "obra-053"
+        },
+        {
+          "foto": "/images/obra/obra-048/pool-remodeling-crew-at-work-on-drained-pool.avif",
+          "alt": "Crew cutting block and setting the deck around a drained pool during a pool remodeling project in Florida",
+          "ancho": 1260,
+          "alto": 840,
+          "pos": "15% 50%",
+          "_banco": "bi-0517",
+          "_proyecto": "obra-048"
+        },
+        {
+          "foto": "/images/obra/obra-064/pool-renovation-new-white-plaster-hand-troweled.avif",
+          "alt": "Two workers hand-troweling new white plaster in a drained pool with blue waterline tile, pool renovation in Florida",
+          "ancho": 1200,
+          "alto": 800,
+          "pos": "35% 50%",
+          "_banco": "bi-0678",
+          "_proyecto": "obra-064"
+        }
+      ]
+    },
+    "antesDespues": {
+      "antes": {
+        "src": "/images/obra/obra-048/pool-remodeling-before-screened-pool-brick-coping-1280.avif",
+        "srcset": "/images/obra/obra-048/pool-remodeling-before-screened-pool-brick-coping-640.avif 640w, /images/obra/obra-048/pool-remodeling-before-screened-pool-brick-coping-960.avif 960w, /images/obra/obra-048/pool-remodeling-before-screened-pool-brick-coping-1280.avif 1280w, /images/obra/obra-048/pool-remodeling-before-screened-pool-brick-coping-1600.avif 1600w, /images/obra/obra-048/pool-remodeling-before-screened-pool-brick-coping-1920.avif 1920w",
+        "alt": "Before: screened pool with a painted concrete deck, brick coping and dark tile, ahead of a pool remodel in Florida",
+        "ancho": 1920,
+        "alto": 1080,
+        "_banco": "bi-0515",
+        "_proyecto": "obra-048"
+      },
+      "despues": {
+        "src": "/images/obra/obra-048/pool-remodeling-after-glass-tile-travertine-deck-1280.avif",
+        "srcset": "/images/obra/obra-048/pool-remodeling-after-glass-tile-travertine-deck-640.avif 640w, /images/obra/obra-048/pool-remodeling-after-glass-tile-travertine-deck-960.avif 960w, /images/obra/obra-048/pool-remodeling-after-glass-tile-travertine-deck-1280.avif 1280w, /images/obra/obra-048/pool-remodeling-after-glass-tile-travertine-deck-1600.avif 1600w, /images/obra/obra-048/pool-remodeling-after-glass-tile-travertine-deck-1920.avif 1920w",
+        "alt": "After: the same pool with blue glass waterline tile and an ivory travertine deck, pool renovation in Florida",
+        "ancho": 1920,
+        "alto": 1080,
+        "_banco": "bi-0519",
+        "_proyecto": "obra-048"
+      }
+    },
+    "galeria": {
+      "alts": {
+        "custom-pool-remodeling-contractors-florida-01.jpg": "Rectangular pool with a raised mosaic spa, basketball hoop and travertine deck, pool remodeling in Florida",
+        "custom-pool-remodeling-contractors-florida-02.jpg": "Aerial view of a pool with a mosaic spa, palms and a covered terrace, completed pool renovation in Florida",
+        "custom-pool-remodeling-contractors-florida-03.jpg": "Pool with a sun shelf, two loungers and a raised white spa spilling into the water, pool remodeling in Florida",
+        "custom-pool-remodeling-contractors-florida-04.jpg": "Long lap pool with a raised spa and a wide paver deck beside an open lawn, pool renovation in Florida",
+        "custom-pool-remodeling-contractors-florida-05.jpg": "Pool with a raised spa wall, glass-tile waterline and a shaded travertine deck, pool remodeling in Florida",
+        "custom-pool-remodeling-contractors-florida-06.jpg": "Pool with travertine coping beside a covered patio and palm trees, renovated pool in Florida",
+        "custom-pool-remodeling-contractors-florida-07.jpg": "Raised glass-tile spa and pool under a black pergola beside a two-story home, pool remodeling in Florida",
+        "custom-pool-remodeling-contractors-florida-08.jpg": "Pool with a raised wall of sheer descents, in-water loungers and an L-shaped sun shelf, pool renovation in Florida",
+        "custom-pool-remodeling-contractors-florida-09.jpg": "Pool with in-water loungers, a mosaic spa and a travertine deck behind a modern home, pool remodeling in Florida",
+        "custom-pool-remodeling-contractors-florida-10.jpg": "Aerial view of a pool with a mesh safety fence, covered patio and stepping-stone path, pool renovation in Florida"
+      }
     }
   },
   "/services/premium-outdoor-furniture-for-north-south-florida-homes": {

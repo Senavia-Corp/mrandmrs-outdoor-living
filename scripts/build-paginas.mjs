@@ -686,6 +686,23 @@ function captacion(doc, ruta) {
     }
   }
 
+  /* `og:image` / `twitter:image` = EL HEROE, opt-in por `heroe.og` (R24-FOTO-PISCINAS, 1-oct-2026).
+   * Hasta hoy se copiaban del `<head>` de origen, y en las dos fichas de piscina eran imagenes
+   * GENERADAS (`trainedAlgorithmicMedia` + «Made with Google AI»): la tarjeta que se ve al compartir
+   * la pagina era la unica foto falsa que no salia en el cuerpo. `heroe.og` es un JPEG 1200x630
+   * derivado del heroe, no el AVIF: varios rastreadores sociales no pintan AVIF. `metaSeo` lee este
+   * mismo `<head>` mas abajo y `Base.astro` lo vuelve absoluto. Solo las rutas que lo declaran. */
+  if (c.heroe.og) {
+    for (const k of ['og:image', 'twitter:image']) {
+      const m = doc.head.querySelector(`meta[property="${k}"],meta[name="${k}"]`);
+      if (!m) {
+        console.error(`\n  ROJO ${ruta}: heroe.og declarado y el origen no trae ${k}\n`);
+        process.exit(1);
+      }
+      m.setAttribute('content', c.heroe.og);
+    }
+  }
+
   /* ── 2 · FUERA EL ANTES/DESPUES ────────────────────────────────────────────────────────
    * La foto «Before» es de un listado del MLS de Miami, con la marca de agua
    * `A11…… © Miami MLS© 202…` incrustada y visible a tamano real, y un `alt` que atribuye la
@@ -699,8 +716,41 @@ function captacion(doc, ruta) {
    * mascara y la prueba de aceptacion estan escritos en `docs/encargos/R17-CORE.md` §10.
    *
    * Sus dos tarjetas de valor -«Design-Build Authority» y «Licensed & Engineered»- no se
-   * pierden: suben a la franja de confianza, dichas mas corto. */
-  doc.querySelector('section.before-after-section')?.remove();
+   * pierden: suben a la franja de confianza, dichas mas corto.
+   *
+   * VUELVE EN LA DE REMODELACION (R24-FOTO-PISCINAS, 1-oct-2026), y sin relleno generativo: el
+   * banco de obra propia tiene el par honesto, «antes» y «despues» de la MISMA piscina desde el
+   * mismo punto de camara. Opt-in por `antesDespues` en el JSON; donde no se declara, se sigue
+   * retirando. Solo se canjean las dos `<img>`: el texto es el del origen, que `check:texto` ya
+   * tiene en su baseline, y el CSS y el JS del deslizador son globales (`antes-despues.css`,
+   * `Componentes.astro`). El «despues» se pinta encima del «antes» con `clip-path`: si no miden
+   * lo mismo la costura no casa (`fb4318f`), y eso es ROJO, no un aviso. */
+  const antesDespues = doc.querySelector('section.before-after-section');
+  if (c.antesDespues) {
+    const { antes, despues } = c.antesDespues;
+    const pares = [[antesDespues?.querySelector('img.bas-image-before'), antes],
+      [antesDespues?.querySelector('img.bas-image-after-h'), despues]];
+    if (pares.some(([img]) => !img)) {
+      console.error(`\n  ROJO ${ruta}: antesDespues declarado y el origen no trae el deslizador\n`);
+      process.exit(1);
+    }
+    if (antes.ancho !== despues.ancho || antes.alto !== despues.alto) {
+      console.error(`\n  ROJO ${ruta}: el antes y el despues no miden igual — la costura no casa\n`);
+      process.exit(1);
+    }
+    for (const [img, f] of pares) {
+      img.setAttribute('src', f.src);
+      img.setAttribute('srcset', f.srcset);
+      img.setAttribute('sizes', '(min-width: 992px) 56vw, 100vw');   // el de la home
+      img.setAttribute('alt', f.alt);
+      img.setAttribute('width', String(f.ancho));
+      img.setAttribute('height', String(f.alto));
+      img.setAttribute('loading', 'lazy');
+      img.setAttribute('decoding', 'async');
+    }
+  } else {
+    antesDespues?.remove();
+  }
 
   /* ── 3 · LAS RESENAS SUBEN DEL BLOQUE 10 AL 5 ──────────────────────────────────────────
    * Ocho resenas reales de Google Business Profile, y no se veian hasta pasada la mitad de la
@@ -757,6 +807,30 @@ function captacion(doc, ruta) {
   if (proceso && proceso.parentNode) {
     proceso.parentNode.insertBefore(
       doc.createTextNode(MARCA + 'InversionCore' + MARCA), proceso.nextSibling);
+  }
+
+  /* ── 4.bis · LAS FOTOS DE LOS PASOS (R24-FOTO-PISCINAS, 1-oct-2026) ─────────────────────
+   * Los 4 pasos de las fichas de piscina eran PNG GENERADOS de 1408x768 con firma C2PA de Google
+   * (~2 MB cada uno): obra inventada donde el visitante lee «asi trabajamos nosotros». Opt-in por
+   * `proceso.fotos`, en el orden del origen; se cuentan para que un paso de mas o de menos sea
+   * ROJO y no una foto en el paso equivocado. Fuera `srcset`/`sizes`: un `srcset` heredado
+   * apuntaria a los recortes del PNG viejo. Estas `<img>` no llevan `data-w-id`. */
+  if (c.proceso?.fotos) {
+    const pasos = [...(proceso?.querySelectorAll('img.img-process') ?? [])];
+    if (pasos.length !== c.proceso.fotos.length) {
+      console.error(`\n  ROJO ${ruta}: proceso.fotos trae ${c.proceso.fotos.length} y el origen ${pasos.length} pasos\n`);
+      process.exit(1);
+    }
+    pasos.forEach((img, i) => {
+      const f = c.proceso.fotos[i];
+      img.setAttribute('src', f.foto);
+      img.setAttribute('alt', f.alt);
+      img.setAttribute('width', String(f.ancho));
+      img.setAttribute('height', String(f.alto));
+      if (f.pos) img.setAttribute('style', `object-position:${f.pos}`);
+      img.removeAttribute('srcset');
+      img.removeAttribute('sizes');
+    });
   }
 
   /* ── 5 · LA REJILLA DE SUBSERVICIOS ────────────────────────────────────────────────────
@@ -1016,6 +1090,20 @@ function captacion(doc, ruta) {
     throw new Error(`${ruta}: falta ${[!galeria && 'section.gallery', !seccionFaq && 'section.faq-section',
       !ubicacion && 'section.location', !resenas && 'section.testimonial-section'].filter(Boolean).join(' y ')}`
       + ' — sin las cuatro no hay mismo orden');
+  }
+
+  /* `alt` PROPIOS EN LA GALERIA (R24-FOTO-PISCINAS, 1-oct-2026). Las fotos son las de origen y no
+   * se tocan, pero en la de remodelacion tres `alt` estaban repetidos (la 10 copia el de la 09, la
+   * 03 el de la 02, y la 01 lleva el de otra galeria): dos imagenes con el mismo `alt` en la misma
+   * pagina no le dicen nada distinto a nadie. Se casa por el FINAL del nombre porque aqui la `src`
+   * aun es la del CDN (`localizar()` corre despues), y tiene que casar exactamente una. */
+  for (const [fichero, alt] of Object.entries(c.galeria?.alts ?? {})) {
+    const casan = [...galeria.querySelectorAll('img')]
+      .filter((i) => (i.getAttribute('src') ?? '').endsWith(fichero));
+    if (casan.length !== 1) {
+      throw new Error(`${ruta}: galeria.alts «${fichero}» casa ${casan.length} fotos de la galeria`);
+    }
+    casan[0].setAttribute('alt', alt);
   }
 
   /* EL CANJE (21-sep-2026). Sebastian pide las dos bandas azules intercambiadas: la GALERIA
