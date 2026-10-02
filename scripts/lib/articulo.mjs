@@ -36,7 +36,7 @@ const OBLIGATORIOS = {
   funnelStage: 'awareness | consideration | decision',
   summary: 'el extracto de la tarjeta',
   seo: '{ title, description }',
-  portada: '{ ref, alt } — ref del banco de /gallery',
+  portada: '{ ref, alt } — ref: bi-NNNN (banco), servicio-indice (/gallery) o base de escalera heredada',
   relacionados: 'slugs de 2-3 articulos hermanos. NINGUN BLOG HUERFANO: sin esto no se publica',
 };
 

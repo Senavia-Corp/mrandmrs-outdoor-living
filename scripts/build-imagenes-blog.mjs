@@ -1,35 +1,30 @@
 #!/usr/bin/env node
 /**
- * R22-BLOG-IMG — deriva la imagen de los blogs y emite `src/data/imagenes-blog-por-ruta.json`.
+ * R22-BLOG-IMG · BLOG-BANCO — deriva la imagen de los blogs y emite `src/data/imagenes-blog-por-ruta.json`.
  *
  *     node scripts/build-imagenes-blog.mjs           deriva y escribe
  *     node scripts/build-imagenes-blog.mjs --check    no escribe: falla si el dato no cuadra
  *
  * ─────────────────────────────────────────────────────────────────────────────
- * POR QUE EL CASTING VIVE AQUI Y NO EN EL JSON
+ * EL CASTING VIVE EN CADA ARTICULO
  *
- * El JSON es DERIVADO y lo dice en su cabecera. La decision -que foto va en que hueco- es esto
- * de abajo, con su motivo al lado. Asi el dato no se edita a mano y el porque no se pierde.
+ * `contenido/blog/<slug>.md` declara su `portada.ref`, sus `figuras[].ref` y su `alt`, junto al
+ * texto que ilustran. Desde BLOG-BANCO (1-oct-2026) van por ahi los 47, los 10 heredados de
+ * Webflow incluidos: el objeto `CASTING` de R22 murio con el banco de `~/Downloads` que lo
+ * alimentaba, y que desaparecio del disco.
  *
- * ─────────────────────────────────────────────────────────────────────────────
- * DE DONDE SALEN LAS FOTOS, Y LA LINEA QUE NO SE CRUZA
+ * CUATRO FORMAS DE REF, Y LA LINEA QUE NO SE CRUZA (solo obra real del cliente, `00-PRINCIPIOS §3`):
  *
- * Dos fuentes, y ninguna de las dos se elige por el nombre del fichero (`00-PRINCIPIOS §4`):
+ *   · `bi-0504`              banco nuevo (`src/data/banco-imagenes.json`, BANCO-IMAGENES.md).
+ *                            `porBanco()` se niega si no es aprobada y obra real, o si el
+ *                            recorte 16:9 no es seguro.
+ *   · `construction-7`       foto de `/gallery`; el veredicto es `gallery-procedencia.json`.
+ *   · `<base de escalera>`   escalera heredada de R22/R23, ya publicada en
+ *                            `public/images/blog/<slug-heredado>/`. Se sirve tal cual.
+ *   · `diagrama-…`           dibujo, nunca foto; exige `pie`.
  *
- *   · BANCO -- `~/Downloads/MrMrs_Outdoor_Living_Image_Bank`, derivado `blog` (1600x900).
- *     421 activos, 74 publicables, de TRES propiedades. Casting hecho sobre las 7 hojas de
- *     `07_contact_sheets/by-service/`.
- *   · GALERIA -- lo que el sitio ya sirve en `public/images/images/`. Casting hecho sobre hojas
- *     de contactos fabricadas para esto, no sobre los nombres.
- *
- * 🚨 `galeria()` RECHAZA cualquier fichero con `trainedAlgorithmicMedia`. No es paranoia: las 10
- * de `images/commercial-*` lo llevan LAS DIEZ, y las 10 tarjetas de blog que hay hoy en
- * produccion tambien. Publicar eso como obra del cliente es lo que prohibe `00-PRINCIPIOS §3`.
- *
- * ⚠️ Y EL MARCADOR FALLA ABIERTO, comprobado: los 4 `-tccm-` que ilustran hoy `top-10` NO lo
- * llevan y son IA sin discusion -infinity pools frente al mar con puestas de sol imposibles, en
- * una empresa que construye patios traseros tierra adentro-. La ausencia de marcador no prueba
- * nada; por eso ademas se MIRAN. Lo que el marcador da es un rechazo automatico, no un permiso.
+ * Y NINGUNA FOTO DOS VECES. La puerta del final compara por PARECIDO VISUAL, no por nombre: la
+ * misma foto vive a la vez en `/gallery`, en el banco y en una escalera heredada.
  *
  * ─────────────────────────────────────────────────────────────────────────────
  * LOS TAMAÑOS SALEN DE LA MEDIDA DE LECTURA, NO DE LO QUE HABIA
@@ -40,8 +35,8 @@
  * pintar 380 px, con la escalera llegando a 2752.
  *
  * TODO A 16:9. Mezclar relaciones de aspecto en una fila de tarjetas hace que la altura la fije
- * la mas alta y deje hueco en las demas (`CLAUDE.md` regla 4). El banco declara `16:9` seguro en
- * las 74. Las de galeria se recortan centradas.
+ * la mas alta y deje hueco en las demas (`CLAUDE.md` regla 4). Del banco solo entran como portada
+ * las que declaran `16:9` en `recortes_seguros`; las de galeria se recortan centradas.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -49,9 +44,10 @@ import { execFileSync } from 'node:child_process';
 import sharp from 'sharp';
 import { leeArticulos } from './lib/articulo.mjs';
 import { graduarPortada } from './lib/grado-portada.mjs';
+import { dhash, distancia, MISMA, DUDOSA } from './lib/parecido.mjs';
+import { ordenaIndice } from '../src/lib/blog-datos.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
-const BANCO = path.join(process.env.HOME, 'Downloads/MrMrs_Outdoor_Living_Image_Bank');
 const SALIDA = path.join(RAIZ, 'public/images/blog');
 const DATO = path.join(RAIZ, 'src/data/imagenes-blog-por-ruta.json');
 const SOLO_CHECK = process.argv.includes('--check');
@@ -68,65 +64,9 @@ let fallos = 0;
 const ajustadas = [];
 /** R23 · las portadas, con su medida antes y despues. Tambien se enseñan. */
 const graduadas = [];
+/** Figuras del banco sin `16:9` seguro: pasan, pero se dicen. */
+const avisos = [];
 const mal = (m) => { console.log(`  🔴 ${m}`); fallos++; };
-
-/* ── las fuentes ─────────────────────────────────────────────────────────── */
-
-/**
- * SEO-SAFE (1-oct-2026) — SIN EL BANCO NO SE PARA, SE CONSERVA.
- *
- * Antes, sin `~/Downloads/MrMrs_Outdoor_Living_Image_Bank` el script salia con exit 2 y el JSON
- * no se tocaba. Eso hacia imposible dar de alta un articulo nuevo desde una maquina sin el banco
- * aunque sus fotos fueran de /gallery, que ya tienen su escalera versionada. Ahora, sin banco:
- *   · las 10 heredadas del CASTING se CONSERVAN tal cual del JSON anterior (no se re-derivan:
- *     sus fuentes viven en el banco y no hay con que re-derivarlas);
- *   · los articulos de contenido/blog/ con refs de /gallery o diagramas se resuelven normalmente,
- *     reutilizando los .webp que ya existen y derivando solo los que falten.
- * Un ref de banco en un articulo nuevo sigue REVENTANDO sin banco: no se inventa un fichero.
- */
-let SIN_BANCO = false;
-const idxBanco = () => {
-  const db = path.join(BANCO, '08_ai_index/image_bank.sqlite');
-  if (!fs.existsSync(db)) {
-    console.error(`\n  El banco no esta en ${BANCO}.`);
-    console.error('  Las 10 heredadas se conservan del JSON anterior; solo se derivan refs de /gallery que falten.\n');
-    SIN_BANCO = true;
-    return new Map();
-  }
-  const sql = `select a.project_id, a.asset_id, d.seo_filename, d.local_path
-               from assets a join derivatives d using(asset_id)
-               where a.publish_status like 'approved%'
-                 and a.asset_class = 'real_completed_project' and d.format = 'blog'`;
-  const m = new Map();
-  for (const l of execFileSync('sqlite3', ['-separator', '\t', db, sql]).toString().trim().split('\n')) {
-    const [proy, asset, seo, local] = l.split('\t');
-    m.set(`${proy}:${seo.replace('.webp', '').split('-').pop()}`, { asset, seo, local });
-  }
-  return m;
-};
-const BCO = idxBanco();
-
-/** Foto del banco. El token de region sale del nombre: estas rutas no dicen region
- *  y afirmarla en la URL seria decir algo que el articulo no dice (igual que R21). */
-const banco = (proy, n, alt) => {
-  if (SIN_BANCO) throw new Error(`banco: ${proy}:${n} necesita el banco de imagenes, que no esta en esta maquina`);
-  const v = BCO.get(`${proy}:${n}`);
-  if (!v) throw new Error(`banco: no hay ${proy}:${n} aprobada con derivado blog`);
-  return { origen: 'banco', fuente: v.local, base: v.seo.replace('-south-fl', '').replace('.webp', ''),
-    alt, _asset: v.asset, _proyecto: proy };
-};
-
-/** Foto que el sitio ya sirve. Se RECHAZA si lleva el marcador de medio generado. */
-const galeria = (rel, alt) => {
-  const abs = path.join(RAIZ, 'public/images', rel);
-  if (!fs.existsSync(abs)) throw new Error(`galeria: no existe ${rel}`);
-  if (fs.readFileSync(abs).includes('trainedAlgorithmicMedia')) {
-    throw new Error(`🔴 ${rel} lleva trainedAlgorithmicMedia — no se publica como obra del cliente`);
-  }
-  return { origen: 'galeria', fuente: abs, base: path.basename(rel).replace(/\.(avif|jpg|webp|png)$/, ''),
-    alt, _fuente_publica: `/images/${rel}` };
-};
-
 
 /* ── EL BANCO DE /gallery, POR REFERENCIA ────────────────────────────────────
  *
@@ -200,149 +140,83 @@ const porRef = (ref, alt, esPortada = false) => {
   return { origen: 'gallery', fuente: abs, base: `mm-${ref}${esPortada ? '-p' : ''}`, alt, _fuente_publica: f.src, _ref: ref };
 };
 
-/* ── EL CASTING ──────────────────────────────────────────────────────────────
+/* ── EL BANCO NUEVO, POR ID ──────────────────────────────────────────────────
  *
- * Reparto por propiedad, y no es estetica: cada una tiene una firma que se reconoce.
- *   · project-062 -- casa crema con teja roja, piscina geometrica, spa elevado en mosaico perla,
- *     deck de marmol blanco. Es el material premium -> los articulos de diseño.
- *   · project-059 -- REMODELACION. Spa en mosaico azul oscuro, travertino, cesped artificial y
- *     CANASTA DE BALONCESTO en casi todos los cuadros -> los articulos de remodelacion, donde el
- *     sujeto es honesto y la firma no canta por estar fuera de sitio.
- *   · project-061 -- piscina lap, cubierta de aluminio, lago. La malla negra de seguridad y el
- *     tobogan amarillo dominan el encuadre: es el material mas flojo -> un solo articulo.
+ * `bi-NNNN` es la entrada de `src/data/banco-imagenes.json`. La fuente es el WebP de 1600 px que
+ * ya sirve `/images/banco/`; aqui se recorta a 16:9 centrado y se escalona como las demas.
  *
- * Y se alternan en el orden de `/blogs-tips`, que es donde se ven las diez juntas:
- * 062, 061, 059, 062, 059 — sin dos seguidas de la misma casa.
- *
- * FUERA DEL ENCARGO, con motivo: `commercial-pool-construction-...` y
- * `residential-vs-commercial-...` necesitan imagen comercial. El banco tiene CERO comerciales
- * aprobadas y las 10 de `images/commercial-*` son IA. Ver el bloque del final: entran con obra
- * real de sujeto residencial y `alt` que no afirma nada comercial.
+ * FALLA CERRADO en las reglas de BANCO-IMAGENES.md:
+ *   · solo `aprobada*` y `procedencia: obra_real` (reglas 4 y 5);
+ *   · una portada exige `16:9` en `recortes_seguros`;
+ *   · `aprobada_con_recorte` solo vale en sus recortes seguros (regla 2), y aqui todo es 16:9.
+ * Una `aprobada` sin `16:9` pasa como figura AVISANDO: el recorte centrado puede comerse el
+ * sujeto, y eso se decide mirando la hoja de casting, no aqui.
  */
-const casting = () => ({
-  '/blogs/top-10-luxury-pool-designs-for-florida-homes': {
-    /* Sustituye ademas los 4 `-tccm-` del cuerpo: son IA (mar, atardecer, arquitectura imposible). */
-    reemplaza_figuras: true,
-    tarjeta: banco('project-062', '04', 'Aerial view of a rectangular pool with a raised mosaic-clad spa and a wide white stone deck in a fenced Florida backyard.'),
-    figuras: [
-      banco('project-062', '28', 'Raised square spa clad in pale mosaic tile spilling into a rectangular pool, seen from the pool deck.'),
-      /* El `alt` de 062-21 y 062-23 NO dice «dusk» ni «late afternoon» aunque el banco las marque
-       * `golden_hour_or_twilight`: miradas, son midday SUBEXPUESTAS -cielo medido, sujeto en
-       * sombra-, y ademas aqui se les levanta la sombra. Un `alt` que dijera atardecer describiria
-       * una foto que no es la que se publica. El metadato del banco se equivoca; la hoja no. */
-      banco('project-062', '11', 'Two-storey Florida home with a geometric pool, raised spa and white stone deck running the width of the backyard.'),
-      banco('project-062', '21', 'Pool and raised spa seen across the lawn, with palms and the rear of the house behind.'),
-    ],
-  },
-  '/blogs/complete-guide-to-pool-construction-in-florida-costs-timeline-process': {
-    tarjeta: banco('project-061', '12', 'Lap pool behind a Florida home, enclosed by a removable black mesh safety fence, with a dark-framed aluminium patio cover over the lanai.'),
-    figuras: [
-      banco('project-061', '09', 'Aerial view of a narrow lap pool set in a lawn, with stepping-stone pavers and a covered lanai along the back of the house.'),
-      banco('project-061', '11', 'Lap pool and covered lanai seen from the lawn, with a mesh safety fence around the water.'),
-      banco('project-061', '07', 'View from under an aluminium patio cover toward the lap pool and the lake behind the property.'),
-    ],
-  },
-  '/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish': {
-    /* La tarjeta NO es la aerea 062-05 aunque sea la de mas puntuacion: en `/blogs-tips` cae a
-     * cuatro sitios de la de `top-10` (062-04) y es casi el mismo encuadre. Visto en la hoja de
-     * las 32 derivadas, no en el metadato. La aerea baja a figura, donde no compite con nada. */
-    tarjeta: banco('project-062', '17', 'Finished pool and raised spa alongside the rear of the house, with loungers on the stone deck.'),
-    figuras: [
-      banco('project-062', '23', 'Pool and raised spa beside a covered lanai, with loungers on the stone deck and trees behind.'),
-      banco('project-062', '29', 'Close view of the raised spa mosaic cladding and the spillway into the pool.'),
-      banco('project-062', '05', 'Aerial view of a finished pool and raised spa, showing the full deck layout and the surrounding fence line.'),
-    ],
-  },
-  '/blogs/common-pool-construction-mistakes-we-see-in-florida': {
-    tarjeta: banco('project-059', '08', 'Remodelled rectangular pool with a raised spa clad in deep-blue mosaic, a pale travertine deck and a poolside basketball hoop.'),
-    figuras: [
-      banco('project-059', '02', 'Aerial view of a remodelled pool and raised spa framed by a travertine deck, clipped hedge and artificial turf.'),
-      banco('project-059', '19', 'Remodelled pool seen from the deck, with the raised spa spilling into the main body of water.'),
-      banco('project-059', '24', 'Rear of a Florida home with the remodelled pool, raised spa and stepping-stone pavers across the turf.'),
-    ],
-  },
-  '/blogs/new-pool-construction-vs-pool-remodeling-which-is-right-for-you': {
-    /* El unico que alterna DOS propiedades a proposito: el banco tiene los dos servicios y el
-     * articulo compara justo eso. 059 remodelacion, 062 obra nueva. */
-    tarjeta: banco('project-059', '09', 'Remodelled pool with a deep-blue mosaic spa and resurfaced interior, finished with a travertine deck.'),
-    figuras: [
-      banco('project-062', '10', 'Aerial view of a newly built pool and raised spa, with the deck and fence laid out around fresh lawn.'),
-      banco('project-059', '27', 'Remodelled pool and raised spa seen from the corner of the deck, with mature hedge behind.'),
-      banco('project-062', '08', 'Newly built pool and raised spa from above, showing the finished stone deck and planting.'),
-    ],
-  },
-  '/blogs/what-permits-are-required-for-pool-construction-in-florida': {
-    /* Sin foto posible de un permiso. Obra residencial identificable, que es lo que el articulo
-     * explica que hay que permisar. No se inventa la foto de una inspeccion. */
-    tarjeta: galeria('images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg', 'Overhead view of a rectangular pool with an inset spa, bordered by a stone deck, clipped hedge and palms.'),
-    figuras: [
-      galeria('images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg', 'Pool with a raised spa and dark tile detail beside a covered patio, with stepping-stone pavers over turf.'),
-      galeria('images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg', 'Pool and spa on a stone deck with loungers, overlooking a lake at the rear of the property.'),
-      galeria('images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg', 'Rectangular pool with a raised spa clad in blue tile, set in turf behind a screening hedge.'),
-    ],
-  },
-  '/blogs/outdoor-living-design-guide-for-florida-homes': {
-    /* `kitchen-7` es 1250x698 (ar 1,79), asi que el recorte a 16:9 no le quita nada: la foto ya
-     * viene cerrada sobre la encimera y a ~380 px de tarjeta se lee oscura y confusa. Se cambia
-     * por `kitchen-2`, que es la misma cocina de exterior con aire y luz. Visto, no supuesto. */
-    tarjeta: galeria('images/kitchen-2/custom-outdoor-kitchen-poolside-florida.avif', 'Poolside outdoor kitchen with a built-in grill and stainless cabinetry under a covered patio.'),
-    figuras: [
-      galeria('images/pergolas-6/custom-pergola-patio-cover-builders-florida-06.jpg', 'Dark aluminium pergola over a paved pool deck, with palms and water beyond.'),
-      galeria('images/patio-screen-8/patio-screen-enclosure-builders-contractors-north-south-florida-08.jpg', 'Furnished lanai behind retractable screens, with a sofa, armchairs and a dining table overlooking the pool.'),
-      galeria('images/kitchen-7/modern-custom-outdoor-kitchen-design-florida.avif', 'Outdoor kitchen with stainless appliances and a stone pizza oven, built under cover beside a pool.'),
-    ],
-  },
-  '/blogs/how-outdoor-living-spaces-increase-property-value-in-florida': {
-    tarjeta: galeria('images/pergolas-5/custom-pergola-patio-cover-builders-florida-05.jpg', 'Timber pavilion with a vaulted roof and ceiling fan, sheltering an outdoor kitchen and bar seating.'),
-    figuras: [
-      galeria('images/deck-6/custom-deck-builders-contractors-north-south-florida-06.jpg', 'Hardwood deck stepping down from a house toward a pool, with planting along the edge.'),
-      galeria('images/kitchen-4/custom-outdoor-kitchen-with-grill-florida.avif', 'Outdoor kitchen island with a built-in grill and stone cladding, under a covered patio beside palms.'),
-      galeria('images/pergolas-2/custom-pergola-patio-cover-builders-florida-02.jpg', 'Glass-topped aluminium pergola beside a pool, with a slatted privacy screen at one end.'),
-    ],
-  },
+const BANCO = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/banco-imagenes.json'), 'utf8'));
+const BANCO_ID = new Map(BANCO.map((e) => [e.id, e]));
 
-  /* ── LOS DOS QUE PEDIAN IMAGEN COMERCIAL ────────────────────────────────────────────────
-   *
-   * NO EXISTE FOTOGRAFIA COMERCIAL REAL. Comprobado sobre los 421 activos del banco, por
-   * `primary_service`, `archetypes`, `service_modules`, `feature_tags` y
-   * `base_visual_description`: CERO coincidencias de commercial/hotel/resort/multifamily/
-   * community. Y las 10 de `images/commercial-*` llevan `trainedAlgorithmicMedia`.
-   *
-   * Asi que la eleccion real era: dejar una imagen GENERADA en produccion, o poner obra real
-   * cuyo sujeto es residencial. Se pone obra real, y el `alt` describe EXACTAMENTE lo que se ve
-   * sin afirmar nada comercial — ni «hotel», ni «resort», ni «commercial». El titular del
-   * articulo habla de obra comercial; la foto no dice que lo sea. Lo que se quita es una
-   * afirmacion falsa sobre el trabajo del cliente; lo que queda es una ilustracion floja, y esta
-   * dicho en la bitacora.
-   *
-   * SE ELIGE `project-061` -la piscina lap con cubierta de aluminio y lago- porque es lo mas
-   * parecido que hay de verdad: una lamina larga de nado, no un patio trasero con spa. Sigue
-   * siendo residencial y por eso el `alt` no lo disfraza.
-   *
-   * PENDIENTE PARA SEBASTIAN: pedirle al cliente fotografia de sus obras comerciales. Es el
-   * unico arreglo de verdad, y hasta que llegue estas dos quedan por debajo del resto. */
-  '/blogs/commercial-pool-construction-in-florida-what-decision-makers-must-know': {
-    tarjeta: banco('project-061', '08', 'Aerial view of a long lap pool alongside a covered lanai, with stepping-stone pavers across the lawn.'),
-    figuras: [
-      banco('project-061', '01', 'Lap pool seen from above, with a dark-framed aluminium patio cover running along the rear of the building.'),
-      banco('project-061', '14', 'Covered lanai with an aluminium patio cover, looking out over the lap pool toward the lake.'),
-      banco('project-061', '04', 'Lap pool and lawn from above, bordered by a removable mesh safety fence.'),
-    ],
-  },
-  '/blogs/residential-vs-commercial-pool-construction-in-florida': {
-    /* El unico que alterna DOS propiedades por el contenido y no por variedad: el articulo
-     * compara dos cosas, asi que se ensenan dos obras distintas -un patio trasero con spa y una
-     * lamina de nado-, una en cada figura. */
-    tarjeta: banco('project-062', '06', 'Aerial view of a rectangular backyard pool with a raised spa and a wide stone deck.'),
-    figuras: [
-      banco('project-061', '10', 'Long lap pool from above, set in a lawn beside a covered lanai and a lake.'),
-      banco('project-062', '25', 'Backyard pool and raised spa seen from the deck, with the house and palms behind.'),
-      banco('project-061', '13', 'Lap pool seen from under the aluminium patio cover, with loungers on the paved deck.'),
-    ],
-  },
-});
-/* Sin banco el CASTING no se evalua: sus `banco()` reventarian. Las heredadas se leen del JSON. */
-const CASTING = SIN_BANCO ? null : casting();
+const porBanco = (ref, alt, esPortada = false) => {
+  const e = BANCO_ID.get(ref);
+  if (!e) throw new Error(`ref "${ref}": no existe en banco-imagenes.json`);
+  if (!e.estado.startsWith('aprobada') || e.procedencia !== 'obra_real') {
+    throw new Error(`🔴 ref "${ref}" NO ES PUBLICABLE: estado ${e.estado}, procedencia ${e.procedencia}`);
+  }
+  const seguros = e.recortes_seguros ?? [];
+  if (!seguros.includes('16:9')) {
+    if (esPortada) throw new Error(`🔴 ref "${ref}": una portada exige 16:9 en recortes_seguros (tiene ${seguros.join(', ') || 'ninguno'})`);
+    if (e.estado === 'aprobada_con_recorte') throw new Error(`🔴 ref "${ref}": aprobada_con_recorte y 16:9 no esta entre sus recortes seguros`);
+    avisos.push(`${ref}: figura sin 16:9 seguro (${e.estado}) — mirar su recorte en la hoja`);
+  }
+  const abs = path.join(RAIZ, 'public', e.src);
+  if (!fs.existsSync(abs)) throw new Error(`ref "${ref}": ${e.src} no existe en disco`);
+  return { origen: 'banco', fuente: abs, base: `mm-${ref}${esPortada ? '-p' : ''}`, alt,
+    _fuente_publica: e.src, _ref: ref, _proyecto: e.proyecto ?? null };
+};
+
+/* ── LAS ESCALERAS HEREDADAS, POR NOMBRE BASE ────────────────────────────────
+ *
+ * Los 10 articulos de Webflow se publicaron en R22/R23 con fotos del banco de `~/Downloads` y de
+ * la galeria. Sus escaleras siguen en `public/images/blog/<slug>/` y SON lo publicado: se sirven
+ * byte a byte, sin re-derivar (la fuente del banco viejo ya no existe). La ref es el nombre base
+ * (`mrandmrs-pool-spa-a2-blog-project-062-04`), como las escribio SEO-SAFE en los `.md`.
+ *
+ * Una escalera de portada (400/800, graduada) no sirve de figura ni al reves: a la otra clase le
+ * faltan los peldaños y no hay de donde sacarlos. Rojo.
+ *
+ * La casa: el banco nuevo reconoce dos de las tres del viejo (medido por dHash y mirado a ojo el
+ * 1-oct-2026): project-059 = obra-046, project-061 = obra-088. La 062 no esta en el banco nuevo.
+ */
+const LEGADO_PROYECTO = { 'project-059': 'obra-046', 'project-061': 'obra-088', 'project-062': 'legado-062' };
+const LEGADO = new Map();
+for (const carpeta of fs.readdirSync(SALIDA)) {
+  if (['banco', 'diagramas'].includes(carpeta) || !fs.statSync(path.join(SALIDA, carpeta)).isDirectory()) continue;
+  for (const f of fs.readdirSync(path.join(SALIDA, carpeta))) {
+    const m = f.match(/^(.+)-(\d+)\.webp$/);
+    if (!m) continue;
+    if (!LEGADO.has(m[1])) LEGADO.set(m[1], { carpetas: new Set(), anchos: [] });
+    LEGADO.get(m[1]).carpetas.add(carpeta);
+    LEGADO.get(m[1]).anchos.push(Number(m[2]));
+  }
+}
+
+const porLegado = (ref, alt, esPortada = false) => {
+  const l = LEGADO.get(ref);
+  if (!l) throw new Error(`ref "${ref}": no es bi-NNNN, ni servicio-indice, ni una escalera heredada de public/images/blog/`);
+  if (l.carpetas.size !== 1) throw new Error(`ref "${ref}": la escalera esta en ${l.carpetas.size} carpetas heredadas`);
+  const [carpeta] = l.carpetas;
+  const anchos = [...l.anchos].sort((a, b) => a - b);
+  const dePortada = anchos.every((w) => TARJETA.includes(w));
+  if (dePortada !== esPortada) {
+    throw new Error(`ref "${ref}": es una escalera de ${dePortada ? 'portada' : 'figura'} y se usa como ${esPortada ? 'portada' : 'figura'}`);
+  }
+  const url = (w) => `/images/blog/${carpeta}/${ref}-${w}.webp`;
+  const mayor = anchos[anchos.length - 1];
+  return {
+    src: url(mayor), srcset: anchos.map((w) => `${url(w)} ${w}w`).join(', '), alt,
+    ancho: mayor, alto: ALTO(mayor), _origen: 'legado', _ref: ref,
+    _proyecto: Object.entries(LEGADO_PROYECTO).find(([k]) => ref.includes(k))?.[1] ?? null,
+  };
+};
 
 /* ── derivar ─────────────────────────────────────────────────────────────── */
 
@@ -411,7 +285,9 @@ async function peldanos(im, ruta, anchos, esPortada = false, carpeta = null) {
   for (const w of anchosReales) {
     const destino = path.join(dir, `${im.base}-${w}.webp`);
     /* Sin banco se reutiliza lo ya derivado: re-derivar movería bytes versionados sin motivo. */
-    if (!SOLO_CHECK && !(SIN_BANCO && fs.existsSync(destino))) {
+    /* ponytail: lo que ya existe no se re-deriva — la base lleva la ref, asi que mismo nombre es misma
+     * foto. Para re-graduar una escalera, se borran sus ficheros y se vuelve a correr. */
+    if (!SOLO_CHECK && !fs.existsSync(destino)) {
       if (esPortada) {
         /* R23 — grado fotografico completo. Sustituye al levantado de sombra: lo incluye y
          * ademas fija niveles, medios, contraste local y saturacion. Solo las portadas. */
@@ -440,57 +316,26 @@ async function peldanos(im, ruta, anchos, esPortada = false, carpeta = null) {
     ancho: mayor,
     alto: ALTO(mayor),
     _origen: im.origen,
-    ...(im._asset ? { _asset: im._asset, _proyecto: im._proyecto } : { _fuente: im._fuente_publica }),
+    _ref: im._ref, _proyecto: im._proyecto ?? null, _fuente: im._fuente_publica,
   };
 }
 
+
 const salida = {
   _lee_esto: [
-    'DERIVADO por scripts/build-imagenes-blog.mjs. No editar a mano: el casting y su motivo',
-    'viven en la cabecera de ese script, y cualquier cambio aqui se pierde al rederivar.',
+    'DERIVADO por scripts/build-imagenes-blog.mjs. No editar a mano: cada articulo declara sus',
+    'imagenes en contenido/blog/<slug>.md, y cualquier cambio aqui se pierde al rederivar.',
     '',
-    'Lo consume scripts/build-paginas.mjs, que (a) sustituye la foto de las tarjetas de blog y',
-    '(b) inserta las 3 <figure> dentro de .w-richtext. Las 11 rutas de blog son DERIVADAS: un',
-    'hand-edit sobre src/pages/blogs/*.astro se pierde en el siguiente `npm run paginas`.',
-    '',
-    'Faltan 2 de los 10 articulos a proposito -commercial-pool-construction y',
-    'residential-vs-commercial-: piden imagen comercial, el banco tiene 0 comerciales aprobadas',
-    'y las 10 de images/commercial-* llevan trainedAlgorithmicMedia. Conservan la suya.',
+    'Lo consume scripts/publica-blog.mjs, que escribe portada y figuras en el documento de Sanity.',
+    '`_ref` es la ref declarada en el .md y `_proyecto` la casa (obra-NNN) cuando se sabe.',
   ],
   rutas: {},
 };
 
-const PREVIO = fs.existsSync(DATO) ? JSON.parse(fs.readFileSync(DATO, 'utf8')).rutas : {};
-if (CASTING === null) {
-  for (const [ruta, e] of Object.entries(PREVIO)) if (!e._articulo) salida.rutas[ruta] = e;
-  console.log(`  sin banco: ${Object.keys(salida.rutas).length} heredadas conservadas del JSON anterior`);
-}
-for (const [ruta, c] of Object.entries(CASTING ?? {})) {
-  salida.rutas[ruta] = {
-    ...(c.reemplaza_figuras ? { reemplaza_figuras: true } : {}),
-    tarjeta: { ...(await peldanos(c.tarjeta, ruta, TARJETA, true)), sizes: SIZES_TARJETA },
-    figuras: [],
-  };
-  for (const f of c.figuras) {
-    salida.rutas[ruta].figuras.push({ ...(await peldanos(f, ruta, FIGURA)), sizes: SIZES_FIGURA });
-  }
-}
-
-
-/* ── LOS ARTICULOS NUEVOS ────────────────────────────────────────────────────
- *
- * No hay tabla de casting para ellos: cada articulo declara SUS imagenes en su propio
- * frontmatter, junto al texto que ilustran. Es lo unico que escala a noventa — una tabla
- * central de 90 entradas se desincroniza del cuerpo el dia que alguien mueve una figura.
- *
- * El reparto sigue siendo auditable: `contenido/blog/<slug>.md` dice que `ref` usa y con que
- * `alt`, y `porRef()` se niega si esa foto no es obra del cliente.
- */
 const ARTICULOS = leeArticulos(path.join(RAIZ, 'contenido/blog'));
 
-/* Una foto reutilizada en cinco articulos deriva UNA escalera, no cinco. La clave incluye el
- * ancho y el tratamiento: una portada va graduada y una figura no, asi que aunque compartan
- * `ref` no comparten fichero (de ahi el sufijo `-p`). */
+/* Una foto que aparece como portada y como figura deriva DOS escaleras (graduada y no, de ahi el
+ * sufijo `-p`), pero nunca dos veces la misma. Todas van a `public/images/blog/banco/`. */
 const yaDerivadas = new Map();
 const peldanosCache = async (im, anchos, esPortada) => {
   const k = `${im.base}|${anchos.join(',')}|${esPortada}`;
@@ -498,44 +343,32 @@ const peldanosCache = async (im, anchos, esPortada) => {
   return yaDerivadas.get(k);
 };
 
-/* SEO-SAFE (1-oct-2026) — LOS 10 HEREDADOS TAMBIEN SE ESCRIBEN EN MARKDOWN.
- * Su casting de R22/R23 no se mueve (esta publicado y se eligio mirando las fotos), asi que el
- * Markdown tiene que REFERENCIAR esas mismas fotos por el nombre base de su escalera
- * (`custom-pool-spa-builders-florida-04`, `mrandmrs-pool-spa-a2-blog-project-062-28`…) y con el
- * MISMO alt. Si no casa, rojo: dos verdades para la misma foto es como se publica un alt de otra. */
-let heredadasConMd = 0;
-const base = (src) => path.basename(src).replace(/-\d+\.webp$/, '');
+/** La ref decide la fuente. El orden importa: `bi-0504` casaria con la forma de `/gallery`. */
+const resuelve = async (ref, alt, esPortada, pie) => {
+  if (esDiagrama(ref)) return diagrama(ref, alt, pie);
+  const anchos = esPortada ? TARJETA : FIGURA;
+  if (/^bi-\d{4}$/.test(ref)) return peldanosCache(porBanco(ref, alt, esPortada), anchos, esPortada);
+  if (/^[a-z]+-\d+$/.test(ref)) return peldanosCache(porRef(ref, alt, esPortada), anchos, esPortada);
+  return porLegado(ref, alt, esPortada);
+};
+
 for (const a of ARTICULOS) {
   const ruta = `/blogs/${a.frente.slug}`;
-  if (salida.rutas[ruta]) {
-    const h = salida.rutas[ruta];
-    const esperado = [[base(h.tarjeta.src), h.tarjeta.alt], ...h.figuras.map((f) => [base(f.src), f.alt])];
-    const declarado = [[a.frente.portada.ref, a.frente.portada.alt],
-      ...a.usadas.map((ref) => [ref, a.figuras.find((f) => f.ref === ref)?.alt])];
-    const mismo = JSON.stringify(esperado) === JSON.stringify(declarado);
-    if (!mismo) {
-      mal(`${ruta}: es heredada y su Markdown no referencia el casting publicado.\n`
-        + `        casting:  ${JSON.stringify(esperado)}\n        markdown: ${JSON.stringify(declarado)}`);
-    } else heredadasConMd++;
-    continue;
-  }
   try {
-    const pRef = a.frente.portada.ref;
-    const portada = esDiagrama(pRef)
-      ? diagrama(pRef, a.frente.portada.alt, a.frente.portada.pie)
-      : await peldanosCache(porRef(pRef, a.frente.portada.alt, true), TARJETA, true);
+    const p = a.frente.portada;
+    const portada = await resuelve(p.ref, p.alt, true, p.pie);
     const figuras = [];
     /* EN EL ORDEN DEL CUERPO, no en el del frontmatter: `publica-blog.mjs` resuelve cada
      * `{{figura: ref}}` por nombre, pero el indice de esta lista es lo que ve quien depura. */
     for (const ref of a.usadas) {
       const d = a.figuras.find((f) => f.ref === ref);
-      figuras.push(esDiagrama(ref)
-        ? diagrama(ref, d.alt, d.pie)
-        : { ...(await peldanosCache(porRef(ref, d.alt), FIGURA, false)), sizes: SIZES_FIGURA, alt: d.alt });
+      const f = await resuelve(ref, d.alt, false, d.pie);
+      figuras.push(esDiagrama(ref) ? f : { ...f, sizes: SIZES_FIGURA, alt: d.alt });
     }
-    salida.rutas[ruta] = { _articulo: true,
-      tarjeta: esDiagrama(pRef) ? portada : { ...portada, alt: a.frente.portada.alt, sizes: SIZES_TARJETA },
-      figuras };
+    salida.rutas[ruta] = {
+      tarjeta: esDiagrama(p.ref) ? portada : { ...portada, alt: p.alt, sizes: SIZES_TARJETA },
+      figuras,
+    };
   } catch (e) {
     mal(`${ruta}: ${e.message}`);
   }
@@ -543,34 +376,177 @@ for (const a of ARTICULOS) {
 
 /* ── invariantes: un numero sin comando es una opinion ─────────────────────
  *
- * DERIVADAS, no escritas. La version anterior codificaba `!== 10` y `!== 40`: con 90 articulos
- * mas, esos dos numeros habrian puesto la puerta en rojo para siempre o —peor— habrian tenido
- * que subirse a mano cada vez, que es exactamente como un numero deja de comprobar nada.
- *
- * Lo que se comprueba ahora es la FORMA, que si es invariante: los 10 heredados siguen siendo
- * 10 con 3 figuras y 40 alt distintos (su salida esta publicada y no puede moverse), y cada
- * articulo nuevo tiene portada, al menos una figura, y ningun alt repetido dentro de si mismo.
+ * DERIVADAS, no escritas: lo que se comprueba es la FORMA. Cada articulo tiene portada, al menos
+ * una figura, y ningun alt vacio ni repetido dentro de si mismo.
  */
-const heredadas = Object.entries(salida.rutas).filter(([, r]) => !r._articulo);
-const articulos = Object.entries(salida.rutas).filter(([, r]) => r._articulo);
-const nRutas = Object.keys(salida.rutas).length;
-const nImg = Object.values(salida.rutas).reduce((a, r) => a + 1 + r.figuras.length, 0);
-
-if (heredadas.length !== 10) mal(`${heredadas.length} rutas heredadas, se esperaban 10`);
-const altsHeredados = new Set(heredadas.flatMap(([, r]) => [r.tarjeta.alt, ...r.figuras.map((f) => f.alt)]));
-if (altsHeredados.size !== 40) mal(`${altsHeredados.size} alt distintos en las heredadas, se esperaban 40`);
-for (const [ruta, r] of heredadas) {
-  if (r.figuras.length !== 3) mal(`${ruta}: ${r.figuras.length} figuras, las heredadas llevan 3`);
-}
-if (articulos.length + heredadasConMd !== ARTICULOS.length) {
-  mal(`${articulos.length} articulos derivados + ${heredadasConMd} heredados con Markdown, de ${ARTICULOS.length} ficheros en contenido/blog/`);
-}
-for (const [ruta, r] of articulos) {
+const rutas = Object.entries(salida.rutas);
+const nImg = rutas.reduce((n, [, r]) => n + 1 + r.figuras.length, 0);
+if (rutas.length !== ARTICULOS.length) mal(`${rutas.length} articulos derivados de ${ARTICULOS.length} ficheros en contenido/blog/`);
+for (const [ruta, r] of rutas) {
   if (!r.figuras.length) mal(`${ruta}: ningun articulo se publica sin al menos una figura`);
   const suyos = [r.tarjeta.alt, ...r.figuras.map((f) => f.alt)];
   if (new Set(suyos).size !== suyos.length) mal(`${ruta}: tiene un alt repetido dentro del mismo articulo`);
   if (suyos.some((x) => !x || !x.trim())) mal(`${ruta}: hay un alt vacio`);
 }
+
+/* ── PUERTA DE DUPLICADOS (BLOG-BANCO, 1-oct-2026) ──────────────────────────
+ *
+ * «La idea es no tener fotos duplicadas en los blogs y portadas» (Sebastian). Rojo si:
+ *
+ *   1. dos portadas son la misma foto;
+ *   2. una foto sale en dos articulos, tambien como portada de uno y cuerpo de otro;
+ *   3. dos huecos con nombre distinto se parecen a <= MISMA (es la misma foto con otro fichero),
+ *      o entre MISMA y DUDOSA sin estar mirados y declarados en DISTINTAS_A_OJO;
+ *   4. la puerta no reconoce las parejas conocidas de `publicada_como`: descalibrada;
+ *   5. dos portadas seguidas son de la misma casa en `/blogs-tips` o en el carrusel generico
+ *      (`blogs.json`, que es tambien el orden de la home), o lo son dos de las 5 de una ficha
+ *      (`contenido/roadmap-blog.json`). Una portada sin casa conocida no se da por buena: o se
+ *      reconoce en el banco, o se declara en CASA_DECLARADA despues de mirarla;
+ *   6. `usada_en` del banco no dice la verdad sobre el blog (regla 3 de BANCO-IMAGENES.md).
+ *
+ * UNA IDENTIDAD ES UNA FOTO: misma ref, o pixeles a <= MISMA. Se cuenta por identidades y no por
+ * nombres porque 12 heredadas eran fotos de /gallery con otro nombre, y por nombre no salia.
+ */
+const DISTINTAS_A_OJO = {
+  /* 'refA|refB': 'por que son fotos distintas aunque se parezcan (quien lo miro y cuando)', */
+};
+const CASA_DECLARADA = {
+  /* 'construction-3': 'obra-NNN o «sin pareja en el blog» — mirado a ojo, fecha', */
+};
+
+const enLotes = async (xs, fn, n = 8) => { for (let i = 0; i < xs.length; i += n) await Promise.all(xs.slice(i, i + n).map(fn)); };
+const huella = new Map();
+const huellaDe = async (abs) => { if (!huella.has(abs) && fs.existsSync(abs)) huella.set(abs, await dhash(abs)); return huella.get(abs); };
+
+const huecos = [];
+for (const [ruta, r] of rutas) {
+  for (const [rol, f] of [['portada', r.tarjeta], ...r.figuras.map((x) => ['figura', x])]) {
+    if (f._origen === 'diagrama') continue;
+    huecos.push({ slug: ruta.split('/').pop(), rol, ref: f._ref, abs: path.join(RAIZ, 'public', f.src), proyecto: f._proyecto });
+  }
+}
+const elegibles = BANCO.filter((e) => e.estado.startsWith('aprobada') && e.procedencia === 'obra_real');
+await enLotes([...huecos.map((h) => h.abs), ...elegibles.map((e) => path.join(RAIZ, 'public', e.src))], huellaDe);
+
+/* 4 · calibracion: lo que se sabe que es la misma foto tiene que salir como la misma foto. */
+let parejas = 0;
+for (const e of elegibles) {
+  for (const p of [].concat(e.publicada_como ?? [])) {
+    const otra = path.join(RAIZ, 'public', p);
+    if (!fs.existsSync(otra)) continue;
+    const d = distancia(await huellaDe(path.join(RAIZ, 'public', e.src)), await huellaDe(otra));
+    parejas++;
+    if (d > MISMA) mal(`puerta DESCALIBRADA: ${e.id} y ${p} son la misma foto y dan d=${d} (> ${MISMA})`);
+  }
+}
+if (!parejas) mal('puerta sin calibrar: ninguna pareja de publicada_como con fichero servido');
+
+/* Identidades: union de huecos por ref y por parecido. */
+const padre = huecos.map((_, i) => i);
+const raiz = (i) => (padre[i] === i ? i : (padre[i] = raiz(padre[i])));
+const une = (i, j) => { padre[raiz(i)] = raiz(j); };
+const dudosas = [];
+for (let i = 0; i < huecos.length; i++) {
+  for (let j = i + 1; j < huecos.length; j++) {
+    const [a, b] = [huecos[i], huecos[j]];
+    if (a.ref === b.ref) { une(i, j); continue; }
+    const [ha, hb] = [huella.get(a.abs), huella.get(b.abs)];
+    if (ha === undefined || hb === undefined) continue;
+    const d = distancia(ha, hb);
+    if (d <= MISMA) une(i, j);
+    else if (d <= DUDOSA && !DISTINTAS_A_OJO[[a.ref, b.ref].sort().join('|')]) dudosas.push(`${a.ref} ~ ${b.ref} d=${d}`);
+  }
+}
+const ident = new Map();
+huecos.forEach((h, i) => {
+  const k = raiz(i);
+  if (!ident.has(k)) ident.set(k, { refs: new Set(), usos: [], bancos: new Set(), proyectos: new Set() });
+  const x = ident.get(k);
+  x.refs.add(h.ref); x.usos.push(h); h.id = k;
+  if (/^bi-\d{4}$/.test(h.ref)) x.bancos.add(h.ref);
+  if (h.proyecto) x.proyectos.add(h.proyecto);
+});
+/* El banco reconoce la foto aunque entre con otro nombre: casa y `usada_en` salen de ahi. */
+for (const x of ident.values()) {
+  const hs = [...new Set(x.usos.map((u) => huella.get(u.abs)).filter((v) => v !== undefined))];
+  for (const e of elegibles) {
+    const he = huella.get(path.join(RAIZ, 'public', e.src));
+    if (he !== undefined && hs.some((h) => distancia(h, he) <= MISMA)) {
+      x.bancos.add(e.id);
+      if (e.proyecto) x.proyectos.add(e.proyecto);
+    }
+  }
+}
+
+const nombre = (x) => [...x.refs].join(' = ');
+const articulosDe = (x) => [...new Set(x.usos.map((u) => u.slug))];
+
+/* 1 y 2 · ninguna foto en dos articulos, ni dos portadas iguales. */
+for (const x of ident.values()) {
+  const arts = articulosDe(x);
+  if (arts.length > 1) mal(`misma foto en ${arts.length} articulos — ${nombre(x)}: ${x.usos.map((u) => `${u.slug} (${u.rol})`).join(', ')}`);
+  else if (x.refs.size > 1) mal(`misma foto con dos nombres en ${arts[0]}: ${nombre(x)}`);
+}
+/* 3 · lo que se parece sin ser igual se mira; mientras no se mire, no pasa. */
+for (const d of dudosas) mal(`parecidas sin mirar (${MISMA}<d<=${DUDOSA}): ${d} — mirarlas y declararlas en DISTINTAS_A_OJO si son distintas`);
+
+/* 5 · la misma casa no va seguida. */
+const portadaDe = new Map(huecos.filter((h) => h.rol === 'portada').map((h) => [h.slug, ident.get(h.id)]));
+const casas = new Map();
+const casaDe = (slug) => {
+  if (casas.has(slug)) return casas.get(slug);
+  const x = portadaDe.get(slug);
+  const decl = x && [...x.refs].map((r) => CASA_DECLARADA[r]).find(Boolean);
+  const cs = !x ? [] : x.proyectos.size ? [...x.proyectos] : decl ? [decl] : [];
+  if (cs.length > 1) mal(`${slug}: su portada aparece como dos casas (${cs.join(', ')})`);
+  casas.set(slug, cs[0] ?? null);
+  return casas.get(slug);
+};
+const sinCasa = new Set();
+const seguidas = (donde, slugs) => {
+  for (let i = 1; i < slugs.length; i++) {
+    const [ca, cb] = [casaDe(slugs[i - 1]), casaDe(slugs[i])];
+    for (const [s, c] of [[slugs[i - 1], ca], [slugs[i], cb]]) if (!c && portadaDe.has(s)) sinCasa.add(s);
+    if (ca && ca === cb) mal(`${donde}: dos portadas seguidas de la misma casa (${ca}) — ${slugs[i - 1]} · ${slugs[i]}`);
+  }
+};
+const frentes = ARTICULOS.map((a) => ({ slug: a.frente.slug, ordenIndice: a.frente.ordenIndice, destacadoIndice: a.frente.destacadoIndice === true }));
+seguidas('/blogs-tips', ordenaIndice(frentes).map((f) => f.slug));
+const GENERICO = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/blogs.json'), 'utf8')).posts.map((p) => p.enlace.split('/').pop());
+seguidas('carrusel generico y home', GENERICO);
+for (const c of JSON.parse(fs.readFileSync(path.join(RAIZ, 'contenido/roadmap-blog.json'), 'utf8')).clusters) {
+  if (!c.fichaServicio?.length) continue;
+  const vistas = new Map();
+  for (const s of c.fichaServicio) {
+    const casa = casaDe(s);
+    if (!casa) { if (portadaDe.has(s)) sinCasa.add(s); continue; }
+    if (vistas.has(casa)) mal(`ficha ${c.servicio ?? c.clave}: dos de sus 5 tarjetas son de la misma casa (${casa}) — ${vistas.get(casa)} · ${s}`);
+    vistas.set(casa, s);
+  }
+}
+for (const s of sinCasa) mal(`${s}: su portada no tiene casa conocida, asi que «no van seguidas de la misma casa» no se puede comprobar — reconocerla en el banco o declararla en CASA_DECLARADA`);
+
+/* 6 · `usada_en` dice la verdad sobre el blog, en los dos sentidos. */
+for (const x of ident.values()) {
+  for (const id of x.bancos) {
+    const usada = BANCO_ID.get(id).usada_en ?? [];
+    for (const s of articulosDe(x)) if (!usada.includes(`/blogs/${s}`)) mal(`usada_en: ${id} sale en /blogs/${s} y no lo dice`);
+  }
+}
+for (const e of BANCO) {
+  for (const r of (e.usada_en ?? []).filter((u) => u.startsWith('/blogs/'))) {
+    const s = r.split('/').pop();
+    if (![...ident.values()].some((x) => x.bancos.has(e.id) && articulosDe(x).includes(s))) mal(`usada_en: ${e.id} dice ${r} y ese articulo no la usa`);
+  }
+}
+
+/* Las tres cifras de BLOG-BANCO §0, contadas por identidad. Se imprimen siempre: son el antes y el
+ * despues del informe. */
+const xs = [...ident.values()];
+const enPortada = xs.filter((x) => x.usos.some((u) => u.rol === 'portada'));
+const cuerpoRepetido = xs.filter((x) => new Set(x.usos.filter((u) => u.rol === 'figura').map((u) => u.slug)).size > 1);
+const portadaEnOtroCuerpo = xs.filter((x) => x.usos.some((p) => p.rol === 'portada'
+  && x.usos.some((f) => f.rol === 'figura' && f.slug !== p.slug)));
 
 if (!SOLO_CHECK && fallos === 0) fs.writeFileSync(DATO, `${JSON.stringify(salida, null, 1)}\n`);
 
@@ -578,35 +554,34 @@ const ficheros = fs.existsSync(SALIDA)
   ? execFileSync('bash', ['-c', `find ${SALIDA} -name '*.webp' | wc -l`]).toString().trim() : '0';
 const peso = fs.existsSync(SALIDA)
   ? execFileSync('bash', ['-c', `du -sk ${SALIDA} | cut -f1`]).toString().trim() : '0';
-console.log(`\n  R23 · portadas graduadas: ${graduadas.length} de ${nRutas}`);
+console.log(`\n  R23 · portadas graduadas en esta corrida: ${graduadas.length}`);
 for (const g of graduadas) console.log(`     ${g}`);
-console.log(`\n  exposicion levantada en ${ajustadas.length} figuras de cuerpo (media <105 y sat <30):`);
+console.log(`\n  exposicion levantada en ${ajustadas.length} figuras derivadas en esta corrida (media <105 y sat <30):`);
 for (const a of ajustadas) console.log(`     ${a}`);
+if (avisos.length) console.log(`\n  ⚠️  ${avisos.length} aviso(s):\n${avisos.map((a) => `     ${a}`).join('\n')}`);
 /* ── LEYENDA ref -> FICHERO ─────────────────────────────────────────────────
  *
- * Se imprime porque el indice del JSON y el numero del fichero VAN AL REVES —`construction-0`
- * es `…-florida-10.jpg`— y eso ya escribio cuatro alt correctos sobre cuatro fotos
- * equivocadas. El guarda de procedencia solo caza el ref que se sale de rango; uno dentro de
- * rango pero del reves publica la foto de otro con el texto de esta, y se ve perfecto.
- *
- * Con la leyenda delante, comprobar un articulo es leer dos columnas. */
-const usados = new Map();
-for (const [, r] of articulos) {
+ * Se imprime porque en `/gallery` el indice y el numero del fichero VAN AL REVES
+ * —`construction-0` es `…-florida-10.jpg`— y eso ya escribio cuatro alt correctos sobre cuatro
+ * fotos equivocadas. Con la leyenda delante, comprobar un articulo es leer dos columnas. */
+const leyenda = {};
+for (const [, r] of rutas) {
   for (const f of [r.tarjeta, ...r.figuras]) {
-    const m = (f._ref ?? f.src).match(/mm-([a-z]+)-(\d+)/);
-    if (m) usados.set(`${m[1]}-${m[2]}`, (f._fuente ?? '').split('/').pop());
+    if (!/^[a-z]+-\d+$/.test(f._ref ?? '') || f._ref.startsWith('bi-')) continue;
+    const svc = f._ref.replace(/-\d+$/, '');
+    (leyenda[svc] ??= new Set()).add(`${f._ref} = ${(f._fuente ?? '').replace(/^.*-(\d+)\.(jpg|webp|avif|png)$/, '$1')}`);
   }
 }
-if (usados.size) {
-  console.log(`\n  leyenda ref -> fichero (el indice y el numero del fichero van AL REVES):`);
-  const porSvc = {};
-  for (const [ref, fich] of usados) { const svc = ref.replace(/-\d+$/, ''); (porSvc[svc] ??= []).push(`${ref} = ${fich?.replace(/^.*-(\d+)\.(jpg|webp|avif|png)$/, '$1') ?? '?'}`); }
-  for (const [svc, xs] of Object.entries(porSvc)) console.log(`     ${svc.padEnd(13)} ${xs.sort().join('  ')}`);
+if (Object.keys(leyenda).length) {
+  console.log('\n  leyenda ref -> fichero de /gallery (el indice y el numero del fichero van AL REVES):');
+  for (const [svc, v] of Object.entries(leyenda)) console.log(`     ${svc.padEnd(13)} ${[...v].sort().join('  ')}`);
 }
 
-console.log(`\n  ${nRutas} rutas · ${nImg} imagenes`);
-console.log(`     ${heredadas.length} heredadas (casting de R22/R23) · ${articulos.length} articulos de contenido/blog/`);
-console.log(`     ${yaDerivadas.size} escaleras distintas en public/images/blog/${BANCO_COMPARTIDO}/ para ${articulos.reduce((a, [, r]) => a + 1 + r.figuras.length, 0)} usos`);
-console.log(`  ${ficheros} ficheros webp · ${(peso / 1024).toFixed(1)} MB en public/images/blog/`);
+console.log(`\n  ${rutas.length} articulos · ${nImg} imagenes · ${huecos.length} fotos · ${xs.length} fotos distintas`);
+console.log(`     portadas distintas ................. ${enPortada.length} de ${rutas.length}`);
+console.log(`     fotos de cuerpo en >1 articulo ..... ${cuerpoRepetido.length}`);
+console.log(`     portadas reusadas en otro cuerpo ... ${portadaEnOtroCuerpo.length}`);
+console.log(`     puerta calibrada con ${parejas} parejas conocidas (misma foto <= ${MISMA}, a mirar <= ${DUDOSA})`);
+console.log(`  ${yaDerivadas.size} escaleras en public/images/blog/${BANCO_COMPARTIDO}/ · ${ficheros} ficheros webp · ${(peso / 1024).toFixed(1)} MB en public/images/blog/`);
 console.log(fallos === 0 ? '\n✅ VERDE\n' : `\n🔴 ROJO — ${fallos} fallo(s)\n`);
 process.exit(fallos === 0 ? 0 : 1);
