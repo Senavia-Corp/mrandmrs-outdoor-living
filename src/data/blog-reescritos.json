@@ -1,0 +1,60 @@
+{
+  "_lee_esto": [
+    "SEO-SAFE (1-oct-2026) — ESCRITO A MANO, y es la lista cerrada de los articulos HEREDADOS cuyo",
+    "cuerpo, resumen, FAQ, fuentes, titulo SEO y descripcion se REESCRIBIERON a proposito.",
+    "",
+    "Por que: los 10 articulos migrados de Webflow publicaban cifras y hechos sin fuente, varios",
+    "falsos (ver SEO_IMPLEMENTATION_AUDIT.md P0-2/P0-3): «15,247 pool permits issued statewide»,",
+    "tarifas por condado inventadas, ediciones del codigo mal citadas, porcentajes de revalorizacion",
+    "sin estudio detras. Se reescribieron desde contenido/blog/*.md con fuentes oficiales, misma URL,",
+    "mismo h1 y mismo slug (no se toca el patrimonio SEO), y se publicaron en Sanity.",
+    "",
+    "Quien lo lee: scripts/check-texto.mjs (deriva el cuerpo esperado de blogs-sanity.json y lo",
+    "coloca donde el baseline congelado traia el texto viejo) y scripts/check-seo.mjs (deriva el",
+    "titulo, la description, el BlogPosting y el FAQPage del mismo cache). La lista es EXPLICITA:",
+    "una ruta heredada que cambie en Sanity y no este aqui sigue saliendo ROJA, que es lo correcto.",
+    "Las rutas de blog propias (blogs-rutas.json) no van aqui: no tienen baseline que declarar."
+  ],
+  "rutas": {
+    "/blogs/what-permits-are-required-for-pool-construction-in-florida": {
+      "fecha": "2026-10-01",
+      "motivo": "P0-2: estadisticas, tarifas por condado y edicion del codigo inventadas; reescrito con FBC 8.ª ed., FS 515, DBPR y los portales de Alachua y Marion como fuentes."
+    },
+    "/blogs/complete-guide-to-pool-construction-in-florida-costs-timeline-process": {
+      "fecha": "2026-10-01",
+      "motivo": "P0-3: rangos de coste y plazos genericos sin fuente; reescrito como mapa del proceso que remite al estimador y a la guia de plazos."
+    },
+    "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish": {
+      "fecha": "2026-10-01",
+      "motivo": "P0-3: calendario en semanas presentado como hecho; reescrito por fases, con lo que las bloquea, sin cifras no verificables."
+    },
+    "/blogs/common-pool-construction-mistakes-we-see-in-florida": {
+      "fecha": "2026-10-01",
+      "motivo": "P0-3: afirmaciones de coste y porcentajes sin fuente; reescrito con los errores que el equipo corrige en remodelaciones y su prevencion."
+    },
+    "/blogs/new-pool-construction-vs-pool-remodeling-which-is-right-for-you": {
+      "fecha": "2026-10-01",
+      "motivo": "P0-3 y canibalizacion E3: cifras sin fuente y solape con remodel-or-rebuild; reescrito como decision para quien YA tiene piscina, enlazando al otro."
+    },
+    "/blogs/top-10-luxury-pool-designs-for-florida-homes": {
+      "fecha": "2026-10-01",
+      "motivo": "P0-3: lista de precios por diseno sin fuente; reescrito como 10 direcciones de diseno con lo que cada una exige del solar y del presupuesto."
+    },
+    "/blogs/outdoor-living-design-guide-for-florida-homes": {
+      "fecha": "2026-10-01",
+      "motivo": "P0-3: cifras de coste y de retorno sin fuente; reescrito como guia de diseno por clima, orden de obra y materiales."
+    },
+    "/blogs/how-outdoor-living-spaces-increase-property-value-in-florida": {
+      "fecha": "2026-10-01",
+      "motivo": "P0-3: porcentajes de revalorizacion atribuidos a estudios que no se citan; reescrito sin cifras, con lo que miran comprador, tasador y aseguradora."
+    },
+    "/blogs/commercial-pool-construction-in-florida-what-decision-makers-must-know": {
+      "fecha": "2026-10-01",
+      "motivo": "P0-3: costes y plazos comerciales sin fuente; reescrito sobre FAC 64E-9, el permiso del Department of Health y la accesibilidad federal."
+    },
+    "/blogs/residential-vs-commercial-pool-construction-in-florida": {
+      "fecha": "2026-10-01",
+      "motivo": "P0-3: comparativa de costes inventada; reescrito como tabla de reglas, permisos, diseno y operacion con fuentes."
+    }
+  }
+}

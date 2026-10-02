@@ -31,16 +31,16 @@
   },
   "figuras": [
     {
-      "ref": "kitchen-3",
-      "alt": "Long covered outdoor kitchen against a dark wall: built-in grill, a flat side burner, a stack of stainless drawers and a glass-front beverage refrigerator stocked with bottles, with a television mounted above the counter."
+      "ref": "bi-0843",
+      "alt": "Long outdoor kitchen run with a grill, side burner, two glass-door beverage fridges and drawers below a wall TV and outlets."
     },
     {
       "ref": "kitchen-7",
       "alt": "Outdoor kitchen under a palm-thatch roof, with a stainless vent hood over the built-in grill, a ceiling fan hung from the thatch and an undercounter refrigerator at the end of the run."
     },
     {
-      "ref": "kitchen-1",
-      "alt": "Poolside outdoor kitchen with a wood-fired oven and its chimney flue standing next to a built-in grill and a side burner, and a sink with a cutting board on the island in front."
+      "ref": "bi-0755",
+      "alt": "Outdoor kitchen with a pizza oven, a built-in grill and a lidded side burner behind a sink island, and a TV on the wall."
     }
   ],
   "faq": [
@@ -106,7 +106,7 @@ Add up the demand for the full set, including the appliance you have not bought 
 
 An outdoor kitchen is rarely one circuit. Refrigeration wants its own, because a shared circuit means the fridge trips on a Friday when someone plugs in a pressure washer and you find out on Sunday. Countertop outlets are another. Lighting, a hood and a television, if there is one, are another again.
 
-{{figura: kitchen-3}}
+{{figura: bi-0843}}
 
 The constraint people hit is not the island — it is the house panel. If there is no spare capacity, the project includes a sub-panel, and a sub-panel is a cost and a lead time, not a detail to sort out later. Find out early enough that it is a line in the estimate instead of a change order.
 
@@ -128,7 +128,7 @@ Three usually go on the wish list. The number that matters is how many get used.
 
 The honest version of this decision starts with a count: in the last twelve months, how many times did you cook outdoors, and what did you cook? A pizza oven is a Saturday appliance and a genuinely good one for people who entertain. A side burner is a Tuesday appliance. A kamado is a different cooking method, not a second grill, and it gets used by people who already own one.
 
-{{figura: kitchen-1}}
+{{figura: bi-0755}}
 
 Each appliance you add takes counter length you will want for landing space — the flat run beside the grill where the tray goes down. Outdoor kitchens are far more often ruined by having nowhere to put a hot sheet pan than by lacking a burner. [Laying the kitchen out around the way you actually cook](/blogs/outdoor-kitchen-layout-guide) is where that gets resolved; the decision to make here is simply which appliances get to compete for the space.
 

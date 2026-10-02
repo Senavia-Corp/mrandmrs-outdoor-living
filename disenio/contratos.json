@@ -303,9 +303,9 @@
   },
   "/pool-builders/gainesville-florida": {
    "contrato": "rediseno",
-   "fecha": "2026-08-31",
-   "sha": "527b5f0",
-   "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva). · R20-CIUDADES (14-sep-2026): esta ruta es la Final URL de un ad group activo y gana la capa de captacion — franja de confianza delante del formulario, formulario propio con ancla #estimate, banda de inversion sin cifras y una FAQ con collage que estas rutas no tenian. El heroe cambia su CTA a #estimate y suma los dos telefonos con tel: y la linea de licencias. La pagina crece entre 677 y 987 px segun el ancho (medido con check:visual a 479/991/1440/1920), asi que las cuatro comparaciones salen rojas contra una referencia del 31-ago-2026 que es ANTERIOR al cambio. ROJO CORRECTO. La referencia sigue siendo la de 527b5f0 y sigue PENDIENTE de que Sebastian mire las capturas de audit/r20-ciudades/ y corra aprobar-diseno.mjs, que exige humano."
+   "fecha": "2026-10-01",
+   "sha": "ff00adb",
+   "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva). · R20-CIUDADES (14-sep-2026): esta ruta es la Final URL de un ad group activo y gana la capa de captacion — franja de confianza delante del formulario, formulario propio con ancla #estimate, banda de inversion sin cifras y una FAQ con collage que estas rutas no tenian. El heroe cambia su CTA a #estimate y suma los dos telefonos con tel: y la linea de licencias. La pagina crece entre 677 y 987 px segun el ancho (medido con check:visual a 479/991/1440/1920), asi que las cuatro comparaciones salen rojas contra una referencia del 31-ago-2026 que es ANTERIOR al cambio. ROJO CORRECTO. La referencia sigue siendo la de 527b5f0 y sigue PENDIENTE de que Sebastian mire las capturas de audit/r20-ciudades/ y corra aprobar-diseno.mjs, que exige humano. · SEO-SAFE (1-oct-2026): Sebastian miro las capturas de audit/seo-safe/ (4 anchos) y aprobo la referencia en el chat; re-baselinizada con aprobar-diseno.mjs sobre el build de cd2ab3b/ff00adb. Incluye la capa de captacion de R20 y las filas de FAQ de SEO-SAFE (hub: 3 preguntas nuevas, 222-268 px; ciudades: 1 pregunta sobre la oficina de permisos, 74-90 px)."
   },
   "/pool-builders/gulf-stream-florida": {
    "contrato": "rediseno",
@@ -405,9 +405,9 @@
   },
   "/pool-builders/ocala-florida": {
    "contrato": "rediseno",
-   "fecha": "2026-08-31",
-   "sha": "527b5f0",
-   "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva). · R20-CIUDADES (14-sep-2026): esta ruta es la Final URL de un ad group activo y gana la capa de captacion — franja de confianza delante del formulario, formulario propio con ancla #estimate, banda de inversion sin cifras y una FAQ con collage que estas rutas no tenian. El heroe cambia su CTA a #estimate y suma los dos telefonos con tel: y la linea de licencias. La pagina crece entre 677 y 987 px segun el ancho (medido con check:visual a 479/991/1440/1920), asi que las cuatro comparaciones salen rojas contra una referencia del 31-ago-2026 que es ANTERIOR al cambio. ROJO CORRECTO. La referencia sigue siendo la de 527b5f0 y sigue PENDIENTE de que Sebastian mire las capturas de audit/r20-ciudades/ y corra aprobar-diseno.mjs, que exige humano."
+   "fecha": "2026-10-01",
+   "sha": "ff00adb",
+   "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva). · R20-CIUDADES (14-sep-2026): esta ruta es la Final URL de un ad group activo y gana la capa de captacion — franja de confianza delante del formulario, formulario propio con ancla #estimate, banda de inversion sin cifras y una FAQ con collage que estas rutas no tenian. El heroe cambia su CTA a #estimate y suma los dos telefonos con tel: y la linea de licencias. La pagina crece entre 677 y 987 px segun el ancho (medido con check:visual a 479/991/1440/1920), asi que las cuatro comparaciones salen rojas contra una referencia del 31-ago-2026 que es ANTERIOR al cambio. ROJO CORRECTO. La referencia sigue siendo la de 527b5f0 y sigue PENDIENTE de que Sebastian mire las capturas de audit/r20-ciudades/ y corra aprobar-diseno.mjs, que exige humano. · SEO-SAFE (1-oct-2026): Sebastian miro las capturas de audit/seo-safe/ (4 anchos) y aprobo la referencia en el chat; re-baselinizada con aprobar-diseno.mjs sobre el build de cd2ab3b/ff00adb. Incluye la capa de captacion de R20 y las filas de FAQ de SEO-SAFE (hub: 3 preguntas nuevas, 222-268 px; ciudades: 1 pregunta sobre la oficina de permisos, 74-90 px)."
   },
   "/pool-builders/ocean-ridge-florida": {
    "contrato": "rediseno",
@@ -615,9 +615,9 @@
   },
   "/services/pool-remodeling-renovation-in-north-south-florida": {
    "contrato": "rediseno",
-   "fecha": "2026-09-13",
-   "sha": "b78b889",
-   "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
+   "fecha": "2026-10-01",
+   "sha": "ff00adb",
+   "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build. · SEO-SAFE (1-oct-2026): Sebastian miro las capturas de audit/seo-safe/ (4 anchos) y aprobo la referencia en el chat; re-baselinizada con aprobar-diseno.mjs sobre el build de cd2ab3b/ff00adb. Incluye la capa de captacion de R20 y las filas de FAQ de SEO-SAFE (hub: 3 preguntas nuevas, 222-268 px; ciudades: 1 pregunta sobre la oficina de permisos, 74-90 px)."
   },
   "/services/pool-screen-enclosures-for-north-south-florida-pools": {
    "contrato": "rediseno",
@@ -888,6 +888,24 @@
    "fecha": "2026-09-19",
    "sha": "28cd23d",
    "motivo": "BLOG-SANITY: articulo del cluster «Pool Remodeling», escrito para la ficha de Pool Remodeling. No existe en el Webflow de origen: es contenido nuevo. Ruta NUEVA: no hay captura de Webflow contra la que comparar, asi que su referencia se aprueba con scripts/aprobar-diseno.mjs."
+  },
+  "/blogs/cold-plunge-integration-florida-pool-construction": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-01",
+   "sha": "7300075",
+   "motivo": "SEO-SAFE: articulo nuevo del cluster «New Pool Construction» (categoria new-pool-construction), escrito para la ficha de Pool  Construction tras el analisis de huecos (SEO_BLOG_GAP_ANALYSIS.md). No existe en el Webflow de origen: es contenido nuevo. Ruta NUEVA: no hay captura de Webflow contra la que comparar, asi que su referencia se aprueba con scripts/aprobar-diseno.mjs."
+  },
+  "/blogs/dark-pool-finishes-in-florida": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-01",
+   "sha": "7300075",
+   "motivo": "SEO-SAFE: articulo nuevo del cluster «New Pool Construction» (categoria pool-design-planning), escrito para la ficha de Pool  Construction tras el analisis de huecos (SEO_BLOG_GAP_ANALYSIS.md). No existe en el Webflow de origen: es contenido nuevo. Ruta NUEVA: no hay captura de Webflow contra la que comparar, asi que su referencia se aprueba con scripts/aprobar-diseno.mjs."
+  },
+  "/blogs/pool-automation-for-new-construction": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-01",
+   "sha": "7300075",
+   "motivo": "SEO-SAFE: articulo nuevo del cluster «New Pool Construction» (categoria new-pool-construction), escrito para la ficha de Pool  Construction tras el analisis de huecos (SEO_BLOG_GAP_ANALYSIS.md). No existe en el Webflow de origen: es contenido nuevo. Ruta NUEVA: no hay captura de Webflow contra la que comparar, asi que su referencia se aprueba con scripts/aprobar-diseno.mjs."
   }
  }
 }

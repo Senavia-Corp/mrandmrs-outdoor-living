@@ -27,21 +27,21 @@
   },
   "summary": "Both builds use the same stone, the same appliances and the same crew. What separates them is a trench you cannot add later, and a trip count that tells you which one you actually need.",
   "portada": {
-    "ref": "kitchen-6",
-    "alt": "L-shaped outdoor kitchen with white cabinet fronts, a black veined stone countertop and a ventilation grille in the base cabinet, under a dark-beamed cover with a ceiling fan, looking across a lawn to a lake with a white fence at the water's edge and houses on the far bank."
+    "ref": "kitchen-2",
+    "alt": "Grill island with wood-look fronts, a built-in grill, sink and refrigerator under a slatted wood pergola with a white screen"
   },
   "figuras": [
     {
-      "ref": "kitchen-4",
-      "alt": "Built-in stainless grill and an undercounter refrigerator set into a white stacked-stone island with a sink and faucet in the return, under a white louvered roof with a ceiling fan, facing a fenced Florida neighborhood of tile-roofed houses."
+      "ref": "bi-0838",
+      "alt": "Vertical wood-slat outdoor kitchen run with stainless doors and drawers, two glass-door beverage fridges and a dark counter."
     },
     {
-      "ref": "kitchen-3",
-      "alt": "Outdoor kitchen run against a dark plaster wall with slatted wood cabinet fronts and a black stone counter: built-in grill, side burner, stainless drawers and a glass-front beverage refrigerator, with a wall-mounted television whose cables hang loose down to the countertop."
+      "ref": "bi-0775",
+      "alt": "Outdoor kitchen under construction: metal-framed cement-board cabinets with open appliance bays and boxed appliances."
     },
     {
-      "ref": "kitchen-7",
-      "alt": "Outdoor kitchen under a thatched palm-leaf chickee roof with wood rafters and a ceiling fan: a slatted-wood island with a black stone counter, a built-in grill under a stainless hood, a tropical leaf-patterned wall behind it, an undercounter stainless refrigerator and veined gray floor tiles."
+      "ref": "bi-0761",
+      "alt": "U-shaped outdoor kitchen with white stone waterfall counters, a grill and a kamado under a solid patio cover with a fan."
     }
   ],
   "faq": [
@@ -92,7 +92,7 @@ The trips sort themselves into five buckets, and each one maps to a piece of equ
 
 If the trips are few and they are mostly for storage and cold drinks, an island with drawers and a refrigerator removes them. If the sink bucket is the one that fills up, no amount of cabinetry will fix it and you are looking at a kitchen. What the exercise really buys you is the **appliance list**, which is normally chosen from a showroom rather than from evidence. Most people over-buy cooking equipment and under-buy storage and cold, then find the pattern once the space is in weekly use. Take the list that comes out of this into [the nine decisions that come before you choose appliances](/blogs/outdoor-kitchen-appliance-decisions), where each item turns into a cutout, a circuit and a gas load.
 
-{{figura: kitchen-4}}
+{{figura: bi-0838}}
 
 ## What actually separates the two builds is the trench, not the cabinets
 
@@ -118,7 +118,7 @@ Deck material is what sets the size of that mistake. Our estimator prices concre
 
 So the cheap insurance is specific and it costs almost nothing while the ditch is open: run water, drain, gas and electrical to the **future** kitchen footprint, cap them, and photograph where they are before backfill. Build only the island this year. The trench is the decision you cannot defer; the cabinetry is the one you can.
 
-{{figura: kitchen-3}}
+{{figura: bi-0775}}
 
 ## The cover changes the appliance list more than the layout does
 
@@ -131,7 +131,7 @@ Two consequences worth knowing before you choose:
 1. **Under a solid roof, heat and smoke need somewhere to go.** How that is handled depends on the appliance and the cover, and it is part of what gets reviewed when the job is permitted. Ask the question early — it can change where the grill sits within the run.
 2. **Uncovered, the survivors are a shorter list.** Electronics, anything with a seal, and cabinet fronts that were chosen for looks rather than exposure are what show it first. [Which materials survive Florida heat, humidity and rain](/blogs/best-outdoor-kitchen-materials-for-florida) is the list to build the specification from.
 
-{{figura: kitchen-7}}
+{{figura: bi-0761}}
 
 ## Where the island quietly stops being enough
 

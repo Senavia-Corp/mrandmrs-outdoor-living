@@ -26,9 +26,9 @@
     "motivo": "LANDING DE PAGO. Manda la hoja 22 del libro de campana en titulo y encabezado; el anuncio promete «North Florida» y el slug dice north-south, asi que la correspondencia se resuelve por copy, no renombrando la URL final del anuncio."
   },
   "/services/pool-remodeling-renovation-in-north-south-florida": {
-    "title": "Pool Remodeling in North Florida | Mr & Mrs",
-    "description": "Complete pool remodeling in North Florida: resurfacing, equipment upgrades and safety improvements. Licensed contractors across Florida.",
-    "motivo": "LANDING DE PAGO. North Florida primero, por la misma razon que la anterior."
+    "title": "Complete Pool Remodeling in North Florida | Mr & Mrs",
+    "description": "Complete pool remodeling in North Florida: resurfacing, tile and coping, equipment upgrades and deck work in one permitted project. Licensed across Florida.",
+    "motivo": "LANDING DE PAGO. North Florida primero, por la misma razon que la anterior. SEO-SAFE (1-oct-2026): «Complete» delante, que es la intencion que distingue esta landing de un resurfacing suelto (SEO_KEYWORD_URL_MAP.md)."
   },
   "/contact-us": {
     "title": "Contact Florida Pool Builders | Free Estimate",
@@ -95,10 +95,6 @@
   "/country/custom-pool-builders-gilchrist-county-fl": {
     "title": "Pool Builders in Gilchrist County, FL",
     "motivo": "titulo a 61 car."
-  },
-  "/blogs/commercial-pool-construction-in-florida-what-decision-makers-must-know": {
-    "title": "Commercial Pool Construction: What to Know",
-    "motivo": "titulo a 63 car. Distinto del de /industry-solutions a proposito: son intencion informativa y comercial, y check-seo exige que ningun titulo se repita."
   },
   "/pool-builders/gainesville-florida": {
     "title": "Custom Pool Builders in Gainesville, FL | Mr & Mrs",

@@ -58,9 +58,20 @@ const RUTAS = new Set(csv.trim().split('\n').slice(1).map((l) => l.match(/"((?:[
  * ya no usa nadie, también lo dice: un redirect huérfano es la siguiente versión de este mismo
  * fallo.
  */
-const REDIRECTS = new Map((JSON.parse(fs.readFileSync(path.join(RAIZ, 'vercel.json'), 'utf8'))
-  .redirects || []).map((r) => [r.source, r]));
+/**
+ * LOS REDIRECTS DE HOST VAN APARTE (SEO-SAFE, 1-oct-2026). Un redirect con `has: [{type:'host'}]`
+ * no tapa un enlace interno: manda un HOST entero (el alias `mrandmrs-outdoor-living.vercel.app`)
+ * a `www`, con `/(.*)` -> `$1`. Ni su destino es un fichero del build ni puede «usarlo» un
+ * enlace interno, asi que las dos comprobaciones de abajo lo darian rojo por hacer lo que debe.
+ * Se le cambia el criterio, no se le quita: tiene que ser permanente, con comodin de origen,
+ * y su destino tiene que ser el host canonico de `astro.config.mjs` con el `$1` al final.
+ */
+const TODOS_LOS_REDIRECTS = JSON.parse(fs.readFileSync(path.join(RAIZ, 'vercel.json'), 'utf8'))
+  .redirects || [];
+const DE_HOST = TODOS_LOS_REDIRECTS.filter((r) => Array.isArray(r.has) && r.has.some((h) => h?.type === 'host'));
+const REDIRECTS = new Map(TODOS_LOS_REDIRECTS.filter((r) => !DE_HOST.includes(r)).map((r) => [r.source, r]));
 const usados = new Set();
+const SITIO = process.env.PUBLIC_SITE_URL || 'https://www.mrandmrsoutdoorliving.com';
 
 const ficheros = [];
 (function barrer(d) {
@@ -100,6 +111,12 @@ const sinDestino = [...REDIRECTS.values()].filter((r) => !existe(r.destination))
 check(`${REDIRECTS.size} redirects declarados, todos a un destino que existe`,
   sinDestino.length === 0, `${sinDestino.length} apuntan a la nada`);
 lista(sinDestino.map((r) => `${r.source} -> ${r.destination} (NO EXISTE)`));
+
+const hostMalos = DE_HOST.filter((r) => r.source !== '/(.*)' || r.permanent !== true
+  || r.destination !== `${SITIO}/$1` || r.has.some((h) => h.type === 'host' && /^(www\.)?mrandmrsoutdoorliving\.com$/.test(h.value)));
+check(`${DE_HOST.length} redirect(s) de host: /(.*) permanente hacia ${SITIO}/$1 y nunca desde el host canonico`,
+  hostMalos.length === 0, `${hostMalos.length} mal formado(s)`);
+lista(hostMalos.map((r) => `${JSON.stringify(r.has)} ${r.source} -> ${r.destination}`));
 
 const noPermanentes = [...REDIRECTS.values()].filter((r) => r.permanent !== true);
 check('todos los redirects son 301 permanentes', noPermanentes.length === 0,

@@ -31,16 +31,16 @@
   },
   "figuras": [
     {
-      "ref": "construction-6",
-      "alt": "Raised spa clad in dark glass tile at the end of a pool, with submerged steps marked by a dark tile band and a travertine deck around them."
+      "ref": "mrandmrs-pool-spa-a2-blog-project-062-29",
+      "alt": "Raised spa clad in pale mosaic tile, with an inside bench, beside a pool and two white loungers near a covered lanai."
     },
     {
-      "ref": "construction-4",
-      "alt": "Pool with a raised spa in blue mosaic tile on the right and two sheets of water falling from a raised wall on the left, loungers on a travertine deck in the foreground, and tall palms, a golf course and a lake beyond the fence."
+      "ref": "bi-0307",
+      "alt": "Kidney-shaped pool with a raised spa faced in blue tile, backed by palms, a hedge and tropical plantings, with a patio table."
     },
     {
-      "ref": "construction-8",
-      "alt": "Overhead view of a rectangular pool with a square spa set into it, water spilling over the spa rim on all four sides in a band of white foam, on a travertine deck with handrails at the pool edges and a lounger and blue umbrella at the bottom of the frame."
+      "ref": "bi-1058",
+      "alt": "White freestanding flat-roof pergola going up at the end of a new pool, beside a white house with a pale stone deck."
     }
   ],
   "faq": [
@@ -108,7 +108,7 @@ That last row is the one people regret in both directions. Seated on the deck, y
 
 So the useful way to spend the $6,000 question is this: if you want a spa because you want warm water, the integrated spa delivers exactly that for $6,000 less. If you want a spa because the view from the kitchen is currently a flat rectangle, you are buying a design element — and then the spillover should be judged against the other things that break up a flat pool, not against no spa at all. A raised bond beam with sheet falls or a planter wall gives the eye the same plane above the water; those are compared side by side in [what makes a pool look custom](/blogs/what-makes-a-pool-look-custom).
 
-{{figura: construction-6}}
+{{figura: mrandmrs-pool-spa-a2-blog-project-062-29}}
 
 ## The spa and the heater are one decision
 
@@ -123,7 +123,7 @@ Two operating details that surprise people, and that are much easier to hear now
 
 **Automation** belongs in the same decision. Our estimator prices it at **$3,500**, and a two-body system is where it earns that: switching to spa mode from a phone half an hour out is the difference between a spa that gets used and one that gets looked at.
 
-{{figura: construction-4}}
+{{figura: bi-0307}}
 
 ## What the same money buys somewhere else
 
@@ -140,7 +140,7 @@ Look at the third row. Heater, salt system, automation and four lights come to *
 
 None of this makes the spa the wrong answer. It makes the spa one of four or five things, rather than an upgrade you either take or leave. And it is the only one on that list whose window closes at the pour — although the [screen enclosure](/services/pool-screen-enclosures-for-north-south-florida-pools) has its own timing rule, because the deck has to be built to carry it whether or not it goes up on day one. That, and the eleven other decisions in the same bracket, are in [the twelve decisions to make before excavation](/blogs/before-you-build-a-pool-in-florida).
 
-{{figura: construction-8}}
+{{figura: bi-1058}}
 
 ## The question that actually settles it
 
@@ -163,6 +163,8 @@ If the honest count comes back at a handful of nights, the money usually belongs
 **Permitting.** The spa is designed, reviewed and inspected as part of the pool rather than as its own project, which is why our estimator calculates permit cost as **9%** of the pool and deck rather than adding a separate line for the spa. Whoever builds it should permit it under their own license and be present for the inspections.
 
 **The schedule, materially.** A spa does not add a stage. It makes the existing ones slightly bigger, because it is excavated, formed, poured, tiled and finished along with the pool. The part that does affect your schedule is the equipment and automation, which arrive late and are a common place a project waits.
+
+**A cold plunge, if one is on the list.** It is not a small spa: it runs on its own loop with its own chiller, and it has to be in the plan before the shell. What it shares with the spa, and what it cannot, is in [cold plunge integration in Florida pool construction](/blogs/cold-plunge-integration-florida-pool-construction).
 
 **The rest of the design.** Finish, deck material and deck size are priced independently, and all three are covered decision by decision in [what a custom pool really costs](/blogs/how-much-does-a-custom-pool-cost-in-florida).
 

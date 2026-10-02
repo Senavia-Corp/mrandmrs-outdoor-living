@@ -1,0 +1,263 @@
+{
+  "_lee_esto": [
+    "IDS DE SANITY QUE `scripts/publica-blog.mjs --emitir` NECESITA SIN RED (SEO-SAFE, 1-oct-2026).",
+    "Consultados por MCP al dataset `production` de `m273z6jc` el 1-oct-2026. Son derivados: si se",
+    "crea un `service` o un `blogCategory` nuevo en Sanity, se reconsulta y se reescribe este fichero.",
+    "El modo en linea del script sigue leyendo de Sanity y NO usa esto; solo entra con `--emitir`,",
+    "que existe porque desde el contenedor de Claude el proxy bloquea *.sanity.io.",
+    "`legado` guarda los campos que SOLO tienen los 10 articulos migrados de Webflow (legacyId, image,",
+    "feature, titlePage): al reescribirlos desde Markdown hay que conservarlos, no borrarlos."
+  ],
+  "servicios": {
+    "custom-aluminum-pergola-builders-in-north-south-florida": {
+      "_id": "service-6a8f67a39235e3662e572785",
+      "name": "Aluminum Pergolas"
+    },
+    "smart-irrigation-system-installation-in-north-south-florida": {
+      "_id": "service-6a8f67a39235e3662e572786",
+      "name": "Automated Irrigation"
+    },
+    "custom-deck-builders-in-north-south-florida": {
+      "_id": "service-6a8f67a39235e3662e572787",
+      "name": "Custom Decks"
+    },
+    "professional-landscaping-services-in-north-south-florida": {
+      "_id": "service-6a8f67a39235e3662e572788",
+      "name": "Landscaping"
+    },
+    "motorized-louvered-roof-systems-in-north-south-florida": {
+      "_id": "service-6a8f67a39235e3662e572789",
+      "name": "Louvered Roof Systems"
+    },
+    "premium-outdoor-furniture-for-north-south-florida-homes": {
+      "_id": "service-6a8f67a39235e3662e57278a",
+      "name": "Outdoor Furniture"
+    },
+    "custom-outdoor-kitchens-for-north-south-florida-homes": {
+      "_id": "service-6a8f67a39235e3662e57278b",
+      "name": "Outdoor Kitchens"
+    },
+    "patio-screen-rooms-enclosures-in-north-south-florida": {
+      "_id": "service-6a8f67a39235e3662e57278c",
+      "name": "Patio Screen Rooms"
+    },
+    "steel-building-pole-barn-construction-in-north-south-florida": {
+      "_id": "service-6a8f67a39235e3662e57278d",
+      "name": "Pole Barn and Steel Buildings"
+    },
+    "custom-pool-spa-builders-in-north-south-florida": {
+      "_id": "service-6a8f67a39235e3662e57278e",
+      "name": "Pool  Construction"
+    },
+    "pool-remodeling-renovation-in-north-south-florida": {
+      "_id": "service-6a8f67a39235e3662e57278f",
+      "name": "Pool Remodeling"
+    },
+    "pool-screen-enclosures-for-north-south-florida-pools": {
+      "_id": "service-6a8f67a39235e3662e572790",
+      "name": "Pool Screen Enclosures"
+    },
+    "motorized-retractable-screens-in-north-south-florida": {
+      "_id": "service-6a8f67a39235e3662e572791",
+      "name": "Retractable Screens"
+    },
+    "smart-soffit-led-lighting-installation-in-north-south-florida": {
+      "_id": "service-6a8f67a39235e3662e572792",
+      "name": "Smart Soffit LED Lighting"
+    }
+  },
+  "categorias": {
+    "commercial-multifamily": {
+      "_id": "blogCategory-commercial-multifamily",
+      "name": "Commercial & Multifamily",
+      "orden": 11
+    },
+    "decks": {
+      "_id": "blogCategory-decks",
+      "name": "Decks",
+      "orden": 6
+    },
+    "florida-homeowner-guides": {
+      "_id": "blogCategory-florida-homeowner-guides",
+      "name": "Florida Homeowner Guides",
+      "orden": 10
+    },
+    "landscaping-irrigation": {
+      "_id": "blogCategory-landscaping-irrigation",
+      "name": "Landscaping & Irrigation",
+      "orden": 7
+    },
+    "new-pool-construction": {
+      "_id": "blogCategory-new-pool-construction",
+      "name": "New Pool Construction",
+      "orden": 0
+    },
+    "outdoor-kitchens": {
+      "_id": "blogCategory-outdoor-kitchens",
+      "name": "Outdoor Kitchens",
+      "orden": 4
+    },
+    "outdoor-living": {
+      "_id": "blogCategory-outdoor-living",
+      "name": "Outdoor Living",
+      "orden": 8
+    },
+    "pergolas-louvered-roofs": {
+      "_id": "blogCategory-pergolas-louvered-roofs",
+      "name": "Pergolas & Louvered Roofs",
+      "orden": 3
+    },
+    "pool-design-planning": {
+      "_id": "blogCategory-pool-design-planning",
+      "name": "Pool Design & Planning",
+      "orden": 2
+    },
+    "pool-remodeling": {
+      "_id": "blogCategory-pool-remodeling",
+      "name": "Pool Remodeling",
+      "orden": 1
+    },
+    "screens-enclosures": {
+      "_id": "blogCategory-screens-enclosures",
+      "name": "Screens & Enclosures",
+      "orden": 5
+    },
+    "structures-lighting": {
+      "_id": "blogCategory-structures-lighting",
+      "name": "Structures & Lighting",
+      "orden": 9
+    }
+  },
+  "legado": {
+    "commercial-pool-construction-in-florida-what-decision-makers-must-know": {
+      "_id": "blogPost-6a8f67a39235e3662e5727bb",
+      "legacyId": "6a8f67a39235e3662e5727bb",
+      "feature": false,
+      "image": {
+        "_type": "image",
+        "alt": "Commercial pool construction project in Florida designed for hotels, resorts, and multifamily properties.",
+        "asset": {
+          "_type": "reference",
+          "_ref": "image-875458da24e3a23db2ce746835f093fdb28afcf2-2752x1536-webp"
+        }
+      }
+    },
+    "common-pool-construction-mistakes-we-see-in-florida": {
+      "_id": "blogPost-6a8f67a39235e3662e5727bc",
+      "legacyId": "6a8f67a39235e3662e5727bc",
+      "feature": true,
+      "image": {
+        "_type": "image",
+        "alt": "Pool construction mistakes in Florida showing structural issues, drainage problems, and improper installation.",
+        "asset": {
+          "_type": "reference",
+          "_ref": "image-9c47fb6ab74a8dec5406dfe74fbc4c97f5fe5fed-2752x1536-webp"
+        }
+      }
+    },
+    "complete-guide-to-pool-construction-in-florida-costs-timeline-process": {
+      "_id": "blogPost-6a8f67a39235e3662e5727bd",
+      "legacyId": "6a8f67a39235e3662e5727bd",
+      "feature": true,
+      "image": {
+        "_type": "image",
+        "alt": "Pool construction project in Florida showing modern inground pool design built to meet Florida building codes.",
+        "asset": {
+          "_type": "reference",
+          "_ref": "image-c8d25572c212aa0bf263aec5cde46d4a091e2872-2752x1536-webp"
+        }
+      }
+    },
+    "how-outdoor-living-spaces-increase-property-value-in-florida": {
+      "_id": "blogPost-6a8f67a39235e3662e5727be",
+      "legacyId": "6a8f67a39235e3662e5727be",
+      "feature": false,
+      "image": {
+        "_type": "image",
+        "alt": "Luxury outdoor living space in Florida with pool, lanai, and outdoor kitchen designed to increase property value.",
+        "asset": {
+          "_type": "reference",
+          "_ref": "image-e8e82734b248f3752c1efd91be0178bdfba86b8c-2752x1536-webp"
+        }
+      }
+    },
+    "new-pool-construction-vs-pool-remodeling-which-is-right-for-you": {
+      "_id": "blogPost-6a8f67a39235e3662e5727bf",
+      "legacyId": "6a8f67a39235e3662e5727bf",
+      "feature": true,
+      "image": {
+        "_type": "image",
+        "alt": "Comparison of new pool construction and remodeled pool design in a Florida residential backyard.",
+        "asset": {
+          "_type": "reference",
+          "_ref": "image-3df1944aa379030cf472a3d239e1fd681599a385-2752x1536-webp"
+        }
+      }
+    },
+    "outdoor-living-design-guide-for-florida-homes": {
+      "_id": "blogPost-6a8f67a39235e3662e5727c0",
+      "legacyId": "6a8f67a39235e3662e5727c0",
+      "feature": true,
+      "image": {
+        "_type": "image",
+        "alt": "Luxury outdoor living space in Florida with covered lanai, pool, and outdoor kitchen designed for year-round use.",
+        "asset": {
+          "_type": "reference",
+          "_ref": "image-f38dbd91cb3ad129b61b460e0d32821e5609fffa-2752x1536-webp"
+        }
+      }
+    },
+    "pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish": {
+      "_id": "blogPost-6a8f67a39235e3662e5727c1",
+      "legacyId": "6a8f67a39235e3662e5727c1",
+      "feature": true,
+      "image": {
+        "_type": "image",
+        "alt": "Pool construction timeline in Florida showing excavation and structural phases of an inground pool project.",
+        "asset": {
+          "_type": "reference",
+          "_ref": "image-741b86a1808f9d2513ae58e29966361bdb86917d-2752x1536-webp"
+        }
+      }
+    },
+    "residential-vs-commercial-pool-construction-in-florida": {
+      "_id": "blogPost-6a8f67a39235e3662e5727c2",
+      "legacyId": "6a8f67a39235e3662e5727c2",
+      "feature": false,
+      "image": {
+        "_type": "image",
+        "alt": "Residential and commercial pool construction comparison showing private home pool and large Florida commercial pool.",
+        "asset": {
+          "_type": "reference",
+          "_ref": "image-2d4f1c1a44aad4e7657fc9e6b7b66fc9ab78df46-3168x1344-webp"
+        }
+      }
+    },
+    "top-10-luxury-pool-designs-for-florida-homes": {
+      "_id": "blogPost-6a8f67a39235e3662e5727c3",
+      "legacyId": "6a8f67a39235e3662e5727c3",
+      "feature": true,
+      "image": {
+        "_type": "image",
+        "alt": "Luxury pool design in Florida featuring a modern infinity-edge pool with glass tiles, integrated spa, and tropical landscaping designed for upscale outdoor living.",
+        "asset": {
+          "_type": "reference",
+          "_ref": "image-1760f21d7d243b6056e1db7f020b6436a2b5ac5e-2752x1536-webp"
+        }
+      }
+    },
+    "what-permits-are-required-for-pool-construction-in-florida": {
+      "_id": "blogPost-6a8f67a39235e3662e5727c4",
+      "legacyId": "6a8f67a39235e3662e5727c4",
+      "feature": true,
+      "image": {
+        "_type": "image",
+        "alt": "Pool construction permits and inspection process in Florida for residential and commercial swimming pools.",
+        "asset": {
+          "_type": "reference",
+          "_ref": "image-75c92ab3c0d01929d29f42e961a32fbcb7e8ca62-2400x1792-webp"
+        }
+      }
+    }
+  }
+}

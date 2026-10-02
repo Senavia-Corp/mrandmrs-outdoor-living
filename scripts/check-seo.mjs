@@ -417,7 +417,15 @@ const JSONLD_ARREGLADO = {
         '/images/obra/obra-048/pool-remodeling-travertine-deck-glass-tile-completed.avif'],
       ['dateModified', '2026-05-18T19:54:16.970Z', '2026-05-18T19:55:49.094Z'],
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:54:16.970Z'],
+      ['mainEntity.mainEntity.4.name', 'remodeling', 'Do you offer financing options for outdoor projects?'],
     ],
+    /* SEO-SAFE (1-oct-2026): la landing de remodelacion gana las tres objeciones que ya tenia la
+     * de piscinas -coste sin cifras, permiso y que incluye- y su FAQPage crece con ellas. Y al
+     * declarar la FAQ en check:ads (regla 14) aparecio el MISMO defecto del origen que R17 arreglo
+     * en el Core: la quinta Question se llamaba literalmente «remodeling», con la respuesta de
+     * financiacion dentro. Se le pone la pregunta que se ve y la respuesta sin promesas. */
+    anadidas: { camino: 'mainEntity.mainEntity', n: 3 },
+    respuestaSustituida: { camino: 'mainEntity.mainEntity.4.acceptedAnswer.text', empiezaPor: "We partner with trusted lending provider" },
   },
   '/services/premium-outdoor-furniture-for-north-south-florida-homes': {
     bloque: 0,
@@ -533,8 +541,9 @@ for (const [ruta, c] of Object.entries(JSON.parse(
     const camino = typeof era === 'string' ? 'image' : 'image.url';
     JSONLD_ARREGLADO[ruta] = {
       bloque: 0,
-      motivo: 'R22-BLOG-IMG: la foto del articulo pasa a obra real; la del origen es generada.',
-      cambios: [[camino, typeof era === 'string' ? era : era.url, d.tarjeta.src]],
+      motivo: 'R22-BLOG-IMG: la foto del articulo pasa a obra real; la del origen es generada. '
+        + 'SEO-SAFE: y la URL es absoluta, como el resto del BlogPosting.',
+      cambios: [[camino, typeof era === 'string' ? era : era.url, SITIO_R22 + d.tarjeta.src]],
     };
   }
   /**
@@ -645,12 +654,112 @@ for (const [ruta, c] of Object.entries(JSON.parse(
   };
 }
 
+/**
+ * ── SEO-SAFE (1-oct-2026) · LOS HEREDADOS REESCRITOS: TITULO, DESCRIPTION, BlogPosting y FAQPage ──
+ *
+ * Los 10 articulos heredados se reescribieron con fuentes (ver `src/data/blog-reescritos.json`,
+ * que es la lista EXPLICITA y lleva el motivo de cada uno). Cambian cuatro cosas en su `<head>`:
+ *
+ *   · el `<title>` y la `description` (y sus og:/twitter:), que ahora viven en Sanity (`seo`),
+ *     igual que las 53 de /pool-builders/: por eso NO van en `meta-propia.json`, que es para lo
+ *     que se escribe a mano aqui en el repo;
+ *   · la `description` del BlogPosting, que es el `summary` nuevo, y su `dateModified`;
+ *   · un `FAQPage` que el origen no traia, porque los articulos ahora llevan FAQ visible.
+ *
+ * SE DERIVA DE `src/data/blogs-sanity.json`, NO SE ENUMERA A MANO, como R22 y BLOG-SANITY: una
+ * lista escrita a mano se desincroniza con el dato. Y NO ES «IGNORA ESTAS RUTAS»: solo entran
+ * las declaradas por su nombre; en ellas la referencia deja de ser el origen y pasa a ser el
+ * valor del cache, que se EXIGE tal cual en el build. El resto del bloque (headline, author,
+ * publisher, url, image ya declarada por R22) se sigue comparando caracter a caracter. Y el
+ * `FAQPage` pasa el examen de `apartaBloquesPropios`: n entradas, ninguna vacia, sin dinero.
+ *
+ * Y NO SE FIA: una ruta declarada que no este en el baseline o no este en el cache ABORTA.
+ */
+{
+  const decl = path.join(RAIZ, 'src/data/blog-reescritos.json');
+  const cacheBlog = path.join(RAIZ, 'src/data/blogs-sanity.json');
+  if (fs.existsSync(decl)) {
+    const base = JSON.parse(fs.readFileSync(path.join(RAIZ, 'baseline/seo.json'), 'utf8'));
+    const posts = fs.existsSync(cacheBlog) ? JSON.parse(fs.readFileSync(cacheBlog, 'utf8')) : [];
+    for (const [ruta, d] of Object.entries(JSON.parse(fs.readFileSync(decl, 'utf8')).rutas ?? {})) {
+      const p = posts.find((x) => `/blogs/${x.slug}` === ruta);
+      const b = base[ruta];
+      if (!p || !b) {
+        console.error(`\n  ROJO check-seo: ${ruta} esta en blog-reescritos.json pero ${!p ? 'no esta en blogs-sanity.json' : 'no tiene baseline'}.\n`);
+        process.exit(1);
+      }
+      const motivo = `SEO-SAFE (${d.fecha}): ${d.motivo}`;
+      const mp = () => META_PROPIA.get(ruta) ?? {};
+      if (p.seo?.title && p.seo.title !== b.title) {
+        TITULO_PROPIO.set(ruta, p.seo.title);
+        META_PROPIA.set(ruta, { ...mp(), 'og:title': p.seo.title, 'twitter:title': p.seo.title });
+      }
+      if (p.seo?.description && p.seo.description !== b.meta?.description) {
+        META_PROPIA.set(ruta, { ...mp(), description: p.seo.description,
+          'og:description': p.seo.description, 'twitter:description': p.seo.description });
+      }
+      const ld = b.jsonLd?.[0] ?? {};
+      const ya = JSONLD_ARREGLADO[ruta];
+      const yaDeclarado = new Set((ya?.cambios ?? []).map((c) => c[0]));
+      const cambios = [];
+      const modificado = p.updatedAt ?? p.publishedAt;
+      if (ld.description !== p.summary && !yaDeclarado.has('description')) cambios.push(['description', ld.description, p.summary]);
+      if (ld.dateModified !== modificado && !yaDeclarado.has('dateModified')) cambios.push(['dateModified', ld.dateModified, modificado]);
+      for (const k of ['headline', 'name']) {
+        if (ld[k] !== p.title && !yaDeclarado.has(k)) cambios.push([k, ld[k], p.title]);
+      }
+      /* Las URLs absolutas y los dos nodos nuevos que `[slug].astro` emite desde SEO-SAFE. El
+       * `era` se LEE del baseline, no se escribe aqui: si el origen cambiara de forma, la
+       * declaracion deja de casar y la puerta lo dice. */
+      const abs = (u) => (typeof u === 'string' && u.startsWith('/') ? SITIO_R22 + u : u);
+      if (ld.url !== abs(ld.url)) cambios.push(['url', ld.url, abs(ld.url)]);
+      if (ld.publisher?.logo?.url !== undefined) {
+        cambios.push(['publisher.logo.url', ld.publisher.logo.url, `${SITIO_R22}/images/site/logo-mr-mr.svg`]);
+      }
+      cambios.push(['publisher.url', ld.publisher?.url, `${SITIO_R22}/`]);
+      cambios.push(['mainEntityOfPage.@type', ld.mainEntityOfPage?.['@type'], 'WebPage']);
+      cambios.push(['mainEntityOfPage.@id', ld.mainEntityOfPage?.['@id'], `${SITIO_R22}${ruta}`]);
+      if (cambios.length) {
+        JSONLD_ARREGLADO[ruta] = {
+          ...(ya ?? {}),
+          bloque: 0,
+          motivo: `${ya?.motivo ? `${ya.motivo} · ` : ''}${motivo}`,
+          cambios: [...(ya?.cambios ?? []), ...cambios],
+        };
+      }
+      const faq = (p.faq ?? []).filter((f) => f?.question?.trim() && f?.answer?.trim());
+      if (faq.length) {
+        BLOQUES_PROPIOS[ruta] = { tipo: 'FAQPage', clave: 'mainEntity', n: faq.length, motivo };
+      }
+    }
+  }
+}
+
+/**
+ * ── SEO-SAFE (1-oct-2026) · EL `Service` DE LAS 14 FICHAS SABE QUIEN LO PRESTA ───────────────
+ *
+ * `build-paginas.mjs` (paso 10) anade al `provider` del `about` de cada ficha el `@id` de
+ * `#negocio`, y al `about` su `url`. El origen no los traia, asi que son claves NUEVAS con `era` undefined, declaradas
+ * sobre la entrada que cada ficha YA tiene en `JSONLD_ARREGLADO` (R17 la de piscinas, R19 las
+ * otras trece): si una ficha dejara de tener entrada, no se declara y sale roja.
+ */
+for (const ruta of Object.keys(JSONLD_ARREGLADO).filter((r) => r.startsWith('/services/'))) {
+  const ja = JSONLD_ARREGLADO[ruta];
+  ja.motivo += ' · SEO-SAFE: el Service lleva provider (#negocio) y url.';
+  ja.cambios.push(
+    ['about.provider.@id', undefined, `${SITIO_R22}/#negocio`],
+    ['about.url', undefined, `${SITIO_R22}${ruta}`],
+  );
+}
+
 /** Lee/escribe por camino con puntos: `mainEntity.mainEntity.4.name`. */
 const porCamino = (o, c) => c.split('.').reduce((x, k) => (x == null ? x : x[k]), o);
+/* Crea los intermedios que falten: un arreglo declarado como `about.provider.@id` con `era`
+ * undefined es una clave NUEVA dentro de un objeto NUEVO, y sin esto se perdia en silencio. */
 const ponCamino = (o, c, v) => {
   const ks = c.split('.');
   const ult = ks.pop();
-  const padre = ks.reduce((x, k) => (x == null ? x : x[k]), o);
+  const padre = ks.reduce((x, k) => (x == null ? x : (x[k] ??= {})), o);
   if (padre != null) padre[ult] = v;
 };
 let partesCasadas = 0;

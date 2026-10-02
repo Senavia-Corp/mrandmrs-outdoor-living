@@ -27,21 +27,21 @@
   },
   "summary": "Eight decisions account for most of the difference between one Florida pool quote and another. Here is what each one adds or removes, and which ones are worth spending on.",
   "portada": {
-    "ref": "construction-1",
-    "alt": "Rectangular pool with a raised spa and water spouts, set in a herringbone travertine deck, with neighbouring barrel-tile roofs behind the hedge."
+    "ref": "bi-0633",
+    "alt": "Raised spa in iridescent glass tile in front of a white louvered roof sheltering an outdoor bar and a covered dining area"
   },
   "figuras": [
     {
-      "ref": "construction-7",
-      "alt": "Raised spa with a spillway returning to the pool, framed by a travertine deck beside a single-storey home."
+      "ref": "bi-0714",
+      "alt": "High aerial view of a white house with a pool rebar cage tucked between its two rear wings and open yard around it."
     },
     {
-      "ref": "construction-3",
-      "alt": "Pool with in-water loungers and an aluminium pergola attached to the house, with newly laid turf around the deck."
+      "ref": "mrandmrs-pool-remodeling-a2-blog-project-059-02",
+      "alt": "Aerial view of a pool and raised spa in a pale stone deck, with a dining set on the wide side and a clipped hedge around."
     },
     {
-      "ref": "construction-9",
-      "alt": "Two-storey Florida home with a pool, raised spa and bubblers, on a wide paver deck running the width of the yard."
+      "ref": "bi-0691",
+      "alt": "Pool excavation underway behind a white house, with an excavator, a skid steer and a pile of soil under a cloudy sky."
     }
   ],
   "faq": [
@@ -95,7 +95,7 @@ From the same starting point, dropping to a 250-square-foot pool takes about **$
 
 This is worth deciding early for a reason that has nothing to do with money: the pool has to leave room for everything else you want in the yard. A pool sized to the maximum the setbacks allow can leave no space for the covered seating or the kitchen you also wanted.
 
-{{figura: construction-7}}
+{{figura: bi-0714}}
 
 ## 2. Pool style, which is really a construction method
 
@@ -139,7 +139,7 @@ Deck square footage is the decision most often left to the end, and it carries r
 
 It is also the decision that determines whether the yard works. A pool with a deck too narrow on the long side has nowhere to put a lounger without blocking the path around the water.
 
-{{figura: construction-3}}
+{{figura: mrandmrs-pool-remodeling-a2-blog-project-059-02}}
 
 ## 6. Spa, and which kind
 
@@ -174,7 +174,7 @@ These are the decisions your property makes for you.
 
 Together these can move a project by more than $18,000, and none of them are visible in a photograph of the backyard. They are the main reason an online number and a site visit disagree.
 
-{{figura: construction-9}}
+{{figura: bi-0691}}
 
 ## What the number already includes, and what it does not
 

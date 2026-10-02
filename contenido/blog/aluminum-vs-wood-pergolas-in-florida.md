@@ -27,8 +27,8 @@
   },
   "summary": "Both materials work on day one. They diverge once maintenance starts coming due, and the thing that separates them is not durability in the abstract — it is who is going to refinish the underside, and whether the look you want is achievable in the material you are choosing.",
   "portada": {
-    "ref": "pergolas-8",
-    "alt": "Dark aluminum pergola with a slatted roof standing at the corner of a pool and raised spa, a matching louvered privacy screen beneath it, palms and a rendered boundary wall behind."
+    "ref": "bi-1009",
+    "alt": "Brown pergola with rafter tails over a brick paver patio with turquoise seating, a grill and a wood fence behind"
   },
   "figuras": [
     {
@@ -36,8 +36,8 @@
       "alt": "Timber pavilion with a gable roof, its exposed trusses joined by black steel plates and hung with ceiling fans, covering an outdoor kitchen with two built-in grills, four bar stools and a herringbone wood back wall."
     },
     {
-      "ref": "pergolas-4",
-      "alt": "Dark aluminum pergola with a slatted top beside a pool on a canal-front lot, marble paving underfoot, black landscape uplights set in the rock bed to the right and palms lining the far bank."
+      "ref": "bi-1069",
+      "alt": "Black-framed patio cover seen from below, its cut rafter tails, gutter and downspout against a lake and palms"
     },
     {
       "ref": "pergolas-6",
@@ -110,7 +110,7 @@ Any page that says "zero maintenance" is selling. Factory-finished aluminum has 
 - **Chalking and fade under sustained UV.** Slow, gradual, and a function of the coating rather than the metal.
 - **The hardware.** Fixings tend to need attention before the beams do, especially near salt air, where dissimilar metals in contact set up galvanic corrosion. On a waterfront lot the metallurgy of the screws is a more consequential specification than anything about the beams.
 
-{{figura: pergolas-4}}
+{{figura: bi-1069}}
 
 The maintenance is real but it is rare and at eye level: rinse it, and once a year look at the fixings and the cut ends. Nothing about that requires a ladder and a brush.
 

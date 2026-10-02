@@ -27,21 +27,17 @@
   },
   "summary": "A louvered roof has two states and three mounting surfaces, and two of those surfaces are already doing another job. Almost every accessory decision closes when the frame is fabricated, not when it is installed.",
   "portada": {
-    "ref": "louvered-5",
-    "alt": "Louvered roof with a dark bronze frame and white louvers, partly open, over a concrete patio attached to a modern white house with floor-to-ceiling glass, a black pool safety fence and a clipped hedge in front."
+    "ref": "bi-0632",
+    "alt": "White louvered roof with ceiling fans and a TV over a stacked-stone kitchen island, lounge chairs and a dining table"
   },
   "figuras": [
-    {
-      "ref": "louvered-8",
-      "alt": "White louvered roof over an outdoor dining table and chairs, built alongside an existing covered porch that already has a ceiling fan mounted under it, with a white picket fence and palms behind."
-    },
     {
       "ref": "louvered-1",
       "alt": "Cream louvered roof over a wood deck, with two ceiling fans hanging under it, a stainless steel built-in grill in a masonry counter and a tall outdoor fireplace at the far end."
     },
     {
-      "ref": "louvered-7",
-      "alt": "White louvered roof attached to a house over a light stone patio still wet from rain, with a white fence and a canal behind it."
+      "ref": "bi-0169",
+      "alt": "Underside of a closed white louvered roof attached to a house, a corner post, a pool and a tall hedge beyond"
     }
   ],
   "faq": [
@@ -113,7 +109,6 @@ Two constraints decide where it goes.
 
 One layout note: a fan moves air in a cone. Over a long table under a closed roof, two smaller fans usually do more than one large one hung at the midpoint.
 
-{{figura: louvered-8}}
 
 ## Screens: the decision that has to happen before the posts are ordered
 
@@ -151,7 +146,7 @@ A closed louvered roof is a watertight surface the size of its footprint. All of
 
 How the roof itself behaves when the weather actually arrives — sensors, closing, what happens in a real storm — is covered in [what happens to a louvered roof during Florida rain and high winds](/blogs/louvered-roof-in-florida-rain-and-high-winds).
 
-{{figura: louvered-7}}
+{{figura: bi-0169}}
 
 ## Power and control: one load list, one remote
 

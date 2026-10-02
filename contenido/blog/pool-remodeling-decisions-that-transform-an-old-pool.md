@@ -32,16 +32,16 @@
   },
   "figuras": [
     {
-      "ref": "remodeling-7",
-      "alt": "Raised spa clad in small white tile with its jets running, beside a rectangular pool with two white loungers standing on the deck at the top of its wide entry steps, and two grills under the covered lanai behind."
+      "ref": "mrandmrs-pool-spa-a2-blog-project-062-10",
+      "alt": "Pool in full sun with white coping, a raised spa at the far left corner and a white lounger beside the house."
     },
     {
-      "ref": "remodeling-4",
-      "alt": "Rectangular pool with a shallow shelf at the near end and a travertine paver deck, a basketball hoop at the far edge, a covered lanai with ceiling fans to the left and palms behind a black metal fence."
+      "ref": "bi-0951",
+      "alt": "New white patio cover casting shade on freshly laid gray stone pavers along a green stucco house."
     },
     {
-      "ref": "remodeling-1",
-      "alt": "Pool with two white chaise loungers standing in its shallow shelf, a spa trimmed in dark blue tile at the near left, a pale stone deck around both, and a single-story house with a covered lanai behind."
+      "ref": "bi-0617",
+      "alt": "Wide walnut travertine deck in a French pattern wrapping around a pool with blue waterline tile."
     }
   ],
   "faq": [
@@ -100,7 +100,7 @@ A heater is a purchase. Our estimator prices one at **$4,500**, and it can be bo
 - **Exposure.** Sun on the water is free heat. This is also the decision that fights with the next one on the list: the tree or structure that makes the deck usable in August is the reason the water is cold in February. Decide both at once or you will win one and lose the other.
 - **Whether the spa can run on its own.** A spa that can be isolated and heated by itself is usable on a cold evening. A spa that shares the pool's body of water costs the whole pool's heat to use, which in practice means it does not get used. That is a plumbing and valve decision made during the remodel, not an equipment decision made afterwards.
 
-{{figura: remodeling-7}}
+{{figura: mrandmrs-pool-spa-a2-blog-project-062-10}}
 
 ### 2. What shades the deck between noon and five
 
@@ -110,7 +110,7 @@ Three scopes, all priced in the estimator: a **pergola at $8,500**, a **screen e
 
 The part worth doing before anyone draws anything: stand in the yard at four in the afternoon, in the month you use the pool most, and mark where the shadow of the house actually falls. Shade gets designed on plan at noon, because noon is the easiest geometry and the sun is overhead — and noon is not when anybody is out there. Anything standing over the deck also needs footings through the slab, which is why [the timing belongs with the rest of the scope](/blogs/what-to-upgrade-during-a-complete-pool-remodel).
 
-{{figura: remodeling-4}}
+{{figura: bi-0951}}
 
 ### 3. Where people can sit, in the water and on the deck
 
@@ -123,7 +123,7 @@ Most old pools offer exactly two positions: swimming, or sitting on a lounger lo
 
 The deck half of the same question is width, not material. A uniform walkway around a pool has nowhere to put a table, because a table needs the depth of a chair pulled out plus a path to walk behind it. Measure the furniture you already own before anyone quotes a surface: pull a chair out from your indoor table, measure what it occupies, and mark that on the ground. Widening one side and narrowing another can cost the same square footage. What that does to the view is covered in [the changes you actually see](/blogs/before-and-after-pool-remodel-ideas); what it does to the slab and its drainage is [custom deck construction](/services/custom-deck-builders-in-north-south-florida).
 
-{{figura: remodeling-1}}
+{{figura: bi-0617}}
 
 ## The three you never look at and notice every week
 

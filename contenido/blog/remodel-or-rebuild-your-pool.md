@@ -26,19 +26,19 @@
     "title": "Remodel or Rebuild a Pool: How to Decide in Florida",
     "description": "Only two findings justify rebuilding a pool. Five checks in the order that decides — shell, position, geometry, buried work, deck — and what each one costs."
   },
-  "summary": "Two findings make a rebuild the honest answer. Everything else is remodel work, and the gap is about $16,600 on a typical project. Here is the order to check in, and what each finding actually means.",
+  "summary": "Two findings make a rebuild the honest answer. Everything else is remodel work, and on a typical project the remodel comes in well under the cost of building new. Here is the order to check in, and what each finding actually means.",
   "portada": {
-    "ref": "remodeling-2",
-    "alt": "Rectangular pool with an integrated spa and three spillway niches set into a rendered wall, with a fire bowl on the deck and a flowering tree behind it."
+    "ref": "remodeling-8",
+    "alt": "Aerial view of a pool and square spa on a pale stone deck beside a white louvered roof, a two-story house and palms"
   },
   "figuras": [
     {
-      "ref": "remodeling-6",
-      "alt": "Aerial view of a pool and spa on a wide deck beside a single-storey house, with a garden hose running across the deck and a wood ranch fence around the pasture beyond."
+      "ref": "bi-0566",
+      "alt": "Steel rebar grid and wooden formwork for a new pool laid out close behind a white brick house."
     },
     {
-      "ref": "remodeling-1",
-      "alt": "Pool with a raised spa and travertine coping, two chaise loungers standing in the shallow end and a covered lanai with patio furniture behind."
+      "ref": "bi-0753",
+      "alt": "Close-up of a pressure gauge on a capped PVC pipe with a brass valve, set above an open trench."
     },
     {
       "ref": "remodeling-0",
@@ -122,7 +122,7 @@ Stand in the yard and answer honestly:
 - Did the setbacks, the septic field or the easements put it where it is, rather than anyone choosing?
 - Does an old screen cage decide the shape of everything around it?
 
-{{figura: remodeling-6}}
+{{figura: bi-0566}}
 
 A pool that has to move at all is a rebuild. A pool that is in the right place with the wrong deck around it is a remodel and a deck job — which is usually the cheaper problem, even when the deck is the larger number.
 
@@ -142,7 +142,7 @@ This is where remodel savings quietly evaporate, because the reuse everyone is c
 
 Ask for the suction and return lines to be pressure tested before anyone commits to a scope. Ask how the lines are routed and whether they run under the deck or under the shell. Ask whether the equipment pad can stay where it is, and what the electrical service at the pad will support — a heater at **$4,500**, a salt system at **$2,200** and an automation panel at **$3,500** are all standard remodel line items, and all of them assume power that is already adequate.
 
-{{figura: remodeling-1}}
+{{figura: bi-0753}}
 
 If the answer is that the lines have to be re-run, a good share of the reuse saving goes with them, and the honest comparison changes. That is not a reason to rebuild by itself. It is a reason to know before you sign, rather than at week three.
 

@@ -26,21 +26,21 @@
   },
   "summary": "A louvered roof is bought, not built. That changes the questions: which system, approved for what, drained where, and serviced by whom in year six.",
   "portada": {
-    "ref": "louvered-3",
-    "alt": "White aluminum louvered roof attached to a cream stucco house, seen from across a turquoise pool with a chrome handrail at the steps, loungers on the deck and a neighbor's barrel tile roof to the right."
+    "ref": "louvered-6",
+    "alt": "Modern white house with a louvered roof over a raised terrace holding a daybed and a table, beside a tall hedge and lawn"
   },
   "figuras": [
     {
-      "ref": "louvered-7",
-      "alt": "White louvered roof on slim posts over a pale tile patio still wet from rain, with a white perimeter fence, a canal and palms behind it and solar panels on a neighbor's roof."
+      "ref": "bi-0646",
+      "alt": "Underside of a white louvered roof with its blades closed, a wall-mounted light fixture at the lower left"
     },
     {
-      "ref": "louvered-5",
-      "alt": "Louvered roof with a dark bronze frame and white blades over a concrete courtyard, in front of a modern white house with floor-to-ceiling glass, a black safety fence and a clipped hedge in the foreground."
+      "ref": "bi-0610",
+      "alt": "Bare white frames being assembled on a rooftop terrace by the ocean, ladders and a worker beneath the open beams"
     },
     {
-      "ref": "louvered-6",
-      "alt": "White louvered roof attached to the back of a two-story white house, covering a gray tile terrace with a low white daybed and a dining table, with a tall hedge at left, a neighbor's barrel tile roof beyond it and lawn in the foreground."
+      "ref": "bi-0236",
+      "alt": "Dark bronze freestanding louvered roof on four posts over a paver pad beside a blue tennis court"
     }
   ],
   "faq": [
@@ -102,7 +102,7 @@ Two follow-ups worth the breath:
 
 While you are here: ask who pulls the permit. The answer should be the contractor, under their own license.
 
-{{figura: louvered-6}}
+{{figura: bi-0236}}
 
 ## 3. Where does the water actually go?
 
@@ -120,7 +120,7 @@ This is the item most often left for the crew to solve on installation day, and 
 
 One more, specific to here: leaves. The blade seals and the beam channels have to stay clear, and under oaks that is not optional. Ask what the cleaning access looks like on the system being quoted — whether it is a hose from the ground or a ladder and a removed end cap.
 
-{{figura: louvered-7}}
+{{figura: bi-0646}}
 
 ## 4. Who does the electrical, and is it in this number?
 
@@ -138,7 +138,7 @@ The last one moves real money and is the single most common thing missing from a
 
 While the beams are still open, settle the conduit for whatever comes later. The frames are hollow. Wiring runs inside them if it was planned and on the surface if it was not, and that difference is visible for as long as the structure stands.
 
-{{figura: louvered-5}}
+{{figura: bi-0610}}
 
 ## 5. If it attaches to the house, what is it attaching to?
 
