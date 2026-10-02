@@ -135,6 +135,8 @@ What that money changes is the color of the water and the feel underfoot. It doe
 
 Where it always earns its cost is where the finish is seen dry and close: sun shelves, steps, benches, the top of a spa wall. Those surfaces get inspected at arm's length by everyone who uses the pool. The floor of the deep end does not.
 
+Color is a separate decision from material, and it is the one that changes the read of the water most. What a dark finish does to the color, the heat and the chemistry of a Florida pool is in [dark pool finishes in Florida](/blogs/dark-pool-finishes-in-florida).
+
 ## 7. Shelves, steps and benches are placed, not added
 
 A sun shelf is not an item to add to a list. It is a piece of the plan with a direction, and the direction is the part that gets skipped. It should face where people want to sit in late afternoon, which in most Florida yards is not where the first drawing puts it. A shelf on the wrong side is in full sun at four o'clock and empty by five.

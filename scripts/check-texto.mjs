@@ -289,6 +289,13 @@ const TRADUCIDAS_A_PROPOSITO = [
    * por eso el rotulo se declara «What We Do» y no «What we do». Es la sexta vez que esto
    * muerde en este repo.
    */
+  /* SEO-SAFE (1-oct-2026): la landing de remodelacion dice QUE (remodelacion COMPLETA, que es la
+   * intencion que la distingue de un resurfacing suelto), PARA QUIEN (North Florida delante, como
+   * el anuncio) y QUE INCLUYE, igual que la de piscinas desde R17. */
+  ['Pool remodeling contractors serving North & South Florida, upgrading pools with modern finishes, energy-efficient systems, and lasting results.',
+    'Complete pool remodeling for North Florida homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team. We also remodel across South Florida.',
+    'apoyo del heroe de la landing «Full Remodel»: remodelacion completa, North Florida delante, '
+    + 'y el alcance en una frase', ['/services/pool-remodeling-renovation-in-north-south-florida']],
   ['Custom pool and spa builders serving North & South Florida, delivering high-quality construction and long-term outdoor value.',
     'New custom inground pools for North Florida homeowners — 3D design, permits, construction and final start-up, from one licensed team. We also build across South Florida.',
     'apoyo del heroe: resuelve QUE, DONDE, PARA QUIEN y QUE HACER AHORA, con North Florida '
@@ -2591,6 +2598,102 @@ function bloquesCaptacion(ruta) {
   return lineas.join('\n');
 }
 
+/**
+ * ── SEO-SAFE (1-oct-2026) · LOS ARTICULOS HEREDADOS REESCRITOS, DERIVADOS DE SANITY ─────────
+ *
+ * Los 10 articulos migrados de Webflow publicaban cifras y hechos sin fuente, varios falsos
+ * (SEO_IMPLEMENTATION_AUDIT.md P0-2/P0-3). Se reescribieron desde `contenido/blog/*.md`, con
+ * la MISMA URL y el MISMO h1, y se publicaron en Sanity. Su `baseline/text/` sigue trayendo el
+ * texto viejo, y `baseline/text/` NO SE RE-BASELINIZA NUNCA (§1.1).
+ *
+ * POR QUE NO VALE NINGUN MECANISMO DE LOS QUE YA HAY: cambian ~100 lineas por ruta, el resumen
+ * del heroe, el cuerpo entero, la FAQ y las fuentes (que antes no existian) y las tarjetas de
+ * «Most Read Articles». `TRADUCIDAS_A_PROPOSITO` es 1->1, `LINEAS_ANADIDAS` seria copiar aqui
+ * el articulo entero por triplicado, y `REORDENADAS_A_PROPOSITO` exige una permutacion.
+ *
+ * ASI QUE SE HACE COMO RESEÑAS, BLOG Y CAPTACION: se DERIVA del mismo dato que pinta la pagina
+ * —`src/data/blogs-sanity.json`— y el FORMATEO se reescribe aqui: `capitalize` de h1..h4 (el
+ * de `webflow.css`), las celdas de una tabla en una linea separadas por espacio (asi lo da
+ * `innerText`), `Common questions` y `Sources` como los emite `[slug].astro`, y las tarjetas
+ * como titulo capitalizado + resumen + «Read More». Si el componente cambia una etiqueta o el
+ * orden, esto se pone ROJO — que es lo que tiene que pasar.
+ *
+ * NO ES «IGNORA ESTAS RUTAS», y la diferencia esta en dos cosas: (1) la lista de rutas es
+ * EXPLICITA y vive en `src/data/blog-reescritos.json` con su motivo; un heredado que cambie en
+ * Sanity y no este declarado sigue saliendo rojo. (2) Solo se sustituye el tramo entre el h1 y
+ * el CTA de cierre; el menu, el CTA, el pie y todo lo demas se siguen comparando contra el
+ * baseline congelado caracter a caracter. Y los dos anclajes tienen que casar EXACTAMENTE una
+ * vez, o la ruta sale roja en vez de declararse a medias.
+ */
+const REESCRITOS = (() => {
+  const f = path.join(RAIZ, 'src/data/blog-reescritos.json');
+  return fs.existsSync(f) ? (JSON.parse(fs.readFileSync(f, 'utf8')).rutas ?? {}) : {};
+})();
+const CACHE_BLOG_REESCRITOS = (() => {
+  const f = path.join(RAIZ, 'src/data/blogs-sanity.json');
+  return fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')) : [];
+})();
+/** La misma normalizacion que `textoNormalizado()`: nbsp -> espacio, blancos colapsados, trim. */
+const normLinea = (s) => String(s ?? '').replace(/ /g, ' ').replace(/[ \t]+/g, ' ').trim();
+/** El `innerText` del cuerpo de un articulo, bloque a bloque, como lo emite `portable-text.mjs`. */
+function lineasCuerpoArticulo(bloques, ruta) {
+  const out = [];
+  for (const b of bloques ?? []) {
+    if (b._type === 'image') { if (b.pie) out.push(normLinea(b.pie)); continue; }
+    if (b._type === 'tabla') {
+      for (const f of b.filas ?? []) { const l = normLinea((f.celdas ?? []).join(' ')); if (l) out.push(l); }
+      continue;
+    }
+    if (b._type !== 'block') throw new Error(`check-texto: ${ruta} trae un bloque "${b._type}" que no se sabe modelar`);
+    const texto = normLinea((b.children ?? []).map((s) => s.text ?? '').join(''));
+    if (!texto) continue;
+    const estilo = b.style ?? 'normal';
+    out.push(!b.listItem && /^h[1-4]$/.test(estilo) ? capitaliza(texto) : texto);
+  }
+  return out;
+}
+/** Las lineas que la pagina reescrita pinta entre el h1 y el CTA de cierre, derivadas del cache. */
+function lineasArticuloReescrito(ruta) {
+  const p = CACHE_BLOG_REESCRITOS.find((x) => `/blogs/${x.slug}` === ruta);
+  if (!p) throw new Error(`check-texto: ${ruta} esta en blog-reescritos.json y no en blogs-sanity.json`);
+  const faq = (p.faq ?? []).filter((f) => f?.question?.trim() && f?.answer?.trim());
+  const fuentes = (p.fuentes ?? []).filter((f) => f?.label?.trim() && f?.url?.trim());
+  const rel = (p.relacionados ?? []).filter((r) => r?.slug && r?.portada);
+  return [
+    capitaliza(normLinea(p.title)), normLinea(p.summary),
+    ...lineasCuerpoArticulo(p.blog, ruta),
+    ...(faq.length ? [capitaliza('Common questions'), ...faq.flatMap((f) => [capitaliza(normLinea(f.question)), normLinea(f.answer)])] : []),
+    ...(fuentes.length ? ['Sources', ...fuentes.map((f) => normLinea(f.label))] : []),
+    'Most Read Articles',
+    ...rel.flatMap((r) => [capitaliza(normLinea(r.title)), normLinea(r.summary), 'Read More']),
+  ];
+}
+let reescritosCasados = 0;
+let reescritoFallo = null;
+const CIERRE_ARTICULO = 'Request A Design-Build Project Evaluation';
+/** Sustituye en el baseline el tramo h1..CTA por el derivado. `null` si los anclajes no casan. */
+function reescribeArticulo(ruta, lineas) {
+  const d = REESCRITOS[ruta];
+  if (!d) return lineas;
+  reescritoFallo = null;
+  const p = CACHE_BLOG_REESCRITOS.find((x) => `/blogs/${x.slug}` === ruta);
+  const h1 = p ? capitaliza(normLinea(p.title)) : null;
+  /* El h1 se busca por PRIMERA aparicion: 7 de los 10 heredados se enlazaban a si mismos en
+   * «Most Read Articles», asi que su titulo sale dos veces en el baseline, y la segunda cae
+   * dentro del tramo que se sustituye. Lo que no puede pasar es que salga DESPUES del cierre:
+   * entonces el anclaje no seria el h1 y la ruta sale roja en vez de declararse a medias. */
+  const ini = h1 === null ? -1 : lineas.indexOf(h1);
+  const fin = ini < 0 ? -1 : lineas.indexOf(CIERRE_ARTICULO, ini + 1);
+  if (ini < 0) { reescritoFallo = `articulo reescrito: el h1 «${h1}» no esta en el baseline`; return null; }
+  if (fin < 0) { reescritoFallo = `articulo reescrito: no esta el cierre «${CIERRE_ARTICULO}» tras el h1`; return null; }
+  if (lineas.indexOf(h1, fin) >= 0) {
+    reescritoFallo = `articulo reescrito: el h1 «${h1}» vuelve a salir DESPUES del cierre; el anclaje no es fiable`;
+    return null;
+  }
+  reescritosCasados++;
+  return [...lineas.slice(0, ini), ...lineasArticuloReescrito(ruta), ...lineas.slice(fin)];
+}
+
 /** Diferencia legible entre dos textos, línea a línea. */
 function diferencias(ruta, esperado, hay) {
   const a = esperado.split('\n'), b = hay.split('\n');
@@ -2718,8 +2821,17 @@ for (const ruta of RUTAS) {
   const declaradas = new Set(QUITADAS_A_PROPOSITO
     .filter(([, , rutas]) => !rutas || rutas.includes(ruta))
     .map(([l]) => l));
+  // SEO-SAFE: en los heredados reescritos el tramo h1..CTA del baseline se sustituye por el
+  // derivado de Sanity (§ reescribeArticulo). Lo demas sigue saliendo del baseline congelado.
+  const baseReescrita = reescribeArticulo(ruta, fs.readFileSync(ref, 'utf8').trimEnd().split('\n'));
+  if (baseReescrita === null) {
+    mal++;
+    console.log(`  ROJO ${ruta} — ${reescritoFallo}`);
+    rojos.push({ ruta, falta: [reescritoFallo], sobra: [], fuera: [] });
+    continue;
+  }
   const esperado = reordena(ruta,
-    quitaAntesDespues(ruta, fs.readFileSync(ref, 'utf8').trimEnd().split('\n'))
+    quitaAntesDespues(ruta, baseReescrita)
       .filter((l) => !declaradas.has(l)).map((l) => traduce(ruta, l))).join('\n');
   const bruto = (await textoNormalizado(pag)).trimEnd();
   if (bruto.includes(RESENAS_MARCADOR)) conResenas++;
@@ -2798,6 +2910,10 @@ if (filtro.length) {
 } else if (RESENAS_ESPERADAS) {
   console.log(`\n  ok   reseñas: bloque declarado de ${lineasResenas().length} lineas, `
     + `descontado en las ${conResenas} rutas que lo montan`);
+}
+if (reescritosCasados) {
+  console.log(`\n  ok   articulos reescritos (SEO-SAFE): ${reescritosCasados} ruta(s) con el tramo h1..CTA `
+    + 'derivado de src/data/blogs-sanity.json; declaradas por su nombre en src/data/blog-reescritos.json');
 }
 
 /* Contador de blog. Mismo criterio que el de reseñas y misma omision en corrida acotada. */

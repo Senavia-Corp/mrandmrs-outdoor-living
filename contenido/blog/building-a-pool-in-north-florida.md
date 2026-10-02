@@ -66,7 +66,7 @@
 }
 ---
 
-Building a pool in Gainesville or Ocala is the same project as building one in Fort Lauderdale for most of its length. The parts that differ are the parts that move money and dates, and there are four: what is under the yard, where the fill water comes from, how many months the pool is warm enough to use, and which office reviews the permit.
+Building a pool in [Gainesville](/pool-builders/gainesville-florida) or [Ocala](/pool-builders/ocala-florida) is the same project as building one in Fort Lauderdale for most of its length. The parts that differ are the parts that move money and dates, and there are four: what is under the yard, where the fill water comes from, how many months the pool is warm enough to use, and which office reviews the permit.
 
 None of the four changes how a pool is designed. All four change what it costs and how long it takes, and all four are cheaper to settle before the contract than during the dig.
 

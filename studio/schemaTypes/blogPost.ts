@@ -414,6 +414,81 @@ export default defineType({
         ],
       }],
     },
+    /* ── SEO-SAFE (1-oct-2026): LA VERIFICACION, COMO DATO ──────────────────────────────────
+     * Siete campos OPCIONALES, retrocompatibles: ningun documento los necesita para publicarse y
+     * ningun render los lee todavia. Existen para que «este articulo esta verificado» sea algo
+     * que se pueda consultar, no algo que alguien recuerde. Ninguno inventa una persona: `reviewedBy`
+     * se deja vacio hasta que alguien real lo revise. */
+    {
+      name: 'primaryService',
+      title: 'Servicio principal',
+      description:
+        'La ficha de /services/ que este artículo apoya. Vacío = el primero de «Related services».',
+      type: 'reference',
+      to: [{ type: 'service' }],
+      group: 'taxonomia',
+    },
+    {
+      name: 'targetRegion',
+      title: 'Región objetivo',
+      description: 'Para quién se escribió. «Florida» cuando no distingue norte y sur.',
+      type: 'string',
+      group: 'taxonomia',
+      options: {
+        list: [
+          { title: 'North Florida', value: 'north-florida' },
+          { title: 'South Florida', value: 'south-florida' },
+          { title: 'Florida', value: 'florida' },
+        ],
+        layout: 'radio',
+      },
+    },
+    {
+      name: 'contentStatus',
+      title: 'Estado editorial',
+      description: 'Vacío = publicado tal cual. «needs-review» marca un artículo que se publica pero debe revisarse.',
+      type: 'string',
+      group: 'publicacion',
+      options: {
+        list: [
+          { title: 'Published', value: 'published' },
+          { title: 'Needs review', value: 'needs-review' },
+          { title: 'Updated', value: 'updated' },
+          { title: 'Archived', value: 'archived' },
+        ],
+      },
+    },
+    {
+      name: 'factChecked',
+      title: 'Hechos verificados',
+      description:
+        'Cada cifra, norma y afirmación del artículo tiene fuente (sección «Sources» o dato del '
+        + 'repo). Los 10 heredados se marcaron al reescribirse (SEO-SAFE, 1-oct-2026).',
+      type: 'boolean',
+      group: 'publicacion',
+      initialValue: false,
+    },
+    {
+      name: 'factCheckedAt',
+      title: 'Verificado el',
+      type: 'datetime',
+      group: 'publicacion',
+      hidden: ({ parent }) => !parent?.factChecked,
+    },
+    {
+      name: 'reviewedBy',
+      title: 'Revisado por',
+      description: 'Nombre de la persona REAL que revisó el contenido. Vacío antes que inventado.',
+      type: 'string',
+      group: 'publicacion',
+    },
+    {
+      name: 'lastSeoAuditDate',
+      title: 'Última auditoría SEO',
+      description: 'Cuándo se revisaron por última vez título, description, enlaces y schema de este artículo.',
+      type: 'datetime',
+      group: 'seo',
+    },
     {
       name: 'seo',
       title: 'SEO',

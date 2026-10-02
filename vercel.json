@@ -72,6 +72,17 @@
       "source": "/pool-builders/pool-builders-mcintosh-florida",
       "destination": "/pool-builders/mcintosh-florida",
       "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "mrandmrs-outdoor-living.vercel.app"
+        }
+      ],
+      "destination": "https://www.mrandmrsoutdoorliving.com/$1",
+      "permanent": true
     }
   ],
   "headers": [

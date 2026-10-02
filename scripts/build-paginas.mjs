@@ -1098,6 +1098,18 @@ function captacion(doc, ruta) {
       if (typeof about.image === 'string' && !about.image.startsWith('/') && !/^https?:/.test(about.image)) {
         about.image = c.heroe.foto;
       }
+      /* SEO-SAFE (1-oct-2026): el `Service` del origen no decia QUIEN lo presta ni DONDE vive.
+       * `provider` lo ata por `@id` al `LocalBusiness#negocio` que `Base.astro` inyecta en todas
+       * las paginas (`src/lib/negocio.mjs`, mismo host que la canonica), y `url` es la propia
+       * ficha. Es lo que permite a un motor generativo leer «este servicio lo ofrece esta
+       * entidad, en esta pagina» sin adivinarlo. `check-seo.mjs` lo declara para las 14. */
+      if (about['@type'] === 'Service') {
+        /* El origen YA trae `provider: {Organization, name}`; se conserva y se le anade el `@id`.
+         * `LocalBusiness` es subtipo de `Organization`, asi que el mismo `@id` con los dos tipos
+         * nombra a la misma entidad. */
+        about.provider = { ...(about.provider ?? {}), '@id': 'https://www.mrandmrsoutdoorliving.com/#negocio' };
+        about.url = `https://www.mrandmrsoutdoorliving.com${ruta}`;
+      }
     }
     if (bloque.dateModified && bloque.datePublished
         && Date.parse(bloque.dateModified) < Date.parse(bloque.datePublished)) {

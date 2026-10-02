@@ -140,7 +140,7 @@ The equipment is a purchase and can wait. The tees and the capacity are construc
 
 Our estimator prices automation at $3,500. It is the upgrade most often deferred and most often regretted, because deferring the controller is fine and deferring the conduit is not.
 
-What has to happen at rough-in is small: a conduit run from the equipment pad to wherever a panel or an indoor control will live, and equipment selected now that will accept a controller later. Neither of those is the $3,500. Both of them are the reason the $3,500 is still $3,500 in three years.
+What has to happen at rough-in is small: a conduit run from the equipment pad to wherever a panel or an indoor control will live, and equipment selected now that will accept a controller later. Neither of those is the $3,500. Both of them are the reason the $3,500 is still $3,500 in three years. Our guide to [pool automation for new construction](/blogs/pool-automation-for-new-construction) lists everything that has to be buried.
 
 ### 7. Sleeves, footings and whatever comes next
 

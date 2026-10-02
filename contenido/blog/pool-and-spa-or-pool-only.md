@@ -164,6 +164,8 @@ If the honest count comes back at a handful of nights, the money usually belongs
 
 **The schedule, materially.** A spa does not add a stage. It makes the existing ones slightly bigger, because it is excavated, formed, poured, tiled and finished along with the pool. The part that does affect your schedule is the equipment and automation, which arrive late and are a common place a project waits.
 
+**A cold plunge, if one is on the list.** It is not a small spa: it runs on its own loop with its own chiller, and it has to be in the plan before the shell. What it shares with the spa, and what it cannot, is in [cold plunge integration in Florida pool construction](/blogs/cold-plunge-integration-florida-pool-construction).
+
 **The rest of the design.** Finish, deck material and deck size are priced independently, and all three are covered decision by decision in [what a custom pool really costs](/blogs/how-much-does-a-custom-pool-cost-in-florida).
 
 ## What to do with this

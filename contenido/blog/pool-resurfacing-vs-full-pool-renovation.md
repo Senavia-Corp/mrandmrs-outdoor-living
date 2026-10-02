@@ -91,6 +91,8 @@ The pool is drained, the old interior surface is prepared or removed, and a new 
 
 What genuinely changes is how the pool looks, how it feels underfoot and how it holds up. Finish is a real decision, not a color swatch: our estimator applies a 15% factor for pebble over plaster and 35% for premium aggregates, on the pool line. The ordering holds on a remodel — the finish that costs more is the one that looks the way it looked for longer, under Florida sun and Florida water chemistry.
 
+Color is the other half of that decision, and a resurface is the one moment it can change. A dark finish turns the water a deep blue or green, warms it faster and shows chemistry sooner; what that means in Florida is in [dark pool finishes in Florida](/blogs/dark-pool-finishes-in-florida).
+
 What does not change is everything in the other four layers. A resurfaced pool with the original waterline tile very often looks worse at the tile line than it did before, because the new finish is the only thing in the frame that is not aged.
 
 The tile is also the one layer that will not wait politely. Waterline tile and coping sit at the top of the finish, where the pool meets the deck, so replacing them later means lowering the water, breaking out the first band of deck and working against the top inch of a surface you already paid for. A finish two years old ends up patched along the line everyone looks at first. If the tile is close to done, it goes with the finish or it goes before it — not two years after.

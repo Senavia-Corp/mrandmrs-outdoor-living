@@ -26,7 +26,7 @@
     "title": "Remodel or Rebuild a Pool: How to Decide in Florida",
     "description": "Only two findings justify rebuilding a pool. Five checks in the order that decides — shell, position, geometry, buried work, deck — and what each one costs."
   },
-  "summary": "Two findings make a rebuild the honest answer. Everything else is remodel work, and the gap is about $16,600 on a typical project. Here is the order to check in, and what each finding actually means.",
+  "summary": "Two findings make a rebuild the honest answer. Everything else is remodel work, and on a typical project the remodel comes in well under the cost of building new. Here is the order to check in, and what each finding actually means.",
   "portada": {
     "ref": "remodeling-2",
     "alt": "Rectangular pool with an integrated spa and three spillway niches set into a rendered wall, with a fire bowl on the deck and a flowering tree behind it."

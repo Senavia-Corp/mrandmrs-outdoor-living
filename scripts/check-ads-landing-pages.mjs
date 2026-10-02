@@ -73,7 +73,9 @@ const LANDINGS = [
       campo: 'Project-Type',
       preseleccion: 'New Custom Pool',
     },
-    faq: { n: 3 },
+    /* 3 de la plantilla de ciudad + 1 local (SEO-SAFE, 1-oct-2026: que oficina revisa el permiso
+     * segun el lado del limite municipal, y el septico). Solo Gainesville y Ocala la llevan. */
+    faq: { n: 4 },
   },
   {
     grupo: 'Ocala',
@@ -87,7 +89,8 @@ const LANDINGS = [
       campo: 'Project-Type',
       preseleccion: 'New Custom Pool',
     },
-    faq: { n: 3 },
+    /* Idem: 3 de plantilla + 1 local (oficina segun el limite municipal, caliza y septico). */
+    faq: { n: 4 },
   },
   {
     grupo: 'Full Remodel',
@@ -104,6 +107,8 @@ const LANDINGS = [
       preseleccion: 'Complete Pool Remodel',
     },
     heroe: 'img.image-bg-hero-services',
+    /* SEO-SAFE (1-oct-2026): las 5 del origen mas las 3 objeciones que ya tenia el Core. */
+    faq: { n: 8 },
   },
 ];
 
