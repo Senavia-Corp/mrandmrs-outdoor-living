@@ -355,7 +355,7 @@ const JSONLD_ARREGLADO = {
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Custom Outdoor Kitchen Design & Construction'],
       ['about.image', 'Custom outdoor kitchen built by professional outdoor kitchen builders in Florida.',
-        '/images/projects/luxury-pool-pergola-outdoor-kitchen-south-florida/luxury-pool-pergola-outdoor-kitchen-south-florida-3.avif'],
+        '/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-heroe.avif'],
       ['dateModified', '2026-05-18T19:49:53.727Z', '2026-05-18T19:55:49.094Z'],
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:49:53.727Z'],
     ],

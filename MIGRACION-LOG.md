@@ -3,6 +3,14 @@
 Webflow → Astro 5 + Sanity + Vercel. Una entrada por fase, **escrita al cerrar la fase**,
 nunca al empezarla. Si una fase se reabre, se añade una entrada nueva; no se edita la vieja.
 
+## LOOP-IMAGENES · kitchens — La ficha de cocinas ensena obra propia en heroe, galeria, proceso e inversion (2-oct-2026)
+
+19 huecos; juez a ciegas. **7 canjes**: galeria[5] bi-0836, galeria[6] bi-0757, heroe bi-0794, inversion bi-0793, proceso[0] bi-0777, proceso[1] bi-0013, proceso[3] bi-0015. 12 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:+0 991:+0 1440:+0) · check-fotos-servicios: verde.
+
 ## LOOP-IMAGENES · pergolas — la ficha de pérgolas enseña obra propia en héroe, proceso, inversión y FAQ (2-oct-2026)
 
 Unidad piloto del loop. 21 huecos inventariados sobre el HTML; 16 con candidata; juez a ciegas

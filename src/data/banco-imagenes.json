@@ -453,10 +453,14 @@
       "coche tapado al fondo"
     ],
     "usada_en": [
-      "/blogs/grill-island-vs-full-outdoor-kitchen"
+      "/blogs/grill-island-vs-full-outdoor-kitchen",
+      "/services/custom-outdoor-kitchens-for-north-south-florida-homes"
     ],
     "origen": "CONSTRUCTION PICTURES/IMG_3935.jpeg",
-    "sha256": "6e0b79fea0453932600d2c945b2863998a7e40beddf53e250dd38a785bca0a5f"
+    "sha256": "6e0b79fea0453932600d2c945b2863998a7e40beddf53e250dd38a785bca0a5f",
+    "publicada_como": [
+      "/images/obra/obra-002/outdoor-kitchen-construction-frame-louvered-pergola-florida-proceso1.avif"
+    ]
   },
   {
     "id": "bi-0014",
@@ -529,9 +533,14 @@
       "camioneta rotulada al fondo",
       "herramientas sobre la encimera"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/custom-outdoor-kitchens-for-north-south-florida-homes"
+    ],
     "origen": "CONSTRUCTION PICTURES/IMG_3961.HEIC",
-    "sha256": "7b6ef2d18e49a04ff4fce850aea7fae31c1969a57fcb8db976707151f307b80f"
+    "sha256": "7b6ef2d18e49a04ff4fce850aea7fae31c1969a57fcb8db976707151f307b80f",
+    "publicada_como": [
+      "/images/obra/obra-002/outdoor-kitchen-countertop-installation-cement-board-florida-proceso3.avif"
+    ]
   },
   {
     "id": "bi-0016",
@@ -26284,7 +26293,8 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/outdoor-kitchens"
+      "/gallery/outdoor-kitchens",
+      "/services/custom-outdoor-kitchens-for-north-south-florida-homes"
     ],
     "origen": "OUTDOOR KICTCHEN/104.jpg",
     "sha256": "aed478f41f2a37a74ddeb3661637af072452b826965832f7f58203b36bdc9ab9"
@@ -27065,9 +27075,14 @@
       "escalera",
       "cartel decorativo con texto"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/custom-outdoor-kitchens-for-north-south-florida-homes"
+    ],
     "origen": "OUTDOOR KICTCHEN/IMG_3971.HEIC",
-    "sha256": "30e41c9865f8f41b371b44fac12c8130208f65eae0234aa13cf8e519b6d08ecf"
+    "sha256": "30e41c9865f8f41b371b44fac12c8130208f65eae0234aa13cf8e519b6d08ecf",
+    "publicada_como": [
+      "/images/obra/obra-066/outdoor-kitchen-construction-countertops-florida-proceso0.avif"
+    ]
   },
   {
     "id": "bi-0778",
@@ -27659,10 +27674,14 @@
     "usada_en": [
       "/blogs/outdoor-kitchen-layout-guide",
       "/gallery",
-      "/gallery/outdoor-kitchens"
+      "/gallery/outdoor-kitchens",
+      "/services/custom-outdoor-kitchens-for-north-south-florida-homes"
     ],
     "origen": "OUTDOOR KICTCHEN/PHOTO-2021-10-11-09-36-28.jpg",
-    "sha256": "ae9cc6c75ed29a388c4c499cb93b71cd69340efd04b257ee4e06d9d602ae8f68"
+    "sha256": "ae9cc6c75ed29a388c4c499cb93b71cd69340efd04b257ee4e06d9d602ae8f68",
+    "publicada_como": [
+      "/images/obra/obra-074/outdoor-kitchen-wood-slat-cabinets-stainless-doors-florida-inversion.avif"
+    ]
   },
   {
     "id": "bi-0794",
@@ -27703,10 +27722,15 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/outdoor-kitchens"
+      "/gallery/outdoor-kitchens",
+      "/services/custom-outdoor-kitchens-for-north-south-florida-homes"
     ],
     "origen": "OUTDOOR KICTCHEN/PHOTO-2021-10-11-09-36-29 (1).jpg",
-    "sha256": "d68621a26f6ea4fb4cbafe23f36fc133f5a244f9270455241d88c12ceed1ebe0"
+    "sha256": "d68621a26f6ea4fb4cbafe23f36fc133f5a244f9270455241d88c12ceed1ebe0",
+    "publicada_como": [
+      "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-heroe.avif",
+      "/images/obra/og/custom-outdoor-kitchens-for-north-south-florida-homes.jpg"
+    ]
   },
   {
     "id": "bi-0795",
@@ -29041,7 +29065,9 @@
     "defectos": [
       "marca visible en la parrilla"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/custom-outdoor-kitchens-for-north-south-florida-homes"
+    ],
     "origen": "OUTDOOR KICTCHEN/WhatsApp Image 2026-04-27 at 5.53.12 PM.jpeg",
     "sha256": "424fb77523c0ba80b2ceb0194f0512f7089d6c034ec549d13c75de242b65597a"
   },

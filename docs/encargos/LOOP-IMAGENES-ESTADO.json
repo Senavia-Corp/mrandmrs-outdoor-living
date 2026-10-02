@@ -667,7 +667,7 @@
       "tipo": "ficha",
       "ruta": "/services/custom-aluminum-pergola-builders-in-north-south-florida",
       "estado": "hecha",
-      "commit": "siguiente-iteracion",
+      "commit": "64b7266",
       "portada_menu": "bi-0914",
       "portada_full": "bi-0935",
       "huecos": [
@@ -1123,11 +1123,411 @@
       "id": "kitchens",
       "tipo": "ficha",
       "ruta": "/services/custom-outdoor-kitchens-for-north-south-florida-homes",
-      "estado": "pendiente",
-      "commit": null,
+      "estado": "hecha",
+      "commit": "a54e19e",
       "portada_menu": null,
       "portada_full": null,
-      "huecos": []
+      "huecos": [
+        {
+          "hueco": "faq[0]",
+          "selector": ".mm-collage img",
+          "antes": "/images/images/kitchen-7/modern-custom-outdoor-kitchen-design-florida.avif",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": "actual",
+          "descartadas": [
+            {
+              "_banco": "bi-0771",
+              "clase": "dentro-del-recorte",
+              "motivo": "nevera portatil en el suelo junto a la isla"
+            }
+          ],
+          "motivo": "la candidata cae por dentro-del-recorte; la actual es obra_real",
+          "falta": "Detalle de cerca de una cocina exterior terminada: parrilla, encimera o frente, con fondo limpio",
+          "consulta": null
+        },
+        {
+          "hueco": "faq[1]",
+          "selector": ".mm-collage img",
+          "antes": "/images/images/kitchen-6/luxury-custom-outdoor-kitchen-florida.avif",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": "actual",
+          "descartadas": [
+            {
+              "_banco": "bi-0788",
+              "clase": "bloqueante",
+              "motivo": "el servicio no se lee: solo zocalo de piedra con LED"
+            }
+          ],
+          "motivo": "la candidata cae por bloqueante; la actual es obra_real",
+          "falta": "Detalle de cerca de una cocina exterior terminada: parrilla, encimera o frente, con fondo limpio",
+          "consulta": null
+        },
+        {
+          "hueco": "faq[2]",
+          "selector": ".mm-collage img",
+          "antes": "/images/images/kitchen-5/high-end-outdoor-kitchen-layout-florida.avif",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": "actual",
+          "descartadas": [
+            {
+              "_banco": "bi-0783",
+              "clase": "juez-prefiere-actual",
+              "motivo": "el juez prefiere la actual"
+            }
+          ],
+          "motivo": "juez prefiere la actual, que ya es obra real",
+          "falta": "Detalle de cerca de una cocina exterior terminada: parrilla, encimera o frente, con fondo limpio",
+          "consulta": null
+        },
+        {
+          "hueco": "faq[3]",
+          "selector": ".mm-collage img",
+          "antes": "/images/images/kitchen-4/custom-outdoor-kitchen-with-grill-florida.avif",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": "actual",
+          "descartadas": [
+            {
+              "_banco": "bi-0838",
+              "clase": "juez-prefiere-actual",
+              "motivo": "el juez prefiere la actual"
+            }
+          ],
+          "motivo": "juez prefiere la actual, que ya es obra real",
+          "falta": "Detalle de cerca de una cocina exterior terminada: parrilla, encimera o frente, con fondo limpio",
+          "consulta": null
+        },
+        {
+          "hueco": "faq[4]",
+          "selector": ".mm-collage img",
+          "antes": "/images/images/kitchen-2/custom-outdoor-kitchen-poolside-florida.avif",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": "actual",
+          "descartadas": [
+            {
+              "_banco": "bi-0797",
+              "clase": "juez-prefiere-actual",
+              "motivo": "el juez prefiere la actual"
+            }
+          ],
+          "motivo": "juez prefiere la actual, que ya es obra real",
+          "falta": "Detalle de cerca de una cocina exterior terminada: parrilla, encimera o frente, con fondo limpio",
+          "consulta": null
+        },
+        {
+          "hueco": "galeria[0]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/kitchen-8/premium-outdoor-kitchen-installation-florida.avif",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": null,
+          "descartadas": [],
+          "motivo": "ya es obra real y no se repite con las secciones intocables",
+          "falta": "ninguna: ya es obra real",
+          "consulta": "obra real ya publicada y sin repeticion con intro/What we do: prioridad 4 de §6.1, no se abrio casting"
+        },
+        {
+          "hueco": "galeria[1]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/kitchen-7/modern-custom-outdoor-kitchen-design-florida.avif",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": "actual",
+          "descartadas": [
+            {
+              "_banco": "bi-0761",
+              "clase": "juez-prefiere-actual",
+              "motivo": "el juez prefiere la actual"
+            }
+          ],
+          "motivo": "juez prefiere la actual, que ya es obra real",
+          "falta": "Cocina exterior terminada, de día, encimera despejada, sin fundas ni neveras portátiles, la isla entera en cuadro",
+          "consulta": null
+        },
+        {
+          "hueco": "galeria[2]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/kitchen-6/luxury-custom-outdoor-kitchen-florida.avif",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": null,
+          "descartadas": [],
+          "motivo": "ya es obra real y no se repite con las secciones intocables",
+          "falta": "ninguna: ya es obra real",
+          "consulta": "obra real ya publicada y sin repeticion con intro/What we do: prioridad 4 de §6.1, no se abrio casting"
+        },
+        {
+          "hueco": "galeria[3]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/kitchen-5/high-end-outdoor-kitchen-layout-florida.avif",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": "actual",
+          "descartadas": [
+            {
+              "_banco": "bi-0789",
+              "clase": "dentro-del-recorte",
+              "motivo": "cobertor negro colgado a la izquierda y marcas de obra en el travertino"
+            }
+          ],
+          "motivo": "la candidata cae por dentro-del-recorte; la actual es obra_real",
+          "falta": "Cocina exterior terminada, de día, encimera despejada, sin fundas ni neveras portátiles, la isla entera en cuadro",
+          "consulta": null
+        },
+        {
+          "hueco": "galeria[4]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/kitchen-4/custom-outdoor-kitchen-with-grill-florida.avif",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": "actual",
+          "descartadas": [
+            {
+              "_banco": "bi-0503",
+              "clase": "juez-prefiere-actual",
+              "motivo": "el juez prefiere la actual"
+            }
+          ],
+          "motivo": "juez prefiere la actual, que ya es obra real",
+          "falta": "Cocina exterior terminada, de día, encimera despejada, sin fundas ni neveras portátiles, la isla entera en cuadro",
+          "consulta": null
+        },
+        {
+          "hueco": "galeria[5]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/kitchen-3/custom-outdoor-kitchens-florida.avif",
+          "procedencia_antes": "obra_real",
+          "estado": "canjeada",
+          "despues": "/images/banco/kitchens/outdoor-kitchen-white-grill-farmhouse-sink-lanai-florida-03.webp",
+          "_banco": "bi-0836",
+          "pos": "50% 55%",
+          "_ajuste": null,
+          "juez": "candidata",
+          "descartadas": [],
+          "motivo": null,
+          "falta": null,
+          "consulta": null
+        },
+        {
+          "hueco": "galeria[6]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/kitchen-2/custom-outdoor-kitchen-poolside-florida.avif",
+          "procedencia_antes": "obra_real",
+          "estado": "canjeada",
+          "despues": "/images/banco/kitchens/outdoor-kitchen-u-shape-pizza-oven-pool-view-florida-01.webp",
+          "_banco": "bi-0757",
+          "pos": "50% 50%",
+          "_ajuste": null,
+          "juez": "candidata",
+          "descartadas": [],
+          "motivo": null,
+          "falta": null,
+          "consulta": null
+        },
+        {
+          "hueco": "galeria[7]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/kitchen-1/covered-custom-outdoor-kitchen-florida.avif",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": null,
+          "descartadas": [],
+          "motivo": "ya es obra real y no se repite con las secciones intocables",
+          "falta": "ninguna: ya es obra real",
+          "consulta": "obra real ya publicada y sin repeticion con intro/What we do: prioridad 4 de §6.1, no se abrio casting"
+        },
+        {
+          "hueco": "heroe",
+          "selector": "img.image-bg-hero-services",
+          "antes": "/images/projects/luxury-pool-pergola-outdoor-kitchen-south-florida/luxury-pool-pergola-outdoor-kitchen-south-florida-3.avif",
+          "procedencia_antes": "sin_verificar",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-heroe.avif",
+          "_banco": "bi-0794",
+          "pos": "50% 55%",
+          "_ajuste": {
+            "recorte": "16/9",
+            "pos": "50% 55%",
+            "ancho": 1600,
+            "q": 50,
+            "de": "/images/banco/kitchens/pergola-outdoor-kitchen-black-granite-lake-view-florida-01.webp"
+          },
+          "juez": "candidata",
+          "descartadas": [],
+          "motivo": null,
+          "falta": null,
+          "consulta": null
+        },
+        {
+          "hueco": "inversion",
+          "selector": "img.svc-inversion__foto",
+          "antes": "/images/projects/luxury-pool-pergola-outdoor-kitchen-south-florida/luxury-pool-pergola-outdoor-kitchen-south-florida-5.avif",
+          "procedencia_antes": "sin_verificar",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-074/outdoor-kitchen-wood-slat-cabinets-stainless-doors-florida-inversion.avif",
+          "_banco": "bi-0793",
+          "pos": "50% 50%",
+          "_ajuste": {
+            "recorte": "1250/698",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/kitchens/outdoor-kitchen-wood-slat-cabinets-stainless-doors-florida-01.webp"
+          },
+          "juez": "candidata",
+          "descartadas": [],
+          "motivo": null,
+          "falta": null,
+          "consulta": null
+        },
+        {
+          "hueco": "proceso[0]",
+          "selector": "img.img-process",
+          "antes": "/images/procesos/outdoor-kitchen-step-1/outdoor-kitchen-step-1.png",
+          "procedencia_antes": "ia_probada",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-066/outdoor-kitchen-construction-countertops-florida-proceso0.avif",
+          "_banco": "bi-0777",
+          "pos": "50% 50%",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/kitchens/outdoor-kitchen-construction-countertops-florida-01.webp"
+          },
+          "juez": "candidata",
+          "descartadas": [],
+          "motivo": null,
+          "falta": null,
+          "consulta": null
+        },
+        {
+          "hueco": "proceso[1]",
+          "selector": "img.img-process",
+          "antes": "/images/procesos/outdoor-kitchen-step-2/outdoor-kitchen-step-2.png",
+          "procedencia_antes": "ia_probada",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-002/outdoor-kitchen-construction-frame-louvered-pergola-florida-proceso1.avif",
+          "_banco": "bi-0013",
+          "pos": "50% 50%",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/kitchens/outdoor-kitchen-construction-frame-louvered-pergola-florida-01.webp"
+          },
+          "juez": "candidata",
+          "descartadas": [],
+          "motivo": null,
+          "falta": null,
+          "consulta": null
+        },
+        {
+          "hueco": "proceso[2]",
+          "selector": "img.img-process",
+          "antes": "/images/procesos/outdoor-kitchen-step-3/outdoor-kitchen-step-3.png",
+          "procedencia_antes": "ia_probada",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": "candidata",
+          "descartadas": [
+            {
+              "_banco": "bi-0776",
+              "clase": "bloqueante",
+              "motivo": "el paso no se lee: detalle abstracto de perfiles"
+            }
+          ],
+          "motivo": "la candidata cae por bloqueante; la actual es ia_probada",
+          "falta": "Obra en curso de este servicio, cuadrilla trabajando, sin basura ni trastos",
+          "consulta": null
+        },
+        {
+          "hueco": "proceso[3]",
+          "selector": "img.img-process",
+          "antes": "/images/procesos/outdoor-kitchen-step-4/outdoor-kitchen-step-4.png",
+          "procedencia_antes": "ia_probada",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-002/outdoor-kitchen-countertop-installation-cement-board-florida-proceso3.avif",
+          "_banco": "bi-0015",
+          "pos": "50% 50%",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/kitchens/outdoor-kitchen-countertop-installation-cement-board-florida-01.webp"
+          },
+          "juez": "candidata",
+          "descartadas": [],
+          "motivo": null,
+          "falta": null,
+          "consulta": null
+        }
+      ],
+      "puertas": {
+        "check:tokens": "verde",
+        "check:estructura": "verde",
+        "check:assets": "verde",
+        "check:seo": "verde",
+        "build-banco --check": "verde",
+        "check:galeria (ficha)": "verde",
+        "check-texto (ficha)": "verde",
+        "check-visual": "ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:+0 991:+0 1440:+0)"
+      },
+      "alto_antes_despues": "479:+0 768:+0 991:+0 1440:+0"
     },
     {
       "id": "decks",

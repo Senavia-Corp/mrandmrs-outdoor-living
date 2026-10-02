@@ -655,12 +655,22 @@
   "/services/custom-outdoor-kitchens-for-north-south-florida-homes": {
     "heroe": {
       "apoyo": "Outdoor kitchen builders and installation contractors serving North & South Florida with custom layouts for entertaining and daily use.",
-      "foto": "/images/projects/luxury-pool-pergola-outdoor-kitchen-south-florida/luxury-pool-pergola-outdoor-kitchen-south-florida-3.avif",
-      "alt": "Built-in outdoor kitchen with a grill and counter seating under a covered patio beside a pool, built in South Florida by Mr & Mrs Outdoor Living",
-      "ancho": 1250,
-      "alto": 698,
+      "foto": "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-heroe.avif",
+      "alt": "L-shaped outdoor kitchen with black granite waterfall under a dark pergola beside a lake.",
+      "ancho": 1600,
+      "alto": 900,
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
-      "ancla": "#estimate"
+      "ancla": "#estimate",
+      "_banco": "bi-0794",
+      "_proyecto": "obra-075",
+      "_ajuste": {
+        "recorte": "16/9",
+        "pos": "50% 55%",
+        "ancho": 1600,
+        "q": 50,
+        "de": "/images/banco/kitchens/pergola-outdoor-kitchen-black-granite-lake-view-florida-01.webp"
+      },
+      "og": "/images/obra/og/custom-outdoor-kitchens-for-north-south-florida-homes.jpg"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -779,10 +789,73 @@
           "principal": false
         }
       ],
-      "foto": "/images/projects/luxury-pool-pergola-outdoor-kitchen-south-florida/luxury-pool-pergola-outdoor-kitchen-south-florida-5.avif",
-      "alt": "Outdoor kitchen with a built-in grill and stone counter under a covered patio next to a pool, built in South Florida by Mr & Mrs Outdoor Living",
-      "ancho": 1250,
-      "alto": 698
+      "foto": "/images/obra/obra-074/outdoor-kitchen-wood-slat-cabinets-stainless-doors-florida-inversion.avif",
+      "alt": "Outdoor kitchen with vertical wood slat cladding, stainless grill, side burner and access doors.",
+      "ancho": 1600,
+      "alto": 893,
+      "pos": "50% 50%",
+      "_banco": "bi-0793",
+      "_proyecto": "obra-074",
+      "_ajuste": {
+        "recorte": "1250/698",
+        "pos": "50% 50%",
+        "ancho": 1600,
+        "q": 52,
+        "de": "/images/banco/kitchens/outdoor-kitchen-wood-slat-cabinets-stainless-doors-florida-01.webp"
+      }
+    },
+    "proceso": {
+      "fotos": [
+        {
+          "foto": "/images/obra/obra-066/outdoor-kitchen-construction-countertops-florida-proceso0.avif",
+          "alt": "Outdoor kitchen under a louvered roof with granite countertops installed and cladding pending.",
+          "ancho": 1600,
+          "alto": 873,
+          "pos": "50% 50%",
+          "_banco": "bi-0777",
+          "_proyecto": "obra-066",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/kitchens/outdoor-kitchen-construction-countertops-florida-01.webp"
+          }
+        },
+        {
+          "foto": "/images/obra/obra-002/outdoor-kitchen-construction-frame-louvered-pergola-florida-proceso1.avif",
+          "alt": "Outdoor kitchen island and counters framed in steel and cement board under a louvered pergola.",
+          "ancho": 1600,
+          "alto": 873,
+          "pos": "50% 50%",
+          "_banco": "bi-0013",
+          "_proyecto": "obra-002",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/kitchens/outdoor-kitchen-construction-frame-louvered-pergola-florida-01.webp"
+          }
+        },
+        null,
+        {
+          "foto": "/images/obra/obra-002/outdoor-kitchen-countertop-installation-cement-board-florida-proceso3.avif",
+          "alt": "L-shaped outdoor kitchen base in cement board with new stone countertop set in place.",
+          "ancho": 1600,
+          "alto": 873,
+          "pos": "50% 50%",
+          "_banco": "bi-0015",
+          "_proyecto": "obra-002",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/kitchens/outdoor-kitchen-countertop-installation-cement-board-florida-01.webp"
+          }
+        }
+      ]
     }
   },
   "/services/motorized-louvered-roof-systems-in-north-south-florida": {

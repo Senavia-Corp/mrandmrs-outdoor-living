@@ -45,5 +45,33 @@
         "_por_que": "Piedra cortada al radio del spa y banda de mosaico: el acabado. Ninguna terminada de obra-049 pasa (manguera, tierra, capturas de pantalla)."
       }
     ]
+  },
+  "/services/custom-outdoor-kitchens-for-north-south-florida-homes": {
+    "section.gallery img.image-gallery": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-white-grill-farmhouse-sink-lanai-florida-03.webp",
+        "alt": "White outdoor kitchen with built-in grill, farmhouse sink and under-counter fridge on gray pavers.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 55%",
+        "_banco": "bi-0836",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-u-shape-pizza-oven-pool-view-florida-01.webp",
+        "alt": "U-shaped outdoor kitchen with pizza oven, open grill and side burner beside a pool.",
+        "ancho": 1440,
+        "alto": 960,
+        "pos": "50% 50%",
+        "_banco": "bi-0757",
+        "_por_que": null
+      },
+      null
+    ]
   }
 }
