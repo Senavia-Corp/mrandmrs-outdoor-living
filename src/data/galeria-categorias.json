@@ -1,0 +1,1628 @@
+{
+ "_lee_esto": [
+  "FUENTE UNICA de las paginas /gallery/<slug> y de las tarjetas de categoria de /gallery (2-oct-2026, encargo de Sebastian).",
+  "La leen src/pages/gallery/[categoria].astro, scripts/build-paginas.mjs, scripts/lib/rutas-propias.mjs, scripts/build-seo-ficheros.mjs y scripts/check-texto.mjs.",
+  "origen: `banco` = src/data/banco-imagenes.json (bancoId); se inyecta TAMBIEN en /gallery con data-service-id = id. `obra` = las de src/data/galeria-pagina.json, que /gallery ya inyecta. `webflow` = las de la rejilla de origen con `usable: true` en gallery-procedencia.json.",
+  "Sin pagina por falta de obra real: screens (5), irrigation (4), light (0), furniture (0). Slugs reservados: retractable-screens, irrigation-systems, outdoor-lighting, outdoor-furniture.",
+  "El orden de `fotos` es el de la pagina: casting hecho sobre hoja de contactos recortada a 3:2, que es como pinta la rejilla."
+ ],
+ "categorias": [
+  {
+   "id": "construction",
+   "slug": "pools-and-spas",
+   "nombre": "Pools & Spas",
+   "h1": "Custom Pool & Spa Gallery",
+   "title": "Custom Pool & Spa Photo Gallery | Mr & Mrs Outdoor Living",
+   "description": "Browse photos of custom pools and spas we designed and built in Florida: raised spas, sun shelves, glass tile and travertine decks. Get ideas for your backyard.",
+   "intro": "Every pool here is one we engineered, permitted and built for a Florida homeowner. Look closely at the details that change how a pool gets used: raised spas with spillways, sun shelves with in-water loungers, glass tile waterlines and travertine or marble decks that stay cool underfoot. Open any photo to see it full size, and tell us which ones look like the backyard you have in mind.",
+   "linea": "Custom inground pools and spas, engineered and permitted.",
+   "servicio": {
+    "enlace": "/services/custom-pool-spa-builders-in-north-south-florida",
+    "ancla": "Custom pool and spa builders"
+   },
+   "portada": "/images/banco/construction/pool-construction-l-shaped-pool-spa-aerial-florida-01.webp",
+   "fotos": [
+    {
+     "src": "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-25.webp",
+     "alt": "Completed backyard pool with raised spa and covered lanai",
+     "ancho": 1600,
+     "alto": 1067,
+     "origen": "obra"
+    },
+    {
+     "src": "/images/obra/project-061/mrandmrs-pool-spa-a7-gallery-project-061-10.webp",
+     "alt": "Aerial view of a backyard lap pool with an aluminium patio cover",
+     "ancho": 1600,
+     "alto": 1067,
+     "origen": "obra"
+    },
+    {
+     "src": "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-10.webp",
+     "alt": "Aerial view of a backyard pool with raised spa and wide stone deck",
+     "ancho": 1600,
+     "alto": 1067,
+     "origen": "obra"
+    },
+    {
+     "src": "/images/obra/project-061/mrandmrs-pool-spa-a7-gallery-project-061-08.webp",
+     "alt": "Aerial view of a lakeside backyard with a lap pool and covered lanai",
+     "ancho": 1600,
+     "alto": 1067,
+     "origen": "obra"
+    },
+    {
+     "src": "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-03.webp",
+     "alt": "Aerial view of a backyard pool with raised spa and sun loungers",
+     "ancho": 1600,
+     "alto": 1067,
+     "origen": "obra"
+    },
+    {
+     "src": "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-06.webp",
+     "alt": "Aerial view of a backyard pool with a raised spa in pale mosaic",
+     "ancho": 1600,
+     "alto": 1067,
+     "origen": "obra"
+    },
+    {
+     "src": "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-05.webp",
+     "alt": "Aerial view of a backyard pool with raised spa and aluminium picket fence",
+     "ancho": 1600,
+     "alto": 1067,
+     "origen": "obra"
+    },
+    {
+     "src": "/images/banco/construction/pool-construction-l-shaped-pool-spa-aerial-florida-01.webp",
+     "alt": "Aerial view of an L-shaped pool with square raised spa, gray marble deck and turf border on a rural property.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0486"
+    },
+    {
+     "src": "/images/banco/construction/pool-construction-spa-turf-stepping-pads-house-florida-01.webp",
+     "alt": "New pool with raised spa, travertine deck and stepping pads in artificial turf behind a two-story home.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0505"
+    },
+    {
+     "src": "/images/banco/construction/pool-spa-glass-tile-louvered-pergola-kitchen-florida-01.webp",
+     "alt": "Pool with raised glass-tile spa in front of a louvered pergola and outdoor bar.",
+     "ancho": 1280,
+     "alto": 960,
+     "origen": "banco",
+     "bancoId": "bi-0633"
+    },
+    {
+     "src": "/images/banco/construction/pool-construction-blue-glass-tile-spillover-pergola-florida-01.webp",
+     "alt": "Pool with iridescent blue glass tile and spillover edge, raised spa under a bronze pergola and artificial turf",
+     "ancho": 1440,
+     "alto": 812,
+     "origen": "banco",
+     "bancoId": "bi-1039"
+    },
+    {
+     "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
+     "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
+     "alt": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
+     "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
+     "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
+     "alt": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg",
+     "alt": "Luxury outdoor pool featuring waterfall spa and covered patio area, built by experienced custom pool and outdoor living contractors in Florida.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
+     "alt": "Modern pool renovation with raised spa and clean architectural lines, designed and installed by professional pool builders in Florida.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
+     "alt": "Elegant residential pool and spa design with premium finishes and tropical landscaping, crafted by custom pool builders in South Florida.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
+     "alt": "Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.",
+     "ancho": 1250,
+     "alto": 937,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
+     "alt": "Luxury custom pool and spa construction featuring modern design, premium pavers, and outdoor living spaces built by expert pool builders in Florida.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    }
+   ]
+  },
+  {
+   "id": "remodeling",
+   "slug": "pool-remodeling",
+   "nombre": "Pool Remodeling",
+   "h1": "Pool Remodeling Gallery",
+   "title": "Pool Remodeling Photo Gallery | Mr & Mrs Outdoor Living",
+   "description": "See pool remodeling projects completed in Florida: new tile, resurfaced interiors, travertine decks and added water features. Real photos to plan your renovation.",
+   "intro": "A remodel keeps the shell and changes everything you see and touch. These are pools we renovated for Florida homeowners: resurfaced interiors, new waterline tile, travertine decks laid over tired concrete, and raised walls with sheer-descent waterfalls added to pools that never had one. Use them to decide how far you want your own renovation to go, then ask us what it would take.",
+   "linea": "Resurfacing, new tile, decks and water features.",
+   "servicio": {
+    "enlace": "/services/pool-remodeling-renovation-in-north-south-florida",
+    "ancla": "Pool remodeling and renovation"
+   },
+   "portada": "/images/banco/remodeling/pool-remodeling-travertine-deck-rock-landscaping-florida-02.webp",
+   "fotos": [
+    {
+     "src": "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-02.webp",
+     "alt": "Aerial view of a backyard pool with raised spa and travertine-like deck",
+     "ancho": 1600,
+     "alto": 1067,
+     "origen": "obra"
+    },
+    {
+     "src": "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-07.webp",
+     "alt": "Completed backyard pool with raised spa and poolside basketball hoop",
+     "ancho": 1600,
+     "alto": 1067,
+     "origen": "obra"
+    },
+    {
+     "src": "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-03.webp",
+     "alt": "Aerial view of a backyard pool with a sun shelf and raised spa",
+     "ancho": 1600,
+     "alto": 1067,
+     "origen": "obra"
+    },
+    {
+     "src": "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-20.webp",
+     "alt": "Completed backyard pool with raised spa and artificial-turf deck inlays",
+     "ancho": 1600,
+     "alto": 1067,
+     "origen": "obra"
+    },
+    {
+     "src": "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-01.webp",
+     "alt": "Aerial view of a backyard pool with raised spa and clipped hedge border",
+     "ancho": 1600,
+     "alto": 1067,
+     "origen": "obra"
+    },
+    {
+     "src": "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-08.webp",
+     "alt": "Completed backyard pool with a raised spa clad in glass mosaic",
+     "ancho": 1600,
+     "alto": 1067,
+     "origen": "obra"
+    },
+    {
+     "src": "/images/banco/remodeling/pool-remodeling-travertine-deck-rock-landscaping-florida-02.webp",
+     "alt": "Remodeled rectangular pool with two travertine water feature walls and a large travertine deck.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0521"
+    },
+    {
+     "src": "/images/banco/remodeling/pool-remodeling-travertine-deck-glass-tile-finished-florida-01.webp",
+     "alt": "Remodeled pool with blue glass waterline tile and ivory travertine deck behind a stucco house.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0519"
+    },
+    {
+     "src": "/images/images/pool-remodeling-10/custom-pool-remodeling-contractors-florida-10.jpg",
+     "alt": "Custom inground pool installation with pergola and safety fencing, built by licensed Florida pool builders.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pool-remodeling-9/custom-pool-remodeling-contractors-florida-09.jpg",
+     "alt": "Custom inground pool installation with pergola and safety fencing, built by licensed Florida pool builders.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pool-remodeling-8/custom-pool-remodeling-contractors-florida-08.jpg",
+     "alt": "Modern pool renovation with clean lines, integrated spa and minimalist deck, completed by Florida pool remodeling experts.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pool-remodeling-7/custom-pool-remodeling-contractors-florida-07.jpg",
+     "alt": "Resort-style pool with tanning ledges and water features, showcasing custom pool construction in South Florida.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pool-remodeling-6/custom-pool-remodeling-contractors-florida-06.jpg",
+     "alt": "High-end residential pool with covered patio and outdoor kitchen, installed by professional pool contractors in Florida.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pool-remodeling-5/custom-pool-remodeling-contractors-florida-05.jpg",
+     "alt": "Contemporary pool installation with raised spa and outdoor lounge space, designed for luxury Florida backyard living.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pool-remodeling-4/custom-pool-remodeling-contractors-florida-04.jpg",
+     "alt": "Large custom pool and spa design with expansive deck and seating areas, built by expert pool builders in North Florida.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pool-remodeling-3/custom-pool-remodeling-contractors-florida-03.jpg",
+     "alt": "Luxury backyard pool and spa installation in South Florida featuring custom tile, palm landscaping and clean architectural lines.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pool-remodeling-2/custom-pool-remodeling-contractors-florida-02.jpg",
+     "alt": "Luxury backyard pool and spa installation in South Florida featuring custom tile, palm landscaping and clean architectural lines.",
+     "ancho": 1250,
+     "alto": 946,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pool-remodeling-1/custom-pool-remodeling-contractors-florida-01.jpg",
+     "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    }
+   ]
+  },
+  {
+   "id": "pergolas",
+   "slug": "aluminum-pergolas",
+   "nombre": "Aluminum Pergolas",
+   "h1": "Aluminum Pergola Gallery",
+   "title": "Aluminum Pergola Photo Gallery | Mr & Mrs Outdoor Living",
+   "description": "Photos of custom aluminum pergolas and patio covers built for Florida homes: freestanding, attached, poolside and over outdoor kitchens. Find a design you like.",
+   "intro": "Aluminum pergolas and insulated patio covers we built across Florida, in the colors and layouts homeowners actually choose: bronze and white frames, freestanding structures beside the pool, covers attached along the back of the house, and privacy walls where the neighbors are close. Each one is engineered for Florida wind and sized to the patio it shades. Open the photos and note the ones that fit your home.",
+   "linea": "Custom aluminum pergolas built for Florida sun and wind.",
+   "servicio": {
+    "enlace": "/services/custom-aluminum-pergola-builders-in-north-south-florida",
+    "ancla": "Custom aluminum pergola builders"
+   },
+   "portada": "/images/banco/pergolas/freestanding-patio-cover-privacy-screen-poolside-florida-02.webp",
+   "fotos": [
+    {
+     "src": "/images/banco/pergolas/freestanding-patio-cover-privacy-screen-poolside-florida-02.webp",
+     "alt": "Freestanding dark aluminum patio cover with privacy screen on a pool deck with blue tile pool.",
+     "ancho": 1024,
+     "alto": 768,
+     "origen": "banco",
+     "bancoId": "bi-0914"
+    },
+    {
+     "src": "/images/banco/pergolas/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-01.webp",
+     "alt": "Dark wood pavilion with outdoor bar, sculptural stools, LED toe-kick lights and lounge at dusk.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0839"
+    },
+    {
+     "src": "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01.webp",
+     "alt": "Dark wood pergola over an outdoor kitchen bar and lounge with TV screen beside a putting green.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0842"
+    },
+    {
+     "src": "/images/banco/pergolas/freestanding-pergola-dark-bronze-pool-spa-canal-florida-02.webp",
+     "alt": "Dark bronze freestanding lattice pergola framing a blue-tiled spa with canal, boats and palms behind",
+     "ancho": 1600,
+     "alto": 900,
+     "origen": "banco",
+     "bancoId": "bi-1046"
+    },
+    {
+     "src": "/images/banco/pergolas/white-pergola-outdoor-kitchen-wood-cabinets-deck-florida-01.webp",
+     "alt": "White pergola over an outdoor kitchen with wood-look cabinets and wine fridge on a composite deck.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0897"
+    },
+    {
+     "src": "/images/banco/pergolas/insulated-patio-cover-black-frame-lap-pool-sunset-florida-01.webp",
+     "alt": "Black-framed insulated patio cover with ceiling fans and wicker sofas beside a lap pool at sunset",
+     "ancho": 1215,
+     "alto": 911,
+     "origen": "banco",
+     "bancoId": "bi-0928"
+    },
+    {
+     "src": "/images/banco/pergolas/insulated-patio-cover-outdoor-kitchen-pool-florida-01.webp",
+     "alt": "Black aluminum insulated patio cover over a stacked stone outdoor kitchen next to a pool.",
+     "ancho": 1440,
+     "alto": 1080,
+     "origen": "banco",
+     "bancoId": "bi-0759"
+    },
+    {
+     "src": "/images/banco/pergolas/freestanding-patio-cover-bronze-pool-deck-travertine-florida-01.webp",
+     "alt": "Freestanding bronze insulated pergola with slatted privacy screen and wicker seating beside a curved pool",
+     "ancho": 1440,
+     "alto": 1080,
+     "origen": "banco",
+     "bancoId": "bi-0977"
+    },
+    {
+     "src": "/images/banco/pergolas/freestanding-patio-cover-privacy-screen-poolside-florida-01.webp",
+     "alt": "Freestanding dark aluminum patio cover with slat privacy screen beside a pool with stepping pads.",
+     "ancho": 1024,
+     "alto": 768,
+     "origen": "banco",
+     "bancoId": "bi-0909"
+    },
+    {
+     "src": "/images/banco/pergolas/freestanding-lattice-pergola-bronze-two-tier-pool-florida-01.webp",
+     "alt": "Bronze freestanding two-tier lattice pergola with scalloped beam ends beside a pool and two-story home",
+     "ancho": 1080,
+     "alto": 607,
+     "origen": "banco",
+     "bancoId": "bi-1035"
+    },
+    {
+     "src": "/images/banco/pergolas/insulated-patio-cover-black-frame-ceiling-fans-florida-01.webp",
+     "alt": "Large black-framed insulated patio cover with ceiling fans over cream wicker sofas surrounded by palms",
+     "ancho": 1024,
+     "alto": 667,
+     "origen": "banco",
+     "bancoId": "bi-0957"
+    },
+    {
+     "src": "/images/banco/pergolas/insulated-patio-cover-black-frame-lap-pool-deck-florida-01.webp",
+     "alt": "Long black-framed insulated patio cover with wicker lounge seating beside a lap pool and travertine deck",
+     "ancho": 1600,
+     "alto": 1067,
+     "origen": "banco",
+     "bancoId": "bi-0935"
+    },
+    {
+     "src": "/images/banco/pergolas/gable-patio-cover-dark-frame-yellow-house-pool-florida-01.webp",
+     "alt": "Dark-framed gable patio cover with rafter tails on a yellow house beside a kidney pool and hexagonal pavers",
+     "ancho": 1024,
+     "alto": 768,
+     "origen": "banco",
+     "bancoId": "bi-1026"
+    },
+    {
+     "src": "/images/banco/pergolas/freestanding-insulated-pergola-white-travertine-florida-02.webp",
+     "alt": "White freestanding insulated pergola with rafter tails on a travertine patio in a fenced backyard",
+     "ancho": 1200,
+     "alto": 900,
+     "origen": "banco",
+     "bancoId": "bi-0985"
+    },
+    {
+     "src": "/images/banco/pergolas/freestanding-pergola-dark-bronze-pool-spa-canal-florida-01.webp",
+     "alt": "Dark bronze freestanding lattice pergola over a blue-tiled spa with canal and palms behind",
+     "ancho": 1440,
+     "alto": 812,
+     "origen": "banco",
+     "bancoId": "bi-1038"
+    },
+    {
+     "src": "/images/banco/pergolas/insulated-patio-cover-black-frame-pool-lake-aerial-florida-01.webp",
+     "alt": "Low aerial view of a black-framed insulated patio cover over loungers beside a fenced pool and lake",
+     "ancho": 1600,
+     "alto": 900,
+     "origen": "banco",
+     "bancoId": "bi-0934"
+    },
+    {
+     "src": "/images/banco/pergolas/insulated-patio-cover-white-yellow-house-florida-02.webp",
+     "alt": "White insulated patio cover with rafter tails across the back of a yellow two-story house with tile roof",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-1012"
+    },
+    {
+     "src": "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-backyard-florida-01.webp",
+     "alt": "Brown insulated patio cover with decorative rafter tails and rain chain across the back of a one-story house",
+     "ancho": 1440,
+     "alto": 1080,
+     "origen": "banco",
+     "bancoId": "bi-0961"
+    },
+    {
+     "src": "/images/banco/pergolas/insulated-patio-cover-white-rooftop-terrace-marina-florida-01.webp",
+     "alt": "White insulated aluminum patio cover over a rooftop terrace with wicker seating and a marina view",
+     "ancho": 1600,
+     "alto": 1239,
+     "origen": "banco",
+     "bancoId": "bi-0955"
+    },
+    {
+     "src": "/images/banco/pergolas/modern-patio-cover-black-frame-two-story-home-pool-florida-01.webp",
+     "alt": "Black-framed flat patio cover across the back of a white two-story home seen over a rectangular pool",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-1057"
+    },
+    {
+     "src": "/images/banco/pergolas/insulated-patio-cover-black-frame-pool-deck-lawn-florida-01.webp",
+     "alt": "Black-framed insulated patio cover with rafter tails extending from a yellow two-story home beside a pool",
+     "ancho": 1440,
+     "alto": 1080,
+     "origen": "banco",
+     "bancoId": "bi-1066"
+    },
+    {
+     "src": "/images/banco/pergolas/pergola-outdoor-kitchen-privacy-screen-gray-tile-florida-01.webp",
+     "alt": "Gray aluminum pergola with slat privacy screen over a U-shaped tiled outdoor kitchen.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0796"
+    },
+    {
+     "src": "/images/banco/pergolas/lattice-pergola-outdoor-kitchen-stacked-stone-florida-01.webp",
+     "alt": "Dark lattice pergola over a stacked-stone outdoor kitchen with kamado grill and gas grill, red crotons behind",
+     "ancho": 1024,
+     "alto": 768,
+     "origen": "banco",
+     "bancoId": "bi-1044"
+    },
+    {
+     "src": "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-florida-01.webp",
+     "alt": "Brown insulated patio cover with rafter tails on a two-story home seen across a pool with brick coping",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-1014"
+    },
+    {
+     "src": "/images/banco/pergolas/aluminum-lattice-pergola-black-underside-sunset-florida-01.webp",
+     "alt": "Underside of a black aluminum lattice pergola attached to a house with a sunset sky behind",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-1033"
+    },
+    {
+     "src": "/images/banco/pergolas/insulated-aluminum-patio-cover-white-two-story-home-florida-01.webp",
+     "alt": "Wide white insulated aluminum patio cover across the back of a two-story white house beside a pool",
+     "ancho": 1600,
+     "alto": 900,
+     "origen": "banco",
+     "bancoId": "bi-0918"
+    },
+    {
+     "src": "/images/banco/pergolas/covered-pergola-brown-paver-patio-pool-palms-florida-02.webp",
+     "alt": "Brown covered pergola with rafter tails over a paver patio with turquoise seating, grill and freeform pool",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-1009"
+    },
+    {
+     "src": "/images/banco/pergolas/polycarbonate-pergola-woodgrain-stone-columns-florida-01.webp",
+     "alt": "Dark woodgrain pergola with clear polycarbonate roof and scalloped rafter tails on stacked-stone columns",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-1072"
+    },
+    {
+     "src": "/images/banco/pergolas/insulated-patio-cover-black-frame-two-story-pool-florida-02.webp",
+     "alt": "Black-framed insulated patio cover with downspout over sun loungers on a two-story home by the pool",
+     "ancho": 1600,
+     "alto": 1066,
+     "origen": "banco",
+     "bancoId": "bi-0938"
+    },
+    {
+     "src": "/images/banco/pergolas/modern-insulated-patio-cover-white-flat-roof-pavers-florida-01.webp",
+     "alt": "White flat-roof insulated patio cover with slatted side panels and ceiling fans beside a travertine paver patio",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-1051"
+    },
+    {
+     "src": "/images/images/pergolas-10/custom-pergola-patio-cover-builders-florida-10.jpg",
+     "alt": "White aluminum modern insulated pergola installation with bar seating by Florida builders, creating functional and stylish outdoor living.",
+     "ancho": 1250,
+     "alto": 839,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pergolas-9/custom-pergola-patio-cover-builders-florida-09.jpg",
+     "alt": "Custom pergola installation over backyard deck by Florida contractors, blending landscape design and outdoor structure.",
+     "ancho": 1250,
+     "alto": 976,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pergolas-8/custom-pergola-patio-cover-builders-florida-08.jpg",
+     "alt": "Poolside pergola installation in Florida backyard, designed by expert pergola builders for shade and comfort.",
+     "ancho": 1250,
+     "alto": 839,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pergolas-7/custom-pergola-patio-cover-builders-florida-07.jpg",
+     "alt": "Contemporary pergola construction for residential patio in Florida, built by licensed outdoor living contractors.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pergolas-6/custom-pergola-patio-cover-builders-florida-06.jpg",
+     "alt": "Aluminum pergola installation over pool area by Florida contractors, providing shade and modern outdoor design.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pergolas-5/custom-pergola-patio-cover-builders-florida-05.jpg",
+     "alt": "Timber pavilion installation with outdoor kitchen by Florida builders, combining pergola structure and entertainment space.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pergolas-4/custom-pergola-patio-cover-builders-florida-04.jpg",
+     "alt": "Custom wood pavilion construction by Florida pergola contractors, showcasing exposed beams and premium craftsmanship.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pergolas-3/custom-pergola-patio-cover-builders-florida-03.jpg",
+     "alt": "Backyard pergola and patio cover installation in Florida home, designed by professional outdoor living builders.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pergolas-2/custom-pergola-patio-cover-builders-florida-02.jpg",
+     "alt": "Modern aluminum pergola installed beside pool by Florida contractors, featuring clean lines and durable outdoor construction.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pergolas-1/custom-pergola-patio-cover-builders-florida-01.jpg",
+     "alt": "Custom aluminum patio cover installation by Florida pergola builders, providing shaded outdoor living space with modern structure.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    }
+   ]
+  },
+  {
+   "id": "louvered",
+   "slug": "louvered-roofs",
+   "nombre": "Louvered Roofs",
+   "h1": "Louvered Roof Gallery",
+   "title": "Louvered Roof Photo Gallery | Mr & Mrs Outdoor Living",
+   "description": "See motorized louvered roof systems installed on Florida patios: louvers open and closed, LED lighting at night, fans and outdoor kitchens underneath. Get ideas.",
+   "intro": "A louvered roof is a pergola you can close. These photos show systems we installed on Florida patios with the louvers open to the sky, closed against the rain, and lit at night with LED strips in the beams. Look at how each one is combined with fans, an outdoor kitchen or a pool deck, and at the views from above that show how the louvers and motors work.",
+   "linea": "Motorized louvered roof systems for shade on demand.",
+   "servicio": {
+    "enlace": "/services/motorized-louvered-roof-systems-in-north-south-florida",
+    "ancla": "Motorized louvered roof systems"
+   },
+   "portada": "/images/banco/louvered/louvered-roof-white-large-span-travertine-patio-florida-01.webp",
+   "fotos": [
+    {
+     "src": "/images/banco/louvered/louvered-roof-white-large-span-travertine-patio-florida-01.webp",
+     "alt": "Large white louvered roof with partly open blades over a travertine patio with wicker lounge furniture",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0233"
+    },
+    {
+     "src": "/images/banco/louvered/louvered-pergola-bronze-freestanding-poolside-florida-01.webp",
+     "alt": "Bronze freestanding louvered pergola covering a lounge and dining area beside a freeform pool",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0168"
+    },
+    {
+     "src": "/images/banco/louvered/louvered-pergola-open-louvers-rooftop-ocean-florida-01.webp",
+     "alt": "Looking up through open louvers of a white rooftop pergola toward the ocean.",
+     "ancho": 1125,
+     "alto": 844,
+     "origen": "banco",
+     "bancoId": "bi-0652"
+    },
+    {
+     "src": "/images/banco/louvered/louvered-pergola-outdoor-kitchen-stacked-stone-florida-01.webp",
+     "alt": "White louvered pergola covering an outdoor kitchen with stacked stone island and lounge seating.",
+     "ancho": 1280,
+     "alto": 960,
+     "origen": "banco",
+     "bancoId": "bi-0632"
+    },
+    {
+     "src": "/images/banco/louvered/louvered-pergola-bronze-tennis-court-shade-florida-01.webp",
+     "alt": "Bronze freestanding louvered pergola on a paver pad beside a blue tennis court",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0236"
+    },
+    {
+     "src": "/images/banco/louvered/louvered-roof-red-led-lighting-dusk-patio-florida-01.webp",
+     "alt": "White louvered roof lit with red LED lights over a travertine patio with wicker seating at dusk",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0214"
+    },
+    {
+     "src": "/images/banco/louvered/louvered-pergola-finished-condo-terrace-florida-01.webp",
+     "alt": "Finished white louvered pergola casting striped shade on a wood-look terrace.",
+     "ancho": 1125,
+     "alto": 838,
+     "origen": "banco",
+     "bancoId": "bi-0658"
+    },
+    {
+     "src": "/images/banco/louvered/louvered-roof-white-blades-open-underside-detail-florida-01.webp",
+     "alt": "White louvered roof blades tilted open seen from below with palm trees and sky beyond",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0166"
+    },
+    {
+     "src": "/images/banco/louvered/louvered-pergola-outdoor-kitchen-bar-marble-lake-florida-01.webp",
+     "alt": "White louvered pergola over a marble-top outdoor kitchen bar with four stools and a lake view.",
+     "ancho": 1440,
+     "alto": 1083,
+     "origen": "banco",
+     "bancoId": "bi-0768"
+    },
+    {
+     "src": "/images/banco/louvered/louvered-roof-waterfront-patio-underside-florida-01.webp",
+     "alt": "Closed louvered roof with ceiling fan over a wet travertine patio beside a canal dock",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0175"
+    },
+    {
+     "src": "/images/banco/louvered/louvered-roof-blades-motor-solar-sensor-top-view-florida-01.webp",
+     "alt": "Top of a white louvered roof showing blades, motors and a small solar panel beside a modern home",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0225"
+    },
+    {
+     "src": "/images/banco/louvered/louvered-roof-recessed-lights-night-patio-florida-01.webp",
+     "alt": "Louvered roof with white recessed lights over a travertine patio with lounge and dining furniture at night",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0217"
+    },
+    {
+     "src": "/images/banco/louvered/louvered-pergola-rooftop-ocean-view-ship-florida-01.webp",
+     "alt": "Open louvered pergola framing the ocean and a cargo ship from a rooftop terrace.",
+     "ancho": 1125,
+     "alto": 785,
+     "origen": "banco",
+     "bancoId": "bi-0651"
+    },
+    {
+     "src": "/images/banco/louvered/louvered-pergola-outdoor-kitchen-white-stone-lake-florida-01.webp",
+     "alt": "White louvered pergola with ceiling fan over an L-shaped white stone outdoor kitchen by a lake.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0772"
+    },
+    {
+     "src": "/images/banco/louvered/louvered-roof-rooftop-terrace-closed-blades-aerial-florida-01.webp",
+     "alt": "Closed white louvered roof with bronze frame on a rooftop terrace seen from above among palm trees",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0224"
+    },
+    {
+     "src": "/images/images/motorized-louvered-roof-9/motorized-louvered-roof-installers-florida-09.jpg",
+     "alt": "Louvered roof installation with modern frame and rotating panels, built for shade control and outdoor comfort.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/motorized-louvered-roof-8/motorized-louvered-roof-installers-florida-08.jpg",
+     "alt": "Motorized pergola with adjustable louvers over pool deck, enhancing outdoor living and sun management in Florida.",
+     "ancho": 1250,
+     "alto": 682,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/motorized-louvered-roof-7/motorized-louvered-roof-installers-florida-07.jpg",
+     "alt": "Black aluminum louvered roof system covering seating area by water, designed for durability and weather resistance.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/motorized-louvered-roof-6/motorized-louvered-roof-installers-florida-06.jpg",
+     "alt": "Motorized louvered roof installed on modern property, providing adjustable sunlight control and contemporary outdoor design.",
+     "ancho": 1250,
+     "alto": 839,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/motorized-louvered-roof-5/motorized-louvered-roof-installers-florida-05.jpg",
+     "alt": "Custom patio cover with integrated LED lighting and motorized louvers for day and night outdoor comfort in Florida.",
+     "ancho": 1250,
+     "alto": 1250,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/motorized-louvered-roof-4/motorized-louvered-roof-installers-florida-04.jpg",
+     "alt": "Modern aluminum louvered roof attached to luxury home, offering shade, ventilation, and sleek outdoor coverage.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/motorized-louvered-roof-3/motorized-louvered-roof-installers-florida-03.jpg",
+     "alt": "Adjustable louvered roof panels allowing airflow and rain protection, ideal for poolside patios in South Florida.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/motorized-louvered-roof-2/motorized-louvered-roof-installers-florida-02.jpg",
+     "alt": "White motorized louvered roof system covering outdoor dining area, designed for sun control and modern backyard living in Florida.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/motorized-louvered-roof-1/motorized-louvered-roof-installers-florida-01.jpg",
+     "alt": "Motorized louvered roof installed over patio, providing adjustable shade, ventilation, and weather protection in Florida homes.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    }
+   ]
+  },
+  {
+   "id": "kitchen",
+   "slug": "outdoor-kitchens",
+   "nombre": "Outdoor Kitchens",
+   "h1": "Outdoor Kitchen Gallery",
+   "title": "Outdoor Kitchen Photo Gallery | Mr & Mrs Outdoor Living",
+   "description": "Photos of custom outdoor kitchens built in Florida: built-in grills, waterfall countertops, pizza ovens, bars and storage under pergolas and patio covers.",
+   "intro": "Outdoor kitchens we built for Florida homes, from a compact grill island to full L and U-shaped layouts with a bar. Notice the choices that make them work outdoors: porcelain waterfall countertops, stainless doors and drawers, built-in grills, kamado smokers and pizza ovens, and a roof overhead so you can cook in the rain. Pick the layouts you like and we will price one for your patio.",
+   "linea": "Built-in cooking, storage, and counter space.",
+   "servicio": {
+    "enlace": "/services/custom-outdoor-kitchens-for-north-south-florida-homes",
+    "ancla": "Custom outdoor kitchens"
+   },
+   "portada": "/images/banco/kitchens/outdoor-kitchen-marble-waterfall-kamado-grill-florida-01.webp",
+   "fotos": [
+    {
+     "src": "/images/banco/kitchens/outdoor-kitchen-marble-waterfall-kamado-grill-florida-01.webp",
+     "alt": "U-shaped outdoor kitchen with marble waterfall counters and a kamado grill under a patio cover.",
+     "ancho": 1199,
+     "alto": 899,
+     "origen": "banco",
+     "bancoId": "bi-0760"
+    },
+    {
+     "src": "/images/banco/kitchens/outdoor-kitchen-white-stacked-stone-lake-florida-01.webp",
+     "alt": "L-shaped outdoor kitchen in white stacked stone with built-in grill, sink and lake view.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0771"
+    },
+    {
+     "src": "/images/banco/kitchens/pergola-outdoor-kitchen-marble-waterfall-u-shape-florida-01.webp",
+     "alt": "U-shaped outdoor kitchen with marble-look waterfall counters under a white and wood pergola.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0789"
+    },
+    {
+     "src": "/images/banco/kitchens/pergola-outdoor-kitchen-black-granite-lake-view-florida-01.webp",
+     "alt": "L-shaped outdoor kitchen with black granite waterfall under a dark pergola beside a lake.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0794"
+    },
+    {
+     "src": "/images/banco/kitchens/outdoor-kitchen-pizza-oven-grill-louvered-roof-florida-01.webp",
+     "alt": "Outdoor kitchen with pizza oven, built-in grill, sink and wall TV under a louvered roof.",
+     "ancho": 1440,
+     "alto": 960,
+     "origen": "banco",
+     "bancoId": "bi-0755"
+    },
+    {
+     "src": "/images/banco/kitchens/outdoor-kitchen-wood-slat-cabinets-tv-lanai-florida-01.webp",
+     "alt": "Long wood slat outdoor kitchen with grill, beverage fridges and wall TV under a large ceiling fan.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0843"
+    },
+    {
+     "src": "/images/banco/kitchens/outdoor-kitchen-granite-waterfall-counter-grill-florida-01.webp",
+     "alt": "Outdoor kitchen with granite waterfall countertop, built-in grill and undercounter fridge on a stone patio.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0503"
+    },
+    {
+     "src": "/images/banco/kitchens/outdoor-kitchen-gray-tile-granite-pergola-florida-01.webp",
+     "alt": "U-shaped outdoor kitchen with gray tile, granite countertop and grill under a pergola.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0797"
+    },
+    {
+     "src": "/images/banco/kitchens/outdoor-kitchen-l-shape-black-granite-poolside-florida-01.webp",
+     "alt": "L-shaped tiled outdoor kitchen with black granite top, grill, sink and fridge beside a pool.",
+     "ancho": 1024,
+     "alto": 759,
+     "origen": "banco",
+     "bancoId": "bi-0837"
+    },
+    {
+     "src": "/images/banco/kitchens/outdoor-kitchen-wood-slat-cabinets-stainless-doors-florida-01.webp",
+     "alt": "Outdoor kitchen with vertical wood slat cladding, stainless grill, side burner and access doors.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0793"
+    },
+    {
+     "src": "/images/banco/kitchens/outdoor-kitchen-black-granite-waterfall-island-florida-01.webp",
+     "alt": "Black granite waterfall island with sink in front of a built-in grill station by a lake.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0795"
+    },
+    {
+     "src": "/images/banco/kitchens/outdoor-kitchen-u-shape-pizza-oven-pool-view-florida-01.webp",
+     "alt": "U-shaped outdoor kitchen with pizza oven, open grill and side burner beside a pool.",
+     "ancho": 1440,
+     "alto": 960,
+     "origen": "banco",
+     "bancoId": "bi-0757"
+    },
+    {
+     "src": "/images/banco/kitchens/outdoor-kitchen-modern-patio-cover-black-frame-florida-01.webp",
+     "alt": "L-shaped outdoor kitchen with slatted wood base, sink and wine fridge under a black-framed patio cover with TV",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-1052"
+    },
+    {
+     "src": "/images/banco/kitchens/outdoor-kitchen-wood-slat-beverage-fridges-detail-florida-01.webp",
+     "alt": "Wood slat outdoor kitchen with glass-door beverage fridges and dark stone countertop.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0838"
+    },
+    {
+     "src": "/images/banco/kitchens/outdoor-kitchen-stacked-stone-concrete-waterfall-florida-01.webp",
+     "alt": "Outdoor kitchen with gray stacked stone, concrete-look waterfall end and built-in grill.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0791"
+    },
+    {
+     "src": "/images/banco/kitchens/outdoor-kitchen-island-farmhouse-sink-composite-florida-01.webp",
+     "alt": "Outdoor kitchen island with stainless farmhouse sink and drawers on brown composite cladding.",
+     "ancho": 1440,
+     "alto": 960,
+     "origen": "banco",
+     "bancoId": "bi-0756"
+    },
+    {
+     "src": "/images/images/kitchen-8/premium-outdoor-kitchen-installation-florida.avif",
+     "alt": "Premium custom outdoor kitchen installation completed in Florida",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/kitchen-7/modern-custom-outdoor-kitchen-design-florida.avif",
+     "alt": "Custom outdoor kitchen installed near a pool for Florida outdoor living",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/kitchen-6/luxury-custom-outdoor-kitchen-florida.avif",
+     "alt": "High-end custom outdoor kitchen layout designed for luxury Florida homes",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/kitchen-5/high-end-outdoor-kitchen-layout-florida.avif",
+     "alt": "Modern custom outdoor kitchen design for Florida residential properties",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/kitchen-4/custom-outdoor-kitchen-with-grill-florida.avif",
+     "alt": "Custom outdoor kitchen with built-in grill for Florida outdoor entertaining",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/kitchen-3/custom-outdoor-kitchens-florida.avif",
+     "alt": "Covered custom outdoor kitchen designed for year-round use in Florida",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/kitchen-2/custom-outdoor-kitchen-poolside-florida.avif",
+     "alt": "Luxury custom outdoor kitchen with premium finishes for Florida outdoor living",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/kitchen-1/covered-custom-outdoor-kitchen-florida.avif",
+     "alt": "Custom outdoor kitchen built by professional outdoor kitchen builders in Florida",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    }
+   ]
+  },
+  {
+   "id": "decks",
+   "slug": "decks",
+   "nombre": "Decks",
+   "h1": "Custom Deck Gallery",
+   "title": "Custom Deck & Patio Photo Gallery | Mr & Mrs Outdoor Living",
+   "description": "Browse custom decks and patios built for Florida homes: wood platforms, porcelain and travertine pool decks, and large-format pavers set in turf. See real work.",
+   "intro": "Decks and patio surfaces we built around Florida homes and pools. You will find wood platforms, polished porcelain laid on the diagonal, travertine pool decks, and large-format slabs set in strips of artificial turf. The photos were taken once the work was finished, some right after rain, so you can see how each surface drains and how it meets the lawn, the planting and the pool edge.",
+   "linea": "Wood, porcelain, travertine and paver decks built for the climate.",
+   "servicio": {
+    "enlace": "/services/custom-deck-builders-in-north-south-florida",
+    "ancla": "Custom deck builders"
+   },
+   "portada": "/images/banco/decks/limestone-paver-patio-lake-view-herringbone-florida-01.webp",
+   "fotos": [
+    {
+     "src": "/images/banco/decks/limestone-paver-patio-lake-view-herringbone-florida-01.webp",
+     "alt": "Raised limestone paver patio in a herringbone layout overlooking a lake and golf course.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0079"
+    },
+    {
+     "src": "/images/banco/decks/travertine-pool-deck-herringbone-turf-border-florida-01.webp",
+     "alt": "Ivory travertine pool deck laid in a herringbone pattern with artificial turf border and pool beyond.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0508"
+    },
+    {
+     "src": "/images/banco/decks/wood-deck-lounge-platform-artificial-turf-beachfront-florida-01.webp",
+     "alt": "Dark hardwood lounge deck with daybeds set on artificial turf beside dune planting.",
+     "ancho": 1600,
+     "alto": 739,
+     "origen": "banco",
+     "bancoId": "bi-0318"
+    },
+    {
+     "src": "/images/banco/decks/limestone-pool-deck-round-spa-trellis-wall-florida-01.webp",
+     "alt": "Wet limestone pool deck around a round spa with a vine trellis wall and bromeliads.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0077"
+    },
+    {
+     "src": "/images/banco/decks/concrete-paver-driveway-turf-joints-modern-entry-florida-01.webp",
+     "alt": "Large concrete slab driveway with artificial turf joints in front of a modern entry with LED sconces.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0056"
+    },
+    {
+     "src": "/images/banco/decks/travertine-paver-pads-resort-lawn-sunset-beachfront-florida-01.webp",
+     "alt": "Row of travertine pads with paver borders set in a resort lawn at sunset.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0321"
+    },
+    {
+     "src": "/images/banco/decks/limestone-paver-patio-steps-tropical-landscape-florida-01.webp",
+     "alt": "Limestone paver patio with a step down between planting beds and a fan palm.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0078"
+    },
+    {
+     "src": "/images/banco/decks/paver-patio-brown-blend-new-construction-florida-01.webp",
+     "alt": "Brown and cream blend concrete paver patio outside sliding doors of a new white house.",
+     "ancho": 1599,
+     "alto": 899,
+     "origen": "banco",
+     "bancoId": "bi-0113"
+    },
+    {
+     "src": "/images/banco/decks/travertine-patio-pool-deck-drain-channel-florida-01.webp",
+     "alt": "Travertine paving running from a covered patio to the pool deck with a linear drain.",
+     "ancho": 1296,
+     "alto": 972,
+     "origen": "banco",
+     "bancoId": "bi-0595"
+    },
+    {
+     "src": "/images/banco/decks/porcelain-pool-deck-louvered-pergola-kitchen-florida-01.webp",
+     "alt": "Large-format porcelain pool deck leading to a white louvered pergola and outdoor kitchen.",
+     "ancho": 1280,
+     "alto": 960,
+     "origen": "banco",
+     "bancoId": "bi-0630"
+    },
+    {
+     "src": "/images/images/deck-9/custom-deck-builders-contractors-north-south-florida-09.jpg",
+     "alt": "Custom wood deck with pergola integration built by professional deck contractors in North & South Florida.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/deck-8/custom-deck-builders-contractors-north-south-florida-08.jpg",
+     "alt": "Coastal composite deck installation for Florida homes by experienced deck builders and contractors.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/deck-7/custom-deck-builders-contractors-north-south-florida-07.jpg",
+     "alt": "Waterfront custom deck with cable railing designed and installed by deck contractors in North & South Florida.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/deck-6/custom-deck-builders-contractors-north-south-florida-06.jpg",
+     "alt": "Modern pool deck installation with premium wood by licensed deck builders serving North & South Florida.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/deck-5/custom-deck-builders-contractors-north-south-florida-05.jpg",
+     "alt": "Custom wood deck walkway with integrated seating built by residential deck builders in North & South Florida.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/deck-4/custom-deck-builders-contractors-north-south-florida-04.jpg",
+     "alt": "Poolside deck construction using durable decking materials by professional deck contractors in North & South Florida.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/deck-3/custom-deck-builders-contractors-north-south-florida-03.jpg",
+     "alt": "Elevated composite deck with railing system installed by expert deck builders in North & South Florida.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/deck-2/custom-deck-builders-contractors-north-south-florida-02.jpg",
+     "alt": "Custom composite deck with pergola structure built by licensed deck contractors serving North & South Florida homes.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    }
+   ]
+  },
+  {
+   "id": "landscaping",
+   "slug": "landscaping",
+   "nombre": "Landscaping",
+   "h1": "Landscaping Gallery",
+   "title": "Landscaping Photo Gallery | Mr & Mrs Outdoor Living",
+   "description": "See landscaping projects completed in Florida: tropical planting beds, artificial turf, putting greens, river rock borders and poolside gardens. Real photos.",
+   "intro": "Landscaping we designed and installed in Florida: tropical beds of bromeliads, crotons and palms edged in river rock, artificial turf lawns, backyard putting greens, formal gardens with topiary and fountains, and planting that frames a pool instead of crowding it. These are finished installations, photographed in daylight, to help you choose the plants, the stone and the turf for your own yard.",
+   "linea": "Planting, turf, putting greens and stone borders.",
+   "servicio": {
+    "enlace": "/services/professional-landscaping-services-in-north-south-florida",
+    "ancla": "Professional landscaping services"
+   },
+   "portada": "/images/banco/landscaping/landscaping-front-yard-bromeliad-bed-palm-cluster-florida-01.webp",
+   "fotos": [
+    {
+     "src": "/images/banco/landscaping/landscaping-front-yard-bromeliad-bed-palm-cluster-florida-01.webp",
+     "alt": "Front yard bed with pink bromeliads, crotons and boulders under a palm cluster by a paver driveway.",
+     "ancho": 1600,
+     "alto": 900,
+     "origen": "banco",
+     "bancoId": "bi-0305"
+    },
+    {
+     "src": "/images/banco/landscaping/landscaping-formal-garden-topiary-fountains-oceanfront-florida-01.webp",
+     "alt": "Formal oceanfront garden with cone topiaries, urn fountains, a reflecting pool and date palms.",
+     "ancho": 1600,
+     "alto": 739,
+     "origen": "banco",
+     "bancoId": "bi-0310"
+    },
+    {
+     "src": "/images/banco/landscaping/backyard-putting-green-artificial-turf-sunset-florida-01.webp",
+     "alt": "Large artificial turf putting green with white flags at sunset, pines and hedge behind.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0137"
+    },
+    {
+     "src": "/images/banco/landscaping/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-01.webp",
+     "alt": "Kidney-shaped pool with raised spa backed by foxtail palms, a hedge and tropical flower beds.",
+     "ancho": 1600,
+     "alto": 900,
+     "origen": "banco",
+     "bancoId": "bi-0307"
+    },
+    {
+     "src": "/images/banco/landscaping/landscaping-pygmy-palm-bed-river-rock-impatiens-florida-01.webp",
+     "alt": "Planting bed with pygmy date palms, agaves and pink impatiens edged in river rock.",
+     "ancho": 1600,
+     "alto": 739,
+     "origen": "banco",
+     "bancoId": "bi-0314"
+    },
+    {
+     "src": "/images/banco/landscaping/artificial-turf-beachfront-resort-wood-decks-palms-florida-01.webp",
+     "alt": "Artificial turf lawns and wood deck platforms between sand paths at a beachfront resort.",
+     "ancho": 1600,
+     "alto": 739,
+     "origen": "banco",
+     "bancoId": "bi-0315"
+    },
+    {
+     "src": "/images/banco/landscaping/backyard-putting-green-artificial-turf-palm-trees-florida-02.webp",
+     "alt": "Large backyard putting green with nine flags surrounded by artificial turf and coconut palms.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0134"
+    },
+    {
+     "src": "/images/banco/landscaping/landscaping-blue-glazed-planters-marble-pool-deck-florida-01.webp",
+     "alt": "Blue glazed planters with a topiary, agave and pink flowers on a marble pool deck.",
+     "ancho": 1600,
+     "alto": 739,
+     "origen": "banco",
+     "bancoId": "bi-0313"
+    },
+    {
+     "src": "/images/banco/landscaping/backyard-putting-green-artificial-turf-oak-trees-florida-01.webp",
+     "alt": "Kidney-shaped artificial turf putting green with fringe under tall oak trees and gravel paths.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-0117"
+    },
+    {
+     "src": "/images/images/landscaping-10/luxury-landscaping-construction-contractors-florida-10.jpg",
+     "alt": "Residential front yard landscaping construction with palms and pavers by Florida landscape professionals.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/landscaping-9/luxury-landscaping-construction-contractors-florida-09.jpg",
+     "alt": "Custom landscape walkway with stone steps and greenery installed by Florida landscaping contractors.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/landscaping-8/luxury-landscaping-construction-contractors-florida-08.jpg",
+     "alt": "Coastal luxury landscaping project with turf and walkways designed by Florida landscape builders.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/landscaping-6/luxury-landscaping-construction-contractors-florida-06.jpg",
+     "alt": "Luxury residential landscaping construction featuring custom plant selection and stone elements in Florida.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/landscaping-5/luxury-landscaping-construction-contractors-florida-05.jpg",
+     "alt": "High-end garden landscaping with water features and stone paths built by Florida landscape contractors.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/landscaping-4/luxury-landscaping-construction-contractors-florida-04.jpg",
+     "alt": "Luxury pool landscaping construction with tropical plants and hardscape by Florida landscaping builders.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/landscaping-3/luxury-landscaping-construction-contractors-florida-03.jpg",
+     "alt": "Custom tropical landscaping project for residential property built by South Florida landscape contractors.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/landscaping-2/luxury-landscaping-construction-contractors-florida-02.jpg",
+     "alt": "Residential front yard landscaping with palm trees, plants, and pavers by Florida landscaping contractors.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/landscaping-1/luxury-landscaping-construction-contractors-florida-01.jpg",
+     "alt": "Custom pergola and luxury patio landscaping project by professional contractors serving North and South Florida.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    }
+   ]
+  },
+  {
+   "id": "pole",
+   "slug": "pole-barns",
+   "nombre": "Pole Barns",
+   "h1": "Pole Barn & Steel Building Gallery",
+   "title": "Pole Barn & Steel Building Photos | Mr & Mrs Outdoor Living",
+   "description": "Photos of pole barns and steel buildings built in Florida: open equipment sheds, enclosed metal buildings and steel-truss roofs. See the structures up close.",
+   "intro": "Pole barns and steel buildings we put up on Florida properties: long open sheds for equipment and hay, enclosed buildings with metal siding and trim, and lean-to roofs carried on steel trusses. The photos show the post spacing, the truss work and the roofing from the outside and from underneath, so you can judge the scale and the finish before you call us about your own building.",
+   "linea": "Pole barns, equipment sheds and steel buildings.",
+   "servicio": {
+    "enlace": "/services/steel-building-pole-barn-construction-in-north-south-florida",
+    "ancla": "Steel building and pole barn construction"
+   },
+   "portada": "/images/banco/pole/pole-barn-long-equipment-shed-metal-roof-aerial-florida-01.webp",
+   "fotos": [
+    {
+     "src": "/images/banco/pole/pole-barn-long-equipment-shed-metal-roof-aerial-florida-01.webp",
+     "alt": "Aerial view of a long single-slope pole barn with galvanized metal roof and open front bays.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-1096"
+    },
+    {
+     "src": "/images/banco/pole/pole-barn-open-equipment-shed-steel-trusses-florida-01.webp",
+     "alt": "Long three-sided pole barn with wood posts, black steel trusses and metal walls on a dirt floor.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-1094"
+    },
+    {
+     "src": "/images/banco/pole/pole-barn-enclosed-tan-metal-siding-lean-to-florida-01.webp",
+     "alt": "Enclosed pole barn with tan metal siding and brown trim next to an open lean-to with steel trusses.",
+     "ancho": 1600,
+     "alto": 1200,
+     "origen": "banco",
+     "bancoId": "bi-1089"
+    },
+    {
+     "src": "/images/images/pole-barn-10/pole-barn-steel-building-contractors-florida-10.jpg",
+     "alt": "Wood and steel pole barn structure under construction, designed and installed by expert Florida building contractors.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pole-barn-9/pole-barn-steel-building-contractors-florida-09.jpg",
+     "alt": "Aerial view of metal roof pole barn construction, showcasing professional steel building installation in Florida.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pole-barn-8/pole-barn-steel-building-contractors-florida-08.jpg",
+     "alt": "Custom-built steel pole barn with open sides, offering versatile coverage solutions across South Florida properties.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pole-barn-7/pole-barn-steel-building-contractors-florida-07.jpg",
+     "alt": "Extended pole barn with steel panels and wood framing, built for agricultural and residential properties in North Florida.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pole-barn-6/pole-barn-steel-building-contractors-florida-06.jpg",
+     "alt": "Steel pole barn installation with high-clearance design, perfect for equipment, vehicles, and commercial operations in Florida.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pole-barn-5/pole-barn-steel-building-contractors-florida-05.jpg",
+     "alt": "Custom pole barn construction over concrete slab, engineered for long-term durability by Florida building contractors.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pole-barn-4/pole-barn-steel-building-contractors-florida-04.jpg",
+     "alt": "Covered pole barn with steel roof and treated wood posts, providing durable outdoor storage solutions in Florida.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pole-barn-3/pole-barn-steel-building-contractors-florida-03.jpg",
+     "alt": "Large open-span pole barn with steel roofing, designed for storage, workshops, and commercial use across North & South Florida.",
+     "ancho": 933,
+     "alto": 1250,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pole-barn-1/pole-barn-steel-building-contractors-florida-01.jpg",
+     "alt": "Custom pole barn construction with steel roof and concrete slab, built by licensed contractors in North & South Florida.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    }
+   ]
+  },
+  {
+   "id": "enclosures",
+   "slug": "pool-screen-enclosures",
+   "nombre": "Pool Screen Enclosures",
+   "h1": "Pool Screen Enclosure Gallery",
+   "title": "Pool Screen Enclosure Photo Gallery | Mr & Mrs Outdoor Living",
+   "description": "See pool screen enclosures built over Florida pools: aluminum pool cages that keep out insects and debris while keeping the view. Real projects, real photos.",
+   "intro": "Pool screen enclosures we built over Florida pools. A pool cage keeps leaves, insects and most of the debris out of the water while the frame stays thin enough to keep the view. Look at the roof shapes, the frame colors and how each enclosure ties into the house and the deck, then tell us the size of your pool and we will design one for it.",
+   "linea": "Pool cages that keep bugs and debris out.",
+   "servicio": {
+    "enlace": "/services/pool-screen-enclosures-for-north-south-florida-pools",
+    "ancla": "Pool screen enclosures"
+   },
+   "portada": "/images/images/pool-screen-10/pool-screen-enclosure-builders-florida-10.jpg",
+   "fotos": [
+    {
+     "src": "/images/images/pool-screen-10/pool-screen-enclosure-builders-florida-10.jpg",
+     "alt": "Luxury pool and spa screen enclosure with premium finishes built by Florida pool enclosure construction experts.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pool-screen-9/pool-screen-enclosure-builders-florida-09.jpg",
+     "alt": "Spacious pool screen enclosure with lounge seating built by trusted pool enclosure installers in South Florida.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pool-screen-8/pool-screen-enclosure-builders-florida-08.jpg",
+     "alt": "Custom pool enclosure with curved pool design and patio installed by expert pool screen contractors in Florida.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pool-screen-7/pool-screen-enclosure-builders-florida-07.jpg",
+     "alt": "Lakefront pool screen enclosure designed for airflow and views by licensed pool enclosure builders in Florida.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pool-screen-6/pool-screen-enclosure-builders-florida-06.jpg",
+     "alt": "Pool screen enclosure with covered living space and ceiling fans, built by professional builders in North Florida.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pool-screen-5/pool-screen-enclosure-builders-florida-05.jpg",
+     "alt": "White aluminum pool screen enclosure protecting pool and patio, installed by Florida pool enclosure contractors.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pool-screen-4/pool-screen-enclosure-builders-florida-04.jpg",
+     "alt": "High-end pool cage enclosure with spa and lounge area built by experienced pool screen installers in Florida.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pool-screen-3/pool-screen-enclosure-builders-florida-03.jpg",
+     "alt": "Modern pool screen enclosure overlooking lake views, designed and installed by pool enclosure contractors in Florida.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/pool-screen-2/pool-screen-enclosure-builders-florida-02.jpg",
+     "alt": "Custom pool screen enclosure with outdoor kitchen and seating installed by licensed Florida pool enclosure builders.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    }
+   ]
+  },
+  {
+   "id": "rooms",
+   "slug": "patio-screen-rooms",
+   "nombre": "Patio Screen Rooms",
+   "h1": "Patio Screen Room Gallery",
+   "title": "Patio Screen Room Photo Gallery | Mr & Mrs Outdoor Living",
+   "description": "Photos of patio screen rooms and enclosures built on Florida homes: screened patios and lanais you can use all year without the insects. Browse real projects.",
+   "intro": "Patio screen rooms we built on Florida homes. Screening a patio or lanai turns it into a room you can use in the evening and through the summer without the mosquitoes. These photos show the frames, the doors and the roof tie-ins on finished projects, so you can see what a screen room would look like on the back of your own house.",
+   "linea": "Screened patios and lanais for year-round use.",
+   "servicio": {
+    "enlace": "/services/patio-screen-rooms-enclosures-in-north-south-florida",
+    "ancla": "Patio screen rooms and enclosures"
+   },
+   "portada": "/images/images/patio-screen-10/patio-screen-enclosure-builders-contractors-north-south-florida-10.jpg",
+   "fotos": [
+    {
+     "src": "/images/images/patio-screen-10/patio-screen-enclosure-builders-contractors-north-south-florida-10.jpg",
+     "alt": "Complete patio screen enclosure installation offering full protection, durability, and enhanced outdoor living for North and South Florida homeowners.",
+     "ancho": 1250,
+     "alto": 839,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/patio-screen-9/patio-screen-enclosure-builders-contractors-north-south-florida-09.jpg",
+     "alt": "Patio screen enclosure built adjacent to a pool area, creating a protected and comfortable outdoor environment for Florida homes.",
+     "ancho": 1250,
+     "alto": 839,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/patio-screen-8/patio-screen-enclosure-builders-contractors-north-south-florida-08.jpg",
+     "alt": "Custom patio screen enclosure solution providing partial enclosure for enhanced airflow, shade, and insect control in Florida.",
+     "ancho": 1250,
+     "alto": 839,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/patio-screen-7/patio-screen-enclosure-builders-contractors-north-south-florida-07.jpg",
+     "alt": "Flat roof patio screen enclosure designed for modern Florida homes, offering a clean architectural look and outdoor protection.",
+     "ancho": 1250,
+     "alto": 1250,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/patio-screen-6/patio-screen-enclosure-builders-contractors-north-south-florida-06.jpg",
+     "alt": "Side patio screen enclosure installed to expand usable outdoor space and improve privacy for Florida homeowners.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/patio-screen-5/patio-screen-enclosure-builders-contractors-north-south-florida-05.jpg",
+     "alt": "Modern patio screen enclosure featuring a sleek black aluminum frame, enhancing outdoor living areas across North and South Florida.",
+     "ancho": 1250,
+     "alto": 839,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/patio-screen-4/patio-screen-enclosure-builders-contractors-north-south-florida-04.jpg",
+     "alt": "Durable covered patio screen enclosure designed to protect outdoor spaces from insects and weather in Florida residential homes.",
+     "ancho": 1250,
+     "alto": 698,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/patio-screen-3/patio-screen-enclosure-builders-contractors-north-south-florida-03.jpg",
+     "alt": "Custom-built patio screen enclosure with pergola-style roof structure, providing shade and outdoor comfort for North and South Florida homeowners.",
+     "ancho": 1250,
+     "alto": 1007,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/patio-screen-2/patio-screen-enclosure-builders-contractors-north-south-florida-02.jpg",
+     "alt": "Professional patio screen enclosure installation designed to improve comfort, airflow, and insect protection for Florida residential properties.",
+     "ancho": 1250,
+     "alto": 839,
+     "origen": "webflow"
+    },
+    {
+     "src": "/images/images/patio-screen-1/patio-screen-enclosure-builders-contractors-north-south-florida-01.jpg",
+     "alt": "Custom patio screen enclosure built with durable aluminum framing, ideal for protecting outdoor living spaces in North and South Florida homes.",
+     "ancho": 1250,
+     "alto": 933,
+     "origen": "webflow"
+    }
+   ]
+  }
+ ]
+}

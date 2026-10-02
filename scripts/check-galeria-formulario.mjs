@@ -64,10 +64,15 @@ check('las 14 casillas de servicio llevan value', valores.length === 14, `${valo
 
 let fuera = 0;
 for (const [ruta, fichero] of paginas) {
-  if (ruta === '/gallery') continue;
+  // `/gallery/<slug>` SI lo lleva desde el 2-oct-2026: son la misma rejilla, por servicio.
+  if (ruta === '/gallery' || /^\/gallery\/[^/]+$/.test(ruta)) continue;
   if (fs.readFileSync(fichero, 'utf8').includes('class="mm-lbx"')) fuera++;
 }
-check('el lightbox partido NO existe en ninguna otra pagina (route-gate)', fuera === 0, `${fuera} pagina(s) de mas`);
+const categorias = paginas.filter(([ruta]) => /^\/gallery\/[^/]+$/.test(ruta));
+const sinVisor = categorias.filter(([, f]) => !fs.readFileSync(f, 'utf8').includes('class="mm-lbx"'));
+check(`las ${categorias.length} paginas /gallery/<slug> traen el dialogo .mm-lbx`, categorias.length > 0 && sinVisor.length === 0,
+  sinVisor.map(([r]) => r).join(', '));
+check('el lightbox partido NO existe fuera de /gallery y /gallery/<slug> (route-gate)', fuera === 0, `${fuera} pagina(s) de mas`);
 
 // ════════════════════════════════════════════════════════════════════════════
 // 2 · COMPORTAMIENTO — se abre, no compite con el otro lightbox, se navega, se cierra

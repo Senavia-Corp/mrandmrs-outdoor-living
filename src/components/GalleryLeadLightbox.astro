@@ -24,7 +24,9 @@
  * La etiqueta larga partia en DOS lineas y ponia la ficha en 76px; en una linea mide 44 y es lo
  * que hace que los 14 servicios quepan sin scroll. Ver el bloque de la rejilla, mas abajo.
  */
-const enGaleria = Astro.url.pathname === '/gallery';
+// `/gallery/<slug>` tambien (2-oct-2026): las paginas de categoria son la misma rejilla y el
+// visor con formulario es su mecanismo de captacion. Sigue sin pintarse en ninguna otra ruta.
+const enGaleria = /^\/gallery(\/[^/]+)?\/?$/.test(Astro.url.pathname);
 ---
 {enGaleria && (
   <dialog class="mm-lbx" aria-label="Photo and project estimate request">

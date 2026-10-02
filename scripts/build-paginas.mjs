@@ -27,6 +27,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { JSDOM } from 'jsdom';
 import { renombra } from './lib/renombradas.mjs';
+import { CATEGORIAS as GALERIA_CATEGORIAS, tarjetasHtml } from '../src/lib/galeria-categorias.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const man = JSON.parse(fs.readFileSync(path.join(RAIZ, '_source/assets-manifest.json'), 'utf8')).assets;
@@ -470,6 +471,11 @@ const OBRAS_PROPIAS = JSON.parse(
 
 /** Ruta -> donde se inyectan y por que. Hoy solo `/projects`; `/` lleva las suyas a mano
  *  porque esta en NO_REGENERAR y ya no pasa por aqui. */
+/* Las 14 fotos de obra propia que se anaden a `/gallery` (21-sep-2026). Fichero aparte porque
+ * el casting es contenido, no codigo: quien lo revise no deberia tener que leer este script. */
+const GALERIA_PAGINA = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/galeria-pagina.json'), 'utf8'));
+let galeriaPropiaInsertada = 0;
+
 const OBRAS_EN = {
   '/projects': {
     lista: '.cms-list-work',
@@ -1306,6 +1312,100 @@ for (const [ruta] of RUTAS) {
     }
   }
 
+  /* ── LAS 14 FOTOS DEL BANCO EN `/gallery` (21-sep-2026, Sebastian) ──────────────────────
+   * `/gallery` es el indice donde se ensenan todas las fotos de obra, y hasta hoy las 137 que
+   * pintaba venian del Webflow: JPG de 1250 px. Estas 14 salen del banco de imagen del cliente
+   * en el derivado `gallery`, 1600x1067 — un 28 % mas de definicion por la mitad de peso.
+   *
+   * MISMO MECANISMO QUE `OBRAS_EN`: se clona el primer `.cms-item-pictures` como molde, para
+   * heredar la forma exacta del item (el `id` de rejilla, el ancla `.gallery-picture` y el
+   * `<script class="w-json">` del lightbox). Los 137 items de origen usan solo dos `id`
+   * distintos y AMBOS resuelven a `grid-area: span 1/span 1` — comprobado en `webflow.css` —,
+   * asi que heredar el del molde no mueve la rejilla.
+   *
+   * El lightbox de esta pagina NO es el de `Componentes.astro`: `check:galeria` excluye
+   * `/gallery` a proposito y quien la cubre es `GalleryLeadLightbox.astro` sobre
+   * `a.closest('.gallery-page')`. Clonando dentro de la misma lista, los items nuevos caen
+   * dentro de ese guard igual que los otros 137.
+   *
+   * `data-service-id` es lo que filtra Finsweet: es lo unico que decide en que pestana sale.
+   *
+   * Van al PRINCIPIO de la lista, y por eso se recorre al reves: son las de mas definicion de
+   * la pagina y las unicas con trazabilidad al banco activo por activo. */
+  if (ruta === '/gallery') {
+    const listaFotos = doc.querySelector('.cms-list-pictures');
+    const moldeFoto = listaFotos?.querySelector('.cms-item-pictures');
+    // Falla RUIDOSAMENTE: sin molde no hay forma de item que heredar, y publicar /gallery con
+    // 14 items cojos —sin lightbox o fuera de la rejilla— es peor que no anadirlas.
+    if (!moldeFoto) {
+      console.error('\n  ROJO /gallery: no encuentro «.cms-list-pictures > .cms-item-pictures» para el molde\n');
+      process.exit(1);
+    }
+    for (const pestana of ['construction', 'remodeling']) {
+      for (const f of [...GALERIA_PAGINA[pestana]].reverse()) {
+        const n = moldeFoto.cloneNode(true);
+        n.setAttribute('data-service-id', pestana);
+        const img = n.querySelector('img');
+        const jsonLb = n.querySelector('script.w-json');
+        if (!img || !jsonLb) {
+          console.error('\n  ROJO /gallery: el molde ya no trae <img> + script.w-json — revisa el origen\n');
+          process.exit(1);
+        }
+        img.setAttribute('src', f.src);
+        img.setAttribute('alt', f.alt);
+        img.setAttribute('width', String(f.ancho));
+        img.setAttribute('height', String(f.alto));
+        // El derivado del banco es UNA sola medida: un `srcset` heredado apuntaria a los
+        // recortes del JPG viejo, y `sizes` sin `srcset` no pinta nada.
+        img.removeAttribute('srcset');
+        img.removeAttribute('sizes');
+        jsonLb.textContent = JSON.stringify({ items: [{ url: f.src, type: 'image' }], group: 'images' });
+        listaFotos.insertBefore(n, listaFotos.firstElementChild);
+        galeriaPropiaInsertada++;
+      }
+    }
+
+    /* ── LAS FOTOS DEL BANCO DE LAS PAGINAS DE CATEGORIA (2-oct-2026) ─────────────────────
+     * `/gallery` es «todas»: una foto que sale en `/gallery/<slug>` tiene que salir tambien
+     * aqui, bajo su `data-service-id`. Se leen de la MISMA entrada de
+     * `galeria-categorias.json` que pinta la pagina de categoria (`origen: banco`); las
+     * `obra` ya las ha metido el bucle de arriba y las `webflow` ya venian en el origen.
+     * Van delante de la PRIMERA foto de su servicio, para no romper el orden por servicio
+     * de la rejilla (MIGRACION-LOG, «/gallery — orden de la rejilla»). */
+    for (const cat of GALERIA_CATEGORIAS) {
+      // La rejilla son DOS listas apiladas (99 + 38): se busca en la pagina, no solo en la primera.
+      const ancla = doc.querySelector(`.gallery-page .cms-item-pictures[data-service-id="${cat.id}"]`);
+      if (!ancla) {
+        console.error(`\n  ROJO /gallery: no hay ninguna foto con data-service-id="${cat.id}" donde anclar\n`);
+        process.exit(1);
+      }
+      for (const f of cat.fotos.filter((x) => x.origen === 'banco')) {
+        const n = moldeFoto.cloneNode(true);
+        n.setAttribute('data-service-id', cat.id);
+        const img = n.querySelector('img');
+        img.setAttribute('src', f.src);
+        img.setAttribute('alt', f.alt);
+        img.setAttribute('width', String(f.ancho));
+        img.setAttribute('height', String(f.alto));
+        img.removeAttribute('srcset');
+        img.removeAttribute('sizes');
+        n.querySelector('script.w-json').textContent = JSON.stringify({ items: [{ url: f.src, type: 'image' }], group: 'images' });
+        ancla.parentNode.insertBefore(n, ancla);
+        galeriaPropiaInsertada++;
+      }
+    }
+
+    /* ── LAS TARJETAS DE CATEGORIA, ARRIBA DEL FILTRO (2-oct-2026) ────────────────────────
+     * Una por pagina `/gallery/<slug>`. El marcado sale de `src/lib/galeria-categorias.mjs`,
+     * que es el mismo que pinta el pie de cada pagina de categoria. */
+    const navFiltro = doc.querySelector('.gallery-page .nav-gallery');
+    if (!navFiltro) {
+      console.error('\n  ROJO /gallery: no encuentro «.gallery-page .nav-gallery» para poner las tarjetas delante\n');
+      process.exit(1);
+    }
+    navFiltro.insertAdjacentHTML('beforebegin', tarjetasHtml());
+  }
+
   const menu = doc.querySelector('section.menu');
   const pie = doc.querySelector('section.footer');
   // /pool-investment-estimator no tiene cascaron porque NO ES una pagina de Webflow: en el
@@ -1958,6 +2058,16 @@ console.log(`  carrusel de proyectos sustituido en ${proyectosSustituidos} ruta(
   + `${proyectosSustituidos === 10 ? '' : '   <<< SE ESPERABAN 10'}`);
 console.log(`  carrusel de blog sustituido en ${blogsSustituidos} ficha(s) de country/`
   + `${blogsSustituidos === 9 ? '' : '   <<< SE ESPERABAN 9'}`);
+
+/* Las 14 de `/gallery`: si no entran todas, el casting y lo publicado dejan de coincidir y la
+ * trazabilidad de `page_asset_usage.csv` se vuelve mentira. Para el generador. */
+const GALERIA_PROPIA_ESPERADA = GALERIA_PAGINA.construction.length + GALERIA_PAGINA.remodeling.length
+  + GALERIA_CATEGORIAS.reduce((n, c) => n + c.fotos.filter((f) => f.origen === 'banco').length, 0);
+if (galeriaPropiaInsertada !== GALERIA_PROPIA_ESPERADA) {
+  console.error(`\n  ROJO /gallery: se insertaron ${galeriaPropiaInsertada} fotos del banco y el casting trae ${GALERIA_PROPIA_ESPERADA}\n`);
+  process.exit(1);
+}
+console.log(`  ${galeriaPropiaInsertada} fotos del banco insertadas en /gallery\n`);
 
 const OBRAS_ESPERADAS = OBRAS_PROPIAS.length * Object.keys(OBRAS_EN).length;
 console.log(`  obras propias insertadas en el indice: ${obrasInsertadas}`

@@ -23,6 +23,7 @@ import http from 'node:http';
 import { chromium } from 'playwright';
 import { JSDOM } from 'jsdom';
 import { ARGS_NAVEGADOR, aSlug, asentar, textoNormalizado } from './lib/captura.mjs';
+import { lineasTarjetas } from '../src/lib/galeria-categorias.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 
@@ -904,6 +905,20 @@ const INDICE_BLOG = (() => {
 
 const LINEAS_ANADIDAS = [
   ...INDICE_BLOG,
+  {
+    /**
+     * GALERIA-CATEGORIAS (2-oct-2026, encargo de Sebastian) — las tarjetas de categoria de
+     * `/gallery`, delante del filtro. Una por pagina `/gallery/<slug>`: titular, nombre, una
+     * linea y el enlace. DERIVADO de `src/data/galeria-categorias.json` por la misma funcion
+     * que escribe el marcado, asi que anadir una categoria no exige tocar esta puerta.
+     * Ancla: el CTA del nav, que es la ultima linea antes de `.gallery-page` (la 10 del
+     * baseline; la 11 es «All», la primera opcion del filtro).
+     */
+    rutas: ['/gallery'],
+    tras: ['Get A Free Estimate'],
+    lineas: lineasTarjetas(),
+    motivo: 'GALERIA-CATEGORIAS: tarjetas de categoria delante del filtro, derivadas de galeria-categorias.json.',
+  },
   {
     /**
      * AUDITORIA 5-sep-2026 — EL SEGUNDO CTA DEL HEROE, QUE NADIE HABIA DECLARADO.

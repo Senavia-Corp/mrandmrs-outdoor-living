@@ -1,0 +1,151 @@
+{
+  "_lee_esto": [
+    "FOTOS DE OBRA PROPIA ANADIDAS A /gallery (21-sep-2026, encargo de Sebastian).",
+    "Salen del banco del cliente (MrMrs_Outdoor_Living_Image_Bank), derivado `gallery` 1600x1067,",
+    "frente a los JPG de 1250 px que traia la pagina. Las lee `scripts/build-paginas.mjs`, que",
+    "clona el primer `.cms-item-pictures` como molde -mismo mecanismo que OBRAS_EN en /projects-.",
+    "",
+    "RUTA NEUTRA: el banco propone /images/projects/south-fl/<id>/ y sus ficheros llevan",
+    "'-south-fl-'. Eso afirma la region en la URL y la marca vende North y South Florida, asi que",
+    "se copian a /images/obra/<id>/ sin el token. Mismo criterio que R21-CIUDADES.",
+    "",
+    "CASTING: las 42 candidatas se abrieron a resolucion nativa (cuadro completo + 6 teselas) por",
+    "el peritaje wf_30660677-f29, y despues las mire yo en hoja de contactos de finalistas. De ahi",
+    "salen dos descartes que el peritaje no podia dar: `ag-de085ec669` (vaso vaciado en resanado:",
+    "a tamano de galeria no se lee como obra en curso, se lee como una mancha azul) y",
+    "`ag-4c9bad982e` (cuarta variante casi identica del mismo vaso, sin cielo).",
+    "",
+    "PRIVACIDAD: los `privacy_flags` del banco en estos activos son de METADATOS DE ORIGEN",
+    "(device_identifier, gps_coordinates). El derivado WebP se re-codifica desde pixeles y sale",
+    "con 0 campos EXIF -verificado-. En cuadro no hay caras, matriculas ni numeros de portal.",
+    "",
+    "ALT: base del banco (`suggested_alt_gallery`) palabra por palabra; donde dos se repetian se",
+    "amplia SOLO con un rasgo que ya figura en el `feature_tags` de ESE activo (campo `_rasgo`).",
+    "Ni ciudad, ni medidas, ni precio, ni marca: nada de eso esta verificado en el banco.",
+    "",
+    "_asset, _proyecto y _rasgo no se pintan: son la trazabilidad (08_ai_index/page_asset_usage.csv).",
+    "",
+    "21-sep-2026, CORRECCION AL MIRAR LA REJILLA MONTADA: `ag-719f448bd3` sale fuera. En hoja de contactos parecia distinta de `ag-119c51a3ba`; en la rejilla real las dos cenitales caian CONTIGUAS en la misma columna y se leian como la misma foto repetida. Se queda la que paso el QC limpia. Y el orden de las dos listas pasa a alternar vista y propiedad, que es un problema que solo existe en la maqueta y por eso ninguna hoja de contactos lo ensena."
+  ],
+  "construction": [
+    {
+      "src": "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-25.webp",
+      "alt": "Completed backyard pool with raised spa and covered lanai",
+      "ancho": 1600,
+      "alto": 1067,
+      "_asset": "ag-4dec9a66e4",
+      "_proyecto": "project-062",
+      "_rasgo": "covered-lanai"
+    },
+    {
+      "src": "/images/obra/project-061/mrandmrs-pool-spa-a7-gallery-project-061-10.webp",
+      "alt": "Aerial view of a backyard lap pool with an aluminium patio cover",
+      "ancho": 1600,
+      "alto": 1067,
+      "_asset": "ag-2c83722350",
+      "_proyecto": "project-061",
+      "_rasgo": "aluminium-patio-cover"
+    },
+    {
+      "src": "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-10.webp",
+      "alt": "Aerial view of a backyard pool with raised spa and wide stone deck",
+      "ancho": 1600,
+      "alto": 1067,
+      "_asset": "ag-df80398b66",
+      "_proyecto": "project-062",
+      "_rasgo": "wide-stone-deck"
+    },
+    {
+      "src": "/images/obra/project-061/mrandmrs-pool-spa-a7-gallery-project-061-08.webp",
+      "alt": "Aerial view of a lakeside backyard with a lap pool and covered lanai",
+      "ancho": 1600,
+      "alto": 1067,
+      "_asset": "ag-ebb9b3b8f4",
+      "_proyecto": "project-061",
+      "_rasgo": "lake-frontage"
+    },
+    {
+      "src": "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-03.webp",
+      "alt": "Aerial view of a backyard pool with raised spa and sun loungers",
+      "ancho": 1600,
+      "alto": 1067,
+      "_asset": "ag-1dfa25f4b8",
+      "_proyecto": "project-062",
+      "_rasgo": "sun-loungers"
+    },
+    {
+      "src": "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-06.webp",
+      "alt": "Aerial view of a backyard pool with a raised spa in pale mosaic",
+      "ancho": 1600,
+      "alto": 1067,
+      "_asset": "ag-966bdc4889",
+      "_proyecto": "project-062",
+      "_rasgo": "pale-mosaic-spa-cladding"
+    },
+    {
+      "src": "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-05.webp",
+      "alt": "Aerial view of a backyard pool with raised spa and aluminium picket fence",
+      "ancho": 1600,
+      "alto": 1067,
+      "_asset": "ag-6796af4733",
+      "_proyecto": "project-062",
+      "_rasgo": "aluminium-picket-fence"
+    }
+  ],
+  "remodeling": [
+    {
+      "src": "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-02.webp",
+      "alt": "Aerial view of a backyard pool with raised spa and travertine-like deck",
+      "ancho": 1600,
+      "alto": 1067,
+      "_asset": "ag-b2c16fa558",
+      "_proyecto": "project-059",
+      "_rasgo": "travertine-like-deck"
+    },
+    {
+      "src": "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-07.webp",
+      "alt": "Completed backyard pool with raised spa and poolside basketball hoop",
+      "ancho": 1600,
+      "alto": 1067,
+      "_asset": "ag-0a36be04ef",
+      "_proyecto": "project-059",
+      "_rasgo": "poolside-basketball-hoop"
+    },
+    {
+      "src": "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-03.webp",
+      "alt": "Aerial view of a backyard pool with a sun shelf and raised spa",
+      "ancho": 1600,
+      "alto": 1067,
+      "_asset": "ag-119c51a3ba",
+      "_proyecto": "project-059",
+      "_rasgo": "sun-shelf"
+    },
+    {
+      "src": "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-20.webp",
+      "alt": "Completed backyard pool with raised spa and artificial-turf deck inlays",
+      "ancho": 1600,
+      "alto": 1067,
+      "_asset": "ag-650f7e215f",
+      "_proyecto": "project-059",
+      "_rasgo": "artificial-turf-inlay"
+    },
+    {
+      "src": "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-01.webp",
+      "alt": "Aerial view of a backyard pool with raised spa and clipped hedge border",
+      "ancho": 1600,
+      "alto": 1067,
+      "_asset": "ag-f3930ac1cc",
+      "_proyecto": "project-059",
+      "_rasgo": "clipped-hedge"
+    },
+    {
+      "src": "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-08.webp",
+      "alt": "Completed backyard pool with a raised spa clad in glass mosaic",
+      "ancho": 1600,
+      "alto": 1067,
+      "_asset": "ag-b52e6e2d46",
+      "_proyecto": "project-059",
+      "_rasgo": "glass-mosaic-spa-cladding"
+    }
+  ]
+}
