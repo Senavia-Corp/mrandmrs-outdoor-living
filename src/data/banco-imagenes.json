@@ -17215,9 +17215,14 @@
       "perfiles de la jaula cruzan el primer plano",
       "macetas en primer plano"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/pool-remodeling-renovation-in-north-south-florida"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Curtis/Curtis Before.jpg",
-    "sha256": "0eec20ecaa69d492ba77bb22c060f06518f107de4b286c8d894331186ff29331"
+    "sha256": "0eec20ecaa69d492ba77bb22c060f06518f107de4b286c8d894331186ff29331",
+    "publicada_como": [
+      "/images/obra/obra-048/pool-remodeling-before-screened-pool-brick-coping-{640,960,1280,1600,1920}.avif"
+    ]
   },
   {
     "id": "bi-0516",
@@ -17294,9 +17299,14 @@
     "defectos": [
       "mucho césped en el tercio inferior"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/pool-remodeling-renovation-in-north-south-florida"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Curtis/IMG_1851.JPEG",
-    "sha256": "37b14ddad97151de2790c8c306cdbfd05da21fef46f38c0b54937bce9c6b0fa7"
+    "sha256": "37b14ddad97151de2790c8c306cdbfd05da21fef46f38c0b54937bce9c6b0fa7",
+    "publicada_como": [
+      "/images/obra/obra-048/pool-remodeling-crew-at-work-on-drained-pool.avif"
+    ]
   },
   {
     "id": "bi-0518",
@@ -17373,9 +17383,14 @@
       "televisor envuelto en plástico en la fachada",
       "herramienta apoyada a la izquierda"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/pool-remodeling-renovation-in-north-south-florida"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Curtis/IMG_1921.JPEG",
-    "sha256": "20557f8f794124bdfce5d3f64375a953e605aaefd0974a7533711427aed72a43"
+    "sha256": "20557f8f794124bdfce5d3f64375a953e605aaefd0974a7533711427aed72a43",
+    "publicada_como": [
+      "/images/obra/obra-048/pool-remodeling-after-glass-tile-travertine-deck-{640,960,1280,1600,1920}.avif"
+    ]
   },
   {
     "id": "bi-0520",
@@ -17453,9 +17468,15 @@
       "camioneta lejana a la derecha",
       "televisor envuelto en plástico"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/pool-remodeling-renovation-in-north-south-florida"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Curtis/IMG_1923.JPEG",
-    "sha256": "b2b9878b131834e78652661fc51e736c30c6fd452c0f20294000c905fb32811a"
+    "sha256": "b2b9878b131834e78652661fc51e736c30c6fd452c0f20294000c905fb32811a",
+    "publicada_como": [
+      "/images/obra/obra-048/pool-remodeling-travertine-deck-glass-tile-completed.avif",
+      "/images/obra/og/pool-remodeling-renovation-florida.jpg"
+    ]
   },
   {
     "id": "bi-0522",
@@ -20779,9 +20800,14 @@
     "defectos": [
       "losas sueltas y herramienta al fondo"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/pool-remodeling-renovation-in-north-south-florida"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/FOTOS DE TODO/67330904372__2027F6B6-0953-460E-BAF1-E8FECC7C6986.jpeg",
-    "sha256": "44b2e572ba1ac6ed11ec2b48bdd4f7d93d40789f7ec0e8bcd5bf7db5130f37f0"
+    "sha256": "44b2e572ba1ac6ed11ec2b48bdd4f7d93d40789f7ec0e8bcd5bf7db5130f37f0",
+    "publicada_como": [
+      "/images/obra/obra-053/pool-renovation-travertine-deck-cobalt-tile-spa.avif"
+    ]
   },
   {
     "id": "bi-0618",
@@ -22951,9 +22977,14 @@
       "bolsa de basura en el borde izquierdo",
       "cubo en el fondo del vaso"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/pool-remodeling-renovation-in-north-south-florida"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Greenberg/77.jpg",
-    "sha256": "1684d059fcbcceabd691ee33eba1d3c9fb717f6a59902f8275b86d2dd5a34484"
+    "sha256": "1684d059fcbcceabd691ee33eba1d3c9fb717f6a59902f8275b86d2dd5a34484",
+    "publicada_como": [
+      "/images/obra/obra-064/pool-shell-repair-spa-bond-beam-rebuild.avif"
+    ]
   },
   {
     "id": "bi-0677",
@@ -23022,9 +23053,14 @@
       "3:2"
     ],
     "defectos": [],
-    "usada_en": [],
+    "usada_en": [
+      "/services/pool-remodeling-renovation-in-north-south-florida"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Greenberg/8.jpg",
-    "sha256": "4f29c9eec77ae6829204ae6877b61a0b15dc65677b3b16750f1d8fdaf4e3c13b"
+    "sha256": "4f29c9eec77ae6829204ae6877b61a0b15dc65677b3b16750f1d8fdaf4e3c13b",
+    "publicada_como": [
+      "/images/obra/obra-064/pool-renovation-new-white-plaster-hand-troweled.avif"
+    ]
   },
   {
     "id": "bi-0679",
@@ -23097,9 +23133,14 @@
       "persona de espaldas como sujeto (sin cara)",
       "texto pequeño con teléfono en la camiseta, no legible a tamaño web"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/pool-remodeling-renovation-in-north-south-florida"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Greenberg/demo 2.jpg",
-    "sha256": "e880b2fff57359af8ee74bf46896ad01c8d251cfc308e09666469e9c3c7bc016"
+    "sha256": "e880b2fff57359af8ee74bf46896ad01c8d251cfc308e09666469e9c3c7bc016",
+    "publicada_como": [
+      "/images/obra/obra-064/pool-remodeling-assessment-old-spa-inspection.avif"
+    ]
   },
   {
     "id": "bi-0681",
@@ -23210,9 +23251,14 @@
     "defectos": [
       "todoterreno y persona pequeños en el borde izquierdo"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/custom-pool-spa-builders-in-north-south-florida"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Happy Home/20250914_135316000_iOS.jpg",
-    "sha256": "0ccd18b6d245710258e5fcf6a8fcd0144999a49679c4029cdc156cba85613c93"
+    "sha256": "0ccd18b6d245710258e5fcf6a8fcd0144999a49679c4029cdc156cba85613c93",
+    "publicada_como": [
+      "/images/obra/obra-065/custom-pool-construction-backyard-lot-before-excavation.avif"
+    ]
   },
   {
     "id": "bi-0684",
@@ -23277,9 +23323,14 @@
     "defectos": [
       "operario pequeño arriba a la derecha (sin cara)"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/custom-pool-spa-builders-in-north-south-florida"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Happy Home/20250914_135426000_iOS.jpg",
-    "sha256": "41d202998338a348507370579855072afaeb3a567b511f4a797f2859e6407d66"
+    "sha256": "41d202998338a348507370579855072afaeb3a567b511f4a797f2859e6407d66",
+    "publicada_como": [
+      "/images/obra/obra-065/custom-pool-and-spa-layout-painted-on-site-aerial.avif"
+    ]
   },
   {
     "id": "bi-0686",
@@ -24157,9 +24208,14 @@
       "camión y bomba de gunite del subcontratista al fondo (recortables por arriba)",
       "numeración visible en la bomba"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/custom-pool-spa-builders-in-north-south-florida"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Happy Home/20250918_122355000_iOS.jpg",
-    "sha256": "2eff2daca137f06898dff5116dde74596fa3bd5ae95165f5852d973feae585ac"
+    "sha256": "2eff2daca137f06898dff5116dde74596fa3bd5ae95165f5852d973feae585ac",
+    "publicada_como": [
+      "/images/obra/obra-065/custom-pool-steel-rebar-and-drains-before-gunite.avif"
+    ]
   },
   {
     "id": "bi-0712",
@@ -24711,9 +24767,14 @@
       "4:5"
     ],
     "defectos": [],
-    "usada_en": [],
+    "usada_en": [
+      "/services/custom-pool-spa-builders-in-north-south-florida"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Happy Home/20250918_140200000_iOS.jpg",
-    "sha256": "d307cc6a85657bd232bca318e0209f94aa0ede601b07d872c6ca1f7354e36c96"
+    "sha256": "d307cc6a85657bd232bca318e0209f94aa0ede601b07d872c6ca1f7354e36c96",
+    "publicada_como": [
+      "/images/obra/obra-065/custom-pool-gunite-shell-being-sprayed-aerial.avif"
+    ]
   },
   {
     "id": "bi-0728",
