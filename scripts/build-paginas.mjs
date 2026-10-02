@@ -641,6 +641,11 @@ function fotosPorRuta(doc, ruta) {
       img.setAttribute('style', `object-position:${f.pos}${f.ratio ? `;aspect-ratio:${f.ratio}` : ''}`);
       img.removeAttribute('srcset');
       img.removeAttribute('sizes');
+      // LOOP-IMAGENES (2-oct-2026): si la <img> vive en un `a.w-lightbox`, el visor lee la URL del
+      // `script.w-json` hermano, no del `src`. Sin esto la galeria ensena la foto nueva y el
+      // lightbox abre la vieja. Mismo JSON que escribe el bloque de /gallery mas abajo.
+      const lb = img.closest('a.w-lightbox')?.querySelector('script.w-json');
+      if (lb) lb.textContent = JSON.stringify({ items: [{ url: f.src, type: 'image' }], group: 'images' });
       n++;
     });
   }
@@ -883,6 +888,7 @@ function captacion(doc, ruta) {
     }
     pasos.forEach((img, i) => {
       const f = c.proceso.fotos[i];
+      if (!f) return;            // LOOP-IMAGENES: `null` = ese paso se queda, como en fotos-por-ruta.json
       img.setAttribute('src', f.foto);
       img.setAttribute('alt', f.alt);
       img.setAttribute('width', String(f.ancho));

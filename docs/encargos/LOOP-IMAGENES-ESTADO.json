@@ -1,0 +1,834 @@
+{
+  "_lee_esto": "Estado del loop PROMPT-LOOP-IMAGENES.md. Una unidad por disparo, un commit por unidad. Lo lee y escribe cada iteracion; lo comprueba scripts/check-fotos-servicios.mjs sobre .vercel/output/static. El estado avanza en un solo sentido: una unidad hecha no se reabre desde el loop. El hash de una unidad se anota al arrancar la siguiente iteracion (el commit no puede llevar su propio hash).",
+  "base": "a7486b0",
+  "creado": "2026-10-02",
+  "correcciones_al_encargo": [
+    "origin/main en F0 es a7486b0 (#31), no ebd9e4e; el main local iba 30 commits por detras, no 20",
+    "el megamenu tiene 17 img.picture-service: 14 de servicio + 3 comerciales (misma webp, alt vacio). Las 3 quedan fuera",
+    "check:menu no mira imagenes; la imagen del menu la cubre check-fotos-servicios.mjs",
+    "check-seo.mjs fija about.image = heroe.foto en las 14 fichas (lineas ~290-476), no solo en New Pool: cada heroe canjeado toca check-seo.mjs en el mismo commit",
+    "baseline/shots solo tiene 1920/1440/991/479; las cajas del casting se miden a 390/768/991/1440",
+    "inversion.foto la lee InversionCore.astro, no captacion(); se canjea igual, en captacion-servicios.json",
+    "el megamenu solo pinta imagen a >=992: la caja es 339x340 y el texto tapa el 20 % inferior (y 0.716-0.917)"
+  ],
+  "cajas": {
+    "medido": "2026-10-02",
+    "anchos": [
+      390,
+      768,
+      991,
+      1440
+    ],
+    "huecos": {
+      "heroe": {
+        "390": {
+          "caja": [
+            390,
+            500
+          ],
+          "texto": {
+            "x": 0.082,
+            "y": 0.187,
+            "w": 0.836,
+            "h": 0.795
+          },
+          "visibles": 1
+        },
+        "768": {
+          "caja": [
+            768,
+            500
+          ],
+          "texto": {
+            "x": 0.042,
+            "y": 0.287,
+            "w": 0.917,
+            "h": 0.596
+          },
+          "visibles": 1
+        },
+        "991": {
+          "caja": [
+            991,
+            500
+          ],
+          "texto": {
+            "x": 0.122,
+            "y": 0.287,
+            "w": 0.757,
+            "h": 0.596
+          },
+          "visibles": 1
+        },
+        "1440": {
+          "caja": [
+            1440,
+            700
+          ],
+          "texto": {
+            "x": 0.24,
+            "y": 0.323,
+            "w": 0.521,
+            "h": 0.475
+          },
+          "visibles": 1
+        }
+      },
+      "galeria": {
+        "390": {
+          "caja": [
+            310,
+            250
+          ],
+          "texto": null,
+          "visibles": 8
+        },
+        "768": {
+          "caja": [
+            688,
+            450
+          ],
+          "texto": null,
+          "visibles": 8
+        },
+        "991": {
+          "caja": [
+            440,
+            450
+          ],
+          "texto": null,
+          "visibles": 8
+        },
+        "1440": {
+          "caja": [
+            384,
+            350
+          ],
+          "texto": null,
+          "visibles": 8
+        }
+      },
+      "proceso": {
+        "390": {
+          "caja": [
+            334,
+            350
+          ],
+          "texto": null,
+          "visibles": 1
+        },
+        "768": {
+          "caja": [
+            712,
+            388
+          ],
+          "texto": null,
+          "visibles": 1
+        },
+        "991": {
+          "caja": [
+            935,
+            510
+          ],
+          "texto": null,
+          "visibles": 1
+        },
+        "1440": {
+          "caja": [
+            459,
+            350
+          ],
+          "texto": null,
+          "visibles": 1
+        }
+      },
+      "inversion": {
+        "390": {
+          "caja": [
+            390,
+            218
+          ],
+          "texto": null,
+          "visibles": 1
+        },
+        "768": {
+          "caja": [
+            768,
+            429
+          ],
+          "texto": null,
+          "visibles": 1
+        },
+        "991": {
+          "caja": [
+            991,
+            553
+          ],
+          "texto": null,
+          "visibles": 1
+        },
+        "1440": {
+          "caja": [
+            720,
+            398
+          ],
+          "texto": null,
+          "visibles": 1
+        }
+      },
+      "faq0": {
+        "390": {
+          "caja": [
+            141,
+            128
+          ],
+          "texto": null,
+          "visibles": 3
+        },
+        "768": {
+          "caja": [
+            309,
+            128
+          ],
+          "texto": null,
+          "visibles": 3
+        },
+        "991": {
+          "caja": [
+            408,
+            128
+          ],
+          "texto": null,
+          "visibles": 3
+        },
+        "1440": {
+          "caja": [
+            395,
+            202
+          ],
+          "texto": null,
+          "visibles": 5
+        }
+      },
+      "faq1": {
+        "390": {
+          "caja": [
+            88,
+            128
+          ],
+          "texto": null,
+          "visibles": 3
+        },
+        "768": {
+          "caja": [
+            193,
+            128
+          ],
+          "texto": null,
+          "visibles": 3
+        },
+        "991": {
+          "caja": [
+            255,
+            128
+          ],
+          "texto": null,
+          "visibles": 3
+        },
+        "1440": {
+          "caja": [
+            194,
+            150
+          ],
+          "texto": null,
+          "visibles": 5
+        }
+      },
+      "faq3": {
+        "390": null,
+        "768": null,
+        "991": null,
+        "1440": {
+          "caja": [
+            194,
+            150
+          ],
+          "texto": null,
+          "visibles": 5
+        }
+      },
+      "menu": {
+        "390": null,
+        "768": null,
+        "991": null,
+        "1440": {
+          "caja": [
+            339,
+            340
+          ],
+          "texto": {
+            "x": 0.083,
+            "y": 0.716,
+            "w": 0.87,
+            "h": 0.201
+          },
+          "visibles": 1
+        }
+      },
+      "full": {
+        "390": {
+          "caja": [
+            334,
+            300
+          ],
+          "texto": {
+            "x": 0.024,
+            "y": 0.418,
+            "w": 0.952,
+            "h": 0.555
+          },
+          "visibles": 1
+        },
+        "768": {
+          "caja": [
+            712,
+            340
+          ],
+          "texto": {
+            "x": 0.022,
+            "y": 0.652,
+            "w": 0.955,
+            "h": 0.301
+          },
+          "visibles": 1
+        },
+        "991": {
+          "caja": [
+            935,
+            340
+          ],
+          "texto": {
+            "x": 0.017,
+            "y": 0.652,
+            "w": 0.966,
+            "h": 0.301
+          },
+          "visibles": 1
+        },
+        "1440": {
+          "caja": [
+            750,
+            400
+          ],
+          "texto": {
+            "x": 0.021,
+            "y": 0.687,
+            "w": 0.957,
+            "h": 0.273
+          },
+          "visibles": 1
+        }
+      },
+      "full_contador": {
+        "390": {
+          "caja": [
+            334,
+            300
+          ],
+          "texto": {
+            "x": 0.811,
+            "y": 0.053,
+            "w": 0.129,
+            "h": 0.092
+          },
+          "visibles": 1
+        },
+        "768": {
+          "caja": [
+            712,
+            340
+          ],
+          "texto": {
+            "x": 0.912,
+            "y": 0.047,
+            "w": 0.06,
+            "h": 0.081
+          },
+          "visibles": 1
+        },
+        "991": {
+          "caja": [
+            935,
+            340
+          ],
+          "texto": {
+            "x": 0.933,
+            "y": 0.047,
+            "w": 0.046,
+            "h": 0.081
+          },
+          "visibles": 1
+        },
+        "1440": {
+          "caja": [
+            750,
+            400
+          ],
+          "texto": {
+            "x": 0.916,
+            "y": 0.04,
+            "w": 0.057,
+            "h": 0.083
+          },
+          "visibles": 1
+        }
+      }
+    }
+  },
+  "intocables": {
+    "/services/custom-aluminum-pergola-builders-in-north-south-florida": {
+      "intro": [
+        "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/custom-aluminum-pergola-florida.avif",
+        "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/custom-wood-pergola-florida.avif",
+        "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/backyard-pergola-installation-florida.avif"
+      ],
+      "what_we_do": [
+        "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/aluminum-pergolas-contractors-florida.avif",
+        "/images/images/pergolas-9/custom-pergola-patio-cover-builders-florida-09.jpg",
+        "/images/images/pergolas-7/custom-pergola-patio-cover-builders-florida-07.jpg",
+        "/images/images/pergolas-4/custom-pergola-patio-cover-builders-florida-04.jpg"
+      ]
+    },
+    "/services/custom-deck-builders-in-north-south-florida": {
+      "intro": [
+        "/images/residentials/custom-deck-builders-in-north-south-florida/wood-deck-installation-florida.avif",
+        "/images/residentials/custom-deck-builders-in-north-south-florida/composite-decking-installation-florida.avif",
+        "/images/residentials/custom-deck-builders-in-north-south-florida/backyard-deck-construction-florida.avif"
+      ],
+      "what_we_do": [
+        "/images/images/deck-9/custom-deck-builders-contractors-north-south-florida-09.jpg",
+        "/images/images/deck-10/custom-deck-builders-contractors-north-south-florida-10.jpg",
+        "/images/images/deck-4/custom-deck-builders-contractors-north-south-florida-04.jpg",
+        "/images/images/deck-1/custom-deck-builders-contractors-north-south-florida-01.jpg"
+      ]
+    },
+    "/services/custom-outdoor-kitchens-for-north-south-florida-homes": {
+      "intro": [
+        "/images/images/kitchen-2/custom-outdoor-kitchen-poolside-florida.avif",
+        "/images/images/kitchen-3/custom-outdoor-kitchens-florida.avif",
+        "/images/images/kitchen-4/custom-outdoor-kitchen-with-grill-florida.avif"
+      ],
+      "what_we_do": [
+        "/images/residentials/custom-outdoor-kitchens-for-north-south-florida-homes/covered-custom-outdoor-kitchen-florida.avif",
+        "/images/images/kitchen-7/modern-custom-outdoor-kitchen-design-florida.avif",
+        "/images/images/kitchen-5/high-end-outdoor-kitchen-layout-florida.avif",
+        "/images/images/kitchen-2/custom-outdoor-kitchen-poolside-florida.avif"
+      ]
+    },
+    "/services/custom-pool-spa-builders-in-north-south-florida": {
+      "intro": [
+        "/images/residentials/custom-pool-spa-builders-in-north-south-florida/pool-remodeling-contractors-florida.avif",
+        "/images/residentials/custom-pool-spa-builders-in-north-south-florida/custom-pool-builders-north-and-south-florida.avif",
+        "/images/residentials/custom-pool-spa-builders-in-north-south-florida/residential-pool-builders-north-and-south-florida.avif.avif"
+      ],
+      "what_we_do": [
+        "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-1.avif",
+        "/images/servicios/pool-equipment-pad-plumbing-automation-florida.avif",
+        "/images/servicios/pool-tile-coping-travertine-deck-florida.avif",
+        "/images/servicios/pool-remodeling-raised-spa-travertine-deck-south-florida.avif"
+      ]
+    },
+    "/services/motorized-louvered-roof-systems-in-north-south-florida": {
+      "intro": [
+        "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/motorized-louvered-pergola-florida.avif",
+        "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/backyard-louvered-roof-installation-florida.avif",
+        "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/adjustable-louvered-pergola-roof-florida.avif"
+      ],
+      "what_we_do": [
+        "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/louvered-roof-systems-florida.avif",
+        "/images/images/motorized-louvered-roof-9/motorized-louvered-roof-installers-florida-09.jpg",
+        "/images/images/motorized-louvered-roof-8/motorized-louvered-roof-installers-florida-08.jpg",
+        "/images/images/motorized-louvered-roof-3/motorized-louvered-roof-installers-florida-03.jpg"
+      ]
+    },
+    "/services/motorized-retractable-screens-in-north-south-florida": {
+      "intro": [
+        "/images/residentials/motorized-retractable-screens-in-north-south-florida/patio-retractable-screen-installation-florida.avif",
+        "/images/residentials/motorized-retractable-screens-in-north-south-florida/outdoor-retractable-screen-system-florida.avif",
+        "/images/residentials/motorized-retractable-screens-in-north-south-florida/motorized-retractable-screens-florida.avif"
+      ],
+      "what_we_do": [
+        "/images/residentials/motorized-retractable-screens-in-north-south-florida/retractable-screens-florida.avif",
+        "/images/images/retractable-screen-9/retractable-screen-installation-contractors-florida-09.jpg",
+        "/images/images/retractable-screen-5/retractable-screen-installation-contractors-florida-5.jpg",
+        "/images/images/retractable-screen-1/retractable-screen-installation-contractors-florida-1.jpg"
+      ]
+    },
+    "/services/patio-screen-rooms-enclosures-in-north-south-florida": {
+      "intro": [
+        "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/patio-screen-rooms-florida.avif",
+        "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/backyard-patio-screen-room-installation-florida.avif",
+        "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/custom-patio-screen-room-florida.avif"
+      ],
+      "what_we_do": [
+        "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/screened-patio-enclosure-florida.avif",
+        "/images/images/patio-screen-8/patio-screen-enclosure-builders-contractors-north-south-florida-08.jpg",
+        "/images/images/patio-screen-3/patio-screen-enclosure-builders-contractors-north-south-florida-03.jpg",
+        "/images/images/patio-screen-1/patio-screen-enclosure-builders-contractors-north-south-florida-01.jpg"
+      ]
+    },
+    "/services/pool-remodeling-renovation-in-north-south-florida": {
+      "intro": [
+        "/images/residentials/pool-remodeling-renovation-in-north-south-florida/modern-pool-remodeling-upgrade-florida.avif",
+        "/images/residentials/pool-remodeling-renovation-in-north-south-florida/pool-resurfacing-tile-finish-upgrade-florida.avif",
+        "/images/residentials/pool-remodeling-renovation-in-north-south-florida/pool-remodeling-renovation-florida.avif"
+      ],
+      "what_we_do": [
+        "/images/obra/obra-064/pool-shell-repair-spa-bond-beam-rebuild.avif",
+        "/images/images/pool-remodeling-9/custom-pool-remodeling-contractors-florida-09.jpg",
+        "/images/images/pool-remodeling-5/custom-pool-remodeling-contractors-florida-05.jpg",
+        "/images/images/pool-remodeling-2/custom-pool-remodeling-contractors-florida-02.jpg"
+      ]
+    },
+    "/services/pool-screen-enclosures-for-north-south-florida-pools": {
+      "intro": [
+        "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/custom-screened-pool-enclosure-florida.avif",
+        "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/backyard-pool-screen-enclosure-installation-florida.avif",
+        "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/aluminum-pool-screen-enclosure-florida.avif"
+      ],
+      "what_we_do": [
+        "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/pool-screen-enclosures-florida.avif",
+        "/images/images/pool-screen-9/pool-screen-enclosure-builders-florida-09.jpg",
+        "/images/images/pool-screen-5/pool-screen-enclosure-builders-florida-05.jpg",
+        "/images/images/pool-screen-3/pool-screen-enclosure-builders-florida-03.jpg"
+      ]
+    },
+    "/services/premium-outdoor-furniture-for-north-south-florida-homes": {
+      "intro": [
+        "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/patio-furniture-florida.avif",
+        "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/outdoor-dining-furniture-florida.avif",
+        "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/luxury-outdoor-furniture-florida.avif"
+      ],
+      "what_we_do": [
+        "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/outdoor-furniture-florida.avif",
+        "/images/images/furniture-7/custom-outdoor-furniture-builders-florida-07.jpg",
+        "/images/images/furniture-4/custom-outdoor-furniture-builders-florida-04.jpg",
+        "/images/images/furniture-2/custom-outdoor-furniture-builders-florida-02.jpg"
+      ]
+    },
+    "/services/professional-landscaping-services-in-north-south-florida": {
+      "intro": [
+        "/images/residentials/professional-landscaping-services-in-north-south-florida/landscape-design-florida.avif",
+        "/images/residentials/professional-landscaping-services-in-north-south-florida/backyard-landscaping-florida.avif",
+        "/images/residentials/professional-landscaping-services-in-north-south-florida/residential-landscaping-installation-florida.avif"
+      ],
+      "what_we_do": [
+        "/images/residentials/professional-landscaping-services-in-north-south-florida/landscaping-services-florida.avif",
+        "/images/images/landscaping-9/luxury-landscaping-construction-contractors-florida-09.jpg",
+        "/images/images/landscaping-5/luxury-landscaping-construction-contractors-florida-05.jpg",
+        "/images/images/landscaping-2/luxury-landscaping-construction-contractors-florida-02.jpg"
+      ]
+    },
+    "/services/smart-irrigation-system-installation-in-north-south-florida": {
+      "intro": [
+        "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/smart-irrigation-system-florida.avif",
+        "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/residential-lawn-irrigation-florida.avif",
+        "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/water-efficient-irrigation-system-florida.avif"
+      ],
+      "what_we_do": [
+        "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/automated-irrigation-florida.avif",
+        "/images/images/irrigation-9/automated-irrigation-system-installers-florida-09.jpg",
+        "/images/images/irrigation-8/automated-irrigation-system-installers-florida-08.jpg",
+        "/images/images/irrigation-2/automated-irrigation-system-installers-florida-02.jpg"
+      ]
+    },
+    "/services/smart-soffit-led-lighting-installation-in-north-south-florida": {
+      "intro": [
+        "/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/smart-led-soffit-lighting-night-florida.avif",
+        "/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/outdoor-led-soffit-lighting-system-florida.avif",
+        "/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/architectural-soffit-led-lighting-florida.avif"
+      ],
+      "what_we_do": [
+        "/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/smart-soffit-led-lighting-florida.avif",
+        "/images/images/light-2/smart-soffit-led-lighting-installation-contractors-florida-02.jpg",
+        "/images/images/light-8/smart-soffit-led-lighting-installation-contractors-florida-08.jpg",
+        "/images/images/light-3/smart-soffit-led-lighting-installation-contractors-florida-03.jpg"
+      ]
+    },
+    "/services/steel-building-pole-barn-construction-in-north-south-florida": {
+      "intro": [
+        "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/custom-pole-barn-florida.avif",
+        "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/pole-barn-steel-buildings-florida.avif",
+        "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/steel-building-installation-florida.avif"
+      ],
+      "what_we_do": [
+        "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/steel-building-construction-florida.avif",
+        "/images/images/pole-barn-10/pole-barn-steel-building-contractors-florida-10.jpg",
+        "/images/images/pole-barn-7/pole-barn-steel-building-contractors-florida-07.jpg",
+        "/images/images/pole-barn-4/pole-barn-steel-building-contractors-florida-04.jpg"
+      ]
+    }
+  },
+  "auditoria_ia": {
+    "metodo": "Python: bytes del fichero buscando c2pa y trainedAlgorithmicMedia (grep aqui es ugrep y salta binarios)",
+    "intocables_con_marca": [
+      "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/aluminum-pergolas-contractors-florida.avif",
+      "/images/residentials/custom-outdoor-kitchens-for-north-south-florida-homes/covered-custom-outdoor-kitchen-florida.avif",
+      "/images/residentials/custom-pool-spa-builders-in-north-south-florida/pool-remodeling-contractors-florida.avif",
+      "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/screened-patio-enclosure-florida.avif",
+      "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/pool-screen-enclosures-florida.avif",
+      "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/outdoor-furniture-florida.avif",
+      "/images/residentials/professional-landscaping-services-in-north-south-florida/landscaping-services-florida.avif",
+      "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/automated-irrigation-florida.avif",
+      "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/steel-building-construction-florida.avif"
+    ],
+    "intocables_total": 97,
+    "procesos_con_marca": [
+      "/images/procesos/custom-decks-step-1/custom-decks-step-1.png",
+      "/images/procesos/custom-decks-step-2/custom-decks-step-2.png",
+      "/images/procesos/custom-decks-step-3/custom-decks-step-3.png",
+      "/images/procesos/custom-decks-step-4/custom-decks-step-4.png",
+      "/images/procesos/irrigation-step-1/irrigation-step-1.png",
+      "/images/procesos/irrigation-step-2/irrigation-step-2.png",
+      "/images/procesos/irrigation-step-3/irrigation-step-3.png",
+      "/images/procesos/irrigation-step-4/irrigation-step-4.png",
+      "/images/procesos/landscaping-step-1/landscaping-step-1.png",
+      "/images/procesos/landscaping-step-2/landscaping-step-2.png",
+      "/images/procesos/landscaping-step-3/landscaping-step-3.png",
+      "/images/procesos/landscaping-step-4/landscaping-step-4-v2.png",
+      "/images/procesos/outdoor-furniture-step-1/outdoor-furniture-step-1.png",
+      "/images/procesos/outdoor-furniture-step-2/outdoor-furniture-step-2.png",
+      "/images/procesos/outdoor-furniture-step-3/outdoor-furniture-step-3.png",
+      "/images/procesos/outdoor-furniture-step-4/outdoor-furniture-step-4.png",
+      "/images/procesos/outdoor-kitchen-step-1/outdoor-kitchen-step-1.png",
+      "/images/procesos/outdoor-kitchen-step-2/outdoor-kitchen-step-2.png",
+      "/images/procesos/outdoor-kitchen-step-3/outdoor-kitchen-step-3.png",
+      "/images/procesos/outdoor-kitchen-step-4/outdoor-kitchen-step-4.png",
+      "/images/procesos/pergola-installation-step-1/pergola-installation-step-1.png",
+      "/images/procesos/pergola-installation-step-2/pergola-installation-step-2.png",
+      "/images/procesos/pergola-installation-step-3/pergola-installation-step-3.png",
+      "/images/procesos/pergola-installation-step-4/pergola-installation-step-4-v2.png",
+      "/images/procesos/pool-construction-step-1/pool-construction-step-1.png",
+      "/images/procesos/pool-construction-step-2/pool-construction-step-2-v2.png",
+      "/images/procesos/pool-construction-step-3/pool-construction-step-3-v2.png",
+      "/images/procesos/pool-construction-step-4/pool-construction-step-4.png",
+      "/images/procesos/pool-remodel-step-1/pool-remodel-step-1.png",
+      "/images/procesos/pool-remodel-step-2/pool-remodel-step-2.png",
+      "/images/procesos/pool-remodel-step-3/pool-remodel-step-3.png",
+      "/images/procesos/pool-remodel-step-4/pool-remodel-step-4.png",
+      "/images/procesos/retractable-screen-step-1/retractable-screen-step-1.png",
+      "/images/procesos/retractable-screen-step-2/retractable-screen-step-2.png",
+      "/images/procesos/retractable-screen-step-3/retractable-screen-step-3.png",
+      "/images/procesos/retractable-screen-step-4/retractable-screen-step-4.png",
+      "/images/procesos/smart-lighting-step-1/smart-lighting-step-1.png",
+      "/images/procesos/smart-lighting-step-2/smart-lighting-step-2.png",
+      "/images/procesos/smart-lighting-step-3/smart-lighting-step-3.png"
+    ],
+    "procesos_total": 56,
+    "nota": "Los 17 AVIF de procesos (louvered, patio-screen-room, pole-barn, pool-screen-enclosure, smart-lighting-4) no llevan marca en bytes: AVIF suele perder el C2PA al recodificar. Son sin_verificar, no obra_real."
+  },
+  "puerta_probada": {
+    "fecha": "2026-10-02",
+    "como": "estado y HTML de kitchens parcheados en copia y restaurados; 10 clases de rojo, todas saltan",
+    "salida": [
+      "ROJO   kitchens galeria[0]: hueco pendiente",
+      "ROJO   kitchens galeria[1]: el HTML pinta /images/images/kitchen-7/modern-custom-outdoor-kitchen-design-florida.avif, el estado dice /images/banco/x.webp",
+      "ROJO   kitchens galeria[1]: el lightbox abre /images/images/kitchen-7/modern-custom-outdoor-kitchen-design-florida.avif, no /images/banco/x.webp",
+      "ROJO   kitchens galeria[1]: /images/banco/x.webp no es el src de bi-0003 ni esta en su publicada_como",
+      "ROJO   kitchens galeria[1]: bi-0003 no lleva /services/custom-outdoor-kitchens-for-north-south-florida-homes en usada_en",
+      "ROJO   kitchens galeria[2]: el lightbox abre /images/images/kitchen-6/luxury-custom-outdoor-kitchen-florida.avif, no /images/banco/pergolas/aluminum-pergola-frame-installation-crew-ladders-florida-01.webp",
+      "ROJO   kitchens galeria[2]: bi-0003 no lleva /services/custom-outdoor-kitchens-for-north-south-florida-homes en usada_en",
+      "ROJO   kitchens galeria[3]: canjeada sin pos",
+      "ROJO   kitchens galeria[3]: bi-0002 no es obra_real aprobada",
+      "ROJO   kitchens galeria[3]: /images/images/kitchen-5/high-end-outdoor-kitchen-layout-florida.avif no es el src de bi-0002 ni esta en su publicada_como",
+      "ROJO   kitchens galeria[3]: bi-0002 no lleva /services/custom-outdoor-kitchens-for-north-south-florida-homes en usada_en",
+      "ROJO   kitchens galeria[4]: el HTML pinta /images/images/kitchen-4/custom-outdoor-kitchen-with-grill-florida.avif, el estado dice /images/images/kitchen-7/modern-custom-outdoor-kitchen-design-florida.avif",
+      "ROJO   kitchens galeria[4]: el lightbox abre /images/images/kitchen-4/custom-outdoor-kitchen-with-grill-florida.avif, no /images/images/kitchen-7/modern-custom-outdoor-kitchen-design-florida.avif",
+      "ROJO   kitchens galeria[4]: /images/images/kitchen-7/modern-custom-outdoor-kitchen-design-florida.avif no es el src de bi-0003 ni esta en su publicada_como",
+      "ROJO   kitchens galeria[4]: bi-0003 no lleva /services/custom-outdoor-kitchens-for-north-south-florida-homes en usada_en",
+      "ROJO   kitchens inversion: se-queda sin motivo, falta y descartadas/consulta",
+      "ROJO   kitchens proceso[0]: escalada sin motivo",
+      "ROJO   kitchens: /images/images/kitchen-7/modern-custom-outdoor-kitchen-design-florida.avif sale 3 veces en la ficha y es una foto canjeada",
+      "ROJO   kitchens: /images/images/kitchen-5/high-end-outdoor-kitchen-layout-florida.avif sale 3 veces en la ficha y es una foto canjeada",
+      "ROJO   kitchens: la intro ha cambiado: [\"/images/x/intro-cambiada.avif\",\"/images/images/kitchen-3/custom-outdoor-kitchens-florida.avif\",\"/images/images/kitchen-4/custom-outdoor-kitchen-with-grill-florida.avif\"]",
+      "ROJO 20 fallo(s)"
+    ]
+  },
+  "unidades": [
+    {
+      "id": "F0",
+      "tipo": "montaje",
+      "ruta": null,
+      "estado": "hecha",
+      "commit": "siguiente-iteracion"
+    },
+    {
+      "id": "pergolas",
+      "tipo": "ficha",
+      "ruta": "/services/custom-aluminum-pergola-builders-in-north-south-florida",
+      "estado": "pendiente",
+      "commit": null,
+      "portada_menu": null,
+      "portada_full": null,
+      "huecos": []
+    },
+    {
+      "id": "kitchens",
+      "tipo": "ficha",
+      "ruta": "/services/custom-outdoor-kitchens-for-north-south-florida-homes",
+      "estado": "pendiente",
+      "commit": null,
+      "portada_menu": null,
+      "portada_full": null,
+      "huecos": []
+    },
+    {
+      "id": "decks",
+      "tipo": "ficha",
+      "ruta": "/services/custom-deck-builders-in-north-south-florida",
+      "estado": "pendiente",
+      "commit": null,
+      "portada_menu": null,
+      "portada_full": null,
+      "huecos": []
+    },
+    {
+      "id": "louvered",
+      "tipo": "ficha",
+      "ruta": "/services/motorized-louvered-roof-systems-in-north-south-florida",
+      "estado": "pendiente",
+      "commit": null,
+      "portada_menu": null,
+      "portada_full": null,
+      "huecos": []
+    },
+    {
+      "id": "landscaping",
+      "tipo": "ficha",
+      "ruta": "/services/professional-landscaping-services-in-north-south-florida",
+      "estado": "pendiente",
+      "commit": null,
+      "portada_menu": null,
+      "portada_full": null,
+      "huecos": []
+    },
+    {
+      "id": "pole",
+      "tipo": "ficha",
+      "ruta": "/services/steel-building-pole-barn-construction-in-north-south-florida",
+      "estado": "pendiente",
+      "commit": null,
+      "portada_menu": null,
+      "portada_full": null,
+      "huecos": []
+    },
+    {
+      "id": "construction",
+      "tipo": "ficha",
+      "ruta": "/services/custom-pool-spa-builders-in-north-south-florida",
+      "estado": "pendiente",
+      "commit": null,
+      "portada_menu": null,
+      "portada_full": null,
+      "huecos": []
+    },
+    {
+      "id": "remodeling",
+      "tipo": "ficha",
+      "ruta": "/services/pool-remodeling-renovation-in-north-south-florida",
+      "estado": "pendiente",
+      "commit": null,
+      "portada_menu": null,
+      "portada_full": null,
+      "huecos": []
+    },
+    {
+      "id": "lighting",
+      "tipo": "ficha",
+      "ruta": "/services/smart-soffit-led-lighting-installation-in-north-south-florida",
+      "estado": "pendiente",
+      "commit": null,
+      "portada_menu": null,
+      "portada_full": null,
+      "huecos": []
+    },
+    {
+      "id": "furniture",
+      "tipo": "ficha",
+      "ruta": "/services/premium-outdoor-furniture-for-north-south-florida-homes",
+      "estado": "pendiente",
+      "commit": null,
+      "portada_menu": null,
+      "portada_full": null,
+      "huecos": []
+    },
+    {
+      "id": "enclosures",
+      "tipo": "ficha",
+      "ruta": "/services/pool-screen-enclosures-for-north-south-florida-pools",
+      "estado": "pendiente",
+      "commit": null,
+      "portada_menu": null,
+      "portada_full": null,
+      "huecos": []
+    },
+    {
+      "id": "rooms",
+      "tipo": "ficha",
+      "ruta": "/services/patio-screen-rooms-enclosures-in-north-south-florida",
+      "estado": "pendiente",
+      "commit": null,
+      "portada_menu": null,
+      "portada_full": null,
+      "huecos": []
+    },
+    {
+      "id": "screens",
+      "tipo": "ficha",
+      "ruta": "/services/motorized-retractable-screens-in-north-south-florida",
+      "estado": "pendiente",
+      "commit": null,
+      "portada_menu": null,
+      "portada_full": null,
+      "huecos": []
+    },
+    {
+      "id": "irrigation",
+      "tipo": "ficha",
+      "ruta": "/services/smart-irrigation-system-installation-in-north-south-florida",
+      "estado": "pendiente",
+      "commit": null,
+      "portada_menu": null,
+      "portada_full": null,
+      "huecos": []
+    },
+    {
+      "id": "MENU",
+      "tipo": "menu",
+      "ruta": "/",
+      "estado": "pendiente",
+      "commit": null,
+      "huecos": []
+    },
+    {
+      "id": "FULL",
+      "tipo": "full",
+      "ruta": "/",
+      "rutas": [
+        "/",
+        "/where-we-serve/north-florida",
+        "/where-we-serve/south-florida"
+      ],
+      "estado": "pendiente",
+      "commit": null,
+      "huecos": []
+    },
+    {
+      "id": "CIERRE",
+      "tipo": "cierre",
+      "ruta": null,
+      "estado": "pendiente",
+      "commit": null
+    }
+  ]
+}

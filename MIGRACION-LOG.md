@@ -3,6 +3,39 @@
 Webflow → Astro 5 + Sanity + Vercel. Una entrada por fase, **escrita al cerrar la fase**,
 nunca al empezarla. Si una fase se reabre, se añade una entrada nueva; no se edita la vieja.
 
+## LOOP-IMAGENES F0 — montaje del loop de obra real en fichas, megamenú y Full-Service (2-oct-2026)
+
+Encargo `PROMPT-LOOP-IMAGENES.md` (raíz, la versión que manda). Rama `loop-imagenes` desde
+`origin/main` `a7486b0`; worktree `.claude/worktrees/loop-imagenes`. Una unidad por disparo, un
+commit por unidad; el estado vive en `docs/encargos/LOOP-IMAGENES-ESTADO.json`.
+
+- **Tres scripts nuevos.** `medir-cajas.mjs` (Playwright headless, cajas de cada hueco a
+  390/768/991/1440 y la zona que tapa texto), `encaje-foto.mjs` (recorte `cover` + `pos` a esas
+  cajas, zona de texto sombreada, tira JPG: es lo que mira el casting y el juez) y
+  `check-fotos-servicios.mjs`, **la puerta del loop**: «hecho» es que salga 0. Probada en rojo con
+  10 clases de fallo sobre copias de estado y HTML (salida literal en `puerta_probada` del estado).
+- **Generador, dos cambios neutros** (`npm run paginas` deja los 47 `.astro` sin diff):
+  `fotosPorRuta()` reescribe el `script.w-json` del lightbox cuando canjea una `<img>` dentro de
+  `a.w-lightbox`; `proceso.fotos` acepta `null` (= ese paso se queda), como `fotos-por-ruta.json`.
+- **Línea base de lo intocable** (3 de intro + 4 de «What we do» × 14 fichas, 98 `src`) en el
+  estado; la puerta sale ROJA si alguno se mueve.
+- **Auditoría de procedencia, Python sobre bytes** (`c2pa`, `trainedAlgorithmicMedia`):
+  intocables 97 ficheros, **9 con marca de IA** (todos `residentials/<ficha>/…avif`, la primera de
+  intro); procesos 56 ficheros, **39 con marca** (los 39 PNG); los 17 AVIF no llevan marca en bytes
+  (AVIF la pierde al recodificar: `sin_verificar`, no obra real). Se reporta; no se toca.
+- **El árbol corrige al encargo** en 7 puntos (`correcciones_al_encargo` del estado): base
+  `a7486b0`; 17 `img.picture-service` (3 comerciales fuera); `check:menu` no mira imágenes;
+  `check-seo.mjs` fija `about.image` = héroe en las 14 fichas; cajas a 390/768 sin referencia en
+  `baseline/shots/`; `inversion.foto` la lee `InversionCore.astro`; el menú solo pinta foto a ≥992
+  (caja 339×340, texto en el 20 % inferior).
+
+### Puertas
+
+`check:tokens`, `check:estructura`, `check:assets`, `check:seo`, `build-banco --check` y
+`check:galeria /services/custom-outdoor-kitchens…` VERDES. `check-fotos-servicios` ROJA a
+propósito (18 unidades pendientes). `check:visual`/`check:texto` no corridas: F0 no mueve píxeles
+ni texto.
+
 ## ANTES-DESPUES-OBRA-NUEVA — la ficha de New Pool recupera el deslizador con el par de la home (2-oct-2026)
 
 Pedido de Sebastian: el «Before & After» de la home, con sus mismas dos fotos, entre «What we do» y
