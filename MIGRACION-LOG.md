@@ -3,6 +3,50 @@
 Webflow → Astro 5 + Sanity + Vercel. Una entrada por fase, **escrita al cerrar la fase**,
 nunca al empezarla. Si una fase se reabre, se añade una entrada nueva; no se edita la vieja.
 
+## BLOG-BANCO — los 47 blogs con foto real y ninguna repetida (PR #25 + cachés, 2-oct-2026)
+
+Pedido de Sebastian (1-oct-2026): fotos reales del banco en los blogs y ninguna duplicada en blogs ni
+portadas. Contado por foto real (dHash), no por nombre de fichero:
+
+| | antes | después |
+|---|---:|---:|
+| portadas distintas | 28 de 47 | 47 de 47 |
+| fotos de cuerpo en más de un artículo | 34 | 0 |
+| portadas reusadas en el cuerpo de otro | 18 | 0 |
+
+- **Puerta nueva** en `build-imagenes-blog.mjs` (+ `scripts/lib/parecido.mjs`). Detecta:
+  - la misma foto aunque cambie de nombre (12 heredadas eran fotos de /gallery con otro nombre);
+  - casas seguidas en /blogs-tips, en sus chips, en el carrusel genérico y en las 5 de cada ficha;
+  - `usada_en` incoherente.
+  Se autocalibra con `publicada_como`. Las de dirección de arte de R24 (/images/obra/) se miden pero
+  no calibran.
+- **Casting**: 143 huecos cambian, 42 se quedan y 1 figura se quita. Se eligió mirando el recorte 16:9
+  real, con 17 agentes (escépticos y verificadores). Tabla y hojas en
+  `banco/.trabajo/casting-blog/entrega/`.
+- **Orden de publicación**:
+  1. PR #25 con los `.webp`; las 370 URLs comprobadas con 200 en vivo.
+  2. `publica-blog --escribir` de 46 artículos; `how-much-does-a-pool-screen-enclosure-cost-in-florida`
+     no cambia.
+  3. Este commit: cachés, carruseles y las 10 tarjetas a mano de la home.
+- **No se tocó texto.** Al regenerar, `blogs.json` traía los títulos y resúmenes nuevos de SEO-SAFE
+  para el carrusel genérico (~73 rutas). Se conservó el texto y solo cambió `imagen`.
+
+Abierto:
+- **Títulos de SEO-SAFE.** El carrusel genérico y la home siguen con los títulos de Webflow de los 10
+  heredados; Sanity ya tiene los de SEO-SAFE. Propagarlos es decisión de Sebastian (mueve texto en
+  ~73 rutas y la home).
+- **Fotos que faltan.** Hay que pedir al cliente piscina terminada, obra comercial y enclosures: el
+  banco tiene 0 comerciales y 0 enclosures como protagonista.
+- **7 fotos** las usan a la vez el blog (cuerpo o portada fuera del carrusel de esa ficha) y las fichas
+  de piscina de R24. Nunca en la misma página.
+- **Huérfanos.** Los `mm-*` y las escaleras heredadas sin uso se borran en un PR aparte. La home deja
+  de usar 7 portadas heredadas.
+- **Re-baseline.** `check:visual` en /blogs-tips, la home y las 2 fichas de piscina queda para
+  `aprobar-diseno`:
+  - /blogs-tips: el cambio pedido;
+  - home: FONDO-AGUA y el feed de Instagram quitado en #24;
+  - fichas de piscina: R24.
+
 ## R24-FOTO-PISCINAS — obra real del banco en las dos fichas de piscina (2-oct-2026)
 
 Encargo `PROMPT-FOTO-PISCINAS.md`. Rutas: `/services/custom-pool-spa-builders-in-north-south-florida`
