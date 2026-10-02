@@ -1916,12 +1916,22 @@
   "/services/professional-landscaping-services-in-north-south-florida": {
     "heroe": {
       "apoyo": "Landscaping design and installation company serving North & South Florida, providing complete outdoor solutions that improve curb appeal.",
-      "foto": "/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-6.avif",
-      "alt": "Palms, hedging and lawn around a pool and pergola in North Florida, part of a project by Mr & Mrs Outdoor Living",
-      "ancho": 1250,
-      "alto": 698,
+      "foto": "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-heroe.avif",
+      "alt": "Kidney-shaped pool with raised spa backed by foxtail palms, a hedge and tropical flower beds.",
+      "ancho": 1600,
+      "alto": 900,
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
-      "ancla": "#estimate"
+      "ancla": "#estimate",
+      "_banco": "bi-0307",
+      "_proyecto": "obra-039",
+      "_ajuste": {
+        "recorte": "16/9",
+        "pos": "50% 50%",
+        "ancho": 1600,
+        "q": 50,
+        "de": "/images/banco/landscaping/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-01.webp"
+      },
+      "og": "/images/obra/og/professional-landscaping-services-in-north-south-florida.jpg"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -2040,10 +2050,73 @@
           "principal": false
         }
       ],
-      "foto": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-5.avif",
-      "alt": "Lap pool set into a wide lawn with mature trees on North Florida acreage, part of a project by Mr & Mrs Outdoor Living",
-      "ancho": 1250,
-      "alto": 698
+      "foto": "/images/obra/obra-039/landscaping-front-yard-bromeliad-bed-palm-cluster-florida-inversion.avif",
+      "alt": "Front yard bed with pink bromeliads, crotons and boulders under a palm cluster by a paver driveway.",
+      "ancho": 1600,
+      "alto": 893,
+      "pos": "50% 50%",
+      "_banco": "bi-0305",
+      "_proyecto": "obra-039",
+      "_ajuste": {
+        "recorte": "1250/698",
+        "pos": "50% 50%",
+        "ancho": 1600,
+        "q": 52,
+        "de": "/images/banco/landscaping/landscaping-front-yard-bromeliad-bed-palm-cluster-florida-01.webp"
+      }
+    },
+    "proceso": {
+      "fotos": [
+        {
+          "foto": "/images/obra/obra-002/artificial-turf-base-preparation-palm-trees-florida-proceso0.avif",
+          "alt": "Compacted sand base with marker flags and sleeves around palm trees, ready for turf installation.",
+          "ancho": 1600,
+          "alto": 873,
+          "pos": "50% 50%",
+          "_banco": "bi-0020",
+          "_proyecto": "obra-002",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/landscaping/artificial-turf-base-preparation-palm-trees-florida-01.webp"
+          }
+        },
+        null,
+        {
+          "foto": "/images/obra/obra-021/artificial-turf-around-pool-new-construction-home-florida-proceso2.avif",
+          "alt": "Artificial turf laid around a new rectangular pool with spa in the courtyard of a white home.",
+          "ancho": 1600,
+          "alto": 873,
+          "pos": "50% 50%",
+          "_banco": "bi-0129",
+          "_proyecto": "obra-021",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/landscaping/artificial-turf-around-pool-new-construction-home-florida-01.webp"
+          }
+        },
+        {
+          "foto": "/images/obra/obra-045/artificial-turf-golf-hitting-mats-installation-florida-proceso3.avif",
+          "alt": "Golf hitting mats set into artificial turf beside a concrete pad, with a blue metal barn in the background.",
+          "ancho": 1200,
+          "alto": 655,
+          "pos": "50% 50%",
+          "_banco": "bi-0492",
+          "_proyecto": "obra-045",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1200,
+            "q": 52,
+            "de": "/images/banco/landscaping/artificial-turf-golf-hitting-mats-installation-florida-01.webp"
+          }
+        }
+      ]
     }
   },
   "/services/smart-irrigation-system-installation-in-north-south-florida": {

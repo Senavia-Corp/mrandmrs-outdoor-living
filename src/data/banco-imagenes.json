@@ -727,9 +727,14 @@
       "restos de obra al fondo",
       "cables sueltos"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/professional-landscaping-services-in-north-south-florida"
+    ],
     "origen": "CONSTRUCTION PICTURES/IMG_4036.HEIC",
-    "sha256": "eba2ba1636bca0eb110711329822543bf0380a63900115e89a9cf946bfcbf204"
+    "sha256": "eba2ba1636bca0eb110711329822543bf0380a63900115e89a9cf946bfcbf204",
+    "publicada_como": [
+      "/images/obra/obra-002/artificial-turf-base-preparation-palm-trees-florida-proceso0.avif"
+    ]
   },
   {
     "id": "bi-0021",
@@ -4258,7 +4263,8 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/landscaping"
+      "/gallery/landscaping",
+      "/services/professional-landscaping-services-in-north-south-florida"
     ],
     "origen": "DECKING/TURF/12.1.jpeg",
     "sha256": "5764dfd1853f5efefb529c34c3598dbc8ad876bdee06f802054681051cdd91b5"
@@ -4704,9 +4710,14 @@
       "manguera sobre el césped",
       "trapo junto al spa"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/professional-landscaping-services-in-north-south-florida"
+    ],
     "origen": "DECKING/TURF/8.jpeg",
-    "sha256": "649f1905a5645198a700fe8241c52c4de19cd1e7bd3911b0b19a4e342db7e03b"
+    "sha256": "649f1905a5645198a700fe8241c52c4de19cd1e7bd3911b0b19a4e342db7e03b",
+    "publicada_como": [
+      "/images/obra/obra-021/artificial-turf-around-pool-new-construction-home-florida-proceso2.avif"
+    ]
   },
   {
     "id": "bi-0130",
@@ -4880,7 +4891,8 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/landscaping"
+      "/gallery/landscaping",
+      "/services/professional-landscaping-services-in-north-south-florida"
     ],
     "origen": "DECKING/TURF/IMG_4120.jpeg",
     "sha256": "903af1152ab043158d476ce884da3ef0dc22bf75f88873f2e91e2faeb2cd376e"
@@ -10806,10 +10818,14 @@
     "usada_en": [
       "/about",
       "/gallery",
-      "/gallery/landscaping"
+      "/gallery/landscaping",
+      "/services/professional-landscaping-services-in-north-south-florida"
     ],
     "origen": "LANDSCAPING/20160806_151704.jpg",
-    "sha256": "7fc6b311fca5505d5a9482a5880530cf880f49aa0aad1b325ccc6d1a9824ee18"
+    "sha256": "7fc6b311fca5505d5a9482a5880530cf880f49aa0aad1b325ccc6d1a9824ee18",
+    "publicada_como": [
+      "/images/obra/obra-039/landscaping-front-yard-bromeliad-bed-palm-cluster-florida-inversion.avif"
+    ]
   },
   {
     "id": "bi-0306",
@@ -10878,10 +10894,15 @@
     "usada_en": [
       "/blogs/pool-and-spa-or-pool-only",
       "/gallery",
-      "/gallery/landscaping"
+      "/gallery/landscaping",
+      "/services/professional-landscaping-services-in-north-south-florida"
     ],
     "origen": "LANDSCAPING/20160806_151753.jpg",
-    "sha256": "32728c251c845056e8cdb529628efff6e7b94d99ec1d4ef830b1c591eab13690"
+    "sha256": "32728c251c845056e8cdb529628efff6e7b94d99ec1d4ef830b1c591eab13690",
+    "publicada_como": [
+      "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-heroe.avif",
+      "/images/obra/og/professional-landscaping-services-in-north-south-florida.jpg"
+    ]
   },
   {
     "id": "bi-0308",
@@ -16638,9 +16659,14 @@
       "coche lejano a la izquierda",
       "montones de arena y material al fondo"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/professional-landscaping-services-in-north-south-florida"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Brannen/IMG_2888.jpeg",
-    "sha256": "b9c4b65187ca7b393a4f3c89c9092d741debffbc70bc5afce384989349702939"
+    "sha256": "b9c4b65187ca7b393a4f3c89c9092d741debffbc70bc5afce384989349702939",
+    "publicada_como": [
+      "/images/obra/obra-045/artificial-turf-golf-hitting-mats-installation-florida-proceso3.avif"
+    ]
   },
   {
     "id": "bi-0493",
@@ -16885,7 +16911,9 @@
     "defectos": [
       "adoquin rojo antiguo en la esquina inferior derecha"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/professional-landscaping-services-in-north-south-florida"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Brier/IMG_3829.JPEG",
     "sha256": "6856ecc3b597539b19e2b28a95f0979c6eb3e4f8e6e6fb9cad24e8a5c3cdbd9a"
   },

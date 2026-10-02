@@ -448,7 +448,7 @@ const JSONLD_ARREGLADO = {
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Landscape Design & Installation'],
       ['about.image', 'Professional landscaping services designed for Florida residential properties.',
-        '/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-6.avif'],
+        '/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-heroe.avif'],
       ['dateModified', '2026-05-18T19:49:53.745Z', '2026-05-18T19:55:49.094Z'],
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:49:53.745Z'],
     ],

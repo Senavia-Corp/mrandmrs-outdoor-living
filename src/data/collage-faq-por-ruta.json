@@ -519,13 +519,13 @@
         "_hoja": "landscaping:3"
       },
       {
-        "src": "/images/images/landscaping-4/luxury-landscaping-construction-contractors-florida-04.jpg",
-        "srcset": "/images/site/luxury-landscaping-construction-contractors-florida-04-p-500.jpg 500w, /images/site/luxury-landscaping-construction-contractors-florida-04-p-800.jpg 800w, /images/site/luxury-landscaping-construction-contractors-florida-04-p-1080.jpg 1080w, /images/images/landscaping-4/luxury-landscaping-construction-contractors-florida-04.jpg 1250w",
-        "alt": "Luxury pool landscaping construction with tropical plants and hardscape by Florida landscaping builders.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "45% 60%",
-        "_hoja": "landscaping:7"
+        "src": "/images/banco/landscaping/backyard-putting-green-artificial-turf-palm-trees-florida-02.webp",
+        "srcset": "/images/banco/landscaping/backyard-putting-green-artificial-turf-palm-trees-florida-02.webp 1600w",
+        "alt": "Large backyard putting green with nine flags surrounded by artificial turf and coconut palms.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0134"
       },
       {
         "src": "/images/images/landscaping-2/luxury-landscaping-construction-contractors-florida-02.jpg",

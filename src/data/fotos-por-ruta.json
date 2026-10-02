@@ -141,5 +141,35 @@
       null,
       null
     ]
+  },
+  "/services/professional-landscaping-services-in-north-south-florida": {
+    "section.gallery img.image-gallery": [
+      null,
+      null,
+      null,
+      {
+        "src": "/images/banco/landscaping/backyard-putting-green-artificial-turf-oak-trees-florida-01.webp",
+        "alt": "Kidney-shaped artificial turf putting green with fringe under tall oak trees and gravel paths.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0117",
+        "_por_que": null
+      },
+      null,
+      null,
+      null,
+      null,
+      {
+        "src": "/images/banco/landscaping/landscaping-stepping-stone-path-black-slate-chips-florida-01.webp",
+        "alt": "Side-yard path of square limestone stepping stones set in black slate chips leading to a metal gate.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0499",
+        "_por_que": null
+      },
+      null
+    ]
   }
 }

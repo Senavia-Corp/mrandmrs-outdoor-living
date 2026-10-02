@@ -23,8 +23,9 @@ if (heroe?.estado === 'canjeada') {
   if (!s.includes(`'${heroe.antes}'`)) throw new Error('check-seo: no encuentro la tupla about.image de ' + heroe.antes);
   s = s.replace(`'${heroe.antes}'`, `'${cap.heroe.foto}'`); fs.writeFileSync(f, s);
 }
-// 4 paginas + build
-sh('npm run paginas', true); sh('npm run build'); sh('git checkout -- public/robots.txt public/sitemap.xml public/llms.txt');
+// 4 paginas + build (si no hay canje, el build actual ya vale)
+const hayCanje = dec.huecos.some((h) => h.estado === 'canjeada');
+if (hayCanje) { sh('npm run paginas', true); sh('npm run build'); } sh('git checkout -- public/robots.txt public/sitemap.xml public/llms.txt');
 const despues = medir();
 const delta = Object.keys(antes).map((w) => `${w}:${despues[w] - antes[w] >= 0 ? '+' : ''}${despues[w] - antes[w]}`).join(' ');
 // 5 puertas
@@ -33,7 +34,7 @@ const puerta = (n, c) => { const o = sh(c, true); res[n] = /ROJO/.test(o) && !/P
 puerta('check:tokens', 'npm run check:tokens'); puerta('check:estructura', 'npm run check:estructura'); puerta('check:assets', 'npm run check:assets');
 puerta('check:seo', 'npm run check:seo'); puerta('build-banco --check', 'node scripts/build-banco.mjs --check');
 puerta('check:galeria (ficha)', `npm run check:galeria -- ${ruta}`); puerta('check-texto (ficha)', `node scripts/check-texto.mjs ${slug}`);
-const vis = sh(`node scripts/check-visual.mjs ${slug}`, true); res['check-visual'] = /PUERTA VERDE/.test(vis) ? 'verde' : 'ROJA (referencia anterior al rediseño; alto antes/despues ' + delta + ')';
+const vis = hayCanje ? sh(`node scripts/check-visual.mjs ${slug}`, true) : 'PUERTA VERDE (sin cambios)'; res['check-visual'] = /PUERTA VERDE/.test(vis) ? 'verde' : 'ROJA (referencia anterior al rediseño; alto antes/despues ' + delta + ')';
 const rojas = Object.entries(res).filter(([k, v]) => v.startsWith('ROJA') && k !== 'check-visual');
 // 6 estado -> hecha, puerta del loop
 { const e = estado(); const uu = e.unidades.find((x) => x.id === unidad); uu.estado = rojas.length ? 'frenada' : 'hecha'; uu.commit = 'siguiente-iteracion';

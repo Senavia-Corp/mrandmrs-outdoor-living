@@ -3,6 +3,14 @@
 Webflow → Astro 5 + Sanity + Vercel. Una entrada por fase, **escrita al cerrar la fase**,
 nunca al empezarla. Si una fase se reabre, se añade una entrada nueva; no se edita la vieja.
 
+## LOOP-IMAGENES · landscaping — La ficha de paisajismo ensena obra propia en heroe, galeria, proceso, inversion y FAQ (2-oct-2026)
+
+21 huecos; juez a ciegas. **8 canjes**: faq[3] bi-0134, galeria[3] bi-0117, galeria[8] bi-0499, heroe bi-0307, inversion bi-0305, proceso[0] bi-0020, proceso[2] bi-0129, proceso[3] bi-0492. 13 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:+0 991:+0 1440:+0) · check-fotos-servicios: verde.
+
 ## LOOP-IMAGENES · louvered — La ficha de techos de lamas ensena obra propia en heroe, galeria, proceso, inversion y FAQ (2-oct-2026)
 
 21 huecos; juez a ciegas. **11 canjes**: faq[0] bi-0652, faq[1] bi-0201, faq[2] bi-0166, galeria[0] bi-0225, galeria[1] bi-0658, galeria[2] bi-0214, heroe bi-0233, inversion bi-0632, proceso[1] bi-0643, proceso[2] bi-0611, proceso[3] bi-0610. 10 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
