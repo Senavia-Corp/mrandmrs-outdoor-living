@@ -8,7 +8,7 @@
  *   3. Las 93 entradas por scroll (growIn / slideInLeft / slideInRight / slideInBottom)
  *   4. El nav que se esconde al bajar y vuelve al subir (a-11 / a-12, 500 ms `easeInOut`)
  *   5. El botón play/pausa de los vídeos de fondo
- *   6. El acordeón de «Pool Features & Upgrades» (`.wrapper-feature`, 55 rutas)
+ *   6. El acordeón de «Project Gallery», antes «Pool Features & Upgrades» (`.wrapper-feature`, 55 rutas)
  *
  * ─────────────────────────────────────────────────────────────────────────────
  * EL ESTADO OCULTO CUELGA DE UN SELLO QUE ESCRIBE EL JS
@@ -452,7 +452,7 @@ const REVEALS = JSON.stringify(reveals.porId);
       b.addEventListener('click', () => { video.paused ? video.play() : video.pause(); });
     }
 
-    // ── 6 · el acordeon de «Pool Features & Upgrades» ────────────────────
+    // ── 6 · el acordeon de «Project Gallery» (antes «Pool Features & Upgrades») ──
     //
     // Venia de TRES copias byte a byte del mismo script embebido en el marcado
     // -`plantilla-pool-builders.json` y los `T2` de las dos `/where-we-serve/*-florida`-, o
@@ -465,12 +465,17 @@ const REVEALS = JSON.stringify(reveals.porId);
     // Las consultas van ACOTADAS a `.wrapper-feature` a proposito: `.is-active` la usa
     // tambien el intercambio de foto del mega-menu, 200 lineas mas arriba en este fichero.
     //
-    // Sin JS la primera columna ya viene con `is-active` y `aria-expanded="true"` en el HTML
-    // estatico, asi que la seccion se lee entera igual: esto solo anade el poder cambiarla.
+    // El HTML estatico sale con las seis cerradas (`aria-expanded="false"`, sin `is-active`): el
+    // parrafo esta en el `innerText` igual -se oculta con opacidad, no con `display`- y por
+    // debajo de 992 se ve entero. Lo pinta `bandaGaleriaHtml()` (src/lib/galeria-categorias.mjs).
     const banda = document.querySelector('.wrapper-feature');
     if (banda) {
       const tarjetas = [...banda.querySelectorAll('.feature-card')];
       const botones = tarjetas.map((t) => t.querySelector('.feature-boton'));
+      // El enlace a /gallery/<slug> vive en el parrafo, y el parrafo de una columna cerrada es
+      // opacidad 0: tabular hasta el seria poner el foco en algo invisible. Solo es parada de
+      // tabulador el de la columna abierta; el orden queda boton (abre) -> su enlace -> boton.
+      const enlaces = tarjetas.map((t) => t.querySelector('.feature-text a'));
       const ancha = matchMedia('(min-width: 992px)');
 
       // `i` a -1 cierra las seis, que es el estado de reposo: la banda arranca contraida y
@@ -478,13 +483,18 @@ const REVEALS = JSON.stringify(reveals.porId);
       const abre = (i) => {
         tarjetas.forEach((t, n) => t.classList.toggle('is-active', n === i));
         botones.forEach((b, n) => b?.setAttribute('aria-expanded', String(n === i)));
+        enlaces.forEach((a, n) => { if (a) a.tabIndex = !ancha.matches || n === i ? 0 : -1; });
       };
 
       // Por debajo de 992 las seis columnas se ven ENTERAS -texto incluido-, asi que un
       // `aria-expanded="false"` ahi seria mentira: el lector de pantalla anunciaria cerrado
       // algo que esta abierto. Se recalcula tambien al cruzar el limite, no solo al cargar.
       const sincroniza = () => {
-        if (!ancha.matches) { botones.forEach((b) => b?.setAttribute('aria-expanded', 'true')); return; }
+        if (!ancha.matches) {
+          botones.forEach((b) => b?.setAttribute('aria-expanded', 'true'));
+          enlaces.forEach((a) => { if (a) a.tabIndex = 0; });
+          return;
+        }
         abre(tarjetas.findIndex((t) => t.classList.contains('is-active')));
       };
 

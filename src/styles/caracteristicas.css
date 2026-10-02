@@ -390,6 +390,12 @@
   font-size: var(--mm-paso-3);
   line-height: var(--mm-alto-cuerpo);
 }
+/* PANELES-GALERIA: el enlace a /gallery/<slug> del parrafo. El `a` de webflow.css lo pinta
+ * azul oscuro (ilegible sobre el velo) y a 14px/12px fijos: aqui hereda la letra del parrafo y
+ * toma el enlace inverso de los tokens (8,51:1 sobre navy). El subrayado del navegador se queda:
+ * el color solo no basta como indicador (WCAG 1.4.1). Ya es `position:relative` por webflow.css,
+ * asi que pinta por encima del `::after` del boton, que cubre la tarjeta a >=992. */
+.feature-text a { color: var(--mm-enlace-inverso); font: inherit }
 @media (min-width: 992px) {
   .animated-divs-section .feature-card:not(.is-active) .title-feature {
     grid-area: 1 / 1;

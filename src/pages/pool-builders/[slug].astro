@@ -43,6 +43,7 @@ import FOTOS_CIUDAD from '../../data/ciudades-captacion.json';
 import { sinAperturaDelFeed } from '../../lib/feed-social.mjs';
 import { partirPorElCarrusel } from '../../lib/carrusel-proyectos.mjs';
 import { partirEn, heroeDeCaptacion } from '../../lib/captacion-ciudad.mjs';
+import { conBandaGaleria } from '../../lib/galeria-categorias.mjs';
 import LIT from '../../data/plantilla-pool-builders.json';
 
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -190,6 +191,14 @@ const valor = (h, o) => {
 };
 
 
+/* PANELES-GALERIA (2-oct-2026): la banda de seis paneles pasa a ser «Project Gallery» y la pinta
+ * `bandaGaleriaHtml()`, con su titular FIJO. `headingFeature`/`paragraphFeatures` dejan de leerse
+ * de Sanity: sus huecos siguen en CAMPOS -renumerarlos es justo lo que `carrusel-proyectos.mjs`
+ * explica que no se hace- pero se rellenan vacios, para que limpiar esos campos en Sanity no
+ * tire el build por la guarda de `valor()`. El tramo viejo se construye y se descarta abajo. */
+d.headingFeature = '';
+d.paragraphFeatures = '';
+
 const B = LIT.map((tr, b) => tr.map((x, i) => {
   if (x !== null) return x;
   const h = CAMPOS[b][i];
@@ -222,7 +231,7 @@ if (!d['headingBlog'] || !d['paragraphBlog']) throw new Error(`${slug}: falta he
  *     ficha Core lo puso tras medirlo (R19 C4: se ve obra antes de dar los datos);
  *   · el corte del carrusel, que ya existia.
  * Los tres marcadores aparecen UNA vez en `B[0]`, comprobado; `partirEn` lo exige igualmente. */
-let b0 = B[0];
+let b0 = conBandaGaleria(B[0], `${RUTA} B[0]`);
 let ANTES_CONF = '', ANTES_FORM = '';
 if (CAP) {
   b0 = heroeDeCaptacion(b0, CAP, TELEFONOS.items, `${RUTA} heroe`);
