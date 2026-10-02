@@ -73,5 +73,35 @@
       },
       null
     ]
+  },
+  "/services/custom-deck-builders-in-north-south-florida": {
+    "section.gallery img.image-gallery": [
+      {
+        "src": "/images/banco/decks/gray-marble-paver-patio-lake-view-florida-01.webp",
+        "alt": "Wet gray marble paver patio along a stucco house with a royal palm and lake behind.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0084",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/decks/gray-marble-paver-driveway-luxury-home-florida-01.webp",
+        "alt": "Gray marble paver driveway with a mitered edge meeting a landscaped street.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0086",
+        "_por_que": null
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
   }
 }

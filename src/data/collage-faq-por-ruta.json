@@ -599,13 +599,13 @@
         "_hoja": "decks:4"
       },
       {
-        "src": "/images/images/deck-10/custom-deck-builders-contractors-north-south-florida-10.jpg",
-        "srcset": "/images/site/custom-deck-builders-contractors-north-south-florida-10-p-500.jpg 500w, /images/site/custom-deck-builders-contractors-north-south-florida-10-p-800.jpg 800w, /images/site/custom-deck-builders-contractors-north-south-florida-10-p-1080.jpg 1080w, /images/images/deck-10/custom-deck-builders-contractors-north-south-florida-10.jpg 1250w",
-        "alt": "Luxury covered deck construction using premium materials by custom deck builders in North & South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "40% 50%",
-        "_hoja": "decks:1"
+        "src": "/images/banco/decks/gray-marble-paver-driveway-angled-border-florida-01.webp",
+        "srcset": "/images/banco/decks/gray-marble-paver-driveway-angled-border-florida-01.webp 1200w",
+        "alt": "Gray marble pavers with an angled inlay along boxwood hedges and orange flowers.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0088"
       },
       {
         "src": "/images/images/deck-6/custom-deck-builders-contractors-north-south-florida-06.jpg",
@@ -617,22 +617,22 @@
         "_hoja": "decks:5"
       },
       {
-        "src": "/images/images/deck-4/custom-deck-builders-contractors-north-south-florida-04.jpg",
-        "srcset": "/images/site/custom-deck-builders-contractors-north-south-florida-04-p-500.jpg 500w, /images/site/custom-deck-builders-contractors-north-south-florida-04-p-800.jpg 800w, /images/site/custom-deck-builders-contractors-north-south-florida-04-p-1080.jpg 1080w, /images/images/deck-4/custom-deck-builders-contractors-north-south-florida-04.jpg 1250w",
-        "alt": "Poolside deck construction using durable decking materials by professional deck contractors in North & South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 55%",
-        "_hoja": "decks:7"
+        "src": "/images/banco/decks/porcelain-pool-deck-louvered-pergola-kitchen-florida-01.webp",
+        "srcset": "/images/banco/decks/porcelain-pool-deck-louvered-pergola-kitchen-florida-01.webp 1280w",
+        "alt": "Large-format porcelain pool deck leading to a white louvered pergola and outdoor kitchen.",
+        "ancho": 1280,
+        "alto": 960,
+        "pos": "50% 50%",
+        "_banco": "bi-0630"
       },
       {
-        "src": "/images/images/deck-9/custom-deck-builders-contractors-north-south-florida-09.jpg",
-        "srcset": "/images/site/custom-deck-builders-contractors-north-south-florida-09-p-500.jpg 500w, /images/site/custom-deck-builders-contractors-north-south-florida-09-p-800.jpg 800w, /images/site/custom-deck-builders-contractors-north-south-florida-09-p-1080.jpg 1080w, /images/images/deck-9/custom-deck-builders-contractors-north-south-florida-09.jpg 1250w",
-        "alt": "Custom wood deck with pergola integration built by professional deck contractors in North & South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "45% 55%",
-        "_hoja": "decks:2"
+        "src": "/images/banco/decks/wood-deck-lounge-platform-artificial-turf-beachfront-florida-01.webp",
+        "srcset": "/images/banco/decks/wood-deck-lounge-platform-artificial-turf-beachfront-florida-01.webp 1600w",
+        "alt": "Dark hardwood lounge deck with daybeds set on artificial turf beside dune planting.",
+        "ancho": 1600,
+        "alto": 739,
+        "pos": "50% 50%",
+        "_banco": "bi-0318"
       }
     ]
   },

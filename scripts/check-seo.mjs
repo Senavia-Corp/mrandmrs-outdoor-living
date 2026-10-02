@@ -343,7 +343,7 @@ const JSONLD_ARREGLADO = {
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Custom Deck Design & Construction'],
       ['about.image', 'Custom deck construction by professional outdoor living contractors in Florida.',
-        '/images/projects/pool-raised-spa-marble-deck-south-florida/pool-raised-spa-marble-deck-south-florida-project-4.avif'],
+        '/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-heroe.avif'],
       ['dateModified', '2026-05-18T19:51:19.984Z', '2026-05-18T19:55:49.094Z'],
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:51:19.984Z'],
     ],

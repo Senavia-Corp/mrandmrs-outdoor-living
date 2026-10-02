@@ -522,12 +522,22 @@
   "/services/custom-deck-builders-in-north-south-florida": {
     "heroe": {
       "apoyo": "Professional deck builders and installation contractors serving North & South Florida with durable, stylish outdoor deck solutions.",
-      "foto": "/images/projects/pool-raised-spa-marble-deck-south-florida/pool-raised-spa-marble-deck-south-florida-project-4.avif",
-      "alt": "Wide marble pool deck with sun loungers around a rectangular pool and raised spa, built in South Florida by Mr & Mrs Outdoor Living",
-      "ancho": 1250,
-      "alto": 698,
+      "foto": "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-heroe.avif",
+      "alt": "Raised limestone paver patio in a herringbone layout overlooking a lake and golf course.",
+      "ancho": 1600,
+      "alto": 900,
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
-      "ancla": "#estimate"
+      "ancla": "#estimate",
+      "_banco": "bi-0079",
+      "_proyecto": "obra-012",
+      "_ajuste": {
+        "recorte": "16/9",
+        "pos": "60% 55%",
+        "ancho": 1600,
+        "q": 50,
+        "de": "/images/banco/decks/limestone-paver-patio-lake-view-herringbone-florida-01.webp"
+      },
+      "og": "/images/obra/og/custom-deck-builders-in-north-south-florida.jpg"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -646,10 +656,88 @@
           "principal": false
         }
       ],
-      "foto": "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-2.avif",
-      "alt": "Travertine pool deck surrounding a rectangular pool with a raised spa, built in South Florida by Mr & Mrs Outdoor Living",
-      "ancho": 1250,
-      "alto": 698
+      "foto": "/images/obra/obra-010/concrete-paver-driveway-turf-joints-modern-entry-florida-inversion.avif",
+      "alt": "Large concrete slab driveway with artificial turf joints in front of a modern entry with LED sconces.",
+      "ancho": 1600,
+      "alto": 893,
+      "pos": "50% 50%",
+      "_banco": "bi-0056",
+      "_proyecto": "obra-010",
+      "_ajuste": {
+        "recorte": "1250/698",
+        "pos": "50% 50%",
+        "ancho": 1600,
+        "q": 52,
+        "de": "/images/banco/decks/concrete-paver-driveway-turf-joints-modern-entry-florida-01.webp"
+      }
+    },
+    "proceso": {
+      "fotos": [
+        {
+          "foto": "/images/obra/obra-010/driveway-demolition-skid-steer-base-grading-florida-proceso0.avif",
+          "alt": "Skid steer grading the base of a demolished driveway in front of a tile-roof house.",
+          "ancho": 1600,
+          "alto": 873,
+          "pos": "50% 50%",
+          "_banco": "bi-0057",
+          "_proyecto": "obra-010",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/decks/driveway-demolition-skid-steer-base-grading-florida-01.webp"
+          }
+        },
+        {
+          "foto": "/images/obra/obra-007/concrete-slab-site-preparation-sand-pad-aerial-florida-proceso1.avif",
+          "alt": "Aerial view of a worker compacting a sand pad for a concrete slab on a fenced ranch.",
+          "ancho": 1600,
+          "alto": 873,
+          "pos": "50% 50%",
+          "_banco": "bi-0041",
+          "_proyecto": "obra-007",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/decks/concrete-slab-site-preparation-sand-pad-aerial-florida-02.webp"
+          }
+        },
+        {
+          "foto": "/images/obra/obra-010/concrete-paver-driveway-formwork-grid-florida-proceso2.avif",
+          "alt": "Wood formwork grid laid out for large concrete driveway slabs in front of a tile-roof house.",
+          "ancho": 1200,
+          "alto": 655,
+          "pos": "50% 50%",
+          "_banco": "bi-0064",
+          "_proyecto": "obra-010",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1200,
+            "q": 52,
+            "de": "/images/banco/decks/concrete-paver-driveway-formwork-grid-florida-01.webp"
+          }
+        },
+        {
+          "foto": "/images/obra/obra-048/travertine-pool-deck-french-pattern-rock-border-florida-proceso3.avif",
+          "alt": "Large French-pattern travertine deck bordered by black lava rock around a pool in progress.",
+          "ancho": 1600,
+          "alto": 873,
+          "pos": "50% 50%",
+          "_banco": "bi-0538",
+          "_proyecto": "obra-048",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/decks/travertine-pool-deck-french-pattern-rock-border-florida-01.webp"
+          }
+        }
+      ]
     }
   },
   "/services/custom-outdoor-kitchens-for-north-south-florida-homes": {

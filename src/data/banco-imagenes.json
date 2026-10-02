@@ -1479,9 +1479,14 @@
     "defectos": [
       "luz plana, poco contraste"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/custom-deck-builders-in-north-south-florida"
+    ],
     "origen": "DECKING/Concrete/Concrete Slab/20250919_213456000_iOS.jpg",
-    "sha256": "efe6758cf39cedc0bb8dd099643813c93d7a2ae546153c186eacb45b52eee443"
+    "sha256": "efe6758cf39cedc0bb8dd099643813c93d7a2ae546153c186eacb45b52eee443",
+    "publicada_como": [
+      "/images/obra/obra-007/concrete-slab-site-preparation-sand-pad-aerial-florida-proceso1.avif"
+    ]
   },
   {
     "id": "bi-0042",
@@ -2043,10 +2048,14 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/decks"
+      "/gallery/decks",
+      "/services/custom-deck-builders-in-north-south-florida"
     ],
     "origen": "DECKING/Concrete/Natasha before & After/concrete & Turf 1.jpeg",
-    "sha256": "b8649a4debae8407370a35c600ffdaf12da58e636eb1e14862211b40746bd9eb"
+    "sha256": "b8649a4debae8407370a35c600ffdaf12da58e636eb1e14862211b40746bd9eb",
+    "publicada_como": [
+      "/images/obra/obra-010/concrete-paver-driveway-turf-joints-modern-entry-florida-inversion.avif"
+    ]
   },
   {
     "id": "bi-0057",
@@ -2081,9 +2090,14 @@
     "defectos": [
       "marca de la máquina visible"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/custom-deck-builders-in-north-south-florida"
+    ],
     "origen": "DECKING/Concrete/Natasha before & After/concrete & Turf 10.jpeg",
-    "sha256": "a2280dbd7695a29be71b22658c70a0d7049fef32a581a405854b8c1660a1ff8f"
+    "sha256": "a2280dbd7695a29be71b22658c70a0d7049fef32a581a405854b8c1660a1ff8f",
+    "publicada_como": [
+      "/images/obra/obra-010/driveway-demolition-skid-steer-base-grading-florida-proceso0.avif"
+    ]
   },
   {
     "id": "bi-0058",
@@ -2337,9 +2351,14 @@
       "cinta de precaución en la esquina inferior izquierda",
       "sombras duras"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/custom-deck-builders-in-north-south-florida"
+    ],
     "origen": "DECKING/Concrete/Natasha before & After/concrete & Turf 7.jpeg",
-    "sha256": "795366c0b9baafaff71d08cc58afd0bf7143223e2cd50182beea39dc9c1b4231"
+    "sha256": "795366c0b9baafaff71d08cc58afd0bf7143223e2cd50182beea39dc9c1b4231",
+    "publicada_como": [
+      "/images/obra/obra-010/concrete-paver-driveway-formwork-grid-florida-proceso2.avif"
+    ]
   },
   {
     "id": "bi-0065",
@@ -2917,10 +2936,15 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/decks"
+      "/gallery/decks",
+      "/services/custom-deck-builders-in-north-south-florida"
     ],
     "origen": "DECKING/Pavers/20251013_141750000_iOS.jpg",
-    "sha256": "344f37144dfcf1b3864c96d96766919d8d985fe06a71c55f9fa41a73c896205d"
+    "sha256": "344f37144dfcf1b3864c96d96766919d8d985fe06a71c55f9fa41a73c896205d",
+    "publicada_como": [
+      "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-heroe.avif",
+      "/images/obra/og/custom-deck-builders-in-north-south-florida.jpg"
+    ]
   },
   {
     "id": "bi-0080",
@@ -3162,7 +3186,8 @@
       "/pool-builders/williston-florida",
       "/pool-builders/wilton-manors-florida",
       "/where-we-serve/north-florida",
-      "/where-we-serve/south-florida"
+      "/where-we-serve/south-florida",
+      "/services/custom-deck-builders-in-north-south-florida"
     ],
     "origen": "DECKING/Pavers/20251013_141814360_iOS.jpg",
     "sha256": "6cffb250003da19ebae08fe21e329cea599c6cfd1c2809b00d10123dff50e370"
@@ -3237,7 +3262,9 @@
     "defectos": [
       "casa vecina al fondo"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/custom-deck-builders-in-north-south-florida"
+    ],
     "origen": "DECKING/Pavers/20251013_141821954_iOS.jpg",
     "sha256": "526756d048b2cd0c4c7a69fadaa80d7f5a9083689ac29a06db459e73a0f16c67"
   },
@@ -3315,7 +3342,9 @@
     "defectos": [
       "manchas de agua a medio secar"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/custom-deck-builders-in-north-south-florida"
+    ],
     "origen": "DECKING/Pavers/20251013_141832193_iOS.jpg",
     "sha256": "6517b31c6bb1c81ddb50106e015e79afcb05264a17c7edb82aa972038e51c22f"
   },
@@ -11296,7 +11325,8 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/decks"
+      "/gallery/decks",
+      "/services/custom-deck-builders-in-north-south-florida"
     ],
     "origen": "LANDSCAPING/20250414_132113.jpg",
     "sha256": "57850ce907e9c5684a9f6b9e36d367a9ed7172ea06135a5c5d4cb819b84c9cb7"
@@ -18341,10 +18371,14 @@
       "operario de espaldas al fondo"
     ],
     "usada_en": [
-      "/blogs/pool-resurfacing-vs-full-pool-renovation"
+      "/blogs/pool-resurfacing-vs-full-pool-renovation",
+      "/services/custom-deck-builders-in-north-south-florida"
     ],
     "origen": "NEW JOBS CONSTRUCTION/Curtis/after paver1.jpeg",
-    "sha256": "b06050d324dd5670d3e9c4c3ce7f4ef5ddbd8aaa4e1d29ede7e7b8ef8b708ac5"
+    "sha256": "b06050d324dd5670d3e9c4c3ce7f4ef5ddbd8aaa4e1d29ede7e7b8ef8b708ac5",
+    "publicada_como": [
+      "/images/obra/obra-048/travertine-pool-deck-french-pattern-rock-border-florida-proceso3.avif"
+    ]
   },
   {
     "id": "bi-0539",
@@ -21603,7 +21637,8 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/decks"
+      "/gallery/decks",
+      "/services/custom-deck-builders-in-north-south-florida"
     ],
     "origen": "NEW JOBS CONSTRUCTION/FOTOS DE TODO/IMG_1349.JPG",
     "sha256": "04e94a00bb91347a8bbaa61fc8d23b181969926e589fa46f7152b92c89d98493"
