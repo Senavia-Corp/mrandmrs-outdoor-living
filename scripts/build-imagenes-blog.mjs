@@ -206,6 +206,9 @@ const porLegado = (ref, alt, esPortada = false) => {
   const [carpeta] = l.carpetas;
   const anchos = [...l.anchos].sort((a, b) => a - b);
   const dePortada = anchos.every((w) => TARJETA.includes(w));
+  /* Completa o rojo: sin un peldaño, el srcset se queda cojo y la portada (og:image) baja a 400. */
+  const completa = anchos.length === 2 && (dePortada ? anchos[1] === 800 : anchos[0] === 704 && anchos[1] >= 1200);
+  if (!completa) throw new Error(`ref "${ref}": escalera heredada incompleta (${anchos.join(', ')}); se esperan 400/800 o 704/12xx`);
   if (dePortada !== esPortada) {
     throw new Error(`ref "${ref}": es una escalera de ${dePortada ? 'portada' : 'figura'} y se usa como ${esPortada ? 'portada' : 'figura'}`);
   }
@@ -411,7 +414,8 @@ const DISTINTAS_A_OJO = {
   /* 'refA|refB': 'por que son fotos distintas aunque se parezcan (quien lo miro y cuando)', */
 };
 const CASA_DECLARADA = {
-  /* 'construction-3': 'obra-NNN o «sin pareja en el blog» — mirado a ojo, fecha', */
+  /* 'construction-3': 'obra-NNN — mirado a ojo, fecha'   → es esa casa
+   * 'construction-7': 'sola — mirado a ojo, fecha'       → casa propia: no coincide con ninguna otra */
 };
 
 const enLotes = async (xs, fn, n = 8) => { for (let i = 0; i < xs.length; i += n) await Promise.all(xs.slice(i, i + n).map(fn)); };
@@ -433,7 +437,7 @@ let parejas = 0;
 for (const e of elegibles) {
   for (const p of [].concat(e.publicada_como ?? [])) {
     const otra = path.join(RAIZ, 'public', p);
-    if (!fs.existsSync(otra)) continue;
+    if (!fs.existsSync(otra)) { mal(`calibracion: ${e.id} dice publicada_como ${p} y ese fichero no existe`); continue; }
     const d = distancia(await huellaDe(path.join(RAIZ, 'public', e.src)), await huellaDe(otra));
     parejas++;
     if (d > MISMA) mal(`puerta DESCALIBRADA: ${e.id} y ${p} son la misma foto y dan d=${d} (> ${MISMA})`);
@@ -485,7 +489,7 @@ const articulosDe = (x) => [...new Set(x.usos.map((u) => u.slug))];
 for (const x of ident.values()) {
   const arts = articulosDe(x);
   if (arts.length > 1) mal(`misma foto en ${arts.length} articulos — ${nombre(x)}: ${x.usos.map((u) => `${u.slug} (${u.rol})`).join(', ')}`);
-  else if (x.refs.size > 1) mal(`misma foto con dos nombres en ${arts[0]}: ${nombre(x)}`);
+  else if (x.usos.length > 1) mal(`misma foto ${x.usos.length} veces en ${arts[0]}: ${nombre(x)} (${x.usos.map((u) => u.rol).join(', ')})`);
 }
 /* 3 · lo que se parece sin ser igual se mira; mientras no se mire, no pasa. */
 for (const d of dudosas) mal(`parecidas sin mirar (${MISMA}<d<=${DUDOSA}): ${d} — mirarlas y declararlas en DISTINTAS_A_OJO si son distintas`);
@@ -496,7 +500,8 @@ const casas = new Map();
 const casaDe = (slug) => {
   if (casas.has(slug)) return casas.get(slug);
   const x = portadaDe.get(slug);
-  const decl = x && [...x.refs].map((r) => CASA_DECLARADA[r]).find(Boolean);
+  const dr = x && [...x.refs].find((r) => CASA_DECLARADA[r]);
+  const decl = dr && (/^obra-\d+/.test(CASA_DECLARADA[dr]) ? CASA_DECLARADA[dr].match(/^obra-\d+/)[0] : `sola:${dr}`);
   const cs = !x ? [] : x.proyectos.size ? [...x.proyectos] : decl ? [decl] : [];
   if (cs.length > 1) mal(`${slug}: su portada aparece como dos casas (${cs.join(', ')})`);
   casas.set(slug, cs[0] ?? null);
@@ -511,7 +516,10 @@ const seguidas = (donde, slugs) => {
   }
 };
 const frentes = ARTICULOS.map((a) => ({ slug: a.frente.slug, ordenIndice: a.frente.ordenIndice, destacadoIndice: a.frente.destacadoIndice === true }));
-seguidas('/blogs-tips', ordenaIndice(frentes).map((f) => f.slug));
+const indice = ordenaIndice(frentes).map((f) => f.slug);
+seguidas('/blogs-tips', indice);
+const categoriaDe = Object.fromEntries(ARTICULOS.map((a) => [a.frente.slug, a.frente.categoria]));
+for (const cat of new Set(Object.values(categoriaDe))) seguidas(`/blogs-tips · chip ${cat}`, indice.filter((s) => categoriaDe[s] === cat));
 const GENERICO = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/blogs.json'), 'utf8')).posts.map((p) => p.enlace.split('/').pop());
 seguidas('carrusel generico y home', GENERICO);
 for (const c of JSON.parse(fs.readFileSync(path.join(RAIZ, 'contenido/roadmap-blog.json'), 'utf8')).clusters) {
@@ -548,6 +556,13 @@ const cuerpoRepetido = xs.filter((x) => new Set(x.usos.filter((u) => u.rol === '
 const portadaEnOtroCuerpo = xs.filter((x) => x.usos.some((p) => p.rol === 'portada'
   && x.usos.some((f) => f.rol === 'figura' && f.slug !== p.slug)));
 
+/* Lo que se publica, sin los campos de depuracion: si el JSON commiteado no es esto, publica-blog y
+ * check-seo leerian otra cosa que lo que la puerta acaba de aprobar. */
+const publicado = (rs) => JSON.stringify(Object.fromEntries(Object.entries(rs).sort().map(([k, r]) => [k,
+  [r.tarjeta, ...r.figuras].map(({ src, srcset, sizes, alt, ancho, alto, pie }) => ({ src, srcset, sizes, alt, ancho, alto, pie }))])));
+if (SOLO_CHECK && fallos === 0 && fs.existsSync(DATO) && publicado(JSON.parse(fs.readFileSync(DATO, 'utf8')).rutas) !== publicado(salida.rutas)) {
+  mal(`${path.relative(RAIZ, DATO)} no es lo que se deriva hoy: correr sin --check y commitearlo`);
+}
 if (!SOLO_CHECK && fallos === 0) fs.writeFileSync(DATO, `${JSON.stringify(salida, null, 1)}\n`);
 
 const ficheros = fs.existsSync(SALIDA)
