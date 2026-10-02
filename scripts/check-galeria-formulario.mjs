@@ -11,6 +11,12 @@
  * sistemas (nunca se abren los dos lightbox a la vez), que el formulario de 3 pasos es
  * navegable, y el comportamiento del modal (foco, Esc, velo, bloqueo de scroll).
  *
+ * Por debajo de 992 el formulario va PLEGADO en una hoja que despliega un CTA (oct-2026, tras
+ * la captura de Sebastian en su iPhone: la foto era una banda de 186px). Aqui se mide lo que
+ * se prometio: el visor se lleva >=75 % del dialogo, el CTA esta a la vista y mide >=44, el
+ * formulario NO esta en pantalla hasta tocar el CTA y SI despues, y su boton de la cabecera lo
+ * vuelve a plegar sin cerrar el visor. A partir de 992: sin CTA y formulario a la vista.
+ *
  * Regla de la casa (DIRECTOR.md): una puerta que no distingue "no lo he medido" de "lo he
  * medido y esta bien" es peor que no tenerla. Cada aserto de abajo falla en rojo si el caso no
  * se pudo medir -nunca lo cuenta como verde en silencio-.
@@ -92,7 +98,7 @@ const nav = await chromium.launch();
 const mal = {
   noAbre: [], dosALaVez: [], sinLock: [], lockPersiste: [], noPasa: [],
   noCierraEsc: [], noCierraVelo: [], noCierraX: [], foco: [], noPasos: [], sinTurnstile: [], layout: [],
-  scroll: [], tactil: [], solape: [],
+  scroll: [], tactil: [], solape: [], cta: [], hoja: [],
 };
 // WCAG 2.2 AA 2.5.8, el mismo suelo que check-galeria.mjs mide sobre el lightbox simple.
 const MINIMO_TACTIL = 44;
@@ -135,6 +141,58 @@ for (const [ancho, alto] of ANCHOS) {
   await p.click('.mm-lbx__nav--next');
   const otra = await p.evaluate(() => document.querySelector('dialog.mm-lbx .mm-lbx__img')?.getAttribute('src') ?? null);
   if (otra === est.img) mal.noPasa.push(`@${ancho} la flecha no cambia de imagen`);
+
+  // LA HOJA. Se mide la geometria real, no la clase: que el formulario este o no EN PANTALLA
+  // (dentro del viewport y por debajo del borde superior del dialogo, y no `visibility:hidden`).
+  const mideHoja = () => p.evaluate(() => {
+    const d = document.querySelector('dialog.mm-lbx');
+    const cta = d.querySelector('.mm-lbx__pide');
+    const f = d.querySelector('.mm-lbx__formulario');
+    const v = d.querySelector('.mm-lbx__visor');
+    const rd = d.getBoundingClientRect(), rf = f.getBoundingClientRect(), rv = v.getBoundingClientRect();
+    return {
+      // Por cajas, no por `display`: el computado del boton es `flex` aunque su barra sea
+      // display:none en escritorio. Asi se midio y asi se cazo: 2 falsos rojos a 992 y 1440.
+      ctaVisible: !!cta && cta.getClientRects().length > 0,
+      ctaAlto: cta ? cta.getBoundingClientRect().height : 0,
+      formEnPantalla: getComputedStyle(f).visibility !== 'hidden'
+        && rf.top < innerHeight && rf.bottom > 0 && rf.top >= rd.top - 1 && rf.bottom <= rd.bottom + 1,
+      cuotaVisor: rd.height ? rv.height / rd.height : 0,
+      desplegada: d.classList.contains('mm-lbx--pide'),
+    };
+  });
+  const movil = ancho < 992;
+  const antes = await mideHoja();
+  if (movil) {
+    if (!antes.ctaVisible) mal.cta.push(`@${ancho} el CTA «Get a Free Estimate» no esta a la vista`);
+    else if (antes.ctaAlto < MINIMO_TACTIL) mal.cta.push(`@${ancho} el CTA mide ${Math.round(antes.ctaAlto)}px de alto`);
+    if (antes.formEnPantalla) mal.hoja.push(`@${ancho} el formulario esta en pantalla ANTES de tocar el CTA`);
+    if (antes.cuotaVisor < 0.75) mal.hoja.push(`@${ancho} el visor se lleva el ${Math.round(antes.cuotaVisor * 100)} % del dialogo; se prometio >=75`);
+    if (antes.ctaVisible) {
+      if (ancho < 800) await p.tap('.mm-lbx__pide'); else await p.click('.mm-lbx__pide');
+      let desplego = true;
+      try { await p.waitForFunction(() => document.querySelector('dialog.mm-lbx')?.classList.contains('mm-lbx--pide'), null, { timeout: 3000 }); }
+      catch { desplego = false; mal.hoja.push(`@${ancho} el CTA no despliega la hoja`); }
+      if (desplego) {
+        // La hoja sube con una transicion de 260ms; se espera a que el rect este DENTRO y a que
+        // el transform haya vuelto a `none`: medir las fichas con la hoja aun moviendose daba
+        // 43,99px -y la puerta, con razon, lo contaba como <44-.
+        let dentro = true;
+        try {
+          await p.waitForFunction(() => {
+            const d = document.querySelector('dialog.mm-lbx'); const f = d.querySelector('.mm-lbx__formulario');
+            const rd = d.getBoundingClientRect(), rf = f.getBoundingClientRect();
+            return getComputedStyle(f).visibility !== 'hidden' && getComputedStyle(f).transform === 'none'
+              && rf.bottom <= rd.bottom + 1 && rf.top >= rd.top - 1;
+          }, null, { timeout: 3000 });
+        } catch { dentro = false; }
+        if (!dentro) mal.hoja.push(`@${ancho} la hoja desplegada no entra en el dialogo`);
+      }
+    }
+  } else {
+    if (antes.ctaVisible) mal.cta.push(`@${ancho} el CTA de movil se pinta en escritorio`);
+    if (!antes.formEnPantalla) mal.hoja.push(`@${ancho} el formulario no esta a la vista sin tocar nada`);
+  }
 
   // Cada paso valida sus campos data-required='true' antes de dejar avanzar -igual que
   // request-estimated.astro-, asi que la sonda tiene que rellenarlos, no solo pulsar Next.
@@ -215,6 +273,26 @@ for (const [ancho, alto] of ANCHOS) {
   for (const s of pasoAPaso?.tactil ?? []) mal.tactil.push(`@${ancho} ${s}`);
   for (const s of pasoAPaso?.solape ?? []) mal.solape.push(`@${ancho} ${s}`);
 
+  // El boton de la cabecera PLIEGA la hoja sin cerrar el visor: el visitante vuelve a la foto.
+  if (movil && antes.ctaVisible) {
+    if (ancho < 800) await p.tap('.mm-lbx__pliega'); else await p.click('.mm-lbx__pliega');
+    let plego = true;
+    try { await p.waitForFunction(() => !document.querySelector('dialog.mm-lbx')?.classList.contains('mm-lbx--pide'), null, { timeout: 3000 }); }
+    catch { plego = false; }
+    const sigueAbierto = await p.evaluate(() => document.querySelector('dialog.mm-lbx')?.open === true);
+    if (!plego) mal.hoja.push(`@${ancho} el boton de la cabecera no pliega la hoja`);
+    if (!sigueAbierto) mal.hoja.push(`@${ancho} plegar la hoja cerro el visor entero`);
+    // La hoja baja con una transicion de 260ms y solo entonces pasa a visibility:hidden:
+    // medir en el mismo tick daba «sigue en pantalla» con la hoja a medio bajar. Se espera.
+    if (plego) {
+      let escondida = true;
+      try { await p.waitForFunction(() => getComputedStyle(document.querySelector('dialog.mm-lbx .mm-lbx__formulario')).visibility === 'hidden', null, { timeout: 3000 }); }
+      catch { escondida = false; }
+      const tras = await mideHoja();
+      if (!escondida || tras.formEnPantalla) mal.hoja.push(`@${ancho} plegada, el formulario sigue en pantalla`);
+    }
+  }
+
   // El boton X es el tercer camino de cierre -ademas de Esc y el velo- y el unico que usa
   // realmente un visitante en desktop sin teclado. Se comprueba aparte porque es el que un
   // repaso manual encontro sospechoso: probarlo aqui, con Playwright de verdad, es la unica
@@ -293,6 +371,10 @@ check(`todo control del dialogo mide >=${MINIMO_TACTIL}px (WCAG 2.2 AA 2.5.8)`, 
 lista(mal.tactil);
 check('el boton X no pisa el formulario en ningun paso', mal.solape.length === 0, `${mal.solape.length}`);
 lista(mal.solape);
+check('el CTA «Get a Free Estimate»: a la vista y >=44 por debajo de 992, ausente a partir de 992', mal.cta.length === 0, `${mal.cta.length}`);
+lista(mal.cta);
+check('la hoja: foto >=75 % del dialogo, formulario fuera hasta el CTA, dentro despues, y se pliega', mal.hoja.length === 0, `${mal.hoja.length}`);
+lista(mal.hoja);
 check('el boton X cierra', mal.noCierraX.length === 0, `${mal.noCierraX.length}`);
 lista(mal.noCierraX);
 check('Escape cierra', mal.noCierraEsc.length === 0, `${mal.noCierraEsc.length}`);
