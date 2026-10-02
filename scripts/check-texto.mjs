@@ -141,8 +141,11 @@ const RUTAS_BANDA = [
   '/where-we-serve/north-florida',
   '/where-we-serve/south-florida',
 ];
-const CABECERAS_BANDA = RUTAS_BANDA.map((ruta) => {
-  const lineas = fs.readFileSync(path.join(RAIZ, 'baseline/text', `${aSlug(ruta)}.txt`), 'utf8').split('\n');
+/* Solo las rutas CON baseline: una ciudad que entre mañana en la cache de Sanity no tiene
+ * referencia, no se mide, y no puede tumbar al arrancar una corrida de `/services/`. */
+const baselineDe = (ruta) => path.join(RAIZ, 'baseline/text', `${aSlug(ruta)}.txt`);
+const CABECERAS_BANDA = RUTAS_BANDA.filter((ruta) => fs.existsSync(baselineDe(ruta))).map((ruta) => {
+  const lineas = fs.readFileSync(baselineDe(ruta), 'utf8').split('\n');
   const i = lineas.indexOf(PANELES_VIEJOS[0]);
   if (i < 2 || lineas.indexOf(PANELES_VIEJOS[0], i + 1) >= 0
     || PANELES_VIEJOS.some((v, k) => lineas[i + k] !== v)) {
