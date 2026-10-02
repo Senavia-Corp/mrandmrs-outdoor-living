@@ -52,7 +52,9 @@ const entradillaFinal = entradilla ?? propio?.entradilla ?? ENCABEZADOS._defecto
 
 /* El filtro por ruta de R17-CORE (`proyectos.solo`) se fue el 13-sep-2026 con su unica usuaria:
  * la ficha de piscina de /services/ ya no monta este carrusel, lleva su `gallery`. */
-const slides = [...PROPIAS.obras, ...MIGRADAS.obras];
+// Las obras del banco (PROMPT-PROYECTOS-BANCO) llevan `enCarrusel: false`: salen en /projects y
+// en su ficha, no en las 66 rutas de este carrusel. `check-texto.mjs` (`lineasObras`) filtra igual.
+const slides = [...PROPIAS.obras.filter((o) => o.enCarrusel !== false), ...MIGRADAS.obras];
 ---
 <section class="projects-section">
   <div class="w-layout-blockcontainer container w-container">

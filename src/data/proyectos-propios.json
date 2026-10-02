@@ -11,6 +11,9 @@
    "ubicacion": "South Florida",
    "estilo": "Modern Florida Contemporary",
    "tipo": "Residential",
+   "servicios": [
+    "construction"
+   ],
    "seo": {
     "titulo": "Luxury Pool & Raised Spa Project | South Florida",
     "descripcion": "Custom South Florida pool with a raised glass-mosaic spa, spillway, sun shelf and travertine deck, built for year-round family outdoor living."
@@ -50,6 +53,9 @@
    "ubicacion": "North Florida",
    "estilo": "Modern Geometric",
    "tipo": "Residential",
+   "servicios": [
+    "construction"
+   ],
    "seo": {
     "titulo": "Estate Pool & Spa with Sun Shelf | North Florida",
     "descripcion": "Large geometric pool with a sun shelf, raised spa and banded marble deck on open North Florida acreage, designed and built for estate-scale outdoor living."
@@ -89,6 +95,9 @@
    "ubicacion": "South Florida",
    "estilo": "Modern Coastal",
    "tipo": "Residential",
+   "servicios": [
+    "construction"
+   ],
    "seo": {
     "titulo": "Pool & Raised Spa with Marble Deck | South Florida",
     "descripcion": "South Florida pool with a tanning shelf, in-pool loungers and a white-tiled raised spa, finished with large-format marble pavers throughout the deck."
@@ -128,6 +137,10 @@
    "ubicacion": "South Florida",
    "estilo": "Modern Florida Contemporary",
    "tipo": "Residential",
+   "servicios": [
+    "construction",
+    "pergolas"
+   ],
    "seo": {
     "titulo": "Luxury Pool, Spa & Aluminum Pergola | South Florida",
     "descripcion": "South Florida pool and raised spa with glass mosaic tile, deck jets and a slatted aluminum pergola shading the lanai, by licensed pool builders."
@@ -171,6 +184,9 @@
    "ubicacion": "South Florida",
    "estilo": "Modern Florida Contemporary",
    "tipo": "Residential",
+   "servicios": [
+    "pergolas"
+   ],
    "seo": {
     "titulo": "Aluminum Patio Cover & Pool Deck | South Florida",
     "descripcion": "Solid-roof aluminum patio cover and marble pool deck for a South Florida home, shading the lanai while leaving the pool open to the sky."
