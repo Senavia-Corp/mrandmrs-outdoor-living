@@ -1,7 +1,7 @@
 /** Veredictos del juez + clave A/B + inventario -> decisiones.json (regla §6.5 del encargo).
  *  node scripts/loop-decidir.mjs <unidad> "<falta galeria>" "<falta faq>"
  *  Canje si la candidata no tiene bloqueante ni dentro-del-recorte Y (la actual no es obra_real O el juez prefiere la candidata). */
-import fs from 'node:fs'; import path from 'node:path'; import { fileURLToPath } from 'node:url';
+import fs from 'node:fs'; import path from 'node:path'; import { fileURLToPath } from 'node:url'; import sharp from 'sharp';
 const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const [unidad, faltaGal = 'Obra terminada, de día, patio recogido, el sujeto entero en cuadro', faltaFaq = 'Detalle de cerca de la obra terminada, con fondo limpio'] = process.argv.slice(2);
 const dir = path.join(RAIZ, 'banco/.trabajo/loop-imagenes', unidad);
@@ -9,7 +9,12 @@ const J = (f) => JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
 const clave = J('juez-clave.json'), vered = J('juez-veredictos.json').veredictos, inv = J('inventario.json');
 const estado = JSON.parse(fs.readFileSync(path.join(RAIZ, 'docs/encargos/LOOP-IMAGENES-ESTADO.json'), 'utf8'));
 const u = estado.unidades.find((x) => x.id === unidad);
-const derivar = { heroe: { ratio: '16/9', ancho: 1600, formato: 'avif', q: 50 }, inversion: { ratio: '1250/698', ancho: 1600, formato: 'avif' }, proceso: { ratio: '1408/768', ancho: 1600, formato: 'avif' } };
+// La proporcion de los pasos es la del ORIGEN de cada ficha (1408/768 en las de PNG, 1450/1088 en pole/louvered/rooms):
+// a 768/991 el paso se pinta entero y otra proporcion mueve el alto de la pagina.
+const paso0 = inv.find((x) => x.hueco === 'proceso[0]');
+const mp = paso0 ? await sharp(path.join(RAIZ, 'public', paso0.src)).metadata() : { width: 1408, height: 768 };
+const ratioPasos = mp.width / mp.height < 1.5 ? '1450/1088' : '1408/768';
+const derivar = { heroe: { ratio: '16/9', ancho: 1600, formato: 'avif', q: 50 }, inversion: { ratio: '1250/698', ancho: 1600, formato: 'avif' }, proceso: { ratio: ratioPasos, ancho: 1600, formato: 'avif' } };
 const falta = { galeria: faltaGal, faq: faltaFaq, heroe: faltaGal, inversion: faltaGal, proceso: 'Obra en curso de este servicio, cuadrilla trabajando, sin basura ni trastos' };
 const huecos = [];
 for (const k of clave) {
