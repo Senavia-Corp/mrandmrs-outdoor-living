@@ -3,6 +3,79 @@
 Webflow → Astro 5 + Sanity + Vercel. Una entrada por fase, **escrita al cerrar la fase**,
 nunca al empezarla. Si una fase se reabre, se añade una entrada nueva; no se edita la vieja.
 
+## R24-FOTO-PISCINAS — obra real del banco en las dos fichas de piscina (2-oct-2026)
+
+Encargo `PROMPT-FOTO-PISCINAS.md`. Rutas: `/services/custom-pool-spa-builders-in-north-south-florida`
+(New Pool, Final URL de Ads) y `/services/pool-remodeling-renovation-in-north-south-florida` (Remodel).
+
+**Qué cambió.** Todo lo que se cambió sale del banco nuevo (`banco-imagenes.json`, 1-oct). Se derivó
+de los originales de cámara a `/images/obra/<obra-id>/` (AVIF q52, giro horneado, sin EXIF).
+`usada_en` y `publicada_como` están anotados en las 12 entradas.
+
+- **Proceso: salen los 8 PNG generados** (1408x768, C2PA de Google, 15,7 MB) y entran 8 fotos reales de
+  56-272 KB.
+  - New Pool cuenta una sola obra de principio a fin (obra-065): lote → replanteo pintado → acero listo
+    para inspección → gunitado.
+  - Remodel: inspección del spa viejo (obra-064) → materiales (obra-053) → cuadrilla con el vaso vaciado
+    (obra-048) → enlucido a mano (obra-064).
+  - La foto sigue al TITULO visible del paso, no a la tabla §4 del encargo, que iba desfasada.
+- **Héroe de Remodel:** una remodelación terminada de verdad (bi-0521, 2048x1152) en lugar de la piscina
+  nueva `estate-…-3`.
+- **Fila «Structural Repairs» (Remodel):** el fichero llevaba `trainedAlgorithmicMedia`. Sebastian pidió
+  canjearlo y entra un spa con la coronación rehecha (bi-0676, 1200x670, sin ampliar).
+- **Antes/después en Remodel:** vuelve la sección que R17 quitó por falsa, ahora con el par honesto de
+  obra-048 (bi-0515 → bi-0519).
+  - Mismo punto de cámara, verificado superponiendo: alero, toldo, TV y línea de agua al píxel.
+  - Escalera 640-1920, mismas medidas. Texto del origen.
+- **og:image / twitter:image** de las dos: eran IA (no eran el héroe: venían del `<head>` de origen). Ahora
+  son un JPEG 1200x630 del héroe (`heroe.og`).
+- **SEO:**
+  - 52 `alt` reescritos: lo que se ve, palabra clave una vez, sin región, ≤125, 0 duplicados por página
+    medido sobre el build;
+  - `<image:image>` en el sitemap para estas 2 rutas (32 fotos);
+  - el collage de Remodel cambia la 09 (salía 4 veces) por la 07.
+
+**Mecanismo.** Cuatro claves opt-in en `captacion()`, todas con ROJO si el origen no casa:
+`heroe.og`, `proceso.fotos`, `antesDespues` y `galeria.alts`. Las otras 12 fichas salen byte a byte iguales.
+Declaraciones en las puertas:
+- `check-texto` deja el antes/después donde se declara: 100 % sin re-baseline;
+- `check-estructura` con `VARIANTES` a mano;
+- `check-seo` lleva el og en `META_PROPIA` y la ruta nueva del héroe;
+- `build-seo-ficheros` emite las imágenes.
+
+### Decisiones de Sebastian (1/2-oct) que el encargo no traía
+- Las galerías `hf_…` de `projects/` (héroe y fila 1 de New Pool, inversión de las dos) **son fotos reales y
+  se quedan**.
+- **La intro de las dos fichas se queda igual** («me gustan como se ven»). En New Pool lleva 3 ficheros
+  marcados o sospechosos de IA.
+- **Los mapas de `.location` se quedan** (IA, unas 25 rutas).
+- Por eso el barrido final da, en lo que pintan las dos rutas: New Pool 3 con marcador (intro firmada +
+  2 mapas) y Remodel 2 (mapas). **«Cero generadas» no se cumple al pie de la letra, por decisión suya.**
+
+### Puertas (build `PUBLIC_ES_PRODUCCION=1` en worktree)
+- **Verdes:** tokens · estructura (14 + 1 variante declarada) · captacion · assets · ix2 · banco `--check` ·
+  texto 100 % en las 2 rutas · galería en las 2 rutas.
+- **Las dos fichas pasan `check:seo`.**
+- **`check:visual` ROJA en las 2** (New Pool +144..+218 px, Remodel +482..+579 px): es lo esperado y ya lo
+  estaba desde R21. El re-baseline es de Sebastian, una vez, cuando las mire (FONDO-AGUA T2).
+- **Rojas que NO son de R24:** esta rama no toca ningún fichero de blog.
+  - `check:rutas` (3 artículos de Sanity sin declarar);
+  - `check:enlaces` (`mm-construction-7` no existe);
+  - `check:seo` (11 páginas de blog);
+  - `check:ads` (un «$16,600» en la tarjeta de blog de Remodel);
+  - `check:medicion` (121 vs 155 `<loc>`, desde `549bb9c`).
+- **Medido en Chromium headless:** los 4 pasos miden lo mismo en cada ancho (390: 334x350; tablet: NP 4:3,
+  RM 3:2), así que el carrusel no salta de alto.
+
+### Queda abierto
+1. Re-baseline visual de las 2 rutas (Sebastian).
+2. Las 27,8 MB de PNG IA que quedan sin referencia (8 de proceso + 4 de antes/después huérfanos) siguen en disco:
+   el manifiesto está a holgura cero y `download-assets` los volvería a bajar.
+3. Las otras 12 fichas: 40 ficheros IA en `residentials/` y 39 en `procesos/`. Además,
+   `servicios-categoria.json` e `index.astro:42` siguen pintando IA.
+4. El CarruselBlog de Remodel repite la misma portada en 4 de 5 tarjetas (Sanity). El feed de Instagram de
+   Remodel enseña obra nueva.
+
 ## BLOG-SANITY — Sanity como fuente unica del blog (PR #20, 19-sep-2026)
 
 Sanity pasa a ser la fuente unica. Desaparecen los 10 `.astro` con el HTML de Webflow horneado
