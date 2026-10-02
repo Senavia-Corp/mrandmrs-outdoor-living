@@ -413,7 +413,8 @@ const JSONLD_ARREGLADO = {
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Pool Remodeling & Renovation'],
       ['about.image', 'Pool and spa renovation enhancing a Florida backyard outdoor living contractors space.',
-        '/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-3.avif'],
+        // R24-FOTO-PISCINAS: el heroe de remodelacion pasa a ser una remodelacion real del banco (bi-0521)
+        '/images/obra/obra-048/pool-remodeling-travertine-deck-glass-tile-completed.avif'],
       ['dateModified', '2026-05-18T19:54:16.970Z', '2026-05-18T19:55:49.094Z'],
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:54:16.970Z'],
     ],
@@ -505,6 +506,16 @@ const JSONLD_ARREGLADO = {
 const IMG_BLOG_R22 = JSON.parse(
   fs.readFileSync(path.join(RAIZ, 'src/data/imagenes-blog-por-ruta.json'), 'utf8')).rutas;
 const SITIO_R22 = process.env.PUBLIC_SITE_URL || 'https://www.mrandmrsoutdoorliving.com';
+/* LA TARJETA SOCIAL DE LAS FICHAS DE PISCINA = SU HEROE (R24-FOTO-PISCINAS, 1-oct-2026). El
+ * origen traia en `og:image`/`twitter:image` dos imagenes GENERADAS; `captacion()` las canjea por
+ * `heroe.og` donde la entrada lo declara. Misma via que R22: la referencia pasa a ser el valor
+ * declarado, absoluto, como lo emite `Base.astro`. */
+for (const [ruta, c] of Object.entries(JSON.parse(
+  fs.readFileSync(path.join(RAIZ, 'src/data/captacion-servicios.json'), 'utf8')))) {
+  if (!ruta.startsWith('/services/') || !c?.heroe?.og) continue;
+  const abs = SITIO_R22 + c.heroe.og;
+  META_PROPIA.set(ruta, { ...(META_PROPIA.get(ruta) ?? {}), 'og:image': abs, 'twitter:image': abs });
+}
 {
   const base = JSON.parse(fs.readFileSync(path.join(RAIZ, 'baseline/seo.json'), 'utf8'));
   /* (a) La tarjeta social de cada articulo. `META_PROPIA` ya es el canal para «la referencia

@@ -122,10 +122,44 @@ const ADICIONES_BLOG = (() => {
 // Van al final y no intercaladas: el orden de las 113 es el del origen y no se toca.
 const locs = [...delOrigen, ...ADICIONES.map(([u]) => u), ...ADICIONES_BLOG.map(([u]) => u)];
 
+/**
+ * SITEMAP DE IMAGENES, SOLO DONDE TODA LA FOTO DE DATOS ES OBRA REAL (R24-FOTO-PISCINAS, 1-oct-2026).
+ *
+ * `<image:image>` le dice a Google que fotos son de cada pagina. Se declara por ruta y a mano,
+ * no para las 14 fichas: en las otras doce siguen fotos generadas (`residentials/`, `procesos/`)
+ * y meterlas aqui seria anunciar como obra lo que no lo es. Las imagenes salen de los MISMOS
+ * datos que las pintan —heroe, filas, pasos, inversion, antes/despues y collage—, asi que una
+ * foto canjeada en el JSON se canjea aqui sola. La intro (que se queda como esta, decision de
+ * Sebastian) y la galeria (viene del origen, no de datos) no entran.
+ */
+const IMAGENES_EN = [
+  '/services/custom-pool-spa-builders-in-north-south-florida',
+  '/services/pool-remodeling-renovation-in-north-south-florida',
+];
+const imagenes = (() => {
+  const leer = (f) => JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data', f), 'utf8'));
+  const cap = leer('captacion-servicios.json');
+  const collage = leer('collage-faq-por-ruta.json');
+  return new Map(IMAGENES_EN.map((r) => {
+    const c = cap[r];
+    const fotos = [
+      c.heroe.foto, ...c.servicios.detalle.map((d) => d.foto), ...(c.proceso?.fotos ?? []).map((f) => f.foto),
+      c.inversion?.foto, c.antesDespues?.antes.src, c.antesDespues?.despues.src,
+      ...(collage[r]?.fotos ?? []).map((f) => f.src),
+    ].filter(Boolean);
+    return [`${SITIO}${r}`, [...new Set(fotos)].map((f) => `${SITIO}${f}`)];
+  }));
+})();
+for (const u of imagenes.keys()) {
+  if (!locs.includes(u)) throw new Error(`sitemap de imagenes: ${u} no esta en el sitemap`);
+}
+const conImagenes = (u) => (imagenes.get(u) ?? [])
+  .map((i) => `\n        <image:image>\n            <image:loc>${i}</image:loc>\n        </image:image>`).join('');
+
 const sitemap = PROD
   ? `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${locs.map((u) => `    <url>\n        <loc>${u}</loc>\n    </url>`).join('\n')}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${locs.map((u) => `    <url>\n        <loc>${u}</loc>${conImagenes(u)}\n    </url>`).join('\n')}
 </urlset>
 `
   : `<?xml version="1.0" encoding="UTF-8"?>
@@ -157,5 +191,6 @@ fs.writeFileSync(path.join(PUB, 'robots.txt'), robots);
 console.log(`\n  modo      : ${PROD ? 'PRODUCCION' : 'preview (bloqueado)'}`);
 console.log(`  sitemap   : ${PROD ? locs.length : 0} URLs`
   + `${PROD ? ` (${delOrigen.length} del origen + ${ADICIONES.length} propia(s))` : ''}`);
+console.log(`  imagenes  : ${PROD ? [...imagenes.values()].flat().length : 0} en ${imagenes.size} ruta(s)`);
 console.log(`  robots.txt: ${robots.split('\n')[0]}`);
 console.log('');

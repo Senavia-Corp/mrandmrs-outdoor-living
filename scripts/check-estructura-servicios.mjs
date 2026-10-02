@@ -33,6 +33,20 @@ const ESPERADO = [
   'location', 'blog-section-page', 'social-media', 'cta-footer', 'logos-section',
 ];
 
+/** UNA excepcion declarada (R24-FOTO-PISCINAS, 1-oct-2026): la ficha de remodelacion recupera el
+ *  antes/despues, con el par real del banco, entre los servicios y el proceso. Escrita a mano por
+ *  lo mismo que `ESPERADO`: si se derivase de `antesDespues` en el JSON, la puerta daria por bueno
+ *  cualquier sitio donde el generador la pusiera. */
+const VARIANTES = {
+  '/services/pool-remodeling-renovation-in-north-south-florida': { tras: 'services', va: 'before-after-section' },
+};
+const esperadoDe = (ruta) => {
+  const v = VARIANTES[ruta];
+  if (!v) return ESPERADO;
+  const i = ESPERADO.indexOf(v.tras);
+  return [...ESPERADO.slice(0, i + 1), v.va, ...ESPERADO.slice(i + 1)];
+};
+
 const RUTAS = Object.keys(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/captacion-servicios.json'), 'utf8')))
   .filter((k) => k.startsWith('/services/'));
 
@@ -57,16 +71,17 @@ for (const ruta of RUTAS) {
     .filter((s) => !s.parentElement?.closest('section'))
     .map((s) => s.classList[0]);
   const cuerpo = clases.slice(clases.indexOf('hero-services'), clases.lastIndexOf('footer'));
-  if (cuerpo.join(' ') !== ESPERADO.join(' ')) {
-    const i = ESPERADO.findIndex((c, k) => cuerpo[k] !== c);
-    mal(ruta, `puesto ${i + 1}: se esperaba «${ESPERADO[i] ?? '(nada)'}» y hay «${cuerpo[i] ?? '(nada)'}»\n`
+  const esperado = esperadoDe(ruta);
+  if (cuerpo.join(' ') !== esperado.join(' ')) {
+    const i = esperado.findIndex((c, k) => cuerpo[k] !== c);
+    mal(ruta, `puesto ${i + 1}: se esperaba «${esperado[i] ?? '(nada)'}» y hay «${cuerpo[i] ?? '(nada)'}»\n`
       + `       orden: ${cuerpo.join(' · ')}`);
     continue;
   }
   const slides = d.querySelectorAll('section.gallery [fs-slider-element="slide"]').length;
   if (!slides) { mal(ruta, 'la gallery esta pero sin slides'); continue; }
-  console.log(`  ok   ${ruta}   (${slides} slides en la galeria)`);
+  console.log(`  ok   ${ruta}   (${slides} slides en la galeria)${VARIANTES[ruta] ? `   + ${VARIANTES[ruta].va} tras ${VARIANTES[ruta].tras} (declarada)` : ''}`);
 }
 
-console.log(`\n${fallos ? `PUERTA ROJA — ${fallos} fallo(s)` : `PUERTA VERDE — ${RUTAS.length} fichas, un solo orden`}\n`);
+console.log(`\n${fallos ? `PUERTA ROJA — ${fallos} fallo(s)` : `PUERTA VERDE — ${RUTAS.length} fichas, un solo orden (+ ${Object.keys(VARIANTES).length} variante declarada)`}\n`);
 process.exit(fallos ? 1 : 0);
