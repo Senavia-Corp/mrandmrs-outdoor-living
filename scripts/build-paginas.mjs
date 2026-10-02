@@ -591,6 +591,56 @@ function collageFaq(doc, ruta) {
   return true;
 }
 
+/**
+ * ── FOTOS DEL BANCO POR RUTA (PROMPT-IMAGENES-ABOUT) ─────────────────────────────────────
+ *
+ * Cambia `<img>` del origen por fotos de obra real del banco, ruta a ruta, leyendo
+ * `src/data/fotos-por-ruta.json`: `{ ruta: { selector: [foto | null, ...] } }`, en orden DOM.
+ * `null` deja la del origen. Mismo canje que `proceso.fotos` de `captacion()`: src, alt,
+ * width, height, object-position, y fuera `srcset`/`sizes` (apuntarian al render de antes).
+ * `ratio` va inline porque `check:tokens` no tiene sitio para una regla mas.
+ *
+ * POR RUTA EXACTA Y POR SELECTOR, NUNCA POR `src`: el render de whatsetus de `/about` tambien
+ * lo pinta `/where-we-serve`, y alli se queda.
+ *
+ * Y LA TRAZA LA COMPRUEBA ESTO, porque no la comprueba nadie mas (`build-banco.mjs` no lee
+ * `usada_en`): cada `_banco` tiene que existir en el indice con el mismo src y medidas, ser
+ * `obra_real` y `aprobada*`, tener fichero y llevar la ruta en `usada_en`. Si no, ROJO.
+ */
+const FOTOS_POR_RUTA = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/fotos-por-ruta.json'), 'utf8'));
+const BANCO = new Map(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/banco-imagenes.json'), 'utf8'))
+  .map((e) => [e.id, e]));
+let fotosCanjeadas = 0;
+function fotosPorRuta(doc, ruta) {
+  const porSelector = FOTOS_POR_RUTA[ruta];
+  if (!porSelector) return 0;
+  const rojo = (msg) => { console.error(`\n  ROJO ${ruta}: ${msg}\n`); process.exit(1); };
+  let n = 0;
+  for (const [sel, fotos] of Object.entries(porSelector)) {
+    const imgs = [...doc.querySelectorAll(sel)];
+    if (imgs.length !== fotos.length) rojo(`«${sel}» casa ${imgs.length} <img> y fotos-por-ruta.json trae ${fotos.length}`);
+    imgs.forEach((img, i) => {
+      const f = fotos[i];
+      if (!f) return;
+      const e = BANCO.get(f._banco);
+      if (!e) rojo(`${f._banco} no esta en banco-imagenes.json`);
+      if (e.src !== f.src || e.ancho !== f.ancho || e.alto !== f.alto) rojo(`${f._banco} no casa con el indice (src/ancho/alto)`);
+      if (e.procedencia !== 'obra_real' || !String(e.estado).startsWith('aprobada')) rojo(`${f._banco} no es obra_real aprobada`);
+      if (!fs.existsSync(path.join(RAIZ, 'public', f.src))) rojo(`falta el fichero ${f.src}`);
+      if (!(e.usada_en ?? []).includes(ruta)) rojo(`${f._banco} no lleva ${ruta} en usada_en`);
+      img.setAttribute('src', f.src);
+      img.setAttribute('alt', f.alt);
+      img.setAttribute('width', String(f.ancho));
+      img.setAttribute('height', String(f.alto));
+      img.setAttribute('style', `object-position:${f.pos}${f.ratio ? `;aspect-ratio:${f.ratio}` : ''}`);
+      img.removeAttribute('srcset');
+      img.removeAttribute('sizes');
+      n++;
+    });
+  }
+  return n;
+}
+
 
 /**
  * ── LA CIRUGIA DE LA LANDING DE PAGO (R17-CORE) ──────────────────────────────────────────
@@ -1270,6 +1320,7 @@ for (const [ruta] of RUTAS) {
 
   const conCollage = collageFaq(doc, ruta);
   if (conCollage) collagesInsertados++;
+  fotosCanjeadas += fotosPorRuta(doc, ruta);
 
 
   const usados = new Set();
@@ -1944,6 +1995,14 @@ console.log(`  embed WAAPI del mosaico retirado en ${codeEmbedsEliminados} ficha
 console.log('        El bucle nuevo vive en src/styles/intro.css §5, igual para las 80 rutas.\n');
 
 /* Va ANTES del aviso de NO_REGENERAR, que sale siempre con 1: detras no correria nunca. */
+const FOTOS_ESPERADAS = Object.entries(FOTOS_POR_RUTA).filter(([k]) => k.startsWith('/'))
+  .flatMap(([, s]) => Object.values(s).flat()).filter(Boolean).length;
+console.log(`  ${fotosCanjeadas} fotos del banco canjeadas por fotos-por-ruta.json\n`);
+if (fotosCanjeadas !== FOTOS_ESPERADAS) {
+  console.error(`\n  ROJO fotos-por-ruta.json declara ${FOTOS_ESPERADAS} y se canjearon ${fotosCanjeadas}:`
+    + ' alguna ruta no se genero (NO_REGENERAR o fuera de routes.csv).\n');
+  process.exit(1);
+}
 const FICHAS_CAPTACION = RUTAS_CAPTACION_SERVICIOS.length;
 console.log(`  gallery y resenas canjeadas en ${galeriasMovidas} de ${FICHAS_CAPTACION} fichas de services/\n`);
 if (galeriasMovidas !== FICHAS_CAPTACION) {

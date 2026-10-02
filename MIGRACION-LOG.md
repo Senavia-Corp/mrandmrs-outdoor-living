@@ -7090,3 +7090,5 @@ contra cielo, postes contra lago y madera — sin halos de CLAHE ni bordes cruji
    sería aprobar su diseño, y eso es de Sebastian.
 
 - **1-oct-2026 · Banco de imágenes.** 1.269 originales de `~/Documents/Pictures Mr and Mrs Outdoor Living` clasificados (etapa × servicio × proyecto): 514 aprobadas derivadas a `public/images/banco/` (WebP 1600 px, sin EXIF), 80 dudosas en `banco/DUDOSAS.md`, 474 rechazadas (340 de fabricante/stock/IA/ajenas), 201 duplicados. Índice `src/data/banco-imagenes.json`, puerta `node scripts/build-banco.mjs --check` (probada en rojo). No se cambió ninguna foto del sitio. Sin build ni commit. Ver `BANCO-IMAGENES.md`.
+
+- 2-oct-2026 · PROMPT-IMAGENES-ABOUT: /about cambia 4 renders (whatsetus + aboutus x3) por obra real del banco (bi-0237, bi-0557, bi-0533, bi-0077) via src/data/fotos-por-ruta.json + fotosPorRuta() en build-paginas.mjs, y la [2] del collage FAQ (landscaping-10, copia IA de bi-0326) por bi-0305 con derivados 500/800. Solo cambia about/index.html entre builds; alturas de check:visual identicas antes/despues. Hero y Rob & Val intactos.
