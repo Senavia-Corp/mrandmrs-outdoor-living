@@ -62,3 +62,64 @@ export const lineasTarjetas = () => [
   TITULO_TARJETAS,
   ...CATEGORIAS.flatMap((c) => [c.nombre, c.linea, enlaceDe(c)]),
 ];
+
+/* ── LA BANDA «Project Gallery» ──────────────────────────────────────────────────────────────
+ * Los seis paneles verticales de las 53 `/pool-builders/*` y las 2 `/where-we-serve/*-florida`
+ * (antes «Pool Features & Upgrades»). Eran TRES copias a mano del mismo marcado; ahora las tres
+ * salen de aqui, y cada panel es una categoria con `panel` en `galeria-categorias.json`.
+ *
+ * Mismas clases y mismos `data-w-id` que el marcado de Webflow: el acordeon
+ * (`Interacciones.astro` §6), `caracteristicas.css` e IX2 cuelgan de ellos. El enlace va DENTRO
+ * del parrafo y no sustituye al boton: el acordeon sigue siendo acordeon.
+ *
+ * El titular es FIJO aqui y no de Sanity: dejaron de leerse `headingFeature` y
+ * `paragraphFeatures`. Sin ciudad en el parrafo: el banco no sabe en que ciudad se hizo cada
+ * obra, asi que «built in Ocala» seria afirmar algo que no podemos respaldar. */
+export const TITULO_BANDA = 'Project Gallery';
+export const TEXTO_BANDA = 'See pools, pergolas and outdoor kitchens we have built for Florida homeowners.';
+export const PANELES = CATEGORIAS.filter((c) => c.panel);
+const INICIO_BANDA = '<section class="animated-divs-section">';
+
+const fotoPanel = (c, suf = '') => `/images/obra/paneles/gallery-panel-${c.slug}${suf}.webp`;
+const enlacePanel = (c) => `${enlaceDe(c)} photos`;
+
+export function bandaGaleriaHtml() {
+  const tarjetas = PANELES.map((c, i) => (
+    `<div${i ? '' : ' id="w-node-_330b3a3f-e72c-3f91-1f24-8dfe4f379535-4f37952d"'} class="feature-card">`
+    + `<img src="${fotoPanel(c)}" loading="lazy" alt="" width="941" height="1672"`
+    + ' sizes="(min-width: 992px) 250px, (min-width: 768px) 50vw, 100vw"'
+    + ` srcset="${fotoPanel(c, '-p-500')} 500w, ${fotoPanel(c, '-p-800')} 800w, ${fotoPanel(c)} 941w"`
+    + ` style="object-position:${c.panel.x}% 50%" class="feature-image">`
+    + '<div class="block-feature"><h3 class="title-feature">'
+    + `<button type="button" class="feature-boton" aria-expanded="false" aria-controls="mm-carac-${i + 1}">`
+    + `${esc(c.nombre)}</button></h3>`
+    + `<p class="feature-text" id="mm-carac-${i + 1}">${esc(c.linea)} `
+    + `<a href="${rutaDe(c)}">${esc(enlacePanel(c))}</a></p></div></div>`
+  )).join('');
+  return INICIO_BANDA
+    + '<div data-w-id="330b3a3f-e72c-3f91-1f24-8dfe4f37952f" class="header-feature">'
+    + `<h2 class="white">${esc(TITULO_BANDA)}</h2><p>${esc(TEXTO_BANDA)}</p></div>`
+    + `<div data-w-id="330b3a3f-e72c-3f91-1f24-8dfe4f379534" class="wrapper-feature">${tarjetas}</div>`
+    + '</section>';
+}
+
+/**
+ * Cambia la banda vieja de una cadena derivada (`B[0]` de `[slug].astro`) por la nueva. Mismo
+ * contrato que `partirEn`: si el marcador no esta UNA vez, el build cae con la ruta puesta en vez
+ * de servir media seccion o dos bandas.
+ */
+export function conBandaGaleria(cadena, donde) {
+  const i = cadena.indexOf(INICIO_BANDA);
+  if (i < 0 || cadena.indexOf(INICIO_BANDA, i + 1) >= 0) {
+    throw new Error(`${donde}: «${INICIO_BANDA}» tiene que salir exactamente una vez`);
+  }
+  const fin = cadena.indexOf('</section>', i) + '</section>'.length;
+  if (cadena.slice(i + 1, fin).includes('<section')) throw new Error(`${donde}: la banda trae una <section> anidada`);
+  return cadena.slice(0, i) + bandaGaleriaHtml() + cadena.slice(fin);
+}
+
+/** Las lineas que la banda pone en el `innerText`, en orden. Para `check-texto.mjs`. */
+export const lineasBanda = () => [
+  TITULO_BANDA, TEXTO_BANDA,
+  ...PANELES.flatMap((c) => [c.nombre, `${c.linea} ${enlacePanel(c)}`]),
+];

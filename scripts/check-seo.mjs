@@ -25,6 +25,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { JSDOM } from 'jsdom';
 import { esPropia, conPropias } from './lib/rutas-propias.mjs';
+import { TITULO_BANDA, TEXTO_BANDA } from '../src/lib/galeria-categorias.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const ESTATICO = path.join(RAIZ, '.vercel/output/static');
@@ -750,6 +751,35 @@ for (const ruta of Object.keys(JSONLD_ARREGLADO).filter((r) => r.startsWith('/se
     ['about.provider.@id', undefined, `${SITIO_R22}/#negocio`],
     ['about.url', undefined, `${SITIO_R22}${ruta}`],
   );
+}
+
+/**
+ * ── PANELES-GALERIA (2-oct-2026) · LA PARTE DE LA BANDA EN LAS DOS /where-we-serve/ ────────────
+ *
+ * La banda de seis paneles pasa a ser «Project Gallery», y la parte 1 del `hasPart` de estas dos
+ * paginas la describia con el titular y la entradilla viejos: marcado que habla de una seccion que
+ * ya no se ve. Se declara viejo -> nuevo, con lo nuevo sacado de las MISMAS constantes que pintan la
+ * banda (`src/lib/galeria-categorias.mjs`). Si el baseline dejara de traer lo viejo, sale rojo.
+ */
+for (const [ruta, nombre, descripcion] of [
+  ['/where-we-serve/north-florida', 'Featured Luxury Pool Projects Across North Florida',
+    'Our advanced 3D rendering technology allows you to preview your North Florida luxury pool and '
+    + 'outdoor living space before construction begins. As luxury pool builders in North Florida, we '
+    + 'create photorealistic designs that help you explore layouts, materials, and finishes in detail. '
+    + 'This collaborative process improves clarity, minimizes surprises, and ensures your final project '
+    + 'reflects your vision with confidence.'],
+  ['/where-we-serve/south-florida', 'Luxury Pool Features &amp; Integrated Upgrades',
+    'Enhance your pool with architecturally integrated features engineered for performance, comfort, '
+    + 'and visual impact.'],
+]) {
+  const ya = JSONLD_ARREGLADO[ruta];
+  JSONLD_ARREGLADO[ruta] = {
+    bloque: 0,
+    motivo: `${ya?.motivo ? `${ya.motivo} · ` : ''}PANELES-GALERIA: la parte de la banda describe «Project Gallery».`,
+    cambios: [...(ya?.cambios ?? []),
+      ['hasPart.1.name', nombre, TITULO_BANDA],
+      ['hasPart.1.description', descripcion, TEXTO_BANDA]],
+  };
 }
 
 /** Lee/escribe por camino con puntos: `mainEntity.mainEntity.4.name`. */

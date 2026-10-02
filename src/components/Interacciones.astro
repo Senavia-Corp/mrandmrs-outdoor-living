@@ -8,7 +8,7 @@
  *   3. Las 93 entradas por scroll (growIn / slideInLeft / slideInRight / slideInBottom)
  *   4. El nav que se esconde al bajar y vuelve al subir (a-11 / a-12, 500 ms `easeInOut`)
  *   5. El botón play/pausa de los vídeos de fondo
- *   6. El acordeón de «Pool Features & Upgrades» (`.wrapper-feature`, 55 rutas)
+ *   6. El acordeón de «Project Gallery», antes «Pool Features & Upgrades» (`.wrapper-feature`, 55 rutas)
  *
  * ─────────────────────────────────────────────────────────────────────────────
  * EL ESTADO OCULTO CUELGA DE UN SELLO QUE ESCRIBE EL JS
@@ -452,7 +452,7 @@ const REVEALS = JSON.stringify(reveals.porId);
       b.addEventListener('click', () => { video.paused ? video.play() : video.pause(); });
     }
 
-    // ── 6 · el acordeon de «Pool Features & Upgrades» ────────────────────
+    // ── 6 · el acordeon de «Project Gallery» (antes «Pool Features & Upgrades») ──
     //
     // Venia de TRES copias byte a byte del mismo script embebido en el marcado
     // -`plantilla-pool-builders.json` y los `T2` de las dos `/where-we-serve/*-florida`-, o
@@ -465,8 +465,9 @@ const REVEALS = JSON.stringify(reveals.porId);
     // Las consultas van ACOTADAS a `.wrapper-feature` a proposito: `.is-active` la usa
     // tambien el intercambio de foto del mega-menu, 200 lineas mas arriba en este fichero.
     //
-    // Sin JS la primera columna ya viene con `is-active` y `aria-expanded="true"` en el HTML
-    // estatico, asi que la seccion se lee entera igual: esto solo anade el poder cambiarla.
+    // El HTML estatico sale con las seis cerradas (`aria-expanded="false"`, sin `is-active`): el
+    // parrafo esta en el `innerText` igual -se oculta con opacidad, no con `display`- y por
+    // debajo de 992 se ve entero. Lo pinta `bandaGaleriaHtml()` (src/lib/galeria-categorias.mjs).
     const banda = document.querySelector('.wrapper-feature');
     if (banda) {
       const tarjetas = [...banda.querySelectorAll('.feature-card')];
@@ -510,13 +511,36 @@ const REVEALS = JSON.stringify(reveals.porId);
 
       tarjetas.forEach((t, i) => {
         t.addEventListener('mouseenter', () => { if (ancha.matches) abre(i); });
+        // El teclado abre al enfocar, que es el equivalente de pasar el raton por encima. Va en
+        // `focusin` de la columna y no en el `focus` del boton: dentro esta tambien el enlace a
+        // /gallery/<slug>, y el foco tiene que abrir su columna llegue por donde llegue. Con
+        // Shift+Tab se entra a la columna POR el enlace; si solo abriera el boton, el foco caeria
+        // en un enlace con opacidad 0.
+        t.addEventListener('focusin', () => { if (ancha.matches) abre(i); });
       });
+
+      // EL ENLACE INVISIBLE NO SE PULSA. En una columna cerrada el parrafo es opacidad 0, pero
+      // sigue ahi: comparte celda con el titulo y queda POR ENCIMA del `::after` del boton. Un
+      // toque en una tableta apaisada, o un clic rapido sobre el titulo, se iria a la galeria sin
+      // haber visto la columna. Se mira la opacidad al PULSAR (no al soltar: en tactil el
+      // `mouseenter` emulado abre la columna entre medias) y, si el enlace no se veia, el clic se
+      // anula y queda lo de siempre, la columna abriendose. El clic de teclado (`detail` 0) no
+      // pasa por aqui: el foco ya abrio su columna.
+      let seVeiaAlPulsar = true;
+      banda.addEventListener('pointerdown', (ev) => {
+        const p = ev.target.closest?.('.feature-text');
+        seVeiaAlPulsar = !p || +getComputedStyle(p).opacity >= 0.5;
+      }, true);
+      banda.addEventListener('click', (ev) => {
+        if (ev.detail && ancha.matches && !seVeiaAlPulsar && ev.target.closest?.('.feature-text a')) {
+          ev.preventDefault();
+        }
+        seVeiaAlPulsar = true;   // vale para UN clic: el siguiente sin pulsacion (lector, teclado) pasa
+      }, true);
 
       botones.forEach((b, i) => {
         if (!b) return;
         b.addEventListener('click', () => { if (ancha.matches) abre(i); });
-        // El teclado abre al enfocar, que es el equivalente de pasar el raton por encima.
-        b.addEventListener('focus', () => { if (ancha.matches) abre(i); });
         // Flechas, Inicio y Fin mueven el foco Y abren, como hace el raton. Mover el foco sin
         // abrir dejaria al teclado enfocando una columna cerrada, con su titulo en vertical y
         // su parrafo invisible: el foco estaria en un sitio que no se puede leer.

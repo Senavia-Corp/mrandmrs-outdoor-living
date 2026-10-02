@@ -23,7 +23,7 @@ import http from 'node:http';
 import { chromium } from 'playwright';
 import { JSDOM } from 'jsdom';
 import { ARGS_NAVEGADOR, aSlug, asentar, textoNormalizado } from './lib/captura.mjs';
-import { lineasTarjetas } from '../src/lib/galeria-categorias.mjs';
+import { lineasTarjetas, lineasBanda } from '../src/lib/galeria-categorias.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 
@@ -100,6 +100,68 @@ const APOYOS_CIUDAD = SANITY_CIUDADES
     `apoyo del heroe de ${d.name}: resuelve QUE, DONDE, PARA QUIEN y QUE HACER AHORA sin ofrecer `
     + 'la remodelacion, que compite con la intencion del anuncio arriba del pliegue',
     [ruta]]);
+
+/**
+ * ── LA BANDA «Project Gallery», DERIVADA (PANELES-GALERIA, 2-oct-2026) ─────────────────────────
+ *
+ * Los seis paneles de «Pool Features & Upgrades» pasan a ser las seis categorias de /gallery, en
+ * las 55 rutas que llevan la banda. Son 14 lineas -titular, entradilla y seis pares nombre/parrafo-
+ * que se sustituyen UNA A UNA, en el mismo orden, por las de `lineasBanda()`: la misma funcion que
+ * escribe el marcado, asi que si mañana cambia un slug o una `linea` en galeria-categorias.json, la
+ * pagina y esta declaracion se mueven juntas.
+ *
+ * Lo viejo sale del BASELINE, que no se mueve nunca: los seis pares nombre/parrafo, escritos aqui, y
+ * el titular y la entradilla de cada ruta, que se LEEN de `baseline/text/<ruta>.txt` -las dos lineas
+ * justo antes del primer panel-. No de la cache de Sanity: `headingFeature`/`paragraphFeatures` ya
+ * no se pintan y se pueden limpiar alli, y una declaracion que leyera la cache se pondria roja en las
+ * 53 por un texto correcto. Si el baseline no trae la banda donde se espera, revienta al arrancar.
+ */
+const PANELES_VIEJOS = [
+  'Energy Efficient Systems',
+  'Engineered energy-efficient systems include variable-speed pumps, saltwater systems, efficient '
+    + 'heaters, and LED lighting—designed to reduce operating costs and improve long-term pool performance.',
+  'Smart Automation',
+  'Smart pool automation allows seamless control of filtration, heating, lighting, and water features '
+    + 'from one system—improving efficiency, convenience, and the overall luxury pool experience.',
+  'Water Features',
+  'Custom water features such as sheer descents, scuppers, bubblers, and spillover spas are engineered '
+    + 'to enhance visual impact, movement, and sound while integrating seamlessly into the pool design.',
+  'Fire & Lighting Features',
+  'Fire bowls, fire pits, and architectural lighting create dramatic outdoor environments, extending '
+    + 'usability into the evening while enhancing ambiance, safety, and visual depth.',
+  'Safety & Comfort',
+  'Integrated safety and comfort features include slip-resistant surfaces, pool covers, handrails, and '
+    + 'code-compliant barriers—designed to meet Florida regulations without sacrificing aesthetics.',
+  'Outdoor Living Enhancements',
+  'Outdoor living design-build enhancements include outdoor kitchens, pergolas, hardscaping, and '
+    + 'architectural shade structures—fully integrated to create a cohesive, high-end outdoor environment.',
+];
+const RUTAS_BANDA = [
+  ...SANITY_CIUDADES.map((d) => `/pool-builders/${d.slug}`),
+  '/where-we-serve/north-florida',
+  '/where-we-serve/south-florida',
+];
+/* Solo las rutas CON baseline: una ciudad que entre mañana en la cache de Sanity no tiene
+ * referencia, no se mide, y no puede tumbar al arrancar una corrida de `/services/`. */
+const baselineDe = (ruta) => path.join(RAIZ, 'baseline/text', `${aSlug(ruta)}.txt`);
+const CABECERAS_BANDA = RUTAS_BANDA.filter((ruta) => fs.existsSync(baselineDe(ruta))).map((ruta) => {
+  const lineas = fs.readFileSync(baselineDe(ruta), 'utf8').split('\n');
+  const i = lineas.indexOf(PANELES_VIEJOS[0]);
+  if (i < 2 || lineas.indexOf(PANELES_VIEJOS[0], i + 1) >= 0
+    || PANELES_VIEJOS.some((v, k) => lineas[i + k] !== v)) {
+    throw new Error(`BANDA_GALERIA: el baseline de ${ruta} no trae los seis paneles viejos seguidos`);
+  }
+  return [ruta, lineas.slice(i - 2, i)];
+});
+const BANDA_GALERIA = CABECERAS_BANDA.flatMap(([ruta, cabecera]) => {
+  const viejas = [...cabecera, ...PANELES_VIEJOS];
+  const nuevas = lineasBanda();
+  if (viejas.length !== nuevas.length) {
+    throw new Error(`BANDA_GALERIA: ${viejas.length} lineas viejas contra ${nuevas.length} nuevas`);
+  }
+  return viejas.map((v, i) => [v, nuevas[i],
+    'PANELES-GALERIA: la banda de seis paneles pasa a ser la puerta a /gallery/<slug>', [ruta]]);
+});
 
 const SERVICIOS_CAT = JSON.parse(
   fs.readFileSync(path.join(RAIZ, 'src/data/servicios-categoria.json'), 'utf8'));
@@ -276,6 +338,7 @@ const TRADUCIDAS_A_PROPOSITO = [
    */
   /* Las 53, derivadas arriba: el `intro` de Sanity -> el `apoyo` que genera la capa. */
   ...APOYOS_CIUDAD,
+  ...BANDA_GALERIA,
   /* Y el h2 + parrafo de la seccion de intro de las 51 (las 2 piloto van a mano, mas arriba). */
   ...INTRO_CIUDAD,
 
