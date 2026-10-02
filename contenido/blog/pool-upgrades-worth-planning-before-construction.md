@@ -31,16 +31,16 @@
   },
   "figuras": [
     {
-      "ref": "construction-2",
-      "alt": "Two white loungers standing in the shallow sun shelf at one end of a rectangular pool, with a raised spa faced in blue mosaic at the far corner and a lake and palms beyond the deck."
+      "ref": "bi-0089",
+      "alt": "Empty new pool with two loungers on its sun shelf beside the entry steps, set in a deck of large-format pale tiles."
     },
     {
-      "ref": "construction-0",
-      "alt": "Raised spa faced in dark blue mosaic under white coping, spilling over its edge into the rectangular pool below, with submerged entry steps and a clipped hedge behind a black metal fence."
+      "ref": "bi-0712",
+      "alt": "Drone view past a roof edge onto a pool rebar cage, with the spa form and its red and white plumbing lines inside it."
     },
     {
-      "ref": "construction-6",
-      "alt": "Rectangular pool with a pale blue interior and a step edged in dark tile, beside a raised spa clad in dark blue mosaic and a pale stone deck running out to a strip of lawn."
+      "ref": "mrandmrs-pool-spa-a2-blog-project-062-23",
+      "alt": "Light blue pool and raised spa beside a covered lanai, with two white loungers at the corner and trees behind a white fence."
     }
   ],
   "faq": [
@@ -110,7 +110,7 @@ Three things worth settling while they are still drawings: how deep the sun shel
 
 Depth is where the sun shelf goes wrong, and it goes wrong in both directions. Deep enough to feel like part of the pool is too deep for a lounger to stand level in it; shallow enough to hold the chairs properly is shallow enough that nobody swims over it. Decide which of the two the shelf is for while it is a drawing, because afterwards it is the shape of the concrete. The entry has the same either-or: a full-width set of steps looks generous and eats swimming length, and a corner entry keeps it.
 
-{{figura: construction-2}}
+{{figura: bi-0089}}
 
 ### 3. Water features
 
@@ -118,7 +118,7 @@ Bubblers, deck jets and spillovers are plumbing. Each one is a line run before t
 
 The detail most people find out too late is that they want them on separate valves. A spillover runs constantly and becomes background; bubblers are charming for an hour and loud for an evening. Separately valved, you choose. Shared off one line, you get all of them or none of them, and correcting that afterwards is a dig.
 
-{{figura: construction-0}}
+{{figura: bi-0712}}
 
 ### 4. Light niches, and how many
 
@@ -175,7 +175,7 @@ Our estimator applies a multiplier to the shell: plaster counts as one, pebble a
 
 It goes in after everything else, which makes it the last upgrade you can still change your mind about, and the one that does most to the color of the water. It also has the shortest window at the other end: once it is applied, changing it means draining and resurfacing the pool.
 
-{{figura: construction-6}}
+{{figura: mrandmrs-pool-spa-a2-blog-project-062-23}}
 
 ## Why there is no price for adding it afterwards
 

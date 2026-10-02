@@ -39,16 +39,16 @@
   },
   "figuras": [
     {
-      "ref": "mrandmrs-pool-spa-a2-blog-project-062-28",
-      "alt": "Raised square spa clad in pale mosaic tile spilling into a rectangular pool, seen from the pool deck."
+      "ref": "bi-0661",
+      "alt": "Raised spa clad in cobalt blue mosaic at the back of a deep blue pool, with a stone deck and potted plants."
     },
     {
-      "ref": "mrandmrs-pool-spa-a2-blog-project-062-11",
-      "alt": "Two-storey Florida home with a geometric pool, raised spa and white stone deck running the width of the backyard."
+      "ref": "bi-0977",
+      "alt": "Freestanding bronze pergola with a slatted privacy screen and wicker seating on a paver deck beside a curved pool"
     },
     {
-      "ref": "mrandmrs-pool-spa-a2-blog-project-062-21",
-      "alt": "Pool and raised spa seen across the lawn, with palms and the rear of the house behind."
+      "ref": "enclosures-6",
+      "alt": "Screened enclosure over a pool and raised spa, with a handrail, stone deck, lounge chairs and a lake beyond the screen."
     }
   ],
   "faq": [
@@ -81,7 +81,7 @@ A rectangle or a clean L-shape, a raised spa at one end clad in mosaic tile with
 
 What it asks: a spa shares plumbing and heating with the pool, so its position is decided with the hydraulics. The spillway is a detail that has to be built, not added.
 
-{{figura: mrandmrs-pool-spa-a2-blog-project-062-28}}
+{{figura: bi-0661}}
 
 ## 2. The sun shelf pool
 
@@ -107,7 +107,7 @@ A dark plaster, quartz or pebble finish turns the water a deep blue or green, re
 
 What it asks: dark finishes warm the water faster and show chemistry problems sooner. In Florida that is a trade-off worth understanding before you choose; we cover it in [dark pool finishes in Florida](/blogs/dark-pool-finishes-in-florida).
 
-{{figura: mrandmrs-pool-spa-a2-blog-project-062-11}}
+{{figura: bi-0977}}
 
 ## 6. The pool and pergola designed together
 
@@ -139,7 +139,7 @@ A pool and deck under a screen enclosure, with the enclosure's roof line followi
 
 What it asks: the enclosure is a structure engineered for the local wind design, with its own footings and permit. Its columns are placed with the pool and deck so nothing lands on plumbing. See our [pool screen enclosures](/services/pool-screen-enclosures-for-north-south-florida-pools) page.
 
-{{figura: mrandmrs-pool-spa-a2-blog-project-062-21}}
+{{figura: enclosures-6}}
 
 ## How to tell a design idea from a design mistake
 

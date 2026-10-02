@@ -34,8 +34,8 @@
   },
   "summary": "Outdoor living space adds value to a Florida home when it is permitted, built from materials that survive the climate, sized to the house, and usable most of the year. It subtracts value when it is not. Here is what buyers, appraisers and insurers actually look at, and how to build for it.",
   "portada": {
-    "ref": "custom-pergola-patio-cover-builders-florida-05",
-    "alt": "Timber pavilion with a vaulted roof and ceiling fan, sheltering an outdoor kitchen and bar seating."
+    "ref": "pergolas-2",
+    "alt": "Brown pergola with ceiling fans over a U-shaped stacked-stone outdoor kitchen with a grill and drinks fridges, palms behind"
   },
   "figuras": [
     {
@@ -43,12 +43,12 @@
       "alt": "Hardwood deck stepping down from a house toward a pool, with planting along the edge."
     },
     {
-      "ref": "custom-outdoor-kitchen-with-grill-florida",
-      "alt": "Outdoor kitchen island with a built-in grill and stone cladding, under a covered patio beside palms."
+      "ref": "enclosures-3",
+      "alt": "Freeform pool inside a dark-framed screen enclosure that joins the house at a covered lanai with a ceiling fan."
     },
     {
-      "ref": "custom-pergola-patio-cover-builders-florida-02",
-      "alt": "Glass-topped aluminium pergola beside a pool, with a slatted privacy screen at one end."
+      "ref": "decks-1",
+      "alt": "Wood pergola over a hardwood deck that runs along a white single-story house, with lawn on both sides."
     }
   ],
   "faq": [
@@ -103,7 +103,7 @@ The practical consequence: keep the permits, the plans and the closed inspection
 
 A pool and permanent structures are reported to the county property appraiser when they are permitted, and they can change the assessed value. How Florida's homestead rules and assessment caps treat the change depends on your situation; the county property appraiser's office and a tax professional are the right sources, not a blog. Insurers price pools, screened structures and outdoor kitchens by their own underwriting; a conversation with your carrier before you build avoids surprises, and a permitted, code-compliant barrier is usually part of what they want to see.
 
-{{figura: custom-outdoor-kitchen-with-grill-florida}}
+{{figura: enclosures-3}}
 
 ## What holds value in the Florida climate
 
@@ -123,7 +123,7 @@ Our [outdoor living design guide](/blogs/outdoor-living-design-guide-for-florida
 
 The improvements that add the most are the ones that look like they were always there. A pergola scaled to the elevation of the house, a deck material that matches the interior floor tone, a kitchen placed where the cook can see the pool, a screen enclosure whose roof line follows the house. Oversized, mismatched or awkwardly placed features are the ones buyers mentally budget to remove. Planning the pool and the structures together is how you avoid it; our guide to [a pergola beside a pool](/blogs/pergola-beside-a-pool-features-to-plan-together) is one example of what that planning looks like.
 
-{{figura: custom-pergola-patio-cover-builders-florida-02}}
+{{figura: decks-1}}
 
 ## A practical order of operations
 

@@ -26,8 +26,8 @@
   },
   "summary": "Two quotes for the same patio can be thousands apart and read identically. Seven things explain the gap, and five of them are decided the day the posts go in.",
   "portada": {
-    "ref": "louvered-3",
-    "alt": "White aluminum louvered roof attached to a beige stucco house, covering a patio with lounge chairs beside a pool, a curved handrail at the steps and a mosaic tile band at the waterline."
+    "ref": "bi-0214",
+    "alt": "White louvered roof lit with red LEDs at dusk over a wicker sectional and lounge chairs on a travertine patio"
   },
   "figuras": [
     {
@@ -39,8 +39,8 @@
       "alt": "Motorized louvered roof over a paver patio, with aged aluminum shutters on the house windows, a weathered white wood fence behind and a tennis ball left on the lawn."
     },
     {
-      "ref": "louvered-5",
-      "alt": "Bronze-framed louvered roof with white blades over a paved courtyard, the motor housing sitting on top of the beam and a modern glass-walled house behind it."
+      "ref": "bi-0225",
+      "alt": "Top of a white louvered roof with the actuators on its blades and a small solar panel, a modern glass-walled house behind"
     }
   ],
   "faq": [
@@ -158,7 +158,7 @@ Compare four things:
 - **Actuators or a driven tube.** Ask which, and ask what a replacement part costs and how long one takes to arrive. That second answer decides whether a failure is a service call or a roof stuck in one position until the part ships.
 - **What happens when the power is out.** There should be a manual way to move the blades, or a defined safe position the roof holds. Ask to be shown it rather than told about it.
 
-{{figura: louvered-5}}
+{{figura: bi-0225}}
 
 ## 7. Controls and sensors
 

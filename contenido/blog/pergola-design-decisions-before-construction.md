@@ -26,21 +26,21 @@
   },
   "summary": "A pergola is a small project with a very short window. These seven decisions close before anything is built, most of them the day the posts go into concrete, and most people never realize they made them.",
   "portada": {
-    "ref": "pergolas-0",
-    "alt": "White aluminum pergola beside a stucco house, with a solid roof panel and a slatted side panel, over a paver patio where a row of white bar stools lines a counter."
+    "ref": "bi-1036",
+    "alt": "Bronze two-tier lattice pergola seen from the front against the sky, with palms, a hedge and a stucco house at right"
   },
   "figuras": [
     {
-      "ref": "pergolas-5",
-      "alt": "Timber pavilion with a gable roof and exposed trusses bolted with steel plates, covering an outdoor kitchen with two built-in grills, a stone island with bar stools and ceiling fans hung along the ridge."
+      "ref": "bi-1012",
+      "alt": "White patio cover across the back of a yellow two-story house, wicker lounge seats and a dining set beneath it"
     },
     {
-      "ref": "pergolas-1",
-      "alt": "Attached patio cover with translucent roof panels over a red brick paver patio, with two blue planters and a pair of metal chairs in front of the French doors of a tile-roofed stucco house."
+      "ref": "bi-1073",
+      "alt": "Underside of a dark woodgrain pergola grid under clear roof panels dotted with raindrops, a ceiling fan below"
     },
     {
-      "ref": "pergolas-8",
-      "alt": "Freestanding dark aluminum pergola with translucent roof panels beside a pool, with a slatted privacy panel under it and two thin black cables left hanging from the frame."
+      "ref": "bi-1061",
+      "alt": "Black-framed cover at night, its wood-look ceiling lit by recessed lights and a fan, boxes and a cord still on the patio"
     }
   ],
   "faq": [
@@ -108,7 +108,7 @@ Two things about the numbers on a pergola drawing are worth knowing before you r
 
 The structure should also be smaller than the paving under it, not the same size. A slab sized exactly to the pergola puts chair legs off the edge, and that is a mistake you notice every time somebody sits down.
 
-{{figura: pergolas-5}}
+{{figura: bi-1012}}
 
 ## 2. Where the posts land
 
@@ -156,7 +156,7 @@ The moment the roof sheds water, a second decision appears that most homeowners 
 
 A solid roof also changes the structure itself. It catches wind in a way an open frame does not, which affects the frame, the footings, and what gets reviewed when the drawings are submitted. What that review involves where you live is in [whether a pergola needs a permit in Florida](/blogs/do-you-need-a-permit-for-a-pergola-in-florida).
 
-{{figura: pergolas-1}}
+{{figura: bi-1073}}
 
 ## 5. What it stands on
 
@@ -185,7 +185,7 @@ Two details that get missed even when the wiring is planned:
 
 The split is the same one that governs pool equipment: you can defer the purchase, you cannot defer the buried half. Buy the fan next year if you want. Put the conduit and the blocking in this year.
 
-{{figura: pergolas-8}}
+{{figura: bi-1061}}
 
 ## 7. What you are leaving room for
 

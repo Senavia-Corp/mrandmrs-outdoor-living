@@ -27,21 +27,21 @@
   },
   "summary": "A pergola beside a pool is not a pergola that happens to be near water. Four of these eight decisions stop being cheap the day the deck is poured, and the deck material decides how expensive they get.",
   "portada": {
-    "ref": "pergolas-4",
-    "alt": "Aluminum pergola standing over a pool deck beside a canal, with newly staked palms on one side and loose garden uplights lying on the gravel."
+    "ref": "bi-1046",
+    "alt": "Dark freestanding lattice pergola over a raised blue-tiled spa on a stone deck, with palms and a canal behind"
   },
   "figuras": [
     {
-      "ref": "pergolas-3",
-      "alt": "Dark-framed pergola on a pool deck, with overhead utility lines crossing the sky and a faded wooden gate in the back fence."
+      "ref": "bi-1042",
+      "alt": "Small dark woodgrain pergola on a new concrete pad a few feet from the blue-tiled edge of a pool"
     },
     {
       "ref": "pergolas-8",
       "alt": "Dark bronze aluminum pergola with pale translucent roof panels beside a pool and spa, with a black electrical cable left hanging from the frame where a light fixture will go."
     },
     {
-      "ref": "pergolas-7",
-      "alt": "Aluminum patio cover next to a pool, with a removable mesh safety fence, sheets of construction plastic on the grass and a ribbed downspout at the corner of the house."
+      "ref": "bi-0937",
+      "alt": "Low view under a white patio cover on black posts, a black mesh pool safety fence running just beyond them"
     }
   ],
   "faq": [
@@ -96,7 +96,7 @@ That is the practical case for one plan instead of two. The information you need
 
 There is a comfort dimension too. Measure the walkway from the water's edge, not from the house wall. A post set tight to the coping turns the busiest side of the deck into a corridor, and nobody notices on a drawing.
 
-{{figura: pergolas-3}}
+{{figura: bi-1042}}
 
 ### 2. Which side of the pool, and how far back
 
@@ -146,7 +146,7 @@ A structure built beside the pool can touch that line. Posts landing next to a f
 
 How the submittal itself works, and what it depends on, is in [do you need a permit for a pergola in Florida](/blogs/do-you-need-a-permit-for-a-pergola-in-florida).
 
-{{figura: pergolas-7}}
+{{figura: bi-0937}}
 
 ### 7. What lives underneath, and what the water does to it
 

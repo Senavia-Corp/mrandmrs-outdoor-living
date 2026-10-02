@@ -34,21 +34,21 @@
   },
   "summary": "A dark finish turns a Florida pool into a deep blue or green mirror, warms the water faster, hides debris and shows chemistry mistakes. It is the single choice that changes a pool's character most, and it rewards owners who understand the trade-offs before they pick a sample.",
   "portada": {
-    "ref": "construction-0",
-    "alt": "Rectangular pool with a raised spa clad in dark blue glass mosaic tile, jets running inside it, edged by a narrow white coping band with lawn running straight up to the stone on every side."
+    "ref": "bi-0662",
+    "alt": "Cobalt glass mosaic pool with a bubbler and a raised mosaic spa, potted plants and palms behind a dark slatted fence"
   },
   "figuras": [
     {
-      "ref": "construction-6",
-      "alt": "Rectangular pool with a pale blue interior and a step edged in dark tile, beside a raised spa clad in dark blue mosaic and a pale stone deck running out to a strip of lawn."
+      "ref": "bi-1027",
+      "alt": "Dark bronze pergola over a blue-tiled spa beside a deep blue pool, with a wicker lounger on a stone deck."
     },
     {
-      "ref": "remodeling-2",
-      "alt": "Rectangular pool with three spillway scuppers set into a rendered wall, a fire bowl on the deck and bougainvillea behind it."
+      "ref": "bi-0909",
+      "alt": "Dark aluminum patio cover with a slatted privacy screen, shading the deck at the edge of a pool with stepping pads."
     },
     {
-      "ref": "construction-1",
-      "alt": "Rectangular pool with a raised spa and water spouts, set in a herringbone travertine deck, with neighbouring barrel-tile roofs behind the hedge."
+      "ref": "mrandmrs-pool-spa-a2-blog-project-062-28",
+      "alt": "Raised spa wrapped in pale mosaic tile in a light-finish pool, with white stone coping and two loungers on the deck beyond."
     }
   ],
   "faq": [
@@ -86,7 +86,7 @@ The interior finish of a gunite pool is a cementitious layer applied over the sh
 
 The material decides durability and texture; the color decides how the water reads. A medium gray quartz and a black pebble are both "dark" and look nothing alike. We discuss brands and specific product lines in a design meeting with samples in hand, because the right choice depends on the look you want, the sanitizer you will use and how the pool is maintained.
 
-{{figura: construction-6}}
+{{figura: bi-1027}}
 
 ## How the water reads
 
@@ -103,7 +103,7 @@ A dark surface absorbs more of the sun that reaches it than a white one does, an
 
 The answers are decided in design: shade over part of the pool, water features that move water and air, running the pump and features at night, and, where the owner wants a guaranteed temperature, a heat pump that cools as well as heats. None of them are reasons to avoid a dark finish; they are the reasons to choose it with your eyes open.
 
-{{figura: remodeling-2}}
+{{figura: bi-0909}}
 
 ## What it shows and what it hides
 
@@ -127,7 +127,7 @@ Salt chlorination, mineral systems and ordinary chlorine all work with dark fini
 
 A dark finish is chosen with the tile, the coping and the deck, not after them. Tile that looked right against white plaster can disappear against charcoal, and a pale travertine deck that reads clean beside aqua water reads dramatic beside a black pool. Lighting is designed for it: fixtures lower and more of them, because dark water absorbs light. Our guide to [what makes a pool look custom](/blogs/what-makes-a-pool-look-custom) covers the palette as a whole, and [ten luxury pool designs for Florida homes](/blogs/top-10-luxury-pool-designs-for-florida-homes) shows where a dark finish earns its place.
 
-{{figura: construction-1}}
+{{figura: mrandmrs-pool-spa-a2-blog-project-062-28}}
 
 ## On a new pool or in a remodel
 

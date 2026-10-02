@@ -27,21 +27,21 @@
   },
   "summary": "The choices that make a pool look custom are mostly early, mostly cheap, and mostly decided on the layout drawing. The ones that cost the most show the least. Here are the nine, in the order they get locked.",
   "portada": {
-    "ref": "construction-0",
-    "alt": "Rectangular pool with a raised spa clad in dark blue glass mosaic tile, jets running inside it, edged by a narrow white coping band with lawn running straight up to the stone on every side."
+    "ref": "bi-1039",
+    "alt": "Pool with an iridescent blue glass-tile spillover edge and a raised spa under a dark pergola, white house behind"
   },
   "figuras": [
     {
-      "ref": "construction-6",
-      "alt": "Two-storey house with a covered lanai and outdoor dining set beside a rectangular pool, a blue-tiled raised spa at the far corner, and grass strips set between paver squares in the foreground."
+      "ref": "bi-0685",
+      "alt": "Top-down drone view of blue pool layout lines painted on the sand right beside the back of a house."
     },
     {
-      "ref": "construction-4",
-      "alt": "Curved pool with three sheet waterfalls falling from a long raised wall of pale blue mosaic tile, a matching raised spa spilling into the water alongside it, and tall palms and a fairway beyond a black metal fence."
+      "ref": "mrandmrs-pool-remodeling-a2-blog-project-059-19",
+      "alt": "Raised spa clad in deep blue mosaic at the end of a pool, with white coping and deck and a covered patio behind."
     },
     {
-      "ref": "construction-2",
-      "alt": "Pool with a shallow sun shelf holding two white in-water loungers and a raised spa at the far end, on a wide travertine deck that runs toward a lake behind the fence."
+      "ref": "bi-0733",
+      "alt": "Top-down view of a gunite pool shell with its spa benches, entry steps and shelf formed, and PVC lines laid alongside."
     }
   ],
   "faq": [
@@ -91,7 +91,7 @@ A pool centered on the lot but aligned to nothing on the house reads as dropped 
 
 This costs nothing to get right on paper, and it is the most expensive item on this list to change once the layout has gone to the county. [The twelve decisions worth settling before excavation](/blogs/before-you-build-a-pool-in-florida) covers what else locks at that same moment.
 
-{{figura: construction-6}}
+{{figura: bi-0685}}
 
 ## 2. Deck proportion — how much, and on which side
 
@@ -111,7 +111,7 @@ One is usually enough. Two competing raised elements on a suburban lot start to 
 
 Whatever you choose is structural: it is formed with the shell and poured once. The prices for each kind are in [what a custom pool really costs](/blogs/how-much-does-a-custom-pool-cost-in-florida).
 
-{{figura: construction-4}}
+{{figura: mrandmrs-pool-remodeling-a2-blog-project-059-19}}
 
 ## 4. Coping, waterline tile and deck as one decision
 
@@ -143,7 +143,7 @@ A sun shelf is not an item to add to a list. It is a piece of the plan with a di
 
 Entry steps work the same way. Steps on the house side are convenient, and they also put the busiest, most visually cluttered part of the pool — handrail, step markers, the change in water color — right in the primary view from the slider. Moving them to a corner is free at layout and impossible afterward.
 
-{{figura: construction-2}}
+{{figura: bi-0733}}
 
 ## 8. The things you are trying not to see
 

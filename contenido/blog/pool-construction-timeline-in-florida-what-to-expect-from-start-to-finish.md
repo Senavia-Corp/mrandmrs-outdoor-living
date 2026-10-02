@@ -38,16 +38,16 @@
   },
   "figuras": [
     {
-      "ref": "mrandmrs-pool-spa-a2-blog-project-062-23",
-      "alt": "Pool and raised spa beside a covered lanai, with loungers on the stone deck and trees behind."
+      "ref": "bi-0683",
+      "alt": "Rear of a white house with blue pool layout lines painted on a sandy, tire-tracked yard, and large trees and pasture behind."
     },
     {
-      "ref": "mrandmrs-pool-spa-a2-blog-project-062-29",
-      "alt": "Close view of the raised spa mosaic cladding and the spillway into the pool."
+      "ref": "bi-0592",
+      "alt": "Iridescent blue glass tile outlining the steps and sun shelf of a pool shell before plaster."
     },
     {
-      "ref": "mrandmrs-pool-spa-a2-blog-project-062-05",
-      "alt": "Aerial view of a finished pool and raised spa, showing the full deck layout and the surrounding fence line."
+      "ref": "mrandmrs-pool-spa-a7-blog-project-061-11",
+      "alt": "Rectangular pool behind a two-story house, enclosed by a black mesh safety fence, with a dark-framed patio cover alongside."
     }
   ],
   "faq": [
@@ -91,7 +91,7 @@ Two phases happen before the yard changes, and they decide most of the schedule.
 
 **Permitting.** The building department reviews the plans; zoning, the HOA, and where they apply the septic and flood-zone reviews run alongside. We cover [what each permit is and who issues it](/blogs/what-permits-are-required-for-pool-construction-in-florida). The length of this phase depends on the office and the season, and the fastest way through it is a complete submission the first time.
 
-{{figura: mrandmrs-pool-spa-a2-blog-project-062-23}}
+{{figura: bi-0683}}
 
 ## The construction phases, in order
 
@@ -118,7 +118,7 @@ From our projects, the calendar is lost or won in a short list of places.
 - **Selections.** A tile or finish that has not been chosen when the shell is cured is the most common self-inflicted delay.
 - **Inspection scheduling.** Each stage is inspected when the inspector is available. A failed item, often a bonding connection or a gate latch, means a re-inspection.
 
-{{figura: mrandmrs-pool-spa-a2-blog-project-062-29}}
+{{figura: bi-0592}}
 
 ## Seasons
 
@@ -128,7 +128,7 @@ Florida builds pools year-round, but not evenly. The dry season, late fall throu
 
 A plastered pool is filled immediately and then balanced over the first days while the finish cures underwater. During that window the equipment runs on a startup schedule and the water chemistry is adjusted daily. We walk you through the equipment and the automation at startup, hand over the closed permit, and the pool is yours. The barrier, the one thing the final inspection will not pass without, is built in parallel, not after.
 
-{{figura: mrandmrs-pool-spa-a2-blog-project-062-05}}
+{{figura: mrandmrs-pool-spa-a7-blog-project-061-11}}
 
 ## What we give you instead of a generic number
 

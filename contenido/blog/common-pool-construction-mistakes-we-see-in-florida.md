@@ -33,17 +33,17 @@
   },
   "summary": "Most pool problems in Florida are decided before the first shovel: a lot that was not evaluated, water that was not planned for, plumbing sized by habit, a deck that drains toward the pool. Here are the mistakes we are asked to fix on other people's pools, and what prevents each one.",
   "portada": {
-    "ref": "mrandmrs-pool-remodeling-a2-blog-project-059-08",
-    "alt": "Remodelled rectangular pool with a raised spa clad in deep-blue mosaic, a pale travertine deck and a poolside basketball hoop."
+    "ref": "construction-3",
+    "alt": "Square spa edged in blue mosaic inside a pool with two in-water loungers, beside a louvered pergola and a black metal fence"
   },
   "figuras": [
     {
-      "ref": "mrandmrs-pool-remodeling-a2-blog-project-059-02",
-      "alt": "Aerial view of a remodelled pool and raised spa framed by a travertine deck, clipped hedge and artificial turf."
+      "ref": "bi-0696",
+      "alt": "Close aerial view of a dug pool showing its depth, with form boards along the house and a mini excavator at the edge."
     },
     {
-      "ref": "mrandmrs-pool-remodeling-a2-blog-project-059-19",
-      "alt": "Remodelled pool seen from the deck, with the raised spa spilling into the main body of water."
+      "ref": "bi-0595",
+      "alt": "Travertine paving running from a covered patio to the pool deck, with a linear drain set along the joint."
     },
     {
       "ref": "mrandmrs-pool-remodeling-a2-blog-project-059-24",
@@ -101,7 +101,7 @@ Much of Florida has groundwater close to the surface. Two things follow. During 
 
 What prevents it: knowing the water table before the design, engineering for it, and never draining the pool "to clean it" without advice.
 
-{{figura: mrandmrs-pool-remodeling-a2-blog-project-059-02}}
+{{figura: bi-0696}}
 
 ## 3. Hitting rock without a plan
 
@@ -127,7 +127,7 @@ The deck has to shed rain away from the house and away from the pool. A flat dec
 
 What prevents it: deck grading designed with the drainage plan, deck drains where the layout traps water, and a base built for the paver.
 
-{{figura: mrandmrs-pool-remodeling-a2-blog-project-059-19}}
+{{figura: bi-0595}}
 
 ## 7. The wrong finish for the water chemistry
 

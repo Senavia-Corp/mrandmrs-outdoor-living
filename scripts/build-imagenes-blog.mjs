@@ -416,6 +416,37 @@ const DISTINTAS_A_OJO = {
 const CASA_DECLARADA = {
   /* 'construction-3': 'obra-NNN — mirado a ojo, fecha'   → es esa casa
    * 'construction-7': 'sola — mirado a ojo, fecha'       → casa propia: no coincide con ninguna otra */
+  /* BLOG-BANCO (2-oct-2026): portadas de /gallery y del banco sin `proyecto`, miradas en hoja junto a
+   * sus vecinas de /blogs-tips, del carrusel generico y de su ficha. */
+  'construction-6': 'obra-046 — misma obra vista a ojo por el casting (2-oct-2026)',
+  'remodeling-7': 'legado-062 — misma obra vista a ojo por el casting (2-oct-2026)',
+  'kitchen-6': 'obra-075 — misma obra vista a ojo por el casting (2-oct-2026)',
+  'kitchen-4': 'obra-071 — misma obra vista a ojo por el casting (2-oct-2026)',
+  'kitchen-0': 'obra-076 — misma obra vista a ojo por el casting (2-oct-2026)',
+  'kitchen-1': 'obra-066 — misma obra vista a ojo por el casting (2-oct-2026)',
+  'remodeling-4': 'obra-087 — misma obra vista a ojo por el casting (2-oct-2026)',
+  'louvered-2': 'obra-035 — misma obra vista a ojo por el casting (2-oct-2026)',
+  'construction-2': 'sola — mirada a ojo junto a sus vecinas del indice y de su ficha (2-oct-2026)',
+  'custom-pool-spa-builders-florida-02': 'sola — mirada a ojo junto a sus vecinas del indice y de su ficha (2-oct-2026)',
+  'construction-3': 'sola — mirada a ojo junto a sus vecinas del indice y de su ficha (2-oct-2026)',
+  'pergolas-2': 'sola — mirada a ojo junto a sus vecinas del indice y de su ficha (2-oct-2026)',
+  'construction-7': 'sola — mirada a ojo junto a sus vecinas del indice y de su ficha (2-oct-2026)',
+  'construction-5': 'sola — mirada a ojo junto a sus vecinas del indice y de su ficha (2-oct-2026)',
+  'construction-9': 'sola — mirada a ojo junto a sus vecinas del indice y de su ficha (2-oct-2026)',
+  'construction-0': 'sola — mirada a ojo junto a sus vecinas del indice y de su ficha (2-oct-2026)',
+  'construction-4': 'sola — mirada a ojo junto a sus vecinas del indice y de su ficha (2-oct-2026)',
+  'remodeling-5': 'sola — mirada a ojo junto a sus vecinas del indice y de su ficha (2-oct-2026)',
+  'remodeling-8': 'sola — mirada a ojo junto a sus vecinas del indice y de su ficha (2-oct-2026)',
+  'remodeling-2': 'sola — mirada a ojo junto a sus vecinas del indice y de su ficha (2-oct-2026)',
+  'remodeling-1': 'sola — mirada a ojo junto a sus vecinas del indice y de su ficha (2-oct-2026)',
+  'remodeling-3': 'sola — mirada a ojo junto a sus vecinas del indice y de su ficha (2-oct-2026)',
+  'pergolas-0': 'sola — mirada a ojo junto a sus vecinas del indice y de su ficha (2-oct-2026)',
+  'louvered-4': 'sola — mirada a ojo junto a sus vecinas del indice y de su ficha (2-oct-2026)',
+  'louvered-8': 'sola — mirada a ojo junto a sus vecinas del indice y de su ficha (2-oct-2026)',
+  'louvered-3': 'sola — mirada a ojo junto a sus vecinas del indice y de su ficha (2-oct-2026)',
+  'louvered-6': 'sola — mirada a ojo junto a sus vecinas del indice y de su ficha (2-oct-2026)',
+  'kitchen-2': 'sola — mirada a ojo junto a sus vecinas del indice y de su ficha (2-oct-2026)',
+  'enclosures-4': 'sola — mirada a ojo junto a sus vecinas del indice y de su ficha (2-oct-2026)',
 };
 
 const enLotes = async (xs, fn, n = 8) => { for (let i = 0; i < xs.length; i += n) await Promise.all(xs.slice(i, i + n).map(fn)); };

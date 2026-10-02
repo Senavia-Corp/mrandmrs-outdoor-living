@@ -27,21 +27,21 @@
   },
   "summary": "The estimator gives one number for a pergola: $8,500. This is what that number assumes, which six decisions push it up, and how to tell two pergola quotes apart when both totals look the same.",
   "portada": {
-    "ref": "pergolas-0",
-    "alt": "White aluminum pergola with slatted top over a paved patio with bar seating, a neighbouring tile roof visible through the slats."
+    "ref": "bi-0985",
+    "alt": "White freestanding solid-roof pergola with rafter tails over a stone paver patio, with a wood fence and palms behind"
   },
   "figuras": [
     {
-      "ref": "pergolas-9",
-      "alt": "Gabled aluminum patio cover attached to a stucco house, with a weathered wall lantern beside it and a white PVC fence behind."
+      "ref": "bi-1043",
+      "alt": "Small dark brown pergola with doubled beams and posts at the edge of a new concrete pad, stakes and loose soil around it"
     },
     {
-      "ref": "pergolas-8",
-      "alt": "Modern aluminum pergola beside a pool with two black electrical cables left hanging from the frame, waiting for light fixtures."
+      "ref": "bi-0957",
+      "alt": "Black-framed patio cover with three ceiling fans and an outlet on one post, over cream wicker sofas among palms"
     },
     {
-      "ref": "pergolas-4",
-      "alt": "Aluminum pergola on a waterfront lot beside a canal, with freshly staked palms to the left and loose garden spotlights sitting on gravel."
+      "ref": "bi-0635",
+      "alt": "Patio cover going up on a tile-roof house, with ladders, sawhorses and a plank walkway laid across the lawn"
     }
   ],
   "faq": [
@@ -104,7 +104,7 @@ The pergola is only as cheap as the ground under it. In rough order, from least 
 
 What the footing work involves in each case, and the point at which it stops being free, is the sequencing question in [the seven pergola decisions that close before construction](/blogs/pergola-design-decisions-before-construction). For reading a quote, only one thing has to be settled: which of the four rows above you are in. A contractor who has not asked is pricing a different one.
 
-{{figura: pergolas-9}}
+{{figura: bi-1043}}
 
 ## 3. Wind load, which is set by the lot
 
@@ -126,7 +126,7 @@ It is small only once. The same fixtures added afterwards mean surface conduit d
 
 Which provisions are worth leaving, and why it is settled at fabrication rather than at purchase, is [decision six of the seven that close before construction](/blogs/pergola-design-decisions-before-construction). Screens, lights and fans follow the same logic on the sides and overhead: [they are designed into the frame, not added to it](/blogs/designing-a-complete-louvered-roof-system).
 
-{{figura: pergolas-8}}
+{{figura: bi-0957}}
 
 ## 6. Site conditions the estimator does price
 
@@ -136,7 +136,7 @@ Three of them, and all three are checkboxes rather than judgement calls. Two are
 - **Rock excavation: 12 percent.** The rock is under the pool, not under the pergola — but our estimator surcharges the project total the same way, so the pergola line reads **$9,520** with it ticked, and **$10,200** with both. Worth knowing before you read the pergola line on a pool quote as a pergola price.
 - **HOA review: $1,500.** A flat line, and the fee is the easy part. The calendar cost is a board that meets when it meets, and the review normally has to clear before the permit application rather than alongside it.
 
-{{figura: pergolas-4}}
+{{figura: bi-0635}}
 
 ## Which decisions are still open later
 

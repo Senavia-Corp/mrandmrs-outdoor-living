@@ -38,16 +38,16 @@
   },
   "figuras": [
     {
-      "ref": "construction-8",
-      "alt": "Overhead view of a rectangular pool with a square spa set into it, water spilling over the spa rim on all four sides in a band of white foam, on a travertine deck with handrails at the pool edges and a lounger and blue umbrella at the bottom of the frame."
+      "ref": "bi-0739",
+      "alt": "Gunite pool shell with a square spa and a trench of PVC plumbing lines running alongside it, next to the house."
     },
     {
-      "ref": "remodeling-7",
-      "alt": "Raised spa clad in small white tile with its jets running, beside a rectangular pool with two white loungers standing on the deck at the top of its wide entry steps, and two grills under the covered lanai behind."
+      "ref": "mrandmrs-pool-spa-a2-blog-project-062-05",
+      "alt": "Square spa with its jets running, raised slightly above the pool and edged in white stone, with a white metal fence behind."
     },
     {
-      "ref": "construction-3",
-      "alt": "Pool with in-water loungers and an aluminium pergola attached to the house, with newly laid turf around the deck."
+      "ref": "bi-0708",
+      "alt": "Top-down view of a pool rebar cage in wood forms, with a square spa form, plumbing stubs and orange safety fencing around."
     }
   ],
   "faq": [
@@ -96,7 +96,7 @@ That is why a built-in plunge gets:
 
 What it can share is the equipment pad, the trench from the pad to the house, the electrical feed, the automation controller and, visually, the finish, tile and coping of the pool.
 
-{{figura: construction-8}}
+{{figura: bi-0739}}
 
 ## Sizing the chiller for Florida
 
@@ -115,7 +115,7 @@ Where the plunge goes decides how much it is used and how safe it is.
 - **Shade** cuts the chiller load and keeps the deck around the vessel cooler to stand on.
 - **The barrier.** A built-in plunge is a body of water inside the pool barrier required by Florida's Residential Swimming Pool Safety Act, with the same gate, alarm or cover requirements as the pool. A lockable, insulated cover does double duty: it holds the cold and it closes the vessel when nobody is around.
 
-{{figura: remodeling-7}}
+{{figura: mrandmrs-pool-spa-a2-blog-project-062-05}}
 
 ## Built in or placed on the deck
 
@@ -140,7 +140,7 @@ We build the first kind, and we will tell you if the second is the better answer
 5. **Cover and insulation**, specified with the vessel, not bought afterwards.
 6. **Control.** The plunge runs from the same automation as the pool, with its own schedule and set point.
 
-{{figura: construction-3}}
+{{figura: bi-0708}}
 
 ## Who should not use one
 

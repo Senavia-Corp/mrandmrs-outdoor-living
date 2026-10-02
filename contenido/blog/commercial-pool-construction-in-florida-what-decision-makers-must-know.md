@@ -33,8 +33,8 @@
   },
   "summary": "A commercial pool in Florida is regulated as a public pool: it needs a construction permit from the Department of Health as well as the building permit, it is engineered to the public pool rule, and it has operating obligations after opening. Here is what a developer, HOA board or property manager should settle before design.",
   "portada": {
-    "ref": "mrandmrs-pool-spa-a7-blog-project-061-08",
-    "alt": "Aerial view of a long lap pool alongside a covered lanai, with stepping-stone pavers across the lawn."
+    "ref": "bi-0658",
+    "alt": "White louvered pergolas over a wood-look deck on a high-rise terrace with a glass railing, apartment towers on both sides"
   },
   "figuras": [
     {
@@ -42,12 +42,12 @@
       "alt": "Lap pool seen from above, with a dark-framed aluminium patio cover running along the rear of the building."
     },
     {
-      "ref": "mrandmrs-pool-spa-a7-blog-project-061-14",
-      "alt": "Covered lanai with an aluminium patio cover, looking out over the lap pool toward the lake."
+      "ref": "bi-0642",
+      "alt": "Pool deck below a white multi-storey tower, with a pool lift and a handrail at the water's edge."
     },
     {
-      "ref": "mrandmrs-pool-spa-a7-blog-project-061-04",
-      "alt": "Lap pool and lawn from above, bordered by a removable mesh safety fence."
+      "ref": "mrandmrs-pool-spa-a2-blog-project-062-11",
+      "alt": "Rectangular pool with a raised spa and white deck beside a two-storey house, framed by lawn, palms and a white fence."
     }
   ],
   "faq": [
@@ -124,7 +124,7 @@ None of these are design preferences. They are what the engineer draws to, and w
 
 Pools at public accommodations are subject to the federal accessibility standards. For most new pools that means an accessible means of entry, typically a pool lift or a sloped entry, placed and specified in the design. Retrofitting access after the deck is poured is more expensive than designing it in, and an opening-day inspection that finds it missing is a delay you can avoid.
 
-{{figura: mrandmrs-pool-spa-a7-blog-project-061-14}}
+{{figura: bi-0642}}
 
 ## Operating obligations after opening
 
@@ -145,7 +145,7 @@ The order that avoids expensive revisions:
 
 We do not publish per-square-foot figures for commercial pools because they mislead: two pools of the same size can differ several-fold in cost depending on the treatment system, the deck program, accessibility, the equipment room and the site. What is consistent is that a public pool costs more than a residential pool of the same size, because the rule specifies more, both agencies inspect it, and the engineering is heavier. A realistic budget comes from a program and an engineered concept, which is what we prepare at the start of a commercial engagement.
 
-{{figura: mrandmrs-pool-spa-a7-blog-project-061-04}}
+{{figura: mrandmrs-pool-spa-a2-blog-project-062-11}}
 
 ## How we work on commercial projects
 

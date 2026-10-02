@@ -35,17 +35,17 @@
   },
   "summary": "Building a pool in Florida is a design-build process: evaluate the lot, design and engineer the pool, permit it, build it in a fixed sequence of inspected stages, and start it up. This guide walks the whole path and tells you where the price and the schedule are actually decided.",
   "portada": {
-    "ref": "mrandmrs-pool-spa-a7-blog-project-061-12",
-    "alt": "Lap pool behind a Florida home, enclosed by a removable black mesh safety fence, with a dark-framed aluminium patio cover over the lanai."
+    "ref": "construction-2",
+    "alt": "Rectangular pool with two white loungers on its sun shelf and a spa at the far end, travertine deck, palms and a lake beyond"
   },
   "figuras": [
     {
-      "ref": "mrandmrs-pool-spa-a7-blog-project-061-09",
-      "alt": "Aerial view of a narrow lap pool set in a lawn, with stepping-stone pavers and a covered lanai along the back of the house."
+      "ref": "bi-0682",
+      "alt": "Sandy backyard behind a new white house before pool work starts, with lumber on the ground and large trees beyond."
     },
     {
-      "ref": "mrandmrs-pool-spa-a7-blog-project-061-11",
-      "alt": "Lap pool and covered lanai seen from the lawn, with a mesh safety fence around the water."
+      "ref": "bi-0723",
+      "alt": "Top-down drone view of a crew shooting gunite over the rebar of a rectangular pool, with the square spa form still open."
     },
     {
       "ref": "mrandmrs-pool-spa-a7-blog-project-061-07",
@@ -95,7 +95,7 @@ Three things shape every pool project in this state and most of the decisions be
 - **Weather.** A long summer rainy season and a hurricane season that runs through November. Rain stops excavation and concrete work; a storm can pause a project for a week. This is why the dry months are the busy months for pool builders.
 - **Code and licensing.** The Florida Building Code, currently the 8th Edition (2023), and the Residential Swimming Pool Safety Act set what a pool and its barrier have to be. The Department of Business and Professional Regulation licenses the contractors who may build one. Both are enforced locally by the city or county building department.
 
-{{figura: mrandmrs-pool-spa-a7-blog-project-061-09}}
+{{figura: bi-0682}}
 
 ## Step 1: site evaluation
 
@@ -139,7 +139,7 @@ A concrete pool is built in a sequence, and each stage is inspected before the n
 7. **Interior finish.** Plaster, quartz or pebble is applied, and the pool is filled immediately after.
 8. **Startup, barrier and final.** Water chemistry is balanced, every system is run and tested, the barrier is in place, and the final inspections close the permit.
 
-{{figura: mrandmrs-pool-spa-a7-blog-project-061-11}}
+{{figura: bi-0723}}
 
 ## Where the price is decided
 

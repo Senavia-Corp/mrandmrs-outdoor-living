@@ -36,12 +36,12 @@
       "alt": "Dark bronze-framed louvered roof with pale blades tilted partly open, seen from underneath against a blue sky, in front of a modern glass-walled house with a black pool fence and clipped hedges."
     },
     {
-      "ref": "louvered-1",
-      "alt": "Louvered roof with two ceiling fans over a wood deck, gray lounge furniture in front and a built-in grill island with bar stools and a tall stucco chimney behind, a barrel tile roof showing through the palms."
+      "ref": "bi-0168",
+      "alt": "Dark bronze roof on slim posts over a sectional sofa, a covered grill and a dining set beside a freeform pool"
     },
     {
-      "ref": "louvered-7",
-      "alt": "White louvered roof attached to a two-story house over a poolside patio, the pavers still wet after rain, with the pool edge in the corner, a white fence and a roof with solar panels behind."
+      "ref": "bi-0166",
+      "alt": "White louvered roof blades tilted open, seen from below against the sky beside a stacked-stone column and palms"
     }
   ],
   "faq": [
@@ -118,7 +118,7 @@ Our estimator prices a full outdoor kitchen at $25,000. Appliances, cabinetry an
 
 The sequence matters here more than most people expect. Deciding to cover a kitchen after the kitchen is built usually means posts landing where the counter already is. Deciding both at once means the posts, the circuits, the lighting and the drainage are laid out together, and the wiring runs inside the hollow beams instead of on the surface of them. That is the whole argument for planning the structure and its contents in one pass, which is what [designing the lights, fans and screens as one system](/blogs/designing-a-complete-louvered-roof-system) is about, and [what an outdoor kitchen actually costs](/blogs/how-much-does-an-outdoor-kitchen-cost-in-florida) covers the other half of that budget.
 
-{{figura: louvered-1}}
+{{figura: bi-0168}}
 
 ## Five cases where it is not worth it
 
@@ -134,7 +134,7 @@ The sequence matters here more than most people expect. Deciding to cover a kitc
 2. **A west-facing yard used between four and seven.** This is the case the motor was built for: the sun moves, the blades move with it, and a fixed structure cannot follow.
 3. **One space that has to be two things across the year.** Sun on the table in February and deep shade in July are opposite requirements. A fixed cover picks one and lives with it. This is the only requirement that a fixed cover genuinely cannot meet, and it is the cleanest reason to pay for the motor.
 
-{{figura: louvered-7}}
+{{figura: bi-0166}}
 
 ## The part that decides how you feel about it in year six
 

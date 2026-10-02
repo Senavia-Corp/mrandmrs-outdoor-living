@@ -28,13 +28,13 @@
   },
   "summary": "Both give you shade. Only one lets you stay outside while it rains. That difference decides the project faster than any feature list, and it explains the price gap.",
   "portada": {
-    "ref": "pergolas-0",
-    "alt": "White aluminum pergola with a solid roof panel over a paver patio, white bar stools lined up at the counter and a slatted privacy screen closing the back."
+    "ref": "louvered-4",
+    "alt": "Dark-framed louvered roof with a ceiling fan over a dining set on a stone patio by a lake, with string lights and a hammock"
   },
   "figuras": [
     {
-      "ref": "louvered-5",
-      "alt": "Louvered roof with white blades tilted partly open in a dark bronze frame, attached to a modern glass-walled house over a concrete patio behind a black pool fence."
+      "ref": "bi-0233",
+      "alt": "White louvered roof with blades partly open over wicker seating and loungers on wet stone paving, a TV on the wall behind"
     },
     {
       "ref": "pergolas-1",
@@ -79,7 +79,7 @@ So the question is not architectural, it is behavioral: **when a storm arrives a
 
 If what sits underneath is an outdoor kitchen, a television, upholstered furniture, or dinner on the table in August, the answer is yes, and a pergola will disappoint you inside one wet season. If it is a seating area beside the pool that you would be leaving anyway, the answer is no, and the roughly $9,500 difference is buying a capability you will not use. That is the fork, and very little else moves it. What the closed roof does in a real storm — and in wind — is covered in [how a louvered roof behaves in Florida rain and high winds](/blogs/louvered-roof-in-florida-rain-and-high-winds).
 
-{{figura: louvered-5}}
+{{figura: bi-0233}}
 
 ## The second question: what time of day do you use it?
 

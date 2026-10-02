@@ -26,21 +26,21 @@
   },
   "summary": "Resurfacing and a full renovation are not two budgets for the same job. One changes the surface; the other changes the pool. Here is where the line falls and the question that decides which side of it you are on.",
   "portada": {
-    "ref": "remodeling-2",
-    "alt": "Pool with three spouts set into a rendered wall, two in-water loungers on the shallow ledge and a raised fire feature topped with dark stone, framed by turf strips inset in a pale deck."
+    "ref": "remodeling-7",
+    "alt": "Rectangular pool with a raised white-tile spa, jets running, and two white loungers on the pale stone deck by the steps"
   },
   "figuras": [
     {
-      "ref": "remodeling-7",
-      "alt": "Raised spa clad in small white tile running with its jets on at the corner of a rectangular pool, with two white in-water loungers on the shallow ledge and a grill under the covered lanai."
+      "ref": "bi-0754",
+      "alt": "Close-up of blue glass mosaic waterline tile under gray bullnose coping, with the bare shell below still unplastered."
     },
     {
-      "ref": "remodeling-1",
-      "alt": "Pool and spa edged in pale travertine, with blue mosaic tile along the spa and the step edges, two white in-water loungers standing on the shallow shelf and patio furniture under the lanai."
+      "ref": "bi-0538",
+      "alt": "Large French-pattern travertine deck edged by dark gravel beds, with an empty pool and a worker in the background."
     },
     {
-      "ref": "remodeling-6",
-      "alt": "Aerial view of a long pool and a large square spa on a wide deck, with a garden hose and its reel crossing the deck, groups of lawn furniture and a wood ranch fence around the pasture behind."
+      "ref": "bi-0668",
+      "alt": "Drained pool shell with round patches across the floor and a new blue waterline tile band along both walls."
     }
   ],
   "faq": [
@@ -97,7 +97,7 @@ What does not change is everything in the other four layers. A resurfaced pool w
 
 The tile is also the one layer that will not wait politely. Waterline tile and coping sit at the top of the finish, where the pool meets the deck, so replacing them later means lowering the water, breaking out the first band of deck and working against the top inch of a surface you already paid for. A finish two years old ends up patched along the line everyone looks at first. If the tile is close to done, it goes with the finish or it goes before it — not two years after.
 
-{{figura: remodeling-7}}
+{{figura: bi-0754}}
 
 ## What a full renovation is
 
@@ -141,11 +141,11 @@ These are the complaints most often answered with a resurface, and should not be
 
 That last one is structural and is the reason the shell gets assessed before anything else. The rest are geometry, and geometry lives in the shell.
 
-{{figura: remodeling-1}}
+{{figura: bi-0538}}
 
 The deck deserves singling out, because it is the most common misdiagnosis. Our estimator prices deck at $12 a square foot for concrete, $22 for pavers and $35 for travertine, and a deck is usually the larger surface of the two — so a yard where the deck is the disappointment is a yard where resurfacing spends real money on the wrong half of the picture. It is also the layer you can do on its own schedule, since the water stays in.
 
-{{figura: remodeling-6}}
+{{figura: bi-0668}}
 
 ## When nobody can tell you yet
 

@@ -33,8 +33,8 @@
   },
   "summary": "A residential pool is built to the Florida Building Code and permitted locally. A commercial pool is also a public pool under the Department of Health's rule, with a second permit, prescribed engineering and operating duties. Here is where the two paths differ and where they do not.",
   "portada": {
-    "ref": "mrandmrs-pool-spa-a2-blog-project-062-06",
-    "alt": "Aerial view of a rectangular backyard pool with a raised spa and a wide stone deck."
+    "ref": "construction-6",
+    "alt": "Rectangular pool with a raised dark-blue mosaic spa, stepping pads in turf and a covered lanai beside a two-story house"
   },
   "figuras": [
     {
@@ -42,12 +42,12 @@
       "alt": "Long lap pool from above, set in a lawn beside a covered lanai and a lake."
     },
     {
-      "ref": "mrandmrs-pool-spa-a2-blog-project-062-25",
-      "alt": "Backyard pool and raised spa seen from the deck, with the house and palms behind."
+      "ref": "bi-0649",
+      "alt": "Pool steps with twin handrails on a terrace between residential towers, with white pergola frames going up."
     },
     {
-      "ref": "mrandmrs-pool-spa-a7-blog-project-061-13",
-      "alt": "Lap pool seen from under the aluminium patio cover, with loungers on the paved deck."
+      "ref": "mrandmrs-pool-spa-a2-blog-project-062-25",
+      "alt": "Backyard pool with a raised spa and white stone deck beside a two-storey house, with loungers, lawn and a palm."
     }
   ],
   "faq": [
@@ -123,7 +123,7 @@ A residential pool is designed around how a family will use it: the shape, the s
 
 A public pool is designed to a rule that specifies the turnover rate and filtration, the disinfection and pH control, the depth profile and markings, deck widths and drainage, lighting, ladders, handrails and lifelines, the equipment room, chemical storage, signage, and an accessible means of entry. Aesthetics are layered on top of that; they do not replace it.
 
-{{figura: mrandmrs-pool-spa-a2-blog-project-062-25}}
+{{figura: bi-0649}}
 
 ## Construction and equipment
 
@@ -137,7 +137,7 @@ A public pool of a given size costs more than a residential pool of the same siz
 
 A residential pool is the owner's to run. A public pool is operated under the Department's rule, with records, inspections and responsibilities that continue for the life of the pool. The operator should be in the room during design, because equipment choices decide how hard that job is.
 
-{{figura: mrandmrs-pool-spa-a7-blog-project-061-13}}
+{{figura: mrandmrs-pool-spa-a2-blog-project-062-25}}
 
 ## Licensing
 

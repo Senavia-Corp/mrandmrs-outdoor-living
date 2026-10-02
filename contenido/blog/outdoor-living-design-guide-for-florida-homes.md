@@ -36,21 +36,21 @@
   },
   "summary": "A Florida backyard gets used when it is designed for the climate first: shade where people sit, protection from rain and insects, materials that shrug off sun and salt, and utilities run before anything is built on top of them. This guide is the order we design in.",
   "portada": {
-    "ref": "custom-outdoor-kitchen-poolside-florida",
-    "alt": "Poolside outdoor kitchen with a built-in grill and stainless cabinetry under a covered patio."
+    "ref": "bi-0842",
+    "alt": "Dark pergola over an outdoor bar with stools, a TV wall and lounge seating, with a putting green and palms in front"
   },
   "figuras": [
     {
-      "ref": "custom-pergola-patio-cover-builders-florida-06",
-      "alt": "Dark aluminium pergola over a paved pool deck, with palms and water beyond."
+      "ref": "bi-0759",
+      "alt": "Black-framed patio cover with a ceiling fan over a stacked-stone kitchen island and grill, beside a pool and pale pavers."
     },
     {
       "ref": "patio-screen-enclosure-builders-contractors-north-south-florida-08",
       "alt": "Furnished lanai behind retractable screens, with a sofa, armchairs and a dining table overlooking the pool."
     },
     {
-      "ref": "modern-custom-outdoor-kitchen-design-florida",
-      "alt": "Outdoor kitchen with stainless appliances and a stone pizza oven, built under cover beside a pool."
+      "ref": "bi-0839",
+      "alt": "Dark slatted pavilion at dusk with lit sconces and downlights, a bar with an LED-lit base, white stools and a lounge area."
     }
   ],
   "faq": [
@@ -106,7 +106,7 @@ Backyards built out of order get dug up. The sequence that avoids it:
 
 Our guide to [utilities an outdoor kitchen needs before construction](/blogs/gas-electric-and-plumbing-for-an-outdoor-kitchen) is step 2 in detail.
 
-{{figura: custom-pergola-patio-cover-builders-florida-06}}
+{{figura: bi-0759}}
 
 ## Shade: pergola, louvered roof or cover
 
@@ -145,7 +145,7 @@ An outdoor kitchen is a room, not an appliance. It needs cover, counter space on
 
 Design lighting in layers: the pool and spa lit as a composition, task light over the kitchen, ambient light under the pergola or roof, and path light where people walk. Put all of it on one control with the pool equipment, so the backyard turns on with one tap. The conduit for every circuit goes in during step 2 above.
 
-{{figura: modern-custom-outdoor-kitchen-design-florida}}
+{{figura: bi-0839}}
 
 ## Landscape that does not fight the pool
 

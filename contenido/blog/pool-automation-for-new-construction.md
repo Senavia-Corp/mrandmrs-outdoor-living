@@ -33,21 +33,21 @@
   },
   "summary": "Automation is the part of a new pool that costs almost nothing to prepare for and a great deal to retrofit. The controller can wait; the conduit, the valve actuators and automation-ready equipment cannot. Here is what we decide with clients before the equipment pad is set.",
   "portada": {
-    "ref": "construction-4",
-    "alt": "Curved pool with three sheet waterfalls falling from a long raised wall of pale blue mosaic tile, a matching raised spa spilling into the water alongside it, and tall palms and a fairway beyond a black metal fence."
+    "ref": "construction-5",
+    "alt": "Pool with three sheet waterfalls from a raised tiled wall beside a spa, a covered patio at left and a lake beyond"
   },
   "figuras": [
     {
-      "ref": "construction-5",
-      "alt": "Three sheer-descent waterfalls falling from a raised tiled wall into a pool, with an aluminum pergola and lounge seating on the travertine deck to the left."
+      "ref": "bi-0734",
+      "alt": "Aerial view of a gunite pool shell with its spa, and lengths of PVC pipe laid out on the sand behind a white house."
     },
     {
-      "ref": "remodeling-8",
-      "alt": "Aerial view of a backyard pool with a robotic cleaner on the floor, a daybed under the porch and an outdoor kitchen beneath a metal roof."
+      "ref": "bi-0741",
+      "alt": "PVC plumbing lines running in a trench from a gunite spa toward the far end of the site, with fittings boxed on the sand."
     },
     {
-      "ref": "construction-9",
-      "alt": "Two-storey Florida home with a pool, raised spa and bubblers, on a wide paver deck running the width of the yard."
+      "ref": "bi-0031",
+      "alt": "Freshly poured concrete slab with edge forms and plumbing stubs, in front of a black screen enclosure on a sandy lot."
     }
   ],
   "faq": [
@@ -94,7 +94,7 @@ A modern pool controller is a panel at the equipment pad with relays, valve actu
 - **Sanitation**: the output of a salt chlorine generator, and with sensors, pH and sanitizer monitoring and dosing.
 - **Spa mode**: one button that closes the valves, raises the pump speed, starts the heater and turns on the jets.
 
-{{figura: construction-5}}
+{{figura: bi-0734}}
 
 ## What has to be buried during construction
 
@@ -123,7 +123,7 @@ The controller is only as useful as the equipment it can talk to.
 
 We specify all of it as one system from one manufacturer family where that is possible, because mixed equipment is where automation becomes a service call. Which family depends on the project, and we go through the options in design.
 
-{{figura: remodeling-8}}
+{{figura: bi-0741}}
 
 ## Deciding what to install now
 
@@ -143,7 +143,7 @@ Three things change how we design automation here:
 - **Heat.** Scheduling the pump and the features at night moves water and sheds heat; a heat pump that cools becomes an automation set point rather than a manual job.
 - **Weather and absence.** Many Florida owners are away for part of the year. Remote monitoring of pump status, water level, heater faults and chemistry is what keeps a pool from being a problem when nobody is home.
 
-{{figura: construction-9}}
+{{figura: bi-0031}}
 
 ## How it fits in the build
 

@@ -38,16 +38,16 @@
   },
   "figuras": [
     {
-      "ref": "custom-pool-spa-builders-florida-04",
-      "alt": "Pool with a raised spa and dark tile detail beside a covered patio, with stepping-stone pavers over turf."
+      "ref": "bi-0687",
+      "alt": "Aerial view of an orange mini excavator parked on the sandy yard behind a white house, ready to dig the pool."
     },
     {
-      "ref": "custom-pool-spa-builders-florida-08",
-      "alt": "Pool and spa on a stone deck with loungers, overlooking a lake at the rear of the property."
+      "ref": "bi-0007",
+      "alt": "Pool under construction on a lakefront lot, with a blue glass tile spa and orange safety fencing, seen from a covered porch."
     },
     {
-      "ref": "custom-pool-spa-builders-florida-10",
-      "alt": "Rectangular pool with a raised spa clad in blue tile, set in turf behind a screening hedge."
+      "ref": "bi-0711",
+      "alt": "Ground view along a pool rebar cage in wood forms, with plumbing lines in place and the spa form at the far end."
     }
   ],
   "faq": [
@@ -111,7 +111,7 @@ Florida splits the job in two. The state writes the rules and licenses the peopl
 
 What the state does not do is issue the permit. There is no statewide pool permit. If a contractor tells you the permit is "handled at the state level," ask again.
 
-{{figura: custom-pool-spa-builders-florida-04}}
+{{figura: bi-0687}}
 
 ## What the building permit application covers
 
@@ -149,7 +149,7 @@ If you live in a deed-restricted community, the **HOA** architectural review is 
 
 This is the item that catches North Florida homeowners most often. Many lots in Alachua, Marion and the surrounding counties are on a septic system rather than sewer. The drainfield and the tank have required separation distances from a pool, and the onsite sewage program (the state agency that regulates septic systems) reviews whether the pool location is acceptable or the system has to be modified. A private well adds its own separation rules. Both are settled before the building permit, not during construction, which is why we locate the tank and drainfield on the first site visit. Our guide to [building a pool in North Florida](/blogs/building-a-pool-in-north-florida) covers what else changes on a Gainesville or Ocala lot.
 
-{{figura: custom-pool-spa-builders-florida-08}}
+{{figura: bi-0007}}
 
 ## Flood zones and coastal properties
 
@@ -181,7 +181,7 @@ Inspections are called in by the contractor as each stage is ready, and the next
 
 Each jurisdiction's checklist differs slightly, and some combine stages. The exact list for your address is printed on the permit when it is issued. Our [pool construction timeline guide](/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish) shows where each inspection sits inside the build.
 
-{{figura: custom-pool-spa-builders-florida-10}}
+{{figura: bi-0711}}
 
 ## The Notice of Commencement and what you sign
 

@@ -34,21 +34,21 @@
   },
   "summary": "If you already own a pool, the question is not new versus remodel in the abstract. It is whether the shell, the location and the layout you have can carry what you want. Five questions settle it, and most Florida homeowners land on a complete remodel, not a new pool.",
   "portada": {
-    "ref": "mrandmrs-pool-remodeling-a2-blog-project-059-09",
-    "alt": "Remodelled pool with a deep-blue mosaic spa and resurfaced interior, finished with a travertine deck."
+    "ref": "bi-0521",
+    "alt": "Rectangular pool with a raised travertine water-feature wall and a wide travertine deck behind a single-storey house"
   },
   "figuras": [
     {
-      "ref": "mrandmrs-pool-spa-a2-blog-project-062-10",
-      "alt": "Aerial view of a newly built pool and raised spa, with the deck and fence laid out around fresh lawn."
+      "ref": "bi-0700",
+      "alt": "Aerial view of a freshly dug pool hole behind a white farmhouse, with two workers setting wooden form boards."
     },
     {
       "ref": "mrandmrs-pool-remodeling-a2-blog-project-059-27",
       "alt": "Remodelled pool and raised spa seen from the corner of the deck, with mature hedge behind."
     },
     {
-      "ref": "mrandmrs-pool-spa-a2-blog-project-062-08",
-      "alt": "Newly built pool and raised spa from above, showing the finished stone deck and planting."
+      "ref": "bi-0680",
+      "alt": "Crew member in a company shirt, seen from behind, looking into an old tiled spa beside a pool."
     }
   ],
   "faq": [
@@ -85,7 +85,7 @@ Everything in a remodel rides on the structure. We check the shell and the bond 
 
 A remodel cannot move the pool. If the pool blocks the view, sits where the outdoor kitchen should be, or is too close to the house to allow the deck you want, the layout is the problem and new construction is the only route to a different one. If the location works and the complaint is how the pool looks and performs, that is a remodel.
 
-{{figura: mrandmrs-pool-spa-a2-blog-project-062-10}}
+{{figura: bi-0700}}
 
 ## Question 3: What do you actually want to change?
 
@@ -125,7 +125,7 @@ When the shell is sound and the location works, a complete remodel is the better
 
 What a remodel should not be is a surface fix on a pool with underlying problems. Resurfacing a leaking shell or re-tiling over a moving bond beam spends money twice. The difference between a surface job and a complete renovation is the subject of [resurfacing vs full renovation](/blogs/pool-resurfacing-vs-full-pool-renovation).
 
-{{figura: mrandmrs-pool-spa-a2-blog-project-062-08}}
+{{figura: bi-0680}}
 
 ## How we help you decide
 
