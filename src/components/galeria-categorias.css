@@ -1,0 +1,160 @@
+/* ── LAS TARJETAS DE CATEGORIA Y LAS PAGINAS `/gallery/<slug>` (2-oct-2026) ───────────────
+ * NO VIVE EN `src/styles/`, y es a proposito: la capa compartida viaja en las ~170 rutas y
+ * su presupuesto (`check:tokens`, 94 KB) estaba a 300 B del tope. Estas reglas solo pintan
+ * en `/gallery` y `/gallery/<slug>`, asi que las sirve `GaleriaCategoriasCss.astro` en linea
+ * y SOLO en esas rutas. Sigue la gramatica de la casa: solo tokens `--mm-*`.
+ * Marcado en `src/lib/galeria-categorias.mjs`. Diez tarjetas, una por pagina de categoria.
+ *
+ * SON SELLOS, NO FICHAS: delante de una rejilla de 190 fotos, una tarjeta grande empujaria la
+ * obra fuera de la primera pantalla, que es justo lo que el visitante vino a ver. A >=992 van
+ * en rejilla de cinco (dos filas); por debajo, en un
+ * CARRIL horizontal con `scroll-snap` — diez tarjetas apiladas en movil serian ~3.000 px de
+ * indice antes de la primera foto.
+ *
+ * `text-transform: none`: `webflow.css` capitaliza h1-h4, y «Browse By Service» no es como se
+ * escribe un titular en frase. Ademas el `innerText` que compara `check:texto` sale tal cual
+ * esta en el dato, sin depender de esa regla. */
+.gal-cats { margin-bottom: var(--mm-e-32) }
+
+.gal-cats__tit {
+  margin: 0 0 var(--mm-e-16);
+  font-family: var(--mm-fuente);
+  font-size: var(--mm-paso-4);
+  line-height: var(--mm-alto-titulo);
+  color: var(--mm-tinta);
+  text-transform: none;
+}
+
+.gal-cats__lista {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(72%, 280px);
+  gap: var(--mm-e-16);
+  margin: 0;
+  /* El relleno es el sitio del anillo de foco: el carril recorta con `overflow`. */
+  padding: var(--mm-e-4);
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--mm-e-4);
+  overscroll-behavior-x: contain;
+}
+
+/* CINCO FIJAS, no `auto-fill`: son diez, y cualquier otro recuento deja una fila coja (medido
+ * con `auto-fill` de 200 px a 1440: 6 + 4). Por debajo de 992 cinco no caben y sigue el carril. */
+@media (min-width: 992px) {
+  .gal-cats__lista {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    overflow-x: visible;
+    scroll-snap-type: none;
+  }
+}
+
+.gal-cat {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  scroll-snap-align: start;
+  background-color: var(--mm-superficie);
+  border: 1px solid var(--mm-borde);
+  border-radius: var(--mm-r-16);
+  box-shadow: var(--mm-sombra-1);
+  padding-bottom: var(--mm-e-16);
+}
+
+/* 3:2, la misma relacion que la rejilla de debajo. `height: auto` antes de `aspect-ratio`:
+ * con la altura del atributo en pie, la relacion calcularia el ANCHO y desbordaria. */
+.gal-cat__foto {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: calc(var(--mm-r-16) - 1px) calc(var(--mm-r-16) - 1px) 0 0;
+}
+
+.gal-cat__nombre,
+.gal-cat__linea,
+.gal-cat__mas { margin: 0; padding-inline: var(--mm-e-16) }
+
+.gal-cat__nombre {
+  margin-top: var(--mm-e-16);
+  font-family: var(--mm-fuente);
+  font-size: var(--mm-paso-3);
+  font-weight: 600;
+  line-height: var(--mm-alto-titulo);
+  color: var(--mm-tinta);
+  text-transform: none;
+}
+
+.gal-cat__linea {
+  margin-top: var(--mm-e-4);
+  font-size: var(--mm-paso-1);
+  line-height: var(--mm-alto-cuerpo);
+  color: var(--mm-tinta-atenuada);
+}
+
+/* LA TARJETA ENTERA ES EL ENLACE (patron de `financiacion.css`): el `::after` la cubre.
+ * `position: static` es obligatorio — `webflow.css` pone `a { position: relative }` y sin
+ * neutralizarlo el `::after` se ancla al enlace y no a la tarjeta. */
+.gal-cat .gal-cat__mas {
+  position: static;
+  display: block;   /* en linea, su `padding-top` no empujaria y el texto partido se saldria */
+  margin-top: auto;
+  padding-top: var(--mm-e-8);
+  font-size: var(--mm-paso-1);
+  font-weight: 600;
+  color: var(--mm-enlace);
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+.gal-cat .gal-cat__mas::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--mm-r-16);
+}
+.gal-cat .gal-cat__mas:focus-visible { outline: none }
+.gal-cat .gal-cat__mas:focus-visible::after {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco);
+  outline-offset: var(--mm-foco-aire);
+}
+.gal-cat:hover { box-shadow: var(--mm-sombra-2) }
+
+/* En la pagina de categoria las tarjetas van DETRAS de las fotos, como salida. */
+.gal-pagina .gal-cats { margin-top: var(--mm-e-64); margin-bottom: 0 }
+/* Sin filtro encima, la rejilla no necesita el margen que la separaba de el. */
+.gal-pagina .block-pictures { margin-top: 0 }
+
+/* El heroe de categoria: la miga encima del titular y las dos salidas debajo de la intro. */
+.gal-migas ol {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--mm-e-8);
+  margin: 0 0 var(--mm-e-24);
+  padding: 0;
+  list-style: none;
+  font-size: var(--mm-paso-1);
+  color: var(--mm-tinta-atenuada);
+}
+.gal-migas li + li::before { content: "/"; margin-right: var(--mm-e-8) }
+.gal-migas a { color: var(--mm-enlace); text-decoration: underline; text-underline-offset: .2em }
+
+.gal-hero__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mm-e-16) var(--mm-e-24);
+  margin-top: var(--mm-e-32);
+}
+
+/* LA PRIMERA FILA DE FOTOS, DENTRO DE LA PRIMERA PANTALLA. Con el suelo de 96 px del heroe y
+ * el techo de 64 de `.gallery-page`, la rejilla empezaba en y=724 a 1440x900: se veia el 62 %
+ * de la primera fila. En una pagina cuyo contenido son las fotos, eso es llegar tarde.
+ * El techo no baja a 0: `.gallery-page` recorta (`overflow: hidden`) y el anillo de foco de la
+ * primera fila alcanza 4 px. */
+.hero-section.gal-hero { padding-bottom: var(--mm-e-32) }
+.gallery-page.gal-pagina { padding-top: var(--mm-e-16) }

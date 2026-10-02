@@ -2027,7 +2027,10 @@
       "coches de vecinos al fondo",
       "cinta amarilla al fondo a la derecha"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/decks"
+    ],
     "origen": "DECKING/Concrete/Natasha before & After/concrete & Turf 1.jpeg",
     "sha256": "b8649a4debae8407370a35c600ffdaf12da58e636eb1e14862211b40746bd9eb"
   },
@@ -2813,7 +2816,9 @@
       "reflejos en el ventanal"
     ],
     "usada_en": [
-      "/about"
+      "/about",
+      "/gallery",
+      "/gallery/decks"
     ],
     "origen": "DECKING/Pavers/20251013_141750000_iOS 1.jpg",
     "sha256": "aa0a5a41eb943271e994ae83f19c73b5e4ed5b997a398d3d99005029e4bffbca"
@@ -2853,7 +2858,10 @@
       "persona apenas visible tras la palmera a la derecha",
       "reflejos en la puerta"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/decks"
+    ],
     "origen": "DECKING/Pavers/20251013_141750000_iOS 2.jpg",
     "sha256": "aa8864dfcdc7d2e233f821475207bbe36b22ab544896e14986a9a44aad10f02e"
   },
@@ -2893,7 +2901,10 @@
     "defectos": [
       "bombona de gas junto al seto a la izquierda"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/decks"
+    ],
     "origen": "DECKING/Pavers/20251013_141750000_iOS.jpg",
     "sha256": "344f37144dfcf1b3864c96d96766919d8d985fe06a71c55f9fa41a73c896205d"
   },
@@ -4008,7 +4019,10 @@
       "resolución justa (1599 px)",
       "restos de obra en la arena al fondo"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/decks"
+    ],
     "origen": "DECKING/Pavers/WhatsApp Image 2026-04-21 at 5.31.39 PM.jpeg",
     "sha256": "005bd99f715b702a7ce7bc588384f20999b7894dd11b1c3044d7462ed2b31e4a"
   },
@@ -4143,7 +4157,10 @@
       "base de hormigón aún visible en las esquinas inferiores",
       "distorsión de gran angular"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/landscaping"
+    ],
     "origen": "DECKING/TURF/12.1.jpeg",
     "sha256": "5764dfd1853f5efefb529c34c3598dbc8ad876bdee06f802054681051cdd91b5"
   },
@@ -4762,7 +4779,10 @@
       "remolque al fondo a la derecha",
       "perro lejano"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/landscaping"
+    ],
     "origen": "DECKING/TURF/IMG_4120.jpeg",
     "sha256": "903af1152ab043158d476ce884da3ef0dc22bf75f88873f2e91e2faeb2cd376e"
   },
@@ -4870,7 +4890,10 @@
       "persona muy lejana al fondo",
       "columpio a la izquierda"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/landscaping"
+    ],
     "origen": "DECKING/TURF/IMG_4122.jpeg",
     "sha256": "d76041386de175f687871d4c2d6d3e25064d15ad8592f8c76386ea4e2bf3931a"
   },
@@ -5918,7 +5941,9 @@
       "encofrado de madera al fondo"
     ],
     "usada_en": [
-      "/blogs/is-a-motorized-louvered-roof-worth-it-in-florida"
+      "/blogs/is-a-motorized-louvered-roof-worth-it-in-florida",
+      "/gallery",
+      "/gallery/louvered-roofs"
     ],
     "origen": "EQUINOX LOUVERED ROOF/14c22f1d-0b8a-4056-a50d-e55eba61613d 2.jpg",
     "sha256": "00313d1d57aa16f871a99cde9d1ee8c8892270ee2e9980de422e9e29a2ee5135"
@@ -5991,7 +6016,9 @@
       "cielo quemado"
     ],
     "usada_en": [
-      "/blogs/is-a-motorized-louvered-roof-worth-it-in-florida"
+      "/blogs/is-a-motorized-louvered-roof-worth-it-in-florida",
+      "/gallery",
+      "/gallery/louvered-roofs"
     ],
     "origen": "EQUINOX LOUVERED ROOF/32.jpg",
     "sha256": "8ef1635d4b860689505de338de31b174e3d1b0aa2d69e1f22aeec530847622cc"
@@ -6219,7 +6246,9 @@
       "cielo quemado"
     ],
     "usada_en": [
-      "/blogs/louvered-roof-in-florida-rain-and-high-winds"
+      "/blogs/louvered-roof-in-florida-rain-and-high-winds",
+      "/gallery",
+      "/gallery/louvered-roofs"
     ],
     "origen": "EQUINOX LOUVERED ROOF/41F648B3-B78E-4C90-A4B0-999978E52BC4.JPG",
     "sha256": "c343dec845bc501a094bfb637079252be810f6ff2c44ac387e31c8e8ebb6d7d7"
@@ -7666,7 +7695,9 @@
     ],
     "defectos": [],
     "usada_en": [
-      "/blogs/features-to-compare-before-buying-a-louvered-roof"
+      "/blogs/features-to-compare-before-buying-a-louvered-roof",
+      "/gallery",
+      "/gallery/louvered-roofs"
     ],
     "origen": "EQUINOX LOUVERED ROOF/IMG_0043.JPG",
     "sha256": "f33a80e109b37e2d56611d97394bad55f846e90a59256fb71eace5845a685287"
@@ -7793,7 +7824,9 @@
       "bicicleta estática al fondo"
     ],
     "usada_en": [
-      "/blogs/how-much-does-a-motorized-louvered-roof-cost"
+      "/blogs/how-much-does-a-motorized-louvered-roof-cost",
+      "/gallery",
+      "/gallery/louvered-roofs"
     ],
     "origen": "EQUINOX LOUVERED ROOF/IMG_0046.JPG",
     "sha256": "32079cc00ad7d3e2d972ae2116a4b5c588dd006b63cce74ad7d81bf0a09cd418"
@@ -8042,7 +8075,9 @@
       "horizonte inclinado"
     ],
     "usada_en": [
-      "/blogs/louvered-roof-in-florida-rain-and-high-winds"
+      "/blogs/louvered-roof-in-florida-rain-and-high-winds",
+      "/gallery",
+      "/gallery/louvered-roofs"
     ],
     "origen": "EQUINOX LOUVERED ROOF/IMG_0319.jpeg",
     "sha256": "1cbb8c94de7bf9bd9aa89db52ffd92de3c2f8c6d0b4b820298d67a5c32944843"
@@ -8081,7 +8116,9 @@
     ],
     "defectos": [],
     "usada_en": [
-      "/blogs/features-to-compare-before-buying-a-louvered-roof"
+      "/blogs/features-to-compare-before-buying-a-louvered-roof",
+      "/gallery",
+      "/gallery/louvered-roofs"
     ],
     "origen": "EQUINOX LOUVERED ROOF/IMG_0805.jpeg",
     "sha256": "8f26111b7f3675f6c87e670b8b88688afc704b86c7998409ad58d10f7215cb29"
@@ -8396,7 +8433,9 @@
       "cartel de aviso en la pared"
     ],
     "usada_en": [
-      "/blogs/pergola-vs-louvered-roof"
+      "/blogs/pergola-vs-louvered-roof",
+      "/gallery",
+      "/gallery/louvered-roofs"
     ],
     "origen": "EQUINOX LOUVERED ROOF/IMG_4433.JPG",
     "sha256": "27183774f1ece1b736e83f25b5f36c480ef2688d07da47b8714954572e4494ac"
@@ -8522,7 +8561,9 @@
       "arena sin rematar abajo a la derecha"
     ],
     "usada_en": [
-      "/blogs/questions-to-ask-a-louvered-roof-installer"
+      "/blogs/questions-to-ask-a-louvered-roof-installer",
+      "/gallery",
+      "/gallery/louvered-roofs"
     ],
     "origen": "EQUINOX LOUVERED ROOF/IMG_5443.JPG",
     "sha256": "b2ca87bb4f324a060b560954bfb4755ab3806976ac7b0f05c99f91299e2890c9"
@@ -10599,7 +10640,9 @@
     ],
     "defectos": [],
     "usada_en": [
-      "/about"
+      "/about",
+      "/gallery",
+      "/gallery/landscaping"
     ],
     "origen": "LANDSCAPING/20160806_151704.jpg",
     "sha256": "7fc6b311fca5505d5a9482a5880530cf880f49aa0aad1b325ccc6d1a9824ee18"
@@ -10669,7 +10712,9 @@
       "sombrilla cerrada a la derecha"
     ],
     "usada_en": [
-      "/blogs/pool-and-spa-or-pool-only"
+      "/blogs/pool-and-spa-or-pool-only",
+      "/gallery",
+      "/gallery/landscaping"
     ],
     "origen": "LANDSCAPING/20160806_151753.jpg",
     "sha256": "32728c251c845056e8cdb529628efff6e7b94d99ec1d4ef830b1c591eab13690"
@@ -10794,7 +10839,10 @@
       "objeto negro en la esquina inferior derecha",
       "senal de salida visible al fondo"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/landscaping"
+    ],
     "origen": "LANDSCAPING/20230207_114053.jpg",
     "sha256": "713639a1614c0aab24ea1e5dd1cd6e196786778717c44a14b4ea706a825cf9bf"
   },
@@ -10911,7 +10959,10 @@
       "esquina de un portatil en el borde inferior derecho",
       "reflejos en los ventanales"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/landscaping"
+    ],
     "origen": "LANDSCAPING/20250122_143744.jpg",
     "sha256": "1c3579a4cb75d4a5dad77160d066954d8c4e697a385e94eef0f8419f9d16d09b"
   },
@@ -10951,7 +11002,10 @@
       "perro en el borde izquierdo",
       "grifo y manguera a la derecha"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/landscaping"
+    ],
     "origen": "LANDSCAPING/20250122_143812.jpg",
     "sha256": "b24404bc76409c6fa150908b1e873d4d97348fa1795aa488db888efe0da75be8"
   },
@@ -10991,7 +11045,10 @@
       "cable suelto sobre la tarima",
       "banistas lejanos en la playa"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/landscaping"
+    ],
     "origen": "LANDSCAPING/20250306_144817.jpg",
     "sha256": "ef8ec3e59b3154b436300c2134a86c341e2c619cfdf66279b6c547c932a9c032"
   },
@@ -11112,7 +11169,10 @@
       "tutores verdes en la palmera",
       "cable de la sombrilla sobre la tarima"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/decks"
+    ],
     "origen": "LANDSCAPING/20250414_132113.jpg",
     "sha256": "57850ce907e9c5684a9f6b9e36d367a9ed7172ea06135a5c5d4cb819b84c9cb7"
   },
@@ -11232,7 +11292,10 @@
       "lonas y hamacas apiladas a la izquierda",
       "luz escasa"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/decks"
+    ],
     "origen": "LANDSCAPING/IMG_0031.HEIC",
     "sha256": "85c7de933c2950e0c6c3040f1b26d9a32f26a00ab790386b6b02fd87313d7920"
   },
@@ -16124,6 +16187,7 @@
       "/country/custom-pool-builders-palm-beach-county-fl",
       "/country/custom-pool-builders-putnam-county-fl",
       "/gallery",
+      "/gallery/pools-and-spas",
       "/pool-builders/alachua-florida",
       "/pool-builders/archer-florida",
       "/pool-builders/atlantis-florida",
@@ -16809,7 +16873,9 @@
       "jaula de piscina del vecino al fondo"
     ],
     "usada_en": [
-      "/blogs/outdoor-kitchen-layout-guide"
+      "/blogs/outdoor-kitchen-layout-guide",
+      "/gallery",
+      "/gallery/outdoor-kitchens"
     ],
     "origen": "NEW JOBS CONSTRUCTION/Brier/IMG_3833.JPEG",
     "sha256": "54ca9fca84442b17a2ebd369587ad226e8e2f9ab75f954966ab6f0e70d285a15"
@@ -16893,7 +16959,9 @@
       "canasta de baloncesto junto a la casa"
     ],
     "usada_en": [
-      "/blogs/before-you-build-a-pool-in-florida"
+      "/blogs/before-you-build-a-pool-in-florida",
+      "/gallery",
+      "/gallery/pools-and-spas"
     ],
     "origen": "NEW JOBS CONSTRUCTION/Brier/IMG_3835.JPEG",
     "sha256": "5873578c054925523f39d3e79486bb01f8602f9a192fd8ed4974d2ea2bdcbb54"
@@ -17007,7 +17075,9 @@
       "gran angular"
     ],
     "usada_en": [
-      "/blogs/before-and-after-pool-remodel-ideas"
+      "/blogs/before-and-after-pool-remodel-ideas",
+      "/gallery",
+      "/gallery/decks"
     ],
     "origen": "NEW JOBS CONSTRUCTION/Brier/IMG_3838.JPEG",
     "sha256": "2bb2567256cf27680ff4da6977ce2f3f6228c9291cf7fdc0259adc10a2d25189"
@@ -17430,8 +17500,10 @@
       "herramienta apoyada a la izquierda"
     ],
     "usada_en": [
-      "/services/pool-remodeling-renovation-in-north-south-florida",
-      "/blogs/what-to-upgrade-during-a-complete-pool-remodel"
+      "/blogs/what-to-upgrade-during-a-complete-pool-remodel",
+      "/gallery",
+      "/gallery/pool-remodeling",
+      "/services/pool-remodeling-renovation-in-north-south-florida"
     ],
     "origen": "NEW JOBS CONSTRUCTION/Curtis/IMG_1921.JPEG",
     "sha256": "20557f8f794124bdfce5d3f64375a953e605aaefd0974a7533711427aed72a43",
@@ -17518,8 +17590,10 @@
       "televisor envuelto en plástico"
     ],
     "usada_en": [
-      "/services/pool-remodeling-renovation-in-north-south-florida",
-      "/blogs/new-pool-construction-vs-pool-remodeling-which-is-right-for-you"
+      "/blogs/new-pool-construction-vs-pool-remodeling-which-is-right-for-you",
+      "/gallery",
+      "/gallery/pool-remodeling",
+      "/services/pool-remodeling-renovation-in-north-south-florida"
     ],
     "origen": "NEW JOBS CONSTRUCTION/Curtis/IMG_1923.JPEG",
     "sha256": "b2b9878b131834e78652661fc51e736c30c6fd452c0f20294000c905fb32811a",
@@ -20126,7 +20200,9 @@
       "objetos de obra al fondo"
     ],
     "usada_en": [
-      "/blogs/common-pool-construction-mistakes-we-see-in-florida"
+      "/blogs/common-pool-construction-mistakes-we-see-in-florida",
+      "/gallery",
+      "/gallery/decks"
     ],
     "origen": "NEW JOBS CONSTRUCTION/Darr Pool/WhatsApp Image 2026-04-25 at 3.18.37 PM.jpeg",
     "sha256": "91e37890a01f105f8f695214f6660fd6c88f5a1ed0028f16577d1cbd6384d085"
@@ -21339,7 +21415,10 @@
       "cepillo sobre el spa",
       "960 px de alto"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/decks"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/FOTOS DE TODO/IMG_1349.JPG",
     "sha256": "04e94a00bb91347a8bbaa61fc8d23b181969926e589fa46f7152b92c89d98493"
   },
@@ -21408,7 +21487,9 @@
       "960 px de alto"
     ],
     "usada_en": [
-      "/blogs/designing-a-complete-louvered-roof-system"
+      "/blogs/designing-a-complete-louvered-roof-system",
+      "/gallery",
+      "/gallery/louvered-roofs"
     ],
     "origen": "NEW JOBS CONSTRUCTION/FOTOS DE TODO/IMG_1351.JPG",
     "sha256": "3ae1ebfb15451e6965d8e933494a7bfd4e3ff4c41e9215d911562a649bf17746"
@@ -21450,7 +21531,9 @@
       "960 px de alto"
     ],
     "usada_en": [
-      "/blogs/how-much-does-a-custom-pool-cost-in-florida"
+      "/blogs/how-much-does-a-custom-pool-cost-in-florida",
+      "/gallery",
+      "/gallery/pools-and-spas"
     ],
     "origen": "NEW JOBS CONSTRUCTION/FOTOS DE TODO/IMG_1352.JPG",
     "sha256": "eb2d2900834575ef09a48d8133d8763fcc75d7c0b512371ae0eb4a2f052fa4f8"
@@ -22116,7 +22199,9 @@
       "caseta técnica en el centro"
     ],
     "usada_en": [
-      "/blogs/louvered-roof-in-florida-rain-and-high-winds"
+      "/blogs/louvered-roof-in-florida-rain-and-high-winds",
+      "/gallery",
+      "/gallery/louvered-roofs"
     ],
     "origen": "NEW JOBS CONSTRUCTION/FOTOS DE TODO/IMG_1628.JPEG",
     "sha256": "986663f0adb6aa274650162dd819fe4d0c731eeea6a9c819bc44fd1fc15513cd"
@@ -22156,7 +22241,10 @@
       "bordes blancos de captura de pantalla, 1125 px",
       "material acopiado a la izquierda"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/louvered-roofs"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/FOTOS DE TODO/IMG_1629.JPEG",
     "sha256": "99ebc476fdc7668506a86f5bf0f8d2b8884f8fa1685c1e46a7937b7f654f9165"
   },
@@ -22384,7 +22472,9 @@
       "bordes blancos de captura de pantalla, 1125 px"
     ],
     "usada_en": [
-      "/blogs/commercial-pool-construction-in-florida-what-decision-makers-must-know"
+      "/blogs/commercial-pool-construction-in-florida-what-decision-makers-must-know",
+      "/gallery",
+      "/gallery/louvered-roofs"
     ],
     "origen": "NEW JOBS CONSTRUCTION/FOTOS DE TODO/IMG_1635.JPEG",
     "sha256": "a004c6bd549bd9d8d09f96ab74832e50fd58100718a81d00e9e473962a8a4fab"
@@ -25923,7 +26013,9 @@
       "coche con funda y juguetes al fondo"
     ],
     "usada_en": [
-      "/blogs/outdoor-kitchen-appliance-decisions"
+      "/blogs/outdoor-kitchen-appliance-decisions",
+      "/gallery",
+      "/gallery/outdoor-kitchens"
     ],
     "origen": "OUTDOOR KICTCHEN/102.jpg",
     "sha256": "8e53720ec5323451bbefd3691f1d7c8005a624219aa402f9fde9b039f31acd8c"
@@ -25964,7 +26056,9 @@
       "hinchables de piscina al fondo"
     ],
     "usada_en": [
-      "/blogs/best-outdoor-kitchen-materials-for-florida"
+      "/blogs/best-outdoor-kitchen-materials-for-florida",
+      "/gallery",
+      "/gallery/outdoor-kitchens"
     ],
     "origen": "OUTDOOR KICTCHEN/103.jpg",
     "sha256": "a035f66ed16fbf3f31b1731612a127bfd261229067ba72622aa70d51b06ceaae"
@@ -26006,7 +26100,10 @@
     "defectos": [
       "canasta de baloncesto e hinchable al fondo"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/outdoor-kitchens"
+    ],
     "origen": "OUTDOOR KICTCHEN/104.jpg",
     "sha256": "aed478f41f2a37a74ddeb3661637af072452b826965832f7f58203b36bdc9ab9"
   },
@@ -26088,7 +26185,9 @@
       "persona mínima en el borde izquierdo"
     ],
     "usada_en": [
-      "/blogs/outdoor-living-design-guide-for-florida-homes"
+      "/blogs/outdoor-living-design-guide-for-florida-homes",
+      "/gallery",
+      "/gallery/aluminum-pergolas"
     ],
     "origen": "OUTDOOR KICTCHEN/20251015_131920256_iOS.jpg",
     "sha256": "8d840fea0fccfeb0463b6b63fadfceecf0caaf4df73b92aa4739af3a84641837"
@@ -26131,7 +26230,10 @@
       "parrilla con funda",
       "lona azul al borde derecho"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/outdoor-kitchens"
+    ],
     "origen": "OUTDOOR KICTCHEN/20251015_131940877_iOS.jpg",
     "sha256": "b701090cadf6c6ff972fa50a16238e2c5058080e9562889f404c38529d6d5bb3"
   },
@@ -26436,7 +26538,9 @@
       "escalera plegable al fondo derecha"
     ],
     "usada_en": [
-      "/blogs/outdoor-kitchen-layout-guide"
+      "/blogs/outdoor-kitchen-layout-guide",
+      "/gallery",
+      "/gallery/louvered-roofs"
     ],
     "origen": "OUTDOOR KICTCHEN/95.jpg",
     "sha256": "df202e29135e61db2cbf3b6dd3be21ceb8499c01a52d0a69e711762dc3b4d0e2"
@@ -26546,7 +26650,10 @@
       "juguete de piscina a la izquierda",
       "marca visible en parrilla y nevera"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/outdoor-kitchens"
+    ],
     "origen": "OUTDOOR KICTCHEN/IMG_0049.jpg",
     "sha256": "65d00b2e24e92fe83f7bdbb4091cc4c564d4b53e33f974d3d819d84bdf7ea296"
   },
@@ -26587,7 +26694,10 @@
     "defectos": [
       "juguete de piscina junto a la nevera"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/louvered-roofs"
+    ],
     "origen": "OUTDOOR KICTCHEN/IMG_0050.jpg",
     "sha256": "73ead4764302325fe2bed8f7344ae02f318031db1f315c3233404aede26a71a8"
   },
@@ -27198,7 +27308,9 @@
       "funda de TV a la izquierda"
     ],
     "usada_en": [
-      "/blogs/how-much-does-an-outdoor-kitchen-cost-in-florida"
+      "/blogs/how-much-does-an-outdoor-kitchen-cost-in-florida",
+      "/gallery",
+      "/gallery/outdoor-kitchens"
     ],
     "origen": "OUTDOOR KICTCHEN/PHOTO-2021-10-11-09-36-26.jpg",
     "sha256": "2699334e49ec97d1ca3de18ab48f7efce85bdb78055032599928f502a7583c28"
@@ -27281,7 +27393,9 @@
       "caja al fondo"
     ],
     "usada_en": [
-      "/blogs/best-outdoor-kitchen-materials-for-florida"
+      "/blogs/best-outdoor-kitchen-materials-for-florida",
+      "/gallery",
+      "/gallery/outdoor-kitchens"
     ],
     "origen": "OUTDOOR KICTCHEN/PHOTO-2021-10-11-09-36-27.jpg",
     "sha256": "f22f4dccd0b03f8d833c77b7dd8e27a022bc52c0a29d464d1f865ad6ff26376c"
@@ -27361,7 +27475,9 @@
       "marca del fabricante visible en parrilla y puertas"
     ],
     "usada_en": [
-      "/blogs/outdoor-kitchen-layout-guide"
+      "/blogs/outdoor-kitchen-layout-guide",
+      "/gallery",
+      "/gallery/outdoor-kitchens"
     ],
     "origen": "OUTDOOR KICTCHEN/PHOTO-2021-10-11-09-36-28.jpg",
     "sha256": "ae9cc6c75ed29a388c4c499cb93b71cd69340efd04b257ee4e06d9d602ae8f68"
@@ -27403,7 +27519,10 @@
     "defectos": [
       "porterías de fútbol al fondo"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/outdoor-kitchens"
+    ],
     "origen": "OUTDOOR KICTCHEN/PHOTO-2021-10-11-09-36-29 (1).jpg",
     "sha256": "d68621a26f6ea4fb4cbafe23f36fc133f5a244f9270455241d88c12ceed1ebe0"
   },
@@ -27444,7 +27563,9 @@
       "reflejos fuertes en la encimera"
     ],
     "usada_en": [
-      "/blogs/how-much-does-an-outdoor-kitchen-cost-in-florida"
+      "/blogs/how-much-does-an-outdoor-kitchen-cost-in-florida",
+      "/gallery",
+      "/gallery/outdoor-kitchens"
     ],
     "origen": "OUTDOOR KICTCHEN/PHOTO-2021-10-11-09-36-29 2.jpg",
     "sha256": "0df10b85bc3178db20ee9797d9fb1251f275e05d23196fe882b277d1ad105988"
@@ -27487,7 +27608,10 @@
       "valla de malla de piscina a la izquierda",
       "cables colgando del techo"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/aluminum-pergolas"
+    ],
     "origen": "OUTDOOR KICTCHEN/PHOTO-2021-10-11-09-36-30.jpg",
     "sha256": "e8a2eb4a4aae299a40867f41209ca5315bf85a3858bd8ae33b3433ae8708979e"
   },
@@ -27529,7 +27653,10 @@
       "marca visible en la parrilla",
       "valla de malla a la izquierda"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/outdoor-kitchens"
+    ],
     "origen": "OUTDOOR KICTCHEN/PHOTO-2021-10-11-09-36-32.jpg",
     "sha256": "f2bc08c05247aada4234c064ea7ef8cf6b9d142540fc7ecd7862b4d9a7d00ce2"
   },
@@ -28718,7 +28845,9 @@
       "nitidez justa"
     ],
     "usada_en": [
-      "/blogs/how-much-does-an-outdoor-kitchen-cost-in-florida"
+      "/blogs/how-much-does-an-outdoor-kitchen-cost-in-florida",
+      "/gallery",
+      "/gallery/outdoor-kitchens"
     ],
     "origen": "OUTDOOR KICTCHEN/adeeb66f-b55e-40fd-b07c-23a99a666b79.jpg",
     "sha256": "c21dbb91b8de489568d04af34bc8fc69ec634b4eafaecb516b02be27ab977693"
@@ -28759,7 +28888,9 @@
       "marca en el TV"
     ],
     "usada_en": [
-      "/blogs/grill-island-vs-full-outdoor-kitchen"
+      "/blogs/grill-island-vs-full-outdoor-kitchen",
+      "/gallery",
+      "/gallery/outdoor-kitchens"
     ],
     "origen": "OUTDOOR KICTCHEN/b629a688-91b9-44c4-90a2-729fe62115fb.jpg",
     "sha256": "88fa1189caf827018a9e1d28053bc48057f14dc686463b5469348341274cd3c5"
@@ -28803,7 +28934,9 @@
       "camionetas aparcadas al fondo (matrículas no legibles)"
     ],
     "usada_en": [
-      "/blogs/outdoor-living-design-guide-for-florida-homes"
+      "/blogs/outdoor-living-design-guide-for-florida-homes",
+      "/gallery",
+      "/gallery/aluminum-pergolas"
     ],
     "origen": "OUTDOOR KICTCHEN/b6c5449a-0e79-4c7c-84b5-03d63de7afa2 2.jpg",
     "sha256": "5483ced223fb56a074214c94825b4223da4715fc3adf3c1c0dca99a030fe40d2"
@@ -28920,7 +29053,9 @@
       "cartelito con texto colgado de la viga"
     ],
     "usada_en": [
-      "/blogs/outdoor-living-design-guide-for-florida-homes"
+      "/blogs/outdoor-living-design-guide-for-florida-homes",
+      "/gallery",
+      "/gallery/aluminum-pergolas"
     ],
     "origen": "OUTDOOR KICTCHEN/e0ababcb-7637-49aa-90d0-5c846963480b 2.jpg",
     "sha256": "ab8ef19a9a015e5355ab3ecf0c179a1fc55f89976256d38be2c0a39c7d41a881"
@@ -28962,7 +29097,9 @@
       "reflejo en el TV"
     ],
     "usada_en": [
-      "/blogs/outdoor-kitchen-appliance-decisions"
+      "/blogs/outdoor-kitchen-appliance-decisions",
+      "/gallery",
+      "/gallery/outdoor-kitchens"
     ],
     "origen": "OUTDOOR KICTCHEN/edff9bb7-c100-4f9c-9a5b-2b7ec8179085 2.jpg",
     "sha256": "b3a06771a6285c34e2941c46754eb0789b2bdbeb5b9abf59fc0d65c171cc00de"
@@ -30630,7 +30767,9 @@
       "parrilla con funda"
     ],
     "usada_en": [
-      "/blogs/do-you-need-a-permit-for-a-pergola-in-florida"
+      "/blogs/do-you-need-a-permit-for-a-pergola-in-florida",
+      "/gallery",
+      "/gallery/aluminum-pergolas"
     ],
     "origen": "PERGOLA - KITCHEN/PHOTO-2021-10-11-09-36-32 3.jpeg",
     "sha256": "86994d689e1d1d81c5471e2aad7b272023e051cb7262a0c54ddfc95f9c3404df"
@@ -31046,7 +31185,9 @@
       "cables colgando del techo"
     ],
     "usada_en": [
-      "/blogs/dark-pool-finishes-in-florida"
+      "/blogs/dark-pool-finishes-in-florida",
+      "/gallery",
+      "/gallery/aluminum-pergolas"
     ],
     "origen": "PERGOLA PRIVACY WALL/186b4b18-04f0-47cf-bdcc-24276fbcadfd.jpeg",
     "sha256": "78e96c5d0fa250dd915ae0deee614d41ec325e90cc259920893f2944f4cca773"
@@ -31234,7 +31375,10 @@
       "resolución justa (1024 px)",
       "cable colgando del techo"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/aluminum-pergolas"
+    ],
     "origen": "PERGOLA PRIVACY WALL/a706f728-16ec-49bd-bf65-e2428b6b10a3.jpg",
     "sha256": "a52ebc6175f3c0a01c3c16825a3aa82ba9e4b82bd4a468792a1259381309dd14"
   },
@@ -31387,7 +31531,10 @@
     "defectos": [
       "bolsa de basura y manguera amarilla junto a la pared"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/aluminum-pergolas"
+    ],
     "origen": "PERGOLA/COVER ALUMINUM ROOF/133.jpg",
     "sha256": "ee66c09140c9ecd5fc3802e902189acee7048bc2e6f0900c858adf9887b7c4e4"
   },
@@ -31781,7 +31928,9 @@
       "resolucion 1215 px"
     ],
     "usada_en": [
-      "/blogs/building-a-pool-in-north-florida"
+      "/blogs/building-a-pool-in-north-florida",
+      "/gallery",
+      "/gallery/aluminum-pergolas"
     ],
     "origen": "PERGOLA/COVER ALUMINUM ROOF/66838381811__CD17B73B-2657-4693-9E84-7C97AE448290.jpg",
     "sha256": "c933af936c27f804bc3bc3e0abe9769e5979ad2949ce13d1864f857715778867"
@@ -32007,7 +32156,9 @@
       "barandilla y pared de la casa en primer plano derecho"
     ],
     "usada_en": [
-      "/blogs/residential-vs-commercial-pool-construction-in-florida"
+      "/blogs/residential-vs-commercial-pool-construction-in-florida",
+      "/gallery",
+      "/gallery/aluminum-pergolas"
     ],
     "origen": "PERGOLA/COVER ALUMINUM ROOF/DJI_0238.jpg",
     "sha256": "ea5eedce2cff110ef8a8b5e8a51f9c69e1dfb6a5b2c38174f6cbfeab561936e2"
@@ -32049,7 +32200,10 @@
       "canasta de piscina en el centro",
       "ahumador al fondo"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/aluminum-pergolas"
+    ],
     "origen": "PERGOLA/COVER ALUMINUM ROOF/DSC05963.ARW",
     "sha256": "9cd56e5c1e9aea21747af1ae398a90a09aa9a4755186f2e5089039a4265c9d72"
   },
@@ -32167,7 +32321,9 @@
       "barbacoa parcial a la derecha"
     ],
     "usada_en": [
-      "/blogs/do-you-need-a-permit-for-a-pergola-in-florida"
+      "/blogs/do-you-need-a-permit-for-a-pergola-in-florida",
+      "/gallery",
+      "/gallery/aluminum-pergolas"
     ],
     "origen": "PERGOLA/COVER ALUMINUM ROOF/DSC07564.jpg",
     "sha256": "4b4933bdf9ebead1ff8411f88f731546ec7c293d47f29bbe23fb9fd50cd6782e"
@@ -32828,7 +32984,10 @@
       "rotulo de hotel legible al fondo",
       "edificio comercial a la derecha"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/aluminum-pergolas"
+    ],
     "origen": "PERGOLA/COVER ALUMINUM ROOF/IMG_5675.jpeg",
     "sha256": "3e5dcc9cbd8ed59f86eaac810408a8a4803cceb514c45077547f58364a29f2de"
   },
@@ -32896,7 +33055,9 @@
       "resolucion justa (1024 px)"
     ],
     "usada_en": [
-      "/blogs/how-much-does-an-aluminum-pergola-cost-in-florida"
+      "/blogs/how-much-does-an-aluminum-pergola-cost-in-florida",
+      "/gallery",
+      "/gallery/aluminum-pergolas"
     ],
     "origen": "PERGOLA/COVER ALUMINUM ROOF/Pergola.jpeg",
     "sha256": "d7c2ace599bd98072cfc37c29d8755a451fb904a9e5d15cd9109d29661b2fa3e"
@@ -33043,7 +33204,10 @@
       "sillas de plastico y barbacoa bajo la cubierta",
       "edicion saturada"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/aluminum-pergolas"
+    ],
     "origen": "PERGOLA/COVER PERGOLA DECO TIPS/100.jpg",
     "sha256": "7855621c18e474ec0de27f9774a816afd72479a58c36ce13f9cb5b7cf0ed8d1b"
   },
@@ -33542,7 +33706,9 @@
       "hierba entre juntas del travertino"
     ],
     "usada_en": [
-      "/blogs/top-10-luxury-pool-designs-for-florida-homes"
+      "/blogs/top-10-luxury-pool-designs-for-florida-homes",
+      "/gallery",
+      "/gallery/aluminum-pergolas"
     ],
     "origen": "PERGOLA/COVER PERGOLA DECO TIPS/45.jpg",
     "sha256": "c77d8fba557f08d9346c12e89034bea0623ed8c52f27095bfec0cb547ba43b73"
@@ -33844,7 +34010,9 @@
       "lona azul al fondo"
     ],
     "usada_en": [
-      "/blogs/how-much-does-an-aluminum-pergola-cost-in-florida"
+      "/blogs/how-much-does-an-aluminum-pergola-cost-in-florida",
+      "/gallery",
+      "/gallery/aluminum-pergolas"
     ],
     "origen": "PERGOLA/COVER PERGOLA DECO TIPS/86.jpg",
     "sha256": "7745769f6e36d0ed44a02becaeb52e16fc2c27d70b0afc4179e6e976c195afca"
@@ -34607,7 +34775,9 @@
       "cartel pequeño en la palmera derecha"
     ],
     "usada_en": [
-      "/blogs/aluminum-vs-wood-pergolas-in-florida"
+      "/blogs/aluminum-vs-wood-pergolas-in-florida",
+      "/gallery",
+      "/gallery/aluminum-pergolas"
     ],
     "origen": "PERGOLA/COVER PERGOLA DECO TIPS/IMG_0054.JPG",
     "sha256": "aa5b6f880e690c40dda894c60213c53143824ea3688896f1be0d90115ccb3c22"
@@ -34729,7 +34899,9 @@
       "tepes de cesped sin asentar"
     ],
     "usada_en": [
-      "/blogs/pergola-design-decisions-before-construction"
+      "/blogs/pergola-design-decisions-before-construction",
+      "/gallery",
+      "/gallery/aluminum-pergolas"
     ],
     "origen": "PERGOLA/COVER PERGOLA DECO TIPS/IMG_0066.jpg",
     "sha256": "82bccfb3e569d7ac4f547c8ac1dd045443657c010be5bad28eb6d200a13e7abc"
@@ -34806,7 +34978,10 @@
       "muebles y juguetes en el deck",
       "cielo gris"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/aluminum-pergolas"
+    ],
     "origen": "PERGOLA/COVER PERGOLA DECO TIPS/IMG_1435.jpeg",
     "sha256": "efc9108640b46e209acc9ae910ac296ec1d67ed60dbf389bf1619bac015c77b2"
   },
@@ -35250,7 +35425,10 @@
       "patitos de goma",
       "resolucion justa (1024 px)"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/aluminum-pergolas"
+    ],
     "origen": "PERGOLA/COVER PERGOLA DECO TIPS/b15420dd-25f6-4f0d-99b3-13a95e817943.jpg",
     "sha256": "8d7706f19f8914088153f398b618faa1b3e2a14c64227c5dc4bc4ae8513cf56c"
   },
@@ -35517,7 +35695,10 @@
       "cinta azul de pintor en las puertas",
       "barbacoa tapada abajo"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/aluminum-pergolas"
+    ],
     "origen": "PERGOLA/DECO OPEN PERGOLA/151.jpg",
     "sha256": "9fe59cbe324bc7a4e9d11565c087492baaa4044546eca01180857c3abd7e07fa"
   },
@@ -35592,7 +35773,10 @@
       "resolucion justa (1080 px)",
       "filtro fuerte"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/aluminum-pergolas"
+    ],
     "origen": "PERGOLA/DECO OPEN PERGOLA/20251015_132007814_iOS.jpg",
     "sha256": "8e5608798533cad23ef01a42bf031d29122fa4ca1f8a700b5e999cafbce0657e"
   },
@@ -35708,9 +35892,10 @@
       "palmeras recien plantadas con tutores"
     ],
     "usada_en": [
+      "/blogs/attached-vs-freestanding-pergola",
       "/gallery",
-      "/services/custom-aluminum-pergola-builders-in-north-south-florida",
-      "/blogs/attached-vs-freestanding-pergola"
+      "/gallery/aluminum-pergolas",
+      "/services/custom-aluminum-pergola-builders-in-north-south-florida"
     ],
     "origen": "PERGOLA/DECO OPEN PERGOLA/42843111-5B15-45DA-9D44-B28569413ADF.jpg",
     "sha256": "30f501b0ed2eb42a2864d14890cb1d2d3e672ea62b69613b9a1d79074fbc6dc6",
@@ -35758,7 +35943,9 @@
       "contraluz arriba"
     ],
     "usada_en": [
-      "/blogs/what-makes-a-pool-look-custom"
+      "/blogs/what-makes-a-pool-look-custom",
+      "/gallery",
+      "/gallery/pools-and-spas"
     ],
     "origen": "PERGOLA/DECO OPEN PERGOLA/505B66A3-EB67-48BA-8E22-863877C29971.jpg",
     "sha256": "9aec3df2c1004375e2631ac435001ddd3df9766a9ea7de20417030a921b4ed31"
@@ -35930,7 +36117,10 @@
       "marca visible en el cajon",
       "resolucion justa (1024 px)"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/aluminum-pergolas"
+    ],
     "origen": "PERGOLA/DECO OPEN PERGOLA/72.jpg",
     "sha256": "dd04b1484713dec531f410fe52b12d8e718fd0c8f2289771635fbd743861d3d0"
   },
@@ -36001,7 +36191,9 @@
       "edificio de apartamentos al fondo"
     ],
     "usada_en": [
-      "/blogs/pergola-beside-a-pool-features-to-plan-together"
+      "/blogs/pergola-beside-a-pool-features-to-plan-together",
+      "/gallery",
+      "/gallery/aluminum-pergolas"
     ],
     "origen": "PERGOLA/DECO OPEN PERGOLA/IMG_2459.jpeg",
     "sha256": "96834386ad4b69807fa1e161bc17c371b79b0438cacae545cd8deed3510fd7e5"
@@ -36198,7 +36390,10 @@
       "bolsa negra al fondo",
       "soporte de TV sin televisor"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/aluminum-pergolas"
+    ],
     "origen": "PERGOLA/Moderna/1.jpeg",
     "sha256": "eb9ef60839324cd463015d7c26253fec4a834394680d66b7922ef9f8a4bee2d7"
   },
@@ -36241,7 +36436,10 @@
       "cinta azul en la encimera",
       "cubo naranja a la derecha"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/outdoor-kitchens"
+    ],
     "origen": "PERGOLA/Moderna/10.jpeg",
     "sha256": "de55bd0e294c32a5f786fb23097ec60c7cc5d030443519cf4e1dda91c648b54d"
   },
@@ -36418,7 +36616,10 @@
       "balon en la piscina",
       "contraluz"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/aluminum-pergolas"
+    ],
     "origen": "PERGOLA/Moderna/3.jpeg",
     "sha256": "6d09327679c389f52d0adf808dcca338d0fefad7765fe64d23ee6a9db1d43a19"
   },
@@ -36769,7 +36970,10 @@
       "caja de permisos con logo en la pared",
       "ahumador y utiles de piscina bajo el porche"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/aluminum-pergolas"
+    ],
     "origen": "PERGOLA/RENAISSANCE/Renaissance Classico/124.jpg",
     "sha256": "62913fa7619701d705a98c1c4669d9bd2e1c751c893b4e1325d22b113eb60ec6"
   },
@@ -36994,7 +37198,10 @@
       "flotador de piña y juego de cornhole abajo",
       "barbacoa tapada"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/aluminum-pergolas"
+    ],
     "origen": "PERGOLA/RENAISSANCE/Renaissance Fresco/134.jpg",
     "sha256": "83146a8a0c9314c1d00563072945ad11d11c6874187f680c58c6de6fc3ccc5da"
   },
@@ -37599,7 +37806,10 @@
       "mesa plegable y herramientas junto a la puerta",
       "remolque y camioneta al fondo a la derecha"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/pole-barns"
+    ],
     "origen": "POLE BARN 2/14.jpg",
     "sha256": "d7089bea52720b904dc13c425e40c08aaad72ebd6a65d950e05998215f295e73"
   },
@@ -37779,7 +37989,10 @@
       "4:5"
     ],
     "defectos": [],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/pole-barns"
+    ],
     "origen": "POLE BARN 2/19.jpg",
     "sha256": "dfbcdaab8d52c9df64e8944cbb2cc75004b544104451dd82265cf9e89fb8a866"
   },
@@ -37855,7 +38068,10 @@
     "defectos": [
       "recortes de madera y bolsa de basura en el primer vano"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/gallery",
+      "/gallery/pole-barns"
+    ],
     "origen": "POLE BARN 2/20.jpg",
     "sha256": "2d2bb9dcf1faaaf89b1ebe7a53d0f1c9595d23c9dd3add86300bd9d1ed681f38"
   },

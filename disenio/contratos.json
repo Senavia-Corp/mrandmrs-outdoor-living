@@ -203,7 +203,7 @@
    "contrato": "rediseno",
    "fecha": "2026-09-02",
    "sha": "por-asignar",
-   "motivo": "R12-GAL: La rejilla de obra pasa de caja de altura FIJA (250 px) a relacion 3:2 declarada. Medido: a 768 px la caja era MAS ALTA QUE ANCHA (0,907) —una piscina apaisada en un retrato, tirando el 49,4 % de la foto— y a 992 la pieza se ENCOGIA al ensanchar la ventana (296 px contra 301 a 991). El recorte medio ponderado sobre las 129 fotos con relacion medida baja del 42,2 % al 14,6 %, y las fotos por encima del 25 % de recorte pasan de 124 a 6. Filtro con objetivo tactil de 44 px y anillo de foco navy en vez del azul de Webflow. Commiteado o aplicado por el propio frente; PENDIENTE de la aprobacion visual de Sebastian ante el director antes de re-baselinizar."
+   "motivo": "R12-GAL: La rejilla de obra pasa de caja de altura FIJA (250 px) a relacion 3:2 declarada. Medido: a 768 px la caja era MAS ALTA QUE ANCHA (0,907) —una piscina apaisada en un retrato, tirando el 49,4 % de la foto— y a 992 la pieza se ENCOGIA al ensanchar la ventana (296 px contra 301 a 991). El recorte medio ponderado sobre las 129 fotos con relacion medida baja del 42,2 % al 14,6 %, y las fotos por encima del 25 % de recorte pasan de 124 a 6. Filtro con objetivo tactil de 44 px y anillo de foco navy en vez del azul de Webflow. Commiteado o aplicado por el propio frente; PENDIENTE de la aprobacion visual de Sebastian ante el director antes de re-baselinizar. · GALERIA-CATEGORIAS (2-oct-2026): diez tarjetas de categoria delante del filtro, cada una a su /gallery/<slug>, y las fotos del banco de esas categorias anadidas a la rejilla. PENDIENTE de aprobacion visual."
   },
   "/industry-solutions": {
    "contrato": "rediseno",
@@ -906,6 +906,66 @@
    "fecha": "2026-10-01",
    "sha": "7300075",
    "motivo": "SEO-SAFE: articulo nuevo del cluster «New Pool Construction» (categoria new-pool-construction), escrito para la ficha de Pool  Construction tras el analisis de huecos (SEO_BLOG_GAP_ANALYSIS.md). No existe en el Webflow de origen: es contenido nuevo. Ruta NUEVA: no hay captura de Webflow contra la que comparar, asi que su referencia se aprueba con scripts/aprobar-diseno.mjs."
+  },
+  "/gallery/pools-and-spas": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-02",
+   "sha": "por-asignar",
+   "motivo": "GALERIA-CATEGORIAS: ruta de AUTORIA PROPIA, la galeria de «Pools & Spas» (21 fotos de obra real). Sin origen en Webflow contra el que compararse. PENDIENTE de la aprobacion visual de Sebastian."
+  },
+  "/gallery/pool-remodeling": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-02",
+   "sha": "por-asignar",
+   "motivo": "GALERIA-CATEGORIAS: ruta de AUTORIA PROPIA, la galeria de «Pool Remodeling» (18 fotos de obra real). Sin origen en Webflow contra el que compararse. PENDIENTE de la aprobacion visual de Sebastian."
+  },
+  "/gallery/aluminum-pergolas": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-02",
+   "sha": "por-asignar",
+   "motivo": "GALERIA-CATEGORIAS: ruta de AUTORIA PROPIA, la galeria de «Aluminum Pergolas» (40 fotos de obra real). Sin origen en Webflow contra el que compararse. PENDIENTE de la aprobacion visual de Sebastian."
+  },
+  "/gallery/louvered-roofs": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-02",
+   "sha": "por-asignar",
+   "motivo": "GALERIA-CATEGORIAS: ruta de AUTORIA PROPIA, la galeria de «Louvered Roofs» (24 fotos de obra real). Sin origen en Webflow contra el que compararse. PENDIENTE de la aprobacion visual de Sebastian."
+  },
+  "/gallery/outdoor-kitchens": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-02",
+   "sha": "por-asignar",
+   "motivo": "GALERIA-CATEGORIAS: ruta de AUTORIA PROPIA, la galeria de «Outdoor Kitchens» (24 fotos de obra real). Sin origen en Webflow contra el que compararse. PENDIENTE de la aprobacion visual de Sebastian."
+  },
+  "/gallery/decks": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-02",
+   "sha": "por-asignar",
+   "motivo": "GALERIA-CATEGORIAS: ruta de AUTORIA PROPIA, la galeria de «Decks» (18 fotos de obra real). Sin origen en Webflow contra el que compararse. PENDIENTE de la aprobacion visual de Sebastian."
+  },
+  "/gallery/landscaping": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-02",
+   "sha": "por-asignar",
+   "motivo": "GALERIA-CATEGORIAS: ruta de AUTORIA PROPIA, la galeria de «Landscaping» (18 fotos de obra real). Sin origen en Webflow contra el que compararse. PENDIENTE de la aprobacion visual de Sebastian."
+  },
+  "/gallery/pole-barns": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-02",
+   "sha": "por-asignar",
+   "motivo": "GALERIA-CATEGORIAS: ruta de AUTORIA PROPIA, la galeria de «Pole Barns» (12 fotos de obra real). Sin origen en Webflow contra el que compararse. PENDIENTE de la aprobacion visual de Sebastian."
+  },
+  "/gallery/pool-screen-enclosures": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-02",
+   "sha": "por-asignar",
+   "motivo": "GALERIA-CATEGORIAS: ruta de AUTORIA PROPIA, la galeria de «Pool Screen Enclosures» (9 fotos de obra real). Sin origen en Webflow contra el que compararse. PENDIENTE de la aprobacion visual de Sebastian."
+  },
+  "/gallery/patio-screen-rooms": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-02",
+   "sha": "por-asignar",
+   "motivo": "GALERIA-CATEGORIAS: ruta de AUTORIA PROPIA, la galeria de «Patio Screen Rooms» (10 fotos de obra real). Sin origen en Webflow contra el que compararse. PENDIENTE de la aprobacion visual de Sebastian."
   }
  }
 }

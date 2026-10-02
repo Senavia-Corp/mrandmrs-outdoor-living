@@ -120,7 +120,14 @@ const ADICIONES_BLOG = (() => {
 
 
 // Van al final y no intercaladas: el orden de las 113 es el del origen y no se toca.
-const locs = [...delOrigen, ...ADICIONES.map(([u]) => u), ...ADICIONES_BLOG.map(([u]) => u)];
+/** Y LAS DE LA GALERIA POR SERVICIO, derivadas de `src/data/galeria-categorias.json` por lo mismo. */
+const ADICIONES_GALERIA = (() => {
+  const f = path.join(RAIZ, 'src/data/galeria-categorias.json');
+  if (!fs.existsSync(f)) return [];
+  return JSON.parse(fs.readFileSync(f, 'utf8')).categorias.map((c) => `${SITIO}/gallery/${c.slug}`);
+})();
+
+const locs = [...delOrigen, ...ADICIONES.map(([u]) => u), ...ADICIONES_BLOG.map(([u]) => u), ...ADICIONES_GALERIA];
 
 /**
  * SITEMAP DE IMAGENES, SOLO DONDE TODA LA FOTO DE DATOS ES OBRA REAL (R24-FOTO-PISCINAS, 1-oct-2026).
