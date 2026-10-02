@@ -367,7 +367,7 @@ const JSONLD_ARREGLADO = {
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Motorized Louvered Roof Design & Installation'],
       ['about.image', 'Motorized louvered roof system installed by custom outdoor living contractors in Florida',
-        '/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-4.avif'],
+        '/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-heroe.avif'],
       ['dateModified', '2026-05-18T19:52:59.092Z', '2026-05-18T19:55:49.094Z'],
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:52:59.092Z'],
     ],

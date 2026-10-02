@@ -103,5 +103,43 @@
       null,
       null
     ]
+  },
+  "/services/motorized-louvered-roof-systems-in-north-south-florida": {
+    "section.gallery img.image-gallery": [
+      {
+        "src": "/images/banco/louvered/louvered-roof-blades-motor-solar-sensor-top-view-florida-01.webp",
+        "alt": "Top of a white louvered roof showing blades, motors and a small solar panel beside a modern home",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0225",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/louvered/louvered-pergola-finished-condo-terrace-florida-01.webp",
+        "alt": "Finished white louvered pergola casting striped shade on a wood-look terrace.",
+        "ancho": 1125,
+        "alto": 838,
+        "pos": "50% 50%",
+        "_banco": "bi-0658",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/louvered/louvered-roof-red-led-lighting-dusk-patio-florida-01.webp",
+        "alt": "White louvered roof lit with red LED lights over a travertine patio with wicker seating at dusk",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0214",
+        "_por_que": null
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
   }
 }

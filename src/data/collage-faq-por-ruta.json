@@ -296,31 +296,31 @@
   "/services/motorized-louvered-roof-systems-in-north-south-florida": {
     "fotos": [
       {
-        "src": "/images/images/motorized-louvered-roof-9/motorized-louvered-roof-installers-florida-09.jpg",
-        "srcset": "/images/site/motorized-louvered-roof-installers-florida-09-p-500.jpg 500w, /images/site/motorized-louvered-roof-installers-florida-09-p-800.jpg 800w, /images/site/motorized-louvered-roof-installers-florida-09-p-1080.jpg 1080w, /images/images/motorized-louvered-roof-9/motorized-louvered-roof-installers-florida-09.jpg 1250w",
-        "alt": "Louvered roof installation with modern frame and rotating panels, built for shade control and outdoor comfort.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "50% 55%",
-        "_hoja": "louvered:2"
+        "src": "/images/banco/louvered/louvered-pergola-open-louvers-rooftop-ocean-florida-01.webp",
+        "srcset": "/images/banco/louvered/louvered-pergola-open-louvers-rooftop-ocean-florida-01.webp 1125w",
+        "alt": "Looking up through open louvers of a white rooftop pergola toward the ocean.",
+        "ancho": 1125,
+        "alto": 844,
+        "pos": "50% 50%",
+        "_banco": "bi-0652"
       },
       {
-        "src": "/images/images/motorized-louvered-roof-3/motorized-louvered-roof-installers-florida-03.jpg",
-        "srcset": "/images/site/motorized-louvered-roof-installers-florida-03-p-500.jpg 500w, /images/site/motorized-louvered-roof-installers-florida-03-p-800.jpg 800w, /images/site/motorized-louvered-roof-installers-florida-03-p-1080.jpg 1080w, /images/images/motorized-louvered-roof-3/motorized-louvered-roof-installers-florida-03.jpg 1250w",
-        "alt": "Adjustable louvered roof panels allowing airflow and rain protection, ideal for poolside patios in South Florida.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "50% 45%",
-        "_hoja": "louvered:8"
+        "src": "/images/banco/louvered/louvered-roof-white-corner-frame-blades-detail-florida-01.webp",
+        "srcset": "/images/banco/louvered/louvered-roof-white-corner-frame-blades-detail-florida-01.webp 1200w",
+        "alt": "Corner of a white aluminum louvered roof showing the frame, rivets and angled blades",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0201"
       },
       {
-        "src": "/images/images/motorized-louvered-roof-5/motorized-louvered-roof-installers-florida-05.jpg",
-        "srcset": "/images/site/motorized-louvered-roof-installers-florida-05-p-500.jpg 500w, /images/site/motorized-louvered-roof-installers-florida-05-p-800.jpg 800w, /images/site/motorized-louvered-roof-installers-florida-05-p-1080.jpg 1080w, /images/images/motorized-louvered-roof-5/motorized-louvered-roof-installers-florida-05.jpg 1250w",
-        "alt": "Custom patio cover with integrated LED lighting and motorized louvers for day and night outdoor comfort in Florida.",
-        "ancho": 1250,
-        "alto": 1250,
-        "pos": "40% 50%",
-        "_hoja": "louvered:6"
+        "src": "/images/banco/louvered/louvered-roof-white-blades-open-underside-detail-florida-01.webp",
+        "srcset": "/images/banco/louvered/louvered-roof-white-blades-open-underside-detail-florida-01.webp 1600w",
+        "alt": "White louvered roof blades tilted open seen from below with palm trees and sky beyond",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "60% 30%",
+        "_banco": "bi-0166"
       },
       {
         "src": "/images/images/motorized-louvered-roof-6/motorized-louvered-roof-installers-florida-06.jpg",

@@ -949,12 +949,22 @@
   "/services/motorized-louvered-roof-systems-in-north-south-florida": {
     "heroe": {
       "apoyo": "Motorized louvered roof builders and installation contractors in North & South Florida, offering adjustable shade and weather protection.",
-      "foto": "/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-4.avif",
-      "alt": "Motorized louvered aluminum roof with its blades open over a poolside patio, built in South Florida by Mr & Mrs Outdoor Living",
-      "ancho": 1250,
-      "alto": 698,
+      "foto": "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-heroe.avif",
+      "alt": "Large white louvered roof with partly open blades over a travertine patio with wicker lounge furniture",
+      "ancho": 1600,
+      "alto": 900,
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
-      "ancla": "#estimate"
+      "ancla": "#estimate",
+      "_banco": "bi-0233",
+      "_proyecto": "obra-033",
+      "_ajuste": {
+        "recorte": "16/9",
+        "pos": "50% 45%",
+        "ancho": 1600,
+        "q": 50,
+        "de": "/images/banco/louvered/louvered-roof-white-large-span-travertine-patio-florida-01.webp"
+      },
+      "og": "/images/obra/og/motorized-louvered-roof-systems-in-north-south-florida.jpg"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -1073,10 +1083,73 @@
           "principal": false
         }
       ],
-      "foto": "/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-4.avif",
-      "alt": "Motorized louvered aluminum roof over an outdoor dining area beside a pool, built in North Florida by Mr & Mrs Outdoor Living",
-      "ancho": 1250,
-      "alto": 698
+      "foto": "/images/obra/obra-059/louvered-pergola-outdoor-kitchen-stacked-stone-florida-inversion.avif",
+      "alt": "White louvered pergola covering an outdoor kitchen with stacked stone island and lounge seating.",
+      "ancho": 1280,
+      "alto": 715,
+      "pos": "50% 50%",
+      "_banco": "bi-0632",
+      "_proyecto": "obra-059",
+      "_ajuste": {
+        "recorte": "1250/698",
+        "pos": "50% 50%",
+        "ancho": 1280,
+        "q": 52,
+        "de": "/images/banco/louvered/louvered-pergola-outdoor-kitchen-stacked-stone-florida-01.webp"
+      }
+    },
+    "proceso": {
+      "fotos": [
+        null,
+        {
+          "foto": "/images/obra/obra-050/louvered-pergola-frame-rooftop-ladders-ocean-florida-proceso1.avif",
+          "alt": "White pergola frames and ladders on a rooftop terrace with the ocean behind.",
+          "ancho": 1600,
+          "alto": 873,
+          "pos": "50% 50%",
+          "_banco": "bi-0643",
+          "_proyecto": "obra-050",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/louvered/louvered-pergola-frame-rooftop-ladders-ocean-florida-01.webp"
+          }
+        },
+        {
+          "foto": "/images/obra/obra-050/louvered-pergola-frame-installation-condo-terrace-florida-proceso2.avif",
+          "alt": "Crew assembling white pergola posts and beams on a condominium pool terrace.",
+          "ancho": 1600,
+          "alto": 873,
+          "pos": "50% 50%",
+          "_banco": "bi-0611",
+          "_proyecto": "obra-050",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/louvered/louvered-pergola-frame-installation-condo-terrace-florida-01.webp"
+          }
+        },
+        {
+          "foto": "/images/obra/obra-050/louvered-pergola-installation-rooftop-ocean-view-florida-proceso3.avif",
+          "alt": "White louvered pergola frame being assembled on an oceanfront rooftop deck.",
+          "ancho": 1600,
+          "alto": 873,
+          "pos": "50% 50%",
+          "_banco": "bi-0610",
+          "_proyecto": "obra-050",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/louvered/louvered-pergola-installation-rooftop-ocean-view-florida-01.webp"
+          }
+        }
+      ]
     }
   },
   "/services/motorized-retractable-screens-in-north-south-florida": {

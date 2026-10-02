@@ -6042,7 +6042,8 @@
     "usada_en": [
       "/blogs/is-a-motorized-louvered-roof-worth-it-in-florida",
       "/gallery",
-      "/gallery/louvered-roofs"
+      "/gallery/louvered-roofs",
+      "/services/motorized-louvered-roof-systems-in-north-south-florida"
     ],
     "origen": "EQUINOX LOUVERED ROOF/14c22f1d-0b8a-4056-a50d-e55eba61613d 2.jpg",
     "sha256": "00313d1d57aa16f871a99cde9d1ee8c8892270ee2e9980de422e9e29a2ee5135"
@@ -7309,7 +7310,9 @@
     "defectos": [
       "cielo gris plano"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/motorized-louvered-roof-systems-in-north-south-florida"
+    ],
     "origen": "EQUINOX LOUVERED ROOF/8df14785-1c05-42f5-ae71-6c679d0335b6.jpg",
     "sha256": "df7fa23d2027bbc9a7faea9e90ae5702538f7203b7e93ecf7fccafd104c24b4b"
   },
@@ -7796,7 +7799,8 @@
     "usada_en": [
       "/blogs/features-to-compare-before-buying-a-louvered-roof",
       "/gallery",
-      "/gallery/louvered-roofs"
+      "/gallery/louvered-roofs",
+      "/services/motorized-louvered-roof-systems-in-north-south-florida"
     ],
     "origen": "EQUINOX LOUVERED ROOF/IMG_0043.JPG",
     "sha256": "f33a80e109b37e2d56611d97394bad55f846e90a59256fb71eace5845a685287"
@@ -8217,7 +8221,8 @@
     "usada_en": [
       "/blogs/features-to-compare-before-buying-a-louvered-roof",
       "/gallery",
-      "/gallery/louvered-roofs"
+      "/gallery/louvered-roofs",
+      "/services/motorized-louvered-roof-systems-in-north-south-florida"
     ],
     "origen": "EQUINOX LOUVERED ROOF/IMG_0805.jpeg",
     "sha256": "8f26111b7f3675f6c87e670b8b88688afc704b86c7998409ad58d10f7215cb29"
@@ -8534,10 +8539,15 @@
     "usada_en": [
       "/blogs/pergola-vs-louvered-roof",
       "/gallery",
-      "/gallery/louvered-roofs"
+      "/gallery/louvered-roofs",
+      "/services/motorized-louvered-roof-systems-in-north-south-florida"
     ],
     "origen": "EQUINOX LOUVERED ROOF/IMG_4433.JPG",
-    "sha256": "27183774f1ece1b736e83f25b5f36c480ef2688d07da47b8714954572e4494ac"
+    "sha256": "27183774f1ece1b736e83f25b5f36c480ef2688d07da47b8714954572e4494ac",
+    "publicada_como": [
+      "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-heroe.avif",
+      "/images/obra/og/motorized-louvered-roof-systems-in-north-south-florida.jpg"
+    ]
   },
   {
     "id": "bi-0234",
@@ -20852,10 +20862,14 @@
       "maletín de herramientas en primer plano"
     ],
     "usada_en": [
-      "/blogs/questions-to-ask-a-louvered-roof-installer"
+      "/blogs/questions-to-ask-a-louvered-roof-installer",
+      "/services/motorized-louvered-roof-systems-in-north-south-florida"
     ],
     "origen": "NEW JOBS CONSTRUCTION/FOTOS DE TODO/62093777416__5FF0A2E5-AEC1-45B1-91F6-FE1F92F6505E.JPG",
-    "sha256": "de7ddd1ac680a215b3cc824b17475210c3a376c2b1c2dbef0978f5caa9447276"
+    "sha256": "de7ddd1ac680a215b3cc824b17475210c3a376c2b1c2dbef0978f5caa9447276",
+    "publicada_como": [
+      "/images/obra/obra-050/louvered-pergola-installation-rooftop-ocean-view-florida-proceso3.avif"
+    ]
   },
   {
     "id": "bi-0611",
@@ -20891,9 +20905,14 @@
     "defectos": [
       "marca de la escalera visible"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/motorized-louvered-roof-systems-in-north-south-florida"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/FOTOS DE TODO/62093779322__5CC16A91-D53F-45CE-9FC9-48C5C1A459F3.JPG",
-    "sha256": "46fe789b62a558950d790b8ffce65865ce48ecd9ffd553797c82ccd283e52ff8"
+    "sha256": "46fe789b62a558950d790b8ffce65865ce48ecd9ffd553797c82ccd283e52ff8",
+    "publicada_como": [
+      "/images/obra/obra-050/louvered-pergola-frame-installation-condo-terrace-florida-proceso2.avif"
+    ]
   },
   {
     "id": "bi-0612",
@@ -21710,10 +21729,14 @@
     "usada_en": [
       "/blogs/designing-a-complete-louvered-roof-system",
       "/gallery",
-      "/gallery/louvered-roofs"
+      "/gallery/louvered-roofs",
+      "/services/motorized-louvered-roof-systems-in-north-south-florida"
     ],
     "origen": "NEW JOBS CONSTRUCTION/FOTOS DE TODO/IMG_1351.JPG",
-    "sha256": "3ae1ebfb15451e6965d8e933494a7bfd4e3ff4c41e9215d911562a649bf17746"
+    "sha256": "3ae1ebfb15451e6965d8e933494a7bfd4e3ff4c41e9215d911562a649bf17746",
+    "publicada_como": [
+      "/images/obra/obra-059/louvered-pergola-outdoor-kitchen-stacked-stone-florida-inversion.avif"
+    ]
   },
   {
     "id": "bi-0633",
@@ -22131,10 +22154,14 @@
       "bolsa de basura y caballetes a la derecha"
     ],
     "usada_en": [
-      "/blogs/how-much-does-a-motorized-louvered-roof-cost"
+      "/blogs/how-much-does-a-motorized-louvered-roof-cost",
+      "/services/motorized-louvered-roof-systems-in-north-south-florida"
     ],
     "origen": "NEW JOBS CONSTRUCTION/FOTOS DE TODO/IMG_1564.JPEG",
-    "sha256": "29120a473045ff445706eef7acc5957848c39643d9e3ed4e3b8fd67702d177ce"
+    "sha256": "29120a473045ff445706eef7acc5957848c39643d9e3ed4e3b8fd67702d177ce",
+    "publicada_como": [
+      "/images/obra/obra-050/louvered-pergola-frame-rooftop-ladders-ocean-florida-proceso1.avif"
+    ]
   },
   {
     "id": "bi-0644",
@@ -22469,7 +22496,8 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/louvered-roofs"
+      "/gallery/louvered-roofs",
+      "/services/motorized-louvered-roof-systems-in-north-south-florida"
     ],
     "origen": "NEW JOBS CONSTRUCTION/FOTOS DE TODO/IMG_1629.JPEG",
     "sha256": "99ebc476fdc7668506a86f5bf0f8d2b8884f8fa1685c1e46a7937b7f654f9165"
@@ -22700,7 +22728,8 @@
     "usada_en": [
       "/blogs/commercial-pool-construction-in-florida-what-decision-makers-must-know",
       "/gallery",
-      "/gallery/louvered-roofs"
+      "/gallery/louvered-roofs",
+      "/services/motorized-louvered-roof-systems-in-north-south-florida"
     ],
     "origen": "NEW JOBS CONSTRUCTION/FOTOS DE TODO/IMG_1635.JPEG",
     "sha256": "a004c6bd549bd9d8d09f96ab74832e50fd58100718a81d00e9e473962a8a4fab"
