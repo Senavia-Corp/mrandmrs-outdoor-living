@@ -110,9 +110,11 @@ const APOYOS_CIUDAD = SANITY_CIUDADES
  * escribe el marcado, asi que si mañana cambia un slug o una `linea` en galeria-categorias.json, la
  * pagina y esta declaracion se mueven juntas.
  *
- * Lo viejo SI se escribe aqui: es el baseline, que no se mueve nunca. La entradilla de cada ciudad
- * sale de Sanity (`paragraphFeatures`, comprobada igual al baseline en las 53) y las dos
- * /where-we-serve/ traen su propio titular, escrito a mano en origen.
+ * Lo viejo sale del BASELINE, que no se mueve nunca: los seis pares nombre/parrafo, escritos aqui, y
+ * el titular y la entradilla de cada ruta, que se LEEN de `baseline/text/<ruta>.txt` -las dos lineas
+ * justo antes del primer panel-. No de la cache de Sanity: `headingFeature`/`paragraphFeatures` ya
+ * no se pintan y se pueden limpiar alli, y una declaracion que leyera la cache se pondria roja en las
+ * 53 por un texto correcto. Si el baseline no trae la banda donde se espera, revienta al arrancar.
  */
 const PANELES_VIEJOS = [
   'Energy Efficient Systems',
@@ -134,18 +136,20 @@ const PANELES_VIEJOS = [
   'Outdoor living design-build enhancements include outdoor kitchens, pergolas, hardscaping, and '
     + 'architectural shade structures—fully integrated to create a cohesive, high-end outdoor environment.',
 ];
-const CABECERAS_BANDA = [
-  ...SANITY_CIUDADES.map((d) => [`/pool-builders/${d.slug}`, [d.headingFeature, d.paragraphFeatures]]),
-  ['/where-we-serve/north-florida', ['Featured Luxury Pool Projects Across North Florida',
-    'Our advanced 3D rendering technology allows you to preview your North Florida luxury pool and '
-    + 'outdoor living space before construction begins. As luxury pool builders in North Florida, we '
-    + 'create photorealistic designs that help you explore layouts, materials, and finishes in detail. '
-    + 'This collaborative process improves clarity, minimizes surprises, and ensures your final project '
-    + 'reflects your vision with confidence.']],
-  ['/where-we-serve/south-florida', ['Luxury Pool Features & Integrated Upgrades',
-    'Enhance your pool with architecturally integrated features engineered for performance, comfort, '
-    + 'and visual impact.']],
+const RUTAS_BANDA = [
+  ...SANITY_CIUDADES.map((d) => `/pool-builders/${d.slug}`),
+  '/where-we-serve/north-florida',
+  '/where-we-serve/south-florida',
 ];
+const CABECERAS_BANDA = RUTAS_BANDA.map((ruta) => {
+  const lineas = fs.readFileSync(path.join(RAIZ, 'baseline/text', `${aSlug(ruta)}.txt`), 'utf8').split('\n');
+  const i = lineas.indexOf(PANELES_VIEJOS[0]);
+  if (i < 2 || lineas.indexOf(PANELES_VIEJOS[0], i + 1) >= 0
+    || PANELES_VIEJOS.some((v, k) => lineas[i + k] !== v)) {
+    throw new Error(`BANDA_GALERIA: el baseline de ${ruta} no trae los seis paneles viejos seguidos`);
+  }
+  return [ruta, lineas.slice(i - 2, i)];
+});
 const BANDA_GALERIA = CABECERAS_BANDA.flatMap(([ruta, cabecera]) => {
   const viejas = [...cabecera, ...PANELES_VIEJOS];
   const nuevas = lineasBanda();

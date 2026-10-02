@@ -472,10 +472,6 @@ const REVEALS = JSON.stringify(reveals.porId);
     if (banda) {
       const tarjetas = [...banda.querySelectorAll('.feature-card')];
       const botones = tarjetas.map((t) => t.querySelector('.feature-boton'));
-      // El enlace a /gallery/<slug> vive en el parrafo, y el parrafo de una columna cerrada es
-      // opacidad 0: tabular hasta el seria poner el foco en algo invisible. Solo es parada de
-      // tabulador el de la columna abierta; el orden queda boton (abre) -> su enlace -> boton.
-      const enlaces = tarjetas.map((t) => t.querySelector('.feature-text a'));
       const ancha = matchMedia('(min-width: 992px)');
 
       // `i` a -1 cierra las seis, que es el estado de reposo: la banda arranca contraida y
@@ -483,18 +479,13 @@ const REVEALS = JSON.stringify(reveals.porId);
       const abre = (i) => {
         tarjetas.forEach((t, n) => t.classList.toggle('is-active', n === i));
         botones.forEach((b, n) => b?.setAttribute('aria-expanded', String(n === i)));
-        enlaces.forEach((a, n) => { if (a) a.tabIndex = !ancha.matches || n === i ? 0 : -1; });
       };
 
       // Por debajo de 992 las seis columnas se ven ENTERAS -texto incluido-, asi que un
       // `aria-expanded="false"` ahi seria mentira: el lector de pantalla anunciaria cerrado
       // algo que esta abierto. Se recalcula tambien al cruzar el limite, no solo al cargar.
       const sincroniza = () => {
-        if (!ancha.matches) {
-          botones.forEach((b) => b?.setAttribute('aria-expanded', 'true'));
-          enlaces.forEach((a) => { if (a) a.tabIndex = 0; });
-          return;
-        }
+        if (!ancha.matches) { botones.forEach((b) => b?.setAttribute('aria-expanded', 'true')); return; }
         abre(tarjetas.findIndex((t) => t.classList.contains('is-active')));
       };
 
@@ -520,13 +511,36 @@ const REVEALS = JSON.stringify(reveals.porId);
 
       tarjetas.forEach((t, i) => {
         t.addEventListener('mouseenter', () => { if (ancha.matches) abre(i); });
+        // El teclado abre al enfocar, que es el equivalente de pasar el raton por encima. Va en
+        // `focusin` de la columna y no en el `focus` del boton: dentro esta tambien el enlace a
+        // /gallery/<slug>, y el foco tiene que abrir su columna llegue por donde llegue. Con
+        // Shift+Tab se entra a la columna POR el enlace; si solo abriera el boton, el foco caeria
+        // en un enlace con opacidad 0.
+        t.addEventListener('focusin', () => { if (ancha.matches) abre(i); });
       });
+
+      // EL ENLACE INVISIBLE NO SE PULSA. En una columna cerrada el parrafo es opacidad 0, pero
+      // sigue ahi: comparte celda con el titulo y queda POR ENCIMA del `::after` del boton. Un
+      // toque en una tableta apaisada, o un clic rapido sobre el titulo, se iria a la galeria sin
+      // haber visto la columna. Se mira la opacidad al PULSAR (no al soltar: en tactil el
+      // `mouseenter` emulado abre la columna entre medias) y, si el enlace no se veia, el clic se
+      // anula y queda lo de siempre, la columna abriendose. El clic de teclado (`detail` 0) no
+      // pasa por aqui: el foco ya abrio su columna.
+      let seVeiaAlPulsar = true;
+      banda.addEventListener('pointerdown', (ev) => {
+        const p = ev.target.closest?.('.feature-text');
+        seVeiaAlPulsar = !p || +getComputedStyle(p).opacity >= 0.5;
+      }, true);
+      banda.addEventListener('click', (ev) => {
+        if (ev.detail && ancha.matches && !seVeiaAlPulsar && ev.target.closest?.('.feature-text a')) {
+          ev.preventDefault();
+        }
+        seVeiaAlPulsar = true;   // vale para UN clic: el siguiente sin pulsacion (lector, teclado) pasa
+      }, true);
 
       botones.forEach((b, i) => {
         if (!b) return;
         b.addEventListener('click', () => { if (ancha.matches) abre(i); });
-        // El teclado abre al enfocar, que es el equivalente de pasar el raton por encima.
-        b.addEventListener('focus', () => { if (ancha.matches) abre(i); });
         // Flechas, Inicio y Fin mueven el foco Y abren, como hace el raton. Mover el foco sin
         // abrir dejaria al teclado enfocando una columna cerrada, con su titulo en vertical y
         // su parrafo invisible: el foco estaria en un sitio que no se puede leer.
