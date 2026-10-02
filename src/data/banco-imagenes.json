@@ -16986,7 +16986,8 @@
     "usada_en": [
       "/blogs/outdoor-kitchen-layout-guide",
       "/gallery",
-      "/gallery/outdoor-kitchens"
+      "/gallery/outdoor-kitchens",
+      "/project/luxury-pool-raised-spa-travertine-deck-south-florida"
     ],
     "origen": "NEW JOBS CONSTRUCTION/Brier/IMG_3833.JPEG",
     "sha256": "54ca9fca84442b17a2ebd369587ad226e8e2f9ab75f954966ab6f0e70d285a15"
@@ -17028,7 +17029,9 @@
       "manguera del limpiafondos",
       "distorsion de gran angular"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/project/luxury-pool-raised-spa-travertine-deck-south-florida"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Brier/IMG_3834.JPEG",
     "sha256": "c4bab612dd64dae8a96829574998246e573963d7bda184973f97defe4fa1c96f"
   },
@@ -17072,7 +17075,8 @@
     "usada_en": [
       "/blogs/before-you-build-a-pool-in-florida",
       "/gallery",
-      "/gallery/pools-and-spas"
+      "/gallery/pools-and-spas",
+      "/project/luxury-pool-raised-spa-travertine-deck-south-florida"
     ],
     "origen": "NEW JOBS CONSTRUCTION/Brier/IMG_3835.JPEG",
     "sha256": "5873578c054925523f39d3e79486bb01f8602f9a192fd8ed4974d2ea2bdcbb54"
@@ -17188,7 +17192,8 @@
     "usada_en": [
       "/blogs/before-and-after-pool-remodel-ideas",
       "/gallery",
-      "/gallery/decks"
+      "/gallery/decks",
+      "/project/luxury-pool-raised-spa-travertine-deck-south-florida"
     ],
     "origen": "NEW JOBS CONSTRUCTION/Brier/IMG_3838.JPEG",
     "sha256": "2bb2567256cf27680ff4da6977ce2f3f6228c9291cf7fdc0259adc10a2d25189"
@@ -37307,7 +37312,8 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/aluminum-pergolas"
+      "/gallery/aluminum-pergolas",
+      "/project/luxury-pool-spa-aluminum-pergola-south-florida"
     ],
     "origen": "PERGOLA/RENAISSANCE/Renaissance Classico/124.jpg",
     "sha256": "62913fa7619701d705a98c1c4669d9bd2e1c751c893b4e1325d22b113eb60ec6"
@@ -37346,7 +37352,9 @@
       "caja de permisos en la pared",
       "ahumador tapado"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/project/luxury-pool-spa-aluminum-pergola-south-florida"
+    ],
     "origen": "PERGOLA/RENAISSANCE/Renaissance Classico/125.jpg",
     "sha256": "67d35cffdf2e0fde10021ebf2479379586ce9e39b5986faa5af6a97bdd63cd43"
   },

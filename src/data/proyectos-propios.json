@@ -11,6 +11,9 @@
    "ubicacion": "South Florida",
    "estilo": "Modern Florida Contemporary",
    "tipo": "Residential",
+   "servicios": [
+    "construction"
+   ],
    "seo": {
     "titulo": "Luxury Pool & Raised Spa Project | South Florida",
     "descripcion": "Custom South Florida pool with a raised glass-mosaic spa, spillway, sun shelf and travertine deck, built for year-round family outdoor living."
@@ -35,6 +38,22 @@
     {
      "src": "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-5.avif",
      "alt": "Pool and spa from the house side, with the covered patio, dining area and screened neighbouring lanais behind."
+    },
+    {
+     "src": "/images/banco/construction/pool-construction-spa-travertine-deck-wide-florida-01.webp",
+     "alt": "Wide view of a new pool with raised spa and ivory travertine deck framed by hedges and palm trees."
+    },
+    {
+     "src": "/images/banco/kitchens/outdoor-kitchen-granite-waterfall-counter-grill-florida-01.webp",
+     "alt": "Outdoor kitchen with granite waterfall countertop, built-in grill and undercounter fridge on a stone patio."
+    },
+    {
+     "src": "/images/banco/construction/pool-construction-spa-turf-stepping-pads-house-florida-01.webp",
+     "alt": "New pool with raised spa, travertine deck and stepping pads in artificial turf behind a two-story home."
+    },
+    {
+     "src": "/images/banco/decks/travertine-pool-deck-herringbone-turf-border-florida-01.webp",
+     "alt": "Ivory travertine pool deck laid in a herringbone pattern with artificial turf border and pool beyond."
     }
    ],
    "tituloHtml": "Luxury Pool &amp; Raised Spa with Travertine Deck",
@@ -50,6 +69,9 @@
    "ubicacion": "North Florida",
    "estilo": "Modern Geometric",
    "tipo": "Residential",
+   "servicios": [
+    "construction"
+   ],
    "seo": {
     "titulo": "Estate Pool & Spa with Sun Shelf | North Florida",
     "descripcion": "Large geometric pool with a sun shelf, raised spa and banded marble deck on open North Florida acreage, designed and built for estate-scale outdoor living."
@@ -89,6 +111,9 @@
    "ubicacion": "South Florida",
    "estilo": "Modern Coastal",
    "tipo": "Residential",
+   "servicios": [
+    "construction"
+   ],
    "seo": {
     "titulo": "Pool & Raised Spa with Marble Deck | South Florida",
     "descripcion": "South Florida pool with a tanning shelf, in-pool loungers and a white-tiled raised spa, finished with large-format marble pavers throughout the deck."
@@ -128,6 +153,10 @@
    "ubicacion": "South Florida",
    "estilo": "Modern Florida Contemporary",
    "tipo": "Residential",
+   "servicios": [
+    "construction",
+    "pergolas"
+   ],
    "seo": {
     "titulo": "Luxury Pool, Spa & Aluminum Pergola | South Florida",
     "descripcion": "South Florida pool and raised spa with glass mosaic tile, deck jets and a slatted aluminum pergola shading the lanai, by licensed pool builders."
@@ -156,6 +185,14 @@
     {
      "src": "/images/projects/luxury-pool-spa-aluminum-pergola-south-florida/luxury-pool-spa-aluminum-pergola-south-florida-project-6.avif",
      "alt": "Pool and spa seen from the covered patio, looking out across the travertine deck."
+    },
+    {
+     "src": "/images/banco/pergolas/insulated-patio-cover-black-frame-pool-deck-lawn-florida-01.webp",
+     "alt": "Black-framed insulated patio cover with rafter tails extending from a yellow two-story home beside a pool"
+    },
+    {
+     "src": "/images/banco/pergolas/insulated-patio-cover-black-frame-pool-deck-lawn-florida-02.webp",
+     "alt": "Low-angle view of a black-framed insulated patio cover with square rafter tails on a yellow two-story home"
     }
    ],
    "tituloHtml": "Luxury Pool, Spa &amp; Aluminum Pergola",
@@ -171,6 +208,9 @@
    "ubicacion": "South Florida",
    "estilo": "Modern Florida Contemporary",
    "tipo": "Residential",
+   "servicios": [
+    "pergolas"
+   ],
    "seo": {
     "titulo": "Aluminum Patio Cover & Pool Deck | South Florida",
     "descripcion": "Solid-roof aluminum patio cover and marble pool deck for a South Florida home, shading the lanai while leaving the pool open to the sky."

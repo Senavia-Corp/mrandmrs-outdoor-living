@@ -24,6 +24,7 @@ import { chromium } from 'playwright';
 import { JSDOM } from 'jsdom';
 import { ARGS_NAVEGADOR, aSlug, asentar, textoNormalizado } from './lib/captura.mjs';
 import { lineasTarjetas, lineasBanda } from '../src/lib/galeria-categorias.mjs';
+import { OCULTAS, lineasFiltro } from '../src/lib/filtro-proyectos.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 
@@ -749,6 +750,32 @@ const quitaAntesDespues = (ruta, lineas) => {
   if (j < 0) return lineas;
   if (lineas[j + 1] === 'Get A Free Estimate') j++;
   return [...lineas.slice(0, i), ...lineas.slice(j + 1)];
+};
+
+/**
+ * LAS TARJETAS QUE SEBASTIAN QUITO DE `/projects` (PROMPT-PROYECTOS-BANCO §2, 2-oct-2026).
+ *
+ * Se quitan del BASELINE, como el antes/despues de arriba, y por el mismo motivo no valen
+ * `QUITADAS_A_PROPOSITO`: «View Full Project» sale una vez por tarjeta y dos tarjetas comparten
+ * titulo. Se quita el GRUPO CONTIGUO titulo · resumen · «View Full Project» de cada oculta, y el
+ * titulo se deriva de `obras-migradas.json` por slug (las ocultas son migradas: las propias se
+ * descuentan en `lineasObras`). Si una oculta no casa, ROJO: una declaracion que ya no quita
+ * nada es una puerta que dejo de medir sin decirlo.
+ */
+let ocultasFallo = null;
+const quitaOcultasDelIndice = (ruta, lineas) => {
+  if (ruta !== '/projects') return lineas;
+  const migradas = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/obras-migradas.json'), 'utf8')).obras;
+  let out = lineas;
+  for (const slug of OCULTAS) {
+    const o = migradas.find((m) => m.slug === slug);
+    if (!o) continue;                       // oculta propia: la descuenta `lineasObras`
+    const titulo = capitaliza(o.tituloHtml.replace(/&amp;/g, '&'));
+    const i = out.findIndex((l, k) => l === titulo && out[k + 2] === 'View Full Project');
+    if (i < 0) { ocultasFallo = `la tarjeta oculta «${titulo}» no esta en el baseline de /projects`; return null; }
+    out = [...out.slice(0, i), ...out.slice(i + 3)];
+  }
+  return out;
 };
 
 /**
@@ -2369,7 +2396,11 @@ function lineasObras(ruta) {
   if (!d) return [];
   const f = path.join(RAIZ, 'src/data/proyectos-propios.json');
   if (!fs.existsSync(f)) return [];
-  const obras = JSON.parse(fs.readFileSync(f, 'utf8')).obras ?? [];
+  // En el indice no salen las ocultas; en el carrusel no salen las que dicen `enCarrusel: false`
+  // (las obras del banco de PROMPT-PROYECTOS-BANCO). Mismos dos filtros que `build-paginas.mjs` y
+  // `CarruselProyectos.astro`.
+  const obras = (JSON.parse(fs.readFileSync(f, 'utf8')).obras ?? [])
+    .filter((o) => (d.forma === 'tarjeta' ? !OCULTAS.has(o.slug) : o.enCarrusel !== false));
   // El titulo pasa por `capitaliza` porque va en un h2/h3 con capitalize; el resumen no, va en
   // un <div> pelado; los rotulos de boton se escriben ya capitalizados, como en el origen.
   return obras.flatMap((o) => (d.forma === 'tarjeta'
@@ -2448,6 +2479,17 @@ function sinElBloque(ruta, hay) {
   if (fd.length && lineas.includes(fd[0])) {
     lineas = quitaBloque(lineas, fd);
     if (lineas === null) { bloqueQueFallo = 'el bloque del feed (src/data/instagram.json)'; return null; }
+  }
+
+  // 4.bis · el filtro de `/projects` (PROMPT-PROYECTOS-BANCO §5): etiqueta y opciones del
+  //     `<select>`, entre el ancla y la primera tarjeta. Va ANTES del 5 porque se interpone entre
+  //     los dos; derivado de `lineasFiltro()`, la misma formula que pinta el componente.
+  if (ruta === '/projects') {
+    lineas = quitaTras(lineas, OBRAS_PROPIAS_EN[ruta].tras, lineasFiltro());
+    if (lineas === null) {
+      bloqueQueFallo = 'el filtro de /projects (src/lib/filtro-proyectos.mjs)';
+      return null;
+    }
   }
 
   // 5 · las obras de autoria propia (§ OBRAS_PROPIAS_EN). Disjunto de los cuatro anteriores: ni
@@ -2912,8 +2954,15 @@ for (const ruta of RUTAS) {
     rojos.push({ ruta, falta: [reescritoFallo], sobra: [], fuera: [] });
     continue;
   }
+  const sinOcultas = quitaOcultasDelIndice(ruta, quitaAntesDespues(ruta, baseReescrita));
+  if (sinOcultas === null) {
+    mal++;
+    console.log(`  ROJO ${ruta} — ${ocultasFallo}`);
+    rojos.push({ ruta, falta: [ocultasFallo], sobra: [], fuera: [] });
+    continue;
+  }
   const esperado = reordena(ruta,
-    quitaAntesDespues(ruta, baseReescrita)
+    sinOcultas
       .filter((l) => !declaradas.has(l)).map((l) => traduce(ruta, l))).join('\n');
   const bruto = (await textoNormalizado(pag)).trimEnd();
   if (bruto.includes(RESENAS_MARCADOR)) conResenas++;
