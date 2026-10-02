@@ -52,6 +52,7 @@ const d = DATOS[ruta]?.inversion;
           height={d.alto}
           loading="lazy"
           decoding="async"
+          style={d.pos ? `object-position:${d.pos}` : undefined}
         />
       )}
       <div class="svc-inversion__panel mm-inverso">

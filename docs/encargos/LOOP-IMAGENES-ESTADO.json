@@ -660,17 +660,464 @@
       "tipo": "montaje",
       "ruta": null,
       "estado": "hecha",
-      "commit": "siguiente-iteracion"
+      "commit": "01eae10"
     },
     {
       "id": "pergolas",
       "tipo": "ficha",
       "ruta": "/services/custom-aluminum-pergola-builders-in-north-south-florida",
-      "estado": "pendiente",
-      "commit": null,
-      "portada_menu": null,
-      "portada_full": null,
-      "huecos": []
+      "estado": "hecha",
+      "commit": "siguiente-iteracion",
+      "portada_menu": "bi-0914",
+      "portada_full": "bi-0935",
+      "huecos": [
+        {
+          "hueco": "faq[0]",
+          "selector": ".mm-collage img",
+          "antes": "/images/images/pergolas-2/custom-pergola-patio-cover-builders-florida-02.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": "actual",
+          "descartadas": [
+            {
+              "_banco": "bi-1011",
+              "clase": "juez-prefiere-actual",
+              "motivo": "el juez prefiere la actual (obra real): empate entre reales, se queda"
+            }
+          ],
+          "motivo": "juez prefiere la actual, que ya es obra real",
+          "falta": "Detalle de cerca de un poste, viga o remate de cubierta de aluminio terminada, con el cielo detrás",
+          "consulta": null
+        },
+        {
+          "hueco": "faq[1]",
+          "selector": ".mm-collage img",
+          "antes": "/images/images/pergolas-10/custom-pergola-patio-cover-builders-florida-10.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": "actual",
+          "descartadas": [
+            {
+              "_banco": "bi-0943",
+              "clase": "juez-prefiere-actual",
+              "motivo": "el juez prefiere la actual (obra real): empate entre reales, se queda"
+            }
+          ],
+          "motivo": "juez prefiere la actual, que ya es obra real",
+          "falta": "Detalle de cerca de un poste, viga o remate de cubierta de aluminio terminada, con el cielo detrás",
+          "consulta": null
+        },
+        {
+          "hueco": "faq[2]",
+          "selector": ".mm-collage img",
+          "antes": "/images/images/pergolas-6/custom-pergola-patio-cover-builders-florida-06.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": "actual",
+          "descartadas": [
+            {
+              "_banco": "bi-0937",
+              "clase": "juez-prefiere-actual",
+              "motivo": "el juez prefiere la actual (obra real): empate entre reales, se queda"
+            }
+          ],
+          "motivo": "juez prefiere la actual, que ya es obra real",
+          "falta": "Detalle de cerca de un poste, viga o remate de cubierta de aluminio terminada, con el cielo detrás",
+          "consulta": null
+        },
+        {
+          "hueco": "faq[3]",
+          "selector": ".mm-collage img",
+          "antes": "/images/images/pergolas-8/custom-pergola-patio-cover-builders-florida-08.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "canjeada",
+          "despues": "/images/banco/pergolas/insulated-patio-cover-black-rafter-tails-lake-view-florida-01.webp",
+          "_banco": "bi-1069",
+          "pos": "50% 50%",
+          "_ajuste": null,
+          "juez": "candidata",
+          "descartadas": [],
+          "motivo": null,
+          "falta": null,
+          "consulta": null
+        },
+        {
+          "hueco": "faq[4]",
+          "selector": ".mm-collage img",
+          "antes": "/images/images/pergolas-9/custom-pergola-patio-cover-builders-florida-09.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "canjeada",
+          "despues": "/images/banco/pergolas/aluminum-lattice-pergola-black-underside-sunset-florida-01.webp",
+          "_banco": "bi-1033",
+          "pos": "50% 30%",
+          "_ajuste": null,
+          "juez": "candidata",
+          "descartadas": [],
+          "motivo": null,
+          "falta": null,
+          "consulta": null
+        },
+        {
+          "hueco": "galeria[0]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/pergolas-10/custom-pergola-patio-cover-builders-florida-10.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": null,
+          "descartadas": [],
+          "motivo": "ya es obra real y no se repite con las secciones intocables",
+          "falta": "ninguna: ya es obra real",
+          "consulta": "obra real ya publicada y sin repeticion con intro/What we do: prioridad 4 de §6.1, no se abrio casting"
+        },
+        {
+          "hueco": "galeria[1]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/pergolas-9/custom-pergola-patio-cover-builders-florida-09.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": "actual",
+          "descartadas": [
+            {
+              "_banco": "bi-0913",
+              "clase": "dentro-del-recorte",
+              "motivo": "calva de tierra y objeto azul tras la celosia, abajo a la izquierda, visible en 768 y 390"
+            }
+          ],
+          "motivo": "la candidata cae por dentro-del-recorte; la actual es obra_real",
+          "falta": "Pérgola o cubierta de aluminio terminada, de día, patio recogido (sin parrilla enfundada ni lona), la estructura entera en cuadro desde la esquina del jardín",
+          "consulta": null
+        },
+        {
+          "hueco": "galeria[2]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/pergolas-8/custom-pergola-patio-cover-builders-florida-08.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": "actual",
+          "descartadas": [
+            {
+              "_banco": "bi-0759",
+              "clase": "dentro-del-recorte",
+              "motivo": "TV/parrilla con funda gris colgada bajo la cubierta, visible en los 4 anchos"
+            }
+          ],
+          "motivo": "la candidata cae por dentro-del-recorte; la actual es obra_real",
+          "falta": "Pérgola o cubierta de aluminio terminada, de día, patio recogido (sin parrilla enfundada ni lona), la estructura entera en cuadro desde la esquina del jardín",
+          "consulta": null
+        },
+        {
+          "hueco": "galeria[3]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/pergolas-7/custom-pergola-patio-cover-builders-florida-07.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": "actual",
+          "descartadas": [
+            {
+              "_banco": "bi-1072",
+              "clase": "dentro-del-recorte",
+              "motivo": "parrilla con funda gris y pina decorativa en la esquina inferior derecha, visible en 768/991/1440"
+            }
+          ],
+          "motivo": "la candidata cae por dentro-del-recorte; la actual es obra_real",
+          "falta": "Pérgola o cubierta de aluminio terminada, de día, patio recogido (sin parrilla enfundada ni lona), la estructura entera en cuadro desde la esquina del jardín",
+          "consulta": null
+        },
+        {
+          "hueco": "galeria[4]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/pergolas-6/custom-pergola-patio-cover-builders-florida-06.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": null,
+          "descartadas": [],
+          "motivo": "ya es obra real y no se repite con las secciones intocables",
+          "falta": "ninguna: ya es obra real",
+          "consulta": "obra real ya publicada y sin repeticion con intro/What we do: prioridad 4 de §6.1, no se abrio casting"
+        },
+        {
+          "hueco": "galeria[5]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/pergolas-5/custom-pergola-patio-cover-builders-florida-05.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": "candidata",
+          "descartadas": [
+            {
+              "_banco": "bi-0897",
+              "clase": "dentro-del-recorte",
+              "motivo": "parrilla con funda negra en la cocina exterior, visible en los 4 anchos"
+            }
+          ],
+          "motivo": "la candidata cae por dentro-del-recorte; la actual es obra_real",
+          "falta": "Pérgola o cubierta de aluminio terminada, de día, patio recogido (sin parrilla enfundada ni lona), la estructura entera en cuadro desde la esquina del jardín",
+          "consulta": null
+        },
+        {
+          "hueco": "galeria[6]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/pergolas-4/custom-pergola-patio-cover-builders-florida-04.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": "candidata",
+          "descartadas": [
+            {
+              "_banco": "bi-0985",
+              "clase": "dentro-del-recorte",
+              "motivo": "lona/plastico azul sobre la hierba junto a la valla, visible en 768/991/1440"
+            }
+          ],
+          "motivo": "la candidata cae por dentro-del-recorte; la actual es obra_real",
+          "falta": "Pérgola o cubierta de aluminio terminada, de día, patio recogido (sin parrilla enfundada ni lona), la estructura entera en cuadro desde la esquina del jardín",
+          "consulta": null
+        },
+        {
+          "hueco": "galeria[7]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/pergolas-3/custom-pergola-patio-cover-builders-florida-03.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": null,
+          "descartadas": [],
+          "motivo": "ya es obra real y no se repite con las secciones intocables",
+          "falta": "ninguna: ya es obra real",
+          "consulta": "obra real ya publicada y sin repeticion con intro/What we do: prioridad 4 de §6.1, no se abrio casting"
+        },
+        {
+          "hueco": "galeria[8]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/pergolas-2/custom-pergola-patio-cover-builders-florida-02.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": null,
+          "descartadas": [],
+          "motivo": "ya es obra real y no se repite con las secciones intocables",
+          "falta": "ninguna: ya es obra real",
+          "consulta": "obra real ya publicada y sin repeticion con intro/What we do: prioridad 4 de §6.1, no se abrio casting"
+        },
+        {
+          "hueco": "galeria[9]",
+          "selector": "section.gallery img.image-gallery",
+          "antes": "/images/images/pergolas-1/custom-pergola-patio-cover-builders-florida-01.jpg",
+          "procedencia_antes": "obra_real",
+          "estado": "se-queda",
+          "despues": null,
+          "_banco": null,
+          "pos": null,
+          "_ajuste": null,
+          "juez": null,
+          "descartadas": [],
+          "motivo": "ya es obra real y no se repite con las secciones intocables",
+          "falta": "ninguna: ya es obra real",
+          "consulta": "obra real ya publicada y sin repeticion con intro/What we do: prioridad 4 de §6.1, no se abrio casting"
+        },
+        {
+          "hueco": "heroe",
+          "selector": "img.image-bg-hero-services",
+          "antes": "/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-3.avif",
+          "procedencia_antes": "sin_verificar",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-100/freestanding-pergola-dark-bronze-pool-spa-canal-florida-heroe.avif",
+          "_banco": "bi-1046",
+          "pos": "50% 55%",
+          "_ajuste": {
+            "recorte": "16/9",
+            "pos": "50% 55%",
+            "ancho": 1600,
+            "q": 50,
+            "de": "/images/banco/pergolas/freestanding-pergola-dark-bronze-pool-spa-canal-florida-02.webp"
+          },
+          "juez": "candidata",
+          "descartadas": [],
+          "motivo": null,
+          "falta": null,
+          "consulta": null
+        },
+        {
+          "hueco": "inversion",
+          "selector": "img.svc-inversion__foto",
+          "antes": "/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-3.avif",
+          "procedencia_antes": "sin_verificar",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-075/wood-pergola-outdoor-kitchen-putting-green-lake-florida-inversion.avif",
+          "_banco": "bi-0842",
+          "pos": "50% 45%",
+          "_ajuste": {
+            "recorte": "1250/698",
+            "pos": "50% 45%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01.webp"
+          },
+          "juez": "candidata",
+          "descartadas": [],
+          "motivo": null,
+          "falta": null,
+          "consulta": null
+        },
+        {
+          "hueco": "proceso[0]",
+          "selector": "img.img-process",
+          "antes": "/images/procesos/pergola-installation-step-1/pergola-installation-step-1.png",
+          "procedencia_antes": "ia_probada",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-107/insulated-patio-cover-black-frame-new-pavers-install-florida-proceso0.avif",
+          "_banco": "bi-1068",
+          "pos": "50% 45%",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 45%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/pergolas/insulated-patio-cover-black-frame-new-pavers-install-florida-01.webp"
+          },
+          "juez": "candidata",
+          "descartadas": [],
+          "motivo": null,
+          "falta": null,
+          "consulta": null
+        },
+        {
+          "hueco": "proceso[1]",
+          "selector": "img.img-process",
+          "antes": "/images/procesos/pergola-installation-step-2/pergola-installation-step-2.png",
+          "procedencia_antes": "ia_probada",
+          "estado": "canjeada",
+          "despues": "/images/obra/suelta/modern-patio-cover-black-frame-slat-walls-install-florida-proceso1.avif",
+          "_banco": "bi-1053",
+          "pos": "50% 50%",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/pergolas/modern-patio-cover-black-frame-slat-walls-install-florida-01.webp"
+          },
+          "juez": "candidata",
+          "descartadas": [],
+          "motivo": null,
+          "falta": null,
+          "consulta": null
+        },
+        {
+          "hueco": "proceso[2]",
+          "selector": "img.img-process",
+          "antes": "/images/procesos/pergola-installation-step-3/pergola-installation-step-3.png",
+          "procedencia_antes": "ia_probada",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-002/aluminum-pergola-frame-installation-crew-ladders-florida-proceso2.avif",
+          "_banco": "bi-0003",
+          "pos": "50% 45%",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 45%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/pergolas/aluminum-pergola-frame-installation-crew-ladders-florida-01.webp"
+          },
+          "juez": "candidata",
+          "descartadas": [],
+          "motivo": null,
+          "falta": null,
+          "consulta": null
+        },
+        {
+          "hueco": "proceso[3]",
+          "selector": "img.img-process",
+          "antes": "/images/procesos/pergola-installation-step-4/pergola-installation-step-4-v2.png",
+          "procedencia_antes": "ia_probada",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-061/insulated-patio-cover-ceiling-bronze-frame-florida-proceso3.avif",
+          "_banco": "bi-0637",
+          "pos": "50% 50%",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/pergolas/insulated-patio-cover-ceiling-bronze-frame-florida-01.webp"
+          },
+          "juez": "candidata",
+          "descartadas": [],
+          "motivo": null,
+          "falta": null,
+          "consulta": null
+        }
+      ],
+      "puertas": {
+        "verdes": [
+          "check:tokens",
+          "check:estructura",
+          "check:assets",
+          "check:seo",
+          "build-banco --check",
+          "check:galeria (ficha)",
+          "check-texto (ficha)",
+          "check-fotos-servicios pergolas"
+        ],
+        "rojas_esperadas": [
+          "check-visual: referencia anterior al rediseño (cocinas, sin tocar, da +141/+119/+176/+216); alto de la pagina medido antes/despues con la misma receta: +0/+1/+0/+0 px a 479/768/991/1440"
+        ],
+        "no_corridas": [
+          "check:ix2 y check:cascaron (gate de fase)"
+        ]
+      },
+      "juez": {
+        "canjeadas": 8,
+        "caidas_candidata": 5,
+        "prefiere_actual": 3,
+        "sin_casting": 5,
+        "nota": "freno 7.2 no salta: 5/16 candidatas tumbadas (31 %), 8/16 canjes (50 %)"
+      },
+      "criterio": "Los 4 pasos derivados a 1408/768 y la inversion a 1250/698 porque a 768/991 el paso se pinta entero y a 479 la banda sigue el ratio de width/height: con 4:3 la pagina crece (medido en la ficha de piscina: 935x701 frente a 935x510)."
     },
     {
       "id": "kitchens",

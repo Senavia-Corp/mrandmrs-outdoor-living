@@ -301,12 +301,22 @@
   "/services/custom-aluminum-pergola-builders-in-north-south-florida": {
     "heroe": {
       "apoyo": "Custom pergola builders and installation company serving North & South Florida, delivering durable designs that enhance outdoor comfort and style.",
-      "foto": "/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-3.avif",
-      "alt": "Motorized louvered aluminum pergola over an outdoor kitchen and dining area beside a pool, built in North Florida by Mr & Mrs Outdoor Living",
-      "ancho": 1250,
-      "alto": 698,
+      "foto": "/images/obra/obra-100/freestanding-pergola-dark-bronze-pool-spa-canal-florida-heroe.avif",
+      "alt": "Dark bronze freestanding lattice pergola framing a blue-tiled spa with canal, boats and palms behind",
+      "ancho": 1600,
+      "alto": 900,
       "licencias": "Florida aluminum contractor · SCC131153553",
-      "ancla": "#estimate"
+      "ancla": "#estimate",
+      "_banco": "bi-1046",
+      "_proyecto": "obra-100",
+      "_ajuste": {
+        "recorte": "16/9",
+        "pos": "50% 55%",
+        "ancho": 1600,
+        "q": 50,
+        "de": "/images/banco/pergolas/freestanding-pergola-dark-bronze-pool-spa-canal-florida-02.webp"
+      },
+      "og": "/images/obra/og/custom-aluminum-pergola-builders-in-north-south-florida.jpg"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -425,10 +435,88 @@
           "principal": false
         }
       ],
-      "foto": "/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-3.avif",
-      "alt": "Motorized louvered aluminum pergola attached to a home, shading a poolside patio in South Florida, built by Mr & Mrs Outdoor Living",
-      "ancho": 1250,
-      "alto": 698
+      "foto": "/images/obra/obra-075/wood-pergola-outdoor-kitchen-putting-green-lake-florida-inversion.avif",
+      "alt": "Dark wood pergola over an outdoor kitchen bar and lounge with TV screen beside a putting green.",
+      "ancho": 1600,
+      "alto": 893,
+      "pos": "50% 45%",
+      "_banco": "bi-0842",
+      "_proyecto": "obra-075",
+      "_ajuste": {
+        "recorte": "1250/698",
+        "pos": "50% 45%",
+        "ancho": 1600,
+        "q": 52,
+        "de": "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01.webp"
+      }
+    },
+    "proceso": {
+      "fotos": [
+        {
+          "foto": "/images/obra/obra-107/insulated-patio-cover-black-frame-new-pavers-install-florida-proceso0.avif",
+          "alt": "New black-framed insulated patio cover on a white house with marble pavers still being laid",
+          "ancho": 1600,
+          "alto": 873,
+          "pos": "50% 45%",
+          "_banco": "bi-1068",
+          "_proyecto": "obra-107",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 45%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/pergolas/insulated-patio-cover-black-frame-new-pavers-install-florida-01.webp"
+          }
+        },
+        {
+          "foto": "/images/obra/suelta/modern-patio-cover-black-frame-slat-walls-install-florida-proceso1.avif",
+          "alt": "Black-framed flat patio cover with slatted walls and blue marble-look panels being installed over a sports court",
+          "ancho": 1600,
+          "alto": 873,
+          "pos": "50% 50%",
+          "_banco": "bi-1053",
+          "_proyecto": null,
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/pergolas/modern-patio-cover-black-frame-slat-walls-install-florida-01.webp"
+          }
+        },
+        {
+          "foto": "/images/obra/obra-002/aluminum-pergola-frame-installation-crew-ladders-florida-proceso2.avif",
+          "alt": "Crew on ladders assembling a black aluminum pergola frame over a travertine patio.",
+          "ancho": 1600,
+          "alto": 873,
+          "pos": "50% 45%",
+          "_banco": "bi-0003",
+          "_proyecto": "obra-002",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 45%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/pergolas/aluminum-pergola-frame-installation-crew-ladders-florida-01.webp"
+          }
+        },
+        {
+          "foto": "/images/obra/obra-061/insulated-patio-cover-ceiling-bronze-frame-florida-proceso3.avif",
+          "alt": "Underside of an insulated aluminum patio cover with bronze beams, installer on a ladder.",
+          "ancho": 1600,
+          "alto": 873,
+          "pos": "50% 50%",
+          "_banco": "bi-0637",
+          "_proyecto": "obra-061",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/pergolas/insulated-patio-cover-ceiling-bronze-frame-florida-01.webp"
+          }
+        }
+      ]
     }
   },
   "/services/custom-deck-builders-in-north-south-florida": {

@@ -176,22 +176,22 @@
         "_hoja": "pergolas:5"
       },
       {
-        "src": "/images/images/pergolas-8/custom-pergola-patio-cover-builders-florida-08.jpg",
-        "srcset": "/images/site/custom-pergola-patio-cover-builders-florida-08-p-500.jpg 500w, /images/site/custom-pergola-patio-cover-builders-florida-08-p-800.jpg 800w, /images/site/custom-pergola-patio-cover-builders-florida-08-p-1080.jpg 1080w, /images/images/pergolas-8/custom-pergola-patio-cover-builders-florida-08.jpg 1250w",
-        "alt": "Poolside pergola installation in Florida backyard, designed by expert pergola builders for shade and comfort.",
-        "ancho": 1250,
-        "alto": 839,
-        "pos": "50% 35%",
-        "_hoja": "pergolas:3"
+        "src": "/images/banco/pergolas/insulated-patio-cover-black-rafter-tails-lake-view-florida-01.webp",
+        "srcset": "/images/banco/pergolas/insulated-patio-cover-black-rafter-tails-lake-view-florida-01.webp 1600w",
+        "alt": "Upward view of a black patio cover with scalloped rafter tails, gutter and downspout framing a lake",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-1069"
       },
       {
-        "src": "/images/images/pergolas-9/custom-pergola-patio-cover-builders-florida-09.jpg",
-        "srcset": "/images/site/custom-pergola-patio-cover-builders-florida-09-p-500.jpg 500w, /images/site/custom-pergola-patio-cover-builders-florida-09-p-800.jpg 800w, /images/site/custom-pergola-patio-cover-builders-florida-09-p-1080.jpg 1080w, /images/images/pergolas-9/custom-pergola-patio-cover-builders-florida-09.jpg 1250w",
-        "alt": "Custom pergola installation over backyard deck by Florida contractors, blending landscape design and outdoor structure.",
-        "ancho": 1250,
-        "alto": 976,
-        "pos": "50% 50%",
-        "_hoja": "pergolas:2"
+        "src": "/images/banco/pergolas/aluminum-lattice-pergola-black-underside-sunset-florida-01.webp",
+        "srcset": "/images/banco/pergolas/aluminum-lattice-pergola-black-underside-sunset-florida-01.webp 1600w",
+        "alt": "Underside of a black aluminum lattice pergola attached to a house with a sunset sky behind",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 30%",
+        "_banco": "bi-1033"
       }
     ]
   },

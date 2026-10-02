@@ -3,6 +3,29 @@
 Webflow → Astro 5 + Sanity + Vercel. Una entrada por fase, **escrita al cerrar la fase**,
 nunca al empezarla. Si una fase se reabre, se añade una entrada nueva; no se edita la vieja.
 
+## LOOP-IMAGENES · pergolas — la ficha de pérgolas enseña obra propia en héroe, proceso, inversión y FAQ (2-oct-2026)
+
+Unidad piloto del loop. 21 huecos inventariados sobre el HTML; 16 con candidata; juez a ciegas
+(A/B aleatorio) tumbó 5 por desorden dentro del recorte y prefirió la actual en 3 teselas. **8 canjes**:
+héroe (bi-1046, AVIF 145 KB frente a 211 KB; `og:image` deja el AVIF con marca de IA de la intro y pasa
+a un JPEG 1200×630 real), banda de inversión (bi-0842), los 4 pasos (IA → obra en curso bi-1068,
+bi-1053, bi-0003, bi-0637) y dos teselas de la FAQ (bi-1069, bi-1033). La galería se queda: las 5
+candidatas cayeron (parrilla enfundada, lona, calva de tierra) y lo actual es obra real. Héroe y
+`about.image` de `check-seo.mjs` cambian en el mismo commit. Reservadas bi-0914 (menú) y bi-0935 (Full).
+
+- **Proporción medida, no supuesta:** a 768/991 el paso se pinta entero y a 479 la banda sigue el ratio
+  de `width/height`; los 4 pasos van derivados a 1408/768 y la inversión a 1250/698. Alto de la página
+  antes/después, misma receta: +0/+1/+0/+0 px.
+- **Mecanismo nuevo, pequeño:** `InversionCore.astro` acepta `pos`; `scripts/loop-aplicar.mjs`
+  (decisiones → JSON + derivados + `usada_en`/`publicada_como` + estado), `derivar-foto.mjs` (recorte
+  `cover` + AVIF/JPEG sin metadatos, receta en `_ajuste`), `loop-hoja.mjs` (antes|después).
+
+### Puertas
+
+tokens, estructura, assets, seo, banco, galería (ficha) y texto (ficha) VERDES; `check-fotos-servicios
+pergolas` verde al marcar la unidad. `check-visual` ROJA **y ya lo estaba**: cocinas sin tocar da
++141/+119/+176/+216 px por la referencia anterior al rediseño; el re-baseline es de Sebastian.
+
 ## LOOP-IMAGENES F0 — montaje del loop de obra real en fichas, megamenú y Full-Service (2-oct-2026)
 
 Encargo `PROMPT-LOOP-IMAGENES.md` (raíz, la versión que manda). Rama `loop-imagenes` desde
