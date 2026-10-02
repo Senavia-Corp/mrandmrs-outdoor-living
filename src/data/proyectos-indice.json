@@ -1,0 +1,27 @@
+{
+ "_lee_esto": [
+  "EL INDICE /projects: que tarjetas se quitan y en que filtro sale cada una (PROMPT-PROYECTOS-BANCO, 2-oct-2026).",
+  "Lo leen scripts/build-paginas.mjs (quita las tarjetas y su parte del hasPart, pone data-servicios), src/components/widgets/FiltroProyectos.astro (las opciones), scripts/check-texto.mjs y scripts/check-seo.mjs (lo declaran). Todo a traves de src/lib/filtro-proyectos.mjs.",
+  "`ocultas`: fuera del indice, NO de la web. La ficha /project/<slug> sigue publicada e indexada (es una de las 115 rutas) y el carrusel «Project Showcase» no se toca.",
+  "`servicios`: las 10 obras migradas de Webflow, que no traen servicio en el origen. Las propias lo llevan en src/data/proyectos-propios.json. Los ids son los de src/data/galeria-categorias.json: una sola taxonomia para /gallery y /projects.",
+  "Una tarjeta sin servicios, o un slug de `ocultas` que no este en la pagina, para el generador en rojo."
+ ],
+ "ocultas": [
+  { "slug": "modern-pool-motorized-pergola-south-florida", "motivo": "Marcada con X por Sebastian en la captura de /projects", "fecha": "2026-10-02" },
+  { "slug": "south-florida-backyard-pool-wood-pergola", "motivo": "Marcada con X por Sebastian en la captura de /projects", "fecha": "2026-10-02" },
+  { "slug": "residential-pool-pergola-outdoor-dining-north-florida", "motivo": "Marcada con X por Sebastian en la captura de /projects", "fecha": "2026-10-02" },
+  { "slug": "luxury-pool-motorized-pergola-screen-enclosure-north-florida", "motivo": "Marcada con X por Sebastian en la captura de /projects", "fecha": "2026-10-02" }
+ ],
+ "servicios": {
+  "modern-pool-motorized-pergola-south-florida": ["construction", "louvered"],
+  "south-florida-backyard-pool-wood-pergola": ["construction", "pergolas"],
+  "residential-pool-pergola-outdoor-dining-north-florida": ["construction", "pergolas"],
+  "luxury-pool-motorized-pergola-screen-enclosure-north-florida": ["construction", "louvered", "enclosures"],
+  "luxury-pool-spa-with-screen-enclosure-north-florida": ["construction", "enclosures"],
+  "luxury-pool-motorized-pergola-outdoor-kitchen-north-florida": ["construction", "louvered", "kitchen"],
+  "luxury-pool-spa-screen-enclosure-north-florida": ["construction", "enclosures", "kitchen"],
+  "luxury-pool-motorized-pergola-screens-south-florida": ["construction", "louvered"],
+  "luxury-pool-pergola-outdoor-living-south-florida": ["construction", "pergolas"],
+  "luxury-pool-pergola-outdoor-kitchen-south-florida": ["construction", "pergolas", "kitchen"]
+ }
+}

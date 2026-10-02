@@ -28,6 +28,7 @@ import path from 'node:path';
 import { JSDOM } from 'jsdom';
 import { renombra } from './lib/renombradas.mjs';
 import { CATEGORIAS as GALERIA_CATEGORIAS, tarjetasHtml } from '../src/lib/galeria-categorias.mjs';
+import { OCULTAS, serviciosDe } from '../src/lib/filtro-proyectos.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const man = JSON.parse(fs.readFileSync(path.join(RAIZ, '_source/assets-manifest.json'), 'utf8')).assets;
@@ -484,6 +485,7 @@ const OBRAS_EN = {
   },
 };
 let obrasInsertadas = 0;
+let obrasOcultadas = 0;
 
 let blogsInsertados = 0;
 /* Y las que lo reciben por SUSTITUCION -Condado ya traia `.blog-section-page` en su origen-,
@@ -1299,6 +1301,7 @@ for (const [ruta] of RUTAS) {
 
   // Las obras de autoria propia, al principio de la lista (§ OBRAS_PROPIAS).
   const inj = OBRAS_EN[ruta];
+  let conFiltro = false;
   if (inj) {
     const lista = doc.querySelector(inj.lista);
     const molde = lista?.firstElementChild;
@@ -1320,6 +1323,35 @@ for (const [ruta] of RUTAS) {
       lista.insertBefore(n, lista.firstElementChild);
       obrasInsertadas++;
     }
+
+    /* ── EL INDICE CON FILTRO (PROMPT-PROYECTOS-BANCO, 2-oct-2026) ─────────────────────────
+     * Despues de clonar, nunca antes: la primera tarjeta del origen es el molde y es una de las
+     * ocultas. Ocultar es quitar la TARJETA; la ficha sigue viva (dato y motivo en
+     * `src/data/proyectos-indice.json`). Cada tarjeta que se queda lleva `data-servicios`, que es
+     * lo unico que lee el filtro, y el filtro entra como componente delante de la lista.
+     * Las dos faltas posibles paran el generador: una tarjeta sin servicios saldria en «All» y
+     * en ningun filtro, y una oculta que ya no esta en la pagina es una lista que miente. */
+    const vistas = new Set();
+    for (const a of [...lista.querySelectorAll('.wrapper-buttons a[href^="/project/"]')]) {
+      const slug = a.getAttribute('href').slice('/project/'.length);
+      const tarjeta = a.closest('.cms-item-work');
+      if (OCULTAS.has(slug)) { tarjeta.remove(); vistas.add(slug); obrasOcultadas++; continue; }
+      const servicios = serviciosDe(slug);
+      if (!servicios.length) {
+        console.error(`\n  ROJO ${ruta}: la tarjeta /project/${slug} no tiene servicios `
+          + '(src/data/proyectos-indice.json o proyectos-propios.json)\n');
+        process.exit(1);
+      }
+      tarjeta.setAttribute('data-servicios', servicios.join(' '));
+    }
+    const perdidas = [...OCULTAS].filter((s) => !vistas.has(s));
+    if (perdidas.length) {
+      console.error(`\n  ROJO ${ruta}: ocultas que ya no estan en la pagina: ${perdidas.join(', ')}\n`);
+      process.exit(1);
+    }
+    const envoltorio = lista.closest('.cms-wrapper-work') ?? lista;
+    envoltorio.parentNode.insertBefore(doc.createTextNode(MARCA + 'FiltroProyectos' + MARCA), envoltorio);
+    conFiltro = true;
   }
 
   /* ── LAS 14 FOTOS DEL BANCO EN `/gallery` (21-sep-2026, Sebastian) ──────────────────────
@@ -1802,6 +1834,7 @@ for (const [ruta] of RUTAS) {
    * `usados` y no el marcador: sin esta linea salen 15 ficheros con `<CollageFaq />` y sin
    * importarlo. Cazado construyendo. */
   if (conCollage) usados.add('CollageFaq');
+  if (conFiltro) usados.add('FiltroProyectos');
   let primerLogos = true;
   let acumulado = '';
   for (let n = menu.nextElementSibling; n && n !== pie; n = n.nextElementSibling) {
@@ -1956,6 +1989,13 @@ for (const [ruta] of RUTAS) {
       name: o.titulo,
       url: `/project/${o.slug}`,
     })), ...b.hasPart];
+    // Y decrece con las ocultas: el JSON-LD dice las obras que la pagina ensena, ni una mas.
+    const antes = b.hasPart.length;
+    b.hasPart = b.hasPart.filter((p) => !OCULTAS.has(String(p.url).replace(/^\/project\//, '')));
+    if (antes - b.hasPart.length !== OCULTAS.size) {
+      console.error(`\n  ROJO ${ruta}: el hasPart quito ${antes - b.hasPart.length} partes y hay ${OCULTAS.size} ocultas\n`);
+      process.exit(1);
+    }
   }
 
   // La profundidad importa: /blogs/{slug} vive en src/pages/blogs/, asi que necesita ../../
@@ -2081,7 +2121,8 @@ console.log(`  ${galeriaPropiaInsertada} fotos del banco insertadas en /gallery\
 
 const OBRAS_ESPERADAS = OBRAS_PROPIAS.length * Object.keys(OBRAS_EN).length;
 console.log(`  obras propias insertadas en el indice: ${obrasInsertadas}`
-  + `${obrasInsertadas === OBRAS_ESPERADAS ? '' : `   <<< SE ESPERABAN ${OBRAS_ESPERADAS}`}`);
+  + `${obrasInsertadas === OBRAS_ESPERADAS ? '' : `   <<< SE ESPERABAN ${OBRAS_ESPERADAS}`}`
+  + ` · ocultadas: ${obrasOcultadas} (src/data/proyectos-indice.json)`);
 console.log('        (la home tambien trae la seccion en su origen y se cuenta en memoria, pero');
 console.log('        esta en NO_REGENERAR y no se escribe: sigue con su propio S_BLOG a mano.)');
 console.log('        Las 53 de pool-builders/ NO pasan por este generador — su migracion es');

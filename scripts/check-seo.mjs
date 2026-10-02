@@ -26,6 +26,7 @@ import path from 'node:path';
 import { JSDOM } from 'jsdom';
 import { esPropia, conPropias } from './lib/rutas-propias.mjs';
 import { TITULO_BANDA, TEXTO_BANDA } from '../src/lib/galeria-categorias.mjs';
+import { OCULTAS, propiasEnIndice } from '../src/lib/filtro-proyectos.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const ESTATICO = path.join(RAIZ, '.vercel/output/static');
@@ -162,15 +163,15 @@ const PARTES_PROPIAS = {
   '/projects': {
     bloque: 0,
     clave: 'hasPart',
-    urls: [
-      '/project/luxury-pool-raised-spa-travertine-deck-south-florida',
-      '/project/estate-pool-spa-sun-shelf-north-florida',
-      '/project/pool-raised-spa-marble-deck-south-florida',
-      '/project/luxury-pool-spa-aluminum-pergola-south-florida',
-      '/project/aluminum-patio-cover-pool-deck-south-florida',
-    ],
-    motivo: 'Las 5 obras de autoria propia del 3-sep-2026. Las inserta `build-paginas.mjs` '
-      + '(§ OBRAS_PROPIAS) al principio del `hasPart`, en el mismo orden que sus tarjetas.',
+    // Derivadas, no cableadas: las obras propias que salen en el indice, en su orden. Antes eran
+    // 5 URLs escritas aqui y la primera obra del banco las habria dejado mintiendo.
+    urls: propiasEnIndice().map((o) => `/project/${o.slug}`),
+    // Las migradas que Sebastian quito del indice (PROMPT-PROYECTOS-BANCO §2): se quitan del
+    // BASELINE tras comprobar que estaban en el y que ya no estan en el build.
+    quitadas: [...OCULTAS].map((s) => `/project/${s}`),
+    motivo: 'Las obras de autoria propia (src/data/proyectos-propios.json). Las inserta '
+      + '`build-paginas.mjs` (§ OBRAS_PROPIAS) al principio del `hasPart`, en el mismo orden que '
+      + 'sus tarjetas; las ocultas de src/data/proyectos-indice.json salen del bloque.',
   },
 };
 
@@ -970,7 +971,13 @@ for (const ruta of conPropias(RUTAS)) {
             }
             if (!String(x?.image?.url ?? '').trim()) malas.push(`parte propia ${k}: image.url vacia`);
           });
+          // Las quitadas: estaban en el origen, ya no estan en el build, y salen de lo esperado.
+          for (const u of pp.quitadas ?? []) {
+            if (!(e[pp.clave] ?? []).some((x) => x?.url === u)) malas.push(`quitada ${u}: el origen ya no la trae — revisa la declaracion`);
+            if (arr.some((x) => x?.url === u)) malas.push(`quitada ${u}: el build la sigue publicando`);
+          }
           if (malas.length) { problemas.push(...malas); continue; }
+          if (pp.quitadas?.length) e = { ...e, [pp.clave]: e[pp.clave].filter((x) => !pp.quitadas.includes(x?.url)) };
           // `ordena` ya dejo las claves ordenadas; sustituir una existente conserva su sitio.
           mio = { ...mio, [pp.clave]: arr.slice(pp.urls.length) };
           partesCasadas++;
@@ -1064,7 +1071,8 @@ console.log(`\n  modo: ${PROD ? 'PRODUCCION (canonica si, noindex no)' : 'previe
 for (const [r, d] of Object.entries(PARTES_PROPIAS)) {
   const bien = partesCasadas > 0;
   console.log(`  ${bien ? 'ok  ' : 'ROJO'} declarado ${r}: ${d.urls.length} parte(s) propia(s) `
-    + `en ${d.clave}, descontadas antes de comparar con el baseline`);
+    + `en ${d.clave}, descontadas antes de comparar con el baseline`
+    + (d.quitadas?.length ? `; ${d.quitadas.length} quitada(s) del baseline (ocultas del indice)` : ''));
   if (!bien) fallos++;
 }
 /* R20-CIUDADES. Misma regla, y el contador por ruta: un bloque propio que no se caso significa
