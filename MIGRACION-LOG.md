@@ -3,6 +3,40 @@
 Webflow → Astro 5 + Sanity + Vercel. Una entrada por fase, **escrita al cerrar la fase**,
 nunca al empezarla. Si una fase se reabre, se añade una entrada nueva; no se edita la vieja.
 
+## ANTES-DESPUES-OBRA-NUEVA — la ficha de New Pool recupera el deslizador con el par de la home (2-oct-2026)
+
+Pedido de Sebastian: el «Before & After» de la home, con sus mismas dos fotos, entre «What we do» y
+«Our Custom Pool Build Process» de `/services/custom-pool-spa-builders-in-north-south-florida`.
+
+- **Sin código nuevo.** Se usa el opt-in `antesDespues` de R24 (`captacion-servicios.json`). La
+  sección del origen ya estaba en ese hueco; solo se canjean las dos `<img>` por el par de la home
+  (`fb4318f`, 2000×1116 las dos, la misma casa: patio vacío → piscina).
+- **El texto es el de la ficha**, decisión de Sebastian: «From Empty Backyard to Your Dream Custom
+  Pool». Por eso `check:texto` no se toca. `check:estructura` suma la ruta a `VARIANTES`.
+- **El sitemap de imágenes** gana las 2 fotos de esta URL (lo deriva `build-seo-ficheros.mjs`).
+
+### Puertas (build `PUBLIC_ES_PRODUCCION=1` en worktree, antes y después del cambio)
+- **Verdes antes y después:** tokens · estructura (14 + 2 variantes) · captacion · rutas · enlaces ·
+  ads · seo · texto 100 % en la ruta.
+- **Build entero comparado por `shasum`:** solo cambian el `index.html` de esta ficha y `sitemap.xml`.
+  La home, remodelación, el CSS y el JS quedan byte a byte.
+- **`check:visual` ROJA, y ya lo estaba** (R21/R24). La sección suma a ¼ de escala
+  +172 / +171 / +230 / +242 px en 1920 / 1440 / 991 / 479. Re-baseline: de Sebastian.
+- **Navegador, una ruta:** costura alineada, tirador 44×44, arrastre con ratón y toque (`PointerEvent`
+  táctil) correctos, sin desbordamiento a 375. El gesto real del compositor no se pudo probar en el panel.
+- **Ninguna foto de la ficha repite el par** (`parecido.mjs`: distancia mínima 16; repetida ≤ 8).
+- **No corridas:** ix2 (gate de fase; la sección no lleva `data-w-id`), assets (no hay ficheros
+  nuevos), galeria*, menu, medicion, carrusel.
+
+### Queda abierto
+1. Re-baseline visual de la ruta (Sebastian).
+2. «Design-Build Authority» y «Licensed & Engineered» salen dos veces en la ficha: en la franja de
+   ConfianzaCore, dichos más corto, y en las tarjetas del deslizador.
+3. Los botones del bloque llevan a `/projects` y `/request-estimated`, fuera de la landing de Ads;
+   el resto de la ficha usa `#estimate`.
+4. Los dos `<h4>` del bloque no llevan el `aria-level="3"` que sí lleva la home (salto h2 → h4). Pasa
+   igual en remodelación.
+
 ## BLOG-BANCO — los 47 blogs con foto real y ninguna repetida (PR #25 + cachés, 2-oct-2026)
 
 Pedido de Sebastian (1-oct-2026): fotos reales del banco en los blogs y ninguna duplicada en blogs ni

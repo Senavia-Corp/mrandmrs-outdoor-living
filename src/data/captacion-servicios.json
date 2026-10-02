@@ -265,6 +265,24 @@
         }
       ]
     },
+    "antesDespues": {
+      "antes": {
+        "src": "/images/site/backyard-transformation-before-empty-lawn-concrete-patio-1280.avif",
+        "srcset": "/images/site/backyard-transformation-before-empty-lawn-concrete-patio-640.avif 640w, /images/site/backyard-transformation-before-empty-lawn-concrete-patio-960.avif 960w, /images/site/backyard-transformation-before-empty-lawn-concrete-patio-1280.avif 1280w, /images/site/backyard-transformation-before-empty-lawn-concrete-patio-1600.avif 1600w, /images/site/backyard-transformation-before-empty-lawn-concrete-patio-2000.avif 2000w",
+        "alt": "Before: empty backyard lawn and a small concrete patio behind a two-story Florida home, ahead of a new pool build",
+        "ancho": 2000,
+        "alto": 1116,
+        "_fuente": "el par de la home (fb4318f)"
+      },
+      "despues": {
+        "src": "/images/site/backyard-transformation-after-louvered-pergola-pool-travertine-deck-1280.avif",
+        "srcset": "/images/site/backyard-transformation-after-louvered-pergola-pool-travertine-deck-640.avif 640w, /images/site/backyard-transformation-after-louvered-pergola-pool-travertine-deck-960.avif 960w, /images/site/backyard-transformation-after-louvered-pergola-pool-travertine-deck-1280.avif 1280w, /images/site/backyard-transformation-after-louvered-pergola-pool-travertine-deck-1600.avif 1600w, /images/site/backyard-transformation-after-louvered-pergola-pool-travertine-deck-2000.avif 2000w",
+        "alt": "After: the same backyard with a new pool, travertine pool deck and black louvered pergola, custom pool construction in Florida",
+        "ancho": 2000,
+        "alto": 1116,
+        "_fuente": "el par de la home (fb4318f)"
+      }
+    },
     "galeria": {
       "alts": {
         "custom-pool-spa-builders-florida-01.jpg": "Freeform pool with an attached spa and herringbone paver deck behind a two-story home, custom pool construction in Florida",

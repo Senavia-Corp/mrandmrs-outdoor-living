@@ -33,12 +33,14 @@ const ESPERADO = [
   'location', 'blog-section-page', 'social-media', 'cta-footer', 'logos-section',
 ];
 
-/** UNA excepcion declarada (R24-FOTO-PISCINAS, 1-oct-2026): la ficha de remodelacion recupera el
- *  antes/despues, con el par real del banco, entre los servicios y el proceso. Escrita a mano por
- *  lo mismo que `ESPERADO`: si se derivase de `antesDespues` en el JSON, la puerta daria por bueno
- *  cualquier sitio donde el generador la pusiera. */
+/** Excepciones declaradas: las dos fichas de piscina recuperan el antes/despues entre los servicios
+ *  y el proceso. Remodelacion con el par real del banco (R24-FOTO-PISCINAS, 1-oct-2026); obra nueva
+ *  con el par de la home (2-oct-2026). Escritas a mano por lo mismo que `ESPERADO`: si se
+ *  derivasen de `antesDespues` en el JSON, la puerta daria por bueno cualquier sitio donde el
+ *  generador la pusiera. */
 const VARIANTES = {
   '/services/pool-remodeling-renovation-in-north-south-florida': { tras: 'services', va: 'before-after-section' },
+  '/services/custom-pool-spa-builders-in-north-south-florida': { tras: 'services', va: 'before-after-section' },
 };
 const esperadoDe = (ruta) => {
   const v = VARIANTES[ruta];
@@ -83,5 +85,5 @@ for (const ruta of RUTAS) {
   console.log(`  ok   ${ruta}   (${slides} slides en la galeria)${VARIANTES[ruta] ? `   + ${VARIANTES[ruta].va} tras ${VARIANTES[ruta].tras} (declarada)` : ''}`);
 }
 
-console.log(`\n${fallos ? `PUERTA ROJA — ${fallos} fallo(s)` : `PUERTA VERDE — ${RUTAS.length} fichas, un solo orden (+ ${Object.keys(VARIANTES).length} variante declarada)`}\n`);
+console.log(`\n${fallos ? `PUERTA ROJA — ${fallos} fallo(s)` : `PUERTA VERDE — ${RUTAS.length} fichas, un solo orden (+ ${Object.keys(VARIANTES).length} variante(s) declarada(s))`}\n`);
 process.exit(fallos ? 1 : 0);

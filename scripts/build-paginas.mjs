@@ -760,7 +760,7 @@ function captacion(doc, ruta) {
    * vegetacion. La seccion ensena una transformacion que NO OCURRIO, que es lo que
    * `CRITERIO.md:200` llama «no es feo, es falso».
    *
-   * Se retira de ESTA ruta; en las otras 13 sigue igual. Vuelve en su propio commit cuando
+   * Se retira de las 14 fichas salvo opt-in (abajo). Vuelve en su propio commit cuando
    * exista el par honesto: obra real como «After» y el «Before» reconstruido por relleno
    * generativo sobre esa misma foto, con etiqueta VISIBLE de visualizacion. El prompt, la
    * mascara y la prueba de aceptacion estan escritos en `docs/encargos/R17-CORE.md` §10.
@@ -774,7 +774,11 @@ function captacion(doc, ruta) {
    * retirando. Solo se canjean las dos `<img>`: el texto es el del origen, que `check:texto` ya
    * tiene en su baseline, y el CSS y el JS del deslizador son globales (`antes-despues.css`,
    * `Componentes.astro`). El «despues» se pinta encima del «antes» con `clip-path`: si no miden
-   * lo mismo la costura no casa (`fb4318f`), y eso es ROJO, no un aviso. */
+   * lo mismo la costura no casa (`fb4318f`), y eso es ROJO, no un aviso.
+   *
+   * Y EN LA DE OBRA NUEVA (2-oct-2026), con el par de la home (`fb4318f`): patio vacio -> piscina,
+   * la misma casa. Es lo que ya promete su texto del origen, «From Empty Backyard to Your Dream
+   * Custom Pool», asi que el texto se queda. */
   const antesDespues = doc.querySelector('section.before-after-section');
   if (c.antesDespues) {
     const { antes, despues } = c.antesDespues;
