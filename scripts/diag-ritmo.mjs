@@ -2,7 +2,7 @@
 /**
  * DIAGNÓSTICO (no es una puerta) — el RITMO VERTICAL de un bloque, y el PLIEGUE.
  *
- *     node scripts/diag-ritmo.mjs /services/custom-pool-spa-builders-in-north-south-florida \
+ *     node scripts/diag-ritmo.mjs /services/pool-builders \
  *          '.block-hero-services-page' 390 768 1440
  *     node scripts/diag-ritmo.mjs <ruta> <selector> --pliegue 390x844 --reserva 80
  *

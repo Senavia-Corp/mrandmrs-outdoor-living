@@ -1,6 +1,6 @@
 {
   "_lee_esto": [
-    "LAS CIUDADES DE /pool-builders/ QUE LLEVAN LA CAPA DE CAPTACION, EN UNA FILA CADA UNA.",
+    "LAS CIUDADES DE /services/pool-builders/ QUE LLEVAN LA CAPA DE CAPTACION, EN UNA FILA CADA UNA.",
     "",
     "Son 53 paginas de UNA plantilla. Encender la capa de R17-CORE en una ciudad no puede costar",
     "un bloque de copy escrito a mano, porque entonces 53 ciudades son 53 bloques y el segundo se",
@@ -30,24 +30,14 @@
     "acepto en FICHAS-ORDEN · 2, y se dice en vez de callarlo."
   ],
   "_paneles_pool_features": [
-    "LAS 6 DE «Pool Features & Upgrades» (18-sep-2026). NO viven aqui -son de la plantilla y de las",
-    "2 rutas de /where-we-serve/, o sea 55 rutas- pero se anota aqui porque es el fichero que",
-    "gobierna la imagen de estas landings y porque el motivo importa:",
+    "LA BANDA DE 6 PANELES (antes «Pool Features & Upgrades», hoy «Project Gallery»). NO vive aqui:",
+    "desde PANELES-GALERIA (2-oct-2026) cada panel es una categoria de /gallery, y sus fotos y su",
+    "object-position estan en src/data/galeria-categorias.json -> categorias[].panel. El marcado de",
+    "las 55 rutas sale de bandaGaleriaHtml() (src/lib/galeria-categorias.mjs).",
     "",
-    "LAS 6 ANTERIORES ERAN GENERADAS CON IA (Higgsfield, R20-F2) y representaban obra del cliente.",
-    "Eso es la linea roja de 00-PRINCIPIOS §3. Confirmado por Sebastian el 18-sep. Sustituidas por",
-    "obra real recortada a 9:16 desde los heroes de servicio de residentials/ (1950x1219 y",
-    "1792x1792) y de images/pool-remodeling-8, en /images/obra/paneles/.",
-    "",
-    "POR QUE ESAS Y NO OTRAS. La celda es una tira vertical (0,356 a 1440) y el velo de",
-    "caracteristicas.css:381 tapa de navy hasta el 42 % de la altura: el motivo TIENE que vivir en",
-    "el tercio superior. Se eligieron componiendo la celda real -recorte + velo- y mirando el",
-    "render, no el fichero. El dossier completo y los descartes, en el informe de R21.",
-    "",
-    "LO QUE SIGUE ABIERTO: «Energy Efficient Systems» no tiene foto que le corresponda porque NO",
-    "EXISTE una sola fotografia de equipo de piscina -bomba, filtro, calentador, cuadro- ni en",
-    "public/images/** ni en el banco de 420 activos. Comprobado dos veces. La que hay es una piscina",
-    "acabada: real y del cliente, pero generica para esa etiqueta. Lo cierra una sesion de fotos.",
+    "LO QUE NO CAMBIA: la celda es una tira vertical (0,356 a 1440) y el velo de caracteristicas.css",
+    "tapa de navy hasta el 42 % de la altura, asi que el motivo TIENE que vivir arriba. Se elige",
+    "componiendo la celda real -recorte + velo- (scripts/build-paneles-galeria.mjs --hoja), no el fichero.",
     "",
     "Y HAY MAS IA EN EL SITIO: varias de public/images/procesos/*.avif estan generadas -verificado a",
     "pixel: dedos fundidos, escalera geometricamente imposible, un impreso de permiso inventado- y",
@@ -219,7 +209,14 @@
         "07"
       ],
       "inversion": "estate-sun-shelf",
-      "_fuente_condado": "Marion esta en CONDADOS de src/lib/negocio.mjs; el h2 del heroe ya publica «Ocala And Marion County» (seo-pool-builders.json, bloques, SEO-AEO-GEO A3)."
+      "_fuente_condado": "Marion esta en CONDADOS de src/lib/negocio.mjs; el h2 del heroe ya publica «Ocala And Marion County» (seo-pool-builders.json, bloques, SEO-AEO-GEO A3).",
+      "faqExtra": [
+        {
+          "pregunta": "Which office reviews a pool permit in Ocala?",
+          "respuesta": "It depends on the address. Inside the City of Ocala, the city's building division reviews the plans and inspects the pool; in unincorporated Marion County, the county's building department does. Many lots in the area sit on limestone close to the surface and on septic systems or wells, so we probe the site and locate the tank and drainfield before the design is drawn, and we pull the permit under our state license either way.",
+          "_fuente": "City of Ocala (ocalafl.gov) y Marion County (marionfl.org) tienen cada uno su building department; la caliza somera y los sistemas septicos de Marion estan en la guia building-a-pool-in-north-florida y en el articulo de permisos. Sin cifras ni plazos."
+        }
+      ]
     },
     {
       "slug": "gainesville-florida",
@@ -234,7 +231,14 @@
         "09"
       ],
       "inversion": "screen-enclosure-nf",
-      "_fuente_condado": "Alachua esta en CONDADOS de src/lib/negocio.mjs; el h2 del heroe ya publica «Gainesville And Alachua County»."
+      "_fuente_condado": "Alachua esta en CONDADOS de src/lib/negocio.mjs; el h2 del heroe ya publica «Gainesville And Alachua County».",
+      "faqExtra": [
+        {
+          "pregunta": "Which office reviews a pool permit in Gainesville?",
+          "respuesta": "It depends on the address. Inside the City of Gainesville, the city's building division reviews the plans and inspects the pool; in unincorporated Alachua County, the county's building division does. Many lots here are also on a septic system or a well, and the state onsite sewage program reviews the separation from the drainfield before the building permit. We confirm which jurisdiction applies before the design is drawn, and we pull the permit under our state license either way.",
+          "_fuente": "City of Gainesville (gainesvillefl.gov) y Alachua County (alachuacounty.us) tienen cada uno su building division; el programa estatal de onsite sewage (FDEP) revisa la separacion del drainfield. Sin cifras, sin plazos, sin nombres de oficina que puedan cambiar."
+        }
+      ]
     },
     {
       "slug": "alachua-florida",

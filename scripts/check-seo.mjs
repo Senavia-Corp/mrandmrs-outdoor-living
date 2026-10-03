@@ -25,6 +25,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { JSDOM } from 'jsdom';
 import { esPropia, conPropias } from './lib/rutas-propias.mjs';
+import { esFicha, esCiudad } from './lib/renombradas.mjs';
+import { TITULO_BANDA, TEXTO_BANDA } from '../src/lib/galeria-categorias.mjs';
+import { OCULTAS, propiasEnIndice } from '../src/lib/filtro-proyectos.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const ESTATICO = path.join(RAIZ, '.vercel/output/static');
@@ -48,7 +51,7 @@ const TITULO_PROPIO_M2 = new Map([
  * `TITULO_PROPIO`, y por la misma razon: la paridad byte a byte con Webflow protegia tambien
  * los defectos del origen, y una description de 188 caracteres que el SERP corta a la mitad es
  * un defecto. Tiene que casar con `META_PROPIA` de `build-paginas.mjs`, que es quien las
- * escribe en las rutas derivadas; en las de `NO_REGENERAR` (`/`, las 53 de `/pool-builders/`
+ * escribe en las rutas derivadas; en las de `NO_REGENERAR` (`/`, las 53 de `/services/pool-builders/`
  * y las 2 de `/where-we-serve/`) la escribe su propio `.astro` o Sanity.
  *
  * Es un Map de ruta a un OBJETO por clave, no a una cadena: `og:description` y
@@ -161,15 +164,15 @@ const PARTES_PROPIAS = {
   '/projects': {
     bloque: 0,
     clave: 'hasPart',
-    urls: [
-      '/project/luxury-pool-raised-spa-travertine-deck-south-florida',
-      '/project/estate-pool-spa-sun-shelf-north-florida',
-      '/project/pool-raised-spa-marble-deck-south-florida',
-      '/project/luxury-pool-spa-aluminum-pergola-south-florida',
-      '/project/aluminum-patio-cover-pool-deck-south-florida',
-    ],
-    motivo: 'Las 5 obras de autoria propia del 3-sep-2026. Las inserta `build-paginas.mjs` '
-      + '(§ OBRAS_PROPIAS) al principio del `hasPart`, en el mismo orden que sus tarjetas.',
+    // Derivadas, no cableadas: las obras propias que salen en el indice, en su orden. Antes eran
+    // 5 URLs escritas aqui y la primera obra del banco las habria dejado mintiendo.
+    urls: propiasEnIndice().map((o) => `/project/${o.slug}`),
+    // Las migradas que Sebastian quito del indice (PROMPT-PROYECTOS-BANCO §2): se quitan del
+    // BASELINE tras comprobar que estaban en el y que ya no estan en el build.
+    quitadas: [...OCULTAS].map((s) => `/project/${s}`),
+    motivo: 'Las obras de autoria propia (src/data/proyectos-propios.json). Las inserta '
+      + '`build-paginas.mjs` (§ OBRAS_PROPIAS) al principio del `hasPart`, en el mismo orden que '
+      + 'sus tarjetas; las ocultas de src/data/proyectos-indice.json salen del bloque.',
   },
 };
 
@@ -202,7 +205,7 @@ const PARTES_PROPIAS = {
  * un bloque del origen; `JSONLD_ARREGLADO` declara valores del origen que se corrigen. Esto
  * declara un bloque ENTERO que no existe en el baseline porque lo escribimos nosotros.
  *
- * El caso: las dos landings de pago de `/pool-builders/` ganan una FAQ y, con ella, su `FAQPage`.
+ * El caso: las dos landings de pago de `/services/pool-builders/` ganan una FAQ y, con ella, su `FAQPage`.
  * El origen de Webflow no traia ninguna de las dos cosas, asi que el baseline dice 1 bloque
  * (`LocalBusiness`) y el build emite 2. Sin esta declaracion la puerta sale roja con
  * «JSON-LD: 1 bloque(s) -> 2», que es EXACTAMENTE lo que debe hacer mientras nadie lo declare.
@@ -232,7 +235,7 @@ const PARTES_PROPIAS = {
  * `/services/`, que no emiten un `FAQPage` nuevo y por tanto no van declaradas aqui. */
 const BLOQUES_PROPIOS = Object.fromEntries(
   Object.entries(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/captacion-servicios.json'), 'utf8')))
-    .filter(([ruta, c]) => ruta.startsWith('/pool-builders/') && c?.faq?.titulo && c.faq.anade?.length)
+    .filter(([ruta, c]) => esCiudad(ruta) && c?.faq?.titulo && c.faq.anade?.length)
     .map(([ruta, c]) => [ruta, {
       tipo: 'FAQPage', clave: 'mainEntity', n: c.faq.anade.length,
       motivo: 'R20/R21-CIUDADES: la landing de ciudad monta su propia FAQ con las objeciones '
@@ -288,7 +291,7 @@ function apartaBloquesPropios(ruta, lista, problemas) {
 }
 
 const JSONLD_ARREGLADO = {
-  '/services/custom-pool-spa-builders-in-north-south-florida': {
+  '/services/pool-builders': {
     bloque: 0,
     motivo: 'R17-CORE: cinco defectos del origen en la landing de pago del ad group «Pool '
       + 'Builders Core», mas las 3 preguntas anadidas para que el FAQPage siga coincidiendo con '
@@ -322,55 +325,55 @@ const JSONLD_ARREGLADO = {
    *
    * Aqui NO hay `respuestaSustituida` ni `anadidas`: esta ficha no reescribe ni anade preguntas
    * -no se inventa una FAQ para rellenar-, asi que su `FAQPage` es el del origen intacto. */
-  '/services/custom-aluminum-pergola-builders-in-north-south-florida': {
+  '/services/pergola-builders': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en la ficha de pergolas de aluminio.',
     cambios: [
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Custom Aluminum Pergola Design & Installation'],
       ['about.image', 'Custom aluminum pergolas built by outdoor living contractors in Florida.',
-        '/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-3.avif'],
+        '/images/obra/obra-100/freestanding-pergola-dark-bronze-pool-spa-canal-florida-heroe.avif'],
       ['dateModified', '2026-05-19T13:22:48.310Z', '2026-05-19T13:23:24.377Z'],
       ['datePublished', '2026-05-19T13:23:24.377Z', '2026-05-19T13:22:48.310Z'],
     ],
   },
-  '/services/custom-deck-builders-in-north-south-florida': {
+  '/services/deck-builders': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en esta ficha.',
     cambios: [
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Custom Deck Design & Construction'],
       ['about.image', 'Custom deck construction by professional outdoor living contractors in Florida.',
-        '/images/projects/pool-raised-spa-marble-deck-south-florida/pool-raised-spa-marble-deck-south-florida-project-4.avif'],
+        '/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-heroe.avif'],
       ['dateModified', '2026-05-18T19:51:19.984Z', '2026-05-18T19:55:49.094Z'],
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:51:19.984Z'],
     ],
   },
-  '/services/custom-outdoor-kitchens-for-north-south-florida-homes': {
+  '/services/outdoor-kitchens': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en esta ficha.',
     cambios: [
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Custom Outdoor Kitchen Design & Construction'],
       ['about.image', 'Custom outdoor kitchen built by professional outdoor kitchen builders in Florida.',
-        '/images/projects/luxury-pool-pergola-outdoor-kitchen-south-florida/luxury-pool-pergola-outdoor-kitchen-south-florida-3.avif'],
+        '/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-heroe.avif'],
       ['dateModified', '2026-05-18T19:49:53.727Z', '2026-05-18T19:55:49.094Z'],
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:49:53.727Z'],
     ],
   },
-  '/services/motorized-louvered-roof-systems-in-north-south-florida': {
+  '/services/louvered-roofs': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en esta ficha.',
     cambios: [
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Motorized Louvered Roof Design & Installation'],
       ['about.image', 'Motorized louvered roof system installed by custom outdoor living contractors in Florida',
-        '/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-4.avif'],
+        '/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-heroe.avif'],
       ['dateModified', '2026-05-18T19:52:59.092Z', '2026-05-18T19:55:49.094Z'],
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:52:59.092Z'],
     ],
   },
-  '/services/motorized-retractable-screens-in-north-south-florida': {
+  '/services/retractable-screens': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en esta ficha.',
     cambios: [
@@ -382,7 +385,7 @@ const JSONLD_ARREGLADO = {
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:54:35.687Z'],
     ],
   },
-  '/services/patio-screen-rooms-enclosures-in-north-south-florida': {
+  '/services/patio-screen-rooms': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en esta ficha.',
     cambios: [
@@ -394,7 +397,7 @@ const JSONLD_ARREGLADO = {
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:53:43.448Z'],
     ],
   },
-  '/services/pool-screen-enclosures-for-north-south-florida-pools': {
+  '/services/pool-screen-enclosures': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en esta ficha.',
     cambios: [
@@ -406,43 +409,52 @@ const JSONLD_ARREGLADO = {
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:49:53.691Z'],
     ],
   },
-  '/services/pool-remodeling-renovation-in-north-south-florida': {
+  '/services/pool-remodeling': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en la Final URL del ad group «Full Remodel».',
     cambios: [
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Pool Remodeling & Renovation'],
       ['about.image', 'Pool and spa renovation enhancing a Florida backyard outdoor living contractors space.',
-        '/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-3.avif'],
+        // R24-FOTO-PISCINAS: el heroe de remodelacion pasa a ser una remodelacion real del banco (bi-0521)
+        '/images/obra/obra-048/pool-remodeling-travertine-deck-glass-tile-completed.avif'],
       ['dateModified', '2026-05-18T19:54:16.970Z', '2026-05-18T19:55:49.094Z'],
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:54:16.970Z'],
+      ['mainEntity.mainEntity.4.name', 'remodeling', 'Do you offer financing options for outdoor projects?'],
     ],
+    /* SEO-SAFE (1-oct-2026): la landing de remodelacion gana las tres objeciones que ya tenia la
+     * de piscinas -coste sin cifras, permiso y que incluye- y su FAQPage crece con ellas. Y al
+     * declarar la FAQ en check:ads (regla 14) aparecio el MISMO defecto del origen que R17 arreglo
+     * en el Core: la quinta Question se llamaba literalmente «remodeling», con la respuesta de
+     * financiacion dentro. Se le pone la pregunta que se ve y la respuesta sin promesas. */
+    anadidas: { camino: 'mainEntity.mainEntity', n: 3 },
+    respuestaSustituida: { camino: 'mainEntity.mainEntity.4.acceptedAnswer.text', empiezaPor: "We partner with trusted lending provider" },
   },
-  '/services/premium-outdoor-furniture-for-north-south-florida-homes': {
+  '/services/outdoor-furniture': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en esta ficha.',
     cambios: [
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Premium Outdoor Furniture Supply & Installation'],
       ['about.image', 'Teak dining set and wicker lounge chairs on Florida patio.',
-        '/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-3.avif'],
+        '/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-heroe.avif'],
       ['dateModified', '2026-05-18T19:53:23.229Z', '2026-05-18T19:55:49.094Z'],
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:53:23.229Z'],
     ],
   },
-  '/services/professional-landscaping-services-in-north-south-florida': {
+  '/services/landscaping': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en esta ficha.',
     cambios: [
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Landscape Design & Installation'],
       ['about.image', 'Professional landscaping services designed for Florida residential properties.',
-        '/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-6.avif'],
+        '/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-heroe.avif'],
       ['dateModified', '2026-05-18T19:49:53.745Z', '2026-05-18T19:55:49.094Z'],
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:49:53.745Z'],
     ],
   },
-  '/services/smart-irrigation-system-installation-in-north-south-florida': {
+  '/services/irrigation-systems': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en esta ficha.',
     cambios: [
@@ -454,26 +466,26 @@ const JSONLD_ARREGLADO = {
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:50:08.396Z'],
     ],
   },
-  '/services/smart-soffit-led-lighting-installation-in-north-south-florida': {
+  '/services/soffit-led-lighting': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en esta ficha.',
     cambios: [
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Smart Soffit & LED Lighting Installation'],
       ['about.image', 'Smart soffit LED lighting installed by professional outdoor lighting contractors in Florida.',
-        '/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-5.avif'],
+        '/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-heroe.avif'],
       ['dateModified', '2026-05-18T19:55:20.436Z', '2026-05-18T19:55:49.094Z'],
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:55:20.436Z'],
     ],
   },
-  '/services/steel-building-pole-barn-construction-in-north-south-florida': {
+  '/services/steel-buildings-pole-barns': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en esta ficha.',
     cambios: [
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Steel Building & Pole Barn Construction'],
       ['about.image', 'Steel building construction providing durable structures for Florida properties.',
-        '/images/projects/aluminum-patio-cover-pool-deck-south-florida/aluminum-patio-cover-pool-deck-south-florida-project-1.avif'],
+        '/images/obra/suelta/pole-barn-narrow-open-shelter-new-wood-posts-florida-heroe.avif'],
       ['dateModified', '2026-05-18T19:54:59.712Z', '2026-05-18T19:55:49.094Z'],
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:54:59.712Z'],
     ],
@@ -505,6 +517,16 @@ const JSONLD_ARREGLADO = {
 const IMG_BLOG_R22 = JSON.parse(
   fs.readFileSync(path.join(RAIZ, 'src/data/imagenes-blog-por-ruta.json'), 'utf8')).rutas;
 const SITIO_R22 = process.env.PUBLIC_SITE_URL || 'https://www.mrandmrsoutdoorliving.com';
+/* LA TARJETA SOCIAL DE LAS FICHAS DE PISCINA = SU HEROE (R24-FOTO-PISCINAS, 1-oct-2026). El
+ * origen traia en `og:image`/`twitter:image` dos imagenes GENERADAS; `captacion()` las canjea por
+ * `heroe.og` donde la entrada lo declara. Misma via que R22: la referencia pasa a ser el valor
+ * declarado, absoluto, como lo emite `Base.astro`. */
+for (const [ruta, c] of Object.entries(JSON.parse(
+  fs.readFileSync(path.join(RAIZ, 'src/data/captacion-servicios.json'), 'utf8')))) {
+  if (!esFicha(ruta) || !c?.heroe?.og) continue;
+  const abs = SITIO_R22 + c.heroe.og;
+  META_PROPIA.set(ruta, { ...(META_PROPIA.get(ruta) ?? {}), 'og:image': abs, 'twitter:image': abs });
+}
 {
   const base = JSON.parse(fs.readFileSync(path.join(RAIZ, 'baseline/seo.json'), 'utf8'));
   /* (a) La tarjeta social de cada articulo. `META_PROPIA` ya es el canal para «la referencia
@@ -522,8 +544,9 @@ const SITIO_R22 = process.env.PUBLIC_SITE_URL || 'https://www.mrandmrsoutdoorliv
     const camino = typeof era === 'string' ? 'image' : 'image.url';
     JSONLD_ARREGLADO[ruta] = {
       bloque: 0,
-      motivo: 'R22-BLOG-IMG: la foto del articulo pasa a obra real; la del origen es generada.',
-      cambios: [[camino, typeof era === 'string' ? era : era.url, d.tarjeta.src]],
+      motivo: 'R22-BLOG-IMG: la foto del articulo pasa a obra real; la del origen es generada. '
+        + 'SEO-SAFE: y la URL es absoluta, como el resto del BlogPosting.',
+      cambios: [[camino, typeof era === 'string' ? era : era.url, SITIO_R22 + d.tarjeta.src]],
     };
   }
   /**
@@ -634,12 +657,141 @@ const SITIO_R22 = process.env.PUBLIC_SITE_URL || 'https://www.mrandmrsoutdoorliv
   };
 }
 
+/**
+ * ── SEO-SAFE (1-oct-2026) · LOS HEREDADOS REESCRITOS: TITULO, DESCRIPTION, BlogPosting y FAQPage ──
+ *
+ * Los 10 articulos heredados se reescribieron con fuentes (ver `src/data/blog-reescritos.json`,
+ * que es la lista EXPLICITA y lleva el motivo de cada uno). Cambian cuatro cosas en su `<head>`:
+ *
+ *   · el `<title>` y la `description` (y sus og:/twitter:), que ahora viven en Sanity (`seo`),
+ *     igual que las 53 de /services/pool-builders/: por eso NO van en `meta-propia.json`, que es para lo
+ *     que se escribe a mano aqui en el repo;
+ *   · la `description` del BlogPosting, que es el `summary` nuevo, y su `dateModified`;
+ *   · un `FAQPage` que el origen no traia, porque los articulos ahora llevan FAQ visible.
+ *
+ * SE DERIVA DE `src/data/blogs-sanity.json`, NO SE ENUMERA A MANO, como R22 y BLOG-SANITY: una
+ * lista escrita a mano se desincroniza con el dato. Y NO ES «IGNORA ESTAS RUTAS»: solo entran
+ * las declaradas por su nombre; en ellas la referencia deja de ser el origen y pasa a ser el
+ * valor del cache, que se EXIGE tal cual en el build. El resto del bloque (headline, author,
+ * publisher, url, image ya declarada por R22) se sigue comparando caracter a caracter. Y el
+ * `FAQPage` pasa el examen de `apartaBloquesPropios`: n entradas, ninguna vacia, sin dinero.
+ *
+ * Y NO SE FIA: una ruta declarada que no este en el baseline o no este en el cache ABORTA.
+ */
+{
+  const decl = path.join(RAIZ, 'src/data/blog-reescritos.json');
+  const cacheBlog = path.join(RAIZ, 'src/data/blogs-sanity.json');
+  if (fs.existsSync(decl)) {
+    const base = JSON.parse(fs.readFileSync(path.join(RAIZ, 'baseline/seo.json'), 'utf8'));
+    const posts = fs.existsSync(cacheBlog) ? JSON.parse(fs.readFileSync(cacheBlog, 'utf8')) : [];
+    for (const [ruta, d] of Object.entries(JSON.parse(fs.readFileSync(decl, 'utf8')).rutas ?? {})) {
+      const p = posts.find((x) => `/blogs/${x.slug}` === ruta);
+      const b = base[ruta];
+      if (!p || !b) {
+        console.error(`\n  ROJO check-seo: ${ruta} esta en blog-reescritos.json pero ${!p ? 'no esta en blogs-sanity.json' : 'no tiene baseline'}.\n`);
+        process.exit(1);
+      }
+      const motivo = `SEO-SAFE (${d.fecha}): ${d.motivo}`;
+      const mp = () => META_PROPIA.get(ruta) ?? {};
+      if (p.seo?.title && p.seo.title !== b.title) {
+        TITULO_PROPIO.set(ruta, p.seo.title);
+        META_PROPIA.set(ruta, { ...mp(), 'og:title': p.seo.title, 'twitter:title': p.seo.title });
+      }
+      if (p.seo?.description && p.seo.description !== b.meta?.description) {
+        META_PROPIA.set(ruta, { ...mp(), description: p.seo.description,
+          'og:description': p.seo.description, 'twitter:description': p.seo.description });
+      }
+      const ld = b.jsonLd?.[0] ?? {};
+      const ya = JSONLD_ARREGLADO[ruta];
+      const yaDeclarado = new Set((ya?.cambios ?? []).map((c) => c[0]));
+      const cambios = [];
+      const modificado = p.updatedAt ?? p.publishedAt;
+      if (ld.description !== p.summary && !yaDeclarado.has('description')) cambios.push(['description', ld.description, p.summary]);
+      if (ld.dateModified !== modificado && !yaDeclarado.has('dateModified')) cambios.push(['dateModified', ld.dateModified, modificado]);
+      for (const k of ['headline', 'name']) {
+        if (ld[k] !== p.title && !yaDeclarado.has(k)) cambios.push([k, ld[k], p.title]);
+      }
+      /* Las URLs absolutas y los dos nodos nuevos que `[slug].astro` emite desde SEO-SAFE. El
+       * `era` se LEE del baseline, no se escribe aqui: si el origen cambiara de forma, la
+       * declaracion deja de casar y la puerta lo dice. */
+      const abs = (u) => (typeof u === 'string' && u.startsWith('/') ? SITIO_R22 + u : u);
+      if (ld.url !== abs(ld.url)) cambios.push(['url', ld.url, abs(ld.url)]);
+      if (ld.publisher?.logo?.url !== undefined) {
+        cambios.push(['publisher.logo.url', ld.publisher.logo.url, `${SITIO_R22}/images/site/logo-mr-mr.svg`]);
+      }
+      cambios.push(['publisher.url', ld.publisher?.url, `${SITIO_R22}/`]);
+      cambios.push(['mainEntityOfPage.@type', ld.mainEntityOfPage?.['@type'], 'WebPage']);
+      cambios.push(['mainEntityOfPage.@id', ld.mainEntityOfPage?.['@id'], `${SITIO_R22}${ruta}`]);
+      if (cambios.length) {
+        JSONLD_ARREGLADO[ruta] = {
+          ...(ya ?? {}),
+          bloque: 0,
+          motivo: `${ya?.motivo ? `${ya.motivo} · ` : ''}${motivo}`,
+          cambios: [...(ya?.cambios ?? []), ...cambios],
+        };
+      }
+      const faq = (p.faq ?? []).filter((f) => f?.question?.trim() && f?.answer?.trim());
+      if (faq.length) {
+        BLOQUES_PROPIOS[ruta] = { tipo: 'FAQPage', clave: 'mainEntity', n: faq.length, motivo };
+      }
+    }
+  }
+}
+
+/**
+ * ── SEO-SAFE (1-oct-2026) · EL `Service` DE LAS 14 FICHAS SABE QUIEN LO PRESTA ───────────────
+ *
+ * `build-paginas.mjs` (paso 10) anade al `provider` del `about` de cada ficha el `@id` de
+ * `#negocio`, y al `about` su `url`. El origen no los traia, asi que son claves NUEVAS con `era` undefined, declaradas
+ * sobre la entrada que cada ficha YA tiene en `JSONLD_ARREGLADO` (R17 la de piscinas, R19 las
+ * otras trece): si una ficha dejara de tener entrada, no se declara y sale roja.
+ */
+for (const ruta of Object.keys(JSONLD_ARREGLADO).filter(esFicha)) {
+  const ja = JSONLD_ARREGLADO[ruta];
+  ja.motivo += ' · SEO-SAFE: el Service lleva provider (#negocio) y url.';
+  ja.cambios.push(
+    ['about.provider.@id', undefined, `${SITIO_R22}/#negocio`],
+    ['about.url', undefined, `${SITIO_R22}${ruta}`],
+  );
+}
+
+/**
+ * ── PANELES-GALERIA (2-oct-2026) · LA PARTE DE LA BANDA EN LAS DOS /where-we-serve/ ────────────
+ *
+ * La banda de seis paneles pasa a ser «Project Gallery», y la parte 1 del `hasPart` de estas dos
+ * paginas la describia con el titular y la entradilla viejos: marcado que habla de una seccion que
+ * ya no se ve. Se declara viejo -> nuevo, con lo nuevo sacado de las MISMAS constantes que pintan la
+ * banda (`src/lib/galeria-categorias.mjs`). Si el baseline dejara de traer lo viejo, sale rojo.
+ */
+for (const [ruta, nombre, descripcion] of [
+  ['/where-we-serve/north-florida', 'Featured Luxury Pool Projects Across North Florida',
+    'Our advanced 3D rendering technology allows you to preview your North Florida luxury pool and '
+    + 'outdoor living space before construction begins. As luxury pool builders in North Florida, we '
+    + 'create photorealistic designs that help you explore layouts, materials, and finishes in detail. '
+    + 'This collaborative process improves clarity, minimizes surprises, and ensures your final project '
+    + 'reflects your vision with confidence.'],
+  ['/where-we-serve/south-florida', 'Luxury Pool Features &amp; Integrated Upgrades',
+    'Enhance your pool with architecturally integrated features engineered for performance, comfort, '
+    + 'and visual impact.'],
+]) {
+  const ya = JSONLD_ARREGLADO[ruta];
+  JSONLD_ARREGLADO[ruta] = {
+    bloque: 0,
+    motivo: `${ya?.motivo ? `${ya.motivo} · ` : ''}PANELES-GALERIA: la parte de la banda describe «Project Gallery».`,
+    cambios: [...(ya?.cambios ?? []),
+      ['hasPart.1.name', nombre, TITULO_BANDA],
+      ['hasPart.1.description', descripcion, TEXTO_BANDA]],
+  };
+}
+
 /** Lee/escribe por camino con puntos: `mainEntity.mainEntity.4.name`. */
 const porCamino = (o, c) => c.split('.').reduce((x, k) => (x == null ? x : x[k]), o);
+/* Crea los intermedios que falten: un arreglo declarado como `about.provider.@id` con `era`
+ * undefined es una clave NUEVA dentro de un objeto NUEVO, y sin esto se perdia en silencio. */
 const ponCamino = (o, c, v) => {
   const ks = c.split('.');
   const ult = ks.pop();
-  const padre = ks.reduce((x, k) => (x == null ? x : x[k]), o);
+  const padre = ks.reduce((x, k) => (x == null ? x : (x[k] ??= {})), o);
   if (padre != null) padre[ult] = v;
 };
 let partesCasadas = 0;
@@ -820,7 +972,13 @@ for (const ruta of conPropias(RUTAS)) {
             }
             if (!String(x?.image?.url ?? '').trim()) malas.push(`parte propia ${k}: image.url vacia`);
           });
+          // Las quitadas: estaban en el origen, ya no estan en el build, y salen de lo esperado.
+          for (const u of pp.quitadas ?? []) {
+            if (!(e[pp.clave] ?? []).some((x) => x?.url === u)) malas.push(`quitada ${u}: el origen ya no la trae — revisa la declaracion`);
+            if (arr.some((x) => x?.url === u)) malas.push(`quitada ${u}: el build la sigue publicando`);
+          }
           if (malas.length) { problemas.push(...malas); continue; }
+          if (pp.quitadas?.length) e = { ...e, [pp.clave]: e[pp.clave].filter((x) => !pp.quitadas.includes(x?.url)) };
           // `ordena` ya dejo las claves ordenadas; sustituir una existente conserva su sitio.
           mio = { ...mio, [pp.clave]: arr.slice(pp.urls.length) };
           partesCasadas++;
@@ -914,7 +1072,8 @@ console.log(`\n  modo: ${PROD ? 'PRODUCCION (canonica si, noindex no)' : 'previe
 for (const [r, d] of Object.entries(PARTES_PROPIAS)) {
   const bien = partesCasadas > 0;
   console.log(`  ${bien ? 'ok  ' : 'ROJO'} declarado ${r}: ${d.urls.length} parte(s) propia(s) `
-    + `en ${d.clave}, descontadas antes de comparar con el baseline`);
+    + `en ${d.clave}, descontadas antes de comparar con el baseline`
+    + (d.quitadas?.length ? `; ${d.quitadas.length} quitada(s) del baseline (ocultas del indice)` : ''));
   if (!bien) fallos++;
 }
 /* R20-CIUDADES. Misma regla, y el contador por ruta: un bloque propio que no se caso significa

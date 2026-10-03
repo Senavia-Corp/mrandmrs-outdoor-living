@@ -10,7 +10,7 @@
   "se entere, que es el fallo numero uno de este repo."
  ],
  "rutas": {
-  "/services/custom-pool-spa-builders-in-north-south-florida": {
+  "/services/pool-builders": {
    "titulo": "Planning Your New Pool? Start Here",
    "entradilla": "What it costs, what to decide before excavation, and what to plan while the design is still on paper.",
    "posts": [
@@ -20,10 +20,10 @@
      "enlace": "/blogs/how-much-does-a-custom-pool-cost-in-florida",
      "cta": "Read More",
      "imagen": {
-      "src": "/images/blog/banco/mm-construction-1-p-800.webp",
-      "srcset": "/images/blog/banco/mm-construction-1-p-400.webp 400w, /images/blog/banco/mm-construction-1-p-800.webp 800w",
+      "src": "/images/blog/banco/mm-bi-0633-p-800.webp",
+      "srcset": "/images/blog/banco/mm-bi-0633-p-400.webp 400w, /images/blog/banco/mm-bi-0633-p-800.webp 800w",
       "sizes": "(min-width: 768px) 400px, 100vw",
-      "alt": "Rectangular pool with a raised spa and water spouts, set in a herringbone travertine deck, with neighbouring barrel-tile roofs behind the hedge."
+      "alt": "Raised spa in iridescent glass tile in front of a white louvered roof sheltering an outdoor bar and a covered dining area"
      },
      "categoria": "new-pool-construction"
     },
@@ -33,10 +33,10 @@
      "enlace": "/blogs/before-you-build-a-pool-in-florida",
      "cta": "Read More",
      "imagen": {
-      "src": "/images/blog/banco/mm-construction-8-p-800.webp",
-      "srcset": "/images/blog/banco/mm-construction-8-p-400.webp 400w, /images/blog/banco/mm-construction-8-p-800.webp 800w",
+      "src": "/images/blog/banco/mm-bi-0505-p-800.webp",
+      "srcset": "/images/blog/banco/mm-bi-0505-p-400.webp 400w, /images/blog/banco/mm-bi-0505-p-800.webp 800w",
       "sizes": "(min-width: 768px) 400px, 100vw",
-      "alt": "Aerial view of a pool and raised spa on a travertine deck, with a garden hose coiled at the edge of the lawn."
+      "alt": "Pool with a raised dark-tile spa, a floating lounger and stepping pads set in artificial turf behind a two-story house"
      },
      "categoria": "new-pool-construction"
     },
@@ -72,16 +72,16 @@
      "enlace": "/blogs/what-makes-a-pool-look-custom",
      "cta": "Read More",
      "imagen": {
-      "src": "/images/blog/banco/mm-construction-0-p-800.webp",
-      "srcset": "/images/blog/banco/mm-construction-0-p-400.webp 400w, /images/blog/banco/mm-construction-0-p-800.webp 800w",
+      "src": "/images/blog/banco/mm-bi-1039-p-800.webp",
+      "srcset": "/images/blog/banco/mm-bi-1039-p-400.webp 400w, /images/blog/banco/mm-bi-1039-p-800.webp 800w",
       "sizes": "(min-width: 768px) 400px, 100vw",
-      "alt": "Rectangular pool with a raised spa clad in dark blue glass mosaic tile, jets running inside it, edged by a narrow white coping band with lawn running straight up to the stone on every side."
+      "alt": "Pool with an iridescent blue glass-tile spillover edge and a raised spa under a dark pergola, white house behind"
      },
      "categoria": "new-pool-construction"
     }
    ]
   },
-  "/services/pool-remodeling-renovation-in-north-south-florida": {
+  "/services/pool-remodeling": {
    "titulo": "Considering a Pool Renovation? Read These First",
    "entradilla": "What a full renovation changes, how it differs from resurfacing, and what is worth upgrading while the pool is open.",
    "posts": [
@@ -91,10 +91,10 @@
      "enlace": "/blogs/how-much-does-a-pool-remodel-cost-in-florida",
      "cta": "Read More",
      "imagen": {
-      "src": "/images/blog/banco/mm-remodeling-2-p-800.webp",
-      "srcset": "/images/blog/banco/mm-remodeling-2-p-400.webp 400w, /images/blog/banco/mm-remodeling-2-p-800.webp 800w",
+      "src": "/images/blog/banco/mm-remodeling-5-p-800.webp",
+      "srcset": "/images/blog/banco/mm-remodeling-5-p-400.webp 400w, /images/blog/banco/mm-remodeling-5-p-800.webp 800w",
       "sizes": "(min-width: 768px) 400px, 100vw",
-      "alt": "Rectangular pool with three scuppers set into a rendered wall, two in-water loungers on the sun shelf, strips of turf inset in a large-format stone deck, and bougainvillea and palms behind the hedge."
+      "alt": "Pool with in-water loungers beside a raised marble-look wall, a covered lounge area and a two-story house with arched windows"
      },
      "categoria": "pool-remodeling"
     },
@@ -104,10 +104,10 @@
      "enlace": "/blogs/pool-resurfacing-vs-full-pool-renovation",
      "cta": "Read More",
      "imagen": {
-      "src": "/images/blog/banco/mm-remodeling-2-p-800.webp",
-      "srcset": "/images/blog/banco/mm-remodeling-2-p-400.webp 400w, /images/blog/banco/mm-remodeling-2-p-800.webp 800w",
+      "src": "/images/blog/banco/mm-remodeling-7-p-800.webp",
+      "srcset": "/images/blog/banco/mm-remodeling-7-p-400.webp 400w, /images/blog/banco/mm-remodeling-7-p-800.webp 800w",
       "sizes": "(min-width: 768px) 400px, 100vw",
-      "alt": "Pool with three spouts set into a rendered wall, two in-water loungers on the shallow ledge and a raised fire feature topped with dark stone, framed by turf strips inset in a pale deck."
+      "alt": "Rectangular pool with a raised white-tile spa, jets running, and two white loungers on the pale stone deck by the steps"
      },
      "categoria": "pool-remodeling"
     },
@@ -126,14 +126,14 @@
     },
     {
      "titulo": "Remodel or Rebuild?",
-     "resumen": "Two findings make a rebuild the honest answer. Everything else is remodel work, and the gap is about $16,600 on a typical project. Here is the order to check in, and what each finding actually means.",
+     "resumen": "Two findings make a rebuild the honest answer. Everything else is remodel work, and on a typical project the remodel comes in well under the cost of building new. Here is the order to check in, and what each finding actually means.",
      "enlace": "/blogs/remodel-or-rebuild-your-pool",
      "cta": "Read More",
      "imagen": {
-      "src": "/images/blog/banco/mm-remodeling-2-p-800.webp",
-      "srcset": "/images/blog/banco/mm-remodeling-2-p-400.webp 400w, /images/blog/banco/mm-remodeling-2-p-800.webp 800w",
+      "src": "/images/blog/banco/mm-remodeling-8-p-800.webp",
+      "srcset": "/images/blog/banco/mm-remodeling-8-p-400.webp 400w, /images/blog/banco/mm-remodeling-8-p-800.webp 800w",
       "sizes": "(min-width: 768px) 400px, 100vw",
-      "alt": "Rectangular pool with an integrated spa and three spillway niches set into a rendered wall, with a fire bowl on the deck and a flowering tree behind it."
+      "alt": "Aerial view of a pool and square spa on a pale stone deck beside a white louvered roof, a two-story house and palms"
      },
      "categoria": "pool-remodeling"
     },
@@ -152,7 +152,7 @@
     }
    ]
   },
-  "/services/custom-aluminum-pergola-builders-in-north-south-florida": {
+  "/services/pergola-builders": {
    "titulo": "Planning a Pergola? Start With These",
    "entradilla": "What drives the price, how aluminum compares to wood over a Florida decade, and when a louvered roof is the better build.",
    "posts": [
@@ -162,10 +162,10 @@
      "enlace": "/blogs/how-much-does-an-aluminum-pergola-cost-in-florida",
      "cta": "Read More",
      "imagen": {
-      "src": "/images/blog/banco/mm-pergolas-0-p-800.webp",
-      "srcset": "/images/blog/banco/mm-pergolas-0-p-400.webp 400w, /images/blog/banco/mm-pergolas-0-p-800.webp 800w",
+      "src": "/images/blog/banco/mm-bi-0985-p-800.webp",
+      "srcset": "/images/blog/banco/mm-bi-0985-p-400.webp 400w, /images/blog/banco/mm-bi-0985-p-800.webp 800w",
       "sizes": "(min-width: 768px) 400px, 100vw",
-      "alt": "White aluminum pergola with slatted top over a paved patio with bar seating, a neighbouring tile roof visible through the slats."
+      "alt": "White freestanding solid-roof pergola with rafter tails over a stone paver patio, with a wood fence and palms behind"
      },
      "categoria": "pergolas-louvered-roofs"
     },
@@ -175,10 +175,10 @@
      "enlace": "/blogs/aluminum-vs-wood-pergolas-in-florida",
      "cta": "Read More",
      "imagen": {
-      "src": "/images/blog/banco/mm-pergolas-8-p-800.webp",
-      "srcset": "/images/blog/banco/mm-pergolas-8-p-400.webp 400w, /images/blog/banco/mm-pergolas-8-p-800.webp 800w",
+      "src": "/images/blog/banco/mm-bi-1009-p-800.webp",
+      "srcset": "/images/blog/banco/mm-bi-1009-p-400.webp 400w, /images/blog/banco/mm-bi-1009-p-800.webp 800w",
       "sizes": "(min-width: 768px) 400px, 100vw",
-      "alt": "Dark aluminum pergola with a slatted roof standing at the corner of a pool and raised spa, a matching louvered privacy screen beneath it, palms and a rendered boundary wall behind."
+      "alt": "Brown pergola with rafter tails over a brick paver patio with turquoise seating, a grill and a wood fence behind"
      },
      "categoria": "pergolas-louvered-roofs"
     },
@@ -188,10 +188,10 @@
      "enlace": "/blogs/pergola-vs-louvered-roof",
      "cta": "Read More",
      "imagen": {
-      "src": "/images/blog/banco/mm-pergolas-0-p-800.webp",
-      "srcset": "/images/blog/banco/mm-pergolas-0-p-400.webp 400w, /images/blog/banco/mm-pergolas-0-p-800.webp 800w",
+      "src": "/images/blog/banco/mm-louvered-4-p-800.webp",
+      "srcset": "/images/blog/banco/mm-louvered-4-p-400.webp 400w, /images/blog/banco/mm-louvered-4-p-800.webp 800w",
       "sizes": "(min-width: 768px) 400px, 100vw",
-      "alt": "White aluminum pergola with a solid roof panel over a paver patio, white bar stools lined up at the counter and a slatted privacy screen closing the back."
+      "alt": "Dark-framed louvered roof with a ceiling fan over a dining set on a stone patio by a lake, with string lights and a hammock"
      },
      "categoria": "pergolas-louvered-roofs"
     },
@@ -214,16 +214,16 @@
      "enlace": "/blogs/do-you-need-a-permit-for-a-pergola-in-florida",
      "cta": "Read More",
      "imagen": {
-      "src": "/images/blog/banco/mm-pergolas-0-p-800.webp",
-      "srcset": "/images/blog/banco/mm-pergolas-0-p-400.webp 400w, /images/blog/banco/mm-pergolas-0-p-800.webp 800w",
+      "src": "/images/blog/banco/mm-bi-0897-p-800.webp",
+      "srcset": "/images/blog/banco/mm-bi-0897-p-400.webp 400w, /images/blog/banco/mm-bi-0897-p-800.webp 800w",
       "sizes": "(min-width: 768px) 400px, 100vw",
-      "alt": "White aluminum pergola with a solid roof panel over a bar counter and a row of white barstools, horizontal louvered privacy screens on the back side, and a flowering tree beside the lawn."
+      "alt": "White pergola on thick square posts with ceiling fans, over an outdoor kitchen with wood-look cabinets and a covered grill"
      },
      "categoria": "pergolas-louvered-roofs"
     }
    ]
   },
-  "/services/motorized-louvered-roof-systems-in-north-south-florida": {
+  "/services/louvered-roofs": {
    "titulo": "Thinking About a Louvered Roof?",
    "entradilla": "Whether the motor earns its keep in Florida, what moves the price, and how it compares to a fixed pergola.",
    "posts": [
@@ -259,10 +259,10 @@
      "enlace": "/blogs/pergola-vs-louvered-roof",
      "cta": "Read More",
      "imagen": {
-      "src": "/images/blog/banco/mm-pergolas-0-p-800.webp",
-      "srcset": "/images/blog/banco/mm-pergolas-0-p-400.webp 400w, /images/blog/banco/mm-pergolas-0-p-800.webp 800w",
+      "src": "/images/blog/banco/mm-louvered-4-p-800.webp",
+      "srcset": "/images/blog/banco/mm-louvered-4-p-400.webp 400w, /images/blog/banco/mm-louvered-4-p-800.webp 800w",
       "sizes": "(min-width: 768px) 400px, 100vw",
-      "alt": "White aluminum pergola with a solid roof panel over a paver patio, white bar stools lined up at the counter and a slatted privacy screen closing the back."
+      "alt": "Dark-framed louvered roof with a ceiling fan over a dining set on a stone patio by a lake, with string lights and a hammock"
      },
      "categoria": "pergolas-louvered-roofs"
     },
@@ -272,10 +272,10 @@
      "enlace": "/blogs/louvered-roof-in-florida-rain-and-high-winds",
      "cta": "Read More",
      "imagen": {
-      "src": "/images/blog/banco/mm-louvered-7-p-800.webp",
-      "srcset": "/images/blog/banco/mm-louvered-7-p-400.webp 400w, /images/blog/banco/mm-louvered-7-p-800.webp 800w",
+      "src": "/images/blog/banco/mm-louvered-2-p-800.webp",
+      "srcset": "/images/blog/banco/mm-louvered-2-p-400.webp 400w, /images/blog/banco/mm-louvered-2-p-800.webp 800w",
       "sizes": "(min-width: 768px) 400px, 100vw",
-      "alt": "White aluminum louvered roof on white posts over a poolside patio, the edge of the pool at the near corner, a white perimeter fence and palms behind it, and a neighbor's tile roof with solar panels off to the left."
+      "alt": "Black-framed louvered roof with closed white blades over a paver patio, seen from above beside a hedge and a tennis court"
      },
      "categoria": "pergolas-louvered-roofs"
     },
@@ -285,16 +285,16 @@
      "enlace": "/blogs/features-to-compare-before-buying-a-louvered-roof",
      "cta": "Read More",
      "imagen": {
-      "src": "/images/blog/banco/mm-louvered-3-p-800.webp",
-      "srcset": "/images/blog/banco/mm-louvered-3-p-400.webp 400w, /images/blog/banco/mm-louvered-3-p-800.webp 800w",
+      "src": "/images/blog/banco/mm-bi-0214-p-800.webp",
+      "srcset": "/images/blog/banco/mm-bi-0214-p-400.webp 400w, /images/blog/banco/mm-bi-0214-p-800.webp 800w",
       "sizes": "(min-width: 768px) 400px, 100vw",
-      "alt": "White aluminum louvered roof attached to a beige stucco house, covering a patio with lounge chairs beside a pool, a curved handrail at the steps and a mosaic tile band at the waterline."
+      "alt": "White louvered roof lit with red LEDs at dusk over a wicker sectional and lounge chairs on a travertine patio"
      },
      "categoria": "pergolas-louvered-roofs"
     }
    ]
   },
-  "/services/custom-outdoor-kitchens-for-north-south-florida-homes": {
+  "/services/outdoor-kitchens": {
    "titulo": "Designing an Outdoor Kitchen? Read These",
    "entradilla": "What actually drives the price, where a grill island stops being enough, and how to lay one out around the way you cook.",
    "posts": [
@@ -304,10 +304,10 @@
      "enlace": "/blogs/how-much-does-an-outdoor-kitchen-cost-in-florida",
      "cta": "Read More",
      "imagen": {
-      "src": "/images/blog/banco/mm-kitchen-6-p-800.webp",
-      "srcset": "/images/blog/banco/mm-kitchen-6-p-400.webp 400w, /images/blog/banco/mm-kitchen-6-p-800.webp 800w",
+      "src": "/images/blog/banco/mm-bi-0789-p-800.webp",
+      "srcset": "/images/blog/banco/mm-bi-0789-p-400.webp 400w, /images/blog/banco/mm-bi-0789-p-800.webp 800w",
       "sizes": "(min-width: 768px) 400px, 100vw",
-      "alt": "L-shaped outdoor kitchen under a dark wood cover with a ceiling fan, black granite counters, a built-in stainless grill and stainless doors, on a grey stone-tile floor beside a lake with palms and houses on the far shore."
+      "alt": "U-shaped outdoor kitchen with marble-look waterfall counters and a built-in grill under a white and wood pergola"
      },
      "categoria": "outdoor-kitchens"
     },
@@ -317,10 +317,10 @@
      "enlace": "/blogs/grill-island-vs-full-outdoor-kitchen",
      "cta": "Read More",
      "imagen": {
-      "src": "/images/blog/banco/mm-kitchen-6-p-800.webp",
-      "srcset": "/images/blog/banco/mm-kitchen-6-p-400.webp 400w, /images/blog/banco/mm-kitchen-6-p-800.webp 800w",
+      "src": "/images/blog/banco/mm-kitchen-2-p-800.webp",
+      "srcset": "/images/blog/banco/mm-kitchen-2-p-400.webp 400w, /images/blog/banco/mm-kitchen-2-p-800.webp 800w",
       "sizes": "(min-width: 768px) 400px, 100vw",
-      "alt": "L-shaped outdoor kitchen with white cabinet fronts, a black veined stone countertop and a ventilation grille in the base cabinet, under a dark-beamed cover with a ceiling fan, looking across a lawn to a lake with a white fence at the water's edge and houses on the far bank."
+      "alt": "Grill island with wood-look fronts, a built-in grill, sink and refrigerator under a slatted wood pergola with a white screen"
      },
      "categoria": "outdoor-kitchens"
     },
@@ -330,10 +330,10 @@
      "enlace": "/blogs/outdoor-kitchen-layout-guide",
      "cta": "Read More",
      "imagen": {
-      "src": "/images/blog/banco/mm-kitchen-0-p-800.webp",
-      "srcset": "/images/blog/banco/mm-kitchen-0-p-400.webp 400w, /images/blog/banco/mm-kitchen-0-p-800.webp 800w",
+      "src": "/images/blog/banco/mm-kitchen-1-p-800.webp",
+      "srcset": "/images/blog/banco/mm-kitchen-1-p-400.webp 400w, /images/blog/banco/mm-kitchen-1-p-800.webp 800w",
       "sizes": "(min-width: 768px) 400px, 100vw",
-      "alt": "L-shaped outdoor kitchen on a tiled patio under a dark slatted pergola, with a side burner, built-in grill and drawers along the back run, a sink and stainless refrigerator on the wing that turns toward the camera, and a white fence, a hedge and a large tree behind."
+      "alt": "Outdoor kitchen with a sink and cutting board, a pizza oven, built-in grill and side burner, looking out to a pool and palms"
      },
      "categoria": "outdoor-kitchens"
     },
@@ -367,7 +367,7 @@
   }
  },
  "pendientes": {
-  "/services/pool-screen-enclosures-for-north-south-florida-pools": {
+  "/services/pool-screen-enclosures": {
    "faltan": [
     "replace-a-pool-cage-or-keep-rescreening-it",
     "panoramic-vs-traditional-pool-enclosures",
@@ -378,7 +378,7 @@
     "how-much-does-a-pool-screen-enclosure-cost-in-florida"
    ]
   },
-  "/services/patio-screen-rooms-enclosures-in-north-south-florida": {
+  "/services/patio-screen-rooms": {
    "faltan": [
     "screen-room-vs-screened-patio-vs-pool-enclosure",
     "how-much-does-a-screen-room-cost-in-florida",
@@ -388,7 +388,7 @@
    ],
    "escritos": []
   },
-  "/services/motorized-retractable-screens-in-north-south-florida": {
+  "/services/retractable-screens": {
    "faltan": [
     "are-motorized-retractable-screens-worth-it",
     "motorized-screens-vs-a-fixed-screen-room",
@@ -398,7 +398,7 @@
    ],
    "escritos": []
   },
-  "/services/custom-deck-builders-in-north-south-florida": {
+  "/services/deck-builders": {
    "faltan": [
     "composite-vs-wood-decking-in-florida",
     "how-much-does-a-custom-deck-cost-in-florida",
@@ -408,7 +408,7 @@
    ],
    "escritos": []
   },
-  "/services/professional-landscaping-services-in-north-south-florida": {
+  "/services/landscaping": {
    "faltan": [
     "landscaping-around-a-pool",
     "privacy-landscaping-around-a-pool",
@@ -418,7 +418,7 @@
    ],
    "escritos": []
   },
-  "/services/smart-irrigation-system-installation-in-north-south-florida": {
+  "/services/irrigation-systems": {
    "faltan": [
     "is-a-smart-irrigation-system-worth-it-in-florida",
     "irrigation-fixes-before-new-landscaping",
@@ -428,7 +428,7 @@
    ],
    "escritos": []
   },
-  "/services/premium-outdoor-furniture-for-north-south-florida-homes": {
+  "/services/outdoor-furniture": {
    "faltan": [
     "best-outdoor-furniture-materials-for-florida",
     "how-to-furnish-a-pool-area",
@@ -438,7 +438,7 @@
    ],
    "escritos": []
   },
-  "/services/steel-building-pole-barn-construction-in-north-south-florida": {
+  "/services/steel-buildings-pole-barns": {
    "faltan": [
     "pole-barn-vs-steel-building-in-florida",
     "how-much-does-a-steel-building-cost-in-florida",
@@ -448,7 +448,7 @@
    ],
    "escritos": []
   },
-  "/services/smart-soffit-led-lighting-installation-in-north-south-florida": {
+  "/services/soffit-led-lighting": {
    "faltan": [
     "permanent-soffit-lighting-vs-landscape-lighting",
     "how-much-does-permanent-soffit-lighting-cost",

@@ -1,0 +1,10 @@
+---
+/**
+ * Los estilos de las tarjetas de categoria y de las paginas `/gallery/<slug>`, en linea y
+ * solo en esas rutas. El porque esta en la cabecera de `galeria-categorias.css`.
+ * Se monta en `Base.astro` porque `/gallery` es DERIVADA y no puede importar nada por su cuenta.
+ */
+import css from './galeria-categorias.css?raw';
+const enGaleria = /^\/gallery(\/[^/]+)?\/?$/.test(Astro.url.pathname);
+---
+{enGaleria && <style is:inline set:html={css}></style>}

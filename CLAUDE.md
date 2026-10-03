@@ -27,6 +27,7 @@ Hay 15. Miden más y mejor que mirar capturas, headless y sin gastar contexto:
 ```bash
 npm run check:tokens                       # estática, <1 s, córrela siempre
 npm run check:rutas && npm run check:enlaces && npm run check:seo
+npm run check:redirects                    # estática: 76 URLs migradas, 308 directos, sitemap/canónicas/miga
 node scripts/check-texto.mjs  <subcadena>  # acotada por ruta
 node scripts/check-visual.mjs <subcadena>  # 35-60 s por ruta × 4 anchos
 ```
@@ -56,3 +57,8 @@ auditoría a mano — ver §1.
 otros chats sobre este mismo árbol a la vez. Los tres actos son del director
 (`docs/encargos/DIRECTOR.md:35`). Si tu encargo te los autoriza, adelante; si no, entrega el
 diff y para.
+
+## 4. Fotos: hay banco
+
+Antes de proponer o cambiar una foto, lee `BANCO-IMAGENES.md`. El índice es
+`src/data/banco-imagenes.json`; se elige por él y por `banco/hojas/`, no escaneando carpetas.

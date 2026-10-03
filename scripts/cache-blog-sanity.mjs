@@ -4,7 +4,7 @@
  *
  *     node scripts/cache-blog-sanity.mjs
  *
- * Hermana de `cache-sanity.mjs`, que hace lo mismo para las 53 de `/pool-builders/` y NO cubre
+ * Hermana de `cache-sanity.mjs`, que hace lo mismo para las 53 de `/services/pool-builders/` y NO cubre
  * este tipo (codifica `!== 53`). Misma disciplina:
  *
  *   · `src/pages/blogs/[slug].astro` falla CERRADO: sin datos no se construye media coleccion.
@@ -17,14 +17,31 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import { groq } from './lib/sanity.mjs';
 import { CONSULTA_BLOG } from '../src/lib/blog-groq.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const SALIDA = path.join(RAIZ, 'src/data/blogs-sanity.json');
 
-const docs = await groq(CONSULTA_BLOG);
-const publicados = await groq('count(*[_type == "blogPost" && !(_id in path("drafts.**"))])');
+/**
+ * SEO-SAFE (1-oct-2026) — `--local <emitido.json>`: sin red, fusiona lo que emitio
+ * `publica-blog.mjs --emitir` con la cache anterior reproduciendo la proyeccion de CONSULTA_BLOG
+ * (ver scripts/lib/cache-local.mjs). Es la salida DERIVADA para una maquina que no llega a
+ * Sanity; con red, este mismo script sin flag la reescribe desde el CMS y manda el CMS.
+ */
+const LOCAL = (() => { const i = process.argv.indexOf('--local'); return i > 0 ? process.argv[i + 1] : null; })();
+let docs, publicados;
+if (LOCAL) {
+  const { proyectaLocal } = await import('./lib/cache-local.mjs');
+  const emitidos = JSON.parse(fs.readFileSync(LOCAL, 'utf8')).documentos;
+  const anterior = fs.existsSync(SALIDA) ? JSON.parse(fs.readFileSync(SALIDA, 'utf8')) : [];
+  docs = proyectaLocal(emitidos, anterior);
+  publicados = docs.length;
+  console.log(`  --local: ${emitidos.length} emitido(s) fusionados con ${anterior.length} de la cache anterior -> ${docs.length}`);
+} else {
+  const { groq } = await import('./lib/sanity.mjs');
+  docs = await groq(CONSULTA_BLOG);
+  publicados = await groq('count(*[_type == "blogPost" && !(_id in path("drafts.**"))])');
+}
 
 if (!docs.length) {
   console.error('<<< Sanity devolvio 0 blogPost. No se escribe la cache.');

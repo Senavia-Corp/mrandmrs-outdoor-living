@@ -27,21 +27,21 @@
   },
   "summary": "Two outdoor kitchens the same length can be very different projects. The number our estimator uses, the three things that actually move it, and the order to decide them in.",
   "portada": {
-    "ref": "kitchen-6",
-    "alt": "L-shaped outdoor kitchen under a dark wood cover with a ceiling fan, black granite counters, a built-in stainless grill and stainless doors, on a grey stone-tile floor beside a lake with palms and houses on the far shore."
+    "ref": "bi-0789",
+    "alt": "U-shaped outdoor kitchen with marble-look waterfall counters and a built-in grill under a white and wood pergola"
   },
   "figuras": [
     {
-      "ref": "kitchen-4",
-      "alt": "L-shaped outdoor kitchen under a white louvered roof with a ceiling fan, with a stainless grill, a refrigerator, drawers and a sink cut into a white stone-clad counter, and tile-roofed houses beyond the fence."
+      "ref": "bi-0837",
+      "alt": "L-shaped outdoor kitchen with a built-in grill, side burner, drawers, doors, a sink and a refrigerator under a black counter."
     },
     {
       "ref": "kitchen-5",
       "alt": "Outdoor kitchen on a covered lanai under a solid white roof, with a black granite counter over a white stucco base, a built-in stainless grill, a stainless under-counter door and a travertine floor."
     },
     {
-      "ref": "kitchen-1",
-      "alt": "Poolside outdoor kitchen under a dark-framed cover, with a domed stainless oven and its chimney on the back counter, a built-in grill and side burners, and a front island with a sink and wood-grain cabinet fronts."
+      "ref": "bi-0795",
+      "alt": "Black stone waterfall island with a sink and bar stools in front of a white kitchen run with a grill and stainless doors."
     }
   ],
   "faq": [
@@ -98,7 +98,7 @@ This is why a price quoted per linear foot tells you almost nothing on its own. 
 
 The largest single step in the price is not a length at all. It is the moment plumbing enters the drawing, because that brings in a trade the grill island never needed. Where that line sits for how you actually entertain is the subject of [a grill island compared with a full outdoor kitchen](/blogs/grill-island-vs-full-outdoor-kitchen).
 
-{{figura: kitchen-4}}
+{{figura: bi-0837}}
 
 ## Lock the appliance list before the masonry starts
 
@@ -151,7 +151,7 @@ The difference between the low end and the high end of the build itself is mostl
 
 In Florida the question for each of those is not how it looks on day one. It is what it looks like after ten summers of humidity and UV, and — within a few miles of the coast — salt air. Hollow doors, unsealed substrates and framing that holds moisture fail from the inside, which means the kitchen looks fine right up until it does not. That trade-off, material by material, is [the best outdoor kitchen materials for Florida heat, humidity and rain](/blogs/best-outdoor-kitchen-materials-for-florida).
 
-{{figura: kitchen-1}}
+{{figura: bi-0795}}
 
 ## Seven lines to make a quote show you
 
@@ -177,4 +177,4 @@ Three decisions, in this sequence:
 
 Nearly every expensive surprise on an outdoor kitchen comes from taking those out of order: a finished deck cut open for a gas line, a cabinet rebuilt around a grill that changed, a countertop template redone because the sink moved. The order is free. The corrections are not.
 
-If you want to see how we scope one — site walk, utility distances, appliance list, then materials — that is on the [custom outdoor kitchens](/services/custom-outdoor-kitchens-for-north-south-florida-homes) page, and finished kitchens from our own jobs are in the [project gallery](/gallery). To see the $25,000 line sitting inside a whole backyard budget, the [pool cost estimator](/pool-cost-estimator) puts it next to the deck, the cover and the rest. And a [project estimate](/request-estimated) starts with the site visit, which for a kitchen mostly means measuring how far it is to the meter and the panel.
+If you want to see how we scope one — site walk, utility distances, appliance list, then materials — that is on the [custom outdoor kitchens](/services/outdoor-kitchens) page, and finished kitchens from our own jobs are in the [project gallery](/gallery). To see the $25,000 line sitting inside a whole backyard budget, the [pool cost estimator](/pool-cost-estimator) puts it next to the deck, the cover and the rest. And a [project estimate](/request-estimated) starts with the site visit, which for a kitchen mostly means measuring how far it is to the meter and the panel.

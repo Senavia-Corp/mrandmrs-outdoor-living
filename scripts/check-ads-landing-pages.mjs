@@ -30,7 +30,7 @@ const SITIO = process.env.PUBLIC_SITE_URL || 'https://www.mrandmrsoutdoorliving.
 const LANDINGS = [
   {
     grupo: 'Pool Builders Core',
-    ruta: '/services/custom-pool-spa-builders-in-north-south-florida',
+    ruta: '/services/pool-builders',
     exige: [/custom pool/i, /builders?/i],
     exigeCuerpo: [/pool/i, /north .{0,3}south florida|north florida/i],
     prohibeArriba: [/pergola/i, /outdoor kitchen/i, /pole barn/i, /landscaping/i],
@@ -57,7 +57,7 @@ const LANDINGS = [
   },
   {
     grupo: 'Gainesville',
-    ruta: '/pool-builders/gainesville-florida',
+    ruta: '/services/pool-builders/gainesville-fl',
     exige: [/pool builders?/i, /gainesville/i],
     exigeCuerpo: [/inground|in-ground/i, /alachua|north florida/i],
     prohibeArriba: [/pergola/i, /outdoor kitchen/i, /commercial/i],
@@ -73,11 +73,13 @@ const LANDINGS = [
       campo: 'Project-Type',
       preseleccion: 'New Custom Pool',
     },
-    faq: { n: 3 },
+    /* 3 de la plantilla de ciudad + 1 local (SEO-SAFE, 1-oct-2026: que oficina revisa el permiso
+     * segun el lado del limite municipal, y el septico). Solo Gainesville y Ocala la llevan. */
+    faq: { n: 4 },
   },
   {
     grupo: 'Ocala',
-    ruta: '/pool-builders/ocala-florida',
+    ruta: '/services/pool-builders/ocala-fl',
     exige: [/pool builders?/i, /ocala/i],
     exigeCuerpo: [/inground|in-ground/i, /marion|north florida/i],
     prohibeArriba: [/pergola/i, /outdoor kitchen/i, /commercial/i],
@@ -87,11 +89,12 @@ const LANDINGS = [
       campo: 'Project-Type',
       preseleccion: 'New Custom Pool',
     },
-    faq: { n: 3 },
+    /* Idem: 3 de plantilla + 1 local (oficina segun el limite municipal, caliza y septico). */
+    faq: { n: 4 },
   },
   {
     grupo: 'Full Remodel',
-    ruta: '/services/pool-remodeling-renovation-in-north-south-florida',
+    ruta: '/services/pool-remodeling',
     exige: [/remodel/i],
     exigeCuerpo: [/renovat|remodel/i, /pool/i],
     // Remodelacion NO es reparacion suelta ni limpieza: eso atrae el lead equivocado.
@@ -104,6 +107,8 @@ const LANDINGS = [
       preseleccion: 'Complete Pool Remodel',
     },
     heroe: 'img.image-bg-hero-services',
+    /* SEO-SAFE (1-oct-2026): las 5 del origen mas las 3 objeciones que ya tenia el Core. */
+    faq: { n: 8 },
   },
 ];
 
@@ -223,7 +228,7 @@ for (const L of LANDINGS) {
    * Y la regla 11 existe precisamente porque «$75,000 … $500,000+» estuvo publicado DENTRO de
    * una respuesta de FAQ: la puerta que se escribio para cazar eso no podia mirar donde paso.
    *
-   * Medido sobre el build: en `/pool-builders/ocala-florida` hay 8 `<nav>`, los 5 del menu
+   * Medido sobre el build: en `/services/pool-builders/ocala-fl` hay 8 `<nav>`, los 5 del menu
    * cuelgan de `section.menu` y los 3 restantes son respuestas. Por eso se quita el menu por su
    * seccion, que es lo que se queria quitar, y no por la etiqueta, que arrastraba contenido.
    */

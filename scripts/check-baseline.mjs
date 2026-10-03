@@ -210,7 +210,7 @@ if (RAPIDO) {
   const { chromium } = await import('playwright');
   const { ARGS_NAVEGADOR, asentar, disparar, textoNormalizado, aJpeg } = await import('./lib/captura.mjs');
   const pixelmatch = (await import('pixelmatch')).default;
-  const ARQUETIPOS = ['/', '/about', '/services/custom-deck-builders-in-north-south-florida'];
+  const ARQUETIPOS = ['/', '/about', '/services/deck-builders'];
   const desvios = [];
   const nav = await chromium.launch({ headless: false, args: ARGS_NAVEGADOR });
   const ctx = await nav.newContext({ viewport: { width: ANCHO_DOM, height: 1080 },

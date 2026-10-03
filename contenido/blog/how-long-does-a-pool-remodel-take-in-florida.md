@@ -26,21 +26,21 @@
   },
   "summary": "Nobody can give you an honest finish date before demolition. What you can get before you sign is the shape of the schedule: where it stops, what each stop waits on, and which of those are yours to shorten.",
   "portada": {
-    "ref": "remodeling-2",
-    "alt": "Rectangular pool with three wall spillways and an integrated spa, a river-rock fire bowl at the deck edge and a flowering tree behind the back wall."
+    "ref": "remodeling-4",
+    "alt": "Pool on a travertine deck beside a covered patio on dark posts, with palms, lawn and an open field beyond"
   },
   "figuras": [
     {
-      "ref": "remodeling-8",
-      "alt": "Aerial view of a backyard pool with a robotic cleaner on the floor, a daybed under the porch and an outdoor kitchen beneath a metal roof."
+      "ref": "bi-0524",
+      "alt": "Screen enclosure with torn mesh hanging from its frame over a blue-tiled pool, with tiles missing from a raised wall."
     },
     {
-      "ref": "remodeling-7",
-      "alt": "Spa running with its jets on beside the pool, with a grill and cart under the lanai and an orange hammock on the lawn."
+      "ref": "bi-0670",
+      "alt": "Drained pool with algae-stained old plaster and standing water in the deep end, with a bucket and a hose sitting in it."
     },
     {
-      "ref": "remodeling-5",
-      "alt": "Pool with a blue float in the water beside a marble deck, an outdoor shower on the house wall and a dining table under tree shadows."
+      "ref": "bi-0520",
+      "alt": "Finished pool with a raised water-feature wall at its edge, a wide travertine deck reaching the house and gray gravel beds."
     }
   ],
   "faq": [
@@ -133,7 +133,7 @@ Which reviews apply, and in what order, is set by your county: the process in Al
 
 The HOA line is the one people underestimate. Our estimator carries $1,500 for an HOA submission, and the money is the easy part — the calendar cost is a board that meets when it meets.
 
-{{figura: remodeling-8}}
+{{figura: bi-0524}}
 
 ## The stop with your name on it
 
@@ -150,7 +150,7 @@ The rule is simple and almost nobody follows it. **Chip-out is the deadline for 
 
 Equipment is the selection whose clock starts at the order, not at the install. Our [pool cost estimator](/pool-cost-estimator) prices a heater at $4,500, salt chlorination at $2,200 and automation at $3,500. What the prices do not show is that a remodel which adds any of them has to decide it at design, because the pad, the power and the plumbing get built around the choice. Which ones are worth adding is the subject of [what to upgrade while the pool is open](/blogs/what-to-upgrade-during-a-complete-pool-remodel); the timeline argument is narrower — anything you add later means opening the same ground twice.
 
-{{figura: remodeling-7}}
+{{figura: bi-0670}}
 
 ## The empty shell is a clock of its own
 
@@ -172,7 +172,7 @@ A new interior finish has a start-up procedure. The pool is filled without stopp
 
 The punch list is the other tail. It is the short list of things that are not right at the end, and it closes quickly on jobs where the final payment still means something and slowly where it does not.
 
-{{figura: remodeling-5}}
+{{figura: bi-0520}}
 
 ## Five questions that tell you whether there is a schedule
 
@@ -190,4 +190,4 @@ Work backwards from the date you want to swim rather than forwards from today. T
 
 Everything between those two anchors is where a scope decision can still buy time, and the cheapest cut is an item that adds a review rather than one that adds crew days. Dropping the gas heater removes a review; dropping a color you liked removes nothing. If the scope you want does not fit the date you want, the two honest options are a smaller scope or a later date. Adding people to the job is not on the list.
 
-On our [pool remodeling and renovation](/services/pool-remodeling-renovation-in-north-south-florida) page the scope goes in writing, with a fixed project price, before any demolition starts — which is the same deadline this article keeps coming back to. If the scope itself is still open, [what a complete remodel costs](/blogs/how-much-does-a-pool-remodel-cost-in-florida) covers the money side of the same decisions. A [project estimate](/request-estimated) starts with a site visit, because the schedule and the price both depend on what is already in the ground.
+On our [pool remodeling and renovation](/services/pool-remodeling) page the scope goes in writing, with a fixed project price, before any demolition starts — which is the same deadline this article keeps coming back to. If the scope itself is still open, [what a complete remodel costs](/blogs/how-much-does-a-pool-remodel-cost-in-florida) covers the money side of the same decisions. A [project estimate](/request-estimated) starts with a site visit, because the schedule and the price both depend on what is already in the ground.

@@ -88,10 +88,10 @@ const HUERFANAS_ESPERADAS = 14;
  * Cuesta 4 cargas más de 44 a 48.
  */
 const RUTAS = ['/', '/about', '/gallery', '/contact-us', '/videos', '/brochures',
-  '/services/custom-deck-builders-in-north-south-florida',
-  '/pool-builders/alachua-florida', '/project/modern-pool-motorized-pergola-south-florida',
+  '/services/deck-builders',
+  '/services/pool-builders/alachua-fl', '/project/modern-pool-motorized-pergola-south-florida',
   '/blogs/top-10-luxury-pool-designs-for-florida-homes',
-  '/country/custom-pool-builders-alachua-county-fl',
+  '/services/pool-builders/alachua-county-fl',
   '/financing',
   // Arquetipo de las 5 fichas de autoria propia de `/project/`: las cinco salen del mismo
   // componente (`src/components/FichaObra.astro`) con el mismo marcado, asi que una las
@@ -106,7 +106,7 @@ const RUTAS = ['/', '/about', '/gallery', '/contact-us', '/videos', '/brochures'
   // medía ninguna puerta. El arquetipo de `/services/` sigue siendo custom-deck, que es una
   // ficha sin tocar; esta es la unica de las 14 que ya no es solo marcado de Webflow.
   // Cuesta 4 cargas mas.
-  '/services/custom-pool-spa-builders-in-north-south-florida'];
+  '/services/pool-builders'];
 const ANCHOS = [[1920, 1080], [1440, 900], [991, 800], [479, 850]];
 
 const TIPO = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript',

@@ -3,6 +3,401 @@
 Webflow → Astro 5 + Sanity + Vercel. Una entrada por fase, **escrita al cerrar la fase**,
 nunca al empezarla. Si una fase se reabre, se añade una entrada nueva; no se edita la vieja.
 
+## SEO-URLS · MIGRACIÓN — 76 URLs al silo /services/, 90 redirects 308 sin cadenas, puerta check:redirects (3-oct-2026)
+
+14 fichas de `/services/<slug-largo>`, 53 ciudades de `/pool-builders/` y 9 condados de `/country/` pasan a
+`/services/<servicio>` y `/services/pool-builders/<ciudad|condado>-fl` (`/pool-builders/beach-florida` era Hillsboro
+Beach: `/services/pool-builders/hillsboro-beach-fl`). Fuente de verdad `src/data/seo-url-migrations.json`; de ahí salen
+`vercel.json` (`npm run redirects`), los enlaces reescritos por `build-paginas`/`build-shell`, la lista de renombrados sin
+enlace interno de `check:enlaces` y la puerta nueva `check:redirects` (76 nuevas en 200, 76 viejas con 308 directo, 14
+históricos al destino final, 0 cadenas, 0 bucles, sitemap/canónicas/og:url/JSON-LD/miga sin URL vieja, 0 enlaces internos a
+las viejas). Los 14 históricos que apuntaban a una URL migrada (`/excavation`, pérgolas «wood», remodelación comercial y
+los 7 `pool-builders-<x>-florida`) apuntan ahora DIRECTO a la final. Sanity: sólo cambian 108 `href` de Portable Text en
+46 `blogPost` (y su origen Markdown + la caché); los `slug` de poolBuilder/service/county/serviceRegion son identidad y
+no se tocan — la URL la deriva `src/lib/rutas-seo.mjs`. Baseline re-claveado por ruta servida (456 ficheros, contenido
+intacto). La miga deja de inventar `/services`, `/blogs`, `/project` y `/articles`. Informe completo y checklist de
+despliegue en `docs/seo/URL-MIGRATION-2026.md`.
+
+## LOOP-IMAGENES · CIERRE — 18 unidades, 101 canjes de 311 huecos, puerta del loop a 0 (2-oct-2026)
+
+Informe de entrega en `docs/encargos/LOOP-IMAGENES-INFORME.md` (canjes por ficha, fotos que hay que hacer,
+auditoría de IA de intro/What we do, lo que espera a un humano). Batería de cierre VERDE: tokens, rutas,
+enlaces, seo, estructura, assets, galería, menú, banco, ix2, cascarón y `check-fotos-servicios` (18/18).
+`check-visual` roja en 13 rutas por referencia anterior; alto medido antes/después: 0 px en todas.
+Por instrucción de Sebastian en chat («despliega a producción al terminar»), el PR se fusiona a `main`.
+
+## LOOP-IMAGENES · MENU y FULL — el megamenú y «Full-Service» enseñan obra propia en 10 de 14 servicios (2-oct-2026)
+
+Las 10 fichas con banco pasan su obra ganadora al megamenú (AVIF 680 px, 21-56 KB, `fotos-megamenu.json`,
+editado a mano en `Nav.astro` y declarado en `build-shell.mjs`) y a Full-Service (AVIF 1500×800 vía
+`fotos-servicios-categoria.json`, override en `build-paginas.mjs` con la misma traza que `fotosPorRuta()`;
+el widget admite `width/height/pos`). Enclosures, rooms, screens e irrigation se quedan: sin obra en el banco.
+Se juzgó el conjunto de 14 a tamaño real (`MENU.jpg`, `FULL.jpg`). Cajas medidas iguales antes y después
+(339×340 y 750×400/334×300); `check:menu`, `check-texto` y `check:tokens` verdes; `check-visual` roja en las
+3 rutas por la referencia anterior al #24.
+
+## LOOP-IMAGENES · irrigation — La ficha de irrigation no tiene obra real en el banco: se queda y deja la lista de fotos que faltan (2-oct-2026)
+
+21 huecos; juez a ciegas. **0 canjes**: ninguno. 21 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: verde · check-fotos-servicios: verde.
+
+## LOOP-IMAGENES · screens — La ficha de screens no tiene obra real en el banco: se queda y deja la lista de fotos que faltan (2-oct-2026)
+
+21 huecos; juez a ciegas. **0 canjes**: ninguno. 21 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: verde · check-fotos-servicios: verde.
+
+## LOOP-IMAGENES · rooms — La ficha de rooms no tiene obra real en el banco: se queda y deja la lista de fotos que faltan (2-oct-2026)
+
+21 huecos; juez a ciegas. **0 canjes**: ninguno. 21 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: verde · check-fotos-servicios: verde.
+
+## LOOP-IMAGENES · enclosures — La ficha de enclosures no tiene obra real en el banco: se queda y deja la lista de fotos que faltan (2-oct-2026)
+
+21 huecos; juez a ciegas. **0 canjes**: ninguno. 21 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: verde · check-fotos-servicios: verde.
+
+## LOOP-IMAGENES · furniture — La ficha de mobiliario ensena obra propia con el mueble como sujeto (2-oct-2026)
+
+21 huecos; juez a ciegas. **13 canjes**: faq[0] bi-0168, faq[1] bi-0237, faq[2] bi-0632, faq[3] bi-0235, galeria[0] bi-1012, galeria[1] bi-0938, galeria[4] bi-0957, galeria[5] bi-0233, galeria[6] bi-0220, galeria[7] bi-1009, galeria[8] bi-0842, galeria[9] bi-0977, heroe bi-0928. 8 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:+0 991:+0 1440:+0) · check-fotos-servicios: verde.
+
+## LOOP-IMAGENES · lighting — La ficha de iluminacion LED ensena obra propia donde la luz es el sujeto (2-oct-2026)
+
+21 huecos; juez a ciegas. **13 canjes**: faq[0] bi-0212, galeria[0] bi-0230, galeria[1] bi-0217, galeria[2] bi-0234, galeria[3] bi-0299, galeria[5] bi-0773, galeria[6] bi-0214, galeria[7] bi-0215, heroe bi-0839, proceso[0] bi-1061, proceso[1] bi-1060, proceso[2] bi-0646, proceso[3] bi-0216. 8 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+1 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:+0 991:+1 1440:+0) · check-fotos-servicios: verde.
+
+## LOOP-IMAGENES · remodeling — La ficha de remodelacion de piscinas ensena obra propia en inversion y FAQ (2-oct-2026)
+
+21 huecos; juez a ciegas. **0 canjes**: ninguno. 21 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: verde · check-fotos-servicios: verde.
+
+## LOOP-IMAGENES · construction — La ficha de piscinas nuevas ensena obra propia en heroe, inversion y FAQ (2-oct-2026)
+
+21 huecos; juez a ciegas. **2 canjes**: faq[1] bi-0662, inversion bi-0633. 19 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:+0 991:+0 1440:+0) · check-fotos-servicios: verde.
+
+## LOOP-IMAGENES · pole — La ficha de naves y pole barns ensena obra propia en heroe, galeria, proceso, inversion y FAQ (2-oct-2026)
+
+20 huecos; juez a ciegas. **8 canjes**: faq[1] bi-1084, galeria[3] bi-1094, heroe bi-1104, inversion bi-1096, proceso[0] bi-0488, proceso[1] bi-1113, proceso[2] bi-1118, proceso[3] bi-1122. 12 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:-146 991:-192 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:-146 991:-192 1440:+0) · check-fotos-servicios: verde.
+
+## LOOP-IMAGENES · landscaping — La ficha de paisajismo ensena obra propia en heroe, galeria, proceso, inversion y FAQ (2-oct-2026)
+
+21 huecos; juez a ciegas. **8 canjes**: faq[3] bi-0134, galeria[3] bi-0117, galeria[8] bi-0499, heroe bi-0307, inversion bi-0305, proceso[0] bi-0020, proceso[2] bi-0129, proceso[3] bi-0492. 13 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:+0 991:+0 1440:+0) · check-fotos-servicios: verde.
+
+## LOOP-IMAGENES · louvered — La ficha de techos de lamas ensena obra propia en heroe, galeria, proceso, inversion y FAQ (2-oct-2026)
+
+21 huecos; juez a ciegas. **11 canjes**: faq[0] bi-0652, faq[1] bi-0201, faq[2] bi-0166, galeria[0] bi-0225, galeria[1] bi-0658, galeria[2] bi-0214, heroe bi-0233, inversion bi-0632, proceso[1] bi-0643, proceso[2] bi-0611, proceso[3] bi-0610. 10 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:+0 991:+0 1440:+0) · check-fotos-servicios: verde.
+
+## LOOP-IMAGENES · decks — La ficha de decks ensena obra propia en heroe, galeria, proceso, inversion y FAQ (2-oct-2026)
+
+21 huecos; juez a ciegas. **11 canjes**: faq[1] bi-0088, faq[3] bi-0630, faq[4] bi-0318, galeria[0] bi-0084, galeria[1] bi-0086, heroe bi-0079, inversion bi-0056, proceso[0] bi-0057, proceso[1] bi-0041, proceso[2] bi-0064, proceso[3] bi-0538. 10 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:+0 991:+0 1440:+0) · check-fotos-servicios: verde.
+
+## LOOP-IMAGENES · kitchens — La ficha de cocinas ensena obra propia en heroe, galeria, proceso e inversion (2-oct-2026)
+
+19 huecos; juez a ciegas. **7 canjes**: galeria[5] bi-0836, galeria[6] bi-0757, heroe bi-0794, inversion bi-0793, proceso[0] bi-0777, proceso[1] bi-0013, proceso[3] bi-0015. 12 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:+0 991:+0 1440:+0) · check-fotos-servicios: verde.
+
+## LOOP-IMAGENES · pergolas — la ficha de pérgolas enseña obra propia en héroe, proceso, inversión y FAQ (2-oct-2026)
+
+Unidad piloto del loop. 21 huecos inventariados sobre el HTML; 16 con candidata; juez a ciegas
+(A/B aleatorio) tumbó 5 por desorden dentro del recorte y prefirió la actual en 3 teselas. **8 canjes**:
+héroe (bi-1046, AVIF 145 KB frente a 211 KB; `og:image` deja el AVIF con marca de IA de la intro y pasa
+a un JPEG 1200×630 real), banda de inversión (bi-0842), los 4 pasos (IA → obra en curso bi-1068,
+bi-1053, bi-0003, bi-0637) y dos teselas de la FAQ (bi-1069, bi-1033). La galería se queda: las 5
+candidatas cayeron (parrilla enfundada, lona, calva de tierra) y lo actual es obra real. Héroe y
+`about.image` de `check-seo.mjs` cambian en el mismo commit. Reservadas bi-0914 (menú) y bi-0935 (Full).
+
+- **Proporción medida, no supuesta:** a 768/991 el paso se pinta entero y a 479 la banda sigue el ratio
+  de `width/height`; los 4 pasos van derivados a 1408/768 y la inversión a 1250/698. Alto de la página
+  antes/después, misma receta: +0/+1/+0/+0 px.
+- **Mecanismo nuevo, pequeño:** `InversionCore.astro` acepta `pos`; `scripts/loop-aplicar.mjs`
+  (decisiones → JSON + derivados + `usada_en`/`publicada_como` + estado), `derivar-foto.mjs` (recorte
+  `cover` + AVIF/JPEG sin metadatos, receta en `_ajuste`), `loop-hoja.mjs` (antes|después).
+
+### Puertas
+
+tokens, estructura, assets, seo, banco, galería (ficha) y texto (ficha) VERDES; `check-fotos-servicios
+pergolas` verde al marcar la unidad. `check-visual` ROJA **y ya lo estaba**: cocinas sin tocar da
++141/+119/+176/+216 px por la referencia anterior al rediseño; el re-baseline es de Sebastian.
+
+## LOOP-IMAGENES F0 — montaje del loop de obra real en fichas, megamenú y Full-Service (2-oct-2026)
+
+Encargo `PROMPT-LOOP-IMAGENES.md` (raíz, la versión que manda). Rama `loop-imagenes` desde
+`origin/main` `a7486b0`; worktree `.claude/worktrees/loop-imagenes`. Una unidad por disparo, un
+commit por unidad; el estado vive en `docs/encargos/LOOP-IMAGENES-ESTADO.json`.
+
+- **Tres scripts nuevos.** `medir-cajas.mjs` (Playwright headless, cajas de cada hueco a
+  390/768/991/1440 y la zona que tapa texto), `encaje-foto.mjs` (recorte `cover` + `pos` a esas
+  cajas, zona de texto sombreada, tira JPG: es lo que mira el casting y el juez) y
+  `check-fotos-servicios.mjs`, **la puerta del loop**: «hecho» es que salga 0. Probada en rojo con
+  10 clases de fallo sobre copias de estado y HTML (salida literal en `puerta_probada` del estado).
+- **Generador, dos cambios neutros** (`npm run paginas` deja los 47 `.astro` sin diff):
+  `fotosPorRuta()` reescribe el `script.w-json` del lightbox cuando canjea una `<img>` dentro de
+  `a.w-lightbox`; `proceso.fotos` acepta `null` (= ese paso se queda), como `fotos-por-ruta.json`.
+- **Línea base de lo intocable** (3 de intro + 4 de «What we do» × 14 fichas, 98 `src`) en el
+  estado; la puerta sale ROJA si alguno se mueve.
+- **Auditoría de procedencia, Python sobre bytes** (`c2pa`, `trainedAlgorithmicMedia`):
+  intocables 97 ficheros, **9 con marca de IA** (todos `residentials/<ficha>/…avif`, la primera de
+  intro); procesos 56 ficheros, **39 con marca** (los 39 PNG); los 17 AVIF no llevan marca en bytes
+  (AVIF la pierde al recodificar: `sin_verificar`, no obra real). Se reporta; no se toca.
+- **El árbol corrige al encargo** en 7 puntos (`correcciones_al_encargo` del estado): base
+  `a7486b0`; 17 `img.picture-service` (3 comerciales fuera); `check:menu` no mira imágenes;
+  `check-seo.mjs` fija `about.image` = héroe en las 14 fichas; cajas a 390/768 sin referencia en
+  `baseline/shots/`; `inversion.foto` la lee `InversionCore.astro`; el menú solo pinta foto a ≥992
+  (caja 339×340, texto en el 20 % inferior).
+
+### Puertas
+
+`check:tokens`, `check:estructura`, `check:assets`, `check:seo`, `build-banco --check` y
+`check:galeria /services/custom-outdoor-kitchens…` VERDES. `check-fotos-servicios` ROJA a
+propósito (18 unidades pendientes). `check:visual`/`check:texto` no corridas: F0 no mueve píxeles
+ni texto.
+
+## ANTES-DESPUES-OBRA-NUEVA — la ficha de New Pool recupera el deslizador con el par de la home (2-oct-2026)
+
+Pedido de Sebastian: el «Before & After» de la home, con sus mismas dos fotos, entre «What we do» y
+«Our Custom Pool Build Process» de `/services/custom-pool-spa-builders-in-north-south-florida`.
+
+- **Sin código nuevo.** Se usa el opt-in `antesDespues` de R24 (`captacion-servicios.json`). La
+  sección del origen ya estaba en ese hueco; solo se canjean las dos `<img>` por el par de la home
+  (`fb4318f`, 2000×1116 las dos, la misma casa: patio vacío → piscina).
+- **El texto es el de la ficha**, decisión de Sebastian: «From Empty Backyard to Your Dream Custom
+  Pool». Por eso `check:texto` no se toca. `check:estructura` suma la ruta a `VARIANTES`.
+- **El sitemap de imágenes** gana las 2 fotos de esta URL (lo deriva `build-seo-ficheros.mjs`).
+
+### Puertas (build `PUBLIC_ES_PRODUCCION=1` en worktree, antes y después del cambio)
+- **Verdes antes y después:** tokens · estructura (14 + 2 variantes) · captacion · rutas · enlaces ·
+  ads · seo · texto 100 % en la ruta.
+- **Build entero comparado por `shasum`:** solo cambian el `index.html` de esta ficha y `sitemap.xml`.
+  La home, remodelación, el CSS y el JS quedan byte a byte.
+- **`check:visual` ROJA, y ya lo estaba** (R21/R24). La sección suma a ¼ de escala
+  +172 / +171 / +230 / +242 px en 1920 / 1440 / 991 / 479. Re-baseline: de Sebastian.
+- **Navegador, una ruta:** costura alineada, tirador 44×44, arrastre con ratón y toque (`PointerEvent`
+  táctil) correctos, sin desbordamiento a 375. El gesto real del compositor no se pudo probar en el panel.
+- **Ninguna foto de la ficha repite el par** (`parecido.mjs`: distancia mínima 16; repetida ≤ 8).
+- **No corridas:** ix2 (gate de fase; la sección no lleva `data-w-id`), assets (no hay ficheros
+  nuevos), galeria*, menu, medicion, carrusel.
+
+### Queda abierto
+1. Re-baseline visual de la ruta (Sebastian).
+2. «Design-Build Authority» y «Licensed & Engineered» salen dos veces en la ficha: en la franja de
+   ConfianzaCore, dichos más corto, y en las tarjetas del deslizador.
+3. Los botones del bloque llevan a `/projects` y `/request-estimated`, fuera de la landing de Ads;
+   el resto de la ficha usa `#estimate`.
+4. Los dos `<h4>` del bloque no llevan el `aria-level="3"` que sí lleva la home (salto h2 → h4). Pasa
+   igual en remodelación.
+
+## BLOG-BANCO — los 47 blogs con foto real y ninguna repetida (PR #25 + cachés, 2-oct-2026)
+
+Pedido de Sebastian (1-oct-2026): fotos reales del banco en los blogs y ninguna duplicada en blogs ni
+portadas. Contado por foto real (dHash), no por nombre de fichero:
+
+| | antes | después |
+|---|---:|---:|
+| portadas distintas | 28 de 47 | 47 de 47 |
+| fotos de cuerpo en más de un artículo | 34 | 0 |
+| portadas reusadas en el cuerpo de otro | 18 | 0 |
+
+- **Puerta nueva** en `build-imagenes-blog.mjs` (+ `scripts/lib/parecido.mjs`). Detecta:
+  - la misma foto aunque cambie de nombre (12 heredadas eran fotos de /gallery con otro nombre);
+  - casas seguidas en /blogs-tips, en sus chips, en el carrusel genérico y en las 5 de cada ficha;
+  - `usada_en` incoherente.
+  Se autocalibra con `publicada_como`. Las de dirección de arte de R24 (/images/obra/) se miden pero
+  no calibran.
+- **Casting**: 143 huecos cambian, 42 se quedan y 1 figura se quita. Se eligió mirando el recorte 16:9
+  real, con 17 agentes (escépticos y verificadores). Tabla y hojas en
+  `banco/.trabajo/casting-blog/entrega/`.
+- **Orden de publicación**:
+  1. PR #25 con los `.webp`; las 370 URLs comprobadas con 200 en vivo.
+  2. `publica-blog --escribir` de 46 artículos; `how-much-does-a-pool-screen-enclosure-cost-in-florida`
+     no cambia.
+  3. Este commit: cachés, carruseles y las 10 tarjetas a mano de la home.
+- **No se tocó texto.** Al regenerar, `blogs.json` traía los títulos y resúmenes nuevos de SEO-SAFE
+  para el carrusel genérico (~73 rutas). Se conservó el texto y solo cambió `imagen`.
+
+Abierto:
+- **Títulos de SEO-SAFE.** El carrusel genérico y la home siguen con los títulos de Webflow de los 10
+  heredados; Sanity ya tiene los de SEO-SAFE. Propagarlos es decisión de Sebastian (mueve texto en
+  ~73 rutas y la home).
+- **Fotos que faltan.** Hay que pedir al cliente piscina terminada, obra comercial y enclosures: el
+  banco tiene 0 comerciales y 0 enclosures como protagonista.
+- **7 fotos** las usan a la vez el blog (cuerpo o portada fuera del carrusel de esa ficha) y las fichas
+  de piscina de R24. Nunca en la misma página.
+- **Huérfanos.** Los `mm-*` y las escaleras heredadas sin uso se borran en un PR aparte. La home deja
+  de usar 7 portadas heredadas.
+- **Re-baseline.** `check:visual` en /blogs-tips, la home y las 2 fichas de piscina queda para
+  `aprobar-diseno`:
+  - /blogs-tips: el cambio pedido;
+  - home: FONDO-AGUA y el feed de Instagram quitado en #24;
+  - fichas de piscina: R24.
+
+## R24-FOTO-PISCINAS — obra real del banco en las dos fichas de piscina (2-oct-2026)
+
+Encargo `PROMPT-FOTO-PISCINAS.md`. Rutas: `/services/custom-pool-spa-builders-in-north-south-florida`
+(New Pool, Final URL de Ads) y `/services/pool-remodeling-renovation-in-north-south-florida` (Remodel).
+
+**Qué cambió.** Todo lo que se cambió sale del banco nuevo (`banco-imagenes.json`, 1-oct). Se derivó
+de los originales de cámara a `/images/obra/<obra-id>/` (AVIF q52, giro horneado, sin EXIF).
+`usada_en` y `publicada_como` están anotados en las 12 entradas.
+
+- **Proceso: salen los 8 PNG generados** (1408x768, C2PA de Google, 15,7 MB) y entran 8 fotos reales de
+  56-272 KB.
+  - New Pool cuenta una sola obra de principio a fin (obra-065): lote → replanteo pintado → acero listo
+    para inspección → gunitado.
+  - Remodel: inspección del spa viejo (obra-064) → materiales (obra-053) → cuadrilla con el vaso vaciado
+    (obra-048) → enlucido a mano (obra-064).
+  - La foto sigue al TITULO visible del paso, no a la tabla §4 del encargo, que iba desfasada.
+- **Héroe de Remodel:** una remodelación terminada de verdad (bi-0521, 2048x1152) en lugar de la piscina
+  nueva `estate-…-3`.
+- **Fila «Structural Repairs» (Remodel):** el fichero llevaba `trainedAlgorithmicMedia`. Sebastian pidió
+  canjearlo y entra un spa con la coronación rehecha (bi-0676, 1200x670, sin ampliar).
+- **Antes/después en Remodel:** vuelve la sección que R17 quitó por falsa, ahora con el par honesto de
+  obra-048 (bi-0515 → bi-0519).
+  - Mismo punto de cámara, verificado superponiendo: alero, toldo, TV y línea de agua al píxel.
+  - Escalera 640-1920, mismas medidas. Texto del origen.
+- **og:image / twitter:image** de las dos: eran IA (no eran el héroe: venían del `<head>` de origen). Ahora
+  son un JPEG 1200x630 del héroe (`heroe.og`).
+- **SEO:**
+  - 52 `alt` reescritos: lo que se ve, palabra clave una vez, sin región, ≤125, 0 duplicados por página
+    medido sobre el build;
+  - `<image:image>` en el sitemap para estas 2 rutas (32 fotos);
+  - el collage de Remodel cambia la 09 (salía 4 veces) por la 07.
+
+**Mecanismo.** Cuatro claves opt-in en `captacion()`, todas con ROJO si el origen no casa:
+`heroe.og`, `proceso.fotos`, `antesDespues` y `galeria.alts`. Las otras 12 fichas salen byte a byte iguales.
+Declaraciones en las puertas:
+- `check-texto` deja el antes/después donde se declara: 100 % sin re-baseline;
+- `check-estructura` con `VARIANTES` a mano;
+- `check-seo` lleva el og en `META_PROPIA` y la ruta nueva del héroe;
+- `build-seo-ficheros` emite las imágenes.
+
+### Decisiones de Sebastian (1/2-oct) que el encargo no traía
+- Las galerías `hf_…` de `projects/` (héroe y fila 1 de New Pool, inversión de las dos) **son fotos reales y
+  se quedan**.
+- **La intro de las dos fichas se queda igual** («me gustan como se ven»). En New Pool lleva 3 ficheros
+  marcados o sospechosos de IA.
+- **Los mapas de `.location` se quedan** (IA, unas 25 rutas).
+- Por eso el barrido final da, en lo que pintan las dos rutas: New Pool 3 con marcador (intro firmada +
+  2 mapas) y Remodel 2 (mapas). **«Cero generadas» no se cumple al pie de la letra, por decisión suya.**
+
+### Puertas (build `PUBLIC_ES_PRODUCCION=1` en worktree)
+- **Verdes:** tokens · estructura (14 + 1 variante declarada) · captacion · assets · ix2 · banco `--check` ·
+  texto 100 % en las 2 rutas · galería en las 2 rutas.
+- **Las dos fichas pasan `check:seo`.**
+- **`check:visual` ROJA en las 2** (New Pool +144..+218 px, Remodel +482..+579 px): es lo esperado y ya lo
+  estaba desde R21. El re-baseline es de Sebastian, una vez, cuando las mire (FONDO-AGUA T2).
+- **`check:enlaces` verde** tras fusionar #22, que trajo la portada `mm-construction-7` que faltaba.
+- **Rojas que NO son de R24:** esta rama no toca ningún fichero de blog.
+  - `check:rutas` (3 artículos de Sanity sin declarar);
+  - `check:seo` (11 páginas de blog);
+  - `check:ads` (un «$16,600» en la tarjeta de blog de Remodel);
+  - `check:medicion` (121 vs 155 `<loc>`, desde `549bb9c`).
+- **Medido en Chromium headless:** los 4 pasos miden lo mismo en cada ancho (390: 334x350; tablet: NP 4:3,
+  RM 3:2), así que el carrusel no salta de alto.
+
+### Queda abierto
+1. Re-baseline visual de las 2 rutas (Sebastian).
+2. Las 27,8 MB de PNG IA que quedan sin referencia (8 de proceso + 4 de antes/después huérfanos) siguen en disco:
+   el manifiesto está a holgura cero y `download-assets` los volvería a bajar.
+3. Las otras 12 fichas: 40 ficheros IA en `residentials/` y 39 en `procesos/`. Además,
+   `servicios-categoria.json` e `index.astro:42` siguen pintando IA.
+4. El CarruselBlog de Remodel repite la misma portada en 4 de 5 tarjetas (Sanity). El feed de Instagram de
+   Remodel enseña obra nueva.
+
+## SEO-SAFE — implementacion segura de la guia SEO (rama `claude/zen-lovelace-9vd0pi`, 1-oct-2026)
+
+Encargo de la *Final Guide for Safe Implementation*: proteger lo que ya posiciona, corregir lo que
+estaba inventado y crear solo lo que no existia. **Ninguna URL, slug ni H1 cambia.** Entregables en
+la raiz: `SEO_IMPLEMENTATION_AUDIT.md`, `SEO_CONTENT_INVENTORY.md`, `SEO_KEYWORD_URL_MAP.md`,
+`SEO_BLOG_GAP_ANALYSIS.md`, `SEO_INTERNAL_LINKING_MAP.md`, `SEO_HIGH_RISK_CHANGES.md`,
+`REQUIRES_CLIENT_CONFIRMATION.md` y `SEO_IMPLEMENTATION_REPORT.md` (el informe de 15 puntos).
+
+**10 articulos heredados reescritos** desde el mismo slug (permisos, guia de proceso, plazos,
+errores, valor de la propiedad, disenos de lujo, los dos comerciales, guia de diseno,
+nuevo-vs-remodelar): fuera la clase de licencia inexistente «CPCG», la edicion equivocada del
+codigo, las estadisticas y tablas de tasas inventadas, los modelos de producto y las cifras de
+coste sin fuente; dentro una FAQ de 4 preguntas, fuentes oficiales y `relatedPosts` sin el
+autoenlace (eran 7). **3 articulos nuevos** (cold plunge —confirmado por Sebastian—, acabados
+oscuros, automatizacion en obra nueva): 44 -> 47 en Sanity, sitemap 155 -> 158. El hub de
+remodelacion dice «completa» en titulo, hero y FAQ (5 -> 8 preguntas; la de financiacion sin
+cifras). Gainesville y Ocala responden que oficina revisa el permiso. 17 escrituras en Sanity,
+todas por el MCP (el proxy bloquea `api.sanity.io`): 47 publicados, 0 borradores.
+
+Tecnico: redirect 308 por host de `mrandmrs-outdoor-living.vercel.app` a www (15.º redirect;
+`build-vercel-config.mjs` ya pasa `has`); BlogPosting con URLs absolutas y `mainEntityOfPage` en
+las 47 fichas; `Service.provider.@id = #negocio` en las 14 de servicio; `public/llms.txt`
+derivado (solo PROD); campos opcionales de verificacion en los esquemas `blogPost` y `project`
+(Studio SIN desplegar); los 10 alt vacios del carrusel de obras rellenados con el alt que la
+misma foto ya llevaba en `/projects` (660 `<img>` en 66 rutas; `innerText` no lee `alt`).
+
+### Lo que hay que saber antes de tocar esto
+
+- **Publicar sin red**: `node scripts/publica-blog.mjs --emitir <json>` escribe el documento que
+  mandaria `--escribir`; se empuja por el MCP de Sanity (100 KB por llamada; publicar antes el
+  destino de cualquier referencia) y despues `cache-blog-sanity.mjs --local`,
+  `build-blogs-rutas.mjs --local` y `build-blog-por-servicio.mjs`. El Markdown sigue siendo el
+  origen.
+- **Los 10 heredados ya no se comparan contra Webflow**: `src/data/blog-reescritos.json` los
+  lista y `check-texto.mjs` (`reescribeArticulo`) y `check-seo.mjs` (bloque SEO-SAFE) derivan lo
+  esperado del cache. Quitar una ruta de ahi devuelve la puerta al baseline de Webflow.
+- **`check:seo` y `check:medicion` van con `PUBLIC_ES_PRODUCCION=1`** si el build se hizo asi;
+  sin la variable dicen «vacio fuera de produccion — hay 158» y parece rojo sin serlo.
+- Las puertas de navegador necesitan `xvfb-run -a` y los symlinks de Chromium 1234 -> 1194 en
+  `/opt/pw-browsers` (el contenedor trae otra revision); `check:texto` corrio asi.
+
+### Abierto
+
+1. **`check:visual` y `check:menu` NO corrieron** (director). Superficies: hub de remodelacion,
+   Gainesville, Ocala, los 13 articulos tocados y las 66 rutas del carrusel.
+2. Studio sin desplegar (los campos nuevos no se ven en el editor); «Request indexing» del hub
+   de obra nueva en Search Console; comprobar el 308 del alias vercel.app tras el deploy.
+3. `/where-we-serve` sigue sin enlaces editoriales y el hub regional norte no enlaza a las dos
+   ciudades: el cuerpo es Webflow congelado (`SEO_INTERNAL_LINKING_MAP.md` §4).
+
+
 ## BLOG-SANITY — Sanity como fuente unica del blog (PR #20, 19-sep-2026)
 
 Sanity pasa a ser la fuente unica. Desaparecen los 10 `.astro` con el HTML de Webflow horneado
@@ -6920,3 +7315,7 @@ contra cielo, postes contra lago y madera — sin halos de CLAHE ni bordes cruji
    cambios de **altura** (−127 px, −131 px, −22 px, +14 px), y un cambio de imagen no mueve la
    altura. Es **R21, que se fusionó a producción sin re-baselinizar sus rutas**. Re-baselinizarlas
    sería aprobar su diseño, y eso es de Sebastian.
+
+- **1-oct-2026 · Banco de imágenes.** 1.269 originales de `~/Documents/Pictures Mr and Mrs Outdoor Living` clasificados (etapa × servicio × proyecto): 514 aprobadas derivadas a `public/images/banco/` (WebP 1600 px, sin EXIF), 80 dudosas en `banco/DUDOSAS.md`, 474 rechazadas (340 de fabricante/stock/IA/ajenas), 201 duplicados. Índice `src/data/banco-imagenes.json`, puerta `node scripts/build-banco.mjs --check` (probada en rojo). No se cambió ninguna foto del sitio. Sin build ni commit. Ver `BANCO-IMAGENES.md`.
+
+- 2-oct-2026 · PROMPT-IMAGENES-ABOUT: /about cambia 4 renders (whatsetus + aboutus x3) por obra real del banco (bi-0237, bi-0557, bi-0533, bi-0077) via src/data/fotos-por-ruta.json + fotosPorRuta() en build-paginas.mjs, y la [2] del collage FAQ (landscaping-10, copia IA de bi-0326) por bi-0305 con derivados 500/800. Solo cambia about/index.html entre builds; alturas de check:visual identicas antes/despues. Hero y Rob & Val intactos.

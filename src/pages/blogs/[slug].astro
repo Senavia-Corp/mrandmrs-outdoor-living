@@ -4,7 +4,7 @@
  *
  * Sustituye a los 10 `.astro` derivados que habia aqui, cuyo cuerpo entero era una constante
  * `T0` con el HTML horneado de Webflow. El precedente exacto es la Fase 6b con
- * `src/pages/pool-builders/[slug].astro`, que borro los 53 estaticos de ciudad por lo mismo.
+ * `src/pages/services/pool-builders/[slug].astro`, que borro los 53 estaticos de ciudad por lo mismo.
  *
  * ─────────────────────────────────────────────────────────────────────────────
  * FALLA CERRADO, Y ES A PROPOSITO
@@ -120,8 +120,17 @@ const relacionados = (doc.relacionados ?? [])
   .filter((r) => r?.slug && r?.portada)
   .map((r) => ({ ...r, esActual: r.slug === doc.slug }));
 
-/* El JSON-LD conserva EXACTAMENTE la forma que ya servia: mismas claves, mismo orden, y
- * `description` del `summary` (no de `seo.description`, que es la que va al og). */
+/* El JSON-LD conserva la forma que ya servia —mismas claves, `description` del `summary` (no
+ * de `seo.description`, que es la que va al og)— con DOS cambios de SEO-SAFE (1-oct-2026):
+ *
+ *   · las URLs son ABSOLUTAS (`url`, `image.url`, `publisher.logo.url`): el origen las
+ *     publicaba relativas y un consumidor que lea el bloque fuera de la pagina (un agregador,
+ *     un motor generativo) no tiene contra que resolverlas;
+ *   · `mainEntityOfPage` y `publisher.url`, que atan el articulo a su pagina y al sitio.
+ *
+ * `check-seo.mjs` lo declara para los 10 heredados (bloque SEO-SAFE, derivado del cache); las
+ * 37 propias no tienen baseline. `Astro.site` es el mismo host que gobierna la canonica. */
+const ABS = (p) => new URL(p, Astro.site).href;
 const SEO = {
   meta: {
     'og:title': doc.seo.title,
@@ -141,15 +150,17 @@ const SEO = {
     datePublished: doc.publishedAt,
     description: doc.summary,
     headline: doc.title,
-    image: { '@type': 'ImageObject', url: doc.portada.src },
+    image: { '@type': 'ImageObject', url: ABS(doc.portada.src) },
     inLanguage: 'en',
+    mainEntityOfPage: { '@type': 'WebPage', '@id': ABS(ruta) },
     name: doc.title,
     publisher: {
       '@type': 'Organization',
-      logo: { '@type': 'ImageObject', url: '/images/site/logo-mr-mr.svg' },
+      logo: { '@type': 'ImageObject', url: ABS('/images/site/logo-mr-mr.svg') },
       name: 'Mr. and Mrs. Outdoor Living',
+      url: ABS('/'),
     },
-    url: ruta,
+    url: ABS(ruta),
   },
   /* El FAQPage va SOLO si hay FAQ pintada, y sale del mismo array que se pinto arriba. La
    * regla 14 de `check:ads` exige que el schema case 1:1 con lo visible; aqui no puede no

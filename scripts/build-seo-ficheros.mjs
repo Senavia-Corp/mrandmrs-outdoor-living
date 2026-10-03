@@ -31,6 +31,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { esFicha, esCiudad, esCondado } from './lib/renombradas.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const PUB = path.join(RAIZ, 'public');
@@ -120,12 +121,53 @@ const ADICIONES_BLOG = (() => {
 
 
 // Van al final y no intercaladas: el orden de las 113 es el del origen y no se toca.
-const locs = [...delOrigen, ...ADICIONES.map(([u]) => u), ...ADICIONES_BLOG.map(([u]) => u)];
+/** Y LAS DE LA GALERIA POR SERVICIO, derivadas de `src/data/galeria-categorias.json` por lo mismo. */
+const ADICIONES_GALERIA = (() => {
+  const f = path.join(RAIZ, 'src/data/galeria-categorias.json');
+  if (!fs.existsSync(f)) return [];
+  return JSON.parse(fs.readFileSync(f, 'utf8')).categorias.map((c) => `${SITIO}/gallery/${c.slug}`);
+})();
+
+const locs = [...delOrigen, ...ADICIONES.map(([u]) => u), ...ADICIONES_BLOG.map(([u]) => u), ...ADICIONES_GALERIA];
+
+/**
+ * SITEMAP DE IMAGENES, SOLO DONDE TODA LA FOTO DE DATOS ES OBRA REAL (R24-FOTO-PISCINAS, 1-oct-2026).
+ *
+ * `<image:image>` le dice a Google que fotos son de cada pagina. Se declara por ruta y a mano,
+ * no para las 14 fichas: en las otras doce siguen fotos generadas (`residentials/`, `procesos/`)
+ * y meterlas aqui seria anunciar como obra lo que no lo es. Las imagenes salen de los MISMOS
+ * datos que las pintan —heroe, filas, pasos, inversion, antes/despues y collage—, asi que una
+ * foto canjeada en el JSON se canjea aqui sola. La intro (que se queda como esta, decision de
+ * Sebastian) y la galeria (viene del origen, no de datos) no entran.
+ */
+const IMAGENES_EN = [
+  '/services/pool-builders',
+  '/services/pool-remodeling',
+];
+const imagenes = (() => {
+  const leer = (f) => JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data', f), 'utf8'));
+  const cap = leer('captacion-servicios.json');
+  const collage = leer('collage-faq-por-ruta.json');
+  return new Map(IMAGENES_EN.map((r) => {
+    const c = cap[r];
+    const fotos = [
+      c.heroe.foto, ...c.servicios.detalle.map((d) => d.foto), ...(c.proceso?.fotos ?? []).map((f) => f.foto),
+      c.inversion?.foto, c.antesDespues?.antes.src, c.antesDespues?.despues.src,
+      ...(collage[r]?.fotos ?? []).map((f) => f.src),
+    ].filter(Boolean);
+    return [`${SITIO}${r}`, [...new Set(fotos)].map((f) => `${SITIO}${f}`)];
+  }));
+})();
+for (const u of imagenes.keys()) {
+  if (!locs.includes(u)) throw new Error(`sitemap de imagenes: ${u} no esta en el sitemap`);
+}
+const conImagenes = (u) => (imagenes.get(u) ?? [])
+  .map((i) => `\n        <image:image>\n            <image:loc>${i}</image:loc>\n        </image:image>`).join('');
 
 const sitemap = PROD
   ? `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${locs.map((u) => `    <url>\n        <loc>${u}</loc>\n    </url>`).join('\n')}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${locs.map((u) => `    <url>\n        <loc>${u}</loc>${conImagenes(u)}\n    </url>`).join('\n')}
 </urlset>
 `
   : `<?xml version="1.0" encoding="UTF-8"?>
@@ -151,11 +193,87 @@ const robots = PROD
   ? `User-agent: *\nAllow: /\n\nSitemap: ${SITIO}/sitemap.xml\n`
   : 'User-agent: *\nDisallow: /\n';
 
+/**
+ * ── SEO-SAFE (1-oct-2026) · `llms.txt` ───────────────────────────────────────────────────────
+ *
+ * Un indice en Markdown para los agentes y motores generativos que lo piden (la convencion
+ * llmstxt.org): que es el negocio, que paginas importan y que guias hay, con la URL de cada
+ * una. No sustituye a nada —el sitemap sigue siendo el sitemap— y no cuesta rastreo.
+ *
+ * SE DERIVA, NO SE ESCRIBE A MANO: los titulos y descripciones salen de `baseline/seo.json`
+ * (los del origen) pisados por `src/data/meta-propia.json` (los propios), exactamente como
+ * los emite `Base.astro`; las guias salen de `src/data/blogs-sanity.json`. Lo UNICO escrito
+ * aqui es la frase de presentacion, y cada dato de esa frase tiene fuente: las licencias son
+ * las del pie (`src/lib/negocio.mjs`), los servicios son las 14 fichas de `/services/`, y la
+ * cobertura es `areaServed` del mismo `negocio.mjs`. Ni cifras, ni anos, ni «#1».
+ *
+ * Mismo interruptor que el sitemap: fuera de produccion se escribe vacio, para que una
+ * preview no se presente como el sitio.
+ */
+const llms = PROD ? (() => {
+  const lee = (rel) => JSON.parse(fs.readFileSync(path.join(RAIZ, rel), 'utf8'));
+  const base = lee('baseline/seo.json');
+  const propia = lee('src/data/meta-propia.json');
+  /* Una ruta propia sin entrada en `meta-propia.json` (hoy solo /financing) lleva su titulo
+   * en su propio `.astro`; se lee de ahi en vez de inventarlo o de dejar la URL como titulo. */
+  const tituloAstro = (r) => {
+    const f = path.join(RAIZ, 'src/pages', `${r.replace(/^\//, '')}.astro`);
+    const m = fs.existsSync(f) && fs.readFileSync(f, 'utf8').match(/\btitulo=(?:"([^"]+)"|\{"([^"]+)"\})/);
+    return m ? (m[1] ?? m[2]) : r;
+  };
+  const titulo = (r) => propia[r]?.title ?? base[r]?.title ?? tituloAstro(r);
+  const desc = (r) => propia[r]?.description ?? base[r]?.meta?.description ?? '';
+  const linea = (r, t = titulo(r), d = desc(r)) => `- [${t}](${SITIO}${r})${d ? `: ${d}` : ''}`;
+  const servicios = Object.keys(base).filter(esFicha).sort();
+  const condados = Object.keys(base).filter(esCondado).sort();
+  const posts = fs.existsSync(path.join(RAIZ, 'src/data/blogs-sanity.json'))
+    ? lee('src/data/blogs-sanity.json') : [];
+  const guias = [...posts].sort((a, b) => a.title.localeCompare(b.title))
+    .map((p) => linea(`/blogs/${p.slug}`, p.title, p.seo?.description ?? ''));
+  return [
+    '# Mr & Mrs Outdoor Living',
+    '',
+    '> Florida-licensed design-build contractor (pool contractor licenses CPC1461119 and '
+      + 'CPC1460562) building custom inground pools and spas, complete pool remodels, aluminum '
+      + 'pergolas, louvered roofs, screen enclosures, outdoor kitchens, decks and landscaping for '
+      + 'homeowners across North and South Florida.',
+    '',
+    `Site: ${SITIO} · Sitemap: ${SITIO}/sitemap.xml`,
+    '',
+    '## Key pages',
+    linea('/'),
+    linea('/services/pool-builders'),
+    linea('/services/pool-remodeling'),
+    linea('/pool-cost-estimator'),
+    linea('/financing'),
+    linea('/projects'),
+    linea('/contact-us'),
+    '',
+    '## Services',
+    ...servicios.map((r) => linea(r)),
+    '',
+    '## Where we serve',
+    linea('/where-we-serve'),
+    linea('/where-we-serve/north-florida'),
+    linea('/where-we-serve/south-florida'),
+    ...condados.map((r) => linea(r)),
+    `- City pages (${Object.keys(base).filter(esCiudad).length}) are linked from ${SITIO}/where-we-serve`,
+    '',
+    `## Guides and articles (${guias.length})`,
+    linea('/blogs-tips'),
+    ...guias,
+    '',
+  ].join('\n');
+})() : '# vacio a proposito: PUBLIC_ES_PRODUCCION no vale "1", asi que esto NO es produccion\n';
+
 fs.writeFileSync(path.join(PUB, 'sitemap.xml'), sitemap);
 fs.writeFileSync(path.join(PUB, 'robots.txt'), robots);
+fs.writeFileSync(path.join(PUB, 'llms.txt'), llms);
 
 console.log(`\n  modo      : ${PROD ? 'PRODUCCION' : 'preview (bloqueado)'}`);
 console.log(`  sitemap   : ${PROD ? locs.length : 0} URLs`
   + `${PROD ? ` (${delOrigen.length} del origen + ${ADICIONES.length} propia(s))` : ''}`);
+console.log(`  imagenes  : ${PROD ? [...imagenes.values()].flat().length : 0} en ${imagenes.size} ruta(s)`);
 console.log(`  robots.txt: ${robots.split('\n')[0]}`);
+console.log(`  llms.txt  : ${PROD ? `${llms.split('\n').length} lineas` : 'vacio (preview)'}`);
 console.log('');

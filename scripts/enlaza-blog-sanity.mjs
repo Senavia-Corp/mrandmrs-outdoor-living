@@ -34,9 +34,11 @@
  * IDEMPOTENTE: si el destino ya esta enlazado en ese articulo, no vuelve a enlazar.
  */
 import { groq, mutar, SIN_BORRADORES } from './lib/sanity.mjs';
+import { renombra } from './lib/renombradas.mjs';
 
 const ESCRIBIR = process.argv.includes('--escribir');
-const SVC = (s) => `/services/${s}`;
+// `s` es el slug del documento `service` en Sanity; la URL publica sale de seo-url-migrations.json.
+const SVC = (s) => renombra(`/services/${s}`);
 
 /**
  * EL ENLAZADO, ARTICULO POR ARTICULO.

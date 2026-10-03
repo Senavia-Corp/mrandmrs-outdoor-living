@@ -1,0 +1,142 @@
+{
+  "construction": {
+    "src": "/images/obra/obra-063/new-pool-cobalt-glass-tile-sun-shelf-bubblers-spa-florida-menu.avif",
+    "alt": "Pool with cobalt glass mosaic sun shelf, two bubblers and a raised tiled spa framed by royal palms.",
+    "ancho": 680,
+    "alto": 682,
+    "_banco": "bi-0662",
+    "_ajuste": {
+      "recorte": "339/340",
+      "pos": "50% 45%",
+      "ancho": 680,
+      "q": 46,
+      "de": "/images/banco/construction/new-pool-cobalt-glass-tile-sun-shelf-bubblers-spa-florida-01.webp"
+    }
+  },
+  "remodeling": {
+    "src": "/images/obra/obra-048/pool-remodeling-travertine-deck-rock-landscaping-florida-menu.avif",
+    "alt": "Remodeled rectangular pool with two travertine water feature walls and a large travertine deck.",
+    "ancho": 680,
+    "alto": 682,
+    "_banco": "bi-0521",
+    "_ajuste": {
+      "recorte": "339/340",
+      "pos": "50% 45%",
+      "ancho": 680,
+      "q": 46,
+      "de": "/images/banco/remodeling/pool-remodeling-travertine-deck-rock-landscaping-florida-02.webp"
+    }
+  },
+  "pergolas": {
+    "src": "/images/obra/obra-083/freestanding-patio-cover-privacy-screen-poolside-florida-menu.avif",
+    "alt": "Freestanding dark aluminum patio cover with privacy screen on a pool deck with blue tile pool.",
+    "ancho": 680,
+    "alto": 682,
+    "_banco": "bi-0914",
+    "_ajuste": {
+      "recorte": "339/340",
+      "pos": "50% 40%",
+      "ancho": 680,
+      "q": 46,
+      "de": "/images/banco/pergolas/freestanding-patio-cover-privacy-screen-poolside-florida-02.webp"
+    }
+  },
+  "louvered": {
+    "src": "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-menu.avif",
+    "alt": "Large white louvered roof with partly open blades over a travertine patio with wicker lounge furniture",
+    "ancho": 680,
+    "alto": 682,
+    "_banco": "bi-0233",
+    "_ajuste": {
+      "recorte": "339/340",
+      "pos": "50% 35%",
+      "ancho": 680,
+      "q": 46,
+      "de": "/images/banco/louvered/louvered-roof-white-large-span-travertine-patio-florida-01.webp"
+    }
+  },
+  "steel": {
+    "src": "/images/obra/suelta/pole-barn-narrow-open-shelter-new-wood-posts-florida-menu.avif",
+    "alt": "Narrow open pole barn with new wood posts, black steel trusses and metal roof beside a farmhouse.",
+    "ancho": 680,
+    "alto": 682,
+    "_banco": "bi-1104",
+    "_ajuste": {
+      "recorte": "339/340",
+      "pos": "50% 40%",
+      "ancho": 680,
+      "q": 46,
+      "de": "/images/banco/pole/pole-barn-narrow-open-shelter-new-wood-posts-florida-01.webp"
+    }
+  },
+  "landscaping": {
+    "src": "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-menu.avif",
+    "alt": "Kidney-shaped pool with raised spa backed by foxtail palms, a hedge and tropical flower beds.",
+    "ancho": 680,
+    "alto": 682,
+    "_banco": "bi-0307",
+    "_ajuste": {
+      "recorte": "339/340",
+      "pos": "50% 45%",
+      "ancho": 680,
+      "q": 46,
+      "de": "/images/banco/landscaping/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-01.webp"
+    }
+  },
+  "lighting": {
+    "src": "/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-menu.avif",
+    "alt": "Dark wood pavilion with outdoor bar, sculptural stools, LED toe-kick lights and lounge at dusk.",
+    "ancho": 680,
+    "alto": 682,
+    "_banco": "bi-0839",
+    "_ajuste": {
+      "recorte": "339/340",
+      "pos": "50% 40%",
+      "ancho": 680,
+      "q": 46,
+      "de": "/images/banco/pergolas/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-01.webp"
+    }
+  },
+  "decks": {
+    "src": "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-menu.avif",
+    "alt": "Raised limestone paver patio in a herringbone layout overlooking a lake and golf course.",
+    "ancho": 680,
+    "alto": 682,
+    "_banco": "bi-0079",
+    "_ajuste": {
+      "recorte": "339/340",
+      "pos": "50% 55%",
+      "ancho": 680,
+      "q": 46,
+      "de": "/images/banco/decks/limestone-paver-patio-lake-view-herringbone-florida-01.webp"
+    }
+  },
+  "furniture": {
+    "src": "/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-menu.avif",
+    "alt": "Black-framed insulated patio cover with ceiling fans and wicker sofas beside a lap pool at sunset",
+    "ancho": 680,
+    "alto": 682,
+    "_banco": "bi-0928",
+    "_ajuste": {
+      "recorte": "339/340",
+      "pos": "50% 50%",
+      "ancho": 680,
+      "q": 46,
+      "de": "/images/banco/pergolas/insulated-patio-cover-black-frame-lap-pool-sunset-florida-01.webp"
+    }
+  },
+  "kitchens": {
+    "src": "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-menu.avif",
+    "alt": "L-shaped outdoor kitchen with black granite waterfall under a dark pergola beside a lake.",
+    "ancho": 680,
+    "alto": 682,
+    "_banco": "bi-0794",
+    "_ajuste": {
+      "recorte": "339/340",
+      "pos": "50% 45%",
+      "ancho": 680,
+      "q": 46,
+      "de": "/images/banco/kitchens/pergola-outdoor-kitchen-black-granite-lake-view-florida-01.webp"
+    }
+  }
+}

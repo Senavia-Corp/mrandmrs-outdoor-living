@@ -1,28 +1,28 @@
 {
-  "/services/custom-pool-spa-builders-in-north-south-florida": {
+  "/services/pool-builders": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
         "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
-        "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
+        "alt": "Lake-view backyard pool with sun shelf loungers and an attached spa, a custom pool project in Florida",
         "ancho": 1250,
         "alto": 698,
         "pos": "50% 50%",
         "_hoja": "construction:3"
       },
       {
-        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
-        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "35% 100%",
-        "_hoja": "construction:1"
+        "src": "/images/banco/construction/new-pool-cobalt-glass-tile-sun-shelf-bubblers-spa-florida-01.webp",
+        "srcset": "/images/banco/construction/new-pool-cobalt-glass-tile-sun-shelf-bubblers-spa-florida-01.webp 1200w",
+        "alt": "Pool with cobalt glass mosaic sun shelf, two bubblers and a raised tiled spa framed by royal palms.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0662"
       },
       {
         "src": "/images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg",
         "srcset": "/images/site/custom-pool-spa-builders-florida-05-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-05-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-05-p-1080.jpg 1080w, /images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg 1250w",
-        "alt": "Luxury outdoor pool featuring waterfall spa and covered patio area, built by experienced custom pool and outdoor living contractors in Florida.",
+        "alt": "Sheer-descent water features pouring from a raised wall into a new pool, custom pool builders in Florida",
         "ancho": 1250,
         "alto": 698,
         "pos": "78% 50%",
@@ -31,7 +31,7 @@
       {
         "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
         "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
-        "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
+        "alt": "In-water loungers on a sun shelf next to a raised tiled spa and a pergola, new pool in Florida",
         "ancho": 1250,
         "alto": 933,
         "pos": "80% 70%",
@@ -40,7 +40,7 @@
       {
         "src": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
         "srcset": "/images/site/custom-pool-spa-builders-florida-02-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-02-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-02-p-1080.jpg 1080w, /images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg 1250w",
-        "alt": "Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.",
+        "alt": "Drone view straight down on a rectangular pool with a tiled spa and travertine border, custom pool in Florida",
         "ancho": 1250,
         "alto": 937,
         "pos": "50% 45%",
@@ -48,12 +48,12 @@
       }
     ]
   },
-  "/services/pool-remodeling-renovation-in-north-south-florida": {
+  "/services/pool-remodeling": {
     "fotos": [
       {
         "src": "/images/images/pool-remodeling-8/custom-pool-remodeling-contractors-florida-08.jpg",
         "srcset": "/images/site/custom-pool-remodeling-contractors-florida-08-p-500.jpg 500w, /images/site/custom-pool-remodeling-contractors-florida-08-p-800.jpg 800w, /images/site/custom-pool-remodeling-contractors-florida-08-p-1080.jpg 1080w, /images/images/pool-remodeling-8/custom-pool-remodeling-contractors-florida-08.jpg 1250w",
-        "alt": "Modern pool renovation with clean lines, integrated spa and minimalist deck, completed by Florida pool remodeling experts.",
+        "alt": "Raised feature wall with three sheer descents over a remodeled pool and sun shelf in Florida",
         "ancho": 1250,
         "alto": 933,
         "pos": "50% 55%",
@@ -62,25 +62,25 @@
       {
         "src": "/images/images/pool-remodeling-3/custom-pool-remodeling-contractors-florida-03.jpg",
         "srcset": "/images/site/custom-pool-remodeling-contractors-florida-03-p-500.jpg 500w, /images/site/custom-pool-remodeling-contractors-florida-03-p-800.jpg 800w, /images/site/custom-pool-remodeling-contractors-florida-03-p-1080.jpg 1080w, /images/images/pool-remodeling-3/custom-pool-remodeling-contractors-florida-03.jpg 1250w",
-        "alt": "Luxury backyard pool and spa installation in South Florida featuring custom tile, palm landscaping and clean architectural lines.",
+        "alt": "Raised white spa overflowing into a remodeled pool with a sun shelf and loungers in Florida",
         "ancho": 1250,
         "alto": 933,
         "pos": "60% 70%",
         "_hoja": "remodeling:8"
       },
       {
-        "src": "/images/images/pool-remodeling-9/custom-pool-remodeling-contractors-florida-09.jpg",
-        "srcset": "/images/site/custom-pool-remodeling-contractors-florida-09-p-500.jpg 500w, /images/site/custom-pool-remodeling-contractors-florida-09-p-800.jpg 800w, /images/site/custom-pool-remodeling-contractors-florida-09-p-1080.jpg 1080w, /images/images/pool-remodeling-9/custom-pool-remodeling-contractors-florida-09.jpg 1250w",
-        "alt": "Custom inground pool installation with pergola and safety fencing, built by licensed Florida pool builders.",
+        "src": "/images/images/pool-remodeling-7/custom-pool-remodeling-contractors-florida-07.jpg",
+        "srcset": "/images/site/custom-pool-remodeling-contractors-florida-07-p-500.jpg 500w, /images/site/custom-pool-remodeling-contractors-florida-07-p-800.jpg 800w, /images/site/custom-pool-remodeling-contractors-florida-07-p-1080.jpg 1080w, /images/images/pool-remodeling-7/custom-pool-remodeling-contractors-florida-07.jpg 1250w",
+        "alt": "Glass-tile raised spa and pool beside a pergola-covered patio, a pool remodeling project in Florida",
         "ancho": 1250,
-        "alto": 698,
-        "pos": "30% 75%",
-        "_hoja": "remodeling:2"
+        "alto": 933,
+        "pos": "75% 100%",
+        "_hoja": "R24: 07 en lugar de la 09 (salia 4 veces en la pagina)"
       },
       {
         "src": "/images/images/pool-remodeling-4/custom-pool-remodeling-contractors-florida-04.jpg",
         "srcset": "/images/site/custom-pool-remodeling-contractors-florida-04-p-500.jpg 500w, /images/site/custom-pool-remodeling-contractors-florida-04-p-800.jpg 800w, /images/site/custom-pool-remodeling-contractors-florida-04-p-1080.jpg 1080w, /images/images/pool-remodeling-4/custom-pool-remodeling-contractors-florida-04.jpg 1250w",
-        "alt": "Large custom pool and spa design with expansive deck and seating areas, built by expert pool builders in North Florida.",
+        "alt": "Lap pool and raised spa with a long paver deck after a pool renovation in Florida",
         "ancho": 1250,
         "alto": 933,
         "pos": "50% 55%",
@@ -89,7 +89,7 @@
       {
         "src": "/images/images/pool-remodeling-6/custom-pool-remodeling-contractors-florida-06.jpg",
         "srcset": "/images/site/custom-pool-remodeling-contractors-florida-06-p-500.jpg 500w, /images/site/custom-pool-remodeling-contractors-florida-06-p-800.jpg 800w, /images/site/custom-pool-remodeling-contractors-florida-06-p-1080.jpg 1080w, /images/images/pool-remodeling-6/custom-pool-remodeling-contractors-florida-06.jpg 1250w",
-        "alt": "High-end residential pool with covered patio and outdoor kitchen, installed by professional pool contractors in Florida.",
+        "alt": "Remodeled pool with travertine coping beside a covered patio and palms in Florida",
         "ancho": 1250,
         "alto": 933,
         "pos": "50% 55%",
@@ -97,7 +97,7 @@
       }
     ]
   },
-  "/services/custom-outdoor-kitchens-for-north-south-florida-homes": {
+  "/services/outdoor-kitchens": {
     "fotos": [
       {
         "src": "/images/images/kitchen-7/modern-custom-outdoor-kitchen-design-florida.avif",
@@ -146,7 +146,7 @@
       }
     ]
   },
-  "/services/custom-aluminum-pergola-builders-in-north-south-florida": {
+  "/services/pergola-builders": {
     "fotos": [
       {
         "src": "/images/images/pergolas-2/custom-pergola-patio-cover-builders-florida-02.jpg",
@@ -176,26 +176,26 @@
         "_hoja": "pergolas:5"
       },
       {
-        "src": "/images/images/pergolas-8/custom-pergola-patio-cover-builders-florida-08.jpg",
-        "srcset": "/images/site/custom-pergola-patio-cover-builders-florida-08-p-500.jpg 500w, /images/site/custom-pergola-patio-cover-builders-florida-08-p-800.jpg 800w, /images/site/custom-pergola-patio-cover-builders-florida-08-p-1080.jpg 1080w, /images/images/pergolas-8/custom-pergola-patio-cover-builders-florida-08.jpg 1250w",
-        "alt": "Poolside pergola installation in Florida backyard, designed by expert pergola builders for shade and comfort.",
-        "ancho": 1250,
-        "alto": 839,
-        "pos": "50% 35%",
-        "_hoja": "pergolas:3"
+        "src": "/images/banco/pergolas/insulated-patio-cover-black-rafter-tails-lake-view-florida-01.webp",
+        "srcset": "/images/banco/pergolas/insulated-patio-cover-black-rafter-tails-lake-view-florida-01.webp 1600w",
+        "alt": "Upward view of a black patio cover with scalloped rafter tails, gutter and downspout framing a lake",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-1069"
       },
       {
-        "src": "/images/images/pergolas-9/custom-pergola-patio-cover-builders-florida-09.jpg",
-        "srcset": "/images/site/custom-pergola-patio-cover-builders-florida-09-p-500.jpg 500w, /images/site/custom-pergola-patio-cover-builders-florida-09-p-800.jpg 800w, /images/site/custom-pergola-patio-cover-builders-florida-09-p-1080.jpg 1080w, /images/images/pergolas-9/custom-pergola-patio-cover-builders-florida-09.jpg 1250w",
-        "alt": "Custom pergola installation over backyard deck by Florida contractors, blending landscape design and outdoor structure.",
-        "ancho": 1250,
-        "alto": 976,
-        "pos": "50% 50%",
-        "_hoja": "pergolas:2"
+        "src": "/images/banco/pergolas/aluminum-lattice-pergola-black-underside-sunset-florida-01.webp",
+        "srcset": "/images/banco/pergolas/aluminum-lattice-pergola-black-underside-sunset-florida-01.webp 1600w",
+        "alt": "Underside of a black aluminum lattice pergola attached to a house with a sunset sky behind",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 30%",
+        "_banco": "bi-1033"
       }
     ]
   },
-  "/services/motorized-retractable-screens-in-north-south-florida": {
+  "/services/retractable-screens": {
     "fotos": [
       {
         "src": "/images/images/retractable-screen-9/retractable-screen-installation-contractors-florida-09.jpg",
@@ -244,16 +244,16 @@
       }
     ]
   },
-  "/services/smart-soffit-led-lighting-installation-in-north-south-florida": {
+  "/services/soffit-led-lighting": {
     "fotos": [
       {
-        "src": "/images/images/light-3/smart-soffit-led-lighting-installation-contractors-florida-03.jpg",
-        "srcset": "/images/site/smart-soffit-led-lighting-installation-contractors-florida-03-p-500.jpg 500w, /images/site/smart-soffit-led-lighting-installation-contractors-florida-03-p-800.jpg 800w, /images/site/smart-soffit-led-lighting-installation-contractors-florida-03-p-1080.jpg 1080w, /images/images/light-3/smart-soffit-led-lighting-installation-contractors-florida-03.jpg 1250w",
-        "alt": "Luxury home with warm white smart soffit LED lighting highlighting architectural details and improving nighttime visibility in Florida residences.",
-        "ancho": 1250,
-        "alto": 698,
+        "src": "/images/banco/louvered/louvered-roof-led-lighting-night-poolside-florida-01.webp",
+        "srcset": "/images/banco/louvered/louvered-roof-led-lighting-night-poolside-florida-01.webp 1600w",
+        "alt": "Long louvered roof edged with blue LED lighting over a patio beside a pool at night",
+        "ancho": 1600,
+        "alto": 877,
         "pos": "50% 50%",
-        "_hoja": "light:8"
+        "_banco": "bi-0212"
       },
       {
         "src": "/images/images/light-2/smart-soffit-led-lighting-installation-contractors-florida-02.jpg",
@@ -293,34 +293,34 @@
       }
     ]
   },
-  "/services/motorized-louvered-roof-systems-in-north-south-florida": {
+  "/services/louvered-roofs": {
     "fotos": [
       {
-        "src": "/images/images/motorized-louvered-roof-9/motorized-louvered-roof-installers-florida-09.jpg",
-        "srcset": "/images/site/motorized-louvered-roof-installers-florida-09-p-500.jpg 500w, /images/site/motorized-louvered-roof-installers-florida-09-p-800.jpg 800w, /images/site/motorized-louvered-roof-installers-florida-09-p-1080.jpg 1080w, /images/images/motorized-louvered-roof-9/motorized-louvered-roof-installers-florida-09.jpg 1250w",
-        "alt": "Louvered roof installation with modern frame and rotating panels, built for shade control and outdoor comfort.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "50% 55%",
-        "_hoja": "louvered:2"
+        "src": "/images/banco/louvered/louvered-pergola-open-louvers-rooftop-ocean-florida-01.webp",
+        "srcset": "/images/banco/louvered/louvered-pergola-open-louvers-rooftop-ocean-florida-01.webp 1125w",
+        "alt": "Looking up through open louvers of a white rooftop pergola toward the ocean.",
+        "ancho": 1125,
+        "alto": 844,
+        "pos": "50% 50%",
+        "_banco": "bi-0652"
       },
       {
-        "src": "/images/images/motorized-louvered-roof-3/motorized-louvered-roof-installers-florida-03.jpg",
-        "srcset": "/images/site/motorized-louvered-roof-installers-florida-03-p-500.jpg 500w, /images/site/motorized-louvered-roof-installers-florida-03-p-800.jpg 800w, /images/site/motorized-louvered-roof-installers-florida-03-p-1080.jpg 1080w, /images/images/motorized-louvered-roof-3/motorized-louvered-roof-installers-florida-03.jpg 1250w",
-        "alt": "Adjustable louvered roof panels allowing airflow and rain protection, ideal for poolside patios in South Florida.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "50% 45%",
-        "_hoja": "louvered:8"
+        "src": "/images/banco/louvered/louvered-roof-white-corner-frame-blades-detail-florida-01.webp",
+        "srcset": "/images/banco/louvered/louvered-roof-white-corner-frame-blades-detail-florida-01.webp 1200w",
+        "alt": "Corner of a white aluminum louvered roof showing the frame, rivets and angled blades",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0201"
       },
       {
-        "src": "/images/images/motorized-louvered-roof-5/motorized-louvered-roof-installers-florida-05.jpg",
-        "srcset": "/images/site/motorized-louvered-roof-installers-florida-05-p-500.jpg 500w, /images/site/motorized-louvered-roof-installers-florida-05-p-800.jpg 800w, /images/site/motorized-louvered-roof-installers-florida-05-p-1080.jpg 1080w, /images/images/motorized-louvered-roof-5/motorized-louvered-roof-installers-florida-05.jpg 1250w",
-        "alt": "Custom patio cover with integrated LED lighting and motorized louvers for day and night outdoor comfort in Florida.",
-        "ancho": 1250,
-        "alto": 1250,
-        "pos": "40% 50%",
-        "_hoja": "louvered:6"
+        "src": "/images/banco/louvered/louvered-roof-white-blades-open-underside-detail-florida-01.webp",
+        "srcset": "/images/banco/louvered/louvered-roof-white-blades-open-underside-detail-florida-01.webp 1600w",
+        "alt": "White louvered roof blades tilted open seen from below with palm trees and sky beyond",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "60% 30%",
+        "_banco": "bi-0166"
       },
       {
         "src": "/images/images/motorized-louvered-roof-6/motorized-louvered-roof-installers-florida-06.jpg",
@@ -342,7 +342,7 @@
       }
     ]
   },
-  "/services/pool-screen-enclosures-for-north-south-florida-pools": {
+  "/services/pool-screen-enclosures": {
     "fotos": [
       {
         "src": "/images/images/pool-screen-3/pool-screen-enclosure-builders-florida-03.jpg",
@@ -391,7 +391,7 @@
       }
     ]
   },
-  "/services/patio-screen-rooms-enclosures-in-north-south-florida": {
+  "/services/patio-screen-rooms": {
     "fotos": [
       {
         "src": "/images/images/patio-screen-10/patio-screen-enclosure-builders-contractors-north-south-florida-10.jpg",
@@ -440,7 +440,7 @@
       }
     ]
   },
-  "/services/steel-building-pole-barn-construction-in-north-south-florida": {
+  "/services/steel-buildings-pole-barns": {
     "fotos": [
       {
         "src": "/images/images/pole-barn-1/pole-barn-steel-building-contractors-florida-01.jpg",
@@ -452,13 +452,13 @@
         "_hoja": "pole:9"
       },
       {
-        "src": "/images/images/pole-barn-3/pole-barn-steel-building-contractors-florida-03.jpg",
-        "srcset": "/images/site/pole-barn-steel-building-contractors-florida-03-p-500.jpg 500w, /images/site/pole-barn-steel-building-contractors-florida-03-p-800.jpg 800w, /images/images/pole-barn-3/pole-barn-steel-building-contractors-florida-03.jpg 933w",
-        "alt": "Large open-span pole barn with steel roofing, designed for storage, workshops, and commercial use across North & South Florida.",
-        "ancho": 933,
-        "alto": 1250,
+        "src": "/images/banco/pole/pole-barn-lean-to-steel-trusses-tan-siding-wall-florida-01.webp",
+        "srcset": "/images/banco/pole/pole-barn-lean-to-steel-trusses-tan-siding-wall-florida-01.webp 1600w",
+        "alt": "Tan metal gable wall with a walk door under a pole barn lean-to roof with black steel trusses.",
+        "ancho": 1600,
+        "alto": 1200,
         "pos": "50% 50%",
-        "_hoja": "pole:8"
+        "_banco": "bi-1084"
       },
       {
         "src": "/images/images/pole-barn-7/pole-barn-steel-building-contractors-florida-07.jpg",
@@ -489,7 +489,7 @@
       }
     ]
   },
-  "/services/professional-landscaping-services-in-north-south-florida": {
+  "/services/landscaping": {
     "fotos": [
       {
         "src": "/images/images/landscaping-5/luxury-landscaping-construction-contractors-florida-05.jpg",
@@ -519,13 +519,13 @@
         "_hoja": "landscaping:3"
       },
       {
-        "src": "/images/images/landscaping-4/luxury-landscaping-construction-contractors-florida-04.jpg",
-        "srcset": "/images/site/luxury-landscaping-construction-contractors-florida-04-p-500.jpg 500w, /images/site/luxury-landscaping-construction-contractors-florida-04-p-800.jpg 800w, /images/site/luxury-landscaping-construction-contractors-florida-04-p-1080.jpg 1080w, /images/images/landscaping-4/luxury-landscaping-construction-contractors-florida-04.jpg 1250w",
-        "alt": "Luxury pool landscaping construction with tropical plants and hardscape by Florida landscaping builders.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "45% 60%",
-        "_hoja": "landscaping:7"
+        "src": "/images/banco/landscaping/backyard-putting-green-artificial-turf-palm-trees-florida-02.webp",
+        "srcset": "/images/banco/landscaping/backyard-putting-green-artificial-turf-palm-trees-florida-02.webp 1600w",
+        "alt": "Large backyard putting green with nine flags surrounded by artificial turf and coconut palms.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0134"
       },
       {
         "src": "/images/images/landscaping-2/luxury-landscaping-construction-contractors-florida-02.jpg",
@@ -538,7 +538,7 @@
       }
     ]
   },
-  "/services/smart-irrigation-system-installation-in-north-south-florida": {
+  "/services/irrigation-systems": {
     "fotos": [
       {
         "src": "/images/images/irrigation-10/automated-irrigation-system-installers-florida-10.jpg",
@@ -587,7 +587,7 @@
       }
     ]
   },
-  "/services/custom-deck-builders-in-north-south-florida": {
+  "/services/deck-builders": {
     "fotos": [
       {
         "src": "/images/images/deck-7/custom-deck-builders-contractors-north-south-florida-07.jpg",
@@ -599,13 +599,13 @@
         "_hoja": "decks:4"
       },
       {
-        "src": "/images/images/deck-10/custom-deck-builders-contractors-north-south-florida-10.jpg",
-        "srcset": "/images/site/custom-deck-builders-contractors-north-south-florida-10-p-500.jpg 500w, /images/site/custom-deck-builders-contractors-north-south-florida-10-p-800.jpg 800w, /images/site/custom-deck-builders-contractors-north-south-florida-10-p-1080.jpg 1080w, /images/images/deck-10/custom-deck-builders-contractors-north-south-florida-10.jpg 1250w",
-        "alt": "Luxury covered deck construction using premium materials by custom deck builders in North & South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "40% 50%",
-        "_hoja": "decks:1"
+        "src": "/images/banco/decks/gray-marble-paver-driveway-angled-border-florida-01.webp",
+        "srcset": "/images/banco/decks/gray-marble-paver-driveway-angled-border-florida-01.webp 1200w",
+        "alt": "Gray marble pavers with an angled inlay along boxwood hedges and orange flowers.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0088"
       },
       {
         "src": "/images/images/deck-6/custom-deck-builders-contractors-north-south-florida-06.jpg",
@@ -617,62 +617,62 @@
         "_hoja": "decks:5"
       },
       {
-        "src": "/images/images/deck-4/custom-deck-builders-contractors-north-south-florida-04.jpg",
-        "srcset": "/images/site/custom-deck-builders-contractors-north-south-florida-04-p-500.jpg 500w, /images/site/custom-deck-builders-contractors-north-south-florida-04-p-800.jpg 800w, /images/site/custom-deck-builders-contractors-north-south-florida-04-p-1080.jpg 1080w, /images/images/deck-4/custom-deck-builders-contractors-north-south-florida-04.jpg 1250w",
-        "alt": "Poolside deck construction using durable decking materials by professional deck contractors in North & South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 55%",
-        "_hoja": "decks:7"
+        "src": "/images/banco/decks/porcelain-pool-deck-louvered-pergola-kitchen-florida-01.webp",
+        "srcset": "/images/banco/decks/porcelain-pool-deck-louvered-pergola-kitchen-florida-01.webp 1280w",
+        "alt": "Large-format porcelain pool deck leading to a white louvered pergola and outdoor kitchen.",
+        "ancho": 1280,
+        "alto": 960,
+        "pos": "50% 50%",
+        "_banco": "bi-0630"
       },
       {
-        "src": "/images/images/deck-9/custom-deck-builders-contractors-north-south-florida-09.jpg",
-        "srcset": "/images/site/custom-deck-builders-contractors-north-south-florida-09-p-500.jpg 500w, /images/site/custom-deck-builders-contractors-north-south-florida-09-p-800.jpg 800w, /images/site/custom-deck-builders-contractors-north-south-florida-09-p-1080.jpg 1080w, /images/images/deck-9/custom-deck-builders-contractors-north-south-florida-09.jpg 1250w",
-        "alt": "Custom wood deck with pergola integration built by professional deck contractors in North & South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "45% 55%",
-        "_hoja": "decks:2"
+        "src": "/images/banco/decks/wood-deck-lounge-platform-artificial-turf-beachfront-florida-01.webp",
+        "srcset": "/images/banco/decks/wood-deck-lounge-platform-artificial-turf-beachfront-florida-01.webp 1600w",
+        "alt": "Dark hardwood lounge deck with daybeds set on artificial turf beside dune planting.",
+        "ancho": 1600,
+        "alto": 739,
+        "pos": "50% 50%",
+        "_banco": "bi-0318"
       }
     ]
   },
-  "/services/premium-outdoor-furniture-for-north-south-florida-homes": {
+  "/services/outdoor-furniture": {
     "fotos": [
       {
-        "src": "/images/images/furniture-3/custom-outdoor-furniture-builders-florida-03.jpg",
-        "srcset": "/images/site/custom-outdoor-furniture-builders-florida-03-p-500.jpg 500w, /images/site/custom-outdoor-furniture-builders-florida-03-p-800.jpg 800w, /images/site/custom-outdoor-furniture-builders-florida-03-p-1080.jpg 1080w, /images/images/furniture-3/custom-outdoor-furniture-builders-florida-03.jpg 1250w",
-        "alt": "Custom outdoor daybed installed near an infinity pool in South Florida, designed for luxury residential outdoor living spaces.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 55%",
-        "_hoja": "furniture:8"
-      },
-      {
-        "src": "/images/images/furniture-5/custom-outdoor-furniture-builders-florida-05.jpg",
-        "srcset": "/images/site/custom-outdoor-furniture-builders-florida-05-p-500.jpg 500w, /images/site/custom-outdoor-furniture-builders-florida-05-p-800.jpg 800w, /images/site/custom-outdoor-furniture-builders-florida-05-p-1080.jpg 1080w, /images/images/furniture-5/custom-outdoor-furniture-builders-florida-05.jpg 1250w",
-        "alt": "Hanging outdoor lounge chair installed on coastal patio in South Florida, blending modern design with durable outdoor materials.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "35% 50%",
-        "_hoja": "furniture:6"
-      },
-      {
-        "src": "/images/images/furniture-9/custom-outdoor-furniture-builders-florida-09.jpg",
-        "srcset": "/images/site/custom-outdoor-furniture-builders-florida-09-p-500.jpg 500w, /images/site/custom-outdoor-furniture-builders-florida-09-p-800.jpg 800w, /images/site/custom-outdoor-furniture-builders-florida-09-p-1080.jpg 1080w, /images/images/furniture-9/custom-outdoor-furniture-builders-florida-09.jpg 1250w",
-        "alt": "Modern outdoor cabana-style seating installed next to infinity pool in South Florida, built for high-end residential projects.",
-        "ancho": 1250,
-        "alto": 698,
+        "src": "/images/banco/louvered/louvered-pergola-bronze-freestanding-poolside-florida-01.webp",
+        "srcset": "/images/banco/louvered/louvered-pergola-bronze-freestanding-poolside-florida-01.webp 1600w",
+        "alt": "Bronze freestanding louvered pergola covering a lounge and dining area beside a freeform pool",
+        "ancho": 1600,
+        "alto": 1200,
         "pos": "50% 50%",
-        "_hoja": "furniture:2"
+        "_banco": "bi-0168"
       },
       {
-        "src": "/images/images/furniture-2/custom-outdoor-furniture-builders-florida-02.jpg",
-        "srcset": "/images/site/custom-outdoor-furniture-builders-florida-02-p-500.jpg 500w, /images/site/custom-outdoor-furniture-builders-florida-02-p-800.jpg 800w, /images/site/custom-outdoor-furniture-builders-florida-02-p-1080.jpg 1080w, /images/images/furniture-2/custom-outdoor-furniture-builders-florida-02.jpg 1250w",
-        "alt": "Modern poolside lounge chairs with ocean views in South Florida, featuring high-end outdoor furniture installation for luxury properties.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 55%",
-        "_hoja": "furniture:9"
+        "src": "/images/banco/louvered/louvered-pergola-bronze-waterfront-pool-deck-florida-01.webp",
+        "srcset": "/images/banco/louvered/louvered-pergola-bronze-waterfront-pool-deck-florida-01.webp 1200w",
+        "alt": "Bronze louvered pergola over a dining area on a travertine pool deck beside a canal",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0237"
+      },
+      {
+        "src": "/images/banco/louvered/louvered-pergola-outdoor-kitchen-stacked-stone-florida-01.webp",
+        "srcset": "/images/banco/louvered/louvered-pergola-outdoor-kitchen-stacked-stone-florida-01.webp 1280w",
+        "alt": "White louvered pergola covering an outdoor kitchen with stacked stone island and lounge seating.",
+        "ancho": 1280,
+        "alto": 960,
+        "pos": "50% 50%",
+        "_banco": "bi-0632"
+      },
+      {
+        "src": "/images/banco/louvered/louvered-pergola-bronze-closed-roof-dining-area-florida-01.webp",
+        "srcset": "/images/banco/louvered/louvered-pergola-bronze-closed-roof-dining-area-florida-01.webp 1600w",
+        "alt": "Bronze louvered pergola with closed roof over a wicker dining set on a travertine pool deck",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0235"
       },
       {
         "src": "/images/images/furniture-1/custom-outdoor-furniture-builders-florida-01.jpg",
@@ -706,13 +706,14 @@
         "_hoja": "decks:6"
       },
       {
-        "src": "/images/images/landscaping-10/luxury-landscaping-construction-contractors-florida-10.jpg",
-        "srcset": "/images/site/luxury-landscaping-construction-contractors-florida-10-p-500.jpg 500w, /images/site/luxury-landscaping-construction-contractors-florida-10-p-800.jpg 800w, /images/site/luxury-landscaping-construction-contractors-florida-10-p-1080.jpg 1080w, /images/images/landscaping-10/luxury-landscaping-construction-contractors-florida-10.jpg 1250w",
-        "alt": "Residential front yard landscaping construction with palms and pavers by Florida landscape professionals.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 50%",
-        "_hoja": "landscaping:1"
+        "src": "/images/banco/landscaping/landscaping-front-yard-bromeliad-bed-palm-cluster-florida-01.webp",
+        "srcset": "/images/obra/obra-039/landscaping-front-yard-bromeliad-bed-palm-cluster-florida-01-500.webp 500w, /images/obra/obra-039/landscaping-front-yard-bromeliad-bed-palm-cluster-florida-01-800.webp 800w, /images/banco/landscaping/landscaping-front-yard-bromeliad-bed-palm-cluster-florida-01.webp 1600w",
+        "alt": "Front yard bed with pink bromeliads, crotons and boulders under a palm cluster by a paver driveway.",
+        "ancho": 1600,
+        "alto": 900,
+        "pos": "45% 70%",
+        "_banco": "bi-0305",
+        "_por_que": "PROMPT-IMAGENES-ABOUT: sustituye a landscaping-10.jpg, copia retocada con IA de bi-0326. Derivados 500/800 con sharp (webp q80) para no bajar 342 KB en una celda de 194 px."
       },
       {
         "src": "/images/images/pergolas-5/custom-pergola-patio-cover-builders-florida-05.jpg",
@@ -783,7 +784,7 @@
       }
     ]
   },
-  "/pool-builders/ocala-florida": {
+  "/services/pool-builders/ocala-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
@@ -827,7 +828,7 @@
       }
     ]
   },
-  "/pool-builders/gainesville-florida": {
+  "/services/pool-builders/gainesville-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
@@ -871,7 +872,7 @@
       }
     ]
   },
-  "/pool-builders/alachua-florida": {
+  "/services/pool-builders/alachua-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
@@ -915,7 +916,7 @@
       }
     ]
   },
-  "/pool-builders/archer-florida": {
+  "/services/pool-builders/archer-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
@@ -959,7 +960,7 @@
       }
     ]
   },
-  "/pool-builders/atlantis-florida": {
+  "/services/pool-builders/atlantis-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
@@ -1003,7 +1004,7 @@
       }
     ]
   },
-  "/pool-builders/beach-florida": {
+  "/services/pool-builders/hillsboro-beach-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
@@ -1047,7 +1048,7 @@
       }
     ]
   },
-  "/pool-builders/boca-raton-florida": {
+  "/services/pool-builders/boca-raton-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
@@ -1091,7 +1092,7 @@
       }
     ]
   },
-  "/pool-builders/boynton-beach-florida": {
+  "/services/pool-builders/boynton-beach-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
@@ -1135,7 +1136,7 @@
       }
     ]
   },
-  "/pool-builders/cedar-key-florida": {
+  "/services/pool-builders/cedar-key-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
@@ -1179,7 +1180,7 @@
       }
     ]
   },
-  "/pool-builders/chiefland-florida": {
+  "/services/pool-builders/chiefland-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
@@ -1223,7 +1224,7 @@
       }
     ]
   },
-  "/pool-builders/cross-city-florida": {
+  "/services/pool-builders/cross-city-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
@@ -1267,7 +1268,7 @@
       }
     ]
   },
-  "/pool-builders/dania-beach-florida": {
+  "/services/pool-builders/dania-beach-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
@@ -1311,7 +1312,7 @@
       }
     ]
   },
-  "/pool-builders/davie-florida": {
+  "/services/pool-builders/davie-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
@@ -1355,7 +1356,7 @@
       }
     ]
   },
-  "/pool-builders/deerfield-beach-florida": {
+  "/services/pool-builders/deerfield-beach-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
@@ -1399,7 +1400,7 @@
       }
     ]
   },
-  "/pool-builders/delray-beach-florida": {
+  "/services/pool-builders/delray-beach-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
@@ -1443,7 +1444,7 @@
       }
     ]
   },
-  "/pool-builders/fanning-springs-florida": {
+  "/services/pool-builders/fanning-springs-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
@@ -1487,7 +1488,7 @@
       }
     ]
   },
-  "/pool-builders/fort-lauderdale-florida": {
+  "/services/pool-builders/fort-lauderdale-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
@@ -1531,7 +1532,7 @@
       }
     ]
   },
-  "/pool-builders/gulf-stream-florida": {
+  "/services/pool-builders/gulf-stream-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
@@ -1575,7 +1576,7 @@
       }
     ]
   },
-  "/pool-builders/hallandale-beach-florida": {
+  "/services/pool-builders/hallandale-beach-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
@@ -1619,7 +1620,7 @@
       }
     ]
   },
-  "/pool-builders/hawthorne-florida": {
+  "/services/pool-builders/hawthorne-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
@@ -1663,7 +1664,7 @@
       }
     ]
   },
-  "/pool-builders/high-springs-florida": {
+  "/services/pool-builders/high-springs-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
@@ -1707,7 +1708,7 @@
       }
     ]
   },
-  "/pool-builders/hollywood-florida": {
+  "/services/pool-builders/hollywood-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
@@ -1751,271 +1752,7 @@
       }
     ]
   },
-  "/pool-builders/hypoluxo-florida": {
-    "fotos": [
-      {
-        "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-03-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-03-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-03-p-1080.jpg 1080w, /images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg 1250w",
-        "alt": "Elegant residential pool and spa design with premium finishes and tropical landscaping, crafted by custom pool builders in South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-06-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-06-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-06-p-1080.jpg 1080w, /images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg 1250w",
-        "alt": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "65% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-09-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-09-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-09-p-1080.jpg 1080w, /images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg 1250w",
-        "alt": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "50% 75%"
-      },
-      {
-        "src": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-02-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-02-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-02-p-1080.jpg 1080w, /images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg 1250w",
-        "alt": "Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.",
-        "ancho": 1250,
-        "alto": 937,
-        "pos": "50% 50%"
-      },
-      {
-        "src": "/images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-05-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-05-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-05-p-1080.jpg 1080w, /images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg 1250w",
-        "alt": "Luxury outdoor pool featuring waterfall spa and covered patio area, built by experienced custom pool and outdoor living contractors in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "78% 50%"
-      }
-    ]
-  },
-  "/pool-builders/juno-beach-florida": {
-    "fotos": [
-      {
-        "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-09-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-09-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-09-p-1080.jpg 1080w, /images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg 1250w",
-        "alt": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "50% 75%"
-      },
-      {
-        "src": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-02-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-02-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-02-p-1080.jpg 1080w, /images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg 1250w",
-        "alt": "Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.",
-        "ancho": 1250,
-        "alto": 937,
-        "pos": "50% 50%"
-      },
-      {
-        "src": "/images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-05-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-05-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-05-p-1080.jpg 1080w, /images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg 1250w",
-        "alt": "Luxury outdoor pool featuring waterfall spa and covered patio area, built by experienced custom pool and outdoor living contractors in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "78% 50%"
-      },
-      {
-        "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
-        "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "55% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-01-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-01-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-01-p-1080.jpg 1080w, /images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg 1250w",
-        "alt": "Luxury custom pool and spa construction featuring modern design, premium pavers, and outdoor living spaces built by expert pool builders in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 60%"
-      }
-    ]
-  },
-  "/pool-builders/jupiter-florida": {
-    "fotos": [
-      {
-        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
-        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "45% 80%"
-      },
-      {
-        "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-03-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-03-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-03-p-1080.jpg 1080w, /images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg 1250w",
-        "alt": "Elegant residential pool and spa design with premium finishes and tropical landscaping, crafted by custom pool builders in South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-06-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-06-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-06-p-1080.jpg 1080w, /images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg 1250w",
-        "alt": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "65% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-09-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-09-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-09-p-1080.jpg 1080w, /images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg 1250w",
-        "alt": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "50% 75%"
-      },
-      {
-        "src": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-02-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-02-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-02-p-1080.jpg 1080w, /images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg 1250w",
-        "alt": "Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.",
-        "ancho": 1250,
-        "alto": 937,
-        "pos": "50% 50%"
-      }
-    ]
-  },
-  "/pool-builders/lake-city-florida": {
-    "fotos": [
-      {
-        "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-06-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-06-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-06-p-1080.jpg 1080w, /images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg 1250w",
-        "alt": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "65% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-09-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-09-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-09-p-1080.jpg 1080w, /images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg 1250w",
-        "alt": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "50% 75%"
-      },
-      {
-        "src": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-02-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-02-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-02-p-1080.jpg 1080w, /images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg 1250w",
-        "alt": "Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.",
-        "ancho": 1250,
-        "alto": 937,
-        "pos": "50% 50%"
-      },
-      {
-        "src": "/images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-05-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-05-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-05-p-1080.jpg 1080w, /images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg 1250w",
-        "alt": "Luxury outdoor pool featuring waterfall spa and covered patio area, built by experienced custom pool and outdoor living contractors in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "78% 50%"
-      },
-      {
-        "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
-        "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "55% 55%"
-      }
-    ]
-  },
-  "/pool-builders/lighthouse-point-florida": {
-    "fotos": [
-      {
-        "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-01-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-01-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-01-p-1080.jpg 1080w, /images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg 1250w",
-        "alt": "Luxury custom pool and spa construction featuring modern design, premium pavers, and outdoor living spaces built by expert pool builders in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 60%"
-      },
-      {
-        "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-04-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-04-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-04-p-1080.jpg 1080w, /images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg 1250w",
-        "alt": "Modern pool renovation with raised spa and clean architectural lines, designed and installed by professional pool builders in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 60%"
-      },
-      {
-        "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
-        "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "70% 65%"
-      },
-      {
-        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
-        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "45% 80%"
-      },
-      {
-        "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-03-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-03-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-03-p-1080.jpg 1080w, /images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg 1250w",
-        "alt": "Elegant residential pool and spa design with premium finishes and tropical landscaping, crafted by custom pool builders in South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 55%"
-      }
-    ]
-  },
-  "/pool-builders/manalapan-florida": {
-    "fotos": [
-      {
-        "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-01-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-01-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-01-p-1080.jpg 1080w, /images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg 1250w",
-        "alt": "Luxury custom pool and spa construction featuring modern design, premium pavers, and outdoor living spaces built by expert pool builders in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 60%"
-      },
-      {
-        "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-04-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-04-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-04-p-1080.jpg 1080w, /images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg 1250w",
-        "alt": "Modern pool renovation with raised spa and clean architectural lines, designed and installed by professional pool builders in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 60%"
-      },
-      {
-        "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
-        "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "70% 65%"
-      },
-      {
-        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
-        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "45% 80%"
-      },
-      {
-        "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-03-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-03-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-03-p-1080.jpg 1080w, /images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg 1250w",
-        "alt": "Elegant residential pool and spa design with premium finishes and tropical landscaping, crafted by custom pool builders in South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 55%"
-      }
-    ]
-  },
-  "/pool-builders/mcintosh-florida": {
+  "/services/pool-builders/hypoluxo-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
@@ -2059,95 +1796,7 @@
       }
     ]
   },
-  "/pool-builders/micanopy-florida": {
-    "fotos": [
-      {
-        "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-04-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-04-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-04-p-1080.jpg 1080w, /images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg 1250w",
-        "alt": "Modern pool renovation with raised spa and clean architectural lines, designed and installed by professional pool builders in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 60%"
-      },
-      {
-        "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
-        "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "70% 65%"
-      },
-      {
-        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
-        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "45% 80%"
-      },
-      {
-        "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-03-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-03-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-03-p-1080.jpg 1080w, /images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg 1250w",
-        "alt": "Elegant residential pool and spa design with premium finishes and tropical landscaping, crafted by custom pool builders in South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-06-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-06-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-06-p-1080.jpg 1080w, /images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg 1250w",
-        "alt": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "65% 55%"
-      }
-    ]
-  },
-  "/pool-builders/miramar-florida": {
-    "fotos": [
-      {
-        "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
-        "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "55% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-01-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-01-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-01-p-1080.jpg 1080w, /images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg 1250w",
-        "alt": "Luxury custom pool and spa construction featuring modern design, premium pavers, and outdoor living spaces built by expert pool builders in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 60%"
-      },
-      {
-        "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-04-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-04-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-04-p-1080.jpg 1080w, /images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg 1250w",
-        "alt": "Modern pool renovation with raised spa and clean architectural lines, designed and installed by professional pool builders in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 60%"
-      },
-      {
-        "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
-        "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "70% 65%"
-      },
-      {
-        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
-        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "45% 80%"
-      }
-    ]
-  },
-  "/pool-builders/newberry-florida": {
+  "/services/pool-builders/juno-beach-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
@@ -2191,7 +1840,51 @@
       }
     ]
   },
-  "/pool-builders/north-palm-beach-florida": {
+  "/services/pool-builders/jupiter-fl": {
+    "fotos": [
+      {
+        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
+        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "45% 80%"
+      },
+      {
+        "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-03-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-03-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-03-p-1080.jpg 1080w, /images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg 1250w",
+        "alt": "Elegant residential pool and spa design with premium finishes and tropical landscaping, crafted by custom pool builders in South Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-06-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-06-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-06-p-1080.jpg 1080w, /images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg 1250w",
+        "alt": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "65% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-09-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-09-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-09-p-1080.jpg 1080w, /images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg 1250w",
+        "alt": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "50% 75%"
+      },
+      {
+        "src": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-02-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-02-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-02-p-1080.jpg 1080w, /images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg 1250w",
+        "alt": "Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.",
+        "ancho": 1250,
+        "alto": 937,
+        "pos": "50% 50%"
+      }
+    ]
+  },
+  "/services/pool-builders/lake-city-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
@@ -2235,16 +1928,8 @@
       }
     ]
   },
-  "/pool-builders/ocean-ridge-florida": {
+  "/services/pool-builders/lighthouse-point-fl": {
     "fotos": [
-      {
-        "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
-        "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "55% 55%"
-      },
       {
         "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
         "srcset": "/images/site/custom-pool-spa-builders-florida-01-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-01-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-01-p-1080.jpg 1080w, /images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg 1250w",
@@ -2253,254 +1938,6 @@
         "alto": 698,
         "pos": "50% 60%"
       },
-      {
-        "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-04-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-04-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-04-p-1080.jpg 1080w, /images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg 1250w",
-        "alt": "Modern pool renovation with raised spa and clean architectural lines, designed and installed by professional pool builders in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 60%"
-      },
-      {
-        "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
-        "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "70% 65%"
-      },
-      {
-        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
-        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "45% 80%"
-      }
-    ]
-  },
-  "/pool-builders/old-town-florida": {
-    "fotos": [
-      {
-        "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
-        "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "55% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-01-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-01-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-01-p-1080.jpg 1080w, /images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg 1250w",
-        "alt": "Luxury custom pool and spa construction featuring modern design, premium pavers, and outdoor living spaces built by expert pool builders in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 60%"
-      },
-      {
-        "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-04-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-04-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-04-p-1080.jpg 1080w, /images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg 1250w",
-        "alt": "Modern pool renovation with raised spa and clean architectural lines, designed and installed by professional pool builders in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 60%"
-      },
-      {
-        "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
-        "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "70% 65%"
-      },
-      {
-        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
-        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "45% 80%"
-      }
-    ]
-  },
-  "/pool-builders/palatka-florida": {
-    "fotos": [
-      {
-        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
-        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "45% 80%"
-      },
-      {
-        "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-03-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-03-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-03-p-1080.jpg 1080w, /images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg 1250w",
-        "alt": "Elegant residential pool and spa design with premium finishes and tropical landscaping, crafted by custom pool builders in South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-06-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-06-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-06-p-1080.jpg 1080w, /images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg 1250w",
-        "alt": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "65% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-09-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-09-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-09-p-1080.jpg 1080w, /images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg 1250w",
-        "alt": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "50% 75%"
-      },
-      {
-        "src": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-02-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-02-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-02-p-1080.jpg 1080w, /images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg 1250w",
-        "alt": "Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.",
-        "ancho": 1250,
-        "alto": 937,
-        "pos": "50% 50%"
-      }
-    ]
-  },
-  "/pool-builders/palm-beach-gardens-florida": {
-    "fotos": [
-      {
-        "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
-        "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "70% 65%"
-      },
-      {
-        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
-        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "45% 80%"
-      },
-      {
-        "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-03-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-03-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-03-p-1080.jpg 1080w, /images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg 1250w",
-        "alt": "Elegant residential pool and spa design with premium finishes and tropical landscaping, crafted by custom pool builders in South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-06-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-06-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-06-p-1080.jpg 1080w, /images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg 1250w",
-        "alt": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "65% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-09-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-09-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-09-p-1080.jpg 1080w, /images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg 1250w",
-        "alt": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "50% 75%"
-      }
-    ]
-  },
-  "/pool-builders/parkland-florida": {
-    "fotos": [
-      {
-        "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
-        "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "70% 65%"
-      },
-      {
-        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
-        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "45% 80%"
-      },
-      {
-        "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-03-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-03-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-03-p-1080.jpg 1080w, /images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg 1250w",
-        "alt": "Elegant residential pool and spa design with premium finishes and tropical landscaping, crafted by custom pool builders in South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-06-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-06-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-06-p-1080.jpg 1080w, /images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg 1250w",
-        "alt": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "65% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-09-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-09-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-09-p-1080.jpg 1080w, /images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg 1250w",
-        "alt": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "50% 75%"
-      }
-    ]
-  },
-  "/pool-builders/pembroke-pines-florida": {
-    "fotos": [
-      {
-        "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
-        "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "55% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-01-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-01-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-01-p-1080.jpg 1080w, /images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg 1250w",
-        "alt": "Luxury custom pool and spa construction featuring modern design, premium pavers, and outdoor living spaces built by expert pool builders in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 60%"
-      },
-      {
-        "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-04-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-04-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-04-p-1080.jpg 1080w, /images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg 1250w",
-        "alt": "Modern pool renovation with raised spa and clean architectural lines, designed and installed by professional pool builders in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 60%"
-      },
-      {
-        "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
-        "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "70% 65%"
-      },
-      {
-        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
-        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "45% 80%"
-      }
-    ]
-  },
-  "/pool-builders/plantation-florida": {
-    "fotos": [
       {
         "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
         "srcset": "/images/site/custom-pool-spa-builders-florida-04-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-04-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-04-p-1080.jpg 1080w, /images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg 1250w",
@@ -2532,19 +1969,19 @@
         "ancho": 1250,
         "alto": 698,
         "pos": "50% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-06-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-06-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-06-p-1080.jpg 1080w, /images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg 1250w",
-        "alt": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "65% 55%"
       }
     ]
   },
-  "/pool-builders/pompano-beach-florida": {
+  "/services/pool-builders/manalapan-fl": {
     "fotos": [
+      {
+        "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-01-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-01-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-01-p-1080.jpg 1080w, /images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg 1250w",
+        "alt": "Luxury custom pool and spa construction featuring modern design, premium pavers, and outdoor living spaces built by expert pool builders in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 60%"
+      },
       {
         "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
         "srcset": "/images/site/custom-pool-spa-builders-florida-04-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-04-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-04-p-1080.jpg 1080w, /images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg 1250w",
@@ -2576,370 +2013,10 @@
         "ancho": 1250,
         "alto": 698,
         "pos": "50% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-06-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-06-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-06-p-1080.jpg 1080w, /images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg 1250w",
-        "alt": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "65% 55%"
       }
     ]
   },
-  "/pool-builders/reddick-florida": {
-    "fotos": [
-      {
-        "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-09-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-09-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-09-p-1080.jpg 1080w, /images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg 1250w",
-        "alt": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "50% 75%"
-      },
-      {
-        "src": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-02-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-02-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-02-p-1080.jpg 1080w, /images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg 1250w",
-        "alt": "Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.",
-        "ancho": 1250,
-        "alto": 937,
-        "pos": "50% 50%"
-      },
-      {
-        "src": "/images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-05-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-05-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-05-p-1080.jpg 1080w, /images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg 1250w",
-        "alt": "Luxury outdoor pool featuring waterfall spa and covered patio area, built by experienced custom pool and outdoor living contractors in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "78% 50%"
-      },
-      {
-        "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
-        "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "55% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-01-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-01-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-01-p-1080.jpg 1080w, /images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg 1250w",
-        "alt": "Luxury custom pool and spa construction featuring modern design, premium pavers, and outdoor living spaces built by expert pool builders in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 60%"
-      }
-    ]
-  },
-  "/pool-builders/royal-palm-beach-florida": {
-    "fotos": [
-      {
-        "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-09-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-09-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-09-p-1080.jpg 1080w, /images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg 1250w",
-        "alt": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "50% 75%"
-      },
-      {
-        "src": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-02-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-02-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-02-p-1080.jpg 1080w, /images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg 1250w",
-        "alt": "Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.",
-        "ancho": 1250,
-        "alto": 937,
-        "pos": "50% 50%"
-      },
-      {
-        "src": "/images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-05-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-05-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-05-p-1080.jpg 1080w, /images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg 1250w",
-        "alt": "Luxury outdoor pool featuring waterfall spa and covered patio area, built by experienced custom pool and outdoor living contractors in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "78% 50%"
-      },
-      {
-        "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
-        "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "55% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-01-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-01-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-01-p-1080.jpg 1080w, /images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg 1250w",
-        "alt": "Luxury custom pool and spa construction featuring modern design, premium pavers, and outdoor living spaces built by expert pool builders in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 60%"
-      }
-    ]
-  },
-  "/pool-builders/south-palm-beach-florida": {
-    "fotos": [
-      {
-        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
-        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "45% 80%"
-      },
-      {
-        "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-03-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-03-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-03-p-1080.jpg 1080w, /images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg 1250w",
-        "alt": "Elegant residential pool and spa design with premium finishes and tropical landscaping, crafted by custom pool builders in South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-06-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-06-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-06-p-1080.jpg 1080w, /images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg 1250w",
-        "alt": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "65% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-09-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-09-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-09-p-1080.jpg 1080w, /images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg 1250w",
-        "alt": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "50% 75%"
-      },
-      {
-        "src": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-02-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-02-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-02-p-1080.jpg 1080w, /images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg 1250w",
-        "alt": "Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.",
-        "ancho": 1250,
-        "alto": 937,
-        "pos": "50% 50%"
-      }
-    ]
-  },
-  "/pool-builders/southwest-ranches-florida": {
-    "fotos": [
-      {
-        "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
-        "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "55% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-01-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-01-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-01-p-1080.jpg 1080w, /images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg 1250w",
-        "alt": "Luxury custom pool and spa construction featuring modern design, premium pavers, and outdoor living spaces built by expert pool builders in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 60%"
-      },
-      {
-        "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-04-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-04-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-04-p-1080.jpg 1080w, /images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg 1250w",
-        "alt": "Modern pool renovation with raised spa and clean architectural lines, designed and installed by professional pool builders in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 60%"
-      },
-      {
-        "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
-        "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "70% 65%"
-      },
-      {
-        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
-        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "45% 80%"
-      }
-    ]
-  },
-  "/pool-builders/tequesta-florida": {
-    "fotos": [
-      {
-        "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
-        "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "55% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-01-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-01-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-01-p-1080.jpg 1080w, /images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg 1250w",
-        "alt": "Luxury custom pool and spa construction featuring modern design, premium pavers, and outdoor living spaces built by expert pool builders in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 60%"
-      },
-      {
-        "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-04-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-04-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-04-p-1080.jpg 1080w, /images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg 1250w",
-        "alt": "Modern pool renovation with raised spa and clean architectural lines, designed and installed by professional pool builders in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 60%"
-      },
-      {
-        "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
-        "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "70% 65%"
-      },
-      {
-        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
-        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "45% 80%"
-      }
-    ]
-  },
-  "/pool-builders/trenton-florida": {
-    "fotos": [
-      {
-        "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
-        "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "55% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-01-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-01-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-01-p-1080.jpg 1080w, /images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg 1250w",
-        "alt": "Luxury custom pool and spa construction featuring modern design, premium pavers, and outdoor living spaces built by expert pool builders in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 60%"
-      },
-      {
-        "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-04-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-04-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-04-p-1080.jpg 1080w, /images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg 1250w",
-        "alt": "Modern pool renovation with raised spa and clean architectural lines, designed and installed by professional pool builders in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 60%"
-      },
-      {
-        "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
-        "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "70% 65%"
-      },
-      {
-        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
-        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "45% 80%"
-      }
-    ]
-  },
-  "/pool-builders/waldo-florida": {
-    "fotos": [
-      {
-        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
-        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "45% 80%"
-      },
-      {
-        "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-03-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-03-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-03-p-1080.jpg 1080w, /images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg 1250w",
-        "alt": "Elegant residential pool and spa design with premium finishes and tropical landscaping, crafted by custom pool builders in South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "50% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-06-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-06-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-06-p-1080.jpg 1080w, /images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg 1250w",
-        "alt": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "65% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-09-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-09-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-09-p-1080.jpg 1080w, /images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg 1250w",
-        "alt": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "50% 75%"
-      },
-      {
-        "src": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-02-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-02-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-02-p-1080.jpg 1080w, /images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg 1250w",
-        "alt": "Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.",
-        "ancho": 1250,
-        "alto": 937,
-        "pos": "50% 50%"
-      }
-    ]
-  },
-  "/pool-builders/wellington-florida": {
-    "fotos": [
-      {
-        "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-06-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-06-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-06-p-1080.jpg 1080w, /images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg 1250w",
-        "alt": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "65% 55%"
-      },
-      {
-        "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-09-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-09-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-09-p-1080.jpg 1080w, /images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg 1250w",
-        "alt": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
-        "ancho": 1250,
-        "alto": 933,
-        "pos": "50% 75%"
-      },
-      {
-        "src": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-02-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-02-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-02-p-1080.jpg 1080w, /images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg 1250w",
-        "alt": "Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.",
-        "ancho": 1250,
-        "alto": 937,
-        "pos": "50% 50%"
-      },
-      {
-        "src": "/images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-05-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-05-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-05-p-1080.jpg 1080w, /images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg 1250w",
-        "alt": "Luxury outdoor pool featuring waterfall spa and covered patio area, built by experienced custom pool and outdoor living contractors in Florida.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "78% 50%"
-      },
-      {
-        "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
-        "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
-        "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
-        "ancho": 1250,
-        "alto": 698,
-        "pos": "55% 55%"
-      }
-    ]
-  },
-  "/pool-builders/west-palm-beach-florida": {
+  "/services/pool-builders/mcintosh-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
@@ -2983,7 +2060,95 @@
       }
     ]
   },
-  "/pool-builders/weston-florida": {
+  "/services/pool-builders/micanopy-fl": {
+    "fotos": [
+      {
+        "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-04-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-04-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-04-p-1080.jpg 1080w, /images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg 1250w",
+        "alt": "Modern pool renovation with raised spa and clean architectural lines, designed and installed by professional pool builders in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 60%"
+      },
+      {
+        "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
+        "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "70% 65%"
+      },
+      {
+        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
+        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "45% 80%"
+      },
+      {
+        "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-03-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-03-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-03-p-1080.jpg 1080w, /images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg 1250w",
+        "alt": "Elegant residential pool and spa design with premium finishes and tropical landscaping, crafted by custom pool builders in South Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-06-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-06-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-06-p-1080.jpg 1080w, /images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg 1250w",
+        "alt": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "65% 55%"
+      }
+    ]
+  },
+  "/services/pool-builders/miramar-fl": {
+    "fotos": [
+      {
+        "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
+        "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "55% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-01-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-01-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-01-p-1080.jpg 1080w, /images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg 1250w",
+        "alt": "Luxury custom pool and spa construction featuring modern design, premium pavers, and outdoor living spaces built by expert pool builders in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 60%"
+      },
+      {
+        "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-04-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-04-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-04-p-1080.jpg 1080w, /images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg 1250w",
+        "alt": "Modern pool renovation with raised spa and clean architectural lines, designed and installed by professional pool builders in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 60%"
+      },
+      {
+        "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
+        "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "70% 65%"
+      },
+      {
+        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
+        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "45% 80%"
+      }
+    ]
+  },
+  "/services/pool-builders/newberry-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
@@ -3027,7 +2192,843 @@
       }
     ]
   },
-  "/pool-builders/williston-florida": {
+  "/services/pool-builders/north-palm-beach-fl": {
+    "fotos": [
+      {
+        "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-06-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-06-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-06-p-1080.jpg 1080w, /images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg 1250w",
+        "alt": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "65% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-09-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-09-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-09-p-1080.jpg 1080w, /images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg 1250w",
+        "alt": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "50% 75%"
+      },
+      {
+        "src": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-02-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-02-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-02-p-1080.jpg 1080w, /images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg 1250w",
+        "alt": "Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.",
+        "ancho": 1250,
+        "alto": 937,
+        "pos": "50% 50%"
+      },
+      {
+        "src": "/images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-05-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-05-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-05-p-1080.jpg 1080w, /images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg 1250w",
+        "alt": "Luxury outdoor pool featuring waterfall spa and covered patio area, built by experienced custom pool and outdoor living contractors in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "78% 50%"
+      },
+      {
+        "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
+        "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "55% 55%"
+      }
+    ]
+  },
+  "/services/pool-builders/ocean-ridge-fl": {
+    "fotos": [
+      {
+        "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
+        "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "55% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-01-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-01-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-01-p-1080.jpg 1080w, /images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg 1250w",
+        "alt": "Luxury custom pool and spa construction featuring modern design, premium pavers, and outdoor living spaces built by expert pool builders in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 60%"
+      },
+      {
+        "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-04-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-04-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-04-p-1080.jpg 1080w, /images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg 1250w",
+        "alt": "Modern pool renovation with raised spa and clean architectural lines, designed and installed by professional pool builders in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 60%"
+      },
+      {
+        "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
+        "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "70% 65%"
+      },
+      {
+        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
+        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "45% 80%"
+      }
+    ]
+  },
+  "/services/pool-builders/old-town-fl": {
+    "fotos": [
+      {
+        "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
+        "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "55% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-01-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-01-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-01-p-1080.jpg 1080w, /images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg 1250w",
+        "alt": "Luxury custom pool and spa construction featuring modern design, premium pavers, and outdoor living spaces built by expert pool builders in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 60%"
+      },
+      {
+        "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-04-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-04-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-04-p-1080.jpg 1080w, /images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg 1250w",
+        "alt": "Modern pool renovation with raised spa and clean architectural lines, designed and installed by professional pool builders in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 60%"
+      },
+      {
+        "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
+        "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "70% 65%"
+      },
+      {
+        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
+        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "45% 80%"
+      }
+    ]
+  },
+  "/services/pool-builders/palatka-fl": {
+    "fotos": [
+      {
+        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
+        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "45% 80%"
+      },
+      {
+        "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-03-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-03-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-03-p-1080.jpg 1080w, /images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg 1250w",
+        "alt": "Elegant residential pool and spa design with premium finishes and tropical landscaping, crafted by custom pool builders in South Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-06-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-06-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-06-p-1080.jpg 1080w, /images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg 1250w",
+        "alt": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "65% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-09-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-09-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-09-p-1080.jpg 1080w, /images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg 1250w",
+        "alt": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "50% 75%"
+      },
+      {
+        "src": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-02-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-02-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-02-p-1080.jpg 1080w, /images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg 1250w",
+        "alt": "Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.",
+        "ancho": 1250,
+        "alto": 937,
+        "pos": "50% 50%"
+      }
+    ]
+  },
+  "/services/pool-builders/palm-beach-gardens-fl": {
+    "fotos": [
+      {
+        "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
+        "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "70% 65%"
+      },
+      {
+        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
+        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "45% 80%"
+      },
+      {
+        "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-03-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-03-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-03-p-1080.jpg 1080w, /images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg 1250w",
+        "alt": "Elegant residential pool and spa design with premium finishes and tropical landscaping, crafted by custom pool builders in South Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-06-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-06-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-06-p-1080.jpg 1080w, /images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg 1250w",
+        "alt": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "65% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-09-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-09-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-09-p-1080.jpg 1080w, /images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg 1250w",
+        "alt": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "50% 75%"
+      }
+    ]
+  },
+  "/services/pool-builders/parkland-fl": {
+    "fotos": [
+      {
+        "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
+        "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "70% 65%"
+      },
+      {
+        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
+        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "45% 80%"
+      },
+      {
+        "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-03-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-03-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-03-p-1080.jpg 1080w, /images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg 1250w",
+        "alt": "Elegant residential pool and spa design with premium finishes and tropical landscaping, crafted by custom pool builders in South Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-06-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-06-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-06-p-1080.jpg 1080w, /images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg 1250w",
+        "alt": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "65% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-09-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-09-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-09-p-1080.jpg 1080w, /images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg 1250w",
+        "alt": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "50% 75%"
+      }
+    ]
+  },
+  "/services/pool-builders/pembroke-pines-fl": {
+    "fotos": [
+      {
+        "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
+        "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "55% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-01-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-01-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-01-p-1080.jpg 1080w, /images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg 1250w",
+        "alt": "Luxury custom pool and spa construction featuring modern design, premium pavers, and outdoor living spaces built by expert pool builders in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 60%"
+      },
+      {
+        "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-04-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-04-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-04-p-1080.jpg 1080w, /images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg 1250w",
+        "alt": "Modern pool renovation with raised spa and clean architectural lines, designed and installed by professional pool builders in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 60%"
+      },
+      {
+        "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
+        "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "70% 65%"
+      },
+      {
+        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
+        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "45% 80%"
+      }
+    ]
+  },
+  "/services/pool-builders/plantation-fl": {
+    "fotos": [
+      {
+        "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-04-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-04-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-04-p-1080.jpg 1080w, /images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg 1250w",
+        "alt": "Modern pool renovation with raised spa and clean architectural lines, designed and installed by professional pool builders in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 60%"
+      },
+      {
+        "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
+        "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "70% 65%"
+      },
+      {
+        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
+        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "45% 80%"
+      },
+      {
+        "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-03-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-03-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-03-p-1080.jpg 1080w, /images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg 1250w",
+        "alt": "Elegant residential pool and spa design with premium finishes and tropical landscaping, crafted by custom pool builders in South Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-06-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-06-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-06-p-1080.jpg 1080w, /images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg 1250w",
+        "alt": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "65% 55%"
+      }
+    ]
+  },
+  "/services/pool-builders/pompano-beach-fl": {
+    "fotos": [
+      {
+        "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-04-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-04-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-04-p-1080.jpg 1080w, /images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg 1250w",
+        "alt": "Modern pool renovation with raised spa and clean architectural lines, designed and installed by professional pool builders in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 60%"
+      },
+      {
+        "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
+        "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "70% 65%"
+      },
+      {
+        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
+        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "45% 80%"
+      },
+      {
+        "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-03-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-03-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-03-p-1080.jpg 1080w, /images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg 1250w",
+        "alt": "Elegant residential pool and spa design with premium finishes and tropical landscaping, crafted by custom pool builders in South Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-06-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-06-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-06-p-1080.jpg 1080w, /images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg 1250w",
+        "alt": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "65% 55%"
+      }
+    ]
+  },
+  "/services/pool-builders/reddick-fl": {
+    "fotos": [
+      {
+        "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-09-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-09-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-09-p-1080.jpg 1080w, /images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg 1250w",
+        "alt": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "50% 75%"
+      },
+      {
+        "src": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-02-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-02-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-02-p-1080.jpg 1080w, /images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg 1250w",
+        "alt": "Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.",
+        "ancho": 1250,
+        "alto": 937,
+        "pos": "50% 50%"
+      },
+      {
+        "src": "/images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-05-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-05-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-05-p-1080.jpg 1080w, /images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg 1250w",
+        "alt": "Luxury outdoor pool featuring waterfall spa and covered patio area, built by experienced custom pool and outdoor living contractors in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "78% 50%"
+      },
+      {
+        "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
+        "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "55% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-01-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-01-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-01-p-1080.jpg 1080w, /images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg 1250w",
+        "alt": "Luxury custom pool and spa construction featuring modern design, premium pavers, and outdoor living spaces built by expert pool builders in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 60%"
+      }
+    ]
+  },
+  "/services/pool-builders/royal-palm-beach-fl": {
+    "fotos": [
+      {
+        "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-09-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-09-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-09-p-1080.jpg 1080w, /images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg 1250w",
+        "alt": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "50% 75%"
+      },
+      {
+        "src": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-02-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-02-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-02-p-1080.jpg 1080w, /images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg 1250w",
+        "alt": "Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.",
+        "ancho": 1250,
+        "alto": 937,
+        "pos": "50% 50%"
+      },
+      {
+        "src": "/images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-05-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-05-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-05-p-1080.jpg 1080w, /images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg 1250w",
+        "alt": "Luxury outdoor pool featuring waterfall spa and covered patio area, built by experienced custom pool and outdoor living contractors in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "78% 50%"
+      },
+      {
+        "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
+        "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "55% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-01-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-01-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-01-p-1080.jpg 1080w, /images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg 1250w",
+        "alt": "Luxury custom pool and spa construction featuring modern design, premium pavers, and outdoor living spaces built by expert pool builders in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 60%"
+      }
+    ]
+  },
+  "/services/pool-builders/south-palm-beach-fl": {
+    "fotos": [
+      {
+        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
+        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "45% 80%"
+      },
+      {
+        "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-03-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-03-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-03-p-1080.jpg 1080w, /images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg 1250w",
+        "alt": "Elegant residential pool and spa design with premium finishes and tropical landscaping, crafted by custom pool builders in South Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-06-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-06-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-06-p-1080.jpg 1080w, /images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg 1250w",
+        "alt": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "65% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-09-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-09-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-09-p-1080.jpg 1080w, /images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg 1250w",
+        "alt": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "50% 75%"
+      },
+      {
+        "src": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-02-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-02-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-02-p-1080.jpg 1080w, /images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg 1250w",
+        "alt": "Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.",
+        "ancho": 1250,
+        "alto": 937,
+        "pos": "50% 50%"
+      }
+    ]
+  },
+  "/services/pool-builders/southwest-ranches-fl": {
+    "fotos": [
+      {
+        "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
+        "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "55% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-01-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-01-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-01-p-1080.jpg 1080w, /images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg 1250w",
+        "alt": "Luxury custom pool and spa construction featuring modern design, premium pavers, and outdoor living spaces built by expert pool builders in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 60%"
+      },
+      {
+        "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-04-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-04-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-04-p-1080.jpg 1080w, /images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg 1250w",
+        "alt": "Modern pool renovation with raised spa and clean architectural lines, designed and installed by professional pool builders in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 60%"
+      },
+      {
+        "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
+        "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "70% 65%"
+      },
+      {
+        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
+        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "45% 80%"
+      }
+    ]
+  },
+  "/services/pool-builders/tequesta-fl": {
+    "fotos": [
+      {
+        "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
+        "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "55% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-01-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-01-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-01-p-1080.jpg 1080w, /images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg 1250w",
+        "alt": "Luxury custom pool and spa construction featuring modern design, premium pavers, and outdoor living spaces built by expert pool builders in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 60%"
+      },
+      {
+        "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-04-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-04-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-04-p-1080.jpg 1080w, /images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg 1250w",
+        "alt": "Modern pool renovation with raised spa and clean architectural lines, designed and installed by professional pool builders in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 60%"
+      },
+      {
+        "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
+        "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "70% 65%"
+      },
+      {
+        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
+        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "45% 80%"
+      }
+    ]
+  },
+  "/services/pool-builders/trenton-fl": {
+    "fotos": [
+      {
+        "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
+        "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "55% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-01-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-01-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-01-p-1080.jpg 1080w, /images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg 1250w",
+        "alt": "Luxury custom pool and spa construction featuring modern design, premium pavers, and outdoor living spaces built by expert pool builders in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 60%"
+      },
+      {
+        "src": "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-04-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-04-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-04-p-1080.jpg 1080w, /images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg 1250w",
+        "alt": "Modern pool renovation with raised spa and clean architectural lines, designed and installed by professional pool builders in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 60%"
+      },
+      {
+        "src": "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-07-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-07-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-07-p-1080.jpg 1080w, /images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg 1250w",
+        "alt": "Custom pool and spa construction with integrated pergola by experienced builders in North & South Florida, designed for upscale outdoor living.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "70% 65%"
+      },
+      {
+        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
+        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "45% 80%"
+      }
+    ]
+  },
+  "/services/pool-builders/waldo-fl": {
+    "fotos": [
+      {
+        "src": "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-10-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-10-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-10-p-1080.jpg 1080w, /images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg 1250w",
+        "alt": "Modern residential pool with raised spa built by professional pool builders in North & South Florida, featuring clean lines, premium tile, and expert installation.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "45% 80%"
+      },
+      {
+        "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-03-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-03-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-03-p-1080.jpg 1080w, /images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg 1250w",
+        "alt": "Elegant residential pool and spa design with premium finishes and tropical landscaping, crafted by custom pool builders in South Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-06-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-06-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-06-p-1080.jpg 1080w, /images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg 1250w",
+        "alt": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "65% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-09-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-09-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-09-p-1080.jpg 1080w, /images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg 1250w",
+        "alt": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "50% 75%"
+      },
+      {
+        "src": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-02-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-02-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-02-p-1080.jpg 1080w, /images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg 1250w",
+        "alt": "Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.",
+        "ancho": 1250,
+        "alto": 937,
+        "pos": "50% 50%"
+      }
+    ]
+  },
+  "/services/pool-builders/wellington-fl": {
+    "fotos": [
+      {
+        "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-06-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-06-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-06-p-1080.jpg 1080w, /images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg 1250w",
+        "alt": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "65% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-09-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-09-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-09-p-1080.jpg 1080w, /images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg 1250w",
+        "alt": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "50% 75%"
+      },
+      {
+        "src": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-02-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-02-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-02-p-1080.jpg 1080w, /images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg 1250w",
+        "alt": "Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.",
+        "ancho": 1250,
+        "alto": 937,
+        "pos": "50% 50%"
+      },
+      {
+        "src": "/images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-05-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-05-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-05-p-1080.jpg 1080w, /images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg 1250w",
+        "alt": "Luxury outdoor pool featuring waterfall spa and covered patio area, built by experienced custom pool and outdoor living contractors in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "78% 50%"
+      },
+      {
+        "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
+        "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "55% 55%"
+      }
+    ]
+  },
+  "/services/pool-builders/west-palm-beach-fl": {
+    "fotos": [
+      {
+        "src": "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-03-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-03-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-03-p-1080.jpg 1080w, /images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg 1250w",
+        "alt": "Elegant residential pool and spa design with premium finishes and tropical landscaping, crafted by custom pool builders in South Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-06-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-06-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-06-p-1080.jpg 1080w, /images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg 1250w",
+        "alt": "High-end swimming pool with integrated spa and palm-lined views, showcasing expert pool construction services across North and South Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "65% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-09-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-09-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-09-p-1080.jpg 1080w, /images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg 1250w",
+        "alt": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "50% 75%"
+      },
+      {
+        "src": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-02-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-02-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-02-p-1080.jpg 1080w, /images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg 1250w",
+        "alt": "Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.",
+        "ancho": 1250,
+        "alto": 937,
+        "pos": "50% 50%"
+      },
+      {
+        "src": "/images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-05-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-05-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-05-p-1080.jpg 1080w, /images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg 1250w",
+        "alt": "Luxury outdoor pool featuring waterfall spa and covered patio area, built by experienced custom pool and outdoor living contractors in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "78% 50%"
+      }
+    ]
+  },
+  "/services/pool-builders/weston-fl": {
+    "fotos": [
+      {
+        "src": "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-09-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-09-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-09-p-1080.jpg 1080w, /images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg 1250w",
+        "alt": "Luxury backyard pool and spa installation by licensed contractors in North & South Florida, showcasing expansive deck space and resort-style design.",
+        "ancho": 1250,
+        "alto": 933,
+        "pos": "50% 75%"
+      },
+      {
+        "src": "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-02-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-02-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-02-p-1080.jpg 1080w, /images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg 1250w",
+        "alt": "Aerial view of a custom-built luxury pool with integrated spa, showcasing precision pool construction by licensed Florida pool contractors.",
+        "ancho": 1250,
+        "alto": 937,
+        "pos": "50% 50%"
+      },
+      {
+        "src": "/images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-05-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-05-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-05-p-1080.jpg 1080w, /images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg 1250w",
+        "alt": "Luxury outdoor pool featuring waterfall spa and covered patio area, built by experienced custom pool and outdoor living contractors in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "78% 50%"
+      },
+      {
+        "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-08-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-08-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-08-p-1080.jpg 1080w, /images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg 1250w",
+        "alt": "High-end pool installation by professional contractors in North & South Florida, featuring lake-view setting, modern finishes, and precise construction.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "55% 55%"
+      },
+      {
+        "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
+        "srcset": "/images/site/custom-pool-spa-builders-florida-01-p-500.jpg 500w, /images/site/custom-pool-spa-builders-florida-01-p-800.jpg 800w, /images/site/custom-pool-spa-builders-florida-01-p-1080.jpg 1080w, /images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg 1250w",
+        "alt": "Luxury custom pool and spa construction featuring modern design, premium pavers, and outdoor living spaces built by expert pool builders in Florida.",
+        "ancho": 1250,
+        "alto": 698,
+        "pos": "50% 60%"
+      }
+    ]
+  },
+  "/services/pool-builders/williston-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg",
@@ -3071,7 +3072,7 @@
       }
     ]
   },
-  "/pool-builders/wilton-manors-florida": {
+  "/services/pool-builders/wilton-manors-fl": {
     "fotos": [
       {
         "src": "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg",

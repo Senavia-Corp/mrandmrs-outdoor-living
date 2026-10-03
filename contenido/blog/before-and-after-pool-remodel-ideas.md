@@ -31,16 +31,16 @@
   },
   "figuras": [
     {
-      "ref": "remodeling-2",
-      "alt": "Rectangular pool with three spillway scuppers set into a rendered wall, a fire bowl on the deck and bougainvillea behind it."
+      "ref": "mrandmrs-pool-spa-a2-blog-project-062-08",
+      "alt": "Pool with a raised spa bubbling at its far edge, white coping, a white lounger by the steps and trees behind a white fence."
     },
     {
-      "ref": "remodeling-1",
-      "alt": "Pool with an attached spa and travertine coping, two lounge chairs standing in the shallow water at the edge and patio furniture under the lanai behind."
+      "ref": "bi-0539",
+      "alt": "Empty pool with a wide, still-unfinished sun shelf at one end, new blue mosaic waterline tile and a travertine deck."
     },
     {
-      "ref": "remodeling-8",
-      "alt": "Aerial view of a house and pool ringed by palms, with a daybed under the porch, an outdoor kitchen beneath a metal roof and a red cornhole board on the lawn."
+      "ref": "bi-0508",
+      "alt": "Pool with deep blue water and a blue-tiled raised spa, framed by a wide ivory travertine deck and a strip of artificial turf."
     }
   ],
   "faq": [
@@ -128,7 +128,7 @@ Most old pools have nothing vertical in the frame except the house and a fence. 
 
 It also adds movement and sound, which is the part that does not show up in any photograph and is the reason people keep sitting outside. The scope jump depends entirely on which one you pick: our estimator prices a pergola at $8,500, and a raised spa has its own line below. A rendered wall is priced by what it is built from and what it is founded on, which is why it belongs in the site conversation rather than in a table.
 
-{{figura: remodeling-2}}
+{{figura: mrandmrs-pool-spa-a2-blog-project-062-08}}
 
 ## The three that change the shape of what you are looking at
 
@@ -140,7 +140,7 @@ A spa set flush with the deck disappears from every photo taken at standing heig
 
 A ledge changes the outline of the water, which is the shape your eye actually reads. It also changes where people sit, which changes how the yard looks when it is in use rather than staged. This is structural work — the shell gets cut and formed — so it belongs in the scope from the start, not in a second visit.
 
-{{figura: remodeling-1}}
+{{figura: bi-0539}}
 
 ### 7. How much deck there is, not what it is made of
 
@@ -156,7 +156,7 @@ The finish is the largest visual change from above and from the far end of the y
 
 It is a reason to stop treating the color sample as the centerpiece of the design meeting. Pick it for service life first. Whatever color you land on, the water will read as sky from where you stand and as the finish from the drone.
 
-{{figura: remodeling-8}}
+{{figura: bi-0508}}
 
 ### 9. Light
 
@@ -191,4 +191,4 @@ Ask for the design conversation in the order of this article rather than in the 
 
 Then ask for one thing at the end: a photograph from the spot you stand in most often — usually the patio door — and a sketch or render from that same spot. Not the drone view. If the design does not work from the doorway, it does not matter how it looks from forty feet up, because that is not where you will ever be standing.
 
-Our own scope on a [complete pool remodel](/services/pool-remodeling-renovation-in-north-south-florida) is organized the same way, and the [pool cost estimator](/pool-cost-estimator) uses the figures quoted throughout this article if you want to test a budget before anyone visits. A [project estimate](/request-estimated) starts in the yard, at the doorway, looking at the same view you do.
+Our own scope on a [complete pool remodel](/services/pool-remodeling) is organized the same way, and the [pool cost estimator](/pool-cost-estimator) uses the figures quoted throughout this article if you want to test a budget before anyone visits. A [project estimate](/request-estimated) starts in the yard, at the doorway, looking at the same view you do.

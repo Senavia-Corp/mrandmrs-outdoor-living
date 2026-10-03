@@ -139,55 +139,55 @@
    "sha": "527b5f0",
    "motivo": "D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
   },
-  "/country/custom-pool-builders-alachua-county-fl": {
+  "/services/pool-builders/alachua-county-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/country/custom-pool-builders-broward-county-fl": {
+  "/services/pool-builders/broward-county-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/country/custom-pool-builders-columbia-county-fl": {
+  "/services/pool-builders/columbia-county-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/country/custom-pool-builders-dixie-county-fl": {
+  "/services/pool-builders/dixie-county-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/country/custom-pool-builders-gilchrist-county-fl": {
+  "/services/pool-builders/gilchrist-county-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/country/custom-pool-builders-levy-county-fl": {
+  "/services/pool-builders/levy-county-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/country/custom-pool-builders-marion-county-fl": {
+  "/services/pool-builders/marion-county-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/country/custom-pool-builders-palm-beach-county-fl": {
+  "/services/pool-builders/palm-beach-county-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/country/custom-pool-builders-putnam-county-fl": {
+  "/services/pool-builders/putnam-county-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
@@ -203,7 +203,7 @@
    "contrato": "rediseno",
    "fecha": "2026-09-02",
    "sha": "por-asignar",
-   "motivo": "R12-GAL: La rejilla de obra pasa de caja de altura FIJA (250 px) a relacion 3:2 declarada. Medido: a 768 px la caja era MAS ALTA QUE ANCHA (0,907) —una piscina apaisada en un retrato, tirando el 49,4 % de la foto— y a 992 la pieza se ENCOGIA al ensanchar la ventana (296 px contra 301 a 991). El recorte medio ponderado sobre las 129 fotos con relacion medida baja del 42,2 % al 14,6 %, y las fotos por encima del 25 % de recorte pasan de 124 a 6. Filtro con objetivo tactil de 44 px y anillo de foco navy en vez del azul de Webflow. Commiteado o aplicado por el propio frente; PENDIENTE de la aprobacion visual de Sebastian ante el director antes de re-baselinizar."
+   "motivo": "R12-GAL: La rejilla de obra pasa de caja de altura FIJA (250 px) a relacion 3:2 declarada. Medido: a 768 px la caja era MAS ALTA QUE ANCHA (0,907) —una piscina apaisada en un retrato, tirando el 49,4 % de la foto— y a 992 la pieza se ENCOGIA al ensanchar la ventana (296 px contra 301 a 991). El recorte medio ponderado sobre las 129 fotos con relacion medida baja del 42,2 % al 14,6 %, y las fotos por encima del 25 % de recorte pasan de 124 a 6. Filtro con objetivo tactil de 44 px y anillo de foco navy en vez del azul de Webflow. Commiteado o aplicado por el propio frente; PENDIENTE de la aprobacion visual de Sebastian ante el director antes de re-baselinizar. · GALERIA-CATEGORIAS (2-oct-2026): diez tarjetas de categoria delante del filtro, cada una a su /gallery/<slug>, y las fotos del banco de esas categorias anadidas a la rejilla. PENDIENTE de aprobacion visual."
   },
   "/industry-solutions": {
    "contrato": "rediseno",
@@ -211,319 +211,319 @@
    "sha": "527b5f0",
    "motivo": "D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479."
   },
-  "/pool-builders/alachua-florida": {
+  "/services/pool-builders/alachua-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/archer-florida": {
+  "/services/pool-builders/archer-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/atlantis-florida": {
+  "/services/pool-builders/atlantis-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/beach-florida": {
+  "/services/pool-builders/hillsboro-beach-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/boca-raton-florida": {
+  "/services/pool-builders/boca-raton-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/boynton-beach-florida": {
+  "/services/pool-builders/boynton-beach-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/cedar-key-florida": {
+  "/services/pool-builders/cedar-key-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/chiefland-florida": {
+  "/services/pool-builders/chiefland-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/cross-city-florida": {
+  "/services/pool-builders/cross-city-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/dania-beach-florida": {
+  "/services/pool-builders/dania-beach-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/davie-florida": {
+  "/services/pool-builders/davie-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/deerfield-beach-florida": {
+  "/services/pool-builders/deerfield-beach-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/delray-beach-florida": {
+  "/services/pool-builders/delray-beach-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/fanning-springs-florida": {
+  "/services/pool-builders/fanning-springs-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/fort-lauderdale-florida": {
+  "/services/pool-builders/fort-lauderdale-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/gainesville-florida": {
+  "/services/pool-builders/gainesville-fl": {
    "contrato": "rediseno",
-   "fecha": "2026-08-31",
-   "sha": "527b5f0",
-   "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva). · R20-CIUDADES (14-sep-2026): esta ruta es la Final URL de un ad group activo y gana la capa de captacion — franja de confianza delante del formulario, formulario propio con ancla #estimate, banda de inversion sin cifras y una FAQ con collage que estas rutas no tenian. El heroe cambia su CTA a #estimate y suma los dos telefonos con tel: y la linea de licencias. La pagina crece entre 677 y 987 px segun el ancho (medido con check:visual a 479/991/1440/1920), asi que las cuatro comparaciones salen rojas contra una referencia del 31-ago-2026 que es ANTERIOR al cambio. ROJO CORRECTO. La referencia sigue siendo la de 527b5f0 y sigue PENDIENTE de que Sebastian mire las capturas de audit/r20-ciudades/ y corra aprobar-diseno.mjs, que exige humano."
+   "fecha": "2026-10-01",
+   "sha": "ff00adb",
+   "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva). · R20-CIUDADES (14-sep-2026): esta ruta es la Final URL de un ad group activo y gana la capa de captacion — franja de confianza delante del formulario, formulario propio con ancla #estimate, banda de inversion sin cifras y una FAQ con collage que estas rutas no tenian. El heroe cambia su CTA a #estimate y suma los dos telefonos con tel: y la linea de licencias. La pagina crece entre 677 y 987 px segun el ancho (medido con check:visual a 479/991/1440/1920), asi que las cuatro comparaciones salen rojas contra una referencia del 31-ago-2026 que es ANTERIOR al cambio. ROJO CORRECTO. La referencia sigue siendo la de 527b5f0 y sigue PENDIENTE de que Sebastian mire las capturas de audit/r20-ciudades/ y corra aprobar-diseno.mjs, que exige humano. · SEO-SAFE (1-oct-2026): Sebastian miro las capturas de audit/seo-safe/ (4 anchos) y aprobo la referencia en el chat; re-baselinizada con aprobar-diseno.mjs sobre el build de cd2ab3b/ff00adb. Incluye la capa de captacion de R20 y las filas de FAQ de SEO-SAFE (hub: 3 preguntas nuevas, 222-268 px; ciudades: 1 pregunta sobre la oficina de permisos, 74-90 px)."
   },
-  "/pool-builders/gulf-stream-florida": {
-   "contrato": "rediseno",
-   "fecha": "2026-08-31",
-   "sha": "527b5f0",
-   "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
-  },
-  "/pool-builders/hallandale-beach-florida": {
+  "/services/pool-builders/gulf-stream-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/hawthorne-florida": {
+  "/services/pool-builders/hallandale-beach-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/high-springs-florida": {
+  "/services/pool-builders/hawthorne-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/hollywood-florida": {
+  "/services/pool-builders/high-springs-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/hypoluxo-florida": {
+  "/services/pool-builders/hollywood-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/juno-beach-florida": {
+  "/services/pool-builders/hypoluxo-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/jupiter-florida": {
+  "/services/pool-builders/juno-beach-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/lake-city-florida": {
+  "/services/pool-builders/jupiter-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/lighthouse-point-florida": {
+  "/services/pool-builders/lake-city-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/manalapan-florida": {
+  "/services/pool-builders/lighthouse-point-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/mcintosh-florida": {
+  "/services/pool-builders/manalapan-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/micanopy-florida": {
+  "/services/pool-builders/mcintosh-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/miramar-florida": {
+  "/services/pool-builders/micanopy-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/newberry-florida": {
+  "/services/pool-builders/miramar-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/north-palm-beach-florida": {
+  "/services/pool-builders/newberry-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/ocala-florida": {
-   "contrato": "rediseno",
-   "fecha": "2026-08-31",
-   "sha": "527b5f0",
-   "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva). · R20-CIUDADES (14-sep-2026): esta ruta es la Final URL de un ad group activo y gana la capa de captacion — franja de confianza delante del formulario, formulario propio con ancla #estimate, banda de inversion sin cifras y una FAQ con collage que estas rutas no tenian. El heroe cambia su CTA a #estimate y suma los dos telefonos con tel: y la linea de licencias. La pagina crece entre 677 y 987 px segun el ancho (medido con check:visual a 479/991/1440/1920), asi que las cuatro comparaciones salen rojas contra una referencia del 31-ago-2026 que es ANTERIOR al cambio. ROJO CORRECTO. La referencia sigue siendo la de 527b5f0 y sigue PENDIENTE de que Sebastian mire las capturas de audit/r20-ciudades/ y corra aprobar-diseno.mjs, que exige humano."
-  },
-  "/pool-builders/ocean-ridge-florida": {
+  "/services/pool-builders/north-palm-beach-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/old-town-florida": {
+  "/services/pool-builders/ocala-fl": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-01",
+   "sha": "ff00adb",
+   "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva). · R20-CIUDADES (14-sep-2026): esta ruta es la Final URL de un ad group activo y gana la capa de captacion — franja de confianza delante del formulario, formulario propio con ancla #estimate, banda de inversion sin cifras y una FAQ con collage que estas rutas no tenian. El heroe cambia su CTA a #estimate y suma los dos telefonos con tel: y la linea de licencias. La pagina crece entre 677 y 987 px segun el ancho (medido con check:visual a 479/991/1440/1920), asi que las cuatro comparaciones salen rojas contra una referencia del 31-ago-2026 que es ANTERIOR al cambio. ROJO CORRECTO. La referencia sigue siendo la de 527b5f0 y sigue PENDIENTE de que Sebastian mire las capturas de audit/r20-ciudades/ y corra aprobar-diseno.mjs, que exige humano. · SEO-SAFE (1-oct-2026): Sebastian miro las capturas de audit/seo-safe/ (4 anchos) y aprobo la referencia en el chat; re-baselinizada con aprobar-diseno.mjs sobre el build de cd2ab3b/ff00adb. Incluye la capa de captacion de R20 y las filas de FAQ de SEO-SAFE (hub: 3 preguntas nuevas, 222-268 px; ciudades: 1 pregunta sobre la oficina de permisos, 74-90 px)."
+  },
+  "/services/pool-builders/ocean-ridge-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/palatka-florida": {
+  "/services/pool-builders/old-town-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/palm-beach-gardens-florida": {
+  "/services/pool-builders/palatka-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/parkland-florida": {
+  "/services/pool-builders/palm-beach-gardens-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/pembroke-pines-florida": {
+  "/services/pool-builders/parkland-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/plantation-florida": {
+  "/services/pool-builders/pembroke-pines-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/pompano-beach-florida": {
+  "/services/pool-builders/plantation-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/reddick-florida": {
+  "/services/pool-builders/pompano-beach-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/royal-palm-beach-florida": {
+  "/services/pool-builders/reddick-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/south-palm-beach-florida": {
+  "/services/pool-builders/royal-palm-beach-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/southwest-ranches-florida": {
+  "/services/pool-builders/south-palm-beach-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/tequesta-florida": {
+  "/services/pool-builders/southwest-ranches-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/trenton-florida": {
+  "/services/pool-builders/tequesta-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/waldo-florida": {
+  "/services/pool-builders/trenton-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/wellington-florida": {
+  "/services/pool-builders/waldo-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/west-palm-beach-florida": {
+  "/services/pool-builders/wellington-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/weston-florida": {
+  "/services/pool-builders/west-palm-beach-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/williston-florida": {
+  "/services/pool-builders/weston-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
    "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
   },
-  "/pool-builders/wilton-manors-florida": {
+  "/services/pool-builders/williston-fl": {
+   "contrato": "rediseno",
+   "fecha": "2026-08-31",
+   "sha": "527b5f0",
+   "motivo": "R9-BLOG-01: la seccion de blog en carrusel de 3, con h4->h3 y flecha navy · D2: las resenas de Google nativas, en sustitucion del widget de Elfsight. Aprobado por Sebastian el 31-ago-2026 mirando las capturas de las tres secciones a 1440 y 479. · R11-BLOG-02 (3-sep-2026): el carrusel de blog pasa de HTML fijo a componente CarruselBlog (mismo dato de src/data/blogs.json, mismo marcado, mismo encabezado por ruta) — medido pixel a pixel identico en Marion County a 991px antes de aplicarlo a las 62 rutas. Pendiente de aprobar mirando las capturas: la referencia sigue siendo la del 31-ago-2026, capturada ANTES de R13-COLOR, asi que ya no coincide por motivos ajenos a este cambio (verificado en una ficha de services/ sin tocar hoy, con la misma deriva)."
+  },
+  "/services/pool-builders/wilton-manors-fl": {
    "contrato": "rediseno",
    "fecha": "2026-08-31",
    "sha": "527b5f0",
@@ -571,85 +571,85 @@
    "sha": "por-asignar",
    "motivo": "R12-EST: La pagina de conversion, elevada entera. De 24 pares de color, 18 suspendian 4,5:1; ahora 0. Objetivos tactiles: casilla de 13 a 24 px, boton de envio de 36,4 a 53 px a 479, y cero controles por debajo del suelo en los seis anchos. Y un defecto que no ve ninguna captura: con el widget de Turnstile pintado el boton de envio quedaba LADO A LADO con el, y el CTA se salia de la pantalla (scrollWidth 485 contra 479 de ventana; 433 contra 375). Apilado en los seis anchos. Commiteado o aplicado por el propio frente; PENDIENTE de la aprobacion visual de Sebastian ante el director antes de re-baselinizar."
   },
-  "/services/custom-aluminum-pergola-builders-in-north-south-florida": {
+  "/services/pergola-builders": {
    "contrato": "rediseno",
    "fecha": "2026-09-13",
    "sha": "b78b889",
    "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
   },
-  "/services/custom-deck-builders-in-north-south-florida": {
+  "/services/deck-builders": {
    "contrato": "rediseno",
    "fecha": "2026-09-13",
    "sha": "b78b889",
    "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
   },
-  "/services/custom-outdoor-kitchens-for-north-south-florida-homes": {
+  "/services/outdoor-kitchens": {
    "contrato": "rediseno",
    "fecha": "2026-09-13",
    "sha": "b78b889",
    "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
   },
-  "/services/custom-pool-spa-builders-in-north-south-florida": {
+  "/services/pool-builders": {
    "contrato": "rediseno",
    "fecha": "2026-09-13",
    "sha": "b78b889",
    "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
   },
-  "/services/motorized-louvered-roof-systems-in-north-south-florida": {
+  "/services/louvered-roofs": {
    "contrato": "rediseno",
    "fecha": "2026-09-13",
    "sha": "b78b889",
    "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
   },
-  "/services/motorized-retractable-screens-in-north-south-florida": {
+  "/services/retractable-screens": {
    "contrato": "rediseno",
    "fecha": "2026-09-13",
    "sha": "b78b889",
    "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
   },
-  "/services/patio-screen-rooms-enclosures-in-north-south-florida": {
+  "/services/patio-screen-rooms": {
    "contrato": "rediseno",
    "fecha": "2026-09-13",
    "sha": "b78b889",
    "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
   },
-  "/services/pool-remodeling-renovation-in-north-south-florida": {
+  "/services/pool-remodeling": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-01",
+   "sha": "ff00adb",
+   "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build. · SEO-SAFE (1-oct-2026): Sebastian miro las capturas de audit/seo-safe/ (4 anchos) y aprobo la referencia en el chat; re-baselinizada con aprobar-diseno.mjs sobre el build de cd2ab3b/ff00adb. Incluye la capa de captacion de R20 y las filas de FAQ de SEO-SAFE (hub: 3 preguntas nuevas, 222-268 px; ciudades: 1 pregunta sobre la oficina de permisos, 74-90 px)."
+  },
+  "/services/pool-screen-enclosures": {
    "contrato": "rediseno",
    "fecha": "2026-09-13",
    "sha": "b78b889",
    "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
   },
-  "/services/pool-screen-enclosures-for-north-south-florida-pools": {
+  "/services/outdoor-furniture": {
    "contrato": "rediseno",
    "fecha": "2026-09-13",
    "sha": "b78b889",
    "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
   },
-  "/services/premium-outdoor-furniture-for-north-south-florida-homes": {
+  "/services/landscaping": {
    "contrato": "rediseno",
    "fecha": "2026-09-13",
    "sha": "b78b889",
    "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
   },
-  "/services/professional-landscaping-services-in-north-south-florida": {
+  "/services/irrigation-systems": {
    "contrato": "rediseno",
    "fecha": "2026-09-13",
    "sha": "b78b889",
    "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
   },
-  "/services/smart-irrigation-system-installation-in-north-south-florida": {
+  "/services/soffit-led-lighting": {
    "contrato": "rediseno",
    "fecha": "2026-09-13",
    "sha": "b78b889",
    "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
   },
-  "/services/smart-soffit-led-lighting-installation-in-north-south-florida": {
-   "contrato": "rediseno",
-   "fecha": "2026-09-13",
-   "sha": "b78b889",
-   "motivo": "FAQ-COLLAGE (13-sep-2026). La seccion de preguntas frecuentes pasa a DOS COLUMNAS: a la izquierda un collage de cinco fotos reales de obra terminada del servicio de la ruta, sacadas de /gallery y elegidas por hoja de contactos; a la derecha el titulo, la entradilla y los acordeones. El collage es `sticky` y acompaña a las respuestas al abrirlas; por debajo de 992 es una tira compacta de tres fotos de 128 px, con las preguntas justo detras. Entra ademas el pulido de los acordeones -radio a --mm-r-16, borde a --mm-borde-control (3,03:1) y los estados de hover, foco y abierto, que no existian- y una entrada escalonada al asomar en pantalla. El texto NO se mueve: medido quitando el collage del DOM, el innerText es identico en las 16 rutas a 1440 y a 479. Aprobado por Sebastian el 13-sep-2026 tras mirar las dos variantes de composicion (gano la A), los fotogramas de la animacion y los 16 collages renderizados desde el build."
-  },
-  "/services/steel-building-pole-barn-construction-in-north-south-florida": {
+  "/services/steel-buildings-pole-barns": {
    "contrato": "rediseno",
    "fecha": "2026-09-13",
    "sha": "b78b889",
@@ -888,6 +888,84 @@
    "fecha": "2026-09-19",
    "sha": "28cd23d",
    "motivo": "BLOG-SANITY: articulo del cluster «Pool Remodeling», escrito para la ficha de Pool Remodeling. No existe en el Webflow de origen: es contenido nuevo. Ruta NUEVA: no hay captura de Webflow contra la que comparar, asi que su referencia se aprueba con scripts/aprobar-diseno.mjs."
+  },
+  "/blogs/cold-plunge-integration-florida-pool-construction": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-01",
+   "sha": "7300075",
+   "motivo": "SEO-SAFE: articulo nuevo del cluster «New Pool Construction» (categoria new-pool-construction), escrito para la ficha de Pool  Construction tras el analisis de huecos (SEO_BLOG_GAP_ANALYSIS.md). No existe en el Webflow de origen: es contenido nuevo. Ruta NUEVA: no hay captura de Webflow contra la que comparar, asi que su referencia se aprueba con scripts/aprobar-diseno.mjs."
+  },
+  "/blogs/dark-pool-finishes-in-florida": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-01",
+   "sha": "7300075",
+   "motivo": "SEO-SAFE: articulo nuevo del cluster «New Pool Construction» (categoria pool-design-planning), escrito para la ficha de Pool  Construction tras el analisis de huecos (SEO_BLOG_GAP_ANALYSIS.md). No existe en el Webflow de origen: es contenido nuevo. Ruta NUEVA: no hay captura de Webflow contra la que comparar, asi que su referencia se aprueba con scripts/aprobar-diseno.mjs."
+  },
+  "/blogs/pool-automation-for-new-construction": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-01",
+   "sha": "7300075",
+   "motivo": "SEO-SAFE: articulo nuevo del cluster «New Pool Construction» (categoria new-pool-construction), escrito para la ficha de Pool  Construction tras el analisis de huecos (SEO_BLOG_GAP_ANALYSIS.md). No existe en el Webflow de origen: es contenido nuevo. Ruta NUEVA: no hay captura de Webflow contra la que comparar, asi que su referencia se aprueba con scripts/aprobar-diseno.mjs."
+  },
+  "/gallery/pools-and-spas": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-02",
+   "sha": "por-asignar",
+   "motivo": "GALERIA-CATEGORIAS: ruta de AUTORIA PROPIA, la galeria de «Pools & Spas» (21 fotos de obra real). Sin origen en Webflow contra el que compararse. PENDIENTE de la aprobacion visual de Sebastian."
+  },
+  "/gallery/pool-remodeling": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-02",
+   "sha": "por-asignar",
+   "motivo": "GALERIA-CATEGORIAS: ruta de AUTORIA PROPIA, la galeria de «Pool Remodeling» (18 fotos de obra real). Sin origen en Webflow contra el que compararse. PENDIENTE de la aprobacion visual de Sebastian."
+  },
+  "/gallery/aluminum-pergolas": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-02",
+   "sha": "por-asignar",
+   "motivo": "GALERIA-CATEGORIAS: ruta de AUTORIA PROPIA, la galeria de «Aluminum Pergolas» (40 fotos de obra real). Sin origen en Webflow contra el que compararse. PENDIENTE de la aprobacion visual de Sebastian."
+  },
+  "/gallery/louvered-roofs": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-02",
+   "sha": "por-asignar",
+   "motivo": "GALERIA-CATEGORIAS: ruta de AUTORIA PROPIA, la galeria de «Louvered Roofs» (24 fotos de obra real). Sin origen en Webflow contra el que compararse. PENDIENTE de la aprobacion visual de Sebastian."
+  },
+  "/gallery/outdoor-kitchens": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-02",
+   "sha": "por-asignar",
+   "motivo": "GALERIA-CATEGORIAS: ruta de AUTORIA PROPIA, la galeria de «Outdoor Kitchens» (24 fotos de obra real). Sin origen en Webflow contra el que compararse. PENDIENTE de la aprobacion visual de Sebastian."
+  },
+  "/gallery/decks": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-02",
+   "sha": "por-asignar",
+   "motivo": "GALERIA-CATEGORIAS: ruta de AUTORIA PROPIA, la galeria de «Decks» (18 fotos de obra real). Sin origen en Webflow contra el que compararse. PENDIENTE de la aprobacion visual de Sebastian."
+  },
+  "/gallery/landscaping": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-02",
+   "sha": "por-asignar",
+   "motivo": "GALERIA-CATEGORIAS: ruta de AUTORIA PROPIA, la galeria de «Landscaping» (18 fotos de obra real). Sin origen en Webflow contra el que compararse. PENDIENTE de la aprobacion visual de Sebastian."
+  },
+  "/gallery/pole-barns": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-02",
+   "sha": "por-asignar",
+   "motivo": "GALERIA-CATEGORIAS: ruta de AUTORIA PROPIA, la galeria de «Pole Barns» (12 fotos de obra real). Sin origen en Webflow contra el que compararse. PENDIENTE de la aprobacion visual de Sebastian."
+  },
+  "/gallery/pool-screen-enclosures": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-02",
+   "sha": "por-asignar",
+   "motivo": "GALERIA-CATEGORIAS: ruta de AUTORIA PROPIA, la galeria de «Pool Screen Enclosures» (9 fotos de obra real). Sin origen en Webflow contra el que compararse. PENDIENTE de la aprobacion visual de Sebastian."
+  },
+  "/gallery/patio-screen-rooms": {
+   "contrato": "rediseno",
+   "fecha": "2026-10-02",
+   "sha": "por-asignar",
+   "motivo": "GALERIA-CATEGORIAS: ruta de AUTORIA PROPIA, la galeria de «Patio Screen Rooms» (10 fotos de obra real). Sin origen en Webflow contra el que compararse. PENDIENTE de la aprobacion visual de Sebastian."
   }
  }
 }

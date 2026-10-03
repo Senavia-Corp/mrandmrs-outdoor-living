@@ -26,21 +26,21 @@
   },
   "summary": "A pergola is a small project with a very short window. These seven decisions close before anything is built, most of them the day the posts go into concrete, and most people never realize they made them.",
   "portada": {
-    "ref": "pergolas-0",
-    "alt": "White aluminum pergola beside a stucco house, with a solid roof panel and a slatted side panel, over a paver patio where a row of white bar stools lines a counter."
+    "ref": "bi-1036",
+    "alt": "Bronze two-tier lattice pergola seen from the front against the sky, with palms, a hedge and a stucco house at right"
   },
   "figuras": [
     {
-      "ref": "pergolas-5",
-      "alt": "Timber pavilion with a gable roof and exposed trusses bolted with steel plates, covering an outdoor kitchen with two built-in grills, a stone island with bar stools and ceiling fans hung along the ridge."
+      "ref": "bi-1012",
+      "alt": "White patio cover across the back of a yellow two-story house, wicker lounge seats and a dining set beneath it"
     },
     {
-      "ref": "pergolas-1",
-      "alt": "Attached patio cover with translucent roof panels over a red brick paver patio, with two blue planters and a pair of metal chairs in front of the French doors of a tile-roofed stucco house."
+      "ref": "bi-1073",
+      "alt": "Underside of a dark woodgrain pergola grid under clear roof panels dotted with raindrops, a ceiling fan below"
     },
     {
-      "ref": "pergolas-8",
-      "alt": "Freestanding dark aluminum pergola with translucent roof panels beside a pool, with a slatted privacy panel under it and two thin black cables left hanging from the frame."
+      "ref": "bi-1061",
+      "alt": "Black-framed cover at night, its wood-look ceiling lit by recessed lights and a fan, boxes and a cord still on the patio"
     }
   ],
   "faq": [
@@ -108,7 +108,7 @@ Two things about the numbers on a pergola drawing are worth knowing before you r
 
 The structure should also be smaller than the paving under it, not the same size. A slab sized exactly to the pergola puts chair legs off the edge, and that is a mistake you notice every time somebody sits down.
 
-{{figura: pergolas-5}}
+{{figura: bi-1012}}
 
 ## 2. Where the posts land
 
@@ -136,7 +136,7 @@ Three things follow from the answer:
 
 - **Roof density.** Widely spaced slats read as an open frame and shade very little at midday. Tighter spacing shades more and darkens the space under it. If the hours you named are the hot middle of the day, you are probably looking for more density than the drawing shows.
 - **Which way the slats run.** Fixed slats block sun from one direction better than the other. Running them the wrong way relative to the sun at your hours produces stripes when you wanted shade.
-- **What no roof can fix.** Late afternoon sun comes in low and sideways, under any roof at any density. A west-facing patio at six o'clock is not a roof problem. It is a side problem, solved with planting, a privacy panel, or [motorized retractable screens](/services/motorized-retractable-screens-in-north-south-florida) — and if screens are even a possibility, that has consequences in decision seven.
+- **What no roof can fix.** Late afternoon sun comes in low and sideways, under any roof at any density. A west-facing patio at six o'clock is not a roof problem. It is a side problem, solved with planting, a privacy panel, or [motorized retractable screens](/services/retractable-screens) — and if screens are even a possibility, that has consequences in decision seven.
 
 The cheapest way to check any of this is to stand on the spot at the hour in question, a week before the drawing is approved. Photographs of finished structures are useful for a different purpose — our [project gallery](/gallery) shows how the same roof density reads on different houses — but they cannot tell you where your own sun is at five.
 
@@ -150,13 +150,13 @@ There are three families of pergola roof, and the choice between them is not rea
 | Translucent panels | Sheds | Gutter, downspout, and a discharge point |
 | Solid or insulated panel | Sheds | The same, plus a heavier frame and bigger footings |
 
-An open slat roof is a sun structure, not a rain structure. That is a perfectly good thing to build, as long as you know it: a dining table under open slats is fine, and an outdoor kitchen under open slats is an outdoor kitchen in the rain. If appliances are going under this structure, see [what an outdoor kitchen needs from the space around it](/services/custom-outdoor-kitchens-for-north-south-florida-homes) before you settle the roof.
+An open slat roof is a sun structure, not a rain structure. That is a perfectly good thing to build, as long as you know it: a dining table under open slats is fine, and an outdoor kitchen under open slats is an outdoor kitchen in the rain. If appliances are going under this structure, see [what an outdoor kitchen needs from the space around it](/services/outdoor-kitchens) before you settle the roof.
 
 The moment the roof sheds water, a second decision appears that most homeowners never get asked about: **where the downspout discharges.** Concentrating a roof's worth of rain next to the house foundation, onto a pool deck, or at the top of a slope toward a neighbor is a worse problem than the one the roof solved. It needs a run of pipe to somewhere that can take it, and that pipe is buried — which means it happens before the paving, not after.
 
 A solid roof also changes the structure itself. It catches wind in a way an open frame does not, which affects the frame, the footings, and what gets reviewed when the drawings are submitted. What that review involves where you live is in [whether a pergola needs a permit in Florida](/blogs/do-you-need-a-permit-for-a-pergola-in-florida).
 
-{{figura: pergolas-1}}
+{{figura: bi-1073}}
 
 ## 5. What it stands on
 
@@ -185,7 +185,7 @@ Two details that get missed even when the wiring is planned:
 
 The split is the same one that governs pool equipment: you can defer the purchase, you cannot defer the buried half. Buy the fan next year if you want. Put the conduit and the blocking in this year.
 
-{{figura: pergolas-8}}
+{{figura: bi-1061}}
 
 ## 7. What you are leaving room for
 
@@ -214,4 +214,4 @@ Those estimator figures are starting configurations, not quotes, and the estimat
 
 Every one of those seven is permanent once the structure is up. None of them are expensive to get right at the drawing stage, and all of them are expensive to correct afterwards — which is the only real argument for spending an afternoon on a roll of tape and a broom handle before anything is ordered.
 
-How we work through this sequence, and what ends up on the drawing before anything is fabricated, is on the [custom aluminum pergola builders](/services/custom-aluminum-pergola-builders-in-north-south-florida) page. A [project estimate](/request-estimated) starts with a site visit, because decisions two through five cannot be made from a floor plan.
+How we work through this sequence, and what ends up on the drawing before anything is fabricated, is on the [custom aluminum pergola builders](/services/pergola-builders) page. A [project estimate](/request-estimated) starts with a site visit, because decisions two through five cannot be made from a floor plan.

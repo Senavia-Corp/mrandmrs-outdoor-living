@@ -27,21 +27,21 @@
   },
   "summary": "A pergola beside a pool is not a pergola that happens to be near water. Four of these eight decisions stop being cheap the day the deck is poured, and the deck material decides how expensive they get.",
   "portada": {
-    "ref": "pergolas-4",
-    "alt": "Aluminum pergola standing over a pool deck beside a canal, with newly staked palms on one side and loose garden uplights lying on the gravel."
+    "ref": "bi-1046",
+    "alt": "Dark freestanding lattice pergola over a raised blue-tiled spa on a stone deck, with palms and a canal behind"
   },
   "figuras": [
     {
-      "ref": "pergolas-3",
-      "alt": "Dark-framed pergola on a pool deck, with overhead utility lines crossing the sky and a faded wooden gate in the back fence."
+      "ref": "bi-1042",
+      "alt": "Small dark woodgrain pergola on a new concrete pad a few feet from the blue-tiled edge of a pool"
     },
     {
       "ref": "pergolas-8",
       "alt": "Dark bronze aluminum pergola with pale translucent roof panels beside a pool and spa, with a black electrical cable left hanging from the frame where a light fixture will go."
     },
     {
-      "ref": "pergolas-7",
-      "alt": "Aluminum patio cover next to a pool, with a removable mesh safety fence, sheets of construction plastic on the grass and a ribbed downspout at the corner of the house."
+      "ref": "bi-0937",
+      "alt": "Low view under a white patio cover on black posts, a black mesh pool safety fence running just beyond them"
     }
   ],
   "faq": [
@@ -96,7 +96,7 @@ That is the practical case for one plan instead of two. The information you need
 
 There is a comfort dimension too. Measure the walkway from the water's edge, not from the house wall. A post set tight to the coping turns the busiest side of the deck into a corridor, and nobody notices on a drawing.
 
-{{figura: pergolas-3}}
+{{figura: bi-1042}}
 
 ### 2. Which side of the pool, and how far back
 
@@ -136,7 +136,7 @@ The usual framing is rain protection. Beside a pool there is a better question: 
 
 Shaded water is colder water. A pool covered for most of the day in January is a pool that leans on its heater — priced in our estimator at $4,500 — far more often than the neighbor's. Which is why the answer, in most Florida yards, is to shade the people and leave the water in the sun.
 
-That points to a structure set beside the pool rather than over it, and it changes what the roof has to do. Our estimator prices a pergola at $8,500 and a louvered roof at $18,000; the gap is the mechanism and what it buys you is choosing, storm by storm, between sun and cover. Whether that is worth it in your yard is the whole of [pergola versus louvered roof](/blogs/pergola-vs-louvered-roof), and if you are leaning that way, [motorized louvered roof systems](/services/motorized-louvered-roof-systems-in-north-south-florida) is the build it becomes.
+That points to a structure set beside the pool rather than over it, and it changes what the roof has to do. Our estimator prices a pergola at $8,500 and a louvered roof at $18,000; the gap is the mechanism and what it buys you is choosing, storm by storm, between sun and cover. Whether that is worth it in your yard is the whole of [pergola versus louvered roof](/blogs/pergola-vs-louvered-roof), and if you are leaning that way, [motorized louvered roof systems](/services/louvered-roofs) is the build it becomes.
 
 ### 6. The barrier line
 
@@ -146,7 +146,7 @@ A structure built beside the pool can touch that line. Posts landing next to a f
 
 How the submittal itself works, and what it depends on, is in [do you need a permit for a pergola in Florida](/blogs/do-you-need-a-permit-for-a-pergola-in-florida).
 
-{{figura: pergolas-7}}
+{{figura: bi-0937}}
 
 ### 7. What lives underneath, and what the water does to it
 
@@ -154,14 +154,14 @@ The first several feet out from the coping get wet, and not with rainwater. It i
 
 That zone is where post bases, furniture, rugs, cabinetry and a television end up if the pergola sits close to the pool. Powder-coated aluminum handles it differently from wood, which is most of [how aluminum and wood compare over a Florida decade](/blogs/aluminum-vs-wood-pergolas-in-florida). The floor is your deck, priced in our estimator at $12 per square foot in concrete, $22 in pavers and $35 in travertine.
 
-If an [outdoor kitchen](/services/custom-outdoor-kitchens-for-north-south-florida-homes) is going under there — $25,000 in the estimator — it brings gas, water and a drain across the same ground as the pool's plumbing, which puts it back in the first section of this list.
+If an [outdoor kitchen](/services/outdoor-kitchens) is going under there — $25,000 in the estimator — it brings gas, water and a drain across the same ground as the pool's plumbing, which puts it back in the first section of this list.
 
 ### 8. What the structure has to carry later
 
 A pergola is a frame, and frames get things hung on them for years afterwards.
 
 - A ceiling fan needs a beam and a box designed for it, not a bracket added later.
-- [Motorized screens](/services/motorized-retractable-screens-in-north-south-florida) need track space inside the beam and power at the head. Specified now, it is a detail; retrofitted, it is a different frame.
+- [Motorized screens](/services/retractable-screens) need track space inside the beam and power at the head. Specified now, it is a detail; retrofitted, it is a different frame.
 - Heaters, speakers and a projector each want a mounting point and a circuit.
 
 Sizing a structure for something you might add costs very little at the drawing stage. It is the only item on this list that is cheap to over-plan.
@@ -188,4 +188,4 @@ The figures above are the ones behind the site's [pool cost estimator](/pool-cos
 
 Put both into the same number before the meeting. A pergola added to a budget that was fixed around a pool is the classic way an $8,500 line turns into a conversation about cutting the deck.
 
-If you want to see how the two get built as one scope, that is on our [aluminum pergola construction](/services/custom-aluminum-pergola-builders-in-north-south-florida) and [custom pool and spa](/services/custom-pool-spa-builders-in-north-south-florida) pages, there are finished yards in the [project gallery](/gallery), and a [project estimate](/request-estimated) starts with a site visit rather than a number.
+If you want to see how the two get built as one scope, that is on our [aluminum pergola construction](/services/pergola-builders) and [custom pool and spa](/services/pool-builders) pages, there are finished yards in the [project gallery](/gallery), and a [project estimate](/request-estimated) starts with a site visit rather than a number.

@@ -174,7 +174,7 @@ const texto = (h) => String(h).replace(/&amp;/g, '&').replace(/&lt;/g, '<').repl
             data-id={sv.id}
             hidden={sv.id !== activo}
           >
-            <img class="svc-foto" src={sv.foto} alt={sv.alt} loading="lazy" />
+            <img class="svc-foto" src={sv.foto} alt={sv.alt} width={sv.ancho} height={sv.alto} style={sv.pos ? `object-position:${sv.pos}` : undefined} loading="lazy" />
             {/* `data-n` lo repone el script al cambiar de fila o de pestaña. */}
             <p class="svc-contador" aria-hidden="true"
                data-n={esVisible(sv) ? posicion(sv) : 1} data-total={visibles.length} />
@@ -500,7 +500,7 @@ const texto = (h) => String(h).replace(/&amp;/g, '&').replace(/&lt;/g, '<').repl
    * y ninguna ficha.
    *
    * Teclado: ←/→/Inicio/Fin en las pestañas con tabindex móvil, que es el patrón que ya usa
-   * `Componentes.astro` §5 para los `w-tabs` de las 9 fichas de `/country/`; y ↑/↓ entre las
+   * `Componentes.astro` §5 para los `w-tabs` de las 9 de condado (`/services/pool-builders/*-county-fl`); y ↑/↓ entre las
    * filas visibles, que son `<button>` y entran solas en el orden de tabulación.
    */
   for (const seccion of document.querySelectorAll<HTMLElement>('.svc')) {

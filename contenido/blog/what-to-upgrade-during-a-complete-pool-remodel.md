@@ -31,16 +31,16 @@
   },
   "figuras": [
     {
-      "ref": "remodeling-2",
-      "alt": "Rectangular pool with three spillway scuppers set into a rendered wall, a fire bowl on the deck and bougainvillea behind."
+      "ref": "bi-0667",
+      "alt": "Spa rimmed in new blue glass tile with its interior chipped out and the jet fittings exposed, beside a drained pool."
     },
     {
-      "ref": "remodeling-5",
-      "alt": "Pool with a raised spa on a pale stone deck, with an outdoor shower on the house wall, a dining set and a grill under cover."
+      "ref": "bi-0737",
+      "alt": "Top-down view of a bare concrete pool shell with a spa, PVC pipes laid out in the sand alongside and a roof at left."
     },
     {
-      "ref": "remodeling-4",
-      "alt": "Pool in front of a covered lanai with an outdoor kitchen and ceiling fans, a portable basketball hoop at the deck edge and Adirondack chairs to one side."
+      "ref": "bi-0519",
+      "alt": "Finished pool with blue glass waterline tile and an ivory travertine deck in front of a single-story stucco house."
     }
   ],
   "faq": [
@@ -105,7 +105,7 @@ Three kinds of item live here, and they close together.
 
 The spa is the largest single item in this group and the one most often postponed by accident. Our estimator prices an integrated spa at $12,000 and a spa with a spillway into the pool at $18,000. Added later it is not an upgrade to a pool; it is a small pool built next to one, with its own excavation, plumbing and finish. If you want it eventually, it belongs in this project.
 
-{{figura: remodeling-2}}
+{{figura: bi-0667}}
 
 ## What closes when the deck goes back down
 
@@ -121,7 +121,7 @@ If the slab is coming out anyway, bury what you might want in five years while i
 
 None of them commit you to building anything. They keep the decision cheap, which is the entire point of the list.
 
-{{figura: remodeling-5}}
+{{figura: bi-0737}}
 
 ## What closes when the trench is filled
 
@@ -146,7 +146,7 @@ Failing to defer these is how a remodel budget gets thin in the places that matt
 
 The qualifier at the end of that last line applies to the whole group. Nothing here is deferrable in principle; it is deferrable because it does not need the shell, the slab or the trench. The moment an item needs one of them, it moves up the page regardless of what it is.
 
-{{figura: remodeling-4}}
+{{figura: bi-0519}}
 
 ## Ask for the quote in this order
 
@@ -170,4 +170,4 @@ That is also the limit of the rule. The items on the defer list do not trigger a
 
 If the pile of now items has grown to a new spa, a relocated pad, a full deck replacement and a new ledge, the question has changed from what to upgrade to whether to keep the shell at all — [remodel or rebuild](/blogs/remodel-or-rebuild-your-pool) is where that gets decided, and [what actually changes a remodel's scope](/blogs/how-much-does-a-pool-remodel-cost-in-florida) is where the arithmetic sits.
 
-The scope we work through on a [complete pool remodel](/services/pool-remodeling-renovation-in-north-south-florida) follows the same order as the list above. To test the shape of a budget before anyone visits, the [pool cost estimator](/pool-cost-estimator) uses the figures quoted here and returns a band rather than a price; a [project estimate](/request-estimated) starts with someone standing in the yard looking at the deck slope.
+The scope we work through on a [complete pool remodel](/services/pool-remodeling) follows the same order as the list above. To test the shape of a budget before anyone visits, the [pool cost estimator](/pool-cost-estimator) uses the figures quoted here and returns a band rather than a price; a [project estimate](/request-estimated) starts with someone standing in the yard looking at the deck slope.

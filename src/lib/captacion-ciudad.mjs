@@ -1,7 +1,7 @@
 /**
  * LA CIRUGIA QUE LA CAPA DE CAPTACION HACE SOBRE EL BLOQUE DERIVADO DE UNA CIUDAD.
  *
- * `src/pages/pool-builders/[slug].astro` pinta las 53 ciudades desde UNA plantilla
+ * `src/pages/services/pool-builders/[slug].astro` pinta las 53 ciudades desde UNA plantilla
  * (`src/data/plantilla-pool-builders.json`, bloques `B[0..3]`). R20-CIUDADES enciende la capa de
  * captacion de R17-CORE en DOS de esas 53 —las Final URL de los ad groups «Ocala» y
  * «Gainesville»—, y eso exige meter secciones EN MEDIO de `B[0]` y retocar el heroe.

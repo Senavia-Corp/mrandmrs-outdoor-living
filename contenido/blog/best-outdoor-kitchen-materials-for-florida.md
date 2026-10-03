@@ -32,16 +32,16 @@
   },
   "figuras": [
     {
-      "ref": "kitchen-7",
-      "alt": "Outdoor kitchen under a palm-thatch roof with a ceiling fan: a dark countertop over a slatted wood island, a built-in grill and vent hood against a tropical leaf-patterned wall, an under-counter stainless refrigerator and a pale tile floor."
+      "ref": "bi-0509",
+      "alt": "Outdoor kitchen island at the edge of a covered patio, with a ceiling fan and awning above and a pool corner in the sun."
     },
     {
-      "ref": "kitchen-5",
-      "alt": "Covered lanai outdoor kitchen: a built-in stainless grill and a small stainless access door set into a white stucco base under a dark countertop, an under-counter stainless unit at the end of the run, and a travertine floor."
+      "ref": "bi-0756",
+      "alt": "Outdoor kitchen island with a stainless farmhouse sink, drawers and doors set in brown composite cladding, a pool behind."
     },
     {
-      "ref": "kitchen-4",
-      "alt": "L-shaped outdoor kitchen clad in white stacked stone under a white louvered roof with a ceiling fan, with a built-in stainless grill and stainless doors and drawers, and a pond with tile-roofed houses behind."
+      "ref": "bi-0791",
+      "alt": "Gray stacked-stone outdoor kitchen run meeting a smooth gray slab end panel at the outside corner, with stainless doors."
     }
   ],
   "faq": [
@@ -93,7 +93,7 @@ Most kitchens are specified as though the whole run were the sheltered part. Tha
 
 The rule is simple and it costs almost nothing to follow: **spec the entire run for its worst zone.** Mixing grades along one island saves a small amount of money and guarantees a visible line between the two halves within a few seasons. Where the island sits relative to the roof line, and therefore how many zones it has to survive, is settled in the [outdoor kitchen layout guide](/blogs/outdoor-kitchen-layout-guide) — and it is worth settling before you choose a single material.
 
-{{figura: kitchen-7}}
+{{figura: bi-0509}}
 
 ## The frame you will never see again
 
@@ -129,7 +129,7 @@ Even good stainless discolors near the coast. Surface staining on 304 in marine 
 
 And a saltwater pool counts. A salt chlorination system puts chloride in the water, and splash carries it to whatever is within range. A kitchen within splash range of a salt pool is closer to a coastal environment than an owner inland in Ocala expects.
 
-{{figura: kitchen-5}}
+{{figura: bi-0756}}
 
 Two more hardware details worth naming in the spec: the cabinet interiors need to drain and breathe, because a sealed box under a countertop in this humidity is a condensation trap; and any enclosure around a gas appliance needs the ventilation the appliance requires, which is a safety requirement rather than a preference. What the appliances demand of the island is covered in [what to run before construction](/blogs/gas-electric-and-plumbing-for-an-outdoor-kitchen), and it needs to be settled before the frame is built, not after.
 
@@ -164,7 +164,7 @@ Two failure modes recur. Efflorescence — white mineral bloom pushing through s
 
 Neither is fatal. Both are information, and both are much cheaper to act on early than to explain away.
 
-{{figura: kitchen-4}}
+{{figura: bi-0791}}
 
 ## The joints leak before the materials fail
 
@@ -181,7 +181,7 @@ Sealant is a maintenance item, not a permanent product. Knowing that at handover
 
 The island sits on something, and that surface has to move water away from it. Travertine, paver and concrete decks all work; what matters is that the slope runs away from the kitchen and that there is no low spot where the base of the island sits in standing water after every storm.
 
-If the kitchen is going on a deck rather than on grade, the structure below has to carry the load of masonry, stone and appliances, which is a different calculation than the one for furniture. That gets planned at the framing stage on the [custom deck](/services/custom-deck-builders-in-north-south-florida) side, not after the island is drawn.
+If the kitchen is going on a deck rather than on grade, the structure below has to carry the load of masonry, stone and appliances, which is a different calculation than the one for furniture. That gets planned at the framing stage on the [custom deck](/services/deck-builders) side, not after the island is drawn.
 
 ## What this does to the budget
 
@@ -204,4 +204,4 @@ Six lines, handed to whoever is quoting:
 
 If a quote answers all six, you can compare it to another quote. If it says "stainless steel cabinets, granite top," you are comparing two numbers that describe different kitchens.
 
-Finished examples of these assemblies, on real jobs, are in the [project gallery](/gallery), and the way we build them is on the [custom outdoor kitchens](/services/custom-outdoor-kitchens-for-north-south-florida-homes) page. If you want the material decisions made against your actual site — how far the roof reaches, where the salt comes from, what the deck can carry — that starts with a [site visit and estimate](/request-estimated) rather than a slab sample.
+Finished examples of these assemblies, on real jobs, are in the [project gallery](/gallery), and the way we build them is on the [custom outdoor kitchens](/services/outdoor-kitchens) page. If you want the material decisions made against your actual site — how far the roof reaches, where the salt comes from, what the deck can carry — that starts with a [site visit and estimate](/request-estimated) rather than a slab sample.

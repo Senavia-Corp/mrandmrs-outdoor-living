@@ -27,21 +27,21 @@
   },
   "summary": "The shape is the last decision, not the first. Four things about your site rule out most layouts before anyone draws one, and the counter that gets cut to fit the appliances is the part you will miss every single time you cook.",
   "portada": {
-    "ref": "kitchen-0",
-    "alt": "L-shaped outdoor kitchen on a tiled patio under a dark slatted pergola, with a side burner, built-in grill and drawers along the back run, a sink and stainless refrigerator on the wing that turns toward the camera, and a white fence, a hedge and a large tree behind."
+    "ref": "kitchen-1",
+    "alt": "Outdoor kitchen with a sink and cutting board, a pizza oven, built-in grill and side burner, looking out to a pool and palms"
   },
   "figuras": [
     {
-      "ref": "kitchen-3",
-      "alt": "Long single-wall outdoor kitchen run against a dark textured wall: side burner, built-in grill, drawers, glass-front beverage refrigerator and a wall-mounted television above the counter."
+      "ref": "bi-0793",
+      "alt": "Wood-slat outdoor kitchen run with a built-in grill and side burner, stainless drawers and doors, and a dark stone counter."
     },
     {
-      "ref": "kitchen-7",
-      "alt": "Outdoor kitchen under a thatched chickee roof with slatted wood cabinet fronts, a dark countertop wrapping into a bar, a stainless hood over the grill and a sink at the far left."
+      "ref": "bi-0768",
+      "alt": "Outdoor kitchen bar with four stools facing a white veined counter with a sink and grill, under a white louvered roof."
     },
     {
-      "ref": "kitchen-6",
-      "alt": "L-shaped outdoor kitchen on a travertine deck with black granite counters and a waterfall end, a dark roof post beside the grill run, and a lake and palms behind."
+      "ref": "bi-0840",
+      "alt": "L-shaped outdoor kitchen with a white column at its corner: built-in grill, drawers, ice maker and fridge, granite top."
     }
   ],
   "faq": [
@@ -109,7 +109,7 @@ Here is what happens instead. The appliance list gets fixed early, because appli
 
 That is the wrong end to trim. An empty cabinet is the cheapest foot of outdoor kitchen you will ever buy; the price sits in the cut-outs, which is the subject of [what actually drives an outdoor kitchen's price](/blogs/how-much-does-an-outdoor-kitchen-cost-in-florida). So when a run has to get shorter, take out an appliance and keep the counter. You use counter every time you cook anything. You use the second side burner roughly as often as you imagined you would.
 
-{{figura: kitchen-3}}
+{{figura: bi-0793}}
 
 ## Which way the cook faces
 
@@ -121,7 +121,7 @@ Facing outward fixes that. The cook is part of the party, watches the water, and
 
 In a lot of Florida yards this is settled by one fact that rarely makes it into the design meeting: when the pool is in use, the person cooking is usually also the person keeping an eye on it. If that describes your house, orientation is decided and the rest of the layout works around it.
 
-{{figura: kitchen-7}}
+{{figura: bi-0768}}
 
 ## Bar seating changes a layout more than any appliance
 
@@ -144,7 +144,7 @@ Once the constraints are on the drawing, the shape is close to decided. This is 
 
 The U renders beautifully and is the one most people point at. The L with the seating on the short wing is the one that tends to survive a crowd and two cooks. If your yard gives you a corner, start there before you commit to wrapping three sides.
 
-{{figura: kitchen-6}}
+{{figura: bi-0840}}
 
 ## The posts are part of the layout
 
@@ -200,4 +200,4 @@ Bring these answers to the design meeting and the drawing gets quicker:
 - Where do the cover posts land relative to the run?
 - Have you stood in the taped footprint and cooked one meal from it?
 
-If you want to see how the sequence runs on a real job — site review, utilities, deck, cabinetry, appliances, inspection — that is the [custom outdoor kitchens](/services/custom-outdoor-kitchens-for-north-south-florida-homes) page. Finished layouts of all four shapes are in the [project gallery](/gallery), and a [quote from a site visit](/request-estimated) starts with the constraints rather than with a shape.
+If you want to see how the sequence runs on a real job — site review, utilities, deck, cabinetry, appliances, inspection — that is the [custom outdoor kitchens](/services/outdoor-kitchens) page. Finished layouts of all four shapes are in the [project gallery](/gallery), and a [quote from a site visit](/request-estimated) starts with the constraints rather than with a shape.

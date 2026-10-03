@@ -66,7 +66,7 @@ const CONTRATOS = leerContratos();
  * hay que medir durante el redisenio —y creerte que mides 1 mientras mides 115 son ~65 minutos
  * con la pantalla del usuario secuestrada. Con `=/` se mide solo la home.
  *
- *     node scripts/check-visual.mjs /services/ /pool-builders/     (subcadena, como siempre)
+ *     node scripts/check-visual.mjs /services/ /services/pool-builders/     (subcadena, como siempre)
  *     node scripts/check-visual.mjs '=/'                           (SOLO la home; las comillas hacen
  *                                                          falta: zsh expande `=/` solo)
  */

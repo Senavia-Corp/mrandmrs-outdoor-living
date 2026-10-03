@@ -1,5 +1,5 @@
 {
-  "_": "SEO-AEO-GEO F1 — DERIVADO DE NADA, ESCRITO A MANO. Fuente UNICA de los <title> y meta description que se apartan del origen de Webflow. Lo lee `src/layouts/Base.astro` (que los emite) y `scripts/check-seo.mjs` (que los exige): una sola copia, imposible que se desincronicen. Cada entrada lleva su motivo. Las 53 de /pool-builders/ NO van aqui: su meta vive en Sanity y es contenido del cliente.",
+  "_": "SEO-AEO-GEO F1 — DERIVADO DE NADA, ESCRITO A MANO. Fuente UNICA de los <title> y meta description que se apartan del origen de Webflow. Lo lee `src/layouts/Base.astro` (que los emite) y `scripts/check-seo.mjs` (que los exige): una sola copia, imposible que se desincronicen. Cada entrada lleva su motivo. Las 53 de /services/pool-builders/ NO van aqui: su meta vive en Sanity y es contenido del cliente.",
   "/": {
     "title": "Custom Pool Builders & Outdoor Living in Florida",
     "description": "Custom inground pool builders and outdoor living design-build contractors serving North & South Florida. Licensed, engineered, and turnkey construction.",
@@ -20,15 +20,15 @@
     "description": "Licensed pool builders in South Florida building custom inground pools and outdoor living, engineered for coastal conditions and durability.",
     "motivo": "titulo a 64 car y description a 185."
   },
-  "/services/custom-pool-spa-builders-in-north-south-florida": {
+  "/services/pool-builders": {
     "title": "Custom Pool Builders in North Florida | Mr & Mrs",
     "description": "Custom inground pool construction in North Florida, from 3D design through final startup. Licensed builders serving North & South Florida.",
     "motivo": "LANDING DE PAGO. Manda la hoja 22 del libro de campana en titulo y encabezado; el anuncio promete «North Florida» y el slug dice north-south, asi que la correspondencia se resuelve por copy, no renombrando la URL final del anuncio."
   },
-  "/services/pool-remodeling-renovation-in-north-south-florida": {
-    "title": "Pool Remodeling in North Florida | Mr & Mrs",
-    "description": "Complete pool remodeling in North Florida: resurfacing, equipment upgrades and safety improvements. Licensed contractors across Florida.",
-    "motivo": "LANDING DE PAGO. North Florida primero, por la misma razon que la anterior."
+  "/services/pool-remodeling": {
+    "title": "Complete Pool Remodeling in North Florida | Mr & Mrs",
+    "description": "Complete pool remodeling in North Florida: resurfacing, tile and coping, equipment upgrades and deck work in one permitted project. Licensed across Florida.",
+    "motivo": "LANDING DE PAGO. North Florida primero, por la misma razon que la anterior. SEO-SAFE (1-oct-2026): «Complete» delante, que es la intencion que distingue esta landing de un resurfacing suelto (SEO_KEYWORD_URL_MAP.md)."
   },
   "/contact-us": {
     "title": "Contact Florida Pool Builders | Free Estimate",
@@ -68,44 +68,40 @@
     "description": "Get your design and a fixed project price first, then review financing options for your Florida pool, pergola or outdoor living build.",
     "motivo": "description a 162 car."
   },
-  "/services/custom-outdoor-kitchens-for-north-south-florida-homes": {
+  "/services/outdoor-kitchens": {
     "title": "Custom Outdoor Kitchen Builders in Florida",
     "motivo": "titulo a 69 car."
   },
-  "/services/professional-landscaping-services-in-north-south-florida": {
+  "/services/landscaping": {
     "title": "Landscaping Design & Installation in Florida",
     "motivo": "titulo a 69 car."
   },
-  "/services/motorized-louvered-roof-systems-in-north-south-florida": {
+  "/services/louvered-roofs": {
     "title": "Motorized Louvered Roof Systems in Florida",
     "motivo": "titulo a 65 car."
   },
-  "/services/motorized-retractable-screens-in-north-south-florida": {
+  "/services/retractable-screens": {
     "title": "Motorized Retractable Screens in Florida",
     "motivo": "titulo a 64 car. Es el servicio con mas cola larga de ciudad en GSC (automatic patio screens florida, 21 impr)."
   },
-  "/services/patio-screen-rooms-enclosures-in-north-south-florida": {
+  "/services/patio-screen-rooms": {
     "title": "Patio Screen Room Builders in Florida",
     "motivo": "titulo a 64 car. Recibe la consulta en forma de pregunta con 44 impresiones en posicion 5,8 y cero clics."
   },
-  "/country/custom-pool-builders-palm-beach-county-fl": {
+  "/services/pool-builders/palm-beach-county-fl": {
     "title": "Pool Builders in Palm Beach County, FL",
     "motivo": "titulo a 62 car."
   },
-  "/country/custom-pool-builders-gilchrist-county-fl": {
+  "/services/pool-builders/gilchrist-county-fl": {
     "title": "Pool Builders in Gilchrist County, FL",
     "motivo": "titulo a 61 car."
   },
-  "/blogs/commercial-pool-construction-in-florida-what-decision-makers-must-know": {
-    "title": "Commercial Pool Construction: What to Know",
-    "motivo": "titulo a 63 car. Distinto del de /industry-solutions a proposito: son intencion informativa y comercial, y check-seo exige que ningun titulo se repita."
-  },
-  "/pool-builders/gainesville-florida": {
+  "/services/pool-builders/gainesville-fl": {
     "title": "Custom Pool Builders in Gainesville, FL | Mr & Mrs",
     "description": "Custom inground pool construction in Gainesville and Alachua County, FL. Licensed pool builders serving North Florida. Request a free estimate.",
     "motivo": "LANDING DE PAGO. El head decia «Luxury Pools & Outdoor Living», que compite con la intencion del anuncio. Piscina primero, condado verificable, CTA."
   },
-  "/pool-builders/ocala-florida": {
+  "/services/pool-builders/ocala-fl": {
     "title": "Custom Pool Builders in Ocala, FL | Mr & Mrs",
     "description": "Custom inground pool construction in Ocala and Marion County, FL. Licensed pool builders serving North Florida. Request a free estimate.",
     "motivo": "LANDING DE PAGO. Misma razon que Gainesville."

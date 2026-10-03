@@ -26,21 +26,21 @@
   },
   "summary": "The answer is almost always yes. The part worth your time is which reviews a pergola triggers, because that is what decides the drawings you need and the two inspections that can stop the job.",
   "portada": {
-    "ref": "pergolas-0",
-    "alt": "White aluminum pergola with a solid roof panel over a bar counter and a row of white barstools, horizontal louvered privacy screens on the back side, and a flowering tree beside the lawn."
+    "ref": "bi-0897",
+    "alt": "White pergola on thick square posts with ceiling fans, over an outdoor kitchen with wood-look cabinets and a covered grill"
   },
   "figuras": [
     {
-      "ref": "pergolas-9",
-      "alt": "Gable patio cover on dark metal posts attached to a cream stucco house wall, over a travertine paver patio, with white French doors and a white vinyl fence alongside."
+      "ref": "bi-1068",
+      "alt": "Black-framed patio cover attached to a white house, a paper notice taped to one post and boxes at its base"
     },
     {
-      "ref": "pergolas-8",
-      "alt": "Freestanding dark bronze aluminum pergola with a louvered roof beside a pool and spa, one black electrical cable left hanging from a beam where a fixture will go, and a louvered privacy screen underneath."
+      "ref": "bi-1062",
+      "alt": "Black-framed cover with a wood-look slat ceiling, recessed lights and two fans, cords and boxes still on the slab by a pool"
     },
     {
-      "ref": "pergolas-7",
-      "alt": "Aluminum patio cover next to a pool, with removable mesh safety fencing along the water and construction plastic still lying on the grass."
+      "ref": "bi-0938",
+      "alt": "Black-framed patio cover on a two-story home beside a pool closed off by a black mesh safety fence, loungers beneath it"
     }
   ],
   "faq": [
@@ -103,7 +103,7 @@ Attaching a pergola to the house is the single decision that most changes the re
 
 Standing free of the house avoids that entirely and replaces it with zoning. Setbacks from property lines, distance from the septic field or easements, and the rules for where an accessory structure may sit are the questions that decide a freestanding footprint. The trade-off between the two is the subject of [attached versus freestanding pergolas](/blogs/attached-vs-freestanding-pergola); here, treat it as the fork that sets your review path.
 
-{{figura: pergolas-9}}
+{{figura: bi-1068}}
 
 ## Wind is the review that sets your timeline
 
@@ -122,7 +122,7 @@ This is the most common expensive mistake on a pergola, and it is not really a p
 
 Decide the electrical before the footings, not after the frame is up. That decision sits alongside six others in [the design decisions to make before construction starts](/blogs/pergola-design-decisions-before-construction).
 
-{{figura: pergolas-8}}
+{{figura: bi-1062}}
 
 ## If it goes near the pool, the barrier is part of the application
 
@@ -132,7 +132,7 @@ Reviewers look for exactly this, which is the good news: it is caught at plan re
 
 The same logic applies to anything else added over the same footprint. A raised deck underneath is its own permitted item with its own structural review, and swapping the open roof for a motorized one puts a motor and its wiring into the electrical review as well; that comparison is in [pergola versus louvered roof](/blogs/pergola-vs-louvered-roof).
 
-{{figura: pergolas-7}}
+{{figura: bi-0938}}
 
 ## The HOA is not the county, and it goes first
 
@@ -182,4 +182,4 @@ None of those are likely in the first year. All of them are permanent until reso
 
 A contractor who has answers ready for all six has permitted enough of these to have been caught out once already. That is what you are buying.
 
-How we handle the submittal, the engineering and the inspections is on the [custom aluminum pergola](/services/custom-aluminum-pergola-builders-in-north-south-florida) page, and finished work across North and South Florida is in the [project gallery](/gallery). A [project estimate](/request-estimated) starts with a site visit, because setbacks, the barrier and where the power comes from are all things that have to be looked at rather than described.
+How we handle the submittal, the engineering and the inspections is on the [custom aluminum pergola](/services/pergola-builders) page, and finished work across North and South Florida is in the [project gallery](/gallery). A [project estimate](/request-estimated) starts with a site visit, because setbacks, the barrier and where the power comes from are all things that have to be looked at rather than described.

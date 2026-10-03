@@ -36,21 +36,33 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import { groq, SIN_BORRADORES } from './lib/sanity.mjs';
-
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const DESTINO = path.join(RAIZ, 'src/data/blogs-rutas.json');
 const SOLO_CHECK = process.argv.includes('--check');
+/* SEO-SAFE (1-oct-2026) — `--local`: deriva de src/data/blogs-sanity.json en vez de Sanity.
+ * Misma forma, mismo motivo. Para una maquina sin red hacia *.sanity.io; con red, sin flag. */
+const LOCAL = process.argv.includes('--local');
 
 const csv = fs.readFileSync(path.join(RAIZ, '_source/routes.csv'), 'utf8');
 const DEL_ORIGEN = new Set(csv.trim().split('\n').slice(1)
   .map((l) => l.match(/"((?:[^"]|"")*)"/g)[0].slice(1, -1)));
 
-const posts = await groq(`*[_type == "blogPost" && ${SIN_BORRADORES}] | order(slug.current asc){
-  "slug": slug.current, title, publishedAt,
-  "categoria": categoria->{ "slug": slug.current, name },
-  "servicio": relatedServices[0]->{ "slug": slug.current, name }
-}`);
+let posts;
+if (LOCAL) {
+  const cache = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/blogs-sanity.json'), 'utf8'));
+  posts = [...cache].sort((a, b) => a.slug.localeCompare(b.slug)).map((d) => ({
+    slug: d.slug, title: d.title, publishedAt: d.publishedAt,
+    categoria: d.categoria ? { slug: d.categoria.slug, name: d.categoria.name } : null,
+    servicio: d.servicios?.[0] ? { slug: d.servicios[0].slug, name: d.servicios[0].name } : null,
+  }));
+} else {
+  const { groq, SIN_BORRADORES } = await import('./lib/sanity.mjs');
+  posts = await groq(`*[_type == "blogPost" && ${SIN_BORRADORES}] | order(slug.current asc){
+    "slug": slug.current, title, publishedAt,
+    "categoria": categoria->{ "slug": slug.current, name },
+    "servicio": relatedServices[0]->{ "slug": slug.current, name }
+  }`);
+}
 
 if (!posts.length) {
   console.error('\n  ROJO Sanity devolvio 0 blogPost. No se escribe nada.\n');

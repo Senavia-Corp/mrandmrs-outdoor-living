@@ -33,12 +33,12 @@
   },
   "figuras": [
     {
-      "ref": "construction-7",
-      "alt": "Raised spa with a spillway returning to the pool, framed by a travertine deck beside a single-storey home."
+      "ref": "bi-0705",
+      "alt": "Two workers setting form boards inside a finished pool excavation behind a white house, with lumber laid across the hole."
     },
     {
-      "ref": "construction-8",
-      "alt": "Aerial view of a pool and raised spa on a travertine deck, with a garden hose coiled at the edge of the lawn."
+      "ref": "bi-0709",
+      "alt": "Aerial view of a pool rebar cage and wood forms behind a white house, with orange safety fencing and hoses around the site."
     }
   ],
   "faq": [
@@ -89,7 +89,7 @@ There is a difference between the person who sells the project and the person wh
 
 A specific answer — a name, a phone number, a normal response window — is a good sign. "Someone will always get back to you" is not an answer.
 
-{{figura: construction-7}}
+{{figura: bi-0705}}
 
 ## 3. Is this quote the same scope as the others?
 
@@ -123,7 +123,7 @@ The contractor should, under their own license. A builder who asks the homeowner
 
 Permits also tell you about scope: pool, electrical, plumbing and any enclosure or barrier are separate reviews. [What permits are required for pool construction in Florida](/blogs/what-permits-are-required-for-pool-construction-in-florida) covers what a full set looks like.
 
-{{figura: construction-8}}
+{{figura: bi-0709}}
 
 ## 8. What happens if an inspection fails?
 
@@ -149,4 +149,4 @@ It is tempting to treat this as a scorecard. It is more useful as a conversation
 
 The builder who has thought about failed inspections, exclusions and change orders before you asked is the one who has run enough projects to have needed a process.
 
-If you want to see how our process is structured — from site review through permitting to the punch list — that is on the [custom pool and spa construction](/services/custom-pool-spa-builders-in-north-south-florida) page, and a [project estimate](/request-estimated) starts with the site visit rather than a number.
+If you want to see how our process is structured — from site review through permitting to the punch list — that is on the [custom pool and spa construction](/services/pool-builders) page, and a [project estimate](/request-estimated) starts with the site visit rather than a number.

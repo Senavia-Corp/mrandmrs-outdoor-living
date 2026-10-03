@@ -31,16 +31,16 @@
   },
   "figuras": [
     {
-      "ref": "construction-2",
-      "alt": "Two white loungers standing in the shallow sun shelf at one end of a rectangular pool, with a raised spa faced in blue mosaic at the far corner and a lake and palms beyond the deck."
+      "ref": "bi-0089",
+      "alt": "Empty new pool with two loungers on its sun shelf beside the entry steps, set in a deck of large-format pale tiles."
     },
     {
-      "ref": "construction-0",
-      "alt": "Raised spa faced in dark blue mosaic under white coping, spilling over its edge into the rectangular pool below, with submerged entry steps and a clipped hedge behind a black metal fence."
+      "ref": "bi-0712",
+      "alt": "Drone view past a roof edge onto a pool rebar cage, with the spa form and its red and white plumbing lines inside it."
     },
     {
-      "ref": "construction-6",
-      "alt": "Rectangular pool with a pale blue interior and a step edged in dark tile, beside a raised spa clad in dark blue mosaic and a pale stone deck running out to a strip of lawn."
+      "ref": "mrandmrs-pool-spa-a2-blog-project-062-23",
+      "alt": "Light blue pool and raised spa beside a covered lanai, with two white loungers at the corner and trees behind a white fence."
     }
   ],
   "faq": [
@@ -110,7 +110,7 @@ Three things worth settling while they are still drawings: how deep the sun shel
 
 Depth is where the sun shelf goes wrong, and it goes wrong in both directions. Deep enough to feel like part of the pool is too deep for a lounger to stand level in it; shallow enough to hold the chairs properly is shallow enough that nobody swims over it. Decide which of the two the shelf is for while it is a drawing, because afterwards it is the shape of the concrete. The entry has the same either-or: a full-width set of steps looks generous and eats swimming length, and a corner entry keeps it.
 
-{{figura: construction-2}}
+{{figura: bi-0089}}
 
 ### 3. Water features
 
@@ -118,7 +118,7 @@ Bubblers, deck jets and spillovers are plumbing. Each one is a line run before t
 
 The detail most people find out too late is that they want them on separate valves. A spillover runs constantly and becomes background; bubblers are charming for an hour and loud for an evening. Separately valved, you choose. Shared off one line, you get all of them or none of them, and correcting that afterwards is a dig.
 
-{{figura: construction-0}}
+{{figura: bi-0712}}
 
 ### 4. Light niches, and how many
 
@@ -126,7 +126,7 @@ Our estimator prices pool LEDs at $450 per fixture, so the difference between on
 
 The count follows the shape, not the square footage. A fixture throws in one direction, so a pool with a deep end, a spa and a sun shelf has three areas that each go dark on their own.
 
-Which wall each niche goes in matters as much as how many there are, and it is the part that never reaches the proposal. A fixture set in the far wall throws its light away from the house and the seating; the same fixture in the near wall throws it back at the people looking at the water. Ask which wall, not just how many. Lighting the house and the yard is a separate system — see [permanent soffit and LED lighting](/services/smart-soffit-led-lighting-installation-in-north-south-florida) — but the path it travels runs under your new deck, which is item 7.
+Which wall each niche goes in matters as much as how many there are, and it is the part that never reaches the proposal. A fixture set in the far wall throws its light away from the house and the seating; the same fixture in the near wall throws it back at the people looking at the water. Ask which wall, not just how many. Lighting the house and the yard is a separate system — see [permanent soffit and LED lighting](/services/soffit-led-lighting) — but the path it travels runs under your new deck, which is item 7.
 
 ## The three that only need something in the ground
 
@@ -140,15 +140,15 @@ The equipment is a purchase and can wait. The tees and the capacity are construc
 
 Our estimator prices automation at $3,500. It is the upgrade most often deferred and most often regretted, because deferring the controller is fine and deferring the conduit is not.
 
-What has to happen at rough-in is small: a conduit run from the equipment pad to wherever a panel or an indoor control will live, and equipment selected now that will accept a controller later. Neither of those is the $3,500. Both of them are the reason the $3,500 is still $3,500 in three years.
+What has to happen at rough-in is small: a conduit run from the equipment pad to wherever a panel or an indoor control will live, and equipment selected now that will accept a controller later. Neither of those is the $3,500. Both of them are the reason the $3,500 is still $3,500 in three years. Our guide to [pool automation for new construction](/blogs/pool-automation-for-new-construction) lists everything that has to be buried.
 
 ### 7. Sleeves, footings and whatever comes next
 
 Everything else you will ever build in that yard has to cross ground the pool crew is already standing in. Our estimator prices a pergola at $8,500, a louvered roof at $18,000, a screen enclosure at $15,000 and an outdoor kitchen at $25,000 — and all four need something underneath before they can exist.
 
-- An [outdoor kitchen](/services/custom-outdoor-kitchens-for-north-south-florida-homes) needs gas, water, drain and power reaching it.
-- A [pergola](/services/custom-aluminum-pergola-builders-in-north-south-florida) needs footings where its posts land, which means knowing now where the posts land.
-- A [screen enclosure](/services/pool-screen-enclosures-for-north-south-florida-pools) anchors into the deck, so the deck has to be built to carry it.
+- An [outdoor kitchen](/services/outdoor-kitchens) needs gas, water, drain and power reaching it.
+- A [pergola](/services/pergola-builders) needs footings where its posts land, which means knowing now where the posts land.
+- A [screen enclosure](/services/pool-screen-enclosures) anchors into the deck, so the deck has to be built to carry it.
 - Landscape lighting and irrigation both need a route under the deck rather than across it.
 
 None of that commits you to building any of them. It commits you to knowing where they would go. Where each one should sit is a planning question, handled in [the pre-excavation list](/blogs/before-you-build-a-pool-in-florida); what belongs in the trench on the day it is open is this one.
@@ -167,7 +167,7 @@ The deck is poured late, which makes it feel like a late decision. It is not one
 
 Our estimator prices decking at $12 per square foot for concrete, $22 for pavers and $35 for travertine. On a 600-square-foot deck that is $7,200, $13,200 and $21,000 — a spread of $13,800 on the item most likely to be skimmed at the end of a long meeting. Size matters as much as surface, because permitting is calculated on the whole: our estimator prices permits at 9% of the pool plus the deck. Enlarging a deck afterwards is demolition, a second pour and a second permit on top.
 
-A raised or structural deck is a different build again — that is [custom deck construction](/services/custom-deck-builders-in-north-south-florida), not paving around a pool.
+A raised or structural deck is a different build again — that is [custom deck construction](/services/deck-builders), not paving around a pool.
 
 ### 10. Interior finish
 
@@ -175,7 +175,7 @@ Our estimator applies a multiplier to the shell: plaster counts as one, pebble a
 
 It goes in after everything else, which makes it the last upgrade you can still change your mind about, and the one that does most to the color of the water. It also has the shortest window at the other end: once it is applied, changing it means draining and resurfacing the pool.
 
-{{figura: construction-6}}
+{{figura: mrandmrs-pool-spa-a2-blog-project-062-23}}
 
 ## Why there is no price for adding it afterwards
 
@@ -198,4 +198,4 @@ The figures above are the ones behind the site's [pool cost estimator](/pool-cos
 
 Add the upgrades into that band before the meeting rather than after it. Pool budgets rarely fail on one expensive item. They fail on four reasonable ones agreed after the number was already fixed.
 
-When the list is ready to become a scope, [our custom pool and spa construction](/services/custom-pool-spa-builders-in-north-south-florida) page sets out how the build is staged, and a [project estimate](/request-estimated) starts with a site visit rather than a number.
+When the list is ready to become a scope, [our custom pool and spa construction](/services/pool-builders) page sets out how the build is staged, and a [project estimate](/request-estimated) starts with a site visit rather than a number.

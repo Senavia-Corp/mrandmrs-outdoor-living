@@ -27,21 +27,21 @@
   },
   "summary": "A remodel is not priced from what is wrong with your pool. It is priced from the finished result you are buying. Here is what that costs, and the four things that decide how far the scope goes.",
   "portada": {
-    "ref": "remodeling-2",
-    "alt": "Rectangular pool with three scuppers set into a rendered wall, two in-water loungers on the sun shelf, strips of turf inset in a large-format stone deck, and bougainvillea and palms behind the hedge."
+    "ref": "remodeling-5",
+    "alt": "Pool with in-water loungers beside a raised marble-look wall, a covered lounge area and a two-story house with arched windows"
   },
   "figuras": [
     {
-      "ref": "remodeling-1",
-      "alt": "Pool and spa edged in travertine, with in-water loungers at the shallow end, patio furniture under the lanai and the neighbor's metal fence behind."
+      "ref": "bi-0535",
+      "alt": "Empty pool with two short raised walls clad in blue glass tile and a worker holding a hose on the deck between them."
     },
     {
       "ref": "remodeling-9",
       "alt": "Aerial view of a rectangular pool with a raised square spa and a travertine deck, two poolside basketball hoops, a coiled green hose on the house wall and a neighbor's screened pool enclosure beyond the hedge."
     },
     {
-      "ref": "remodeling-8",
-      "alt": "Aerial view of a pool and spa beside a covered outdoor kitchen under a metal roof, with a daybed on the porch and worn patches in the surrounding lawn."
+      "ref": "bi-1063",
+      "alt": "New black-framed patio cover standing on a bare slab beside a pool edge with fresh blue mosaic tile, hoses on the ground."
     }
   ],
   "faq": [
@@ -121,7 +121,7 @@ The deck is also where the money is. On the remodel path, running the deck slide
 
 Inside the water, the interior finish carries the other swing: plaster to a premium aggregate is about **$15,500** on this project. It is the decision most often trimmed to protect a budget, and the one that is most expensive to revisit, because changing it later means draining the pool and removing a surface you just paid for.
 
-{{figura: remodeling-1}}
+{{figura: bi-0535}}
 
 ## 2. Whether the shell keeps its shape
 
@@ -180,11 +180,11 @@ Anything that needs the deck opened, the pad rebuilt or a crew in the backyard i
 | Motorized louvered roof | about $14,760 |
 | Outdoor kitchen | about $20,500 |
 
-The same structures added two years after the remodel cost their full new-build price, plus the cost of cutting into a deck you just paid to install. If a [screen enclosure](/services/pool-screen-enclosures-for-north-south-florida-pools) or an [outdoor kitchen](/services/custom-outdoor-kitchens-for-north-south-florida-homes) is on a someday list, the remodel is the someday.
+The same structures added two years after the remodel cost their full new-build price, plus the cost of cutting into a deck you just paid to install. If a [screen enclosure](/services/pool-screen-enclosures) or an [outdoor kitchen](/services/outdoor-kitchens) is on a someday list, the remodel is the someday.
 
 Which upgrades genuinely have to happen now and which are fine to defer is a separate sorting exercise, and [what to upgrade during a complete pool remodel](/blogs/what-to-upgrade-during-a-complete-pool-remodel) works through it item by item.
 
-{{figura: remodeling-8}}
+{{figura: bi-1063}}
 
 ## Permits and engineering scale with what you touch
 
@@ -198,4 +198,4 @@ Decide the finished result first — deck size, deck material, interior finish, 
 
 Then run the same set of decisions through the [pool cost estimator](/pool-cost-estimator) with the project type set to remodel, and watch which one moves your number most. For most people it is the deck, and most people expect it to be the finish.
 
-When you have a scope you believe in, a site visit is what turns it into a price. Access, the condition of the shell and what the deck is actually bonded to all need to be looked at — see [complete pool remodeling and renovation](/services/pool-remodeling-renovation-in-north-south-florida) for how we run one, or [request an estimate](/request-estimated) to start with the walkthrough rather than a number.
+When you have a scope you believe in, a site visit is what turns it into a price. Access, the condition of the shell and what the deck is actually bonded to all need to be looked at — see [complete pool remodeling and renovation](/services/pool-remodeling) for how we run one, or [request an estimate](/request-estimated) to start with the walkthrough rather than a number.

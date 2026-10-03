@@ -1,7 +1,7 @@
 /**
  * CACHE DE `poolBuilder` PARA CONSTRUIR SIN RED.
  *
- * POR QUE EXISTE. `src/pages/pool-builders/[slug].astro` pide los 53 documentos a
+ * POR QUE EXISTE. `src/pages/services/pool-builders/[slug].astro` pide los 53 documentos a
  * `m273z6jc.api.sanity.io` dentro de `getStaticPaths`, y falla CERRADO a proposito: sin datos no
  * se construye media coleccion, porque 53 URLs que desaparecen en silencio son 53 404 con el
  * despliegue en verde. Esa guarda es correcta y NO se toca.
@@ -20,7 +20,7 @@
  * los mismos valores. El mapeo columna→campo no se inventa aqui: es el `camel()` de
  * `scripts/schema-map.mjs:30` y la tabla `SEO` de `:71`, y esta comprobado campo a campo contra
  * el documento real de `alachua-florida`. La prueba de que la derivacion es fiel no es esta
- * cabecera: es `check:texto` sobre `/pool-builders/`, que compara el innerText construido contra
+ * cabecera: es `check:texto` sobre `/services/pool-builders/`, que compara el innerText construido contra
  * `baseline/text/`. Si la cache mintiera, las 53 saldrian rojas.
  */
 import fs from 'node:fs';
@@ -101,4 +101,4 @@ if (docs.length !== 53) {
 docs.sort((a, b) => a.slug.localeCompare(b.slug));
 fs.writeFileSync(SALIDA, JSON.stringify(docs, null, 2) + '\n');
 console.log(`cache escrita: ${path.relative(RAIZ, SALIDA)} · ${docs.length} documentos · fuente: ${DESDE_CSV ? 'CSV de _source/cms' : 'Sanity'}`);
-if (DESDE_CSV) console.log('   OJO: derivada del CSV porque no habia red hacia Sanity. Verificar con check:texto sobre /pool-builders/.');
+if (DESDE_CSV) console.log('   OJO: derivada del CSV porque no habia red hacia Sanity. Verificar con check:texto sobre /services/pool-builders/.');

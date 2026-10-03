@@ -27,21 +27,21 @@
   },
   "summary": "Closed it is a roof. Open it is a frame the wind goes through. The two kinds of Florida weather want opposite positions, and the rain sensor only knows about one of them.",
   "portada": {
-    "ref": "louvered-7",
-    "alt": "White aluminum louvered roof on white posts over a poolside patio, the edge of the pool at the near corner, a white perimeter fence and palms behind it, and a neighbor's tile roof with solar panels off to the left."
+    "ref": "louvered-2",
+    "alt": "Black-framed louvered roof with closed white blades over a paver patio, seen from above beside a hedge and a tennis court"
   },
   "figuras": [
     {
-      "ref": "louvered-5",
-      "alt": "Louvered roof with a dark bronze frame and white blades reaching out over the paved entry court of a modern white house with floor-to-ceiling glass, clipped hedges in the foreground."
+      "ref": "bi-0224",
+      "alt": "Closed white louvered roof with a bronze frame seen from above, its three bays of blades shut, palms and a street below"
     },
     {
-      "ref": "louvered-8",
-      "alt": "White louvered roof over an outdoor dining table and chairs beside a two-story stucco house, with ceiling fans mounted under the adjoining covered porch and lawn running up to the patio on both sides."
+      "ref": "bi-0175",
+      "alt": "Under a closed louvered roof after rain, wet stone paving by the open edge, a dining table and a boat docked beyond"
     },
     {
-      "ref": "louvered-3",
-      "alt": "White louvered roof over a covered patio on the far side of a pool, with lounge chairs on the deck to the left and a handrail at the pool steps on the right."
+      "ref": "bi-0651",
+      "alt": "Open louvered roof on a rooftop terrace framing the ocean and a cargo ship on the horizon"
     }
   ],
   "faq": [
@@ -92,7 +92,7 @@ And these are the three outcomes we get called about when nobody asked: a planti
 
 Get the discharge point drawn on the plan before construction, with the direction of fall marked. It is one line, and it is the single most useful line on the drawing.
 
-{{figura: louvered-5}}
+{{figura: bi-0224}}
 
 ### Rain that arrives sideways
 
@@ -102,7 +102,7 @@ The practical result: the covered space is dry in the middle and wet for some di
 
 That matters for what you mount underneath. Televisions, speakers, ceiling fans, pendant lights and the cushions that stay outside all belong inside the genuinely dry zone, not merely under the frame. It is also the reason to settle screens during design rather than after: the side channels for a motorized screen mount to the posts, so adding them later means opening finished work. Screens, lighting, fans and the rest of what goes inside the frame are covered in [designing the whole louvered roof system](/blogs/designing-a-complete-louvered-roof-system).
 
-{{figura: louvered-8}}
+{{figura: bi-0175}}
 
 ### What actually fails is the gutter, not the blade
 
@@ -128,7 +128,7 @@ The part that carries the load is not the aluminum. It is the anchorage: the siz
 
 Two layouts, two versions of that detail. A freestanding roof puts all of the uplift into its own footings, which is why they are larger than people expect. An attached roof hands a share of it to the house at the ledger, and then the only question that matters is what the ledger is fastened into — the structural tie beam, not the fascia board. The wider trade-off between the two layouts is in [attached versus freestanding](/blogs/attached-vs-freestanding-pergola).
 
-{{figura: louvered-3}}
+{{figura: bi-0651}}
 
 ### The rule most owners have backwards
 
@@ -172,4 +172,4 @@ Our estimator prices a motorized louvered roof at $18,000, and that figure is fo
 
 A louvered roof handles Florida rain well and Florida wind well, and it does both because of decisions made before the posts went in — where the water leaves, what the posts are anchored to, and whether anyone wrote down what to do when the forecast turns. None of that is visible in a photograph of a finished patio.
 
-That is what a site visit is for: how your lot drains, which faces are exposed, what the panel can carry, and where 200 gallons can actually go. Our [motorized louvered roof systems](/services/motorized-louvered-roof-systems-in-north-south-florida) page shows how we build them, [the gallery](/gallery) has finished ones in real backyards, and a [project estimate](/request-estimated) starts with that walk-through rather than with a number.
+That is what a site visit is for: how your lot drains, which faces are exposed, what the panel can carry, and where 200 gallons can actually go. Our [motorized louvered roof systems](/services/louvered-roofs) page shows how we build them, [the gallery](/gallery) has finished ones in real backyards, and a [project estimate](/request-estimated) starts with that walk-through rather than with a number.

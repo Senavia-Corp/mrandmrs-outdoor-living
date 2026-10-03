@@ -3,7 +3,7 @@
  *
  * QUE PINTA, Y CUANTO. Las tres secciones nuevas que montan los componentes
  * `ConfianzaCore`, `FormularioCore` e `InversionCore`. Hoy solo las monta UNA ruta
- * -`/services/custom-pool-spa-builders-in-north-south-florida`, la Final URL del ad group
+ * -`/services/pool-builders`, la Final URL del ad group
  * «Pool Builders Core»- porque `src/data/captacion-servicios.json` tiene una sola entrada.
  * El dia que se extienda a las otras trece fichas, esta hoja **no se toca**: ya esta escrita
  * para catorce. Medido:
@@ -157,7 +157,7 @@
  *
  * DONDE VIVE `.svc-captacion`, AL DIA: eran 1 ruta cuando se escribio esto (R17-CORE, la ficha
  * piloto), pasaron a 14 con R19 y son 16 desde R20-CIUDADES, que enciende la capa en las dos
- * landings de `/pool-builders/`. Se corrige porque un comentario que dice «solo en esta ruta»
+ * landings de `/services/pool-builders/`. Se corrige porque un comentario que dice «solo en esta ruta»
  * invita a tocar la regla creyendo que no alcanza a nadie mas. Medido, no supuesto:
  *   grep -rlo 'svc-captacion' .vercel/output/static --include='*.html' | wc -l   ->  16 */
 .svc-captacion {
@@ -588,7 +588,7 @@
 
 /* C5 - EL RITMO DE LAS TRES ULTIMAS LINEAS. Medido antes de tocar nada, a tres anchos:
  *
- *     node scripts/diag-ritmo.mjs /services/custom-pool-spa-builders-in-north-south-florida \
+ *     node scripts/diag-ritmo.mjs /services/pool-builders \
  *          '.block-hero-services-page' 390 768 1440
  *
  *                             390    768   1440
@@ -799,7 +799,7 @@
  * LO QUE SE PIDIO: «en la FAQ no hay casi espacio arriba y abajo hay mas; todas las secciones
  * deben estar separadas con el mismo espacio, que se vea simetrico al hacer scroll».
  *
- * LO QUE SE MIDIO (`.vercel/output/static`, /pool-builders/ocala-florida, hueco = padding-bottom
+ * LO QUE SE MIDIO (`.vercel/output/static`, /services/pool-builders/ocala-fl, hueco = padding-bottom
  * de la de arriba + padding-top de la de abajo):
  *
  *     @1440                       arriba   abajo        @991     @992

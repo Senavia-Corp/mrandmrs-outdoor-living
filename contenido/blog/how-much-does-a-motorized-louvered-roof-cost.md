@@ -32,16 +32,16 @@
   },
   "figuras": [
     {
-      "ref": "louvered-7",
-      "alt": "White louvered roof on square posts seen from below against a clear sky, over paving still wet after rain, with a square drain grate set into the floor and palms with dry brown fronds beyond the far edge of the roof."
+      "ref": "bi-0222",
+      "alt": "Dark bronze freestanding roof over a dining set on a stone patio, its posts at the slab edge between pool and lawn"
     },
     {
-      "ref": "louvered-5",
-      "alt": "Louvered roof with a dark bronze frame and cream blades seen from below, attached to a modern white house with floor-to-ceiling black-framed glass, a palm frond shadow falling across the blades and a black safety fence behind the posts."
+      "ref": "bi-0217",
+      "alt": "Louvered roof at night with recessed lights in the beams over a stone patio with a sectional sofa and a dining table"
     },
     {
-      "ref": "louvered-8",
-      "alt": "White louvered roof over an outdoor dining area next to the covered porch of a two-story house, with a ceiling fan under the adjoining porch, two mismatched dining sets below and palms over a white picket fence."
+      "ref": "bi-0643",
+      "alt": "White post-and-beam frames going up on a rooftop terrace by the ocean, ladders standing under the open beams"
     }
   ],
   "faq": [
@@ -121,7 +121,7 @@ This is the most under-quoted item on a louvered roof, and the one most likely t
 
 With the blades closed, the perimeter beams are gutters and at least one post is a downspout. So the roof has a **discharge point**, and that point has to be somewhere that drains: a yard drain, a pop-up emitter, a tie into existing storm drainage. What it cannot be is the base of the house, the low corner of the patio, or the property line.
 
-{{figura: louvered-7}}
+{{figura: bi-0222}}
 
 What moves this line:
 
@@ -136,7 +136,7 @@ Ask for it as its own line and ask **where it terminates**. "It drains through t
 
 The drive is in the structure price. The electricity to it is not, and it is the line that varies most from one house to the next.
 
-{{figura: louvered-5}}
+{{figura: bi-0217}}
 
 What changes it:
 
@@ -153,7 +153,7 @@ Lights, fans, heaters, speakers, motorized side screens. None of it is in the $1
 
 The frame is hollow, so the sleeves and conduit for those runs go in while the structure is open. You do not have to buy the fixtures up front; you have to leave them somewhere to go. Wiring planned before assembly disappears inside the beams. Wiring added afterwards runs on the surface, and that is visible for as long as the structure stands.
 
-{{figura: louvered-8}}
+{{figura: bi-0643}}
 
 One item genuinely cannot be retrofitted cleanly: **side screens**. Their channels mount to the posts, so adding them later means opening finished work. Decide where they go even if you buy them in two years — the same rule that applies to [the features worth planning alongside a poolside pergola](/blogs/pergola-beside-a-pool-features-to-plan-together). How the lights, fans and screens work together as one system is [its own subject](/blogs/designing-a-complete-louvered-roof-system), and it is worth reading before you finalize the frame rather than after.
 
@@ -206,4 +206,4 @@ That is the scope conversation. The product conversation — blade profile, driv
 
 Run the [pool cost estimator](/pool-cost-estimator) twice — once with the louvered roof ticked, once without — and look at what it does to the total rather than at the line by itself. What comes back is a **plus or minus 10 percent** range built from the same approved price table as every figure on this page. It is built to show you which of your decisions is moving your number, not to quote your project. If the timing is the constraint rather than the scope, [financing](/financing) changes when rather than what, and the decisions above do not get cheaper by waiting.
 
-For a real figure, the span, the anchorage, the discharge point and the panel all have to be looked at on the ground. How we build these is on the [motorized louvered roof systems](/services/motorized-louvered-roof-systems-in-north-south-florida) page, [the gallery](/gallery) has finished ones in real backyards, and a [project evaluation](/request-estimated) starts with that walk-through rather than with a number over the phone.
+For a real figure, the span, the anchorage, the discharge point and the panel all have to be looked at on the ground. How we build these is on the [motorized louvered roof systems](/services/louvered-roofs) page, [the gallery](/gallery) has finished ones in real backyards, and a [project evaluation](/request-estimated) starts with that walk-through rather than with a number over the phone.

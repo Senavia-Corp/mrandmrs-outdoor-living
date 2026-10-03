@@ -51,6 +51,20 @@
    "fecha": "2026-09-19",
    "motivo": "BLOG-SANITY: articulo del cluster «New Pool Construction», escrito para la ficha de Pool  Construction. No existe en el Webflow de origen: es contenido nuevo."
   },
+  "/blogs/cold-plunge-integration-florida-pool-construction": {
+   "titulo": "Cold Plunge Integration in Florida Pool Construction: What to Plan Before the Shell",
+   "categoria": "new-pool-construction",
+   "servicio": "custom-pool-spa-builders-in-north-south-florida",
+   "fecha": "2026-10-01",
+   "motivo": "BLOG-SANITY: articulo del cluster «New Pool Construction», escrito para la ficha de Pool  Construction. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/dark-pool-finishes-in-florida": {
+   "titulo": "Dark Pool Finishes in Florida: What Changes With the Water, the Heat and the Chemistry",
+   "categoria": "pool-design-planning",
+   "servicio": "custom-pool-spa-builders-in-north-south-florida",
+   "fecha": "2026-10-01",
+   "motivo": "BLOG-SANITY: articulo del cluster «Pool Design & Planning», escrito para la ficha de Pool  Construction. No existe en el Webflow de origen: es contenido nuevo."
+  },
   "/blogs/designing-a-complete-louvered-roof-system": {
    "titulo": "Lights, Fans, Screens & More: How to Design a Complete Louvered Roof System",
    "categoria": "pergolas-louvered-roofs",
@@ -196,6 +210,13 @@
    "categoria": "new-pool-construction",
    "servicio": "custom-pool-spa-builders-in-north-south-florida",
    "fecha": "2026-09-19",
+   "motivo": "BLOG-SANITY: articulo del cluster «New Pool Construction», escrito para la ficha de Pool  Construction. No existe en el Webflow de origen: es contenido nuevo."
+  },
+  "/blogs/pool-automation-for-new-construction": {
+   "titulo": "Pool Automation for New Construction: What to Decide Before the Equipment Pad Is Set",
+   "categoria": "new-pool-construction",
+   "servicio": "custom-pool-spa-builders-in-north-south-florida",
+   "fecha": "2026-10-01",
    "motivo": "BLOG-SANITY: articulo del cluster «New Pool Construction», escrito para la ficha de Pool  Construction. No existe en el Webflow de origen: es contenido nuevo."
   },
   "/blogs/pool-remodeling-decisions-that-transform-an-old-pool": {

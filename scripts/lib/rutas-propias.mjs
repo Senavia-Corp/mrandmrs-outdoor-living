@@ -92,9 +92,25 @@ const rutasDeBlog = () => {
   return Object.fromEntries(Object.entries(rutas).map(([r, d]) => [r, d.motivo]));
 };
 
+/**
+ * ── LAS PAGINAS DE CATEGORIA DE LA GALERIA, DERIVADAS (2-oct-2026) ──────────────────────────
+ * Una por entrada de `src/data/galeria-categorias.json`, que es de donde salen tambien la
+ * pagina, su tarjeta en `/gallery` y su linea del sitemap. Mismo patron que `rutasDeBlog()`.
+ */
+const rutasDeGaleria = () => {
+  const f = path.join(path.dirname(new URL(import.meta.url).pathname), '../../src/data/galeria-categorias.json');
+  if (!fs.existsSync(f)) return {};
+  return Object.fromEntries(JSON.parse(fs.readFileSync(f, 'utf8')).categorias.map((c) => [
+    `/gallery/${c.slug}`,
+    `Galeria de un servicio (2-oct-2026): las ${c.fotos.length} fotos de obra real de «${c.nombre}». `
+      + '/gallery las ensenaba todas juntas tras un desplegable y no habia URL por servicio que indexar.',
+  ]));
+};
+
 /** Ruta -> por que existe. El motivo no es adorno: es lo que hace auditable la excepcion. */
 export const RUTAS_PROPIAS = {
   ...rutasDeBlog(),
+  ...rutasDeGaleria(),
 
   '/financing': 'Escrita el 2-sep-2026. El nav mandaba a Acorn Finance con `target="_blank"` '
     + 'desde las 115 rutas: cada clic en «Financing» salia del sitio antes de explicar nada. '

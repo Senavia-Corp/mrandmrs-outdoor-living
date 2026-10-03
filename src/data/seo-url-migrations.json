@@ -1,0 +1,524 @@
+{
+  "_lee_esto": [
+    "FUENTE DE VERDAD de la migracion de URLs del 3-oct-2026 (docs/seo/URL-MIGRATION-2026.md).",
+    "Cada entrada de `migraciones` es 1:1: `old` -> redirect permanente -> `new` (pagina 200).",
+    "La leen: src/lib/rutas-seo.mjs (Astro) y scripts/lib/renombradas.mjs (generadores y puertas),",
+    "scripts/build-redirects.mjs (escribe los redirects de vercel.json) y scripts/check-redirects.mjs",
+    "(la puerta: 76 nuevas en 200, 76 viejas con 308 directo, sin cadenas, sin bucles, sitemap limpio).",
+    "`legacy` son los redirects historicos que ya existian; su `destination` apunta SIEMPRE a la URL",
+    "final, nunca a una `old` de `migraciones` (eso seria una cadena, y check-redirects la caza).",
+    "`sanitySlug` en las ciudades es el `slug.current` del documento poolBuilder en Sanity: es la",
+    "IDENTIDAD del documento y no se renombra en el CMS (igual que serviceRegion y service); la URL",
+    "publica la deriva el codigo con `rutaCiudad()`. /pool-builders/beach-florida era Hillsboro Beach.",
+    "OJO: las `old` de aqui son las UNICAS apariciones legitimas de las URLs viejas en src/: una",
+    "sustitucion global de rutas viejas por nuevas tiene que saltarse este fichero."
+  ],
+  "fecha": "2026-10-03",
+  "migraciones": [
+    {
+      "old": "/services/custom-pool-spa-builders-in-north-south-florida",
+      "new": "/services/pool-builders",
+      "type": "service"
+    },
+    {
+      "old": "/services/pool-remodeling-renovation-in-north-south-florida",
+      "new": "/services/pool-remodeling",
+      "type": "service"
+    },
+    {
+      "old": "/services/custom-aluminum-pergola-builders-in-north-south-florida",
+      "new": "/services/pergola-builders",
+      "type": "service"
+    },
+    {
+      "old": "/services/custom-outdoor-kitchens-for-north-south-florida-homes",
+      "new": "/services/outdoor-kitchens",
+      "type": "service"
+    },
+    {
+      "old": "/services/motorized-louvered-roof-systems-in-north-south-florida",
+      "new": "/services/louvered-roofs",
+      "type": "service"
+    },
+    {
+      "old": "/services/motorized-retractable-screens-in-north-south-florida",
+      "new": "/services/retractable-screens",
+      "type": "service"
+    },
+    {
+      "old": "/services/patio-screen-rooms-enclosures-in-north-south-florida",
+      "new": "/services/patio-screen-rooms",
+      "type": "service"
+    },
+    {
+      "old": "/services/pool-screen-enclosures-for-north-south-florida-pools",
+      "new": "/services/pool-screen-enclosures",
+      "type": "service"
+    },
+    {
+      "old": "/services/custom-deck-builders-in-north-south-florida",
+      "new": "/services/deck-builders",
+      "type": "service"
+    },
+    {
+      "old": "/services/professional-landscaping-services-in-north-south-florida",
+      "new": "/services/landscaping",
+      "type": "service"
+    },
+    {
+      "old": "/services/smart-irrigation-system-installation-in-north-south-florida",
+      "new": "/services/irrigation-systems",
+      "type": "service"
+    },
+    {
+      "old": "/services/premium-outdoor-furniture-for-north-south-florida-homes",
+      "new": "/services/outdoor-furniture",
+      "type": "service"
+    },
+    {
+      "old": "/services/steel-building-pole-barn-construction-in-north-south-florida",
+      "new": "/services/steel-buildings-pole-barns",
+      "type": "service"
+    },
+    {
+      "old": "/services/smart-soffit-led-lighting-installation-in-north-south-florida",
+      "new": "/services/soffit-led-lighting",
+      "type": "service"
+    },
+    {
+      "old": "/pool-builders/alachua-florida",
+      "new": "/services/pool-builders/alachua-fl",
+      "type": "city",
+      "sanitySlug": "alachua-florida"
+    },
+    {
+      "old": "/pool-builders/archer-florida",
+      "new": "/services/pool-builders/archer-fl",
+      "type": "city",
+      "sanitySlug": "archer-florida"
+    },
+    {
+      "old": "/pool-builders/atlantis-florida",
+      "new": "/services/pool-builders/atlantis-fl",
+      "type": "city",
+      "sanitySlug": "atlantis-florida"
+    },
+    {
+      "old": "/pool-builders/beach-florida",
+      "new": "/services/pool-builders/hillsboro-beach-fl",
+      "type": "city",
+      "sanitySlug": "beach-florida"
+    },
+    {
+      "old": "/pool-builders/boca-raton-florida",
+      "new": "/services/pool-builders/boca-raton-fl",
+      "type": "city",
+      "sanitySlug": "boca-raton-florida"
+    },
+    {
+      "old": "/pool-builders/boynton-beach-florida",
+      "new": "/services/pool-builders/boynton-beach-fl",
+      "type": "city",
+      "sanitySlug": "boynton-beach-florida"
+    },
+    {
+      "old": "/pool-builders/cedar-key-florida",
+      "new": "/services/pool-builders/cedar-key-fl",
+      "type": "city",
+      "sanitySlug": "cedar-key-florida"
+    },
+    {
+      "old": "/pool-builders/chiefland-florida",
+      "new": "/services/pool-builders/chiefland-fl",
+      "type": "city",
+      "sanitySlug": "chiefland-florida"
+    },
+    {
+      "old": "/pool-builders/cross-city-florida",
+      "new": "/services/pool-builders/cross-city-fl",
+      "type": "city",
+      "sanitySlug": "cross-city-florida"
+    },
+    {
+      "old": "/pool-builders/dania-beach-florida",
+      "new": "/services/pool-builders/dania-beach-fl",
+      "type": "city",
+      "sanitySlug": "dania-beach-florida"
+    },
+    {
+      "old": "/pool-builders/davie-florida",
+      "new": "/services/pool-builders/davie-fl",
+      "type": "city",
+      "sanitySlug": "davie-florida"
+    },
+    {
+      "old": "/pool-builders/deerfield-beach-florida",
+      "new": "/services/pool-builders/deerfield-beach-fl",
+      "type": "city",
+      "sanitySlug": "deerfield-beach-florida"
+    },
+    {
+      "old": "/pool-builders/delray-beach-florida",
+      "new": "/services/pool-builders/delray-beach-fl",
+      "type": "city",
+      "sanitySlug": "delray-beach-florida"
+    },
+    {
+      "old": "/pool-builders/fanning-springs-florida",
+      "new": "/services/pool-builders/fanning-springs-fl",
+      "type": "city",
+      "sanitySlug": "fanning-springs-florida"
+    },
+    {
+      "old": "/pool-builders/fort-lauderdale-florida",
+      "new": "/services/pool-builders/fort-lauderdale-fl",
+      "type": "city",
+      "sanitySlug": "fort-lauderdale-florida"
+    },
+    {
+      "old": "/pool-builders/gainesville-florida",
+      "new": "/services/pool-builders/gainesville-fl",
+      "type": "city",
+      "sanitySlug": "gainesville-florida"
+    },
+    {
+      "old": "/pool-builders/gulf-stream-florida",
+      "new": "/services/pool-builders/gulf-stream-fl",
+      "type": "city",
+      "sanitySlug": "gulf-stream-florida"
+    },
+    {
+      "old": "/pool-builders/hallandale-beach-florida",
+      "new": "/services/pool-builders/hallandale-beach-fl",
+      "type": "city",
+      "sanitySlug": "hallandale-beach-florida"
+    },
+    {
+      "old": "/pool-builders/hawthorne-florida",
+      "new": "/services/pool-builders/hawthorne-fl",
+      "type": "city",
+      "sanitySlug": "hawthorne-florida"
+    },
+    {
+      "old": "/pool-builders/high-springs-florida",
+      "new": "/services/pool-builders/high-springs-fl",
+      "type": "city",
+      "sanitySlug": "high-springs-florida"
+    },
+    {
+      "old": "/pool-builders/hollywood-florida",
+      "new": "/services/pool-builders/hollywood-fl",
+      "type": "city",
+      "sanitySlug": "hollywood-florida"
+    },
+    {
+      "old": "/pool-builders/hypoluxo-florida",
+      "new": "/services/pool-builders/hypoluxo-fl",
+      "type": "city",
+      "sanitySlug": "hypoluxo-florida"
+    },
+    {
+      "old": "/pool-builders/juno-beach-florida",
+      "new": "/services/pool-builders/juno-beach-fl",
+      "type": "city",
+      "sanitySlug": "juno-beach-florida"
+    },
+    {
+      "old": "/pool-builders/jupiter-florida",
+      "new": "/services/pool-builders/jupiter-fl",
+      "type": "city",
+      "sanitySlug": "jupiter-florida"
+    },
+    {
+      "old": "/pool-builders/lake-city-florida",
+      "new": "/services/pool-builders/lake-city-fl",
+      "type": "city",
+      "sanitySlug": "lake-city-florida"
+    },
+    {
+      "old": "/pool-builders/lighthouse-point-florida",
+      "new": "/services/pool-builders/lighthouse-point-fl",
+      "type": "city",
+      "sanitySlug": "lighthouse-point-florida"
+    },
+    {
+      "old": "/pool-builders/manalapan-florida",
+      "new": "/services/pool-builders/manalapan-fl",
+      "type": "city",
+      "sanitySlug": "manalapan-florida"
+    },
+    {
+      "old": "/pool-builders/mcintosh-florida",
+      "new": "/services/pool-builders/mcintosh-fl",
+      "type": "city",
+      "sanitySlug": "mcintosh-florida"
+    },
+    {
+      "old": "/pool-builders/micanopy-florida",
+      "new": "/services/pool-builders/micanopy-fl",
+      "type": "city",
+      "sanitySlug": "micanopy-florida"
+    },
+    {
+      "old": "/pool-builders/miramar-florida",
+      "new": "/services/pool-builders/miramar-fl",
+      "type": "city",
+      "sanitySlug": "miramar-florida"
+    },
+    {
+      "old": "/pool-builders/newberry-florida",
+      "new": "/services/pool-builders/newberry-fl",
+      "type": "city",
+      "sanitySlug": "newberry-florida"
+    },
+    {
+      "old": "/pool-builders/north-palm-beach-florida",
+      "new": "/services/pool-builders/north-palm-beach-fl",
+      "type": "city",
+      "sanitySlug": "north-palm-beach-florida"
+    },
+    {
+      "old": "/pool-builders/ocala-florida",
+      "new": "/services/pool-builders/ocala-fl",
+      "type": "city",
+      "sanitySlug": "ocala-florida"
+    },
+    {
+      "old": "/pool-builders/ocean-ridge-florida",
+      "new": "/services/pool-builders/ocean-ridge-fl",
+      "type": "city",
+      "sanitySlug": "ocean-ridge-florida"
+    },
+    {
+      "old": "/pool-builders/old-town-florida",
+      "new": "/services/pool-builders/old-town-fl",
+      "type": "city",
+      "sanitySlug": "old-town-florida"
+    },
+    {
+      "old": "/pool-builders/palatka-florida",
+      "new": "/services/pool-builders/palatka-fl",
+      "type": "city",
+      "sanitySlug": "palatka-florida"
+    },
+    {
+      "old": "/pool-builders/palm-beach-gardens-florida",
+      "new": "/services/pool-builders/palm-beach-gardens-fl",
+      "type": "city",
+      "sanitySlug": "palm-beach-gardens-florida"
+    },
+    {
+      "old": "/pool-builders/parkland-florida",
+      "new": "/services/pool-builders/parkland-fl",
+      "type": "city",
+      "sanitySlug": "parkland-florida"
+    },
+    {
+      "old": "/pool-builders/pembroke-pines-florida",
+      "new": "/services/pool-builders/pembroke-pines-fl",
+      "type": "city",
+      "sanitySlug": "pembroke-pines-florida"
+    },
+    {
+      "old": "/pool-builders/plantation-florida",
+      "new": "/services/pool-builders/plantation-fl",
+      "type": "city",
+      "sanitySlug": "plantation-florida"
+    },
+    {
+      "old": "/pool-builders/pompano-beach-florida",
+      "new": "/services/pool-builders/pompano-beach-fl",
+      "type": "city",
+      "sanitySlug": "pompano-beach-florida"
+    },
+    {
+      "old": "/pool-builders/reddick-florida",
+      "new": "/services/pool-builders/reddick-fl",
+      "type": "city",
+      "sanitySlug": "reddick-florida"
+    },
+    {
+      "old": "/pool-builders/royal-palm-beach-florida",
+      "new": "/services/pool-builders/royal-palm-beach-fl",
+      "type": "city",
+      "sanitySlug": "royal-palm-beach-florida"
+    },
+    {
+      "old": "/pool-builders/south-palm-beach-florida",
+      "new": "/services/pool-builders/south-palm-beach-fl",
+      "type": "city",
+      "sanitySlug": "south-palm-beach-florida"
+    },
+    {
+      "old": "/pool-builders/southwest-ranches-florida",
+      "new": "/services/pool-builders/southwest-ranches-fl",
+      "type": "city",
+      "sanitySlug": "southwest-ranches-florida"
+    },
+    {
+      "old": "/pool-builders/tequesta-florida",
+      "new": "/services/pool-builders/tequesta-fl",
+      "type": "city",
+      "sanitySlug": "tequesta-florida"
+    },
+    {
+      "old": "/pool-builders/trenton-florida",
+      "new": "/services/pool-builders/trenton-fl",
+      "type": "city",
+      "sanitySlug": "trenton-florida"
+    },
+    {
+      "old": "/pool-builders/waldo-florida",
+      "new": "/services/pool-builders/waldo-fl",
+      "type": "city",
+      "sanitySlug": "waldo-florida"
+    },
+    {
+      "old": "/pool-builders/wellington-florida",
+      "new": "/services/pool-builders/wellington-fl",
+      "type": "city",
+      "sanitySlug": "wellington-florida"
+    },
+    {
+      "old": "/pool-builders/west-palm-beach-florida",
+      "new": "/services/pool-builders/west-palm-beach-fl",
+      "type": "city",
+      "sanitySlug": "west-palm-beach-florida"
+    },
+    {
+      "old": "/pool-builders/weston-florida",
+      "new": "/services/pool-builders/weston-fl",
+      "type": "city",
+      "sanitySlug": "weston-florida"
+    },
+    {
+      "old": "/pool-builders/williston-florida",
+      "new": "/services/pool-builders/williston-fl",
+      "type": "city",
+      "sanitySlug": "williston-florida"
+    },
+    {
+      "old": "/pool-builders/wilton-manors-florida",
+      "new": "/services/pool-builders/wilton-manors-fl",
+      "type": "city",
+      "sanitySlug": "wilton-manors-florida"
+    },
+    {
+      "old": "/country/custom-pool-builders-alachua-county-fl",
+      "new": "/services/pool-builders/alachua-county-fl",
+      "type": "county"
+    },
+    {
+      "old": "/country/custom-pool-builders-broward-county-fl",
+      "new": "/services/pool-builders/broward-county-fl",
+      "type": "county"
+    },
+    {
+      "old": "/country/custom-pool-builders-columbia-county-fl",
+      "new": "/services/pool-builders/columbia-county-fl",
+      "type": "county"
+    },
+    {
+      "old": "/country/custom-pool-builders-dixie-county-fl",
+      "new": "/services/pool-builders/dixie-county-fl",
+      "type": "county"
+    },
+    {
+      "old": "/country/custom-pool-builders-gilchrist-county-fl",
+      "new": "/services/pool-builders/gilchrist-county-fl",
+      "type": "county"
+    },
+    {
+      "old": "/country/custom-pool-builders-levy-county-fl",
+      "new": "/services/pool-builders/levy-county-fl",
+      "type": "county"
+    },
+    {
+      "old": "/country/custom-pool-builders-marion-county-fl",
+      "new": "/services/pool-builders/marion-county-fl",
+      "type": "county"
+    },
+    {
+      "old": "/country/custom-pool-builders-palm-beach-county-fl",
+      "new": "/services/pool-builders/palm-beach-county-fl",
+      "type": "county"
+    },
+    {
+      "old": "/country/custom-pool-builders-putnam-county-fl",
+      "new": "/services/pool-builders/putnam-county-fl",
+      "type": "county"
+    }
+  ],
+  "legacy": [
+    {
+      "source": "/commercial-services/commercial-pool-construction-north-south-florida",
+      "destination": "/industry-solutions",
+      "motivo": "MENU-PLAN.md: ficha comercial que ya daba 404 en el Webflow de origen; el menu la enlazaba."
+    },
+    {
+      "source": "/commercial-services/commercial-pool-contractors-north-south-florida",
+      "destination": "/industry-solutions",
+      "motivo": "MENU-PLAN.md: idem."
+    },
+    {
+      "source": "/commercial-services/commercial-pool-renovations-north-south-florida",
+      "destination": "/services/pool-remodeling",
+      "motivo": "MENU-PLAN.md: idem; su destino es la ficha de remodelacion, migrada el 3-oct-2026 (antes /services/pool-remodeling-renovation-in-north-south-florida)."
+    },
+    {
+      "source": "/where-we-serves/custom-pool-builders-north-florida",
+      "destination": "/where-we-serve/north-florida",
+      "motivo": "Tier 1 de SEO-URLS-PLAN.md (3-sep-2026): las 2 regionales se anidan bajo /where-we-serve."
+    },
+    {
+      "source": "/where-we-serves/custom-pool-builders-south-florida",
+      "destination": "/where-we-serve/south-florida",
+      "motivo": "Tier 1 de SEO-URLS-PLAN.md (3-sep-2026): idem; estaba en el sitemap del Webflow vivo."
+    },
+    {
+      "source": "/services/custom-aluminum-wood-pergola-builders-in-north-south-florida",
+      "destination": "/services/pergola-builders",
+      "motivo": "Slug viejo del servicio de pergolas, con «wood» en medio; rankea en posicion 2,2 con 125 impresiones. Destino: la ficha de pergolas, migrada el 3-oct-2026."
+    },
+    {
+      "source": "/excavation",
+      "destination": "/services/pool-builders",
+      "motivo": "Ruta heredada que ya devolvia 404 antes de la migracion (11 impresiones). La excavacion es parte de la construccion de piscina: ficha de pool builders, migrada el 3-oct-2026."
+    },
+    {
+      "source": "/pool-builders/pool-builders-southwest-ranches-florida",
+      "destination": "/services/pool-builders/southwest-ranches-fl",
+      "motivo": "Legacy de Webflow (slug con el prefijo repetido), con impresiones en Search Console. Apunta DIRECTO a la ciudad migrada el 3-oct-2026: nunca a /pool-builders/*, que ahora tambien redirige."
+    },
+    {
+      "source": "/pool-builders/pool-builders-hallandale-beach-florida",
+      "destination": "/services/pool-builders/hallandale-beach-fl",
+      "motivo": "Legacy de Webflow (slug con el prefijo repetido), con impresiones en Search Console. Apunta DIRECTO a la ciudad migrada el 3-oct-2026: nunca a /pool-builders/*, que ahora tambien redirige."
+    },
+    {
+      "source": "/pool-builders/pool-builders-ocala-florida",
+      "destination": "/services/pool-builders/ocala-fl",
+      "motivo": "Legacy de Webflow (slug con el prefijo repetido), con impresiones en Search Console. Apunta DIRECTO a la ciudad migrada el 3-oct-2026: nunca a /pool-builders/*, que ahora tambien redirige."
+    },
+    {
+      "source": "/pool-builders/pool-builders-north-palm-beach-florida",
+      "destination": "/services/pool-builders/north-palm-beach-fl",
+      "motivo": "Legacy de Webflow (slug con el prefijo repetido), con impresiones en Search Console. Apunta DIRECTO a la ciudad migrada el 3-oct-2026: nunca a /pool-builders/*, que ahora tambien redirige."
+    },
+    {
+      "source": "/pool-builders/pool-builders-micanopy-florida",
+      "destination": "/services/pool-builders/micanopy-fl",
+      "motivo": "Legacy de Webflow (slug con el prefijo repetido), con impresiones en Search Console. Apunta DIRECTO a la ciudad migrada el 3-oct-2026: nunca a /pool-builders/*, que ahora tambien redirige."
+    },
+    {
+      "source": "/pool-builders/pool-builders-west-palm-beach-florida",
+      "destination": "/services/pool-builders/west-palm-beach-fl",
+      "motivo": "Legacy de Webflow (slug con el prefijo repetido), con impresiones en Search Console. Apunta DIRECTO a la ciudad migrada el 3-oct-2026: nunca a /pool-builders/*, que ahora tambien redirige."
+    },
+    {
+      "source": "/pool-builders/pool-builders-mcintosh-florida",
+      "destination": "/services/pool-builders/mcintosh-fl",
+      "motivo": "Legacy de Webflow (slug con el prefijo repetido), con impresiones en Search Console. Apunta DIRECTO a la ciudad migrada el 3-oct-2026: nunca a /pool-builders/*, que ahora tambien redirige."
+    }
+  ]
+}

@@ -7,7 +7,7 @@
  * comparando el TOKEN ENTERO (nunca subcadena, nunca `\b`: el guion no es caracter de palabra
  * y `\banimated-divs\b` casaria dentro de otra clase — es la trampa de PARTE-02.md:74-79):
  *
- *   .animated-divs-section   55 rutas    53 /pool-builders/* + las 2 /where-we-serve/*-florida
+ *   .animated-divs-section   55 rutas    53 /services/pool-builders/* + las 2 /where-we-serve/*-florida
  *   .wrapper-feature         55          idem
  *   .feature-card            55          idem
  *   .feature-image           55          idem
@@ -22,7 +22,7 @@
  * El acordeon horizontal de 6 columnas: seis fotos de mejoras de piscina, una abierta a la vez.
  *
  * ⚠️ NO ES UN FICHERO DE UNA PAGINA. Se llama por lo que hace, no por donde se ve. Acotarlo
- * manana a /where-we-serve romperia las 53 de /pool-builders/ en silencio. Es la leccion de
+ * manana a /where-we-serve romperia las 53 de /services/pool-builders/ en silencio. Es la leccion de
  * `blog.css`, que nacio dentro de `home.css` y se pinta en 63 paginas.
  *
  * 🚨 Todo cambio aqui pone en rojo `check:visual` en esas 55 rutas y hay que re-baselinizarlas.
@@ -390,6 +390,12 @@
   font-size: var(--mm-paso-3);
   line-height: var(--mm-alto-cuerpo);
 }
+/* PANELES-GALERIA: el enlace a /gallery/<slug> del parrafo. El `a` de webflow.css lo pinta
+ * azul oscuro (ilegible sobre el velo) y a 14px/12px fijos: aqui hereda la letra del parrafo y
+ * toma el enlace inverso de los tokens (8,51:1 sobre navy). El subrayado del navegador se queda:
+ * el color solo no basta como indicador (WCAG 1.4.1). Ya es `position:relative` por webflow.css,
+ * asi que pinta por encima del `::after` del boton, que cubre la tarjeta a >=992. */
+.feature-text a { color: var(--mm-enlace-inverso); font: inherit }
 @media (min-width: 992px) {
   .animated-divs-section .feature-card:not(.is-active) .title-feature {
     grid-area: 1 / 1;

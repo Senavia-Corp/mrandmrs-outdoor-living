@@ -2,8 +2,8 @@
 /**
  * DIAGNOSTICO (no es una puerta) — LOS ESTADOS QUE NO SE VEN, y el acordeon.
  *
- *     node scripts/diag-estados.mjs /pool-builders/ocala-florida
- *     node scripts/diag-estados.mjs /pool-builders/ocala-florida 390 1440
+ *     node scripts/diag-estados.mjs /services/pool-builders/ocala-fl
+ *     node scripts/diag-estados.mjs /services/pool-builders/ocala-fl 390 1440
  *
  * POR QUE EXISTE. `check:visual` compara capturas y `check:texto` compara innerText: los dos
  * miran la pagina EN REPOSO. Los estados que deciden si un lead se pierde no existen en reposo

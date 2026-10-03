@@ -1,0 +1,162 @@
+---
+/**
+ * `/gallery/<slug>` — la galeria de UN servicio (2-oct-2026, encargo de Sebastian).
+ *
+ * `/gallery` ensena las ~190 fotos juntas detras de un desplegable: quien busca pergolas tiene
+ * que dar con el filtro, y Google no tenia ninguna URL de «fotos de pergolas» que indexar.
+ * Estas paginas son esa URL, y solo llevan obra real: las fotos del banco y las de la rejilla
+ * de origen con `usable: true` en `gallery-procedencia.json`.
+ *
+ * TODO EL DATO —slug, titulos, intro, fotos y su orden— vive en
+ * `src/data/galeria-categorias.json`. Aqui no hay ni una cadena por categoria.
+ *
+ * EL MARCADO DE LA REJILLA ES EL DE `/gallery`, clase por clase, y no es comodidad:
+ *   · `galeria.css` da la relacion 3:2, las columnas y los estados sobre esas clases;
+ *   · `GalleryLeadLightbox.astro` engancha `a.w-lightbox` DENTRO de `.gallery-page` y lee el
+ *     `script.w-json` de cada una. Es el visor con el formulario de presupuesto al lado: el
+ *     mecanismo de captacion de la galeria, y la razon de que esta pagina exista.
+ */
+import Base from '../../layouts/Base.astro';
+import { SITIO } from '../../lib/negocio.mjs';
+import { CATEGORIAS, rutaDe, tarjetasHtml, TITULO_OTRAS } from '../../lib/galeria-categorias.mjs';
+
+export function getStaticPaths() {
+  return CATEGORIAS.map((c) => ({ params: { categoria: c.slug }, props: { c } }));
+}
+
+const { c } = Astro.props;
+
+// Falla RUIDOSAMENTE: una categoria sin fotos o sin copy no es una pagina, es un 200 vacio
+// indexable. Mejor que el build no termine.
+for (const k of ['slug', 'nombre', 'h1', 'title', 'description', 'intro', 'linea']) {
+  if (!c[k]) throw new Error(`galeria-categorias.json: «${c.slug ?? '?'}» no trae \`${k}\``);
+}
+if (!c.servicio?.enlace || !c.servicio?.ancla) throw new Error(`${c.slug}: falta \`servicio\``);
+if (!Array.isArray(c.fotos) || c.fotos.length < 8) {
+  throw new Error(`${c.slug}: ${c.fotos?.length ?? 0} fotos — el minimo para tener pagina es 8`);
+}
+
+const ruta = rutaDe(c);
+const url = `${SITIO}${ruta}`;
+const abs = (src) => `${SITIO}${src}`;
+
+const SEO = {
+  meta: {
+    'og:title': c.title,
+    'og:description': c.description,
+    'og:type': 'website',
+    'og:image': abs(c.fotos[0].src),
+    'twitter:card': 'summary_large_image',
+  },
+  jsonLd: [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      '@id': `${url}#pagina`,
+      url,
+      name: c.h1,
+      description: c.description,
+      isPartOf: { '@type': 'CollectionPage', url: `${SITIO}/gallery`, name: 'Project Gallery' },
+      image: c.fotos.map((f) => ({
+        '@type': 'ImageObject',
+        contentUrl: abs(f.src),
+        description: f.alt,
+        width: f.ancho,
+        height: f.alto,
+      })),
+    },
+    {
+      // La miga que deriva `Base` de la ruta diria «Gallery > Pools And Spas»: aqui van los
+      // nombres que el visitante lee en la pagina.
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      '@id': `${url}#miga`,
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITIO },
+        { '@type': 'ListItem', position: 2, name: 'Project Gallery', item: `${SITIO}/gallery` },
+        { '@type': 'ListItem', position: 3, name: c.nombre, item: url },
+      ],
+    },
+  ],
+};
+
+// La primera fila se pinta ya; el resto espera al scroll. 3 es el maximo de columnas.
+const PRIMERA_FILA = 3;
+---
+
+<Base titulo={c.title} descripcion={c.description} ruta={ruta} seo={SEO}>
+  <main>
+    <section class="hero-section gal-hero">
+      <div class="w-layout-blockcontainer container w-container">
+        <div class="header-hero-page">
+          <nav class="gal-migas" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="/">Home</a></li>
+              <li><a href="/gallery">Project Gallery</a></li>
+              <li aria-current="page">{c.nombre}</li>
+            </ol>
+          </nav>
+          <h1 class="heading-hero-page">{c.h1}</h1>
+          <div class="text-block-4">{c.intro}</div>
+          <div class="gal-hero__acciones">
+            <a href="/request-estimated" class="mm-accion">Get a free estimate</a>
+            <a href={c.servicio.enlace} class="mm-vinculo">{c.servicio.ancla}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-page gal-pagina" aria-label={`${c.nombre} photos`}>
+      <div class="w-layout-blockcontainer container w-container">
+        <div class="block-pictures">
+          <div class="cms-wrapper-pictures w-dyn-list">
+            <div role="list" class="cms-list-pictures w-dyn-items">
+              {c.fotos.map((f, i) => (
+                <div role="listitem" class="cms-item-pictures w-dyn-item" data-service-id={c.id}>
+                  <a href="#" class="gallery-picture w-inline-block w-lightbox">
+                    <img
+                      src={f.src}
+                      alt={f.alt}
+                      width={f.ancho}
+                      height={f.alto}
+                      class="image-gallery"
+                      loading={i < PRIMERA_FILA ? 'eager' : 'lazy'}
+                      decoding="async"
+                    />
+                    <script type="application/json" class="w-json" is:inline set:html={JSON.stringify({
+                      items: [{ url: f.src, type: 'image' }],
+                      group: 'images',
+                    })} />
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <Fragment set:html={tarjetasHtml({ titulo: TITULO_OTRAS, sin: c.slug, perezosa: true })} />
+      </div>
+    </section>
+
+    <section class="cta-footer">
+      <div class="w-layout-blockcontainer container w-container">
+        <div class="wrapper-cta-footer">
+          <div class="wrapper-vertical-text">
+            <h2>Seen something you like?</h2>
+            <div class="text-block-3">
+              Tell us which photos are closest to what you have in mind and where the project
+              is. We will review it and come back with a design and a price.
+            </div>
+            <div class="wrapper-buttons-center">
+              <a href="/request-estimated" class="mm-accion">Get a free estimate</a>
+            </div>
+            <p class="mm-txt-menudo">
+              Want the details first? Read about our{' '}
+              <a class="mm-vinculo" href={c.servicio.enlace}>{c.servicio.ancla.toLowerCase()}</a>{' '}
+              service, or go back to the <a class="mm-vinculo" href="/gallery">full project gallery</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Base>

@@ -1,0 +1,109 @@
+---
+/**
+ * EL FILTRO POR SERVICIO DE `/projects` (PROMPT-PROYECTOS-BANCO §5, 2-oct-2026).
+ *
+ * `/projects` es DERIVADA: `build-paginas.mjs` pone un marcador delante de la lista y este
+ * componente entra ahi. Las tarjetas traen `data-servicios` desde el mismo generador; aqui solo
+ * se pintan las opciones y se esconden las que no casan.
+ *
+ * Un `<select>` nativo: teclado, lector de pantalla y la rueda de iOS/Android vienen gratis.
+ * Sin JS se ven todas las obras, que es degradar bien. El contador nace VACIO a proposito: solo
+ * habla cuando el visitante cambia el filtro (`aria-live`), y vacio no añade nada a `innerText`.
+ * Las lineas que SI añade (la etiqueta y las opciones) las declara `check-texto.mjs` con
+ * `lineasFiltro()`, la misma formula que pinta esto.
+ *
+ * El CSS va aqui y no en `src/styles/`: la capa esta a 0,1 KB de su presupuesto en
+ * `check:tokens`. Mismos tokens y misma receta que el filtro de `/gallery` (`galeria.css` §6),
+ * con la linea de 1 px de la maqueta de Sebastian.
+ */
+import { opcionesFiltro, ETIQUETA, TODAS } from '../../lib/filtro-proyectos.mjs';
+const opciones = opcionesFiltro();
+---
+<div class="mm-filtro-obras">
+  <label class="mm-sr" for="mm-filtro-obras">{ETIQUETA}</label>
+  <div class="mm-filtro-obras__campo">
+    <select class="mm-filtro-obras__select" id="mm-filtro-obras">
+      <option value="">{TODAS}</option>
+      {opciones.map((o) => <option value={o.id}>{o.nombre}</option>)}
+    </select>
+  </div>
+  <p class="mm-sr" aria-live="polite" data-mm-filtro-cuenta></p>
+</div>
+
+<style>
+  .mm-filtro-obras {
+    display: flex;
+    justify-content: center;
+    padding-inline: var(--mm-e-16);
+    margin-bottom: var(--mm-e-32);
+  }
+
+  .mm-filtro-obras__campo {
+    position: relative;
+    width: 100%;
+    max-width: 460px;                /* el ancho de la maqueta; a 375 px manda el 100 % */
+  }
+
+  .mm-filtro-obras__select {
+    appearance: none;
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    margin: 0;
+    padding: var(--mm-e-8) var(--mm-e-32) var(--mm-e-8) 0;
+    border: 0;
+    border-bottom: 1px solid var(--mm-borde-control);   /* 3,03:1, el minimo de WCAG 1.4.11 */
+    border-radius: 0;
+    background-color: transparent;
+    color: var(--mm-tinta);                              /* navy sobre blanco ... 15,60:1 */
+    font: inherit;
+    font-size: var(--mm-paso-3);
+    font-weight: var(--mm-peso-medio);
+    cursor: pointer;
+  }
+
+  /* La punta va en el envoltorio: un `<select>` no admite pseudoelementos. Dos bordes girados
+   * y no un SVG en `data:`, que llevaria un literal de color. */
+  .mm-filtro-obras__campo::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: var(--mm-e-8);
+    width: var(--mm-e-8);
+    height: var(--mm-e-8);
+    margin-top: calc(var(--mm-e-8) * -1);
+    border-right: var(--mm-foco-grosor) solid var(--mm-tinta);
+    border-bottom: var(--mm-foco-grosor) solid var(--mm-tinta);
+    transform: rotate(45deg);
+    pointer-events: none;
+  }
+
+  .mm-filtro-obras__select:focus { border-bottom-color: var(--mm-tinta); outline: 0 }
+
+  .mm-filtro-obras__select:focus-visible {
+    outline: var(--mm-foco-grosor) solid var(--mm-foco);
+    outline-offset: var(--mm-foco-aire);
+  }
+</style>
+
+<script>
+  const select = document.querySelector<HTMLSelectElement>('#mm-filtro-obras');
+  const cuenta = document.querySelector('[data-mm-filtro-cuenta]');
+  const tarjetas = [...document.querySelectorAll<HTMLElement>('[data-servicios]')];
+
+  const aplica = (anunciar: boolean) => {
+    if (!select) return;
+    const v = select.value;
+    let n = 0;
+    for (const t of tarjetas) {
+      const casa = !v || (t.dataset.servicios ?? '').split(' ').includes(v);
+      t.hidden = !casa;
+      if (casa) n++;
+    }
+    if (anunciar && cuenta) cuenta.textContent = `${n} ${n === 1 ? 'project' : 'projects'}`;
+  };
+
+  // Al volver atras, el navegador restaura el valor del `<select>`: se aplica sin anunciarlo.
+  aplica(false);
+  select?.addEventListener('change', () => aplica(true));
+</script>

@@ -7,7 +7,7 @@
  *
  *   · `src/pages/where-we-serve/north-florida.astro`  (T4 = cierre de testimonial + apertura)
  *   · `src/pages/where-we-serve/south-florida.astro`  (idem)
- *   · `src/pages/pool-builders/[slug].astro`          (B[2] = `.cta-footer` + apertura, x53)
+ *   · `src/pages/services/pool-builders/[slug].astro`          (B[2] = `.cta-footer` + apertura, x53)
  *
  * Mientras `src/data/instagram.json` estuvo vacio daba igual donde cayera la seccion: medía
  * 0 px -`social.css` cuelga TODO su padding de `:has(.mm-ig)`- y nadie la veia. Poblado el

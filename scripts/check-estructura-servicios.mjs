@@ -20,6 +20,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { JSDOM } from 'jsdom';
+import { esFicha } from './lib/renombradas.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const ESTATICO = path.join(RAIZ, '.vercel/output/static');
@@ -33,8 +34,24 @@ const ESPERADO = [
   'location', 'blog-section-page', 'social-media', 'cta-footer', 'logos-section',
 ];
 
+/** Excepciones declaradas: las dos fichas de piscina recuperan el antes/despues entre los servicios
+ *  y el proceso. Remodelacion con el par real del banco (R24-FOTO-PISCINAS, 1-oct-2026); obra nueva
+ *  con el par de la home (2-oct-2026). Escritas a mano por lo mismo que `ESPERADO`: si se
+ *  derivasen de `antesDespues` en el JSON, la puerta daria por bueno cualquier sitio donde el
+ *  generador la pusiera. */
+const VARIANTES = {
+  '/services/pool-remodeling': { tras: 'services', va: 'before-after-section' },
+  '/services/pool-builders': { tras: 'services', va: 'before-after-section' },
+};
+const esperadoDe = (ruta) => {
+  const v = VARIANTES[ruta];
+  if (!v) return ESPERADO;
+  const i = ESPERADO.indexOf(v.tras);
+  return [...ESPERADO.slice(0, i + 1), v.va, ...ESPERADO.slice(i + 1)];
+};
+
 const RUTAS = Object.keys(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/captacion-servicios.json'), 'utf8')))
-  .filter((k) => k.startsWith('/services/'));
+  .filter(esFicha);   // las 14 fichas, no el silo /services/pool-builders/<x>
 
 const leer = (ruta) => {
   for (const p of [path.join(ESTATICO, ruta, 'index.html'), path.join(ESTATICO, `${ruta}.html`)]) {
@@ -57,16 +74,17 @@ for (const ruta of RUTAS) {
     .filter((s) => !s.parentElement?.closest('section'))
     .map((s) => s.classList[0]);
   const cuerpo = clases.slice(clases.indexOf('hero-services'), clases.lastIndexOf('footer'));
-  if (cuerpo.join(' ') !== ESPERADO.join(' ')) {
-    const i = ESPERADO.findIndex((c, k) => cuerpo[k] !== c);
-    mal(ruta, `puesto ${i + 1}: se esperaba «${ESPERADO[i] ?? '(nada)'}» y hay «${cuerpo[i] ?? '(nada)'}»\n`
+  const esperado = esperadoDe(ruta);
+  if (cuerpo.join(' ') !== esperado.join(' ')) {
+    const i = esperado.findIndex((c, k) => cuerpo[k] !== c);
+    mal(ruta, `puesto ${i + 1}: se esperaba «${esperado[i] ?? '(nada)'}» y hay «${cuerpo[i] ?? '(nada)'}»\n`
       + `       orden: ${cuerpo.join(' · ')}`);
     continue;
   }
   const slides = d.querySelectorAll('section.gallery [fs-slider-element="slide"]').length;
   if (!slides) { mal(ruta, 'la gallery esta pero sin slides'); continue; }
-  console.log(`  ok   ${ruta}   (${slides} slides en la galeria)`);
+  console.log(`  ok   ${ruta}   (${slides} slides en la galeria)${VARIANTES[ruta] ? `   + ${VARIANTES[ruta].va} tras ${VARIANTES[ruta].tras} (declarada)` : ''}`);
 }
 
-console.log(`\n${fallos ? `PUERTA ROJA — ${fallos} fallo(s)` : `PUERTA VERDE — ${RUTAS.length} fichas, un solo orden`}\n`);
+console.log(`\n${fallos ? `PUERTA ROJA — ${fallos} fallo(s)` : `PUERTA VERDE — ${RUTAS.length} fichas, un solo orden (+ ${Object.keys(VARIANTES).length} variante(s) declarada(s))`}\n`);
 process.exit(fallos ? 1 : 0);

@@ -104,7 +104,7 @@ const filtro = process.argv[2];
 // el guard de Componentes.astro (a.closest('.gallery-page'))-, las abre el lightbox partido de
 // GalleryLeadLightbox.astro/.mm-lbx en su lugar. Cubierto por check-galeria-formulario.mjs.
 const MUESTRA = filtro ? [filtro] : [
-  '/country/custom-pool-builders-alachua-county-fl',             // lightbox-link, grupo «images»
+  '/services/pool-builders/alachua-county-fl',             // lightbox-link, grupo «images»
   '/project/luxury-pool-spa-screen-enclosure-north-florida',     // lightbox-link-2, grupo «Gallery»
 ];
 const ANCHOS = [[390, 844], [1440, 900]];

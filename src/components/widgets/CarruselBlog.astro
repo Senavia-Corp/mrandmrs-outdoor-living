@@ -31,6 +31,7 @@
 import datos from '../../data/blogs.json';
 import encabezados from '../../data/blog-heading-por-ruta.json';
 import porServicio from '../../data/blog-por-servicio.json';
+import { esFicha } from '../../lib/rutas-seo.mjs';
 
 interface Props {
   /** RETIRADA. Filtraba `blogs.json` por categoria y no se paso NUNCA: el dato emitia
@@ -72,7 +73,7 @@ const entradillaFinal = entradilla ?? deFicha?.entradilla ?? propio?.entradilla 
 const fichas = porServicio.rutas as Record<string, { titulo: string; entradilla: string; posts: typeof datos.posts }>;
 const pendientes = porServicio.pendientes as Record<string, { faltan: string[] }>;
 const ficha = fichas[ruta];
-if (ruta.startsWith('/services/') && !ficha && !pendientes[ruta]) {
+if (esFicha(ruta) && !ficha && !pendientes[ruta]) {
   throw new Error(
     `CarruselBlog: ${ruta} no esta declarada en src/data/blog-por-servicio.json.\n`
     + '  Cada ficha de servicio muestra EXACTAMENTE 5 articulos relacionados, o consta como\n'

@@ -28,21 +28,21 @@
   },
   "summary": "Once the excavator arrives, some decisions stop being decisions. These are the twelve worth settling first, and which of them are genuinely hard to undo.",
   "portada": {
-    "ref": "construction-8",
-    "alt": "Aerial view of a pool and raised spa on a travertine deck, with a garden hose coiled at the edge of the lawn."
+    "ref": "bi-0505",
+    "alt": "Pool with a raised dark-tile spa, a floating lounger and stepping pads set in artificial turf behind a two-story house"
   },
   "figuras": [
     {
-      "ref": "construction-5",
-      "alt": "Pool with arcing water spouts and a covered seating area, with a lake and palms beyond the boundary."
+      "ref": "bi-0558",
+      "alt": "Mini excavator beside a freshly dug pool hole in a backyard enclosed by a wooden fence, with mature trees behind."
     },
     {
-      "ref": "construction-3",
-      "alt": "Pool with in-water loungers and an aluminium pergola attached to the house, with newly laid turf around the deck."
+      "ref": "bi-0717",
+      "alt": "Overhead view of a pool rebar cage in wood forms, with a square spa form and plumbing stubs, between two roof edges."
     },
     {
-      "ref": "construction-1",
-      "alt": "Rectangular pool with a raised spa and water spouts, set in a herringbone travertine deck."
+      "ref": "bi-0690",
+      "alt": "Orange mini excavator making the first cut for a pool behind a white board-and-batten house, with large trees beyond."
     }
   ],
   "faq": [
@@ -99,9 +99,9 @@ The relevant costs are in [what a custom pool really costs](/blogs/how-much-does
 
 You do not have to build the enclosure with the pool. You do have to decide whether one is coming, because the deck carries it.
 
-If an enclosure is likely within a few years, building the deck to take it costs very little now and saves cutting a finished deck later. If it is definitely not coming, you can spend that deck budget on surface instead. What is expensive is not deciding — see [pool screen enclosures](/services/pool-screen-enclosures-for-north-south-florida-pools) for what the structure needs.
+If an enclosure is likely within a few years, building the deck to take it costs very little now and saves cutting a finished deck later. If it is definitely not coming, you can spend that deck budget on surface instead. What is expensive is not deciding — see [pool screen enclosures](/services/pool-screen-enclosures) for what the structure needs.
 
-{{figura: construction-5}}
+{{figura: bi-0558}}
 
 ## 4. How equipment gets to the back yard
 
@@ -117,7 +117,7 @@ Rock, a high water table and old fill all change excavation. None of them are vi
 
 Florida rain arrives fast and in quantity. A new pool and a new deck replace absorbent yard with hard surface, which has to drain somewhere that is not your slab or your neighbor's.
 
-Drainage is designed alongside the deck, not added to it. If you are also planning [landscaping](/services/professional-landscaping-services-in-north-south-florida), plan the two together — the grading serves both.
+Drainage is designed alongside the deck, not added to it. If you are also planning [landscaping](/services/landscaping), plan the two together — the grading serves both.
 
 ## 7. The equipment pad
 
@@ -135,7 +135,7 @@ It also changes the plumbing and the electrical service, so it belongs before th
 
 A salt system and traditional chlorine end up in the same chemistry; they differ in how you handle it day to day and in what the water feels like. Salt also has implications for the materials around the pool, which is a reason to decide it alongside the deck rather than after.
 
-{{figura: construction-3}}
+{{figura: bi-0717}}
 
 ## 10. Lighting, and how many
 
@@ -145,7 +145,7 @@ Think about the deck and the yard at the same time — the pool is rarely the on
 
 ## 11. What else is coming to this yard
 
-An [outdoor kitchen](/services/custom-outdoor-kitchens-for-north-south-florida-homes), a [pergola](/services/custom-aluminum-pergola-builders-in-north-south-florida) or a [deck extension](/services/custom-deck-builders-in-north-south-florida) are all cheaper built while the crews, the access and the slab work are already on site.
+An [outdoor kitchen](/services/outdoor-kitchens), a [pergola](/services/pergola-builders) or a [deck extension](/services/deck-builders) are all cheaper built while the crews, the access and the slab work are already on site.
 
 You do not have to build them now. You do want to know where they go, so the pool and the deck leave room and the sleeves and conduit go in while the ground is open.
 
@@ -155,7 +155,7 @@ Work backwards. A Florida pool project runs through permitting, excavation, stee
 
 That sequence, and what tends to move it, is covered in [the pool construction timeline](/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish). The planning point is simply that a target date set without it is a wish.
 
-{{figura: construction-1}}
+{{figura: bi-0690}}
 
 ## A short pre-excavation checklist
 
@@ -173,4 +173,4 @@ Before anything is dug, you should be able to answer:
 
 If any of those is still "we will figure it out", figure it out now. Every one of them is cheap today and expensive once the ground is open.
 
-When you have answers, a site visit is what turns them into a plan — see [custom pool and spa construction](/services/custom-pool-spa-builders-in-north-south-florida).
+When you have answers, a site visit is what turns them into a plan — see [custom pool and spa construction](/services/pool-builders).

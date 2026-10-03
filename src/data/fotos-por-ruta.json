@@ -1,0 +1,344 @@
+{
+  "_lee_esto": "Sustituye <img> del origen por fotos del banco, por ruta y por selector, en orden DOM. null = se queda la del origen. Lo lee scripts/build-paginas.mjs fotosPorRuta(), que comprueba cada `_banco` contra src/data/banco-imagenes.json (src, ancho, alto, obra_real, aprobada, usada_en con la ruta). Las rutas que no salen aqui quedan byte a byte iguales. Encargo PROMPT-IMAGENES-ABOUT, 2-oct-2026.",
+  "/about": {
+    "section.whatsetus-section img.image-left": [
+      {
+        "src": "/images/banco/louvered/louvered-pergola-bronze-waterfront-pool-deck-florida-01.webp",
+        "alt": "Bronze louvered pergola over a dining area on a travertine pool deck beside a canal",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 35%",
+        "ratio": "1007/1250",
+        "_banco": "bi-0237",
+        "_por_que": "Obra terminada con estructura + piscina en el mismo plano (el «one-stop shop» del texto). `ratio` fija la caja en 548x680 como el render de antes: sin el, la caja de escritorio toma la proporcion del fichero y crece 51 px."
+      }
+    ],
+    "section.aboutus-section img.image-about": [
+      {
+        "src": "/images/banco/construction/pool-construction-excavation-excavator-backyard-florida-01.webp",
+        "alt": "Mini excavator digging a new pool beside a white brick home with a screened patio.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0557",
+        "_bloque": "Project Management",
+        "_por_que": "Obra en curso con el vaso replanteado. No subir la pos: en la tira de 3,7 (991 px) la cabina queda a 10 px del borde. bi-0558, del mismo dia, ya sale en un blog."
+      },
+      {
+        "src": "/images/banco/remodeling/pool-remodeling-step-tile-trim-detail-florida-01.webp",
+        "alt": "Pool steps and bench with new blue glass tile trim set before plaster, with the travertine deck above.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 45%",
+        "_banco": "bi-0533",
+        "_bloque": "Project Monitoring",
+        "_por_que": "Un punto que se inspecciona antes del plaster. bi-0567 (ferralla de obra-049) descartada: pala en primer plano visible de 992 a 1270 px."
+      },
+      {
+        "src": "/images/banco/decks/limestone-pool-deck-round-spa-trellis-wall-florida-01.webp",
+        "alt": "Wet limestone pavers cut to follow the curve of a round spa with a blue glass mosaic tile band, beside a vine trellis wall and bromeliads.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "0% 50%",
+        "_banco": "bi-0077",
+        "_bloque": "Quality",
+        "_por_que": "Piedra cortada al radio del spa y banda de mosaico: el acabado. Ninguna terminada de obra-049 pasa (manguera, tierra, capturas de pantalla)."
+      }
+    ]
+  },
+  "/services/outdoor-kitchens": {
+    "section.gallery img.image-gallery": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-white-grill-farmhouse-sink-lanai-florida-03.webp",
+        "alt": "White outdoor kitchen with built-in grill, farmhouse sink and under-counter fridge on gray pavers.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 55%",
+        "_banco": "bi-0836",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-u-shape-pizza-oven-pool-view-florida-01.webp",
+        "alt": "U-shaped outdoor kitchen with pizza oven, open grill and side burner beside a pool.",
+        "ancho": 1440,
+        "alto": 960,
+        "pos": "50% 50%",
+        "_banco": "bi-0757",
+        "_por_que": null
+      },
+      null
+    ]
+  },
+  "/services/deck-builders": {
+    "section.gallery img.image-gallery": [
+      {
+        "src": "/images/banco/decks/gray-marble-paver-patio-lake-view-florida-01.webp",
+        "alt": "Wet gray marble paver patio along a stucco house with a royal palm and lake behind.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0084",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/decks/gray-marble-paver-driveway-luxury-home-florida-01.webp",
+        "alt": "Gray marble paver driveway with a mitered edge meeting a landscaped street.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0086",
+        "_por_que": null
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "/services/louvered-roofs": {
+    "section.gallery img.image-gallery": [
+      {
+        "src": "/images/banco/louvered/louvered-roof-blades-motor-solar-sensor-top-view-florida-01.webp",
+        "alt": "Top of a white louvered roof showing blades, motors and a small solar panel beside a modern home",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0225",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/louvered/louvered-pergola-finished-condo-terrace-florida-01.webp",
+        "alt": "Finished white louvered pergola casting striped shade on a wood-look terrace.",
+        "ancho": 1125,
+        "alto": 838,
+        "pos": "50% 50%",
+        "_banco": "bi-0658",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/louvered/louvered-roof-red-led-lighting-dusk-patio-florida-01.webp",
+        "alt": "White louvered roof lit with red LED lights over a travertine patio with wicker seating at dusk",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0214",
+        "_por_que": null
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "/services/landscaping": {
+    "section.gallery img.image-gallery": [
+      null,
+      null,
+      null,
+      {
+        "src": "/images/banco/landscaping/backyard-putting-green-artificial-turf-oak-trees-florida-01.webp",
+        "alt": "Kidney-shaped artificial turf putting green with fringe under tall oak trees and gravel paths.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0117",
+        "_por_que": null
+      },
+      null,
+      null,
+      null,
+      null,
+      {
+        "src": "/images/banco/landscaping/landscaping-stepping-stone-path-black-slate-chips-florida-01.webp",
+        "alt": "Side-yard path of square limestone stepping stones set in black slate chips leading to a metal gate.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0499",
+        "_por_que": null
+      },
+      null
+    ]
+  },
+  "/services/steel-buildings-pole-barns": {
+    "section.gallery img.image-gallery": [
+      null,
+      null,
+      null,
+      {
+        "src": "/images/banco/pole/pole-barn-open-equipment-shed-steel-trusses-florida-01.webp",
+        "alt": "Long three-sided pole barn with wood posts, black steel trusses and metal walls on a dirt floor.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-1094",
+        "_por_que": null
+      },
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "/services/soffit-led-lighting": {
+    "section.gallery img.image-gallery": [
+      {
+        "src": "/images/banco/pergolas/aluminum-patio-cover-insulated-roof-pavers-night-florida-01.webp",
+        "alt": "White insulated aluminum patio cover over a gray paver patio lit at night",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0230",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/louvered/louvered-roof-recessed-lights-night-patio-florida-01.webp",
+        "alt": "Louvered roof with white recessed lights over a travertine patio with lounge and dining furniture at night",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0217",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/louvered/louvered-roof-blue-led-strips-night-florida-01.webp",
+        "alt": "Louvered roof glowing with blue LED strips and spotlights over a dark patio at night",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0234",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-island-slat-front-led-lighting-night-florida-01.webp",
+        "alt": "Outdoor kitchen island with slatted front and warm LED strip under blue ceiling lights at dusk.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0299",
+        "_por_que": null
+      },
+      null,
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-bar-blue-led-lighting-night-florida-01.webp",
+        "alt": "Outdoor kitchen bar lit with blue LED lighting at night under a louvered roof with a fire pit.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0773",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/louvered/louvered-roof-red-led-lighting-dusk-patio-florida-01.webp",
+        "alt": "White louvered roof lit with red LED lights over a travertine patio with wicker seating at dusk",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0214",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/louvered/louvered-roof-blue-led-lighting-dusk-patio-florida-01.webp",
+        "alt": "White louvered roof lit with blue LED lights over a travertine patio with wicker seating at dusk",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0215",
+        "_por_que": null
+      },
+      null,
+      null
+    ]
+  },
+  "/services/outdoor-furniture": {
+    "section.gallery img.image-gallery": [
+      {
+        "src": "/images/banco/pergolas/insulated-patio-cover-white-yellow-house-florida-02.webp",
+        "alt": "White insulated patio cover with rafter tails across the back of a yellow two-story house with tile roof",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-1012",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/pergolas/insulated-patio-cover-black-frame-two-story-pool-florida-02.webp",
+        "alt": "Black-framed insulated patio cover with downspout over sun loungers on a two-story home by the pool",
+        "ancho": 1600,
+        "alto": 1066,
+        "pos": "50% 50%",
+        "_banco": "bi-0938",
+        "_por_que": null
+      },
+      null,
+      null,
+      {
+        "src": "/images/banco/pergolas/insulated-patio-cover-black-frame-ceiling-fans-florida-01.webp",
+        "alt": "Large black-framed insulated patio cover with ceiling fans over cream wicker sofas surrounded by palms",
+        "ancho": 1024,
+        "alto": 667,
+        "pos": "50% 50%",
+        "_banco": "bi-0957",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/louvered/louvered-roof-white-large-span-travertine-patio-florida-01.webp",
+        "alt": "Large white louvered roof with partly open blades over a travertine patio with wicker lounge furniture",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0233",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/louvered/louvered-roof-white-open-blades-travertine-patio-florida-01.webp",
+        "alt": "White louvered roof with blades open against a blue sky over a travertine patio with wicker furniture",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0220",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/pergolas/covered-pergola-brown-paver-patio-pool-palms-florida-02.webp",
+        "alt": "Brown covered pergola with rafter tails over a paver patio with turquoise seating, grill and freeform pool",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-1009",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01.webp",
+        "alt": "Dark wood pergola over an outdoor kitchen bar and lounge with TV screen beside a putting green.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0842",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/pergolas/freestanding-patio-cover-bronze-pool-deck-travertine-florida-01.webp",
+        "alt": "Freestanding bronze insulated pergola with slatted privacy screen and wicker seating beside a curved pool",
+        "ancho": 1440,
+        "alto": 1080,
+        "pos": "50% 50%",
+        "_banco": "bi-0977",
+        "_por_que": null
+      }
+    ]
+  }
+}

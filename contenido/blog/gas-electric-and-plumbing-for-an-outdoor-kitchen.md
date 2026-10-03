@@ -32,12 +32,12 @@
   },
   "figuras": [
     {
-      "ref": "kitchen-2",
-      "alt": "Straight-run outdoor kitchen with dark wood-slat cabinet fronts, a stainless grill, a small sink and a white counter, under a white pergola with wood slats and recessed downlights, with a white louvered privacy screen behind it and grass strips between the pavers."
+      "ref": "bi-0788",
+      "alt": "Gray stacked-stone face of an outdoor kitchen island with lights under the counter overhang and two white electrical covers."
     },
     {
-      "ref": "kitchen-6",
-      "alt": "L-shaped outdoor kitchen with black granite counters and white cabinet fronts, a stainless grill and an undercounter refrigerator, under a covered structure with a ceiling fan, looking out past palms and a black aluminum fence to a lake with houses on the far bank."
+      "ref": "bi-0905",
+      "alt": "Stacked-stone outdoor kitchen island under a black-framed patio cover with a ceiling fan, a few steps from the pool."
     },
     {
       "ref": "kitchen-3",
@@ -111,7 +111,7 @@ Refrigeration wants its own circuit. Countertop receptacles are another. Lightin
 
 Two details that are cheap now and impossible later. Every outdoor receptacle needs GFCI protection, and outdoors it needs an in-use cover — the deep kind that closes over a plugged-in cord, not the flat flap that is only weatherproof when nothing is plugged in. And every device in the island gets specified for a wet location, including the ones under the counter, because a paver deck being hosed down is a wet location.
 
-{{figura: kitchen-2}}
+{{figura: bi-0788}}
 
 ### Water: cold is easy, hot is a decision
 
@@ -152,7 +152,7 @@ Irrigation is the one that gets cut, because the laterals are shallow and unmapp
 
 If the kitchen sits close to the water, the electrical work changes character. Metal within the area around a pool has to be bonded into the pool's grid, and that includes structural metal in a nearby island. The connection is buried and tied in before concrete.
 
-{{figura: kitchen-6}}
+{{figura: bi-0905}}
 
 You do not need to know where that boundary falls. You need to ask the question — *is this island inside the bonded area?* — of your electrician, early enough that the answer is a wire in a trench rather than a finding at inspection. It is one of the very few items on a backyard project that genuinely cannot be retrofitted without demolition.
 
@@ -207,4 +207,4 @@ Five things. With them, the trench gets dug once:
 4. Whether the panel has capacity, or the project includes a sub-panel.
 5. Whether the island falls inside the pool's bonded area.
 
-Every one of those is a conversation at the drawing stage and a demolition afterwards. That is how we sequence a [custom outdoor kitchen](/services/custom-outdoor-kitchens-for-north-south-florida-homes), and why the first site visit spends as much time at the meter and the panel as it does in the backyard. Finished projects in [our project gallery](/gallery) are all standing on four connections nobody can see.
+Every one of those is a conversation at the drawing stage and a demolition afterwards. That is how we sequence a [custom outdoor kitchen](/services/outdoor-kitchens), and why the first site visit spends as much time at the meter and the panel as it does in the backyard. Finished projects in [our project gallery](/gallery) are all standing on four connections nobody can see.

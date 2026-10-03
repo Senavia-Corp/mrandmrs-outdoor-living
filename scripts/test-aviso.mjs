@@ -57,7 +57,7 @@ ok('campana de pago', () => {
   assert.equal(r.titular, 'Google / cpc · campaign "pool-remodel-fl"');
 });
 ok('solo gclid -> Google Ads, y el id va entero', () => {
-  const r = lineasDeOrigen({ gclid: 'Cj0KCQjw', landing_page: '/pool-builders/ocala-florida' });
+  const r = lineasDeOrigen({ gclid: 'Cj0KCQjw', landing_page: '/services/pool-builders/ocala-fl' });
   assert.equal(r.titular, 'Google Ads');
   assert.ok(r.detalle.some((l) => l.includes('gclid: Cj0KCQjw')));
 });
@@ -89,7 +89,7 @@ const EJEMPLO = {
   ruta: '/request-estimated',
   origen: {
     utm_source: 'google', utm_medium: 'cpc', utm_campaign: 'pool-remodel-fl',
-    gclid: 'Cj0KCQjwlOu2BhCCARIsAB', landing_page: '/pool-builders/ocala-florida',
+    gclid: 'Cj0KCQjwlOu2BhCCARIsAB', landing_page: '/services/pool-builders/ocala-fl',
     first_seen: '2026-09-04T22:12:04.000Z',
   },
   ip: '203.0.113.44',
@@ -175,7 +175,7 @@ const CORE = {
   ...EJEMPLO,
   formId: 'core',
   tituloRespaldo: 'Pool builders core lead',
-  ruta: '/services/custom-pool-spa-builders-in-north-south-florida',
+  ruta: '/services/pool-builders',
   campos: [
     { campo: 'Full-Name', etiqueta: 'Full name', valor: 'Dana Reyes' },
     { campo: 'Phone', etiqueta: 'Phone', valor: '(352) 555-0134' },

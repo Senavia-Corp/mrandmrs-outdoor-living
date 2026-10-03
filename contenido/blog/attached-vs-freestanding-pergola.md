@@ -31,8 +31,8 @@
   },
   "figuras": [
     {
-      "ref": "pergolas-1",
-      "alt": "Patio cover with translucent corrugated roof panels on a dark frame over a brick paver patio at the back of a tile-roofed stucco house, with french doors and two chairs underneath."
+      "ref": "bi-0636",
+      "alt": "Two installers on ladders fitting a long trim piece to a dark-framed patio cover that extends from a stucco house"
     },
     {
       "ref": "pergolas-4",
@@ -88,7 +88,7 @@ That detail is most of the job. An attached pergola is a waterproofing problem a
 
 The failure we see in the field is simpler than that: a ledger lagged into fascia board, or into the foam trim under the stucco. Fascia carries a gutter. Foam trim carries nothing. Neither of them is a place to hang a structure that the wind is going to pull on.
 
-{{figura: pergolas-1}}
+{{figura: bi-0636}}
 
 ## What "freestanding" really means on site
 
@@ -188,4 +188,4 @@ Both are workable when they come up before the layout is drawn. [Eight features 
 
 A designer does all five on a site visit anyway. Doing them first changes what that visit is about: you arrive choosing between two layouts that both work, instead of being told which one does not. The rest of the pre-construction list is in [seven decisions to make before construction starts](/blogs/pergola-design-decisions-before-construction).
 
-How we build them — spans, footings, finishes and the attachment detail itself — is on the [aluminum pergola construction](/services/custom-aluminum-pergola-builders-in-north-south-florida) page, and a [project estimate](/request-estimated) starts with that site walk rather than with a number.
+How we build them — spans, footings, finishes and the attachment detail itself — is on the [aluminum pergola construction](/services/pergola-builders) page, and a [project estimate](/request-estimated) starts with that site walk rather than with a number.

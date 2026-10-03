@@ -60,7 +60,13 @@ const BLOGS_PROPIOS = (() => {
   if (!fs.existsSync(f)) return 0;
   return Object.keys(JSON.parse(fs.readFileSync(f, 'utf8')).rutas).length;
 })();
-const PAGINAS_ESPERADAS = 122 + BLOGS_PROPIOS;
+/* …Y LAS PAGINAS DE CATEGORIA DE LA GALERIA (2-oct-2026), derivadas igual y por lo mismo. */
+const GALERIAS_PROPIAS = (() => {
+  const f = path.join(RAIZ, 'src/data/galeria-categorias.json');
+  if (!fs.existsSync(f)) return 0;
+  return JSON.parse(fs.readFileSync(f, 'utf8')).categorias.length;
+})();
+const PAGINAS_ESPERADAS = 122 + BLOGS_PROPIOS + GALERIAS_PROPIAS;
 /**
  * 121 = 113 del sitemap del origen + 6 adiciones de autoria propia + 2 de la auditoria
  * (5-sep-2026). Las dos nuevas son rutas DEL ORIGEN que el sitemap del origen no listaba:
@@ -68,7 +74,10 @@ const PAGINAS_ESPERADAS = 122 + BLOGS_PROPIOS;
  * ausencia por paridad; Sebastian levanto esa proteccion. El motivo de cada una esta escrito
  * en el ADICIONES de build-seo-ficheros.mjs, que es quien las escribe.
  */
-const LOCS_ESPERADAS = 121;
+/* …MAS LAS DE BLOG PROPIAS, por la misma razon que PAGINAS_ESPERADAS: el sitemap las deriva de
+ * `blogs-rutas.json` (build-seo-ficheros.mjs ADICIONES_BLOG), asi que cablear 121 ponia esta
+ * puerta roja con cada articulo publicado (medido el 1-oct-2026: «121 <loc> — hay 155»). */
+const LOCS_ESPERADAS = 121 + BLOGS_PROPIOS + GALERIAS_PROPIAS;
 const SOLO_NOINDEX = new Set(['/thank-you']);
 
 /**
@@ -213,7 +222,7 @@ const sm = path.join(ESTATICO, 'sitemap.xml');
 if (!fs.existsSync(sm)) check('existe sitemap.xml', false);
 else {
   const locs = [...fs.readFileSync(sm, 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-  if (PROD) check(`${LOCS_ESPERADAS} <loc> (113 del origen + 6 propias + 2 de la auditoria)`, locs.length === LOCS_ESPERADAS, `hay ${locs.length}`);
+  if (PROD) check(`${LOCS_ESPERADAS} <loc> (113 del origen + 6 propias + 2 de la auditoria + ${BLOGS_PROPIOS} de blog)`, locs.length === LOCS_ESPERADAS, `hay ${locs.length}`);
   else check('vacio fuera de produccion', locs.length === 0, `hay ${locs.length}`);
 }
 

@@ -60,8 +60,20 @@ const aRegex = (source) => {
   process.exit(1);
 };
 
+/**
+ * `has` PASA TAL CUAL. Es la condicion de host del redirect SEO-SAFE (1-oct-2026): el alias de
+ * produccion `mrandmrs-outdoor-living.vercel.app` servia el mismo HTML indexable que `www`
+ * (canonica a www, robots Allow), o sea un segundo host con las 158 paginas, y GA4 registraba
+ * sesiones en el. El Build Output API admite `has: [{type:'host', value}]` en cada ruta, con
+ * la misma forma que vercel.json, asi que no hay nada que traducir: solo no perderlo por el
+ * camino. El `$1` del destino lo entiende la ruta como grupo de captura de `src`.
+ *
+ * Y SOLO ESE HOST, no `*.vercel.app`: las previews por rama viven en otros hosts de vercel.app,
+ * llevan `noindex` y son donde se revisa antes de mergear; redirigirlas a www las haria inutiles.
+ */
 const redirects = (vercel.redirects ?? []).map((r) => ({
   src: aRegex(r.source),
+  ...(r.has ? { has: r.has } : {}),
   headers: { Location: r.destination },
   status: r.permanent === false ? 307 : 308,
 }));

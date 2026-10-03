@@ -26,7 +26,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { JSDOM } from 'jsdom';
-import { renombra } from './lib/renombradas.mjs';
+import { renombra, origen, esFicha, esCondado } from './lib/renombradas.mjs';
+import { CATEGORIAS as GALERIA_CATEGORIAS, tarjetasHtml } from '../src/lib/galeria-categorias.mjs';
+import { OCULTAS, serviciosDe } from '../src/lib/filtro-proyectos.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const man = JSON.parse(fs.readFileSync(path.join(RAIZ, '_source/assets-manifest.json'), 'utf8')).assets;
@@ -57,15 +59,15 @@ const CAPTACION = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/captacion
  *
  * `captacion-servicios.json` tenia 1 clave en R17-CORE y 14 desde R19, todas de `/services/`, asi
  * que contar SUS CLAVES y contar «las fichas que paso por aqui» era lo mismo. R20-CIUDADES anadio
- * `/pool-builders/ocala-florida` y `/pool-builders/gainesville-florida`, que las pinta
- * `src/pages/pool-builders/[slug].astro` en tiempo de build y NO pasan por este generador.
+ * `/services/pool-builders/ocala-fl` y `/services/pool-builders/gainesville-fl`, que las pinta
+ * `src/pages/services/pool-builders/[slug].astro` en tiempo de build y NO pasan por este generador.
  *
  * Con el conteo viejo las dos comprobaciones del final se creian 16 contra 14 y `npm run paginas`
  * SALIA CON 1 —«la gallery se movio en 14 fichas y hay 16»— sin que nada estuviera roto. Una
  * puerta que da rojo por un cambio legitimo en otra familia de rutas se acaba desactivando, que es
  * peor que no tenerla.
  */
-const RUTAS_CAPTACION_SERVICIOS = Object.keys(CAPTACION).filter((k) => k.startsWith('/services/'));
+const RUTAS_CAPTACION_SERVICIOS = Object.keys(CAPTACION).filter(esFicha);
 const TELEFONOS = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/telefonos.json'), 'utf8')).items;
 /* Las clases de `<img>` a las que se les reserva el hueco (§ limpia()). Enumeradas y medidas:
  * cada una entro aqui con una cifra de `layout-shift` detras, no por precaucion.
@@ -210,7 +212,7 @@ function localizar(raiz) {
 const ENCABEZADOS_PROYECTOS = {
   _lee_esto: 'El encabezado del carrusel «Project Showcase» de cada ruta. Es lo UNICO que cambiaba entre paginas: el bloque de 10 slides y la cola de flechas + barra + CTA eran byte a byte identicos en los 7 sitios donde estaba pegado (6103 y 1581 bytes, sha1 76930c21c9bf y 3c5989650bad). Espejo de blog-heading-por-ruta.json, y lo lee igual: CarruselProyectos.astro se autolocaliza por Astro.url.pathname. DERIVADO: lo escribe scripts/build-paginas.mjs.',
   _ojo: 'El texto va DECODIFICADO (ampersand suelto, no la entidad): lo escapa Astro al pintar, y sale el mismo byte que habia en el blob. Escribir aqui la entidad pintaria una entidad doblemente escapada y romperia check:texto, que compara innerText al 100 % y no se re-baseliniza nunca.',
-  _quien_no_esta_aqui: 'Las 53 rutas de /pool-builders/ NO estan: su titulo y su entradilla salen de Sanity (campos headingPortfolio y paragraphPortfolio, huecos 25 y 27 de CAMPOS en [slug].astro) y por eso Reddick dice «Reddick portfolio». Esas pasan las dos como props. _defecto solo existe para que una ruta sin entrada y sin props no pinte una cabecera vacia.',
+  _quien_no_esta_aqui: 'Las 53 rutas de /services/pool-builders/ NO estan: su titulo y su entradilla salen de Sanity (campos headingPortfolio y paragraphPortfolio, huecos 25 y 27 de CAMPOS en [slug].astro) y por eso Reddick dice «Reddick portfolio». Esas pasan las dos como props. _defecto solo existe para que una ruta sin entrada y sin props no pinte una cabecera vacia.',
   _defecto: {
     titulo: 'Project showcase',
     entradilla: 'Browse our completed residential & Commercial projects and transformations',
@@ -278,7 +280,8 @@ function extraeServicios(sec, ruta) {
       alt: at(ficha.querySelector('.image-bg-services'), 'alt'),
       titulo: t(ficha.querySelector('h4')),
       texto: t(ficha.querySelector('.paragraph-mini')),
-      enlace: at(ficha.querySelector('.block-buttom-services a'), 'href'),
+      // Renombrada si toca: el origen enlaza la URL vieja (§ lib/renombradas.mjs).
+      enlace: renombra(at(ficha.querySelector('.block-buttom-services a'), 'href')),
       cta: t(ficha.querySelector('.block-buttom-services a')),
     };
   });
@@ -319,6 +322,20 @@ function extraeServicios(sec, ruta) {
     console.error(`\n  ROJO ${ruta}: la seccion de servicios sale incompleta -> ${faltan.join(', ')}\n`);
     process.exit(1);
   }
+  // LOOP-IMAGENES (2-oct-2026): `src/data/fotos-servicios-categoria.json` manda sobre la foto del
+  // origen, por `id`, con la misma traza al banco que `fotosPorRuta()`. Un id sin entrada sale como hoy.
+  for (const sv of datos.servicios) {
+    const o = FOTOS_SERVICIOS_CATEGORIA[sv.id];
+    if (!o) continue;
+    const e = BANCO.get(o._banco);
+    const rojo = (msg) => { console.error(`\n  ROJO Full-Service ${sv.id}: ${msg}\n`); process.exit(1); };
+    if (!e) rojo(`${o._banco} no esta en banco-imagenes.json`);
+    if (e.procedencia !== 'obra_real' || !String(e.estado).startsWith('aprobada')) rojo(`${o._banco} no es obra_real aprobada`);
+    if (e.src !== o.foto && !(e.publicada_como ?? []).includes(o.foto)) rojo(`${o.foto} no es el src de ${o._banco} ni esta en publicada_como`);
+    if (!(e.usada_en ?? []).includes(ruta)) rojo(`${o._banco} no lleva ${ruta} en usada_en`);
+    if (!fs.existsSync(path.join(RAIZ, 'public', o.foto))) rojo(`falta el fichero ${o.foto}`);
+    Object.assign(sv, { foto: o.foto, alt: o.alt, ancho: o.ancho, alto: o.alto, pos: o.pos });
+  }
   SERVICIOS[ruta] = datos;
 }
 
@@ -353,7 +370,7 @@ const NO_REGENERAR = new Map([
    * LA SEGUNDA, Y NO LA PUSO EL PROGRAMA R: la destapo la demostracion en rojo de la primera.
    *
    * La Fase 6b paso esta familia a leer de Sanity y BORRO los 53 .astro estaticos; hoy la sirve
-   * `src/pages/pool-builders/[slug].astro`. Al correr este generador para probar la guarda de
+   * `src/pages/services/pool-builders/[slug].astro`. Al correr este generador para probar la guarda de
    * `/`, reaparecieron los 53 como ficheros sin versionar. Eso ensombrece la plantilla, mete 53
    * rutas de mas y rompe `check:rutas` -que exige 115 y 0 extras-, y todo ello en silencio: el
    * banner solo hablaba de `/`, asi que quien lo leyera se habria quedado tranquilo.
@@ -361,7 +378,7 @@ const NO_REGENERAR = new Map([
    * O sea, la guarda daba una falsa seguridad, que es peor que no tenerla. Es exactamente la
    * familia de fallo que R6 viene a matar, solo que en el generador en vez de en la puerta.
    */
-  ['/pool-builders/', 'la familia entera la sirve src/pages/pool-builders/[slug].astro leyendo '
+  ['/services/pool-builders/', 'la familia entera la sirve src/pages/services/pool-builders/[slug].astro leyendo '
       + 'de Sanity desde la Fase 6b, que borro los 53 .astro a proposito. Regenerarlos los '
       + 'repone sin versionar, ensombrece la plantilla y rompe check:rutas con 53 rutas de mas.'],
   /**
@@ -371,11 +388,11 @@ const NO_REGENERAR = new Map([
    * avisaba; lo que faltaba era la guarda que lo impide.
    */
   /**
-   * LA CUARTA Y LA QUINTA: el blog entero, y por el mismo motivo que `/pool-builders/`.
+   * LA CUARTA Y LA QUINTA: el blog entero, y por el mismo motivo que `/services/pool-builders/`.
    *
    * BLOG-SANITY paso las fichas a `src/pages/blogs/[slug].astro`, que lee de Sanity, y borro
    * los 10 `.astro`. Regenerarlos los repone SIN VERSIONAR, ensombrece la ruta dinamica y
-   * rompe `check:rutas` con 10 rutas de mas — exactamente lo que le paso a `/pool-builders/`
+   * rompe `check:rutas` con 10 rutas de mas — exactamente lo que le paso a `/services/pool-builders/`
    * el dia que se probo la guarda de `/`.
    *
    * `/blogs-tips` no se borra: pasa a editarse A MANO (buscador, filtros y «Load More» sobre
@@ -438,8 +455,12 @@ const HUECOS_SEO = {
  * Coincidencia EXACTA, o por prefijo si la clave acaba en `/`. `/` es un caso aparte: acaba en
  * barra pero solo puede casar consigo misma, o protegeria el sitio entero.
  */
+/* El prefijo `/services/pool-builders/` protege a las 53 CIUDADES (plantilla dinamica) y NO a los
+ * 9 condados, que viven bajo el mismo prefijo desde el 3-oct-2026 pero siguen siendo estaticos
+ * derivados de `_source/vivo/country_*.html`. Sin `!esCondado` este generador dejaria de
+ * escribirlos y `check:rutas` saldria rojo con 9 rutas sin construir. */
 const protegida = (ruta) => [...NO_REGENERAR.keys()]
-  .find((k) => (k !== '/' && k.endsWith('/') ? ruta.startsWith(k) : ruta === k));
+  .find((k) => (k !== '/' && k.endsWith('/') ? ruta.startsWith(k) && !esCondado(ruta) : ruta === k));
 
 /* Cuenta las rutas de services/+where-we-serves/ que reciben el carrusel de blog POR
  * INSERCION (§ mas abajo). Se COMPRUEBA al final contra 16: si sube, se ha colado en una ruta
@@ -455,7 +476,7 @@ const protegida = (ruta) => [...NO_REGENERAR.keys()]
  * POR QUE AQUI Y NO EN `NO_REGENERAR`. Meter `/projects` en `NO_REGENERAR` congelaria un fichero
  * cuyo `T0` es UNA sola cadena de 12 kB en una linea: a partir de ese dia se mantiene a mano.
  * Los dos precedentes no se parecen —`/` se congelo DESPUES de descomprimirse en constantes
- * editables, y `/pool-builders/` porque sus 53 estaticos ya no existen—. Declarandolo aqui,
+ * editables, y `/services/pool-builders/` porque sus 53 estaticos ya no existen—. Declarandolo aqui,
  * `/projects` sigue siendo derivable: el dia que alguien corra `npm run vivo` y traiga el origen
  * fresco, estas 5 se vuelven a poner solas.
  *
@@ -470,6 +491,11 @@ const OBRAS_PROPIAS = JSON.parse(
 
 /** Ruta -> donde se inyectan y por que. Hoy solo `/projects`; `/` lleva las suyas a mano
  *  porque esta en NO_REGENERAR y ya no pasa por aqui. */
+/* Las 14 fotos de obra propia que se anaden a `/gallery` (21-sep-2026). Fichero aparte porque
+ * el casting es contenido, no codigo: quien lo revise no deberia tener que leer este script. */
+const GALERIA_PAGINA = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/galeria-pagina.json'), 'utf8'));
+let galeriaPropiaInsertada = 0;
+
 const OBRAS_EN = {
   '/projects': {
     lista: '.cms-list-work',
@@ -478,6 +504,7 @@ const OBRAS_EN = {
   },
 };
 let obrasInsertadas = 0;
+let obrasOcultadas = 0;
 
 let blogsInsertados = 0;
 /* Y las que lo reciben por SUSTITUCION -Condado ya traia `.blog-section-page` en su origen-,
@@ -591,6 +618,62 @@ function collageFaq(doc, ruta) {
   return true;
 }
 
+/**
+ * ── FOTOS DEL BANCO POR RUTA (PROMPT-IMAGENES-ABOUT) ─────────────────────────────────────
+ *
+ * Cambia `<img>` del origen por fotos de obra real del banco, ruta a ruta, leyendo
+ * `src/data/fotos-por-ruta.json`: `{ ruta: { selector: [foto | null, ...] } }`, en orden DOM.
+ * `null` deja la del origen. Mismo canje que `proceso.fotos` de `captacion()`: src, alt,
+ * width, height, object-position, y fuera `srcset`/`sizes` (apuntarian al render de antes).
+ * `ratio` va inline porque `check:tokens` no tiene sitio para una regla mas.
+ *
+ * POR RUTA EXACTA Y POR SELECTOR, NUNCA POR `src`: el render de whatsetus de `/about` tambien
+ * lo pinta `/where-we-serve`, y alli se queda.
+ *
+ * Y LA TRAZA LA COMPRUEBA ESTO, porque no la comprueba nadie mas (`build-banco.mjs` no lee
+ * `usada_en`): cada `_banco` tiene que existir en el indice con el mismo src y medidas, ser
+ * `obra_real` y `aprobada*`, tener fichero y llevar la ruta en `usada_en`. Si no, ROJO.
+ */
+const FOTOS_SERVICIOS_CATEGORIA = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/fotos-servicios-categoria.json'), 'utf8'));
+const FOTOS_POR_RUTA = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/fotos-por-ruta.json'), 'utf8'));
+const BANCO = new Map(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/banco-imagenes.json'), 'utf8'))
+  .map((e) => [e.id, e]));
+let fotosCanjeadas = 0;
+function fotosPorRuta(doc, ruta) {
+  const porSelector = FOTOS_POR_RUTA[ruta];
+  if (!porSelector) return 0;
+  const rojo = (msg) => { console.error(`\n  ROJO ${ruta}: ${msg}\n`); process.exit(1); };
+  let n = 0;
+  for (const [sel, fotos] of Object.entries(porSelector)) {
+    const imgs = [...doc.querySelectorAll(sel)];
+    if (imgs.length !== fotos.length) rojo(`«${sel}» casa ${imgs.length} <img> y fotos-por-ruta.json trae ${fotos.length}`);
+    imgs.forEach((img, i) => {
+      const f = fotos[i];
+      if (!f) return;
+      const e = BANCO.get(f._banco);
+      if (!e) rojo(`${f._banco} no esta en banco-imagenes.json`);
+      if (e.src !== f.src || e.ancho !== f.ancho || e.alto !== f.alto) rojo(`${f._banco} no casa con el indice (src/ancho/alto)`);
+      if (e.procedencia !== 'obra_real' || !String(e.estado).startsWith('aprobada')) rojo(`${f._banco} no es obra_real aprobada`);
+      if (!fs.existsSync(path.join(RAIZ, 'public', f.src))) rojo(`falta el fichero ${f.src}`);
+      if (!(e.usada_en ?? []).includes(ruta)) rojo(`${f._banco} no lleva ${ruta} en usada_en`);
+      img.setAttribute('src', f.src);
+      img.setAttribute('alt', f.alt);
+      img.setAttribute('width', String(f.ancho));
+      img.setAttribute('height', String(f.alto));
+      img.setAttribute('style', `object-position:${f.pos}${f.ratio ? `;aspect-ratio:${f.ratio}` : ''}`);
+      img.removeAttribute('srcset');
+      img.removeAttribute('sizes');
+      // LOOP-IMAGENES (2-oct-2026): si la <img> vive en un `a.w-lightbox`, el visor lee la URL del
+      // `script.w-json` hermano, no del `src`. Sin esto la galeria ensena la foto nueva y el
+      // lightbox abre la vieja. Mismo JSON que escribe el bloque de /gallery mas abajo.
+      const lb = img.closest('a.w-lightbox')?.querySelector('script.w-json');
+      if (lb) lb.textContent = JSON.stringify({ items: [{ url: f.src, type: 'image' }], group: 'images' });
+      n++;
+    });
+  }
+  return n;
+}
+
 
 /**
  * ── LA CIRUGIA DE LA LANDING DE PAGO (R17-CORE) ──────────────────────────────────────────
@@ -620,8 +703,8 @@ function captacion(doc, ruta) {
    * invariante de ABAJO (`captacionAplicada === RUTAS_CAPTACION_SERVICIOS.length`), pero que no
    * estaba escrita en ningun sitio.
    *
-   * QUE PASABA. R20-CIUDADES metio `/pool-builders/{ocala,gainesville}-florida` en
-   * `captacion-servicios.json`. Esas dos las pinta `src/pages/pool-builders/[slug].astro` desde
+   * QUE PASABA. R20-CIUDADES metio `/services/pool-builders/{ocala,gainesville}-florida` en
+   * `captacion-servicios.json`. Esas dos las pinta `src/pages/services/pool-builders/[slug].astro` desde
    * Sanity y su `_source/vivo/` no tiene `section.gallery`, `section.faq-section` ni
    * `section.location` -comprobado: 0 de las 3-, asi que el bloque 8b lanzaba y el generador
    * abortaba en la ruta 44 de 115. Las 10 de `/blogs/` son las 93-102: no se llegaba a ellas.
@@ -629,7 +712,7 @@ function captacion(doc, ruta) {
    * Reproducible con el generador de HEAD y el arbol limpio, o sea que no lo trajo este encargo
    * ni el trabajo sin commitear de R21.
    */
-  if (!ruta.startsWith('/services/')) return false;
+  if (!esFicha(ruta)) return false;
 
   /* ── 1 · EL HEROE ──────────────────────────────────────────────────────────────────────
    * Cuatro cosas, y cada una tiene su numero detras:
@@ -686,6 +769,23 @@ function captacion(doc, ruta) {
     }
   }
 
+  /* `og:image` / `twitter:image` = EL HEROE, opt-in por `heroe.og` (R24-FOTO-PISCINAS, 1-oct-2026).
+   * Hasta hoy se copiaban del `<head>` de origen, y en las dos fichas de piscina eran imagenes
+   * GENERADAS (`trainedAlgorithmicMedia` + «Made with Google AI»): la tarjeta que se ve al compartir
+   * la pagina era la unica foto falsa que no salia en el cuerpo. `heroe.og` es un JPEG 1200x630
+   * derivado del heroe, no el AVIF: varios rastreadores sociales no pintan AVIF. `metaSeo` lee este
+   * mismo `<head>` mas abajo y `Base.astro` lo vuelve absoluto. Solo las rutas que lo declaran. */
+  if (c.heroe.og) {
+    for (const k of ['og:image', 'twitter:image']) {
+      const m = doc.head.querySelector(`meta[property="${k}"],meta[name="${k}"]`);
+      if (!m) {
+        console.error(`\n  ROJO ${ruta}: heroe.og declarado y el origen no trae ${k}\n`);
+        process.exit(1);
+      }
+      m.setAttribute('content', c.heroe.og);
+    }
+  }
+
   /* ── 2 · FUERA EL ANTES/DESPUES ────────────────────────────────────────────────────────
    * La foto «Before» es de un listado del MLS de Miami, con la marca de agua
    * `A11…… © Miami MLS© 202…` incrustada y visible a tamano real, y un `alt` que atribuye la
@@ -693,14 +793,51 @@ function captacion(doc, ruta) {
    * vegetacion. La seccion ensena una transformacion que NO OCURRIO, que es lo que
    * `CRITERIO.md:200` llama «no es feo, es falso».
    *
-   * Se retira de ESTA ruta; en las otras 13 sigue igual. Vuelve en su propio commit cuando
+   * Se retira de las 14 fichas salvo opt-in (abajo). Vuelve en su propio commit cuando
    * exista el par honesto: obra real como «After» y el «Before» reconstruido por relleno
    * generativo sobre esa misma foto, con etiqueta VISIBLE de visualizacion. El prompt, la
    * mascara y la prueba de aceptacion estan escritos en `docs/encargos/R17-CORE.md` §10.
    *
    * Sus dos tarjetas de valor -«Design-Build Authority» y «Licensed & Engineered»- no se
-   * pierden: suben a la franja de confianza, dichas mas corto. */
-  doc.querySelector('section.before-after-section')?.remove();
+   * pierden: suben a la franja de confianza, dichas mas corto.
+   *
+   * VUELVE EN LA DE REMODELACION (R24-FOTO-PISCINAS, 1-oct-2026), y sin relleno generativo: el
+   * banco de obra propia tiene el par honesto, «antes» y «despues» de la MISMA piscina desde el
+   * mismo punto de camara. Opt-in por `antesDespues` en el JSON; donde no se declara, se sigue
+   * retirando. Solo se canjean las dos `<img>`: el texto es el del origen, que `check:texto` ya
+   * tiene en su baseline, y el CSS y el JS del deslizador son globales (`antes-despues.css`,
+   * `Componentes.astro`). El «despues» se pinta encima del «antes» con `clip-path`: si no miden
+   * lo mismo la costura no casa (`fb4318f`), y eso es ROJO, no un aviso.
+   *
+   * Y EN LA DE OBRA NUEVA (2-oct-2026), con el par de la home (`fb4318f`): patio vacio -> piscina,
+   * la misma casa. Es lo que ya promete su texto del origen, «From Empty Backyard to Your Dream
+   * Custom Pool», asi que el texto se queda. */
+  const antesDespues = doc.querySelector('section.before-after-section');
+  if (c.antesDespues) {
+    const { antes, despues } = c.antesDespues;
+    const pares = [[antesDespues?.querySelector('img.bas-image-before'), antes],
+      [antesDespues?.querySelector('img.bas-image-after-h'), despues]];
+    if (pares.some(([img]) => !img)) {
+      console.error(`\n  ROJO ${ruta}: antesDespues declarado y el origen no trae el deslizador\n`);
+      process.exit(1);
+    }
+    if (antes.ancho !== despues.ancho || antes.alto !== despues.alto) {
+      console.error(`\n  ROJO ${ruta}: el antes y el despues no miden igual — la costura no casa\n`);
+      process.exit(1);
+    }
+    for (const [img, f] of pares) {
+      img.setAttribute('src', f.src);
+      img.setAttribute('srcset', f.srcset);
+      img.setAttribute('sizes', '(min-width: 992px) 56vw, 100vw');   // el de la home
+      img.setAttribute('alt', f.alt);
+      img.setAttribute('width', String(f.ancho));
+      img.setAttribute('height', String(f.alto));
+      img.setAttribute('loading', 'lazy');
+      img.setAttribute('decoding', 'async');
+    }
+  } else {
+    antesDespues?.remove();
+  }
 
   /* ── 3 · LAS RESENAS SUBEN DEL BLOQUE 10 AL 5 ──────────────────────────────────────────
    * Ocho resenas reales de Google Business Profile, y no se veian hasta pasada la mitad de la
@@ -757,6 +894,31 @@ function captacion(doc, ruta) {
   if (proceso && proceso.parentNode) {
     proceso.parentNode.insertBefore(
       doc.createTextNode(MARCA + 'InversionCore' + MARCA), proceso.nextSibling);
+  }
+
+  /* ── 4.bis · LAS FOTOS DE LOS PASOS (R24-FOTO-PISCINAS, 1-oct-2026) ─────────────────────
+   * Los 4 pasos de las fichas de piscina eran PNG GENERADOS de 1408x768 con firma C2PA de Google
+   * (~2 MB cada uno): obra inventada donde el visitante lee «asi trabajamos nosotros». Opt-in por
+   * `proceso.fotos`, en el orden del origen; se cuentan para que un paso de mas o de menos sea
+   * ROJO y no una foto en el paso equivocado. Fuera `srcset`/`sizes`: un `srcset` heredado
+   * apuntaria a los recortes del PNG viejo. Estas `<img>` no llevan `data-w-id`. */
+  if (c.proceso?.fotos) {
+    const pasos = [...(proceso?.querySelectorAll('img.img-process') ?? [])];
+    if (pasos.length !== c.proceso.fotos.length) {
+      console.error(`\n  ROJO ${ruta}: proceso.fotos trae ${c.proceso.fotos.length} y el origen ${pasos.length} pasos\n`);
+      process.exit(1);
+    }
+    pasos.forEach((img, i) => {
+      const f = c.proceso.fotos[i];
+      if (!f) return;            // LOOP-IMAGENES: `null` = ese paso se queda, como en fotos-por-ruta.json
+      img.setAttribute('src', f.foto);
+      img.setAttribute('alt', f.alt);
+      img.setAttribute('width', String(f.ancho));
+      img.setAttribute('height', String(f.alto));
+      if (f.pos) img.setAttribute('style', `object-position:${f.pos}`);
+      img.removeAttribute('srcset');
+      img.removeAttribute('sizes');
+    });
   }
 
   /* ── 5 · LA REJILLA DE SUBSERVICIOS ────────────────────────────────────────────────────
@@ -1018,6 +1180,20 @@ function captacion(doc, ruta) {
       + ' — sin las cuatro no hay mismo orden');
   }
 
+  /* `alt` PROPIOS EN LA GALERIA (R24-FOTO-PISCINAS, 1-oct-2026). Las fotos son las de origen y no
+   * se tocan, pero en la de remodelacion tres `alt` estaban repetidos (la 10 copia el de la 09, la
+   * 03 el de la 02, y la 01 lleva el de otra galeria): dos imagenes con el mismo `alt` en la misma
+   * pagina no le dicen nada distinto a nadie. Se casa por el FINAL del nombre porque aqui la `src`
+   * aun es la del CDN (`localizar()` corre despues), y tiene que casar exactamente una. */
+  for (const [fichero, alt] of Object.entries(c.galeria?.alts ?? {})) {
+    const casan = [...galeria.querySelectorAll('img')]
+      .filter((i) => (i.getAttribute('src') ?? '').endsWith(fichero));
+    if (casan.length !== 1) {
+      throw new Error(`${ruta}: galeria.alts «${fichero}» casa ${casan.length} fotos de la galeria`);
+    }
+    casan[0].setAttribute('alt', alt);
+  }
+
   /* EL CANJE (21-sep-2026). Sebastian pide las dos bandas azules intercambiadas: la GALERIA
    * pasa a ir justo debajo del formulario —donde estaban las resenas— y las RESENAS bajan
    * detras de la FAQ, donde estaba la galeria.
@@ -1098,6 +1274,18 @@ function captacion(doc, ruta) {
       if (typeof about.image === 'string' && !about.image.startsWith('/') && !/^https?:/.test(about.image)) {
         about.image = c.heroe.foto;
       }
+      /* SEO-SAFE (1-oct-2026): el `Service` del origen no decia QUIEN lo presta ni DONDE vive.
+       * `provider` lo ata por `@id` al `LocalBusiness#negocio` que `Base.astro` inyecta en todas
+       * las paginas (`src/lib/negocio.mjs`, mismo host que la canonica), y `url` es la propia
+       * ficha. Es lo que permite a un motor generativo leer «este servicio lo ofrece esta
+       * entidad, en esta pagina» sin adivinarlo. `check-seo.mjs` lo declara para las 14. */
+      if (about['@type'] === 'Service') {
+        /* El origen YA trae `provider: {Organization, name}`; se conserva y se le anade el `@id`.
+         * `LocalBusiness` es subtipo de `Organization`, asi que el mismo `@id` con los dos tipos
+         * nombra a la misma entidad. */
+        about.provider = { ...(about.provider ?? {}), '@id': 'https://www.mrandmrsoutdoorliving.com/#negocio' };
+        about.url = `https://www.mrandmrsoutdoorliving.com${ruta}`;
+      }
     }
     if (bloque.dateModified && bloque.datePublished
         && Date.parse(bloque.dateModified) < Date.parse(bloque.datePublished)) {
@@ -1126,13 +1314,15 @@ function captacion(doc, ruta) {
 }
 
 for (const [ruta] of RUTAS) {
-  const slug = aSlug(ruta);
+  // El origen se nombra por la ruta VIEJA: `_source/vivo/` no se toca (§ lib/renombradas.mjs).
+  const slug = aSlug(origen(ruta));
   const fichero = path.join(RAIZ, '_source/vivo', `${slug}.html`);
   if (!fs.existsSync(fichero)) { console.error(`  ROJO falta _source/vivo/${slug}.html`); continue; }
   const doc = new JSDOM(fs.readFileSync(fichero, 'utf8')).window.document;
 
   // Las obras de autoria propia, al principio de la lista (§ OBRAS_PROPIAS).
   const inj = OBRAS_EN[ruta];
+  let conFiltro = false;
   if (inj) {
     const lista = doc.querySelector(inj.lista);
     const molde = lista?.firstElementChild;
@@ -1154,6 +1344,129 @@ for (const [ruta] of RUTAS) {
       lista.insertBefore(n, lista.firstElementChild);
       obrasInsertadas++;
     }
+
+    /* ── EL INDICE CON FILTRO (PROMPT-PROYECTOS-BANCO, 2-oct-2026) ─────────────────────────
+     * Despues de clonar, nunca antes: la primera tarjeta del origen es el molde y es una de las
+     * ocultas. Ocultar es quitar la TARJETA; la ficha sigue viva (dato y motivo en
+     * `src/data/proyectos-indice.json`). Cada tarjeta que se queda lleva `data-servicios`, que es
+     * lo unico que lee el filtro, y el filtro entra como componente delante de la lista.
+     * Las dos faltas posibles paran el generador: una tarjeta sin servicios saldria en «All» y
+     * en ningun filtro, y una oculta que ya no esta en la pagina es una lista que miente. */
+    const vistas = new Set();
+    for (const a of [...lista.querySelectorAll('.wrapper-buttons a[href^="/project/"]')]) {
+      const slug = a.getAttribute('href').slice('/project/'.length);
+      const tarjeta = a.closest('.cms-item-work');
+      if (OCULTAS.has(slug)) { tarjeta.remove(); vistas.add(slug); obrasOcultadas++; continue; }
+      const servicios = serviciosDe(slug);
+      if (!servicios.length) {
+        console.error(`\n  ROJO ${ruta}: la tarjeta /project/${slug} no tiene servicios `
+          + '(src/data/proyectos-indice.json o proyectos-propios.json)\n');
+        process.exit(1);
+      }
+      tarjeta.setAttribute('data-servicios', servicios.join(' '));
+    }
+    const perdidas = [...OCULTAS].filter((s) => !vistas.has(s));
+    if (perdidas.length) {
+      console.error(`\n  ROJO ${ruta}: ocultas que ya no estan en la pagina: ${perdidas.join(', ')}\n`);
+      process.exit(1);
+    }
+    const envoltorio = lista.closest('.cms-wrapper-work') ?? lista;
+    envoltorio.parentNode.insertBefore(doc.createTextNode(MARCA + 'FiltroProyectos' + MARCA), envoltorio);
+    conFiltro = true;
+  }
+
+  /* ── LAS 14 FOTOS DEL BANCO EN `/gallery` (21-sep-2026, Sebastian) ──────────────────────
+   * `/gallery` es el indice donde se ensenan todas las fotos de obra, y hasta hoy las 137 que
+   * pintaba venian del Webflow: JPG de 1250 px. Estas 14 salen del banco de imagen del cliente
+   * en el derivado `gallery`, 1600x1067 — un 28 % mas de definicion por la mitad de peso.
+   *
+   * MISMO MECANISMO QUE `OBRAS_EN`: se clona el primer `.cms-item-pictures` como molde, para
+   * heredar la forma exacta del item (el `id` de rejilla, el ancla `.gallery-picture` y el
+   * `<script class="w-json">` del lightbox). Los 137 items de origen usan solo dos `id`
+   * distintos y AMBOS resuelven a `grid-area: span 1/span 1` — comprobado en `webflow.css` —,
+   * asi que heredar el del molde no mueve la rejilla.
+   *
+   * El lightbox de esta pagina NO es el de `Componentes.astro`: `check:galeria` excluye
+   * `/gallery` a proposito y quien la cubre es `GalleryLeadLightbox.astro` sobre
+   * `a.closest('.gallery-page')`. Clonando dentro de la misma lista, los items nuevos caen
+   * dentro de ese guard igual que los otros 137.
+   *
+   * `data-service-id` es lo que filtra Finsweet: es lo unico que decide en que pestana sale.
+   *
+   * Van al PRINCIPIO de la lista, y por eso se recorre al reves: son las de mas definicion de
+   * la pagina y las unicas con trazabilidad al banco activo por activo. */
+  if (ruta === '/gallery') {
+    const listaFotos = doc.querySelector('.cms-list-pictures');
+    const moldeFoto = listaFotos?.querySelector('.cms-item-pictures');
+    // Falla RUIDOSAMENTE: sin molde no hay forma de item que heredar, y publicar /gallery con
+    // 14 items cojos —sin lightbox o fuera de la rejilla— es peor que no anadirlas.
+    if (!moldeFoto) {
+      console.error('\n  ROJO /gallery: no encuentro «.cms-list-pictures > .cms-item-pictures» para el molde\n');
+      process.exit(1);
+    }
+    for (const pestana of ['construction', 'remodeling']) {
+      for (const f of [...GALERIA_PAGINA[pestana]].reverse()) {
+        const n = moldeFoto.cloneNode(true);
+        n.setAttribute('data-service-id', pestana);
+        const img = n.querySelector('img');
+        const jsonLb = n.querySelector('script.w-json');
+        if (!img || !jsonLb) {
+          console.error('\n  ROJO /gallery: el molde ya no trae <img> + script.w-json — revisa el origen\n');
+          process.exit(1);
+        }
+        img.setAttribute('src', f.src);
+        img.setAttribute('alt', f.alt);
+        img.setAttribute('width', String(f.ancho));
+        img.setAttribute('height', String(f.alto));
+        // El derivado del banco es UNA sola medida: un `srcset` heredado apuntaria a los
+        // recortes del JPG viejo, y `sizes` sin `srcset` no pinta nada.
+        img.removeAttribute('srcset');
+        img.removeAttribute('sizes');
+        jsonLb.textContent = JSON.stringify({ items: [{ url: f.src, type: 'image' }], group: 'images' });
+        listaFotos.insertBefore(n, listaFotos.firstElementChild);
+        galeriaPropiaInsertada++;
+      }
+    }
+
+    /* ── LAS FOTOS DEL BANCO DE LAS PAGINAS DE CATEGORIA (2-oct-2026) ─────────────────────
+     * `/gallery` es «todas»: una foto que sale en `/gallery/<slug>` tiene que salir tambien
+     * aqui, bajo su `data-service-id`. Se leen de la MISMA entrada de
+     * `galeria-categorias.json` que pinta la pagina de categoria (`origen: banco`); las
+     * `obra` ya las ha metido el bucle de arriba y las `webflow` ya venian en el origen.
+     * Van delante de la PRIMERA foto de su servicio, para no romper el orden por servicio
+     * de la rejilla (MIGRACION-LOG, «/gallery — orden de la rejilla»). */
+    for (const cat of GALERIA_CATEGORIAS) {
+      // La rejilla son DOS listas apiladas (99 + 38): se busca en la pagina, no solo en la primera.
+      const ancla = doc.querySelector(`.gallery-page .cms-item-pictures[data-service-id="${cat.id}"]`);
+      if (!ancla) {
+        console.error(`\n  ROJO /gallery: no hay ninguna foto con data-service-id="${cat.id}" donde anclar\n`);
+        process.exit(1);
+      }
+      for (const f of cat.fotos.filter((x) => x.origen === 'banco')) {
+        const n = moldeFoto.cloneNode(true);
+        n.setAttribute('data-service-id', cat.id);
+        const img = n.querySelector('img');
+        img.setAttribute('src', f.src);
+        img.setAttribute('alt', f.alt);
+        img.setAttribute('width', String(f.ancho));
+        img.setAttribute('height', String(f.alto));
+        img.removeAttribute('srcset');
+        img.removeAttribute('sizes');
+        n.querySelector('script.w-json').textContent = JSON.stringify({ items: [{ url: f.src, type: 'image' }], group: 'images' });
+        ancla.parentNode.insertBefore(n, ancla);
+        galeriaPropiaInsertada++;
+      }
+    }
+
+    /* ── LAS TARJETAS DE CATEGORIA, ARRIBA DEL FILTRO (2-oct-2026) ────────────────────────
+     * Una por pagina `/gallery/<slug>`. El marcado sale de `src/lib/galeria-categorias.mjs`,
+     * que es el mismo que pinta el pie de cada pagina de categoria. */
+    const navFiltro = doc.querySelector('.gallery-page .nav-gallery');
+    if (!navFiltro) {
+      console.error('\n  ROJO /gallery: no encuentro «.gallery-page .nav-gallery» para poner las tarjetas delante\n');
+      process.exit(1);
+    }
+    navFiltro.insertAdjacentHTML('beforebegin', tarjetasHtml());
   }
 
   const menu = doc.querySelector('section.menu');
@@ -1170,6 +1483,7 @@ for (const [ruta] of RUTAS) {
 
   const conCollage = collageFaq(doc, ruta);
   if (conCollage) collagesInsertados++;
+  fotosCanjeadas += fotosPorRuta(doc, ruta);
 
 
   const usados = new Set();
@@ -1517,7 +1831,10 @@ for (const [ruta] of RUTAS) {
    * `check-texto.mjs`, derivado de `src/data/blogs.json` (mas el encabezado por ruta de
    * `blog-heading-por-ruta.json` para las 2 de Estado), igual que el de reseñas.
    */
-  const CON_BLOG_INSERTADO = ['/services/', '/where-we-serve/'];
+  const CON_BLOG_INSERTADO = ['/where-we-serve/'];
+  // Las 14 fichas (`esFicha`) y las 2 regionales. NO el silo `/services/pool-builders/<x>`: los 9
+  // condados traen su carrusel del origen y las 53 ciudades lo montan desde su plantilla.
+  const conBlogInsertado = (r) => esFicha(r) || CON_BLOG_INSERTADO.some((p) => r.startsWith(p));
   /**
    * R17-CORE — LOS TRES COMPONENTES DE CAPTACION, POR INSERCION.
    *
@@ -1541,10 +1858,11 @@ for (const [ruta] of RUTAS) {
    * `usados` y no el marcador: sin esta linea salen 15 ficheros con `<CollageFaq />` y sin
    * importarlo. Cazado construyendo. */
   if (conCollage) usados.add('CollageFaq');
+  if (conFiltro) usados.add('FiltroProyectos');
   let primerLogos = true;
   let acumulado = '';
   for (let n = menu.nextElementSibling; n && n !== pie; n = n.nextElementSibling) {
-    if (CON_BLOG_INSERTADO.some((p) => ruta.startsWith(p)) && n.matches?.('section.social-media')) {
+    if (conBlogInsertado(ruta) && n.matches?.('section.social-media')) {
       acumulado += MARCA + 'CarruselBlog' + MARCA;
       usados.add('CarruselBlog');
       blogsInsertados++;
@@ -1669,7 +1987,11 @@ for (const [ruta] of RUTAS) {
   const jsonLd = [];
   const jsonLdCrudo = [];
   for (const sc of doc.head.querySelectorAll('script[type="application/ld+json"]')) {
-    const t = sc.textContent.replace(reUrlGlobal, (u) => renombra(local(equilibra(u))));
+    /* Las absolutas (con host) y tambien las RELATIVAS entre comillas (`"url":"/services/..."`,
+     * que el origen trae en el `WebPage` de las 14 fichas): sin esto el JSON-LD seguiria
+     * nombrando la URL vieja mientras la canonica dice la nueva. */
+    const t = sc.textContent.replace(reUrlGlobal, (u) => renombra(local(equilibra(u))))
+      .replace(/"(\/[a-z0-9\-/]+)"/g, (_, u) => `"${renombra(u)}"`);
     try { jsonLd.push(ordena(JSON.parse(t))); } catch {
       try { jsonLd.push(ordena(JSON.parse(sanea(t)))); ldReparados++; }
       catch { jsonLdCrudo.push(t); }
@@ -1695,6 +2017,13 @@ for (const [ruta] of RUTAS) {
       name: o.titulo,
       url: `/project/${o.slug}`,
     })), ...b.hasPart];
+    // Y decrece con las ocultas: el JSON-LD dice las obras que la pagina ensena, ni una mas.
+    const antes = b.hasPart.length;
+    b.hasPart = b.hasPart.filter((p) => !OCULTAS.has(String(p.url).replace(/^\/project\//, '')));
+    if (antes - b.hasPart.length !== OCULTAS.size) {
+      console.error(`\n  ROJO ${ruta}: el hasPart quito ${antes - b.hasPart.length} partes y hay ${OCULTAS.size} ocultas\n`);
+      process.exit(1);
+    }
   }
 
   // La profundidad importa: /blogs/{slug} vive en src/pages/blogs/, asi que necesita ../../
@@ -1808,9 +2137,20 @@ console.log(`  carrusel de proyectos sustituido en ${proyectosSustituidos} ruta(
 console.log(`  carrusel de blog sustituido en ${blogsSustituidos} ficha(s) de country/`
   + `${blogsSustituidos === 9 ? '' : '   <<< SE ESPERABAN 9'}`);
 
+/* Las 14 de `/gallery`: si no entran todas, el casting y lo publicado dejan de coincidir y la
+ * trazabilidad de `page_asset_usage.csv` se vuelve mentira. Para el generador. */
+const GALERIA_PROPIA_ESPERADA = GALERIA_PAGINA.construction.length + GALERIA_PAGINA.remodeling.length
+  + GALERIA_CATEGORIAS.reduce((n, c) => n + c.fotos.filter((f) => f.origen === 'banco').length, 0);
+if (galeriaPropiaInsertada !== GALERIA_PROPIA_ESPERADA) {
+  console.error(`\n  ROJO /gallery: se insertaron ${galeriaPropiaInsertada} fotos del banco y el casting trae ${GALERIA_PROPIA_ESPERADA}\n`);
+  process.exit(1);
+}
+console.log(`  ${galeriaPropiaInsertada} fotos del banco insertadas en /gallery\n`);
+
 const OBRAS_ESPERADAS = OBRAS_PROPIAS.length * Object.keys(OBRAS_EN).length;
 console.log(`  obras propias insertadas en el indice: ${obrasInsertadas}`
-  + `${obrasInsertadas === OBRAS_ESPERADAS ? '' : `   <<< SE ESPERABAN ${OBRAS_ESPERADAS}`}`);
+  + `${obrasInsertadas === OBRAS_ESPERADAS ? '' : `   <<< SE ESPERABAN ${OBRAS_ESPERADAS}`}`
+  + ` · ocultadas: ${obrasOcultadas} (src/data/proyectos-indice.json)`);
 console.log('        (la home tambien trae la seccion en su origen y se cuenta en memoria, pero');
 console.log('        esta en NO_REGENERAR y no se escribe: sigue con su propio S_BLOG a mano.)');
 console.log('        Las 53 de pool-builders/ NO pasan por este generador — su migracion es');
@@ -1844,6 +2184,14 @@ console.log(`  embed WAAPI del mosaico retirado en ${codeEmbedsEliminados} ficha
 console.log('        El bucle nuevo vive en src/styles/intro.css §5, igual para las 80 rutas.\n');
 
 /* Va ANTES del aviso de NO_REGENERAR, que sale siempre con 1: detras no correria nunca. */
+const FOTOS_ESPERADAS = Object.entries(FOTOS_POR_RUTA).filter(([k]) => k.startsWith('/'))
+  .flatMap(([, s]) => Object.values(s).flat()).filter(Boolean).length;
+console.log(`  ${fotosCanjeadas} fotos del banco canjeadas por fotos-por-ruta.json\n`);
+if (fotosCanjeadas !== FOTOS_ESPERADAS) {
+  console.error(`\n  ROJO fotos-por-ruta.json declara ${FOTOS_ESPERADAS} y se canjearon ${fotosCanjeadas}:`
+    + ' alguna ruta no se genero (NO_REGENERAR o fuera de routes.csv).\n');
+  process.exit(1);
+}
 const FICHAS_CAPTACION = RUTAS_CAPTACION_SERVICIOS.length;
 console.log(`  gallery y resenas canjeadas en ${galeriasMovidas} de ${FICHAS_CAPTACION} fichas de services/\n`);
 if (galeriasMovidas !== FICHAS_CAPTACION) {

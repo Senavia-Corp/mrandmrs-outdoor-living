@@ -3,8 +3,8 @@
  *
  * Lo posee EN EXCLUSIVA el chat PULIDOR-1 (encargo R10-AD). Nadie mas escribe aqui.
  *
- * QUE RESTILA, Y CUANTO. Medido sobre `.vercel/output/static` el 1-sep-2026:
- *   .before-after-section    15 rutas
+ * QUE RESTILA, Y CUANTO. Medido sobre `.vercel/output/static` el 2-oct-2026:
+ *   .before-after-section    3 rutas (`/` y las dos fichas de piscina)
  *
  * El slider de Flowbase reimplementado en local. OJO: lleva JS propio y un tirador
  * arrastrable. Cambiar su caja cambia las coordenadas del arrastre — verifica que sigue
@@ -33,10 +33,10 @@
  * Y la de arriba de todas: se ELEVA la base de Webflow, no se sustituye. El TEXTO no se toca.
  *
  * ANCLAJE. Medido sobre las 115 paginas construidas: `.bas-wrapper`, `.bas-handle-h`,
- * `.bas-label-*` y `.before-after-intro` salen en 15 rutas y en NINGUNA fuera de esta seccion.
+ * `.bas-label-*` y `.before-after-intro` salen en 3 rutas y en NINGUNA fuera de esta seccion.
  * Aun asi todo cuelga de `.before-after-section`: cuesta cero y cierra la puerta a que manana
  * el marcado se reutilice en otro sitio.
- *   grep -rl 'bas-wrapper' .vercel/output/static --include='*.html' | wc -l   -> 15
+ *   grep -rl 'bas-wrapper' .vercel/output/static --include='*.html' | wc -l   -> 3
  */
 
 /* ── 1 · EL TIRADOR VUELVE DEBAJO DEL DEDO ────────────────────────────────────
