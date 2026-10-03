@@ -45,5 +45,300 @@
         "_por_que": "Piedra cortada al radio del spa y banda de mosaico: el acabado. Ninguna terminada de obra-049 pasa (manguera, tierra, capturas de pantalla)."
       }
     ]
+  },
+  "/services/custom-outdoor-kitchens-for-north-south-florida-homes": {
+    "section.gallery img.image-gallery": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-white-grill-farmhouse-sink-lanai-florida-03.webp",
+        "alt": "White outdoor kitchen with built-in grill, farmhouse sink and under-counter fridge on gray pavers.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 55%",
+        "_banco": "bi-0836",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-u-shape-pizza-oven-pool-view-florida-01.webp",
+        "alt": "U-shaped outdoor kitchen with pizza oven, open grill and side burner beside a pool.",
+        "ancho": 1440,
+        "alto": 960,
+        "pos": "50% 50%",
+        "_banco": "bi-0757",
+        "_por_que": null
+      },
+      null
+    ]
+  },
+  "/services/custom-deck-builders-in-north-south-florida": {
+    "section.gallery img.image-gallery": [
+      {
+        "src": "/images/banco/decks/gray-marble-paver-patio-lake-view-florida-01.webp",
+        "alt": "Wet gray marble paver patio along a stucco house with a royal palm and lake behind.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0084",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/decks/gray-marble-paver-driveway-luxury-home-florida-01.webp",
+        "alt": "Gray marble paver driveway with a mitered edge meeting a landscaped street.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0086",
+        "_por_que": null
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "/services/motorized-louvered-roof-systems-in-north-south-florida": {
+    "section.gallery img.image-gallery": [
+      {
+        "src": "/images/banco/louvered/louvered-roof-blades-motor-solar-sensor-top-view-florida-01.webp",
+        "alt": "Top of a white louvered roof showing blades, motors and a small solar panel beside a modern home",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0225",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/louvered/louvered-pergola-finished-condo-terrace-florida-01.webp",
+        "alt": "Finished white louvered pergola casting striped shade on a wood-look terrace.",
+        "ancho": 1125,
+        "alto": 838,
+        "pos": "50% 50%",
+        "_banco": "bi-0658",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/louvered/louvered-roof-red-led-lighting-dusk-patio-florida-01.webp",
+        "alt": "White louvered roof lit with red LED lights over a travertine patio with wicker seating at dusk",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0214",
+        "_por_que": null
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "/services/professional-landscaping-services-in-north-south-florida": {
+    "section.gallery img.image-gallery": [
+      null,
+      null,
+      null,
+      {
+        "src": "/images/banco/landscaping/backyard-putting-green-artificial-turf-oak-trees-florida-01.webp",
+        "alt": "Kidney-shaped artificial turf putting green with fringe under tall oak trees and gravel paths.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0117",
+        "_por_que": null
+      },
+      null,
+      null,
+      null,
+      null,
+      {
+        "src": "/images/banco/landscaping/landscaping-stepping-stone-path-black-slate-chips-florida-01.webp",
+        "alt": "Side-yard path of square limestone stepping stones set in black slate chips leading to a metal gate.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0499",
+        "_por_que": null
+      },
+      null
+    ]
+  },
+  "/services/steel-building-pole-barn-construction-in-north-south-florida": {
+    "section.gallery img.image-gallery": [
+      null,
+      null,
+      null,
+      {
+        "src": "/images/banco/pole/pole-barn-open-equipment-shed-steel-trusses-florida-01.webp",
+        "alt": "Long three-sided pole barn with wood posts, black steel trusses and metal walls on a dirt floor.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-1094",
+        "_por_que": null
+      },
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "/services/smart-soffit-led-lighting-installation-in-north-south-florida": {
+    "section.gallery img.image-gallery": [
+      {
+        "src": "/images/banco/pergolas/aluminum-patio-cover-insulated-roof-pavers-night-florida-01.webp",
+        "alt": "White insulated aluminum patio cover over a gray paver patio lit at night",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0230",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/louvered/louvered-roof-recessed-lights-night-patio-florida-01.webp",
+        "alt": "Louvered roof with white recessed lights over a travertine patio with lounge and dining furniture at night",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0217",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/louvered/louvered-roof-blue-led-strips-night-florida-01.webp",
+        "alt": "Louvered roof glowing with blue LED strips and spotlights over a dark patio at night",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0234",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-island-slat-front-led-lighting-night-florida-01.webp",
+        "alt": "Outdoor kitchen island with slatted front and warm LED strip under blue ceiling lights at dusk.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0299",
+        "_por_que": null
+      },
+      null,
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-bar-blue-led-lighting-night-florida-01.webp",
+        "alt": "Outdoor kitchen bar lit with blue LED lighting at night under a louvered roof with a fire pit.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0773",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/louvered/louvered-roof-red-led-lighting-dusk-patio-florida-01.webp",
+        "alt": "White louvered roof lit with red LED lights over a travertine patio with wicker seating at dusk",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0214",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/louvered/louvered-roof-blue-led-lighting-dusk-patio-florida-01.webp",
+        "alt": "White louvered roof lit with blue LED lights over a travertine patio with wicker seating at dusk",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0215",
+        "_por_que": null
+      },
+      null,
+      null
+    ]
+  },
+  "/services/premium-outdoor-furniture-for-north-south-florida-homes": {
+    "section.gallery img.image-gallery": [
+      {
+        "src": "/images/banco/pergolas/insulated-patio-cover-white-yellow-house-florida-02.webp",
+        "alt": "White insulated patio cover with rafter tails across the back of a yellow two-story house with tile roof",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-1012",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/pergolas/insulated-patio-cover-black-frame-two-story-pool-florida-02.webp",
+        "alt": "Black-framed insulated patio cover with downspout over sun loungers on a two-story home by the pool",
+        "ancho": 1600,
+        "alto": 1066,
+        "pos": "50% 50%",
+        "_banco": "bi-0938",
+        "_por_que": null
+      },
+      null,
+      null,
+      {
+        "src": "/images/banco/pergolas/insulated-patio-cover-black-frame-ceiling-fans-florida-01.webp",
+        "alt": "Large black-framed insulated patio cover with ceiling fans over cream wicker sofas surrounded by palms",
+        "ancho": 1024,
+        "alto": 667,
+        "pos": "50% 50%",
+        "_banco": "bi-0957",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/louvered/louvered-roof-white-large-span-travertine-patio-florida-01.webp",
+        "alt": "Large white louvered roof with partly open blades over a travertine patio with wicker lounge furniture",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0233",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/louvered/louvered-roof-white-open-blades-travertine-patio-florida-01.webp",
+        "alt": "White louvered roof with blades open against a blue sky over a travertine patio with wicker furniture",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0220",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/pergolas/covered-pergola-brown-paver-patio-pool-palms-florida-02.webp",
+        "alt": "Brown covered pergola with rafter tails over a paver patio with turquoise seating, grill and freeform pool",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-1009",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01.webp",
+        "alt": "Dark wood pergola over an outdoor kitchen bar and lounge with TV screen beside a putting green.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0842",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/pergolas/freestanding-patio-cover-bronze-pool-deck-travertine-florida-01.webp",
+        "alt": "Freestanding bronze insulated pergola with slatted privacy screen and wicker seating beside a curved pool",
+        "ancho": 1440,
+        "alto": 1080,
+        "pos": "50% 50%",
+        "_banco": "bi-0977",
+        "_por_que": null
+      }
+    ]
   }
 }

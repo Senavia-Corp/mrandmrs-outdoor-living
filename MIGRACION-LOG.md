@@ -3,6 +3,184 @@
 Webflow → Astro 5 + Sanity + Vercel. Una entrada por fase, **escrita al cerrar la fase**,
 nunca al empezarla. Si una fase se reabre, se añade una entrada nueva; no se edita la vieja.
 
+## LOOP-IMAGENES · CIERRE — 18 unidades, 101 canjes de 311 huecos, puerta del loop a 0 (2-oct-2026)
+
+Informe de entrega en `docs/encargos/LOOP-IMAGENES-INFORME.md` (canjes por ficha, fotos que hay que hacer,
+auditoría de IA de intro/What we do, lo que espera a un humano). Batería de cierre VERDE: tokens, rutas,
+enlaces, seo, estructura, assets, galería, menú, banco, ix2, cascarón y `check-fotos-servicios` (18/18).
+`check-visual` roja en 13 rutas por referencia anterior; alto medido antes/después: 0 px en todas.
+Por instrucción de Sebastian en chat («despliega a producción al terminar»), el PR se fusiona a `main`.
+
+## LOOP-IMAGENES · MENU y FULL — el megamenú y «Full-Service» enseñan obra propia en 10 de 14 servicios (2-oct-2026)
+
+Las 10 fichas con banco pasan su obra ganadora al megamenú (AVIF 680 px, 21-56 KB, `fotos-megamenu.json`,
+editado a mano en `Nav.astro` y declarado en `build-shell.mjs`) y a Full-Service (AVIF 1500×800 vía
+`fotos-servicios-categoria.json`, override en `build-paginas.mjs` con la misma traza que `fotosPorRuta()`;
+el widget admite `width/height/pos`). Enclosures, rooms, screens e irrigation se quedan: sin obra en el banco.
+Se juzgó el conjunto de 14 a tamaño real (`MENU.jpg`, `FULL.jpg`). Cajas medidas iguales antes y después
+(339×340 y 750×400/334×300); `check:menu`, `check-texto` y `check:tokens` verdes; `check-visual` roja en las
+3 rutas por la referencia anterior al #24.
+
+## LOOP-IMAGENES · irrigation — La ficha de irrigation no tiene obra real en el banco: se queda y deja la lista de fotos que faltan (2-oct-2026)
+
+21 huecos; juez a ciegas. **0 canjes**: ninguno. 21 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: verde · check-fotos-servicios: verde.
+
+## LOOP-IMAGENES · screens — La ficha de screens no tiene obra real en el banco: se queda y deja la lista de fotos que faltan (2-oct-2026)
+
+21 huecos; juez a ciegas. **0 canjes**: ninguno. 21 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: verde · check-fotos-servicios: verde.
+
+## LOOP-IMAGENES · rooms — La ficha de rooms no tiene obra real en el banco: se queda y deja la lista de fotos que faltan (2-oct-2026)
+
+21 huecos; juez a ciegas. **0 canjes**: ninguno. 21 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: verde · check-fotos-servicios: verde.
+
+## LOOP-IMAGENES · enclosures — La ficha de enclosures no tiene obra real en el banco: se queda y deja la lista de fotos que faltan (2-oct-2026)
+
+21 huecos; juez a ciegas. **0 canjes**: ninguno. 21 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: verde · check-fotos-servicios: verde.
+
+## LOOP-IMAGENES · furniture — La ficha de mobiliario ensena obra propia con el mueble como sujeto (2-oct-2026)
+
+21 huecos; juez a ciegas. **13 canjes**: faq[0] bi-0168, faq[1] bi-0237, faq[2] bi-0632, faq[3] bi-0235, galeria[0] bi-1012, galeria[1] bi-0938, galeria[4] bi-0957, galeria[5] bi-0233, galeria[6] bi-0220, galeria[7] bi-1009, galeria[8] bi-0842, galeria[9] bi-0977, heroe bi-0928. 8 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:+0 991:+0 1440:+0) · check-fotos-servicios: verde.
+
+## LOOP-IMAGENES · lighting — La ficha de iluminacion LED ensena obra propia donde la luz es el sujeto (2-oct-2026)
+
+21 huecos; juez a ciegas. **13 canjes**: faq[0] bi-0212, galeria[0] bi-0230, galeria[1] bi-0217, galeria[2] bi-0234, galeria[3] bi-0299, galeria[5] bi-0773, galeria[6] bi-0214, galeria[7] bi-0215, heroe bi-0839, proceso[0] bi-1061, proceso[1] bi-1060, proceso[2] bi-0646, proceso[3] bi-0216. 8 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+1 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:+0 991:+1 1440:+0) · check-fotos-servicios: verde.
+
+## LOOP-IMAGENES · remodeling — La ficha de remodelacion de piscinas ensena obra propia en inversion y FAQ (2-oct-2026)
+
+21 huecos; juez a ciegas. **0 canjes**: ninguno. 21 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: verde · check-fotos-servicios: verde.
+
+## LOOP-IMAGENES · construction — La ficha de piscinas nuevas ensena obra propia en heroe, inversion y FAQ (2-oct-2026)
+
+21 huecos; juez a ciegas. **2 canjes**: faq[1] bi-0662, inversion bi-0633. 19 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:+0 991:+0 1440:+0) · check-fotos-servicios: verde.
+
+## LOOP-IMAGENES · pole — La ficha de naves y pole barns ensena obra propia en heroe, galeria, proceso, inversion y FAQ (2-oct-2026)
+
+20 huecos; juez a ciegas. **8 canjes**: faq[1] bi-1084, galeria[3] bi-1094, heroe bi-1104, inversion bi-1096, proceso[0] bi-0488, proceso[1] bi-1113, proceso[2] bi-1118, proceso[3] bi-1122. 12 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:-146 991:-192 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:-146 991:-192 1440:+0) · check-fotos-servicios: verde.
+
+## LOOP-IMAGENES · landscaping — La ficha de paisajismo ensena obra propia en heroe, galeria, proceso, inversion y FAQ (2-oct-2026)
+
+21 huecos; juez a ciegas. **8 canjes**: faq[3] bi-0134, galeria[3] bi-0117, galeria[8] bi-0499, heroe bi-0307, inversion bi-0305, proceso[0] bi-0020, proceso[2] bi-0129, proceso[3] bi-0492. 13 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:+0 991:+0 1440:+0) · check-fotos-servicios: verde.
+
+## LOOP-IMAGENES · louvered — La ficha de techos de lamas ensena obra propia en heroe, galeria, proceso, inversion y FAQ (2-oct-2026)
+
+21 huecos; juez a ciegas. **11 canjes**: faq[0] bi-0652, faq[1] bi-0201, faq[2] bi-0166, galeria[0] bi-0225, galeria[1] bi-0658, galeria[2] bi-0214, heroe bi-0233, inversion bi-0632, proceso[1] bi-0643, proceso[2] bi-0611, proceso[3] bi-0610. 10 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:+0 991:+0 1440:+0) · check-fotos-servicios: verde.
+
+## LOOP-IMAGENES · decks — La ficha de decks ensena obra propia en heroe, galeria, proceso, inversion y FAQ (2-oct-2026)
+
+21 huecos; juez a ciegas. **11 canjes**: faq[1] bi-0088, faq[3] bi-0630, faq[4] bi-0318, galeria[0] bi-0084, galeria[1] bi-0086, heroe bi-0079, inversion bi-0056, proceso[0] bi-0057, proceso[1] bi-0041, proceso[2] bi-0064, proceso[3] bi-0538. 10 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:+0 991:+0 1440:+0) · check-fotos-servicios: verde.
+
+## LOOP-IMAGENES · kitchens — La ficha de cocinas ensena obra propia en heroe, galeria, proceso e inversion (2-oct-2026)
+
+19 huecos; juez a ciegas. **7 canjes**: galeria[5] bi-0836, galeria[6] bi-0757, heroe bi-0794, inversion bi-0793, proceso[0] bi-0777, proceso[1] bi-0013, proceso[3] bi-0015. 12 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:+0 991:+0 1440:+0) · check-fotos-servicios: verde.
+
+## LOOP-IMAGENES · pergolas — la ficha de pérgolas enseña obra propia en héroe, proceso, inversión y FAQ (2-oct-2026)
+
+Unidad piloto del loop. 21 huecos inventariados sobre el HTML; 16 con candidata; juez a ciegas
+(A/B aleatorio) tumbó 5 por desorden dentro del recorte y prefirió la actual en 3 teselas. **8 canjes**:
+héroe (bi-1046, AVIF 145 KB frente a 211 KB; `og:image` deja el AVIF con marca de IA de la intro y pasa
+a un JPEG 1200×630 real), banda de inversión (bi-0842), los 4 pasos (IA → obra en curso bi-1068,
+bi-1053, bi-0003, bi-0637) y dos teselas de la FAQ (bi-1069, bi-1033). La galería se queda: las 5
+candidatas cayeron (parrilla enfundada, lona, calva de tierra) y lo actual es obra real. Héroe y
+`about.image` de `check-seo.mjs` cambian en el mismo commit. Reservadas bi-0914 (menú) y bi-0935 (Full).
+
+- **Proporción medida, no supuesta:** a 768/991 el paso se pinta entero y a 479 la banda sigue el ratio
+  de `width/height`; los 4 pasos van derivados a 1408/768 y la inversión a 1250/698. Alto de la página
+  antes/después, misma receta: +0/+1/+0/+0 px.
+- **Mecanismo nuevo, pequeño:** `InversionCore.astro` acepta `pos`; `scripts/loop-aplicar.mjs`
+  (decisiones → JSON + derivados + `usada_en`/`publicada_como` + estado), `derivar-foto.mjs` (recorte
+  `cover` + AVIF/JPEG sin metadatos, receta en `_ajuste`), `loop-hoja.mjs` (antes|después).
+
+### Puertas
+
+tokens, estructura, assets, seo, banco, galería (ficha) y texto (ficha) VERDES; `check-fotos-servicios
+pergolas` verde al marcar la unidad. `check-visual` ROJA **y ya lo estaba**: cocinas sin tocar da
++141/+119/+176/+216 px por la referencia anterior al rediseño; el re-baseline es de Sebastian.
+
+## LOOP-IMAGENES F0 — montaje del loop de obra real en fichas, megamenú y Full-Service (2-oct-2026)
+
+Encargo `PROMPT-LOOP-IMAGENES.md` (raíz, la versión que manda). Rama `loop-imagenes` desde
+`origin/main` `a7486b0`; worktree `.claude/worktrees/loop-imagenes`. Una unidad por disparo, un
+commit por unidad; el estado vive en `docs/encargos/LOOP-IMAGENES-ESTADO.json`.
+
+- **Tres scripts nuevos.** `medir-cajas.mjs` (Playwright headless, cajas de cada hueco a
+  390/768/991/1440 y la zona que tapa texto), `encaje-foto.mjs` (recorte `cover` + `pos` a esas
+  cajas, zona de texto sombreada, tira JPG: es lo que mira el casting y el juez) y
+  `check-fotos-servicios.mjs`, **la puerta del loop**: «hecho» es que salga 0. Probada en rojo con
+  10 clases de fallo sobre copias de estado y HTML (salida literal en `puerta_probada` del estado).
+- **Generador, dos cambios neutros** (`npm run paginas` deja los 47 `.astro` sin diff):
+  `fotosPorRuta()` reescribe el `script.w-json` del lightbox cuando canjea una `<img>` dentro de
+  `a.w-lightbox`; `proceso.fotos` acepta `null` (= ese paso se queda), como `fotos-por-ruta.json`.
+- **Línea base de lo intocable** (3 de intro + 4 de «What we do» × 14 fichas, 98 `src`) en el
+  estado; la puerta sale ROJA si alguno se mueve.
+- **Auditoría de procedencia, Python sobre bytes** (`c2pa`, `trainedAlgorithmicMedia`):
+  intocables 97 ficheros, **9 con marca de IA** (todos `residentials/<ficha>/…avif`, la primera de
+  intro); procesos 56 ficheros, **39 con marca** (los 39 PNG); los 17 AVIF no llevan marca en bytes
+  (AVIF la pierde al recodificar: `sin_verificar`, no obra real). Se reporta; no se toca.
+- **El árbol corrige al encargo** en 7 puntos (`correcciones_al_encargo` del estado): base
+  `a7486b0`; 17 `img.picture-service` (3 comerciales fuera); `check:menu` no mira imágenes;
+  `check-seo.mjs` fija `about.image` = héroe en las 14 fichas; cajas a 390/768 sin referencia en
+  `baseline/shots/`; `inversion.foto` la lee `InversionCore.astro`; el menú solo pinta foto a ≥992
+  (caja 339×340, texto en el 20 % inferior).
+
+### Puertas
+
+`check:tokens`, `check:estructura`, `check:assets`, `check:seo`, `build-banco --check` y
+`check:galeria /services/custom-outdoor-kitchens…` VERDES. `check-fotos-servicios` ROJA a
+propósito (18 unidades pendientes). `check:visual`/`check:texto` no corridas: F0 no mueve píxeles
+ni texto.
+
 ## ANTES-DESPUES-OBRA-NUEVA — la ficha de New Pool recupera el deslizador con el par de la home (2-oct-2026)
 
 Pedido de Sebastian: el «Before & After» de la home, con sus mismas dos fotos, entre «What we do» y

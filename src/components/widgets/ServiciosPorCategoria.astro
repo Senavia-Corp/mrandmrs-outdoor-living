@@ -174,7 +174,7 @@ const texto = (h) => String(h).replace(/&amp;/g, '&').replace(/&lt;/g, '<').repl
             data-id={sv.id}
             hidden={sv.id !== activo}
           >
-            <img class="svc-foto" src={sv.foto} alt={sv.alt} loading="lazy" />
+            <img class="svc-foto" src={sv.foto} alt={sv.alt} width={sv.ancho} height={sv.alto} style={sv.pos ? `object-position:${sv.pos}` : undefined} loading="lazy" />
             {/* `data-n` lo repone el script al cambiar de fila o de pestaña. */}
             <p class="svc-contador" aria-hidden="true"
                data-n={esVisible(sv) ? posicion(sv) : 1} data-total={visibles.length} />
