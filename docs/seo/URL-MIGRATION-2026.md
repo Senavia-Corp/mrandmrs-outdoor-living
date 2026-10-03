@@ -172,6 +172,8 @@ Build de producción desde el contenedor: `PUBLIC_ES_PRODUCCION=1 MM_SANITY_CACH
 | Sanity (TEST 10) | GROQ por MCP | ✅ 0 `href` viejos en 47 `blogPost`; 0 borradores; referencias por `_id` sin URLs |
 | Grep global (TEST 11) | ver *Old URL search* en el informe | ✅ 0 enlaces activos; restos = sources de redirect, origen congelado y documentación histórica |
 
+Despliegue del 3-oct-2026 (`c4f8d62`, `dpl_2K59uvNqdHLCZripxjwm1Qz2mLQY`): puntos 1-3 verificados en vivo desde el sandbox de Composio — 90/90 redirects 308 directos, 90/90 destinos 200, sitemap 168 sin URLs viejas, apex → www, robots y canónicas correctas, 0 enlaces internos viejos. Quedan los puntos 4-6.
+
 Checklist de despliegue (inmediatamente después de publicar en producción):
 1. `curl -sI https://www.mrandmrsoutdoorliving.com/pool-builders/beach-florida` → `308` con `location: /services/pool-builders/hillsboro-beach-fl`; lo mismo para `/excavation`, `/pool-builders/pool-builders-ocala-florida` y `/services/custom-pool-spa-builders-in-north-south-florida`.
 2. `curl -s https://www.mrandmrsoutdoorliving.com/sitemap.xml | grep -c '<loc>'` → 168, y 0 coincidencias de `in-north-south-florida`, `/pool-builders/`, `/country/`.

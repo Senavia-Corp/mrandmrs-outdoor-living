@@ -18,6 +18,18 @@ no se tocan — la URL la deriva `src/lib/rutas-seo.mjs`. Baseline re-claveado p
 intacto). La miga deja de inventar `/services`, `/blogs`, `/project` y `/articles`. Informe completo y checklist de
 despliegue en `docs/seo/URL-MIGRATION-2026.md`.
 
+### Despliegue (3-oct-2026, 02:45 UTC)
+
+`main` fusionada y empujada (`cbf585b..c4f8d62`); la integración de GitHub desplegó sola:
+`dpl_2K59uvNqdHLCZripxjwm1Qz2mLQY`, READY/PROMOTED, build desde git (lee `vercel.json`). Verificado
+SOBRE EL DOMINIO desde el sandbox de Composio (el proxy del contenedor no alcanza el dominio):
+**90/90 redirects** responden 308 directo a su URL final y **las 90 finales 200** (76 de la
+migración + 14 históricos; un timeout de red en el primer barrido, 308 correcto al repetir);
+apex → www con 308; sitemap en vivo con 168 `<loc>`, 0 URLs viejas, un solo host `www`;
+`robots.txt` con `Allow: /` y el sitemap; canónica propia en `/services/pool-builders/ocala-fl`;
+0 enlaces internos a URLs viejas en `/`, la ficha, una ciudad, un artículo (Sanity vivo) y
+`/where-we-serve`; la miga de Ocala apunta a `/services/pool-builders`.
+
 ## LOOP-IMAGENES · CIERRE — 18 unidades, 101 canjes de 311 huecos, puerta del loop a 0 (2-oct-2026)
 
 Informe de entrega en `docs/encargos/LOOP-IMAGENES-INFORME.md` (canjes por ficha, fotos que hay que hacer,
