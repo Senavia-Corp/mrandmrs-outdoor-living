@@ -7741,7 +7741,9 @@
       "personas dentro de la cocina (no reconocibles)",
       "juguetes y bultos bajo el techo"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/smart-soffit-led-lighting-installation-in-north-south-florida"
+    ],
     "origen": "EQUINOX LOUVERED ROOF/IMG_0034.jpg",
     "sha256": "0e769df6850a25610c2b2cb09c7f22d8bd0609d83774cd2a0eeab068e26aeb09"
   },
@@ -7812,7 +7814,8 @@
       "/blogs/features-to-compare-before-buying-a-louvered-roof",
       "/gallery",
       "/gallery/louvered-roofs",
-      "/services/motorized-louvered-roof-systems-in-north-south-florida"
+      "/services/motorized-louvered-roof-systems-in-north-south-florida",
+      "/services/smart-soffit-led-lighting-installation-in-north-south-florida"
     ],
     "origen": "EQUINOX LOUVERED ROOF/IMG_0043.JPG",
     "sha256": "f33a80e109b37e2d56611d97394bad55f846e90a59256fb71eace5845a685287"
@@ -7854,7 +7857,9 @@
     "defectos": [
       "algo de ruido por poca luz"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/smart-soffit-led-lighting-installation-in-north-south-florida"
+    ],
     "origen": "EQUINOX LOUVERED ROOF/IMG_0044.JPG",
     "sha256": "9416b274938a4f4163cece55de43c89e71de3f131e40da229d586770c7b804b5"
   },
@@ -7896,9 +7901,14 @@
       "muy oscura",
       "interior de la casa visible por las ventanas"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/smart-soffit-led-lighting-installation-in-north-south-florida"
+    ],
     "origen": "EQUINOX LOUVERED ROOF/IMG_0045.JPG",
-    "sha256": "0fb580fa92378034cd158992bde58aa93e0a167fbf01393c2436d9a7b176011e"
+    "sha256": "0fb580fa92378034cd158992bde58aa93e0a167fbf01393c2436d9a7b176011e",
+    "publicada_como": [
+      "/images/obra/obra-033/louvered-roof-blue-led-night-outdoor-lounge-florida-proceso3.avif"
+    ]
   },
   {
     "id": "bi-0217",
@@ -7941,7 +7951,8 @@
     "usada_en": [
       "/blogs/how-much-does-a-motorized-louvered-roof-cost",
       "/gallery",
-      "/gallery/louvered-roofs"
+      "/gallery/louvered-roofs",
+      "/services/smart-soffit-led-lighting-installation-in-north-south-florida"
     ],
     "origen": "EQUINOX LOUVERED ROOF/IMG_0046.JPG",
     "sha256": "32079cc00ad7d3e2d972ae2116a4b5c588dd006b63cce74ad7d81bf0a09cd418"
@@ -8433,7 +8444,9 @@
     "defectos": [
       "entorno muy oscuro"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/smart-soffit-led-lighting-installation-in-north-south-florida"
+    ],
     "origen": "EQUINOX LOUVERED ROOF/IMG_1870.jpeg",
     "sha256": "07aa2524eac31885ab20054b0d76aafd8aac1c6ee72ec6e861ebfb379ee5dfd6"
   },
@@ -8597,7 +8610,9 @@
     "defectos": [
       "muy oscura"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/smart-soffit-led-lighting-installation-in-north-south-florida"
+    ],
     "origen": "EQUINOX LOUVERED ROOF/IMG_4452.JPG",
     "sha256": "e312a40cd2f97a9f4b3fa2cbd0ada6e185bed431be43637d25c27ba5f58b5811"
   },
@@ -10587,7 +10602,9 @@
       "dominante azul fuerte",
       "botella sobre la encimera"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/smart-soffit-led-lighting-installation-in-north-south-florida"
+    ],
     "origen": "KITCHEN FINISH/6.jpg",
     "sha256": "da21776df52e75c65d512c8be7da4792f7db8bb850da6bc3ae2c349f9c28e83c"
   },
@@ -22299,10 +22316,14 @@
       "escalera en la esquina inferior"
     ],
     "usada_en": [
-      "/blogs/questions-to-ask-a-louvered-roof-installer"
+      "/blogs/questions-to-ask-a-louvered-roof-installer",
+      "/services/smart-soffit-led-lighting-installation-in-north-south-florida"
     ],
     "origen": "NEW JOBS CONSTRUCTION/FOTOS DE TODO/IMG_1567.JPEG",
-    "sha256": "6e6a00af8baedc173af8fb45f0f22d1eea9d60707e45c587a58d973437ab03fa"
+    "sha256": "6e6a00af8baedc173af8fb45f0f22d1eea9d60707e45c587a58d973437ab03fa",
+    "publicada_como": [
+      "/images/obra/obra-050/louvered-roof-closed-louvers-underside-detail-florida-proceso2.avif"
+    ]
   },
   {
     "id": "bi-0647",
@@ -27030,7 +27051,9 @@
     "defectos": [
       "muy oscura, dominante azul"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/smart-soffit-led-lighting-installation-in-north-south-florida"
+    ],
     "origen": "OUTDOOR KICTCHEN/IMG_0869 2.jpeg",
     "sha256": "00b6be32d51c74a71e4f240be096153d0f9ca301f227a37dfb7dedd5049b405a"
   },
@@ -29299,10 +29322,15 @@
     "usada_en": [
       "/blogs/outdoor-living-design-guide-for-florida-homes",
       "/gallery",
-      "/gallery/aluminum-pergolas"
+      "/gallery/aluminum-pergolas",
+      "/services/smart-soffit-led-lighting-installation-in-north-south-florida"
     ],
     "origen": "OUTDOOR KICTCHEN/b6c5449a-0e79-4c7c-84b5-03d63de7afa2 2.jpg",
-    "sha256": "5483ced223fb56a074214c94825b4223da4715fc3adf3c1c0dca99a030fe40d2"
+    "sha256": "5483ced223fb56a074214c94825b4223da4715fc3adf3c1c0dca99a030fe40d2",
+    "publicada_como": [
+      "/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-heroe.avif",
+      "/images/obra/og/smart-soffit-led-lighting-installation-in-north-south-florida.jpg"
+    ]
   },
   {
     "id": "bi-0840",
@@ -37229,9 +37257,14 @@
       "destellos de los focos",
       "adoquines sueltos"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/smart-soffit-led-lighting-installation-in-north-south-florida"
+    ],
     "origen": "PERGOLA/Moderna/6.jpeg",
-    "sha256": "517cceb3445721b670d03001cbe318d1540510d9f909952ccf161714796c293b"
+    "sha256": "517cceb3445721b670d03001cbe318d1540510d9f909952ccf161714796c293b",
+    "publicada_como": [
+      "/images/obra/suelta/large-patio-cover-recessed-lighting-night-pavers-florida-proceso1.avif"
+    ]
   },
   {
     "id": "bi-1061",
@@ -37270,10 +37303,14 @@
       "poste en primer plano"
     ],
     "usada_en": [
-      "/blogs/pergola-design-decisions-before-construction"
+      "/blogs/pergola-design-decisions-before-construction",
+      "/services/smart-soffit-led-lighting-installation-in-north-south-florida"
     ],
     "origen": "PERGOLA/Moderna/7.jpeg",
-    "sha256": "e0fcdc2a4f47f4aedf8909113cc310bb14b1e615fc8d43bde276f4d8c87e528c"
+    "sha256": "e0fcdc2a4f47f4aedf8909113cc310bb14b1e615fc8d43bde276f4d8c87e528c",
+    "publicada_como": [
+      "/images/obra/suelta/modern-patio-cover-woodgrain-ceiling-lights-night-florida-proceso0.avif"
+    ]
   },
   {
     "id": "bi-1062",

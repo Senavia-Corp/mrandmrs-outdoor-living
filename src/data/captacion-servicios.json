@@ -2265,12 +2265,22 @@
   "/services/smart-soffit-led-lighting-installation-in-north-south-florida": {
     "heroe": {
       "apoyo": "Smart soffit and LED lighting installation company serving North & South Florida, enhancing curb appeal and exterior security.",
-      "foto": "/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-5.avif",
-      "alt": "Covered outdoor kitchen and dining area with recessed lighting in the ceiling, built in North Florida by Mr & Mrs Outdoor Living",
-      "ancho": 1250,
-      "alto": 698,
+      "foto": "/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-heroe.avif",
+      "alt": "Dark wood pavilion with outdoor bar, sculptural stools, LED toe-kick lights and lounge at dusk.",
+      "ancho": 1600,
+      "alto": 900,
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
-      "ancla": "#estimate"
+      "ancla": "#estimate",
+      "_banco": "bi-0839",
+      "_proyecto": "obra-078",
+      "_ajuste": {
+        "recorte": "16/9",
+        "pos": "50% 50%",
+        "ancho": 1600,
+        "q": 50,
+        "de": "/images/banco/pergolas/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-01.webp"
+      },
+      "og": "/images/obra/og/smart-soffit-led-lighting-installation-in-north-south-florida.jpg"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -2393,6 +2403,74 @@
       "alt": "Covered poolside patio with integrated ceiling lighting in South Florida, built by Mr & Mrs Outdoor Living",
       "ancho": 1250,
       "alto": 698
+    },
+    "proceso": {
+      "fotos": [
+        {
+          "foto": "/images/obra/suelta/modern-patio-cover-woodgrain-ceiling-lights-night-florida-proceso0.avif",
+          "alt": "Black-framed patio cover with woodgrain ceiling, recessed lights and fan at night over a travertine patio",
+          "ancho": 1600,
+          "alto": 873,
+          "pos": "50% 50%",
+          "_banco": "bi-1061",
+          "_proyecto": null,
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/pergolas/modern-patio-cover-woodgrain-ceiling-lights-night-florida-01.webp"
+          }
+        },
+        {
+          "foto": "/images/obra/suelta/large-patio-cover-recessed-lighting-night-pavers-florida-proceso1.avif",
+          "alt": "Large dark-framed insulated patio cover with rows of recessed lights glowing at night over a paver court",
+          "ancho": 1600,
+          "alto": 873,
+          "pos": "50% 50%",
+          "_banco": "bi-1060",
+          "_proyecto": null,
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/pergolas/large-patio-cover-recessed-lighting-night-pavers-florida-01.webp"
+          }
+        },
+        {
+          "foto": "/images/obra/obra-050/louvered-roof-closed-louvers-underside-detail-florida-proceso2.avif",
+          "alt": "Underside of a white louvered roof with louvers closed, wall lights on the left.",
+          "ancho": 1600,
+          "alto": 873,
+          "pos": "50% 50%",
+          "_banco": "bi-0646",
+          "_proyecto": "obra-050",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/louvered/louvered-roof-closed-louvers-underside-detail-florida-01.webp"
+          }
+        },
+        {
+          "foto": "/images/obra/obra-033/louvered-roof-blue-led-night-outdoor-lounge-florida-proceso3.avif",
+          "alt": "Outdoor lounge and dining set under a louvered roof washed in blue LED light at night",
+          "ancho": 1600,
+          "alto": 873,
+          "pos": "50% 50%",
+          "_banco": "bi-0216",
+          "_proyecto": "obra-033",
+          "_ajuste": {
+            "recorte": "1408/768",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/louvered/louvered-roof-blue-led-night-outdoor-lounge-florida-01.webp"
+          }
+        }
+      ]
     }
   },
   "/services/steel-building-pole-barn-construction-in-north-south-florida": {

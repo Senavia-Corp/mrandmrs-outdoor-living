@@ -247,13 +247,13 @@
   "/services/smart-soffit-led-lighting-installation-in-north-south-florida": {
     "fotos": [
       {
-        "src": "/images/images/light-3/smart-soffit-led-lighting-installation-contractors-florida-03.jpg",
-        "srcset": "/images/site/smart-soffit-led-lighting-installation-contractors-florida-03-p-500.jpg 500w, /images/site/smart-soffit-led-lighting-installation-contractors-florida-03-p-800.jpg 800w, /images/site/smart-soffit-led-lighting-installation-contractors-florida-03-p-1080.jpg 1080w, /images/images/light-3/smart-soffit-led-lighting-installation-contractors-florida-03.jpg 1250w",
-        "alt": "Luxury home with warm white smart soffit LED lighting highlighting architectural details and improving nighttime visibility in Florida residences.",
-        "ancho": 1250,
-        "alto": 698,
+        "src": "/images/banco/louvered/louvered-roof-led-lighting-night-poolside-florida-01.webp",
+        "srcset": "/images/banco/louvered/louvered-roof-led-lighting-night-poolside-florida-01.webp 1600w",
+        "alt": "Long louvered roof edged with blue LED lighting over a patio beside a pool at night",
+        "ancho": 1600,
+        "alto": 877,
         "pos": "50% 50%",
-        "_hoja": "light:8"
+        "_banco": "bi-0212"
       },
       {
         "src": "/images/images/light-2/smart-soffit-led-lighting-installation-contractors-florida-02.jpg",

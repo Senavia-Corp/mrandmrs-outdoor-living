@@ -472,7 +472,7 @@ const JSONLD_ARREGLADO = {
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Smart Soffit & LED Lighting Installation'],
       ['about.image', 'Smart soffit LED lighting installed by professional outdoor lighting contractors in Florida.',
-        '/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-5.avif'],
+        '/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-heroe.avif'],
       ['dateModified', '2026-05-18T19:55:20.436Z', '2026-05-18T19:55:49.094Z'],
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:55:20.436Z'],
     ],

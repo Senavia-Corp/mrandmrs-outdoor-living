@@ -192,5 +192,75 @@
       null,
       null
     ]
+  },
+  "/services/smart-soffit-led-lighting-installation-in-north-south-florida": {
+    "section.gallery img.image-gallery": [
+      {
+        "src": "/images/banco/pergolas/aluminum-patio-cover-insulated-roof-pavers-night-florida-01.webp",
+        "alt": "White insulated aluminum patio cover over a gray paver patio lit at night",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0230",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/louvered/louvered-roof-recessed-lights-night-patio-florida-01.webp",
+        "alt": "Louvered roof with white recessed lights over a travertine patio with lounge and dining furniture at night",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0217",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/louvered/louvered-roof-blue-led-strips-night-florida-01.webp",
+        "alt": "Louvered roof glowing with blue LED strips and spotlights over a dark patio at night",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0234",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-island-slat-front-led-lighting-night-florida-01.webp",
+        "alt": "Outdoor kitchen island with slatted front and warm LED strip under blue ceiling lights at dusk.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0299",
+        "_por_que": null
+      },
+      null,
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-bar-blue-led-lighting-night-florida-01.webp",
+        "alt": "Outdoor kitchen bar lit with blue LED lighting at night under a louvered roof with a fire pit.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0773",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/louvered/louvered-roof-red-led-lighting-dusk-patio-florida-01.webp",
+        "alt": "White louvered roof lit with red LED lights over a travertine patio with wicker seating at dusk",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0214",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/louvered/louvered-roof-blue-led-lighting-dusk-patio-florida-01.webp",
+        "alt": "White louvered roof lit with blue LED lights over a travertine patio with wicker seating at dusk",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0215",
+        "_por_que": null
+      },
+      null,
+      null
+    ]
   }
 }
