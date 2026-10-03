@@ -6229,7 +6229,7 @@
       "tipo": "menu",
       "ruta": "/",
       "estado": "hecha",
-      "commit": "siguiente-iteracion",
+      "commit": "5ff1b9c",
       "huecos": [
         {
           "hueco": "menu[construction]",
@@ -6451,7 +6451,7 @@
         "/where-we-serve/south-florida"
       ],
       "estado": "hecha",
-      "commit": "siguiente-iteracion",
+      "commit": "cd8492d",
       "huecos": [
         {
           "hueco": "full[construction]",
@@ -6664,7 +6664,7 @@
       "id": "CIERRE",
       "tipo": "cierre",
       "ruta": null,
-      "estado": "pendiente",
+      "estado": "en-curso",
       "commit": null
     }
   ]

@@ -28,12 +28,15 @@
         "categorias": [
           "pool-spa"
         ],
-        "foto": "/images/residentials/custom-pool-spa-builders-in-north-south-florida/new-pool-spa-construction-florida.avif",
-        "alt": "New pool and spa construction in Florida by licensed custom pool builders",
+        "foto": "/images/obra/obra-063/new-pool-cobalt-glass-tile-sun-shelf-bubblers-spa-florida-full.avif",
+        "alt": "Pool with cobalt glass mosaic sun shelf, two bubblers and a raised tiled spa framed by royal palms.",
         "titulo": "Custom Pool Builders",
         "texto": "Custom pool and spa builders serving North &amp; South Florida, delivering high-quality construction and long-term outdoor value.",
         "enlace": "/services/custom-pool-spa-builders-in-north-south-florida",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1200,
+        "alto": 640,
+        "pos": "50% 55%"
       },
       {
         "id": "pergolas",
@@ -42,12 +45,15 @@
         "categorias": [
           "patio-cover"
         ],
-        "foto": "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/aluminum-pergolas-contractors-florida.avif",
-        "alt": "Custom aluminum pergolas built by outdoor living contractors in Florida.",
+        "foto": "/images/obra/obra-083/freestanding-patio-cover-privacy-screen-poolside-florida-full.avif",
+        "alt": "Freestanding dark aluminum patio cover with privacy screen on a pool deck with blue tile pool.",
         "titulo": "Custom Aluminum Pergola Builders",
         "texto": "Custom pergola builders and installation company serving North &amp; South Florida, delivering durable designs that enhance outdoor comfort and style.",
         "enlace": "/services/custom-aluminum-pergola-builders-in-north-south-florida",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1024,
+        "alto": 546,
+        "pos": "50% 45%"
       },
       {
         "id": "louvered",
@@ -56,12 +62,15 @@
         "categorias": [
           "patio-cover"
         ],
-        "foto": "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/louvered-roof-systems-florida.avif",
-        "alt": "Motorized louvered roof system installed by custom outdoor living contractors in Florida",
+        "foto": "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-full.avif",
+        "alt": "Large white louvered roof with partly open blades over a travertine patio with wicker lounge furniture",
         "titulo": "Motorized Louvered Roof Systems",
         "texto": "Motorized louvered roof builders and installation contractors in North &amp; South Florida, offering adjustable shade and weather protection.",
         "enlace": "/services/motorized-louvered-roof-systems-in-north-south-florida",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1500,
+        "alto": 800,
+        "pos": "50% 40%"
       },
       {
         "id": "rooms",
@@ -84,12 +93,15 @@
         "categorias": [
           "outdoor-living"
         ],
-        "foto": "/images/residentials/custom-outdoor-kitchens-for-north-south-florida-homes/covered-custom-outdoor-kitchen-florida.avif",
-        "alt": "Custom outdoor kitchen built by professional outdoor kitchen builders in Florida.",
+        "foto": "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-full.avif",
+        "alt": "L-shaped outdoor kitchen with black granite waterfall under a dark pergola beside a lake.",
         "titulo": "Custom Outdoor Kitchens",
         "texto": "Outdoor kitchen builders and installation contractors serving North &amp; South Florida with custom layouts for entertaining and daily use.",
         "enlace": "/services/custom-outdoor-kitchens-for-north-south-florida-homes",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1500,
+        "alto": 800,
+        "pos": "50% 50%"
       },
       {
         "id": "remodeling",
@@ -98,12 +110,15 @@
         "categorias": [
           "pool-spa"
         ],
-        "foto": "/images/residentials/pool-remodeling-renovation-in-north-south-florida/pool-spa-renovation-backyard-florida.avif",
-        "alt": "Pool and spa renovation enhancing a Florida backyard outdoor living contractors space.",
+        "foto": "/images/obra/obra-048/pool-remodeling-travertine-deck-rock-landscaping-florida-full.avif",
+        "alt": "Remodeled rectangular pool with two travertine water feature walls and a large travertine deck.",
         "titulo": "Pool Remodeling &amp; Renovation Services",
         "texto": "Pool remodeling contractors serving North &amp; South Florida, upgrading pools with modern finishes, energy-efficient systems, and lasting results.",
         "enlace": "/services/pool-remodeling-renovation-in-north-south-florida",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1500,
+        "alto": 800,
+        "pos": "50% 62%"
       },
       {
         "id": "landscaping",
@@ -112,12 +127,15 @@
         "categorias": [
           "outdoor-living"
         ],
-        "foto": "/images/residentials/professional-landscaping-services-in-north-south-florida/landscaping-services-florida.avif",
-        "alt": "Professional landscaping services designed for Florida residential properties.",
+        "foto": "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-full.avif",
+        "alt": "Kidney-shaped pool with raised spa backed by foxtail palms, a hedge and tropical flower beds.",
         "titulo": "Professional Landscaping Services",
         "texto": "Landscaping design and installation company serving North &amp; South Florida, providing complete outdoor solutions that improve curb appeal.",
         "enlace": "/services/professional-landscaping-services-in-north-south-florida",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1500,
+        "alto": 800,
+        "pos": "50% 50%"
       },
       {
         "id": "irrigation",
@@ -140,12 +158,15 @@
         "categorias": [
           "outdoor-living"
         ],
-        "foto": "/images/residentials/custom-deck-builders-in-north-south-florida/custom-decks-florida.avif",
-        "alt": "Custom deck construction by professional outdoor living contractors in Florida.",
+        "foto": "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-full.avif",
+        "alt": "Raised limestone paver patio in a herringbone layout overlooking a lake and golf course.",
         "titulo": "Custom Deck Builders",
         "texto": "Professional deck builders and installation contractors serving North &amp; South Florida with durable, stylish outdoor deck solutions.",
         "enlace": "/services/custom-deck-builders-in-north-south-florida",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1500,
+        "alto": 800,
+        "pos": "50% 70%"
       },
       {
         "id": "furniture",
@@ -154,12 +175,15 @@
         "categorias": [
           "outdoor-living"
         ],
-        "foto": "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/outdoor-furniture-florida.avif",
-        "alt": "Teak dining set and wicker lounge chairs on Florida patio.",
+        "foto": "/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-full.avif",
+        "alt": "Black-framed insulated patio cover with ceiling fans and wicker sofas beside a lap pool at sunset",
         "titulo": "Premium Outdoor Furniture",
         "texto": "Outdoor furniture installation company for North &amp; South Florida homes, offering durable, premium solutions for modern outdoor living.",
         "enlace": "/services/premium-outdoor-furniture-for-north-south-florida-homes",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1215,
+        "alto": 648,
+        "pos": "50% 55%"
       },
       {
         "id": "enclosures",
@@ -197,12 +221,15 @@
         "categorias": [
           "patio-cover"
         ],
-        "foto": "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/steel-building-construction-florida.avif",
-        "alt": "Steel building construction providing durable structures for Florida properties.",
+        "foto": "/images/obra/suelta/pole-barn-narrow-open-shelter-new-wood-posts-florida-full.avif",
+        "alt": "Narrow open pole barn with new wood posts, black steel trusses and metal roof beside a farmhouse.",
         "titulo": "Steel Building &amp; Pole Barn",
         "texto": "Steel building and pole barn construction company serving North &amp; South Florida with durable, hurricane-rated structures.",
         "enlace": "/services/steel-building-pole-barn-construction-in-north-south-florida",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1200,
+        "alto": 640,
+        "pos": "50% 45%"
       },
       {
         "id": "lighting",
@@ -211,12 +238,15 @@
         "categorias": [
           "outdoor-living"
         ],
-        "foto": "/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/smart-soffit-led-lighting-florida.avif",
-        "alt": "Smart soffit LED lighting installed by professional outdoor lighting contractors in Florida.",
+        "foto": "/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-full.avif",
+        "alt": "Dark wood pavilion with outdoor bar, sculptural stools, LED toe-kick lights and lounge at dusk.",
         "titulo": "Smart Soffit &amp; LED Lighting Installation",
         "texto": "Smart soffit and LED lighting installation company serving North &amp; South Florida, enhancing curb appeal and exterior security.",
         "enlace": "/services/smart-soffit-led-lighting-installation-in-north-south-florida",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1500,
+        "alto": 800,
+        "pos": "50% 45%"
       }
     ]
   },
@@ -249,12 +279,15 @@
         "categorias": [
           "patio-cover"
         ],
-        "foto": "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/aluminum-pergolas-contractors-florida.avif",
-        "alt": "Custom aluminum pergolas built by outdoor living contractors in Florida.",
+        "foto": "/images/obra/obra-083/freestanding-patio-cover-privacy-screen-poolside-florida-full.avif",
+        "alt": "Freestanding dark aluminum patio cover with privacy screen on a pool deck with blue tile pool.",
         "titulo": "Custom Aluminum Pergola Builders",
         "texto": "Custom pergola builders and installation company serving North &amp; South Florida, delivering durable designs that enhance outdoor comfort and style.",
         "enlace": "/services/custom-aluminum-pergola-builders-in-north-south-florida",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1024,
+        "alto": 546,
+        "pos": "50% 45%"
       },
       {
         "id": "lighting",
@@ -263,12 +296,15 @@
         "categorias": [
           "outdoor-living"
         ],
-        "foto": "/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/smart-soffit-led-lighting-florida.avif",
-        "alt": "Smart soffit LED lighting installed by professional outdoor lighting contractors in Florida.",
+        "foto": "/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-full.avif",
+        "alt": "Dark wood pavilion with outdoor bar, sculptural stools, LED toe-kick lights and lounge at dusk.",
         "titulo": "Smart Soffit &amp; LED Lighting Installation",
         "texto": "Smart soffit and LED lighting installation company serving North &amp; South Florida, enhancing curb appeal and exterior security.",
         "enlace": "/services/smart-soffit-led-lighting-installation-in-north-south-florida",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1500,
+        "alto": 800,
+        "pos": "50% 45%"
       },
       {
         "id": "pole",
@@ -277,12 +313,15 @@
         "categorias": [
           "patio-cover"
         ],
-        "foto": "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/steel-building-construction-florida.avif",
-        "alt": "Steel building construction providing durable structures for Florida properties.",
+        "foto": "/images/obra/suelta/pole-barn-narrow-open-shelter-new-wood-posts-florida-full.avif",
+        "alt": "Narrow open pole barn with new wood posts, black steel trusses and metal roof beside a farmhouse.",
         "titulo": "Steel Building &amp; Pole Barn",
         "texto": "Steel building and pole barn construction company serving North &amp; South Florida with durable, hurricane-rated structures.",
         "enlace": "/services/steel-building-pole-barn-construction-in-north-south-florida",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1200,
+        "alto": 640,
+        "pos": "50% 45%"
       },
       {
         "id": "screens",
@@ -305,12 +344,15 @@
         "categorias": [
           "pool-spa"
         ],
-        "foto": "/images/residentials/pool-remodeling-renovation-in-north-south-florida/pool-spa-renovation-backyard-florida.avif",
-        "alt": "Pool and spa renovation enhancing a Florida backyard outdoor living contractors space.",
+        "foto": "/images/obra/obra-048/pool-remodeling-travertine-deck-rock-landscaping-florida-full.avif",
+        "alt": "Remodeled rectangular pool with two travertine water feature walls and a large travertine deck.",
         "titulo": "Pool Remodeling &amp; Renovation Services",
         "texto": "Pool remodeling contractors serving North &amp; South Florida, upgrading pools with modern finishes, energy-efficient systems, and lasting results.",
         "enlace": "/services/pool-remodeling-renovation-in-north-south-florida",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1500,
+        "alto": 800,
+        "pos": "50% 62%"
       },
       {
         "id": "rooms",
@@ -333,12 +375,15 @@
         "categorias": [
           "outdoor-living"
         ],
-        "foto": "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/outdoor-furniture-florida.avif",
-        "alt": "Teak dining set and wicker lounge chairs on Florida patio.",
+        "foto": "/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-full.avif",
+        "alt": "Black-framed insulated patio cover with ceiling fans and wicker sofas beside a lap pool at sunset",
         "titulo": "Premium Outdoor Furniture",
         "texto": "Outdoor furniture installation company for North &amp; South Florida homes, offering durable, premium solutions for modern outdoor living.",
         "enlace": "/services/premium-outdoor-furniture-for-north-south-florida-homes",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1215,
+        "alto": 648,
+        "pos": "50% 55%"
       },
       {
         "id": "louvered",
@@ -347,12 +392,15 @@
         "categorias": [
           "patio-cover"
         ],
-        "foto": "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/louvered-roof-systems-florida.avif",
-        "alt": "Motorized louvered roof system installed by custom outdoor living contractors in Florida",
+        "foto": "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-full.avif",
+        "alt": "Large white louvered roof with partly open blades over a travertine patio with wicker lounge furniture",
         "titulo": "Motorized Louvered Roof Systems",
         "texto": "Motorized louvered roof builders and installation contractors in North &amp; South Florida, offering adjustable shade and weather protection.",
         "enlace": "/services/motorized-louvered-roof-systems-in-north-south-florida",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1500,
+        "alto": 800,
+        "pos": "50% 40%"
       },
       {
         "id": "decks",
@@ -361,12 +409,15 @@
         "categorias": [
           "outdoor-living"
         ],
-        "foto": "/images/residentials/custom-deck-builders-in-north-south-florida/custom-decks-florida.avif",
-        "alt": "Custom deck construction by professional outdoor living contractors in Florida.",
+        "foto": "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-full.avif",
+        "alt": "Raised limestone paver patio in a herringbone layout overlooking a lake and golf course.",
         "titulo": "Custom Deck Builders",
         "texto": "Professional deck builders and installation contractors serving North &amp; South Florida with durable, stylish outdoor deck solutions.",
         "enlace": "/services/custom-deck-builders-in-north-south-florida",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1500,
+        "alto": 800,
+        "pos": "50% 70%"
       },
       {
         "id": "construction",
@@ -375,12 +426,15 @@
         "categorias": [
           "pool-spa"
         ],
-        "foto": "/images/residentials/custom-pool-spa-builders-in-north-south-florida/new-pool-spa-construction-florida.avif",
-        "alt": "New pool and spa construction in Florida by licensed custom pool builders",
+        "foto": "/images/obra/obra-063/new-pool-cobalt-glass-tile-sun-shelf-bubblers-spa-florida-full.avif",
+        "alt": "Pool with cobalt glass mosaic sun shelf, two bubblers and a raised tiled spa framed by royal palms.",
         "titulo": "Custom Pool Builders",
         "texto": "Custom pool and spa builders serving North &amp; South Florida, delivering high-quality construction and long-term outdoor value.",
         "enlace": "/services/custom-pool-spa-builders-in-north-south-florida",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1200,
+        "alto": 640,
+        "pos": "50% 55%"
       },
       {
         "id": "irrigation",
@@ -403,12 +457,15 @@
         "categorias": [
           "outdoor-living"
         ],
-        "foto": "/images/residentials/professional-landscaping-services-in-north-south-florida/landscaping-services-florida.avif",
-        "alt": "Professional landscaping services designed for Florida residential properties.",
+        "foto": "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-full.avif",
+        "alt": "Kidney-shaped pool with raised spa backed by foxtail palms, a hedge and tropical flower beds.",
         "titulo": "Professional Landscaping Services",
         "texto": "Landscaping design and installation company serving North &amp; South Florida, providing complete outdoor solutions that improve curb appeal.",
         "enlace": "/services/professional-landscaping-services-in-north-south-florida",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1500,
+        "alto": 800,
+        "pos": "50% 50%"
       },
       {
         "id": "kitchens",
@@ -417,12 +474,15 @@
         "categorias": [
           "outdoor-living"
         ],
-        "foto": "/images/residentials/custom-outdoor-kitchens-for-north-south-florida-homes/covered-custom-outdoor-kitchen-florida.avif",
-        "alt": "Custom outdoor kitchen built by professional outdoor kitchen builders in Florida.",
+        "foto": "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-full.avif",
+        "alt": "L-shaped outdoor kitchen with black granite waterfall under a dark pergola beside a lake.",
         "titulo": "Custom Outdoor Kitchens",
         "texto": "Outdoor kitchen builders and installation contractors serving North &amp; South Florida with custom layouts for entertaining and daily use.",
         "enlace": "/services/custom-outdoor-kitchens-for-north-south-florida-homes",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1500,
+        "alto": 800,
+        "pos": "50% 50%"
       },
       {
         "id": "enclosures",
@@ -470,12 +530,15 @@
         "categorias": [
           "patio-cover"
         ],
-        "foto": "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/aluminum-pergolas-contractors-florida.avif",
-        "alt": "Custom aluminum pergolas built by outdoor living contractors in Florida.",
+        "foto": "/images/obra/obra-083/freestanding-patio-cover-privacy-screen-poolside-florida-full.avif",
+        "alt": "Freestanding dark aluminum patio cover with privacy screen on a pool deck with blue tile pool.",
         "titulo": "Custom Aluminum Pergola Builders",
         "texto": "Custom pergola builders and installation company serving North &amp; South Florida, delivering durable designs that enhance outdoor comfort and style.",
         "enlace": "/services/custom-aluminum-pergola-builders-in-north-south-florida",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1024,
+        "alto": 546,
+        "pos": "50% 45%"
       },
       {
         "id": "lighting",
@@ -484,12 +547,15 @@
         "categorias": [
           "outdoor-living"
         ],
-        "foto": "/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/smart-soffit-led-lighting-florida.avif",
-        "alt": "Smart soffit LED lighting installed by professional outdoor lighting contractors in Florida.",
+        "foto": "/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-full.avif",
+        "alt": "Dark wood pavilion with outdoor bar, sculptural stools, LED toe-kick lights and lounge at dusk.",
         "titulo": "Smart Soffit &amp; LED Lighting Installation",
         "texto": "Smart soffit and LED lighting installation company serving North &amp; South Florida, enhancing curb appeal and exterior security.",
         "enlace": "/services/smart-soffit-led-lighting-installation-in-north-south-florida",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1500,
+        "alto": 800,
+        "pos": "50% 45%"
       },
       {
         "id": "pole",
@@ -498,12 +564,15 @@
         "categorias": [
           "patio-cover"
         ],
-        "foto": "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/steel-building-construction-florida.avif",
-        "alt": "Steel building construction providing durable structures for Florida properties.",
+        "foto": "/images/obra/suelta/pole-barn-narrow-open-shelter-new-wood-posts-florida-full.avif",
+        "alt": "Narrow open pole barn with new wood posts, black steel trusses and metal roof beside a farmhouse.",
         "titulo": "Steel Building &amp; Pole Barn",
         "texto": "Steel building and pole barn construction company serving North &amp; South Florida with durable, hurricane-rated structures.",
         "enlace": "/services/steel-building-pole-barn-construction-in-north-south-florida",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1200,
+        "alto": 640,
+        "pos": "50% 45%"
       },
       {
         "id": "screens",
@@ -526,12 +595,15 @@
         "categorias": [
           "pool-spa"
         ],
-        "foto": "/images/residentials/pool-remodeling-renovation-in-north-south-florida/pool-spa-renovation-backyard-florida.avif",
-        "alt": "Pool and spa renovation enhancing a Florida backyard outdoor living contractors space.",
+        "foto": "/images/obra/obra-048/pool-remodeling-travertine-deck-rock-landscaping-florida-full.avif",
+        "alt": "Remodeled rectangular pool with two travertine water feature walls and a large travertine deck.",
         "titulo": "Pool Remodeling &amp; Renovation Services",
         "texto": "Pool remodeling contractors serving North &amp; South Florida, upgrading pools with modern finishes, energy-efficient systems, and lasting results.",
         "enlace": "/services/pool-remodeling-renovation-in-north-south-florida",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1500,
+        "alto": 800,
+        "pos": "50% 62%"
       },
       {
         "id": "rooms",
@@ -554,12 +626,15 @@
         "categorias": [
           "outdoor-living"
         ],
-        "foto": "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/outdoor-furniture-florida.avif",
-        "alt": "Teak dining set and wicker lounge chairs on Florida patio.",
+        "foto": "/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-full.avif",
+        "alt": "Black-framed insulated patio cover with ceiling fans and wicker sofas beside a lap pool at sunset",
         "titulo": "Premium Outdoor Furniture",
         "texto": "Outdoor furniture installation company for North &amp; South Florida homes, offering durable, premium solutions for modern outdoor living.",
         "enlace": "/services/premium-outdoor-furniture-for-north-south-florida-homes",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1215,
+        "alto": 648,
+        "pos": "50% 55%"
       },
       {
         "id": "louvered",
@@ -568,12 +643,15 @@
         "categorias": [
           "patio-cover"
         ],
-        "foto": "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/louvered-roof-systems-florida.avif",
-        "alt": "Motorized louvered roof system installed by custom outdoor living contractors in Florida",
+        "foto": "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-full.avif",
+        "alt": "Large white louvered roof with partly open blades over a travertine patio with wicker lounge furniture",
         "titulo": "Motorized Louvered Roof Systems",
         "texto": "Motorized louvered roof builders and installation contractors in North &amp; South Florida, offering adjustable shade and weather protection.",
         "enlace": "/services/motorized-louvered-roof-systems-in-north-south-florida",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1500,
+        "alto": 800,
+        "pos": "50% 40%"
       },
       {
         "id": "decks",
@@ -582,12 +660,15 @@
         "categorias": [
           "outdoor-living"
         ],
-        "foto": "/images/residentials/custom-deck-builders-in-north-south-florida/custom-decks-florida.avif",
-        "alt": "Custom deck construction by professional outdoor living contractors in Florida.",
+        "foto": "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-full.avif",
+        "alt": "Raised limestone paver patio in a herringbone layout overlooking a lake and golf course.",
         "titulo": "Custom Deck Builders",
         "texto": "Professional deck builders and installation contractors serving North &amp; South Florida with durable, stylish outdoor deck solutions.",
         "enlace": "/services/custom-deck-builders-in-north-south-florida",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1500,
+        "alto": 800,
+        "pos": "50% 70%"
       },
       {
         "id": "construction",
@@ -596,12 +677,15 @@
         "categorias": [
           "pool-spa"
         ],
-        "foto": "/images/residentials/custom-pool-spa-builders-in-north-south-florida/new-pool-spa-construction-florida.avif",
-        "alt": "New pool and spa construction in Florida by licensed custom pool builders",
+        "foto": "/images/obra/obra-063/new-pool-cobalt-glass-tile-sun-shelf-bubblers-spa-florida-full.avif",
+        "alt": "Pool with cobalt glass mosaic sun shelf, two bubblers and a raised tiled spa framed by royal palms.",
         "titulo": "Custom Pool Builders",
         "texto": "Custom pool and spa builders serving North &amp; South Florida, delivering high-quality construction and long-term outdoor value.",
         "enlace": "/services/custom-pool-spa-builders-in-north-south-florida",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1200,
+        "alto": 640,
+        "pos": "50% 55%"
       },
       {
         "id": "irrigation",
@@ -624,12 +708,15 @@
         "categorias": [
           "outdoor-living"
         ],
-        "foto": "/images/residentials/professional-landscaping-services-in-north-south-florida/landscaping-services-florida.avif",
-        "alt": "Professional landscaping services designed for Florida residential properties.",
+        "foto": "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-full.avif",
+        "alt": "Kidney-shaped pool with raised spa backed by foxtail palms, a hedge and tropical flower beds.",
         "titulo": "Professional Landscaping Services",
         "texto": "Landscaping design and installation company serving North &amp; South Florida, providing complete outdoor solutions that improve curb appeal.",
         "enlace": "/services/professional-landscaping-services-in-north-south-florida",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1500,
+        "alto": 800,
+        "pos": "50% 50%"
       },
       {
         "id": "kitchens",
@@ -638,12 +725,15 @@
         "categorias": [
           "outdoor-living"
         ],
-        "foto": "/images/residentials/custom-outdoor-kitchens-for-north-south-florida-homes/covered-custom-outdoor-kitchen-florida.avif",
-        "alt": "Custom outdoor kitchen built by professional outdoor kitchen builders in Florida.",
+        "foto": "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-full.avif",
+        "alt": "L-shaped outdoor kitchen with black granite waterfall under a dark pergola beside a lake.",
         "titulo": "Custom Outdoor Kitchens",
         "texto": "Outdoor kitchen builders and installation contractors serving North &amp; South Florida with custom layouts for entertaining and daily use.",
         "enlace": "/services/custom-outdoor-kitchens-for-north-south-florida-homes",
-        "cta": "See More"
+        "cta": "See More",
+        "ancho": 1500,
+        "alto": 800,
+        "pos": "50% 50%"
       },
       {
         "id": "enclosures",

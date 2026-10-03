@@ -321,6 +321,20 @@ function extraeServicios(sec, ruta) {
     console.error(`\n  ROJO ${ruta}: la seccion de servicios sale incompleta -> ${faltan.join(', ')}\n`);
     process.exit(1);
   }
+  // LOOP-IMAGENES (2-oct-2026): `src/data/fotos-servicios-categoria.json` manda sobre la foto del
+  // origen, por `id`, con la misma traza al banco que `fotosPorRuta()`. Un id sin entrada sale como hoy.
+  for (const sv of datos.servicios) {
+    const o = FOTOS_SERVICIOS_CATEGORIA[sv.id];
+    if (!o) continue;
+    const e = BANCO.get(o._banco);
+    const rojo = (msg) => { console.error(`\n  ROJO Full-Service ${sv.id}: ${msg}\n`); process.exit(1); };
+    if (!e) rojo(`${o._banco} no esta en banco-imagenes.json`);
+    if (e.procedencia !== 'obra_real' || !String(e.estado).startsWith('aprobada')) rojo(`${o._banco} no es obra_real aprobada`);
+    if (e.src !== o.foto && !(e.publicada_como ?? []).includes(o.foto)) rojo(`${o.foto} no es el src de ${o._banco} ni esta en publicada_como`);
+    if (!(e.usada_en ?? []).includes(ruta)) rojo(`${o._banco} no lleva ${ruta} en usada_en`);
+    if (!fs.existsSync(path.join(RAIZ, 'public', o.foto))) rojo(`falta el fichero ${o.foto}`);
+    Object.assign(sv, { foto: o.foto, alt: o.alt, ancho: o.ancho, alto: o.alto, pos: o.pos });
+  }
   SERVICIOS[ruta] = datos;
 }
 
@@ -615,6 +629,7 @@ function collageFaq(doc, ruta) {
  * `usada_en`): cada `_banco` tiene que existir en el indice con el mismo src y medidas, ser
  * `obra_real` y `aprobada*`, tener fichero y llevar la ruta en `usada_en`. Si no, ROJO.
  */
+const FOTOS_SERVICIOS_CATEGORIA = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/fotos-servicios-categoria.json'), 'utf8'));
 const FOTOS_POR_RUTA = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/fotos-por-ruta.json'), 'utf8'));
 const BANCO = new Map(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/banco-imagenes.json'), 'utf8'))
   .map((e) => [e.id, e]));
