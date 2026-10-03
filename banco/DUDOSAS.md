@@ -145,13 +145,11 @@ Cada una está en `banco/hojas-dudosas/`. Si es obra propia: `estado: "aprobada"
   `PERGOLA - KITCHEN/145.jpg`
 - **bi-0892** (pergolas) — ¿Esta obra es vuestra y la foto os pertenece, o es de un fotógrafo/fabricante/tercero? (Ojo: ya está publicada en el sitio.)  
   `PERGOLA - KITCHEN/147.jpg`
-- **bi-0895** (pergolas) — ¿Esta obra es vuestra y la foto os pertenece, o es de un fotógrafo/fabricante/tercero? (Ojo: ya está publicada en el sitio.)  
   `PERGOLA - KITCHEN/83.jpg`
 - **bi-0915** (pergolas) — ¿Esta cubierta con vista al lago (foto profesional, casa de siding y pilares de ladrillo) la instalasteis vosotros o es foto de fabricante/otra empresa?  
   `PERGOLA/COVER ALUMINUM ROOF/116.jpg`
 - **bi-0919** (pergolas) — ¿Esta cubierta blanca con celosía junto a piscina (casa con chimenea, aspecto de California) es obra vuestra o foto de catálogo/internet?  
   `PERGOLA/COVER ALUMINUM ROOF/2.jpg`
-- **bi-1003** (kitchens) — ¿Esta cocina exterior con pérgola (foto profesional de 1080 px, sin EXIF) es obra vuestra? Si lo es, ¿tenéis el original a más resolución? (Ojo: ya está publicada en el sitio.)  
   `PERGOLA/COVER PERGOLA DECO TIPS/Covered Pergola With Tips Only and Outdoor Kitchen.jpg`
 - **bi-1004** (kitchens) — ¿Esta cocina exterior con pérgola (foto profesional de 1080 px, sin EXIF) es obra vuestra? Si lo es, ¿tenéis el original a más resolución?  
   `PERGOLA/COVER PERGOLA DECO TIPS/Covered Pergola With Tips Only.jpg`

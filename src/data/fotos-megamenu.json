@@ -28,17 +28,17 @@
     }
   },
   "pergolas": {
-    "src": "/images/obra/obra-083/freestanding-patio-cover-privacy-screen-poolside-florida-menu.avif",
-    "alt": "Freestanding dark aluminum patio cover with privacy screen on a pool deck with blue tile pool.",
+    "src": "/images/obra/obra-079/pergola-outdoor-kitchen-stacked-stone-u-shape-florida-menu.avif",
+    "alt": "Brown pergola with two ceiling fans over a U-shaped stacked stone outdoor kitchen.",
     "ancho": 680,
     "alto": 682,
-    "_banco": "bi-0914",
+    "_banco": "bi-0895",
     "_ajuste": {
       "recorte": "339/340",
       "pos": "50% 40%",
       "ancho": 680,
       "q": 46,
-      "de": "/images/banco/pergolas/freestanding-patio-cover-privacy-screen-poolside-florida-02.webp"
+      "de": "/images/banco/pergolas/pergola-outdoor-kitchen-stacked-stone-u-shape-florida-01.webp"
     }
   },
   "louvered": {

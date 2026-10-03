@@ -9,7 +9,8 @@
     "check-seo.mjs fija about.image = heroe.foto en las 14 fichas (lineas ~290-476), no solo en New Pool: cada heroe canjeado toca check-seo.mjs en el mismo commit",
     "baseline/shots solo tiene 1920/1440/991/479; las cajas del casting se miden a 390/768/991/1440",
     "inversion.foto la lee InversionCore.astro, no captacion(); se canjea igual, en captacion-servicios.json",
-    "el megamenu solo pinta imagen a >=992: la caja es 339x340 y el texto tapa el 20 % inferior (y 0.716-0.917)"
+    "el megamenu solo pinta imagen a >=992: la caja es 339x340 y el texto tapa el 20 % inferior (y 0.716-0.917)",
+    "3-oct-2026: la migracion de URLs (c4f8d62) renombro las 14 fichas al silo /services/<slug-corto>; las rutas del estado se actualizan y la anterior queda en ruta_antes_de_la_migracion"
   ],
   "cajas": {
     "medido": "2026-10-02",
@@ -386,7 +387,7 @@
     }
   },
   "intocables": {
-    "/services/custom-aluminum-pergola-builders-in-north-south-florida": {
+    "/services/pergola-builders": {
       "intro": [
         "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/custom-aluminum-pergola-florida.avif",
         "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/custom-wood-pergola-florida.avif",
@@ -399,20 +400,7 @@
         "/images/images/pergolas-4/custom-pergola-patio-cover-builders-florida-04.jpg"
       ]
     },
-    "/services/custom-deck-builders-in-north-south-florida": {
-      "intro": [
-        "/images/residentials/custom-deck-builders-in-north-south-florida/wood-deck-installation-florida.avif",
-        "/images/residentials/custom-deck-builders-in-north-south-florida/composite-decking-installation-florida.avif",
-        "/images/residentials/custom-deck-builders-in-north-south-florida/backyard-deck-construction-florida.avif"
-      ],
-      "what_we_do": [
-        "/images/images/deck-9/custom-deck-builders-contractors-north-south-florida-09.jpg",
-        "/images/images/deck-10/custom-deck-builders-contractors-north-south-florida-10.jpg",
-        "/images/images/deck-4/custom-deck-builders-contractors-north-south-florida-04.jpg",
-        "/images/images/deck-1/custom-deck-builders-contractors-north-south-florida-01.jpg"
-      ]
-    },
-    "/services/custom-outdoor-kitchens-for-north-south-florida-homes": {
+    "/services/outdoor-kitchens": {
       "intro": [
         "/images/images/kitchen-2/custom-outdoor-kitchen-poolside-florida.avif",
         "/images/images/kitchen-3/custom-outdoor-kitchens-florida.avif",
@@ -425,20 +413,20 @@
         "/images/images/kitchen-2/custom-outdoor-kitchen-poolside-florida.avif"
       ]
     },
-    "/services/custom-pool-spa-builders-in-north-south-florida": {
+    "/services/deck-builders": {
       "intro": [
-        "/images/residentials/custom-pool-spa-builders-in-north-south-florida/pool-remodeling-contractors-florida.avif",
-        "/images/residentials/custom-pool-spa-builders-in-north-south-florida/custom-pool-builders-north-and-south-florida.avif",
-        "/images/residentials/custom-pool-spa-builders-in-north-south-florida/residential-pool-builders-north-and-south-florida.avif.avif"
+        "/images/residentials/custom-deck-builders-in-north-south-florida/wood-deck-installation-florida.avif",
+        "/images/residentials/custom-deck-builders-in-north-south-florida/composite-decking-installation-florida.avif",
+        "/images/residentials/custom-deck-builders-in-north-south-florida/backyard-deck-construction-florida.avif"
       ],
       "what_we_do": [
-        "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-1.avif",
-        "/images/servicios/pool-equipment-pad-plumbing-automation-florida.avif",
-        "/images/servicios/pool-tile-coping-travertine-deck-florida.avif",
-        "/images/servicios/pool-remodeling-raised-spa-travertine-deck-south-florida.avif"
+        "/images/images/deck-9/custom-deck-builders-contractors-north-south-florida-09.jpg",
+        "/images/images/deck-10/custom-deck-builders-contractors-north-south-florida-10.jpg",
+        "/images/images/deck-4/custom-deck-builders-contractors-north-south-florida-04.jpg",
+        "/images/images/deck-1/custom-deck-builders-contractors-north-south-florida-01.jpg"
       ]
     },
-    "/services/motorized-louvered-roof-systems-in-north-south-florida": {
+    "/services/louvered-roofs": {
       "intro": [
         "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/motorized-louvered-pergola-florida.avif",
         "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/backyard-louvered-roof-installation-florida.avif",
@@ -451,72 +439,7 @@
         "/images/images/motorized-louvered-roof-3/motorized-louvered-roof-installers-florida-03.jpg"
       ]
     },
-    "/services/motorized-retractable-screens-in-north-south-florida": {
-      "intro": [
-        "/images/residentials/motorized-retractable-screens-in-north-south-florida/patio-retractable-screen-installation-florida.avif",
-        "/images/residentials/motorized-retractable-screens-in-north-south-florida/outdoor-retractable-screen-system-florida.avif",
-        "/images/residentials/motorized-retractable-screens-in-north-south-florida/motorized-retractable-screens-florida.avif"
-      ],
-      "what_we_do": [
-        "/images/residentials/motorized-retractable-screens-in-north-south-florida/retractable-screens-florida.avif",
-        "/images/images/retractable-screen-9/retractable-screen-installation-contractors-florida-09.jpg",
-        "/images/images/retractable-screen-5/retractable-screen-installation-contractors-florida-5.jpg",
-        "/images/images/retractable-screen-1/retractable-screen-installation-contractors-florida-1.jpg"
-      ]
-    },
-    "/services/patio-screen-rooms-enclosures-in-north-south-florida": {
-      "intro": [
-        "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/patio-screen-rooms-florida.avif",
-        "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/backyard-patio-screen-room-installation-florida.avif",
-        "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/custom-patio-screen-room-florida.avif"
-      ],
-      "what_we_do": [
-        "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/screened-patio-enclosure-florida.avif",
-        "/images/images/patio-screen-8/patio-screen-enclosure-builders-contractors-north-south-florida-08.jpg",
-        "/images/images/patio-screen-3/patio-screen-enclosure-builders-contractors-north-south-florida-03.jpg",
-        "/images/images/patio-screen-1/patio-screen-enclosure-builders-contractors-north-south-florida-01.jpg"
-      ]
-    },
-    "/services/pool-remodeling-renovation-in-north-south-florida": {
-      "intro": [
-        "/images/residentials/pool-remodeling-renovation-in-north-south-florida/modern-pool-remodeling-upgrade-florida.avif",
-        "/images/residentials/pool-remodeling-renovation-in-north-south-florida/pool-resurfacing-tile-finish-upgrade-florida.avif",
-        "/images/residentials/pool-remodeling-renovation-in-north-south-florida/pool-remodeling-renovation-florida.avif"
-      ],
-      "what_we_do": [
-        "/images/obra/obra-064/pool-shell-repair-spa-bond-beam-rebuild.avif",
-        "/images/images/pool-remodeling-9/custom-pool-remodeling-contractors-florida-09.jpg",
-        "/images/images/pool-remodeling-5/custom-pool-remodeling-contractors-florida-05.jpg",
-        "/images/images/pool-remodeling-2/custom-pool-remodeling-contractors-florida-02.jpg"
-      ]
-    },
-    "/services/pool-screen-enclosures-for-north-south-florida-pools": {
-      "intro": [
-        "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/custom-screened-pool-enclosure-florida.avif",
-        "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/backyard-pool-screen-enclosure-installation-florida.avif",
-        "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/aluminum-pool-screen-enclosure-florida.avif"
-      ],
-      "what_we_do": [
-        "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/pool-screen-enclosures-florida.avif",
-        "/images/images/pool-screen-9/pool-screen-enclosure-builders-florida-09.jpg",
-        "/images/images/pool-screen-5/pool-screen-enclosure-builders-florida-05.jpg",
-        "/images/images/pool-screen-3/pool-screen-enclosure-builders-florida-03.jpg"
-      ]
-    },
-    "/services/premium-outdoor-furniture-for-north-south-florida-homes": {
-      "intro": [
-        "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/patio-furniture-florida.avif",
-        "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/outdoor-dining-furniture-florida.avif",
-        "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/luxury-outdoor-furniture-florida.avif"
-      ],
-      "what_we_do": [
-        "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/outdoor-furniture-florida.avif",
-        "/images/images/furniture-7/custom-outdoor-furniture-builders-florida-07.jpg",
-        "/images/images/furniture-4/custom-outdoor-furniture-builders-florida-04.jpg",
-        "/images/images/furniture-2/custom-outdoor-furniture-builders-florida-02.jpg"
-      ]
-    },
-    "/services/professional-landscaping-services-in-north-south-florida": {
+    "/services/landscaping": {
       "intro": [
         "/images/residentials/professional-landscaping-services-in-north-south-florida/landscape-design-florida.avif",
         "/images/residentials/professional-landscaping-services-in-north-south-florida/backyard-landscaping-florida.avif",
@@ -529,20 +452,46 @@
         "/images/images/landscaping-2/luxury-landscaping-construction-contractors-florida-02.jpg"
       ]
     },
-    "/services/smart-irrigation-system-installation-in-north-south-florida": {
+    "/services/steel-buildings-pole-barns": {
       "intro": [
-        "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/smart-irrigation-system-florida.avif",
-        "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/residential-lawn-irrigation-florida.avif",
-        "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/water-efficient-irrigation-system-florida.avif"
+        "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/custom-pole-barn-florida.avif",
+        "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/pole-barn-steel-buildings-florida.avif",
+        "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/steel-building-installation-florida.avif"
       ],
       "what_we_do": [
-        "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/automated-irrigation-florida.avif",
-        "/images/images/irrigation-9/automated-irrigation-system-installers-florida-09.jpg",
-        "/images/images/irrigation-8/automated-irrigation-system-installers-florida-08.jpg",
-        "/images/images/irrigation-2/automated-irrigation-system-installers-florida-02.jpg"
+        "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/steel-building-construction-florida.avif",
+        "/images/images/pole-barn-10/pole-barn-steel-building-contractors-florida-10.jpg",
+        "/images/images/pole-barn-7/pole-barn-steel-building-contractors-florida-07.jpg",
+        "/images/images/pole-barn-4/pole-barn-steel-building-contractors-florida-04.jpg"
       ]
     },
-    "/services/smart-soffit-led-lighting-installation-in-north-south-florida": {
+    "/services/pool-builders": {
+      "intro": [
+        "/images/residentials/custom-pool-spa-builders-in-north-south-florida/pool-remodeling-contractors-florida.avif",
+        "/images/residentials/custom-pool-spa-builders-in-north-south-florida/custom-pool-builders-north-and-south-florida.avif",
+        "/images/residentials/custom-pool-spa-builders-in-north-south-florida/residential-pool-builders-north-and-south-florida.avif.avif"
+      ],
+      "what_we_do": [
+        "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-1.avif",
+        "/images/servicios/pool-equipment-pad-plumbing-automation-florida.avif",
+        "/images/servicios/pool-tile-coping-travertine-deck-florida.avif",
+        "/images/servicios/pool-remodeling-raised-spa-travertine-deck-south-florida.avif"
+      ]
+    },
+    "/services/pool-remodeling": {
+      "intro": [
+        "/images/residentials/pool-remodeling-renovation-in-north-south-florida/modern-pool-remodeling-upgrade-florida.avif",
+        "/images/residentials/pool-remodeling-renovation-in-north-south-florida/pool-resurfacing-tile-finish-upgrade-florida.avif",
+        "/images/residentials/pool-remodeling-renovation-in-north-south-florida/pool-remodeling-renovation-florida.avif"
+      ],
+      "what_we_do": [
+        "/images/obra/obra-064/pool-shell-repair-spa-bond-beam-rebuild.avif",
+        "/images/images/pool-remodeling-9/custom-pool-remodeling-contractors-florida-09.jpg",
+        "/images/images/pool-remodeling-5/custom-pool-remodeling-contractors-florida-05.jpg",
+        "/images/images/pool-remodeling-2/custom-pool-remodeling-contractors-florida-02.jpg"
+      ]
+    },
+    "/services/soffit-led-lighting": {
       "intro": [
         "/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/smart-led-soffit-lighting-night-florida.avif",
         "/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/outdoor-led-soffit-lighting-system-florida.avif",
@@ -555,17 +504,69 @@
         "/images/images/light-3/smart-soffit-led-lighting-installation-contractors-florida-03.jpg"
       ]
     },
-    "/services/steel-building-pole-barn-construction-in-north-south-florida": {
+    "/services/outdoor-furniture": {
       "intro": [
-        "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/custom-pole-barn-florida.avif",
-        "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/pole-barn-steel-buildings-florida.avif",
-        "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/steel-building-installation-florida.avif"
+        "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/patio-furniture-florida.avif",
+        "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/outdoor-dining-furniture-florida.avif",
+        "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/luxury-outdoor-furniture-florida.avif"
       ],
       "what_we_do": [
-        "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/steel-building-construction-florida.avif",
-        "/images/images/pole-barn-10/pole-barn-steel-building-contractors-florida-10.jpg",
-        "/images/images/pole-barn-7/pole-barn-steel-building-contractors-florida-07.jpg",
-        "/images/images/pole-barn-4/pole-barn-steel-building-contractors-florida-04.jpg"
+        "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/outdoor-furniture-florida.avif",
+        "/images/images/furniture-7/custom-outdoor-furniture-builders-florida-07.jpg",
+        "/images/images/furniture-4/custom-outdoor-furniture-builders-florida-04.jpg",
+        "/images/images/furniture-2/custom-outdoor-furniture-builders-florida-02.jpg"
+      ]
+    },
+    "/services/pool-screen-enclosures": {
+      "intro": [
+        "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/custom-screened-pool-enclosure-florida.avif",
+        "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/backyard-pool-screen-enclosure-installation-florida.avif",
+        "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/aluminum-pool-screen-enclosure-florida.avif"
+      ],
+      "what_we_do": [
+        "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/pool-screen-enclosures-florida.avif",
+        "/images/images/pool-screen-9/pool-screen-enclosure-builders-florida-09.jpg",
+        "/images/images/pool-screen-5/pool-screen-enclosure-builders-florida-05.jpg",
+        "/images/images/pool-screen-3/pool-screen-enclosure-builders-florida-03.jpg"
+      ]
+    },
+    "/services/patio-screen-rooms": {
+      "intro": [
+        "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/patio-screen-rooms-florida.avif",
+        "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/backyard-patio-screen-room-installation-florida.avif",
+        "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/custom-patio-screen-room-florida.avif"
+      ],
+      "what_we_do": [
+        "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/screened-patio-enclosure-florida.avif",
+        "/images/images/patio-screen-8/patio-screen-enclosure-builders-contractors-north-south-florida-08.jpg",
+        "/images/images/patio-screen-3/patio-screen-enclosure-builders-contractors-north-south-florida-03.jpg",
+        "/images/images/patio-screen-1/patio-screen-enclosure-builders-contractors-north-south-florida-01.jpg"
+      ]
+    },
+    "/services/retractable-screens": {
+      "intro": [
+        "/images/residentials/motorized-retractable-screens-in-north-south-florida/patio-retractable-screen-installation-florida.avif",
+        "/images/residentials/motorized-retractable-screens-in-north-south-florida/outdoor-retractable-screen-system-florida.avif",
+        "/images/residentials/motorized-retractable-screens-in-north-south-florida/motorized-retractable-screens-florida.avif"
+      ],
+      "what_we_do": [
+        "/images/residentials/motorized-retractable-screens-in-north-south-florida/retractable-screens-florida.avif",
+        "/images/images/retractable-screen-9/retractable-screen-installation-contractors-florida-09.jpg",
+        "/images/images/retractable-screen-5/retractable-screen-installation-contractors-florida-5.jpg",
+        "/images/images/retractable-screen-1/retractable-screen-installation-contractors-florida-1.jpg"
+      ]
+    },
+    "/services/irrigation-systems": {
+      "intro": [
+        "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/smart-irrigation-system-florida.avif",
+        "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/residential-lawn-irrigation-florida.avif",
+        "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/water-efficient-irrigation-system-florida.avif"
+      ],
+      "what_we_do": [
+        "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/automated-irrigation-florida.avif",
+        "/images/images/irrigation-9/automated-irrigation-system-installers-florida-09.jpg",
+        "/images/images/irrigation-8/automated-irrigation-system-installers-florida-08.jpg",
+        "/images/images/irrigation-2/automated-irrigation-system-installers-florida-02.jpg"
       ]
     }
   },
@@ -665,7 +666,7 @@
     {
       "id": "pergolas",
       "tipo": "ficha",
-      "ruta": "/services/custom-aluminum-pergola-builders-in-north-south-florida",
+      "ruta": "/services/pergola-builders",
       "estado": "hecha",
       "commit": "64b7266",
       "portada_menu": "bi-0914",
@@ -1117,12 +1118,13 @@
         "sin_casting": 5,
         "nota": "freno 7.2 no salta: 5/16 candidatas tumbadas (31 %), 8/16 canjes (50 %)"
       },
-      "criterio": "Los 4 pasos derivados a 1408/768 y la inversion a 1250/698 porque a 768/991 el paso se pinta entero y a 479 la banda sigue el ratio de width/height: con 4:3 la pagina crece (medido en la ficha de piscina: 935x701 frente a 935x510)."
+      "criterio": "Los 4 pasos derivados a 1408/768 y la inversion a 1250/698 porque a 768/991 el paso se pinta entero y a 479 la banda sigue el ratio de width/height: con 4:3 la pagina crece (medido en la ficha de piscina: 935x701 frente a 935x510).",
+      "ruta_antes_de_la_migracion": "/services/custom-aluminum-pergola-builders-in-north-south-florida"
     },
     {
       "id": "kitchens",
       "tipo": "ficha",
-      "ruta": "/services/custom-outdoor-kitchens-for-north-south-florida-homes",
+      "ruta": "/services/outdoor-kitchens",
       "estado": "hecha",
       "commit": "a54e19e",
       "portada_menu": null,
@@ -1527,12 +1529,13 @@
         "check-texto (ficha)": "verde",
         "check-visual": "ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:+0 991:+0 1440:+0)"
       },
-      "alto_antes_despues": "479:+0 768:+0 991:+0 1440:+0"
+      "alto_antes_despues": "479:+0 768:+0 991:+0 1440:+0",
+      "ruta_antes_de_la_migracion": "/services/custom-outdoor-kitchens-for-north-south-florida-homes"
     },
     {
       "id": "decks",
       "tipo": "ficha",
-      "ruta": "/services/custom-deck-builders-in-north-south-florida",
+      "ruta": "/services/deck-builders",
       "estado": "hecha",
       "commit": "1245d14",
       "portada_menu": null,
@@ -1945,12 +1948,13 @@
         "check-texto (ficha)": "verde",
         "check-visual": "ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:+0 991:+0 1440:+0)"
       },
-      "alto_antes_despues": "479:+0 768:+0 991:+0 1440:+0"
+      "alto_antes_despues": "479:+0 768:+0 991:+0 1440:+0",
+      "ruta_antes_de_la_migracion": "/services/custom-deck-builders-in-north-south-florida"
     },
     {
       "id": "louvered",
       "tipo": "ficha",
-      "ruta": "/services/motorized-louvered-roof-systems-in-north-south-florida",
+      "ruta": "/services/louvered-roofs",
       "estado": "hecha",
       "commit": "7dcb456",
       "portada_menu": null,
@@ -2358,12 +2362,13 @@
         "check-visual": "ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:+0 991:+0 1440:+0)"
       },
       "alto_antes_despues": "479:+0 768:+0 991:+0 1440:+0",
-      "nota": "pasos 1-3 re-derivados a 1450/1088 para igualar la proporcion del paso 0 (origen 4:3)"
+      "nota": "pasos 1-3 re-derivados a 1450/1088 para igualar la proporcion del paso 0 (origen 4:3)",
+      "ruta_antes_de_la_migracion": "/services/motorized-louvered-roof-systems-in-north-south-florida"
     },
     {
       "id": "landscaping",
       "tipo": "ficha",
-      "ruta": "/services/professional-landscaping-services-in-north-south-florida",
+      "ruta": "/services/landscaping",
       "estado": "hecha",
       "commit": "60be164",
       "portada_menu": null,
@@ -2788,12 +2793,13 @@
         "check-texto (ficha)": "verde",
         "check-visual": "ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:+0 991:+0 1440:+0)"
       },
-      "alto_antes_despues": "479:+0 768:+0 991:+0 1440:+0"
+      "alto_antes_despues": "479:+0 768:+0 991:+0 1440:+0",
+      "ruta_antes_de_la_migracion": "/services/professional-landscaping-services-in-north-south-florida"
     },
     {
       "id": "pole",
       "tipo": "ficha",
-      "ruta": "/services/steel-building-pole-barn-construction-in-north-south-florida",
+      "ruta": "/services/steel-buildings-pole-barns",
       "estado": "hecha",
       "commit": "8a65e36",
       "portada_menu": null,
@@ -3202,12 +3208,13 @@
         "check-texto (ficha)": "verde",
         "check-visual": "ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:-146 991:-192 1440:+0)"
       },
-      "alto_antes_despues": "479:+0 768:+0 991:+0 1440:+0 (tras re-derivar los pasos a 1450/1088, la proporcion del origen; el primer cierre dio 768:-146 991:-192)"
+      "alto_antes_despues": "479:+0 768:+0 991:+0 1440:+0 (tras re-derivar los pasos a 1450/1088, la proporcion del origen; el primer cierre dio 768:-146 991:-192)",
+      "ruta_antes_de_la_migracion": "/services/steel-building-pole-barn-construction-in-north-south-florida"
     },
     {
       "id": "construction",
       "tipo": "ficha",
-      "ruta": "/services/custom-pool-spa-builders-in-north-south-florida",
+      "ruta": "/services/pool-builders",
       "estado": "hecha",
       "commit": "99dfc8a",
       "portada_menu": null,
@@ -3596,12 +3603,13 @@
         "check-texto (ficha)": "verde",
         "check-visual": "ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:+0 991:+0 1440:+0)"
       },
-      "alto_antes_despues": "479:+0 768:+0 991:+0 1440:+0"
+      "alto_antes_despues": "479:+0 768:+0 991:+0 1440:+0",
+      "ruta_antes_de_la_migracion": "/services/custom-pool-spa-builders-in-north-south-florida"
     },
     {
       "id": "remodeling",
       "tipo": "ficha",
-      "ruta": "/services/pool-remodeling-renovation-in-north-south-florida",
+      "ruta": "/services/pool-remodeling",
       "estado": "hecha",
       "commit": "f45fd2d",
       "portada_menu": null,
@@ -3978,12 +3986,13 @@
         "check-texto (ficha)": "verde",
         "check-visual": "verde"
       },
-      "alto_antes_despues": "479:+0 768:+0 991:+0 1440:+0"
+      "alto_antes_despues": "479:+0 768:+0 991:+0 1440:+0",
+      "ruta_antes_de_la_migracion": "/services/pool-remodeling-renovation-in-north-south-florida"
     },
     {
       "id": "lighting",
       "tipo": "ficha",
-      "ruta": "/services/smart-soffit-led-lighting-installation-in-north-south-florida",
+      "ruta": "/services/soffit-led-lighting",
       "estado": "hecha",
       "commit": "ecc001d",
       "portada_menu": null,
@@ -4402,12 +4411,13 @@
         "check-texto (ficha)": "verde",
         "check-visual": "ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:+0 991:+1 1440:+0)"
       },
-      "alto_antes_despues": "479:+0 768:+0 991:+1 1440:+0"
+      "alto_antes_despues": "479:+0 768:+0 991:+1 1440:+0",
+      "ruta_antes_de_la_migracion": "/services/smart-soffit-led-lighting-installation-in-north-south-florida"
     },
     {
       "id": "furniture",
       "tipo": "ficha",
-      "ruta": "/services/premium-outdoor-furniture-for-north-south-florida-homes",
+      "ruta": "/services/outdoor-furniture",
       "estado": "hecha",
       "commit": "ecef5fa",
       "portada_menu": null,
@@ -4790,12 +4800,13 @@
         "check-texto (ficha)": "verde",
         "check-visual": "ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:+0 991:+0 1440:+0)"
       },
-      "alto_antes_despues": "479:+0 768:+0 991:+0 1440:+0"
+      "alto_antes_despues": "479:+0 768:+0 991:+0 1440:+0",
+      "ruta_antes_de_la_migracion": "/services/premium-outdoor-furniture-for-north-south-florida-homes"
     },
     {
       "id": "enclosures",
       "tipo": "ficha",
-      "ruta": "/services/pool-screen-enclosures-for-north-south-florida-pools",
+      "ruta": "/services/pool-screen-enclosures",
       "estado": "hecha",
       "commit": "f058ab2",
       "portada_menu": null,
@@ -5148,12 +5159,13 @@
         "check-texto (ficha)": "verde",
         "check-visual": "verde"
       },
-      "alto_antes_despues": "479:+0 768:+0 991:+0 1440:+0"
+      "alto_antes_despues": "479:+0 768:+0 991:+0 1440:+0",
+      "ruta_antes_de_la_migracion": "/services/pool-screen-enclosures-for-north-south-florida-pools"
     },
     {
       "id": "rooms",
       "tipo": "ficha",
-      "ruta": "/services/patio-screen-rooms-enclosures-in-north-south-florida",
+      "ruta": "/services/patio-screen-rooms",
       "estado": "hecha",
       "commit": "1328cc6",
       "portada_menu": null,
@@ -5506,12 +5518,13 @@
         "check-texto (ficha)": "verde",
         "check-visual": "verde"
       },
-      "alto_antes_despues": "479:+0 768:+0 991:+0 1440:+0"
+      "alto_antes_despues": "479:+0 768:+0 991:+0 1440:+0",
+      "ruta_antes_de_la_migracion": "/services/patio-screen-rooms-enclosures-in-north-south-florida"
     },
     {
       "id": "screens",
       "tipo": "ficha",
-      "ruta": "/services/motorized-retractable-screens-in-north-south-florida",
+      "ruta": "/services/retractable-screens",
       "estado": "hecha",
       "commit": "63fc692",
       "portada_menu": null,
@@ -5864,12 +5877,13 @@
         "check-texto (ficha)": "verde",
         "check-visual": "verde"
       },
-      "alto_antes_despues": "479:+0 768:+0 991:+0 1440:+0"
+      "alto_antes_despues": "479:+0 768:+0 991:+0 1440:+0",
+      "ruta_antes_de_la_migracion": "/services/motorized-retractable-screens-in-north-south-florida"
     },
     {
       "id": "irrigation",
       "tipo": "ficha",
-      "ruta": "/services/smart-irrigation-system-installation-in-north-south-florida",
+      "ruta": "/services/irrigation-systems",
       "estado": "hecha",
       "commit": "371d372",
       "portada_menu": null,
@@ -6222,7 +6236,8 @@
         "check-texto (ficha)": "verde",
         "check-visual": "verde"
       },
-      "alto_antes_despues": "479:+0 768:+0 991:+0 1440:+0"
+      "alto_antes_despues": "479:+0 768:+0 991:+0 1440:+0",
+      "ruta_antes_de_la_migracion": "/services/smart-irrigation-system-installation-in-north-south-florida"
     },
     {
       "id": "MENU",
@@ -6275,18 +6290,25 @@
           "antes": "/images/obra/obra-083/freestanding-patio-cover-privacy-screen-poolside-florida-menu.avif",
           "procedencia_antes": "sin_verificar",
           "estado": "canjeada",
-          "despues": "/images/obra/obra-083/freestanding-patio-cover-privacy-screen-poolside-florida-menu.avif",
-          "_banco": "bi-0914",
+          "despues": "/images/obra/obra-079/pergola-outdoor-kitchen-stacked-stone-u-shape-florida-menu.avif",
+          "_banco": "bi-0895",
           "pos": "50% 40%",
           "_ajuste": {
             "recorte": "339/340",
             "pos": "50% 40%",
             "ancho": 680,
             "q": 46,
-            "de": "/images/banco/pergolas/freestanding-patio-cover-privacy-screen-poolside-florida-02.webp"
+            "de": "/images/banco/pergolas/pergola-outdoor-kitchen-stacked-stone-u-shape-florida-01.webp"
           },
-          "juez": "conjunto",
-          "bytes": 29034
+          "juez": "Sebastian (eleccion directa)",
+          "bytes": 29034,
+          "descartadas": [
+            {
+              "_banco": "bi-0914",
+              "clase": "bloqueante",
+              "motivo": "Sebastian, 3-oct-2026: la pantalla de lamas la hace leer como Louvered Roof, no como Aluminum Pergola"
+            }
+          ]
         },
         {
           "hueco": "menu[louvered]",
@@ -6497,18 +6519,25 @@
           "antes": null,
           "procedencia_antes": "sin_verificar",
           "estado": "canjeada",
-          "despues": "/images/obra/obra-083/freestanding-patio-cover-privacy-screen-poolside-florida-full.avif",
-          "_banco": "bi-0914",
-          "pos": "50% 45%",
+          "despues": "/images/obra/obra-079/pergola-outdoor-kitchen-stacked-stone-u-shape-florida-full.avif",
+          "_banco": "bi-0895",
+          "pos": "50% 30%",
           "_ajuste": {
             "recorte": "750/400",
-            "pos": "50% 45%",
-            "ancho": 1024,
+            "pos": "50% 30%",
+            "ancho": 1080,
             "q": 50,
-            "de": "/images/banco/pergolas/freestanding-patio-cover-privacy-screen-poolside-florida-02.webp"
+            "de": "/images/banco/pergolas/pergola-outdoor-kitchen-stacked-stone-u-shape-florida-01.webp"
           },
-          "juez": "conjunto",
-          "bytes": 51366
+          "juez": "Sebastian (eleccion directa)",
+          "bytes": 51366,
+          "descartadas": [
+            {
+              "_banco": "bi-0914",
+              "clase": "bloqueante",
+              "motivo": "Sebastian, 3-oct-2026: la pantalla de lamas la hace leer como Louvered Roof, no como Aluminum Pergola"
+            }
+          ]
         },
         {
           "hueco": "full[louvered]",
