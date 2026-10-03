@@ -3,6 +3,16 @@
 Webflow → Astro 5 + Sanity + Vercel. Una entrada por fase, **escrita al cerrar la fase**,
 nunca al empezarla. Si una fase se reabre, se añade una entrada nueva; no se edita la vieja.
 
+## LOOP-IMAGENES · MENU y FULL — el megamenú y «Full-Service» enseñan obra propia en 10 de 14 servicios (2-oct-2026)
+
+Las 10 fichas con banco pasan su obra ganadora al megamenú (AVIF 680 px, 21-56 KB, `fotos-megamenu.json`,
+editado a mano en `Nav.astro` y declarado en `build-shell.mjs`) y a Full-Service (AVIF 1500×800 vía
+`fotos-servicios-categoria.json`, override en `build-paginas.mjs` con la misma traza que `fotosPorRuta()`;
+el widget admite `width/height/pos`). Enclosures, rooms, screens e irrigation se quedan: sin obra en el banco.
+Se juzgó el conjunto de 14 a tamaño real (`MENU.jpg`, `FULL.jpg`). Cajas medidas iguales antes y después
+(339×340 y 750×400/334×300); `check:menu`, `check-texto` y `check:tokens` verdes; `check-visual` roja en las
+3 rutas por la referencia anterior al #24.
+
 ## LOOP-IMAGENES · irrigation — La ficha de irrigation no tiene obra real en el banco: se queda y deja la lista de fotos que faltan (2-oct-2026)
 
 21 huecos; juez a ciegas. **0 canjes**: ninguno. 21 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.

@@ -115,6 +115,11 @@ const ENLACES_ANADIDOS = [
  * El `&` va crudo: lo escapa el serializador de JSDOM al escribir el marcado.
  */
 const MARCA = 'Mr & Mrs Outdoor Living';
+/** LOOP-IMAGENES (2-oct-2026): las 14 tarjetas del megamenu llevan obra real del banco, derivada a
+ *  680 px en public/images/obra/. Se aplico a mano en Nav.astro (este script no corre: fetch al
+ *  Webflow vivo); queda declarado aqui para que una regeneracion lo reproduzca. Fuente de verdad:
+ *  src/data/fotos-megamenu.json {data-service: {src, alt, ancho, alto, _banco}}. */
+const IMAGENES_MENU = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/fotos-megamenu.json'), 'utf8'));
 const NOMBRES_ACCESIBLES = [
   ['a.navbar-logo', `${MARCA} — home`],
   ['a.footer-brand', `${MARCA} — home`],
@@ -207,6 +212,11 @@ function limpiar(nodo) {
     if (limpio) el.setAttribute('style', limpio); else el.removeAttribute('style');
   }
   for (const img of nodo.querySelectorAll('img[src]')) img.setAttribute('src', local(img.getAttribute('src')));
+  for (const [serv, f] of Object.entries(IMAGENES_MENU)) {
+    const img = nodo.querySelector(`.wrapper-picture-service[data-service="${serv}"] img.picture-service`);
+    if (!img) { sinMapear.push('megamenu:' + serv); continue; }
+    img.setAttribute('src', f.src); img.setAttribute('alt', f.alt); img.setAttribute('width', String(f.ancho)); img.setAttribute('height', String(f.alto));
+  }
   for (const el of nodo.querySelectorAll('[srcset]')) {
     el.setAttribute('srcset', el.getAttribute('srcset')
       .split(',').map((p) => { const [u, d] = p.trim().split(/\s+/); return [local(u), d].filter(Boolean).join(' '); })

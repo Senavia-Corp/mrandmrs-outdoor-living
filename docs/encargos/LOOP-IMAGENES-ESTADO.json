@@ -6228,9 +6228,218 @@
       "id": "MENU",
       "tipo": "menu",
       "ruta": "/",
-      "estado": "pendiente",
-      "commit": null,
-      "huecos": []
+      "estado": "hecha",
+      "commit": "siguiente-iteracion",
+      "huecos": [
+        {
+          "hueco": "menu[construction]",
+          "selector": ".wrapper-picture-service[data-service=\"construction\"] img.picture-service",
+          "antes": "/images/obra/obra-063/new-pool-cobalt-glass-tile-sun-shelf-bubblers-spa-florida-menu.avif",
+          "procedencia_antes": "sin_verificar",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-063/new-pool-cobalt-glass-tile-sun-shelf-bubblers-spa-florida-menu.avif",
+          "_banco": "bi-0662",
+          "pos": "50% 45%",
+          "_ajuste": {
+            "recorte": "339/340",
+            "pos": "50% 45%",
+            "ancho": 680,
+            "q": 46,
+            "de": "/images/banco/construction/new-pool-cobalt-glass-tile-sun-shelf-bubblers-spa-florida-01.webp"
+          },
+          "juez": "conjunto",
+          "bytes": 57128
+        },
+        {
+          "hueco": "menu[remodeling]",
+          "selector": ".wrapper-picture-service[data-service=\"remodeling\"] img.picture-service",
+          "antes": "/images/obra/obra-048/pool-remodeling-travertine-deck-rock-landscaping-florida-menu.avif",
+          "procedencia_antes": "sin_verificar",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-048/pool-remodeling-travertine-deck-rock-landscaping-florida-menu.avif",
+          "_banco": "bi-0521",
+          "pos": "50% 45%",
+          "_ajuste": {
+            "recorte": "339/340",
+            "pos": "50% 45%",
+            "ancho": 680,
+            "q": 46,
+            "de": "/images/banco/remodeling/pool-remodeling-travertine-deck-rock-landscaping-florida-02.webp"
+          },
+          "juez": "conjunto",
+          "bytes": 29239
+        },
+        {
+          "hueco": "menu[pergolas]",
+          "selector": ".wrapper-picture-service[data-service=\"pergolas\"] img.picture-service",
+          "antes": "/images/obra/obra-083/freestanding-patio-cover-privacy-screen-poolside-florida-menu.avif",
+          "procedencia_antes": "sin_verificar",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-083/freestanding-patio-cover-privacy-screen-poolside-florida-menu.avif",
+          "_banco": "bi-0914",
+          "pos": "50% 40%",
+          "_ajuste": {
+            "recorte": "339/340",
+            "pos": "50% 40%",
+            "ancho": 680,
+            "q": 46,
+            "de": "/images/banco/pergolas/freestanding-patio-cover-privacy-screen-poolside-florida-02.webp"
+          },
+          "juez": "conjunto",
+          "bytes": 29034
+        },
+        {
+          "hueco": "menu[louvered]",
+          "selector": ".wrapper-picture-service[data-service=\"louvered\"] img.picture-service",
+          "antes": "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-menu.avif",
+          "procedencia_antes": "sin_verificar",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-menu.avif",
+          "_banco": "bi-0233",
+          "pos": "50% 35%",
+          "_ajuste": {
+            "recorte": "339/340",
+            "pos": "50% 35%",
+            "ancho": 680,
+            "q": 46,
+            "de": "/images/banco/louvered/louvered-roof-white-large-span-travertine-patio-florida-01.webp"
+          },
+          "juez": "conjunto",
+          "bytes": 21155
+        },
+        {
+          "hueco": "menu[steel]",
+          "selector": ".wrapper-picture-service[data-service=\"steel\"] img.picture-service",
+          "antes": "/images/obra/suelta/pole-barn-narrow-open-shelter-new-wood-posts-florida-menu.avif",
+          "procedencia_antes": "sin_verificar",
+          "estado": "canjeada",
+          "despues": "/images/obra/suelta/pole-barn-narrow-open-shelter-new-wood-posts-florida-menu.avif",
+          "_banco": "bi-1104",
+          "pos": "50% 40%",
+          "_ajuste": {
+            "recorte": "339/340",
+            "pos": "50% 40%",
+            "ancho": 680,
+            "q": 46,
+            "de": "/images/banco/pole/pole-barn-narrow-open-shelter-new-wood-posts-florida-01.webp"
+          },
+          "juez": "conjunto",
+          "bytes": 22627
+        },
+        {
+          "hueco": "menu[landscaping]",
+          "selector": ".wrapper-picture-service[data-service=\"landscaping\"] img.picture-service",
+          "antes": "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-menu.avif",
+          "procedencia_antes": "sin_verificar",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-menu.avif",
+          "_banco": "bi-0307",
+          "pos": "50% 45%",
+          "_ajuste": {
+            "recorte": "339/340",
+            "pos": "50% 45%",
+            "ancho": 680,
+            "q": 46,
+            "de": "/images/banco/landscaping/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-01.webp"
+          },
+          "juez": "conjunto",
+          "bytes": 45793
+        },
+        {
+          "hueco": "menu[lighting]",
+          "selector": ".wrapper-picture-service[data-service=\"lighting\"] img.picture-service",
+          "antes": "/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-menu.avif",
+          "procedencia_antes": "sin_verificar",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-menu.avif",
+          "_banco": "bi-0839",
+          "pos": "50% 40%",
+          "_ajuste": {
+            "recorte": "339/340",
+            "pos": "50% 40%",
+            "ancho": 680,
+            "q": 46,
+            "de": "/images/banco/pergolas/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-01.webp"
+          },
+          "juez": "conjunto",
+          "bytes": 22245
+        },
+        {
+          "hueco": "menu[decks]",
+          "selector": ".wrapper-picture-service[data-service=\"decks\"] img.picture-service",
+          "antes": "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-menu.avif",
+          "procedencia_antes": "sin_verificar",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-menu.avif",
+          "_banco": "bi-0079",
+          "pos": "50% 55%",
+          "_ajuste": {
+            "recorte": "339/340",
+            "pos": "50% 55%",
+            "ancho": 680,
+            "q": 46,
+            "de": "/images/banco/decks/limestone-paver-patio-lake-view-herringbone-florida-01.webp"
+          },
+          "juez": "conjunto",
+          "bytes": 36338
+        },
+        {
+          "hueco": "menu[furniture]",
+          "selector": ".wrapper-picture-service[data-service=\"furniture\"] img.picture-service",
+          "antes": "/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-menu.avif",
+          "procedencia_antes": "sin_verificar",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-menu.avif",
+          "_banco": "bi-0928",
+          "pos": "50% 50%",
+          "_ajuste": {
+            "recorte": "339/340",
+            "pos": "50% 50%",
+            "ancho": 680,
+            "q": 46,
+            "de": "/images/banco/pergolas/insulated-patio-cover-black-frame-lap-pool-sunset-florida-01.webp"
+          },
+          "juez": "conjunto",
+          "bytes": 34333
+        },
+        {
+          "hueco": "menu[kitchens]",
+          "selector": ".wrapper-picture-service[data-service=\"kitchens\"] img.picture-service",
+          "antes": "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-menu.avif",
+          "procedencia_antes": "sin_verificar",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-menu.avif",
+          "_banco": "bi-0794",
+          "pos": "50% 45%",
+          "_ajuste": {
+            "recorte": "339/340",
+            "pos": "50% 45%",
+            "ancho": 680,
+            "q": 46,
+            "de": "/images/banco/kitchens/pergola-outdoor-kitchen-black-granite-lake-view-florida-01.webp"
+          },
+          "juez": "conjunto",
+          "bytes": 37595
+        }
+      ],
+      "rutas": [
+        "megamenu"
+      ],
+      "hoja": "banco/.trabajo/loop-imagenes/MENU.jpg",
+      "puertas": {
+        "verdes": [
+          "check:menu",
+          "check-texto (=/, north, south)",
+          "check:tokens",
+          "check:assets",
+          "build-banco --check",
+          "check-fotos-servicios MENU"
+        ],
+        "rojas_esperadas": [
+          "check-visual en /, north y south: -137..-229 px de JPEG respecto a la referencia, anterior a quitar el feed de Instagram (#24); las cajas canjeadas no mueven el flujo: img.svc-foto es position:absolute e img.picture-service vive en una tarjeta de 339x340 fijada por CSS (medido igual antes y despues)"
+        ]
+      },
+      "juez": "conjunto de 14 a tamano real (MENU.jpg): pergola, techo de lamas y nave se distinguen; 4 tarjetas sin banco se quedan"
     },
     {
       "id": "FULL",
@@ -6241,9 +6450,215 @@
         "/where-we-serve/north-florida",
         "/where-we-serve/south-florida"
       ],
-      "estado": "pendiente",
-      "commit": null,
-      "huecos": []
+      "estado": "hecha",
+      "commit": "siguiente-iteracion",
+      "huecos": [
+        {
+          "hueco": "full[construction]",
+          "selector": "article.svc-ficha[data-id=\"construction\"] img.svc-foto",
+          "antes": null,
+          "procedencia_antes": "sin_verificar",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-063/new-pool-cobalt-glass-tile-sun-shelf-bubblers-spa-florida-full.avif",
+          "_banco": "bi-0662",
+          "pos": "50% 55%",
+          "_ajuste": {
+            "recorte": "750/400",
+            "pos": "50% 55%",
+            "ancho": 1200,
+            "q": 50,
+            "de": "/images/banco/construction/new-pool-cobalt-glass-tile-sun-shelf-bubblers-spa-florida-01.webp"
+          },
+          "juez": "conjunto",
+          "bytes": 102538
+        },
+        {
+          "hueco": "full[remodeling]",
+          "selector": "article.svc-ficha[data-id=\"remodeling\"] img.svc-foto",
+          "antes": null,
+          "procedencia_antes": "sin_verificar",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-048/pool-remodeling-travertine-deck-rock-landscaping-florida-full.avif",
+          "_banco": "bi-0521",
+          "pos": "50% 62%",
+          "_ajuste": {
+            "recorte": "750/400",
+            "pos": "50% 62%",
+            "ancho": 1500,
+            "q": 50,
+            "de": "/images/banco/remodeling/pool-remodeling-travertine-deck-rock-landscaping-florida-02.webp"
+          },
+          "juez": "conjunto",
+          "bytes": 92592
+        },
+        {
+          "hueco": "full[pergolas]",
+          "selector": "article.svc-ficha[data-id=\"pergolas\"] img.svc-foto",
+          "antes": null,
+          "procedencia_antes": "sin_verificar",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-083/freestanding-patio-cover-privacy-screen-poolside-florida-full.avif",
+          "_banco": "bi-0914",
+          "pos": "50% 45%",
+          "_ajuste": {
+            "recorte": "750/400",
+            "pos": "50% 45%",
+            "ancho": 1024,
+            "q": 50,
+            "de": "/images/banco/pergolas/freestanding-patio-cover-privacy-screen-poolside-florida-02.webp"
+          },
+          "juez": "conjunto",
+          "bytes": 51366
+        },
+        {
+          "hueco": "full[louvered]",
+          "selector": "article.svc-ficha[data-id=\"louvered\"] img.svc-foto",
+          "antes": null,
+          "procedencia_antes": "sin_verificar",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-full.avif",
+          "_banco": "bi-0233",
+          "pos": "50% 40%",
+          "_ajuste": {
+            "recorte": "750/400",
+            "pos": "50% 40%",
+            "ancho": 1500,
+            "q": 50,
+            "de": "/images/banco/louvered/louvered-roof-white-large-span-travertine-patio-florida-01.webp"
+          },
+          "juez": "conjunto",
+          "bytes": 46970
+        },
+        {
+          "hueco": "full[pole]",
+          "selector": "article.svc-ficha[data-id=\"pole\"] img.svc-foto",
+          "antes": null,
+          "procedencia_antes": "sin_verificar",
+          "estado": "canjeada",
+          "despues": "/images/obra/suelta/pole-barn-narrow-open-shelter-new-wood-posts-florida-full.avif",
+          "_banco": "bi-1104",
+          "pos": "50% 45%",
+          "_ajuste": {
+            "recorte": "750/400",
+            "pos": "50% 45%",
+            "ancho": 1200,
+            "q": 50,
+            "de": "/images/banco/pole/pole-barn-narrow-open-shelter-new-wood-posts-florida-01.webp"
+          },
+          "juez": "conjunto",
+          "bytes": 34124
+        },
+        {
+          "hueco": "full[landscaping]",
+          "selector": "article.svc-ficha[data-id=\"landscaping\"] img.svc-foto",
+          "antes": null,
+          "procedencia_antes": "sin_verificar",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-full.avif",
+          "_banco": "bi-0307",
+          "pos": "50% 50%",
+          "_ajuste": {
+            "recorte": "750/400",
+            "pos": "50% 50%",
+            "ancho": 1500,
+            "q": 50,
+            "de": "/images/banco/landscaping/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-01.webp"
+          },
+          "juez": "conjunto",
+          "bytes": 129889
+        },
+        {
+          "hueco": "full[lighting]",
+          "selector": "article.svc-ficha[data-id=\"lighting\"] img.svc-foto",
+          "antes": null,
+          "procedencia_antes": "sin_verificar",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-full.avif",
+          "_banco": "bi-0839",
+          "pos": "50% 45%",
+          "_ajuste": {
+            "recorte": "750/400",
+            "pos": "50% 45%",
+            "ancho": 1500,
+            "q": 50,
+            "de": "/images/banco/pergolas/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-01.webp"
+          },
+          "juez": "conjunto",
+          "bytes": 66461
+        },
+        {
+          "hueco": "full[decks]",
+          "selector": "article.svc-ficha[data-id=\"decks\"] img.svc-foto",
+          "antes": null,
+          "procedencia_antes": "sin_verificar",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-full.avif",
+          "_banco": "bi-0079",
+          "pos": "50% 70%",
+          "_ajuste": {
+            "recorte": "750/400",
+            "pos": "50% 70%",
+            "ancho": 1500,
+            "q": 50,
+            "de": "/images/banco/decks/limestone-paver-patio-lake-view-herringbone-florida-01.webp"
+          },
+          "juez": "conjunto",
+          "bytes": 116498
+        },
+        {
+          "hueco": "full[furniture]",
+          "selector": "article.svc-ficha[data-id=\"furniture\"] img.svc-foto",
+          "antes": null,
+          "procedencia_antes": "sin_verificar",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-full.avif",
+          "_banco": "bi-0928",
+          "pos": "50% 55%",
+          "_ajuste": {
+            "recorte": "750/400",
+            "pos": "50% 55%",
+            "ancho": 1215,
+            "q": 50,
+            "de": "/images/banco/pergolas/insulated-patio-cover-black-frame-lap-pool-sunset-florida-01.webp"
+          },
+          "juez": "conjunto",
+          "bytes": 74012
+        },
+        {
+          "hueco": "full[kitchens]",
+          "selector": "article.svc-ficha[data-id=\"kitchens\"] img.svc-foto",
+          "antes": null,
+          "procedencia_antes": "sin_verificar",
+          "estado": "canjeada",
+          "despues": "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-full.avif",
+          "_banco": "bi-0794",
+          "pos": "50% 50%",
+          "_ajuste": {
+            "recorte": "750/400",
+            "pos": "50% 50%",
+            "ancho": 1500,
+            "q": 50,
+            "de": "/images/banco/kitchens/pergola-outdoor-kitchen-black-granite-lake-view-florida-01.webp"
+          },
+          "juez": "conjunto",
+          "bytes": 95498
+        }
+      ],
+      "hoja": "banco/.trabajo/loop-imagenes/FULL.jpg",
+      "puertas": {
+        "verdes": [
+          "check:menu",
+          "check-texto (=/, north, south)",
+          "check:tokens",
+          "check:assets",
+          "build-banco --check",
+          "check-fotos-servicios FULL"
+        ],
+        "rojas_esperadas": [
+          "check-visual en /, north y south: -137..-229 px de JPEG respecto a la referencia, anterior a quitar el feed de Instagram (#24); las cajas canjeadas no mueven el flujo: img.svc-foto es position:absolute e img.picture-service vive en una tarjeta de 339x340 fijada por CSS (medido igual antes y despues)"
+        ]
+      },
+      "juez": "conjunto de 14 (FULL.jpg) con la tarjeta de cristal y el contador simulados; decks y remodeling con pos bajado para dejar el sujeto arriba"
     },
     {
       "id": "CIERRE",
