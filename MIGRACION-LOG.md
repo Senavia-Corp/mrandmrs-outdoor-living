@@ -3,6 +3,14 @@
 Webflow → Astro 5 + Sanity + Vercel. Una entrada por fase, **escrita al cerrar la fase**,
 nunca al empezarla. Si una fase se reabre, se añade una entrada nueva; no se edita la vieja.
 
+## LOOP-IMAGENES · CIERRE — 18 unidades, 101 canjes de 311 huecos, puerta del loop a 0 (2-oct-2026)
+
+Informe de entrega en `docs/encargos/LOOP-IMAGENES-INFORME.md` (canjes por ficha, fotos que hay que hacer,
+auditoría de IA de intro/What we do, lo que espera a un humano). Batería de cierre VERDE: tokens, rutas,
+enlaces, seo, estructura, assets, galería, menú, banco, ix2, cascarón y `check-fotos-servicios` (18/18).
+`check-visual` roja en 13 rutas por referencia anterior; alto medido antes/después: 0 px en todas.
+Por instrucción de Sebastian en chat («despliega a producción al terminar»), el PR se fusiona a `main`.
+
 ## LOOP-IMAGENES · MENU y FULL — el megamenú y «Full-Service» enseñan obra propia en 10 de 14 servicios (2-oct-2026)
 
 Las 10 fichas con banco pasan su obra ganadora al megamenú (AVIF 680 px, 21-56 KB, `fotos-megamenu.json`,

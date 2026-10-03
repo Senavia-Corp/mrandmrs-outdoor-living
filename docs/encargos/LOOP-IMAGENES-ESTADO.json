@@ -6664,8 +6664,27 @@
       "id": "CIERRE",
       "tipo": "cierre",
       "ruta": null,
-      "estado": "en-curso",
-      "commit": null
+      "estado": "hecha",
+      "commit": "588018c",
+      "puertas": {
+        "verdes": [
+          "check:tokens",
+          "check:rutas",
+          "check:enlaces",
+          "check:seo",
+          "check:estructura",
+          "check:assets",
+          "check:galeria",
+          "check:menu",
+          "build-banco --check",
+          "check:ix2",
+          "check:cascaron (sin desviacion nueva)",
+          "check-fotos-servicios (18/18)"
+        ],
+        "rojas_esperadas": [
+          "check-visual en las 10 fichas canjeadas, / y where-we-serve: referencia anterior al rediseno; alto de pagina antes/despues 0 px en todas"
+        ]
+      }
     }
   ]
 }
