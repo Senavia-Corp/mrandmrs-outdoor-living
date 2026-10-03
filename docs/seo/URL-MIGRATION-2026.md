@@ -166,7 +166,7 @@ Build de producción desde el contenedor: `PUBLIC_ES_PRODUCCION=1 MM_SANITY_CACH
 | Landings de pago (Core, Ocala, Gainesville, Remodeling) | `npm run check:ads` | ✅ VERDE |
 | Medición (GTM, GA4, formularios, teléfonos, thank-you) | `npm run check:medicion`, `check:aviso`, `check:estimador`, `check:resenas` | ✅ VERDE |
 | IX2 y carruseles | `npm run check:ix2`, `check:carrusel` | ✅ VERDE |
-| Texto (innerText contra baseline) en las 76 | `node scripts/check-texto.mjs /services/` | ⏳ en curso al cerrar este commit; las 14 fichas ya en verde. Resultado final en el siguiente commit. |
+| Texto (innerText contra baseline) en las 76 | `node scripts/check-texto.mjs /services/` | ✅ VERDE — 76/76 (con `xvfb-run`; `check-texto` necesita navegador con ventana). Ninguna línea de texto se mueve con el cambio de URL. |
 | Assets | `npm run check:assets` | ⛔ NO MEDIDA: requiere `_source/sanity-masters/`, que no está en el repo ni en el contenedor. No depende de esta migración. |
 | Visual (capturas contra baseline) | `npm run check:visual` | ⛔ NO MEDIDA a propósito (CLAUDE.md §1: barrido de 115 rutas × 4 anchos). Las referencias se renombraron sin tocar el píxel; el marcado no cambia salvo los `href`. |
 | Sanity (TEST 10) | GROQ por MCP | ✅ 0 `href` viejos en 47 `blogPost`; 0 borradores; referencias por `_id` sin URLs |
