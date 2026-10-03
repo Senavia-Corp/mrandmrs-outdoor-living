@@ -222,10 +222,20 @@
           "principal": false
         }
       ],
-      "foto": "/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-6.avif",
-      "alt": "Freeform pool with a raised spa and travertine deck inside a screened enclosure in Florida, built by Mr & Mrs Outdoor Living",
-      "ancho": 1250,
-      "alto": 698
+      "foto": "/images/obra/obra-059/pool-spa-glass-tile-louvered-pergola-kitchen-florida-inversion.avif",
+      "alt": "Pool with raised glass-tile spa in front of a louvered pergola and outdoor bar.",
+      "ancho": 1280,
+      "alto": 715,
+      "pos": "50% 50%",
+      "_banco": "bi-0633",
+      "_proyecto": "obra-059",
+      "_ajuste": {
+        "recorte": "1250/698",
+        "pos": "50% 50%",
+        "ancho": 1280,
+        "q": 52,
+        "de": "/images/banco/construction/pool-spa-glass-tile-louvered-pergola-kitchen-florida-01.webp"
+      }
     },
     "proceso": {
       "fotos": [

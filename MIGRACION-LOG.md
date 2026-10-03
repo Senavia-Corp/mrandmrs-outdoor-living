@@ -3,6 +3,14 @@
 Webflow → Astro 5 + Sanity + Vercel. Una entrada por fase, **escrita al cerrar la fase**,
 nunca al empezarla. Si una fase se reabre, se añade una entrada nueva; no se edita la vieja.
 
+## LOOP-IMAGENES · construction — La ficha de piscinas nuevas ensena obra propia en heroe, inversion y FAQ (2-oct-2026)
+
+21 huecos; juez a ciegas. **2 canjes**: faq[1] bi-0662, inversion bi-0633. 19 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: ROJA (referencia anterior al rediseño; alto antes/despues 479:+0 768:+0 991:+0 1440:+0) · check-fotos-servicios: verde.
+
 ## LOOP-IMAGENES · pole — La ficha de naves y pole barns ensena obra propia en heroe, galeria, proceso, inversion y FAQ (2-oct-2026)
 
 20 huecos; juez a ciegas. **8 canjes**: faq[1] bi-1084, galeria[3] bi-1094, heroe bi-1104, inversion bi-1096, proceso[0] bi-0488, proceso[1] bi-1113, proceso[2] bi-1118, proceso[3] bi-1122. 12 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:-146 991:-192 1440:+0.
