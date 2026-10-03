@@ -1793,12 +1793,22 @@
   "/services/premium-outdoor-furniture-for-north-south-florida-homes": {
     "heroe": {
       "apoyo": "Outdoor furniture installation company for North & South Florida homes, offering durable, premium solutions for modern outdoor living.",
-      "foto": "/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-3.avif",
-      "alt": "Teak dining set and grill on a covered patio beside a pool in North Florida, part of a project by Mr & Mrs Outdoor Living",
-      "ancho": 1250,
-      "alto": 698,
+      "foto": "/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-heroe.avif",
+      "alt": "Black-framed insulated patio cover with ceiling fans and wicker sofas beside a lap pool at sunset",
+      "ancho": 1215,
+      "alto": 683,
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
-      "ancla": "#estimate"
+      "ancla": "#estimate",
+      "_banco": "bi-0928",
+      "_proyecto": "obra-087",
+      "_ajuste": {
+        "recorte": "16/9",
+        "pos": "50% 55%",
+        "ancho": 1215,
+        "q": 50,
+        "de": "/images/banco/pergolas/insulated-patio-cover-black-frame-lap-pool-sunset-florida-01.webp"
+      },
+      "og": "/images/obra/og/premium-outdoor-furniture-for-north-south-florida-homes.jpg"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",

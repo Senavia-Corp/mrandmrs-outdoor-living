@@ -436,7 +436,7 @@ const JSONLD_ARREGLADO = {
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Premium Outdoor Furniture Supply & Installation'],
       ['about.image', 'Teak dining set and wicker lounge chairs on Florida patio.',
-        '/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-3.avif'],
+        '/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-heroe.avif'],
       ['dateModified', '2026-05-18T19:53:23.229Z', '2026-05-18T19:55:49.094Z'],
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:53:23.229Z'],
     ],

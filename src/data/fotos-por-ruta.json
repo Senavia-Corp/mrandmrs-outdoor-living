@@ -262,5 +262,83 @@
       null,
       null
     ]
+  },
+  "/services/premium-outdoor-furniture-for-north-south-florida-homes": {
+    "section.gallery img.image-gallery": [
+      {
+        "src": "/images/banco/pergolas/insulated-patio-cover-white-yellow-house-florida-02.webp",
+        "alt": "White insulated patio cover with rafter tails across the back of a yellow two-story house with tile roof",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-1012",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/pergolas/insulated-patio-cover-black-frame-two-story-pool-florida-02.webp",
+        "alt": "Black-framed insulated patio cover with downspout over sun loungers on a two-story home by the pool",
+        "ancho": 1600,
+        "alto": 1066,
+        "pos": "50% 50%",
+        "_banco": "bi-0938",
+        "_por_que": null
+      },
+      null,
+      null,
+      {
+        "src": "/images/banco/pergolas/insulated-patio-cover-black-frame-ceiling-fans-florida-01.webp",
+        "alt": "Large black-framed insulated patio cover with ceiling fans over cream wicker sofas surrounded by palms",
+        "ancho": 1024,
+        "alto": 667,
+        "pos": "50% 50%",
+        "_banco": "bi-0957",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/louvered/louvered-roof-white-large-span-travertine-patio-florida-01.webp",
+        "alt": "Large white louvered roof with partly open blades over a travertine patio with wicker lounge furniture",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0233",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/louvered/louvered-roof-white-open-blades-travertine-patio-florida-01.webp",
+        "alt": "White louvered roof with blades open against a blue sky over a travertine patio with wicker furniture",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0220",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/pergolas/covered-pergola-brown-paver-patio-pool-palms-florida-02.webp",
+        "alt": "Brown covered pergola with rafter tails over a paver patio with turquoise seating, grill and freeform pool",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-1009",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01.webp",
+        "alt": "Dark wood pergola over an outdoor kitchen bar and lounge with TV screen beside a putting green.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0842",
+        "_por_que": null
+      },
+      {
+        "src": "/images/banco/pergolas/freestanding-patio-cover-bronze-pool-deck-travertine-florida-01.webp",
+        "alt": "Freestanding bronze insulated pergola with slatted privacy screen and wicker seating beside a curved pool",
+        "ancho": 1440,
+        "alto": 1080,
+        "pos": "50% 50%",
+        "_banco": "bi-0977",
+        "_por_que": null
+      }
+    ]
   }
 }
