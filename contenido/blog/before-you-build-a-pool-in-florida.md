@@ -99,7 +99,7 @@ The relevant costs are in [what a custom pool really costs](/blogs/how-much-does
 
 You do not have to build the enclosure with the pool. You do have to decide whether one is coming, because the deck carries it.
 
-If an enclosure is likely within a few years, building the deck to take it costs very little now and saves cutting a finished deck later. If it is definitely not coming, you can spend that deck budget on surface instead. What is expensive is not deciding — see [pool screen enclosures](/services/pool-screen-enclosures-for-north-south-florida-pools) for what the structure needs.
+If an enclosure is likely within a few years, building the deck to take it costs very little now and saves cutting a finished deck later. If it is definitely not coming, you can spend that deck budget on surface instead. What is expensive is not deciding — see [pool screen enclosures](/services/pool-screen-enclosures) for what the structure needs.
 
 {{figura: bi-0558}}
 
@@ -117,7 +117,7 @@ Rock, a high water table and old fill all change excavation. None of them are vi
 
 Florida rain arrives fast and in quantity. A new pool and a new deck replace absorbent yard with hard surface, which has to drain somewhere that is not your slab or your neighbor's.
 
-Drainage is designed alongside the deck, not added to it. If you are also planning [landscaping](/services/professional-landscaping-services-in-north-south-florida), plan the two together — the grading serves both.
+Drainage is designed alongside the deck, not added to it. If you are also planning [landscaping](/services/landscaping), plan the two together — the grading serves both.
 
 ## 7. The equipment pad
 
@@ -145,7 +145,7 @@ Think about the deck and the yard at the same time — the pool is rarely the on
 
 ## 11. What else is coming to this yard
 
-An [outdoor kitchen](/services/custom-outdoor-kitchens-for-north-south-florida-homes), a [pergola](/services/custom-aluminum-pergola-builders-in-north-south-florida) or a [deck extension](/services/custom-deck-builders-in-north-south-florida) are all cheaper built while the crews, the access and the slab work are already on site.
+An [outdoor kitchen](/services/outdoor-kitchens), a [pergola](/services/pergola-builders) or a [deck extension](/services/deck-builders) are all cheaper built while the crews, the access and the slab work are already on site.
 
 You do not have to build them now. You do want to know where they go, so the pool and the deck leave room and the sleeves and conduit go in while the ground is open.
 
@@ -173,4 +173,4 @@ Before anything is dug, you should be able to answer:
 
 If any of those is still "we will figure it out", figure it out now. Every one of them is cheap today and expensive once the ground is open.
 
-When you have answers, a site visit is what turns them into a plan — see [custom pool and spa construction](/services/custom-pool-spa-builders-in-north-south-florida).
+When you have answers, a site visit is what turns them into a plan — see [custom pool and spa construction](/services/pool-builders).

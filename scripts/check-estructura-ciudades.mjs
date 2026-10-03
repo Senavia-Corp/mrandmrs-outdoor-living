@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PUERTA de estructura — las 53 ciudades de `/pool-builders/`, en DOS formas y solo dos.
+ * PUERTA de estructura — las 53 ciudades de `/services/pool-builders/`, en DOS formas y solo dos.
  *
  *     npm run check:estructura:ciudades
  *
@@ -28,6 +28,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { JSDOM } from 'jsdom';
+import { rutaCiudad } from './lib/renombradas.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const ESTATICO = path.join(RAIZ, '.vercel/output/static');
@@ -75,7 +76,7 @@ const CON = [
 
 const CAPTACION = leerJson('src/data/captacion-servicios.json');
 const TODAS = Object.keys(leerJson('src/data/seo-pool-builders.json'))
-  .map((s) => `/pool-builders/${s}`).sort();
+  .map(rutaCiudad).sort();
 const CON_CAPTACION = new Set(TODAS.filter((r) => CAPTACION[r]));
 
 const leer = (ruta) => {
@@ -88,7 +89,7 @@ const leer = (ruta) => {
 let fallos = 0;
 const mal = (r, m) => { fallos++; console.log(`  ROJO ${r}\n       ${m}`); };
 
-console.log('\n── estructura de las 53 ciudades de /pool-builders/ ──');
+console.log('\n── estructura de las 53 ciudades de /services/pool-builders/ ──');
 if (TODAS.length !== 53) mal('seo-pool-builders.json', `declara ${TODAS.length} ciudades y son 53`);
 
 let conCaptacion = 0;

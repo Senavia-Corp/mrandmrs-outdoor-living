@@ -126,7 +126,7 @@ Our estimator prices pool LEDs at $450 per fixture, so the difference between on
 
 The count follows the shape, not the square footage. A fixture throws in one direction, so a pool with a deep end, a spa and a sun shelf has three areas that each go dark on their own.
 
-Which wall each niche goes in matters as much as how many there are, and it is the part that never reaches the proposal. A fixture set in the far wall throws its light away from the house and the seating; the same fixture in the near wall throws it back at the people looking at the water. Ask which wall, not just how many. Lighting the house and the yard is a separate system — see [permanent soffit and LED lighting](/services/smart-soffit-led-lighting-installation-in-north-south-florida) — but the path it travels runs under your new deck, which is item 7.
+Which wall each niche goes in matters as much as how many there are, and it is the part that never reaches the proposal. A fixture set in the far wall throws its light away from the house and the seating; the same fixture in the near wall throws it back at the people looking at the water. Ask which wall, not just how many. Lighting the house and the yard is a separate system — see [permanent soffit and LED lighting](/services/soffit-led-lighting) — but the path it travels runs under your new deck, which is item 7.
 
 ## The three that only need something in the ground
 
@@ -146,9 +146,9 @@ What has to happen at rough-in is small: a conduit run from the equipment pad to
 
 Everything else you will ever build in that yard has to cross ground the pool crew is already standing in. Our estimator prices a pergola at $8,500, a louvered roof at $18,000, a screen enclosure at $15,000 and an outdoor kitchen at $25,000 — and all four need something underneath before they can exist.
 
-- An [outdoor kitchen](/services/custom-outdoor-kitchens-for-north-south-florida-homes) needs gas, water, drain and power reaching it.
-- A [pergola](/services/custom-aluminum-pergola-builders-in-north-south-florida) needs footings where its posts land, which means knowing now where the posts land.
-- A [screen enclosure](/services/pool-screen-enclosures-for-north-south-florida-pools) anchors into the deck, so the deck has to be built to carry it.
+- An [outdoor kitchen](/services/outdoor-kitchens) needs gas, water, drain and power reaching it.
+- A [pergola](/services/pergola-builders) needs footings where its posts land, which means knowing now where the posts land.
+- A [screen enclosure](/services/pool-screen-enclosures) anchors into the deck, so the deck has to be built to carry it.
 - Landscape lighting and irrigation both need a route under the deck rather than across it.
 
 None of that commits you to building any of them. It commits you to knowing where they would go. Where each one should sit is a planning question, handled in [the pre-excavation list](/blogs/before-you-build-a-pool-in-florida); what belongs in the trench on the day it is open is this one.
@@ -167,7 +167,7 @@ The deck is poured late, which makes it feel like a late decision. It is not one
 
 Our estimator prices decking at $12 per square foot for concrete, $22 for pavers and $35 for travertine. On a 600-square-foot deck that is $7,200, $13,200 and $21,000 — a spread of $13,800 on the item most likely to be skimmed at the end of a long meeting. Size matters as much as surface, because permitting is calculated on the whole: our estimator prices permits at 9% of the pool plus the deck. Enlarging a deck afterwards is demolition, a second pour and a second permit on top.
 
-A raised or structural deck is a different build again — that is [custom deck construction](/services/custom-deck-builders-in-north-south-florida), not paving around a pool.
+A raised or structural deck is a different build again — that is [custom deck construction](/services/deck-builders), not paving around a pool.
 
 ### 10. Interior finish
 
@@ -198,4 +198,4 @@ The figures above are the ones behind the site's [pool cost estimator](/pool-cos
 
 Add the upgrades into that band before the meeting rather than after it. Pool budgets rarely fail on one expensive item. They fail on four reasonable ones agreed after the number was already fixed.
 
-When the list is ready to become a scope, [our custom pool and spa construction](/services/custom-pool-spa-builders-in-north-south-florida) page sets out how the build is staged, and a [project estimate](/request-estimated) starts with a site visit rather than a number.
+When the list is ready to become a scope, [our custom pool and spa construction](/services/pool-builders) page sets out how the build is staged, and a [project estimate](/request-estimated) starts with a site visit rather than a number.

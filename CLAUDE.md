@@ -27,6 +27,7 @@ Hay 15. Miden más y mejor que mirar capturas, headless y sin gastar contexto:
 ```bash
 npm run check:tokens                       # estática, <1 s, córrela siempre
 npm run check:rutas && npm run check:enlaces && npm run check:seo
+npm run check:redirects                    # estática: 76 URLs migradas, 308 directos, sitemap/canónicas/miga
 node scripts/check-texto.mjs  <subcadena>  # acotada por ruta
 node scripts/check-visual.mjs <subcadena>  # 35-60 s por ruta × 4 anchos
 ```

@@ -161,4 +161,4 @@ If the list comes back mixed, the area beyond the line is real, and something wi
 
 If the list comes back all rain, or the line sits past where you were planning to build, you have just saved yourself the most expensive kind of mistake in this category: the one that works exactly as advertised and still does not get used.
 
-Our [motorized louvered roof systems](/services/motorized-louvered-roof-systems-in-north-south-florida) page shows how the structures are built and anchored, [the gallery](/gallery) has finished ones in real North and South Florida backyards, and a [project estimate](/request-estimated) starts with walking that shade line with you rather than with a number over the phone.
+Our [motorized louvered roof systems](/services/louvered-roofs) page shows how the structures are built and anchored, [the gallery](/gallery) has finished ones in real North and South Florida backyards, and a [project estimate](/request-estimated) starts with walking that shade line with you rather than with a number over the phone.

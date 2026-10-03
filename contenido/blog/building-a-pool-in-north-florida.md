@@ -66,7 +66,7 @@
 }
 ---
 
-Building a pool in [Gainesville](/pool-builders/gainesville-florida) or [Ocala](/pool-builders/ocala-florida) is the same project as building one in Fort Lauderdale for most of its length. The parts that differ are the parts that move money and dates, and there are four: what is under the yard, where the fill water comes from, how many months the pool is warm enough to use, and which office reviews the permit.
+Building a pool in [Gainesville](/services/pool-builders/gainesville-fl) or [Ocala](/services/pool-builders/ocala-fl) is the same project as building one in Fort Lauderdale for most of its length. The parts that differ are the parts that move money and dates, and there are four: what is under the yard, where the fill water comes from, how many months the pool is warm enough to use, and which office reviews the permit.
 
 None of the four changes how a pool is designed. All four change what it costs and how long it takes, and all four are cheaper to settle before the contract than during the dig.
 
@@ -160,7 +160,7 @@ Live oaks are the usual complication. They are the reason the yard is worth buil
 
 Access itself is priced. Our estimator applies an 8 percent surcharge for difficult access, and what counts as difficult is specific: a gate too narrow for the machine, a slope that has to be built up, a septic field that cannot be crossed, a tree that cannot come out. On rural Marion County properties the pinch point is often further out — a long driveway, a fence line, or the reach a concrete pump needs to get to the back of the parcel.
 
-One thing that genuinely does get easier on a larger lot: the equipment pad and the future structures have room. If a [screen enclosure](/services/pool-screen-enclosures-for-north-south-florida-pools) is likely later — and under oak canopy, leaf load makes it more likely here than at the coast — its footings belong in the deck plan now.
+One thing that genuinely does get easier on a larger lot: the equipment pad and the future structures have room. If a [screen enclosure](/services/pool-screen-enclosures) is likely later — and under oak canopy, leaf load makes it more likely here than at the coast — its footings belong in the deck plan now.
 
 {{figura: bi-0735}}
 
@@ -183,4 +183,4 @@ So the North Florida difference is not a different pool and not a different pric
 
 A builder who answers those four quickly is a builder who has worked in this region. If the answers are vague, the questions in [how to choose a pool builder in Florida](/blogs/how-to-choose-a-pool-builder-in-florida) are the next thing to read.
 
-We build across this region — [Gainesville](/pool-builders/gainesville-florida) and [Ocala](/pool-builders/ocala-florida), [Alachua County](/country/custom-pool-builders-alachua-county-fl) and [Marion County](/country/custom-pool-builders-marion-county-fl), and the rest of [North Florida](/where-we-serve/north-florida). How our [custom pool and spa construction](/services/custom-pool-spa-builders-in-north-south-florida) is sequenced, from site review through permitting to startup, is on the service page, and a [project estimate](/request-estimated) starts with someone walking the yard — which, given everything above, is the only place it can start.
+We build across this region — [Gainesville](/services/pool-builders/gainesville-fl) and [Ocala](/services/pool-builders/ocala-fl), [Alachua County](/services/pool-builders/alachua-county-fl) and [Marion County](/services/pool-builders/marion-county-fl), and the rest of [North Florida](/where-we-serve/north-florida). How our [custom pool and spa construction](/services/pool-builders) is sequenced, from site review through permitting to startup, is on the service page, and a [project estimate](/request-estimated) starts with someone walking the yard — which, given everything above, is the only place it can start.

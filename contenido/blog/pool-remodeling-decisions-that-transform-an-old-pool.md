@@ -106,7 +106,7 @@ A heater is a purchase. Our estimator prices one at **$4,500**, and it can be bo
 
 A deck too hot to cross barefoot is not a deck, and a pool nobody walks to is not used. Deck material is priced per square foot in our [pool cost estimator](/pool-cost-estimator) and surface temperature varies with it, but the larger lever is what stands over the deck rather than what it is made of.
 
-Three scopes, all priced in the estimator: a **pergola at $8,500**, a **screen enclosure at $15,000**, a **motorized louvered roof at $18,000**. They do different jobs. A [pergola](/services/custom-aluminum-pergola-builders-in-north-south-florida) shades at a fixed angle, so where it sits decides which hours it is worth having. A [louvered roof](/services/motorized-louvered-roof-systems-in-north-south-florida) lets you change that angle and close it in rain. A [screen enclosure](/services/pool-screen-enclosures-for-north-south-florida-pools) changes insects and leaf load far more than it changes heat, which is a different problem that often gets solved with the wrong product.
+Three scopes, all priced in the estimator: a **pergola at $8,500**, a **screen enclosure at $15,000**, a **motorized louvered roof at $18,000**. They do different jobs. A [pergola](/services/pergola-builders) shades at a fixed angle, so where it sits decides which hours it is worth having. A [louvered roof](/services/louvered-roofs) lets you change that angle and close it in rain. A [screen enclosure](/services/pool-screen-enclosures) changes insects and leaf load far more than it changes heat, which is a different problem that often gets solved with the wrong product.
 
 The part worth doing before anyone draws anything: stand in the yard at four in the afternoon, in the month you use the pool most, and mark where the shadow of the house actually falls. Shade gets designed on plan at noon, because noon is the easiest geometry and the sun is overhead — and noon is not when anybody is out there. Anything standing over the deck also needs footings through the slab, which is why [the timing belongs with the rest of the scope](/blogs/what-to-upgrade-during-a-complete-pool-remodel).
 
@@ -121,7 +121,7 @@ Most old pools offer exactly two positions: swimming, or sitting on a lounger lo
 - **A wider, shallower entry step** in place of a ladder. This is the decision that determines whether a grandparent gets in at all, and it is almost never on anybody's list.
 - **A raised wall**, which is also the thing a spout or spillway has to be built into later.
 
-The deck half of the same question is width, not material. A uniform walkway around a pool has nowhere to put a table, because a table needs the depth of a chair pulled out plus a path to walk behind it. Measure the furniture you already own before anyone quotes a surface: pull a chair out from your indoor table, measure what it occupies, and mark that on the ground. Widening one side and narrowing another can cost the same square footage. What that does to the view is covered in [the changes you actually see](/blogs/before-and-after-pool-remodel-ideas); what it does to the slab and its drainage is [custom deck construction](/services/custom-deck-builders-in-north-south-florida).
+The deck half of the same question is width, not material. A uniform walkway around a pool has nowhere to put a table, because a table needs the depth of a chair pulled out plus a path to walk behind it. Measure the furniture you already own before anyone quotes a surface: pull a chair out from your indoor table, measure what it occupies, and mark that on the ground. Widening one side and narrowing another can cost the same square footage. What that does to the view is covered in [the changes you actually see](/blogs/before-and-after-pool-remodel-ideas); what it does to the slab and its drainage is [custom deck construction](/services/deck-builders).
 
 {{figura: bi-0617}}
 
@@ -143,7 +143,7 @@ The pad went where the plumbing run was shortest on the day the pool was built. 
 
 Noise is the consequence people notice: a pad you can hear from the deck is a pad you turn off in the evening, which is the half of the day you were hoping to get back. Service access is the consequence they notice later. A pad you cannot reach with a filter cartridge in both hands is a pad that gets serviced badly, and that shows up as equipment life rather than as an inconvenience.
 
-Decide it against three things: what it is audible from, what will screen it, and whether there is room to stand in front of it. The screening is the part that gets forgotten, because it belongs to a different trade — [landscaping](/services/professional-landscaping-services-in-north-south-florida) has to know where the pad ended up before anything gets planted in front of it.
+Decide it against three things: what it is audible from, what will screen it, and whether there is room to stand in front of it. The screening is the part that gets forgotten, because it belongs to a different trade — [landscaping](/services/landscaping) has to know where the pad ended up before anything gets planted in front of it.
 
 ### 6. Sanitizing, and who decides when the pool runs
 
@@ -167,7 +167,7 @@ Our estimator prices LED pool lights at **$450 each**. That number is not the in
 
 An older pool typically has one large fixture in the deep end aimed back at the house. It lights the water from one side, leaves the shallow end dark, and shines directly at whoever is sitting on the far deck. More fixtures and better aim fix all three. A pool fixture is not a lamp you screw in: the wall is formed around its housing and a conduit run back to power, which makes the count and the aiming a shell decision rather than an equipment one.
 
-The exception worth knowing is lighting mounted on the house itself, like [permanent soffit LED lighting](/services/smart-soffit-led-lighting-installation-in-north-south-florida), which is not trapped by the deck at all. That is a reason to decide it separately and later, not a reason to leave the yard dark.
+The exception worth knowing is lighting mounted on the house itself, like [permanent soffit LED lighting](/services/soffit-led-lighting), which is not trapped by the deck at all. That is a reason to decide it separately and later, not a reason to leave the yard dark.
 
 ### 9. The interior finish, and what you are buying with it
 
@@ -201,4 +201,4 @@ That last row surprises people. Permitting scales with scope rather than arrivin
 
 Two things sit outside this list. [What actually changes a remodel's scope](/blogs/how-much-does-a-pool-remodel-cost-in-florida) is where the arithmetic lives, and whether the existing shell is worth keeping at all is a decision taken before any of these nine, in [remodel or rebuild](/blogs/remodel-or-rebuild-your-pool). If you want to see how the nine land in finished work rather than in renderings, [our project gallery](/gallery) is built jobs.
 
-The way we scope a [complete pool remodel](/services/pool-remodeling-renovation-in-north-south-florida) follows the order above, starting from what the existing shell, deck and plumbing can carry. To turn a scope into a price, [request an estimate](/request-estimated) — and ask for the visit at the hour you would actually be out there.
+The way we scope a [complete pool remodel](/services/pool-remodeling) follows the order above, starting from what the existing shell, deck and plumbing can carry. To turn a scope into a price, [request an estimate](/request-estimated) — and ask for the visit at the hour you would actually be out there.

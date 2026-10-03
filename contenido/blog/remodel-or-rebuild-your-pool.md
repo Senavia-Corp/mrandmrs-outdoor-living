@@ -157,7 +157,7 @@ Our estimator prices decking at **$12 per square foot** in concrete, **$22** in 
 Two more items around the water change the arithmetic:
 
 - **The barrier.** Any work that opens the pool area affects the safety barrier, and it has to be in place and compliant when the job closes. Removable mesh fencing, a compliant gate, or an enclosure all count differently.
-- **The enclosure.** If a screen cage has to come apart to get an excavator into the back yard, that cost belongs to the rebuild path, not to the pool. An enclosure prices at **$15,000** in our estimator, which is what makes this a decision rather than a detail. [Pool screen enclosures](/services/pool-screen-enclosures-for-north-south-florida-pools) are worth planning in the same conversation if yours is near the end of its life anyway.
+- **The enclosure.** If a screen cage has to come apart to get an excavator into the back yard, that cost belongs to the rebuild path, not to the pool. An enclosure prices at **$15,000** in our estimator, which is what makes this a decision rather than a detail. [Pool screen enclosures](/services/pool-screen-enclosures) are worth planning in the same conversation if yours is near the end of its life anyway.
 
 ## What a rebuild actually costs, which is not the new-construction number
 
@@ -196,4 +196,4 @@ If the yard would genuinely be better without the pool, removing it is a real an
 
 Worked in that order, the decision is usually already settled by check 1 or check 2, and what was left to argue about turns out to be scope. That is the useful outcome: it moves the conversation from what the pool costs to what it needs.
 
-If you want to see how we run that inspection and what a scope looks like when it comes back, that is on the [pool remodeling and renovation](/services/pool-remodeling-renovation-in-north-south-florida) page. If the shell turns out to be finished, [custom pool and spa construction](/services/custom-pool-spa-builders-in-north-south-florida) is the other path, and a [project estimate](/request-estimated) starts with the site visit rather than a number.
+If you want to see how we run that inspection and what a scope looks like when it comes back, that is on the [pool remodeling and renovation](/services/pool-remodeling) page. If the shell turns out to be finished, [custom pool and spa construction](/services/pool-builders) is the other path, and a [project estimate](/request-estimated) starts with the site visit rather than a number.

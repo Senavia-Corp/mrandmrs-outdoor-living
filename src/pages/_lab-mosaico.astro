@@ -12,13 +12,13 @@
  *
  * El viejo embed WAAPI de country/ NO se muestra corriendo aqui: un <script> inyectado por
  * `set:html` no se ejecuta en el DOM (asi es innerHTML), asi que no serviria de nada
- * extraerlo. Para ver el efecto actual en vivo: /country/custom-pool-builders-marion-county-fl.
+ * extraerlo. Para ver el efecto actual en vivo: /services/pool-builders/marion-county-fl.
  */
 import fs from 'node:fs';
 import path from 'node:path';
 import Base from '../layouts/Base.astro';
 
-const DIST = path.join(process.cwd(), '.vercel/output/static/services/custom-deck-builders-in-north-south-florida/index.html');
+const DIST = path.join(process.cwd(), '.vercel/output/static/services/deck-builders.html');
 const html = fs.readFileSync(DIST, 'utf8');
 
 /** Corta una <section> con cierre equilibrado — igual que `_lab-obra.astro`. */
@@ -39,7 +39,7 @@ const CONFIANZA = seccion('trusted-section');
 
 <Base titulo="LAB mosaico" descripcion="laboratorio interno" conPie={false}>
   <div class="lab-hoja">
-    <p class="lab-cinta lab-cinta--hoy">HOY · las 71 rutas estáticas, sin tocar — extraído de /services/custom-deck-builders-in-north-south-florida</p>
+    <p class="lab-cinta lab-cinta--hoy">HOY · las 71 rutas estáticas, sin tocar — extraído de /services/deck-builders</p>
     <div class="lab" set:html={CONFIANZA} />
 
     <p class="lab-cinta">PROPUESTA · mismo marcado, con el bucle nuevo — entra en vista, corre en bucle, respeta prefers-reduced-motion</p>
@@ -48,7 +48,7 @@ const CONFIANZA = seccion('trusted-section');
     <p class="lab-nota">
       El efecto ACTUAL (WAAPI, 9 rutas de country/) no se puede reproducir aquí — un
       &lt;script&gt; inyectado con <code>set:html</code> no se ejecuta. Para verlo en vivo:
-      <a href="/country/custom-pool-builders-marion-county-fl">/country/custom-pool-builders-marion-county-fl</a>.
+      <a href="/services/pool-builders/marion-county-fl">/services/pool-builders/marion-county-fl</a>.
     </p>
   </div>
 </Base>

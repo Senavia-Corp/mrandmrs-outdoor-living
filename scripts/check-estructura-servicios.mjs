@@ -20,6 +20,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { JSDOM } from 'jsdom';
+import { esFicha } from './lib/renombradas.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const ESTATICO = path.join(RAIZ, '.vercel/output/static');
@@ -39,8 +40,8 @@ const ESPERADO = [
  *  derivasen de `antesDespues` en el JSON, la puerta daria por bueno cualquier sitio donde el
  *  generador la pusiera. */
 const VARIANTES = {
-  '/services/pool-remodeling-renovation-in-north-south-florida': { tras: 'services', va: 'before-after-section' },
-  '/services/custom-pool-spa-builders-in-north-south-florida': { tras: 'services', va: 'before-after-section' },
+  '/services/pool-remodeling': { tras: 'services', va: 'before-after-section' },
+  '/services/pool-builders': { tras: 'services', va: 'before-after-section' },
 };
 const esperadoDe = (ruta) => {
   const v = VARIANTES[ruta];
@@ -50,7 +51,7 @@ const esperadoDe = (ruta) => {
 };
 
 const RUTAS = Object.keys(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/captacion-servicios.json'), 'utf8')))
-  .filter((k) => k.startsWith('/services/'));
+  .filter(esFicha);   // las 14 fichas, no el silo /services/pool-builders/<x>
 
 const leer = (ruta) => {
   for (const p of [path.join(ESTATICO, ruta, 'index.html'), path.join(ESTATICO, `${ruta}.html`)]) {

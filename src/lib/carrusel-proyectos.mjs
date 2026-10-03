@@ -1,7 +1,7 @@
 /**
  * PARTIR UNA CADENA DERIVADA POR LA SECCION «Project Showcase».
  *
- * Lo usa `src/pages/pool-builders/[slug].astro` (x53). Alli el carrusel viaja DENTRO de
+ * Lo usa `src/pages/services/pool-builders/[slug].astro` (x53). Alli el carrusel viaja DENTRO de
  * `B[0]`, una cadena que sale de zipear `plantilla-pool-builders.json` con los campos de
  * Sanity, y para poner el componente en su sitio hay que abrir esa cadena en dos por donde
  * estaba la seccion.

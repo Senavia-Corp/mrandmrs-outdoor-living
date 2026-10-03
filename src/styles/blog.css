@@ -10,7 +10,7 @@
  *
  *     1   `/`                                    marcado en src/pages/index.astro
  *     9   `/country/custom-pool-builders-*`      DERIVADAS de scripts/build-paginas.mjs
- *    53   `/pool-builders/<slug>`                src/data/plantilla-pool-builders.json
+ *    53   `/services/pool-builders/<slug>`                src/data/plantilla-pool-builders.json
  *                                                servidas por pool-builders/[slug].astro
  *
  * El dia que alguien acote `home.css` a `/` —que es exactamente lo que su nombre invita

@@ -31,6 +31,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { JSDOM } from 'jsdom';
+import { renombra } from './lib/renombradas.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const man = JSON.parse(fs.readFileSync(path.join(RAIZ, '_source/assets-manifest.json'), 'utf8')).assets;
@@ -149,6 +150,12 @@ function limpiar(nodo) {
   // cada clic del nav se saldria al sitio viejo de Webflow.
   for (const a of nodo.querySelectorAll('a[href^="https://mrandmrsoutdoorliving.com"]')) {
     a.setAttribute('href', a.getAttribute('href').replace('https://mrandmrsoutdoorliving.com', '') || '/');
+  }
+  // Y las rutas RENOMBRADAS despues del scrape (lib/renombradas.mjs): el origen enlaza las
+  // viejas, y sin esto una regeneracion devolveria el nav y el pie a las URLs de antes.
+  for (const a of nodo.querySelectorAll('a[href]')) {
+    const h = a.getAttribute('href'); const r = renombra(h);
+    if (r !== h) { a.setAttribute('href', r); reapuntados.set('renombradas', (reapuntados.get('renombradas') ?? 0) + 1); }
   }
   /**
    * ENLACES DEL NAV QUE YA TIENEN PAGINA PROPIA. El origen manda «Financing» directo a

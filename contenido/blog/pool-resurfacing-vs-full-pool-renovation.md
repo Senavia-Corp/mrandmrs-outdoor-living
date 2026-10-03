@@ -167,4 +167,4 @@ Stand at the edge of your own pool and go through the five layers in order. Writ
 
 Then look at the sequence. A full renovation runs several trades in an order that cannot be rearranged, the same way a new build does — [how a pool project sequences from start to finish](/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish) is the closest map of that.
 
-When you want the shell assessed rather than guessed at, that is what the site visit is for: [pool remodeling and renovation](/services/pool-remodeling-renovation-in-north-south-florida) explains how ours runs, and a [project estimate](/request-estimated) starts there rather than with a number.
+When you want the shell assessed rather than guessed at, that is what the site visit is for: [pool remodeling and renovation](/services/pool-remodeling) explains how ours runs, and a [project estimate](/request-estimated) starts there rather than with a number.

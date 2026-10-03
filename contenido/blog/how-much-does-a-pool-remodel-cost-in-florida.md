@@ -180,7 +180,7 @@ Anything that needs the deck opened, the pad rebuilt or a crew in the backyard i
 | Motorized louvered roof | about $14,760 |
 | Outdoor kitchen | about $20,500 |
 
-The same structures added two years after the remodel cost their full new-build price, plus the cost of cutting into a deck you just paid to install. If a [screen enclosure](/services/pool-screen-enclosures-for-north-south-florida-pools) or an [outdoor kitchen](/services/custom-outdoor-kitchens-for-north-south-florida-homes) is on a someday list, the remodel is the someday.
+The same structures added two years after the remodel cost their full new-build price, plus the cost of cutting into a deck you just paid to install. If a [screen enclosure](/services/pool-screen-enclosures) or an [outdoor kitchen](/services/outdoor-kitchens) is on a someday list, the remodel is the someday.
 
 Which upgrades genuinely have to happen now and which are fine to defer is a separate sorting exercise, and [what to upgrade during a complete pool remodel](/blogs/what-to-upgrade-during-a-complete-pool-remodel) works through it item by item.
 
@@ -198,4 +198,4 @@ Decide the finished result first — deck size, deck material, interior finish, 
 
 Then run the same set of decisions through the [pool cost estimator](/pool-cost-estimator) with the project type set to remodel, and watch which one moves your number most. For most people it is the deck, and most people expect it to be the finish.
 
-When you have a scope you believe in, a site visit is what turns it into a price. Access, the condition of the shell and what the deck is actually bonded to all need to be looked at — see [complete pool remodeling and renovation](/services/pool-remodeling-renovation-in-north-south-florida) for how we run one, or [request an estimate](/request-estimated) to start with the walkthrough rather than a number.
+When you have a scope you believe in, a site visit is what turns it into a price. Access, the condition of the shell and what the deck is actually bonded to all need to be looked at — see [complete pool remodeling and renovation](/services/pool-remodeling) for how we run one, or [request an estimate](/request-estimated) to start with the walkthrough rather than a number.

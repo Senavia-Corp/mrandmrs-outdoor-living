@@ -122,7 +122,7 @@ The deciding questions are what you do under it and whether rain matters there. 
 
 ## Screens: rooms, enclosures and motorized screens
 
-Insect protection changes how much the space is used more than any finish does. The options are a fixed screen room or patio enclosure, a pool screen enclosure over the pool and deck, or motorized retractable screens that close a pergola or lanai on demand and disappear otherwise. A pool enclosure can also serve as the barrier that Florida's pool safety law requires. Our pages on [patio screen rooms](/services/patio-screen-rooms-enclosures-in-north-south-florida), [pool screen enclosures](/services/pool-screen-enclosures-for-north-south-florida-pools) and [motorized retractable screens](/services/motorized-retractable-screens-in-north-south-florida) explain each.
+Insect protection changes how much the space is used more than any finish does. The options are a fixed screen room or patio enclosure, a pool screen enclosure over the pool and deck, or motorized retractable screens that close a pergola or lanai on demand and disappear otherwise. A pool enclosure can also serve as the barrier that Florida's pool safety law requires. Our pages on [patio screen rooms](/services/patio-screen-rooms), [pool screen enclosures](/services/pool-screen-enclosures) and [motorized retractable screens](/services/retractable-screens) explain each.
 
 {{figura: patio-screen-enclosure-builders-contractors-north-south-florida-08}}
 
@@ -153,4 +153,4 @@ Plant away from the water's edge with species that do not drop into the pool, ke
 
 ## Bringing it together
 
-The backyards that work are designed as one project even when they are built in phases: the pool, the structures, the kitchen and the screens placed together so that footings miss plumbing, shade lands where people sit, and the utilities for phase three go in during phase one. If you want to see your own backyard planned that way, start with a project evaluation on our [custom pool construction](/services/custom-pool-spa-builders-in-north-south-florida) page, or with the [outdoor kitchen](/services/custom-outdoor-kitchens-for-north-south-florida-homes) and [aluminum pergola](/services/custom-aluminum-pergola-builders-in-north-south-florida) pages if the pool already exists.
+The backyards that work are designed as one project even when they are built in phases: the pool, the structures, the kitchen and the screens placed together so that footings miss plumbing, shade lands where people sit, and the utilities for phase three go in during phase one. If you want to see your own backyard planned that way, start with a project evaluation on our [custom pool construction](/services/pool-builders) page, or with the [outdoor kitchen](/services/outdoor-kitchens) and [aluminum pergola](/services/pergola-builders) pages if the pool already exists.

@@ -150,7 +150,7 @@ for (const [ancho, alto] of anchos) {
     /**
      * El asentado va en try/catch porque UNA ruta no puede matar la corrida.
      *
-     * Medido: `/pool-builders/gulf-stream-florida` a 1440 lanzó
+     * Medido: `/services/pool-builders/gulf-stream-fl` a 1440 lanzó
      * «Execution context was destroyed, most likely because of a navigation» dentro de la sonda
      * —la página navegó sola después de que `goto` diera por cargado— y se llevó por delante la
      * captura entera **en la ruta 44 de 115, del segundo de cuatro anchos**: 40 minutos de

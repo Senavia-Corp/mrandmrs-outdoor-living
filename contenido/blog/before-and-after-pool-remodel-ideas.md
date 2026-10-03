@@ -191,4 +191,4 @@ Ask for the design conversation in the order of this article rather than in the 
 
 Then ask for one thing at the end: a photograph from the spot you stand in most often — usually the patio door — and a sketch or render from that same spot. Not the drone view. If the design does not work from the doorway, it does not matter how it looks from forty feet up, because that is not where you will ever be standing.
 
-Our own scope on a [complete pool remodel](/services/pool-remodeling-renovation-in-north-south-florida) is organized the same way, and the [pool cost estimator](/pool-cost-estimator) uses the figures quoted throughout this article if you want to test a budget before anyone visits. A [project estimate](/request-estimated) starts in the yard, at the doorway, looking at the same view you do.
+Our own scope on a [complete pool remodel](/services/pool-remodeling) is organized the same way, and the [pool cost estimator](/pool-cost-estimator) uses the figures quoted throughout this article if you want to test a budget before anyone visits. A [project estimate](/request-estimated) starts in the yard, at the doorway, looking at the same view you do.

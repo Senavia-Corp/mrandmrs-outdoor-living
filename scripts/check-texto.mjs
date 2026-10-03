@@ -23,6 +23,7 @@ import http from 'node:http';
 import { chromium } from 'playwright';
 import { JSDOM } from 'jsdom';
 import { ARGS_NAVEGADOR, aSlug, asentar, textoNormalizado } from './lib/captura.mjs';
+import { origen, rutaCiudad, esFicha, esCiudad } from './lib/renombradas.mjs';
 import { lineasTarjetas, lineasBanda } from '../src/lib/galeria-categorias.mjs';
 import { OCULTAS, lineasFiltro } from '../src/lib/filtro-proyectos.mjs';
 
@@ -63,7 +64,7 @@ const capitalizaH2 = (t) => String(t).replace(/(^|[\s(-])(\p{Ll})/gu, (_, a, b) 
 
 const INTRO_CIUDAD = Object.entries(INTRO_ANTERIOR).flatMap(([slug, v]) => {
   const b = SEO_CIUDADES[slug]?.bloques ?? {};
-  const ruta = `/pool-builders/${slug}`;
+  const ruta = rutaCiudad(slug);
   const pares = [];
   if (b.headingIntro && v.headingIntro && b.headingIntro !== v.headingIntro) {
     pares.push([capitalizaH2(v.headingIntro), capitalizaH2(b.headingIntro),
@@ -94,7 +95,7 @@ const SANITY_CIUDADES = JSON.parse(
  * justo lo que se quiere de una declaracion.
  */
 const APOYOS_CIUDAD = SANITY_CIUDADES
-  .map((d) => [`/pool-builders/${d.slug}`, d])
+  .map((d) => [rutaCiudad(d.slug), d])
   .filter(([ruta]) => CAPTACION_JSON[ruta]?.heroe?.apoyo)
   .filter(([ruta, d]) => d.intro && d.intro !== CAPTACION_JSON[ruta].heroe.apoyo)
   .map(([ruta, d]) => [d.intro, CAPTACION_JSON[ruta].heroe.apoyo,
@@ -138,7 +139,7 @@ const PANELES_VIEJOS = [
     + 'architectural shade structures—fully integrated to create a cohesive, high-end outdoor environment.',
 ];
 const RUTAS_BANDA = [
-  ...SANITY_CIUDADES.map((d) => `/pool-builders/${d.slug}`),
+  ...SANITY_CIUDADES.map((d) => rutaCiudad(d.slug)),
   '/where-we-serve/north-florida',
   '/where-we-serve/south-florida',
 ];
@@ -179,7 +180,7 @@ const ESTATICO = path.join(RAIZ, '.vercel/output/static');
  * hay que medir durante el redisenio —y creerte que mides 1 mientras mides 115 son ~65 minutos
  * con la pantalla del usuario secuestrada. Con `=/` se mide solo la home.
  *
- *     node scripts/check-texto.mjs /services/ /pool-builders/     (subcadena, como siempre)
+ *     node scripts/check-texto.mjs /services/ /services/pool-builders/     (subcadena, como siempre)
  *     node scripts/check-texto.mjs '=/'                           (SOLO la home; las comillas hacen
  *                                                          falta: zsh expande `=/` solo)
  */
@@ -277,7 +278,7 @@ const TRADUCIDAS_A_PROPOSITO = [
   // innerText — la quinta vez que esto muerde en este repo.
   ['Luxury Pool Builders & Outdoor Living Contractors In Gainesville, Florida',
     'Custom Pool Builders In Gainesville, Florida',
-    'h1 de /pool-builders/gainesville-florida, landing de pago del grupo Gainesville'],
+    'h1 de /services/pool-builders/gainesville-fl, landing de pago del grupo Gainesville'],
   ['All In One - Custom Pools, Pergolas & Outdoor Kitchens Contractors For Your Backyard In Gainesville, Florida',
     'Custom Inground Pool Construction For Homes In Gainesville And Alachua County',
     'h2 del héroe de Gainesville: fuera pérgolas y cocinas de arriba del pliegue'],
@@ -299,11 +300,11 @@ const TRADUCIDAS_A_PROPOSITO = [
   ['As premier outdoor living contractors in Ocala, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value.',
     'We build the whole backyard, not just the pool. Our licensed crews handle custom inground pools and spas, aluminum pergolas and louvered roof systems, outdoor kitchens, custom decks and screen enclosures for Ocala homeowners — designed, permitted and built by one team. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value.',
     'párrafo de intro de Ocala: entra el alcance real del negocio',
-    ['/pool-builders/ocala-florida']],
+    ['/services/pool-builders/ocala-fl']],
   ['As premier outdoor living contractors in Gainesville, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value.',
     'We build the whole backyard, not just the pool. Our licensed crews handle custom inground pools and spas, aluminum pergolas and louvered roof systems, outdoor kitchens, custom decks and screen enclosures for Gainesville homeowners — designed, permitted and built by one team. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value.',
     'párrafo de intro de Gainesville: entra el alcance real del negocio',
-    ['/pool-builders/gainesville-florida']],
+    ['/services/pool-builders/gainesville-fl']],
   ['Licensed Pool Builders & Outdoor Living Contractors In Gainesville',
     'Pools, Pergolas & Outdoor Kitchens In Gainesville, Florida',
     'h2 de intro de Gainesville. R21 (Sebastian, 18-sep): vuelven pérgolas y cocinas, pero AQUÍ '
@@ -312,7 +313,7 @@ const TRADUCIDAS_A_PROPOSITO = [
     + 'viven. De paso deja de duplicar casi palabra por palabra el h1 de la página'],
   ['Luxury Pool Builders & Outdoor Living Contractors In Ocala, Florida',
     'Custom Pool Builders In Ocala, Florida',
-    'h1 de /pool-builders/ocala-florida, landing de pago del grupo Ocala'],
+    'h1 de /services/pool-builders/ocala-fl, landing de pago del grupo Ocala'],
   ['All In One - Custom Pools, Pergolas & Outdoor Kitchens Contractors For Your Backyard In Ocala, Florida',
     'Custom Inground Pool Construction For Homes In Ocala And Marion County',
     'h2 del héroe de Ocala: fuera pérgolas y cocinas de arriba del pliegue'],
@@ -360,25 +361,25 @@ const TRADUCIDAS_A_PROPOSITO = [
   ['Pool remodeling contractors serving North & South Florida, upgrading pools with modern finishes, energy-efficient systems, and lasting results.',
     'Complete pool remodeling for North Florida homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team. We also remodel across South Florida.',
     'apoyo del heroe de la landing «Full Remodel»: remodelacion completa, North Florida delante, '
-    + 'y el alcance en una frase', ['/services/pool-remodeling-renovation-in-north-south-florida']],
+    + 'y el alcance en una frase', ['/services/pool-remodeling']],
   ['Custom pool and spa builders serving North & South Florida, delivering high-quality construction and long-term outdoor value.',
     'New custom inground pools for North Florida homeowners — 3D design, permits, construction and final start-up, from one licensed team. We also build across South Florida.',
     'apoyo del heroe: resuelve QUE, DONDE, PARA QUIEN y QUE HACER AHORA, con North Florida '
     + 'delante. El anterior decia «North & South Florida» en la landing cuyo anuncio promete '
-    + 'North Florida', ['/services/custom-pool-spa-builders-in-north-south-florida']],
+    + 'North Florida', ['/services/pool-builders']],
   ['What Do We Do!', 'What We Do',
     'la errata del rotulo de la rejilla de subservicios: exclamacion por interrogacion. Se '
-    + 'corrige SOLO en la landing de pago; en las otras 13 fichas sigue igual', ['/services/custom-pool-spa-builders-in-north-south-florida']],
+    + 'corrige SOLO en la landing de pago; en las otras 13 fichas sigue igual', ['/services/pool-builders']],
   ['Custom pool redesigns engineered for Florida homes and code compliance.',
     'Custom pool design engineered for Florida homes and code compliance.',
     '«redesigns» en la PRIMERA tarjeta de una ficha cuyo h1 es «Custom Pool BUILDERS»: es la '
-    + 'intencion de la ficha hermana de remodelacion', ['/services/custom-pool-spa-builders-in-north-south-florida']],
+    + 'intencion de la ficha hermana de remodelacion', ['/services/pool-builders']],
   ['Plumbing and circulation upgrades for proper water flow and filtration.',
     'Plumbing and circulation built for proper water flow and filtration.',
-    '«upgrades» es lenguaje de remodelacion en una ficha de obra nueva', ['/services/custom-pool-spa-builders-in-north-south-florida']],
+    '«upgrades» es lenguaje de remodelacion en una ficha de obra nueva', ['/services/pool-builders']],
   ['Tile and coping upgrades that improve pool safety, durability, and modern design.',
     'Tile and coping that improve pool safety, durability, and modern design.',
-    'idem', ['/services/custom-pool-spa-builders-in-north-south-florida']],
+    'idem', ['/services/pool-builders']],
 ];
 
 /**
@@ -490,13 +491,12 @@ const INDICE_BLOG_ORDEN = (() => {
  * encontraria su `antes` y seria un no-op- pero deja en el fichero una entrada que no hace
  * nada, que es justo como se pudre una tabla de declaraciones.
  */
-const YA_DECLARADA = '/services/custom-pool-spa-builders-in-north-south-florida';
+const YA_DECLARADA = '/services/pool-builders';
 const ORDEN_SUBSERVICIOS = Object.entries(CAPTACION_JSON)
-  .filter(([ruta, c]) => ruta.startsWith('/services/') && ruta !== YA_DECLARADA
+  .filter(([ruta, c]) => esFicha(ruta) && ruta !== YA_DECLARADA
     && Array.isArray(c?.servicios?.detalle))
   .map(([ruta, c]) => {
-    const slug = ruta.slice('/services/'.length);
-    const f = path.join(RAIZ, `_source/vivo/services_${slug}.html`);
+    const f = path.join(RAIZ, `_source/vivo/${aSlug(origen(ruta))}.html`);   // el origen se nombra por la ruta VIEJA
     if (!fs.existsSync(f)) throw new Error(`check-texto: falta el origen de ${ruta}`);
     const sec = new JSDOM(fs.readFileSync(f, 'utf8')).window.document.querySelector('section.services');
     const limpia = (el) => (el?.textContent ?? '').replace(/\s+/g, ' ').trim();
@@ -561,7 +561,7 @@ const REORDENADAS_A_PROPOSITO = [
    * aparecen ya con su forma nueva: `reordena()` corre DESPUES de `traduce()`.
    */
   {
-    ruta: '/services/custom-pool-spa-builders-in-north-south-florida',
+    ruta: '/services/pool-builders',
     antes: [
       'Custom Pool Design & Engineering',
       'Custom pool design engineered for Florida homes and code compliance.',
@@ -609,7 +609,7 @@ const REORDENADAS_A_PROPOSITO = [
    * caracter 97 y la primera «North Florida» suelta en el 6053.
    */
   {
-    ruta: '/services/custom-pool-spa-builders-in-north-south-florida',
+    ruta: '/services/pool-builders',
     antes: [
       'South Florida',
       'Licensed luxury pool builders in South Florida specializing in custom inground pools and outdoor living design-build projects, engineered, permitted, and built for high-end residential properties.',
@@ -660,7 +660,7 @@ const reordena = (ruta, lineas) => {
 /** Las 14 fichas de `/services/`. Explicito, y NO `CAPTACION_JSON[ruta]`: ese mapa trae TAMBIEN
  *  las 53 ciudades, asi que como guarda de «solo las fichas» siempre fue PRESTADA — funcionaba
  *  porque las anclas no existen en las ciudades, no porque la guarda lo dijera. */
-const ES_FICHA = (r) => /^\/services\//.test(r);
+const ES_FICHA = esFicha;   // un solo tramo: /services/pool-builders/ocala-fl NO es una ficha
 
 /**
  * LA GALERIA SUBE DELANTE DE LA REJILLA DE SUBSERVICIOS — derivado (Sebastian, 21-sep-2026).
@@ -869,7 +869,7 @@ const bajaResenas = (ruta, lineas) => {
  * Si algo de eso falla no se toca nada y la puerta se pone roja por su cuenta, que es lo
  * correcto: un reorden que no se puede demostrar no se perdona.
  */
-const ES_CIUDAD = (r) => /^\/pool-builders\/[a-z0-9-]+$/.test(r);
+const ES_CIUDAD = esCiudad;   // /services/pool-builders/<x>-fl que no es condado
 
 const subeResenasCiudad = (ruta, lineas) => {
   if (!ES_CIUDAD(ruta)) return lineas;
@@ -1015,7 +1015,7 @@ const LINEAS_ANADIDAS = [
      *
      * Esta puerta NO se habia corrido entera nunca: el ultimo cierre solo midio una muestra de
      * 4 rutas y dejo el resto «sin medir». Al correrla completa salen **56 paginas rojas**, las
-     * 53 de /pool-builders/, las 2 de /where-we-serve/ y la home, todas con el mismo sintoma:
+     * 53 de /services/pool-builders/, las 2 de /where-we-serve/ y la home, todas con el mismo sintoma:
      * «faltan 0 lineas, sobran 0» + «linea 13 (o 16): orden cambiado».
      *
      * Diagnosticado comparando linea a linea contra `baseline/text/`: el heroe del rediseño
@@ -1025,7 +1025,7 @@ const LINEAS_ANADIDAS = [
      * porque hay una linea nueva insertada en medio y todo lo de debajo baja un puesto.
      *
      * MEDIDO QUE ES ANTERIOR A ESTA AUDITORIA: se construyo el estado previo (33baf7e) en un
-     * worktree aparte y /pool-builders/ocala-florida, /where-we-serve/north-florida y / salen
+     * worktree aparte y /services/pool-builders/ocala-fl, /where-we-serve/north-florida y / salen
      * rojas exactamente igual. No lo introduce ningun cambio de esta sesion.
      *
      * Se declara, no se perdona: se quita EXACTAMENTE esa linea y solo cuando va detras de
@@ -1038,59 +1038,59 @@ const LINEAS_ANADIDAS = [
      */
     rutas: [
       '/',
-      '/pool-builders/alachua-florida',
-      '/pool-builders/archer-florida',
-      '/pool-builders/atlantis-florida',
-      '/pool-builders/beach-florida',
-      '/pool-builders/boca-raton-florida',
-      '/pool-builders/boynton-beach-florida',
-      '/pool-builders/cedar-key-florida',
-      '/pool-builders/chiefland-florida',
-      '/pool-builders/cross-city-florida',
-      '/pool-builders/dania-beach-florida',
-      '/pool-builders/davie-florida',
-      '/pool-builders/deerfield-beach-florida',
-      '/pool-builders/delray-beach-florida',
-      '/pool-builders/fanning-springs-florida',
-      '/pool-builders/fort-lauderdale-florida',
-      '/pool-builders/gainesville-florida',
-      '/pool-builders/gulf-stream-florida',
-      '/pool-builders/hallandale-beach-florida',
-      '/pool-builders/hawthorne-florida',
-      '/pool-builders/high-springs-florida',
-      '/pool-builders/hollywood-florida',
-      '/pool-builders/hypoluxo-florida',
-      '/pool-builders/juno-beach-florida',
-      '/pool-builders/jupiter-florida',
-      '/pool-builders/lake-city-florida',
-      '/pool-builders/lighthouse-point-florida',
-      '/pool-builders/manalapan-florida',
-      '/pool-builders/mcintosh-florida',
-      '/pool-builders/micanopy-florida',
-      '/pool-builders/miramar-florida',
-      '/pool-builders/newberry-florida',
-      '/pool-builders/north-palm-beach-florida',
-      '/pool-builders/ocala-florida',
-      '/pool-builders/ocean-ridge-florida',
-      '/pool-builders/old-town-florida',
-      '/pool-builders/palatka-florida',
-      '/pool-builders/palm-beach-gardens-florida',
-      '/pool-builders/parkland-florida',
-      '/pool-builders/pembroke-pines-florida',
-      '/pool-builders/plantation-florida',
-      '/pool-builders/pompano-beach-florida',
-      '/pool-builders/reddick-florida',
-      '/pool-builders/royal-palm-beach-florida',
-      '/pool-builders/south-palm-beach-florida',
-      '/pool-builders/southwest-ranches-florida',
-      '/pool-builders/tequesta-florida',
-      '/pool-builders/trenton-florida',
-      '/pool-builders/waldo-florida',
-      '/pool-builders/wellington-florida',
-      '/pool-builders/west-palm-beach-florida',
-      '/pool-builders/weston-florida',
-      '/pool-builders/williston-florida',
-      '/pool-builders/wilton-manors-florida',
+      '/services/pool-builders/alachua-fl',
+      '/services/pool-builders/archer-fl',
+      '/services/pool-builders/atlantis-fl',
+      '/services/pool-builders/hillsboro-beach-fl',
+      '/services/pool-builders/boca-raton-fl',
+      '/services/pool-builders/boynton-beach-fl',
+      '/services/pool-builders/cedar-key-fl',
+      '/services/pool-builders/chiefland-fl',
+      '/services/pool-builders/cross-city-fl',
+      '/services/pool-builders/dania-beach-fl',
+      '/services/pool-builders/davie-fl',
+      '/services/pool-builders/deerfield-beach-fl',
+      '/services/pool-builders/delray-beach-fl',
+      '/services/pool-builders/fanning-springs-fl',
+      '/services/pool-builders/fort-lauderdale-fl',
+      '/services/pool-builders/gainesville-fl',
+      '/services/pool-builders/gulf-stream-fl',
+      '/services/pool-builders/hallandale-beach-fl',
+      '/services/pool-builders/hawthorne-fl',
+      '/services/pool-builders/high-springs-fl',
+      '/services/pool-builders/hollywood-fl',
+      '/services/pool-builders/hypoluxo-fl',
+      '/services/pool-builders/juno-beach-fl',
+      '/services/pool-builders/jupiter-fl',
+      '/services/pool-builders/lake-city-fl',
+      '/services/pool-builders/lighthouse-point-fl',
+      '/services/pool-builders/manalapan-fl',
+      '/services/pool-builders/mcintosh-fl',
+      '/services/pool-builders/micanopy-fl',
+      '/services/pool-builders/miramar-fl',
+      '/services/pool-builders/newberry-fl',
+      '/services/pool-builders/north-palm-beach-fl',
+      '/services/pool-builders/ocala-fl',
+      '/services/pool-builders/ocean-ridge-fl',
+      '/services/pool-builders/old-town-fl',
+      '/services/pool-builders/palatka-fl',
+      '/services/pool-builders/palm-beach-gardens-fl',
+      '/services/pool-builders/parkland-fl',
+      '/services/pool-builders/pembroke-pines-fl',
+      '/services/pool-builders/plantation-fl',
+      '/services/pool-builders/pompano-beach-fl',
+      '/services/pool-builders/reddick-fl',
+      '/services/pool-builders/royal-palm-beach-fl',
+      '/services/pool-builders/south-palm-beach-fl',
+      '/services/pool-builders/southwest-ranches-fl',
+      '/services/pool-builders/tequesta-fl',
+      '/services/pool-builders/trenton-fl',
+      '/services/pool-builders/waldo-fl',
+      '/services/pool-builders/wellington-fl',
+      '/services/pool-builders/west-palm-beach-fl',
+      '/services/pool-builders/weston-fl',
+      '/services/pool-builders/williston-fl',
+      '/services/pool-builders/wilton-manors-fl',
       '/where-we-serve/north-florida',
       '/where-we-serve/south-florida',
     ],
@@ -1127,7 +1127,7 @@ const LINEAS_ANADIDAS = [
      * Se escribe con la forma que RENDERIZA: el JSON dice «Get a Free Estimate» y
      * `webflow.css` pone `text-transform: capitalize` en `.button`, que SI altera `innerText`.
      */
-    rutas: ['/services/custom-pool-spa-builders-in-north-south-florida'],
+    rutas: ['/services/pool-builders'],
     tras: ['Pool deck remodeling using pavers or concrete for safety and durability.'],
     lineas: ['Get A Free Estimate'],
     motivo: 'R17-CORE: la rejilla de subservicios de la landing de pago cierra con un CTA '
@@ -1174,7 +1174,7 @@ const LINEAS_ANADIDAS = [
    * EN EL NAVEGADOR sobre el HTML construido, no deducido: es la sexta vez que esto muerde.
    */
   {
-    rutas: ['/services/custom-pool-spa-builders-in-north-south-florida'],
+    rutas: ['/services/pool-builders'],
     tras: ['We design and build custom inground pools, spas, and hardscapes for discerning '
       + 'homeowners across North and South Florida.'],
     lineas: [
@@ -1186,7 +1186,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de la fila 1 (diseno e ingenieria).',
   },
   {
-    rutas: ['/services/custom-pool-spa-builders-in-north-south-florida'],
+    rutas: ['/services/pool-builders'],
     tras: ['Custom pool design engineered for Florida homes and code compliance.'],
     lineas: [
       'Plumbing, Equipment, Automation',
@@ -1197,7 +1197,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de la fila 2 (hidraulica y automatizacion).',
   },
   {
-    rutas: ['/services/custom-pool-spa-builders-in-north-south-florida'],
+    rutas: ['/services/pool-builders'],
     tras: ['Modern pumps, filters, heaters, and automation systems for efficient pool use.'],
     lineas: [
       'Finishes, Tile & Coping',
@@ -1208,7 +1208,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de la fila 3 (acabados, gresite y remate).',
   },
   {
-    rutas: ['/services/custom-pool-spa-builders-in-north-south-florida'],
+    rutas: ['/services/pool-builders'],
     tras: ['Tile and coping that improve pool safety, durability, and modern design.'],
     lineas: [
       'Remodeling & Spa Additions',
@@ -1234,9 +1234,9 @@ const LINEAS_ANADIDAS = [
    * en el navegador: ninguno cambia al renderizar. Estan escritos sin conjunciones ni
    * articulos en minuscula precisamente para eso.
    */
-  // /services/pool-remodeling-renovation-in-north-south-florida
+  // /services/pool-remodeling
   {
-    rutas: ['/services/pool-remodeling-renovation-in-north-south-florida'],
+    rutas: ['/services/pool-remodeling'],
     tras: ['We remodel and renovate pools across North & South Florida, upgrading finishes, '
         + 'equipment, and features for safety and efficiency.'],
     lineas: [
@@ -1249,7 +1249,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/pool-remodeling-renovation-in-north-south-florida'],
+    rutas: ['/services/pool-remodeling'],
     tras: ['Professional pool repairs addressing cracks, leaks, and structural issues for '
         + 'lasting performance.'],
     lineas: [
@@ -1262,7 +1262,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/pool-remodeling-renovation-in-north-south-florida'],
+    rutas: ['/services/pool-remodeling'],
     tras: ['Tile and coping upgrades that enhance pool safety, aesthetics, and long-term '
         + 'structural protection.'],
     lineas: [
@@ -1275,7 +1275,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/pool-remodeling-renovation-in-north-south-florida'],
+    rutas: ['/services/pool-remodeling'],
     tras: ['Energy-efficient LED pool lighting designed to enhance visibility, ambiance, and '
         + 'nighttime safety.'],
     lineas: [
@@ -1287,9 +1287,9 @@ const LINEAS_ANADIDAS = [
     ],
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
-  // /services/motorized-retractable-screens-in-north-south-florida
+  // /services/retractable-screens
   {
-    rutas: ['/services/motorized-retractable-screens-in-north-south-florida'],
+    rutas: ['/services/retractable-screens'],
     tras: ['We install motorized MaestroShield retractable screens for North and South Florida '
         + 'estates with smart automation and UV-blocking fabrics.'],
     lineas: [
@@ -1303,7 +1303,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/motorized-retractable-screens-in-north-south-florida'],
+    rutas: ['/services/retractable-screens'],
     tras: ['Installers integrate remote controls or smart devices to operate retractable '
         + 'screens seamlessly.'],
     lineas: [
@@ -1316,7 +1316,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/motorized-retractable-screens-in-north-south-florida'],
+    rutas: ['/services/retractable-screens'],
     tras: ['Builders install retractable screens for garages to improve airflow and keep '
         + 'insects out.'],
     lineas: [
@@ -1329,7 +1329,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/motorized-retractable-screens-in-north-south-florida'],
+    rutas: ['/services/retractable-screens'],
     tras: ['Renovation experts replace screen mesh with upgraded, durable fabrics for improved '
         + 'visibility and protection.'],
     lineas: [
@@ -1341,9 +1341,9 @@ const LINEAS_ANADIDAS = [
     ],
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
-  // /services/premium-outdoor-furniture-for-north-south-florida-homes
+  // /services/outdoor-furniture
   {
-    rutas: ['/services/premium-outdoor-furniture-for-north-south-florida-homes'],
+    rutas: ['/services/outdoor-furniture'],
     tras: ['We curate and install premium outdoor furniture in teak, aluminum, and wicker for '
         + 'North and South Florida homes and estates.'],
     lineas: [
@@ -1356,7 +1356,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/premium-outdoor-furniture-for-north-south-florida-homes'],
+    rutas: ['/services/outdoor-furniture'],
     tras: ['Installers create modular seating arrangements to maximize patio space and flexibility'],
     lineas: [
       'Teak, Hardwood & Aluminum',
@@ -1368,7 +1368,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/premium-outdoor-furniture-for-north-south-florida-homes'],
+    rutas: ['/services/outdoor-furniture'],
     tras: ['Contractors install lightweight, rust‑resistant aluminum furniture for '
         + 'long‑lasting outdoor use.'],
     lineas: [
@@ -1381,7 +1381,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/premium-outdoor-furniture-for-north-south-florida-homes'],
+    rutas: ['/services/outdoor-furniture'],
     tras: ['Designers recommend eco‑friendly materials and accessories for environmentally '
         + 'conscious homeowners'],
     lineas: [
@@ -1393,9 +1393,9 @@ const LINEAS_ANADIDAS = [
     ],
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
-  // /services/custom-deck-builders-in-north-south-florida
+  // /services/deck-builders
   {
-    rutas: ['/services/custom-deck-builders-in-north-south-florida'],
+    rutas: ['/services/deck-builders'],
     tras: ['Our team designs and builds composite and wood decks across North & South Florida, '
         + 'combining durability with modern outdoor style.'],
     lineas: [
@@ -1408,7 +1408,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/custom-deck-builders-in-north-south-florida'],
+    rutas: ['/services/deck-builders'],
     tras: ['Contractors build pressure‑treated pine decks, sealing and staining for natural beauty'],
     lineas: [
       'Multi-Level & Rooftop Decks',
@@ -1421,7 +1421,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/custom-deck-builders-in-north-south-florida'],
+    rutas: ['/services/deck-builders'],
     tras: ['Contractors build rooftop decks that maximize outdoor space with privacy and '
         + 'scenic views'],
     lineas: [
@@ -1434,7 +1434,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/custom-deck-builders-in-north-south-florida'],
+    rutas: ['/services/deck-builders'],
     tras: ['Builders install wood, metal, cable, or glass railings to enhance safety and style'],
     lineas: [
       'Lighting, Remodels & Expansions',
@@ -1445,9 +1445,9 @@ const LINEAS_ANADIDAS = [
     ],
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
-  // /services/professional-landscaping-services-in-north-south-florida
+  // /services/landscaping
   {
-    rutas: ['/services/professional-landscaping-services-in-north-south-florida'],
+    rutas: ['/services/landscaping'],
     tras: ['We provide full-service landscaping in North & South Florida, using native plants '
         + 'and sustainable designs to enhance curb appeal.'],
     lineas: [
@@ -1460,7 +1460,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/professional-landscaping-services-in-north-south-florida'],
+    rutas: ['/services/landscaping'],
     tras: ['Designers incorporate native plants, xeriscaping, and rain gardens for '
         + 'eco‑friendly, low‑maintenance yards'],
     lineas: [
@@ -1473,7 +1473,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/professional-landscaping-services-in-north-south-florida'],
+    rutas: ['/services/landscaping'],
     tras: ['Landscape teams apply mulch and define edges to retain moisture and polish planting beds'],
     lineas: [
       'Pavers, Patios & Walkways',
@@ -1485,7 +1485,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/professional-landscaping-services-in-north-south-florida'],
+    rutas: ['/services/landscaping'],
     tras: ['Builders install paver patios, walkways, and retaining walls to enhance outdoor '
         + 'living spaces'],
     lineas: [
@@ -1497,9 +1497,9 @@ const LINEAS_ANADIDAS = [
     ],
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
-  // /services/pool-screen-enclosures-for-north-south-florida-pools
+  // /services/pool-screen-enclosures
   {
-    rutas: ['/services/pool-screen-enclosures-for-north-south-florida-pools'],
+    rutas: ['/services/pool-screen-enclosures'],
     tras: ['We build pool screen enclosures in North & South Florida, protecting pools from '
         + 'debris, insects, and harsh sun exposure.'],
     lineas: [
@@ -1512,7 +1512,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/pool-screen-enclosures-for-north-south-florida-pools'],
+    rutas: ['/services/pool-screen-enclosures'],
     tras: ['Licensed contractors design and construct pool screen enclosures that blend with '
         + 'residential architecture'],
     lineas: [
@@ -1525,7 +1525,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/pool-screen-enclosures-for-north-south-florida-pools'],
+    rutas: ['/services/pool-screen-enclosures'],
     tras: ['Contractors convert patios into enclosed screen rooms, creating multi‑use outdoor '
         + 'spaces.'],
     lineas: [
@@ -1538,7 +1538,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/pool-screen-enclosures-for-north-south-florida-pools'],
+    rutas: ['/services/pool-screen-enclosures'],
     tras: ['Professionals handle permits and engineering for pool cage installations and '
         + 'renovations.'],
     lineas: [
@@ -1550,9 +1550,9 @@ const LINEAS_ANADIDAS = [
     ],
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
-  // /services/patio-screen-rooms-enclosures-in-north-south-florida
+  // /services/patio-screen-rooms
   {
-    rutas: ['/services/patio-screen-rooms-enclosures-in-north-south-florida'],
+    rutas: ['/services/patio-screen-rooms'],
     tras: ['We install custom patio screen rooms in North & South Florida using aluminum '
         + 'frames and fine mesh for comfort and airflow.'],
     lineas: [
@@ -1565,7 +1565,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/patio-screen-rooms-enclosures-in-north-south-florida'],
+    rutas: ['/services/patio-screen-rooms'],
     tras: ['Licensed pros offer free consultations and custom designs for patio screen room projects'],
     lineas: [
       'Insulated & Screen Roofs',
@@ -1577,7 +1577,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/patio-screen-rooms-enclosures-in-north-south-florida'],
+    rutas: ['/services/patio-screen-rooms'],
     tras: ['Contractors install cost‑effective, non‑insulated patio roofs that still offer '
         + 'bug‑free outdoor living'],
     lineas: [
@@ -1590,7 +1590,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/patio-screen-rooms-enclosures-in-north-south-florida'],
+    rutas: ['/services/patio-screen-rooms'],
     tras: ['Contractors tie screen rooms into existing structures and match the home’s '
         + 'architectural style'],
     lineas: [
@@ -1602,9 +1602,9 @@ const LINEAS_ANADIDAS = [
     ],
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
-  // /services/motorized-louvered-roof-systems-in-north-south-florida
+  // /services/louvered-roofs
   {
-    rutas: ['/services/motorized-louvered-roof-systems-in-north-south-florida'],
+    rutas: ['/services/louvered-roofs'],
     tras: ['We design and install motorized louvered roof systems in North & South Florida, '
         + 'offering adjustable shade and rain protection year-round.'],
     lineas: [
@@ -1617,7 +1617,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/motorized-louvered-roof-systems-in-north-south-florida'],
+    rutas: ['/services/louvered-roofs'],
     tras: ['Builders construct manual louvered roofs that tilt for sun control and ventilation'],
     lineas: [
       'Automation, Lighting, Fans',
@@ -1629,7 +1629,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/motorized-louvered-roof-systems-in-north-south-florida'],
+    rutas: ['/services/louvered-roofs'],
     tras: ['Contractors integrate LED lights, ceiling fans, and privacy screens into louvered '
         + 'roof systems'],
     lineas: [
@@ -1642,7 +1642,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/motorized-louvered-roof-systems-in-north-south-florida'],
+    rutas: ['/services/louvered-roofs'],
     tras: ['Professionals handle HOA approvals and city permits for louvered roof construction'],
     lineas: [
       'Ongoing Service & Repairs',
@@ -1653,9 +1653,9 @@ const LINEAS_ANADIDAS = [
     ],
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
-  // /services/custom-outdoor-kitchens-for-north-south-florida-homes
+  // /services/outdoor-kitchens
   {
-    rutas: ['/services/custom-outdoor-kitchens-for-north-south-florida-homes'],
+    rutas: ['/services/outdoor-kitchens'],
     tras: ['We design and construct custom outdoor kitchens in North & South Florida, '
         + 'integrating durable finishes and modern cooking appliances.'],
     lineas: [
@@ -1668,7 +1668,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/custom-outdoor-kitchens-for-north-south-florida-homes'],
+    rutas: ['/services/outdoor-kitchens'],
     tras: ['Contractors install prefabricated outdoor kitchen modules for quick, '
         + 'cost‑effective setups.'],
     lineas: [
@@ -1681,7 +1681,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/custom-outdoor-kitchens-for-north-south-florida-homes'],
+    rutas: ['/services/outdoor-kitchens'],
     tras: ['Builders install wood‑fired or gas pizza ovens, adding artisan cooking options to '
         + 'outdoor kitchens'],
     lineas: [
@@ -1694,7 +1694,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/custom-outdoor-kitchens-for-north-south-florida-homes'],
+    rutas: ['/services/outdoor-kitchens'],
     tras: ['Renovation experts upgrade existing outdoor kitchens with new finishes, '
         + 'appliances, and layouts'],
     lineas: [
@@ -1706,9 +1706,9 @@ const LINEAS_ANADIDAS = [
     ],
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
-  // /services/smart-irrigation-system-installation-in-north-south-florida
+  // /services/irrigation-systems
   {
-    rutas: ['/services/smart-irrigation-system-installation-in-north-south-florida'],
+    rutas: ['/services/irrigation-systems'],
     tras: ['We install smart irrigation systems in North & South Florida, optimizing water '
         + 'usage with automated schedules tailored to your landscape.'],
     lineas: [
@@ -1721,7 +1721,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/smart-irrigation-system-installation-in-north-south-florida'],
+    rutas: ['/services/irrigation-systems'],
     tras: ['Contractors retrofit systems with soil moisture sensors and rain sensors to '
         + 'optimize watering'],
     lineas: [
@@ -1734,7 +1734,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/smart-irrigation-system-installation-in-north-south-florida'],
+    rutas: ['/services/irrigation-systems'],
     tras: ['Installers design drip systems that deliver water directly to roots, saving up to '
         + '90% efficiency'],
     lineas: [
@@ -1747,7 +1747,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/smart-irrigation-system-installation-in-north-south-florida'],
+    rutas: ['/services/irrigation-systems'],
     tras: ['North Florida experts reroute irrigation lines around new pools or hardscapes to '
         + 'maintain even coverage'],
     lineas: [
@@ -1759,9 +1759,9 @@ const LINEAS_ANADIDAS = [
     ],
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
-  // /services/steel-building-pole-barn-construction-in-north-south-florida
+  // /services/steel-buildings-pole-barns
   {
-    rutas: ['/services/steel-building-pole-barn-construction-in-north-south-florida'],
+    rutas: ['/services/steel-buildings-pole-barns'],
     tras: ['We construct steel buildings and pole barns in North & South Florida, engineered '
         + 'for hurricane resistance and long-term durability.'],
     lineas: [
@@ -1774,7 +1774,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/steel-building-pole-barn-construction-in-north-south-florida'],
+    rutas: ['/services/steel-buildings-pole-barns'],
     tras: ['Contractors construct metal barns for horses and livestock, using durable, '
         + 'pest‑resistant materials.'],
     lineas: [
@@ -1787,7 +1787,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/steel-building-pole-barn-construction-in-north-south-florida'],
+    rutas: ['/services/steel-buildings-pole-barns'],
     tras: ['South Florida builders design custom steel workshops and storage buildings with '
         + 'energy‑efficient insulation.'],
     lineas: [
@@ -1800,7 +1800,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/steel-building-pole-barn-construction-in-north-south-florida'],
+    rutas: ['/services/steel-buildings-pole-barns'],
     tras: ['Builders install hurricane‑rated steel buildings engineered to handle heavy winds '
         + 'and rain.'],
     lineas: [
@@ -1812,9 +1812,9 @@ const LINEAS_ANADIDAS = [
     ],
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
-  // /services/smart-soffit-led-lighting-installation-in-north-south-florida
+  // /services/soffit-led-lighting
   {
-    rutas: ['/services/smart-soffit-led-lighting-installation-in-north-south-florida'],
+    rutas: ['/services/soffit-led-lighting'],
     tras: ['We install smart soffit and LED lighting systems in North & South Florida, '
         + 'boosting curb appeal, security, and energy efficiency.'],
     lineas: [
@@ -1827,7 +1827,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/smart-soffit-led-lighting-installation-in-north-south-florida'],
+    rutas: ['/services/soffit-led-lighting'],
     tras: ['Custom installers conceal wiring in color‑matched aluminum channels for a sleek '
         + 'residential finish.'],
     lineas: [
@@ -1840,7 +1840,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/smart-soffit-led-lighting-installation-in-north-south-florida'],
+    rutas: ['/services/soffit-led-lighting'],
     tras: ['South Florida installers retrofit existing soffit lighting with energy‑efficient '
         + 'LED technology.'],
     lineas: [
@@ -1853,7 +1853,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/smart-soffit-led-lighting-installation-in-north-south-florida'],
+    rutas: ['/services/soffit-led-lighting'],
     tras: ['Builders install LED systems offering millions of colors and patterns for '
         + 'personalized illumination.'],
     lineas: [
@@ -1865,9 +1865,9 @@ const LINEAS_ANADIDAS = [
     ],
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
-  // /services/custom-aluminum-pergola-builders-in-north-south-florida
+  // /services/pergola-builders
   {
-    rutas: ['/services/custom-aluminum-pergola-builders-in-north-south-florida'],
+    rutas: ['/services/pergola-builders'],
     tras: ['We design and build custom aluminum pergolas for Florida homes, delivering shade, '
         + 'durability, and elevated outdoor living.'],
     lineas: [
@@ -1880,7 +1880,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/custom-aluminum-pergola-builders-in-north-south-florida'],
+    rutas: ['/services/pergola-builders'],
     tras: ['Pergola solutions designed for residential homes and commercial outdoor environments.'],
     lineas: [
       'Aluminum & Treated Wood',
@@ -1892,7 +1892,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/custom-aluminum-pergola-builders-in-north-south-florida'],
+    rutas: ['/services/pergola-builders'],
     tras: ['Custom pergolas crafted with treated materials for natural beauty and structural '
         + 'reliability.'],
     lineas: [
@@ -1905,7 +1905,7 @@ const LINEAS_ANADIDAS = [
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
-    rutas: ['/services/custom-aluminum-pergola-builders-in-north-south-florida'],
+    rutas: ['/services/pergola-builders'],
     tras: ['Attached pergolas designed to seamlessly extend patios and covered outdoor spaces.'],
     lineas: [
       'Louvered Roofs & Night Lighting',
@@ -2041,7 +2041,10 @@ function lineasFeed() {
  * siempre. Se comparte el DATO (`src/data/blogs.json` + `blog-heading-por-ruta.json`), no el
  * formateo.
  */
-const BLOG_RUTAS = ['/services/', '/where-we-serve/'];
+const BLOG_RUTAS = ['/where-we-serve/'];
+/* Las 14 fichas (`esFicha`) y las 2 regionales: espejo de `conBlogInsertado()` en build-paginas.
+ * NO el silo `/services/pool-builders/<x>`: ciudades y condados pintan su carrusel por otra via. */
+const enBlogRutas = (r) => esFicha(r) || BLOG_RUTAS.some((p) => r.startsWith(p));
 
 /**
  * Las lineas de `innerText` que emite CarruselBlog, en orden, para `ruta`.
@@ -2374,7 +2377,7 @@ const RUTAS_CARRUSEL = (() => {
   const estaticas = Object.keys(lee('src/data/proyectos-heading-por-ruta.json'))
     .filter((k) => k.startsWith('/'));
   const ciudad = Object.keys(lee('src/data/seo-pool-builders.json'))
-    .map((s) => `/pool-builders/${s}`);
+    .map((s) => rutaCiudad(s));
   return [...estaticas, ...ciudad];
 })();
 
@@ -2465,7 +2468,7 @@ function sinElBloque(ruta, hay) {
   }
 
   // 3 · el carrusel de blog, SOLO en services/+where-we-serves/. Los tres bloques son disjuntos.
-  if (BLOG_RUTAS.some((p) => ruta.startsWith(p))) {
+  if (enBlogRutas(ruta)) {
     const bl = lineasBlog(ruta);
     if (bl.length) {
       lineas = quitaBloque(lineas, bl);
@@ -2634,7 +2637,7 @@ function bloquesCaptacion(ruta) {
 
   /* 3.bis · EL PANEL DE SERVICIOS DE LA HOME (R21, pedido de Sebastian 18-sep-2026).
    *
-   * Solo en `/pool-builders/`: las 14 fichas de `/services/` tambien pasan por esta funcion y
+   * Solo en `/services/pool-builders/`: las 14 fichas de `/services/` tambien pasan por esta funcion y
    * NO montan el panel. Se distingue por la ruta y no por un campo nuevo en
    * `captacion-servicios.json`, porque el panel no lleva ni una linea propia de la ciudad —es
    * literalmente la entrada `/` de `servicios-categoria.json`— y meterle un campo por ruta seria
@@ -2650,7 +2653,7 @@ function bloquesCaptacion(ruta) {
    * ficha activa, boton, boton… Esta razonado en la cabecera del propio componente.
    *
    * La ultima linea es el `.svc-cierre` que devuelve al `#estimate`, gemelo del de la FAQ. */
-  if (ruta.startsWith('/pool-builders/')) {
+  if (esCiudad(ruta)) {
     const dp = SERVICIOS_CAT['/'];
     const DEFECTO = 'pool-spa';
     const nm = (x) => (x ?? '').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ')
@@ -2678,7 +2681,7 @@ function bloquesCaptacion(ruta) {
   //     `innerText` no la ve. Una ficha puede no anadir ninguna -no se inventa una pregunta
   //     para rellenar-, y entonces no hay bloque que descontar.
   //
-  //     R20-CIUDADES: en `/pool-builders/` la FAQ no existia, asi que la seccion ENTERA es
+  //     R20-CIUDADES: en `/services/pool-builders/` la FAQ no existia, asi que la seccion ENTERA es
   //     nuestra -titulo, entradilla, las 3 preguntas y el CTA de cierre- y sale contigua. Se
   //     distingue por `faq.titulo`, que solo traen las entradas que montan su propia seccion:
   //     en las 14 fichas de `/services/` el titulo y la entradilla salen del baseline, porque
@@ -2966,7 +2969,7 @@ for (const ruta of RUTAS) {
       .filter((l) => !declaradas.has(l)).map((l) => traduce(ruta, l))).join('\n');
   const bruto = (await textoNormalizado(pag)).trimEnd();
   if (bruto.includes(RESENAS_MARCADOR)) conResenas++;
-  if (BLOG_RUTAS.some((p) => ruta.startsWith(p)) && lineasBlog(ruta).length
+  if (enBlogRutas(ruta) && lineasBlog(ruta).length
       && bruto.includes(lineasBlog(ruta)[0])) conBlog++;
   /* POR LINEA, NO POR SUBCADENA, y no es purismo: `bruto` es una cadena y el marcador es
    * `@mrandmrsoutdoorliving`, que vive DENTRO de `info@mrandmrsoutdoorliving.com` en el pie

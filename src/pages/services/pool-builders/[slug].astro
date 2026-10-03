@@ -24,27 +24,28 @@
 // `diag-identidad`, no lo que se supone—. La cirugia sobre el bloque derivado vive en
 // `src/lib/captacion-ciudad.mjs` y va con guarda: si la plantilla cambia de forma, revienta el
 // build con el slug puesto en vez de reordenar mal en silencio.
-import Base from '../../layouts/Base.astro';
-import ResenasGoogle from '../../components/widgets/ResenasGoogle.astro';
-import FeedInstagram from '../../components/widgets/FeedInstagram.astro';
-import CarruselBlog from '../../components/widgets/CarruselBlog.astro';
-import CarruselProyectos from '../../components/widgets/CarruselProyectos.astro';
-import ConfianzaCore from '../../components/widgets/ConfianzaCore.astro';
-import FormularioCore from '../../components/widgets/FormularioCore.astro';
-import InversionCore from '../../components/widgets/InversionCore.astro';
-import CollageFaq from '../../components/widgets/CollageFaq.astro';
-import ServiciosPorCategoria from '../../components/widgets/ServiciosPorCategoria.astro';
-import GaleriaObra from '../../components/widgets/GaleriaObra.astro';
-import SEO_RUTAS from '../../data/seo-pool-builders.json';
-import CAPTACION from '../../data/captacion-servicios.json';
-import COLLAGE from '../../data/collage-faq-por-ruta.json';
-import TELEFONOS from '../../data/telefonos.json';
-import FOTOS_CIUDAD from '../../data/ciudades-captacion.json';
-import { sinAperturaDelFeed } from '../../lib/feed-social.mjs';
-import { partirPorElCarrusel } from '../../lib/carrusel-proyectos.mjs';
-import { partirEn, heroeDeCaptacion } from '../../lib/captacion-ciudad.mjs';
-import { conBandaGaleria } from '../../lib/galeria-categorias.mjs';
-import LIT from '../../data/plantilla-pool-builders.json';
+import Base from '../../../layouts/Base.astro';
+import ResenasGoogle from '../../../components/widgets/ResenasGoogle.astro';
+import FeedInstagram from '../../../components/widgets/FeedInstagram.astro';
+import CarruselBlog from '../../../components/widgets/CarruselBlog.astro';
+import CarruselProyectos from '../../../components/widgets/CarruselProyectos.astro';
+import ConfianzaCore from '../../../components/widgets/ConfianzaCore.astro';
+import FormularioCore from '../../../components/widgets/FormularioCore.astro';
+import InversionCore from '../../../components/widgets/InversionCore.astro';
+import CollageFaq from '../../../components/widgets/CollageFaq.astro';
+import ServiciosPorCategoria from '../../../components/widgets/ServiciosPorCategoria.astro';
+import GaleriaObra from '../../../components/widgets/GaleriaObra.astro';
+import SEO_RUTAS from '../../../data/seo-pool-builders.json';
+import CAPTACION from '../../../data/captacion-servicios.json';
+import COLLAGE from '../../../data/collage-faq-por-ruta.json';
+import TELEFONOS from '../../../data/telefonos.json';
+import FOTOS_CIUDAD from '../../../data/ciudades-captacion.json';
+import { sinAperturaDelFeed } from '../../../lib/feed-social.mjs';
+import { partirPorElCarrusel } from '../../../lib/carrusel-proyectos.mjs';
+import { partirEn, heroeDeCaptacion } from '../../../lib/captacion-ciudad.mjs';
+import { conBandaGaleria } from '../../../lib/galeria-categorias.mjs';
+import LIT from '../../../data/plantilla-pool-builders.json';
+import { rutaCiudad } from '../../../lib/rutas-seo.mjs';
 
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
@@ -82,7 +83,7 @@ export async function getStaticPaths() {
   // variable el comportamiento es el de siempre: si Sanity no responde, el build se para. Asi
   // la cache no puede enmascarar una caida real, que es justo lo que la guarda de abajo evita.
   if ((error || !result?.length) && process.env.MM_SANITY_CACHE === '1') {
-    const { default: cache } = await import('../../data/pool-builders-sanity.json');
+    const { default: cache } = await import('../../../data/pool-builders-sanity.json');
     console.warn(`>>> Sanity no responde y MM_SANITY_CACHE=1: se construyen las ${cache.length} de /pool-builders/ desde la cache. NO es el CMS vivo.`);
     result = cache;
     error = null;
@@ -90,10 +91,15 @@ export async function getStaticPaths() {
   // Sin datos no se construye media coleccion: se para el build. 53 URLs que
   // desaparecen en silencio son 53 404 con el despliegue en verde.
   if (error || !result?.length) throw new Error('Sanity no devolvio poolBuilder: ' + JSON.stringify(error ?? 'vacio'));
-  return result.map((doc) => ({ params: { slug: doc.slug }, props: { doc } }));
+  // La URL publica NO es el slug de Sanity (`ocala-florida` es la identidad del documento):
+  // `/services/pool-builders/ocala-fl` la deriva `rutas-seo.mjs` desde seo-url-migrations.json.
+  const { slugCiudad } = await import('../../../lib/rutas-seo.mjs');
+  return result.map((doc) => ({ params: { slug: slugCiudad(doc.slug) }, props: { doc } }));
 }
 
-const { slug } = Astro.params;
+// `slug` es el de SANITY (la clave de seo-pool-builders.json, ciudades-captacion.json y la cache);
+// `Astro.params.slug` es el tramo publico (`ocala-fl`). RUTA es la URL servida.
+const slug = Astro.props.doc.slug;
 const d = aplanar(Astro.props.doc);
 /**
  * CUARTO CAMBIO A MANO (SEO-AEO-GEO A3) — OVERRIDE POR CIUDAD.
@@ -113,7 +119,8 @@ Object.assign(d, SEO_RUTAS[slug]?.bloques ?? {});
  * tiene su propia landing, con su propio formulario, desde R19—. Sustitucion 1->1, linea entera,
  * y declarada en `TRADUCIDAS_A_PROPOSITO` de `check-texto.mjs`. Solo en las rutas con entrada.
  */
-const RUTA = `/pool-builders/${slug}`;
+const RUTA = rutaCiudad(slug);
+if (RUTA !== `/services/pool-builders/${Astro.params.slug}`) throw new Error(`${slug}: la ruta ${RUTA} no casa con params.slug ${Astro.params.slug}`);
 const CAP = CAPTACION[RUTA] ?? null;
 if (CAP?.heroe?.apoyo) d['intro'] = CAP.heroe.apoyo;
 const CAMPOS = [[null,{"c":"h1Title","tx":"","p":["",""]},null,{"c":"h2Title","tx":"","p":["",""]},null,{"c":"intro","tx":"","p":["",""]},null,{"c":"imagenIntro1.alt","tx":"","p":["<img src=\"/images/pool-builders/alachua-florida/custom-pool-pergola-outdoor-living-contractors-fl-1-.webp\" loading=\"lazy\" data-w-id=\"f72979fc-9196-9930-356a-1756486557d5\" alt=\"","\" class=\"image\">"]},null,{"c":"imagenIntro2.alt","tx":"","p":["<img src=\"/images/pool-builders/alachua-florida/luxury-outdoor-kitchen-pool-backyard-design-florida-1-.webp\" loading=\"lazy\" data-w-id=\"53f4d2e0-9a7a-0e16-e20a-ab8f9e03c935\" alt=\"","\" class=\"image\">"]},null,{"c":"imagenIntro3.alt","tx":"","p":["<img src=\"/images/pool-builders/alachua-florida/luxury-pool-builders-outdoor-living-florida-1-.webp\" loading=\"lazy\" data-w-id=\"8bad508e-9f02-2bc9-bf6d-6ac47990da3b\" alt=\"","\" class=\"image\">"]},null,{"c":"headingIntro","tx":"","p":["",""]},null,{"c":"paragraphIntro","tx":"","p":["",""]},null,{"c":"heading3DRendering","tx":"","p":["",""]},null,{"c":"paragraphReviews","tx":"","p":["",""]},null,{"c":"headingFeature","tx":"","p":["",""]},null,{"c":"paragraphFeatures","tx":"","p":["",""]},null,{"c":"headingPortfolio","tx":"","p":["",""]},null,{"c":"paragraphPortfolio","tx":"","p":["",""]},null,{"c":"headingReviews","tx":"","p":["",""]},null,{"c":"paragraphReviews","tx":"","p":["",""]},null],[],[],[null]];
@@ -250,7 +257,7 @@ if (FAQ && !COLLAGE[RUTA]) {
 
 const [P_ANTES, P_DESPUES] = partirPorElCarrusel(b0, `${RUTA} B[0]`);
 
-const CTA_PIE = sinAperturaDelFeed(B[2], `/pool-builders/${slug} B[2]`);
+const CTA_PIE = sinAperturaDelFeed(B[2], `${RUTA} B[2]`);
 // Y B[3] deja de renderizarse, asi que hay que AFIRMAR que no era mas que ese cierre: si la
 // plantilla derivada le metiera contenido algun dia, se perderia sin un solo rojo.
 if (B[3] !== '</section>') {
@@ -286,7 +293,7 @@ const SEO = FAQ
     }] }
   : SEO_ORIGEN;
 ---
-<Base titulo={d["seo.title"]} descripcion={d["seo.description"]} ruta={`/pool-builders/${slug}`} seo={SEO} jsonLdCrudo={LD_CRUDO}>
+<Base titulo={d["seo.title"]} descripcion={d["seo.description"]} ruta={RUTA} seo={SEO} jsonLdCrudo={LD_CRUDO}>
   <Fragment set:html={ANTES_CONF} />
   <ConfianzaCore ruta={RUTA} />
   <Fragment set:html={ANTES_FORM} />

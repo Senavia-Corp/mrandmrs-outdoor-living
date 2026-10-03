@@ -15,7 +15,7 @@
     },
     {
       "source": "/commercial-services/commercial-pool-renovations-north-south-florida",
-      "destination": "/services/pool-remodeling-renovation-in-north-south-florida",
+      "destination": "/services/pool-remodeling",
       "permanent": true
     },
     {
@@ -30,47 +30,427 @@
     },
     {
       "source": "/services/custom-aluminum-wood-pergola-builders-in-north-south-florida",
-      "destination": "/services/custom-aluminum-pergola-builders-in-north-south-florida",
+      "destination": "/services/pergola-builders",
       "permanent": true
     },
     {
       "source": "/excavation",
-      "destination": "/services/custom-pool-spa-builders-in-north-south-florida",
+      "destination": "/services/pool-builders",
       "permanent": true
     },
     {
       "source": "/pool-builders/pool-builders-southwest-ranches-florida",
-      "destination": "/pool-builders/southwest-ranches-florida",
+      "destination": "/services/pool-builders/southwest-ranches-fl",
       "permanent": true
     },
     {
       "source": "/pool-builders/pool-builders-hallandale-beach-florida",
-      "destination": "/pool-builders/hallandale-beach-florida",
+      "destination": "/services/pool-builders/hallandale-beach-fl",
       "permanent": true
     },
     {
       "source": "/pool-builders/pool-builders-ocala-florida",
-      "destination": "/pool-builders/ocala-florida",
+      "destination": "/services/pool-builders/ocala-fl",
       "permanent": true
     },
     {
       "source": "/pool-builders/pool-builders-north-palm-beach-florida",
-      "destination": "/pool-builders/north-palm-beach-florida",
+      "destination": "/services/pool-builders/north-palm-beach-fl",
       "permanent": true
     },
     {
       "source": "/pool-builders/pool-builders-micanopy-florida",
-      "destination": "/pool-builders/micanopy-florida",
+      "destination": "/services/pool-builders/micanopy-fl",
       "permanent": true
     },
     {
       "source": "/pool-builders/pool-builders-west-palm-beach-florida",
-      "destination": "/pool-builders/west-palm-beach-florida",
+      "destination": "/services/pool-builders/west-palm-beach-fl",
       "permanent": true
     },
     {
       "source": "/pool-builders/pool-builders-mcintosh-florida",
-      "destination": "/pool-builders/mcintosh-florida",
+      "destination": "/services/pool-builders/mcintosh-fl",
+      "permanent": true
+    },
+    {
+      "source": "/services/custom-pool-spa-builders-in-north-south-florida",
+      "destination": "/services/pool-builders",
+      "permanent": true
+    },
+    {
+      "source": "/services/pool-remodeling-renovation-in-north-south-florida",
+      "destination": "/services/pool-remodeling",
+      "permanent": true
+    },
+    {
+      "source": "/services/custom-aluminum-pergola-builders-in-north-south-florida",
+      "destination": "/services/pergola-builders",
+      "permanent": true
+    },
+    {
+      "source": "/services/custom-outdoor-kitchens-for-north-south-florida-homes",
+      "destination": "/services/outdoor-kitchens",
+      "permanent": true
+    },
+    {
+      "source": "/services/motorized-louvered-roof-systems-in-north-south-florida",
+      "destination": "/services/louvered-roofs",
+      "permanent": true
+    },
+    {
+      "source": "/services/motorized-retractable-screens-in-north-south-florida",
+      "destination": "/services/retractable-screens",
+      "permanent": true
+    },
+    {
+      "source": "/services/patio-screen-rooms-enclosures-in-north-south-florida",
+      "destination": "/services/patio-screen-rooms",
+      "permanent": true
+    },
+    {
+      "source": "/services/pool-screen-enclosures-for-north-south-florida-pools",
+      "destination": "/services/pool-screen-enclosures",
+      "permanent": true
+    },
+    {
+      "source": "/services/custom-deck-builders-in-north-south-florida",
+      "destination": "/services/deck-builders",
+      "permanent": true
+    },
+    {
+      "source": "/services/professional-landscaping-services-in-north-south-florida",
+      "destination": "/services/landscaping",
+      "permanent": true
+    },
+    {
+      "source": "/services/smart-irrigation-system-installation-in-north-south-florida",
+      "destination": "/services/irrigation-systems",
+      "permanent": true
+    },
+    {
+      "source": "/services/premium-outdoor-furniture-for-north-south-florida-homes",
+      "destination": "/services/outdoor-furniture",
+      "permanent": true
+    },
+    {
+      "source": "/services/steel-building-pole-barn-construction-in-north-south-florida",
+      "destination": "/services/steel-buildings-pole-barns",
+      "permanent": true
+    },
+    {
+      "source": "/services/smart-soffit-led-lighting-installation-in-north-south-florida",
+      "destination": "/services/soffit-led-lighting",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/alachua-florida",
+      "destination": "/services/pool-builders/alachua-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/archer-florida",
+      "destination": "/services/pool-builders/archer-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/atlantis-florida",
+      "destination": "/services/pool-builders/atlantis-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/beach-florida",
+      "destination": "/services/pool-builders/hillsboro-beach-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/boca-raton-florida",
+      "destination": "/services/pool-builders/boca-raton-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/boynton-beach-florida",
+      "destination": "/services/pool-builders/boynton-beach-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/cedar-key-florida",
+      "destination": "/services/pool-builders/cedar-key-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/chiefland-florida",
+      "destination": "/services/pool-builders/chiefland-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/cross-city-florida",
+      "destination": "/services/pool-builders/cross-city-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/dania-beach-florida",
+      "destination": "/services/pool-builders/dania-beach-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/davie-florida",
+      "destination": "/services/pool-builders/davie-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/deerfield-beach-florida",
+      "destination": "/services/pool-builders/deerfield-beach-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/delray-beach-florida",
+      "destination": "/services/pool-builders/delray-beach-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/fanning-springs-florida",
+      "destination": "/services/pool-builders/fanning-springs-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/fort-lauderdale-florida",
+      "destination": "/services/pool-builders/fort-lauderdale-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/gainesville-florida",
+      "destination": "/services/pool-builders/gainesville-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/gulf-stream-florida",
+      "destination": "/services/pool-builders/gulf-stream-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/hallandale-beach-florida",
+      "destination": "/services/pool-builders/hallandale-beach-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/hawthorne-florida",
+      "destination": "/services/pool-builders/hawthorne-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/high-springs-florida",
+      "destination": "/services/pool-builders/high-springs-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/hollywood-florida",
+      "destination": "/services/pool-builders/hollywood-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/hypoluxo-florida",
+      "destination": "/services/pool-builders/hypoluxo-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/juno-beach-florida",
+      "destination": "/services/pool-builders/juno-beach-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/jupiter-florida",
+      "destination": "/services/pool-builders/jupiter-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/lake-city-florida",
+      "destination": "/services/pool-builders/lake-city-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/lighthouse-point-florida",
+      "destination": "/services/pool-builders/lighthouse-point-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/manalapan-florida",
+      "destination": "/services/pool-builders/manalapan-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/mcintosh-florida",
+      "destination": "/services/pool-builders/mcintosh-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/micanopy-florida",
+      "destination": "/services/pool-builders/micanopy-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/miramar-florida",
+      "destination": "/services/pool-builders/miramar-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/newberry-florida",
+      "destination": "/services/pool-builders/newberry-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/north-palm-beach-florida",
+      "destination": "/services/pool-builders/north-palm-beach-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/ocala-florida",
+      "destination": "/services/pool-builders/ocala-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/ocean-ridge-florida",
+      "destination": "/services/pool-builders/ocean-ridge-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/old-town-florida",
+      "destination": "/services/pool-builders/old-town-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/palatka-florida",
+      "destination": "/services/pool-builders/palatka-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/palm-beach-gardens-florida",
+      "destination": "/services/pool-builders/palm-beach-gardens-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/parkland-florida",
+      "destination": "/services/pool-builders/parkland-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/pembroke-pines-florida",
+      "destination": "/services/pool-builders/pembroke-pines-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/plantation-florida",
+      "destination": "/services/pool-builders/plantation-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/pompano-beach-florida",
+      "destination": "/services/pool-builders/pompano-beach-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/reddick-florida",
+      "destination": "/services/pool-builders/reddick-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/royal-palm-beach-florida",
+      "destination": "/services/pool-builders/royal-palm-beach-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/south-palm-beach-florida",
+      "destination": "/services/pool-builders/south-palm-beach-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/southwest-ranches-florida",
+      "destination": "/services/pool-builders/southwest-ranches-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/tequesta-florida",
+      "destination": "/services/pool-builders/tequesta-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/trenton-florida",
+      "destination": "/services/pool-builders/trenton-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/waldo-florida",
+      "destination": "/services/pool-builders/waldo-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/wellington-florida",
+      "destination": "/services/pool-builders/wellington-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/west-palm-beach-florida",
+      "destination": "/services/pool-builders/west-palm-beach-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/weston-florida",
+      "destination": "/services/pool-builders/weston-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/williston-florida",
+      "destination": "/services/pool-builders/williston-fl",
+      "permanent": true
+    },
+    {
+      "source": "/pool-builders/wilton-manors-florida",
+      "destination": "/services/pool-builders/wilton-manors-fl",
+      "permanent": true
+    },
+    {
+      "source": "/country/custom-pool-builders-alachua-county-fl",
+      "destination": "/services/pool-builders/alachua-county-fl",
+      "permanent": true
+    },
+    {
+      "source": "/country/custom-pool-builders-broward-county-fl",
+      "destination": "/services/pool-builders/broward-county-fl",
+      "permanent": true
+    },
+    {
+      "source": "/country/custom-pool-builders-columbia-county-fl",
+      "destination": "/services/pool-builders/columbia-county-fl",
+      "permanent": true
+    },
+    {
+      "source": "/country/custom-pool-builders-dixie-county-fl",
+      "destination": "/services/pool-builders/dixie-county-fl",
+      "permanent": true
+    },
+    {
+      "source": "/country/custom-pool-builders-gilchrist-county-fl",
+      "destination": "/services/pool-builders/gilchrist-county-fl",
+      "permanent": true
+    },
+    {
+      "source": "/country/custom-pool-builders-levy-county-fl",
+      "destination": "/services/pool-builders/levy-county-fl",
+      "permanent": true
+    },
+    {
+      "source": "/country/custom-pool-builders-marion-county-fl",
+      "destination": "/services/pool-builders/marion-county-fl",
+      "permanent": true
+    },
+    {
+      "source": "/country/custom-pool-builders-palm-beach-county-fl",
+      "destination": "/services/pool-builders/palm-beach-county-fl",
+      "permanent": true
+    },
+    {
+      "source": "/country/custom-pool-builders-putnam-county-fl",
+      "destination": "/services/pool-builders/putnam-county-fl",
       "permanent": true
     },
     {

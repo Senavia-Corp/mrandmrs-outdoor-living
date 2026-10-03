@@ -40,6 +40,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { renombra } from './lib/renombradas.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const ROADMAP = JSON.parse(fs.readFileSync(path.join(RAIZ, 'contenido/roadmap-blog.json'), 'utf8'));
@@ -82,7 +83,8 @@ const salida = { _lee_esto: [
 salida.pendientes = {};
 
 for (const c of ROADMAP.clusters) {
-  const ruta = `/services/${c.servicio}`;
+  // `c.servicio` es el slug del documento `service` en Sanity (identidad); la URL la da la tabla.
+  const ruta = renombra(`/services/${c.servicio}`);
   const reparto = c.fichaServicio ?? [];
   if (reparto.length !== 5) { mal(`${c.clave}: fichaServicio tiene ${reparto.length} articulos, tienen que ser 5`); continue; }
 

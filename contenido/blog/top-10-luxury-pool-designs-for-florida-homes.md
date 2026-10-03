@@ -137,7 +137,7 @@ What it asks: every feature is plumbing, a pump or a valve, and often a structur
 
 A pool and deck under a screen enclosure, with the enclosure's roof line following the house and the panels sized so the view reads as open. In Florida it is the most practical luxury: no insects, less debris, lower chemical demand, and it can serve as the code-required barrier.
 
-What it asks: the enclosure is a structure engineered for the local wind design, with its own footings and permit. Its columns are placed with the pool and deck so nothing lands on plumbing. See our [pool screen enclosures](/services/pool-screen-enclosures-for-north-south-florida-pools) page.
+What it asks: the enclosure is a structure engineered for the local wind design, with its own footings and permit. Its columns are placed with the pool and deck so nothing lands on plumbing. See our [pool screen enclosures](/services/pool-screen-enclosures) page.
 
 {{figura: enclosures-6}}
 
@@ -149,4 +149,4 @@ Three tests, in order:
 2. **Can it be built as one system?** Hydraulics, structure, electrical and the barrier all have to carry it. Features that are "added later" usually cannot be, or cost more than the pool did.
 3. **Will you use it in August and in January?** Shade, a heater, a screen and lighting are what make a Florida pool a year-round room rather than a summer photograph.
 
-Our guide to [what makes a pool look custom](/blogs/what-makes-a-pool-look-custom) covers the nine detail choices that separate the two. When you are ready to see your own lot in 3D, request a project evaluation on our [custom pool construction](/services/custom-pool-spa-builders-in-north-south-florida) page.
+Our guide to [what makes a pool look custom](/blogs/what-makes-a-pool-look-custom) covers the nine detail choices that separate the two. When you are ready to see your own lot in 3D, request a project evaluation on our [custom pool construction](/services/pool-builders) page.

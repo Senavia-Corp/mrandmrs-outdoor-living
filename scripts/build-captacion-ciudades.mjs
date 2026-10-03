@@ -5,7 +5,7 @@
  *     npm run captacion:ciudades            escribe
  *     npm run captacion:ciudades -- --check comprueba y sale 1 si algo no cuadra
  *
- * Escribe en DOS ficheros, las claves `/pool-builders/<slug>` y solo esas:
+ * Escribe en DOS ficheros, las claves `/services/pool-builders/<slug>` y solo esas:
  *   · `src/data/captacion-servicios.json`  -> heroe, confianza, formulario, inversion, faq
  *   · `src/data/collage-faq-por-ruta.json` -> las 5 fotos del bento de la FAQ
  *
@@ -29,6 +29,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { rutaCiudad, esCiudad } from './lib/renombradas.mjs';
 
 const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const P_FILAS = path.join(RAIZ, 'src/data/ciudades-captacion.json');
@@ -213,10 +214,10 @@ const collage = leer(P_COLLAGE);
  * `/services/`) no se toca ni por error. */
 const esDerivada = (v) => typeof v?._derivado === 'string';
 const nuevoCaptacion = Object.fromEntries(
-  Object.entries(captacion).filter(([k, v]) => !(k.startsWith('/pool-builders/') && esDerivada(v))));
-const RUTAS_FILA = new Set(filas.ciudades.map((c) => `/pool-builders/${c.slug}`));
+  Object.entries(captacion).filter(([k, v]) => !(esCiudad(k) && esDerivada(v))));
+const RUTAS_FILA = new Set(filas.ciudades.map((c) => rutaCiudad(c.slug)));
 const nuevoCollage = Object.fromEntries(
-  Object.entries(collage).filter(([k]) => !k.startsWith('/pool-builders/') || RUTAS_FILA.has(k)));
+  Object.entries(collage).filter(([k]) => !esCiudad(k) || RUTAS_FILA.has(k)));
 const avisos = [];
 let n = 0;
 
@@ -227,7 +228,7 @@ let n = 0;
 const RUTAS_REALES = new Set(Object.keys(leer(path.join(RAIZ, 'src/data/seo-pool-builders.json'))));
 
 for (const c of filas.ciudades) {
-  const ruta = `/pool-builders/${c.slug}`;
+  const ruta = rutaCiudad(c.slug);
   if (!RUTAS_REALES.has(c.slug)) {
     throw new Error(`[captacion-ciudades] "${c.slug}" no es una de las 53 ciudades de `
       + 'src/data/seo-pool-builders.json. Una errata aqui apaga la ciudad en silencio.');
@@ -266,12 +267,12 @@ const cambia = comoEstaba.capta !== comoQueda.capta || comoEstaba.coll !== comoQ
 
 if (SOLO_COMPROBAR) {
   if (cambia) {
-    console.error('🔴 PUERTA ROJA — las entradas de /pool-builders/ no coinciden con lo que sale '
+    console.error('🔴 PUERTA ROJA — las entradas de /services/pool-builders/ no coinciden con lo que sale '
       + 'de src/data/ciudades-captacion.json. Alguien las edito a mano, o cambio una plantilla '
       + 'sin regenerar. Se arregla con: npm run captacion:ciudades');
     process.exit(1);
   }
-  console.log(`  ok   ${n} ciudad(es) de /pool-builders/ coinciden con su fila`);
+  console.log(`  ok   ${n} ciudad(es) de /services/pool-builders/ coinciden con su fila`);
   for (const a of avisos) console.log(`  aviso  ${a}`);
   console.log('\nPUERTA VERDE');
   process.exit(0);

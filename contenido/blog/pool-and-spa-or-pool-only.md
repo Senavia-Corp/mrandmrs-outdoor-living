@@ -138,7 +138,7 @@ This is the comparison that changes answers, and it is the one that rarely gets 
 
 Look at the third row. Heater, salt system, automation and four lights come to **$12,000** — the whole equipment specification for a pool you will swim in year round, for a third less than the spillover spa alone.
 
-None of this makes the spa the wrong answer. It makes the spa one of four or five things, rather than an upgrade you either take or leave. And it is the only one on that list whose window closes at the pour — although the [screen enclosure](/services/pool-screen-enclosures-for-north-south-florida-pools) has its own timing rule, because the deck has to be built to carry it whether or not it goes up on day one. That, and the eleven other decisions in the same bracket, are in [the twelve decisions to make before excavation](/blogs/before-you-build-a-pool-in-florida).
+None of this makes the spa the wrong answer. It makes the spa one of four or five things, rather than an upgrade you either take or leave. And it is the only one on that list whose window closes at the pour — although the [screen enclosure](/services/pool-screen-enclosures) has its own timing rule, because the deck has to be built to carry it whether or not it goes up on day one. That, and the eleven other decisions in the same bracket, are in [the twelve decisions to make before excavation](/blogs/before-you-build-a-pool-in-florida).
 
 {{figura: bi-1058}}
 
@@ -148,7 +148,7 @@ Not "do we want a spa". This one: **how many evenings a year will someone in thi
 
 Ask it out loud, with the people who live there. The honest answer is usually smaller than the one in your head, and it is the number the rest of the decision runs on.
 
-Geography moves that number more than anything else. North Florida gets a real winter, and in [Gainesville](/pool-builders/gainesville-florida) and [Ocala](/pool-builders/ocala-florida) the weeks when the pool is too cold to enjoy are the weeks a spa gets used. That is a spa doing a job. Further south the job is different: jets, a smaller space for two people, a focal point from the house in the evening. All real, all worth paying for if that is what you want — but they are not the same argument, and a spa bought on the North Florida argument in a South Florida yard tends to become a heated planter.
+Geography moves that number more than anything else. North Florida gets a real winter, and in [Gainesville](/services/pool-builders/gainesville-fl) and [Ocala](/services/pool-builders/ocala-fl) the weeks when the pool is too cold to enjoy are the weeks a spa gets used. That is a spa doing a job. Further south the job is different: jets, a smaller space for two people, a focal point from the house in the evening. All real, all worth paying for if that is what you want — but they are not the same argument, and a spa bought on the North Florida argument in a South Florida yard tends to become a heated planter.
 
 If the honest count comes back at a handful of nights, the money usually belongs in whatever makes you use the pool more often: shade, screening, or somewhere to cook and sit.
 
@@ -174,4 +174,4 @@ Settle three things before your design is final: spa or no spa, integrated or sp
 
 Then run it twice through [our pool cost estimator](/pool-cost-estimator) — once with the spa, once without — and look at what the spa does to the total rather than at the line by itself. What comes out is a **±10%** range, not a quote, and it is meant to tell you which decision is moving your number.
 
-Bring both versions to the site visit. A [project estimate](/request-estimated) starts by reviewing access, grade and utilities rather than by quoting a number, and seeing the two scopes side by side is the fastest way to find out which one you actually want. How the process runs from there is on the [custom pool and spa construction](/services/custom-pool-spa-builders-in-north-south-florida) page, and there are finished pools and spas in [the gallery](/gallery).
+Bring both versions to the site visit. A [project estimate](/request-estimated) starts by reviewing access, grade and utilities rather than by quoting a number, and seeing the two scopes side by side is the fastest way to find out which one you actually want. How the process runs from there is on the [custom pool and spa construction](/services/pool-builders) page, and there are finished pools and spas in [the gallery](/gallery).

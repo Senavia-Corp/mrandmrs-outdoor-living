@@ -200,4 +200,4 @@ Bring these answers to the design meeting and the drawing gets quicker:
 - Where do the cover posts land relative to the run?
 - Have you stood in the taped footprint and cooked one meal from it?
 
-If you want to see how the sequence runs on a real job — site review, utilities, deck, cabinetry, appliances, inspection — that is the [custom outdoor kitchens](/services/custom-outdoor-kitchens-for-north-south-florida-homes) page. Finished layouts of all four shapes are in the [project gallery](/gallery), and a [quote from a site visit](/request-estimated) starts with the constraints rather than with a shape.
+If you want to see how the sequence runs on a real job — site review, utilities, deck, cabinetry, appliances, inspection — that is the [custom outdoor kitchens](/services/outdoor-kitchens) page. Finished layouts of all four shapes are in the [project gallery](/gallery), and a [quote from a site visit](/request-estimated) starts with the constraints rather than with a shape.

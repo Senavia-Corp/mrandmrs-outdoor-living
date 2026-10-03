@@ -23,7 +23,7 @@
  *      rejilla de 10 tarjetas + nav + scrollbar del blog, y LUEGO `<section class="cta-footer">`
  *      hasta el final. Se separan en dos LIT nuevos: uno que descarta la rejilla entera (el
  *      componente ya la pinta) y otro que arranca justo en `cta-footer`.
- *   2. `src/pages/pool-builders/[slug].astro` — el array `CAMPOS` (JSON valido embebido en un
+ *   2. `src/pages/services/pool-builders/[slug].astro` — el array `CAMPOS` (JSON valido embebido en un
  *      `const`), que pierde los dos huecos de blog (pasan a props directas del componente,
  *      leidas de `d` igual que antes), y el bloque de render, que gana `<CarruselBlog />` entre
  *      los dos trozos nuevos de `B[]`.
@@ -45,7 +45,7 @@ const RAIZ = path.resolve(import.meta.dirname, '..');
 const ESCRIBIR = process.argv.includes('--escribir');
 
 const rutaJson = path.join(RAIZ, 'src/data/plantilla-pool-builders.json');
-const rutaAstro = path.join(RAIZ, 'src/pages/pool-builders/[slug].astro');
+const rutaAstro = path.join(RAIZ, 'src/pages/services/pool-builders/[slug].astro');
 
 const LIT = JSON.parse(fs.readFileSync(rutaJson, 'utf8'));
 if (LIT.length !== 3) {

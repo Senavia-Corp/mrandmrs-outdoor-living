@@ -3,7 +3,7 @@
  * DIAGNÓSTICO (no es una puerta) — mide el VELO de los dos héroes con vídeo.
  *
  *     node scripts/diag-velo.mjs /                                 # 6 anchos, perfil + contraste
- *     node scripts/diag-velo.mjs /pool-builders/ocala-florida 1920 1080
+ *     node scripts/diag-velo.mjs /services/pool-builders/ocala-fl 1920 1080
  *     node scripts/diag-velo.mjs / 1920 1080 --sin-contraste       # solo el perfil (rápido)
  *
  * Existe porque las dos cifras que gobiernan este subsistema no las daba ningún script:

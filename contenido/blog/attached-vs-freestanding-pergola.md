@@ -188,4 +188,4 @@ Both are workable when they come up before the layout is drawn. [Eight features 
 
 A designer does all five on a site visit anyway. Doing them first changes what that visit is about: you arrive choosing between two layouts that both work, instead of being told which one does not. The rest of the pre-construction list is in [seven decisions to make before construction starts](/blogs/pergola-design-decisions-before-construction).
 
-How we build them — spans, footings, finishes and the attachment detail itself — is on the [aluminum pergola construction](/services/custom-aluminum-pergola-builders-in-north-south-florida) page, and a [project estimate](/request-estimated) starts with that site walk rather than with a number.
+How we build them — spans, footings, finishes and the attachment detail itself — is on the [aluminum pergola construction](/services/pergola-builders) page, and a [project estimate](/request-estimated) starts with that site walk rather than with a number.

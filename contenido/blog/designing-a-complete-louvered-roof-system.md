@@ -95,7 +95,7 @@ Three smaller points worth settling at the same time:
 
 - **Zones, not a switch.** At minimum, separate the perimeter from the task lighting. They are almost never wanted at the same level.
 - **Rated for where they are.** A closed louvered roof is not a dry interior ceiling. Rain arrives sideways, and the fixtures have to be rated for that.
-- **Match the house.** If the house already carries [permanent soffit and exterior LED lighting](/services/smart-soffit-led-lighting-installation-in-north-south-florida), agreeing the color temperature before anything is ordered is a two-minute conversation. Afterwards it is a re-order.
+- **Match the house.** If the house already carries [permanent soffit and exterior LED lighting](/services/soffit-led-lighting), agreeing the color temperature before anything is ordered is a two-minute conversation. Afterwards it is a re-order.
 
 ## Fans: clearance, and what the beam was specified to carry
 
@@ -122,7 +122,7 @@ Understand what screens change once they are down, because it is more than bugs:
 - **It changes the wind story.** A structure that can be enclosed on its sides is loaded differently from an open one, and that belongs in the drawings that get reviewed, not in a conversation afterwards.
 - **One side usually matters more than four.** Late sun comes in low from the west, under any roof at any louver angle. That is a side problem, and it is the side worth screening first.
 
-Which mesh, and how a retractable screen differs from a fixed enclosure, is on the [motorized retractable screens](/services/motorized-retractable-screens-in-north-south-florida) page. What the fixed alternative costs is in [what a pool screen enclosure costs in Florida](/blogs/how-much-does-a-pool-screen-enclosure-cost-in-florida).
+Which mesh, and how a retractable screen differs from a fixed enclosure, is on the [motorized retractable screens](/services/retractable-screens) page. What the fixed alternative costs is in [what a pool screen enclosure costs in Florida](/blogs/how-much-does-a-pool-screen-enclosure-cost-in-florida).
 
 ## Heat and fire under a roof that seals
 
@@ -132,7 +132,7 @@ Heaters and cooking are where the two states stop being a convenience and start 
 
 **Gas appliances are a different conversation.** A closed louvered roof is a ceiling, and every gas heater, fire feature and grill comes with manufacturer instructions stating the clearance and ventilation it requires under a cover. That document governs the layout. Sometimes its answer is that the louvers above the appliance have to be open while it runs, and it is much better to know that while the bays are still being drawn than to discover it after the roof is up.
 
-If a full [outdoor kitchen](/services/custom-outdoor-kitchens-for-north-south-florida-homes) is going underneath, add one more consideration: smoke and grease vapor rise into the louver blades and their seals. A roof that can open over the cooking line is the difference between wiping the blades occasionally and degreasing them.
+If a full [outdoor kitchen](/services/outdoor-kitchens) is going underneath, add one more consideration: smoke and grease vapor rise into the louver blades and their seals. A roof that can open over the cooking line is the difference between wiping the blades occasionally and degreasing them.
 
 {{figura: louvered-1}}
 
@@ -184,4 +184,4 @@ So use the [project cost estimator](/pool-cost-estimator) for the structure, and
 
 Which system to buy is a separate question from how to design around it, and the specifications that actually differ between systems are in [the features worth comparing before buying](/blogs/features-to-compare-before-buying-a-louvered-roof). What the whole project costs, factor by factor, is in [what moves the price of a motorized louvered roof](/blogs/how-much-does-a-motorized-louvered-roof-cost). Finished structures with lighting, screens and kitchens already integrated are in the [project gallery](/gallery).
 
-How we sequence a build — drawings, fabrication order, rough-in, installation — is on the [motorized louvered roof systems](/services/motorized-louvered-roof-systems-in-north-south-florida) page. Bring the accessory list to that first conversation, even the parts of it you are not sure about. Every item on it is cheap while the frame is still a drawing.
+How we sequence a build — drawings, fabrication order, rough-in, installation — is on the [motorized louvered roof systems](/services/louvered-roofs) page. Bring the accessory list to that first conversation, even the parts of it you are not sure about. Every item on it is cheap while the frame is still a drawing.

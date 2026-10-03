@@ -129,4 +129,4 @@ What a remodel should not be is a surface fix on a pool with underlying problems
 
 ## How we help you decide
 
-We assess the pool you have before we price anything, and we are honest when the answer is "remodel" even though a new build is the larger project. If the pool can carry what you want, see our [complete pool remodeling](/services/pool-remodeling-renovation-in-north-south-florida) page and request a remodel estimate. If it cannot, our [custom pool construction](/services/custom-pool-spa-builders-in-north-south-florida) page explains how a new pool is designed around your lot.
+We assess the pool you have before we price anything, and we are honest when the answer is "remodel" even though a new build is the larger project. If the pool can carry what you want, see our [complete pool remodeling](/services/pool-remodeling) page and request a remodel estimate. If it cannot, our [custom pool construction](/services/pool-builders) page explains how a new pool is designed around your lot.

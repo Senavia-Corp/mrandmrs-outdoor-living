@@ -194,7 +194,7 @@ export default defineType({
                 type: 'string',
                 title: 'URL',
                 description:
-                  'Interna sin dominio: /services/custom-deck-builders-in-north-south-florida. '
+                  'Interna sin dominio: /services/deck-builders. '
                   + 'Es `string` y no `url` a propósito: el tipo `url` de Sanity RECHAZA las '
                   + 'relativas, y el enlazado interno es el objetivo de este sistema. '
                   + '`check:enlaces` valida después que la ruta existe de verdad.',

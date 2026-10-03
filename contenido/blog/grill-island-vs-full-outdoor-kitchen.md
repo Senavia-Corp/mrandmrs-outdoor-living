@@ -167,4 +167,4 @@ Answer these out loud:
 - Does the space need to work in the rain? If yes, price the cover in the same conversation as the kitchen, not after it.
 - Are two people ever cooking at once? If yes, the island format runs out of counter before it runs out of budget.
 
-If you want to see how the sequence runs on a real job — site review, utilities, deck, cabinetry, appliances, inspection — that is on the [custom outdoor kitchens](/services/custom-outdoor-kitchens-for-north-south-florida-homes) page, and finished work of both kinds is in the [project gallery](/gallery).
+If you want to see how the sequence runs on a real job — site review, utilities, deck, cabinetry, appliances, inspection — that is on the [custom outdoor kitchens](/services/outdoor-kitchens) page, and finished work of both kinds is in the [project gallery](/gallery).

@@ -23,7 +23,7 @@ import { ARGS_NAVEGADOR } from './lib/captura.mjs';
 
 const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ESTATICO = path.join(RAIZ, '.vercel/output/static');
-const FICHA = '/services/custom-outdoor-kitchens-for-north-south-florida-homes';
+const FICHA = '/services/outdoor-kitchens';
 const ANCHOS = [[390, 844], [768, 1024], [991, 800], [1440, 900]];
 
 const PUERTO = 4743;

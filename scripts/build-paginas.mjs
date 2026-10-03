@@ -26,7 +26,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { JSDOM } from 'jsdom';
-import { renombra } from './lib/renombradas.mjs';
+import { renombra, origen, esFicha, esCondado } from './lib/renombradas.mjs';
 import { CATEGORIAS as GALERIA_CATEGORIAS, tarjetasHtml } from '../src/lib/galeria-categorias.mjs';
 import { OCULTAS, serviciosDe } from '../src/lib/filtro-proyectos.mjs';
 
@@ -59,15 +59,15 @@ const CAPTACION = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/captacion
  *
  * `captacion-servicios.json` tenia 1 clave en R17-CORE y 14 desde R19, todas de `/services/`, asi
  * que contar SUS CLAVES y contar «las fichas que paso por aqui» era lo mismo. R20-CIUDADES anadio
- * `/pool-builders/ocala-florida` y `/pool-builders/gainesville-florida`, que las pinta
- * `src/pages/pool-builders/[slug].astro` en tiempo de build y NO pasan por este generador.
+ * `/services/pool-builders/ocala-fl` y `/services/pool-builders/gainesville-fl`, que las pinta
+ * `src/pages/services/pool-builders/[slug].astro` en tiempo de build y NO pasan por este generador.
  *
  * Con el conteo viejo las dos comprobaciones del final se creian 16 contra 14 y `npm run paginas`
  * SALIA CON 1 —«la gallery se movio en 14 fichas y hay 16»— sin que nada estuviera roto. Una
  * puerta que da rojo por un cambio legitimo en otra familia de rutas se acaba desactivando, que es
  * peor que no tenerla.
  */
-const RUTAS_CAPTACION_SERVICIOS = Object.keys(CAPTACION).filter((k) => k.startsWith('/services/'));
+const RUTAS_CAPTACION_SERVICIOS = Object.keys(CAPTACION).filter(esFicha);
 const TELEFONOS = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/telefonos.json'), 'utf8')).items;
 /* Las clases de `<img>` a las que se les reserva el hueco (§ limpia()). Enumeradas y medidas:
  * cada una entro aqui con una cifra de `layout-shift` detras, no por precaucion.
@@ -212,7 +212,7 @@ function localizar(raiz) {
 const ENCABEZADOS_PROYECTOS = {
   _lee_esto: 'El encabezado del carrusel «Project Showcase» de cada ruta. Es lo UNICO que cambiaba entre paginas: el bloque de 10 slides y la cola de flechas + barra + CTA eran byte a byte identicos en los 7 sitios donde estaba pegado (6103 y 1581 bytes, sha1 76930c21c9bf y 3c5989650bad). Espejo de blog-heading-por-ruta.json, y lo lee igual: CarruselProyectos.astro se autolocaliza por Astro.url.pathname. DERIVADO: lo escribe scripts/build-paginas.mjs.',
   _ojo: 'El texto va DECODIFICADO (ampersand suelto, no la entidad): lo escapa Astro al pintar, y sale el mismo byte que habia en el blob. Escribir aqui la entidad pintaria una entidad doblemente escapada y romperia check:texto, que compara innerText al 100 % y no se re-baseliniza nunca.',
-  _quien_no_esta_aqui: 'Las 53 rutas de /pool-builders/ NO estan: su titulo y su entradilla salen de Sanity (campos headingPortfolio y paragraphPortfolio, huecos 25 y 27 de CAMPOS en [slug].astro) y por eso Reddick dice «Reddick portfolio». Esas pasan las dos como props. _defecto solo existe para que una ruta sin entrada y sin props no pinte una cabecera vacia.',
+  _quien_no_esta_aqui: 'Las 53 rutas de /services/pool-builders/ NO estan: su titulo y su entradilla salen de Sanity (campos headingPortfolio y paragraphPortfolio, huecos 25 y 27 de CAMPOS en [slug].astro) y por eso Reddick dice «Reddick portfolio». Esas pasan las dos como props. _defecto solo existe para que una ruta sin entrada y sin props no pinte una cabecera vacia.',
   _defecto: {
     titulo: 'Project showcase',
     entradilla: 'Browse our completed residential & Commercial projects and transformations',
@@ -280,7 +280,8 @@ function extraeServicios(sec, ruta) {
       alt: at(ficha.querySelector('.image-bg-services'), 'alt'),
       titulo: t(ficha.querySelector('h4')),
       texto: t(ficha.querySelector('.paragraph-mini')),
-      enlace: at(ficha.querySelector('.block-buttom-services a'), 'href'),
+      // Renombrada si toca: el origen enlaza la URL vieja (§ lib/renombradas.mjs).
+      enlace: renombra(at(ficha.querySelector('.block-buttom-services a'), 'href')),
       cta: t(ficha.querySelector('.block-buttom-services a')),
     };
   });
@@ -369,7 +370,7 @@ const NO_REGENERAR = new Map([
    * LA SEGUNDA, Y NO LA PUSO EL PROGRAMA R: la destapo la demostracion en rojo de la primera.
    *
    * La Fase 6b paso esta familia a leer de Sanity y BORRO los 53 .astro estaticos; hoy la sirve
-   * `src/pages/pool-builders/[slug].astro`. Al correr este generador para probar la guarda de
+   * `src/pages/services/pool-builders/[slug].astro`. Al correr este generador para probar la guarda de
    * `/`, reaparecieron los 53 como ficheros sin versionar. Eso ensombrece la plantilla, mete 53
    * rutas de mas y rompe `check:rutas` -que exige 115 y 0 extras-, y todo ello en silencio: el
    * banner solo hablaba de `/`, asi que quien lo leyera se habria quedado tranquilo.
@@ -377,7 +378,7 @@ const NO_REGENERAR = new Map([
    * O sea, la guarda daba una falsa seguridad, que es peor que no tenerla. Es exactamente la
    * familia de fallo que R6 viene a matar, solo que en el generador en vez de en la puerta.
    */
-  ['/pool-builders/', 'la familia entera la sirve src/pages/pool-builders/[slug].astro leyendo '
+  ['/services/pool-builders/', 'la familia entera la sirve src/pages/services/pool-builders/[slug].astro leyendo '
       + 'de Sanity desde la Fase 6b, que borro los 53 .astro a proposito. Regenerarlos los '
       + 'repone sin versionar, ensombrece la plantilla y rompe check:rutas con 53 rutas de mas.'],
   /**
@@ -387,11 +388,11 @@ const NO_REGENERAR = new Map([
    * avisaba; lo que faltaba era la guarda que lo impide.
    */
   /**
-   * LA CUARTA Y LA QUINTA: el blog entero, y por el mismo motivo que `/pool-builders/`.
+   * LA CUARTA Y LA QUINTA: el blog entero, y por el mismo motivo que `/services/pool-builders/`.
    *
    * BLOG-SANITY paso las fichas a `src/pages/blogs/[slug].astro`, que lee de Sanity, y borro
    * los 10 `.astro`. Regenerarlos los repone SIN VERSIONAR, ensombrece la ruta dinamica y
-   * rompe `check:rutas` con 10 rutas de mas — exactamente lo que le paso a `/pool-builders/`
+   * rompe `check:rutas` con 10 rutas de mas — exactamente lo que le paso a `/services/pool-builders/`
    * el dia que se probo la guarda de `/`.
    *
    * `/blogs-tips` no se borra: pasa a editarse A MANO (buscador, filtros y «Load More» sobre
@@ -454,8 +455,12 @@ const HUECOS_SEO = {
  * Coincidencia EXACTA, o por prefijo si la clave acaba en `/`. `/` es un caso aparte: acaba en
  * barra pero solo puede casar consigo misma, o protegeria el sitio entero.
  */
+/* El prefijo `/services/pool-builders/` protege a las 53 CIUDADES (plantilla dinamica) y NO a los
+ * 9 condados, que viven bajo el mismo prefijo desde el 3-oct-2026 pero siguen siendo estaticos
+ * derivados de `_source/vivo/country_*.html`. Sin `!esCondado` este generador dejaria de
+ * escribirlos y `check:rutas` saldria rojo con 9 rutas sin construir. */
 const protegida = (ruta) => [...NO_REGENERAR.keys()]
-  .find((k) => (k !== '/' && k.endsWith('/') ? ruta.startsWith(k) : ruta === k));
+  .find((k) => (k !== '/' && k.endsWith('/') ? ruta.startsWith(k) && !esCondado(ruta) : ruta === k));
 
 /* Cuenta las rutas de services/+where-we-serves/ que reciben el carrusel de blog POR
  * INSERCION (§ mas abajo). Se COMPRUEBA al final contra 16: si sube, se ha colado en una ruta
@@ -471,7 +476,7 @@ const protegida = (ruta) => [...NO_REGENERAR.keys()]
  * POR QUE AQUI Y NO EN `NO_REGENERAR`. Meter `/projects` en `NO_REGENERAR` congelaria un fichero
  * cuyo `T0` es UNA sola cadena de 12 kB en una linea: a partir de ese dia se mantiene a mano.
  * Los dos precedentes no se parecen —`/` se congelo DESPUES de descomprimirse en constantes
- * editables, y `/pool-builders/` porque sus 53 estaticos ya no existen—. Declarandolo aqui,
+ * editables, y `/services/pool-builders/` porque sus 53 estaticos ya no existen—. Declarandolo aqui,
  * `/projects` sigue siendo derivable: el dia que alguien corra `npm run vivo` y traiga el origen
  * fresco, estas 5 se vuelven a poner solas.
  *
@@ -698,8 +703,8 @@ function captacion(doc, ruta) {
    * invariante de ABAJO (`captacionAplicada === RUTAS_CAPTACION_SERVICIOS.length`), pero que no
    * estaba escrita en ningun sitio.
    *
-   * QUE PASABA. R20-CIUDADES metio `/pool-builders/{ocala,gainesville}-florida` en
-   * `captacion-servicios.json`. Esas dos las pinta `src/pages/pool-builders/[slug].astro` desde
+   * QUE PASABA. R20-CIUDADES metio `/services/pool-builders/{ocala,gainesville}-florida` en
+   * `captacion-servicios.json`. Esas dos las pinta `src/pages/services/pool-builders/[slug].astro` desde
    * Sanity y su `_source/vivo/` no tiene `section.gallery`, `section.faq-section` ni
    * `section.location` -comprobado: 0 de las 3-, asi que el bloque 8b lanzaba y el generador
    * abortaba en la ruta 44 de 115. Las 10 de `/blogs/` son las 93-102: no se llegaba a ellas.
@@ -707,7 +712,7 @@ function captacion(doc, ruta) {
    * Reproducible con el generador de HEAD y el arbol limpio, o sea que no lo trajo este encargo
    * ni el trabajo sin commitear de R21.
    */
-  if (!ruta.startsWith('/services/')) return false;
+  if (!esFicha(ruta)) return false;
 
   /* ── 1 · EL HEROE ──────────────────────────────────────────────────────────────────────
    * Cuatro cosas, y cada una tiene su numero detras:
@@ -1309,7 +1314,8 @@ function captacion(doc, ruta) {
 }
 
 for (const [ruta] of RUTAS) {
-  const slug = aSlug(ruta);
+  // El origen se nombra por la ruta VIEJA: `_source/vivo/` no se toca (§ lib/renombradas.mjs).
+  const slug = aSlug(origen(ruta));
   const fichero = path.join(RAIZ, '_source/vivo', `${slug}.html`);
   if (!fs.existsSync(fichero)) { console.error(`  ROJO falta _source/vivo/${slug}.html`); continue; }
   const doc = new JSDOM(fs.readFileSync(fichero, 'utf8')).window.document;
@@ -1825,7 +1831,10 @@ for (const [ruta] of RUTAS) {
    * `check-texto.mjs`, derivado de `src/data/blogs.json` (mas el encabezado por ruta de
    * `blog-heading-por-ruta.json` para las 2 de Estado), igual que el de reseñas.
    */
-  const CON_BLOG_INSERTADO = ['/services/', '/where-we-serve/'];
+  const CON_BLOG_INSERTADO = ['/where-we-serve/'];
+  // Las 14 fichas (`esFicha`) y las 2 regionales. NO el silo `/services/pool-builders/<x>`: los 9
+  // condados traen su carrusel del origen y las 53 ciudades lo montan desde su plantilla.
+  const conBlogInsertado = (r) => esFicha(r) || CON_BLOG_INSERTADO.some((p) => r.startsWith(p));
   /**
    * R17-CORE — LOS TRES COMPONENTES DE CAPTACION, POR INSERCION.
    *
@@ -1853,7 +1862,7 @@ for (const [ruta] of RUTAS) {
   let primerLogos = true;
   let acumulado = '';
   for (let n = menu.nextElementSibling; n && n !== pie; n = n.nextElementSibling) {
-    if (CON_BLOG_INSERTADO.some((p) => ruta.startsWith(p)) && n.matches?.('section.social-media')) {
+    if (conBlogInsertado(ruta) && n.matches?.('section.social-media')) {
       acumulado += MARCA + 'CarruselBlog' + MARCA;
       usados.add('CarruselBlog');
       blogsInsertados++;
@@ -1978,7 +1987,11 @@ for (const [ruta] of RUTAS) {
   const jsonLd = [];
   const jsonLdCrudo = [];
   for (const sc of doc.head.querySelectorAll('script[type="application/ld+json"]')) {
-    const t = sc.textContent.replace(reUrlGlobal, (u) => renombra(local(equilibra(u))));
+    /* Las absolutas (con host) y tambien las RELATIVAS entre comillas (`"url":"/services/..."`,
+     * que el origen trae en el `WebPage` de las 14 fichas): sin esto el JSON-LD seguiria
+     * nombrando la URL vieja mientras la canonica dice la nueva. */
+    const t = sc.textContent.replace(reUrlGlobal, (u) => renombra(local(equilibra(u))))
+      .replace(/"(\/[a-z0-9\-/]+)"/g, (_, u) => `"${renombra(u)}"`);
     try { jsonLd.push(ordena(JSON.parse(t))); } catch {
       try { jsonLd.push(ordena(JSON.parse(sanea(t)))); ldReparados++; }
       catch { jsonLdCrudo.push(t); }

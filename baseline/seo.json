@@ -1051,7 +1051,7 @@
   "h1": [],
   "jsonLd": []
  },
- "/services/custom-aluminum-pergola-builders-in-north-south-florida": {
+ "/services/pergola-builders": {
   "title": "Custom Aluminum Pergola Builders & Installation in Florida",
   "canonical": null,
   "lang": "en",
@@ -1140,11 +1140,11 @@
      ]
     },
     "name": "Aluminum Pergolas",
-    "url": "/services/custom-aluminum-pergola-builders-in-north-south-florida"
+    "url": "/services/pergola-builders"
    }
   ]
  },
- "/services/smart-irrigation-system-installation-in-north-south-florida": {
+ "/services/irrigation-systems": {
   "title": "Smart Irrigation System Installation Contractors in Florida",
   "canonical": null,
   "lang": "en",
@@ -1233,11 +1233,11 @@
      ]
     },
     "name": "Automated Irrigation",
-    "url": "/services/smart-irrigation-system-installation-in-north-south-florida"
+    "url": "/services/irrigation-systems"
    }
   ]
  },
- "/services/custom-deck-builders-in-north-south-florida": {
+ "/services/deck-builders": {
   "title": "Custom Deck Builders & Installation Contractors in Florida",
   "canonical": null,
   "lang": "en",
@@ -1326,11 +1326,11 @@
      ]
     },
     "name": "Custom Decks",
-    "url": "/services/custom-deck-builders-in-north-south-florida"
+    "url": "/services/deck-builders"
    }
   ]
  },
- "/services/professional-landscaping-services-in-north-south-florida": {
+ "/services/landscaping": {
   "title": "Professional Landscaping Design & Installation Contractors in Florida",
   "canonical": null,
   "lang": "en",
@@ -1419,11 +1419,11 @@
      ]
     },
     "name": "Landscaping",
-    "url": "/services/professional-landscaping-services-in-north-south-florida"
+    "url": "/services/landscaping"
    }
   ]
  },
- "/services/motorized-louvered-roof-systems-in-north-south-florida": {
+ "/services/louvered-roofs": {
   "title": "Motorized Louvered Roof System Builders & Installation in Florida",
   "canonical": null,
   "lang": "en",
@@ -1512,11 +1512,11 @@
      ]
     },
     "name": "Louvered Roof Systems",
-    "url": "/services/motorized-louvered-roof-systems-in-north-south-florida"
+    "url": "/services/louvered-roofs"
    }
   ]
  },
- "/services/premium-outdoor-furniture-for-north-south-florida-homes": {
+ "/services/outdoor-furniture": {
   "title": "Outdoor Furniture Installation Company in Florida",
   "canonical": null,
   "lang": "en",
@@ -1605,11 +1605,11 @@
      ]
     },
     "name": "Outdoor Furniture",
-    "url": "/services/premium-outdoor-furniture-for-north-south-florida-homes"
+    "url": "/services/outdoor-furniture"
    }
   ]
  },
- "/services/custom-outdoor-kitchens-for-north-south-florida-homes": {
+ "/services/outdoor-kitchens": {
   "title": "Custom Outdoor Kitchen Builders & Installation Contractors in Florida",
   "canonical": null,
   "lang": "en",
@@ -1698,11 +1698,11 @@
      ]
     },
     "name": "Outdoor Kitchens",
-    "url": "/services/custom-outdoor-kitchens-for-north-south-florida-homes"
+    "url": "/services/outdoor-kitchens"
    }
   ]
  },
- "/services/patio-screen-rooms-enclosures-in-north-south-florida": {
+ "/services/patio-screen-rooms": {
   "title": "Patio Screen Room Builders & Installation Contractors in Florida",
   "canonical": null,
   "lang": "en",
@@ -1791,11 +1791,11 @@
      ]
     },
     "name": "Patio Screen Rooms",
-    "url": "/services/patio-screen-rooms-enclosures-in-north-south-florida"
+    "url": "/services/patio-screen-rooms"
    }
   ]
  },
- "/services/steel-building-pole-barn-construction-in-north-south-florida": {
+ "/services/steel-buildings-pole-barns": {
   "title": "Steel & Pole Barn Construction Builders in Florida",
   "canonical": null,
   "lang": "en",
@@ -1884,11 +1884,11 @@
      ]
     },
     "name": "Pole Barn and Steel Buildings",
-    "url": "/services/steel-building-pole-barn-construction-in-north-south-florida"
+    "url": "/services/steel-buildings-pole-barns"
    }
   ]
  },
- "/services/custom-pool-spa-builders-in-north-south-florida": {
+ "/services/pool-builders": {
   "title": "Custom Pool & Spa Builders & Construction Contractors in Florida",
   "canonical": null,
   "lang": "en",
@@ -1977,11 +1977,11 @@
      ]
     },
     "name": "Pool  Construction",
-    "url": "/services/custom-pool-spa-builders-in-north-south-florida"
+    "url": "/services/pool-builders"
    }
   ]
  },
- "/services/pool-remodeling-renovation-in-north-south-florida": {
+ "/services/pool-remodeling": {
   "title": "Pool Remodeling & Renovation Contractors in Florida",
   "canonical": null,
   "lang": "en",
@@ -2070,11 +2070,11 @@
      ]
     },
     "name": "Pool Remodeling",
-    "url": "/services/pool-remodeling-renovation-in-north-south-florida"
+    "url": "/services/pool-remodeling"
    }
   ]
  },
- "/services/pool-screen-enclosures-for-north-south-florida-pools": {
+ "/services/pool-screen-enclosures": {
   "title": "Pool Screen Enclosure Builders & Installation in Florida",
   "canonical": null,
   "lang": "en",
@@ -2163,11 +2163,11 @@
      ]
     },
     "name": "Pool Screen Enclosures",
-    "url": "/services/pool-screen-enclosures-for-north-south-florida-pools"
+    "url": "/services/pool-screen-enclosures"
    }
   ]
  },
- "/services/motorized-retractable-screens-in-north-south-florida": {
+ "/services/retractable-screens": {
   "title": "Motorized Retractable Screen Installation Contractors in Florida",
   "canonical": null,
   "lang": "en",
@@ -2256,11 +2256,11 @@
      ]
     },
     "name": "Retractable Screens",
-    "url": "/services/motorized-retractable-screens-in-north-south-florida"
+    "url": "/services/retractable-screens"
    }
   ]
  },
- "/services/smart-soffit-led-lighting-installation-in-north-south-florida": {
+ "/services/soffit-led-lighting": {
   "title": "Soffit & LED Lighting Installation Contractors in Florida",
   "canonical": null,
   "lang": "en",
@@ -2349,11 +2349,11 @@
      ]
     },
     "name": "Smart Soffit LED Lighting",
-    "url": "/services/smart-soffit-led-lighting-installation-in-north-south-florida"
+    "url": "/services/soffit-led-lighting"
    }
   ]
  },
- "/pool-builders/alachua-florida": {
+ "/services/pool-builders/alachua-fl": {
   "title": "Luxury Pools & Outdoor Living in Alachua, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -2400,11 +2400,11 @@
     ],
     "name": "Alachua",
     "priceRange": "$$$$",
-    "url": "/pool-builders/alachua-florida"
+    "url": "/services/pool-builders/alachua-fl"
    }
   ]
  },
- "/pool-builders/archer-florida": {
+ "/services/pool-builders/archer-fl": {
   "title": "Luxury Pools & Outdoor Living in Archer, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -2451,11 +2451,11 @@
     ],
     "name": "Archer",
     "priceRange": "$$$$",
-    "url": "/pool-builders/archer-florida"
+    "url": "/services/pool-builders/archer-fl"
    }
   ]
  },
- "/pool-builders/atlantis-florida": {
+ "/services/pool-builders/atlantis-fl": {
   "title": "Luxury Pools & Outdoor Living in Atlantis, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -2502,11 +2502,11 @@
     ],
     "name": "Atlantis",
     "priceRange": "$$$$",
-    "url": "/pool-builders/atlantis-florida"
+    "url": "/services/pool-builders/atlantis-fl"
    }
   ]
  },
- "/pool-builders/boca-raton-florida": {
+ "/services/pool-builders/boca-raton-fl": {
   "title": "Luxury Pools & Outdoor Living in Boca Raton, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -2553,11 +2553,11 @@
     ],
     "name": "Boca Raton",
     "priceRange": "$$$$",
-    "url": "/pool-builders/boca-raton-florida"
+    "url": "/services/pool-builders/boca-raton-fl"
    }
   ]
  },
- "/pool-builders/boynton-beach-florida": {
+ "/services/pool-builders/boynton-beach-fl": {
   "title": "Luxury Pool Builders in Boynton Beach, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -2604,11 +2604,11 @@
     ],
     "name": "Boynton Beach",
     "priceRange": "$$$$",
-    "url": "/pool-builders/boynton-beach-florida"
+    "url": "/services/pool-builders/boynton-beach-fl"
    }
   ]
  },
- "/pool-builders/cedar-key-florida": {
+ "/services/pool-builders/cedar-key-fl": {
   "title": "Luxury Pools & Outdoor Living in Cedar Key, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -2655,11 +2655,11 @@
     ],
     "name": "Cedar Key",
     "priceRange": "$$$$",
-    "url": "/pool-builders/cedar-key-florida"
+    "url": "/services/pool-builders/cedar-key-fl"
    }
   ]
  },
- "/pool-builders/chiefland-florida": {
+ "/services/pool-builders/chiefland-fl": {
   "title": "Luxury Pools & Outdoor Living in Chiefland, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -2706,11 +2706,11 @@
     ],
     "name": "Chiefland",
     "priceRange": "$$$$",
-    "url": "/pool-builders/chiefland-florida"
+    "url": "/services/pool-builders/chiefland-fl"
    }
   ]
  },
- "/pool-builders/cross-city-florida": {
+ "/services/pool-builders/cross-city-fl": {
   "title": "Luxury Pools & Outdoor Living in Cross City, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -2757,11 +2757,11 @@
     ],
     "name": "Cross City",
     "priceRange": "$$$$",
-    "url": "/pool-builders/cross-city-florida"
+    "url": "/services/pool-builders/cross-city-fl"
    }
   ]
  },
- "/pool-builders/dania-beach-florida": {
+ "/services/pool-builders/dania-beach-fl": {
   "title": "Luxury Pools & Outdoor Living in Dania Beach, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -2808,11 +2808,11 @@
     ],
     "name": "Dania Beach",
     "priceRange": "$$$$",
-    "url": "/pool-builders/dania-beach-florida"
+    "url": "/services/pool-builders/dania-beach-fl"
    }
   ]
  },
- "/pool-builders/davie-florida": {
+ "/services/pool-builders/davie-fl": {
   "title": "Luxury Pools & Outdoor Living in Davie, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -2859,11 +2859,11 @@
     ],
     "name": "Davie",
     "priceRange": "$$$$",
-    "url": "/pool-builders/davie-florida"
+    "url": "/services/pool-builders/davie-fl"
    }
   ]
  },
- "/pool-builders/deerfield-beach-florida": {
+ "/services/pool-builders/deerfield-beach-fl": {
   "title": "Luxury Pool Builders in Deerfield Beach, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -2910,11 +2910,11 @@
     ],
     "name": "Deerfield Beach",
     "priceRange": "$$$$",
-    "url": "/pool-builders/deerfield-beach-florida"
+    "url": "/services/pool-builders/deerfield-beach-fl"
    }
   ]
  },
- "/pool-builders/delray-beach-florida": {
+ "/services/pool-builders/delray-beach-fl": {
   "title": "Luxury Pools & Outdoor Living in Delray Beach, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -2961,11 +2961,11 @@
     ],
     "name": "Delray Beach",
     "priceRange": "$$$$",
-    "url": "/pool-builders/delray-beach-florida"
+    "url": "/services/pool-builders/delray-beach-fl"
    }
   ]
  },
- "/pool-builders/fanning-springs-florida": {
+ "/services/pool-builders/fanning-springs-fl": {
   "title": "Luxury Pool Builders in Fanning Springs, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -3012,11 +3012,11 @@
     ],
     "name": "Fanning Springs",
     "priceRange": "$$$$",
-    "url": "/pool-builders/fanning-springs-florida"
+    "url": "/services/pool-builders/fanning-springs-fl"
    }
   ]
  },
- "/pool-builders/fort-lauderdale-florida": {
+ "/services/pool-builders/fort-lauderdale-fl": {
   "title": "Luxury Pool Builders in Fort Lauderdale, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -3063,11 +3063,11 @@
     ],
     "name": "Fort Lauderdale",
     "priceRange": "$$$$",
-    "url": "/pool-builders/fort-lauderdale-florida"
+    "url": "/services/pool-builders/fort-lauderdale-fl"
    }
   ]
  },
- "/pool-builders/gainesville-florida": {
+ "/services/pool-builders/gainesville-fl": {
   "title": "Luxury Pools & Outdoor Living in Gainesville, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -3114,11 +3114,11 @@
     ],
     "name": "Gainesville",
     "priceRange": "$$$$",
-    "url": "/pool-builders/gainesville-florida"
+    "url": "/services/pool-builders/gainesville-fl"
    }
   ]
  },
- "/pool-builders/gulf-stream-florida": {
+ "/services/pool-builders/gulf-stream-fl": {
   "title": "Luxury Pools & Outdoor Living in Gulf Stream, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -3165,11 +3165,11 @@
     ],
     "name": "Gulf Stream",
     "priceRange": "$$$$",
-    "url": "/pool-builders/gulf-stream-florida"
+    "url": "/services/pool-builders/gulf-stream-fl"
    }
   ]
  },
- "/pool-builders/hallandale-beach-florida": {
+ "/services/pool-builders/hallandale-beach-fl": {
   "title": "Luxury Pool Builders in Hallandale Beach, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -3216,11 +3216,11 @@
     ],
     "name": "Hallandale Beach",
     "priceRange": "$$$$",
-    "url": "/pool-builders/hallandale-beach-florida"
+    "url": "/services/pool-builders/hallandale-beach-fl"
    }
   ]
  },
- "/pool-builders/hawthorne-florida": {
+ "/services/pool-builders/hawthorne-fl": {
   "title": "Luxury Pools & Outdoor Living in Hawthorne, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -3267,11 +3267,11 @@
     ],
     "name": "Hawthorne",
     "priceRange": "$$$$",
-    "url": "/pool-builders/hawthorne-florida"
+    "url": "/services/pool-builders/hawthorne-fl"
    }
   ]
  },
- "/pool-builders/high-springs-florida": {
+ "/services/pool-builders/high-springs-fl": {
   "title": "Luxury Pools & Outdoor Living in High Springs, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -3318,11 +3318,11 @@
     ],
     "name": "High Springs",
     "priceRange": "$$$$",
-    "url": "/pool-builders/high-springs-florida"
+    "url": "/services/pool-builders/high-springs-fl"
    }
   ]
  },
- "/pool-builders/beach-florida": {
+ "/services/pool-builders/hillsboro-beach-fl": {
   "title": "Luxury Pool Builders in Hillsboro Beach, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -3369,11 +3369,11 @@
     ],
     "name": "Hillsboro Beach",
     "priceRange": "$$$$",
-    "url": "/pool-builders/beach-florida"
+    "url": "/services/pool-builders/hillsboro-beach-fl"
    }
   ]
  },
- "/pool-builders/hollywood-florida": {
+ "/services/pool-builders/hollywood-fl": {
   "title": "Luxury Pools & Outdoor Living in Hollywood, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -3420,11 +3420,11 @@
     ],
     "name": "Hollywood",
     "priceRange": "$$$$",
-    "url": "/pool-builders/hollywood-florida"
+    "url": "/services/pool-builders/hollywood-fl"
    }
   ]
  },
- "/pool-builders/hypoluxo-florida": {
+ "/services/pool-builders/hypoluxo-fl": {
   "title": "Luxury Pools & Outdoor Living in Hypoluxo, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -3471,11 +3471,11 @@
     ],
     "name": "Hypoluxo",
     "priceRange": "$$$$",
-    "url": "/pool-builders/hypoluxo-florida"
+    "url": "/services/pool-builders/hypoluxo-fl"
    }
   ]
  },
- "/pool-builders/juno-beach-florida": {
+ "/services/pool-builders/juno-beach-fl": {
   "title": "Luxury Pools & Outdoor Living in Juno Beach, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -3522,11 +3522,11 @@
     ],
     "name": "Juno Beach",
     "priceRange": "$$$$",
-    "url": "/pool-builders/juno-beach-florida"
+    "url": "/services/pool-builders/juno-beach-fl"
    }
   ]
  },
- "/pool-builders/jupiter-florida": {
+ "/services/pool-builders/jupiter-fl": {
   "title": "Luxury Pools & Outdoor Living in Jupiter, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -3573,11 +3573,11 @@
     ],
     "name": "Jupiter",
     "priceRange": "$$$$",
-    "url": "/pool-builders/jupiter-florida"
+    "url": "/services/pool-builders/jupiter-fl"
    }
   ]
  },
- "/pool-builders/lake-city-florida": {
+ "/services/pool-builders/lake-city-fl": {
   "title": "Luxury Pools & Outdoor Living in Lake City, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -3624,11 +3624,11 @@
     ],
     "name": "Lake City",
     "priceRange": "$$$$",
-    "url": "/pool-builders/lake-city-florida"
+    "url": "/services/pool-builders/lake-city-fl"
    }
   ]
  },
- "/pool-builders/lighthouse-point-florida": {
+ "/services/pool-builders/lighthouse-point-fl": {
   "title": "Luxury Pool Builders in Lighthouse Point, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -3675,11 +3675,11 @@
     ],
     "name": "Lighthouse Point",
     "priceRange": "$$$$",
-    "url": "/pool-builders/lighthouse-point-florida"
+    "url": "/services/pool-builders/lighthouse-point-fl"
    }
   ]
  },
- "/pool-builders/manalapan-florida": {
+ "/services/pool-builders/manalapan-fl": {
   "title": "Luxury Pools & Outdoor Living in Manalapan, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -3726,11 +3726,11 @@
     ],
     "name": "Manalapan",
     "priceRange": "$$$$",
-    "url": "/pool-builders/manalapan-florida"
+    "url": "/services/pool-builders/manalapan-fl"
    }
   ]
  },
- "/pool-builders/mcintosh-florida": {
+ "/services/pool-builders/mcintosh-fl": {
   "title": "Luxury Pools & Outdoor Living in McIntosh, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -3777,11 +3777,11 @@
     ],
     "name": "McIntosh",
     "priceRange": "$$$$",
-    "url": "/pool-builders/mcintosh-florida"
+    "url": "/services/pool-builders/mcintosh-fl"
    }
   ]
  },
- "/pool-builders/micanopy-florida": {
+ "/services/pool-builders/micanopy-fl": {
   "title": "Luxury Pools & Outdoor Living in Micanopy, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -3828,11 +3828,11 @@
     ],
     "name": "Micanopy",
     "priceRange": "$$$$",
-    "url": "/pool-builders/micanopy-florida"
+    "url": "/services/pool-builders/micanopy-fl"
    }
   ]
  },
- "/pool-builders/miramar-florida": {
+ "/services/pool-builders/miramar-fl": {
   "title": "Luxury Pools & Outdoor Living in Miramar, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -3879,11 +3879,11 @@
     ],
     "name": "Miramar",
     "priceRange": "$$$$",
-    "url": "/pool-builders/miramar-florida"
+    "url": "/services/pool-builders/miramar-fl"
    }
   ]
  },
- "/pool-builders/newberry-florida": {
+ "/services/pool-builders/newberry-fl": {
   "title": "Luxury Pools & Outdoor Living in Newberry, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -3930,11 +3930,11 @@
     ],
     "name": "Newberry",
     "priceRange": "$$$$",
-    "url": "/pool-builders/newberry-florida"
+    "url": "/services/pool-builders/newberry-fl"
    }
   ]
  },
- "/pool-builders/north-palm-beach-florida": {
+ "/services/pool-builders/north-palm-beach-fl": {
   "title": "Luxury Pool Builders in North Palm Beach, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -3981,11 +3981,11 @@
     ],
     "name": "North Palm Beach",
     "priceRange": "$$$$",
-    "url": "/pool-builders/north-palm-beach-florida"
+    "url": "/services/pool-builders/north-palm-beach-fl"
    }
   ]
  },
- "/pool-builders/ocala-florida": {
+ "/services/pool-builders/ocala-fl": {
   "title": "Luxury Pools & Outdoor Living in Ocala, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -4032,11 +4032,11 @@
     ],
     "name": "Ocala",
     "priceRange": "$$$$",
-    "url": "/pool-builders/ocala-florida"
+    "url": "/services/pool-builders/ocala-fl"
    }
   ]
  },
- "/pool-builders/ocean-ridge-florida": {
+ "/services/pool-builders/ocean-ridge-fl": {
   "title": "Luxury Pools & Outdoor Living in Ocean Ridge, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -4083,11 +4083,11 @@
     ],
     "name": "Ocean Ridge",
     "priceRange": "$$$$",
-    "url": "/pool-builders/ocean-ridge-florida"
+    "url": "/services/pool-builders/ocean-ridge-fl"
    }
   ]
  },
- "/pool-builders/old-town-florida": {
+ "/services/pool-builders/old-town-fl": {
   "title": "Luxury Pools & Outdoor Living in Old Town, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -4134,11 +4134,11 @@
     ],
     "name": "Old Town",
     "priceRange": "$$$$",
-    "url": "/pool-builders/old-town-florida"
+    "url": "/services/pool-builders/old-town-fl"
    }
   ]
  },
- "/pool-builders/palatka-florida": {
+ "/services/pool-builders/palatka-fl": {
   "title": "Luxury Pools & Outdoor Living in Palatka, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -4185,11 +4185,11 @@
     ],
     "name": "Palatka",
     "priceRange": "$$$$",
-    "url": "/pool-builders/palatka-florida"
+    "url": "/services/pool-builders/palatka-fl"
    }
   ]
  },
- "/pool-builders/palm-beach-gardens-florida": {
+ "/services/pool-builders/palm-beach-gardens-fl": {
   "title": "Luxury Pool Builders in Palm Beach Gardens, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -4236,11 +4236,11 @@
     ],
     "name": "Palm Beach Gardens",
     "priceRange": "$$$$",
-    "url": "/pool-builders/palm-beach-gardens-florida"
+    "url": "/services/pool-builders/palm-beach-gardens-fl"
    }
   ]
  },
- "/pool-builders/parkland-florida": {
+ "/services/pool-builders/parkland-fl": {
   "title": "Luxury Pools & Outdoor Living in Parkland, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -4287,11 +4287,11 @@
     ],
     "name": "Parkland",
     "priceRange": "$$$$",
-    "url": "/pool-builders/parkland-florida"
+    "url": "/services/pool-builders/parkland-fl"
    }
   ]
  },
- "/pool-builders/pembroke-pines-florida": {
+ "/services/pool-builders/pembroke-pines-fl": {
   "title": "Luxury Pool Builders in Pembroke Pines, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -4338,11 +4338,11 @@
     ],
     "name": "Pembroke Pines",
     "priceRange": "$$$$",
-    "url": "/pool-builders/pembroke-pines-florida"
+    "url": "/services/pool-builders/pembroke-pines-fl"
    }
   ]
  },
- "/pool-builders/plantation-florida": {
+ "/services/pool-builders/plantation-fl": {
   "title": "Luxury Pools & Outdoor Living in Plantation, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -4389,11 +4389,11 @@
     ],
     "name": "Plantation",
     "priceRange": "$$$$",
-    "url": "/pool-builders/plantation-florida"
+    "url": "/services/pool-builders/plantation-fl"
    }
   ]
  },
- "/pool-builders/pompano-beach-florida": {
+ "/services/pool-builders/pompano-beach-fl": {
   "title": "Luxury Pool Builders in Pompano Beach, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -4440,11 +4440,11 @@
     ],
     "name": "Pompano Beach",
     "priceRange": "$$$$",
-    "url": "/pool-builders/pompano-beach-florida"
+    "url": "/services/pool-builders/pompano-beach-fl"
    }
   ]
  },
- "/pool-builders/reddick-florida": {
+ "/services/pool-builders/reddick-fl": {
   "title": "Luxury Pools & Outdoor Living in Reddick, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -4491,11 +4491,11 @@
     ],
     "name": "Reddick",
     "priceRange": "$$$$",
-    "url": "/pool-builders/reddick-florida"
+    "url": "/services/pool-builders/reddick-fl"
    }
   ]
  },
- "/pool-builders/royal-palm-beach-florida": {
+ "/services/pool-builders/royal-palm-beach-fl": {
   "title": "Luxury Pool Builders in Royal Palm Beach, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -4542,11 +4542,11 @@
     ],
     "name": "Royal Palm Beach",
     "priceRange": "$$$$",
-    "url": "/pool-builders/royal-palm-beach-florida"
+    "url": "/services/pool-builders/royal-palm-beach-fl"
    }
   ]
  },
- "/pool-builders/south-palm-beach-florida": {
+ "/services/pool-builders/south-palm-beach-fl": {
   "title": "Luxury Pool Builders in South Palm Beach, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -4593,11 +4593,11 @@
     ],
     "name": "South Palm Beach",
     "priceRange": "$$$$",
-    "url": "/pool-builders/south-palm-beach-florida"
+    "url": "/services/pool-builders/south-palm-beach-fl"
    }
   ]
  },
- "/pool-builders/southwest-ranches-florida": {
+ "/services/pool-builders/southwest-ranches-fl": {
   "title": "Luxury Pool Builders in Southwest Ranches, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -4644,11 +4644,11 @@
     ],
     "name": "Southwest Ranches",
     "priceRange": "$$$$",
-    "url": "/pool-builders/southwest-ranches-florida"
+    "url": "/services/pool-builders/southwest-ranches-fl"
    }
   ]
  },
- "/pool-builders/tequesta-florida": {
+ "/services/pool-builders/tequesta-fl": {
   "title": "Luxury Pools & Outdoor Living in Tequesta, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -4695,11 +4695,11 @@
     ],
     "name": "Tequesta",
     "priceRange": "$$$$",
-    "url": "/pool-builders/tequesta-florida"
+    "url": "/services/pool-builders/tequesta-fl"
    }
   ]
  },
- "/pool-builders/trenton-florida": {
+ "/services/pool-builders/trenton-fl": {
   "title": "Luxury Pools & Outdoor Living in Trenton, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -4746,11 +4746,11 @@
     ],
     "name": "Trenton",
     "priceRange": "$$$$",
-    "url": "/pool-builders/trenton-florida"
+    "url": "/services/pool-builders/trenton-fl"
    }
   ]
  },
- "/pool-builders/waldo-florida": {
+ "/services/pool-builders/waldo-fl": {
   "title": "Luxury Pools & Outdoor Living in Waldo, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -4797,11 +4797,11 @@
     ],
     "name": "Waldo",
     "priceRange": "$$$$",
-    "url": "/pool-builders/waldo-florida"
+    "url": "/services/pool-builders/waldo-fl"
    }
   ]
  },
- "/pool-builders/wellington-florida": {
+ "/services/pool-builders/wellington-fl": {
   "title": "Luxury Pools & Outdoor Living in Wellington, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -4848,11 +4848,11 @@
     ],
     "name": "Wellington",
     "priceRange": "$$$$",
-    "url": "/pool-builders/wellington-florida"
+    "url": "/services/pool-builders/wellington-fl"
    }
   ]
  },
- "/pool-builders/west-palm-beach-florida": {
+ "/services/pool-builders/west-palm-beach-fl": {
   "title": "Luxury Pool Builders in West Palm Beach, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -4899,11 +4899,11 @@
     ],
     "name": "West Palm Beach",
     "priceRange": "$$$$",
-    "url": "/pool-builders/west-palm-beach-florida"
+    "url": "/services/pool-builders/west-palm-beach-fl"
    }
   ]
  },
- "/pool-builders/weston-florida": {
+ "/services/pool-builders/weston-fl": {
   "title": "Luxury Pools & Outdoor Living in Weston, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -4950,11 +4950,11 @@
     ],
     "name": "Weston",
     "priceRange": "$$$$",
-    "url": "/pool-builders/weston-florida"
+    "url": "/services/pool-builders/weston-fl"
    }
   ]
  },
- "/pool-builders/williston-florida": {
+ "/services/pool-builders/williston-fl": {
   "title": "Luxury Pools & Outdoor Living in Williston, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -5001,11 +5001,11 @@
     ],
     "name": "Williston",
     "priceRange": "$$$$",
-    "url": "/pool-builders/williston-florida"
+    "url": "/services/pool-builders/williston-fl"
    }
   ]
  },
- "/pool-builders/wilton-manors-florida": {
+ "/services/pool-builders/wilton-manors-fl": {
   "title": "Luxury Pool Builders in Wilton Manors, FL | Mr & Mrs",
   "canonical": null,
   "lang": "en",
@@ -5052,7 +5052,7 @@
     ],
     "name": "Wilton Manors",
     "priceRange": "$$$$",
-    "url": "/pool-builders/wilton-manors-florida"
+    "url": "/services/pool-builders/wilton-manors-fl"
    }
   ]
  },
@@ -6016,7 +6016,7 @@
    }
   ]
  },
- "/country/custom-pool-builders-alachua-county-fl": {
+ "/services/pool-builders/alachua-county-fl": {
   "title": "Custom Pool Builders in Alachua County, FL | Outdoor Living",
   "canonical": null,
   "lang": "en",
@@ -6037,7 +6037,7 @@
   "jsonLd": [
    {
     "@context": "https://schema.org",
-    "@id": "/country/custom-pool-builders-alachua-county-fl",
+    "@id": "/services/pool-builders/alachua-county-fl",
     "@type": "WebPage",
     "about": {
      "@type": "Place",
@@ -6125,11 +6125,11 @@
      "name": "Alachua County"
     },
     "name": "Custom Pool Builders in Alachua County, FL",
-    "url": "/country/custom-pool-builders-alachua-county-fl"
+    "url": "/services/pool-builders/alachua-county-fl"
    }
   ]
  },
- "/country/custom-pool-builders-broward-county-fl": {
+ "/services/pool-builders/broward-county-fl": {
   "title": "Custom Pool Builders in Broward County, FL | Outdoor Living",
   "canonical": null,
   "lang": "en",
@@ -6150,7 +6150,7 @@
   "jsonLd": [
    {
     "@context": "https://schema.org",
-    "@id": "/country/custom-pool-builders-broward-county-fl",
+    "@id": "/services/pool-builders/broward-county-fl",
     "@type": "WebPage",
     "about": {
      "@type": "Place",
@@ -6238,11 +6238,11 @@
      "name": "Broward County"
     },
     "name": "Custom Pool Builders in Broward County, FL",
-    "url": "/country/custom-pool-builders-broward-county-fl"
+    "url": "/services/pool-builders/broward-county-fl"
    }
   ]
  },
- "/country/custom-pool-builders-columbia-county-fl": {
+ "/services/pool-builders/columbia-county-fl": {
   "title": "Custom Pool Builders in Columbia County, FL | Outdoor Living",
   "canonical": null,
   "lang": "en",
@@ -6263,7 +6263,7 @@
   "jsonLd": [
    {
     "@context": "https://schema.org",
-    "@id": "/country/custom-pool-builders-columbia-county-fl",
+    "@id": "/services/pool-builders/columbia-county-fl",
     "@type": "WebPage",
     "about": {
      "@type": "Place",
@@ -6351,11 +6351,11 @@
      "name": "Columbia County"
     },
     "name": "Custom Pool Builders in Columbia County, FL",
-    "url": "/country/custom-pool-builders-columbia-county-fl"
+    "url": "/services/pool-builders/columbia-county-fl"
    }
   ]
  },
- "/country/custom-pool-builders-dixie-county-fl": {
+ "/services/pool-builders/dixie-county-fl": {
   "title": "Custom Pool Builders in Dixie County, FL | Outdoor Living",
   "canonical": null,
   "lang": "en",
@@ -6376,7 +6376,7 @@
   "jsonLd": [
    {
     "@context": "https://schema.org",
-    "@id": "/country/custom-pool-builders-dixie-county-fl",
+    "@id": "/services/pool-builders/dixie-county-fl",
     "@type": "WebPage",
     "about": {
      "@type": "Place",
@@ -6464,11 +6464,11 @@
      "name": "Dixie County"
     },
     "name": "Custom Pool Builders in Dixie County, FL",
-    "url": "/country/custom-pool-builders-dixie-county-fl"
+    "url": "/services/pool-builders/dixie-county-fl"
    }
   ]
  },
- "/country/custom-pool-builders-gilchrist-county-fl": {
+ "/services/pool-builders/gilchrist-county-fl": {
   "title": "Custom Pool Builders in Gilchrist County, FL | Outdoor Living",
   "canonical": null,
   "lang": "en",
@@ -6489,7 +6489,7 @@
   "jsonLd": [
    {
     "@context": "https://schema.org",
-    "@id": "/country/custom-pool-builders-gilchrist-county-fl",
+    "@id": "/services/pool-builders/gilchrist-county-fl",
     "@type": "WebPage",
     "about": {
      "@type": "Place",
@@ -6577,11 +6577,11 @@
      "name": "Gilchrist County"
     },
     "name": "Custom Pool Builders in Gilchrist County, FL",
-    "url": "/country/custom-pool-builders-gilchrist-county-fl"
+    "url": "/services/pool-builders/gilchrist-county-fl"
    }
   ]
  },
- "/country/custom-pool-builders-levy-county-fl": {
+ "/services/pool-builders/levy-county-fl": {
   "title": "Custom Pool Builders in Levy County, FL | Outdoor Living",
   "canonical": null,
   "lang": "en",
@@ -6602,7 +6602,7 @@
   "jsonLd": [
    {
     "@context": "https://schema.org",
-    "@id": "/country/custom-pool-builders-levy-county-fl",
+    "@id": "/services/pool-builders/levy-county-fl",
     "@type": "WebPage",
     "about": {
      "@type": "Place",
@@ -6690,11 +6690,11 @@
      "name": "Levy County"
     },
     "name": "Custom Pool Builders in Levy County, FL",
-    "url": "/country/custom-pool-builders-levy-county-fl"
+    "url": "/services/pool-builders/levy-county-fl"
    }
   ]
  },
- "/country/custom-pool-builders-marion-county-fl": {
+ "/services/pool-builders/marion-county-fl": {
   "title": "Custom Pool Builders in Marion County, FL | Outdoor Living",
   "canonical": null,
   "lang": "en",
@@ -6715,7 +6715,7 @@
   "jsonLd": [
    {
     "@context": "https://schema.org",
-    "@id": "/country/custom-pool-builders-marion-county-fl",
+    "@id": "/services/pool-builders/marion-county-fl",
     "@type": "WebPage",
     "about": {
      "@type": "Place",
@@ -6803,11 +6803,11 @@
      "name": "Marion County"
     },
     "name": "Custom Pool Builders in Marion County, FL",
-    "url": "/country/custom-pool-builders-marion-county-fl"
+    "url": "/services/pool-builders/marion-county-fl"
    }
   ]
  },
- "/country/custom-pool-builders-palm-beach-county-fl": {
+ "/services/pool-builders/palm-beach-county-fl": {
   "title": "Custom Pool Builders in Palm Beach County, FL | Outdoor Living",
   "canonical": null,
   "lang": "en",
@@ -6828,7 +6828,7 @@
   "jsonLd": [
    {
     "@context": "https://schema.org",
-    "@id": "/country/custom-pool-builders-palm-beach-county-fl",
+    "@id": "/services/pool-builders/palm-beach-county-fl",
     "@type": "WebPage",
     "about": {
      "@type": "Place",
@@ -6916,11 +6916,11 @@
      "name": "Palm Beach County"
     },
     "name": "Custom Pool Builders in Palm Beach County, FL",
-    "url": "/country/custom-pool-builders-palm-beach-county-fl"
+    "url": "/services/pool-builders/palm-beach-county-fl"
    }
   ]
  },
- "/country/custom-pool-builders-putnam-county-fl": {
+ "/services/pool-builders/putnam-county-fl": {
   "title": "Custom Pool Builders in Putnam County, FL | Outdoor Living",
   "canonical": null,
   "lang": "en",
@@ -6941,7 +6941,7 @@
   "jsonLd": [
    {
     "@context": "https://schema.org",
-    "@id": "/country/custom-pool-builders-putnam-county-fl",
+    "@id": "/services/pool-builders/putnam-county-fl",
     "@type": "WebPage",
     "about": {
      "@type": "Place",
@@ -7029,7 +7029,7 @@
      "name": "Putnam County"
     },
     "name": "Custom Pool Builders in Putnam County, FL",
-    "url": "/country/custom-pool-builders-putnam-county-fl"
+    "url": "/services/pool-builders/putnam-county-fl"
    }
   ]
  },

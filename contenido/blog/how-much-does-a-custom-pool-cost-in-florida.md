@@ -162,7 +162,7 @@ The largest single additions to a pool project are usually not the pool.
 | Motorized louvered roof | about $18,000 |
 | Outdoor kitchen | about $25,000 |
 
-Every one of these is cheaper built alongside the pool than added later, because the crews, the access and the slab work are already on site. If an [outdoor kitchen](/services/custom-outdoor-kitchens-for-north-south-florida-homes) or a [screen enclosure](/services/pool-screen-enclosures-for-north-south-florida-pools) is on your list for "someday", the cheapest someday is now.
+Every one of these is cheaper built alongside the pool than added later, because the crews, the access and the slab work are already on site. If an [outdoor kitchen](/services/outdoor-kitchens) or a [screen enclosure](/services/pool-screen-enclosures) is on your list for "someday", the cheapest someday is now.
 
 ## 8. Site conditions, which are not optional
 
@@ -194,4 +194,4 @@ Work through the eight decisions in order and write down what you actually want 
 
 If the answer surprises you, that is the useful part. Most people find one decision they were treating as fixed is worth more to them than two they were arguing about.
 
-When you have a scope you believe in, a site visit is what turns it into a price. Ours reviews access, grade and utilities before anyone quotes a number — see [custom pool and spa construction](/services/custom-pool-spa-builders-in-north-south-florida) for how the process runs.
+When you have a scope you believe in, a site visit is what turns it into a price. Ours reviews access, grade and utilities before anyone quotes a number — see [custom pool and spa construction](/services/pool-builders) for how the process runs.

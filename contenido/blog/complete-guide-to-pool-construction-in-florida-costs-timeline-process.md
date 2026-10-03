@@ -170,8 +170,8 @@ The contractor you hire decides more than any single feature. Verify the state l
 
 ## Building in North Florida
 
-Gainesville, Ocala and the counties around them add a few items to the list: limestone under many lots, septic systems and wells, a shorter swim season that makes a heater more valuable, and county building departments with their own portals and checklists. We cover them in [what Gainesville and Ocala homeowners should plan for](/blogs/building-a-pool-in-north-florida), and the two local pages, [Gainesville](/pool-builders/gainesville-florida) and [Ocala](/pool-builders/ocala-florida), explain how we work in each.
+Gainesville, Ocala and the counties around them add a few items to the list: limestone under many lots, septic systems and wells, a shorter swim season that makes a heater more valuable, and county building departments with their own portals and checklists. We cover them in [what Gainesville and Ocala homeowners should plan for](/blogs/building-a-pool-in-north-florida), and the two local pages, [Gainesville](/services/pool-builders/gainesville-fl) and [Ocala](/services/pool-builders/ocala-fl), explain how we work in each.
 
 ## Ready to start
 
-If you are at the "is this realistic for our lot" stage, request a project evaluation on our [custom pool construction](/services/custom-pool-spa-builders-in-north-south-florida) page. We walk the property, put a 3D design on paper and price it, and you decide from there.
+If you are at the "is this realistic for our lot" stage, request a project evaluation on our [custom pool construction](/services/pool-builders) page. We walk the property, put a 3D design on paper and price it, and you decide from there.

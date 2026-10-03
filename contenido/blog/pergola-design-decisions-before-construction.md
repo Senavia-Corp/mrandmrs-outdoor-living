@@ -136,7 +136,7 @@ Three things follow from the answer:
 
 - **Roof density.** Widely spaced slats read as an open frame and shade very little at midday. Tighter spacing shades more and darkens the space under it. If the hours you named are the hot middle of the day, you are probably looking for more density than the drawing shows.
 - **Which way the slats run.** Fixed slats block sun from one direction better than the other. Running them the wrong way relative to the sun at your hours produces stripes when you wanted shade.
-- **What no roof can fix.** Late afternoon sun comes in low and sideways, under any roof at any density. A west-facing patio at six o'clock is not a roof problem. It is a side problem, solved with planting, a privacy panel, or [motorized retractable screens](/services/motorized-retractable-screens-in-north-south-florida) — and if screens are even a possibility, that has consequences in decision seven.
+- **What no roof can fix.** Late afternoon sun comes in low and sideways, under any roof at any density. A west-facing patio at six o'clock is not a roof problem. It is a side problem, solved with planting, a privacy panel, or [motorized retractable screens](/services/retractable-screens) — and if screens are even a possibility, that has consequences in decision seven.
 
 The cheapest way to check any of this is to stand on the spot at the hour in question, a week before the drawing is approved. Photographs of finished structures are useful for a different purpose — our [project gallery](/gallery) shows how the same roof density reads on different houses — but they cannot tell you where your own sun is at five.
 
@@ -150,7 +150,7 @@ There are three families of pergola roof, and the choice between them is not rea
 | Translucent panels | Sheds | Gutter, downspout, and a discharge point |
 | Solid or insulated panel | Sheds | The same, plus a heavier frame and bigger footings |
 
-An open slat roof is a sun structure, not a rain structure. That is a perfectly good thing to build, as long as you know it: a dining table under open slats is fine, and an outdoor kitchen under open slats is an outdoor kitchen in the rain. If appliances are going under this structure, see [what an outdoor kitchen needs from the space around it](/services/custom-outdoor-kitchens-for-north-south-florida-homes) before you settle the roof.
+An open slat roof is a sun structure, not a rain structure. That is a perfectly good thing to build, as long as you know it: a dining table under open slats is fine, and an outdoor kitchen under open slats is an outdoor kitchen in the rain. If appliances are going under this structure, see [what an outdoor kitchen needs from the space around it](/services/outdoor-kitchens) before you settle the roof.
 
 The moment the roof sheds water, a second decision appears that most homeowners never get asked about: **where the downspout discharges.** Concentrating a roof's worth of rain next to the house foundation, onto a pool deck, or at the top of a slope toward a neighbor is a worse problem than the one the roof solved. It needs a run of pipe to somewhere that can take it, and that pipe is buried — which means it happens before the paving, not after.
 
@@ -214,4 +214,4 @@ Those estimator figures are starting configurations, not quotes, and the estimat
 
 Every one of those seven is permanent once the structure is up. None of them are expensive to get right at the drawing stage, and all of them are expensive to correct afterwards — which is the only real argument for spending an afternoon on a roll of tape and a broom handle before anything is ordered.
 
-How we work through this sequence, and what ends up on the drawing before anything is fabricated, is on the [custom aluminum pergola builders](/services/custom-aluminum-pergola-builders-in-north-south-florida) page. A [project estimate](/request-estimated) starts with a site visit, because decisions two through five cannot be made from a floor plan.
+How we work through this sequence, and what ends up on the drawing before anything is fabricated, is on the [custom aluminum pergola builders](/services/pergola-builders) page. A [project estimate](/request-estimated) starts with a site visit, because decisions two through five cannot be made from a floor plan.

@@ -5,7 +5,7 @@
   "origen: `banco` = src/data/banco-imagenes.json (bancoId); se inyecta TAMBIEN en /gallery con data-service-id = id. `obra` = las de src/data/galeria-pagina.json, que /gallery ya inyecta. `webflow` = las de la rejilla de origen con `usable: true` en gallery-procedencia.json.",
   "Sin pagina por falta de obra real: screens (5), irrigation (4), light (0), furniture (0). Slugs reservados: retractable-screens, irrigation-systems, outdoor-lighting, outdoor-furniture.",
   "El orden de `fotos` es el de la pagina: casting hecho sobre hoja de contactos recortada a 3:2, que es como pinta la rejilla.",
-  "`panel` (6 categorias, en este orden) = la banda «Project Gallery» de las 53 /pool-builders/* y las 2 /where-we-serve/*-florida: foto del banco (bancoId) recortada a 9:16 por scripts/build-paneles-galeria.mjs en /images/obra/paneles/gallery-panel-<slug>.webp, y `x` = su object-position horizontal en %, medido sobre la hoja de contactos del panel en reposo (236x662). El marcado sale de bandaGaleriaHtml() en src/lib/galeria-categorias.mjs."
+  "`panel` (6 categorias, en este orden) = la banda «Project Gallery» de las 53 /services/pool-builders/* y las 2 /where-we-serve/*-florida: foto del banco (bancoId) recortada a 9:16 por scripts/build-paneles-galeria.mjs en /images/obra/paneles/gallery-panel-<slug>.webp, y `x` = su object-position horizontal en %, medido sobre la hoja de contactos del panel en reposo (236x662). El marcado sale de bandaGaleriaHtml() en src/lib/galeria-categorias.mjs."
  ],
  "categorias": [
   {
@@ -18,7 +18,7 @@
    "intro": "Every pool here is one we engineered, permitted and built for a Florida homeowner. Look closely at the details that change how a pool gets used: raised spas with spillways, sun shelves with in-water loungers, glass tile waterlines and travertine or marble decks that stay cool underfoot. Open any photo to see it full size, and tell us which ones look like the backyard you have in mind.",
    "linea": "Custom inground pools and spas, engineered and permitted.",
    "servicio": {
-    "enlace": "/services/custom-pool-spa-builders-in-north-south-florida",
+    "enlace": "/services/pool-builders",
     "ancla": "Custom pool and spa builders"
    },
    "portada": "/images/banco/construction/pool-construction-l-shaped-pool-spa-aerial-florida-01.webp",
@@ -190,7 +190,7 @@
    "intro": "A remodel keeps the shell and changes everything you see and touch. These are pools we renovated for Florida homeowners: resurfaced interiors, new waterline tile, travertine decks laid over tired concrete, and raised walls with sheer-descent waterfalls added to pools that never had one. Use them to decide how far you want your own renovation to go, then ask us what it would take.",
    "linea": "Resurfacing, new tile, decks and water features.",
    "servicio": {
-    "enlace": "/services/pool-remodeling-renovation-in-north-south-florida",
+    "enlace": "/services/pool-remodeling",
     "ancla": "Pool remodeling and renovation"
    },
    "portada": "/images/banco/remodeling/pool-remodeling-travertine-deck-rock-landscaping-florida-02.webp",
@@ -339,7 +339,7 @@
    "intro": "Aluminum pergolas and insulated patio covers we built across Florida, in the colors and layouts homeowners actually choose: bronze and white frames, freestanding structures beside the pool, covers attached along the back of the house, and privacy walls where the neighbors are close. Each one is engineered for Florida wind and sized to the patio it shades. Open the photos and note the ones that fit your home.",
    "linea": "Custom aluminum pergolas built for Florida sun and wind.",
    "servicio": {
-    "enlace": "/services/custom-aluminum-pergola-builders-in-north-south-florida",
+    "enlace": "/services/pergola-builders",
     "ancla": "Custom aluminum pergola builders"
    },
    "portada": "/images/banco/pergolas/freestanding-patio-cover-privacy-screen-poolside-florida-02.webp",
@@ -670,7 +670,7 @@
    "intro": "A louvered roof is a pergola you can close. These photos show systems we installed on Florida patios with the louvers open to the sky, closed against the rain, and lit at night with LED strips in the beams. Look at how each one is combined with fans, an outdoor kitchen or a pool deck, and at the views from above that show how the louvers and motors work.",
    "linea": "Motorized louvered roof systems for shade on demand.",
    "servicio": {
-    "enlace": "/services/motorized-louvered-roof-systems-in-north-south-florida",
+    "enlace": "/services/louvered-roofs",
     "ancla": "Motorized louvered roof systems"
    },
    "portada": "/images/banco/louvered/louvered-roof-white-large-span-travertine-patio-florida-01.webp",
@@ -874,7 +874,7 @@
    "intro": "Outdoor kitchens we built for Florida homes, from a compact grill island to full L and U-shaped layouts with a bar. Notice the choices that make them work outdoors: porcelain waterfall countertops, stainless doors and drawers, built-in grills, kamado smokers and pizza ovens, and a roof overhead so you can cook in the rain. Pick the layouts you like and we will price one for your patio.",
    "linea": "Built-in cooking, storage, and counter space.",
    "servicio": {
-    "enlace": "/services/custom-outdoor-kitchens-for-north-south-florida-homes",
+    "enlace": "/services/outdoor-kitchens",
     "ancla": "Custom outdoor kitchens"
    },
    "portada": "/images/banco/kitchens/outdoor-kitchen-marble-waterfall-kamado-grill-florida-01.webp",
@@ -1079,7 +1079,7 @@
    "intro": "Decks and patio surfaces we built around Florida homes and pools. You will find wood platforms, polished porcelain laid on the diagonal, travertine pool decks, and large-format slabs set in strips of artificial turf. The photos were taken once the work was finished, some right after rain, so you can see how each surface drains and how it meets the lawn, the planting and the pool edge.",
    "linea": "Wood, porcelain, travertine and paver decks built for the climate.",
    "servicio": {
-    "enlace": "/services/custom-deck-builders-in-north-south-florida",
+    "enlace": "/services/deck-builders",
     "ancla": "Custom deck builders"
    },
    "portada": "/images/banco/decks/limestone-paver-patio-lake-view-herringbone-florida-01.webp",
@@ -1236,7 +1236,7 @@
    "intro": "Landscaping we designed and installed in Florida: tropical beds of bromeliads, crotons and palms edged in river rock, artificial turf lawns, backyard putting greens, formal gardens with topiary and fountains, and planting that frames a pool instead of crowding it. These are finished installations, photographed in daylight, to help you choose the plants, the stone and the turf for your own yard.",
    "linea": "Planting, turf, putting greens and stone borders.",
    "servicio": {
-    "enlace": "/services/professional-landscaping-services-in-north-south-florida",
+    "enlace": "/services/landscaping",
     "ancla": "Professional landscaping services"
    },
    "portada": "/images/banco/landscaping/landscaping-front-yard-bromeliad-bed-palm-cluster-florida-01.webp",
@@ -1388,7 +1388,7 @@
    "intro": "Pole barns and steel buildings we put up on Florida properties: long open sheds for equipment and hay, enclosed buildings with metal siding and trim, and lean-to roofs carried on steel trusses. The photos show the post spacing, the truss work and the roofing from the outside and from underneath, so you can judge the scale and the finish before you call us about your own building.",
    "linea": "Pole barns, equipment sheds and steel buildings.",
    "servicio": {
-    "enlace": "/services/steel-building-pole-barn-construction-in-north-south-florida",
+    "enlace": "/services/steel-buildings-pole-barns",
     "ancla": "Steel building and pole barn construction"
    },
    "portada": "/images/banco/pole/pole-barn-long-equipment-shed-metal-roof-aerial-florida-01.webp",
@@ -1492,7 +1492,7 @@
    "intro": "Pool screen enclosures we built over Florida pools. A pool cage keeps leaves, insects and most of the debris out of the water while the frame stays thin enough to keep the view. Look at the roof shapes, the frame colors and how each enclosure ties into the house and the deck, then tell us the size of your pool and we will design one for it.",
    "linea": "Pool cages that keep bugs and debris out.",
    "servicio": {
-    "enlace": "/services/pool-screen-enclosures-for-north-south-florida-pools",
+    "enlace": "/services/pool-screen-enclosures",
     "ancla": "Pool screen enclosures"
    },
    "portada": "/images/images/pool-screen-10/pool-screen-enclosure-builders-florida-10.jpg",
@@ -1572,7 +1572,7 @@
    "intro": "Patio screen rooms we built on Florida homes. Screening a patio or lanai turns it into a room you can use in the evening and through the summer without the mosquitoes. These photos show the frames, the doors and the roof tie-ins on finished projects, so you can see what a screen room would look like on the back of your own house.",
    "linea": "Screened patios and lanais for year-round use.",
    "servicio": {
-    "enlace": "/services/patio-screen-rooms-enclosures-in-north-south-florida",
+    "enlace": "/services/patio-screen-rooms",
     "ancla": "Patio screen rooms and enclosures"
    },
    "portada": "/images/images/patio-screen-10/patio-screen-enclosure-builders-contractors-north-south-florida-10.jpg",

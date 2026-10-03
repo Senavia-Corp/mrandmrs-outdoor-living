@@ -169,4 +169,4 @@ If the pergola is going beside a pool, over a kitchen, or in front of a screen r
 
 Run the [pool cost estimator](/pool-cost-estimator) twice — once with the pergola ticked, once without — and look at what it does to the total rather than at the line on its own. What comes out is a **plus or minus 10 percent** range built from the same approved price table as every figure above. It is meant to tell you which of your decisions is moving your number, not to quote your project.
 
-Then, for a real figure, the span, the anchoring and the wind design all have to be looked at on site. How that works is on the [custom aluminum pergola page](/services/custom-aluminum-pergola-builders-in-north-south-florida), and a [project evaluation](/request-estimated) starts with the site visit rather than with a number over the phone.
+Then, for a real figure, the span, the anchoring and the wind design all have to be looked at on site. How that works is on the [custom aluminum pergola page](/services/pergola-builders), and a [project evaluation](/request-estimated) starts with the site visit rather than with a number over the phone.

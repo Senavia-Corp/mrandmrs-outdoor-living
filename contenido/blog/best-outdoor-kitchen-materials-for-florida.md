@@ -181,7 +181,7 @@ Sealant is a maintenance item, not a permanent product. Knowing that at handover
 
 The island sits on something, and that surface has to move water away from it. Travertine, paver and concrete decks all work; what matters is that the slope runs away from the kitchen and that there is no low spot where the base of the island sits in standing water after every storm.
 
-If the kitchen is going on a deck rather than on grade, the structure below has to carry the load of masonry, stone and appliances, which is a different calculation than the one for furniture. That gets planned at the framing stage on the [custom deck](/services/custom-deck-builders-in-north-south-florida) side, not after the island is drawn.
+If the kitchen is going on a deck rather than on grade, the structure below has to carry the load of masonry, stone and appliances, which is a different calculation than the one for furniture. That gets planned at the framing stage on the [custom deck](/services/deck-builders) side, not after the island is drawn.
 
 ## What this does to the budget
 
@@ -204,4 +204,4 @@ Six lines, handed to whoever is quoting:
 
 If a quote answers all six, you can compare it to another quote. If it says "stainless steel cabinets, granite top," you are comparing two numbers that describe different kitchens.
 
-Finished examples of these assemblies, on real jobs, are in the [project gallery](/gallery), and the way we build them is on the [custom outdoor kitchens](/services/custom-outdoor-kitchens-for-north-south-florida-homes) page. If you want the material decisions made against your actual site — how far the roof reaches, where the salt comes from, what the deck can carry — that starts with a [site visit and estimate](/request-estimated) rather than a slab sample.
+Finished examples of these assemblies, on real jobs, are in the [project gallery](/gallery), and the way we build them is on the [custom outdoor kitchens](/services/outdoor-kitchens) page. If you want the material decisions made against your actual site — how far the roof reaches, where the salt comes from, what the deck can carry — that starts with a [site visit and estimate](/request-estimated) rather than a slab sample.

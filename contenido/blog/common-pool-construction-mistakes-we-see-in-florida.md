@@ -157,6 +157,6 @@ What prevents it: a fixed project price in writing after the design, a verified 
 
 ## If your pool already has one of these
 
-Most of the items above can be corrected inside a complete remodel: plumbing and equipment replaced, decks regraded and resurfaced, electrical brought to code, and the barrier made compliant. A structural shell problem is the exception and is assessed first. Our [pool remodeling](/services/pool-remodeling-renovation-in-north-south-florida) page explains how we scope that work.
+Most of the items above can be corrected inside a complete remodel: plumbing and equipment replaced, decks regraded and resurfaced, electrical brought to code, and the barrier made compliant. A structural shell problem is the exception and is assessed first. Our [pool remodeling](/services/pool-remodeling) page explains how we scope that work.
 
-If you are building new, the whole point of a design-build process is that these decisions are made once, early, with the site in front of us. Request a project evaluation on our [custom pool construction](/services/custom-pool-spa-builders-in-north-south-florida) page and we will walk the lot with you.
+If you are building new, the whole point of a design-build process is that these decisions are made once, early, with the site in front of us. Request a project evaluation on our [custom pool construction](/services/pool-builders) page and we will walk the lot with you.

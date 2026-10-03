@@ -6,7 +6,7 @@
  * origenes —`index.astro`, `industry-solutions.astro`, las 2 de estado, las 9 de condado y
  * `plantilla-pool-builders.json`— y solo el primero se toco cuando entraron las 5 obras
  * propias de R14. De ahi el sintoma que lo destapo: en `/` salian 15 obras y en
- * `/pool-builders/reddick-florida` seguian saliendo 10. Medido antes de tocar nada, el tramo
+ * `/services/pool-builders/reddick-fl` seguian saliendo 10. Medido antes de tocar nada, el tramo
  * de los 10 slides era byte a byte IDENTICO en los 7 (6103 bytes, sha1 76930c21c9bf) y la cola
  * de flechas + barra + CTA tambien (1581 bytes, sha1 3c5989650bad): lo unico que cambiaba
  * entre paginas eran el `<h2>` y el `<p>`. O sea que no habia siete variantes, habia siete
@@ -38,7 +38,7 @@ import MIGRADAS from '../../data/obras-migradas.json';
 import ENCABEZADOS from '../../data/proyectos-heading-por-ruta.json';
 
 interface Props {
-  /** Encabezado propio. Sin el se busca por ruta; las 53 de /pool-builders/ lo pasan siempre
+  /** Encabezado propio. Sin el se busca por ruta; las 53 de /services/pool-builders/ lo pasan siempre
    *  porque el suyo sale de Sanity (`headingPortfolio`), que es de donde viene «Reddick». */
   titulo?: string;
   entradilla?: string;

@@ -3,6 +3,21 @@
 Webflow → Astro 5 + Sanity + Vercel. Una entrada por fase, **escrita al cerrar la fase**,
 nunca al empezarla. Si una fase se reabre, se añade una entrada nueva; no se edita la vieja.
 
+## SEO-URLS · MIGRACIÓN — 76 URLs al silo /services/, 90 redirects 308 sin cadenas, puerta check:redirects (3-oct-2026)
+
+14 fichas de `/services/<slug-largo>`, 53 ciudades de `/pool-builders/` y 9 condados de `/country/` pasan a
+`/services/<servicio>` y `/services/pool-builders/<ciudad|condado>-fl` (`/pool-builders/beach-florida` era Hillsboro
+Beach: `/services/pool-builders/hillsboro-beach-fl`). Fuente de verdad `src/data/seo-url-migrations.json`; de ahí salen
+`vercel.json` (`npm run redirects`), los enlaces reescritos por `build-paginas`/`build-shell`, la lista de renombrados sin
+enlace interno de `check:enlaces` y la puerta nueva `check:redirects` (76 nuevas en 200, 76 viejas con 308 directo, 14
+históricos al destino final, 0 cadenas, 0 bucles, sitemap/canónicas/og:url/JSON-LD/miga sin URL vieja, 0 enlaces internos a
+las viejas). Los 14 históricos que apuntaban a una URL migrada (`/excavation`, pérgolas «wood», remodelación comercial y
+los 7 `pool-builders-<x>-florida`) apuntan ahora DIRECTO a la final. Sanity: sólo cambian 108 `href` de Portable Text en
+46 `blogPost` (y su origen Markdown + la caché); los `slug` de poolBuilder/service/county/serviceRegion son identidad y
+no se tocan — la URL la deriva `src/lib/rutas-seo.mjs`. Baseline re-claveado por ruta servida (456 ficheros, contenido
+intacto). La miga deja de inventar `/services`, `/blogs`, `/project` y `/articles`. Informe completo y checklist de
+despliegue en `docs/seo/URL-MIGRATION-2026.md`.
+
 ## LOOP-IMAGENES · CIERRE — 18 unidades, 101 canjes de 311 huecos, puerta del loop a 0 (2-oct-2026)
 
 Informe de entrega en `docs/encargos/LOOP-IMAGENES-INFORME.md` (canjes por ficha, fotos que hay que hacer,

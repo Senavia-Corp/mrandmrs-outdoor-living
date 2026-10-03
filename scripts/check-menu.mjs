@@ -115,7 +115,7 @@ const filtro = process.argv[2];
 /** Una ruta por plantilla basta: el cascarón es compartido, y barrer las 115 cuesta una hora. */
 const MUESTRA = (filtro ? [filtro] : [
   '/',
-  '/services/custom-pool-spa-builders-in-north-south-florida',
+  '/services/pool-builders',
   '/gallery',
   '/contact-us',
 ]);

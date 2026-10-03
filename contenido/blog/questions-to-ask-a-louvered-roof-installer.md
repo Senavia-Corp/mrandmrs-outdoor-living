@@ -218,4 +218,4 @@ Two quotes that both contain those eight items are comparable. Two that do not a
 
 ## Where this goes next
 
-With a specific backyard on the table, most of these questions answer themselves during a site walk: where the sun comes from, what the fascia is made of, where the panel is, and where water can go. Our [motorized louvered roof systems](/services/motorized-louvered-roof-systems-in-north-south-florida) page shows how we build them, [the gallery](/gallery) has finished ones you can look at, and a [project estimate](/request-estimated) starts with that walk-through rather than with a number.
+With a specific backyard on the table, most of these questions answer themselves during a site walk: where the sun comes from, what the fascia is made of, where the panel is, and where water can go. Our [motorized louvered roof systems](/services/louvered-roofs) page shows how we build them, [the gallery](/gallery) has finished ones you can look at, and a [project estimate](/request-estimated) starts with that walk-through rather than with a number.

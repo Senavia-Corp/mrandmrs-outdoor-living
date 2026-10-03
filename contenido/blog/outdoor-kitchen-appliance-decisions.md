@@ -192,4 +192,4 @@ Five things, and with them a design meeting produces a drawing instead of a wish
 4. Whether you want ice, a sink, or neither.
 5. The spec sheets for any appliance you already know you want.
 
-That is what we work from on a [custom outdoor kitchen](/services/custom-outdoor-kitchens-for-north-south-florida-homes), and it is why the appliance conversation happens at the drawing stage rather than at the end. Finished kitchens in [our project gallery](/gallery) show how the appliance set changes the shape of the island, and [a project estimate](/request-estimated) starts with the site visit rather than a number.
+That is what we work from on a [custom outdoor kitchen](/services/outdoor-kitchens), and it is why the appliance conversation happens at the drawing stage rather than at the end. Finished kitchens in [our project gallery](/gallery) show how the appliance set changes the shape of the island, and [a project estimate](/request-estimated) starts with the site visit rather than a number.

@@ -31,6 +31,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { esFicha, esCiudad, esCondado } from './lib/renombradas.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const PUB = path.join(RAIZ, 'public');
@@ -140,8 +141,8 @@ const locs = [...delOrigen, ...ADICIONES.map(([u]) => u), ...ADICIONES_BLOG.map(
  * Sebastian) y la galeria (viene del origen, no de datos) no entran.
  */
 const IMAGENES_EN = [
-  '/services/custom-pool-spa-builders-in-north-south-florida',
-  '/services/pool-remodeling-renovation-in-north-south-florida',
+  '/services/pool-builders',
+  '/services/pool-remodeling',
 ];
 const imagenes = (() => {
   const leer = (f) => JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data', f), 'utf8'));
@@ -223,8 +224,8 @@ const llms = PROD ? (() => {
   const titulo = (r) => propia[r]?.title ?? base[r]?.title ?? tituloAstro(r);
   const desc = (r) => propia[r]?.description ?? base[r]?.meta?.description ?? '';
   const linea = (r, t = titulo(r), d = desc(r)) => `- [${t}](${SITIO}${r})${d ? `: ${d}` : ''}`;
-  const servicios = Object.keys(base).filter((r) => r.startsWith('/services/')).sort();
-  const condados = Object.keys(base).filter((r) => r.startsWith('/country/')).sort();
+  const servicios = Object.keys(base).filter(esFicha).sort();
+  const condados = Object.keys(base).filter(esCondado).sort();
   const posts = fs.existsSync(path.join(RAIZ, 'src/data/blogs-sanity.json'))
     ? lee('src/data/blogs-sanity.json') : [];
   const guias = [...posts].sort((a, b) => a.title.localeCompare(b.title))
@@ -241,8 +242,8 @@ const llms = PROD ? (() => {
     '',
     '## Key pages',
     linea('/'),
-    linea('/services/custom-pool-spa-builders-in-north-south-florida'),
-    linea('/services/pool-remodeling-renovation-in-north-south-florida'),
+    linea('/services/pool-builders'),
+    linea('/services/pool-remodeling'),
     linea('/pool-cost-estimator'),
     linea('/financing'),
     linea('/projects'),
@@ -256,7 +257,7 @@ const llms = PROD ? (() => {
     linea('/where-we-serve/north-florida'),
     linea('/where-we-serve/south-florida'),
     ...condados.map((r) => linea(r)),
-    `- City pages (${Object.keys(base).filter((r) => r.startsWith('/pool-builders/')).length}) are linked from ${SITIO}/where-we-serve`,
+    `- City pages (${Object.keys(base).filter(esCiudad).length}) are linked from ${SITIO}/where-we-serve`,
     '',
     `## Guides and articles (${guias.length})`,
     linea('/blogs-tips'),

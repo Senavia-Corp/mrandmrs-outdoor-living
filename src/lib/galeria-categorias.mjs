@@ -64,7 +64,7 @@ export const lineasTarjetas = () => [
 ];
 
 /* ── LA BANDA «Project Gallery» ──────────────────────────────────────────────────────────────
- * Los seis paneles verticales de las 53 `/pool-builders/*` y las 2 `/where-we-serve/*-florida`
+ * Los seis paneles verticales de las 53 `/services/pool-builders/*` y las 2 `/where-we-serve/*-florida`
  * (antes «Pool Features & Upgrades»). Eran TRES copias a mano del mismo marcado; ahora las tres
  * salen de aqui, y cada panel es una categoria con `panel` en `galeria-categorias.json`.
  *

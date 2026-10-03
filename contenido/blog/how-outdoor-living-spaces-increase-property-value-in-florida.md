@@ -81,8 +81,8 @@ You will see percentages online for how much a pool or a lanai "adds." We do not
 
 Buyers in Florida are evaluating a lifestyle, and the backyard is where it happens. The features that register:
 
-- **A pool that looks cared for.** Finish, tile and equipment in good condition read as "move-in ready"; a stained, dated pool reads as a project with a cost attached. This is why a [complete remodel](/services/pool-remodeling-renovation-in-north-south-florida) before listing changes how a home shows.
-- **Covered, screened space.** Shade and insect protection are what make a Florida patio usable at 5 p.m. in July. A lanai, a [screen enclosure](/services/pool-screen-enclosures-for-north-south-florida-pools) or a [pergola](/services/custom-aluminum-pergola-builders-in-north-south-florida) that connects to the house extends the living area in a way buyers feel immediately.
+- **A pool that looks cared for.** Finish, tile and equipment in good condition read as "move-in ready"; a stained, dated pool reads as a project with a cost attached. This is why a [complete remodel](/services/pool-remodeling) before listing changes how a home shows.
+- **Covered, screened space.** Shade and insect protection are what make a Florida patio usable at 5 p.m. in July. A lanai, a [screen enclosure](/services/pool-screen-enclosures) or a [pergola](/services/pergola-builders) that connects to the house extends the living area in a way buyers feel immediately.
 - **An outdoor kitchen that is part of a room**, not a grill on a slab. Counter space, a sink, lighting and cover.
 - **A layout that flows** from the kitchen or living room to the patio to the pool, without a fence or a step in the wrong place.
 
@@ -133,4 +133,4 @@ The improvements that add the most are the ones that look like they were always 
 4. Choose materials for the climate, then for the look.
 5. Keep every permit and inspection record.
 
-If you are weighing a project with resale in mind, we will tell you which parts of it tend to hold value and which are personal preference. Start with a project evaluation on our [custom pool construction](/services/custom-pool-spa-builders-in-north-south-florida) page if the pool is the centerpiece, or with our [outdoor kitchen](/services/custom-outdoor-kitchens-for-north-south-florida-homes) and [custom deck](/services/custom-deck-builders-in-north-south-florida) pages for the rest of the backyard.
+If you are weighing a project with resale in mind, we will tell you which parts of it tend to hold value and which are personal preference. Start with a project evaluation on our [custom pool construction](/services/pool-builders) page if the pool is the centerpiece, or with our [outdoor kitchen](/services/outdoor-kitchens) and [custom deck](/services/deck-builders) pages for the rest of the backyard.

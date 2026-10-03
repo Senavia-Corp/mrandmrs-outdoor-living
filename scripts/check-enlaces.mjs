@@ -23,6 +23,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { execSync } from 'node:child_process';
+import { MIGRACIONES, FECHA_MIGRACION } from './lib/renombradas.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const ESTATICO = path.join(RAIZ, '.vercel/output/static');
@@ -183,6 +184,17 @@ const SIN_ENLACE_INTERNO = new Map([
     + 'Destino a criterio: la excavacion es parte de la construccion de piscina. Si se decide '
     + 'que no procede, se borra la entrada y se deja el 404 — pero que sea una decision.'],
 ]);
+
+/**
+ * Y LAS 76 DE LA MIGRACION DE URLs (3-oct-2026, `docs/seo/URL-MIGRATION-2026.md`): 14 fichas,
+ * 53 ciudades y 9 condados renombrados al silo `/services/`. Salen de la misma tabla que
+ * escribe los redirects (`src/data/seo-url-migrations.json`), asi que no pueden quedar fuera:
+ * una URL vieja con 308 y sin enlace interno es exactamente lo que esta puerta exige aqui.
+ */
+for (const m of MIGRACIONES) {
+  SIN_ENLACE_INTERNO.set(m.old, `Migracion de URLs del ${FECHA_MIGRACION} (${m.type}): renombrada a `
+    + `${m.new}. El 308 es para el indice de Google y los backlinks; dentro nadie debe enlazarla.`);
+}
 
 // Huerfanos: la trampa que tenia la lista de perdones que habia aqui antes.
 const huerfanos = [...REDIRECTS.keys()].filter((s) => !usados.has(s) && !SIN_ENLACE_INTERNO.has(s));

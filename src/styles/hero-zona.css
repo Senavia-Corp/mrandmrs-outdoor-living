@@ -64,7 +64,7 @@
      mismo arreglo; ver alli el diagnostico largo. El 30/18/78 tenia los dos fallos: rampa corta
      (60 puntos de alfa en el 8% de la altura) y sobre todo NO MONOTONA — leida hacia arriba iba
      78% -> 18% -> 30%, o sea que volvia a oscurecerse arriba del todo. Ese minimo local es lo que
-     el ojo lee como una raya. Medido con `node scripts/diag-velo.mjs /pool-builders/ocala-florida
+     el ojo lee como una raya. Medido con `node scripts/diag-velo.mjs /services/pool-builders/ocala-fl
      --sin-contraste`: hoyo de 11,8 puntos, igual en los seis anchos de la matriz.
 
      Ahora sube monotona del 78% al 0% con la misma S de 5 paradas que home (alfa 78/63/34/11/0 en

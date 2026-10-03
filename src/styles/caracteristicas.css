@@ -7,7 +7,7 @@
  * comparando el TOKEN ENTERO (nunca subcadena, nunca `\b`: el guion no es caracter de palabra
  * y `\banimated-divs\b` casaria dentro de otra clase — es la trampa de PARTE-02.md:74-79):
  *
- *   .animated-divs-section   55 rutas    53 /pool-builders/* + las 2 /where-we-serve/*-florida
+ *   .animated-divs-section   55 rutas    53 /services/pool-builders/* + las 2 /where-we-serve/*-florida
  *   .wrapper-feature         55          idem
  *   .feature-card            55          idem
  *   .feature-image           55          idem
@@ -22,7 +22,7 @@
  * El acordeon horizontal de 6 columnas: seis fotos de mejoras de piscina, una abierta a la vez.
  *
  * ⚠️ NO ES UN FICHERO DE UNA PAGINA. Se llama por lo que hace, no por donde se ve. Acotarlo
- * manana a /where-we-serve romperia las 53 de /pool-builders/ en silencio. Es la leccion de
+ * manana a /where-we-serve romperia las 53 de /services/pool-builders/ en silencio. Es la leccion de
  * `blog.css`, que nacio dentro de `home.css` y se pinta en 63 paginas.
  *
  * 🚨 Todo cambio aqui pone en rojo `check:visual` en esas 55 rutas y hay que re-baselinizarlas.

@@ -82,8 +82,8 @@ const casa = (r) => !filtro.length
 const RUTAS = [
   '/',
   '/where-we-serve/north-florida',
-  '/country/custom-pool-builders-marion-county-fl',
-  '/pool-builders/gainesville-florida',
+  '/services/pool-builders/marion-county-fl',
+  '/services/pool-builders/gainesville-fl',
   '/industry-solutions',
 ].filter(casa);
 if (!RUTAS.length) { console.error(`\nROJO ninguna de las 5 rutas fijas casa el filtro "${filtro.join(' ')}"\n`); process.exit(1); }

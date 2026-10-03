@@ -4,7 +4,7 @@
  *
  *     node scripts/cache-blog-sanity.mjs
  *
- * Hermana de `cache-sanity.mjs`, que hace lo mismo para las 53 de `/pool-builders/` y NO cubre
+ * Hermana de `cache-sanity.mjs`, que hace lo mismo para las 53 de `/services/pool-builders/` y NO cubre
  * este tipo (codifica `!== 53`). Misma disciplina:
  *
  *   · `src/pages/blogs/[slug].astro` falla CERRADO: sin datos no se construye media coleccion.

@@ -207,4 +207,4 @@ Five things. With them, the trench gets dug once:
 4. Whether the panel has capacity, or the project includes a sub-panel.
 5. Whether the island falls inside the pool's bonded area.
 
-Every one of those is a conversation at the drawing stage and a demolition afterwards. That is how we sequence a [custom outdoor kitchen](/services/custom-outdoor-kitchens-for-north-south-florida-homes), and why the first site visit spends as much time at the meter and the panel as it does in the backyard. Finished projects in [our project gallery](/gallery) are all standing on four connections nobody can see.
+Every one of those is a conversation at the drawing stage and a demolition afterwards. That is how we sequence a [custom outdoor kitchen](/services/outdoor-kitchens), and why the first site visit spends as much time at the meter and the panel as it does in the backyard. Finished projects in [our project gallery](/gallery) are all standing on four connections nobody can see.

@@ -25,6 +25,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { JSDOM } from 'jsdom';
 import { esPropia, conPropias } from './lib/rutas-propias.mjs';
+import { esFicha, esCiudad } from './lib/renombradas.mjs';
 import { TITULO_BANDA, TEXTO_BANDA } from '../src/lib/galeria-categorias.mjs';
 import { OCULTAS, propiasEnIndice } from '../src/lib/filtro-proyectos.mjs';
 
@@ -50,7 +51,7 @@ const TITULO_PROPIO_M2 = new Map([
  * `TITULO_PROPIO`, y por la misma razon: la paridad byte a byte con Webflow protegia tambien
  * los defectos del origen, y una description de 188 caracteres que el SERP corta a la mitad es
  * un defecto. Tiene que casar con `META_PROPIA` de `build-paginas.mjs`, que es quien las
- * escribe en las rutas derivadas; en las de `NO_REGENERAR` (`/`, las 53 de `/pool-builders/`
+ * escribe en las rutas derivadas; en las de `NO_REGENERAR` (`/`, las 53 de `/services/pool-builders/`
  * y las 2 de `/where-we-serve/`) la escribe su propio `.astro` o Sanity.
  *
  * Es un Map de ruta a un OBJETO por clave, no a una cadena: `og:description` y
@@ -204,7 +205,7 @@ const PARTES_PROPIAS = {
  * un bloque del origen; `JSONLD_ARREGLADO` declara valores del origen que se corrigen. Esto
  * declara un bloque ENTERO que no existe en el baseline porque lo escribimos nosotros.
  *
- * El caso: las dos landings de pago de `/pool-builders/` ganan una FAQ y, con ella, su `FAQPage`.
+ * El caso: las dos landings de pago de `/services/pool-builders/` ganan una FAQ y, con ella, su `FAQPage`.
  * El origen de Webflow no traia ninguna de las dos cosas, asi que el baseline dice 1 bloque
  * (`LocalBusiness`) y el build emite 2. Sin esta declaracion la puerta sale roja con
  * «JSON-LD: 1 bloque(s) -> 2», que es EXACTAMENTE lo que debe hacer mientras nadie lo declare.
@@ -234,7 +235,7 @@ const PARTES_PROPIAS = {
  * `/services/`, que no emiten un `FAQPage` nuevo y por tanto no van declaradas aqui. */
 const BLOQUES_PROPIOS = Object.fromEntries(
   Object.entries(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/captacion-servicios.json'), 'utf8')))
-    .filter(([ruta, c]) => ruta.startsWith('/pool-builders/') && c?.faq?.titulo && c.faq.anade?.length)
+    .filter(([ruta, c]) => esCiudad(ruta) && c?.faq?.titulo && c.faq.anade?.length)
     .map(([ruta, c]) => [ruta, {
       tipo: 'FAQPage', clave: 'mainEntity', n: c.faq.anade.length,
       motivo: 'R20/R21-CIUDADES: la landing de ciudad monta su propia FAQ con las objeciones '
@@ -290,7 +291,7 @@ function apartaBloquesPropios(ruta, lista, problemas) {
 }
 
 const JSONLD_ARREGLADO = {
-  '/services/custom-pool-spa-builders-in-north-south-florida': {
+  '/services/pool-builders': {
     bloque: 0,
     motivo: 'R17-CORE: cinco defectos del origen en la landing de pago del ad group «Pool '
       + 'Builders Core», mas las 3 preguntas anadidas para que el FAQPage siga coincidiendo con '
@@ -324,7 +325,7 @@ const JSONLD_ARREGLADO = {
    *
    * Aqui NO hay `respuestaSustituida` ni `anadidas`: esta ficha no reescribe ni anade preguntas
    * -no se inventa una FAQ para rellenar-, asi que su `FAQPage` es el del origen intacto. */
-  '/services/custom-aluminum-pergola-builders-in-north-south-florida': {
+  '/services/pergola-builders': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en la ficha de pergolas de aluminio.',
     cambios: [
@@ -336,7 +337,7 @@ const JSONLD_ARREGLADO = {
       ['datePublished', '2026-05-19T13:23:24.377Z', '2026-05-19T13:22:48.310Z'],
     ],
   },
-  '/services/custom-deck-builders-in-north-south-florida': {
+  '/services/deck-builders': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en esta ficha.',
     cambios: [
@@ -348,7 +349,7 @@ const JSONLD_ARREGLADO = {
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:51:19.984Z'],
     ],
   },
-  '/services/custom-outdoor-kitchens-for-north-south-florida-homes': {
+  '/services/outdoor-kitchens': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en esta ficha.',
     cambios: [
@@ -360,7 +361,7 @@ const JSONLD_ARREGLADO = {
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:49:53.727Z'],
     ],
   },
-  '/services/motorized-louvered-roof-systems-in-north-south-florida': {
+  '/services/louvered-roofs': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en esta ficha.',
     cambios: [
@@ -372,7 +373,7 @@ const JSONLD_ARREGLADO = {
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:52:59.092Z'],
     ],
   },
-  '/services/motorized-retractable-screens-in-north-south-florida': {
+  '/services/retractable-screens': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en esta ficha.',
     cambios: [
@@ -384,7 +385,7 @@ const JSONLD_ARREGLADO = {
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:54:35.687Z'],
     ],
   },
-  '/services/patio-screen-rooms-enclosures-in-north-south-florida': {
+  '/services/patio-screen-rooms': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en esta ficha.',
     cambios: [
@@ -396,7 +397,7 @@ const JSONLD_ARREGLADO = {
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:53:43.448Z'],
     ],
   },
-  '/services/pool-screen-enclosures-for-north-south-florida-pools': {
+  '/services/pool-screen-enclosures': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en esta ficha.',
     cambios: [
@@ -408,7 +409,7 @@ const JSONLD_ARREGLADO = {
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:49:53.691Z'],
     ],
   },
-  '/services/pool-remodeling-renovation-in-north-south-florida': {
+  '/services/pool-remodeling': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en la Final URL del ad group «Full Remodel».',
     cambios: [
@@ -429,7 +430,7 @@ const JSONLD_ARREGLADO = {
     anadidas: { camino: 'mainEntity.mainEntity', n: 3 },
     respuestaSustituida: { camino: 'mainEntity.mainEntity.4.acceptedAnswer.text', empiezaPor: "We partner with trusted lending provider" },
   },
-  '/services/premium-outdoor-furniture-for-north-south-florida-homes': {
+  '/services/outdoor-furniture': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en esta ficha.',
     cambios: [
@@ -441,7 +442,7 @@ const JSONLD_ARREGLADO = {
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:53:23.229Z'],
     ],
   },
-  '/services/professional-landscaping-services-in-north-south-florida': {
+  '/services/landscaping': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en esta ficha.',
     cambios: [
@@ -453,7 +454,7 @@ const JSONLD_ARREGLADO = {
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:49:53.745Z'],
     ],
   },
-  '/services/smart-irrigation-system-installation-in-north-south-florida': {
+  '/services/irrigation-systems': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en esta ficha.',
     cambios: [
@@ -465,7 +466,7 @@ const JSONLD_ARREGLADO = {
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:50:08.396Z'],
     ],
   },
-  '/services/smart-soffit-led-lighting-installation-in-north-south-florida': {
+  '/services/soffit-led-lighting': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en esta ficha.',
     cambios: [
@@ -477,7 +478,7 @@ const JSONLD_ARREGLADO = {
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:55:20.436Z'],
     ],
   },
-  '/services/steel-building-pole-barn-construction-in-north-south-florida': {
+  '/services/steel-buildings-pole-barns': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en esta ficha.',
     cambios: [
@@ -522,7 +523,7 @@ const SITIO_R22 = process.env.PUBLIC_SITE_URL || 'https://www.mrandmrsoutdoorliv
  * declarado, absoluto, como lo emite `Base.astro`. */
 for (const [ruta, c] of Object.entries(JSON.parse(
   fs.readFileSync(path.join(RAIZ, 'src/data/captacion-servicios.json'), 'utf8')))) {
-  if (!ruta.startsWith('/services/') || !c?.heroe?.og) continue;
+  if (!esFicha(ruta) || !c?.heroe?.og) continue;
   const abs = SITIO_R22 + c.heroe.og;
   META_PROPIA.set(ruta, { ...(META_PROPIA.get(ruta) ?? {}), 'og:image': abs, 'twitter:image': abs });
 }
@@ -663,7 +664,7 @@ for (const [ruta, c] of Object.entries(JSON.parse(
  * que es la lista EXPLICITA y lleva el motivo de cada uno). Cambian cuatro cosas en su `<head>`:
  *
  *   · el `<title>` y la `description` (y sus og:/twitter:), que ahora viven en Sanity (`seo`),
- *     igual que las 53 de /pool-builders/: por eso NO van en `meta-propia.json`, que es para lo
+ *     igual que las 53 de /services/pool-builders/: por eso NO van en `meta-propia.json`, que es para lo
  *     que se escribe a mano aqui en el repo;
  *   · la `description` del BlogPosting, que es el `summary` nuevo, y su `dateModified`;
  *   · un `FAQPage` que el origen no traia, porque los articulos ahora llevan FAQ visible.
@@ -745,7 +746,7 @@ for (const [ruta, c] of Object.entries(JSON.parse(
  * sobre la entrada que cada ficha YA tiene en `JSONLD_ARREGLADO` (R17 la de piscinas, R19 las
  * otras trece): si una ficha dejara de tener entrada, no se declara y sale roja.
  */
-for (const ruta of Object.keys(JSONLD_ARREGLADO).filter((r) => r.startsWith('/services/'))) {
+for (const ruta of Object.keys(JSONLD_ARREGLADO).filter(esFicha)) {
   const ja = JSONLD_ARREGLADO[ruta];
   ja.motivo += ' · SEO-SAFE: el Service lleva provider (#negocio) y url.';
   ja.cambios.push(

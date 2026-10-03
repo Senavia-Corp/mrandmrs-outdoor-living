@@ -46,7 +46,7 @@
       }
     ]
   },
-  "/services/custom-outdoor-kitchens-for-north-south-florida-homes": {
+  "/services/outdoor-kitchens": {
     "section.gallery img.image-gallery": [
       null,
       null,
@@ -74,7 +74,7 @@
       null
     ]
   },
-  "/services/custom-deck-builders-in-north-south-florida": {
+  "/services/deck-builders": {
     "section.gallery img.image-gallery": [
       {
         "src": "/images/banco/decks/gray-marble-paver-patio-lake-view-florida-01.webp",
@@ -104,7 +104,7 @@
       null
     ]
   },
-  "/services/motorized-louvered-roof-systems-in-north-south-florida": {
+  "/services/louvered-roofs": {
     "section.gallery img.image-gallery": [
       {
         "src": "/images/banco/louvered/louvered-roof-blades-motor-solar-sensor-top-view-florida-01.webp",
@@ -142,7 +142,7 @@
       null
     ]
   },
-  "/services/professional-landscaping-services-in-north-south-florida": {
+  "/services/landscaping": {
     "section.gallery img.image-gallery": [
       null,
       null,
@@ -172,7 +172,7 @@
       null
     ]
   },
-  "/services/steel-building-pole-barn-construction-in-north-south-florida": {
+  "/services/steel-buildings-pole-barns": {
     "section.gallery img.image-gallery": [
       null,
       null,
@@ -193,7 +193,7 @@
       null
     ]
   },
-  "/services/smart-soffit-led-lighting-installation-in-north-south-florida": {
+  "/services/soffit-led-lighting": {
     "section.gallery img.image-gallery": [
       {
         "src": "/images/banco/pergolas/aluminum-patio-cover-insulated-roof-pavers-night-florida-01.webp",
@@ -263,7 +263,7 @@
       null
     ]
   },
-  "/services/premium-outdoor-furniture-for-north-south-florida-homes": {
+  "/services/outdoor-furniture": {
     "section.gallery img.image-gallery": [
       {
         "src": "/images/banco/pergolas/insulated-patio-cover-white-yellow-house-florida-02.webp",

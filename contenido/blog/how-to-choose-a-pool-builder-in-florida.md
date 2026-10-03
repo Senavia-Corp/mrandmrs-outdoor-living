@@ -149,4 +149,4 @@ It is tempting to treat this as a scorecard. It is more useful as a conversation
 
 The builder who has thought about failed inspections, exclusions and change orders before you asked is the one who has run enough projects to have needed a process.
 
-If you want to see how our process is structured — from site review through permitting to the punch list — that is on the [custom pool and spa construction](/services/custom-pool-spa-builders-in-north-south-florida) page, and a [project estimate](/request-estimated) starts with the site visit rather than a number.
+If you want to see how our process is structured — from site review through permitting to the punch list — that is on the [custom pool and spa construction](/services/pool-builders) page, and a [project estimate](/request-estimated) starts with the site visit rather than a number.

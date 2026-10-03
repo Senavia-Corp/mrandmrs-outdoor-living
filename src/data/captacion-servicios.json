@@ -11,7 +11,7 @@
     "  · /services/<ficha>            14. Las genera `scripts/build-paginas.mjs`, que ademas usa",
     "                                 `heroe.*`, `servicios.*`, `faq.sustituye` y `schema.*` para",
     "                                 reescribir el marcado derivado y el `FAQPage` del origen.",
-    "  · /pool-builders/<ciudad>       2 hoy (Ocala y Gainesville, las Final URL de sus ad groups);",
+    "  · /services/pool-builders/<ciudad>       2 hoy (Ocala y Gainesville, las Final URL de sus ad groups);",
     "                                 53 cuando se extienda. Las pinta `src/pages/pool-builders/",
     "                                 [slug].astro`, que NO pasa por el generador: monta los tres",
     "                                 widgets, hace la cirugia del heroe con `src/lib/captacion-",
@@ -31,7 +31,7 @@
     "la lista `CON_CAPTACION` de `scripts/build-paginas.mjs`, y sus declaraciones en",
     "`check-texto.mjs`.",
     "",
-    "LAS ENTRADAS DE /pool-builders/ NO SE EDITAN AQUI: SON DERIVADAS. Salen de una fila corta de",
+    "LAS ENTRADAS DE /services/pool-builders/ NO SE EDITAN AQUI: SON DERIVADAS. Salen de una fila corta de",
     "`src/data/ciudades-captacion.json` -ciudad, condado, region y que fotos le tocan- que expande",
     "`npm run captacion:ciudades`. Llevan la marca `_derivado`, y `npm run check:captacion` vuelve",
     "a expandir y sale ROJO si alguien las toco a mano. Una ciudad mas = una fila mas.",
@@ -56,7 +56,7 @@
     "  galeria.alts       {fichero: alt} para la galeria de origen (las fotos no cambian).",
     "  `_banco` y `_proyecto` no se pintan: son la trazabilidad al banco (`banco-imagenes.json`)."
   ],
-  "/services/custom-pool-spa-builders-in-north-south-florida": {
+  "/services/pool-builders": {
     "heroe": {
       "apoyo": "New custom inground pools for North Florida homeowners — 3D design, permits, construction and final start-up, from one licensed team. We also build across South Florida.",
       "foto": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-2.avif",
@@ -120,7 +120,7 @@
         "Integrated Spa Remodeling",
         "Pool Deck & Hardscape Remodeling"
       ],
-      "remodelacionHref": "/services/pool-remodeling-renovation-in-north-south-florida",
+      "remodelacionHref": "/services/pool-remodeling",
       "detalle": [
         {
           "titulo": "Designed Around Your Lot",
@@ -308,7 +308,7 @@
       }
     }
   },
-  "/services/custom-aluminum-pergola-builders-in-north-south-florida": {
+  "/services/pergola-builders": {
     "heroe": {
       "apoyo": "Custom pergola builders and installation company serving North & South Florida, delivering durable designs that enhance outdoor comfort and style.",
       "foto": "/images/obra/obra-100/freestanding-pergola-dark-bronze-pool-spa-canal-florida-heroe.avif",
@@ -529,7 +529,7 @@
       ]
     }
   },
-  "/services/custom-deck-builders-in-north-south-florida": {
+  "/services/deck-builders": {
     "heroe": {
       "apoyo": "Professional deck builders and installation contractors serving North & South Florida with durable, stylish outdoor deck solutions.",
       "foto": "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-heroe.avif",
@@ -750,7 +750,7 @@
       ]
     }
   },
-  "/services/custom-outdoor-kitchens-for-north-south-florida-homes": {
+  "/services/outdoor-kitchens": {
     "heroe": {
       "apoyo": "Outdoor kitchen builders and installation contractors serving North & South Florida with custom layouts for entertaining and daily use.",
       "foto": "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-heroe.avif",
@@ -956,7 +956,7 @@
       ]
     }
   },
-  "/services/motorized-louvered-roof-systems-in-north-south-florida": {
+  "/services/louvered-roofs": {
     "heroe": {
       "apoyo": "Motorized louvered roof builders and installation contractors in North & South Florida, offering adjustable shade and weather protection.",
       "foto": "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-heroe.avif",
@@ -1162,7 +1162,7 @@
       ]
     }
   },
-  "/services/motorized-retractable-screens-in-north-south-florida": {
+  "/services/retractable-screens": {
     "heroe": {
       "apoyo": "Motorized retractable screen installation contractors serving North & South Florida, delivering flexible shade and insect control.",
       "foto": "/images/projects/luxury-pool-motorized-pergola-screens-south-florida/luxury-pool-motorized-pergola-screens-south-florida-4.avif",
@@ -1295,7 +1295,7 @@
       "alto": 698
     }
   },
-  "/services/patio-screen-rooms-enclosures-in-north-south-florida": {
+  "/services/patio-screen-rooms": {
     "heroe": {
       "apoyo": "Screen room builders and installation contractors in North & South Florida, creating comfortable, protected outdoor living areas.",
       "foto": "/images/projects/luxury-pool-spa-with-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-north-florida-project-2.avif",
@@ -1428,7 +1428,7 @@
       "alto": 698
     }
   },
-  "/services/pool-screen-enclosures-for-north-south-florida-pools": {
+  "/services/pool-screen-enclosures": {
     "heroe": {
       "apoyo": "Pool screen enclosure builders and installation contractors in North & South Florida, improving pool safety and cleanliness.",
       "foto": "/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-2.avif",
@@ -1561,7 +1561,7 @@
       "alto": 698
     }
   },
-  "/services/pool-remodeling-renovation-in-north-south-florida": {
+  "/services/pool-remodeling": {
     "heroe": {
       "apoyo": "Complete pool remodeling for North Florida homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team. We also remodel across South Florida.",
       "foto": "/images/obra/obra-048/pool-remodeling-travertine-deck-glass-tile-completed.avif",
@@ -1790,7 +1790,7 @@
       }
     }
   },
-  "/services/premium-outdoor-furniture-for-north-south-florida-homes": {
+  "/services/outdoor-furniture": {
     "heroe": {
       "apoyo": "Outdoor furniture installation company for North & South Florida homes, offering durable, premium solutions for modern outdoor living.",
       "foto": "/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-heroe.avif",
@@ -1933,7 +1933,7 @@
       "alto": 698
     }
   },
-  "/services/professional-landscaping-services-in-north-south-florida": {
+  "/services/landscaping": {
     "heroe": {
       "apoyo": "Landscaping design and installation company serving North & South Florida, providing complete outdoor solutions that improve curb appeal.",
       "foto": "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-heroe.avif",
@@ -2139,7 +2139,7 @@
       ]
     }
   },
-  "/services/smart-irrigation-system-installation-in-north-south-florida": {
+  "/services/irrigation-systems": {
     "heroe": {
       "apoyo": "Smart irrigation installation contractors for North & South Florida properties, focused on efficient watering solutions and long-term landscape health",
       "foto": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-4.avif",
@@ -2272,7 +2272,7 @@
       "alto": 698
     }
   },
-  "/services/smart-soffit-led-lighting-installation-in-north-south-florida": {
+  "/services/soffit-led-lighting": {
     "heroe": {
       "apoyo": "Smart soffit and LED lighting installation company serving North & South Florida, enhancing curb appeal and exterior security.",
       "foto": "/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-heroe.avif",
@@ -2483,7 +2483,7 @@
       ]
     }
   },
-  "/services/steel-building-pole-barn-construction-in-north-south-florida": {
+  "/services/steel-buildings-pole-barns": {
     "heroe": {
       "apoyo": "Steel building and pole barn construction company serving North & South Florida with durable, hurricane-rated structures.",
       "foto": "/images/obra/suelta/pole-barn-narrow-open-shelter-new-wood-posts-florida-heroe.avif",
@@ -2704,7 +2704,7 @@
       ]
     }
   },
-  "/pool-builders/ocala-florida": {
+  "/services/pool-builders/ocala-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Ocala homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -2797,7 +2797,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/gainesville-florida": {
+  "/services/pool-builders/gainesville-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Gainesville homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -2890,7 +2890,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/alachua-florida": {
+  "/services/pool-builders/alachua-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Alachua homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -2979,7 +2979,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/archer-florida": {
+  "/services/pool-builders/archer-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Archer homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -3068,7 +3068,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/atlantis-florida": {
+  "/services/pool-builders/atlantis-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Atlantis homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -3157,7 +3157,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/beach-florida": {
+  "/services/pool-builders/hillsboro-beach-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Hillsboro Beach homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -3246,7 +3246,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/boca-raton-florida": {
+  "/services/pool-builders/boca-raton-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Boca Raton homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -3335,7 +3335,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/boynton-beach-florida": {
+  "/services/pool-builders/boynton-beach-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Boynton Beach homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -3424,7 +3424,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/cedar-key-florida": {
+  "/services/pool-builders/cedar-key-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Cedar Key homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -3513,7 +3513,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/chiefland-florida": {
+  "/services/pool-builders/chiefland-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Chiefland homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -3602,7 +3602,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/cross-city-florida": {
+  "/services/pool-builders/cross-city-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Cross City homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -3691,7 +3691,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/dania-beach-florida": {
+  "/services/pool-builders/dania-beach-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Dania Beach homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -3780,7 +3780,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/davie-florida": {
+  "/services/pool-builders/davie-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Davie homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -3869,7 +3869,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/deerfield-beach-florida": {
+  "/services/pool-builders/deerfield-beach-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Deerfield Beach homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -3958,7 +3958,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/delray-beach-florida": {
+  "/services/pool-builders/delray-beach-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Delray Beach homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -4047,7 +4047,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/fanning-springs-florida": {
+  "/services/pool-builders/fanning-springs-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Fanning Springs homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -4136,7 +4136,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/fort-lauderdale-florida": {
+  "/services/pool-builders/fort-lauderdale-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Fort Lauderdale homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -4225,7 +4225,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/gulf-stream-florida": {
+  "/services/pool-builders/gulf-stream-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Gulf Stream homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -4314,7 +4314,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/hallandale-beach-florida": {
+  "/services/pool-builders/hallandale-beach-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Hallandale Beach homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -4403,7 +4403,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/hawthorne-florida": {
+  "/services/pool-builders/hawthorne-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Hawthorne homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -4492,7 +4492,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/high-springs-florida": {
+  "/services/pool-builders/high-springs-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for High Springs homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -4581,7 +4581,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/hollywood-florida": {
+  "/services/pool-builders/hollywood-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Hollywood homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -4670,7 +4670,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/hypoluxo-florida": {
+  "/services/pool-builders/hypoluxo-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Hypoluxo homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -4759,7 +4759,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/juno-beach-florida": {
+  "/services/pool-builders/juno-beach-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Juno Beach homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -4848,7 +4848,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/jupiter-florida": {
+  "/services/pool-builders/jupiter-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Jupiter homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -4937,7 +4937,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/lake-city-florida": {
+  "/services/pool-builders/lake-city-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Lake City homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -5026,7 +5026,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/lighthouse-point-florida": {
+  "/services/pool-builders/lighthouse-point-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Lighthouse Point homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -5115,7 +5115,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/manalapan-florida": {
+  "/services/pool-builders/manalapan-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Manalapan homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -5204,7 +5204,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/mcintosh-florida": {
+  "/services/pool-builders/mcintosh-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for McIntosh homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -5293,7 +5293,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/micanopy-florida": {
+  "/services/pool-builders/micanopy-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Micanopy homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -5382,7 +5382,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/miramar-florida": {
+  "/services/pool-builders/miramar-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Miramar homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -5471,7 +5471,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/newberry-florida": {
+  "/services/pool-builders/newberry-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Newberry homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -5560,7 +5560,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/north-palm-beach-florida": {
+  "/services/pool-builders/north-palm-beach-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for North Palm Beach homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -5649,7 +5649,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/ocean-ridge-florida": {
+  "/services/pool-builders/ocean-ridge-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Ocean Ridge homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -5738,7 +5738,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/old-town-florida": {
+  "/services/pool-builders/old-town-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Old Town homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -5827,7 +5827,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/palatka-florida": {
+  "/services/pool-builders/palatka-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Palatka homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -5916,7 +5916,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/palm-beach-gardens-florida": {
+  "/services/pool-builders/palm-beach-gardens-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Palm Beach Gardens homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -6005,7 +6005,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/parkland-florida": {
+  "/services/pool-builders/parkland-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Parkland homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -6094,7 +6094,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/pembroke-pines-florida": {
+  "/services/pool-builders/pembroke-pines-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Pembroke Pines homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -6183,7 +6183,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/plantation-florida": {
+  "/services/pool-builders/plantation-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Plantation homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -6272,7 +6272,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/pompano-beach-florida": {
+  "/services/pool-builders/pompano-beach-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Pompano Beach homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -6361,7 +6361,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/reddick-florida": {
+  "/services/pool-builders/reddick-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Reddick homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -6450,7 +6450,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/royal-palm-beach-florida": {
+  "/services/pool-builders/royal-palm-beach-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Royal Palm Beach homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -6539,7 +6539,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/south-palm-beach-florida": {
+  "/services/pool-builders/south-palm-beach-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for South Palm Beach homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -6628,7 +6628,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/southwest-ranches-florida": {
+  "/services/pool-builders/southwest-ranches-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Southwest Ranches homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -6717,7 +6717,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/tequesta-florida": {
+  "/services/pool-builders/tequesta-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Tequesta homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -6806,7 +6806,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/trenton-florida": {
+  "/services/pool-builders/trenton-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Trenton homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -6895,7 +6895,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/waldo-florida": {
+  "/services/pool-builders/waldo-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Waldo homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -6984,7 +6984,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/wellington-florida": {
+  "/services/pool-builders/wellington-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Wellington homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -7073,7 +7073,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/west-palm-beach-florida": {
+  "/services/pool-builders/west-palm-beach-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for West Palm Beach homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -7162,7 +7162,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/weston-florida": {
+  "/services/pool-builders/weston-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Weston homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -7251,7 +7251,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/williston-florida": {
+  "/services/pool-builders/williston-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Williston homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
@@ -7340,7 +7340,7 @@
     },
     "_derivado": "src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades"
   },
-  "/pool-builders/wilton-manors-florida": {
+  "/services/pool-builders/wilton-manors-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Wilton Manors homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",

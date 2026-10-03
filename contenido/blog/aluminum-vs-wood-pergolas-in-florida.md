@@ -201,4 +201,4 @@ Three questions, in this order:
 
 The broader version of that sequencing — how a pergola sits inside the rest of the yard rather than being decided on its own — is in the [outdoor living design guide for Florida homes](/blogs/outdoor-living-design-guide-for-florida-homes).
 
-When you want to see how the aluminum version is built, spans and connections included, that is on the [custom aluminum pergola](/services/custom-aluminum-pergola-builders-in-north-south-florida) page. [Finished projects](/gallery) is the faster way to test the look question against something real, and a [project estimate](/request-estimated) starts with the site visit — including where your irrigation heads are pointing.
+When you want to see how the aluminum version is built, spans and connections included, that is on the [custom aluminum pergola](/services/pergola-builders) page. [Finished projects](/gallery) is the faster way to test the look question against something real, and a [project estimate](/request-estimated) starts with the site visit — including where your irrigation heads are pointing.

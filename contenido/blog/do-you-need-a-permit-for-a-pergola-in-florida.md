@@ -182,4 +182,4 @@ None of those are likely in the first year. All of them are permanent until reso
 
 A contractor who has answers ready for all six has permitted enough of these to have been caught out once already. That is what you are buying.
 
-How we handle the submittal, the engineering and the inspections is on the [custom aluminum pergola](/services/custom-aluminum-pergola-builders-in-north-south-florida) page, and finished work across North and South Florida is in the [project gallery](/gallery). A [project estimate](/request-estimated) starts with a site visit, because setbacks, the barrier and where the power comes from are all things that have to be looked at rather than described.
+How we handle the submittal, the engineering and the inspections is on the [custom aluminum pergola](/services/pergola-builders) page, and finished work across North and South Florida is in the [project gallery](/gallery). A [project estimate](/request-estimated) starts with a site visit, because setbacks, the barrier and where the power comes from are all things that have to be looked at rather than described.
