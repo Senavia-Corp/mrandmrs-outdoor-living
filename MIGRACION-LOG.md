@@ -30,6 +30,15 @@ apex → www con 308; sitemap en vivo con 168 `<loc>`, 0 URLs viejas, un solo ho
 0 enlaces internos a URLs viejas en `/`, la ficha, una ciudad, un artículo (Sanity vivo) y
 `/where-we-serve`; la miga de Ocala apunta a `/services/pool-builders`.
 
+## LOOP-IMAGENES · corrección — «Aluminum Pergolas» enseña la pérgola con cocina de piedra, no la de pantalla de lamas (3-oct-2026)
+
+Sebastian: la foto de pérgolas en Full-Service (bi-0914, cubierta con pantalla de lamas) se lee como
+Louvered Roof. Elige la pérgola marrón sobre cocina en U de piedra apilada: es `bi-0895`, que estaba
+`dudosa` a la espera de su confirmación; su petición la adjudica (`aprobada` + `obra_real`, fichero
+derivado al banco, `bi-1003` pasa a duplicado suyo, fuera de `banco/DUDOSAS.md`). Cambia en el megamenú
+y en Full-Service (/, north y south). El estado del loop adopta los slugs de la migración de URLs.
+Puertas: `check-fotos-servicios` 18/18, tokens, menu, assets, seo, banco y texto (3 rutas) VERDES.
+
 ## LOOP-IMAGENES · CIERRE — 18 unidades, 101 canjes de 311 huecos, puerta del loop a 0 (2-oct-2026)
 
 Informe de entrega en `docs/encargos/LOOP-IMAGENES-INFORME.md` (canjes por ficha, fotos que hay que hacer,
