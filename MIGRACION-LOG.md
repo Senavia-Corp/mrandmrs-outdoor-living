@@ -3,6 +3,14 @@
 Webflow → Astro 5 + Sanity + Vercel. Una entrada por fase, **escrita al cerrar la fase**,
 nunca al empezarla. Si una fase se reabre, se añade una entrada nueva; no se edita la vieja.
 
+## LOOP-IMAGENES · irrigation — La ficha de irrigation no tiene obra real en el banco: se queda y deja la lista de fotos que faltan (2-oct-2026)
+
+21 huecos; juez a ciegas. **0 canjes**: ninguno. 21 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
+
+### Puertas
+
+check:tokens: verde · check:estructura: verde · check:assets: verde · check:seo: verde · build-banco --check: verde · check:galeria (ficha): verde · check-texto (ficha): verde · check-visual: verde · check-fotos-servicios: verde.
+
 ## LOOP-IMAGENES · screens — La ficha de screens no tiene obra real en el banco: se queda y deja la lista de fotos que faltan (2-oct-2026)
 
 21 huecos; juez a ciegas. **0 canjes**: ninguno. 21 se quedan (motivo y foto que falta en el estado). Alto de la página antes/después, misma receta: 479:+0 768:+0 991:+0 1440:+0.
