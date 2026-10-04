@@ -213,6 +213,14 @@ const DERIVADOS_A_PROPOSITO = {
     + 'del logo (#001C63) conservando luminancia, y reencodado a webp q95. Dimensiones y formato '
     + 'intactos, verificados uno a uno contra HEAD. La entrada REMOTA conserva el hash del original '
     + 'de Webflow —unica prueba de la migracion, no regenerable—; la LOCAL dice lo que se sirve.',
+  '/videos/bg-video-mp4.mp4':
+    'SEO-REMEDIACION (4-oct-2026): reencodado H.264 CRF 27, faststart, sin pista de audio, mismas '
+    + '1280x534 y misma duracion; 7,42 -> 5,88 MB. Solo se sirve en escritorio tras la carga (el LCP '
+    + 'lo pinta el poster). La REMOTA conserva el hash del original de Webflow.',
+  '/videos/bg-video-3d-mp4.mp4':
+    'SEO-REMEDIACION (4-oct-2026): reencodado H.264 CRF 27, faststart, sin pista de audio, mismas '
+    + '1280x720 y misma duracion; 6,34 -> 4,15 MB. Solo se sirve en escritorio y al acercarse la '
+    + 'seccion. La REMOTA conserva el hash del original de Webflow.',
   '/images/site/webclip.png':
     'R13-COLOR (3-sep-2026): tinte de diseno llevado al eje de marca. El tinte de esta imagen '
     + 'estaba HORNEADO en el fichero, no en CSS, asi que ninguna regla lo alcanzaba y el sitio no '

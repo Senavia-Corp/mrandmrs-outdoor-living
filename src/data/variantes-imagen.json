@@ -1,0 +1,4811 @@
+{
+ "_lee_esto": "GENERADO por scripts/build-variantes-imagen.mjs desde el build. Lo lee src/lib/srcset-auto.mjs. No editar a mano.",
+ "imagenes": {
+  "/images/banco/construction/pool-construction-blue-glass-tile-spillover-pergola-florida-01.webp": {
+   "ancho": 1440,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-construction-blue-glass-tile-spillover-pergola-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/construction/pool-construction-blue-glass-tile-spillover-pergola-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-construction-excavation-excavator-backyard-florida-01.webp": {
+   "ancho": 1200,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-construction-excavation-excavator-backyard-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/construction/pool-construction-excavation-excavator-backyard-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-construction-l-shaped-pool-spa-aerial-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-construction-l-shaped-pool-spa-aerial-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/construction/pool-construction-l-shaped-pool-spa-aerial-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-construction-spa-travertine-deck-sun-shelf-florida-01.webp": {
+   "ancho": 1200,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-construction-spa-travertine-deck-sun-shelf-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/construction/pool-construction-spa-travertine-deck-sun-shelf-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-construction-spa-travertine-deck-wide-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-construction-spa-travertine-deck-wide-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/construction/pool-construction-spa-travertine-deck-wide-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-construction-spa-turf-stepping-pads-house-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-construction-spa-turf-stepping-pads-house-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/construction/pool-construction-spa-turf-stepping-pads-house-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/decks/concrete-paver-driveway-turf-joints-modern-entry-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/decks/concrete-paver-driveway-turf-joints-modern-entry-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/decks/concrete-paver-driveway-turf-joints-modern-entry-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/decks/gray-marble-paver-driveway-luxury-home-florida-01.webp": {
+   "ancho": 1200,
+   "variantes": [
+    [
+     640,
+     "/images/banco/decks/gray-marble-paver-driveway-luxury-home-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/decks/gray-marble-paver-driveway-luxury-home-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/decks/gray-marble-paver-patio-lake-view-florida-01.webp": {
+   "ancho": 1200,
+   "variantes": [
+    [
+     640,
+     "/images/banco/decks/gray-marble-paver-patio-lake-view-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/decks/gray-marble-paver-patio-lake-view-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/decks/limestone-paver-patio-lake-view-herringbone-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/decks/limestone-paver-patio-lake-view-herringbone-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/decks/limestone-paver-patio-lake-view-herringbone-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/decks/limestone-paver-patio-steps-tropical-landscape-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/decks/limestone-paver-patio-steps-tropical-landscape-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/decks/limestone-paver-patio-steps-tropical-landscape-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/decks/limestone-pool-deck-round-spa-trellis-wall-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/decks/limestone-pool-deck-round-spa-trellis-wall-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/decks/limestone-pool-deck-round-spa-trellis-wall-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/decks/paver-patio-brown-blend-new-construction-florida-01.webp": {
+   "ancho": 1599,
+   "variantes": [
+    [
+     640,
+     "/images/banco/decks/paver-patio-brown-blend-new-construction-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/decks/paver-patio-brown-blend-new-construction-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/decks/travertine-paver-pads-resort-lawn-sunset-beachfront-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/decks/travertine-paver-pads-resort-lawn-sunset-beachfront-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/decks/travertine-paver-pads-resort-lawn-sunset-beachfront-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/decks/travertine-pool-deck-herringbone-turf-border-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/decks/travertine-pool-deck-herringbone-turf-border-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/decks/travertine-pool-deck-herringbone-turf-border-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/decks/wood-deck-lounge-platform-artificial-turf-beachfront-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/decks/wood-deck-lounge-platform-artificial-turf-beachfront-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/decks/wood-deck-lounge-platform-artificial-turf-beachfront-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/kitchens/outdoor-kitchen-black-granite-waterfall-island-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/kitchens/outdoor-kitchen-black-granite-waterfall-island-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/kitchens/outdoor-kitchen-black-granite-waterfall-island-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/kitchens/outdoor-kitchen-granite-waterfall-counter-grill-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/kitchens/outdoor-kitchen-granite-waterfall-counter-grill-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/kitchens/outdoor-kitchen-granite-waterfall-counter-grill-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/kitchens/outdoor-kitchen-gray-tile-granite-pergola-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/kitchens/outdoor-kitchen-gray-tile-granite-pergola-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/kitchens/outdoor-kitchen-gray-tile-granite-pergola-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/kitchens/outdoor-kitchen-island-farmhouse-sink-composite-florida-01.webp": {
+   "ancho": 1440,
+   "variantes": [
+    [
+     640,
+     "/images/banco/kitchens/outdoor-kitchen-island-farmhouse-sink-composite-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/kitchens/outdoor-kitchen-island-farmhouse-sink-composite-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/kitchens/outdoor-kitchen-modern-patio-cover-black-frame-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/kitchens/outdoor-kitchen-modern-patio-cover-black-frame-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/kitchens/outdoor-kitchen-modern-patio-cover-black-frame-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/kitchens/outdoor-kitchen-pizza-oven-grill-louvered-roof-florida-01.webp": {
+   "ancho": 1440,
+   "variantes": [
+    [
+     640,
+     "/images/banco/kitchens/outdoor-kitchen-pizza-oven-grill-louvered-roof-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/kitchens/outdoor-kitchen-pizza-oven-grill-louvered-roof-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/kitchens/outdoor-kitchen-u-shape-pizza-oven-pool-view-florida-01.webp": {
+   "ancho": 1440,
+   "variantes": [
+    [
+     640,
+     "/images/banco/kitchens/outdoor-kitchen-u-shape-pizza-oven-pool-view-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/kitchens/outdoor-kitchen-u-shape-pizza-oven-pool-view-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/kitchens/outdoor-kitchen-white-stacked-stone-lake-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/kitchens/outdoor-kitchen-white-stacked-stone-lake-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/kitchens/outdoor-kitchen-white-stacked-stone-lake-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/kitchens/outdoor-kitchen-wood-slat-beverage-fridges-detail-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/kitchens/outdoor-kitchen-wood-slat-beverage-fridges-detail-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/kitchens/outdoor-kitchen-wood-slat-beverage-fridges-detail-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/kitchens/outdoor-kitchen-wood-slat-cabinets-stainless-doors-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/kitchens/outdoor-kitchen-wood-slat-cabinets-stainless-doors-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/kitchens/outdoor-kitchen-wood-slat-cabinets-stainless-doors-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/kitchens/pergola-outdoor-kitchen-black-granite-lake-view-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/kitchens/pergola-outdoor-kitchen-black-granite-lake-view-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/kitchens/pergola-outdoor-kitchen-black-granite-lake-view-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/kitchens/pergola-outdoor-kitchen-marble-waterfall-u-shape-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/kitchens/pergola-outdoor-kitchen-marble-waterfall-u-shape-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/kitchens/pergola-outdoor-kitchen-marble-waterfall-u-shape-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/landscaping/artificial-turf-beachfront-resort-wood-decks-palms-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/landscaping/artificial-turf-beachfront-resort-wood-decks-palms-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/landscaping/artificial-turf-beachfront-resort-wood-decks-palms-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/landscaping/backyard-putting-green-artificial-turf-oak-trees-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/landscaping/backyard-putting-green-artificial-turf-oak-trees-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/landscaping/backyard-putting-green-artificial-turf-oak-trees-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/landscaping/backyard-putting-green-artificial-turf-palm-trees-florida-02.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/landscaping/backyard-putting-green-artificial-turf-palm-trees-florida-02-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/landscaping/backyard-putting-green-artificial-turf-palm-trees-florida-02-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/landscaping/backyard-putting-green-artificial-turf-sunset-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/landscaping/backyard-putting-green-artificial-turf-sunset-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/landscaping/backyard-putting-green-artificial-turf-sunset-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/landscaping/landscaping-formal-garden-topiary-fountains-oceanfront-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/landscaping/landscaping-formal-garden-topiary-fountains-oceanfront-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/landscaping/landscaping-formal-garden-topiary-fountains-oceanfront-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/landscaping/landscaping-front-yard-bromeliad-bed-palm-cluster-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/landscaping/landscaping-front-yard-bromeliad-bed-palm-cluster-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/landscaping/landscaping-front-yard-bromeliad-bed-palm-cluster-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/landscaping/landscaping-pygmy-palm-bed-river-rock-impatiens-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/landscaping/landscaping-pygmy-palm-bed-river-rock-impatiens-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/landscaping/landscaping-pygmy-palm-bed-river-rock-impatiens-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/landscaping/landscaping-stepping-stone-path-black-slate-chips-florida-01.webp": {
+   "ancho": 1200,
+   "variantes": [
+    [
+     640,
+     "/images/banco/landscaping/landscaping-stepping-stone-path-black-slate-chips-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/landscaping/landscaping-stepping-stone-path-black-slate-chips-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/landscaping/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/landscaping/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/landscaping/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/louvered/louvered-pergola-bronze-freestanding-poolside-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/louvered/louvered-pergola-bronze-freestanding-poolside-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/louvered/louvered-pergola-bronze-freestanding-poolside-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/louvered/louvered-pergola-bronze-tennis-court-shade-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/louvered/louvered-pergola-bronze-tennis-court-shade-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/louvered/louvered-pergola-bronze-tennis-court-shade-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/louvered/louvered-pergola-bronze-waterfront-pool-deck-florida-01.webp": {
+   "ancho": 1200,
+   "variantes": [
+    [
+     640,
+     "/images/banco/louvered/louvered-pergola-bronze-waterfront-pool-deck-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/louvered/louvered-pergola-bronze-waterfront-pool-deck-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/louvered/louvered-pergola-outdoor-kitchen-bar-marble-lake-florida-01.webp": {
+   "ancho": 1440,
+   "variantes": [
+    [
+     640,
+     "/images/banco/louvered/louvered-pergola-outdoor-kitchen-bar-marble-lake-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/louvered/louvered-pergola-outdoor-kitchen-bar-marble-lake-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/louvered/louvered-pergola-outdoor-kitchen-white-stone-lake-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/louvered/louvered-pergola-outdoor-kitchen-white-stone-lake-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/louvered/louvered-pergola-outdoor-kitchen-white-stone-lake-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/louvered/louvered-roof-rooftop-terrace-closed-blades-aerial-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/louvered/louvered-roof-rooftop-terrace-closed-blades-aerial-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/louvered/louvered-roof-rooftop-terrace-closed-blades-aerial-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/louvered/louvered-roof-waterfront-patio-underside-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/louvered/louvered-roof-waterfront-patio-underside-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/louvered/louvered-roof-waterfront-patio-underside-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/louvered/louvered-roof-white-blades-open-underside-detail-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/louvered/louvered-roof-white-blades-open-underside-detail-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/louvered/louvered-roof-white-blades-open-underside-detail-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/louvered/louvered-roof-white-large-span-travertine-patio-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/louvered/louvered-roof-white-large-span-travertine-patio-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/louvered/louvered-roof-white-large-span-travertine-patio-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/louvered/louvered-roof-white-open-blades-travertine-patio-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/louvered/louvered-roof-white-open-blades-travertine-patio-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/louvered/louvered-roof-white-open-blades-travertine-patio-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/aluminum-lattice-pergola-black-underside-sunset-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/aluminum-lattice-pergola-black-underside-sunset-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/aluminum-lattice-pergola-black-underside-sunset-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/aluminum-patio-cover-insulated-roof-pavers-night-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/aluminum-patio-cover-insulated-roof-pavers-night-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/aluminum-patio-cover-insulated-roof-pavers-night-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/covered-pergola-brown-paver-patio-pool-palms-florida-02.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/covered-pergola-brown-paver-patio-pool-palms-florida-02-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/covered-pergola-brown-paver-patio-pool-palms-florida-02-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/freestanding-insulated-pergola-white-travertine-florida-02.webp": {
+   "ancho": 1200,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/freestanding-insulated-pergola-white-travertine-florida-02-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/freestanding-insulated-pergola-white-travertine-florida-02-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/freestanding-patio-cover-bronze-pool-deck-travertine-florida-01.webp": {
+   "ancho": 1440,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/freestanding-patio-cover-bronze-pool-deck-travertine-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/freestanding-patio-cover-bronze-pool-deck-travertine-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/freestanding-pergola-dark-bronze-pool-spa-canal-florida-01.webp": {
+   "ancho": 1440,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/freestanding-pergola-dark-bronze-pool-spa-canal-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/freestanding-pergola-dark-bronze-pool-spa-canal-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/freestanding-pergola-dark-bronze-pool-spa-canal-florida-02.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/freestanding-pergola-dark-bronze-pool-spa-canal-florida-02-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/freestanding-pergola-dark-bronze-pool-spa-canal-florida-02-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/insulated-aluminum-patio-cover-white-two-story-home-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/insulated-aluminum-patio-cover-white-two-story-home-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/insulated-aluminum-patio-cover-white-two-story-home-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/insulated-patio-cover-black-frame-lap-pool-deck-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/insulated-patio-cover-black-frame-lap-pool-deck-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/insulated-patio-cover-black-frame-lap-pool-deck-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/insulated-patio-cover-black-frame-lap-pool-sunset-florida-01.webp": {
+   "ancho": 1215,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/insulated-patio-cover-black-frame-lap-pool-sunset-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/insulated-patio-cover-black-frame-lap-pool-sunset-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/insulated-patio-cover-black-frame-pool-deck-lawn-florida-01.webp": {
+   "ancho": 1440,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/insulated-patio-cover-black-frame-pool-deck-lawn-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/insulated-patio-cover-black-frame-pool-deck-lawn-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/insulated-patio-cover-black-frame-pool-deck-lawn-florida-02.webp": {
+   "ancho": 1440,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/insulated-patio-cover-black-frame-pool-deck-lawn-florida-02-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/insulated-patio-cover-black-frame-pool-deck-lawn-florida-02-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/insulated-patio-cover-black-frame-pool-lake-aerial-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/insulated-patio-cover-black-frame-pool-lake-aerial-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/insulated-patio-cover-black-frame-pool-lake-aerial-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/insulated-patio-cover-black-frame-two-story-pool-florida-02.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/insulated-patio-cover-black-frame-two-story-pool-florida-02-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/insulated-patio-cover-black-frame-two-story-pool-florida-02-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-backyard-florida-01.webp": {
+   "ancho": 1440,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-backyard-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-backyard-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/insulated-patio-cover-outdoor-kitchen-pool-florida-01.webp": {
+   "ancho": 1440,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/insulated-patio-cover-outdoor-kitchen-pool-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/insulated-patio-cover-outdoor-kitchen-pool-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/insulated-patio-cover-white-yellow-house-florida-02.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/insulated-patio-cover-white-yellow-house-florida-02-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/insulated-patio-cover-white-yellow-house-florida-02-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/modern-insulated-patio-cover-white-flat-roof-pavers-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/modern-insulated-patio-cover-white-flat-roof-pavers-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/modern-insulated-patio-cover-white-flat-roof-pavers-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/modern-patio-cover-black-frame-two-story-home-pool-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/modern-patio-cover-black-frame-two-story-home-pool-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/modern-patio-cover-black-frame-two-story-home-pool-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/pergola-outdoor-kitchen-privacy-screen-gray-tile-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/pergola-outdoor-kitchen-privacy-screen-gray-tile-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/pergola-outdoor-kitchen-privacy-screen-gray-tile-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/polycarbonate-pergola-woodgrain-stone-columns-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/polycarbonate-pergola-woodgrain-stone-columns-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/polycarbonate-pergola-woodgrain-stone-columns-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/white-pergola-outdoor-kitchen-wood-cabinets-deck-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/white-pergola-outdoor-kitchen-wood-cabinets-deck-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/white-pergola-outdoor-kitchen-wood-cabinets-deck-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pole/pole-barn-enclosed-tan-metal-siding-lean-to-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pole/pole-barn-enclosed-tan-metal-siding-lean-to-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pole/pole-barn-enclosed-tan-metal-siding-lean-to-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pole/pole-barn-long-equipment-shed-metal-roof-aerial-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pole/pole-barn-long-equipment-shed-metal-roof-aerial-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pole/pole-barn-long-equipment-shed-metal-roof-aerial-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pole/pole-barn-open-equipment-shed-steel-trusses-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pole/pole-barn-open-equipment-shed-steel-trusses-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pole/pole-barn-open-equipment-shed-steel-trusses-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/remodeling/pool-remodeling-step-tile-trim-detail-florida-01.webp": {
+   "ancho": 1200,
+   "variantes": [
+    [
+     640,
+     "/images/banco/remodeling/pool-remodeling-step-tile-trim-detail-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/remodeling/pool-remodeling-step-tile-trim-detail-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/remodeling/pool-remodeling-travertine-deck-glass-tile-finished-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/remodeling/pool-remodeling-travertine-deck-glass-tile-finished-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/remodeling/pool-remodeling-travertine-deck-glass-tile-finished-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/remodeling/pool-remodeling-travertine-deck-rock-landscaping-florida-02.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/remodeling/pool-remodeling-travertine-deck-rock-landscaping-florida-02-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/remodeling/pool-remodeling-travertine-deck-rock-landscaping-florida-02-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/brochures/alfresco-brochure/alfresco-brochure.jpg": {
+   "ancho": 1224,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/alfresco-brochure/alfresco-brochure-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/alfresco-brochure/alfresco-brochure-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/aqualink-all-in-one/aqualink-all-in-one.jpg": {
+   "ancho": 1224,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/aqualink-all-in-one/aqualink-all-in-one-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/aqualink-all-in-one/aqualink-all-in-one-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/artisan-brochure/artisan-brochure.jpg": {
+   "ancho": 1584,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/artisan-brochure/artisan-brochure-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/artisan-brochure/artisan-brochure-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/big-green-egg-catalogue/big-green-egg-catalogue.jpg": {
+   "ancho": 1304,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/big-green-egg-catalogue/big-green-egg-catalogue-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/big-green-egg-catalogue/big-green-egg-catalogue-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/bond-kote-flyer/bond-kote-flyer.jpg": {
+   "ancho": 1224,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/bond-kote-flyer/bond-kote-flyer-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/bond-kote-flyer/bond-kote-flyer-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/challenger-big-green-egg-brochure/challenger-big-green-egg-brochure.jpg": {
+   "ancho": 1224,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/challenger-big-green-egg-brochure/challenger-big-green-egg-brochure-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/challenger-big-green-egg-brochure/challenger-big-green-egg-brochure-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/challenger-kitchen-brochure/challenger-kitchen-brochure.jpg": {
+   "ancho": 1224,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/challenger-kitchen-brochure/challenger-kitchen-brochure-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/challenger-kitchen-brochure/challenger-kitchen-brochure-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/chiller-heater/chiller-heater.jpg": {
+   "ancho": 1224,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/chiller-heater/chiller-heater-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/chiller-heater/chiller-heater-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/classic-modern-catalog/classic-modern-catalog.jpg": {
+   "ancho": 1224,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/classic-modern-catalog/classic-modern-catalog-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/classic-modern-catalog/classic-modern-catalog-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/coping-guide/coping-guide.jpg": {
+   "ancho": 1248,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/coping-guide/coping-guide-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/coping-guide/coping-guide-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/coyote-brochure/coyote-brochure.jpg": {
+   "ancho": 1152,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/coyote-brochure/coyote-brochure-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/coyote-brochure/coyote-brochure-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/diamond-brite-brochure/diamond-brite-brochure.jpg": {
+   "ancho": 2556,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/diamond-brite-brochure/diamond-brite-brochure-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/diamond-brite-brochure/diamond-brite-brochure-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/diamond-plaster-brochure/diamond-plaster-brochure.jpg": {
+   "ancho": 1296,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/diamond-plaster-brochure/diamond-plaster-brochure-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/diamond-plaster-brochure/diamond-plaster-brochure-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/equinox-brochure/equinox-brochure.jpg": {
+   "ancho": 1440,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/equinox-brochure/equinox-brochure-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/equinox-brochure/equinox-brochure-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/filter-340/filter-340.jpg": {
+   "ancho": 1260,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/filter-340/filter-340-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/filter-340/filter-340-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/hercules-comparison/hercules-comparison.jpg": {
+   "ancho": 1224,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/hercules-comparison/hercules-comparison-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/hercules-comparison/hercules-comparison-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/irrigreen-smart-drip-system/irrigreen-smart-drip-system.jpg": {
+   "ancho": 1037,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/irrigreen-smart-drip-system/irrigreen-smart-drip-system-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/irrigreen-smart-drip-system/irrigreen-smart-drip-system-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/irrigreen-warranty/irrigreen-warranty.jpg": {
+   "ancho": 1224,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/irrigreen-warranty/irrigreen-warranty-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/irrigreen-warranty/irrigreen-warranty-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/jandy-laminar-jet-rgbw/jandy-laminar-jet-rgbw.jpg": {
+   "ancho": 1224,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/jandy-laminar-jet-rgbw/jandy-laminar-jet-rgbw-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/jandy-laminar-jet-rgbw/jandy-laminar-jet-rgbw-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/jandy-nicheless-led-light/jandy-nicheless-led-light.jpg": {
+   "ancho": 1260,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/jandy-nicheless-led-light/jandy-nicheless-led-light-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/jandy-nicheless-led-light/jandy-nicheless-led-light-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/louvered-roof-brochure-2024/louvered-roof-brochure-2024.jpg": {
+   "ancho": 1728,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/louvered-roof-brochure-2024/louvered-roof-brochure-2024-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/louvered-roof-brochure-2024/louvered-roof-brochure-2024-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/louvered-roof-brochure/louvered-roof-brochure.jpg": {
+   "ancho": 1728,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/louvered-roof-brochure/louvered-roof-brochure-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/louvered-roof-brochure/louvered-roof-brochure-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/maestroshield-catalog-2025/maestroshield-catalog-2025.jpg": {
+   "ancho": 1260,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/maestroshield-catalog-2025/maestroshield-catalog-2025-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/maestroshield-catalog-2025/maestroshield-catalog-2025-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/megaview-enclosures-brochure/megaview-enclosures-brochure.jpg": {
+   "ancho": 1224,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/megaview-enclosures-brochure/megaview-enclosures-brochure-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/megaview-enclosures-brochure/megaview-enclosures-brochure-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/milestone-flyer/milestone-flyer.jpg": {
+   "ancho": 1224,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/milestone-flyer/milestone-flyer-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/milestone-flyer/milestone-flyer-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/milestone-travertine/milestone-travertine.jpg": {
+   "ancho": 1225,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/milestone-travertine/milestone-travertine-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/milestone-travertine/milestone-travertine-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/napoleon-grills-brochure/napoleon-grills-brochure.jpg": {
+   "ancho": 1584,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/napoleon-grills-brochure/napoleon-grills-brochure-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/napoleon-grills-brochure/napoleon-grills-brochure-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/npt-tile-collection/npt-tile-collection.jpg": {
+   "ancho": 1224,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/npt-tile-collection/npt-tile-collection-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/npt-tile-collection/npt-tile-collection-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/ntp-plaster-brochure/ntp-plaster-brochure.jpg": {
+   "ancho": 1224,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/ntp-plaster-brochure/ntp-plaster-brochure-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/ntp-plaster-brochure/ntp-plaster-brochure-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/oe-serenity-pergola-flyer/oe-serenity-pergola-flyer.jpg": {
+   "ancho": 1584,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/oe-serenity-pergola-flyer/oe-serenity-pergola-flyer-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/oe-serenity-pergola-flyer/oe-serenity-pergola-flyer-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/pergola-lights/pergola-lights.jpg": {
+   "ancho": 1224,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/pergola-lights/pergola-lights-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/pergola-lights/pergola-lights-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/pergola-screens-brochure/pergola-screens-brochure.jpg": {
+   "ancho": 1260,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/pergola-screens-brochure/pergola-screens-brochure-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/pergola-screens-brochure/pergola-screens-brochure-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/product-folder/product-folder.jpg": {
+   "ancho": 1224,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/product-folder/product-folder-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/product-folder/product-folder-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/renaissance-flyer/renaissance-flyer.jpg": {
+   "ancho": 1224,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/renaissance-flyer/renaissance-flyer-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/renaissance-flyer/renaissance-flyer-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/renaissance-pitchbook/renaissance-pitchbook.jpg": {
+   "ancho": 1728,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/renaissance-pitchbook/renaissance-pitchbook-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/renaissance-pitchbook/renaissance-pitchbook-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/retractable-screens-brochure/retractable-screens-brochure.jpg": {
+   "ancho": 1260,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/retractable-screens-brochure/retractable-screens-brochure-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/retractable-screens-brochure/retractable-screens-brochure-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/roof-systems-brochure-2025/roof-systems-brochure-2025.jpg": {
+   "ancho": 1584,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/roof-systems-brochure-2025/roof-systems-brochure-2025-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/roof-systems-brochure-2025/roof-systems-brochure-2025-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/screen-enclosures-flyer/screen-enclosures-flyer.jpg": {
+   "ancho": 1224,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/screen-enclosures-flyer/screen-enclosures-flyer-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/screen-enclosures-flyer/screen-enclosures-flyer-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/screen-frame-spline-guide/screen-frame-spline-guide.jpg": {
+   "ancho": 1224,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/screen-frame-spline-guide/screen-frame-spline-guide-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/screen-frame-spline-guide/screen-frame-spline-guide-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/screened-pool-enclosures-flyer/screened-pool-enclosures-flyer.jpg": {
+   "ancho": 1224,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/screened-pool-enclosures-flyer/screened-pool-enclosures-flyer-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/screened-pool-enclosures-flyer/screened-pool-enclosures-flyer-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/sealer-guide/sealer-guide.jpg": {
+   "ancho": 1224,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/sealer-guide/sealer-guide-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/sealer-guide/sealer-guide-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/sgm-pool-catalog-2026/sgm-pool-catalog-2026.jpg": {
+   "ancho": 1260,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/sgm-pool-catalog-2026/sgm-pool-catalog-2026-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/sgm-pool-catalog-2026/sgm-pool-catalog-2026-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/shadespan-brochure-usa/shadespan-brochure-usa.jpg": {
+   "ancho": 1684,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/shadespan-brochure-usa/shadespan-brochure-usa-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/shadespan-brochure-usa/shadespan-brochure-usa-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/shadespan-look-book/shadespan-look-book.jpg": {
+   "ancho": 1684,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/shadespan-look-book/shadespan-look-book-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/shadespan-look-book/shadespan-look-book-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/stonemart-marble-travertine/stonemart-marble-travertine.jpg": {
+   "ancho": 1188,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/stonemart-marble-travertine/stonemart-marble-travertine-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/stonemart-marble-travertine/stonemart-marble-travertine-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/tremron-north-hardscape/tremron-north-hardscape.jpg": {
+   "ancho": 1584,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/tremron-north-hardscape/tremron-north-hardscape-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/tremron-north-hardscape/tremron-north-hardscape-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/brochures/tremron-south-catalog/tremron-south-catalog.jpg": {
+   "ancho": 1584,
+   "variantes": [
+    [
+     640,
+     "/images/brochures/tremron-south-catalog/tremron-south-catalog-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/brochures/tremron-south-catalog/tremron-south-catalog-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/countries/custom-pool-builders-alachua-county-fl/custom-pool-builders-alachua-county-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/countries/custom-pool-builders-alachua-county-fl/custom-pool-builders-alachua-county-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/countries/custom-pool-builders-alachua-county-fl/custom-pool-builders-alachua-county-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/countries/custom-pool-builders-alachua-county-fl/luxury-custom-pool-design-south-florida-outdoor-living.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/countries/custom-pool-builders-alachua-county-fl/luxury-custom-pool-design-south-florida-outdoor-living-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/countries/custom-pool-builders-alachua-county-fl/luxury-custom-pool-design-south-florida-outdoor-living-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/countries/custom-pool-builders-broward-county-fl/custom-pool-builders-broward-county-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/countries/custom-pool-builders-broward-county-fl/custom-pool-builders-broward-county-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/countries/custom-pool-builders-broward-county-fl/custom-pool-builders-broward-county-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/countries/custom-pool-builders-columbia-county-fl/custom-pool-builders-columbia-county-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/countries/custom-pool-builders-columbia-county-fl/custom-pool-builders-columbia-county-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/countries/custom-pool-builders-columbia-county-fl/custom-pool-builders-columbia-county-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/countries/custom-pool-builders-dixie-county-fl/custom-pool-builders-dixie-county-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/countries/custom-pool-builders-dixie-county-fl/custom-pool-builders-dixie-county-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/countries/custom-pool-builders-dixie-county-fl/custom-pool-builders-dixie-county-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/countries/custom-pool-builders-gilchrist-county-fl/custom-pool-builders-gilchrist-county-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/countries/custom-pool-builders-gilchrist-county-fl/custom-pool-builders-gilchrist-county-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/countries/custom-pool-builders-gilchrist-county-fl/custom-pool-builders-gilchrist-county-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/countries/custom-pool-builders-levy-county-fl/custom-pool-builders-levy-county-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/countries/custom-pool-builders-levy-county-fl/custom-pool-builders-levy-county-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/countries/custom-pool-builders-levy-county-fl/custom-pool-builders-levy-county-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/countries/custom-pool-builders-marion-county-fl/custom-pool-builders-marion-county-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/countries/custom-pool-builders-marion-county-fl/custom-pool-builders-marion-county-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/countries/custom-pool-builders-marion-county-fl/custom-pool-builders-marion-county-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/countries/custom-pool-builders-palm-beach-county-fl/custom-pool-builders-palm-beach-county-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/countries/custom-pool-builders-palm-beach-county-fl/custom-pool-builders-palm-beach-county-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/countries/custom-pool-builders-palm-beach-county-fl/custom-pool-builders-palm-beach-county-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/countries/custom-pool-builders-putnam-county-fl/custom-pool-builders-putnam-county-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/countries/custom-pool-builders-putnam-county-fl/custom-pool-builders-putnam-county-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/countries/custom-pool-builders-putnam-county-fl/custom-pool-builders-putnam-county-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/images/commercial-1/build-to-rent-community-pool-builders-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/commercial-1/build-to-rent-community-pool-builders-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/images/commercial-1/build-to-rent-community-pool-builders-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/images/commercial-10/senior-living-pool-construction-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/commercial-10/senior-living-pool-construction-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/images/commercial-10/senior-living-pool-construction-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/images/commercial-3/commercial-pool-developers-new-construction-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/commercial-3/commercial-pool-developers-new-construction-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/images/commercial-3/commercial-pool-developers-new-construction-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/images/commercial-5/hoa-community-pool-renovation-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/commercial-5/hoa-community-pool-renovation-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/images/commercial-5/hoa-community-pool-renovation-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/images/commercial-6/hotel-resort-pool-contractors-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/commercial-6/hotel-resort-pool-contractors-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/images/commercial-6/hotel-resort-pool-contractors-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/images/commercial-8/multifamily-pool-construction-renovation-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/commercial-8/multifamily-pool-construction-renovation-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/images/commercial-8/multifamily-pool-construction-renovation-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/images/commercial-9/school-university-aquatic-facilities-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/commercial-9/school-university-aquatic-facilities-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/images/commercial-9/school-university-aquatic-facilities-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/images/deck-1/custom-deck-builders-contractors-north-south-florida-01.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/deck-1/custom-deck-builders-contractors-north-south-florida-01-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/deck-1/custom-deck-builders-contractors-north-south-florida-01-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/deck-10/custom-deck-builders-contractors-north-south-florida-10.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/deck-10/custom-deck-builders-contractors-north-south-florida-10-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/deck-10/custom-deck-builders-contractors-north-south-florida-10-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/deck-2/custom-deck-builders-contractors-north-south-florida-02.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/deck-2/custom-deck-builders-contractors-north-south-florida-02-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/deck-2/custom-deck-builders-contractors-north-south-florida-02-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/deck-3/custom-deck-builders-contractors-north-south-florida-03.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/deck-3/custom-deck-builders-contractors-north-south-florida-03-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/deck-3/custom-deck-builders-contractors-north-south-florida-03-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/deck-4/custom-deck-builders-contractors-north-south-florida-04.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/deck-4/custom-deck-builders-contractors-north-south-florida-04-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/deck-4/custom-deck-builders-contractors-north-south-florida-04-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/deck-5/custom-deck-builders-contractors-north-south-florida-05.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/deck-5/custom-deck-builders-contractors-north-south-florida-05-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/deck-5/custom-deck-builders-contractors-north-south-florida-05-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/deck-6/custom-deck-builders-contractors-north-south-florida-06.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/deck-6/custom-deck-builders-contractors-north-south-florida-06-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/deck-6/custom-deck-builders-contractors-north-south-florida-06-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/deck-7/custom-deck-builders-contractors-north-south-florida-07.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/deck-7/custom-deck-builders-contractors-north-south-florida-07-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/deck-7/custom-deck-builders-contractors-north-south-florida-07-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/deck-8/custom-deck-builders-contractors-north-south-florida-08.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/deck-8/custom-deck-builders-contractors-north-south-florida-08-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/deck-8/custom-deck-builders-contractors-north-south-florida-08-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/deck-9/custom-deck-builders-contractors-north-south-florida-09.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/deck-9/custom-deck-builders-contractors-north-south-florida-09-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/deck-9/custom-deck-builders-contractors-north-south-florida-09-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/furniture-7/custom-outdoor-furniture-builders-florida-07.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/furniture-7/custom-outdoor-furniture-builders-florida-07-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/furniture-7/custom-outdoor-furniture-builders-florida-07-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/irrigation-2/automated-irrigation-system-installers-florida-02.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/irrigation-2/automated-irrigation-system-installers-florida-02-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/irrigation-2/automated-irrigation-system-installers-florida-02-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/irrigation-8/automated-irrigation-system-installers-florida-08.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/irrigation-8/automated-irrigation-system-installers-florida-08-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/irrigation-8/automated-irrigation-system-installers-florida-08-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/irrigation-9/automated-irrigation-system-installers-florida-09.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/irrigation-9/automated-irrigation-system-installers-florida-09-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/irrigation-9/automated-irrigation-system-installers-florida-09-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/kitchen-2/custom-outdoor-kitchen-poolside-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/kitchen-2/custom-outdoor-kitchen-poolside-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/images/kitchen-2/custom-outdoor-kitchen-poolside-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/images/kitchen-4/custom-outdoor-kitchen-with-grill-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/kitchen-4/custom-outdoor-kitchen-with-grill-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/images/kitchen-4/custom-outdoor-kitchen-with-grill-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/images/kitchen-6/luxury-custom-outdoor-kitchen-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/kitchen-6/luxury-custom-outdoor-kitchen-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/images/kitchen-6/luxury-custom-outdoor-kitchen-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/images/kitchen-7/modern-custom-outdoor-kitchen-design-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/kitchen-7/modern-custom-outdoor-kitchen-design-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/images/kitchen-7/modern-custom-outdoor-kitchen-design-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/images/landscaping-1/luxury-landscaping-construction-contractors-florida-01.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/landscaping-1/luxury-landscaping-construction-contractors-florida-01-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/landscaping-1/luxury-landscaping-construction-contractors-florida-01-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/landscaping-10/luxury-landscaping-construction-contractors-florida-10.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/landscaping-10/luxury-landscaping-construction-contractors-florida-10-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/landscaping-10/luxury-landscaping-construction-contractors-florida-10-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/landscaping-2/luxury-landscaping-construction-contractors-florida-02.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/landscaping-2/luxury-landscaping-construction-contractors-florida-02-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/landscaping-2/luxury-landscaping-construction-contractors-florida-02-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/landscaping-3/luxury-landscaping-construction-contractors-florida-03.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/landscaping-3/luxury-landscaping-construction-contractors-florida-03-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/landscaping-3/luxury-landscaping-construction-contractors-florida-03-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/landscaping-4/luxury-landscaping-construction-contractors-florida-04.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/landscaping-4/luxury-landscaping-construction-contractors-florida-04-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/landscaping-4/luxury-landscaping-construction-contractors-florida-04-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/landscaping-5/luxury-landscaping-construction-contractors-florida-05.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/landscaping-5/luxury-landscaping-construction-contractors-florida-05-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/landscaping-5/luxury-landscaping-construction-contractors-florida-05-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/landscaping-6/luxury-landscaping-construction-contractors-florida-06.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/landscaping-6/luxury-landscaping-construction-contractors-florida-06-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/landscaping-6/luxury-landscaping-construction-contractors-florida-06-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/landscaping-8/luxury-landscaping-construction-contractors-florida-08.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/landscaping-8/luxury-landscaping-construction-contractors-florida-08-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/landscaping-8/luxury-landscaping-construction-contractors-florida-08-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/landscaping-9/luxury-landscaping-construction-contractors-florida-09.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/landscaping-9/luxury-landscaping-construction-contractors-florida-09-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/landscaping-9/luxury-landscaping-construction-contractors-florida-09-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/motorized-louvered-roof-1/motorized-louvered-roof-installers-florida-01.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/motorized-louvered-roof-1/motorized-louvered-roof-installers-florida-01-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/motorized-louvered-roof-1/motorized-louvered-roof-installers-florida-01-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/motorized-louvered-roof-2/motorized-louvered-roof-installers-florida-02.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/motorized-louvered-roof-2/motorized-louvered-roof-installers-florida-02-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/motorized-louvered-roof-2/motorized-louvered-roof-installers-florida-02-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/motorized-louvered-roof-3/motorized-louvered-roof-installers-florida-03.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/motorized-louvered-roof-3/motorized-louvered-roof-installers-florida-03-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/motorized-louvered-roof-3/motorized-louvered-roof-installers-florida-03-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/motorized-louvered-roof-4/motorized-louvered-roof-installers-florida-04.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/motorized-louvered-roof-4/motorized-louvered-roof-installers-florida-04-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/motorized-louvered-roof-4/motorized-louvered-roof-installers-florida-04-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/motorized-louvered-roof-5/motorized-louvered-roof-installers-florida-05.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/motorized-louvered-roof-5/motorized-louvered-roof-installers-florida-05-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/motorized-louvered-roof-5/motorized-louvered-roof-installers-florida-05-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/motorized-louvered-roof-6/motorized-louvered-roof-installers-florida-06.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/motorized-louvered-roof-6/motorized-louvered-roof-installers-florida-06-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/motorized-louvered-roof-6/motorized-louvered-roof-installers-florida-06-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/motorized-louvered-roof-7/motorized-louvered-roof-installers-florida-07.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/motorized-louvered-roof-7/motorized-louvered-roof-installers-florida-07-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/motorized-louvered-roof-7/motorized-louvered-roof-installers-florida-07-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/motorized-louvered-roof-8/motorized-louvered-roof-installers-florida-08.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/motorized-louvered-roof-8/motorized-louvered-roof-installers-florida-08-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/motorized-louvered-roof-8/motorized-louvered-roof-installers-florida-08-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/motorized-louvered-roof-9/motorized-louvered-roof-installers-florida-09.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/motorized-louvered-roof-9/motorized-louvered-roof-installers-florida-09-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/motorized-louvered-roof-9/motorized-louvered-roof-installers-florida-09-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/patio-screen-1/patio-screen-enclosure-builders-contractors-north-south-florida-01.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/patio-screen-1/patio-screen-enclosure-builders-contractors-north-south-florida-01-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/patio-screen-1/patio-screen-enclosure-builders-contractors-north-south-florida-01-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/patio-screen-10/patio-screen-enclosure-builders-contractors-north-south-florida-10.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/patio-screen-10/patio-screen-enclosure-builders-contractors-north-south-florida-10-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/patio-screen-10/patio-screen-enclosure-builders-contractors-north-south-florida-10-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/patio-screen-2/patio-screen-enclosure-builders-contractors-north-south-florida-02.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/patio-screen-2/patio-screen-enclosure-builders-contractors-north-south-florida-02-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/patio-screen-2/patio-screen-enclosure-builders-contractors-north-south-florida-02-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/patio-screen-3/patio-screen-enclosure-builders-contractors-north-south-florida-03.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/patio-screen-3/patio-screen-enclosure-builders-contractors-north-south-florida-03-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/patio-screen-3/patio-screen-enclosure-builders-contractors-north-south-florida-03-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/patio-screen-4/patio-screen-enclosure-builders-contractors-north-south-florida-04.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/patio-screen-4/patio-screen-enclosure-builders-contractors-north-south-florida-04-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/patio-screen-4/patio-screen-enclosure-builders-contractors-north-south-florida-04-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/patio-screen-5/patio-screen-enclosure-builders-contractors-north-south-florida-05.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/patio-screen-5/patio-screen-enclosure-builders-contractors-north-south-florida-05-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/patio-screen-5/patio-screen-enclosure-builders-contractors-north-south-florida-05-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/patio-screen-6/patio-screen-enclosure-builders-contractors-north-south-florida-06.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/patio-screen-6/patio-screen-enclosure-builders-contractors-north-south-florida-06-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/patio-screen-6/patio-screen-enclosure-builders-contractors-north-south-florida-06-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/patio-screen-7/patio-screen-enclosure-builders-contractors-north-south-florida-07.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/patio-screen-7/patio-screen-enclosure-builders-contractors-north-south-florida-07-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/patio-screen-7/patio-screen-enclosure-builders-contractors-north-south-florida-07-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/patio-screen-8/patio-screen-enclosure-builders-contractors-north-south-florida-08.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/patio-screen-8/patio-screen-enclosure-builders-contractors-north-south-florida-08-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/patio-screen-8/patio-screen-enclosure-builders-contractors-north-south-florida-08-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/patio-screen-9/patio-screen-enclosure-builders-contractors-north-south-florida-09.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/patio-screen-9/patio-screen-enclosure-builders-contractors-north-south-florida-09-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/patio-screen-9/patio-screen-enclosure-builders-contractors-north-south-florida-09-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pergolas-1/custom-pergola-patio-cover-builders-florida-01.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pergolas-1/custom-pergola-patio-cover-builders-florida-01-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pergolas-1/custom-pergola-patio-cover-builders-florida-01-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pergolas-10/custom-pergola-patio-cover-builders-florida-10.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pergolas-10/custom-pergola-patio-cover-builders-florida-10-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pergolas-10/custom-pergola-patio-cover-builders-florida-10-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pergolas-2/custom-pergola-patio-cover-builders-florida-02.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pergolas-2/custom-pergola-patio-cover-builders-florida-02-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pergolas-2/custom-pergola-patio-cover-builders-florida-02-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pergolas-3/custom-pergola-patio-cover-builders-florida-03.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pergolas-3/custom-pergola-patio-cover-builders-florida-03-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pergolas-3/custom-pergola-patio-cover-builders-florida-03-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pergolas-4/custom-pergola-patio-cover-builders-florida-04.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pergolas-4/custom-pergola-patio-cover-builders-florida-04-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pergolas-4/custom-pergola-patio-cover-builders-florida-04-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pergolas-5/custom-pergola-patio-cover-builders-florida-05.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pergolas-5/custom-pergola-patio-cover-builders-florida-05-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pergolas-5/custom-pergola-patio-cover-builders-florida-05-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pergolas-6/custom-pergola-patio-cover-builders-florida-06.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pergolas-6/custom-pergola-patio-cover-builders-florida-06-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pergolas-6/custom-pergola-patio-cover-builders-florida-06-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pergolas-7/custom-pergola-patio-cover-builders-florida-07.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pergolas-7/custom-pergola-patio-cover-builders-florida-07-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pergolas-7/custom-pergola-patio-cover-builders-florida-07-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pergolas-8/custom-pergola-patio-cover-builders-florida-08.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pergolas-8/custom-pergola-patio-cover-builders-florida-08-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pergolas-8/custom-pergola-patio-cover-builders-florida-08-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pergolas-9/custom-pergola-patio-cover-builders-florida-09.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pergolas-9/custom-pergola-patio-cover-builders-florida-09-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pergolas-9/custom-pergola-patio-cover-builders-florida-09-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pole-barn-1/pole-barn-steel-building-contractors-florida-01.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pole-barn-1/pole-barn-steel-building-contractors-florida-01-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pole-barn-1/pole-barn-steel-building-contractors-florida-01-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pole-barn-10/pole-barn-steel-building-contractors-florida-10.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pole-barn-10/pole-barn-steel-building-contractors-florida-10-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pole-barn-10/pole-barn-steel-building-contractors-florida-10-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pole-barn-4/pole-barn-steel-building-contractors-florida-04.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pole-barn-4/pole-barn-steel-building-contractors-florida-04-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pole-barn-4/pole-barn-steel-building-contractors-florida-04-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pole-barn-5/pole-barn-steel-building-contractors-florida-05.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pole-barn-5/pole-barn-steel-building-contractors-florida-05-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pole-barn-5/pole-barn-steel-building-contractors-florida-05-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pole-barn-6/pole-barn-steel-building-contractors-florida-06.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pole-barn-6/pole-barn-steel-building-contractors-florida-06-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pole-barn-6/pole-barn-steel-building-contractors-florida-06-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pole-barn-7/pole-barn-steel-building-contractors-florida-07.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pole-barn-7/pole-barn-steel-building-contractors-florida-07-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pole-barn-7/pole-barn-steel-building-contractors-florida-07-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pole-barn-8/pole-barn-steel-building-contractors-florida-08.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pole-barn-8/pole-barn-steel-building-contractors-florida-08-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pole-barn-8/pole-barn-steel-building-contractors-florida-08-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pole-barn-9/pole-barn-steel-building-contractors-florida-09.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pole-barn-9/pole-barn-steel-building-contractors-florida-09-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pole-barn-9/pole-barn-steel-building-contractors-florida-09-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-construction-1/custom-pool-spa-builders-florida-01-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-construction-10/custom-pool-spa-builders-florida-10-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-construction-2/custom-pool-spa-builders-florida-02-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-construction-3/custom-pool-spa-builders-florida-03-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-construction-4/custom-pool-spa-builders-florida-04-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-construction-5/custom-pool-spa-builders-florida-05.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-construction-5/custom-pool-spa-builders-florida-05-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-construction-5/custom-pool-spa-builders-florida-05-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-construction-6/custom-pool-spa-builders-florida-06-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-construction-7/custom-pool-spa-builders-florida-07-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-construction-8/custom-pool-spa-builders-florida-08-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-construction-9/custom-pool-spa-builders-florida-09-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-remodeling-1/custom-pool-remodeling-contractors-florida-01.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-remodeling-1/custom-pool-remodeling-contractors-florida-01-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-remodeling-1/custom-pool-remodeling-contractors-florida-01-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-remodeling-10/custom-pool-remodeling-contractors-florida-10.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-remodeling-10/custom-pool-remodeling-contractors-florida-10-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-remodeling-10/custom-pool-remodeling-contractors-florida-10-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-remodeling-2/custom-pool-remodeling-contractors-florida-02.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-remodeling-2/custom-pool-remodeling-contractors-florida-02-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-remodeling-2/custom-pool-remodeling-contractors-florida-02-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-remodeling-3/custom-pool-remodeling-contractors-florida-03.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-remodeling-3/custom-pool-remodeling-contractors-florida-03-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-remodeling-3/custom-pool-remodeling-contractors-florida-03-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-remodeling-4/custom-pool-remodeling-contractors-florida-04.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-remodeling-4/custom-pool-remodeling-contractors-florida-04-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-remodeling-4/custom-pool-remodeling-contractors-florida-04-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-remodeling-5/custom-pool-remodeling-contractors-florida-05.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-remodeling-5/custom-pool-remodeling-contractors-florida-05-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-remodeling-5/custom-pool-remodeling-contractors-florida-05-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-remodeling-6/custom-pool-remodeling-contractors-florida-06.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-remodeling-6/custom-pool-remodeling-contractors-florida-06-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-remodeling-6/custom-pool-remodeling-contractors-florida-06-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-remodeling-7/custom-pool-remodeling-contractors-florida-07.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-remodeling-7/custom-pool-remodeling-contractors-florida-07-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-remodeling-7/custom-pool-remodeling-contractors-florida-07-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-remodeling-8/custom-pool-remodeling-contractors-florida-08.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-remodeling-8/custom-pool-remodeling-contractors-florida-08-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-remodeling-8/custom-pool-remodeling-contractors-florida-08-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-remodeling-9/custom-pool-remodeling-contractors-florida-09.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-remodeling-9/custom-pool-remodeling-contractors-florida-09-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-remodeling-9/custom-pool-remodeling-contractors-florida-09-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-screen-1/pool-screen-enclosure-builders-florida-01.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-screen-1/pool-screen-enclosure-builders-florida-01-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-screen-1/pool-screen-enclosure-builders-florida-01-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-screen-10/pool-screen-enclosure-builders-florida-10.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-screen-10/pool-screen-enclosure-builders-florida-10-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-screen-10/pool-screen-enclosure-builders-florida-10-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-screen-2/pool-screen-enclosure-builders-florida-02.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-screen-2/pool-screen-enclosure-builders-florida-02-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-screen-2/pool-screen-enclosure-builders-florida-02-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-screen-3/pool-screen-enclosure-builders-florida-03.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-screen-3/pool-screen-enclosure-builders-florida-03-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-screen-3/pool-screen-enclosure-builders-florida-03-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-screen-4/pool-screen-enclosure-builders-florida-04.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-screen-4/pool-screen-enclosure-builders-florida-04-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-screen-4/pool-screen-enclosure-builders-florida-04-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-screen-5/pool-screen-enclosure-builders-florida-05.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-screen-5/pool-screen-enclosure-builders-florida-05-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-screen-5/pool-screen-enclosure-builders-florida-05-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-screen-6/pool-screen-enclosure-builders-florida-06.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-screen-6/pool-screen-enclosure-builders-florida-06-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-screen-6/pool-screen-enclosure-builders-florida-06-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-screen-7/pool-screen-enclosure-builders-florida-07.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-screen-7/pool-screen-enclosure-builders-florida-07-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-screen-7/pool-screen-enclosure-builders-florida-07-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-screen-8/pool-screen-enclosure-builders-florida-08.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-screen-8/pool-screen-enclosure-builders-florida-08-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-screen-8/pool-screen-enclosure-builders-florida-08-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/pool-screen-9/pool-screen-enclosure-builders-florida-09.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/pool-screen-9/pool-screen-enclosure-builders-florida-09-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/pool-screen-9/pool-screen-enclosure-builders-florida-09-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/retractable-screen-1/retractable-screen-installation-contractors-florida-1.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/retractable-screen-1/retractable-screen-installation-contractors-florida-1-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/retractable-screen-1/retractable-screen-installation-contractors-florida-1-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/retractable-screen-5/retractable-screen-installation-contractors-florida-5.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/retractable-screen-5/retractable-screen-installation-contractors-florida-5-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/retractable-screen-5/retractable-screen-installation-contractors-florida-5-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/images/retractable-screen-9/retractable-screen-installation-contractors-florida-09.jpg": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/retractable-screen-9/retractable-screen-installation-contractors-florida-09-mm640.jpg"
+    ],
+    [
+     1024,
+     "/images/images/retractable-screen-9/retractable-screen-installation-contractors-florida-09-mm1024.jpg"
+    ]
+   ]
+  },
+  "/images/obra/obra-002/artificial-turf-base-preparation-palm-trees-florida-proceso0.avif": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/obra-002/artificial-turf-base-preparation-palm-trees-florida-proceso0-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/obra/obra-002/artificial-turf-base-preparation-palm-trees-florida-proceso0-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/obra/obra-010/driveway-demolition-skid-steer-base-grading-florida-proceso0.avif": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/obra-010/driveway-demolition-skid-steer-base-grading-florida-proceso0-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/obra/obra-010/driveway-demolition-skid-steer-base-grading-florida-proceso0-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/obra/obra-021/artificial-turf-around-pool-new-construction-home-florida-proceso2.avif": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/obra-021/artificial-turf-around-pool-new-construction-home-florida-proceso2-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/obra/obra-021/artificial-turf-around-pool-new-construction-home-florida-proceso2-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/obra/obra-039/landscaping-front-yard-bromeliad-bed-palm-cluster-florida-inversion.avif": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/obra-039/landscaping-front-yard-bromeliad-bed-palm-cluster-florida-inversion-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/obra/obra-039/landscaping-front-yard-bromeliad-bed-palm-cluster-florida-inversion-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-heroe.avif": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-heroe-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-heroe-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/obra/obra-048/pool-remodeling-travertine-deck-glass-tile-completed.avif": {
+   "ancho": 2048,
+   "variantes": [
+    [
+     640,
+     "/images/obra/obra-048/pool-remodeling-travertine-deck-glass-tile-completed-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/obra/obra-048/pool-remodeling-travertine-deck-glass-tile-completed-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/obra/obra-048/travertine-pool-deck-french-pattern-rock-border-florida-proceso3.avif": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/obra-048/travertine-pool-deck-french-pattern-rock-border-florida-proceso3-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/obra/obra-048/travertine-pool-deck-french-pattern-rock-border-florida-proceso3-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/obra/obra-053/pool-renovation-travertine-deck-cobalt-tile-spa.avif": {
+   "ancho": 1800,
+   "variantes": [
+    [
+     640,
+     "/images/obra/obra-053/pool-renovation-travertine-deck-cobalt-tile-spa-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/obra/obra-053/pool-renovation-travertine-deck-cobalt-tile-spa-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/obra/obra-064/pool-remodeling-assessment-old-spa-inspection.avif": {
+   "ancho": 1800,
+   "variantes": [
+    [
+     640,
+     "/images/obra/obra-064/pool-remodeling-assessment-old-spa-inspection-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/obra/obra-064/pool-remodeling-assessment-old-spa-inspection-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/obra/obra-065/custom-pool-and-spa-layout-painted-on-site-aerial.avif": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/obra-065/custom-pool-and-spa-layout-painted-on-site-aerial-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/obra/obra-065/custom-pool-and-spa-layout-painted-on-site-aerial-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/obra/obra-065/custom-pool-construction-backyard-lot-before-excavation.avif": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/obra-065/custom-pool-construction-backyard-lot-before-excavation-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/obra/obra-065/custom-pool-construction-backyard-lot-before-excavation-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/obra/obra-065/custom-pool-gunite-shell-being-sprayed-aerial.avif": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/obra-065/custom-pool-gunite-shell-being-sprayed-aerial-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/obra/obra-065/custom-pool-gunite-shell-being-sprayed-aerial-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/obra/obra-065/custom-pool-steel-rebar-and-drains-before-gunite.avif": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/obra-065/custom-pool-steel-rebar-and-drains-before-gunite-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/obra/obra-065/custom-pool-steel-rebar-and-drains-before-gunite-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/obra/obra-114/pole-barn-construction-metal-roof-install-aerial-florida-proceso3.avif": {
+   "ancho": 1599,
+   "variantes": [
+    [
+     640,
+     "/images/obra/obra-114/pole-barn-construction-metal-roof-install-aerial-florida-proceso3-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/obra/obra-114/pole-barn-construction-metal-roof-install-aerial-florida-proceso3-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/obra/obra-114/pole-barn-construction-roof-purlins-crew-florida-proceso2.avif": {
+   "ancho": 1599,
+   "variantes": [
+    [
+     640,
+     "/images/obra/obra-114/pole-barn-construction-roof-purlins-crew-florida-proceso2-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/obra/obra-114/pole-barn-construction-roof-purlins-crew-florida-proceso2-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-02.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-02-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-02-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-03.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-03-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-03-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-07.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-07-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-07-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-08.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-08-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-08-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-20.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-20-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-20-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/obra/project-061/mrandmrs-pool-spa-a7-gallery-project-061-08.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/project-061/mrandmrs-pool-spa-a7-gallery-project-061-08-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/obra/project-061/mrandmrs-pool-spa-a7-gallery-project-061-08-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/obra/project-061/mrandmrs-pool-spa-a7-gallery-project-061-10.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/project-061/mrandmrs-pool-spa-a7-gallery-project-061-10-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/obra/project-061/mrandmrs-pool-spa-a7-gallery-project-061-10-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-03.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-03-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-03-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-05.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-05-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-05-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-06.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-06-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-06-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-10.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-10-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-10-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-16.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-16-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-16-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-18.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-18-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-18-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-25.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-25-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-25-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/procesos/louvered-roof-step-1/louvered-roof-systems-climate-adaptation-system-selection.avif": {
+   "ancho": 1450,
+   "variantes": [
+    [
+     640,
+     "/images/procesos/louvered-roof-step-1/louvered-roof-systems-climate-adaptation-system-selection-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/procesos/louvered-roof-step-1/louvered-roof-systems-climate-adaptation-system-selection-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/procesos/patio-screen-room-step-3/patio-screen-rooms-building-utility-permits.avif": {
+   "ancho": 1450,
+   "variantes": [
+    [
+     640,
+     "/images/procesos/patio-screen-room-step-3/patio-screen-rooms-building-utility-permits-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/procesos/patio-screen-room-step-3/patio-screen-rooms-building-utility-permits-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/procesos/patio-screen-room-step-4/patio-screen-rooms-construction-installation.avif": {
+   "ancho": 1450,
+   "variantes": [
+    [
+     640,
+     "/images/procesos/patio-screen-room-step-4/patio-screen-rooms-construction-installation-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/procesos/patio-screen-room-step-4/patio-screen-rooms-construction-installation-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/procesos/pool-screen-enclosure-step-1/pool-screen-enclosures-screen-type-configuration-assessment.avif": {
+   "ancho": 1450,
+   "variantes": [
+    [
+     640,
+     "/images/procesos/pool-screen-enclosure-step-1/pool-screen-enclosures-screen-type-configuration-assessment-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/procesos/pool-screen-enclosure-step-1/pool-screen-enclosures-screen-type-configuration-assessment-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/procesos/pool-screen-enclosure-step-4/pool-screen-enclosures-installation-final-inspection.avif": {
+   "ancho": 1450,
+   "variantes": [
+    [
+     640,
+     "/images/procesos/pool-screen-enclosure-step-4/pool-screen-enclosures-installation-final-inspection-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/procesos/pool-screen-enclosure-step-4/pool-screen-enclosures-installation-final-inspection-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-4.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-4-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-4-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-2.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-2-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-2-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-3.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-3-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-3-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-5.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-5-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-5-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/luxury-pool-motorized-pergola-screen-enclosure-north-florida/luxury-pool-motorized-pergola-screen-enclosure-north-florida-2.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/luxury-pool-motorized-pergola-screen-enclosure-north-florida/luxury-pool-motorized-pergola-screen-enclosure-north-florida-2-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/luxury-pool-motorized-pergola-screen-enclosure-north-florida/luxury-pool-motorized-pergola-screen-enclosure-north-florida-2-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/luxury-pool-motorized-pergola-screen-enclosure-north-florida/luxury-pool-motorized-pergola-screen-enclosure-north-florida-3.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/luxury-pool-motorized-pergola-screen-enclosure-north-florida/luxury-pool-motorized-pergola-screen-enclosure-north-florida-3-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/luxury-pool-motorized-pergola-screen-enclosure-north-florida/luxury-pool-motorized-pergola-screen-enclosure-north-florida-3-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/luxury-pool-motorized-pergola-screen-enclosure-north-florida/luxury-pool-motorized-pergola-screen-enclosure-north-florida-5.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/luxury-pool-motorized-pergola-screen-enclosure-north-florida/luxury-pool-motorized-pergola-screen-enclosure-north-florida-5-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/luxury-pool-motorized-pergola-screen-enclosure-north-florida/luxury-pool-motorized-pergola-screen-enclosure-north-florida-5-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/luxury-pool-pergola-outdoor-living-south-florida/luxury-pool-pergola-outdoor-living-south-florida-2.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/luxury-pool-pergola-outdoor-living-south-florida/luxury-pool-pergola-outdoor-living-south-florida-2-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/luxury-pool-pergola-outdoor-living-south-florida/luxury-pool-pergola-outdoor-living-south-florida-2-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/luxury-pool-pergola-outdoor-living-south-florida/luxury-pool-pergola-outdoor-living-south-florida-3.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/luxury-pool-pergola-outdoor-living-south-florida/luxury-pool-pergola-outdoor-living-south-florida-3-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/luxury-pool-pergola-outdoor-living-south-florida/luxury-pool-pergola-outdoor-living-south-florida-3-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/luxury-pool-pergola-outdoor-living-south-florida/luxury-pool-pergola-outdoor-living-south-florida-4.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/luxury-pool-pergola-outdoor-living-south-florida/luxury-pool-pergola-outdoor-living-south-florida-4-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/luxury-pool-pergola-outdoor-living-south-florida/luxury-pool-pergola-outdoor-living-south-florida-4-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/luxury-pool-pergola-outdoor-living-south-florida/luxury-pool-pergola-outdoor-living-south-florida-5.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/luxury-pool-pergola-outdoor-living-south-florida/luxury-pool-pergola-outdoor-living-south-florida-5-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/luxury-pool-pergola-outdoor-living-south-florida/luxury-pool-pergola-outdoor-living-south-florida-5-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/luxury-pool-pergola-outdoor-living-south-florida/luxury-pool-pergola-outdoor-living-south-florida-6.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/luxury-pool-pergola-outdoor-living-south-florida/luxury-pool-pergola-outdoor-living-south-florida-6-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/luxury-pool-pergola-outdoor-living-south-florida/luxury-pool-pergola-outdoor-living-south-florida-6-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/luxury-pool-pergola-outdoor-living-south-florida/luxury-pool-pergola-outdoor-living-south-florida-7.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/luxury-pool-pergola-outdoor-living-south-florida/luxury-pool-pergola-outdoor-living-south-florida-7-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/luxury-pool-pergola-outdoor-living-south-florida/luxury-pool-pergola-outdoor-living-south-florida-7-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-1.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-1-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-1-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-2.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-2-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-2-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-3.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-3-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-3-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-4.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-4-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-4-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-5.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-5-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/luxury-pool-raised-spa-travertine-deck-south-florida/luxury-pool-raised-spa-travertine-deck-south-florida-project-5-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/luxury-pool-spa-aluminum-pergola-south-florida/luxury-pool-spa-aluminum-pergola-south-florida-project-2.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/luxury-pool-spa-aluminum-pergola-south-florida/luxury-pool-spa-aluminum-pergola-south-florida-project-2-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/luxury-pool-spa-aluminum-pergola-south-florida/luxury-pool-spa-aluminum-pergola-south-florida-project-2-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/luxury-pool-spa-aluminum-pergola-south-florida/luxury-pool-spa-aluminum-pergola-south-florida-project-5.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/luxury-pool-spa-aluminum-pergola-south-florida/luxury-pool-spa-aluminum-pergola-south-florida-project-5-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/luxury-pool-spa-aluminum-pergola-south-florida/luxury-pool-spa-aluminum-pergola-south-florida-project-5-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-2.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-2-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-2-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-3.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-3-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-3-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-5.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-5-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-5-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-6.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-6-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-6-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/luxury-pool-spa-with-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-north-florida-project-4.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/luxury-pool-spa-with-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-north-florida-project-4-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/luxury-pool-spa-with-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-north-florida-project-4-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/luxury-pool-spa-with-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-north-florida-project-6.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/luxury-pool-spa-with-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-north-florida-project-6-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/luxury-pool-spa-with-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-north-florida-project-6-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-2.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-2-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-2-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-3.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-3-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-3-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-6.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-6-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-6-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-2.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-2-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-2-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-3.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-3-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-3-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-4.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-4-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-4-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-6.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-6-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/residential-pool-pergola-outdoor-dining-north-florida/residential-pool-pergola-outdoor-dining-north-florida-6-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/south-florida-backyard-pool-wood-pergola/south-florida-pool-wood-pergola-outdoor-living-2.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/south-florida-backyard-pool-wood-pergola/south-florida-pool-wood-pergola-outdoor-living-2-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/south-florida-backyard-pool-wood-pergola/south-florida-pool-wood-pergola-outdoor-living-2-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/south-florida-backyard-pool-wood-pergola/south-florida-pool-wood-pergola-outdoor-living-3.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/south-florida-backyard-pool-wood-pergola/south-florida-pool-wood-pergola-outdoor-living-3-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/south-florida-backyard-pool-wood-pergola/south-florida-pool-wood-pergola-outdoor-living-3-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/projects/south-florida-backyard-pool-wood-pergola/south-florida-pool-wood-pergola-outdoor-living-4.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/projects/south-florida-backyard-pool-wood-pergola/south-florida-pool-wood-pergola-outdoor-living-4-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/projects/south-florida-backyard-pool-wood-pergola/south-florida-pool-wood-pergola-outdoor-living-4-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/aluminum-pergolas-contractors-florida.avif": {
+   "ancho": 1950,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/aluminum-pergolas-contractors-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/aluminum-pergolas-contractors-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/backyard-pergola-installation-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/backyard-pergola-installation-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/backyard-pergola-installation-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/custom-aluminum-pergola-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/custom-aluminum-pergola-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/custom-aluminum-pergola-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/custom-wood-pergola-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/custom-wood-pergola-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/custom-wood-pergola-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/custom-deck-builders-in-north-south-florida/backyard-deck-construction-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/custom-deck-builders-in-north-south-florida/backyard-deck-construction-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/custom-deck-builders-in-north-south-florida/backyard-deck-construction-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/custom-deck-builders-in-north-south-florida/composite-decking-installation-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/custom-deck-builders-in-north-south-florida/composite-decking-installation-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/custom-deck-builders-in-north-south-florida/composite-decking-installation-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/custom-deck-builders-in-north-south-florida/wood-deck-installation-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/custom-deck-builders-in-north-south-florida/wood-deck-installation-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/custom-deck-builders-in-north-south-florida/wood-deck-installation-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/custom-outdoor-kitchens-for-north-south-florida-homes/covered-custom-outdoor-kitchen-florida.avif": {
+   "ancho": 1950,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/custom-outdoor-kitchens-for-north-south-florida-homes/covered-custom-outdoor-kitchen-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/custom-outdoor-kitchens-for-north-south-florida-homes/covered-custom-outdoor-kitchen-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/custom-pool-spa-builders-in-north-south-florida/custom-pool-builders-north-and-south-florida.avif": {
+   "ancho": 1792,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/custom-pool-spa-builders-in-north-south-florida/custom-pool-builders-north-and-south-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/custom-pool-spa-builders-in-north-south-florida/custom-pool-builders-north-and-south-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/custom-pool-spa-builders-in-north-south-florida/pool-remodeling-contractors-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/custom-pool-spa-builders-in-north-south-florida/pool-remodeling-contractors-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/custom-pool-spa-builders-in-north-south-florida/pool-remodeling-contractors-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/custom-pool-spa-builders-in-north-south-florida/residential-pool-builders-north-and-south-florida.avif.avif": {
+   "ancho": 1792,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/custom-pool-spa-builders-in-north-south-florida/residential-pool-builders-north-and-south-florida.avif-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/custom-pool-spa-builders-in-north-south-florida/residential-pool-builders-north-and-south-florida.avif-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/adjustable-louvered-pergola-roof-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/adjustable-louvered-pergola-roof-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/adjustable-louvered-pergola-roof-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/backyard-louvered-roof-installation-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/backyard-louvered-roof-installation-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/backyard-louvered-roof-installation-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/louvered-roof-systems-florida.avif": {
+   "ancho": 1950,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/louvered-roof-systems-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/louvered-roof-systems-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/motorized-louvered-pergola-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/motorized-louvered-pergola-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/motorized-louvered-roof-systems-in-north-south-florida/motorized-louvered-pergola-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/motorized-retractable-screens-in-north-south-florida/motorized-retractable-screens-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/motorized-retractable-screens-in-north-south-florida/motorized-retractable-screens-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/motorized-retractable-screens-in-north-south-florida/motorized-retractable-screens-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/motorized-retractable-screens-in-north-south-florida/retractable-screens-florida.avif": {
+   "ancho": 1950,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/motorized-retractable-screens-in-north-south-florida/retractable-screens-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/motorized-retractable-screens-in-north-south-florida/retractable-screens-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/backyard-patio-screen-room-installation-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/backyard-patio-screen-room-installation-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/backyard-patio-screen-room-installation-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/custom-patio-screen-room-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/custom-patio-screen-room-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/custom-patio-screen-room-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/patio-screen-rooms-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/patio-screen-rooms-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/patio-screen-rooms-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/screened-patio-enclosure-florida.avif": {
+   "ancho": 1950,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/screened-patio-enclosure-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/patio-screen-rooms-enclosures-in-north-south-florida/screened-patio-enclosure-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/pool-remodeling-renovation-in-north-south-florida/modern-pool-remodeling-upgrade-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/pool-remodeling-renovation-in-north-south-florida/modern-pool-remodeling-upgrade-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/pool-remodeling-renovation-in-north-south-florida/modern-pool-remodeling-upgrade-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/pool-remodeling-renovation-in-north-south-florida/pool-remodeling-renovation-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/pool-remodeling-renovation-in-north-south-florida/pool-remodeling-renovation-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/pool-remodeling-renovation-in-north-south-florida/pool-remodeling-renovation-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/pool-remodeling-renovation-in-north-south-florida/pool-resurfacing-tile-finish-upgrade-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/pool-remodeling-renovation-in-north-south-florida/pool-resurfacing-tile-finish-upgrade-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/pool-remodeling-renovation-in-north-south-florida/pool-resurfacing-tile-finish-upgrade-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/aluminum-pool-screen-enclosure-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/aluminum-pool-screen-enclosure-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/aluminum-pool-screen-enclosure-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/custom-screened-pool-enclosure-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/custom-screened-pool-enclosure-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/custom-screened-pool-enclosure-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/pool-screen-enclosures-florida.avif": {
+   "ancho": 1950,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/pool-screen-enclosures-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/pool-screen-enclosures-for-north-south-florida-pools/pool-screen-enclosures-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/luxury-outdoor-furniture-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/luxury-outdoor-furniture-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/luxury-outdoor-furniture-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/outdoor-dining-furniture-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/outdoor-dining-furniture-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/outdoor-dining-furniture-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/outdoor-furniture-florida.avif": {
+   "ancho": 1950,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/outdoor-furniture-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/outdoor-furniture-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/patio-furniture-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/patio-furniture-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/premium-outdoor-furniture-for-north-south-florida-homes/patio-furniture-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/professional-landscaping-services-in-north-south-florida/backyard-landscaping-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/professional-landscaping-services-in-north-south-florida/backyard-landscaping-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/professional-landscaping-services-in-north-south-florida/backyard-landscaping-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/professional-landscaping-services-in-north-south-florida/landscape-design-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/professional-landscaping-services-in-north-south-florida/landscape-design-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/professional-landscaping-services-in-north-south-florida/landscape-design-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/professional-landscaping-services-in-north-south-florida/landscaping-services-florida.avif": {
+   "ancho": 1950,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/professional-landscaping-services-in-north-south-florida/landscaping-services-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/professional-landscaping-services-in-north-south-florida/landscaping-services-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/professional-landscaping-services-in-north-south-florida/residential-landscaping-installation-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/professional-landscaping-services-in-north-south-florida/residential-landscaping-installation-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/professional-landscaping-services-in-north-south-florida/residential-landscaping-installation-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/automated-irrigation-florida.avif": {
+   "ancho": 1950,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/automated-irrigation-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/automated-irrigation-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/residential-lawn-irrigation-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/residential-lawn-irrigation-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/residential-lawn-irrigation-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/smart-irrigation-system-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/smart-irrigation-system-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/smart-irrigation-system-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/water-efficient-irrigation-system-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/water-efficient-irrigation-system-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/smart-irrigation-system-installation-in-north-south-florida/water-efficient-irrigation-system-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/custom-pole-barn-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/custom-pole-barn-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/custom-pole-barn-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/pole-barn-steel-buildings-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/pole-barn-steel-buildings-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/pole-barn-steel-buildings-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/steel-building-construction-florida.avif": {
+   "ancho": 1950,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/steel-building-construction-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/steel-building-construction-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/steel-building-installation-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/steel-building-installation-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/residentials/steel-building-pole-barn-construction-in-north-south-florida/steel-building-installation-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/site/commercial-pool-builders-property-owners-florida-1commercial-pool-builders-property-owners-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/site/commercial-pool-builders-property-owners-florida-1commercial-pool-builders-property-owners-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/site/commercial-pool-builders-property-owners-florida-1commercial-pool-builders-property-owners-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/site/commercial-pool-builders-real-estate-developers-florida-1commercial-pool-builders-real-estate-developers-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/site/commercial-pool-builders-real-estate-developers-florida-1commercial-pool-builders-real-estate-developers-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/site/commercial-pool-builders-real-estate-developers-florida-1commercial-pool-builders-real-estate-developers-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/site/commercial-pool-remodeling-hotel-owners-south-florida-1commercial-pool-remodeling-hotel-owners-south-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/site/commercial-pool-remodeling-hotel-owners-south-florida-1commercial-pool-remodeling-hotel-owners-south-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/site/commercial-pool-remodeling-hotel-owners-south-florida-1commercial-pool-remodeling-hotel-owners-south-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/site/custom-pool-construction-florida-1custom-pool-construction-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/site/custom-pool-construction-florida-1custom-pool-construction-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/site/custom-pool-construction-florida-1custom-pool-construction-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/site/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-1.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/site/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-1-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/site/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida-1-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/site/luxury-pool-motorized-pergola-screen-enclosure-north-florida-1.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/site/luxury-pool-motorized-pergola-screen-enclosure-north-florida-1-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/site/luxury-pool-motorized-pergola-screen-enclosure-north-florida-1-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/site/luxury-pool-pergola-outdoor-kitchen-south-florida-1.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/site/luxury-pool-pergola-outdoor-kitchen-south-florida-1-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/site/luxury-pool-pergola-outdoor-kitchen-south-florida-1-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/site/luxury-pool-pergola-outdoor-living-modern-backyard-florida-1luxury-pool-pergola-outdoor-living-modern-backyard-florida.avif": {
+   "ancho": 1007,
+   "variantes": [
+    [
+     640,
+     "/images/site/luxury-pool-pergola-outdoor-living-modern-backyard-florida-1luxury-pool-pergola-outdoor-living-modern-backyard-florida-mm640.avif"
+    ]
+   ]
+  },
+  "/images/site/luxury-pool-pergola-outdoor-living-south-florida-1.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/site/luxury-pool-pergola-outdoor-living-south-florida-1-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/site/luxury-pool-pergola-outdoor-living-south-florida-1-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/site/luxury-pool-spa-screen-enclosure-north-florida-project-1.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/site/luxury-pool-spa-screen-enclosure-north-florida-project-1-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/site/luxury-pool-spa-screen-enclosure-north-florida-project-1-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/site/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-1.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/site/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-1-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/site/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-1-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/site/modern-pool-motorized-pergola-south-florida-project-1.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/site/modern-pool-motorized-pergola-south-florida-project-1-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/site/modern-pool-motorized-pergola-south-florida-project-1-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/site/outdoor-living-pool-contractors-fl-1outdoor-living-pool-contractors-fl.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/site/outdoor-living-pool-contractors-fl-1outdoor-living-pool-contractors-fl-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/site/outdoor-living-pool-contractors-fl-1outdoor-living-pool-contractors-fl-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/site/residential-pool-pergola-outdoor-dining-north-florida-1.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/site/residential-pool-pergola-outdoor-dining-north-florida-1-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/site/residential-pool-pergola-outdoor-dining-north-florida-1-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/site/south-florida-pool-wood-pergola-outdoor-living-1.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/site/south-florida-pool-wood-pergola-outdoor-living-1-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/site/south-florida-pool-wood-pergola-outdoor-living-1-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/where-we-serves/custom-pool-builders-north-florida/service-areas-north-south-florida-pools.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/where-we-serves/custom-pool-builders-north-florida/service-areas-north-south-florida-pools-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/where-we-serves/custom-pool-builders-north-florida/service-areas-north-south-florida-pools-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/where-we-serves/custom-pool-builders-south-florida/custom-inground-pool-builders-remodeling-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/where-we-serves/custom-pool-builders-south-florida/custom-inground-pool-builders-remodeling-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/where-we-serves/custom-pool-builders-south-florida/custom-inground-pool-builders-remodeling-florida-mm1024.avif"
+    ]
+   ]
+  }
+ }
+}

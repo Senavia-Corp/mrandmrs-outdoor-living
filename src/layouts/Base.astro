@@ -23,6 +23,7 @@ import TELEFONOS from '../data/telefonos.json';
 import { negocio, miga } from '../lib/negocio.mjs';
 import { videoFondo, precargaPoster } from '../lib/video-fondo.mjs';
 import { nivelesSinSaltos } from '../lib/niveles-titulo.mjs';
+import { srcsetAuto } from '../lib/srcset-auto.mjs';
 import Footer from '../components/Footer.astro';
 import ClickToCall from '../components/widgets/ClickToCall.astro';
 import Interacciones from '../components/Interacciones.astro';
@@ -289,7 +290,8 @@ const jsonLd = [...(seo.jsonLd ?? []), ...inyectados];
  */
 const { html: conVideo, heroe: posterHeroe } = videoFondo(await Astro.slots.render('default'));
 /* Y los titulos que saltan nivel reciben `aria-level` (ver `src/lib/niveles-titulo.mjs`). */
-const { html: contenido } = nivelesSinSaltos(conVideo);
+/* Y las imagenes grandes sin `srcset` reciben sus variantes (ver `src/lib/srcset-auto.mjs`). */
+const { html: contenido } = srcsetAuto(nivelesSinSaltos(conVideo).html);
 const precargas = posterHeroe ? precargaPoster(posterHeroe) : [];
 const CON_MAIN = /<main[\s>]/.test(contenido);
 ---
@@ -369,6 +371,13 @@ const CON_MAIN = /<main[\s>]/.test(contenido);
     {!ES_PRODUCCION && <meta name="robots" content="noindex, nofollow" />}
     {jsonLd.map((b) => <script type="application/ld+json" set:html={JSON.stringify(b)} />)}
     {jsonLdCrudo.map((b) => <script type="application/ld+json" set:html={b} />)}
+    {/* SEO-REMEDIACION (4-oct-2026) — CLS DEL NAV EN MOVIL. Lighthouse atribuye el mayor
+        desplazamiento (0,12-0,19 en `/` movil) a `div.wrapper-menu`: el texto se pinta en la
+        `sans-serif` del sistema y se reflowea cuando entra Inter. La familia de reserva
+        «Inter Fallback» es Arial (o sus clones metricos Liberation Sans / Arimo) con las metricas
+        de Inter forzadas, asi que ocupa lo mismo y el cambio no mueve nada. Cuando Inter llega,
+        se pinta Inter igual que antes: el aspecto final no cambia. */}
+    <style is:inline set:html={`@font-face{font-family:"Inter Fallback";src:local("Arial"),local("ArialMT"),local("Liberation Sans"),local("Arimo"),local("Helvetica");ascent-override:90.44%;descent-override:22.52%;line-gap-override:0%;size-adjust:107.12%}body{font-family:Inter,"Inter Fallback",sans-serif}`} />
     <link rel="shortcut icon" href="/images/site/favicon.png" />
     <link rel="apple-touch-icon" href="/images/site/webclip.png" />
     {/* Webflow marca el <html> con w-mod-js y w-mod-touch y HAY CSS QUE DEPENDE DE ELLO.
