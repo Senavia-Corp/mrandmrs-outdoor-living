@@ -7470,3 +7470,27 @@ Un solo fichero: `src/components/widgets/ServiciosPorCategoria.astro` (`<style>`
 4. En `/where-we-serve/*` a 992/1280 hay un desborde horizontal transitorio de 9–16 px tras la carga (marquee de logos). Previo y ajeno: sale igual en `f86816a`.
 
 - **4-oct-2026 · R-SVC-2 (pedido de Sebastian sobre producción, con una línea roja).** En escritorio, la ficha de `ServiciosPorCategoria` arrancaba en la primera fila, 68 px por debajo del control segmentado. Ahora el control sale de `.svc-cabecera` y va con `#svc-panel` dentro de un envoltorio nuevo `.svc-mando` (tablist y tabpanel quedan hermanos; el orden de `innerText` no cambia). `.svc-mando` es una rejilla y el panel la hereda con `subgrid` en los dos ejes, así que la ficha arranca en la pista del control: a 1440, `top` de pestañas = `top` de ficha = 280,1 px. Bajo `@supports (grid-template-rows: subgrid)`; sin soporte queda la maqueta de R-SVC. Ficha de igual altura en las 3 pestañas (432 px a 992-1024, 500 a ≥1440). Móvil y tablet, sin cambios.
+
+---
+
+## SEO-REMEDIACIÓN — vídeo con póster, ciudades honestas, cifras fuera, identidad y pie · 4-oct-2026   🟡 en curso
+
+**Pedido:** «MASTER IMPLEMENTATION PROMPT — FULL SEO REMEDIATION…» de Sebastian · **Base:** `2b800c7` (`origin/main`) · **Rama:** `claude/fervent-planck-ofawfo`
+**Decisiones de Sebastian en esta sesión:** móvil solo póster (vídeo solo ≥768 tras la carga) · CTA principal «Request a Design-Build Project Evaluation» en las 4 landings de pago y el héroe de la home · la banda «Project Gallery» y el panel de servicios bajan detrás de la FAQ en las 53 ciudades · PR, merge y despliegue autorizados.
+
+### Lo que ya estaba hecho y se verificó, no se rehízo
+Las 6 familias duplicadas que pedía el encargo (`/pool-builders/{gainesville,ocala}-florida` y los 4 slugs largos de servicios) ya redirigían 308 en un salto desde la migración del 3-oct (`c4f8d62`). `check:redirects` verde; el inventario (`SEO_URL_INVENTORY.md`) lo vuelve a medir: 90 redirects, 0 en el sitemap, 0 destinos sin construir.
+
+### Qué se hizo
+- **Vídeos de fondo (121 bloques, 65 rutas).** `src/lib/video-fondo.mjs` reescribe el marcado en `Base.astro`: póster `<img>` responsive (AVIF/WebP, recorte 9:16 en móvil) como LCP, precargado en los héroes; `<video>` sin `autoplay`, `preload="none"`, fuentes en `data-src`. Cargador en `Interacciones.astro` §5. Puerta nueva `check:video-fondo` (roja en `main` con 847 fallos). MP4 de escritorio recodificados (−13 % a −35 %). Cabeceras `Cache-Control` para `/videos`, `/images`, `/fonts`.
+- **53 ciudades.** CTA de evaluación; intro de Gainesville/Ocala con la piscina delante; el carrusel deja de decir «Browse our <Ciudad> portfolio»; miga visible (misma fuente que `#miga`); banda y panel de servicios detrás de la FAQ; FAQ de permisos con las 4 oficinas oficiales enlazadas (comprobadas el 4-oct); el `LocalBusiness` falso por ciudad pasa a `Service` de `#negocio`.
+- **Fichas de dinero.** Fuera «~7 %», «three to six months», «up to 90 %», «four to eight weeks» (visible y FAQPage); la remodelación enmarca reparaciones y equipos dentro de la remodelación completa.
+- **/about.** FAQ con 5 respuestas distintas y verificables (antes la misma frase comercial ×5); licencias como el pie; errata «ok.».
+- **Identidad.** `src/lib/identidad.mjs` fuente única de licencias + puerta `check:identidad`. **Pie:** Gainesville, Ocala y los 3 hubs en vez de 53 ciudades (las 53 siguen enlazadas desde su condado, 53/53 medido), piscina primero en servicios, año del build, objetivos táctiles de 24 px.
+- **Schema.** Home: `WebSite` en lugar del `Organization` duplicado. `check-seo` estrena `BLOQUES_SUSTITUIDOS`.
+- **A11y.** `<main>` en todas las páginas que no lo tenían; `aria-level` en títulos que saltan nivel; sufijo `.mm-sr` en «Read More» del blog; `<label>` del presupuesto; ids únicos en las casillas.
+- **/request-estimated.** Propietario y plazo, opcionales.
+- **Sanity.** Campos opcionales de caso de estudio en `project.ts` (sin desplegar Studio).
+
+### Puertas
+Ver `SEO_IMPLEMENTATION_FINAL_REPORT.md` §24 con la salida literal. Roja heredada y ajena: `/blogs-tips` en `check:texto` (mismo rojo sobre el build de `main`, medido en un worktree). `check:visual` roja donde cambia el maquetado (pie en todas, ciudades, home): re-baseline pendiente de Sebastian.

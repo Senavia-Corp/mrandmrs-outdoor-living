@@ -549,6 +549,10 @@
  * conserva la cresta y baja solo hasta --mm-azul-500; la de abajo sigue desde ese mismo azul,
  * sin cresta, hasta el fondo. En medio de tres (hoy solo /videos) se sostiene la junta.
  *
+ * SEO-REMEDIACION (4-oct-2026): con el `<main>` de Base.astro la ultima banda es hija de `<main>`.
+ * Medido en las 168: de la familia, solo `.cta-footer` acaba pagina (141); las otras 27 acaban en
+ * secciones blancas. Las reglas `main:has(...)` de abajo bastan.
+ *
  * `+` casa EXACTAMENTE lo que se toca en pantalla: comprobado en las 122 paginas, 0 px de hueco
  * y ninguna pareja de mas. La unica que se le escapa es /financing, la unica pagina con `<main>`:
  * alli el CTA es el ultimo hijo de `<main>` y el pie queda fuera. Va con su selector propio.
@@ -605,7 +609,9 @@ main:has(> .cta-footer:last-child) + .footer {
   background-image: var(--agua-cresta), var(--agua-grano), var(--agua-profundidad);
 }
 .testimonial-section.testimonial-section + .cta-footer.cta-footer:has(+ .footer.footer),
-.testimonial-section.testimonial-section + .cta-footer + .footer {
+.testimonial-section.testimonial-section + .cta-footer + .footer,
+main:has(+ .footer) > .testimonial-section.testimonial-section + .cta-footer.cta-footer:last-child,
+main:has(> .testimonial-section + .cta-footer:last-child) + .footer.footer {
   background-color: var(--mm-azul-800);
   background-image: var(--agua-grano);
   background-repeat: repeat;

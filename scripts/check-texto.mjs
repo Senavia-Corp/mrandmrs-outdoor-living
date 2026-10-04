@@ -2381,6 +2381,9 @@ function sufijosSr() {
   };
 
   for (const p of lee('src/data/blogs.json')?.posts ?? []) anota(p.cta, p.titulo);
+  /* SEO-REMEDIACION (4-oct-2026): las tarjetas de «Most Read Articles» de cada articulo
+   * (`src/pages/blogs/[slug].astro`) llevan el mismo sufijo oculto, con el titulo de Sanity. */
+  for (const p of lee('src/data/blogs-sanity.json') ?? []) anota('Read More', p.title);
 
   /* Y los de las fichas con su trio: sus tarjetas NO salen de `blogs.json`, asi que sin esto
    * sus tres sufijos ocultos se quedaban en la pagina y partian el bloque igual. */

@@ -146,6 +146,43 @@ export default defineType({
         + 'Florida; exact location withheld at the homeowner\'s request».',
       type: 'string',
     },
+    /* ── SEO-REMEDIACION (4-oct-2026): LA OBRA COMO CASO, NO SOLO COMO GALERIA ─────────────────
+     * Campos OPCIONALES para que una ficha de proyecto pueda contar experiencia real —que queria
+     * el propietario, que lo complico, que se decidio y con que— en vez de ser solo fotos. Ninguno
+     * es obligatorio (no hay datos todavia) y NINGUN render los lee: cuando haya obras rellenas,
+     * la plantilla de `/project/` se amplia para pintarlos y su JSON-LD los recoge. Rellenarlos
+     * solo con lo que el cliente confirme (SEO_REQUIRES_CLIENT_DATA.md). */
+    {
+      name: 'projectType',
+      title: 'Tipo de proyecto',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'New custom pool', value: 'new-pool' },
+          { title: 'Complete pool remodel', value: 'remodel' },
+          { title: 'Pool + outdoor living', value: 'pool-outdoor-living' },
+          { title: 'Outdoor living only', value: 'outdoor-living' },
+        ],
+      },
+    },
+    { name: 'projectStatus', title: 'Estado', type: 'string',
+      options: { list: [{ title: 'Completed', value: 'completed' }, { title: 'In progress', value: 'in-progress' }], layout: 'radio' } },
+    { name: 'relatedService', title: 'Servicio principal', type: 'reference', to: [{ type: 'service' }] },
+    { name: 'relatedLocation', title: 'Página de ciudad', description: 'Solo si `verifiedCity` está confirmado.',
+      type: 'reference', to: [{ type: 'poolBuilder' }] },
+    { name: 'permittingJurisdiction', title: 'Jurisdicción del permiso',
+      description: 'P. ej. «City of Gainesville» o «Unincorporated Alachua County». Solo si consta en el permiso.', type: 'string' },
+    { name: 'projectSummary', title: 'Resumen del caso', type: 'text', rows: 3 },
+    { name: 'homeownerGoal', title: 'Objetivo del propietario', type: 'text', rows: 3 },
+    { name: 'challenge', title: 'Reto del proyecto', description: 'Terreno, acceso, caliza, septic, HOA, plazos…', type: 'text', rows: 3 },
+    { name: 'designDecision', title: 'Decisión de diseño', type: 'text', rows: 3 },
+    { name: 'scope', title: 'Alcance', type: 'array', of: [{ type: 'string' }], options: { layout: 'tags' } },
+    { name: 'materials', title: 'Materiales', description: 'Acabado, alicatado, coronación, deck…', type: 'array', of: [{ type: 'string' }], options: { layout: 'tags' } },
+    { name: 'features', title: 'Elementos', description: 'Spa, sun shelf, cascada, iluminación, automatización…', type: 'array', of: [{ type: 'string' }], options: { layout: 'tags' } },
+    { name: 'beforeImages', title: 'Fotos — antes', type: 'array', of: [{ type: 'image', fields: [{ name: 'alt', type: 'string', title: 'Alt' }] }] },
+    { name: 'progressImages', title: 'Fotos — obra (excavación, acero, gunita…)', type: 'array', of: [{ type: 'image', fields: [{ name: 'alt', type: 'string', title: 'Alt' }] }] },
+    { name: 'afterImages', title: 'Fotos — terminado', type: 'array', of: [{ type: 'image', fields: [{ name: 'alt', type: 'string', title: 'Alt' }] }] },
+    { name: 'video', title: 'Vídeo del proyecto', description: 'URL de YouTube del recorrido o del proceso.', type: 'url' },
   ],
   preview: { select: { title: 'name', subtitle: 'slug.current' } },
 })

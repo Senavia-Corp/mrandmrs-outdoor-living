@@ -69,3 +69,10 @@ const marcado = pieRemediado("<section class=\"footer\"><div class=\"wrapper-foo
 );
 ---
 <Fragment set:html={marcado} />
+<style is:global>
+  /* SEO-REMEDIACION (4-oct-2026): los enlaces de las dos listas del pie (servicios y zonas) eran
+   * `inline`, 23 px de alto cada 20 px: los objetivos tactiles se pisaban (Lighthouse
+   * `target-size`, 9 de 9 plantillas en movil). `inline-block` sin el margen negativo de
+   * `.footer-link` los deja en 24 px sin solaparse. Las listas crecen ~4 px por enlace. */
+  .footer .w-dyn-item > .footer-link { display: inline-block; margin-block: 0; }
+</style>

@@ -22,6 +22,7 @@ import META_PROPIA from '../data/meta-propia.json';
 import TELEFONOS from '../data/telefonos.json';
 import { negocio, miga } from '../lib/negocio.mjs';
 import { videoFondo, precargaPoster } from '../lib/video-fondo.mjs';
+import { nivelesSinSaltos } from '../lib/niveles-titulo.mjs';
 import Footer from '../components/Footer.astro';
 import ClickToCall from '../components/widgets/ClickToCall.astro';
 import Interacciones from '../components/Interacciones.astro';
@@ -286,8 +287,11 @@ const jsonLd = [...(seo.jsonLd ?? []), ...inyectados];
  * Así lo reciben las 65 rutas con vídeo sin tocar sus 65 generadores. Si la página tiene
  * héroe de vídeo, su póster se precarga en el `<head>` (la MISMA URL que pinta el `<img>`).
  */
-const { html: contenido, heroe: posterHeroe } = videoFondo(await Astro.slots.render('default'));
+const { html: conVideo, heroe: posterHeroe } = videoFondo(await Astro.slots.render('default'));
+/* Y los titulos que saltan nivel reciben `aria-level` (ver `src/lib/niveles-titulo.mjs`). */
+const { html: contenido } = nivelesSinSaltos(conVideo);
 const precargas = posterHeroe ? precargaPoster(posterHeroe) : [];
+const CON_MAIN = /<main[\s>]/.test(contenido);
 ---
 <!doctype html>
 <html lang="en">
@@ -391,7 +395,11 @@ const precargas = posterHeroe ? precargaPoster(posterHeroe) : [];
         compara línea a línea. Es la única página así de las 115. */}
     <slot name="antes-nav" />
     <Nav ruta={ruta} />
-    <Fragment set:html={contenido} />
+    {/* SEO-REMEDIACION (4-oct-2026): el landmark `<main>` que faltaba en 6 de 9 plantillas medidas
+        (Lighthouse `landmark-one-main`). Las paginas que ya traen el suyo (/financing,
+        /gallery/<categoria>) no se envuelven: dos `<main>` es peor que ninguno. Las juntas de
+        bandas que dependian de ser hermanas del pie estan cubiertas en `propio.css`. */}
+    {CON_MAIN ? <Fragment set:html={contenido} /> : <main id="contenido"><Fragment set:html={contenido} /></main>}
     {conPie && <Footer ruta={ruta} />}
     {/* 2 páginas llevan un <script>+<style> DESPUÉS del pie: el redimensionador del iframe
         del estimador. Va en su sitio o cambia el orden del documento. */}

@@ -1,32 +1,11 @@
-/* VÍDEOS DE FONDO — el póster que pinta el LCP (SEO-REMEDIACIÓN, 4-oct-2026).
- *
- * Lo inserta `src/lib/video-fondo.mjs` dentro de cada `.w-background-video`, DELANTE del
- * `<video>`. Copia la colocación que Webflow da al vídeo (`webflow.css`:
- * `.w-background-video>video{object-fit:cover;z-index:-100;…;position:absolute;inset:-100%}`):
- * mismo hueco, mismo encuadre, mismo `z-index`, así que el vídeo —que va después en el DOM—
- * pinta encima cuando llega, sin salto.
- *
- * Alcance medido: 121 bloques en 65 rutas (1 héroe de home, 55 de zona, 65 secciones 3D).
- * No toca `.hero-glass-section-page` ni `.mm-hero` (R9-HERO-CONTEXTO §2).
- */
-.w-background-video > .mm-video-poster-marco > .mm-video-poster {
-  object-fit: cover;
-  z-index: -100;
-  width: 100%;
-  height: 100%;
-  margin: auto;
-  position: absolute;
-  inset: -100%;
-}
+/* VIDEOS DE FONDO — el poster que pinta el LCP (SEO-REMEDIACION, 4-oct-2026). Lo inserta
+ * `src/lib/video-fondo.mjs` DELANTE del <video>, con la colocacion que webflow.css da al video
+ * (mismo hueco, encuadre y z-index), asi que el video pinta encima al llegar. 121 bloques en 65
+ * rutas. No toca `.hero-glass-section-page` ni `.mm-hero` (R9-HERO-CONTEXTO §2). */
+.w-background-video>.mm-video-poster-marco>.mm-video-poster{object-fit:cover;z-index:-100;width:100%;height:100%;margin:auto;position:absolute;inset:-100%}
 
-/* Sin `src` el `<video>` no tiene nada que pintar, y en algunos navegadores un `<video>` vacío
- * pinta un rectángulo negro encima del póster: no se muestra hasta que el cargador
- * (`Interacciones.astro` §5) le pone `src` (`data-mm-cargado`) y se hace visible con el primer
- * `playing` (`data-mm-reproduciendo`), que arranca en el mismo fotograma que el póster.
- * Por debajo de 768 no se carga nunca (decisión de Sebastian, 4-oct-2026). */
-.w-background-video > video[data-mm-video] { display: none; }
-
-@media (min-width: 768px) {
-  .w-background-video > video[data-mm-cargado] { display: block; visibility: hidden; }
-  .w-background-video > video[data-mm-reproduciendo] { visibility: visible; }
-}
+/* Sin `src` el video no pinta nada (y un <video> vacio puede pintar negro sobre el poster): se
+ * muestra cuando el cargador le pone `src` y se hace visible con el primer `playing`. Por debajo
+ * de 768 no se carga nunca (Sebastian, 4-oct-2026). Cargador: Interacciones.astro §5. */
+.w-background-video>video[data-mm-video]{display:none}
+@media (min-width:768px){.w-background-video>video[data-mm-cargado]{display:block;visibility:hidden}.w-background-video>video[data-mm-reproduciendo]{visibility:visible}}
