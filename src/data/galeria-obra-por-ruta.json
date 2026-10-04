@@ -1,124 +1,150 @@
 {
   "_lee_esto": [
-    "GALERIA DE OBRA de las landings de captacion (R21-CIUDADES, 18-sep-2026).",
-    "Las fotos salen del banco de imagen del cliente (MrMrs_Outdoor_Living_Image_Bank), no de",
-    "public/images/images/*: son originales de camara de 3019-6000 px derivados a 1600x1067, o sea",
-    "1,28x lo que habia (el techo de toda la obra del sitio era 1250 px).",
+    "GALERIA DE OBRA de las 53 landings de ciudad (R21-CIUDADES 18-sep-2026; recasting 4-oct-2026).",
+    "UNA SOLA FUENTE: `_defecto.fotos` es el set de las 53. No se crean claves por ciudad; una clave",
+    "propia solo si hay una razon real, y se documenta aqui.",
     "",
-    "CASTING, hecho mirando 07_contact_sheets/by-service/, nunca por nombre ni por puntuacion",
-    "(00-PRINCIPIOS §4). Se alternan las dos propiedades foto a foto -nunca dos seguidas de la",
-    "misma casa- y se dejan FUERA los 3 fotogramas de renovation_in_progress: el vaso vaciado en",
-    "pleno resanado es la foto de mas puntuacion del banco (q89) y es el sujeto equivocado para la",
-    "Final URL de un ad group de piscina NUEVA.",
+    "CASTING 4-oct-2026 (docs/encargos/GALERIA-CIUDADES-CASTING.md, con la tabla A-H por foto):",
+    "indice del banco -> hojas de contactos -> cada finalista",
+    "abierta a tamano completo y con el recorte REAL de la tarjeta. 11 fotos de 8 casas (antes 12 de 2).",
+    "Orden comercial, no por id: seis de piscina antes del primer servicio secundario, nunca dos seguidas de la misma casa.",
     "",
-    "RUTA NEUTRA A PROPOSITO. El banco propone /images/projects/south-fl/<id>/ y sus ficheros se",
-    "llaman ...-south-fl-...: eso afirma la region en la URL, y estas dos landings son North",
-    "Florida. Se copian a /images/obra/<id>/ sin el token de region. El `alt` es el del banco",
-    "palabra por palabra (suggested_alt_gallery) y NO nombra ciudad ni region, que es lo que ya",
-    "decidio R20-CIUDADES F2 para trusted-section.",
+    "PROCEDENCIA. Todo sale de src/data/banco-imagenes.json (obra_real, aprobada*, terminado) con",
+    "`_banco`, salvo TRES fotos de project-062 del banco viejo del cliente (`_asset` ag-..., `_legado`):",
+    "excepcion decidida por Sebastian el 4-oct-2026, maximo 3 y solo desde la lista blanca de",
+    "scripts/check-galeria-obra.mjs. project-059 sale entero: es la misma casa que obra-046 (bi-0505).",
+    "OJO: obra-063 y obra-100 del banco son la misma propiedad (misma valla, macetas y casa).",
+    "NO REPETIR FOTO EN LA PAGINA. Fuera lo que ya pinta el cuerpo de las ciudades con cualquier nombre",
+    "(`publicada_como`): el panel de servicios (bi-0662, bi-0521, bi-0079, bi-0307, bi-0928...) y los seis",
+    "paneles de la banda «Project Gallery» (bi-1010, bi-0614, bi-0948, bi-0237, bi-0835, bi-0084).",
     "",
-    "_asset y _proyecto no se pintan: son la trazabilidad al banco (08_ai_index/page_asset_usage.csv).",
-    "18-sep-2026, CORRECCION SOBRE MI PROPIA SELECCION: 3 de las 12 primeras salian con MANGUERA DE ASPIRADORA cruzando el fondo de la piscina (IMG_3831, IMG_3834) o eso mas cielo gris plano (IMG_3759). En la hoja de contactos NO se ve -a ese tamano una manguera no existe- y al abrir el fichero al 100 % es lo primero que salta. Sustituidas por DSC07655, DSC07642 y DSC07644, de otra sesion y con el vaso limpio. Extiende 00-PRINCIPIOS §4: la hoja de contactos vale para DESCARTAR, pero antes de publicar hay que ABRIR EL FICHERO."
+    "ALT. El `alt` del banco palabra por palabra; las tres de project-062 llevan uno propio, unico y",
+    "factual. Ningun alt nombra ciudad ni region: las mismas fotos salen en las 53 ciudades.",
+    "",
+    "`pos` es el object-position de la tarjeta, que NO es apaisada: 139x250 en un movil (vertical),",
+    "~1:1 en escritorio, 1,5:1 a 768. Las verticales del banco (4:5) encajan solas; las apaisadas llevan `pos`",
+    "si el centro no es el sujeto. Los campos `_*` no se pintan: son la trazabilidad.",
+    "`usada_en` del banco lleva las 53 rutas de ciudad en cada `_banco`; la puerta lo exige."
   ],
   "_defecto": {
     "titulo": "Custom Pool Project Gallery",
     "entradilla": "Completed inground pools, raised spas and finished decks built by our own licensed crews.",
     "fotos": [
       {
-        "src": "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-15.webp",
-        "alt": "Completed backyard pool with raised spa",
-        "ancho": 1600,
-        "alto": 1067,
-        "_asset": "ag-2c2e308515",
-        "_proyecto": "project-062"
-      },
-      {
-        "src": "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-29.webp",
-        "alt": "Completed backyard pool with raised spa",
-        "ancho": 1600,
-        "alto": 1067,
-        "_asset": "ag-f7f60e36d6",
-        "_proyecto": "project-059"
-      },
-      {
-        "src": "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-18.webp",
-        "alt": "Completed backyard pool with raised spa",
-        "ancho": 1600,
-        "alto": 1067,
-        "_asset": "ag-cd1064a0aa",
-        "_proyecto": "project-062"
-      },
-      {
-        "src": "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-01.webp",
-        "alt": "Aerial view of a backyard pool with raised spa",
-        "ancho": 1600,
-        "alto": 1067,
-        "_asset": "ag-f3930ac1cc",
-        "_proyecto": "project-059"
-      },
-      {
-        "src": "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-20.webp",
-        "alt": "Completed backyard pool with raised spa",
-        "ancho": 1600,
-        "alto": 1067,
-        "_asset": "ag-8ed6f32282",
-        "_proyecto": "project-062"
-      },
-      {
-        "src": "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-20.webp",
-        "alt": "Completed backyard pool with raised spa",
-        "ancho": 1600,
-        "alto": 1067,
-        "_asset": "ag-650f7e215f",
-        "_proyecto": "project-059"
+        "src": "/images/banco/construction/pool-construction-spa-travertine-deck-sun-shelf-florida-01.webp",
+        "alt": "Rectangular pool with raised spa, sun shelf loungers and ivory travertine deck under a blue sky",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 65%",
+        "_banco": "bi-0947",
+        "_proyecto": "obra-090",
+        "_servicio": "pool",
+        "_motivo": "Heroe: obra nueva completa (vaso, sun shelf, spa, deck) sin un defecto y sin publicar en otra pagina."
       },
       {
         "src": "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-16.webp",
-        "alt": "Completed backyard pool with raised spa",
+        "alt": "Rectangular pool with a raised spa clad in pale mosaic, sun shelf loungers and a wide stone deck beside a covered lanai.",
         "ancho": 1600,
         "alto": 1067,
         "_asset": "ag-939d5f6462",
-        "_proyecto": "project-062"
+        "_legado": "MrMrs_Outdoor_Living_Image_Bank",
+        "_proyecto": "project-062",
+        "_servicio": "pool-spa",
+        "_motivo": "Otra casa y otra paleta desde la segunda foto. Excepcion del banco viejo (Sebastian, 4-oct-2026)."
       },
       {
-        "src": "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-21.webp",
-        "alt": "Completed backyard pool with raised spa",
-        "ancho": 1600,
-        "alto": 1067,
-        "_asset": "ag-03f420a2f5",
-        "_proyecto": "project-059"
+        "src": "/images/banco/construction/pool-construction-blue-glass-tile-spillover-pergola-florida-01.webp",
+        "alt": "Pool with iridescent blue glass tile and spillover edge, raised spa under a bronze pergola and artificial turf",
+        "ancho": 1440,
+        "alto": 812,
+        "_banco": "bi-1039",
+        "_proyecto": "obra-100",
+        "_servicio": "patio-completo",
+        "_motivo": "Patio completo: piscina con rebosadero, spa bajo pergola y la casa. Toma el papel de bi-0633, que sale por el taburete del primer plano."
       },
       {
-        "src": "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-14.webp",
-        "alt": "Completed backyard pool with raised spa",
+        "src": "/images/banco/construction/pool-construction-spa-turf-stepping-pads-house-florida-01.webp",
+        "alt": "New pool with raised spa, travertine deck and stepping pads in artificial turf behind a two-story home.",
         "ancho": 1600,
-        "alto": 1067,
-        "_asset": "ag-e0b9d262ef",
-        "_proyecto": "project-062"
+        "alto": 1200,
+        "_banco": "bi-0505",
+        "_proyecto": "obra-046",
+        "_servicio": "pool",
+        "_motivo": "Otra piscina y otra arquitectura (casa de dos plantas); sustituye a todo project-059, que es esta misma casa."
       },
       {
-        "src": "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-10.webp",
-        "alt": "Completed backyard pool with raised spa",
+        "src": "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-18.webp",
+        "alt": "Pool with sun shelf lounge chairs and a small raised spa, edged by a pale stone deck and lawn beside a two-story home.",
         "ancho": 1600,
         "alto": 1067,
-        "_asset": "ag-41140b5763",
-        "_proyecto": "project-059"
+        "_asset": "ag-cd1064a0aa",
+        "_legado": "MrMrs_Outdoor_Living_Image_Bank",
+        "_proyecto": "project-062",
+        "_servicio": "pool",
+        "_motivo": "Otro angulo de la casa de la 2 (sun shelf, spa al fondo), a 3 puestos.",
+        "pos": "45% 50%"
       },
       {
-        "src": "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-22.webp",
-        "alt": "Completed backyard pool with raised spa",
+        "src": "/images/banco/remodeling/pool-remodeling-travertine-deck-glass-tile-finished-florida-01.webp",
+        "alt": "Remodeled pool with blue glass waterline tile and ivory travertine deck behind a stucco house.",
         "ancho": 1600,
-        "alto": 1067,
-        "_asset": "ag-31022e4884",
-        "_proyecto": "project-062"
+        "alto": 1200,
+        "_banco": "bi-0519",
+        "_proyecto": "obra-048",
+        "_servicio": "remodelacion",
+        "_motivo": "La remodelacion terminada, cierre de las seis de piscina. Unica remodelacion libre: bi-0521 y bi-0614 ya salen en la pagina."
       },
       {
-        "src": "/images/obra/project-059/mrandmrs-pool-remodeling-a2-gallery-project-059-11.webp",
-        "alt": "Aerial view of a backyard pool with raised spa",
+        "src": "/images/banco/pergolas/insulated-patio-cover-outdoor-kitchen-pool-florida-01.webp",
+        "alt": "Black aluminum insulated patio cover over a stacked stone outdoor kitchen next to a pool.",
+        "ancho": 1440,
+        "alto": 1080,
+        "_banco": "bi-0759",
+        "_proyecto": "obra-068",
+        "_servicio": "cocina",
+        "_motivo": "Primer servicio secundario, despues de seis de piscina, y con la piscina en cuadro."
+      },
+      {
+        "src": "/images/banco/construction/pool-construction-raised-spa-gray-marble-deck-florida-01.webp",
+        "alt": "Raised tiled spa inside a new pool with gray marble deck and pebble band, open pasture behind at dusk.",
+        "ancho": 900,
+        "alto": 1600,
+        "_banco": "bi-0485",
+        "_proyecto": "obra-045",
+        "_servicio": "pool",
+        "_motivo": "Otra estetica (finca, marmol gris) entre dos servicios secundarios."
+      },
+      {
+        "src": "/images/banco/pergolas/freestanding-pergola-dark-bronze-pool-spa-canal-florida-02.webp",
+        "alt": "Dark bronze freestanding lattice pergola framing a blue-tiled spa with canal, boats and palms behind",
+        "ancho": 1600,
+        "alto": 900,
+        "_banco": "bi-1046",
+        "_proyecto": "obra-100",
+        "_servicio": "pergola",
+        "_motivo": "Pergola sobre spa; misma casa que la 3 (obra-063 = obra-100), a 6 puestos."
+      },
+      {
+        "src": "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-25.webp",
+        "alt": "Wide view of a rectangular pool with sun shelf loungers and a raised spa on a pale stone deck, framed by lawn, palms and a covered lanai.",
         "ancho": 1600,
         "alto": 1067,
-        "_asset": "ag-7df5dc1c64",
-        "_proyecto": "project-059"
+        "_asset": "ag-4dec9a66e4",
+        "_legado": "MrMrs_Outdoor_Living_Image_Bank",
+        "_proyecto": "project-062",
+        "_servicio": "pool",
+        "_motivo": "Plano general desde el cesped; misma casa que la 2 y la 5, a 5 puestos de la ultima.",
+        "pos": "40% 50%"
+      },
+      {
+        "src": "/images/banco/pergolas/freestanding-patio-cover-privacy-screen-poolside-florida-02.webp",
+        "alt": "Freestanding dark aluminum patio cover with privacy screen on a pool deck with blue tile pool.",
+        "ancho": 1024,
+        "alto": 768,
+        "_banco": "bi-0914",
+        "_proyecto": "obra-083",
+        "_servicio": "pergola",
+        "_motivo": "Pergola junto a una piscina que ocupa media foto: cierra con agua."
       }
     ]
   }
