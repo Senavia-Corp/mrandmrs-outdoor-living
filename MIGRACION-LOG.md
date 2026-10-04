@@ -7340,3 +7340,38 @@ contra cielo, postes contra lago y madera — sin halos de CLAHE ni bordes cruji
 - **1-oct-2026 · Banco de imágenes.** 1.269 originales de `~/Documents/Pictures Mr and Mrs Outdoor Living` clasificados (etapa × servicio × proyecto): 514 aprobadas derivadas a `public/images/banco/` (WebP 1600 px, sin EXIF), 80 dudosas en `banco/DUDOSAS.md`, 474 rechazadas (340 de fabricante/stock/IA/ajenas), 201 duplicados. Índice `src/data/banco-imagenes.json`, puerta `node scripts/build-banco.mjs --check` (probada en rojo). No se cambió ninguna foto del sitio. Sin build ni commit. Ver `BANCO-IMAGENES.md`.
 
 - 2-oct-2026 · PROMPT-IMAGENES-ABOUT: /about cambia 4 renders (whatsetus + aboutus x3) por obra real del banco (bi-0237, bi-0557, bi-0533, bi-0077) via src/data/fotos-por-ruta.json + fotosPorRuta() en build-paginas.mjs, y la [2] del collage FAQ (landscaping-10, copia IA de bi-0326) por bi-0305 con derivados 500/800. Solo cambia about/index.html entre builds; alturas de check:visual identicas antes/despues. Hero y Rob & Val intactos.
+
+---
+
+## R-SVC — ServiciosPorCategoria: rejilla en escritorio, foto→texto en móvil · 4-oct-2026   ✅ cerrada
+
+**Pedido:** encargo «UI/UX RESPONSIVE REFINEMENT» de Sebastian · **Base:** `f86816a` (`origin/main`) · **Rama:** `claude/modest-newton-fiolkp`
+**Commit, push, PR y merge a `main`:** autorizados por Sebastian («terminar todo y dejar todo listo en producción»). Sale por la integración Git de Vercel.
+
+### Qué se hizo
+
+Un solo fichero: `src/components/widgets/ServiciosPorCategoria.astro` (`<style>` reescrito mobile-first con `min-width` 480/768/992, una variable en línea en `#svc-panel` y ~10 líneas de JS). DOM sin cambios de estructura: el entrelazado fila/ficha que protege `check:texto` sigue igual.
+
+- **≥992:** el control segmentado comparte eje con la lista (`--svc-nav: max(37%, 23.5rem)`, mismo borde izquierdo y mismo ancho). El panel es una rejilla 37/3/60; la ficha abarca todas las pistas y una pista `1fr` final absorbe el sobrante — **ya no es absoluta** y no hay `min-height` mágico. Suelo 3:2 o `--svc-tope` filas: la tarjeta mide igual en las tres pestañas.
+- **768–991:** acordeón con foto 16:9 en flujo (tope 25rem) y panel de texto en fila.
+- **<768:** foto 16:10 en flujo y **debajo** el texto y el CTA; el cristal (que Webflow vuelve blanco opaco a ≤991) se apaga solo aquí. Pestañas, filas y CTA ≥44 px. La fila tocada no salta (compensación de scroll medida en JS).
+
+### Números medidos (`.vercel/output/static`, 5 rutas × 19 anchos × 3 pestañas × 3 servicios)
+
+| Qué | Antes | Después |
+|---|---|---|
+| Foto visible a 390 / 440 | 33 % / 39 % | **100 % / 100 %** |
+| CTA a 390–991 | 36,4 px | **48 / 44 px** |
+| Pestañas | 33–36 px | **44 px** |
+| Salto de la fila tocada en móvil | 332 px | **≤0,9 px** |
+| Pestañas vs lista a 1440 (x) | 525 vs 95 | **95 vs 95** |
+| Ficha a 1440 | 750×400 | **750×500**, igual en las 3 pestañas |
+
+`check:texto`: `'=/'`, las dos de `where-we-serve`, Ocala, Gainesville **1/1 idénticas** cada una; `'pool-builders/'` **62/62 idénticas**. `check:tokens`, `rutas`, `enlaces`, `redirects`, `seo`: verdes. Contraste por peor píxel (`diag-contraste.mjs`, `section.svc`, 1440/992): peor caso **5,13:1** (umbral 4,5).
+
+### Queda abierto
+
+1. **`check:visual` ROJA en las 56 rutas que montan el panel** (`/`, 2 `where-we-serve`, 53 ciudades). Ya lo estaba en `f86816a` por deriva anterior: alto `/` a 1920 2441→2254 sin este cambio y 2441→2280 con él (+26 px netos). Re-baselinizar es de Sebastian.
+2. `check:ix2` y `check:cascaron` no se corrieron (no aceptan filtro).
+3. Las puertas de navegador se corrieron con Chromium 1194 bajo `xvfb-run` (el Playwright del repo pide el 1234), con una precarga fuera del repo que solo fija `executablePath`.
+4. En `/where-we-serve/*` a 992/1280 hay un desborde horizontal transitorio de 9–16 px tras la carga (marquee de logos). Previo y ajeno: sale igual en `f86816a`.

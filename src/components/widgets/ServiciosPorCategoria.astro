@@ -26,21 +26,28 @@
  *    había nada que auditar. Ahora las categorías son un `tablist` de verdad y las filas son
  *    `<button>`.
  *
- * 4. LAS DOS COLUMNAS NO ACABABAN A LA MISMA ALTURA (481,2 / 475 / 500 px, tres suelos). La
- *    ficha sigue siendo absoluta como en el original, pero con `inset: 0 0 0 auto` y SIN
- *    altura fija, así que su alto es el del contenedor, que lo marca la lista. Se igualan por
- *    construcción, no por ajuste.
+ * 4. LAS DOS COLUMNAS NO ACABABAN A LA MISMA ALTURA (481,2 / 475 / 500 px, tres suelos). Hoy
+ *    el panel es una rejilla (≥992) y la ficha ya NO es absoluta: abarca todas las pistas de
+ *    la lista y una pista `1fr` final absorbe lo que mide de más. Su suelo es 3:2 del ancho de
+ *    su columna, más alto que la pestaña de 7, así que las tres pestañas dan la misma tarjeta.
+ *    El control segmentado comparte eje con la lista (`--svc-nav`, en la hoja). (R-SVC)
  *
  * 5. EN MÓVIL LA SECCIÓN ESTABA VACÍA. `openFirstVisibleService()` hacía
  *    `if (isTabletDown()) return;`, así que a 991 y a 479 no había ni foto, ni descripción, ni
  *    CTA: 3 pestañas y 7 rótulos. Aquí la primera ficha viene abierta, en acordeón bajo su fila.
+ *
+ * 6. EN MÓVIL EL TEXTO TAPABA LA FOTO. Por debajo de 991 Webflow vuelve `.blck-glass` blanco
+ *    opaco, y la barra seguía absoluta encima de la foto: a 390 px quedaba libre el 33 % de la
+ *    imagen. Hoy, por debajo de 992, foto en flujo y debajo el texto; encima de la foto solo
+ *    queda el contador. (R-SVC)
  *
  * ─── LO QUE NO SE TOCA, Y POR QUÉ ───────────────────────────────────────────────────────
  *
  * · EL CRISTAL DE LA FICHA. Parecía el sospechoso de contraste y NO lo es: medido píxel a
  *   píxel sobre las fotos reales, con el blanco efectivo α 0,52 (0,65 × opacity .8) y el
  *   `backdrop-filter: blur(20px)`, el PEOR píxel de las tres fotos de muestra da entre 6,90 y
- *   9,85:1. Cumple AA de sobra. Se conserva tal cual.
+ *   9,85:1. Cumple AA de sobra. Se conserva tal cual en escritorio (≥992); por debajo no hay
+ *   foto detrás del texto y se apaga (punto 6).
  *
  * · LOS DOS `data-w-id`. Hoy no animan —sus claves en `reveals.json` llevan un prefijo
  *   `pageId|` que `Interacciones.astro` no quita, así que 41 de las 79 no casan con nada—,
@@ -106,6 +113,9 @@ const esVisible = (sv) => sv.categorias.includes(defecto);
 const visibles = d.servicios.filter(esVisible);
 const activo = visibles[0]?.id;
 const posicion = (sv) => visibles.findIndex((v) => v.id === sv.id) + 1;
+/* Cuántas filas enseña la pestaña MÁS LARGA (hoy 7, `outdoor-living`). Es el suelo de alto de
+ * la ficha en escritorio: con él las tres pestañas dan la misma tarjeta. Ver la hoja (≥992). */
+const tope = Math.max(...d.categorias.map((c) => d.servicios.filter((sv) => sv.categorias.includes(c.slug)).length));
 
 /**
  * TEXTO PLANO PARA UN `aria-label`. Los campos del JSON viajan como HTML -se pintan con
@@ -148,6 +158,7 @@ const texto = (h) => String(h).replace(/&amp;/g, '&').replace(/&lt;/g, '<').repl
       aria-labelledby={`svc-cat-${defecto}`}
       data-w-id={d.wIdCuerpo}
       class="svc-cuerpo"
+      style={`--svc-filas:${d.servicios.length};--svc-tope:${tope}`}
     >
       {d.servicios.map((sv) => (
         <>
@@ -223,45 +234,82 @@ const texto = (h) => String(h).replace(/&amp;/g, '&').replace(/&lt;/g, '<').repl
    *             DECORATIVO —separa filas, no identifica un control—, así que WCAG 1.4.11 no le
    *             exige 3:1; para lo que sí lo exige está el raíl navy de más abajo.
    *
-   * Inter va auto-alojada en `src/styles/fuentes.css`; aquí no se pide ni una fuente. */
+   * Inter va auto-alojada en `src/styles/fuentes.css`; aquí no se pide ni una fuente.
+   *
+   * ─── ESTA HOJA ES MOBILE-FIRST (R-SVC, oct-2026) ─────────────────────────────────────────
+   * La base es el teléfono; encima, SOLO `min-width` 480 / 768 / 992, los tres del sistema
+   * (`docs/encargos/CRITERIO.md`). Antes eran `max-width` 991 / 479 al estilo Webflow. Tabla:
+   *     <480 ..... pestañas que parten su rótulo DENTRO del segmento
+   *     <768 ..... ficha en acordeón: foto 16:10 EN FLUJO y, debajo, el panel de texto en columna
+   *     768-991 .. el mismo acordeón con foto 16:9 y el panel en fila (texto | CTA)
+   *     ≥992 ..... una sola rejilla: control + lista a la izquierda, ficha a la derecha
+   *
+   * `--svc-nav` ES EL EJE DE LA COLUMNA IZQUIERDA y lo leen DOS cajas distintas: el control
+   * segmentado (que vive en la cabecera, no en el panel, para no mover `innerText`) y la primera
+   * pista de la rejilla del panel. Las dos miden el ancho del contenedor, así que el mismo `%`
+   * resuelve al mismo píxel y el control queda encima de la lista con el mismo borde izquierdo
+   * y el mismo ancho, a cualquier ancho. El suelo en `rem` es la anchura natural del control:
+   * sin él, a 992 el 37 % (346 px) se queda corto y las pestañas invadirían la columna de la
+   * foto. */
   .svc {
     --navy:   var(--mm-navy);
     --oro:    var(--mm-oro);
     --cian:   var(--mm-cian-claro);
     --azul50: var(--mm-azul-100);
     --linea:  var(--mm-borde);
+    --svc-nav: max(37%, 23.5rem);
+    --svc-fila-alto: 52px;
   }
 
   /* Un `hidden` tiene que ganarle SIEMPRE al `display` de la clase: es lo que sostiene el
    * estado servido y, con él, que `innerText` sea el mismo que el del original. */
   .svc [hidden] { display: none !important }
 
-  .svc-cabecera { display: flex; flex-direction: column; align-items: center }
+  /* `.wrapper-title-services` (Webflow) cierra la cabecera a 950 px y la centra: con eso el
+   * control NO PODÍA llegar al borde izquierdo de la lista, que mide el contenedor entero
+   * (1250). Se abre la cabecera y el tope de 950 pasa a sus dos textos, que se ven igual que
+   * antes; el que ya no lo tiene es el control. */
+  .svc-cabecera { display: flex; flex-direction: column; align-items: center; max-width: none }
+  .svc-cabecera > h2,
+  .svc-cabecera > .paragraph-services { max-width: 950px }
 
   /* ── El control segmentado ─────────────────────────────────────────────────────────────
    * Una sola pieza con fondo propio, no tres pastillas sueltas: así se lee de un vistazo que
-   * las tres son el mismo control y que solo una puede estar puesta. */
+   * las tres son el mismo control y que solo una puede estar puesta. Por debajo de 992 ocupa
+   * el ancho del contenedor: es el mismo eje que las filas y la ficha que tiene debajo. */
   .svc-cats {
-    display: inline-flex;
-    margin-top: 1.75rem;
-    padding: 4px;
+    display: flex;
+    align-self: stretch;
+    margin-top: var(--mm-e-24);
+    padding: var(--mm-e-4);
     background: var(--azul50);
-    border-radius: 999px;
+    border-radius: var(--mm-r-24);
   }
 
+  /* 44 px de alto como suelo (antes 33-36 px: el relleno de .6rem sobre 14 px no llegaba).
+   * Por debajo de 480 cada segmento parte su rótulo en DOS líneas dentro de sí mismo: a 320
+   * el contenedor deja 264 px y los tres rótulos en una línea piden ~330. Así siguen las tres
+   * a la vista y del mismo ancho, sin scroll que esconda la tercera ni un control que salta
+   * de línea entero, que es lo que hacía el `flex-wrap` de antes. */
   .svc-cat {
     appearance: none;
+    display: flex;
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
     border: 0;
     margin: 0;
-    padding: .6rem 1.15rem;
-    border-radius: 999px;
+    padding: var(--mm-e-4) var(--mm-e-8);
+    border-radius: var(--mm-r-pastilla);
     background: transparent;
     color: var(--navy);
     font: inherit;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     line-height: 1.2;
-    white-space: nowrap;
+    text-align: center;
     cursor: pointer;
     transition: background-color .18s ease, color .18s ease;
   }
@@ -283,34 +331,24 @@ const texto = (h) => String(h).replace(/&amp;/g, '&').replace(/&lt;/g, '<').repl
   .svc-cat[aria-selected='false']:hover { background: var(--mm-borde) }
 
   /* ── El cuerpo ─────────────────────────────────────────────────────────────────────────
-   * La ficha sigue siendo absoluta, como en el original, pero SIN altura fija: su alto es el
-   * del contenedor y el del contenedor lo marca la lista. Las dos columnas acaban a la misma
-   * altura por construcción. El `min-height` es para la pestaña de 3 servicios, donde la lista
-   * sola no da altura suficiente para una foto. */
+   * Por debajo de 992, una columna: cada ficha cae justo bajo su fila, que es donde ya está
+   * en el DOM (acordeón). */
   .svc-cuerpo {
-    position: relative;
     display: flex;
     flex-direction: column;
-    /* Las filas se centran en vertical. Las fichas son absolutas, o sea que no son ítems del
-     * flex y esto no las toca. Importa porque la lista cambia de alto entre pestañas: son
-     * 7 servicios en `outdoor-living`, 5 en `patio-cover` y 3 en `pool-spa` -14 items con 15
-     * asignaciones, porque `Pool Screen Enclosures` está en dos-. Alineadas arriba, la pestaña
-     * de 3 dejaba 256 px de hueco debajo y parecía un fallo; centradas, parece una decisión. */
-    justify-content: center;
-    min-height: 400px;
-    margin-top: 2.5rem;
+    margin-top: var(--mm-e-16);
   }
 
   /* ── Las filas ─────────────────────────────────────────────────────────────────────────
-   * 44 px y una línea fina en vez de 7 rectángulos redondeados de 50: siete filas pasan de
-   * 404 px a 308, y la diferencia entre pestañas (7 / 5 / 3 servicios) descuadra mucho menos. */
+   * Una línea fina en vez de 7 rectángulos redondeados. 52 px: el objetivo táctil de 44 con
+   * aire para el pulgar, y 7 filas siguen cabiendo junto a la foto en escritorio. */
   .svc-fila {
     display: flex;
     align-items: center;
-    gap: .75rem;
-    width: 35%;
-    min-height: 48px;
-    padding: .35rem .75rem .35rem 0;
+    gap: var(--mm-e-12);
+    width: 100%;
+    min-height: var(--svc-fila-alto);
+    padding: var(--mm-e-8) var(--mm-e-12) var(--mm-e-8) 0;
     border: 0;
     border-bottom: 1px solid var(--linea);
     border-left: 4px solid transparent;
@@ -324,16 +362,16 @@ const texto = (h) => String(h).replace(/&amp;/g, '&').replace(/&lt;/g, '<').repl
 
   .svc-icono {
     flex: none;
-    width: 30px;
-    height: 30px;
-    padding: 3px;
+    width: 32px;
+    height: 32px;
+    padding: 4px;
     border: 1px solid var(--oro);
     border-radius: 100%;
     background: var(--mm-blanco);
-    margin-left: .75rem;
+    margin-left: var(--mm-e-8);
   }
 
-  .svc-nombre { flex: 1; font-size: 16px; font-weight: 500; line-height: 1.35 }
+  .svc-nombre { flex: 1; min-width: 0; font-size: 16px; font-weight: 500; line-height: 1.3 }
 
   .svc-chevron {
     flex: none;
@@ -359,55 +397,75 @@ const texto = (h) => String(h).replace(/&amp;/g, '&').replace(/&lt;/g, '<').repl
   .svc-fila[aria-current='true'] {
     background: var(--azul50);
     border-left-color: var(--navy);
-    padding-left: .5rem;
+    padding-left: var(--mm-e-4);
   }
 
   .svc-fila[aria-current='true'] .svc-nombre { font-weight: 600 }
-  .svc-fila[aria-current='true'] .svc-chevron { opacity: 1; transform: none; color: var(--oro) }
+  /* En el acordeón el chevron gira hacia la ficha que se abre DEBAJO: «→» apuntaba a la
+   * derecha, donde por debajo de 992 no hay nada. En la rejilla vuelve a apuntar a la foto. */
+  .svc-fila[aria-current='true'] .svc-chevron { opacity: 1; transform: rotate(90deg); color: var(--oro) }
 
-  /* Anillo de foco a dos tonos: el blanco separa del relleno navy de la pestaña activa y el
+  /* Anillo de foco a dos tonos con los tokens del sistema (2 px de aire blanco + 2 px navy,
+   * los mismos píxeles que había): el blanco separa del relleno navy de la pestaña activa y el
    * navy da el contraste contra todo lo demás. Un anillo de un solo color no puede cumplir a
    * la vez sobre el blanco de la página y sobre una pastilla navy. */
   .svc-fila:focus-visible,
   .svc-cat:focus-visible,
   .svc-cta:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px var(--mm-blanco), 0 0 0 4px var(--navy);
+    box-shadow:
+      0 0 0 var(--mm-foco-aire) var(--mm-foco-inverso),
+      0 0 0 calc(var(--mm-foco-aire) + var(--mm-foco-grosor)) var(--mm-foco);
     border-radius: 4px;
   }
 
-  .svc-cat:focus-visible { border-radius: 999px }
-  .svc-cta:focus-visible { border-radius: 999px }
+  .svc-cat:focus-visible { border-radius: var(--mm-r-pastilla) }
+  .svc-cta:focus-visible { border-radius: var(--mm-r-pastilla) }
 
-  /* ── La ficha ──────────────────────────────────────────────────────────────────────────*/
+  /* ── La ficha, en teléfono: FOTO y DEBAJO TEXTO ─────────────────────────────────────────
+   * Antes la foto era absoluta y el texto iba encima en una barra que, por debajo de 991,
+   * Webflow vuelve BLANCA OPACA (`.blck-glass`): a 390 px tapaba el 67 % de la foto. Aquí los
+   * dos van en flujo, uno detrás de otro. La foto lleva relación fija, así que reserva su alto
+   * antes de cargar —las 4 que no traen `width/height` del JSON ya no dan salto— y el texto
+   * crece hacia abajo sin pisarla nunca. */
   .svc-ficha {
-    position: absolute;
-    inset: 0 0 0 auto;
-    width: 60%;
-    border-radius: 15px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: var(--mm-e-8) 0 var(--mm-e-16);
+    border: 1px solid var(--linea);
+    border-radius: var(--mm-r-16);
     overflow: hidden;
+    background: var(--mm-superficie);
+    box-shadow: var(--mm-sombra-1);
+  }
+
+  /* 16:10 = 1,60. Medido sobre el material real: 10 fotos son 15:8 (1,875) y 4 son 1,60 exacto
+   * (las cuatro AVIF de 1950x1219). En teléfono se elige la más alta de las dos: la foto
+   * gana presencia y a las de 15:8 solo les recorta un 15 % de ancho, centrado. El
+   * `object-position` que trae el JSON se respeta: va en línea y esta hoja no lo toca. */
+  .svc-foto {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
     background: var(--navy);
   }
 
-  .svc-foto {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
   /* Contenido GENERADO a propósito: `innerText` no lo incluye, así que el indicador de
-   * posición no cuenta como texto de la página y `check:texto` sigue comparando al 100 %. */
+   * posición no cuenta como texto de la página y `check:texto` sigue comparando al 100 %.
+   * Es lo ÚNICO que queda encima de la foto, en su esquina. */
   .svc-contador::before { content: attr(data-n) ' / ' attr(data-total) }
 
   .svc-contador {
     position: absolute;
-    top: 1rem;
-    right: 1.25rem;
+    top: var(--mm-e-12);
+    right: var(--mm-e-12);
+    z-index: 1;
     margin: 0;
-    padding: .25rem .6rem;
-    border-radius: 999px;
+    padding: var(--mm-e-4) var(--mm-e-8);
+    border-radius: var(--mm-r-pastilla);
     /* 80 % de navy. El alfa del hex era `cc` = 204/255 = 0,8000 exacto, así que el color-mix
      * al 80 % es el MISMO color, no una aproximación: sobre el peor fondo posible -una foto
      * blanca- el compuesto sigue siendo rgb(51,73,130) y el blanco encima da 8,69:1 (aquí
@@ -416,79 +474,201 @@ const texto = (h) => String(h).replace(/&amp;/g, '&').replace(/&lt;/g, '<').repl
     color: var(--mm-blanco);
     font-size: 12px;
     font-weight: 600;
+    line-height: 1.2;
     letter-spacing: .02em;
   }
 
-  /* La barra de cristal, ensanchada al ancho completo. El cristal es el MISMO del original
-   * -`.blck-glass`, que sigue viniendo de webflow.css- porque ya cumple AA: peor píxel medido
-   * entre 6,90 y 9,85:1 sobre las tres fotos de muestra. */
+  /* El panel de texto. Por debajo de 992 el cristal no aporta nada —no hay foto detrás— y
+   * Webflow lo convierte además en blanco opaco con radio 0, así que se apaga AQUÍ y solo
+   * aquí: `.blck-glass` sigue intacto en `webflow.css` y en el resto del sitio. Navy sobre
+   * --mm-superficie (blanco): 15,60:1. */
   .svc-barra {
-    position: absolute;
-    inset: auto 1rem 1rem;
+    position: relative;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-    padding: 1.15rem 1.5rem;
-    border-radius: 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--mm-e-16);
+    padding: var(--mm-e-16) var(--mm-e-16) var(--mm-e-24);
     color: var(--navy);
   }
+
+  .svc-barra .blck-glass { display: none }
 
   .svc-barra-txt { position: relative; z-index: 2; min-width: 0 }
 
   .svc-ficha-titulo {
-    margin: 0 0 4px;
-    font-size: 28px;
+    margin: 0 0 var(--mm-e-8);
+    font-size: var(--mm-paso-5);
     font-weight: 600;
-    line-height: 1.15;
+    line-height: 1.2;
     color: var(--navy);
+    text-wrap: balance;
   }
 
-  .svc-ficha-texto { margin: 0; font-size: 13px; line-height: 1.4; color: var(--navy) }
+  .svc-ficha-texto { margin: 0; font-size: var(--mm-paso-1); line-height: 1.5; color: var(--navy) }
 
+  /* El CTA. `.button` de Webflow lo dejaba en 36,4 px por debajo de 991 (14 px y
+   * `line-height:100%`): por debajo de los 44 del objetivo táctil. Caja flexible con suelo de
+   * alto y el texto centrado, la receta de `intro.css`, nunca `height` fija. El oro es fondo,
+   * no estado: navy encima a 8,40:1; en hover --mm-accion-hover, navy encima a 6,35:1. */
   .svc-cta {
     position: relative;
     z-index: 2;
+    display: flex;
     flex: none;
-    background: var(--oro);
-    color: var(--navy);
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: var(--mm-e-8) var(--mm-e-24);
+    border-radius: var(--mm-r-pastilla);
+    background: var(--mm-accion);
+    color: var(--mm-sobre-accion);
     font-weight: 600;
+    transition: background-color .15s ease;
   }
 
-  /* ── ≤991: acordeón ────────────────────────────────────────────────────────────────────
-   * La ficha vuelve al flujo y cae justo bajo su fila, que es donde ya está en el DOM. En el
-   * original aquí NO se abría ninguna: la sección enseñaba 3 pestañas y 7 rótulos y nada más. */
-  @media screen and (max-width: 991px) {
-    .svc-cuerpo { min-height: 0 }
+  .svc-cta:hover { background: var(--mm-accion-hover); color: var(--mm-sobre-accion) }
 
-    .svc-fila {
-      width: 100%;
-      min-height: 48px;
+  @media screen and (min-width: 480px) {
+    .svc-cat {
+      flex-basis: auto;
+      min-width: auto;
+      padding: var(--mm-e-8) var(--mm-e-16);
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    .svc-cats { border-radius: var(--mm-r-pastilla) }
+  }
+
+  /* ── 768-991: el mismo acordeón, con sitio para una foto grande ─────────────────────────
+   * 16:9 a ~712 px de ancho son ~400 de alto, y el texto se tumba en una fila (texto | CTA)
+   * para que la tarjeta no salga desproporcionada de alta. */
+  @media screen and (min-width: 768px) {
+    .svc-cats { margin-top: var(--mm-e-32) }
+    .svc-cuerpo { margin-top: var(--mm-e-24) }
+    /* El tope de 25rem es el alto que da 16:9 justo a 768 (712 x 400). Por encima, la foto
+     * gana ancho pero no alto: a 991 serían 526 px y la tarjeta (654) no cabría en una tablet
+     * apaisada. El recorte vertical lo decide el `object-position` que trae el JSON. */
+    .svc-foto { aspect-ratio: 16 / 9; max-height: 25rem }
+    .svc-contador { top: var(--mm-e-16); right: var(--mm-e-16) }
+    .svc-barra {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--mm-e-24);
+      padding: var(--mm-e-24);
+    }
+    .svc-barra-txt { max-width: 62ch }
+    .svc-cta { min-height: 44px }
+  }
+
+  /* ── ≥992: UNA SOLA REJILLA ─────────────────────────────────────────────────────────────
+   * Antes: pestañas centradas sobre la sección en una cabecera de 950 px, la lista centrada en
+   * vertical en un `min-height: 400px` y la ficha absoluta al 60 %. Tres cajas que no
+   * compartían ningún borde.
+   *
+   * Ahora el control es la cabecera de la columna izquierda (`--svc-nav`, ver arriba) y el
+   * panel es una rejilla de dos columnas con 37 % / 3 % / 60 %, la misma relación de antes
+   * (35/5/60) con el aire del hueco pasado a la lista. */
+  @media screen and (min-width: 992px) {
+    .svc-cats {
+      align-self: flex-start;
+      min-width: var(--svc-nav);
+      margin-top: var(--mm-e-48);
     }
 
+    /* LA PISTA `1fr` DEL FINAL ES LA QUE HACE EL TRABAJO. La ficha se coloca en la columna 2
+     * y abarca TODAS las filas explícitas (`1 / -1`); las filas visibles se autocolocan una
+     * por pista en la columna 1. Una pista flexible dentro del tramo de la ficha hace que
+     * sea ELLA la que absorba lo que la ficha mide de más, en vez de repartirlo entre las
+     * filas y separarlas. Las pistas sin fila (las de los servicios ocultos) miden 0.
+     *
+     * `--svc-filas` es `d.servicios.length` y llega EN LÍNEA desde el markup: tiene que haber
+     * al menos tantas pistas como filas pueda enseñar una pestaña, y el único que sabe cuántas
+     * son es el JSON. Un 14 a fuego aquí se rompería en silencio el día que hubiera 15. */
+    .svc-cuerpo {
+      display: grid;
+      grid-template-columns: var(--svc-nav) minmax(0, 1fr);
+      grid-template-rows: repeat(var(--svc-filas, 14), auto) 1fr;
+      column-gap: 3%;
+      row-gap: 0;
+      margin-top: var(--mm-e-16);
+    }
+
+    .svc-fila { grid-column: 1 }
+    .svc-fila[aria-current='true'] .svc-chevron { transform: none }
+
+    /* La ficha: la foto es el FONDO de la tarjeta y el texto va en cristal encima, como en el
+     * original, porque a 750 px de ancho la barra tapa una franja y no la foto. Su alto ya no
+     * lo dicta un `min-height` mágico: el `::before` es un suelo 3:2 del ancho de la columna
+     * (~355 px a 992, 500 a 1250) y, por si a algún ancho la lista lo supera, otro suelo con
+     * el alto de la pestaña MÁS LARGA (`--svc-tope` filas, medido en el JSON). Con los dos, la
+     * tarjeta mide LO MISMO en las tres pestañas y cambiar de categoría no mueve la página.
+     * Si una fila algún día partiera en dos líneas, la ficha se estira con la lista.
+     *
+     * `minmax(0, 1fr)` NO es adorno: sin él la pista implícita toma la anchura mínima de la
+     * barra (texto + CTA) y a 992 la barra se salía 6 px por la derecha de la tarjeta. */
     .svc-ficha {
-      position: relative;
-      inset: auto;
-      width: 100%;
-      margin: .75rem 0 1.25rem;
-      min-height: 340px;
+      grid-column: 2;
+      grid-row: 1 / -1;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      margin: 0;
+      border: 0;
+      background: var(--navy);
+      box-shadow: var(--mm-sombra-2);
     }
 
-    .svc-cats { margin-top: 1.25rem; flex-wrap: wrap; justify-content: center }
-    .svc-cat { padding: .6rem .9rem }
-    .svc-ficha-titulo { font-size: 22px }
-  }
+    .svc-ficha::before {
+      content: '';
+      grid-area: 1 / 1;
+      aspect-ratio: 3 / 2;
+      min-height: calc(var(--svc-tope, 7) * var(--svc-fila-alto));
+    }
 
-  @media screen and (max-width: 479px) {
-    .svc-cats { border-radius: 20px }
-    .svc-cat { font-size: 13px; padding: .55rem .7rem }
-    .svc-barra { inset: auto .5rem .5rem; flex-direction: column; align-items: flex-start; gap: .9rem; padding: 1rem }
-    .svc-cta { align-self: stretch; text-align: center }
-    .svc-ficha { min-height: 300px }
+    .svc-foto {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      max-height: none;
+      aspect-ratio: auto;
+    }
+
+    /* La barra se apoya abajo en la misma celda que el suelo 3:2: si un título largo la hace
+     * crecer, crece hacia arriba y, en el peor caso, empuja la tarjeta; nunca se sale. El
+     * cristal es el MISMO del original —`.blck-glass`, de webflow.css— porque ya cumple AA:
+     * peor píxel medido entre 6,90 y 9,85:1 sobre las tres fotos de muestra. */
+    .svc-barra {
+      grid-area: 1 / 1;
+      align-self: end;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-areas: 'tit tit' 'txt cta';
+      align-items: end;
+      gap: var(--mm-e-8) var(--mm-e-24);
+      margin: var(--mm-e-16);
+      padding: var(--mm-e-16) var(--mm-e-24);
+      border-radius: var(--mm-r-16);
+    }
+
+    .svc-barra .blck-glass { display: block }
+
+    /* EL TÍTULO A TODO EL ANCHO DE LA BARRA, y la descripción con el CTA debajo. Con título y
+     * descripción apilados a la izquierda del CTA, a 992 (tarjeta de 516 px) el título partía
+     * en dos líneas y la barra tapaba la mitad de la foto. `.svc-barra-txt` es un `<div>` sin
+     * rol ni semántica, así que `display: contents` no le quita nada a un lector de pantalla y
+     * deja a sus dos hijos colocarse en la rejilla de la barra. `innerText` no cambia: `h3` y
+     * `p` siguen siendo bloques. */
+    .svc-barra-txt { display: contents }
+    .svc-ficha-titulo,
+    .svc-ficha-texto { position: relative; z-index: 2 }
+    .svc-ficha-titulo { grid-area: tit; margin: 0; font-size: clamp(22px, 2vw, 28px) }
+    .svc-ficha-texto { grid-area: txt; max-width: 62ch }
+    .svc-cta { grid-area: cta }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .svc-cat, .svc-fila, .svc-chevron { transition: none }
+    .svc-cat, .svc-fila, .svc-chevron, .svc-cta { transition: none }
   }
 </style>
 
@@ -554,11 +734,26 @@ const texto = (h) => String(h).replace(/&amp;/g, '&').replace(/&lt;/g, '<').repl
       });
     }
 
+    /**
+     * Abre la ficha de `f` SIN QUE `f` SE MUEVA EN PANTALLA. En el acordeón (<992) la ficha
+     * abierta va bajo su fila: al tocar una fila de más abajo se cierra la de arriba y la
+     * tocada subía ~330 px, fuera del pulgar. Se mide su `top` antes y después y se devuelve
+     * la diferencia al scroll. Es comportamiento, no maqueta: no calcula ninguna medida de
+     * nada, y en la rejilla de escritorio la diferencia es 0 y no hace nada. `instant` porque
+     * una compensación animada es justo el tirón que se quiere quitar.
+     */
+    function abreAnclada(f: HTMLButtonElement) {
+      const antes = f.getBoundingClientRect().top;
+      abre(f.dataset.id);
+      const salto = f.getBoundingClientRect().top - antes;
+      if (Math.abs(salto) >= 1) window.scrollBy({ top: salto, behavior: 'instant' });
+    }
+
     for (const f of filas) {
-      f.addEventListener('click', () => abre(f.dataset.id));
+      f.addEventListener('click', () => abreAnclada(f));
       // Enfocar con el tabulador también abre: si no, el lector de pantalla recorre 7 filas
       // mientras la ficha se queda en la primera y lo que se oye no es lo que se ve.
-      f.addEventListener('focus', () => abre(f.dataset.id));
+      f.addEventListener('focus', () => abreAnclada(f));
       f.addEventListener('keydown', (ev) => {
         const salto = ev.key === 'ArrowDown' ? 1 : ev.key === 'ArrowUp' ? -1 : 0;
         if (!salto) return;
