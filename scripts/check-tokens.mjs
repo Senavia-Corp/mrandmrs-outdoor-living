@@ -151,8 +151,21 @@ const MIN_BLOQUES = 7;
  *
  *  LA DEUDA, CUANTIFICADA, PARA CUANDO SE ABRA LA PREGUNTA: `estimacion.css` (12,9 KB) y
  *  `contacto.css` (8,9 KB) son 21,8 KB entre las dos — el 23 % de la capa para 2 rutas y
- *  1 formulario. Ahí está el presupuesto de las tres próximas secciones. */
-const TOPE_BYTES = 94 * 1024;
+ *  1 formulario. Ahí está el presupuesto de las tres próximas secciones.
+ *
+ *  ── 4-oct-2026 · SUBE A 96 (GALERIA-HUB). LO DECIDE SEBASTIAN, Y ES LA CUARTA SEGUIDA ──────
+ *
+ *  Es la que el párrafo de 94 daba por «con 3,2 KB dejaría de doler»; no sobran 3,2 KB, sobran
+ *  197 B, así que sigue doliendo. La pregunta de qué sobra sigue abierta y sigue siendo del
+ *  director: no se ha abierto aquí. Medido antes de subir nada:
+ *
+ *      capa sin comentarios .................. 96 253 B de 96 256  ->      3 B libres
+ *      lo que emite GALERIA-HUB ..............  1 854 B  (`caracteristicas.css` 5 293 -> 7 147:
+ *                                                         rejilla de 2 columnas <992, icono,
+ *                                                         línea recortada, botón de la banda y
+ *                                                         el velo en longitud bajo el título)
+ *      con 96 KB (98 304 B) .................. quedan   197 B libres */
+const TOPE_BYTES = 96 * 1024;
 
 const sinComentarios = (s) => s.replace(/\/\*[\s\S]*?\*\//g, '');
 
