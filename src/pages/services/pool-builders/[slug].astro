@@ -298,8 +298,7 @@ const SEO = FAQ
   <ConfianzaCore ruta={RUTA} />
   <Fragment set:html={ANTES_FORM} />
   <FormularioCore ruta={RUTA} />
-  {CAP && (
-    /* LA GALERIA DE OBRA, ENTRE EL FORMULARIO Y EL 3D (R21, pedido de Sebastian 18-sep-2026).
+  {/* LA GALERIA DE OBRA, ENTRE EL FORMULARIO Y EL 3D (R21, pedido de Sebastian 18-sep-2026).
        El corte ya existia: `partirEn(b0, '<section class="_3d-section"')` lo dejo hecho F1, asi
        que esto es una linea y no cirugia sobre el HTML derivado.
 
@@ -312,9 +311,16 @@ const SEO = FAQ
        Las fotos son del banco del cliente, no de `public/images/images/*`: 1600x1067 contra los
        1250 px que eran el techo de TODA la obra del sitio, y con procedencia verificada. Eso
        ademas rompe el solape que arrastraba esta pagina, donde el set `construction` ya salia
-       tres veces (trusted-section, collage de la FAQ y feed de Instagram). */
-    <GaleriaObra />
-  )}
+       tres veces (trusted-section, collage de la FAQ y feed de Instagram).
+
+       SIN LA GUARDA `CAP` DESDE EL 4-OCT-2026 (encargo de galeria de ciudades). Iba acotada porque
+       R21 la encendio solo en las rutas con captacion; hoy las 53 tienen entrada, pero «las 53 con
+       la misma galeria» no puede depender de que una ciudad tenga fila en `captacion-servicios.json`.
+       El sitio no cambia: en la forma SIN captacion `FormularioCore` no pinta nada y la galeria cae
+       igual entre `trusted-section` y `_3d-section`, que es lo que declara
+       `check-estructura-ciudades.mjs`. Las fotos son UN set para las 53 (`_defecto.fotos`) y
+       `check-galeria-obra.mjs` comprueba que las 53 lo pintan entero y en orden. */}
+  <GaleriaObra />
   <Fragment set:html={P_ANTES} />
   {/* LA PRUEBA SOCIAL, DELANTE DE LA OBRA (R20-CIUDADES F2, decision de Sebastian 14-sep-2026).
       El orden era Pool Features -> Project Showcase -> resenas. Ahora las resenas van EN MEDIO:

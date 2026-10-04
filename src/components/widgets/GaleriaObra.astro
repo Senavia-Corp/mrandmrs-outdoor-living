@@ -25,11 +25,17 @@
  * `check-carrusel.mjs` colapsa `track.children` a 1 y el carrusel deja de navegar. Es la misma
  * nota que lleva `CarruselProyectos.astro:33-34`.
  *
- * EL `<h2>` SE QUEDA EN OBRA, NO EN REMODELACION, y no es un detalle de copy: estas dos rutas son
- * la Final URL de ad groups de *new pool construction*. La mitad de las fotos son de una
- * remodelacion —material real y de la mejor calidad del banco—, pero un titular que diga
- * «remodeling» reintroduce la puerta de al lado, que es exactamente lo que R20-CIUDADES F1 quito
- * del apoyo del heroe.
+ * EL `<h2>` SE QUEDA EN OBRA, NO EN REMODELACION, y no es un detalle de copy: Gainesville y Ocala
+ * son la Final URL de ad groups de *new pool construction*, y las 53 venden lo mismo. Hay dos
+ * remodelaciones en el set, pero un titular que diga «remodeling» reintroduce la puerta de al lado,
+ * que es exactamente lo que R20-CIUDADES F1 quito del apoyo del heroe.
+ *
+ * EL SET ES UNO PARA LAS 53 (`_defecto.fotos`, recasting del 4-oct-2026). El orden es comercial
+ * —seis de piscina antes del primer servicio secundario— y lo vigila
+ * `scripts/check-galeria-obra.mjs` junto con la procedencia de cada foto. `pos` es el
+ * `object-position` de la tarjeta, que no es apaisada: 139x250 en un movil real, ~1:1 en escritorio
+ * (medido sobre el build). `loading="lazy"` + `decoding="async"`, y `width`/`height` reales
+ * contra el CLS.
  *
  * SU CSS VA EN EL `<style>` DE ABAJO, y eso tiene una consecuencia medida: `check-tokens.mjs:429`
  * suma SOLO las hojas de `src/styles/` para el presupuesto de 92 KB, no los bloques `<style>` de
@@ -55,6 +61,7 @@ const d = { ...DATOS._defecto, ...(propio ?? {}) };
 const tituloFinal = titulo ?? d.titulo;
 const entradillaFinal = entradilla ?? d.entradilla;
 if (!d.fotos?.length) throw new Error(`GaleriaObra (${ruta}): 0 fotos. El carrusel saldria vacio.`);
+const fotos: { src: string; alt: string; ancho: number; alto: number; pos?: string }[] = d.fotos;
 
 /* El JSON del lightbox que Webflow deja en cada ancla. `Componentes.astro` lo lee para montar su
  * `<dialog>`; se emite con la misma forma que las 14 fichas para que el gate `check:galeria` mida
@@ -83,8 +90,8 @@ const wjson = (src: string) =>
       <div class="block-gallery-absolute">
         <div fs-slider-element="list-wrapper" class="fs-slider-gallery_list-wrapper w-dyn-list">
           <div fs-slider-element="list" role="list" class="fs-slider-gallery_list w-dyn-items">
-            {d.fotos.map((f) => (
-              <div fs-slider-element="slide" role="listitem" class="fs-slider-gallery_slide w-dyn-item"><a href="#" class="lightbox-link w-inline-block w-lightbox"><img alt={f.alt} loading="lazy" src={f.src} class="image-gallery" width={f.ancho} height={f.alto} /><script type="application/json" class="w-json" set:html={wjson(f.src)} /></a></div>
+            {fotos.map((f) => (
+              <div fs-slider-element="slide" role="listitem" class="fs-slider-gallery_slide w-dyn-item"><a href="#" class="lightbox-link w-inline-block w-lightbox"><img alt={f.alt} loading="lazy" decoding="async" src={f.src} class="image-gallery" width={f.ancho} height={f.alto} style={f.pos && `object-position:${f.pos}`} /><script type="application/json" class="w-json" set:html={wjson(f.src)} /></a></div>
             ))}
           </div>
         </div>

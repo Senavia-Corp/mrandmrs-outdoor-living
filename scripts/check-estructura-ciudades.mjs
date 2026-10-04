@@ -56,7 +56,13 @@ const leerJson = (p) => JSON.parse(fs.readFileSync(path.join(RAIZ, p), 'utf8'));
  * `<section>`- sigue vivo en las rutas con captacion, y esta puerta solo enumera `<section>`.
  */
 const SIN = [
-  'hero-glass-section', 'trusted-section', '_3d-section', 'animated-divs-section',
+  /* `gallery` ENTRA TAMBIEN AQUI (encargo de galeria de ciudades, 4-oct-2026). La galeria de obra
+   * deja de ir acotada con `CAP` en `[slug].astro`: «las 53 con la misma galeria» no puede depender
+   * de que una ciudad tenga fila en `captacion-servicios.json`. Sin captacion `FormularioCore` no
+   * pinta nada, asi que la galeria cae entre `trusted-section` y `_3d-section`: el mismo punto
+   * logico que en `CON`, donde va detras del formulario. Hoy ninguna ciudad cae en esta forma
+   * (53/53 tienen entrada); la lista es la red para la que llegue sin ella. */
+  'hero-glass-section', 'trusted-section', 'gallery', '_3d-section', 'animated-divs-section',
   'testimonial-section', 'projects-section', 'blog-section-page', 'social-media', 'cta-footer',
 ];
 const CON = [
@@ -132,11 +138,12 @@ for (const ruta of TODAS) {
      * Si un widget se monta sin su guarda, aqui se ve — y se ve sin capturas y sin baseline. */
     const restos = ['form[data-mm-envia="1"]', '.svc-confianza', '.svc-inversion',
       '.svc-captacion', '.faq-section', '.mm-collage', '.svc-cierre', '.svc-heroe__tel',
-      /* R21: el modificador del heroe y la galeria de obra. El modificador es la prueba mas
-       * barata de las dos — es UNA clase, la emite `captacion-ciudad.mjs` sobre
-       * `.wrapper-main-hero-page`, y de el cuelgan TODAS las reglas nuevas del heroe: si
-       * apareciera aqui, la insignia, los chips y el ritmo se habrian ido a 51 paginas. */
-      '.svc-heroe--ciudad', '.svc-galeria', '.products-section']
+      /* R21: el modificador del heroe. Es la prueba mas barata — es UNA clase, la emite
+       * `captacion-ciudad.mjs` sobre `.wrapper-main-hero-page`, y de el cuelgan TODAS las reglas
+       * nuevas del heroe: si apareciera aqui, la insignia, los chips y el ritmo se habrian ido a
+       * 51 paginas. `.svc-galeria` SALIO de esta lista el 4-oct-2026: la galeria de obra va en las
+       * 53 sin guarda, y su presencia la exige `SIN` arriba y `check-galeria-obra.mjs`. */
+      '.svc-heroe--ciudad', '.products-section']
       .filter((s) => d.querySelector(s));
     if (restos.length) {
       mal(ruta, `no tiene entrada en captacion-servicios.json y sin embargo pinta ${restos.join(', ')}. `
