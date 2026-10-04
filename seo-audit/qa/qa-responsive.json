@@ -1,0 +1,530 @@
+[
+ {
+  "ruta": "/",
+  "ancho": 360,
+  "desborde": 0,
+  "h1": [
+   "Licensed Custom Pool Builders & Outdoor Living Contractors In Florida"
+  ],
+  "burger": true,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/",
+  "ancho": 390,
+  "desborde": 0,
+  "h1": [
+   "Licensed Custom Pool Builders & Outdoor Living Contractors In Florida"
+  ],
+  "burger": true,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/",
+  "ancho": 430,
+  "desborde": 0,
+  "h1": [
+   "Licensed Custom Pool Builders & Outdoor Living Contractors In Florida"
+  ],
+  "burger": true,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/",
+  "ancho": 768,
+  "desborde": 0,
+  "h1": [
+   "Licensed Custom Pool Builders & Outdoor Living Contractors In Florida"
+  ],
+  "burger": true,
+  "main": true,
+  "videos": [
+   "bg-video-1-mp4.mp4",
+   "bg-video-1-webm.webm"
+  ],
+  "errores": []
+ },
+ {
+  "ruta": "/",
+  "ancho": 1024,
+  "desborde": 0,
+  "h1": [
+   "Licensed Custom Pool Builders & Outdoor Living Contractors In Florida"
+  ],
+  "burger": false,
+  "main": true,
+  "videos": [
+   "bg-video-1-mp4.mp4",
+   "bg-video-1-webm.webm"
+  ],
+  "errores": []
+ },
+ {
+  "ruta": "/",
+  "ancho": 1440,
+  "desborde": 0,
+  "h1": [
+   "Licensed Custom Pool Builders & Outdoor Living Contractors In Florida"
+  ],
+  "burger": false,
+  "main": true,
+  "videos": [
+   "bg-video-1-mp4.mp4",
+   "bg-video-1-webm.webm"
+  ],
+  "errores": []
+ },
+ {
+  "ruta": "/",
+  "ancho": 1920,
+  "desborde": 0,
+  "h1": [
+   "Licensed Custom Pool Builders & Outdoor Living Contractors In Florida"
+  ],
+  "burger": false,
+  "main": true,
+  "videos": [
+   "bg-video-1-mp4.mp4",
+   "bg-video-1-webm.webm"
+  ],
+  "errores": []
+ },
+ {
+  "ruta": "/services/pool-builders",
+  "ancho": 360,
+  "desborde": 0,
+  "h1": [
+   "Custom Pool Builders"
+  ],
+  "burger": true,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/services/pool-builders",
+  "ancho": 390,
+  "desborde": 0,
+  "h1": [
+   "Custom Pool Builders"
+  ],
+  "burger": true,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/services/pool-builders",
+  "ancho": 430,
+  "desborde": 0,
+  "h1": [
+   "Custom Pool Builders"
+  ],
+  "burger": true,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/services/pool-builders",
+  "ancho": 768,
+  "desborde": 0,
+  "h1": [
+   "Custom Pool Builders"
+  ],
+  "burger": true,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/services/pool-builders",
+  "ancho": 1024,
+  "desborde": 0,
+  "h1": [
+   "Custom Pool Builders"
+  ],
+  "burger": false,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/services/pool-builders",
+  "ancho": 1440,
+  "desborde": 0,
+  "h1": [
+   "Custom Pool Builders"
+  ],
+  "burger": false,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/services/pool-builders",
+  "ancho": 1920,
+  "desborde": 0,
+  "h1": [
+   "Custom Pool Builders"
+  ],
+  "burger": false,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/services/pool-builders/gainesville-fl",
+  "ancho": 360,
+  "desborde": 0,
+  "h1": [
+   "Custom Pool Builders In Gainesville, Florida"
+  ],
+  "burger": true,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/services/pool-builders/gainesville-fl",
+  "ancho": 390,
+  "desborde": 0,
+  "h1": [
+   "Custom Pool Builders In Gainesville, Florida"
+  ],
+  "burger": true,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/services/pool-builders/gainesville-fl",
+  "ancho": 430,
+  "desborde": 0,
+  "h1": [
+   "Custom Pool Builders In Gainesville, Florida"
+  ],
+  "burger": true,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/services/pool-builders/gainesville-fl",
+  "ancho": 768,
+  "desborde": 0,
+  "h1": [
+   "Custom Pool Builders In Gainesville, Florida"
+  ],
+  "burger": true,
+  "main": true,
+  "videos": [
+   "bg-video-mp4.mp4",
+   "bg-video-webm.webm"
+  ],
+  "errores": []
+ },
+ {
+  "ruta": "/services/pool-builders/gainesville-fl",
+  "ancho": 1024,
+  "desborde": 0,
+  "h1": [
+   "Custom Pool Builders In Gainesville, Florida"
+  ],
+  "burger": false,
+  "main": true,
+  "videos": [
+   "bg-video-mp4.mp4",
+   "bg-video-webm.webm"
+  ],
+  "errores": []
+ },
+ {
+  "ruta": "/services/pool-builders/gainesville-fl",
+  "ancho": 1440,
+  "desborde": 0,
+  "h1": [
+   "Custom Pool Builders In Gainesville, Florida"
+  ],
+  "burger": false,
+  "main": true,
+  "videos": [
+   "bg-video-mp4.mp4",
+   "bg-video-webm.webm"
+  ],
+  "errores": []
+ },
+ {
+  "ruta": "/services/pool-builders/gainesville-fl",
+  "ancho": 1920,
+  "desborde": 0,
+  "h1": [
+   "Custom Pool Builders In Gainesville, Florida"
+  ],
+  "burger": false,
+  "main": true,
+  "videos": [
+   "bg-video-mp4.mp4",
+   "bg-video-webm.webm"
+  ],
+  "errores": []
+ },
+ {
+  "ruta": "/services/pool-remodeling",
+  "ancho": 360,
+  "desborde": 0,
+  "h1": [
+   "Pool Remodeling & Renovation Services"
+  ],
+  "burger": true,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/services/pool-remodeling",
+  "ancho": 390,
+  "desborde": 0,
+  "h1": [
+   "Pool Remodeling & Renovation Services"
+  ],
+  "burger": true,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/services/pool-remodeling",
+  "ancho": 430,
+  "desborde": 0,
+  "h1": [
+   "Pool Remodeling & Renovation Services"
+  ],
+  "burger": true,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/services/pool-remodeling",
+  "ancho": 768,
+  "desborde": 0,
+  "h1": [
+   "Pool Remodeling & Renovation Services"
+  ],
+  "burger": true,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/services/pool-remodeling",
+  "ancho": 1024,
+  "desborde": 0,
+  "h1": [
+   "Pool Remodeling & Renovation Services"
+  ],
+  "burger": false,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/services/pool-remodeling",
+  "ancho": 1440,
+  "desborde": 0,
+  "h1": [
+   "Pool Remodeling & Renovation Services"
+  ],
+  "burger": false,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/services/pool-remodeling",
+  "ancho": 1920,
+  "desborde": 0,
+  "h1": [
+   "Pool Remodeling & Renovation Services"
+  ],
+  "burger": false,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/about",
+  "ancho": 360,
+  "desborde": 0,
+  "h1": [
+   "Discover More About Mr & Mrs Outdoor Living"
+  ],
+  "burger": true,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/about",
+  "ancho": 390,
+  "desborde": 0,
+  "h1": [
+   "Discover More About Mr & Mrs Outdoor Living"
+  ],
+  "burger": true,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/about",
+  "ancho": 430,
+  "desborde": 0,
+  "h1": [
+   "Discover More About Mr & Mrs Outdoor Living"
+  ],
+  "burger": true,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/about",
+  "ancho": 768,
+  "desborde": 0,
+  "h1": [
+   "Discover More About Mr & Mrs Outdoor Living"
+  ],
+  "burger": true,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/about",
+  "ancho": 1024,
+  "desborde": 0,
+  "h1": [
+   "Discover More About Mr & Mrs Outdoor Living"
+  ],
+  "burger": false,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/about",
+  "ancho": 1440,
+  "desborde": 0,
+  "h1": [
+   "Discover More About Mr & Mrs Outdoor Living"
+  ],
+  "burger": false,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/about",
+  "ancho": 1920,
+  "desborde": 0,
+  "h1": [
+   "Discover More About Mr & Mrs Outdoor Living"
+  ],
+  "burger": false,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/request-estimated",
+  "ancho": 360,
+  "desborde": 0,
+  "h1": [
+   "Request Your Custom Outdoor Living Estimate"
+  ],
+  "burger": true,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/request-estimated",
+  "ancho": 390,
+  "desborde": 0,
+  "h1": [
+   "Request Your Custom Outdoor Living Estimate"
+  ],
+  "burger": true,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/request-estimated",
+  "ancho": 430,
+  "desborde": 0,
+  "h1": [
+   "Request Your Custom Outdoor Living Estimate"
+  ],
+  "burger": true,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/request-estimated",
+  "ancho": 768,
+  "desborde": 0,
+  "h1": [
+   "Request Your Custom Outdoor Living Estimate"
+  ],
+  "burger": true,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/request-estimated",
+  "ancho": 1024,
+  "desborde": 0,
+  "h1": [
+   "Request Your Custom Outdoor Living Estimate"
+  ],
+  "burger": false,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/request-estimated",
+  "ancho": 1440,
+  "desborde": 0,
+  "h1": [
+   "Request Your Custom Outdoor Living Estimate"
+  ],
+  "burger": false,
+  "main": true,
+  "videos": [],
+  "errores": []
+ },
+ {
+  "ruta": "/request-estimated",
+  "ancho": 1920,
+  "desborde": 0,
+  "h1": [
+   "Request Your Custom Outdoor Living Estimate"
+  ],
+  "burger": false,
+  "main": true,
+  "videos": [],
+  "errores": []
+ }
+]

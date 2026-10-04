@@ -38,7 +38,7 @@ for (const ruta of RUTAS) {
       burger: !!document.querySelector('.w-nav-button') && getComputedStyle(document.querySelector('.w-nav-button')).display !== 'none',
       main: !!document.querySelector('main'),
     }));
-    const nombre = `${ruta.replace(/\//g, '_') || '_home'}-${w}`.replace(/^_/, '');
+    const nombre = `${ruta === '/' ? 'home' : ruta.slice(1).replace(/\//g, '_')}-${w}`;
     await p.screenshot({ path: path.join(OUT, `${nombre}.jpg`), type: 'jpeg', quality: 60 });
     filas.push({ ruta, ancho: w, ...m, videos: [...new Set(videos)], errores });
     await ctx.close();
