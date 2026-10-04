@@ -164,8 +164,21 @@ const MIN_BLOQUES = 7;
  *                                                         rejilla de 2 columnas <992, icono,
  *                                                         línea recortada, botón de la banda y
  *                                                         el velo en longitud bajo el título)
- *      con 96 KB (98 304 B) .................. quedan   197 B libres */
-const TOPE_BYTES = 96 * 1024;
+ *      con 96 KB (98 304 B) .................. quedan   197 B libres *
+ *  ── 4-oct-2026 · SUBE A 97 (GALERIA-HUB ajustes 3). LO DECIDE SEBASTIAN, LA QUINTA SEGUIDA ──
+ *
+ *  La tarjeta movil de la banda pasa de foto-con-velo a ficha (foto arriba, cuerpo blanco), y el
+ *  acordeon de escritorio tiene que restablecerse entero desde 992: son reglas que no existian.
+ *  Se pregunto antes de escribir nada y Sebastian eligio subir a recortar otra hoja. Medido:
+ *
+ *      capa sin comentarios .................. 98 091 B de 98 304  ->    213 B libres
+ *      lo que emite ajustes 3 ................    579 B  (`caracteristicas.css` 7 131 -> 7 710)
+ *      con 97 KB (99 328 B) .................. quedan   658 B libres
+ *
+ *  La pregunta de que sobra (`estimacion.css`, `contacto.css`) sigue abierta y sigue siendo del
+ *  director.
+ */
+const TOPE_BYTES = 97 * 1024;
 
 const sinComentarios = (s) => s.replace(/\/\*[\s\S]*?\*\//g, '');
 

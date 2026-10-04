@@ -3,6 +3,18 @@
 Webflow → Astro 5 + Sanity + Vercel. Una entrada por fase, **escrita al cerrar la fase**,
 nunca al empezarla. Si una fase se reabre, se añade una entrada nueva; no se edita la vieja.
 
+## GALERIA-HUB · ajustes 3 — la tarjeta móvil con la foto arriba (4-oct-2026)
+
+Sebastian: en móvil la foto era fondo bajo un velo navy al 72 % y no se veía. Por debajo de 992 la tarjeta pasa a
+ficha, como la de servicios de la home: foto arriba en flujo, limpia y entera (1:1; 4:3 desde 768), icono encima de
+la foto, cuerpo blanco con borde `--mm-borde` y `--mm-sombra-1`, título y línea navy (15,60:1) y botón «See photos»
+al fondo, alineado en cada fila (12 px; 14-16 desde 768). Toda la tarjeta sigue navegable (`::after` del botón,
+ahora anclado a la tarjeta). Se quitan la proporción 4/7-4/5 y el suelo de 288 px: el alto sale del contenido.
+La rejilla de 2 columnas no cambia. Escritorio intacto: ≥992 restablece foto y bloque absolutos, velo y tinta
+blanca; banda a 992/1440/1920, en reposo y abierta, 0 px distintos contra producción. Tope de `check:tokens`
+96 → 97 KB, decidido por Sebastian (quedan 0,6 KB). Puertas: tokens, rutas, enlaces, redirects,
+estructura:ciudades, galeria, seo y texto (5 rutas) VERDES; interacción 22/22.
+
 ## GALERIA-HUB · ajustes 2 — columnas más bajas, foto nueva de Pools & Spas, botón de una línea (4-oct-2026)
 
 Pedido por Sebastian sobre capturas de producción. **Escritorio:** la columna baja al ~64 %
