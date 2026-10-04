@@ -54,6 +54,10 @@ const config = JSON.parse(fs.readFileSync(CONF, 'utf8'));
  */
 const aRegex = (source) => {
   if (source === '/(.*)') return '^/(.*)$';
+  /* SEO-REMEDIACION (4-oct-2026): las cabeceras de cache de `/videos/`, `/images/` y `/fonts/`.
+   * Solo un prefijo de directorio literal seguido de `(.*)`; cualquier otra forma sigue rojo. */
+  const pref = source.match(/^(\/[a-z0-9-]+\/)\(\.\*\)$/);
+  if (pref) return `^${pref[1]}(.*)$`;
   if (/^\/[A-Za-z0-9\-._~/]*$/.test(source)) return `^${source.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`;
   console.error(`\nROJO no se como traducir el source ${JSON.stringify(source)}.`);
   console.error('   Anade el patron a aRegex() en scripts/build-vercel-config.mjs, a proposito.\n');

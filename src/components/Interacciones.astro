@@ -444,12 +444,71 @@ const REVEALS = JSON.stringify(reveals.porId);
       matchMedia('(min-width: 992px)').addEventListener('change', (m) => { if (m.matches) abrir(false); });
     }
 
-    // ── 5 · el boton play/pausa de los videos de fondo ───────────────────
+    // ── 5 · los videos de fondo: carga diferida y boton play/pausa ───────
+    //
+    // SEO-REMEDIACION (4-oct-2026). El HTML sale SIN `src` y sin `autoplay` (lo reescribe
+    // `src/lib/video-fondo.mjs`): el LCP lo pinta el poster `<img>`. Aqui se decide si el video
+    // llega, y cuando:
+    //   · nunca por debajo de 768 px (decision de Sebastian), ni con `prefers-reduced-motion`,
+    //     ni con Save-Data;
+    //   · el del heroe, cuando la pagina ya ha cargado y el navegador esta ocioso;
+    //   · los demas (seccion 3D), cuando se acercan al viewport.
+    // Fuera de pantalla se pausan: un video que nadie ve no tiene por que gastar CPU.
+    // El boton de pausa nace `hidden` y solo se destapa si hay video que pausar.
+    const ancho = matchMedia('(min-width: 768px)');
+    const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const ahorro = !!(navigator.connection && navigator.connection.saveData);
+    const videos = [...document.querySelectorAll('video[data-mm-video]')];
+    const cargaVideo = (video) => {
+      if (video.dataset.mmCargado !== undefined || !ancho.matches) return;
+      const fuentes = video.querySelectorAll('source[data-src]');
+      if (!fuentes.length) return;
+      for (const f of fuentes) f.src = f.dataset.src;
+      video.muted = true;
+      video.loop = true;
+      video.dataset.mmCargado = '';
+      video.addEventListener('playing', () => {
+        video.dataset.mmReproduciendo = '';
+        const control = video.parentElement.querySelector('[aria-live]');
+        if (control) control.hidden = false;
+      }, { once: true });
+      video.load();
+      video.play().catch(() => {});
+    };
+    if (!quieto && !ahorro && videos.length) {
+      const visibles = new IntersectionObserver((entradas) => {
+        for (const e of entradas) {
+          // Se observa la CAJA, no el `<video>`: el video va `display:none` hasta que carga y un
+          // elemento sin caja nunca «intersecta».
+          const v = e.target.querySelector('video[data-mm-video]');
+          if (!v) continue;
+          if (e.isIntersecting) {
+            if (v.dataset.mmCargado === undefined) cargaVideo(v);
+            else if (v.dataset.mmPausaUsuario === undefined) v.play().catch(() => {});
+          } else if (v.dataset.mmCargado !== undefined) v.pause();
+        }
+      }, { rootMargin: '200px 0px' });
+      const arranca = () => {
+        for (const v of videos) {
+          if (v.dataset.mmVideo === 'heroe') cargaVideo(v);
+          visibles.observe(v.parentElement);
+        }
+      };
+      const ocioso = window.requestIdleCallback || ((f) => setTimeout(f, 200));
+      const tras = () => ocioso(arranca, { timeout: 2000 });
+      if (document.readyState === 'complete') tras();
+      else addEventListener('load', tras, { once: true });
+      // Si se gira la tableta o se agranda la ventana por encima de 768, que llegue el video.
+      ancho.addEventListener('change', (m) => { if (m.matches && document.readyState === 'complete') arranca(); });
+    }
     for (const b of document.querySelectorAll('.w-background-video--control')) {
       const video = b.closest('.w-background-video')?.querySelector('video');
       if (!video) continue;
       b.setAttribute('aria-label', 'Play or pause the background video');
-      b.addEventListener('click', () => { video.paused ? video.play() : video.pause(); });
+      b.addEventListener('click', () => {
+        if (video.paused) { delete video.dataset.mmPausaUsuario; video.play(); }
+        else { video.dataset.mmPausaUsuario = ''; video.pause(); }
+      });
     }
 
     // ── 6 · el acordeon de «Project Gallery» (antes «Pool Features & Upgrades») ──

@@ -30,6 +30,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { rutaCiudad, esCiudad } from './lib/renombradas.mjs';
+import { LINEA_PISCINA, DE_PISCINA } from '../src/lib/identidad.mjs';
 
 const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const P_FILAS = path.join(RAIZ, 'src/data/ciudades-captacion.json');
@@ -74,7 +75,12 @@ function condadosVerificados() {
  *   «Free Estimate»                          terminologia aprobada, hoja 18 VERIFICADO
  *   lista de «what is included»              paso 4 del proceso y FAQ 4, ya en el sitio
  */
-const LICENCIAS = 'Florida certified pool contractor · CPC1461119 · CPC1460562';
+/** El CTA principal de las landings de piscina (decision de Sebastian, 4-oct-2026). Llega a
+ *  `[slug].astro` y a `check-texto.mjs` por el JSON generado, nunca importando este script. */
+const CTA_EVALUACION = 'Request a Design-Build Project Evaluation';
+const BOTON_EVALUACION = 'Request My Project Evaluation';
+/* La linea de licencia sale de la fuente unica (`src/lib/identidad.mjs`, SEO-REMEDIACION). */
+const LICENCIAS = LINEA_PISCINA;
 
 function entradaCaptacion(c) {
   /* El condado solo entra en el copy si esta verificado. Sin el, la frase se escribe sin el
@@ -91,6 +97,10 @@ function entradaCaptacion(c) {
         + 'construction and final start-up, from one licensed team.',
       licencias: LICENCIAS,
       ancla: '#estimate',
+      /* SEO-REMEDIACION (Sebastian, 4-oct-2026): el CTA principal de las landings de piscina deja
+       * de vender «Free Estimate» y pide una evaluacion del proyecto, que es lo que de verdad se
+       * hace —visita, diseno 3D, alcance y precio por escrito—. «Free» sigue en la entradilla. */
+      cta: CTA_EVALUACION,
       /* El de SU region primero. En North Florida coincide con el orden de `telefonos.json`;
        * en una ciudad de Broward o Palm Beach (fase 2) no, y ahi esta la razon de la clave. */
       zonas: c.region === 'South Florida'
@@ -103,7 +113,7 @@ function entradaCaptacion(c) {
         { icono: 'manos', titulo: 'One design-build team',
           texto: 'Design, engineering, permits and construction under one roof.' },
         { icono: 'escudo', titulo: 'Florida licensed pool contractor',
-          texto: 'CPC1461119 and CPC1460562, published on every page of this site.' },
+          texto: `${DE_PISCINA.join(' and ')}, published on every page of this site.` },
         { icono: 'plano', titulo: '3D design before you commit',
           texto: 'You review a 3D design of your pool before anything is dug.' },
         { icono: 'contrato', titulo: 'Permits and code handled',
@@ -111,9 +121,10 @@ function entradaCaptacion(c) {
       ],
     },
     formulario: {
-      titulo: 'Get a Free Estimate',
+      titulo: CTA_EVALUACION,
+      boton: BOTON_EVALUACION,
       entradilla: 'Tell us about your project and we will come back with next steps. '
-        + 'No cost, no obligation.',
+        + 'Free estimate, no obligation.',
       proyectoPorDefecto: 'New Custom Pool',
       /* CADA CIUDAD, SU PROPIO CUBO DE LEADS. R19 ya pago el error contrario: con un `data-name`
        * compartido, catorce servicios llegaban al correo con el mismo asunto e indistinguibles en
@@ -166,7 +177,11 @@ function entradaCaptacion(c) {
          * septico y caliza en North Florida) con su `_fuente` al lado, que no se publica. Hoy la
          * traen Gainesville y Ocala, las dos landings de pago con condado verificado; las otras
          * 51 siguen con las tres de la plantilla y no inventan una cuarta. */
-        ...(c.faqExtra ?? []).map(({ pregunta, respuesta }) => ({ pregunta, respuesta })),
+        /* SEO-REMEDIACION (4-oct-2026): `fuentes` se PUBLICA, a diferencia de `_fuente`. Son las
+         * paginas oficiales de cada oficina, comprobadas el 4-oct-2026; la plantilla las pinta
+         * dentro del desplegable, debajo de la respuesta, y el `FAQPage` lleva solo la respuesta. */
+        ...(c.faqExtra ?? []).map(({ pregunta, respuesta, fuentes }) => (
+          fuentes ? { pregunta, respuesta, fuentes } : { pregunta, respuesta })),
       ],
     },
   };

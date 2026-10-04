@@ -1,0 +1,51 @@
+---
+/**
+ * LA MIGA VISIBLE (SEO-REMEDIACION, 4-oct-2026).
+ *
+ * Hasta hoy solo `/gallery/<categoria>` ensenaba la miga; el resto la publicaba solo en JSON-LD
+ * (`#miga`). Las landings de ciudad la necesitan a la vista: dicen en una linea donde esta el
+ * visitante («Home / Pool Builders / Gainesville, FL») y le dan la vuelta a la ficha de Pool
+ * Builders sin pasar por el menu.
+ *
+ * SALE DE LA MISMA FUNCION QUE EL `BreadcrumbList` (`tramosMiga`, `src/lib/miga-tramos.mjs`):
+ * Google pide que la miga marcada y la visible coincidan, y con una sola fuente no pueden
+ * separarse. El separador «/» va en `::before`, asi que no entra en el `innerText`.
+ */
+import { tramosMiga } from '../lib/miga-tramos.mjs';
+const { ruta } = Astro.props;
+const tramos = tramosMiga(ruta);
+---
+{tramos.length > 1 && (
+  <nav class="mm-migas" aria-label="Breadcrumb">
+    <div class="w-layout-blockcontainer container w-container">
+      <ol>
+        {tramos.map((t, i) => (i === tramos.length - 1
+          ? <li aria-current="page">{t.nombre}</li>
+          : <li><a href={t.href}>{t.nombre}</a></li>))}
+      </ol>
+    </div>
+  </nav>
+)}
+<style is:global>
+  /* Una franja fina sobre fondo blanco, entre el heroe y la franja de confianza. Los colores
+   * son los de `.gal-migas`: --mm-tinta-atenuada sobre blanco 5,26:1, --mm-enlace 6,57:1. */
+  .mm-migas { background: var(--mm-fondo); padding: var(--mm-e-12) 0; }
+  .mm-migas ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--mm-e-8);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--mm-paso-1);
+    color: var(--mm-tinta-atenuada);
+  }
+  .mm-migas li + li::before { content: "/"; margin-right: var(--mm-e-8); }
+  .mm-migas a {
+    display: inline-block;
+    min-height: 24px;
+    color: var(--mm-enlace);
+    text-decoration: underline;
+    text-underline-offset: .2em;
+  }
+</style>

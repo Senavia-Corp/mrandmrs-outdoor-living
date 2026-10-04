@@ -233,7 +233,7 @@ const PROPIEDAD = ['Yes, I own this property', 'No', 'Other'];
           </label>
 
           <div class="svc-form__envio">
-            <input type="submit" data-wait="Please wait..." class="button w-button" value="Get a Free Estimate" />
+            <input type="submit" data-wait="Please wait..." class="button w-button" value={d.boton ?? 'Get a Free Estimate'} />
           </div>
 
           {/* HONEYPOT. En los derivados lo inyecta `build-paginas.mjs`; este componente no pasa

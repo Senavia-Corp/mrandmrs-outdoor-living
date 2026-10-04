@@ -21,6 +21,7 @@ import Nav from '../components/Nav.astro';
 import META_PROPIA from '../data/meta-propia.json';
 import TELEFONOS from '../data/telefonos.json';
 import { negocio, miga } from '../lib/negocio.mjs';
+import { videoFondo, precargaPoster } from '../lib/video-fondo.mjs';
 import Footer from '../components/Footer.astro';
 import ClickToCall from '../components/widgets/ClickToCall.astro';
 import Interacciones from '../components/Interacciones.astro';
@@ -143,6 +144,7 @@ import '../styles/faq.css';            // .faq-section 16                       
 // CSS de autor, DESPUES de webflow.css para ganar por orden y sin `!important`.
 // Hoy solo lleva el arreglo del solape del logo del nav entre 992 y 1204 px.
 import '../styles/propio.css';
+import '../styles/video-fondo.css';  // .w-background-video 65 (póster LCP)           -> SEO-REMEDIACIÓN
 
 interface Props {
   titulo: string;
@@ -275,12 +277,27 @@ const laMiga = YA_TIENE_MIGA ? null : miga(ruta);
 if (laMiga) inyectados.push(laMiga);
 
 const jsonLd = [...(seo.jsonLd ?? []), ...inyectados];
+
+/**
+ * SEO-REMEDIACIÓN (4-oct-2026) — LOS VÍDEOS DE FONDO PASAN POR UN SOLO SITIO.
+ *
+ * El contenido se renderiza aquí a cadena y `videoFondo()` reescribe cada
+ * `.w-background-video`: póster `<img>` como LCP, vídeo sin `autoplay` y con `preload="none"`.
+ * Así lo reciben las 65 rutas con vídeo sin tocar sus 65 generadores. Si la página tiene
+ * héroe de vídeo, su póster se precarga en el `<head>` (la MISMA URL que pinta el `<img>`).
+ */
+const { html: contenido, heroe: posterHeroe } = videoFondo(await Astro.slots.render('default'));
+const precargas = posterHeroe ? precargaPoster(posterHeroe) : [];
 ---
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {precargas.map((p) => (
+      <link rel="preload" as="image" type="image/avif" media={p.media} imagesrcset={p.imagesrcset}
+        imagesizes={p.imagesizes} fetchpriority="high" />
+    ))}
     {FUENTES_PRECARGA.map((u) => (
       <link rel="preload" href={u} as="font" type="font/woff2" crossorigin="anonymous" />
     ))}
@@ -374,7 +391,7 @@ const jsonLd = [...(seo.jsonLd ?? []), ...inyectados];
         compara línea a línea. Es la única página así de las 115. */}
     <slot name="antes-nav" />
     <Nav ruta={ruta} />
-    <slot />
+    <Fragment set:html={contenido} />
     {conPie && <Footer ruta={ruta} />}
     {/* 2 páginas llevan un <script>+<style> DESPUÉS del pie: el redimensionador del iframe
         del estimador. Va en su sitio o cambia el orden del documento. */}

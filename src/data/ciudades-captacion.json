@@ -213,8 +213,18 @@
       "faqExtra": [
         {
           "pregunta": "Which office reviews a pool permit in Ocala?",
-          "respuesta": "It depends on the address. Inside the City of Ocala, the city's building division reviews the plans and inspects the pool; in unincorporated Marion County, the county's building department does. Many lots in the area sit on limestone close to the surface and on septic systems or wells, so we probe the site and locate the tank and drainfield before the design is drawn, and we pull the permit under our state license either way.",
-          "_fuente": "City of Ocala (ocalafl.gov) y Marion County (marionfl.org) tienen cada uno su building department; la caliza somera y los sistemas septicos de Marion estan en la guia building-a-pool-in-north-florida y en el articulo de permisos. Sin cifras ni plazos."
+          "respuesta": "It depends on the address. Inside the City of Ocala, the city's Building Services division reviews the plans and inspects the pool; in unincorporated Marion County, the county's Building Safety department does. Both review a residential pool against the Florida Building Code, including the safety-barrier requirements of Florida's Residential Swimming Pool Safety Act. Many lots in the area sit on limestone close to the surface and on septic systems or wells, so we probe the site and locate the tank and drainfield before the design is drawn, and we pull the permit under our state license either way.",
+          "fuentes": [
+            {
+              "nombre": "City of Ocala Building Services",
+              "url": "https://www.ocalafl.gov/government/city-departments-a-h/growth-management/building"
+            },
+            {
+              "nombre": "Marion County Building Safety",
+              "url": "https://www.marionfl.org/agencies-departments/departments-facilities-offices/building-safety"
+            }
+          ],
+          "_fuente": "Comprobado el 4-oct-2026 en las paginas oficiales enlazadas: City of Ocala Building Division (Growth Management) y Marion County Building Safety. La caliza somera y los sistemas septicos de Marion estan en la guia building-a-pool-in-north-florida. Sin cifras ni plazos."
         }
       ]
     },
@@ -235,8 +245,18 @@
       "faqExtra": [
         {
           "pregunta": "Which office reviews a pool permit in Gainesville?",
-          "respuesta": "It depends on the address. Inside the City of Gainesville, the city's building division reviews the plans and inspects the pool; in unincorporated Alachua County, the county's building division does. Many lots here are also on a septic system or a well, and the state onsite sewage program reviews the separation from the drainfield before the building permit. We confirm which jurisdiction applies before the design is drawn, and we pull the permit under our state license either way.",
-          "_fuente": "City of Gainesville (gainesvillefl.gov) y Alachua County (alachuacounty.us) tienen cada uno su building division; el programa estatal de onsite sewage (FDEP) revisa la separacion del drainfield. Sin cifras, sin plazos, sin nombres de oficina que puedan cambiar."
+          "respuesta": "It depends on the address. Inside the City of Gainesville, the city's Building Division reviews the plans and inspects the pool; in unincorporated Alachua County, the county's Building Division does. Both review a residential pool against the Florida Building Code, including the safety-barrier requirements of Florida's Residential Swimming Pool Safety Act, and the electrical and plumbing work is permitted with it. Many lots here are also on a septic system or a well, and the state onsite sewage program reviews the separation from the drainfield before the building permit. We confirm which jurisdiction applies before the design is drawn, and we pull the permit under our state license either way.",
+          "fuentes": [
+            {
+              "nombre": "City of Gainesville Building Division: residential swimming pool checklist",
+              "url": "https://www.gainesvillefl.gov/files/assets/public/v/1/sustainable-development/building-inspection/residential-swimming-pool.pdf"
+            },
+            {
+              "nombre": "Alachua County Building Division: in-ground residential pool plan checklist",
+              "url": "https://epermit.alachuacounty.us/formsdocs/BLD_In-Ground_Residential_Pool_Plan_Exam_Checklist.pdf"
+            }
+          ],
+          "_fuente": "Comprobado el 4-oct-2026 en las paginas oficiales enlazadas: la ciudad pide permiso para piscina/spa con permisos separados de electrico y fontaneria y formulario de barrera (FBC-Residential cap. 45); el condado pide el formulario de la Residential Swimming Pool Safety Act (F.S. 515) para agua de 24 in o mas. El programa estatal de onsite sewage (FDEP) revisa la separacion del drainfield. Sin cifras, sin plazos."
         }
       ]
     },

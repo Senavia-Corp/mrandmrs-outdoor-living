@@ -44,13 +44,13 @@ const CONDADOS = ['Alachua', 'Broward', 'Columbia', 'Dixie', 'Gilchrist',
   'Levy', 'Marion', 'Palm Beach', 'Putnam'];
 
 /**
- * Las dos licencias de contratista que el pie publica en las 122 páginas
- * (`src/components/Footer.astro`: «Licensed & Insured | CPC1461119 | CPC1460562»). Un número de
- * licencia es exactamente el tipo de dato que un motor generativo puede atribuir y verificar,
- * así que pasa al marcado en vez de quedarse solo como texto del pie.
- * Sigue pendiente que Sebastian confirme que las dos están VIGENTES.
+ * LAS LICENCIAS salen de `identidad.mjs` (SEO-REMEDIACION, 4-oct-2026). Antes aqui solo habia
+ * las dos CPC, con un comentario que decia que el pie solo publica esas dos — y el pie publica
+ * tambien SCC131153553 en las 169 paginas. Un numero de licencia es justo el tipo de dato que un
+ * motor generativo puede atribuir y verificar, asi que van las tres, cada una con su descripcion
+ * generica (la clase exacta de cada una esta pendiente del cliente).
  */
-const LICENCIAS = ['CPC1461119', 'CPC1460562'];
+import { LICENCIAS } from './identidad.mjs';
 
 /**
  * El nodo del negocio. `LocalBusiness` es subtipo de `Organization`, así que un solo nodo sirve
@@ -78,58 +78,14 @@ export function negocio() {
       { '@type': 'State', name: 'Florida' },
       ...CONDADOS.map((c) => ({ '@type': 'AdministrativeArea', name: `${c} County, Florida` })),
     ],
-    identifier: LICENCIAS.map((v) => ({
-      '@type': 'PropertyValue', name: 'Florida Certified Pool Contractor License', value: v,
+    identifier: LICENCIAS.map((l) => ({
+      '@type': 'PropertyValue', name: l.descripcion, value: l.numero,
     })),
     sameAs: PERFILES,
   };
 }
 
-/** Cómo se lee cada tramo de URL en la miga. Lo que no esté aquí se titula por el slug. */
-const NOMBRE_TRAMO = {
-  'where-we-serve': 'Where We Serve',
-  'project': 'Projects',
-  'blogs': 'Blog',
-  'articles': 'Articles',
-  // Las 14 fichas de `/services/` (migracion de URLs del 3-oct-2026): el slug es corto y el
-  // nombre lleva siglas o ampersand que `capitaliza()` no sabe poner.
-  'pool-builders': 'Pool Builders',
-  'pool-remodeling': 'Pool Remodeling',
-  'pergola-builders': 'Pergola Builders',
-  'outdoor-kitchens': 'Outdoor Kitchens',
-  'louvered-roofs': 'Louvered Roofs',
-  'retractable-screens': 'Retractable Screens',
-  'patio-screen-rooms': 'Patio Screen Rooms',
-  'pool-screen-enclosures': 'Pool Screen Enclosures',
-  'deck-builders': 'Deck Builders',
-  'landscaping': 'Landscaping',
-  'irrigation-systems': 'Irrigation Systems',
-  'outdoor-furniture': 'Outdoor Furniture',
-  'steel-buildings-pole-barns': 'Steel Buildings & Pole Barns',
-  'soffit-led-lighting': 'Soffit LED Lighting',
-};
-
-/**
- * TRAMOS SIN PAGINA. `/services` no existe como ruta navegable (no hay hub de servicios: las
- * 14 fichas cuelgan del megamenu y de la home), y un `ListItem` cuyo `item` responde 404 es
- * marcado que miente. Se OMITE el escalon en vez de inventarle una URL: la miga de una ficha
- * es `Home -> Pool Builders`, y la de una ciudad `Home -> Pool Builders -> Ocala, FL`, que es
- * exactamente la jerarquia de URLs (`/services/pool-builders/ocala-fl`) sin el tramo mudo.
- * El dia que exista `/services`, se quita de aqui y la miga lo pinta solo.
- */
-const SIN_PAGINA = new Set(['services', 'articles']);
-
-/**
- * TRAMOS CUYO HUB VIVE EN OTRA URL. `/blogs` no existe: el indice del blog es `/blogs-tips`; y el
- * indice de las fichas de `/project/` es `/projects`. Sin esto la miga de 90 articulos y 15 obras
- * apuntaba a dos 404 (medido por `check:redirects`, punto 9).
- */
-const ITEM_DE = { blogs: '/blogs-tips', project: '/projects' };
-
-const capitaliza = (s) => s.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
-/** `ocala-fl` -> «Ocala, FL»; `palm-beach-county-fl` -> «Palm Beach County, FL». */
-const titula = (s) => NOMBRE_TRAMO[s]
-  ?? (/-fl$/.test(s) ? `${capitaliza(s.replace(/-fl$/, ''))}, FL` : capitaliza(s));
+import { tramosMiga } from './miga-tramos.mjs';
 
 /**
  * `BreadcrumbList` derivado de la ruta. Google lo pinta en el SERP en vez de la URL cruda, y
@@ -138,25 +94,14 @@ const titula = (s) => NOMBRE_TRAMO[s]
  * ya traiga la suya, que decide quien llama.
  */
 export function miga(ruta) {
-  const tramos = ruta.split('/').filter(Boolean);
-  if (!tramos.length) return null;
-  const items = [{ '@type': 'ListItem', position: 1, name: 'Home', item: SITIO }];
-  let acum = '';
-  for (const t of tramos) {
-    acum += `/${t}`;
-    if (SIN_PAGINA.has(t)) continue;
-    items.push({
-      '@type': 'ListItem',
-      position: items.length + 1,
-      name: titula(t),
-      item: `${SITIO}${ITEM_DE[t] ?? acum}`,
-    });
-  }
-  if (items.length < 2) return null;
+  const tramos = tramosMiga(ruta);
+  if (tramos.length < 2) return null;
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     '@id': `${SITIO}${ruta}#miga`,
-    itemListElement: items,
+    itemListElement: tramos.map((t, i) => ({
+      '@type': 'ListItem', position: i + 1, name: t.nombre, item: `${SITIO}${t.href}`,
+    })),
   };
 }

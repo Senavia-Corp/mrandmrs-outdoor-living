@@ -108,6 +108,9 @@ const FORMULARIOS: Record<string, { titulo: string; campos: [string, string][] }
       ['Full-Name', 'Full name'], ['email', 'Email'], ['Phone', 'Phone'],
       ['Street-Address', 'Street address'], ['City', 'City'], ['State', 'State'],
       ['ZIP-Code', 'ZIP code'], ['Estimated-Project-Budget', 'Budget'],
+      /* SEO-REMEDIACION (4-oct-2026): los dos cualificadores opcionales nuevos del formulario
+       * generico, con el mismo nombre de campo que en las landings (`FormularioCore.astro`). */
+      ['Type', 'Homeowner'], ['Timeline', 'Timeline'],
       ['checkbox', 'Services of interest'],
     ],
   },

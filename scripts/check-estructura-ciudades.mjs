@@ -62,8 +62,11 @@ const SIN = [
    * pinta nada, asi que la galeria cae entre `trusted-section` y `_3d-section`: el mismo punto
    * logico que en `CON`, donde va detras del formulario. Hoy ninguna ciudad cae en esta forma
    * (53/53 tienen entrada); la lista es la red para la que llegue sin ella. */
-  'hero-glass-section', 'trusted-section', 'gallery', '_3d-section', 'animated-divs-section',
-  'testimonial-section', 'projects-section', 'blog-section-page', 'social-media', 'cta-footer',
+  /* SEO-REMEDIACION (4-oct-2026): la banda baja detras de la obra aqui tambien; sin captacion
+   * no hay FAQ, asi que cae justo antes del blog. */
+  'hero-glass-section', 'trusted-section', 'gallery', '_3d-section',
+  'testimonial-section', 'projects-section', 'animated-divs-section', 'blog-section-page',
+  'social-media', 'cta-footer',
 ];
 const CON = [
   /* R21: `products-section` es el panel de servicios de la home (`ServiciosPorCategoria.astro`,
@@ -74,9 +77,12 @@ const CON = [
   /* R21: `gallery` es la galeria de obra (`GaleriaObra.astro`), que Sebastian pidio entre el
    * formulario y el 3D. Misma primera clase que la de las 14 fichas de `/services/` —para que
    * `check:galeria` mida lo mismo aqui que alli— mas `svc-galeria`, que es el hook de `restos`. */
+  /* SEO-REMEDIACION (Sebastian, 4-oct-2026): la banda «Project Gallery» (`animated-divs-section`)
+   * y el panel de servicios (`products-section`) bajan DETRAS de la FAQ. Son paginas de piscina y
+   * los servicios secundarios no pueden ir por encima de las resenas, la obra y la FAQ. */
   'hero-glass-section', 'svc-confianza', 'trusted-section', 'appointment-section', 'gallery',
-  '_3d-section', 'animated-divs-section', 'products-section', 'testimonial-section',
-  'projects-section', 'svc-inversion', 'faq-section', 'blog-section-page', 'social-media',
+  '_3d-section', 'testimonial-section', 'projects-section', 'svc-inversion', 'faq-section',
+  'animated-divs-section', 'products-section', 'blog-section-page', 'social-media',
   'cta-footer',
 ];
 

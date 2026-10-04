@@ -290,6 +290,49 @@ function apartaBloquesPropios(ruta, lista, problemas) {
   return quedan;
 }
 
+/**
+ * ── SEO-REMEDIACION (4-oct-2026) · BLOQUES SUSTITUIDOS ──────────────────────────────────────
+ *
+ * La cuarta categoria. Las tres de arriba declaran bloques que se ANADEN, partes que CRECEN y
+ * valores que se CORRIGEN; ninguna sabia decir «este bloque del origen se va y otro ocupa su
+ * sitio», asi que quitar el `LocalBusiness` falso de las 53 ciudades daba «JSON-LD: 1 -> 0» sin
+ * forma honrada de declararlo.
+ *
+ * Por ruta: el `@type` que se va (tiene que estar UNA vez en el baseline), el que llega (UNA vez
+ * en el build) y lo que el nuevo tiene que cumplir. Lo que no esta declarado sigue comparandose
+ * caracter a caracter.
+ */
+let sustituidosCasados = 0;
+const BLOQUES_SUSTITUIDOS = (ruta) => (ruta === '/' ? {
+  viejo: 'Organization',
+  nuevo: 'WebSite',
+  motivo: 'la home publicaba un Organization sin @id junto al #negocio: dos entidades para una empresa.',
+  valida: (n) => {
+    const m = [];
+    if (n['@id'] !== `${SITIO_R22}/#website`) m.push(`@id "${n['@id']}"`);
+    if (n.url !== `${SITIO_R22}/`) m.push(`url "${n.url}"`);
+    if (n.publisher?.['@id'] !== `${SITIO_R22}/#negocio`) m.push('publisher no es #negocio');
+    if (!String(n.name ?? '').trim()) m.push('sin name');
+    return m;
+  },
+} : esCiudad(ruta) ? {
+  viejo: 'LocalBusiness',
+  nuevo: 'Service',
+  motivo: 'el LocalBusiness por ciudad de Webflow (nombre = la ciudad, geo vacio, priceRange $$$$) '
+    + 'inventaba una sede en cada una de las 53; pasa a Service prestado por #negocio.',
+  valida: (n, r) => {
+    const m = [];
+    const abs = `${SITIO_R22}${r}`;
+    if (n['@id'] !== `${abs}#servicio`) m.push(`@id "${n['@id']}", se esperaba "${abs}#servicio"`);
+    if (n.url !== abs) m.push(`url "${n.url}" no es la canonica`);
+    if (n.provider?.['@id'] !== `${SITIO_R22}/#negocio`) m.push('provider no es #negocio');
+    if (n.areaServed?.['@type'] !== 'City' || !String(n.areaServed?.name ?? '').trim()) m.push('areaServed sin City');
+    for (const c of ['address', 'geo', 'priceRange', 'aggregateRating']) if (c in n) m.push(`trae ${c}: un Service no tiene sede`);
+    if (!String(n.serviceType ?? '').trim() || !String(n.description ?? '').trim()) m.push('sin serviceType o description');
+    return m;
+  },
+} : null);
+
 const JSONLD_ARREGLADO = {
   '/services/pool-builders': {
     bloque: 0,
@@ -309,6 +352,11 @@ const JSONLD_ARREGLADO = {
      * anadidas tengan nombre y respuesta no vacios y que no repitan cifras de dinero: una
      * declaracion que no comprueba nada es un agujero con comentario. */
     respuestaSustituida: { camino: 'mainEntity.mainEntity.4.acceptedAnswer.text', empiezaPor: 'We connect qualified Florida homeowners' },
+    /* SEO-REMEDIACION (4-oct-2026): «~7 % de valor» y «tres a seis meses» eran cifras sin fuente. */
+    respuestasSustituidas: [
+      { camino: 'mainEntity.mainEntity.0.acceptedAnswer.text', empiezaPor: 'Yes. Custom pool installation can increase' },
+      { camino: 'mainEntity.mainEntity.3.acceptedAnswer.text', empiezaPor: 'Custom pool construction in Florida typically takes' },
+    ],
     anadidas: { camino: 'mainEntity.mainEntity', n: 3 },
   },
 
@@ -429,6 +477,11 @@ const JSONLD_ARREGLADO = {
      * financiacion dentro. Se le pone la pregunta que se ve y la respuesta sin promesas. */
     anadidas: { camino: 'mainEntity.mainEntity', n: 3 },
     respuestaSustituida: { camino: 'mainEntity.mainEntity.4.acceptedAnswer.text', empiezaPor: "We partner with trusted lending provider" },
+    /* SEO-REMEDIACION (4-oct-2026): «hasta un 90 %» y «cuatro a ocho semanas» eran cifras sin fuente. */
+    respuestasSustituidas: [
+      { camino: 'mainEntity.mainEntity.1.acceptedAnswer.text', empiezaPor: 'Variable-speed pool pumps can reduce' },
+      { camino: 'mainEntity.mainEntity.2.acceptedAnswer.text', empiezaPor: 'Renovation timelines vary' },
+    ],
   },
   '/services/outdoor-furniture': {
     bloque: 0,
@@ -784,6 +837,35 @@ for (const [ruta, nombre, descripcion] of [
   };
 }
 
+/**
+ * ── SEO-REMEDIACION (4-oct-2026) · LA FAQ DE /about ─────────────────────────────────────────────
+ *
+ * Las cinco respuestas eran la MISMA frase comercial, tambien en el `FAQPage` anidado en el
+ * `AboutPage`. Se reescriben desde `src/data/textos-propios.json` (lo aplica `build-paginas.mjs`)
+ * y aqui se declara cada cambio leyendo el «era» del BASELINE, no del JSON: si el origen cambiara,
+ * la declaracion deja de casar.
+ */
+{
+  const TP = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/textos-propios.json'), 'utf8'));
+  const base = JSON.parse(fs.readFileSync(path.join(RAIZ, 'baseline/seo.json'), 'utf8'));
+  for (const [ruta, t] of Object.entries(TP)) {
+    if (ruta.startsWith('_') || !t.faq) continue;
+    const ld = base[ruta]?.jsonLd?.[0];
+    const qs = ld?.mainEntity?.mainEntity ?? [];
+    const cambios = [];
+    t.faq.preguntas.forEach((q, i) => {
+      cambios.push([`mainEntity.mainEntity.${i}.name`, qs[i]?.name, q.pregunta]);
+      cambios.push([`mainEntity.mainEntity.${i}.acceptedAnswer.text`, qs[i]?.acceptedAnswer?.text, q.respuesta]);
+    });
+    const ya = JSONLD_ARREGLADO[ruta];
+    JSONLD_ARREGLADO[ruta] = {
+      bloque: 0,
+      motivo: `${ya?.motivo ? `${ya.motivo} · ` : ''}SEO-REMEDIACION: ${t._motivo}`,
+      cambios: [...(ya?.cambios ?? []), ...cambios],
+    };
+  }
+}
+
 /** Lee/escribe por camino con puntos: `mainEntity.mainEntity.4.name`. */
 const porCamino = (o, c) => c.split('.').reduce((x, k) => (x == null ? x : x[k]), o);
 /* Crea los intermedios que falten: un arreglo declarado como `about.provider.@id` con `era`
@@ -922,8 +1004,24 @@ for (const ruta of conPropias(RUTAS)) {
     };
     const inyectados = todos.filter(esInyectado);
     // Los propios (§ BLOQUES_PROPIOS) salen de la comparacion DESPUES de pasar su propio examen.
-    const bloques = apartaBloquesPropios(ruta, todos.filter((b) => !esInyectado(b)), problemas);
-    const espLd = esperado.jsonLd ?? [];
+    let bloques = apartaBloquesPropios(ruta, todos.filter((b) => !esInyectado(b)), problemas);
+    let espLd = esperado.jsonLd ?? [];
+    /* § BLOQUES_SUSTITUIDOS: se exige el viejo en el baseline y el nuevo en el build, se valida
+     * el nuevo y los dos salen de la comparacion. */
+    const bs = BLOQUES_SUSTITUIDOS(ruta);
+    if (bs) {
+      const viejos = espLd.filter((b) => b?.['@type'] === bs.viejo);
+      if (viejos.length !== 1) problemas.push(`BLOQUES_SUSTITUIDOS: el baseline trae ${viejos.length} ${bs.viejo}, se declaro 1`);
+      const nuevos = bloques.filter((b) => { try { return JSON.parse(b.textContent)['@type'] === bs.nuevo; } catch { return false; } });
+      if (nuevos.length !== 1) problemas.push(`BLOQUES_SUSTITUIDOS: el build trae ${nuevos.length} ${bs.nuevo}, se declaro 1`);
+      else {
+        const n = JSON.parse(nuevos[0].textContent);
+        for (const m of bs.valida(n, ruta)) problemas.push(`${bs.nuevo} sustituto: ${m}`);
+        sustituidosCasados++;
+      }
+      espLd = espLd.filter((b) => b?.['@type'] !== bs.viejo);
+      bloques = bloques.filter((b) => !nuevos.includes(b));
+    }
 
     const neg = inyectados.map((b) => JSON.parse(b.textContent)).find((x) => x['@id'].endsWith('#negocio'));
     if (!neg) problemas.push('falta el bloque de negocio (#negocio) que Base.astro debe inyectar');
@@ -996,8 +1094,10 @@ for (const ruta of conPropias(RUTAS)) {
             if (enBuild !== es) malas.push(`arreglo "${camino}": el build dice "${enBuild}", se declaro "${es}"`);
             ponCamino(esperado, camino, es);
           }
-          if (ja.respuestaSustituida) {
-            const { camino, empiezaPor } = ja.respuestaSustituida;
+          /* SEO-REMEDIACION (4-oct-2026): una ficha puede sustituir VARIAS respuestas
+           * (`respuestasSustituidas`); `respuestaSustituida` sigue valiendo para una. */
+          for (const rs of [ja.respuestaSustituida, ...(ja.respuestasSustituidas ?? [])].filter(Boolean)) {
+            const { camino, empiezaPor } = rs;
             const enBase = String(porCamino(esperado, camino) ?? '');
             const enBuild = String(porCamino(mio, camino) ?? '');
             if (!enBase.startsWith(empiezaPor)) malas.push(`respuesta sustituida: el origen ya no empieza por "${empiezaPor}"`);
@@ -1083,6 +1183,14 @@ for (const [r, d] of Object.entries(BLOQUES_PROPIOS)) {
   console.log(`  ${bien ? 'ok  ' : 'ROJO'} declarado ${r}: 1 bloque ${d.tipo} propio con `
     + `${d.n} entrada(s), fuera de la comparacion con el baseline y con examen propio`);
   console.log(`       ${d.motivo}`);
+  if (!bien) fallos++;
+}
+/* SEO-REMEDIACION (4-oct-2026): § BLOQUES_SUSTITUIDOS, con su contador. Son las 53 ciudades. */
+{
+  const ciudades = RUTAS.filter(esCiudad).length + (RUTAS.includes('/') ? 1 : 0);
+  const bien = ciudades > 1 && sustituidosCasados === ciudades;
+  console.log(`  ${bien ? 'ok  ' : 'ROJO'} declarado BLOQUES_SUSTITUIDOS: LocalBusiness -> Service en las ciudades `
+    + `y Organization -> WebSite en /: ${sustituidosCasados}/${ciudades}, validados y fuera de la comparacion con el baseline`);
   if (!bien) fallos++;
 }
 /* R17-CORE. Misma regla: si no sale por pantalla, deja de estar declarado el dia que nadie abre

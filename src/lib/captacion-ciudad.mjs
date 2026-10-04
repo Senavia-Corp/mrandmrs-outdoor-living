@@ -183,7 +183,13 @@ export function heroeDeCaptacion(cadena, cap, telefonos, donde) {
     + `<span>${esc(cap.heroe.licencias)}</span></p>`;
   /* Los dos reemplazos van por FUNCION por el mismo motivo que el de arriba: el texto sale de
    * `captacion-servicios.json`, y un `$&` en el copy insertaria el marcador entero. */
-  return t
+  /* SEO-REMEDIACION (Sebastian, 4-oct-2026): el texto del CTA del heroe sale de `heroe.cta`
+   * cuando la entrada lo trae. Se cambia SOLO el primer `#estimate` -el del heroe, que acaba de
+   * escribir `trozo`-; el del nav y el del pie no pasan por aqui. Por funcion, como los demas. */
+  const conCta = (x) => (cap.heroe.cta
+    ? x.replace(/(<a href="#estimate" class="button button-styles w-button">)Get a Free Estimate</, (m, a) => `${a}${esc(cap.heroe.cta)}<`)
+    : x);
+  return conCta(t
     .replace(ANCLA_HEROE, () => trozo)
-    .replace(ANCLA_BLOQUE, () => `<div class="wrapper-main-hero-page svc-heroe--ciudad">${insignia}`);
+    .replace(ANCLA_BLOQUE, () => `<div class="wrapper-main-hero-page svc-heroe--ciudad">${insignia}`));
 }

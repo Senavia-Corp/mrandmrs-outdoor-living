@@ -1,0 +1,83 @@
+{
+  "_lee_esto": "SEO-REMEDIACION (4-oct-2026). Textos de paginas DERIVADAS de Webflow que se corrigen en el generador (`scripts/build-paginas.mjs`, `textosPropios()`), no a mano en el .astro: asi `npm run paginas` los conserva. Cada cambio de texto visible va declarado en `scripts/check-texto.mjs` (se lee de aqui) y cada cambio de JSON-LD en `scripts/check-seo.mjs`.",
+  "/about": {
+    "_motivo": "La FAQ de /about se titulaba «Commercial Pool Construction» y sus 5 respuestas eran LA MISMA frase («Yes. We design and construct pools to meet all Florida commercial standards…»), tambien en el FAQPage. Se reescribe con hechos que el sitio ya publica y verifica en otras paginas; la pregunta de garantias se sustituye porque no hay garantia confirmada (SEO_REQUIRES_CLIENT_DATA.md).",
+    "faq": {
+      "tituloEra": "FAQs – Commercial Pool Construction",
+      "titulo": "FAQs – Custom Pool Construction",
+      "preguntas": [
+        {
+          "era": "Are your pools commercial-grade?",
+          "pregunta": "Do you build residential or commercial pools?",
+          "respuesta": "Our focus is custom residential pools and complete pool remodels for Florida homeowners, designed and built by one licensed team. We also take on commercial and hospitality projects, which are described on our Industry Solutions page."
+        },
+        {
+          "era": "Do you manage all permitting?",
+          "pregunta": "Do you manage all permitting?",
+          "respuesta": "Yes. Permitting is part of the build: we prepare the submittal, pull the permits under our Florida contractor licenses and coordinate the city or county inspections through to final approval."
+        },
+        {
+          "era": "How long does construction take?",
+          "pregunta": "How long does construction take?",
+          "respuesta": "It depends on the design, the permit review and the site, so we give you a schedule for your own project in writing instead of a generic number. A custom pool moves through design and engineering, permitting, excavation, steel and gunite, plumbing and electrical, tile, coping and deck, interior finish and start-up, with inspections between stages."
+        },
+        {
+          "era": "Can you integrate spas, bars, or water features?",
+          "pregunta": "Can you integrate spas, bars, or water features?",
+          "respuesta": "Yes. Attached spas, tanning ledges, waterfalls, LED lighting and swim-up bars are designed into the pool from the first 3D rendering, and the same team can build the outdoor kitchen, pergola or deck around it."
+        },
+        {
+          "era": "Do you provide warranties?",
+          "pregunta": "Do you design the pool in 3D before construction?",
+          "respuesta": "Yes. Every custom pool design begins with a full 3D rendering, so you can review the layout, features and finishes before anything is dug."
+        }
+      ]
+    },
+    "sustituye": [
+      {
+        "era": "Fully licensed and insured for pool, structural, and outdoor construction projects across Florida. CPC1460562 & SCC131153553.",
+        "es": "Fully licensed and insured for pool, structural, and outdoor construction projects across Florida. CPC1461119, CPC1460562 & SCC131153553.",
+        "motivo": "la misma lista de licencias que el pie (src/lib/identidad.mjs); faltaba CPC1461119"
+      },
+      {
+        "era": "We treat every client like family, delivering honest communication, transparency, and care from start to finish ok.",
+        "es": "We treat every client like family, delivering honest communication, transparency, and care from start to finish.",
+        "motivo": "errata «ok.» al final de la frase"
+      }
+    ]
+  },
+  "/request-estimated": {
+    "_motivo": "El formulario generico de presupuesto no preguntaba si el visitante es el propietario ni cuando quiere empezar, que son dos de los cinco cualificadores que ya piden las landings de pago (FormularioCore.astro). Se anaden OPCIONALES, con las mismas opciones, para no meter friccion. Ademas: las 14 casillas de servicio compartian id=\"checkbox\" (ids duplicados) y la etiqueta del presupuesto era un <div> sin asociar al <select>.",
+    "inserta": [
+      {
+        "tras": ".bugget-form",
+        "html": "<div class=\"bugget-form\"><label class=\"text-block-6\" for=\"Type\">Do you own this property? (optional)</label><select id=\"Type\" name=\"Type\" data-name=\"Type\" class=\"select-field w-select\"><option value=\"\">Select one...</option><option value=\"Yes, I own this property\">Yes, I own this property</option><option value=\"No\">No</option><option value=\"Other\">Other</option></select></div><div class=\"bugget-form\"><label class=\"text-block-6\" for=\"Timeline\">Project timeline (optional)</label><select id=\"Timeline\" name=\"Timeline\" data-name=\"Timeline\" class=\"select-field w-select\"><option value=\"\">Select one...</option><option value=\"As soon as possible\">As soon as possible</option><option value=\"1-3 months\">1-3 months</option><option value=\"3-6 months\">3-6 months</option><option value=\"6-12 months\">6-12 months</option><option value=\"Just exploring\">Just exploring</option></select></div>"
+      }
+    ],
+    "etiqueta": {
+      "div": ".bugget-form > .text-block-6",
+      "for": "Estimated-Project-Budget"
+    },
+    "idsUnicos": {
+      "selector": "input.w-checkbox-input[name=\"checkbox\"]",
+      "prefijo": "servicio"
+    },
+    "lineasAnadidas": {
+      "tras": "$150,000+",
+      "lineas": [
+        "Do you own this property? (optional)",
+        "Select one...",
+        "Yes, I own this property",
+        "No",
+        "Other",
+        "Project timeline (optional)",
+        "Select one...",
+        "As soon as possible",
+        "1-3 months",
+        "3-6 months",
+        "6-12 months",
+        "Just exploring"
+      ]
+    }
+  }
+}

@@ -23,6 +23,8 @@
  * script busca bloques `[markdown]...[/markdown]` dentro de `.w-richtext`, y no hay ni uno
  * en las 115 páginas. Medido, no supuesto.
  */
+import TEXTOS_PROPIOS_RAW from '../src/data/textos-propios.json' with { type: 'json' };
+const TEXTOS_PROPIOS = TEXTOS_PROPIOS_RAW;
 import fs from 'node:fs';
 import path from 'node:path';
 import { JSDOM } from 'jsdom';
@@ -639,6 +641,89 @@ const FOTOS_POR_RUTA = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/foto
 const BANCO = new Map(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/banco-imagenes.json'), 'utf8'))
   .map((e) => [e.id, e]));
 let fotosCanjeadas = 0;
+/**
+ * SEO-REMEDIACION (4-oct-2026) — TEXTOS PROPIOS DE PAGINAS DERIVADAS (`src/data/textos-propios.json`).
+ *
+ * `/about` traia una FAQ titulada «Commercial Pool Construction» con LA MISMA respuesta en las
+ * cinco preguntas, tambien en su `FAQPage`. Se corrige aqui, en el generador, para que
+ * `npm run paginas` no lo devuelva al origen. Con GUARDA: si la FAQ no tiene exactamente las
+ * preguntas que el JSON dice que «eran», o una sustitucion no encuentra su texto, revienta.
+ */
+let textosCorregidos = 0;
+function textosPropios(doc, ruta) {
+  const t = TEXTOS_PROPIOS[ruta];
+  if (!t) return 0;
+  if (t.faq) {
+    const sec = doc.querySelector('section.faq-section');
+    const h2 = sec?.querySelector('h2');
+    const items = [...(sec?.querySelectorAll('.dropdown-faq') ?? [])];
+    if (!h2 || items.length !== t.faq.preguntas.length) {
+      throw new Error(`textos-propios ${ruta}: la FAQ trae ${items.length} preguntas y el JSON declara ${t.faq.preguntas.length}`);
+    }
+    h2.textContent = t.faq.titulo;
+    items.forEach((it, i) => {
+      const q = t.faq.preguntas[i];
+      const h3 = it.querySelector('h3');
+      const p = it.querySelector('nav p');
+      if (h3?.textContent.trim() !== q.era || !p) throw new Error(`textos-propios ${ruta}: la pregunta ${i} ya no es «${q.era}»`);
+      h3.textContent = q.pregunta;
+      p.textContent = q.respuesta;
+    });
+    let ld = 0;
+    for (const sc of doc.head.querySelectorAll('script[type="application/ld+json"]')) {
+      let b; try { b = JSON.parse(sc.textContent); } catch { continue; }
+      /* En `/about` el `FAQPage` va ANIDADO: es el `mainEntity` de un `AboutPage`. Se busca a
+       * cualquier profundidad y se reescribe donde esta, sin mover nada mas del bloque. */
+      const faqs = [];
+      (function busca(o) {
+        if (!o || typeof o !== 'object') return;
+        if (o['@type'] === 'FAQPage') faqs.push(o);
+        for (const v of Object.values(o)) busca(v);
+      })(b);
+      for (const f of faqs) {
+        f.mainEntity = t.faq.preguntas.map((q) => ({
+          '@type': 'Question', name: q.pregunta, acceptedAnswer: { '@type': 'Answer', text: q.respuesta },
+        }));
+        ld++;
+      }
+      if (faqs.length) sc.textContent = JSON.stringify(b);
+    }
+    if (ld !== 1) throw new Error(`textos-propios ${ruta}: ${ld} FAQPage en el head, se esperaba 1`);
+  }
+  /* Campos que se anaden detras de un bloque existente, una sola vez (`/request-estimated`). */
+  for (const { tras, html } of t.inserta ?? []) {
+    const ancla = doc.querySelectorAll(tras);
+    if (ancla.length !== 1) throw new Error(`textos-propios ${ruta}: «${tras}» sale ${ancla.length} veces`);
+    ancla[0].insertAdjacentHTML('afterend', html);
+  }
+  /* Un `<div>` que hace de etiqueta pasa a `<label for>` (mismo texto, misma clase). */
+  if (t.etiqueta) {
+    const el = doc.querySelector(t.etiqueta.div);
+    if (!el || el.tagName !== 'DIV') throw new Error(`textos-propios ${ruta}: no encuentro la etiqueta ${t.etiqueta.div}`);
+    const lab = doc.createElement('label');
+    lab.className = el.className;
+    lab.setAttribute('for', t.etiqueta.for);
+    lab.innerHTML = el.innerHTML;
+    el.replaceWith(lab);
+  }
+  /* Ids duplicados -> unicos, y fuera el `for` de un <span> (no es una etiqueta). */
+  if (t.idsUnicos) {
+    const els = [...doc.querySelectorAll(t.idsUnicos.selector)];
+    if (!els.length) throw new Error(`textos-propios ${ruta}: «${t.idsUnicos.selector}» no casa nada`);
+    els.forEach((el, i) => {
+      el.id = `${t.idsUnicos.prefijo}-${i + 1}`;
+      el.parentElement?.querySelector('span[for]')?.removeAttribute('for');
+    });
+  }
+  for (const { era, es } of t.sustituye ?? []) {
+    const el = [...doc.body.querySelectorAll('p, h1, h2, h3, h4, div')]
+      .find((e) => e.children.length === 0 && e.textContent.trim() === era);
+    if (!el) throw new Error(`textos-propios ${ruta}: no encuentro «${era.slice(0, 60)}…»`);
+    el.textContent = es;
+  }
+  return 1;
+}
+
 function fotosPorRuta(doc, ruta) {
   const porSelector = FOTOS_POR_RUTA[ruta];
   if (!porSelector) return 0;
@@ -752,6 +837,9 @@ function captacion(doc, ruta) {
     const cta = bloque?.querySelector('a.button');
     if (cta) {
       cta.setAttribute('href', c.heroe.ancla);
+      /* SEO-REMEDIACION (Sebastian, 4-oct-2026): «Request a Design-Build Project Evaluation» en
+       * las dos landings de piscina. Opt-in por `heroe.cta`; las otras doce siguen como estaban. */
+      if (c.heroe.cta) cta.textContent = c.heroe.cta;
       /* LOS DOS TELEFONOS, NORTH FLORIDA PRIMERO. La pagina no tenia NI UNO en el cuerpo: el
        * invariante de `check:ads` («el de North Florida antes que el de South») lo cumplia solo
        * el cromo -el nav y el boton flotante-. Era un verde prestado. Salen de
@@ -1296,7 +1384,11 @@ function captacion(doc, ruta) {
       /* La `Question` rota se reconoce por su RESPUESTA, no por su nombre: el nombre es
        * justamente lo que estaba mal. Se le pone la pregunta que se ve y la respuesta nueva. */
       for (const [preg, resp] of Object.entries(c.faq.sustituye)) {
-        const q = preguntas.find((x) => /\$\s?\d|financ/i.test(x?.acceptedAnswer?.text ?? ''));
+        /* SEO-REMEDIACION (4-oct-2026): primero por NOMBRE —las respuestas reescritas por cifras
+         * sin verificar («~7 %», «hasta 90 %», plazos en semanas) traen su pregunta bien escrita—;
+         * solo si no casa, la `Question` rota de financiacion, que se reconoce por su respuesta. */
+        const q = preguntas.find((x) => x?.name === preg)
+          ?? preguntas.find((x) => /\$\s?\d|financ/i.test(x?.acceptedAnswer?.text ?? ''));
         if (q) { q.name = preg; q.acceptedAnswer.text = resp; }
       }
       for (const { pregunta, respuesta } of c.faq.anade) {
@@ -1484,6 +1576,7 @@ for (const [ruta] of RUTAS) {
   const conCollage = collageFaq(doc, ruta);
   if (conCollage) collagesInsertados++;
   fotosCanjeadas += fotosPorRuta(doc, ruta);
+  textosCorregidos += textosPropios(doc, ruta);
 
 
   const usados = new Set();
