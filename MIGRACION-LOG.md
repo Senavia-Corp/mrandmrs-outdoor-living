@@ -3,6 +3,47 @@
 Webflow → Astro 5 + Sanity + Vercel. Una entrada por fase, **escrita al cerrar la fase**,
 nunca al empezarla. Si una fase se reabre, se añade una entrada nueva; no se edita la vieja.
 
+## GALERIA-CIUDADES — «Custom Pool Project Gallery» de las 53 ciudades: 11 fotos de 8 casas y puerta propia (4-oct-2026)
+
+**Pedido:** encargo «City Project Gallery Image Casting + SEO» · **Rama:** `claude/brave-keller-2leol8`
+**Commit, push, PR y merge a `main`:** autorizados por Sebastian («termina todo en producción. Despliega»).
+Informe completo (tabla A–H por foto, descartes, SEO, rendimiento, salida de las puertas):
+`docs/encargos/GALERIA-CIUDADES-CASTING.md`.
+
+- **Antes 12 fotos de 2 casas; ahora 11 de 8.** project-059 era la casa de obra-046 (`059-10` ≈ `bi-0505`).
+  Orden comercial: seis de piscina antes del primer servicio secundario, nunca dos seguidas de la misma
+  casa. Reparto: piscina nueva 7 (1 patio completo), remodelación 1, pérgola 2, cocina 1, deck 0.
+- **Una sola fuente**, `galeria-obra-por-ruta.json → _defecto.fotos`. 8 fotos del banco (obra_real,
+  aprobada, terminado; alt del banco literal) y 3 de project-062 del banco viejo del cliente, como
+  **excepción decidida por Sebastian** (máx. 3, lista blanca en la puerta, alt propio). Ningún alt nombra
+  ciudad ni región.
+- **La tarjeta no es apaisada** (medido sobre el build): 139×250 en un móvil real (dos por pantalla),
+  ~1:1 en escritorio y 1,5:1 a 768. Las fotos se eligieron mirando ese recorte; `pos` → `object-position`.
+- **`GaleriaObra` sin la guarda `CAP`**: las 53 la montan sin depender de `captacion-servicios.json`.
+  `check-estructura-ciudades` declara `trusted-section → gallery → _3d-section` en la forma SIN y deja de
+  prohibir `.svc-galeria`. Más `decoding="async"`.
+- **`usada_en`**: las 53 rutas añadidas por script a los 8 `_banco` del set.
+- **Puerta nueva `check:galeria-obra`** (en la cadena `check`), que falla cerrada: procedencia, alt únicos y
+  sin geografía, orden y cuota de piscina, las 53 con el set entero y en orden, ninguna foto repetida en el
+  cuerpo de la página (con sus copias de `publicada_como`), y ficha + 9 condados sin la galería. Se
+  rompió a propósito 9 veces antes de darla por buena. Su primera pasada encontró que el panel de servicios
+  ya pintaba bi-0662, bi-0521 y bi-0079 en las 53: salieron del set.
+- **Hallazgos para el banco, no tocados aquí**: obra-063 y obra-100 son la misma casa; `usada_en`
+  desfasado en bi-0486 (dice ciudades, solo es `og:image`) y en bi-0662/0521/0079/0307/0928 (salen en las
+  53 y no lo dicen).
+
+**Puertas** (build de producción, tras fusionar `origin/main` con #35 y #36): `check:galeria-obra` 53/53,
+`check:estructura:ciudades`, `check:tokens`, `check:rutas`, `check:enlaces`, `check:redirects`,
+`check:captacion`, `check:seo`, `build-banco --check`, `check:galeria` y `check:carrusel` (Gainesville) y
+`check-texto` (Gainesville; antes del merge también Ocala, Davie, Reddick y Wellington): **VERDES**. QA a 6
+anchos: 54/54. CLS de la galería 0. Peso de las fotos de 3,35 MB a 2,67 MB.
+**Rojas y previas** (salida idéntica en el árbol base): `check:assets` (falta el symlink
+`_source/sanity-masters` en el contenedor) y `check-visual` de Gainesville (4 rojos de alto contra una
+línea base antigua; alturas idénticas al píxel con y sin el cambio).
+
+**Abierto:** derivados de 800 px + `srcset` (−71 % de peso medido), repetir limpia la aérea de obra-045
+(bi-0486, mangueras), deck y segunda remodelación sin material, y si los condados montan la galería.
+
 ## GALERIA-HUB — la banda «Project Gallery» en rejilla de 2 columnas por debajo de 992 (4-oct-2026)
 
 55 rutas (53 `/services/pool-builders/*` + `/where-we-serve/{north,south}-florida`), marcado en `bandaGaleriaHtml()`
