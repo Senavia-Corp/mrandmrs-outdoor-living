@@ -24,7 +24,7 @@ import { chromium } from 'playwright';
 import { JSDOM } from 'jsdom';
 import { ARGS_NAVEGADOR, aSlug, asentar, textoNormalizado } from './lib/captura.mjs';
 import { origen, rutaCiudad, esFicha, esCiudad } from './lib/renombradas.mjs';
-import { lineasTarjetas, lineasBanda } from '../src/lib/galeria-categorias.mjs';
+import { lineasTarjetas, lineasBanda, lineasSrBanda } from '../src/lib/galeria-categorias.mjs';
 import { OCULTAS, lineasFiltro } from '../src/lib/filtro-proyectos.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
@@ -995,6 +995,15 @@ const INDICE_BLOG = (() => {
 
 const LINEAS_ANADIDAS = [
   ...INDICE_BLOG,
+  /* GALERIA-HUB · ajustes 2 (4-oct-2026): el boton de cada panel dice «See photos» y lleva el resto
+   * en un `.mm-sr`, que `innerText` saca como linea propia («of pool remodeling») detras de la del
+   * parrafo. Una por panel, derivadas de `lineasSrBanda()`: la misma funcion que escribe el marcado. */
+  ...lineasSrBanda().map(({ tras, linea }) => ({
+    rutas: RUTAS_BANDA,
+    tras: [tras],
+    lineas: [linea],
+    motivo: 'GALERIA-HUB: sufijo .mm-sr del boton del panel (texto visible «See photos»).',
+  })),
   {
     /**
      * GALERIA-CATEGORIAS (2-oct-2026, encargo de Sebastian) — las tarjetas de categoria de

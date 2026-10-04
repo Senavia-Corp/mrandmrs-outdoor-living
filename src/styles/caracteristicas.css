@@ -392,10 +392,10 @@
    * tarjeta el titulo sube hasta el 79 % del alto (320) y con 42 % / 68 % quedaba sobre foto
    * casi limpia: peor pixel 1,04:1 a 320 y 1,65:1 a 390. Medido en px, el titulo cae SIEMPRE
    * entre 186 y 227 px del canto de abajo de 320 a 991, asi que el 72 % llega hasta 256 px y se
-   * desvanece hasta 384: el titulo queda siempre sobre velo de 72 % o mas. Desde 992 vuelve el
-   * degradado de siempre (§7), que es el que esta medido arriba. */
+   * desvanece hasta 384: el titulo queda siempre sobre velo de 72 % o mas. Ajustes 2: el 72 % llega
+   * a 288 px y vale TAMBIEN desde 992, donde la columna ya solo mide 384-480 px. */
   background-image: linear-gradient(to top, var(--mm-navy) 4%,
-    color-mix(in srgb, var(--mm-navy) var(--mm-velo), transparent) calc(var(--mm-e-128) * 2),
+    color-mix(in srgb, var(--mm-navy) var(--mm-velo), transparent) calc(var(--mm-e-96) * 3),
     transparent calc(var(--mm-e-128) * 3));
 }
 .animated-divs-section .title-feature {
@@ -447,6 +447,11 @@
   padding: var(--mm-e-8) var(--mm-e-12);
   border-radius: var(--mm-r-8);
   line-height: var(--mm-alto-titulo);
+  /* Ajustes 2: UNA linea, mas pequeno. El objetivo tactil es la tarjeta entera (`::after`), asi
+   * que los 32 px del boton no rebajan 2.5.8. */
+  font-size: var(--mm-paso-0);
+  min-height: var(--mm-e-32);
+  white-space: nowrap;
 }
 .animated-divs-section .feature-cta::after { content: ""; position: absolute; inset: 0 }
 @media (min-width: 992px) {
@@ -641,6 +646,8 @@
     width: auto;
     padding: var(--mm-e-12) var(--mm-e-24);
     border-radius: var(--mm-r-pastilla);
+    font-size: var(--mm-paso-1);
+    min-height: 44px;
   }
   .animated-divs-section .feature-cta::after { content: none }
 
@@ -671,11 +678,10 @@
    * NO baja del 64 %: con el velo al 58 % un pixel BLANCO de foto bajo el texto daria 4,22:1
    * y suspenderia. Interpolar entre 72 y 64 no cruza ese suelo en ningun fotograma, porque el
    * recorrido entero queda por encima del 64. Los ratios re-medidos en hover van en el informe. */
-  .animated-divs-section .block-feature {
-    transition: --mm-velo .45s ease-out;
-    background-image: linear-gradient(to top, var(--mm-navy) 4%,
-      color-mix(in srgb, var(--mm-navy) var(--mm-velo), transparent) 42%, transparent 68%);
-  }
+  /* Ajustes 2: sin redeclarar el degradado. Con la columna a 384-480 px el titulo vertical sube al
+   * ~56 % del alto y el 42 %/68 % de antes lo dejaba sobre foto (3,55:1 a 992): el velo en longitud
+   * de §5 vale ahora tambien aqui. */
+  .animated-divs-section .block-feature { transition: --mm-velo .45s ease-out }
   .animated-divs-section .feature-card:is(:hover, :focus-within) .block-feature { --mm-velo: 64% }
   .animated-divs-section .feature-card:active .block-feature { --mm-velo: 68% }
 }
@@ -710,7 +716,9 @@
     aspect-ratio: auto;
     max-height: none;
     border-radius: 0;
-    min-height: clamp(calc(var(--mm-e-128) * 5), 46vw, calc(var(--mm-e-128) * 6));
+    /* GALERIA-HUB · ajustes 2: ~64 % del alto de antes (640/662/768 -> 384/432/480 a 992/1440/1920),
+     * pedido por Sebastian sobre una captura de produccion. La foto 9:16 se recorta menos y se ve mas. */
+    min-height: clamp(calc(var(--mm-e-128) * 3), 30vw, calc(var(--mm-e-96) * 5));
   }
 }
 

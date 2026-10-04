@@ -81,7 +81,12 @@ export const PANELES = CATEGORIAS.filter((c) => c.panel);
 const INICIO_BANDA = '<section class="animated-divs-section">';
 
 const fotoPanel = (c, suf = '') => `/images/obra/paneles/gallery-panel-${c.slug}${suf}.webp`;
-const enlacePanel = (c) => `${enlaceDe(c)} photos`;
+/* GALERIA-HUB · ajustes 2: el boton DICE «See photos» y el resto va en un `.mm-sr` (base.css): a 320
+ * la media tarjeta deja ~98 px y «See pool remodeling photos» no cabe en una linea a ningun tamano
+ * legible. El enlace sigue siendo descriptivo para el crawler y el lector de pantalla
+ * («See photos of pool remodeling»); a la vista, el nombre ya esta en el titulo de encima. */
+const VISIBLE_PANEL = 'See photos';
+const sufijoPanel = (c) => `of ${c.nombre.toLowerCase()}`;
 
 /* El icono de servicio de cada panel: el mismo `icono` que pinta la rejilla de servicios de la
  * home (bloque '/' de `servicios-categoria.json`), buscado por `id`. Los dos ficheros no llaman
@@ -114,7 +119,8 @@ export function bandaGaleriaHtml() {
     + `<button type="button" class="feature-boton" aria-expanded="false" aria-controls="mm-carac-${i + 1}">`
     + `${esc(c.nombre)}</button></h3>`
     + `<p class="feature-text" id="mm-carac-${i + 1}"><span class="feature-linea">${esc(c.linea)}</span> `
-    + `<a class="mm-accion feature-cta" href="${rutaDe(c)}">${esc(enlacePanel(c))}</a></p></div></div>`
+    + `<a class="mm-accion feature-cta" href="${rutaDe(c)}">${VISIBLE_PANEL}`
+    + `<span class="mm-sr"> ${esc(sufijoPanel(c))}</span></a></p></div></div>`
   )).join('');
   return INICIO_BANDA
     + '<div data-w-id="330b3a3f-e72c-3f91-1f24-8dfe4f37952f" class="header-feature">'
@@ -141,5 +147,9 @@ export function conBandaGaleria(cadena, donde) {
 /** Las lineas que la banda pone en el `innerText`, en orden. Para `check-texto.mjs`. */
 export const lineasBanda = () => [
   TITULO_BANDA, TEXTO_BANDA,
-  ...PANELES.flatMap((c) => [c.nombre, `${c.linea} ${enlacePanel(c)}`]),
+  ...PANELES.flatMap((c) => [c.nombre, `${c.linea} ${VISIBLE_PANEL}`]),
 ];
+
+/** El sufijo `.mm-sr` del boton sale en `innerText` como linea PROPIA, justo detras de la del parrafo.
+ *  `check-texto.mjs` la declara con `LINEAS_ANADIDAS`, derivada de aqui. */
+export const lineasSrBanda = () => PANELES.map((c) => ({ tras: `${c.linea} ${VISIBLE_PANEL}`, linea: sufijoPanel(c) }));

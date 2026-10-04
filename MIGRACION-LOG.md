@@ -3,6 +3,20 @@
 Webflow → Astro 5 + Sanity + Vercel. Una entrada por fase, **escrita al cerrar la fase**,
 nunca al empezarla. Si una fase se reabre, se añade una entrada nueva; no se edita la vieja.
 
+## GALERIA-HUB · ajustes 2 — columnas más bajas, foto nueva de Pools & Spas, botón de una línea (4-oct-2026)
+
+Pedido por Sebastian sobre capturas de producción. **Escritorio:** la columna baja al ~64 %
+(`min-height` 640/662/768 → 384/432/480 a 992/1440/1920); el acordeón no cambia (abierta 31,67-31,82 %, suma = ancho).
+Con la columna más baja el título vertical subía sobre foto (3,55:1 a 992), así que el velo en longitud (72 % hasta
+288 px, transparente a 384) vale ahora también ≥992: títulos ≥9,30:1 en reposo y ≥7,78:1 abiertos. **Pools & Spas:**
+bi-1010 → **bi-0662** (spa de mosaico cobalto con bubblers, obra-063; el banco tiene tope de 1600 px, así que «más
+definición» es una foto más nítida, no más píxeles), x = 50 por hoja de recorte; solo se regeneran sus 3 webp.
+**Móvil:** el botón dice «See photos» en una línea (12 px, 32 px de alto) y el resto va en `.mm-sr` («of pool
+remodeling»): el enlace sigue siendo descriptivo para crawler y lector de pantalla; el objetivo táctil es la tarjeta
+entera. `check-texto` declara esa línea por panel con `LINEAS_ANADIDAS`, derivada de `lineasSrBanda()`. Puertas:
+tokens (95,8/96 KB), rutas, enlaces, redirects, estructura:ciudades, galeria, seo y texto (5 rutas) VERDES;
+interacción 22/22.
+
 ## GALERIA-CIUDADES — «Custom Pool Project Gallery» de las 53 ciudades: 11 fotos de 8 casas y puerta propia (4-oct-2026)
 
 **Pedido:** encargo «City Project Gallery Image Casting + SEO» · **Rama:** `claude/brave-keller-2leol8`
