@@ -177,8 +177,20 @@ const MIN_BLOQUES = 7;
  *
  *  La pregunta de que sobra (`estimacion.css`, `contacto.css`) sigue abierta y sigue siendo del
  *  director.
+ *
+ *  ── 4-oct-2026 · SUBE AL MAXIMO: EL TAMAÑO DE `webflow.css`. LO DECIDE SEBASTIAN ─────────────
+ *  «Sube el CSS budget al maximo posible para tener movida de mejora.» El maximo que conserva el
+ *  sentido de la puerta es el de su regla de origen llevada al limite: la capa de AUTOR no puede
+ *  pesar mas que la base de Webflow que eleva. Si la pasara, ya no se estaria elevando una base,
+ *  se estaria escribiendo otra encima. Por eso el tope deja de ser un numero escrito a mano y se
+ *  MIDE: el tamaño en disco de `src/styles/webflow.css` en cada corrida. Medido al subir:
+ *      capa sin comentarios .................. 99 300 B  (13 350 B brotli)
+ *      webflow.css (nuevo tope) .............. 171 095 B (24 732 B brotli)
+ *      margen ................................  71 795 B  (~9,6 KB brotli en el cable)
+ *  Lo que NO cambia: la puerta sigue midiendo, sigue roja si se pasa, y la pregunta de que sobra
+ *  (`estimacion.css`, `contacto.css`) sigue abierta y sigue siendo del director.
  */
-const TOPE_BYTES = 97 * 1024;
+const TOPE_BYTES = fs.statSync(path.join(RAIZ, 'src/styles/webflow.css')).size;
 
 const sinComentarios = (s) => s.replace(/\/\*[\s\S]*?\*\//g, '');
 
