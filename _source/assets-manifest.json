@@ -39580,8 +39580,8 @@
     "local:bg-video-1-mp4.mp4": {
       "archivo": "public/videos/bg-video-1-mp4.mp4",
       "publico": "/videos/bg-video-1-mp4.mp4",
-      "sha256": "fc64724024ee1a15c8bf83a1e5a6837928aeac8c207fdda31d7529764702a23a",
-      "bytes": 7074770,
+      "sha256": "1688d1eacdf880a09504a18f743447d39891ddf8e6a93527dcc1d06d33820124",
+      "bytes": 6152874,
       "alt": "",
       "dim": null,
       "sanityMaster": null,
@@ -39619,8 +39619,8 @@
     "local:bg-video-3d-mp4.mp4": {
       "archivo": "public/videos/bg-video-3d-mp4.mp4",
       "publico": "/videos/bg-video-3d-mp4.mp4",
-      "sha256": "2aec647590f605b0797935782f73aee44de33c0c41d030bd18d630746e61c442",
-      "bytes": 6336483,
+      "sha256": "0fb8faa324ac017230b481608d174eca742cda6c6a89a9504659f28fdf2bc915",
+      "bytes": 4151706,
       "alt": "",
       "dim": null,
       "sanityMaster": null,
@@ -39658,8 +39658,8 @@
     "local:bg-video-mp4.mp4": {
       "archivo": "public/videos/bg-video-mp4.mp4",
       "publico": "/videos/bg-video-mp4.mp4",
-      "sha256": "96c20f51879a8138578079473c48263cf8a5a512200f6be50665277415e8e968",
-      "bytes": 7423936,
+      "sha256": "c031ececbe29f778bbfa24b4d568363b291cafc6a0d050f547d5834a8a4c880c",
+      "bytes": 5880441,
       "alt": "",
       "dim": null,
       "sanityMaster": null,

@@ -24,6 +24,8 @@ import { chromium } from 'playwright';
 import { JSDOM } from 'jsdom';
 import { ARGS_NAVEGADOR, aSlug, asentar, textoNormalizado } from './lib/captura.mjs';
 import { origen, rutaCiudad, esFicha, esCiudad } from './lib/renombradas.mjs';
+import { tramosMiga } from '../src/lib/miga-tramos.mjs';
+import { AREAS_PIE, ORDEN_SERVICIOS_PIE, COPYRIGHT_ORIGEN, copyright } from '../src/lib/pie.mjs';
 import { lineasTarjetas, lineasBanda, lineasSrBanda } from '../src/lib/galeria-categorias.mjs';
 import { OCULTAS, lineasFiltro } from '../src/lib/filtro-proyectos.mjs';
 
@@ -102,6 +104,36 @@ const APOYOS_CIUDAD = SANITY_CIUDADES
     `apoyo del heroe de ${d.name}: resuelve QUE, DONDE, PARA QUIEN y QUE HACER AHORA sin ofrecer `
     + 'la remodelacion, que compite con la intencion del anuncio arriba del pliegue',
     [ruta]]);
+
+/**
+ * ── SEO-REMEDIACION (4-oct-2026) · EL CARRUSEL DE OBRA DE LAS 53, DERIVADO ─────────────────────
+ *
+ * Sanity decia «Browse our <Ciudad> portfolio of … pools & outdoor spaces…» encima de un carrusel
+ * que es el MISMO en las 53 y sin una sola obra con ciudad verificada. `[slug].astro` lo pisa con
+ * un titular y una entradilla que no situan la obra en ninguna ciudad. Se cruza con la cache de
+ * Sanity ciudad por ciudad: si el texto viejo cambiara, la declaracion deja de casar y lo dice.
+ */
+/* SEO-REMEDIACION (4-oct-2026): textos de paginas derivadas que corrige `build-paginas.mjs`
+ * desde `src/data/textos-propios.json` (FAQ de /about, la licencia que faltaba, la errata «ok.»).
+ * Se leen del MISMO fichero; el h2 y los h3 pasan por `capitalizaH2` por el `text-transform`. */
+const TEXTOS_PROPIOS_DECL = Object.entries(JSON.parse(fs.readFileSync(
+  path.join(RAIZ, 'src/data/textos-propios.json'), 'utf8')))
+  .filter(([r]) => !r.startsWith('_'))
+  .flatMap(([ruta, t]) => [
+    ...(t.faq ? [[t.faq.tituloEra, capitalizaH2(t.faq.titulo), `SEO-REMEDIACION: titular de la FAQ de ${ruta}`, [ruta]]] : []),
+    ...(t.faq?.preguntas ?? []).filter((q) => q.era !== q.pregunta)
+      .map((q) => [capitalizaH2(q.era), capitalizaH2(q.pregunta), `SEO-REMEDIACION: pregunta de la FAQ de ${ruta}`, [ruta]]),
+    ...(t.sustituye ?? []).map((x) => [x.era, x.es, `SEO-REMEDIACION: ${x.motivo}`, [ruta]]),
+  ]).filter((x) => x[0]);
+
+const CARRUSEL_TITULO = 'Featured Custom Pool Projects';
+const CARRUSEL_TEXTO = 'Selected custom pool and outdoor living projects from our Florida portfolio, to inspire your design.';
+const CARRUSEL_CIUDAD = SANITY_CIUDADES.flatMap((d) => [
+  [d.headingPortfolio, CARRUSEL_TITULO,
+    'SEO-REMEDIACION: el titular del carrusel de obra, igual en las 53', [rutaCiudad(d.slug)]],
+  [d.paragraphPortfolio, CARRUSEL_TEXTO,
+    `SEO-REMEDIACION: «Browse our ${d.name} portfolio» sobre obra sin ciudad verificada`, [rutaCiudad(d.slug)]],
+]);
 
 /**
  * ── LA BANDA «Project Gallery», DERIVADA (PANELES-GALERIA, 2-oct-2026) ─────────────────────────
@@ -265,6 +297,22 @@ const TRADUCIDAS_A_PROPOSITO = [
   ['Artículos Más Leídos', 'Most Read Articles',
     'el h2 del raíl de artículos relacionados, en las 10 fichas de /blogs/. Estaba en español '
     + 'en páginas escritas íntegramente en inglés: era una fuga del Webflow de origen'],
+  /* SEO-REMEDIACION (4-oct-2026): la errata de la primera insignia del heroe de la home. Que el
+   * seguro este en vigor sigue pendiente de confirmar (`SEO_REQUIRES_CLIENT_DATA.md`); esto solo
+   * arregla la palabra, que el pie ya escribe bien («Licensed & Insured»). */
+  ['Licensed & Insurance', 'Licensed & Insured', 'errata de la insignia del heroe de la home', ['/']],
+  /* SEO-REMEDIACION (4-oct-2026): dos resumenes de subservicio de la landing de remodelacion que
+   * atraian leads de reparacion suelta («repairs addressing cracks, leaks»). Se reescriben como
+   * parte de una remodelacion completa; el nuevo se lee de `servicios.textos` del JSON. */
+  ['Professional pool repairs addressing cracks, leaks, and structural issues for lasting performance.',
+    CAPTACION_JSON['/services/pool-remodeling'].servicios.textos['Structural Pool Repairs'],
+    'SEO-REMEDIACION: resumen de «Structural Pool Repairs» en contexto de remodelacion completa',
+    ['/services/pool-remodeling']],
+  ['Modern pool equipment upgrades that improve circulation, filtration, and overall system efficiency.',
+    CAPTACION_JSON['/services/pool-remodeling'].servicios.textos['Pool Equipment Upgrades'],
+    'SEO-REMEDIACION: resumen de «Pool Equipment Upgrades» como sistema dentro de la remodelacion',
+    ['/services/pool-remodeling']],
+  ...TEXTOS_PROPIOS_DECL,
   ['¡View More!', 'View More!',
     'el botón de /brochures. El texto ya era inglés; lo que sobraba era el signo de apertura '
     + '«¡», que es puntuación exclusiva del español'],
@@ -298,15 +346,15 @@ const TRADUCIDAS_A_PROPOSITO = [
    * motivo para tocarla.
    */
   ['As premier outdoor living contractors in Ocala, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value.',
-    'We build the whole backyard, not just the pool. Our licensed crews handle custom inground pools and spas, aluminum pergolas and louvered roof systems, outdoor kitchens, custom decks and screen enclosures for Ocala homeowners — designed, permitted and built by one team. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value.',
+    'Every project starts with the pool: a 3D design drawn for your lot, engineering, permits and inspections, then excavation, steel and gunite, plumbing, finishes and start-up, all by one licensed design-build team. When the plan calls for more, the same crews build the pergola, outdoor kitchen, deck or screen enclosure around it for Ocala homeowners. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value.',
     'párrafo de intro de Ocala: entra el alcance real del negocio',
     ['/services/pool-builders/ocala-fl']],
   ['As premier outdoor living contractors in Gainesville, FL, we design and execute elite residential and commercial projects. Our team of expert pool builders specializes in custom in-ground pool construction and luxury pool remodeling. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value.',
-    'We build the whole backyard, not just the pool. Our licensed crews handle custom inground pools and spas, aluminum pergolas and louvered roof systems, outdoor kitchens, custom decks and screen enclosures for Gainesville homeowners — designed, permitted and built by one team. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value.',
+    'Every project starts with the pool: a 3D design drawn for your lot, engineering, permits and inspections, then excavation, steel and gunite, plumbing, finishes and start-up, all by one licensed design-build team. When the plan calls for more, the same crews build the pergola, outdoor kitchen, deck or screen enclosure around it for Gainesville homeowners. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value.',
     'párrafo de intro de Gainesville: entra el alcance real del negocio',
     ['/services/pool-builders/gainesville-fl']],
   ['Licensed Pool Builders & Outdoor Living Contractors In Gainesville',
-    'Pools, Pergolas & Outdoor Kitchens In Gainesville, Florida',
+    'Custom Pool Design & Construction In Gainesville, Florida',
     'h2 de intro de Gainesville. R21 (Sebastian, 18-sep): vuelven pérgolas y cocinas, pero AQUÍ '
     + 'y no en el héroe. A3 las quitó «de arriba del pliegue» y el héroe sigue limpio; esta '
     + 'sección es el «más abajo» del Principio 1 de A3, donde los servicios secundarios sí '
@@ -318,7 +366,7 @@ const TRADUCIDAS_A_PROPOSITO = [
     'Custom Inground Pool Construction For Homes In Ocala And Marion County',
     'h2 del héroe de Ocala: fuera pérgolas y cocinas de arriba del pliegue'],
   ['Licensed Pool Builders & Outdoor Living Contractors In Ocala',
-    'Pools, Pergolas & Outdoor Kitchens In Ocala, Florida',
+    'Custom Pool Design & Construction In Ocala, Florida',
     'h2 de intro de Ocala. R21 (Sebastian, 18-sep): vuelven pérgolas y cocinas, pero AQUÍ '
     + 'y no en el héroe. A3 las quitó «de arriba del pliegue» y el héroe sigue limpio; esta '
     + 'sección es el «más abajo» del Principio 1 de A3, donde los servicios secundarios sí '
@@ -340,6 +388,7 @@ const TRADUCIDAS_A_PROPOSITO = [
    */
   /* Las 53, derivadas arriba: el `intro` de Sanity -> el `apoyo` que genera la capa. */
   ...APOYOS_CIUDAD,
+  ...CARRUSEL_CIUDAD,
   ...BANDA_GALERIA,
   /* Y el h2 + parrafo de la seccion de intro de las 51 (las 2 piloto van a mano, mas arriba). */
   ...INTRO_CIUDAD,
@@ -397,6 +446,52 @@ const traduce = (ruta, l) => {
     viejo === l && (!rutas || rutas.includes(ruta)));
   return t ? t[1] : l;
 };
+
+/**
+ * ── SEO-REMEDIACION (Sebastian, 4-oct-2026) · EL CTA PRINCIPAL DEL HEROE ────────────────────
+ *
+ * En la home y en las landings de piscina con `heroe.cta` (las 2 fichas de piscina y las 53
+ * ciudades) el boton del heroe pasa de «Get a Free Estimate» a «Request a Design-Build Project
+ * Evaluation». `TRADUCIDAS_A_PROPOSITO` no sirve: sustituye TODAS las apariciones de la linea, y
+ * «Get A Free Estimate» sale tambien en el nav y en el pie, que NO cambian. Se ancla por la
+ * linea de DETRAS, que es la que solo tiene el heroe: «Trusted By Florida's Finest Homeowners»
+ * (la banda de logos). Solo la PRIMERA pareja; si no esta, no se toca nada y la ruta sale roja,
+ * que es lo que tiene que pasar.
+ */
+/**
+ * ── SEO-REMEDIACION (4-oct-2026) · EL PIE ───────────────────────────────────────────────────
+ * Las tres cosas que `Footer.astro` cambia, leidas de la MISMA fuente (`src/lib/pie.mjs`):
+ *   · tras «Residential Services», los mismos 14 servicios en otro orden (piscina primero);
+ *   · tras «Areas We Serve», las 53 ciudades se cambian por las 5 entradas de `AREAS_PIE`;
+ *   · el año del copyright.
+ * Con GUARDA: si el baseline no trae exactamente esos tramos, no se toca nada y sale rojo.
+ */
+function piePropio(lineas) {
+  const out = [...lineas];
+  const s = out.indexOf('Residential Services');
+  if (s >= 0) {
+    const n = ORDEN_SERVICIOS_PIE.length;
+    const tramo = out.slice(s + 1, s + 1 + n);
+    const nuevo = ORDEN_SERVICIOS_PIE.map((x) => x.texto);
+    if ([...tramo].sort().join('|') === [...nuevo].sort().join('|')) out.splice(s + 1, n, ...nuevo);
+  }
+  const a = out.indexOf('Areas We Serve');
+  const c = out.indexOf(COPYRIGHT_ORIGEN);
+  if (a >= 0 && c > a && c - a - 1 === 53) out.splice(a + 1, 53, ...AREAS_PIE.map((x) => x.texto));
+  const c2 = out.indexOf(COPYRIGHT_ORIGEN);
+  if (c2 >= 0) out[c2] = copyright();
+  return out;
+}
+
+const CTA_HEROE_HOME = 'Request a Design-Build Project Evaluation';
+function ctaHeroe(ruta, lineas) {
+  const cta = ruta === '/' ? CTA_HEROE_HOME : CAPTACION_JSON[ruta]?.heroe?.cta;
+  if (!cta) return lineas;
+  const i = lineas.findIndex((l, k) => l === 'Get A Free Estimate'
+    && lineas[k + 1] === "Trusted By Florida's Finest Homeowners");
+  if (i < 0) return lineas;
+  return [...lineas.slice(0, i), capitaliza(cta), ...lineas.slice(i + 1)];
+}
 
 /**
  * ── ORDEN CAMBIADO A PROPÓSITO ───────────────────────────────────────────────────────────
@@ -512,8 +607,11 @@ const ORDEN_SUBSERVICIOS = Object.entries(CAPTACION_JSON)
      *
      * Se usa `capitalizaH2` y no `capitaliza`: esta constante se evalua ANTES de la definicion
      * de `capitaliza`, y una `const` en zona muerta temporal revienta al arrancar. */
+    /* SEO-REMEDIACION (4-oct-2026): el resumen es el FINAL —`servicios.textos` lo sustituye por
+     * titulo (§ TRADUCIDAS)—, porque `reordena()` corre despues de `traduce()`. */
     const pares = [...sec.querySelectorAll('.item-subservice')].map((el) => [
-      capitalizaH2(limpia(el.querySelector('h3'))), limpia(el.querySelector('.paragraph-mini')),
+      capitalizaH2(limpia(el.querySelector('h3'))),
+      c.servicios.textos?.[limpia(el.querySelector('h3'))] ?? limpia(el.querySelector('.paragraph-mini')),
     ]);
     const resumen = new Map(pares);
     const orden = c.servicios.detalle.flatMap((fila) => fila.items).map(capitalizaH2);
@@ -654,8 +752,27 @@ const reordena = (ruta, lineas) => {
     const i = lineas.findIndex((_, k) => d.antes.every((l, j) => lineas[k + j] === l));
     if (i >= 0) lineas.splice(i, d.antes.length, ...d.despues);
   }
-  return ordenaZonas(ruta, subeResenasCiudad(ruta, bajaResenas(ruta, subeGaleria(ruta, lineas))));
+  return bajaBandaCiudad(ruta, ordenaZonas(ruta, subeResenasCiudad(ruta, bajaResenas(ruta, subeGaleria(ruta, lineas)))));
 };
+
+/**
+ * SEO-REMEDIACION (Sebastian, 4-oct-2026) — LA BANDA «Project Gallery» BAJA EN LAS 53 CIUDADES.
+ * `[slug].astro` la pinta detras de la FAQ en vez de delante de los testimonios. En el texto
+ * esperado (el baseline, sin las lineas de la capa de captacion) eso es: el bloque de la banda
+ * —las lineas de `lineasBanda()`, la funcion que escribe el marcado— sale de donde estaba y entra
+ * justo detras de «See All Projects», el cierre del carrusel de obra. Es una permutacion: mismas
+ * lineas. Si el bloque no esta entero o el ancla no esta, no se toca nada y la ruta sale roja.
+ */
+function bajaBandaCiudad(ruta, lineas) {
+  if (!esCiudad(ruta)) return lineas;
+  const banda = lineasBanda();
+  const i = lineas.findIndex((_, k) => banda.every((l, j) => lineas[k + j] === l));
+  if (i < 0) return lineas;
+  const sin = [...lineas.slice(0, i), ...lineas.slice(i + banda.length)];
+  const ancla = sin.indexOf('See All Projects');
+  if (ancla < 0) return lineas;
+  return [...sin.slice(0, ancla + 1), ...banda, ...sin.slice(ancla + 1)];
+}
 
 /** Las 14 fichas de `/services/`. Explicito, y NO `CAPTACION_JSON[ruta]`: ese mapa trae TAMBIEN
  *  las 53 ciudades, asi que como guarda de «solo las fichas» siempre fue PRESTADA — funcionaba
@@ -994,6 +1111,12 @@ const INDICE_BLOG = (() => {
 })();
 
 const LINEAS_ANADIDAS = [
+  /* SEO-REMEDIACION (4-oct-2026): los cualificadores opcionales de `/request-estimated`, leidos
+   * del mismo JSON que los inserta (`src/data/textos-propios.json`). */
+  ...Object.entries(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/textos-propios.json'), 'utf8')))
+    .filter(([r, t]) => !r.startsWith('_') && t.lineasAnadidas)
+    .map(([r, t]) => ({ rutas: [r], tras: [t.lineasAnadidas.tras], lineas: t.lineasAnadidas.lineas,
+      motivo: `SEO-REMEDIACION: ${t._motivo.slice(0, 120)}…` })),
   ...INDICE_BLOG,
   /* GALERIA-HUB · ajustes 2 (4-oct-2026): el boton de cada panel dice «See photos» y lleva el resto
    * en un `.mm-sr`, que `innerText` saca como linea propia («of pool remodeling») detras de la del
@@ -1138,7 +1261,9 @@ const LINEAS_ANADIDAS = [
      */
     rutas: ['/services/pool-builders'],
     tras: ['Pool deck remodeling using pavers or concrete for safety and durability.'],
-    lineas: ['Get A Free Estimate'],
+    /* SEO-REMEDIACION (4-oct-2026): se lee del JSON, ya no se cablea; hoy dice «Request a
+     * Design-Build Project Evaluation». `capitaliza` por el `text-transform` de `.button`. */
+    lineas: [capitalizaH2(CAPTACION_JSON['/services/pool-builders'].servicios.cta.texto)],
     motivo: 'R17-CORE: la rejilla de subservicios de la landing de pago cierra con un CTA '
       + '(`servicios.cta` en captacion-servicios.json). Es la unica ficha que lo lleva.',
   },
@@ -1248,19 +1373,16 @@ const LINEAS_ANADIDAS = [
     rutas: ['/services/pool-remodeling'],
     tras: ['We remodel and renovate pools across North & South Florida, upgrading finishes, '
         + 'equipment, and features for safety and efficiency.'],
-    lineas: [
-      'Structural Repairs & Shell Rebuilds',
-      'An older pool needs more than a new surface. We probe for cracks, leaks, and shell '
-        + 'movement, then repair or rebuild the gunite and bring plumbing and safety barriers '
-        + 'up to current Florida Building Code. Every finish and fixture we install rides on '
-        + 'that structure.',
+    lineas: [   // SEO-REMEDIACION (4-oct-2026): reescrita (contexto de remodelacion completa); se lee del JSON
+      capitalizaH2(CAPTACION_JSON['/services/pool-remodeling'].servicios.detalle[0].titulo),
+      CAPTACION_JSON['/services/pool-remodeling'].servicios.detalle[0].parrafo,
     ],
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
   {
     rutas: ['/services/pool-remodeling'],
-    tras: ['Professional pool repairs addressing cracks, leaks, and structural issues for '
-        + 'lasting performance.'],
+    // SEO-REMEDIACION (4-oct-2026): el ancla es el resumen REESCRITO (§ TRADUCIDAS), leido del JSON.
+    tras: [CAPTACION_JSON['/services/pool-remodeling'].servicios.textos['Structural Pool Repairs']],
     lineas: [
       'Resurfacing, Tile & Coping',
       'We strip the old interior down to sound gunite and apply plaster, quartz, or '
@@ -1274,12 +1396,9 @@ const LINEAS_ANADIDAS = [
     rutas: ['/services/pool-remodeling'],
     tras: ['Tile and coping upgrades that enhance pool safety, aesthetics, and long-term '
         + 'structural protection.'],
-    lineas: [
-      'Equipment & LED Lighting Upgrades',
-      'Salt air and year-round run times are hard on pool equipment. We swap single-speed '
-        + 'pumps for variable-speed units, upgrade filters, heaters, and salt cells, and '
-        + 'replace incandescent fixtures with low-voltage LED. New wiring lands on '
-        + 'GFCI-protected circuits bonded to the deck grid, as code requires.',
+    lineas: [   // SEO-REMEDIACION (4-oct-2026): reescrita (contexto de remodelacion completa); se lee del JSON
+      capitalizaH2(CAPTACION_JSON['/services/pool-remodeling'].servicios.detalle[2].titulo),
+      CAPTACION_JSON['/services/pool-remodeling'].servicios.detalle[2].parrafo,
     ],
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
@@ -1927,6 +2046,25 @@ const LINEAS_ANADIDAS = [
   },
 ];
 
+/* SEO-REMEDIACION (4-oct-2026): en la home y en las landings con `heroe.cta`, el CTA del heroe ya
+ * no dice «Get A Free Estimate» (§ ctaHeroe), asi que el ancla de «Project Gallery» —el segundo
+ * boton del heroe— pasa a ser el CTA nuevo. Se parte la declaracion de la AUDITORIA en vez de
+ * duplicarla: mismas rutas, misma linea, ancla segun la ruta. */
+{
+  const i = LINEAS_ANADIDAS.findIndex((d) => d.lineas?.[0] === 'Project Gallery'
+    && d.tras?.[0] === 'Get A Free Estimate' && Array.isArray(d.rutas));
+  if (i < 0) throw new Error('check-texto: no encuentro la declaracion del segundo CTA del heroe');
+  const d = LINEAS_ANADIDAS[i];
+  const cta = (r) => (r === '/' ? CTA_HEROE_HOME : CAPTACION_JSON[r]?.heroe?.cta);
+  const porCta = new Map();
+  for (const r of d.rutas.filter(cta)) porCta.set(cta(r), [...(porCta.get(cta(r)) ?? []), r]);
+  d.rutas = d.rutas.filter((r) => !cta(r));
+  for (const [c, rutas] of porCta) {
+    LINEAS_ANADIDAS.push({ ...d, rutas, tras: [capitalizaH2(c)],
+      motivo: `${d.motivo} · SEO-REMEDIACION: el CTA del heroe es ahora «${c}».` });
+  }
+}
+
 /**
  * ── LAS RESEÑAS DE GOOGLE (D2) — bloque DECLARADO, no absorbido ──────────────────────────
  *
@@ -2243,6 +2381,9 @@ function sufijosSr() {
   };
 
   for (const p of lee('src/data/blogs.json')?.posts ?? []) anota(p.cta, p.titulo);
+  /* SEO-REMEDIACION (4-oct-2026): las tarjetas de «Most Read Articles» de cada articulo
+   * (`src/pages/blogs/[slug].astro`) llevan el mismo sufijo oculto, con el titulo de Sanity. */
+  for (const p of lee('src/data/blogs-sanity.json') ?? []) anota('Read More', p.title);
 
   /* Y los de las fichas con su trio: sus tarjetas NO salen de `blogs.json`, asi que sin esto
    * sus tres sufijos ocultos se quedaban en la pagina y partian el bloque igual. */
@@ -2392,7 +2533,10 @@ const RUTAS_CARRUSEL = (() => {
 
 for (const ruta of RUTAS_CARRUSEL) {
   if (OBRAS_PROPIAS_EN[ruta]) continue;           // `/` ya viene declarada arriba
-  const tras = anclaCarrusel(ruta);
+  /* SEO-REMEDIACION (4-oct-2026): el ancla sale del baseline congelado y se pasa por `traduce`,
+   * porque en las 53 ciudades el titular y la entradilla del carrusel se sustituyen a proposito
+   * (§ CARRUSEL_CIUDAD). Si no hay sustitucion declarada, `traduce` la devuelve igual. */
+  const tras = anclaCarrusel(ruta)?.map((l) => traduce(ruta, l));
   if (!tras) continue;                            // sin ancla no se declara -> roja
   OBRAS_PROPIAS_EN[ruta] = {
     forma: 'slide',
@@ -2569,7 +2713,9 @@ const camposCaptacion = (c) => [
  * escribirlo: sale dos veces en las landings de ciudad -tras «Pool Features» y tras la FAQ- y
  * `webflow.css` lo pinta con `capitalize`, asi que se declara pasando por `capitaliza()`.
  */
-const CTA_CIERRE = 'Get a Free Estimate';
+/* SEO-REMEDIACION (4-oct-2026): el cierre repite el CTA del heroe de la entrada (`heroe.cta`),
+ * igual que lo pinta `[slug].astro`; sin `heroe.cta`, el de siempre. */
+const ctaCierre = (c) => c?.heroe?.cta ?? 'Get a Free Estimate';
 
 function bloquesCaptacion(ruta) {
   const c = CAPTACION_JSON[ruta];
@@ -2663,6 +2809,9 @@ function bloquesCaptacion(ruta) {
    *
    * La ultima linea es el `.svc-cierre` que devuelve al `#estimate`, gemelo del de la FAQ. */
   if (esCiudad(ruta)) {
+    /* SEO-REMEDIACION (4-oct-2026): la miga visible (`MigaVisible.astro`), entre el heroe y la
+     * franja de confianza. De la misma funcion que la pinta; el «/» va en `::before`. */
+    bloques.push(tramosMiga(ruta).map((t) => t.nombre));
     const dp = SERVICIOS_CAT['/'];
     const DEFECTO = 'pool-spa';
     const nm = (x) => (x ?? '').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ')
@@ -2676,7 +2825,7 @@ function bloquesCaptacion(ruta) {
       ...visibles.flatMap((sv) => (sv.id === activo
         ? [nm(sv.nombre), capitaliza(nm(sv.titulo)), nm(sv.texto), nm(sv.cta)]
         : [nm(sv.nombre)])),
-      capitaliza(CTA_CIERRE),
+      capitaliza(ctaCierre(c)),
     ]);
 
     /* 3.ter · LA GALERIA DE OBRA, entre el formulario y el 3D. Solo dos lineas: el `<h2>` y su
@@ -2698,7 +2847,7 @@ function bloquesCaptacion(ruta) {
   if (c.faq?.anade?.length) {
     bloques.push(c.faq.titulo
       ? [capitaliza(c.faq.titulo), c.faq.entradilla,
-        ...c.faq.anade.map((q) => capitaliza(q.pregunta)), capitaliza(CTA_CIERRE)]
+        ...c.faq.anade.map((q) => capitaliza(q.pregunta)), capitaliza(ctaCierre(c))]
       : c.faq.anade.map((q) => capitaliza(q.pregunta)));
   }
 
@@ -2973,9 +3122,9 @@ for (const ruta of RUTAS) {
     rojos.push({ ruta, falta: [ocultasFallo], sobra: [], fuera: [] });
     continue;
   }
-  const esperado = reordena(ruta,
+  const esperado = reordena(ruta, piePropio(ctaHeroe(ruta,
     sinOcultas
-      .filter((l) => !declaradas.has(l)).map((l) => traduce(ruta, l))).join('\n');
+      .filter((l) => !declaradas.has(l)).map((l) => traduce(ruta, l))))).join('\n');
   const bruto = (await textoNormalizado(pag)).trimEnd();
   if (bruto.includes(RESENAS_MARCADOR)) conResenas++;
   if (enBlogRutas(ruta) && lineasBlog(ruta).length
@@ -3008,6 +3157,13 @@ for (const ruta of RUTAS) {
   mal++;
   const d = diferencias(ruta, esperado, hay);
   rojos.push({ ruta, ...d });
+  /* `MM_TEXTO_DIFF=1`: vuelca esperado/medido alrededor de la primera linea distinta. Solo
+   * diagnostico (SEO-REMEDIACION, 4-oct-2026); no cambia el veredicto. */
+  if (process.env.MM_TEXTO_DIFF) {
+    const a = esperado.split('\n'); const b = hay.split('\n');
+    const k = a.findIndex((l, i) => l !== b[i]);
+    for (let i = Math.max(0, k - 2); i < k + Number(process.env.MM_TEXTO_DIFF_N ?? 6); i++) console.log(`     ${i + 1}  esp: ${(a[i] ?? '').slice(0, 90)}\n         hay: ${(b[i] ?? '').slice(0, 90)}`);
+  }
   console.log(`  ROJO ${ruta} — faltan ${d.falta.length} lineas, sobran ${d.sobra.length}`);
 }
 await nav.close();

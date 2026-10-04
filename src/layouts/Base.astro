@@ -21,6 +21,9 @@ import Nav from '../components/Nav.astro';
 import META_PROPIA from '../data/meta-propia.json';
 import TELEFONOS from '../data/telefonos.json';
 import { negocio, miga } from '../lib/negocio.mjs';
+import { videoFondo, precargaPoster } from '../lib/video-fondo.mjs';
+import { nivelesSinSaltos } from '../lib/niveles-titulo.mjs';
+import { srcsetAuto } from '../lib/srcset-auto.mjs';
 import Footer from '../components/Footer.astro';
 import ClickToCall from '../components/widgets/ClickToCall.astro';
 import Interacciones from '../components/Interacciones.astro';
@@ -143,6 +146,7 @@ import '../styles/faq.css';            // .faq-section 16                       
 // CSS de autor, DESPUES de webflow.css para ganar por orden y sin `!important`.
 // Hoy solo lleva el arreglo del solape del logo del nav entre 992 y 1204 px.
 import '../styles/propio.css';
+import '../styles/video-fondo.css';  // .w-background-video 65 (póster LCP)           -> SEO-REMEDIACIÓN
 
 interface Props {
   titulo: string;
@@ -275,12 +279,31 @@ const laMiga = YA_TIENE_MIGA ? null : miga(ruta);
 if (laMiga) inyectados.push(laMiga);
 
 const jsonLd = [...(seo.jsonLd ?? []), ...inyectados];
+
+/**
+ * SEO-REMEDIACIÓN (4-oct-2026) — LOS VÍDEOS DE FONDO PASAN POR UN SOLO SITIO.
+ *
+ * El contenido se renderiza aquí a cadena y `videoFondo()` reescribe cada
+ * `.w-background-video`: póster `<img>` como LCP, vídeo sin `autoplay` y con `preload="none"`.
+ * Así lo reciben las 65 rutas con vídeo sin tocar sus 65 generadores. Si la página tiene
+ * héroe de vídeo, su póster se precarga en el `<head>` (la MISMA URL que pinta el `<img>`).
+ */
+const { html: conVideo, heroe: posterHeroe } = videoFondo(await Astro.slots.render('default'));
+/* Y los titulos que saltan nivel reciben `aria-level` (ver `src/lib/niveles-titulo.mjs`). */
+/* Y las imagenes grandes sin `srcset` reciben sus variantes (ver `src/lib/srcset-auto.mjs`). */
+const { html: contenido } = srcsetAuto(nivelesSinSaltos(conVideo).html);
+const precargas = posterHeroe ? precargaPoster(posterHeroe) : [];
+const CON_MAIN = /<main[\s>]/.test(contenido);
 ---
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {precargas.map((p) => (
+      <link rel="preload" as="image" type="image/avif" media={p.media} imagesrcset={p.imagesrcset}
+        imagesizes={p.imagesizes} fetchpriority="high" />
+    ))}
     {FUENTES_PRECARGA.map((u) => (
       <link rel="preload" href={u} as="font" type="font/woff2" crossorigin="anonymous" />
     ))}
@@ -348,6 +371,13 @@ const jsonLd = [...(seo.jsonLd ?? []), ...inyectados];
     {!ES_PRODUCCION && <meta name="robots" content="noindex, nofollow" />}
     {jsonLd.map((b) => <script type="application/ld+json" set:html={JSON.stringify(b)} />)}
     {jsonLdCrudo.map((b) => <script type="application/ld+json" set:html={b} />)}
+    {/* SEO-REMEDIACION (4-oct-2026) — CLS DEL NAV EN MOVIL. Lighthouse atribuye el mayor
+        desplazamiento (0,12-0,19 en `/` movil) a `div.wrapper-menu`: el texto se pinta en la
+        `sans-serif` del sistema y se reflowea cuando entra Inter. La familia de reserva
+        «Inter Fallback» es Arial (o sus clones metricos Liberation Sans / Arimo) con las metricas
+        de Inter forzadas, asi que ocupa lo mismo y el cambio no mueve nada. Cuando Inter llega,
+        se pinta Inter igual que antes: el aspecto final no cambia. */}
+    <style is:inline set:html={`@font-face{font-family:"Inter Fallback";src:local("Arial"),local("ArialMT"),local("Liberation Sans"),local("Arimo"),local("Helvetica");ascent-override:90.44%;descent-override:22.52%;line-gap-override:0%;size-adjust:107.12%}body{font-family:Inter,"Inter Fallback",sans-serif}`} />
     <link rel="shortcut icon" href="/images/site/favicon.png" />
     <link rel="apple-touch-icon" href="/images/site/webclip.png" />
     {/* Webflow marca el <html> con w-mod-js y w-mod-touch y HAY CSS QUE DEPENDE DE ELLO.
@@ -374,7 +404,11 @@ const jsonLd = [...(seo.jsonLd ?? []), ...inyectados];
         compara línea a línea. Es la única página así de las 115. */}
     <slot name="antes-nav" />
     <Nav ruta={ruta} />
-    <slot />
+    {/* SEO-REMEDIACION (4-oct-2026): el landmark `<main>` que faltaba en 6 de 9 plantillas medidas
+        (Lighthouse `landmark-one-main`). Las paginas que ya traen el suyo (/financing,
+        /gallery/<categoria>) no se envuelven: dos `<main>` es peor que ninguno. Las juntas de
+        bandas que dependian de ser hermanas del pie estan cubiertas en `propio.css`. */}
+    {CON_MAIN ? <Fragment set:html={contenido} /> : <main id="contenido"><Fragment set:html={contenido} /></main>}
     {conPie && <Footer ruta={ruta} />}
     {/* 2 páginas llevan un <script>+<style> DESPUÉS del pie: el redimensionador del iframe
         del estimador. Va en su sitio o cambia el orden del documento. */}

@@ -35,6 +35,7 @@ import InversionCore from '../../../components/widgets/InversionCore.astro';
 import CollageFaq from '../../../components/widgets/CollageFaq.astro';
 import ServiciosPorCategoria from '../../../components/widgets/ServiciosPorCategoria.astro';
 import GaleriaObra from '../../../components/widgets/GaleriaObra.astro';
+import MigaVisible from '../../../components/MigaVisible.astro';
 import SEO_RUTAS from '../../../data/seo-pool-builders.json';
 import CAPTACION from '../../../data/captacion-servicios.json';
 import COLLAGE from '../../../data/collage-faq-por-ruta.json';
@@ -111,6 +112,18 @@ const d = aplanar(Astro.props.doc);
  * Cada linea cambiada va declarada en `TRADUCIDAS_A_PROPOSITO` de `check-texto.mjs`.
  */
 Object.assign(d, SEO_RUTAS[slug]?.bloques ?? {});
+/**
+ * SEO-REMEDIACION (4-oct-2026) — EL CARRUSEL DE OBRA DEJA DE DECIR QUE LA OBRA ES DE AQUI.
+ * Sanity escribia «Browse our <Ciudad> portfolio of waterfront pools…» en las 53, encima de un
+ * carrusel que es EL MISMO en las 53 y en el que no hay ni una obra con ciudad verificada
+ * (`REQUIRES_CLIENT_CONFIRMATION.md` #8/#19/#28). Una landing local que llama «portfolio de
+ * Gainesville» a piscinas de otros mercados es justo la senal falsa que no se puede dar. Se
+ * sustituye en la plantilla, sin tocar Sanity; el dia que haya obra con ciudad verificada, la
+ * pagina de esa ciudad puede volver a decirlo con la obra delante.
+ * Declarado en `check-texto.mjs` (`CARRUSEL_CIUDAD`).
+ */
+d.headingPortfolio = 'Featured Custom Pool Projects';
+d.paragraphPortfolio = 'Selected custom pool and outdoor living projects from our Florida portfolio, to inspire your design.';
 /**
  * Y EL APOYO DEL HEROE, POR EL MISMO MECANISMO Y POR LA MISMA RAZON (R20-CIUDADES).
  * Sanity vende ahi «new pool construction, pool remodeling, and luxury pool design» en la tercera
@@ -255,7 +268,24 @@ if (FAQ && !COLLAGE[RUTA]) {
     + 'collage-faq-por-ruta.json, y el collage es media seccion. Se declaran las dos o ninguna.');
 }
 
-const [P_ANTES, P_DESPUES] = partirPorElCarrusel(b0, `${RUTA} B[0]`);
+const [P_ANTES_CON_BANDA, P_DESPUES] = partirPorElCarrusel(b0, `${RUTA} B[0]`);
+
+/* ── SEO-REMEDIACION (Sebastian, 4-oct-2026) · LOS SERVICIOS SECUNDARIOS, DEBAJO DE LA FAQ ──────
+ * Estas 53 son paginas de PISCINA («pool builders <ciudad>»). La banda «Project Gallery» (seis
+ * paneles: piscinas, remodelacion, pergolas, techos, cocinas, decks) y el panel de los 14
+ * servicios iban a media pagina, por encima de las resenas, la obra y la FAQ: le contaban a
+ * Google y al visitante que la pagina va de todo el patio. Bajan detras de la FAQ, enteros y en
+ * el mismo orden entre si. No se quita nada: cambian de sitio.
+ *
+ * La banda es la ULTIMA seccion de `P_ANTES` (la pinta `conBandaGaleria`, que exige que salga
+ * una sola vez), asi que se corta por su apertura y se exige que no quede nada detras de su
+ * cierre: si la plantilla cambia de forma, revienta el build en vez de mover otra cosa. */
+const [P_ANTES, BANDA] = partirEn(P_ANTES_CON_BANDA, '<section class="animated-divs-section">', `${RUTA} banda`);
+if (!BANDA.trimEnd().endsWith('</section>') || BANDA.indexOf('<section', 1) >= 0) {
+  throw new Error(`${slug}: la banda «Project Gallery» ya no es la ultima seccion de P_ANTES`);
+}
+/** El `.svc-cierre` repite el CTA del heroe (`heroe.cta`, generado por build-captacion-ciudades). */
+const CTA_CIERRE = CAP?.heroe?.cta ?? 'Get a Free Estimate';
 
 const CTA_PIE = sinAperturaDelFeed(B[2], `${RUTA} B[2]`);
 // Y B[3] deja de renderizarse, asi que hay que AFIRMAR que no era mas que ese cierre: si la
@@ -265,7 +295,48 @@ if (B[3] !== '</section>') {
     + 'Al dejar de renderizarlo se estaria tirando contenido — revisa scripts/build-plantillas.mjs.');
 }
 
-const { seo: SEO_ORIGEN, ldCrudo: LD_CRUDO } = SEO_RUTAS[slug];
+const { seo: SEO_WEBFLOW, ldCrudo: LD_CRUDO } = SEO_RUTAS[slug];
+
+/**
+ * SEO-REMEDIACION (4-oct-2026) — FUERA EL `LocalBusiness` FALSO DE CADA CIUDAD.
+ *
+ * Webflow publicaba en las 53 un `LocalBusiness` llamado «Gainesville», «Ocala»… con una
+ * `PostalAddress` de esa ciudad, un `GeoCoordinates` VACIO, `priceRange: "$$$$"`, imagenes que ya
+ * no salen en la pagina y `url` relativa. Es decir: 53 negocios que no existen, uno por ciudad,
+ * compitiendo con el de verdad (`#negocio`, que inyecta `Base.astro`). Las directrices de Google
+ * piden lo contrario: un negocio de area de servicio no inventa una sede por ciudad.
+ *
+ * Se sustituye por lo que la pagina ES: un `Service` (construccion de piscina) que presta
+ * `#negocio` en esa ciudad. El condado solo entra si esta verificado en `ciudades-captacion.json`
+ * (igual que el copy). `check-seo.mjs` lo declara en `BLOQUES_SUSTITUIDOS` y valida su forma.
+ */
+const SITIO = String(Astro.site).replace(/\/$/, '');
+const FILA_CIUDAD = FOTOS_CIUDAD.ciudades.find((c) => c.slug === slug);
+const enEstado = { '@type': 'State', name: 'Florida' };
+const servicioCiudad = (lb) => {
+  const ciudad = lb.areaServed?.name ?? lb.name;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${SITIO}${RUTA}#servicio`,
+    name: `Custom pool construction in ${ciudad}, FL`,
+    serviceType: 'Custom inground pool construction',
+    description: d['seo.description'] || lb.description,
+    url: `${SITIO}${RUTA}`,
+    provider: { '@id': `${SITIO}/#negocio` },
+    areaServed: {
+      '@type': 'City',
+      name: ciudad,
+      containedInPlace: FILA_CIUDAD?.condado
+        ? { '@type': 'AdministrativeArea', name: `${FILA_CIUDAD.condado} County`, containedInPlace: enEstado }
+        : enEstado,
+    },
+  };
+};
+const SEO_ORIGEN = {
+  ...SEO_WEBFLOW,
+  jsonLd: (SEO_WEBFLOW.jsonLd ?? []).map((b) => (b?.['@type'] === 'LocalBusiness' ? servicioCiudad(b) : b)),
+};
 
 /**
  * EL `FAQPage`, CONSTRUIDO DE LA MISMA FUENTE QUE EL ACORDEON QUE SE VE.
@@ -295,6 +366,8 @@ const SEO = FAQ
 ---
 <Base titulo={d["seo.title"]} descripcion={d["seo.description"]} ruta={RUTA} seo={SEO} jsonLdCrudo={LD_CRUDO}>
   <Fragment set:html={ANTES_CONF} />
+  {/* SEO-REMEDIACION (4-oct-2026): la miga visible, de la misma fuente que el `#miga` del JSON-LD. */}
+  <MigaVisible ruta={RUTA} />
   <ConfianzaCore ruta={RUTA} />
   <Fragment set:html={ANTES_FORM} />
   <FormularioCore ruta={RUTA} />
@@ -342,32 +415,6 @@ const SEO = FAQ
       de Sebastian. Lo que se pierde queda dicho, no callado: entre el formulario y los dos CTA de
       `svc-inversion` quedan cuatro secciones sin vuelta al `#estimate`. El gemelo de la FAQ
       -`<p class="svc-cierre">`- sigue en pie y es el que devuelve al formulario. */}
-  {CAP && (
-    /* EL PANEL DE SERVICIOS DE LA HOME, ENTRE «Pool Features» Y LOS TESTIMONIOS (R21, pedido de
-       Sebastian 18-sep-2026). El sitio que pide es EXACTAMENTE la juntura que F2 ya dejo abierta
-       entre `P_ANTES` y `P_DESPUES`: ni marcador nuevo, ni `partirEn` nuevo, ni cirugia sobre el
-       HTML derivado. Una linea.
-
-       `clave="/"` PORQUE EL JSON NO TIENE CIUDADES y no puede tenerlas: `build-paginas.mjs:1581`
-       reescribe `servicios-categoria.json` desde el origen, asi que una clave a mano se pierde a
-       la siguiente generacion. El panel es identico al de la home; lo unico propio de la landing
-       es que abre por «Pool Solutions», que es correspondencia con el ad group.
-
-       ACOTADO CON `CAP`, Y AQUI ME SEPARO DE LO QUE PEDIA EL ENCARGO. `PROMPT-R21` §2.6 proponia
-       montarlo en las 53 «porque la re-baseline se paga una vez». Pero las otras 51 van a recibir
-       heroe, ritmo y galeria cuando les toque su fila de captacion, y entonces habria que
-       re-baselinizarlas OTRA VEZ. Acotado, este PR re-baseliniza 2 rutas; las 51 se re-baselinizan
-       una sola vez, ya en su forma final. La doctrina de F2 —«las 53, la misma estructura»— es
-       sobre el estado final, y la cabecera del propio encargo ya separa las 51 en su fase.
-
-       CIERRA CON `.svc-cierre`. La seccion mete 14 enlaces de salida a `/services/*` y justo
-       debajo queda «Project Showcase» con la suya: dos fugas seguidas antes de la prueba social,
-       en una pagina que se paga por clic. El cierre lo mitiga por una linea y es el gemelo
-       literal del que ya vive al pie de la FAQ. */
-    <ServiciosPorCategoria clave="/" defecto="pool-spa">
-      <p slot="cierre" class="svc-cierre"><a href="#estimate" class="button button-styles w-button">Get a Free Estimate</a></p>
-    </ServiciosPorCategoria>
-  )}
   <Fragment set:html={P_DESPUES} />
   <ResenasGoogle />
   <Fragment set:html={B[1]} />
@@ -396,13 +443,50 @@ const SEO = FAQ
                 </div>
                 <h3 class="dropdown-text">{q.pregunta}</h3>
               </div>
-              <nav class="dropdown-list w-dropdown-list"><p class="grey">{q.respuesta}</p></nav>
+              <nav class="dropdown-list w-dropdown-list">
+                <p class="grey">{q.respuesta}</p>
+                {q.fuentes?.length ? (
+                  <p class="grey mm-faq-fuentes">Official sources:{' '}
+                    {q.fuentes.map((f, i) => (<>{i ? ' · ' : ''}<a href={f.url} target="_blank" rel="noopener">{f.nombre}</a></>))}
+                  </p>
+                ) : null}
+              </nav>
             </div>
           ))}
         </div>
-        <p class="svc-cierre"><a href="#estimate" class="button button-styles w-button">Get a Free Estimate</a></p>
+        <p class="svc-cierre"><a href="#estimate" class="button button-styles w-button">{CTA_CIERRE}</a></p>
       </div>
     </section>
+  )}
+  {/* SEO-REMEDIACION (Sebastian, 4-oct-2026): la banda «Project Gallery» y el panel de servicios
+       bajan aqui, detras de la FAQ (ver el corte de `BANDA` arriba). Primero la banda y luego el
+       panel, el mismo orden que tenian entre si. */}
+  <Fragment set:html={BANDA} />
+  {CAP && (
+    /* EL PANEL DE SERVICIOS DE LA HOME, ENTRE «Pool Features» Y LOS TESTIMONIOS (R21, pedido de
+       Sebastian 18-sep-2026). El sitio que pide es EXACTAMENTE la juntura que F2 ya dejo abierta
+       entre `P_ANTES` y `P_DESPUES`: ni marcador nuevo, ni `partirEn` nuevo, ni cirugia sobre el
+       HTML derivado. Una linea.
+
+       `clave="/"` PORQUE EL JSON NO TIENE CIUDADES y no puede tenerlas: `build-paginas.mjs:1581`
+       reescribe `servicios-categoria.json` desde el origen, asi que una clave a mano se pierde a
+       la siguiente generacion. El panel es identico al de la home; lo unico propio de la landing
+       es que abre por «Pool Solutions», que es correspondencia con el ad group.
+
+       ACOTADO CON `CAP`, Y AQUI ME SEPARO DE LO QUE PEDIA EL ENCARGO. `PROMPT-R21` §2.6 proponia
+       montarlo en las 53 «porque la re-baseline se paga una vez». Pero las otras 51 van a recibir
+       heroe, ritmo y galeria cuando les toque su fila de captacion, y entonces habria que
+       re-baselinizarlas OTRA VEZ. Acotado, este PR re-baseliniza 2 rutas; las 51 se re-baselinizan
+       una sola vez, ya en su forma final. La doctrina de F2 —«las 53, la misma estructura»— es
+       sobre el estado final, y la cabecera del propio encargo ya separa las 51 en su fase.
+
+       CIERRA CON `.svc-cierre`. La seccion mete 14 enlaces de salida a `/services/*` y justo
+       debajo queda «Project Showcase» con la suya: dos fugas seguidas antes de la prueba social,
+       en una pagina que se paga por clic. El cierre lo mitiga por una linea y es el gemelo
+       literal del que ya vive al pie de la FAQ. */
+    <ServiciosPorCategoria clave="/" defecto="pool-spa">
+      <p slot="cierre" class="svc-cierre"><a href="#estimate" class="button button-styles w-button">{CTA_CIERRE}</a></p>
+    </ServiciosPorCategoria>
   )}
   <CarruselBlog titulo={d['headingBlog']} entradilla={d['paragraphBlog']} />
   <section class="social-media">
