@@ -61,6 +61,15 @@ enlaces, redirects, estructura:ciudades, galeria, seo y texto (5 rutas) VERDES; 
 main (baseline anterior), y lo único que cambia respecto a main es la banda (a 479, 0,094 px de corrimiento subpíxel
 debajo).
 
+### Despliegue (4-oct-2026, 13:16 UTC)
+
+Senavia-Corp/mrandmrs-outdoor-living#36 fusionado en `main` (`e697517..710ee11`, junto a R-SVC #35); la integración de
+GitHub desplegó sola. El main combinado se construyó en local y pasó tokens, rutas, enlaces, redirects,
+estructura:ciudades, seo y texto (5 rutas); la banda mide lo mismo (390: 1 138; 991: 1 788; 1440: abierta 457,4).
+Verificado SOBRE EL DOMINIO desde el sandbox de Composio: las 5 rutas en 200 con `--mm-gal-n:6`, 6 `feature-cta`
+y 6 `feature-icono`; el CSS servido es `Base.CVS-8zhk.css`, mismo hash que el build local, con la regla del icono y
+el velo en longitud; los 6 SVG de icono y `/gallery/*` en 200; el panel de R-SVC presente; `robots.txt` con `Allow: /`.
+
 ## SEO-URLS · MIGRACIÓN — 76 URLs al silo /services/, 90 redirects 308 sin cadenas, puerta check:redirects (3-oct-2026)
 
 14 fichas de `/services/<slug-largo>`, 53 ciudades de `/pool-builders/` y 9 condados de `/country/` pasan a
