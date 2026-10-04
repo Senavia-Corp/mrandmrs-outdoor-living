@@ -83,23 +83,43 @@ const INICIO_BANDA = '<section class="animated-divs-section">';
 const fotoPanel = (c, suf = '') => `/images/obra/paneles/gallery-panel-${c.slug}${suf}.webp`;
 const enlacePanel = (c) => `${enlaceDe(c)} photos`;
 
+/* El icono de servicio de cada panel: el mismo `icono` que pinta la rejilla de servicios de la
+ * home (bloque '/' de `servicios-categoria.json`), buscado por `id`. Los dos ficheros no llaman
+ * igual a todo —la galeria dice `kitchen`, los servicios `kitchens`— y eso es el alias. Si falta,
+ * el build cae: un panel sin icono es una celda a medias, no un detalle. */
+const ICONOS = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), 'src/data/servicios-categoria.json'), 'utf8'))['/'].servicios;
+const ALIAS_ICONO = { kitchen: 'kitchens' };
+export function iconoDe(c) {
+  const id = ALIAS_ICONO[c.id] ?? c.id;
+  const s = ICONOS.find((x) => x.id === id);
+  if (!s?.icono) throw new Error(`galeria-categorias: el panel ${c.slug} (id ${id}) no tiene icono en servicios-categoria.json`);
+  return s.icono;
+}
+
+/* GALERIA-HUB (4-oct-2026). `--mm-gal-n` lleva el numero de paneles a la hoja, que reparte el
+ * ancho de la abierta con el (`caracteristicas.css` §4). El icono va PRIMERO en el bloque y con
+ * `alt=""`: el nombre ya lo dice el titulo. La linea va en su `span` para poder recortarla a dos
+ * renglones por debajo de 992 sin tocar el texto, y el enlace sigue DENTRO del parrafo con el
+ * mismo texto, asi que `lineasBanda()` no cambia. */
 export function bandaGaleriaHtml() {
   const tarjetas = PANELES.map((c, i) => (
     `<div${i ? '' : ' id="w-node-_330b3a3f-e72c-3f91-1f24-8dfe4f379535-4f37952d"'} class="feature-card">`
-    + `<img src="${fotoPanel(c)}" loading="lazy" alt="" width="941" height="1672"`
-    + ' sizes="(min-width: 992px) 250px, (min-width: 768px) 50vw, 100vw"'
+    + `<img src="${fotoPanel(c)}" loading="lazy" decoding="async" alt="" width="941" height="1672"`
+    + ' sizes="(min-width: 992px) 250px, 50vw"'
     + ` srcset="${fotoPanel(c, '-p-500')} 500w, ${fotoPanel(c, '-p-800')} 800w, ${fotoPanel(c)} 941w"`
     + ` style="object-position:${c.panel.x}% 50%" class="feature-image">`
-    + '<div class="block-feature"><h3 class="title-feature">'
+    + '<div class="block-feature">'
+    + `<img class="feature-icono" src="${iconoDe(c)}" alt="" width="48" height="48" loading="lazy" decoding="async">`
+    + '<h3 class="title-feature">'
     + `<button type="button" class="feature-boton" aria-expanded="false" aria-controls="mm-carac-${i + 1}">`
     + `${esc(c.nombre)}</button></h3>`
-    + `<p class="feature-text" id="mm-carac-${i + 1}">${esc(c.linea)} `
-    + `<a href="${rutaDe(c)}">${esc(enlacePanel(c))}</a></p></div></div>`
+    + `<p class="feature-text" id="mm-carac-${i + 1}"><span class="feature-linea">${esc(c.linea)}</span> `
+    + `<a class="mm-accion feature-cta" href="${rutaDe(c)}">${esc(enlacePanel(c))}</a></p></div></div>`
   )).join('');
   return INICIO_BANDA
     + '<div data-w-id="330b3a3f-e72c-3f91-1f24-8dfe4f37952f" class="header-feature">'
     + `<h2 class="white">${esc(TITULO_BANDA)}</h2><p>${esc(TEXTO_BANDA)}</p></div>`
-    + `<div data-w-id="330b3a3f-e72c-3f91-1f24-8dfe4f379534" class="wrapper-feature">${tarjetas}</div>`
+    + `<div data-w-id="330b3a3f-e72c-3f91-1f24-8dfe4f379534" class="wrapper-feature" style="--mm-gal-n:${PANELES.length}">${tarjetas}</div>`
     + '</section>';
 }
 
