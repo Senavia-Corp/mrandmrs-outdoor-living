@@ -44,7 +44,13 @@
         "es": "We treat every client like family, delivering honest communication, transparency, and care from start to finish.",
         "motivo": "errata «ok.» al final de la frase"
       }
-    ]
+    ],
+    "imagenLcp": {
+      "selector": "section.hero-about img.image-path",
+      "ancho": 1454,
+      "alto": 900,
+      "_motivo": "El heroe de /about era loading=lazy y sin width/height: en movil llegaba tarde y empujaba el titular 255 px (CLS 0,278 en Lighthouse). eager + fetchpriority=high + dimensiones reales del fichero (1454x900)."
+    }
   },
   "/request-estimated": {
     "_motivo": "El formulario generico de presupuesto no preguntaba si el visitante es el propietario ni cuando quiere empezar, que son dos de los cinco cualificadores que ya piden las landings de pago (FormularioCore.astro). Se anaden OPCIONALES, con las mismas opciones, para no meter friccion. Ademas: las 14 casillas de servicio compartian id=\"checkbox\" (ids duplicados) y la etiqueta del presupuesto era un <div> sin asociar al <select>.",

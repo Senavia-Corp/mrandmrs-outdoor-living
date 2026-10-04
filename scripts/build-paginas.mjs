@@ -696,6 +696,15 @@ function textosPropios(doc, ruta) {
     if (ancla.length !== 1) throw new Error(`textos-propios ${ruta}: «${tras}» sale ${ancla.length} veces`);
     ancla[0].insertAdjacentHTML('afterend', html);
   }
+  /* La imagen que pinta el LCP: carga ansiosa, prioridad alta y su hueco reservado. */
+  if (t.imagenLcp) {
+    const img = doc.querySelectorAll(t.imagenLcp.selector);
+    if (img.length !== 1) throw new Error(`textos-propios ${ruta}: «${t.imagenLcp.selector}» sale ${img.length} veces`);
+    img[0].setAttribute('loading', 'eager');
+    img[0].setAttribute('fetchpriority', 'high');
+    img[0].setAttribute('width', String(t.imagenLcp.ancho));
+    img[0].setAttribute('height', String(t.imagenLcp.alto));
+  }
   /* Un `<div>` que hace de etiqueta pasa a `<label for>` (mismo texto, misma clase). */
   if (t.etiqueta) {
     const el = doc.querySelector(t.etiqueta.div);

@@ -30,6 +30,7 @@ const ESTATICO = path.join(RAIZ, '.vercel/output/static');
 const INDICE = path.join(RAIZ, 'src/data/variantes-imagen.json');
 const ANCHOS = [640, 1024];
 const MIN_BYTES = 150 * 1024;
+const MIN_BYTES_LCP = 40 * 1024;
 const MIN_ANCHO = 1000;
 const CHECK = process.argv.includes('--check');
 
@@ -55,16 +56,26 @@ const html = [];
 })(ESTATICO);
 
 const usadas = new Set();
+/** Las que pintan el LCP (`fetchpriority="high"` o `loading="eager"`) entran desde 40 KB: el
+ *  heroe de Pool Builders (146 KB, 1250 px) se servia entero a un movil de 412 px. */
+const prioritarias = new Set();
 for (const f of html) {
   for (const m of fs.readFileSync(f, 'utf8').matchAll(/<img\b[^>]*>/g)) {
     if (/\ssrcset=/.test(m[0])) continue;
     const s = m[0].match(/\ssrc="(\/images\/[^"]+\.(?:avif|jpe?g|webp))"/i);
-    if (s && !/-mm\d+\./.test(s[1])) usadas.add(s[1]);
+    if (s && !/-mm\d+\./.test(s[1])) {
+      usadas.add(s[1]);
+      if (/fetchpriority="high"|loading="eager"/.test(m[0])) prioritarias.add(s[1]);
+    }
   }
 }
 
 const previo = fs.existsSync(INDICE) ? JSON.parse(fs.readFileSync(INDICE, 'utf8')).imagenes : {};
-const imagenes = {};
+/* EL INDICE SE ACUMULA, NO SE REHACE. Una imagen que ya esta en el indice sale del build CON
+ * `srcset` (se lo puso `srcset-auto.mjs`), asi que esta pasada ya no la ve: rehacer el indice solo
+ * con lo que ve la tiraria. Se conservan las entradas previas cuyas variantes siguen en disco. */
+const imagenes = Object.fromEntries(Object.entries(previo)
+  .filter(([, e]) => e.variantes.every(([, vu]) => fs.existsSync(path.join(RAIZ, 'public', decodeURI(vu))))));
 let nuevas = 0;
 let bytesOrig = 0;
 let bytesVar = 0;
@@ -72,9 +83,9 @@ for (const u of [...usadas].sort()) {
   const orig = path.join(RAIZ, 'public', decodeURI(u));
   if (!fs.existsSync(orig)) continue;
   const st = fs.statSync(orig).size;
-  if (st < MIN_BYTES) continue;
+  if (st < (prioritarias.has(u) ? MIN_BYTES_LCP : MIN_BYTES)) continue;
   const md = await sharp(orig).metadata().catch(() => null);
-  if (!md?.width || md.width < MIN_ANCHO) continue;
+  if (!md?.width || md.width < (prioritarias.has(u) ? 700 : MIN_ANCHO)) continue;
   const ext = path.extname(orig).slice(1).toLowerCase();
   const vars = [];
   for (const w of ANCHOS.filter((x) => x < md.width)) {
@@ -99,8 +110,7 @@ fs.writeFileSync(INDICE, JSON.stringify({
   _lee_esto: 'GENERADO por scripts/build-variantes-imagen.mjs desde el build. Lo lee src/lib/srcset-auto.mjs. No editar a mano.',
   imagenes,
 }, null, 1) + '\n');
-console.log(`variantes: ${Object.keys(imagenes).length} originales (${(bytesOrig / 1048576).toFixed(1)} MB) · `
+console.log(`variantes: ${Object.keys(imagenes).length} originales en el indice · esta pasada: ${(bytesOrig / 1048576).toFixed(1)} MB de originales · `
   + `${nuevas} ficheros nuevos · variantes ${(bytesVar / 1048576).toFixed(1)} MB en total`);
-if (Object.keys(previo).length && Object.keys(previo).some((k) => !imagenes[k])) {
-  console.log('  aviso: el indice anterior tenia originales que el build ya no sirve sin srcset');
-}
+const perdidas = Object.keys(previo).filter((k) => !imagenes[k]);
+if (perdidas.length) console.log(`  aviso: ${perdidas.length} entrada(s) previas sin sus variantes en disco, fuera del indice`);
