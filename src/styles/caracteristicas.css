@@ -15,6 +15,9 @@
  *   .title-feature           55          idem
  *   .feature-text            55          idem
  *   .header-feature          55          idem   <- comprobado: NO sale en ninguna otra
+ *   .feature-icono           55          idem   <- GALERIA-HUB, 4-oct-2026: nacen en
+ *   .feature-linea           55          idem      `bandaGaleriaHtml()` y no salen en
+ *   .feature-cta             55          idem      ninguna otra ruta
  *
  *   .white                  104   <- por eso el h2 NO se toca por su clase
  *   .container              113   <- por eso el container se quita del MARCADO, no por CSS
@@ -101,7 +104,15 @@
   gap: var(--mm-e-16);
 }
 .animated-divs-section .wrapper-feature {
-  gap: 0;
+  /* GALERIA-HUB: UN SOLO REGIMEN POR DEBAJO DE 992, rejilla de 2 columnas desde 320. Apiladas
+   * a ancho completo, las seis tarjetas median 2 486 px de seccion a 390; en dos columnas, 1 138.
+   * Desde 992 vuelve el acordeon de siempre (§8). */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  justify-items: stretch;
+  gap: var(--mm-e-12);
+  padding: 0 var(--mm-e-16) var(--mm-e-24);
   align-items: stretch;
   margin-top: clamp(var(--mm-e-32), 4vw, var(--mm-e-64));
   /* EL CANTO DE ORO, y solo el de abajo. Cierra la banda como objeto —una tira de contactos
@@ -139,29 +150,17 @@
  * CON `border-box` —que `webflow.css` pone en `*`— los 5 px caen dentro del ancho de la
  * tarjeta, asi que los seis anchos siguen sumando la banda exacta y los huecos siguen en 0.
  *
- * SE PINTA UNA SOLA VEZ Y SE QUITA DONDE SOBRA, en vez de escribir el degradado dos veces:
- * `+ .feature-card` se lo pone a las cinco ultimas desde 768; `:nth-child(odd)` se lo quita a
- * la 3 y la 5, que de 768 a 991 abren fila en la rejilla de dos columnas y ahi una raya a la
- * izquierda seria un canto exterior, no una separacion; y desde 992, que ya son seis en fila,
- * se les devuelve. La receta vive en `--mm-raya`, declarada en la seccion, para no repetirla.
- *
- * Por debajo de 768 las tarjetas se apilan y no hay columnas que separar: no lleva. */
-@media (min-width: 768px) {
+ * SOLO DESDE 992, que es donde hay columnas que se tocan. Por debajo las tarjetas son una
+ * rejilla con hueco y esquinas (§8): ya estan separadas, y una raya entre dos tarjetas con aire
+ * no separa nada. Antes se pintaba desde 768 y se le quitaba con `:nth-child(odd)` a la 3 y la
+ * 5; con un solo regimen por debajo de 992 ese juego sobra entero. La receta vive en
+ * `--mm-raya`, declarada en la seccion, para no repetirla. */
+@media (min-width: 992px) {
   .animated-divs-section .feature-card + .feature-card {
     border-inline-start: 5px solid transparent;
     background-origin: border-box;
     background-repeat: no-repeat;
     background-size: 5px 100%;
-    background-image: var(--mm-raya);
-  }
-  .animated-divs-section .feature-card:nth-child(odd) {
-    border-inline-start-width: 0;
-    background-image: none;
-  }
-}
-@media (min-width: 992px) {
-  .animated-divs-section .feature-card:nth-child(odd):not(:first-child) {
-    border-inline-start-width: 5px;
     background-image: var(--mm-raya);
   }
 }
@@ -226,9 +225,18 @@
  * `transparent` no es literal de color a efectos de `check-tokens.mjs:213-220`: no esta en su
  * lista de palabras clave. Precedente en el repo: `hero-zona.css:84`. */
 .animated-divs-section .feature-card {
-  border-radius: 0;
+  border-radius: var(--mm-r-16);
   padding: 0;
   align-items: flex-end;
+  /* GALERIA-HUB. Por debajo de 992 la tarjeta es media rejilla y su alto sale de su ancho:
+   * 4/7 hasta 479, 4/5 desde 480 (§8). El suelo de 288 px es el que hace falta de 320 a 360,
+   * donde 4/7 de una media columna (138-158 px) no deja sitio a icono, titulo, linea y boton.
+   * Desde 992 la proporcion se apaga y vuelve el `min-height` del acordeon (§8).
+   *
+   * EL `sizes` PASA A `50vw` por lo mismo: la tarjeta ya no es la pantalla entera. El mayor
+   * ancho que pide por debajo de 992 son 455 px (a 991), y el candidato de 500w lo cubre. */
+  aspect-ratio: 4 / 7;
+  min-height: calc(var(--mm-e-96) * 3);
   /* Mas alto que los 250/450 px de Webflow para que la FOTO tenga sitio por encima del
    * bloque de texto: con los 250 px de antes el velo de §5 cubria casi la tarjeta entera a
    * 390 y la foto se perdia. Medido en captura, no supuesto.
@@ -256,7 +264,6 @@
    * 941 y seria inventarse pixeles, y `check-enlaces` exigiria en disco un fichero que no debe
    * existir. A dpr 2 y 991 hacen falta 992 px y el mayor que hay son 941: 1,05x, y ahi si que
    * no hay fichero mayor que pedir. */
-  min-height: clamp(calc(var(--mm-e-128) * 3), 96vw, calc(var(--mm-e-128) * 4));
 }
 
 /* ── 4 · LOS SEIS ANCHOS SUMAN EXACTAMENTE EL 100 %, SIEMPRE ──────────────────
@@ -300,7 +307,9 @@
  * de un `webflow.css` que sigue diciendo `width: 16%` tres lineas mas arriba. */
 @media (min-width: 992px) {
   .animated-divs-section .feature-card { flex: 1 1 0; width: auto }
-  .animated-divs-section .feature-card.is-active { flex-grow: 2.35; width: auto }
+  /* El 2,35 de arriba, escrito para N paneles: (N - 1) x 0,47. Con N = 6 da 2,35 EXACTO y la
+   * abierta sigue en el 31,97 %. `--mm-gal-n` lo pone el marcado (`bandaGaleriaHtml()`). */
+  .animated-divs-section .feature-card.is-active { flex-grow: calc((var(--mm-gal-n, 6) - 1) * .47); width: auto }
 }
 
 /* ── 5 · EL BLOQUE DE TEXTO, EL VELO Y EL TITULO QUE ENTRA EN EL ─────────────
@@ -372,36 +381,83 @@
   z-index: 1;
   display: grid;
   align-content: end;
-  gap: var(--mm-e-12);
-  padding: var(--mm-e-24);
+  gap: var(--mm-e-8);
+  padding: var(--mm-e-12);
+  text-align: start;
   /* `--mm-velo` es LOCAL de esta regla, no un token del sistema: existe solo para que el
    * hover (§7) cambie UNA parada del degradado en vez de reescribirlo entero. La parada del
    * 42 % es la que cubre el titulo vertical, que llega hasta el 39 % de la altura. */
   --mm-velo: 72%;
+  /* GALERIA-HUB: POR DEBAJO DE 992 LAS PARADAS VAN EN LONGITUD, NO EN PORCENTAJE. En la media
+   * tarjeta el titulo sube hasta el 79 % del alto (320) y con 42 % / 68 % quedaba sobre foto
+   * casi limpia: peor pixel 1,04:1 a 320 y 1,65:1 a 390. Medido en px, el titulo cae SIEMPRE
+   * entre 186 y 227 px del canto de abajo de 320 a 991, asi que el 72 % llega hasta 256 px y se
+   * desvanece hasta 384: el titulo queda siempre sobre velo de 72 % o mas. Desde 992 vuelve el
+   * degradado de siempre (§7), que es el que esta medido arriba. */
   background-image: linear-gradient(to top, var(--mm-navy) 4%,
-    color-mix(in srgb, var(--mm-navy) var(--mm-velo), transparent) 42%,
-    transparent 68%);
+    color-mix(in srgb, var(--mm-navy) var(--mm-velo), transparent) calc(var(--mm-e-128) * 2),
+    transparent calc(var(--mm-e-128) * 3));
 }
 .animated-divs-section .title-feature {
-  font-size: var(--mm-paso-5);
+  font-size: var(--mm-paso-4);
   font-weight: var(--mm-peso-medio);
 }
 .animated-divs-section .feature-text {
-  font-size: var(--mm-paso-3);
+  font-size: var(--mm-paso-1);
   line-height: var(--mm-alto-cuerpo);
 }
-/* PANELES-GALERIA: el enlace a /gallery/<slug> del parrafo. El `a` de webflow.css lo pinta
- * azul oscuro (ilegible sobre el velo) y a 14px/12px fijos: aqui hereda la letra del parrafo y
- * toma el enlace inverso de los tokens (8,51:1 sobre navy). El subrayado del navegador se queda:
- * el color solo no basta como indicador (WCAG 1.4.1). Ya es `position:relative` por webflow.css,
- * asi que pinta por encima del `::after` del boton, que cubre la tarjeta a >=992. */
-.feature-text a { color: var(--mm-enlace-inverso); font: inherit }
+/* GALERIA-HUB. La linea, a DOS renglones como mucho por debajo de 992, donde la media columna
+ * la partiria en cinco. Se recorta pintando, no quitando: el texto entero sigue en el DOM y en
+ * `innerText` (`check:texto`), y un `inline-box` es de nivel EN LINEA, asi que no mete salto
+ * entre la linea y el enlace. El `width: 100%` es lo que manda el enlace al renglon de abajo. */
+.animated-divs-section .feature-linea {
+  display: -webkit-inline-box;
+  width: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+/* EL ICONO DEL SERVICIO, en su chapa blanca con canto de oro, arriba a la izquierda. Es el
+ * mismo SVG navy de la rejilla de servicios de la home: navy sobre blanco, 15,60:1. La chapa es
+ * lo que lo hace legible sobre cualquier foto. Decorativo (`alt=""`) y sin eventos: el clic
+ * pasa a la tarjeta. */
+.animated-divs-section .feature-icono {
+  position: absolute;
+  inset: var(--mm-e-12) auto auto var(--mm-e-12);
+  width: var(--mm-e-32);
+  height: var(--mm-e-32);
+  padding: var(--mm-e-4);
+  border: 1px solid var(--mm-oro);
+  border-radius: var(--mm-r-pastilla);
+  background-color: var(--mm-blanco);
+  pointer-events: none;
+}
+/* PANELES-GALERIA -> GALERIA-HUB: el enlace a /gallery/<slug> deja de ser un subrayado dentro
+ * del parrafo y pasa a ser el boton de la casa (`.mm-accion`, navy sobre oro, 8,40:1). Se quito
+ * la regla `.feature-text a`, que con 0,1,1 GANABA a `.mm-accion` (0,1,0) y lo pintaba de enlace.
+ *
+ * Por debajo de 992 ocupa todo el ancho y su `::after` cubre la TARJETA entera: el bloque de
+ * texto es el ancestro posicionado mas cercano y mide la tarjeta. Una parada de tabulador util
+ * por tarjeta, y se toca donde se toque se va a la galeria. Desde 992 (§7) vuelve a su tamano,
+ * en pastilla, y el `::after` se apaga: ahi la tarjeta es del acordeon. */
+.animated-divs-section .feature-cta {
+  position: static;
+  width: 100%;
+  margin-top: var(--mm-e-8);
+  padding: var(--mm-e-8) var(--mm-e-12);
+  border-radius: var(--mm-r-8);
+  line-height: var(--mm-alto-titulo);
+}
+.animated-divs-section .feature-cta::after { content: ""; position: absolute; inset: 0 }
 @media (min-width: 992px) {
   .animated-divs-section .feature-card:not(.is-active) .title-feature {
     grid-area: 1 / 1;
     align-self: end;
   }
-  .animated-divs-section .feature-card:not(.is-active) .feature-text { grid-area: 1 / 1 }
+  /* `pointer-events: none` en el parrafo CERRADO: es invisible y queda encima del `::after`
+   * del boton. Sin esto el clic sobre el se lo quedaba el parrafo y la columna no se abria. */
+  .animated-divs-section .feature-card:not(.is-active) .feature-text { grid-area: 1 / 1; pointer-events: none }
+  .animated-divs-section .feature-linea { -webkit-line-clamp: none }
   /* LA JERARQUIA QUE FALTABA. Medido antes de tocar nada: el titulo abierto y los cinco
    * cerrados eran IDENTICOS —29,83 px, peso 500, sin tracking—, o sea que el sujeto y las
    * etiquetas pesaban lo mismo y la seccion se leia plana. El abierto sube de paso y los
@@ -568,7 +624,8 @@
   align-items: center;
   min-height: 44px;
 }
-.animated-divs-section .feature-boton:focus-visible {
+.animated-divs-section .feature-boton:focus-visible,
+.animated-divs-section .feature-cta:focus-visible {
   outline: var(--mm-foco-grosor) solid var(--mm-foco-inverso);
   outline-offset: var(--mm-foco-aire);
   box-shadow: var(--mm-foco-halo);
@@ -579,6 +636,13 @@
    * hay acordeon. Por debajo estorbaria — una capa invisible sobre las seis tarjetas impide
    * seleccionar el parrafo, y ahi no hay nada que abrir porque ya se ve todo. */
   .animated-divs-section .feature-boton::after { content: ""; position: absolute; inset: 0 }
+  .animated-divs-section .feature-cta {
+    position: relative;
+    width: auto;
+    padding: var(--mm-e-12) var(--mm-e-24);
+    border-radius: var(--mm-r-pastilla);
+  }
+  .animated-divs-section .feature-cta::after { content: none }
 
   /* ESTADOS, QUE HOY NO HABIA NINGUNO. Medido antes de tocar: 0 reglas `:hover` en toda la
    * seccion. Seis columnas clicables sin una sola senal de que lo son.
@@ -607,37 +671,45 @@
    * NO baja del 64 %: con el velo al 58 % un pixel BLANCO de foto bajo el texto daria 4,22:1
    * y suspenderia. Interpolar entre 72 y 64 no cruza ese suelo en ningun fotograma, porque el
    * recorrido entero queda por encima del 64. Los ratios re-medidos en hover van en el informe. */
-  .animated-divs-section .block-feature { transition: --mm-velo .45s ease-out }
+  .animated-divs-section .block-feature {
+    transition: --mm-velo .45s ease-out;
+    background-image: linear-gradient(to top, var(--mm-navy) 4%,
+      color-mix(in srgb, var(--mm-navy) var(--mm-velo), transparent) 42%, transparent 68%);
+  }
   .animated-divs-section .feature-card:is(:hover, :focus-within) .block-feature { --mm-velo: 64% }
   .animated-divs-section .feature-card:active .block-feature { --mm-velo: 68% }
 }
 
-/* ── 8 · POR DEBAJO DE 992: LA REJILLA QUE EL ENCARGO DESCRIBIA Y NO EXISTIA ──
+/* ── 8 · POR DEBAJO DE 992: UNA REJILLA DE DOS COLUMNAS, Y UN SOLO REGIMEN ──
  *
- * El encargo daba por hecho que a <992 la seccion «se convierte en rejilla de 2 columnas y a
- * 767 en 1». Medido, no era asi: a <=991 `webflow.css` pone `display:flex; flex-flow:column`
- * y las cuatro declaraciones de rejilla que van al lado quedan inertes, o sea que hoy 768-991
- * es UNA sola columna apilada. Se implementa lo descrito —decision de Sebastian el
- * 12-sep-2026—, no lo que habia.
+ * GALERIA-HUB (4-oct-2026). Antes habia tres: apiladas a <=767, dos columnas de 768 a 991 y el
+ * acordeon desde 992. Ahora la rejilla de dos columnas es la BASE (§1) y vale desde 320; aqui
+ * solo se afina el aire y la proporcion por tramos, y desde 992 se vuelve al acordeon.
  *
- * Al pasar a `display:grid` despiertan `grid-template-rows:auto auto` y `justify-items:center`
- * (ver la nota 2 de la cabecera). Se redeclaran las dos: `auto` deja que las 3 filas que piden
- * 6 tarjetas en 2 columnas salgan de `grid-auto-rows`, y `stretch` devuelve la tarjeta al
- * ancho de su celda en vez de encogerla a su contenido.
- *
- * A <=767 no se toca nada: `webflow.css` ya pone `display:grid` con una columna, que es lo que
- * se quiere. Este bloque no llega ahi porque arranca en 768. */
+ * `webflow.css` sigue declarando a <=991 `grid-template-rows:auto auto`, `justify-items:center`
+ * y, a <=767 y <=479, una sola columna. La base las redeclara con 0,2,0, que gana a sus 0,1,0
+ * sin depender del orden: es la nota 2 de la cabecera, ahora desde 320 y no desde 768. */
+@media (min-width: 480px) {
+  .animated-divs-section .feature-card { aspect-ratio: 4 / 5; max-height: calc(var(--mm-e-128) * 4) }
+}
 @media (min-width: 768px) {
-  .animated-divs-section .wrapper-feature {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
-    justify-items: stretch;
+  .animated-divs-section .wrapper-feature { gap: var(--mm-e-16); padding: 0 var(--mm-canal) var(--mm-e-32) }
+  .animated-divs-section .block-feature { gap: var(--mm-e-12); padding: var(--mm-e-24) }
+  .animated-divs-section .title-feature { font-size: var(--mm-paso-5) }
+  .animated-divs-section .feature-text { font-size: var(--mm-paso-3) }
+  .animated-divs-section .feature-icono {
+    inset: var(--mm-e-24) auto auto var(--mm-e-24);
+    width: var(--mm-e-48);
+    height: var(--mm-e-48);
+    padding: var(--mm-e-8);
   }
 }
 @media (min-width: 992px) {
-  .animated-divs-section .wrapper-feature { display: flex }
+  .animated-divs-section .wrapper-feature { display: flex; gap: 0; padding: 0 }
   .animated-divs-section .feature-card {
+    aspect-ratio: auto;
+    max-height: none;
+    border-radius: 0;
     min-height: clamp(calc(var(--mm-e-128) * 5), 46vw, calc(var(--mm-e-128) * 6));
   }
 }
@@ -650,5 +722,6 @@
   .animated-divs-section .feature-card,
   .animated-divs-section .block-feature,
   .animated-divs-section .feature-text,
-  .animated-divs-section .is-active .feature-text { transition: none }
+  .animated-divs-section .is-active .feature-text,
+  .animated-divs-section .feature-cta { transition: none }
 }

@@ -3,6 +3,23 @@
 Webflow → Astro 5 + Sanity + Vercel. Una entrada por fase, **escrita al cerrar la fase**,
 nunca al empezarla. Si una fase se reabre, se añade una entrada nueva; no se edita la vieja.
 
+## GALERIA-HUB — la banda «Project Gallery» en rejilla de 2 columnas por debajo de 992 (4-oct-2026)
+
+55 rutas (53 `/services/pool-builders/*` + `/where-we-serve/{north,south}-florida`), marcado en `bandaGaleriaHtml()`
+y CSS en `caracteristicas.css`; `Interacciones.astro` intacto. Por debajo de 992 hay un solo régimen: rejilla de 2
+columnas desde 320 (tarjeta 4/7 con suelo de 288 px, 4/5 desde 480), icono de servicio en chapa blanca (el `icono`
+de `servicios-categoria.json`, con alias `kitchen→kitchens`), línea recortada a 2 renglones sin tocar el texto y
+botón `.mm-accion` cuyo `::after` hace navegable la tarjeta entera. Desde 992 el acordeón es el de siempre
+(`flex-grow` = (N−1)×0,47, 2,35 exacto con 6) y el botón vuelve en pastilla. Alto de sección en gainesville-fl:
+390 2 486→1 138, 320 2 506→1 114, 768 1 705→1 523, 991 1 724→1 788; escritorio idéntico (0 px distintos contra main
+a 991-1920). Velo con paradas en longitud por debajo de 992: el título caía sobre foto limpia (peor píxel 1,04:1 a
+320); ahora ≥7,88:1. Tope de `check:tokens` 94→96 KB (decisión de Sebastian, quedan 197 B). Se queda en 6 paneles:
+Enclosures no tiene foto válida en el banco (bi-0048 es una losa en obra; bi-0130 no admite 9:16). La captura «en
+blanco» a 1440 era artefacto de `locator.screenshot` (reinicia el growIn), también en main. Puertas: tokens, rutas,
+enlaces, redirects, estructura:ciudades, galeria, seo y texto (5 rutas) VERDES; visual ROJA en las 5×4 igual que
+main (baseline anterior), y lo único que cambia respecto a main es la banda (a 479, 0,094 px de corrimiento subpíxel
+debajo).
+
 ## SEO-URLS · MIGRACIÓN — 76 URLs al silo /services/, 90 redirects 308 sin cadenas, puerta check:redirects (3-oct-2026)
 
 14 fichas de `/services/<slug-largo>`, 53 ciudades de `/pool-builders/` y 9 condados de `/country/` pasan a
