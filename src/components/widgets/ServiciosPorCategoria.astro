@@ -31,6 +31,8 @@
  *    la lista y una pista `1fr` final absorbe lo que mide de más. Su suelo es 3:2 del ancho de
  *    su columna, más alto que la pestaña de 7, así que las tres pestañas dan la misma tarjeta.
  *    El control segmentado comparte eje con la lista (`--svc-nav`, en la hoja). (R-SVC)
+ *    Y desde R-SVC-2 control y panel van juntos en `.svc-mando`, una rejilla con `subgrid`:
+ *    la ficha arranca a la altura del control, no de la primera fila.
  *
  * 5. EN MÓVIL LA SECCIÓN ESTABA VACÍA. `openFirstVisibleService()` hacía
  *    `if (isTabletDown()) return;`, así que a 991 y a 479 no había ni foto, ni descripción, ni
@@ -133,7 +135,12 @@ const texto = (h) => String(h).replace(/&amp;/g, '&').replace(/&lt;/g, '<').repl
     <div data-w-id={d.wIdTitulo} class="wrapper-title-services svc-cabecera">
       <h2 set:html={d.titulo} />
       <p class="paragraph-services" set:html={d.subtitulo} />
+    </div>
 
+    {/* EL MANDO: control y panel, HERMANOS (tablist junto a su tabpanel). Antes el control vivia
+        dentro de la cabecera y la ficha no podia arrancar a su altura sin un margen negativo.
+        Las pestanas siguen entre el parrafo y las filas: `innerText` no cambia de orden. */}
+    <div class="svc-mando" style={`--svc-filas:${d.servicios.length};--svc-tope:${tope}`}>
       {/* Control segmentado de UNA pieza: tres pastillas sueltas no se leen como un grupo. */}
       <div class="svc-cats" role="tablist" aria-label="Service categories">
         {d.categorias.map((c) => (
@@ -150,58 +157,57 @@ const texto = (h) => String(h).replace(/&amp;/g, '&').replace(/&lt;/g, '<').repl
           />
         ))}
       </div>
-    </div>
 
-    <div
-      id="svc-panel"
-      role="tabpanel"
-      aria-labelledby={`svc-cat-${defecto}`}
-      data-w-id={d.wIdCuerpo}
-      class="svc-cuerpo"
-      style={`--svc-filas:${d.servicios.length};--svc-tope:${tope}`}
-    >
-      {d.servicios.map((sv) => (
-        <>
-          <button
-            type="button"
-            class="svc-fila"
-            data-id={sv.id}
-            data-cats={sv.categorias.join(' ')}
-            aria-current={sv.id === activo ? 'true' : 'false'}
-            aria-controls={`svc-ficha-${sv.id}`}
-            hidden={!esVisible(sv)}
-          >
-            <img class="svc-icono" src={sv.icono} alt="" width="30" height="30" loading="lazy" />
-            <span class="svc-nombre" set:html={sv.nombre} />
-            <svg class="svc-chevron" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-              <path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </button>
+      <div
+        id="svc-panel"
+        role="tabpanel"
+        aria-labelledby={`svc-cat-${defecto}`}
+        data-w-id={d.wIdCuerpo}
+        class="svc-cuerpo"
+      >
+        {d.servicios.map((sv) => (
+          <>
+            <button
+              type="button"
+              class="svc-fila"
+              data-id={sv.id}
+              data-cats={sv.categorias.join(' ')}
+              aria-current={sv.id === activo ? 'true' : 'false'}
+              aria-controls={`svc-ficha-${sv.id}`}
+              hidden={!esVisible(sv)}
+            >
+              <img class="svc-icono" src={sv.icono} alt="" width="30" height="30" loading="lazy" />
+              <span class="svc-nombre" set:html={sv.nombre} />
+              <svg class="svc-chevron" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                <path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
 
-          <article
-            class="svc-ficha"
-            id={`svc-ficha-${sv.id}`}
-            data-id={sv.id}
-            hidden={sv.id !== activo}
-          >
-            <img class="svc-foto" src={sv.foto} alt={sv.alt} width={sv.ancho} height={sv.alto} style={sv.pos ? `object-position:${sv.pos}` : undefined} loading="lazy" />
-            {/* `data-n` lo repone el script al cambiar de fila o de pestaña. */}
-            <p class="svc-contador" aria-hidden="true"
-               data-n={esVisible(sv) ? posicion(sv) : 1} data-total={visibles.length} />
-            <div class="svc-barra">
-              <div class="blck-glass"></div>
-              <div class="svc-barra-txt">
-                <h3 class="svc-ficha-titulo" set:html={sv.titulo} />
-                <p class="svc-ficha-texto" set:html={sv.texto} />
+            <article
+              class="svc-ficha"
+              id={`svc-ficha-${sv.id}`}
+              data-id={sv.id}
+              hidden={sv.id !== activo}
+            >
+              <img class="svc-foto" src={sv.foto} alt={sv.alt} width={sv.ancho} height={sv.alto} style={sv.pos ? `object-position:${sv.pos}` : undefined} loading="lazy" />
+              {/* `data-n` lo repone el script al cambiar de fila o de pestaña. */}
+              <p class="svc-contador" aria-hidden="true"
+                 data-n={esVisible(sv) ? posicion(sv) : 1} data-total={visibles.length} />
+              <div class="svc-barra">
+                <div class="blck-glass"></div>
+                <div class="svc-barra-txt">
+                  <h3 class="svc-ficha-titulo" set:html={sv.titulo} />
+                  <p class="svc-ficha-texto" set:html={sv.texto} />
+                </div>
+                <a class="svc-cta button w-button" href={sv.enlace}
+                  aria-label={`${texto(sv.cta)}: ${texto(sv.titulo)}`}
+                ><Fragment set:html={sv.cta} /><span class="mm-sr" set:html={`: ${sv.titulo}`} /></a>
               </div>
-              <a class="svc-cta button w-button" href={sv.enlace}
-                aria-label={`${texto(sv.cta)}: ${texto(sv.titulo)}`}
-              ><Fragment set:html={sv.cta} /><span class="mm-sr" set:html={`: ${sv.titulo}`} /></a>
-            </div>
-          </article>
-        </>
-      ))}
+            </article>
+          </>
+        ))}
+      </div>
     </div>
 
     {/* R21: hueco para un cierre propio de la ruta. Vacio en `/` y en las dos de
@@ -277,10 +283,10 @@ const texto = (h) => String(h).replace(/&amp;/g, '&').replace(/&lt;/g, '<').repl
    * Una sola pieza con fondo propio, no tres pastillas sueltas: así se lee de un vistazo que
    * las tres son el mismo control y que solo una puede estar puesta. Por debajo de 992 ocupa
    * el ancho del contenedor: es el mismo eje que las filas y la ficha que tiene debajo. */
+  .svc-mando { margin-top: var(--mm-e-24) }
+
   .svc-cats {
     display: flex;
-    align-self: stretch;
-    margin-top: var(--mm-e-24);
     padding: var(--mm-e-4);
     background: var(--azul50);
     border-radius: var(--mm-r-24);
@@ -544,7 +550,7 @@ const texto = (h) => String(h).replace(/&amp;/g, '&').replace(/&lt;/g, '<').repl
    * 16:9 a ~712 px de ancho son ~400 de alto, y el texto se tumba en una fila (texto | CTA)
    * para que la tarjeta no salga desproporcionada de alta. */
   @media screen and (min-width: 768px) {
-    .svc-cats { margin-top: var(--mm-e-32) }
+    .svc-mando { margin-top: var(--mm-e-32) }
     .svc-cuerpo { margin-top: var(--mm-e-24) }
     /* El tope de 25rem es el alto que da 16:9 justo a 768 (712 x 400). Por encima, la foto
      * gana ancho pero no alto: a 991 serían 526 px y la tarjeta (654) no cabría en una tablet
@@ -571,10 +577,12 @@ const texto = (h) => String(h).replace(/&amp;/g, '&').replace(/&lt;/g, '<').repl
    * panel es una rejilla de dos columnas con 37 % / 3 % / 60 %, la misma relación de antes
    * (35/5/60) con el aire del hueco pasado a la lista. */
   @media screen and (min-width: 992px) {
+    .svc-mando { margin-top: var(--mm-e-48) }
+
     .svc-cats {
-      align-self: flex-start;
+      width: max-content;
+      max-width: 100%;
       min-width: var(--svc-nav);
-      margin-top: var(--mm-e-48);
     }
 
     /* LA PISTA `1fr` DEL FINAL ES LA QUE HACE EL TRABAJO. La ficha se coloca en la columna 2
@@ -665,6 +673,59 @@ const texto = (h) => String(h).replace(/&amp;/g, '&').replace(/&lt;/g, '<').repl
     .svc-ficha-titulo { grid-area: tit; margin: 0; font-size: clamp(22px, 2vw, 28px) }
     .svc-ficha-texto { grid-area: txt; max-width: 62ch }
     .svc-cta { grid-area: cta }
+
+    /* ── LAS DOS COLUMNAS ARRANCAN A LA MISMA ALTURA (R-SVC-2, la línea roja de Sebastian) ──
+     * Sin esto la ficha empezaba en la primera fila, 68 px por debajo del control, y a su
+     * derecha quedaba un hueco. Ahora `.svc-mando` es la rejilla: su pista 1 es la del control
+     * y las siguientes, las de las filas. El panel abarca la rejilla entera y la HEREDA
+     * (`subgrid` en los dos ejes), así que la ficha —`1 / -1`— arranca en la pista del control.
+     *
+     * Dos detalles que no son adorno:
+     *   · el `::before` del panel ocupa la celda 1·1 para que las filas se autocoloquen desde
+     *     la pista 2 y no encima de las pestañas;
+     *   · el panel se SOLAPA con la celda del control, y una caja posterior en el DOM se lleva
+     *     los clics aunque no tenga fondo: el `z-index` deja las pestañas clicables.
+     *
+     * Sin `subgrid` (navegadores anteriores a 2023) no entra nada de esto y queda la
+     * maqueta de arriba, con la ficha a la altura de la primera fila: correcta, solo menos
+     * alineada. */
+    @supports (grid-template-rows: subgrid) {
+      .svc-mando {
+        display: grid;
+        grid-template-columns: var(--svc-nav) minmax(0, 1fr);
+        grid-template-rows: auto repeat(var(--svc-filas, 14), auto) 1fr;
+        column-gap: 3%;
+        row-gap: 0;
+      }
+
+      .svc-cats {
+        grid-column: 1;
+        grid-row: 1;
+        width: auto;
+        min-width: 0;
+        margin-bottom: var(--mm-e-16);
+        position: relative;
+        z-index: 1;
+      }
+
+      .svc-cuerpo {
+        grid-column: 1 / -1;
+        grid-row: 1 / -1;
+        grid-template-columns: subgrid;
+        grid-template-rows: subgrid;
+        gap: normal;
+        margin-top: 0;
+      }
+
+      .svc-cuerpo::before { content: ''; grid-column: 1; grid-row: 1; pointer-events: none }
+
+      /* El suelo de la ficha suma ahora la pista del control (44 px de pestaña + 2 x 4 de
+       * relleno + los 16 de separación): si no, la pestaña de 7 filas volvería a dar una
+       * tarjeta más alta que las otras dos. */
+      .svc-ficha::before {
+        min-height: calc(var(--svc-tope, 7) * var(--svc-fila-alto) + 44px + 2 * var(--mm-e-4) + var(--mm-e-16));
+      }
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
