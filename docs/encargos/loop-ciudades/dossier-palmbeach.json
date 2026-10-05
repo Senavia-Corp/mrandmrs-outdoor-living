@@ -1,0 +1,559 @@
+{
+  "comprobado": "2026-10-05",
+  "metodo": "WebSearch snippets; fetch blocked",
+  "fuente_condado_general": {
+    "url": "https://discover.pbc.gov/pages/municipalities.aspx",
+    "evidencia": "There are 39 incorporated municipalities within Palm Beach County.",
+    "url_alt": "https://pbc.gov/oig/population.htm"
+  },
+  "regional": {
+    "hvhz": {
+      "hecho": "Palm Beach County NO está en la High-Velocity Hurricane Zone; la HVHZ del FBC es solo Miami-Dade y Broward.",
+      "url": "https://www.floridabuilding.org/fbc/publications/FBC.pdf",
+      "evidencia": "The High-Velocity Hurricane Zone (HVHZ) consists of Broward and Dade counties.",
+      "nota": "Snippet atribuido a la publicación FBC de floridabuilding.org en resultados de búsqueda; no se pudo abrir el PDF para citar sección exacta (FBC 202 / 1620)."
+    },
+    "viento": {
+      "hecho": "Vult en Palm Beach County 140-180 mph (ráfaga 3 s, Exposición C) según Risk Category; todo el condado no incorporado está en la Wind-Borne Debris Region.",
+      "url": "https://discover.pbcgov.org/pzb/administration/PDF/Maps/WindSpeedMaps/UltimateDesignWindSpeedMaps_RiskCat_2.pdf",
+      "url_alt": "https://discover.pbcgov.org/pzb/building/pages/wind-speeds.aspx",
+      "evidencia": "Ultimate Design Wind Speeds (Vult) for Palm Beach County range from 140 mph to 180 mph 3-second gust for Exposure Category C, depending on the Risk Category ... All of Unincorporated Palm Beach County is within the Wind-Borne Debris Region.",
+      "nota": "La frase de WBDR se refiere al condado NO incorporado; para cada municipio hay que consultar a su building official. Por definición FBC (WBDR = zonas con Vult >= 140 mph) y el mínimo de 140 mph del condado, se deduce que todo el condado cae en WBDR, pero eso es inferencia, no cita."
+    },
+    "riego_sfwmd": {
+      "hecho": "SFWMD Mandatory Year-Round Landscape Irrigation Conservation Measures, Cap. 40E-24 F.A.C., adoptadas en 2010: prohíben regar 10 a.m.-4 p.m. y limitan días por semana; los gobiernos locales pueden adoptar ordenanzas alternativas.",
+      "url": "https://www.sfwmd.gov/sites/default/files/factsheet_year_round_watering_2020.pdf",
+      "url_alt": "https://www.sfwmd.gov/sites/default/files/documents/yr_faqs_new.pdf",
+      "evidencia": "The South Florida Water Management District Governing Board adopted the Mandatory Year-Round Landscape Irrigation Conservation Measures (Year-Round Irrigation Rule), Chapter 40E-24, Florida Administrative Code (FAC), in 2010. The rule restricts the times and number of days landscape irrigation is allowed ... Local governments ... have the flexibility to adopt alternative landscape irrigation ordinances",
+      "nota": "No anoto días concretos por dirección para el condado: el snippet de días (impares L/X/S, pares M/J/D) venía de Riviera Beach (no está en la lista) y el snippet del condado habla de 2 días/semana; verificar en la ordenanza vigente."
+    },
+    "riego_condado": {
+      "hecho": "Palm Beach County tiene su propia Water and Irrigation Conservation Ordinance, aplicable en el condado no incorporado y en zonas incorporadas no sujetas a regulación municipal.",
+      "url": "https://pbcgov.org/pzb/codeenforcement/PDF/water_conserv_ordinance.pdf",
+      "evidencia": "All provisions apply within the unincorporated areas of the county as well as those incorporated areas not subject to municipal regulation, and set restrictions, constraints and prohibitions to enhance the county's water resources and provide a permanent water conservation measure.",
+      "nota": "No pude confirmar número de ordenanza ni año ni si el régimen vigente es 2 o 3 días/semana."
+    },
+    "piscinas_fs515": {
+      "hecho": "Cap. 515 F.S., 'Preston de Ibern/McKenzie Merriam Residential Swimming Pool Safety Act' (2000, SB 86); ss. 515.21-515.37: barreras, opciones de seguridad (515.27), requisitos de barrera (515.29), exenciones.",
+      "url": "https://www.flsenate.gov/Laws/Statutes/2025/Chapter515/All",
+      "url_alt": "https://flsenate.gov/Session/Bill/2000/86/BillText/er/PDF",
+      "evidencia": "Chapter 515, F.S., is known as the 'Preston de Ibern/McKenzie Merriam Residential Swimming Pool Safety Act' ... sections 515.21, 515.23, 515.25, 515.27, 515.29, 515.31, 515.33, 515.35, and 515.37",
+      "nota": "Existe también flsenate.gov/Laws/Statutes/2026/Chapter515/All; no se pudo abrir para comparar cambios 2026."
+    },
+    "cccl_programa": {
+      "hecho": "FDEP CCCL: línea jurisdiccional (no retranqueo) en las playas arenosas de 25 condados costeros; construcción al mar de la CCCL requiere permiso FDEP además del local. Palm Beach County tiene CCCL registrada (mapa oficial 22-ago-1997).",
+      "url": "https://floridadep.gov/rcp/coastal-construction-control-line",
+      "url_alt": "https://floridadep.gov/rcp/coastal-construction-control-line/content/locate-coastal-construction-control-line-cccl",
+      "evidencia": "The CCCL is not a building setback line but a jurisdictional line ... local governments regulating construction on all beachfront land and FDEP additionally regulating construction seaward of the CCCL. | flrules.org (62B-34.010): 'Official Map of Record of the Coastal Construction Control Line (CCCL) ... recorded August 22, 1997' (Palm Beach County General Permit Line)",
+      "url_regla": "https://flrules.org/gateway/readFile.asp?sid=2&tid=7971089&type=1&file=62B-34.010.htm",
+      "visor_pbc": "https://gis.pbcgov.org/arcgis/rest/services/ERM/CCCL/MapServer"
+    },
+    "permisos_por_municipio_pbcpao": {
+      "url": "https://pbcpao.gov/muni-permit-departments.htm",
+      "evidencia": "PBC Municipality Permit Departments (Property Appraiser): list of links for each municipality's Permit Department"
+    }
+  },
+  "lugares": [
+    {
+      "ciudad": "West Palm Beach",
+      "condado": {
+        "valor": "Palm Beach County",
+        "url": "https://pbc.gov/oig/population.htm",
+        "evidencia": "pbc.gov/oig Municipal Population: 'West Palm Beach: 99,919'; county profile: 'PALM BEACH COUNTY PROFILE COUNTY SEAT: West Palm Beach'",
+        "url_alt": "https://discover.pbc.gov/pages/municipalities.aspx"
+      },
+      "permisos": {
+        "oficina": "City of West Palm Beach – Development Services, Building Division",
+        "url": "https://www.wpb.org/departments/development-services/building-division",
+        "evidencia": "The Building Division of Development Services is tasked with processing and reviewing building permit applications and overseeing inspections for building code compliance. ... City Hall, 401 Clematis Street ... 561-805-6700"
+      },
+      "costa": {
+        "oceanica": null,
+        "url": null,
+        "evidencia": null,
+        "nota": "Sin fuente oficial encontrada. Geográficamente la ciudad está en tierra firme frente al Lake Worth Lagoon (no Atlántico); no se marca false por falta de cita."
+      },
+      "extras": [
+        {
+          "hecho": "Cercas y barreras de piscina requieren permiso siempre, sin exención por importe; las piscinas requieren permiso propio; autollenado de piscina exige backflow con permiso aparte.",
+          "url": "https://www.wpb.org/Departments/Development-Services/Building-Division/Permits-FAQ",
+          "evidencia": "Fences and fence pool barriers require permits regardless of cost and cannot be exempted even if valued under $7,500 ... A separate permit must be secured for pools. ... pool autofill devices require a backflow device, and all backflow devices require a separate permit."
+        },
+        {
+          "hecho": "La ciudad tiene un formulario de reconocimiento de riego residencial (Residential Irrigation Acknowledgment Form).",
+          "url": "https://www.wpb.org/files/assets/city/v/1/development-services/documents/building-div/residential-irrigation-acknowledgement-form.pdf",
+          "evidencia": "RESIDENTIAL IRRIGATION ACKNOWLEDGMENT FORM (título del documento en wpb.org)"
+        }
+      ],
+      "dudas": "Contenido del formulario de riego no visto."
+    },
+    {
+      "ciudad": "Boca Raton",
+      "condado": {
+        "valor": "Palm Beach County",
+        "url": "https://pbc.gov/oig/population.htm",
+        "evidencia": "pbc.gov/oig Municipal Population: 'Boca Raton: 84,392'",
+        "url_alt": "https://discover.pbc.gov/pages/municipalities.aspx"
+      },
+      "permisos": {
+        "oficina": "City of Boca Raton – Building (Development Services / Building Permits)",
+        "url": "https://myboca.us/DocumentCenter/View/258/Swimming-Pool-PDF",
+        "evidencia": "Swimming Pool PDF (myboca.us); Building Administration ... 200 NW 2nd Avenue, Boca Raton, FL 33432 ... (561) 393-7930",
+        "url_alt": "https://myboca.us/234/Code-in-Effect"
+      },
+      "costa": {
+        "oceanica": true,
+        "url": "https://floridadep.gov/sites/default/files/CriticalErosionReport.pdf",
+        "evidencia": "Boca Raton: This is a 3.8-mile segment of critically eroded beach in the City of Boca Raton.",
+        "cccl": "Aplica en la franja costera (Palm Beach County tiene CCCL); ver visor FDEP por parcela."
+      },
+      "extras": [
+        {
+          "hecho": "Piscinas enterradas requieren permisos de building, eléctrico y fontanería; piscinas elevadas >24 in requieren permiso y barrera; checklist con planos sellados y survey.",
+          "url": "https://myboca.us/DocumentCenter/View/258/Swimming-Pool-PDF",
+          "evidencia": "Submittal Form, Building Application, Electrical Application, Plumbing Application ... Contract, Plans, and Survey/Site Plan, with an Architect/Engineer Seal and Electrical Load Calculations"
+        }
+      ],
+      "dudas": "El dato de 24 in y las tasas (1.6%) venían en parte de permitmint.com (tercero) mezclado con el PDF oficial; no los afirmo. Nombre exacto de la división no confirmado en snippet."
+    },
+    {
+      "ciudad": "Boynton Beach",
+      "condado": {
+        "valor": "Palm Beach County",
+        "url": "https://pbc.gov/oig/population.htm",
+        "evidencia": "pbc.gov/oig Municipal Population: 'Boynton: 68,217'",
+        "url_alt": "https://discover.pbc.gov/pages/municipalities.aspx"
+      },
+      "permisos": {
+        "oficina": "City of Boynton Beach – Building Department",
+        "url": "https://boynton-beach.org/296/Building-Permits",
+        "evidencia": "The Building Department has the duty and power to enforce all ordinances and laws regulating construction by providing services such as permit issuance, plans examination, and inspections. ... 561-742-6000"
+      },
+      "costa": {
+        "oceanica": null,
+        "url": "https://boynton-beach.org/254/Oceanfront-Park",
+        "evidencia": "Boynton Beach Oceanfront Park is located at 6415 N Ocean Boulevard in Ocean Ridge. ... in 1921 there existed a municipality known as the Town of Boynton which comprised the lands now contained within the boundaries of ... the City of Boynton Beach and the Town of Ocean Ridge.",
+        "nota": "El parque de playa de la ciudad está dentro de Ocean Ridge; no encontré fuente oficial de frente atlántico dentro de los límites de la ciudad. Probablemente NO oceánica, sin confirmar."
+      },
+      "extras": [
+        {
+          "hecho": "Permisos electrónicos vía SagesGov desde 22-may-2021; piscinas residenciales con inspección de barrera permanente antes de llenar.",
+          "url": "https://boynton-beach.org/pool",
+          "evidencia": "final permanent barrier inspection prior to filling the pool with water, and final inspection when the pool is complete and all required enclosure requirements are in place",
+          "url_alt": "https://www.boynton-beach.org/428/Sages-Permits"
+        }
+      ],
+      "dudas": "La URL /pool podría ser la página de la piscina municipal y no de permisos; el snippet de inspecciones puede venir de otro documento del mismo dominio. Verificar antes de publicar."
+    },
+    {
+      "ciudad": "Delray Beach",
+      "condado": {
+        "valor": "Palm Beach County",
+        "url": "https://pbc.gov/oig/population.htm",
+        "evidencia": "pbc.gov/oig Municipal Population: 'Delray Beach: 60,522'",
+        "url_alt": "https://discover.pbc.gov/pages/municipalities.aspx"
+      },
+      "permisos": {
+        "oficina": "City of Delray Beach – Development Services, Building Division",
+        "url": "https://delraybeachfl.gov/government/city-departments/development-services/building",
+        "evidencia": "The Building Division is responsible for plan review, permitting, and inspection of all construction activity ... 100 NW 1st Avenue ... (561) 243-7200"
+      },
+      "costa": {
+        "oceanica": true,
+        "url": "https://floridadep.gov/sites/default/files/CriticalErosionReport.pdf",
+        "evidencia": "In July 1973, construction of the federally-authorized Delray Beach Shore Protection Project (R175-R188) was completed on this 2.9-mile segment of beach",
+        "cccl": "Aplica en la franja costera."
+      },
+      "extras": [
+        {
+          "hecho": "Survey de menos de 12 meses obligatorio para permisos de piscinas, decks, caminos u otra mejora que aumente superficie impermeable; cercas residenciales requieren survey y pueden requerir paisajismo adicional.",
+          "url": "https://www.delraybeachfl.gov/government/city-departments/development-services/building/faq",
+          "evidencia": "a property survey no more than 12 months old is required for residential permit applications for pools, decks, driveway extensions, pathways, or any other such improvement that increases the site's impervious areas. | Residential fencing will require two copies of property survey and may require additional landscaping."
+        }
+      ],
+      "dudas": "Los dos fragmentos del extra pueden venir de páginas distintas de delraybeachfl.gov (FAQ / ePlans document requirements)."
+    },
+    {
+      "ciudad": "Wellington",
+      "condado": {
+        "valor": "Palm Beach County",
+        "url": "https://pbc.gov/oig/population.htm",
+        "evidencia": "pbc.gov/oig Municipal Population: 'Wellington: 56,508'",
+        "url_alt": "https://discover.pbc.gov/pages/municipalities.aspx"
+      },
+      "permisos": {
+        "oficina": "Village of Wellington – Building Division (Planning, Zoning & Building)",
+        "url": "https://www.wellingtonfl.gov/214/Building",
+        "url_alt": "https://www.wellingtonfl.gov/269/Guide-to-Permitting",
+        "evidencia": "The Village of Wellington Building Department processes permits electronically, and all building plans must be submitted through ProjectDox. ... 12300 Forest Hill Boulevard Wellington, FL 33414"
+      },
+      "costa": {
+        "oceanica": null,
+        "url": null,
+        "evidencia": null,
+        "nota": "Sin fuente oficial; municipio interior (no costero) por geografía."
+      },
+      "extras": [
+        {
+          "hecho": "Equestrian Overlay Zoning District (EOZD, 2003) regula desarrollo dentro de la Equestrian Preserve Area (~9.000 acres al oeste y sur); el Equestrian Preserve Committee asesora al PZAB.",
+          "url": "https://www.wellingtonfl.gov/Faq.aspx?QID=142",
+          "url_alt": "https://www.wellingtonfl.gov/331/Equestrian-Preserve-Committee",
+          "evidencia": "Wellington's Council adopted the Equestrian Overlay Zoning District (EOZD) in 2003 to regulate development and activities within Wellington's Equestrian Preserve Area (EPA) ... The equestrian community is located on 9,000 acres in the western and southern portions of Wellington within the EPA."
+        }
+      ],
+      "dudas": "Nombre oficial es 'Equestrian Preserve Area' (no 'Preservation Area')."
+    },
+    {
+      "ciudad": "Jupiter",
+      "condado": {
+        "valor": "Palm Beach County",
+        "url": "https://pbc.gov/oig/population.htm",
+        "evidencia": "pbc.gov/oig Municipal Population: 'Jupiter: 55,176'",
+        "url_alt": "https://discover.pbc.gov/pages/municipalities.aspx"
+      },
+      "permisos": {
+        "oficina": "Town of Jupiter – Building Department",
+        "url": "https://www.jupiter.fl.us/98/Permit-Package-Submittal",
+        "url_alt": "https://www.jupiter.fl.us/2524/Online-Permitting",
+        "evidencia": "Checklists are available at the permit counter and online at jupiter.fl.us/98/Permit-Package-Submittal ... Building Department at 210 Military Trail"
+      },
+      "costa": {
+        "oceanica": true,
+        "url": "https://floridadep.gov/sites/default/files/CriticalErosionReport.pdf",
+        "evidencia": "The Town of Jupiter segment (R19-R26) is a 1.5-mile segment of critically eroded beach that is partially within the area of influence of Jupiter Inlet",
+        "cccl": "Sí: comprehensive plan del Town: 'All new development and redevelopment seaward of the Coastal Construction Control Lines established pursuant to Section 161.053, F.S. shall comply with the requirements of Chapter 161, F.S.'",
+        "url_cccl": "https://jupiter.fl.us/DocumentCenter/View/23325/5-Coastal-Mgt-Element-070720"
+      },
+      "extras": [
+        {
+          "hecho": "Piscinas y spas requieren inspecciones antes de llenarse (documento del Town).",
+          "url": "https://www.jupiter.fl.us/DocumentCenter/View/4685/Pool---Spa-Inspections",
+          "evidencia": "swimming pool and spa inspections required before filling ... (título del documento)"
+        }
+      ],
+      "dudas": "No encontré ARB residencial propio de Jupiter en esta pasada. Un folleto de 2017 (ResBuildingPermits_brochure_2017) parece listar pérgolas como 'Not Needed' — NO verificado, no publicar."
+    },
+    {
+      "ciudad": "Palm Beach Gardens",
+      "condado": {
+        "valor": "Palm Beach County",
+        "url": "https://pbc.gov/oig/population.htm",
+        "evidencia": "pbc.gov/oig Municipal Population: 'Palm Beach Gardens: 48,542'",
+        "url_alt": "https://discover.pbc.gov/pages/municipalities.aspx"
+      },
+      "permisos": {
+        "oficina": "City of Palm Beach Gardens – Building Division",
+        "url": "https://pbgfl.gov/194/Building-Division",
+        "evidencia": "The Building Department is a centralized operation, housing all of the services relating to building and permitting activity for the City of Palm Beach Gardens. ... 10500 N Military Trail ... 561-799-4210"
+      },
+      "costa": {
+        "oceanica": null,
+        "url": null,
+        "evidencia": null,
+        "nota": "Sin fuente oficial; por geografía no tiene frente atlántico."
+      },
+      "extras": [
+        {
+          "hecho": "Barrera de piscina obligatoria en todo el perímetro: cerca ≥4 ft o screen enclosure, o sistemas combinados con alarmas (Pool Affidavit of Understanding).",
+          "url": "https://www.pbgfl.gov/DocumentCenter/View/20443/Pool-Affidavit-of-Understanding",
+          "evidencia": "City of Palm Beach Gardens Building Division SWIMMING POOL SAFETY REQUIREMENTS ... All swimming pools are required to have a fence at least 4 feet high or a screen enclosure."
+        }
+      ],
+      "dudas": ""
+    },
+    {
+      "ciudad": "Royal Palm Beach",
+      "condado": {
+        "valor": "Palm Beach County",
+        "url": "https://pbc.gov/oig/population.htm",
+        "evidencia": "pbc.gov/oig Municipal Population: 'Royal Palm Beach: 34,140'",
+        "url_alt": "https://discover.pbc.gov/pages/municipalities.aspx"
+      },
+      "permisos": {
+        "oficina": "Village of Royal Palm Beach – Building Division",
+        "url": "https://www.royalpalmbeachfl.gov/building/page/rules-regulations",
+        "url_alt": "https://royalpalmbeachfl.gov/building/page/resident-permit-form-finder",
+        "evidencia": "Most work done in the Village of Royal Palm Beach requires a Building Permit ... Village Hall, 1050 Royal Palm Beach Boulevard ... (561) 790-5128"
+      },
+      "costa": {
+        "oceanica": null,
+        "url": null,
+        "evidencia": null,
+        "nota": "Sin fuente oficial; municipio interior por geografía."
+      },
+      "extras": [
+        {
+          "hecho": "La Village publica un 'Resident Permit Form Finder' para elegir el formulario por tipo de obra.",
+          "url": "https://royalpalmbeachfl.gov/building/page/resident-permit-form-finder",
+          "evidencia": "resident permit form finder (título de la página oficial)"
+        }
+      ],
+      "dudas": ""
+    },
+    {
+      "ciudad": "North Palm Beach",
+      "condado": {
+        "valor": "Palm Beach County",
+        "url": "https://pbc.gov/oig/population.htm",
+        "evidencia": "pbc.gov/oig Municipal Population: 'North Palm Beach: 12,015'",
+        "url_alt": "https://discover.pbc.gov/pages/municipalities.aspx"
+      },
+      "permisos": {
+        "oficina": "Village of North Palm Beach – Building Department",
+        "url": "https://www.village-npb.org/DocumentCenter/View/12304/PERMIT-SUBMITTAL-REQUIREMENTS",
+        "evidencia": "Building Permit Applications must be submitted online through the MGO Customer Portal. ... (561) 841-3365 ... permits@village-npb.org ... 701 U.S. Highway 1, Suite 100"
+      },
+      "costa": {
+        "oceanica": null,
+        "url": "https://village-npb.org/DocumentCenter/View/42/Permit-Submittal-Requirements",
+        "evidencia": "Delineation of the Coastal Construction Control Line or notation that the site is seaward of the coastal construction control line is required for permit applications involving new structures, additions and/or substantial renovations in areas with flood hazards.",
+        "nota": "El requisito de permisos menciona la CCCL, lo que sugiere frente atlántico dentro de la Village, pero no encontré fuente oficial que lo diga expresamente."
+      },
+      "extras": [
+        {
+          "hecho": "Checklist de permiso para piscina (planos firmados y sellados exigidos para piscinas, muelles, nueva construcción).",
+          "url": "https://www.village-npb.org/DocumentCenter/View/12136/PERMIT-SUBMITTAL-REQUIREMENTS---SWIMMING-POOL",
+          "evidencia": "Signed & Sealed plans required for new construction, additions, pools, docks and boatlifts, and any structural repairs."
+        },
+        {
+          "hecho": "Checklist específico para decks/pasarelas y chickee huts.",
+          "url": "https://www.village-npb.org/DocumentCenter/View/12146/PERMIT-SUBMITTAL-REQUIREMENTS---DECK_WALKWAY",
+          "evidencia": "PERMIT SUBMITTAL REQUIREMENTS - DECK WALKWAY (título); también ...12145/PERMIT-SUBMITTAL-REQUIREMENTS---CHICKEE-HUT"
+        }
+      ],
+      "dudas": "Costa sin confirmar."
+    },
+    {
+      "ciudad": "Tequesta",
+      "condado": {
+        "valor": "Palm Beach County",
+        "url": "https://pbc.gov/oig/population.htm",
+        "evidencia": "discover.pbc.gov (lista de municipios) incluye Tequesta; población (pbc.gov/oig) 'Tequesta (5,629)'",
+        "url_alt": "https://discover.pbc.gov/pages/municipalities.aspx"
+      },
+      "permisos": {
+        "oficina": "Village of Tequesta – Building Department",
+        "url": "https://tequesta.org/1204/Building-Department",
+        "evidencia": "The Village of Tequesta Building Department is located at 345 Tequesta Drive ... (561) 768-0450 ... permits@tequesta.org"
+      },
+      "costa": {
+        "oceanica": true,
+        "url": "https://floridadep.gov/sites/default/files/CriticalErosionReport.pdf",
+        "evidencia": "The Coral Cove Park, Tequesta, and Jupiter Inlet Colony segment (R1-R10) is a 1.5-mile segment of critically eroded beach on southern Jupiter Island in Palm Beach County, including the communities of Tequesta and Jupiter Inlet Colony.",
+        "nota": "Frente atlántico solo en la parte de Jupiter Island; el grueso de la Village está en tierra firme."
+      },
+      "extras": [
+        {
+          "hecho": "Checklist de permiso de piscina y de chickee hut.",
+          "url": "https://tequesta.org/DocumentCenter/View/13005/Swimming-Pool-Permit-Submittal-Requirements---ADA",
+          "evidencia": "Swimming Pool Permit Submittal Requirements - ADA (título)"
+        },
+        {
+          "hecho": "La Village publica las Year-Round Landscape Irrigation Measures.",
+          "url": "https://tequesta.org/DocumentCenter/View/10357/Year_Round_Landscape_Irrigation_Measures_FINAL-ua",
+          "evidencia": "Year Round Landscape Irrigation Measures FINAL ua (título del documento)"
+        }
+      ],
+      "dudas": "El snippet del Critical Erosion Report puede referirse a la 'comunidad' de Tequesta en sentido amplio; confirmar límites municipales en el visor CCCL antes de afirmar 'Tequesta es costera'."
+    },
+    {
+      "ciudad": "Juno Beach",
+      "condado": {
+        "valor": "Palm Beach County",
+        "url": "https://pbc.gov/oig/population.htm",
+        "evidencia": "discover.pbc.gov (lista de municipios) incluye Juno Beach; población (pbc.gov/oig) 'Juno Beach (3,176)'",
+        "url_alt": "https://discover.pbc.gov/pages/municipalities.aspx"
+      },
+      "permisos": {
+        "oficina": "Town of Juno Beach – Building Department (Building Official)",
+        "url": "https://www.juno-beach.fl.us/1226/Building",
+        "url_alt": "https://www.juno-beach.fl.us/node/38",
+        "evidencia": "Building Contact Information ... buildingofficial@juno-beach.fl.us ... all inspections must be scheduled online through the My Government Online portal."
+      },
+      "costa": {
+        "oceanica": true,
+        "url": "https://floridadep.gov/sites/default/files/CriticalErosionReport.pdf",
+        "evidencia": "The Juno Beach segment (R26-R38) is a 2.4-mile segment of critically eroded beach.",
+        "cccl": "Sí: la solicitud de Development/Site Plan Review exige ubicar la CCCL.",
+        "url_cccl": "https://juno-beach.fl.us/DocumentCenter/View/673/Development-and-Site-Plan-Review-Application"
+      },
+      "extras": [
+        {
+          "hecho": "Permisos de iluminación por tortugas marinas (luminarias exteriores y ventanas/puertas de vidrio) dentro de los formularios de permisos.",
+          "url": "https://www.juno-beach.fl.us/1237/Building-Permit-Forms",
+          "evidencia": "Sea Turtle Lighting Permit Applications for both exterior light fixtures and windows & glass doors"
+        }
+      ],
+      "dudas": "No confirmé si el servicio de building está contratado a un tercero; omití nombres de personal."
+    },
+    {
+      "ciudad": "Hypoluxo",
+      "condado": {
+        "valor": "Palm Beach County",
+        "url": "https://pbc.gov/oig/population.htm",
+        "evidencia": "discover.pbc.gov (lista de municipios) incluye Hypoluxo; población (pbc.gov/oig) 'Hypoluxo (2,588)'",
+        "url_alt": "https://discover.pbc.gov/pages/municipalities.aspx"
+      },
+      "permisos": {
+        "oficina": "Town of Hypoluxo – Building and Zoning; servicios de building department contratados a Hy-Byrd Incorporated",
+        "url": "https://hypoluxo.org/bz",
+        "evidencia": "The Town has contracted with Hy-Byrd Incorporated to provide building department services, including necessary State of Florida certified and licensed personnel to operate the building department for the town. ... 7580 South Federal Highway ... (561) 582-0155"
+      },
+      "costa": {
+        "oceanica": null,
+        "url": null,
+        "evidencia": null,
+        "nota": "Sin fuente oficial. Por geografía está en tierra firme/Hypoluxo Island frente al Lake Worth Lagoon; la playa atlántica contigua es Manalapan."
+      },
+      "extras": [
+        {
+          "hecho": "Presentación de permisos en persona; tasas 2.00% hasta $10.000 + 1.00% por encima, mínimo $50.",
+          "url": "https://www.hypoluxo.org/sites/default/files/fileattachments/administration/page/2984/building_permit_fees.pdf",
+          "evidencia": "Permit fees are 2.00% for estimated values of $0.01 - $10,000, plus 1.00% for $10,001 and greater, with a minimum fee of $50.00."
+        }
+      ],
+      "dudas": "Contrato Hy-Byrd: confirmar vigencia (el snippet no tiene fecha)."
+    },
+    {
+      "ciudad": "Atlantis",
+      "condado": {
+        "valor": "Palm Beach County",
+        "url": "https://pbc.gov/oig/population.htm",
+        "evidencia": "discover.pbc.gov (lista de municipios) incluye Atlantis; población (pbc.gov/oig) 'Atlantis (2,005)'",
+        "url_alt": "https://discover.pbc.gov/pages/municipalities.aspx"
+      },
+      "permisos": {
+        "oficina": "City of Atlantis – Building Department",
+        "url": "https://www.atlantisfl.gov/156/Building-Department",
+        "url_alt": "https://atlantisfl.gov/204/Permits",
+        "evidencia": "The City of Atlantis Building Department issues permits for buildings, schedules inspections, and issues licenses for businesses located in and doing work in the City. ... 561-965-1744"
+      },
+      "costa": {
+        "oceanica": null,
+        "url": null,
+        "evidencia": null,
+        "nota": "Sin fuente oficial; ciudad interior por geografía."
+      },
+      "extras": [
+        {
+          "hecho": "Las alteraciones exteriores requieren aprobación del Architectural Review Committee; se exige permiso para cercas, rellenos, tala de árboles y toda alteración exterior.",
+          "url": "https://www.atlantisfl.gov/237/General-Permitting-Guidelines",
+          "evidencia": "Exterior alterations must be approved by the Architectural Review Committee. ... permits prior to making all exterior alterations or installations ... additions, fences, fill, new construction, repair/replacement work, signs, and tree removals."
+        }
+      ],
+      "dudas": ""
+    },
+    {
+      "ciudad": "Ocean Ridge",
+      "condado": {
+        "valor": "Palm Beach County",
+        "url": "https://pbc.gov/oig/population.htm",
+        "evidencia": "discover.pbc.gov (lista de municipios) incluye Ocean Ridge; población (pbc.gov/oig) 'Ocean Ridge (1,786)'",
+        "url_alt": "https://discover.pbc.gov/pages/municipalities.aspx"
+      },
+      "permisos": {
+        "oficina": "Town of Ocean Ridge – Building & Zoning (Building Official)",
+        "url": "https://www.oceanridgeflorida.com/departments/building_&_zoning/",
+        "url_alt": "https://oceanridgeflorida.com/departments/building_and__zoning/forms.php",
+        "evidencia": "All applications must be submitted in person with all originals ... As of October 1, 2023, there is a new Contractor Registration Program in the Town of Ocean Ridge ... Ocean Ridge adopted the 2023 Florida Building Code, 8th Edition."
+      },
+      "costa": {
+        "oceanica": true,
+        "url": "https://floridadep.gov/sites/default/files/CriticalErosionReport.pdf",
+        "evidencia": "The Ocean Ridge Beach Nourishment Project is within a 3.3-mile segment of critically eroded beach that is partially within the area of influence of South Lake Worth Inlet."
+      },
+      "extras": [],
+      "dudas": "No encontré en dominio oficial la junta de revisión arquitectónica/site plan de Ocean Ridge (solo prensa local: thecoastalstar.com, no usable). Existe un aviso oficial 'Development Plan Review Notice - 19 Eleuthera Drive' (oceanridgeflorida.com/news_detail_T6_R303.php) que indica revisión de planos de desarrollo, pero no vi el texto."
+    },
+    {
+      "ciudad": "South Palm Beach",
+      "condado": {
+        "valor": "Palm Beach County",
+        "url": "https://pbc.gov/oig/population.htm",
+        "evidencia": "discover.pbc.gov (lista de municipios) incluye South Palm Beach; población (pbc.gov/oig) 'South Palm Beach (1,171)'",
+        "url_alt": "https://discover.pbc.gov/pages/municipalities.aspx"
+      },
+      "permisos": {
+        "oficina": "Town of South Palm Beach – Building Department",
+        "url": "https://www.southpalmbeach.com/building/page/building-department",
+        "url_alt": "https://southpalmbeach.com/building/page/permit-information",
+        "evidencia": "3577 South Ocean Blvd., South Palm Beach ... (561) 588-8889 ... permits@southpalmbeach.com ... uses the My Government Online (MGO) platform"
+      },
+      "costa": {
+        "oceanica": true,
+        "url": "https://floridadep.gov/sites/default/files/CriticalErosionReport.pdf",
+        "evidencia": "The Southern Palm Beach Island Comprehensive Shoreline Stabilization Project has 2.3 miles of critically eroded beach along the shoreline of the Towns of South Palm Beach, Lantana, and Manalapan."
+      },
+      "extras": [
+        {
+          "hecho": "Horario de obra: lunes a sábado 8:00-17:30; prohibido domingos y festivos federales.",
+          "url": "https://southpalmbeach.com/building/page/permit-information",
+          "evidencia": "Work in the Town of South Palm Beach is permitted Monday through Saturday, 8:00 a.m. to 5:30 p.m., with no work permitted on Sundays or Federal Holidays."
+        }
+      ],
+      "dudas": ""
+    },
+    {
+      "ciudad": "Gulf Stream",
+      "condado": {
+        "valor": "Palm Beach County",
+        "url": "https://pbc.gov/oig/population.htm",
+        "evidencia": "discover.pbc.gov (lista de municipios) incluye Gulf Stream; población (pbc.gov/oig) 'Gulf Stream (786)'",
+        "url_alt": "https://discover.pbc.gov/pages/municipalities.aspx"
+      },
+      "permisos": {
+        "oficina": "Town of Highland Beach Building Department, por Interlocal Agreement con Gulf Stream (Gulf Stream conserva la autoridad de zonificación)",
+        "url": "https://www.gulf-stream.org/permits/",
+        "url_alt": "https://highlandbeach.us/211/Building-Department",
+        "evidencia": "The Town of Gulf Stream has entered into an Interlocal Agreement with the Town of Highland Beach for all building permits and inspection services. ... Contractors can submit their permit applications through the Highland Beach MGO permit portal under the Gulf Stream Jurisdiction. ... The Town of Gulf Stream retains all zoning authority"
+      },
+      "costa": {
+        "oceanica": true,
+        "url": "https://floridadep.gov/sites/default/files/SBMP-SoutheastAtlanticCoastRegion.pdf",
+        "evidencia": "There are 11.8 miles of beaches in the Southern Palm Beaches subregion, which extends from Gulfstream (R170) to the Palm Beach – Broward County line",
+        "nota": "Evidencia indirecta (punto de arranque de subregión FDEP); el Town se asienta sobre N. Ocean Blvd (A1A)."
+      },
+      "extras": [
+        {
+          "hecho": "Revisión arquitectónica/site plan en 3 niveles: Nivel 1 (estructuras accesorias y reformas <300 ft², staff), Nivel 2 (Architectural Review and Planning Board), Nivel 3 (Town Commission). Design Guidelines cubren pintura exterior y paisajismo mayor.",
+          "url": "https://www.gulf-stream.org/approvals/",
+          "url_alt": "https://www.gulf-stream.org/?p=15",
+          "evidencia": "Level One Reviews address accessory buildings and structures and minor renovations where less than 300 square feet are affected, and are approved or denied by the Town staff. Level 2 ... reviewed and approved or denied by the Town's Architectural Review and Planning Board."
+        },
+        {
+          "hecho": "Gulf Stream Construction Handbook oficial.",
+          "url": "https://www.gulf-stream.org/documents/gulf-stream-construction-handbook/",
+          "evidencia": "Gulf Stream Construction Handbook - Town of Gulf Stream (título)"
+        }
+      ],
+      "dudas": "Costa: sin cita FDEP que nombre explícitamente al Town como frente de playa."
+    },
+    {
+      "ciudad": "Manalapan",
+      "condado": {
+        "valor": "Palm Beach County",
+        "url": "https://pbc.gov/oig/population.htm",
+        "evidencia": "discover.pbc.gov (lista de municipios) incluye Manalapan; población (pbc.gov/oig) 'Manalapan (406)'",
+        "url_alt": "https://discover.pbc.gov/pages/municipalities.aspx"
+      },
+      "permisos": {
+        "oficina": "Town of Manalapan – Building Department (Building Official)",
+        "url": "https://manalapan.org/building-department/",
+        "evidencia": "The Building Department oversees all building related services including plan review, architectural review, business tax receipts, permitting, and certificates of occupancy. ... The Town of Manalapan utilizes the My Government Online (MGO) platform for all new building permits."
+      },
+      "costa": {
+        "oceanica": true,
+        "url": "https://floridadep.gov/sites/default/files/CriticalErosionReport.pdf",
+        "evidencia": "Hurricane Sandy in October of 2012 inflicted severe beach erosion and structural damages along 1.4 miles (R138.4-R145.8) of coastline at Manalapan. The entire segment is now designated critically eroded."
+      },
+      "extras": [
+        {
+          "hecho": "Architectural Commission (ARCOM): todo cambio EXTERIOR (ampliaciones, contraventanas, cercas, color de pintura o teja, cambio de paisajismo, seawall) necesita aprobación previa; se reúne el primer jueves de cada mes a las 10:00.",
+          "url": "https://manalapan.org/?p=221",
+          "evidencia": "Any change to the EXTERIOR of a residence must first have Architectural Commission approval, including but not limited to additions and alterations to the residence, shutters, fences, change in exterior paint color or color of roof tile, any replacement or change in landscaping or seawall. The Architectural Commission meets the first Thursday of each month at 10:00 a.m."
+        }
+      ],
+      "dudas": "Vigencia de aprobación ARCOM (12 vs 24 meses) estaba en trámite en paquetes de 2025; no confirmado."
+    }
+  ]
+}

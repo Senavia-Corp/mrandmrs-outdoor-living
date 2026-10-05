@@ -66,7 +66,13 @@ const GALERIAS_PROPIAS = (() => {
   if (!fs.existsSync(f)) return 0;
   return JSON.parse(fs.readFileSync(f, 'utf8')).categorias.length;
 })();
-const PAGINAS_ESPERADAS = 122 + BLOGS_PROPIOS + GALERIAS_PROPIAS;
+/* …Y LAS LANDINGS DE CIUDAD DE LOS DEMAS SERVICIOS (LOOP-CIUDADES), derivadas igual y por lo mismo. */
+const CIUDADES_SERVICIO = (() => {
+  const f = path.join(RAIZ, 'src/data/ciudades-servicios.json');
+  if (!fs.existsSync(f)) return 0;
+  return Object.keys(JSON.parse(fs.readFileSync(f, 'utf8')).paginas).length;
+})();
+const PAGINAS_ESPERADAS = 122 + BLOGS_PROPIOS + GALERIAS_PROPIAS + CIUDADES_SERVICIO;
 /**
  * 121 = 113 del sitemap del origen + 6 adiciones de autoria propia + 2 de la auditoria
  * (5-sep-2026). Las dos nuevas son rutas DEL ORIGEN que el sitemap del origen no listaba:
@@ -77,7 +83,7 @@ const PAGINAS_ESPERADAS = 122 + BLOGS_PROPIOS + GALERIAS_PROPIAS;
 /* …MAS LAS DE BLOG PROPIAS, por la misma razon que PAGINAS_ESPERADAS: el sitemap las deriva de
  * `blogs-rutas.json` (build-seo-ficheros.mjs ADICIONES_BLOG), asi que cablear 121 ponia esta
  * puerta roja con cada articulo publicado (medido el 1-oct-2026: «121 <loc> — hay 155»). */
-const LOCS_ESPERADAS = 121 + BLOGS_PROPIOS + GALERIAS_PROPIAS;
+const LOCS_ESPERADAS = 121 + BLOGS_PROPIOS + GALERIAS_PROPIAS + CIUDADES_SERVICIO;
 const SOLO_NOINDEX = new Set(['/thank-you']);
 
 /**

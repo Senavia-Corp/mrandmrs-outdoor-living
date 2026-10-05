@@ -1,0 +1,250 @@
+{
+  "comprobado": "2026-10-05",
+  "metodo": "WebSearch snippets; fetch blocked. Solo se registra lo que aparece en resultados de dominios oficiales (municipales, condales, distritos de agua, flsenate.gov, census.gov). 'evidencia' = texto del snippet/resumen del buscador, no lectura directa de la página.",
+  "nota_distritos": "El distrito de agua se da a nivel CONDADO. En condados divididos (Alachua, Levy, Marion) NO se ha verificado a qué distrito cae cada ciudad concreta; no publicar un distrito por ciudad en esos condados sin comprobar el mapa del distrito.",
+  "regional": {
+    "pool_safety_act": {
+      "hecho": "Cap. 515 F.S., 'Preston de Ibern/McKenzie Merriam Residential Swimming Pool Safety Act'",
+      "url": "https://www.flsenate.gov/Laws/Statutes/2025/Chapter515",
+      "url_alt": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0500-0599%2F0515%2F0515.html",
+      "evidencia": "A residential swimming pool must meet at least one of the following requirements: ... enclosure that meets pool barrier requirements; ... approved safety pool cover; ... exit alarm ... ; self-closing, self-latching device ... no lower than 54 inches above the floor; or ... swimming pool alarm. ... The barrier must be at least 4 feet high on the outside."
+    },
+    "distritos_agua": {
+      "SRWMD": {
+        "condados_url": "https://www.mysuwanneeriver.com/15/The-District",
+        "condados_evidencia": "encompasses all of Columbia, Dixie, Gilchrist, Hamilton, Lafayette, Madison, Suwannee, Taylor, and Union counties, as well as parts of Alachua, Baker, Bradford, Jefferson, Levy, and Putnam counties.",
+        "riego_url": "https://www.mysuwanneeriver.com/337/Lawn-Landscape-Irrigation-Measures",
+        "riego_evidencia": "Year-Round Lawn & Landscape Irrigation Measures ... Irrigation shall not occur between 10 a.m. and 4 p.m., no more than 3/4 inch of water may be applied per irrigation zone, and water no more than 1 hour per irrigation zone. (Snippet también menciona horario de 1 día/semana por sequía: verificar estado vigente antes de publicar días concretos.)"
+      },
+      "SJRWMD": {
+        "condados_url": "https://www.sjrwmd.com/about/faqs/",
+        "condados_evidencia": "The District covers all or part of 18 counties in northeast and east-central Florida. ... entirely: ... Putnam ... partially: Alachua, Baker, Bradford, Lake, Marion ... (el snippet lista Putnam en ambas categorías; SRWMD dice que incluye 'parts of ... Putnam')",
+        "riego_url": "https://www.sjrwmd.com/wateringrestrictions/",
+        "riego_evidencia": "Irrigation is prohibited between 10 a.m. and 4 p.m. ... During daylight saving time irrigation is limited to no more than two days per week ... Restrictions apply to water withdrawn from ground or surface water, from a private well or pump, or from a public or private utility. (En 2026 hubo órdenes de escasez Phase II/III en partes del distrito: no publicar días concretos sin revisar la página el día de publicación.)"
+      },
+      "SWFWMD": {
+        "condados_url": "https://www.swfwmd.state.fl.us/about/floridas-water-management-districts",
+        "condados_evidencia": "serves Citrus, DeSoto, Hardee, Hernando, Hillsborough, Manatee, Pasco, Pinellas, Sarasota and Sumter counties, as well as portions of Charlotte, Highlands, Lake, Levy, Marion and Polk counties.",
+        "riego_url": "https://www.swfwmd.state.fl.us/business/epermitting/modified-phase-i-water-shortage-restrictions-frequently-asked-questions",
+        "riego_url_alt": "https://www.swfwmd.state.fl.us/the-newsroom/2026/district-declares-modified-phase-iii-water-shortage",
+        "riego_evidencia": "Year-Round Water Conservation Measures allow lawn watering limited to twice-per-week unless a city or county has a different schedule ... residents may only water before 10 a.m. or after 4 p.m. ... April 3, 2026 ... Modified Phase III 'Extreme' Water Shortage ... one-day-per-week ... through July 1, 2026. (No apareció una página permanente 'restrictions' en dominio oficial; el snippet remite a WaterMatters.org/Restrictions.)"
+      }
+    },
+    "alachua_county_extras": [
+      {
+        "hecho": "Código de diseño y mantenimiento de riego (Cap. 77, Art. VI), aplicable en todo el condado desde 1-oct-2019; limita el área regada permanentemente al 50% del área permeable; sistemas nuevos requieren aprobación en Citizenserve y los instaladores deben registrarse.",
+        "url": "https://www.alachuacounty.us/Depts/epd/WaterResources/CodesAndCompliance/Pages/Irrigation-Design-Standards.aspx",
+        "evidencia": "adopted Chapter 77, Article VI, Landscape Irrigation Design and Maintenance Standards ... became applicable countywide on October 1, 2019 ... revised on May 23, 2023 ... to limit the area that can be permanently irrigated to 50% of the permeable area ... All new irrigation systems or additions ... require County approval in Citizenserve. Irrigation professionals ... must register their business with the County."
+      },
+      {
+        "hecho": "Código de fertilizantes (Art. IV del Water Quality Code): veda estacional de nitrógeno julio-febrero; fósforo prohibido salvo deficiencia probada.",
+        "url": "https://alachuacounty.us/Depts/epd/WaterResources/CodesAndCompliance/pages/fertilizer-code.aspx",
+        "evidencia": "may not be applied during the seasonal ban of July through February ... Fertilizers containing phosphorus are prohibited unless a deficiency is verified by a soil or tissue test. (Ámbito municipal vs. condal no confirmado en el snippet.)"
+      }
+    ],
+    "marion_county_extras": [
+      {
+        "hecho": "Marion County tiene ordenanza de riego (Art. IV, conservación de agua) y ordenanza de protección de manantiales (2009).",
+        "url": "https://utilities.marionfl.org/i-want-to/water-efficiency",
+        "evidencia": "Marion County ordinance Article IV addresses water conservation for landscape irrigation ... in 2009, the county adopted one of the first springs protection ordinances in the state. (URL exacta de cada frase no aislada: resultados de marionfl.org Stormwater/Water efficiency.)"
+      }
+    ]
+  },
+  "lugares": [
+    {
+      "ciudad": "Gainesville",
+      "condado": {"valor": "Alachua", "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx", "evidencia": "Alachua County includes 9 incorporated municipalities ... Town of Micanopy, City of Archer, Town of La Crosse, City of Waldo, City of Alachua, City of Hawthorne, City of Newberry, City of High Springs, and City of Gainesville."},
+      "incorporada": {"valor": true, "tipo": "City", "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx", "evidencia": "City of Gainesville (en la lista de 9 municipios incorporados)"},
+      "permisos": {"oficina": "City of Gainesville, Department of Sustainable Development – Building Division (306 NE 6th Ave, Bldg B; 352-334-5050; portal PermitGNV)", "url": "https://www.gainesvillefl.gov/Government-Pages/Government/Departments/Sustainable-Development/Building-Division/Building-Application-Process", "evidencia": "The Building Division office is located at Thomas Center Building B, 306 NE 6th Ave ... You can view existing permits through the PermitGNV portal."},
+      "distrito_agua": {"valor": "Alachua County dividido: SRWMD (parte) y SJRWMD (parte); distrito de la ciudad no verificado", "url": "https://www.mysuwanneeriver.com/15/The-District", "evidencia": "as well as parts of Alachua ... (SRWMD); Alachua partially (SJRWMD FAQ)"},
+      "extras": [
+        {"hecho": "Historic Preservation Board emite Certificates of Appropriateness para obras en los 5 distritos históricos o inmuebles del Local Register; existen guías de diseño con sección de cercas y muros de jardín.", "url": "https://www.gainesvillefl.gov/Government-Pages/Government/Departments/Sustainable-Development/Historic-Preservation", "evidencia": "The Historic Preservation Board can issue Certificates of Appropriateness (COA) ... structures located in the five historic districts or listed individually on the Local Register ... section on Fences and Garden Walls."}
+      ],
+      "dudas": null
+    },
+    {
+      "ciudad": "Ocala",
+      "condado": {"valor": "Marion", "url": "https://www.marionfl.org/our-county/faqs", "evidencia": "If you live within the city limits of Belleview, Dunnellon or Ocala, or within the towns of McIntosh or Reddick, please contact your respective municipality"},
+      "incorporada": {"valor": true, "tipo": "City", "url": "https://www.marionfl.org/our-county/faqs", "evidencia": "unincorporated areas of Marion County (outside the municipalities of Belleview, Dunnellon and Ocala)"},
+      "permisos": {"oficina": "City of Ocala Growth Management – Building Services (Customer Service Center, 201 SE 3rd St, 2nd floor; 352-629-8421; eTRAKiT)", "url": "https://www.ocalafl.gov/government/city-departments-a-h/growth-management/building/construction-permits", "evidencia": "A permit is required for most interior and exterior work, with the exception of painting and floor covering. All applications must be submitted in person at the Customer Service Center (201 SE 3rd St., 2nd floor) or through the eTrakit portal."},
+      "distrito_agua": {"valor": "Marion County dividido: SJRWMD (parte) y SWFWMD (parte); distrito de la ciudad no verificado", "url": "https://www.swfwmd.state.fl.us/about/floridas-water-management-districts", "evidencia": "as well as portions of ... Levy, Marion and Polk counties (SWFWMD); Marion partially (SJRWMD FAQ)"},
+      "extras": [
+        {"hecho": "Obras exteriores en los distritos históricos locales (Ocala Historic District y Tuscawilla Park) requieren Certificate of Appropriateness del Ocala Historic Preservation Advisory Board antes de empezar.", "url": "https://www.ocalafl.gov/government/city-departments-a-h/growth-management/certificate-of-appropriateness", "evidencia": "A Certificate of Appropriateness (COA) must be approved by the Ocala Historic Preservation Advisory Board (OHPAB) before any work to the exterior of a property located within locally designated historic districts (Tuscawilla Park and Ocala Historic Districts) ... can begin."}
+      ],
+      "dudas": null
+    },
+    {
+      "ciudad": "Lake City",
+      "condado": {"valor": "Columbia", "url": "https://www.columbiacountyfla.com/CountyCommissioners.aspx", "evidencia": "Resumen del buscador: oficinas del condado (BOCC, juzgado) en Lake City; 'Columbia County Administration office is located at 135 NE Hernando Avenue, Suite 203, Lake City, FL 32055'. No hay frase literal 'Lake City is in Columbia County' en snippet oficial."},
+      "incorporada": {"valor": true, "tipo": "City", "url": "https://www.lcfla.com/community/page/city-council", "evidencia": "The City of Lake City is governed under a council/city manager form of government, with a city council consisting of five members"},
+      "permisos": {"oficina": "City of Lake City Growth Management Department – Building Safety (173 NW Hillsboro St; 386-719-5754; permits@lcfla.com)", "url": "https://www.lcfla.com/growth-management/page/residential-building-permit-application", "evidencia": "The Growth Management Department is charged with providing both current and long-range planning, zoning services, building permitting and inspections, and codes enforcement."},
+      "distrito_agua": {"valor": "SRWMD (Columbia entero)", "url": "https://www.mysuwanneeriver.com/15/The-District", "evidencia": "encompasses all of Columbia, Dixie, Gilchrist ..."},
+      "extras": [],
+      "dudas": "Condado: evidencia indirecta (sede de gobierno condal en Lake City). Fuera de límites municipales el permiso es de Columbia County Building & Zoning (https://www.columbiacountyfla.com/BuildingandZoning.asp)."
+    },
+    {
+      "ciudad": "Palatka",
+      "condado": {"valor": "Putnam", "url": "https://www.palatka-fl.gov/DocumentCenter/View/1072", "evidencia": "Palatka was established as the county seat of Putnam County on January 8, 1853. ... five municipalities: City of Palatka, City of Crescent City, Town of Interlachen, Town of Pomona Park, and Town of Welaka."},
+      "incorporada": {"valor": true, "tipo": "City", "url": "https://www.palatka-fl.gov/DocumentCenter/View/1072", "evidencia": "five municipalities: City of Palatka, ..."},
+      "permisos": {"oficina": "Putnam County Building Department/Division (2509 Crill Ave, Palatka; 386-329-0307; Citizenserve) — por consolidación con la ciudad desde 11-oct-2018; la ciudad (Planning & Zoning) revisa en paralelo", "url": "https://palatka-fl.gov/CivicAlerts.aspx?AID=264&ARC=835", "url_oficina": "https://www.putnam-fl.com/departments/development-services/building-department/", "evidencia": "BUILDING PERMIT SERVICES TRANSFERRED TO PUTNAM COUNTY BUILDING DIVISION ... As of October 11, 2018, the City of Palatka consolidated the processing of building permits with Putnam County ... All applications must be filed with the County first, and City applications can then be submitted."},
+      "distrito_agua": {"valor": "SJRWMD (Putnam; SRWMD también declara 'parts of Putnam'); distrito exacto de la ciudad no verificado, muy probablemente SJRWMD", "url": "https://www.sjrwmd.com/about/faqs/", "evidencia": "Counties entirely in the District: ... Putnam ..."},
+      "extras": [
+        {"hecho": "Toda obra exterior en el distrito histórico requiere Certificate of Appropriateness (incluidas obras de sitio como aceras y driveways) antes del permiso.", "url": "https://palatka-fl.gov/140/Historic-Preservation-Board", "evidencia": "All exterior work in the historic district requires an approved Certificate of Appropriateness ... Work done to the site, such as repair and installation of new sidewalks and driveways, also require an approved COA. ... An approved COA is required before a building permit can be issued."},
+        {"hecho": "La ciudad lista entre trabajos que requieren permiso: instalación de piscina/spa, sistemas de riego, porches, carports, muros de contención estructurales, docks y seawalls; existe 'Small Structure Application (shed, pool, etc.)'.", "url": "https://palatka-fl.gov/136/Applications-and-Fees", "evidencia": "pool/spa/sauna installation ... irrigation systems ... screening requiring structural framing, retaining walls for structural support ... Small Structure Application (for shed, pool, etc.)"}
+      ],
+      "dudas": null
+    },
+    {
+      "ciudad": "Alachua",
+      "condado": {"valor": "Alachua", "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx", "evidencia": "... City of Alachua ... (lista de 9 municipios incorporados)"},
+      "incorporada": {"valor": true, "tipo": "City", "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx", "evidencia": "City of Alachua"},
+      "permisos": {"oficina": "City of Alachua – Building Department/Division (Planning & Community Development; 386-418-6120)", "url": "https://www.cityofalachua.com/264/Building", "evidencia": "Major duties of the Building Department include review and process construction permits, perform plan review ... issue building permits ... perform inspection of active permits"},
+      "distrito_agua": {"valor": "Alachua County dividido SRWMD/SJRWMD; distrito de la ciudad no verificado", "url": "https://www.mysuwanneeriver.com/15/The-District", "evidencia": "parts of Alachua"},
+      "extras": [],
+      "dudas": null
+    },
+    {
+      "ciudad": "Newberry",
+      "condado": {"valor": "Alachua", "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx", "evidencia": "City of Newberry (lista de 9 municipios)"},
+      "incorporada": {"valor": true, "tipo": "City", "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx", "evidencia": "City of Newberry"},
+      "permisos": {"oficina": "City of Newberry Building Department (25440 W Newberry Rd; 352-472-3927; portal SmartGov)", "url": "https://www.newberryfl.gov/building/page/building-department", "evidencia": "City of Newberry Building Dept., 25440 W Newberry Rd, Newberry, FL 32669, buildingdepartment@newberryfl.gov, 352-472-3927 ... All permits are paperless"},
+      "distrito_agua": {"valor": "Alachua County dividido SRWMD/SJRWMD; distrito de la ciudad no verificado", "url": "https://www.mysuwanneeriver.com/15/The-District", "evidencia": "parts of Alachua"},
+      "extras": [],
+      "dudas": null
+    },
+    {
+      "ciudad": "High Springs",
+      "condado": {"valor": "Alachua", "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx", "evidencia": "City of High Springs (lista de 9 municipios)"},
+      "incorporada": {"valor": true, "tipo": "City", "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx", "evidencia": "City of High Springs"},
+      "permisos": {"oficina": "City of High Springs Building Department (23666 NW 185th Rd; 386-454-7322 opc. 2; CitizenServe)", "url": "https://www.highsprings.gov/building", "evidencia": "The Building Department performs 5 major functions: permitting, plan review, inspections ... Swimming Pool Permits ... Storage Building/Pre-Manufactured Building Permits"},
+      "distrito_agua": {"valor": "Alachua County dividido SRWMD/SJRWMD; distrito de la ciudad no verificado", "url": "https://www.mysuwanneeriver.com/15/The-District", "evidencia": "parts of Alachua"},
+      "extras": [],
+      "dudas": null
+    },
+    {
+      "ciudad": "Williston",
+      "condado": {"valor": "Levy", "url": "https://www.levycounty.org/27/Government-Agencies", "evidencia": "The cities in Levy County include Cedar Key, Chiefland, Fanning Springs, and Williston."},
+      "incorporada": {"valor": true, "tipo": "City", "url": "https://www.levycounty.org/27/Government-Agencies", "evidencia": "The cities in Levy County include ... Williston"},
+      "permisos": {"oficina": "City of Williston Community Development Department – permisos tramitados por proveedor contratado SAFEbuilt (50 NW Main St; 352-528-3060 ext. 108; permits@willistonfl.org)", "url": "https://www.willistonfl.org/community-development-department/page/permitting", "evidencia": "Permitting services for the City of Williston are facilitated through SafeBuilt."},
+      "distrito_agua": {"valor": "Levy County dividido SRWMD/SWFWMD; distrito de la ciudad no verificado", "url": "https://www.swfwmd.state.fl.us/about/floridas-water-management-districts", "evidencia": "portions of ... Levy"},
+      "extras": [],
+      "dudas": "Un resultado (no aislado a URL oficial) decía que las solicitudes residenciales requieren 'Zoning Compliance Form' del Levy County Planning & Zoning; no confirmado en dominio oficial, no usar."
+    },
+    {
+      "ciudad": "Chiefland",
+      "condado": {"valor": "Levy", "url": "https://www.levycounty.org/27/Government-Agencies", "evidencia": "The cities in Levy County include Cedar Key, Chiefland, Fanning Springs, and Williston."},
+      "incorporada": {"valor": true, "tipo": "City", "url": "https://www.levycounty.org/27/Government-Agencies", "evidencia": "cities ... Chiefland"},
+      "permisos": {"oficina": "City of Chiefland Building & Zoning Department (City Hall, 214 E Park Ave; 352-493-6711) — servicios contratados a Florida Municipal Services, Inc. y M.T. Causley, Inc.", "url": "https://cityofchiefland.com/building-zoning/", "evidencia": "The City of Chiefland contracts with Florida Municipal Services, Inc. and M.T. Causley, Inc. to provide the Building & Permitting services for the City of Chiefland."},
+      "distrito_agua": {"valor": "Levy County dividido SRWMD/SWFWMD; distrito de la ciudad no verificado", "url": "https://www.mysuwanneeriver.com/15/The-District", "evidencia": "parts of ... Levy"},
+      "extras": [],
+      "dudas": null
+    },
+    {
+      "ciudad": "Trenton",
+      "condado": {"valor": "Gilchrist", "url": "https://www.trentonflorida.org/our-history/", "evidencia": "In May of 1926 an election was held to determine the county seat and Trenton was ultimately chosen over Bell by a margin of 867 to 508 votes. (Trenton = sede del condado de Gilchrist)"},
+      "incorporada": {"valor": true, "tipo": "City", "url": "https://www.trentonflorida.org/government/mayor-city-commission/", "evidencia": "City of Trenton ... Mayor & City Commission; Brittany Mills is the City Manager"},
+      "permisos": {"oficina": null, "url": "https://www.trentonflorida.org/departments/building-department/", "evidencia": "La ciudad tiene página 'Building Department' (500 N. Main St; 352-463-4000) pero el snippet solo lista trámites de zonificación (Site & Development Plan, Sign Permit, Zoning Application). No consta quién revisa/emite el permiso de construcción residencial."},
+      "distrito_agua": {"valor": "SRWMD (Gilchrist entero)", "url": "https://www.mysuwanneeriver.com/15/The-District", "evidencia": "encompasses all of Columbia, Dixie, Gilchrist ..."},
+      "extras": [],
+      "dudas": "Sin confirmar si el permiso lo emite la ciudad o Gilchrist County Building Department (209 SE 1st St, Trenton; 352-463-3173; https://gilchrist.fl.us/building-department-faqs/). Fuentes de terceros (no válidas) apuntan al condado."
+    },
+    {
+      "ciudad": "Cross City",
+      "condado": {"valor": "Dixie", "url": "https://www.townofcrosscity.com/about-us/", "evidencia": "Cross City is the county seat of Dixie County (resumen del buscador sobre resultado del sitio oficial del pueblo)"},
+      "incorporada": {"valor": true, "tipo": "Town", "url": "https://www2.census.gov/geo/pvs/bas/bas24maps/st12_fl/incplace/p1232650_horseshoe_beach/BAS24P11200032650.pdf", "evidencia": "Resumen: 'Town of Cross City' y 'Horseshoe Beach town' como municipios incorporados de Dixie (mapa BAS 2024 de census.gov para incplace). El nombre oficial 'Town of Cross City' aparece en townofcrosscity.com."},
+      "permisos": {"oficina": null, "url": "https://dixie.fl.gov/?page_id=6295", "evidencia": "Dixie County Community Development: 'encompasses all areas of the Building, Planning and Zoning process ... when building or developing in Dixie County' (387 SE 22 Ave, Cross City; 352-498-1235). No hay snippet oficial que diga que el condado emite permisos dentro del Town of Cross City."},
+      "distrito_agua": {"valor": "SRWMD (Dixie entero)", "url": "https://www.mysuwanneeriver.com/15/The-District", "evidencia": "encompasses all of Columbia, Dixie ..."},
+      "extras": [],
+      "dudas": "Fuente de terceros (permithunt, no válida) dice que el Town no tiene departamento de construcción y que Dixie County gestiona los permisos. Probable pero no confirmado oficialmente."
+    },
+    {
+      "ciudad": "Hawthorne",
+      "condado": {"valor": "Alachua", "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx", "evidencia": "City of Hawthorne (lista de 9 municipios)"},
+      "incorporada": {"valor": true, "tipo": "City", "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx", "evidencia": "City of Hawthorne"},
+      "permisos": {"oficina": null, "url": "https://www.cityofhawthorne.net/planning-zoning", "evidencia": "La ciudad tiene Planning Department (6875 SE 221 St; 352-481-2432) con formularios de zonificación (Zoning Certification, Certificate of Appropriateness...). No consta en snippet oficial quién emite el permiso de construcción."},
+      "distrito_agua": {"valor": "Alachua County dividido SRWMD/SJRWMD; distrito de la ciudad no verificado", "url": "https://www.sjrwmd.com/about/faqs/", "evidencia": "Alachua partially"},
+      "extras": [
+        {"hecho": "La ciudad ofrece Historic Designation Application y Certificate of Appropriateness Application.", "url": "https://www.cityofhawthorne.net/planning/pages/applications-forms", "evidencia": "Historic Designation Application, Certificate of Appropriateness Application, and Special Exception Application"}
+      ],
+      "dudas": "Alachua County Building Division revisa permisos en 'unincorporated areas of the County and several municipalities' sin nombrarlas; Hawthorne no confirmado ni como propio ni como condal."
+    },
+    {
+      "ciudad": "Archer",
+      "condado": {"valor": "Alachua", "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx", "evidencia": "City of Archer (lista de 9 municipios)"},
+      "incorporada": {"valor": true, "tipo": "City", "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx", "evidencia": "City of Archer"},
+      "permisos": {"oficina": null, "url": "https://www.cityofarcher.com/media/976", "evidencia": "Documento municipal: 'Building permits and zoning permits are controlled and set by the City of Archer' (contexto del documento no visible; podría referirse a tarifas). City Hall 16870 SW 134th Ave; 352-495-2880."},
+      "distrito_agua": {"valor": "Alachua County dividido SRWMD/SJRWMD; distrito de la ciudad no verificado", "url": "https://www.mysuwanneeriver.com/15/The-District", "evidencia": "parts of Alachua"},
+      "extras": [],
+      "dudas": "No se identifica oficina que revisa/inspecciona (propia, condado o proveedor). Contactar City Hall."
+    },
+    {
+      "ciudad": "Fanning Springs",
+      "condado": {"valor": "Gilchrist y Levy (ciudad repartida entre ambos)", "url": "https://www.fanningsprings.org/about-our-city/", "evidencia": "Fanning Springs is a community that lay in both Gilchrist and Levy counties and was incorporated into the town of Suwannee River by the Florida Legislature in 1965."},
+      "incorporada": {"valor": true, "tipo": "City", "url": "https://www.levycounty.org/27/Government-Agencies", "evidencia": "The cities in Levy County include Cedar Key, Chiefland, Fanning Springs, and Williston."},
+      "permisos": {"oficina": "City of Fanning Springs Building Department (City Hall, 17651 NW 90th Ct; Building Official 352-463-2855)", "url": "https://www.fanningsprings.org/building-department/", "evidencia": "The City of Fanning Springs building department has the responsibility of issuing building permits and conducting building inspections within the boundaries of the City."},
+      "distrito_agua": {"valor": "Gilchrist: SRWMD entero; Levy: dividido SRWMD/SWFWMD. Distrito exacto no verificado (por ubicación sobre el Suwannee es probable SRWMD, sin confirmar)", "url": "https://www.mysuwanneeriver.com/15/The-District", "evidencia": "all of ... Gilchrist ... parts of ... Levy"},
+      "extras": [],
+      "dudas": null
+    },
+    {
+      "ciudad": "Waldo",
+      "condado": {"valor": "Alachua", "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx", "evidencia": "City of Waldo (lista de 9 municipios)"},
+      "incorporada": {"valor": true, "tipo": "City", "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx", "evidencia": "City of Waldo"},
+      "permisos": {"oficina": null, "url": "https://waldo-fl.com/wp-content/uploads/Howto.pdf", "evidencia": "Building permits are required for new building construction and the alteration of existing buildings ... The City of Waldo can assist you with any questions about the building permit process. Applications for building permits may be obtained from City Hall. (352-468-1001)"},
+      "distrito_agua": {"valor": "Alachua County dividido SRWMD/SJRWMD; distrito de la ciudad no verificado", "url": "https://www.sjrwmd.com/about/faqs/", "evidencia": "Alachua partially"},
+      "extras": [],
+      "dudas": "La solicitud se recoge en City Hall, pero no consta quién revisa/inspecciona (propio, condado o proveedor). Snippet de un 'how to' municipal: 'Waldo does not have zoning' (usa Future Land Use Map)."
+    },
+    {
+      "ciudad": "Cedar Key",
+      "condado": {"valor": "Levy", "url": "https://www.levycounty.org/27/Government-Agencies", "evidencia": "The cities in Levy County include Cedar Key, Chiefland, Fanning Springs, and Williston."},
+      "incorporada": {"valor": true, "tipo": "City", "url": "https://www.levycounty.org/27/Government-Agencies", "evidencia": "cities ... Cedar Key"},
+      "permisos": {"oficina": "City of Cedar Key Building Department (809 6th St; 352-543-5132) — personal (building official, inspectores) contratado a JPI, Inc.", "url": "https://www.cityofcedarkey.org/214/Building-Department", "evidencia": "The City has partnered with JPI, Inc. to provide experienced building officials, certified inspectors, and permit technicians ... A building permit is required for ... deck construction, fence installation (over 6 feet high) ... pools and spas, sheds and accessory structures"},
+      "distrito_agua": {"valor": "Levy County dividido SRWMD/SWFWMD; distrito de la ciudad no verificado", "url": "https://www.swfwmd.state.fl.us/about/floridas-water-management-districts", "evidencia": "portions of ... Levy"},
+      "extras": [
+        {"hecho": "Toda la isla está en o junto a zona inundable (AE y VE, VE = coastal high hazard); el Elevation Certificate es obligatorio con la solicitud de permiso. FIRM vigente 15-feb-2019.", "url": "https://www.cityofcedarkey.org/297/Floodplain-Management", "evidencia": "Every property on Cedar Key is in, on, or near a Special Flood Hazard Area (SFHA). ... Zones AE and VE ... an Elevation Certificate is required to be submitted with the building permit application ... current FIRM map effective date is 2/15/2019."}
+      ],
+      "dudas": "Fuente de 'fence over 6 feet' es el resumen de la FAQ/Building Department; verificar literal antes de citar umbral."
+    },
+    {
+      "ciudad": "Micanopy",
+      "condado": {"valor": "Alachua", "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx", "evidencia": "Town of Micanopy (lista de 9 municipios)"},
+      "incorporada": {"valor": true, "tipo": "Town", "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx", "evidencia": "Town of Micanopy"},
+      "permisos": {"oficina": "Alachua County Growth Management – Building Division (por acuerdo interlocal), previa verificación de zonificación por la Town Clerk de Micanopy", "url": "https://www.micanopytown.com/building-department", "url_oficina": "https://growth-management.alachuacounty.us/building/", "evidencia": "Within the corporate limits of the Town of Micanopy, zoning compliance must be verified by the Town Clerk before a building permit will be issued by Alachua County, per an interlocal agreement."},
+      "distrito_agua": {"valor": "Alachua County dividido SRWMD/SJRWMD; distrito del pueblo no verificado", "url": "https://www.sjrwmd.com/about/faqs/", "evidencia": "Alachua partially"},
+      "extras": [
+        {"hecho": "Planning & Historic Preservation Board (5 miembros, 4º martes de cada mes) aplica el Land Development Code y políticas de preservación histórica.", "url": "https://www.micanopytown.com/planning-historic-preservation-board", "evidencia": "The Town of Micanopy Planning and Historic Preservation Board (PHPB) consists of five members ... plans projects related to historic preservation policies and cultural resources."}
+      ],
+      "dudas": null
+    },
+    {
+      "ciudad": "Reddick",
+      "condado": {"valor": "Marion", "url": "https://www.marionfl.org/our-county/faqs", "evidencia": "Marion County includes the Town of McIntosh and Town of Reddick as incorporated municipalities ... within the towns of McIntosh or Reddick, please contact your respective municipality"},
+      "incorporada": {"valor": true, "tipo": "Town", "url": "https://www.marionfl.org/our-county/faqs", "evidencia": "the towns of Reddick & McIntosh"},
+      "permisos": {"oficina": "Probable: Marion County Building Safety (2710 E Silver Springs Blvd, Ocala; 352-438-2400)", "url": "https://www.marionfl.org/Home/Components/News/News/16740/", "evidencia": "Fire Rescue Impact Fees apply to building permit applications received on October 1, 2025 and thereafter within the incorporated areas of the cities of Belleview, Dunnellon, Reddick, and McIntosh"},
+      "distrito_agua": {"valor": "Marion County dividido SJRWMD/SWFWMD; distrito del pueblo no verificado", "url": "https://www.sjrwmd.com/about/faqs/", "evidencia": "Marion partially"},
+      "extras": [],
+      "dudas": "La evidencia es indirecta (aviso de impact fees sobre solicitudes de permiso dentro de Reddick). No hay snippet que diga literalmente que el condado emite los permisos en Reddick ni si el pueblo exige autorización previa como McIntosh."
+    },
+    {
+      "ciudad": "McIntosh",
+      "condado": {"valor": "Marion", "url": "https://www.marionfl.org/our-county/faqs", "evidencia": "Marion County includes the Town of McIntosh and Town of Reddick as incorporated municipalities"},
+      "incorporada": {"valor": true, "tipo": "Town", "url": "https://www.marionfl.org/our-county/faqs", "evidencia": "the towns of Reddick & McIntosh"},
+      "permisos": {"oficina": "Marion County Building Safety, con autorización escrita previa del Town of McIntosh (Site Plan Permit / Proposed Work Permit)", "url": "https://townofmcintosh.org/forms/", "url_oficina": "https://www.marionfl.org/agencies-departments/departments-facilities-offices/building-safety", "evidencia": "Written authorization from the Town of McIntosh is required prior to issuance of any permit from Marion County. ... Before a permit from Marion County may be pulled, a letter of approval must be provided by the Town of McIntosh office."},
+      "distrito_agua": {"valor": "Marion County dividido SJRWMD/SWFWMD; distrito del pueblo no verificado", "url": "https://www.swfwmd.state.fl.us/about/floridas-water-management-districts", "evidencia": "portions of ... Marion"},
+      "extras": [
+        {"hecho": "El pueblo exige Proposed Work Permit para mejoras como cercas o portones, y Site Plan Permit ($75) para obra nueva o cambios de huella; tiene además permiso de árboles (Ord. 2022-01).", "url": "https://townofmcintosh.org/forms/", "evidencia": "Proposed Work Permit Application for proposed work such as repairs, replacements, or improvements such as fences or gates ... Site Plan Permit Application for new construction, or any work that will change the original footprint of the property, with an application fee of $75"}
+      ],
+      "dudas": null
+    },
+    {
+      "ciudad": "Old Town",
+      "condado": {"valor": "Dixie", "url": "https://floridadep.gov/rcp/coastal-access-guide/content/dixie-county", "evidencia": "Old Town is located on U.S. Highway 19 in Dixie County ... often called Suwanee Old Town."},
+      "incorporada": {"valor": null, "url": null, "evidencia": null},
+      "permisos": {"oficina": "Si no está incorporada (no confirmado): Dixie County Community Development – Building & Zoning (387 SE 22 Ave, Cross City; 352-498-1235)", "url": "https://dixie.fl.gov/?page_id=6295", "evidencia": "The Community Development Department encompasses all areas of the Building, Planning and Zoning process ... when building or developing in Dixie County."},
+      "distrito_agua": {"valor": "SRWMD (Dixie entero)", "url": "https://www.mysuwanneeriver.com/15/The-District", "evidencia": "encompasses all of Columbia, Dixie ..."},
+      "extras": [],
+      "dudas": "No se encontró fuente oficial (census.gov/dixie.fl.gov) que diga 'unincorporated'. Solo Wikipedia (no válida). Los únicos municipios de Dixie vistos en census.gov fueron Cross City y Horseshoe Beach, lo que es coherente con que Old Town no esté incorporada, pero no es una afirmación explícita."
+    }
+  ]
+}

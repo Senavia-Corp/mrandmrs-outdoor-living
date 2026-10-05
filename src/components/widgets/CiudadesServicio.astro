@@ -1,0 +1,29 @@
+---
+/**
+ * LAS CIUDADES DE UN SERVICIO, EN SU FICHA (LOOP-CIUDADES, 5-oct-2026).
+ *
+ * La ficha `/services/<servicio>` enlaza a sus landings `/services/<servicio>/<ciudad>-fl`: sin esto
+ * las paginas nuevas solo las enlazarian sus hermanas, y la ficha —la pagina con autoridad del
+ * servicio— no diria donde se presta. Va detras de «Where We Serve» (`section.location`), que es
+ * donde el visitante ya esta mirando por zonas.
+ *
+ * NO ES UNA `<section>` A PROPOSITO: `check-estructura-servicios.mjs` exige un solo orden de
+ * secciones en las 14 fichas, y esto es una linea de enlaces, no un bloque nuevo. Reusa la clase
+ * de la linea de fuentes de la FAQ (`mm-faq-fuentes`), asi que no cuesta CSS.
+ *
+ * Una ficha sin landings no pinta NADA (ni un byte): las fichas sin ciudades salen como estaban.
+ * Se localiza por `Astro.url.pathname`, como los demas widgets que inserta `build-paginas.mjs`.
+ */
+import DATOS from '../../data/ciudades-servicios.json';
+import { ciudadesDeFicha } from '../../lib/servicios-ciudad.mjs';
+
+const ruta = Astro.url.pathname.replace(/(.)\/$/, '$1');
+const L = ciudadesDeFicha(ruta, DATOS.paginas);
+---
+{L && (
+  <div class="w-layout-blockcontainer container w-container mm-ciudades-servicio">
+    <p class="grey mm-faq-fuentes">{L.rotulo}:{' '}
+      {L.ciudades.map((c, i) => (<>{i ? ' · ' : ''}<a href={c.href}>{c.nombre}</a></>))}
+    </p>
+  </div>
+)}

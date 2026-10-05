@@ -1,0 +1,100 @@
+{
+  "_lee_esto": [
+    "LAS LANDINGS DE CIUDAD DE LOS DEMAS SERVICIOS (LOOP-CIUDADES). Lo unico que se escribe a mano.",
+    "",
+    "`npm run ciudades:servicios` lo expande a src/data/ciudades-servicios.json, a las entradas de",
+    "captacion-servicios.json, al set `servicio:<servicio>` de galeria-obra-por-ruta.json y a `usada_en`",
+    "del banco. `npm run check:captacion` lo comprueba (`--check`): editar a mano lo derivado sale rojo.",
+    "",
+    "servicios.<s>.fotos: ids del banco elegidos por hoja de contactos (banco/hojas/). Aprobadas, obra_real,",
+    "del servicio, y ninguna que ya pinte la misma pagina (banda «Project Gallery» y panel de servicios).",
+    "servicios.<s>.fotosLibres: las libres del servicio el dia del lote (LOOP-CIUDADES-ESTADO.md). El",
+    "generador para si hay mas paginas que fotos: es la linea roja del loop.",
+    "",
+    "ciudades.<slug>: el slug es el de Sanity de pool-builders (`ocala-florida`), asi la ruta nueva es",
+    "/services/<servicio>/<ciudad>-fl, el mismo tramo que /services/pool-builders/<ciudad>-fl.",
+    "`condado` solo con `condadoFuente` oficial; los 9 de negocio.mjs y ninguno mas.",
+    "",
+    "paginas[].faqLocal: EL HECHO LOCAL, con su fuente oficial y la fecha en que se comprobo. Sin el no",
+    "hay pagina. Lo que no esta en la fuente no se escribe. Ni precios, ni plazos, ni obras en la ciudad."
+  ],
+  "servicios": {
+    "pool-remodeling": {
+      "banco": "remodeling",
+      "fotosLibres": 32,
+      "galeria": {
+        "titulo": "Pool Remodel Project Gallery",
+        "entradilla": "Pools we have renovated, from the condition we found them in to new tile, finish and deck."
+      },
+      "fotos": {
+        "intro": {
+          "1": {
+            "banco": "bi-0614",
+            "pos": "50% 50%"
+          },
+          "2": {
+            "banco": "bi-0519",
+            "pos": "50% 50%"
+          },
+          "3": {
+            "banco": "bi-0617",
+            "pos": "50% 50%"
+          }
+        },
+        "inversion": {
+          "banco": "bi-0616"
+        },
+        "galeria": [
+          "bi-0072",
+          "bi-0547",
+          "bi-0515",
+          "bi-0664",
+          "bi-0665",
+          "bi-0071",
+          "bi-0528",
+          "bi-0530",
+          "bi-0090",
+          "bi-0679",
+          "bi-0613"
+        ]
+      }
+    }
+  },
+  "ciudades": {
+    "gainesville-florida": {
+      "ciudad": "Gainesville",
+      "region": "North Florida",
+      "condado": "Alachua",
+      "condadoFuente": {
+        "nombre": "Alachua County Building Division: in-ground residential pool plan checklist",
+        "url": "https://epermit.alachuacounty.us/formsdocs/BLD_In-Ground_Residential_Pool_Plan_Exam_Checklist.pdf",
+        "comprobado": "2026-10-04",
+        "_nota": "Gainesville -> Alachua ya verificado y publicado en ciudades-captacion.json (fila de Gainesville)."
+      }
+    }
+  },
+  "paginas": [
+    {
+      "servicio": "pool-remodeling",
+      "ciudad": "gainesville-florida",
+      "faqLocal": [
+        {
+          "pregunta": "Which office permits a pool remodel in Gainesville?",
+          "respuesta": "It depends on whether the address is inside the city limits. Inside the City of Gainesville, the city's Building Division reviews residential pool permits, and its residential swimming pool checklist calls for separate electrical and plumbing permits. In unincorporated Alachua County, the county's Building Division does, and its in-ground pool checklist includes the form required by Florida's Residential Swimming Pool Safety Act. Remodel work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code, so we confirm which office has jurisdiction before demolition and pull the permit under our license.",
+          "fuentes": [
+            {
+              "nombre": "City of Gainesville Building Division: residential swimming pool checklist",
+              "url": "https://www.gainesvillefl.gov/files/assets/public/v/1/sustainable-development/building-inspection/residential-swimming-pool.pdf"
+            },
+            {
+              "nombre": "Alachua County Building Division: in-ground residential pool plan checklist",
+              "url": "https://epermit.alachuacounty.us/formsdocs/BLD_In-Ground_Residential_Pool_Plan_Exam_Checklist.pdf"
+            }
+          ],
+          "comprobado": "2026-10-04",
+          "_fuente": "Las dos fuentes y lo que dicen son las del faqExtra de Gainesville (ciudades-captacion.json, comprobado el 4-oct-2026): la CIUDAD pide permiso de piscina con permisos separados de electrico y fontaneria (y formulario de barrera FBC-Residential cap. 45); el CONDADO pide el formulario de la Residential Swimming Pool Safety Act (F.S. 515). «Work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code» y «pull the permits under our license» son la FAQ 2 de la ficha /services/pool-remodeling. No se afirma que una remodelacion se revise contra esas checklists: solo que oficina tiene jurisdiccion. Revisado tras la revision independiente del 5-oct-2026. Sin cifras ni plazos."
+        }
+      ]
+    }
+  ]
+}

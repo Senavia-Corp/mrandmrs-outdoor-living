@@ -107,10 +107,26 @@ const rutasDeGaleria = () => {
   ]));
 };
 
+/**
+ * Y LAS LANDINGS DE CIUDAD DE LOS DEMAS SERVICIOS (LOOP-CIUDADES, 5-oct-2026), DERIVADAS de
+ * `src/data/ciudades-servicios.json` por lo mismo que el blog: el sitemap (`build-seo-ficheros.mjs`)
+ * y `check-medicion.mjs` leen el mismo fichero, asi que no puede existir una sin las otras.
+ */
+export const rutasDeCiudadServicio = () => {
+  const f = path.join(path.dirname(new URL(import.meta.url).pathname), '../../src/data/ciudades-servicios.json');
+  if (!fs.existsSync(f)) return {};
+  return Object.fromEntries(Object.entries(JSON.parse(fs.readFileSync(f, 'utf8')).paginas).map(([r, p]) => [
+    r,
+    `Landing de ciudad de ${p.servicio} (LOOP-CIUDADES): la plantilla de /services/pool-builders/<ciudad>-fl `
+      + 'con el contenido del servicio y un hecho local con fuente oficial. Datos en ciudades-servicios-filas.json.',
+  ]));
+};
+
 /** Ruta -> por que existe. El motivo no es adorno: es lo que hace auditable la excepcion. */
 export const RUTAS_PROPIAS = {
   ...rutasDeBlog(),
   ...rutasDeGaleria(),
+  ...rutasDeCiudadServicio(),
 
   '/financing': 'Escrita el 2-sep-2026. El nav mandaba a Acorn Finance con `target="_blank"` '
     + 'desde las 115 rutas: cada clic en «Financing» salia del sitio antes de explicar nada. '

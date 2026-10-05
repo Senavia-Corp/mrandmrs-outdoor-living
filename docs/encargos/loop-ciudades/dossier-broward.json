@@ -1,0 +1,648 @@
+{
+  "comprobado": "2026-10-05",
+  "metodo": "WebSearch snippets; fetch blocked",
+  "regional": {
+    "condado_municipios": {
+      "url": "https://www.broward.org/Residents/Pages/BrowardCountyMunicipalities.aspx",
+      "url2": "https://www.broward.org/Publicworks/Pages/MunicipalityDirectory.aspx",
+      "evidencia": "There are 31 municipalities within Broward County, plus the Broward Municipal Services District for unincorporated areas. broward.org 'Public Works Municipality Directory' list also includes: Coconut Creek, Fort Lauderdale, Hallandale Beach, Miramar, North Lauderdale, Oakland Park, Parkland, Pembroke Park, Pembroke Pines, and Wilton Manors."
+    },
+    "hvhz": {
+      "hecho": "Broward y Miami-Dade constituyen la High-Velocity Hurricane Zone del Florida Building Code (definición en FBC Sección 202; requisitos de viento HVHZ en Cap. 16, secc. 1620+).",
+      "fuentes": [
+        {
+          "url": "https://www.broward.org/Building/Documents/2020%20FBC%20Roof%20Packet.pdf",
+          "evidencia": "High Velocity Hurricane Zones are defined in Section 202 of the FBC as Dade and Broward Counties.",
+          "nota": "Frase vista en búsqueda restringida a broward.org/floridabuilding.org/miamidade.gov; resultados broward.org de roofing (2020 FBC Roof Packet, 2017 HVHZR ROOF, BORA boi01801). No se fijó a cuál de ellos pertenece."
+        },
+        {
+          "url": "https://www.floridabuilding.org/fbc/thecode/2013_Code_Development/HVHZ/FBCB/Chapter_16_2010.htm",
+          "evidencia": "Título del resultado: 'High-Velocity Hurricane Zones' (floridabuilding.org, Cap. 16 FBC-Building, ciclo 2010).",
+          "nota": "Edición antigua; sirve como fuente oficial de que el FBC tiene un capítulo HVHZ, no para valores vigentes."
+        },
+        {
+          "url": "https://www.broward.org/CodeAppeals/Documents/Broward%20County,%20FL%20Building%20Code%20Repub.pdf",
+          "evidencia": "Título: 'THE FLORIDA BUILDING CODE BROWARD COUNTY AMENDMENTS' (broward.org, Board of Rules and Appeals).",
+          "nota": "BORA administra enmiendas locales/administrativas del FBC en Broward."
+        }
+      ],
+      "velocidades_viento": {
+        "valor": null,
+        "nota": "Un snippet (atribuido a FBC 1620.2 vía tabla de fiu.edu, no oficial-gubernamental) da Broward: Cat I 156, Cat II 170, Cat III 180 mph; otro documento de broward.org decía 140 mph (edición antigua). Contradicción no resuelta: no publicar cifra."
+      },
+      "aprobacion_productos": {
+        "hecho": "En HVHZ los productos de envolvente deben estar evaluados a las secciones HVHZ del FBC; la NOA de Miami-Dade (Product Control) es la aprobación local para HVHZ.",
+        "fuentes": [
+          {
+            "url": "https://www.miamidade.gov/global/economy/board-and-code/product-approval.page",
+            "evidencia": "Products that receive a Notice of Acceptance (NOA) (product approval) from Miami-Dade County must meet the requirements for Florida's High Velocity Hurricane Zone (HVHZ) ... Miami-Dade's Product Control Section reviews and issues approval or denial of building construction materials, products and systems used for the protection of the building envelope, mainly addressing windows, exterior glazing, wall cladding, roofing, exterior doors, skylights, glass block, siding and shutters."
+          },
+          {
+            "url": "https://www.miamidade.gov/building/library/brochures/construction-materials.pdf",
+            "evidencia": "NOAs are also processed for products such as fences, A/C stands, pre-cast items, railings, screen enclosures, plumbing fixtures, awnings, concrete reinforcement, and plastic components."
+          },
+          {
+            "url": "http://floridabuilding.org/Upload/Courses_trp/588-0-MATERIAL-Advanced%20Navigating%20into%20Miami-Dade%20NOA's%20and%20Florida%20Product%20Approvals.pdf",
+            "evidencia": "Título: 'ADVANCED NAVIGATING INTO MIAMI-DADE NOA'S AND FLORIDA PRODUCT APPROVALS' (material de curso alojado en floridabuilding.org)."
+          }
+        ],
+        "dudas": "No se encontró snippet oficial de Broward/floridabuilding.org que diga literalmente 'en Broward se exige NOA o FL Product Approval HVHZ'. La frase 'Dade and Broward counties are designated as HVHZ areas and require approvals be evaluated to the HVHZ sections of the FBC' se vio en floridaroof.com (FRSA, asociación, NO oficial). Las frases de miamidade.gov hablan de Miami-Dade; un NOA de miamidade.gov decía que fuera de Miami-Dade y Broward está la non-HVHZ. Redactar con prudencia: 'productos aprobados para HVHZ (p. ej. NOA de Miami-Dade)'."
+      }
+    },
+    "riego": {
+      "sfwmd": {
+        "url": "https://WWW.SFWMD.GOV/sites/default/files/documents/40e_24_final_rule_text_yrlicm_3_15_2010.pdf",
+        "url2": "https://sfwmd.gov/sites/default/files/documents/nr_2010_0311_yr_rule.pdf",
+        "evidencia": "The Year-Round Landscape Irrigation Conservation Measures Rule (Chapter 40E-24, Florida Administrative Code) limits landscape watering to two days a week throughout the South Florida Water Management District, with a three-day-a-week provision for some counties ... A provision in the rule allows for three-day-a-week irrigation in counties south of Lake Okeechobee, including Broward ... The rule has been in effect since March 2010."
+      },
+      "broward": {
+        "tiene_ordenanza_propia": true,
+        "url": "https://www.broward.org/NaturalResources/WaterConservation/Pages/IrrigationRestrictions.aspx",
+        "evidencia": "Year-round irrigation restrictions are mandatory in Broward County for all cities, with NO watering of lawns and landscapes allowed on Monday, Tuesday, and Fridays. Residences and businesses with an odd-numbered street address may water ... on Wednesdays and/or Saturdays, only before 10:00 a.m. or after 4:00 p.m. ... even-numbered street address, no street address ... Thursdays and/or Sundays ... reclaimed water ... any day only before 10 a.m. or after 4:00 p.m.",
+        "nota": "La página se titula 'Mandatory Irrigation Restrictions' y dice que aplican a todas las ciudades; que sea una ordenanza del condado (número/código) NO se vio en snippet. Un snippet de sfwmd.gov dijo además que 'local ordinances limit landscape irrigation to two days a week in Broward'."
+      }
+    },
+    "piscinas_fs515": {
+      "url": "https://flsenate.gov/Laws/Statutes/2026/Chapter515/All",
+      "evidencia": "Chapter 515 ... is cited as the 'Preston de Ibern/McKenzie Merriam Residential Swimming Pool Safety Act.' Sections 515.21–515.37, including 515.27 Residential swimming pool safety feature options; penalties; 515.29 Residential swimming pool barrier requirements. ... a pool safety feature designed to deny, delay, or detect unsupervised entry to the swimming pool, spa, or hot tub will reduce drowning and near-drowning incidents."
+    },
+    "cccl": {
+      "url": "https://flrules.org/gateway/notice_Files.asp?ID=2329666",
+      "url_fdep": "https://floridadep.gov/water/coastal-construction-control-line/documents/homeowners-guide-coastal-construction-control-line",
+      "evidencia": "Rule 62B-26.013 F.A.C. (Broward County CCCL): 'The Control Line lies along the Atlantic coast from the Broward and Palm Beach County Line south to the Broward and Dade County Line' ... 'a permit to alter, excavate or construct on property seaward of the established control line is required from the Department.' (snippet surfaced for flrules.org notice; texto también en law.cornell.edu, no oficial) | FDEP Homeowner's Guide: Construction activities seaward of the control line are not prohibited, but must meet special siting and design criteria. Condominiums, hotels, homes, pools and boardwalks, etc., to be constructed seaward of the CCCL must meet the specific requirements of this program."
+    },
+    "playas_segmentos": {
+      "url": "https://www.broward.org/Beaches/Pages/Projects.aspx",
+      "evidencia": "broward.org Beaches: Segment I includes the coastal municipalities of Deerfield Beach and Hillsboro Beach. broward.org Beaches: Segment II extends from Hillsboro Inlet to Port Everglades, traversing Pompano Beach, Lauderdale-by-the-Sea and Fort Lauderdale. broward.org Beaches: Segment III covers the remaining distance to the south County line, extending across coastal portions of Dr. Von D. Mizell-Eula Johnson State Park, Dania Beach, Hollywood Beach, and Hallandale Beach."
+    }
+  },
+  "lugares": [
+    {
+      "ciudad": "Fort Lauderdale",
+      "condado": {
+        "valor": "Broward County, Florida",
+        "url": "https://www.broward.org/Publicworks/Pages/MunicipalityDirectory.aspx",
+        "evidencia": "broward.org 'Public Works Municipality Directory' list also includes: Coconut Creek, Fort Lauderdale, Hallandale Beach, Miramar, North Lauderdale, Oakland Park, Parkland, Pembroke Park, Pembroke Pines, and Wilton Manors."
+      },
+      "permisos": {
+        "oficina": "City of Fort Lauderdale, Development Services Department – Building Services Division (portal LauderBuild)",
+        "url": "https://www.fortlauderdale.gov/Government/Departments/Development-Services/Permitting-Services",
+        "evidencia": "The Building Services division is responsible for all permitting efforts in the City and provides property record information, issues permits and performs building inspections. ... all new submissions can be submitted online through their Citizen's Portal, LauderBuild."
+      },
+      "costa": {
+        "oceanica": true,
+        "url": "https://www.broward.org/Beaches/Pages/Projects.aspx",
+        "evidencia": "broward.org Beaches: Segment II extends from Hillsboro Inlet to Port Everglades, traversing Pompano Beach, Lauderdale-by-the-Sea and Fort Lauderdale.",
+        "cccl": {
+          "aplica": true,
+          "url": "https://flrules.org/gateway/notice_Files.asp?ID=2329666",
+          "evidencia": "Rule 62B-26.013 F.A.C. (Broward County CCCL): 'The Control Line lies along the Atlantic coast from the Broward and Palm Beach County Line south to the Broward and Dade County Line' ... 'a permit to alter, excavate or construct on property seaward of the established control line is required from the Department.' (snippet surfaced for flrules.org notice; texto también en law.cornell.edu, no oficial)",
+          "nota": "La CCCL de Broward recorre toda la costa atlántica del condado; aplica solo a la franja costera de la ciudad, no a toda la ciudad."
+        }
+      },
+      "extras": [
+        {
+          "hecho": "Piscina/spa residencial: permisos de building, plumbing, electrical, engineering mitigation y mechanical; 2 Pool Barrier Affidavits (Residential Swimming Pool, Spa and Hot Tub Safety Act); desde 9-may-2022 el permiso debe incluir un Pool Contractor (CPC o RPC).",
+          "url": "https://www.fortlauderdale.gov/files/assets/public/v/2/development-services/documents/dsd-documents-amp-forms/building_permit_checklist_v11.pdf",
+          "evidencia": "2 completed Pool Barrier Affidavits (Residential Swimming Pool, Spa and Hot Tub Safety Act Notice of Requirements) are also required ... Commencing on May 9th, 2022, pool/spa permits must include a Pool Contractor (CPC or RPC) as either the prime or a sub on a pool/spa permit."
+        },
+        {
+          "hecho": "Zonificación: piscina a mínimo 5 ft de todos los linderos.",
+          "url": "https://www.fortlauderdale.gov/government/departments-a-h/development-services/building-services/zoning/zoning-faq",
+          "evidencia": "For pools specifically, a pool must be a minimum of 5 feet from all property lines."
+        }
+      ],
+      "dudas": "Los dos extras salieron de un resumen de búsqueda restringida a fortlauderdale.gov; la asignación exacta de cada frase a cada URL (checklist vs. Zoning FAQ) no se pudo comprobar sin abrir la página. Existe además página HB 803 (vigente 1-jul-2026) sobre exenciones cosméticas: https://www.fortlauderdale.gov/Government/Departments/Development-Services/HB-803"
+    },
+    {
+      "ciudad": "Pembroke Pines",
+      "condado": {
+        "valor": "Broward County, Florida",
+        "url": "https://www.broward.org/Publicworks/Pages/MunicipalityDirectory.aspx",
+        "evidencia": "broward.org 'Public Works Municipality Directory' list also includes: Coconut Creek, Fort Lauderdale, Hallandale Beach, Miramar, North Lauderdale, Oakland Park, Parkland, Pembroke Park, Pembroke Pines, and Wilton Manors."
+      },
+      "permisos": {
+        "oficina": "City of Pembroke Pines Building Department (Development HUB)",
+        "url": "https://ppines.com/1052/Online-Submittal-Permits",
+        "evidencia": "Permits can be submitted online through the Development Hub system ... For questions about the permit submittal process, you can contact the City of Pembroke Pines Building Department at (954) 435-6502."
+      },
+      "costa": {
+        "oceanica": false,
+        "url": "https://www.broward.org/Beaches/Pages/Projects.aspx",
+        "evidencia": "Inferencia: los tres segmentos de playa de broward.org cubren la costa de condado a condado (Segment I Deerfield Beach/Hillsboro Beach; Segment II Hillsboro Inlet–Port Everglades: Pompano Beach, Lauderdale-by-the-Sea, Fort Lauderdale; Segment III hasta la línea sur: parque estatal, Dania Beach, Hollywood, Hallandale Beach) y este municipio no aparece. Ningún snippet oficial dice literalmente 'no tiene playa'.",
+        "cccl": {
+          "aplica": false,
+          "url": "https://flrules.org/gateway/notice_Files.asp?ID=2329666",
+          "evidencia": "La CCCL sólo existe a lo largo de la costa atlántica (ver regional.cccl).",
+          "nota": "false por inferencia geográfica, no por fuente que lo niegue expresamente."
+        }
+      },
+      "extras": [
+        {
+          "hecho": "La ciudad tiene un formulario propio de Landscape Permit Application.",
+          "url": "https://ppines.com/DocumentCenter/View/24307/Landscape-Permit-Application---Fillable",
+          "evidencia": "Título del resultado: 'Landscape Permit Application Fillable' (ppines.com)."
+        }
+      ],
+      "dudas": "No se confirmó si alguna parte de la revisión está contratada a terceros."
+    },
+    {
+      "ciudad": "Hollywood",
+      "condado": {
+        "valor": "Broward County, Florida",
+        "url": "https://www.broward.org/Residents/Pages/BrowardCountyMunicipalities.aspx",
+        "evidencia": "broward.org 'Residents Broward County Municipalities': there are 31 municipalities within Broward County; list includes Cooper City, Coral Springs, Dania Beach, Davie, Deerfield Beach, Hillsboro Beach, Hollywood, ... Lighthouse Point, Margate, Plantation, Pompano Beach, Sea Ranch Lakes, Southwest Ranches, Sunrise, Tamarac, West Park, and Weston."
+      },
+      "permisos": {
+        "oficina": "City of Hollywood, Development Services – Building Division (Accela Citizen Access)",
+        "url": "https://www.hollywoodfl.org/328/Building",
+        "evidencia": "The Building Division reviews all building permit applications for compliance with local, state and federal building regulations ... All new permit applications must be submitted through the Accela Citizen Access (ACA) Portal."
+      },
+      "costa": {
+        "oceanica": true,
+        "url": "https://www.broward.org/Beaches/Pages/Projects.aspx",
+        "evidencia": "broward.org Beaches: Segment III covers the remaining distance to the south County line, extending across coastal portions of Dr. Von D. Mizell-Eula Johnson State Park, Dania Beach, Hollywood Beach, and Hallandale Beach.",
+        "cccl": {
+          "aplica": true,
+          "url": "https://flrules.org/gateway/notice_Files.asp?ID=2329666",
+          "evidencia": "Rule 62B-26.013 F.A.C. (Broward County CCCL): 'The Control Line lies along the Atlantic coast from the Broward and Palm Beach County Line south to the Broward and Dade County Line' ... 'a permit to alter, excavate or construct on property seaward of the established control line is required from the Department.' (snippet surfaced for flrules.org notice; texto también en law.cornell.edu, no oficial)",
+          "nota": "La CCCL de Broward recorre toda la costa atlántica del condado; aplica solo a la franja costera de la ciudad, no a toda la ciudad."
+        }
+      },
+      "extras": [
+        {
+          "hecho": "La ciudad define que requieren permiso estructuras como patio deck, fence, retaining wall, shed, gazebo, trellis, fountain, spa o pool.",
+          "url": "https://hollywoodfl.org/m/faq?cat=16#question-356",
+          "evidencia": "A structure can be but not limited to a driveway, patio deck, walkway, fence, retaining wall, shed, gazebo, trellis, antenna tower, fountain, spa or a pool."
+        },
+        {
+          "hecho": "Express Permitting Service (walk-in) para fences, shutters, windows, doors, roofs y trabajos menores.",
+          "url": "https://www.hollywoodfl.org/1147/Express-Permitting-Service",
+          "evidencia": "Título 'Express Permitting Service' en hollywoodfl.org; descripción de alcance (fences, shutters, windows, doors, roofs) vista en snippet de un tercero (ourcitymedia), no en el sitio oficial."
+        }
+      ],
+      "dudas": "La FAQ citada salió en resultados de hollywoodfl.org; la URL exacta del ancla (#question-356) no se verificó para esa frase concreta. El alcance del Express Permitting sólo se vio en fuente no oficial."
+    },
+    {
+      "ciudad": "Miramar",
+      "condado": {
+        "valor": "Broward County, Florida",
+        "url": "https://www.broward.org/Publicworks/Pages/MunicipalityDirectory.aspx",
+        "evidencia": "broward.org 'Public Works Municipality Directory' list also includes: Coconut Creek, Fort Lauderdale, Hallandale Beach, Miramar, North Lauderdale, Oakland Park, Parkland, Pembroke Park, Pembroke Pines, and Wilton Manors."
+      },
+      "permisos": {
+        "oficina": "City of Miramar, Building, Planning & Zoning Department – Building Division",
+        "url": "https://www.miramarfl.gov/150/BUILDING-PERMITS-INSPECTIONS",
+        "evidencia": "The Building Division reviews all building permit applications for compliance with all national, state, county, and municipal codes ... For information about home improvement projects, residents should call the Building Division at 954-602-3200."
+      },
+      "costa": {
+        "oceanica": false,
+        "url": "https://www.broward.org/Beaches/Pages/Projects.aspx",
+        "evidencia": "Inferencia: los tres segmentos de playa de broward.org cubren la costa de condado a condado (Segment I Deerfield Beach/Hillsboro Beach; Segment II Hillsboro Inlet–Port Everglades: Pompano Beach, Lauderdale-by-the-Sea, Fort Lauderdale; Segment III hasta la línea sur: parque estatal, Dania Beach, Hollywood, Hallandale Beach) y este municipio no aparece. Ningún snippet oficial dice literalmente 'no tiene playa'.",
+        "cccl": {
+          "aplica": false,
+          "url": "https://flrules.org/gateway/notice_Files.asp?ID=2329666",
+          "evidencia": "La CCCL sólo existe a lo largo de la costa atlántica (ver regional.cccl).",
+          "nota": "false por inferencia geográfica, no por fuente que lo niegue expresamente."
+        }
+      },
+      "extras": [
+        {
+          "hecho": "Paquete propio de solicitud para piscina/spa bajo FBC 2023 (rev. dic-2024).",
+          "url": "https://miramarfl.gov/files/assets/public/v/3/buildingplanningzoning/documents/application-and-forms/swimming-pool-spa-application-package-fbc-2023.-dec.-2024.pdf",
+          "evidencia": "Título del resultado: 'swimming pool spa application package fbc 2023. dec. 2024' (miramarfl.gov)."
+        },
+        {
+          "hecho": "Paquete propio para awnings/canopies.",
+          "url": "https://miramarfl.gov/files/assets/public/v/2/buildingplanningzoning/documents/application-and-forms/awnings-canopies-application-package-fbc.pdf",
+          "evidencia": "Título del resultado: 'awnings canopies application package fbc' (miramarfl.gov)."
+        }
+      ],
+      "dudas": "Ninguna relevante sobre la oficina."
+    },
+    {
+      "ciudad": "Pompano Beach",
+      "condado": {
+        "valor": "Broward County, Florida",
+        "url": "https://www.broward.org/Residents/Pages/BrowardCountyMunicipalities.aspx",
+        "evidencia": "broward.org 'Residents Broward County Municipalities': there are 31 municipalities within Broward County; list includes Cooper City, Coral Springs, Dania Beach, Davie, Deerfield Beach, Hillsboro Beach, Hollywood, ... Lighthouse Point, Margate, Plantation, Pompano Beach, Sea Ranch Lakes, Southwest Ranches, Sunrise, Tamarac, West Park, and Weston."
+      },
+      "permisos": {
+        "oficina": "City of Pompano Beach, Department of Development Services – Building Inspections Division (100 W. Atlantic Blvd)",
+        "url": "https://cdn.pompanobeachfl.gov/city/pages/building_inspections/FY24_Building_Utilization_Report.pdf",
+        "evidencia": "The Building Inspections Division enforces minimum standards pursuant to the Florida Building Code ... The Building Inspections Division is located at 100 W. Atlantic Blvd Pompano Beach, FL 33060, with phone 954.786.4669."
+      },
+      "costa": {
+        "oceanica": true,
+        "url": "https://www.broward.org/Beaches/Pages/Projects.aspx",
+        "evidencia": "broward.org Beaches: Segment II extends from Hillsboro Inlet to Port Everglades, traversing Pompano Beach, Lauderdale-by-the-Sea and Fort Lauderdale.",
+        "cccl": {
+          "aplica": true,
+          "url": "https://flrules.org/gateway/notice_Files.asp?ID=2329666",
+          "evidencia": "Rule 62B-26.013 F.A.C. (Broward County CCCL): 'The Control Line lies along the Atlantic coast from the Broward and Palm Beach County Line south to the Broward and Dade County Line' ... 'a permit to alter, excavate or construct on property seaward of the established control line is required from the Department.' (snippet surfaced for flrules.org notice; texto también en law.cornell.edu, no oficial)",
+          "nota": "La CCCL de Broward recorre toda la costa atlántica del condado; aplica solo a la franja costera de la ciudad, no a toda la ciudad."
+        }
+      },
+      "extras": [
+        {
+          "hecho": "Gazebo o pérgola: instalar o reemplazar requiere permiso de construcción (checklist propio).",
+          "url": "https://cdn.pompanobeachfl.gov/city/pages/building_inspections/submittal_checklists/Gazebo-or-Pergola.pdf",
+          "evidencia": "The installation or replacement of a gazebo or pergola requires a Building Permit be issued."
+        },
+        {
+          "hecho": "Cerca: instalación, reemplazo o reparación mayor requiere permiso (checklist propio).",
+          "url": "https://cdn.pompanobeachfl.gov/city/pages/development_services/checklists/Fence.pdf",
+          "evidencia": "The installation, replacement or major repair of a fence, whether Commercial or Residential, requires a Building Permit be issued."
+        }
+      ],
+      "dudas": "No se obtuvo la URL de la página HTML de la división (sólo PDFs del CDN oficial). Las frases de pérgola/cerca salieron de un resumen sobre varios dominios oficiales; se asignan a los checklists de Pompano por título."
+    },
+    {
+      "ciudad": "Davie",
+      "condado": {
+        "valor": "Broward County, Florida",
+        "url": "https://www.broward.org/Residents/Pages/BrowardCountyMunicipalities.aspx",
+        "evidencia": "broward.org 'Residents Broward County Municipalities': there are 31 municipalities within Broward County; list includes Cooper City, Coral Springs, Dania Beach, Davie, Deerfield Beach, Hillsboro Beach, Hollywood, ... Lighthouse Point, Margate, Plantation, Pompano Beach, Sea Ranch Lakes, Southwest Ranches, Sunrise, Tamarac, West Park, and Weston."
+      },
+      "permisos": {
+        "oficina": "Town of Davie Building Division (8800 SW 36 St)",
+        "url": "https://www.davie-fl.gov/206/Building",
+        "evidencia": "The Building Division is located at 8800 SW 36 ST, DAVIE, FL 33328 ... must first obtain the required permit for the work."
+      },
+      "costa": {
+        "oceanica": false,
+        "url": "https://www.broward.org/Beaches/Pages/Projects.aspx",
+        "evidencia": "Inferencia: los tres segmentos de playa de broward.org cubren la costa de condado a condado (Segment I Deerfield Beach/Hillsboro Beach; Segment II Hillsboro Inlet–Port Everglades: Pompano Beach, Lauderdale-by-the-Sea, Fort Lauderdale; Segment III hasta la línea sur: parque estatal, Dania Beach, Hollywood, Hallandale Beach) y este municipio no aparece. Ningún snippet oficial dice literalmente 'no tiene playa'.",
+        "cccl": {
+          "aplica": false,
+          "url": "https://flrules.org/gateway/notice_Files.asp?ID=2329666",
+          "evidencia": "La CCCL sólo existe a lo largo de la costa atlántica (ver regional.cccl).",
+          "nota": "false por inferencia geográfica, no por fuente que lo niegue expresamente."
+        }
+      },
+      "extras": [
+        {
+          "hecho": "Rural Lifestyle Regulations aplicables a zonas AG, A-1 y R-1 (1 vivienda por acre, corredores escénicos, criterios arquitectónicos, Open Space Design Overlay); red de más de 165 millas de senderos ecuestres.",
+          "url": "https://www.davie-fl.gov/DocumentCenter/View/3380/Comprehensive-Plan---Goals-Objectives--Policy",
+          "evidencia": "The Rural Lifestyle Regulations apply to those portions of the town in the Agricultural (AG), Agricultural (A-1), and Estate (R-1) zoning categories. ... Davie has a network of over 165 miles of trails linking the community to hundreds of acres of equestrian-friendly county and town parks."
+        },
+        {
+          "hecho": "Página municipal de restricciones de riego.",
+          "url": "https://www.davie-fl.gov/1273/Water-Restrictions",
+          "evidencia": "Título del resultado: 'Water restrictions' (davie-fl.gov)."
+        }
+      ],
+      "dudas": "Las frases rurales salieron de un resumen de varios documentos de davie-fl.gov (plan comprensivo y agendas de P&Z); la URL asignada es la más probable, no confirmada frase a frase."
+    },
+    {
+      "ciudad": "Plantation",
+      "condado": {
+        "valor": "Broward County, Florida",
+        "url": "https://www.broward.org/Residents/Pages/BrowardCountyMunicipalities.aspx",
+        "evidencia": "broward.org 'Residents Broward County Municipalities': there are 31 municipalities within Broward County; list includes Cooper City, Coral Springs, Dania Beach, Davie, Deerfield Beach, Hillsboro Beach, Hollywood, ... Lighthouse Point, Margate, Plantation, Pompano Beach, Sea Ranch Lakes, Southwest Ranches, Sunrise, Tamarac, West Park, and Weston."
+      },
+      "permisos": {
+        "oficina": "City of Plantation, Building Safety Division / Building Department (401 NW 70th Terrace)",
+        "url": "https://www.plantation.org/government/departments/building-safety/permit-services/permit-submittal",
+        "evidencia": "Building permits are required to erect, enlarge, alter, remove, demolish or repair a structure in the City of Plantation, including everything from fences and garages to commercial construction, signs and additions."
+      },
+      "costa": {
+        "oceanica": false,
+        "url": "https://www.broward.org/Beaches/Pages/Projects.aspx",
+        "evidencia": "Inferencia: los tres segmentos de playa de broward.org cubren la costa de condado a condado (Segment I Deerfield Beach/Hillsboro Beach; Segment II Hillsboro Inlet–Port Everglades: Pompano Beach, Lauderdale-by-the-Sea, Fort Lauderdale; Segment III hasta la línea sur: parque estatal, Dania Beach, Hollywood, Hallandale Beach) y este municipio no aparece. Ningún snippet oficial dice literalmente 'no tiene playa'.",
+        "cccl": {
+          "aplica": false,
+          "url": "https://flrules.org/gateway/notice_Files.asp?ID=2329666",
+          "evidencia": "La CCCL sólo existe a lo largo de la costa atlántica (ver regional.cccl).",
+          "nota": "false por inferencia geográfica, no por fuente que lo niegue expresamente."
+        }
+      },
+      "extras": [
+        {
+          "hecho": "Documento municipal 'Residential Swimming Pool, Spa and Hot Tub Safety Act – City of Plantation'.",
+          "url": "https://www.plantation.org/home/showpublisheddocument/1062/637251476345170000",
+          "evidencia": "Título del resultado: 'Residential Swimming Pool, Spa and Hot Tub Safety Act City of Plantation'."
+        }
+      ],
+      "dudas": "Dirección/teléfono (401 NW 70th Terrace, 954-797-2765) aparecieron en un resumen que mezclaba permitplace.com; no se verificó que salgan de plantation.org. El nombre del departamento aparece como 'building-safety' y 'building-development' en URLs distintas."
+    },
+    {
+      "ciudad": "Deerfield Beach",
+      "condado": {
+        "valor": "Broward County, Florida",
+        "url": "https://www.broward.org/Residents/Pages/BrowardCountyMunicipalities.aspx",
+        "evidencia": "broward.org 'Residents Broward County Municipalities': there are 31 municipalities within Broward County; list includes Cooper City, Coral Springs, Dania Beach, Davie, Deerfield Beach, Hillsboro Beach, Hollywood, ... Lighthouse Point, Margate, Plantation, Pompano Beach, Sea Ranch Lakes, Southwest Ranches, Sunrise, Tamarac, West Park, and Weston."
+      },
+      "permisos": {
+        "oficina": "City of Deerfield Beach Building Services; servicios del Florida Building Code prestados por el contratista privado CAP Government",
+        "url": "https://www.deerfield-beach.com/294/Building-Services",
+        "evidencia": "CAP Government will be responsible for performing all duties related to the Florida Building Code (FBC) including permit applications, plan approvals, inspections and permit close-out."
+      },
+      "costa": {
+        "oceanica": true,
+        "url": "https://www.broward.org/Beaches/Pages/Projects.aspx",
+        "evidencia": "broward.org Beaches: Segment I includes the coastal municipalities of Deerfield Beach and Hillsboro Beach.",
+        "cccl": {
+          "aplica": true,
+          "url": "https://flrules.org/gateway/notice_Files.asp?ID=2329666",
+          "evidencia": "Rule 62B-26.013 F.A.C. (Broward County CCCL): 'The Control Line lies along the Atlantic coast from the Broward and Palm Beach County Line south to the Broward and Dade County Line' ... 'a permit to alter, excavate or construct on property seaward of the established control line is required from the Department.' (snippet surfaced for flrules.org notice; texto también en law.cornell.edu, no oficial)",
+          "nota": "La CCCL de Broward recorre toda la costa atlántica del condado; aplica solo a la franja costera de la ciudad, no a toda la ciudad."
+        }
+      },
+      "extras": [
+        {
+          "hecho": "Checklist propio para tiki/chickee, gazebo y pérgola.",
+          "url": "https://www.deerfield-beach.com/DocumentCenter/View/20484/DFB-Tiki-Chickee-Gazebo-Pergola-Checklist",
+          "evidencia": "Título del resultado: 'Deerfield Beach Building Department 150 NE 2 Avenue Deerfield Beach, FL 33441' / URL 'DFB-Tiki-Chickee-Gazebo-Pergola-Checklist'."
+        },
+        {
+          "hecho": "Handout de retiros (setbacks) para vivienda unifamiliar.",
+          "url": "https://www.deerfield-beach.com/DocumentCenter/View/11556/Residential-Single-Family-Setback-Handout",
+          "evidencia": "Título del resultado: 'HEDGES 30”HEDGES MAX HEDGES - HEDGES - FENCE 7.5’ 5’ 5’ ...' (Residential-Single-Family-Setback-Handout)."
+        }
+      ],
+      "dudas": "La frase de CAP Government se vio en un resumen de búsqueda restringida a deerfield-beach.com/dfb.city; no se pudo fijar si viene de /294/Building-Services o de /1983/Licensing-Permitting."
+    },
+    {
+      "ciudad": "Weston",
+      "condado": {
+        "valor": "Broward County, Florida",
+        "url": "https://www.broward.org/Residents/Pages/BrowardCountyMunicipalities.aspx",
+        "evidencia": "broward.org 'Residents Broward County Municipalities': there are 31 municipalities within Broward County; list includes Cooper City, Coral Springs, Dania Beach, Davie, Deerfield Beach, Hillsboro Beach, Hollywood, ... Lighthouse Point, Margate, Plantation, Pompano Beach, Sea Ranch Lakes, Southwest Ranches, Sunrise, Tamarac, West Park, and Weston."
+      },
+      "permisos": {
+        "oficina": "City of Weston Building Code Services; agente contratado C.A.P. Government, Inc.",
+        "url": "https://www.westonfl.org/government/building-code-services",
+        "evidencia": "The contracted agent for Building Code Services in Weston is C.A.P. Government, Inc., with phone number 305-448-1712 ... Weston's Building Code and Permitting Services Department enforces the Florida Building Code and Broward County regulations."
+      },
+      "costa": {
+        "oceanica": false,
+        "url": "https://www.broward.org/Beaches/Pages/Projects.aspx",
+        "evidencia": "Inferencia: los tres segmentos de playa de broward.org cubren la costa de condado a condado (Segment I Deerfield Beach/Hillsboro Beach; Segment II Hillsboro Inlet–Port Everglades: Pompano Beach, Lauderdale-by-the-Sea, Fort Lauderdale; Segment III hasta la línea sur: parque estatal, Dania Beach, Hollywood, Hallandale Beach) y este municipio no aparece. Ningún snippet oficial dice literalmente 'no tiene playa'.",
+        "cccl": {
+          "aplica": false,
+          "url": "https://flrules.org/gateway/notice_Files.asp?ID=2329666",
+          "evidencia": "La CCCL sólo existe a lo largo de la costa atlántica (ver regional.cccl).",
+          "nota": "false por inferencia geográfica, no por fuente que lo niegue expresamente."
+        }
+      },
+      "extras": [
+        {
+          "hecho": "Noticia municipal: por qué carpas y gazebos requieren permiso (cargas de viento, anclaje, retiros).",
+          "url": "https://www.westonfl.org/Home/Components/News/News/1720",
+          "evidencia": "Título 'Why a Permit is Needed for Tents and Gazebos'; Florida has stringent wind load requirements due to hurricanes and severe thunderstorms, and even a temporary tent or gazebo can become airborne if not properly anchored."
+        },
+        {
+          "hecho": "Página de exenciones de permiso para propiedades residenciales.",
+          "url": "https://www.westonfl.org/government/building-code-services/building-permit-exemptions-for-residential-properties",
+          "evidencia": "Título/URL del resultado en westonfl.org: building-permit-exemptions-for-residential-properties."
+        }
+      ],
+      "dudas": "La asignación del snippet de 'contracted agent' puede venir de /government/employment/contracted-services-and-providers en vez de /building-code-services. Un snippet citaba FBC 2020 en 'how to apply' (posiblemente página desactualizada)."
+    },
+    {
+      "ciudad": "Hallandale Beach",
+      "condado": {
+        "valor": "Broward County, Florida",
+        "url": "https://www.broward.org/Publicworks/Pages/MunicipalityDirectory.aspx",
+        "evidencia": "broward.org 'Public Works Municipality Directory' list also includes: Coconut Creek, Fort Lauderdale, Hallandale Beach, Miramar, North Lauderdale, Oakland Park, Parkland, Pembroke Park, Pembroke Pines, and Wilton Manors."
+      },
+      "permisos": {
+        "oficina": "City of Hallandale Beach, Department of Sustainable Development – Building Division (400 S. Federal Hwy)",
+        "url": "https://www.cohb.org/1036/Building-Permits-Safety-Inspections",
+        "evidencia": "The Building Division implements the minimum requirements of the Florida Building Code and Broward County Administrative Provisions ... Customers can now submit permit applications electronically through the HB Self-Service and ePermitsOneStop portals."
+      },
+      "costa": {
+        "oceanica": true,
+        "url": "https://www.broward.org/Beaches/Pages/Projects.aspx",
+        "evidencia": "broward.org Beaches: Segment III covers the remaining distance to the south County line, extending across coastal portions of Dr. Von D. Mizell-Eula Johnson State Park, Dania Beach, Hollywood Beach, and Hallandale Beach.",
+        "cccl": {
+          "aplica": true,
+          "url": "https://flrules.org/gateway/notice_Files.asp?ID=2329666",
+          "evidencia": "Rule 62B-26.013 F.A.C. (Broward County CCCL): 'The Control Line lies along the Atlantic coast from the Broward and Palm Beach County Line south to the Broward and Dade County Line' ... 'a permit to alter, excavate or construct on property seaward of the established control line is required from the Department.' (snippet surfaced for flrules.org notice; texto también en law.cornell.edu, no oficial)",
+          "nota": "La CCCL de Broward recorre toda la costa atlántica del condado; aplica solo a la franja costera de la ciudad, no a toda la ciudad."
+        }
+      },
+      "extras": [
+        {
+          "hecho": "Checklist municipal de permiso de seawall.",
+          "url": "https://hallandalebeachfl.gov/DocumentCenter/View/32557/Seawall-Permit-Checklist",
+          "evidencia": "Título del resultado: 'Department of Sustainable Development' / URL Seawall-Permit-Checklist (hallandalebeachfl.gov)."
+        },
+        {
+          "hecho": "La ciudad tiene un Elemento de Gestión Costera en su plan comprensivo y expedientes con permisos FDEP CCCL.",
+          "url": "https://hallandalebeachfl.gov/DocumentCenter/View/31595/Element-6-Coastal-Management",
+          "evidencia": "Título del resultado: '6-1 6.0 COASTAL MANAGEMENT ELEMENT 6.1 INTRODUCTION' (hallandalebeachfl.gov)."
+        }
+      ],
+      "dudas": "La ciudad usa dos dominios oficiales (cohb.org y hallandalebeachfl.gov)."
+    },
+    {
+      "ciudad": "Parkland",
+      "condado": {
+        "valor": "Broward County, Florida",
+        "url": "https://www.broward.org/Publicworks/Pages/MunicipalityDirectory.aspx",
+        "evidencia": "broward.org 'Public Works Municipality Directory' list also includes: Coconut Creek, Fort Lauderdale, Hallandale Beach, Miramar, North Lauderdale, Oakland Park, Parkland, Pembroke Park, Pembroke Pines, and Wilton Manors."
+      },
+      "permisos": {
+        "oficina": "City of Parkland Building Department/Division (City Hall, 6600 University Drive); Building Official listado en directorio municipal",
+        "url": "https://www.cityofparkland.org/109/Building-Department",
+        "evidencia": "The Building Department's mission is to safeguard the health, safety, and welfare of City residents ... issuing building permits based on approvals of plans for residential and commercial projects."
+      },
+      "costa": {
+        "oceanica": false,
+        "url": "https://www.broward.org/Beaches/Pages/Projects.aspx",
+        "evidencia": "Inferencia: los tres segmentos de playa de broward.org cubren la costa de condado a condado (Segment I Deerfield Beach/Hillsboro Beach; Segment II Hillsboro Inlet–Port Everglades: Pompano Beach, Lauderdale-by-the-Sea, Fort Lauderdale; Segment III hasta la línea sur: parque estatal, Dania Beach, Hollywood, Hallandale Beach) y este municipio no aparece. Ningún snippet oficial dice literalmente 'no tiene playa'.",
+        "cccl": {
+          "aplica": false,
+          "url": "https://flrules.org/gateway/notice_Files.asp?ID=2329666",
+          "evidencia": "La CCCL sólo existe a lo largo de la costa atlántica (ver regional.cccl).",
+          "nota": "false por inferencia geográfica, no por fuente que lo niegue expresamente."
+        }
+      },
+      "extras": [
+        {
+          "hecho": "Documento municipal de retiros residenciales para piscina, deck de piscina, screen enclosure y estructuras accesorias.",
+          "url": "https://cityofparkland.org/DocumentCenter/View/8148/Setbacks",
+          "evidencia": "Título del resultado: 'City of Parkland Residential Setbacks Pool & Spa Deck, Screen & Accessory'."
+        },
+        {
+          "hecho": "Formularios propios de acuse del Pool Safety Act (incluido uno para cercas).",
+          "url": "https://www.cityofparkland.org/DocumentCenter/View/14075/POOL-SAFETY-ACT-ACKNOWLEDGMENT-FORM",
+          "evidencia": "Títulos: 'POOL-SAFETY-ACT-ACKNOWLEDGMENT-FORM' y 'Fence Acknowledgment for Pool Safety Act'."
+        }
+      ],
+      "dudas": "No se encontró si el departamento es personal propio o contratado (la búsqueda no lo dijo)."
+    },
+    {
+      "ciudad": "Dania Beach",
+      "condado": {
+        "valor": "Broward County, Florida",
+        "url": "https://www.broward.org/Residents/Pages/BrowardCountyMunicipalities.aspx",
+        "evidencia": "broward.org 'Residents Broward County Municipalities': there are 31 municipalities within Broward County; list includes Cooper City, Coral Springs, Dania Beach, Davie, Deerfield Beach, Hillsboro Beach, Hollywood, ... Lighthouse Point, Margate, Plantation, Pompano Beach, Sea Ranch Lakes, Southwest Ranches, Sunrise, Tamarac, West Park, and Weston."
+      },
+      "permisos": {
+        "oficina": "City of Dania Beach, Community Development – Building Division (City Hall, 100 W. Dania Beach Blvd)",
+        "url": "https://www.daniabeachfl.gov/125/Building-Division",
+        "evidencia": "The Building Division is responsible for the enforcing of building codes relative to new construction, additions, remodeling and interior renovation of residential, commercial, and industrial property; including accepting and processing building permit applications, reviewing plans, and conducting inspections."
+      },
+      "costa": {
+        "oceanica": true,
+        "url": "https://www.broward.org/Beaches/Pages/Projects.aspx",
+        "evidencia": "broward.org Beaches: Segment III covers the remaining distance to the south County line, extending across coastal portions of Dr. Von D. Mizell-Eula Johnson State Park, Dania Beach, Hollywood Beach, and Hallandale Beach.",
+        "cccl": {
+          "aplica": true,
+          "url": "https://flrules.org/gateway/notice_Files.asp?ID=2329666",
+          "evidencia": "Rule 62B-26.013 F.A.C. (Broward County CCCL): 'The Control Line lies along the Atlantic coast from the Broward and Palm Beach County Line south to the Broward and Dade County Line' ... 'a permit to alter, excavate or construct on property seaward of the established control line is required from the Department.' (snippet surfaced for flrules.org notice; texto también en law.cornell.edu, no oficial)",
+          "nota": "La CCCL de Broward recorre toda la costa atlántica del condado; aplica solo a la franja costera de la ciudad, no a toda la ciudad."
+        }
+      },
+      "extras": [
+        {
+          "hecho": "FAQ municipal: requieren permiso estructuras como patio, deck, fence, retaining wall, shed, gazebo, trellis, fountain, spa o pool.",
+          "url": "https://daniabeachfl.gov/Faq.aspx?QID=43",
+          "evidencia": "A structure can be limited to a driveway, patio, deck, walkway, fence, retaining wall, shed, gazebo, trellis, antenna tower, fountain, spa or pool."
+        }
+      ],
+      "dudas": "Un documento de 2011 en el sitio ('11-006-City-of-Dania-Beach-Building-Department-Se...') sugiere un contrato de servicios de building department; no se confirmó quién presta hoy el servicio."
+    },
+    {
+      "ciudad": "Wilton Manors",
+      "condado": {
+        "valor": "Broward County, Florida",
+        "url": "https://www.broward.org/Publicworks/Pages/MunicipalityDirectory.aspx",
+        "evidencia": "broward.org 'Public Works Municipality Directory' list also includes: Coconut Creek, Fort Lauderdale, Hallandale Beach, Miramar, North Lauderdale, Oakland Park, Parkland, Pembroke Park, Pembroke Pines, and Wilton Manors."
+      },
+      "permisos": {
+        "oficina": "City of Wilton Manors, Community Development Services – Construction Services Division",
+        "url": "https://www.wiltonmanors.gov/132/Construction-Services",
+        "evidencia": "The Construction Services Division is responsible for the administration of the Florida Building Code, fire inspections, issuance of building permits and job-site inspections."
+      },
+      "costa": {
+        "oceanica": false,
+        "url": "https://www.broward.org/Beaches/Pages/Projects.aspx",
+        "evidencia": "Inferencia: los tres segmentos de playa de broward.org cubren la costa de condado a condado (Segment I Deerfield Beach/Hillsboro Beach; Segment II Hillsboro Inlet–Port Everglades: Pompano Beach, Lauderdale-by-the-Sea, Fort Lauderdale; Segment III hasta la línea sur: parque estatal, Dania Beach, Hollywood, Hallandale Beach) y este municipio no aparece. Ningún snippet oficial dice literalmente 'no tiene playa'.",
+        "cccl": {
+          "aplica": false,
+          "url": "https://flrules.org/gateway/notice_Files.asp?ID=2329666",
+          "evidencia": "La CCCL sólo existe a lo largo de la costa atlántica (ver regional.cccl).",
+          "nota": "false por inferencia geográfica, no por fuente que lo niegue expresamente."
+        }
+      },
+      "extras": [
+        {
+          "hecho": "Horario permitido de obra con permiso: lunes a sábado 8 a.m.–7 p.m.; domingo 10 a.m.–7 p.m.",
+          "url": "https://www.wiltonmanors.gov/132/Construction-Services",
+          "evidencia": "Construction hours for approved building permits are Monday through Saturday from 8 a.m. to 7 p.m. and Sunday from 10 a.m. to 7 p.m."
+        }
+      ],
+      "dudas": "No se confirmó si la división tiene personal propio o contratado. La frase de horario salió de resultados de wiltonmanors.gov sin fijar la página exacta."
+    },
+    {
+      "ciudad": "Lighthouse Point",
+      "condado": {
+        "valor": "Broward County, Florida",
+        "url": "https://www.broward.org/Residents/Pages/BrowardCountyMunicipalities.aspx",
+        "evidencia": "broward.org 'Residents Broward County Municipalities': there are 31 municipalities within Broward County; list includes Cooper City, Coral Springs, Dania Beach, Davie, Deerfield Beach, Hillsboro Beach, Hollywood, ... Lighthouse Point, Margate, Plantation, Pompano Beach, Sea Ranch Lakes, Southwest Ranches, Sunrise, Tamarac, West Park, and Weston."
+      },
+      "permisos": {
+        "oficina": "City of Lighthouse Point Building & Zoning (Building Department)",
+        "url": "https://www.lighthousepointfl.gov/158/Building-Zoning",
+        "evidencia": "You can contact the Building Department at 954-943-6509 ... Permits are the way the City of Lighthouse Point regulates construction ... permits for interior work, HVAC, electrical systems, exterior structures, site/landscaping, and more."
+      },
+      "costa": {
+        "oceanica": false,
+        "url": "https://www.broward.org/Beaches/Pages/Projects.aspx",
+        "evidencia": "Inferencia: los tres segmentos de playa de broward.org cubren la costa de condado a condado (Segment I Deerfield Beach/Hillsboro Beach; Segment II Hillsboro Inlet–Port Everglades: Pompano Beach, Lauderdale-by-the-Sea, Fort Lauderdale; Segment III hasta la línea sur: parque estatal, Dania Beach, Hollywood, Hallandale Beach) y este municipio no aparece. Ningún snippet oficial dice literalmente 'no tiene playa'.",
+        "cccl": {
+          "aplica": false,
+          "url": "https://flrules.org/gateway/notice_Files.asp?ID=2329666",
+          "evidencia": "La CCCL sólo existe a lo largo de la costa atlántica (ver regional.cccl).",
+          "nota": "false por inferencia geográfica, no por fuente que lo niegue expresamente."
+        }
+      },
+      "extras": [
+        {
+          "hecho": "Checklist municipal para docks y seawalls.",
+          "url": "https://lighthousepointfl.gov/DocumentCenter/View/923/Checklist-for-Docks-and-Seawalls",
+          "evidencia": "Título del resultado: 'City of Lighthouse Point Building Department' / URL Checklist-for-Docks-and-Seawalls."
+        },
+        {
+          "hecho": "Página de permisos con categorías (exterior structures, site/landscaping).",
+          "url": "https://www.lighthousepointfl.gov/160/Permits",
+          "evidencia": "Título 'Permits' (lighthousepointfl.gov); categorías citadas arriba."
+        }
+      ],
+      "dudas": "Ciudad de canales/Intracoastal: oceanica=false es inferencia (no figura en los segmentos de playa del condado). No se confirmó si el departamento es propio o contratado."
+    },
+    {
+      "ciudad": "Southwest Ranches",
+      "condado": {
+        "valor": "Broward County, Florida",
+        "url": "https://www.broward.org/Residents/Pages/BrowardCountyMunicipalities.aspx",
+        "evidencia": "broward.org 'Residents Broward County Municipalities': there are 31 municipalities within Broward County; list includes Cooper City, Coral Springs, Dania Beach, Davie, Deerfield Beach, Hillsboro Beach, Hollywood, ... Lighthouse Point, Margate, Plantation, Pompano Beach, Sea Ranch Lakes, Southwest Ranches, Sunrise, Tamarac, West Park, and Weston."
+      },
+      "permisos": {
+        "oficina": "Town of Southwest Ranches; Building Permit and Inspection Services prestados por CAP Government, Inc. (en Town Hall)",
+        "url": "https://www.southwestranches.org/departments/building-permitting-and-inspections/",
+        "evidencia": "Building Permit and Inspection Services for the Town of Southwest Ranches are provided by CAP Government, Inc. ... Many building permits require Broward County or Town Zoning and Engineering approvals prior to issuance."
+      },
+      "costa": {
+        "oceanica": false,
+        "url": "https://www.broward.org/Beaches/Pages/Projects.aspx",
+        "evidencia": "Inferencia: los tres segmentos de playa de broward.org cubren la costa de condado a condado (Segment I Deerfield Beach/Hillsboro Beach; Segment II Hillsboro Inlet–Port Everglades: Pompano Beach, Lauderdale-by-the-Sea, Fort Lauderdale; Segment III hasta la línea sur: parque estatal, Dania Beach, Hollywood, Hallandale Beach) y este municipio no aparece. Ningún snippet oficial dice literalmente 'no tiene playa'.",
+        "cccl": {
+          "aplica": false,
+          "url": "https://flrules.org/gateway/notice_Files.asp?ID=2329666",
+          "evidencia": "La CCCL sólo existe a lo largo de la costa atlántica (ver regional.cccl).",
+          "nota": "false por inferencia geográfica, no por fuente que lo niegue expresamente."
+        }
+      },
+      "extras": [
+        {
+          "hecho": "Municipio rural: incorporado en 2000 para preservar el estilo de vida rural; zonificación casi enteramente residencial rural y agrícola (Agricultural, Conservation, Recreation and Open Space, Rural Ranches, Rural Estates).",
+          "url": "https://www.southwestranches.org/about/",
+          "evidencia": "The area incorporated in the year 2000 to preserve its rural lifestyle. ... The zoning in the Town is almost entirely rural residential and agricultural. Land use plan designations include: Agricultural; Conservation; Recreation and Open Space; Rural Ranches; and, Rural Estates."
+        },
+        {
+          "hecho": "Guía municipal para construir o reemplazar cercas o muros.",
+          "url": "https://www.southwestranches.org/wp-content/uploads/2022/04/BUILDING-OR-REPLACING-A-FENCE-OR-WALL-Rev.-6-23-15.pdf",
+          "evidencia": "Título del resultado: '1 Town of Southwest Ranches 13400 Griffin Road' / URL BUILDING-OR-REPLACING-A-FENCE-OR-WALL-Rev.-6-23-15."
+        }
+      ],
+      "dudas": "Las frases de zonificación salieron de un resumen de varias páginas de southwestranches.org (About, agendas CPAB/LPA); la de designaciones puede venir de una agenda y no de /about/."
+    },
+    {
+      "ciudad": "Hillsboro Beach",
+      "condado": {
+        "valor": "Broward County, Florida",
+        "url": "https://www.broward.org/Residents/Pages/BrowardCountyMunicipalities.aspx",
+        "evidencia": "broward.org 'Residents Broward County Municipalities': there are 31 municipalities within Broward County; list includes Cooper City, Coral Springs, Dania Beach, Davie, Deerfield Beach, Hillsboro Beach, Hollywood, ... Lighthouse Point, Margate, Plantation, Pompano Beach, Sea Ranch Lakes, Southwest Ranches, Sunrise, Tamarac, West Park, and Weston."
+      },
+      "permisos": {
+        "oficina": "Town of Hillsboro Beach Building Department (personal de contacto con correos @cgasolutions.com)",
+        "url": "https://www.townofhillsborobeach.com/196/Building-Department",
+        "evidencia": "The Building Department is to protect the health, safety and welfare of the residents of the Town of Hillsboro Beach through the enforcement of the Florida Building Commission and Broward County Board of Rules and Appeals. ... For permitting questions contact Ivan Wong at wwong@cgasolutions.com or Ivelisse Cruz at icruz@cgasolutions.com or via phone at 954-427-4011."
+      },
+      "costa": {
+        "oceanica": true,
+        "url": "https://www.broward.org/Beaches/Pages/Projects.aspx",
+        "evidencia": "broward.org Beaches: Segment I includes the coastal municipalities of Deerfield Beach and Hillsboro Beach.",
+        "cccl": {
+          "aplica": true,
+          "url": "https://flrules.org/gateway/notice_Files.asp?ID=2329666",
+          "evidencia": "Rule 62B-26.013 F.A.C. (Broward County CCCL): 'The Control Line lies along the Atlantic coast from the Broward and Palm Beach County Line south to the Broward and Dade County Line' ... 'a permit to alter, excavate or construct on property seaward of the established control line is required from the Department.' (snippet surfaced for flrules.org notice; texto también en law.cornell.edu, no oficial)",
+          "nota": "La CCCL de Broward recorre toda la costa atlántica del condado; aplica solo a la franja costera de la ciudad, no a toda la ciudad."
+        }
+      },
+      "extras": [
+        {
+          "hecho": "Todo desarrollo (obra nueva, ampliaciones, renovaciones, alteraciones) requiere permiso de construcción.",
+          "url": "https://www.townofhillsborobeach.com/203/Permits-Regulations",
+          "evidencia": "All development (new construction, additions, renovations, alterations to properties, etc.) in the Town of Hillsboro Beach requires a construction permit."
+        }
+      ],
+      "dudas": "Que CGA Solutions sea el proveedor contratado es INFERENCIA por el dominio de los correos; ningún snippet lo dice expresamente. No se confirmó que la página Building Applications & Forms del pueblo mencione la CCCL (lo afirmó el resumen del buscador, sin snippet)."
+    }
+  ]
+}

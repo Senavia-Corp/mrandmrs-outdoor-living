@@ -1,0 +1,26 @@
+---
+// LAS LANDINGS DE CIUDAD DE LOS DEMAS SERVICIOS (LOOP-CIUDADES, 5-oct-2026):
+// `/services/<servicio>/<ciudad>-fl`. Misma plantilla que `/services/pool-builders/<ciudad>-fl`
+// (`src/components/PaginaCiudad.astro`); los datos salen del repo, no de Sanity, y los escribe
+// `scripts/build-ciudades-servicios.mjs` desde `src/data/ciudades-servicios-filas.json`.
+// pool-builders NO pasa por aqui: su `[slug].astro` es estatico en ese tramo y gana a esta ruta.
+import PaginaCiudad from '../../../components/PaginaCiudad.astro';
+import DATOS from '../../../data/ciudades-servicios.json';
+import { SERVICIOS_CIUDAD } from '../../../lib/servicios-ciudad.mjs';
+
+export async function getStaticPaths() {
+  return Object.entries(DATOS.paginas).map(([ruta, p]) => {
+    const [, , servicio, ciudad] = ruta.split('/');
+    if (servicio === 'pool-builders') throw new Error(`${ruta}: pool-builders no se genera aqui`);
+    return { params: { servicio, ciudad }, props: { ruta } };
+  });
+}
+
+const { ruta } = Astro.props;
+const P = DATOS.paginas[ruta];
+if (ruta !== `/services/${Astro.params.servicio}/${Astro.params.ciudad}`) throw new Error(`${ruta}: no casa con los params`);
+const SV = SERVICIOS_CIUDAD[P.servicio];
+if (!SV) throw new Error(`${ruta}: «${P.servicio}» no esta en servicios-ciudad.mjs`);
+const seoRutas = { [P.doc.slug]: P.seoRuta };
+---
+<PaginaCiudad doc={P.doc} ruta={ruta} servicio={SV} seoRutas={seoRutas} fotosCiudad={DATOS.servicios[P.servicio].fotosCiudad} enlaces={P.enlaces} />

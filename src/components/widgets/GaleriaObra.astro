@@ -48,14 +48,17 @@ interface Props {
   /** Encabezado propio de la ruta. Sin el se busca por ruta y luego el `_defecto`. */
   titulo?: string;
   entradilla?: string;
+  /** Set por SERVICIO (LOOP-CIUDADES): las landings `/services/<servicio>/<ciudad>-fl` comparten el
+   *  set de su servicio, `DATOS[clave]`. La ruta propia sigue mandando; sin clave, como siempre. */
+  clave?: string;
 }
-const { titulo, entradilla } = Astro.props;
+const { titulo, entradilla, clave } = Astro.props;
 
 const ruta = Astro.url.pathname.replace(/(.)\/$/, '$1');
 /* Cascada igual que `CarruselProyectos.astro:48-51`, y sin `throw`: una ruta que monte esto sin
  * entrada propia cae al `_defecto`, que es el de las landings de ciudad. El que SI revienta es
  * el `_defecto` ausente, porque eso ya no es una ruta sin personalizar: es el fichero roto. */
-const propio = DATOS[ruta];
+const propio = DATOS[ruta] ?? (clave ? DATOS[clave] : undefined);
 if (!DATOS._defecto) throw new Error('GaleriaObra: falta `_defecto` en galeria-obra-por-ruta.json.');
 const d = { ...DATOS._defecto, ...(propio ?? {}) };
 const tituloFinal = titulo ?? d.titulo;
