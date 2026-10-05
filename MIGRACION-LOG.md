@@ -3,6 +3,64 @@
 Webflow → Astro 5 + Sanity + Vercel. Una entrada por fase, **escrita al cerrar la fase**,
 nunca al empezarla. Si una fase se reabre, se añade una entrada nueva; no se edita la vieja.
 
+## GALERIA-REJILLA — «Project Gallery» deja de ser acordeón: rejilla 3×2 a sangre (5-oct-2026)
+
+Encargo de Sebastian: rediseño, no pulido. Las 55 rutas de la banda (53 `/services/pool-builders/*` + las 2
+`/where-we-serve/*-florida`, recontadas con grep sobre el build antes de tocar nada: 55) pasan de seis paneles 9:16
+con velo navy a **seis teselas apaisadas, todas abiertas, de borde a borde**, con un hilo de 4 px entre ellas.
+Dirección «muro de obra»: la foto al natural y el texto apoyado en un pie que sube desde abajo.
+
+- **Rejilla:** 1 columna por debajo de 768 (a 479 dos columnas dejarían teselas de ~238 px con nombre + línea +
+  enlace ilegibles sobre foto), 2×3 de 768 a 991, 3×2 desde 992. Tesela 3:2 en una columna, 4:3 desde 768
+  (637×478 a 1920). Medido a 479/600/767/991/992/1440/1920: 0 px de scroll horizontal, 6 paradas de tabulador,
+  objetivo = tesela entera (mínimo 328×246 a 992), pie sin desbordar.
+- **Cabecera encima, no superpuesta:** con seis teselas iguales una tarjeta encima taparía una o dos fotos. Filete
+  oro, H2 navy 700 (15,60:1) a la izquierda y párrafo a la derecha desde 992. El texto no cambia.
+- **Tesela = enlace:** `<h3>` en texto plano (fuera `<button aria-expanded>`), el `::after` de «See photos» cubre
+  la tesela (mismo patrón que las tarjetas de /gallery). Dos trampas cazadas: la regla global `a {position:relative}`
+  hacía del enlace el bloque contenedor de su `::after` (→ `position:static`), y el zoom en hover daba `transform` a
+  la foto, que se pintaba ENCIMA del texto (→ `z-index` en el pie, hijo de rejilla, sin posicionarlo). Foco del
+  sistema dentro de la tesela: outline navy + banda blanca concéntrica (`--mm-foco*`).
+- **Gesto:** zoom 1,05 en 1,2 s y flecha que avanza 4 px; con `prefers-reduced-motion: reduce` no hay ni zoom ni
+  transición (medido: `transition-duration 0s`, `transform none`). El subrayado engorda en los dos casos.
+- **Degradado en el pie, no en la foto:** crece con el texto en cada ancho; `--mm-navy-hondo` al 58 % donde empieza
+  el texto y al 78 % en el borde. Se probó 66/86 (peor 6,92:1: sobraba velo) y 52/78 (el nombre bajaba a 4,38:1).
+- **Fotos nuevas, 4:3, del banco:** obra real, aprobadas, elegidas por hoja de contactos y ninguna presente ya en
+  las 55 rutas (para no repetir foto en la misma página): Pools & Spas **bi-0633**, Pool Remodeling **bi-0520**,
+  Aluminum Pergolas **bi-0977**, Louvered Roofs **bi-0220**, Outdoor Kitchens **bi-0789**, Decks **bi-0060**.
+  `scripts/build-paneles-galeria.mjs` las recorta a 4:3 con variantes WebP q78 480/800/1200/1600 (hasta el ancho
+  del recorte); las cuentas viven en `recorteTesela()` de la lib, así que `srcset` y ficheros son la misma lista.
+  Fuera los 18 `gallery-panel-*` 9:16 (0 referencias en el build). `usada_en` actualizado: +55 rutas en las seis
+  nuevas, −55 en bi-0614/0948/0237/0835/0084; bi-0662 sin tocar (sus 2 rutas Florida no son de la banda).
+- **IX2:** se quedan la `<section class="animated-divs-section">` y los dos `data-w-id` (claves de `reveals.json`):
+  huérfanas 14 de 79, las mismas. `Interacciones.astro` §6 (el acordeón) retirado entero.
+
+**Contraste, peor píxel bajo los glifos** (`diag-contraste.mjs`, gainesville-fl, en reposo), umbral 4,5 para TODO
+el texto, también el nombre:
+
+| Foto | 1920 | 1440 | 992 | 991 | 767 | 600 | 479 | Peor |
+|---|---|---|---|---|---|---|---|---|
+| Pools & Spas · bi-0633 | 5.83 | 5.69 | 7.24 | 6.12 | 5.72 | 6.76 | 6.15 | **5.69:1** (1440 px, nombre, fondo #596783) |
+| Pool Remodeling · bi-0520 | 5.59 | 5.47 | 5.25 | 5.83 | 8.88 | 7.03 | 6.00 | **5.25:1** (992 px, nombre, fondo #636c83) |
+| Aluminum Pergolas · bi-0977 | 5.28 | 5.80 | 5.60 | 5.37 | 7.87 | 5.30 | 6.46 | **5.28:1** (1920 px, nombre, fondo #636c7e) |
+| Louvered Roofs · bi-0220 | 8.01 | 8.04 | 6.90 | 7.82 | 10.33 | 10.72 | 9.27 | **6.90:1** (992 px, nombre, fondo #4e5b6e) |
+| Outdoor Kitchens · bi-0789 | 7.82 | 7.70 | 6.39 | 7.62 | 7.46 | 7.56 | 7.85 | **6.39:1** (992 px, nombre, fondo #4e654b) |
+| Decks · bi-0060 | 10.67 | 9.27 | 7.57 | 10.35 | 11.43 | 10.87 | 9.48 | **7.57:1** (992 px, nombre, fondo #4a546c) |
+
+**Puertas** (build `MM_SANITY_CACHE=1 PUBLIC_ES_PRODUCCION=1`; Sanity no responde desde el contenedor):
+tokens (94 KB de 167), rutas, enlaces, redirects, seo, estructura:ciudades, variantes y galeria-obra VERDES;
+`check-texto` 3/3 rutas idénticas (gainesville-fl, north-florida, south-florida). `check-visual` ROJO en esas 3 × 4
+anchos, como se esperaba: defiende la captura vieja.
+
+**Sin verificar:** `check:ix2` con navegador y `check:cascaron` (puerta de fase; solo la pre-puerta estática de
+huérfanas), `check:visual` en las otras 52 rutas, contraste en hover (zoom 1,05; margen mínimo 0,75 sobre 4,5).
+
+**Commit, push, PR y merge a `main`:** autorizados por Sebastian («despliega a produccion al terminar»), por encima del
+«no despliegues» del encargo original. Sale por la integración Git de Vercel. Sin re-baselinizar: eso sigue siendo suyo.
+
+**RIESGO A OTRAS:** las 55 rutas de la banda quedan ROJAS en `check:visual` hasta re-baselinizarlas
+(`aprobar-diseno.mjs`, de Sebastian). Ninguna otra ruta lleva clases `mm-gal-*` ni la sección.
+
 ## GALERIA-HUB · ajustes 3 — la tarjeta móvil con la foto arriba (4-oct-2026)
 
 Sebastian: en móvil la foto era fondo bajo un velo navy al 72 % y no se veía. Por debajo de 992 la tarjeta pasa a

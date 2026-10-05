@@ -1,759 +1,256 @@
 /**
- * caracteristicas.css — LA BANDA DE «POOL FEATURES & UPGRADES» · encargo R17-CARAC
+ * caracteristicas.css — LA BANDA «PROJECT GALLERY» · encargo GALERIA-REJILLA (5-oct-2026)
  *
- * Lo posee EN EXCLUSIVA el chat que recibio el encargo R17-CARAC. Nadie mas escribe aqui.
+ * Antes «Pool Features & Upgrades» (R17-CARAC) y despues un acordeon de seis paneles 9:16. Desde
+ * GALERIA-REJILLA es una REJILLA 3x2 A SANGRE: seis teselas apaisadas, todas abiertas, sin JS.
+ * El marcado sale de `bandaGaleriaHtml()` en `src/lib/galeria-categorias.mjs`.
  *
- * QUE RESTILA, Y CUANTO. Medido el 12-sep-2026 partiendo el atributo `class` por espacios y
- * comparando el TOKEN ENTERO (nunca subcadena, nunca `\b`: el guion no es caracter de palabra
- * y `\banimated-divs\b` casaria dentro de otra clase — es la trampa de PARTE-02.md:74-79):
+ * QUE RESTILA, Y CUANTO. Clases medidas sobre `.vercel/output/static` partiendo `class` por
+ * espacios (token entero, nunca subcadena — la trampa de PARTE-02.md:74-79):
  *
  *   .animated-divs-section   55 rutas    53 /services/pool-builders/* + las 2 /where-we-serve/*-florida
- *   .wrapper-feature         55          idem
- *   .feature-card            55          idem
- *   .feature-image           55          idem
- *   .block-feature           55          idem
- *   .title-feature           55          idem
- *   .feature-text            55          idem
- *   .header-feature          55          idem   <- comprobado: NO sale en ninguna otra
- *   .feature-icono           55          idem   <- GALERIA-HUB, 4-oct-2026: nacen en
- *   .feature-linea           55          idem      `bandaGaleriaHtml()` y no salen en
- *   .feature-cta             55          idem      ninguna otra ruta
+ *   .mm-gal-cabecera         55          idem   <- todas las `.mm-gal-*` nacen en
+ *   .mm-gal-rejilla          55          idem      `bandaGaleriaHtml()` y no salen en
+ *   .mm-gal-tesela  ...      55          idem      ninguna otra ruta
  *
- *   .white                  104   <- por eso el h2 NO se toca por su clase
- *   .container              113   <- por eso el container se quita del MARCADO, no por CSS
+ *   .white                  104   <- por eso el h2 NO se toca por su clase, sino por su sitio
  *
- * El acordeon horizontal de 6 columnas: seis fotos de mejoras de piscina, una abierta a la vez.
+ * Todo selector cuelga de `.animated-divs-section`: la seccion la comparte `webflow.css` con
+ * `.products-section` y `.trusted-section` en una regla de padding, y acotado asi esta hoja no
+ * puede tocar nada fuera de la banda.
  *
  * ⚠️ NO ES UN FICHERO DE UNA PAGINA. Se llama por lo que hace, no por donde se ve. Acotarlo
- * manana a /where-we-serve romperia las 53 de /services/pool-builders/ en silencio. Es la leccion de
- * `blog.css`, que nacio dentro de `home.css` y se pinta en 63 paginas.
+ * manana a /where-we-serve romperia las 53 de /services/pool-builders/ en silencio.
  *
  * 🚨 Todo cambio aqui pone en rojo `check:visual` en esas 55 rutas y hay que re-baselinizarlas.
- * Va dicho en `RIESGO A OTRAS` con el numero; el director necesita saber que recapturar sin
- * barrer las 115 (una barrida son ~65 min de la pantalla de Sebastian).
  *
- * ORDEN DE CARGA, y gana por ORDEN, nunca por `!important`:
- *   fuentes -> webflow -> disenio/tokens -> disenio/puente -> disenio/base -> home -> hero-zona
- *   -> blog -> servicios -> intro -> proyectos -> lectura -> cta -> obra -> antes-despues
- *   -> render3d -> ubicacion -> social -> CARACTERISTICAS -> hero-indice -> ... -> propio
+ * ORDEN DE CARGA, y gana por ORDEN y especificidad, nunca por `!important`:
+ *   fuentes -> webflow -> disenio/* -> ... -> CARACTERISTICAS -> ... -> propio
  *
- * LAS REGLAS DE ESTA CAPA — las de `docs/encargos/00-PRINCIPIOS.md` §5, en corto:
- *   · cero `!important`, cero `@layer` (webflow.css son 167 KB SIN capa y ganaria a una capa)
- *   · ningun literal de color: solo `var(--mm-*)`. Token que falte, se PIDE al director
- *   · `min-width` 480 / 768 / 992, jamas mezclado con los `max-width` de Webflow
- *   · ningun `opacity: 0` fuera de `html[data-anim]`; nunca `animation-fill-mode: forwards`
- *   · el oro `#f4b248` da 1,86:1 sobre blanco: nunca marca estado
- *   · todo par de colores nuevo lleva su ratio MEDIDO al lado
+ * LAS REGLAS DE ESTA CAPA (`docs/encargos/00-PRINCIPIOS.md` §5):
+ *   · cero `!important`, cero `@layer`
+ *   · ningun literal de color: solo `var(--mm-*)`
+ *   · `min-width` 480 / 768 / 992, jamas `max-width`
+ *   · ningun `opacity: 0` fuera de `html[data-anim]`
+ *   · el oro no marca estado: aqui solo subraya y pone el filete de la cabecera
  *
- * Y la de arriba de todas: se ELEVA la base de Webflow, no se sustituye. El TEXTO no se toca.
- *
- * DIRECCION VISUAL: «tira de contactos». La banda se lee como UNA fotografia cortada en seis;
- * la unica estructura es el corte entre foto y foto. Fuera la pastilla cian maciza, las
- * esquinas de 16 px y los huecos de 1em: el peso lo llevan la foto, el ancho y la tipografia.
- * El unico momento de audacia es la apertura.
+ * DIRECCION VISUAL: «muro de obra». Seis fotos de obra real a sangre, separadas solo por un hilo
+ * del fondo; la foto se ve limpia y el texto se apoya en un pie que sube desde el borde inferior,
+ * nada mas. El unico movimiento es un zoom lento de la foto y la flecha que avanza.
  *
  * ─────────────────────────────────────────────────────────────────────────────
- * DOS COSAS QUE NO SE VEN LEYENDO ESTE FICHERO Y HAY QUE SABER ANTES DE TOCARLO
+ * TRES COSAS QUE NO SE VEN LEYENDO ESTE FICHERO
  *
- * 1. EL PARRAFO CERRADO LO OCULTA `webflow.css`, NO ESTA HOJA, Y ES A PROPOSITO.
- *    `check-tokens.mjs:339` prohibe todo `opacity: 0` estatico en la capa; y `check:texto`
- *    compara `innerText` al 100 % y NO se re-baseliniza nunca, asi que `display:none`,
- *    `visibility:hidden`, `content-visibility` y el atributo `hidden` estan igual de vetados:
- *    los tres BORRAN el parrafo de `innerText`. La unica salida es la que ya existe —
- *    `.feature-text{opacity:0}` de `webflow.css`, que es DERIVADO y queda fuera de la puerta.
- *    Aqui solo se RE-TEMPLA (duracion, retardo) y se enciende el de la columna abierta.
- *    Ese `opacity: 1` de mas abajo no es decorativo: sin el, al borrar los tres `<style>`
- *    embebidos del marcado, NINGUNA regla encenderia el parrafo y la seccion se quedaria muda.
+ * 1. EL DEGRADADO VA EN EL PIE, NO EN LA FOTO. El pie mide lo que mide su texto (mas la zona de
+ *    fundido de arriba), asi que el oscuro crece con el texto en cada ancho y la foto de encima
+ *    queda al natural. Un degradado en % de la tesela daria texto sobre foto limpia a 991, donde
+ *    la tesela es baja y el texto ocupa mas. Opacidades MEDIDAS contra el PEOR pixel de cada foto
+ *    (tabla en MIGRACION-LOG.md, GALERIA-REJILLA): el texto nunca cae sobre menos de --mm-gal-velo.
  *
- * 2. `.wrapper-feature` TIENE CUATRO DECLARACIONES DE REJILLA DORMIDAS EN `webflow.css`.
- *    A <=991 lleva `grid-template-rows:auto auto`, `grid-template-columns:1fr 1fr`,
- *    `grid-auto-columns:1fr` y `justify-items:center` junto a un `display:flex` que las deja
- *    inertes. Al pasar a `display:grid` en el tramo 768-991 (§4) DESPIERTAN. `auto auto` con
- *    6 tarjetas y 2 columnas no desborda, pero deja el reparto de filas a merced de una regla
- *    que nadie escribio para esto, asi que se redeclaran las dos que importan. Es el punto
- *    que `CRITERIO.md:45-49` obliga a enumerar: declaraciones muertas que un cambio revive.
+ * 2. NI EL PIE NI EL ENLACE VAN POSICIONADOS. La tesela es una rejilla de una celda: foto y pie
+ *    en la misma, el pie pegado abajo. Si el pie (o el enlace, que hereda `position:relative` de
+ *    una regla global de `a`) estuviera posicionado, seria el bloque contenedor del `::after` y la
+ *    tesela dejaria de ser clicable entera. El pie se pone ENCIMA de la foto con `z-index`, que en
+ *    un hijo de rejilla apila sin posicionar: sin el, el zoom (que da `transform` a la foto, y con
+ *    el capa propia) pintaria la foto sobre el texto en hover y foco.
+ *
+ * 3. «<linea> See photos» ES UNA SOLA LINEA DE `innerText` (`lineasBanda()`, check:texto al 100 %).
+ *    El enlace baja a su renglon por ANCHO (`inline-flex` al 100 %), nunca por `display:block`
+ *    ni por flex en el `<p>`, que lo bloquificarian y partirian la linea en dos.
+ * ─────────────────────────────────────────────────────────────────────────────
  */
 
-/* ── 1 · LA BANDA A SANGRE ────────────────────────────────────────────────────
- *
- * Hoy la banda vive dentro de `.w-layout-blockcontainer container w-container`, y ese
- * container la tope en 940 px (`.w-container{max-width:940px}`; 728 a <=991; `none` a <=479).
- * O sea que a 1920 la seccion ocupa la pantalla entera pero las seis fotos se apretujan en
- * 940 px, y una columna cerrada mide ~150 px. El container se quita DEL MARCADO —no por CSS,
- * porque `.container` sale en 113 rutas—, y aqui solo queda anular el padding lateral que la
- * seccion ponia alrededor.
- *
- * Nada de `width:100vw` + margen negativo, que es el atajo de siempre: `100vw` INCLUYE la
- * barra de scroll y regala scroll horizontal. Quitando el container no hace falta.
- *
- * La cabecera SI sigue contenida, y a su ancho de lectura (650 px, no los 950 de Webflow):
- * es el boceto —cabecera contenida, columnas a sangre— y ademas es la medida a la que la
- * entradilla se lee sin barrer con la vista. */
+/* ── §1 LA SECCION Y LA CABECERA ─────────────────────────────────────────────────────────────
+ * Webflow le pone a `.animated-divs-section` foto de fondo, `display:flex` centrado, color blanco
+ * y `padding: 4rem 2em`. Todo fuera: la rejilla va de borde a borde, sin contenedor. */
 .animated-divs-section {
-  /* Solo ARRIBA. El aire de abajo lo pedia Sebastian fuera el 12-sep: la banda tiene que
-   * morir contra la seccion siguiente, sin franja de azul entre el canto de oro y el blanco
-   * de `.projects-section`. Sin `padding-block-end` la banda queda a hueso con lo de abajo. */
-  padding-block: clamp(var(--mm-e-48), 6vw, var(--mm-e-96)) 0;
-  padding-inline: 0;
-  --mm-raya: linear-gradient(90deg, var(--mm-navy) 0 1px,
-    var(--mm-oro) 1px 4px, var(--mm-navy) 4px 5px);
-}
-.animated-divs-section .header-feature {
-  max-width: var(--mm-medida);
-  padding-inline: var(--mm-canal);
-  gap: var(--mm-e-16);
-}
-.animated-divs-section .wrapper-feature {
-  /* GALERIA-HUB: UN SOLO REGIMEN POR DEBAJO DE 992, rejilla de 2 columnas desde 320. Apiladas
-   * a ancho completo, las seis tarjetas median 2 486 px de seccion a 390; en dos columnas, 1 138.
-   * Desde 992 vuelve el acordeon de siempre (§8). */
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto;
-  justify-items: stretch;
-  gap: var(--mm-e-12);
-  padding: 0 var(--mm-e-16) var(--mm-e-24);
-  align-items: stretch;
-  margin-top: clamp(var(--mm-e-32), 4vw, var(--mm-e-64));
-  /* EL CANTO DE ORO, y solo el de abajo. Cierra la banda como objeto —una tira de contactos
-   * tiene bordes— y es el unico borde donde el oro esta garantizado: medido sobre el build,
-   * el peor pixel del canto INFERIOR da 8,40:1 porque ahi el velo es opaco, y el del canto
-   * SUPERIOR da 1,75:1 porque ahi manda la foto. Por eso arriba no lleva nada. */
-  border-block-end: 3px solid var(--mm-oro);
-}
-
-/* LAS DIVISORIAS, el mismo oro y el mismo grosor que el canto de abajo. Pedidas por Sebastian
- * el 12-sep: «entre cada columna una linea amarilla de borde como la de abajo».
- *
- * VAN ENCAJADAS ENTRE DOS FILETES NAVY, y esa es la parte que importa. La primera version era
- * oro a pelo, 3 px, y MEDIDA contra la foto que tiene al lado daba entre 1,24:1 y 2,41:1 en su
- * peor punto: la linea desaparecia donde la foto es clara. No es un fallo de accesibilidad
- * —es decoracion, no un control ni texto, asi que 1.4.11 no la alcanza— pero si de oficio: una
- * separacion que se borra a ratos no separa. El canto de ABAJO no tiene ese problema porque
- * alli el velo es opaco y el oro sale a 8,40:1 garantizado; aqui arriba manda la foto.
- *
- * El arreglo es el de toda la vida en cartografia: encajar la linea. 1 px navy + 3 px de oro +
- * 1 px navy. El oro conserva su grosor, y lo que se gana es que la linea SIEMPRE tiene un canto
- * duro contra lo que sea que haya detras: sobre foto clara la ve el navy, sobre foto oscura la
- * ve el oro, y el oro contra el navy son 8,40:1 fijos pase lo que pase. Deja de depender de la
- * foto, que era el problema.
- *
- * NO ES UN BORDE DE COLOR, ES UN FONDO BAJO UN BORDE TRANSPARENTE. Un `border` solo pinta un
- * color, y aqui hacen falta tres bandas. El borde se declara `transparent` para que RESERVE los
- * 5 px, y el degradado se pinta debajo. Dos detalles sin los que no funciona:
- *   · `background-origin: border-box` — por defecto es `padding-box`, o sea que el degradado
- *     empezaria DESPUES del borde y no debajo.
- *   · `background-clip` se deja en su valor por defecto, que ya es `border-box`.
- * Y no lo tapa la foto: `.feature-image` es `position:absolute; inset:0%`, y el bloque
- * contenedor de un absoluto es la caja de RELLENO. La foto empieza donde acaba la raya.
- *
- * CON `border-box` —que `webflow.css` pone en `*`— los 5 px caen dentro del ancho de la
- * tarjeta, asi que los seis anchos siguen sumando la banda exacta y los huecos siguen en 0.
- *
- * SOLO DESDE 992, que es donde hay columnas que se tocan. Por debajo las tarjetas son una
- * rejilla con hueco y esquinas (§8): ya estan separadas, y una raya entre dos tarjetas con aire
- * no separa nada. Antes se pintaba desde 768 y se le quitaba con `:nth-child(odd)` a la 3 y la
- * 5; con un solo regimen por debajo de 992 ese juego sobra entero. La receta vive en
- * `--mm-raya`, declarada en la seccion, para no repetirla. */
-@media (min-width: 992px) {
-  .animated-divs-section .feature-card + .feature-card {
-    border-inline-start: 5px solid transparent;
-    background-origin: border-box;
-    background-repeat: no-repeat;
-    background-size: 5px 100%;
-    background-image: var(--mm-raya);
-  }
-}
-
-/* ── 2 · EL FONDO: BLANCO, Y LA TINTA SE DA LA VUELTA CON EL ───────────────
- *
- * Decision de Sebastian el 12-sep, viendo la banda ya publicada: fuera el azul; la cabecera
- * va sobre blanco y el color lo ponen las seis fotos. La seccion sale de la lista del FONDO
- * AGUA en `propio.css` —de las cinco listas, no de una: la base, la del `@media` y las tres
- * de juntas—. Eso NO deshace el FONDO AGUA: el agua sigue siendo el unico azul del sitio, lo
- * que pasa es que esta banda deja de ser azul.
- *
- * DOS COSAS HAY QUE APAGAR A MANO, y las dos venian de `webflow.css`. Mientras la regla del
- * agua estaba puesta las tapaba ella; al salir de la lista vuelven, y por eso se declaran:
- *
- *   · `background-image: url(animateddivs-image.webp)` — la foto de fondo del Webflow
- *      original. Sin `none` reaparece a pantalla completa detras de la cabecera.
- *   · `background-color: #3864d400` — transparente, o sea que dejaria ver lo que haya
- *      debajo en vez de blanco. Se declara `--mm-fondo` y no se confia en la herencia.
- *
- * Y LA TINTA TIENE QUE DARSE LA VUELTA O NO SE LEE NADA. La seccion heredaba blanco por dos
- * caminos, los dos de `webflow.css`: `.animated-divs-section{color:var(--white)}` para la
- * entradilla y `.white{color:var(--white)}` para el h2. Sobre blanco eso es texto invisible
- * —el fallo mas caro que puede dejar un cambio de fondo, porque ninguna puerta lo ve: el
- * texto sigue en el DOM, `check:texto` sigue verde y solo se nota mirando—. Se declaran los
- * dos, con los tokens que `disenio/base.css` ya usa para tinta sobre fondo claro: `--mm-tinta`
- * (navy) en el titulo y `--mm-tinta-cuerpo` (negro) en el cuerpo.
- *
- * NO SE USA `.mm-inverso` NI SU CONTRARIO: ese ambito existe para volver la tinta CLARA sobre
- * navy, y aqui hace falta lo de siempre, que es lo que ya vale por defecto en el resto del
- * sitio. Bastan dos declaraciones de color, y ganan por especificidad (0,2,0 y 0,2,1 contra
- * los 0,1,0 de Webflow) ademas de por orden de carga.
- *
- * LOS TITULOS DE LAS COLUMNAS NO SE TOCAN: siguen en blanco porque siguen sobre foto con velo,
- * y ese contraste ya esta medido en la §5. Lo que cambia es la cabecera, nada mas. */
-.animated-divs-section {
+  display: block;
+  padding: var(--mm-e-64) 0 0;
   background-color: var(--mm-fondo);
   background-image: none;
-}
-.animated-divs-section .header-feature { color: var(--mm-tinta-cuerpo) }
-.animated-divs-section .header-feature h2 { color: var(--mm-tinta) }
-
-/* ── 3 · LA TARJETA: RECTANGULO, SIN ESQUINAS NI HUECOS ───────────────────────
- *
- * El corte entre una foto y la siguiente es TODA la separacion que hay. Fuera el radio de
- * 16 px, fuera el padding lateral de la tarjeta (el aire lo pone `.block-feature`, §5) y
- * `align-items: flex-end` porque el contenido vive abajo, no centrado.
- *
- * EL VELO NO ES DECORACION, ES EL SUELO DE CONTRASTE. Las seis fotos son de Sebastian y
- * manana las cambia: no se puede medir el contraste contra una foto que no existe todavia.
- * Un degradado que llega OPACO al borde inferior —donde cae el texto— hace que el peor pixel
- * sea el del token, no el de la foto, gane la foto que gane. El tramo alto queda transparente
- * para que la foto siga siendo la protagonista.
- *
- *   peor pixel bajo el titulo de la columna abierta ......  9,79:1   texto, pide 4,5   OK
- *   peor pixel bajo el parrafo de la columna abierta ..... 13,06:1   texto, pide 4,5   OK
- *   peor pixel bajo el titulo de una columna cerrada .....  8,60:1   texto, pide 4,5   OK
- *
- * Los tres son el PEOR pixel de la caja del texto con la foto debajo, no la media, medidos
- * sobre `.vercel/output/static` a 1440 escondiendo el texto y leyendo lo que queda.
- *
- * `transparent` no es literal de color a efectos de `check-tokens.mjs:213-220`: no esta en su
- * lista de palabras clave. Precedente en el repo: `hero-zona.css:84`. */
-.animated-divs-section .feature-card {
-  border-radius: var(--mm-r-16);
-  padding: 0;
-  align-items: flex-end;
-  /* GALERIA-HUB · ajustes 3 (4-oct-2026): POR DEBAJO DE 992 LA TARJETA ES UNA FICHA, NO UNA FOTO
-   * CON VELO. Sebastian: «la imagen esta de fondo y no se ve». Foto arriba, en flujo, limpia y
-   * entera; cuerpo blanco debajo con titulo, linea y boton, como la tarjeta de servicios de la home.
-   * El alto sale del contenido y la fila de la rejilla iguala las dos tarjetas. `min-height: 0` y
-   * `gap: 0` anulan los 450/250 px y los 15 px de hueco que Webflow pone a <=991.
-   * Desde 992 vuelve el acordeon de siempre (§8 y §7 lo restablecen). */
-  flex-direction: column;
-  align-items: stretch;
-  gap: 0;
-  min-height: 0;
-  border: 1px solid var(--mm-borde);
-  background-color: var(--mm-superficie);
-  box-shadow: var(--mm-sombra-1);
-  /* Mas alto que los 250/450 px de Webflow para que la FOTO tenga sitio por encima del
-   * bloque de texto: con los 250 px de antes el velo de §5 cubria casi la tarjeta entera a
-   * 390 y la foto se perdia. Medido en captura, no supuesto.
-   *
-   * AQUI HABIA UN COSTE APUNTADO, Y EL CAMBIO DE FOTOS LO HA CERRADO (R20-CIUDADES F2,
-   * 14-sep-2026). Decia que con `object-fit: cover` sobre las fotos APAISADAS de Webflow
-   * (1251x682, relacion 1,834) el recorte lo decidia el ALTO: a 390 la tarjeta pide 384 px de
-   * alto, o sea 704 px de ancho de imagen, y el `sizes` de `100vw` elegia el candidato de
-   * 500w — 1,41x de AMPLIACION a dpr 1. Quedaba «para Sebastian junto al cambio de fotos».
-   *
-   * Las fotos nuevas son VERTICALES (941x1672, relacion 0,563) y eso da la vuelta al recorte:
-   * por debajo de 992 la tarjeta es mas ancha que alta en proporcion, asi que manda el ANCHO y
-   * lo que la imagen necesita pasa a ser exactamente el ancho de la tarjeta. Medido en las
-   * cinco anchuras de la casa:
-   *
-   *     1920  316x768  0,41   manda el alto   -> necesita 432 px
-   *     1440  236x662  0,36   manda el alto   -> necesita 373 px
-   *      991  496x512  0,97   manda el ancho  -> necesita 496 px   <- el maximo
-   *      479  479x460  1,04   manda el ancho  -> necesita 479 px
-   *      390  390x384  1,02   manda el ancho  -> necesita 390 px
-   *
-   * El maximo a dpr 1 son 496 px, asi que el candidato de 500w cubre LAS CINCO sin ampliar
-   * nada. El `sizes` se reescribio en consecuencia -declaraba 1250 px para una tarjeta de 236-
-   * y la escalera se queda en 500w / 800w / 941w: no se emite un 1080w porque el original mide
-   * 941 y seria inventarse pixeles, y `check-enlaces` exigiria en disco un fichero que no debe
-   * existir. A dpr 2 y 991 hacen falta 992 px y el mayor que hay son 941: 1,05x, y ahi si que
-   * no hay fichero mayor que pedir. */
+  color: var(--mm-tinta-cuerpo);
 }
 
-/* La foto, en flujo y cuadrada (4:3 desde 768, §8). `object-fit: cover` ya lo pone Webflow. */
-.animated-divs-section .feature-image { position: relative; height: auto; aspect-ratio: 1; flex-shrink: 0 }
-
-/* ── 4 · LOS SEIS ANCHOS SUMAN EXACTAMENTE EL 100 %, SIEMPRE ──────────────────
- *
- * Webflow reparte con `width` en porcentajes sueltos: 32 % la abierta y 16 % las cinco
- * cerradas, mas `gap: 1em`. Eso declara 112 % dentro de un contenedor de 940 px, o sea que
- * las SEIS se encogen. Y aqui esta el numero que hay que saber antes de tocar nada, porque
- * cambia la respuesta: `flex-shrink` reparte el deficit en proporcion a la base, asi que la
- * relacion NO se pierde, se conserva exacta. Medido reproduciendo las condiciones de hoy
- * (contenedor 940, gap 1em, 6 hijos 16 %/32 %) en el mismo Chromium de las puertas:
- *
- *   anchos    [245,719  122,859 x5]      suma 860,014 = 940 - 5 huecos de 16
- *   abierta 26,14 %   cerrada 13,07 %    RELACION medida = 2,0000
- *
- * O sea que el «32 %» del CSS nunca se pinto: lo que se ve hoy es 2:1 sobre el 91,5 % del
- * contenedor. Con `flex-basis: 0` la suma pasa a ser el 100 % por construccion, y entonces
- * la razon de crecimiento es una DECISION, no una copia. Se elige 2,35 y no 2:
- *
- *   grow 2,00 -> abierta 28,57 %  (544 px a 1920)   = la relacion de hoy, tal cual
- *   grow 2,35 -> abierta 31,97 %  (609 px a 1920)   = la ELEGIDA
- *
- * El motivo es de lectura, no de nostalgia: en la columna abierta ahora conviven el titulo
- * horizontal y el parrafo (§5), y a 992 —el ancho mas apretado de este tramo— 2,00 deja
- * 279 px de columna, que con los 48 px de aire de `.block-feature` son 231 px de medida util.
- * Con 2,35 son 264 px. La aritmetica de la razon, para que nadie la rehaga:
- *
- *   g / (g + 5) = 0,32   ->   g = 1,6 / 0,68 = 2,3529...   se escribe 2.35
- *   abierta 2,35 / 7,35 = 31,97 %      cada cerrada 1 / 7,35 = 13,61 %      suma 100,00 %
- *
- * Se anima `flex-grow` y no `width`: `width` en las seis obliga a resolver seis cajas
- * independientes por fotograma; `flex-grow` es un reparto, una sola pasada del contenedor.
- *
- * LA COSTURA, MEDIDA Y DESCARTADA. Anchos fraccionarios entre fotos contiguas pueden dejar
- * lineas de 1 px del suelo. No se ha puesto solape de subpixel porque NO HACE FALTA: pintando
- * la seccion de magenta y leyendo una fila de pixeles a media altura de la banda salen
- * 0 px de suelo visible a 1920, 1440, 1366, 1280 y 1024 con dpr 1, y a 1440 con dpr 2.
- * Si alguna vez aparece, el arreglo es `.feature-image{width:calc(100% + 1px)}` —la tarjeta
- * ya recorta con `overflow:hidden`—, pero primero se mide otra vez.
- *
- * `width: auto` va explicito aunque `flex-basis: 0` ya gane: deja el fichero legible al lado
- * de un `webflow.css` que sigue diciendo `width: 16%` tres lineas mas arriba. */
-@media (min-width: 992px) {
-  .animated-divs-section .feature-card { flex: 1 1 0; width: auto }
-  /* El 2,35 de arriba, escrito para N paneles: (N - 1) x 0,47. Con N = 6 da 2,35 EXACTO y la
-   * abierta sigue en el 31,97 %. `--mm-gal-n` lo pone el marcado (`bandaGaleriaHtml()`). */
-  .animated-divs-section .feature-card.is-active { flex-grow: calc((var(--mm-gal-n, 6) - 1) * .47); width: auto }
+/* La cabecera va ENCIMA de la rejilla y no superpuesta: con seis teselas iguales, una tarjeta
+ * encima taparia la foto de una o dos y romperia la igualdad. Arriba se lee primero y la rejilla
+ * queda entera en todos los anchos. Alineada a la izquierda, dentro de la medida del sitio. */
+.animated-divs-section .mm-gal-cabecera {
+  max-width: var(--mm-ancho);
+  margin: 0 auto var(--mm-e-32);
+  padding-inline: var(--mm-canal);
 }
-
-/* ── 5 · EL BLOQUE DE TEXTO, EL VELO Y EL TITULO QUE ENTRA EN EL ─────────────
- *
- * OJO CON `.block-feature`, QUE NO ES EL `div` VACIO QUE PARECE. `webflow.css` le da dos
- * reglas que no se ven leyendo el marcado y que cuestan una tarde si se descubren tarde:
- *
- *   base    position:absolute; inset:0%; width:100%; HEIGHT:100%; display:flex;
- *           align-items:flex-end; padding:1em;
- *           background-image: linear-gradient(#0e1a5600, #0e1a56)     <- ya habia velo
- *   <=991   flex-flow:column; justify-content:flex-end; align-items:center;
- *           text-align:center; padding:1em 2em; gap:0
- *
- * O sea que el bloque YA cubre la tarjeta entera en todos los anchos, y YA traia un velo
- * —solo que con un literal de color que esta hoja no puede escribir—. Aqui se conserva ese
- * modelo y se cambia lo de dentro. La primera version puso `position: relative` para que a
- * <992 el bloque abrazara al texto; como el `height: 100%` de Webflow seguia en pie, el
- * bloque medía la tarjeta ENTERA igual, la rejilla repartía el sobrante entre sus dos filas
- * y titulo y parrafo acababan a 96 px de distancia a 390 y a 158 px a 900. Medido con
- * `getBoundingClientRect()`, no supuesto. Se deja escrito porque ninguna puerta lo ve.
- *
- * EL VELO NO ES DECORACION, ES EL SUELO DE CONTRASTE. Las seis fotos son de Sebastian y
- * mañana las cambia: no se puede medir el contraste contra una foto que no existe todavia.
- * Por eso el velo no se calibra contra ESTAS fotos sino contra el peor caso posible: con la
- * parada minima del 38 % en la cima y del 70 % a media altura, un pixel BLANCO debajo del
- * texto sigue dando de sobra. Usa `--mm-navy`, el mismo token que el velo del fondo (§2),
- * para que las dos capas oscuras de la seccion sean del mismo tono y no de dos negros
- * distintos; los tres numeros de arriba son con ese token, re-medidos tras el cambio. `transparent` y `color-mix()` no son literales para
- * `check-tokens.mjs:213-220` (precedente en el repo: `hero-zona.css:84`).
- *
- * EL TRUCO DE LA REJILLA DE UNA CELDA, que es lo que permite juntar titulo y parrafo sin
- * duplicar texto —duplicarlo pondria `check:texto` en rojo al instante—. Solo a >=992:
- *
- *   cerrada  los dos hijos comparten la celda 1/1. El parrafo es invisible pero SIGUE
- *            MAQUETADO —requisito de `innerText`— y da la altura de la celda; el titulo se
- *            pega al fondo de esa celda con `align-self: end`. Se ve solo el titulo vertical.
- *   abierta  no se toca el flujo: dos filas, titulo encima y parrafo debajo, como una unidad.
- *
- * A <992 NO se apila nada: los seis se leen enteros, con el titulo encima de su parrafo. El
- * apilado va con `:not(.is-active)` y dentro del `@media`, no en la regla base, precisamente
- * para que abajo no ocurra.
- *
- * El titulo pasa de vertical a horizontal de golpe: `writing-mode` NO es animable. No se
- * disimula con un `rotate` de caja fija —costaria bytes de un presupuesto ya justo— sino que
- * se TAPA: el salto ocurre en el fotograma 0, mientras la columna arranca sus 780 ms, y el
- * ojo va detras del ancho. */
-/* `--mm-velo` REGISTRADO, y esto es lo que permite que el hover no salte. Una custom property
- * sin registrar no interpola: cambia de golpe y arrastra con ella al degradado que la consume.
- * Registrarla como `<percentage>` la vuelve animable y el degradado se recalcula cada
- * fotograma. `inherits: false` porque solo la usa el elemento que la declara.
- *
- * SE PROBO ANTES LA VIA SIN AT-RULE —`transition: background-image`, confiando en que dos
- * degradados con las mismas tres paradas interpolarian— Y NO FUNCIONA. Medido en Chromium: la
- * transicion se aplica (`getComputedStyle` la declara) pero el valor salta de 0,72 a 0,64 en
- * un solo fotograma. La parada de en medio serializa como `color(srgb 0 .109804 .388235 / .72)`
- * porque viene de un `color-mix`, y ese degradado no es interpolable para el motor.
- *
- * Se dejo saltando en su dia con el argumento de que «un revelado de hover instantaneo es
- * legitimo». Con la columna abriendo en 300 ms lo era. Con 1,2 s ya no: un escalon de ocho
- * puntos de velo en el fotograma cero es exactamente lo que se lee como brusco, por muy suave
- * que sea lo que viene detras. El gesto tiene que ser uno solo, y la puerta parsea el at-rule
- * sin problema (comprobado: verde). */
-@property --mm-velo {
-  syntax: '<percentage>';
-  inherits: false;
-  initial-value: 72%;
+.animated-divs-section .mm-gal-cabecera::before {   /* el filete oro: adorno, no estado */
+  content: "";
+  display: block;
+  width: var(--mm-e-48);
+  height: var(--mm-e-4);
+  margin-bottom: var(--mm-e-16);
+  background-color: var(--mm-oro);
 }
-.animated-divs-section .block-feature {
-  z-index: 1;
-  display: grid;
-  align-content: end;
-  gap: var(--mm-e-8);
-  padding: var(--mm-e-12);
-  text-align: start;
-  /* Ajustes 3: por debajo de 992, cuerpo de la ficha. Estatico (el icono y el `::after` del boton
-   * se anclan entonces a la tarjeta), tinta navy sobre blanco (15,60:1), sin velo, y dos filas:
-   * titulo arriba y parrafo al fondo, para que los botones de una fila queden alineados. */
-  position: static;
-  height: auto;
-  flex-grow: 1;
-  grid-template-rows: auto 1fr;
-  color: var(--mm-tinta);
-  background-image: none;
-  /* `--mm-velo` es LOCAL de esta regla, no un token del sistema: existe solo para que el
-   * hover (§7) cambie UNA parada del degradado en vez de reescribirlo entero. La parada del
-   * 42 % es la que cubre el titulo vertical, que llega hasta el 39 % de la altura. */
-  --mm-velo: 72%;
-  /* GALERIA-HUB: POR DEBAJO DE 992 LAS PARADAS VAN EN LONGITUD, NO EN PORCENTAJE. En la media
-   * tarjeta el titulo sube hasta el 79 % del alto (320) y con 42 % / 68 % quedaba sobre foto
-   * casi limpia: peor pixel 1,04:1 a 320 y 1,65:1 a 390. Medido en px, el titulo cae SIEMPRE
-   * entre 186 y 227 px del canto de abajo de 320 a 991, asi que el 72 % llega hasta 256 px y se
-   * desvanece hasta 384: el titulo queda siempre sobre velo de 72 % o mas. Ajustes 2: el 72 % llega
-   * a 288 px y vale TAMBIEN desde 992, donde la columna ya solo mide 384-480 px. */
+.animated-divs-section .mm-gal-cabecera h2 {
+  margin: 0;
+  color: var(--mm-tinta);                 /* navy sobre blanco ... 15,60:1 */
+  font-family: var(--mm-fuente);
+  font-size: var(--mm-paso-6);
+  font-weight: var(--mm-peso-negro);
+  line-height: var(--mm-alto-apretado);
+  letter-spacing: -0.02em;
 }
-.animated-divs-section .title-feature {
-  font-size: var(--mm-paso-4);
-  font-weight: var(--mm-peso-medio);
-  color: inherit;
-}
-.animated-divs-section .feature-text { align-self: end }
-.animated-divs-section .feature-text {
-  font-size: var(--mm-paso-1);
+.animated-divs-section .mm-gal-cabecera p {
+  max-width: 42ch;
+  margin: var(--mm-e-12) 0 0;
+  color: var(--mm-tinta-cuerpo);          /* negro sobre blanco .. 21,00:1 */
+  font-size: var(--mm-paso-3);
   line-height: var(--mm-alto-cuerpo);
 }
-/* GALERIA-HUB. La linea, a DOS renglones como mucho por debajo de 992, donde la media columna
- * la partiria en cinco. Se recorta pintando, no quitando: el texto entero sigue en el DOM y en
- * `innerText` (`check:texto`), y un `inline-box` es de nivel EN LINEA, asi que no mete salto
- * entre la linea y el enlace. El `width: 100%` es lo que manda el enlace al renglon de abajo. */
-.animated-divs-section .feature-linea {
-  display: -webkit-inline-box;
+
+/* ── §2 LA REJILLA ───────────────────────────────────────────────────────────────────────────
+ * Una columna por debajo de 768: a 479, en dos columnas la tesela mediria ~238 px y nombre +
+ * linea + enlace no caben legibles sobre la foto. Dos de 768 a 991 (2x3) y tres desde 992 (3x2).
+ * El hueco es el fondo de la seccion asomando: el «hilo» entre foto y foto. */
+.animated-divs-section .mm-gal-rejilla {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--mm-e-4);
   width: 100%;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+}
+
+/* ── §3 LA TESELA ────────────────────────────────────────────────────────────────────────────
+ * 3:2 en una columna (a 479 son 479x319: una pantalla de movil enseña tesela y media), 4:3 desde
+ * 768 (a 1920 son 640x480 y las dos filas llenan la pantalla). El fichero es 4:3: en movil
+ * recorta `object-position`, que viene del JSON en el `style` de la foto. */
+.animated-divs-section .mm-gal-tesela {
+  --mm-gal-velo: 58%;      /* opacidad del pie donde EMPIEZA el texto (ver cabecera, punto 1) */
+  --mm-gal-velo-pie: 78%;  /* y en el borde de abajo */
+  /* La zona de fundido sobre el texto crece con la pantalla: 32 px en movil, ~50 a 992 (la
+   * tesela mide 330x247 y el pie no puede subirse encima de toda la foto), 96 a 1920. */
+  --mm-gal-fundido: clamp(var(--mm-e-32), 5vw, var(--mm-e-96));
+  position: relative;
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  aspect-ratio: 3 / 2;
   overflow: hidden;
+  background-color: var(--mm-fondo-hondo);   /* lo que se ve mientras llega la foto */
+  isolation: isolate;
 }
-/* EL ICONO DEL SERVICIO, en su chapa blanca con canto de oro, arriba a la izquierda. Es el
- * mismo SVG navy de la rejilla de servicios de la home: navy sobre blanco, 15,60:1. La chapa es
- * lo que lo hace legible sobre cualquier foto. Decorativo (`alt=""`) y sin eventos: el clic
- * pasa a la tarjeta. */
-.animated-divs-section .feature-icono {
-  position: absolute;
-  inset: var(--mm-e-12) auto auto var(--mm-e-12);
-  width: var(--mm-e-32);
-  height: var(--mm-e-32);
-  padding: var(--mm-e-4);
-  border: 1px solid var(--mm-oro);
-  border-radius: var(--mm-r-pastilla);
-  background-color: var(--mm-blanco);
-  pointer-events: none;
-}
-/* PANELES-GALERIA -> GALERIA-HUB: el enlace a /gallery/<slug> deja de ser un subrayado dentro
- * del parrafo y pasa a ser el boton de la casa (`.mm-accion`, navy sobre oro, 8,40:1). Se quito
- * la regla `.feature-text a`, que con 0,1,1 GANABA a `.mm-accion` (0,1,0) y lo pintaba de enlace.
- *
- * Por debajo de 992 ocupa todo el ancho y su `::after` cubre la TARJETA entera: el bloque de
- * texto es el ancestro posicionado mas cercano y mide la tarjeta. Una parada de tabulador util
- * por tarjeta, y se toca donde se toque se va a la galeria. Desde 992 (§7) vuelve a su tamano,
- * en pastilla, y el `::after` se apaga: ahi la tarjeta es del acordeon. */
-.animated-divs-section .feature-cta {
-  position: static;
+.animated-divs-section .mm-gal-foto {
+  grid-area: 1 / 1;
+  z-index: 0;
   width: 100%;
-  margin-top: var(--mm-e-8);
-  padding: var(--mm-e-8) var(--mm-e-12);
-  border-radius: var(--mm-r-8);
-  line-height: var(--mm-alto-titulo);
-  /* Ajustes 2: UNA linea, mas pequeno. El objetivo tactil es la tarjeta entera (`::after`), asi
-   * que los 32 px del boton no rebajan 2.5.8. */
-  font-size: var(--mm-paso-0);
-  min-height: var(--mm-e-32);
-  white-space: nowrap;
-}
-.animated-divs-section .feature-cta::after { content: ""; position: absolute; inset: 0 }
-@media (min-width: 992px) {
-  .animated-divs-section .feature-card:not(.is-active) .title-feature {
-    grid-area: 1 / 1;
-    align-self: end;
-  }
-  /* `pointer-events: none` en el parrafo CERRADO: es invisible y queda encima del `::after`
-   * del boton. Sin esto el clic sobre el se lo quedaba el parrafo y la columna no se abria. */
-  .animated-divs-section .feature-card:not(.is-active) .feature-text { grid-area: 1 / 1; pointer-events: none }
-  .animated-divs-section .feature-linea { -webkit-line-clamp: none }
-  /* LA JERARQUIA QUE FALTABA. Medido antes de tocar nada: el titulo abierto y los cinco
-   * cerrados eran IDENTICOS —29,83 px, peso 500, sin tracking—, o sea que el sujeto y las
-   * etiquetas pesaban lo mismo y la seccion se leia plana. El abierto sube de paso y los
-   * cerrados bajan a etiqueta: mas pequenos, mas ligeros y con tracking, que es lo que hace
-   * que un rotulo vertical se lea como rotulo y no como un sexto titular compitiendo.
-   * El `letter-spacing` va en `em` —sigue al tamano de la fuente— y NO mueve `innerText`:
-   * comprobado en navegador, igual que los pseudo-elementos. `text-transform` SI lo mueve y
-   * por eso sigue vetado. */
-  .animated-divs-section .feature-card:not(.is-active) .title-feature {
-    font-size: var(--mm-paso-4);
-    font-weight: var(--mm-peso-normal);
-    letter-spacing: .06em;
-  }
-  .animated-divs-section .is-active .title-feature {
-    writing-mode: horizontal-tb;
-    transform: none;
-    font-size: var(--mm-paso-6);
-    line-height: var(--mm-alto-apretado);
-    /* LA LINEA DE FLOTACION, el unico oro decorativo que esta casa tiene sancionado
-     * (`lectura.css:144-165`): un filete neutro con un tramo de oro montado en su extremo,
-     * «como el azulejo de la linea de flotacion de una piscina». Aqui ancla el bloque de
-     * texto de la columna abierta, que hasta ahora flotaba sobre la foto.
-     *
-     * Va con `background-image` y NO con un `::before` a proposito: posicionar el `h3`
-     * cambiaria el bloque contenedor de `.feature-boton::after` (§7), que es el que estira
-     * el area de click a la columna entera, y la encogeria al tamano del titulo. Ninguna
-     * puerta lo veria.
-     *
-     *   oro #f4b248 sobre el peor pixel bajo el titulo abierto ..... 6,71:1   pide 3   OK */
-    border-block-end: 1px solid var(--mm-borde-inverso);
-    padding-block-end: var(--mm-e-12);
-    background-image: linear-gradient(var(--mm-oro), var(--mm-oro));
-    background-repeat: no-repeat;
-    background-size: var(--mm-e-64) 3px;
-    background-position: left bottom;
-  }
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
 }
 
-/* ── 6 · LA APERTURA, A CAMARA LENTA, Y EL TEXTO UN TIEMPO DETRAS ─────────────
- *
- * A 1920 y a sangre la columna abierta recorre 614 - 261 = 353 px cuando el raton salta de
- * una columna a otra, que es el recorrido mas largo; 294 px si abre desde el reposo.
- *
- * LO QUE SE ANIMA NO ES EL ANCHO, ES `flex-grow`, y esa diferencia es la mitad del problema.
- * Con `flex: 1 1 0` el ancho vale `g/(g+5)`, que NO es lineal en `g`: la derivada en g=1 es
- * `5/36` y en g=2,35 es `5/54`, o sea que el mismo incremento de `flex-grow` mueve 1,45 veces
- * mas ancho al principio que al final. La geometria ya empuja hacia delante ella sola.
- *
- * Y ENCIMA LA CURVA EMPUJABA IGUAL. `cubic-bezier(.22,.61,.36,1)` es de SALIDA: su pendiente
- * inicial es .61/.22 = 2,77. Por el 1,22 de la geometria, el modelo predice un arranque a
- * 3,40 veces la velocidad media. MEDIDO en Chromium, muestreando el ancho en cada fotograma
- * mientras el raton salta de la columna 3 a la 4 —el recorrido largo, 353 px—:
- *
- *                                       arranque   pico    50 % del recorrido en
- *     .78s cubic-bezier(.22,.61,.36,1)     2,45x   2,45x    21 % del tiempo    <- lo brusco
- *     1.2s cubic-bezier(.37,0,.63,1)       0,16x   1,66x    50 % del tiempo    <- ahora
- *
- * El medido sale por debajo del 3,40 previsto y no es que el modelo falle: un muestreo a 60 Hz
- * no puede ver la velocidad del instante cero, porque su primer fotograma ya lleva 16 ms de
- * curva recorridos. Lo que importa es que las dos cuentas dicen lo mismo, y es lo que se veia:
- * EL PICO Y EL ARRANQUE ERAN EL MISMO NUMERO. El instante mas rapido de toda la animacion era
- * su primer fotograma —1,235 px/ms de golpe desde parado—. Eso no es «camara lenta con
- * frenada», es un salto seguido de un arrastre: la mitad del recorrido se comia en el 21 %
- * del tiempo y el 79 % restante era cola. Por eso se veia brusca aunque durase 780 ms.
- *
- * LA CURVA NUEVA es la sinusoidal de entrada y salida, `cubic-bezier(.37,0,.63,1)`. Se elige
- * por el PICO, no por el arranque: de las cinco que se compararon —de modelo, que construir
- * cinco builds para elegir una curva no lo vale— es la unica que no dispara en el centro. Las de entrada-salida mas marcadas arrancan igual de suaves pero pagan el
- * arranque parado con un latigazo a mitad de vuelo:
- *
- *     easeInOutSine   cubic-bezier(.37,0,.63,1)   pico 1,60x   <- elegida (1,66 medido)
- *     easeInOutCubic  cubic-bezier(.65,0,.35,1)   pico 2,85x
- *     Material std    cubic-bezier(.4,0,.2,1)     pico 2,87x   y el 50 % en el 33 %
- *     easeInOutQuart  cubic-bezier(.76,0,.24,1)   pico 4,14x
- *     easeInOutQuint  cubic-bezier(.83,0,.17,1)   pico 5,84x   mas rapida en vuelo que la vieja
- *
- * Un movimiento se lee natural cuando la velocidad no da saltos, no cuando es lenta. El 1,66x
- * medido es practicamente el minimo que puede pedir cualquier curva que arranque y termine
- * parada —el modelo da 1,60—. Y el 50 % dice que la asimetria de `flex-grow` queda cancelada:
- * la mitad del recorrido cae justo en la mitad del tiempo.
- *
- * 1,2 s Y NO MAS. El pico medido queda en 0,515 px/ms, que es la velocidad MEDIA que tenia
- * antes (0,504): el gesto entero va ahora tan despacio como iba su punto medio. Alargarlo mas
- * empieza a estorbar al barrer columnas con el raton, que es como se usa esto.
- *
- * EL PRECIO, dicho: una curva que arranca parada tambien FRENA parada, asi que al saltar de
- * columna a media apertura la nueva transicion parte de velocidad cero mientras la vieja iba a
- * 1,66x. Con la curva de salida ese empalme era continuo. Se acepta: 1,66x de 0,311 px/ms son
- * 0,52 px/ms, y una discontinuidad de medio pixel por milisegundo no se ve. La de antes
- * empalmaba suave y luego daba el latigazo, que es el defecto que se venia a quitar.
- *
- * NO HAY TOKENS DE DURACION NI DE CURVA en `disenio/tokens.css`, y `disenio/` es propiedad de
- * ARTE: quien necesita un token lo PIDE, no lo escribe (PROMPT-REDISENO §8.6). Asi que van en
- * literal, como ya hacen `obra.css` (.18s), `intro.css` (.18s) y `social.css`. Queda pedido en
- * el informe por si ARTE quiere subirlos a token.
- *
- * EL ESCALON, reescalado con la duracion. El parrafo no entra con el ancho, entra DETRAS:
- * 620 ms de retardo sobre los 1200 de la columna y 460 de entrada. Medido sobre el build: el
- * parrafo despega a los 600 ms y llega a opacidad 1 a los 1001, con el ancho terminando a los
- * 1133 — dentro del gesto, no despues—. Mantiene la proporcion de antes (el retardo era el 51 % de
- * la apertura y sigue siendo el 52 %). Al CERRAR no hay retardo (0,26 s secos): esperar para
- * desaparecer se lee como pereza, no como coreografia. Por eso el retardo vive en el estado
- * abierto y no en la regla base.
- *
- * El `translateY` de 8 px es lo unico que hace que el parrafo «llegue» en vez de aparecer. Va
- * acotado a >=992: a menos ancho el parrafo esta siempre visible y un desplazamiento constante
- * de 8 px seria un error de maqueta, no una animacion. */
-@media (min-width: 992px) {
-  .animated-divs-section .feature-card { transition: flex-grow 1.2s cubic-bezier(.37, 0, .63, 1) }
-  .animated-divs-section .feature-text {
-    transform: translateY(var(--mm-e-8));
-    transition: opacity .26s ease-out, transform .26s ease-out;
-  }
-  .animated-divs-section .is-active .feature-text {
-    opacity: 1;
-    transform: none;
-    transition-duration: .46s;
-    transition-delay: .62s;
-  }
+.animated-divs-section .mm-gal-pie {
+  grid-area: 1 / 1;
+  align-self: end;
+  z-index: 1;   /* por encima de la foto cuando el zoom le da `transform` (y con el, capa propia) */
+  padding: calc(var(--mm-gal-fundido) + var(--mm-e-8)) var(--mm-e-24) var(--mm-e-24);
+  background-image: linear-gradient(to top,
+    color-mix(in srgb, var(--mm-navy-hondo) var(--mm-gal-velo-pie), transparent) 0%,
+    color-mix(in srgb, var(--mm-navy-hondo) var(--mm-gal-velo), transparent) calc(100% - var(--mm-gal-fundido)),
+    transparent 100%);
+  color: var(--mm-tinta-inversa);
 }
 
-/* ── 7 · EL CONTROL: UN BOTON DE VERDAD, CON SU ANILLO POR DENTRO ─────────────
- *
- * Hoy la columna es un `div` con `cursor: pointer` y CERO reglas de estado en toda la seccion:
- * no se puede tabular hasta ella, no anuncia que se abre y no se ve cuando tiene el foco. El
- * marcado pasa a `<h3><button aria-expanded aria-controls>` (patron disclosure del WAI-ARIA
- * APG). El boton es SOLO el titulo, para que el nombre accesible sea «Water Features» y no el
- * titulo con el parrafo entero pegado detras.
- *
- * El `::after` estirado devuelve el area de click a la columna ENTERA. Se ancla en
- * `.block-feature`, que es el ancestro posicionado mas cercano y cubre la tarjeta con
- * `inset: 0`, asi que `inset: 0` aqui es la tarjeta completa.
- *
- * EL ANILLO VA POR DENTRO Y NO HACE FALTA `outline-offset` NEGATIVO. Con `gap: 0` un anillo en
- * el BORDE de la columna se comeria el de la vecina — pero el foco no esta en el borde: esta
- * sobre el titulo, a 24 px del canto por el padding de `.block-feature`. Es la ventaja
- * accidental de que el boton sea el titulo y no la tarjeta.
- *
- * El recetario de `disenio/base.css:305` es navy sobre claro; aqui la vecindad es foto oscura
- * bajo velo, asi que se invierte —anillo blanco, halo navy— igual que `intro.css:170`:
- *   anillo --mm-foco-inverso #ffffff contra el velo #000f36 ...... 18,72:1   pide 3   OK
- *   anillo --mm-foco-inverso #ffffff contra el halo navy ......... 15,60:1   pide 3   OK
- *
- * El INDICADOR es el anillo blanco, y contrasta con sus dos vecindades, que es lo que pide
- * WCAG 1.4.11. El halo navy no es indicador: esta para cuando el pixel de foto que toca es
- * claro. Sobre el velo oscuro se funde con el fondo (#001c63 contra #000f36 son 1,20:1) y
- * ahi no aporta nada — pero tampoco resta, porque el blanco ya da 18,72 por dentro. Va
- * dicho para que nadie lo lea como un fallo al re-medirlo.
- *
- * LOS 44 px NO SON UNA DECISION DE ESPACIADO, son WCAG 2.2 AA (2.5.8) y la receta de la casa
- * (`intro.css:161-166`). Van en los dos ejes porque el titulo gira: en horizontal el lado
- * corto es el alto, y en vertical es el ancho. Es la unica longitud de este fichero fuera de
- * `--mm-e-*` / `--mm-r-*` / `--mm-paso-*`. */
-.animated-divs-section .feature-boton {
-  appearance: none;
-  background: none;
-  border: 0;
-  padding: 0;
-  font: inherit;
-  color: inherit;
-  text-align: inherit;
-  cursor: pointer;
-  display: flex;
+.animated-divs-section .mm-gal-nombre {
+  margin: 0;
+  color: var(--mm-tinta-inversa);
+  font-family: var(--mm-fuente);
+  font-size: var(--mm-paso-5);
+  font-weight: var(--mm-peso-negro);
+  line-height: var(--mm-alto-apretado);
+  letter-spacing: -0.015em;
+}
+.animated-divs-section .mm-gal-texto {
+  max-width: 40ch;
+  margin: var(--mm-e-8) 0 0;
+  color: var(--mm-tinta-inversa);
+  font-size: var(--mm-paso-2);
+  line-height: var(--mm-alto-cuerpo);
+}
+
+/* El enlace: subrayado oro (adorno; el texto es blanco) y flecha. Su `::after` cubre la tesela
+ * entera: una parada de tabulador por tesela y la tesela entera clica. */
+.animated-divs-section .mm-gal-enlace {
+  position: static;   /* `a { position: relative }` global: si no, el `::after` cubriria solo el enlace */
+  display: inline-flex;
   align-items: center;
-  min-height: 44px;
+  gap: var(--mm-e-8);
+  width: 100%;
+  margin-top: var(--mm-e-12);
+  color: var(--mm-tinta-inversa);
+  font-weight: var(--mm-peso-fuerte);
+  text-decoration: underline;
+  text-decoration-color: var(--mm-oro);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
 }
-.animated-divs-section .feature-boton:focus-visible,
-.animated-divs-section .feature-cta:focus-visible {
-  outline: var(--mm-foco-grosor) solid var(--mm-foco-inverso);
-  outline-offset: var(--mm-foco-aire);
-  box-shadow: var(--mm-foco-halo);
+.animated-divs-section .mm-gal-enlace::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 }
-@media (min-width: 992px) {
-  .animated-divs-section .feature-boton { min-width: 44px }
-  /* Solo a partir de 992 el ::after estira el area de click a la columna entera: es donde
-   * hay acordeon. Por debajo estorbaria — una capa invisible sobre las seis tarjetas impide
-   * seleccionar el parrafo, y ahi no hay nada que abrir porque ya se ve todo. */
-  .animated-divs-section .feature-boton::after { content: ""; position: absolute; inset: 0 }
-  .animated-divs-section .feature-cta {
-    position: relative;
-    width: auto;
-    padding: var(--mm-e-12) var(--mm-e-24);
-    border-radius: var(--mm-r-pastilla);
-    font-size: var(--mm-paso-1);
-    min-height: 44px;
-  }
-  .animated-divs-section .feature-cta::after { content: none }
+.animated-divs-section .mm-gal-flecha { flex: none }
 
-  /* ESTADOS, QUE HOY NO HABIA NINGUNO. Medido antes de tocar: 0 reglas `:hover` en toda la
-   * seccion. Seis columnas clicables sin una sola senal de que lo son.
-   *
-   * El hover ACLARA EL VELO y asoma la foto — patron de `social.css:151`, que hace lo mismo
-   * al reves—. Y no toca `filter`, `transform` ni `opacity`: `CRITERIO.md:192-194` avisa de
-   * que cualquiera de los tres crea contexto de apilamiento, pinta la foto ENCIMA del velo y
-   * hunde el contraste sin mover un pixel en reposo y sin senal en ninguna puerta. Aclarar el
-   * velo es el mismo gesto sin esa trampa.
-   *
-   * `:focus-within` entra en el mismo `:is()` para que el teclado vea lo que ve el raton.
-   *
-   * EL VELO YA NO SALTA. Antes cambiaba de golpe, y se dio por bueno: «un revelado de hover
-   * instantaneo es legitimo». Con la columna abriendo en 1,2 s deja de serlo — un escalon de
-   * ocho puntos de velo en el fotograma cero es justo lo que se lee como brusco, por muy suave
-   * que sea lo que viene detras. El gesto tiene que ser uno solo.
-   *
-   * Se anima `--mm-velo` en persona, que para eso queda registrada con `@property` en §5. La
-   * via sin at-rule —animar `background-image`— se probo primero y NO interpola en Chromium:
-   * el porque esta escrito donde se registra.
-   *
-   * 450 ms y de SALIDA, no la sinusoidal de la columna: el velo no recorre distancia, responde.
-   * Que acuse el hover antes de que la columna termine de abrirse es lo que hace que el raton
-   * se sienta atendido; si tardase lo mismo, pareceria que el sitio va lento.
-   *
-   * NO baja del 64 %: con el velo al 58 % un pixel BLANCO de foto bajo el texto daria 4,22:1
-   * y suspenderia. Interpolar entre 72 y 64 no cruza ese suelo en ningun fotograma, porque el
-   * recorrido entero queda por encima del 64. Los ratios re-medidos en hover van en el informe. */
-  /* Ajustes 2: sin redeclarar el degradado. Con la columna a 384-480 px el titulo vertical sube al
-   * ~56 % del alto y el 42 %/68 % de antes lo dejaba sobre foto (3,55:1 a 992): el velo en longitud
-   * de §5 vale ahora tambien aqui. */
-  .animated-divs-section .block-feature {
-    transition: --mm-velo .45s ease-out;
-    /* Ajustes 3: el bloque vuelve a cubrir la columna, con su velo y tinta blanca. */
-    position: absolute;
-    grid-template-rows: none;
-    color: var(--mm-tinta-inversa);
-    background-image: linear-gradient(to top, var(--mm-navy) 4%,
-      color-mix(in srgb, var(--mm-navy) var(--mm-velo), transparent) calc(var(--mm-e-96) * 3),
-      transparent calc(var(--mm-e-128) * 3));
-  }
-  .animated-divs-section .feature-card:is(:hover, :focus-within) .block-feature { --mm-velo: 64% }
-  .animated-divs-section .feature-card:active .block-feature { --mm-velo: 68% }
+/* El foco del sistema, DENTRO de la tesela (con el hueco de 4 px, un anillo por fuera se
+ * montaria sobre la vecina). Las dos bandas de `tokens.css` §foco, concentricas: blanco por
+ * fuera (pinta la caja-sombra) y navy por dentro (el outline). Se contrastan entre si a 15,60:1,
+ * asi que sobre cualquier foto al menos una pasa los 3:1. */
+.animated-divs-section .mm-gal-enlace:focus-visible { outline: none }
+.animated-divs-section .mm-gal-enlace:focus-visible::after {
+  outline: var(--mm-foco-grosor) solid var(--mm-foco);
+  outline-offset: calc(-2 * var(--mm-foco-grosor) - var(--mm-foco-aire));
+  box-shadow: inset 0 0 0 calc(var(--mm-foco-grosor) + var(--mm-foco-aire)) var(--mm-foco-inverso);
 }
 
-/* ── 8 · POR DEBAJO DE 992: UNA REJILLA DE DOS COLUMNAS, Y UN SOLO REGIMEN ──
- *
- * GALERIA-HUB (4-oct-2026). Antes habia tres: apiladas a <=767, dos columnas de 768 a 991 y el
- * acordeon desde 992. Ahora la rejilla de dos columnas es la BASE (§1) y vale desde 320; aqui
- * solo se afina el aire y la proporcion por tramos, y desde 992 se vuelve al acordeon.
- *
- * `webflow.css` sigue declarando a <=991 `grid-template-rows:auto auto`, `justify-items:center`
- * y, a <=767 y <=479, una sola columna. La base las redeclara con 0,2,0, que gana a sus 0,1,0
- * sin depender del orden: es la nota 2 de la cabecera, ahora desde 320 y no desde 768. */
+/* Hover y foco sin movimiento: el subrayado engorda. Vale tambien con movimiento reducido. */
+.animated-divs-section .mm-gal-tesela:is(:hover, :focus-within) .mm-gal-enlace {
+  text-decoration-thickness: 3px;
+}
+
+/* ── §4 EL GESTO (solo si se admite movimiento) ──────────────────────────────────────────────
+ * Zoom lento de la foto y la flecha que avanza. Nada de esto existe con `reduce`. */
+@media (prefers-reduced-motion: no-preference) {
+  .animated-divs-section .mm-gal-foto {
+    transition: transform 1.2s cubic-bezier(.2, .6, .2, 1);
+  }
+  .animated-divs-section .mm-gal-flecha {
+    transition: transform .4s cubic-bezier(.2, .6, .2, 1);
+  }
+  .animated-divs-section .mm-gal-tesela:is(:hover, :focus-within) .mm-gal-foto {
+    transform: scale(1.05);
+  }
+  .animated-divs-section .mm-gal-tesela:is(:hover, :focus-within) .mm-gal-flecha {
+    transform: translateX(var(--mm-e-4));
+  }
+}
+
+/* ── §5 LOS ANCHOS ───────────────────────────────────────────────────────────────────────── */
 @media (min-width: 768px) {
-  .animated-divs-section .wrapper-feature { gap: var(--mm-e-16); padding: 0 var(--mm-canal) var(--mm-e-32) }
-  .animated-divs-section .block-feature { gap: var(--mm-e-12); padding: var(--mm-e-24) }
-  .animated-divs-section .title-feature { font-size: var(--mm-paso-5) }
-  .animated-divs-section .feature-text { font-size: var(--mm-paso-3) }
-  .animated-divs-section .feature-image { aspect-ratio: 4 / 3 }
-  .animated-divs-section .feature-cta { font-size: var(--mm-paso-1) }
-  .animated-divs-section .feature-icono {
-    inset: var(--mm-e-24) auto auto var(--mm-e-24);
-    width: var(--mm-e-48);
-    height: var(--mm-e-48);
-    padding: var(--mm-e-8);
-  }
-}
-@media (min-width: 992px) {
-  .animated-divs-section .wrapper-feature { display: flex; gap: 0; padding: 0 }
-  .animated-divs-section .feature-image { position: absolute; height: 100%; aspect-ratio: auto }
-  .animated-divs-section .feature-card {
-    border: 0;
-    box-shadow: none;
-    border-radius: 0;
-    /* GALERIA-HUB · ajustes 2: ~64 % del alto de antes (640/662/768 -> 384/432/480 a 992/1440/1920),
-     * pedido por Sebastian sobre una captura de produccion. La foto 9:16 se recorta menos y se ve mas. */
-    min-height: clamp(calc(var(--mm-e-128) * 3), 30vw, calc(var(--mm-e-96) * 5));
-  }
+  .animated-divs-section { padding-top: var(--mm-e-96) }
+  .animated-divs-section .mm-gal-cabecera { margin-bottom: var(--mm-e-48) }
+  .animated-divs-section .mm-gal-rejilla { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+  .animated-divs-section .mm-gal-tesela { aspect-ratio: 4 / 3 }
 }
 
-/* ── 9 · MOVIMIENTO REDUCIDO ──────────────────────────────────────────────────
- *
- * Los mismos selectores que declaran transicion, apagados. El cambio de estado sigue
- * ocurriendo entero e instantaneo: no se pierde ninguna funcion, solo el recorrido. */
-@media (prefers-reduced-motion: reduce) {
-  .animated-divs-section .feature-card,
-  .animated-divs-section .block-feature,
-  .animated-divs-section .feature-text,
-  .animated-divs-section .is-active .feature-text,
-  .animated-divs-section .feature-cta { transition: none }
+@media (min-width: 992px) {
+  /* La cabecera en dos columnas: titular a la izquierda, parrafo a la derecha, por la base. */
+  .animated-divs-section .mm-gal-cabecera {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: var(--mm-e-64);
+    align-items: end;
+  }
+  .animated-divs-section .mm-gal-cabecera::before { grid-column: 1 / -1 }
+  .animated-divs-section .mm-gal-cabecera p { justify-self: end; margin-top: 0 }
+
+  .animated-divs-section .mm-gal-rejilla { grid-template-columns: repeat(3, minmax(0, 1fr)) }
+  /* Aire del pie: 16 px a 992 (tesela de 330), 31 a 1920 (tesela de 640). */
+  .animated-divs-section .mm-gal-pie {
+    padding-inline: clamp(var(--mm-e-16), 1.6vw, var(--mm-e-32));
+    padding-bottom: clamp(var(--mm-e-16), 1.6vw, var(--mm-e-32));
+  }
 }

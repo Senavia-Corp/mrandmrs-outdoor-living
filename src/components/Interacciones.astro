@@ -8,7 +8,7 @@
  *   3. Las 93 entradas por scroll (growIn / slideInLeft / slideInRight / slideInBottom)
  *   4. El nav que se esconde al bajar y vuelve al subir (a-11 / a-12, 500 ms `easeInOut`)
  *   5. El botón play/pausa de los vídeos de fondo
- *   6. El acordeón de «Project Gallery», antes «Pool Features & Upgrades» (`.wrapper-feature`, 55 rutas)
+ *   6. (retirado en GALERIA-REJILLA, 5-oct-2026) el acordeón de «Project Gallery»: hoy es una rejilla sin JS
  *
  * ─────────────────────────────────────────────────────────────────────────────
  * EL ESTADO OCULTO CUELGA DE UN SELLO QUE ESCRIBE EL JS
@@ -511,110 +511,12 @@ const REVEALS = JSON.stringify(reveals.porId);
       });
     }
 
-    // ── 6 · el acordeon de «Project Gallery» (antes «Pool Features & Upgrades») ──
+    // ── 6 · (retirado) el acordeon de «Project Gallery» ──
     //
-    // Venia de TRES copias byte a byte del mismo script embebido en el marcado
-    // -`plantilla-pool-builders.json` y los `T2` de las dos `/where-we-serve/*-florida`-, o
-    // sea el mismo comportamiento mantenido en tres sitios. Aqui es uno.
-    //
-    // Lo que el original NO hacia y ahora si: la columna es un `<button>` de verdad, con
-    // `aria-expanded`, orden de foco natural y flechas. Antes era un `div` con
-    // `cursor: pointer`: ni tabulable, ni anunciado, ni visible al enfocar.
-    //
-    // Las consultas van ACOTADAS a `.wrapper-feature` a proposito: `.is-active` la usa
-    // tambien el intercambio de foto del mega-menu, 200 lineas mas arriba en este fichero.
-    //
-    // El HTML estatico sale con las seis cerradas (`aria-expanded="false"`, sin `is-active`): el
-    // parrafo esta en el `innerText` igual -se oculta con opacidad, no con `display`- y por
-    // debajo de 992 se ve entero. Lo pinta `bandaGaleriaHtml()` (src/lib/galeria-categorias.mjs).
-    const banda = document.querySelector('.wrapper-feature');
-    if (banda) {
-      const tarjetas = [...banda.querySelectorAll('.feature-card')];
-      const botones = tarjetas.map((t) => t.querySelector('.feature-boton'));
-      const ancha = matchMedia('(min-width: 992px)');
-
-      // `i` a -1 cierra las seis, que es el estado de reposo: la banda arranca contraida y
-      // solo se abre una columna mientras el raton (o el foco) esta encima.
-      const abre = (i) => {
-        tarjetas.forEach((t, n) => t.classList.toggle('is-active', n === i));
-        botones.forEach((b, n) => b?.setAttribute('aria-expanded', String(n === i)));
-      };
-
-      // Por debajo de 992 las seis columnas se ven ENTERAS -texto incluido-, asi que un
-      // `aria-expanded="false"` ahi seria mentira: el lector de pantalla anunciaria cerrado
-      // algo que esta abierto. Se recalcula tambien al cruzar el limite, no solo al cargar.
-      const sincroniza = () => {
-        if (!ancha.matches) { botones.forEach((b) => b?.setAttribute('aria-expanded', 'true')); return; }
-        abre(tarjetas.findIndex((t) => t.classList.contains('is-active')));
-      };
-
-      // EL RATON ABRE, Y AL SALIR SE VUELVE A CERRAR. Es lo que pidio Sebastian el 12-sep:
-      // las seis contraidas en reposo y la columna se despliega al pasar por encima.
-      //
-      // Va en JS y no en un `:hover` de CSS a proposito, y no es pereza: el estado abierto lo
-      // pintan SIETE reglas distintas (ancho, writing-mode del titulo, su paso tipografico, la
-      // linea de flotacion, el apilado de una celda, la opacidad del parrafo y su translate).
-      // Duplicarlas todas con `:hover` costaria el doble de bytes de un presupuesto que tiene
-      // 5,5 KB libres, y dejaria dos definiciones del mismo estado que se pueden desincronizar.
-      // Encaminando el hover por `is-active` hay UNA definicion y la comparten raton, teclado,
-      // click y tactil.
-      //
-      // `mouseenter`/`mouseleave` y no `mouseover`/`mouseout`: los primeros no burbujean desde
-      // los hijos, asi que cruzar del titulo a la foto dentro de la misma columna no dispara un
-      // cierre y una reapertura.
-      banda.addEventListener('mouseleave', () => {
-        // Si el foco esta dentro, mandalo el foco: cerrar aqui le quitaria al teclado la
-        // columna que esta leyendo solo porque el raton paso de largo.
-        if (ancha.matches && !banda.contains(document.activeElement)) abre(-1);
-      });
-
-      tarjetas.forEach((t, i) => {
-        t.addEventListener('mouseenter', () => { if (ancha.matches) abre(i); });
-        // El teclado abre al enfocar, que es el equivalente de pasar el raton por encima. Va en
-        // `focusin` de la columna y no en el `focus` del boton: dentro esta tambien el enlace a
-        // /gallery/<slug>, y el foco tiene que abrir su columna llegue por donde llegue. Con
-        // Shift+Tab se entra a la columna POR el enlace; si solo abriera el boton, el foco caeria
-        // en un enlace con opacidad 0.
-        t.addEventListener('focusin', () => { if (ancha.matches) abre(i); });
-      });
-
-      // EL ENLACE INVISIBLE NO SE PULSA. En una columna cerrada el parrafo es opacidad 0, pero
-      // sigue ahi: comparte celda con el titulo y queda POR ENCIMA del `::after` del boton. Un
-      // toque en una tableta apaisada, o un clic rapido sobre el titulo, se iria a la galeria sin
-      // haber visto la columna. Se mira la opacidad al PULSAR (no al soltar: en tactil el
-      // `mouseenter` emulado abre la columna entre medias) y, si el enlace no se veia, el clic se
-      // anula y queda lo de siempre, la columna abriendose. El clic de teclado (`detail` 0) no
-      // pasa por aqui: el foco ya abrio su columna.
-      let seVeiaAlPulsar = true;
-      banda.addEventListener('pointerdown', (ev) => {
-        const p = ev.target.closest?.('.feature-text');
-        seVeiaAlPulsar = !p || +getComputedStyle(p).opacity >= 0.5;
-      }, true);
-      banda.addEventListener('click', (ev) => {
-        if (ev.detail && ancha.matches && !seVeiaAlPulsar && ev.target.closest?.('.feature-text a')) {
-          ev.preventDefault();
-        }
-        seVeiaAlPulsar = true;   // vale para UN clic: el siguiente sin pulsacion (lector, teclado) pasa
-      }, true);
-
-      botones.forEach((b, i) => {
-        if (!b) return;
-        b.addEventListener('click', () => { if (ancha.matches) abre(i); });
-        // Flechas, Inicio y Fin mueven el foco Y abren, como hace el raton. Mover el foco sin
-        // abrir dejaria al teclado enfocando una columna cerrada, con su titulo en vertical y
-        // su parrafo invisible: el foco estaria en un sitio que no se puede leer.
-        b.addEventListener('keydown', (ev) => {
-          const salto = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tarjetas.length - 1 }[ev.key];
-          if (salto === undefined || !ancha.matches) return;
-          ev.preventDefault();
-          const n = (salto + tarjetas.length) % tarjetas.length;
-          abre(n);
-          botones[n]?.focus();
-        });
-      });
-
-      ancha.addEventListener('change', sincroniza);
-      sincroniza();
-    }
+    // GALERIA-REJILLA (5-oct-2026): la banda dejo de ser acordeon. Ahora es una rejilla de seis
+    // teselas todas abiertas, cada una un enlace (`bandaGaleriaHtml()` en
+    // src/lib/galeria-categorias.mjs) y solo CSS (`caracteristicas.css`): no queda nada que
+    // abrir, cerrar ni anunciar con `aria-expanded`. Sus dos `data-w-id` siguen en el marcado y
+    // los revela §3 como cualquier otro.
   }());
 </script>
