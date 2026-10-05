@@ -3354,9 +3354,7 @@
     "defectos": [
       "manchas de agua a medio secar"
     ],
-    "usada_en": [
-      "/services/deck-builders"
-    ],
+    "usada_en": [],
     "origen": "DECKING/Pavers/20251013_141832193_iOS.jpg",
     "sha256": "6517b31c6bb1c81ddb50106e015e79afcb05264a17c7edb82aa972038e51c22f"
   },
@@ -4898,8 +4896,7 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/landscaping",
-      "/services/landscaping"
+      "/gallery/landscaping"
     ],
     "origen": "DECKING/TURF/IMG_4120.jpeg",
     "sha256": "903af1152ab043158d476ce884da3ef0dc22bf75f88873f2e91e2faeb2cd376e"
@@ -6061,8 +6058,7 @@
     "usada_en": [
       "/blogs/is-a-motorized-louvered-roof-worth-it-in-florida",
       "/gallery",
-      "/gallery/louvered-roofs",
-      "/services/louvered-roofs"
+      "/gallery/louvered-roofs"
     ],
     "origen": "EQUINOX LOUVERED ROOF/14c22f1d-0b8a-4056-a50d-e55eba61613d 2.jpg",
     "sha256": "00313d1d57aa16f871a99cde9d1ee8c8892270ee2e9980de422e9e29a2ee5135"
@@ -6137,8 +6133,7 @@
     "usada_en": [
       "/blogs/is-a-motorized-louvered-roof-worth-it-in-florida",
       "/gallery",
-      "/gallery/louvered-roofs",
-      "/services/outdoor-furniture"
+      "/gallery/louvered-roofs"
     ],
     "origen": "EQUINOX LOUVERED ROOF/32.jpg",
     "sha256": "8ef1635d4b860689505de338de31b174e3d1b0aa2d69e1f22aeec530847622cc"
@@ -7330,9 +7325,7 @@
     "defectos": [
       "cielo gris plano"
     ],
-    "usada_en": [
-      "/services/louvered-roofs"
-    ],
+    "usada_en": [],
     "origen": "EQUINOX LOUVERED ROOF/8df14785-1c05-42f5-ae71-6c679d0335b6.jpg",
     "sha256": "df7fa23d2027bbc9a7faea9e90ae5702538f7203b7e93ecf7fccafd104c24b4b"
   },
@@ -7749,9 +7742,7 @@
       "personas dentro de la cocina (no reconocibles)",
       "juguetes y bultos bajo el techo"
     ],
-    "usada_en": [
-      "/services/soffit-led-lighting"
-    ],
+    "usada_en": [],
     "origen": "EQUINOX LOUVERED ROOF/IMG_0034.jpg",
     "sha256": "0e769df6850a25610c2b2cb09c7f22d8bd0609d83774cd2a0eeab068e26aeb09"
   },
@@ -8727,9 +8718,7 @@
       "manguera colgada a la derecha",
       "canto de losa sin rematar"
     ],
-    "usada_en": [
-      "/services/outdoor-furniture"
-    ],
+    "usada_en": [],
     "origen": "EQUINOX LOUVERED ROOF/IMG_4538.jpeg",
     "sha256": "924d9748d563269ce1cc980f002147f5a8499cab4092ad6cd2b06f1a7d38272b"
   },
@@ -8815,8 +8804,7 @@
       "cielo nublado"
     ],
     "usada_en": [
-      "/about",
-      "/services/outdoor-furniture"
+      "/about"
     ],
     "origen": "EQUINOX LOUVERED ROOF/IMG_6579.JPG",
     "sha256": "66e3cdde5cf28ae93e5507f9110c8c542ff2e8b034069289008a6c7f43bc0964"
@@ -10853,7 +10841,6 @@
     ],
     "defectos": [],
     "usada_en": [
-      "/about",
       "/gallery",
       "/gallery/landscaping",
       "/services/landscaping"
@@ -11399,8 +11386,7 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/decks",
-      "/services/deck-builders"
+      "/gallery/decks"
     ],
     "origen": "LANDSCAPING/20250414_132113.jpg",
     "sha256": "57850ce907e9c5684a9f6b9e36d367a9ed7172ea06135a5c5d4cb819b84c9cb7"
@@ -21894,8 +21880,7 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/decks",
-      "/services/deck-builders"
+      "/gallery/decks"
     ],
     "origen": "NEW JOBS CONSTRUCTION/FOTOS DE TODO/IMG_1349.JPG",
     "sha256": "04e94a00bb91347a8bbaa61fc8d23b181969926e589fa46f7152b92c89d98493"
@@ -21968,8 +21953,7 @@
       "/blogs/designing-a-complete-louvered-roof-system",
       "/gallery",
       "/gallery/louvered-roofs",
-      "/services/louvered-roofs",
-      "/services/outdoor-furniture"
+      "/services/louvered-roofs"
     ],
     "origen": "NEW JOBS CONSTRUCTION/FOTOS DE TODO/IMG_1351.JPG",
     "sha256": "3ae1ebfb15451e6965d8e933494a7bfd4e3ff4c41e9215d911562a649bf17746",
@@ -22798,8 +22782,7 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/louvered-roofs",
-      "/services/louvered-roofs"
+      "/gallery/louvered-roofs"
     ],
     "origen": "NEW JOBS CONSTRUCTION/FOTOS DE TODO/IMG_1629.JPEG",
     "sha256": "99ebc476fdc7668506a86f5bf0f8d2b8884f8fa1685c1e46a7937b7f654f9165"
@@ -36653,8 +36636,7 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/aluminum-pergolas",
-      "/services/pergola-builders"
+      "/gallery/aluminum-pergolas"
     ],
     "origen": "PERGOLA/DECO OPEN PERGOLA/151.jpg",
     "sha256": "9fe59cbe324bc7a4e9d11565c087492baaa4044546eca01180857c3abd7e07fa"
@@ -38180,8 +38162,7 @@
       "pared de la casa en el borde derecho"
     ],
     "usada_en": [
-      "/blogs/aluminum-vs-wood-pergolas-in-florida",
-      "/services/pergola-builders"
+      "/blogs/aluminum-vs-wood-pergolas-in-florida"
     ],
     "origen": "PERGOLA/RENAISSANCE/Renaissance Contempo/IMG_1341.jpeg",
     "sha256": "df192658a885cb11388d8117acc4e262cb071f56f6dbc3b23728535d77cd32b9"
@@ -38722,9 +38703,7 @@
     "defectos": [
       "remolque con perfiles en el borde inferior (recortar)"
     ],
-    "usada_en": [
-      "/services/steel-buildings-pole-barns"
-    ],
+    "usada_en": [],
     "origen": "POLE BARN 2/11.jpg",
     "sha256": "91ed0ac34e801f5da582b7d07cb05a9d28ded2afe0600598e0560ffa18f548f7"
   },

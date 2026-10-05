@@ -229,21 +229,6 @@ for (const w of MEDIDAS) {
   await ctx.close();
 }
 
-// 9 · REDUCED MOTION: el collage no puede quedarse invisible
-{
-  console.log('\n═══ prefers-reduced-motion: reduce ═══');
-  const ctx = await nav.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: 'reduce', deviceScaleFactor: 1 });
-  const pag = await ctx.newPage();
-  await pag.goto(BASE + RUTA, { waitUntil: 'load' });
-  await asentar(pag);
-  const inv = await pag.evaluate(() => [...document.querySelectorAll('.mm-collage > img')]
-    .filter((i) => +getComputedStyle(i).opacity < 0.9).length);
-  const total = await pag.evaluate(() => document.querySelectorAll('.mm-collage > img').length);
-  inv ? mal(`${inv} de ${total} fotos del collage por debajo de opacity 0.9 con reduced-motion`)
-    : ok(`las ${total} fotos del collage visibles con reduced-motion`);
-  await ctx.close();
-}
-
 await nav.close(); servidor.close();
 console.log(`\n${rojos ? `${rojos} HALLAZGO(S)` : 'SIN HALLAZGOS'}\n`);
 process.exit(0);

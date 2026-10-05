@@ -10,7 +10,7 @@
  *
  * Por hueco y ancho: `[ancho, alto]` de la <img> y `texto` = rectangulo que tapa texto, en
  * fraccion de la caja ({x,y,w,h} de 0 a 1), o null si no hay texto encima. Una caja que no se
- * pinta a ese ancho sale null (collage: solo 3 teselas por debajo de 992).
+ * pinta a ese ancho sale null.
  *
  * ponytail: una ficha (kitchens) vale por las 14: misma plantilla, 70 img, verificado en
  * captacion-servicios.json `_lee_esto`.
@@ -72,9 +72,6 @@ const HUECOS = {
   galeria:   [FICHA, 'section.gallery img.image-gallery', null],
   proceso:   [FICHA, 'img.img-process', null],
   inversion: [FICHA, 'img.svc-inversion__foto', null],
-  faq0:      [FICHA, '.mm-collage img', null, 0],
-  faq1:      [FICHA, '.mm-collage img', null, 1],
-  faq3:      [FICHA, '.mm-collage img', null, 3],
   menu:      ['/', '.wrapper-picture-service.is-active img.picture-service', '.wrapper-picture-service.is-active .cover > div'],
   full:      ['/', 'article.svc-ficha:not([hidden]) img.svc-foto', 'article.svc-ficha:not([hidden]) .svc-barra'],
   full_contador: ['/', 'article.svc-ficha:not([hidden]) img.svc-foto', 'article.svc-ficha:not([hidden]) .svc-contador'],

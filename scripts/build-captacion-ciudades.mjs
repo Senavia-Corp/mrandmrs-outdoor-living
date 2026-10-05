@@ -5,9 +5,10 @@
  *     npm run captacion:ciudades            escribe
  *     npm run captacion:ciudades -- --check comprueba y sale 1 si algo no cuadra
  *
- * Escribe en DOS ficheros, las claves `/services/pool-builders/<slug>` y solo esas:
- *   · `src/data/captacion-servicios.json`  -> heroe, confianza, formulario, inversion, faq
- *   · `src/data/collage-faq-por-ruta.json` -> las 5 fotos del bento de la FAQ
+ * Escribe en `src/data/captacion-servicios.json` las claves `/services/pool-builders/<slug>` y solo
+ * esas: heroe, confianza, formulario, inversion y faq. (Hasta el 5-oct-2026 escribia tambien
+ * `collage-faq-por-ruta.json`, las 5 fotos del collage de la FAQ; el collage se retiro en
+ * FAQ-UNA-COLUMNA y el fichero con el.)
  *
  * POR QUE UN GENERADOR Y NO COPY A MANO. Son 53 ciudades de UNA plantilla. Si encender la capa
  * cuesta un bloque de copy por ciudad, la ciudad 2 se escribe distinta de la 1 y la 53 ya no se
@@ -35,7 +36,6 @@ import { LINEA_PISCINA, DE_PISCINA } from '../src/lib/identidad.mjs';
 const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const P_FILAS = path.join(RAIZ, 'src/data/ciudades-captacion.json');
 const P_CAPTA = path.join(RAIZ, 'src/data/captacion-servicios.json');
-const P_COLLAGE = path.join(RAIZ, 'src/data/collage-faq-por-ruta.json');
 const P_NEGOCIO = path.join(RAIZ, 'src/lib/negocio.mjs');
 
 const SOLO_COMPROBAR = process.argv.includes('--check');
@@ -187,52 +187,21 @@ function entradaCaptacion(c) {
   };
 }
 
-function entradaCollage(c, fotos) {
-  const elegidas = c.collage.map((k) => {
-    const f = fotos.construccion[k];
-    if (!f) {
-      throw new Error(`[captacion-ciudades] ${c.slug}: la foto "${k}" no esta en `
-        + 'ciudades-captacion.json > fotos.construccion.');
-    }
-    /* 🚨 SIN `srcset` NO PASA. La celda mas grande del bento mide 395 px y la mas pequena 81 px
-     * en movil: sin `srcset` el navegador se baja el original de 1250w -y hasta 1 MB- para
-     * pintarla. Es invisible en la pagina y carisimo en un movil que llega desde un anuncio.
-     * Paso una vez: `/gallery` no emite `srcset` para dos de las diez, y esas dos entraron en el
-     * collage con `undefined`. El `sizes` que calcula `CollageFaq` queda inerte y nadie avisa. */
-    for (const k2 of ['src', 'srcset', 'alt', 'ancho', 'alto', 'pos']) {
-      if (!f[k2]) {
-        throw new Error(`[captacion-ciudades] ${c.slug}: la foto "${k}" no trae "${k2}". `
-          + 'Sin `srcset` el navegador se baja el original de 1250w para una celda de 81-395 px.');
-      }
-    }
-    return { src: f.src, srcset: f.srcset, alt: f.alt, ancho: f.ancho, alto: f.alto, pos: f.pos };
-  });
-  if (new Set(elegidas.map((f) => f.src)).size !== 5) {
-    throw new Error(`[captacion-ciudades] ${c.slug}: el bento pide 5 fotos DISTINTAS y hay `
-      + 'repetidas. Una foto dos veces en la misma seccion es un descuido que se ve.');
-  }
-  return { fotos: elegidas };
-}
-
 // ── EJECUCION ────────────────────────────────────────────────────────────────────────────────
 const filas = leer(P_FILAS);
 const CONDADOS = condadosVerificados();
 const captacion = leer(P_CAPTA);
-const collage = leer(P_COLLAGE);
 
 /* SE RETIRAN LAS DERIVADAS ANTES DE VOLVER A ESCRIBIRLAS, Y ESA ES LA MITAD QUE FALTABA.
  * Escribir sin borrar hace que el generador solo sepa ANADIR: quitar una ciudad de
- * `ciudades-captacion.json` dejaria su entrada viva en los dos JSON y la pagina seguiria
- * publicando el formulario, el collage y la FAQ de una ciudad que ya nadie declara — y
+ * `ciudades-captacion.json` dejaria su entrada viva en el JSON y la pagina seguiria
+ * publicando el formulario y la FAQ de una ciudad que ya nadie declara — y
  * `--check` saldria VERDE, porque lo que compara es que las filas que hay coincidan.
  * Se borran solo las que llevan la marca `_derivado`: una entrada escrita a mano (las 14 de
  * `/services/`) no se toca ni por error. */
 const esDerivada = (v) => typeof v?._derivado === 'string';
 const nuevoCaptacion = Object.fromEntries(
   Object.entries(captacion).filter(([k, v]) => !(esCiudad(k) && esDerivada(v))));
-const RUTAS_FILA = new Set(filas.ciudades.map((c) => rutaCiudad(c.slug)));
-const nuevoCollage = Object.fromEntries(
-  Object.entries(collage).filter(([k]) => !esCiudad(k) || RUTAS_FILA.has(k)));
 const avisos = [];
 let n = 0;
 
@@ -272,13 +241,10 @@ for (const c of filas.ciudades) {
   e._derivado = 'src/data/ciudades-captacion.json — no editar a mano: npm run captacion:ciudades';
 
   nuevoCaptacion[ruta] = e;
-  nuevoCollage[ruta] = entradaCollage(c, filas.fotos);
   n++;
 }
 
-const comoEstaba = { capta: JSON.stringify(captacion), coll: JSON.stringify(collage) };
-const comoQueda = { capta: JSON.stringify(nuevoCaptacion), coll: JSON.stringify(nuevoCollage) };
-const cambia = comoEstaba.capta !== comoQueda.capta || comoEstaba.coll !== comoQueda.coll;
+const cambia = JSON.stringify(captacion) !== JSON.stringify(nuevoCaptacion);
 
 if (SOLO_COMPROBAR) {
   if (cambia) {
@@ -294,6 +260,5 @@ if (SOLO_COMPROBAR) {
 }
 
 fs.writeFileSync(P_CAPTA, `${JSON.stringify(nuevoCaptacion, null, 2)}\n`);
-fs.writeFileSync(P_COLLAGE, `${JSON.stringify(nuevoCollage, null, 2)}\n`);
-console.log(`  escritas ${n} ciudad(es) en captacion-servicios.json y collage-faq-por-ruta.json`);
+console.log(`  escritas ${n} ciudad(es) en captacion-servicios.json`);
 for (const a of avisos) console.log(`  aviso  ${a}`);

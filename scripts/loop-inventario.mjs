@@ -8,7 +8,7 @@ const gp = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/gallery-proceden
 const banco = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/banco-imagenes.json'), 'utf8'));
 const enBanco = new Map(); for (const b of banco) for (const s of [b.src, ...(b.publicada_como ?? [])]) enBanco.set(s, b.id);
 const proc = {}; for (const arr of Object.values(gp.servicios)) for (const f of arr) proc[f.src] = f.veredicto;
-const SEL = { heroe: 'img.image-bg-hero-services', galeria: 'section.gallery img.image-gallery', proceso: 'img.img-process', inversion: 'img.svc-inversion__foto', faq: '.mm-collage img', intro: 'section.trusted-section.svc-intro img.image', wwd: 'section.services img.svc-detalle__foto' };
+const SEL = { heroe: 'img.image-bg-hero-services', galeria: 'section.gallery img.image-gallery', proceso: 'img.img-process', inversion: 'img.svc-inversion__foto', intro: 'section.trusted-section.svc-intro img.image', wwd: 'section.services img.svc-detalle__foto' };
 const q = (s) => [...d.querySelectorAll(s)].map((i) => i.getAttribute('src'));
 const sets = Object.fromEntries(Object.entries(SEL).map(([k, s]) => [k, q(s)]));
 const todos = Object.values(sets).flat();

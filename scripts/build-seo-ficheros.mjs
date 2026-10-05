@@ -136,7 +136,7 @@ const locs = [...delOrigen, ...ADICIONES.map(([u]) => u), ...ADICIONES_BLOG.map(
  * `<image:image>` le dice a Google que fotos son de cada pagina. Se declara por ruta y a mano,
  * no para las 14 fichas: en las otras doce siguen fotos generadas (`residentials/`, `procesos/`)
  * y meterlas aqui seria anunciar como obra lo que no lo es. Las imagenes salen de los MISMOS
- * datos que las pintan —heroe, filas, pasos, inversion, antes/despues y collage—, asi que una
+ * datos que las pintan —heroe, filas, pasos, inversion y antes/despues—, asi que una
  * foto canjeada en el JSON se canjea aqui sola. La intro (que se queda como esta, decision de
  * Sebastian) y la galeria (viene del origen, no de datos) no entran.
  */
@@ -147,13 +147,11 @@ const IMAGENES_EN = [
 const imagenes = (() => {
   const leer = (f) => JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data', f), 'utf8'));
   const cap = leer('captacion-servicios.json');
-  const collage = leer('collage-faq-por-ruta.json');
   return new Map(IMAGENES_EN.map((r) => {
     const c = cap[r];
     const fotos = [
       c.heroe.foto, ...c.servicios.detalle.map((d) => d.foto), ...(c.proceso?.fotos ?? []).map((f) => f.foto),
       c.inversion?.foto, c.antesDespues?.antes.src, c.antesDespues?.despues.src,
-      ...(collage[r]?.fotos ?? []).map((f) => f.src),
     ].filter(Boolean);
     return [`${SITIO}${r}`, [...new Set(fotos)].map((f) => `${SITIO}${f}`)];
   }));
