@@ -1931,6 +1931,13 @@ for (const [ruta] of RUTAS) {
       acumulado += MARCA + 'InversionCore' + MARCA;
       usados.add('InversionCore');
     }
+    /* LOOP-CIUDADES (5-oct-2026): detras de «Where We Serve», la linea de enlaces a las landings
+     * `/services/<servicio>/<ciudad>-fl` de la ficha. El componente no pinta nada si la ficha no
+     * tiene landings, asi que montarlo en las 14 no cambia las que no las tienen. */
+    if (esFicha(ruta) && n.matches?.('section.location')) {
+      acumulado += MARCA + 'CiudadesServicio' + MARCA;
+      usados.add('CiudadesServicio');
+    }
   }
 
   // 2 páginas llevan un <script>+<style> DESPUÉS del pie (el redimensionador del iframe del
