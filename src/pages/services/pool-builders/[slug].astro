@@ -406,10 +406,16 @@ const SEO = FAQ
       de Sebastian. Lo que se pierde queda dicho, no callado: entre el formulario y los dos CTA de
       `svc-inversion` quedan cuatro secciones sin vuelta al `#estimate`. El gemelo de la FAQ
       -`<p class="svc-cierre">`- sigue en pie y es el que devuelve al formulario. */}
-  <Fragment set:html={P_DESPUES} />
-  <ResenasGoogle />
-  <Fragment set:html={B[1]} />
-  <CarruselProyectos titulo={d['headingPortfolio']} entradilla={d['paragraphPortfolio']} />
+  {/* ORDEN-CIUDADES (Sebastian, 5-oct-2026): EL BLOQUE DE DECISION SUBE, LA PRUEBA BAJA.
+      Detras del 3D van ahora, seguidos, inversion -> FAQ -> banda «Project Gallery» -> panel de
+      servicios; las resenas y «Project Showcase» —el trio `P_DESPUES` + `ResenasGoogle` + `B[1]`
+      y `CarruselProyectos`, que el comentario de arriba describe— pasan enteros a la cola, justo
+      antes del blog. Quien acaba de ver el diseno 3D pregunta «¿cuanto cuesta?» antes de seguir
+      mirando obra. No abre ningun corte; el orden lo afirma `check-estructura-ciudades.mjs`.
+
+      OJO, QUE ESTO MATIZA SEO-REMEDIACION (4-oct): la banda y el panel siguen DETRAS de la FAQ,
+      pero vuelven a quedar por ENCIMA de las resenas y la obra. Es el orden que pidio Sebastian
+      seccion por seccion; se deja dicho para que nadie lo «arregle» de vuelta. */}
   <InversionCore ruta={RUTA} />
   {/* LA FAQ, QUE ESTAS RUTAS NO TENIAN. Marcado de acordeon de la casa: `Interacciones.astro`
       recorre TODOS los `.w-dropdown` del documento y les pone rol, `tabindex`, `aria-expanded`,
@@ -478,6 +484,11 @@ const SEO = FAQ
       <p slot="cierre" class="svc-cierre"><a href="#estimate" class="button button-styles w-button">{CTA_CIERRE}</a></p>
     </ServiciosPorCategoria>
   )}
+  {/* ORDEN-CIUDADES: la cola de prueba. Resenas y obra, enteras, detras del panel de servicios. */}
+  <Fragment set:html={P_DESPUES} />
+  <ResenasGoogle />
+  <Fragment set:html={B[1]} />
+  <CarruselProyectos titulo={d['headingPortfolio']} entradilla={d['paragraphPortfolio']} />
   <CarruselBlog titulo={d['headingBlog']} entradilla={d['paragraphBlog']} />
   <section class="social-media">
     <FeedInstagram />

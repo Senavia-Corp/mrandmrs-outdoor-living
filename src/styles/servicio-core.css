@@ -846,12 +846,40 @@
  * token en su hoja. Son 18 rutas —las 14 fichas de /services/ mas /about, /financing y estas 2—
  * y mientras siga vivo, el dia que alguien toque el tamano del cuerpo se mueve el ritmo de las
  * 18 sin que nadie lo pida. Aqui solo se arregla donde el encargo llega. */
-body:has(.svc-heroe--ciudad) > section.faq-section { padding-block: var(--mm-e-48); }
-body:has(.svc-heroe--ciudad) > section.svc-inversion { padding-block: var(--mm-e-48); }
+body:has(.svc-heroe--ciudad) section.faq-section { padding-block: var(--mm-e-48); }
+body:has(.svc-heroe--ciudad) section.svc-inversion { padding-block: var(--mm-e-48); }
 @media (min-width: 992px) {
-  body:has(.svc-heroe--ciudad) > section.faq-section { padding-block: var(--mm-e-96); }
-  body:has(.svc-heroe--ciudad) > section.svc-inversion { padding-block: var(--mm-e-96); }
+  body:has(.svc-heroe--ciudad) section.faq-section { padding-block: var(--mm-e-96); }
+  body:has(.svc-heroe--ciudad) section.svc-inversion { padding-block: var(--mm-e-96); }
 }
+
+/* ═══ ORDEN-CIUDADES (Sebastian, 5-oct-2026) · EL BLOQUE DE DECISION Y LA COLA ═════════════════
+ * Inversion y FAQ suben pegadas al 3D; resenas y obra bajan a la cola. Movidas sin mas dejaban
+ * 3D -> inversion -> FAQ -> banda -> panel en blanco corrido, y obra -> blog -> feed igual.
+ *
+ *   · La FAQ pasa a plano tenue y la banda navy de inversion MUERE CONTRA EL, sin franja blanca
+ *     en medio: «cuanto cuesta» y «y si…» se leen como un solo capitulo. Por eso inversion pierde
+ *     el padding de ABAJO —solo el de abajo—: el canto de la banda hace de borde, igual que en
+ *     `.svc-confianza`.
+ *   · Sobre tenue, tres cosas que en blanco no hacian falta:
+ *       - los acordeones van en blanco FIJO: su estado hover/abierto era justo `--mm-fondo-tenue`
+ *         y se fundia con el plano. La afordancia que queda es el borde navy, que ya existia.
+ *       - `.grey` (`--mm-gris-aa`, 4,54:1 sobre blanco) no llega sobre tenue; pasa a
+ *         `--mm-tinta-atenuada`, 4,61:1 sobre tenue segun `tokens.css`.
+ *   · El blog toma el mismo tenue: corta la tirada obra -> blog -> feed.
+ *
+ * ALCANCE: `body:has(.svc-heroe--ciudad)`, las 53 de /services/pool-builders/. Las 14 fichas,
+ * /about y /financing —que tambien montan `.faq-section`— no llevan el modificador.
+ *
+ * 🚨 DESCENDIENTE, NO HIJO DIRECTO. Estas reglas y las cuatro de ritmo de arriba decian
+ * `body:has(…) > section.…`. El 4-oct `Base.astro` empezo a envolver la pagina en `<main>` y las
+ * secciones dejaron de ser hijas de `<body>`: las cuatro de ritmo llevaban un dia muertas en
+ * produccion sin un solo rojo (la FAQ habia vuelto a su `6em`). Sin `>` no dependen del envoltorio. */
+body:has(.svc-heroe--ciudad) section.svc-inversion { padding-block-end: 0; }
+body:has(.svc-heroe--ciudad) section.faq-section,
+body:has(.svc-heroe--ciudad) section.blog-section-page { background-color: var(--mm-fondo-tenue); }
+body:has(.svc-heroe--ciudad) section.faq-section .dropdown-toggle { background-color: var(--mm-fondo); }
+body:has(.svc-heroe--ciudad) section.faq-section .grey { color: var(--mm-tinta-atenuada); }
 
 /* EL CTA DE CIERRE, A >=44 px EN LAS DOS LANDINGS.
  * Medido con `getBoundingClientRect()` sobre `.vercel/output/static`: `.svc-cierre a` daba 36,4 px
