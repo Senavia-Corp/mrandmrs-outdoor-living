@@ -32,13 +32,11 @@ import CarruselProyectos from '../../../components/widgets/CarruselProyectos.ast
 import ConfianzaCore from '../../../components/widgets/ConfianzaCore.astro';
 import FormularioCore from '../../../components/widgets/FormularioCore.astro';
 import InversionCore from '../../../components/widgets/InversionCore.astro';
-import CollageFaq from '../../../components/widgets/CollageFaq.astro';
 import ServiciosPorCategoria from '../../../components/widgets/ServiciosPorCategoria.astro';
 import GaleriaObra from '../../../components/widgets/GaleriaObra.astro';
 import MigaVisible from '../../../components/MigaVisible.astro';
 import SEO_RUTAS from '../../../data/seo-pool-builders.json';
 import CAPTACION from '../../../data/captacion-servicios.json';
-import COLLAGE from '../../../data/collage-faq-por-ruta.json';
 import TELEFONOS from '../../../data/telefonos.json';
 import FOTOS_CIUDAD from '../../../data/ciudades-captacion.json';
 import { sinAperturaDelFeed } from '../../../lib/feed-social.mjs';
@@ -152,7 +150,7 @@ const CAMPOS = [[null,{"c":"h1Title","tx":"","p":["",""]},null,{"c":"h2Title","t
  *
  * POR QUE SE DERIVA DEL CATALOGO Y NO SE CABLEA EL `<img>`. `ciudades-captacion.json` ya trae
  * `src`, `srcset`, `alt`, `ancho`, `alto` y `pos` verificados contra disco para las 10 del set
- * `construction`, y es la misma fuente que pinta el collage de la FAQ. Cablear aqui una segunda
+ * `construction`, y era la misma fuente que pintaba el collage de la FAQ. Cablear aqui una segunda
  * copia es la forma habitual de que las dos dejen de coincidir.
  *
  * EL `data-w-id` SE LEE DEL MARCADO VIEJO Y SE VUELVE A PONER, no se copia a mano: es el gancho
@@ -259,14 +257,7 @@ if (CAP) {
   [ANTES_FORM, b0] = partirEn(b0, '<section class="_3d-section"', `${RUTA} B[0]`);
 }
 
-/* LA FAQ SE MONTA CON LAS DOS ENTRADAS O CON NINGUNA. `CollageFaq` no devuelve `null` cuando le
- * falta su entrada: LANZA. Encontrarselo como «Cannot read properties of undefined» a mitad del
- * build de 53 paginas no dice nada; esto dice exactamente que falta y donde. */
 const FAQ = CAP?.faq?.anade?.length ? CAP.faq : null;
-if (FAQ && !COLLAGE[RUTA]) {
-  throw new Error(`${slug}: tiene faq en captacion-servicios.json pero no entrada en `
-    + 'collage-faq-por-ruta.json, y el collage es media seccion. Se declaran las dos o ninguna.');
-}
 
 const [P_ANTES_CON_BANDA, P_DESPUES] = partirPorElCarrusel(b0, `${RUTA} B[0]`);
 
@@ -432,7 +423,6 @@ const SEO = FAQ
           <h2>{FAQ.titulo}</h2>
           <div>{FAQ.entradilla}</div>
         </div>
-        <CollageFaq ruta={RUTA} />
         <div class="wrapper-faq-components">
           {FAQ.anade.map((q) => (
             <div data-delay="0" data-hover="false" class="dropdown-faq w-dropdown">
