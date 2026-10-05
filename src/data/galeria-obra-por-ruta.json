@@ -147,5 +147,111 @@
         "_motivo": "Pergola junto a una piscina que ocupa media foto: cierra con agua."
       }
     ]
+  },
+  "servicio:pool-remodeling": {
+    "titulo": "Pool Remodel Project Gallery",
+    "entradilla": "Pools we have renovated, from the condition we found them in to new tile, finish and deck.",
+    "fotos": [
+      {
+        "src": "/images/banco/remodeling/raised-spa-blue-glass-tile-marble-coping-lake-view-florida-01.webp",
+        "alt": "Raised spa with iridescent blue glass tile and white marble coping overlooking a lake.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0072",
+        "_proyecto": "obra-011"
+      },
+      {
+        "src": "/images/banco/remodeling/pool-remodeling-before-screen-enclosure-old-tile-florida-01.webp",
+        "alt": "Screened pool with dated blue tile and concrete deck before a full remodel.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0547",
+        "_proyecto": "obra-048"
+      },
+      {
+        "src": "/images/banco/remodeling/pool-remodeling-before-screen-enclosure-old-deck-florida-01.webp",
+        "alt": "Older screened pool with painted concrete deck and brick coping before remodeling.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0515",
+        "_proyecto": "obra-048"
+      },
+      {
+        "src": "/images/banco/remodeling/pool-remodeling-spa-new-blue-glass-tile-paver-deck-florida-01.webp",
+        "alt": "Raised spa freshly clad in blue glass mosaic tile during a pool remodel, with the pool shell drained.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0664",
+        "_proyecto": "obra-064"
+      },
+      {
+        "src": "/images/banco/remodeling/pool-remodeling-spa-glass-mosaic-tile-installation-florida-01.webp",
+        "alt": "Top view of a raised spa with new iridescent blue glass mosaic on the rim and bench edges mid-remodel.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0665",
+        "_proyecto": "obra-064"
+      },
+      {
+        "src": "/images/banco/remodeling/pool-remodel-new-finish-glass-tile-marble-coping-florida-01.webp",
+        "alt": "Empty pool with new plaster finish, blue glass waterline tile and white marble coping.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0071",
+        "_proyecto": "obra-011"
+      },
+      {
+        "src": "/images/banco/remodeling/pool-remodeling-fresh-plaster-tile-steps-florida-01.webp",
+        "alt": "Freshly plastered pool with blue tile-trimmed steps and bench before filling.",
+        "ancho": 768,
+        "alto": 1024,
+        "pos": "50% 50%",
+        "_banco": "bi-0528",
+        "_proyecto": "obra-048"
+      },
+      {
+        "src": "/images/banco/remodeling/pool-remodeling-fresh-plaster-tile-steps-florida-02.webp",
+        "alt": "Empty pool with new plaster and steps outlined in blue mosaic tile.",
+        "ancho": 768,
+        "alto": 1024,
+        "pos": "50% 50%",
+        "_banco": "bi-0530",
+        "_proyecto": "obra-048"
+      },
+      {
+        "src": "/images/banco/remodeling/pool-remodel-freeform-new-finish-glass-tile-florida-01.webp",
+        "alt": "Drained freeform pool with new pebble finish, blue glass tile and rock waterfall spa.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0090",
+        "_proyecto": "obra-012"
+      },
+      {
+        "src": "/images/banco/remodeling/pool-remodeling-new-glass-waterline-tile-bond-coat-florida-01.webp",
+        "alt": "Pool shell with bond coat and new iridescent blue glass waterline tile beside an octagonal paver deck.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0679",
+        "_proyecto": "obra-064"
+      },
+      {
+        "src": "/images/banco/remodeling/pool-remodeling-travertine-deck-raised-step-florida-01.webp",
+        "alt": "Drained kidney-shaped pool with new travertine deck, raised step and blue mosaic tile.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0613",
+        "_proyecto": "obra-051"
+      }
+    ],
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
   }
 }
