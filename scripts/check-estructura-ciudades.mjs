@@ -64,8 +64,10 @@ const SIN = [
    * (53/53 tienen entrada); la lista es la red para la que llegue sin ella. */
   /* SEO-REMEDIACION (4-oct-2026): la banda baja detras de la obra aqui tambien; sin captacion
    * no hay FAQ, asi que cae justo antes del blog. */
+  /* ORDEN-CIUDADES (5-oct-2026): la plantilla es una, asi que aqui tambien la banda queda delante
+   * de resenas y obra. */
   'hero-glass-section', 'trusted-section', 'gallery', '_3d-section',
-  'testimonial-section', 'projects-section', 'animated-divs-section', 'blog-section-page',
+  'animated-divs-section', 'testimonial-section', 'projects-section', 'blog-section-page',
   'social-media', 'cta-footer',
 ];
 const CON = [
@@ -81,8 +83,11 @@ const CON = [
    * y el panel de servicios (`products-section`) bajan DETRAS de la FAQ. Son paginas de piscina y
    * los servicios secundarios no pueden ir por encima de las resenas, la obra y la FAQ. */
   'hero-glass-section', 'svc-confianza', 'trusted-section', 'appointment-section', 'gallery',
-  '_3d-section', 'testimonial-section', 'projects-section', 'svc-inversion', 'faq-section',
-  'animated-divs-section', 'products-section', 'blog-section-page', 'social-media',
+  /* ORDEN-CIUDADES (Sebastian, 5-oct-2026): inversion y FAQ suben pegadas al 3D, y resenas y obra
+   * bajan a la cola, detras del panel de servicios. La banda y el panel siguen detras de la FAQ,
+   * pero vuelven a quedar por encima de resenas y obra: es el orden que pidio el, puesto a puesto. */
+  '_3d-section', 'svc-inversion', 'faq-section', 'animated-divs-section', 'products-section',
+  'testimonial-section', 'projects-section', 'blog-section-page', 'social-media',
   'cta-footer',
 ];
 
