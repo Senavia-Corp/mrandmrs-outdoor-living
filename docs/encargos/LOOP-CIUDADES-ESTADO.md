@@ -9,7 +9,7 @@
 | Campo | Valor |
 |---|---|
 | fase | **2 — lotes por servicio** (Fase 0 y Fase 1 cerradas) |
-| paso | Lote 1 (pool-remodeling North) → PR → merge → verificacion |
+| paso | Lote 2 (pool-remodeling South) → PR → merge → verificacion |
 | lote siguiente | Lote 1: pool-remodeling North (las 19 restantes con hecho local verificable) |
 | iteraciones sin avanzar | 0 |
 | ultima iteracion | 5-oct-2026, sobre `origin/main` 9824a43 |
@@ -431,15 +431,61 @@ check-texto =/services/pool-remodeling exit 0   1 identicas · 0 en rojo   (1/1 
 **Fotos:** las mismas 15 del servicio (compartidas, como en pool-builders); `usada_en` actualizado.
 Libres que quedan en `remodeling`: 32 − 15 = 17 sin otra ruta.
 
+## Lote 2 — pool-remodeling South (5-oct-2026)
+
+**Rutas publicadas (8):** /services/pool-remodeling/fort-lauderdale-fl, /services/pool-remodeling/hollywood-fl, /services/pool-remodeling/dania-beach-fl, /services/pool-remodeling/west-palm-beach-fl, /services/pool-remodeling/boca-raton-fl, /services/pool-remodeling/boynton-beach-fl, /services/pool-remodeling/gulf-stream-fl, /services/pool-remodeling/manalapan-fl
+
+**Excluidas (texto local propio < 60 palabras):** Pembroke Pines 21, Pompano Beach 20, Davie 59, Plantation 52, Deerfield Beach 48, Weston 39, Hallandale Beach 52, Parkland 50, Wilton Manors 43, Lighthouse Point 36, Southwest Ranches 52, Hillsboro Beach 51, Wellington 43, Jupiter 56, Palm Beach Gardens 46, Royal Palm Beach 36, North Palm Beach 56, Tequesta 32, Juno Beach 51, Hypoluxo 37, Atlantis 41, Ocean Ridge 59, South Palm Beach 39.
+
+**Aplazadas a un lote posterior:** Delray Beach y Miramar. La revision independiente las rechazo dos veces (Delray: «is» donde el fragmento dice «includes»; Miramar: un orden de inspecciones que la lista no da). Por la regla de los 2 intentos salen de este lote; su texto ya esta corregido y volveran con revision nueva.
+
+**Revision independiente:** 1a pasada RECHAZADA (Fort Lauderdale, Gulf Stream y Miramar con detalles de las notas del investigador; Dania sin «interior»). 2a pasada RECHAZADA (Delray, Miramar). Boca Raton y Gulf Stream se estrecharon y una pasada de confirmacion los APROBO. Las 8 publicadas: aprobadas.
+
+**Puertas** (build `MM_SANITY_CACHE=1 PUBLIC_ES_PRODUCCION=1`):
+
+```
+rutas existentes con HTML distinto al de main 9824a43: 1 -> services/pool-remodeling/index.html
+diff=0 /services/pool-builders/ocala-fl
+diff=0 /services/pool-builders/boca-raton-fl
+diff=0 /services/pool-builders/archer-fl
+check:tokens                 exit 0  PUERTA VERDE
+check:rutas                  exit 0  PUERTA VERDE
+check:enlaces                exit 0  PUERTA VERDE
+check:seo                    exit 0  PUERTA VERDE
+check:captacion              exit 0  PUERTA VERDE
+check:estructura:ciudades    exit 0  PUERTA VERDE — dos formas y solo dos
+check:medicion               exit 0  PUERTA VERDE
+check:ciudades-servicios     exit 0  PUERTA VERDE
+check:redirects              exit 0  PUERTA VERDE
+check:estructura             exit 0  PUERTA VERDE — 14 fichas, un solo orden (+ 2 variante(s) declarada(s))
+check:galeria-obra           exit 0  PUERTA VERDE — un set, las 53 ciudades, obra real trazada
+check:identidad              exit 0  PUERTA VERDE
+check:ads                    exit 0  PUERTA VERDE
+check:menu                   exit 0  PUERTA VERDE
+check:galeria                exit 0  PUERTA VERDE
+check-texto =/services/pool-remodeling exit 0   1 identicas · 0 en rojo   (1/1 rutas medidas)
+```
+
+- Rutas nuevas sin referencia: cubiertas por `check:ciudades-servicios`; `check-texto`/`check-visual` no las miden (no es verde).
+- NO verificado: las URL de `fuentes` (egress, D7).
+
 ## Rutas hechas
 
 | Ruta | Lote | PR | Produccion |
 |---|---|---|---|
 | /services/pool-remodeling/gainesville-fl | 0 | [#47](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/47) fusionado (f57ba48) | Vercel `success`, deployment 6871587096 (2026-10-05T23:17Z). URL no abierta: egress (D7) |
-| /services/pool-remodeling/ocala-fl | 1 | (pendiente) | (pendiente) |
-| /services/pool-remodeling/palatka-fl | 1 | (pendiente) | (pendiente) |
-| /services/pool-remodeling/cedar-key-fl | 1 | (pendiente) | (pendiente) |
-| /services/pool-remodeling/mcintosh-fl | 1 | (pendiente) | (pendiente) |
+| /services/pool-remodeling/ocala-fl | 1 | [#48](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/48) fusionado (7da8284) | Vercel `success`, deployment 6871931005. URL no abierta: egress (D7) |
+| /services/pool-remodeling/palatka-fl | 1 | [#48](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/48) fusionado (7da8284) | Vercel `success`, deployment 6871931005. URL no abierta: egress (D7) |
+| /services/pool-remodeling/cedar-key-fl | 1 | [#48](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/48) fusionado (7da8284) | Vercel `success`, deployment 6871931005. URL no abierta: egress (D7) |
+| /services/pool-remodeling/mcintosh-fl | 1 | [#48](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/48) fusionado (7da8284) | Vercel `success`, deployment 6871931005. URL no abierta: egress (D7) |
+| /services/pool-remodeling/fort-lauderdale-fl | 2 | (pendiente) | (pendiente) |
+| /services/pool-remodeling/hollywood-fl | 2 | (pendiente) | (pendiente) |
+| /services/pool-remodeling/dania-beach-fl | 2 | (pendiente) | (pendiente) |
+| /services/pool-remodeling/west-palm-beach-fl | 2 | (pendiente) | (pendiente) |
+| /services/pool-remodeling/boca-raton-fl | 2 | (pendiente) | (pendiente) |
+| /services/pool-remodeling/boynton-beach-fl | 2 | (pendiente) | (pendiente) |
+| /services/pool-remodeling/gulf-stream-fl | 2 | (pendiente) | (pendiente) |
+| /services/pool-remodeling/manalapan-fl | 2 | (pendiente) | (pendiente) |
 
 ## Bloqueos y avisos
 
