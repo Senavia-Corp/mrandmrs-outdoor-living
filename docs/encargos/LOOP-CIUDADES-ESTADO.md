@@ -8,13 +8,37 @@
 
 | Campo | Valor |
 |---|---|
-| fase | **0 — Matriz** |
-| paso | **PARADA 1: matriz propuesta, espera aprobación de Sebastian** |
-| lote | – |
-| siguiente paso | Con la matriz aprobada (y las decisiones D1–D5 contestadas): FASE 1, fontanería + piloto `/services/pool-remodeling/gainesville-fl` |
+| fase | **2 — lotes por servicio** (Fase 0 y Fase 1 cerradas) |
+| paso | Lote 0 (piloto `/services/pool-remodeling/gainesville-fl`) → PR → merge → verificacion en produccion |
+| lote siguiente | Lote 1: pool-remodeling North (las 19 restantes con hecho local verificable) |
 | iteraciones sin avanzar | 0 |
-| última iteración | 5-oct-2026, Fase 0, sobre `origin/main` 9824a43 |
-| rama | `claude/hopeful-brown-9anqr6` (solo este fichero) |
+| ultima iteracion | 5-oct-2026, sobre `origin/main` 9824a43 |
+| rama | `claude/hopeful-brown-9anqr6` |
+| modo | AUTOMATICO desde el 5-oct-2026: Sebastian pidio por `/goal` «terminar todo en automatico, tomar las decisiones que mejor convengan al proyecto y desplegar a produccion por partes». Por eso no hay PARADA 1 ni PARADA 2 esperando: las decisiones D1-D5 se tomaron abajo y el piloto sale a produccion como primer lote. |
+
+## Decisiones tomadas (5-oct-2026, en automatico por el `/goal` de Sebastian)
+
+- **D1 — condado.** Se verifica en cada lote con fuente oficial y se anota con URL y fecha SOLO en
+  las filas nuevas (`ciudades-servicios-filas.json > ciudades`). Las 51 filas de pool-builders no
+  se tocan. Dossier por ciudad en `docs/encargos/loop-ciudades/dossier-*.json` (53 lugares).
+- **D2 — fotos.** Se aplican las dos condiciones: paginas <= fotos libres y >= 15 para los huecos.
+  El generador PARA si un servicio declara mas paginas que `fotosLibres`.
+- **D3 — louvered-roofs.** 8 de North + 8 de South, las mayores de cada region: es un producto con
+  mercado en las dos y en Broward la HVHZ es un hecho local real.
+- **D4 — steel-buildings-pole-barns: FUERA entero.** No consta licencia CGC/CBC en el repo y la
+  plantilla promete permisos. Reversible si Sebastian aporta la licencia.
+- **D5 — heroe.** Se conserva el video de fondo: es el reel del sitio (`bg-video`, el mismo de la
+  home y de 65 rutas), no un video de piscina. Cero diseno nuevo.
+- **D6 — seccion 3D.** Igual en todas: «3D Pool Design & Visualization» es una capacidad publicada
+  de la empresa (unico servicio con 3D en las fichas: pool-builders). No se inventa 3D para otros.
+- **D7 — red.** El egress de este contenedor bloquea produccion, las webs oficiales, Sanity y
+  vercel.com. Las fuentes se buscan por WebSearch (fragmentos de dominios oficiales) y NO se puede
+  comprobar que respondan 200: queda dicho en cada lote como NO VERIFICADO. Produccion se verifica
+  por el estado de Vercel en GitHub, no abriendo URLs.
+
+**Matriz resultante: 202 paginas en 6 servicios** (pool-remodeling 32, pergola-builders 53,
+outdoor-kitchens 33, louvered-roofs 16, deck-builders 45, landscaping 23). 7 servicios fuera:
+6 por fotos y steel-buildings por licencia (D4).
 
 ## Punto de partida verificado (5-oct-2026, `origin/main` 9824a43)
 
@@ -129,7 +153,7 @@ for(const s of ["remodeling","enclosures","pergolas","kitchens","louvered","room
      Beach, Hypoluxo, Atlantis, Hillsboro Beach, Ocean Ridge, South Palm Beach, Gulf Stream,
      Manalapan.
 
-## Matriz propuesta (PENDIENTE DE APROBACIÓN)
+## Matriz (decidida el 5-oct-2026, ver «Decisiones tomadas»)
 
 | # | Servicio | Tope (fotos) | **Páginas** | North | South | Motivo / gancho previsto |
 |---|---|---|---|---|---|---|
@@ -137,7 +161,7 @@ for(const s of ["remodeling","enclosures","pergolas","kitchens","louvered","room
 | 2 | pool-screen-enclosures | 1 | **0** | – | – | **EXCLUIDA**: 1 foto, en obra. Menos fotos que páginas y que huecos. |
 | 3 | pergola-builders | 66 | **53** | 20 | 33 | Todas. Gancho: oficina de permisos, viento (HVHZ en Broward) y CCCL en costa. |
 | 4 | outdoor-kitchens | 33 | **33** | 20 | 13 | Gancho: permisos de gas, eléctrico y fontanería; gas natural o LP según la red local. |
-| 5 | louvered-roofs | 16 | **16** | 16 | 0 | 16 ≥ 15, justo. Las 16 mayores de North. Alternativa en D3. |
+| 5 | louvered-roofs | 16 | **16** | 8 | 8 | 16 ≥ 15, justo. Las 8 mayores de cada region (D3). |
 | 6 | patio-screen-rooms | 0 | **0** | – | – | **EXCLUIDA**: 0 fotos. |
 | 7 | deck-builders | 45 | **45** | 20 | 25 | Fuera, como reservas, las 8 South más pequeñas. Gancho: permiso de deck y CCCL. |
 | 8 | landscaping | 23 | **23** | 20 | 3 | Gancho: distrito de agua y ordenanzas de riego y fertilizante. |
@@ -145,9 +169,9 @@ for(const s of ["remodeling","enclosures","pergolas","kitchens","louvered","room
 | 10 | soffit-led-lighting | 0 | **0** | – | – | **EXCLUIDA**: 0 fotos como protagonista. Además no consta licencia eléctrica. |
 | 11 | irrigation-systems | 0 | **0** | – | – | **EXCLUIDA**: 0 fotos reales; las 51 del banco son stock. |
 | 12 | outdoor-furniture | 0 | **0** | – | – | **EXCLUIDA**: 0 fotos como protagonista. Además es producto: no hay permiso ni norma local verdadera que decir. |
-| 13 | steel-buildings-pole-barns | 31 | **23** | 20 | 3 | South solo Davie, Wellington y Southwest Ranches (rural/ecuestre, a verificar). El resto de South queda ✖: no hay hecho agrícola o rural que afirmar. **Condicional a D4.** |
+| 13 | steel-buildings-pole-barns | 31 | **0** | – | – | **EXCLUIDA por D4**: no consta licencia CGC/CBC. |
 
-**Total: 225 páginas en 7 servicios.** 6 servicios excluidos.
+**Total: 202 paginas en 6 servicios** (tras D3/D4). 7 servicios excluidos.
 
 ### Rejilla completa
 
@@ -167,61 +191,63 @@ La ruta nueva sería `/services/<servicio>/<ciudad>-fl`, con el mismo slug que p
 
 | Ciudad (ruta pool-builders) | Reg. | rem | enc | per | kit | lou | roo | dek | lan | scr | led | irr | fur | pol |
 |---|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Gainesville (`gainesville-fl`) | N | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✔ |
-| Ocala (`ocala-fl`) | N | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✔ |
-| Lake City (`lake-city-fl`) | N | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✔ |
-| Palatka (`palatka-fl`) | N | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✔ |
-| Alachua (`alachua-fl`) | N | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✔ |
-| Newberry (`newberry-fl`) | N | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✔ |
-| High Springs (`high-springs-fl`) | N | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✔ |
-| Williston (`williston-fl`) | N | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✔ |
-| Chiefland (`chiefland-fl`) | N | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✔ |
-| Trenton (`trenton-fl`) | N | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✔ |
-| Cross City (`cross-city-fl`) | N | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✔ |
-| Hawthorne (`hawthorne-fl`) | N | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✔ |
-| Archer (`archer-fl`) | N | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✔ |
-| Fanning Springs (`fanning-springs-fl`) | N | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✔ |
-| Waldo (`waldo-fl`) | N | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✔ |
-| Cedar Key (`cedar-key-fl`) | N | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✔ |
-| Micanopy (`micanopy-fl`) | N | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✔ |
-| Reddick (`reddick-fl`) | N | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✔ |
-| McIntosh (`mcintosh-fl`) | N | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✔ |
-| Old Town (`old-town-fl`) | N | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✔ |
-| Fort Lauderdale (`fort-lauderdale-fl`) | S | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✖r |
-| Pembroke Pines (`pembroke-pines-fl`) | S | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✖r |
-| Hollywood (`hollywood-fl`) | S | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✖r |
-| Miramar (`miramar-fl`) | S | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| West Palm Beach (`west-palm-beach-fl`) | S | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| Pompano Beach (`pompano-beach-fl`) | S | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| Davie (`davie-fl`) | S | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✔ |
-| Boca Raton (`boca-raton-fl`) | S | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| Plantation (`plantation-fl`) | S | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| Deerfield Beach (`deerfield-beach-fl`) | S | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| Boynton Beach (`boynton-beach-fl`) | S | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| Delray Beach (`delray-beach-fl`) | S | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| Weston (`weston-fl`) | S | R | ✖f | ✔ | ✔ | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| Wellington (`wellington-fl`) | S | R | ✖f | ✔ | R | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✔ |
-| Jupiter (`jupiter-fl`) | S | R | ✖f | ✔ | R | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| Palm Beach Gardens (`palm-beach-gardens-fl`) | S | R | ✖f | ✔ | R | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| Hallandale Beach (`hallandale-beach-fl`) | S | R | ✖f | ✔ | R | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| Royal Palm Beach (`royal-palm-beach-fl`) | S | R | ✖f | ✔ | R | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| Parkland (`parkland-fl`) | S | R | ✖f | ✔ | R | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| Dania Beach (`dania-beach-fl`) | S | R | ✖f | ✔ | R | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| North Palm Beach (`north-palm-beach-fl`) | S | R | ✖f | ✔ | R | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| Wilton Manors (`wilton-manors-fl`) | S | R | ✖f | ✔ | R | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| Lighthouse Point (`lighthouse-point-fl`) | S | R | ✖f | ✔ | R | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| Southwest Ranches (`southwest-ranches-fl`) | S | R | ✖f | ✔ | R | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✔ |
-| Tequesta (`tequesta-fl`) | S | R | ✖f | ✔ | R | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| Juno Beach (`juno-beach-fl`) | S | R | ✖f | ✔ | R | R | ✖f | R | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| Hypoluxo (`hypoluxo-fl`) | S | R | ✖f | ✔ | R | R | ✖f | R | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| Atlantis (`atlantis-fl`) | S | R | ✖f | ✔ | R | R | ✖f | R | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| Hillsboro Beach (`hillsboro-beach-fl`) | S | R | ✖f | ✔ | R | R | ✖f | R | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| Ocean Ridge (`ocean-ridge-fl`) | S | R | ✖f | ✔ | R | R | ✖f | R | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| South Palm Beach (`south-palm-beach-fl`) | S | R | ✖f | ✔ | R | R | ✖f | R | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| Gulf Stream (`gulf-stream-fl`) | S | R | ✖f | ✔ | R | R | ✖f | R | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| Manalapan (`manalapan-fl`) | S | R | ✖f | ✔ | R | R | ✖f | R | R | ✖f | ✖f | ✖f | ✖f | ✖r |
-| **✔ / R / ✖** | | 32/21/0 | 0/0/53 | 53/0/0 | 33/20/0 | 16/37/0 | 0/0/53 | 45/8/0 | 23/30/0 | 0/0/53 | 0/0/53 | 0/0/53 | 0/0/53 | 23/0/30 |
+| Gainesville (`gainesville-fl`) | N | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Ocala (`ocala-fl`) | N | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Lake City (`lake-city-fl`) | N | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Palatka (`palatka-fl`) | N | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Alachua (`alachua-fl`) | N | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Newberry (`newberry-fl`) | N | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✖l |
+| High Springs (`high-springs-fl`) | N | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Williston (`williston-fl`) | N | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Chiefland (`chiefland-fl`) | N | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Trenton (`trenton-fl`) | N | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Cross City (`cross-city-fl`) | N | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Hawthorne (`hawthorne-fl`) | N | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Archer (`archer-fl`) | N | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Fanning Springs (`fanning-springs-fl`) | N | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Waldo (`waldo-fl`) | N | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Cedar Key (`cedar-key-fl`) | N | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Micanopy (`micanopy-fl`) | N | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Reddick (`reddick-fl`) | N | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✖l |
+| McIntosh (`mcintosh-fl`) | N | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Old Town (`old-town-fl`) | N | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Fort Lauderdale (`fort-lauderdale-fl`) | S | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Pembroke Pines (`pembroke-pines-fl`) | S | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Hollywood (`hollywood-fl`) | S | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | ✔ | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Miramar (`miramar-fl`) | S | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| West Palm Beach (`west-palm-beach-fl`) | S | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Pompano Beach (`pompano-beach-fl`) | S | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Davie (`davie-fl`) | S | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Boca Raton (`boca-raton-fl`) | S | ✔ | ✖f | ✔ | ✔ | ✔ | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Plantation (`plantation-fl`) | S | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Deerfield Beach (`deerfield-beach-fl`) | S | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Boynton Beach (`boynton-beach-fl`) | S | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Delray Beach (`delray-beach-fl`) | S | ✔ | ✖f | ✔ | ✔ | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Weston (`weston-fl`) | S | R | ✖f | ✔ | ✔ | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Wellington (`wellington-fl`) | S | R | ✖f | ✔ | R | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Jupiter (`jupiter-fl`) | S | R | ✖f | ✔ | R | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Palm Beach Gardens (`palm-beach-gardens-fl`) | S | R | ✖f | ✔ | R | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Hallandale Beach (`hallandale-beach-fl`) | S | R | ✖f | ✔ | R | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Royal Palm Beach (`royal-palm-beach-fl`) | S | R | ✖f | ✔ | R | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Parkland (`parkland-fl`) | S | R | ✖f | ✔ | R | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Dania Beach (`dania-beach-fl`) | S | R | ✖f | ✔ | R | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| North Palm Beach (`north-palm-beach-fl`) | S | R | ✖f | ✔ | R | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Wilton Manors (`wilton-manors-fl`) | S | R | ✖f | ✔ | R | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Lighthouse Point (`lighthouse-point-fl`) | S | R | ✖f | ✔ | R | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Southwest Ranches (`southwest-ranches-fl`) | S | R | ✖f | ✔ | R | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Tequesta (`tequesta-fl`) | S | R | ✖f | ✔ | R | R | ✖f | ✔ | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Juno Beach (`juno-beach-fl`) | S | R | ✖f | ✔ | R | R | ✖f | R | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Hypoluxo (`hypoluxo-fl`) | S | R | ✖f | ✔ | R | R | ✖f | R | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Atlantis (`atlantis-fl`) | S | R | ✖f | ✔ | R | R | ✖f | R | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Hillsboro Beach (`hillsboro-beach-fl`) | S | R | ✖f | ✔ | R | R | ✖f | R | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Ocean Ridge (`ocean-ridge-fl`) | S | R | ✖f | ✔ | R | R | ✖f | R | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| South Palm Beach (`south-palm-beach-fl`) | S | R | ✖f | ✔ | R | R | ✖f | R | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Gulf Stream (`gulf-stream-fl`) | S | R | ✖f | ✔ | R | R | ✖f | R | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| Manalapan (`manalapan-fl`) | S | R | ✖f | ✔ | R | R | ✖f | R | R | ✖f | ✖f | ✖f | ✖f | ✖l |
+| **✔ / R / ✖** | | 32/21/0 | 0/0/53 | 53/0/0 | 33/20/0 | 16/37/0 | 0/0/53 | 45/8/0 | 23/30/0 | 0/0/53 | 0/0/53 | 0/0/53 | 0/0/53 | 0/0/53 |
 
+
+✖l = excluida por licencia (D4).
 
 ### Orden de lotes (2 por servicio: North y después South)
 
@@ -231,10 +257,9 @@ La ruta nueva sería `/services/<servicio>/<ciudad>-fl`, con el mismo slug que p
 | 2 | pool-remodeling | 20 | 12 |
 | 3 | pergola-builders | 20 | 33 |
 | 4 | outdoor-kitchens | 20 | 13 |
-| 5 | louvered-roofs | 16 | 0 (o 8 + 8, según D3) |
+| 5 | louvered-roofs | 8 | 8 |
 | 6 | deck-builders | 20 | 25 |
 | 7 | landscaping | 20 | 3 |
-| 8 | steel-buildings-pole-barns | 20 | 3 (si D4) |
 
 ## Decisiones pendientes para la PARADA 1 (con propuesta por defecto)
 
@@ -286,26 +311,83 @@ La ruta nueva sería `/services/<servicio>/<ciudad>-fl`, con el mismo slug que p
 - **Prueba de no regresión**: diff = 0 del HTML construido en 3 ciudades de pool-builders.
   Propuesta: ocala-fl (con `faqExtra`), boca-raton-fl (South) y archer-fl (North sin condado).
 
+## FASE 1 — fontaneria (cerrada el 5-oct-2026)
+
+- `src/components/PaginaCiudad.astro`: el cuerpo de `pool-builders/[slug].astro`, movido sin cambiar
+  una linea de lo que pinta. Lo que cambia por servicio vive en `src/lib/servicios-ciudad.mjs`.
+- `src/pages/services/[servicio]/[ciudad].astro`: la ruta de los demas servicios, desde el repo.
+- `scripts/build-ciudades-servicios.mjs` (`npm run ciudades:servicios`, `--check` dentro de
+  `check:captacion`): de `src/data/ciudades-servicios-filas.json` a `ciudades-servicios.json`, a
+  `captacion-servicios.json`, a `galeria-obra-por-ruta.json` (`servicio:<s>`) y a `usada_en`.
+- Enlazado: `CiudadesServicio.astro` en las 14 fichas, detras de «Where We Serve» (no pinta nada
+  si la ficha no tiene ciudades; regla anadida en `build-paginas.mjs`). La landing enlaza a su
+  ficha, a su condado y a las hermanas de la misma ciudad (linea bajo la FAQ).
+- Sitemap, llms.txt, `rutas-propias.mjs`, `check-medicion.mjs` y `check-texto.mjs` DERIVAN las
+  rutas nuevas de `ciudades-servicios.json` (mismo patron que blog y galerias).
+- `scripts/check-ciudades-servicios.mjs` (`npm run check:ciudades-servicios`): la puerta de las
+  rutas sin referencia (texto declarado, SEO on/tecnico, enlazado, unicidad). Umbral de unicidad:
+  **60 palabras propias** entre dos paginas del mismo servicio (justificado en su cabecera).
+- **Prueba de no regresion: diff del HTML construido = 0** en las 53 de pool-builders (ocala-fl,
+  boca-raton-fl y archer-fl comprobadas una a una) y en las 169 rutas existentes salvo
+  `/services/pool-remodeling` (la linea de ciudades, declarada). Build `MM_SANITY_CACHE=1
+  PUBLIC_ES_PRODUCCION=1` contra el de `main` 9824a43.
+
+## Lote 0 — piloto `/services/pool-remodeling/gainesville-fl` (5-oct-2026)
+
+**Rutas publicadas:** 1. **Excluidas:** ninguna en este lote.
+
+**Puertas** (build `MM_SANITY_CACHE=1 PUBLIC_ES_PRODUCCION=1`, salida literal):
+
+```
+check:tokens                 exit 0  PUERTA VERDE
+check:rutas                  exit 0  PUERTA VERDE
+check:enlaces                exit 0  PUERTA VERDE
+check:seo                    exit 0  PUERTA VERDE
+check:captacion              exit 0  PUERTA VERDE
+check:estructura:ciudades    exit 0  PUERTA VERDE — dos formas y solo dos
+check:medicion               exit 0  PUERTA VERDE
+check:ciudades-servicios     exit 0  PUERTA VERDE
+check:redirects              exit 0  PUERTA VERDE
+check:estructura             exit 0  PUERTA VERDE — 14 fichas, un solo orden (+ 2 variante(s) declarada(s))
+check:galeria-obra           exit 0  PUERTA VERDE — un set, las 53 ciudades, obra real trazada
+check:identidad              exit 0  PUERTA VERDE
+check:ads                    exit 0  PUERTA VERDE
+check:menu                   exit 0  PUERTA VERDE
+check:galeria                exit 0  PUERTA VERDE
+```
+
+- `check-texto '=/services/pool-remodeling'`: `1 identicas · 0 en rojo (1/1 rutas medidas)` (la
+  linea nueva, declarada en `LINEAS_ANADIDAS`).
+- `check-texto` sobre `gainesville-fl` y `archer-fl` de pool-builders: ROJO «linea 19: orden
+  cambiado» en las dos. **PREEXISTENTE**: su HTML es identico byte a byte al de `main` 9824a43
+  (viene del reordenado ORDEN-CIUDADES #46). No es de este lote.
+- `check-visual` (4 anchos) sobre la ficha y las 2 ciudades: ROJO en las tres, **PREEXISTENTE**.
+  Medido con un build de `main` en worktree aparte: la ficha ya daba -21/-14/+105/+5 px; con el
+  lote, -12/-5/+112/+12 (la linea de ciudades, +7..+9 px). Las ciudades, identicas a `main`.
+  Re-baselinizar es de Sebastian.
+- **La ruta nueva NO tiene referencia**: `check-texto`/`check-visual` se la saltan (0/0 medidas) y
+  eso NO es verde. La cubre `check:ciudades-servicios` (texto declarado: 32 piezas presentes).
+- **Revision independiente:** 1a pasada RECHAZADA (2 afirmaciones de la FAQ local mas anchas que
+  su fuente: atribuia el formulario de la Safety Act a la ciudad y decia que una reforma se revisa
+  contra checklists de piscina nueva). Corregido. 2a pasada APROBADA.
+- **NO verificado:** que las 2 `fuentes[].url` respondan 200 (egress bloqueado, D7); son las mismas
+  URLs que ya publica `/services/pool-builders/gainesville-fl`.
+
+**Fotos consumidas (pool-remodeling):** 15 del banco (intro bi-0614/bi-0519/bi-0617, inversion
+bi-0616, galeria bi-0072/0547/0515/0664/0665/0071/0528/0530/0090/0679/0613). Libres que cuenta el
+tope: 32 (el tope es por pagina y las fotos se comparten entre las ciudades del servicio, como en
+pool-builders). Ninguna presentada como hecha en la ciudad.
+
 ## Rutas hechas
 
-Ninguna.
+| Ruta | Lote | PR | Produccion |
+|---|---|---|---|
+| /services/pool-remodeling/gainesville-fl | 0 | (pendiente) | (pendiente) |
 
-## PR abiertos
+## Bloqueos y avisos
 
-Ninguno.
-
-## Puertas corridas
-
-| Fecha | Puerta | Salida |
-|---|---|---|
-| 5-oct-2026 | `npm run check:tokens` | `ok   la capa pesa 92.7 KB de 167 KB — 74.4 KB libres` · `PUERTA VERDE` |
-
-Fase 0 no escribe páginas ni construye. Ninguna puerta de ruta corrió y no hay nada que medir;
-**eso no es verde, es «no aplica»**.
-
-## Bloqueos
-
-- La memoria «worktree-fuera-de-tmp» (los tres symlinks del worktree) **no existe en este
-  contenedor cloud**: `~/.claude/projects/.../memory` no está. Para la Fase 1 hace falta su
-  contenido, o confirmar que basta con trabajar en la rama asignada a la sesión.
-- La Fase 1 no empieza sin la aprobación de esta matriz (PARADA 1).
+- Egress (D7): sin red a produccion ni a fuentes oficiales desde el contenedor.
+- `npm run check:*` con navegador necesita `PLAYWRIGHT_BROWSERS_PATH` apuntando a un alias de
+  chromium 1194 como 1234 (el contenedor trae 1194 y el repo pide 1234) y `xvfb-run` para
+  `check-texto`/`check-visual` (`headless:false`).
+- La memoria «worktree-fuera-de-tmp» no existe en este contenedor; se trabaja en la rama asignada.
