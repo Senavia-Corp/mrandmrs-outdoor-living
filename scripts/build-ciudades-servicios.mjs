@@ -60,10 +60,45 @@ const rutaDe = (servicio, slug) => `/services/${servicio}/${slug.replace(/-flori
  * ahi ya esta publicado en `/services/<servicio>` y tiene su fuente en R17-CORE §8.6 / R19.
  * `c` es la ciudad: { ciudad, condado|null, region }.
  */
+/** Region -> condado en el copy: «<ciudad> And <condado> County» solo con condado verificado. */
+const enCiudad = (c) => (c.condado ? `${c.ciudad} And ${c.condado} County` : `${c.ciudad}, Florida`);
+
+/**
+ * FABRICA DE PLANTILLAS para los servicios cuyas fichas NO tienen `faq.anade` (todas menos
+ * pool-remodeling). Cada campo dice de donde sale:
+ *   · `apoyo`/`descripcion`: el `heroe.apoyo` de la ficha con la ciudad en vez de «North & South Florida»;
+ *   · `intro`: el parrafo de `trusted-section` de la ficha, igual, con la ciudad;
+ *   · `faq`: el coste es la `inversion.texto` de la ficha; las otras dos son preguntas de la FAQ
+ *     PUBLICADA de la ficha, palabra por palabra, elegidas entre las que no tienen cifra, plazo,
+ *     garantia ni porcentaje (las que si los tienen se quedan fuera: linea roja);
+ *   · `local.cierre`: la tarjeta 4 de `confianza` de la ficha (o su FAQ), palabra por palabra.
+ */
+const fabrica = (o) => ({
+  nombre: o.nombre,
+  tema: o.tema,
+  titulo: (c) => `${o.nombreSeo} in ${c.ciudad}, FL | Mr & Mrs Outdoor Living`,
+  descripcion: (c) => o.descripcion(c),
+  h1: (c) => `${o.h1} In ${c.ciudad}, Florida`,
+  h2: (c) => `${o.h2} For Homes In ${enCiudad(c)}`,
+  apoyo: (c) => o.apoyo(c),
+  headingIntro: (c) => `${o.headingIntro} In ${c.ciudad}`,
+  paragraphIntro: (c) => `${o.intro(c)} From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value.`,
+  paragraphReviews: () => o.resenas,
+  paragraphBlog: (c) => `Explore tips and insights on ${o.blog} and outdoor living for ${c.ciudad}, FL homeowners.`,
+  formulario: (c) => ({ nombre: `${c.ciudad} ${o.form}`, aviso: `${c.ciudad} ${o.form.replace(/ Form$/, '').toLowerCase()} lead` }),
+  faqTitulo: (c) => `${c.ciudad} ${o.blog} FAQs`,
+  faqEntradilla: (c) => `Cost, permits and the details worth settling before you start ${o.articulo} in ${c.condado ? `${c.condado} County` : c.ciudad}.`,
+  faqBase: (c, F) => [
+    { pregunta: `How much does ${o.coste} cost in ${c.ciudad}?`, respuesta: F.inversion.texto },
+    ...o.faqFicha,
+  ],
+  local: { pregunta: o.pregunta, cierre: o.cierre },
+});
+
 const PLANTILLAS = {
   'pool-remodeling': {
     nombre: 'Pool Remodeling',
-    schema: 'Pool remodeling and renovation',
+    tema: 'piscina',
     // seo.title / H1: el H1 de la ficha es «Pool Remodeling & Renovation Services».
     titulo: (c) => `Pool Remodeling in ${c.ciudad}, FL | Mr & Mrs Outdoor Living`,
     // La descripcion es el `heroe.apoyo` de la ficha con la ciudad: «resurfacing, tile and
@@ -90,8 +125,93 @@ const PLANTILLAS = {
       { pregunta: `Does a pool remodel in ${c.ciudad} need a permit?`, respuesta: F.faq.anade[1].respuesta },
       { pregunta: F.faq.anade[2].pregunta, respuesta: F.faq.anade[2].respuesta },
     ],
-    carrusel: null,
+    // LA PREGUNTA LOCAL: el parrafo de la ciudad (`ciudades.<slug>.local`, con fuente oficial y
+    // fecha) + el `extra` del tema + este cierre, que es la FAQ 2 de la ficha.
+    local: {
+      pregunta: (c) => `Which office permits a pool remodel in ${c.ciudad}?`,
+      cierre: 'Remodel work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code, so we confirm which office has jurisdiction before demolition and pull the permit under our license.',
+    },
   },
+  'pergola-builders': fabrica({
+    nombre: 'Pergola Builders', nombreSeo: 'Pergola Builders', tema: 'estructura',
+    descripcion: (c) => `Custom aluminum pergola builders in ${c.ciudad}, FL: durable pergolas that enhance outdoor comfort and style, designed, permitted and installed by one licensed Florida team.`,
+    h1: 'Custom Aluminum Pergola Builders', h2: 'Aluminum Pergolas Designed And Installed',
+    apoyo: (c) => `Custom pergola builders and installation company serving ${c.ciudad} homeowners, delivering durable designs that enhance outdoor comfort and style.`,
+    headingIntro: 'Custom Pergola Builders',
+    intro: (c) => `Our pergola builders design and install custom aluminum pergolas for ${c.ciudad} homes, combining expert craftsmanship, durable materials, and stylish shade solutions that elevate outdoor living spaces year-round.`,
+    resenas: 'Florida homeowners trust us with their pergolas and outdoor living. Read our reviews.',
+    blog: 'pergola', articulo: 'a pergola', coste: 'a pergola', form: 'Aluminum Pergola Form',
+    faqFicha: [
+      { pregunta: 'Are aluminum pergolas rust-proof for Florida outdoor use?', respuesta: "Yes. Powder-coated aluminum pergolas resist rust, corrosion, and UV damage — making them ideal for Florida's humid, salt-air coastal environments and sun-intense inland climates. Licensed under aluminum contractor license SCC131153553, Mr. & Mrs. Outdoor Living engineers every structure to local wind-load specifications." },
+      { pregunta: 'Are permits required for outdoor projects in Florida?', respuesta: 'Our pergola builders manage the complete permit process and ensure every installation meets Florida building codes and HOA or ARB design requirements. Licensed under SCC131153553, Mr. & Mrs. Outdoor Living coordinates all inspections and approvals — so your project proceeds without delays and is structurally certified upon completion.' },
+    ],
+    pregunta: (c) => `Who reviews a pergola permit in ${c.ciudad}?`,
+    cierre: 'We manage the permits and the HOA or ARB review, and coordinate inspections.',
+  }),
+  'louvered-roofs': fabrica({
+    nombre: 'Louvered Roofs', nombreSeo: 'Louvered Roofs', tema: 'estructura',
+    descripcion: (c) => `Motorized louvered roof installation in ${c.ciudad}, FL: adjustable shade and weather protection, sized, permitted and installed by one licensed Florida team.`,
+    h1: 'Motorized Louvered Roof Systems', h2: 'Louvered Roofs Sized, Permitted And Installed',
+    apoyo: (c) => `Motorized louvered roof builders and installation contractors serving ${c.ciudad}, offering adjustable shade and weather protection.`,
+    headingIntro: 'Louvered Roof Installation',
+    intro: (c) => `We specialize in louvered roof installation for ${c.ciudad} homes, building motorized bioclimatic systems that allow homeowners to fully control sunlight, ventilation, and rain protection for true year-round outdoor comfort.`,
+    resenas: 'Florida homeowners trust us with their louvered roofs and outdoor living. Read our reviews.',
+    blog: 'louvered roof', articulo: 'a louvered roof', coste: 'a louvered roof', form: 'Louvered Roof Form',
+    faqFicha: [
+      { pregunta: 'Are louvered roof systems hurricane-rated in Florida?', respuesta: "Yes. Louvered roof systems use reinforced extruded aluminum and marine-grade stainless steel hardware, engineered to withstand Florida's high winds. Our systems carry wind-load engineering documentation and are installed to meet local building codes — including HVHZ requirements where applicable in South Florida." },
+      { pregunta: 'Can lighting and fans be added to a louvered roof?', respuesta: 'Yes. Motorized louvered roof systems can integrate recessed LED lighting, ceiling fans, and radiant heating elements directly into the structure. Electrical work is coordinated during installation, and all additions are permitted through local Florida building departments and HOA architectural review boards where required.' },
+    ],
+    pregunta: (c) => `Which office permits a louvered roof in ${c.ciudad}?`,
+    cierre: 'We install to local building codes, and the electrical additions are permitted too.',
+  }),
+  'deck-builders': fabrica({
+    nombre: 'Deck Builders', nombreSeo: 'Deck Builders', tema: 'deck',
+    descripcion: (c) => `Custom deck builders in ${c.ciudad}, FL: composite, wood, travertine and paver decks designed, permitted and built by one licensed Florida team.`,
+    h1: 'Custom Deck Builders', h2: 'Decks Designed, Permitted And Built',
+    apoyo: (c) => `Professional deck builders and installation contractors serving ${c.ciudad} with durable, stylish outdoor deck solutions.`,
+    headingIntro: 'Custom Deck Builders & Contractors',
+    intro: (c) => `Our deck builders design and construct composite and wood decks for ${c.ciudad} homes, delivering long-lasting outdoor structures tailored to your home's layout, lifestyle, and Florida's demanding climate.`,
+    resenas: 'Florida homeowners trust us with their decks and outdoor living. Read our reviews.',
+    blog: 'deck', articulo: 'a deck', coste: 'a deck', form: 'Custom Deck Form',
+    faqFicha: [
+      { pregunta: 'Which decking materials are best for Florida homes?', respuesta: "We use composite decking, pressure-treated lumber, and fiberglass-reinforced boards engineered for long-lasting performance in Florida's heat, humidity, and seasonal rain. These materials resist warping, rot, and pest damage — delivering a surface that maintains its appearance and structural integrity across North and South Florida climates." },
+      { pregunta: 'Can you match my home’s existing design style?', respuesta: "Yes. Our deck builders fully customize shapes, levels, railing styles, and surface finishes to complement your home's architecture. From straight-line pool decks in travertine or pavers to multi-level composite platforms with built-in lighting, every deck integrates seamlessly with your Florida outdoor living environment." },
+    ],
+    pregunta: (c) => `Who permits a new deck in ${c.ciudad}?`,
+    cierre: 'One team takes the design through permits, engineering and construction.',
+  }),
+  'outdoor-kitchens': fabrica({
+    nombre: 'Outdoor Kitchens', nombreSeo: 'Outdoor Kitchens', tema: 'cocina',
+    descripcion: (c) => `Custom outdoor kitchens in ${c.ciudad}, FL: layouts for entertaining and daily use, with outdoor-rated appliances and utilities, designed, permitted and built by one licensed team.`,
+    h1: 'Custom Outdoor Kitchens', h2: 'Outdoor Kitchens Designed, Permitted And Built',
+    apoyo: (c) => `Outdoor kitchen builders and installation contractors serving ${c.ciudad} with custom layouts for entertaining and daily use.`,
+    headingIntro: 'Outdoor Kitchen Builders & Contractors',
+    intro: (c) => `Our outdoor kitchen contractors design and build custom outdoor kitchens for ${c.ciudad} homes, integrating durable materials, modern appliances, and functional layouts for effortless entertaining.`,
+    resenas: 'Florida homeowners trust us with their outdoor kitchens and outdoor living. Read our reviews.',
+    blog: 'outdoor kitchen', articulo: 'an outdoor kitchen', coste: 'an outdoor kitchen', form: 'Outdoor Kitchen Form',
+    faqFicha: [
+      { pregunta: 'What materials are best for outdoor kitchens in Florida?', respuesta: "We install outdoor kitchens using weatherproof polymer cabinets, marine-grade stainless steel hardware, and natural stone countertops — all selected for resistance to Florida's heat, humidity, and coastal salt air. Every material choice is engineered to maintain its appearance and structural integrity over the long term." },
+      { pregunta: 'Can I add a bar, pizza oven, or smoker to my kitchen?', respuesta: 'Absolutely. Custom outdoor kitchens can be designed around any combination of cooking equipment including built-in bars, pizza ovens, smokers, kamado grills, and beverage refrigerators. Each specialty appliance is engineered into the layout with proper utility routing, ventilation, and structural support to meet Florida building code requirements.' },
+    ],
+    pregunta: (c) => `Which office permits an outdoor kitchen in ${c.ciudad}?`,
+    cierre: 'We manage the full permitting process, including HOA and ARB submissions.',
+  }),
+  landscaping: fabrica({
+    nombre: 'Landscaping', nombreSeo: 'Landscaping', tema: 'paisajismo',
+    descripcion: (c) => `Landscaping in ${c.ciudad}, FL: landscape design and installation with native plants and drainage sorted first, from one licensed Florida outdoor living team.`,
+    h1: 'Professional Landscaping Services', h2: 'Landscape Design And Installation',
+    apoyo: (c) => `Landscaping design and installation company serving ${c.ciudad}, providing complete outdoor solutions that improve curb appeal.`,
+    headingIntro: 'Professional Landscaping Contractors',
+    intro: (c) => `Our landscaping company offers full-service landscape design, installation, and maintenance for ${c.ciudad} homes, using native plants and sustainable practices to enhance curb appeal and property value.`,
+    resenas: 'Florida homeowners trust us with their landscaping and outdoor living. Read our reviews.',
+    blog: 'landscaping', articulo: 'a landscaping project', coste: 'landscaping', form: 'Landscaping Form',
+    faqFicha: [
+      { pregunta: 'Do landscaping contractors use native Florida plants?', respuesta: 'Yes. Our landscaping contractors prioritize native and Florida-Friendly plant selections that require less irrigation, resist local pests, and thrive without heavy chemical inputs. This approach delivers landscapes that look beautiful year-round while meaningfully reducing your long-term water consumption and maintenance requirements.' },
+      { pregunta: 'Can landscaping help reduce water usage in Florida?', respuesta: 'Yes. Landscapes designed with drought-tolerant native plants, strategic mulching, and smart irrigation significantly reduce water consumption. Our team creates designs that meet local water restriction guidelines while maintaining a lush, well-maintained appearance year-round for homeowners across North and South Florida.' },
+    ],
+    pregunta: (c) => `What local rules apply to landscaping work in ${c.ciudad}?`,
+    cierre: 'Our team creates designs that meet local water restriction guidelines.',
+  }),
 };
 
 /* ── EJECUCION ──────────────────────────────────────────────────────────────────────────────── */
@@ -166,6 +286,21 @@ for (const [servicio, cfg] of Object.entries(FILAS.servicios)) {
     const c = FILAS.ciudades[p.ciudad] ?? falla(`${servicio}: la ciudad «${p.ciudad}» no tiene fila en ciudades`);
     if (c.condado && !CONDADOS.includes(c.condado)) falla(`${p.ciudad}: condado «${c.condado}» fuera de los 9 de negocio.mjs`);
     if (c.condado && !c.condadoFuente?.url) falla(`${p.ciudad}: condado sin fuente oficial`);
+    /* La FAQ local se escribe entera en la pagina (`faqLocal`) o se compone: parrafo de la ciudad
+     * + `extra` de la pagina + cierre del servicio. Sin parrafo verificado no hay pagina. */
+    if (!p.faqLocal) {
+      if (!c.local?.texto) falla(`${servicio} ${p.ciudad}: la ciudad no tiene parrafo local verificado: no hay pagina`);
+      const extra = c.extras?.[T.tema];
+      const regional = c.condado ? FILAS.regional?.[c.condado]?.[T.tema] : null;
+      const piezas = [c.local, extra, regional].filter(Boolean);
+      const fuentes = piezas.flatMap((x) => x.fuentes);
+      p.faqLocal = [{
+        pregunta: T.local.pregunta(c),
+        respuesta: [...piezas.map((x) => x.texto), T.local.cierre].join(' '),
+        fuentes: fuentes.filter((f, i) => fuentes.findIndex((g) => g.url === f.url) === i),
+        comprobado: piezas.map((x) => x.comprobado).sort()[0],
+      }];
+    }
     if (!p.faqLocal?.length) falla(`${servicio} ${p.ciudad}: sin hecho local verificado no hay pagina`);
     for (const q of p.faqLocal) {
       if (!q.fuentes?.length || q.fuentes.some((f) => !/^https:\/\//.test(f.url))) falla(`${servicio} ${p.ciudad}: «${q.pregunta}» sin fuente https`);

@@ -46,6 +46,36 @@ export const SERVICIOS_CIUDAD = {
       entradilla: 'Selected pool and outdoor living projects from our Florida portfolio, to inspire your design.',
     },
   },
+  'pergola-builders': {
+    clave: 'pergola-builders', nombre: 'Pergola Builders', porCiudad: 'Pergola builders by city',
+    schema: { nombre: (ciudad) => `Aluminum pergola design and installation in ${ciudad}, FL`, tipo: 'Aluminum pergola design and installation' },
+    categoria: 'patio-cover', galeria: 'servicio:pergola-builders',
+    carrusel: { titulo: 'Featured Pool & Outdoor Living Projects', entradilla: 'Selected pool and outdoor living projects from our Florida portfolio, to inspire your design.' },
+  },
+  'louvered-roofs': {
+    clave: 'louvered-roofs', nombre: 'Louvered Roofs', porCiudad: 'Louvered roofs by city',
+    schema: { nombre: (ciudad) => `Motorized louvered roof installation in ${ciudad}, FL`, tipo: 'Motorized louvered roof installation' },
+    categoria: 'patio-cover', galeria: 'servicio:louvered-roofs',
+    carrusel: { titulo: 'Featured Pool & Outdoor Living Projects', entradilla: 'Selected pool and outdoor living projects from our Florida portfolio, to inspire your design.' },
+  },
+  'deck-builders': {
+    clave: 'deck-builders', nombre: 'Deck Builders', porCiudad: 'Deck builders by city',
+    schema: { nombre: (ciudad) => `Custom deck design and construction in ${ciudad}, FL`, tipo: 'Custom deck design and construction' },
+    categoria: 'outdoor-living', galeria: 'servicio:deck-builders',
+    carrusel: { titulo: 'Featured Pool & Outdoor Living Projects', entradilla: 'Selected pool and outdoor living projects from our Florida portfolio, to inspire your design.' },
+  },
+  'outdoor-kitchens': {
+    clave: 'outdoor-kitchens', nombre: 'Outdoor Kitchens', porCiudad: 'Outdoor kitchens by city',
+    schema: { nombre: (ciudad) => `Custom outdoor kitchen design and construction in ${ciudad}, FL`, tipo: 'Outdoor kitchen design and construction' },
+    categoria: 'outdoor-living', galeria: 'servicio:outdoor-kitchens',
+    carrusel: { titulo: 'Featured Pool & Outdoor Living Projects', entradilla: 'Selected pool and outdoor living projects from our Florida portfolio, to inspire your design.' },
+  },
+  landscaping: {
+    clave: 'landscaping', nombre: 'Landscaping', porCiudad: 'Landscaping by city',
+    schema: { nombre: (ciudad) => `Landscape design and installation in ${ciudad}, FL`, tipo: 'Landscape design and installation' },
+    categoria: 'outdoor-living', galeria: 'servicio:landscaping',
+    carrusel: { titulo: 'Featured Pool & Outdoor Living Projects', entradilla: 'Selected pool and outdoor living projects from our Florida portfolio, to inspire your design.' },
+  },
 };
 
 /**
