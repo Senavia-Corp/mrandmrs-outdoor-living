@@ -441,6 +441,12 @@
    * dentro de los 45-75 que pide una linea legible. */
   --mm-ancho:  1250px;
   --mm-medida:  650px;
+  /* La lista de preguntas de `.faq-section` en una columna (FAQ-UNA-COLUMNA, concedido por
+   * Sebastian el 5-oct-2026). Ni 1250, que deja cada fila en una tira de punta a punta, ni 650,
+   * que parte en dos las preguntas largas: la columna de preguntas que Sebastian aprobo en
+   * FAQ-COLLAGE medía 790,7 px a 1440 sin una sola pregunta partida, y 840 la conserva con
+   * aire. Menos el `1em` de Webflow a cada lado, la tarjeta queda en 808. */
+  --mm-ancho-faq: 840px;
   --mm-canal:  var(--mm-e-24);   /* aire lateral del contenedor en movil */
 
   /* ── LOS CUATRO QUE PIDIERON LOS FRENTES, 2-sep-2026 ─────────────────────
