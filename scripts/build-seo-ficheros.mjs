@@ -128,7 +128,17 @@ const ADICIONES_GALERIA = (() => {
   return JSON.parse(fs.readFileSync(f, 'utf8')).categorias.map((c) => `${SITIO}/gallery/${c.slug}`);
 })();
 
-const locs = [...delOrigen, ...ADICIONES.map(([u]) => u), ...ADICIONES_BLOG.map(([u]) => u), ...ADICIONES_GALERIA];
+/** Y LAS LANDINGS DE CIUDAD DE LOS DEMAS SERVICIOS (LOOP-CIUDADES), derivadas de
+ *  `src/data/ciudades-servicios.json`, el mismo fichero del que salen sus rutas propias. */
+const PAGINAS_CIUDAD_SERVICIO = (() => {
+  const f = path.join(RAIZ, 'src/data/ciudades-servicios.json');
+  if (!fs.existsSync(f)) return {};
+  return JSON.parse(fs.readFileSync(f, 'utf8')).paginas;
+})();
+const ADICIONES_CIUDAD_SERVICIO = Object.keys(PAGINAS_CIUDAD_SERVICIO).map((r) => `${SITIO}${r}`);
+
+const locs = [...delOrigen, ...ADICIONES.map(([u]) => u), ...ADICIONES_BLOG.map(([u]) => u), ...ADICIONES_GALERIA,
+  ...ADICIONES_CIUDAD_SERVICIO];
 
 /**
  * SITEMAP DE IMAGENES, SOLO DONDE TODA LA FOTO DE DATOS ES OBRA REAL (R24-FOTO-PISCINAS, 1-oct-2026).
@@ -257,6 +267,12 @@ const llms = PROD ? (() => {
     ...condados.map((r) => linea(r)),
     `- City pages (${Object.keys(base).filter(esCiudad).length}) are linked from ${SITIO}/where-we-serve`,
     '',
+    ...(Object.keys(PAGINAS_CIUDAD_SERVICIO).length ? [
+      `## Services by city (${Object.keys(PAGINAS_CIUDAD_SERVICIO).length})`,
+      ...Object.entries(PAGINAS_CIUDAD_SERVICIO).sort(([a], [b]) => a.localeCompare(b))
+        .map(([r, p]) => linea(r, p.doc.seo.title, p.doc.seo.description)),
+      '',
+    ] : []),
     `## Guides and articles (${guias.length})`,
     linea('/blogs-tips'),
     ...guias,

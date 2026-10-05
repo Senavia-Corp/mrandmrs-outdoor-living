@@ -28,6 +28,7 @@ import { tramosMiga } from '../src/lib/miga-tramos.mjs';
 import { AREAS_PIE, ORDEN_SERVICIOS_PIE, COPYRIGHT_ORIGEN, copyright } from '../src/lib/pie.mjs';
 import { lineasTarjetas, lineasBanda, lineasSrBanda } from '../src/lib/galeria-categorias.mjs';
 import { OCULTAS, lineasFiltro } from '../src/lib/filtro-proyectos.mjs';
+import { ciudadesDeFicha } from '../src/lib/servicios-ciudad.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 
@@ -1110,7 +1111,18 @@ const INDICE_BLOG = (() => {
   return entradas;
 })();
 
+/* LOOP-CIUDADES (5-oct-2026): la linea «<Servicio> by city: …» que `CiudadesServicio.astro` pinta en
+ * la ficha detras de «Where We Serve». Derivada de la MISMA funcion que la pinta (`ciudadesDeFicha`)
+ * y del mismo JSON, asi que cada ciudad nueva la mueve sola y una errata la pone roja. */
+const PAGINAS_CIUDAD_SERVICIO = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/ciudades-servicios.json'), 'utf8')).paginas;
+const LINEAS_CIUDADES_FICHA = [...new Set(Object.keys(PAGINAS_CIUDAD_SERVICIO).map((r) => r.split('/').slice(0, 3).join('/')))]
+  .map((ficha) => ({ ficha, l: ciudadesDeFicha(ficha, PAGINAS_CIUDAD_SERVICIO) }))
+  .filter(({ l }) => l)
+  .map(({ ficha, l }) => ({ rutas: [ficha], tras: ['View South Florida Service Areas'], lineas: [l.linea],
+    motivo: 'LOOP-CIUDADES: la ficha enlaza a sus landings de ciudad, detras de «Where We Serve»' }));
+
 const LINEAS_ANADIDAS = [
+  ...LINEAS_CIUDADES_FICHA,
   /* SEO-REMEDIACION (4-oct-2026): los cualificadores opcionales de `/request-estimated`, leidos
    * del mismo JSON que los inserta (`src/data/textos-propios.json`). */
   ...Object.entries(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/textos-propios.json'), 'utf8')))
