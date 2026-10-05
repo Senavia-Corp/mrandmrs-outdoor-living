@@ -55,6 +55,9 @@ anchos, como se esperaba: defiende la captura vieja.
 **Sin verificar:** `check:ix2` con navegador y `check:cascaron` (puerta de fase; solo la pre-puerta estática de
 huérfanas), `check:visual` en las otras 52 rutas, contraste en hover (zoom 1,05; margen mínimo 0,75 sobre 4,5).
 
+**Commit, push, PR y merge a `main`:** autorizados por Sebastian («despliega a produccion al terminar»), por encima del
+«no despliegues» del encargo original. Sale por la integración Git de Vercel. Sin re-baselinizar: eso sigue siendo suyo.
+
 **RIESGO A OTRAS:** las 55 rutas de la banda quedan ROJAS en `check:visual` hasta re-baselinizarlas
 (`aprobar-diseno.mjs`, de Sebastian). Ninguna otra ruta lleva clases `mm-gal-*` ni la sección.
 
