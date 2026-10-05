@@ -1,0 +1,109 @@
+{
+  "comprobado": "2026-10-05",
+  "nota_general": "WebSearch session budget (200 calls) ran out after 10 searches in this round, so most places have no facts. Evidence is the search tool's summary of official-domain results, not raw page text. Facts with a 'nota' field have uncertain attribution to one exact URL.",
+  "lugares": {
+    "Fort Lauderdale": [
+      {
+        "tema": "piscina",
+        "hecho": "The City's Pool and Spa Permit Checklist (Development Services Department, Building Division) requires two completed Pool Barrier Affidavits (Residential Swimming Pool, Spa and Hot Tub Safety Act Notice of Requirements).",
+        "url": "https://www.fortlauderdale.gov/Home/ShowDocument?id=1464",
+        "evidencia": "The residential swimming pool permit checklist requires 2 completed Pool Barrier Affidavits (Residential Swimming Pool, Spa and Hot Tub Safety Act Notice of Requirements). ... the Pool and Spa Permit Checklist is document ID PSPC from the Development Services Department – Building Division, and pool permits must comply with the pool safety barrier act."
+      },
+      {
+        "tema": "arboles",
+        "hecho": "No permit is required to prune a tree in Fort Lauderdale, but pruning must follow accepted national standards such as ANSI A-300 (Part 1) and City code.",
+        "url": "https://www.fortlauderdale.gov/government/departments-i-z/public-works/sustainability-division/sustainability-climate-resilience/urban-forestry/tree-pruning",
+        "evidencia": "permits are not required to prune a tree in Fort Lauderdale, though tree pruning must be performed in accordance with acceptable national tree pruning standards such as ANSI A-300 (part 1) and City code."
+      },
+      {
+        "tema": "arboles",
+        "hecho": "Tree removal and landscaping permits are issued by the Development Services Department - Building Services, under the City's Landscape and Tree Preservation Ordinance.",
+        "url": "https://www.fortlauderdale.gov/government/departments-i-z/public-works/sustainability-division/sustainability-climate-resilience/urban-forestry",
+        "evidencia": "The Development Services Department - Building Services is responsible for issuing tree removal and landscaping permits in Fort Lauderdale. Information about landscape and tree preservation, and guidelines for permitting, installation, maintenance, removal and more can be found in the City of Fort Lauderdale's Landscape and Tree Preservation Ordinance.",
+        "nota": "Summary drew on the Urban Forestry pages; the exact sub-page was not isolated."
+      },
+      {
+        "tema": "riego",
+        "hecho": "Lawn watering is limited to Thursdays and Sundays for even addresses and Wednesdays and Saturdays for odd addresses, between 3-9 a.m. or 4-9 p.m.",
+        "url": "https://www.fortlauderdale.gov/Home/Components/News/News/6026/16",
+        "evidencia": "Even home addresses: Water on Thursdays and Sundays. Odd home addresses: Water on Wednesdays and Saturdays. Water between 3 a.m. to 9 a.m. or 4 p.m. to 9 p.m. During May-September, rotating heads are limited to 60 minutes per zone and fixed heads to 30 minutes per zone. From October-April, rotating heads are limited to 40 minutes per zone and fixed heads to 20 minutes per zone.",
+        "nota": "Summary combined several fortlauderdale.gov lawn-care pages ('Just Two Days to a Greener Lawn', Summer/Fall 2026 Lawn Care Guides); the exact page carrying these numbers was not isolated. Re-verify before publishing."
+      },
+      {
+        "tema": "paisajismo",
+        "hecho": "Fort Lauderdale prohibits fertilizers containing nitrogen and/or phosphorus during the rainy season, June 1 through September 30.",
+        "url": "https://www.fortlauderdale.gov/Home/Components/News/News/5834/",
+        "evidencia": "Did you know the City of Fort Lauderdale prohibits fertilizing in the summer? ... The use of fertilizers containing nitrogen and/or phosphorus is prohibited during the rainy season from June 1 through September 30."
+      }
+    ],
+    "Pembroke Pines": [
+      {
+        "tema": "estructura",
+        "hecho": "The City's Trellis/Gazebo/Pergola permit checklist lists Building, Electrical (if applicable), Engineering and Zoning plan reviews.",
+        "url": "https://www.ppines.com/DocumentCenter/View/26293/Trellis--Gazebo--Pergola-Permit-Type-Checklist",
+        "evidencia": "For trellis, gazebo, and pergola projects in Pembroke Pines, the required plan reviews include Building, Electrical (if applicable), Engineering, and Zoning."
+      },
+      {
+        "tema": "estructura",
+        "hecho": "For trellis, gazebo and pergola permits, submitting the Notice of Commencement in advance is preferred but not required, so the first inspection request is not held up.",
+        "url": "https://www.ppines.com/DocumentCenter/View/26293/Trellis--Gazebo--Pergola-Permit-Type-Checklist",
+        "evidencia": "It is preferred, but not required, to submit the Notice of Commencement (NOC) in advance to not hold up the first inspection request."
+      }
+    ],
+    "Hollywood": [],
+    "Miramar": [
+      {
+        "tema": "piscina",
+        "hecho": "Miramar's swimming pool/spa permit package requires Planning & Zoning, Engineering, Plumbing, Electrical and Structural/Building plan reviews, and other agency approvals may apply depending on scope.",
+        "url": "https://miramarfl.gov/files/assets/public/v/2/buildingplanningzoning/documents/application-and-forms/swimming-pool-spa-package.pdf",
+        "evidencia": "The following plan reviews are required: Planning & Zoning, Engineering, Plumbing, Electrical, and Structural/Building. Other agency approvals may be required based on the scope of work."
+      },
+      {
+        "tema": "piscina",
+        "hecho": "Required pool inspections include Clearing & Grubbing and Drainage & Grading (both with engineering inspection), pool/spa steel, patio/deck/slab, pool bond, underground rough, equipotential bonding, main drain, pool/spa piping, final electrical, final plumbing and final building.",
+        "url": "https://miramarfl.gov/files/assets/public/v/2/buildingplanningzoning/documents/application-and-forms/swimming-pool-required-inspections.pdf",
+        "evidencia": "Required inspections include: Clearing & Grubbing (with engineering inspection required), Pool/Spa Steel, Patio/Deck/Slab, Pool Bond, Underground Rough, Equipotential Bonding, Main Drain, Pool/Spa Piping, Final Electrical, Final Plumbing, Drainage & Grading (with engineering inspection required), and Final Building."
+      },
+      {
+        "tema": "piscina",
+        "hecho": "Engineering inspections for pools are scheduled Monday through Thursday at 954-602-3304 with 48 hours' advance notice.",
+        "url": "https://miramarfl.gov/files/assets/public/v/2/buildingplanningzoning/documents/application-and-forms/swimming-pool-required-inspections.pdf",
+        "evidencia": "Engineering inspections can be scheduled Monday through Thursday by calling 954-602-3304 with 48 hours advanced notice.",
+        "nota": "Attributed to the required-inspections PDF by context; could be in the pool/spa package instead."
+      },
+      {
+        "tema": "otro",
+        "hecho": "Miramar's pool/spa package states that a recorded Notice of Commencement is required when the job value exceeds $5,000 (F.S. 713.135) and should be available at the first inspection.",
+        "url": "https://miramarfl.gov/files/assets/public/v/2/buildingplanningzoning/documents/application-and-forms/swimming-pool-spa-package.pdf",
+        "evidencia": "As per Florida Statutes 713.135, a Recorded Notice of Commencement is required when construction, renovation, or alterations values exceed $5,000, and should be available at the first inspection."
+      }
+    ],
+    "Pompano Beach": [],
+    "Davie": [
+      {
+        "tema": "estructura",
+        "hecho": "The Town of Davie publishes a Screen Enclosure Checklist for permits.",
+        "url": "https://www.davie-fl.gov/DocumentCenter/View/432/Screen-Enclosure-Checklist",
+        "evidencia": "Result title only: 'Screen Enclosure Checklist' (davie-fl.gov)",
+        "nota": "Title-only evidence; contents not seen."
+      },
+      {
+        "tema": "piscina",
+        "hecho": "The Town of Davie publishes a Pool Residential Checklist for permits.",
+        "url": "https://www.davie-fl.gov/DocumentCenter/View/9019/Pool-Residential-Checklist",
+        "evidencia": "Result title only: 'Pool Residential Checklist' (davie-fl.gov)",
+        "nota": "Title-only evidence; contents not seen."
+      }
+    ],
+    "Plantation": [],
+    "Deerfield Beach": [],
+    "Weston": [],
+    "Hallandale Beach": [],
+    "Parkland": [],
+    "Dania Beach": [],
+    "Wilton Manors": [],
+    "Lighthouse Point": [],
+    "Southwest Ranches": [],
+    "Hillsboro Beach": []
+  }
+}

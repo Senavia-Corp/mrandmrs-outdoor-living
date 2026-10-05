@@ -1,0 +1,69 @@
+{
+  "comprobado": "2026-10-05",
+  "nota": "Search budget for the session (200 WebSearch calls) was exhausted after 10 queries in this run; only Ocala and Gainesville were covered. 'evidencia' fields are the WebSearch tool's summarized result text attributed to the listed official URL, not verbatim page text. Places with empty arrays were NOT researched (not 'no rules found').",
+  "lugares": {
+    "Ocala": [
+      {
+        "tema": "piscina",
+        "hecho": "The City of Ocala Building Division requires a Residential Swimming Pool, Spa and Hot Tub Safety Act Requirements form to be provided with all residential pool permits.",
+        "url": "https://ocalafl.gov/home/showpublisheddocument/668/637546177123000000",
+        "evidencia": "The Ocala Building Division provides a form for Residential Swimming Pool, Spa and Hot Tub Safety Act Requirements that must be provided with all residential pool permits."
+      },
+      {
+        "tema": "piscina",
+        "hecho": "Ocala's residential pool barrier document cites Chapter 515 F.S. and the Florida Building Code, and states the barrier must be at least 4 feet high on the outside.",
+        "url": "https://ocalafl.gov/home/showpublisheddocument/668/637546177123000000",
+        "evidencia": "the barrier requirements must comply with Chapter 515 of the Florida Statutes, Florida Building Code Section 454, and Chapter 45 of the Florida Building Code, Residential ... The barrier must be at least 4 feet high on the outside."
+      },
+      {
+        "tema": "riego",
+        "hecho": "Ocala's irrigation schedule page states that, under a Phase III Extreme Water Shortage Advisory, irrigation is limited to one day per week (odd addresses Saturday, even addresses Sunday, non-residential Tuesday), prohibited between 8 a.m. and 6 p.m., and limited to 3/4 inch per zone.",
+        "url": "https://www.ocalafl.gov/government/city-departments-i-z/water-resources/water-conservation/irrigation-schedule",
+        "evidencia": "Due to ongoing drought conditions, most of Marion County, including the City of Ocala, is now under a Phase III Extreme Water Shortage Advisory. Irrigation is restricted to one day per week: odd-numbered addresses water on Saturdays; even-numbered addresses water on Sundays; non-residential properties water on Tuesdays. Irrigation is prohibited between 8 a.m. and 6 p.m. and is limited to no more than 3/4 inch per zone per scheduled day."
+      },
+      {
+        "tema": "riego",
+        "hecho": "Ocala's irrigation schedule allows micro-irrigation (drip, micro-spray, bubbler) at any time, and new landscapes may be watered any day for the first 30 days and every other day from days 31-60.",
+        "url": "https://www.ocalafl.gov/government/city-departments-i-z/water-resources/water-conservation/irrigation-schedule",
+        "evidencia": "Micro-irrigation (micro-spray, micro-jet, drip, or bubbler) is allowed any time ... new landscape establishments are allowed watering any day during the first 30 days, and every other day from days 31-60."
+      },
+      {
+        "tema": "arboles",
+        "hecho": "The City of Ocala requires a $100 permit for removing any tree 4 inches or greater in diameter (Code Sec. 118-74), with an exception for R-1, R-1A and R-1AA parcels under 3 acres occupied by an existing single-family residence.",
+        "url": "https://ocalafl.gov/home/showpublisheddocument/686/638567159030800000",
+        "evidencia": "A permit is required for any tree(s) 4 inches or greater in diameter, regardless of species or condition. The permit fee is $100.00 ... Chapter 118-74 of City of Ocala Code of Ordinances and Florida Statute 163.045 ... Exceptions apply for parcels that are zoned R-1, R-1A and R-1AA, when they are less than 3 acres in size and occupied by an existing single-family residence."
+      }
+    ],
+    "Gainesville": [
+      {
+        "tema": "cocina",
+        "hecho": "Gainesville Regional Utilities has operated Gainesville's natural gas system since 1990 and markets natural gas for uses including grilling and pool heating.",
+        "url": "https://www.gru.com/naturalgas",
+        "evidencia": "GRU has been operating Gainesville's gas system since 1990 and currently serves over 34,000 natural gas customers with more than 730 miles of underground mains. GRU offers natural gas for energy applications such as grilling and pool heating."
+      },
+      {
+        "tema": "arboles",
+        "hecho": "In Gainesville, removing a living tree of 20 inches or greater trunk diameter from an existing single-family dwelling lot requires a permit (8 inches for other land uses), and tree removal permits are free.",
+        "url": "https://www.gainesvillefl.gov/Government-Pages/Government/Departments/Public-Works/Urban-Forestry/Tree-Removal-Regulations",
+        "evidencia": "For all land uses except single-family dwellings, a permit is required to remove any living tree with a trunk diameter of 8 inches or greater. For single-family dwellings (existing structures only) on land zoned for single-family use, a permit is required for the removal of any living tree with a trunk diameter of 20 inches or greater. Permits for tree removal are free of charge and must be obtained prior to any work being done."
+      },
+      {
+        "tema": "arboles",
+        "hecho": "Gainesville defines a Heritage Tree as a native species with a diameter at breast height of 20 inches or more.",
+        "url": "https://www.gainesvillefl.gov/Government-Pages/Government/Departments/Public-Works/Urban-Forestry/Tree-Removal-Regulations",
+        "evidencia": "A Heritage Tree is a native species with a diameter at breast height of 20 inches or more."
+      }
+    ],
+    "Lake City": [],
+    "Palatka": [],
+    "Alachua": [],
+    "Newberry": [],
+    "High Springs": [],
+    "Williston": [],
+    "Chiefland": [],
+    "Fanning Springs": [],
+    "Cedar Key": [],
+    "Micanopy": [],
+    "McIntosh": []
+  }
+}
