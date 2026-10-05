@@ -3272,6 +3272,902 @@
     },
     "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
   },
+  "/services/pool-remodeling/fort-lauderdale-fl": {
+    "heroe": {
+      "apoyo": "Complete pool remodeling for Fort Lauderdale homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
+      "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
+      "ancla": "#estimate",
+      "cta": "Request a Design-Build Project Evaluation",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida certified pool contractor",
+          "texto": "CPC1461119 and CPC1460562, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Modern finishes and equipment",
+          "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Brought up to current code",
+          "texto": "VGB-compliant safety features, with the permits and inspections handled."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Request a Design-Build Project Evaluation",
+      "entradilla": "Tell us about your pool and we will come back with next steps. Free estimate, no obligation.",
+      "proyectos": [
+        "Complete Pool Remodel",
+        "Resurfacing or Tile Only"
+      ],
+      "proyectoPorDefecto": "Complete Pool Remodel",
+      "nombre": "Fort Lauderdale Pool Remodel Form",
+      "aviso": "Fort Lauderdale pool remodel lead",
+      "ga4": "remodel",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back within 24 hours.",
+        "We look at the pool as it is today and put the scope of the renovation on paper.",
+        "You get the scope in writing and a fixed project price before any demolition starts."
+      ],
+      "boton": "Request My Project Evaluation"
+    },
+    "inversion": {
+      "titulo": "What will my pool remodel cost?",
+      "texto": "Every renovation is priced from the condition of the pool, the finish and tile you choose, the equipment being replaced and the deck work around it. Answer a few questions to see the range for a custom pool in Florida, then review how it can be paid for.",
+      "ctas": [
+        {
+          "texto": "Try the pool cost estimator",
+          "href": "/pool-cost-estimator",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+      "alt": "Pool with new wet travertine deck and blue tile overlooking a lake, work nearly done.",
+      "ancho": 1200,
+      "alto": 1600
+    },
+    "faq": {
+      "titulo": "Fort Lauderdale pool remodeling FAQs",
+      "entradilla": "Cost, permits and scope: what is worth settling before you renovate a pool in Broward County.",
+      "anade": [
+        {
+          "pregunta": "How much does a pool remodel cost in Fort Lauderdale?",
+          "respuesta": "There is no single number: a remodel is priced from the condition of the shell, the finish and tile you choose, the equipment being replaced and the deck work around it. Our estimator walks you through those choices, and you get a fixed project price in writing before any demolition starts."
+        },
+        {
+          "pregunta": "Does a pool remodel in Fort Lauderdale need a permit?",
+          "respuesta": "Usually, yes. Work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code; resurfacing alone is treated differently by different jurisdictions. We confirm the scope with the building department and pull the permits under our license."
+        },
+        {
+          "pregunta": "What is included in a complete pool remodel?",
+          "respuesta": "An assessment of the shell and plumbing, then the scope you choose: interior finish, waterline tile and coping, equipment and lighting, a spa added or rebuilt, deck resurfacing or replacement, and a code-compliant barrier, finished with start-up and a walk-through of the new equipment."
+        },
+        {
+          "pregunta": "Which office permits a pool remodel in Fort Lauderdale?",
+          "respuesta": "In Fort Lauderdale, the city's Building Services division is responsible for all permitting efforts in the city: it issues the permits and performs the building inspections, and new submissions go in online through the city's LauderBuild portal. The city's Atlantic beachfront sits in Broward's Segment II, between Hillsboro Inlet and Port Everglades. Its residential pool permit checklist requires two completed Pool Barrier Affidavits under the Residential Swimming Pool, Spa and Hot Tub Safety Act, and the city's zoning rules keep a pool at least 5 feet from every property line. Remodel work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code, so we confirm which office has jurisdiction before demolition and pull the permit under our license.",
+          "fuentes": [
+            {
+              "nombre": "City of Fort Lauderdale: permitting services",
+              "url": "https://www.fortlauderdale.gov/Government/Departments/Development-Services/Permitting-Services"
+            },
+            {
+              "nombre": "Broward County beach segments",
+              "url": "https://www.broward.org/Beaches/Pages/Projects.aspx"
+            },
+            {
+              "nombre": "City of Fort Lauderdale: building permit checklist",
+              "url": "https://www.fortlauderdale.gov/files/assets/public/v/2/development-services/documents/dsd-documents-amp-forms/building_permit_checklist_v11.pdf"
+            },
+            {
+              "nombre": "City of Fort Lauderdale: zoning FAQ",
+              "url": "https://www.fortlauderdale.gov/government/departments-a-h/development-services/building-services/zoning/zoning-faq"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/pool-remodeling/hollywood-fl": {
+    "heroe": {
+      "apoyo": "Complete pool remodeling for Hollywood homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
+      "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
+      "ancla": "#estimate",
+      "cta": "Request a Design-Build Project Evaluation",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida certified pool contractor",
+          "texto": "CPC1461119 and CPC1460562, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Modern finishes and equipment",
+          "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Brought up to current code",
+          "texto": "VGB-compliant safety features, with the permits and inspections handled."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Request a Design-Build Project Evaluation",
+      "entradilla": "Tell us about your pool and we will come back with next steps. Free estimate, no obligation.",
+      "proyectos": [
+        "Complete Pool Remodel",
+        "Resurfacing or Tile Only"
+      ],
+      "proyectoPorDefecto": "Complete Pool Remodel",
+      "nombre": "Hollywood Pool Remodel Form",
+      "aviso": "Hollywood pool remodel lead",
+      "ga4": "remodel",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back within 24 hours.",
+        "We look at the pool as it is today and put the scope of the renovation on paper.",
+        "You get the scope in writing and a fixed project price before any demolition starts."
+      ],
+      "boton": "Request My Project Evaluation"
+    },
+    "inversion": {
+      "titulo": "What will my pool remodel cost?",
+      "texto": "Every renovation is priced from the condition of the pool, the finish and tile you choose, the equipment being replaced and the deck work around it. Answer a few questions to see the range for a custom pool in Florida, then review how it can be paid for.",
+      "ctas": [
+        {
+          "texto": "Try the pool cost estimator",
+          "href": "/pool-cost-estimator",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+      "alt": "Pool with new wet travertine deck and blue tile overlooking a lake, work nearly done.",
+      "ancho": 1200,
+      "alto": 1600
+    },
+    "faq": {
+      "titulo": "Hollywood pool remodeling FAQs",
+      "entradilla": "Cost, permits and scope: what is worth settling before you renovate a pool in Broward County.",
+      "anade": [
+        {
+          "pregunta": "How much does a pool remodel cost in Hollywood?",
+          "respuesta": "There is no single number: a remodel is priced from the condition of the shell, the finish and tile you choose, the equipment being replaced and the deck work around it. Our estimator walks you through those choices, and you get a fixed project price in writing before any demolition starts."
+        },
+        {
+          "pregunta": "Does a pool remodel in Hollywood need a permit?",
+          "respuesta": "Usually, yes. Work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code; resurfacing alone is treated differently by different jurisdictions. We confirm the scope with the building department and pull the permits under our license."
+        },
+        {
+          "pregunta": "What is included in a complete pool remodel?",
+          "respuesta": "An assessment of the shell and plumbing, then the scope you choose: interior finish, waterline tile and coping, equipment and lighting, a spa added or rebuilt, deck resurfacing or replacement, and a code-compliant barrier, finished with start-up and a walk-through of the new equipment."
+        },
+        {
+          "pregunta": "Which office permits a pool remodel in Hollywood?",
+          "respuesta": "In Hollywood, the city's Building Division reviews every building permit application for compliance with local, state and federal building regulations, and all new applications are submitted through the city's Accela Citizen Access portal. The city's own permit FAQ counts a patio deck, a fence, a retaining wall, a shed, a gazebo, a trellis, a fountain, a spa or a pool as a structure. Remodel work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code, so we confirm which office has jurisdiction before demolition and pull the permit under our license.",
+          "fuentes": [
+            {
+              "nombre": "City of Hollywood: Building Division",
+              "url": "https://www.hollywoodfl.org/328/Building"
+            },
+            {
+              "nombre": "City of Hollywood: permit FAQ",
+              "url": "https://hollywoodfl.org/m/faq?cat=16#question-356"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/pool-remodeling/dania-beach-fl": {
+    "heroe": {
+      "apoyo": "Complete pool remodeling for Dania Beach homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
+      "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
+      "ancla": "#estimate",
+      "cta": "Request a Design-Build Project Evaluation",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida certified pool contractor",
+          "texto": "CPC1461119 and CPC1460562, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Modern finishes and equipment",
+          "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Brought up to current code",
+          "texto": "VGB-compliant safety features, with the permits and inspections handled."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Request a Design-Build Project Evaluation",
+      "entradilla": "Tell us about your pool and we will come back with next steps. Free estimate, no obligation.",
+      "proyectos": [
+        "Complete Pool Remodel",
+        "Resurfacing or Tile Only"
+      ],
+      "proyectoPorDefecto": "Complete Pool Remodel",
+      "nombre": "Dania Beach Pool Remodel Form",
+      "aviso": "Dania Beach pool remodel lead",
+      "ga4": "remodel",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back within 24 hours.",
+        "We look at the pool as it is today and put the scope of the renovation on paper.",
+        "You get the scope in writing and a fixed project price before any demolition starts."
+      ],
+      "boton": "Request My Project Evaluation"
+    },
+    "inversion": {
+      "titulo": "What will my pool remodel cost?",
+      "texto": "Every renovation is priced from the condition of the pool, the finish and tile you choose, the equipment being replaced and the deck work around it. Answer a few questions to see the range for a custom pool in Florida, then review how it can be paid for.",
+      "ctas": [
+        {
+          "texto": "Try the pool cost estimator",
+          "href": "/pool-cost-estimator",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+      "alt": "Pool with new wet travertine deck and blue tile overlooking a lake, work nearly done.",
+      "ancho": 1200,
+      "alto": 1600
+    },
+    "faq": {
+      "titulo": "Dania Beach pool remodeling FAQs",
+      "entradilla": "Cost, permits and scope: what is worth settling before you renovate a pool in Broward County.",
+      "anade": [
+        {
+          "pregunta": "How much does a pool remodel cost in Dania Beach?",
+          "respuesta": "There is no single number: a remodel is priced from the condition of the shell, the finish and tile you choose, the equipment being replaced and the deck work around it. Our estimator walks you through those choices, and you get a fixed project price in writing before any demolition starts."
+        },
+        {
+          "pregunta": "Does a pool remodel in Dania Beach need a permit?",
+          "respuesta": "Usually, yes. Work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code; resurfacing alone is treated differently by different jurisdictions. We confirm the scope with the building department and pull the permits under our license."
+        },
+        {
+          "pregunta": "What is included in a complete pool remodel?",
+          "respuesta": "An assessment of the shell and plumbing, then the scope you choose: interior finish, waterline tile and coping, equipment and lighting, a spa added or rebuilt, deck resurfacing or replacement, and a code-compliant barrier, finished with start-up and a walk-through of the new equipment."
+        },
+        {
+          "pregunta": "Which office permits a pool remodel in Dania Beach?",
+          "respuesta": "In Dania Beach, the city's Building Division enforces the building codes for new construction, additions, remodeling and interior renovation, and accepts and processes the building permit applications. The city's own FAQ counts a patio, a deck, a fence, a retaining wall, a shed, a gazebo, a trellis, a fountain, a spa or a pool as a structure, and its beachfront is part of Broward's Segment III. Remodel work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code, so we confirm which office has jurisdiction before demolition and pull the permit under our license.",
+          "fuentes": [
+            {
+              "nombre": "City of Dania Beach: Building Division",
+              "url": "https://www.daniabeachfl.gov/125/Building-Division"
+            },
+            {
+              "nombre": "City of Dania Beach: permit FAQ",
+              "url": "https://daniabeachfl.gov/Faq.aspx?QID=43"
+            },
+            {
+              "nombre": "Broward County beach segments",
+              "url": "https://www.broward.org/Beaches/Pages/Projects.aspx"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/pool-remodeling/west-palm-beach-fl": {
+    "heroe": {
+      "apoyo": "Complete pool remodeling for West Palm Beach homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
+      "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
+      "ancla": "#estimate",
+      "cta": "Request a Design-Build Project Evaluation",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida certified pool contractor",
+          "texto": "CPC1461119 and CPC1460562, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Modern finishes and equipment",
+          "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Brought up to current code",
+          "texto": "VGB-compliant safety features, with the permits and inspections handled."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Request a Design-Build Project Evaluation",
+      "entradilla": "Tell us about your pool and we will come back with next steps. Free estimate, no obligation.",
+      "proyectos": [
+        "Complete Pool Remodel",
+        "Resurfacing or Tile Only"
+      ],
+      "proyectoPorDefecto": "Complete Pool Remodel",
+      "nombre": "West Palm Beach Pool Remodel Form",
+      "aviso": "West Palm Beach pool remodel lead",
+      "ga4": "remodel",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back within 24 hours.",
+        "We look at the pool as it is today and put the scope of the renovation on paper.",
+        "You get the scope in writing and a fixed project price before any demolition starts."
+      ],
+      "boton": "Request My Project Evaluation"
+    },
+    "inversion": {
+      "titulo": "What will my pool remodel cost?",
+      "texto": "Every renovation is priced from the condition of the pool, the finish and tile you choose, the equipment being replaced and the deck work around it. Answer a few questions to see the range for a custom pool in Florida, then review how it can be paid for.",
+      "ctas": [
+        {
+          "texto": "Try the pool cost estimator",
+          "href": "/pool-cost-estimator",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+      "alt": "Pool with new wet travertine deck and blue tile overlooking a lake, work nearly done.",
+      "ancho": 1200,
+      "alto": 1600
+    },
+    "faq": {
+      "titulo": "West Palm Beach pool remodeling FAQs",
+      "entradilla": "Cost, permits and scope: what is worth settling before you renovate a pool in Palm Beach County.",
+      "anade": [
+        {
+          "pregunta": "How much does a pool remodel cost in West Palm Beach?",
+          "respuesta": "There is no single number: a remodel is priced from the condition of the shell, the finish and tile you choose, the equipment being replaced and the deck work around it. Our estimator walks you through those choices, and you get a fixed project price in writing before any demolition starts."
+        },
+        {
+          "pregunta": "Does a pool remodel in West Palm Beach need a permit?",
+          "respuesta": "Usually, yes. Work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code; resurfacing alone is treated differently by different jurisdictions. We confirm the scope with the building department and pull the permits under our license."
+        },
+        {
+          "pregunta": "What is included in a complete pool remodel?",
+          "respuesta": "An assessment of the shell and plumbing, then the scope you choose: interior finish, waterline tile and coping, equipment and lighting, a spa added or rebuilt, deck resurfacing or replacement, and a code-compliant barrier, finished with start-up and a walk-through of the new equipment."
+        },
+        {
+          "pregunta": "Which office permits a pool remodel in West Palm Beach?",
+          "respuesta": "In West Palm Beach, the Building Division of Development Services processes and reviews building permit applications and oversees the inspections from City Hall at 401 Clematis Street. The city's permit FAQ states that fences and fence pool barriers need a permit whatever their cost and cannot be exempted, that a separate permit must be secured for the pool, and that a pool autofill device needs its own backflow permit. Remodel work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code, so we confirm which office has jurisdiction before demolition and pull the permit under our license.",
+          "fuentes": [
+            {
+              "nombre": "City of West Palm Beach: Building Division",
+              "url": "https://www.wpb.org/departments/development-services/building-division"
+            },
+            {
+              "nombre": "City of West Palm Beach: permits FAQ",
+              "url": "https://www.wpb.org/Departments/Development-Services/Building-Division/Permits-FAQ"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/pool-remodeling/boca-raton-fl": {
+    "heroe": {
+      "apoyo": "Complete pool remodeling for Boca Raton homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
+      "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
+      "ancla": "#estimate",
+      "cta": "Request a Design-Build Project Evaluation",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida certified pool contractor",
+          "texto": "CPC1461119 and CPC1460562, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Modern finishes and equipment",
+          "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Brought up to current code",
+          "texto": "VGB-compliant safety features, with the permits and inspections handled."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Request a Design-Build Project Evaluation",
+      "entradilla": "Tell us about your pool and we will come back with next steps. Free estimate, no obligation.",
+      "proyectos": [
+        "Complete Pool Remodel",
+        "Resurfacing or Tile Only"
+      ],
+      "proyectoPorDefecto": "Complete Pool Remodel",
+      "nombre": "Boca Raton Pool Remodel Form",
+      "aviso": "Boca Raton pool remodel lead",
+      "ga4": "remodel",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back within 24 hours.",
+        "We look at the pool as it is today and put the scope of the renovation on paper.",
+        "You get the scope in writing and a fixed project price before any demolition starts."
+      ],
+      "boton": "Request My Project Evaluation"
+    },
+    "inversion": {
+      "titulo": "What will my pool remodel cost?",
+      "texto": "Every renovation is priced from the condition of the pool, the finish and tile you choose, the equipment being replaced and the deck work around it. Answer a few questions to see the range for a custom pool in Florida, then review how it can be paid for.",
+      "ctas": [
+        {
+          "texto": "Try the pool cost estimator",
+          "href": "/pool-cost-estimator",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+      "alt": "Pool with new wet travertine deck and blue tile overlooking a lake, work nearly done.",
+      "ancho": 1200,
+      "alto": 1600
+    },
+    "faq": {
+      "titulo": "Boca Raton pool remodeling FAQs",
+      "entradilla": "Cost, permits and scope: what is worth settling before you renovate a pool in Palm Beach County.",
+      "anade": [
+        {
+          "pregunta": "How much does a pool remodel cost in Boca Raton?",
+          "respuesta": "There is no single number: a remodel is priced from the condition of the shell, the finish and tile you choose, the equipment being replaced and the deck work around it. Our estimator walks you through those choices, and you get a fixed project price in writing before any demolition starts."
+        },
+        {
+          "pregunta": "Does a pool remodel in Boca Raton need a permit?",
+          "respuesta": "Usually, yes. Work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code; resurfacing alone is treated differently by different jurisdictions. We confirm the scope with the building department and pull the permits under our license."
+        },
+        {
+          "pregunta": "What is included in a complete pool remodel?",
+          "respuesta": "An assessment of the shell and plumbing, then the scope you choose: interior finish, waterline tile and coping, equipment and lighting, a spa added or rebuilt, deck resurfacing or replacement, and a code-compliant barrier, finished with start-up and a walk-through of the new equipment."
+        },
+        {
+          "pregunta": "Which office permits a pool remodel in Boca Raton?",
+          "respuesta": "In Boca Raton, the city's swimming pool permit package lists its Building Administration at 200 NW 2nd Avenue. The city's beachfront includes a 3.8-mile segment that the Florida Department of Environmental Protection lists as critically eroded. Its swimming pool submittal calls for building, electrical and plumbing applications with sealed plans and a survey, plus either a new barrier permit application or a current survey showing the existing barrier, and the city's pool safety act form says a pool does not pass final inspection without one of the listed safety features. Remodel work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code, so we confirm which office has jurisdiction before demolition and pull the permit under our license.",
+          "fuentes": [
+            {
+              "nombre": "City of Boca Raton: swimming pool permit",
+              "url": "https://myboca.us/DocumentCenter/View/258/Swimming-Pool-PDF"
+            },
+            {
+              "nombre": "Florida DEP: critically eroded beaches report",
+              "url": "https://floridadep.gov/sites/default/files/CriticalErosionReport.pdf"
+            },
+            {
+              "nombre": "City of Boca Raton: swimming pool safety act",
+              "url": "https://www.myboca.us/DocumentCenter/View/6699/Swimming-Pool-Safety-Act-PDF"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/pool-remodeling/boynton-beach-fl": {
+    "heroe": {
+      "apoyo": "Complete pool remodeling for Boynton Beach homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
+      "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
+      "ancla": "#estimate",
+      "cta": "Request a Design-Build Project Evaluation",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida certified pool contractor",
+          "texto": "CPC1461119 and CPC1460562, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Modern finishes and equipment",
+          "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Brought up to current code",
+          "texto": "VGB-compliant safety features, with the permits and inspections handled."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Request a Design-Build Project Evaluation",
+      "entradilla": "Tell us about your pool and we will come back with next steps. Free estimate, no obligation.",
+      "proyectos": [
+        "Complete Pool Remodel",
+        "Resurfacing or Tile Only"
+      ],
+      "proyectoPorDefecto": "Complete Pool Remodel",
+      "nombre": "Boynton Beach Pool Remodel Form",
+      "aviso": "Boynton Beach pool remodel lead",
+      "ga4": "remodel",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back within 24 hours.",
+        "We look at the pool as it is today and put the scope of the renovation on paper.",
+        "You get the scope in writing and a fixed project price before any demolition starts."
+      ],
+      "boton": "Request My Project Evaluation"
+    },
+    "inversion": {
+      "titulo": "What will my pool remodel cost?",
+      "texto": "Every renovation is priced from the condition of the pool, the finish and tile you choose, the equipment being replaced and the deck work around it. Answer a few questions to see the range for a custom pool in Florida, then review how it can be paid for.",
+      "ctas": [
+        {
+          "texto": "Try the pool cost estimator",
+          "href": "/pool-cost-estimator",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+      "alt": "Pool with new wet travertine deck and blue tile overlooking a lake, work nearly done.",
+      "ancho": 1200,
+      "alto": 1600
+    },
+    "faq": {
+      "titulo": "Boynton Beach pool remodeling FAQs",
+      "entradilla": "Cost, permits and scope: what is worth settling before you renovate a pool in Palm Beach County.",
+      "anade": [
+        {
+          "pregunta": "How much does a pool remodel cost in Boynton Beach?",
+          "respuesta": "There is no single number: a remodel is priced from the condition of the shell, the finish and tile you choose, the equipment being replaced and the deck work around it. Our estimator walks you through those choices, and you get a fixed project price in writing before any demolition starts."
+        },
+        {
+          "pregunta": "Does a pool remodel in Boynton Beach need a permit?",
+          "respuesta": "Usually, yes. Work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code; resurfacing alone is treated differently by different jurisdictions. We confirm the scope with the building department and pull the permits under our license."
+        },
+        {
+          "pregunta": "What is included in a complete pool remodel?",
+          "respuesta": "An assessment of the shell and plumbing, then the scope you choose: interior finish, waterline tile and coping, equipment and lighting, a spa added or rebuilt, deck resurfacing or replacement, and a code-compliant barrier, finished with start-up and a walk-through of the new equipment."
+        },
+        {
+          "pregunta": "Which office permits a pool remodel in Boynton Beach?",
+          "respuesta": "In Boynton Beach, the Building Department enforces the ordinances and laws that regulate construction through permit issuance, plan examination and inspections. The city's own Oceanfront Park is located in the Town of Ocean Ridge. Its local amendment to the building code lists pool inspections after excavation, for the underground electric and piping and for the deck, and a final permanent barrier inspection before the pool is filled. Remodel work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code, so we confirm which office has jurisdiction before demolition and pull the permit under our license.",
+          "fuentes": [
+            {
+              "nombre": "City of Boynton Beach: building permits",
+              "url": "https://boynton-beach.org/296/Building-Permits"
+            },
+            {
+              "nombre": "City of Boynton Beach: Oceanfront Park",
+              "url": "https://boynton-beach.org/254/Oceanfront-Park"
+            },
+            {
+              "nombre": "City of Boynton Beach: local amendment to the Florida Building Code, chapter 1",
+              "url": "https://www.boynton-beach.org/DocumentCenter/View/1277/Boynton-Beach-local-Amendment-2023-FBC-Building-chapter-1"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/pool-remodeling/gulf-stream-fl": {
+    "heroe": {
+      "apoyo": "Complete pool remodeling for Gulf Stream homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
+      "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
+      "ancla": "#estimate",
+      "cta": "Request a Design-Build Project Evaluation",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida certified pool contractor",
+          "texto": "CPC1461119 and CPC1460562, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Modern finishes and equipment",
+          "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Brought up to current code",
+          "texto": "VGB-compliant safety features, with the permits and inspections handled."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Request a Design-Build Project Evaluation",
+      "entradilla": "Tell us about your pool and we will come back with next steps. Free estimate, no obligation.",
+      "proyectos": [
+        "Complete Pool Remodel",
+        "Resurfacing or Tile Only"
+      ],
+      "proyectoPorDefecto": "Complete Pool Remodel",
+      "nombre": "Gulf Stream Pool Remodel Form",
+      "aviso": "Gulf Stream pool remodel lead",
+      "ga4": "remodel",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back within 24 hours.",
+        "We look at the pool as it is today and put the scope of the renovation on paper.",
+        "You get the scope in writing and a fixed project price before any demolition starts."
+      ],
+      "boton": "Request My Project Evaluation"
+    },
+    "inversion": {
+      "titulo": "What will my pool remodel cost?",
+      "texto": "Every renovation is priced from the condition of the pool, the finish and tile you choose, the equipment being replaced and the deck work around it. Answer a few questions to see the range for a custom pool in Florida, then review how it can be paid for.",
+      "ctas": [
+        {
+          "texto": "Try the pool cost estimator",
+          "href": "/pool-cost-estimator",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+      "alt": "Pool with new wet travertine deck and blue tile overlooking a lake, work nearly done.",
+      "ancho": 1200,
+      "alto": 1600
+    },
+    "faq": {
+      "titulo": "Gulf Stream pool remodeling FAQs",
+      "entradilla": "Cost, permits and scope: what is worth settling before you renovate a pool in Palm Beach County.",
+      "anade": [
+        {
+          "pregunta": "How much does a pool remodel cost in Gulf Stream?",
+          "respuesta": "There is no single number: a remodel is priced from the condition of the shell, the finish and tile you choose, the equipment being replaced and the deck work around it. Our estimator walks you through those choices, and you get a fixed project price in writing before any demolition starts."
+        },
+        {
+          "pregunta": "Does a pool remodel in Gulf Stream need a permit?",
+          "respuesta": "Usually, yes. Work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code; resurfacing alone is treated differently by different jurisdictions. We confirm the scope with the building department and pull the permits under our license."
+        },
+        {
+          "pregunta": "What is included in a complete pool remodel?",
+          "respuesta": "An assessment of the shell and plumbing, then the scope you choose: interior finish, waterline tile and coping, equipment and lighting, a spa added or rebuilt, deck resurfacing or replacement, and a code-compliant barrier, finished with start-up and a walk-through of the new equipment."
+        },
+        {
+          "pregunta": "Which office permits a pool remodel in Gulf Stream?",
+          "respuesta": "In Gulf Stream, building permits and inspections are handled by the Town of Highland Beach under an interlocal agreement, through the Highland Beach permit portal, while Gulf Stream retains all zoning authority and its own design reviews: accessory buildings and structures and minor renovations affecting less than 300 square feet are approved or denied by Town staff, and the next level of review goes to the Architectural Review and Planning Board. Remodel work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code, so we confirm which office has jurisdiction before demolition and pull the permit under our license.",
+          "fuentes": [
+            {
+              "nombre": "Town of Gulf Stream: permits",
+              "url": "https://www.gulf-stream.org/permits/"
+            },
+            {
+              "nombre": "Town of Gulf Stream: approvals",
+              "url": "https://www.gulf-stream.org/approvals/"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/pool-remodeling/manalapan-fl": {
+    "heroe": {
+      "apoyo": "Complete pool remodeling for Manalapan homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
+      "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
+      "ancla": "#estimate",
+      "cta": "Request a Design-Build Project Evaluation",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida certified pool contractor",
+          "texto": "CPC1461119 and CPC1460562, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Modern finishes and equipment",
+          "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Brought up to current code",
+          "texto": "VGB-compliant safety features, with the permits and inspections handled."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Request a Design-Build Project Evaluation",
+      "entradilla": "Tell us about your pool and we will come back with next steps. Free estimate, no obligation.",
+      "proyectos": [
+        "Complete Pool Remodel",
+        "Resurfacing or Tile Only"
+      ],
+      "proyectoPorDefecto": "Complete Pool Remodel",
+      "nombre": "Manalapan Pool Remodel Form",
+      "aviso": "Manalapan pool remodel lead",
+      "ga4": "remodel",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back within 24 hours.",
+        "We look at the pool as it is today and put the scope of the renovation on paper.",
+        "You get the scope in writing and a fixed project price before any demolition starts."
+      ],
+      "boton": "Request My Project Evaluation"
+    },
+    "inversion": {
+      "titulo": "What will my pool remodel cost?",
+      "texto": "Every renovation is priced from the condition of the pool, the finish and tile you choose, the equipment being replaced and the deck work around it. Answer a few questions to see the range for a custom pool in Florida, then review how it can be paid for.",
+      "ctas": [
+        {
+          "texto": "Try the pool cost estimator",
+          "href": "/pool-cost-estimator",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+      "alt": "Pool with new wet travertine deck and blue tile overlooking a lake, work nearly done.",
+      "ancho": 1200,
+      "alto": 1600
+    },
+    "faq": {
+      "titulo": "Manalapan pool remodeling FAQs",
+      "entradilla": "Cost, permits and scope: what is worth settling before you renovate a pool in Palm Beach County.",
+      "anade": [
+        {
+          "pregunta": "How much does a pool remodel cost in Manalapan?",
+          "respuesta": "There is no single number: a remodel is priced from the condition of the shell, the finish and tile you choose, the equipment being replaced and the deck work around it. Our estimator walks you through those choices, and you get a fixed project price in writing before any demolition starts."
+        },
+        {
+          "pregunta": "Does a pool remodel in Manalapan need a permit?",
+          "respuesta": "Usually, yes. Work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code; resurfacing alone is treated differently by different jurisdictions. We confirm the scope with the building department and pull the permits under our license."
+        },
+        {
+          "pregunta": "What is included in a complete pool remodel?",
+          "respuesta": "An assessment of the shell and plumbing, then the scope you choose: interior finish, waterline tile and coping, equipment and lighting, a spa added or rebuilt, deck resurfacing or replacement, and a code-compliant barrier, finished with start-up and a walk-through of the new equipment."
+        },
+        {
+          "pregunta": "Which office permits a pool remodel in Manalapan?",
+          "respuesta": "In Manalapan, the Town's Building Department covers plan review, architectural review and permitting, and any change to the exterior of a residence, from additions, shutters and fences to a new exterior colour, landscaping or a seawall, must first be approved by the Architectural Commission. The Town's coastline includes the 1.4 miles that Hurricane Sandy eroded in 2012, as recorded by the Florida Department of Environmental Protection. Remodel work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code, so we confirm which office has jurisdiction before demolition and pull the permit under our license.",
+          "fuentes": [
+            {
+              "nombre": "Town of Manalapan: Building Department",
+              "url": "https://manalapan.org/building-department/"
+            },
+            {
+              "nombre": "Town of Manalapan: Architectural Commission",
+              "url": "https://manalapan.org/?p=221"
+            },
+            {
+              "nombre": "Florida DEP: critically eroded beaches report",
+              "url": "https://floridadep.gov/sites/default/files/CriticalErosionReport.pdf"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
   "/services/pool-builders/ocala-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Ocala homeowners — 3D design, permits, construction and final start-up, from one licensed team.",

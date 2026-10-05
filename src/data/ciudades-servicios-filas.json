@@ -528,7 +528,7 @@
           "comprobado": "2026-10-05"
         },
         "piscina": {
-          "texto": "Its pool and spa checklist calls for building, plumbing, electrical, engineering and mechanical permits plus two Pool Barrier Affidavits under the Residential Swimming Pool, Spa and Hot Tub Safety Act, and the city's zoning rules keep a pool at least 5 feet from every property line.",
+          "texto": "Its residential pool permit checklist requires two completed Pool Barrier Affidavits under the Residential Swimming Pool, Spa and Hot Tub Safety Act, and the city's zoning rules keep a pool at least 5 feet from every property line.",
           "fuentes": [
             {
               "nombre": "City of Fort Lauderdale: building permit checklist",
@@ -633,7 +633,7 @@
       },
       "extras": {
         "piscina": {
-          "texto": "Its swimming pool and spa package lists planning and zoning, engineering, plumbing, electrical and structural plan reviews, and its list of required pool inspections runs from clearing and grading through the steel, the deck, the bonding, the main drain and the piping to the final electrical, plumbing and building inspections.",
+          "texto": "Its swimming pool and spa package lists planning and zoning, engineering, plumbing, electrical and structural plan reviews, and its list of required pool inspections includes clearing and grubbing and drainage and grading, both with an engineering inspection, plus the pool steel, the deck, the bonding, the main drain and the piping, along with the final electrical, plumbing and building inspections.",
           "fuentes": [
             {
               "nombre": "City of Miramar: swimming pool and spa package",
@@ -913,7 +913,7 @@
         "comprobado": "2026-10-05"
       },
       "local": {
-        "texto": "In Dania Beach, the city's Building Division enforces the building codes for new construction, additions, remodeling and renovation, and accepts and processes the building permit applications. The city's own FAQ counts a patio, a deck, a fence, a retaining wall, a shed, a gazebo, a trellis, a fountain, a spa or a pool as a structure, and its beachfront is part of Broward's Segment III.",
+        "texto": "In Dania Beach, the city's Building Division enforces the building codes for new construction, additions, remodeling and interior renovation, and accepts and processes the building permit applications. The city's own FAQ counts a patio, a deck, a fence, a retaining wall, a shed, a gazebo, a trellis, a fountain, a spa or a pool as a structure, and its beachfront is part of Broward's Segment III.",
         "fuentes": [
           {
             "nombre": "City of Dania Beach: Building Division",
@@ -1099,7 +1099,7 @@
         "comprobado": "2026-10-05"
       },
       "local": {
-        "texto": "In Boca Raton, building permits are handled by the city's building administration at 200 NW 2nd Avenue. The city's beachfront includes a 3.8-mile segment that the Florida Department of Environmental Protection lists as critically eroded.",
+        "texto": "In Boca Raton, the city's swimming pool permit package lists its Building Administration at 200 NW 2nd Avenue. The city's beachfront includes a 3.8-mile segment that the Florida Department of Environmental Protection lists as critically eroded.",
         "fuentes": [
           {
             "nombre": "City of Boca Raton: swimming pool permit",
@@ -1201,7 +1201,7 @@
         "comprobado": "2026-10-05"
       },
       "local": {
-        "texto": "In Delray Beach, the Building Division of Development Services handles plan review, permitting and inspection of construction from 100 NW 1st Avenue, and residential permit applications for pools, decks, pathways or any other improvement that adds impervious area need a property survey no more than 12 months old. The city's beach is the 2.9-mile segment of the federally authorized Delray Beach Shore Protection Project.",
+        "texto": "In Delray Beach, the Building Division of Development Services handles plan review, permitting and inspection of construction from 100 NW 1st Avenue, and residential permit applications for pools, decks, pathways or any other improvement that adds impervious area need a property survey no more than 12 months old. The city's beach includes the 2.9-mile segment where the federally authorized Delray Beach Shore Protection Project was completed.",
         "fuentes": [
           {
             "nombre": "City of Delray Beach: Building Division",
@@ -1559,7 +1559,7 @@
         "comprobado": "2026-10-05"
       },
       "local": {
-        "texto": "In Gulf Stream, building permits and inspections are handled by the Town of Highland Beach under an interlocal agreement, through the Highland Beach permit portal, while Gulf Stream keeps its own architectural and site plan review in three levels: accessory structures and minor renovations under 300 square feet are decided by Town staff, and larger projects go to the Architectural Review and Planning Board or the Town Commission.",
+        "texto": "In Gulf Stream, building permits and inspections are handled by the Town of Highland Beach under an interlocal agreement, through the Highland Beach permit portal, while Gulf Stream retains all zoning authority and its own design reviews: accessory buildings and structures and minor renovations affecting less than 300 square feet are approved or denied by Town staff, and the next level of review goes to the Architectural Review and Planning Board.",
         "fuentes": [
           {
             "nombre": "Town of Gulf Stream: permits",
@@ -1642,6 +1642,38 @@
     {
       "servicio": "pool-remodeling",
       "ciudad": "mcintosh-florida"
+    },
+    {
+      "servicio": "pool-remodeling",
+      "ciudad": "fort-lauderdale-florida"
+    },
+    {
+      "servicio": "pool-remodeling",
+      "ciudad": "hollywood-florida"
+    },
+    {
+      "servicio": "pool-remodeling",
+      "ciudad": "dania-beach-florida"
+    },
+    {
+      "servicio": "pool-remodeling",
+      "ciudad": "west-palm-beach-florida"
+    },
+    {
+      "servicio": "pool-remodeling",
+      "ciudad": "boca-raton-florida"
+    },
+    {
+      "servicio": "pool-remodeling",
+      "ciudad": "boynton-beach-florida"
+    },
+    {
+      "servicio": "pool-remodeling",
+      "ciudad": "gulf-stream-florida"
+    },
+    {
+      "servicio": "pool-remodeling",
+      "ciudad": "manalapan-florida"
     }
   ],
   "regional": {

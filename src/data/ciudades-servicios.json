@@ -56,6 +56,38 @@
           {
             "slug": "mcintosh-florida",
             "condado": "Marion"
+          },
+          {
+            "slug": "fort-lauderdale-florida",
+            "condado": "Broward"
+          },
+          {
+            "slug": "hollywood-florida",
+            "condado": "Broward"
+          },
+          {
+            "slug": "dania-beach-florida",
+            "condado": "Broward"
+          },
+          {
+            "slug": "west-palm-beach-florida",
+            "condado": "Palm Beach"
+          },
+          {
+            "slug": "boca-raton-florida",
+            "condado": "Palm Beach"
+          },
+          {
+            "slug": "boynton-beach-florida",
+            "condado": "Palm Beach"
+          },
+          {
+            "slug": "gulf-stream-florida",
+            "condado": "Palm Beach"
+          },
+          {
+            "slug": "manalapan-florida",
+            "condado": "Palm Beach"
           }
         ]
       }
@@ -412,6 +444,574 @@
         "hermanas": [
           {
             "href": "/services/pool-builders/mcintosh-fl",
+            "nombre": "Custom Pool Builders"
+          }
+        ]
+      }
+    },
+    "/services/pool-remodeling/fort-lauderdale-fl": {
+      "servicio": "pool-remodeling",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "fort-lauderdale-florida",
+        "name": "Fort Lauderdale",
+        "seo": {
+          "title": "Pool Remodeling in Fort Lauderdale, FL | Mr & Mrs Outdoor Living",
+          "description": "Pool remodeling in Fort Lauderdale, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor."
+        },
+        "h1Title": "Pool Remodeling & Renovation In Fort Lauderdale, Florida",
+        "h2Title": "Complete Pool Renovations For Homes In Fort Lauderdale And Broward County",
+        "intro": "Complete pool remodeling for Fort Lauderdale homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
+        "headingIntro": "Pool Remodeling & Renovation Contractors In Fort Lauderdale",
+        "paragraphIntro": "A remodel starts with the pool as it is today: we assess the shell, the plumbing and the equipment, then put the scope on paper — interior finish, waterline tile and coping, equipment and lighting, a spa added or rebuilt, the deck and a code-compliant barrier. One licensed team takes it through permits, demolition and finishing to start-up for Fort Lauderdale homeowners. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value.",
+        "imagenIntro1": {
+          "alt": "Remodeled freeform pool with blue mosaic waterline tile and travertine deck."
+        },
+        "imagenIntro2": {
+          "alt": "Remodeled pool with blue glass waterline tile and ivory travertine deck behind a stucco house."
+        },
+        "imagenIntro3": {
+          "alt": "Walnut travertine deck in French pattern around a pool with a blue-tiled raised spa."
+        },
+        "heading3DRendering": "3D Pool Design & Visualization",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Florida homeowners trust us with their pool renovations and outdoor living. Read our reviews.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on pool remodeling and outdoor living for Fort Lauderdale, FL homeowners."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Pool Remodeling in Fort Lauderdale, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Pool remodeling in Fort Lauderdale, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor.",
+            "og:image": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/pool-remodeling/fort-lauderdale-fl",
+            "twitter:title": "Pool Remodeling in Fort Lauderdale, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Pool remodeling in Fort Lauderdale, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor.",
+            "twitter:image": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Fort Lauderdale",
+              "areaServed": {
+                "name": "Fort Lauderdale"
+              },
+              "description": "Pool remodeling in Fort Lauderdale, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "enlaces": {
+        "ficha": "/services/pool-remodeling",
+        "condado": "/services/pool-builders/broward-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/fort-lauderdale-fl",
+            "nombre": "Custom Pool Builders"
+          }
+        ]
+      }
+    },
+    "/services/pool-remodeling/hollywood-fl": {
+      "servicio": "pool-remodeling",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "hollywood-florida",
+        "name": "Hollywood",
+        "seo": {
+          "title": "Pool Remodeling in Hollywood, FL | Mr & Mrs Outdoor Living",
+          "description": "Pool remodeling in Hollywood, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor."
+        },
+        "h1Title": "Pool Remodeling & Renovation In Hollywood, Florida",
+        "h2Title": "Complete Pool Renovations For Homes In Hollywood And Broward County",
+        "intro": "Complete pool remodeling for Hollywood homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
+        "headingIntro": "Pool Remodeling & Renovation Contractors In Hollywood",
+        "paragraphIntro": "A remodel starts with the pool as it is today: we assess the shell, the plumbing and the equipment, then put the scope on paper — interior finish, waterline tile and coping, equipment and lighting, a spa added or rebuilt, the deck and a code-compliant barrier. One licensed team takes it through permits, demolition and finishing to start-up for Hollywood homeowners. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value.",
+        "imagenIntro1": {
+          "alt": "Remodeled freeform pool with blue mosaic waterline tile and travertine deck."
+        },
+        "imagenIntro2": {
+          "alt": "Remodeled pool with blue glass waterline tile and ivory travertine deck behind a stucco house."
+        },
+        "imagenIntro3": {
+          "alt": "Walnut travertine deck in French pattern around a pool with a blue-tiled raised spa."
+        },
+        "heading3DRendering": "3D Pool Design & Visualization",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Florida homeowners trust us with their pool renovations and outdoor living. Read our reviews.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on pool remodeling and outdoor living for Hollywood, FL homeowners."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Pool Remodeling in Hollywood, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Pool remodeling in Hollywood, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor.",
+            "og:image": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/pool-remodeling/hollywood-fl",
+            "twitter:title": "Pool Remodeling in Hollywood, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Pool remodeling in Hollywood, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor.",
+            "twitter:image": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Hollywood",
+              "areaServed": {
+                "name": "Hollywood"
+              },
+              "description": "Pool remodeling in Hollywood, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "enlaces": {
+        "ficha": "/services/pool-remodeling",
+        "condado": "/services/pool-builders/broward-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/hollywood-fl",
+            "nombre": "Custom Pool Builders"
+          }
+        ]
+      }
+    },
+    "/services/pool-remodeling/dania-beach-fl": {
+      "servicio": "pool-remodeling",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "dania-beach-florida",
+        "name": "Dania Beach",
+        "seo": {
+          "title": "Pool Remodeling in Dania Beach, FL | Mr & Mrs Outdoor Living",
+          "description": "Pool remodeling in Dania Beach, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor."
+        },
+        "h1Title": "Pool Remodeling & Renovation In Dania Beach, Florida",
+        "h2Title": "Complete Pool Renovations For Homes In Dania Beach And Broward County",
+        "intro": "Complete pool remodeling for Dania Beach homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
+        "headingIntro": "Pool Remodeling & Renovation Contractors In Dania Beach",
+        "paragraphIntro": "A remodel starts with the pool as it is today: we assess the shell, the plumbing and the equipment, then put the scope on paper — interior finish, waterline tile and coping, equipment and lighting, a spa added or rebuilt, the deck and a code-compliant barrier. One licensed team takes it through permits, demolition and finishing to start-up for Dania Beach homeowners. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value.",
+        "imagenIntro1": {
+          "alt": "Remodeled freeform pool with blue mosaic waterline tile and travertine deck."
+        },
+        "imagenIntro2": {
+          "alt": "Remodeled pool with blue glass waterline tile and ivory travertine deck behind a stucco house."
+        },
+        "imagenIntro3": {
+          "alt": "Walnut travertine deck in French pattern around a pool with a blue-tiled raised spa."
+        },
+        "heading3DRendering": "3D Pool Design & Visualization",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Florida homeowners trust us with their pool renovations and outdoor living. Read our reviews.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on pool remodeling and outdoor living for Dania Beach, FL homeowners."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Pool Remodeling in Dania Beach, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Pool remodeling in Dania Beach, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor.",
+            "og:image": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/pool-remodeling/dania-beach-fl",
+            "twitter:title": "Pool Remodeling in Dania Beach, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Pool remodeling in Dania Beach, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor.",
+            "twitter:image": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Dania Beach",
+              "areaServed": {
+                "name": "Dania Beach"
+              },
+              "description": "Pool remodeling in Dania Beach, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "enlaces": {
+        "ficha": "/services/pool-remodeling",
+        "condado": "/services/pool-builders/broward-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/dania-beach-fl",
+            "nombre": "Custom Pool Builders"
+          }
+        ]
+      }
+    },
+    "/services/pool-remodeling/west-palm-beach-fl": {
+      "servicio": "pool-remodeling",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "west-palm-beach-florida",
+        "name": "West Palm Beach",
+        "seo": {
+          "title": "Pool Remodeling in West Palm Beach, FL | Mr & Mrs Outdoor Living",
+          "description": "Pool remodeling in West Palm Beach, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor."
+        },
+        "h1Title": "Pool Remodeling & Renovation In West Palm Beach, Florida",
+        "h2Title": "Complete Pool Renovations For Homes In West Palm Beach And Palm Beach County",
+        "intro": "Complete pool remodeling for West Palm Beach homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
+        "headingIntro": "Pool Remodeling & Renovation Contractors In West Palm Beach",
+        "paragraphIntro": "A remodel starts with the pool as it is today: we assess the shell, the plumbing and the equipment, then put the scope on paper — interior finish, waterline tile and coping, equipment and lighting, a spa added or rebuilt, the deck and a code-compliant barrier. One licensed team takes it through permits, demolition and finishing to start-up for West Palm Beach homeowners. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value.",
+        "imagenIntro1": {
+          "alt": "Remodeled freeform pool with blue mosaic waterline tile and travertine deck."
+        },
+        "imagenIntro2": {
+          "alt": "Remodeled pool with blue glass waterline tile and ivory travertine deck behind a stucco house."
+        },
+        "imagenIntro3": {
+          "alt": "Walnut travertine deck in French pattern around a pool with a blue-tiled raised spa."
+        },
+        "heading3DRendering": "3D Pool Design & Visualization",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Florida homeowners trust us with their pool renovations and outdoor living. Read our reviews.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on pool remodeling and outdoor living for West Palm Beach, FL homeowners."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Pool Remodeling in West Palm Beach, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Pool remodeling in West Palm Beach, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor.",
+            "og:image": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/pool-remodeling/west-palm-beach-fl",
+            "twitter:title": "Pool Remodeling in West Palm Beach, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Pool remodeling in West Palm Beach, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor.",
+            "twitter:image": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "West Palm Beach",
+              "areaServed": {
+                "name": "West Palm Beach"
+              },
+              "description": "Pool remodeling in West Palm Beach, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "enlaces": {
+        "ficha": "/services/pool-remodeling",
+        "condado": "/services/pool-builders/palm-beach-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/west-palm-beach-fl",
+            "nombre": "Custom Pool Builders"
+          }
+        ]
+      }
+    },
+    "/services/pool-remodeling/boca-raton-fl": {
+      "servicio": "pool-remodeling",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "boca-raton-florida",
+        "name": "Boca Raton",
+        "seo": {
+          "title": "Pool Remodeling in Boca Raton, FL | Mr & Mrs Outdoor Living",
+          "description": "Pool remodeling in Boca Raton, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor."
+        },
+        "h1Title": "Pool Remodeling & Renovation In Boca Raton, Florida",
+        "h2Title": "Complete Pool Renovations For Homes In Boca Raton And Palm Beach County",
+        "intro": "Complete pool remodeling for Boca Raton homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
+        "headingIntro": "Pool Remodeling & Renovation Contractors In Boca Raton",
+        "paragraphIntro": "A remodel starts with the pool as it is today: we assess the shell, the plumbing and the equipment, then put the scope on paper — interior finish, waterline tile and coping, equipment and lighting, a spa added or rebuilt, the deck and a code-compliant barrier. One licensed team takes it through permits, demolition and finishing to start-up for Boca Raton homeowners. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value.",
+        "imagenIntro1": {
+          "alt": "Remodeled freeform pool with blue mosaic waterline tile and travertine deck."
+        },
+        "imagenIntro2": {
+          "alt": "Remodeled pool with blue glass waterline tile and ivory travertine deck behind a stucco house."
+        },
+        "imagenIntro3": {
+          "alt": "Walnut travertine deck in French pattern around a pool with a blue-tiled raised spa."
+        },
+        "heading3DRendering": "3D Pool Design & Visualization",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Florida homeowners trust us with their pool renovations and outdoor living. Read our reviews.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on pool remodeling and outdoor living for Boca Raton, FL homeowners."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Pool Remodeling in Boca Raton, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Pool remodeling in Boca Raton, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor.",
+            "og:image": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/pool-remodeling/boca-raton-fl",
+            "twitter:title": "Pool Remodeling in Boca Raton, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Pool remodeling in Boca Raton, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor.",
+            "twitter:image": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Boca Raton",
+              "areaServed": {
+                "name": "Boca Raton"
+              },
+              "description": "Pool remodeling in Boca Raton, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "enlaces": {
+        "ficha": "/services/pool-remodeling",
+        "condado": "/services/pool-builders/palm-beach-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/boca-raton-fl",
+            "nombre": "Custom Pool Builders"
+          }
+        ]
+      }
+    },
+    "/services/pool-remodeling/boynton-beach-fl": {
+      "servicio": "pool-remodeling",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "boynton-beach-florida",
+        "name": "Boynton Beach",
+        "seo": {
+          "title": "Pool Remodeling in Boynton Beach, FL | Mr & Mrs Outdoor Living",
+          "description": "Pool remodeling in Boynton Beach, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor."
+        },
+        "h1Title": "Pool Remodeling & Renovation In Boynton Beach, Florida",
+        "h2Title": "Complete Pool Renovations For Homes In Boynton Beach And Palm Beach County",
+        "intro": "Complete pool remodeling for Boynton Beach homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
+        "headingIntro": "Pool Remodeling & Renovation Contractors In Boynton Beach",
+        "paragraphIntro": "A remodel starts with the pool as it is today: we assess the shell, the plumbing and the equipment, then put the scope on paper — interior finish, waterline tile and coping, equipment and lighting, a spa added or rebuilt, the deck and a code-compliant barrier. One licensed team takes it through permits, demolition and finishing to start-up for Boynton Beach homeowners. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value.",
+        "imagenIntro1": {
+          "alt": "Remodeled freeform pool with blue mosaic waterline tile and travertine deck."
+        },
+        "imagenIntro2": {
+          "alt": "Remodeled pool with blue glass waterline tile and ivory travertine deck behind a stucco house."
+        },
+        "imagenIntro3": {
+          "alt": "Walnut travertine deck in French pattern around a pool with a blue-tiled raised spa."
+        },
+        "heading3DRendering": "3D Pool Design & Visualization",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Florida homeowners trust us with their pool renovations and outdoor living. Read our reviews.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on pool remodeling and outdoor living for Boynton Beach, FL homeowners."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Pool Remodeling in Boynton Beach, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Pool remodeling in Boynton Beach, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor.",
+            "og:image": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/pool-remodeling/boynton-beach-fl",
+            "twitter:title": "Pool Remodeling in Boynton Beach, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Pool remodeling in Boynton Beach, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor.",
+            "twitter:image": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Boynton Beach",
+              "areaServed": {
+                "name": "Boynton Beach"
+              },
+              "description": "Pool remodeling in Boynton Beach, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "enlaces": {
+        "ficha": "/services/pool-remodeling",
+        "condado": "/services/pool-builders/palm-beach-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/boynton-beach-fl",
+            "nombre": "Custom Pool Builders"
+          }
+        ]
+      }
+    },
+    "/services/pool-remodeling/gulf-stream-fl": {
+      "servicio": "pool-remodeling",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "gulf-stream-florida",
+        "name": "Gulf Stream",
+        "seo": {
+          "title": "Pool Remodeling in Gulf Stream, FL | Mr & Mrs Outdoor Living",
+          "description": "Pool remodeling in Gulf Stream, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor."
+        },
+        "h1Title": "Pool Remodeling & Renovation In Gulf Stream, Florida",
+        "h2Title": "Complete Pool Renovations For Homes In Gulf Stream And Palm Beach County",
+        "intro": "Complete pool remodeling for Gulf Stream homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
+        "headingIntro": "Pool Remodeling & Renovation Contractors In Gulf Stream",
+        "paragraphIntro": "A remodel starts with the pool as it is today: we assess the shell, the plumbing and the equipment, then put the scope on paper — interior finish, waterline tile and coping, equipment and lighting, a spa added or rebuilt, the deck and a code-compliant barrier. One licensed team takes it through permits, demolition and finishing to start-up for Gulf Stream homeowners. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value.",
+        "imagenIntro1": {
+          "alt": "Remodeled freeform pool with blue mosaic waterline tile and travertine deck."
+        },
+        "imagenIntro2": {
+          "alt": "Remodeled pool with blue glass waterline tile and ivory travertine deck behind a stucco house."
+        },
+        "imagenIntro3": {
+          "alt": "Walnut travertine deck in French pattern around a pool with a blue-tiled raised spa."
+        },
+        "heading3DRendering": "3D Pool Design & Visualization",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Florida homeowners trust us with their pool renovations and outdoor living. Read our reviews.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on pool remodeling and outdoor living for Gulf Stream, FL homeowners."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Pool Remodeling in Gulf Stream, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Pool remodeling in Gulf Stream, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor.",
+            "og:image": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/pool-remodeling/gulf-stream-fl",
+            "twitter:title": "Pool Remodeling in Gulf Stream, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Pool remodeling in Gulf Stream, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor.",
+            "twitter:image": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Gulf Stream",
+              "areaServed": {
+                "name": "Gulf Stream"
+              },
+              "description": "Pool remodeling in Gulf Stream, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "enlaces": {
+        "ficha": "/services/pool-remodeling",
+        "condado": "/services/pool-builders/palm-beach-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/gulf-stream-fl",
+            "nombre": "Custom Pool Builders"
+          }
+        ]
+      }
+    },
+    "/services/pool-remodeling/manalapan-fl": {
+      "servicio": "pool-remodeling",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "manalapan-florida",
+        "name": "Manalapan",
+        "seo": {
+          "title": "Pool Remodeling in Manalapan, FL | Mr & Mrs Outdoor Living",
+          "description": "Pool remodeling in Manalapan, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor."
+        },
+        "h1Title": "Pool Remodeling & Renovation In Manalapan, Florida",
+        "h2Title": "Complete Pool Renovations For Homes In Manalapan And Palm Beach County",
+        "intro": "Complete pool remodeling for Manalapan homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
+        "headingIntro": "Pool Remodeling & Renovation Contractors In Manalapan",
+        "paragraphIntro": "A remodel starts with the pool as it is today: we assess the shell, the plumbing and the equipment, then put the scope on paper — interior finish, waterline tile and coping, equipment and lighting, a spa added or rebuilt, the deck and a code-compliant barrier. One licensed team takes it through permits, demolition and finishing to start-up for Manalapan homeowners. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value.",
+        "imagenIntro1": {
+          "alt": "Remodeled freeform pool with blue mosaic waterline tile and travertine deck."
+        },
+        "imagenIntro2": {
+          "alt": "Remodeled pool with blue glass waterline tile and ivory travertine deck behind a stucco house."
+        },
+        "imagenIntro3": {
+          "alt": "Walnut travertine deck in French pattern around a pool with a blue-tiled raised spa."
+        },
+        "heading3DRendering": "3D Pool Design & Visualization",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Florida homeowners trust us with their pool renovations and outdoor living. Read our reviews.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on pool remodeling and outdoor living for Manalapan, FL homeowners."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Pool Remodeling in Manalapan, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Pool remodeling in Manalapan, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor.",
+            "og:image": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/pool-remodeling/manalapan-fl",
+            "twitter:title": "Pool Remodeling in Manalapan, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Pool remodeling in Manalapan, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor.",
+            "twitter:image": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Manalapan",
+              "areaServed": {
+                "name": "Manalapan"
+              },
+              "description": "Pool remodeling in Manalapan, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "enlaces": {
+        "ficha": "/services/pool-remodeling",
+        "condado": "/services/pool-builders/palm-beach-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/manalapan-fl",
             "nombre": "Custom Pool Builders"
           }
         ]
