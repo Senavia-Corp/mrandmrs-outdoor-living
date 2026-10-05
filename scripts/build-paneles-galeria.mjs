@@ -1,105 +1,92 @@
 #!/usr/bin/env node
 /**
- * Las seis fotos de la banda «Project Gallery» (los paneles verticales de las 55 rutas).
+ * Las seis fotos de la banda «Project Gallery» (las teselas 4:3 de las 55 rutas).
  *
- *     node scripts/build-paneles-galeria.mjs                      # deriva las seis
- *     node scripts/build-paneles-galeria.mjs --hoja bi-0947 bi-0614:0.2 … > hoja.jpg
+ *     node scripts/build-paneles-galeria.mjs                          # deriva las seis
+ *     node scripts/build-paneles-galeria.mjs --hoja bi-0633 bi-0520:50:20 … > hoja.jpg
  *
  * El dato vive en `src/data/galeria-categorias.json` -> `categorias[].panel`
- * (`bancoId`, `x` = object-position horizontal en %, y `recorte` opcional). Se recorta la foto
- * del BANCO, no el original: ya viene sin EXIF y con los recortes de privacidad hechos
- * (BANCO-IMAGENES.md, regla 6). A toda la altura, al 9:16 de los paneles de siempre
- * (941x1672 + -p-800 + -p-500), centrado o desde `recorte` (fraccion del ancho sobrante).
+ * (`bancoId`, y `x`/`y` = object-position en %). Se recorta la foto del BANCO, no el original:
+ * ya viene sin EXIF y con los recortes de privacidad hechos (BANCO-IMAGENES.md, regla 6).
  *
- * LA HOJA SE JUZGA POR LO QUE PINTA LA CELDA, no por la foto entera. Por cada candidata: el
- * fichero 9:16 con una regla cada 10 %, el panel EN REPOSO a 1440 (236x662) con x = 0/25/50/75/100,
- * el panel ABIERTO (~453x662, flex-grow 2,35) y el movil (390x384). El velo navy de
- * `caracteristicas.css` (.block-feature) va pintado encima: el titulo blanco tiene que caer en
- * zona tranquila.
+ * GALERIA-REJILLA (5-oct-2026): antes era un 9:16 a toda la altura para el acordeon vertical;
+ * ahora es un 4:3 apaisado, el formato de la tesela desde 768. Las cuentas del recorte y de las
+ * variantes (480/800/1200/1600 hasta el ancho del recorte) son `recorteTesela()` de
+ * `src/lib/galeria-categorias.mjs`: el `srcset` que pinta la banda y los ficheros que salen de
+ * aqui son la misma lista por construccion. WebP q78, sin metadatos.
+ *
+ * LA HOJA SE JUZGA POR LO QUE PINTA LA TESELA, no por la foto entera. Por cada candidata: la
+ * tesela de escritorio (4:3, 640x480 = 1920/3) y la de movil (3:2, 479x319) con `x`/`y`, las
+ * dos con el degradado de `caracteristicas.css` pintado y la caja donde cae el texto marcada:
+ * el texto blanco tiene que caer en zona tranquila, y lo que mande el contraste es el pixel
+ * MAS CLARO de esa caja, no la media.
  */
 import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
-import { CATEGORIAS } from '../src/lib/galeria-categorias.mjs';
+import { PANELES, recorteTesela, fotoTesela } from '../src/lib/galeria-categorias.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
-const BANCO = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/banco-imagenes.json'), 'utf8'));
-const porId = new Map(BANCO.map((e) => [e.id, e]));
-const ANCHO = 941, ALTO = 1672;
-const DESTINO = path.join(RAIZ, 'public/images/obra/paneles');
+const DESTINO = path.join(RAIZ, 'public/images/obra/teselas');
+const CALIDAD = 78;
 
-const entrada = (id) => {
-  const e = porId.get(id);
-  if (!e) throw new Error(`${id} no esta en el banco`);
-  return e;
-};
-
-/** El 9:16 a toda la altura. `recorte` en 0..1 sobre el ancho que sobra; sin el, centrado. */
-async function nueveDieciseis(e, recorte) {
-  const ancho = Math.round(e.alto * ANCHO / ALTO);
-  if (ancho > e.ancho) throw new Error(`${e.id}: ${e.ancho}x${e.alto} es mas estrecha que 9:16`);
-  const left = Math.round((e.ancho - ancho) * (recorte ?? 0.5));
-  return sharp(path.join(RAIZ, 'public', e.src))
-    .extract({ left, top: 0, width: ancho, height: e.alto })
-    .resize(ANCHO, ALTO)
-    .toBuffer();
+/** El 4:3 centrado en (x, y) % sobre lo que sobre; en las fotos 4:3 del banco no sobra nada. */
+async function cuatroTercios(c) {
+  const { ficha: e, ancho, alto } = recorteTesela(c);
+  const left = Math.round((e.ancho - ancho) * (c.panel.x ?? 50) / 100);
+  const top = Math.round((e.alto - alto) * (c.panel.y ?? 50) / 100);
+  return sharp(path.join(RAIZ, 'public', e.src)).extract({ left, top, width: ancho, height: alto }).toBuffer();
 }
 
-/** `object-fit: cover` + `object-position: x% 50%` de una celda w×h sobre el 9:16. */
-async function celda(buf, w, h, x) {
-  const k = Math.max(w / ANCHO, h / ALTO);
-  const sw = Math.round(ANCHO * k), sh = Math.round(ALTO * k);
-  const velo = Buffer.from(`<svg width="${w}" height="${h}"><defs><linearGradient id="v" x1="0" y1="1" x2="0" y2="0">`
-    + '<stop offset="0.04" stop-color="#001c63"/><stop offset="0.42" stop-color="#001c63" stop-opacity="0.72"/>'
-    + `<stop offset="0.68" stop-color="#001c63" stop-opacity="0"/></linearGradient></defs><rect width="${w}" height="${h}" fill="url(#v)"/></svg>`);
+/** `object-fit: cover` + `object-position: x% y%` de una tesela w×h, con el degradado y la caja del texto. */
+async function tesela(buf, w, h, x, y) {
+  const m = await sharp(buf).metadata();
+  const k = Math.max(w / m.width, h / m.height);
+  const sw = Math.round(m.width * k), sh = Math.round(m.height * k);
+  const pie = Math.round(h * 0.42);
+  const capa = Buffer.from(`<svg width="${w}" height="${h}"><defs><linearGradient id="v" x1="0" y1="1" x2="0" y2="0">`
+    + '<stop offset="0" stop-color="#001c63" stop-opacity="0.9"/><stop offset="0.3" stop-color="#001c63" stop-opacity="0.72"/>'
+    + '<stop offset="0.6" stop-color="#001c63" stop-opacity="0"/></linearGradient></defs>'
+    + `<rect width="${w}" height="${h}" fill="url(#v)"/>`
+    + `<rect x="16" y="${h - pie}" width="${Math.round(w * 0.8)}" height="${pie - 16}" fill="none" stroke="#ff0" stroke-dasharray="6 4"/></svg>`);
   return sharp(buf).resize(sw, sh)
-    .extract({ left: Math.round((sw - w) * x / 100), top: Math.round((sh - h) / 2), width: w, height: h })
-    .composite([{ input: velo }]).png().toBuffer();
+    .extract({ left: Math.round((sw - w) * x / 100), top: Math.round((sh - h) * y / 100), width: w, height: h })
+    .composite([{ input: capa }]).png().toBuffer();
 }
 
-const texto = (s, w, h, talla = 22) => Buffer.from(`<svg width="${w}" height="${h}"><text x="4" y="${talla}" `
-  + `font-family="Helvetica" font-size="${talla}" fill="#fff">${s}</text></svg>`);
+const rotulo = (s, w) => Buffer.from(`<svg width="${w}" height="28"><text x="4" y="20" `
+  + `font-family="Helvetica" font-size="18" fill="#fff">${s}</text></svg>`);
 
-async function hoja(ids) {
-  const E = 0.5, G = 12;   // la hoja va a media escala
-  const filas = [];
-  for (const arg of ids) {
-    const [id, r] = arg.split(':');
-    const e = entrada(id);
-    const buf = await nueveDieciseis(e, r === undefined ? undefined : Number(r));
-    const piezas = [];
-    const regla = Buffer.from(`<svg width="${ANCHO}" height="${ALTO}">${[...Array(9)].map((_, i) =>
-      `<line x1="${(i + 1) * ANCHO / 10}" y1="0" x2="${(i + 1) * ANCHO / 10}" y2="${ALTO}" stroke="#ff0" stroke-width="3"/>`).join('')}</svg>`);
-    piezas.push(await sharp(await sharp(buf).composite([{ input: regla }]).png().toBuffer()).resize(Math.round(662 * E * ANCHO / ALTO), Math.round(662 * E)).png().toBuffer());
-    for (const x of [0, 25, 50, 75, 100]) piezas.push(await sharp(await celda(buf, 236, 662, x)).resize(Math.round(236 * E)).png().toBuffer());
-    piezas.push(await sharp(await celda(buf, 453, 662, 50)).resize(Math.round(453 * E)).png().toBuffer());
-    piezas.push(await sharp(await celda(buf, 390, 384, 50)).resize(Math.round(390 * E)).png().toBuffer());
+async function hoja(args) {
+  const G = 12, filas = [];
+  for (const arg of args) {
+    const [id, x = 50, y = 50] = arg.split(':');
+    const c = { slug: id, panel: { bancoId: id, x: +x, y: +y } };
+    const buf = await cuatroTercios(c);
+    const piezas = [await tesela(buf, 640, 480, +x, +y), await tesela(buf, 479, 319, +x, +y)];
     const metas = await Promise.all(piezas.map((p) => sharp(p).metadata()));
-    const alto = Math.max(...metas.map((m) => m.height)) + 30;
     const anchoFila = metas.reduce((s, m) => s + m.width + G, G);
+    const comp = [{ input: rotulo(`${id} · ${recorteTesela(c).ficha.estado} · x ${x} y ${y}  |  escritorio 640x480 · movil 479x319`, anchoFila), top: 0, left: 0 }];
     let xx = G;
-    const comp = [{ input: texto(`${e.id} · ${e.proyecto ?? 'sin proyecto'} · ${e.servicios[0]} · ${e.estado}`
-      + `${r ? ` · recorte ${r}` : ''}  |  9:16 · reposo x=0/25/50/75/100 · abierto · movil`, anchoFila, 28, 18), top: 0, left: 0 }];
     piezas.forEach((p, i) => { comp.push({ input: p, top: 30, left: xx }); xx += metas[i].width + G; });
-    filas.push(await sharp({ create: { width: anchoFila, height: alto, channels: 3, background: '#333' } })
-      .composite(comp).png().toBuffer());
+    filas.push(await sharp({ create: { width: anchoFila, height: 30 + 480 + G, channels: 3, background: '#333' } }).composite(comp).png().toBuffer());
   }
   const metas = await Promise.all(filas.map((f) => sharp(f).metadata()));
-  const W = Math.max(...metas.map((m) => m.width));
   let y = 0;
   const comp = filas.map((f, i) => { const c = { input: f, top: y, left: 0 }; y += metas[i].height; return c; });
-  process.stdout.write(await sharp({ create: { width: W, height: y, channels: 3, background: '#333' } })
+  process.stdout.write(await sharp({ create: { width: Math.max(...metas.map((m) => m.width)), height: y, channels: 3, background: '#333' } })
     .composite(comp).jpeg({ quality: 82 }).toBuffer());
 }
 
 async function deriva() {
-  const paneles = CATEGORIAS.filter((c) => c.panel);
-  if (paneles.length !== 6) throw new Error(`hay ${paneles.length} categorias con panel, no 6`);
-  for (const c of paneles) {
-    const buf = await nueveDieciseis(entrada(c.panel.bancoId), c.panel.recorte);
-    for (const [w, suf] of [[ANCHO, ''], [800, '-p-800'], [500, '-p-500']]) {
-      const f = path.join(DESTINO, `gallery-panel-${c.slug}${suf}.webp`);
-      await sharp(buf).resize(w).webp({ quality: 80 }).toFile(f);   // sharp no copia metadatos si no se le pide
+  if (PANELES.length !== 6) throw new Error(`hay ${PANELES.length} categorias con panel, no 6`);
+  fs.mkdirSync(DESTINO, { recursive: true });
+  for (const c of PANELES) {
+    const { anchos, alto, ancho } = recorteTesela(c);
+    const buf = await cuatroTercios(c);
+    for (const w of anchos) {
+      const f = path.join(RAIZ, 'public', fotoTesela(c, w));
+      await sharp(buf).resize(w, Math.round(w * alto / ancho)).webp({ quality: CALIDAD }).toFile(f);   // sin metadatos: sharp no los copia si no se le pide
       console.log(`  ${path.relative(RAIZ, f)}  ${(fs.statSync(f).size / 1024).toFixed(0)} KB`);
     }
   }

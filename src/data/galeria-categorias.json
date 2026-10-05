@@ -5,7 +5,7 @@
   "origen: `banco` = src/data/banco-imagenes.json (bancoId); se inyecta TAMBIEN en /gallery con data-service-id = id. `obra` = las de src/data/galeria-pagina.json, que /gallery ya inyecta. `webflow` = las de la rejilla de origen con `usable: true` en gallery-procedencia.json.",
   "Sin pagina por falta de obra real: screens (5), irrigation (4), light (0), furniture (0). Slugs reservados: retractable-screens, irrigation-systems, outdoor-lighting, outdoor-furniture.",
   "El orden de `fotos` es el de la pagina: casting hecho sobre hoja de contactos recortada a 3:2, que es como pinta la rejilla.",
-  "`panel` (6 categorias, en este orden) = la banda «Project Gallery» de las 53 /services/pool-builders/* y las 2 /where-we-serve/*-florida: foto del banco (bancoId) recortada a 9:16 por scripts/build-paneles-galeria.mjs en /images/obra/paneles/gallery-panel-<slug>.webp, y `x` = su object-position horizontal en %, medido sobre la hoja de contactos del panel en reposo (236x662). El marcado sale de bandaGaleriaHtml() en src/lib/galeria-categorias.mjs."
+  "`panel` (6 categorias, en este orden) = la banda «Project Gallery» de las 53 /services/pool-builders/* y las 2 /where-we-serve/*-florida, una rejilla 3x2 a sangre (GALERIA-REJILLA, 5-oct-2026): foto del banco (bancoId, obra_real, apaisada, elegida por hoja de contactos y que NO salga ya en esas 55 rutas) recortada a 4:3 por scripts/build-paneles-galeria.mjs en /images/obra/teselas/gallery-tile-<slug>-<ancho>.webp, y `x`/`y` = su object-position en %, que solo actua en movil (tesela 3:2 sobre el fichero 4:3). El marcado sale de bandaGaleriaHtml() en src/lib/galeria-categorias.mjs."
  ],
  "categorias": [
   {
@@ -23,8 +23,9 @@
    },
    "portada": "/images/banco/construction/pool-construction-l-shaped-pool-spa-aerial-florida-01.webp",
    "panel": {
-    "bancoId": "bi-0662",
-    "x": 50
+    "bancoId": "bi-0633",
+    "x": 50,
+    "y": 20
    },
    "fotos": [
     {
@@ -195,8 +196,9 @@
    },
    "portada": "/images/banco/remodeling/pool-remodeling-travertine-deck-rock-landscaping-florida-02.webp",
    "panel": {
-    "bancoId": "bi-0614",
-    "x": 50
+    "bancoId": "bi-0520",
+    "x": 50,
+    "y": 50
    },
    "fotos": [
     {
@@ -344,8 +346,9 @@
    },
    "portada": "/images/banco/pergolas/freestanding-patio-cover-privacy-screen-poolside-florida-02.webp",
    "panel": {
-    "bancoId": "bi-0948",
-    "x": 50
+    "bancoId": "bi-0977",
+    "x": 50,
+    "y": 40
    },
    "fotos": [
     {
@@ -675,8 +678,9 @@
    },
    "portada": "/images/banco/louvered/louvered-roof-white-large-span-travertine-patio-florida-01.webp",
    "panel": {
-    "bancoId": "bi-0237",
-    "x": 50
+    "bancoId": "bi-0220",
+    "x": 50,
+    "y": 30
    },
    "fotos": [
     {
@@ -879,8 +883,9 @@
    },
    "portada": "/images/banco/kitchens/outdoor-kitchen-marble-waterfall-kamado-grill-florida-01.webp",
    "panel": {
-    "bancoId": "bi-0835",
-    "x": 40
+    "bancoId": "bi-0789",
+    "x": 50,
+    "y": 30
    },
    "fotos": [
     {
@@ -1084,8 +1089,9 @@
    },
    "portada": "/images/banco/decks/limestone-paver-patio-lake-view-herringbone-florida-01.webp",
    "panel": {
-    "bancoId": "bi-0084",
-    "x": 50
+    "bancoId": "bi-0060",
+    "x": 50,
+    "y": 70
    },
    "fotos": [
     {
