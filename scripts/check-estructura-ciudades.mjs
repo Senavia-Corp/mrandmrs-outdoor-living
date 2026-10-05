@@ -136,14 +136,25 @@ for (const ruta of TODAS) {
         + 'tiene que haber exactamente 1.');
       continue;
     }
-    const fotos = d.querySelectorAll('section.faq-section .mm-collage > img').length;
-    if (fotos !== 5) { mal(ruta, `el collage de la FAQ trae ${fotos} fotos y el bento pide 5.`); continue; }
+    /* LA FAQ, EN UNA COLUMNA Y SIN FOTOS (FAQ-UNA-COLUMNA, 5-oct-2026). Aqui se exigian las 5
+     * fotos del collage. Borrar la linea a secas dejaba la FAQ sin vigilar; se INVIERTE: la seccion
+     * tiene que traer sus acordeones y ninguna imagen que no sea la flecha de cada uno. Asi el
+     * collage no puede volver por un generador olvidado sin que esto se ponga rojo. */
+    const faq = d.querySelector('section.faq-section');
+    if (!faq?.querySelector('.wrapper-faq-components .dropdown-faq')) {
+      mal(ruta, 'la FAQ no trae ni un acordeon dentro de .wrapper-faq-components.'); continue;
+    }
+    const fotosFaq = [...faq.querySelectorAll('img')].filter((i) => !i.closest('.block-arrow-faq'));
+    if (fotosFaq.length || faq.querySelector('.mm-collage')) {
+      mal(ruta, `la FAQ vuelve a pintar ${fotosFaq.length} foto(s) fuera de las flechas `
+        + '(o un .mm-collage). Es una columna sin collage desde el 5-oct-2026.'); continue;
+    }
     conCaptacion++;
   } else {
     /* Y AL REVES, QUE ES LA MITAD QUE IMPORTA: una ciudad sin entrada no puede haber ganado NADA.
      * Si un widget se monta sin su guarda, aqui se ve — y se ve sin capturas y sin baseline. */
     const restos = ['form[data-mm-envia="1"]', '.svc-confianza', '.svc-inversion',
-      '.svc-captacion', '.faq-section', '.mm-collage', '.svc-cierre', '.svc-heroe__tel',
+      '.svc-captacion', '.faq-section', '.svc-cierre', '.svc-heroe__tel',
       /* R21: el modificador del heroe. Es la prueba mas barata — es UNA clase, la emite
        * `captacion-ciudad.mjs` sobre `.wrapper-main-hero-page`, y de el cuelgan TODAS las reglas
        * nuevas del heroe: si apareciera aqui, la insignia, los chips y el ritmo se habrian ido a

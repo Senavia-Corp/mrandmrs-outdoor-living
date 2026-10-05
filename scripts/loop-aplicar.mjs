@@ -9,7 +9,6 @@
  * y escribe, segun el hueco:
  *   heroe / proceso[i] / inversion  -> src/data/captacion-servicios.json
  *   galeria[i]                       -> src/data/fotos-por-ruta.json   (null = se queda)
- *   faq[i]                           -> src/data/collage-faq-por-ruta.json
  * Deriva ficheros a public/images/obra/<obra>/ cuando `derivar` lo pide (derivar-foto.mjs), anota
  * `usada_en`/`publicada_como` en el banco, y vuelca los huecos al estado del loop.
  * NO construye ni commitea: eso lo hace la iteracion despues de medir.
@@ -30,7 +29,6 @@ const banco = J('src/data/banco-imagenes.json');
 const porId = new Map(banco.map((e) => [e.id, e]));
 const cap = J('src/data/captacion-servicios.json');
 const fpr = J('src/data/fotos-por-ruta.json');
-const faq = J('src/data/collage-faq-por-ruta.json');
 const estado = J('docs/encargos/LOOP-IMAGENES-ESTADO.json');
 const c = cap[ruta];
 if (!c) { console.error(`ROJO ${ruta} no esta en captacion-servicios.json`); process.exit(1); }
@@ -87,8 +85,6 @@ for (const h of dec.huecos) {
     c.proceso.fotos[i] = { foto: foto.src, alt: alt(h, e), ancho: foto.ancho, alto: foto.alto, ...(h.pos ? { pos: h.pos } : {}), _banco: e.id, _proyecto: e.proyecto ?? null, _ajuste: foto._ajuste };
   } else if (tipo === 'galeria') {
     galeria[i] = { src: foto.src, alt: alt(h, e), ancho: foto.ancho, alto: foto.alto, pos: h.pos, _banco: e.id, _por_que: h.por_que ?? null };
-  } else if (tipo === 'faq') {
-    faq[ruta].fotos[i] = { src: foto.src, srcset: `${foto.src} ${foto.ancho}w`, alt: alt(h, e), ancho: foto.ancho, alto: foto.alto, pos: h.pos, _banco: e.id };
   } else { console.error(`ROJO hueco desconocido ${h.hueco}`); process.exit(1); }
   huecosEstado.push(he);
 }
@@ -104,7 +100,6 @@ for (const e of banco) {
 
 W('src/data/captacion-servicios.json', cap);
 W('src/data/fotos-por-ruta.json', fpr);
-W('src/data/collage-faq-por-ruta.json', faq);
 W('src/data/banco-imagenes.json', banco);
 const u = estado.unidades.find((x) => x.id === unidad);
 u.huecos = huecosEstado;
