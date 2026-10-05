@@ -9,7 +9,7 @@
 | Campo | Valor |
 |---|---|
 | fase | **2 — lotes por servicio** (Fase 0 y Fase 1 cerradas) |
-| paso | Lote 0 (piloto `/services/pool-remodeling/gainesville-fl`) → PR → merge → verificacion en produccion |
+| paso | Lote 1 (pool-remodeling North) → PR → merge → verificacion |
 | lote siguiente | Lote 1: pool-remodeling North (las 19 restantes con hecho local verificable) |
 | iteraciones sin avanzar | 0 |
 | ultima iteracion | 5-oct-2026, sobre `origin/main` 9824a43 |
@@ -378,11 +378,68 @@ bi-0616, galeria bi-0072/0547/0515/0664/0665/0071/0528/0530/0090/0679/0613). Lib
 tope: 32 (el tope es por pagina y las fotos se comparten entre las ciudades del servicio, como en
 pool-builders). Ninguna presentada como hecha en la ciudad.
 
+## Lote 1 — pool-remodeling North (5-oct-2026)
+
+**Cambio de metodo (D8).** El presupuesto de busquedas web de la sesion (200) se agoto en la ronda 2
+de investigacion: no se puede verificar nada nuevo en esta sesion. Las paginas salen SOLO de lo que
+ya esta en los dossiers (`docs/encargos/loop-ciudades/dossier-*.json` y `hechos2-*.json`). La FAQ
+local se compone: parrafo de la ciudad (`ciudades.<slug>.local`) + hecho del servicio
+(`extras.<tema>`) + hecho de condado (`regional`) + cierre de la ficha. Una combinacion entra si
+su texto local propio llega a 60 palabras (mismo umbral de la Fase 1). Criterio de redaccion tras
+la revision independiente: cada frase sale de un fragmento `evidencia`; las notas del
+investigador (`oficina`, `hecho`, `dudas`) no son evidencia.
+
+**Rutas publicadas (4):** /services/pool-remodeling/{ocala-fl, palatka-fl, cedar-key-fl, mcintosh-fl}.
+
+**Excluidas en North (texto local propio < 60 palabras con lo verificado):** Lake City 27, Alachua 58,
+Newberry 33, High Springs 37, Williston 36, Chiefland 44, Fanning Springs 40, Micanopy 56.
+**Sin oficina de permisos verificada (fuera de toda la matriz):** Trenton, Cross City, Hawthorne,
+Archer, Waldo, Reddick, Old Town.
+
+**Puertas** (build `MM_SANITY_CACHE=1 PUBLIC_ES_PRODUCCION=1`):
+
+```
+rutas existentes con HTML distinto al de main 9824a43: 1 -> services/pool-remodeling/index.html
+diff=0 /services/pool-builders/ocala-fl
+diff=0 /services/pool-builders/boca-raton-fl
+diff=0 /services/pool-builders/archer-fl
+check:tokens                 exit 0  PUERTA VERDE
+check:rutas                  exit 0  PUERTA VERDE
+check:enlaces                exit 0  PUERTA VERDE
+check:seo                    exit 0  PUERTA VERDE
+check:captacion              exit 0  PUERTA VERDE
+check:estructura:ciudades    exit 0  PUERTA VERDE — dos formas y solo dos
+check:medicion               exit 0  PUERTA VERDE
+check:ciudades-servicios     exit 0  PUERTA VERDE
+check:redirects              exit 0  PUERTA VERDE
+check:estructura             exit 0  PUERTA VERDE — 14 fichas, un solo orden (+ 2 variante(s) declarada(s))
+check:galeria-obra           exit 0  PUERTA VERDE — un set, las 53 ciudades, obra real trazada
+check:identidad              exit 0  PUERTA VERDE
+check:ads                    exit 0  PUERTA VERDE
+check:menu                   exit 0  PUERTA VERDE
+check:galeria                exit 0  PUERTA VERDE
+check-texto =/services/pool-remodeling exit 0   1 identicas · 0 en rojo   (1/1 rutas medidas)
+```
+
+- Rutas nuevas sin referencia: cubiertas por `check:ciudades-servicios` (verde), NO por
+  `check-texto`/`check-visual` (0/0 medidas: no es verde).
+- Revision independiente: 1a pasada RECHAZADA (Lake City: direccion y competencia del condado sin
+  fragmento; Micanopy: dos clausulas editoriales; Cedar Key/Ocala: detalles fuera del fragmento).
+  Reescritos los 46 parrafos con el criterio estricto. 2a pasada APROBADA.
+- NO verificado: las URL de `fuentes` (egress, D7).
+
+**Fotos:** las mismas 15 del servicio (compartidas, como en pool-builders); `usada_en` actualizado.
+Libres que quedan en `remodeling`: 32 − 15 = 17 sin otra ruta.
+
 ## Rutas hechas
 
 | Ruta | Lote | PR | Produccion |
 |---|---|---|---|
-| /services/pool-remodeling/gainesville-fl | 0 | (pendiente) | (pendiente) |
+| /services/pool-remodeling/gainesville-fl | 0 | [#47](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/47) fusionado (f57ba48) | Vercel `success`, deployment 6871587096 (2026-10-05T23:17Z). URL no abierta: egress (D7) |
+| /services/pool-remodeling/ocala-fl | 1 | (pendiente) | (pendiente) |
+| /services/pool-remodeling/palatka-fl | 1 | (pendiente) | (pendiente) |
+| /services/pool-remodeling/cedar-key-fl | 1 | (pendiente) | (pendiente) |
+| /services/pool-remodeling/mcintosh-fl | 1 | (pendiente) | (pendiente) |
 
 ## Bloqueos y avisos
 

@@ -98,7 +98,12 @@ for (const ruta of RUTAS) {
   const cuerpo = doc.querySelector('body');
   for (const n of cuerpo.querySelectorAll('script, style, noscript, section.menu, section.footer, section.code')) n.remove();
   const texto = norm(cuerpo.textContent);
-  textos[ruta] = texto;
+  /* Para la UNICIDAD no cuentan las lineas que varian sin ser contenido: las listas de enlaces
+   * (hermanas, fuentes) y los telefonos del heroe. Si contaran, una pagina «ganaria» palabras
+   * propias solo por tener otra lista de hermanas. */
+  const paraUnicidad = cuerpo.cloneNode(true);
+  for (const n of paraUnicidad.querySelectorAll('.mm-faq-fuentes, .svc-heroe__tel, nav:not(.w-dropdown-list)')) n.remove();
+  textos[ruta] = norm(paraUnicidad.textContent);
   const dice = (s) => texto.includes(norm(s));
 
   // 1 · texto declarado
@@ -195,7 +200,8 @@ for (const [servicio, rutas] of Object.entries(porServicio)) {
   }
 }
 const locales = [];
-for (const r of RUTAS) for (const q of FILAS.paginas.find((p) => DATOS.paginas[r].servicio === p.servicio && DATOS.paginas[r].doc.slug === p.ciudad).faqLocal) locales.push([r, norm(q.respuesta)]);
+// La pregunta local es la que lleva fuentes oficiales (las de plantilla no llevan).
+for (const r of RUTAS) for (const q of CAPTA[r].faq.anade.filter((x) => x.fuentes?.length)) locales.push([r, norm(q.respuesta)]);
 for (const c of CIUDADES_PISCINA.ciudades) for (const q of c.faqExtra ?? []) locales.push([`/services/pool-builders/${c.slug}`, norm(q.respuesta)]);
 const repes = locales.filter(([r, t], i) => locales.findIndex(([r2, t2]) => t2 === t) !== i);
 check(`ningun parrafo local repetido entre paginas (${locales.length} medidos)`, !repes.length, repes.map(([r]) => r).join(', '));

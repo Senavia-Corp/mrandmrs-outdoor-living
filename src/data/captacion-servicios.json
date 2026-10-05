@@ -2824,6 +2824,454 @@
     },
     "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
   },
+  "/services/pool-remodeling/ocala-fl": {
+    "heroe": {
+      "apoyo": "Complete pool remodeling for Ocala homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
+      "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
+      "ancla": "#estimate",
+      "cta": "Request a Design-Build Project Evaluation",
+      "zonas": [
+        "North Florida",
+        "South Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida certified pool contractor",
+          "texto": "CPC1461119 and CPC1460562, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Modern finishes and equipment",
+          "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Brought up to current code",
+          "texto": "VGB-compliant safety features, with the permits and inspections handled."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Request a Design-Build Project Evaluation",
+      "entradilla": "Tell us about your pool and we will come back with next steps. Free estimate, no obligation.",
+      "proyectos": [
+        "Complete Pool Remodel",
+        "Resurfacing or Tile Only"
+      ],
+      "proyectoPorDefecto": "Complete Pool Remodel",
+      "nombre": "Ocala Pool Remodel Form",
+      "aviso": "Ocala pool remodel lead",
+      "ga4": "remodel",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back within 24 hours.",
+        "We look at the pool as it is today and put the scope of the renovation on paper.",
+        "You get the scope in writing and a fixed project price before any demolition starts."
+      ],
+      "boton": "Request My Project Evaluation"
+    },
+    "inversion": {
+      "titulo": "What will my pool remodel cost?",
+      "texto": "Every renovation is priced from the condition of the pool, the finish and tile you choose, the equipment being replaced and the deck work around it. Answer a few questions to see the range for a custom pool in Florida, then review how it can be paid for.",
+      "ctas": [
+        {
+          "texto": "Try the pool cost estimator",
+          "href": "/pool-cost-estimator",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+      "alt": "Pool with new wet travertine deck and blue tile overlooking a lake, work nearly done.",
+      "ancho": 1200,
+      "alto": 1600
+    },
+    "faq": {
+      "titulo": "Ocala pool remodeling FAQs",
+      "entradilla": "Cost, permits and scope: what is worth settling before you renovate a pool in Marion County.",
+      "anade": [
+        {
+          "pregunta": "How much does a pool remodel cost in Ocala?",
+          "respuesta": "There is no single number: a remodel is priced from the condition of the shell, the finish and tile you choose, the equipment being replaced and the deck work around it. Our estimator walks you through those choices, and you get a fixed project price in writing before any demolition starts."
+        },
+        {
+          "pregunta": "Does a pool remodel in Ocala need a permit?",
+          "respuesta": "Usually, yes. Work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code; resurfacing alone is treated differently by different jurisdictions. We confirm the scope with the building department and pull the permits under our license."
+        },
+        {
+          "pregunta": "What is included in a complete pool remodel?",
+          "respuesta": "An assessment of the shell and plumbing, then the scope you choose: interior finish, waterline tile and coping, equipment and lighting, a spa added or rebuilt, deck resurfacing or replacement, and a code-compliant barrier, finished with start-up and a walk-through of the new equipment."
+        },
+        {
+          "pregunta": "Which office permits a pool remodel in Ocala?",
+          "respuesta": "Inside the City of Ocala, a permit is required for most interior and exterior work other than painting and floor covering, and applications go in at the city's Customer Service Center on SE 3rd Street or through the eTrakit portal. Exterior work on a property in the Tuscawilla Park or Ocala Historic District also needs a Certificate of Appropriateness from the Ocala Historic Preservation Advisory Board before it starts. In unincorporated Marion County, the county's Building Safety department reviews the work instead. The city's Building Division requires its Residential Swimming Pool, Spa and Hot Tub Safety Act requirements form with every residential pool permit, and its barrier document cites Chapter 515 of the Florida Statutes and asks for a barrier at least 4 feet high on the outside. Remodel work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code, so we confirm which office has jurisdiction before demolition and pull the permit under our license.",
+          "fuentes": [
+            {
+              "nombre": "City of Ocala Building Services: construction permits",
+              "url": "https://www.ocalafl.gov/government/city-departments-a-h/growth-management/building/construction-permits"
+            },
+            {
+              "nombre": "City of Ocala: Certificate of Appropriateness",
+              "url": "https://www.ocalafl.gov/government/city-departments-a-h/growth-management/certificate-of-appropriateness"
+            },
+            {
+              "nombre": "Marion County Building Safety",
+              "url": "https://www.marionfl.org/agencies-departments/departments-facilities-offices/building-safety"
+            },
+            {
+              "nombre": "City of Ocala: residential pool safety act requirements",
+              "url": "https://ocalafl.gov/home/showpublisheddocument/668/637546177123000000"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/pool-remodeling/palatka-fl": {
+    "heroe": {
+      "apoyo": "Complete pool remodeling for Palatka homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
+      "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
+      "ancla": "#estimate",
+      "cta": "Request a Design-Build Project Evaluation",
+      "zonas": [
+        "North Florida",
+        "South Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida certified pool contractor",
+          "texto": "CPC1461119 and CPC1460562, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Modern finishes and equipment",
+          "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Brought up to current code",
+          "texto": "VGB-compliant safety features, with the permits and inspections handled."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Request a Design-Build Project Evaluation",
+      "entradilla": "Tell us about your pool and we will come back with next steps. Free estimate, no obligation.",
+      "proyectos": [
+        "Complete Pool Remodel",
+        "Resurfacing or Tile Only"
+      ],
+      "proyectoPorDefecto": "Complete Pool Remodel",
+      "nombre": "Palatka Pool Remodel Form",
+      "aviso": "Palatka pool remodel lead",
+      "ga4": "remodel",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back within 24 hours.",
+        "We look at the pool as it is today and put the scope of the renovation on paper.",
+        "You get the scope in writing and a fixed project price before any demolition starts."
+      ],
+      "boton": "Request My Project Evaluation"
+    },
+    "inversion": {
+      "titulo": "What will my pool remodel cost?",
+      "texto": "Every renovation is priced from the condition of the pool, the finish and tile you choose, the equipment being replaced and the deck work around it. Answer a few questions to see the range for a custom pool in Florida, then review how it can be paid for.",
+      "ctas": [
+        {
+          "texto": "Try the pool cost estimator",
+          "href": "/pool-cost-estimator",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+      "alt": "Pool with new wet travertine deck and blue tile overlooking a lake, work nearly done.",
+      "ancho": 1200,
+      "alto": 1600
+    },
+    "faq": {
+      "titulo": "Palatka pool remodeling FAQs",
+      "entradilla": "Cost, permits and scope: what is worth settling before you renovate a pool in Putnam County.",
+      "anade": [
+        {
+          "pregunta": "How much does a pool remodel cost in Palatka?",
+          "respuesta": "There is no single number: a remodel is priced from the condition of the shell, the finish and tile you choose, the equipment being replaced and the deck work around it. Our estimator walks you through those choices, and you get a fixed project price in writing before any demolition starts."
+        },
+        {
+          "pregunta": "Does a pool remodel in Palatka need a permit?",
+          "respuesta": "Usually, yes. Work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code; resurfacing alone is treated differently by different jurisdictions. We confirm the scope with the building department and pull the permits under our license."
+        },
+        {
+          "pregunta": "What is included in a complete pool remodel?",
+          "respuesta": "An assessment of the shell and plumbing, then the scope you choose: interior finish, waterline tile and coping, equipment and lighting, a spa added or rebuilt, deck resurfacing or replacement, and a code-compliant barrier, finished with start-up and a walk-through of the new equipment."
+        },
+        {
+          "pregunta": "Which office permits a pool remodel in Palatka?",
+          "respuesta": "In Palatka, building permits are not processed by the city alone: since October 11, 2018 the City of Palatka has consolidated permit processing with the Putnam County Building Division, so the application is filed with the county first and the city application follows. Any exterior work in Palatka's historic district, including site work such as new sidewalks and driveways, also needs an approved Certificate of Appropriateness from the Historic Preservation Board. The city lists pool, spa and sauna installation among the work that requires a permit. Remodel work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code, so we confirm which office has jurisdiction before demolition and pull the permit under our license.",
+          "fuentes": [
+            {
+              "nombre": "City of Palatka: building permit services transferred to Putnam County",
+              "url": "https://palatka-fl.gov/CivicAlerts.aspx?AID=264&ARC=835"
+            },
+            {
+              "nombre": "City of Palatka: Historic Preservation Board",
+              "url": "https://palatka-fl.gov/140/Historic-Preservation-Board"
+            },
+            {
+              "nombre": "City of Palatka: applications and fees",
+              "url": "https://palatka-fl.gov/136/Applications-and-Fees"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/pool-remodeling/cedar-key-fl": {
+    "heroe": {
+      "apoyo": "Complete pool remodeling for Cedar Key homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
+      "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
+      "ancla": "#estimate",
+      "cta": "Request a Design-Build Project Evaluation",
+      "zonas": [
+        "North Florida",
+        "South Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida certified pool contractor",
+          "texto": "CPC1461119 and CPC1460562, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Modern finishes and equipment",
+          "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Brought up to current code",
+          "texto": "VGB-compliant safety features, with the permits and inspections handled."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Request a Design-Build Project Evaluation",
+      "entradilla": "Tell us about your pool and we will come back with next steps. Free estimate, no obligation.",
+      "proyectos": [
+        "Complete Pool Remodel",
+        "Resurfacing or Tile Only"
+      ],
+      "proyectoPorDefecto": "Complete Pool Remodel",
+      "nombre": "Cedar Key Pool Remodel Form",
+      "aviso": "Cedar Key pool remodel lead",
+      "ga4": "remodel",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back within 24 hours.",
+        "We look at the pool as it is today and put the scope of the renovation on paper.",
+        "You get the scope in writing and a fixed project price before any demolition starts."
+      ],
+      "boton": "Request My Project Evaluation"
+    },
+    "inversion": {
+      "titulo": "What will my pool remodel cost?",
+      "texto": "Every renovation is priced from the condition of the pool, the finish and tile you choose, the equipment being replaced and the deck work around it. Answer a few questions to see the range for a custom pool in Florida, then review how it can be paid for.",
+      "ctas": [
+        {
+          "texto": "Try the pool cost estimator",
+          "href": "/pool-cost-estimator",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+      "alt": "Pool with new wet travertine deck and blue tile overlooking a lake, work nearly done.",
+      "ancho": 1200,
+      "alto": 1600
+    },
+    "faq": {
+      "titulo": "Cedar Key pool remodeling FAQs",
+      "entradilla": "Cost, permits and scope: what is worth settling before you renovate a pool in Levy County.",
+      "anade": [
+        {
+          "pregunta": "How much does a pool remodel cost in Cedar Key?",
+          "respuesta": "There is no single number: a remodel is priced from the condition of the shell, the finish and tile you choose, the equipment being replaced and the deck work around it. Our estimator walks you through those choices, and you get a fixed project price in writing before any demolition starts."
+        },
+        {
+          "pregunta": "Does a pool remodel in Cedar Key need a permit?",
+          "respuesta": "Usually, yes. Work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code; resurfacing alone is treated differently by different jurisdictions. We confirm the scope with the building department and pull the permits under our license."
+        },
+        {
+          "pregunta": "What is included in a complete pool remodel?",
+          "respuesta": "An assessment of the shell and plumbing, then the scope you choose: interior finish, waterline tile and coping, equipment and lighting, a spa added or rebuilt, deck resurfacing or replacement, and a code-compliant barrier, finished with start-up and a walk-through of the new equipment."
+        },
+        {
+          "pregunta": "Which office permits a pool remodel in Cedar Key?",
+          "respuesta": "In Cedar Key, the City has partnered with JPI, Inc. to provide experienced building officials, certified inspectors and permit technicians. Every property on Cedar Key is in, on or near a Special Flood Hazard Area, with AE and VE flood zones, and an Elevation Certificate has to be submitted with the building permit application under the flood map in effect since February 15, 2019. The city lists pools and spas among the work that needs a building permit. Remodel work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code, so we confirm which office has jurisdiction before demolition and pull the permit under our license.",
+          "fuentes": [
+            {
+              "nombre": "City of Cedar Key: Building Department",
+              "url": "https://www.cityofcedarkey.org/214/Building-Department"
+            },
+            {
+              "nombre": "City of Cedar Key: floodplain management",
+              "url": "https://www.cityofcedarkey.org/297/Floodplain-Management"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/pool-remodeling/mcintosh-fl": {
+    "heroe": {
+      "apoyo": "Complete pool remodeling for McIntosh homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
+      "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
+      "ancla": "#estimate",
+      "cta": "Request a Design-Build Project Evaluation",
+      "zonas": [
+        "North Florida",
+        "South Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida certified pool contractor",
+          "texto": "CPC1461119 and CPC1460562, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Modern finishes and equipment",
+          "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Brought up to current code",
+          "texto": "VGB-compliant safety features, with the permits and inspections handled."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Request a Design-Build Project Evaluation",
+      "entradilla": "Tell us about your pool and we will come back with next steps. Free estimate, no obligation.",
+      "proyectos": [
+        "Complete Pool Remodel",
+        "Resurfacing or Tile Only"
+      ],
+      "proyectoPorDefecto": "Complete Pool Remodel",
+      "nombre": "McIntosh Pool Remodel Form",
+      "aviso": "McIntosh pool remodel lead",
+      "ga4": "remodel",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back within 24 hours.",
+        "We look at the pool as it is today and put the scope of the renovation on paper.",
+        "You get the scope in writing and a fixed project price before any demolition starts."
+      ],
+      "boton": "Request My Project Evaluation"
+    },
+    "inversion": {
+      "titulo": "What will my pool remodel cost?",
+      "texto": "Every renovation is priced from the condition of the pool, the finish and tile you choose, the equipment being replaced and the deck work around it. Answer a few questions to see the range for a custom pool in Florida, then review how it can be paid for.",
+      "ctas": [
+        {
+          "texto": "Try the pool cost estimator",
+          "href": "/pool-cost-estimator",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+      "alt": "Pool with new wet travertine deck and blue tile overlooking a lake, work nearly done.",
+      "ancho": 1200,
+      "alto": 1600
+    },
+    "faq": {
+      "titulo": "McIntosh pool remodeling FAQs",
+      "entradilla": "Cost, permits and scope: what is worth settling before you renovate a pool in Marion County.",
+      "anade": [
+        {
+          "pregunta": "How much does a pool remodel cost in McIntosh?",
+          "respuesta": "There is no single number: a remodel is priced from the condition of the shell, the finish and tile you choose, the equipment being replaced and the deck work around it. Our estimator walks you through those choices, and you get a fixed project price in writing before any demolition starts."
+        },
+        {
+          "pregunta": "Does a pool remodel in McIntosh need a permit?",
+          "respuesta": "Usually, yes. Work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code; resurfacing alone is treated differently by different jurisdictions. We confirm the scope with the building department and pull the permits under our license."
+        },
+        {
+          "pregunta": "What is included in a complete pool remodel?",
+          "respuesta": "An assessment of the shell and plumbing, then the scope you choose: interior finish, waterline tile and coping, equipment and lighting, a spa added or rebuilt, deck resurfacing or replacement, and a code-compliant barrier, finished with start-up and a walk-through of the new equipment."
+        },
+        {
+          "pregunta": "Which office permits a pool remodel in McIntosh?",
+          "respuesta": "In McIntosh the permit itself comes from Marion County, but not before the town signs off: written authorization from the Town of McIntosh is required before Marion County issues any permit. The town uses a Proposed Work Permit for repairs, replacements and improvements such as fences or gates, and a Site Plan Permit for new construction or any work that changes the original footprint of the property. Remodel work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code, so we confirm which office has jurisdiction before demolition and pull the permit under our license.",
+          "fuentes": [
+            {
+              "nombre": "Town of McIntosh: forms",
+              "url": "https://townofmcintosh.org/forms/"
+            },
+            {
+              "nombre": "Marion County Building Safety",
+              "url": "https://www.marionfl.org/agencies-departments/departments-facilities-offices/building-safety"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
   "/services/pool-builders/ocala-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Ocala homeowners — 3D design, permits, construction and final start-up, from one licensed team.",

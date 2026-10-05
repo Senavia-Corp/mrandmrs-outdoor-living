@@ -66,10 +66,1541 @@
       "region": "North Florida",
       "condado": "Alachua",
       "condadoFuente": {
-        "nombre": "Alachua County Building Division: in-ground residential pool plan checklist",
-        "url": "https://epermit.alachuacounty.us/formsdocs/BLD_In-Ground_Residential_Pool_Plan_Exam_Checklist.pdf",
-        "comprobado": "2026-10-04",
-        "_nota": "Gainesville -> Alachua ya verificado y publicado en ciudades-captacion.json (fila de Gainesville)."
+        "nombre": "Alachua County: municipalities and county permitting",
+        "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "Inside the City of Gainesville, the city's Building Division works from the Thomas Center, Building B, at 306 NE 6th Avenue, and existing permits can be looked up in its PermitGNV portal. The city's Historic Preservation Board can issue Certificates of Appropriateness for structures in its five historic districts or on the Local Register, and its design guidelines include a section on fences and garden walls. In unincorporated Alachua County, the county's Building Division reviews the work instead.",
+        "fuentes": [
+          {
+            "nombre": "City of Gainesville Building Division: application process",
+            "url": "https://www.gainesvillefl.gov/Government-Pages/Government/Departments/Sustainable-Development/Building-Division/Building-Application-Process"
+          },
+          {
+            "nombre": "City of Gainesville: historic preservation",
+            "url": "https://www.gainesvillefl.gov/Government-Pages/Government/Departments/Sustainable-Development/Historic-Preservation"
+          },
+          {
+            "nombre": "Alachua County: municipalities and county permitting",
+            "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-north.json (+ hechos2-north), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      },
+      "extras": {
+        "cocina": {
+          "texto": "Gainesville Regional Utilities has operated the city's natural gas system since 1990 and offers natural gas for uses such as grilling, so whether a gas line can reach the outdoor kitchen is worth confirming at the address before the design is drawn.",
+          "fuentes": [
+            {
+              "nombre": "Gainesville Regional Utilities: natural gas",
+              "url": "https://www.gru.com/naturalgas"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        },
+        "paisajismo": {
+          "texto": "Removing a living tree with a trunk diameter of 20 inches or more from an existing single-family lot needs a city tree removal permit before any work starts, and the city defines a native tree of that size as a Heritage Tree.",
+          "fuentes": [
+            {
+              "nombre": "City of Gainesville: tree removal regulations",
+              "url": "https://www.gainesvillefl.gov/Government-Pages/Government/Departments/Public-Works/Urban-Forestry/Tree-Removal-Regulations"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        }
+      }
+    },
+    "ocala-florida": {
+      "ciudad": "Ocala",
+      "region": "North Florida",
+      "condado": "Marion",
+      "condadoFuente": {
+        "nombre": "Marion County FAQs",
+        "url": "https://www.marionfl.org/our-county/faqs",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "Inside the City of Ocala, a permit is required for most interior and exterior work other than painting and floor covering, and applications go in at the city's Customer Service Center on SE 3rd Street or through the eTrakit portal. Exterior work on a property in the Tuscawilla Park or Ocala Historic District also needs a Certificate of Appropriateness from the Ocala Historic Preservation Advisory Board before it starts. In unincorporated Marion County, the county's Building Safety department reviews the work instead.",
+        "fuentes": [
+          {
+            "nombre": "City of Ocala Building Services: construction permits",
+            "url": "https://www.ocalafl.gov/government/city-departments-a-h/growth-management/building/construction-permits"
+          },
+          {
+            "nombre": "City of Ocala: Certificate of Appropriateness",
+            "url": "https://www.ocalafl.gov/government/city-departments-a-h/growth-management/certificate-of-appropriateness"
+          },
+          {
+            "nombre": "Marion County Building Safety",
+            "url": "https://www.marionfl.org/agencies-departments/departments-facilities-offices/building-safety"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-north.json (+ hechos2-north), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      },
+      "extras": {
+        "piscina": {
+          "texto": "The city's Building Division requires its Residential Swimming Pool, Spa and Hot Tub Safety Act requirements form with every residential pool permit, and its barrier document cites Chapter 515 of the Florida Statutes and asks for a barrier at least 4 feet high on the outside.",
+          "fuentes": [
+            {
+              "nombre": "City of Ocala: residential pool safety act requirements",
+              "url": "https://ocalafl.gov/home/showpublisheddocument/668/637546177123000000"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        },
+        "paisajismo": {
+          "texto": "The city's irrigation schedule allows micro-irrigation such as drip and bubblers at any time and gives new landscapes extra watering days during their first 60 days; the regular days and hours change with the water shortage orders in force, so we check the current schedule before the planting is scheduled.",
+          "fuentes": [
+            {
+              "nombre": "City of Ocala: irrigation schedule",
+              "url": "https://www.ocalafl.gov/government/city-departments-i-z/water-resources/water-conservation/irrigation-schedule"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        }
+      }
+    },
+    "lake-city-florida": {
+      "ciudad": "Lake City",
+      "region": "North Florida",
+      "condado": "Columbia",
+      "condadoFuente": {
+        "nombre": "Columbia County Board of County Commissioners (county offices in Lake City)",
+        "url": "https://www.columbiacountyfla.com/CountyCommissioners.aspx",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "Inside the City of Lake City, the Growth Management Department is charged with building permitting and inspections, together with current and long-range planning, zoning services and code enforcement.",
+        "fuentes": [
+          {
+            "nombre": "City of Lake City Growth Management: residential building permits",
+            "url": "https://www.lcfla.com/growth-management/page/residential-building-permit-application"
+          },
+          {
+            "nombre": "Columbia County Building and Zoning",
+            "url": "https://www.columbiacountyfla.com/BuildingandZoning.asp"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-north.json (+ hechos2-north), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      }
+    },
+    "palatka-florida": {
+      "ciudad": "Palatka",
+      "region": "North Florida",
+      "condado": "Putnam",
+      "condadoFuente": {
+        "nombre": "City of Palatka: history (county seat of Putnam County)",
+        "url": "https://www.palatka-fl.gov/DocumentCenter/View/1072",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Palatka, building permits are not processed by the city alone: since October 11, 2018 the City of Palatka has consolidated permit processing with the Putnam County Building Division, so the application is filed with the county first and the city application follows. Any exterior work in Palatka's historic district, including site work such as new sidewalks and driveways, also needs an approved Certificate of Appropriateness from the Historic Preservation Board.",
+        "fuentes": [
+          {
+            "nombre": "City of Palatka: building permit services transferred to Putnam County",
+            "url": "https://palatka-fl.gov/CivicAlerts.aspx?AID=264&ARC=835"
+          },
+          {
+            "nombre": "City of Palatka: Historic Preservation Board",
+            "url": "https://palatka-fl.gov/140/Historic-Preservation-Board"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-north.json (+ hechos2-north), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      },
+      "extras": {
+        "piscina": {
+          "texto": "The city lists pool, spa and sauna installation among the work that requires a permit.",
+          "fuentes": [
+            {
+              "nombre": "City of Palatka: applications and fees",
+              "url": "https://palatka-fl.gov/136/Applications-and-Fees"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        },
+        "paisajismo": {
+          "texto": "The city lists irrigation systems among the work that requires a permit.",
+          "fuentes": [
+            {
+              "nombre": "City of Palatka: applications and fees",
+              "url": "https://palatka-fl.gov/136/Applications-and-Fees"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        },
+        "estructura": {
+          "texto": "The city also lists screening that requires structural framing among the work that needs a permit, and keeps a Small Structure Application for sheds and similar work.",
+          "fuentes": [
+            {
+              "nombre": "City of Palatka: applications and fees",
+              "url": "https://palatka-fl.gov/136/Applications-and-Fees"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        }
+      }
+    },
+    "alachua-florida": {
+      "ciudad": "Alachua",
+      "region": "North Florida",
+      "condado": "Alachua",
+      "condadoFuente": {
+        "nombre": "Alachua County: municipalities and county permitting",
+        "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "Inside the City of Alachua, the Building Department of the city's Planning and Community Development office handles construction permits from start to finish: it reviews and processes the application, performs the plan review, issues the building permit and inspects the work while the permit is active. In unincorporated Alachua County, the county's Building Division reviews the work instead.",
+        "fuentes": [
+          {
+            "nombre": "City of Alachua: Building",
+            "url": "https://www.cityofalachua.com/264/Building"
+          },
+          {
+            "nombre": "Alachua County: municipalities and county permitting",
+            "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-north.json (+ hechos2-north), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      }
+    },
+    "newberry-florida": {
+      "ciudad": "Newberry",
+      "region": "North Florida",
+      "condado": "Alachua",
+      "condadoFuente": {
+        "nombre": "Alachua County: municipalities and county permitting",
+        "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "Inside the City of Newberry, permits are reviewed and issued by the city's own Building Department at 25440 West Newberry Road, and every permit there is handled paperless through the city's online portal. In unincorporated Alachua County, the county's Building Division reviews the work instead.",
+        "fuentes": [
+          {
+            "nombre": "City of Newberry: Building Department",
+            "url": "https://www.newberryfl.gov/building/page/building-department"
+          },
+          {
+            "nombre": "Alachua County: municipalities and county permitting",
+            "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-north.json (+ hechos2-north), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      }
+    },
+    "high-springs-florida": {
+      "ciudad": "High Springs",
+      "region": "North Florida",
+      "condado": "Alachua",
+      "condadoFuente": {
+        "nombre": "Alachua County: municipalities and county permitting",
+        "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "Inside the City of High Springs, the city's Building Department handles permitting, plan review and inspections from 23666 NW 185th Road, and it lists swimming pool permits and storage or pre-manufactured building permits among the permits it issues. In unincorporated Alachua County, the county's Building Division reviews the work instead.",
+        "fuentes": [
+          {
+            "nombre": "City of High Springs: Building Department",
+            "url": "https://www.highsprings.gov/building"
+          },
+          {
+            "nombre": "Alachua County: municipalities and county permitting",
+            "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-north.json (+ hechos2-north), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      }
+    },
+    "williston-florida": {
+      "ciudad": "Williston",
+      "region": "North Florida",
+      "condado": "Levy",
+      "condadoFuente": {
+        "nombre": "Levy County: government agencies",
+        "url": "https://www.levycounty.org/27/Government-Agencies",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "Inside the City of Williston, permits are filed with the Community Development Department at 50 NW Main Street, and the city states that its permitting services are facilitated through SAFEbuilt, the building services firm it contracts.",
+        "fuentes": [
+          {
+            "nombre": "City of Williston: permitting",
+            "url": "https://www.willistonfl.org/community-development-department/page/permitting"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-north.json (+ hechos2-north), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      }
+    },
+    "chiefland-florida": {
+      "ciudad": "Chiefland",
+      "region": "North Florida",
+      "condado": "Levy",
+      "condadoFuente": {
+        "nombre": "Levy County: government agencies",
+        "url": "https://www.levycounty.org/27/Government-Agencies",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Chiefland, building and permitting services are provided under contract: the city states that it contracts with Florida Municipal Services, Inc. and M.T. Causley, Inc. to provide its Building and Permitting services, and applications go through the Building and Zoning Department at City Hall, 214 East Park Avenue.",
+        "fuentes": [
+          {
+            "nombre": "City of Chiefland: Building and Zoning",
+            "url": "https://cityofchiefland.com/building-zoning/"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-north.json (+ hechos2-north), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      }
+    },
+    "fanning-springs-florida": {
+      "ciudad": "Fanning Springs",
+      "region": "North Florida",
+      "local": {
+        "texto": "Fanning Springs lies in both Gilchrist and Levy counties, and inside its city limits the city's own building department is responsible for issuing building permits and conducting building inspections, with the building official based at City Hall on NW 90th Court.",
+        "fuentes": [
+          {
+            "nombre": "City of Fanning Springs: about the city",
+            "url": "https://www.fanningsprings.org/about-our-city/"
+          },
+          {
+            "nombre": "City of Fanning Springs: Building Department",
+            "url": "https://www.fanningsprings.org/building-department/"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-north.json (+ hechos2-north), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      }
+    },
+    "cedar-key-florida": {
+      "ciudad": "Cedar Key",
+      "region": "North Florida",
+      "condado": "Levy",
+      "condadoFuente": {
+        "nombre": "Levy County: government agencies",
+        "url": "https://www.levycounty.org/27/Government-Agencies",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Cedar Key, the City has partnered with JPI, Inc. to provide experienced building officials, certified inspectors and permit technicians. Every property on Cedar Key is in, on or near a Special Flood Hazard Area, with AE and VE flood zones, and an Elevation Certificate has to be submitted with the building permit application under the flood map in effect since February 15, 2019.",
+        "fuentes": [
+          {
+            "nombre": "City of Cedar Key: Building Department",
+            "url": "https://www.cityofcedarkey.org/214/Building-Department"
+          },
+          {
+            "nombre": "City of Cedar Key: floodplain management",
+            "url": "https://www.cityofcedarkey.org/297/Floodplain-Management"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-north.json (+ hechos2-north), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      },
+      "extras": {
+        "piscina": {
+          "texto": "The city lists pools and spas among the work that needs a building permit.",
+          "fuentes": [
+            {
+              "nombre": "City of Cedar Key: Building Department",
+              "url": "https://www.cityofcedarkey.org/214/Building-Department"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        },
+        "deck": {
+          "texto": "The city lists deck construction among the work that needs a building permit.",
+          "fuentes": [
+            {
+              "nombre": "City of Cedar Key: Building Department",
+              "url": "https://www.cityofcedarkey.org/214/Building-Department"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        },
+        "estructura": {
+          "texto": "The city lists sheds and accessory structures among the work that needs a building permit.",
+          "fuentes": [
+            {
+              "nombre": "City of Cedar Key: Building Department",
+              "url": "https://www.cityofcedarkey.org/214/Building-Department"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        }
+      }
+    },
+    "micanopy-florida": {
+      "ciudad": "Micanopy",
+      "region": "North Florida",
+      "condado": "Alachua",
+      "condadoFuente": {
+        "nombre": "Alachua County: municipalities and county permitting",
+        "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "Micanopy does not issue its own building permits: within the town limits the Town Clerk first verifies zoning compliance, and the building permit is then issued by Alachua County under an interlocal agreement. The town also has a five-member Planning and Historic Preservation Board, which plans projects related to its historic preservation policies and cultural resources.",
+        "fuentes": [
+          {
+            "nombre": "Town of Micanopy: building department",
+            "url": "https://www.micanopytown.com/building-department"
+          },
+          {
+            "nombre": "Town of Micanopy: Planning and Historic Preservation Board",
+            "url": "https://www.micanopytown.com/planning-historic-preservation-board"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-north.json (+ hechos2-north), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      }
+    },
+    "mcintosh-florida": {
+      "ciudad": "McIntosh",
+      "region": "North Florida",
+      "condado": "Marion",
+      "condadoFuente": {
+        "nombre": "Marion County FAQs",
+        "url": "https://www.marionfl.org/our-county/faqs",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In McIntosh the permit itself comes from Marion County, but not before the town signs off: written authorization from the Town of McIntosh is required before Marion County issues any permit. The town uses a Proposed Work Permit for repairs, replacements and improvements such as fences or gates, and a Site Plan Permit for new construction or any work that changes the original footprint of the property.",
+        "fuentes": [
+          {
+            "nombre": "Town of McIntosh: forms",
+            "url": "https://townofmcintosh.org/forms/"
+          },
+          {
+            "nombre": "Marion County Building Safety",
+            "url": "https://www.marionfl.org/agencies-departments/departments-facilities-offices/building-safety"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-north.json (+ hechos2-north), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      }
+    },
+    "fort-lauderdale-florida": {
+      "ciudad": "Fort Lauderdale",
+      "region": "South Florida",
+      "condado": "Broward",
+      "condadoFuente": {
+        "nombre": "Broward County Public Works: municipality directory",
+        "url": "https://www.broward.org/Publicworks/Pages/MunicipalityDirectory.aspx",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Fort Lauderdale, the city's Building Services division is responsible for all permitting efforts in the city: it issues the permits and performs the building inspections, and new submissions go in online through the city's LauderBuild portal. The city's Atlantic beachfront sits in Broward's Segment II, between Hillsboro Inlet and Port Everglades.",
+        "fuentes": [
+          {
+            "nombre": "City of Fort Lauderdale: permitting services",
+            "url": "https://www.fortlauderdale.gov/Government/Departments/Development-Services/Permitting-Services"
+          },
+          {
+            "nombre": "Broward County beach segments",
+            "url": "https://www.broward.org/Beaches/Pages/Projects.aspx"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      },
+      "extras": {
+        "paisajismo": {
+          "texto": "Tree removal and landscaping permits are issued by Building Services under the city's Landscape and Tree Preservation Ordinance, while pruning needs no permit but has to follow the ANSI A-300 standard and city code.",
+          "fuentes": [
+            {
+              "nombre": "City of Fort Lauderdale: urban forestry",
+              "url": "https://www.fortlauderdale.gov/government/departments-i-z/public-works/sustainability-division/sustainability-climate-resilience/urban-forestry"
+            },
+            {
+              "nombre": "City of Fort Lauderdale: tree pruning",
+              "url": "https://www.fortlauderdale.gov/government/departments-i-z/public-works/sustainability-division/sustainability-climate-resilience/urban-forestry/tree-pruning"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        },
+        "piscina": {
+          "texto": "Its pool and spa checklist calls for building, plumbing, electrical, engineering and mechanical permits plus two Pool Barrier Affidavits under the Residential Swimming Pool, Spa and Hot Tub Safety Act, and the city's zoning rules keep a pool at least 5 feet from every property line.",
+          "fuentes": [
+            {
+              "nombre": "City of Fort Lauderdale: building permit checklist",
+              "url": "https://www.fortlauderdale.gov/files/assets/public/v/2/development-services/documents/dsd-documents-amp-forms/building_permit_checklist_v11.pdf"
+            },
+            {
+              "nombre": "City of Fort Lauderdale: zoning FAQ",
+              "url": "https://www.fortlauderdale.gov/government/departments-a-h/development-services/building-services/zoning/zoning-faq"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        }
+      }
+    },
+    "pembroke-pines-florida": {
+      "ciudad": "Pembroke Pines",
+      "region": "South Florida",
+      "condado": "Broward",
+      "condadoFuente": {
+        "nombre": "Broward County Public Works: municipality directory",
+        "url": "https://www.broward.org/Publicworks/Pages/MunicipalityDirectory.aspx",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Pembroke Pines, permits are submitted online through the city's Development Hub system and handled by the City of Pembroke Pines Building Department.",
+        "fuentes": [
+          {
+            "nombre": "City of Pembroke Pines: online submittal of permits",
+            "url": "https://ppines.com/1052/Online-Submittal-Permits"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      },
+      "extras": {
+        "estructura": {
+          "texto": "Its own trellis, gazebo and pergola permit checklist lists building, engineering and zoning plan reviews, plus electrical review when the structure is wired.",
+          "fuentes": [
+            {
+              "nombre": "City of Pembroke Pines: trellis, gazebo and pergola permit checklist",
+              "url": "https://www.ppines.com/DocumentCenter/View/26293/Trellis--Gazebo--Pergola-Permit-Type-Checklist"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        },
+        "paisajismo": {
+          "texto": "The city has its own Landscape Permit Application.",
+          "fuentes": [
+            {
+              "nombre": "City of Pembroke Pines: landscape permit application",
+              "url": "https://ppines.com/DocumentCenter/View/24307/Landscape-Permit-Application---Fillable"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        }
+      }
+    },
+    "hollywood-florida": {
+      "ciudad": "Hollywood",
+      "region": "South Florida",
+      "condado": "Broward",
+      "condadoFuente": {
+        "nombre": "Broward County municipalities",
+        "url": "https://www.broward.org/Residents/Pages/BrowardCountyMunicipalities.aspx",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Hollywood, the city's Building Division reviews every building permit application for compliance with local, state and federal building regulations, and all new applications are submitted through the city's Accela Citizen Access portal. The city's own permit FAQ counts a patio deck, a fence, a retaining wall, a shed, a gazebo, a trellis, a fountain, a spa or a pool as a structure.",
+        "fuentes": [
+          {
+            "nombre": "City of Hollywood: Building Division",
+            "url": "https://www.hollywoodfl.org/328/Building"
+          },
+          {
+            "nombre": "City of Hollywood: permit FAQ",
+            "url": "https://hollywoodfl.org/m/faq?cat=16#question-356"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      }
+    },
+    "miramar-florida": {
+      "ciudad": "Miramar",
+      "region": "South Florida",
+      "condado": "Broward",
+      "condadoFuente": {
+        "nombre": "Broward County Public Works: municipality directory",
+        "url": "https://www.broward.org/Publicworks/Pages/MunicipalityDirectory.aspx",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Miramar, the city's Building Division reviews every building permit application for compliance with national, state, county and municipal codes, and it points residents planning home improvement projects to the division for information.",
+        "fuentes": [
+          {
+            "nombre": "City of Miramar: building permits and inspections",
+            "url": "https://www.miramarfl.gov/150/BUILDING-PERMITS-INSPECTIONS"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      },
+      "extras": {
+        "piscina": {
+          "texto": "Its swimming pool and spa package lists planning and zoning, engineering, plumbing, electrical and structural plan reviews, and its list of required pool inspections runs from clearing and grading through the steel, the deck, the bonding, the main drain and the piping to the final electrical, plumbing and building inspections.",
+          "fuentes": [
+            {
+              "nombre": "City of Miramar: swimming pool and spa package",
+              "url": "https://miramarfl.gov/files/assets/public/v/2/buildingplanningzoning/documents/application-and-forms/swimming-pool-spa-package.pdf"
+            },
+            {
+              "nombre": "City of Miramar: swimming pool required inspections",
+              "url": "https://miramarfl.gov/files/assets/public/v/2/buildingplanningzoning/documents/application-and-forms/swimming-pool-required-inspections.pdf"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        },
+        "estructura": {
+          "texto": "The city publishes its own application package for awnings and canopies.",
+          "fuentes": [
+            {
+              "nombre": "City of Miramar: awnings and canopies application package",
+              "url": "https://miramarfl.gov/files/assets/public/v/2/buildingplanningzoning/documents/application-and-forms/awnings-canopies-application-package-fbc.pdf"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        }
+      }
+    },
+    "pompano-beach-florida": {
+      "ciudad": "Pompano Beach",
+      "region": "South Florida",
+      "condado": "Broward",
+      "condadoFuente": {
+        "nombre": "Broward County municipalities",
+        "url": "https://www.broward.org/Residents/Pages/BrowardCountyMunicipalities.aspx",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Pompano Beach, the city's Building Inspections Division enforces minimum standards under the Florida Building Code from 100 West Atlantic Boulevard. The city's Atlantic beachfront sits in Broward's Segment II, between Hillsboro Inlet and Port Everglades.",
+        "fuentes": [
+          {
+            "nombre": "City of Pompano Beach: Building Inspections Division report",
+            "url": "https://cdn.pompanobeachfl.gov/city/pages/building_inspections/FY24_Building_Utilization_Report.pdf"
+          },
+          {
+            "nombre": "Broward County beach segments",
+            "url": "https://www.broward.org/Beaches/Pages/Projects.aspx"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      },
+      "extras": {
+        "estructura": {
+          "texto": "The city's own submittal checklist states that installing or replacing a gazebo or pergola requires a building permit.",
+          "fuentes": [
+            {
+              "nombre": "City of Pompano Beach: gazebo or pergola checklist",
+              "url": "https://cdn.pompanobeachfl.gov/city/pages/building_inspections/submittal_checklists/Gazebo-or-Pergola.pdf"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        }
+      }
+    },
+    "davie-florida": {
+      "ciudad": "Davie",
+      "region": "South Florida",
+      "condado": "Broward",
+      "condadoFuente": {
+        "nombre": "Broward County municipalities",
+        "url": "https://www.broward.org/Residents/Pages/BrowardCountyMunicipalities.aspx",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Davie, the Town's Building Division at 8800 SW 36th Street issues the permits, and the town asks owners to obtain the required permit before the work starts. Much of Davie is rural: its Rural Lifestyle Regulations apply in the Agricultural and Estate zoning categories, and the town keeps a network of more than 165 miles of equestrian trails.",
+        "fuentes": [
+          {
+            "nombre": "Town of Davie: Building",
+            "url": "https://www.davie-fl.gov/206/Building"
+          },
+          {
+            "nombre": "Town of Davie: comprehensive plan",
+            "url": "https://www.davie-fl.gov/DocumentCenter/View/3380/Comprehensive-Plan---Goals-Objectives--Policy"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      }
+    },
+    "plantation-florida": {
+      "ciudad": "Plantation",
+      "region": "South Florida",
+      "condado": "Broward",
+      "condadoFuente": {
+        "nombre": "Broward County municipalities",
+        "url": "https://www.broward.org/Residents/Pages/BrowardCountyMunicipalities.aspx",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Plantation, building permits are required to erect, enlarge, alter, remove, demolish or repair a structure, including everything from fences and garages to additions, and the city takes permit submittals through its permit services.",
+        "fuentes": [
+          {
+            "nombre": "City of Plantation: permit submittal",
+            "url": "https://www.plantation.org/government/departments/building-safety/permit-services/permit-submittal"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      },
+      "extras": {
+        "piscina": {
+          "texto": "The city publishes its own Residential Swimming Pool, Spa and Hot Tub Safety Act document for pool permits.",
+          "fuentes": [
+            {
+              "nombre": "City of Plantation: residential swimming pool safety act",
+              "url": "https://www.plantation.org/home/showpublisheddocument/1062/637251476345170000"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        }
+      }
+    },
+    "deerfield-beach-florida": {
+      "ciudad": "Deerfield Beach",
+      "region": "South Florida",
+      "condado": "Broward",
+      "condadoFuente": {
+        "nombre": "Broward County municipalities",
+        "url": "https://www.broward.org/Residents/Pages/BrowardCountyMunicipalities.aspx",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Deerfield Beach, Florida Building Code work is handled under contract: the city states that CAP Government is responsible for all duties related to the code, including permit applications, plan approvals, inspections and permit close-out, Its beachfront is part of Broward's Segment I, which it shares with Hillsboro Beach.",
+        "fuentes": [
+          {
+            "nombre": "City of Deerfield Beach: Building Services",
+            "url": "https://www.deerfield-beach.com/294/Building-Services"
+          },
+          {
+            "nombre": "Broward County beach segments",
+            "url": "https://www.broward.org/Beaches/Pages/Projects.aspx"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      },
+      "extras": {
+        "estructura": {
+          "texto": "The city keeps its own building checklist for tiki and chickee huts, gazebos and pergolas.",
+          "fuentes": [
+            {
+              "nombre": "City of Deerfield Beach: tiki, chickee, gazebo and pergola checklist",
+              "url": "https://www.deerfield-beach.com/DocumentCenter/View/20484/DFB-Tiki-Chickee-Gazebo-Pergola-Checklist"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        }
+      }
+    },
+    "weston-florida": {
+      "ciudad": "Weston",
+      "region": "South Florida",
+      "condado": "Broward",
+      "condadoFuente": {
+        "nombre": "Broward County municipalities",
+        "url": "https://www.broward.org/Residents/Pages/BrowardCountyMunicipalities.aspx",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Weston, Building Code Services enforces the Florida Building Code and Broward County regulations, and the city names C.A.P. Government, Inc. as its contracted agent for those services. The city also publishes a page on building permit exemptions for residential properties.",
+        "fuentes": [
+          {
+            "nombre": "City of Weston: Building Code Services",
+            "url": "https://www.westonfl.org/government/building-code-services"
+          },
+          {
+            "nombre": "City of Weston: permit exemptions for residential properties",
+            "url": "https://www.westonfl.org/government/building-code-services/building-permit-exemptions-for-residential-properties"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      },
+      "extras": {
+        "estructura": {
+          "texto": "The city has explained why tents and gazebos need a permit: Florida's wind-load requirements are strict because of hurricanes and severe thunderstorms, and an unanchored gazebo can become airborne.",
+          "fuentes": [
+            {
+              "nombre": "City of Weston: why a permit is needed for tents and gazebos",
+              "url": "https://www.westonfl.org/Home/Components/News/News/1720"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        }
+      }
+    },
+    "hallandale-beach-florida": {
+      "ciudad": "Hallandale Beach",
+      "region": "South Florida",
+      "condado": "Broward",
+      "condadoFuente": {
+        "nombre": "Broward County Public Works: municipality directory",
+        "url": "https://www.broward.org/Publicworks/Pages/MunicipalityDirectory.aspx",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Hallandale Beach, the city's Building Division implements the Florida Building Code and the Broward County administrative provisions, and permit applications can be submitted electronically through the HB Self-Service and ePermitsOneStop portals. The city's beachfront is part of Broward's Segment III, and its comprehensive plan has a coastal management element of its own.",
+        "fuentes": [
+          {
+            "nombre": "City of Hallandale Beach: building permits and inspections",
+            "url": "https://www.cohb.org/1036/Building-Permits-Safety-Inspections"
+          },
+          {
+            "nombre": "Broward County beach segments",
+            "url": "https://www.broward.org/Beaches/Pages/Projects.aspx"
+          },
+          {
+            "nombre": "City of Hallandale Beach: coastal management element",
+            "url": "https://hallandalebeachfl.gov/DocumentCenter/View/31595/Element-6-Coastal-Management"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      }
+    },
+    "parkland-florida": {
+      "ciudad": "Parkland",
+      "region": "South Florida",
+      "condado": "Broward",
+      "condadoFuente": {
+        "nombre": "Broward County Public Works: municipality directory",
+        "url": "https://www.broward.org/Publicworks/Pages/MunicipalityDirectory.aspx",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Parkland, the city's Building Department issues building permits based on the approval of plans for residential and commercial projects.",
+        "fuentes": [
+          {
+            "nombre": "City of Parkland: Building Department",
+            "url": "https://www.cityofparkland.org/109/Building-Department"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      },
+      "extras": {
+        "piscina": {
+          "texto": "The city publishes its own residential setbacks for pools, pool and spa decks, screen enclosures and accessory structures, and its own Pool Safety Act acknowledgment forms, including one for fences.",
+          "fuentes": [
+            {
+              "nombre": "City of Parkland: residential setbacks",
+              "url": "https://cityofparkland.org/DocumentCenter/View/8148/Setbacks"
+            },
+            {
+              "nombre": "City of Parkland: pool safety act acknowledgment",
+              "url": "https://www.cityofparkland.org/DocumentCenter/View/14075/POOL-SAFETY-ACT-ACKNOWLEDGMENT-FORM"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        },
+        "estructura": {
+          "texto": "The city publishes its own residential setbacks for screen enclosures and accessory structures.",
+          "fuentes": [
+            {
+              "nombre": "City of Parkland: residential setbacks",
+              "url": "https://cityofparkland.org/DocumentCenter/View/8148/Setbacks"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        }
+      }
+    },
+    "dania-beach-florida": {
+      "ciudad": "Dania Beach",
+      "region": "South Florida",
+      "condado": "Broward",
+      "condadoFuente": {
+        "nombre": "Broward County municipalities",
+        "url": "https://www.broward.org/Residents/Pages/BrowardCountyMunicipalities.aspx",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Dania Beach, the city's Building Division enforces the building codes for new construction, additions, remodeling and renovation, and accepts and processes the building permit applications. The city's own FAQ counts a patio, a deck, a fence, a retaining wall, a shed, a gazebo, a trellis, a fountain, a spa or a pool as a structure, and its beachfront is part of Broward's Segment III.",
+        "fuentes": [
+          {
+            "nombre": "City of Dania Beach: Building Division",
+            "url": "https://www.daniabeachfl.gov/125/Building-Division"
+          },
+          {
+            "nombre": "City of Dania Beach: permit FAQ",
+            "url": "https://daniabeachfl.gov/Faq.aspx?QID=43"
+          },
+          {
+            "nombre": "Broward County beach segments",
+            "url": "https://www.broward.org/Beaches/Pages/Projects.aspx"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      }
+    },
+    "wilton-manors-florida": {
+      "ciudad": "Wilton Manors",
+      "region": "South Florida",
+      "condado": "Broward",
+      "condadoFuente": {
+        "nombre": "Broward County Public Works: municipality directory",
+        "url": "https://www.broward.org/Publicworks/Pages/MunicipalityDirectory.aspx",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Wilton Manors, the city's Construction Services Division administers the Florida Building Code and is responsible for fire inspections, building permits and job-site inspections, and work under an approved permit is allowed Monday through Saturday from 8 a.m. to 7 p.m. and on Sunday from 10 a.m. to 7 p.m.",
+        "fuentes": [
+          {
+            "nombre": "City of Wilton Manors: Construction Services",
+            "url": "https://www.wiltonmanors.gov/132/Construction-Services"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      }
+    },
+    "lighthouse-point-florida": {
+      "ciudad": "Lighthouse Point",
+      "region": "South Florida",
+      "condado": "Broward",
+      "condadoFuente": {
+        "nombre": "Broward County municipalities",
+        "url": "https://www.broward.org/Residents/Pages/BrowardCountyMunicipalities.aspx",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Lighthouse Point, permits are the way the city regulates construction, with permit categories that include exterior structures and site and landscaping work, and it keeps its own checklist for docks and seawalls along the city's waterways.",
+        "fuentes": [
+          {
+            "nombre": "City of Lighthouse Point: Building and Zoning",
+            "url": "https://www.lighthousepointfl.gov/158/Building-Zoning"
+          },
+          {
+            "nombre": "City of Lighthouse Point: permits",
+            "url": "https://www.lighthousepointfl.gov/160/Permits"
+          },
+          {
+            "nombre": "City of Lighthouse Point: docks and seawalls checklist",
+            "url": "https://lighthousepointfl.gov/DocumentCenter/View/923/Checklist-for-Docks-and-Seawalls"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      }
+    },
+    "southwest-ranches-florida": {
+      "ciudad": "Southwest Ranches",
+      "region": "South Florida",
+      "condado": "Broward",
+      "condadoFuente": {
+        "nombre": "Broward County municipalities",
+        "url": "https://www.broward.org/Residents/Pages/BrowardCountyMunicipalities.aspx",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Southwest Ranches, building permit and inspection services are provided for the Town by CAP Government, Inc., and many permits need Broward County or Town zoning and engineering approvals before they are issued. The Town incorporated in 2000 to preserve its rural lifestyle, and its zoning is almost entirely rural residential and agricultural.",
+        "fuentes": [
+          {
+            "nombre": "Town of Southwest Ranches: building permitting and inspections",
+            "url": "https://www.southwestranches.org/departments/building-permitting-and-inspections/"
+          },
+          {
+            "nombre": "Town of Southwest Ranches: about",
+            "url": "https://www.southwestranches.org/about/"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      }
+    },
+    "beach-florida": {
+      "ciudad": "Hillsboro Beach",
+      "region": "South Florida",
+      "condado": "Broward",
+      "condadoFuente": {
+        "nombre": "Broward County municipalities",
+        "url": "https://www.broward.org/Residents/Pages/BrowardCountyMunicipalities.aspx",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Hillsboro Beach, all development, from new construction and additions to renovations and alterations, requires a construction permit from the Town, whose Building Department works under the Florida Building Commission and the Broward County Board of Rules and Appeals. The town's beachfront is part of Broward's Segment I, together with Deerfield Beach.",
+        "fuentes": [
+          {
+            "nombre": "Town of Hillsboro Beach: permits and regulations",
+            "url": "https://www.townofhillsborobeach.com/203/Permits-Regulations"
+          },
+          {
+            "nombre": "Town of Hillsboro Beach: Building Department",
+            "url": "https://www.townofhillsborobeach.com/196/Building-Department"
+          },
+          {
+            "nombre": "Broward County beach segments",
+            "url": "https://www.broward.org/Beaches/Pages/Projects.aspx"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      }
+    },
+    "west-palm-beach-florida": {
+      "ciudad": "West Palm Beach",
+      "region": "South Florida",
+      "condado": "Palm Beach",
+      "condadoFuente": {
+        "nombre": "Palm Beach County: municipal populations",
+        "url": "https://pbc.gov/oig/population.htm",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In West Palm Beach, the Building Division of Development Services processes and reviews building permit applications and oversees the inspections from City Hall at 401 Clematis Street.",
+        "fuentes": [
+          {
+            "nombre": "City of West Palm Beach: Building Division",
+            "url": "https://www.wpb.org/departments/development-services/building-division"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      },
+      "extras": {
+        "estructura": {
+          "texto": "The city's permit FAQ states that a shed needs a permit and has to meet the zoning setbacks and resist hurricane wind loads, and that its exemption for minor residential work does not cover structural work or fences.",
+          "fuentes": [
+            {
+              "nombre": "City of West Palm Beach: permits FAQ",
+              "url": "https://www.wpb.org/Departments/Development-Services/Building-Division/Permits-FAQ"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        },
+        "piscina": {
+          "texto": "The city's permit FAQ states that fences and fence pool barriers need a permit whatever their cost and cannot be exempted, that a separate permit must be secured for the pool, and that a pool autofill device needs its own backflow permit.",
+          "fuentes": [
+            {
+              "nombre": "City of West Palm Beach: permits FAQ",
+              "url": "https://www.wpb.org/Departments/Development-Services/Building-Division/Permits-FAQ"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        },
+        "paisajismo": {
+          "texto": "The city's Building Division also uses a Residential Irrigation Acknowledgment Form.",
+          "fuentes": [
+            {
+              "nombre": "City of West Palm Beach: residential irrigation acknowledgment form",
+              "url": "https://www.wpb.org/files/assets/city/v/1/development-services/documents/building-div/residential-irrigation-acknowledgement-form.pdf"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        }
+      }
+    },
+    "boca-raton-florida": {
+      "ciudad": "Boca Raton",
+      "region": "South Florida",
+      "condado": "Palm Beach",
+      "condadoFuente": {
+        "nombre": "Palm Beach County: municipal populations",
+        "url": "https://pbc.gov/oig/population.htm",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Boca Raton, building permits are handled by the city's building administration at 200 NW 2nd Avenue. The city's beachfront includes a 3.8-mile segment that the Florida Department of Environmental Protection lists as critically eroded.",
+        "fuentes": [
+          {
+            "nombre": "City of Boca Raton: swimming pool permit",
+            "url": "https://myboca.us/DocumentCenter/View/258/Swimming-Pool-PDF"
+          },
+          {
+            "nombre": "Florida DEP: critically eroded beaches report",
+            "url": "https://floridadep.gov/sites/default/files/CriticalErosionReport.pdf"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      },
+      "extras": {
+        "piscina": {
+          "texto": "Its swimming pool submittal calls for building, electrical and plumbing applications with sealed plans and a survey, plus either a new barrier permit application or a current survey showing the existing barrier, and the city's pool safety act form says a pool does not pass final inspection without one of the listed safety features.",
+          "fuentes": [
+            {
+              "nombre": "City of Boca Raton: swimming pool permit",
+              "url": "https://myboca.us/DocumentCenter/View/258/Swimming-Pool-PDF"
+            },
+            {
+              "nombre": "City of Boca Raton: swimming pool safety act",
+              "url": "https://www.myboca.us/DocumentCenter/View/6699/Swimming-Pool-Safety-Act-PDF"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        },
+        "estructura": {
+          "texto": "The city treats a screen enclosure as an accessory structure with its own permit application and permit number, and its single-family setbacks vary by zoning district.",
+          "fuentes": [
+            {
+              "nombre": "City of Boca Raton: permit FAQ",
+              "url": "https://myboca.us/m/faq?cat=0#question-91"
+            },
+            {
+              "nombre": "City of Boca Raton: setback information",
+              "url": "https://www.myboca.us/1586/Setback-Information"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        }
+      }
+    },
+    "boynton-beach-florida": {
+      "ciudad": "Boynton Beach",
+      "region": "South Florida",
+      "condado": "Palm Beach",
+      "condadoFuente": {
+        "nombre": "Palm Beach County: municipal populations",
+        "url": "https://pbc.gov/oig/population.htm",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Boynton Beach, the Building Department enforces the ordinances and laws that regulate construction through permit issuance, plan examination and inspections. The city's own Oceanfront Park is located in the Town of Ocean Ridge.",
+        "fuentes": [
+          {
+            "nombre": "City of Boynton Beach: building permits",
+            "url": "https://boynton-beach.org/296/Building-Permits"
+          },
+          {
+            "nombre": "City of Boynton Beach: Oceanfront Park",
+            "url": "https://boynton-beach.org/254/Oceanfront-Park"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      },
+      "extras": {
+        "piscina": {
+          "texto": "Its local amendment to the building code lists pool inspections after excavation, for the underground electric and piping and for the deck, and a final permanent barrier inspection before the pool is filled.",
+          "fuentes": [
+            {
+              "nombre": "City of Boynton Beach: local amendment to the Florida Building Code, chapter 1",
+              "url": "https://www.boynton-beach.org/DocumentCenter/View/1277/Boynton-Beach-local-Amendment-2023-FBC-Building-chapter-1"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        },
+        "paisajismo": {
+          "texto": "The city has its own Landscape Permit Application.",
+          "fuentes": [
+            {
+              "nombre": "City of Boynton Beach: landscape permit application",
+              "url": "https://www.boynton-beach.org/DocumentCenter/View/646/Landscape-Permit-Application"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        }
+      }
+    },
+    "delray-beach-florida": {
+      "ciudad": "Delray Beach",
+      "region": "South Florida",
+      "condado": "Palm Beach",
+      "condadoFuente": {
+        "nombre": "Palm Beach County: municipal populations",
+        "url": "https://pbc.gov/oig/population.htm",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Delray Beach, the Building Division of Development Services handles plan review, permitting and inspection of construction from 100 NW 1st Avenue, and residential permit applications for pools, decks, pathways or any other improvement that adds impervious area need a property survey no more than 12 months old. The city's beach is the 2.9-mile segment of the federally authorized Delray Beach Shore Protection Project.",
+        "fuentes": [
+          {
+            "nombre": "City of Delray Beach: Building Division",
+            "url": "https://delraybeachfl.gov/government/city-departments/development-services/building"
+          },
+          {
+            "nombre": "City of Delray Beach: building FAQ",
+            "url": "https://www.delraybeachfl.gov/government/city-departments/development-services/building/faq"
+          },
+          {
+            "nombre": "Florida DEP: critically eroded beaches report",
+            "url": "https://floridadep.gov/sites/default/files/CriticalErosionReport.pdf"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      }
+    },
+    "wellington-florida": {
+      "ciudad": "Wellington",
+      "region": "South Florida",
+      "condado": "Palm Beach",
+      "condadoFuente": {
+        "nombre": "Palm Beach County: municipal populations",
+        "url": "https://pbc.gov/oig/population.htm",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Wellington, the Village's Building Department at 12300 Forest Hill Boulevard processes permits electronically, and all building plans are submitted through ProjectDox. Inside the Equestrian Preserve Area, development is regulated by the Equestrian Overlay Zoning District that the Village Council adopted in 2003.",
+        "fuentes": [
+          {
+            "nombre": "Village of Wellington: Building",
+            "url": "https://www.wellingtonfl.gov/214/Building"
+          },
+          {
+            "nombre": "Village of Wellington: equestrian overlay FAQ",
+            "url": "https://www.wellingtonfl.gov/Faq.aspx?QID=142"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      }
+    },
+    "jupiter-florida": {
+      "ciudad": "Jupiter",
+      "region": "South Florida",
+      "condado": "Palm Beach",
+      "condadoFuente": {
+        "nombre": "Palm Beach County: municipal populations",
+        "url": "https://pbc.gov/oig/population.htm",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Jupiter, the Town's Building Department on Military Trail keeps its permit checklists at the permit counter and online. The Town's beach includes a 1.5-mile segment near Jupiter Inlet that the Florida Department of Environmental Protection lists as critically eroded.",
+        "fuentes": [
+          {
+            "nombre": "Town of Jupiter: permit package submittal",
+            "url": "https://www.jupiter.fl.us/98/Permit-Package-Submittal"
+          },
+          {
+            "nombre": "Florida DEP: critically eroded beaches report",
+            "url": "https://floridadep.gov/sites/default/files/CriticalErosionReport.pdf"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      },
+      "extras": {
+        "piscina": {
+          "texto": "The Town publishes the pool and spa inspections that are required before a pool is filled.",
+          "fuentes": [
+            {
+              "nombre": "Town of Jupiter: pool and spa inspections",
+              "url": "https://www.jupiter.fl.us/DocumentCenter/View/4685/Pool---Spa-Inspections"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        }
+      }
+    },
+    "palm-beach-gardens-florida": {
+      "ciudad": "Palm Beach Gardens",
+      "region": "South Florida",
+      "condado": "Palm Beach",
+      "condadoFuente": {
+        "nombre": "Palm Beach County: municipal populations",
+        "url": "https://pbc.gov/oig/population.htm",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Palm Beach Gardens, the Building Division at 10500 North Military Trail is a centralized operation that houses all of the city's building and permitting services.",
+        "fuentes": [
+          {
+            "nombre": "City of Palm Beach Gardens: Building Division",
+            "url": "https://pbgfl.gov/194/Building-Division"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      },
+      "extras": {
+        "piscina": {
+          "texto": "Its pool affidavit requires a barrier around the whole pool, either a fence at least 4 feet high or a screen enclosure.",
+          "fuentes": [
+            {
+              "nombre": "City of Palm Beach Gardens: pool affidavit of understanding",
+              "url": "https://www.pbgfl.gov/DocumentCenter/View/20443/Pool-Affidavit-of-Understanding"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        }
+      }
+    },
+    "royal-palm-beach-florida": {
+      "ciudad": "Royal Palm Beach",
+      "region": "South Florida",
+      "condado": "Palm Beach",
+      "condadoFuente": {
+        "nombre": "Palm Beach County: municipal populations",
+        "url": "https://pbc.gov/oig/population.htm",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Royal Palm Beach, most work requires a building permit from the Village's Building Division at Village Hall, 1050 Royal Palm Beach Boulevard, and the Village publishes a Resident Permit Form Finder to pick the right form for the job.",
+        "fuentes": [
+          {
+            "nombre": "Village of Royal Palm Beach: rules and regulations",
+            "url": "https://www.royalpalmbeachfl.gov/building/page/rules-regulations"
+          },
+          {
+            "nombre": "Village of Royal Palm Beach: resident permit form finder",
+            "url": "https://royalpalmbeachfl.gov/building/page/resident-permit-form-finder"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      }
+    },
+    "north-palm-beach-florida": {
+      "ciudad": "North Palm Beach",
+      "region": "South Florida",
+      "condado": "Palm Beach",
+      "condadoFuente": {
+        "nombre": "Palm Beach County: municipal populations",
+        "url": "https://pbc.gov/oig/population.htm",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In North Palm Beach, building permit applications go to the Village's Building Department online through the MGO customer portal, and its submittal requirements ask for the Coastal Construction Control Line to be delineated, or a note that the site is seaward of it, where that line applies.",
+        "fuentes": [
+          {
+            "nombre": "Village of North Palm Beach: permit submittal requirements",
+            "url": "https://www.village-npb.org/DocumentCenter/View/12304/PERMIT-SUBMITTAL-REQUIREMENTS"
+          },
+          {
+            "nombre": "Village of North Palm Beach: permit submittal requirements (CCCL)",
+            "url": "https://village-npb.org/DocumentCenter/View/42/Permit-Submittal-Requirements"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      },
+      "extras": {
+        "piscina": {
+          "texto": "Its swimming pool checklist requires signed and sealed plans for pools.",
+          "fuentes": [
+            {
+              "nombre": "Village of North Palm Beach: swimming pool submittal requirements",
+              "url": "https://www.village-npb.org/DocumentCenter/View/12136/PERMIT-SUBMITTAL-REQUIREMENTS---SWIMMING-POOL"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        },
+        "deck": {
+          "texto": "The Village keeps its own permit submittal requirements for decks and walkways.",
+          "fuentes": [
+            {
+              "nombre": "Village of North Palm Beach: deck and walkway submittal requirements",
+              "url": "https://www.village-npb.org/DocumentCenter/View/12146/PERMIT-SUBMITTAL-REQUIREMENTS---DECK_WALKWAY"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        }
+      }
+    },
+    "tequesta-florida": {
+      "ciudad": "Tequesta",
+      "region": "South Florida",
+      "condado": "Palm Beach",
+      "condadoFuente": {
+        "nombre": "Palm Beach County: municipal populations",
+        "url": "https://pbc.gov/oig/population.htm",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Tequesta, the Village's Building Department at 345 Tequesta Drive handles the permits, and the Village publishes its own year-round landscape irrigation measures.",
+        "fuentes": [
+          {
+            "nombre": "Village of Tequesta: Building Department",
+            "url": "https://tequesta.org/1204/Building-Department"
+          },
+          {
+            "nombre": "Village of Tequesta: year-round landscape irrigation measures",
+            "url": "https://tequesta.org/DocumentCenter/View/10357/Year_Round_Landscape_Irrigation_Measures_FINAL-ua"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      },
+      "extras": {
+        "piscina": {
+          "texto": "It keeps its own swimming pool permit submittal requirements.",
+          "fuentes": [
+            {
+              "nombre": "Village of Tequesta: swimming pool permit submittal requirements",
+              "url": "https://tequesta.org/DocumentCenter/View/13005/Swimming-Pool-Permit-Submittal-Requirements---ADA"
+            }
+          ],
+          "comprobado": "2026-10-05"
+        }
+      }
+    },
+    "juno-beach-florida": {
+      "ciudad": "Juno Beach",
+      "region": "South Florida",
+      "condado": "Palm Beach",
+      "condadoFuente": {
+        "nombre": "Palm Beach County: municipal populations",
+        "url": "https://pbc.gov/oig/population.htm",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Juno Beach, all building inspections are scheduled online through the My Government Online portal. The Town's beach is a 2.4-mile segment that the Florida Department of Environmental Protection lists as critically eroded, and its permit forms include sea turtle lighting permits for exterior light fixtures and for windows and glass doors.",
+        "fuentes": [
+          {
+            "nombre": "Town of Juno Beach: Building",
+            "url": "https://www.juno-beach.fl.us/1226/Building"
+          },
+          {
+            "nombre": "Town of Juno Beach: building permit forms",
+            "url": "https://www.juno-beach.fl.us/1237/Building-Permit-Forms"
+          },
+          {
+            "nombre": "Florida DEP: critically eroded beaches report",
+            "url": "https://floridadep.gov/sites/default/files/CriticalErosionReport.pdf"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      }
+    },
+    "hypoluxo-florida": {
+      "ciudad": "Hypoluxo",
+      "region": "South Florida",
+      "condado": "Palm Beach",
+      "condadoFuente": {
+        "nombre": "Palm Beach County: municipal populations",
+        "url": "https://pbc.gov/oig/population.htm",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Hypoluxo, the Town has contracted with Hy-Byrd Incorporated to provide its building department services, including the state-certified and licensed personnel who run the building department for the Town, from Town Hall at 7580 South Federal Highway.",
+        "fuentes": [
+          {
+            "nombre": "Town of Hypoluxo: building and zoning",
+            "url": "https://hypoluxo.org/bz"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      }
+    },
+    "atlantis-florida": {
+      "ciudad": "Atlantis",
+      "region": "South Florida",
+      "condado": "Palm Beach",
+      "condadoFuente": {
+        "nombre": "Palm Beach County: municipal populations",
+        "url": "https://pbc.gov/oig/population.htm",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Atlantis, the City's Building Department issues the permits and schedules the inspections, and every exterior alteration must first be approved by the city's Architectural Review Committee, with permits required for fences, fill, tree removal and all exterior alterations or installations.",
+        "fuentes": [
+          {
+            "nombre": "City of Atlantis: Building Department",
+            "url": "https://www.atlantisfl.gov/156/Building-Department"
+          },
+          {
+            "nombre": "City of Atlantis: general permitting guidelines",
+            "url": "https://www.atlantisfl.gov/237/General-Permitting-Guidelines"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      }
+    },
+    "ocean-ridge-florida": {
+      "ciudad": "Ocean Ridge",
+      "region": "South Florida",
+      "condado": "Palm Beach",
+      "condadoFuente": {
+        "nombre": "Palm Beach County: municipal populations",
+        "url": "https://pbc.gov/oig/population.htm",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Ocean Ridge, applications go to the Town's Building and Zoning department in person, with originals, the Town has run a contractor registration program since October 1, 2023, and it has adopted the 2023 Florida Building Code, 8th Edition. The Ocean Ridge beach nourishment project sits within a 3.3-mile segment that the Florida Department of Environmental Protection lists as critically eroded.",
+        "fuentes": [
+          {
+            "nombre": "Town of Ocean Ridge: building and zoning",
+            "url": "https://www.oceanridgeflorida.com/departments/building_&_zoning/"
+          },
+          {
+            "nombre": "Florida DEP: critically eroded beaches report",
+            "url": "https://floridadep.gov/sites/default/files/CriticalErosionReport.pdf"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      }
+    },
+    "south-palm-beach-florida": {
+      "ciudad": "South Palm Beach",
+      "region": "South Florida",
+      "condado": "Palm Beach",
+      "condadoFuente": {
+        "nombre": "Palm Beach County: municipal populations",
+        "url": "https://pbc.gov/oig/population.htm",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In South Palm Beach, the Town's Building Department on South Ocean Boulevard takes permits through the My Government Online platform, and work is allowed Monday through Saturday from 8:00 a.m. to 5:30 p.m., with no work on Sundays or federal holidays.",
+        "fuentes": [
+          {
+            "nombre": "Town of South Palm Beach: Building Department",
+            "url": "https://www.southpalmbeach.com/building/page/building-department"
+          },
+          {
+            "nombre": "Town of South Palm Beach: permit information",
+            "url": "https://southpalmbeach.com/building/page/permit-information"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      }
+    },
+    "gulf-stream-florida": {
+      "ciudad": "Gulf Stream",
+      "region": "South Florida",
+      "condado": "Palm Beach",
+      "condadoFuente": {
+        "nombre": "Palm Beach County: municipal populations",
+        "url": "https://pbc.gov/oig/population.htm",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Gulf Stream, building permits and inspections are handled by the Town of Highland Beach under an interlocal agreement, through the Highland Beach permit portal, while Gulf Stream keeps its own architectural and site plan review in three levels: accessory structures and minor renovations under 300 square feet are decided by Town staff, and larger projects go to the Architectural Review and Planning Board or the Town Commission.",
+        "fuentes": [
+          {
+            "nombre": "Town of Gulf Stream: permits",
+            "url": "https://www.gulf-stream.org/permits/"
+          },
+          {
+            "nombre": "Town of Gulf Stream: approvals",
+            "url": "https://www.gulf-stream.org/approvals/"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
+      }
+    },
+    "manalapan-florida": {
+      "ciudad": "Manalapan",
+      "region": "South Florida",
+      "condado": "Palm Beach",
+      "condadoFuente": {
+        "nombre": "Palm Beach County: municipal populations",
+        "url": "https://pbc.gov/oig/population.htm",
+        "comprobado": "2026-10-05"
+      },
+      "local": {
+        "texto": "In Manalapan, the Town's Building Department covers plan review, architectural review and permitting, and any change to the exterior of a residence, from additions, shutters and fences to a new exterior colour, landscaping or a seawall, must first be approved by the Architectural Commission. The Town's coastline includes the 1.4 miles that Hurricane Sandy eroded in 2012, as recorded by the Florida Department of Environmental Protection.",
+        "fuentes": [
+          {
+            "nombre": "Town of Manalapan: Building Department",
+            "url": "https://manalapan.org/building-department/"
+          },
+          {
+            "nombre": "Town of Manalapan: Architectural Commission",
+            "url": "https://manalapan.org/?p=221"
+          },
+          {
+            "nombre": "Florida DEP: critically eroded beaches report",
+            "url": "https://floridadep.gov/sites/default/files/CriticalErosionReport.pdf"
+          }
+        ],
+        "comprobado": "2026-10-05",
+        "_fuente": "Redactado SOLO con los fragmentos oficiales de docs/encargos/loop-ciudades/dossier-broward.json / dossier-palmbeach.json (+ hechos2), WebSearch del 5-oct-2026. Las URL no se pudieron abrir desde el contenedor (egress, D7): fuente localizada, no comprobada con 200."
       }
     }
   },
@@ -95,6 +1626,48 @@
           "_fuente": "Las dos fuentes y lo que dicen son las del faqExtra de Gainesville (ciudades-captacion.json, comprobado el 4-oct-2026): la CIUDAD pide permiso de piscina con permisos separados de electrico y fontaneria (y formulario de barrera FBC-Residential cap. 45); el CONDADO pide el formulario de la Residential Swimming Pool Safety Act (F.S. 515). «Work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code» y «pull the permits under our license» son la FAQ 2 de la ficha /services/pool-remodeling. No se afirma que una remodelacion se revise contra esas checklists: solo que oficina tiene jurisdiccion. Revisado tras la revision independiente del 5-oct-2026. Sin cifras ni plazos."
         }
       ]
+    },
+    {
+      "servicio": "pool-remodeling",
+      "ciudad": "ocala-florida"
+    },
+    {
+      "servicio": "pool-remodeling",
+      "ciudad": "palatka-florida"
+    },
+    {
+      "servicio": "pool-remodeling",
+      "ciudad": "cedar-key-florida"
+    },
+    {
+      "servicio": "pool-remodeling",
+      "ciudad": "mcintosh-florida"
     }
-  ]
+  ],
+  "regional": {
+    "Broward": {
+      "estructura": {
+        "texto": "Broward is one of the two counties, with Miami-Dade, that the Florida Building Code defines as its High-Velocity Hurricane Zone.",
+        "fuentes": [
+          {
+            "nombre": "Broward County: Florida Building Code roof packet (HVHZ definition)",
+            "url": "https://www.broward.org/Building/Documents/2020%20FBC%20Roof%20Packet.pdf"
+          }
+        ],
+        "comprobado": "2026-10-05"
+      }
+    },
+    "Palm Beach": {
+      "estructura": {
+        "texto": "Palm Beach County's Building Division publishes ultimate design wind speeds of 140 to 180 mph for the county, depending on the building's risk category.",
+        "fuentes": [
+          {
+            "nombre": "Palm Beach County: wind speeds",
+            "url": "https://discover.pbcgov.org/pzb/building/pages/wind-speeds.aspx"
+          }
+        ],
+        "comprobado": "2026-10-05"
+      }
+    }
+  }
 }
