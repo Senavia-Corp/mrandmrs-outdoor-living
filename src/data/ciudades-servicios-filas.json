@@ -132,6 +132,43 @@
           "bi-0236"
         ]
       }
+    },
+    "deck-builders": {
+      "banco": "decks",
+      "fotosLibres": 45,
+      "galeria": {
+        "titulo": "Deck Project Gallery",
+        "entradilla": "Custom deck builds across Florida — paver, travertine, and composite pool deck designs."
+      },
+      "fotos": {
+        "intro": {
+          "1": {
+            "banco": "bi-0615"
+          },
+          "2": {
+            "banco": "bi-0968"
+          },
+          "3": {
+            "banco": "bi-0983"
+          }
+        },
+        "inversion": {
+          "banco": "bi-0092"
+        },
+        "galeria": [
+          "bi-0088",
+          "bi-0087",
+          "bi-0085",
+          "bi-0083",
+          "bi-0074",
+          "bi-0048",
+          "bi-0047",
+          "bi-0036",
+          "bi-0035",
+          "bi-0034",
+          "bi-0039"
+        ]
+      }
     }
   },
   "ciudades": {
@@ -1852,6 +1889,26 @@
     {
       "servicio": "louvered-roofs",
       "ciudad": "manalapan-florida"
+    },
+    {
+      "servicio": "deck-builders",
+      "ciudad": "gainesville-florida"
+    },
+    {
+      "servicio": "deck-builders",
+      "ciudad": "ocala-florida"
+    },
+    {
+      "servicio": "deck-builders",
+      "ciudad": "palatka-florida"
+    },
+    {
+      "servicio": "deck-builders",
+      "ciudad": "cedar-key-florida"
+    },
+    {
+      "servicio": "deck-builders",
+      "ciudad": "mcintosh-florida"
     }
   ],
   "regional": {

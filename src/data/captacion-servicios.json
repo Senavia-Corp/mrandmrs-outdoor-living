@@ -7099,6 +7099,559 @@
     },
     "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
   },
+  "/services/deck-builders/gainesville-fl": {
+    "heroe": {
+      "apoyo": "Professional deck builders and installation contractors serving Gainesville with durable, stylish outdoor deck solutions.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "North Florida",
+        "South Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Built for the Florida climate",
+          "texto": "Composite that resists warping, fading and rot; pressure-treated wood sealed and stained."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "One team takes the design through permits, engineering and construction."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Custom Deck",
+        "Pool Deck Renovation"
+      ],
+      "proyectoPorDefecto": "New Custom Deck",
+      "nombre": "Gainesville Custom Deck Form",
+      "aviso": "Gainesville custom deck lead",
+      "ga4": "deck",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the deck for your layout and take it through permits.",
+        "You get the scope in writing and a fixed project price before the first board goes down."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my deck cost?",
+      "texto": "Every deck is priced from its size, the material, the level changes and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+      "alt": "Ivory travertine paver patio behind a stucco house with a lake and storm clouds.",
+      "ancho": 1600,
+      "alto": 1200,
+      "_banco": "bi-0092"
+    },
+    "faq": {
+      "titulo": "Gainesville Custom Deck FAQs",
+      "entradilla": "Have questions about composite or wood deck installation in Gainesville, Florida? Our licensed deck builders answer the most common questions from Florida homeowners.",
+      "anade": [
+        {
+          "pregunta": "How much does a deck cost in Gainesville?",
+          "respuesta": "Every deck is priced from its size, the material, the level changes and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Which decking materials are best for Florida homes?",
+          "respuesta": "We use composite decking, pressure-treated lumber, and fiberglass-reinforced boards engineered for long-lasting performance in Florida's heat, humidity, and seasonal rain. These materials resist warping, rot, and pest damage — delivering a surface that maintains its appearance and structural integrity across North and South Florida climates."
+        },
+        {
+          "pregunta": "Can you match my home’s existing design style?",
+          "respuesta": "Yes. Our deck builders fully customize shapes, levels, railing styles, and surface finishes to complement your home's architecture. From straight-line pool decks in travertine or pavers to multi-level composite platforms with built-in lighting, every deck integrates seamlessly with your Florida outdoor living environment."
+        },
+        {
+          "pregunta": "Who permits a new deck in Gainesville?",
+          "respuesta": "Inside the City of Gainesville, the city's Building Division works from the Thomas Center, Building B, at 306 NE 6th Avenue, and existing permits can be looked up in its PermitGNV portal. The city's Historic Preservation Board can issue Certificates of Appropriateness for structures in its five historic districts or on the Local Register, and its design guidelines include a section on fences and garden walls. In unincorporated Alachua County, the county's Building Division reviews the work instead. One team takes the design through permits, engineering and construction.",
+          "fuentes": [
+            {
+              "nombre": "City of Gainesville Building Division: application process",
+              "url": "https://www.gainesvillefl.gov/Government-Pages/Government/Departments/Sustainable-Development/Building-Division/Building-Application-Process"
+            },
+            {
+              "nombre": "City of Gainesville: historic preservation",
+              "url": "https://www.gainesvillefl.gov/Government-Pages/Government/Departments/Sustainable-Development/Historic-Preservation"
+            },
+            {
+              "nombre": "Alachua County: municipalities and county permitting",
+              "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/deck-builders/ocala-fl": {
+    "heroe": {
+      "apoyo": "Professional deck builders and installation contractors serving Ocala with durable, stylish outdoor deck solutions.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "North Florida",
+        "South Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Built for the Florida climate",
+          "texto": "Composite that resists warping, fading and rot; pressure-treated wood sealed and stained."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "One team takes the design through permits, engineering and construction."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Custom Deck",
+        "Pool Deck Renovation"
+      ],
+      "proyectoPorDefecto": "New Custom Deck",
+      "nombre": "Ocala Custom Deck Form",
+      "aviso": "Ocala custom deck lead",
+      "ga4": "deck",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the deck for your layout and take it through permits.",
+        "You get the scope in writing and a fixed project price before the first board goes down."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my deck cost?",
+      "texto": "Every deck is priced from its size, the material, the level changes and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+      "alt": "Ivory travertine paver patio behind a stucco house with a lake and storm clouds.",
+      "ancho": 1600,
+      "alto": 1200,
+      "_banco": "bi-0092"
+    },
+    "faq": {
+      "titulo": "Ocala Custom Deck FAQs",
+      "entradilla": "Have questions about composite or wood deck installation in Ocala, Florida? Our licensed deck builders answer the most common questions from Florida homeowners.",
+      "anade": [
+        {
+          "pregunta": "How much does a deck cost in Ocala?",
+          "respuesta": "Every deck is priced from its size, the material, the level changes and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Which decking materials are best for Florida homes?",
+          "respuesta": "We use composite decking, pressure-treated lumber, and fiberglass-reinforced boards engineered for long-lasting performance in Florida's heat, humidity, and seasonal rain. These materials resist warping, rot, and pest damage — delivering a surface that maintains its appearance and structural integrity across North and South Florida climates."
+        },
+        {
+          "pregunta": "Can you match my home’s existing design style?",
+          "respuesta": "Yes. Our deck builders fully customize shapes, levels, railing styles, and surface finishes to complement your home's architecture. From straight-line pool decks in travertine or pavers to multi-level composite platforms with built-in lighting, every deck integrates seamlessly with your Florida outdoor living environment."
+        },
+        {
+          "pregunta": "Who permits a new deck in Ocala?",
+          "respuesta": "Inside the City of Ocala, a permit is required for most interior and exterior work other than painting and floor covering, and applications go in at the city's Customer Service Center on SE 3rd Street or through the eTrakit portal. Exterior work on a property in the Tuscawilla Park or Ocala Historic District also needs a Certificate of Appropriateness from the Ocala Historic Preservation Advisory Board before it starts. In unincorporated Marion County, the county's Building Safety department reviews the work instead. One team takes the design through permits, engineering and construction.",
+          "fuentes": [
+            {
+              "nombre": "City of Ocala Building Services: construction permits",
+              "url": "https://www.ocalafl.gov/government/city-departments-a-h/growth-management/building/construction-permits"
+            },
+            {
+              "nombre": "City of Ocala: Certificate of Appropriateness",
+              "url": "https://www.ocalafl.gov/government/city-departments-a-h/growth-management/certificate-of-appropriateness"
+            },
+            {
+              "nombre": "Marion County Building Safety",
+              "url": "https://www.marionfl.org/agencies-departments/departments-facilities-offices/building-safety"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/deck-builders/palatka-fl": {
+    "heroe": {
+      "apoyo": "Professional deck builders and installation contractors serving Palatka with durable, stylish outdoor deck solutions.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "North Florida",
+        "South Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Built for the Florida climate",
+          "texto": "Composite that resists warping, fading and rot; pressure-treated wood sealed and stained."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "One team takes the design through permits, engineering and construction."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Custom Deck",
+        "Pool Deck Renovation"
+      ],
+      "proyectoPorDefecto": "New Custom Deck",
+      "nombre": "Palatka Custom Deck Form",
+      "aviso": "Palatka custom deck lead",
+      "ga4": "deck",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the deck for your layout and take it through permits.",
+        "You get the scope in writing and a fixed project price before the first board goes down."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my deck cost?",
+      "texto": "Every deck is priced from its size, the material, the level changes and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+      "alt": "Ivory travertine paver patio behind a stucco house with a lake and storm clouds.",
+      "ancho": 1600,
+      "alto": 1200,
+      "_banco": "bi-0092"
+    },
+    "faq": {
+      "titulo": "Palatka Custom Deck FAQs",
+      "entradilla": "Have questions about composite or wood deck installation in Palatka, Florida? Our licensed deck builders answer the most common questions from Florida homeowners.",
+      "anade": [
+        {
+          "pregunta": "How much does a deck cost in Palatka?",
+          "respuesta": "Every deck is priced from its size, the material, the level changes and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Which decking materials are best for Florida homes?",
+          "respuesta": "We use composite decking, pressure-treated lumber, and fiberglass-reinforced boards engineered for long-lasting performance in Florida's heat, humidity, and seasonal rain. These materials resist warping, rot, and pest damage — delivering a surface that maintains its appearance and structural integrity across North and South Florida climates."
+        },
+        {
+          "pregunta": "Can you match my home’s existing design style?",
+          "respuesta": "Yes. Our deck builders fully customize shapes, levels, railing styles, and surface finishes to complement your home's architecture. From straight-line pool decks in travertine or pavers to multi-level composite platforms with built-in lighting, every deck integrates seamlessly with your Florida outdoor living environment."
+        },
+        {
+          "pregunta": "Who permits a new deck in Palatka?",
+          "respuesta": "In Palatka, building permits are not processed by the city alone: since October 11, 2018 the City of Palatka has consolidated permit processing with the Putnam County Building Division, so the application is filed with the county first and the city application follows. Any exterior work in Palatka's historic district, including site work such as new sidewalks and driveways, also needs an approved Certificate of Appropriateness from the Historic Preservation Board. One team takes the design through permits, engineering and construction.",
+          "fuentes": [
+            {
+              "nombre": "City of Palatka: building permit services transferred to Putnam County",
+              "url": "https://palatka-fl.gov/CivicAlerts.aspx?AID=264&ARC=835"
+            },
+            {
+              "nombre": "City of Palatka: Historic Preservation Board",
+              "url": "https://palatka-fl.gov/140/Historic-Preservation-Board"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/deck-builders/cedar-key-fl": {
+    "heroe": {
+      "apoyo": "Professional deck builders and installation contractors serving Cedar Key with durable, stylish outdoor deck solutions.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "North Florida",
+        "South Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Built for the Florida climate",
+          "texto": "Composite that resists warping, fading and rot; pressure-treated wood sealed and stained."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "One team takes the design through permits, engineering and construction."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Custom Deck",
+        "Pool Deck Renovation"
+      ],
+      "proyectoPorDefecto": "New Custom Deck",
+      "nombre": "Cedar Key Custom Deck Form",
+      "aviso": "Cedar Key custom deck lead",
+      "ga4": "deck",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the deck for your layout and take it through permits.",
+        "You get the scope in writing and a fixed project price before the first board goes down."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my deck cost?",
+      "texto": "Every deck is priced from its size, the material, the level changes and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+      "alt": "Ivory travertine paver patio behind a stucco house with a lake and storm clouds.",
+      "ancho": 1600,
+      "alto": 1200,
+      "_banco": "bi-0092"
+    },
+    "faq": {
+      "titulo": "Cedar Key Custom Deck FAQs",
+      "entradilla": "Have questions about composite or wood deck installation in Cedar Key, Florida? Our licensed deck builders answer the most common questions from Florida homeowners.",
+      "anade": [
+        {
+          "pregunta": "How much does a deck cost in Cedar Key?",
+          "respuesta": "Every deck is priced from its size, the material, the level changes and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Which decking materials are best for Florida homes?",
+          "respuesta": "We use composite decking, pressure-treated lumber, and fiberglass-reinforced boards engineered for long-lasting performance in Florida's heat, humidity, and seasonal rain. These materials resist warping, rot, and pest damage — delivering a surface that maintains its appearance and structural integrity across North and South Florida climates."
+        },
+        {
+          "pregunta": "Can you match my home’s existing design style?",
+          "respuesta": "Yes. Our deck builders fully customize shapes, levels, railing styles, and surface finishes to complement your home's architecture. From straight-line pool decks in travertine or pavers to multi-level composite platforms with built-in lighting, every deck integrates seamlessly with your Florida outdoor living environment."
+        },
+        {
+          "pregunta": "Who permits a new deck in Cedar Key?",
+          "respuesta": "In Cedar Key, the City has partnered with JPI, Inc. to provide experienced building officials, certified inspectors and permit technicians. Every property on Cedar Key is in, on or near a Special Flood Hazard Area, with AE and VE flood zones, and an Elevation Certificate has to be submitted with the building permit application under the flood map in effect since February 15, 2019. The city lists deck construction among the work that needs a building permit. One team takes the design through permits, engineering and construction.",
+          "fuentes": [
+            {
+              "nombre": "City of Cedar Key: Building Department",
+              "url": "https://www.cityofcedarkey.org/214/Building-Department"
+            },
+            {
+              "nombre": "City of Cedar Key: floodplain management",
+              "url": "https://www.cityofcedarkey.org/297/Floodplain-Management"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/deck-builders/mcintosh-fl": {
+    "heroe": {
+      "apoyo": "Professional deck builders and installation contractors serving McIntosh with durable, stylish outdoor deck solutions.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "North Florida",
+        "South Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Built for the Florida climate",
+          "texto": "Composite that resists warping, fading and rot; pressure-treated wood sealed and stained."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "One team takes the design through permits, engineering and construction."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Custom Deck",
+        "Pool Deck Renovation"
+      ],
+      "proyectoPorDefecto": "New Custom Deck",
+      "nombre": "McIntosh Custom Deck Form",
+      "aviso": "McIntosh custom deck lead",
+      "ga4": "deck",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the deck for your layout and take it through permits.",
+        "You get the scope in writing and a fixed project price before the first board goes down."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my deck cost?",
+      "texto": "Every deck is priced from its size, the material, the level changes and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+      "alt": "Ivory travertine paver patio behind a stucco house with a lake and storm clouds.",
+      "ancho": 1600,
+      "alto": 1200,
+      "_banco": "bi-0092"
+    },
+    "faq": {
+      "titulo": "McIntosh Custom Deck FAQs",
+      "entradilla": "Have questions about composite or wood deck installation in McIntosh, Florida? Our licensed deck builders answer the most common questions from Florida homeowners.",
+      "anade": [
+        {
+          "pregunta": "How much does a deck cost in McIntosh?",
+          "respuesta": "Every deck is priced from its size, the material, the level changes and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Which decking materials are best for Florida homes?",
+          "respuesta": "We use composite decking, pressure-treated lumber, and fiberglass-reinforced boards engineered for long-lasting performance in Florida's heat, humidity, and seasonal rain. These materials resist warping, rot, and pest damage — delivering a surface that maintains its appearance and structural integrity across North and South Florida climates."
+        },
+        {
+          "pregunta": "Can you match my home’s existing design style?",
+          "respuesta": "Yes. Our deck builders fully customize shapes, levels, railing styles, and surface finishes to complement your home's architecture. From straight-line pool decks in travertine or pavers to multi-level composite platforms with built-in lighting, every deck integrates seamlessly with your Florida outdoor living environment."
+        },
+        {
+          "pregunta": "Who permits a new deck in McIntosh?",
+          "respuesta": "In McIntosh the permit itself comes from Marion County, but not before the town signs off: written authorization from the Town of McIntosh is required before Marion County issues any permit. The town uses a Proposed Work Permit for repairs, replacements and improvements such as fences or gates, and a Site Plan Permit for new construction or any work that changes the original footprint of the property. One team takes the design through permits, engineering and construction.",
+          "fuentes": [
+            {
+              "nombre": "Town of McIntosh: forms",
+              "url": "https://townofmcintosh.org/forms/"
+            },
+            {
+              "nombre": "Marion County Building Safety",
+              "url": "https://www.marionfl.org/agencies-departments/departments-facilities-offices/building-safety"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
   "/services/pool-builders/ocala-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Ocala homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
