@@ -683,7 +683,7 @@
         "comprobado": "2026-10-05"
       },
       "local": {
-        "texto": "In Fort Lauderdale, the city's Building Services division is responsible for all permitting efforts in the city: it issues the permits and performs the building inspections, and new submissions go in online through the city's LauderBuild portal. The city's Atlantic beachfront sits in Broward's Segment II, between Hillsboro Inlet and Port Everglades.",
+        "texto": "In Fort Lauderdale, the city's Building Services division is responsible for all permitting efforts in the city: it issues the permits and performs the building inspections, and new submissions can be made online through the city's LauderBuild portal. The city's Atlantic beachfront sits in Broward's Segment II, between Hillsboro Inlet and Port Everglades.",
         "fuentes": [
           {
             "nombre": "City of Fort Lauderdale: permitting services",
@@ -699,7 +699,7 @@
       },
       "extras": {
         "paisajismo": {
-          "texto": "Tree removal and landscaping permits are issued by Building Services under the city's Landscape and Tree Preservation Ordinance, while pruning needs no permit but has to follow the ANSI A-300 standard and city code.",
+          "texto": "Tree removal and landscaping permits are issued by Building Services under the city's Landscape and Tree Preservation Ordinance, while pruning needs no permit but has to follow accepted national pruning standards, such as ANSI A-300, and city code.",
           "fuentes": [
             {
               "nombre": "City of Fort Lauderdale: urban forestry",
@@ -2055,6 +2055,18 @@
     {
       "servicio": "landscaping",
       "ciudad": "palatka-florida"
+    },
+    {
+      "servicio": "landscaping",
+      "ciudad": "fort-lauderdale-florida"
+    },
+    {
+      "servicio": "pool-remodeling",
+      "ciudad": "miramar-florida"
+    },
+    {
+      "servicio": "pool-remodeling",
+      "ciudad": "delray-beach-florida"
     }
   ],
   "regional": {
