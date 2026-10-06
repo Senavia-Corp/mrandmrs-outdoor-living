@@ -9,7 +9,7 @@
 | Campo | Valor |
 |---|---|
 | fase | **2 — lotes por servicio** (Fase 0 y Fase 1 cerradas) |
-| paso | Lote 8 (deck-builders South) → PR → merge → verificacion |
+| paso | Lote 9 (outdoor-kitchens North) → PR → merge → verificacion |
 | lote siguiente | Lote 1: pool-remodeling North (las 19 restantes con hecho local verificable) |
 | iteraciones sin avanzar | 0 |
 | ultima iteracion | 5-oct-2026, sobre `origin/main` 9824a43 |
@@ -699,6 +699,46 @@ check-texto =/services/deck-builders exit 0   1 identicas · 0 en rojo   (1/1 ru
 - Rutas nuevas sin referencia: cubiertas por `check:ciudades-servicios`; `check-texto`/`check-visual` no las miden (no es verde).
 - NO verificado: las URL de `fuentes` (egress, D7).
 
+## Lote 9 — outdoor-kitchens North (5-oct-2026)
+
+**Rutas publicadas (5):** /services/outdoor-kitchens/gainesville-fl, /services/outdoor-kitchens/ocala-fl, /services/outdoor-kitchens/palatka-fl, /services/outdoor-kitchens/cedar-key-fl, /services/outdoor-kitchens/mcintosh-fl
+
+**Excluidas:** las mismas 8 de North (texto local propio < 60 palabras).
+
+**Revision independiente:** APROBADA en la 1a pasada. Nota anotada y NO arreglada a proposito: la miga dice «Mcintosh, FL» (sale de `miga-tramos.mjs`, que titula el slug); arreglarlo cambiaria tambien la miga de /services/pool-builders/mcintosh-fl, que es ruta existente.
+
+**Puertas** (build `MM_SANITY_CACHE=1 PUBLIC_ES_PRODUCCION=1`):
+
+```
+rutas existentes con HTML distinto al de main 9824a43: 5 -> services/deck-builders/index.html services/outdoor-kitchens/index.html services/pergola-builders/index.html services/louvered-roofs/index.html services/pool-remodeling/index.html
+diff=0 /services/pool-builders/ocala-fl
+diff=0 /services/pool-builders/boca-raton-fl
+diff=0 /services/pool-builders/archer-fl
+check:tokens                 exit 0  PUERTA VERDE
+check:rutas                  exit 0  PUERTA VERDE
+check:enlaces                exit 0  PUERTA VERDE
+check:seo                    exit 0  PUERTA VERDE
+check:captacion              exit 0  PUERTA VERDE
+check:estructura:ciudades    exit 0  PUERTA VERDE — dos formas y solo dos
+check:medicion               exit 0  PUERTA VERDE
+check:ciudades-servicios     exit 0  PUERTA VERDE
+check:redirects              exit 0  PUERTA VERDE
+check:estructura             exit 0  PUERTA VERDE — 14 fichas, un solo orden (+ 2 variante(s) declarada(s))
+check:galeria-obra           exit 0  PUERTA VERDE — un set, las 53 ciudades, obra real trazada
+check:identidad              exit 0  PUERTA VERDE
+check:ads                    exit 0  PUERTA VERDE
+check:menu                   exit 0  PUERTA VERDE
+check:galeria                exit 0  PUERTA VERDE
+check-texto =/services/pool-remodeling exit 0   1 identicas · 0 en rojo   (1/1 rutas medidas)
+check-texto =/services/pergola-builders exit 0   1 identicas · 0 en rojo   (1/1 rutas medidas)
+check-texto =/services/louvered-roofs exit 0   1 identicas · 0 en rojo   (1/1 rutas medidas)
+check-texto =/services/deck-builders exit 0   1 identicas · 0 en rojo   (1/1 rutas medidas)
+check-texto =/services/outdoor-kitchens exit 0   1 identicas · 0 en rojo   (1/1 rutas medidas)
+```
+
+- Rutas nuevas sin referencia: cubiertas por `check:ciudades-servicios`; `check-texto`/`check-visual` no las miden (no es verde).
+- NO verificado: las URL de `fuentes` (egress, D7).
+
 ## Rutas hechas
 
 | Ruta | Lote | PR | Produccion |
@@ -747,11 +787,16 @@ check-texto =/services/deck-builders exit 0   1 identicas · 0 en rojo   (1/1 ru
 | /services/deck-builders/palatka-fl | 7 | [#54](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/54) fusionado (2d3a80b) | Vercel `success`, deployment 6873174546. URL no abierta: egress (D7) |
 | /services/deck-builders/cedar-key-fl | 7 | [#54](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/54) fusionado (2d3a80b) | Vercel `success`, deployment 6873174546. URL no abierta: egress (D7) |
 | /services/deck-builders/mcintosh-fl | 7 | [#54](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/54) fusionado (2d3a80b) | Vercel `success`, deployment 6873174546. URL no abierta: egress (D7) |
-| /services/deck-builders/hollywood-fl | 8 | (pendiente) | (pendiente) |
-| /services/deck-builders/dania-beach-fl | 8 | (pendiente) | (pendiente) |
-| /services/deck-builders/delray-beach-fl | 8 | (pendiente) | (pendiente) |
-| /services/deck-builders/gulf-stream-fl | 8 | (pendiente) | (pendiente) |
-| /services/deck-builders/manalapan-fl | 8 | (pendiente) | (pendiente) |
+| /services/deck-builders/hollywood-fl | 8 | [#55](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/55) fusionado (8a68736) | Vercel `success`, deployment 6873279027. URL no abierta: egress (D7) |
+| /services/deck-builders/dania-beach-fl | 8 | [#55](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/55) fusionado (8a68736) | Vercel `success`, deployment 6873279027. URL no abierta: egress (D7) |
+| /services/deck-builders/delray-beach-fl | 8 | [#55](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/55) fusionado (8a68736) | Vercel `success`, deployment 6873279027. URL no abierta: egress (D7) |
+| /services/deck-builders/gulf-stream-fl | 8 | [#55](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/55) fusionado (8a68736) | Vercel `success`, deployment 6873279027. URL no abierta: egress (D7) |
+| /services/deck-builders/manalapan-fl | 8 | [#55](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/55) fusionado (8a68736) | Vercel `success`, deployment 6873279027. URL no abierta: egress (D7) |
+| /services/outdoor-kitchens/gainesville-fl | 9 | (pendiente) | (pendiente) |
+| /services/outdoor-kitchens/ocala-fl | 9 | (pendiente) | (pendiente) |
+| /services/outdoor-kitchens/palatka-fl | 9 | (pendiente) | (pendiente) |
+| /services/outdoor-kitchens/cedar-key-fl | 9 | (pendiente) | (pendiente) |
+| /services/outdoor-kitchens/mcintosh-fl | 9 | (pendiente) | (pendiente) |
 
 ## Bloqueos y avisos
 
