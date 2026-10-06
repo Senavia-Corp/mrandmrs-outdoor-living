@@ -1986,6 +1986,26 @@
     {
       "servicio": "outdoor-kitchens",
       "ciudad": "mcintosh-florida"
+    },
+    {
+      "servicio": "outdoor-kitchens",
+      "ciudad": "hollywood-florida"
+    },
+    {
+      "servicio": "outdoor-kitchens",
+      "ciudad": "dania-beach-florida"
+    },
+    {
+      "servicio": "outdoor-kitchens",
+      "ciudad": "delray-beach-florida"
+    },
+    {
+      "servicio": "outdoor-kitchens",
+      "ciudad": "gulf-stream-florida"
+    },
+    {
+      "servicio": "outdoor-kitchens",
+      "ciudad": "manalapan-florida"
     }
   ],
   "regional": {
