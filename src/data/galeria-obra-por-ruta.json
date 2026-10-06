@@ -677,5 +677,111 @@
       }
     ],
     "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "servicio:landscaping": {
+    "titulo": "Landscaping Project Gallery",
+    "entradilla": "Florida landscape designs — native plants, tropical beauty, and premium hardscaping work.",
+    "fotos": [
+      {
+        "src": "/images/banco/landscaping/landscaping-side-yard-stepping-stones-black-gravel-florida-01.webp",
+        "alt": "Square stone steppers in dark slate gravel along the side of a white stucco house.",
+        "ancho": 768,
+        "alto": 1024,
+        "pos": "50% 50%",
+        "_banco": "bi-0333",
+        "_proyecto": null
+      },
+      {
+        "src": "/images/banco/landscaping/artificial-turf-stepping-stones-path-lights-travertine-florida-01.webp",
+        "alt": "Stone steppers set in artificial turf with bronze path lights, leading from a travertine patio.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0323",
+        "_proyecto": "obra-043"
+      },
+      {
+        "src": "/images/banco/landscaping/artificial-turf-coconut-palms-beachfront-resort-florida-01.webp",
+        "alt": "Coconut palms rising from artificial turf islands along a sand path at a beachfront resort.",
+        "ancho": 739,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0319",
+        "_proyecto": "obra-042"
+      },
+      {
+        "src": "/images/banco/landscaping/landscaping-side-yard-gravel-path-stepping-stones-florida-01.webp",
+        "alt": "Side yard path of white gravel with round red stepping stones between a wood fence and the house.",
+        "ancho": 1600,
+        "alto": 900,
+        "pos": "50% 50%",
+        "_banco": "bi-0309",
+        "_proyecto": "obra-039"
+      },
+      {
+        "src": "/images/banco/landscaping/backyard-putting-green-artificial-turf-palm-uplights-florida-01.webp",
+        "alt": "Backyard putting green at dusk with uplights on palm trunks and wide artificial turf lawn.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0136",
+        "_proyecto": "obra-002"
+      },
+      {
+        "src": "/images/banco/landscaping/backyard-putting-green-artificial-turf-oak-trees-florida-02.webp",
+        "alt": "Finished kidney-shaped putting green with fringe turf and steel edging under oak trees.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0120",
+        "_proyecto": "obra-018"
+      },
+      {
+        "src": "/images/banco/landscaping/putting-green-turf-installation-in-progress-florida-01.webp",
+        "alt": "Putting surface turf cut and laid on a curved base with rolls of fringe turf waiting in front.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0119",
+        "_proyecto": "obra-018"
+      },
+      {
+        "src": "/images/banco/landscaping/artificial-turf-putting-green-installation-florida-01.webp",
+        "alt": "Artificial turf putting green being installed beside a gray marble deck with seat walls, dogs on the green.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0489",
+        "_proyecto": "obra-045"
+      },
+      {
+        "src": "/images/banco/landscaping/artificial-turf-putting-green-bunker-installation-florida-01.webp",
+        "alt": "Dog sitting on freshly laid artificial turf next to a sand bunker under construction on a backyard putting green.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0490",
+        "_proyecto": "obra-045"
+      },
+      {
+        "src": "/images/banco/landscaping/artificial-turf-installation-roll-edge-base-florida-01.webp",
+        "alt": "Edge of newly laid artificial turf over a compacted base with a turf roll waiting nearby and a dog standing on it.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0491",
+        "_proyecto": "obra-045"
+      },
+      {
+        "src": "/images/banco/landscaping/landscaping-stepping-stone-path-black-slate-chips-florida-01.webp",
+        "alt": "Side-yard path of square limestone stepping stones set in black slate chips leading to a metal gate.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0499",
+        "_proyecto": "obra-046"
+      }
+    ],
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
   }
 }

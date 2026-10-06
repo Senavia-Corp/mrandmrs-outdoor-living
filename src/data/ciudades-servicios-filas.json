@@ -206,6 +206,43 @@
           "bi-0021"
         ]
       }
+    },
+    "landscaping": {
+      "banco": "landscaping",
+      "fotosLibres": 23,
+      "galeria": {
+        "titulo": "Landscaping Project Gallery",
+        "entradilla": "Florida landscape designs — native plants, tropical beauty, and premium hardscaping work."
+      },
+      "fotos": {
+        "intro": {
+          "1": {
+            "banco": "bi-0506"
+          },
+          "2": {
+            "banco": "bi-0326"
+          },
+          "3": {
+            "banco": "bi-0302"
+          }
+        },
+        "inversion": {
+          "banco": "bi-0303"
+        },
+        "galeria": [
+          "bi-0333",
+          "bi-0323",
+          "bi-0319",
+          "bi-0309",
+          "bi-0136",
+          "bi-0120",
+          "bi-0119",
+          "bi-0489",
+          "bi-0490",
+          "bi-0491",
+          "bi-0499"
+        ]
+      }
     }
   },
   "ciudades": {
@@ -300,7 +337,7 @@
           "comprobado": "2026-10-05"
         },
         "paisajismo": {
-          "texto": "The city's irrigation schedule allows micro-irrigation such as drip and bubblers at any time and gives new landscapes extra watering days during their first 60 days; the regular days and hours change with the water shortage orders in force, so we check the current schedule before the planting is scheduled.",
+          "texto": "The city's irrigation schedule allows micro-irrigation such as drip and bubblers at any time and gives new landscapes extra watering days during their first 60 days, and we check the city's current irrigation schedule before the planting is scheduled.",
           "fuentes": [
             {
               "nombre": "City of Ocala: irrigation schedule",
@@ -2006,6 +2043,18 @@
     {
       "servicio": "outdoor-kitchens",
       "ciudad": "manalapan-florida"
+    },
+    {
+      "servicio": "landscaping",
+      "ciudad": "gainesville-florida"
+    },
+    {
+      "servicio": "landscaping",
+      "ciudad": "ocala-florida"
+    },
+    {
+      "servicio": "landscaping",
+      "ciudad": "palatka-florida"
     }
   ],
   "regional": {

@@ -411,6 +411,52 @@
           }
         ]
       }
+    },
+    "landscaping": {
+      "fotosCiudad": {
+        "fotos": {
+          "intro": {
+            "1": {
+              "src": "/images/banco/landscaping/landscaping-date-palm-artificial-turf-slate-ring-florida-01.webp",
+              "alt": "Date palm planted in a square of black slate chips within artificial turf beside a clusia hedge.",
+              "ancho": 1200,
+              "alto": 1600,
+              "pos": "50% 50%",
+              "_banco": "bi-0506"
+            },
+            "2": {
+              "src": "/images/banco/landscaping/landscaping-driveway-island-bromeliads-river-rock-florida-01.webp",
+              "alt": "Driveway island with bromeliads, crotons and boulders edged by black river rock and pavers.",
+              "ancho": 1600,
+              "alto": 1195,
+              "pos": "50% 50%",
+              "_banco": "bi-0326"
+            },
+            "3": {
+              "src": "/images/banco/landscaping/landscaping-curved-walkway-caladium-border-path-lights-florida-01.webp",
+              "alt": "Curved paver walkway edged with lawn, caladiums, clipped trees and low path lights.",
+              "ancho": 900,
+              "alto": 1600,
+              "pos": "50% 50%",
+              "_banco": "bi-0302"
+            }
+          }
+        },
+        "ciudades": [
+          {
+            "slug": "gainesville-florida",
+            "condado": "Alachua"
+          },
+          {
+            "slug": "ocala-florida",
+            "condado": "Marion"
+          },
+          {
+            "slug": "palatka-florida",
+            "condado": "Putnam"
+          }
+        ]
+      }
     }
   },
   "paginas": {
@@ -498,6 +544,10 @@
           {
             "href": "/services/outdoor-kitchens/gainesville-fl",
             "nombre": "Outdoor Kitchens"
+          },
+          {
+            "href": "/services/landscaping/gainesville-fl",
+            "nombre": "Landscaping"
           }
         ]
       }
@@ -586,6 +636,10 @@
           {
             "href": "/services/outdoor-kitchens/ocala-fl",
             "nombre": "Outdoor Kitchens"
+          },
+          {
+            "href": "/services/landscaping/ocala-fl",
+            "nombre": "Landscaping"
           }
         ]
       }
@@ -674,6 +728,10 @@
           {
             "href": "/services/outdoor-kitchens/palatka-fl",
             "nombre": "Outdoor Kitchens"
+          },
+          {
+            "href": "/services/landscaping/palatka-fl",
+            "nombre": "Landscaping"
           }
         ]
       }
@@ -1598,6 +1656,10 @@
           {
             "href": "/services/outdoor-kitchens/gainesville-fl",
             "nombre": "Outdoor Kitchens"
+          },
+          {
+            "href": "/services/landscaping/gainesville-fl",
+            "nombre": "Landscaping"
           }
         ]
       }
@@ -1690,6 +1752,10 @@
           {
             "href": "/services/outdoor-kitchens/ocala-fl",
             "nombre": "Outdoor Kitchens"
+          },
+          {
+            "href": "/services/landscaping/ocala-fl",
+            "nombre": "Landscaping"
           }
         ]
       }
@@ -1782,6 +1848,10 @@
           {
             "href": "/services/outdoor-kitchens/palatka-fl",
             "nombre": "Outdoor Kitchens"
+          },
+          {
+            "href": "/services/landscaping/palatka-fl",
+            "nombre": "Landscaping"
           }
         ]
       }
@@ -2762,6 +2832,10 @@
           {
             "href": "/services/outdoor-kitchens/gainesville-fl",
             "nombre": "Outdoor Kitchens"
+          },
+          {
+            "href": "/services/landscaping/gainesville-fl",
+            "nombre": "Landscaping"
           }
         ]
       }
@@ -2854,6 +2928,10 @@
           {
             "href": "/services/outdoor-kitchens/ocala-fl",
             "nombre": "Outdoor Kitchens"
+          },
+          {
+            "href": "/services/landscaping/ocala-fl",
+            "nombre": "Landscaping"
           }
         ]
       }
@@ -2946,6 +3024,10 @@
           {
             "href": "/services/outdoor-kitchens/palatka-fl",
             "nombre": "Outdoor Kitchens"
+          },
+          {
+            "href": "/services/landscaping/palatka-fl",
+            "nombre": "Landscaping"
           }
         ]
       }
@@ -3926,6 +4008,10 @@
           {
             "href": "/services/outdoor-kitchens/gainesville-fl",
             "nombre": "Outdoor Kitchens"
+          },
+          {
+            "href": "/services/landscaping/gainesville-fl",
+            "nombre": "Landscaping"
           }
         ]
       }
@@ -4018,6 +4104,10 @@
           {
             "href": "/services/outdoor-kitchens/ocala-fl",
             "nombre": "Outdoor Kitchens"
+          },
+          {
+            "href": "/services/landscaping/ocala-fl",
+            "nombre": "Landscaping"
           }
         ]
       }
@@ -4110,6 +4200,10 @@
           {
             "href": "/services/outdoor-kitchens/palatka-fl",
             "nombre": "Outdoor Kitchens"
+          },
+          {
+            "href": "/services/landscaping/palatka-fl",
+            "nombre": "Landscaping"
           }
         ]
       }
@@ -4842,6 +4936,10 @@
           {
             "href": "/services/deck-builders/gainesville-fl",
             "nombre": "Deck Builders"
+          },
+          {
+            "href": "/services/landscaping/gainesville-fl",
+            "nombre": "Landscaping"
           }
         ]
       }
@@ -4934,6 +5032,10 @@
           {
             "href": "/services/deck-builders/ocala-fl",
             "nombre": "Deck Builders"
+          },
+          {
+            "href": "/services/landscaping/ocala-fl",
+            "nombre": "Landscaping"
           }
         ]
       }
@@ -5026,6 +5128,10 @@
           {
             "href": "/services/deck-builders/palatka-fl",
             "nombre": "Deck Builders"
+          },
+          {
+            "href": "/services/landscaping/palatka-fl",
+            "nombre": "Landscaping"
           }
         ]
       }
@@ -5666,6 +5772,294 @@
           {
             "href": "/services/deck-builders/manalapan-fl",
             "nombre": "Deck Builders"
+          }
+        ]
+      }
+    },
+    "/services/landscaping/gainesville-fl": {
+      "servicio": "landscaping",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "gainesville-florida",
+        "name": "Gainesville",
+        "seo": {
+          "title": "Landscaping in Gainesville, FL | Mr & Mrs Outdoor Living",
+          "description": "Landscaping design and installation company serving Gainesville, FL, providing complete outdoor solutions that improve curb appeal."
+        },
+        "h1Title": "Professional Landscaping Services In Gainesville, Florida",
+        "h2Title": "Professional Landscaping Contractors In Gainesville And Alachua County",
+        "intro": "Landscaping design and installation company serving Gainesville, providing complete outdoor solutions that improve curb appeal.",
+        "headingIntro": "Professional Landscaping Contractors In Gainesville",
+        "paragraphIntro": "Our landscaping company offers full-service landscape design, installation, and maintenance for Gainesville homes, using native plants and sustainable practices to enhance curb appeal and property value.",
+        "imagenIntro1": {
+          "alt": "Date palm planted in a square of black slate chips within artificial turf beside a clusia hedge."
+        },
+        "imagenIntro2": {
+          "alt": "Driveway island with bromeliads, crotons and boulders edged by black river rock and pavers."
+        },
+        "imagenIntro3": {
+          "alt": "Curved paver walkway edged with lawn, caladiums, clipped trees and low path lights."
+        },
+        "heading3DRendering": "We Put A Planting Plan On Paper",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Hear from Florida clients who love how our landscaping company transformed their properties with native plants, refined hardscaping, and lasting beauty.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Gainesville, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Landscaping in Gainesville, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Landscaping design and installation company serving Gainesville, FL, providing complete outdoor solutions that improve curb appeal.",
+            "og:image": "/images/banco/landscaping/landscaping-italian-cypress-bromeliad-bed-lamp-post-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/landscaping/gainesville-fl",
+            "twitter:title": "Landscaping in Gainesville, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Landscaping design and installation company serving Gainesville, FL, providing complete outdoor solutions that improve curb appeal.",
+            "twitter:image": "/images/banco/landscaping/landscaping-italian-cypress-bromeliad-bed-lamp-post-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Gainesville",
+              "areaServed": {
+                "name": "Gainesville"
+              },
+              "description": "Landscaping design and installation company serving Gainesville, FL, providing complete outdoor solutions that improve curb appeal."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/landscaping",
+        "condado": "/services/pool-builders/alachua-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/gainesville-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/gainesville-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/gainesville-fl",
+            "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/gainesville-fl",
+            "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/gainesville-fl",
+            "nombre": "Deck Builders"
+          },
+          {
+            "href": "/services/outdoor-kitchens/gainesville-fl",
+            "nombre": "Outdoor Kitchens"
+          }
+        ]
+      }
+    },
+    "/services/landscaping/ocala-fl": {
+      "servicio": "landscaping",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "ocala-florida",
+        "name": "Ocala",
+        "seo": {
+          "title": "Landscaping in Ocala, FL | Mr & Mrs Outdoor Living",
+          "description": "Landscaping design and installation company serving Ocala, FL, providing complete outdoor solutions that improve curb appeal."
+        },
+        "h1Title": "Professional Landscaping Services In Ocala, Florida",
+        "h2Title": "Professional Landscaping Contractors In Ocala And Marion County",
+        "intro": "Landscaping design and installation company serving Ocala, providing complete outdoor solutions that improve curb appeal.",
+        "headingIntro": "Professional Landscaping Contractors In Ocala",
+        "paragraphIntro": "Our landscaping company offers full-service landscape design, installation, and maintenance for Ocala homes, using native plants and sustainable practices to enhance curb appeal and property value.",
+        "imagenIntro1": {
+          "alt": "Date palm planted in a square of black slate chips within artificial turf beside a clusia hedge."
+        },
+        "imagenIntro2": {
+          "alt": "Driveway island with bromeliads, crotons and boulders edged by black river rock and pavers."
+        },
+        "imagenIntro3": {
+          "alt": "Curved paver walkway edged with lawn, caladiums, clipped trees and low path lights."
+        },
+        "heading3DRendering": "We Put A Planting Plan On Paper",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Hear from Florida clients who love how our landscaping company transformed their properties with native plants, refined hardscaping, and lasting beauty.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Ocala, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Landscaping in Ocala, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Landscaping design and installation company serving Ocala, FL, providing complete outdoor solutions that improve curb appeal.",
+            "og:image": "/images/banco/landscaping/landscaping-italian-cypress-bromeliad-bed-lamp-post-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/landscaping/ocala-fl",
+            "twitter:title": "Landscaping in Ocala, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Landscaping design and installation company serving Ocala, FL, providing complete outdoor solutions that improve curb appeal.",
+            "twitter:image": "/images/banco/landscaping/landscaping-italian-cypress-bromeliad-bed-lamp-post-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Ocala",
+              "areaServed": {
+                "name": "Ocala"
+              },
+              "description": "Landscaping design and installation company serving Ocala, FL, providing complete outdoor solutions that improve curb appeal."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/landscaping",
+        "condado": "/services/pool-builders/marion-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/ocala-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/ocala-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/ocala-fl",
+            "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/ocala-fl",
+            "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/ocala-fl",
+            "nombre": "Deck Builders"
+          },
+          {
+            "href": "/services/outdoor-kitchens/ocala-fl",
+            "nombre": "Outdoor Kitchens"
+          }
+        ]
+      }
+    },
+    "/services/landscaping/palatka-fl": {
+      "servicio": "landscaping",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "palatka-florida",
+        "name": "Palatka",
+        "seo": {
+          "title": "Landscaping in Palatka, FL | Mr & Mrs Outdoor Living",
+          "description": "Landscaping design and installation company serving Palatka, FL, providing complete outdoor solutions that improve curb appeal."
+        },
+        "h1Title": "Professional Landscaping Services In Palatka, Florida",
+        "h2Title": "Professional Landscaping Contractors In Palatka And Putnam County",
+        "intro": "Landscaping design and installation company serving Palatka, providing complete outdoor solutions that improve curb appeal.",
+        "headingIntro": "Professional Landscaping Contractors In Palatka",
+        "paragraphIntro": "Our landscaping company offers full-service landscape design, installation, and maintenance for Palatka homes, using native plants and sustainable practices to enhance curb appeal and property value.",
+        "imagenIntro1": {
+          "alt": "Date palm planted in a square of black slate chips within artificial turf beside a clusia hedge."
+        },
+        "imagenIntro2": {
+          "alt": "Driveway island with bromeliads, crotons and boulders edged by black river rock and pavers."
+        },
+        "imagenIntro3": {
+          "alt": "Curved paver walkway edged with lawn, caladiums, clipped trees and low path lights."
+        },
+        "heading3DRendering": "We Put A Planting Plan On Paper",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Hear from Florida clients who love how our landscaping company transformed their properties with native plants, refined hardscaping, and lasting beauty.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Palatka, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Landscaping in Palatka, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Landscaping design and installation company serving Palatka, FL, providing complete outdoor solutions that improve curb appeal.",
+            "og:image": "/images/banco/landscaping/landscaping-italian-cypress-bromeliad-bed-lamp-post-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/landscaping/palatka-fl",
+            "twitter:title": "Landscaping in Palatka, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Landscaping design and installation company serving Palatka, FL, providing complete outdoor solutions that improve curb appeal.",
+            "twitter:image": "/images/banco/landscaping/landscaping-italian-cypress-bromeliad-bed-lamp-post-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Palatka",
+              "areaServed": {
+                "name": "Palatka"
+              },
+              "description": "Landscaping design and installation company serving Palatka, FL, providing complete outdoor solutions that improve curb appeal."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/landscaping",
+        "condado": "/services/pool-builders/putnam-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/palatka-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/palatka-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/palatka-fl",
+            "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/palatka-fl",
+            "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/palatka-fl",
+            "nombre": "Deck Builders"
+          },
+          {
+            "href": "/services/outdoor-kitchens/palatka-fl",
+            "nombre": "Outdoor Kitchens"
           }
         ]
       }
