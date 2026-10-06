@@ -4148,7 +4148,7 @@
         },
         {
           "pregunta": "Which office permits a pool remodel in Manalapan?",
-          "respuesta": "In Manalapan, the Town's Building Department covers plan review, architectural review and permitting, and any change to the exterior of a residence, from additions, shutters and fences to a new exterior colour, landscaping or a seawall, must first be approved by the Architectural Commission. The Town's coastline includes the 1.4 miles that Hurricane Sandy eroded in 2012, as recorded by the Florida Department of Environmental Protection. Remodel work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code, so we confirm which office has jurisdiction before demolition and pull the permit under our license.",
+          "respuesta": "In Manalapan, the Town's Building Department covers plan review, architectural review and permitting, and any change to the exterior of a residence, from additions, shutters and fences to a new exterior color, landscaping or a seawall, must first be approved by the Architectural Commission. The Town's coastline includes the 1.4 miles that Hurricane Sandy eroded in 2012, as recorded by the Florida Department of Environmental Protection. Remodel work that touches the structure, plumbing, electrical, equipment or the safety barrier is permitted and inspected under the Florida Building Code, so we confirm which office has jurisdiction before demolition and pull the permit under our license.",
           "fuentes": [
             {
               "nombre": "Town of Manalapan: Building Department",
@@ -4743,6 +4743,974 @@
             {
               "nombre": "Marion County Building Safety",
               "url": "https://www.marionfl.org/agencies-departments/departments-facilities-offices/building-safety"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/pergola-builders/hollywood-fl": {
+    "heroe": {
+      "apoyo": "Custom pergola builders and installation company serving Hollywood homeowners, delivering durable designs that enhance outdoor comfort and style.",
+      "licencias": "Florida aluminum contractor · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida aluminum contractor",
+          "texto": "SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered to wind load",
+          "texto": "Every structure is engineered to local wind-load specifications."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Aluminum Pergola",
+        "Louvered & Adjustable Pergola"
+      ],
+      "proyectoPorDefecto": "New Aluminum Pergola",
+      "nombre": "Hollywood Aluminum Pergola Form",
+      "aviso": "Hollywood aluminum pergola lead",
+      "ga4": "pergola",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the pergola for that space and take it through permits and HOA or ARB review.",
+        "You get the scope in writing and a fixed project price before anything is fabricated."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my pergola cost?",
+      "texto": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+      "alt": "Finished black-fascia insulated patio cover with ceiling fans on a white two-story home beside a pool",
+      "ancho": 1600,
+      "alto": 1200,
+      "pos": "50% 45%",
+      "_banco": "bi-0842",
+      "_proyecto": "obra-075",
+      "_ajuste": {
+        "recorte": "1250/698",
+        "pos": "50% 45%",
+        "ancho": 1600,
+        "q": 52,
+        "de": "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01.webp"
+      }
+    },
+    "faq": {
+      "titulo": "Hollywood Pergola Installation FAQs",
+      "entradilla": "Have questions about custom aluminum pergola installation in Hollywood, Florida? Our licensed outdoor living specialists answer the top questions here.",
+      "anade": [
+        {
+          "pregunta": "How much does a pergola cost in Hollywood?",
+          "respuesta": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Are aluminum pergolas rust-proof for Florida outdoor use?",
+          "respuesta": "Yes. Powder-coated aluminum pergolas resist rust, corrosion, and UV damage — making them ideal for Florida's humid, salt-air coastal environments and sun-intense inland climates. Licensed under aluminum contractor license SCC131153553, Mr. & Mrs. Outdoor Living engineers every structure to local wind-load specifications."
+        },
+        {
+          "pregunta": "Who reviews a pergola permit in Hollywood?",
+          "respuesta": "In Hollywood, the city's Building Division reviews every building permit application for compliance with local, state and federal building regulations, and all new applications are submitted through the city's Accela Citizen Access portal. The city's own permit FAQ counts a patio deck, a fence, a retaining wall, a shed, a gazebo, a trellis, a fountain, a spa or a pool as a structure. Broward is one of the two counties, with Miami-Dade, that the Florida Building Code defines as its High-Velocity Hurricane Zone. We manage the permits and the HOA or ARB review, and coordinate inspections.",
+          "fuentes": [
+            {
+              "nombre": "City of Hollywood: Building Division",
+              "url": "https://www.hollywoodfl.org/328/Building"
+            },
+            {
+              "nombre": "City of Hollywood: permit FAQ",
+              "url": "https://hollywoodfl.org/m/faq?cat=16#question-356"
+            },
+            {
+              "nombre": "Broward County: Florida Building Code roof packet (HVHZ definition)",
+              "url": "https://www.broward.org/Building/Documents/2020%20FBC%20Roof%20Packet.pdf"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/pergola-builders/weston-fl": {
+    "heroe": {
+      "apoyo": "Custom pergola builders and installation company serving Weston homeowners, delivering durable designs that enhance outdoor comfort and style.",
+      "licencias": "Florida aluminum contractor · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida aluminum contractor",
+          "texto": "SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered to wind load",
+          "texto": "Every structure is engineered to local wind-load specifications."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Aluminum Pergola",
+        "Louvered & Adjustable Pergola"
+      ],
+      "proyectoPorDefecto": "New Aluminum Pergola",
+      "nombre": "Weston Aluminum Pergola Form",
+      "aviso": "Weston aluminum pergola lead",
+      "ga4": "pergola",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the pergola for that space and take it through permits and HOA or ARB review.",
+        "You get the scope in writing and a fixed project price before anything is fabricated."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my pergola cost?",
+      "texto": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+      "alt": "Finished black-fascia insulated patio cover with ceiling fans on a white two-story home beside a pool",
+      "ancho": 1600,
+      "alto": 1200,
+      "pos": "50% 45%",
+      "_banco": "bi-0842",
+      "_proyecto": "obra-075",
+      "_ajuste": {
+        "recorte": "1250/698",
+        "pos": "50% 45%",
+        "ancho": 1600,
+        "q": 52,
+        "de": "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01.webp"
+      }
+    },
+    "faq": {
+      "titulo": "Weston Pergola Installation FAQs",
+      "entradilla": "Have questions about custom aluminum pergola installation in Weston, Florida? Our licensed outdoor living specialists answer the top questions here.",
+      "anade": [
+        {
+          "pregunta": "How much does a pergola cost in Weston?",
+          "respuesta": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Are aluminum pergolas rust-proof for Florida outdoor use?",
+          "respuesta": "Yes. Powder-coated aluminum pergolas resist rust, corrosion, and UV damage — making them ideal for Florida's humid, salt-air coastal environments and sun-intense inland climates. Licensed under aluminum contractor license SCC131153553, Mr. & Mrs. Outdoor Living engineers every structure to local wind-load specifications."
+        },
+        {
+          "pregunta": "Who reviews a pergola permit in Weston?",
+          "respuesta": "In Weston, Building Code Services enforces the Florida Building Code and Broward County regulations, and the city names C.A.P. Government, Inc. as its contracted agent for those services. The city also publishes a page on building permit exemptions for residential properties. The city has explained why tents and gazebos need a permit: Florida's wind-load requirements are strict because of hurricanes and severe thunderstorms, and an unanchored gazebo can become airborne. Broward is one of the two counties, with Miami-Dade, that the Florida Building Code defines as its High-Velocity Hurricane Zone. We manage the permits and the HOA or ARB review, and coordinate inspections.",
+          "fuentes": [
+            {
+              "nombre": "City of Weston: Building Code Services",
+              "url": "https://www.westonfl.org/government/building-code-services"
+            },
+            {
+              "nombre": "City of Weston: permit exemptions for residential properties",
+              "url": "https://www.westonfl.org/government/building-code-services/building-permit-exemptions-for-residential-properties"
+            },
+            {
+              "nombre": "City of Weston: why a permit is needed for tents and gazebos",
+              "url": "https://www.westonfl.org/Home/Components/News/News/1720"
+            },
+            {
+              "nombre": "Broward County: Florida Building Code roof packet (HVHZ definition)",
+              "url": "https://www.broward.org/Building/Documents/2020%20FBC%20Roof%20Packet.pdf"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/pergola-builders/dania-beach-fl": {
+    "heroe": {
+      "apoyo": "Custom pergola builders and installation company serving Dania Beach homeowners, delivering durable designs that enhance outdoor comfort and style.",
+      "licencias": "Florida aluminum contractor · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida aluminum contractor",
+          "texto": "SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered to wind load",
+          "texto": "Every structure is engineered to local wind-load specifications."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Aluminum Pergola",
+        "Louvered & Adjustable Pergola"
+      ],
+      "proyectoPorDefecto": "New Aluminum Pergola",
+      "nombre": "Dania Beach Aluminum Pergola Form",
+      "aviso": "Dania Beach aluminum pergola lead",
+      "ga4": "pergola",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the pergola for that space and take it through permits and HOA or ARB review.",
+        "You get the scope in writing and a fixed project price before anything is fabricated."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my pergola cost?",
+      "texto": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+      "alt": "Finished black-fascia insulated patio cover with ceiling fans on a white two-story home beside a pool",
+      "ancho": 1600,
+      "alto": 1200,
+      "pos": "50% 45%",
+      "_banco": "bi-0842",
+      "_proyecto": "obra-075",
+      "_ajuste": {
+        "recorte": "1250/698",
+        "pos": "50% 45%",
+        "ancho": 1600,
+        "q": 52,
+        "de": "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01.webp"
+      }
+    },
+    "faq": {
+      "titulo": "Dania Beach Pergola Installation FAQs",
+      "entradilla": "Have questions about custom aluminum pergola installation in Dania Beach, Florida? Our licensed outdoor living specialists answer the top questions here.",
+      "anade": [
+        {
+          "pregunta": "How much does a pergola cost in Dania Beach?",
+          "respuesta": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Are aluminum pergolas rust-proof for Florida outdoor use?",
+          "respuesta": "Yes. Powder-coated aluminum pergolas resist rust, corrosion, and UV damage — making them ideal for Florida's humid, salt-air coastal environments and sun-intense inland climates. Licensed under aluminum contractor license SCC131153553, Mr. & Mrs. Outdoor Living engineers every structure to local wind-load specifications."
+        },
+        {
+          "pregunta": "Who reviews a pergola permit in Dania Beach?",
+          "respuesta": "In Dania Beach, the city's Building Division enforces the building codes for new construction, additions, remodeling and interior renovation, and accepts and processes the building permit applications. The city's own FAQ counts a patio, a deck, a fence, a retaining wall, a shed, a gazebo, a trellis, a fountain, a spa or a pool as a structure, and its beachfront is part of Broward's Segment III. Broward is one of the two counties, with Miami-Dade, that the Florida Building Code defines as its High-Velocity Hurricane Zone. We manage the permits and the HOA or ARB review, and coordinate inspections.",
+          "fuentes": [
+            {
+              "nombre": "City of Dania Beach: Building Division",
+              "url": "https://www.daniabeachfl.gov/125/Building-Division"
+            },
+            {
+              "nombre": "City of Dania Beach: permit FAQ",
+              "url": "https://daniabeachfl.gov/Faq.aspx?QID=43"
+            },
+            {
+              "nombre": "Broward County beach segments",
+              "url": "https://www.broward.org/Beaches/Pages/Projects.aspx"
+            },
+            {
+              "nombre": "Broward County: Florida Building Code roof packet (HVHZ definition)",
+              "url": "https://www.broward.org/Building/Documents/2020%20FBC%20Roof%20Packet.pdf"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/pergola-builders/west-palm-beach-fl": {
+    "heroe": {
+      "apoyo": "Custom pergola builders and installation company serving West Palm Beach homeowners, delivering durable designs that enhance outdoor comfort and style.",
+      "licencias": "Florida aluminum contractor · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida aluminum contractor",
+          "texto": "SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered to wind load",
+          "texto": "Every structure is engineered to local wind-load specifications."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Aluminum Pergola",
+        "Louvered & Adjustable Pergola"
+      ],
+      "proyectoPorDefecto": "New Aluminum Pergola",
+      "nombre": "West Palm Beach Aluminum Pergola Form",
+      "aviso": "West Palm Beach aluminum pergola lead",
+      "ga4": "pergola",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the pergola for that space and take it through permits and HOA or ARB review.",
+        "You get the scope in writing and a fixed project price before anything is fabricated."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my pergola cost?",
+      "texto": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+      "alt": "Finished black-fascia insulated patio cover with ceiling fans on a white two-story home beside a pool",
+      "ancho": 1600,
+      "alto": 1200,
+      "pos": "50% 45%",
+      "_banco": "bi-0842",
+      "_proyecto": "obra-075",
+      "_ajuste": {
+        "recorte": "1250/698",
+        "pos": "50% 45%",
+        "ancho": 1600,
+        "q": 52,
+        "de": "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01.webp"
+      }
+    },
+    "faq": {
+      "titulo": "West Palm Beach Pergola Installation FAQs",
+      "entradilla": "Have questions about custom aluminum pergola installation in West Palm Beach, Florida? Our licensed outdoor living specialists answer the top questions here.",
+      "anade": [
+        {
+          "pregunta": "How much does a pergola cost in West Palm Beach?",
+          "respuesta": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Are aluminum pergolas rust-proof for Florida outdoor use?",
+          "respuesta": "Yes. Powder-coated aluminum pergolas resist rust, corrosion, and UV damage — making them ideal for Florida's humid, salt-air coastal environments and sun-intense inland climates. Licensed under aluminum contractor license SCC131153553, Mr. & Mrs. Outdoor Living engineers every structure to local wind-load specifications."
+        },
+        {
+          "pregunta": "Who reviews a pergola permit in West Palm Beach?",
+          "respuesta": "In West Palm Beach, the Building Division of Development Services processes and reviews building permit applications and oversees the inspections from City Hall at 401 Clematis Street. The city's permit FAQ states that a shed needs a permit and has to meet the zoning setbacks and resist hurricane wind loads, and that its exemption for minor residential work does not cover structural work or fences. Palm Beach County's Building Division publishes ultimate design wind speeds of 140 to 180 mph for the county, depending on the building's risk category. We manage the permits and the HOA or ARB review, and coordinate inspections.",
+          "fuentes": [
+            {
+              "nombre": "City of West Palm Beach: Building Division",
+              "url": "https://www.wpb.org/departments/development-services/building-division"
+            },
+            {
+              "nombre": "City of West Palm Beach: permits FAQ",
+              "url": "https://www.wpb.org/Departments/Development-Services/Building-Division/Permits-FAQ"
+            },
+            {
+              "nombre": "Palm Beach County: wind speeds",
+              "url": "https://discover.pbcgov.org/pzb/building/pages/wind-speeds.aspx"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/pergola-builders/boca-raton-fl": {
+    "heroe": {
+      "apoyo": "Custom pergola builders and installation company serving Boca Raton homeowners, delivering durable designs that enhance outdoor comfort and style.",
+      "licencias": "Florida aluminum contractor · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida aluminum contractor",
+          "texto": "SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered to wind load",
+          "texto": "Every structure is engineered to local wind-load specifications."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Aluminum Pergola",
+        "Louvered & Adjustable Pergola"
+      ],
+      "proyectoPorDefecto": "New Aluminum Pergola",
+      "nombre": "Boca Raton Aluminum Pergola Form",
+      "aviso": "Boca Raton aluminum pergola lead",
+      "ga4": "pergola",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the pergola for that space and take it through permits and HOA or ARB review.",
+        "You get the scope in writing and a fixed project price before anything is fabricated."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my pergola cost?",
+      "texto": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+      "alt": "Finished black-fascia insulated patio cover with ceiling fans on a white two-story home beside a pool",
+      "ancho": 1600,
+      "alto": 1200,
+      "pos": "50% 45%",
+      "_banco": "bi-0842",
+      "_proyecto": "obra-075",
+      "_ajuste": {
+        "recorte": "1250/698",
+        "pos": "50% 45%",
+        "ancho": 1600,
+        "q": 52,
+        "de": "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01.webp"
+      }
+    },
+    "faq": {
+      "titulo": "Boca Raton Pergola Installation FAQs",
+      "entradilla": "Have questions about custom aluminum pergola installation in Boca Raton, Florida? Our licensed outdoor living specialists answer the top questions here.",
+      "anade": [
+        {
+          "pregunta": "How much does a pergola cost in Boca Raton?",
+          "respuesta": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Are aluminum pergolas rust-proof for Florida outdoor use?",
+          "respuesta": "Yes. Powder-coated aluminum pergolas resist rust, corrosion, and UV damage — making them ideal for Florida's humid, salt-air coastal environments and sun-intense inland climates. Licensed under aluminum contractor license SCC131153553, Mr. & Mrs. Outdoor Living engineers every structure to local wind-load specifications."
+        },
+        {
+          "pregunta": "Who reviews a pergola permit in Boca Raton?",
+          "respuesta": "In Boca Raton, the city's swimming pool permit package lists its Building Administration at 200 NW 2nd Avenue. The city's beachfront includes a 3.8-mile segment that the Florida Department of Environmental Protection lists as critically eroded. The city treats a screen enclosure as an accessory structure with its own permit application and permit number, and its single-family setbacks vary by zoning district. Palm Beach County's Building Division publishes ultimate design wind speeds of 140 to 180 mph for the county, depending on the building's risk category. We manage the permits and the HOA or ARB review, and coordinate inspections.",
+          "fuentes": [
+            {
+              "nombre": "City of Boca Raton: swimming pool permit",
+              "url": "https://myboca.us/DocumentCenter/View/258/Swimming-Pool-PDF"
+            },
+            {
+              "nombre": "Florida DEP: critically eroded beaches report",
+              "url": "https://floridadep.gov/sites/default/files/CriticalErosionReport.pdf"
+            },
+            {
+              "nombre": "City of Boca Raton: permit FAQ",
+              "url": "https://myboca.us/m/faq?cat=0#question-91"
+            },
+            {
+              "nombre": "City of Boca Raton: setback information",
+              "url": "https://www.myboca.us/1586/Setback-Information"
+            },
+            {
+              "nombre": "Palm Beach County: wind speeds",
+              "url": "https://discover.pbcgov.org/pzb/building/pages/wind-speeds.aspx"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/pergola-builders/delray-beach-fl": {
+    "heroe": {
+      "apoyo": "Custom pergola builders and installation company serving Delray Beach homeowners, delivering durable designs that enhance outdoor comfort and style.",
+      "licencias": "Florida aluminum contractor · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida aluminum contractor",
+          "texto": "SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered to wind load",
+          "texto": "Every structure is engineered to local wind-load specifications."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Aluminum Pergola",
+        "Louvered & Adjustable Pergola"
+      ],
+      "proyectoPorDefecto": "New Aluminum Pergola",
+      "nombre": "Delray Beach Aluminum Pergola Form",
+      "aviso": "Delray Beach aluminum pergola lead",
+      "ga4": "pergola",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the pergola for that space and take it through permits and HOA or ARB review.",
+        "You get the scope in writing and a fixed project price before anything is fabricated."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my pergola cost?",
+      "texto": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+      "alt": "Finished black-fascia insulated patio cover with ceiling fans on a white two-story home beside a pool",
+      "ancho": 1600,
+      "alto": 1200,
+      "pos": "50% 45%",
+      "_banco": "bi-0842",
+      "_proyecto": "obra-075",
+      "_ajuste": {
+        "recorte": "1250/698",
+        "pos": "50% 45%",
+        "ancho": 1600,
+        "q": 52,
+        "de": "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01.webp"
+      }
+    },
+    "faq": {
+      "titulo": "Delray Beach Pergola Installation FAQs",
+      "entradilla": "Have questions about custom aluminum pergola installation in Delray Beach, Florida? Our licensed outdoor living specialists answer the top questions here.",
+      "anade": [
+        {
+          "pregunta": "How much does a pergola cost in Delray Beach?",
+          "respuesta": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Are aluminum pergolas rust-proof for Florida outdoor use?",
+          "respuesta": "Yes. Powder-coated aluminum pergolas resist rust, corrosion, and UV damage — making them ideal for Florida's humid, salt-air coastal environments and sun-intense inland climates. Licensed under aluminum contractor license SCC131153553, Mr. & Mrs. Outdoor Living engineers every structure to local wind-load specifications."
+        },
+        {
+          "pregunta": "Who reviews a pergola permit in Delray Beach?",
+          "respuesta": "In Delray Beach, the Building Division of Development Services handles plan review, permitting and inspection of construction from 100 NW 1st Avenue, and residential permit applications for pools, decks, pathways or any other improvement that adds impervious area need a property survey no more than 12 months old. The city's beach includes the 2.9-mile segment where the federally authorized Delray Beach Shore Protection Project was completed. Palm Beach County's Building Division publishes ultimate design wind speeds of 140 to 180 mph for the county, depending on the building's risk category. We manage the permits and the HOA or ARB review, and coordinate inspections.",
+          "fuentes": [
+            {
+              "nombre": "City of Delray Beach: Building Division",
+              "url": "https://delraybeachfl.gov/government/city-departments/development-services/building"
+            },
+            {
+              "nombre": "City of Delray Beach: building FAQ",
+              "url": "https://www.delraybeachfl.gov/government/city-departments/development-services/building/faq"
+            },
+            {
+              "nombre": "Florida DEP: critically eroded beaches report",
+              "url": "https://floridadep.gov/sites/default/files/CriticalErosionReport.pdf"
+            },
+            {
+              "nombre": "Palm Beach County: wind speeds",
+              "url": "https://discover.pbcgov.org/pzb/building/pages/wind-speeds.aspx"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/pergola-builders/gulf-stream-fl": {
+    "heroe": {
+      "apoyo": "Custom pergola builders and installation company serving Gulf Stream homeowners, delivering durable designs that enhance outdoor comfort and style.",
+      "licencias": "Florida aluminum contractor · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida aluminum contractor",
+          "texto": "SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered to wind load",
+          "texto": "Every structure is engineered to local wind-load specifications."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Aluminum Pergola",
+        "Louvered & Adjustable Pergola"
+      ],
+      "proyectoPorDefecto": "New Aluminum Pergola",
+      "nombre": "Gulf Stream Aluminum Pergola Form",
+      "aviso": "Gulf Stream aluminum pergola lead",
+      "ga4": "pergola",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the pergola for that space and take it through permits and HOA or ARB review.",
+        "You get the scope in writing and a fixed project price before anything is fabricated."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my pergola cost?",
+      "texto": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+      "alt": "Finished black-fascia insulated patio cover with ceiling fans on a white two-story home beside a pool",
+      "ancho": 1600,
+      "alto": 1200,
+      "pos": "50% 45%",
+      "_banco": "bi-0842",
+      "_proyecto": "obra-075",
+      "_ajuste": {
+        "recorte": "1250/698",
+        "pos": "50% 45%",
+        "ancho": 1600,
+        "q": 52,
+        "de": "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01.webp"
+      }
+    },
+    "faq": {
+      "titulo": "Gulf Stream Pergola Installation FAQs",
+      "entradilla": "Have questions about custom aluminum pergola installation in Gulf Stream, Florida? Our licensed outdoor living specialists answer the top questions here.",
+      "anade": [
+        {
+          "pregunta": "How much does a pergola cost in Gulf Stream?",
+          "respuesta": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Are aluminum pergolas rust-proof for Florida outdoor use?",
+          "respuesta": "Yes. Powder-coated aluminum pergolas resist rust, corrosion, and UV damage — making them ideal for Florida's humid, salt-air coastal environments and sun-intense inland climates. Licensed under aluminum contractor license SCC131153553, Mr. & Mrs. Outdoor Living engineers every structure to local wind-load specifications."
+        },
+        {
+          "pregunta": "Who reviews a pergola permit in Gulf Stream?",
+          "respuesta": "In Gulf Stream, building permits and inspections are handled by the Town of Highland Beach under an interlocal agreement, through the Highland Beach permit portal, while Gulf Stream retains all zoning authority and its own design reviews: accessory buildings and structures and minor renovations affecting less than 300 square feet are approved or denied by Town staff, and the next level of review goes to the Architectural Review and Planning Board. Palm Beach County's Building Division publishes ultimate design wind speeds of 140 to 180 mph for the county, depending on the building's risk category. We manage the permits and the HOA or ARB review, and coordinate inspections.",
+          "fuentes": [
+            {
+              "nombre": "Town of Gulf Stream: permits",
+              "url": "https://www.gulf-stream.org/permits/"
+            },
+            {
+              "nombre": "Town of Gulf Stream: approvals",
+              "url": "https://www.gulf-stream.org/approvals/"
+            },
+            {
+              "nombre": "Palm Beach County: wind speeds",
+              "url": "https://discover.pbcgov.org/pzb/building/pages/wind-speeds.aspx"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/pergola-builders/manalapan-fl": {
+    "heroe": {
+      "apoyo": "Custom pergola builders and installation company serving Manalapan homeowners, delivering durable designs that enhance outdoor comfort and style.",
+      "licencias": "Florida aluminum contractor · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida aluminum contractor",
+          "texto": "SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered to wind load",
+          "texto": "Every structure is engineered to local wind-load specifications."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Aluminum Pergola",
+        "Louvered & Adjustable Pergola"
+      ],
+      "proyectoPorDefecto": "New Aluminum Pergola",
+      "nombre": "Manalapan Aluminum Pergola Form",
+      "aviso": "Manalapan aluminum pergola lead",
+      "ga4": "pergola",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the pergola for that space and take it through permits and HOA or ARB review.",
+        "You get the scope in writing and a fixed project price before anything is fabricated."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my pergola cost?",
+      "texto": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+      "alt": "Finished black-fascia insulated patio cover with ceiling fans on a white two-story home beside a pool",
+      "ancho": 1600,
+      "alto": 1200,
+      "pos": "50% 45%",
+      "_banco": "bi-0842",
+      "_proyecto": "obra-075",
+      "_ajuste": {
+        "recorte": "1250/698",
+        "pos": "50% 45%",
+        "ancho": 1600,
+        "q": 52,
+        "de": "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01.webp"
+      }
+    },
+    "faq": {
+      "titulo": "Manalapan Pergola Installation FAQs",
+      "entradilla": "Have questions about custom aluminum pergola installation in Manalapan, Florida? Our licensed outdoor living specialists answer the top questions here.",
+      "anade": [
+        {
+          "pregunta": "How much does a pergola cost in Manalapan?",
+          "respuesta": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Are aluminum pergolas rust-proof for Florida outdoor use?",
+          "respuesta": "Yes. Powder-coated aluminum pergolas resist rust, corrosion, and UV damage — making them ideal for Florida's humid, salt-air coastal environments and sun-intense inland climates. Licensed under aluminum contractor license SCC131153553, Mr. & Mrs. Outdoor Living engineers every structure to local wind-load specifications."
+        },
+        {
+          "pregunta": "Who reviews a pergola permit in Manalapan?",
+          "respuesta": "In Manalapan, the Town's Building Department covers plan review, architectural review and permitting, and any change to the exterior of a residence, from additions, shutters and fences to a new exterior color, landscaping or a seawall, must first be approved by the Architectural Commission. The Town's coastline includes the 1.4 miles that Hurricane Sandy eroded in 2012, as recorded by the Florida Department of Environmental Protection. Palm Beach County's Building Division publishes ultimate design wind speeds of 140 to 180 mph for the county, depending on the building's risk category. We manage the permits and the HOA or ARB review, and coordinate inspections.",
+          "fuentes": [
+            {
+              "nombre": "Town of Manalapan: Building Department",
+              "url": "https://manalapan.org/building-department/"
+            },
+            {
+              "nombre": "Town of Manalapan: Architectural Commission",
+              "url": "https://manalapan.org/?p=221"
+            },
+            {
+              "nombre": "Florida DEP: critically eroded beaches report",
+              "url": "https://floridadep.gov/sites/default/files/CriticalErosionReport.pdf"
+            },
+            {
+              "nombre": "Palm Beach County: wind speeds",
+              "url": "https://discover.pbcgov.org/pzb/building/pages/wind-speeds.aspx"
             }
           ]
         }
