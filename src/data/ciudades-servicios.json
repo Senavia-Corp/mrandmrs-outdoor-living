@@ -314,6 +314,26 @@
           {
             "slug": "mcintosh-florida",
             "condado": "Marion"
+          },
+          {
+            "slug": "hollywood-florida",
+            "condado": "Broward"
+          },
+          {
+            "slug": "dania-beach-florida",
+            "condado": "Broward"
+          },
+          {
+            "slug": "delray-beach-florida",
+            "condado": "Palm Beach"
+          },
+          {
+            "slug": "gulf-stream-florida",
+            "condado": "Palm Beach"
+          },
+          {
+            "slug": "manalapan-florida",
+            "condado": "Palm Beach"
           }
         ]
       }
@@ -888,6 +908,10 @@
           {
             "href": "/services/louvered-roofs/hollywood-fl",
             "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/hollywood-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -968,6 +992,10 @@
           {
             "href": "/services/louvered-roofs/dania-beach-fl",
             "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/dania-beach-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -1280,6 +1308,10 @@
           {
             "href": "/services/louvered-roofs/gulf-stream-fl",
             "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/gulf-stream-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -1360,6 +1392,10 @@
           {
             "href": "/services/louvered-roofs/manalapan-fl",
             "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/manalapan-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -1884,6 +1920,10 @@
           {
             "href": "/services/louvered-roofs/hollywood-fl",
             "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/hollywood-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -2048,6 +2088,10 @@
           {
             "href": "/services/louvered-roofs/dania-beach-fl",
             "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/dania-beach-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -2296,6 +2340,10 @@
           {
             "href": "/services/louvered-roofs/delray-beach-fl",
             "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/delray-beach-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -2380,6 +2428,10 @@
           {
             "href": "/services/louvered-roofs/gulf-stream-fl",
             "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/gulf-stream-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -2464,6 +2516,10 @@
           {
             "href": "/services/louvered-roofs/manalapan-fl",
             "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/manalapan-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -2988,6 +3044,10 @@
           {
             "href": "/services/pergola-builders/hollywood-fl",
             "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/deck-builders/hollywood-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -3152,6 +3212,10 @@
           {
             "href": "/services/pergola-builders/dania-beach-fl",
             "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/deck-builders/dania-beach-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -3400,6 +3464,10 @@
           {
             "href": "/services/pergola-builders/delray-beach-fl",
             "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/deck-builders/delray-beach-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -3484,6 +3552,10 @@
           {
             "href": "/services/pergola-builders/gulf-stream-fl",
             "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/deck-builders/gulf-stream-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -3568,6 +3640,10 @@
           {
             "href": "/services/pergola-builders/manalapan-fl",
             "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/deck-builders/manalapan-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -4007,6 +4083,442 @@
           },
           {
             "href": "/services/louvered-roofs/mcintosh-fl",
+            "nombre": "Louvered Roofs"
+          }
+        ]
+      }
+    },
+    "/services/deck-builders/hollywood-fl": {
+      "servicio": "deck-builders",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "hollywood-florida",
+        "name": "Hollywood",
+        "seo": {
+          "title": "Deck Builders in Hollywood, FL | Mr & Mrs Outdoor Living",
+          "description": "Professional deck builders and installation contractors serving Hollywood, FL with durable, stylish outdoor deck solutions."
+        },
+        "h1Title": "Custom Deck Builders In Hollywood, Florida",
+        "h2Title": "Custom Deck Builders & Contractors In Hollywood And Broward County",
+        "intro": "Professional deck builders and installation contractors serving Hollywood with durable, stylish outdoor deck solutions.",
+        "headingIntro": "Custom Deck Builders & Contractors In Hollywood",
+        "paragraphIntro": "Our deck builders design and construct composite and wood decks for Hollywood homes, delivering long-lasting outdoor structures tailored to your home's layout, lifestyle, and Florida's demanding climate.",
+        "imagenIntro1": {
+          "alt": "Rectangular pool with travertine paver deck, tall palms and a putting green beyond."
+        },
+        "imagenIntro2": {
+          "alt": "Travertine patio with a date palm, blue lounge chairs and a covered pergola with columns behind"
+        },
+        "imagenIntro3": {
+          "alt": "Ivory travertine pool deck with a bromeliad in black river rock, artificial turf and a pergola-style patio cover"
+        },
+        "heading3DRendering": "We Design The Deck For Your Layout",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read testimonials from Florida homeowners who value the durability, comfort, and lasting property value delivered by our experienced deck builders.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Hollywood, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Deck Builders in Hollywood, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Professional deck builders and installation contractors serving Hollywood, FL with durable, stylish outdoor deck solutions.",
+            "og:image": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/deck-builders/hollywood-fl",
+            "twitter:title": "Deck Builders in Hollywood, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Professional deck builders and installation contractors serving Hollywood, FL with durable, stylish outdoor deck solutions.",
+            "twitter:image": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Hollywood",
+              "areaServed": {
+                "name": "Hollywood"
+              },
+              "description": "Professional deck builders and installation contractors serving Hollywood, FL with durable, stylish outdoor deck solutions."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/deck-builders",
+        "condado": "/services/pool-builders/broward-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/hollywood-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/hollywood-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/hollywood-fl",
+            "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/hollywood-fl",
+            "nombre": "Louvered Roofs"
+          }
+        ]
+      }
+    },
+    "/services/deck-builders/dania-beach-fl": {
+      "servicio": "deck-builders",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "dania-beach-florida",
+        "name": "Dania Beach",
+        "seo": {
+          "title": "Deck Builders in Dania Beach, FL | Mr & Mrs Outdoor Living",
+          "description": "Professional deck builders and installation contractors serving Dania Beach, FL with durable, stylish outdoor deck solutions."
+        },
+        "h1Title": "Custom Deck Builders In Dania Beach, Florida",
+        "h2Title": "Custom Deck Builders & Contractors In Dania Beach And Broward County",
+        "intro": "Professional deck builders and installation contractors serving Dania Beach with durable, stylish outdoor deck solutions.",
+        "headingIntro": "Custom Deck Builders & Contractors In Dania Beach",
+        "paragraphIntro": "Our deck builders design and construct composite and wood decks for Dania Beach homes, delivering long-lasting outdoor structures tailored to your home's layout, lifestyle, and Florida's demanding climate.",
+        "imagenIntro1": {
+          "alt": "Rectangular pool with travertine paver deck, tall palms and a putting green beyond."
+        },
+        "imagenIntro2": {
+          "alt": "Travertine patio with a date palm, blue lounge chairs and a covered pergola with columns behind"
+        },
+        "imagenIntro3": {
+          "alt": "Ivory travertine pool deck with a bromeliad in black river rock, artificial turf and a pergola-style patio cover"
+        },
+        "heading3DRendering": "We Design The Deck For Your Layout",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read testimonials from Florida homeowners who value the durability, comfort, and lasting property value delivered by our experienced deck builders.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Dania Beach, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Deck Builders in Dania Beach, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Professional deck builders and installation contractors serving Dania Beach, FL with durable, stylish outdoor deck solutions.",
+            "og:image": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/deck-builders/dania-beach-fl",
+            "twitter:title": "Deck Builders in Dania Beach, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Professional deck builders and installation contractors serving Dania Beach, FL with durable, stylish outdoor deck solutions.",
+            "twitter:image": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Dania Beach",
+              "areaServed": {
+                "name": "Dania Beach"
+              },
+              "description": "Professional deck builders and installation contractors serving Dania Beach, FL with durable, stylish outdoor deck solutions."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/deck-builders",
+        "condado": "/services/pool-builders/broward-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/dania-beach-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/dania-beach-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/dania-beach-fl",
+            "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/dania-beach-fl",
+            "nombre": "Louvered Roofs"
+          }
+        ]
+      }
+    },
+    "/services/deck-builders/delray-beach-fl": {
+      "servicio": "deck-builders",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "delray-beach-florida",
+        "name": "Delray Beach",
+        "seo": {
+          "title": "Deck Builders in Delray Beach, FL | Mr & Mrs Outdoor Living",
+          "description": "Professional deck builders and installation contractors serving Delray Beach, FL with durable, stylish outdoor deck solutions."
+        },
+        "h1Title": "Custom Deck Builders In Delray Beach, Florida",
+        "h2Title": "Custom Deck Builders & Contractors In Delray Beach And Palm Beach County",
+        "intro": "Professional deck builders and installation contractors serving Delray Beach with durable, stylish outdoor deck solutions.",
+        "headingIntro": "Custom Deck Builders & Contractors In Delray Beach",
+        "paragraphIntro": "Our deck builders design and construct composite and wood decks for Delray Beach homes, delivering long-lasting outdoor structures tailored to your home's layout, lifestyle, and Florida's demanding climate.",
+        "imagenIntro1": {
+          "alt": "Rectangular pool with travertine paver deck, tall palms and a putting green beyond."
+        },
+        "imagenIntro2": {
+          "alt": "Travertine patio with a date palm, blue lounge chairs and a covered pergola with columns behind"
+        },
+        "imagenIntro3": {
+          "alt": "Ivory travertine pool deck with a bromeliad in black river rock, artificial turf and a pergola-style patio cover"
+        },
+        "heading3DRendering": "We Design The Deck For Your Layout",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read testimonials from Florida homeowners who value the durability, comfort, and lasting property value delivered by our experienced deck builders.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Delray Beach, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Deck Builders in Delray Beach, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Professional deck builders and installation contractors serving Delray Beach, FL with durable, stylish outdoor deck solutions.",
+            "og:image": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/deck-builders/delray-beach-fl",
+            "twitter:title": "Deck Builders in Delray Beach, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Professional deck builders and installation contractors serving Delray Beach, FL with durable, stylish outdoor deck solutions.",
+            "twitter:image": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Delray Beach",
+              "areaServed": {
+                "name": "Delray Beach"
+              },
+              "description": "Professional deck builders and installation contractors serving Delray Beach, FL with durable, stylish outdoor deck solutions."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/deck-builders",
+        "condado": "/services/pool-builders/palm-beach-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/delray-beach-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pergola-builders/delray-beach-fl",
+            "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/delray-beach-fl",
+            "nombre": "Louvered Roofs"
+          }
+        ]
+      }
+    },
+    "/services/deck-builders/gulf-stream-fl": {
+      "servicio": "deck-builders",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "gulf-stream-florida",
+        "name": "Gulf Stream",
+        "seo": {
+          "title": "Deck Builders in Gulf Stream, FL | Mr & Mrs Outdoor Living",
+          "description": "Professional deck builders and installation contractors serving Gulf Stream, FL with durable, stylish outdoor deck solutions."
+        },
+        "h1Title": "Custom Deck Builders In Gulf Stream, Florida",
+        "h2Title": "Custom Deck Builders & Contractors In Gulf Stream And Palm Beach County",
+        "intro": "Professional deck builders and installation contractors serving Gulf Stream with durable, stylish outdoor deck solutions.",
+        "headingIntro": "Custom Deck Builders & Contractors In Gulf Stream",
+        "paragraphIntro": "Our deck builders design and construct composite and wood decks for Gulf Stream homes, delivering long-lasting outdoor structures tailored to your home's layout, lifestyle, and Florida's demanding climate.",
+        "imagenIntro1": {
+          "alt": "Rectangular pool with travertine paver deck, tall palms and a putting green beyond."
+        },
+        "imagenIntro2": {
+          "alt": "Travertine patio with a date palm, blue lounge chairs and a covered pergola with columns behind"
+        },
+        "imagenIntro3": {
+          "alt": "Ivory travertine pool deck with a bromeliad in black river rock, artificial turf and a pergola-style patio cover"
+        },
+        "heading3DRendering": "We Design The Deck For Your Layout",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read testimonials from Florida homeowners who value the durability, comfort, and lasting property value delivered by our experienced deck builders.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Gulf Stream, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Deck Builders in Gulf Stream, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Professional deck builders and installation contractors serving Gulf Stream, FL with durable, stylish outdoor deck solutions.",
+            "og:image": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/deck-builders/gulf-stream-fl",
+            "twitter:title": "Deck Builders in Gulf Stream, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Professional deck builders and installation contractors serving Gulf Stream, FL with durable, stylish outdoor deck solutions.",
+            "twitter:image": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Gulf Stream",
+              "areaServed": {
+                "name": "Gulf Stream"
+              },
+              "description": "Professional deck builders and installation contractors serving Gulf Stream, FL with durable, stylish outdoor deck solutions."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/deck-builders",
+        "condado": "/services/pool-builders/palm-beach-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/gulf-stream-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/gulf-stream-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/gulf-stream-fl",
+            "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/gulf-stream-fl",
+            "nombre": "Louvered Roofs"
+          }
+        ]
+      }
+    },
+    "/services/deck-builders/manalapan-fl": {
+      "servicio": "deck-builders",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "manalapan-florida",
+        "name": "Manalapan",
+        "seo": {
+          "title": "Deck Builders in Manalapan, FL | Mr & Mrs Outdoor Living",
+          "description": "Professional deck builders and installation contractors serving Manalapan, FL with durable, stylish outdoor deck solutions."
+        },
+        "h1Title": "Custom Deck Builders In Manalapan, Florida",
+        "h2Title": "Custom Deck Builders & Contractors In Manalapan And Palm Beach County",
+        "intro": "Professional deck builders and installation contractors serving Manalapan with durable, stylish outdoor deck solutions.",
+        "headingIntro": "Custom Deck Builders & Contractors In Manalapan",
+        "paragraphIntro": "Our deck builders design and construct composite and wood decks for Manalapan homes, delivering long-lasting outdoor structures tailored to your home's layout, lifestyle, and Florida's demanding climate.",
+        "imagenIntro1": {
+          "alt": "Rectangular pool with travertine paver deck, tall palms and a putting green beyond."
+        },
+        "imagenIntro2": {
+          "alt": "Travertine patio with a date palm, blue lounge chairs and a covered pergola with columns behind"
+        },
+        "imagenIntro3": {
+          "alt": "Ivory travertine pool deck with a bromeliad in black river rock, artificial turf and a pergola-style patio cover"
+        },
+        "heading3DRendering": "We Design The Deck For Your Layout",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read testimonials from Florida homeowners who value the durability, comfort, and lasting property value delivered by our experienced deck builders.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Manalapan, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Deck Builders in Manalapan, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Professional deck builders and installation contractors serving Manalapan, FL with durable, stylish outdoor deck solutions.",
+            "og:image": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/deck-builders/manalapan-fl",
+            "twitter:title": "Deck Builders in Manalapan, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Professional deck builders and installation contractors serving Manalapan, FL with durable, stylish outdoor deck solutions.",
+            "twitter:image": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Manalapan",
+              "areaServed": {
+                "name": "Manalapan"
+              },
+              "description": "Professional deck builders and installation contractors serving Manalapan, FL with durable, stylish outdoor deck solutions."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/deck-builders",
+        "condado": "/services/pool-builders/palm-beach-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/manalapan-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/manalapan-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/manalapan-fl",
+            "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/manalapan-fl",
             "nombre": "Louvered Roofs"
           }
         ]

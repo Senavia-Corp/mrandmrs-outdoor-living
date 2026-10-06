@@ -7652,6 +7652,563 @@
     },
     "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
   },
+  "/services/deck-builders/hollywood-fl": {
+    "heroe": {
+      "apoyo": "Professional deck builders and installation contractors serving Hollywood with durable, stylish outdoor deck solutions.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Built for the Florida climate",
+          "texto": "Composite that resists warping, fading and rot; pressure-treated wood sealed and stained."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "One team takes the design through permits, engineering and construction."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Custom Deck",
+        "Pool Deck Renovation"
+      ],
+      "proyectoPorDefecto": "New Custom Deck",
+      "nombre": "Hollywood Custom Deck Form",
+      "aviso": "Hollywood custom deck lead",
+      "ga4": "deck",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the deck for your layout and take it through permits.",
+        "You get the scope in writing and a fixed project price before the first board goes down."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my deck cost?",
+      "texto": "Every deck is priced from its size, the material, the level changes and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+      "alt": "Ivory travertine paver patio behind a stucco house with a lake and storm clouds.",
+      "ancho": 1600,
+      "alto": 1200,
+      "_banco": "bi-0092"
+    },
+    "faq": {
+      "titulo": "Hollywood Custom Deck FAQs",
+      "entradilla": "Have questions about composite or wood deck installation in Hollywood, Florida? Our licensed deck builders answer the most common questions from Florida homeowners.",
+      "anade": [
+        {
+          "pregunta": "How much does a deck cost in Hollywood?",
+          "respuesta": "Every deck is priced from its size, the material, the level changes and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Which decking materials are best for Florida homes?",
+          "respuesta": "We use composite decking, pressure-treated lumber, and fiberglass-reinforced boards engineered for long-lasting performance in Florida's heat, humidity, and seasonal rain. These materials resist warping, rot, and pest damage — delivering a surface that maintains its appearance and structural integrity across North and South Florida climates."
+        },
+        {
+          "pregunta": "Can you match my home’s existing design style?",
+          "respuesta": "Yes. Our deck builders fully customize shapes, levels, railing styles, and surface finishes to complement your home's architecture. From straight-line pool decks in travertine or pavers to multi-level composite platforms with built-in lighting, every deck integrates seamlessly with your Florida outdoor living environment."
+        },
+        {
+          "pregunta": "Who permits a new deck in Hollywood?",
+          "respuesta": "In Hollywood, the city's Building Division reviews every building permit application for compliance with local, state and federal building regulations, and all new applications are submitted through the city's Accela Citizen Access portal. The city's own permit FAQ counts a patio deck, a fence, a retaining wall, a shed, a gazebo, a trellis, a fountain, a spa or a pool as a structure. One team takes the design through permits, engineering and construction.",
+          "fuentes": [
+            {
+              "nombre": "City of Hollywood: Building Division",
+              "url": "https://www.hollywoodfl.org/328/Building"
+            },
+            {
+              "nombre": "City of Hollywood: permit FAQ",
+              "url": "https://hollywoodfl.org/m/faq?cat=16#question-356"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/deck-builders/dania-beach-fl": {
+    "heroe": {
+      "apoyo": "Professional deck builders and installation contractors serving Dania Beach with durable, stylish outdoor deck solutions.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Built for the Florida climate",
+          "texto": "Composite that resists warping, fading and rot; pressure-treated wood sealed and stained."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "One team takes the design through permits, engineering and construction."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Custom Deck",
+        "Pool Deck Renovation"
+      ],
+      "proyectoPorDefecto": "New Custom Deck",
+      "nombre": "Dania Beach Custom Deck Form",
+      "aviso": "Dania Beach custom deck lead",
+      "ga4": "deck",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the deck for your layout and take it through permits.",
+        "You get the scope in writing and a fixed project price before the first board goes down."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my deck cost?",
+      "texto": "Every deck is priced from its size, the material, the level changes and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+      "alt": "Ivory travertine paver patio behind a stucco house with a lake and storm clouds.",
+      "ancho": 1600,
+      "alto": 1200,
+      "_banco": "bi-0092"
+    },
+    "faq": {
+      "titulo": "Dania Beach Custom Deck FAQs",
+      "entradilla": "Have questions about composite or wood deck installation in Dania Beach, Florida? Our licensed deck builders answer the most common questions from Florida homeowners.",
+      "anade": [
+        {
+          "pregunta": "How much does a deck cost in Dania Beach?",
+          "respuesta": "Every deck is priced from its size, the material, the level changes and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Which decking materials are best for Florida homes?",
+          "respuesta": "We use composite decking, pressure-treated lumber, and fiberglass-reinforced boards engineered for long-lasting performance in Florida's heat, humidity, and seasonal rain. These materials resist warping, rot, and pest damage — delivering a surface that maintains its appearance and structural integrity across North and South Florida climates."
+        },
+        {
+          "pregunta": "Can you match my home’s existing design style?",
+          "respuesta": "Yes. Our deck builders fully customize shapes, levels, railing styles, and surface finishes to complement your home's architecture. From straight-line pool decks in travertine or pavers to multi-level composite platforms with built-in lighting, every deck integrates seamlessly with your Florida outdoor living environment."
+        },
+        {
+          "pregunta": "Who permits a new deck in Dania Beach?",
+          "respuesta": "In Dania Beach, the city's Building Division enforces the building codes for new construction, additions, remodeling and interior renovation, and accepts and processes the building permit applications. The city's own FAQ counts a patio, a deck, a fence, a retaining wall, a shed, a gazebo, a trellis, a fountain, a spa or a pool as a structure, and its beachfront is part of Broward's Segment III. One team takes the design through permits, engineering and construction.",
+          "fuentes": [
+            {
+              "nombre": "City of Dania Beach: Building Division",
+              "url": "https://www.daniabeachfl.gov/125/Building-Division"
+            },
+            {
+              "nombre": "City of Dania Beach: permit FAQ",
+              "url": "https://daniabeachfl.gov/Faq.aspx?QID=43"
+            },
+            {
+              "nombre": "Broward County beach segments",
+              "url": "https://www.broward.org/Beaches/Pages/Projects.aspx"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/deck-builders/delray-beach-fl": {
+    "heroe": {
+      "apoyo": "Professional deck builders and installation contractors serving Delray Beach with durable, stylish outdoor deck solutions.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Built for the Florida climate",
+          "texto": "Composite that resists warping, fading and rot; pressure-treated wood sealed and stained."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "One team takes the design through permits, engineering and construction."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Custom Deck",
+        "Pool Deck Renovation"
+      ],
+      "proyectoPorDefecto": "New Custom Deck",
+      "nombre": "Delray Beach Custom Deck Form",
+      "aviso": "Delray Beach custom deck lead",
+      "ga4": "deck",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the deck for your layout and take it through permits.",
+        "You get the scope in writing and a fixed project price before the first board goes down."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my deck cost?",
+      "texto": "Every deck is priced from its size, the material, the level changes and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+      "alt": "Ivory travertine paver patio behind a stucco house with a lake and storm clouds.",
+      "ancho": 1600,
+      "alto": 1200,
+      "_banco": "bi-0092"
+    },
+    "faq": {
+      "titulo": "Delray Beach Custom Deck FAQs",
+      "entradilla": "Have questions about composite or wood deck installation in Delray Beach, Florida? Our licensed deck builders answer the most common questions from Florida homeowners.",
+      "anade": [
+        {
+          "pregunta": "How much does a deck cost in Delray Beach?",
+          "respuesta": "Every deck is priced from its size, the material, the level changes and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Which decking materials are best for Florida homes?",
+          "respuesta": "We use composite decking, pressure-treated lumber, and fiberglass-reinforced boards engineered for long-lasting performance in Florida's heat, humidity, and seasonal rain. These materials resist warping, rot, and pest damage — delivering a surface that maintains its appearance and structural integrity across North and South Florida climates."
+        },
+        {
+          "pregunta": "Can you match my home’s existing design style?",
+          "respuesta": "Yes. Our deck builders fully customize shapes, levels, railing styles, and surface finishes to complement your home's architecture. From straight-line pool decks in travertine or pavers to multi-level composite platforms with built-in lighting, every deck integrates seamlessly with your Florida outdoor living environment."
+        },
+        {
+          "pregunta": "Who permits a new deck in Delray Beach?",
+          "respuesta": "In Delray Beach, the Building Division of Development Services handles plan review, permitting and inspection of construction from 100 NW 1st Avenue, and residential permit applications for pools, decks, pathways or any other improvement that adds impervious area need a property survey no more than 12 months old. The city's beach includes the 2.9-mile segment where the federally authorized Delray Beach Shore Protection Project was completed. One team takes the design through permits, engineering and construction.",
+          "fuentes": [
+            {
+              "nombre": "City of Delray Beach: Building Division",
+              "url": "https://delraybeachfl.gov/government/city-departments/development-services/building"
+            },
+            {
+              "nombre": "City of Delray Beach: building FAQ",
+              "url": "https://www.delraybeachfl.gov/government/city-departments/development-services/building/faq"
+            },
+            {
+              "nombre": "Florida DEP: critically eroded beaches report",
+              "url": "https://floridadep.gov/sites/default/files/CriticalErosionReport.pdf"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/deck-builders/gulf-stream-fl": {
+    "heroe": {
+      "apoyo": "Professional deck builders and installation contractors serving Gulf Stream with durable, stylish outdoor deck solutions.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Built for the Florida climate",
+          "texto": "Composite that resists warping, fading and rot; pressure-treated wood sealed and stained."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "One team takes the design through permits, engineering and construction."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Custom Deck",
+        "Pool Deck Renovation"
+      ],
+      "proyectoPorDefecto": "New Custom Deck",
+      "nombre": "Gulf Stream Custom Deck Form",
+      "aviso": "Gulf Stream custom deck lead",
+      "ga4": "deck",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the deck for your layout and take it through permits.",
+        "You get the scope in writing and a fixed project price before the first board goes down."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my deck cost?",
+      "texto": "Every deck is priced from its size, the material, the level changes and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+      "alt": "Ivory travertine paver patio behind a stucco house with a lake and storm clouds.",
+      "ancho": 1600,
+      "alto": 1200,
+      "_banco": "bi-0092"
+    },
+    "faq": {
+      "titulo": "Gulf Stream Custom Deck FAQs",
+      "entradilla": "Have questions about composite or wood deck installation in Gulf Stream, Florida? Our licensed deck builders answer the most common questions from Florida homeowners.",
+      "anade": [
+        {
+          "pregunta": "How much does a deck cost in Gulf Stream?",
+          "respuesta": "Every deck is priced from its size, the material, the level changes and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Which decking materials are best for Florida homes?",
+          "respuesta": "We use composite decking, pressure-treated lumber, and fiberglass-reinforced boards engineered for long-lasting performance in Florida's heat, humidity, and seasonal rain. These materials resist warping, rot, and pest damage — delivering a surface that maintains its appearance and structural integrity across North and South Florida climates."
+        },
+        {
+          "pregunta": "Can you match my home’s existing design style?",
+          "respuesta": "Yes. Our deck builders fully customize shapes, levels, railing styles, and surface finishes to complement your home's architecture. From straight-line pool decks in travertine or pavers to multi-level composite platforms with built-in lighting, every deck integrates seamlessly with your Florida outdoor living environment."
+        },
+        {
+          "pregunta": "Who permits a new deck in Gulf Stream?",
+          "respuesta": "In Gulf Stream, building permits and inspections are handled by the Town of Highland Beach under an interlocal agreement, through the Highland Beach permit portal, while Gulf Stream retains all zoning authority and its own design reviews: accessory buildings and structures and minor renovations affecting less than 300 square feet are approved or denied by Town staff, and the next level of review goes to the Architectural Review and Planning Board. One team takes the design through permits, engineering and construction.",
+          "fuentes": [
+            {
+              "nombre": "Town of Gulf Stream: permits",
+              "url": "https://www.gulf-stream.org/permits/"
+            },
+            {
+              "nombre": "Town of Gulf Stream: approvals",
+              "url": "https://www.gulf-stream.org/approvals/"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/deck-builders/manalapan-fl": {
+    "heroe": {
+      "apoyo": "Professional deck builders and installation contractors serving Manalapan with durable, stylish outdoor deck solutions.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Built for the Florida climate",
+          "texto": "Composite that resists warping, fading and rot; pressure-treated wood sealed and stained."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "One team takes the design through permits, engineering and construction."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Custom Deck",
+        "Pool Deck Renovation"
+      ],
+      "proyectoPorDefecto": "New Custom Deck",
+      "nombre": "Manalapan Custom Deck Form",
+      "aviso": "Manalapan custom deck lead",
+      "ga4": "deck",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the deck for your layout and take it through permits.",
+        "You get the scope in writing and a fixed project price before the first board goes down."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my deck cost?",
+      "texto": "Every deck is priced from its size, the material, the level changes and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+      "alt": "Ivory travertine paver patio behind a stucco house with a lake and storm clouds.",
+      "ancho": 1600,
+      "alto": 1200,
+      "_banco": "bi-0092"
+    },
+    "faq": {
+      "titulo": "Manalapan Custom Deck FAQs",
+      "entradilla": "Have questions about composite or wood deck installation in Manalapan, Florida? Our licensed deck builders answer the most common questions from Florida homeowners.",
+      "anade": [
+        {
+          "pregunta": "How much does a deck cost in Manalapan?",
+          "respuesta": "Every deck is priced from its size, the material, the level changes and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Which decking materials are best for Florida homes?",
+          "respuesta": "We use composite decking, pressure-treated lumber, and fiberglass-reinforced boards engineered for long-lasting performance in Florida's heat, humidity, and seasonal rain. These materials resist warping, rot, and pest damage — delivering a surface that maintains its appearance and structural integrity across North and South Florida climates."
+        },
+        {
+          "pregunta": "Can you match my home’s existing design style?",
+          "respuesta": "Yes. Our deck builders fully customize shapes, levels, railing styles, and surface finishes to complement your home's architecture. From straight-line pool decks in travertine or pavers to multi-level composite platforms with built-in lighting, every deck integrates seamlessly with your Florida outdoor living environment."
+        },
+        {
+          "pregunta": "Who permits a new deck in Manalapan?",
+          "respuesta": "In Manalapan, the Town's Building Department covers plan review, architectural review and permitting, and any change to the exterior of a residence, from additions, shutters and fences to a new exterior color, landscaping or a seawall, must first be approved by the Architectural Commission. The Town's coastline includes the 1.4 miles that Hurricane Sandy eroded in 2012, as recorded by the Florida Department of Environmental Protection. One team takes the design through permits, engineering and construction.",
+          "fuentes": [
+            {
+              "nombre": "Town of Manalapan: Building Department",
+              "url": "https://manalapan.org/building-department/"
+            },
+            {
+              "nombre": "Town of Manalapan: Architectural Commission",
+              "url": "https://manalapan.org/?p=221"
+            },
+            {
+              "nombre": "Florida DEP: critically eroded beaches report",
+              "url": "https://floridadep.gov/sites/default/files/CriticalErosionReport.pdf"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
   "/services/pool-builders/ocala-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Ocala homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
