@@ -77,17 +77,29 @@ const fabrica = (o) => ({
   nombre: o.nombre,
   tema: o.tema,
   titulo: (c) => `${o.nombreSeo} in ${c.ciudad}, FL | Mr & Mrs Outdoor Living`,
-  descripcion: (c) => o.descripcion(c),
+  // La description es el `heroe.apoyo` de la ficha con la ciudad, palabra por palabra.
+  descripcion: (c) => o.apoyo(c).replace(/ serving (.+?)( homeowners)?( with| delivering| offering| providing|,)/, (m, ciudad, h, resto) => ` serving ${ciudad}, FL${h ?? ''}${resto}`),
   h1: (c) => `${o.h1} In ${c.ciudad}, Florida`,
-  h2: (c) => `${o.h2} For Homes In ${enCiudad(c)}`,
+  // El H2 de `trusted-section` de la ficha, con la ciudad (y el condado verificado) en vez de
+  // «North & South Florida» / «Florida».
+  h2: (c) => `${o.h2} ${enCiudad(c)}`,
   apoyo: (c) => o.apoyo(c),
   headingIntro: (c) => `${o.headingIntro} In ${c.ciudad}`,
-  paragraphIntro: (c) => `${o.intro(c)} From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value.`,
+  // El parrafo de `trusted-section` de la ficha, con la ciudad. Sin la frase de cierre de las ciudades
+  // de piscina: la ficha del servicio no la publica.
+  paragraphIntro: (c) => o.intro(c),
+  // El parrafo de la seccion de resenas de la ficha, palabra por palabra.
   paragraphReviews: () => o.resenas,
-  paragraphBlog: (c) => `Explore tips and insights on ${o.blog} and outdoor living for ${c.ciudad}, FL homeowners.`,
+  // La misma formula que el `paragraphBlog` de las 53 ciudades de piscina (Sanity), sin servicio:
+  // el carrusel es el blog general, no el del servicio.
+  paragraphBlog: (c) => `Explore tips and insights on outdoor living in ${c.ciudad}, FL.`,
+  // La seccion 3D se titula con el paso 2 del formulario de la ficha («We design the pergola for
+  // that space…»): el titular de piscina («3D Pool Design») no es de este servicio.
+  heading3D: () => o.disenio,
   formulario: (c) => ({ nombre: `${c.ciudad} ${o.form}`, aviso: `${c.ciudad} ${o.form.replace(/ Form$/, '').toLowerCase()} lead` }),
-  faqTitulo: (c) => `${c.ciudad} ${o.blog} FAQs`,
-  faqEntradilla: (c) => `Cost, permits and the details worth settling before you start ${o.articulo} in ${c.condado ? `${c.condado} County` : c.ciudad}.`,
+  // Titular y entradilla de la FAQ de la ficha, con la ciudad.
+  faqTitulo: (c) => `${c.ciudad} ${o.faqTitulo}`,
+  faqEntradilla: (c) => o.faqEntradilla.replace(/in (North or South )?Florida\?/, `in ${c.ciudad}, Florida?`),
   faqBase: (c, F) => [
     { pregunta: `How much does ${o.coste} cost in ${c.ciudad}?`, respuesta: F.inversion.texto },
     ...o.faqFicha,
@@ -135,15 +147,16 @@ const PLANTILLAS = {
   'pergola-builders': fabrica({
     nombre: 'Pergola Builders', nombreSeo: 'Pergola Builders', tema: 'estructura',
     descripcion: (c) => `Custom aluminum pergola builders in ${c.ciudad}, FL: durable pergolas that enhance outdoor comfort and style, designed, permitted and installed by one licensed Florida team.`,
-    h1: 'Custom Aluminum Pergola Builders', h2: 'Aluminum Pergolas Designed And Installed',
+    h1: 'Custom Aluminum Pergola Builders', h2: 'Custom Pergola Builders Serving',
+    faqTitulo: 'Pergola Installation FAQs', faqEntradilla: 'Have questions about custom aluminum pergola installation in Florida? Our licensed outdoor living specialists answer the top questions here.',
     apoyo: (c) => `Custom pergola builders and installation company serving ${c.ciudad} homeowners, delivering durable designs that enhance outdoor comfort and style.`,
     headingIntro: 'Custom Pergola Builders',
     intro: (c) => `Our pergola builders design and install custom aluminum pergolas for ${c.ciudad} homes, combining expert craftsmanship, durable materials, and stylish shade solutions that elevate outdoor living spaces year-round.`,
-    resenas: 'Florida homeowners trust us with their pergolas and outdoor living. Read our reviews.',
+    resenas: 'Read reviews from North & South Florida homeowners who trust our pergola builders for durable installations, modern design, and outdoor comfort.',
+    disenio: 'We Design The Pergola For Your Space',
     blog: 'pergola', articulo: 'a pergola', coste: 'a pergola', form: 'Aluminum Pergola Form',
     faqFicha: [
       { pregunta: 'Are aluminum pergolas rust-proof for Florida outdoor use?', respuesta: "Yes. Powder-coated aluminum pergolas resist rust, corrosion, and UV damage — making them ideal for Florida's humid, salt-air coastal environments and sun-intense inland climates. Licensed under aluminum contractor license SCC131153553, Mr. & Mrs. Outdoor Living engineers every structure to local wind-load specifications." },
-      { pregunta: 'Are permits required for outdoor projects in Florida?', respuesta: 'Our pergola builders manage the complete permit process and ensure every installation meets Florida building codes and HOA or ARB design requirements. Licensed under SCC131153553, Mr. & Mrs. Outdoor Living coordinates all inspections and approvals — so your project proceeds without delays and is structurally certified upon completion.' },
     ],
     pregunta: (c) => `Who reviews a pergola permit in ${c.ciudad}?`,
     cierre: 'We manage the permits and the HOA or ARB review, and coordinate inspections.',
@@ -151,11 +164,13 @@ const PLANTILLAS = {
   'louvered-roofs': fabrica({
     nombre: 'Louvered Roofs', nombreSeo: 'Louvered Roofs', tema: 'estructura',
     descripcion: (c) => `Motorized louvered roof installation in ${c.ciudad}, FL: adjustable shade and weather protection, sized, permitted and installed by one licensed Florida team.`,
-    h1: 'Motorized Louvered Roof Systems', h2: 'Louvered Roofs Sized, Permitted And Installed',
+    h1: 'Motorized Louvered Roof Systems', h2: 'Motorized Louvered Roof Installation Experts In',
+    faqTitulo: 'Louvered Roof System FAQs', faqEntradilla: 'Have questions about motorized louvered roof system installation in Florida? Our licensed outdoor living specialists answer your top questions here.',
     apoyo: (c) => `Motorized louvered roof builders and installation contractors serving ${c.ciudad}, offering adjustable shade and weather protection.`,
     headingIntro: 'Louvered Roof Installation',
     intro: (c) => `We specialize in louvered roof installation for ${c.ciudad} homes, building motorized bioclimatic systems that allow homeowners to fully control sunlight, ventilation, and rain protection for true year-round outdoor comfort.`,
-    resenas: 'Florida homeowners trust us with their louvered roofs and outdoor living. Read our reviews.',
+    resenas: 'Read reviews from Florida homeowners who enjoy year-round outdoor living, enabled by our precision-engineered motorized louvered roof systems.',
+    disenio: 'We Size The System For Your Opening',
     blog: 'louvered roof', articulo: 'a louvered roof', coste: 'a louvered roof', form: 'Louvered Roof Form',
     faqFicha: [
       { pregunta: 'Are louvered roof systems hurricane-rated in Florida?', respuesta: "Yes. Louvered roof systems use reinforced extruded aluminum and marine-grade stainless steel hardware, engineered to withstand Florida's high winds. Our systems carry wind-load engineering documentation and are installed to meet local building codes — including HVHZ requirements where applicable in South Florida." },
@@ -167,11 +182,13 @@ const PLANTILLAS = {
   'deck-builders': fabrica({
     nombre: 'Deck Builders', nombreSeo: 'Deck Builders', tema: 'deck',
     descripcion: (c) => `Custom deck builders in ${c.ciudad}, FL: composite, wood, travertine and paver decks designed, permitted and built by one licensed Florida team.`,
-    h1: 'Custom Deck Builders', h2: 'Decks Designed, Permitted And Built',
+    h1: 'Custom Deck Builders', h2: 'Custom Deck Builders & Contractors In',
+    faqTitulo: 'Custom Deck FAQs', faqEntradilla: 'Have questions about composite or wood deck installation in Florida? Our licensed deck builders answer the most common questions from Florida homeowners.',
     apoyo: (c) => `Professional deck builders and installation contractors serving ${c.ciudad} with durable, stylish outdoor deck solutions.`,
     headingIntro: 'Custom Deck Builders & Contractors',
     intro: (c) => `Our deck builders design and construct composite and wood decks for ${c.ciudad} homes, delivering long-lasting outdoor structures tailored to your home's layout, lifestyle, and Florida's demanding climate.`,
-    resenas: 'Florida homeowners trust us with their decks and outdoor living. Read our reviews.',
+    resenas: 'Read testimonials from Florida homeowners who value the durability, comfort, and lasting property value delivered by our experienced deck builders.',
+    disenio: 'We Design The Deck For Your Layout',
     blog: 'deck', articulo: 'a deck', coste: 'a deck', form: 'Custom Deck Form',
     faqFicha: [
       { pregunta: 'Which decking materials are best for Florida homes?', respuesta: "We use composite decking, pressure-treated lumber, and fiberglass-reinforced boards engineered for long-lasting performance in Florida's heat, humidity, and seasonal rain. These materials resist warping, rot, and pest damage — delivering a surface that maintains its appearance and structural integrity across North and South Florida climates." },
@@ -183,11 +200,13 @@ const PLANTILLAS = {
   'outdoor-kitchens': fabrica({
     nombre: 'Outdoor Kitchens', nombreSeo: 'Outdoor Kitchens', tema: 'cocina',
     descripcion: (c) => `Custom outdoor kitchens in ${c.ciudad}, FL: layouts for entertaining and daily use, with outdoor-rated appliances and utilities, designed, permitted and built by one licensed team.`,
-    h1: 'Custom Outdoor Kitchens', h2: 'Outdoor Kitchens Designed, Permitted And Built',
+    h1: 'Custom Outdoor Kitchens', h2: 'Outdoor Kitchen Builders & Contractors In',
+    faqTitulo: 'Outdoor Kitchen FAQs', faqEntradilla: 'Have questions about custom outdoor kitchen construction in Florida? Our licensed contractors answer the top questions from Florida homeowners below.',
     apoyo: (c) => `Outdoor kitchen builders and installation contractors serving ${c.ciudad} with custom layouts for entertaining and daily use.`,
     headingIntro: 'Outdoor Kitchen Builders & Contractors',
     intro: (c) => `Our outdoor kitchen contractors design and build custom outdoor kitchens for ${c.ciudad} homes, integrating durable materials, modern appliances, and functional layouts for effortless entertaining.`,
-    resenas: 'Florida homeowners trust us with their outdoor kitchens and outdoor living. Read our reviews.',
+    resenas: 'Hear from Florida clients who enjoy cooking and entertaining year-round in custom outdoor kitchens designed and built by our licensed contractors.',
+    disenio: 'We Lay Out The Kitchen Around How You Cook',
     blog: 'outdoor kitchen', articulo: 'an outdoor kitchen', coste: 'an outdoor kitchen', form: 'Outdoor Kitchen Form',
     faqFicha: [
       { pregunta: 'What materials are best for outdoor kitchens in Florida?', respuesta: "We install outdoor kitchens using weatherproof polymer cabinets, marine-grade stainless steel hardware, and natural stone countertops — all selected for resistance to Florida's heat, humidity, and coastal salt air. Every material choice is engineered to maintain its appearance and structural integrity over the long term." },
@@ -199,11 +218,13 @@ const PLANTILLAS = {
   landscaping: fabrica({
     nombre: 'Landscaping', nombreSeo: 'Landscaping', tema: 'paisajismo',
     descripcion: (c) => `Landscaping in ${c.ciudad}, FL: landscape design and installation with native plants and drainage sorted first, from one licensed Florida outdoor living team.`,
-    h1: 'Professional Landscaping Services', h2: 'Landscape Design And Installation',
+    h1: 'Professional Landscaping Services', h2: 'Professional Landscaping Contractors In',
+    faqTitulo: 'Landscaping Services FAQs', faqEntradilla: 'Have questions about professional landscaping installation in North or South Florida? Our expert team answers the top questions from Florida homeowners.',
     apoyo: (c) => `Landscaping design and installation company serving ${c.ciudad}, providing complete outdoor solutions that improve curb appeal.`,
     headingIntro: 'Professional Landscaping Contractors',
     intro: (c) => `Our landscaping company offers full-service landscape design, installation, and maintenance for ${c.ciudad} homes, using native plants and sustainable practices to enhance curb appeal and property value.`,
-    resenas: 'Florida homeowners trust us with their landscaping and outdoor living. Read our reviews.',
+    resenas: 'Hear from Florida clients who love how our landscaping company transformed their properties with native plants, refined hardscaping, and lasting beauty.',
+    disenio: 'We Put A Planting Plan On Paper',
     blog: 'landscaping', articulo: 'a landscaping project', coste: 'landscaping', form: 'Landscaping Form',
     faqFicha: [
       { pregunta: 'Do landscaping contractors use native Florida plants?', respuesta: 'Yes. Our landscaping contractors prioritize native and Florida-Friendly plant selections that require less irrigation, resist local pests, and thrive without heavy chemical inputs. This approach delivers landscapes that look beautiful year-round while meaningfully reducing your long-term water consumption and maintenance requirements.' },
@@ -325,7 +346,7 @@ for (const [servicio, cfg] of Object.entries(FILAS.servicios)) {
       imagenIntro2: { alt: intro['2'].alt },
       imagenIntro3: { alt: intro['3'].alt },
       // La seccion 3D es la misma de las 53 de piscina (mismo video, mismo titular).
-      heading3DRendering: '3D Pool Design & Visualization',
+      heading3DRendering: T.heading3D?.() ?? '3D Pool Design & Visualization',
       headingFeature: '',
       paragraphFeatures: '',
       headingPortfolio: '',
@@ -359,6 +380,9 @@ for (const [servicio, cfg] of Object.entries(FILAS.servicios)) {
         },
         ldCrudo: [],
       },
+      // El fondo del heroe: la foto de heroe de la FICHA del servicio (`heroe.foto`), no el reel de
+      // piscina de las ciudades de pool-builders. Solo para los servicios que no son de piscina.
+      heroeFoto: T.tema === 'piscina' ? null : { src: F.heroe.foto, ancho: F.heroe.ancho, alto: F.heroe.alto },
       enlaces: {
         ficha: `/services/${servicio}`,
         condado: c.condado ? slugCondado(c.condado) : null,
