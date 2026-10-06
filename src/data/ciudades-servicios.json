@@ -88,6 +88,14 @@
           {
             "slug": "manalapan-florida",
             "condado": "Palm Beach"
+          },
+          {
+            "slug": "miramar-florida",
+            "condado": "Broward"
+          },
+          {
+            "slug": "delray-beach-florida",
+            "condado": "Palm Beach"
           }
         ]
       }
@@ -454,6 +462,10 @@
           {
             "slug": "palatka-florida",
             "condado": "Putnam"
+          },
+          {
+            "slug": "fort-lauderdale-florida",
+            "condado": "Broward"
           }
         ]
       }
@@ -980,6 +992,10 @@
           {
             "href": "/services/pool-builders/fort-lauderdale-fl",
             "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/landscaping/fort-lauderdale-fl",
+            "nombre": "Landscaping"
           }
         ]
       }
@@ -1563,6 +1579,166 @@
           },
           {
             "href": "/services/outdoor-kitchens/manalapan-fl",
+            "nombre": "Outdoor Kitchens"
+          }
+        ]
+      }
+    },
+    "/services/pool-remodeling/miramar-fl": {
+      "servicio": "pool-remodeling",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "miramar-florida",
+        "name": "Miramar",
+        "seo": {
+          "title": "Pool Remodeling in Miramar, FL | Mr & Mrs Outdoor Living",
+          "description": "Pool remodeling in Miramar, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor."
+        },
+        "h1Title": "Pool Remodeling & Renovation In Miramar, Florida",
+        "h2Title": "Complete Pool Renovations For Homes In Miramar And Broward County",
+        "intro": "Complete pool remodeling for Miramar homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
+        "headingIntro": "Pool Remodeling & Renovation Contractors In Miramar",
+        "paragraphIntro": "A remodel starts with the pool as it is today: we assess the shell, the plumbing and the equipment, then put the scope on paper — interior finish, waterline tile and coping, equipment and lighting, a spa added or rebuilt, the deck and a code-compliant barrier. One licensed team takes it through permits, demolition and finishing to start-up for Miramar homeowners. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value.",
+        "imagenIntro1": {
+          "alt": "Remodeled freeform pool with blue mosaic waterline tile and travertine deck."
+        },
+        "imagenIntro2": {
+          "alt": "Remodeled pool with blue glass waterline tile and ivory travertine deck behind a stucco house."
+        },
+        "imagenIntro3": {
+          "alt": "Walnut travertine deck in French pattern around a pool with a blue-tiled raised spa."
+        },
+        "heading3DRendering": "3D Pool Design & Visualization",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Florida homeowners trust us with their pool renovations and outdoor living. Read our reviews.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on pool remodeling and outdoor living for Miramar, FL homeowners."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Pool Remodeling in Miramar, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Pool remodeling in Miramar, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor.",
+            "og:image": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/pool-remodeling/miramar-fl",
+            "twitter:title": "Pool Remodeling in Miramar, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Pool remodeling in Miramar, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor.",
+            "twitter:image": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Miramar",
+              "areaServed": {
+                "name": "Miramar"
+              },
+              "description": "Pool remodeling in Miramar, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": null,
+      "enlaces": {
+        "ficha": "/services/pool-remodeling",
+        "condado": "/services/pool-builders/broward-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/miramar-fl",
+            "nombre": "Custom Pool Builders"
+          }
+        ]
+      }
+    },
+    "/services/pool-remodeling/delray-beach-fl": {
+      "servicio": "pool-remodeling",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "delray-beach-florida",
+        "name": "Delray Beach",
+        "seo": {
+          "title": "Pool Remodeling in Delray Beach, FL | Mr & Mrs Outdoor Living",
+          "description": "Pool remodeling in Delray Beach, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor."
+        },
+        "h1Title": "Pool Remodeling & Renovation In Delray Beach, Florida",
+        "h2Title": "Complete Pool Renovations For Homes In Delray Beach And Palm Beach County",
+        "intro": "Complete pool remodeling for Delray Beach homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
+        "headingIntro": "Pool Remodeling & Renovation Contractors In Delray Beach",
+        "paragraphIntro": "A remodel starts with the pool as it is today: we assess the shell, the plumbing and the equipment, then put the scope on paper — interior finish, waterline tile and coping, equipment and lighting, a spa added or rebuilt, the deck and a code-compliant barrier. One licensed team takes it through permits, demolition and finishing to start-up for Delray Beach homeowners. From North to South Florida, we are the licensed contractors homeowners trust for high-end craftsmanship and lasting value.",
+        "imagenIntro1": {
+          "alt": "Remodeled freeform pool with blue mosaic waterline tile and travertine deck."
+        },
+        "imagenIntro2": {
+          "alt": "Remodeled pool with blue glass waterline tile and ivory travertine deck behind a stucco house."
+        },
+        "imagenIntro3": {
+          "alt": "Walnut travertine deck in French pattern around a pool with a blue-tiled raised spa."
+        },
+        "heading3DRendering": "3D Pool Design & Visualization",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Florida homeowners trust us with their pool renovations and outdoor living. Read our reviews.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on pool remodeling and outdoor living for Delray Beach, FL homeowners."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Pool Remodeling in Delray Beach, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Pool remodeling in Delray Beach, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor.",
+            "og:image": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/pool-remodeling/delray-beach-fl",
+            "twitter:title": "Pool Remodeling in Delray Beach, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Pool remodeling in Delray Beach, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor.",
+            "twitter:image": "/images/banco/remodeling/pool-remodeling-travertine-deck-lake-view-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Delray Beach",
+              "areaServed": {
+                "name": "Delray Beach"
+              },
+              "description": "Pool remodeling in Delray Beach, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed Florida pool contractor."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": null,
+      "enlaces": {
+        "ficha": "/services/pool-remodeling",
+        "condado": "/services/pool-builders/palm-beach-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/delray-beach-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pergola-builders/delray-beach-fl",
+            "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/delray-beach-fl",
+            "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/delray-beach-fl",
+            "nombre": "Deck Builders"
+          },
+          {
+            "href": "/services/outdoor-kitchens/delray-beach-fl",
             "nombre": "Outdoor Kitchens"
           }
         ]
@@ -2544,6 +2720,10 @@
           {
             "href": "/services/pool-builders/delray-beach-fl",
             "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/delray-beach-fl",
+            "nombre": "Pool Remodeling"
           },
           {
             "href": "/services/louvered-roofs/delray-beach-fl",
@@ -3722,6 +3902,10 @@
             "nombre": "Custom Pool Builders"
           },
           {
+            "href": "/services/pool-remodeling/delray-beach-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
             "href": "/services/pergola-builders/delray-beach-fl",
             "nombre": "Pergola Builders"
           },
@@ -4648,6 +4832,10 @@
           {
             "href": "/services/pool-builders/delray-beach-fl",
             "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/delray-beach-fl",
+            "nombre": "Pool Remodeling"
           },
           {
             "href": "/services/pergola-builders/delray-beach-fl",
@@ -5578,6 +5766,10 @@
             "nombre": "Custom Pool Builders"
           },
           {
+            "href": "/services/pool-remodeling/delray-beach-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
             "href": "/services/pergola-builders/delray-beach-fl",
             "nombre": "Pergola Builders"
           },
@@ -6060,6 +6252,86 @@
           {
             "href": "/services/outdoor-kitchens/palatka-fl",
             "nombre": "Outdoor Kitchens"
+          }
+        ]
+      }
+    },
+    "/services/landscaping/fort-lauderdale-fl": {
+      "servicio": "landscaping",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "fort-lauderdale-florida",
+        "name": "Fort Lauderdale",
+        "seo": {
+          "title": "Landscaping in Fort Lauderdale, FL | Mr & Mrs Outdoor Living",
+          "description": "Landscaping design and installation company serving Fort Lauderdale, FL, providing complete outdoor solutions that improve curb appeal."
+        },
+        "h1Title": "Professional Landscaping Services In Fort Lauderdale, Florida",
+        "h2Title": "Professional Landscaping Contractors In Fort Lauderdale And Broward County",
+        "intro": "Landscaping design and installation company serving Fort Lauderdale, providing complete outdoor solutions that improve curb appeal.",
+        "headingIntro": "Professional Landscaping Contractors In Fort Lauderdale",
+        "paragraphIntro": "Our landscaping company offers full-service landscape design, installation, and maintenance for Fort Lauderdale homes, using native plants and sustainable practices to enhance curb appeal and property value.",
+        "imagenIntro1": {
+          "alt": "Date palm planted in a square of black slate chips within artificial turf beside a clusia hedge."
+        },
+        "imagenIntro2": {
+          "alt": "Driveway island with bromeliads, crotons and boulders edged by black river rock and pavers."
+        },
+        "imagenIntro3": {
+          "alt": "Curved paver walkway edged with lawn, caladiums, clipped trees and low path lights."
+        },
+        "heading3DRendering": "We Put A Planting Plan On Paper",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Hear from Florida clients who love how our landscaping company transformed their properties with native plants, refined hardscaping, and lasting beauty.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Fort Lauderdale, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Landscaping in Fort Lauderdale, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Landscaping design and installation company serving Fort Lauderdale, FL, providing complete outdoor solutions that improve curb appeal.",
+            "og:image": "/images/banco/landscaping/landscaping-italian-cypress-bromeliad-bed-lamp-post-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/landscaping/fort-lauderdale-fl",
+            "twitter:title": "Landscaping in Fort Lauderdale, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Landscaping design and installation company serving Fort Lauderdale, FL, providing complete outdoor solutions that improve curb appeal.",
+            "twitter:image": "/images/banco/landscaping/landscaping-italian-cypress-bromeliad-bed-lamp-post-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Fort Lauderdale",
+              "areaServed": {
+                "name": "Fort Lauderdale"
+              },
+              "description": "Landscaping design and installation company serving Fort Lauderdale, FL, providing complete outdoor solutions that improve curb appeal."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/landscaping",
+        "condado": "/services/pool-builders/broward-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/fort-lauderdale-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/fort-lauderdale-fl",
+            "nombre": "Pool Remodeling"
           }
         ]
       }
