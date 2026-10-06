@@ -970,9 +970,9 @@ fondo del heroe es la foto de heroe de la ficha, no el reel de piscina.
 | /services/landscaping/gainesville-fl | 11 | [#58](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/58) fusionado (d88412a) | Vercel `success`, deployment 6873785920. URL no abierta: egress (D7) |
 | /services/landscaping/ocala-fl | 11 | [#58](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/58) fusionado (d88412a) | Vercel `success`, deployment 6873785920. URL no abierta: egress (D7) |
 | /services/landscaping/palatka-fl | 11 | [#58](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/58) fusionado (d88412a) | Vercel `success`, deployment 6873785920. URL no abierta: egress (D7) |
-| /services/landscaping/fort-lauderdale-fl | 12 | (pendiente) | (pendiente) |
-| /services/pool-remodeling/delray-beach-fl | 12 | (pendiente) | (pendiente) |
-| /services/pool-remodeling/miramar-fl | 12 | (pendiente) | (pendiente) |
+| /services/landscaping/fort-lauderdale-fl | 12 | [#59](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/59) fusionado (ec8c0f0) | Vercel `success`, deployment 6873960025. URL no abierta: egress (D7) |
+| /services/pool-remodeling/delray-beach-fl | 12 | [#59](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/59) fusionado (ec8c0f0) | Vercel `success`, deployment 6873960025. URL no abierta: egress (D7) |
+| /services/pool-remodeling/miramar-fl | 12 | [#59](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/59) fusionado (ec8c0f0) | Vercel `success`, deployment 6873960025. URL no abierta: egress (D7) |
 
 ## Bloqueos y avisos
 
