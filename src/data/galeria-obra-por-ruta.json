@@ -571,5 +571,111 @@
       }
     ],
     "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "servicio:outdoor-kitchens": {
+    "titulo": "Outdoor Kitchen Gallery",
+    "entradilla": "Florida outdoor kitchen builds — premium grills, stone counters, and bespoke dining rooms.",
+    "fotos": [
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-white-grill-farmhouse-sink-lanai-florida-01.webp",
+        "alt": "White straight-run outdoor kitchen with built-in grill, farmhouse sink and fridge on a lanai.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0834",
+        "_proyecto": "obra-077"
+      },
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-white-stucco-black-granite-grill-florida-01.webp",
+        "alt": "White stucco outdoor kitchen with black granite countertop and a built-in grill still wrapped.",
+        "ancho": 1440,
+        "alto": 1440,
+        "pos": "50% 50%",
+        "_banco": "bi-0767",
+        "_proyecto": "obra-070"
+      },
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-marble-waterfall-kamado-grill-florida-01.webp",
+        "alt": "U-shaped outdoor kitchen with marble waterfall counters and a kamado grill under a patio cover.",
+        "ancho": 1199,
+        "alto": 899,
+        "pos": "50% 50%",
+        "_banco": "bi-0760",
+        "_proyecto": "obra-069"
+      },
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-granite-waterfall-counter-grill-florida-01.webp",
+        "alt": "Outdoor kitchen with granite waterfall countertop, built-in grill and undercounter fridge on a stone patio.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0503",
+        "_proyecto": "obra-046"
+      },
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-pizza-oven-grill-louvered-roof-florida-01.webp",
+        "alt": "Outdoor kitchen with pizza oven, built-in grill, sink and wall TV under a louvered roof.",
+        "ancho": 1440,
+        "alto": 960,
+        "pos": "50% 50%",
+        "_banco": "bi-0755",
+        "_proyecto": "obra-066"
+      },
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-white-stacked-stone-lake-florida-01.webp",
+        "alt": "L-shaped outdoor kitchen in white stacked stone with built-in grill, sink and lake view.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0771",
+        "_proyecto": "obra-071"
+      },
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-under-louvered-pergola-construction-florida-01.webp",
+        "alt": "Outdoor kitchen islands with quartz tops and grill being built under a dark louvered pergola.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0548",
+        "_proyecto": "obra-048"
+      },
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-grill-island-quartz-countertop-florida-01.webp",
+        "alt": "L-shaped outdoor kitchen island with built-in grill and quartz countertop in progress.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0550",
+        "_proyecto": "obra-048"
+      },
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-louvered-pergola-poolside-florida-01.webp",
+        "alt": "Poolside outdoor kitchen with gray quartz bar under a louvered pergola, pool waterfalls behind.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0553",
+        "_proyecto": "obra-048"
+      },
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-island-bar-louvered-pergola-florida-01.webp",
+        "alt": "Large quartz-topped bar island and grill station under a louvered pergola in a backyard.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0554",
+        "_proyecto": "obra-048"
+      },
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-construction-scratch-coat-u-shape-florida-01.webp",
+        "alt": "U-shaped outdoor kitchen base with cement board and scratch coat under a white pavilion.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0021",
+        "_proyecto": "obra-003"
+      }
+    ],
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
   }
 }

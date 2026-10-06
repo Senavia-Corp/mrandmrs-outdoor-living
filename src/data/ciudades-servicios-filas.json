@@ -169,6 +169,43 @@
           "bi-0039"
         ]
       }
+    },
+    "outdoor-kitchens": {
+      "banco": "kitchens",
+      "fotosLibres": 33,
+      "galeria": {
+        "titulo": "Outdoor Kitchen Gallery",
+        "entradilla": "Florida outdoor kitchen builds — premium grills, stone counters, and bespoke dining rooms."
+      },
+      "fotos": {
+        "intro": {
+          "1": {
+            "banco": "bi-0835"
+          },
+          "2": {
+            "banco": "bi-0790"
+          },
+          "3": {
+            "banco": "bi-0783"
+          }
+        },
+        "inversion": {
+          "banco": "bi-0502"
+        },
+        "galeria": [
+          "bi-0834",
+          "bi-0767",
+          "bi-0760",
+          "bi-0503",
+          "bi-0755",
+          "bi-0771",
+          "bi-0548",
+          "bi-0550",
+          "bi-0553",
+          "bi-0554",
+          "bi-0021"
+        ]
+      }
     }
   },
   "ciudades": {
@@ -1929,6 +1966,26 @@
     {
       "servicio": "deck-builders",
       "ciudad": "manalapan-florida"
+    },
+    {
+      "servicio": "outdoor-kitchens",
+      "ciudad": "gainesville-florida"
+    },
+    {
+      "servicio": "outdoor-kitchens",
+      "ciudad": "ocala-florida"
+    },
+    {
+      "servicio": "outdoor-kitchens",
+      "ciudad": "palatka-florida"
+    },
+    {
+      "servicio": "outdoor-kitchens",
+      "ciudad": "cedar-key-florida"
+    },
+    {
+      "servicio": "outdoor-kitchens",
+      "ciudad": "mcintosh-florida"
     }
   ],
   "regional": {

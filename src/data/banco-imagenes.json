@@ -770,7 +770,13 @@
       "distorsión de gran angular",
       "bulto tapado con lona al fondo"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/outdoor-kitchens/gainesville-fl",
+      "/services/outdoor-kitchens/ocala-fl",
+      "/services/outdoor-kitchens/palatka-fl",
+      "/services/outdoor-kitchens/cedar-key-fl",
+      "/services/outdoor-kitchens/mcintosh-fl"
+    ],
     "origen": "CONSTRUCTION PICTURES/IMG_4272.jpeg",
     "sha256": "1d34266c27a9cb7c72e84ead1a90918b1f3d85e948d7ad63ac7a24792480a866"
   },
@@ -17398,7 +17404,13 @@
       "casa vecina al fondo",
       "hojas en el suelo"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/outdoor-kitchens/gainesville-fl",
+      "/services/outdoor-kitchens/ocala-fl",
+      "/services/outdoor-kitchens/palatka-fl",
+      "/services/outdoor-kitchens/cedar-key-fl",
+      "/services/outdoor-kitchens/mcintosh-fl"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Brier/IMG_3832.JPEG",
     "sha256": "44c9f52a01a8e626477fbe66fe573b06d9480e205b9f4a6ff23b4fab8cad999d"
   },
@@ -17440,7 +17452,12 @@
       "/blogs/outdoor-kitchen-layout-guide",
       "/gallery",
       "/gallery/outdoor-kitchens",
-      "/project/luxury-pool-raised-spa-travertine-deck-south-florida"
+      "/project/luxury-pool-raised-spa-travertine-deck-south-florida",
+      "/services/outdoor-kitchens/gainesville-fl",
+      "/services/outdoor-kitchens/ocala-fl",
+      "/services/outdoor-kitchens/palatka-fl",
+      "/services/outdoor-kitchens/cedar-key-fl",
+      "/services/outdoor-kitchens/mcintosh-fl"
     ],
     "origen": "NEW JOBS CONSTRUCTION/Brier/IMG_3833.JPEG",
     "sha256": "54ca9fca84442b17a2ebd369587ad226e8e2f9ab75f954966ab6f0e70d285a15"
@@ -19396,7 +19413,13 @@
       "camioneta al fondo (matrícula no legible)",
       "caja de cartón bajo la isla"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/outdoor-kitchens/gainesville-fl",
+      "/services/outdoor-kitchens/ocala-fl",
+      "/services/outdoor-kitchens/palatka-fl",
+      "/services/outdoor-kitchens/cedar-key-fl",
+      "/services/outdoor-kitchens/mcintosh-fl"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Curtis/kitchen curtis build granite.jpeg",
     "sha256": "e4b19230dccf83d75aacfb6a3933a0aea317811c5db09120470909372469bbe0"
   },
@@ -19463,7 +19486,13 @@
     "defectos": [
       "marcas del fabricante visibles en los tableros de la cocina"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/outdoor-kitchens/gainesville-fl",
+      "/services/outdoor-kitchens/ocala-fl",
+      "/services/outdoor-kitchens/palatka-fl",
+      "/services/outdoor-kitchens/cedar-key-fl",
+      "/services/outdoor-kitchens/mcintosh-fl"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Curtis/kitchen curtis building.jpeg",
     "sha256": "f3384094fdf43f484d808105c1276931be97ad5f6f3e25be2392e6503493cacd"
   },
@@ -19580,7 +19609,13 @@
     "defectos": [
       "marcas del fabricante visibles en los tableros de la cocina"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/outdoor-kitchens/gainesville-fl",
+      "/services/outdoor-kitchens/ocala-fl",
+      "/services/outdoor-kitchens/palatka-fl",
+      "/services/outdoor-kitchens/cedar-key-fl",
+      "/services/outdoor-kitchens/mcintosh-fl"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Curtis/kitchen curtis granite.jpeg",
     "sha256": "8de82c4d27f3dc048df63aea7ffc0ebef811b0a2844a37e37cec766d4f7c14f2"
   },
@@ -19618,7 +19653,13 @@
     "defectos": [
       "marcas del fabricante visibles en los tableros de la cocina"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/outdoor-kitchens/gainesville-fl",
+      "/services/outdoor-kitchens/ocala-fl",
+      "/services/outdoor-kitchens/palatka-fl",
+      "/services/outdoor-kitchens/cedar-key-fl",
+      "/services/outdoor-kitchens/mcintosh-fl"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Curtis/kitchen curtis.jpeg",
     "sha256": "e73dc27b80ce7e8f5b010917f48a3f0613e378ef15fcbdb07315910838234641"
   },
@@ -27092,7 +27133,12 @@
     "usada_en": [
       "/blogs/outdoor-kitchen-appliance-decisions",
       "/gallery",
-      "/gallery/outdoor-kitchens"
+      "/gallery/outdoor-kitchens",
+      "/services/outdoor-kitchens/gainesville-fl",
+      "/services/outdoor-kitchens/ocala-fl",
+      "/services/outdoor-kitchens/palatka-fl",
+      "/services/outdoor-kitchens/cedar-key-fl",
+      "/services/outdoor-kitchens/mcintosh-fl"
     ],
     "origen": "OUTDOOR KICTCHEN/102.jpg",
     "sha256": "8e53720ec5323451bbefd3691f1d7c8005a624219aa402f9fde9b039f31acd8c"
@@ -27363,7 +27409,12 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/outdoor-kitchens"
+      "/gallery/outdoor-kitchens",
+      "/services/outdoor-kitchens/gainesville-fl",
+      "/services/outdoor-kitchens/ocala-fl",
+      "/services/outdoor-kitchens/palatka-fl",
+      "/services/outdoor-kitchens/cedar-key-fl",
+      "/services/outdoor-kitchens/mcintosh-fl"
     ],
     "origen": "OUTDOOR KICTCHEN/20251015_131940877_iOS.jpg",
     "sha256": "b701090cadf6c6ff972fa50a16238e2c5058080e9562889f404c38529d6d5bb3"
@@ -27627,7 +27678,13 @@
     "defectos": [
       "parrilla con plástico protector"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/outdoor-kitchens/gainesville-fl",
+      "/services/outdoor-kitchens/ocala-fl",
+      "/services/outdoor-kitchens/palatka-fl",
+      "/services/outdoor-kitchens/cedar-key-fl",
+      "/services/outdoor-kitchens/mcintosh-fl"
+    ],
     "origen": "OUTDOOR KICTCHEN/695677DA-A220-4433-A643-4BDC7CF8996D.jpg",
     "sha256": "95f671f429f0de3642665adac6ee2f0ec5129757743e02867f29f4d344f1f324"
   },
@@ -27796,7 +27853,12 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/outdoor-kitchens"
+      "/gallery/outdoor-kitchens",
+      "/services/outdoor-kitchens/gainesville-fl",
+      "/services/outdoor-kitchens/ocala-fl",
+      "/services/outdoor-kitchens/palatka-fl",
+      "/services/outdoor-kitchens/cedar-key-fl",
+      "/services/outdoor-kitchens/mcintosh-fl"
     ],
     "origen": "OUTDOOR KICTCHEN/IMG_0049.jpg",
     "sha256": "65d00b2e24e92fe83f7bdbb4091cc4c564d4b53e33f974d3d819d84bdf7ea296"
@@ -28274,7 +28336,13 @@
       "etiquetas adhesivas en la nevera",
       "hojas en el suelo"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/outdoor-kitchens/gainesville-fl",
+      "/services/outdoor-kitchens/ocala-fl",
+      "/services/outdoor-kitchens/palatka-fl",
+      "/services/outdoor-kitchens/cedar-key-fl",
+      "/services/outdoor-kitchens/mcintosh-fl"
+    ],
     "origen": "OUTDOOR KICTCHEN/IMG_4534.jpeg",
     "sha256": "0f383ac2dc579acf361df2c53390694044c591955cd9c37ff9cc5bdda7c015e8"
   },
@@ -28572,7 +28640,13 @@
       "cajas sobre la barra",
       "manguera colgando"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/outdoor-kitchens/gainesville-fl",
+      "/services/outdoor-kitchens/ocala-fl",
+      "/services/outdoor-kitchens/palatka-fl",
+      "/services/outdoor-kitchens/cedar-key-fl",
+      "/services/outdoor-kitchens/mcintosh-fl"
+    ],
     "origen": "OUTDOOR KICTCHEN/PHOTO-2021-10-11-09-36-27 2.jpg",
     "sha256": "244fa6cb13142b0ec3db289495de67e16ae983c38a0cd1824fd32e00809cdcce"
   },
@@ -29962,7 +30036,13 @@
     "defectos": [
       "marca visible en la parrilla"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/outdoor-kitchens/gainesville-fl",
+      "/services/outdoor-kitchens/ocala-fl",
+      "/services/outdoor-kitchens/palatka-fl",
+      "/services/outdoor-kitchens/cedar-key-fl",
+      "/services/outdoor-kitchens/mcintosh-fl"
+    ],
     "origen": "OUTDOOR KICTCHEN/WhatsApp Image 2026-04-27 at 5.31.12 PM.jpeg",
     "sha256": "0f5b6c2ad15d82e216b06d42b70926b259f841b81b968e613c3c9db4f2399103"
   },
@@ -29999,7 +30079,13 @@
     "defectos": [
       "esquina de la encimera desportillada"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/outdoor-kitchens/gainesville-fl",
+      "/services/outdoor-kitchens/ocala-fl",
+      "/services/outdoor-kitchens/palatka-fl",
+      "/services/outdoor-kitchens/cedar-key-fl",
+      "/services/outdoor-kitchens/mcintosh-fl"
+    ],
     "origen": "OUTDOOR KICTCHEN/WhatsApp Image 2026-04-27 at 5.31.13 PM.jpeg",
     "sha256": "5379693a79793d10b5084f2ffdd6004e0f4a87108632791c5cebca3d22a794f8"
   },

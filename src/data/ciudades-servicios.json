@@ -337,6 +337,60 @@
           }
         ]
       }
+    },
+    "outdoor-kitchens": {
+      "fotosCiudad": {
+        "fotos": {
+          "intro": {
+            "1": {
+              "src": "/images/banco/kitchens/outdoor-kitchen-white-grill-farmhouse-sink-lanai-florida-02.webp",
+              "alt": "Side view of a white outdoor kitchen with stainless farmhouse sink, grill and double access doors.",
+              "ancho": 1200,
+              "alto": 1600,
+              "pos": "50% 50%",
+              "_banco": "bi-0835"
+            },
+            "2": {
+              "src": "/images/banco/kitchens/outdoor-kitchen-stacked-stone-grill-led-dusk-florida-01.webp",
+              "alt": "Gray stacked stone outdoor kitchen with built-in grill and refrigerator at dusk.",
+              "ancho": 1024,
+              "alto": 768,
+              "pos": "50% 50%",
+              "_banco": "bi-0790"
+            },
+            "3": {
+              "src": "/images/banco/kitchens/outdoor-kitchen-white-stucco-grill-refrigerator-florida-01.webp",
+              "alt": "White stucco outdoor kitchen interior with built-in grill, refrigerator and travertine floor.",
+              "ancho": 1600,
+              "alto": 1200,
+              "pos": "50% 50%",
+              "_banco": "bi-0783"
+            }
+          }
+        },
+        "ciudades": [
+          {
+            "slug": "gainesville-florida",
+            "condado": "Alachua"
+          },
+          {
+            "slug": "ocala-florida",
+            "condado": "Marion"
+          },
+          {
+            "slug": "palatka-florida",
+            "condado": "Putnam"
+          },
+          {
+            "slug": "cedar-key-florida",
+            "condado": "Levy"
+          },
+          {
+            "slug": "mcintosh-florida",
+            "condado": "Marion"
+          }
+        ]
+      }
     }
   },
   "paginas": {
@@ -420,6 +474,10 @@
           {
             "href": "/services/deck-builders/gainesville-fl",
             "nombre": "Deck Builders"
+          },
+          {
+            "href": "/services/outdoor-kitchens/gainesville-fl",
+            "nombre": "Outdoor Kitchens"
           }
         ]
       }
@@ -504,6 +562,10 @@
           {
             "href": "/services/deck-builders/ocala-fl",
             "nombre": "Deck Builders"
+          },
+          {
+            "href": "/services/outdoor-kitchens/ocala-fl",
+            "nombre": "Outdoor Kitchens"
           }
         ]
       }
@@ -588,6 +650,10 @@
           {
             "href": "/services/deck-builders/palatka-fl",
             "nombre": "Deck Builders"
+          },
+          {
+            "href": "/services/outdoor-kitchens/palatka-fl",
+            "nombre": "Outdoor Kitchens"
           }
         ]
       }
@@ -672,6 +738,10 @@
           {
             "href": "/services/deck-builders/cedar-key-fl",
             "nombre": "Deck Builders"
+          },
+          {
+            "href": "/services/outdoor-kitchens/cedar-key-fl",
+            "nombre": "Outdoor Kitchens"
           }
         ]
       }
@@ -756,6 +826,10 @@
           {
             "href": "/services/deck-builders/mcintosh-fl",
             "nombre": "Deck Builders"
+          },
+          {
+            "href": "/services/outdoor-kitchens/mcintosh-fl",
+            "nombre": "Outdoor Kitchens"
           }
         ]
       }
@@ -1484,6 +1558,10 @@
           {
             "href": "/services/deck-builders/gainesville-fl",
             "nombre": "Deck Builders"
+          },
+          {
+            "href": "/services/outdoor-kitchens/gainesville-fl",
+            "nombre": "Outdoor Kitchens"
           }
         ]
       }
@@ -1572,6 +1650,10 @@
           {
             "href": "/services/deck-builders/ocala-fl",
             "nombre": "Deck Builders"
+          },
+          {
+            "href": "/services/outdoor-kitchens/ocala-fl",
+            "nombre": "Outdoor Kitchens"
           }
         ]
       }
@@ -1660,6 +1742,10 @@
           {
             "href": "/services/deck-builders/palatka-fl",
             "nombre": "Deck Builders"
+          },
+          {
+            "href": "/services/outdoor-kitchens/palatka-fl",
+            "nombre": "Outdoor Kitchens"
           }
         ]
       }
@@ -1748,6 +1834,10 @@
           {
             "href": "/services/deck-builders/cedar-key-fl",
             "nombre": "Deck Builders"
+          },
+          {
+            "href": "/services/outdoor-kitchens/cedar-key-fl",
+            "nombre": "Outdoor Kitchens"
           }
         ]
       }
@@ -1836,6 +1926,10 @@
           {
             "href": "/services/deck-builders/mcintosh-fl",
             "nombre": "Deck Builders"
+          },
+          {
+            "href": "/services/outdoor-kitchens/mcintosh-fl",
+            "nombre": "Outdoor Kitchens"
           }
         ]
       }
@@ -2608,6 +2702,10 @@
           {
             "href": "/services/deck-builders/gainesville-fl",
             "nombre": "Deck Builders"
+          },
+          {
+            "href": "/services/outdoor-kitchens/gainesville-fl",
+            "nombre": "Outdoor Kitchens"
           }
         ]
       }
@@ -2696,6 +2794,10 @@
           {
             "href": "/services/deck-builders/ocala-fl",
             "nombre": "Deck Builders"
+          },
+          {
+            "href": "/services/outdoor-kitchens/ocala-fl",
+            "nombre": "Outdoor Kitchens"
           }
         ]
       }
@@ -2784,6 +2886,10 @@
           {
             "href": "/services/deck-builders/palatka-fl",
             "nombre": "Deck Builders"
+          },
+          {
+            "href": "/services/outdoor-kitchens/palatka-fl",
+            "nombre": "Outdoor Kitchens"
           }
         ]
       }
@@ -2872,6 +2978,10 @@
           {
             "href": "/services/deck-builders/cedar-key-fl",
             "nombre": "Deck Builders"
+          },
+          {
+            "href": "/services/outdoor-kitchens/cedar-key-fl",
+            "nombre": "Outdoor Kitchens"
           }
         ]
       }
@@ -2960,6 +3070,10 @@
           {
             "href": "/services/deck-builders/mcintosh-fl",
             "nombre": "Deck Builders"
+          },
+          {
+            "href": "/services/outdoor-kitchens/mcintosh-fl",
+            "nombre": "Outdoor Kitchens"
           }
         ]
       }
@@ -3732,6 +3846,10 @@
           {
             "href": "/services/louvered-roofs/gainesville-fl",
             "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/outdoor-kitchens/gainesville-fl",
+            "nombre": "Outdoor Kitchens"
           }
         ]
       }
@@ -3820,6 +3938,10 @@
           {
             "href": "/services/louvered-roofs/ocala-fl",
             "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/outdoor-kitchens/ocala-fl",
+            "nombre": "Outdoor Kitchens"
           }
         ]
       }
@@ -3908,6 +4030,10 @@
           {
             "href": "/services/louvered-roofs/palatka-fl",
             "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/outdoor-kitchens/palatka-fl",
+            "nombre": "Outdoor Kitchens"
           }
         ]
       }
@@ -3996,6 +4122,10 @@
           {
             "href": "/services/louvered-roofs/cedar-key-fl",
             "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/outdoor-kitchens/cedar-key-fl",
+            "nombre": "Outdoor Kitchens"
           }
         ]
       }
@@ -4084,6 +4214,10 @@
           {
             "href": "/services/louvered-roofs/mcintosh-fl",
             "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/outdoor-kitchens/mcintosh-fl",
+            "nombre": "Outdoor Kitchens"
           }
         ]
       }
@@ -4520,6 +4654,466 @@
           {
             "href": "/services/louvered-roofs/manalapan-fl",
             "nombre": "Louvered Roofs"
+          }
+        ]
+      }
+    },
+    "/services/outdoor-kitchens/gainesville-fl": {
+      "servicio": "outdoor-kitchens",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "gainesville-florida",
+        "name": "Gainesville",
+        "seo": {
+          "title": "Outdoor Kitchens in Gainesville, FL | Mr & Mrs Outdoor Living",
+          "description": "Outdoor kitchen builders and installation contractors serving Gainesville, FL with custom layouts for entertaining and daily use."
+        },
+        "h1Title": "Custom Outdoor Kitchens In Gainesville, Florida",
+        "h2Title": "Outdoor Kitchen Builders & Contractors In Gainesville And Alachua County",
+        "intro": "Outdoor kitchen builders and installation contractors serving Gainesville with custom layouts for entertaining and daily use.",
+        "headingIntro": "Outdoor Kitchen Builders & Contractors In Gainesville",
+        "paragraphIntro": "Our outdoor kitchen contractors design and build custom outdoor kitchens for Gainesville homes, integrating durable materials, modern appliances, and functional layouts for effortless entertaining.",
+        "imagenIntro1": {
+          "alt": "Side view of a white outdoor kitchen with stainless farmhouse sink, grill and double access doors."
+        },
+        "imagenIntro2": {
+          "alt": "Gray stacked stone outdoor kitchen with built-in grill and refrigerator at dusk."
+        },
+        "imagenIntro3": {
+          "alt": "White stucco outdoor kitchen interior with built-in grill, refrigerator and travertine floor."
+        },
+        "heading3DRendering": "We Lay Out The Kitchen Around How You Cook",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Hear from Florida clients who enjoy cooking and entertaining year-round in custom outdoor kitchens designed and built by our licensed contractors.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Gainesville, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Outdoor Kitchens in Gainesville, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Outdoor kitchen builders and installation contractors serving Gainesville, FL with custom layouts for entertaining and daily use.",
+            "og:image": "/images/banco/kitchens/outdoor-kitchen-l-shaped-granite-built-in-grill-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/outdoor-kitchens/gainesville-fl",
+            "twitter:title": "Outdoor Kitchens in Gainesville, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Outdoor kitchen builders and installation contractors serving Gainesville, FL with custom layouts for entertaining and daily use.",
+            "twitter:image": "/images/banco/kitchens/outdoor-kitchen-l-shaped-granite-built-in-grill-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Gainesville",
+              "areaServed": {
+                "name": "Gainesville"
+              },
+              "description": "Outdoor kitchen builders and installation contractors serving Gainesville, FL with custom layouts for entertaining and daily use."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/outdoor-kitchens",
+        "condado": "/services/pool-builders/alachua-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/gainesville-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/gainesville-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/gainesville-fl",
+            "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/gainesville-fl",
+            "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/gainesville-fl",
+            "nombre": "Deck Builders"
+          }
+        ]
+      }
+    },
+    "/services/outdoor-kitchens/ocala-fl": {
+      "servicio": "outdoor-kitchens",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "ocala-florida",
+        "name": "Ocala",
+        "seo": {
+          "title": "Outdoor Kitchens in Ocala, FL | Mr & Mrs Outdoor Living",
+          "description": "Outdoor kitchen builders and installation contractors serving Ocala, FL with custom layouts for entertaining and daily use."
+        },
+        "h1Title": "Custom Outdoor Kitchens In Ocala, Florida",
+        "h2Title": "Outdoor Kitchen Builders & Contractors In Ocala And Marion County",
+        "intro": "Outdoor kitchen builders and installation contractors serving Ocala with custom layouts for entertaining and daily use.",
+        "headingIntro": "Outdoor Kitchen Builders & Contractors In Ocala",
+        "paragraphIntro": "Our outdoor kitchen contractors design and build custom outdoor kitchens for Ocala homes, integrating durable materials, modern appliances, and functional layouts for effortless entertaining.",
+        "imagenIntro1": {
+          "alt": "Side view of a white outdoor kitchen with stainless farmhouse sink, grill and double access doors."
+        },
+        "imagenIntro2": {
+          "alt": "Gray stacked stone outdoor kitchen with built-in grill and refrigerator at dusk."
+        },
+        "imagenIntro3": {
+          "alt": "White stucco outdoor kitchen interior with built-in grill, refrigerator and travertine floor."
+        },
+        "heading3DRendering": "We Lay Out The Kitchen Around How You Cook",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Hear from Florida clients who enjoy cooking and entertaining year-round in custom outdoor kitchens designed and built by our licensed contractors.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Ocala, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Outdoor Kitchens in Ocala, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Outdoor kitchen builders and installation contractors serving Ocala, FL with custom layouts for entertaining and daily use.",
+            "og:image": "/images/banco/kitchens/outdoor-kitchen-l-shaped-granite-built-in-grill-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/outdoor-kitchens/ocala-fl",
+            "twitter:title": "Outdoor Kitchens in Ocala, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Outdoor kitchen builders and installation contractors serving Ocala, FL with custom layouts for entertaining and daily use.",
+            "twitter:image": "/images/banco/kitchens/outdoor-kitchen-l-shaped-granite-built-in-grill-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Ocala",
+              "areaServed": {
+                "name": "Ocala"
+              },
+              "description": "Outdoor kitchen builders and installation contractors serving Ocala, FL with custom layouts for entertaining and daily use."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/outdoor-kitchens",
+        "condado": "/services/pool-builders/marion-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/ocala-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/ocala-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/ocala-fl",
+            "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/ocala-fl",
+            "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/ocala-fl",
+            "nombre": "Deck Builders"
+          }
+        ]
+      }
+    },
+    "/services/outdoor-kitchens/palatka-fl": {
+      "servicio": "outdoor-kitchens",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "palatka-florida",
+        "name": "Palatka",
+        "seo": {
+          "title": "Outdoor Kitchens in Palatka, FL | Mr & Mrs Outdoor Living",
+          "description": "Outdoor kitchen builders and installation contractors serving Palatka, FL with custom layouts for entertaining and daily use."
+        },
+        "h1Title": "Custom Outdoor Kitchens In Palatka, Florida",
+        "h2Title": "Outdoor Kitchen Builders & Contractors In Palatka And Putnam County",
+        "intro": "Outdoor kitchen builders and installation contractors serving Palatka with custom layouts for entertaining and daily use.",
+        "headingIntro": "Outdoor Kitchen Builders & Contractors In Palatka",
+        "paragraphIntro": "Our outdoor kitchen contractors design and build custom outdoor kitchens for Palatka homes, integrating durable materials, modern appliances, and functional layouts for effortless entertaining.",
+        "imagenIntro1": {
+          "alt": "Side view of a white outdoor kitchen with stainless farmhouse sink, grill and double access doors."
+        },
+        "imagenIntro2": {
+          "alt": "Gray stacked stone outdoor kitchen with built-in grill and refrigerator at dusk."
+        },
+        "imagenIntro3": {
+          "alt": "White stucco outdoor kitchen interior with built-in grill, refrigerator and travertine floor."
+        },
+        "heading3DRendering": "We Lay Out The Kitchen Around How You Cook",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Hear from Florida clients who enjoy cooking and entertaining year-round in custom outdoor kitchens designed and built by our licensed contractors.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Palatka, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Outdoor Kitchens in Palatka, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Outdoor kitchen builders and installation contractors serving Palatka, FL with custom layouts for entertaining and daily use.",
+            "og:image": "/images/banco/kitchens/outdoor-kitchen-l-shaped-granite-built-in-grill-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/outdoor-kitchens/palatka-fl",
+            "twitter:title": "Outdoor Kitchens in Palatka, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Outdoor kitchen builders and installation contractors serving Palatka, FL with custom layouts for entertaining and daily use.",
+            "twitter:image": "/images/banco/kitchens/outdoor-kitchen-l-shaped-granite-built-in-grill-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Palatka",
+              "areaServed": {
+                "name": "Palatka"
+              },
+              "description": "Outdoor kitchen builders and installation contractors serving Palatka, FL with custom layouts for entertaining and daily use."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/outdoor-kitchens",
+        "condado": "/services/pool-builders/putnam-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/palatka-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/palatka-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/palatka-fl",
+            "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/palatka-fl",
+            "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/palatka-fl",
+            "nombre": "Deck Builders"
+          }
+        ]
+      }
+    },
+    "/services/outdoor-kitchens/cedar-key-fl": {
+      "servicio": "outdoor-kitchens",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "cedar-key-florida",
+        "name": "Cedar Key",
+        "seo": {
+          "title": "Outdoor Kitchens in Cedar Key, FL | Mr & Mrs Outdoor Living",
+          "description": "Outdoor kitchen builders and installation contractors serving Cedar Key, FL with custom layouts for entertaining and daily use."
+        },
+        "h1Title": "Custom Outdoor Kitchens In Cedar Key, Florida",
+        "h2Title": "Outdoor Kitchen Builders & Contractors In Cedar Key And Levy County",
+        "intro": "Outdoor kitchen builders and installation contractors serving Cedar Key with custom layouts for entertaining and daily use.",
+        "headingIntro": "Outdoor Kitchen Builders & Contractors In Cedar Key",
+        "paragraphIntro": "Our outdoor kitchen contractors design and build custom outdoor kitchens for Cedar Key homes, integrating durable materials, modern appliances, and functional layouts for effortless entertaining.",
+        "imagenIntro1": {
+          "alt": "Side view of a white outdoor kitchen with stainless farmhouse sink, grill and double access doors."
+        },
+        "imagenIntro2": {
+          "alt": "Gray stacked stone outdoor kitchen with built-in grill and refrigerator at dusk."
+        },
+        "imagenIntro3": {
+          "alt": "White stucco outdoor kitchen interior with built-in grill, refrigerator and travertine floor."
+        },
+        "heading3DRendering": "We Lay Out The Kitchen Around How You Cook",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Hear from Florida clients who enjoy cooking and entertaining year-round in custom outdoor kitchens designed and built by our licensed contractors.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Cedar Key, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Outdoor Kitchens in Cedar Key, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Outdoor kitchen builders and installation contractors serving Cedar Key, FL with custom layouts for entertaining and daily use.",
+            "og:image": "/images/banco/kitchens/outdoor-kitchen-l-shaped-granite-built-in-grill-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/outdoor-kitchens/cedar-key-fl",
+            "twitter:title": "Outdoor Kitchens in Cedar Key, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Outdoor kitchen builders and installation contractors serving Cedar Key, FL with custom layouts for entertaining and daily use.",
+            "twitter:image": "/images/banco/kitchens/outdoor-kitchen-l-shaped-granite-built-in-grill-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Cedar Key",
+              "areaServed": {
+                "name": "Cedar Key"
+              },
+              "description": "Outdoor kitchen builders and installation contractors serving Cedar Key, FL with custom layouts for entertaining and daily use."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/outdoor-kitchens",
+        "condado": "/services/pool-builders/levy-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/cedar-key-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/cedar-key-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/cedar-key-fl",
+            "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/cedar-key-fl",
+            "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/cedar-key-fl",
+            "nombre": "Deck Builders"
+          }
+        ]
+      }
+    },
+    "/services/outdoor-kitchens/mcintosh-fl": {
+      "servicio": "outdoor-kitchens",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "mcintosh-florida",
+        "name": "McIntosh",
+        "seo": {
+          "title": "Outdoor Kitchens in McIntosh, FL | Mr & Mrs Outdoor Living",
+          "description": "Outdoor kitchen builders and installation contractors serving McIntosh, FL with custom layouts for entertaining and daily use."
+        },
+        "h1Title": "Custom Outdoor Kitchens In McIntosh, Florida",
+        "h2Title": "Outdoor Kitchen Builders & Contractors In McIntosh And Marion County",
+        "intro": "Outdoor kitchen builders and installation contractors serving McIntosh with custom layouts for entertaining and daily use.",
+        "headingIntro": "Outdoor Kitchen Builders & Contractors In McIntosh",
+        "paragraphIntro": "Our outdoor kitchen contractors design and build custom outdoor kitchens for McIntosh homes, integrating durable materials, modern appliances, and functional layouts for effortless entertaining.",
+        "imagenIntro1": {
+          "alt": "Side view of a white outdoor kitchen with stainless farmhouse sink, grill and double access doors."
+        },
+        "imagenIntro2": {
+          "alt": "Gray stacked stone outdoor kitchen with built-in grill and refrigerator at dusk."
+        },
+        "imagenIntro3": {
+          "alt": "White stucco outdoor kitchen interior with built-in grill, refrigerator and travertine floor."
+        },
+        "heading3DRendering": "We Lay Out The Kitchen Around How You Cook",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Hear from Florida clients who enjoy cooking and entertaining year-round in custom outdoor kitchens designed and built by our licensed contractors.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in McIntosh, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Outdoor Kitchens in McIntosh, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Outdoor kitchen builders and installation contractors serving McIntosh, FL with custom layouts for entertaining and daily use.",
+            "og:image": "/images/banco/kitchens/outdoor-kitchen-l-shaped-granite-built-in-grill-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/outdoor-kitchens/mcintosh-fl",
+            "twitter:title": "Outdoor Kitchens in McIntosh, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Outdoor kitchen builders and installation contractors serving McIntosh, FL with custom layouts for entertaining and daily use.",
+            "twitter:image": "/images/banco/kitchens/outdoor-kitchen-l-shaped-granite-built-in-grill-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "McIntosh",
+              "areaServed": {
+                "name": "McIntosh"
+              },
+              "description": "Outdoor kitchen builders and installation contractors serving McIntosh, FL with custom layouts for entertaining and daily use."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/outdoor-kitchens",
+        "condado": "/services/pool-builders/marion-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/mcintosh-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/mcintosh-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/mcintosh-fl",
+            "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/mcintosh-fl",
+            "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/mcintosh-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
