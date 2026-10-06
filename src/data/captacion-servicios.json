@@ -8766,6 +8766,563 @@
     },
     "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
   },
+  "/services/outdoor-kitchens/hollywood-fl": {
+    "heroe": {
+      "apoyo": "Outdoor kitchen builders and installation contractors serving Hollywood with custom layouts for entertaining and daily use.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Appliances made for outdoors",
+          "texto": "Outdoor-rated grills, smokers and refrigeration, engineered into the layout with their utilities."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits, HOA and ARB handled",
+          "texto": "We manage the full permitting process, including HOA and ARB submissions."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Outdoor Kitchen",
+        "Grilling Island or Bar"
+      ],
+      "proyectoPorDefecto": "New Outdoor Kitchen",
+      "nombre": "Hollywood Outdoor Kitchen Form",
+      "aviso": "Hollywood outdoor kitchen lead",
+      "ga4": "cocina",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We lay out the kitchen around how you cook and take it through permits, HOA and ARB.",
+        "You get the scope in writing and a fixed project price before anything is built."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my outdoor kitchen cost?",
+      "texto": "Every outdoor kitchen is priced from its layout, the appliances, the countertops and the utility runs it needs. Tell us how you cook and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/kitchens/outdoor-kitchen-l-shaped-granite-built-in-grill-florida-01.webp",
+      "alt": "L-shaped outdoor kitchen with built-in grill, ice maker, fridge and granite countertop on a covered patio.",
+      "ancho": 1600,
+      "alto": 1200,
+      "_banco": "bi-0502"
+    },
+    "faq": {
+      "titulo": "Hollywood Outdoor Kitchen FAQs",
+      "entradilla": "Have questions about custom outdoor kitchen construction in Hollywood, Florida? Our licensed contractors answer the top questions from Florida homeowners below.",
+      "anade": [
+        {
+          "pregunta": "How much does an outdoor kitchen cost in Hollywood?",
+          "respuesta": "Every outdoor kitchen is priced from its layout, the appliances, the countertops and the utility runs it needs. Tell us how you cook and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "What materials are best for outdoor kitchens in Florida?",
+          "respuesta": "We install outdoor kitchens using weatherproof polymer cabinets, marine-grade stainless steel hardware, and natural stone countertops — all selected for resistance to Florida's heat, humidity, and coastal salt air. Every material choice is engineered to maintain its appearance and structural integrity over the long term."
+        },
+        {
+          "pregunta": "Can I add a bar, pizza oven, or smoker to my kitchen?",
+          "respuesta": "Absolutely. Custom outdoor kitchens can be designed around any combination of cooking equipment including built-in bars, pizza ovens, smokers, kamado grills, and beverage refrigerators. Each specialty appliance is engineered into the layout with proper utility routing, ventilation, and structural support to meet Florida building code requirements."
+        },
+        {
+          "pregunta": "Which office permits an outdoor kitchen in Hollywood?",
+          "respuesta": "In Hollywood, the city's Building Division reviews every building permit application for compliance with local, state and federal building regulations, and all new applications are submitted through the city's Accela Citizen Access portal. The city's own permit FAQ counts a patio deck, a fence, a retaining wall, a shed, a gazebo, a trellis, a fountain, a spa or a pool as a structure. We manage the full permitting process, including HOA and ARB submissions.",
+          "fuentes": [
+            {
+              "nombre": "City of Hollywood: Building Division",
+              "url": "https://www.hollywoodfl.org/328/Building"
+            },
+            {
+              "nombre": "City of Hollywood: permit FAQ",
+              "url": "https://hollywoodfl.org/m/faq?cat=16#question-356"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/outdoor-kitchens/dania-beach-fl": {
+    "heroe": {
+      "apoyo": "Outdoor kitchen builders and installation contractors serving Dania Beach with custom layouts for entertaining and daily use.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Appliances made for outdoors",
+          "texto": "Outdoor-rated grills, smokers and refrigeration, engineered into the layout with their utilities."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits, HOA and ARB handled",
+          "texto": "We manage the full permitting process, including HOA and ARB submissions."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Outdoor Kitchen",
+        "Grilling Island or Bar"
+      ],
+      "proyectoPorDefecto": "New Outdoor Kitchen",
+      "nombre": "Dania Beach Outdoor Kitchen Form",
+      "aviso": "Dania Beach outdoor kitchen lead",
+      "ga4": "cocina",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We lay out the kitchen around how you cook and take it through permits, HOA and ARB.",
+        "You get the scope in writing and a fixed project price before anything is built."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my outdoor kitchen cost?",
+      "texto": "Every outdoor kitchen is priced from its layout, the appliances, the countertops and the utility runs it needs. Tell us how you cook and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/kitchens/outdoor-kitchen-l-shaped-granite-built-in-grill-florida-01.webp",
+      "alt": "L-shaped outdoor kitchen with built-in grill, ice maker, fridge and granite countertop on a covered patio.",
+      "ancho": 1600,
+      "alto": 1200,
+      "_banco": "bi-0502"
+    },
+    "faq": {
+      "titulo": "Dania Beach Outdoor Kitchen FAQs",
+      "entradilla": "Have questions about custom outdoor kitchen construction in Dania Beach, Florida? Our licensed contractors answer the top questions from Florida homeowners below.",
+      "anade": [
+        {
+          "pregunta": "How much does an outdoor kitchen cost in Dania Beach?",
+          "respuesta": "Every outdoor kitchen is priced from its layout, the appliances, the countertops and the utility runs it needs. Tell us how you cook and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "What materials are best for outdoor kitchens in Florida?",
+          "respuesta": "We install outdoor kitchens using weatherproof polymer cabinets, marine-grade stainless steel hardware, and natural stone countertops — all selected for resistance to Florida's heat, humidity, and coastal salt air. Every material choice is engineered to maintain its appearance and structural integrity over the long term."
+        },
+        {
+          "pregunta": "Can I add a bar, pizza oven, or smoker to my kitchen?",
+          "respuesta": "Absolutely. Custom outdoor kitchens can be designed around any combination of cooking equipment including built-in bars, pizza ovens, smokers, kamado grills, and beverage refrigerators. Each specialty appliance is engineered into the layout with proper utility routing, ventilation, and structural support to meet Florida building code requirements."
+        },
+        {
+          "pregunta": "Which office permits an outdoor kitchen in Dania Beach?",
+          "respuesta": "In Dania Beach, the city's Building Division enforces the building codes for new construction, additions, remodeling and interior renovation, and accepts and processes the building permit applications. The city's own FAQ counts a patio, a deck, a fence, a retaining wall, a shed, a gazebo, a trellis, a fountain, a spa or a pool as a structure, and its beachfront is part of Broward's Segment III. We manage the full permitting process, including HOA and ARB submissions.",
+          "fuentes": [
+            {
+              "nombre": "City of Dania Beach: Building Division",
+              "url": "https://www.daniabeachfl.gov/125/Building-Division"
+            },
+            {
+              "nombre": "City of Dania Beach: permit FAQ",
+              "url": "https://daniabeachfl.gov/Faq.aspx?QID=43"
+            },
+            {
+              "nombre": "Broward County beach segments",
+              "url": "https://www.broward.org/Beaches/Pages/Projects.aspx"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/outdoor-kitchens/delray-beach-fl": {
+    "heroe": {
+      "apoyo": "Outdoor kitchen builders and installation contractors serving Delray Beach with custom layouts for entertaining and daily use.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Appliances made for outdoors",
+          "texto": "Outdoor-rated grills, smokers and refrigeration, engineered into the layout with their utilities."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits, HOA and ARB handled",
+          "texto": "We manage the full permitting process, including HOA and ARB submissions."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Outdoor Kitchen",
+        "Grilling Island or Bar"
+      ],
+      "proyectoPorDefecto": "New Outdoor Kitchen",
+      "nombre": "Delray Beach Outdoor Kitchen Form",
+      "aviso": "Delray Beach outdoor kitchen lead",
+      "ga4": "cocina",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We lay out the kitchen around how you cook and take it through permits, HOA and ARB.",
+        "You get the scope in writing and a fixed project price before anything is built."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my outdoor kitchen cost?",
+      "texto": "Every outdoor kitchen is priced from its layout, the appliances, the countertops and the utility runs it needs. Tell us how you cook and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/kitchens/outdoor-kitchen-l-shaped-granite-built-in-grill-florida-01.webp",
+      "alt": "L-shaped outdoor kitchen with built-in grill, ice maker, fridge and granite countertop on a covered patio.",
+      "ancho": 1600,
+      "alto": 1200,
+      "_banco": "bi-0502"
+    },
+    "faq": {
+      "titulo": "Delray Beach Outdoor Kitchen FAQs",
+      "entradilla": "Have questions about custom outdoor kitchen construction in Delray Beach, Florida? Our licensed contractors answer the top questions from Florida homeowners below.",
+      "anade": [
+        {
+          "pregunta": "How much does an outdoor kitchen cost in Delray Beach?",
+          "respuesta": "Every outdoor kitchen is priced from its layout, the appliances, the countertops and the utility runs it needs. Tell us how you cook and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "What materials are best for outdoor kitchens in Florida?",
+          "respuesta": "We install outdoor kitchens using weatherproof polymer cabinets, marine-grade stainless steel hardware, and natural stone countertops — all selected for resistance to Florida's heat, humidity, and coastal salt air. Every material choice is engineered to maintain its appearance and structural integrity over the long term."
+        },
+        {
+          "pregunta": "Can I add a bar, pizza oven, or smoker to my kitchen?",
+          "respuesta": "Absolutely. Custom outdoor kitchens can be designed around any combination of cooking equipment including built-in bars, pizza ovens, smokers, kamado grills, and beverage refrigerators. Each specialty appliance is engineered into the layout with proper utility routing, ventilation, and structural support to meet Florida building code requirements."
+        },
+        {
+          "pregunta": "Which office permits an outdoor kitchen in Delray Beach?",
+          "respuesta": "In Delray Beach, the Building Division of Development Services handles plan review, permitting and inspection of construction from 100 NW 1st Avenue, and residential permit applications for pools, decks, pathways or any other improvement that adds impervious area need a property survey no more than 12 months old. The city's beach includes the 2.9-mile segment where the federally authorized Delray Beach Shore Protection Project was completed. We manage the full permitting process, including HOA and ARB submissions.",
+          "fuentes": [
+            {
+              "nombre": "City of Delray Beach: Building Division",
+              "url": "https://delraybeachfl.gov/government/city-departments/development-services/building"
+            },
+            {
+              "nombre": "City of Delray Beach: building FAQ",
+              "url": "https://www.delraybeachfl.gov/government/city-departments/development-services/building/faq"
+            },
+            {
+              "nombre": "Florida DEP: critically eroded beaches report",
+              "url": "https://floridadep.gov/sites/default/files/CriticalErosionReport.pdf"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/outdoor-kitchens/gulf-stream-fl": {
+    "heroe": {
+      "apoyo": "Outdoor kitchen builders and installation contractors serving Gulf Stream with custom layouts for entertaining and daily use.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Appliances made for outdoors",
+          "texto": "Outdoor-rated grills, smokers and refrigeration, engineered into the layout with their utilities."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits, HOA and ARB handled",
+          "texto": "We manage the full permitting process, including HOA and ARB submissions."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Outdoor Kitchen",
+        "Grilling Island or Bar"
+      ],
+      "proyectoPorDefecto": "New Outdoor Kitchen",
+      "nombre": "Gulf Stream Outdoor Kitchen Form",
+      "aviso": "Gulf Stream outdoor kitchen lead",
+      "ga4": "cocina",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We lay out the kitchen around how you cook and take it through permits, HOA and ARB.",
+        "You get the scope in writing and a fixed project price before anything is built."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my outdoor kitchen cost?",
+      "texto": "Every outdoor kitchen is priced from its layout, the appliances, the countertops and the utility runs it needs. Tell us how you cook and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/kitchens/outdoor-kitchen-l-shaped-granite-built-in-grill-florida-01.webp",
+      "alt": "L-shaped outdoor kitchen with built-in grill, ice maker, fridge and granite countertop on a covered patio.",
+      "ancho": 1600,
+      "alto": 1200,
+      "_banco": "bi-0502"
+    },
+    "faq": {
+      "titulo": "Gulf Stream Outdoor Kitchen FAQs",
+      "entradilla": "Have questions about custom outdoor kitchen construction in Gulf Stream, Florida? Our licensed contractors answer the top questions from Florida homeowners below.",
+      "anade": [
+        {
+          "pregunta": "How much does an outdoor kitchen cost in Gulf Stream?",
+          "respuesta": "Every outdoor kitchen is priced from its layout, the appliances, the countertops and the utility runs it needs. Tell us how you cook and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "What materials are best for outdoor kitchens in Florida?",
+          "respuesta": "We install outdoor kitchens using weatherproof polymer cabinets, marine-grade stainless steel hardware, and natural stone countertops — all selected for resistance to Florida's heat, humidity, and coastal salt air. Every material choice is engineered to maintain its appearance and structural integrity over the long term."
+        },
+        {
+          "pregunta": "Can I add a bar, pizza oven, or smoker to my kitchen?",
+          "respuesta": "Absolutely. Custom outdoor kitchens can be designed around any combination of cooking equipment including built-in bars, pizza ovens, smokers, kamado grills, and beverage refrigerators. Each specialty appliance is engineered into the layout with proper utility routing, ventilation, and structural support to meet Florida building code requirements."
+        },
+        {
+          "pregunta": "Which office permits an outdoor kitchen in Gulf Stream?",
+          "respuesta": "In Gulf Stream, building permits and inspections are handled by the Town of Highland Beach under an interlocal agreement, through the Highland Beach permit portal, while Gulf Stream retains all zoning authority and its own design reviews: accessory buildings and structures and minor renovations affecting less than 300 square feet are approved or denied by Town staff, and the next level of review goes to the Architectural Review and Planning Board. We manage the full permitting process, including HOA and ARB submissions.",
+          "fuentes": [
+            {
+              "nombre": "Town of Gulf Stream: permits",
+              "url": "https://www.gulf-stream.org/permits/"
+            },
+            {
+              "nombre": "Town of Gulf Stream: approvals",
+              "url": "https://www.gulf-stream.org/approvals/"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/outdoor-kitchens/manalapan-fl": {
+    "heroe": {
+      "apoyo": "Outdoor kitchen builders and installation contractors serving Manalapan with custom layouts for entertaining and daily use.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Appliances made for outdoors",
+          "texto": "Outdoor-rated grills, smokers and refrigeration, engineered into the layout with their utilities."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits, HOA and ARB handled",
+          "texto": "We manage the full permitting process, including HOA and ARB submissions."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Outdoor Kitchen",
+        "Grilling Island or Bar"
+      ],
+      "proyectoPorDefecto": "New Outdoor Kitchen",
+      "nombre": "Manalapan Outdoor Kitchen Form",
+      "aviso": "Manalapan outdoor kitchen lead",
+      "ga4": "cocina",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We lay out the kitchen around how you cook and take it through permits, HOA and ARB.",
+        "You get the scope in writing and a fixed project price before anything is built."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my outdoor kitchen cost?",
+      "texto": "Every outdoor kitchen is priced from its layout, the appliances, the countertops and the utility runs it needs. Tell us how you cook and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/kitchens/outdoor-kitchen-l-shaped-granite-built-in-grill-florida-01.webp",
+      "alt": "L-shaped outdoor kitchen with built-in grill, ice maker, fridge and granite countertop on a covered patio.",
+      "ancho": 1600,
+      "alto": 1200,
+      "_banco": "bi-0502"
+    },
+    "faq": {
+      "titulo": "Manalapan Outdoor Kitchen FAQs",
+      "entradilla": "Have questions about custom outdoor kitchen construction in Manalapan, Florida? Our licensed contractors answer the top questions from Florida homeowners below.",
+      "anade": [
+        {
+          "pregunta": "How much does an outdoor kitchen cost in Manalapan?",
+          "respuesta": "Every outdoor kitchen is priced from its layout, the appliances, the countertops and the utility runs it needs. Tell us how you cook and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "What materials are best for outdoor kitchens in Florida?",
+          "respuesta": "We install outdoor kitchens using weatherproof polymer cabinets, marine-grade stainless steel hardware, and natural stone countertops — all selected for resistance to Florida's heat, humidity, and coastal salt air. Every material choice is engineered to maintain its appearance and structural integrity over the long term."
+        },
+        {
+          "pregunta": "Can I add a bar, pizza oven, or smoker to my kitchen?",
+          "respuesta": "Absolutely. Custom outdoor kitchens can be designed around any combination of cooking equipment including built-in bars, pizza ovens, smokers, kamado grills, and beverage refrigerators. Each specialty appliance is engineered into the layout with proper utility routing, ventilation, and structural support to meet Florida building code requirements."
+        },
+        {
+          "pregunta": "Which office permits an outdoor kitchen in Manalapan?",
+          "respuesta": "In Manalapan, the Town's Building Department covers plan review, architectural review and permitting, and any change to the exterior of a residence, from additions, shutters and fences to a new exterior color, landscaping or a seawall, must first be approved by the Architectural Commission. The Town's coastline includes the 1.4 miles that Hurricane Sandy eroded in 2012, as recorded by the Florida Department of Environmental Protection. We manage the full permitting process, including HOA and ARB submissions.",
+          "fuentes": [
+            {
+              "nombre": "Town of Manalapan: Building Department",
+              "url": "https://manalapan.org/building-department/"
+            },
+            {
+              "nombre": "Town of Manalapan: Architectural Commission",
+              "url": "https://manalapan.org/?p=221"
+            },
+            {
+              "nombre": "Florida DEP: critically eroded beaches report",
+              "url": "https://floridadep.gov/sites/default/files/CriticalErosionReport.pdf"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
   "/services/pool-builders/ocala-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Ocala homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
