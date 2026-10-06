@@ -177,6 +177,60 @@
           }
         ]
       }
+    },
+    "louvered-roofs": {
+      "fotosCiudad": {
+        "fotos": {
+          "intro": {
+            "1": {
+              "src": "/images/banco/louvered/louvered-pergola-bronze-waterfront-pool-deck-florida-01.webp",
+              "alt": "Bronze louvered pergola over a dining area on a travertine pool deck beside a canal",
+              "ancho": 1200,
+              "alto": 1600,
+              "pos": "50% 50%",
+              "_banco": "bi-0237"
+            },
+            "2": {
+              "src": "/images/banco/louvered/louvered-pergola-bronze-closed-roof-dining-area-florida-01.webp",
+              "alt": "Bronze louvered pergola with closed roof over a wicker dining set on a travertine pool deck",
+              "ancho": 1600,
+              "alto": 1200,
+              "pos": "50% 50%",
+              "_banco": "bi-0235"
+            },
+            "3": {
+              "src": "/images/banco/louvered/louvered-pergola-outdoor-kitchen-white-stone-lake-florida-01.webp",
+              "alt": "White louvered pergola with ceiling fan over an L-shaped white stone outdoor kitchen by a lake.",
+              "ancho": 1600,
+              "alto": 1200,
+              "pos": "50% 50%",
+              "_banco": "bi-0772"
+            }
+          }
+        },
+        "ciudades": [
+          {
+            "slug": "gainesville-florida",
+            "condado": "Alachua"
+          },
+          {
+            "slug": "ocala-florida",
+            "condado": "Marion"
+          },
+          {
+            "slug": "palatka-florida",
+            "condado": "Putnam"
+          },
+          {
+            "slug": "cedar-key-florida",
+            "condado": "Levy"
+          },
+          {
+            "slug": "mcintosh-florida",
+            "condado": "Marion"
+          }
+        ]
+      }
     }
   },
   "paginas": {
@@ -252,6 +306,10 @@
           {
             "href": "/services/pergola-builders/gainesville-fl",
             "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/gainesville-fl",
+            "nombre": "Louvered Roofs"
           }
         ]
       }
@@ -328,6 +386,10 @@
           {
             "href": "/services/pergola-builders/ocala-fl",
             "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/ocala-fl",
+            "nombre": "Louvered Roofs"
           }
         ]
       }
@@ -404,6 +466,10 @@
           {
             "href": "/services/pergola-builders/palatka-fl",
             "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/palatka-fl",
+            "nombre": "Louvered Roofs"
           }
         ]
       }
@@ -480,6 +546,10 @@
           {
             "href": "/services/pergola-builders/cedar-key-fl",
             "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/cedar-key-fl",
+            "nombre": "Louvered Roofs"
           }
         ]
       }
@@ -556,6 +626,10 @@
           {
             "href": "/services/pergola-builders/mcintosh-fl",
             "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/mcintosh-fl",
+            "nombre": "Louvered Roofs"
           }
         ]
       }
@@ -1236,6 +1310,10 @@
           {
             "href": "/services/pool-remodeling/gainesville-fl",
             "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/louvered-roofs/gainesville-fl",
+            "nombre": "Louvered Roofs"
           }
         ]
       }
@@ -1316,6 +1394,10 @@
           {
             "href": "/services/pool-remodeling/ocala-fl",
             "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/louvered-roofs/ocala-fl",
+            "nombre": "Louvered Roofs"
           }
         ]
       }
@@ -1396,6 +1478,10 @@
           {
             "href": "/services/pool-remodeling/palatka-fl",
             "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/louvered-roofs/palatka-fl",
+            "nombre": "Louvered Roofs"
           }
         ]
       }
@@ -1476,6 +1562,10 @@
           {
             "href": "/services/pool-remodeling/cedar-key-fl",
             "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/louvered-roofs/cedar-key-fl",
+            "nombre": "Louvered Roofs"
           }
         ]
       }
@@ -1556,6 +1646,10 @@
           {
             "href": "/services/pool-remodeling/mcintosh-fl",
             "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/louvered-roofs/mcintosh-fl",
+            "nombre": "Louvered Roofs"
           }
         ]
       }
@@ -2188,6 +2282,426 @@
           {
             "href": "/services/pool-remodeling/manalapan-fl",
             "nombre": "Pool Remodeling"
+          }
+        ]
+      }
+    },
+    "/services/louvered-roofs/gainesville-fl": {
+      "servicio": "louvered-roofs",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "gainesville-florida",
+        "name": "Gainesville",
+        "seo": {
+          "title": "Louvered Roofs in Gainesville, FL | Mr & Mrs Outdoor Living",
+          "description": "Motorized louvered roof builders and installation contractors serving Gainesville, FL, offering adjustable shade and weather protection."
+        },
+        "h1Title": "Motorized Louvered Roof Systems In Gainesville, Florida",
+        "h2Title": "Motorized Louvered Roof Installation Experts In Gainesville And Alachua County",
+        "intro": "Motorized louvered roof builders and installation contractors serving Gainesville, offering adjustable shade and weather protection.",
+        "headingIntro": "Louvered Roof Installation In Gainesville",
+        "paragraphIntro": "We specialize in louvered roof installation for Gainesville homes, building motorized bioclimatic systems that allow homeowners to fully control sunlight, ventilation, and rain protection for true year-round outdoor comfort.",
+        "imagenIntro1": {
+          "alt": "Bronze louvered pergola over a dining area on a travertine pool deck beside a canal"
+        },
+        "imagenIntro2": {
+          "alt": "Bronze louvered pergola with closed roof over a wicker dining set on a travertine pool deck"
+        },
+        "imagenIntro3": {
+          "alt": "White louvered pergola with ceiling fan over an L-shaped white stone outdoor kitchen by a lake."
+        },
+        "heading3DRendering": "We Size The System For Your Opening",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read reviews from Florida homeowners who enjoy year-round outdoor living, enabled by our precision-engineered motorized louvered roof systems.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Gainesville, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Louvered Roofs in Gainesville, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Motorized louvered roof builders and installation contractors serving Gainesville, FL, offering adjustable shade and weather protection.",
+            "og:image": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/louvered-roofs/gainesville-fl",
+            "twitter:title": "Louvered Roofs in Gainesville, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Motorized louvered roof builders and installation contractors serving Gainesville, FL, offering adjustable shade and weather protection.",
+            "twitter:image": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Gainesville",
+              "areaServed": {
+                "name": "Gainesville"
+              },
+              "description": "Motorized louvered roof builders and installation contractors serving Gainesville, FL, offering adjustable shade and weather protection."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/louvered-roofs",
+        "condado": "/services/pool-builders/alachua-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/gainesville-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/gainesville-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/gainesville-fl",
+            "nombre": "Pergola Builders"
+          }
+        ]
+      }
+    },
+    "/services/louvered-roofs/ocala-fl": {
+      "servicio": "louvered-roofs",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "ocala-florida",
+        "name": "Ocala",
+        "seo": {
+          "title": "Louvered Roofs in Ocala, FL | Mr & Mrs Outdoor Living",
+          "description": "Motorized louvered roof builders and installation contractors serving Ocala, FL, offering adjustable shade and weather protection."
+        },
+        "h1Title": "Motorized Louvered Roof Systems In Ocala, Florida",
+        "h2Title": "Motorized Louvered Roof Installation Experts In Ocala And Marion County",
+        "intro": "Motorized louvered roof builders and installation contractors serving Ocala, offering adjustable shade and weather protection.",
+        "headingIntro": "Louvered Roof Installation In Ocala",
+        "paragraphIntro": "We specialize in louvered roof installation for Ocala homes, building motorized bioclimatic systems that allow homeowners to fully control sunlight, ventilation, and rain protection for true year-round outdoor comfort.",
+        "imagenIntro1": {
+          "alt": "Bronze louvered pergola over a dining area on a travertine pool deck beside a canal"
+        },
+        "imagenIntro2": {
+          "alt": "Bronze louvered pergola with closed roof over a wicker dining set on a travertine pool deck"
+        },
+        "imagenIntro3": {
+          "alt": "White louvered pergola with ceiling fan over an L-shaped white stone outdoor kitchen by a lake."
+        },
+        "heading3DRendering": "We Size The System For Your Opening",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read reviews from Florida homeowners who enjoy year-round outdoor living, enabled by our precision-engineered motorized louvered roof systems.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Ocala, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Louvered Roofs in Ocala, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Motorized louvered roof builders and installation contractors serving Ocala, FL, offering adjustable shade and weather protection.",
+            "og:image": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/louvered-roofs/ocala-fl",
+            "twitter:title": "Louvered Roofs in Ocala, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Motorized louvered roof builders and installation contractors serving Ocala, FL, offering adjustable shade and weather protection.",
+            "twitter:image": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Ocala",
+              "areaServed": {
+                "name": "Ocala"
+              },
+              "description": "Motorized louvered roof builders and installation contractors serving Ocala, FL, offering adjustable shade and weather protection."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/louvered-roofs",
+        "condado": "/services/pool-builders/marion-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/ocala-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/ocala-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/ocala-fl",
+            "nombre": "Pergola Builders"
+          }
+        ]
+      }
+    },
+    "/services/louvered-roofs/palatka-fl": {
+      "servicio": "louvered-roofs",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "palatka-florida",
+        "name": "Palatka",
+        "seo": {
+          "title": "Louvered Roofs in Palatka, FL | Mr & Mrs Outdoor Living",
+          "description": "Motorized louvered roof builders and installation contractors serving Palatka, FL, offering adjustable shade and weather protection."
+        },
+        "h1Title": "Motorized Louvered Roof Systems In Palatka, Florida",
+        "h2Title": "Motorized Louvered Roof Installation Experts In Palatka And Putnam County",
+        "intro": "Motorized louvered roof builders and installation contractors serving Palatka, offering adjustable shade and weather protection.",
+        "headingIntro": "Louvered Roof Installation In Palatka",
+        "paragraphIntro": "We specialize in louvered roof installation for Palatka homes, building motorized bioclimatic systems that allow homeowners to fully control sunlight, ventilation, and rain protection for true year-round outdoor comfort.",
+        "imagenIntro1": {
+          "alt": "Bronze louvered pergola over a dining area on a travertine pool deck beside a canal"
+        },
+        "imagenIntro2": {
+          "alt": "Bronze louvered pergola with closed roof over a wicker dining set on a travertine pool deck"
+        },
+        "imagenIntro3": {
+          "alt": "White louvered pergola with ceiling fan over an L-shaped white stone outdoor kitchen by a lake."
+        },
+        "heading3DRendering": "We Size The System For Your Opening",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read reviews from Florida homeowners who enjoy year-round outdoor living, enabled by our precision-engineered motorized louvered roof systems.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Palatka, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Louvered Roofs in Palatka, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Motorized louvered roof builders and installation contractors serving Palatka, FL, offering adjustable shade and weather protection.",
+            "og:image": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/louvered-roofs/palatka-fl",
+            "twitter:title": "Louvered Roofs in Palatka, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Motorized louvered roof builders and installation contractors serving Palatka, FL, offering adjustable shade and weather protection.",
+            "twitter:image": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Palatka",
+              "areaServed": {
+                "name": "Palatka"
+              },
+              "description": "Motorized louvered roof builders and installation contractors serving Palatka, FL, offering adjustable shade and weather protection."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/louvered-roofs",
+        "condado": "/services/pool-builders/putnam-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/palatka-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/palatka-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/palatka-fl",
+            "nombre": "Pergola Builders"
+          }
+        ]
+      }
+    },
+    "/services/louvered-roofs/cedar-key-fl": {
+      "servicio": "louvered-roofs",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "cedar-key-florida",
+        "name": "Cedar Key",
+        "seo": {
+          "title": "Louvered Roofs in Cedar Key, FL | Mr & Mrs Outdoor Living",
+          "description": "Motorized louvered roof builders and installation contractors serving Cedar Key, FL, offering adjustable shade and weather protection."
+        },
+        "h1Title": "Motorized Louvered Roof Systems In Cedar Key, Florida",
+        "h2Title": "Motorized Louvered Roof Installation Experts In Cedar Key And Levy County",
+        "intro": "Motorized louvered roof builders and installation contractors serving Cedar Key, offering adjustable shade and weather protection.",
+        "headingIntro": "Louvered Roof Installation In Cedar Key",
+        "paragraphIntro": "We specialize in louvered roof installation for Cedar Key homes, building motorized bioclimatic systems that allow homeowners to fully control sunlight, ventilation, and rain protection for true year-round outdoor comfort.",
+        "imagenIntro1": {
+          "alt": "Bronze louvered pergola over a dining area on a travertine pool deck beside a canal"
+        },
+        "imagenIntro2": {
+          "alt": "Bronze louvered pergola with closed roof over a wicker dining set on a travertine pool deck"
+        },
+        "imagenIntro3": {
+          "alt": "White louvered pergola with ceiling fan over an L-shaped white stone outdoor kitchen by a lake."
+        },
+        "heading3DRendering": "We Size The System For Your Opening",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read reviews from Florida homeowners who enjoy year-round outdoor living, enabled by our precision-engineered motorized louvered roof systems.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Cedar Key, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Louvered Roofs in Cedar Key, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Motorized louvered roof builders and installation contractors serving Cedar Key, FL, offering adjustable shade and weather protection.",
+            "og:image": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/louvered-roofs/cedar-key-fl",
+            "twitter:title": "Louvered Roofs in Cedar Key, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Motorized louvered roof builders and installation contractors serving Cedar Key, FL, offering adjustable shade and weather protection.",
+            "twitter:image": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Cedar Key",
+              "areaServed": {
+                "name": "Cedar Key"
+              },
+              "description": "Motorized louvered roof builders and installation contractors serving Cedar Key, FL, offering adjustable shade and weather protection."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/louvered-roofs",
+        "condado": "/services/pool-builders/levy-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/cedar-key-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/cedar-key-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/cedar-key-fl",
+            "nombre": "Pergola Builders"
+          }
+        ]
+      }
+    },
+    "/services/louvered-roofs/mcintosh-fl": {
+      "servicio": "louvered-roofs",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "mcintosh-florida",
+        "name": "McIntosh",
+        "seo": {
+          "title": "Louvered Roofs in McIntosh, FL | Mr & Mrs Outdoor Living",
+          "description": "Motorized louvered roof builders and installation contractors serving McIntosh, FL, offering adjustable shade and weather protection."
+        },
+        "h1Title": "Motorized Louvered Roof Systems In McIntosh, Florida",
+        "h2Title": "Motorized Louvered Roof Installation Experts In McIntosh And Marion County",
+        "intro": "Motorized louvered roof builders and installation contractors serving McIntosh, offering adjustable shade and weather protection.",
+        "headingIntro": "Louvered Roof Installation In McIntosh",
+        "paragraphIntro": "We specialize in louvered roof installation for McIntosh homes, building motorized bioclimatic systems that allow homeowners to fully control sunlight, ventilation, and rain protection for true year-round outdoor comfort.",
+        "imagenIntro1": {
+          "alt": "Bronze louvered pergola over a dining area on a travertine pool deck beside a canal"
+        },
+        "imagenIntro2": {
+          "alt": "Bronze louvered pergola with closed roof over a wicker dining set on a travertine pool deck"
+        },
+        "imagenIntro3": {
+          "alt": "White louvered pergola with ceiling fan over an L-shaped white stone outdoor kitchen by a lake."
+        },
+        "heading3DRendering": "We Size The System For Your Opening",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read reviews from Florida homeowners who enjoy year-round outdoor living, enabled by our precision-engineered motorized louvered roof systems.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in McIntosh, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Louvered Roofs in McIntosh, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Motorized louvered roof builders and installation contractors serving McIntosh, FL, offering adjustable shade and weather protection.",
+            "og:image": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/louvered-roofs/mcintosh-fl",
+            "twitter:title": "Louvered Roofs in McIntosh, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Motorized louvered roof builders and installation contractors serving McIntosh, FL, offering adjustable shade and weather protection.",
+            "twitter:image": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "McIntosh",
+              "areaServed": {
+                "name": "McIntosh"
+              },
+              "description": "Motorized louvered roof builders and installation contractors serving McIntosh, FL, offering adjustable shade and weather protection."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/louvered-roofs",
+        "condado": "/services/pool-builders/marion-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/mcintosh-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/mcintosh-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/mcintosh-fl",
+            "nombre": "Pergola Builders"
           }
         ]
       }

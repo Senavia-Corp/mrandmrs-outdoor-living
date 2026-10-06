@@ -95,6 +95,43 @@
           "bi-1006"
         ]
       }
+    },
+    "louvered-roofs": {
+      "banco": "louvered",
+      "fotosLibres": 16,
+      "galeria": {
+        "titulo": "Louvered Roof Gallery",
+        "entradilla": "Florida louvered roof systems installed by licensed contractors — elegant and engineered."
+      },
+      "fotos": {
+        "intro": {
+          "1": {
+            "banco": "bi-0237"
+          },
+          "2": {
+            "banco": "bi-0235"
+          },
+          "3": {
+            "banco": "bi-0772"
+          }
+        },
+        "inversion": {
+          "banco": "bi-0223"
+        },
+        "galeria": [
+          "bi-0201",
+          "bi-0226",
+          "bi-0227",
+          "bi-0650",
+          "bi-0768",
+          "bi-0632",
+          "bi-0646",
+          "bi-0234",
+          "bi-0655",
+          "bi-0654",
+          "bi-0236"
+        ]
+      }
     }
   },
   "ciudades": {
@@ -1763,6 +1800,26 @@
     {
       "servicio": "pergola-builders",
       "ciudad": "manalapan-florida"
+    },
+    {
+      "servicio": "louvered-roofs",
+      "ciudad": "gainesville-florida"
+    },
+    {
+      "servicio": "louvered-roofs",
+      "ciudad": "ocala-florida"
+    },
+    {
+      "servicio": "louvered-roofs",
+      "ciudad": "palatka-florida"
+    },
+    {
+      "servicio": "louvered-roofs",
+      "ciudad": "cedar-key-florida"
+    },
+    {
+      "servicio": "louvered-roofs",
+      "ciudad": "mcintosh-florida"
     }
   ],
   "regional": {
