@@ -91,6 +91,60 @@
           }
         ]
       }
+    },
+    "pergola-builders": {
+      "fotosCiudad": {
+        "fotos": {
+          "intro": {
+            "1": {
+              "src": "/images/banco/pergolas/insulated-aluminum-patio-cover-bronze-pool-deck-florida-01.webp",
+              "alt": "Dark bronze insulated aluminum patio cover over a travertine patio with wicker furniture beside a pool",
+              "ancho": 1200,
+              "alto": 1600,
+              "pos": "50% 50%",
+              "_banco": "bi-0948"
+            },
+            "2": {
+              "src": "/images/banco/pergolas/insulated-patio-cover-black-rafter-tails-lake-view-florida-01.webp",
+              "alt": "Upward view of a black patio cover with scalloped rafter tails, gutter and downspout framing a lake",
+              "ancho": 1600,
+              "alto": 1200,
+              "pos": "50% 50%",
+              "_banco": "bi-1069"
+            },
+            "3": {
+              "src": "/images/banco/pergolas/insulated-patio-cover-black-frame-pool-deck-lawn-florida-02.webp",
+              "alt": "Low-angle view of a black-framed insulated patio cover with square rafter tails on a yellow two-story home",
+              "ancho": 1440,
+              "alto": 1080,
+              "pos": "50% 50%",
+              "_banco": "bi-1067"
+            }
+          }
+        },
+        "ciudades": [
+          {
+            "slug": "gainesville-florida",
+            "condado": "Alachua"
+          },
+          {
+            "slug": "ocala-florida",
+            "condado": "Marion"
+          },
+          {
+            "slug": "palatka-florida",
+            "condado": "Putnam"
+          },
+          {
+            "slug": "cedar-key-florida",
+            "condado": "Levy"
+          },
+          {
+            "slug": "mcintosh-florida",
+            "condado": "Marion"
+          }
+        ]
+      }
     }
   },
   "paginas": {
@@ -154,6 +208,7 @@
         },
         "ldCrudo": []
       },
+      "heroeFoto": null,
       "enlaces": {
         "ficha": "/services/pool-remodeling",
         "condado": "/services/pool-builders/alachua-county-fl",
@@ -161,6 +216,10 @@
           {
             "href": "/services/pool-builders/gainesville-fl",
             "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pergola-builders/gainesville-fl",
+            "nombre": "Pergola Builders"
           }
         ]
       }
@@ -225,6 +284,7 @@
         },
         "ldCrudo": []
       },
+      "heroeFoto": null,
       "enlaces": {
         "ficha": "/services/pool-remodeling",
         "condado": "/services/pool-builders/marion-county-fl",
@@ -232,6 +292,10 @@
           {
             "href": "/services/pool-builders/ocala-fl",
             "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pergola-builders/ocala-fl",
+            "nombre": "Pergola Builders"
           }
         ]
       }
@@ -296,6 +360,7 @@
         },
         "ldCrudo": []
       },
+      "heroeFoto": null,
       "enlaces": {
         "ficha": "/services/pool-remodeling",
         "condado": "/services/pool-builders/putnam-county-fl",
@@ -303,6 +368,10 @@
           {
             "href": "/services/pool-builders/palatka-fl",
             "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pergola-builders/palatka-fl",
+            "nombre": "Pergola Builders"
           }
         ]
       }
@@ -367,6 +436,7 @@
         },
         "ldCrudo": []
       },
+      "heroeFoto": null,
       "enlaces": {
         "ficha": "/services/pool-remodeling",
         "condado": "/services/pool-builders/levy-county-fl",
@@ -374,6 +444,10 @@
           {
             "href": "/services/pool-builders/cedar-key-fl",
             "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pergola-builders/cedar-key-fl",
+            "nombre": "Pergola Builders"
           }
         ]
       }
@@ -438,6 +512,7 @@
         },
         "ldCrudo": []
       },
+      "heroeFoto": null,
       "enlaces": {
         "ficha": "/services/pool-remodeling",
         "condado": "/services/pool-builders/marion-county-fl",
@@ -445,6 +520,10 @@
           {
             "href": "/services/pool-builders/mcintosh-fl",
             "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pergola-builders/mcintosh-fl",
+            "nombre": "Pergola Builders"
           }
         ]
       }
@@ -509,6 +588,7 @@
         },
         "ldCrudo": []
       },
+      "heroeFoto": null,
       "enlaces": {
         "ficha": "/services/pool-remodeling",
         "condado": "/services/pool-builders/broward-county-fl",
@@ -580,6 +660,7 @@
         },
         "ldCrudo": []
       },
+      "heroeFoto": null,
       "enlaces": {
         "ficha": "/services/pool-remodeling",
         "condado": "/services/pool-builders/broward-county-fl",
@@ -651,6 +732,7 @@
         },
         "ldCrudo": []
       },
+      "heroeFoto": null,
       "enlaces": {
         "ficha": "/services/pool-remodeling",
         "condado": "/services/pool-builders/broward-county-fl",
@@ -722,6 +804,7 @@
         },
         "ldCrudo": []
       },
+      "heroeFoto": null,
       "enlaces": {
         "ficha": "/services/pool-remodeling",
         "condado": "/services/pool-builders/palm-beach-county-fl",
@@ -793,6 +876,7 @@
         },
         "ldCrudo": []
       },
+      "heroeFoto": null,
       "enlaces": {
         "ficha": "/services/pool-remodeling",
         "condado": "/services/pool-builders/palm-beach-county-fl",
@@ -864,6 +948,7 @@
         },
         "ldCrudo": []
       },
+      "heroeFoto": null,
       "enlaces": {
         "ficha": "/services/pool-remodeling",
         "condado": "/services/pool-builders/palm-beach-county-fl",
@@ -935,6 +1020,7 @@
         },
         "ldCrudo": []
       },
+      "heroeFoto": null,
       "enlaces": {
         "ficha": "/services/pool-remodeling",
         "condado": "/services/pool-builders/palm-beach-county-fl",
@@ -1006,6 +1092,7 @@
         },
         "ldCrudo": []
       },
+      "heroeFoto": null,
       "enlaces": {
         "ficha": "/services/pool-remodeling",
         "condado": "/services/pool-builders/palm-beach-county-fl",
@@ -1013,6 +1100,406 @@
           {
             "href": "/services/pool-builders/manalapan-fl",
             "nombre": "Custom Pool Builders"
+          }
+        ]
+      }
+    },
+    "/services/pergola-builders/gainesville-fl": {
+      "servicio": "pergola-builders",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "gainesville-florida",
+        "name": "Gainesville",
+        "seo": {
+          "title": "Pergola Builders in Gainesville, FL | Mr & Mrs Outdoor Living",
+          "description": "Custom pergola builders and installation company serving Gainesville, FL homeowners, delivering durable designs that enhance outdoor comfort and style."
+        },
+        "h1Title": "Custom Aluminum Pergola Builders In Gainesville, Florida",
+        "h2Title": "Custom Pergola Builders Serving Gainesville And Alachua County",
+        "intro": "Custom pergola builders and installation company serving Gainesville homeowners, delivering durable designs that enhance outdoor comfort and style.",
+        "headingIntro": "Custom Pergola Builders In Gainesville",
+        "paragraphIntro": "Our pergola builders design and install custom aluminum pergolas for Gainesville homes, combining expert craftsmanship, durable materials, and stylish shade solutions that elevate outdoor living spaces year-round.",
+        "imagenIntro1": {
+          "alt": "Dark bronze insulated aluminum patio cover over a travertine patio with wicker furniture beside a pool"
+        },
+        "imagenIntro2": {
+          "alt": "Upward view of a black patio cover with scalloped rafter tails, gutter and downspout framing a lake"
+        },
+        "imagenIntro3": {
+          "alt": "Low-angle view of a black-framed insulated patio cover with square rafter tails on a yellow two-story home"
+        },
+        "heading3DRendering": "We Design The Pergola For Your Space",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read reviews from North & South Florida homeowners who trust our pergola builders for durable installations, modern design, and outdoor comfort.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Gainesville, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Pergola Builders in Gainesville, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Custom pergola builders and installation company serving Gainesville, FL homeowners, delivering durable designs that enhance outdoor comfort and style.",
+            "og:image": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/pergola-builders/gainesville-fl",
+            "twitter:title": "Pergola Builders in Gainesville, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Custom pergola builders and installation company serving Gainesville, FL homeowners, delivering durable designs that enhance outdoor comfort and style.",
+            "twitter:image": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Gainesville",
+              "areaServed": {
+                "name": "Gainesville"
+              },
+              "description": "Custom pergola builders and installation company serving Gainesville, FL homeowners, delivering durable designs that enhance outdoor comfort and style."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-100/freestanding-pergola-dark-bronze-pool-spa-canal-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/pergola-builders",
+        "condado": "/services/pool-builders/alachua-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/gainesville-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/gainesville-fl",
+            "nombre": "Pool Remodeling"
+          }
+        ]
+      }
+    },
+    "/services/pergola-builders/ocala-fl": {
+      "servicio": "pergola-builders",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "ocala-florida",
+        "name": "Ocala",
+        "seo": {
+          "title": "Pergola Builders in Ocala, FL | Mr & Mrs Outdoor Living",
+          "description": "Custom pergola builders and installation company serving Ocala, FL homeowners, delivering durable designs that enhance outdoor comfort and style."
+        },
+        "h1Title": "Custom Aluminum Pergola Builders In Ocala, Florida",
+        "h2Title": "Custom Pergola Builders Serving Ocala And Marion County",
+        "intro": "Custom pergola builders and installation company serving Ocala homeowners, delivering durable designs that enhance outdoor comfort and style.",
+        "headingIntro": "Custom Pergola Builders In Ocala",
+        "paragraphIntro": "Our pergola builders design and install custom aluminum pergolas for Ocala homes, combining expert craftsmanship, durable materials, and stylish shade solutions that elevate outdoor living spaces year-round.",
+        "imagenIntro1": {
+          "alt": "Dark bronze insulated aluminum patio cover over a travertine patio with wicker furniture beside a pool"
+        },
+        "imagenIntro2": {
+          "alt": "Upward view of a black patio cover with scalloped rafter tails, gutter and downspout framing a lake"
+        },
+        "imagenIntro3": {
+          "alt": "Low-angle view of a black-framed insulated patio cover with square rafter tails on a yellow two-story home"
+        },
+        "heading3DRendering": "We Design The Pergola For Your Space",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read reviews from North & South Florida homeowners who trust our pergola builders for durable installations, modern design, and outdoor comfort.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Ocala, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Pergola Builders in Ocala, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Custom pergola builders and installation company serving Ocala, FL homeowners, delivering durable designs that enhance outdoor comfort and style.",
+            "og:image": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/pergola-builders/ocala-fl",
+            "twitter:title": "Pergola Builders in Ocala, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Custom pergola builders and installation company serving Ocala, FL homeowners, delivering durable designs that enhance outdoor comfort and style.",
+            "twitter:image": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Ocala",
+              "areaServed": {
+                "name": "Ocala"
+              },
+              "description": "Custom pergola builders and installation company serving Ocala, FL homeowners, delivering durable designs that enhance outdoor comfort and style."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-100/freestanding-pergola-dark-bronze-pool-spa-canal-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/pergola-builders",
+        "condado": "/services/pool-builders/marion-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/ocala-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/ocala-fl",
+            "nombre": "Pool Remodeling"
+          }
+        ]
+      }
+    },
+    "/services/pergola-builders/palatka-fl": {
+      "servicio": "pergola-builders",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "palatka-florida",
+        "name": "Palatka",
+        "seo": {
+          "title": "Pergola Builders in Palatka, FL | Mr & Mrs Outdoor Living",
+          "description": "Custom pergola builders and installation company serving Palatka, FL homeowners, delivering durable designs that enhance outdoor comfort and style."
+        },
+        "h1Title": "Custom Aluminum Pergola Builders In Palatka, Florida",
+        "h2Title": "Custom Pergola Builders Serving Palatka And Putnam County",
+        "intro": "Custom pergola builders and installation company serving Palatka homeowners, delivering durable designs that enhance outdoor comfort and style.",
+        "headingIntro": "Custom Pergola Builders In Palatka",
+        "paragraphIntro": "Our pergola builders design and install custom aluminum pergolas for Palatka homes, combining expert craftsmanship, durable materials, and stylish shade solutions that elevate outdoor living spaces year-round.",
+        "imagenIntro1": {
+          "alt": "Dark bronze insulated aluminum patio cover over a travertine patio with wicker furniture beside a pool"
+        },
+        "imagenIntro2": {
+          "alt": "Upward view of a black patio cover with scalloped rafter tails, gutter and downspout framing a lake"
+        },
+        "imagenIntro3": {
+          "alt": "Low-angle view of a black-framed insulated patio cover with square rafter tails on a yellow two-story home"
+        },
+        "heading3DRendering": "We Design The Pergola For Your Space",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read reviews from North & South Florida homeowners who trust our pergola builders for durable installations, modern design, and outdoor comfort.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Palatka, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Pergola Builders in Palatka, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Custom pergola builders and installation company serving Palatka, FL homeowners, delivering durable designs that enhance outdoor comfort and style.",
+            "og:image": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/pergola-builders/palatka-fl",
+            "twitter:title": "Pergola Builders in Palatka, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Custom pergola builders and installation company serving Palatka, FL homeowners, delivering durable designs that enhance outdoor comfort and style.",
+            "twitter:image": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Palatka",
+              "areaServed": {
+                "name": "Palatka"
+              },
+              "description": "Custom pergola builders and installation company serving Palatka, FL homeowners, delivering durable designs that enhance outdoor comfort and style."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-100/freestanding-pergola-dark-bronze-pool-spa-canal-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/pergola-builders",
+        "condado": "/services/pool-builders/putnam-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/palatka-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/palatka-fl",
+            "nombre": "Pool Remodeling"
+          }
+        ]
+      }
+    },
+    "/services/pergola-builders/cedar-key-fl": {
+      "servicio": "pergola-builders",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "cedar-key-florida",
+        "name": "Cedar Key",
+        "seo": {
+          "title": "Pergola Builders in Cedar Key, FL | Mr & Mrs Outdoor Living",
+          "description": "Custom pergola builders and installation company serving Cedar Key, FL homeowners, delivering durable designs that enhance outdoor comfort and style."
+        },
+        "h1Title": "Custom Aluminum Pergola Builders In Cedar Key, Florida",
+        "h2Title": "Custom Pergola Builders Serving Cedar Key And Levy County",
+        "intro": "Custom pergola builders and installation company serving Cedar Key homeowners, delivering durable designs that enhance outdoor comfort and style.",
+        "headingIntro": "Custom Pergola Builders In Cedar Key",
+        "paragraphIntro": "Our pergola builders design and install custom aluminum pergolas for Cedar Key homes, combining expert craftsmanship, durable materials, and stylish shade solutions that elevate outdoor living spaces year-round.",
+        "imagenIntro1": {
+          "alt": "Dark bronze insulated aluminum patio cover over a travertine patio with wicker furniture beside a pool"
+        },
+        "imagenIntro2": {
+          "alt": "Upward view of a black patio cover with scalloped rafter tails, gutter and downspout framing a lake"
+        },
+        "imagenIntro3": {
+          "alt": "Low-angle view of a black-framed insulated patio cover with square rafter tails on a yellow two-story home"
+        },
+        "heading3DRendering": "We Design The Pergola For Your Space",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read reviews from North & South Florida homeowners who trust our pergola builders for durable installations, modern design, and outdoor comfort.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Cedar Key, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Pergola Builders in Cedar Key, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Custom pergola builders and installation company serving Cedar Key, FL homeowners, delivering durable designs that enhance outdoor comfort and style.",
+            "og:image": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/pergola-builders/cedar-key-fl",
+            "twitter:title": "Pergola Builders in Cedar Key, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Custom pergola builders and installation company serving Cedar Key, FL homeowners, delivering durable designs that enhance outdoor comfort and style.",
+            "twitter:image": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Cedar Key",
+              "areaServed": {
+                "name": "Cedar Key"
+              },
+              "description": "Custom pergola builders and installation company serving Cedar Key, FL homeowners, delivering durable designs that enhance outdoor comfort and style."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-100/freestanding-pergola-dark-bronze-pool-spa-canal-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/pergola-builders",
+        "condado": "/services/pool-builders/levy-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/cedar-key-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/cedar-key-fl",
+            "nombre": "Pool Remodeling"
+          }
+        ]
+      }
+    },
+    "/services/pergola-builders/mcintosh-fl": {
+      "servicio": "pergola-builders",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "mcintosh-florida",
+        "name": "McIntosh",
+        "seo": {
+          "title": "Pergola Builders in McIntosh, FL | Mr & Mrs Outdoor Living",
+          "description": "Custom pergola builders and installation company serving McIntosh, FL homeowners, delivering durable designs that enhance outdoor comfort and style."
+        },
+        "h1Title": "Custom Aluminum Pergola Builders In McIntosh, Florida",
+        "h2Title": "Custom Pergola Builders Serving McIntosh And Marion County",
+        "intro": "Custom pergola builders and installation company serving McIntosh homeowners, delivering durable designs that enhance outdoor comfort and style.",
+        "headingIntro": "Custom Pergola Builders In McIntosh",
+        "paragraphIntro": "Our pergola builders design and install custom aluminum pergolas for McIntosh homes, combining expert craftsmanship, durable materials, and stylish shade solutions that elevate outdoor living spaces year-round.",
+        "imagenIntro1": {
+          "alt": "Dark bronze insulated aluminum patio cover over a travertine patio with wicker furniture beside a pool"
+        },
+        "imagenIntro2": {
+          "alt": "Upward view of a black patio cover with scalloped rafter tails, gutter and downspout framing a lake"
+        },
+        "imagenIntro3": {
+          "alt": "Low-angle view of a black-framed insulated patio cover with square rafter tails on a yellow two-story home"
+        },
+        "heading3DRendering": "We Design The Pergola For Your Space",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read reviews from North & South Florida homeowners who trust our pergola builders for durable installations, modern design, and outdoor comfort.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in McIntosh, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Pergola Builders in McIntosh, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Custom pergola builders and installation company serving McIntosh, FL homeowners, delivering durable designs that enhance outdoor comfort and style.",
+            "og:image": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/pergola-builders/mcintosh-fl",
+            "twitter:title": "Pergola Builders in McIntosh, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Custom pergola builders and installation company serving McIntosh, FL homeowners, delivering durable designs that enhance outdoor comfort and style.",
+            "twitter:image": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "McIntosh",
+              "areaServed": {
+                "name": "McIntosh"
+              },
+              "description": "Custom pergola builders and installation company serving McIntosh, FL homeowners, delivering durable designs that enhance outdoor comfort and style."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-100/freestanding-pergola-dark-bronze-pool-spa-canal-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/pergola-builders",
+        "condado": "/services/pool-builders/marion-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/mcintosh-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/mcintosh-fl",
+            "nombre": "Pool Remodeling"
           }
         ]
       }

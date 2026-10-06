@@ -253,5 +253,111 @@
       }
     ],
     "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "servicio:pergola-builders": {
+    "titulo": "Pergola Project Gallery",
+    "entradilla": "Florida aluminum pergola installations designed for shade, style, and lasting durability.",
+    "fotos": [
+      {
+        "src": "/images/banco/pergolas/insulated-patio-cover-black-frame-pool-deck-lawn-florida-01.webp",
+        "alt": "Black-framed insulated patio cover with rafter tails extending from a yellow two-story home beside a pool",
+        "ancho": 1440,
+        "alto": 1080,
+        "pos": "50% 50%",
+        "_banco": "bi-1066",
+        "_proyecto": "obra-106"
+      },
+      {
+        "src": "/images/banco/pergolas/polycarbonate-pergola-woodgrain-stone-columns-florida-01.webp",
+        "alt": "Dark woodgrain pergola with clear polycarbonate roof and scalloped rafter tails on stacked-stone columns",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-1072",
+        "_proyecto": "obra-108"
+      },
+      {
+        "src": "/images/banco/pergolas/modern-insulated-patio-cover-black-fascia-gray-house-florida-01.webp",
+        "alt": "Black-fascia flat insulated patio cover with slatted privacy panel on a gray stucco house over a travertine patio",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-1056",
+        "_proyecto": null
+      },
+      {
+        "src": "/images/banco/pergolas/freestanding-pergola-dark-bronze-turf-pool-florida-01.webp",
+        "alt": "Low view across artificial turf to a dark bronze pergola over a spa with a white house behind",
+        "ancho": 1600,
+        "alto": 900,
+        "pos": "50% 50%",
+        "_banco": "bi-1047",
+        "_proyecto": "obra-100"
+      },
+      {
+        "src": "/images/banco/pergolas/insulated-patio-cover-privacy-wall-pool-spa-florida-01.webp",
+        "alt": "Black insulated patio cover with slat privacy walls behind a pool with dark glass tile spa.",
+        "ancho": 1080,
+        "alto": 1080,
+        "pos": "50% 50%",
+        "_banco": "bi-0908",
+        "_proyecto": "obra-082"
+      },
+      {
+        "src": "/images/banco/pergolas/aluminum-lattice-pergola-dark-bronze-corner-patio-florida-01.webp",
+        "alt": "Dark bronze aluminum lattice pergola on a single corner post casting striped shadows on a travertine patio",
+        "ancho": 1276,
+        "alto": 1273,
+        "pos": "50% 50%",
+        "_banco": "bi-1028",
+        "_proyecto": "obra-101"
+      },
+      {
+        "src": "/images/banco/pergolas/insulated-aluminum-patio-cover-white-dusk-florida-01.webp",
+        "alt": "White insulated aluminum patio cover attached to a white house at dusk with palm trees and path lights",
+        "ancho": 1440,
+        "alto": 1080,
+        "pos": "50% 50%",
+        "_banco": "bi-0916",
+        "_proyecto": null
+      },
+      {
+        "src": "/images/banco/pergolas/insulated-patio-cover-black-frame-loungers-lawn-florida-01.webp",
+        "alt": "Black-framed insulated patio cover over four sun loungers seen from the lawn under a clear blue sky",
+        "ancho": 1600,
+        "alto": 1067,
+        "pos": "50% 50%",
+        "_banco": "bi-0939",
+        "_proyecto": "obra-088"
+      },
+      {
+        "src": "/images/banco/pergolas/freestanding-insulated-pergola-white-travertine-florida-01.webp",
+        "alt": "Underside of a white freestanding insulated pergola with square rafter tails over a travertine patio",
+        "ancho": 1440,
+        "alto": 1083,
+        "pos": "50% 50%",
+        "_banco": "bi-0984",
+        "_proyecto": "obra-094"
+      },
+      {
+        "src": "/images/banco/pergolas/gable-insulated-patio-cover-dark-frame-travertine-florida-02.webp",
+        "alt": "Side view under a dark-framed gable patio cover over a travertine patio with a white fence",
+        "ancho": 1440,
+        "alto": 1081,
+        "pos": "50% 50%",
+        "_banco": "bi-0923",
+        "_proyecto": "obra-085"
+      },
+      {
+        "src": "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-french-door-florida-01.webp",
+        "alt": "Brown insulated patio cover with scalloped rafter tails over French doors on a yellow stucco house",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-1006",
+        "_proyecto": "obra-096"
+      }
+    ],
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
   }
 }
