@@ -9,7 +9,7 @@
 | Campo | Valor |
 |---|---|
 | fase | **2 — lotes por servicio** (Fase 0 y Fase 1 cerradas) |
-| paso | Lote 2 (pool-remodeling South) → PR → merge → verificacion |
+| paso | Lote 3 (pergola-builders North) → PR → merge → verificacion |
 | lote siguiente | Lote 1: pool-remodeling North (las 19 restantes con hecho local verificable) |
 | iteraciones sin avanzar | 0 |
 | ultima iteracion | 5-oct-2026, sobre `origin/main` 9824a43 |
@@ -469,6 +469,45 @@ check-texto =/services/pool-remodeling exit 0   1 identicas · 0 en rojo   (1/1 
 - Rutas nuevas sin referencia: cubiertas por `check:ciudades-servicios`; `check-texto`/`check-visual` no las miden (no es verde).
 - NO verificado: las URL de `fuentes` (egress, D7).
 
+## Lote 3 — pergola-builders North (5-oct-2026)
+
+**Rutas publicadas (5):** /services/pergola-builders/gainesville-fl, /services/pergola-builders/ocala-fl, /services/pergola-builders/palatka-fl, /services/pergola-builders/cedar-key-fl, /services/pergola-builders/mcintosh-fl
+
+**Excluidas (texto local propio < 60 palabras):** Lake City 27, Alachua 58, Newberry 33, High Springs 37, Williston 36, Chiefland 44, Fanning Springs 40, Micanopy 56.
+
+**D6 REVISADA y D5 matizada (6-oct-2026), por la revision independiente:** en los servicios que no son de piscina (pergolas, louvered, decks, cocinas, paisajismo) NO se pinta la seccion 3D (su video es diseno de PISCINA) y el fondo del heroe deja de ser el reel de piscina: es la foto de heroe de la ficha del servicio, con el mismo marco del poster (`.mm-video-poster`). pool-builders y pool-remodeling no cambian. Ademas, las frases de plantilla pasan a ser texto LITERAL de la ficha con la ciudad (H2, titular y entradilla de FAQ, entradilla de galeria, parrafo de resenas), y fuera la FAQ de la ficha que promete «without delays… structurally certified» y la de ahorro de frio que dice «South Florida».
+
+**Revision independiente:** 4 pasadas. 1a RECHAZADA (frases de plantilla sin fuente, FAQ con promesa, titular 3D de piscina); 2a RECHAZADA (titulares no literales); 3a RECHAZADA (video 3D de piscina); 4a RECHAZADA (video de heroe de piscina). Todas por plantilla, ninguna por hecho local. Se supera la regla de 2 intentos: excepcion decidida en automatico (`/goal`) porque cada rechazo era de diseno compartido y se arreglo en la causa, no en la pagina; la 5a pasada lo APROBO. Captura de una ruta (pergola-builders/ocala-fl, 1440 y 390) para comprobar el heroe nuevo: correcto.
+
+**Puertas** (build `MM_SANITY_CACHE=1 PUBLIC_ES_PRODUCCION=1`):
+
+```
+rutas existentes con HTML distinto al de main 9824a43: 2 -> services/pergola-builders/index.html services/pool-remodeling/index.html
+diff=0 /services/pool-builders/ocala-fl
+diff=0 /services/pool-builders/boca-raton-fl
+diff=0 /services/pool-builders/archer-fl
+check:tokens                 exit 0  PUERTA VERDE
+check:rutas                  exit 0  PUERTA VERDE
+check:enlaces                exit 0  PUERTA VERDE
+check:seo                    exit 0  PUERTA VERDE
+check:captacion              exit 0  PUERTA VERDE
+check:estructura:ciudades    exit 0  PUERTA VERDE — dos formas y solo dos
+check:medicion               exit 0  PUERTA VERDE
+check:ciudades-servicios     exit 0  PUERTA VERDE
+check:redirects              exit 0  PUERTA VERDE
+check:estructura             exit 0  PUERTA VERDE — 14 fichas, un solo orden (+ 2 variante(s) declarada(s))
+check:galeria-obra           exit 0  PUERTA VERDE — un set, las 53 ciudades, obra real trazada
+check:identidad              exit 0  PUERTA VERDE
+check:ads                    exit 0  PUERTA VERDE
+check:menu                   exit 0  PUERTA VERDE
+check:galeria                exit 0  PUERTA VERDE
+check-texto =/services/pool-remodeling exit 0   1 identicas · 0 en rojo   (1/1 rutas medidas)
+check-texto =/services/pergola-builders exit 0   1 identicas · 0 en rojo   (1/1 rutas medidas)
+```
+
+- Rutas nuevas sin referencia: cubiertas por `check:ciudades-servicios`; `check-texto`/`check-visual` no las miden (no es verde).
+- NO verificado: las URL de `fuentes` (egress, D7).
+
 ## Rutas hechas
 
 | Ruta | Lote | PR | Produccion |
@@ -478,14 +517,19 @@ check-texto =/services/pool-remodeling exit 0   1 identicas · 0 en rojo   (1/1 
 | /services/pool-remodeling/palatka-fl | 1 | [#48](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/48) fusionado (7da8284) | Vercel `success`, deployment 6871931005. URL no abierta: egress (D7) |
 | /services/pool-remodeling/cedar-key-fl | 1 | [#48](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/48) fusionado (7da8284) | Vercel `success`, deployment 6871931005. URL no abierta: egress (D7) |
 | /services/pool-remodeling/mcintosh-fl | 1 | [#48](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/48) fusionado (7da8284) | Vercel `success`, deployment 6871931005. URL no abierta: egress (D7) |
-| /services/pool-remodeling/fort-lauderdale-fl | 2 | (pendiente) | (pendiente) |
-| /services/pool-remodeling/hollywood-fl | 2 | (pendiente) | (pendiente) |
-| /services/pool-remodeling/dania-beach-fl | 2 | (pendiente) | (pendiente) |
-| /services/pool-remodeling/west-palm-beach-fl | 2 | (pendiente) | (pendiente) |
-| /services/pool-remodeling/boca-raton-fl | 2 | (pendiente) | (pendiente) |
-| /services/pool-remodeling/boynton-beach-fl | 2 | (pendiente) | (pendiente) |
-| /services/pool-remodeling/gulf-stream-fl | 2 | (pendiente) | (pendiente) |
-| /services/pool-remodeling/manalapan-fl | 2 | (pendiente) | (pendiente) |
+| /services/pool-remodeling/fort-lauderdale-fl | 2 | [#49](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/49) fusionado (1599b77) | Vercel `success`, deployment 6872160685. URL no abierta: egress (D7) |
+| /services/pool-remodeling/hollywood-fl | 2 | [#49](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/49) fusionado (1599b77) | Vercel `success`, deployment 6872160685. URL no abierta: egress (D7) |
+| /services/pool-remodeling/dania-beach-fl | 2 | [#49](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/49) fusionado (1599b77) | Vercel `success`, deployment 6872160685. URL no abierta: egress (D7) |
+| /services/pool-remodeling/west-palm-beach-fl | 2 | [#49](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/49) fusionado (1599b77) | Vercel `success`, deployment 6872160685. URL no abierta: egress (D7) |
+| /services/pool-remodeling/boca-raton-fl | 2 | [#49](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/49) fusionado (1599b77) | Vercel `success`, deployment 6872160685. URL no abierta: egress (D7) |
+| /services/pool-remodeling/boynton-beach-fl | 2 | [#49](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/49) fusionado (1599b77) | Vercel `success`, deployment 6872160685. URL no abierta: egress (D7) |
+| /services/pool-remodeling/gulf-stream-fl | 2 | [#49](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/49) fusionado (1599b77) | Vercel `success`, deployment 6872160685. URL no abierta: egress (D7) |
+| /services/pool-remodeling/manalapan-fl | 2 | [#49](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/49) fusionado (1599b77) | Vercel `success`, deployment 6872160685. URL no abierta: egress (D7) |
+| /services/pergola-builders/gainesville-fl | 3 | (pendiente) | (pendiente) |
+| /services/pergola-builders/ocala-fl | 3 | (pendiente) | (pendiente) |
+| /services/pergola-builders/palatka-fl | 3 | (pendiente) | (pendiente) |
+| /services/pergola-builders/cedar-key-fl | 3 | (pendiente) | (pendiente) |
+| /services/pergola-builders/mcintosh-fl | 3 | (pendiente) | (pendiente) |
 
 ## Bloqueos y avisos
 
