@@ -263,6 +263,60 @@
           }
         ]
       }
+    },
+    "deck-builders": {
+      "fotosCiudad": {
+        "fotos": {
+          "intro": {
+            "1": {
+              "src": "/images/banco/decks/travertine-pool-deck-palms-putting-green-florida-01.webp",
+              "alt": "Rectangular pool with travertine paver deck, tall palms and a putting green beyond.",
+              "ancho": 1200,
+              "alto": 1600,
+              "pos": "50% 50%",
+              "_banco": "bi-0615"
+            },
+            "2": {
+              "src": "/images/banco/decks/travertine-patio-date-palm-lounge-chairs-florida-01.webp",
+              "alt": "Travertine patio with a date palm, blue lounge chairs and a covered pergola with columns behind",
+              "ancho": 1080,
+              "alto": 810,
+              "pos": "50% 50%",
+              "_banco": "bi-0968"
+            },
+            "3": {
+              "src": "/images/banco/decks/travertine-pool-deck-bromeliad-planter-pergola-florida-01.webp",
+              "alt": "Ivory travertine pool deck with a bromeliad in black river rock, artificial turf and a pergola-style patio cover",
+              "ancho": 1440,
+              "alto": 1440,
+              "pos": "50% 50%",
+              "_banco": "bi-0983"
+            }
+          }
+        },
+        "ciudades": [
+          {
+            "slug": "gainesville-florida",
+            "condado": "Alachua"
+          },
+          {
+            "slug": "ocala-florida",
+            "condado": "Marion"
+          },
+          {
+            "slug": "palatka-florida",
+            "condado": "Putnam"
+          },
+          {
+            "slug": "cedar-key-florida",
+            "condado": "Levy"
+          },
+          {
+            "slug": "mcintosh-florida",
+            "condado": "Marion"
+          }
+        ]
+      }
     }
   },
   "paginas": {
@@ -342,6 +396,10 @@
           {
             "href": "/services/louvered-roofs/gainesville-fl",
             "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/gainesville-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -422,6 +480,10 @@
           {
             "href": "/services/louvered-roofs/ocala-fl",
             "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/ocala-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -502,6 +564,10 @@
           {
             "href": "/services/louvered-roofs/palatka-fl",
             "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/palatka-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -582,6 +648,10 @@
           {
             "href": "/services/louvered-roofs/cedar-key-fl",
             "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/cedar-key-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -662,6 +732,10 @@
           {
             "href": "/services/louvered-roofs/mcintosh-fl",
             "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/mcintosh-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -1370,6 +1444,10 @@
           {
             "href": "/services/louvered-roofs/gainesville-fl",
             "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/gainesville-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -1454,6 +1532,10 @@
           {
             "href": "/services/louvered-roofs/ocala-fl",
             "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/ocala-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -1538,6 +1620,10 @@
           {
             "href": "/services/louvered-roofs/palatka-fl",
             "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/palatka-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -1622,6 +1708,10 @@
           {
             "href": "/services/louvered-roofs/cedar-key-fl",
             "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/cedar-key-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -1706,6 +1796,10 @@
           {
             "href": "/services/louvered-roofs/mcintosh-fl",
             "nombre": "Louvered Roofs"
+          },
+          {
+            "href": "/services/deck-builders/mcintosh-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -2454,6 +2548,10 @@
           {
             "href": "/services/pergola-builders/gainesville-fl",
             "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/deck-builders/gainesville-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -2538,6 +2636,10 @@
           {
             "href": "/services/pergola-builders/ocala-fl",
             "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/deck-builders/ocala-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -2622,6 +2724,10 @@
           {
             "href": "/services/pergola-builders/palatka-fl",
             "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/deck-builders/palatka-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -2706,6 +2812,10 @@
           {
             "href": "/services/pergola-builders/cedar-key-fl",
             "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/deck-builders/cedar-key-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -2790,6 +2900,10 @@
           {
             "href": "/services/pergola-builders/mcintosh-fl",
             "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/deck-builders/mcintosh-fl",
+            "nombre": "Deck Builders"
           }
         ]
       }
@@ -3454,6 +3568,446 @@
           {
             "href": "/services/pergola-builders/manalapan-fl",
             "nombre": "Pergola Builders"
+          }
+        ]
+      }
+    },
+    "/services/deck-builders/gainesville-fl": {
+      "servicio": "deck-builders",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "gainesville-florida",
+        "name": "Gainesville",
+        "seo": {
+          "title": "Deck Builders in Gainesville, FL | Mr & Mrs Outdoor Living",
+          "description": "Professional deck builders and installation contractors serving Gainesville, FL with durable, stylish outdoor deck solutions."
+        },
+        "h1Title": "Custom Deck Builders In Gainesville, Florida",
+        "h2Title": "Custom Deck Builders & Contractors In Gainesville And Alachua County",
+        "intro": "Professional deck builders and installation contractors serving Gainesville with durable, stylish outdoor deck solutions.",
+        "headingIntro": "Custom Deck Builders & Contractors In Gainesville",
+        "paragraphIntro": "Our deck builders design and construct composite and wood decks for Gainesville homes, delivering long-lasting outdoor structures tailored to your home's layout, lifestyle, and Florida's demanding climate.",
+        "imagenIntro1": {
+          "alt": "Rectangular pool with travertine paver deck, tall palms and a putting green beyond."
+        },
+        "imagenIntro2": {
+          "alt": "Travertine patio with a date palm, blue lounge chairs and a covered pergola with columns behind"
+        },
+        "imagenIntro3": {
+          "alt": "Ivory travertine pool deck with a bromeliad in black river rock, artificial turf and a pergola-style patio cover"
+        },
+        "heading3DRendering": "We Design The Deck For Your Layout",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read testimonials from Florida homeowners who value the durability, comfort, and lasting property value delivered by our experienced deck builders.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Gainesville, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Deck Builders in Gainesville, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Professional deck builders and installation contractors serving Gainesville, FL with durable, stylish outdoor deck solutions.",
+            "og:image": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/deck-builders/gainesville-fl",
+            "twitter:title": "Deck Builders in Gainesville, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Professional deck builders and installation contractors serving Gainesville, FL with durable, stylish outdoor deck solutions.",
+            "twitter:image": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Gainesville",
+              "areaServed": {
+                "name": "Gainesville"
+              },
+              "description": "Professional deck builders and installation contractors serving Gainesville, FL with durable, stylish outdoor deck solutions."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/deck-builders",
+        "condado": "/services/pool-builders/alachua-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/gainesville-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/gainesville-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/gainesville-fl",
+            "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/gainesville-fl",
+            "nombre": "Louvered Roofs"
+          }
+        ]
+      }
+    },
+    "/services/deck-builders/ocala-fl": {
+      "servicio": "deck-builders",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "ocala-florida",
+        "name": "Ocala",
+        "seo": {
+          "title": "Deck Builders in Ocala, FL | Mr & Mrs Outdoor Living",
+          "description": "Professional deck builders and installation contractors serving Ocala, FL with durable, stylish outdoor deck solutions."
+        },
+        "h1Title": "Custom Deck Builders In Ocala, Florida",
+        "h2Title": "Custom Deck Builders & Contractors In Ocala And Marion County",
+        "intro": "Professional deck builders and installation contractors serving Ocala with durable, stylish outdoor deck solutions.",
+        "headingIntro": "Custom Deck Builders & Contractors In Ocala",
+        "paragraphIntro": "Our deck builders design and construct composite and wood decks for Ocala homes, delivering long-lasting outdoor structures tailored to your home's layout, lifestyle, and Florida's demanding climate.",
+        "imagenIntro1": {
+          "alt": "Rectangular pool with travertine paver deck, tall palms and a putting green beyond."
+        },
+        "imagenIntro2": {
+          "alt": "Travertine patio with a date palm, blue lounge chairs and a covered pergola with columns behind"
+        },
+        "imagenIntro3": {
+          "alt": "Ivory travertine pool deck with a bromeliad in black river rock, artificial turf and a pergola-style patio cover"
+        },
+        "heading3DRendering": "We Design The Deck For Your Layout",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read testimonials from Florida homeowners who value the durability, comfort, and lasting property value delivered by our experienced deck builders.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Ocala, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Deck Builders in Ocala, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Professional deck builders and installation contractors serving Ocala, FL with durable, stylish outdoor deck solutions.",
+            "og:image": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/deck-builders/ocala-fl",
+            "twitter:title": "Deck Builders in Ocala, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Professional deck builders and installation contractors serving Ocala, FL with durable, stylish outdoor deck solutions.",
+            "twitter:image": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Ocala",
+              "areaServed": {
+                "name": "Ocala"
+              },
+              "description": "Professional deck builders and installation contractors serving Ocala, FL with durable, stylish outdoor deck solutions."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/deck-builders",
+        "condado": "/services/pool-builders/marion-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/ocala-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/ocala-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/ocala-fl",
+            "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/ocala-fl",
+            "nombre": "Louvered Roofs"
+          }
+        ]
+      }
+    },
+    "/services/deck-builders/palatka-fl": {
+      "servicio": "deck-builders",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "palatka-florida",
+        "name": "Palatka",
+        "seo": {
+          "title": "Deck Builders in Palatka, FL | Mr & Mrs Outdoor Living",
+          "description": "Professional deck builders and installation contractors serving Palatka, FL with durable, stylish outdoor deck solutions."
+        },
+        "h1Title": "Custom Deck Builders In Palatka, Florida",
+        "h2Title": "Custom Deck Builders & Contractors In Palatka And Putnam County",
+        "intro": "Professional deck builders and installation contractors serving Palatka with durable, stylish outdoor deck solutions.",
+        "headingIntro": "Custom Deck Builders & Contractors In Palatka",
+        "paragraphIntro": "Our deck builders design and construct composite and wood decks for Palatka homes, delivering long-lasting outdoor structures tailored to your home's layout, lifestyle, and Florida's demanding climate.",
+        "imagenIntro1": {
+          "alt": "Rectangular pool with travertine paver deck, tall palms and a putting green beyond."
+        },
+        "imagenIntro2": {
+          "alt": "Travertine patio with a date palm, blue lounge chairs and a covered pergola with columns behind"
+        },
+        "imagenIntro3": {
+          "alt": "Ivory travertine pool deck with a bromeliad in black river rock, artificial turf and a pergola-style patio cover"
+        },
+        "heading3DRendering": "We Design The Deck For Your Layout",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read testimonials from Florida homeowners who value the durability, comfort, and lasting property value delivered by our experienced deck builders.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Palatka, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Deck Builders in Palatka, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Professional deck builders and installation contractors serving Palatka, FL with durable, stylish outdoor deck solutions.",
+            "og:image": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/deck-builders/palatka-fl",
+            "twitter:title": "Deck Builders in Palatka, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Professional deck builders and installation contractors serving Palatka, FL with durable, stylish outdoor deck solutions.",
+            "twitter:image": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Palatka",
+              "areaServed": {
+                "name": "Palatka"
+              },
+              "description": "Professional deck builders and installation contractors serving Palatka, FL with durable, stylish outdoor deck solutions."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/deck-builders",
+        "condado": "/services/pool-builders/putnam-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/palatka-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/palatka-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/palatka-fl",
+            "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/palatka-fl",
+            "nombre": "Louvered Roofs"
+          }
+        ]
+      }
+    },
+    "/services/deck-builders/cedar-key-fl": {
+      "servicio": "deck-builders",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "cedar-key-florida",
+        "name": "Cedar Key",
+        "seo": {
+          "title": "Deck Builders in Cedar Key, FL | Mr & Mrs Outdoor Living",
+          "description": "Professional deck builders and installation contractors serving Cedar Key, FL with durable, stylish outdoor deck solutions."
+        },
+        "h1Title": "Custom Deck Builders In Cedar Key, Florida",
+        "h2Title": "Custom Deck Builders & Contractors In Cedar Key And Levy County",
+        "intro": "Professional deck builders and installation contractors serving Cedar Key with durable, stylish outdoor deck solutions.",
+        "headingIntro": "Custom Deck Builders & Contractors In Cedar Key",
+        "paragraphIntro": "Our deck builders design and construct composite and wood decks for Cedar Key homes, delivering long-lasting outdoor structures tailored to your home's layout, lifestyle, and Florida's demanding climate.",
+        "imagenIntro1": {
+          "alt": "Rectangular pool with travertine paver deck, tall palms and a putting green beyond."
+        },
+        "imagenIntro2": {
+          "alt": "Travertine patio with a date palm, blue lounge chairs and a covered pergola with columns behind"
+        },
+        "imagenIntro3": {
+          "alt": "Ivory travertine pool deck with a bromeliad in black river rock, artificial turf and a pergola-style patio cover"
+        },
+        "heading3DRendering": "We Design The Deck For Your Layout",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read testimonials from Florida homeowners who value the durability, comfort, and lasting property value delivered by our experienced deck builders.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Cedar Key, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Deck Builders in Cedar Key, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Professional deck builders and installation contractors serving Cedar Key, FL with durable, stylish outdoor deck solutions.",
+            "og:image": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/deck-builders/cedar-key-fl",
+            "twitter:title": "Deck Builders in Cedar Key, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Professional deck builders and installation contractors serving Cedar Key, FL with durable, stylish outdoor deck solutions.",
+            "twitter:image": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Cedar Key",
+              "areaServed": {
+                "name": "Cedar Key"
+              },
+              "description": "Professional deck builders and installation contractors serving Cedar Key, FL with durable, stylish outdoor deck solutions."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/deck-builders",
+        "condado": "/services/pool-builders/levy-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/cedar-key-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/cedar-key-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/cedar-key-fl",
+            "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/cedar-key-fl",
+            "nombre": "Louvered Roofs"
+          }
+        ]
+      }
+    },
+    "/services/deck-builders/mcintosh-fl": {
+      "servicio": "deck-builders",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "mcintosh-florida",
+        "name": "McIntosh",
+        "seo": {
+          "title": "Deck Builders in McIntosh, FL | Mr & Mrs Outdoor Living",
+          "description": "Professional deck builders and installation contractors serving McIntosh, FL with durable, stylish outdoor deck solutions."
+        },
+        "h1Title": "Custom Deck Builders In McIntosh, Florida",
+        "h2Title": "Custom Deck Builders & Contractors In McIntosh And Marion County",
+        "intro": "Professional deck builders and installation contractors serving McIntosh with durable, stylish outdoor deck solutions.",
+        "headingIntro": "Custom Deck Builders & Contractors In McIntosh",
+        "paragraphIntro": "Our deck builders design and construct composite and wood decks for McIntosh homes, delivering long-lasting outdoor structures tailored to your home's layout, lifestyle, and Florida's demanding climate.",
+        "imagenIntro1": {
+          "alt": "Rectangular pool with travertine paver deck, tall palms and a putting green beyond."
+        },
+        "imagenIntro2": {
+          "alt": "Travertine patio with a date palm, blue lounge chairs and a covered pergola with columns behind"
+        },
+        "imagenIntro3": {
+          "alt": "Ivory travertine pool deck with a bromeliad in black river rock, artificial turf and a pergola-style patio cover"
+        },
+        "heading3DRendering": "We Design The Deck For Your Layout",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read testimonials from Florida homeowners who value the durability, comfort, and lasting property value delivered by our experienced deck builders.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in McIntosh, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Deck Builders in McIntosh, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Professional deck builders and installation contractors serving McIntosh, FL with durable, stylish outdoor deck solutions.",
+            "og:image": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/deck-builders/mcintosh-fl",
+            "twitter:title": "Deck Builders in McIntosh, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Professional deck builders and installation contractors serving McIntosh, FL with durable, stylish outdoor deck solutions.",
+            "twitter:image": "/images/banco/decks/travertine-paver-patio-lake-view-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "McIntosh",
+              "areaServed": {
+                "name": "McIntosh"
+              },
+              "description": "Professional deck builders and installation contractors serving McIntosh, FL with durable, stylish outdoor deck solutions."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/deck-builders",
+        "condado": "/services/pool-builders/marion-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/mcintosh-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/mcintosh-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/mcintosh-fl",
+            "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/mcintosh-fl",
+            "nombre": "Louvered Roofs"
           }
         ]
       }

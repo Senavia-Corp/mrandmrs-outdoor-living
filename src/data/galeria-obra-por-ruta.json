@@ -465,5 +465,111 @@
       }
     ],
     "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "servicio:deck-builders": {
+    "titulo": "Deck Project Gallery",
+    "entradilla": "Custom deck builds across Florida — paver, travertine, and composite pool deck designs.",
+    "fotos": [
+      {
+        "src": "/images/banco/decks/gray-marble-paver-driveway-angled-border-florida-01.webp",
+        "alt": "Gray marble pavers with an angled inlay along boxwood hedges and orange flowers.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0088",
+        "_proyecto": "obra-016"
+      },
+      {
+        "src": "/images/banco/decks/gray-marble-paver-driveway-curved-hedge-florida-01.webp",
+        "alt": "Curved gray marble paver driveway wrapping a clipped hedge island with a sculpted tree.",
+        "ancho": 1152,
+        "alto": 1536,
+        "pos": "50% 50%",
+        "_banco": "bi-0087",
+        "_proyecto": "obra-016"
+      },
+      {
+        "src": "/images/banco/decks/gray-marble-paver-patio-lake-view-florida-02.webp",
+        "alt": "Edge of a new gray marble paver patio beside a bamboo palm hedge and lake.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0085",
+        "_proyecto": "obra-015"
+      },
+      {
+        "src": "/images/banco/decks/porcelain-pool-deck-marble-look-turquoise-pool-florida-02.webp",
+        "alt": "Large-format marble-look porcelain pavers on a pool deck beside a turquoise pool.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0083",
+        "_proyecto": "obra-014"
+      },
+      {
+        "src": "/images/banco/decks/limestone-paver-patio-angled-border-detail-florida-01.webp",
+        "alt": "Large-format cream limestone pavers with a mitered angled border along a hedge.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0074",
+        "_proyecto": "obra-012"
+      },
+      {
+        "src": "/images/banco/decks/concrete-slab-pool-enclosure-backyard-florida-01.webp",
+        "alt": "New concrete slab beside a black screen pool enclosure under a dramatic sky.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0048",
+        "_proyecto": "obra-005"
+      },
+      {
+        "src": "/images/banco/decks/concrete-slab-large-pad-control-joints-florida-01.webp",
+        "alt": "Large rectangular concrete slab with control joints on a rural lot with black fence.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0047",
+        "_proyecto": "obra-005"
+      },
+      {
+        "src": "/images/banco/decks/concrete-patio-slab-raised-new-home-florida-02.webp",
+        "alt": "Corner view of a raised broom-finished concrete patio slab beside a blue-gray stucco house.",
+        "ancho": 1200,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0036",
+        "_proyecto": "obra-006"
+      },
+      {
+        "src": "/images/banco/decks/concrete-patio-slab-raised-new-home-florida-01.webp",
+        "alt": "Raised concrete patio slab wrapping the back porch of a new blue-gray stucco house.",
+        "ancho": 1200,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0035",
+        "_proyecto": "obra-006"
+      },
+      {
+        "src": "/images/banco/decks/concrete-patio-slab-extension-screen-room-florida-01.webp",
+        "alt": "New concrete patio slab extending along a white screen room on a two-story house.",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0034",
+        "_proyecto": null
+      },
+      {
+        "src": "/images/banco/decks/concrete-shed-pad-slab-control-joints-florida-01.webp",
+        "alt": "Square concrete pad with cross control joints poured in a wooded lot.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0039",
+        "_proyecto": null
+      }
+    ],
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
   }
 }
