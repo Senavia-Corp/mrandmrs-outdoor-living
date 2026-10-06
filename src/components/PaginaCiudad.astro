@@ -228,7 +228,11 @@ const [P_ANTES_CON_BANDA, P_DESPUES] = partirPorElCarrusel(b0, `${RUTA} B[0]`);
  *
  * La banda es la ULTIMA seccion de `P_ANTES` (la pinta `conBandaGaleria`, que exige que salga
  * una sola vez), asi que se corta por su apertura y se exige que no quede nada detras de su
- * cierre: si la plantilla cambia de forma, revienta el build en vez de mover otra cosa. */
+ * cierre: si la plantilla cambia de forma, revienta el build en vez de mover otra cosa.
+ *
+ * ORDEN-CIUDADES-2 (Sebastian, 6-oct-2026): el corte sigue IGUAL, pero la banda ya no se pinta
+ * detras de la FAQ sino delante, pegada al 3D. El panel de servicios si sigue debajo de la FAQ.
+ * Ver la nota ORDEN-CIUDADES-2 en el cuerpo. */
 const [P_ANTES, BANDA] = partirEn(P_ANTES_CON_BANDA, '<section class="animated-divs-section">', `${RUTA} banda`);
 if (!BANDA.trimEnd().endsWith('</section>') || BANDA.indexOf('<section', 1) >= 0) {
   throw new Error(`${slug}: la banda «Project Gallery» ya no es la ultima seccion de P_ANTES`);
@@ -383,7 +387,18 @@ const SEO = FAQ
       OJO, QUE ESTO MATIZA SEO-REMEDIACION (4-oct): la banda y el panel siguen DETRAS de la FAQ,
       pero vuelven a quedar por ENCIMA de las resenas y la obra. Es el orden que pidio Sebastian
       seccion por seccion; se deja dicho para que nadie lo «arregle» de vuelta. */}
-  <InversionCore ruta={RUTA} />
+  {/* ORDEN-CIUDADES-2 (Sebastian, 6-oct-2026): «PROJECT GALLERY» SUBE, «POOL COST» BAJA.
+      Detras del 3D el tramo queda banda «Project Gallery» -> FAQ -> inversion -> panel de
+      servicios. Son las mismas cuatro piezas que fijo ORDEN-CIUDADES, cambiadas de sitio: ni
+      marcado, ni CSS, ni corte nuevo (el de `BANDA` sigue igual, solo cambia donde se pinta).
+      Sin FAQ queda banda -> inversion; los servicios `sin3d` arrancan el tramo en la banda.
+
+      OJO, QUE ESTO MATIZA LAS DOS NOTAS ANTERIORES: la banda vuelve a ir por ENCIMA de la FAQ
+      -lo contrario de lo que fijo SEO-REMEDIACION (4-oct)- por decision de Sebastian, y la
+      inversion deja de ir pegada al 3D. El panel de los 14 servicios SIGUE debajo de la FAQ. Es
+      el orden vigente; el que lo «arregle» de vuelta a cualquiera de los dos anteriores rompe
+      `check-estructura-ciudades.mjs`, que lo afirma. */}
+  <Fragment set:html={BANDA} />
   {/* LA FAQ, QUE ESTAS RUTAS NO TENIAN. Marcado de acordeon de la casa: `Interacciones.astro`
       recorre TODOS los `.w-dropdown` del documento y les pone rol, `tabindex`, `aria-expanded`,
       `aria-controls` y teclado. NO se copia el `data-w-id` de las fichas de `/services/`: ese
@@ -433,10 +448,11 @@ const SEO = FAQ
       </div>
     </section>
   )}
-  {/* SEO-REMEDIACION (Sebastian, 4-oct-2026): la banda «Project Gallery» y el panel de servicios
-       bajan aqui, detras de la FAQ (ver el corte de `BANDA` arriba). Primero la banda y luego el
-       panel, el mismo orden que tenian entre si. */}
-  <Fragment set:html={BANDA} />
+  {/* ORDEN-CIUDADES-2: la inversion, detras de la FAQ. Sin entrada en el JSON no pinta nada. */}
+  <InversionCore ruta={RUTA} />
+  {/* SEO-REMEDIACION (Sebastian, 4-oct-2026): el panel de servicios baja aqui, detras de la FAQ
+       -y desde ORDEN-CIUDADES-2 tambien detras de la inversion-. La banda «Project Gallery», que
+       bajaba con el, va desde el 6-oct delante de la FAQ (ver ORDEN-CIUDADES-2 arriba). */}
   {CAP && (
     /* EL PANEL DE SERVICIOS DE LA HOME, ENTRE «Pool Features» Y LOS TESTIMONIOS (R21, pedido de
        Sebastian 18-sep-2026). El sitio que pide es EXACTAMENTE la juntura que F2 ya dejo abierta
