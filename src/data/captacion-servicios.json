@@ -6171,6 +6171,934 @@
     },
     "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
   },
+  "/services/louvered-roofs/hollywood-fl": {
+    "heroe": {
+      "apoyo": "Motorized louvered roof builders and installation contractors serving Hollywood, offering adjustable shade and weather protection.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered for Florida wind",
+          "texto": "Reinforced extruded aluminum and marine-grade stainless hardware, with wind-load engineering documentation."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permitted and inspected",
+          "texto": "Installed to local building codes, and the electrical additions are permitted too."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "Motorized Louvered Roof",
+        "Manual Adjustable Louvers"
+      ],
+      "proyectoPorDefecto": "Motorized Louvered Roof",
+      "nombre": "Hollywood Louvered Roof Form",
+      "aviso": "Hollywood louvered roof lead",
+      "ga4": "louver",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We size the system for the opening and take it through permits and inspection.",
+        "You get the scope in writing and a fixed project price before anything is ordered."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my louvered roof cost?",
+      "texto": "Every louvered roof is priced from the span it has to cover, whether it is attached or freestanding, the automation it carries and the site conditions. Tell us about the opening and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+      "alt": "White attached louvered roof spanning the back of a two-story home behind a freeform pool",
+      "ancho": 1600,
+      "alto": 917,
+      "_banco": "bi-0223"
+    },
+    "faq": {
+      "titulo": "Hollywood Louvered Roof System FAQs",
+      "entradilla": "Have questions about motorized louvered roof system installation in Hollywood, Florida? Our licensed outdoor living specialists answer your top questions here.",
+      "anade": [
+        {
+          "pregunta": "How much does a louvered roof cost in Hollywood?",
+          "respuesta": "Every louvered roof is priced from the span it has to cover, whether it is attached or freestanding, the automation it carries and the site conditions. Tell us about the opening and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Are louvered roof systems hurricane-rated in Florida?",
+          "respuesta": "Yes. Louvered roof systems use reinforced extruded aluminum and marine-grade stainless steel hardware, engineered to withstand Florida's high winds. Our systems carry wind-load engineering documentation and are installed to meet local building codes — including HVHZ requirements where applicable in South Florida."
+        },
+        {
+          "pregunta": "Can lighting and fans be added to a louvered roof?",
+          "respuesta": "Yes. Motorized louvered roof systems can integrate recessed LED lighting, ceiling fans, and radiant heating elements directly into the structure. Electrical work is coordinated during installation, and all additions are permitted through local Florida building departments and HOA architectural review boards where required."
+        },
+        {
+          "pregunta": "Which office permits a louvered roof in Hollywood?",
+          "respuesta": "In Hollywood, the city's Building Division reviews every building permit application for compliance with local, state and federal building regulations, and all new applications are submitted through the city's Accela Citizen Access portal. The city's own permit FAQ counts a patio deck, a fence, a retaining wall, a shed, a gazebo, a trellis, a fountain, a spa or a pool as a structure. Broward is one of the two counties, with Miami-Dade, that the Florida Building Code defines as its High-Velocity Hurricane Zone. We install to local building codes, and the electrical additions are permitted too.",
+          "fuentes": [
+            {
+              "nombre": "City of Hollywood: Building Division",
+              "url": "https://www.hollywoodfl.org/328/Building"
+            },
+            {
+              "nombre": "City of Hollywood: permit FAQ",
+              "url": "https://hollywoodfl.org/m/faq?cat=16#question-356"
+            },
+            {
+              "nombre": "Broward County: Florida Building Code roof packet (HVHZ definition)",
+              "url": "https://www.broward.org/Building/Documents/2020%20FBC%20Roof%20Packet.pdf"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/louvered-roofs/weston-fl": {
+    "heroe": {
+      "apoyo": "Motorized louvered roof builders and installation contractors serving Weston, offering adjustable shade and weather protection.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered for Florida wind",
+          "texto": "Reinforced extruded aluminum and marine-grade stainless hardware, with wind-load engineering documentation."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permitted and inspected",
+          "texto": "Installed to local building codes, and the electrical additions are permitted too."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "Motorized Louvered Roof",
+        "Manual Adjustable Louvers"
+      ],
+      "proyectoPorDefecto": "Motorized Louvered Roof",
+      "nombre": "Weston Louvered Roof Form",
+      "aviso": "Weston louvered roof lead",
+      "ga4": "louver",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We size the system for the opening and take it through permits and inspection.",
+        "You get the scope in writing and a fixed project price before anything is ordered."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my louvered roof cost?",
+      "texto": "Every louvered roof is priced from the span it has to cover, whether it is attached or freestanding, the automation it carries and the site conditions. Tell us about the opening and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+      "alt": "White attached louvered roof spanning the back of a two-story home behind a freeform pool",
+      "ancho": 1600,
+      "alto": 917,
+      "_banco": "bi-0223"
+    },
+    "faq": {
+      "titulo": "Weston Louvered Roof System FAQs",
+      "entradilla": "Have questions about motorized louvered roof system installation in Weston, Florida? Our licensed outdoor living specialists answer your top questions here.",
+      "anade": [
+        {
+          "pregunta": "How much does a louvered roof cost in Weston?",
+          "respuesta": "Every louvered roof is priced from the span it has to cover, whether it is attached or freestanding, the automation it carries and the site conditions. Tell us about the opening and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Are louvered roof systems hurricane-rated in Florida?",
+          "respuesta": "Yes. Louvered roof systems use reinforced extruded aluminum and marine-grade stainless steel hardware, engineered to withstand Florida's high winds. Our systems carry wind-load engineering documentation and are installed to meet local building codes — including HVHZ requirements where applicable in South Florida."
+        },
+        {
+          "pregunta": "Can lighting and fans be added to a louvered roof?",
+          "respuesta": "Yes. Motorized louvered roof systems can integrate recessed LED lighting, ceiling fans, and radiant heating elements directly into the structure. Electrical work is coordinated during installation, and all additions are permitted through local Florida building departments and HOA architectural review boards where required."
+        },
+        {
+          "pregunta": "Which office permits a louvered roof in Weston?",
+          "respuesta": "In Weston, Building Code Services enforces the Florida Building Code and Broward County regulations, and the city names C.A.P. Government, Inc. as its contracted agent for those services. The city also publishes a page on building permit exemptions for residential properties. The city has explained why tents and gazebos need a permit: Florida's wind-load requirements are strict because of hurricanes and severe thunderstorms, and an unanchored gazebo can become airborne. Broward is one of the two counties, with Miami-Dade, that the Florida Building Code defines as its High-Velocity Hurricane Zone. We install to local building codes, and the electrical additions are permitted too.",
+          "fuentes": [
+            {
+              "nombre": "City of Weston: Building Code Services",
+              "url": "https://www.westonfl.org/government/building-code-services"
+            },
+            {
+              "nombre": "City of Weston: permit exemptions for residential properties",
+              "url": "https://www.westonfl.org/government/building-code-services/building-permit-exemptions-for-residential-properties"
+            },
+            {
+              "nombre": "City of Weston: why a permit is needed for tents and gazebos",
+              "url": "https://www.westonfl.org/Home/Components/News/News/1720"
+            },
+            {
+              "nombre": "Broward County: Florida Building Code roof packet (HVHZ definition)",
+              "url": "https://www.broward.org/Building/Documents/2020%20FBC%20Roof%20Packet.pdf"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/louvered-roofs/dania-beach-fl": {
+    "heroe": {
+      "apoyo": "Motorized louvered roof builders and installation contractors serving Dania Beach, offering adjustable shade and weather protection.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered for Florida wind",
+          "texto": "Reinforced extruded aluminum and marine-grade stainless hardware, with wind-load engineering documentation."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permitted and inspected",
+          "texto": "Installed to local building codes, and the electrical additions are permitted too."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "Motorized Louvered Roof",
+        "Manual Adjustable Louvers"
+      ],
+      "proyectoPorDefecto": "Motorized Louvered Roof",
+      "nombre": "Dania Beach Louvered Roof Form",
+      "aviso": "Dania Beach louvered roof lead",
+      "ga4": "louver",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We size the system for the opening and take it through permits and inspection.",
+        "You get the scope in writing and a fixed project price before anything is ordered."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my louvered roof cost?",
+      "texto": "Every louvered roof is priced from the span it has to cover, whether it is attached or freestanding, the automation it carries and the site conditions. Tell us about the opening and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+      "alt": "White attached louvered roof spanning the back of a two-story home behind a freeform pool",
+      "ancho": 1600,
+      "alto": 917,
+      "_banco": "bi-0223"
+    },
+    "faq": {
+      "titulo": "Dania Beach Louvered Roof System FAQs",
+      "entradilla": "Have questions about motorized louvered roof system installation in Dania Beach, Florida? Our licensed outdoor living specialists answer your top questions here.",
+      "anade": [
+        {
+          "pregunta": "How much does a louvered roof cost in Dania Beach?",
+          "respuesta": "Every louvered roof is priced from the span it has to cover, whether it is attached or freestanding, the automation it carries and the site conditions. Tell us about the opening and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Are louvered roof systems hurricane-rated in Florida?",
+          "respuesta": "Yes. Louvered roof systems use reinforced extruded aluminum and marine-grade stainless steel hardware, engineered to withstand Florida's high winds. Our systems carry wind-load engineering documentation and are installed to meet local building codes — including HVHZ requirements where applicable in South Florida."
+        },
+        {
+          "pregunta": "Can lighting and fans be added to a louvered roof?",
+          "respuesta": "Yes. Motorized louvered roof systems can integrate recessed LED lighting, ceiling fans, and radiant heating elements directly into the structure. Electrical work is coordinated during installation, and all additions are permitted through local Florida building departments and HOA architectural review boards where required."
+        },
+        {
+          "pregunta": "Which office permits a louvered roof in Dania Beach?",
+          "respuesta": "In Dania Beach, the city's Building Division enforces the building codes for new construction, additions, remodeling and interior renovation, and accepts and processes the building permit applications. The city's own FAQ counts a patio, a deck, a fence, a retaining wall, a shed, a gazebo, a trellis, a fountain, a spa or a pool as a structure, and its beachfront is part of Broward's Segment III. Broward is one of the two counties, with Miami-Dade, that the Florida Building Code defines as its High-Velocity Hurricane Zone. We install to local building codes, and the electrical additions are permitted too.",
+          "fuentes": [
+            {
+              "nombre": "City of Dania Beach: Building Division",
+              "url": "https://www.daniabeachfl.gov/125/Building-Division"
+            },
+            {
+              "nombre": "City of Dania Beach: permit FAQ",
+              "url": "https://daniabeachfl.gov/Faq.aspx?QID=43"
+            },
+            {
+              "nombre": "Broward County beach segments",
+              "url": "https://www.broward.org/Beaches/Pages/Projects.aspx"
+            },
+            {
+              "nombre": "Broward County: Florida Building Code roof packet (HVHZ definition)",
+              "url": "https://www.broward.org/Building/Documents/2020%20FBC%20Roof%20Packet.pdf"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/louvered-roofs/west-palm-beach-fl": {
+    "heroe": {
+      "apoyo": "Motorized louvered roof builders and installation contractors serving West Palm Beach, offering adjustable shade and weather protection.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered for Florida wind",
+          "texto": "Reinforced extruded aluminum and marine-grade stainless hardware, with wind-load engineering documentation."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permitted and inspected",
+          "texto": "Installed to local building codes, and the electrical additions are permitted too."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "Motorized Louvered Roof",
+        "Manual Adjustable Louvers"
+      ],
+      "proyectoPorDefecto": "Motorized Louvered Roof",
+      "nombre": "West Palm Beach Louvered Roof Form",
+      "aviso": "West Palm Beach louvered roof lead",
+      "ga4": "louver",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We size the system for the opening and take it through permits and inspection.",
+        "You get the scope in writing and a fixed project price before anything is ordered."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my louvered roof cost?",
+      "texto": "Every louvered roof is priced from the span it has to cover, whether it is attached or freestanding, the automation it carries and the site conditions. Tell us about the opening and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+      "alt": "White attached louvered roof spanning the back of a two-story home behind a freeform pool",
+      "ancho": 1600,
+      "alto": 917,
+      "_banco": "bi-0223"
+    },
+    "faq": {
+      "titulo": "West Palm Beach Louvered Roof System FAQs",
+      "entradilla": "Have questions about motorized louvered roof system installation in West Palm Beach, Florida? Our licensed outdoor living specialists answer your top questions here.",
+      "anade": [
+        {
+          "pregunta": "How much does a louvered roof cost in West Palm Beach?",
+          "respuesta": "Every louvered roof is priced from the span it has to cover, whether it is attached or freestanding, the automation it carries and the site conditions. Tell us about the opening and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Are louvered roof systems hurricane-rated in Florida?",
+          "respuesta": "Yes. Louvered roof systems use reinforced extruded aluminum and marine-grade stainless steel hardware, engineered to withstand Florida's high winds. Our systems carry wind-load engineering documentation and are installed to meet local building codes — including HVHZ requirements where applicable in South Florida."
+        },
+        {
+          "pregunta": "Can lighting and fans be added to a louvered roof?",
+          "respuesta": "Yes. Motorized louvered roof systems can integrate recessed LED lighting, ceiling fans, and radiant heating elements directly into the structure. Electrical work is coordinated during installation, and all additions are permitted through local Florida building departments and HOA architectural review boards where required."
+        },
+        {
+          "pregunta": "Which office permits a louvered roof in West Palm Beach?",
+          "respuesta": "In West Palm Beach, the Building Division of Development Services processes and reviews building permit applications and oversees the inspections from City Hall at 401 Clematis Street. The city's permit FAQ states that a shed needs a permit and has to meet the zoning setbacks and resist hurricane wind loads, and that its exemption for minor residential work does not cover structural work or fences. Palm Beach County's Building Division publishes ultimate design wind speeds of 140 to 180 mph for the county, depending on the building's risk category. We install to local building codes, and the electrical additions are permitted too.",
+          "fuentes": [
+            {
+              "nombre": "City of West Palm Beach: Building Division",
+              "url": "https://www.wpb.org/departments/development-services/building-division"
+            },
+            {
+              "nombre": "City of West Palm Beach: permits FAQ",
+              "url": "https://www.wpb.org/Departments/Development-Services/Building-Division/Permits-FAQ"
+            },
+            {
+              "nombre": "Palm Beach County: wind speeds",
+              "url": "https://discover.pbcgov.org/pzb/building/pages/wind-speeds.aspx"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/louvered-roofs/boca-raton-fl": {
+    "heroe": {
+      "apoyo": "Motorized louvered roof builders and installation contractors serving Boca Raton, offering adjustable shade and weather protection.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered for Florida wind",
+          "texto": "Reinforced extruded aluminum and marine-grade stainless hardware, with wind-load engineering documentation."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permitted and inspected",
+          "texto": "Installed to local building codes, and the electrical additions are permitted too."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "Motorized Louvered Roof",
+        "Manual Adjustable Louvers"
+      ],
+      "proyectoPorDefecto": "Motorized Louvered Roof",
+      "nombre": "Boca Raton Louvered Roof Form",
+      "aviso": "Boca Raton louvered roof lead",
+      "ga4": "louver",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We size the system for the opening and take it through permits and inspection.",
+        "You get the scope in writing and a fixed project price before anything is ordered."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my louvered roof cost?",
+      "texto": "Every louvered roof is priced from the span it has to cover, whether it is attached or freestanding, the automation it carries and the site conditions. Tell us about the opening and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+      "alt": "White attached louvered roof spanning the back of a two-story home behind a freeform pool",
+      "ancho": 1600,
+      "alto": 917,
+      "_banco": "bi-0223"
+    },
+    "faq": {
+      "titulo": "Boca Raton Louvered Roof System FAQs",
+      "entradilla": "Have questions about motorized louvered roof system installation in Boca Raton, Florida? Our licensed outdoor living specialists answer your top questions here.",
+      "anade": [
+        {
+          "pregunta": "How much does a louvered roof cost in Boca Raton?",
+          "respuesta": "Every louvered roof is priced from the span it has to cover, whether it is attached or freestanding, the automation it carries and the site conditions. Tell us about the opening and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Are louvered roof systems hurricane-rated in Florida?",
+          "respuesta": "Yes. Louvered roof systems use reinforced extruded aluminum and marine-grade stainless steel hardware, engineered to withstand Florida's high winds. Our systems carry wind-load engineering documentation and are installed to meet local building codes — including HVHZ requirements where applicable in South Florida."
+        },
+        {
+          "pregunta": "Can lighting and fans be added to a louvered roof?",
+          "respuesta": "Yes. Motorized louvered roof systems can integrate recessed LED lighting, ceiling fans, and radiant heating elements directly into the structure. Electrical work is coordinated during installation, and all additions are permitted through local Florida building departments and HOA architectural review boards where required."
+        },
+        {
+          "pregunta": "Which office permits a louvered roof in Boca Raton?",
+          "respuesta": "In Boca Raton, the city's swimming pool permit package lists its Building Administration at 200 NW 2nd Avenue. The city's beachfront includes a 3.8-mile segment that the Florida Department of Environmental Protection lists as critically eroded. The city treats a screen enclosure as an accessory structure with its own permit application and permit number, and its single-family setbacks vary by zoning district. Palm Beach County's Building Division publishes ultimate design wind speeds of 140 to 180 mph for the county, depending on the building's risk category. We install to local building codes, and the electrical additions are permitted too.",
+          "fuentes": [
+            {
+              "nombre": "City of Boca Raton: swimming pool permit",
+              "url": "https://myboca.us/DocumentCenter/View/258/Swimming-Pool-PDF"
+            },
+            {
+              "nombre": "Florida DEP: critically eroded beaches report",
+              "url": "https://floridadep.gov/sites/default/files/CriticalErosionReport.pdf"
+            },
+            {
+              "nombre": "City of Boca Raton: permit FAQ",
+              "url": "https://myboca.us/m/faq?cat=0#question-91"
+            },
+            {
+              "nombre": "City of Boca Raton: setback information",
+              "url": "https://www.myboca.us/1586/Setback-Information"
+            },
+            {
+              "nombre": "Palm Beach County: wind speeds",
+              "url": "https://discover.pbcgov.org/pzb/building/pages/wind-speeds.aspx"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/louvered-roofs/delray-beach-fl": {
+    "heroe": {
+      "apoyo": "Motorized louvered roof builders and installation contractors serving Delray Beach, offering adjustable shade and weather protection.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered for Florida wind",
+          "texto": "Reinforced extruded aluminum and marine-grade stainless hardware, with wind-load engineering documentation."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permitted and inspected",
+          "texto": "Installed to local building codes, and the electrical additions are permitted too."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "Motorized Louvered Roof",
+        "Manual Adjustable Louvers"
+      ],
+      "proyectoPorDefecto": "Motorized Louvered Roof",
+      "nombre": "Delray Beach Louvered Roof Form",
+      "aviso": "Delray Beach louvered roof lead",
+      "ga4": "louver",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We size the system for the opening and take it through permits and inspection.",
+        "You get the scope in writing and a fixed project price before anything is ordered."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my louvered roof cost?",
+      "texto": "Every louvered roof is priced from the span it has to cover, whether it is attached or freestanding, the automation it carries and the site conditions. Tell us about the opening and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+      "alt": "White attached louvered roof spanning the back of a two-story home behind a freeform pool",
+      "ancho": 1600,
+      "alto": 917,
+      "_banco": "bi-0223"
+    },
+    "faq": {
+      "titulo": "Delray Beach Louvered Roof System FAQs",
+      "entradilla": "Have questions about motorized louvered roof system installation in Delray Beach, Florida? Our licensed outdoor living specialists answer your top questions here.",
+      "anade": [
+        {
+          "pregunta": "How much does a louvered roof cost in Delray Beach?",
+          "respuesta": "Every louvered roof is priced from the span it has to cover, whether it is attached or freestanding, the automation it carries and the site conditions. Tell us about the opening and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Are louvered roof systems hurricane-rated in Florida?",
+          "respuesta": "Yes. Louvered roof systems use reinforced extruded aluminum and marine-grade stainless steel hardware, engineered to withstand Florida's high winds. Our systems carry wind-load engineering documentation and are installed to meet local building codes — including HVHZ requirements where applicable in South Florida."
+        },
+        {
+          "pregunta": "Can lighting and fans be added to a louvered roof?",
+          "respuesta": "Yes. Motorized louvered roof systems can integrate recessed LED lighting, ceiling fans, and radiant heating elements directly into the structure. Electrical work is coordinated during installation, and all additions are permitted through local Florida building departments and HOA architectural review boards where required."
+        },
+        {
+          "pregunta": "Which office permits a louvered roof in Delray Beach?",
+          "respuesta": "In Delray Beach, the Building Division of Development Services handles plan review, permitting and inspection of construction from 100 NW 1st Avenue, and residential permit applications for pools, decks, pathways or any other improvement that adds impervious area need a property survey no more than 12 months old. The city's beach includes the 2.9-mile segment where the federally authorized Delray Beach Shore Protection Project was completed. Palm Beach County's Building Division publishes ultimate design wind speeds of 140 to 180 mph for the county, depending on the building's risk category. We install to local building codes, and the electrical additions are permitted too.",
+          "fuentes": [
+            {
+              "nombre": "City of Delray Beach: Building Division",
+              "url": "https://delraybeachfl.gov/government/city-departments/development-services/building"
+            },
+            {
+              "nombre": "City of Delray Beach: building FAQ",
+              "url": "https://www.delraybeachfl.gov/government/city-departments/development-services/building/faq"
+            },
+            {
+              "nombre": "Florida DEP: critically eroded beaches report",
+              "url": "https://floridadep.gov/sites/default/files/CriticalErosionReport.pdf"
+            },
+            {
+              "nombre": "Palm Beach County: wind speeds",
+              "url": "https://discover.pbcgov.org/pzb/building/pages/wind-speeds.aspx"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/louvered-roofs/gulf-stream-fl": {
+    "heroe": {
+      "apoyo": "Motorized louvered roof builders and installation contractors serving Gulf Stream, offering adjustable shade and weather protection.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered for Florida wind",
+          "texto": "Reinforced extruded aluminum and marine-grade stainless hardware, with wind-load engineering documentation."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permitted and inspected",
+          "texto": "Installed to local building codes, and the electrical additions are permitted too."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "Motorized Louvered Roof",
+        "Manual Adjustable Louvers"
+      ],
+      "proyectoPorDefecto": "Motorized Louvered Roof",
+      "nombre": "Gulf Stream Louvered Roof Form",
+      "aviso": "Gulf Stream louvered roof lead",
+      "ga4": "louver",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We size the system for the opening and take it through permits and inspection.",
+        "You get the scope in writing and a fixed project price before anything is ordered."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my louvered roof cost?",
+      "texto": "Every louvered roof is priced from the span it has to cover, whether it is attached or freestanding, the automation it carries and the site conditions. Tell us about the opening and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+      "alt": "White attached louvered roof spanning the back of a two-story home behind a freeform pool",
+      "ancho": 1600,
+      "alto": 917,
+      "_banco": "bi-0223"
+    },
+    "faq": {
+      "titulo": "Gulf Stream Louvered Roof System FAQs",
+      "entradilla": "Have questions about motorized louvered roof system installation in Gulf Stream, Florida? Our licensed outdoor living specialists answer your top questions here.",
+      "anade": [
+        {
+          "pregunta": "How much does a louvered roof cost in Gulf Stream?",
+          "respuesta": "Every louvered roof is priced from the span it has to cover, whether it is attached or freestanding, the automation it carries and the site conditions. Tell us about the opening and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Are louvered roof systems hurricane-rated in Florida?",
+          "respuesta": "Yes. Louvered roof systems use reinforced extruded aluminum and marine-grade stainless steel hardware, engineered to withstand Florida's high winds. Our systems carry wind-load engineering documentation and are installed to meet local building codes — including HVHZ requirements where applicable in South Florida."
+        },
+        {
+          "pregunta": "Can lighting and fans be added to a louvered roof?",
+          "respuesta": "Yes. Motorized louvered roof systems can integrate recessed LED lighting, ceiling fans, and radiant heating elements directly into the structure. Electrical work is coordinated during installation, and all additions are permitted through local Florida building departments and HOA architectural review boards where required."
+        },
+        {
+          "pregunta": "Which office permits a louvered roof in Gulf Stream?",
+          "respuesta": "In Gulf Stream, building permits and inspections are handled by the Town of Highland Beach under an interlocal agreement, through the Highland Beach permit portal, while Gulf Stream retains all zoning authority and its own design reviews: accessory buildings and structures and minor renovations affecting less than 300 square feet are approved or denied by Town staff, and the next level of review goes to the Architectural Review and Planning Board. Palm Beach County's Building Division publishes ultimate design wind speeds of 140 to 180 mph for the county, depending on the building's risk category. We install to local building codes, and the electrical additions are permitted too.",
+          "fuentes": [
+            {
+              "nombre": "Town of Gulf Stream: permits",
+              "url": "https://www.gulf-stream.org/permits/"
+            },
+            {
+              "nombre": "Town of Gulf Stream: approvals",
+              "url": "https://www.gulf-stream.org/approvals/"
+            },
+            {
+              "nombre": "Palm Beach County: wind speeds",
+              "url": "https://discover.pbcgov.org/pzb/building/pages/wind-speeds.aspx"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/louvered-roofs/manalapan-fl": {
+    "heroe": {
+      "apoyo": "Motorized louvered roof builders and installation contractors serving Manalapan, offering adjustable shade and weather protection.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "South Florida",
+        "North Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered for Florida wind",
+          "texto": "Reinforced extruded aluminum and marine-grade stainless hardware, with wind-load engineering documentation."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permitted and inspected",
+          "texto": "Installed to local building codes, and the electrical additions are permitted too."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "Motorized Louvered Roof",
+        "Manual Adjustable Louvers"
+      ],
+      "proyectoPorDefecto": "Motorized Louvered Roof",
+      "nombre": "Manalapan Louvered Roof Form",
+      "aviso": "Manalapan louvered roof lead",
+      "ga4": "louver",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We size the system for the opening and take it through permits and inspection.",
+        "You get the scope in writing and a fixed project price before anything is ordered."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my louvered roof cost?",
+      "texto": "Every louvered roof is priced from the span it has to cover, whether it is attached or freestanding, the automation it carries and the site conditions. Tell us about the opening and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+      "alt": "White attached louvered roof spanning the back of a two-story home behind a freeform pool",
+      "ancho": 1600,
+      "alto": 917,
+      "_banco": "bi-0223"
+    },
+    "faq": {
+      "titulo": "Manalapan Louvered Roof System FAQs",
+      "entradilla": "Have questions about motorized louvered roof system installation in Manalapan, Florida? Our licensed outdoor living specialists answer your top questions here.",
+      "anade": [
+        {
+          "pregunta": "How much does a louvered roof cost in Manalapan?",
+          "respuesta": "Every louvered roof is priced from the span it has to cover, whether it is attached or freestanding, the automation it carries and the site conditions. Tell us about the opening and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Are louvered roof systems hurricane-rated in Florida?",
+          "respuesta": "Yes. Louvered roof systems use reinforced extruded aluminum and marine-grade stainless steel hardware, engineered to withstand Florida's high winds. Our systems carry wind-load engineering documentation and are installed to meet local building codes — including HVHZ requirements where applicable in South Florida."
+        },
+        {
+          "pregunta": "Can lighting and fans be added to a louvered roof?",
+          "respuesta": "Yes. Motorized louvered roof systems can integrate recessed LED lighting, ceiling fans, and radiant heating elements directly into the structure. Electrical work is coordinated during installation, and all additions are permitted through local Florida building departments and HOA architectural review boards where required."
+        },
+        {
+          "pregunta": "Which office permits a louvered roof in Manalapan?",
+          "respuesta": "In Manalapan, the Town's Building Department covers plan review, architectural review and permitting, and any change to the exterior of a residence, from additions, shutters and fences to a new exterior color, landscaping or a seawall, must first be approved by the Architectural Commission. The Town's coastline includes the 1.4 miles that Hurricane Sandy eroded in 2012, as recorded by the Florida Department of Environmental Protection. Palm Beach County's Building Division publishes ultimate design wind speeds of 140 to 180 mph for the county, depending on the building's risk category. We install to local building codes, and the electrical additions are permitted too.",
+          "fuentes": [
+            {
+              "nombre": "Town of Manalapan: Building Department",
+              "url": "https://manalapan.org/building-department/"
+            },
+            {
+              "nombre": "Town of Manalapan: Architectural Commission",
+              "url": "https://manalapan.org/?p=221"
+            },
+            {
+              "nombre": "Florida DEP: critically eroded beaches report",
+              "url": "https://floridadep.gov/sites/default/files/CriticalErosionReport.pdf"
+            },
+            {
+              "nombre": "Palm Beach County: wind speeds",
+              "url": "https://discover.pbcgov.org/pzb/building/pages/wind-speeds.aspx"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
   "/services/pool-builders/ocala-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Ocala homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
