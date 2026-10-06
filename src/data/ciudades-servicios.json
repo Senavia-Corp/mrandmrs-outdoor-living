@@ -228,6 +228,38 @@
           {
             "slug": "mcintosh-florida",
             "condado": "Marion"
+          },
+          {
+            "slug": "hollywood-florida",
+            "condado": "Broward"
+          },
+          {
+            "slug": "weston-florida",
+            "condado": "Broward"
+          },
+          {
+            "slug": "dania-beach-florida",
+            "condado": "Broward"
+          },
+          {
+            "slug": "west-palm-beach-florida",
+            "condado": "Palm Beach"
+          },
+          {
+            "slug": "boca-raton-florida",
+            "condado": "Palm Beach"
+          },
+          {
+            "slug": "delray-beach-florida",
+            "condado": "Palm Beach"
+          },
+          {
+            "slug": "gulf-stream-florida",
+            "condado": "Palm Beach"
+          },
+          {
+            "slug": "manalapan-florida",
+            "condado": "Palm Beach"
           }
         ]
       }
@@ -778,6 +810,10 @@
           {
             "href": "/services/pergola-builders/hollywood-fl",
             "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/hollywood-fl",
+            "nombre": "Louvered Roofs"
           }
         ]
       }
@@ -854,6 +890,10 @@
           {
             "href": "/services/pergola-builders/dania-beach-fl",
             "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/dania-beach-fl",
+            "nombre": "Louvered Roofs"
           }
         ]
       }
@@ -930,6 +970,10 @@
           {
             "href": "/services/pergola-builders/west-palm-beach-fl",
             "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/west-palm-beach-fl",
+            "nombre": "Louvered Roofs"
           }
         ]
       }
@@ -1006,6 +1050,10 @@
           {
             "href": "/services/pergola-builders/boca-raton-fl",
             "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/boca-raton-fl",
+            "nombre": "Louvered Roofs"
           }
         ]
       }
@@ -1154,6 +1202,10 @@
           {
             "href": "/services/pergola-builders/gulf-stream-fl",
             "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/gulf-stream-fl",
+            "nombre": "Louvered Roofs"
           }
         ]
       }
@@ -1230,6 +1282,10 @@
           {
             "href": "/services/pergola-builders/manalapan-fl",
             "nombre": "Pergola Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/manalapan-fl",
+            "nombre": "Louvered Roofs"
           }
         ]
       }
@@ -1730,6 +1786,10 @@
           {
             "href": "/services/pool-remodeling/hollywood-fl",
             "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/louvered-roofs/hollywood-fl",
+            "nombre": "Louvered Roofs"
           }
         ]
       }
@@ -1806,6 +1866,10 @@
           {
             "href": "/services/pool-builders/weston-fl",
             "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/weston-fl",
+            "nombre": "Louvered Roofs"
           }
         ]
       }
@@ -1886,6 +1950,10 @@
           {
             "href": "/services/pool-remodeling/dania-beach-fl",
             "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/louvered-roofs/dania-beach-fl",
+            "nombre": "Louvered Roofs"
           }
         ]
       }
@@ -1966,6 +2034,10 @@
           {
             "href": "/services/pool-remodeling/west-palm-beach-fl",
             "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/louvered-roofs/west-palm-beach-fl",
+            "nombre": "Louvered Roofs"
           }
         ]
       }
@@ -2046,6 +2118,10 @@
           {
             "href": "/services/pool-remodeling/boca-raton-fl",
             "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/louvered-roofs/boca-raton-fl",
+            "nombre": "Louvered Roofs"
           }
         ]
       }
@@ -2122,6 +2198,10 @@
           {
             "href": "/services/pool-builders/delray-beach-fl",
             "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/louvered-roofs/delray-beach-fl",
+            "nombre": "Louvered Roofs"
           }
         ]
       }
@@ -2202,6 +2282,10 @@
           {
             "href": "/services/pool-remodeling/gulf-stream-fl",
             "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/louvered-roofs/gulf-stream-fl",
+            "nombre": "Louvered Roofs"
           }
         ]
       }
@@ -2282,6 +2366,10 @@
           {
             "href": "/services/pool-remodeling/manalapan-fl",
             "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/louvered-roofs/manalapan-fl",
+            "nombre": "Louvered Roofs"
           }
         ]
       }
@@ -2701,6 +2789,670 @@
           },
           {
             "href": "/services/pergola-builders/mcintosh-fl",
+            "nombre": "Pergola Builders"
+          }
+        ]
+      }
+    },
+    "/services/louvered-roofs/hollywood-fl": {
+      "servicio": "louvered-roofs",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "hollywood-florida",
+        "name": "Hollywood",
+        "seo": {
+          "title": "Louvered Roofs in Hollywood, FL | Mr & Mrs Outdoor Living",
+          "description": "Motorized louvered roof builders and installation contractors serving Hollywood, FL, offering adjustable shade and weather protection."
+        },
+        "h1Title": "Motorized Louvered Roof Systems In Hollywood, Florida",
+        "h2Title": "Motorized Louvered Roof Installation Experts In Hollywood And Broward County",
+        "intro": "Motorized louvered roof builders and installation contractors serving Hollywood, offering adjustable shade and weather protection.",
+        "headingIntro": "Louvered Roof Installation In Hollywood",
+        "paragraphIntro": "We specialize in louvered roof installation for Hollywood homes, building motorized bioclimatic systems that allow homeowners to fully control sunlight, ventilation, and rain protection for true year-round outdoor comfort.",
+        "imagenIntro1": {
+          "alt": "Bronze louvered pergola over a dining area on a travertine pool deck beside a canal"
+        },
+        "imagenIntro2": {
+          "alt": "Bronze louvered pergola with closed roof over a wicker dining set on a travertine pool deck"
+        },
+        "imagenIntro3": {
+          "alt": "White louvered pergola with ceiling fan over an L-shaped white stone outdoor kitchen by a lake."
+        },
+        "heading3DRendering": "We Size The System For Your Opening",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read reviews from Florida homeowners who enjoy year-round outdoor living, enabled by our precision-engineered motorized louvered roof systems.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Hollywood, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Louvered Roofs in Hollywood, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Motorized louvered roof builders and installation contractors serving Hollywood, FL, offering adjustable shade and weather protection.",
+            "og:image": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/louvered-roofs/hollywood-fl",
+            "twitter:title": "Louvered Roofs in Hollywood, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Motorized louvered roof builders and installation contractors serving Hollywood, FL, offering adjustable shade and weather protection.",
+            "twitter:image": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Hollywood",
+              "areaServed": {
+                "name": "Hollywood"
+              },
+              "description": "Motorized louvered roof builders and installation contractors serving Hollywood, FL, offering adjustable shade and weather protection."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/louvered-roofs",
+        "condado": "/services/pool-builders/broward-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/hollywood-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/hollywood-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/hollywood-fl",
+            "nombre": "Pergola Builders"
+          }
+        ]
+      }
+    },
+    "/services/louvered-roofs/weston-fl": {
+      "servicio": "louvered-roofs",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "weston-florida",
+        "name": "Weston",
+        "seo": {
+          "title": "Louvered Roofs in Weston, FL | Mr & Mrs Outdoor Living",
+          "description": "Motorized louvered roof builders and installation contractors serving Weston, FL, offering adjustable shade and weather protection."
+        },
+        "h1Title": "Motorized Louvered Roof Systems In Weston, Florida",
+        "h2Title": "Motorized Louvered Roof Installation Experts In Weston And Broward County",
+        "intro": "Motorized louvered roof builders and installation contractors serving Weston, offering adjustable shade and weather protection.",
+        "headingIntro": "Louvered Roof Installation In Weston",
+        "paragraphIntro": "We specialize in louvered roof installation for Weston homes, building motorized bioclimatic systems that allow homeowners to fully control sunlight, ventilation, and rain protection for true year-round outdoor comfort.",
+        "imagenIntro1": {
+          "alt": "Bronze louvered pergola over a dining area on a travertine pool deck beside a canal"
+        },
+        "imagenIntro2": {
+          "alt": "Bronze louvered pergola with closed roof over a wicker dining set on a travertine pool deck"
+        },
+        "imagenIntro3": {
+          "alt": "White louvered pergola with ceiling fan over an L-shaped white stone outdoor kitchen by a lake."
+        },
+        "heading3DRendering": "We Size The System For Your Opening",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read reviews from Florida homeowners who enjoy year-round outdoor living, enabled by our precision-engineered motorized louvered roof systems.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Weston, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Louvered Roofs in Weston, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Motorized louvered roof builders and installation contractors serving Weston, FL, offering adjustable shade and weather protection.",
+            "og:image": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/louvered-roofs/weston-fl",
+            "twitter:title": "Louvered Roofs in Weston, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Motorized louvered roof builders and installation contractors serving Weston, FL, offering adjustable shade and weather protection.",
+            "twitter:image": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Weston",
+              "areaServed": {
+                "name": "Weston"
+              },
+              "description": "Motorized louvered roof builders and installation contractors serving Weston, FL, offering adjustable shade and weather protection."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/louvered-roofs",
+        "condado": "/services/pool-builders/broward-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/weston-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pergola-builders/weston-fl",
+            "nombre": "Pergola Builders"
+          }
+        ]
+      }
+    },
+    "/services/louvered-roofs/dania-beach-fl": {
+      "servicio": "louvered-roofs",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "dania-beach-florida",
+        "name": "Dania Beach",
+        "seo": {
+          "title": "Louvered Roofs in Dania Beach, FL | Mr & Mrs Outdoor Living",
+          "description": "Motorized louvered roof builders and installation contractors serving Dania Beach, FL, offering adjustable shade and weather protection."
+        },
+        "h1Title": "Motorized Louvered Roof Systems In Dania Beach, Florida",
+        "h2Title": "Motorized Louvered Roof Installation Experts In Dania Beach And Broward County",
+        "intro": "Motorized louvered roof builders and installation contractors serving Dania Beach, offering adjustable shade and weather protection.",
+        "headingIntro": "Louvered Roof Installation In Dania Beach",
+        "paragraphIntro": "We specialize in louvered roof installation for Dania Beach homes, building motorized bioclimatic systems that allow homeowners to fully control sunlight, ventilation, and rain protection for true year-round outdoor comfort.",
+        "imagenIntro1": {
+          "alt": "Bronze louvered pergola over a dining area on a travertine pool deck beside a canal"
+        },
+        "imagenIntro2": {
+          "alt": "Bronze louvered pergola with closed roof over a wicker dining set on a travertine pool deck"
+        },
+        "imagenIntro3": {
+          "alt": "White louvered pergola with ceiling fan over an L-shaped white stone outdoor kitchen by a lake."
+        },
+        "heading3DRendering": "We Size The System For Your Opening",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read reviews from Florida homeowners who enjoy year-round outdoor living, enabled by our precision-engineered motorized louvered roof systems.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Dania Beach, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Louvered Roofs in Dania Beach, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Motorized louvered roof builders and installation contractors serving Dania Beach, FL, offering adjustable shade and weather protection.",
+            "og:image": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/louvered-roofs/dania-beach-fl",
+            "twitter:title": "Louvered Roofs in Dania Beach, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Motorized louvered roof builders and installation contractors serving Dania Beach, FL, offering adjustable shade and weather protection.",
+            "twitter:image": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Dania Beach",
+              "areaServed": {
+                "name": "Dania Beach"
+              },
+              "description": "Motorized louvered roof builders and installation contractors serving Dania Beach, FL, offering adjustable shade and weather protection."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/louvered-roofs",
+        "condado": "/services/pool-builders/broward-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/dania-beach-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/dania-beach-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/dania-beach-fl",
+            "nombre": "Pergola Builders"
+          }
+        ]
+      }
+    },
+    "/services/louvered-roofs/west-palm-beach-fl": {
+      "servicio": "louvered-roofs",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "west-palm-beach-florida",
+        "name": "West Palm Beach",
+        "seo": {
+          "title": "Louvered Roofs in West Palm Beach, FL | Mr & Mrs Outdoor Living",
+          "description": "Motorized louvered roof builders and installation contractors serving West Palm Beach, FL, offering adjustable shade and weather protection."
+        },
+        "h1Title": "Motorized Louvered Roof Systems In West Palm Beach, Florida",
+        "h2Title": "Motorized Louvered Roof Installation Experts In West Palm Beach And Palm Beach County",
+        "intro": "Motorized louvered roof builders and installation contractors serving West Palm Beach, offering adjustable shade and weather protection.",
+        "headingIntro": "Louvered Roof Installation In West Palm Beach",
+        "paragraphIntro": "We specialize in louvered roof installation for West Palm Beach homes, building motorized bioclimatic systems that allow homeowners to fully control sunlight, ventilation, and rain protection for true year-round outdoor comfort.",
+        "imagenIntro1": {
+          "alt": "Bronze louvered pergola over a dining area on a travertine pool deck beside a canal"
+        },
+        "imagenIntro2": {
+          "alt": "Bronze louvered pergola with closed roof over a wicker dining set on a travertine pool deck"
+        },
+        "imagenIntro3": {
+          "alt": "White louvered pergola with ceiling fan over an L-shaped white stone outdoor kitchen by a lake."
+        },
+        "heading3DRendering": "We Size The System For Your Opening",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read reviews from Florida homeowners who enjoy year-round outdoor living, enabled by our precision-engineered motorized louvered roof systems.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in West Palm Beach, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Louvered Roofs in West Palm Beach, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Motorized louvered roof builders and installation contractors serving West Palm Beach, FL, offering adjustable shade and weather protection.",
+            "og:image": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/louvered-roofs/west-palm-beach-fl",
+            "twitter:title": "Louvered Roofs in West Palm Beach, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Motorized louvered roof builders and installation contractors serving West Palm Beach, FL, offering adjustable shade and weather protection.",
+            "twitter:image": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "West Palm Beach",
+              "areaServed": {
+                "name": "West Palm Beach"
+              },
+              "description": "Motorized louvered roof builders and installation contractors serving West Palm Beach, FL, offering adjustable shade and weather protection."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/louvered-roofs",
+        "condado": "/services/pool-builders/palm-beach-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/west-palm-beach-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/west-palm-beach-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/west-palm-beach-fl",
+            "nombre": "Pergola Builders"
+          }
+        ]
+      }
+    },
+    "/services/louvered-roofs/boca-raton-fl": {
+      "servicio": "louvered-roofs",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "boca-raton-florida",
+        "name": "Boca Raton",
+        "seo": {
+          "title": "Louvered Roofs in Boca Raton, FL | Mr & Mrs Outdoor Living",
+          "description": "Motorized louvered roof builders and installation contractors serving Boca Raton, FL, offering adjustable shade and weather protection."
+        },
+        "h1Title": "Motorized Louvered Roof Systems In Boca Raton, Florida",
+        "h2Title": "Motorized Louvered Roof Installation Experts In Boca Raton And Palm Beach County",
+        "intro": "Motorized louvered roof builders and installation contractors serving Boca Raton, offering adjustable shade and weather protection.",
+        "headingIntro": "Louvered Roof Installation In Boca Raton",
+        "paragraphIntro": "We specialize in louvered roof installation for Boca Raton homes, building motorized bioclimatic systems that allow homeowners to fully control sunlight, ventilation, and rain protection for true year-round outdoor comfort.",
+        "imagenIntro1": {
+          "alt": "Bronze louvered pergola over a dining area on a travertine pool deck beside a canal"
+        },
+        "imagenIntro2": {
+          "alt": "Bronze louvered pergola with closed roof over a wicker dining set on a travertine pool deck"
+        },
+        "imagenIntro3": {
+          "alt": "White louvered pergola with ceiling fan over an L-shaped white stone outdoor kitchen by a lake."
+        },
+        "heading3DRendering": "We Size The System For Your Opening",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read reviews from Florida homeowners who enjoy year-round outdoor living, enabled by our precision-engineered motorized louvered roof systems.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Boca Raton, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Louvered Roofs in Boca Raton, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Motorized louvered roof builders and installation contractors serving Boca Raton, FL, offering adjustable shade and weather protection.",
+            "og:image": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/louvered-roofs/boca-raton-fl",
+            "twitter:title": "Louvered Roofs in Boca Raton, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Motorized louvered roof builders and installation contractors serving Boca Raton, FL, offering adjustable shade and weather protection.",
+            "twitter:image": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Boca Raton",
+              "areaServed": {
+                "name": "Boca Raton"
+              },
+              "description": "Motorized louvered roof builders and installation contractors serving Boca Raton, FL, offering adjustable shade and weather protection."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/louvered-roofs",
+        "condado": "/services/pool-builders/palm-beach-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/boca-raton-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/boca-raton-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/boca-raton-fl",
+            "nombre": "Pergola Builders"
+          }
+        ]
+      }
+    },
+    "/services/louvered-roofs/delray-beach-fl": {
+      "servicio": "louvered-roofs",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "delray-beach-florida",
+        "name": "Delray Beach",
+        "seo": {
+          "title": "Louvered Roofs in Delray Beach, FL | Mr & Mrs Outdoor Living",
+          "description": "Motorized louvered roof builders and installation contractors serving Delray Beach, FL, offering adjustable shade and weather protection."
+        },
+        "h1Title": "Motorized Louvered Roof Systems In Delray Beach, Florida",
+        "h2Title": "Motorized Louvered Roof Installation Experts In Delray Beach And Palm Beach County",
+        "intro": "Motorized louvered roof builders and installation contractors serving Delray Beach, offering adjustable shade and weather protection.",
+        "headingIntro": "Louvered Roof Installation In Delray Beach",
+        "paragraphIntro": "We specialize in louvered roof installation for Delray Beach homes, building motorized bioclimatic systems that allow homeowners to fully control sunlight, ventilation, and rain protection for true year-round outdoor comfort.",
+        "imagenIntro1": {
+          "alt": "Bronze louvered pergola over a dining area on a travertine pool deck beside a canal"
+        },
+        "imagenIntro2": {
+          "alt": "Bronze louvered pergola with closed roof over a wicker dining set on a travertine pool deck"
+        },
+        "imagenIntro3": {
+          "alt": "White louvered pergola with ceiling fan over an L-shaped white stone outdoor kitchen by a lake."
+        },
+        "heading3DRendering": "We Size The System For Your Opening",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read reviews from Florida homeowners who enjoy year-round outdoor living, enabled by our precision-engineered motorized louvered roof systems.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Delray Beach, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Louvered Roofs in Delray Beach, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Motorized louvered roof builders and installation contractors serving Delray Beach, FL, offering adjustable shade and weather protection.",
+            "og:image": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/louvered-roofs/delray-beach-fl",
+            "twitter:title": "Louvered Roofs in Delray Beach, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Motorized louvered roof builders and installation contractors serving Delray Beach, FL, offering adjustable shade and weather protection.",
+            "twitter:image": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Delray Beach",
+              "areaServed": {
+                "name": "Delray Beach"
+              },
+              "description": "Motorized louvered roof builders and installation contractors serving Delray Beach, FL, offering adjustable shade and weather protection."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/louvered-roofs",
+        "condado": "/services/pool-builders/palm-beach-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/delray-beach-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pergola-builders/delray-beach-fl",
+            "nombre": "Pergola Builders"
+          }
+        ]
+      }
+    },
+    "/services/louvered-roofs/gulf-stream-fl": {
+      "servicio": "louvered-roofs",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "gulf-stream-florida",
+        "name": "Gulf Stream",
+        "seo": {
+          "title": "Louvered Roofs in Gulf Stream, FL | Mr & Mrs Outdoor Living",
+          "description": "Motorized louvered roof builders and installation contractors serving Gulf Stream, FL, offering adjustable shade and weather protection."
+        },
+        "h1Title": "Motorized Louvered Roof Systems In Gulf Stream, Florida",
+        "h2Title": "Motorized Louvered Roof Installation Experts In Gulf Stream And Palm Beach County",
+        "intro": "Motorized louvered roof builders and installation contractors serving Gulf Stream, offering adjustable shade and weather protection.",
+        "headingIntro": "Louvered Roof Installation In Gulf Stream",
+        "paragraphIntro": "We specialize in louvered roof installation for Gulf Stream homes, building motorized bioclimatic systems that allow homeowners to fully control sunlight, ventilation, and rain protection for true year-round outdoor comfort.",
+        "imagenIntro1": {
+          "alt": "Bronze louvered pergola over a dining area on a travertine pool deck beside a canal"
+        },
+        "imagenIntro2": {
+          "alt": "Bronze louvered pergola with closed roof over a wicker dining set on a travertine pool deck"
+        },
+        "imagenIntro3": {
+          "alt": "White louvered pergola with ceiling fan over an L-shaped white stone outdoor kitchen by a lake."
+        },
+        "heading3DRendering": "We Size The System For Your Opening",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read reviews from Florida homeowners who enjoy year-round outdoor living, enabled by our precision-engineered motorized louvered roof systems.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Gulf Stream, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Louvered Roofs in Gulf Stream, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Motorized louvered roof builders and installation contractors serving Gulf Stream, FL, offering adjustable shade and weather protection.",
+            "og:image": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/louvered-roofs/gulf-stream-fl",
+            "twitter:title": "Louvered Roofs in Gulf Stream, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Motorized louvered roof builders and installation contractors serving Gulf Stream, FL, offering adjustable shade and weather protection.",
+            "twitter:image": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Gulf Stream",
+              "areaServed": {
+                "name": "Gulf Stream"
+              },
+              "description": "Motorized louvered roof builders and installation contractors serving Gulf Stream, FL, offering adjustable shade and weather protection."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/louvered-roofs",
+        "condado": "/services/pool-builders/palm-beach-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/gulf-stream-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/gulf-stream-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/gulf-stream-fl",
+            "nombre": "Pergola Builders"
+          }
+        ]
+      }
+    },
+    "/services/louvered-roofs/manalapan-fl": {
+      "servicio": "louvered-roofs",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "manalapan-florida",
+        "name": "Manalapan",
+        "seo": {
+          "title": "Louvered Roofs in Manalapan, FL | Mr & Mrs Outdoor Living",
+          "description": "Motorized louvered roof builders and installation contractors serving Manalapan, FL, offering adjustable shade and weather protection."
+        },
+        "h1Title": "Motorized Louvered Roof Systems In Manalapan, Florida",
+        "h2Title": "Motorized Louvered Roof Installation Experts In Manalapan And Palm Beach County",
+        "intro": "Motorized louvered roof builders and installation contractors serving Manalapan, offering adjustable shade and weather protection.",
+        "headingIntro": "Louvered Roof Installation In Manalapan",
+        "paragraphIntro": "We specialize in louvered roof installation for Manalapan homes, building motorized bioclimatic systems that allow homeowners to fully control sunlight, ventilation, and rain protection for true year-round outdoor comfort.",
+        "imagenIntro1": {
+          "alt": "Bronze louvered pergola over a dining area on a travertine pool deck beside a canal"
+        },
+        "imagenIntro2": {
+          "alt": "Bronze louvered pergola with closed roof over a wicker dining set on a travertine pool deck"
+        },
+        "imagenIntro3": {
+          "alt": "White louvered pergola with ceiling fan over an L-shaped white stone outdoor kitchen by a lake."
+        },
+        "heading3DRendering": "We Size The System For Your Opening",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read reviews from Florida homeowners who enjoy year-round outdoor living, enabled by our precision-engineered motorized louvered roof systems.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Manalapan, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Louvered Roofs in Manalapan, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Motorized louvered roof builders and installation contractors serving Manalapan, FL, offering adjustable shade and weather protection.",
+            "og:image": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/louvered-roofs/manalapan-fl",
+            "twitter:title": "Louvered Roofs in Manalapan, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Motorized louvered roof builders and installation contractors serving Manalapan, FL, offering adjustable shade and weather protection.",
+            "twitter:image": "/images/banco/louvered/louvered-roof-white-attached-two-story-home-pool-florida-01.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Manalapan",
+              "areaServed": {
+                "name": "Manalapan"
+              },
+              "description": "Motorized louvered roof builders and installation contractors serving Manalapan, FL, offering adjustable shade and weather protection."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/louvered-roofs",
+        "condado": "/services/pool-builders/palm-beach-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/manalapan-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/manalapan-fl",
+            "nombre": "Pool Remodeling"
+          },
+          {
+            "href": "/services/pergola-builders/manalapan-fl",
             "nombre": "Pergola Builders"
           }
         ]
