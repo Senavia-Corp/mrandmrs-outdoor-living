@@ -146,7 +146,6 @@ const PLANTILLAS = {
   },
   'pergola-builders': fabrica({
     nombre: 'Pergola Builders', nombreSeo: 'Pergola Builders', tema: 'estructura',
-    descripcion: (c) => `Custom aluminum pergola builders in ${c.ciudad}, FL: durable pergolas that enhance outdoor comfort and style, designed, permitted and installed by one licensed Florida team.`,
     h1: 'Custom Aluminum Pergola Builders', h2: 'Custom Pergola Builders Serving',
     faqTitulo: 'Pergola Installation FAQs', faqEntradilla: 'Have questions about custom aluminum pergola installation in Florida? Our licensed outdoor living specialists answer the top questions here.',
     apoyo: (c) => `Custom pergola builders and installation company serving ${c.ciudad} homeowners, delivering durable designs that enhance outdoor comfort and style.`,
@@ -163,7 +162,6 @@ const PLANTILLAS = {
   }),
   'louvered-roofs': fabrica({
     nombre: 'Louvered Roofs', nombreSeo: 'Louvered Roofs', tema: 'estructura',
-    descripcion: (c) => `Motorized louvered roof installation in ${c.ciudad}, FL: adjustable shade and weather protection, sized, permitted and installed by one licensed Florida team.`,
     h1: 'Motorized Louvered Roof Systems', h2: 'Motorized Louvered Roof Installation Experts In',
     faqTitulo: 'Louvered Roof System FAQs', faqEntradilla: 'Have questions about motorized louvered roof system installation in Florida? Our licensed outdoor living specialists answer your top questions here.',
     apoyo: (c) => `Motorized louvered roof builders and installation contractors serving ${c.ciudad}, offering adjustable shade and weather protection.`,
@@ -181,7 +179,6 @@ const PLANTILLAS = {
   }),
   'deck-builders': fabrica({
     nombre: 'Deck Builders', nombreSeo: 'Deck Builders', tema: 'deck',
-    descripcion: (c) => `Custom deck builders in ${c.ciudad}, FL: composite, wood, travertine and paver decks designed, permitted and built by one licensed Florida team.`,
     h1: 'Custom Deck Builders', h2: 'Custom Deck Builders & Contractors In',
     faqTitulo: 'Custom Deck FAQs', faqEntradilla: 'Have questions about composite or wood deck installation in Florida? Our licensed deck builders answer the most common questions from Florida homeowners.',
     apoyo: (c) => `Professional deck builders and installation contractors serving ${c.ciudad} with durable, stylish outdoor deck solutions.`,
@@ -199,7 +196,6 @@ const PLANTILLAS = {
   }),
   'outdoor-kitchens': fabrica({
     nombre: 'Outdoor Kitchens', nombreSeo: 'Outdoor Kitchens', tema: 'cocina',
-    descripcion: (c) => `Custom outdoor kitchens in ${c.ciudad}, FL: layouts for entertaining and daily use, with outdoor-rated appliances and utilities, designed, permitted and built by one licensed team.`,
     h1: 'Custom Outdoor Kitchens', h2: 'Outdoor Kitchen Builders & Contractors In',
     faqTitulo: 'Outdoor Kitchen FAQs', faqEntradilla: 'Have questions about custom outdoor kitchen construction in Florida? Our licensed contractors answer the top questions from Florida homeowners below.',
     apoyo: (c) => `Outdoor kitchen builders and installation contractors serving ${c.ciudad} with custom layouts for entertaining and daily use.`,
@@ -217,7 +213,6 @@ const PLANTILLAS = {
   }),
   landscaping: fabrica({
     nombre: 'Landscaping', nombreSeo: 'Landscaping', tema: 'paisajismo',
-    descripcion: (c) => `Landscaping in ${c.ciudad}, FL: landscape design and installation with native plants and drainage sorted first, from one licensed Florida outdoor living team.`,
     h1: 'Professional Landscaping Services', h2: 'Professional Landscaping Contractors In',
     faqTitulo: 'Landscaping Services FAQs', faqEntradilla: 'Have questions about professional landscaping installation in North or South Florida? Our expert team answers the top questions from Florida homeowners.',
     apoyo: (c) => `Landscaping design and installation company serving ${c.ciudad}, providing complete outdoor solutions that improve curb appeal.`,
