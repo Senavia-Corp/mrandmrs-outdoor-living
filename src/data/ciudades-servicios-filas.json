@@ -58,6 +58,43 @@
           "bi-0613"
         ]
       }
+    },
+    "pergola-builders": {
+      "banco": "pergolas",
+      "fotosLibres": 66,
+      "galeria": {
+        "titulo": "Pergola Project Gallery",
+        "entradilla": "Florida aluminum pergola installations designed for shade, style, and lasting durability."
+      },
+      "fotos": {
+        "intro": {
+          "1": {
+            "banco": "bi-0948"
+          },
+          "2": {
+            "banco": "bi-1069"
+          },
+          "3": {
+            "banco": "bi-1067"
+          }
+        },
+        "inversion": {
+          "banco": "bi-0946"
+        },
+        "galeria": [
+          "bi-1066",
+          "bi-1072",
+          "bi-1056",
+          "bi-1047",
+          "bi-0908",
+          "bi-1028",
+          "bi-0916",
+          "bi-0939",
+          "bi-0984",
+          "bi-0923",
+          "bi-1006"
+        ]
+      }
     }
   },
   "ciudades": {
@@ -1674,6 +1711,26 @@
     {
       "servicio": "pool-remodeling",
       "ciudad": "manalapan-florida"
+    },
+    {
+      "servicio": "pergola-builders",
+      "ciudad": "gainesville-florida"
+    },
+    {
+      "servicio": "pergola-builders",
+      "ciudad": "ocala-florida"
+    },
+    {
+      "servicio": "pergola-builders",
+      "ciudad": "palatka-florida"
+    },
+    {
+      "servicio": "pergola-builders",
+      "ciudad": "cedar-key-florida"
+    },
+    {
+      "servicio": "pergola-builders",
+      "ciudad": "mcintosh-florida"
     }
   ],
   "regional": {

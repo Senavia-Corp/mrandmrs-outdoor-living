@@ -4168,6 +4168,588 @@
     },
     "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
   },
+  "/services/pergola-builders/gainesville-fl": {
+    "heroe": {
+      "apoyo": "Custom pergola builders and installation company serving Gainesville homeowners, delivering durable designs that enhance outdoor comfort and style.",
+      "licencias": "Florida aluminum contractor · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "North Florida",
+        "South Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida aluminum contractor",
+          "texto": "SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered to wind load",
+          "texto": "Every structure is engineered to local wind-load specifications."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Aluminum Pergola",
+        "Louvered & Adjustable Pergola"
+      ],
+      "proyectoPorDefecto": "New Aluminum Pergola",
+      "nombre": "Gainesville Aluminum Pergola Form",
+      "aviso": "Gainesville aluminum pergola lead",
+      "ga4": "pergola",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the pergola for that space and take it through permits and HOA or ARB review.",
+        "You get the scope in writing and a fixed project price before anything is fabricated."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my pergola cost?",
+      "texto": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+      "alt": "Finished black-fascia insulated patio cover with ceiling fans on a white two-story home beside a pool",
+      "ancho": 1600,
+      "alto": 1200,
+      "pos": "50% 45%",
+      "_banco": "bi-0842",
+      "_proyecto": "obra-075",
+      "_ajuste": {
+        "recorte": "1250/698",
+        "pos": "50% 45%",
+        "ancho": 1600,
+        "q": 52,
+        "de": "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01.webp"
+      }
+    },
+    "faq": {
+      "titulo": "Gainesville Pergola Installation FAQs",
+      "entradilla": "Have questions about custom aluminum pergola installation in Gainesville, Florida? Our licensed outdoor living specialists answer the top questions here.",
+      "anade": [
+        {
+          "pregunta": "How much does a pergola cost in Gainesville?",
+          "respuesta": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Are aluminum pergolas rust-proof for Florida outdoor use?",
+          "respuesta": "Yes. Powder-coated aluminum pergolas resist rust, corrosion, and UV damage — making them ideal for Florida's humid, salt-air coastal environments and sun-intense inland climates. Licensed under aluminum contractor license SCC131153553, Mr. & Mrs. Outdoor Living engineers every structure to local wind-load specifications."
+        },
+        {
+          "pregunta": "Who reviews a pergola permit in Gainesville?",
+          "respuesta": "Inside the City of Gainesville, the city's Building Division works from the Thomas Center, Building B, at 306 NE 6th Avenue, and existing permits can be looked up in its PermitGNV portal. The city's Historic Preservation Board can issue Certificates of Appropriateness for structures in its five historic districts or on the Local Register, and its design guidelines include a section on fences and garden walls. In unincorporated Alachua County, the county's Building Division reviews the work instead. We manage the permits and the HOA or ARB review, and coordinate inspections.",
+          "fuentes": [
+            {
+              "nombre": "City of Gainesville Building Division: application process",
+              "url": "https://www.gainesvillefl.gov/Government-Pages/Government/Departments/Sustainable-Development/Building-Division/Building-Application-Process"
+            },
+            {
+              "nombre": "City of Gainesville: historic preservation",
+              "url": "https://www.gainesvillefl.gov/Government-Pages/Government/Departments/Sustainable-Development/Historic-Preservation"
+            },
+            {
+              "nombre": "Alachua County: municipalities and county permitting",
+              "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/pergola-builders/ocala-fl": {
+    "heroe": {
+      "apoyo": "Custom pergola builders and installation company serving Ocala homeowners, delivering durable designs that enhance outdoor comfort and style.",
+      "licencias": "Florida aluminum contractor · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "North Florida",
+        "South Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida aluminum contractor",
+          "texto": "SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered to wind load",
+          "texto": "Every structure is engineered to local wind-load specifications."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Aluminum Pergola",
+        "Louvered & Adjustable Pergola"
+      ],
+      "proyectoPorDefecto": "New Aluminum Pergola",
+      "nombre": "Ocala Aluminum Pergola Form",
+      "aviso": "Ocala aluminum pergola lead",
+      "ga4": "pergola",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the pergola for that space and take it through permits and HOA or ARB review.",
+        "You get the scope in writing and a fixed project price before anything is fabricated."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my pergola cost?",
+      "texto": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+      "alt": "Finished black-fascia insulated patio cover with ceiling fans on a white two-story home beside a pool",
+      "ancho": 1600,
+      "alto": 1200,
+      "pos": "50% 45%",
+      "_banco": "bi-0842",
+      "_proyecto": "obra-075",
+      "_ajuste": {
+        "recorte": "1250/698",
+        "pos": "50% 45%",
+        "ancho": 1600,
+        "q": 52,
+        "de": "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01.webp"
+      }
+    },
+    "faq": {
+      "titulo": "Ocala Pergola Installation FAQs",
+      "entradilla": "Have questions about custom aluminum pergola installation in Ocala, Florida? Our licensed outdoor living specialists answer the top questions here.",
+      "anade": [
+        {
+          "pregunta": "How much does a pergola cost in Ocala?",
+          "respuesta": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Are aluminum pergolas rust-proof for Florida outdoor use?",
+          "respuesta": "Yes. Powder-coated aluminum pergolas resist rust, corrosion, and UV damage — making them ideal for Florida's humid, salt-air coastal environments and sun-intense inland climates. Licensed under aluminum contractor license SCC131153553, Mr. & Mrs. Outdoor Living engineers every structure to local wind-load specifications."
+        },
+        {
+          "pregunta": "Who reviews a pergola permit in Ocala?",
+          "respuesta": "Inside the City of Ocala, a permit is required for most interior and exterior work other than painting and floor covering, and applications go in at the city's Customer Service Center on SE 3rd Street or through the eTrakit portal. Exterior work on a property in the Tuscawilla Park or Ocala Historic District also needs a Certificate of Appropriateness from the Ocala Historic Preservation Advisory Board before it starts. In unincorporated Marion County, the county's Building Safety department reviews the work instead. We manage the permits and the HOA or ARB review, and coordinate inspections.",
+          "fuentes": [
+            {
+              "nombre": "City of Ocala Building Services: construction permits",
+              "url": "https://www.ocalafl.gov/government/city-departments-a-h/growth-management/building/construction-permits"
+            },
+            {
+              "nombre": "City of Ocala: Certificate of Appropriateness",
+              "url": "https://www.ocalafl.gov/government/city-departments-a-h/growth-management/certificate-of-appropriateness"
+            },
+            {
+              "nombre": "Marion County Building Safety",
+              "url": "https://www.marionfl.org/agencies-departments/departments-facilities-offices/building-safety"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/pergola-builders/palatka-fl": {
+    "heroe": {
+      "apoyo": "Custom pergola builders and installation company serving Palatka homeowners, delivering durable designs that enhance outdoor comfort and style.",
+      "licencias": "Florida aluminum contractor · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "North Florida",
+        "South Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida aluminum contractor",
+          "texto": "SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered to wind load",
+          "texto": "Every structure is engineered to local wind-load specifications."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Aluminum Pergola",
+        "Louvered & Adjustable Pergola"
+      ],
+      "proyectoPorDefecto": "New Aluminum Pergola",
+      "nombre": "Palatka Aluminum Pergola Form",
+      "aviso": "Palatka aluminum pergola lead",
+      "ga4": "pergola",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the pergola for that space and take it through permits and HOA or ARB review.",
+        "You get the scope in writing and a fixed project price before anything is fabricated."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my pergola cost?",
+      "texto": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+      "alt": "Finished black-fascia insulated patio cover with ceiling fans on a white two-story home beside a pool",
+      "ancho": 1600,
+      "alto": 1200,
+      "pos": "50% 45%",
+      "_banco": "bi-0842",
+      "_proyecto": "obra-075",
+      "_ajuste": {
+        "recorte": "1250/698",
+        "pos": "50% 45%",
+        "ancho": 1600,
+        "q": 52,
+        "de": "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01.webp"
+      }
+    },
+    "faq": {
+      "titulo": "Palatka Pergola Installation FAQs",
+      "entradilla": "Have questions about custom aluminum pergola installation in Palatka, Florida? Our licensed outdoor living specialists answer the top questions here.",
+      "anade": [
+        {
+          "pregunta": "How much does a pergola cost in Palatka?",
+          "respuesta": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Are aluminum pergolas rust-proof for Florida outdoor use?",
+          "respuesta": "Yes. Powder-coated aluminum pergolas resist rust, corrosion, and UV damage — making them ideal for Florida's humid, salt-air coastal environments and sun-intense inland climates. Licensed under aluminum contractor license SCC131153553, Mr. & Mrs. Outdoor Living engineers every structure to local wind-load specifications."
+        },
+        {
+          "pregunta": "Who reviews a pergola permit in Palatka?",
+          "respuesta": "In Palatka, building permits are not processed by the city alone: since October 11, 2018 the City of Palatka has consolidated permit processing with the Putnam County Building Division, so the application is filed with the county first and the city application follows. Any exterior work in Palatka's historic district, including site work such as new sidewalks and driveways, also needs an approved Certificate of Appropriateness from the Historic Preservation Board. The city also lists screening that requires structural framing among the work that needs a permit, and keeps a Small Structure Application for sheds and similar work. We manage the permits and the HOA or ARB review, and coordinate inspections.",
+          "fuentes": [
+            {
+              "nombre": "City of Palatka: building permit services transferred to Putnam County",
+              "url": "https://palatka-fl.gov/CivicAlerts.aspx?AID=264&ARC=835"
+            },
+            {
+              "nombre": "City of Palatka: Historic Preservation Board",
+              "url": "https://palatka-fl.gov/140/Historic-Preservation-Board"
+            },
+            {
+              "nombre": "City of Palatka: applications and fees",
+              "url": "https://palatka-fl.gov/136/Applications-and-Fees"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/pergola-builders/cedar-key-fl": {
+    "heroe": {
+      "apoyo": "Custom pergola builders and installation company serving Cedar Key homeowners, delivering durable designs that enhance outdoor comfort and style.",
+      "licencias": "Florida aluminum contractor · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "North Florida",
+        "South Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida aluminum contractor",
+          "texto": "SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered to wind load",
+          "texto": "Every structure is engineered to local wind-load specifications."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Aluminum Pergola",
+        "Louvered & Adjustable Pergola"
+      ],
+      "proyectoPorDefecto": "New Aluminum Pergola",
+      "nombre": "Cedar Key Aluminum Pergola Form",
+      "aviso": "Cedar Key aluminum pergola lead",
+      "ga4": "pergola",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the pergola for that space and take it through permits and HOA or ARB review.",
+        "You get the scope in writing and a fixed project price before anything is fabricated."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my pergola cost?",
+      "texto": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+      "alt": "Finished black-fascia insulated patio cover with ceiling fans on a white two-story home beside a pool",
+      "ancho": 1600,
+      "alto": 1200,
+      "pos": "50% 45%",
+      "_banco": "bi-0842",
+      "_proyecto": "obra-075",
+      "_ajuste": {
+        "recorte": "1250/698",
+        "pos": "50% 45%",
+        "ancho": 1600,
+        "q": 52,
+        "de": "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01.webp"
+      }
+    },
+    "faq": {
+      "titulo": "Cedar Key Pergola Installation FAQs",
+      "entradilla": "Have questions about custom aluminum pergola installation in Cedar Key, Florida? Our licensed outdoor living specialists answer the top questions here.",
+      "anade": [
+        {
+          "pregunta": "How much does a pergola cost in Cedar Key?",
+          "respuesta": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Are aluminum pergolas rust-proof for Florida outdoor use?",
+          "respuesta": "Yes. Powder-coated aluminum pergolas resist rust, corrosion, and UV damage — making them ideal for Florida's humid, salt-air coastal environments and sun-intense inland climates. Licensed under aluminum contractor license SCC131153553, Mr. & Mrs. Outdoor Living engineers every structure to local wind-load specifications."
+        },
+        {
+          "pregunta": "Who reviews a pergola permit in Cedar Key?",
+          "respuesta": "In Cedar Key, the City has partnered with JPI, Inc. to provide experienced building officials, certified inspectors and permit technicians. Every property on Cedar Key is in, on or near a Special Flood Hazard Area, with AE and VE flood zones, and an Elevation Certificate has to be submitted with the building permit application under the flood map in effect since February 15, 2019. The city lists sheds and accessory structures among the work that needs a building permit. We manage the permits and the HOA or ARB review, and coordinate inspections.",
+          "fuentes": [
+            {
+              "nombre": "City of Cedar Key: Building Department",
+              "url": "https://www.cityofcedarkey.org/214/Building-Department"
+            },
+            {
+              "nombre": "City of Cedar Key: floodplain management",
+              "url": "https://www.cityofcedarkey.org/297/Floodplain-Management"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/pergola-builders/mcintosh-fl": {
+    "heroe": {
+      "apoyo": "Custom pergola builders and installation company serving McIntosh homeowners, delivering durable designs that enhance outdoor comfort and style.",
+      "licencias": "Florida aluminum contractor · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "North Florida",
+        "South Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida aluminum contractor",
+          "texto": "SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Engineered to wind load",
+          "texto": "Every structure is engineered to local wind-load specifications."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits and code handled",
+          "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Aluminum Pergola",
+        "Louvered & Adjustable Pergola"
+      ],
+      "proyectoPorDefecto": "New Aluminum Pergola",
+      "nombre": "McIntosh Aluminum Pergola Form",
+      "aviso": "McIntosh aluminum pergola lead",
+      "ga4": "pergola",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We design the pergola for that space and take it through permits and HOA or ARB review.",
+        "You get the scope in writing and a fixed project price before anything is fabricated."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my pergola cost?",
+      "texto": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+      "alt": "Finished black-fascia insulated patio cover with ceiling fans on a white two-story home beside a pool",
+      "ancho": 1600,
+      "alto": 1200,
+      "pos": "50% 45%",
+      "_banco": "bi-0842",
+      "_proyecto": "obra-075",
+      "_ajuste": {
+        "recorte": "1250/698",
+        "pos": "50% 45%",
+        "ancho": 1600,
+        "q": 52,
+        "de": "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01.webp"
+      }
+    },
+    "faq": {
+      "titulo": "McIntosh Pergola Installation FAQs",
+      "entradilla": "Have questions about custom aluminum pergola installation in McIntosh, Florida? Our licensed outdoor living specialists answer the top questions here.",
+      "anade": [
+        {
+          "pregunta": "How much does a pergola cost in McIntosh?",
+          "respuesta": "Every pergola is priced from its span, the structure it attaches to, the finish and the site conditions. Tell us about your space and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "Are aluminum pergolas rust-proof for Florida outdoor use?",
+          "respuesta": "Yes. Powder-coated aluminum pergolas resist rust, corrosion, and UV damage — making them ideal for Florida's humid, salt-air coastal environments and sun-intense inland climates. Licensed under aluminum contractor license SCC131153553, Mr. & Mrs. Outdoor Living engineers every structure to local wind-load specifications."
+        },
+        {
+          "pregunta": "Who reviews a pergola permit in McIntosh?",
+          "respuesta": "In McIntosh the permit itself comes from Marion County, but not before the town signs off: written authorization from the Town of McIntosh is required before Marion County issues any permit. The town uses a Proposed Work Permit for repairs, replacements and improvements such as fences or gates, and a Site Plan Permit for new construction or any work that changes the original footprint of the property. We manage the permits and the HOA or ARB review, and coordinate inspections.",
+          "fuentes": [
+            {
+              "nombre": "Town of McIntosh: forms",
+              "url": "https://townofmcintosh.org/forms/"
+            },
+            {
+              "nombre": "Marion County Building Safety",
+              "url": "https://www.marionfl.org/agencies-departments/departments-facilities-offices/building-safety"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
   "/services/pool-builders/ocala-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Ocala homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
