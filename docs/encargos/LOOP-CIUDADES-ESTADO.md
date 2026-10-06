@@ -8,9 +8,9 @@
 
 | Campo | Valor |
 |---|---|
-| fase | **2 — lotes por servicio** (Fase 0 y Fase 1 cerradas) |
-| paso | Lote 11 (landscaping North) → PR → merge → verificacion |
-| lote siguiente | Lote 1: pool-remodeling North (las 19 restantes con hecho local verificable) |
+| fase | **CERRADA** — matriz terminada el 6-oct-2026 (informe final abajo) |
+| paso | Lote 12 publicado; loop TERMINADO |
+| lote siguiente | ninguno: lo que queda necesita investigacion nueva (ver «Para reabrir») |
 | iteraciones sin avanzar | 0 |
 | ultima iteracion | 5-oct-2026, sobre `origin/main` 9824a43 |
 | rama | `claude/hopeful-brown-9anqr6` |
@@ -815,6 +815,95 @@ check-texto =/services/landscaping exit 0   1 identicas · 0 en rojo   (1/1 ruta
 - Rutas nuevas sin referencia: cubiertas por `check:ciudades-servicios`; `check-texto`/`check-visual` no las miden (no es verde).
 - NO verificado: las URL de `fuentes` (egress, D7).
 
+## Lote 12 — landscaping South + pool-remodeling (aplazadas)  (5-oct-2026)
+
+**Rutas publicadas (3):** /services/landscaping/fort-lauderdale-fl, /services/pool-remodeling/delray-beach-fl, /services/pool-remodeling/miramar-fl
+
+**Contenido:** landscaping Fort Lauderdale (unica ciudad de South con hecho de paisajismo verificado y 60 palabras propias) y las dos de pool-remodeling aplazadas en el lote 2, Delray Beach y Miramar, con su texto ya corregido.
+
+**Revision independiente:** 1a pasada RECHAZADA solo por Fort Lauderdale («the ANSI A-300 standard» donde el fragmento dice «standards such as ANSI A-300»); Delray y Miramar aprobadas. Corregido; pasada de confirmacion APROBADA. El cambio de Fort Lauderdale («can be made online») estrecha tambien el texto de /services/pool-remodeling/fort-lauderdale-fl, ya publicada.
+
+**Puertas** (build `MM_SANITY_CACHE=1 PUBLIC_ES_PRODUCCION=1`):
+
+```
+rutas existentes con HTML distinto al de main 9824a43: 6 -> services/deck-builders/index.html services/outdoor-kitchens/index.html services/pergola-builders/index.html services/landscaping/index.html services/louvered-roofs/index.html services/pool-remodeling/index.html
+diff=0 /services/pool-builders/ocala-fl
+diff=0 /services/pool-builders/boca-raton-fl
+diff=0 /services/pool-builders/archer-fl
+check:tokens                 exit 0  PUERTA VERDE
+check:rutas                  exit 0  PUERTA VERDE
+check:enlaces                exit 0  PUERTA VERDE
+check:seo                    exit 0  PUERTA VERDE
+check:captacion              exit 0  PUERTA VERDE
+check:estructura:ciudades    exit 0  PUERTA VERDE — dos formas y solo dos
+check:medicion               exit 0  PUERTA VERDE
+check:ciudades-servicios     exit 0  PUERTA VERDE
+check:redirects              exit 0  PUERTA VERDE
+check:estructura             exit 0  PUERTA VERDE — 14 fichas, un solo orden (+ 2 variante(s) declarada(s))
+check:galeria-obra           exit 0  PUERTA VERDE — un set, las 53 ciudades, obra real trazada
+check:identidad              exit 0  PUERTA VERDE
+check:ads                    exit 0  PUERTA VERDE
+check:menu                   exit 0  PUERTA VERDE
+check:galeria                exit 0  PUERTA VERDE
+check-texto =/services/pool-remodeling exit 0   1 identicas · 0 en rojo   (1/1 rutas medidas)
+check-texto =/services/landscaping exit 0   1 identicas · 0 en rojo   (1/1 rutas medidas)
+```
+
+- Rutas nuevas sin referencia: cubiertas por `check:ciudades-servicios`; `check-texto`/`check-visual` no las miden (no es verde).
+- NO verificado: las URL de `fuentes` (egress, D7).
+
+## INFORME FINAL (6-oct-2026)
+
+**Publicadas: 65 landings en 6 servicios**, en 13 PR fusionados a `main` (#47 a #59), cada uno con
+build de Vercel `success` antes de fusionar y despliegue de produccion `success` despues.
+
+| Servicio | Paginas | North | South | Fotos del banco usadas | Libres que quedan |
+|---|---|---|---|---|---|
+| pool-remodeling | 15 | Gainesville, Ocala, Palatka, Cedar Key, McIntosh | Fort Lauderdale, Hollywood, Dania Beach, West Palm Beach, Boca Raton, Boynton Beach, Gulf Stream, Manalapan, Delray Beach, Miramar | 15 | 19 |
+| pergola-builders | 13 | Gainesville, Ocala, Palatka, Cedar Key, McIntosh | Hollywood, Weston, Dania Beach, West Palm Beach, Boca Raton, Delray Beach, Gulf Stream, Manalapan | 15 | 55 |
+| louvered-roofs | 13 | las mismas 5 | las mismas 8 que pergolas | 15 | 8 |
+| deck-builders | 10 | las mismas 5 | Hollywood, Dania Beach, Delray Beach, Gulf Stream, Manalapan | 15 | 30 |
+| outdoor-kitchens | 10 | las mismas 5 | las mismas 5 que decks | 15 | 22 |
+| landscaping | 4 | Gainesville, Ocala, Palatka | Fort Lauderdale | 15 | 9 |
+
+Las fotos son las mismas 15 por servicio en todas sus ciudades (como en pool-builders); ninguna se
+presenta como hecha en una ciudad; todas obra real aprobada del banco, con `usada_en` al dia.
+
+**Fuera de la matriz y por que:**
+- 7 servicios: pool-screen-enclosures, patio-screen-rooms, retractable-screens, soffit-led-lighting,
+  irrigation-systems y outdoor-furniture (sin fotos reales suficientes en el banco) y
+  steel-buildings-pole-barns (sin licencia CGC/CBC en el repo, D4).
+- De la matriz prevista (202), 137 combinaciones no se publican porque la ciudad no tiene un hecho
+  local verificado que llegue a 60 palabras propias. 7 ciudades no tienen ni oficina de permisos
+  verificada (Trenton, Cross City, Hawthorne, Archer, Waldo, Reddick, Old Town). Las cifras por
+  ciudad estan en cada lote.
+
+**Lo que NO se verifico (y por que):**
+- Que cada `fuentes[].url` responda 200 y que las paginas de produccion respondan con canonical y
+  JSON-LD: el egress del contenedor bloquea esos dominios (D7). Se verifico el build identico en
+  local (canonical, JSON-LD, sitemap, llms.txt: `check:ciudades-servicios` verde) y el estado de
+  Vercel en GitHub.
+- Los hechos salen de fragmentos de busqueda de dominios oficiales, no de la pagina leida entera
+  (el fetch tambien estaba bloqueado). Cada frase se ajusto a su fragmento tras revision
+  independiente; las notas del investigador no cuentan como evidencia.
+- `check-texto`/`check-visual` no miden las rutas nuevas (no tienen referencia). Las rojas de
+  `check-texto` («orden cambiado») y `check-visual` en las ciudades de pool-builders y en las
+  fichas son PREEXISTENTES en `main` 9824a43 (medido con un build de main en worktree aparte).
+
+**Decisiones tomadas en automatico (todas reversibles):** D1-D8 arriba; la mas visible es D5/D6
+revisadas: en los servicios que no son de piscina no hay seccion 3D (era diseno de piscina) y el
+fondo del heroe es la foto de heroe de la ficha, no el reel de piscina.
+
+**Para reabrir (siguiente iteracion, con presupuesto de busqueda nuevo):**
+1. Investigar con WebSearch/WebFetch y red hacia los dominios oficiales los hechos por ciudad que
+   faltan (sobre todo North: Lake City, Alachua, Newberry, High Springs, Williston, Chiefland,
+   Fanning Springs, Micanopy; y South: Pembroke Pines, Pompano Beach, Davie, Plantation, Weston,
+   Parkland, Wellington, Jupiter, Ocean Ridge…). Cada hecho nuevo va a
+   `docs/encargos/loop-ciudades/` con su `evidencia`, se redacta en `ciudades.<slug>` y
+   `aplica-lote` decide por el umbral de 60 palabras.
+2. Comprobar con red los 200 de las fuentes y abrir 3 URLs por servicio en produccion.
+3. Sebastian: licencia con la que se tramitan graneros y estructuras de acero (D4).
+
 ## Rutas hechas
 
 | Ruta | Lote | PR | Produccion |
@@ -878,9 +967,12 @@ check-texto =/services/landscaping exit 0   1 identicas · 0 en rojo   (1/1 ruta
 | /services/outdoor-kitchens/delray-beach-fl | 10 | [#57](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/57) fusionado (edc54c1) | Vercel `success`, deployment 6873490340. URL no abierta: egress (D7) |
 | /services/outdoor-kitchens/gulf-stream-fl | 10 | [#57](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/57) fusionado (edc54c1) | Vercel `success`, deployment 6873490340. URL no abierta: egress (D7) |
 | /services/outdoor-kitchens/manalapan-fl | 10 | [#57](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/57) fusionado (edc54c1) | Vercel `success`, deployment 6873490340. URL no abierta: egress (D7) |
-| /services/landscaping/gainesville-fl | 11 | (pendiente) | (pendiente) |
-| /services/landscaping/ocala-fl | 11 | (pendiente) | (pendiente) |
-| /services/landscaping/palatka-fl | 11 | (pendiente) | (pendiente) |
+| /services/landscaping/gainesville-fl | 11 | [#58](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/58) fusionado (d88412a) | Vercel `success`, deployment 6873785920. URL no abierta: egress (D7) |
+| /services/landscaping/ocala-fl | 11 | [#58](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/58) fusionado (d88412a) | Vercel `success`, deployment 6873785920. URL no abierta: egress (D7) |
+| /services/landscaping/palatka-fl | 11 | [#58](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/58) fusionado (d88412a) | Vercel `success`, deployment 6873785920. URL no abierta: egress (D7) |
+| /services/landscaping/fort-lauderdale-fl | 12 | (pendiente) | (pendiente) |
+| /services/pool-remodeling/delray-beach-fl | 12 | (pendiente) | (pendiente) |
+| /services/pool-remodeling/miramar-fl | 12 | (pendiente) | (pendiente) |
 
 ## Bloqueos y avisos
 
