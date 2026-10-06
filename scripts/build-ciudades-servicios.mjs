@@ -400,7 +400,10 @@ for (const [servicio, cfg] of Object.entries(FILAS.servicios)) {
       },
       confianza: structuredClone(F.confianza),
       formulario: { ...structuredClone(F.formulario), ...T.formulario(c) },
-      inversion: { ...structuredClone(F.inversion), foto: xi.src, alt: xi.alt, ancho: xi.ancho, alto: xi.alto },
+      // Solo el texto y los CTA de la ficha: su foto, su recorte y su trazabilidad (`_banco`…) son de
+      // OTRA foto y no viajan; la de aqui es la del servicio en el banco.
+      inversion: { titulo: F.inversion.titulo, texto: F.inversion.texto, ctas: structuredClone(F.inversion.ctas),
+        foto: xi.src, alt: xi.alt, ancho: xi.ancho, alto: xi.alto, _banco: xi.id },
       faq: {
         titulo: T.faqTitulo(c),
         entradilla: T.faqEntradilla(c),

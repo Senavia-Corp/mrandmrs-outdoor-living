@@ -359,5 +359,111 @@
       }
     ],
     "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "servicio:louvered-roofs": {
+    "titulo": "Louvered Roof Gallery",
+    "entradilla": "Florida louvered roof systems installed by licensed contractors — elegant and engineered.",
+    "fotos": [
+      {
+        "src": "/images/banco/louvered/louvered-roof-white-corner-frame-blades-detail-florida-01.webp",
+        "alt": "Corner of a white aluminum louvered roof showing the frame, rivets and angled blades",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0201",
+        "_proyecto": null
+      },
+      {
+        "src": "/images/banco/louvered/louvered-pergola-installation-bronze-posts-wrapped-florida-01.webp",
+        "alt": "Newly installed bronze louvered pergola with posts still wrapped in protective film over a stamped patio",
+        "ancho": 1200,
+        "alto": 1600,
+        "pos": "50% 50%",
+        "_banco": "bi-0226",
+        "_proyecto": "obra-034"
+      },
+      {
+        "src": "/images/banco/louvered/louvered-pergola-installation-bronze-frame-underside-florida-01.webp",
+        "alt": "Bronze louvered pergola frame with white blades seen from below during installation in a backyard",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0227",
+        "_proyecto": "obra-034"
+      },
+      {
+        "src": "/images/banco/louvered/louvered-pergola-frames-condo-pool-terrace-florida-02.webp",
+        "alt": "Rooftop terrace with white pergola frames under assembly and planters in the foreground.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0650",
+        "_proyecto": "obra-050"
+      },
+      {
+        "src": "/images/banco/louvered/louvered-pergola-outdoor-kitchen-bar-marble-lake-florida-01.webp",
+        "alt": "White louvered pergola over a marble-top outdoor kitchen bar with four stools and a lake view.",
+        "ancho": 1440,
+        "alto": 1083,
+        "pos": "50% 50%",
+        "_banco": "bi-0768",
+        "_proyecto": "obra-071"
+      },
+      {
+        "src": "/images/banco/louvered/louvered-pergola-outdoor-kitchen-stacked-stone-florida-01.webp",
+        "alt": "White louvered pergola covering an outdoor kitchen with stacked stone island and lounge seating.",
+        "ancho": 1280,
+        "alto": 960,
+        "pos": "50% 50%",
+        "_banco": "bi-0632",
+        "_proyecto": "obra-059"
+      },
+      {
+        "src": "/images/banco/louvered/louvered-roof-closed-louvers-underside-detail-florida-01.webp",
+        "alt": "Underside of a white louvered roof with louvers closed, wall lights on the left.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0646",
+        "_proyecto": "obra-050"
+      },
+      {
+        "src": "/images/banco/louvered/louvered-roof-blue-led-strips-night-florida-01.webp",
+        "alt": "Louvered roof glowing with blue LED strips and spotlights over a dark patio at night",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0234",
+        "_proyecto": "obra-033"
+      },
+      {
+        "src": "/images/banco/louvered/louvered-pergola-row-condo-terrace-ocean-florida-01.webp",
+        "alt": "Row of finished white louvered pergolas along a condo terrace with ocean beyond.",
+        "ancho": 1125,
+        "alto": 850,
+        "pos": "50% 50%",
+        "_banco": "bi-0655",
+        "_proyecto": "obra-050"
+      },
+      {
+        "src": "/images/banco/louvered/louvered-pergola-condo-rooftop-porcelain-deck-florida-01.webp",
+        "alt": "Finished white louvered pergolas at the edge of a porcelain-tiled condo rooftop.",
+        "ancho": 1125,
+        "alto": 933,
+        "pos": "50% 50%",
+        "_banco": "bi-0654",
+        "_proyecto": "obra-050"
+      },
+      {
+        "src": "/images/banco/louvered/louvered-pergola-bronze-tennis-court-shade-florida-01.webp",
+        "alt": "Bronze freestanding louvered pergola on a paver pad beside a blue tennis court",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0236",
+        "_proyecto": "obra-035"
+      }
+    ],
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
   }
 }
