@@ -9323,6 +9323,353 @@
     },
     "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
   },
+  "/services/landscaping/gainesville-fl": {
+    "heroe": {
+      "apoyo": "Landscaping design and installation company serving Gainesville, providing complete outdoor solutions that improve curb appeal.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "North Florida",
+        "South Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Plants chosen for the site",
+          "texto": "Salt-tolerant, wind-resistant species selected for coastal and inland Florida."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Drainage sorted first",
+          "texto": "We improve soil drainage so the planting survives its first wet season."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "Full Landscape Installation",
+        "Sod or Planting Only"
+      ],
+      "proyectoPorDefecto": "Full Landscape Installation",
+      "nombre": "Gainesville Landscaping Form",
+      "aviso": "Gainesville landscaping lead",
+      "ga4": "paisajismo",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We walk the property, check the drainage and put a planting plan on paper.",
+        "You get the scope in writing and a fixed project price before anything is planted."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my landscaping cost?",
+      "texto": "Landscaping is priced from the area to be planted, the species and sizes you choose, the soil and drainage work the site needs and the access to it. Tell us about the property and we will come back with a plan and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/landscaping/landscaping-italian-cypress-bromeliad-bed-lamp-post-florida-01.webp",
+      "alt": "Planting bed with Italian cypress, lady palms and red bromeliads beside a black lamp post.",
+      "ancho": 900,
+      "alto": 1600,
+      "_banco": "bi-0303"
+    },
+    "faq": {
+      "titulo": "Gainesville Landscaping Services FAQs",
+      "entradilla": "Have questions about professional landscaping installation in Gainesville, Florida? Our expert team answers the top questions from Florida homeowners.",
+      "anade": [
+        {
+          "pregunta": "How much does landscaping cost in Gainesville?",
+          "respuesta": "Landscaping is priced from the area to be planted, the species and sizes you choose, the soil and drainage work the site needs and the access to it. Tell us about the property and we will come back with a plan and a fixed project price."
+        },
+        {
+          "pregunta": "Do landscaping contractors use native Florida plants?",
+          "respuesta": "Yes. Our landscaping contractors prioritize native and Florida-Friendly plant selections that require less irrigation, resist local pests, and thrive without heavy chemical inputs. This approach delivers landscapes that look beautiful year-round while meaningfully reducing your long-term water consumption and maintenance requirements."
+        },
+        {
+          "pregunta": "Can landscaping help reduce water usage in Florida?",
+          "respuesta": "Yes. Landscapes designed with drought-tolerant native plants, strategic mulching, and smart irrigation significantly reduce water consumption. Our team creates designs that meet local water restriction guidelines while maintaining a lush, well-maintained appearance year-round for homeowners across North and South Florida."
+        },
+        {
+          "pregunta": "What local rules apply to landscaping work in Gainesville?",
+          "respuesta": "Inside the City of Gainesville, the city's Building Division works from the Thomas Center, Building B, at 306 NE 6th Avenue, and existing permits can be looked up in its PermitGNV portal. The city's Historic Preservation Board can issue Certificates of Appropriateness for structures in its five historic districts or on the Local Register, and its design guidelines include a section on fences and garden walls. In unincorporated Alachua County, the county's Building Division reviews the work instead. Removing a living tree with a trunk diameter of 20 inches or more from an existing single-family lot needs a city tree removal permit before any work starts, and the city defines a native tree of that size as a Heritage Tree. Our team creates designs that meet local water restriction guidelines.",
+          "fuentes": [
+            {
+              "nombre": "City of Gainesville Building Division: application process",
+              "url": "https://www.gainesvillefl.gov/Government-Pages/Government/Departments/Sustainable-Development/Building-Division/Building-Application-Process"
+            },
+            {
+              "nombre": "City of Gainesville: historic preservation",
+              "url": "https://www.gainesvillefl.gov/Government-Pages/Government/Departments/Sustainable-Development/Historic-Preservation"
+            },
+            {
+              "nombre": "Alachua County: municipalities and county permitting",
+              "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx"
+            },
+            {
+              "nombre": "City of Gainesville: tree removal regulations",
+              "url": "https://www.gainesvillefl.gov/Government-Pages/Government/Departments/Public-Works/Urban-Forestry/Tree-Removal-Regulations"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/landscaping/ocala-fl": {
+    "heroe": {
+      "apoyo": "Landscaping design and installation company serving Ocala, providing complete outdoor solutions that improve curb appeal.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "North Florida",
+        "South Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Plants chosen for the site",
+          "texto": "Salt-tolerant, wind-resistant species selected for coastal and inland Florida."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Drainage sorted first",
+          "texto": "We improve soil drainage so the planting survives its first wet season."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "Full Landscape Installation",
+        "Sod or Planting Only"
+      ],
+      "proyectoPorDefecto": "Full Landscape Installation",
+      "nombre": "Ocala Landscaping Form",
+      "aviso": "Ocala landscaping lead",
+      "ga4": "paisajismo",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We walk the property, check the drainage and put a planting plan on paper.",
+        "You get the scope in writing and a fixed project price before anything is planted."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my landscaping cost?",
+      "texto": "Landscaping is priced from the area to be planted, the species and sizes you choose, the soil and drainage work the site needs and the access to it. Tell us about the property and we will come back with a plan and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/landscaping/landscaping-italian-cypress-bromeliad-bed-lamp-post-florida-01.webp",
+      "alt": "Planting bed with Italian cypress, lady palms and red bromeliads beside a black lamp post.",
+      "ancho": 900,
+      "alto": 1600,
+      "_banco": "bi-0303"
+    },
+    "faq": {
+      "titulo": "Ocala Landscaping Services FAQs",
+      "entradilla": "Have questions about professional landscaping installation in Ocala, Florida? Our expert team answers the top questions from Florida homeowners.",
+      "anade": [
+        {
+          "pregunta": "How much does landscaping cost in Ocala?",
+          "respuesta": "Landscaping is priced from the area to be planted, the species and sizes you choose, the soil and drainage work the site needs and the access to it. Tell us about the property and we will come back with a plan and a fixed project price."
+        },
+        {
+          "pregunta": "Do landscaping contractors use native Florida plants?",
+          "respuesta": "Yes. Our landscaping contractors prioritize native and Florida-Friendly plant selections that require less irrigation, resist local pests, and thrive without heavy chemical inputs. This approach delivers landscapes that look beautiful year-round while meaningfully reducing your long-term water consumption and maintenance requirements."
+        },
+        {
+          "pregunta": "Can landscaping help reduce water usage in Florida?",
+          "respuesta": "Yes. Landscapes designed with drought-tolerant native plants, strategic mulching, and smart irrigation significantly reduce water consumption. Our team creates designs that meet local water restriction guidelines while maintaining a lush, well-maintained appearance year-round for homeowners across North and South Florida."
+        },
+        {
+          "pregunta": "What local rules apply to landscaping work in Ocala?",
+          "respuesta": "Inside the City of Ocala, a permit is required for most interior and exterior work other than painting and floor covering, and applications go in at the city's Customer Service Center on SE 3rd Street or through the eTrakit portal. Exterior work on a property in the Tuscawilla Park or Ocala Historic District also needs a Certificate of Appropriateness from the Ocala Historic Preservation Advisory Board before it starts. In unincorporated Marion County, the county's Building Safety department reviews the work instead. The city's irrigation schedule allows micro-irrigation such as drip and bubblers at any time and gives new landscapes extra watering days during their first 60 days, and we check the city's current irrigation schedule before the planting is scheduled. Our team creates designs that meet local water restriction guidelines.",
+          "fuentes": [
+            {
+              "nombre": "City of Ocala Building Services: construction permits",
+              "url": "https://www.ocalafl.gov/government/city-departments-a-h/growth-management/building/construction-permits"
+            },
+            {
+              "nombre": "City of Ocala: Certificate of Appropriateness",
+              "url": "https://www.ocalafl.gov/government/city-departments-a-h/growth-management/certificate-of-appropriateness"
+            },
+            {
+              "nombre": "Marion County Building Safety",
+              "url": "https://www.marionfl.org/agencies-departments/departments-facilities-offices/building-safety"
+            },
+            {
+              "nombre": "City of Ocala: irrigation schedule",
+              "url": "https://www.ocalafl.gov/government/city-departments-i-z/water-resources/water-conservation/irrigation-schedule"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/landscaping/palatka-fl": {
+    "heroe": {
+      "apoyo": "Landscaping design and installation company serving Palatka, providing complete outdoor solutions that improve curb appeal.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "North Florida",
+        "South Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Plants chosen for the site",
+          "texto": "Salt-tolerant, wind-resistant species selected for coastal and inland Florida."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Drainage sorted first",
+          "texto": "We improve soil drainage so the planting survives its first wet season."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "Full Landscape Installation",
+        "Sod or Planting Only"
+      ],
+      "proyectoPorDefecto": "Full Landscape Installation",
+      "nombre": "Palatka Landscaping Form",
+      "aviso": "Palatka landscaping lead",
+      "ga4": "paisajismo",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We walk the property, check the drainage and put a planting plan on paper.",
+        "You get the scope in writing and a fixed project price before anything is planted."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my landscaping cost?",
+      "texto": "Landscaping is priced from the area to be planted, the species and sizes you choose, the soil and drainage work the site needs and the access to it. Tell us about the property and we will come back with a plan and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/landscaping/landscaping-italian-cypress-bromeliad-bed-lamp-post-florida-01.webp",
+      "alt": "Planting bed with Italian cypress, lady palms and red bromeliads beside a black lamp post.",
+      "ancho": 900,
+      "alto": 1600,
+      "_banco": "bi-0303"
+    },
+    "faq": {
+      "titulo": "Palatka Landscaping Services FAQs",
+      "entradilla": "Have questions about professional landscaping installation in Palatka, Florida? Our expert team answers the top questions from Florida homeowners.",
+      "anade": [
+        {
+          "pregunta": "How much does landscaping cost in Palatka?",
+          "respuesta": "Landscaping is priced from the area to be planted, the species and sizes you choose, the soil and drainage work the site needs and the access to it. Tell us about the property and we will come back with a plan and a fixed project price."
+        },
+        {
+          "pregunta": "Do landscaping contractors use native Florida plants?",
+          "respuesta": "Yes. Our landscaping contractors prioritize native and Florida-Friendly plant selections that require less irrigation, resist local pests, and thrive without heavy chemical inputs. This approach delivers landscapes that look beautiful year-round while meaningfully reducing your long-term water consumption and maintenance requirements."
+        },
+        {
+          "pregunta": "Can landscaping help reduce water usage in Florida?",
+          "respuesta": "Yes. Landscapes designed with drought-tolerant native plants, strategic mulching, and smart irrigation significantly reduce water consumption. Our team creates designs that meet local water restriction guidelines while maintaining a lush, well-maintained appearance year-round for homeowners across North and South Florida."
+        },
+        {
+          "pregunta": "What local rules apply to landscaping work in Palatka?",
+          "respuesta": "In Palatka, building permits are not processed by the city alone: since October 11, 2018 the City of Palatka has consolidated permit processing with the Putnam County Building Division, so the application is filed with the county first and the city application follows. Any exterior work in Palatka's historic district, including site work such as new sidewalks and driveways, also needs an approved Certificate of Appropriateness from the Historic Preservation Board. The city lists irrigation systems among the work that requires a permit. Our team creates designs that meet local water restriction guidelines.",
+          "fuentes": [
+            {
+              "nombre": "City of Palatka: building permit services transferred to Putnam County",
+              "url": "https://palatka-fl.gov/CivicAlerts.aspx?AID=264&ARC=835"
+            },
+            {
+              "nombre": "City of Palatka: Historic Preservation Board",
+              "url": "https://palatka-fl.gov/140/Historic-Preservation-Board"
+            },
+            {
+              "nombre": "City of Palatka: applications and fees",
+              "url": "https://palatka-fl.gov/136/Applications-and-Fees"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
   "/services/pool-builders/ocala-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Ocala homeowners — 3D design, permits, construction and final start-up, from one licensed team.",

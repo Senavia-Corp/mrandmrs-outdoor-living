@@ -4529,7 +4529,11 @@
       "rollos y lona en primer plano",
       "carretillas al fondo"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/landscaping/gainesville-fl",
+      "/services/landscaping/ocala-fl",
+      "/services/landscaping/palatka-fl"
+    ],
     "origen": "DECKING/TURF/12.3.jpeg",
     "sha256": "e5d78a8a39a8dc8c8952f20e9476d85ad3bbec9867e317a4de6d32abcf6bb9c4"
   },
@@ -4566,7 +4570,11 @@
     "defectos": [
       "manguera en el borde derecho"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/landscaping/gainesville-fl",
+      "/services/landscaping/ocala-fl",
+      "/services/landscaping/palatka-fl"
+    ],
     "origen": "DECKING/TURF/12.jpeg",
     "sha256": "796716ed407821b622900eac3e2d2b687df2c58c9d894fcc205a63bdd4d76471"
   },
@@ -5152,7 +5160,11 @@
       "cielo quemado",
       "poste de luz a la derecha"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/landscaping/gainesville-fl",
+      "/services/landscaping/ocala-fl",
+      "/services/landscaping/palatka-fl"
+    ],
     "origen": "DECKING/TURF/IMG_4121.HEIC",
     "sha256": "58ce92e88efdc5b74a7b9235d79db853cec055a64926f86735273f93d16994d5"
   },
@@ -11015,7 +11027,11 @@
       "tapa de registro en la esquina inferior izquierda",
       "pavimento algo quemado"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/landscaping/gainesville-fl",
+      "/services/landscaping/ocala-fl",
+      "/services/landscaping/palatka-fl"
+    ],
     "origen": "LANDSCAPING/20140516_120259.jpg",
     "sha256": "5825a7a5a60be548cba9eed7c7eb706290ee1eabda617a8bfe77f5b534509005"
   },
@@ -11054,7 +11070,11 @@
       "poste de luz y coche al fondo",
       "cielo quemado"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/landscaping/gainesville-fl",
+      "/services/landscaping/ocala-fl",
+      "/services/landscaping/palatka-fl"
+    ],
     "origen": "LANDSCAPING/20140516_120321.jpg",
     "sha256": "31a957c1a1a8fc8b644dede50c6413b3c1a21522b139de76dd11183e664b3549"
   },
@@ -11307,7 +11327,11 @@
       "bombona de gas y cables a la vista",
       "contraluz duro"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/landscaping/gainesville-fl",
+      "/services/landscaping/ocala-fl",
+      "/services/landscaping/palatka-fl"
+    ],
     "origen": "LANDSCAPING/20160806_151835.jpg",
     "sha256": "3d7bbf9de4221df6dd7fa41f5731b9055d1478be16b01af385ebb129d6242b7d"
   },
@@ -11720,7 +11744,11 @@
       "formato muy estrecho",
       "tutores verdes en las palmeras"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/landscaping/gainesville-fl",
+      "/services/landscaping/ocala-fl",
+      "/services/landscaping/palatka-fl"
+    ],
     "origen": "LANDSCAPING/20250414_132146.jpg",
     "sha256": "801032e3421fab94d1fb3735330952600cf99eb00c2b10b74f155daf3af8f67b"
   },
@@ -11873,7 +11901,11 @@
     "defectos": [
       "mitad inferior ocupada por el pavimento"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/landscaping/gainesville-fl",
+      "/services/landscaping/ocala-fl",
+      "/services/landscaping/palatka-fl"
+    ],
     "origen": "LANDSCAPING/IMG_0522.HEIC",
     "sha256": "0c3db4046ed1ddd0ba1960652f7b1b4e733752186aec2e17c3fa6cc996c58662"
   },
@@ -11988,7 +12020,11 @@
       "cubos de basura en la calle",
       "borde de coche en la esquina inferior izquierda"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/landscaping/gainesville-fl",
+      "/services/landscaping/ocala-fl",
+      "/services/landscaping/palatka-fl"
+    ],
     "origen": "LANDSCAPING/IMG_0658.JPG",
     "sha256": "e5d4b56f358dd6e627f0e0a24a826c6b946cb749927baa2cd9c24b55626c70e6"
   },
@@ -12200,7 +12236,11 @@
     "defectos": [
       "resolucion justa (768x1024)"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/landscaping/gainesville-fl",
+      "/services/landscaping/ocala-fl",
+      "/services/landscaping/palatka-fl"
+    ],
     "origen": "LANDSCAPING/brier7.jpg",
     "sha256": "c4e86a315093df96f98a19590cbf70315dd5136f247387ee3a17be94f4b4eade"
   },
@@ -16931,7 +16971,11 @@
     "defectos": [
       "caja y restos en el borde inferior"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/landscaping/gainesville-fl",
+      "/services/landscaping/ocala-fl",
+      "/services/landscaping/palatka-fl"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Brannen/IMG_2885.jpeg",
     "sha256": "0184b6fe211b05bbf19569f8e79f3ca53bb19e5fabe8812270805aad975f6e1c"
   },
@@ -16967,7 +17011,11 @@
       "1:1"
     ],
     "defectos": [],
-    "usada_en": [],
+    "usada_en": [
+      "/services/landscaping/gainesville-fl",
+      "/services/landscaping/ocala-fl",
+      "/services/landscaping/palatka-fl"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Brannen/IMG_2886.jpeg",
     "sha256": "6c6ce1c3d07fe811d7cad7f6902dc0570ab2256b6e773f55c82fb895c175f3e2"
   },
@@ -17003,7 +17051,11 @@
     "defectos": [
       "bloque blanco en el borde izquierdo"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/landscaping/gainesville-fl",
+      "/services/landscaping/ocala-fl",
+      "/services/landscaping/palatka-fl"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Brannen/IMG_2887.jpeg",
     "sha256": "63dad6e61a63a5f8cbd676354e20e7ac0c4fd8b2160355b3cb240b1609be8622"
   },
@@ -17294,7 +17346,10 @@
       "adoquin rojo antiguo en la esquina inferior derecha"
     ],
     "usada_en": [
-      "/services/landscaping"
+      "/services/landscaping",
+      "/services/landscaping/gainesville-fl",
+      "/services/landscaping/ocala-fl",
+      "/services/landscaping/palatka-fl"
     ],
     "origen": "NEW JOBS CONSTRUCTION/Brier/IMG_3829.JPEG",
     "sha256": "6856ecc3b597539b19e2b28a95f0979c6eb3e4f8e6e6fb9cad24e8a5c3cdbd9a"
@@ -17649,7 +17704,11 @@
       "1:1"
     ],
     "defectos": [],
-    "usada_en": [],
+    "usada_en": [
+      "/services/landscaping/gainesville-fl",
+      "/services/landscaping/ocala-fl",
+      "/services/landscaping/palatka-fl"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Brier/IMG_3836.JPEG",
     "sha256": "b77ffa9e277c557799bbf914abd760d07968fc4580cc3c1f6d44280b8179ea7d"
   },
