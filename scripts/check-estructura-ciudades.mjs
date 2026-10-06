@@ -41,7 +41,8 @@ const leerJson = (p) => JSON.parse(fs.readFileSync(path.join(RAIZ, p), 'utf8'));
  * El orden CON captacion no es libre: replica el de la ficha Core, que se decidio midiendo el
  * recorrido del comprador (R17-CORE §5). Confianza ANTES del formulario -responde «¿por que
  * vosotros?» antes de pedir datos-, formulario detras de la intro -se ve obra antes de dar los
- * datos, R19 C4-, e inversion y FAQ detras de la prueba social.
+ * datos, R19 C4-, e inversion y FAQ detras de la prueba social. (Ese tramo lo han reordenado
+ * despues ORDEN-CIUDADES y ORDEN-CIUDADES-2: el orden vigente es el de `CON`, abajo.)
  *
  * R20-CIUDADES F2 (Sebastian, 14-sep-2026) mueve la prueba social DELANTE del carrusel de obra
  * en LOS DOS ordenes: `testimonial-section` pasa por delante de `projects-section`. Quien acaba
@@ -66,6 +67,9 @@ const SIN = [
    * no hay FAQ, asi que cae justo antes del blog. */
   /* ORDEN-CIUDADES (5-oct-2026): la plantilla es una, asi que aqui tambien la banda queda delante
    * de resenas y obra. */
+  /* ORDEN-CIUDADES-2 (6-oct-2026): esta lista NO cambia, y no es olvido. Sin captacion no hay
+   * FAQ ni `svc-inversion` (`InversionCore` lee el mismo `captacion-servicios.json` y sin entrada
+   * no pinta), asi que la banda ya estaba pegada al 3D, que es donde la pone el orden nuevo. */
   'hero-glass-section', 'trusted-section', 'gallery', '_3d-section',
   'animated-divs-section', 'testimonial-section', 'projects-section', 'blog-section-page',
   'social-media', 'cta-footer',
@@ -86,7 +90,10 @@ const CON = [
   /* ORDEN-CIUDADES (Sebastian, 5-oct-2026): inversion y FAQ suben pegadas al 3D, y resenas y obra
    * bajan a la cola, detras del panel de servicios. La banda y el panel siguen detras de la FAQ,
    * pero vuelven a quedar por encima de resenas y obra: es el orden que pidio el, puesto a puesto. */
-  '_3d-section', 'svc-inversion', 'faq-section', 'animated-divs-section', 'products-section',
+  /* ORDEN-CIUDADES-2 (Sebastian, 6-oct-2026): la banda sube pegada al 3D, por ENCIMA de la FAQ
+   * -matiza SEO-REMEDIACION-, y la inversion baja detras de la FAQ. El panel sigue el ultimo del
+   * tramo, debajo de la FAQ y de la inversion. */
+  '_3d-section', 'animated-divs-section', 'faq-section', 'svc-inversion', 'products-section',
   'testimonial-section', 'projects-section', 'blog-section-page', 'social-media',
   'cta-footer',
 ];
