@@ -23,4 +23,4 @@ const SV = SERVICIOS_CIUDAD[P.servicio];
 if (!SV) throw new Error(`${ruta}: «${P.servicio}» no esta en servicios-ciudad.mjs`);
 const seoRutas = { [P.doc.slug]: P.seoRuta };
 ---
-<PaginaCiudad doc={P.doc} ruta={ruta} servicio={SV} seoRutas={seoRutas} fotosCiudad={DATOS.servicios[P.servicio].fotosCiudad} enlaces={P.enlaces} />
+<PaginaCiudad doc={P.doc} ruta={ruta} servicio={SV} seoRutas={seoRutas} fotosCiudad={DATOS.servicios[P.servicio].fotosCiudad} enlaces={P.enlaces} heroeFoto={P.heroeFoto} />

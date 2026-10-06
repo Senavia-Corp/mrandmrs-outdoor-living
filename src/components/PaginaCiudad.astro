@@ -43,7 +43,7 @@ function aplanar(o, pref = '', prof = 0, salida = {}) {
 
 // `slug` es el de SANITY (la clave de seo-pool-builders.json, ciudades-captacion.json y la cache);
 // `Astro.params.slug` es el tramo publico (`ocala-fl`). RUTA es la URL servida.
-const { doc, ruta: RUTA, servicio: SV, seoRutas: SEO_RUTAS, fotosCiudad: FOTOS_CIUDAD, enlaces: ENLACES } = Astro.props;
+const { doc, ruta: RUTA, servicio: SV, seoRutas: SEO_RUTAS, fotosCiudad: FOTOS_CIUDAD, enlaces: ENLACES, heroeFoto: HEROE_FOTO } = Astro.props;
 const slug = doc.slug;
 const d = aplanar(doc);
 /**
@@ -195,6 +195,19 @@ if (!d['headingBlog'] || !d['paragraphBlog']) throw new Error(`${slug}: falta he
  *   · el corte del carrusel, que ya existia.
  * Los tres marcadores aparecen UNA vez en `B[0]`, comprobado; `partirEn` lo exige igualmente. */
 let b0 = conBandaGaleria(B[0], `${RUTA} B[0]`);
+/* LOOP-CIUDADES (6-oct-2026): EL FONDO DEL HEROE, DEL SERVICIO. El video de fondo de las ciudades es
+ * el reel de piscina (`bg-video`); detras de «Custom Aluminum Pergola Builders» presentaria una
+ * piscina como si fuera obra del servicio. Con `heroeFoto` (la foto de heroe de la ficha) el bloque
+ * del video se sustituye por esa foto, con el MISMO marco y la misma clase que el poster del video
+ * (`.mm-video-poster`), asi que se coloca igual y no cuesta CSS. Exactamente un bloque, o revienta. */
+if (HEROE_FOTO) {
+  const RE_VIDEO = /<div data-poster-url="\/images\/site\/bg-video-poster\.0000000\.jpg"[^>]*>[\s\S]*?<\/video><\/div>/g;
+  const n = (b0.match(RE_VIDEO) ?? []).length;
+  if (n !== 1) throw new Error(`${slug}: esperaba UN video de fondo en el heroe y hay ${n}`);
+  b0 = b0.replace(RE_VIDEO, () => '<div class="background-video-page w-background-video w-background-video-atom">'
+    + `<picture class="mm-video-poster-marco"><img class="mm-video-poster" src="${esc(HEROE_FOTO.src)}" `
+    + `width="${HEROE_FOTO.ancho}" height="${HEROE_FOTO.alto}" alt="" loading="eager" fetchpriority="high"></picture></div>`);
+}
 let ANTES_CONF = '', ANTES_FORM = '';
 if (CAP) {
   b0 = heroeDeCaptacion(b0, CAP, TELEFONOS.items, `${RUTA} heroe`);
@@ -220,6 +233,16 @@ const [P_ANTES, BANDA] = partirEn(P_ANTES_CON_BANDA, '<section class="animated-d
 if (!BANDA.trimEnd().endsWith('</section>') || BANDA.indexOf('<section', 1) >= 0) {
   throw new Error(`${slug}: la banda «Project Gallery» ya no es la ultima seccion de P_ANTES`);
 }
+/* LOOP-CIUDADES (D6 revisada, 6-oct-2026): LA SECCION 3D SOLO DONDE ES DEL SERVICIO. `P_ANTES` es
+ * exactamente `._3d-section`, y su video es el de diseno 3D de PISCINAS (herramienta «Pool», coping,
+ * pendiente del vaso). En una landing de pergolas o cocinas presentaria diseno de piscina como si
+ * fuera del servicio, y la revision independiente lo rechazo. Los servicios con `sin3d` no la
+ * pintan; pool-builders y pool-remodeling si. Si la plantilla cambia de forma, revienta el build. */
+if (SV.sin3d && (!P_ANTES.trimStart().startsWith('<section class="_3d-section"') || (P_ANTES.match(/<section/g) ?? []).length !== 1)) {
+  throw new Error(`${slug}: P_ANTES ya no es solo la seccion 3D; no se puede omitir sin llevarse otra cosa`);
+}
+const P_ANTES_PINTADO = SV.sin3d ? '' : P_ANTES;
+
 /** El `.svc-cierre` repite el CTA del heroe (`heroe.cta`, generado por build-captacion-ciudades). */
 const CTA_CIERRE = CAP?.heroe?.cta ?? 'Get a Free Estimate';
 
@@ -329,7 +352,7 @@ const SEO = FAQ
        `check-estructura-ciudades.mjs`. Las fotos son UN set para las 53 (`_defecto.fotos`) y
        `check-galeria-obra.mjs` comprueba que las 53 lo pintan entero y en orden. */}
   <GaleriaObra clave={SV.galeria} />
-  <Fragment set:html={P_ANTES} />
+  <Fragment set:html={P_ANTES_PINTADO} />
   {/* LA PRUEBA SOCIAL, DELANTE DE LA OBRA (R20-CIUDADES F2, decision de Sebastian 14-sep-2026).
       El orden era Pool Features -> Project Showcase -> resenas. Ahora las resenas van EN MEDIO:
       quien acaba de leer las mejoras de la piscina se encuentra la opinion de otros ANTES de
