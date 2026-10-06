@@ -800,7 +800,7 @@
         "comprobado": "2026-10-05"
       },
       "local": {
-        "texto": "In Deerfield Beach, Florida Building Code work is handled under contract: the city states that CAP Government is responsible for all duties related to the code, including permit applications, plan approvals, inspections and permit close-out, Its beachfront is part of Broward's Segment I, which it shares with Hillsboro Beach.",
+        "texto": "In Deerfield Beach, the city states that CAP Government will be responsible for performing all duties related to the Florida Building Code, including permit applications, plan approvals, inspections and permit close-out. Its beachfront is part of Broward's Segment I, which it shares with Hillsboro Beach.",
         "fuentes": [
           {
             "nombre": "City of Deerfield Beach: Building Services",
@@ -1621,7 +1621,7 @@
         "comprobado": "2026-10-05"
       },
       "local": {
-        "texto": "In Manalapan, the Town's Building Department covers plan review, architectural review and permitting, and any change to the exterior of a residence, from additions, shutters and fences to a new exterior colour, landscaping or a seawall, must first be approved by the Architectural Commission. The Town's coastline includes the 1.4 miles that Hurricane Sandy eroded in 2012, as recorded by the Florida Department of Environmental Protection.",
+        "texto": "In Manalapan, the Town's Building Department covers plan review, architectural review and permitting, and any change to the exterior of a residence, from additions, shutters and fences to a new exterior color, landscaping or a seawall, must first be approved by the Architectural Commission. The Town's coastline includes the 1.4 miles that Hurricane Sandy eroded in 2012, as recorded by the Florida Department of Environmental Protection.",
         "fuentes": [
           {
             "nombre": "Town of Manalapan: Building Department",
@@ -1731,6 +1731,38 @@
     {
       "servicio": "pergola-builders",
       "ciudad": "mcintosh-florida"
+    },
+    {
+      "servicio": "pergola-builders",
+      "ciudad": "hollywood-florida"
+    },
+    {
+      "servicio": "pergola-builders",
+      "ciudad": "weston-florida"
+    },
+    {
+      "servicio": "pergola-builders",
+      "ciudad": "dania-beach-florida"
+    },
+    {
+      "servicio": "pergola-builders",
+      "ciudad": "west-palm-beach-florida"
+    },
+    {
+      "servicio": "pergola-builders",
+      "ciudad": "boca-raton-florida"
+    },
+    {
+      "servicio": "pergola-builders",
+      "ciudad": "delray-beach-florida"
+    },
+    {
+      "servicio": "pergola-builders",
+      "ciudad": "gulf-stream-florida"
+    },
+    {
+      "servicio": "pergola-builders",
+      "ciudad": "manalapan-florida"
     }
   ],
   "regional": {

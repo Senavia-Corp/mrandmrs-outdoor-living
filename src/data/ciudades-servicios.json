@@ -142,6 +142,38 @@
           {
             "slug": "mcintosh-florida",
             "condado": "Marion"
+          },
+          {
+            "slug": "hollywood-florida",
+            "condado": "Broward"
+          },
+          {
+            "slug": "weston-florida",
+            "condado": "Broward"
+          },
+          {
+            "slug": "dania-beach-florida",
+            "condado": "Broward"
+          },
+          {
+            "slug": "west-palm-beach-florida",
+            "condado": "Palm Beach"
+          },
+          {
+            "slug": "boca-raton-florida",
+            "condado": "Palm Beach"
+          },
+          {
+            "slug": "delray-beach-florida",
+            "condado": "Palm Beach"
+          },
+          {
+            "slug": "gulf-stream-florida",
+            "condado": "Palm Beach"
+          },
+          {
+            "slug": "manalapan-florida",
+            "condado": "Palm Beach"
           }
         ]
       }
@@ -668,6 +700,10 @@
           {
             "href": "/services/pool-builders/hollywood-fl",
             "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pergola-builders/hollywood-fl",
+            "nombre": "Pergola Builders"
           }
         ]
       }
@@ -740,6 +776,10 @@
           {
             "href": "/services/pool-builders/dania-beach-fl",
             "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pergola-builders/dania-beach-fl",
+            "nombre": "Pergola Builders"
           }
         ]
       }
@@ -812,6 +852,10 @@
           {
             "href": "/services/pool-builders/west-palm-beach-fl",
             "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pergola-builders/west-palm-beach-fl",
+            "nombre": "Pergola Builders"
           }
         ]
       }
@@ -884,6 +928,10 @@
           {
             "href": "/services/pool-builders/boca-raton-fl",
             "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pergola-builders/boca-raton-fl",
+            "nombre": "Pergola Builders"
           }
         ]
       }
@@ -1028,6 +1076,10 @@
           {
             "href": "/services/pool-builders/gulf-stream-fl",
             "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pergola-builders/gulf-stream-fl",
+            "nombre": "Pergola Builders"
           }
         ]
       }
@@ -1100,6 +1152,10 @@
           {
             "href": "/services/pool-builders/manalapan-fl",
             "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pergola-builders/manalapan-fl",
+            "nombre": "Pergola Builders"
           }
         ]
       }
@@ -1499,6 +1555,638 @@
           },
           {
             "href": "/services/pool-remodeling/mcintosh-fl",
+            "nombre": "Pool Remodeling"
+          }
+        ]
+      }
+    },
+    "/services/pergola-builders/hollywood-fl": {
+      "servicio": "pergola-builders",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "hollywood-florida",
+        "name": "Hollywood",
+        "seo": {
+          "title": "Pergola Builders in Hollywood, FL | Mr & Mrs Outdoor Living",
+          "description": "Custom pergola builders and installation company serving Hollywood, FL homeowners, delivering durable designs that enhance outdoor comfort and style."
+        },
+        "h1Title": "Custom Aluminum Pergola Builders In Hollywood, Florida",
+        "h2Title": "Custom Pergola Builders Serving Hollywood And Broward County",
+        "intro": "Custom pergola builders and installation company serving Hollywood homeowners, delivering durable designs that enhance outdoor comfort and style.",
+        "headingIntro": "Custom Pergola Builders In Hollywood",
+        "paragraphIntro": "Our pergola builders design and install custom aluminum pergolas for Hollywood homes, combining expert craftsmanship, durable materials, and stylish shade solutions that elevate outdoor living spaces year-round.",
+        "imagenIntro1": {
+          "alt": "Dark bronze insulated aluminum patio cover over a travertine patio with wicker furniture beside a pool"
+        },
+        "imagenIntro2": {
+          "alt": "Upward view of a black patio cover with scalloped rafter tails, gutter and downspout framing a lake"
+        },
+        "imagenIntro3": {
+          "alt": "Low-angle view of a black-framed insulated patio cover with square rafter tails on a yellow two-story home"
+        },
+        "heading3DRendering": "We Design The Pergola For Your Space",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read reviews from North & South Florida homeowners who trust our pergola builders for durable installations, modern design, and outdoor comfort.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Hollywood, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Pergola Builders in Hollywood, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Custom pergola builders and installation company serving Hollywood, FL homeowners, delivering durable designs that enhance outdoor comfort and style.",
+            "og:image": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/pergola-builders/hollywood-fl",
+            "twitter:title": "Pergola Builders in Hollywood, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Custom pergola builders and installation company serving Hollywood, FL homeowners, delivering durable designs that enhance outdoor comfort and style.",
+            "twitter:image": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Hollywood",
+              "areaServed": {
+                "name": "Hollywood"
+              },
+              "description": "Custom pergola builders and installation company serving Hollywood, FL homeowners, delivering durable designs that enhance outdoor comfort and style."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-100/freestanding-pergola-dark-bronze-pool-spa-canal-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/pergola-builders",
+        "condado": "/services/pool-builders/broward-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/hollywood-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/hollywood-fl",
+            "nombre": "Pool Remodeling"
+          }
+        ]
+      }
+    },
+    "/services/pergola-builders/weston-fl": {
+      "servicio": "pergola-builders",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "weston-florida",
+        "name": "Weston",
+        "seo": {
+          "title": "Pergola Builders in Weston, FL | Mr & Mrs Outdoor Living",
+          "description": "Custom pergola builders and installation company serving Weston, FL homeowners, delivering durable designs that enhance outdoor comfort and style."
+        },
+        "h1Title": "Custom Aluminum Pergola Builders In Weston, Florida",
+        "h2Title": "Custom Pergola Builders Serving Weston And Broward County",
+        "intro": "Custom pergola builders and installation company serving Weston homeowners, delivering durable designs that enhance outdoor comfort and style.",
+        "headingIntro": "Custom Pergola Builders In Weston",
+        "paragraphIntro": "Our pergola builders design and install custom aluminum pergolas for Weston homes, combining expert craftsmanship, durable materials, and stylish shade solutions that elevate outdoor living spaces year-round.",
+        "imagenIntro1": {
+          "alt": "Dark bronze insulated aluminum patio cover over a travertine patio with wicker furniture beside a pool"
+        },
+        "imagenIntro2": {
+          "alt": "Upward view of a black patio cover with scalloped rafter tails, gutter and downspout framing a lake"
+        },
+        "imagenIntro3": {
+          "alt": "Low-angle view of a black-framed insulated patio cover with square rafter tails on a yellow two-story home"
+        },
+        "heading3DRendering": "We Design The Pergola For Your Space",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read reviews from North & South Florida homeowners who trust our pergola builders for durable installations, modern design, and outdoor comfort.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Weston, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Pergola Builders in Weston, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Custom pergola builders and installation company serving Weston, FL homeowners, delivering durable designs that enhance outdoor comfort and style.",
+            "og:image": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/pergola-builders/weston-fl",
+            "twitter:title": "Pergola Builders in Weston, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Custom pergola builders and installation company serving Weston, FL homeowners, delivering durable designs that enhance outdoor comfort and style.",
+            "twitter:image": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Weston",
+              "areaServed": {
+                "name": "Weston"
+              },
+              "description": "Custom pergola builders and installation company serving Weston, FL homeowners, delivering durable designs that enhance outdoor comfort and style."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-100/freestanding-pergola-dark-bronze-pool-spa-canal-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/pergola-builders",
+        "condado": "/services/pool-builders/broward-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/weston-fl",
+            "nombre": "Custom Pool Builders"
+          }
+        ]
+      }
+    },
+    "/services/pergola-builders/dania-beach-fl": {
+      "servicio": "pergola-builders",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "dania-beach-florida",
+        "name": "Dania Beach",
+        "seo": {
+          "title": "Pergola Builders in Dania Beach, FL | Mr & Mrs Outdoor Living",
+          "description": "Custom pergola builders and installation company serving Dania Beach, FL homeowners, delivering durable designs that enhance outdoor comfort and style."
+        },
+        "h1Title": "Custom Aluminum Pergola Builders In Dania Beach, Florida",
+        "h2Title": "Custom Pergola Builders Serving Dania Beach And Broward County",
+        "intro": "Custom pergola builders and installation company serving Dania Beach homeowners, delivering durable designs that enhance outdoor comfort and style.",
+        "headingIntro": "Custom Pergola Builders In Dania Beach",
+        "paragraphIntro": "Our pergola builders design and install custom aluminum pergolas for Dania Beach homes, combining expert craftsmanship, durable materials, and stylish shade solutions that elevate outdoor living spaces year-round.",
+        "imagenIntro1": {
+          "alt": "Dark bronze insulated aluminum patio cover over a travertine patio with wicker furniture beside a pool"
+        },
+        "imagenIntro2": {
+          "alt": "Upward view of a black patio cover with scalloped rafter tails, gutter and downspout framing a lake"
+        },
+        "imagenIntro3": {
+          "alt": "Low-angle view of a black-framed insulated patio cover with square rafter tails on a yellow two-story home"
+        },
+        "heading3DRendering": "We Design The Pergola For Your Space",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read reviews from North & South Florida homeowners who trust our pergola builders for durable installations, modern design, and outdoor comfort.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Dania Beach, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Pergola Builders in Dania Beach, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Custom pergola builders and installation company serving Dania Beach, FL homeowners, delivering durable designs that enhance outdoor comfort and style.",
+            "og:image": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/pergola-builders/dania-beach-fl",
+            "twitter:title": "Pergola Builders in Dania Beach, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Custom pergola builders and installation company serving Dania Beach, FL homeowners, delivering durable designs that enhance outdoor comfort and style.",
+            "twitter:image": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Dania Beach",
+              "areaServed": {
+                "name": "Dania Beach"
+              },
+              "description": "Custom pergola builders and installation company serving Dania Beach, FL homeowners, delivering durable designs that enhance outdoor comfort and style."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-100/freestanding-pergola-dark-bronze-pool-spa-canal-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/pergola-builders",
+        "condado": "/services/pool-builders/broward-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/dania-beach-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/dania-beach-fl",
+            "nombre": "Pool Remodeling"
+          }
+        ]
+      }
+    },
+    "/services/pergola-builders/west-palm-beach-fl": {
+      "servicio": "pergola-builders",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "west-palm-beach-florida",
+        "name": "West Palm Beach",
+        "seo": {
+          "title": "Pergola Builders in West Palm Beach, FL | Mr & Mrs Outdoor Living",
+          "description": "Custom pergola builders and installation company serving West Palm Beach, FL homeowners, delivering durable designs that enhance outdoor comfort and style."
+        },
+        "h1Title": "Custom Aluminum Pergola Builders In West Palm Beach, Florida",
+        "h2Title": "Custom Pergola Builders Serving West Palm Beach And Palm Beach County",
+        "intro": "Custom pergola builders and installation company serving West Palm Beach homeowners, delivering durable designs that enhance outdoor comfort and style.",
+        "headingIntro": "Custom Pergola Builders In West Palm Beach",
+        "paragraphIntro": "Our pergola builders design and install custom aluminum pergolas for West Palm Beach homes, combining expert craftsmanship, durable materials, and stylish shade solutions that elevate outdoor living spaces year-round.",
+        "imagenIntro1": {
+          "alt": "Dark bronze insulated aluminum patio cover over a travertine patio with wicker furniture beside a pool"
+        },
+        "imagenIntro2": {
+          "alt": "Upward view of a black patio cover with scalloped rafter tails, gutter and downspout framing a lake"
+        },
+        "imagenIntro3": {
+          "alt": "Low-angle view of a black-framed insulated patio cover with square rafter tails on a yellow two-story home"
+        },
+        "heading3DRendering": "We Design The Pergola For Your Space",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read reviews from North & South Florida homeowners who trust our pergola builders for durable installations, modern design, and outdoor comfort.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in West Palm Beach, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Pergola Builders in West Palm Beach, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Custom pergola builders and installation company serving West Palm Beach, FL homeowners, delivering durable designs that enhance outdoor comfort and style.",
+            "og:image": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/pergola-builders/west-palm-beach-fl",
+            "twitter:title": "Pergola Builders in West Palm Beach, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Custom pergola builders and installation company serving West Palm Beach, FL homeowners, delivering durable designs that enhance outdoor comfort and style.",
+            "twitter:image": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "West Palm Beach",
+              "areaServed": {
+                "name": "West Palm Beach"
+              },
+              "description": "Custom pergola builders and installation company serving West Palm Beach, FL homeowners, delivering durable designs that enhance outdoor comfort and style."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-100/freestanding-pergola-dark-bronze-pool-spa-canal-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/pergola-builders",
+        "condado": "/services/pool-builders/palm-beach-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/west-palm-beach-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/west-palm-beach-fl",
+            "nombre": "Pool Remodeling"
+          }
+        ]
+      }
+    },
+    "/services/pergola-builders/boca-raton-fl": {
+      "servicio": "pergola-builders",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "boca-raton-florida",
+        "name": "Boca Raton",
+        "seo": {
+          "title": "Pergola Builders in Boca Raton, FL | Mr & Mrs Outdoor Living",
+          "description": "Custom pergola builders and installation company serving Boca Raton, FL homeowners, delivering durable designs that enhance outdoor comfort and style."
+        },
+        "h1Title": "Custom Aluminum Pergola Builders In Boca Raton, Florida",
+        "h2Title": "Custom Pergola Builders Serving Boca Raton And Palm Beach County",
+        "intro": "Custom pergola builders and installation company serving Boca Raton homeowners, delivering durable designs that enhance outdoor comfort and style.",
+        "headingIntro": "Custom Pergola Builders In Boca Raton",
+        "paragraphIntro": "Our pergola builders design and install custom aluminum pergolas for Boca Raton homes, combining expert craftsmanship, durable materials, and stylish shade solutions that elevate outdoor living spaces year-round.",
+        "imagenIntro1": {
+          "alt": "Dark bronze insulated aluminum patio cover over a travertine patio with wicker furniture beside a pool"
+        },
+        "imagenIntro2": {
+          "alt": "Upward view of a black patio cover with scalloped rafter tails, gutter and downspout framing a lake"
+        },
+        "imagenIntro3": {
+          "alt": "Low-angle view of a black-framed insulated patio cover with square rafter tails on a yellow two-story home"
+        },
+        "heading3DRendering": "We Design The Pergola For Your Space",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read reviews from North & South Florida homeowners who trust our pergola builders for durable installations, modern design, and outdoor comfort.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Boca Raton, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Pergola Builders in Boca Raton, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Custom pergola builders and installation company serving Boca Raton, FL homeowners, delivering durable designs that enhance outdoor comfort and style.",
+            "og:image": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/pergola-builders/boca-raton-fl",
+            "twitter:title": "Pergola Builders in Boca Raton, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Custom pergola builders and installation company serving Boca Raton, FL homeowners, delivering durable designs that enhance outdoor comfort and style.",
+            "twitter:image": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Boca Raton",
+              "areaServed": {
+                "name": "Boca Raton"
+              },
+              "description": "Custom pergola builders and installation company serving Boca Raton, FL homeowners, delivering durable designs that enhance outdoor comfort and style."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-100/freestanding-pergola-dark-bronze-pool-spa-canal-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/pergola-builders",
+        "condado": "/services/pool-builders/palm-beach-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/boca-raton-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/boca-raton-fl",
+            "nombre": "Pool Remodeling"
+          }
+        ]
+      }
+    },
+    "/services/pergola-builders/delray-beach-fl": {
+      "servicio": "pergola-builders",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "delray-beach-florida",
+        "name": "Delray Beach",
+        "seo": {
+          "title": "Pergola Builders in Delray Beach, FL | Mr & Mrs Outdoor Living",
+          "description": "Custom pergola builders and installation company serving Delray Beach, FL homeowners, delivering durable designs that enhance outdoor comfort and style."
+        },
+        "h1Title": "Custom Aluminum Pergola Builders In Delray Beach, Florida",
+        "h2Title": "Custom Pergola Builders Serving Delray Beach And Palm Beach County",
+        "intro": "Custom pergola builders and installation company serving Delray Beach homeowners, delivering durable designs that enhance outdoor comfort and style.",
+        "headingIntro": "Custom Pergola Builders In Delray Beach",
+        "paragraphIntro": "Our pergola builders design and install custom aluminum pergolas for Delray Beach homes, combining expert craftsmanship, durable materials, and stylish shade solutions that elevate outdoor living spaces year-round.",
+        "imagenIntro1": {
+          "alt": "Dark bronze insulated aluminum patio cover over a travertine patio with wicker furniture beside a pool"
+        },
+        "imagenIntro2": {
+          "alt": "Upward view of a black patio cover with scalloped rafter tails, gutter and downspout framing a lake"
+        },
+        "imagenIntro3": {
+          "alt": "Low-angle view of a black-framed insulated patio cover with square rafter tails on a yellow two-story home"
+        },
+        "heading3DRendering": "We Design The Pergola For Your Space",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read reviews from North & South Florida homeowners who trust our pergola builders for durable installations, modern design, and outdoor comfort.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Delray Beach, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Pergola Builders in Delray Beach, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Custom pergola builders and installation company serving Delray Beach, FL homeowners, delivering durable designs that enhance outdoor comfort and style.",
+            "og:image": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/pergola-builders/delray-beach-fl",
+            "twitter:title": "Pergola Builders in Delray Beach, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Custom pergola builders and installation company serving Delray Beach, FL homeowners, delivering durable designs that enhance outdoor comfort and style.",
+            "twitter:image": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Delray Beach",
+              "areaServed": {
+                "name": "Delray Beach"
+              },
+              "description": "Custom pergola builders and installation company serving Delray Beach, FL homeowners, delivering durable designs that enhance outdoor comfort and style."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-100/freestanding-pergola-dark-bronze-pool-spa-canal-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/pergola-builders",
+        "condado": "/services/pool-builders/palm-beach-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/delray-beach-fl",
+            "nombre": "Custom Pool Builders"
+          }
+        ]
+      }
+    },
+    "/services/pergola-builders/gulf-stream-fl": {
+      "servicio": "pergola-builders",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "gulf-stream-florida",
+        "name": "Gulf Stream",
+        "seo": {
+          "title": "Pergola Builders in Gulf Stream, FL | Mr & Mrs Outdoor Living",
+          "description": "Custom pergola builders and installation company serving Gulf Stream, FL homeowners, delivering durable designs that enhance outdoor comfort and style."
+        },
+        "h1Title": "Custom Aluminum Pergola Builders In Gulf Stream, Florida",
+        "h2Title": "Custom Pergola Builders Serving Gulf Stream And Palm Beach County",
+        "intro": "Custom pergola builders and installation company serving Gulf Stream homeowners, delivering durable designs that enhance outdoor comfort and style.",
+        "headingIntro": "Custom Pergola Builders In Gulf Stream",
+        "paragraphIntro": "Our pergola builders design and install custom aluminum pergolas for Gulf Stream homes, combining expert craftsmanship, durable materials, and stylish shade solutions that elevate outdoor living spaces year-round.",
+        "imagenIntro1": {
+          "alt": "Dark bronze insulated aluminum patio cover over a travertine patio with wicker furniture beside a pool"
+        },
+        "imagenIntro2": {
+          "alt": "Upward view of a black patio cover with scalloped rafter tails, gutter and downspout framing a lake"
+        },
+        "imagenIntro3": {
+          "alt": "Low-angle view of a black-framed insulated patio cover with square rafter tails on a yellow two-story home"
+        },
+        "heading3DRendering": "We Design The Pergola For Your Space",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read reviews from North & South Florida homeowners who trust our pergola builders for durable installations, modern design, and outdoor comfort.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Gulf Stream, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Pergola Builders in Gulf Stream, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Custom pergola builders and installation company serving Gulf Stream, FL homeowners, delivering durable designs that enhance outdoor comfort and style.",
+            "og:image": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/pergola-builders/gulf-stream-fl",
+            "twitter:title": "Pergola Builders in Gulf Stream, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Custom pergola builders and installation company serving Gulf Stream, FL homeowners, delivering durable designs that enhance outdoor comfort and style.",
+            "twitter:image": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Gulf Stream",
+              "areaServed": {
+                "name": "Gulf Stream"
+              },
+              "description": "Custom pergola builders and installation company serving Gulf Stream, FL homeowners, delivering durable designs that enhance outdoor comfort and style."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-100/freestanding-pergola-dark-bronze-pool-spa-canal-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/pergola-builders",
+        "condado": "/services/pool-builders/palm-beach-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/gulf-stream-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/gulf-stream-fl",
+            "nombre": "Pool Remodeling"
+          }
+        ]
+      }
+    },
+    "/services/pergola-builders/manalapan-fl": {
+      "servicio": "pergola-builders",
+      "doc": {
+        "_type": "ciudadServicio",
+        "slug": "manalapan-florida",
+        "name": "Manalapan",
+        "seo": {
+          "title": "Pergola Builders in Manalapan, FL | Mr & Mrs Outdoor Living",
+          "description": "Custom pergola builders and installation company serving Manalapan, FL homeowners, delivering durable designs that enhance outdoor comfort and style."
+        },
+        "h1Title": "Custom Aluminum Pergola Builders In Manalapan, Florida",
+        "h2Title": "Custom Pergola Builders Serving Manalapan And Palm Beach County",
+        "intro": "Custom pergola builders and installation company serving Manalapan homeowners, delivering durable designs that enhance outdoor comfort and style.",
+        "headingIntro": "Custom Pergola Builders In Manalapan",
+        "paragraphIntro": "Our pergola builders design and install custom aluminum pergolas for Manalapan homes, combining expert craftsmanship, durable materials, and stylish shade solutions that elevate outdoor living spaces year-round.",
+        "imagenIntro1": {
+          "alt": "Dark bronze insulated aluminum patio cover over a travertine patio with wicker furniture beside a pool"
+        },
+        "imagenIntro2": {
+          "alt": "Upward view of a black patio cover with scalloped rafter tails, gutter and downspout framing a lake"
+        },
+        "imagenIntro3": {
+          "alt": "Low-angle view of a black-framed insulated patio cover with square rafter tails on a yellow two-story home"
+        },
+        "heading3DRendering": "We Design The Pergola For Your Space",
+        "headingFeature": "",
+        "paragraphFeatures": "",
+        "headingPortfolio": "",
+        "paragraphPortfolio": "",
+        "headingReviews": "What Our Clients Say",
+        "paragraphReviews": "Read reviews from North & South Florida homeowners who trust our pergola builders for durable installations, modern design, and outdoor comfort.",
+        "headingBlog": "Outdoor Living & Pool Blog",
+        "paragraphBlog": "Explore tips and insights on outdoor living in Manalapan, FL."
+      },
+      "seoRuta": {
+        "seo": {
+          "meta": {
+            "og:title": "Pergola Builders in Manalapan, FL | Mr & Mrs Outdoor Living",
+            "og:description": "Custom pergola builders and installation company serving Manalapan, FL homeowners, delivering durable designs that enhance outdoor comfort and style.",
+            "og:image": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+            "og:url": "https://www.mrandmrsoutdoorliving.com/services/pergola-builders/manalapan-fl",
+            "twitter:title": "Pergola Builders in Manalapan, FL | Mr & Mrs Outdoor Living",
+            "twitter:description": "Custom pergola builders and installation company serving Manalapan, FL homeowners, delivering durable designs that enhance outdoor comfort and style.",
+            "twitter:image": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+            "og:type": "website",
+            "twitter:card": "summary_large_image"
+          },
+          "jsonLd": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Manalapan",
+              "areaServed": {
+                "name": "Manalapan"
+              },
+              "description": "Custom pergola builders and installation company serving Manalapan, FL homeowners, delivering durable designs that enhance outdoor comfort and style."
+            }
+          ]
+        },
+        "ldCrudo": []
+      },
+      "heroeFoto": {
+        "src": "/images/obra/obra-100/freestanding-pergola-dark-bronze-pool-spa-canal-florida-heroe.avif",
+        "ancho": 1600,
+        "alto": 900
+      },
+      "enlaces": {
+        "ficha": "/services/pergola-builders",
+        "condado": "/services/pool-builders/palm-beach-county-fl",
+        "hermanas": [
+          {
+            "href": "/services/pool-builders/manalapan-fl",
+            "nombre": "Custom Pool Builders"
+          },
+          {
+            "href": "/services/pool-remodeling/manalapan-fl",
             "nombre": "Pool Remodeling"
           }
         ]

@@ -9,7 +9,7 @@
 | Campo | Valor |
 |---|---|
 | fase | **2 — lotes por servicio** (Fase 0 y Fase 1 cerradas) |
-| paso | Lote 3 (pergola-builders North) → PR → merge → verificacion |
+| paso | Lote 4 (pergola-builders South) → PR → merge → verificacion |
 | lote siguiente | Lote 1: pool-remodeling North (las 19 restantes con hecho local verificable) |
 | iteraciones sin avanzar | 0 |
 | ultima iteracion | 5-oct-2026, sobre `origin/main` 9824a43 |
@@ -508,6 +508,43 @@ check-texto =/services/pergola-builders exit 0   1 identicas · 0 en rojo   (1/1
 - Rutas nuevas sin referencia: cubiertas por `check:ciudades-servicios`; `check-texto`/`check-visual` no las miden (no es verde).
 - NO verificado: las URL de `fuentes` (egress, D7).
 
+## Lote 4 — pergola-builders South (5-oct-2026)
+
+**Rutas publicadas (8):** /services/pergola-builders/hollywood-fl, /services/pergola-builders/weston-fl, /services/pergola-builders/dania-beach-fl, /services/pergola-builders/west-palm-beach-fl, /services/pergola-builders/boca-raton-fl, /services/pergola-builders/delray-beach-fl, /services/pergola-builders/gulf-stream-fl, /services/pergola-builders/manalapan-fl
+
+**Excluidas (texto local propio < 60 palabras):** Fort Lauderdale 36, Pembroke Pines 44, Miramar 44, Pompano Beach 38, Davie 59, Plantation 34, Hallandale Beach 52, Parkland 33, Wilton Manors 43, Lighthouse Point 36, Southwest Ranches 52, Hillsboro Beach 51, Boynton Beach 33, Wellington 43, Jupiter 40, Palm Beach Gardens 24, Royal Palm Beach 36, North Palm Beach 45, Tequesta 23, Juno Beach 51, Hypoluxo 37, Atlantis 41, Ocean Ridge 59, South Palm Beach 39; y **Deerfield Beach 59** tras ajustar su parrafo al fragmento (la revision rechazo «under contract», que no esta en la evidencia).
+
+**Revision independiente:** 1a pasada RECHAZADA solo por Deerfield Beach (redactado mas ancho que el fragmento y una errata). Corregido el parrafo, Deerfield baja a 59 palabras propias y sale; las otras 8 fueron aprobadas en esa misma pasada.
+
+**Puertas** (build `MM_SANITY_CACHE=1 PUBLIC_ES_PRODUCCION=1`):
+
+```
+rutas existentes con HTML distinto al de main 9824a43: 2 -> services/pergola-builders/index.html services/pool-remodeling/index.html
+diff=0 /services/pool-builders/ocala-fl
+diff=0 /services/pool-builders/boca-raton-fl
+diff=0 /services/pool-builders/archer-fl
+check:tokens                 exit 0  PUERTA VERDE
+check:rutas                  exit 0  PUERTA VERDE
+check:enlaces                exit 0  PUERTA VERDE
+check:seo                    exit 0  PUERTA VERDE
+check:captacion              exit 0  PUERTA VERDE
+check:estructura:ciudades    exit 0  PUERTA VERDE — dos formas y solo dos
+check:medicion               exit 0  PUERTA VERDE
+check:ciudades-servicios     exit 0  PUERTA VERDE
+check:redirects              exit 0  PUERTA VERDE
+check:estructura             exit 0  PUERTA VERDE — 14 fichas, un solo orden (+ 2 variante(s) declarada(s))
+check:galeria-obra           exit 0  PUERTA VERDE — un set, las 53 ciudades, obra real trazada
+check:identidad              exit 0  PUERTA VERDE
+check:ads                    exit 0  PUERTA VERDE
+check:menu                   exit 0  PUERTA VERDE
+check:galeria                exit 0  PUERTA VERDE
+check-texto =/services/pool-remodeling exit 0   1 identicas · 0 en rojo   (1/1 rutas medidas)
+check-texto =/services/pergola-builders exit 0   1 identicas · 0 en rojo   (1/1 rutas medidas)
+```
+
+- Rutas nuevas sin referencia: cubiertas por `check:ciudades-servicios`; `check-texto`/`check-visual` no las miden (no es verde).
+- NO verificado: las URL de `fuentes` (egress, D7).
+
 ## Rutas hechas
 
 | Ruta | Lote | PR | Produccion |
@@ -525,11 +562,19 @@ check-texto =/services/pergola-builders exit 0   1 identicas · 0 en rojo   (1/1
 | /services/pool-remodeling/boynton-beach-fl | 2 | [#49](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/49) fusionado (1599b77) | Vercel `success`, deployment 6872160685. URL no abierta: egress (D7) |
 | /services/pool-remodeling/gulf-stream-fl | 2 | [#49](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/49) fusionado (1599b77) | Vercel `success`, deployment 6872160685. URL no abierta: egress (D7) |
 | /services/pool-remodeling/manalapan-fl | 2 | [#49](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/49) fusionado (1599b77) | Vercel `success`, deployment 6872160685. URL no abierta: egress (D7) |
-| /services/pergola-builders/gainesville-fl | 3 | (pendiente) | (pendiente) |
-| /services/pergola-builders/ocala-fl | 3 | (pendiente) | (pendiente) |
-| /services/pergola-builders/palatka-fl | 3 | (pendiente) | (pendiente) |
-| /services/pergola-builders/cedar-key-fl | 3 | (pendiente) | (pendiente) |
-| /services/pergola-builders/mcintosh-fl | 3 | (pendiente) | (pendiente) |
+| /services/pergola-builders/gainesville-fl | 3 | [#50](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/50) fusionado (752086e) | Vercel `success`, deployment 6872598367. URL no abierta: egress (D7) |
+| /services/pergola-builders/ocala-fl | 3 | [#50](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/50) fusionado (752086e) | Vercel `success`, deployment 6872598367. URL no abierta: egress (D7) |
+| /services/pergola-builders/palatka-fl | 3 | [#50](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/50) fusionado (752086e) | Vercel `success`, deployment 6872598367. URL no abierta: egress (D7) |
+| /services/pergola-builders/cedar-key-fl | 3 | [#50](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/50) fusionado (752086e) | Vercel `success`, deployment 6872598367. URL no abierta: egress (D7) |
+| /services/pergola-builders/mcintosh-fl | 3 | [#50](https://github.com/Senavia-Corp/mrandmrs-outdoor-living/pull/50) fusionado (752086e) | Vercel `success`, deployment 6872598367. URL no abierta: egress (D7) |
+| /services/pergola-builders/hollywood-fl | 4 | (pendiente) | (pendiente) |
+| /services/pergola-builders/weston-fl | 4 | (pendiente) | (pendiente) |
+| /services/pergola-builders/dania-beach-fl | 4 | (pendiente) | (pendiente) |
+| /services/pergola-builders/west-palm-beach-fl | 4 | (pendiente) | (pendiente) |
+| /services/pergola-builders/boca-raton-fl | 4 | (pendiente) | (pendiente) |
+| /services/pergola-builders/delray-beach-fl | 4 | (pendiente) | (pendiente) |
+| /services/pergola-builders/gulf-stream-fl | 4 | (pendiente) | (pendiente) |
+| /services/pergola-builders/manalapan-fl | 4 | (pendiente) | (pendiente) |
 
 ## Bloqueos y avisos
 
