@@ -8209,6 +8209,563 @@
     },
     "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
   },
+  "/services/outdoor-kitchens/gainesville-fl": {
+    "heroe": {
+      "apoyo": "Outdoor kitchen builders and installation contractors serving Gainesville with custom layouts for entertaining and daily use.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "North Florida",
+        "South Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Appliances made for outdoors",
+          "texto": "Outdoor-rated grills, smokers and refrigeration, engineered into the layout with their utilities."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits, HOA and ARB handled",
+          "texto": "We manage the full permitting process, including HOA and ARB submissions."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Outdoor Kitchen",
+        "Grilling Island or Bar"
+      ],
+      "proyectoPorDefecto": "New Outdoor Kitchen",
+      "nombre": "Gainesville Outdoor Kitchen Form",
+      "aviso": "Gainesville outdoor kitchen lead",
+      "ga4": "cocina",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We lay out the kitchen around how you cook and take it through permits, HOA and ARB.",
+        "You get the scope in writing and a fixed project price before anything is built."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my outdoor kitchen cost?",
+      "texto": "Every outdoor kitchen is priced from its layout, the appliances, the countertops and the utility runs it needs. Tell us how you cook and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/kitchens/outdoor-kitchen-l-shaped-granite-built-in-grill-florida-01.webp",
+      "alt": "L-shaped outdoor kitchen with built-in grill, ice maker, fridge and granite countertop on a covered patio.",
+      "ancho": 1600,
+      "alto": 1200,
+      "_banco": "bi-0502"
+    },
+    "faq": {
+      "titulo": "Gainesville Outdoor Kitchen FAQs",
+      "entradilla": "Have questions about custom outdoor kitchen construction in Gainesville, Florida? Our licensed contractors answer the top questions from Florida homeowners below.",
+      "anade": [
+        {
+          "pregunta": "How much does an outdoor kitchen cost in Gainesville?",
+          "respuesta": "Every outdoor kitchen is priced from its layout, the appliances, the countertops and the utility runs it needs. Tell us how you cook and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "What materials are best for outdoor kitchens in Florida?",
+          "respuesta": "We install outdoor kitchens using weatherproof polymer cabinets, marine-grade stainless steel hardware, and natural stone countertops — all selected for resistance to Florida's heat, humidity, and coastal salt air. Every material choice is engineered to maintain its appearance and structural integrity over the long term."
+        },
+        {
+          "pregunta": "Can I add a bar, pizza oven, or smoker to my kitchen?",
+          "respuesta": "Absolutely. Custom outdoor kitchens can be designed around any combination of cooking equipment including built-in bars, pizza ovens, smokers, kamado grills, and beverage refrigerators. Each specialty appliance is engineered into the layout with proper utility routing, ventilation, and structural support to meet Florida building code requirements."
+        },
+        {
+          "pregunta": "Which office permits an outdoor kitchen in Gainesville?",
+          "respuesta": "Inside the City of Gainesville, the city's Building Division works from the Thomas Center, Building B, at 306 NE 6th Avenue, and existing permits can be looked up in its PermitGNV portal. The city's Historic Preservation Board can issue Certificates of Appropriateness for structures in its five historic districts or on the Local Register, and its design guidelines include a section on fences and garden walls. In unincorporated Alachua County, the county's Building Division reviews the work instead. Gainesville Regional Utilities has operated the city's natural gas system since 1990 and offers natural gas for uses such as grilling, so whether a gas line can reach the outdoor kitchen is worth confirming at the address before the design is drawn. We manage the full permitting process, including HOA and ARB submissions.",
+          "fuentes": [
+            {
+              "nombre": "City of Gainesville Building Division: application process",
+              "url": "https://www.gainesvillefl.gov/Government-Pages/Government/Departments/Sustainable-Development/Building-Division/Building-Application-Process"
+            },
+            {
+              "nombre": "City of Gainesville: historic preservation",
+              "url": "https://www.gainesvillefl.gov/Government-Pages/Government/Departments/Sustainable-Development/Historic-Preservation"
+            },
+            {
+              "nombre": "Alachua County: municipalities and county permitting",
+              "url": "https://alachuacounty.us/Businesses/Permitting/pages/municipalities.aspx"
+            },
+            {
+              "nombre": "Gainesville Regional Utilities: natural gas",
+              "url": "https://www.gru.com/naturalgas"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/outdoor-kitchens/ocala-fl": {
+    "heroe": {
+      "apoyo": "Outdoor kitchen builders and installation contractors serving Ocala with custom layouts for entertaining and daily use.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "North Florida",
+        "South Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Appliances made for outdoors",
+          "texto": "Outdoor-rated grills, smokers and refrigeration, engineered into the layout with their utilities."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits, HOA and ARB handled",
+          "texto": "We manage the full permitting process, including HOA and ARB submissions."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Outdoor Kitchen",
+        "Grilling Island or Bar"
+      ],
+      "proyectoPorDefecto": "New Outdoor Kitchen",
+      "nombre": "Ocala Outdoor Kitchen Form",
+      "aviso": "Ocala outdoor kitchen lead",
+      "ga4": "cocina",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We lay out the kitchen around how you cook and take it through permits, HOA and ARB.",
+        "You get the scope in writing and a fixed project price before anything is built."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my outdoor kitchen cost?",
+      "texto": "Every outdoor kitchen is priced from its layout, the appliances, the countertops and the utility runs it needs. Tell us how you cook and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/kitchens/outdoor-kitchen-l-shaped-granite-built-in-grill-florida-01.webp",
+      "alt": "L-shaped outdoor kitchen with built-in grill, ice maker, fridge and granite countertop on a covered patio.",
+      "ancho": 1600,
+      "alto": 1200,
+      "_banco": "bi-0502"
+    },
+    "faq": {
+      "titulo": "Ocala Outdoor Kitchen FAQs",
+      "entradilla": "Have questions about custom outdoor kitchen construction in Ocala, Florida? Our licensed contractors answer the top questions from Florida homeowners below.",
+      "anade": [
+        {
+          "pregunta": "How much does an outdoor kitchen cost in Ocala?",
+          "respuesta": "Every outdoor kitchen is priced from its layout, the appliances, the countertops and the utility runs it needs. Tell us how you cook and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "What materials are best for outdoor kitchens in Florida?",
+          "respuesta": "We install outdoor kitchens using weatherproof polymer cabinets, marine-grade stainless steel hardware, and natural stone countertops — all selected for resistance to Florida's heat, humidity, and coastal salt air. Every material choice is engineered to maintain its appearance and structural integrity over the long term."
+        },
+        {
+          "pregunta": "Can I add a bar, pizza oven, or smoker to my kitchen?",
+          "respuesta": "Absolutely. Custom outdoor kitchens can be designed around any combination of cooking equipment including built-in bars, pizza ovens, smokers, kamado grills, and beverage refrigerators. Each specialty appliance is engineered into the layout with proper utility routing, ventilation, and structural support to meet Florida building code requirements."
+        },
+        {
+          "pregunta": "Which office permits an outdoor kitchen in Ocala?",
+          "respuesta": "Inside the City of Ocala, a permit is required for most interior and exterior work other than painting and floor covering, and applications go in at the city's Customer Service Center on SE 3rd Street or through the eTrakit portal. Exterior work on a property in the Tuscawilla Park or Ocala Historic District also needs a Certificate of Appropriateness from the Ocala Historic Preservation Advisory Board before it starts. In unincorporated Marion County, the county's Building Safety department reviews the work instead. We manage the full permitting process, including HOA and ARB submissions.",
+          "fuentes": [
+            {
+              "nombre": "City of Ocala Building Services: construction permits",
+              "url": "https://www.ocalafl.gov/government/city-departments-a-h/growth-management/building/construction-permits"
+            },
+            {
+              "nombre": "City of Ocala: Certificate of Appropriateness",
+              "url": "https://www.ocalafl.gov/government/city-departments-a-h/growth-management/certificate-of-appropriateness"
+            },
+            {
+              "nombre": "Marion County Building Safety",
+              "url": "https://www.marionfl.org/agencies-departments/departments-facilities-offices/building-safety"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/outdoor-kitchens/palatka-fl": {
+    "heroe": {
+      "apoyo": "Outdoor kitchen builders and installation contractors serving Palatka with custom layouts for entertaining and daily use.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "North Florida",
+        "South Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Appliances made for outdoors",
+          "texto": "Outdoor-rated grills, smokers and refrigeration, engineered into the layout with their utilities."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits, HOA and ARB handled",
+          "texto": "We manage the full permitting process, including HOA and ARB submissions."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Outdoor Kitchen",
+        "Grilling Island or Bar"
+      ],
+      "proyectoPorDefecto": "New Outdoor Kitchen",
+      "nombre": "Palatka Outdoor Kitchen Form",
+      "aviso": "Palatka outdoor kitchen lead",
+      "ga4": "cocina",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We lay out the kitchen around how you cook and take it through permits, HOA and ARB.",
+        "You get the scope in writing and a fixed project price before anything is built."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my outdoor kitchen cost?",
+      "texto": "Every outdoor kitchen is priced from its layout, the appliances, the countertops and the utility runs it needs. Tell us how you cook and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/kitchens/outdoor-kitchen-l-shaped-granite-built-in-grill-florida-01.webp",
+      "alt": "L-shaped outdoor kitchen with built-in grill, ice maker, fridge and granite countertop on a covered patio.",
+      "ancho": 1600,
+      "alto": 1200,
+      "_banco": "bi-0502"
+    },
+    "faq": {
+      "titulo": "Palatka Outdoor Kitchen FAQs",
+      "entradilla": "Have questions about custom outdoor kitchen construction in Palatka, Florida? Our licensed contractors answer the top questions from Florida homeowners below.",
+      "anade": [
+        {
+          "pregunta": "How much does an outdoor kitchen cost in Palatka?",
+          "respuesta": "Every outdoor kitchen is priced from its layout, the appliances, the countertops and the utility runs it needs. Tell us how you cook and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "What materials are best for outdoor kitchens in Florida?",
+          "respuesta": "We install outdoor kitchens using weatherproof polymer cabinets, marine-grade stainless steel hardware, and natural stone countertops — all selected for resistance to Florida's heat, humidity, and coastal salt air. Every material choice is engineered to maintain its appearance and structural integrity over the long term."
+        },
+        {
+          "pregunta": "Can I add a bar, pizza oven, or smoker to my kitchen?",
+          "respuesta": "Absolutely. Custom outdoor kitchens can be designed around any combination of cooking equipment including built-in bars, pizza ovens, smokers, kamado grills, and beverage refrigerators. Each specialty appliance is engineered into the layout with proper utility routing, ventilation, and structural support to meet Florida building code requirements."
+        },
+        {
+          "pregunta": "Which office permits an outdoor kitchen in Palatka?",
+          "respuesta": "In Palatka, building permits are not processed by the city alone: since October 11, 2018 the City of Palatka has consolidated permit processing with the Putnam County Building Division, so the application is filed with the county first and the city application follows. Any exterior work in Palatka's historic district, including site work such as new sidewalks and driveways, also needs an approved Certificate of Appropriateness from the Historic Preservation Board. We manage the full permitting process, including HOA and ARB submissions.",
+          "fuentes": [
+            {
+              "nombre": "City of Palatka: building permit services transferred to Putnam County",
+              "url": "https://palatka-fl.gov/CivicAlerts.aspx?AID=264&ARC=835"
+            },
+            {
+              "nombre": "City of Palatka: Historic Preservation Board",
+              "url": "https://palatka-fl.gov/140/Historic-Preservation-Board"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/outdoor-kitchens/cedar-key-fl": {
+    "heroe": {
+      "apoyo": "Outdoor kitchen builders and installation contractors serving Cedar Key with custom layouts for entertaining and daily use.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "North Florida",
+        "South Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Appliances made for outdoors",
+          "texto": "Outdoor-rated grills, smokers and refrigeration, engineered into the layout with their utilities."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits, HOA and ARB handled",
+          "texto": "We manage the full permitting process, including HOA and ARB submissions."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Outdoor Kitchen",
+        "Grilling Island or Bar"
+      ],
+      "proyectoPorDefecto": "New Outdoor Kitchen",
+      "nombre": "Cedar Key Outdoor Kitchen Form",
+      "aviso": "Cedar Key outdoor kitchen lead",
+      "ga4": "cocina",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We lay out the kitchen around how you cook and take it through permits, HOA and ARB.",
+        "You get the scope in writing and a fixed project price before anything is built."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my outdoor kitchen cost?",
+      "texto": "Every outdoor kitchen is priced from its layout, the appliances, the countertops and the utility runs it needs. Tell us how you cook and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/kitchens/outdoor-kitchen-l-shaped-granite-built-in-grill-florida-01.webp",
+      "alt": "L-shaped outdoor kitchen with built-in grill, ice maker, fridge and granite countertop on a covered patio.",
+      "ancho": 1600,
+      "alto": 1200,
+      "_banco": "bi-0502"
+    },
+    "faq": {
+      "titulo": "Cedar Key Outdoor Kitchen FAQs",
+      "entradilla": "Have questions about custom outdoor kitchen construction in Cedar Key, Florida? Our licensed contractors answer the top questions from Florida homeowners below.",
+      "anade": [
+        {
+          "pregunta": "How much does an outdoor kitchen cost in Cedar Key?",
+          "respuesta": "Every outdoor kitchen is priced from its layout, the appliances, the countertops and the utility runs it needs. Tell us how you cook and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "What materials are best for outdoor kitchens in Florida?",
+          "respuesta": "We install outdoor kitchens using weatherproof polymer cabinets, marine-grade stainless steel hardware, and natural stone countertops — all selected for resistance to Florida's heat, humidity, and coastal salt air. Every material choice is engineered to maintain its appearance and structural integrity over the long term."
+        },
+        {
+          "pregunta": "Can I add a bar, pizza oven, or smoker to my kitchen?",
+          "respuesta": "Absolutely. Custom outdoor kitchens can be designed around any combination of cooking equipment including built-in bars, pizza ovens, smokers, kamado grills, and beverage refrigerators. Each specialty appliance is engineered into the layout with proper utility routing, ventilation, and structural support to meet Florida building code requirements."
+        },
+        {
+          "pregunta": "Which office permits an outdoor kitchen in Cedar Key?",
+          "respuesta": "In Cedar Key, the City has partnered with JPI, Inc. to provide experienced building officials, certified inspectors and permit technicians. Every property on Cedar Key is in, on or near a Special Flood Hazard Area, with AE and VE flood zones, and an Elevation Certificate has to be submitted with the building permit application under the flood map in effect since February 15, 2019. We manage the full permitting process, including HOA and ARB submissions.",
+          "fuentes": [
+            {
+              "nombre": "City of Cedar Key: Building Department",
+              "url": "https://www.cityofcedarkey.org/214/Building-Department"
+            },
+            {
+              "nombre": "City of Cedar Key: floodplain management",
+              "url": "https://www.cityofcedarkey.org/297/Floodplain-Management"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
+  "/services/outdoor-kitchens/mcintosh-fl": {
+    "heroe": {
+      "apoyo": "Outdoor kitchen builders and installation contractors serving McIntosh with custom layouts for entertaining and daily use.",
+      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
+      "ancla": "#estimate",
+      "cta": "Get a Free Estimate",
+      "zonas": [
+        "North Florida",
+        "South Florida"
+      ]
+    },
+    "confianza": {
+      "rotulo": "Why homeowners pick us",
+      "tarjetas": [
+        {
+          "icono": "manos",
+          "titulo": "One design-build team",
+          "texto": "Design, permits, engineering and construction under one roof."
+        },
+        {
+          "icono": "escudo",
+          "titulo": "Florida licensed and insured",
+          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
+        },
+        {
+          "icono": "plano",
+          "titulo": "Appliances made for outdoors",
+          "texto": "Outdoor-rated grills, smokers and refrigeration, engineered into the layout with their utilities."
+        },
+        {
+          "icono": "contrato",
+          "titulo": "Permits, HOA and ARB handled",
+          "texto": "We manage the full permitting process, including HOA and ARB submissions."
+        }
+      ]
+    },
+    "formulario": {
+      "titulo": "Get a Free Estimate",
+      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
+      "proyectos": [
+        "New Outdoor Kitchen",
+        "Grilling Island or Bar"
+      ],
+      "proyectoPorDefecto": "New Outdoor Kitchen",
+      "nombre": "McIntosh Outdoor Kitchen Form",
+      "aviso": "McIntosh outdoor kitchen lead",
+      "ga4": "cocina",
+      "pasosTitulo": "What happens after you reach out",
+      "pasos": [
+        "We call you back and set a time to see your space.",
+        "We lay out the kitchen around how you cook and take it through permits, HOA and ARB.",
+        "You get the scope in writing and a fixed project price before anything is built."
+      ]
+    },
+    "inversion": {
+      "titulo": "What will my outdoor kitchen cost?",
+      "texto": "Every outdoor kitchen is priced from its layout, the appliances, the countertops and the utility runs it needs. Tell us how you cook and we will come back with the scope in writing and a fixed project price.",
+      "ctas": [
+        {
+          "texto": "Get a free estimate",
+          "href": "#estimate",
+          "principal": true
+        },
+        {
+          "texto": "Financing available",
+          "href": "/financing",
+          "principal": false
+        }
+      ],
+      "foto": "/images/banco/kitchens/outdoor-kitchen-l-shaped-granite-built-in-grill-florida-01.webp",
+      "alt": "L-shaped outdoor kitchen with built-in grill, ice maker, fridge and granite countertop on a covered patio.",
+      "ancho": 1600,
+      "alto": 1200,
+      "_banco": "bi-0502"
+    },
+    "faq": {
+      "titulo": "McIntosh Outdoor Kitchen FAQs",
+      "entradilla": "Have questions about custom outdoor kitchen construction in McIntosh, Florida? Our licensed contractors answer the top questions from Florida homeowners below.",
+      "anade": [
+        {
+          "pregunta": "How much does an outdoor kitchen cost in McIntosh?",
+          "respuesta": "Every outdoor kitchen is priced from its layout, the appliances, the countertops and the utility runs it needs. Tell us how you cook and we will come back with the scope in writing and a fixed project price."
+        },
+        {
+          "pregunta": "What materials are best for outdoor kitchens in Florida?",
+          "respuesta": "We install outdoor kitchens using weatherproof polymer cabinets, marine-grade stainless steel hardware, and natural stone countertops — all selected for resistance to Florida's heat, humidity, and coastal salt air. Every material choice is engineered to maintain its appearance and structural integrity over the long term."
+        },
+        {
+          "pregunta": "Can I add a bar, pizza oven, or smoker to my kitchen?",
+          "respuesta": "Absolutely. Custom outdoor kitchens can be designed around any combination of cooking equipment including built-in bars, pizza ovens, smokers, kamado grills, and beverage refrigerators. Each specialty appliance is engineered into the layout with proper utility routing, ventilation, and structural support to meet Florida building code requirements."
+        },
+        {
+          "pregunta": "Which office permits an outdoor kitchen in McIntosh?",
+          "respuesta": "In McIntosh the permit itself comes from Marion County, but not before the town signs off: written authorization from the Town of McIntosh is required before Marion County issues any permit. The town uses a Proposed Work Permit for repairs, replacements and improvements such as fences or gates, and a Site Plan Permit for new construction or any work that changes the original footprint of the property. We manage the full permitting process, including HOA and ARB submissions.",
+          "fuentes": [
+            {
+              "nombre": "Town of McIntosh: forms",
+              "url": "https://townofmcintosh.org/forms/"
+            },
+            {
+              "nombre": "Marion County Building Safety",
+              "url": "https://www.marionfl.org/agencies-departments/departments-facilities-offices/building-safety"
+            }
+          ]
+        }
+      ]
+    },
+    "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
+  },
   "/services/pool-builders/ocala-fl": {
     "heroe": {
       "apoyo": "New custom inground pools for Ocala homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
