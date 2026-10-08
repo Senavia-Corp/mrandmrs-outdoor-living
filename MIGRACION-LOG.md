@@ -7531,7 +7531,7 @@ Un solo fichero: `src/components/widgets/ServiciosPorCategoria.astro` (`<style>`
 
 ---
 
-## SEO-REMEDIACIÓN — vídeo con póster, ciudades honestas, cifras fuera, identidad y pie · 4-oct-2026   🟡 en curso
+## SEO-REMEDIACIÓN — vídeo con póster, ciudades honestas, cifras fuera, identidad y pie · 4-oct-2026   ✅ desplegado (PR #42, `b005bdf`)
 
 **Pedido:** «MASTER IMPLEMENTATION PROMPT — FULL SEO REMEDIATION…» de Sebastian · **Base:** `2b800c7` (`origin/main`) · **Rama:** `claude/fervent-planck-ofawfo`
 **Decisiones de Sebastian en esta sesión:** móvil solo póster (vídeo solo ≥768 tras la carga) · CTA principal «Request a Design-Build Project Evaluation» en las 4 landings de pago y el héroe de la home · la banda «Project Gallery» y el panel de servicios bajan detrás de la FAQ en las 53 ciudades · PR, merge y despliegue autorizados.
@@ -7552,3 +7552,6 @@ Las 6 familias duplicadas que pedía el encargo (`/pool-builders/{gainesville,oc
 
 ### Puertas
 Ver `SEO_IMPLEMENTATION_FINAL_REPORT.md` §24 con la salida literal. Roja heredada y ajena: `/blogs-tips` en `check:texto` (mismo rojo sobre el build de `main`, medido en un worktree). `check:visual` roja donde cambia el maquetado (pie en todas, ciudades, home): re-baseline pendiente de Sebastian.
+
+### Despliegue y medida
+Mergeado como `b005bdf` y comprobado en vivo: 308 en un salto a 200 en las URLs viejas, sitemap con 168 y 0 heredadas, apex y `.vercel.app` → 308 a `www`, póster y precarga en home y ciudades, cabeceras `Cache-Control`. Lighthouse móvil, mediana de 5 corridas antes/después (`seo-audit/lighthouse/summary.md`): home 84→89 (LCP 3,39→2,71 s, 16,8 MB→1,0 MB), Gainesville 78→83, Ocala 77→79, About 83→97 (CLS 0,278→0); accesibilidad 100 en las seis. **Abierto:** el LCP de laboratorio de Pool Builders (5,1→5,7 s) y Pool Remodeling (4,8→5,0 s) es ruido de Lantern con el peso ya a la mitad, y el CLS móvil del menú (0,13–0,16) también está en `main`. QA responsive: 42 combinaciones, 0 incidencias (`seo-audit/qa/`).
