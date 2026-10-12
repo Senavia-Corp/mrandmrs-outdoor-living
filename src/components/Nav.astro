@@ -24,6 +24,9 @@ import ICO from '../data/iconos-cascaron.json';
 interface Props { ruta?: string }
 const { ruta = '' } = Astro.props;
 const aqui = (href: string) => (href === ruta ? 'page' : undefined);
+/* D-87 (§11.7): donde el hero no lleva boton oro ni formulario en la primera pantalla, el oro es
+ * el de la cabecera. Hoy, el articulo; los indices lo ganan con su plantilla. */
+const ctaOro = /^\/blogs\/[^/]+$/.test(ruta);
 const enServicios = ruta.startsWith('/services') || ruta.startsWith('/commercial-services');
 const activo = Math.max(0, MENU.servicios.findIndex((s) => ruta === s.href || ruta.startsWith(s.href + '/')));
 const num = (i: number) => String(i + 1).padStart(2, '0');
@@ -104,7 +107,7 @@ const tels = TELEFONOS.items;
         </details>
       </nav>
 
-      <a class="mm-cab-cta" href="/request-estimated" aria-current={aqui('/request-estimated')}>Get a Free Estimate</a>
+      <a class:list={['mm-cab-cta', ctaOro && 'mm-cab-cta--oro']} href="/request-estimated" aria-current={aqui('/request-estimated')}>Get a Free Estimate</a>
 
       <div class="mm-cab-movil">
         <details class="mm-llama" data-mm-llama>

@@ -286,7 +286,6 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
   .mm-zocalo-marca { flex-direction: row; align-items: flex-end; justify-content: space-between; gap: var(--mm-e-40); }
   .mm-zocalo-cols { grid-template-columns: minmax(0, 6fr) minmax(0, 3fr) minmax(0, 3fr); }
   .mm-zocalo-cols > nav:first-child { grid-column: auto; }
-  .mm-cab-lic { display: flex; }
   .mm-cab-panel--servicios { grid-template-columns: minmax(0, 1fr) 304px 392px; }
   .mm-hero-a { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: var(--mm-e-64); }
   .mm-hero-a-medio { align-self: start; aspect-ratio: 4 / 5; min-height: 0; }
@@ -1017,5 +1016,26 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
   .mm-intro--home .mm-h2 { max-width: 20em; }
   .mm-intro--home .mm-p { align-self: flex-end; max-width: 880px; columns: 2; column-gap: var(--mm-e-32); }
   .mm-intro--home .mm-flecha { align-self: flex-end; width: 880px; max-width: 100%; }
+}
+/* La licencia de la franja superior entra desde 1280: entre 1200 y 1235 no cabia junto a los
+   telefonos y la franja se partia en dos lineas (60 px en vez de 44). Nada de la franja se parte. */
+.mm-cab-lic, .mm-cab-util-a { white-space: nowrap; }
+@media (min-width: 1280px) { .mm-cab-lic { display: flex; } }
+/* D-87: el boton de la cabecera en oro, en las plantillas cuyo hero no lleva uno (el articulo). */
+.mm-cab-cta--oro { background: var(--mm-oro); color: var(--mm-navy); }
+.mm-cab-cta--oro:active { background: var(--mm-oro-pulsado); }
+@media (hover: hover) and (pointer: fine) { .mm-cab-cta--oro:hover { background: var(--mm-oro-pasar); color: var(--mm-navy); } }
+/* El hero del articulo: titular a todo el ancho y, debajo, la portada a su tamano con el resumen
+   a su derecha, apoyado en la base de la banda. La portada pequena es una decision, no un hueco.
+   Desde 1200: por debajo, el resumen mas largo (327 caracteres) no cabe al lado de la portada. */
+/* Entre 992 y 1199 el titular tambien va a todo el ancho, con el resumen debajo: en la columna de
+   7/12 el mas largo (86 caracteres) se iba a cinco lineas. */
+@media (min-width: 992px) { .mm-hero-c--art .mm-hero-c-txt { grid-template-columns: minmax(0, 1fr); gap: var(--mm-e-16); } .mm-hero-c--art .mm-p { max-width: 720px; } }
+@media (min-width: 1200px) {
+  .mm-hero-c--art .mm-hero-c-caja { display: grid; grid-template-columns: minmax(0, min(800px, 62%)) minmax(0, 1fr); column-gap: var(--mm-e-64); row-gap: var(--mm-e-48); align-items: end; }
+  .mm-hero-c--art .mm-hero-c-txt { display: contents; }
+  .mm-hero-c--art .mm-h1 { grid-column: 1 / -1; max-width: 26em; text-wrap: balance; }
+  .mm-hero-c--art .mm-hero-c-medio { grid-column: 1; grid-row: 2; }
+  .mm-hero-c--art .mm-p { grid-column: 2; grid-row: 2; max-width: none; padding-bottom: var(--mm-e-40); }
 }
 
