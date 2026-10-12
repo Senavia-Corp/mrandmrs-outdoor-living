@@ -454,8 +454,8 @@ const SEO = FAQ
       <figure class="mm-3d-medio" set:html={R3D.video} />
     </section>
   )}
-  {/* Los 14 servicios a la vista, con la accion de la pagina en la cabecera (lamina «Servicios»). */}
-  <ServiciosIndice defecto={SV.categoria} accion={CTA_CIERRE} />
+  {/* Los 14 servicios a la vista, abierta la ficha del servicio de la pagina (D-129), con la accion en la cabecera. */}
+  <ServiciosIndice servicio={RUTA.split('/')[2]} accion={CTA_CIERRE} />
   <InversionCore ruta={RUTA} />
   {FAQ && (
     <section class:list={['mm-faq', !FOTO_FAQ && 'mm-faq--sin']}>

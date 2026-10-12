@@ -3548,7 +3548,12 @@ function listasStitch(ruta, lineas) {
      * pie. Se comprueba el tramo nuevo ENTERO y en su orden —titular, parrafo, accion, ficha y
      * los tres grupos con sus nombres— y solo si esta tal cual se devuelve a la forma de siempre
      * (pestanas, filas de la categoria por defecto con la ficha tras la primera, accion). Un
-     * nombre que falte, uno de mas o una ficha distinta lo dejan sin tocar: sale rojo. */
+     * nombre que falte, uno de mas o una ficha distinta lo dejan sin tocar: sale rojo.
+     *
+     * D-129 (T-83): la ficha ABIERTA es la del servicio de la pagina, no la primera de su
+     * categoria. En piscinas, pergolas y cocinas es la misma de antes; en remodelacion, techos
+     * de lamas, decks y jardineria cambia: se exige la del servicio (`propia`) y lo que se
+     * devuelve a la referencia es la que habia (`act`). */
     {
       const dp = SERVICIOS_CAT['/'];
       const nm = (x) => (x ?? '').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
@@ -3560,8 +3565,10 @@ function listasStitch(ruta, lineas) {
           suyos.forEach((sv) => visto.add(sv.id));
           return [nm(c.nombre), ...suyos.map((sv) => nm(sv.nombre))];
         });
-        const ficha = [nm(act.titulo), nm(act.texto), nm(act.cta), `: ${nm(act.titulo)}`];
-        const nuevo = [nm(dp.titulo), nm(dp.subtitulo), accion, ...ficha, ...grupos];
+        const fichaDe = (sv) => [nm(sv.titulo), nm(sv.texto), nm(sv.cta), `: ${nm(sv.titulo)}`];
+        const propia = dp.servicios.find((sv) => sv.enlace === `/services/${ruta.split('/')[2]}`) ?? act;
+        const ficha = fichaDe(act);
+        const nuevo = [nm(dp.titulo), nm(dp.subtitulo), accion, ...fichaDe(propia), ...grupos];
         const igual = (x, y) => x !== undefined && x.toLowerCase() === y.toLowerCase();
         const i = out.findIndex((_, k) => nuevo.every((l, j) => igual(out[k + j], l)));
         if (i >= 0) {
