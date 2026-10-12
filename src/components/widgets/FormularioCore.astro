@@ -64,7 +64,7 @@ const ruta = (Astro.props.ruta ?? Astro.url.pathname).replace(/(.)\/$/, '$1');
  * su lamina. La pagina desde la que se envia ya viaja en `__ruta` (`Formularios.astro`) y llega
  * en el correo: ese es el dato que dice que obra se estaba viendo. Un campo nuevo no llegaria,
  * porque el destino lee una lista cerrada de campos. */
-const entrada = /^\/project\//.test(ruta) ? '/services/pool-builders' : ruta;
+const entrada = /^\/project\//.test(ruta) || ruta === '/' ? '/services/pool-builders' : ruta;
 const d = DATOS[entrada]?.formulario;
 
 /* Las 6 de `/request-estimated`, copiadas caracter a caracter. El separador es U+2013. */

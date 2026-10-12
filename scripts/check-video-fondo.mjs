@@ -64,7 +64,8 @@ for (const f of html) {
   /* 8 · HERO A (fichas y paginas de ciudad, ASTRO-2). Lo que esta puerta defiende —que el LCP no
    * sea un video— aqui se mide asi: el hero no lleva `<video>`; si lleva foto, es la UNICA imagen
    * con `fetchpriority="high"`, sin `loading="lazy"` y con medidas; si no lleva foto, ninguna. */
-  if (crudo.includes('class="mm-hero-a')) {
+  // La clase exacta: la home (hero B) lleva `mm-hero-a-sub` y `mm-hero-a-logos`, que no son un Hero A.
+  if (/class="mm-hero-a[ "]/.test(crudo)) {
     const r = '/' + path.relative(ESTATICO, f).replace(/(^|\/)index\.html$/, '').replace(/\.html$/, '');
     const d = new JSDOM(crudo).window.document;
     const hero = d.querySelector('section.mm-hero-a');

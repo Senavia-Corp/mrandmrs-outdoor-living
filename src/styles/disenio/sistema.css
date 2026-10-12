@@ -974,3 +974,46 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 }
 @media (min-width: 1200px) { .mm-lect, .mm-rel { --mm-canal: var(--mm-e-64); } .mm-lect { column-gap: 144px; } }
 
+/* ── HERO B, el de la home (ASTRO-4 lote A; D-38: 6/6) ────────────────────────────────────────
+   Texto sobre navy y la obra al lado; en movil, la obra arriba como franja. Debajo, montando
+   sobre el borde, los cuatro sellos; y la franja de logos del hero A. El video solo llega desde
+   992 px (`data-mm-min`); a cualquier ancho el LCP es el poster. */
+.mm-hero-b { container-type: inline-size; background: var(--mm-azul-50); font-family: var(--mm-familia); }
+.mm-hero-b-caja { display: flex; flex-direction: column; background: var(--mm-fondo-profundo); color: var(--mm-blanco); }
+.mm-hero-b-medio { order: -1; position: relative; isolation: isolate; margin: 0; aspect-ratio: 21 / 9; overflow: hidden; background: var(--mm-azul-950); }
+.mm-hero-b-medio .w-background-video { position: absolute; inset: 0; width: 100%; height: 100%; }
+.mm-hero-b-medio video, .mm-hero-b-medio .mm-video-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.mm-hero-b-txt { display: flex; flex-direction: column; align-items: flex-start; gap: var(--mm-e-16); padding: var(--mm-e-32) var(--mm-e-24) 72px; }
+.mm-hero-b .mm-h1 { color: var(--mm-blanco); }
+.mm-hero-b .mm-hero-a-sub { margin: 0; color: var(--mm-tinta-suave-inversa); }
+.mm-hero-b-acc { display: flex; flex-direction: column; align-self: stretch; gap: var(--mm-e-12); margin-top: var(--mm-e-8); }
+.mm-hero-b-acc .mm-btn { justify-content: center; text-align: center; }
+.mm-hero-b-sellos { position: relative; z-index: 1; list-style: none; margin: calc(-1 * var(--mm-e-40)) var(--mm-e-16) 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); background: var(--mm-blanco); border: 1px solid var(--mm-borde); border-radius: var(--mm-r-12); overflow: hidden; }
+.mm-hero-b-sellos li { display: flex; align-items: center; gap: var(--mm-e-12); min-height: var(--mm-fila); padding: var(--mm-e-12) var(--mm-e-16); font-size: 14px; line-height: 1.3; font-weight: 700; color: var(--mm-navy); border-top: 1px solid var(--mm-borde); border-left: 1px solid var(--mm-borde); }
+.mm-hero-b-sellos li:nth-child(-n+2) { border-top: 0; }
+.mm-hero-b-sellos li:nth-child(odd) { border-left: 0; }
+.mm-hero-b-sellos img { flex: none; width: 32px; height: 32px; }
+@media (min-width: 992px) {
+  .mm-hero-b-caja { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .mm-hero-b-medio { order: 0; aspect-ratio: auto; min-height: 560px; }
+  .mm-hero-b-txt { justify-content: center; gap: var(--mm-e-20); padding: var(--mm-e-96) var(--mm-e-64) 120px max(var(--mm-e-64), calc((100cqw - var(--mm-contenedor)) / 2)); }
+  .mm-hero-b-acc { flex-direction: row; flex-wrap: wrap; align-self: auto; }
+  .mm-hero-b-sellos { grid-template-columns: repeat(4, minmax(0, 1fr)); box-sizing: border-box; width: calc(100% - 128px); max-width: var(--mm-contenedor); margin: -32px auto 0; }
+  .mm-hero-b-sellos li { padding: var(--mm-e-16) var(--mm-e-24); font-size: 16px; border-top: 0; }
+  .mm-hero-b-sellos li:nth-child(odd) { border-left: 1px solid var(--mm-borde); }
+  .mm-hero-b-sellos li:first-child { border-left: 0; }
+}
+/* La franja de logos, a todo el ancho y en dos filas si hace falta (en el hero A va en una columna). */
+.mm-hero-b .mm-hero-a-fila { max-width: none; }
+/* La intro de la home (lamina «IntroHome»): titular a la izquierda y el texto en dos columnas, sin marco. */
+.mm-intro--home { background: var(--mm-azul-50); }
+.mm-intro--home .mm-marco { max-width: var(--mm-contenedor); padding: 0; align-items: flex-start; text-align: left; }
+.mm-intro--home .mm-marco::before, .mm-intro--home .mm-marco::after { content: none; }
+@media (min-width: 992px) {
+  .mm-hero-b .mm-hero-a-fila { flex-wrap: wrap; row-gap: var(--mm-e-20); overflow: visible; }
+  .mm-intro--home { padding-block: var(--mm-e-96); }
+  .mm-intro--home .mm-h2 { max-width: 20em; }
+  .mm-intro--home .mm-p { align-self: flex-end; max-width: 880px; columns: 2; column-gap: var(--mm-e-32); }
+  .mm-intro--home .mm-flecha { align-self: flex-end; width: 880px; max-width: 100%; }
+}
+

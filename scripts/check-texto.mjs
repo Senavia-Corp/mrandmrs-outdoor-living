@@ -2404,7 +2404,7 @@ function lineasResenas(ruta) {
    * enlace «See all reviews» sube a la cabecera, delante; el nombre va en `.mm-dato-rot`, o sea en
    * mayusculas por CSS; y en las filas de la lista el nombre y la fecha se pintan a la izquierda
    * de la cita, pero en el HTML van detras, como siempre. Las mismas ocho, las mismas lineas. */
-  if (ruta && (esFicha(ruta) || esCiudadA(ruta) || esCondado(ruta))) {
+  if (ruta && (esFicha(ruta) || esCiudadA(ruta) || esCondado(ruta) || ruta === '/')) {   // y la home (ASTRO-4)
     return [
       RESENAS_MARCADOR,
       ...(d.valoracion != null ? [d.valoracion.toFixed(1)] : []),
@@ -3404,7 +3404,7 @@ const rotulosT69 = new Map();
 function sinMayusculasDeCss(ruta, esperado, hay) {
   // Las rutas ya migradas a las piezas nuevas: las 141 de servicio y, desde ASTRO-4, las 15 de
   // proyecto y los 47 articulos (las cabeceras de sus tablas).
-  if (!/^\/(services|project|blogs)\//.test(ruta)) return esperado;
+  if (!/^\/(services|project|blogs)\//.test(ruta) && ruta !== '/') return esperado;
   const medidas = hay.split('\n');
   const esperadas = esperado.split('\n');
   /* POR POSICION cuando las dos listas miden lo mismo, que es el caso de una ruta en verde: la
@@ -3635,7 +3635,115 @@ function articuloTexto(ruta, lineas) {
   return out;
 }
 
+/**
+ * ASTRO-4 · LA HOME (lamina «Home»), sobre LO MEDIDO de `/`. Ninguna cadena cambia; cambian de
+ * sitio, de forma o de numero, y cada cosa se comprueba ENTERA y en su orden antes de devolver lo
+ * medido a la forma de la referencia (T-89). Lo que falte mete una linea que no casa con nada.
+ *   · hero: los cuatro sellos pasan de delante del titular a detras de los botones;
+ *   · servicios: de pestanas a indice (D-69, como T-82): la ficha abierta delante y los 14
+ *     nombres a la vista bajo el rotulo de su grupo (7 que antes escondia la pestana);
+ *   · antes/despues: baja detras de las zonas, con sus enlaces en la cabecera (D-96);
+ *   · 3D, obras, articulos y resenas ganan la accion de la pagina en su cabecera; la banda
+ *     repetida a media pagina sale (T-50: su parrafo y su boton), y las obras y las resenas
+ *     ganan los dos telefonos (T-56);
+ *   · obras: «See All Projects» sube a la cabecera;
+ *   · zonas: suben detras de las obras, norte delante, cada una con su telefono;
+ *   · articulos: los tres primeros con resumen y los otros siete en indice, sin el (T-44);
+ *   · cierre: los telefonos en lugar del boton (T-57) y, detras, el formulario (D-82).
+ */
+function homeTexto(lineas) {
+  let out = [...lineas];
+  const faltas = [];
+  const ACC = 'Request A Design-Build Project Evaluation';
+  const GFE = 'Get A Free Estimate';
+  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const son = (k, bloque) => bloque.every((l, j) => out[k + j] === l);
+  const nm = (x) => (x ?? '').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+  // 1 · hero
+  const SELLOS = ['Licensed & Insured', 'Financing Available', '3D Design', 'North & South Florida'];
+  const s0 = out.findIndex((_, k) => son(k, SELLOS) && out[k - 1] === 'Project Gallery' && out[k - 2] === ACC);
+  if (s0 >= 4) { out.splice(s0, 4); out.splice(s0 - 4, 0, ...SELLOS); } else faltas.push('los cuatro sellos del hero, detras de sus dos botones');
+  // 2 · servicios
+  {
+    const dp = SERVICIOS_CAT['/'];
+    const visto = new Set();
+    const porGrupo = dp.categorias.map((c) => { const suyos = dp.servicios.filter((sv) => sv.categorias.includes(c.slug) && !visto.has(sv.id)); suyos.forEach((sv) => visto.add(sv.id)); return suyos; });
+    const act = porGrupo[0][0];
+    const ficha = [nm(act.titulo), nm(act.texto), nm(act.cta), `: ${nm(act.titulo)}`];
+    const nuevo = [nm(dp.titulo), nm(dp.subtitulo), ...ficha, ...dp.categorias.flatMap((c, k) => [nm(c.nombre), ...porGrupo[k].map((sv) => nm(sv.nombre))])];
+    const igual = (x, y) => x !== undefined && x.toLowerCase() === y.toLowerCase();
+    const i = out.findIndex((_, k) => nuevo.every((l, j) => igual(out[k + j], l)));
+    const deLaPestana = dp.servicios.filter((sv) => sv.categorias.includes(dp.categorias[0].slug));
+    if (i >= 0) out.splice(i, nuevo.length, out[i], out[i + 1], ...dp.categorias.map((c) => nm(c.nombre)), ...deLaPestana.flatMap((sv) => (sv.id === act.id ? [nm(sv.nombre), ...ficha] : [nm(sv.nombre)])));
+    else faltas.push('el indice de los 14 servicios con la primera ficha abierta (D-69)');
+  }
+  // 3 · el orden de las secciones del final: zonas, antes/despues, articulos, resenas, cierre
+  const posts = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/blogs.json'), 'utf8')).posts;
+  const zi = out.indexOf('WHERE WE SERVE');
+  const bai = out.indexOf('Before & After Transformations');
+  const bli = out.findIndex((l, k) => k > bai && out[k + 2] === ACC && out[k + 3] === capitaliza(nm(posts[0].titulo)));
+  const ri = out.findIndex((l, k) => k > bli && l === 'TESTIMONIALS');
+  const ci = out.findIndex((l, k) => k > ri && l === ACC && (out[k + 1] ?? '').startsWith(CIERRE_CIUDAD));
+  const d3 = out.indexOf('3D Pool Design & Visualization');
+  if (!(d3 > 0 && d3 < zi && zi < bai && bai < bli && bli < ri && ri < ci)) return [...out, ...faltas.map((f) => `⟦FALTA: ${f}⟧`), '⟦FALTA: el orden de la home (3D, obras, zonas, antes/despues, articulos, resenas, cierre)⟧'];
+  const Z = out.slice(zi, bai); const BA = out.slice(bai, bli); const BL = out.slice(bli, ri); const R = out.slice(ri, ci); const FIN = out.slice(ci);
+  const parrafoBanda = FIN[1];
+  // zonas: rotulo, lema y dos zonas de titulo, parrafo, telefono (rotulo + numero) y enlace; norte delante
+  let Zv = null;
+  if (Z.length === 12 && Z[2] === 'North Florida' && Z[4] === 'NORTH FLORIDA' && Z[7] === 'South Florida' && Z[9] === 'SOUTH FLORIDA'
+    && Z[5] === TELEFONOS.items.find((t) => t.zona === 'North Florida').visible && Z[10] === TELEFONOS.items.find((t) => t.zona === 'South Florida').visible) {
+    Zv = ['Where We Serve', Z[1], Z[7], Z[8], Z[11], Z[2], Z[3], Z[6]];
+  } else faltas.push('las dos zonas con su telefono, norte delante');
+  // antes/despues: titular, parrafo, los dos enlaces, los dos rotulos de foto y las dos tarjetas
+  let BAv = null;
+  if (BA.length === 10 && BA[2] === GFE && BA[3] === 'View All Projects' && BA[4] === 'Before' && BA[5] === 'After' && BA[6] === 'DESIGN-BUILD AUTHORITY' && BA[8] === 'LICENSED & ENGINEERED') {
+    BAv = ['Before', 'After', BA[0], BA[1], 'Design-Build Authority', BA[7], 'Licensed & Engineered', BA[9], 'View All Projects', GFE];
+  } else faltas.push('el antes/despues lado a lado con sus enlaces en la cabecera (D-96)');
+  // articulos: cabecera con la accion, tres con resumen y siete en indice
+  let BLv = null;
+  {
+    const t = (p) => capitaliza(nm(p.titulo));
+    const nuevo = [BL[0], BL[1], ACC, ...posts.slice(0, 3).flatMap((p) => [t(p), nm(p.resumen), 'Read More', `: ${t(p)}`]), ...posts.slice(3).flatMap((p) => [t(p), 'Read More', `: ${t(p)}`])];
+    if (BL.length === nuevo.length && nuevo.every((l, k) => BL[k] === l)) BLv = [BL[0], BL[1], ...posts.flatMap((p) => [t(p), nm(p.resumen), 'Read More', `: ${t(p)}`])];
+    else faltas.push('los articulos: tres con resumen y siete en indice, con la accion en la cabecera (T-44)');
+  }
+  // resenas: la accion delante de «See all reviews» y los telefonos al final
+  let Rv = null;
+  {
+    const m = R.indexOf(RESENAS_MARCADOR);
+    if (m > 0 && R[m - 1] === ACC && tels.every((l, k) => R[R.length - tels.length + k] === l)) Rv = [...R.slice(0, m - 1), ...R.slice(m, R.length - tels.length)];
+    else faltas.push('las resenas con la accion en la cabecera y los dos telefonos al final');
+  }
+  // cierre: telefonos en lugar del boton y, detras, el formulario
+  let FINv = null;
+  {
+    const form = formularioNuevo(CAPTACION_JSON['/services/pool-builders']);
+    if (tels.every((l, k) => FIN[2 + k] === l) && form.every((l, k) => FIN[2 + tels.length + k] === l)) FINv = [FIN[0], FIN[1], GFE, ...FIN.slice(2 + tels.length + form.length)];
+    else faltas.push('el cierre con los dos telefonos y el formulario en dos pasos (T-57, D-82)');
+  }
+  // cabeza: hasta las zonas. El 3D gana la accion y pierde detras la banda repetida (T-50); las
+  // obras, como en las paginas de ciudad (accion y «See All Projects» arriba, telefonos tras las tres).
+  let cab = out.slice(0, zi);
+  {
+    const k = cab.indexOf('3D Pool Design & Visualization');
+    if (cab[k + 2] === ACC && cab[k + 3] === 'Project Showcase') cab.splice(k + 3, 0, parrafoBanda, GFE);
+    else faltas.push('la accion de la pagina en la cabecera del 3D');
+    if (BAv) cab.splice(k, 0, ...BAv);
+    const sap = cab.findIndex((l, x) => l === 'See All Projects' && cab[x - 1] === ACC);
+    if (sap > 0) {
+      cab.splice(sap - 1, 2);
+      let x = sap - 1; let vistos = 0;
+      const hayTels = (y) => tels.every((l, j) => cab[y + j] === l);
+      while (cab[x + 1] === 'See Project' || hayTels(x)) { if (hayTels(x)) { cab.splice(x, tels.length); vistos++; } else x += 2; }
+      cab.splice(x, 0, 'See All Projects');
+      if (vistos !== 1) faltas.push('los dos telefonos detras de las tres obras destacadas');
+    } else faltas.push('la accion y «See All Projects» en la cabecera de las obras');
+  }
+  return [...cab, ...(Rv ?? R), ...(Zv ?? Z), ...(BLv ?? BL), ...(FINv ?? FIN), ...faltas.map((f) => `⟦FALTA: ${f}⟧`)];
+}
+
 function listasStitch(ruta, lineas) {
+  if (ruta === '/') return homeTexto(lineas);
   if (ruta.startsWith('/project/')) return fichaProyectoTexto(ruta, lineas);
   if (ruta.startsWith('/blogs/')) return articuloTexto(ruta, lineas);
   if (!ruta.startsWith('/services/')) return lineas;

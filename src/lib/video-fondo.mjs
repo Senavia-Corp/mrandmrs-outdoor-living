@@ -31,7 +31,9 @@
 /** nombre → { póster de Webflow, ancho y alto del fotograma, ¿héroe? }. Lo lee también
  *  `scripts/build-posters-video.mjs`, que genera los derivados en `/images/site/posters/`. */
 export const POSTERS = {
-  'bg-video-1': { fichero: 'bg-video-1-poster.0000000.jpg', w: 1280, h: 720, heroe: true }, // home
+  // ASTRO-4: el hero de la home es partido (foto a media pantalla en escritorio y franja apaisada en
+  // movil): pinta el fotograma apaisado a todos los anchos, sin el recorte 9:16 de los heroes a sangre.
+  'bg-video-1': { fichero: 'bg-video-1-poster.0000000.jpg', w: 1280, h: 720, heroe: true, partido: true }, // home
   'bg-video': { fichero: 'bg-video-poster.0000000.jpg', w: 1280, h: 534, heroe: true }, // 55 de zona
   'bg-video-3d': { fichero: 'bg-video-3d-poster.0000000.jpg', w: 1280, h: 720, heroe: false }, // 3D
 };
@@ -51,10 +53,13 @@ const sizesHeroe = ({ w, h }) =>
   `(max-aspect-ratio: ${w}/${h}) ${Math.round((w / h) * 100)}vh, 100vw`;
 /** La 3D es un bloque dentro del contenedor: 342 px a 390, 704 a 768, 1250 a 1440 (medido). */
 const SIZES_3D = '(max-width: 991px) 92vw, 1250px';
+/** El hero partido de la home: media pantalla desde 992, el ancho entero por debajo. */
+const SIZES_PARTIDO = '(min-width: 992px) 50vw, 100vw';
 
 /** Atributos de la imagen que el héroe precarga en el `<head>` (misma URL que pinta). */
 export function precargaPoster(nombre) {
   const p = POSTERS[nombre];
+  if (p.partido) return [{ media: undefined, imagesrcset: srcset(nombre, 'avif'), imagesizes: SIZES_PARTIDO }];
   const m = anchoMovil(p.h);
   return [
     { media: '(max-width: 767px)', imagesrcset: `${DIR}/${nombre}-m-${m}.avif ${m}w`, imagesizes: '100vw' },
@@ -65,12 +70,12 @@ export function precargaPoster(nombre) {
 function picture(nombre) {
   const p = POSTERS[nombre];
   const fuentes = [];
-  if (p.heroe) {
+  if (p.heroe && !p.partido) {
     const m = anchoMovil(p.h);
     fuentes.push(`<source media="(max-width: 767px)" type="image/avif" srcset="${DIR}/${nombre}-m-${m}.avif ${m}w" sizes="100vw">`);
     fuentes.push(`<source media="(max-width: 767px)" type="image/webp" srcset="${DIR}/${nombre}-m-${m}.webp ${m}w" sizes="100vw">`);
   }
-  const sizes = p.heroe ? sizesHeroe(p) : SIZES_3D;
+  const sizes = p.partido ? SIZES_PARTIDO : p.heroe ? sizesHeroe(p) : SIZES_3D;
   fuentes.push(`<source type="image/avif" srcset="${srcset(nombre, 'avif')}" sizes="${sizes}">`);
   // El del heroe es el LCP: sin `decoding="async"`, que puede retrasar su primer pintado.
   const carga = p.heroe ? 'loading="eager" fetchpriority="high"' : 'loading="lazy" decoding="async"';

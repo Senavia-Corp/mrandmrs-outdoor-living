@@ -48,6 +48,11 @@ const RETIRADAS = new Set([
   '333e7244-2382-3d5a-9f96-e9d5e0ad3eae',
   // el bloque de texto del hero antiguo de proyecto y de articulo (ASTRO-4: hero C)
   '4e3ac630-04d8-ebcf-c5f5-c24ea7e9ba56',
+  // la home antigua (ASTRO-4): bloque del hero, cabecera y cuerpo de las pestanas de servicios,
+  // las tres fotos y la columna de la intro, y la cabecera y el carrusel de articulos
+  'bf5925c7-6577-ba84-77a6-25f8d09f7373', 'cf6e6112-50b1-b164-fee5-1e4b8c413043', 'cf6e6112-50b1-b164-fee5-1e4b8c413058',
+  '29867a8a-c7e7-06a6-ef63-f3ef2789a898', '29867a8a-c7e7-06a6-ef63-f3ef2789a89b', '29867a8a-c7e7-06a6-ef63-f3ef2789a89d',
+  '29867a8a-c7e7-06a6-ef63-f3ef2789a89f', 'c5943ea8-2479-0b18-7289-2e4baa1a48c8', 'c5943ea8-2479-0b18-7289-2e4baa1a48ce',
 ]);
 
 const porId = {};

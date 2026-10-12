@@ -70,12 +70,13 @@ import path from 'node:path';
  * obra que se esta viendo, sin boton en la cabecera (la accion de esa pagina va en «Project
  * Details») y sin telefonos (van arriba y en el cierre). */
 const enProyecto = /^\/project\//.test(ruta);
-const enLista = /^\/services\/[^/]+\/[^/]+$/.test(ruta) || enProyecto;
+// ASTRO-4: la home tambien va en lista (tres destacadas e indice), con su titular y su accion.
+const enLista = /^\/services\/[^/]+\/[^/]+$/.test(ruta) || enProyecto || ruta === '/';
 // Los condados no tienen formulario en la pagina: su accion lleva al presupuesto, como su hero.
 const anclaAccion = /-county-fl$/.test(ruta) ? '/request-estimated' : '#estimate';
 const SOLO_EN_INDICE = 'luxury-pool-spa-screen-enclosure-north-florida';
 const cap = (captacion as Record<string, { heroe?: { cta?: string; zonas?: string[] } }>)[ruta];
-const accion = cap?.heroe?.cta ?? 'Get a Free Estimate';
+const accion = cap?.heroe?.cta ?? (ruta === '/' ? 'Request a Design-Build Project Evaluation' : 'Get a Free Estimate');
 // El orden de los dos telefonos: el de la entrada de captacion; en condado, el de `condados.mjs`.
 const zonas = (cap?.heroe?.zonas ?? (/-county-fl$/.test(ruta) ? zonasDeCondado(ruta) : TELEFONOS.items.map((x) => x.zona))).map((z) => TELEFONOS.items.find((x) => x.zona === z)!);
 const MEDIDAS: Map<string, { w: number; h: number }> = ((globalThis as any).__mmMedidasProyecto ??= new Map());
@@ -96,7 +97,7 @@ if (enLista && !enProyecto && slides.slice(0, 3).some((o) => o.slug === SOLO_EN_
 // paginas de ciudad (la de la lamina).
 const TITULO_OTROS = 'More Projects';
 const ENTRADILLA_OTROS = 'Selected custom pool and outdoor living projects from our Florida portfolio, to inspire your design.';
-const tituloRot = String(enProyecto ? TITULO_OTROS : tituloFinal).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/(Projects)\s*$/, '<span class="mm-rot">$1</span>');
+const tituloRot = String(enProyecto ? TITULO_OTROS : tituloFinal).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/(Projects|Showcase)\s*$/i, '<span class="mm-rot">$1</span>');
 const FLECHA = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>';
 ---
 {enLista && (

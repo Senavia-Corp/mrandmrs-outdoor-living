@@ -84,12 +84,13 @@ const filtro = process.argv.slice(2).filter((a) => !a.startsWith('--'));
 const casa = (r) => !filtro.length
   || filtro.some((f) => (f.startsWith('=') ? r === f.slice(1) : r.includes(f)));
 
+// ASTRO-4: la home sale de la lista. Ya no lleva ningun carrusel (obras, articulos y resenas van
+// en lista); quedan las dos rutas que si, y la primera es la que tiene autoplay que medir.
 const RUTAS = [
-  '/',
   '/where-we-serve/north-florida',
   '/industry-solutions',
 ].filter(casa);
-if (!RUTAS.length) { console.error(`\nROJO ninguna de las 3 rutas fijas casa el filtro "${filtro.join(' ')}"\n`); process.exit(1); }
+if (!RUTAS.length) { console.error(`\nROJO ninguna de las rutas fijas casa el filtro "${filtro.join(' ')}"\n`); process.exit(1); }
 
 let fallos = 0;
 const check = (n, ok, d = '') => { console.log(`  ${ok ? 'ok  ' : 'ROJO'} ${n}${d ? ' — ' + d : ''}`); if (!ok) fallos++; return ok; };

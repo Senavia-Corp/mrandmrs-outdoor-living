@@ -74,7 +74,8 @@ import '../styles/disenio/sistema.css';
 // disenio/base.css para poder ajustar sus clases sin pelearse con ellas, y ANTES de propio.css,
 // donde viven los parches sobre clases de Webflow. Hoy solo lleva comentarios: no emite una
 // sola regla, asi que el CSS construido no cambia y el hash del bundle se queda donde estaba.
-import '../styles/home.css';
+// `home.css` (el hero y los sellos de la home de Webflow) se retiro con ASTRO-4: la home pasa a
+// `.mm-hero-b` (disenio/sistema.css) y ninguna de sus 20 reglas pintaba ya ninguna ruta.
 // EL HEROE DE AREA DE SERVICIO (R9-HERO, continuacion). NO cabe en home.css: home.css
 // declara alcance de 1 sola ruta (ver su cabecera) y este hero vive en 55 (53 de
 // pool-builders/ via plantilla-pool-builders.json + los 2 where-we-serves/*.astro). Va
@@ -110,7 +111,8 @@ import '../styles/lectura.css';
 // de `blog.css`. Una hoja por seccion, con su alcance en la cabecera y su dueno declarado.
 import '../styles/cta.css';            // .cta-page-section 12 + .cta-footer 102   -> HOME
 import '../styles/obra.css';           // .projects-section 66                     -> PULIDOR-1
-import '../styles/antes-despues.css';  // .before-after-section 3                  -> PULIDOR-1
+// `antes-despues.css` (el deslizador `.before-after-section`) se retiro con ASTRO-4: las dos rutas
+// que lo llevaban ensenan el par lado a lado (`.mm-ad`, D-96).
 import '../styles/render3d.css';       // ._3d-section 65                          -> PULIDOR-2
 import '../styles/ubicacion.css';      // .location 17                             -> PULIDOR-2
 import '../styles/social.css';         // .social-media 79                         -> PULIDOR-2

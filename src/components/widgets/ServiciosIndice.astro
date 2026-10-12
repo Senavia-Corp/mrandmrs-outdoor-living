@@ -35,10 +35,11 @@ import PROCEDENCIA from '../../data/gallery-procedencia.json';
 import CAPTACION from '../../data/captacion-servicios.json';
 
 interface Props {
-  /** Slug del servicio de la ruta (`deck-builders`): su ficha es la que sale abierta. */
-  servicio: string;
-  /** Texto de la accion de la pagina, que va en la cabecera de la seccion. */
-  accion: string;
+  /** Slug del servicio de la ruta (`deck-builders`): su ficha es la que sale abierta. En la home
+   *  no hay servicio de la ruta y sale abierta la primera del indice. */
+  servicio?: string;
+  /** Texto de la accion de la pagina, que va en la cabecera de la seccion. Sin el, no hay boton. */
+  accion?: string;
   ancla?: string;
 }
 const { servicio, accion, ancla = '#estimate' } = Astro.props;
@@ -54,7 +55,7 @@ const grupos = dp.categorias.map((c) => {
   return { ...c, servicios: suyos };
 });
 if (visto.size !== dp.servicios.length) throw new Error(`ServiciosIndice: ${dp.servicios.length - visto.size} servicio(s) sin categoria conocida.`);
-const activo = dp.servicios.find((s) => s.enlace === `/services/${servicio}`)?.id;
+const activo = servicio ? dp.servicios.find((s) => s.enlace === `/services/${servicio}`)?.id : grupos[0].servicios[0].id;
 if (!activo) throw new Error(`ServiciosIndice: ningun servicio del panel enlaza a /services/${servicio}.`);
 
 const REAL = new Set((BANCO as any[]).filter((b) => b.procedencia === 'obra_real').flatMap((b) => [b.src, ...(b.publicada_como ?? [])]));
@@ -88,7 +89,7 @@ const titulo = dp.titulo.includes(MARCA) ? dp.titulo.replace(MARCA, `<span class
     <h2 class="mm-h2" set:html={titulo} />
     <div class="mm-sec-lado">
       <p class="mm-p" set:html={dp.subtitulo} />
-      <div class="mm-sec-acc"><a class="mm-btn mm-btn--linea" href={ancla}>{accion}</a></div>
+      {accion && <div class="mm-sec-acc"><a class="mm-btn mm-btn--linea" href={ancla}>{accion}</a></div>}
     </div>
   </div>
   <div class="mm-serv-cuerpo">

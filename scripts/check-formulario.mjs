@@ -32,6 +32,8 @@ const SERVICIO = {
   '/services/louvered-roofs/weston-fl': 'Louvered Roof Systems',
   // ASTRO-4 (D-82): la ficha de proyecto monta el formulario de la ficha de piscinas.
   '/project/modern-pool-motorized-pergola-south-florida': 'New Pool and Spa Construction',
+  // ASTRO-4 (D-82): la home monta el mismo formulario; la pagina viaja en `__ruta`.
+  '/': 'New Pool and Spa Construction',
 };
 const RUTAS = Object.keys(SERVICIO);
 /** Los campos que el formulario mandaba antes de ASTRO-2 (`FormularioCore.astro` en origin/main). */
