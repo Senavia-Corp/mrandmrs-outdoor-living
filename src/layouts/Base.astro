@@ -25,7 +25,7 @@ import { videoFondo, precargaPoster } from '../lib/video-fondo.mjs';
 import { nivelesSinSaltos } from '../lib/niveles-titulo.mjs';
 import { srcsetAuto } from '../lib/srcset-auto.mjs';
 import Footer from '../components/Footer.astro';
-import ClickToCall from '../components/widgets/ClickToCall.astro';
+import BarraMovil from '../components/widgets/BarraMovil.astro';
 import Interacciones from '../components/Interacciones.astro';
 import MosaicoConfianza from '../components/MosaicoConfianza.astro';
 import Componentes from '../components/Componentes.astro';
@@ -67,6 +67,9 @@ import '../styles/disenio/tokens.css';
  */
 import '../styles/disenio/puente.css';
 import '../styles/disenio/base.css';
+// LA HOJA DEL SISTEMA (REDISEÑO STITCH, ASTRO-1): clases `.mm-*` del cascarón nuevo. Después de
+// webflow.css, tokens y base; sin `@layer` ni `!important`.
+import '../styles/disenio/sistema.css';
 // La capa de la HOME (fase R9 paso 2), propiedad exclusiva del chat de diseño. Va DESPUES de
 // disenio/base.css para poder ajustar sus clases sin pelearse con ellas, y ANTES de propio.css,
 // donde viven los parches sobre clases de Webflow. Hoy solo lleva comentarios: no emite una
@@ -413,7 +416,9 @@ const CON_MAIN = /<main[\s>]/.test(contenido);
     {/* 2 páginas llevan un <script>+<style> DESPUÉS del pie: el redimensionador del iframe
         del estimador. Va en su sitio o cambia el orden del documento. */}
     <slot name="tras-pie" />
-    <ClickToCall />
+    {/* REDISEÑO STITCH (ASTRO-1): la barra inferior móvil sustituye al botón flotante de
+        ClickToCall. Mismos dos teléfonos, de telefonos.json. */}
+    <BarraMovil />
     <Interacciones />
     <MosaicoConfianza />
     <Componentes />
