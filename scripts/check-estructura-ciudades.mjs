@@ -74,28 +74,12 @@ const SIN = [
   'animated-divs-section', 'testimonial-section', 'projects-section', 'blog-section-page',
   'social-media', 'cta-footer',
 ];
+/* ASTRO-2 (12-oct-2026): el orden de la lamina «Ciudad», con el formulario al final, fundido con la
+ * banda de cierre (D-77), sin el feed de Instagram (T-42) y con la miga dentro del hero. */
 const CON = [
-  /* R21: `products-section` es el panel de servicios de la home (`ServiciosPorCategoria.astro`,
-   * cuya seccion es `class="products-section svc"`), que Sebastian pidio entre «Pool Features &
-   * Upgrades» y los testimonios. Va SOLO en `CON`: acotado con `CAP`, las otras 51 no lo montan
-   * y por eso `SIN` no se toca. Cuando las 51 reciban su fila de captacion lo heredaran con el
-   * resto, sin re-baselinizarlas dos veces. */
-  /* R21: `gallery` es la galeria de obra (`GaleriaObra.astro`), que Sebastian pidio entre el
-   * formulario y el 3D. Misma primera clase que la de las 14 fichas de `/services/` —para que
-   * `check:galeria` mida lo mismo aqui que alli— mas `svc-galeria`, que es el hook de `restos`. */
-  /* SEO-REMEDIACION (Sebastian, 4-oct-2026): la banda «Project Gallery» (`animated-divs-section`)
-   * y el panel de servicios (`products-section`) bajan DETRAS de la FAQ. Son paginas de piscina y
-   * los servicios secundarios no pueden ir por encima de las resenas, la obra y la FAQ. */
-  'mm-hero-a', 'svc-confianza', 'trusted-section', 'mm-form-sec', 'gallery',
-  /* ORDEN-CIUDADES (Sebastian, 5-oct-2026): inversion y FAQ suben pegadas al 3D, y resenas y obra
-   * bajan a la cola, detras del panel de servicios. La banda y el panel siguen detras de la FAQ,
-   * pero vuelven a quedar por encima de resenas y obra: es el orden que pidio el, puesto a puesto. */
-  /* ORDEN-CIUDADES-2 (Sebastian, 6-oct-2026): la banda sube pegada al 3D, por ENCIMA de la FAQ
-   * -matiza SEO-REMEDIACION-, y la inversion baja detras de la FAQ. El panel sigue el ultimo del
-   * tramo, debajo de la FAQ y de la inversion. */
-  '_3d-section', 'animated-divs-section', 'faq-section', 'svc-inversion', 'products-section',
-  'testimonial-section', 'projects-section', 'blog-section-page', 'social-media',
-  'cta-footer',
+  'mm-hero-a', 'svc-confianza', 'svc-intro', 'gallery', '_3d-section', 'products-section',
+  'svc-inversion', 'mm-faq', 'animated-divs-section', 'projects-section', 'blog-section-page',
+  'mm-res', 'mm-cierre', 'mm-form-sec',
 ];
 
 const CAPTACION = leerJson('src/data/captacion-servicios.json');
@@ -155,12 +139,14 @@ for (const ruta of TODAS) {
      * fotos del collage. Borrar la linea a secas dejaba la FAQ sin vigilar; se INVIERTE: la seccion
      * tiene que traer sus acordeones y ninguna imagen que no sea la flecha de cada uno. Asi el
      * collage no puede volver por un generador olvidado sin que esto se ponga rojo. */
-    const faq = d.querySelector('section.faq-section');
-    if (!faq?.querySelector('.wrapper-faq-components .dropdown-faq')) {
+    // ASTRO-2: la FAQ es `section.mm-faq` con sus preguntas en `<details>`.
+    const faq = d.querySelector('section.mm-faq');
+    if (!faq?.querySelector('.mm-faq-lista > details.mm-faq-item > summary h3')) {
       mal(ruta, 'la FAQ no trae ni un acordeon dentro de .wrapper-faq-components.'); continue;
     }
-    const fotosFaq = [...faq.querySelectorAll('img')].filter((i) => !i.closest('.block-arrow-faq'));
-    if (fotosFaq.length || faq.querySelector('.mm-collage')) {
+    // ASTRO-2: la FAQ lleva, como mucho, UNA foto: la de la tarjeta de accion (`.mm-faq-medio`).
+    const fotosFaq = [...faq.querySelectorAll('img')].filter((i) => !i.closest('.mm-faq-medio'));
+    if (fotosFaq.length || faq.querySelectorAll('.mm-faq-medio img').length > 1 || faq.querySelector('.mm-collage')) {
       mal(ruta, `la FAQ vuelve a pintar ${fotosFaq.length} foto(s) fuera de las flechas `
         + '(o un .mm-collage). Es una columna sin collage desde el 5-oct-2026.'); continue;
     }

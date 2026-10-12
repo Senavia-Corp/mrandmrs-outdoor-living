@@ -51,12 +51,14 @@ const fmt = (f?: string) => (f
       { month: 'short', year: 'numeric', timeZone: 'America/New_York' })
   : '');
 
-/* ASTRO-2: en las 14 fichas de `/services/` las resenas ya no son carrusel. La primera va de cita
+/* ASTRO-2: en las fichas y en las paginas de ciudad de `/services/` las resenas ya no son carrusel. La primera va de cita
  * destacada y las demas en lista, todas a la vista (D-78). El enlace «See all reviews» lo pinta la
  * cabecera de la seccion (`build-paginas.mjs`), delante de esto. El resto de rutas siguen con el
  * carrusel hasta que les toque. */
 import { esFicha } from '../../lib/rutas-seo.mjs';
-const enLista = esFicha(Astro.url.pathname.replace(/(.)\/$/, '$1'));
+// Fichas y paginas de ciudad de `PaginaCiudad.astro`. Los 9 condados de piscina, todavia no.
+const rutaAqui = Astro.url.pathname.replace(/(.)\/$/, '$1');
+const enLista = esFicha(rutaAqui) || (/^\/services\/[^/]+\/[^/]+$/.test(rutaAqui) && !/-county-fl$/.test(rutaAqui));
 const ESTRELLA = 'M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9 4.8 17.6l1-5.8L1.5 7.7l5.9-.9L10 1.5Z';
 ---
 {hay && enLista && (

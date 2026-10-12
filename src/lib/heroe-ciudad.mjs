@@ -72,6 +72,26 @@ export function fotoDeHeroe(ruta, rutasDelServicio = rutasDeCiudad(ruta.split('/
   return { id: e.id, src: e.src, ancho: e.ancho, alto: e.alto, alt: e.alt, pie: e.alt };
 }
 
+/**
+ * Las fotos de seccion de una pagina de ciudad (FAQ, cierre y resenas, por ese orden): las
+ * siguientes de la MISMA bolsa a partir de la del hero, sin repetir ninguna en la pagina. Con una
+ * bolsa de 3 hay hero, FAQ y cierre; la que falte va en su variante sin foto. Sin pie: no dicen nada
+ * de la ciudad.
+ */
+export function fotosDeSeccion(ruta, rutasDelServicio = rutasDeCiudad(ruta.split('/')[2])) {
+  const servicio = ruta.split('/')[2];
+  const bolsa = DATOS.bolsas[servicio] ?? [];
+  const hero = fotoDeHeroe(ruta, rutasDelServicio);
+  const orden = [...rutasDelServicio].filter((r) => !DATOS.fijas[r]).sort();
+  const i = Math.max(0, orden.indexOf(ruta));
+  const ids = [];
+  for (let k = 1; k <= bolsa.length && ids.length < 3; k++) {
+    const id = bolsa[(i + k) % bolsa.length];
+    if (id !== hero?.id && !ids.includes(id)) ids.push(id);
+  }
+  return ids.map((id) => { const e = valida(id, DATOS.clave[servicio], ruta); return { id: e.id, src: e.src, ancho: e.ancho, alto: e.alto, alt: e.alt }; });
+}
+
 /** Para el parte y para la puerta: cuantas ciudades comparten cada foto de cada bolsa. */
 export function repartoDeBolsas(rutasPorServicio) {
   return Object.fromEntries(Object.entries(rutasPorServicio).map(([servicio, rutas]) => {

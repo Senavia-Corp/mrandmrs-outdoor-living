@@ -318,6 +318,18 @@ function esperadoPropio(ruta, lineas) {
         ...(pie ? ['PROJECT', pie] : []), ...out.slice(k + 7)];
     }
   }
+  // La miga pasa de ir detras de la franja de logos a abrir el hero.
+  if (ch && esCiudadA(ruta)) {
+    const miga = tramosMiga(ruta).map((t) => t.nombre);
+    const m = out.findIndex((_, x) => miga.every((l, y) => out[x + y] === l));
+    const h = out.findIndex((l) => l === CAPTACION_JSON[ruta].heroe.licencias.split(' · ')[0].toUpperCase());
+    // `h` es el rotulo de la licencia de la banda de datos; el h1 esta 9 lineas antes (h1, h2,
+    // parrafo, accion, «Project Gallery», y los dos telefonos con su rotulo).
+    if (m >= 0 && h >= 9 && m > h) {
+      out.splice(m, miga.length);
+      out.splice(h - 9, 0, ...miga);
+    }
+  }
   // ASTRO-2: las referencias propias de las paginas de ciudad guardan el formulario de un paso.
   // Se cambia ese tramo, EXACTO y seguido, por el de dos pasos; si no esta tal cual, no se toca.
   const cf = CAPTACION_JSON[ruta];
@@ -326,7 +338,57 @@ function esperadoPropio(ruta, lineas) {
     const k = out.findIndex((_, x) => viejo.every((l, y) => out[x + y] === l));
     if (k >= 0) out = [...out.slice(0, k), ...formularioNuevo(cf), ...out.slice(k + viejo.length)];
   }
+  out = ordenCiudadPropia(ruta, out);
   return cascaronStitch(out);   // las referencias propias se capturaron con el cascaron de Webflow
+}
+/**
+ * ASTRO-2 · EL ORDEN DE LA LAMINA «Ciudad», sobre la REFERENCIA PROPIA de las 65 paginas de ciudad de
+ * los demas servicios. La referencia es el texto entero de la pagina en su orden anterior:
+ *     … · formulario · galeria (+3D) · banda de categorias · FAQ · inversion · servicios · resenas ·
+ *     proyectos · articulos · banda final · …
+ * y la lamina lo deja en
+ *     … · galeria (+3D) · servicios · inversion · FAQ · banda de categorias · proyectos · articulos ·
+ *     resenas · banda final (sin su boton, T-57) · formulario · …
+ * Cada tramo se localiza por su PRIMERA linea, que sale de los mismos datos que pintan la pagina. Si
+ * falta una sola marca o no van en el orden esperado, no se toca nada y la ruta sale roja.
+ */
+function ordenCiudadPropia(ruta, lineas) {
+  const c = CAPTACION_JSON[ruta];
+  const pag = PAGINAS_CIUDAD_SERVICIO[ruta];
+  if (!c || !pag || !esCiudadA(ruta)) return lineas;
+  const ci = (t) => lineas.findIndex((l) => l.toLowerCase() === String(t).toLowerCase());
+  const marcas = {
+    form: lineas.indexOf('Step 1 of 2'),
+    banda: lineas.findIndex((l, k) => l === 'Project Gallery' && (lineas[k + 1] ?? '').startsWith('See pools, pergolas')),
+    faq: ci(c.faq.titulo),
+    inv: ci(c.inversion.titulo),
+    serv: ci(SERVICIOS_CAT['/'].titulo.replace(/&amp;/g, '&')),
+    res: lineas.indexOf('TESTIMONIALS'),
+    blog: ci(pag.doc.headingBlog),
+    cta: lineas.findIndex((l) => l.startsWith(CIERRE_CIUDAD)) - 1,
+  };
+  const nForm = formularioNuevo(c).length;
+  const nRes = 3 + lineasResenas().length;   // rotulo, titular, parrafo + el bloque de siempre
+  const gal = marcas.form + nForm;
+  const proy = marcas.res + nRes;
+  const fin = marcas.cta + 3;               // titular, parrafo y el boton que sale
+  const orden = [marcas.form, gal, marcas.banda, marcas.faq, marcas.inv, marcas.serv, marcas.res, proy, marcas.blog, marcas.cta, fin];
+  if (orden.some((x) => x < 0) || orden.some((x, k) => k && x <= orden[k - 1]) || lineas[fin - 1] !== 'Get A Free Estimate') return lineas;
+  const tramo = (a, b) => lineas.slice(a, b);
+  return [
+    ...tramo(0, marcas.form),
+    ...tramo(gal, marcas.banda),
+    ...tramo(marcas.serv, marcas.res),
+    ...tramo(marcas.inv, marcas.serv),
+    ...tramo(marcas.faq, marcas.inv),
+    ...tramo(marcas.banda, marcas.faq),
+    ...tramo(proy, marcas.blog),
+    ...tramo(marcas.blog, marcas.cta),
+    ...tramo(marcas.res, proy),
+    ...tramo(marcas.cta, fin - 1),
+    ...tramo(marcas.form, gal),
+    ...tramo(fin, lineas.length),
+  ];
 }
 /** Lo medido de una ruta propia, sin las lineas que una declaracion con su nombre añade. */
 function medidoPropio(ruta, lineas) {
@@ -594,6 +656,8 @@ const traduce = (ruta, l) => {
  * CON GUARDA, como `piePropio`: si lo esperado no trae EXACTAMENTE el tramo viejo, no se toca
  * nada y la ruta sale roja. Va DESPUES de `piePropio`, que es quien ordena servicios y zonas.
  */
+/** Las 118 paginas de servicio × ciudad que monta `PaginaCiudad.astro` (no los 9 condados). */
+const esCiudadA = (r) => /^\/services\/[^/]+\/[^/]+$/.test(r) && !/-county-fl$/.test(r);
 /** El `alt` del banco por id: es el pie de foto del Hero A (D-109). Misma fuente que el generador. */
 const BANCO_ALT = new Map(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/banco-imagenes.json'), 'utf8'))
   .filter((e) => e.procedencia === 'obra_real').map((e) => [e.id, e.alt]));
@@ -2330,7 +2394,7 @@ function lineasResenas(ruta) {
    * enlace «See all reviews» sube a la cabecera, delante; el nombre va en `.mm-dato-rot`, o sea en
    * mayusculas por CSS; y en las filas de la lista el nombre y la fecha se pintan a la izquierda
    * de la cita, pero en el HTML van detras, como siempre. Las mismas ocho, las mismas lineas. */
-  if (ruta && esFicha(ruta)) {
+  if (ruta && (esFicha(ruta) || esCiudadA(ruta))) {
     return [
       RESENAS_MARCADOR,
       ...(d.valoracion != null ? [d.valoracion.toFixed(1)] : []),
@@ -3141,8 +3205,11 @@ function bloquesCaptacion(ruta) {
   //     la FAQ ya venia del origen y alli solo se ANADEN preguntas.
   if (c.faq?.anade?.length) {
     bloques.push(c.faq.titulo
-      ? [capitaliza(c.faq.titulo), c.faq.entradilla,
-        ...c.faq.anade.map((q) => capitaliza(q.pregunta)), capitaliza(ctaCierre(c))]
+      // ASTRO-2: `section.mm-faq` con `<details>`: titular y preguntas sin `capitalize`; el boton
+      // de la tarjeta de accion (`.mm-btn`) si lo lleva. Los telefonos de la tarjeta los quita
+      // `listasStitch`.
+      ? [c.faq.titulo, c.faq.entradilla,
+        ...c.faq.anade.map((q) => q.pregunta), capitaliza(ctaCierre(c))]
       : c.faq.anade.map((q) => q.pregunta));   // ASTRO-2: en la ficha el `<h3>` del `<details>` no capitaliza
   }
 
@@ -3347,6 +3414,23 @@ function origenDeFicha(ruta) {
   return ORIGEN_FICHA.get(ruta);
 }
 function ordenFicha(ruta, lineas) {
+  if (esCiudadA(ruta)) {
+    /* CIUDADES (lamina «Ciudad»). De lo que sale del baseline solo cambia de sitio la cabecera de las
+     * resenas (rotulo, titular, parrafo), que baja justo delante de la banda final; y la banda pierde
+     * su boton (T-57). Lo demas que se mueve son bloques declarados, que se descuentan esten donde
+     * esten. */
+    const out = [...lineas];
+    const t = out.indexOf('TESTIMONIALS');
+    let c = out.findIndex((l) => l.startsWith(CIERRE_CIUDAD)) - 1;
+    if (t >= 0 && c > t + 2) {
+      const cab = out.splice(t, 3);
+      c -= 3;
+      out.splice(c, 0, ...cab);
+      c += 3;
+    }
+    if (c >= 0 && out[c + 2] === 'Get A Free Estimate') out.splice(c + 2, 1);
+    return out;
+  }
   if (!esFicha(ruta)) return lineas;
   const o = origenDeFicha(ruta);
   let out = [...lineas];
@@ -3393,6 +3477,8 @@ function pasosDelOrigen(ruta) {
 }
 const PRIMER_ARTICULO = (JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/blogs.json'), 'utf8')).posts[0]?.titulo ?? '')
   .replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+/** Como empieza el parrafo de la banda final de las paginas de ciudad (texto fijo de la plantilla). */
+const CIERRE_CIUDAD = 'Share your property details, project scope, and investment range.';
 function listasStitch(ruta, lineas) {
   if (!ruta.startsWith('/services/')) return lineas;
   if (!esFicha(ruta)) {
@@ -3400,8 +3486,30 @@ function listasStitch(ruta, lineas) {
      * del primer articulo. Se quita solo si esta ahi. (En las fichas el bloque de articulos es
      * declarado entero: § articulosEnLista.) */
     const out = [...lineas];
+    const accion = capitalizaH2(CAPTACION_JSON[ruta]?.heroe?.cta ?? 'Get a Free Estimate');
     const j = out.indexOf(PRIMER_ARTICULO);
-    if (j > 0 && out[j - 1] === capitalizaH2(CAPTACION_JSON[ruta]?.heroe?.cta ?? 'Get a Free Estimate')) out.splice(j - 1, 1);
+    if (j > 0 && out[j - 1] === accion) out.splice(j - 1, 1);
+    /* PIEZAS COMPARTIDAS CON LA FICHA (T-29, T-47), cada una por su ancla exacta:
+     *   · resenas: la accion de la cabecera va justo delante de «See all reviews»; los telefonos,
+     *     justo detras de «Updated …»;
+     *   · FAQ: los telefonos de la tarjeta, justo detras de su boton (que ya estaba al pie de la FAQ);
+     *   · cierre: los telefonos, justo detras del parrafo de la banda final. */
+    // En el orden de zonas de la ruta: las ciudades del sur pintan «South Florida» delante.
+    const zonasRuta = CAPTACION_JSON[ruta]?.heroe?.zonas ?? TELEFONOS.items.map((x) => x.zona);
+    const tels = zonasRuta.map((z) => TELEFONOS.items.find((x) => x.zona === z)).flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+    const hayTels = (k) => tels.every((l, x) => out[k + x] === l);
+    const r = out.indexOf(RESENAS_MARCADOR);
+    if (r > 0 && out[r - 1] === accion) out.splice(r - 1, 1);
+    const u = out.findIndex((l) => /^Updated [A-Z][a-z]{2} \d{4}$/.test(l));
+    if (u >= 0 && hayTels(u + 1)) out.splice(u + 1, tels.length);
+    const ci = out.findIndex((l) => l.startsWith(CIERRE_CIUDAD));
+    if (ci >= 0 && hayTels(ci + 1)) out.splice(ci + 1, tels.length);
+    const faq = CAPTACION_JSON[ruta]?.faq;
+    if (faq?.titulo) {
+      const f0 = out.findIndex((l) => l.toLowerCase() === faq.titulo.toLowerCase());
+      const fb = f0 < 0 ? -1 : out.findIndex((l, k) => k > f0 && l === accion && hayTels(k + 1));
+      if (fb >= 0) out.splice(fb + 1, tels.length);
+    }
     return out;
   }
   const c = CAPTACION_JSON[ruta];
