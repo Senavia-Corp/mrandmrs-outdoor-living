@@ -90,48 +90,18 @@
  * landings de `/services/pool-builders/`. Se corrige porque un comentario que dice «solo en esta ruta»
  * invita a tocar la regla creyendo que no alcanza a nadie mas. Medido, no supuesto:
  *   grep -rlo 'svc-captacion' .vercel/output/static --include='*.html' | wc -l   ->  16 */
-.svc-captacion {
-  scroll-margin-block-start: calc(var(--mm-nav-alto) + var(--mm-e-24));
-  margin-block-start: 0;
-  background-color: var(--mm-fondo-tenue);
-}
 
 /* UNA SOLA COLUMNA. La rejilla de dos murio con el hueco del 65-72 %; ver el comentario de
  * `FormularioCore.astro`. `56rem` es la medida: a 1440 el campo queda en 404 px en vez de los
  * 800 que salian cuando el formulario ocupaba el ancho entero a 991. */
-.svc-captacion__rejilla { max-inline-size: 56rem; }
-
-.svc-captacion__intro { margin-bottom: var(--mm-e-24); }
 
 /* La tarjeta. Sombra 3 y no borde: sobre el gris tenue el borde de la casa (#e0e4ec) da 1,12:1
  * y no separa nada. Lo que levanta la tarjeta es la sombra. */
-.svc-captacion__panel {
-  min-width: 0;
-  background-color: var(--mm-superficie);
-  border-radius: var(--mm-r-24);
-  box-shadow: var(--mm-sombra-3);
-  padding: var(--mm-e-32);
-}
 
 /* Los ocho campos cortos, a dos columnas desde 768. `Project details` ocupa las dos. */
-.svc-form__rejilla {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--mm-e-16);
-}
-@media (min-width: 768px) {
-  .svc-form__rejilla { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--mm-e-24); }
-  .svc-form__ancho   { grid-column: 1 / -1; }
-}
 
 /* `min-height` y NO `height`: con altura fija el campo no crece con el texto y el objetivo
  * tactil deja de estar garantizado. Es la receta de la casa (`intro.css:161`). */
-.svc-form__area { min-height: var(--mm-e-96); resize: vertical; }
-
-.svc-form__opcional { color: var(--mm-tinta-atenuada); font-weight: var(--mm-peso-normal); }
-
-.svc-form__consentimiento { margin-block: var(--mm-e-24) var(--mm-e-16); }
-.svc-form__envio { margin-top: var(--mm-e-16); }
 
 /* EL BANNER DE EXITO IBA A 1,35:1, Y ES LA PANTALLA QUE VE QUIEN ACABA DE DEJAR EL LEAD.
  *
@@ -152,7 +122,6 @@
  * depender de la forma de la etiqueta para heredar un color de OTRA hoja es justo el tipo de
  * atadura que hoy ha fallado. (0-2-1) le gana a `.mm-txt` (0-1-0) sin `!important`.
  * #c7cddd sobre navy = 9,81:1. */
-.svc-captacion .success-message-form p { color: var(--mm-tinta-inversa-2); }
 
 /* Y EL GEMELO DE FALLO, QUE SE QUEDO SIN ARREGLAR (R20-CIUDADES).
  *
@@ -172,45 +141,16 @@
  * ACOTADO A `.svc-captacion` Y NO A `.appointment-section`, que es lo que decide el radio:
  * `/request-estimated`, `/contact-us`, `/brochures` y `/gallery` tambien montan `.w-form-fail`
  * y NO se tocan. #b3261e sobre --mm-fondo-tenue = 5,75:1 (medido en estimacion.css:483). */
-.svc-captacion .w-form-fail p { color: var(--mm-error); }
 
 /* ══ 3 · «WHAT HAPPENS AFTER YOU REACH OUT» ═══════════════════════════════════════════════
  * Ya no es tarjeta: es una TIRA sobre el suelo gris, delante del formulario. Sin fondo propio
  * ni sombra, porque competir con la tarjeta blanca seria pelearle la jerarquia a lo unico que
  * tiene que destacar. */
-.svc-captacion__pasos { margin-block-end: var(--mm-e-32); }
 
 /* `auto-fit` y no tres columnas fijas: a 390 cae a una, a 768 a dos o tres segun quepa, y a
  * 1440 a tres. Sin un solo punto de corte escrito. */
-.svc-pasos {
-  display: grid;
-  gap: var(--mm-e-16) var(--mm-e-24);
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  margin: var(--mm-e-16) 0 0;
-  padding: 0;
-  list-style: none;
-  counter-reset: none;
-}
-.svc-pasos__item {
-  display: grid;
-  grid-template-columns: var(--mm-e-24) 1fr;
-  gap: var(--mm-e-12);
-  align-items: start;
-}
 /* Blanco sobre navy: 15,60:1. El numero es decorativo -el orden ya lo da el `<ol>`-, por eso
  * va `aria-hidden` en el componente y no transporta informacion que falte sin el. */
-.svc-pasos__n {
-  display: grid;
-  place-items: center;
-  inline-size: var(--mm-e-24);
-  block-size: var(--mm-e-24);
-  border-radius: var(--mm-r-pastilla);
-  background-color: var(--mm-navy);
-  color: var(--mm-tinta-inversa);
-  font-family: var(--mm-fuente);
-  font-size: var(--mm-paso-0);
-  font-weight: var(--mm-peso-fuerte);
-}
 
 /* ══ 3.bis · LAS TRES TARJETAS DE REMODELACION, QUE AHORA SON ENLACES ═════════════════════
  * El generador envuelve `.item-subservice` en un `<a>` a la landing de Remodeling. Sin esto el

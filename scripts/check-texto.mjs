@@ -300,6 +300,14 @@ function esperadoPropio(ruta, lineas) {
     const i = out.findIndex((_, k) => d.antes.every((l, j) => out[k + j] === l));
     if (i >= 0) out = [...out.slice(0, i), ...d.despues, ...out.slice(i + d.antes.length)];
   }
+  // ASTRO-2: las referencias propias de las paginas de ciudad guardan el formulario de un paso.
+  // Se cambia ese tramo, EXACTO y seguido, por el de dos pasos; si no esta tal cual, no se toca.
+  const cf = CAPTACION_JSON[ruta];
+  if (cf?.formulario) {
+    const viejo = formularioViejo(cf);
+    const k = out.findIndex((_, x) => viejo.every((l, y) => out[x + y] === l));
+    if (k >= 0) out = [...out.slice(0, k), ...formularioNuevo(cf), ...out.slice(k + viejo.length)];
+  }
   return cascaronStitch(out);   // las referencias propias se capturaron con el cascaron de Webflow
 }
 /** Lo medido de una ruta propia, sin las lineas que una declaracion con su nombre añade. */
@@ -2785,6 +2793,58 @@ function quitaTras(lineas, contexto, anadidas) {
 
 /** Cual de los bloques declarados fallo, para que el rojo diga la verdad. Antes el mensaje
  *  etiquetaba TODO fallo como «bloque de reseñas» y me mando a depurar el bloque equivocado. */
+/* Espejo del formulario de `FormularioCore.astro` (a nivel de modulo: lo usan `sinElBloque` y
+ * `esperadoPropio`). El porque de cada lista, en § bloquesCaptacion. */
+const SMS_CAPTACION = 'I agree to receive SMS messages related to project updates, promotions, and company '
+  + 'communications from Mr. & Mrs. Outdoor Living. This is optional and is not required to get '
+  + 'an estimate. I understand that I may opt out at any time by replying STOP. Message and data '
+  + 'rates may apply.';
+const camposCaptacion = (c) => {
+  const [rotLic, ...valLic] = c.heroe.licencias.split(' · ');
+  const lic = [rotLic.toUpperCase(), valLic.join(' · ')];
+  return [
+    'Step 1 of 2', 'Full name', 'Phone', 'Email', 'ZIP code', 'Continue', ...lic,
+    'Step 2 of 2',
+    'Project type', ...(c.formulario.proyectos ?? ['New Custom Pool', 'Complete Pool Remodel']),
+    'Do you own this property?', 'Select one...', 'Yes, I own this property', 'No', 'Other',
+    'Investment range',
+    'Under $25,000', '$25,000 – $50,000', '$50,000 – $75,000',
+    '$75,000 – $100,000', '$100,000 – $150,000', '$150,000+',
+    'Timeline',
+    'As soon as possible', '1-3 months', '3-6 months', '6-12 months', 'Just exploring',
+    'Project details (optional)',
+    SMS_CAPTACION,
+    'Back', ...lic,
+  ];
+};
+/** El formulario ANTES de ASTRO-2, tal como lo guardan las referencias propias de las paginas de
+ *  ciudad (`baseline/text-propio/`): sirve para cambiar ese tramo por el nuevo en lo esperado. */
+const formularioViejo = (c) => [
+  capitaliza(c.formulario.pasosTitulo),
+  ...c.formulario.pasos.flatMap((p, i) => [String(i + 1), p]),
+  capitaliza(c.formulario.titulo),
+  c.formulario.entradilla,
+  'Full name', 'Phone', 'Email', 'ZIP code',
+  'Project type', ...(c.formulario.proyectos ?? ['New Custom Pool', 'Complete Pool Remodel']),
+  'Do you own this property?', 'Select one...', 'Yes, I own this property', 'No', 'Other',
+  'Investment range', 'Select one...',
+  'Under $25,000', '$25,000 – $50,000', '$50,000 – $75,000',
+  '$75,000 – $100,000', '$100,000 – $150,000', '$150,000+',
+  'Timeline', 'Select one...',
+  'As soon as possible', '1-3 months', '3-6 months', '6-12 months', 'Just exploring',
+  'Project details (optional)',
+  SMS_CAPTACION,
+];
+/** El formulario de hoy: el panel de dos pasos y, detras, el titular (rotulo en mayusculas por CSS),
+ *  la entradilla y los tres pasos de «que pasa despues», cuyos numeros son ya contadores de CSS. */
+const formularioNuevo = (c) => [
+  ...camposCaptacion(c),
+  c.formulario.titulo.toUpperCase(),
+  c.formulario.entradilla,
+  c.formulario.pasosTitulo,
+  ...c.formulario.pasos,
+];
+
 let bloqueQueFallo = null;
 
 /** Cuantas lineas de sufijo oculto (§ .mm-sr) se quitaron en toda la corrida, para el resumen. */
@@ -2892,23 +2952,11 @@ function sinElBloque(ruta, hay) {
 /* R19: los tipos de proyecto DEPENDEN DE LA FICHA (`formulario.proyectos`), asi que esto deja
  * de ser una lista y pasa a ser una funcion de la ficha. Lo demas es identico en las catorce
  * porque lo pinta un solo componente. El respaldo es el par de la ruta piloto. */
-const camposCaptacion = (c) => [
-  'Full name', 'Phone', 'Email', 'ZIP code',
-  'Project type', ...(c.formulario.proyectos ?? ['New Custom Pool', 'Complete Pool Remodel']),
-  'Do you own this property?', 'Select one...', 'Yes, I own this property', 'No', 'Other',
-  'Investment range', 'Select one...',
-  'Under $25,000', '$25,000 – $50,000', '$50,000 – $75,000',
-  '$75,000 – $100,000', '$100,000 – $150,000', '$150,000+',
-  'Timeline', 'Select one...',
-  'As soon as possible', '1-3 months', '3-6 months', '6-12 months', 'Just exploring',
-  'Project details (optional)',
-  /* R17-CORE F3e: la casilla paso a OPCIONAL y la etiqueta lo DICE. Esta puerta cazo la deriva
-   * -cambie la etiqueta en el componente y no aqui-, que es exactamente para lo que esta. */
-  'I agree to receive SMS messages related to project updates, promotions, and company '
-  + 'communications from Mr. & Mrs. Outdoor Living. This is optional and is not required to get '
-  + 'an estimate. I understand that I may opt out at any time by replying STOP. Message and data '
-  + 'rates may apply.',
-];
+/* ASTRO-2 (D-34): el formulario va en dos pasos y los dos estan en el HTML; `textoNormalizado()`
+ * los ensena antes de leer. Mismos campos y mismas opciones; cambia la forma: «Investment range» y
+ * «Timeline» son tarjetas (sin «Select one...», T-20), cada paso lleva su pastilla (T-15), sus
+ * botones (T-16, T-18; «Continue» y «Back» en `.mm-btn`, que no los altera) y la licencia (T-19).
+ * El boton de envio es un `<input>`: su texto no sale en `innerText`, igual que antes. */
 
 /** Los bloques contiguos que aporta la capa de captacion en `ruta`. Vacio si no la lleva. */
 /**
@@ -2997,13 +3045,7 @@ function bloquesCaptacion(ruta) {
   ]);
 
   // 2.bis · «what happens» + formulario, detras de la intro.
-  bloques.push([
-    capitaliza(c.formulario.pasosTitulo),
-    ...c.formulario.pasos.flatMap((p, i) => [String(i + 1), p]),
-    capitaliza(c.formulario.titulo),
-    c.formulario.entradilla,
-    ...camposCaptacion(c),
-  ]);
+  bloques.push(formularioNuevo(c));
 
   // 3 · banda de inversion. Desde el 13-sep-2026 ninguna ficha pinta `CarruselProyectos` detras:
   //     las catorce llevan su `gallery`, y sus dos lineas salen del baseline (§ `subeGaleria`).
@@ -3218,9 +3260,21 @@ let soloMayusculas = 0;
 function sinMayusculasDeCss(ruta, esperado, hay) {
   if (!ruta.startsWith('/services/')) return esperado;
   const medidas = hay.split('\n');
+  const esperadas = esperado.split('\n');
+  /* POR POSICION cuando las dos listas miden lo mismo, que es el caso de una ruta en verde: la
+   * misma cadena sale a veces con dos formas en la pagina («Request A Design-Build…» en un boton y
+   * «Request a Design-Build…» en un titular), y casar por contenido las cruzaba. */
+  if (medidas.length === esperadas.length) {
+    return esperadas.map((l, k) => {
+      if (l === medidas[k] || l.toLowerCase() !== medidas[k].toLowerCase()) return l;
+      soloMayusculas++;
+      return medidas[k];
+    }).join('\n');
+  }
+  // Si no miden lo mismo la ruta va a salir roja igual; esto solo limpia el listado de diferencias.
   const exactas = new Set(medidas);
   const porMinuscula = new Map(medidas.map((l) => [l.toLowerCase(), l]));
-  return esperado.split('\n').map((l) => {
+  return esperadas.map((l) => {
     const m = porMinuscula.get(l.toLowerCase());
     if (exactas.has(l) || !m) return l;
     soloMayusculas++;
@@ -3242,6 +3296,50 @@ function sinMayusculasDeCss(ruta, esperado, hay) {
  * quita. Y los titulos de fila se devuelven a la forma capitalizada con la que estan declarados
  * (R22-DETALLE, § LINEAS_ANADIDAS): el HTML no ha cambiado, el `capitalize` de Webflow si (T-69).
  */
+/**
+ * ASTRO-2 · EL ORDEN DE LAS LAMINAS Y EL CIERRE FUNDIDO, sobre LO ESPERADO de las 14 fichas.
+ * Tres cosas cambian de sitio o salen respecto a como dejan el baseline las funciones de arriba:
+ *   · el proceso sube delante de «What we do» (va justo detras de la galeria);
+ *   · la cabecera de las resenas baja detras de «Where We Serve» (va justo delante del cierre);
+ *   · la banda final pierde su boton «Get A Free Estimate» (T-57): tiene el formulario pegado.
+ * Los tramos se localizan por el texto del ORIGEN (`_source/vivo`), no por posicion. Si alguno no
+ * esta tal cual, no se toca nada de ese paso y la ruta sale roja.
+ */
+const ORIGEN_FICHA = new Map();
+function origenDeFicha(ruta) {
+  if (!ORIGEN_FICHA.has(ruta)) {
+    const f = path.join(RAIZ, `_source/vivo/${aSlug(origen(ruta))}.html`);
+    const d = new JSDOM(fs.readFileSync(f, 'utf8')).window.document;
+    const t = (q) => (d.querySelector(q)?.textContent ?? '').replace(/\s+/g, ' ').trim();
+    ORIGEN_FICHA.set(ruta, {
+      galeria: t('section.gallery .header-gallery h2 + div'),
+      procesoTit: t('section.process-section .process-header h2'),
+      resenas: [t('section.testimonial-section .header-reviews .label'), t('section.testimonial-section .header-reviews h2'), t('section.testimonial-section .header-reviews p')],
+      cierre: [t('section.cta-footer .wrapper-vertical-text h2'), t('section.cta-footer .text-block-3')],
+    });
+  }
+  return ORIGEN_FICHA.get(ruta);
+}
+function ordenFicha(ruta, lineas) {
+  if (!esFicha(ruta)) return lineas;
+  const o = origenDeFicha(ruta);
+  let out = [...lineas];
+  const mueve = (bloque, destinoDe) => {
+    const i = out.findIndex((_, k) => bloque.every((l, j) => out[k + j].toLowerCase() === l.toLowerCase()));
+    if (i < 0) return;
+    const tramo = out.splice(i, bloque.length);
+    const d = destinoDe();
+    if (d < 0) { out.splice(i, 0, ...tramo); return; }
+    out.splice(d, 0, ...tramo);
+  };
+  const { linea, pasos } = pasosDelOrigen(ruta);
+  mueve([o.procesoTit, linea, '1', '2', '3', '4', ...pasos[0]], () => out.indexOf(o.galeria) + 1 || -1);
+  mueve(o.resenas, () => out.findIndex((l, k) => l.toLowerCase() === o.cierre[0].toLowerCase() && out[k + 1] === o.cierre[1]));
+  const c = out.indexOf(o.cierre[1]);
+  if (c >= 0 && out[c + 1] === 'Get A Free Estimate') out.splice(c + 1, 1);
+  return out;
+}
+
 const PASOS_ORIGEN = new Map();
 function pasosDelOrigen(ruta) {
   if (!PASOS_ORIGEN.has(ruta)) {
@@ -3279,6 +3377,12 @@ function listasStitch(ruta, lineas) {
   const i = out.findIndex((_, k) => nuevo.every((l, j) => out[k + j] === l));
   if (i >= 0) {
     out.splice(i, nuevo.length, linea, ...pasos.map((_, k) => String(k + 1)), capitalizaH2(pasos[0][0]), ...pasos[0].slice(1));
+  }
+  // CIERRE (T-47): la banda final lleva los dos telefonos detras de su parrafo.
+  {
+    const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+    const z = out.indexOf(origenDeFicha(ruta).cierre[1]);
+    if (z >= 0 && tels.every((l, j) => out[z + 1 + j] === l)) out.splice(z + 1, tels.length);
   }
   // ZONAS (T-70): cada zona lleva su telefono entre el parrafo y el enlace. Se quita el par
   // solo si va justo delante del enlace de ESA zona.
@@ -3371,7 +3475,8 @@ const BLOG_ESPERADAS = lineasBlog().length ? 16 : 0;
 /** Las 79 rutas que montan `section.social-media`: home + 53 Ciudad + 14 servicios + 9 Condado
  *  + 2 Estado. Derivado del estado igual que los otros dos: con `items: []` se esperan 0, asi
  *  que vaciar el feed no obliga a editar la puerta. */
-const FEED_ESPERADAS = lineasFeed().length ? 79 : 0;
+// ASTRO-2 (T-42): las 14 fichas de `/services/` ya no montan el feed de Instagram: 79 - 14.
+const FEED_ESPERADAS = lineasFeed().length ? 65 : 0;
 
 for (const ruta of RUTAS_A_MEDIR) {
   const slug = aSlug(ruta);
@@ -3515,9 +3620,9 @@ for (const ruta of RUTAS_A_MEDIR) {
     rojos.push({ ruta, falta: [ocultasFallo], sobra: [], fuera: [] });
     continue;
   }
-  const esperadoCrudo = subeGaleriaCiudad(ruta, reordena(ruta, heroAStitch(ruta, cascaronStitch(piePropio(ctaHeroe(ruta,
+  const esperadoCrudo = ordenFicha(ruta, subeGaleriaCiudad(ruta, reordena(ruta, heroAStitch(ruta, cascaronStitch(piePropio(ctaHeroe(ruta,
     sinOcultas
-      .filter((l) => !declaradas.has(l)).map((l) => traduce(ruta, l)))))))).join('\n');
+      .filter((l) => !declaradas.has(l)).map((l) => traduce(ruta, l))))))))).join('\n');
   const bruto = (await textoNormalizado(pag)).trimEnd();
   if (bruto.includes(RESENAS_MARCADOR)) conResenas++;
   if (enBlogRutas(ruta) && lineasBlog(ruta).length

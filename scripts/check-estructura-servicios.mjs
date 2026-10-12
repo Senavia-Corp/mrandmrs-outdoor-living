@@ -28,10 +28,11 @@ const ESTATICO = path.join(RAIZ, '.vercel/output/static');
 /** El orden de Sebastian (13-sep-2026; galeria y resenas canjeadas el 21-sep-2026). Escrito aqui
  *  a mano a proposito: derivarlo del generador que lo produce seria comparar la salida consigo
  *  misma. */
+/** ASTRO-2 (12-oct-2026): el orden pasa a ser el de las laminas de la Etapa 4, con el formulario
+ *  al final, fundido con la banda de cierre (D-77), y sin el feed de Instagram (T-42). */
 const ESPERADO = [
-  'mm-hero-a', 'svc-confianza', 'svc-intro', 'appointment-section',
-  'mm-gal', 'mm-que', 'mm-proc', 'svc-inversion', 'mm-faq', 'mm-res',
-  'mm-zonas', 'blog-section-page', 'social-media', 'cta-footer',
+  'mm-hero-a', 'svc-confianza', 'svc-intro', 'mm-gal', 'mm-proc', 'mm-que', 'svc-inversion', 'mm-faq',
+  'mm-zonas', 'blog-section-page', 'mm-res', 'mm-cierre', 'mm-form-sec',
 ];   // ASTRO-2: la franja de logos va DENTRO del hero y la repetida junto al pie se retira (D-53)
 
 /** Excepciones declaradas: las dos fichas de piscina recuperan el antes/despues entre los servicios
@@ -41,7 +42,7 @@ const ESPERADO = [
  *  generador la pusiera. */
 const VARIANTES = {
   '/services/pool-remodeling': { tras: 'mm-que', va: 'before-after-section' },
-  '/services/pool-builders': { tras: 'mm-que', va: 'before-after-section' },
+  // ASTRO-2: `/services/pool-builders` lo pierde: no hay par fotografiado desde el mismo punto (D-95).
 };
 const esperadoDe = (ruta) => {
   const v = VARIANTES[ruta];

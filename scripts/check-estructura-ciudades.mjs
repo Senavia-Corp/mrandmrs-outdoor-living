@@ -86,7 +86,7 @@ const CON = [
   /* SEO-REMEDIACION (Sebastian, 4-oct-2026): la banda «Project Gallery» (`animated-divs-section`)
    * y el panel de servicios (`products-section`) bajan DETRAS de la FAQ. Son paginas de piscina y
    * los servicios secundarios no pueden ir por encima de las resenas, la obra y la FAQ. */
-  'hero-glass-section', 'svc-confianza', 'trusted-section', 'appointment-section', 'gallery',
+  'hero-glass-section', 'svc-confianza', 'trusted-section', 'mm-form-sec', 'gallery',
   /* ORDEN-CIUDADES (Sebastian, 5-oct-2026): inversion y FAQ suben pegadas al 3D, y resenas y obra
    * bajan a la cola, detras del panel de servicios. La banda y el panel siguen detras de la FAQ,
    * pero vuelven a quedar por encima de resenas y obra: es el orden que pidio el, puesto a puesto. */
@@ -145,7 +145,7 @@ for (const ruta of TODAS) {
    * forma correcta y el lead perdido. Es justo el fallo que una puerta de estructura no ve si
    * solo mira nombres de clase. */
   if (CON_CAPTACION.has(ruta)) {
-    const forms = [...d.querySelectorAll('section.appointment-section form[data-mm-envia="1"]')];
+    const forms = [...d.querySelectorAll('section.mm-form-sec form[data-mm-envia="1"]')];
     if (forms.length !== 1) {
       mal(ruta, `${forms.length} formulario(s) de envio dentro de la seccion de captacion; `
         + 'tiene que haber exactamente 1.');

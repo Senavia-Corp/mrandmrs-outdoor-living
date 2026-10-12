@@ -936,7 +936,7 @@ function listasDePlano(doc, ruta) {
   const [rlabel, rh2, rp] = ['.header-reviews .label', '.header-reviews h2', '.header-reviews p'].map((q) => res?.querySelector(q));
   const widget = res?.querySelector('[class*="elfsight-app-"]');
   if (!rlabel || !rh2 || !rp || !widget) throw new Error(`${ruta}: las resenas no traen rotulo, titular, linea y widget`);
-  const rfoto = SOBRANTES.get(ruta)?.[1];
+  const rfoto = SOBRANTES.get(ruta)?.[2];
   const nr = doc.createElement('section');
   nr.setAttribute('class', `mm-res${rfoto ? '' : ' mm-res--sin'}`);
   nr.innerHTML = `<div class="mm-sec-cab"><div class="mm-sec-tit"><p class="mm-etiqueta">${rlabel.innerHTML}</p><h2 class="mm-h2">${rh2.innerHTML.replace(/\b(Clients)\b/, '<span class="mm-rot">$1</span>')}</h2></div>`
@@ -946,6 +946,38 @@ function listasDePlano(doc, ruta) {
     + (rfoto ? `<figure class="mm-res-medio"><img src="${rfoto.src}" alt="${escAttr(rfoto.alt)}" width="${rfoto.w}" height="${rfoto.h}" loading="lazy" decoding="async"></figure>` : '')
     + '</div>';
   res.replaceWith(nr);
+
+  /* CIERRE FUNDIDO (D-77) Y ORDEN DE LA FICHA (laminas de la Etapa 4).
+   * La banda final (`cta-footer`) pasa a banda navy con su titular, su parrafo, los telefonos y
+   * una foto de la galeria; el formulario (`FormularioCore`, que el bucle de salida cuelga de
+   * ella) monta sobre su borde. El boton «Get a Free Estimate» de la banda sale (T-57): apuntaba
+   * al formulario que ahora tiene pegado. El feed de Instagram sale de la ficha (T-42).
+   *
+   * El orden: hero · confianza · intro · galeria · proceso · «what we do» · [antes/despues] ·
+   * inversion · FAQ · zonas · articulos · resenas · cierre · formulario. Todo queda como
+   * hermano de primer nivel, que es lo que recorre el bucle de salida. */
+  const fin = doc.querySelector('section.cta-footer');
+  const [ch2, cp] = ['.wrapper-vertical-text h2', '.text-block-3'].map((q) => fin?.querySelector(q));
+  const heroA = doc.querySelector('section.mm-hero-a');
+  if (!ch2 || !cp || fin.parentNode !== heroA?.parentNode) throw new Error(`${ruta}: la banda final no trae titular y parrafo, o no es hermana del hero`);
+  const cfoto = SOBRANTES.get(ruta)?.[1];
+  const nc = doc.createElement('section');
+  nc.setAttribute('class', `mm-cierre${cfoto ? '' : ' mm-cierre--sin'}`);
+  nc.innerHTML = '<div class="mm-cierre-caja"><div class="mm-cierre-txt">'
+    + `<h2 class="mm-h2">${ch2.innerHTML}</h2><p class="mm-p">${cp.innerHTML}</p>${BANDA_TELEFONOS}</div>`
+    + (cfoto ? `<figure class="mm-cierre-medio"><img src="${cfoto.src}" alt="${escAttr(cfoto.alt)}" width="${cfoto.w}" height="${cfoto.h}" loading="lazy" decoding="async"></figure>` : '')
+    + '</div>';
+  const invMarca = [...nuevo.parentNode.childNodes].find((x) => x.nodeType === 3 && x.textContent.includes('InversionCore'));
+  if (!invMarca) throw new Error(`${ruta}: no encuentro el marcador de la banda de inversion junto al proceso`);
+  const viejos = new Set([nuevo, nq, nf, nz, nr].map((x) => x.parentNode));
+  for (const x of [doc.querySelector('section.svc-intro'), doc.querySelector('section.mm-gal'), nuevo, nq,
+    doc.querySelector('section.before-after-section'), nf, nz, nr].filter(Boolean)) fin.parentNode.insertBefore(x, fin);
+  // El marcador de la inversion era un nodo de texto dentro del `<div>` de contenido. Con las
+  // secciones ya de primer nivel lo pone el bucle de salida, delante del FAQ.
+  invMarca.remove();
+  fin.replaceWith(nc);
+  doc.querySelector('section.social-media')?.remove();
+  for (const v of viejos) if (v !== nc.parentNode && !v.children.length && !v.textContent.trim()) v.remove();
 }
 
 /**
@@ -2194,7 +2226,12 @@ for (const [ruta] of RUTAS) {
   let primerLogos = true;
   let acumulado = '';
   for (let n = menu.nextElementSibling; n && n !== pie; n = n.nextElementSibling) {
-    if (conBlogInsertado(ruta) && n.matches?.('section.social-media')) {
+    if (esFicha(ruta) && n.matches?.('section.mm-faq')) {
+      acumulado += MARCA + 'InversionCore' + MARCA;
+      usados.add('InversionCore');
+    }
+    // ASTRO-2: en las fichas el feed de Instagram ya no esta; los articulos van delante de las resenas.
+    if (conBlogInsertado(ruta) && n.matches?.(esFicha(ruta) ? 'section.mm-res' : 'section.social-media')) {
       acumulado += MARCA + 'CarruselBlog' + MARCA;
       usados.add('CarruselBlog');
       blogsInsertados++;
@@ -2210,7 +2247,7 @@ for (const [ruta] of RUTAS) {
     /* El formulario va DETRAS de la intro, no pegado a `ConfianzaCore`: entre los dos queda la
      * seccion fundida de C4. `trusted-section` es hermana de primer nivel porque el bloque
      * 3.bis la subio ahi; antes de eso este `matches` no casaba nunca. */
-    if (CAPTACION[ruta] && n.matches?.('section.svc-intro')) {
+    if (CAPTACION[ruta] && n.matches?.(esFicha(ruta) ? 'section.mm-cierre' : 'section.svc-intro')) {
       acumulado += MARCA + 'FormularioCore' + MARCA;
       usados.add('FormularioCore');
     }

@@ -315,7 +315,10 @@ export const disparar = (pag) => pag.screenshot({
 });
 
 /** El texto normalizado: espacios colapsados, un nodo por línea, sin líneas vacías. */
-export const textoNormalizado = (pag) => pag.evaluate(() => document.body.innerText
+/* D-34: el formulario de dos pasos (`form[data-mm-paso]`) oculta con JS el paso que no toca. Antes
+ * de leer se ensenan los dos, que es como va el HTML servido: el texto del paso 2 es texto de la
+ * pagina y la puerta lo compara. */
+export const textoNormalizado = (pag) => pag.evaluate(() => (document.querySelectorAll('form[data-mm-paso]').forEach((f) => f.removeAttribute('data-mm-paso')), document.body.innerText)
   .replace(/ /g, ' ').split('\n')
   .map((s) => s.replace(/[ \t]+/g, ' ').trim()).filter(Boolean).join('\n'));
 

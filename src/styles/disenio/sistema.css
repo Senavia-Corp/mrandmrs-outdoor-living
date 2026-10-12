@@ -544,6 +544,95 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
   .mm-res--sin { padding-bottom: var(--mm-e-96); }
 }
 @media (min-width: 1200px) { .mm-res { --mm-canal: var(--mm-e-64); } }
+/* ── Cierre fundido: banda final + formulario en dos pasos (ASTRO-2 · D-77, D-34) ───────── */
+.mm-cierre { --mm-canal: var(--mm-e-24); margin-top: 72px; background: var(--mm-fondo-profundo); font-family: var(--mm-familia); color: var(--mm-blanco); }
+.mm-cierre-caja { display: flex; flex-direction: column; }
+.mm-cierre-medio { order: -1; margin: calc(-1 * var(--mm-e-48)) 0 0 var(--mm-canal); aspect-ratio: 3 / 2; border-radius: var(--mm-r-12) 0 0 var(--mm-r-12); overflow: hidden; }
+.mm-cierre-medio img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.mm-cierre-txt { display: flex; flex-direction: column; align-items: flex-start; gap: var(--mm-e-16); padding: var(--mm-e-32) var(--mm-canal) var(--mm-e-96); }
+.mm-cierre--sin { margin-top: 0; }
+.mm-cierre--sin .mm-cierre-txt { padding-top: var(--mm-e-64); }
+.mm-cierre .mm-h2 { color: var(--mm-blanco); }
+.mm-cierre .mm-p { color: var(--mm-tinta-suave-inversa); }
+.mm-cierre .mm-datos { border-top-color: var(--mm-borde-inverso); }
+.mm-cierre .mm-dato { border-left-color: var(--mm-borde-inverso); }
+.mm-cierre .mm-dato-rot { color: var(--mm-tinta-suave-inversa); }
+.mm-cierre .mm-dato-val { color: var(--mm-blanco); }
+.mm-cierre a.mm-dato:focus-visible { outline-color: var(--mm-blanco); }
+.mm-form-sec { --mm-canal: var(--mm-e-16); display: flow-root; background: var(--mm-azul-50); font-family: var(--mm-familia); color: var(--mm-tinta-texto); padding: 0 var(--mm-canal) var(--mm-e-64); scroll-margin-top: var(--mm-e-96); }
+.mm-form-sec:focus { outline: 0; }
+.mm-form-caja { position: relative; z-index: 1; box-sizing: border-box; max-width: var(--mm-contenedor); margin: 0 auto; padding-top: var(--mm-e-64); display: flex; flex-direction: column; gap: var(--mm-e-32); }
+/* El panel monta sobre la banda de cierre SOLO cuando la tiene encima (las fichas). En las paginas
+   de ciudad el formulario sigue donde estaba hasta que se migre su plantilla. */
+.mm-cierre + .mm-form-sec .mm-form-caja { margin-top: calc(-1 * var(--mm-e-64)); padding-top: 0; }
+.mm-form-panel { box-sizing: border-box; padding: var(--mm-e-24) var(--mm-e-20); background: var(--mm-blanco); border: 1px solid var(--mm-borde); border-radius: var(--mm-r-16); }
+.mm-form { display: flex; flex-direction: column; gap: var(--mm-e-24); margin: 0; }
+.mm-form-paso { display: flex; flex-direction: column; gap: var(--mm-e-24); min-width: 0; }
+.mm-form[data-mm-paso="1"] .mm-form-paso[data-paso="2"], .mm-form[data-mm-paso="2"] .mm-form-paso[data-paso="1"] { display: none; }
+.mm-form-cab { display: flex; align-items: center; gap: var(--mm-e-16); }
+.mm-pastilla { display: inline-flex; align-items: center; min-height: 28px; box-sizing: border-box; padding: var(--mm-e-4) var(--mm-e-12); background: var(--mm-azul-100); border: 1px solid var(--mm-borde); border-radius: var(--mm-r-pastilla); font-size: 12px; line-height: 1.5; font-weight: 700; letter-spacing: 0.02em; color: var(--mm-navy); white-space: nowrap; }
+.mm-progreso { flex: 1 1 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--mm-e-4); }
+.mm-progreso span { height: 4px; border-radius: var(--mm-r-pastilla); background: var(--mm-borde); }
+.mm-progreso .hecho { background: var(--mm-navy); }
+.mm-form-rejilla { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--mm-e-16); }
+.mm-campo { display: flex; flex-direction: column; gap: var(--mm-e-8); min-width: 0; }
+.mm-campo label, .mm-grupo-campo legend { margin: 0; padding: 0; font-family: var(--mm-familia); font-size: 14px; line-height: 1.5; font-weight: 600; color: var(--mm-navy); }
+.mm-campo-opc { font-weight: 400; color: var(--mm-tinta-suave); }
+.mm-campo input, .mm-campo select, .mm-campo textarea { box-sizing: border-box; width: 100%; min-height: var(--mm-ctl-m); margin: 0; padding: 0 var(--mm-e-16); font-family: inherit; font-size: 16px; line-height: 1.5; color: var(--mm-navy); background-color: var(--mm-blanco); border: 1px solid var(--mm-borde-control); border-radius: var(--mm-r-8); }
+.mm-campo textarea { padding: var(--mm-e-12) var(--mm-e-16); min-height: 96px; resize: vertical; }
+.mm-campo input:focus-visible, .mm-campo select:focus-visible, .mm-campo textarea:focus-visible, .mm-opcion:focus-within { border-color: var(--mm-navy); outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); box-shadow: var(--mm-foco-halo); }
+.mm-grupo-campo { border: 0; margin: 0; padding: 0; min-width: 0; display: flex; flex-direction: column; gap: var(--mm-e-8); }
+.mm-opciones { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--mm-e-8); }
+.mm-opcion { display: flex; align-items: center; gap: var(--mm-e-12); min-height: var(--mm-ctl-m); box-sizing: border-box; margin: 0; padding: var(--mm-e-8) var(--mm-e-12); border: 1px solid var(--mm-borde-control); border-radius: var(--mm-r-8); background: var(--mm-blanco); font-size: 15px; line-height: 1.3; font-weight: 500; color: var(--mm-navy); cursor: pointer; }
+.mm-opcion input { flex: none; width: 20px; height: 20px; margin: 0; accent-color: var(--mm-navy); }
+.mm-opcion:has(input:checked) { border-color: var(--mm-navy); box-shadow: inset 0 0 0 1px var(--mm-navy); background: var(--mm-azul-100); font-weight: 700; }
+.mm-sms { display: flex; align-items: flex-start; gap: var(--mm-e-12); min-height: var(--mm-ctl-s); margin: 0; font-size: 14px; line-height: 1.5; font-weight: 400; color: var(--mm-tinta-texto); cursor: pointer; }
+.mm-sms input { flex: none; width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--mm-navy); }
+.mm-form-pie { display: flex; flex-wrap: wrap; align-items: center; gap: var(--mm-e-12) var(--mm-e-24); }
+.mm-form-pie .mm-btn { font-family: inherit; cursor: pointer; }
+.mm-form-pie [hidden] { display: none; }
+.mm-form-pie input.mm-btn { border: 0; -webkit-appearance: none; appearance: none; }
+.mm-form-pie input.mm-btn:disabled { opacity: .6; cursor: progress; }
+.mm-form-pie .mm-turnstile { order: -1; flex: 1 0 100%; min-height: 65px; }
+.mm-form-lic { min-height: 0; padding: 0; border-left: 0; }
+.mm-form-paso[data-paso="2"] .mm-form-lic { flex: 1 0 100%; }
+.mm-form-lic .mm-dato-val { font-size: 14px; }
+.mm-form-panel .w-form-done, .mm-form-panel .w-form-fail { display: none; margin-top: var(--mm-e-16); padding: var(--mm-e-16); border-radius: var(--mm-r-8); background: var(--mm-azul-100); }
+.mm-form-panel .w-form-fail .mm-p { color: var(--mm-error); font-weight: 600; }
+.mm-form-lado { display: flex; flex-direction: column; gap: var(--mm-e-24); padding: 0 var(--mm-e-8); }
+.mm-form-intro { display: flex; flex-direction: column; gap: var(--mm-e-8); }
+.mm-form-pasos-t { margin: 0 0 var(--mm-e-12); font-family: var(--mm-familia); font-size: 20px; line-height: 1.3; font-weight: 600; letter-spacing: -0.01em; color: var(--mm-navy); text-transform: none; }
+.mm-form-pasos { list-style: none; margin: 0; padding: 0; counter-reset: mm-fp; border-bottom: 1px solid var(--mm-borde); }
+.mm-form-pasos li { counter-increment: mm-fp; display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: var(--mm-e-16); align-items: center; min-height: var(--mm-fila); padding: var(--mm-e-8) 0; box-sizing: border-box; border-top: 1px solid var(--mm-borde); font-size: 16px; line-height: 1.5; color: var(--mm-tinta-texto); }
+.mm-form-pasos li::before { content: counter(mm-fp); width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; border-radius: var(--mm-r-pastilla); background: var(--mm-navy); color: var(--mm-oro); font-size: 14px; font-weight: 800; font-variant-numeric: tabular-nums; }
+@media (min-width: 480px) {
+  .mm-form-paso[data-paso="1"] .mm-btn + .mm-form-lic { padding-left: var(--mm-e-24); border-left: 1px solid var(--mm-borde); }
+  .mm-form-rejilla, .mm-opciones--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .mm-opciones { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 768px) {
+  .mm-cierre { --mm-canal: var(--mm-e-32); }
+  .mm-cierre .mm-p { font-size: 18px; }
+  .mm-form-sec { --mm-canal: var(--mm-e-32); padding-bottom: var(--mm-e-96); }
+  .mm-form-panel { padding: var(--mm-e-40); }
+  .mm-opciones { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .mm-opciones--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 992px) {
+  .mm-cierre { margin-top: 120px; }
+  .mm-cierre-caja { box-sizing: border-box; max-width: calc(var(--mm-contenedor) + 2 * var(--mm-canal)); margin: 0 auto; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: var(--mm-e-64); align-items: start; padding-left: var(--mm-canal); }
+  .mm-cierre-txt { gap: var(--mm-e-24); padding: var(--mm-e-96) 0 216px; }
+  .mm-cierre .mm-h2 { font-size: 48px; line-height: 1.1; font-weight: 800; letter-spacing: -0.03em; }
+  .mm-cierre-medio { order: 0; margin: -80px 0 0; border-radius: var(--mm-r-16) 0 0 var(--mm-r-16); }
+  .mm-cierre--sin { margin-top: 0; }
+  .mm-cierre--sin .mm-cierre-caja { display: block; padding-right: var(--mm-canal); }
+  .mm-cierre--sin .mm-cierre-txt { max-width: 760px; padding-top: var(--mm-e-96); }
+  .mm-form-caja { padding-top: var(--mm-e-96); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: var(--mm-e-64); align-items: start; }
+  .mm-form-lado { order: -1; gap: var(--mm-e-32); padding: 0; }
+  .mm-cierre + .mm-form-sec .mm-form-caja { margin-top: -152px; }
+  .mm-cierre + .mm-form-sec .mm-form-lado { padding-top: 200px; }
+}
+@media (min-width: 1200px) { .mm-cierre, .mm-form-sec { --mm-canal: var(--mm-e-64); } .mm-cierre .mm-h2 { font-size: 56px; } }
 @media (prefers-reduced-motion: reduce) {
   .mm-cab-item, .mm-cab-item svg, .mm-cab-cta, .mm-cab-sub, .mm-cab-flecha svg, .mm-menu-fila svg, .mm-barra, .mm-barra-btn, .mm-btn { transition: none; }
 }

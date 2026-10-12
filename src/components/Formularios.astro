@@ -115,6 +115,37 @@
           console.error('[turnstile] el widget NO se ha pintado: los envios iran sin token y el servidor los rechazara con 403.', e);
         });
 
+      /* ASTRO-2 · DOS PASOS (`FormularioCore.astro`, `data-mm-pasos`). Los dos van en el HTML y a
+       * la vista; aqui se oculta el que no toca y se ensenan «Continue» y «Back». No se envia nada
+       * al pasar de paso: el envio sigue siendo uno, el de siempre, al final (el parcial es
+       * ASTRO-3). «Continue» valida con la validacion nativa los campos del paso 1. */
+      const pasos = [...form.querySelectorAll('[data-paso]')];
+      if (form.hasAttribute('data-mm-pasos') && pasos.length === 2) {
+        const sig = form.querySelector('[data-mm-sig]');
+        const atras = form.querySelector('[data-mm-atras]');
+        const campos = (p) => [...p.querySelectorAll('input:not([type=hidden]), select, textarea')];
+        const ir = (n, foco) => {
+          form.dataset.mmPaso = String(n);
+          if (foco) campos(pasos[n - 1])[0]?.focus();
+        };
+        const avanza = () => {
+          for (const c of campos(pasos[0])) if (!c.reportValidity()) return;
+          ir(2, true);
+        };
+        if (sig && atras) {
+          sig.hidden = false; atras.hidden = false;
+          ir(1, false);
+          sig.addEventListener('click', avanza);
+          atras.addEventListener('click', () => ir(1, true));
+          // Intro en un campo del paso 1 enviaria el formulario con el paso 2 oculto y sin rellenar.
+          pasos[0].addEventListener('keydown', (ev) => {
+            if (ev.key === 'Enter' && ev.target.matches('input')) { ev.preventDefault(); avanza(); }
+          });
+          // Si al enviar falla un campo del paso 1 (autorrelleno borrado), se vuelve a el.
+          form.addEventListener('invalid', (ev) => { if (pasos[0].contains(ev.target)) ir(1, false); }, true);
+        }
+      }
+
       form.addEventListener('submit', async (ev) => {
         ev.preventDefault();
         const datos = new FormData(form);
