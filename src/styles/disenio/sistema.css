@@ -31,6 +31,14 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 .mm-dato:first-child { padding-left: 0; border-left: 0; }
 .mm-dato-rot { font-size: 12px; line-height: 1.5; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; color: var(--mm-tinta-suave); }
 .mm-dato-val { font-size: 16px; line-height: 1.3; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--mm-navy); }
+/* Tira de dos telefonos dentro de una seccion. A `max-content` mide 365 px y por debajo de 390 se
+   salia de la ventana: las columnas pueden encoger, y el relleno y el cuerpo del numero bajan con el
+   ancho (12 px y 13 px a 320; 24 px y 16 px desde 480) para que el numero siga en una linea. */
+.mm-datos--tel { grid-auto-columns: minmax(0, max-content); }
+.mm-datos--tel .mm-dato { padding-inline: clamp(var(--mm-e-12), 7.5vw - 12px, var(--mm-e-24)); }
+.mm-datos--tel .mm-dato:first-child { padding-left: 0; }
+.mm-datos--tel .mm-dato:last-child { padding-right: 0; }
+.mm-datos--tel .mm-dato-val { font-size: clamp(13px, 4vw, 16px); white-space: nowrap; }
 .mm-datos--pila { grid-auto-flow: row; grid-auto-columns: auto; grid-template-columns: minmax(0, 1fr); }
 .mm-datos--pila .mm-dato { padding: var(--mm-e-12) 0; border-left: 0; border-top: 1px solid var(--mm-borde); }
 .mm-datos--pila .mm-dato:first-child { border-top: 0; }
@@ -233,10 +241,6 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 @media (min-width: 768px) {
   .mm-zocalo-caja { padding: var(--mm-e-64) var(--mm-e-40) var(--mm-e-32); }
   .mm-zocalo-cols { grid-template-columns: minmax(0, 6fr) minmax(0, 3fr) minmax(0, 3fr); gap: var(--mm-e-40); }
-  .mm-zocalo-marca { flex-direction: row; align-items: flex-end; justify-content: space-between; gap: var(--mm-e-40); }
-  .mm-zocalo-datos { grid-auto-flow: column; grid-auto-columns: max-content; grid-template-columns: none; }
-  .mm-zocalo-datos .mm-dato:nth-child(2) { padding-right: var(--mm-e-24); }
-  .mm-zocalo-datos .mm-dato:nth-child(3) { grid-column: auto; padding-left: var(--mm-e-24); border-left: 1px solid var(--mm-borde); border-top: 0; }
   .mm-zocalo-lista--num { grid-template-columns: none; grid-template-rows: repeat(7, auto); grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); column-gap: var(--mm-e-32); }
 }
 @media (min-width: 480px) { .mm-hero-a-acc .mm-btn { flex: 0 1 auto; } .mm-hero-a-medio { height: 280px; } }
@@ -255,6 +259,11 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
   .mm-cab-movil, .mm-barra { display: none; }
   .mm-zocalo { padding-bottom: 0; }
   .mm-zocalo-caja { padding: 96px var(--mm-e-64) var(--mm-e-32); gap: 56px; }
+  /* La tira del pie (dos telefonos y las licencias) mide 765 px en una linea: no cabe antes de 992.
+     Y al lado del logo no cabe antes de 1200 — a 768 y a 992 dejaba el logo en 59 px y se salia. */
+  .mm-zocalo-datos { grid-auto-flow: column; grid-auto-columns: max-content; grid-template-columns: none; }
+  .mm-zocalo-datos .mm-dato:nth-child(2) { padding-right: var(--mm-e-24); }
+  .mm-zocalo-datos .mm-dato:nth-child(3) { grid-column: auto; padding-left: var(--mm-e-24); border-left: 1px solid var(--mm-borde); border-top: 0; }
   .mm-datos--3 { grid-template-columns: max-content max-content; width: auto; }
   .mm-h1 { font-size: var(--mm-t-display); line-height: 1.1; letter-spacing: -0.03em; }
   .mm-hero-a { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: var(--mm-e-48); align-items: start; }
@@ -270,6 +279,7 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
   .mm-zocalo-cols { gap: var(--mm-e-64); }
 }
 @media (min-width: 1200px) {
+  .mm-zocalo-marca { flex-direction: row; align-items: flex-end; justify-content: space-between; gap: var(--mm-e-40); }
   .mm-cab-lic { display: flex; }
   .mm-cab-panel--servicios { grid-template-columns: minmax(0, 1fr) 304px 392px; }
   .mm-hero-a { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: var(--mm-e-64); }

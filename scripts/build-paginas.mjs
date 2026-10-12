@@ -874,7 +874,7 @@ const cabeceraDeSeccion = (tit, linea, cta, antetitulo = '') => '<div class="mm-
   + (antetitulo ? `<div class="mm-sec-tit"><p class="mm-etiqueta">${antetitulo}</p><h2 class="mm-h2">${nb(tit)}</h2></div>` : `<h2 class="mm-h2">${nb(tit)}</h2>`)
   + `<div class="mm-sec-lado"><p class="mm-p">${linea}</p>${cta ? `<div class="mm-sec-acc"><a class="mm-btn mm-btn--linea" href="${cta.getAttribute('href')}">${cta.innerHTML}</a></div>` : ''}</div></div>`;
 const RESENAS_PERFIL = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/resenas.json'), 'utf8')).enlacePerfil;
-const BANDA_TELEFONOS = '<div class="mm-datos">' + TELEFONOS.map((t) => `<a class="mm-dato" href="tel:${t.tel}"><span class="mm-dato-rot">${t.zona}</span><span class="mm-dato-val">${t.visible}</span></a>`).join('') + '</div>';
+const BANDA_TELEFONOS = '<div class="mm-datos mm-datos--tel">' + TELEFONOS.map((t) => `<a class="mm-dato" href="tel:${t.tel}"><span class="mm-dato-rot">${t.zona}</span><span class="mm-dato-val">${t.visible}</span></a>`).join('') + '</div>';
 const CHEVRON = '<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>';
 const imgDe = (i, clase) => `<img class="${clase}" src="${i.getAttribute('src')}" alt="${escAttr(i.getAttribute('alt') ?? '')}" width="${i.getAttribute('width')}" height="${i.getAttribute('height')}" loading="lazy" decoding="async"${i.getAttribute('style') ? ` style="${i.getAttribute('style')}"` : ''}>`;
 function listasDePlano(doc, ruta) {
