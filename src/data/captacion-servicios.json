@@ -1289,11 +1289,10 @@
   "/services/patio-screen-rooms": {
     "heroe": {
       "apoyo": "Screen room builders and installation contractors in North & South Florida, creating comfortable, protected outdoor living areas.",
-      "fotoSchema": "/images/projects/luxury-pool-spa-with-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-north-florida-project-2.avif",
-      "foto": "/images/images/patio-screen-10/patio-screen-enclosure-builders-contractors-north-south-florida-10.jpg",
-      "alt": "Complete patio screen enclosure installation offering full protection, durability, and enhanced outdoor living for North and South Florida homeowners.",
+      "foto": "/images/projects/luxury-pool-spa-with-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-north-florida-project-2.avif",
+      "alt": "Screened patio room with lounge seating beside a pool, built in North Florida by Mr & Mrs Outdoor Living",
       "ancho": 1250,
-      "alto": 839,
+      "alto": 698,
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
       "marca": "Screen Rooms"
@@ -1424,8 +1423,8 @@
   "/services/pool-screen-enclosures": {
     "heroe": {
       "apoyo": "Pool screen enclosure builders and installation contractors in North & South Florida, improving pool safety and cleanliness.",
-      "foto": "/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-2.avif",
-      "alt": "Screened pool enclosure over a freeform pool and raised spa with a travertine deck, built in North Florida by Mr & Mrs Outdoor Living",
+      "foto": "/images/images/pool-screen-7/pool-screen-enclosure-builders-florida-07.jpg",
+      "alt": "Lakefront pool screen enclosure designed for airflow and views by licensed pool enclosure builders in Florida.",
       "ancho": 1250,
       "alto": 698,
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
@@ -2147,7 +2146,6 @@
   "/services/irrigation-systems": {
     "heroe": {
       "apoyo": "Smart irrigation installation contractors for North & South Florida properties, focused on efficient watering solutions and long-term landscape health",
-      "fotoSchema": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-4.avif",
       "foto": "/images/images/irrigation-10/automated-irrigation-system-installers-florida-10.jpg",
       "alt": "Professional irrigation system installation for landscaped gardens and walkways in South Florida, enhancing curb appeal and plant health.",
       "ancho": 1250,

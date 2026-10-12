@@ -1724,10 +1724,9 @@ function captacion(doc, ruta) {
       if (c.schema?.serviceType) about.serviceType = c.schema.serviceType;
       if (typeof about.name === 'string') about.name = about.name.replace(/\s{2,}/g, ' ').trim();
       if (typeof about.image === 'string' && !about.image.startsWith('/') && !/^https?:/.test(about.image)) {
-        /* `fotoSchema` (ASTRO-2, D-122): screen rooms y riego cambian la foto del hero, y el
-         * encargo exige el JSON-LD byte a byte igual. El dato estructurado sigue con la imagen
-         * que ya declaraba hasta que el director decida moverlo; lo que se ve ya es la foto nueva. */
-        about.image = c.heroe.fotoSchema ?? c.heroe.foto;
+        /* D-126: `about.image` sigue a la foto del hero. Donde el hero cambia (jaulas y riego,
+         * ASTRO-2), el dato estructurado cambia con el: una sola propiedad, la unica que se toca. */
+        about.image = c.heroe.foto;
       }
       /* SEO-SAFE (1-oct-2026): el `Service` del origen no decia QUIEN lo presta ni DONDE vive.
        * `provider` lo ata por `@id` al `LocalBusiness#negocio` que `Base.astro` inyecta en todas
