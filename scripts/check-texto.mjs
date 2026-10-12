@@ -3163,7 +3163,13 @@ function subeGaleriaCiudad(ruta, lineas) {
   return [...lineas.slice(0, i), ...b, ...lineas.slice(i, j), ...lineas.slice(j + BANDA_GALERIA_CIUDAD)];
 }
 
-const nav = await chromium.launch({ headless: false, args: ARGS_NAVEGADOR });
+/* `--headless` (o MM_TEXTO_HEADLESS=1): la misma medicion sin ventana. OPCION EXPLICITA; por
+ * defecto sigue siendo visible, que es como se capturo el baseline (ver `lib/captura.mjs`: con
+ * ventana hay un puntero real y eventos que en headless no existen). Se anadio en ASTRO-1
+ * (12-oct-2026) tras comprobar, en una ruta por familia, que da el mismo veredicto que la
+ * visible; sirve para la corrida completa sin secuestrar la pantalla. */
+const HEADLESS = process.argv.includes('--headless') || process.env.MM_TEXTO_HEADLESS === '1';
+const nav = await chromium.launch({ headless: HEADLESS, args: ARGS_NAVEGADOR });
 const ctx = await nav.newContext({ viewport: { width: 1920, height: 1080 },
   deviceScaleFactor: 1, reducedMotion: 'no-preference' });
 const pag = await ctx.newPage();
