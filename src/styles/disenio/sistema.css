@@ -396,6 +396,68 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
   .mm-que--sin .mm-que-cuerpo { display: block; padding: 0 var(--mm-canal); }
 }
 @media (min-width: 1200px) { .mm-gal, .mm-proc, .mm-que { --mm-canal: var(--mm-e-64); } }
+/* ── Inversion y FAQ (ASTRO-2 · laminas «Inversion» y «Faq») ─────────────────────────── */
+.mm-inv { background: var(--mm-azul-50); font-family: var(--mm-familia); color: var(--mm-tinta-texto); padding: var(--mm-e-96) var(--mm-e-16) var(--mm-e-64); }
+.mm-inv-panel { box-sizing: border-box; max-width: var(--mm-contenedor); margin: 0 auto; padding: 0 var(--mm-e-20) var(--mm-e-24); display: flex; flex-direction: column; gap: var(--mm-e-16); background: var(--mm-blanco); border: 1px solid var(--mm-borde); border-radius: var(--mm-r-16); }
+.mm-inv-txt { display: flex; flex-direction: column; align-items: flex-start; gap: var(--mm-e-16); }
+.mm-inv-acc { display: flex; flex-direction: column; align-self: stretch; gap: var(--mm-e-12); padding-top: var(--mm-e-8); }
+.mm-plano { order: -1; display: block; width: 100%; height: auto; margin-top: calc(-1 * var(--mm-e-48)); background: var(--mm-blanco); border: 1px solid var(--mm-borde); border-radius: var(--mm-r-12); }
+.mm-plano-lote { fill: none; stroke: var(--mm-borde-control); stroke-width: 1; stroke-dasharray: 6 6; }
+.mm-plano-vaso { fill: var(--mm-azul-100); stroke: var(--mm-navy); stroke-width: 2; }
+.mm-plano-linea { fill: none; stroke: var(--mm-navy); stroke-width: 1; }
+.mm-plano-fino { fill: none; stroke: var(--mm-borde-control); stroke-width: 1; }
+.mm-plano-cota { fill: none; stroke: var(--mm-tinta-suave); stroke-width: 1; }
+.mm-plano-punto { fill: var(--mm-oro); stroke: var(--mm-navy); stroke-width: 1.5; }
+.mm-plano-rot { font-family: var(--mm-familia); font-size: 12px; font-weight: 700; letter-spacing: 0.02em; fill: var(--mm-tinta-suave); }
+.mm-faq { --mm-canal: var(--mm-e-24); display: flex; flex-direction: column; gap: var(--mm-e-24); padding: var(--mm-e-64) 0; background: var(--mm-blanco); font-family: var(--mm-familia); color: var(--mm-tinta-texto); }
+.mm-faq-cuerpo { display: flex; flex-direction: column; gap: var(--mm-e-32); }
+.mm-faq-lista { margin: 0 var(--mm-canal); counter-reset: mm-faq; border-bottom: 1px solid var(--mm-borde); }
+.mm-faq-item { counter-increment: mm-faq; border-top: 1px solid var(--mm-borde); }
+.mm-faq-item summary { display: grid; grid-template-columns: 24px minmax(0, 1fr) 24px; align-items: center; gap: var(--mm-e-12); min-height: 64px; cursor: pointer; list-style: none; color: var(--mm-navy); border-radius: var(--mm-r-8); }
+.mm-faq-item summary::-webkit-details-marker { display: none; }
+.mm-faq-item summary::before { content: counter(mm-faq, decimal-leading-zero); font-size: 12px; font-weight: 700; letter-spacing: 0.02em; font-variant-numeric: tabular-nums; color: var(--mm-tinta-suave); }
+.mm-faq-item summary:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); box-shadow: var(--mm-foco-halo); }
+.mm-faq-item summary svg { transition: transform var(--mm-dur-abrir) var(--mm-curva); }
+.mm-faq-item[open] summary svg { transform: rotate(180deg); }
+.mm-faq-item[open] summary::before { color: var(--mm-navy); }
+.mm-faq-item h3 { margin: 0; padding: var(--mm-e-12) 0; font-family: var(--mm-familia); font-size: 18px; line-height: 1.3; font-weight: 700; letter-spacing: 0; color: var(--mm-navy); text-transform: none; }
+.mm-faq-r { max-width: 650px; padding: 0 0 var(--mm-e-24) 36px; font-size: 16px; line-height: 1.55; color: var(--mm-tinta-texto); }
+.mm-faq-r p { margin: 0 0 var(--mm-e-12); }
+.mm-faq-r p:last-child { margin-bottom: 0; }
+.mm-faq-lado { display: flex; flex-direction: column; }
+.mm-faq-accion { position: relative; z-index: 1; box-sizing: border-box; margin: 0 var(--mm-canal); padding: var(--mm-e-20); display: flex; flex-direction: column; gap: var(--mm-e-12); background: var(--mm-blanco); border: 1px solid var(--mm-borde); border-radius: var(--mm-r-12); }
+.mm-faq-medio + .mm-faq-accion { margin-top: calc(-1 * var(--mm-e-40)); }
+.mm-faq-accion .mm-datos { border-top: 0; grid-auto-flow: row; grid-auto-columns: auto; grid-template-columns: minmax(0, 1fr); }
+.mm-faq-accion .mm-dato { padding: var(--mm-e-8) 0; border-left: 0; }
+@media (min-width: 480px) {
+  .mm-faq-accion .mm-datos { grid-auto-flow: column; grid-auto-columns: max-content; grid-template-columns: none; }
+  .mm-faq-accion .mm-dato { padding: var(--mm-e-12) var(--mm-e-24); border-left: 1px solid var(--mm-borde); }
+  .mm-faq-accion .mm-dato:first-child { padding-left: 0; border-left: 0; }
+}
+@media (min-width: 768px) {
+  .mm-inv { padding: 136px var(--mm-e-32) var(--mm-e-96); }
+  .mm-inv-panel { padding: var(--mm-e-40); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--mm-e-40); align-items: center; }
+  .mm-inv-txt { gap: var(--mm-e-24); }
+  .mm-inv-txt .mm-p { font-size: 18px; }
+  .mm-inv-acc { flex-direction: row; flex-wrap: wrap; align-self: auto; padding-top: 0; }
+  .mm-plano { order: 0; margin-top: -120px; }
+  .mm-faq { --mm-canal: var(--mm-e-32); gap: var(--mm-e-40); }
+  .mm-faq-item summary { grid-template-columns: 32px minmax(0, 1fr) 24px; gap: var(--mm-e-16); }
+  .mm-faq-r { padding: 0 var(--mm-e-40) var(--mm-e-24) var(--mm-e-48); }
+}
+@media (min-width: 992px) {
+  .mm-inv-panel { padding: var(--mm-e-64); gap: var(--mm-e-64); }
+  .mm-faq { gap: 56px; padding: var(--mm-e-96) 0 136px; }
+  .mm-faq-cuerpo { box-sizing: border-box; width: 100%; max-width: calc(var(--mm-contenedor) + 2 * var(--mm-canal)); margin-inline: auto; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: var(--mm-e-64); align-items: start; padding-right: var(--mm-canal); }
+  .mm-faq-lista { margin: 0; }
+  .mm-faq-lado { order: -1; }
+  .mm-faq-medio { position: relative; top: auto; }
+  .mm-faq-medio .mm-lam-foto { border-radius: 0 var(--mm-r-16) var(--mm-r-16) 0; }
+  .mm-faq-medio + .mm-faq-accion { margin: -120px -40px 0 var(--mm-canal); }
+  .mm-faq--sin .mm-faq-accion { margin: 0 0 0 var(--mm-canal); }
+  .mm-faq--sin { padding-bottom: var(--mm-e-96); }
+}
+@media (min-width: 1200px) { .mm-inv { padding-inline: var(--mm-e-64); } .mm-faq { --mm-canal: var(--mm-e-64); } .mm-faq-cuerpo { column-gap: var(--mm-e-96); } }
 @media (prefers-reduced-motion: reduce) {
   .mm-cab-item, .mm-cab-item svg, .mm-cab-cta, .mm-cab-sub, .mm-cab-flecha svg, .mm-menu-fila svg, .mm-barra, .mm-barra-btn, .mm-btn { transition: none; }
 }

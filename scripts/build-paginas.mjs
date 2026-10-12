@@ -765,6 +765,9 @@ const GALERIA_USABLE = new Set([
 ]);
 const escAttr = (t) => String(t).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 let mosaicos = 0;
+/** Fotos verificadas de la galeria que no caben en el mosaico, por ruta: de ahi salen la foto del
+ *  FAQ y las de mas abajo, para no repetir ninguna en la pagina. */
+const SOBRANTES = new Map();
 function mosaicoDeObra(doc, ruta) {
   if (!esFicha(ruta)) return;
   const sec = doc.querySelector('section.gallery');
@@ -791,6 +794,7 @@ function mosaicoDeObra(doc, ruta) {
       + `<img src="${f.src}" alt="${escAttr(f.alt)}" width="${d.w}" height="${d.h}" loading="lazy" decoding="async"></button>`;
   }).join('');
   const resto = fotos.slice(6).map((f) => ({ url: f.src, alt: f.alt }));
+  SOBRANTES.set(ruta, fotos.slice(6).map((f) => ({ ...f, ...(f.w && f.h ? {} : { w: DIM.get(f.src)?.w, h: DIM.get(f.src)?.h }) })).filter((f) => f.w && f.h));
   const nueva = doc.createElement('section');
   nueva.setAttribute('class', 'mm-gal');
   nueva.innerHTML = `<div class="mm-sec-cab"><h2 class="mm-h2">${tit}</h2><div class="mm-sec-lado"><p class="mm-p">${linea.innerHTML}</p>`
@@ -816,7 +820,9 @@ function mosaicoDeObra(doc, ruta) {
 const FOTO_VERIFICADA = (src) => GALERIA_USABLE.has(src) || /^\/images\/(obra|projects)\//.test(src);
 const cabeceraDeSeccion = (tit, linea, cta, antetitulo = '') => '<div class="mm-sec-cab">'
   + (antetitulo ? `<div class="mm-sec-tit"><p class="mm-etiqueta">${antetitulo}</p><h2 class="mm-h2">${tit}</h2></div>` : `<h2 class="mm-h2">${tit}</h2>`)
-  + `<div class="mm-sec-lado"><p class="mm-p">${linea}</p><div class="mm-sec-acc"><a class="mm-btn mm-btn--linea" href="${cta.getAttribute('href')}">${cta.innerHTML}</a></div></div></div>`;
+  + `<div class="mm-sec-lado"><p class="mm-p">${linea}</p>${cta ? `<div class="mm-sec-acc"><a class="mm-btn mm-btn--linea" href="${cta.getAttribute('href')}">${cta.innerHTML}</a></div>` : ''}</div></div>`;
+const BANDA_TELEFONOS = '<div class="mm-datos">' + TELEFONOS.map((t) => `<a class="mm-dato" href="tel:${t.tel}"><span class="mm-dato-rot">${t.zona}</span><span class="mm-dato-val">${t.visible}</span></a>`).join('') + '</div>';
+const CHEVRON = '<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>';
 const imgDe = (i, clase) => `<img class="${clase}" src="${i.getAttribute('src')}" alt="${escAttr(i.getAttribute('alt') ?? '')}" width="${i.getAttribute('width')}" height="${i.getAttribute('height')}" loading="lazy" decoding="async"${i.getAttribute('style') ? ` style="${i.getAttribute('style')}"` : ''}>`;
 function listasDePlano(doc, ruta) {
   if (!esFicha(ruta)) return;
@@ -869,11 +875,32 @@ function listasDePlano(doc, ruta) {
     + grupos.map((g, j) => `<li class="mm-grupo${j === k ? ' mm-grupo--activo' : ''}"><h3 class="mm-grupo-t">${g.tit.innerHTML}</h3><p class="mm-grupo-p">${g.intro.innerHTML}</p><dl class="mm-grupo-dl">`
       + g.items.map((x) => `<div class="mm-grupo-i"><dt>${x.a ? `<a href="${x.a.getAttribute('href')}">${x.t.innerHTML}</a>` : x.t.innerHTML}</dt><dd>${x.d.innerHTML}</dd></div>`).join('')
       + '</dl></li>').join('') + '</ol>'
-    + '<div class="mm-datos">' + TELEFONOS.map((t) => `<a class="mm-dato" href="tel:${t.tel}"><span class="mm-dato-rot">${t.zona}</span><span class="mm-dato-val">${t.visible}</span></a>`).join('') + '</div></div>'
+    + BANDA_TELEFONOS + '</div>'
     + (k < 0 ? '' : `<figure class="mm-lam-medio mm-que-medio">${imgDe(grupos[k].img, 'mm-lam-foto')}`
       + `<div class="mm-lam-pie" aria-hidden="true" data-n="${n2(k + 1)} / ${n2(grupos.length)}" data-t="${escAttr(grupos[k].tit.textContent.trim())}"></div></figure>`)
     + '</div>';
   que.replaceWith(nq);
+
+  /* FAQ (lamina «Faq»): `<details>` cerrados en vez de los desplegables de Webflow —se abren sin
+   * JS y el buscador del navegador los encuentra—, con las mismas preguntas y respuestas, que
+   * son las del `FAQPage`. Al lado, una foto de la galeria que no esta en el mosaico y, montada
+   * sobre ella, la accion de la pagina en oro (D-76) con los dos telefonos. Sin foto libre,
+   * la tarjeta de accion va sola. */
+  const faq = doc.querySelector('section.faq-section');
+  const fh2 = faq?.querySelector('.header-faq h2');
+  const flinea = fh2?.nextElementSibling;
+  const preguntas = [...(faq?.querySelectorAll('.dropdown-faq') ?? [])].map((d) => ({ q: d.querySelector('h3.dropdown-text'), r: d.querySelector('.dropdown-list') }));
+  if (!fh2 || !flinea || preguntas.length < 2 || preguntas.some((x) => !x.q || !x.r)) throw new Error(`${ruta}: la FAQ no trae titular, linea y preguntas con respuesta`);
+  const ffoto = SOBRANTES.get(ruta)?.[0];
+  const nf = doc.createElement('section');
+  nf.setAttribute('class', `mm-faq${ffoto ? '' : ' mm-faq--sin'}`);
+  for (const x of preguntas) for (const p of x.r.querySelectorAll('p.grey')) p.removeAttribute('class');
+  nf.innerHTML = cabeceraDeSeccion(fh2.innerHTML.replace(/(FAQs?)\s*$/, '<span class="mm-rot">$1</span>'), flinea.innerHTML, null)
+    + '<div class="mm-faq-cuerpo"><div class="mm-faq-lista">' + preguntas.map((x) => `<details class="mm-faq-item"><summary><h3>${x.q.innerHTML}</h3>${CHEVRON}</summary><div class="mm-faq-r">${x.r.innerHTML}</div></details>`).join('') + '</div>'
+    + '<div class="mm-faq-lado">'
+    + (ffoto ? `<figure class="mm-lam-medio mm-faq-medio"><img class="mm-lam-foto" src="${ffoto.src}" alt="${escAttr(ffoto.alt)}" width="${ffoto.w}" height="${ffoto.h}" loading="lazy" decoding="async"></figure>` : '')
+    + `<div class="mm-faq-accion"><a class="mm-btn" href="${cta.getAttribute('href')}">${cta.innerHTML}</a>${BANDA_TELEFONOS}</div></div></div>`;
+  faq.replaceWith(nf);
 }
 
 /**

@@ -39,33 +39,55 @@ import DATOS from '../../data/captacion-servicios.json';
  * produccion siempre manda `Astro.url.pathname`. */
 const ruta = (Astro.props.ruta ?? Astro.url.pathname).replace(/(.)\/$/, '$1');
 const d = DATOS[ruta]?.inversion;
+// El rotulador va en «cost», que es como preguntan los 14 titulares («What will my … cost?»).
+const partes = d?.titulo.match(/^(.*\b)(cost)(\?)$/);
+const piscina = /^\/services\/pool-(builders|remodeling)(\/|$)/.test(ruta);
 ---
 {d && (
-  <section class="svc-inversion">
-    <div class="svc-inversion__banda">
-      {d.foto && (
-        <img
-          class="svc-inversion__foto"
-          src={d.foto}
-          alt={d.alt}
-          width={d.ancho}
-          height={d.alto}
-          loading="lazy"
-          decoding="async"
-          style={d.pos ? `object-position:${d.pos}` : undefined}
-        />
-      )}
-      <div class="svc-inversion__panel mm-inverso">
-        <div class="mm-pila mm-pila--24">
-          <h2 class="mm-tit-2">{d.titulo}</h2>
-          <p class="mm-txt mm-medida">{d.texto}</p>
-          <div class="svc-inversion__acciones">
-            {d.ctas.map((c) => (
-              <a href={c.href} class:list={['mm-accion', !c.principal && 'mm-accion--linea']}>{c.texto}</a>
-            ))}
-          </div>
+  <section class="svc-inversion mm-inv">
+    <div class="mm-inv-panel">
+      <div class="mm-inv-txt">
+        <h2 class="mm-h2">{partes ? <>{partes[1]}<span class="mm-rot">{partes[2]}</span>{partes[3]}</> : d.titulo}</h2>
+        <p class="mm-p">{d.texto}</p>
+        <div class="mm-inv-acc">
+          {d.ctas.map((c) => (
+            <a href={c.href} class:list={['mm-btn', c.principal ? 'mm-btn--navy' : 'mm-btn--linea']}>{c.texto}</a>
+          ))}
         </div>
       </div>
+      {/* Plano en linea, decorativo (D-67): lo que rotula lo dice ya el parrafo. Con vaso y
+          rotulos solo en las rutas de piscina; en las demas, la huella de la obra sin rotular. */}
+      <svg class="mm-plano" viewBox="0 0 560 420" aria-hidden="true" focusable="false">
+        <rect x="20" y="20" width="520" height="380" rx="4" class="mm-plano-lote" />
+        {piscina ? (
+          <>
+            <path d="M120 120 H400 V200 H300 V300 H120 Z" class="mm-plano-vaso" />
+            <path d="M128 128 H392 V192 H292 V292 H128 Z" class="mm-plano-linea" />
+            <path d="M128 128 H200 V292 H128" class="mm-plano-fino" />
+            <rect x="316" y="216" width="84" height="84" rx="2" class="mm-plano-vaso" />
+            <rect x="324" y="224" width="68" height="68" rx="2" class="mm-plano-linea" />
+          </>
+        ) : (
+          <>
+            <path d="M120 120 H400 V300 H120 Z" class="mm-plano-vaso" />
+            <path d="M120 180 H400 M120 240 H400 M213 120 V300 M306 120 V300" class="mm-plano-fino" />
+          </>
+        )}
+        <path d="M120 96 H400 M120 88 V104 M400 88 V104" class="mm-plano-cota" />
+        <path d="M96 120 V300 M88 120 H104 M88 300 H104" class="mm-plano-cota" />
+        <path d="M358 258 L452 258 L452 330" class="mm-plano-linea" /><circle cx="358" cy="258" r="4" class="mm-plano-punto" />
+        <path d="M260 96 L260 56 L330 56" class="mm-plano-linea" /><circle cx="260" cy="96" r="4" class="mm-plano-punto" />
+        <path d="M164 292 L164 350 L210 350" class="mm-plano-linea" /><circle cx="164" cy="292" r="4" class="mm-plano-punto" />
+        <path d="M540 372 L474 372" class="mm-plano-linea" /><circle cx="540" cy="372" r="4" class="mm-plano-punto" />
+        {piscina && (
+          <>
+            <text x="338" y="60" class="mm-plano-rot">SIZE</text>
+            <text x="428" y="346" class="mm-plano-rot">DESIGN</text>
+            <text x="218" y="354" class="mm-plano-rot">FINISHES</text>
+            <text x="466" y="376" text-anchor="end" class="mm-plano-rot">SITE CONDITIONS</text>
+          </>
+        )}
+      </svg>
     </div>
   </section>
 )}

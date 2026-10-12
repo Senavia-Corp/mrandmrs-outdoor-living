@@ -30,7 +30,7 @@ const ESTATICO = path.join(RAIZ, '.vercel/output/static');
  *  misma. */
 const ESPERADO = [
   'mm-hero-a', 'svc-confianza', 'svc-intro', 'appointment-section',
-  'mm-gal', 'mm-que', 'mm-proc', 'svc-inversion', 'faq-section', 'testimonial-section',
+  'mm-gal', 'mm-que', 'mm-proc', 'svc-inversion', 'mm-faq', 'testimonial-section',
   'location', 'blog-section-page', 'social-media', 'cta-footer',
 ];   // ASTRO-2: la franja de logos va DENTRO del hero y la repetida junto al pie se retira (D-53)
 

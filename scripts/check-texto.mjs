@@ -1277,6 +1277,14 @@ const LINEAS_CIUDADES_FICHA = [...new Set(Object.keys(PAGINAS_CIUDAD_SERVICIO).m
 
 const LINEAS_ANADIDAS = [
   ...LINEAS_CIUDADES_FICHA,
+  /* ASTRO-2 · T-29: junto al FAQ de las 14 fichas, la tarjeta de accion: el boton de la pagina (oro,
+   * D-76) y los dos telefonos. Cinco lineas seguidas, detras de las preguntas. Va DELANTE de la
+   * declaracion de «What we do» porque esta lleva la accion pegada a los telefonos y aquella no. */
+  ...Object.keys(CAPTACION_JSON).filter(esFicha).map((r) => ({
+    rutas: [r], tras: [],
+    lineas: [capitalizaH2(CAPTACION_JSON[r].heroe.cta ?? 'Get a Free Estimate'), ...TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible])],
+    motivo: 'ASTRO-2 (T-29): tarjeta de accion del FAQ.',
+  })),
   /* ASTRO-2 · T-47: los dos telefonos al pie de «What we do», en banda de datos (rotulo de zona en
    * mayusculas por CSS). El hero lleva las mismas cuatro lineas, pero su bloque ya se ha descontado
    * (§ bloquesCaptacion) cuando esto corre, asi que la primera aparicion es esta. */
@@ -2961,9 +2969,13 @@ function bloquesCaptacion(ruta) {
   // 3 · banda de inversion. Desde el 13-sep-2026 ninguna ficha pinta `CarruselProyectos` detras:
   //     las catorce llevan su `gallery`, y sus dos lineas salen del baseline (§ `subeGaleria`).
   bloques.push([
-    capitaliza(c.inversion.titulo),
+    // ASTRO-2: titular en `.mm-h2` (sin `capitalize`) y los dos botones en `.mm-btn` (con el).
+    c.inversion.titulo,
     c.inversion.texto,
-    ...c.inversion.ctas.map((x) => x.texto),
+    ...c.inversion.ctas.map((x) => capitaliza(x.texto)),
+    // T-35: los cuatro rotulos del plano en linea, solo en las rutas de piscina (`InversionCore.astro`).
+    // Son `<text>` de un SVG con `aria-hidden`, pero `innerText` los lee.
+    ...(/^\/services\/pool-(builders|remodeling)(\/|$)/.test(ruta) ? ['SIZE', 'DESIGN', 'FINISHES', 'SITE CONDITIONS'] : []),
   ]);
 
   /* 3.bis · EL PANEL DE SERVICIOS DE LA HOME (R21, pedido de Sebastian 18-sep-2026).
@@ -3024,7 +3036,7 @@ function bloquesCaptacion(ruta) {
     bloques.push(c.faq.titulo
       ? [capitaliza(c.faq.titulo), c.faq.entradilla,
         ...c.faq.anade.map((q) => capitaliza(q.pregunta)), capitaliza(ctaCierre(c))]
-      : c.faq.anade.map((q) => capitaliza(q.pregunta)));
+      : c.faq.anade.map((q) => q.pregunta));   // ASTRO-2: en la ficha el `<h3>` del `<details>` no capitaliza
   }
 
   return bloques;

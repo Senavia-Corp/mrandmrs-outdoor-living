@@ -348,7 +348,7 @@ for (const L of LANDINGS) {
    * titular, no la pregunta.
    */
   if (L.faq) {
-    const visibles = [...d.querySelectorAll('.faq-section h3.dropdown-text')]
+    const visibles = [...d.querySelectorAll('.faq-section h3.dropdown-text, .mm-faq summary h3')]
       .map((h) => h.textContent.trim());
     /* EL `FAQPage` PUEDE IR SUELTO O COLGADO DE UN `WebPage`, y hay que mirar los dos sitios.
      * Las 2 ciudades lo emiten como bloque propio (el origen no traia ninguno); las 14 fichas de
