@@ -4,6 +4,33 @@ Astro 5 estático con adaptador Vercel, réplica elevada de un Webflow. **115 ru
 sin React. Manda `PROMPT-REDISENO.md`; el reparto vivo está en `docs/encargos/DIRECTOR.md`, los
 umbrales en `docs/encargos/CRITERIO.md`, y lo último hecho en `MIGRACION-LOG.md`.
 
+## 0. Rediseñar es rediseñar
+
+**El sitio está en remodelación (desde el 5-oct-2026, lo decide Sebastian).** Cuando se pide
+rediseñar, remodelar o elevar una sección, **el fallo es entregar un retoque**: mismo layout
+con otro padding, otra sombra y un radio. Eso ya pasó demasiadas veces y es justo lo que se
+quiere cortar.
+
+- **`frontend-design` antes del markup, siempre.** Se elige una dirección y se dice en dos
+  líneas antes de escribir CSS: qué consigue la sección y qué cambia de composición.
+- **Se recompone.** Otra rejilla, otro componente, otro markup, en cualquier ruta. La base de
+  Webflow es el punto de partida, no el techo. Se conserva la marca (logo, navy, oro), no la
+  maqueta. Detalle en `docs/encargos/00-PRINCIPIOS.md` §1.
+- **El diff corto no es una virtud aquí.** Las reglas de «mínimo cambio» (plugin ponytail
+  incluido) valen para scripts y lógica, **no para trabajo de diseño**: una sección rehecha
+  son 5-15 KB de CSS y markup nuevo, y está bien.
+- **No se mide «¿cabe?» antes de diseñar.** El tope de `check:tokens` es el peso de `webflow.css` (167 KB) y es alarma.
+  Token que falte se añade a `src/styles/disenio/tokens.css` en el mismo cambio.
+- **`check:visual` en rojo sobre la ruta rediseñada es lo esperado**, no una señal para
+  encoger el cambio: defiende la captura anterior. Se enseña a Sebastian, y si la aprueba se
+  re-baseliniza con `aprobar-diseno.mjs`. Lo que no puede salir rojo es otra ruta que no
+  tocabas.
+
+**Lo que NO se afloja**, porque no limita el diseño sino que protege al visitante o al SEO:
+`check:texto` al 100 % (ni una palabra), rutas y `<head>`, cero `!important` y cero `@layer`,
+ningún `opacity: 0` fuera de `html[data-anim]`, contraste ≥4,5:1 por el peor píxel, controles
+≥44 px, y nunca obra generada por IA.
+
 ## 1. No se barre el sitio
 
 **No recorras las rutas para «ver cómo va».** Nada de `ui-qa`, `carrusel-qa` ni `0.8.0:audit`

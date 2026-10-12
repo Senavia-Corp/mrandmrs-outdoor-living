@@ -12,6 +12,12 @@ comprobaciones, no 9; y la home **sí** se puede acotar ahora, con `node scripts
 
 ## Umbrales comunes a los tres frentes
 
+> **5-oct-2026, lo decide Sebastian.** De esta lista siguen mandando los umbrales que protegen
+> al visitante: objetivo táctil, contraste, foco, texto intacto, cero `!important`/`@layer`.
+> **Dejan de mandar** los que limitaban el diseño: «si falta un token se pide al director» (se
+> añade a `tokens.css`), «toda longitud sacada de la escala» y «solo 480/768/992» (se amplían
+> si el diseño lo pide), y el recuento de declaraciones por fichero. Ver `CLAUDE.md` §0.
+
 · OBJETIVO TÁCTIL. Todo control ≥44 px de alto y ancho en los CUATRO anchos que mide la puerta
   (1920/1440/991/479), medido con getBoundingClientRect() sobre .vercel/output/static, no
   calculado a mano. Se usa la receta que ya funciona en el repo (min-height:44px + inline-flex +
