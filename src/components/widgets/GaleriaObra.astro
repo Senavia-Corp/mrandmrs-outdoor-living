@@ -1,46 +1,20 @@
 ---
 /**
- * LA GALERIA DE OBRA DE LAS LANDINGS DE CAPTACION (R21-CIUDADES, pedido de Sebastian 18-sep-2026:
- * «colocar debajo del Contact Form y antes del 3D rendering la seccion de Gallery que se usa en
- * las paginas de servicio»).
+ * LA GALERIA DE OBRA DE LAS PAGINAS DE CIUDAD, EN MOSAICO (ASTRO-2, lamina «Ciudad»).
  *
- * POR QUE ES UN COMPONENTE Y NO 11 KB COPIADOS. `section.gallery` NO era un componente: son
- * ~11-13 KB de marcado derivado de Webflow que viven en la constante `T10` de cada una de las 14
- * fichas de `/services/`, y `build-paginas.mjs:862` solo lo MUEVE detras de la FAQ (bloque 8b),
- * no lo construye. Copiar esos 11 KB al template de ciudad es la forma conocida de que las dos
- * copias dejen de coincidir. Se extrae igual que R16-PROY hizo con «Project Showcase» ->
- * `CarruselProyectos.astro`: fotos por JSON, encabezado por props, `data-w-id` literal.
+ * Nacio como carrusel (R21-CIUDADES, 18-sep-2026); desde ASTRO-2 es el mismo mosaico que la
+ * ficha de servicio (`mosaicoDeObra` en `build-paginas.mjs`): las seis primeras fotos en
+ * `.mm-mosaico` y el resto en `.mm-mosaico-resto`, todas a la vista y en el HTML (D-117). Cada
+ * foto es un `<button data-mm-foto>` que abre el visor de `Componentes.astro` en su foto.
  *
- * COSTE DE JAVASCRIPT: CERO, Y ESTA VERIFICADO, NO SUPUESTO.
- *   · `Componentes.astro` va en `Base.astro:349`, o sea que las 122 rutas ya lo cargan.
- *   · El slider se mueve POR ATRIBUTO (`[fs-slider-element="list"]`), no por instancia: la ficha
- *     corre tres a la vez (blog, gallery, resenas) con el mismo motor.
- *   · Ocala ya corria `fs-slider-blog` antes de esto. La maquinaria estaba cargada y probada ahi.
- *   · El lightbox lo rehace el mismo `Componentes.astro` con `<dialog>` (:185), generico sobre
- *     `a.w-lightbox`.
- * O sea que montar una cuarta instancia no pide ni un `<script>` nuevo ni una linea de cableado.
+ * EL SET ES UNO POR SERVICIO (`_defecto.fotos` para las 53 de piscina; `servicio:<slug>` para las
+ * demas) y se pinta EN SU ORDEN, que es comercial —seis de piscina antes del primer servicio
+ * secundario— y lo vigila `scripts/check-galeria-obra.mjs` junto con la procedencia de cada foto.
+ * `pos` es el `object-position` de la celda. `loading="lazy"` + `decoding="async"`, y
+ * `width`/`height` reales contra el CLS.
  *
- * 🚨 LOS SLIDES TIENEN QUE SER HIJOS DIRECTOS de `[fs-slider-element="list"]`. Si se envuelven en
- * cualquier cosa —un `<Fragment>` que emita un nodo, un `.map` dentro de un div—,
- * `check-carrusel.mjs` colapsa `track.children` a 1 y el carrusel deja de navegar. Es la misma
- * nota que lleva `CarruselProyectos.astro:33-34`.
- *
- * EL `<h2>` SE QUEDA EN OBRA, NO EN REMODELACION, y no es un detalle de copy: Gainesville y Ocala
- * son la Final URL de ad groups de *new pool construction*, y las 53 venden lo mismo. Hay dos
- * remodelaciones en el set, pero un titular que diga «remodeling» reintroduce la puerta de al lado,
- * que es exactamente lo que R20-CIUDADES F1 quito del apoyo del heroe.
- *
- * EL SET ES UNO PARA LAS 53 (`_defecto.fotos`, recasting del 4-oct-2026). El orden es comercial
- * —seis de piscina antes del primer servicio secundario— y lo vigila
- * `scripts/check-galeria-obra.mjs` junto con la procedencia de cada foto. `pos` es el
- * `object-position` de la tarjeta, que no es apaisada: 139x250 en un movil real, ~1:1 en escritorio
- * (medido sobre el build). `loading="lazy"` + `decoding="async"`, y `width`/`height` reales
- * contra el CLS.
- *
- * SU CSS VA EN EL `<style>` DE ABAJO, y eso tiene una consecuencia medida: `check-tokens.mjs:429`
- * suma SOLO las hojas de `src/styles/` para el presupuesto de 92 KB, no los bloques `<style>` de
- * componente. Esta seccion no gasta presupuesto. Las reglas siguen pasando el resto de la puerta
- * (cero literales de color, cero `!important`, cero `opacity:0`).
+ * EL `<h2>` SE QUEDA EN OBRA, NO EN REMODELACION: Gainesville y Ocala son la Final URL de ad
+ * groups de *new pool construction*, y las 53 venden lo mismo.
  */
 import DATOS from '../../data/galeria-obra-por-ruta.json';
 
@@ -51,8 +25,11 @@ interface Props {
   /** Set por SERVICIO (LOOP-CIUDADES): las landings `/services/<servicio>/<ciudad>-fl` comparten el
    *  set de su servicio, `DATOS[clave]`. La ruta propia sigue mandando; sin clave, como siempre. */
   clave?: string;
+  /** Texto de la accion de la pagina (va en la cabecera) y palabra del titular que lleva rotulador. */
+  accion: string;
+  marca?: string;
 }
-const { titulo, entradilla, clave } = Astro.props;
+const { titulo, entradilla, clave, accion, marca } = Astro.props;
 
 const ruta = Astro.url.pathname.replace(/(.)\/$/, '$1');
 /* Cascada igual que `CarruselProyectos.astro:48-51`, y sin `throw`: una ruta que monte esto sin
@@ -66,42 +43,36 @@ const entradillaFinal = entradilla ?? d.entradilla;
 if (!d.fotos?.length) throw new Error(`GaleriaObra (${ruta}): 0 fotos. El carrusel saldria vacio.`);
 const fotos: { src: string; alt: string; ancho: number; alto: number; pos?: string }[] = d.fotos;
 
-/* El JSON del lightbox que Webflow deja en cada ancla. `Componentes.astro` lo lee para montar su
- * `<dialog>`; se emite con la misma forma que las 14 fichas para que el gate `check:galeria` mida
- * lo mismo aqui que alli. */
-const wjson = (src: string) =>
-  JSON.stringify({ items: [{ url: src, type: 'image' }], group: 'images' });
+const tituloHtml = marca && tituloFinal.includes(marca) ? tituloFinal.replace(marca, `<span class="mm-rot">${marca}</span>`) : tituloFinal;
+const FLECHA = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>';
+const enMosaico = fotos.slice(0, 6);
+const resto = fotos.slice(6);
+if (enMosaico.length < 3) throw new Error(`GaleriaObra (${ruta}): ${enMosaico.length} fotos; el mosaico pide 3.`);
 ---
 
-<section class="gallery svc-galeria">
-  <div class="block-gallery">
-    <div fs-slider-type="cms" fs-slider-instance="fs-slider-gallery" class="slider-gallery-page">
-      <div data-w-id="3e7b68e7-e033-ed34-b3a7-e87aed50972d" class="header-gallery">
-        <div>
-          <h2 class="white">{tituloFinal}</h2>
-          <div>{entradillaFinal}</div>
-        </div>
-        <div fs-slider-element="navigation" class="fs-slider-gallery_navigation">
-          <button fs-slider-element="previous" class="fs-slider-gallery_button" aria-label="Previous project">
-            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 1024 1024" app="ikonik" class="icon-arrow" aria-hidden="true" focusable="false"><path fill="currentColor" d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm104 316.9c0 10.2-4.9 19.9-13.2 25.9L457.4 512l145.4 105.2c8.3 6 13.2 15.6 13.2 25.9V690c0 6.5-7.4 10.3-12.7 6.5l-246-178a7.95 7.95 0 0 1 0-12.9l246-178a8 8 0 0 1 12.7 6.5v46.8z" app="ikonik" class="path-x7uxa"></path></svg>
-          </button>
-          <button fs-slider-element="next" class="fs-slider-gallery_button" aria-label="Next project">
-            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 1024 1024" app="ikonik" class="icon-arrow" aria-hidden="true" focusable="false"><path fill="currentColor" d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm154.7 454.5l-246 178c-5.3 3.8-12.7 0-12.7-6.5v-46.9c0-10.2 4.9-19.9 13.2-25.9L566.6 512 421.2 406.8c-8.3-6-13.2-15.6-13.2-25.9V334c0-6.5 7.4-10.3 12.7-6.5l246 178c4.4 3.2 4.4 9.8 0 13z" app="ikonik" class="path-5odzh"></path></svg>
-          </button>
-        </div>
-      </div>
-      <div class="block-gallery-absolute">
-        <div fs-slider-element="list-wrapper" class="fs-slider-gallery_list-wrapper w-dyn-list">
-          <div fs-slider-element="list" role="list" class="fs-slider-gallery_list w-dyn-items">
-            {fotos.map((f) => (
-              <div fs-slider-element="slide" role="listitem" class="fs-slider-gallery_slide w-dyn-item"><a href="#" class="lightbox-link w-inline-block w-lightbox"><img alt={f.alt} loading="lazy" decoding="async" src={f.src} class="image-gallery" width={f.ancho} height={f.alto} style={f.pos && `object-position:${f.pos}`} /><script type="application/json" class="w-json" set:html={wjson(f.src)} /></a></div>
-            ))}
-          </div>
-        </div>
-        <div fs-slider-element="scrollbar" class="fs-slider-gallery_scrollbar">
-          <div fs-slider-element="scrollbar-drag" class="fs-slider-gallery_scrollbar_drag"></div>
-        </div>
+<section class="mm-gal svc-galeria">
+  <div class="mm-sec-cab">
+    <h2 class="mm-h2" set:html={tituloHtml} />
+    <div class="mm-sec-lado">
+      <p class="mm-p">{entradillaFinal}</p>
+      <div class="mm-sec-acc">
+        <a class="mm-btn mm-btn--linea" href="#estimate">{accion}</a>
+        <a class="mm-flecha" href="/gallery">Project Gallery<Fragment set:html={FLECHA} /></a>
       </div>
     </div>
+  </div>
+  <div class="mm-fotos">
+    <div class={`mm-mosaico mm-mosaico--${enMosaico.length}`}>
+      {enMosaico.map((f) => (
+        <button type="button" class="mm-celda" data-mm-foto={f.src} aria-label={`Open photo: ${f.alt}`}><img src={f.src} alt={f.alt} width={f.ancho} height={f.alto} style={f.pos ? `object-position:${f.pos}` : undefined} loading="lazy" decoding="async" /></button>
+      ))}
+    </div>
+    {resto.length > 0 && (
+      <div class:list={['mm-mosaico-resto', resto.length === 5 && 'mm-mosaico-resto--5']}>
+        {resto.map((f) => (
+          <button type="button" class="mm-celda mm-celda--resto" data-mm-foto={f.src} aria-label={`Open photo: ${f.alt}`}><img src={f.src} alt={f.alt} width={f.ancho} height={f.alto} style={f.pos ? `object-position:${f.pos}` : undefined} loading="lazy" decoding="async" /></button>
+        ))}
+      </div>
+    )}
   </div>
 </section>

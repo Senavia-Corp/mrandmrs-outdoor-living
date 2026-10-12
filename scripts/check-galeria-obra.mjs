@@ -199,7 +199,6 @@ const leer = (ruta) => {
   }
   return null;
 };
-const urlLightbox = (s) => { try { return JSON.parse(s?.textContent ?? '').items?.[0]?.url ?? null; } catch { return null; } };
 /* Cada foto con TODAS sus copias publicadas: la misma foto con otro nombre tambien es repetirla. */
 const copias = fotos.map((f) => new Set([f.src, ...(BANCO.get(f._banco)?.publicada_como ?? [])]));
 const CROMO = 'section.menu, section.footer, .w-nav, footer, nav, .mm-cab, .mm-menu, .mm-barra';
@@ -217,19 +216,21 @@ if (!fs.existsSync(ESTATICO)) {
     const d = new JSDOM(html).window.document;
     const secciones = d.querySelectorAll('section.svc-galeria');
     if (secciones.length !== 1) { mal(ruta, `${secciones.length} section.svc-galeria; tiene que haber exactamente 1`); continue; }
-    const lista = secciones[0].querySelector('[fs-slider-element="list"]');
-    if (!lista) { mal(ruta, 'la galeria no tiene [fs-slider-element="list"]'); continue; }
-    const hijos = [...lista.children];
-    const slides = hijos.filter((h) => h.classList.contains('fs-slider-gallery_slide'));
-    if (slides.length !== hijos.length) { mal(ruta, `${hijos.length - slides.length} hijo(s) de la lista no son slides: algo los envuelve`); continue; }
-    if (slides.length !== fotos.length) { mal(ruta, `${slides.length} slides y el set trae ${fotos.length}`); continue; }
+    /* ASTRO-2: la galeria es un mosaico (seis fotos + el resto en una segunda fila, D-117), no un
+     * carrusel. Las celdas son `<button data-mm-foto>`: se leen en el orden del documento. */
+    const slides = [...secciones[0].querySelectorAll('.mm-fotos button.mm-celda')];
+    const fuera = secciones[0].querySelectorAll('img').length - slides.length;
+    if (fuera) { mal(ruta, `${fuera} imagen(es) de la galeria no van en una celda del mosaico`); continue; }
+    if (slides.length !== fotos.length) { mal(ruta, `${slides.length} celdas y el set trae ${fotos.length}`); continue; }
+    const enMosaico = secciones[0].querySelectorAll('.mm-mosaico > button.mm-celda').length;
+    if (enMosaico !== Math.min(6, fotos.length)) { mal(ruta, `${enMosaico} celdas en el mosaico; van las ${Math.min(6, fotos.length)} primeras`); continue; }
 
     let rutaMal = false;
     slides.forEach((s, i) => {
       const f = fotos[i];
-      const img = s.querySelector(':scope > a.w-lightbox > img');
-      const donde = `${ruta} slide ${i + 1}`;
-      if (!img) { mal(donde, 'sin a.w-lightbox > img'); rutaMal = true; return; }
+      const img = s.querySelector(':scope > img');
+      const donde = `${ruta} celda ${i + 1}`;
+      if (!img) { mal(donde, 'sin button.mm-celda > img'); rutaMal = true; return; }
       const a = (k) => img.getAttribute(k);
       const errores = [];
       if (a('src') !== f.src) errores.push(`src ${a('src')} (se esperaba ${f.src})`);
@@ -238,8 +239,8 @@ if (!fs.existsSync(ESTATICO)) {
       if (a('loading') !== 'lazy') errores.push(`loading=${a('loading')}`);
       if (a('decoding') !== 'async') errores.push(`decoding=${a('decoding')}`);
       if ((a('style') ?? '') !== (f.pos ? `object-position:${f.pos}` : '')) errores.push(`style «${a('style') ?? ''}»`);
-      const lb = urlLightbox(img.parentElement.querySelector(':scope > script.w-json'));
-      if (lb !== f.src) errores.push(`el lightbox abre ${lb}`);
+      const lb = s.getAttribute('data-mm-foto');
+      if (lb !== f.src) errores.push(`el visor abre ${lb}`);
       if (errores.length) { mal(donde, errores.join(' · ')); rutaMal = true; }
     });
 

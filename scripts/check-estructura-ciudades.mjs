@@ -77,7 +77,7 @@ const SIN = [
 /* ASTRO-2 (12-oct-2026): el orden de la lamina «Ciudad», con el formulario al final, fundido con la
  * banda de cierre (D-77), sin el feed de Instagram (T-42) y con la miga dentro del hero. */
 const CON = [
-  'mm-hero-a', 'svc-confianza', 'svc-intro', 'gallery', 'mm-3d', 'products-section',
+  'mm-hero-a', 'svc-confianza', 'svc-intro', 'mm-gal', 'mm-3d', 'products-section',
   'svc-inversion', 'mm-faq', 'mm-cat', 'mm-proy', 'blog-section-page',
   'mm-res', 'mm-cierre', 'mm-form-sec',
 ];

@@ -29,7 +29,7 @@ import { AREAS_PIE, ORDEN_SERVICIOS_PIE, COPYRIGHT_ORIGEN, copyright } from '../
 import { lineasTarjetas, lineasBanda, lineasSrBanda } from '../src/lib/galeria-categorias.mjs';
 import { OCULTAS, lineasFiltro } from '../src/lib/filtro-proyectos.mjs';
 import { fotoDeHeroe } from '../src/lib/heroe-ciudad.mjs';
-import { ciudadesDeFicha } from '../src/lib/servicios-ciudad.mjs';
+import { ciudadesDeFicha, SERVICIOS_CIUDAD } from '../src/lib/servicios-ciudad.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 
@@ -3533,6 +3533,14 @@ function listasStitch(ruta, lineas) {
         if (hayTels(k)) out.splice(k, tels.length); else k += 2;
       }
       out.splice(k, 0, 'See all Projects');
+    }
+    /* GALERIA DE OBRA EN MOSAICO (T-81): su cabecera lleva la accion de la pagina y el enlace
+     * «Project Gallery», justo detras de la entradilla. Se quitan solo si estan ahi, los dos. */
+    const svCiudad = SERVICIOS_CIUDAD[ruta.split('/')[2]];
+    {
+      const g = { ...GALERIA_OBRA._defecto, ...(GALERIA_OBRA[ruta] ?? GALERIA_OBRA[svCiudad?.galeria] ?? {}) };
+      const k = out.findIndex((l, x) => l === g.entradilla && out[x + 1] === accion && out[x + 2] === 'Project Gallery');
+      if (k >= 0) out.splice(k + 1, 2);
     }
     const faq = CAPTACION_JSON[ruta]?.faq;
     if (faq?.titulo) {

@@ -11,7 +11,12 @@
  * puerta no mide solo el blog: mide el mecanismo, y de paso cubre `fs-slider-resenas`,
  * `fs-slider-projects` y `fs-slider-gallery`, que viven en las mismas paginas.
  *
- * 5 RUTAS FIJAS, NO 64. La regla dura del repo es no barrer las 115 (ni siquiera las 64 de
+ * ASTRO-2 (12-oct-2026): la pagina de CIUDAD ya no tiene ningun carrusel —galeria, proyectos,
+ * articulos y resenas pasan a mosaico y a listas— y sale de las rutas fijas. Lo que mide de ella
+ * `check:mosaico` (el visor) y `check:estructura:ciudades` (que las secciones sean las nuevas).
+ * Quedan 4 rutas. La de Condado sigue con la maqueta de carruseles hasta que se migre.
+ *
+ * 4 RUTAS FIJAS (eran 5), NO 64. La regla dura del repo es no barrer las 115 (ni siquiera las 64 de
  * area de servicio) en una puerta que corre en cada `npm run check`: portada (el carrusel ya
  * existia ahi) + una de cada nivel nuevo -Estado, Condado, Ciudad- + `/industry-solutions`.
  * Estado es la unica con TRES instancias del motor en la misma pagina (`-projects`, `-resenas`,
@@ -83,10 +88,9 @@ const RUTAS = [
   '/',
   '/where-we-serve/north-florida',
   '/services/pool-builders/marion-county-fl',
-  '/services/pool-builders/gainesville-fl',
   '/industry-solutions',
 ].filter(casa);
-if (!RUTAS.length) { console.error(`\nROJO ninguna de las 5 rutas fijas casa el filtro "${filtro.join(' ')}"\n`); process.exit(1); }
+if (!RUTAS.length) { console.error(`\nROJO ninguna de las 4 rutas fijas casa el filtro "${filtro.join(' ')}"\n`); process.exit(1); }
 
 let fallos = 0;
 const check = (n, ok, d = '') => { console.log(`  ${ok ? 'ok  ' : 'ROJO'} ${n}${d ? ' — ' + d : ''}`); if (!ok) fallos++; return ok; };

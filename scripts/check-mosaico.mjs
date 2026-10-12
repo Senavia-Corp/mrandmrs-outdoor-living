@@ -7,13 +7,15 @@
  *     npm run check:mosaico            # headless, sobre .vercel/output/static, 3 fichas fijas
  *
  * Tres fichas y no catorce: una con 6 celdas y segunda fila, la de 5 y la de 3.
+ * Y una pagina de ciudad: su galeria es el mismo mosaico.
  */
 import { chromium } from 'playwright';
 import fs from 'node:fs';
 import path from 'node:path';
 
 const D = path.resolve(import.meta.dirname, '../.vercel/output/static');
-const RUTAS = ['/services/pool-builders', '/services/retractable-screens', '/services/irrigation-systems'];
+// + una pagina de ciudad: su galeria es el mismo mosaico desde ASTRO-2 (`GaleriaObra.astro`).
+const RUTAS = ['/services/pool-builders', '/services/retractable-screens', '/services/irrigation-systems', '/services/pool-builders/alachua-fl'];
 const rojos = [];
 const b = await chromium.launch();
 for (const ruta of RUTAS) {

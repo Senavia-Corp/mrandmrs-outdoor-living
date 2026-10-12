@@ -396,6 +396,8 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
   .mm-mosaico--4 .mm-celda:nth-child(n + 3) { grid-column: span 3; }
   .mm-mosaico-resto { display: grid; gap: var(--mm-e-8); grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .mm-mosaico-resto .mm-celda, .mm-mosaico-resto .mm-celda:first-child { grid-column: auto; grid-row: auto; aspect-ratio: 3 / 2; }
+  /* Cinco de resto (los sets de ciudad traen 11 fotos): en una fila, sin celda suelta. */
+  .mm-mosaico-resto--5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
   .mm-paso { padding-left: 72px; }
   .mm-grupo { padding-left: 72px; }
   .mm-grupo-dl { grid-template-columns: repeat(2, minmax(0, 1fr)); }

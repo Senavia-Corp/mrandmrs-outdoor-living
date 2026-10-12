@@ -274,6 +274,8 @@ const P_ANTES_PINTADO = SV.sin3d ? '' : P_ANTES;
 
 /** El `.svc-cierre` repite el CTA del heroe (`heroe.cta`, generado por build-captacion-ciudades). */
 const CTA_CIERRE = CAP?.heroe?.cta ?? 'Get a Free Estimate';
+// La palabra con rotulador del titular de la galeria: la `marca` de la ficha del servicio.
+const MARCA_SERVICIO = CAPTACION[`/services/${RUTA.split('/')[2]}`]?.heroe?.marca;
 
 const CTA_PIE = sinAperturaDelFeed(B[2], `${RUTA} B[2]`);
 // Y B[3] deja de renderizarse, asi que hay que AFIRMAR que no era mas que ese cierre: si la
@@ -437,7 +439,7 @@ const SEO = FAQ
       <a class="mm-flecha" href={INTRO_ENLACE.href}>{INTRO_ENLACE.texto}<Fragment set:html={FLECHA} /></a>
     </div>
   </section>
-  <GaleriaObra clave={SV.galeria} />
+  <GaleriaObra clave={SV.galeria} accion={CTA_CIERRE} marca={MARCA_SERVICIO} />
   {R3D && (
     <section class="mm-3d">
       <div class="mm-sec-cab">
