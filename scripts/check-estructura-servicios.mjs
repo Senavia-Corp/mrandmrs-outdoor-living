@@ -30,7 +30,7 @@ const ESTATICO = path.join(RAIZ, '.vercel/output/static');
  *  misma. */
 const ESPERADO = [
   'mm-hero-a', 'svc-confianza', 'svc-intro', 'appointment-section',
-  'mm-gal', 'services', 'process-section', 'svc-inversion', 'faq-section', 'testimonial-section',
+  'mm-gal', 'mm-que', 'mm-proc', 'svc-inversion', 'faq-section', 'testimonial-section',
   'location', 'blog-section-page', 'social-media', 'cta-footer',
 ];   // ASTRO-2: la franja de logos va DENTRO del hero y la repetida junto al pie se retira (D-53)
 
@@ -40,8 +40,8 @@ const ESPERADO = [
  *  derivasen de `antesDespues` en el JSON, la puerta daria por bueno cualquier sitio donde el
  *  generador la pusiera. */
 const VARIANTES = {
-  '/services/pool-remodeling': { tras: 'services', va: 'before-after-section' },
-  '/services/pool-builders': { tras: 'services', va: 'before-after-section' },
+  '/services/pool-remodeling': { tras: 'mm-que', va: 'before-after-section' },
+  '/services/pool-builders': { tras: 'mm-que', va: 'before-after-section' },
 };
 const esperadoDe = (ruta) => {
   const v = VARIANTES[ruta];

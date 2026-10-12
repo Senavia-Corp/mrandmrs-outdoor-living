@@ -288,6 +288,32 @@ const SLIDERS = JSON.stringify(
       });
     }
 
+    // ── 1.bis · proceso de la ficha (ASTRO-2): la figura fija ensena la foto del paso que se lee.
+    // Sin esto la figura se queda en el paso 1 y la lista se lee igual.
+    const listaPasos = document.querySelector('[data-mm-pasos]');
+    const medioPasos = document.querySelector('[data-mm-pasos-medio]');
+    if (listaPasos && medioPasos && 'IntersectionObserver' in window) {
+      const pasos = [...listaPasos.children];
+      const foto = medioPasos.querySelector('img');
+      const pie = medioPasos.querySelector('.mm-lam-pie');
+      const dos = (k) => String(k).padStart(2, '0');
+      const activa = (k) => {
+        pasos.forEach((li, i) => li.classList.toggle('mm-paso--activo', i === k));
+        const f = pasos[k].querySelector('.mm-paso-foto');
+        if (f && foto.getAttribute('src') !== f.getAttribute('src')) {
+          foto.srcset = f.srcset; foto.sizes = f.sizes; foto.src = f.getAttribute('src');
+          foto.alt = f.alt; foto.style.objectPosition = f.style.objectPosition;
+        }
+        pie.dataset.n = `${dos(k + 1)} / ${dos(pasos.length)}`;
+        pie.dataset.t = pasos[k].querySelector('h3')?.textContent ?? '';
+      };
+      const obs = new IntersectionObserver((es) => {
+        for (const e of es) if (e.isIntersecting) activa(pasos.indexOf(e.target));
+      }, { rootMargin: '-40% 0px -55% 0px' });
+      pasos.forEach((li) => obs.observe(li));
+      activa(0);
+    }
+
     // ── 2 · marquee ─────────────────────────────────────────────────────
     const montaMarquee = async (inst) => {
       const wrapper = inst.querySelector('[fs-marquee-element="wrapper"]');

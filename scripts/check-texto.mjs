@@ -1277,6 +1277,14 @@ const LINEAS_CIUDADES_FICHA = [...new Set(Object.keys(PAGINAS_CIUDAD_SERVICIO).m
 
 const LINEAS_ANADIDAS = [
   ...LINEAS_CIUDADES_FICHA,
+  /* ASTRO-2 · T-47: los dos telefonos al pie de «What we do», en banda de datos (rotulo de zona en
+   * mayusculas por CSS). El hero lleva las mismas cuatro lineas, pero su bloque ya se ha descontado
+   * (§ bloquesCaptacion) cuando esto corre, asi que la primera aparicion es esta. */
+  {
+    rutas: Object.keys(CAPTACION_JSON).filter(esFicha), tras: [],
+    lineas: TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]),
+    motivo: 'ASTRO-2 (T-47): telefonos al pie de «What we do».',
+  },
   /* ASTRO-2 · T-28 y T-47: la cabecera de la galeria de obra de las 14 fichas lleva la accion de
    * la pagina en boton de linea (D-76; el mismo texto que el boton del hero) y el enlace
    * «Project Gallery». Van seguidas y solo ahi, asi que el par se quita sin ancla. */
@@ -1413,34 +1421,8 @@ const LINEAS_ANADIDAS = [
     motivo: 'D6: el pie enlaza `/articles/accessibility`, que antes no enlazaba nadie. Las otras '
       + 'dos legales solo cambian de href y no cuestan texto; esta es un enlace NUEVO.',
   },
-  {
-    /**
-     * R17-CORE · EL CTA DE LA REJILLA DE SUBSERVICIOS, que no lo descontaba nadie.
-     *
-     * El encargo cierra la rejilla con un paso siguiente («Nunca quedan mas de 2 secciones
-     * seguidas sin un paso siguiente: … servicios->CTA …», R17-CORE §5), y el dato ya lo
-     * declara: `servicios.cta.texto` en `src/data/captacion-servicios.json`, solo en esta ficha.
-     * `bloquesCaptacion()` no lo recogia, asi que sobraba una ocurrencia de «Get A Free
-     * Estimate» — y `diferencias()` cuenta por CONJUNTO, donde una linea que ya sale otras tres
-     * veces no «sobra»: por eso salia «faltan 0, sobran 0» y solo se quejaba del orden. Estaba
-     * tapado por el rojo del carrusel del proceso, igual que el ancla de `bajaResenas()`.
-     *
-     * VA AQUI Y NO EN `bloquesCaptacion()`: es UNA linea, y «Get A Free Estimate» sale cuatro
-     * veces en la ficha, asi que `quitaBloque` se llevaria la primera —la del heroe— y
-     * desordenaria todo lo de debajo. Esta tabla es la que sabe anclar, y el ancla es la ultima
-     * tarjeta de la rejilla: si el CTA aparece en otro sitio, no casa y la ficha vuelve a rojo.
-     *
-     * Se escribe con la forma que RENDERIZA: el JSON dice «Get a Free Estimate» y
-     * `webflow.css` pone `text-transform: capitalize` en `.button`, que SI altera `innerText`.
-     */
-    rutas: ['/services/pool-builders'],
-    tras: ['Pool deck remodeling using pavers or concrete for safety and durability.'],
-    /* SEO-REMEDIACION (4-oct-2026): se lee del JSON, ya no se cablea; hoy dice «Request a
-     * Design-Build Project Evaluation». `capitaliza` por el `text-transform` de `.button`. */
-    lineas: [capitalizaH2(CAPTACION_JSON['/services/pool-builders'].servicios.cta.texto)],
-    motivo: 'R17-CORE: la rejilla de subservicios de la landing de pago cierra con un CTA '
-      + '(`servicios.cta` en captacion-servicios.json). Es la unica ficha que lo lleva.',
-  },
+  /* ASTRO-2: aqui iba el CTA de cierre de la rejilla de `/services/pool-builders`. El boton sube a
+   * la cabecera de la seccion, como en las otras trece (§ listasStitch). */
   {
     rutas: ['/pool-cost-estimator'],
     tras: [],
@@ -3195,6 +3177,54 @@ function sinMayusculasDeCss(ruta, esperado, hay) {
   }).join('\n');
 }
 
+/**
+ * ASTRO-2 · PROCESO Y «WHAT WE DO» EN LISTA DE PLANO, sobre LO MEDIDO de las 14 fichas.
+ *
+ * PROCESO (T-46, T-32). El baseline trae `linea, 1, 2, 3, 4, titulo 1, texto 1`: en Webflow solo
+ * se veia el paso activo. Ahora se ven los cuatro, cada numero con su paso, y la cabecera lleva
+ * la accion de la pagina. Lo medido tiene que ser EXACTAMENTE
+ *     linea, accion, 1, titulo 1, texto 1, 2, titulo 2, texto 2, 3, …, 4, …
+ * con los ocho textos leidos del origen (`_source/vivo`), y entonces se devuelve a la forma del
+ * baseline. Si un paso no casa con el origen, no se toca nada y la ruta sale roja.
+ *
+ * «WHAT WE DO» (T-47). La accion va tras la linea de cabecera, delante del titulo de la fila 1; se
+ * quita. Y los titulos de fila se devuelven a la forma capitalizada con la que estan declarados
+ * (R22-DETALLE, § LINEAS_ANADIDAS): el HTML no ha cambiado, el `capitalize` de Webflow si (T-69).
+ */
+const PASOS_ORIGEN = new Map();
+function pasosDelOrigen(ruta) {
+  if (!PASOS_ORIGEN.has(ruta)) {
+    const f = path.join(RAIZ, `_source/vivo/${aSlug(origen(ruta))}.html`);
+    const sec = new JSDOM(fs.readFileSync(f, 'utf8')).window.document.querySelector('section.process-section');
+    const limpia = (el) => (el?.textContent ?? '').replace(/\s+/g, ' ').trim();
+    PASOS_ORIGEN.set(ruta, {
+      linea: limpia(sec.querySelector('.process-header p')),
+      pasos: [...sec.querySelectorAll('.process-content-item')].map((it) => [
+        limpia(it.querySelector('.content-step-tab h2')),
+        ...[...it.querySelectorAll('.w-richtext p')].map(limpia).filter(Boolean),
+      ]),
+    });
+  }
+  return PASOS_ORIGEN.get(ruta);
+}
+function listasStitch(ruta, lineas) {
+  if (!esFicha(ruta)) return lineas;
+  const c = CAPTACION_JSON[ruta];
+  const accion = capitalizaH2(c.heroe.cta ?? 'Get a Free Estimate');
+  let out = [...lineas];
+  const { linea, pasos } = pasosDelOrigen(ruta);
+  const nuevo = [linea, accion, ...pasos.flatMap((p, k) => [String(k + 1), ...p])];
+  const i = out.findIndex((_, k) => nuevo.every((l, j) => out[k + j] === l));
+  if (i >= 0) {
+    out.splice(i, nuevo.length, linea, ...pasos.map((_, k) => String(k + 1)), capitalizaH2(pasos[0][0]), ...pasos[0].slice(1));
+  }
+  const filas = c.servicios?.detalle ?? [];
+  const k = filas.length ? out.indexOf(filas[0].titulo) : -1;
+  if (k > 0 && out[k - 1] === accion) out.splice(k - 1, 1);
+  for (const f of filas) { const j = out.indexOf(f.titulo); if (j >= 0) out[j] = capitalizaH2(f.titulo); }
+  return out;
+}
+
 function diferencias(ruta, esperado, hay) {
   const a = esperado.split('\n'), b = hay.split('\n');
   const declaradas = new Set(QUITADAS_A_PROPOSITO
@@ -3430,7 +3460,7 @@ for (const ruta of RUTAS_A_MEDIR) {
    * acusando de «se ha colado en alguna ruta de mas». El descuento de `sinElBloque` nunca
    * estuvo afectado: alli se compara sobre el ARRAY, o sea linea completa. */
   if (lineasFeed().length && bruto.split('\n').includes(lineasFeed()[0])) conFeed++;
-  const hay = sinElBloque(ruta, marcaCabecera(bruto.split('\n')).join('\n'));
+  const hay = sinElBloque(ruta, listasStitch(ruta, marcaCabecera(bruto.split('\n'))).join('\n'));
   if (hay === null) {
     mal++;
     /* Cual de los dos bloques fallo. Antes esto leia `ANADIDAS_A_PROPOSITO[ruta].bloque` a

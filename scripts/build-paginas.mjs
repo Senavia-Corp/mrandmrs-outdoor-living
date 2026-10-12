@@ -793,13 +793,87 @@ function mosaicoDeObra(doc, ruta) {
   const resto = fotos.slice(6).map((f) => ({ url: f.src, alt: f.alt }));
   const nueva = doc.createElement('section');
   nueva.setAttribute('class', 'mm-gal');
-  nueva.innerHTML = `<div class="mm-gal-cab"><h2 class="mm-h2">${tit}</h2><div class="mm-gal-lado"><p class="mm-p">${linea.innerHTML}</p>`
-    + `<div class="mm-gal-acc"><a class="mm-btn mm-btn--linea" href="${cta.getAttribute('href')}">${cta.innerHTML}</a>`
+  nueva.innerHTML = `<div class="mm-sec-cab"><h2 class="mm-h2">${tit}</h2><div class="mm-sec-lado"><p class="mm-p">${linea.innerHTML}</p>`
+    + `<div class="mm-sec-acc"><a class="mm-btn mm-btn--linea" href="${cta.getAttribute('href')}">${cta.innerHTML}</a>`
     + `<a class="mm-flecha" href="/gallery">Project Gallery${FLECHA}</a></div></div></div>`
     + `<div class="mm-mosaico mm-mosaico--${enMosaico.length}">${celdas}</div>`
     + (resto.length ? `<script type="application/json" class="mm-gal-mas">${JSON.stringify(resto).replace(/</g, '\\u003c')}</script>` : '');
   sec.replaceWith(nueva);
   mosaicos++;
+}
+
+/* ── ASTRO-2 · PROCESO Y «WHAT WE DO», EN LISTA DE PLANO (laminas «Proceso» y «QueHacemos») ──
+ * PROCESO: las pestanas de Webflow (un paso a la vista, autoplay por `<script>` embebido) pasan
+ * a una lista numerada con los cuatro pasos a la vista; los titulos de paso dejan de ser `<h2>`
+ * hermanos del titular y son `<h3>`. Con foto solo si las cuatro son de obra de la casa
+ * (`/images/obra/`); si alguna no lo es, variante sin foto. En escritorio la foto del paso que
+ * se esta leyendo va en una figura fija a la izquierda (`Componentes.astro` la cambia); en
+ * movil cada paso lleva la suya.
+ *
+ * «WHAT WE DO»: las cuatro filas con foto pasan a cuatro grupos en lista (titular, entradilla y
+ * sus subservicios en `<dl>`), con UNA foto: la primera de las cuatro que tenga procedencia
+ * verificada. Los iconos de subservicio salen; los enlaces a otra ficha se conservan. */
+const FOTO_VERIFICADA = (src) => GALERIA_USABLE.has(src) || /^\/images\/(obra|projects)\//.test(src);
+const cabeceraDeSeccion = (tit, linea, cta, antetitulo = '') => '<div class="mm-sec-cab">'
+  + (antetitulo ? `<div class="mm-sec-tit"><p class="mm-etiqueta">${antetitulo}</p><h2 class="mm-h2">${tit}</h2></div>` : `<h2 class="mm-h2">${tit}</h2>`)
+  + `<div class="mm-sec-lado"><p class="mm-p">${linea}</p><div class="mm-sec-acc"><a class="mm-btn mm-btn--linea" href="${cta.getAttribute('href')}">${cta.innerHTML}</a></div></div></div>`;
+const imgDe = (i, clase) => `<img class="${clase}" src="${i.getAttribute('src')}" alt="${escAttr(i.getAttribute('alt') ?? '')}" width="${i.getAttribute('width')}" height="${i.getAttribute('height')}" loading="lazy" decoding="async"${i.getAttribute('style') ? ` style="${i.getAttribute('style')}"` : ''}>`;
+function listasDePlano(doc, ruta) {
+  if (!esFicha(ruta)) return;
+  const cta = doc.querySelector('.mm-hero-a-acc > a.mm-btn');
+
+  const proc = doc.querySelector('section.process-section');
+  const h2 = proc?.querySelector('.process-header h2');
+  const linea = proc?.querySelector('.process-header p');
+  const pasos = [...(proc?.querySelectorAll('.process-content-item') ?? [])].map((it) => ({
+    img: it.querySelector('img.img-process'), tit: it.querySelector('.content-step-tab h2'), txt: it.querySelector('.w-richtext'),
+  }));
+  if (!h2 || !linea || pasos.length !== 4 || pasos.some((x) => !x.img || !x.tit || !x.txt)) {
+    throw new Error(`${ruta}: el proceso no trae titular, linea y cuatro pasos con foto, titulo y texto`);
+  }
+  localizar(proc);
+  for (const x of pasos) {
+    if (!x.img.getAttribute('width')) { const d = DIM.get(x.img.getAttribute('src')); if (d) { x.img.setAttribute('width', d.w); x.img.setAttribute('height', d.h); } }
+  }
+  const conFoto = pasos.every((x) => FOTO_VERIFICADA(x.img.getAttribute('src')) && x.img.getAttribute('width'));
+  const n2 = (k) => String(k).padStart(2, '0');
+  const nuevo = doc.createElement('section');
+  nuevo.setAttribute('class', `mm-proc${conFoto ? '' : ' mm-proc--sin'}`);
+  nuevo.innerHTML = cabeceraDeSeccion(h2.innerHTML.replace(/(Process)\s*$/, '<span class="mm-rot">$1</span>'), linea.innerHTML, cta)
+    + '<div class="mm-proc-cuerpo">'
+    + (conFoto ? `<figure class="mm-lam-medio mm-proc-medio" data-mm-pasos-medio>${imgDe(pasos[0].img, 'mm-lam-foto')}`
+      + `<div class="mm-lam-pie" aria-hidden="true" data-n="01 / 04" data-t="${escAttr(pasos[0].tit.textContent.trim())}"></div></figure>` : '')
+    + `<ol class="mm-pasos"${conFoto ? ' data-mm-pasos' : ''}>` + pasos.map((x, k) => `<li class="mm-paso"><span class="mm-paso-n">${k + 1}</span>`
+      + (conFoto ? imgDe(x.img, 'mm-paso-foto') : '')
+      + `<h3 class="mm-paso-t">${x.tit.innerHTML}</h3>${x.txt.innerHTML}</li>`).join('') + '</ol></div>';
+  proc.replaceWith(nuevo);
+
+  const que = doc.querySelector('section.services');
+  const cab = que?.querySelector('.header-subservices');
+  const filas = [...(que?.querySelectorAll('.svc-detalle__fila') ?? [])];
+  const [deco, qh2, qp] = ['.heading-deco', 'h2', 'p'].map((q) => cab?.querySelector(q));
+  if (!deco || !qh2 || !qp || filas.length < 2) throw new Error(`${ruta}: «What we do» no trae rotulo, titular, linea y filas`);
+  localizar(que);
+  const grupos = filas.map((f) => ({
+    img: f.querySelector('img.svc-detalle__foto'), tit: f.querySelector('.svc-detalle__tit'), intro: f.querySelector('.svc-detalle__intro'),
+    items: [...f.querySelectorAll('.svc-detalle__item')].map((li) => ({ a: li.querySelector('a.svc-subservicio'), t: li.querySelector('h4'), d: li.querySelector('.paragraph-mini') })),
+  }));
+  if (grupos.some((g) => !g.tit || !g.intro || !g.items.length || g.items.some((x) => !x.t || !x.d))) {
+    throw new Error(`${ruta}: una fila de «What we do» no trae titulo, entradilla y subservicios`);
+  }
+  const k = grupos.findIndex((g) => g.img && FOTO_VERIFICADA(g.img.getAttribute('src')) && g.img.getAttribute('width'));
+  const nq = doc.createElement('section');
+  nq.setAttribute('class', `mm-que${k < 0 ? ' mm-que--sin' : ''}`);
+  nq.innerHTML = cabeceraDeSeccion(qh2.innerHTML, qp.innerHTML, cta, deco.innerHTML)
+    + '<div class="mm-que-cuerpo"><div class="mm-que-col"><ol class="mm-grupos">'
+    + grupos.map((g, j) => `<li class="mm-grupo${j === k ? ' mm-grupo--activo' : ''}"><h3 class="mm-grupo-t">${g.tit.innerHTML}</h3><p class="mm-grupo-p">${g.intro.innerHTML}</p><dl class="mm-grupo-dl">`
+      + g.items.map((x) => `<div class="mm-grupo-i"><dt>${x.a ? `<a href="${x.a.getAttribute('href')}">${x.t.innerHTML}</a>` : x.t.innerHTML}</dt><dd>${x.d.innerHTML}</dd></div>`).join('')
+      + '</dl></li>').join('') + '</ol>'
+    + '<div class="mm-datos">' + TELEFONOS.map((t) => `<a class="mm-dato" href="tel:${t.tel}"><span class="mm-dato-rot">${t.zona}</span><span class="mm-dato-val">${t.visible}</span></a>`).join('') + '</div></div>'
+    + (k < 0 ? '' : `<figure class="mm-lam-medio mm-que-medio">${imgDe(grupos[k].img, 'mm-lam-foto')}`
+      + `<div class="mm-lam-pie" aria-hidden="true" data-n="${n2(k + 1)} / ${n2(grupos.length)}" data-t="${escAttr(grupos[k].tit.textContent.trim())}"></div></figure>`)
+    + '</div>';
+  que.replaceWith(nq);
 }
 
 /**
@@ -1673,6 +1747,7 @@ for (const [ruta] of RUTAS) {
   fotosCanjeadas += fotosPorRuta(doc, ruta);
   textosCorregidos += textosPropios(doc, ruta);
   mosaicoDeObra(doc, ruta);
+  listasDePlano(doc, ruta);
 
 
   const usados = new Set();

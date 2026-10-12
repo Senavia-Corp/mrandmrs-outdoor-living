@@ -305,23 +305,60 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
   .mm-h2 { font-size: 40px; }
 }
 @media (min-width: 1200px) { .mm-conf, .mm-intro { padding-inline: var(--mm-e-64); } }
-/* ── Galeria de obra en mosaico (ASTRO-2 · lamina «GaleriaObra») ─────────────────────── */
-.mm-gal { display: flex; flex-direction: column; gap: var(--mm-e-24); padding: var(--mm-e-64) 0; background: var(--mm-azul-50); font-family: var(--mm-familia); color: var(--mm-tinta-texto); }
-.mm-gal-cab { display: flex; flex-direction: column; gap: var(--mm-e-12); padding: 0 var(--mm-e-24); }
-.mm-gal-lado { display: flex; flex-direction: column; align-items: flex-start; gap: var(--mm-e-16); }
-.mm-gal-acc { display: flex; flex-wrap: wrap; align-items: center; gap: var(--mm-e-8) var(--mm-e-24); }
+/* ── Secciones de la ficha: cabecera comun, galeria, proceso y «What we do» (ASTRO-2) ───
+   `--mm-canal` es el margen lateral de la seccion: lo llevan la cabecera y las listas, y NO la
+   seccion, porque las fotos del proceso y de «What we do» sangran hasta el borde de la pagina. */
+.mm-gal, .mm-proc, .mm-que { --mm-canal: var(--mm-e-24); display: flex; flex-direction: column; gap: var(--mm-e-24); padding: var(--mm-e-64) 0; background: var(--mm-blanco); font-family: var(--mm-familia); color: var(--mm-tinta-texto); }
+.mm-gal { background: var(--mm-azul-50); }
+.mm-sec-cab { display: flex; flex-direction: column; gap: var(--mm-e-12); padding: 0 var(--mm-canal); }
+.mm-sec-tit { display: flex; flex-direction: column; gap: var(--mm-e-12); }
+.mm-sec-lado { display: flex; flex-direction: column; align-items: flex-start; gap: var(--mm-e-16); }
+.mm-sec-acc { display: flex; flex-wrap: wrap; align-items: center; gap: var(--mm-e-8) var(--mm-e-24); }
 .mm-mosaico { display: grid; gap: var(--mm-e-8); grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .mm-celda { position: relative; aspect-ratio: 1 / 1; min-height: var(--mm-ctl-s); padding: 0; border: 0; border-radius: var(--mm-r-8); overflow: hidden; background: var(--mm-azul-100); cursor: pointer; }
 .mm-celda:first-child { grid-column: 1 / -1; aspect-ratio: 3 / 2; }
 .mm-mosaico--6 .mm-celda:nth-child(6) { display: none; }
 .mm-celda img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform var(--mm-dur-foto) var(--mm-curva); }
 .mm-celda:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); box-shadow: var(--mm-foco-halo); z-index: 1; }
+/* La figura de lamina: foto a sangre con una ficha encima. El texto de la ficha es decorativo
+   (repite el titulo del paso o del grupo, que ya esta en la lista) y por eso va en CSS. */
+.mm-lam-medio { position: relative; margin: 0; aspect-ratio: 3 / 2; }
+.mm-lam-foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.mm-lam-pie { display: none; }
+.mm-pasos, .mm-grupos { list-style: none; margin: 0 var(--mm-canal); padding: 0; }
+.mm-paso { position: relative; padding: 0 0 var(--mm-e-40) 56px; }
+.mm-paso:last-child { padding-bottom: 0; }
+.mm-paso::after { content: ""; position: absolute; left: 19.5px; top: var(--mm-e-48); bottom: var(--mm-e-8); width: 1px; background: var(--mm-borde); }
+.mm-paso:last-child::after { display: none; }
+.mm-paso-n { position: absolute; left: 0; top: 0; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: var(--mm-r-pastilla); background: var(--mm-azul-100); color: var(--mm-navy); font-size: 16px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.mm-paso--activo .mm-paso-n { background: var(--mm-navy); color: var(--mm-oro); }
+.mm-paso-foto { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--mm-r-12); margin-bottom: var(--mm-e-16); }
+.mm-paso-t, .mm-grupo-t { margin: 0 0 var(--mm-e-8); font-family: var(--mm-familia); font-size: 22px; line-height: 1.2; font-weight: 700; letter-spacing: -0.015em; color: var(--mm-navy); text-transform: none; }
+.mm-paso-t { padding-top: 6px; }
+.mm-paso p, .mm-grupo-p { margin: 0; max-width: 650px; font-size: 16px; line-height: 1.55; color: var(--mm-tinta-texto); }
+.mm-proc-medio { display: none; }
+.mm-que-cuerpo { display: flex; flex-direction: column; gap: var(--mm-e-24); }
+.mm-que-col { display: flex; flex-direction: column; gap: var(--mm-e-24); }
+.mm-que-col .mm-datos { margin: 0 var(--mm-canal); border-top: 0; }
+.mm-que-medio { order: -1; }
+.mm-grupos { counter-reset: mm-grupo; border-bottom: 1px solid var(--mm-borde); }
+.mm-grupo { counter-increment: mm-grupo; position: relative; padding: var(--mm-e-24) 0 var(--mm-e-24) var(--mm-e-40); border-top: 1px solid var(--mm-borde); }
+.mm-grupo::before { content: counter(mm-grupo, decimal-leading-zero); position: absolute; left: 0; top: 28px; font-size: 12px; font-weight: 700; letter-spacing: 0.02em; font-variant-numeric: tabular-nums; color: var(--mm-tinta-suave); }
+.mm-grupo--activo::before { color: var(--mm-navy); }
+.mm-grupo--activo .mm-grupo-t { display: inline; background-image: linear-gradient(transparent 62%, var(--mm-oro) 62%, var(--mm-oro) 94%, transparent 94%); }
+.mm-grupo--activo .mm-grupo-p { padding-top: var(--mm-e-8); }
+.mm-grupo-dl { margin: var(--mm-e-16) 0 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--mm-e-12) var(--mm-e-32); }
+.mm-grupo-i { position: relative; }
+.mm-grupo-i dt { font-size: 14px; line-height: 1.4; font-weight: 700; color: var(--mm-navy); }
+.mm-grupo-i dd { margin: 2px 0 0; font-size: 14px; line-height: 1.5; color: var(--mm-tinta-texto); }
+.mm-grupo-i a { color: inherit; text-decoration: underline; text-decoration-color: var(--mm-oro); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.mm-grupo-i a::after { content: ""; position: absolute; inset: -4px 0; }
+.mm-grupo-i a:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); }
 @media (hover: hover) and (pointer: fine) { .mm-celda:hover img { transform: scale(1.05); } }
 @media (min-width: 768px) {
-  .mm-gal { gap: var(--mm-e-40); padding: var(--mm-e-64) var(--mm-e-32); }
-  .mm-gal-cab { padding: 0; }
-  .mm-gal-cab .mm-p { font-size: 18px; }
-  .mm-mosaico { grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); aspect-ratio: 1312 / 580; }
+  .mm-gal, .mm-proc, .mm-que { --mm-canal: var(--mm-e-32); gap: var(--mm-e-40); }
+  .mm-sec-cab .mm-p { font-size: 18px; }
+  .mm-mosaico { width: calc(100% - 2 * var(--mm-canal)); max-width: var(--mm-contenedor); margin-inline: auto; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); aspect-ratio: 1312 / 580; }
   .mm-celda, .mm-celda:first-child { aspect-ratio: auto; }
   .mm-celda:first-child { grid-column: 1 / span 6; grid-row: 1 / span 2; }
   .mm-celda:nth-child(2), .mm-celda:nth-child(3) { grid-column: span 3; }
@@ -329,13 +366,36 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
   .mm-mosaico--5 .mm-celda:nth-child(n + 4) { grid-column: span 3; }
   .mm-mosaico--4 .mm-celda:nth-child(2) { grid-column: span 6; }
   .mm-mosaico--4 .mm-celda:nth-child(n + 3) { grid-column: span 3; }
+  .mm-paso { padding-left: 72px; }
+  .mm-grupo { padding-left: 72px; }
+  .mm-grupo-dl { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (min-width: 992px) {
-  .mm-gal { padding-top: var(--mm-e-96); }
-  .mm-gal-cab { box-sizing: border-box; width: 100%; max-width: var(--mm-contenedor); margin: 0 auto; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--mm-e-64); align-items: end; }
-  .mm-mosaico { box-sizing: border-box; width: 100%; max-width: var(--mm-contenedor); margin: 0 auto; }
+  .mm-gal, .mm-proc, .mm-que { gap: 56px; padding: var(--mm-e-96) 0; }
+  .mm-gal { padding-bottom: var(--mm-e-64); }
+  .mm-sec-cab, .mm-proc-cuerpo, .mm-que-cuerpo { box-sizing: border-box; width: 100%; max-width: calc(var(--mm-contenedor) + 2 * var(--mm-canal)); margin-inline: auto; }
+  .mm-sec-cab { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--mm-e-64); align-items: end; }
+  .mm-lam-medio { position: sticky; top: 100px; aspect-ratio: 4 / 5; }
+  .mm-lam-pie { position: absolute; bottom: var(--mm-e-40); box-sizing: border-box; max-width: 280px; display: flex; flex-direction: column; gap: 2px; padding: var(--mm-e-12) var(--mm-e-16); background: var(--mm-blanco); border: 1px solid var(--mm-borde); border-radius: var(--mm-r-12); }
+  .mm-lam-pie::before { content: attr(data-n); font-size: 12px; line-height: 1.5; font-weight: 700; letter-spacing: 0.02em; font-variant-numeric: tabular-nums; color: var(--mm-tinta-suave); }
+  .mm-lam-pie::after { content: attr(data-t); font-size: 14px; line-height: 1.4; font-weight: 600; color: var(--mm-navy); }
+  .mm-proc-cuerpo { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: var(--mm-e-64); align-items: start; padding-right: var(--mm-canal); }
+  .mm-proc-medio { display: block; }
+  .mm-proc-medio .mm-lam-foto { border-radius: 0 var(--mm-r-16) var(--mm-r-16) 0; }
+  .mm-proc-medio .mm-lam-pie { right: -40px; }
+  .mm-proc-cuerpo .mm-pasos { margin: 0; }
+  .mm-proc-cuerpo .mm-paso-foto { display: none; }
+  .mm-proc--sin .mm-proc-cuerpo { display: block; padding: 0 var(--mm-canal); }
+  .mm-proc--sin .mm-pasos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--mm-e-64); }
+  .mm-que-cuerpo { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: var(--mm-e-64); align-items: start; padding-left: var(--mm-canal); }
+  .mm-que-col { gap: var(--mm-e-32); }
+  .mm-que-col .mm-grupos, .mm-que-col .mm-datos { margin: 0; }
+  .mm-que-medio { order: 0; }
+  .mm-que-medio .mm-lam-foto { border-radius: var(--mm-r-16) 0 0 var(--mm-r-16); }
+  .mm-que-medio .mm-lam-pie { left: -40px; }
+  .mm-que--sin .mm-que-cuerpo { display: block; padding: 0 var(--mm-canal); }
 }
-@media (min-width: 1200px) { .mm-gal { padding-inline: var(--mm-e-64); } }
+@media (min-width: 1200px) { .mm-gal, .mm-proc, .mm-que { --mm-canal: var(--mm-e-64); } }
 @media (prefers-reduced-motion: reduce) {
   .mm-cab-item, .mm-cab-item svg, .mm-cab-cta, .mm-cab-sub, .mm-cab-flecha svg, .mm-menu-fila svg, .mm-barra, .mm-barra-btn, .mm-btn { transition: none; }
 }

@@ -218,23 +218,6 @@
  * parece un error. Se subraya solo el titulo -que es lo que se lee como enlace- y se le dan los
  * estados que la tarjeta nunca tuvo: el `:hover` y el `:focus-visible` de la casa.
  * El anillo va en el ancla, no en la tarjeta, para que el foco marque lo que se pulsa. */
-.svc-subservicio {
-  display: block;
-  height: 100%;
-  color: inherit;
-  text-decoration: none;
-  border-radius: var(--mm-r-16);
-}
-.svc-subservicio .heading-2 {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1px;
-}
-.svc-subservicio:hover .heading-2 { text-decoration-thickness: 2px; }
-.svc-subservicio:focus-visible {
-  outline: var(--mm-foco-grosor) solid var(--mm-foco);
-  outline-offset: var(--mm-foco-aire);
-}
 
 /* El paso siguiente al final de la rejilla. Sin esto queda pegado a la esquina de la ultima
  * tarjeta, que es donde nadie lo busca. */
@@ -278,16 +261,9 @@
  *     `--mm-tinta-atenuada` (#596b9a) ......... 5,26:1   resumen del subservicio (AA normal)
  * El oro sigue viviendo SOLO dentro del dibujo del icono: 1,86:1 sobre blanco no marca nada. */
 
-.svc-detalle__fila { display: grid; gap: var(--mm-e-24); }
-
 /* El filete: entre filas, nunca antes de la primera ni despues de la ultima. Lleva el aire a
  * los dos lados en la MISMA regla —margen arriba, relleno abajo— y no repartido entre un
  * `gap` del padre y un relleno del hijo, que es como se descuadra el dia que se toca uno. */
-.svc-detalle__fila + .svc-detalle__fila {
-  margin-top: var(--mm-e-48);
-  border-top: 1px solid var(--mm-borde);
-  padding-top: var(--mm-e-48);
-}
 
 /* LA PROPORCION NO SE DECLARA AQUI, Y ES UNA DECISION, NO UN OLVIDO.
  *
@@ -305,25 +281,10 @@
  * el navegador: los `width`/`height` son PISTAS DE PRESENTACION y el navegador las mapea a
  * `width: 1250px; height: 698px` con especificidad cero. `inline-size: 100%` pisa la primera,
  * pero la segunda sobrevive y la foto sale a 609x698 en vez de a su proporcion. */
-.svc-detalle__foto {
-  inline-size: 100%;
-  block-size: auto;
-  border-radius: var(--mm-r-16);
-}
 
 /* El `h3` ya llega navy y a `line-height` 120% desde `webflow.css`; aqui solo se le pone el
  * cuerpo y el peso. Paso 5 (20->25 px) contra el paso 4 del titulo de subservicio: la fila
  * manda sobre sus items sin gritar. */
-.svc-detalle__tit {
-  margin: 0 0 var(--mm-e-12);
-  font-size: var(--mm-paso-5);
-}
-.svc-detalle__intro {
-  margin: 0;
-  max-inline-size: var(--mm-medida);
-  font-size: var(--mm-paso-4);
-  line-height: var(--mm-alto-cuerpo);
-}
 
 /* ── LA LISTA ─────────────────────────────────────────────────────────────────────────────
  * AQUI NO SE ANULA NADA, Y ESA ES LA DECISION. La piel de tarjeta (`webflow.css`: relleno de
@@ -347,27 +308,10 @@
  *
  * `align-items: flex-start` para que la placa se alinee con la PRIMERA LINEA del titulo y no
  * se centre contra el bloque de dos lineas. */
-.svc-detalle__lista {
-  list-style: none;
-  display: grid;
-  gap: var(--mm-e-16);
-  margin: var(--mm-e-24) 0 0;
-  padding: 0;
-}
-.svc-detalle__caja { display: flex; gap: var(--mm-e-16); align-items: flex-start; }
-.svc-detalle .heading-2 { font-size: var(--mm-paso-3); }
 
 /* A partir de 768 la fila son dos columnas y ALTERNA. El orden del MARCADO es siempre
  * foto -> cuerpo, asi que la lectura sin CSS y la del lector de pantalla no cambian nunca;
  * lo que cambia de lado es la PINTURA, con `order`. Por debajo se apila, foto primero. */
-@media (min-width: 768px) {
-  .svc-detalle__fila {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--mm-e-32);
-    align-items: center;
-  }
-  .svc-detalle__fila--derecha .svc-detalle__foto { order: 2; }
-}
 
 /* ══ 4 · INVERSION Y FINANCIACION ═════════════════════════════════════════════════════════
  * La maqueta de dos columnas DE TEXTO que habia aqui (texto a la izquierda, acciones a la
