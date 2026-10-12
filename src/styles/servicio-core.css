@@ -511,11 +511,10 @@
  * 3,98:1 y el 1,11 % del area del texto quedaba por debajo de 4,5:1. O sea que el heroe ya
  * incumplia antes de este encargo, y ninguna puerta lo veia: `check:visual` compara contra su
  * propio baseline, asi que un texto que ya se leia mal se aprueba como «sin cambio». */
-.svc-heroe {
-  background-image: linear-gradient(
-    color-mix(in srgb, var(--mm-negro) 56%, transparent),
-    color-mix(in srgb, var(--mm-negro) 56%, transparent));
-}
+/* ASTRO-2 (12-oct-2026): la regla `.svc-heroe` (el velo del 56 % sobre la foto del heroe) se
+ * RETIRA. Las 14 fichas llevan el Hero A (`.mm-hero-a`, sistema.css): el texto ya no va sobre
+ * la foto y no hay velo que poner. Medido en el build: 0 elementos con la clase `svc-heroe`.
+ * `.svc-heroe__tel` y `.svc-heroe__lic` SIGUEN: las usan las 118 paginas de ciudad. */
 
 /* Los dos telefonos y las licencias. Sin esto heredan el azul de enlace de Webflow sobre una
  * foto oscura -medido en el laboratorio: ilegible-. Blanco sobre el velo da los 5,05:1 de

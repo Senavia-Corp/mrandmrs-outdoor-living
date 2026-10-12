@@ -49,7 +49,7 @@ const LANDINGS = [
       campo: 'Project-Type',
       preseleccion: 'New Custom Pool',
     },
-    heroe: 'img.image-bg-hero-services',
+    heroe: '.mm-hero-a-medio img',
     /* La regla 14 existe POR ESTA LANDING: R17-CORE §4.3 la encontro publicando en su `FAQPage`
      * una pregunta que no estaba en la pagina, con una cifra sin verificar dentro. Dejarla sin
      * cubrir seria escribir la puerta y no cerrarla. Son 8: las 5 del origen mas las 3 de R17. */
@@ -106,7 +106,7 @@ const LANDINGS = [
       campo: 'Project-Type',
       preseleccion: 'Complete Pool Remodel',
     },
-    heroe: 'img.image-bg-hero-services',
+    heroe: '.mm-hero-a-medio img',
     /* SEO-SAFE (1-oct-2026): las 5 del origen mas las 3 objeciones que ya tenia el Core. */
     faq: { n: 8 },
   },
@@ -393,7 +393,7 @@ console.log('\n── pendiente de extender (A1 / heroe) ──');
     const html = leer(L.ruta) ?? '';
     const dd = new JSDOM(html).window.document;
     const nForms = [...dd.querySelectorAll('form')].filter((f) => f.getAttribute('data-mm-envia') === '1').length;
-    const hi = dd.querySelector('img.image-bg-hero-services');
+    const hi = dd.querySelector('.mm-hero-a-medio img, img.image-bg-hero-services');
     const falta = [];
     if (!L.formulario) falta.push(`sin formulario propio declarado (${nForms} en la pagina)`);
     if (!L.heroe) {

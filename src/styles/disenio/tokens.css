@@ -552,4 +552,6 @@
   --mm-t-display: clamp(40px, 3.7vw + 4px, 56px);
   --mm-turnstile-alto: 65px;
   --mm-barra-alto: 68px;
+  --mm-t-display-movil: 36px;
+  --mm-contenedor: 1312px;
 }

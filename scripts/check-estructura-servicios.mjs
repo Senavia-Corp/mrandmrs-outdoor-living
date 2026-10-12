@@ -29,10 +29,10 @@ const ESTATICO = path.join(RAIZ, '.vercel/output/static');
  *  a mano a proposito: derivarlo del generador que lo produce seria comparar la salida consigo
  *  misma. */
 const ESPERADO = [
-  'hero-services', 'logos-section', 'svc-confianza', 'trusted-section', 'appointment-section',
+  'mm-hero-a', 'svc-confianza', 'trusted-section', 'appointment-section',
   'gallery', 'services', 'process-section', 'svc-inversion', 'faq-section', 'testimonial-section',
-  'location', 'blog-section-page', 'social-media', 'cta-footer', 'logos-section',
-];
+  'location', 'blog-section-page', 'social-media', 'cta-footer',
+];   // ASTRO-2: la franja de logos va DENTRO del hero y la repetida junto al pie se retira (D-53)
 
 /** Excepciones declaradas: las dos fichas de piscina recuperan el antes/despues entre los servicios
  *  y el proceso. Remodelacion con el par real del banco (R24-FOTO-PISCINAS, 1-oct-2026); obra nueva
@@ -76,7 +76,7 @@ for (const ruta of RUTAS) {
   // ASTRO-1 (12-oct-2026): el pie es <footer class="mm-zocalo">, ya no un <section class="footer">,
   // asi que deja de salir en `clases`. Sin pie-seccion, el cuerpo llega hasta la ultima seccion.
   const finPie = clases.lastIndexOf('footer');
-  const cuerpo = clases.slice(clases.indexOf('hero-services'), finPie >= 0 ? finPie : clases.length);
+  const cuerpo = clases.slice(clases.indexOf('mm-hero-a'), finPie >= 0 ? finPie : clases.length);
   const esperado = esperadoDe(ruta);
   if (cuerpo.join(' ') !== esperado.join(' ')) {
     const i = esperado.findIndex((c, k) => cuerpo[k] !== c);

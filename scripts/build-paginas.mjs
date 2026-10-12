@@ -71,6 +71,29 @@ const CAPTACION = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/captacion
  */
 const RUTAS_CAPTACION_SERVICIOS = Object.keys(CAPTACION).filter(esFicha);
 const TELEFONOS = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/telefonos.json'), 'utf8')).items;
+
+/* ── REDISEÑO STITCH · ASTRO-2 · piezas del Hero A ────────────────────────────────────────────
+ * EL PIE DE FOTO (D-109). Solo cuando la foto del hero está en el banco: el pie es su `alt` del
+ * banco, TAL CUAL. No se redacta ninguna cadena a mano. Si la foto no está en el banco
+ * (`heroe._banco` ausente) no hay tarjeta: variante sin pie. */
+const BANCO_ALT = new Map(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/banco-imagenes.json'), 'utf8'))
+  .filter((e) => e.procedencia === 'obra_real').map((e) => [e.id, e.alt]));
+function pieDeFoto(heroe) {
+  const alt = heroe._banco && BANCO_ALT.get(heroe._banco);
+  if (!alt) return '';
+  return `<figcaption class="mm-pie-foto"><span class="mm-dato-rot">Project</span><span>${alt.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</span></figcaption>`;
+}
+/* LA FRANJA DE LOGOS, estática y dentro del hero. Los mismos logos y el mismo titular que la
+ * marquesina `section.logos-section` del origen, una vez cada uno y en su orden. */
+function franjaDeLogos(doc) {
+  const sec = doc.querySelector('section.logos-section');
+  if (!sec) return '';
+  const titulo = sec.querySelector('h2')?.textContent.trim() ?? '';
+  const vistos = new Set();
+  const logos = [...sec.querySelectorAll('img')].filter((i) => { const u = i.getAttribute('src'); if (vistos.has(u)) return false; vistos.add(u); return true; })
+    .map((i) => `<li><img src="${i.getAttribute('src')}" alt="" width="${i.getAttribute('width')}" height="${i.getAttribute('height')}" loading="lazy" decoding="async"></li>`).join('');
+  return `<div class="mm-hero-a-logos"><h2 class="mm-etiqueta">${titulo}</h2><ul class="mm-hero-a-fila">${logos}</ul></div>`;
+}
 /* Las clases de `<img>` a las que se les reserva el hueco (§ limpia()). Enumeradas y medidas:
  * cada una entro aqui con una cifra de `layout-shift` detras, no por precaucion.
  *   · `cover-brochure-page` (/brochures, 57 portadas `lazy`): miden 0 px hasta cargar y la
@@ -815,6 +838,47 @@ function captacion(doc, ruta) {
       lic.textContent = c.heroe.licencias;
       cta.parentNode.insertBefore(tel, cta);
       cta.parentNode.insertBefore(lic, cta);
+    }
+
+    /* ── REDISEÑO STITCH · ASTRO-2 · HERO A (12-oct-2026) ──────────────────────────────────────
+     * El hero deja de ser texto sobre foto con velo: texto a la izquierda y la foto a sangre a
+     * la derecha (lámina G2-A, STITCH-PARTE-6 y 18). Mismo texto, mismo destino del botón, la
+     * misma imagen con sus medidas y `fetchpriority="high"`. Lo que cambia de forma:
+     *   · los dos teléfonos y la licencia pasan a la banda de datos `.mm-datos` (mismo contenido);
+     *   · el H1 lleva el rotulador en la palabra de servicio (`heroe.marca`, CON GUARDA: si la
+     *     palabra no está en el H1, el build revienta en vez de publicar un título sin marca).
+     * La sección pasa a llamarse `mm-hero-a`: sin `hero-services` no le llega ni una regla de
+     * `webflow.css` ni de `servicio-core.css`, que es lo que permite retirarlas. */
+    const h1 = heroe.querySelector('h1');
+    const deco = heroe.querySelector('.heading-deco-services');
+    if (img && h1 && cta && c.heroe.marca) {
+      const esc = (t) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+      const titulo = h1.textContent.trim();
+      if (!titulo.includes(c.heroe.marca)) {
+        console.error(`\n  ROJO ${ruta}: heroe.marca «${c.heroe.marca}» no está en el H1 «${titulo}»\n`);
+        process.exit(1);
+      }
+      const [antes, ...resto] = titulo.split(c.heroe.marca);
+      const [rotLic, ...valLic] = c.heroe.licencias.split(' · ');
+      const nuevo = doc.createElement('section');
+      nuevo.className = 'mm-hero-a';
+      nuevo.innerHTML = '<div class="mm-hero-a-txt">'
+        + (deco ? `<p class="mm-etiqueta">${esc(deco.textContent.trim())}</p>` : '')
+        + `<h1 class="mm-h1">${esc(antes)}<span class="mm-rot">${esc(c.heroe.marca)}</span>${esc(resto.join(c.heroe.marca))}</h1>`
+        + `<p class="mm-p">${esc(c.heroe.apoyo)}</p>`
+        + `<div class="mm-hero-a-acc"><a class="mm-btn" href="${cta.getAttribute('href')}">${esc(cta.textContent.trim())}</a></div>`
+        + '<div class="mm-datos mm-datos--3">'
+        + TELEFONOS.map((t) => `<a class="mm-dato" href="tel:${t.tel}"><span class="mm-dato-rot">${t.zona}</span><span class="mm-dato-val">${t.visible}</span></a>`).join('')
+        + `<div class="mm-dato"><span class="mm-dato-rot">${esc(rotLic)}</span><span class="mm-dato-val">${esc(valLic.join(' · '))}</span></div>`
+        + '</div></div>'
+        + `<figure class="mm-hero-a-medio"><img src="${img.getAttribute('src')}" alt="${img.getAttribute('alt').replace(/&/g, '&amp;').replace(/"/g, '&quot;')}" width="${c.heroe.ancho}" height="${c.heroe.alto}" loading="eager" fetchpriority="high" decoding="async">${pieDeFoto(c.heroe)}</figure>`
+        + franjaDeLogos(doc);
+      heroe.replaceWith(nuevo);
+      /* La marquesina de logos de Webflow se va de la ficha: la primera pasa a ser la fila
+       * estática de dentro del hero (lámina G2-A) y la repetida junto al pie se retira (D-53). */
+      /* SE MARCAN, NO SE QUITAN AQUI: los bloques de mas abajo usan `logos-section` de ancla
+       * (confianza, formulario, el canje de galeria). La salida las omite al emitir. */
+      doc.querySelectorAll('section.logos-section').forEach((x) => x.setAttribute('data-mm-retirada', ''));
     }
   }
 
@@ -1914,7 +1978,9 @@ for (const [ruta] of RUTAS) {
       usados.add('CarruselBlog');
       blogsInsertados++;
     }
-    acumulado += limpia(n);
+    // ASTRO-2: la franja de logos ya va dentro del hero; la seccion vieja no se emite, pero
+    // sigue sirviendo de ancla para lo que cuelga detras de ella.
+    if (!n.hasAttribute?.('data-mm-retirada')) acumulado += limpia(n);
     if (CAPTACION[ruta] && n.matches?.('section.logos-section') && primerLogos) {
       primerLogos = false;
       acumulado += MARCA + 'ConfianzaCore' + MARCA;

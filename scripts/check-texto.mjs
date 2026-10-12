@@ -558,6 +558,32 @@ const traduce = (ruta, l) => {
  * CON GUARDA, como `piePropio`: si lo esperado no trae EXACTAMENTE el tramo viejo, no se toca
  * nada y la ruta sale roja. Va DESPUES de `piePropio`, que es quien ordena servicios y zonas.
  */
+/** El `alt` del banco por id: es el pie de foto del Hero A (D-109). Misma fuente que el generador. */
+const BANCO_ALT = new Map(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/banco-imagenes.json'), 'utf8'))
+  .filter((e) => e.procedencia === 'obra_real').map((e) => [e.id, e.alt]));
+/**
+ * ASTRO-2 · lo que el Hero A cambia en lineas que SI vienen del baseline, en las 14 fichas:
+ *   · el antetitulo («Licensed & Insured Contractors») sale en MAYUSCULAS: es `.mm-etiqueta`,
+ *     `text-transform` en CSS; el texto del HTML es el mismo;
+ *   · «Trusted By Florida's Finest Homeowners» salia DOS veces (la marquesina tras el hero y la
+ *     repetida junto al pie). Queda una, dentro del hero y en mayusculas por lo mismo; la segunda
+ *     se retira (D-53, T-22 y T-43).
+ * CON GUARDA: si la ficha no trae exactamente esas lineas, no se toca nada y sale roja.
+ */
+const ANTETITULO_FICHA = 'Licensed & Insured Contractors';
+const LOGOS_TITULO = "Trusted By Florida's Finest Homeowners";
+function heroAStitch(ruta, lineas) {
+  if (!esFicha(ruta)) return lineas;
+  const out = [...lineas];
+  const a = out.indexOf(ANTETITULO_FICHA);
+  const l1 = out.indexOf(LOGOS_TITULO);
+  const l2 = out.lastIndexOf(LOGOS_TITULO);
+  if (a < 0 || l1 < 0 || l2 === l1) return lineas;
+  out[a] = ANTETITULO_FICHA.toUpperCase();
+  out[l1] = LOGOS_TITULO.toUpperCase();
+  out.splice(l2, 1);
+  return out;
+}
 const MENU_VIEJO = ['Home', 'Services', 'About Us', 'Project Gallery', 'Resources', 'Financing', 'Contact Us', 'Get A Free Estimate'];
 const MENU_NUEVO = ['Skip to content', 'Florida certified pool contractor · CPC1461119 · CPC1460562',
   ...TELEFONOS.items.flatMap((t) => [t.zona, t.visible]),
@@ -2885,6 +2911,24 @@ function bloquesCaptacion(ruta) {
    * Y el ` · ` de los telefonos SIGUE AHI. La forma nueva son dos chips, pero el separador no se
    * quita: `innerText` lo ve y el texto no se toca (Principio 2). */
   const zonas = c.heroe.zonas ?? TELEFONOS.items.map((x) => x.zona);
+  if (esFicha(ruta)) {
+    /* REDISEÑO STITCH · ASTRO-2 · HERO A de las 14 fichas. Los dos telefonos y la licencia pasan
+     * de dos renglones sueltos a la banda de datos `.mm-datos`: mismo contenido, otra forma. Cada
+     * dato son dos lineas (rotulo en MAYUSCULAS por CSS + valor), y los tres van seguidos. Detras,
+     * el pie de foto cuando el hero esta en el banco (D-109): `Project` + el `alt` del banco, tal
+     * cual. T-11, T-12 y T-66 de STITCH-TEXTO.md. Derivado de las mismas fuentes que el generador. */
+    const [rotLic, ...valLic] = c.heroe.licencias.split(' · ');
+    const pie = c.heroe._banco && BANCO_ALT.get(c.heroe._banco);
+    bloques.push([
+      ...zonas.flatMap((z) => {
+        const tel = TELEFONOS.items.find((x) => x.zona === z);
+        if (!tel) throw new Error(`check-texto: heroe.zonas pide «${z}» y telefonos.json no lo trae`);
+        return [tel.zona.toUpperCase(), tel.visible];
+      }),
+      rotLic.toUpperCase(), valLic.join(' · '),
+      ...(pie ? ['PROJECT', pie] : []),
+    ]);
+  } else {
   bloques.push([
     zonas.map((z) => {
       const tel = TELEFONOS.items.find((x) => x.zona === z);
@@ -2893,6 +2937,7 @@ function bloquesCaptacion(ruta) {
     }).join(' · '),
   ]);
   bloques.push([c.heroe.licencias]);
+  }
 
   // 2 · franja de confianza. SOLA, y esto es el cambio de R19 C4.
   //     R18: los pasos van DELANTE del formulario desde el rediseno de la seccion. No hace
@@ -3341,9 +3386,9 @@ for (const ruta of RUTAS_A_MEDIR) {
     rojos.push({ ruta, falta: [ocultasFallo], sobra: [], fuera: [] });
     continue;
   }
-  const esperado = subeGaleriaCiudad(ruta, reordena(ruta, cascaronStitch(piePropio(ctaHeroe(ruta,
+  const esperado = subeGaleriaCiudad(ruta, reordena(ruta, heroAStitch(ruta, cascaronStitch(piePropio(ctaHeroe(ruta,
     sinOcultas
-      .filter((l) => !declaradas.has(l)).map((l) => traduce(ruta, l))))))).join('\n');
+      .filter((l) => !declaradas.has(l)).map((l) => traduce(ruta, l)))))))).join('\n');
   const bruto = (await textoNormalizado(pag)).trimEnd();
   if (bruto.includes(RESENAS_MARCADOR)) conResenas++;
   if (enBlogRutas(ruta) && lineasBlog(ruta).length
