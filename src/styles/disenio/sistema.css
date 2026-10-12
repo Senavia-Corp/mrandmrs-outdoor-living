@@ -23,7 +23,7 @@
 html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scroll-padding-bottom: calc(var(--mm-barra-alto, 68px) + var(--mm-e-16)); }
 
 /* ── Piezas compartidas ─────────────────────────────────────────────────────────────── */
-.mm-salto { position: absolute; left: var(--mm-e-16); top: var(--mm-e-8); z-index: 1100; padding: var(--mm-e-12) var(--mm-e-16); border-radius: var(--mm-r-8); background: var(--mm-navy); font: 700 15px/1.2 var(--mm-familia); color: var(--mm-blanco); text-decoration: none; transform: translateY(-200%); }
+.mm-salto { display: inline-flex; align-items: center; box-sizing: border-box; min-height: var(--mm-ctl-s); position: absolute; left: var(--mm-e-16); top: var(--mm-e-8); z-index: 1100; padding: var(--mm-e-12) var(--mm-e-16); border-radius: var(--mm-r-8); background: var(--mm-navy); font: 700 15px/1.2 var(--mm-familia); color: var(--mm-blanco); text-decoration: none; transform: translateY(-200%); }
 .mm-salto:focus { transform: none; outline: 2px solid var(--mm-foco); outline-offset: 2px; box-shadow: var(--mm-foco-halo); }
 .mm-etiqueta { margin: 0; font-family: var(--mm-familia); font-size: 12px; line-height: 1.5; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; color: var(--mm-tinta-suave); }
 .mm-datos { display: grid; grid-auto-flow: column; grid-auto-columns: max-content; justify-content: start; border-top: 1px solid var(--mm-borde); font-family: var(--mm-familia); }
@@ -375,7 +375,9 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 .mm-grupo-i { position: relative; }
 .mm-grupo-i dt { font-size: 14px; line-height: 1.4; font-weight: 700; color: var(--mm-navy); }
 .mm-grupo-i dd { margin: 2px 0 0; font-size: 14px; line-height: 1.5; color: var(--mm-tinta-texto); }
-.mm-grupo-i a { color: inherit; text-decoration: underline; text-decoration-color: var(--mm-oro); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+/* El enlace va en linea dentro del `<dt>`: el relleno vertical le da 44 px de zona de toque sin
+   mover el renglon (el siguiente enlace queda a mas de 30 px). */
+.mm-grupo-i a { padding-block: 13px; color: inherit; text-decoration: underline; text-decoration-color: var(--mm-oro); text-decoration-thickness: 2px; text-underline-offset: 3px; }
 .mm-grupo-i a::after { content: ""; position: absolute; inset: -4px 0; }
 .mm-grupo-i a:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); }
 @media (hover: hover) and (pointer: fine) { .mm-celda:hover img { transform: scale(1.05); } }
@@ -455,7 +457,7 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 .mm-faq-col { display: flex; flex-direction: column; gap: var(--mm-e-16); min-width: 0; }
 .mm-faq .mm-faq-fuentes { margin: var(--mm-e-12) 0 0; font-size: 14px; line-height: 1.6; color: var(--mm-tinta-suave); }
 .mm-faq .mm-faq-mas { margin: 0 var(--mm-canal); }
-.mm-faq .mm-faq-fuentes a { color: var(--mm-navy); font-weight: 600; text-decoration: underline; text-decoration-color: var(--mm-oro); text-decoration-thickness: 2px; text-underline-offset: 3px; display: inline-block; padding-block: var(--mm-e-12); }
+.mm-faq .mm-faq-fuentes a { color: var(--mm-navy); font-weight: 600; text-decoration: underline; text-decoration-color: var(--mm-oro); text-decoration-thickness: 2px; text-underline-offset: 3px; display: inline-flex; align-items: center; min-height: var(--mm-ctl-s); }
 .mm-faq-lado { display: flex; flex-direction: column; }
 .mm-faq-accion { position: relative; z-index: 1; box-sizing: border-box; margin: 0 var(--mm-canal); padding: var(--mm-e-20); display: flex; flex-direction: column; gap: var(--mm-e-12); background: var(--mm-blanco); border: 1px solid var(--mm-borde); border-radius: var(--mm-r-12); }
 .mm-faq-medio + .mm-faq-accion { margin-top: calc(-1 * var(--mm-e-40)); }
