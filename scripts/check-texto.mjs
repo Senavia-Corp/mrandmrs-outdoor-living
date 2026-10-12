@@ -300,11 +300,11 @@ function esperadoPropio(ruta, lineas) {
     const i = out.findIndex((_, k) => d.antes.every((l, j) => out[k + j] === l));
     if (i >= 0) out = [...out.slice(0, i), ...d.despues, ...out.slice(i + d.antes.length)];
   }
-  return out;
+  return cascaronStitch(out);   // las referencias propias se capturaron con el cascaron de Webflow
 }
 /** Lo medido de una ruta propia, sin las lineas que una declaracion con su nombre añade. */
 function medidoPropio(ruta, lineas) {
-  const out = [...lineas];
+  const out = marcaCabecera(lineas);
   for (const d of LINEAS_ANADIDAS) {
     if (!d.rutas?.includes(ruta)) continue;
     for (const l of d.lineas) { const i = out.indexOf(l); if (i >= 0) out.splice(i, 1); }
@@ -535,6 +535,66 @@ const traduce = (ruta, l) => {
  *   · el año del copyright.
  * Con GUARDA: si el baseline no trae exactamente esos tramos, no se toca nada y sale rojo.
  */
+/**
+ * ── REDISEÑO STITCH · ASTRO-1 (12-oct-2026) · EL CASCARON NUEVO ─────────────────────────────
+ * `Nav.astro` y `Footer.astro` dejan de ser el marcado de Webflow. Lo que cambia de texto esta
+ * en docs/encargos/STITCH-TEXTO.md y se declara AQUI, de una vez para todas las rutas, sobre lo
+ * ESPERADO (el baseline no se toca). Los telefonos, los servicios y las zonas salen de las
+ * mismas fuentes que pinta la pagina (`telefonos.json`, `src/lib/pie.mjs`).
+ *
+ *   CABECERA
+ *   · T-01  `Home` sale de la barra de escritorio (el logo enlaza a `/`).
+ *   · T-03/T-04/T-05  entran la licencia y los dos telefonos con su zona, en la franja.
+ *   · `Financing` y `Contact Us` pasan a la franja: mismo texto, ANTES de `Services`.
+ *   · T-62  `Skip to content`, el enlace de salto (nuevo; visible solo con el foco).
+ *   · T-02  los tres iconos de redes del menu no tenian texto: nada que declarar aqui.
+ *   PIE
+ *   · T-23  «Mr. & Mrs. Outdoor Living - Licensed & Insured | CPC… | CPC… | SCC…» pasa a ser
+ *           el rotulo `Licensed & Insured` y las tres licencias como dato.
+ *   · T-63  los dos telefonos con su zona, nuevos en el pie.
+ *   · Los tres rotulos de columna salen en MAYUSCULAS: es `text-transform` en CSS, el texto
+ *     del HTML es el de siempre. Y «Residential Services» va antes que «Quick Links».
+ *
+ * CON GUARDA, como `piePropio`: si lo esperado no trae EXACTAMENTE el tramo viejo, no se toca
+ * nada y la ruta sale roja. Va DESPUES de `piePropio`, que es quien ordena servicios y zonas.
+ */
+const MENU_VIEJO = ['Home', 'Services', 'About Us', 'Project Gallery', 'Resources', 'Financing', 'Contact Us', 'Get A Free Estimate'];
+const MENU_NUEVO = ['Skip to content', 'Florida certified pool contractor · CPC1461119 · CPC1460562',
+  ...TELEFONOS.items.flatMap((t) => [t.zona, t.visible]),
+  'Financing', 'Contact Us', 'Services', 'About Us', 'Project Gallery', 'Resources', 'Get A Free Estimate'];
+const PIE_LICENCIA_VIEJA = 'Mr. & Mrs. Outdoor Living - Licensed & Insured | CPC1461119 | CPC1460562 | SCC131153553';
+const PIE_RAPIDOS = ['Home', 'About Us', 'Our Feature Projects', 'Customer Reviews', 'Blog & Tips', 'Contact Us'];
+/* La cabecera se compara como UNA marca, no linea a linea: su licencia («Florida certified pool
+ * contractor · …») es la MISMA cadena que ya pinta el hero de las fichas, y los descuentos de
+ * bloques de mas abajo (`sinElBloque`) buscan por primera aparicion: se llevaban la de la
+ * cabecera y dejaban la del hero. En lo medido, `marcaCabecera` cambia el tramo nuevo, EXACTO y
+ * seguido, por la marca; en lo esperado, `cascaronStitch` cambia el viejo por la misma marca.
+ * Si la pagina no trae el tramo nuevo tal cual, no hay marca y la ruta sale roja. */
+const MARCA_CABECERA = '\u27e6cabecera G1: ' + MENU_NUEVO.join(' | ') + '\u27e7';
+function marcaCabecera(lineas) {
+  const out = [...lineas];
+  const m = out.findIndex((_, k) => MENU_NUEVO.every((l, j) => out[k + j] === l));
+  // La ultima linea («Get A Free Estimate») se queda fuera de la marca: hay declaraciones de
+  // mas abajo ancladas `tras` ella (/gallery, /projects).
+  if (m >= 0) out.splice(m, MENU_NUEVO.length - 1, MARCA_CABECERA);
+  return out;
+}
+function cascaronStitch(lineas) {
+  let out = [...lineas];
+  const m = out.findIndex((_, k) => MENU_VIEJO.every((l, j) => out[k + j] === l));
+  if (m >= 0) out.splice(m, MENU_VIEJO.length - 1, MARCA_CABECERA);
+  const servicios = ORDEN_SERVICIOS_PIE.map((x) => x.texto);
+  const zonas = AREAS_PIE.map((x) => x.texto);
+  const viejo = [PIE_LICENCIA_VIEJA, 'Quick Links', ...PIE_RAPIDOS, 'Residential Services', ...servicios, 'Areas We Serve', ...zonas];
+  const p = out.findIndex((_, k) => viejo.every((l, j) => out[k + j] === l));
+  if (p >= 0) {
+    out.splice(p, viejo.length,
+      ...TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]),
+      'LICENSED & INSURED', 'CPC1461119 · CPC1460562 · SCC131153553',
+      'RESIDENTIAL SERVICES', ...servicios, 'QUICK LINKS', ...PIE_RAPIDOS, 'AREAS WE SERVE', ...zonas);
+  }
+  return out;
+}
 function piePropio(lineas) {
   const out = [...lineas];
   const s = out.indexOf('Residential Services');
@@ -3275,9 +3335,9 @@ for (const ruta of RUTAS_A_MEDIR) {
     rojos.push({ ruta, falta: [ocultasFallo], sobra: [], fuera: [] });
     continue;
   }
-  const esperado = subeGaleriaCiudad(ruta, reordena(ruta, piePropio(ctaHeroe(ruta,
+  const esperado = subeGaleriaCiudad(ruta, reordena(ruta, cascaronStitch(piePropio(ctaHeroe(ruta,
     sinOcultas
-      .filter((l) => !declaradas.has(l)).map((l) => traduce(ruta, l)))))).join('\n');
+      .filter((l) => !declaradas.has(l)).map((l) => traduce(ruta, l))))))).join('\n');
   const bruto = (await textoNormalizado(pag)).trimEnd();
   if (bruto.includes(RESENAS_MARCADOR)) conResenas++;
   if (enBlogRutas(ruta) && lineasBlog(ruta).length
@@ -3289,7 +3349,7 @@ for (const ruta of RUTAS_A_MEDIR) {
    * acusando de «se ha colado en alguna ruta de mas». El descuento de `sinElBloque` nunca
    * estuvo afectado: alli se compara sobre el ARRAY, o sea linea completa. */
   if (lineasFeed().length && bruto.split('\n').includes(lineasFeed()[0])) conFeed++;
-  const hay = sinElBloque(ruta, bruto);
+  const hay = sinElBloque(ruta, marcaCabecera(bruto.split('\n')).join('\n'));
   if (hay === null) {
     mal++;
     /* Cual de los dos bloques fallo. Antes esto leia `ANADIDAS_A_PROPOSITO[ruta].bloque` a
@@ -3312,6 +3372,13 @@ for (const ruta of RUTAS_A_MEDIR) {
   rojos.push({ ruta, ...d });
   /* `MM_TEXTO_DIFF=1`: vuelca esperado/medido alrededor de la primera linea distinta. Solo
    * diagnostico (SEO-REMEDIACION, 4-oct-2026); no cambia el veredicto. */
+  /* `MM_TEXTO_VOLCAR=<dir>`: escribe esperado y medido enteros de cada ruta en rojo. Solo
+   * diagnostico (REDISEÑO STITCH, ASTRO-1); no cambia el veredicto. */
+  if (process.env.MM_TEXTO_VOLCAR) {
+    fs.mkdirSync(process.env.MM_TEXTO_VOLCAR, { recursive: true });
+    fs.writeFileSync(path.join(process.env.MM_TEXTO_VOLCAR, aSlug(ruta) + '.esperado.txt'), esperado);
+    fs.writeFileSync(path.join(process.env.MM_TEXTO_VOLCAR, aSlug(ruta) + '.medido.txt'), hay);
+  }
   if (process.env.MM_TEXTO_DIFF) {
     const a = esperado.split('\n'); const b = hay.split('\n');
     const k = a.findIndex((l, i) => l !== b[i]);
