@@ -99,7 +99,30 @@
           // que ya es limpio y ademas es el mismo `form_name` que viaja a GA4: una sola
           // nomenclatura para las dos cosas.
           const accion = idDe(form);
-          idWidget = ts.render(caja, { sitekey: CLAVE_SITIO, action: accion });
+          /* D-143 · UN FALLO SE REGISTRA UNA VEZ, NO EN BUCLE. Sin `error-callback`, el widget
+           * reintenta solo y lanza un `TurnstileError` sin capturar en cada intento (105 en pocos
+           * segundos en un dominio que la clave no admite). Devolver `true` le dice que el error
+           * esta atendido. Uno de CONFIGURACION (familia 110: clave o dominio) no se arregla
+           * reintentando: se retira el widget y el formulario queda como cuando el script no
+           * carga —sin token, con su panel de fallo y los dos telefonos—. Los demas (red, reto
+           * fallido) siguen con el reintento propio del widget. */
+          let avisado = false;
+          idWidget = ts.render(caja, {
+            sitekey: CLAVE_SITIO,
+            action: accion,
+            'error-callback': (codigo) => {
+              if (!avisado) {
+                avisado = true;
+                console.error(`[turnstile] error ${codigo}: sin token el servidor rechazara el envio con 403.`);
+              }
+              if (String(codigo).startsWith('110')) {
+                try { ts.remove(caja); } catch { /* nada */ }
+                idWidget = null;
+                caja.style.margin = '';
+              }
+              return true;
+            },
+          });
           caja.style.margin = '.75rem 0';
         })
         // ⚠️ Si el SCRIPT no carga (bloqueador, extension de privacidad, firewall corporativo:
