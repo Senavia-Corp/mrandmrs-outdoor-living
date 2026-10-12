@@ -50,8 +50,47 @@ const fmt = (f?: string) => (f
   ? new Date(f).toLocaleDateString('en-US',
       { month: 'short', year: 'numeric', timeZone: 'America/New_York' })
   : '');
+
+/* ASTRO-2: en las 14 fichas de `/services/` las resenas ya no son carrusel. La primera va de cita
+ * destacada y las demas en lista, todas a la vista (D-78). El enlace «See all reviews» lo pinta la
+ * cabecera de la seccion (`build-paginas.mjs`), delante de esto. El resto de rutas siguen con el
+ * carrusel hasta que les toque. */
+import { esFicha } from '../../lib/rutas-seo.mjs';
+const enLista = esFicha(Astro.url.pathname.replace(/(.)\/$/, '$1'));
+const ESTRELLA = 'M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9 4.8 17.6l1-5.8L1.5 7.7l5.9-.9L10 1.5Z';
 ---
-{hay && (
+{hay && enLista && (
+  <div class="mm-res-lista-caja">
+    {valoracion != null && <p class="mm-res-nota"><strong>{valoracion.toFixed(1)}</strong></p>}
+    {total != null && <p class="mm-res-nota">{total} Google reviews</p>}
+    <figure class="mm-res-destacada">
+      <blockquote>{items[0].texto}</blockquote>
+      <figcaption>
+        <span class="mm-dato-rot">{items[0].autor}</span>
+        {items[0].fecha && <span class="mm-res-fecha">{fmt(items[0].fecha)}</span>}
+        <span class="mm-res-estrellas" role="img" aria-label={`${items[0].estrellas} out of 5 stars`}>
+          {[1, 2, 3, 4, 5].map((n) => <svg viewBox="0 0 20 20" width="14" height="14" class={n <= items[0].estrellas ? 'llena' : ''} aria-hidden="true"><path d={ESTRELLA} /></svg>)}
+        </span>
+      </figcaption>
+    </figure>
+    <ul class="mm-res-lista" role="list">
+      {items.slice(1).map((r) => (
+        <li class="mm-res-fila">
+          <blockquote class="mm-res-cita">{r.texto}</blockquote>
+          <div class="mm-res-quien">
+            <span class="mm-dato-rot">{r.autor}</span>
+            {r.fecha && <span class="mm-res-fecha">{fmt(r.fecha)}</span>}
+            <span class="mm-res-estrellas" role="img" aria-label={`${r.estrellas} out of 5 stars`}>
+              {[1, 2, 3, 4, 5].map((n) => <svg viewBox="0 0 20 20" width="14" height="14" class={n <= r.estrellas ? 'llena' : ''} aria-hidden="true"><path d={ESTRELLA} /></svg>)}
+            </span>
+          </div>
+        </li>
+      ))}
+    </ul>
+    {actualizado && <p class="mm-res-pie">Updated {fmt(actualizado)}</p>}
+  </div>
+)}
+{hay && !enLista && (
   <div class="mm-resenas">
     <div class="mm-resenas__resumen">
       {/* LOS CUATRO HEX DE LA G SON DE GOOGLE Y NO SE TOCAN. Son los colores oficiales

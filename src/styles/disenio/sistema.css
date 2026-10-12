@@ -505,6 +505,45 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
   .mm-arts-cuerpo { box-sizing: border-box; width: 100%; max-width: calc(var(--mm-contenedor) + 2 * var(--mm-canal)); margin-inline: auto; display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: var(--mm-e-64); align-items: start; }
 }
 @media (min-width: 1200px) { .mm-zonas { padding-inline: var(--mm-e-64); } .mm-arts-sec { --mm-canal: var(--mm-e-64); } }
+/* ── Resenas en lista (ASTRO-2 · lamina «Resenas») ──────────────────────────────────── */
+.mm-res { --mm-canal: var(--mm-e-24); display: flex; flex-direction: column; gap: var(--mm-e-24); padding: var(--mm-e-64) 0 0; background: var(--mm-blanco); font-family: var(--mm-familia); color: var(--mm-tinta-texto); }
+.mm-res-cuerpo { display: flex; flex-direction: column; gap: var(--mm-e-32); }
+.mm-res-col { display: flex; flex-direction: column; gap: var(--mm-e-24); padding: 0 var(--mm-canal); }
+.mm-res-lista-caja { display: flex; flex-direction: column; gap: var(--mm-e-32); }
+.mm-res-destacada { margin: 0; display: flex; flex-direction: column; gap: var(--mm-e-20); }
+.mm-res-destacada blockquote { margin: 0; padding: 0; border: 0; font-size: 20px; line-height: 1.3; font-weight: 600; letter-spacing: -0.01em; color: var(--mm-navy); text-wrap: balance; }
+.mm-res-destacada figcaption { display: flex; flex-wrap: wrap; align-items: center; gap: var(--mm-e-8) var(--mm-e-16); }
+.mm-res-fecha { font-size: 12px; line-height: 1.5; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--mm-tinta-suave); }
+.mm-res-estrellas { display: inline-flex; gap: 2px; color: var(--mm-borde-control); }
+.mm-res-estrellas .llena { color: var(--mm-navy); }
+.mm-res-estrellas svg { fill: currentColor; }
+.mm-res-lista { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--mm-borde); }
+.mm-res-fila { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--mm-e-12); padding: var(--mm-e-20) 0; border-top: 1px solid var(--mm-borde); }
+.mm-res-quien { order: -1; display: flex; flex-direction: column; align-items: flex-start; gap: var(--mm-e-4); }
+.mm-res-cita { margin: 0; padding: 0; border: 0; font-size: 16px; line-height: 1.55; color: var(--mm-tinta-texto); }
+.mm-res-pie, .mm-res-nota { margin: 0; font-size: 12px; line-height: 1.5; font-weight: 600; color: var(--mm-tinta-suave); }
+.mm-res-lista-caja .mm-res-pie { margin-top: calc(-1 * var(--mm-e-16)); }
+.mm-res-col .mm-datos { border-top: 0; }
+.mm-res-medio { margin: 0; aspect-ratio: 3 / 2; }
+.mm-res-medio img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.mm-res--sin { padding-bottom: var(--mm-e-64); }
+@media (min-width: 768px) {
+  .mm-res { --mm-canal: var(--mm-e-32); gap: var(--mm-e-40); }
+  .mm-res-destacada blockquote { font-size: 28px; letter-spacing: -0.015em; }
+  .mm-res-fila { grid-template-columns: 176px minmax(0, 1fr); gap: var(--mm-e-24); }
+}
+@media (min-width: 992px) {
+  .mm-res { gap: 56px; padding-top: var(--mm-e-96); }
+  .mm-res-cuerpo { box-sizing: border-box; width: 100%; max-width: calc(var(--mm-contenedor) + 2 * var(--mm-canal)); margin-inline: auto; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: var(--mm-e-64); align-items: start; padding-left: var(--mm-canal); }
+  .mm-res-col { gap: var(--mm-e-32); padding: 0 0 var(--mm-e-64); }
+  /* Con las ocho resenas a la vista la columna mide mas de 800 px: la foto no la acompana entera
+     (seria un recorte vertical de una foto apaisada), se queda fija a 4:5 mientras se lee. */
+  .mm-res-medio { position: sticky; top: 100px; z-index: 1; align-self: start; aspect-ratio: 4 / 5; margin-bottom: var(--mm-e-64); }
+  .mm-res-medio img { position: absolute; inset: 0; border-radius: var(--mm-r-16) 0 0 0; }
+  .mm-res--sin .mm-res-cuerpo { display: block; padding-right: var(--mm-canal); }
+  .mm-res--sin { padding-bottom: var(--mm-e-96); }
+}
+@media (min-width: 1200px) { .mm-res { --mm-canal: var(--mm-e-64); } }
 @media (prefers-reduced-motion: reduce) {
   .mm-cab-item, .mm-cab-item svg, .mm-cab-cta, .mm-cab-sub, .mm-cab-flecha svg, .mm-menu-fila svg, .mm-barra, .mm-barra-btn, .mm-btn { transition: none; }
 }

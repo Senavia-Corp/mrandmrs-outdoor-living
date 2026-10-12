@@ -1295,6 +1295,15 @@ const LINEAS_ANADIDAS = [
     lineas: [capitalizaH2(CAPTACION_JSON[r].heroe.cta ?? 'Get a Free Estimate'), ...TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible])],
     motivo: 'ASTRO-2 (T-29): tarjeta de accion del FAQ.',
   })),
+  /* ASTRO-2 · T-47: en las resenas de las 14 fichas, la accion de la pagina en la cabecera (delante
+   * de «See all reviews») y los dos telefonos detras de la lista. Cuando esto corre el bloque de
+   * resenas ya se ha descontado (§ sinElBloque, paso 2), asi que las cinco lineas quedan seguidas:
+   * las mismas cinco que la tarjeta del FAQ, y por eso es una segunda declaracion identica. */
+  ...Object.keys(CAPTACION_JSON).filter(esFicha).map((r) => ({
+    rutas: [r], tras: [],
+    lineas: [capitalizaH2(CAPTACION_JSON[r].heroe.cta ?? 'Get a Free Estimate'), ...TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible])],
+    motivo: 'ASTRO-2 (T-47): accion en la cabecera de las resenas y telefonos al pie.',
+  })),
   /* ASTRO-2 · T-47: los dos telefonos al pie de «What we do», en banda de datos (rotulo de zona en
    * mayusculas por CSS). El hero lleva las mismas cuatro lineas, pero su bloque ya se ha descontado
    * (§ bloquesCaptacion) cuando esto corre, asi que la primera aparicion es esta. */
@@ -2281,13 +2290,26 @@ const mesDelNegocio = (iso) => (iso
   : '');
 
 /** Las líneas de `innerText` que emite la sección de reseñas, en orden. Vacío si no publica. */
-function lineasResenas() {
+function lineasResenas(ruta) {
   const f = path.join(RAIZ, 'src/data/resenas.json');
   if (!fs.existsSync(f)) return [];
   const d = JSON.parse(fs.readFileSync(f, 'utf8'));
   const items = d.items ?? [];
   if (d.publicar === false || !items.length) return [];
   const norm = (s) => (s ?? '').replace(/ /g, ' ').replace(/\s+/g, ' ').trim();
+  /* ASTRO-2: en las 14 fichas las resenas van en lista (`ResenasGoogle.astro`, rama `enLista`). El
+   * enlace «See all reviews» sube a la cabecera, delante; el nombre va en `.mm-dato-rot`, o sea en
+   * mayusculas por CSS; y en las filas de la lista el nombre y la fecha se pintan a la izquierda
+   * de la cita, pero en el HTML van detras, como siempre. Las mismas ocho, las mismas lineas. */
+  if (ruta && esFicha(ruta)) {
+    return [
+      RESENAS_MARCADOR,
+      ...(d.valoracion != null ? [d.valoracion.toFixed(1)] : []),
+      ...(d.total != null ? [`${d.total} Google reviews`] : []),
+      ...items.flatMap((r) => [norm(r.texto), norm(r.autor).toUpperCase(), ...(r.fecha ? [mesDelNegocio(r.fecha)] : [])]),
+      ...(d.actualizado ? [`Updated ${mesDelNegocio(d.actualizado)}`] : []),
+    ];
+  }
   return [
     ...(d.valoracion != null ? [d.valoracion.toFixed(1)] : []),
     ...(d.total != null ? [`${d.total} Google reviews`] : []),
@@ -2795,7 +2817,7 @@ function sinElBloque(ruta, hay) {
 
   // 2 · las reseñas, derivadas del JSON. Los dos bloques son disjuntos: /pool-cost-estimator
   //     no monta reseñas, así que no pueden solaparse.
-  const res = lineasResenas();
+  const res = lineasResenas(ruta);
   if (res.length && lineas.includes(RESENAS_MARCADOR)) {
     lineas = quitaBloque(lineas, res);
     if (lineas === null) { bloqueQueFallo = 'el bloque de reseñas (src/data/resenas.json)'; return null; }
