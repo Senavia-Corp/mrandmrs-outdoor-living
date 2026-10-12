@@ -33,6 +33,7 @@ import { CATEGORIAS as GALERIA_CATEGORIAS, tarjetasHtml } from '../src/lib/galer
 import { logoLigero, ALTO_LOGO } from '../src/lib/logo-ligero.mjs';
 import { OCULTAS, serviciosDe } from '../src/lib/filtro-proyectos.mjs';
 import { tramosMiga } from '../src/lib/miga-tramos.mjs';
+import { fotoDeHeroe, fotosDeSeccion as fotosDeSeccionCiudad } from '../src/lib/heroe-ciudad.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const man = JSON.parse(fs.readFileSync(path.join(RAIZ, '_source/assets-manifest.json'), 'utf8')).assets;
@@ -94,7 +95,9 @@ const FLECHA = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 2
 function franjaDeLogos(doc) {
   const sec = doc.querySelector('section.logos-section');
   if (!sec) return '';
-  const titulo = sec.querySelector('h2')?.textContent.trim() ?? '';
+  // En las fichas el titular de la marquesina es un `<h2>`; en los condados, un `<h4 class="heading-logos">`.
+  const titulo = sec.querySelector('h2, .heading-logos')?.textContent.trim() ?? '';
+  if (!titulo) throw new Error('franjaDeLogos: la marquesina de logos no trae titular');
   const vistos = new Set();
   const logos = [...sec.querySelectorAll('img')].filter((i) => { const u = i.getAttribute('src'); if (vistos.has(u)) return false; vistos.add(u); return true; })
     .map((i) => {
@@ -809,7 +812,7 @@ function fotoDeSeccion(ruta, k) {
   return { src: e.src, alt: e.alt, w: e.ancho, h: e.alto };
 }
 function mosaicoDeObra(doc, ruta) {
-  if (!esFicha(ruta)) return;
+  if (!esFicha(ruta) && !esCondado(ruta)) return;
   const sec = doc.querySelector('section.gallery');
   const h2 = sec?.querySelector('.header-gallery h2');
   const linea = h2?.nextElementSibling;
@@ -830,7 +833,8 @@ function mosaicoDeObra(doc, ruta) {
   fotos.sort((x, y) => (real(y) - real(x)) || (apaisada(y) - apaisada(x)));
   // Tres es el suelo: una grande y dos apiladas (riego, que cede una de sus cuatro al hero).
   if (fotos.length < 3) throw new Error(`${ruta}: la galeria solo tiene ${fotos.length} fotos con procedencia verificada; el mosaico pide 3`);
-  const marca = CAPTACION[ruta].heroe.marca;
+  // Los condados no tienen entrada de captacion: su galeria es la de piscinas.
+  const marca = CAPTACION[ruta]?.heroe.marca ?? 'Pool';
   const tit = marca && h2.innerHTML.includes(marca) ? h2.innerHTML.replace(marca, `<span class="mm-rot">${marca}</span>`) : h2.innerHTML;
   const medidas = (f) => {
     const d = f.w && f.h ? { w: f.w, h: f.h } : DIM.get(f.src);
@@ -860,6 +864,141 @@ function mosaicoDeObra(doc, ruta) {
     + (resto.length ? `<div class="mm-mosaico-resto">${resto.map((f) => celda(f, 'mm-celda mm-celda--resto', '(min-width: 768px) 25vw, 50vw')).join('')}</div>` : '') + '</div>';
   sec.replaceWith(nueva);
   mosaicos++;
+}
+
+/* ── ASTRO-2 · LAS 9 PAGINAS DE CONDADO, CON LAS PIEZAS DE LA PAGINA DE CIUDAD ────────────
+ * `/services/pool-builders/<condado>-county-fl` sale de `_source/vivo/country_*.html` y traia la
+ * maqueta de Webflow entera: hero a pantalla completa, mosaico animado, pestanas de proceso y
+ * tres carruseles. Aqui pasa a las mismas piezas `.mm-*` que la ciudad, con SU texto:
+ *
+ *   hero A (miga, h1 con rotulador en el condado, apoyo, boton, banda de datos, foto de obra con
+ *   pie, franja de logos) · intro (con sus enlaces a ciudad) · galeria en mosaico · render 3D ·
+ *   proceso en lista (los cuatro pasos a la vista, sin foto: las del origen no son de obra) ·
+ *   proyectos · articulos · resenas · banda de cierre (con su boton: aqui no hay formulario).
+ *
+ * Proyectos, articulos y resenas los pintan sus componentes en la variante de lista.
+ * La foto del hero y las de seccion salen de la bolsa de piscinas (`heroe-ciudad.mjs`), que ya
+ * repartia contando los 9 condados. La foto de Webflow del hero no esta en ningun registro. */
+function condadoStitch(doc, ruta) {
+  if (!esCondado(ruta)) return;
+  const falta = (que) => { throw new Error(`${ruta}: ${que}`); };
+  const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+
+  // 1 · HERO A, con la franja de logos dentro
+  const hero = doc.querySelector('section.hero-country');
+  const h1 = hero?.querySelector('h1');
+  const apoyo = h1?.nextElementSibling;
+  const boton = hero?.querySelector('.wrapper-buttons a');
+  const titulo = h1?.textContent.trim() ?? '';
+  const marca = titulo.match(/\bin (.+? County)\b/)?.[1];
+  const foto = fotoDeHeroe(ruta);
+  if (!h1 || !apoyo || !boton || !marca || !foto) falta('el hero de condado no trae h1, apoyo y boton, o no hay foto de obra para el');
+  const [antes, ...resto] = titulo.split(marca);
+  const [rotLic, ...valLic] = CAPTACION['/services/pool-builders'].heroe.licencias.split(' · ');
+  const tramos = tramosMiga(ruta);
+  const nh = doc.createElement('section');
+  nh.setAttribute('class', 'mm-hero-a');
+  nh.innerHTML = '<div class="mm-hero-a-txt">'
+    + '<nav class="mm-miga" aria-label="Breadcrumb"><ol>'
+    + tramos.map((t, k) => (k === tramos.length - 1 ? `<li aria-current="page">${esc(t.nombre)}</li>` : `<li><a href="${t.href}">${esc(t.nombre)}</a></li>`)).join('')
+    + '</ol></nav>'
+    + `<h1 class="mm-h1">${esc(antes)}<span class="mm-rot">${esc(marca)}</span>${esc(resto.join(marca))}</h1>`
+    + `<p class="mm-p">${apoyo.innerHTML}</p>`
+    + `<div class="mm-hero-a-acc"><a class="mm-btn" href="${boton.getAttribute('href')}">${esc(boton.textContent.trim())}</a></div>`
+    + '<div class="mm-datos mm-datos--3">'
+    + TELEFONOS.map((t) => `<a class="mm-dato" href="tel:${t.tel}"><span class="mm-dato-rot">${t.zona}</span><span class="mm-dato-val">${t.visible}</span></a>`).join('')
+    + `<div class="mm-dato"><span class="mm-dato-rot">${esc(rotLic)}</span><span class="mm-dato-val">${esc(valLic.join(' · '))}</span></div>`
+    + '</div></div>'
+    + `<figure class="mm-hero-a-medio"><img sizes="(min-width: 992px) 50vw, 100vw" src="${foto.src}" alt="${escAttr(foto.alt)}" width="${foto.ancho}" height="${foto.alto}" loading="eager" fetchpriority="high" decoding="async">`
+    + `<figcaption class="mm-pie-foto"><span class="mm-dato-rot">Project</span><span>${esc(foto.pie)}</span></figcaption></figure>`
+    + franjaDeLogos(doc);
+  hero.replaceWith(nh);
+  doc.querySelector('section.logos-section')?.remove();
+  const cta = nh.querySelector('.mm-hero-a-acc > a.mm-btn');
+  const padre = nh.parentNode;
+  const hermana = (x, que) => { if (x.parentNode !== padre) falta(`${que} no es hermana del hero`); return x; };
+
+  // 2 · INTRO: titular, parrafo, sus enlaces a ciudad y «More About Us». Las tres fotos del mosaico
+  //     animado salen: no estan en ningun registro, y la lamina de intro no lleva foto.
+  const tr = doc.querySelector('section.trusted-section');
+  const [th2, tp] = ['.wrapper-vertical-text-copy h2', '.wrapper-vertical-text-copy p'].map((q) => tr?.querySelector(q));
+  const ciudades = [...(tr?.querySelectorAll('.list-cities-cms a') ?? [])];
+  const mas = [...(tr?.querySelectorAll('a') ?? [])].find((x) => !x.closest('.list-cities-cms'));
+  if (!th2 || !tp || !ciudades.length || !mas) falta('la intro de condado no trae titular, parrafo, ciudades y «More About Us»');
+  const enlace = (x) => `<a class="mm-flecha" href="${x.getAttribute('href')}">${esc(x.textContent.trim())}${FLECHA}</a>`;
+  const ni = doc.createElement('section');
+  ni.setAttribute('class', 'svc-intro mm-intro');
+  ni.innerHTML = `<div class="mm-marco"><h2 class="mm-h2">${th2.innerHTML}</h2><p class="mm-p">${tp.innerHTML}</p>`
+    + `<ul class="mm-intro-lista" role="list">${ciudades.map((x) => `<li>${enlace(x)}</li>`).join('')}</ul>${enlace(mas)}</div>`;
+  hermana(tr, 'la intro').replaceWith(ni);
+
+  // 3 · GALERIA EN MOSAICO (la misma funcion que la ficha) y RENDER 3D
+  mosaicoDeObra(doc, ruta);
+  const gal = hermana(doc.querySelector('section.mm-gal'), 'la galeria');
+  const d3 = doc.querySelector('section._3d-section');
+  const [dh2, dp] = ['.header-3d-section h2', '.header-3d-section p'].map((q) => d3?.querySelector(q));
+  const video = d3?.querySelector('.w-background-video');
+  if (!dh2 || !dp || !video) falta('el 3D no trae titular, parrafo y video');
+  const n3 = doc.createElement('section');
+  n3.setAttribute('class', 'mm-3d');
+  n3.innerHTML = `<div class="mm-sec-cab"><h2 class="mm-h2">${nb(dh2.innerHTML)}</h2><div class="mm-sec-lado"><p class="mm-p">${dp.innerHTML}</p>`
+    + `<div class="mm-sec-acc"><a class="mm-btn mm-btn--linea mm-btn--linea-inv" href="${cta.getAttribute('href')}">${cta.innerHTML}</a></div></div></div>`
+    + '<figure class="mm-3d-medio"></figure>';
+  n3.querySelector('figure').append(video);   // el nodo tal cual: `limpia()` le pone poster y carga diferida
+  hermana(d3, 'el 3D').replaceWith(n3);
+
+  // 4 · PROCESO: las pestanas (un paso a la vista) pasan a lista con los cuatro
+  const st = doc.querySelector('section.stepbystep-section');
+  const [sh2, sp] = ['.wrapper-vertical-text h2', '.wrapper-vertical-text p'].map((q) => st?.querySelector(q));
+  const pasos = [...(st?.querySelectorAll('.w-tab-pane') ?? [])].map((x) => ({ tit: x.querySelector('.content-step-tab h2'), txt: x.querySelector('.text-divider') }));
+  if (!sh2 || !sp || pasos.length !== 4 || pasos.some((x) => !x.tit || !x.txt)) falta('el proceso no trae titular, linea y cuatro pasos');
+  const np = doc.createElement('section');
+  np.setAttribute('class', 'mm-proc mm-proc--sin');
+  np.innerHTML = cabeceraDeSeccion(sh2.innerHTML.replace(/(Process)\s*$/, '<span class="mm-rot">$1</span>'), sp.innerHTML, cta)
+    + '<div class="mm-proc-cuerpo"><ol class="mm-pasos">'
+    + pasos.map((x, k) => `<li class="mm-paso"><span class="mm-paso-n">${k + 1}</span><h3 class="mm-paso-t">${x.tit.innerHTML}</h3>${x.txt.innerHTML}</li>`).join('')
+    + '</ol></div>';
+  hermana(st, 'el proceso').replaceWith(np);
+
+  // 5 · RESENAS: su cabecera con la accion y el enlace al perfil, la lista (la pinta
+  //     `ResenasGoogle.astro`), los telefonos y una foto de la bolsa
+  const [, fcierre, fres] = [null, ...fotosDeSeccionCiudad(ruta)];
+  const res = doc.querySelector('section.testimonial-section');
+  const [rlabel, rh2, rp] = ['.header-reviews .label', '.header-reviews h2', '.header-reviews p'].map((q) => res?.querySelector(q));
+  const widget = res?.querySelector('[class*="elfsight-app-"]');
+  if (!rlabel || !rh2 || !rp || !widget) falta('las resenas no traen rotulo, titular, linea y widget');
+  const figura = (f, clase) => (f ? `<figure class="${clase}"><img sizes="(min-width: 992px) 42vw, 100vw" src="${f.src}" alt="${escAttr(f.alt)}" width="${f.ancho}" height="${f.alto}" loading="lazy" decoding="async"></figure>` : '');
+  const nr = doc.createElement('section');
+  nr.setAttribute('class', `mm-res${fres ? '' : ' mm-res--sin'}`);
+  nr.innerHTML = `<div class="mm-sec-cab"><div class="mm-sec-tit"><p class="mm-etiqueta">${rlabel.innerHTML}</p><h2 class="mm-h2">${rh2.innerHTML.replace(/\b(Homeowners)\b/, '<span class="mm-rot">$1</span>')}</h2></div>`
+    + `<div class="mm-sec-lado"><p class="mm-p">${rp.innerHTML}</p><div class="mm-sec-acc"><a class="mm-btn mm-btn--linea" href="${cta.getAttribute('href')}">${cta.innerHTML}</a>`
+    + `<a class="mm-flecha" href="${RESENAS_PERFIL}" target="_blank" rel="noopener noreferrer">See all reviews${FLECHA}</a></div></div></div>`
+    + `<div class="mm-res-cuerpo"><div class="mm-res-col">${widget.outerHTML}${BANDA_TELEFONOS}</div>${figura(fres, 'mm-res-medio')}</div>`;
+  hermana(res, 'las resenas').replaceWith(nr);
+
+  // 6 · BANDA DE CIERRE: la banda de media pagina pasa al final, navy, con los telefonos. Conserva
+  //     su boton (T-57 lo quita solo donde debajo hay formulario; aqui no lo hay).
+  const banda = doc.querySelector('section.cta-page-section');
+  const bh2 = banda?.querySelector('h2');
+  const bp = bh2?.nextElementSibling;
+  const bb = banda?.querySelector('.wrapper-buttons-center a');
+  if (!bh2 || !bp || !bb) falta('la banda no trae titular, parrafo y boton');
+  const nc = doc.createElement('section');
+  nc.setAttribute('class', `mm-cierre mm-cierre--sola${fcierre ? '' : ' mm-cierre--sin'}`);
+  nc.innerHTML = '<div class="mm-cierre-caja"><div class="mm-cierre-txt">'
+    + `<h2 class="mm-h2">${nb(bh2.innerHTML)}</h2><p class="mm-p">${bp.innerHTML}</p>${BANDA_TELEFONOS}`
+    + `<a class="mm-btn" href="${bb.getAttribute('href')}">${esc(bb.textContent.trim())}</a></div>`
+    + `${figura(fcierre, 'mm-cierre-medio')}</div>`;
+  hermana(banda, 'la banda').remove();
+
+  // 7 · ORDEN (lamina «Ciudad»): … intro · galeria · 3D · proceso · proyectos · articulos · resenas · cierre
+  const proy = hermana(doc.querySelector('section.projects-section'), 'proyectos');
+  const blog = hermana(doc.querySelector('section.blog-section-page'), 'articulos');
+  padre.insertBefore(gal, n3);
+  padre.insertBefore(np, proy);
+  padre.insertBefore(nr, blog.nextSibling);
+  padre.insertBefore(nc, nr.nextSibling);
+  doc.querySelector('section.social-media')?.remove();
 }
 
 /* ── ASTRO-2 · PROCESO Y «WHAT WE DO», EN LISTA DE PLANO (laminas «Proceso» y «QueHacemos») ──
@@ -1948,8 +2087,12 @@ for (const [ruta] of RUTAS) {
 
   fotosCanjeadas += fotosPorRuta(doc, ruta);
   textosCorregidos += textosPropios(doc, ruta);
-  mosaicoDeObra(doc, ruta);
-  listasDePlano(doc, ruta);
+  // Los condados hacen su propio mosaico y su propio orden (§ condadoStitch).
+  condadoStitch(doc, ruta);
+  if (!esCondado(ruta)) {
+    mosaicoDeObra(doc, ruta);
+    listasDePlano(doc, ruta);
+  }
 
 
   const usados = new Set();

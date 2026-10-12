@@ -79,7 +79,7 @@ for (const f of html) {
       if (!Number(foto.getAttribute('width')) || !Number(foto.getAttribute('height'))) malA('la foto del hero no lleva medidas (regla 8)');
       if (!existe(foto.getAttribute('src'))) malA(`la foto del hero no existe en public/: ${foto.getAttribute('src')}`);
     } else if (altas.length) malA('hero sin foto y hay un fetchpriority="high" en la pagina (regla 8)');
-    d.defaultView.close();   // 132 documentos mas: sin cerrarlos la puerta se queda sin memoria
+    d.defaultView.close();   // 141 documentos mas: sin cerrarlos la puerta se queda sin memoria
   }
   if (!crudo.includes('w-background-video')) continue;
   const ruta = '/' + path.relative(ESTATICO, f).replace(/(^|\/)index\.html$/, '').replace(/\.html$/, '');
@@ -129,7 +129,7 @@ if (paginas < SUELO_PAGINAS || bloques < SUELO_BLOQUES) {
 
 /* Las 14 fichas y las 118 paginas de ciudad de `PaginaCiudad.astro`. Si baja, el hero nuevo ha
  * dejado de pintarse en alguna y la regla 8 ya no la esta mirando. */
-if (heroesA < 132) fallos.push(`solo ${heroesA} paginas con Hero A; se esperan 132 (14 fichas + 118 ciudades)`);
+if (heroesA < 141) fallos.push(`solo ${heroesA} paginas con Hero A; se esperan 141 (14 fichas + 118 ciudades + 9 condados)`);
 console.log(`check:video-fondo — ${paginas} páginas, ${bloques} bloques .w-background-video · ${heroesA} con Hero A`);
 if (fallos.length) {
   console.error(`\n✗ PUERTA ROJA — ${fallos.length} fallo(s):`);

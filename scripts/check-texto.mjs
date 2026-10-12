@@ -23,7 +23,7 @@ import http from 'node:http';
 import { chromium } from 'playwright';
 import { JSDOM } from 'jsdom';
 import { ARGS_NAVEGADOR, aSlug, asentar, textoNormalizado } from './lib/captura.mjs';
-import { origen, rutaCiudad, esFicha, esCiudad } from './lib/renombradas.mjs';
+import { origen, rutaCiudad, esFicha, esCiudad, esCondado } from './lib/renombradas.mjs';
 import { tramosMiga } from '../src/lib/miga-tramos.mjs';
 import { AREAS_PIE, ORDEN_SERVICIOS_PIE, COPYRIGHT_ORIGEN, copyright } from '../src/lib/pie.mjs';
 import { lineasTarjetas, lineasBanda, lineasSrBanda } from '../src/lib/galeria-categorias.mjs';
@@ -2403,7 +2403,7 @@ function lineasResenas(ruta) {
    * enlace «See all reviews» sube a la cabecera, delante; el nombre va en `.mm-dato-rot`, o sea en
    * mayusculas por CSS; y en las filas de la lista el nombre y la fecha se pintan a la izquierda
    * de la cita, pero en el HTML van detras, como siempre. Las mismas ocho, las mismas lineas. */
-  if (ruta && (esFicha(ruta) || esCiudadA(ruta))) {
+  if (ruta && (esFicha(ruta) || esCiudadA(ruta) || esCondado(ruta))) {
     return [
       RESENAS_MARCADOR,
       ...(d.valoracion != null ? [d.valoracion.toFixed(1)] : []),
@@ -2867,7 +2867,7 @@ function lineasObras(ruta) {
   return obras.flatMap((o) => (d.forma === 'tarjeta'
     ? [capitaliza(o.titulo), o.resumen, 'View Full Project']
     // ASTRO-2: en las paginas de ciudad el titulo va en `.mm-ficha-t` / `.mm-linea-t`, sin `capitalize`.
-    : [esCiudadA(ruta) ? o.titulo : capitaliza(o.titulo), 'See Project']));
+    : [esCiudadA(ruta) || esCondado(ruta) ? o.titulo : capitaliza(o.titulo), 'See Project']));
 }
 
 /**
@@ -2878,7 +2878,10 @@ function quitaTras(lineas, contexto, anadidas) {
   if (!contexto.length) return quitaBloque(lineas, anadidas);
   const bloque = [...contexto, ...anadidas];
   for (let i = 0; i + bloque.length <= lineas.length; i++) {
-    if (bloque.every((l, j) => lineas[i + j] === l)) {
+    // El CONTEXTO es solo el ancla y se queda en `lineas` (lo juzga el diff final, con T-69): se
+    // casa sin mayusculas porque un titular que deja de llevar `capitalize` («Built For» ->
+    // «Built for») no puede dejar el bloque sin sitio. Lo AÑADIDO se sigue exigiendo exacto.
+    if (bloque.every((l, j) => (j < contexto.length ? lineas[i + j].toLowerCase() === l.toLowerCase() : lineas[i + j] === l))) {
       const k = i + contexto.length;
       return [...lineas.slice(0, k), ...lineas.slice(k + anadidas.length)];
     }
@@ -3065,6 +3068,19 @@ const ctaCierre = (c) => c?.heroe?.cta ?? 'Get a Free Estimate';
 
 function bloquesCaptacion(ruta) {
   const c = CAPTACION_JSON[ruta];
+  /* ASTRO-2 · CONDADOS (T-84). No tienen entrada de captacion, pero su Hero A anade lo mismo que
+   * el de la ciudad: la miga visible (D-118, de `miga-tramos.mjs`) y, detras del boton, la banda
+   * de datos —los dos telefonos y la licencia de piscinas (T-66)— y el pie de la foto de obra
+   * (T-80, de `heroe-ciudad.mjs`). Dos bloques, cada uno contiguo. */
+  if (!c && esCondado(ruta)) {
+    const lic = CAPTACION_JSON['/services/pool-builders'].heroe.licencias.split(' · ');
+    const pie = fotoDeHeroe(ruta)?.pie;
+    return [
+      tramosMiga(ruta).map((t) => t.nombre),
+      [...TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]), lic[0].toUpperCase(), lic.slice(1).join(' · '),
+        ...(pie ? ['PROJECT', pie] : [])],
+    ];
+  }
   if (!c) return [];
   const bloques = [];
 
@@ -3441,6 +3457,26 @@ function ordenFicha(ruta, lineas) {
     if (c >= 0 && out[c + 2] === 'Get A Free Estimate') out.splice(c + 2, 1);
     return out;
   }
+  if (esCondado(ruta)) {
+    /* CONDADOS (ASTRO-2, lamina «Ciudad»). Del baseline cambian de sitio tres bloques, sin perder
+     * ni una linea: la galeria sube delante del 3D; y de la cola —banda, proyectos, resenas,
+     * articulos— la cabecera de resenas baja detras de los articulos y la banda (titular,
+     * parrafo y su boton, que aqui se conserva) cierra la pagina. Cada bloque por su ancla
+     * exacta; si alguna no esta, no se toca nada y la puerta sale roja por orden. */
+    const out = [...lineas];
+    const { titulo: proc, tresD } = pasosDelOrigen(ruta);
+    const d3 = out.findIndex((l) => l.toLowerCase() === tresD.toLowerCase());
+    if (d3 >= 0 && out[d3 + 4]?.toLowerCase() === proc.toLowerCase()) out.splice(d3, 0, ...out.splice(d3 + 2, 2));
+    const b = out.findIndex((l) => l.startsWith(CIERRE_CIUDAD)) - 1;
+    const t = out.indexOf('TESTIMONIALS');
+    // Los articulos son lo ultimo del contenido: su ultimo «Read More» es el final del bloque.
+    if (b >= 0 && t > b && out.lastIndexOf('Read More') > t && out[b + 2] === 'Get A Free Estimate') {
+      const cab = out.splice(t, 3);
+      const banda = out.splice(b, 3);
+      out.splice(out.lastIndexOf('Read More') + 1, 0, ...cab, ...banda);
+    }
+    return out;
+  }
   if (!esFicha(ruta)) return lineas;
   const o = origenDeFicha(ruta);
   let out = [...lineas];
@@ -3473,13 +3509,25 @@ const PASOS_ORIGEN = new Map();
 function pasosDelOrigen(ruta) {
   if (!PASOS_ORIGEN.has(ruta)) {
     const f = path.join(RAIZ, `_source/vivo/${aSlug(origen(ruta))}.html`);
-    const sec = new JSDOM(fs.readFileSync(f, 'utf8')).window.document.querySelector('section.process-section');
+    const doc = new JSDOM(fs.readFileSync(f, 'utf8')).window.document;
     const limpia = (el) => (el?.textContent ?? '').replace(/\s+/g, ' ').trim();
-    PASOS_ORIGEN.set(ruta, {
+    // Las fichas traen `process-section`; los condados, el mismo proceso en pestanas (`stepbystep-section`).
+    const sec = doc.querySelector('section.process-section');
+    const tab = sec ? null : doc.querySelector('section.stepbystep-section');
+    PASOS_ORIGEN.set(ruta, sec ? {
       linea: limpia(sec.querySelector('.process-header p')),
       pasos: [...sec.querySelectorAll('.process-content-item')].map((it) => [
         limpia(it.querySelector('.content-step-tab h2')),
         ...[...it.querySelectorAll('.w-richtext p')].map(limpia).filter(Boolean),
+      ]),
+    } : {
+      titulo: limpia(tab.querySelector('.wrapper-vertical-text h2')),
+      // El titular del 3D cambia de un condado a otro («… & Visualization», «… & Planning»).
+      tresD: limpia(doc.querySelector('section._3d-section h2')),
+      linea: limpia(tab.querySelector('.wrapper-vertical-text p')),
+      pasos: [...tab.querySelectorAll('.w-tab-pane')].map((it) => [
+        limpia(it.querySelector('.content-step-tab h2')),
+        ...[...it.querySelectorAll('.text-divider p')].map(limpia).filter(Boolean),
       ]),
     });
   }
@@ -3519,7 +3567,7 @@ function listasStitch(ruta, lineas) {
     // detras del parrafo de la banda y del parrafo del 3D.
     const pb = out.indexOf(TEXTO_BANDA_CAT);
     if (pb >= 0 && out[pb + 1] === accion) out.splice(pb + 1, 1);
-    const p3 = out.findIndex((l) => l.toLowerCase() === '3d pool design & visualization');
+    const p3 = out.findIndex((l) => l.toLowerCase() === (esCondado(ruta) ? pasosDelOrigen(ruta).tresD.toLowerCase() : '3d pool design & visualization'));
     if (p3 >= 0 && out[p3 + 2] === accion) out.splice(p3 + 2, 1);
     /* PROYECTOS (T-33, T-47): la cabecera lleva la accion y «See all Projects», que antes cerraba
      * el carrusel; detras de los tres destacados van los telefonos. Lo medido se devuelve a la
@@ -3539,8 +3587,21 @@ function listasStitch(ruta, lineas) {
     const svCiudad = SERVICIOS_CIUDAD[ruta.split('/')[2]];
     {
       const g = { ...GALERIA_OBRA._defecto, ...(GALERIA_OBRA[ruta] ?? GALERIA_OBRA[svCiudad?.galeria] ?? {}) };
-      const k = out.findIndex((l, x) => l === g.entradilla && out[x + 1] === accion && out[x + 2] === 'Project Gallery');
+      // En condado la entradilla es la de su propia pagina: el par va justo delante del 3D.
+      const tresD = esCondado(ruta) ? pasosDelOrigen(ruta).tresD.toLowerCase() : null;
+      const k = out.findIndex((l, x) => (l === g.entradilla || (tresD && (out[x + 3] ?? '').toLowerCase() === tresD))
+        && out[x + 1] === accion && out[x + 2] === 'Project Gallery');
       if (k >= 0) out.splice(k + 1, 2);
+    }
+    /* PROCESO DE CONDADO (T-85): las pestanas —un paso a la vista— pasan a lista con los cuatro,
+     * y la cabecera lleva la accion de la pagina. Se comprueba el tramo nuevo ENTERO (linea,
+     * accion y los cuatro pasos con su numero, su titulo y su texto, leidos del origen) y solo
+     * entonces se devuelve a lo que se veia: los cuatro numeros y el primer paso. */
+    if (esCondado(ruta)) {
+      const { linea, pasos } = pasosDelOrigen(ruta);
+      const nuevo = [linea, accion, ...pasos.flatMap((p, k) => [String(k + 1), ...p])];
+      const i = out.findIndex((_, k) => nuevo.every((l, j) => out[k + j] === l));
+      if (i >= 0) out.splice(i, nuevo.length, linea, ...pasos.map((_, k) => String(k + 1)), ...pasos[0]);
     }
     /* SERVICIOS (T-82, D-69; lamina «Servicios»). El panel pasa de pestanas a indice: los 14
      * nombres a la vista bajo el rotulo de su categoria (antes solo los de la pestana abierta),

@@ -65,7 +65,9 @@ import captacion from '../../data/captacion-servicios.json';
 import TELEFONOS from '../../data/telefonos.json';
 import sharp from 'sharp';
 import path from 'node:path';
-const enLista = /^\/services\/[^/]+\/[^/]+$/.test(ruta) && !/-county-fl$/.test(ruta);
+const enLista = /^\/services\/[^/]+\/[^/]+$/.test(ruta);
+// Los condados no tienen formulario en la pagina: su accion lleva al presupuesto, como su hero.
+const anclaAccion = /-county-fl$/.test(ruta) ? '/request-estimated' : '#estimate';
 const SOLO_EN_INDICE = 'luxury-pool-spa-screen-enclosure-north-florida';
 const cap = (captacion as Record<string, { heroe?: { cta?: string; zonas?: string[] } }>)[ruta];
 const accion = cap?.heroe?.cta ?? 'Get a Free Estimate';
@@ -93,7 +95,7 @@ const FLECHA = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 2
       <div class="mm-sec-lado">
         <p class="mm-p">{entradillaFinal}</p>
         <div class="mm-sec-acc">
-          <a class="mm-btn mm-btn--linea" href="#estimate">{accion}</a>
+          <a class="mm-btn mm-btn--linea" href={anclaAccion}>{accion}</a>
           <a class="mm-flecha" href="/projects">See all Projects<Fragment set:html={FLECHA} /></a>
         </div>
       </div>

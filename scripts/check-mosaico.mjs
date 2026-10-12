@@ -14,8 +14,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const D = path.resolve(import.meta.dirname, '../.vercel/output/static');
-// + una pagina de ciudad: su galeria es el mismo mosaico desde ASTRO-2 (`GaleriaObra.astro`).
-const RUTAS = ['/services/pool-builders', '/services/retractable-screens', '/services/irrigation-systems', '/services/pool-builders/alachua-fl'];
+// + una pagina de ciudad (`GaleriaObra.astro`) y una de condado (`condadoStitch`): el mismo mosaico.
+const RUTAS = ['/services/pool-builders', '/services/retractable-screens', '/services/irrigation-systems', '/services/pool-builders/alachua-fl', '/services/pool-builders/marion-county-fl'];
 const rojos = [];
 const b = await chromium.launch();
 for (const ruta of RUTAS) {

@@ -821,3 +821,10 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
   .mm-serv-ficha--sin .mm-serv-txt { margin: 0 var(--mm-canal) 0 0; padding-right: 0; }
 }
 @media (min-width: 1200px) { .mm-serv { --mm-canal: var(--mm-e-64); } }
+
+/* ── ASTRO-2 · Paginas de condado: lo que no tenia la de ciudad ─────────────────────────
+   La intro lleva sus enlaces a ciudad en fila; la banda de cierre va sola (sin formulario montado
+   sobre su borde), asi que no reserva ese hueco y lleva su boton. */
+.mm-intro-lista { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 var(--mm-e-24); }
+.mm-cierre--sola .mm-cierre-txt { padding-bottom: var(--mm-e-64); }
+@media (min-width: 992px) { .mm-cierre--sola .mm-cierre-txt { padding-bottom: var(--mm-e-96); } }
