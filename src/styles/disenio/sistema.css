@@ -561,6 +561,8 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 .mm-res-estrellas svg { fill: currentColor; }
 .mm-res-lista { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--mm-borde); }
 .mm-res-fila { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--mm-e-12); padding: var(--mm-e-20) 0; border-top: 1px solid var(--mm-borde); }
+/* D-142: el autor va como esta escrito —es un nombre propio, no un rotulo—, en 700. */
+.mm-res-autor { font-size: 14px; line-height: 1.4; font-weight: 700; color: var(--mm-navy); }
 .mm-res-quien { order: -1; display: flex; flex-direction: column; align-items: flex-start; gap: var(--mm-e-4); }
 .mm-res-cita { margin: 0; padding: 0; border: 0; font-size: 16px; line-height: 1.55; color: var(--mm-tinta-texto); }
 .mm-res-pie, .mm-res-nota { margin: 0; font-size: 12px; line-height: 1.5; font-weight: 600; color: var(--mm-tinta-suave); }

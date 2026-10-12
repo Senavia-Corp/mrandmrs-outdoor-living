@@ -2401,15 +2401,16 @@ function lineasResenas(ruta) {
   if (d.publicar === false || !items.length) return [];
   const norm = (s) => (s ?? '').replace(/ /g, ' ').replace(/\s+/g, ' ').trim();
   /* ASTRO-2: en las 14 fichas las resenas van en lista (`ResenasGoogle.astro`, rama `enLista`). El
-   * enlace «See all reviews» sube a la cabecera, delante; el nombre va en `.mm-dato-rot`, o sea en
-   * mayusculas por CSS; y en las filas de la lista el nombre y la fecha se pintan a la izquierda
+   * enlace «See all reviews» sube a la cabecera, delante; el nombre va como esta escrito (D-142; hasta
+   * entonces, en versalitas por CSS); y en las filas de la lista el nombre y la fecha se pintan a la izquierda
    * de la cita, pero en el HTML van detras, como siempre. Las mismas ocho, las mismas lineas. */
   if (ruta && (esFicha(ruta) || esCiudadA(ruta) || esCondado(ruta) || ruta === '/')) {   // y la home (ASTRO-4)
     return [
       RESENAS_MARCADOR,
       ...(d.valoracion != null ? [d.valoracion.toFixed(1)] : []),
       ...(d.total != null ? [`${d.total} Google reviews`] : []),
-      ...items.flatMap((r) => [norm(r.texto), norm(r.autor).toUpperCase(), ...(r.fecha ? [mesDelNegocio(r.fecha)] : [])]),
+      ...items.flatMap((r) => [norm(r.texto), norm(r.autor),   // D-142: el autor, como esta escrito
+        ...(r.fecha ? [mesDelNegocio(r.fecha)] : [])]),
       ...(d.actualizado ? [`Updated ${mesDelNegocio(d.actualizado)}`] : []),
     ];
   }
