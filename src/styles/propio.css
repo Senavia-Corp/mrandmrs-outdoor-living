@@ -193,7 +193,6 @@
  * pie pasa al FONDO AGUA del final de esta hoja, que va en la direccion de toda banda azul del
  * sitio —clara arriba, honda abajo— y arranca en 5,01:1 con blanco encima. */
 
-
 /* ══ R13-COLOR · LOS DOS LITERALES AJENOS CON MAS ALCANCE QUE QUEDABAN VIVOS ══
  *
  * Los dos salen del inventario de color del sitio (R13-COLOR §1) y los dos estaban
@@ -308,8 +307,6 @@
  * Va acotado a los tres heroes y NUNCA suelto: `.button-styles` esta en 59 ficheros y una
  * regla sin ancla repintaria los CTA de todo el sitio.
  * ───────────────────────────────────────────────────────────────────────────── */
-.hero-country .button-styles,
-.hero-services .button-styles,
 .half-hero-section .button-styles {
   display: inline-flex;
   align-items: center;
@@ -356,7 +353,6 @@
 @media (min-width: 992px) {
   .hero-about .block-hero-about { padding-left: 52%; }
 }
-
 
 /* ══════════════════════════════════════════════════════════════════════════════
  * M4 (auditoria 5-sep-2026) — EL AREA TACTIL DEL PIE, SIN MOVER UN PIXEL
@@ -439,7 +435,6 @@
  * encargo es corregir el contraste, no repintar /about. */
 .grey { color: var(--mm-gris-aa); }   /* 4,54:1 sobre blanco — era #7c7c7c y daba 4,17:1 */
 
-
 /* ══════════════════════════════════════════════════════════════════════════════
  * FONDO AGUA (12-sep-2026) — UN SOLO FONDO AZUL PARA LAS SECCIONES NO BLANCAS
  *
@@ -510,8 +505,7 @@
 .meet-us-section,
 .form-section,
 .ty-hero,
-.before-after-section,
-.svc-inversion__panel.mm-inverso {
+.before-after-section {
   background-color: var(--mm-azul-800);   /* reserva: si un data-URI fallara, sigue cumpliendo 14,24:1 */
   background-image: var(--agua-cresta), var(--agua-grano), var(--agua-profundidad);
   background-repeat: no-repeat, repeat, no-repeat;
@@ -521,8 +515,7 @@
 @media (min-width: 768px) {
   .trusted-section, .gallery, .testimonial-section,
   .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer,
-  .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section,
-  .svc-inversion__panel.mm-inverso {
+  .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section {
     background-size: 100% 340px, 180px 180px, 100% 100%;
   }
 }
@@ -627,7 +620,6 @@ main:has(> .testimonial-section + .cta-footer:last-child) + .footer.footer {
  * Se quita aqui y no en `webflow.css`, que no se toca. */
 main > .hero-project,
 main > .hero-section,
-main > .hero-country,
 main > .hero-about,
 main > .half-hero-section,
 main > .article-body,

@@ -85,10 +85,8 @@ import '../styles/hero-zona.css';
 // plantilla-pool-builders.json—, asi que un fichero llamado `home` mentiria sobre su alcance
 // y el dia que alguien lo acotara a `/` romperia 53 paginas en silencio.
 import '../styles/blog.css';
-// La seccion de SUBSERVICIOS de las 14 fichas de services/ (R10, lote 1). Mismo criterio que
-// blog.css: `section.services` existe SOLO en esas 14 —verificado, 1 seccion y 1 rejilla por
-// pagina— y todas sus reglas cuelgan de `.services`, asi que el radio de impacto es medible.
-import '../styles/servicios.css';
+// `servicios.css` (la seccion de subservicios de las 14 fichas) se retiro con ASTRO-2: todas sus
+// reglas colgaban de `.services`, que ninguna ruta pinta ya (la seccion es `.mm-que`).
 // La BANDA DE CONFIANZA (`.trusted-section`), en 80 rutas. Mismo criterio que blog.css y
 // servicios.css: el selector reparte 80/71 solo -las 9 de country/ no llevan
 // `.block-contect-intro`- asi que no hay lista de rutas que mantener.
@@ -138,7 +136,8 @@ import '../styles/financiacion.css';   // .fin-* 1                              
 // group «Pool Builders Core»—, porque `src/data/captacion-servicios.json` tiene 1 entrada; la
 // hoja ya esta escrita para las 14. Va DESPUES de `estimacion.css` porque el formulario reutiliza
 // el ancestro `.appointment-section` y aqui solo se ajusta la composicion.
-import '../styles/servicio-core.css';   // .svc-* 1 (14 cuando se extienda)           -> R17-CORE
+// `servicio-core.css` (el hero de captacion de ciudad y su cierre, `.svc-heroe--ciudad`, `.svc-cierre`)
+// se retiro con ASTRO-2: ninguna ruta pinta ya esas clases (el hero es `.mm-hero-a`).
 // LA FAQ A DOS COLUMNAS CON COLLAGE DE OBRA (FAQ-COLLAGE). Las 16 rutas que montan
 // `.faq-section` — las 14 de `/services/`, `/about` y `/financing`— medidas con
 // `grep -rl 'class="faq-section' .vercel/output/static --include='*.html' | wc -l`. Va la
