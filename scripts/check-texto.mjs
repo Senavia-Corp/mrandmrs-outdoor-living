@@ -203,7 +203,14 @@ const SERVICIOS_CAT = JSON.parse(
   fs.readFileSync(path.join(RAIZ, 'src/data/servicios-categoria.json'), 'utf8'));
 const GALERIA_OBRA = JSON.parse(
   fs.readFileSync(path.join(RAIZ, 'src/data/galeria-obra-por-ruta.json'), 'utf8'));
-const ESTATICO = path.join(RAIZ, '.vercel/output/static');
+/* D-127 · `MM_ESTATICO=<carpeta>`: medir una COPIA del build en vez de `.vercel/output/static`, para
+ * que una corrida larga no impida seguir construyendo. Se dice SIEMPRE que carpeta se ha medido y de
+ * cuando es su `index.html`: una copia vieja no puede pasar por el build de ahora. */
+const ESTATICO = process.env.MM_ESTATICO ? path.resolve(process.env.MM_ESTATICO) : path.join(RAIZ, '.vercel/output/static');
+const fechaDelBuild = (dir) => {
+  const f = path.join(dir, 'index.html');
+  return fs.existsSync(f) ? fs.statSync(f).mtime.toLocaleString('sv-SE', { timeZone: 'America/New_York' }).slice(0, 16) : 'sin index.html';
+};
 
 /**
  * FILTRO POSICIONAL. Cada argumento es una SUBCADENA de la ruta, salvo que empiece por `=`,
@@ -220,7 +227,9 @@ const ESTATICO = path.join(RAIZ, '.vercel/output/static');
  */
 const filtro = process.argv.slice(2).filter((a) => !a.startsWith('--'));
 const casa = (r) => !filtro.length || filtro.some((f) => (f.startsWith('=') ? r === f.slice(1) : r.includes(f)));
-if (!fs.existsSync(ESTATICO)) { console.error('\nROJO falta .vercel/output/static — corre `npm run build`\n'); process.exit(1); }
+if (!fs.existsSync(ESTATICO)) { console.error(`\nROJO falta ${ESTATICO} — corre \`npm run build\`${process.env.MM_ESTATICO ? ' o revisa MM_ESTATICO' : ''}\n`); process.exit(1); }
+console.log(`  build medido: ${path.relative(RAIZ, ESTATICO) || ESTATICO} · de ${fechaDelBuild(ESTATICO)} (hora de Florida)`
+  + (process.env.MM_ESTATICO ? `   ← COPIA por MM_ESTATICO; el build en curso es de ${fechaDelBuild(path.join(RAIZ, '.vercel/output/static'))}` : ''));
 
 const TIPO = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript',
   '.avif': 'image/avif', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg',
