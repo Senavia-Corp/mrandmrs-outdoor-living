@@ -747,6 +747,61 @@ function fotosPorRuta(doc, ruta) {
 }
 
 
+/* ── ASTRO-2 · LA GALERIA DE OBRA DE LA FICHA, EN MOSAICO (lamina «GaleriaObra») ─────────
+ * El carrusel de Finsweet sale. Quedan el titular y la linea de siempre, la accion de la
+ * pagina en boton de linea (D-76), el enlace a `/gallery` y un mosaico de hasta seis fotos:
+ * cada una es un `<button>` que abre el visor que ya existe (`<dialog class="mm-lb">`,
+ * `Componentes.astro`).
+ *
+ * QUE FOTOS: las de la galeria de la ficha, en su orden, que tengan procedencia verificada en
+ * uno de los dos registros (D-99): el banco (`obra_real`) o `gallery-procedencia.json`
+ * (`usable`). Las que no la tienen NO se pintan. Las seis primeras van al mosaico; el resto
+ * solo al visor, en el JSON de la seccion. */
+const GALERIA_USABLE = new Set([
+  ...Object.values(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/gallery-procedencia.json'), 'utf8')).servicios)
+    .flat().filter((x) => x.usable).map((x) => x.src),
+  ...JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/banco-imagenes.json'), 'utf8'))
+    .filter((e) => e.src && e.procedencia === 'obra_real' && /^aprobada/.test(e.estado)).map((e) => e.src),
+]);
+const escAttr = (t) => String(t).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+let mosaicos = 0;
+function mosaicoDeObra(doc, ruta) {
+  if (!esFicha(ruta)) return;
+  const sec = doc.querySelector('section.gallery');
+  const h2 = sec?.querySelector('.header-gallery h2');
+  const linea = h2?.nextElementSibling;
+  const cta = doc.querySelector('.mm-hero-a-acc > a.mm-btn');
+  if (!h2 || !linea || !cta) throw new Error(`${ruta}: la galeria no trae titular y linea, o el hero no trae su accion`);
+  localizar(sec);
+  const todas = [...sec.querySelectorAll('img.image-gallery')].map((i) => ({ src: i.getAttribute('src'), alt: i.getAttribute('alt') ?? '',
+    w: i.getAttribute('width'), h: i.getAttribute('height') }));
+  const fotos = todas.filter((f) => GALERIA_USABLE.has(f.src));
+  // Las apaisadas delante, en su orden: la primera celda ocupa media anchura y una vertical ahi
+  // se recorta a la mitad (visto en la hoja de contactos de las 14, 12-oct-2026).
+  const apaisada = (f) => (DIM.get(f.src)?.w ?? f.w) / (DIM.get(f.src)?.h ?? f.h) >= 1.2;
+  fotos.sort((x, y) => apaisada(y) - apaisada(x));
+  if (fotos.length < 4) throw new Error(`${ruta}: la galeria solo tiene ${fotos.length} fotos con procedencia verificada; el mosaico pide 4`);
+  const marca = CAPTACION[ruta].heroe.marca;
+  const tit = marca && h2.innerHTML.includes(marca) ? h2.innerHTML.replace(marca, `<span class="mm-rot">${marca}</span>`) : h2.innerHTML;
+  const enMosaico = fotos.slice(0, 6);
+  const celdas = enMosaico.map((f) => {
+    const d = f.w && f.h ? { w: f.w, h: f.h } : DIM.get(f.src);
+    if (!d) throw new Error(`${ruta}: ${f.src} no tiene medidas en el manifiesto`);
+    return `<button type="button" class="mm-celda" data-mm-foto="${f.src}" aria-label="Open photo: ${escAttr(f.alt)}">`
+      + `<img src="${f.src}" alt="${escAttr(f.alt)}" width="${d.w}" height="${d.h}" loading="lazy" decoding="async"></button>`;
+  }).join('');
+  const resto = fotos.slice(6).map((f) => ({ url: f.src, alt: f.alt }));
+  const nueva = doc.createElement('section');
+  nueva.setAttribute('class', 'mm-gal');
+  nueva.innerHTML = `<div class="mm-gal-cab"><h2 class="mm-h2">${tit}</h2><div class="mm-gal-lado"><p class="mm-p">${linea.innerHTML}</p>`
+    + `<div class="mm-gal-acc"><a class="mm-btn mm-btn--linea" href="${cta.getAttribute('href')}">${cta.innerHTML}</a>`
+    + `<a class="mm-flecha" href="/gallery">Project Gallery${FLECHA}</a></div></div></div>`
+    + `<div class="mm-mosaico mm-mosaico--${enMosaico.length}">${celdas}</div>`
+    + (resto.length ? `<script type="application/json" class="mm-gal-mas">${JSON.stringify(resto).replace(/</g, '\\u003c')}</script>` : '');
+  sec.replaceWith(nueva);
+  mosaicos++;
+}
+
 /**
  * ── LA CIRUGIA DE LA LANDING DE PAGO (R17-CORE) ──────────────────────────────────────────
  *
@@ -1617,6 +1672,7 @@ for (const [ruta] of RUTAS) {
 
   fotosCanjeadas += fotosPorRuta(doc, ruta);
   textosCorregidos += textosPropios(doc, ruta);
+  mosaicoDeObra(doc, ruta);
 
 
   const usados = new Set();

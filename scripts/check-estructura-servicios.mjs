@@ -30,7 +30,7 @@ const ESTATICO = path.join(RAIZ, '.vercel/output/static');
  *  misma. */
 const ESPERADO = [
   'mm-hero-a', 'svc-confianza', 'svc-intro', 'appointment-section',
-  'gallery', 'services', 'process-section', 'svc-inversion', 'faq-section', 'testimonial-section',
+  'mm-gal', 'services', 'process-section', 'svc-inversion', 'faq-section', 'testimonial-section',
   'location', 'blog-section-page', 'social-media', 'cta-footer',
 ];   // ASTRO-2: la franja de logos va DENTRO del hero y la repetida junto al pie se retira (D-53)
 
@@ -84,8 +84,9 @@ for (const ruta of RUTAS) {
       + `       orden: ${cuerpo.join(' · ')}`);
     continue;
   }
-  const slides = d.querySelectorAll('section.gallery [fs-slider-element="slide"]').length;
-  if (!slides) { mal(ruta, 'la gallery esta pero sin slides'); continue; }
+  // ASTRO-2: la galeria es un mosaico de 4 a 6 botones con su foto, no un carrusel.
+  const slides = d.querySelectorAll('section.mm-gal .mm-mosaico > button.mm-celda[data-mm-foto] > img[width][height]').length;
+  if (slides < 4 || slides > 6) { mal(ruta, `el mosaico de la galeria tiene ${slides} celdas; van de 4 a 6`); continue; }
   console.log(`  ok   ${ruta}   (${slides} slides en la galeria)${VARIANTES[ruta] ? `   + ${VARIANTES[ruta].va} tras ${VARIANTES[ruta].tras} (declarada)` : ''}`);
 }
 

@@ -1277,6 +1277,14 @@ const LINEAS_CIUDADES_FICHA = [...new Set(Object.keys(PAGINAS_CIUDAD_SERVICIO).m
 
 const LINEAS_ANADIDAS = [
   ...LINEAS_CIUDADES_FICHA,
+  /* ASTRO-2 · T-28 y T-47: la cabecera de la galeria de obra de las 14 fichas lleva la accion de
+   * la pagina en boton de linea (D-76; el mismo texto que el boton del hero) y el enlace
+   * «Project Gallery». Van seguidas y solo ahi, asi que el par se quita sin ancla. */
+  ...Object.keys(CAPTACION_JSON).filter(esFicha).map((r) => ({
+    rutas: [r], tras: [],
+    lineas: [capitalizaH2(CAPTACION_JSON[r].heroe.cta ?? 'Get a Free Estimate'), 'Project Gallery'],
+    motivo: 'ASTRO-2 (T-28, T-47): accion y enlace a /gallery en la cabecera de la galeria de obra.',
+  })),
   /* SEO-REMEDIACION (4-oct-2026): los cualificadores opcionales de `/request-estimated`, leidos
    * del mismo JSON que los inserta (`src/data/textos-propios.json`). */
   ...Object.entries(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/textos-propios.json'), 'utf8')))
