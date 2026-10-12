@@ -2866,7 +2866,8 @@ function lineasObras(ruta) {
   // un <div> pelado; los rotulos de boton se escriben ya capitalizados, como en el origen.
   return obras.flatMap((o) => (d.forma === 'tarjeta'
     ? [capitaliza(o.titulo), o.resumen, 'View Full Project']
-    : [capitaliza(o.titulo), 'See Project']));
+    // ASTRO-2: en las paginas de ciudad el titulo va en `.mm-ficha-t` / `.mm-linea-t`, sin `capitalize`.
+    : [esCiudadA(ruta) ? o.titulo : capitaliza(o.titulo), 'See Project']));
 }
 
 /**
@@ -3486,6 +3487,7 @@ function pasosDelOrigen(ruta) {
 }
 const PRIMER_ARTICULO = (JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/blogs.json'), 'utf8')).posts[0]?.titulo ?? '')
   .replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+const TEXTO_BANDA_CAT = 'See pools, pergolas and outdoor kitchens we have built for Florida homeowners.';   // `TEXTO_BANDA` de galeria-categorias.mjs
 /** Como empieza el parrafo de la banda final de las paginas de ciudad (texto fijo de la plantilla). */
 const CIERRE_CIUDAD = 'Share your property details, project scope, and investment range.';
 function listasStitch(ruta, lineas) {
@@ -3513,6 +3515,25 @@ function listasStitch(ruta, lineas) {
     if (u >= 0 && hayTels(u + 1)) out.splice(u + 1, tels.length);
     const ci = out.findIndex((l) => l.startsWith(CIERRE_CIUDAD));
     if (ci >= 0 && hayTels(ci + 1)) out.splice(ci + 1, tels.length);
+    // GALERIA POR CATEGORIAS (D-79, D-100) y RENDER 3D: la accion de la pagina en la cabecera, justo
+    // detras del parrafo de la banda y del parrafo del 3D.
+    const pb = out.indexOf(TEXTO_BANDA_CAT);
+    if (pb >= 0 && out[pb + 1] === accion) out.splice(pb + 1, 1);
+    const p3 = out.findIndex((l) => l.toLowerCase() === '3d pool design & visualization');
+    if (p3 >= 0 && out[p3 + 2] === accion) out.splice(p3 + 2, 1);
+    /* PROYECTOS (T-33, T-47): la cabecera lleva la accion y «See all Projects», que antes cerraba
+     * el carrusel; detras de los tres destacados van los telefonos. Lo medido se devuelve a la
+     * forma de siempre: sin la accion, sin los telefonos y con «See all Projects» al final de la
+     * lista. Solo si el par esta en la cabecera y la lista es una sucesion de titulo + «See Project». */
+    const sap = out.findIndex((l, k) => l === 'See all Projects' && out[k - 1] === accion);
+    if (sap > 0) {
+      out.splice(sap - 1, 2);
+      let k = sap - 1;
+      while (out[k + 1] === 'See Project' || hayTels(k)) {
+        if (hayTels(k)) out.splice(k, tels.length); else k += 2;
+      }
+      out.splice(k, 0, 'See all Projects');
+    }
     const faq = CAPTACION_JSON[ruta]?.faq;
     if (faq?.titulo) {
       const f0 = out.findIndex((l) => l.toLowerCase() === faq.titulo.toLowerCase());

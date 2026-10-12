@@ -26,7 +26,7 @@ import TELEFONOS from '../data/telefonos.json';
 import { sinAperturaDelFeed } from '../lib/feed-social.mjs';
 import { partirPorElCarrusel } from '../lib/carrusel-proyectos.mjs';
 import { partirEn, heroeDeCaptacion } from '../lib/captacion-ciudad.mjs';
-import { conBandaGaleria } from '../lib/galeria-categorias.mjs';
+import { conBandaGaleria, bandaCompactaHtml } from '../lib/galeria-categorias.mjs';
 import LIT from '../data/plantilla-pool-builders.json';
 import RESENAS from '../data/resenas.json';
 const RESENAS_PERFIL = RESENAS.enlacePerfil;
@@ -307,6 +307,20 @@ const CIERRE_H2 = nb(lee(CTA_PIE, /<h2>([\s\S]*?)<\/h2>/, 'el titular de la band
 const CIERRE_P = lee(CTA_PIE, /<div class="text-block-3">([\s\S]*?)<\/div>/, 'el parrafo de la banda final')[1];
 const [FOTO_FAQ, FOTO_CIERRE, FOTO_RES] = fotosDeSeccion(RUTA);
 
+/* RENDER 3D (lamina «Render3d»; solo los servicios que lo llevan). De la seccion de Webflow se leen
+ * el titular, el parrafo y el bloque del video TAL CUAL: `Base.astro` (`video-fondo.mjs`) lo sigue
+ * reescribiendo igual —poster local, `preload="none"`, carga diferida y boton de pausa—, que es lo
+ * que mide `check:video-fondo`. Lo demas (fondo decorativo, envoltorios, `data-w-id`) sale. */
+let R3D = null;
+if (P_ANTES_PINTADO) {
+  const m3 = lee(P_ANTES_PINTADO, /class="header-3d-section"><h2>([\s\S]*?)<\/h2><p>([\s\S]*?)<\/p><\/div>/, 'el titular y el parrafo del render 3D');
+  const i3 = P_ANTES_PINTADO.indexOf('<div data-poster-url=');
+  const f3 = P_ANTES_PINTADO.lastIndexOf('</div></div></div></section>');
+  if (i3 < 0 || f3 < i3) throw new Error(`${slug}: la seccion 3D ya no trae el bloque del video donde se esperaba`);
+  // Los dos iconos del boton de pausa no traen medidas del origen: se les ponen (24 x 24).
+  R3D = { h2: nb(m3[1]), p: m3[2], video: P_ANTES_PINTADO.slice(i3, f3).replace(/<img src="\/images\/site\/(?:pause|play-24)\.svg"/g, '$& width="24" height="24"') };
+}
+
 const FAQ_H2 = FAQ ? nb(esc(FAQ.titulo).replace(/(FAQs?)\s*$/, '<span class="mm-rot">$1</span>')) : '';
 
 const { seo: SEO_WEBFLOW, ldCrudo: LD_CRUDO } = SEO_RUTAS[slug];
@@ -424,7 +438,18 @@ const SEO = FAQ
     </div>
   </section>
   <GaleriaObra clave={SV.galeria} />
-  <Fragment set:html={P_ANTES_PINTADO} />
+  {R3D && (
+    <section class="mm-3d">
+      <div class="mm-sec-cab">
+        <h2 class="mm-h2" set:html={R3D.h2} />
+        <div class="mm-sec-lado">
+          <p class="mm-p" set:html={R3D.p} />
+          <div class="mm-sec-acc"><a class="mm-btn mm-btn--linea mm-btn--linea-inv" href="#estimate">{CTA_CIERRE}</a></div>
+        </div>
+      </div>
+      <figure class="mm-3d-medio" set:html={R3D.video} />
+    </section>
+  )}
   {/* El panel de los 14 servicios cierra con la accion de la pagina (`slot="cierre"`). */}
   <ServiciosPorCategoria clave="/" defecto={SV.categoria}>
     <p slot="cierre" class="svc-cierre"><a href="#estimate" class="button button-styles w-button">{CTA_CIERRE}</a></p>
@@ -471,13 +496,13 @@ const SEO = FAQ
           )}
           <div class="mm-faq-accion">
             <a class="mm-btn" href="#estimate">{CTA_CIERRE}</a>
-            <div class="mm-datos">{HERO_ZONAS.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}</div>
+            <div class="mm-datos mm-datos--tel">{HERO_ZONAS.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}</div>
           </div>
         </div>
       </div>
     </section>
   )}
-  <Fragment set:html={BANDA} />
+  <Fragment set:html={bandaCompactaHtml(CTA_CIERRE)} />
   <CarruselProyectos titulo={d['headingPortfolio']} entradilla={d['paragraphPortfolio']} />
   <CarruselBlog titulo={d['headingBlog']} entradilla={d['paragraphBlog']} />
   <section class:list={['mm-res', !FOTO_RES && 'mm-res--sin']}>
@@ -494,7 +519,7 @@ const SEO = FAQ
     <div class="mm-res-cuerpo">
       <div class="mm-res-col">
         <ResenasGoogle />
-        <div class="mm-datos">{HERO_ZONAS.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}</div>
+        <div class="mm-datos mm-datos--tel">{HERO_ZONAS.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}</div>
       </div>
       {FOTO_RES && (
         <figure class="mm-res-medio"><img src={FOTO_RES.src} alt={FOTO_RES.alt} width={FOTO_RES.ancho} height={FOTO_RES.alto} loading="lazy" decoding="async" /></figure>
@@ -506,7 +531,7 @@ const SEO = FAQ
       <div class="mm-cierre-txt">
         <h2 class="mm-h2" set:html={CIERRE_H2} />
         <p class="mm-p" set:html={CIERRE_P} />
-        <div class="mm-datos">{HERO_ZONAS.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}</div>
+        <div class="mm-datos mm-datos--tel">{HERO_ZONAS.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}</div>
       </div>
       {FOTO_CIERRE && (
         <figure class="mm-cierre-medio"><img src={FOTO_CIERRE.src} alt={FOTO_CIERRE.alt} width={FOTO_CIERRE.ancho} height={FOTO_CIERRE.alto} loading="lazy" decoding="async" /></figure>

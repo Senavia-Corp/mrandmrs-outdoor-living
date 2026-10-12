@@ -55,7 +55,68 @@ const entradillaFinal = entradilla ?? propio?.entradilla ?? ENCABEZADOS._defecto
 // Las obras del banco (PROMPT-PROYECTOS-BANCO) llevan `enCarrusel: false`: salen en /projects y
 // en su ficha, no en las 66 rutas de este carrusel. `check-texto.mjs` (`lineasObras`) filtra igual.
 const slides = [...PROPIAS.obras.filter((o) => o.enCarrusel !== false), ...MIGRADAS.obras];
+
+/* ASTRO-2 · lamina «Proyectos», en las 118 paginas de servicio × ciudad: el carrusel pasa a tres
+ * proyectos destacados con foto y el resto en un indice de titulo + «See Project». Los mismos
+ * proyectos, los mismos enlaces y el mismo orden. La home, `/industry-solutions`,
+ * `/where-we-serve/*` y los 9 condados siguen con el carrusel hasta que les toque.
+ * D-68, D-56: uno de los proyectos sigue enlazado en el indice, pero no entra entre los destacados. */
+import captacion from '../../data/captacion-servicios.json';
+import TELEFONOS from '../../data/telefonos.json';
+import sharp from 'sharp';
+import path from 'node:path';
+const enLista = /^\/services\/[^/]+\/[^/]+$/.test(ruta) && !/-county-fl$/.test(ruta);
+const SOLO_EN_INDICE = 'luxury-pool-spa-screen-enclosure-north-florida';
+const cap = (captacion as Record<string, { heroe?: { cta?: string; zonas?: string[] } }>)[ruta];
+const accion = cap?.heroe?.cta ?? 'Get a Free Estimate';
+const zonas = (cap?.heroe?.zonas ?? TELEFONOS.items.map((x) => x.zona)).map((z) => TELEFONOS.items.find((x) => x.zona === z)!);
+const MEDIDAS: Map<string, { w: number; h: number }> = ((globalThis as any).__mmMedidasProyecto ??= new Map());
+const medidasDe = async (src: string) => {
+  if (!MEDIDAS.has(src)) {
+    const m = await sharp(path.join(process.cwd(), 'public', src)).metadata();
+    if (!m.width || !m.height) throw new Error(`CarruselProyectos: no puedo medir ${src}`);
+    MEDIDAS.set(src, { w: m.width, h: m.height });
+  }
+  return MEDIDAS.get(src)!;
+};
+const destacables = slides.filter((o) => o.slug !== SOLO_EN_INDICE).slice(0, 3);
+const destacados = enLista ? await Promise.all(destacables.map(async (o) => ({ ...o, dim: await medidasDe(o.portada) }))) : [];
+const resto = slides.filter((o) => !destacables.includes(o));
+if (enLista && slides.slice(0, 3).some((o) => o.slug === SOLO_EN_INDICE)) throw new Error('CarruselProyectos: el proyecto que va solo en el indice esta entre los tres primeros; el orden del indice cambiaria');
+const tituloRot = String(tituloFinal).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/(Projects)\s*$/, '<span class="mm-rot">$1</span>');
+const FLECHA = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>';
 ---
+{enLista && (
+  <section class="mm-proy">
+    <div class="mm-sec-cab">
+      <h2 class="mm-h2" set:html={tituloRot} />
+      <div class="mm-sec-lado">
+        <p class="mm-p">{entradillaFinal}</p>
+        <div class="mm-sec-acc">
+          <a class="mm-btn mm-btn--linea" href="#estimate">{accion}</a>
+          <a class="mm-flecha" href="/projects">See all Projects<Fragment set:html={FLECHA} /></a>
+        </div>
+      </div>
+    </div>
+    <div class="mm-proy-dest">
+      {destacados.map((o) => (
+        <a class="mm-ficha" href={`/project/${o.slug}`}>
+          <span class="mm-ficha-foto"><img src={o.portada} alt={o.alt} width={o.dim.w} height={o.dim.h} loading="lazy" decoding="async" /></span>
+          <span class="mm-ficha-txt"><h3 class="mm-ficha-t" set:html={o.tituloHtml} /><span class="mm-flecha">See Project<Fragment set:html={FLECHA} /></span></span>
+        </a>
+      ))}
+    </div>
+    <div class="mm-proy-resto">
+      <div class="mm-datos mm-datos--tel">{zonas.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}</div>
+      <ul class="mm-indice" role="list">
+        {resto.map((o) => (
+          <li><a class="mm-linea" href={`/project/${o.slug}`}><span class="mm-linea-t" set:html={o.tituloHtml} /><span class="mm-art-ver">See Project<Fragment set:html={FLECHA} /></span></a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
+{!enLista && (
 <section class="projects-section">
   <div class="w-layout-blockcontainer container w-container">
     <div data-w-id="1b3f0000-6760-ab5a-e8a8-0451b5923b92" class="header-projects">
@@ -109,3 +170,4 @@ const slides = [...PROPIAS.obras.filter((o) => o.enCarrusel !== false), ...MIGRA
     </div>
   </div>
 </section>
+)}
