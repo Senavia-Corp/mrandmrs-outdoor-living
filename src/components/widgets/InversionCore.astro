@@ -49,9 +49,10 @@ const piscina = /^\/services\/pool-(builders|remodeling)(\/|$)/.test(ruta);
       <div class="mm-inv-txt">
         <h2 class="mm-h2">{partes ? <>{partes[1]}<span class="mm-rot">{partes[2]}</span>{partes[3]}</> : d.titulo}</h2>
         <p class="mm-p">{d.texto}</p>
+        {/* `mm-min` (D-135): los dos botones se pintan como estan escritos, igual que en produccion. */}
         <div class="mm-inv-acc">
           {d.ctas.map((c) => (
-            <a href={c.href} class:list={['mm-btn', c.principal ? 'mm-btn--navy' : 'mm-btn--linea']}>{c.texto}</a>
+            <a href={c.href} class:list={['mm-btn', 'mm-min', c.principal ? 'mm-btn--navy' : 'mm-btn--linea']}>{c.texto}</a>
           ))}
         </div>
       </div>

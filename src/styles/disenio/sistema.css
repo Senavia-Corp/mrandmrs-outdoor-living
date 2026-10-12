@@ -854,3 +854,19 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
   .mm-proc-medio .mm-lam-foto, .mm-faq-medio .mm-lam-foto { border-top-left-radius: clamp(0px, calc(100vw - 1440px), var(--mm-r-16)); border-bottom-left-radius: clamp(0px, calc(100vw - 1440px), var(--mm-r-16)); }
   .mm-que-medio .mm-lam-foto, .mm-cierre-medio, .mm-serv-medio { border-top-right-radius: clamp(0px, calc(100vw - 1440px), var(--mm-r-16)); border-bottom-right-radius: clamp(0px, calc(100vw - 1440px), var(--mm-r-16)); }
 }
+
+/* ── D-135 · Mayusculas iniciales en los titulares ──────────────────────────────────────
+   Los titulares de las piezas nuevas se pintan con las mayusculas que tienen en la referencia
+   de texto: `webflow.css` capitalizaba `h1`-`h4` por CSS y el dato viene escrito de las dos
+   formas («…Builders In Gainesville», «…Builders in Marion County»). Sin esta regla media pagina
+   salia en un estilo y media en otro. Va al final de la hoja porque cada clase declara
+   `text-transform: none` en su propia regla, para no heredar el de la maqueta.
+   No entran: preguntas del FAQ, parrafos, pies de foto ni enlaces. Los botones ya lo llevan
+   (`.mm-btn`) y los rotulos van en versalitas (`.mm-etiqueta`, `.mm-dato-rot`, D-31). */
+.mm-h1, .mm-h2, .mm-hero-a-sub, .mm-conf-t, .mm-paso-t, .mm-grupo-t, .mm-serv-t, .mm-cat-t,
+.mm-ficha-t, .mm-linea-t, .mm-art-t, .mm-art-linea-t, .mm-zona-t, .mm-form-pasos-t,
+.mm-faq-item h3, .mm-grupo-i dt, .mm-may, .mm-art-ver .mm-sr, .mm-art .mm-sr { text-transform: capitalize; }
+/* `.mm-may`: lo que no es titular pero la referencia pinta con mayusculas iniciales (era un boton
+   en la maqueta heredada y ahora es un enlace de linea). `.mm-min`: al reves, un boton cuyo texto
+   la referencia pinta tal como esta escrito. La regla es una: lo que diga la referencia. */
+.mm-btn.mm-min { text-transform: none; }

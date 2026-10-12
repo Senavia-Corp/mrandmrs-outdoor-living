@@ -2581,9 +2581,10 @@ function lineasBlog(ruta) {
  *  tres primeros con su resumen y el resto en indice de titulo + «Read More», sin resumen (T-44). */
 function articulosEnLista(ruta, titulo, entradilla, posts, n) {
   return [
-    titulo, entradilla, capitaliza(CAPTACION_JSON[ruta]?.heroe?.cta ?? 'Get a Free Estimate'),
-    ...posts.slice(0, 3).flatMap((p) => [n(p.titulo), n(p.resumen), n(p.cta)]),
-    ...posts.slice(3).flatMap((p) => [n(p.titulo), n(p.cta)]),
+    capitaliza(titulo), entradilla, capitaliza(CAPTACION_JSON[ruta]?.heroe?.cta ?? 'Get a Free Estimate'),
+    // D-135: los titulos de articulo (`.mm-art-t`, `.mm-art-linea-t`) se pintan con `capitalize`.
+    ...posts.slice(0, 3).flatMap((p) => [capitaliza(n(p.titulo)), n(p.resumen), n(p.cta)]),
+    ...posts.slice(3).flatMap((p) => [capitaliza(n(p.titulo)), n(p.cta)]),
   ];
 }
 
@@ -2867,8 +2868,8 @@ function lineasObras(ruta) {
   // un <div> pelado; los rotulos de boton se escriben ya capitalizados, como en el origen.
   return obras.flatMap((o) => (d.forma === 'tarjeta'
     ? [capitaliza(o.titulo), o.resumen, 'View Full Project']
-    // ASTRO-2: en las paginas de ciudad el titulo va en `.mm-ficha-t` / `.mm-linea-t`, sin `capitalize`.
-    : [esCiudadA(ruta) || esCondado(ruta) ? o.titulo : capitaliza(o.titulo), 'See Project']));
+    // D-135: tambien en la lista de ciudad y de condado (`.mm-ficha-t`, `.mm-linea-t`) van con `capitalize`.
+    : [capitaliza(o.titulo), 'See Project']));
 }
 
 /**
@@ -2879,10 +2880,7 @@ function quitaTras(lineas, contexto, anadidas) {
   if (!contexto.length) return quitaBloque(lineas, anadidas);
   const bloque = [...contexto, ...anadidas];
   for (let i = 0; i + bloque.length <= lineas.length; i++) {
-    // El CONTEXTO es solo el ancla y se queda en `lineas` (lo juzga el diff final, con T-69): se
-    // casa sin mayusculas porque un titular que deja de llevar `capitalize` («Built For» ->
-    // «Built for») no puede dejar el bloque sin sitio. Lo AÑADIDO se sigue exigiendo exacto.
-    if (bloque.every((l, j) => (j < contexto.length ? lineas[i + j].toLowerCase() === l.toLowerCase() : lineas[i + j] === l))) {
+    if (bloque.every((l, j) => lineas[i + j] === l)) {
       const k = i + contexto.length;
       return [...lineas.slice(0, k), ...lineas.slice(k + anadidas.length)];
     }
@@ -2940,7 +2938,7 @@ const formularioNuevo = (c) => [
   ...camposCaptacion(c),
   c.formulario.titulo.toUpperCase(),
   c.formulario.entradilla,
-  c.formulario.pasosTitulo,
+  capitaliza(c.formulario.pasosTitulo),   // D-135: `.mm-form-pasos-t` con `capitalize`
   ...c.formulario.pasos,
 ];
 
@@ -2950,6 +2948,17 @@ let bloqueQueFallo = null;
 let sufijosQuitados = 0;
 /** Bloques de la capa de captacion descontados (R17-CORE), para el resumen. */
 let conCaptacion = 0;
+
+/** `MM_TEXTO_DIFF=1`: de un bloque declarado que no casa, que lineas no estan tal cual y cual es
+ *  la que mas se le parece (igual salvo mayusculas). Solo diagnostico; no cambia el veredicto. */
+function diagnosticaBloque(lineas, bloque) {
+  if (!process.env.MM_TEXTO_DIFF) return;
+  const porMin = new Map(lineas.map((l) => [l.toLowerCase(), l]));
+  for (const l of bloque) {
+    if (lineas.includes(l)) continue;
+    console.log(`     bloque: «${l.slice(0, 80)}» no esta` + (porMin.has(l.toLowerCase()) ? ` · en la pagina: «${porMin.get(l.toLowerCase()).slice(0, 80)}»` : ''));
+  }
+}
 
 /** Quita de `hay` los bloques declarados para esa ruta. `null` si alguno falla. */
 function sinElBloque(ruta, hay) {
@@ -2986,8 +2995,9 @@ function sinElBloque(ruta, hay) {
   if (enBlogRutas(ruta)) {
     const bl = lineasBlog(ruta);
     if (bl.length) {
+      const antesDelBlog = lineas;
       lineas = quitaBloque(lineas, bl);
-      if (lineas === null) { bloqueQueFallo = 'el bloque de blog (src/data/blogs.json)'; return null; }
+      if (lineas === null) { diagnosticaBloque(antesDelBlog, bl); bloqueQueFallo = 'el bloque de blog (src/data/blogs.json)'; return null; }
     }
   }
 
@@ -3015,7 +3025,9 @@ function sinElBloque(ruta, hay) {
   //     de `/` cae muy por debajo del carrusel de proyectos.
   const ob = lineasObras(ruta);
   if (ob.length) {
+    const antesDeObras = lineas;
     lineas = quitaTras(lineas, OBRAS_PROPIAS_EN[ruta].tras, ob);
+    if (lineas === null) diagnosticaBloque(antesDeObras, [...OBRAS_PROPIAS_EN[ruta].tras, ...ob]);
     if (lineas === null) {
       bloqueQueFallo = `el bloque de ${OBRAS_PROPIAS_EN[ruta].forma}s de las obras propias `
         + '(src/data/proyectos-propios.json)';
@@ -3159,7 +3171,8 @@ function bloquesCaptacion(ruta) {
   bloques.push([
     // ASTRO-2 (T-69): rotulo en `.mm-etiqueta` (mayusculas por CSS) y titulares sin `capitalize`.
     c.confianza.rotulo.toUpperCase(),
-    ...c.confianza.tarjetas.flatMap((t) => [t.titulo, t.texto]),
+    // D-135: el titulo de cada tarjeta (`.mm-conf-t`) se pinta con `capitalize`.
+    ...c.confianza.tarjetas.flatMap((t) => [capitaliza(t.titulo), t.texto]),
   ]);
 
   // 2.bis · «what happens» + formulario, detras de la intro.
@@ -3169,9 +3182,10 @@ function bloquesCaptacion(ruta) {
   //     las catorce llevan su `gallery`, y sus dos lineas salen del baseline (§ `subeGaleria`).
   bloques.push([
     // ASTRO-2: titular en `.mm-h2` (sin `capitalize`) y los dos botones en `.mm-btn` (con el).
-    c.inversion.titulo,
+    capitaliza(c.inversion.titulo),   // D-135: `.mm-h2` con `capitalize`
     c.inversion.texto,
-    ...c.inversion.ctas.map((x) => capitaliza(x.texto)),
+    // D-135: los dos botones del panel se pintan como estan escritos (`.mm-min`), igual que en produccion.
+    ...c.inversion.ctas.map((x) => x.texto),
     // T-35: los cuatro rotulos del plano en linea, solo en las rutas de piscina (`InversionCore.astro`).
     // Son `<text>` de un SVG con `aria-hidden`, pero `innerText` los lee.
     ...(/^\/services\/pool-(builders|remodeling)(\/|$)/.test(ruta) ? ['SIZE', 'DESIGN', 'FINISHES', 'SITE CONDITIONS'] : []),
@@ -3236,9 +3250,9 @@ function bloquesCaptacion(ruta) {
       // ASTRO-2: `section.mm-faq` con `<details>`: titular y preguntas sin `capitalize`; el boton
       // de la tarjeta de accion (`.mm-btn`) si lo lleva. Los telefonos de la tarjeta los quita
       // `listasStitch`.
-      ? [c.faq.titulo, c.faq.entradilla,
-        ...c.faq.anade.map((q) => q.pregunta), capitaliza(ctaCierre(c))]
-      : c.faq.anade.map((q) => q.pregunta));   // ASTRO-2: en la ficha el `<h3>` del `<details>` no capitaliza
+      ? [capitaliza(c.faq.titulo), c.faq.entradilla,
+        ...c.faq.anade.map((q) => capitaliza(q.pregunta)), capitaliza(ctaCierre(c))]
+      : c.faq.anade.map((q) => capitaliza(q.pregunta)));   // D-135: titular y preguntas con `capitalize`, como en la referencia
   }
 
   return bloques;
@@ -3247,8 +3261,10 @@ function bloquesCaptacion(ruta) {
   // 5.bis · la capa de captacion (§ bloquesCaptacion). Disjunta de las cinco anteriores: sus
   //          lineas no salen en ningun baseline ni las produce ningun otro bloque declarado.
   for (const bl of bloquesCaptacion(ruta)) {
+    const antesDelBloque = lineas;
     lineas = quitaBloque(lineas, bl);
     if (lineas === null) {
+      diagnosticaBloque(antesDelBloque, bl);
       bloqueQueFallo = `el bloque de captacion que empieza en "${bl[0]}" `
         + '(src/data/captacion-servicios.json + FormularioCore.astro)';
       return null;
@@ -3371,13 +3387,20 @@ function reescribeArticulo(ruta, lineas) {
 
 /** Diferencia legible entre dos textos, línea a línea. */
 /**
- * ASTRO-2 · T-69 · LAS MAYUSCULAS QUE PONIA EL CSS. `webflow.css` capitaliza `h1`-`h4` y los
- * botones, y eso altera `innerText`; las piezas del sistema nuevo (`.mm-h2`, `.mm-conf-t`…) no
- * capitalizan, y `.mm-etiqueta` pone mayusculas. El HTML lleva las mismas letras. Una linea
- * esperada que no esta tal cual, pero si esta IGUAL SALVO MAYUSCULAS, se da por la misma linea
- * — solo en las 141 rutas de ASTRO-2, y contandolas a la vista, no en silencio.
+ * T-69 · LOS ROTULOS EN VERSALITAS (D-135, 12-oct-2026). `.mm-etiqueta` y `.mm-dato-rot` pintan su
+ * texto en mayusculas por CSS (`uppercase`, D-31) y eso altera `innerText`: «Trusted by Florida's
+ * finest homeowners» se mide «TRUSTED BY FLORIDA'S FINEST HOMEOWNERS». Una linea medida que es la
+ * esperada ENTERA en mayusculas, en su misma posicion, se da por la misma — solo en las 141 rutas
+ * de `/services/`, contandola y listandola a la vista.
+ *
+ * Hasta D-135 esta funcion daba por iguales dos lineas que solo cambiaran de mayusculas, fueran
+ * lo que fueran: 4 839 lineas en la corrida de las 141, casi todas titulares que el rediseno
+ * habia dejado de capitalizar. Eso ya no vale: los titulares se pintan como en la referencia
+ * (`text-transform: capitalize`, al final de `sistema.css`) y aqui tienen que salir IGUALES.
  */
 let soloMayusculas = 0;
+/** Que lineas son, para que el recuento de T-69 se pueda leer y no solo contar (D-135). */
+const rotulosT69 = new Map();
 function sinMayusculasDeCss(ruta, esperado, hay) {
   if (!ruta.startsWith('/services/')) return esperado;
   const medidas = hay.split('\n');
@@ -3387,20 +3410,18 @@ function sinMayusculasDeCss(ruta, esperado, hay) {
    * «Request a Design-Build…» en un titular), y casar por contenido las cruzaba. */
   if (medidas.length === esperadas.length) {
     return esperadas.map((l, k) => {
-      if (l === medidas[k] || l.toLowerCase() !== medidas[k].toLowerCase()) return l;
+      // D-135: solo los rotulos en VERSALITAS (`.mm-etiqueta`, `.mm-dato-rot`: `uppercase` por
+      // CSS). La linea medida tiene que ser la esperada entera en mayusculas; un titular que
+      // cambie de mayusculas ya no se da por bueno.
+      if (l === medidas[k] || medidas[k] !== l.toUpperCase()) return l;
       soloMayusculas++;
+      rotulosT69.set(medidas[k], (rotulosT69.get(medidas[k]) ?? 0) + 1);
       return medidas[k];
     }).join('\n');
   }
-  // Si no miden lo mismo la ruta va a salir roja igual; esto solo limpia el listado de diferencias.
-  const exactas = new Set(medidas);
-  const porMinuscula = new Map(medidas.map((l) => [l.toLowerCase(), l]));
-  return esperadas.map((l) => {
-    const m = porMinuscula.get(l.toLowerCase());
-    if (exactas.has(l) || !m) return l;
-    soloMayusculas++;
-    return m;
-  }).join('\n');
+  // Si no miden lo mismo la ruta sale roja igual, y sin posicion no se sabe que linea es un rotulo:
+  // no se da nada por bueno (casar por contenido cruzaba «Get a free estimate» con el rotulo del formulario).
+  return esperado;
 }
 
 /**
@@ -3548,7 +3569,7 @@ function listasStitch(ruta, lineas) {
      * declarado entero: § articulosEnLista.) */
     const out = [...lineas];
     const accion = capitalizaH2(CAPTACION_JSON[ruta]?.heroe?.cta ?? 'Get a Free Estimate');
-    const j = out.indexOf(PRIMER_ARTICULO);
+    const j = out.indexOf(capitaliza(PRIMER_ARTICULO));   // D-135: `.mm-art-t` con `capitalize`
     if (j > 0 && out[j - 1] === accion) out.splice(j - 1, 1);
     /* PIEZAS COMPARTIDAS CON LA FICHA (T-29, T-47), cada una por su ancla exacta:
      *   · resenas: la accion de la cabecera va justo delante de «See all reviews»; los telefonos,
@@ -3575,14 +3596,15 @@ function listasStitch(ruta, lineas) {
      * el carrusel; detras de los tres destacados van los telefonos. Lo medido se devuelve a la
      * forma de siempre: sin la accion, sin los telefonos y con «See all Projects» al final de la
      * lista. Solo si el par esta en la cabecera y la lista es una sucesion de titulo + «See Project». */
-    const sap = out.findIndex((l, k) => l === 'See all Projects' && out[k - 1] === accion);
+    // D-135: el enlace se pinta «See All Projects», como en la referencia (`.mm-may`).
+    const sap = out.findIndex((l, k) => l === 'See All Projects' && out[k - 1] === accion);
     if (sap > 0) {
       out.splice(sap - 1, 2);
       let k = sap - 1;
       while (out[k + 1] === 'See Project' || hayTels(k)) {
         if (hayTels(k)) out.splice(k, tels.length); else k += 2;
       }
-      out.splice(k, 0, 'See all Projects');
+      out.splice(k, 0, 'See All Projects');
     }
     /* GALERIA DE OBRA EN MOSAICO (T-81): su cabecera lleva la accion de la pagina y el enlace
      * «Project Gallery», justo detras de la entradilla. Se quitan solo si estan ahi, los dos. */
@@ -3849,6 +3871,12 @@ for (const ruta of RUTAS_A_MEDIR) {
     const esperadoP = sinMayusculasDeCss(ruta, esperadoPropio(ruta, fs.readFileSync(refPropia, 'utf8').trimEnd().split('\n')).join('\n'), hayP);
     if (hayP === esperadoP) { ok++; okPropias++; console.log(`  ok   ${ruta}   (referencia propia)`); continue; }
     mal++;
+    // `MM_TEXTO_VOLCAR=<dir>`: tambien las rutas de referencia propia (solo diagnostico).
+    if (process.env.MM_TEXTO_VOLCAR) {
+      fs.mkdirSync(process.env.MM_TEXTO_VOLCAR, { recursive: true });
+      fs.writeFileSync(path.join(process.env.MM_TEXTO_VOLCAR, aSlug(ruta) + '.esperado.txt'), esperadoP);
+      fs.writeFileSync(path.join(process.env.MM_TEXTO_VOLCAR, aSlug(ruta) + '.medido.txt'), hayP);
+    }
     const dP = diferencias(ruta, esperadoP, hayP);
     rojos.push({ ruta, ...dP });
     console.log(`  ROJO ${ruta} — faltan ${dP.falta.length} lineas, sobran ${dP.sobra.length}   (referencia propia)`);
@@ -3972,7 +4000,11 @@ if (rojos.length) {
 /* Sin tercer cubo a proposito: todo lo que no es `ok` es `mal`, y `mal` manda en el
  * veredicto y en el codigo de salida. El motivo de cada rojo —diferencia, baseline
  * ausente, medicion invalida o pagina que no carga— va en el detalle de arriba. */
-if (soloMayusculas) console.log(`\n  --   T-69: ${soloMayusculas} linea(s) iguales salvo mayusculas (text-transform de CSS), dadas por la misma.`);
+if (soloMayusculas) {
+  console.log(`\n  --   T-69: ${soloMayusculas} linea(s) de rotulo en VERSALITAS (\`uppercase\` de CSS: .mm-etiqueta, .mm-dato-rot), dadas por la misma.`);
+  console.log(`       Solo cuenta la linea medida que es la esperada ENTERA en mayusculas (D-135). Son ${rotulosT69.size} rotulo(s) distinto(s):`);
+  for (const [l, n] of [...rotulosT69].sort((a, b) => b[1] - a[1])) console.log(`         ${String(n).padStart(4)} × ${l.slice(0, 70)}`);
+}
 if (CAPTURAR_PROPIO) {
   console.log(`\n  CAPTURA DE REFERENCIA PROPIA: ${capturadas} escritas · ${yaExistian} ya existian y no se tocaron`
     + ` · ${mal} fallidas   (${RUTAS_PROPIAS.length} rutas propias)\n`);
