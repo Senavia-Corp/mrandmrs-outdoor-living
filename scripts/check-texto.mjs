@@ -28,6 +28,7 @@ import { tramosMiga } from '../src/lib/miga-tramos.mjs';
 import { AREAS_PIE, ORDEN_SERVICIOS_PIE, COPYRIGHT_ORIGEN, copyright } from '../src/lib/pie.mjs';
 import { lineasTarjetas, lineasBanda, lineasSrBanda } from '../src/lib/galeria-categorias.mjs';
 import { OCULTAS, lineasFiltro } from '../src/lib/filtro-proyectos.mjs';
+import { fotoDeHeroe } from '../src/lib/heroe-ciudad.mjs';
 import { ciudadesDeFicha } from '../src/lib/servicios-ciudad.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
@@ -299,6 +300,23 @@ function esperadoPropio(ruta, lineas) {
     if (d.ruta !== ruta && !d.rutas?.includes(ruta)) continue;
     const i = out.findIndex((_, k) => d.antes.every((l, j) => out[k + j] === l));
     if (i >= 0) out = [...out.slice(0, i), ...d.despues, ...out.slice(i + d.antes.length)];
+  }
+  // ASTRO-2 · HERO A DE CIUDAD: las referencias propias guardan el hero de Webflow (licencia, h1, h2,
+  // parrafo, linea de telefonos, accion, «Project Gallery»). Se cambia ese tramo, EXACTO y seguido,
+  // por el nuevo: mismos textos, la licencia y los telefonos en banda de datos detras de los
+  // botones, y el pie de foto donde hay foto (T-66, T-67). Si no esta tal cual, no se toca.
+  const ch = CAPTACION_JSON[ruta]?.heroe;
+  if (ch && !esFicha(ruta) && ruta.startsWith('/services/')) {
+    const zonas = (ch.zonas ?? TELEFONOS.items.map((x) => x.zona)).map((z) => TELEFONOS.items.find((x) => x.zona === z));
+    const lineaTel = zonas.map((t) => `${t.visible} ${t.zona}`).join(' · ');
+    const k = out.findIndex((l, x) => l === ch.licencias && out[x + 4] === lineaTel && out[x + 6] === 'Project Gallery');
+    if (k >= 0) {
+      const [rot, ...val] = ch.licencias.split(' · ');
+      const pie = fotoDeHeroe(ruta)?.pie;
+      out = [...out.slice(0, k), out[k + 1], out[k + 2], out[k + 3], out[k + 5], 'Project Gallery',
+        ...zonas.flatMap((t) => [t.zona.toUpperCase(), t.visible]), rot.toUpperCase(), val.join(' · '),
+        ...(pie ? ['PROJECT', pie] : []), ...out.slice(k + 7)];
+    }
   }
   // ASTRO-2: las referencias propias de las paginas de ciudad guardan el formulario de un paso.
   // Se cambia ese tramo, EXACTO y seguido, por el de dos pasos; si no esta tal cual, no se toca.
@@ -2996,14 +3014,16 @@ function bloquesCaptacion(ruta) {
    * Y el ` · ` de los telefonos SIGUE AHI. La forma nueva son dos chips, pero el separador no se
    * quita: `innerText` lo ve y el texto no se toca (Principio 2). */
   const zonas = c.heroe.zonas ?? TELEFONOS.items.map((x) => x.zona);
-  if (esFicha(ruta)) {
+  // ASTRO-2: el Hero A lo llevan las 14 fichas y las 118 paginas de servicio × ciudad de `PaginaCiudad.astro`.
+  if (ruta.startsWith('/services/')) {
     /* REDISEÑO STITCH · ASTRO-2 · HERO A de las 14 fichas. Los dos telefonos y la licencia pasan
      * de dos renglones sueltos a la banda de datos `.mm-datos`: mismo contenido, otra forma. Cada
      * dato son dos lineas (rotulo en MAYUSCULAS por CSS + valor), y los tres van seguidos. Detras,
      * el pie de foto cuando el hero esta en el banco (D-109): `Project` + el `alt` del banco, tal
      * cual. T-11, T-12 y T-66 de STITCH-TEXTO.md. Derivado de las mismas fuentes que el generador. */
     const [rotLic, ...valLic] = c.heroe.licencias.split(' · ');
-    const pie = c.heroe._banco && BANCO_ALT.get(c.heroe._banco);
+    // El pie de la ciudad lo da la MISMA funcion que reparte la foto (`heroe-ciudad.mjs`, D-112 a D-114).
+    const pie = esFicha(ruta) ? (c.heroe._banco && BANCO_ALT.get(c.heroe._banco)) : fotoDeHeroe(ruta)?.pie;
     bloques.push([
       ...zonas.flatMap((z) => {
         const tel = TELEFONOS.items.find((x) => x.zona === z);

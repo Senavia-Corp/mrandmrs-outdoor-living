@@ -1,0 +1,36 @@
+{
+  "_lee_esto": [
+    "LA BOLSA DE FOTOS DEL HERO DE LAS PAGINAS DE SERVICIO x CIUDAD (D-112 a D-114, 12-oct-2026).",
+    "Una lista de ids del banco por servicio. Cada pagina de ciudad toma la que le toca por su puesto",
+    "en la lista ordenada de ciudades de ese servicio (indice modulo tamano de la bolsa): dos ciudades",
+    "vecinas no repiten foto mientras la bolsa tenga mas de una.",
+    "ELEGIDAS MIRANDO LA HOJA DE CONTACTOS con el recorte 4:5 del hero, no por nombre de fichero.",
+    "`src/lib/heroe-ciudad.mjs` las valida al construir: obra_real, aprobada, etapa terminado, recorte",
+    "4:5 seguro, etiquetada con el servicio y con fichero. Una que no cumpla tumba el build.",
+    "NINGUNA FOTO DE LA BOLSA DICE CIUDAD. La unica pagina con obra de su ciudad verificada por GPS es",
+    "Alachua (obra-049, bi-0596): va en `fijas`, con su pie propio (D-80), y no entra en la bolsa.",
+    "Tampoco entran las fotos que la pagina ya ensena en su galeria de obra (`galeria-obra-por-ruta.json`):",
+    "`check:galeria-obra` exige que ninguna foto del set salga dos veces. Por eso faltan bi-0947, bi-0485 y bi-0914."
+  ],
+  "clave": {
+    "pool-builders": "construction",
+    "pool-remodeling": "remodeling",
+    "deck-builders": "decks",
+    "landscaping": "landscaping",
+    "louvered-roofs": "louvered",
+    "outdoor-kitchens": "kitchens",
+    "pergola-builders": "pergolas"
+  },
+  "bolsas": {
+    "pool-builders": ["bi-0487", "bi-0501", "bi-0662", "bi-1010", "bi-1024", "bi-0969", "bi-0909", "bi-0083", "bi-0615", "bi-0948", "bi-0908"],
+    "pool-remodeling": ["bi-0519", "bi-0521", "bi-0614"],
+    "deck-builders": ["bi-0077", "bi-0079", "bi-0983", "bi-0070"],
+    "landscaping": ["bi-0130", "bi-0305", "bi-0310", "bi-0313"],
+    "louvered-roofs": ["bi-0168", "bi-0220", "bi-0224", "bi-0225", "bi-0233", "bi-0235", "bi-0236"],
+    "outdoor-kitchens": ["bi-0479", "bi-0480", "bi-0503", "bi-0509", "bi-0771", "bi-0781", "bi-0783"],
+    "pergola-builders": ["bi-0796", "bi-0839", "bi-0842", "bi-0897", "bi-0907", "bi-0962", "bi-1018", "bi-1048", "bi-1074", "bi-0759", "bi-0925", "bi-0930"]
+  },
+  "fijas": {
+    "/services/pool-builders/alachua-fl": { "id": "bi-0596", "pie": "Pool with sun shelf and raised spa in Alachua" }
+  }
+}

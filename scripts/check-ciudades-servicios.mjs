@@ -102,13 +102,14 @@ for (const ruta of RUTAS) {
    * (hermanas, fuentes) y los telefonos del heroe. Si contaran, una pagina «ganaria» palabras
    * propias solo por tener otra lista de hermanas. */
   const paraUnicidad = cuerpo.cloneNode(true);
-  for (const n of paraUnicidad.querySelectorAll('.mm-faq-fuentes, .svc-heroe__tel, nav:not(.w-dropdown-list)')) n.remove();
+  for (const n of paraUnicidad.querySelectorAll('.mm-faq-fuentes, .svc-heroe__tel, .mm-datos, nav:not(.w-dropdown-list)')) n.remove();
   textos[ruta] = norm(paraUnicidad.textContent);
   const dice = (s) => texto.includes(norm(s));
 
   // 1 · texto declarado
   const declarado = [
-    P.doc.h1Title, P.doc.h2Title, C.heroe.apoyo, C.heroe.licencias, P.doc.headingIntro, P.doc.paragraphIntro,
+    // ASTRO-2: la licencia va en banda de datos, partida en rotulo y valor (T-66): son dos piezas.
+    P.doc.h1Title, P.doc.h2Title, C.heroe.apoyo, ...((l) => [l[0], l.slice(1).join(' · ')])(C.heroe.licencias.split(' · ')), P.doc.headingIntro, P.doc.paragraphIntro,
     C.faq.titulo, C.faq.entradilla, ...C.faq.anade.flatMap((q) => [q.pregunta, q.respuesta, ...(q.fuentes ?? []).map((f) => f.nombre)]),
     C.formulario.titulo, ...C.formulario.pasos, C.inversion.titulo, C.inversion.texto,
     ...C.confianza.tarjetas.flatMap((t) => [t.titulo, t.texto]),

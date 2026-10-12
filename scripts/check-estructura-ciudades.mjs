@@ -70,7 +70,7 @@ const SIN = [
   /* ORDEN-CIUDADES-2 (6-oct-2026): esta lista NO cambia, y no es olvido. Sin captacion no hay
    * FAQ ni `svc-inversion` (`InversionCore` lee el mismo `captacion-servicios.json` y sin entrada
    * no pinta), asi que la banda ya estaba pegada al 3D, que es donde la pone el orden nuevo. */
-  'hero-glass-section', 'trusted-section', 'gallery', '_3d-section',
+  'mm-hero-a', 'trusted-section', 'gallery', '_3d-section',
   'animated-divs-section', 'testimonial-section', 'projects-section', 'blog-section-page',
   'social-media', 'cta-footer',
 ];
@@ -86,7 +86,7 @@ const CON = [
   /* SEO-REMEDIACION (Sebastian, 4-oct-2026): la banda «Project Gallery» (`animated-divs-section`)
    * y el panel de servicios (`products-section`) bajan DETRAS de la FAQ. Son paginas de piscina y
    * los servicios secundarios no pueden ir por encima de las resenas, la obra y la FAQ. */
-  'hero-glass-section', 'svc-confianza', 'trusted-section', 'mm-form-sec', 'gallery',
+  'mm-hero-a', 'svc-confianza', 'trusted-section', 'mm-form-sec', 'gallery',
   /* ORDEN-CIUDADES (Sebastian, 5-oct-2026): inversion y FAQ suben pegadas al 3D, y resenas y obra
    * bajan a la cola, detras del panel de servicios. La banda y el panel siguen detras de la FAQ,
    * pero vuelven a quedar por encima de resenas y obra: es el orden que pidio el, puesto a puesto. */
@@ -129,7 +129,7 @@ for (const ruta of TODAS) {
   // ASTRO-1 (12-oct-2026): el pie es <footer class="mm-zocalo">, ya no un <section class="footer">,
   // asi que deja de salir en `clases`. Sin pie-seccion, el cuerpo llega hasta la ultima seccion.
   const finPie = clases.lastIndexOf('footer');
-  const cuerpo = clases.slice(clases.indexOf('hero-glass-section'), finPie >= 0 ? finPie : clases.length);
+  const cuerpo = clases.slice(clases.indexOf('mm-hero-a'), finPie >= 0 ? finPie : clases.length);
   const esperado = CON_CAPTACION.has(ruta) ? CON : SIN;
   const etiqueta = CON_CAPTACION.has(ruta) ? 'con captacion' : 'sin captacion';
 

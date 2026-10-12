@@ -68,6 +68,9 @@ const LANDINGS = [
      * seria inventarse un selector para que salga verde. Sale en PENDIENTE, con el motivo, que
      * es lo unico honesto mientras el heroe siga siendo vídeo.
      */
+    /* ASTRO-2 (12-oct-2026, D-113): el heroe de ciudad deja de ser video y pasa al Hero A con foto.
+     * La regla 12 ya se le puede aplicar, con el mismo selector que a las fichas. */
+    heroe: '.mm-hero-a-medio img',
     formulario: {
       dataName: 'Gainesville Pool Builders Form',
       campo: 'Project-Type',
@@ -83,7 +86,8 @@ const LANDINGS = [
     exige: [/pool builders?/i, /ocala/i],
     exigeCuerpo: [/inground|in-ground/i, /marion|north florida/i],
     prohibeArriba: [/pergola/i, /outdoor kitchen/i, /commercial/i],
-    /* Idem que Gainesville: formulario propio si, heroe de imagen no (ver alli el motivo). */
+    /* Idem que Gainesville: formulario propio y, desde ASTRO-2, heroe de imagen (D-113). */
+    heroe: '.mm-hero-a-medio img',
     formulario: {
       dataName: 'Ocala Pool Builders Form',
       campo: 'Project-Type',
@@ -255,7 +259,9 @@ for (const L of LANDINGS) {
    * que ya existian- y no son una afirmacion de la pagina, sino una eleccion del visitante.
    */
   const sinSelects = new JSDOM(html).window.document;
-  sinSelects.querySelectorAll('script,style,noscript,header,section.menu,select').forEach((e) => e.remove());
+  // ASTRO-2: «Investment range» pasa de `<select>` a tarjetas de opcion (radios con los mismos valores).
+  // Siguen siendo el cualificador del formulario, no una afirmacion de la pagina.
+  sinSelects.querySelectorAll('script,style,noscript,header,section.menu,select,form[data-mm-envia] fieldset.mm-grupo-campo').forEach((e) => e.remove());
   const cifras = [...new Set((sinSelects.body?.textContent ?? '').match(/\$\s?[0-9][0-9,]*\+?/g) ?? [])];
   if (cifras.length) {
     mal(L.ruta, `cifra(s) de dinero en el cuerpo: ${cifras.join(', ')}. Un precio en una landing `
@@ -309,7 +315,8 @@ for (const L of LANDINGS) {
           + `"${L.formulario.dataName}". Ese valor es la clave de FORMULARIOS en la API y el `
           + 'form_name de GA4: si no casa, el lead se pierde o se mezcla con otro formulario.');
       }
-      const sel = f.querySelector(`select[name="${L.formulario.campo}"] option[selected]`);
+      // ASTRO-2: el campo puede ser un `<select>` o, en el formulario de dos pasos, un grupo de radios.
+      const sel = f.querySelector(`select[name="${L.formulario.campo}"] option[selected], input[type="radio"][name="${L.formulario.campo}"][checked]`);
       if (sel?.value !== L.formulario.preseleccion) {
         mal(L.ruta, `${L.formulario.campo} preseleccionado en "${sel?.value ?? '(nada)'}", se `
           + `esperaba "${L.formulario.preseleccion}".`);

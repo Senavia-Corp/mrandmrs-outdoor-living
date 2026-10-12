@@ -20,6 +20,8 @@ import InversionCore from './widgets/InversionCore.astro';
 import ServiciosPorCategoria from './widgets/ServiciosPorCategoria.astro';
 import GaleriaObra from './widgets/GaleriaObra.astro';
 import MigaVisible from './MigaVisible.astro';
+import { fotoDeHeroe } from '../lib/heroe-ciudad.mjs';
+import ASSETS from '../data/assets-locales.json';
 import CAPTACION from '../data/captacion-servicios.json';
 import TELEFONOS from '../data/telefonos.json';
 import { sinAperturaDelFeed } from '../lib/feed-social.mjs';
@@ -215,6 +217,28 @@ if (CAP) {
   [ANTES_FORM, b0] = partirEn(b0, '<section class="_3d-section"', `${RUTA} B[0]`);
 }
 
+/* ── ASTRO-2 · HERO A DE CIUDAD (lamina «HeroA», D-112 a D-114) ───────────────────────────────
+ * El hero de Webflow (video de fondo, texto centrado, marquesina de logos) deja de pintarse: de
+ * `ANTES_CONF` solo se leen los logos y su titular. Lo que se pinta sale de los mismos campos de
+ * siempre (`h1Title`, `h2Title`, `intro`) y de la entrada de captacion (accion, telefonos,
+ * licencia). EL VIDEO DE FONDO SALE de estas 118 paginas (D-113): el LCP pasa a ser una foto con
+ * medidas y `fetchpriority="high"`, o texto en las que no tienen bolsa.
+ * La foto la reparte `heroe-ciudad.mjs`; el pie es el `alt` del banco y no situa la obra en ninguna
+ * ciudad, salvo en Alachua, que es la unica con obra verificada alli (D-80). */
+if (!CAP) throw new Error(`${slug}: sin entrada en captacion-servicios.json no hay hero que pintar`);
+// `assets-locales.json` es {id de Sanity: ruta publica} y el id lleva las medidas («…-842x296-png»).
+const DIM_LOGO = new Map(Object.entries(ASSETS).map(([id, pub]) => [pub, id.match(/-(\d+)x(\d+)-[a-z0-9]+$/)])
+  .filter(([, m]) => m).map(([pub, m]) => [pub, { w: Number(m[1]), h: Number(m[2]) }]));
+const LOGOS = [...new Set([...ANTES_CONF.matchAll(/<img[^>]*src="(\/images\/logos\/[^"]+)"/g)].map((m) => m[1]))];
+const LOGOS_TITULO = (ANTES_CONF.match(/<h2 class="heading-logos">([^<]*)<\/h2>/) ?? [])[1];
+if (!LOGOS.length || !LOGOS_TITULO) throw new Error(`${slug}: el hero de origen ya no trae la franja de logos`);
+for (const u of LOGOS) if (!DIM_LOGO.has(u)) throw new Error(`${slug}: el logo ${u} no tiene medidas en assets-locales.json`);
+const HERO_FOTO = fotoDeHeroe(RUTA);
+// El rotulador va en la ciudad, que es como cierran los titulares: «… in Alachua, Florida».
+const H1 = esc(d.h1Title).replace(/(\bin\s+)([^,]+?)(,\s*Florida)?\s*$/i, (m, a, c, f) => `${a}<span class="mm-rot">${c}</span>${f ?? ''}`);
+const HERO_ZONAS = (CAP.heroe.zonas ?? TELEFONOS.items.map((x) => x.zona)).map((z) => TELEFONOS.items.find((x) => x.zona === z));
+const [HERO_LIC_ROT, ...HERO_LIC_VAL] = CAP.heroe.licencias.split(' · ');
+
 const FAQ = CAP?.faq?.anade?.length ? CAP.faq : null;
 
 const [P_ANTES_CON_BANDA, P_DESPUES] = partirPorElCarrusel(b0, `${RUTA} B[0]`);
@@ -327,7 +351,33 @@ const SEO = FAQ
     }] }
   : SEO_ORIGEN;---
 <Base titulo={d["seo.title"]} descripcion={d["seo.description"]} ruta={RUTA} seo={SEO} jsonLdCrudo={LD_CRUDO}>
-  <Fragment set:html={ANTES_CONF} />
+  <section class:list={['mm-hero-a', 'mm-hero-a--ciudad', !HERO_FOTO && 'mm-hero-a--sin']}>
+    <div class="mm-hero-a-txt">
+      <h1 class="mm-h1" set:html={H1} />
+      <h2 class="mm-hero-a-sub">{d.h2Title}</h2>
+      <p class="mm-p">{d.intro}</p>
+      <div class="mm-hero-a-acc">
+        <a class="mm-btn" href={CAP.heroe.ancla}>{CAP.heroe.cta ?? 'Get a Free Estimate'}</a>
+        <a class="mm-btn mm-btn--linea" href="/gallery">Project Gallery</a>
+      </div>
+      <div class="mm-datos mm-datos--3">
+        {HERO_ZONAS.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}
+        <div class="mm-dato"><span class="mm-dato-rot">{HERO_LIC_ROT}</span><span class="mm-dato-val">{HERO_LIC_VAL.join(' · ')}</span></div>
+      </div>
+    </div>
+    {HERO_FOTO && (
+      <figure class="mm-hero-a-medio">
+        <img src={HERO_FOTO.src} alt={HERO_FOTO.alt} width={HERO_FOTO.ancho} height={HERO_FOTO.alto} loading="eager" fetchpriority="high" decoding="async" />
+        <figcaption class="mm-pie-foto"><span class="mm-dato-rot">Project</span><span>{HERO_FOTO.pie}</span></figcaption>
+      </figure>
+    )}
+    <div class="mm-hero-a-logos">
+      <h2 class="mm-etiqueta">{LOGOS_TITULO}</h2>
+      <ul class="mm-hero-a-fila">
+        {LOGOS.map((u) => <li><img src={u} alt="" width={DIM_LOGO.get(u).w} height={DIM_LOGO.get(u).h} loading="lazy" decoding="async" /></li>)}
+      </ul>
+    </div>
+  </section>
   {/* SEO-REMEDIACION (4-oct-2026): la miga visible, de la misma fuente que el `#miga` del JSON-LD. */}
   <MigaVisible ruta={RUTA} />
   <ConfianzaCore ruta={RUTA} />
