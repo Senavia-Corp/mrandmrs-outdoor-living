@@ -85,22 +85,6 @@
     ]
    }
   ],
-  "e94ffec7-4812-fbc6-e930-59a019961ce9": [
-   {
-    "anim": "slideInRight",
-    "bps": [
-     "main"
-    ]
-   },
-   {
-    "anim": "growIn",
-    "bps": [
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
   "90fb4871-cccb-5a13-f9e4-95b1df0636a2": [
    {
     "anim": "slideInRight",
@@ -265,39 +249,6 @@
   "1751d21a-c7f6-4875-4d5c-669cd0d5b935": [
    {
     "anim": "growIn",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
-  "d04947c9-3ba7-2add-caaa-9414425e8391": [
-   {
-    "anim": "growIn",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
-  "d04947c9-3ba7-2add-caaa-9414425e83ec": [
-   {
-    "anim": "slideInBottom",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
-  "d04947c9-3ba7-2add-caaa-9414425e83ed": [
-   {
-    "anim": "slideInBottom",
     "bps": [
      "main",
      "medium",
@@ -610,50 +561,6 @@
     ]
    }
   ],
-  "983862a7-3688-6e3b-afeb-1962d292774b": [
-   {
-    "anim": "growIn",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
-  "f2721b05-6e5e-044b-b7c9-7a2a8bd783b4": [
-   {
-    "anim": "growIn",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
-  "98524246-2fbc-e691-5ab8-2715913bd179": [
-   {
-    "anim": "growIn",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
-  "98524246-2fbc-e691-5ab8-2715913bd17e": [
-   {
-    "anim": "growIn",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
   "2fcae327-fd1b-997d-dd27-fb51a95eef02": [
    {
     "anim": "growIn",
@@ -787,28 +694,6 @@
     ]
    }
   ],
-  "dce80844-cc8a-923f-8fa1-aa91c1419f9a": [
-   {
-    "anim": "growIn",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
-  "dce80844-cc8a-923f-8fa1-aa91c1419f9d": [
-   {
-    "anim": "growIn",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
   "9b1d2d0c-b40c-a640-03b8-677109a91025": [
    {
     "anim": "growIn",
@@ -845,17 +730,6 @@
   "df442948-7719-1c67-0f50-9201c368c52f": [
    {
     "anim": "slideInBottom",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
-  "9f159d33-eb67-9087-202c-bab1e4077bc3": [
-   {
-    "anim": "growIn",
     "bps": [
      "main",
      "medium",

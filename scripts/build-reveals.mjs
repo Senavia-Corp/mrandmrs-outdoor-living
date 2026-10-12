@@ -29,10 +29,27 @@ const filas = lineas.slice(1).map((l) => {
 /** Las 4 entradas por scroll. Duraciones y easing salen del catálogo, no de la memoria. */
 const REVEALS = new Set(['growIn', 'slideInLeft', 'slideInRight', 'slideInBottom']);
 
+/**
+ * RETIRADAS POR EL REDISENO (ASTRO-1 y ASTRO-2, oct-2026). El elemento que llevaba cada uno de
+ * estos `data-w-id` ya no se pinta en ninguna ruta: la seccion paso a las piezas `.mm-*`, que no
+ * entran por scroll. Dejarlos seria declarar animaciones que no animan nada, y `check:ix2` los
+ * cuenta como huerfanos (con ellos, 25; sin ellos, los 14 de siempre). Si un bloque de estos
+ * volviera a pintarse con su `data-w-id`, se saca de aqui.
+ */
+const RETIRADAS = new Set([
+  // pie heredado, en las 232 paginas (ASTRO-1: pie nuevo `.mm-zocalo`)
+  'd04947c9-3ba7-2add-caaa-9414425e8391', 'd04947c9-3ba7-2add-caaa-9414425e83ec', 'd04947c9-3ba7-2add-caaa-9414425e83ed',
+  // secciones de las 14 fichas de servicio (ASTRO-2)
+  '983862a7-3688-6e3b-afeb-1962d292774b', 'f2721b05-6e5e-044b-b7c9-7a2a8bd783b4', 'dce80844-cc8a-923f-8fa1-aa91c1419f9a',
+  'dce80844-cc8a-923f-8fa1-aa91c1419f9d', '9f159d33-eb67-9087-202c-bab1e4077bc3',
+  // hero y cabeceras de las 9 paginas de condado (ASTRO-2)
+  'e94ffec7-4812-fbc6-e930-59a019961ce9', '98524246-2fbc-e691-5ab8-2715913bd179', '98524246-2fbc-e691-5ab8-2715913bd17e',
+]);
+
 const porId = {};
 let arrancanEnCero = 0;
 for (const f of filas) {
-  if (!REVEALS.has(f.actionListId)) continue;
+  if (!REVEALS.has(f.actionListId) || RETIRADAS.has(f.dataWId)) continue;
   const bps = f.mediaQueries.split('|').filter(Boolean);
   const prev = porId[f.dataWId];
   if (prev) {
