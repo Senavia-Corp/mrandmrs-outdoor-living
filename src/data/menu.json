@@ -1,0 +1,169 @@
+{
+ "_lee_esto": "Datos del menú (cabecera G1). Los nombres, títulos y frases son los del nav de origen; el orden y los grupos, los de la lámina aprobada (STITCH-PARTE-4). La foto es una clave de fotos-megamenu.json; null = ficha sin foto.",
+ "servicios": [
+  {
+   "nombre": "New Pool Construction",
+   "href": "/services/pool-builders",
+   "titulo": "Custom Pool Construction",
+   "frase": "Custom in-ground pool construction for residential and commercial projects.",
+   "foto": "construction"
+  },
+  {
+   "nombre": "Pool Remodeling",
+   "href": "/services/pool-remodeling",
+   "titulo": "Pool Remodeling Services",
+   "frase": "In-ground pool remodeling for residential and commercial properties.",
+   "foto": "remodeling"
+  },
+  {
+   "nombre": "Aluminum Pergolas",
+   "href": "/services/pergola-builders",
+   "titulo": "Pergolas & Patio Covers",
+   "frase": "Custom pergolas & patio cover structures for residential and commercial use.",
+   "foto": "pergolas"
+  },
+  {
+   "nombre": "Louvered Roof Systems",
+   "href": "/services/louvered-roofs",
+   "titulo": "Louvered Roof Systems",
+   "frase": "Motorized louvered roof systems for residential and commercial spaces.",
+   "foto": "louvered"
+  },
+  {
+   "nombre": "Pool Screen Enclosures",
+   "href": "/services/pool-screen-enclosures",
+   "titulo": "Pool Screen Enclosures",
+   "frase": "Custom pool screen enclosures designed for comfort, protection, and airflow.",
+   "foto": null
+  },
+  {
+   "nombre": "Outdoor Kitchens",
+   "href": "/services/outdoor-kitchens",
+   "titulo": "Custom Outdoor Kitchens",
+   "frase": "Fully customized outdoor kitchens built for entertaining and functionality.",
+   "foto": "kitchens"
+  },
+  {
+   "nombre": "Retractable Screens",
+   "href": "/services/retractable-screens",
+   "titulo": "Retractable Screen Systems",
+   "frase": "Retractable screens providing shade, privacy, and insect protection.",
+   "foto": null
+  },
+  {
+   "nombre": "Patio Screen Rooms",
+   "href": "/services/patio-screen-rooms",
+   "titulo": "Patio Screen Rooms",
+   "frase": "Screened patio rooms designed for comfort, airflow, and outdoor enjoyment.",
+   "foto": null
+  },
+  {
+   "nombre": "Custom Decks",
+   "href": "/services/deck-builders",
+   "titulo": "Custom Deck Construction",
+   "frase": "Custom decks built to complement pools and outdoor living spaces.",
+   "foto": "decks"
+  },
+  {
+   "nombre": "Landscaping",
+   "href": "/services/landscaping",
+   "titulo": "Landscape Design & Installation",
+   "frase": "Professional landscaping designed to enhance pools and outdoor environments.",
+   "foto": "landscaping"
+  },
+  {
+   "nombre": "Smart Soffit LED Lighting",
+   "href": "/services/soffit-led-lighting",
+   "titulo": "Smart Soffit LED Lighting",
+   "frase": "Smart soffit LED lighting systems that elevate safety and outdoor aesthetics.",
+   "foto": "lighting"
+  },
+  {
+   "nombre": "Automated Irrigation",
+   "href": "/services/irrigation-systems",
+   "titulo": "Automated Irrigation Systems",
+   "frase": "Automated irrigation systems for efficient water management and healthy lawns.",
+   "foto": null
+  },
+  {
+   "nombre": "Pole Barn & Steel Buildings",
+   "href": "/services/steel-buildings-pole-barns",
+   "titulo": "Pole Barn & Steel Construction",
+   "frase": "Custom pole barn and steel buildings for residential and commercial use.",
+   "foto": "steel"
+  },
+  {
+   "nombre": "Outdoor Furniture",
+   "href": "/services/outdoor-furniture",
+   "titulo": "Outdoor Furniture Solutions",
+   "frase": "Durable outdoor furniture designed for residential and commercial environments.",
+   "foto": "furniture"
+  }
+ ],
+ "comercial": [
+  {
+   "texto": "Commercial Pool Construction",
+   "href": "/commercial-services/commercial-pool-construction-north-south-florida"
+  },
+  {
+   "texto": "Commercial Pool Renovations",
+   "href": "/commercial-services/commercial-pool-renovations-north-south-florida"
+  },
+  {
+   "texto": "Commercial Pool Contractors",
+   "href": "/commercial-services/commercial-pool-contractors-north-south-florida"
+  }
+ ],
+ "about": [
+  {
+   "href": "/about",
+   "texto": "About Us",
+   "frase": "Luxury outdoor living builders in Florida, specializing in custom pools, pergolas, patios, and high-end exterior construction.",
+   "icono": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\"></path><circle cx=\"9\" cy=\"7\" r=\"4\"></circle><path d=\"M22 21v-2a4 4 0 0 0-3-3.9\"></path><path d=\"M16 3.1a4 4 0 0 1 0 7.8\"></path></svg>"
+  },
+  {
+   "href": "/where-we-serve",
+   "texto": "Where We Serve",
+   "frase": "Serving North &amp; South Florida with premium outdoor living solutions, including custom pools, pergolas, patios, and renovations.",
+   "icono": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z\"></path><circle cx=\"12\" cy=\"10\" r=\"2.5\"></circle></svg>"
+  },
+  {
+   "href": "/industry-solutions",
+   "texto": "Industry Solutions",
+   "frase": "Tailored outdoor living and pool construction solutions for residential and commercial industries across Florida.",
+   "icono": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16\"></path><path d=\"M16 9h2a2 2 0 0 1 2 2v10\"></path><path d=\"M2 21h20\"></path><path d=\"M8 7h4\"></path><path d=\"M8 11h4\"></path><path d=\"M8 15h4\"></path></svg>"
+  },
+  {
+   "href": "/testimonials",
+   "texto": "Customer Reviews",
+   "frase": "Read verified customer reviews of our custom pools, pergolas, and outdoor living projects across North &amp; South Florida.",
+   "icono": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9L12 3z\"></path></svg>"
+  }
+ ],
+ "recursos": [
+  {
+   "href": "/brochures",
+   "texto": "brochures",
+   "frase": "Explore our digital brochures for endless backyard inspiration and detailed guides on our custom outdoor living solutions.",
+   "icono": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 5a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2v15a2 2 0 0 0-2-2H3z\"></path><path d=\"M21 5a2 2 0 0 0-2-2h-5a2 2 0 0 0-2 2v15a2 2 0 0 1 2-2h7z\"></path></svg>"
+  },
+  {
+   "href": "/videos",
+   "texto": "project Videos",
+   "frase": "Watch videos of our luxury pool builds, outdoor living projects, pergolas, and construction process across Florida.",
+   "icono": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"></circle><path d=\"m10 8.5 5 3.5-5 3.5z\"></path></svg>"
+  },
+  {
+   "href": "/pool-cost-estimator",
+   "texto": "Pool estimator online",
+   "frase": "Get an instant, personalized quote for your dream pool. Estimate costs based on size and features in minutes.",
+   "icono": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"5\" y=\"3\" width=\"14\" height=\"18\" rx=\"2\"></rect><path d=\"M8 7h8\"></path><path d=\"M8 12h.01\"></path><path d=\"M12 12h.01\"></path><path d=\"M16 12h.01\"></path><path d=\"M8 16h.01\"></path><path d=\"M12 16h.01\"></path><path d=\"M16 16h.01\"></path></svg>"
+  },
+  {
+   "href": "/blogs-tips",
+   "texto": "Blog &amp; Tips",
+   "frase": "Expert tips, design ideas, and insights on pools, pergolas, and outdoor living trends in North &amp; South Florida.",
+   "icono": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 20h9\"></path><path d=\"M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z\"></path></svg>"
+  }
+ ]
+}
