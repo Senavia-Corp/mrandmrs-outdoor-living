@@ -126,7 +126,10 @@ for (const ruta of TODAS) {
   const clases = [...d.querySelectorAll('section')]
     .filter((s) => !s.parentElement?.closest('section'))
     .map((s) => s.classList[0]);
-  const cuerpo = clases.slice(clases.indexOf('hero-glass-section'), clases.lastIndexOf('footer'));
+  // ASTRO-1 (12-oct-2026): el pie es <footer class="mm-zocalo">, ya no un <section class="footer">,
+  // asi que deja de salir en `clases`. Sin pie-seccion, el cuerpo llega hasta la ultima seccion.
+  const finPie = clases.lastIndexOf('footer');
+  const cuerpo = clases.slice(clases.indexOf('hero-glass-section'), finPie >= 0 ? finPie : clases.length);
   const esperado = CON_CAPTACION.has(ruta) ? CON : SIN;
   const etiqueta = CON_CAPTACION.has(ruta) ? 'con captacion' : 'sin captacion';
 

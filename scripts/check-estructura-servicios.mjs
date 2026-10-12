@@ -73,7 +73,10 @@ for (const ruta of RUTAS) {
   const clases = [...d.querySelectorAll('section')]
     .filter((s) => !s.parentElement?.closest('section'))
     .map((s) => s.classList[0]);
-  const cuerpo = clases.slice(clases.indexOf('hero-services'), clases.lastIndexOf('footer'));
+  // ASTRO-1 (12-oct-2026): el pie es <footer class="mm-zocalo">, ya no un <section class="footer">,
+  // asi que deja de salir en `clases`. Sin pie-seccion, el cuerpo llega hasta la ultima seccion.
+  const finPie = clases.lastIndexOf('footer');
+  const cuerpo = clases.slice(clases.indexOf('hero-services'), finPie >= 0 ? finPie : clases.length);
   const esperado = esperadoDe(ruta);
   if (cuerpo.join(' ') !== esperado.join(' ')) {
     const i = esperado.findIndex((c, k) => cuerpo[k] !== c);

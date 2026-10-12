@@ -70,7 +70,7 @@ Tres trampas que ya cazaron a alguien aquí:
 - **Nunca pases `/` como filtro.** Casa por `includes()`: te lleva las 115 creyendo que mides
   4. Para la home hay coincidencia exacta, y **con comillas**, que zsh se come `=/` suelto:
   `node scripts/check-visual.mjs '=/'`.
-- `check:ix2` y `check:cascaron` **no leen `argv`**: van solo en gate de fase.
+- `check:ix2` **no lee `argv`**: va solo en gate de fase. (`check:cascaron` se retiró con el cascarón de Webflow, ASTRO-1.)
 - Verifica sobre `.vercel/output/static`, **nunca** sobre `astro dev` — dev no hornea
   `width`/`height` y las medidas mienten.
 

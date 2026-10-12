@@ -202,7 +202,7 @@ const leer = (ruta) => {
 const urlLightbox = (s) => { try { return JSON.parse(s?.textContent ?? '').items?.[0]?.url ?? null; } catch { return null; } };
 /* Cada foto con TODAS sus copias publicadas: la misma foto con otro nombre tambien es repetirla. */
 const copias = fotos.map((f) => new Set([f.src, ...(BANCO.get(f._banco)?.publicada_como ?? [])]));
-const CROMO = 'section.menu, section.footer, .w-nav, footer, nav';
+const CROMO = 'section.menu, section.footer, .w-nav, footer, nav, .mm-cab, .mm-menu, .mm-barra';
 
 if (!fs.existsSync(ESTATICO)) {
   mal('.vercel/output/static', 'no existe. Corre `npm run build`: sin build esta mitad no ha corrido, y eso no es verde.');

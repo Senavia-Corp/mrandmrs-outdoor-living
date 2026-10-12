@@ -84,7 +84,7 @@ for (const u of unidades) {
   if (u.tipo === 'ficha') {
     const vistos = new Map();
     for (const img of d.querySelectorAll('img[src]')) {
-      if (img.closest('section.menu, section.footer, .w-nav, footer')) continue;
+      if (img.closest('section.menu, section.footer, .w-nav, footer, .mm-cab, .mm-menu')) continue;
       const s = img.getAttribute('src');
       if (!s.startsWith('/images/') || /\/(site\/icon|subservices|logos?)\//.test(s) || s.endsWith('.svg')) continue;
       vistos.set(s, (vistos.get(s) ?? 0) + 1);

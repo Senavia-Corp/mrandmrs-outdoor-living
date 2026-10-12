@@ -96,7 +96,7 @@ for (const ruta of RUTAS) {
   if (!h) continue;
   const doc = new JSDOM(h).window.document;
   const cuerpo = doc.querySelector('body');
-  for (const n of cuerpo.querySelectorAll('script, style, noscript, section.menu, section.footer, section.code')) n.remove();
+  for (const n of cuerpo.querySelectorAll('script, style, noscript, section.menu, section.footer, section.code, .mm-salto, .mm-cab, .mm-menu, .mm-zocalo, .mm-barra')) n.remove();
   const texto = norm(cuerpo.textContent);
   /* Para la UNICIDAD no cuentan las lineas que varian sin ser contenido: las listas de enlaces
    * (hermanas, fuentes) y los telefonos del heroe. Si contaran, una pagina «ganaria» palabras
