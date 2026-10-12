@@ -3542,6 +3542,35 @@ function listasStitch(ruta, lineas) {
       const k = out.findIndex((l, x) => l === g.entradilla && out[x + 1] === accion && out[x + 2] === 'Project Gallery');
       if (k >= 0) out.splice(k + 1, 2);
     }
+    /* SERVICIOS (T-82, D-69; lamina «Servicios»). El panel pasa de pestanas a indice: los 14
+     * nombres a la vista bajo el rotulo de su categoria (antes solo los de la pestana abierta),
+     * la ficha abierta delante del indice, y la accion de la pagina en la cabecera en vez de al
+     * pie. Se comprueba el tramo nuevo ENTERO y en su orden —titular, parrafo, accion, ficha y
+     * los tres grupos con sus nombres— y solo si esta tal cual se devuelve a la forma de siempre
+     * (pestanas, filas de la categoria por defecto con la ficha tras la primera, accion). Un
+     * nombre que falte, uno de mas o una ficha distinta lo dejan sin tocar: sale rojo. */
+    {
+      const dp = SERVICIOS_CAT['/'];
+      const nm = (x) => (x ?? '').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+      const act = dp.servicios.find((sv) => sv.categorias.includes(svCiudad?.categoria));
+      if (act) {
+        const visto = new Set();
+        const grupos = dp.categorias.flatMap((c) => {
+          const suyos = dp.servicios.filter((sv) => sv.categorias.includes(c.slug) && !visto.has(sv.id));
+          suyos.forEach((sv) => visto.add(sv.id));
+          return [nm(c.nombre), ...suyos.map((sv) => nm(sv.nombre))];
+        });
+        const ficha = [nm(act.titulo), nm(act.texto), nm(act.cta), `: ${nm(act.titulo)}`];
+        const nuevo = [nm(dp.titulo), nm(dp.subtitulo), accion, ...ficha, ...grupos];
+        const igual = (x, y) => x !== undefined && x.toLowerCase() === y.toLowerCase();
+        const i = out.findIndex((_, k) => nuevo.every((l, j) => igual(out[k + j], l)));
+        if (i >= 0) {
+          const deLaPestana = dp.servicios.filter((sv) => sv.categorias.includes(svCiudad.categoria));
+          out.splice(i, nuevo.length, out[i], out[i + 1], ...dp.categorias.map((c) => nm(c.nombre)),
+            ...deLaPestana.flatMap((sv) => (sv.id === act.id ? [nm(sv.nombre), ...ficha] : [nm(sv.nombre)])), accion);
+        }
+      }
+    }
     const faq = CAPTACION_JSON[ruta]?.faq;
     if (faq?.titulo) {
       const f0 = out.findIndex((l) => l.toLowerCase() === faq.titulo.toLowerCase());

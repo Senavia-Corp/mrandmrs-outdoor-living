@@ -774,3 +774,50 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 @media (prefers-reduced-motion: reduce) {
   .mm-cab-item, .mm-cab-item svg, .mm-cab-cta, .mm-cab-sub, .mm-cab-flecha svg, .mm-menu-fila svg, .mm-barra, .mm-barra-btn, .mm-btn { transition: none; }
 }
+
+/* ── ASTRO-2 · Panel de servicios de la pagina de ciudad (lamina «Servicios») ───────────
+   Indice de los 14 a la vista, agrupado por categoria, y la ficha del elegido. En movil la ficha
+   va encima del indice (orden del DOM); desde 992 el indice pasa a la izquierda por rejilla.
+   Los numeros 01-14 salen de un contador de CSS (D-30): no entran en el texto de la pagina. */
+.mm-serv { --mm-canal: var(--mm-e-24); display: flex; flex-direction: column; gap: var(--mm-e-24); padding: var(--mm-e-64) 0; background: var(--mm-blanco); font-family: var(--mm-familia); color: var(--mm-tinta-texto); }
+.mm-serv-cuerpo { display: flex; flex-direction: column; gap: var(--mm-e-32); }
+.mm-serv-fichas { scroll-margin-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); }
+.mm-serv-ficha { display: flex; flex-direction: column; gap: var(--mm-e-16); }
+.mm-serv-ficha[hidden] { display: none; }
+.mm-serv-medio { aspect-ratio: 3 / 2; overflow: hidden; background: var(--mm-azul-100); }
+.mm-serv-medio img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.mm-serv-txt { display: flex; flex-direction: column; align-items: flex-start; gap: var(--mm-e-16); padding: 0 var(--mm-canal); }
+.mm-serv-col { display: flex; flex-direction: column; gap: var(--mm-e-8); max-width: 560px; }
+.mm-serv-t { margin: 0; font-family: var(--mm-familia); font-size: 22px; line-height: 1.2; font-weight: 700; letter-spacing: -0.015em; color: var(--mm-navy); text-transform: none; }
+/* Ficha sin foto (D-122: el servicio no tiene foto de obra verificada): la abre un filete navy. */
+.mm-serv-ficha--sin .mm-serv-txt { margin: 0 var(--mm-canal); padding: var(--mm-e-24) 0 0; border-top: 2px solid var(--mm-navy); }
+.mm-serv-indice { counter-reset: mm-serv; display: flex; flex-direction: column; gap: var(--mm-e-24); padding: 0 var(--mm-canal); }
+.mm-serv-grupo ul { list-style: none; margin: 0; padding: 0; }
+.mm-serv-grupo .mm-etiqueta { padding-bottom: var(--mm-e-4); }
+.mm-serv-fila { counter-increment: mm-serv; display: flex; align-items: center; gap: var(--mm-e-16); width: 100%; min-height: var(--mm-ctl-m); box-sizing: border-box; margin: 0; padding: 0; border: 0; border-bottom: 1px solid var(--mm-borde); border-radius: 2px; background: transparent; font-family: inherit; font-size: 16px; line-height: 1.2; font-weight: 600; color: var(--mm-navy); text-align: left; cursor: pointer; }
+.mm-serv-fila::before { content: counter(mm-serv, decimal-leading-zero); flex: none; display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: var(--mm-r-pastilla); font-size: 12px; line-height: 1; font-weight: 700; letter-spacing: 0.02em; font-variant-numeric: tabular-nums; color: var(--mm-tinta-suave); }
+.mm-serv-fila[aria-current="true"] { font-weight: 800; }
+.mm-serv-fila[aria-current="true"]::before { background: var(--mm-navy); color: var(--mm-oro); }
+.mm-serv-fila[aria-current="true"] .mm-serv-nom { background-image: linear-gradient(transparent 62%, var(--mm-oro) 62%, var(--mm-oro) 94%, transparent 94%); }
+.mm-serv-fila:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); box-shadow: var(--mm-foco-halo); }
+@media (hover: hover) and (pointer: fine) {
+  .mm-serv-fila:hover .mm-serv-nom { background-image: linear-gradient(transparent 62%, var(--mm-oro) 62%, var(--mm-oro) 94%, transparent 94%); }
+}
+@media (min-width: 768px) {
+  .mm-serv { --mm-canal: var(--mm-e-32); gap: var(--mm-e-40); }
+  .mm-serv-medio { margin: 0 var(--mm-canal); aspect-ratio: 16 / 9; border-radius: var(--mm-r-16); }
+  .mm-serv-t { font-size: 28px; }
+  /* Tablet: los tres grupos, uno al lado del otro. */
+  .mm-serv-indice { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--mm-e-32); align-items: start; }
+}
+@media (min-width: 992px) {
+  .mm-serv { gap: 56px; padding: var(--mm-e-96) 0; }
+  .mm-serv-cuerpo { box-sizing: border-box; width: 100%; max-width: calc(var(--mm-contenedor) + 2 * var(--mm-canal)); margin-inline: auto; padding-left: var(--mm-canal); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: var(--mm-e-64); align-items: start; }
+  .mm-serv-indice { grid-column: 1; grid-row: 1; display: flex; align-items: stretch; padding: 0; gap: var(--mm-e-20); }
+  .mm-serv-fichas { grid-column: 2; grid-row: 1; }
+  .mm-serv-ficha { gap: var(--mm-e-20); }
+  .mm-serv-medio { margin: 0; aspect-ratio: 3 / 2; border-radius: var(--mm-r-16) 0 0 var(--mm-r-16); }
+  .mm-serv-txt { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--mm-e-16) var(--mm-e-32); align-items: end; padding: 0 var(--mm-canal) 0 0; }
+  .mm-serv-ficha--sin .mm-serv-txt { margin: 0 var(--mm-canal) 0 0; padding-right: 0; }
+}
+@media (min-width: 1200px) { .mm-serv { --mm-canal: var(--mm-e-64); } }

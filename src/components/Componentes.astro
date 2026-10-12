@@ -311,6 +311,21 @@ const SLIDERS = JSON.stringify(
       activa(0);
     }
 
+    // ── 1.ter · panel de servicios de la pagina de ciudad (ASTRO-2): la fila elegida ensena su
+    // ficha. En movil la ficha queda ENCIMA del indice: si su principio no se ve, se trae a la vista.
+    document.querySelectorAll('.mm-serv').forEach((sec) => {
+      sec.addEventListener('click', (ev) => {
+        const fila = ev.target.closest('[data-mm-serv]');
+        if (!fila) return;
+        sec.querySelectorAll('[data-mm-serv]').forEach((b) => b.setAttribute('aria-current', String(b === fila)));
+        sec.querySelectorAll('[data-mm-serv-ficha]').forEach((f) => { f.hidden = f.dataset.mmServFicha !== fila.dataset.mmServ; });
+        const fichas = sec.querySelector('.mm-serv-fichas');
+        if (fichas.getBoundingClientRect().top < 0) {
+          fichas.scrollIntoView({ block: 'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+        }
+      });
+    });
+
     // ── 2 · marquee ─────────────────────────────────────────────────────
     const montaMarquee = async (inst) => {
       const wrapper = inst.querySelector('[fs-marquee-element="wrapper"]');

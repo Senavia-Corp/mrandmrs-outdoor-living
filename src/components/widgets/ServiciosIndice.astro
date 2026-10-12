@@ -1,0 +1,113 @@
+---
+/**
+ * PANEL DE SERVICIOS DE LAS PAGINAS DE CIUDAD (ASTRO-2, lamina «Servicios»; D-69, T-39).
+ *
+ * Los 14 servicios a la vista, en un indice agrupado por sus tres categorias, y al lado la ficha
+ * del que esta elegido (encima del indice en movil). Las categorias dejan de ser pestanas que
+ * esconden filas: son el rotulo de cada grupo. Los datos son los de siempre —la entrada `/` de
+ * `servicios-categoria.json`—; `ServiciosPorCategoria.astro` sigue en la home y en las dos de
+ * zonas hasta que les toque su plantilla.
+ *
+ * LA FICHA ABIERTA ES LA MISMA QUE HOY: el primer servicio de la categoria por defecto de la
+ * ruta. El texto de ficha que se lee al cargar no cambia; lo que si cambia (11 nombres que
+ * estaban ocultos y ahora se ven, las categorias como rotulo) lo declara `check-texto.mjs`.
+ *
+ * FOTOS (D-122). La de cada ficha es la del panel de siempre si el banco la tiene como obra real.
+ * Cuatro no lo son (vienen de Webflow): de esas se pinta la del hero de su ficha de servicio si
+ * `gallery-procedencia.json` la da por usable, y si no la ficha va SIN foto. Hoy: 12 con foto,
+ * 2 sin (screen rooms y pantallas retractiles).
+ *
+ * ORDEN DEL DOM: fichas y despues indice, que es el orden en que se lee en movil. En escritorio
+ * el indice se coloca a la izquierda por rejilla y la ficha se queda pegada mientras se recorre.
+ *
+ * LAS 14 FICHAS VAN EN EL HTML, 13 con `hidden` servido (sin salto al cargar) y con su enlace:
+ * los mismos 14 destinos que enlazaba el panel anterior. El cambio de ficha lo hace
+ * `Componentes.astro` (`[data-mm-serv]`). Sin JS se lee la ficha abierta y el indice no cambia nada.
+ */
+import path from 'node:path';
+import sharp from 'sharp';
+import DATOS from '../../data/servicios-categoria.json';
+import BANCO from '../../data/banco-imagenes.json';
+import PROCEDENCIA from '../../data/gallery-procedencia.json';
+import CAPTACION from '../../data/captacion-servicios.json';
+
+interface Props {
+  /** Categoria por defecto de la ruta: decide que ficha sale abierta. */
+  defecto: string;
+  /** Texto de la accion de la pagina, que va en la cabecera de la seccion. */
+  accion: string;
+  ancla?: string;
+}
+const { defecto, accion, ancla = '#estimate' } = Astro.props;
+const dp = DATOS['/'];
+const nm = (x: string) => x.replace(/\s+/g, ' ').trim();
+const texto = (x: string) => nm(x.replace(/&amp;/g, '&').replace(/<[^>]+>/g, ''));
+
+/* Cada servicio, en el primer grupo al que pertenece (jaulas es de dos: cae en «Pool Solutions»). */
+const visto = new Set<string>();
+const grupos = dp.categorias.map((c) => {
+  const suyos = dp.servicios.filter((s) => s.categorias.includes(c.slug) && !visto.has(s.id));
+  suyos.forEach((s) => visto.add(s.id));
+  return { ...c, servicios: suyos };
+});
+if (visto.size !== dp.servicios.length) throw new Error(`ServiciosIndice: ${dp.servicios.length - visto.size} servicio(s) sin categoria conocida.`);
+const activo = dp.servicios.find((s) => s.categorias.includes(defecto))?.id;
+if (!activo) throw new Error(`ServiciosIndice: ningun servicio en la categoria «${defecto}».`);
+
+const REAL = new Set((BANCO as any[]).filter((b) => b.procedencia === 'obra_real').flatMap((b) => [b.src, ...(b.publicada_como ?? [])]));
+const USABLE = new Set(Object.values(PROCEDENCIA.servicios as Record<string, any[]>).flat().filter((f) => f.usable).map((f) => f.src));
+const fotoDe = async (s: any) => {
+  if (REAL.has(s.foto)) return { src: s.foto, alt: s.alt, w: s.ancho, h: s.alto, pos: s.pos };
+  const h = (CAPTACION as any)[s.enlace]?.heroe;
+  if (!h?.foto || !(REAL.has(h.foto) || USABLE.has(h.foto))) return null;
+  const m = await sharp(path.join(process.cwd(), 'public', h.foto)).metadata();
+  return { src: h.foto, alt: h.alt, w: m.width, h: m.height, pos: undefined };
+};
+const fichas = await Promise.all(dp.servicios.map(async (s) => ({ ...s, f: await fotoDe(s) })));
+
+const MARCA = 'Pool Building';
+const titulo = dp.titulo.includes(MARCA) ? dp.titulo.replace(MARCA, `<span class="mm-rot mm-nb">${MARCA}</span>`) : dp.titulo;
+---
+
+<section class="mm-serv">
+  <div class="mm-sec-cab">
+    <h2 class="mm-h2" set:html={titulo} />
+    <div class="mm-sec-lado">
+      <p class="mm-p" set:html={dp.subtitulo} />
+      <div class="mm-sec-acc"><a class="mm-btn mm-btn--linea" href={ancla}>{accion}</a></div>
+    </div>
+  </div>
+  <div class="mm-serv-cuerpo">
+    <div class="mm-serv-fichas" id="mm-serv-fichas">
+      {fichas.map((s) => (
+        <article class:list={['mm-serv-ficha', !s.f && 'mm-serv-ficha--sin']} data-mm-serv-ficha={s.id} hidden={s.id !== activo}>
+          {s.f && (
+            <div class="mm-serv-medio">
+              <img src={s.f.src} alt={s.f.alt} width={s.f.w} height={s.f.h} style={s.f.pos ? `object-position:${s.f.pos}` : undefined} loading="lazy" decoding="async" />
+            </div>
+          )}
+          <div class="mm-serv-txt">
+            <div class="mm-serv-col">
+              <h3 class="mm-serv-t" set:html={s.titulo} />
+              <p class="mm-p" set:html={s.texto} />
+            </div>
+            {/* El sufijo `.mm-sr` saca el enlace de «see more» a secas (audit `link-text`); ya lo llevaba el panel anterior. */}
+            <a class="mm-btn mm-btn--navy" href={s.enlace} aria-label={`${s.cta}: ${texto(s.titulo)}`}>{s.cta}<span class="mm-sr" set:html={`: ${s.titulo}`} /></a>
+          </div>
+        </article>
+      ))}
+    </div>
+    <div class="mm-serv-indice">
+      {grupos.map((g) => (
+        <div class="mm-serv-grupo">
+          <p class="mm-etiqueta">{g.nombre}</p>
+          <ul role="list">
+            {g.servicios.map((s) => (
+              <li><button type="button" class="mm-serv-fila" data-mm-serv={s.id} aria-controls="mm-serv-fichas" aria-current={s.id === activo ? 'true' : 'false'}><span class="mm-serv-nom">{nm(s.nombre)}</span></button></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -16,7 +16,7 @@ import CarruselProyectos from './widgets/CarruselProyectos.astro';
 import ConfianzaCore from './widgets/ConfianzaCore.astro';
 import FormularioCore from './widgets/FormularioCore.astro';
 import InversionCore from './widgets/InversionCore.astro';
-import ServiciosPorCategoria from './widgets/ServiciosPorCategoria.astro';
+import ServiciosIndice from './widgets/ServiciosIndice.astro';
 import GaleriaObra from './widgets/GaleriaObra.astro';
 import { fotoDeHeroe, fotosDeSeccion } from '../lib/heroe-ciudad.mjs';
 import { tramosMiga } from '../lib/miga-tramos.mjs';
@@ -452,10 +452,8 @@ const SEO = FAQ
       <figure class="mm-3d-medio" set:html={R3D.video} />
     </section>
   )}
-  {/* El panel de los 14 servicios cierra con la accion de la pagina (`slot="cierre"`). */}
-  <ServiciosPorCategoria clave="/" defecto={SV.categoria}>
-    <p slot="cierre" class="svc-cierre"><a href="#estimate" class="button button-styles w-button">{CTA_CIERRE}</a></p>
-  </ServiciosPorCategoria>
+  {/* Los 14 servicios a la vista, con la accion de la pagina en la cabecera (lamina «Servicios»). */}
+  <ServiciosIndice defecto={SV.categoria} accion={CTA_CIERRE} />
   <InversionCore ruta={RUTA} />
   {FAQ && (
     <section class:list={['mm-faq', !FOTO_FAQ && 'mm-faq--sin']}>

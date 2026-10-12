@@ -7,7 +7,7 @@
  *     npm run check:mosaico            # headless, sobre .vercel/output/static, 3 fichas fijas
  *
  * Tres fichas y no catorce: una con 6 celdas y segunda fila, la de 5 y la de 3.
- * Y una pagina de ciudad: su galeria es el mismo mosaico.
+ * Y una pagina de ciudad, donde ademas se prueba el panel de servicios (indice + ficha).
  */
 import { chromium } from 'playwright';
 import fs from 'node:fs';
@@ -62,7 +62,27 @@ for (const ruta of RUTAS) {
     return out;
   });
   if (rotas.length) mal(`fotos que no cargan: ${rotas.join(', ')}`);
-  console.log(`  ${rojos.some((r) => r.startsWith(ruta)) ? 'ROJO' : 'ok  '} ${ruta}   (${n} celdas + ${extras} en la segunda fila)`);
+  /* EL PANEL DE SERVICIOS DE LA PAGINA DE CIUDAD (`ServiciosIndice.astro`): 14 filas y 14 fichas,
+   * una sola a la vista; pulsar una fila ensena SU ficha y solo ella lleva `aria-current`. */
+  let panel = '';
+  if (await p.locator('.mm-serv').count()) {
+    const lee = () => p.evaluate(() => ({
+      filas: [...document.querySelectorAll('.mm-serv [data-mm-serv]')].map((x) => [x.dataset.mmServ, x.getAttribute('aria-current')]),
+      fichas: [...document.querySelectorAll('.mm-serv [data-mm-serv-ficha]')].map((x) => [x.dataset.mmServFicha, !x.hidden && x.getClientRects().length > 0, !!x.querySelector('a[href^="/services/"]')]),
+    }));
+    let e = await lee();
+    if (e.filas.length !== 14 || e.fichas.length !== 14) mal(`panel de servicios: ${e.filas.length} filas y ${e.fichas.length} fichas; son 14 y 14`);
+    if (e.fichas.some((f) => !f[2])) mal('panel de servicios: una ficha no enlaza a su servicio');
+    const abiertas = (x) => x.fichas.filter((f) => f[1]).map((f) => f[0]);
+    const actuales = (x) => x.filas.filter((f) => f[1] === 'true').map((f) => f[0]);
+    if (abiertas(e).length !== 1 || abiertas(e)[0] !== actuales(e)[0]) mal(`panel de servicios: al cargar, fichas a la vista ${abiertas(e)} y fila actual ${actuales(e)}`);
+    const otra = e.filas.find((f) => f[1] !== 'true' && f[0] !== abiertas(e)[0])?.[0];
+    await p.locator(`.mm-serv [data-mm-serv="${otra}"]`).click();
+    e = await lee();
+    if (abiertas(e).join() !== otra || actuales(e).join() !== otra) mal(`panel de servicios: tras pulsar «${otra}», a la vista ${abiertas(e)} y actual ${actuales(e)}`);
+    panel = ' · panel de servicios: 14 filas, cambia de ficha';
+  }
+  console.log(`  ${rojos.some((r) => r.startsWith(ruta)) ? 'ROJO' : 'ok  '} ${ruta}   (${n} celdas + ${extras} en la segunda fila${panel})`);
   await p.close();
 }
 await b.close();
