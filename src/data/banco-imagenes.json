@@ -43172,5 +43172,678 @@
     "usada_en": [],
     "origen": "POLE BARN/tack-room-in-a-barn-horse-saddles-and-harnesses-antique-saddles-the-FMMCX3.jpg",
     "sha256": "ef6d3d6804d10b5cc2aa220dcc8be4aaa5c03db649c74d72b9c4b561db3bd618"
+  },
+  {
+    "id": "bi-1270",
+    "src": "/images/banco/ia/luxury-home-pool-louvered-pergola-outdoor-kitchen-night.webp",
+    "estado": "ambiente",
+    "uso": "ambiente",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas",
+      "construction",
+      "kitchens",
+      "lighting"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "generada_ia",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 900,
+    "alt": "Illustration of a lit pool beside a white louvered pergola with an outdoor kitchen at night.",
+    "descripcion": "Generada con IA: no es obra de la empresa. Casa de dos plantas de noche, piscina iluminada en azul, pérgola blanca de lamas con cocina exterior y chimenea. GPT.",
+    "tags": [
+      "night",
+      "pool lighting",
+      "louvered pergola",
+      "outdoor kitchen"
+    ],
+    "espacio_texto": "ninguno",
+    "recortes_seguros": [
+      "16:9",
+      "4:3"
+    ],
+    "defectos": [
+      "generada con IA (OpenAI)",
+      "firma C2PA en el original",
+      "reflejos del suelo exagerados"
+    ],
+    "usada_en": [],
+    "origen": "GENERADAS IA/Mansión costera con piscina iluminada രാത്രി.png",
+    "sha256": "4afd6c6bf47a17a5fc7ee3c14261f12737b290707cd27ef6d570f2a37223315f"
+  },
+  {
+    "id": "bi-1271",
+    "src": "/images/banco/ia/modern-villa-pool-black-pergola-retractable-screen.webp",
+    "estado": "ambiente",
+    "uso": "ambiente",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas",
+      "construction",
+      "screens"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "generada_ia",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 900,
+    "alt": "Illustration of a modern villa with a rectangular pool and a black pergola with a retractable screen.",
+    "descripcion": "Generada con IA: no es obra de la empresa. Villa moderna de día, piscina rectangular con coping de travertino, pérgola negra con screen bajado y sofás de teca. GPT.",
+    "tags": [
+      "modern villa",
+      "pool",
+      "black pergola",
+      "retractable screen"
+    ],
+    "espacio_texto": "ninguno",
+    "recortes_seguros": [
+      "16:9",
+      "4:3"
+    ],
+    "defectos": [
+      "generada con IA (OpenAI)",
+      "firma C2PA en el original"
+    ],
+    "usada_en": [],
+    "origen": "GENERADAS IA/Villa tropical moderna con piscina turquesa.png",
+    "sha256": "1664533d622ca3f5b7e3d104eaa093b13fe5cb8f4ef2076db30adf62a299e047"
+  },
+  {
+    "id": "bi-1272",
+    "src": "/images/banco/ia/attached-white-patio-cover-paver-deck-dining-set.webp",
+    "estado": "ambiente",
+    "uso": "ambiente",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas",
+      "decks"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "generada_ia",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1328,
+    "alto": 800,
+    "alt": "Illustration of a white attached patio cover over a paver deck with a teak dining set by a pool.",
+    "descripcion": "Generada con IA: no es obra de la empresa. Techo de patio blanco adosado, adoquín, mesa de teca con sombrilla y borde de piscina de forma libre. Higgsfield.",
+    "tags": [
+      "patio cover",
+      "pavers",
+      "dining set"
+    ],
+    "espacio_texto": "ninguno",
+    "recortes_seguros": [
+      "16:9",
+      "4:3"
+    ],
+    "defectos": [
+      "generada con IA (Higgsfield)",
+      "1328 px de ancho: no llega a 1600"
+    ],
+    "usada_en": [],
+    "origen": "GENERADAS IA/hf_20260208_232108_fece3d6f-2605-458f-bd3e-f7be67e00725.png",
+    "sha256": "88ad35c816162c545a6e552ec63f45d402251978a9289463cf8f87db60f504dc"
+  },
+  {
+    "id": "bi-1273",
+    "src": "/images/banco/ia/modern-home-dark-pergola-pool-clusia-hedge-sunset.webp",
+    "estado": "ambiente",
+    "uso": "ambiente",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas",
+      "construction",
+      "landscaping"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "generada_ia",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1195,
+    "alt": "Illustration of a modern home with a dark pergola, a pool with blue mosaic tile and a clusia hedge.",
+    "descripcion": "Generada con IA: no es obra de la empresa. Serie casa moderna (5 vistas): plano general desde el césped, seto de clusia a la izquierda ocupando un tercio, pérgola oscura y piscina al fondo. Higgsfield.",
+    "tags": [
+      "modern home",
+      "pergola",
+      "hedge",
+      "sunset"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:3",
+      "1:1"
+    ],
+    "defectos": [
+      "generada con IA (Higgsfield)",
+      "el seto tapa el tercio izquierdo"
+    ],
+    "usada_en": [],
+    "origen": "GENERADAS IA/hf_20260208_234239_0358e629-6e94-41b8-bdb8-f04ef19b53f2.jpeg",
+    "sha256": "9d997bb858f61ed73765ced13a771ae70ea1d825ea33c0d866d70b1904fe5041"
+  },
+  {
+    "id": "bi-1274",
+    "src": "/images/banco/ia/dark-pergola-tv-wall-pool-raised-spa-mosaic-sunset.webp",
+    "estado": "ambiente",
+    "uso": "ambiente",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas",
+      "construction"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "generada_ia",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1195,
+    "alt": "Illustration of a dark pergola with a wood TV wall beside a pool with a mosaic-tiled spillover spa.",
+    "descripcion": "Generada con IA: no es obra de la empresa. Serie casa moderna: pérgola oscura con muro de madera y TV, piscina con spa y rebosadero de mosaico azul, cielo de atardecer. Higgsfield.",
+    "tags": [
+      "pergola",
+      "tv wall",
+      "pool",
+      "spa",
+      "sunset"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:3",
+      "16:9",
+      "1:1"
+    ],
+    "defectos": [
+      "generada con IA (Higgsfield)"
+    ],
+    "usada_en": [],
+    "origen": "GENERADAS IA/hf_20260208_234239_b267c81f-1437-4187-8eb2-6e4d560584ba.png",
+    "sha256": "d8a02418ace0b6e943fc3d7efc3c375d71b6a3dd08861b456c13418274f9f22e"
+  },
+  {
+    "id": "bi-1275",
+    "src": "/images/banco/ia/dark-pergola-wood-tv-wall-agave-pool-edge-sunset.webp",
+    "estado": "ambiente",
+    "uso": "ambiente",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas",
+      "construction"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "generada_ia",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1195,
+    "alt": "Illustration of a dark flat-roof pergola with a wood TV wall and an agave planter at the pool edge.",
+    "descripcion": "Generada con IA: no es obra de la empresa. Serie casa moderna: la pérgola más cerca, agave en primer plano y borde de piscina de mosaico. Higgsfield.",
+    "tags": [
+      "pergola",
+      "tv wall",
+      "agave",
+      "sunset"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:3",
+      "16:9",
+      "1:1"
+    ],
+    "defectos": [
+      "generada con IA (Higgsfield)"
+    ],
+    "usada_en": [],
+    "origen": "GENERADAS IA/hf_20260208_234239_bd9b42cd-4694-4575-9800-8287ef2abe71.jpeg",
+    "sha256": "bc6f45299c21ac1daf92c052abf885eaa40a5e4d7145be276b9e33c9870da42b"
+  },
+  {
+    "id": "bi-1276",
+    "src": "/images/banco/ia/aerial-modern-backyard-pool-spa-pergola-fire-bowl.webp",
+    "estado": "ambiente",
+    "uso": "ambiente",
+    "etapa": "terminado",
+    "servicios": [
+      "construction",
+      "pergolas",
+      "decks"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "generada_ia",
+    "vista": "aerea",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1195,
+    "alt": "Aerial illustration of a modern backyard with a pool and spa, a pergola, loungers and a fire bowl.",
+    "descripcion": "Generada con IA: no es obra de la empresa. Serie casa moderna: vista aérea del patio completo, piscina con spa elevado, pérgola, dos tumbonas y brasero. Higgsfield.",
+    "tags": [
+      "aerial",
+      "pool",
+      "spa",
+      "pergola",
+      "fire bowl"
+    ],
+    "espacio_texto": "ninguno",
+    "recortes_seguros": [
+      "4:3",
+      "16:9",
+      "1:1"
+    ],
+    "defectos": [
+      "generada con IA (Higgsfield)"
+    ],
+    "usada_en": [],
+    "origen": "GENERADAS IA/hf_20260208_234239_c49c0a1b-a37a-474c-9a99-5c7af84d972e.png",
+    "sha256": "4b0568c08e7d0c11733ef7e5f72bccf03fb2c47f54cff206faa00608ecea839b"
+  },
+  {
+    "id": "bi-1277",
+    "src": "/images/banco/ia/pergola-wood-ceiling-fan-tv-wall-low-angle-sky.webp",
+    "estado": "ambiente",
+    "uso": "ambiente",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "generada_ia",
+    "vista": "detalle",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1195,
+    "alt": "Low-angle illustration of a pergola with a wood ceiling, recessed lights, a fan and a TV wall.",
+    "descripcion": "Generada con IA: no es obra de la empresa. Serie casa moderna: contrapicado del techo de madera de la pérgola con ventilador, focos y TV; media imagen es cielo. Higgsfield.",
+    "tags": [
+      "pergola ceiling",
+      "ceiling fan",
+      "recessed lights",
+      "sky"
+    ],
+    "espacio_texto": "izquierda",
+    "recortes_seguros": [
+      "4:3",
+      "16:9"
+    ],
+    "defectos": [
+      "generada con IA (Higgsfield)"
+    ],
+    "usada_en": [],
+    "origen": "GENERADAS IA/hf_20260208_234239_e75c00d7-d0c2-49ea-b731-568110fa59f9.jpeg",
+    "sha256": "76fed9f3836209533466367c680a1b98d253312db95f70bdc0d18d6bcaba5352"
+  },
+  {
+    "id": "bi-1278",
+    "src": "/images/banco/ia/aerial-pergola-privacy-wall-outdoor-kitchen-pool.webp",
+    "estado": "ambiente",
+    "uso": "ambiente",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas",
+      "kitchens",
+      "construction"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "generada_ia",
+    "vista": "aerea",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1195,
+    "alt": "Aerial illustration of a pergola with a slatted privacy wall over an outdoor kitchen by a pool.",
+    "descripcion": "Generada con IA: no es obra de la empresa. Serie teja roja (2 vistas): aérea de pérgola oscura con muro de lamas, cocina con parrilla y barra, deck de mármol gris y piscina. Higgsfield.",
+    "tags": [
+      "aerial",
+      "pergola",
+      "privacy wall",
+      "outdoor kitchen"
+    ],
+    "espacio_texto": "ninguno",
+    "recortes_seguros": [
+      "4:3",
+      "16:9",
+      "1:1"
+    ],
+    "defectos": [
+      "generada con IA (Higgsfield)"
+    ],
+    "usada_en": [],
+    "origen": "GENERADAS IA/hf_20260208_235340_77aebca6-70bc-4d65-bb1f-bd5104d0ff0e.png",
+    "sha256": "bc794159b2a6142575dde209e67c2be96122cb997980724d163e15b5aa4f50ff"
+  },
+  {
+    "id": "bi-1279",
+    "src": "/images/banco/ia/pergola-privacy-wall-outdoor-kitchen-bar-pool-deck.webp",
+    "estado": "ambiente",
+    "uso": "ambiente",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas",
+      "kitchens"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "generada_ia",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1195,
+    "alt": "Illustration of a dark pergola with a slatted privacy wall, an outdoor kitchen and a bar by a pool.",
+    "descripcion": "Generada con IA: no es obra de la empresa. Serie teja roja: a pie de piscina, pérgola con dos ventiladores, cocina con parrilla, barra con taburetes y butacas. Higgsfield.",
+    "tags": [
+      "pergola",
+      "privacy wall",
+      "outdoor kitchen",
+      "bar"
+    ],
+    "espacio_texto": "ninguno",
+    "recortes_seguros": [
+      "4:3",
+      "16:9",
+      "1:1"
+    ],
+    "defectos": [
+      "generada con IA (Higgsfield)"
+    ],
+    "usada_en": [],
+    "origen": "GENERADAS IA/hf_20260208_235340_cb172747-cb67-465c-8a8b-cd4cfcd780f7.png",
+    "sha256": "23e9b8574ec1fb2b52330518584cd40cb2cf25d35330b921b45975de91fa2aa1"
+  },
+  {
+    "id": "bi-1280",
+    "src": "/images/banco/ia/geometric-pool-marble-deck-dark-pergola-white-railing.webp",
+    "estado": "ambiente",
+    "uso": "ambiente",
+    "etapa": "terminado",
+    "servicios": [
+      "construction",
+      "pergolas",
+      "decks"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "generada_ia",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1195,
+    "alt": "Illustration of a geometric pool with a marble deck and a dark pergola, seen over a white railing.",
+    "descripcion": "Generada con IA: no es obra de la empresa. Serie casa crema (3 vistas), de aspecto muy fotográfico —puede ser obra real retocada, sin confirmar—: piscina geométrica, deck de mármol, pérgola oscura; barandilla blanca en la esquina inferior izquierda. Higgsfield.",
+    "tags": [
+      "geometric pool",
+      "marble deck",
+      "pergola"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:3",
+      "16:9"
+    ],
+    "defectos": [
+      "generada o retocada con IA (Higgsfield)",
+      "barandilla blanca en primer plano",
+      "mesa de ping-pong al fondo"
+    ],
+    "usada_en": [],
+    "origen": "GENERADAS IA/hf_20260903_211713_371f276b-6ec6-4f79-b093-19c492918bb6.png",
+    "sha256": "ad56c2bf7d67bdc8c9e4dc9f24dd50851635331ad0d91ba3976be0959fc82167"
+  },
+  {
+    "id": "bi-1281",
+    "src": "/images/banco/ia/geometric-pool-marble-deck-dark-pergola-loungers.webp",
+    "estado": "ambiente",
+    "uso": "ambiente",
+    "etapa": "terminado",
+    "servicios": [
+      "construction",
+      "pergolas",
+      "decks"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "generada_ia",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1195,
+    "alt": "Illustration of a geometric pool with a marble deck, loungers and a dark pergola under a cloudy sky.",
+    "descripcion": "Generada con IA: no es obra de la empresa. Serie casa crema: vista frontal desde el otro lado; mesa de ping-pong cortada en la esquina inferior derecha. Higgsfield.",
+    "tags": [
+      "geometric pool",
+      "marble deck",
+      "pergola",
+      "loungers"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:3"
+    ],
+    "defectos": [
+      "generada o retocada con IA (Higgsfield)",
+      "mesa de ping-pong en primer plano a la derecha",
+      "barbacoa con funda"
+    ],
+    "usada_en": [],
+    "origen": "GENERADAS IA/hf_20260903_211839_bc37200e-e85c-4292-a307-9b8c07e0bd3b.png",
+    "sha256": "cdf5c2f346376159407d8d8b06c1c5f7b5293e4bdc741e35fcb8bf579dc4bda0"
+  },
+  {
+    "id": "bi-1282",
+    "src": "/images/banco/ia/geometric-pool-marble-deck-dark-pergola-low-angle.webp",
+    "estado": "ambiente",
+    "uso": "ambiente",
+    "etapa": "terminado",
+    "servicios": [
+      "construction",
+      "pergolas",
+      "decks"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "generada_ia",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1195,
+    "alt": "Low-angle illustration of a geometric pool with a marble deck and a dark pergola along the house.",
+    "descripcion": "Generada con IA: no es obra de la empresa. Serie casa crema: la más limpia de las tres, a ras de deck con la piscina en primer plano y la pérgola a lo largo de la fachada. Higgsfield.",
+    "tags": [
+      "geometric pool",
+      "marble deck",
+      "pergola"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:3",
+      "16:9",
+      "1:1"
+    ],
+    "defectos": [
+      "generada o retocada con IA (Higgsfield)"
+    ],
+    "usada_en": [],
+    "origen": "GENERADAS IA/hf_20260903_212022_dec9de36-61f0-4a3d-8166-a046feaba623.png",
+    "sha256": "4dae0ca73e72b31554a5435207f2040dd55f330fd9df6330b44d736ba74bded9"
+  },
+  {
+    "id": "bi-1283",
+    "src": "/images/banco/ia/pool-sun-shelf-ledge-loungers-scupper-wall-palms.webp",
+    "estado": "ambiente",
+    "uso": "ambiente",
+    "etapa": "terminado",
+    "servicios": [
+      "construction",
+      "landscaping"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "generada_ia",
+    "vista": "suelo",
+    "orientacion": "vertical",
+    "ancho": 900,
+    "alto": 1600,
+    "alt": "Illustration of a pool with ledge loungers on a sun shelf, a scupper wall and date palms behind.",
+    "descripcion": "Generada con IA: no es obra de la empresa. Vertical: piscina con tumbonas en la playa húmeda, muro blanco con tres caños, palmeras datileras y junta de césped artificial. De aspecto fotográfico —puede ser obra real reescalada, sin confirmar—. Higgsfield.",
+    "tags": [
+      "sun shelf",
+      "ledge loungers",
+      "scuppers",
+      "palms"
+    ],
+    "espacio_texto": "abajo",
+    "recortes_seguros": [
+      "9:16",
+      "4:5",
+      "1:1"
+    ],
+    "defectos": [
+      "generada o retocada con IA (Higgsfield)",
+      "firma C2PA en el original"
+    ],
+    "usada_en": [],
+    "origen": "GENERADAS IA/hf_20260919_200414_ca7cc1ab-08df-46ff-a1f6-e1678c106074.png",
+    "sha256": "f59497710022475a4eff9d41dde6c2bde8d58bba09fdc1a12f412daa71f931dd"
+  },
+  {
+    "id": "bi-1284",
+    "src": "/images/banco/ia/louvered-roof-outdoor-kitchen-lake-view-vertical.webp",
+    "estado": "ambiente",
+    "uso": "ambiente",
+    "etapa": "terminado",
+    "servicios": [
+      "kitchens",
+      "louvered"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "generada_ia",
+    "vista": "suelo",
+    "orientacion": "vertical",
+    "ancho": 900,
+    "alto": 1600,
+    "alt": "Illustration of an outdoor kitchen with a grill under a white louvered roof overlooking a lake.",
+    "descripcion": "Generada con IA: no es obra de la empresa. Vertical: reencuadre por IA de la cocina que el sitio ya publica (covered-custom-outdoor-kitchen-florida); mitad inferior es suelo de porcelánico. Higgsfield.",
+    "tags": [
+      "outdoor kitchen",
+      "louvered roof",
+      "lake view"
+    ],
+    "espacio_texto": "abajo",
+    "recortes_seguros": [
+      "9:16",
+      "4:5"
+    ],
+    "defectos": [
+      "generada o retocada con IA (Higgsfield)",
+      "firma C2PA en el original",
+      "misma escena que una foto ya publicada en la ficha de cocinas"
+    ],
+    "usada_en": [],
+    "origen": "GENERADAS IA/hf_20260919_204055_a04f985d-7d4d-4f8f-bc63-90be793b39d5.png",
+    "sha256": "8f5daeebe7e1a4e75b45855531f54505af0296bde4ea32306e6f2fdae2904ac6"
+  },
+  {
+    "id": "bi-1285",
+    "src": "/images/banco/render/pool-studio-2d-plan-to-3d-render-pool-scupper-wall.webp",
+    "estado": "ambiente",
+    "uso": "diseno-3d",
+    "etapa": "terminado",
+    "servicios": [
+      "construction"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "no_es_del_cliente",
+    "vista": "detalle",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 956,
+    "alt": "Pool design software screen showing a 2D plan turning into a 3D render of a pool with a scupper wall.",
+    "descripcion": "Material de Structure Studios (Pool Studio), no obra: captura del programa con el plano 2D fundiéndose en el render 3D; la interfaz del software está a la vista. Solo para ilustrar el servicio de diseño 3D.",
+    "tags": [
+      "3d design",
+      "pool studio",
+      "2d plan",
+      "render"
+    ],
+    "espacio_texto": "ninguno",
+    "recortes_seguros": [
+      "16:9"
+    ],
+    "defectos": [
+      "material de terceros (Structure Studios): confirmar licencia",
+      "interfaz del software visible",
+      "no es un diseño de la empresa"
+    ],
+    "usada_en": [],
+    "origen": "POOL STUDIO/Pool-Studio-design-software-2D-to-3D-transition-rectangular-pool-stone-wall-scuppers-chaise-fire-bowl.webp",
+    "sha256": "fc76a58bf171f296a5ab7bae6e768890c93fb59e8fe66521faef39b789f3ac94"
+  },
+  {
+    "id": "bi-1286",
+    "src": "/images/banco/render/pool-studio-3d-render-geometric-pool-stone-wall-spa.webp",
+    "estado": "ambiente",
+    "uso": "diseno-3d",
+    "etapa": "terminado",
+    "servicios": [
+      "construction",
+      "landscaping"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "no_es_del_cliente",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 900,
+    "alt": "3D design render of a geometric pool with a stacked-stone wall, copper scuppers and a raised spa.",
+    "descripcion": "Material de Structure Studios (Pool Studio), no obra: render 3D de piscina geométrica con muro de piedra apilada, caños de cobre, spa elevado y jardineras. Solo para ilustrar el servicio de diseño 3D.",
+    "tags": [
+      "3d design",
+      "pool studio",
+      "render",
+      "stone wall",
+      "raised spa"
+    ],
+    "espacio_texto": "ninguno",
+    "recortes_seguros": [
+      "16:9",
+      "4:3"
+    ],
+    "defectos": [
+      "material de terceros (Structure Studios): confirmar licencia",
+      "botella con etiqueta de la marca del software en primer plano",
+      "no es un diseño de la empresa"
+    ],
+    "usada_en": [],
+    "origen": "POOL STUDIO/Pool-Studio-design-software-geometric-pool-3D-stacked-stone-retaining-wall-copper-scuppers-raised-spa-flower-planters.webp",
+    "sha256": "434926dc050a7b8086e7e39df4b130c561a86a9f9405d403c546e981233ba5c0"
   }
 ]
