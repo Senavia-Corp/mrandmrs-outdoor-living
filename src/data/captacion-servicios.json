@@ -1289,10 +1289,11 @@
   "/services/patio-screen-rooms": {
     "heroe": {
       "apoyo": "Screen room builders and installation contractors in North & South Florida, creating comfortable, protected outdoor living areas.",
-      "foto": "/images/projects/luxury-pool-spa-with-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-north-florida-project-2.avif",
-      "alt": "Screened patio room with lounge seating beside a pool, built in North Florida by Mr & Mrs Outdoor Living",
+      "fotoSchema": "/images/projects/luxury-pool-spa-with-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-north-florida-project-2.avif",
+      "foto": "/images/images/patio-screen-10/patio-screen-enclosure-builders-contractors-north-south-florida-10.jpg",
+      "alt": "Complete patio screen enclosure installation offering full protection, durability, and enhanced outdoor living for North and South Florida homeowners.",
       "ancho": 1250,
-      "alto": 698,
+      "alto": 839,
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
       "marca": "Screen Rooms"
@@ -2146,8 +2147,9 @@
   "/services/irrigation-systems": {
     "heroe": {
       "apoyo": "Smart irrigation installation contractors for North & South Florida properties, focused on efficient watering solutions and long-term landscape health",
-      "foto": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-4.avif",
-      "alt": "Pool edge and surrounding lawn on North Florida acreage, part of a project by Mr & Mrs Outdoor Living",
+      "fotoSchema": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-4.avif",
+      "foto": "/images/images/irrigation-10/automated-irrigation-system-installers-florida-10.jpg",
+      "alt": "Professional irrigation system installation for landscaped gardens and walkways in South Florida, enhancing curb appeal and plant health.",
       "ancho": 1250,
       "alto": 698,
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",

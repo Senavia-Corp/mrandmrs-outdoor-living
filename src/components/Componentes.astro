@@ -219,9 +219,6 @@ const SLIDERS = JSON.stringify(
         lista.push({ url: items[0].url, alt: a.querySelector('img')?.alt ?? '' });
       }
 
-      // Las fotos de la galeria que no caben en el mosaico: solo en el visor, detras de las pintadas.
-      try { grupos.get('obra')?.push(...JSON.parse(document.querySelector('script.mm-gal-mas')?.textContent ?? '[]')); } catch { /* sin extras */ }
-
       /**
        * EL NOMBRE ACCESIBLE, para las que se quedaban mudas.
        *

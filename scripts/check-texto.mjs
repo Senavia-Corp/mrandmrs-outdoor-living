@@ -1343,8 +1343,11 @@ const LINEAS_ANADIDAS = [
    * «Project Gallery». Van seguidas y solo ahi, asi que el par se quita sin ancla. */
   ...Object.keys(CAPTACION_JSON).filter(esFicha).map((r) => ({
     rutas: [r], tras: [],
-    lineas: [capitalizaH2(CAPTACION_JSON[r].heroe.cta ?? 'Get a Free Estimate'), 'Project Gallery'],
-    motivo: 'ASTRO-2 (T-28, T-47): accion y enlace a /gallery en la cabecera de la galeria de obra.',
+    // D-119: `/services/pool-builders` recupera ahi su enlace a `/projects` («View All Projects»), que
+    // iba en el antes/despues que la ficha pierde.
+    lineas: [capitalizaH2(CAPTACION_JSON[r].heroe.cta ?? 'Get a Free Estimate'), 'Project Gallery',
+      ...(r === '/services/pool-builders' ? ['View All Projects'] : [])],
+    motivo: 'ASTRO-2 (T-28, T-47, D-119): accion y enlaces en la cabecera de la galeria de obra.',
   })),
   /* SEO-REMEDIACION (4-oct-2026): los cualificadores opcionales de `/request-estimated`, leidos
    * del mismo JSON que los inserta (`src/data/textos-propios.json`). */
@@ -3014,6 +3017,9 @@ function bloquesCaptacion(ruta) {
    * Y el ` · ` de los telefonos SIGUE AHI. La forma nueva son dos chips, pero el separador no se
    * quita: `innerText` lo ve y el texto no se toca (Principio 2). */
   const zonas = c.heroe.zonas ?? TELEFONOS.items.map((x) => x.zona);
+  // D-118: la miga visible en el hero de las 14 fichas, de la misma funcion que la pinta y que da
+  // el `BreadcrumbList` del JSON-LD (`miga-tramos.mjs`). Las barras van en `::before`.
+  if (esFicha(ruta)) bloques.push(tramosMiga(ruta).map((t) => t.nombre));
   // ASTRO-2: el Hero A lo llevan las 14 fichas y las 118 paginas de servicio × ciudad de `PaginaCiudad.astro`.
   if (ruta.startsWith('/services/')) {
     /* REDISEÑO STITCH · ASTRO-2 · HERO A de las 14 fichas. Los dos telefonos y la licencia pasan
@@ -3357,6 +3363,15 @@ function ordenFicha(ruta, lineas) {
   mueve(o.resenas, () => out.findIndex((l, k) => l.toLowerCase() === o.cierre[0].toLowerCase() && out[k + 1] === o.cierre[1]));
   const c = out.indexOf(o.cierre[1]);
   if (c >= 0 && out[c + 1] === 'Get A Free Estimate') out.splice(c + 1, 1);
+  /* ANTES/DESPUES LADO A LADO (D-96, D-120; solo `/services/pool-remodeling`). El bloque del baseline
+   * es «Before, After, titular, parrafo, tarjeta 1 (2 lineas), tarjeta 2 (2 lineas), View All
+   * Projects, Get A Free Estimate». Ahora van titular, parrafo y los dos enlaces en la cabecera, las
+   * dos fotos con su rotulo y las dos tarjetas. Las mismas diez lineas. */
+  const ia = out.findIndex((l, k) => l === 'Before' && out[k + 1] === 'After' && out[k + 8] === 'View All Projects' && out[k + 9] === 'Get A Free Estimate');
+  if (ia >= 0) {
+    const [antes, despues, tit, par, t1, p1, t2, p2, ver, pedir] = out.slice(ia, ia + 10);
+    out.splice(ia, 10, tit, par, pedir, ver, antes, despues, t1, p1, t2, p2);
+  }
   return out;
 }
 

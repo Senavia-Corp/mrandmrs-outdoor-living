@@ -6,7 +6,7 @@
  *
  *     npm run check:mosaico            # headless, sobre .vercel/output/static, 3 fichas fijas
  *
- * Tres fichas y no catorce: una con 6 celdas y fotos de mas, la de 5 y la de 4.
+ * Tres fichas y no catorce: una con 6 celdas y segunda fila, la de 5 y la de 3.
  */
 import { chromium } from 'playwright';
 import fs from 'node:fs';
@@ -29,8 +29,9 @@ for (const ruta of RUTAS) {
   const mal = (m) => rojos.push(`${ruta}: ${m}`);
   const celdas = p.locator('.mm-mosaico > button.mm-celda');
   const n = await celdas.count();
-  const extras = await p.evaluate(() => JSON.parse(document.querySelector('script.mm-gal-mas')?.textContent ?? '[]').length);
-  if (n < 4) { mal(`${n} celdas`); await p.close(); continue; }
+  // D-117: las fotos que no caben en el mosaico van en una segunda fila, a la vista y en el HTML.
+  const extras = await p.locator('.mm-mosaico-resto > button.mm-celda[data-mm-foto]').count();
+  if (n < 3) { mal(`${n} celdas`); await p.close(); continue; }
   await celdas.nth(1).focus();
   await p.keyboard.press('Enter');
   const estado = () => p.evaluate(() => {
@@ -59,7 +60,7 @@ for (const ruta of RUTAS) {
     return out;
   });
   if (rotas.length) mal(`fotos que no cargan: ${rotas.join(', ')}`);
-  console.log(`  ${rojos.some((r) => r.startsWith(ruta)) ? 'ROJO' : 'ok  '} ${ruta}   (${n} celdas + ${extras} solo en el visor)`);
+  console.log(`  ${rojos.some((r) => r.startsWith(ruta)) ? 'ROJO' : 'ok  '} ${ruta}   (${n} celdas + ${extras} en la segunda fila)`);
   await p.close();
 }
 await b.close();

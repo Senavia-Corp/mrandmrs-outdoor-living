@@ -31,6 +31,7 @@ import { JSDOM } from 'jsdom';
 import { renombra, origen, esFicha, esCondado } from './lib/renombradas.mjs';
 import { CATEGORIAS as GALERIA_CATEGORIAS, tarjetasHtml } from '../src/lib/galeria-categorias.mjs';
 import { OCULTAS, serviciosDe } from '../src/lib/filtro-proyectos.mjs';
+import { tramosMiga } from '../src/lib/miga-tramos.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const man = JSON.parse(fs.readFileSync(path.join(RAIZ, '_source/assets-manifest.json'), 'utf8')).assets;
@@ -773,9 +774,23 @@ const GALERIA_USABLE = new Set([
 ]);
 const escAttr = (t) => String(t).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 let mosaicos = 0;
-/** Fotos verificadas de la galeria que no caben en el mosaico, por ruta: de ahi salen la foto del
- *  FAQ y las de mas abajo, para no repetir ninguna en la pagina. */
-const SOBRANTES = new Map();
+/** Las fotos de seccion de cada ficha (FAQ, cierre, resenas, por ese orden): ids del banco elegidos
+ *  en hoja de contactos (`fotos-seccion-fichas.json`). Con las 10 de la galeria a la vista (D-117)
+ *  ya no pueden salir de ella. Se validan aqui: una que no cumpla tumba el script. */
+const FOTOS_SECCION = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/fotos-seccion-fichas.json'), 'utf8'));
+const BANCO_POR_ID = new Map(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/banco-imagenes.json'), 'utf8')).map((e) => [e.id, e]));
+function fotoDeSeccion(ruta, k) {
+  if (!(ruta in FOTOS_SECCION)) throw new Error(`${ruta}: no esta en fotos-seccion-fichas.json (una lista vacia vale; faltar, no)`);
+  const id = FOTOS_SECCION[ruta][k];
+  if (!id) return null;
+  const e = BANCO_POR_ID.get(id);
+  const falla = !e ? 'no esta en el banco' : e.procedencia !== 'obra_real' ? `procedencia «${e.procedencia}»`
+    : !/^aprobada/.test(e.estado ?? '') ? `estado «${e.estado}»` : e.etapa !== 'terminado' ? `etapa «${e.etapa}»`
+      : e.orientacion !== 'horizontal' ? `orientacion «${e.orientacion}»` : !e.src || !e.alt ? 'sin fichero o sin alt'
+        : id === CAPTACION[ruta].heroe._banco ? 'es la foto del hero de la ficha' : null;
+  if (falla) throw new Error(`${ruta}: ${id} no vale de foto de seccion — ${falla}`);
+  return { src: e.src, alt: e.alt, w: e.ancho, h: e.alto };
+}
 function mosaicoDeObra(doc, ruta) {
   if (!esFicha(ruta)) return;
   const sec = doc.querySelector('section.gallery');
@@ -786,30 +801,41 @@ function mosaicoDeObra(doc, ruta) {
   localizar(sec);
   const todas = [...sec.querySelectorAll('img.image-gallery')].map((i) => ({ src: i.getAttribute('src'), alt: i.getAttribute('alt') ?? '',
     w: i.getAttribute('width'), h: i.getAttribute('height') }));
-  const fotos = todas.filter((f) => GALERIA_USABLE.has(f.src));
+  // La foto del hero no se repite en la galeria (screen rooms y riego toman el hero de ella, D-122).
+  const delHero = doc.querySelector('.mm-hero-a-medio img')?.getAttribute('src');
+  const fotos = todas.filter((f) => GALERIA_USABLE.has(f.src) && f.src !== delHero);
   // Las apaisadas delante, en su orden: la primera celda ocupa media anchura y una vertical ahi
   // se recorta a la mitad (visto en la hoja de contactos de las 14, 12-oct-2026).
   const apaisada = (f) => (DIM.get(f.src)?.w ?? f.w) / (DIM.get(f.src)?.h ?? f.h) >= 1.2;
   fotos.sort((x, y) => apaisada(y) - apaisada(x));
-  if (fotos.length < 4) throw new Error(`${ruta}: la galeria solo tiene ${fotos.length} fotos con procedencia verificada; el mosaico pide 4`);
+  // Tres es el suelo: una grande y dos apiladas (riego, que cede una de sus cuatro al hero).
+  if (fotos.length < 3) throw new Error(`${ruta}: la galeria solo tiene ${fotos.length} fotos con procedencia verificada; el mosaico pide 3`);
   const marca = CAPTACION[ruta].heroe.marca;
   const tit = marca && h2.innerHTML.includes(marca) ? h2.innerHTML.replace(marca, `<span class="mm-rot">${marca}</span>`) : h2.innerHTML;
-  const enMosaico = fotos.slice(0, 6);
-  const celdas = enMosaico.map((f) => {
+  const medidas = (f) => {
     const d = f.w && f.h ? { w: f.w, h: f.h } : DIM.get(f.src);
     if (!d) throw new Error(`${ruta}: ${f.src} no tiene medidas en el manifiesto`);
-    return `<button type="button" class="mm-celda" data-mm-foto="${f.src}" aria-label="Open photo: ${escAttr(f.alt)}">`
+    return d;
+  };
+  const celda = (f, clase) => {
+    const d = medidas(f);
+    return `<button type="button" class="${clase}" data-mm-foto="${f.src}" aria-label="Open photo: ${escAttr(f.alt)}">`
       + `<img src="${f.src}" alt="${escAttr(f.alt)}" width="${d.w}" height="${d.h}" loading="lazy" decoding="async"></button>`;
-  }).join('');
-  const resto = fotos.slice(6).map((f) => ({ url: f.src, alt: f.alt }));
-  SOBRANTES.set(ruta, fotos.slice(6).map((f) => ({ ...f, ...(f.w && f.h ? {} : { w: DIM.get(f.src)?.w, h: DIM.get(f.src)?.h }) })).filter((f) => f.w && f.h));
+  };
+  /* D-117: TODAS las fotos de la galeria siguen en el HTML y a la vista. Seis en el mosaico y el
+   * resto en una segunda fila pequena; todas abren el mismo visor, en su orden. */
+  const enMosaico = fotos.slice(0, 6);
+  const resto = fotos.slice(6);
+  /* D-119: `/services/pool-builders` enlazaba a `/projects` desde el antes/despues que pierde. El
+   * enlace vuelve, con su mismo texto, junto al de la galeria. */
+  const aProyectos = ruta === '/services/pool-builders' ? `<a class="mm-flecha" href="/projects">View All Projects${FLECHA}</a>` : '';
   const nueva = doc.createElement('section');
   nueva.setAttribute('class', 'mm-gal');
   nueva.innerHTML = `<div class="mm-sec-cab"><h2 class="mm-h2">${nbIntro(tit)}</h2><div class="mm-sec-lado"><p class="mm-p">${linea.innerHTML}</p>`
     + `<div class="mm-sec-acc"><a class="mm-btn mm-btn--linea" href="${cta.getAttribute('href')}">${cta.innerHTML}</a>`
-    + `<a class="mm-flecha" href="/gallery">Project Gallery${FLECHA}</a></div></div></div>`
-    + `<div class="mm-mosaico mm-mosaico--${enMosaico.length}">${celdas}</div>`
-    + (resto.length ? `<script type="application/json" class="mm-gal-mas">${JSON.stringify(resto).replace(/</g, '\\u003c')}</script>` : '');
+    + `<a class="mm-flecha" href="/gallery">Project Gallery${FLECHA}</a>${aProyectos}</div></div></div>`
+    + `<div class="mm-fotos"><div class="mm-mosaico mm-mosaico--${enMosaico.length}">${enMosaico.map((f) => celda(f, 'mm-celda')).join('')}</div>`
+    + (resto.length ? `<div class="mm-mosaico-resto">${resto.map((f) => celda(f, 'mm-celda mm-celda--resto')).join('')}</div>` : '') + '</div>';
   sec.replaceWith(nueva);
   mosaicos++;
 }
@@ -903,7 +929,7 @@ function listasDePlano(doc, ruta) {
   const flinea = fh2?.nextElementSibling;
   const preguntas = [...(faq?.querySelectorAll('.dropdown-faq') ?? [])].map((d) => ({ q: d.querySelector('h3.dropdown-text'), r: d.querySelector('.dropdown-list') }));
   if (!fh2 || !flinea || preguntas.length < 2 || preguntas.some((x) => !x.q || !x.r)) throw new Error(`${ruta}: la FAQ no trae titular, linea y preguntas con respuesta`);
-  const ffoto = SOBRANTES.get(ruta)?.[0];
+  const ffoto = fotoDeSeccion(ruta, 0);
   const nf = doc.createElement('section');
   nf.setAttribute('class', `mm-faq${ffoto ? '' : ' mm-faq--sin'}`);
   for (const x of preguntas) for (const p of x.r.querySelectorAll('p.grey')) p.removeAttribute('class');
@@ -947,7 +973,7 @@ function listasDePlano(doc, ruta) {
   const [rlabel, rh2, rp] = ['.header-reviews .label', '.header-reviews h2', '.header-reviews p'].map((q) => res?.querySelector(q));
   const widget = res?.querySelector('[class*="elfsight-app-"]');
   if (!rlabel || !rh2 || !rp || !widget) throw new Error(`${ruta}: las resenas no traen rotulo, titular, linea y widget`);
-  const rfoto = SOBRANTES.get(ruta)?.[2];
+  const rfoto = fotoDeSeccion(ruta, 2);
   const nr = doc.createElement('section');
   nr.setAttribute('class', `mm-res${rfoto ? '' : ' mm-res--sin'}`);
   nr.innerHTML = `<div class="mm-sec-cab"><div class="mm-sec-tit"><p class="mm-etiqueta">${rlabel.innerHTML}</p><h2 class="mm-h2">${nb(rh2.innerHTML.replace(/\b(Clients)\b/, '<span class="mm-rot">$1</span>'))}</h2></div>`
@@ -967,11 +993,42 @@ function listasDePlano(doc, ruta) {
    * El orden: hero · confianza · intro · galeria · proceso · «what we do» · [antes/despues] ·
    * inversion · FAQ · zonas · articulos · resenas · cierre · formulario. Todo queda como
    * hermano de primer nivel, que es lo que recorre el bucle de salida. */
+  /* ANTES/DESPUES, LADO A LADO (D-96, D-120). Solo queda en `/services/pool-remodeling`. Su par son
+   * dos fotos reales de la misma obra (obra-048), pero NO desde el mismo punto: la de antes esta
+   * tomada desde dentro de la jaula. Un deslizador promete el mismo encuadre; aqui van las dos
+   * fotos una junto a otra, rotuladas. Mismos textos y los mismos dos enlaces; sale el script de
+   * Flowbase. Los dos titulos de tarjeta pasan de `<h4>` a `<h3>`: cuelgan de un `<h2>`. */
+  const ad = doc.querySelector('section.before-after-section');
+  let nad = null;
+  if (ad) {
+    const [iA, iD] = ['img.bas-image-before', 'img.bas-image-after-h'].map((q) => ad.querySelector(q));
+    const [eA, eD] = ['.bas-label-before-h', '.bas-label-after-h'].map((q) => ad.querySelector(q));
+    const ah2 = ad.querySelector('.before-after-intro h2');
+    const ap = ah2?.nextElementSibling;
+    const tarjetas = [...ad.querySelectorAll('.item-transformation-benefits')].map((t) => ({ t: t.querySelector('h4'), p: t.querySelector('.paragraph-mini') }));
+    const enlaces = [...ad.querySelectorAll('.transformation-actions a')];
+    const aCta = enlaces.find((x) => x.getAttribute('href') === '/request-estimated');
+    const aProy = enlaces.find((x) => x.getAttribute('href') === '/projects');
+    if (!iA || !iD || !eA || !eD || !ah2 || !ap || tarjetas.length !== 2 || tarjetas.some((x) => !x.t || !x.p) || !aCta || !aProy) {
+      throw new Error(`${ruta}: el antes/despues no trae las dos fotos, sus rotulos, titular, parrafo, dos tarjetas y dos enlaces`);
+    }
+    const foto = (i, etq, clase) => `<figure class="mm-ad-foto"><img src="${i.getAttribute('src')}" srcset="${i.getAttribute('srcset') ?? ''}" sizes="(min-width: 768px) 50vw, 100vw" alt="${escAttr(i.getAttribute('alt'))}" width="${i.getAttribute('width')}" height="${i.getAttribute('height')}" loading="lazy" decoding="async">`
+      + `<figcaption class="mm-ad-etq ${clase}">${etq.innerHTML}</figcaption></figure>`;
+    nad = doc.createElement('section');
+    nad.setAttribute('class', 'mm-ad');
+    nad.innerHTML = `<div class="mm-sec-cab"><h2 class="mm-h2">${nb(ah2.innerHTML.replace(/(Renovation)\s*$/, '<span class="mm-rot">$1</span>'))}</h2>`
+      + `<div class="mm-sec-lado"><p class="mm-p">${ap.innerHTML}</p><div class="mm-sec-acc"><a class="mm-btn mm-btn--linea" href="${aCta.getAttribute('href')}">${aCta.innerHTML}</a>`
+      + `<a class="mm-flecha" href="${aProy.getAttribute('href')}">${aProy.innerHTML}${FLECHA}</a></div></div></div>`
+      + `<div class="mm-ad-par">${foto(iA, eA, 'mm-ad-etq--antes')}${foto(iD, eD, 'mm-ad-etq--despues')}</div>`
+      + '<div class="mm-ad-datos">' + tarjetas.map((x) => `<div><h3 class="mm-dato-rot">${x.t.innerHTML}</h3><p>${x.p.innerHTML}</p></div>`).join('') + '</div>';
+    ad.replaceWith(nad);
+  }
+
   const fin = doc.querySelector('section.cta-footer');
   const [ch2, cp] = ['.wrapper-vertical-text h2', '.text-block-3'].map((q) => fin?.querySelector(q));
   const heroA = doc.querySelector('section.mm-hero-a');
   if (!ch2 || !cp || fin.parentNode !== heroA?.parentNode) throw new Error(`${ruta}: la banda final no trae titular y parrafo, o no es hermana del hero`);
-  const cfoto = SOBRANTES.get(ruta)?.[1];
+  const cfoto = fotoDeSeccion(ruta, 1);
   const nc = doc.createElement('section');
   nc.setAttribute('class', `mm-cierre${cfoto ? '' : ' mm-cierre--sin'}`);
   nc.innerHTML = '<div class="mm-cierre-caja"><div class="mm-cierre-txt">'
@@ -982,7 +1039,7 @@ function listasDePlano(doc, ruta) {
   if (!invMarca) throw new Error(`${ruta}: no encuentro el marcador de la banda de inversion junto al proceso`);
   const viejos = new Set([nuevo, nq, nf, nz, nr].map((x) => x.parentNode));
   for (const x of [doc.querySelector('section.svc-intro'), doc.querySelector('section.mm-gal'), nuevo, nq,
-    doc.querySelector('section.before-after-section'), nf, nz, nr].filter(Boolean)) fin.parentNode.insertBefore(x, fin);
+    nad, nf, nz, nr].filter(Boolean)) fin.parentNode.insertBefore(x, fin);
   // El marcador de la inversion era un nodo de texto dentro del `<div>` de contenido. Con las
   // secciones ya de primer nivel lo pone el bucle de salida, delante del FAQ.
   invMarca.remove();
@@ -1109,7 +1166,13 @@ function captacion(doc, ruta) {
       const [rotLic, ...valLic] = c.heroe.licencias.split(' · ');
       const nuevo = doc.createElement('section');
       nuevo.className = 'mm-hero-a';
-      nuevo.innerHTML = '<div class="mm-hero-a-txt">'
+      /* D-118: la miga, visible, de la MISMA funcion que da el `BreadcrumbList` del JSON-LD
+       * (`miga-tramos.mjs`): lo que se ve es lo que ya se le declara a Google. */
+      const tramos = tramosMiga(ruta);
+      const miga = tramos.length > 1 ? '<nav class="mm-miga" aria-label="Breadcrumb"><ol>'
+        + tramos.map((t, k) => (k === tramos.length - 1 ? `<li aria-current="page">${esc(t.nombre)}</li>` : `<li><a href="${t.href}">${esc(t.nombre)}</a></li>`)).join('')
+        + '</ol></nav>' : '';
+      nuevo.innerHTML = '<div class="mm-hero-a-txt">' + miga
         + (deco ? `<p class="mm-etiqueta">${esc(deco.textContent.trim())}</p>` : '')
         + `<h1 class="mm-h1">${esc(antes)}<span class="mm-rot">${esc(c.heroe.marca)}</span>${esc(resto.join(c.heroe.marca))}</h1>`
         + `<p class="mm-p">${esc(c.heroe.apoyo)}</p>`
@@ -1646,7 +1709,10 @@ function captacion(doc, ruta) {
       if (c.schema?.serviceType) about.serviceType = c.schema.serviceType;
       if (typeof about.name === 'string') about.name = about.name.replace(/\s{2,}/g, ' ').trim();
       if (typeof about.image === 'string' && !about.image.startsWith('/') && !/^https?:/.test(about.image)) {
-        about.image = c.heroe.foto;
+        /* `fotoSchema` (ASTRO-2, D-122): screen rooms y riego cambian la foto del hero, y el
+         * encargo exige el JSON-LD byte a byte igual. El dato estructurado sigue con la imagen
+         * que ya declaraba hasta que el director decida moverlo; lo que se ve ya es la foto nueva. */
+        about.image = c.heroe.fotoSchema ?? c.heroe.foto;
       }
       /* SEO-SAFE (1-oct-2026): el `Service` del origen no decia QUIEN lo presta ni DONDE vive.
        * `provider` lo ata por `@id` al `LocalBusiness#negocio` que `Base.astro` inyecta en todas

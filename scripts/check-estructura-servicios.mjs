@@ -41,7 +41,7 @@ const ESPERADO = [
  *  derivasen de `antesDespues` en el JSON, la puerta daria por bueno cualquier sitio donde el
  *  generador la pusiera. */
 const VARIANTES = {
-  '/services/pool-remodeling': { tras: 'mm-que', va: 'before-after-section' },
+  '/services/pool-remodeling': { tras: 'mm-que', va: 'mm-ad' },
   // ASTRO-2: `/services/pool-builders` lo pierde: no hay par fotografiado desde el mismo punto (D-95).
 };
 const esperadoDe = (ruta) => {
@@ -85,9 +85,9 @@ for (const ruta of RUTAS) {
       + `       orden: ${cuerpo.join(' · ')}`);
     continue;
   }
-  // ASTRO-2: la galeria es un mosaico de 4 a 6 botones con su foto, no un carrusel.
+  // ASTRO-2: la galeria es un mosaico de 3 a 6 botones con su foto, no un carrusel.
   const slides = d.querySelectorAll('section.mm-gal .mm-mosaico > button.mm-celda[data-mm-foto] > img[width][height]').length;
-  if (slides < 4 || slides > 6) { mal(ruta, `el mosaico de la galeria tiene ${slides} celdas; van de 4 a 6`); continue; }
+  if (slides < 3 || slides > 6) { mal(ruta, `el mosaico de la galeria tiene ${slides} celdas; van de 3 a 6`); continue; }
   console.log(`  ok   ${ruta}   (${slides} slides en la galeria)${VARIANTES[ruta] ? `   + ${VARIANTES[ruta].va} tras ${VARIANTES[ruta].tras} (declarada)` : ''}`);
 }
 
