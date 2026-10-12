@@ -240,9 +240,77 @@ await new Promise((r) => servidor.listen(0, r));
 const BASE = `http://localhost:${servidor.address().port}`;
 
 const csv = fs.readFileSync(path.join(RAIZ, '_source/routes.csv'), 'utf8');
-const RUTAS = csv.trim().split('\n').slice(1)
-  .map((l) => l.match(/"((?:[^"]|"")*)"/g)[0].slice(1, -1))
-  .filter(casa);
+const RUTAS_CSV = csv.trim().split('\n').slice(1)
+  .map((l) => l.match(/"((?:[^"]|"")*)"/g)[0].slice(1, -1));
+const RUTAS = RUTAS_CSV.filter(casa);
+
+/**
+ * ── LA BARANDILLA CUBRE TODO LO CONSTRUIDO (STITCH-E2-BARANDILLA, D-33/D-36, 12-oct-2026) ──────
+ *
+ * `routes.csv` son las 115 rutas que existian en Webflow. El sitio construye 234. Hasta hoy las
+ * otras 119 no se abrian: ni verdes ni rojas. Se pidio `=/financing` y la puerta contesto
+ * «3/3 rutas medidas» sobre cuatro pedidas (STITCH-PARTE-5 §3.0).
+ *
+ * Desde ahora la lista sale del BUILD: toda pagina `.html` construida se mide. Hay dos tipos de
+ * referencia y no se mezclan:
+ *
+ *   baseline/text/         las 115. `innerText` del Webflow vivo + los ajustes declarados de
+ *                          este fichero. NO se toca.
+ *   baseline/text-propio/  las que nunca estuvieron en Webflow. `innerText` del propio build en
+ *                          el commit que dice su ORIGEN.md. Se comparan EN CRUDO.
+ *
+ * Construida y sin referencia en ninguna de las dos = ROJO. Sin tercer cubo.
+ *
+ * A las propias solo les aplica una declaracion si NOMBRA la ruta (`rutas`/`ruta`). Las
+ * declaraciones globales de este fichero describen la distancia entre Webflow y el build, y la
+ * referencia propia ya ES el build: aplicarselas la falsearia.
+ *
+ * `--capturar-propio` escribe la referencia de las propias que no la tengan, con la misma
+ * `asentar()` + `textoNormalizado()` y el mismo navegador que la medicion. SE NIEGA a
+ * sobrescribir: una referencia que ya existe solo se cambia borrandola a mano, a la vista.
+ */
+const DIR_PROPIO = path.join(RAIZ, 'baseline/text-propio');
+const CAPTURAR_PROPIO = process.argv.includes('--capturar-propio');
+const htmlConstruidos = (function recorre(dir, out = []) {
+  for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+    const f = path.join(dir, e.name);
+    if (e.isDirectory()) recorre(f, out);
+    else if (e.name.endsWith('.html')) out.push(f);
+  }
+  return out;
+})(ESTATICO);
+const RUTAS_CONSTRUIDAS = htmlConstruidos.map((f) => {
+  const r = '/' + path.relative(ESTATICO, f).split(path.sep).join('/');
+  return r.replace(/\/index\.html$/, '').replace(/\.html$/, '') || '/';
+}).sort();
+const EN_CSV = new Set(RUTAS_CSV);
+const RUTAS_PROPIAS = RUTAS_CONSTRUIDAS.filter((r) => !EN_CSV.has(r)).filter(casa);
+const PROPIAS = new Set(RUTAS_PROPIAS);
+const RUTAS_A_MEDIR = CAPTURAR_PROPIO ? RUTAS_PROPIAS : [...RUTAS, ...RUTAS_PROPIAS];
+
+/** Lo esperado de una ruta propia: su referencia, con SOLO las declaraciones que la nombran. */
+function esperadoPropio(ruta, lineas) {
+  const quitadas = new Set(QUITADAS_A_PROPOSITO.filter(([, , rutas]) => rutas?.includes(ruta)).map(([l]) => l));
+  let out = lineas.filter((l) => !quitadas.has(l)).map((l) => {
+    const t = TRADUCIDAS_A_PROPOSITO.find(([viejo, , , rutas]) => viejo === l && rutas?.includes(ruta));
+    return t ? t[1] : l;
+  });
+  for (const d of REORDENADAS_A_PROPOSITO) {
+    if (d.ruta !== ruta && !d.rutas?.includes(ruta)) continue;
+    const i = out.findIndex((_, k) => d.antes.every((l, j) => out[k + j] === l));
+    if (i >= 0) out = [...out.slice(0, i), ...d.despues, ...out.slice(i + d.antes.length)];
+  }
+  return out;
+}
+/** Lo medido de una ruta propia, sin las lineas que una declaracion con su nombre añade. */
+function medidoPropio(ruta, lineas) {
+  const out = [...lineas];
+  for (const d of LINEAS_ANADIDAS) {
+    if (!d.rutas?.includes(ruta)) continue;
+    for (const l of d.lineas) { const i = out.indexOf(l); if (i >= 0) out.splice(i, 1); }
+  }
+  return out;
+}
 
 /**
  * Líneas del baseline que YA NO EXISTEN a propósito, con su motivo. Una a una: bajar el
@@ -3008,12 +3076,40 @@ function diferencias(ruta, esperado, hay) {
   return { falta, sobra, fuera };
 }
 
+/**
+ * ── ORDEN-CIUDADES-2 (27179ce, 6-oct-2026): REORDENADO YA EN PRODUCCION, DECLARADO AQUI ────────
+ *
+ * Ese commit subio la banda «Project Gallery» de `PaginaCiudad.astro` delante de los
+ * testimonios y actualizo `check-estructura-ciudades.mjs`, pero no esta puerta: las 55 rutas del
+ * CSV con la plantilla de ciudad salian ROJAS en `origin/main` con «faltan 0, sobran 0 · linea
+ * 19: orden cambiado» (STITCH-PARTE-5 §3.0, medido en /services/pool-builders/alachua-fl).
+ *
+ * Medido en STITCH-PARTE-7: es una ROTACION limpia de dos bloques contiguos. A = 26 lineas, de
+ * «TESTIMONIALS» a «See All Projects»; B = las 14 de la banda de galeria, que empiezan en
+ * «Project Gallery». El origen dice A+B; el build dice B+A. Mismas 40 lineas.
+ *
+ * Se deriva, no se enumera: la banda lleva el nombre de la ciudad, asi que 55 entradas a mano
+ * serian 55 sitios donde equivocarse. Si una ruta de ciudad no tiene los dos bloques donde se
+ * esperan, no se toca y sale roja por su propio pie.
+ */
+const BANDA_GALERIA_CIUDAD = 14;
+function subeGaleriaCiudad(ruta, lineas) {
+  if (!esCiudad(ruta)) return lineas;
+  const i = lineas.indexOf('TESTIMONIALS');
+  const j = i < 0 ? -1 : lineas.indexOf('Project Gallery', i);
+  if (i < 0 || j < 0 || lineas[j - 1] !== 'See All Projects') return lineas;
+  const b = lineas.slice(j, j + BANDA_GALERIA_CIUDAD);
+  if (b.length !== BANDA_GALERIA_CIUDAD) return lineas;
+  return [...lineas.slice(0, i), ...b, ...lineas.slice(i, j), ...lineas.slice(j + BANDA_GALERIA_CIUDAD)];
+}
+
 const nav = await chromium.launch({ headless: false, args: ARGS_NAVEGADOR });
 const ctx = await nav.newContext({ viewport: { width: 1920, height: 1080 },
   deviceScaleFactor: 1, reducedMotion: 'no-preference' });
 const pag = await ctx.newPage();
 
 let ok = 0, mal = 0, noCargaron = 0, conResenas = 0, conBlog = 0, conObras = 0, conFeed = 0;
+let okPropias = 0, capturadas = 0, yaExistian = 0;
 const rojos = [];
 
 /**
@@ -3037,9 +3133,24 @@ const BLOG_ESPERADAS = lineasBlog().length ? 16 : 0;
  *  que vaciar el feed no obliga a editar la puerta. */
 const FEED_ESPERADAS = lineasFeed().length ? 79 : 0;
 
-for (const ruta of RUTAS) {
+for (const ruta of RUTAS_A_MEDIR) {
   const slug = aSlug(ruta);
   const ref = path.join(RAIZ, 'baseline/text', `${slug}.txt`);
+  const refPropia = path.join(DIR_PROPIO, `${slug}.txt`);
+  /* Construida y sin referencia: ROJO antes de abrir nada. No hace falta cargar la pagina
+   * para saber que no hay con que compararla. */
+  if (PROPIAS.has(ruta) && !CAPTURAR_PROPIO && !fs.existsSync(refPropia)) {
+    mal++;
+    const causa = 'CONSTRUIDA Y SIN REFERENCIA DE TEXTO — no esta en baseline/text ni en baseline/text-propio';
+    rojos.push({ ruta, falta: [], sobra: [], fuera: [causa] });
+    console.log(`  ROJO ${ruta} — ${causa}`);
+    continue;
+  }
+  if (PROPIAS.has(ruta) && CAPTURAR_PROPIO && fs.existsSync(refPropia)) {
+    yaExistian++;
+    console.log(`  --   ${ruta} — ya tiene referencia propia; NO se sobrescribe`);
+    continue;
+  }
   let resp = await pag.goto(BASE + ruta, { waitUntil: 'load', timeout: 30000 }).catch(() => null);
   if (!resp?.ok()) {
     /* UN SEGUNDO INTENTO ANTES DE CANTAR ROJO. La objecion es de R9-BLOG-01 y es buena:
@@ -3084,6 +3195,36 @@ for (const ruta of RUTAS) {
     const causa = `NO SE PUDO CARGAR en 2 intentos — ${resp ? `HTTP ${resp.status()}` : 'sin respuesta (navegador caido o servidor parado)'}`;
     rojos.push({ ruta, falta: [], sobra: [], fuera: [causa] });
     console.log(`  ROJO ${ruta} — ${causa}`);
+    continue;
+  }
+  if (PROPIAS.has(ruta)) {
+    let estP;
+    try {
+      await pag.bringToFront();
+      estP = await asentar(pag);
+    } catch (e) {
+      mal++;
+      const causa = `MURIO LA MEDICION — ${String(e.message ?? e).split('\n')[0]}`;
+      rojos.push({ ruta, falta: [], sobra: [], fuera: [causa] });
+      console.log(`  ROJO ${ruta} — ${causa}`);
+      continue;
+    }
+    if (!estP.valida) { console.log(`  ROJO ${ruta} — medicion invalida ${JSON.stringify(estP.sonda)}`); mal++; continue; }
+    const medido = (await textoNormalizado(pag)).trimEnd();
+    if (CAPTURAR_PROPIO) {
+      fs.mkdirSync(DIR_PROPIO, { recursive: true });
+      fs.writeFileSync(refPropia, medido + '\n', { flag: 'wx' });   // 'wx': falla si existe
+      capturadas++;
+      console.log(`  capt ${ruta} — ${medido.split('\n').length} lineas`);
+      continue;
+    }
+    const esperadoP = esperadoPropio(ruta, fs.readFileSync(refPropia, 'utf8').trimEnd().split('\n')).join('\n');
+    const hayP = medidoPropio(ruta, medido.split('\n')).join('\n');
+    if (hayP === esperadoP) { ok++; okPropias++; console.log(`  ok   ${ruta}   (referencia propia)`); continue; }
+    mal++;
+    const dP = diferencias(ruta, esperadoP, hayP);
+    rojos.push({ ruta, ...dP });
+    console.log(`  ROJO ${ruta} — faltan ${dP.falta.length} lineas, sobran ${dP.sobra.length}   (referencia propia)`);
     continue;
   }
   if (!fs.existsSync(ref)) { console.log(`  ROJO ${ruta} — no hay baseline de texto`); mal++; continue; }
@@ -3134,9 +3275,9 @@ for (const ruta of RUTAS) {
     rojos.push({ ruta, falta: [ocultasFallo], sobra: [], fuera: [] });
     continue;
   }
-  const esperado = reordena(ruta, piePropio(ctaHeroe(ruta,
+  const esperado = subeGaleriaCiudad(ruta, reordena(ruta, piePropio(ctaHeroe(ruta,
     sinOcultas
-      .filter((l) => !declaradas.has(l)).map((l) => traduce(ruta, l))))).join('\n');
+      .filter((l) => !declaradas.has(l)).map((l) => traduce(ruta, l)))))).join('\n');
   const bruto = (await textoNormalizado(pag)).trimEnd();
   if (bruto.includes(RESENAS_MARCADOR)) conResenas++;
   if (enBlogRutas(ruta) && lineasBlog(ruta).length
@@ -3196,7 +3337,13 @@ if (rojos.length) {
 /* Sin tercer cubo a proposito: todo lo que no es `ok` es `mal`, y `mal` manda en el
  * veredicto y en el codigo de salida. El motivo de cada rojo —diferencia, baseline
  * ausente, medicion invalida o pagina que no carga— va en el detalle de arriba. */
-console.log(`\n  ${ok} identicas · ${mal} en rojo   (${ok + mal}/${RUTAS.length} rutas medidas)`);
+if (CAPTURAR_PROPIO) {
+  console.log(`\n  CAPTURA DE REFERENCIA PROPIA: ${capturadas} escritas · ${yaExistian} ya existian y no se tocaron`
+    + ` · ${mal} fallidas   (${RUTAS_PROPIAS.length} rutas propias)\n`);
+  process.exit(mal ? 1 : 0);
+}
+console.log(`\n  ${ok} identicas · ${mal} en rojo   (${ok + mal}/${RUTAS_A_MEDIR.length} rutas medidas:`
+  + ` ${RUTAS.length} con referencia de Webflow + ${RUTAS_PROPIAS.length} con referencia propia, ${okPropias} de ellas en verde)`);
 
 /* DIAGNOSTICO, no puerta. `noCargaron` NO tiene camino propio en el veredicto —ya sumo en
  * `mal`—: esto solo separa «el sitio esta roto» de «el andamio esta roto», que es la
