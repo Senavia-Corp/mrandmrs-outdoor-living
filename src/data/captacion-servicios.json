@@ -56,6 +56,7 @@
     "  `_banco` y `_proyecto` no se pintan: son la trazabilidad al banco (`banco-imagenes.json`)."
   ],
   "/services/pool-builders": {
+    "servicio": "New Pool and Spa Construction",
     "heroe": {
       "apoyo": "New custom inground pools for North Florida homeowners — 3D design, permits, construction and final start-up, from one licensed team. We also build across South Florida.",
       "foto": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-2.avif",
@@ -295,6 +296,7 @@
     }
   },
   "/services/pergola-builders": {
+    "servicio": "Aluminum and Wood Pergolas",
     "heroe": {
       "apoyo": "Custom pergola builders and installation company serving North & South Florida, delivering durable designs that enhance outdoor comfort and style.",
       "foto": "/images/obra/obra-100/freestanding-pergola-dark-bronze-pool-spa-canal-florida-heroe.avif",
@@ -517,6 +519,7 @@
     }
   },
   "/services/deck-builders": {
+    "servicio": "Custom Decks",
     "heroe": {
       "apoyo": "Professional deck builders and installation contractors serving North & South Florida with durable, stylish outdoor deck solutions.",
       "foto": "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-heroe.avif",
@@ -739,6 +742,7 @@
     }
   },
   "/services/outdoor-kitchens": {
+    "servicio": "Outdoor Kitchens",
     "heroe": {
       "apoyo": "Outdoor kitchen builders and installation contractors serving North & South Florida with custom layouts for entertaining and daily use.",
       "foto": "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-heroe.avif",
@@ -946,6 +950,7 @@
     }
   },
   "/services/louvered-roofs": {
+    "servicio": "Louvered Roof Systems",
     "heroe": {
       "apoyo": "Motorized louvered roof builders and installation contractors in North & South Florida, offering adjustable shade and weather protection.",
       "foto": "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-heroe.avif",
@@ -1153,6 +1158,7 @@
     }
   },
   "/services/retractable-screens": {
+    "servicio": "Retractable Screens",
     "heroe": {
       "apoyo": "Motorized retractable screen installation contractors serving North & South Florida, delivering flexible shade and insect control.",
       "foto": "/images/projects/luxury-pool-motorized-pergola-screens-south-florida/luxury-pool-motorized-pergola-screens-south-florida-4.avif",
@@ -1287,6 +1293,7 @@
     }
   },
   "/services/patio-screen-rooms": {
+    "servicio": "Patio Screen Rooms",
     "heroe": {
       "apoyo": "Screen room builders and installation contractors in North & South Florida, creating comfortable, protected outdoor living areas.",
       "foto": "/images/projects/luxury-pool-spa-with-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-north-florida-project-2.avif",
@@ -1421,6 +1428,7 @@
     }
   },
   "/services/pool-screen-enclosures": {
+    "servicio": "Pool Screen Enclosures",
     "heroe": {
       "apoyo": "Pool screen enclosure builders and installation contractors in North & South Florida, improving pool safety and cleanliness.",
       "foto": "/images/images/pool-screen-7/pool-screen-enclosure-builders-florida-07.jpg",
@@ -1555,6 +1563,7 @@
     }
   },
   "/services/pool-remodeling": {
+    "servicio": "Pool Remodeling and Renovation",
     "heroe": {
       "apoyo": "Complete pool remodeling for North Florida homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team. We also remodel across South Florida.",
       "foto": "/images/obra/obra-048/pool-remodeling-travertine-deck-glass-tile-completed.avif",
@@ -1793,6 +1802,7 @@
     }
   },
   "/services/outdoor-furniture": {
+    "servicio": "Outdoor Furniture",
     "heroe": {
       "apoyo": "Outdoor furniture installation company for North & South Florida homes, offering durable, premium solutions for modern outdoor living.",
       "foto": "/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-heroe.avif",
@@ -1937,6 +1947,7 @@
     }
   },
   "/services/landscaping": {
+    "servicio": "Landscaping",
     "heroe": {
       "apoyo": "Landscaping design and installation company serving North & South Florida, providing complete outdoor solutions that improve curb appeal.",
       "foto": "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-heroe.avif",
@@ -2144,6 +2155,7 @@
     }
   },
   "/services/irrigation-systems": {
+    "servicio": "Automated Irrigation",
     "heroe": {
       "apoyo": "Smart irrigation installation contractors for North & South Florida properties, focused on efficient watering solutions and long-term landscape health",
       "foto": "/images/images/irrigation-10/automated-irrigation-system-installers-florida-10.jpg",
@@ -2278,6 +2290,7 @@
     }
   },
   "/services/soffit-led-lighting": {
+    "servicio": "Smart Soffit LED Lighting",
     "heroe": {
       "apoyo": "Smart soffit and LED lighting installation company serving North & South Florida, enhancing curb appeal and exterior security.",
       "foto": "/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-heroe.avif",
@@ -2490,6 +2503,7 @@
     }
   },
   "/services/steel-buildings-pole-barns": {
+    "servicio": "Pole Barn and Steel Buildings",
     "heroe": {
       "apoyo": "Steel building and pole barn construction company serving North & South Florida with durable, hurricane-rated structures.",
       "foto": "/images/obra/suelta/pole-barn-narrow-open-shelter-new-wood-posts-florida-heroe.avif",

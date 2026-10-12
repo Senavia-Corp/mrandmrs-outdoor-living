@@ -94,6 +94,12 @@ const PLAZOS = ['As soon as possible', '1-3 months', '3-6 months', '6-12 months'
  * comunidad-: lo que importa es poder separarlo, no descartarlo en el formulario. */
 const PROPIEDAD = ['Yes, I own this property', 'No', 'Other'];
 
+/* D-125 · EL SERVICIO QUE ENVIA EL FORMULARIO: el de la ficha de la ruta (`servicio` en
+ * `captacion-servicios.json`, uno por ficha, con el vocabulario de las 14 casillas de
+ * `/request-estimated`). Las paginas de ciudad envian el de su ficha. Sin dato no se construye. */
+const SERVICIO = DATOS[`/services/${ruta.split('/')[2]}`]?.servicio;
+if (d && !SERVICIO) throw new Error(`FormularioCore: ${ruta} no tiene \`servicio\` en la ficha de captacion-servicios.json`);
+
 /* La licencia junto al boton (T-19): la misma cadena del hero, partida en rotulo y dato. */
 const licencia = DATOS[ruta]?.heroe?.licencias?.split(' · ');
 /* D-51: «Design-Build» no se parte entre lineas. El titulo sale de un JSON del repo, sin HTML. */
@@ -195,9 +201,11 @@ const tituloNb = escT(d?.titulo).replace(/Design-Buil[dt]/g, '<span class="mm-nb
               <textarea id="svc-Message" name="Message" data-name="Message" maxlength="5000" rows="3"></textarea>
             </div>
 
-            {/* EL SERVICIO DE LA PAGINA, no una eleccion del visitante. Alimenta la dimension
-                `service_interest` de `generate_lead`. Igual que antes de ASTRO-2, valor incluido. */}
-            <input type="hidden" name="checkbox" value="New Pool and Spa Construction" />
+            {/* EL SERVICIO DE LA PAGINA, no una eleccion del visitante (D-125). Alimenta la
+                dimension `service_interest` de `generate_lead` y la linea «Services of interest»
+                del aviso que recibe el equipo. Hasta el 12-oct-2026 valia «New Pool and Spa
+                Construction» en TODAS las paginas, tambien en decks o pergolas. */}
+            <input type="hidden" name="checkbox" value={SERVICIO} />
 
             {/* EL CONSENTIMIENTO DE SMS ES OPCIONAL AQUI, y es una desviacion deliberada respecto a
                 los otros formularios del sitio: 47 CFR 64.1200(a)(2) no permite condicionar un

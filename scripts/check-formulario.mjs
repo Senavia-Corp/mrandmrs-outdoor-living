@@ -8,11 +8,12 @@
  * otro host se aborta y `POST /api/formulario` lo contesta esta puerta: lo que se comprueba es
  * QUE manda el navegador, no que hace el servidor con ello.
  *
- * Que mira, en tres rutas:
+ * Que mira, en cinco rutas (dos de piscina, pergolas, decks y una ciudad de otro servicio):
  *   · con JS: se ve el paso 1 y no el 2; «Continue» no avanza con campos vacios; Intro en un
  *     campo del paso 1 avanza en vez de enviar; «Back» vuelve sin perder lo escrito;
  *   · el envio lleva los MISMOS campos de siempre (lista escrita a mano mas abajo: es el
- *     contrato con el correo y el CRM), el nombre del formulario y redirige a `/thank-you?f=`;
+ *     contrato con el correo y el CRM), el nombre del formulario, el SERVICIO de la pagina en el
+ *     campo oculto (D-125) y redirige a `/thank-you?f=`;
  *   · sin JS: los dos pasos a la vista, sin «Continue» ni «Back», y el envio nativo apunta al
  *     mismo sitio.
  */
@@ -21,7 +22,16 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const D = path.resolve(import.meta.dirname, '../.vercel/output/static');
-const RUTAS = ['/services/pool-builders', '/services/deck-builders', '/services/pool-builders/alachua-fl'];
+/** Ruta -> el servicio que tiene que viajar en el campo oculto `checkbox` (D-125). Escrito a mano:
+ *  si se derivase de `captacion-servicios.json` se compararia el dato consigo mismo. */
+const SERVICIO = {
+  '/services/pool-builders': 'New Pool and Spa Construction',
+  '/services/pergola-builders': 'Aluminum and Wood Pergolas',
+  '/services/deck-builders': 'Custom Decks',
+  '/services/pool-builders/alachua-fl': 'New Pool and Spa Construction',
+  '/services/louvered-roofs/weston-fl': 'Louvered Roof Systems',
+};
+const RUTAS = Object.keys(SERVICIO);
 /** Los campos que el formulario mandaba antes de ASTRO-2 (`FormularioCore.astro` en origin/main). */
 const CAMPOS = ['Full-Name', 'Phone', 'email', 'ZIP-Code', 'Project-Type', 'Type', 'Estimated-Project-Budget', 'Timeline', 'Message', 'checkbox', 'ref_id'];
 /** Los que anade `Formularios.astro` al enviar. `Checkbox` (SMS) solo viaja si se marca. */
@@ -86,6 +96,7 @@ for (const ruta of RUTAS) {
       if (par.get('__form') !== nombre) mal(`__form es «${par.get('__form')}» y el formulario se llama «${nombre}»`);
       if (par.get('Project-Type') !== porDefecto) mal('«Project-Type» no viaja con la opcion marcada');
       if (par.get('ref_id')) mal('el honeypot viaja relleno');
+    if (par.get('checkbox') !== SERVICIO[ruta]) mal(`el campo oculto «checkbox» viaja con «${par.get('checkbox')}» y esta pagina es de «${SERVICIO[ruta]}» (D-125)`);
     }
   } catch (e) { mal(`la prueba no pudo completarse: ${String(e.message ?? e).split('\n')[0]}`); }
   await ctx.close();
