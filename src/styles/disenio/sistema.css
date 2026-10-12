@@ -828,3 +828,20 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 .mm-intro-lista { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 var(--mm-e-24); }
 .mm-cierre--sola .mm-cierre-txt { padding-bottom: var(--mm-e-64); }
 @media (min-width: 992px) { .mm-cierre--sola .mm-cierre-txt { padding-bottom: var(--mm-e-96); } }
+
+/* ── D-128 · Por encima de 1440 px ────────────────────────────────────────────────────────
+   A partir de 1440 el contenido va en una caja centrada (cabecera y secciones). Dos cosas no la
+   seguian, vistas a 1920:
+   · el Hero A, que es a sangre: el texto y la franja de logos se quedaban a 64 px del borde de la
+     ventana, 240 px a la izquierda de todo lo demas. Se alinean con la caja; la foto sigue hasta
+     el borde. `cqw` y no `vw`: mide el hero, sin la barra de scroll (sin soporte de `cqw` la
+     regla se descarta y queda en 64 px, como estaba).
+   · las fotos de seccion que van a sangre por UN lado (proceso, What we do, FAQ, cierre, panel
+     de servicios): dejan de tocar el borde y su esquina recta quedaba cortada en mitad de la
+     pagina. Se redondea al despegarse: 0 hasta 1440, 16 px desde 1456, sin corte nuevo. */
+.mm-hero-a { container-type: inline-size; }
+@media (min-width: 992px) {
+  .mm-hero-a-txt, .mm-hero-a-logos { padding-left: max(var(--mm-e-64), calc((100cqw - var(--mm-contenedor)) / 2)); }
+  .mm-proc-medio .mm-lam-foto, .mm-faq-medio .mm-lam-foto { border-top-left-radius: clamp(0px, calc(100vw - 1440px), var(--mm-r-16)); border-bottom-left-radius: clamp(0px, calc(100vw - 1440px), var(--mm-r-16)); }
+  .mm-que-medio .mm-lam-foto, .mm-cierre-medio, .mm-serv-medio { border-top-right-radius: clamp(0px, calc(100vw - 1440px), var(--mm-r-16)); border-bottom-right-radius: clamp(0px, calc(100vw - 1440px), var(--mm-r-16)); }
+}
