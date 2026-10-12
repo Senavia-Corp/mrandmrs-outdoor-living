@@ -85,6 +85,9 @@ function pieDeFoto(heroe) {
 }
 /* LA FRANJA DE LOGOS, estática y dentro del hero. Los mismos logos y el mismo titular que la
  * marquesina `section.logos-section` del origen, una vez cada uno y en su orden. */
+/** La flecha de los enlaces de linea del sistema (`.mm-flecha`). Decorativa. */
+const FLECHA = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>';
+
 function franjaDeLogos(doc) {
   const sec = doc.querySelector('section.logos-section');
   if (!sec) return '';
@@ -990,7 +993,22 @@ function captacion(doc, ruta) {
   const intro = doc.querySelector('section.trusted-section');
   if (logos && intro && logos.parentNode) {
     logos.parentNode.insertBefore(intro, logos.nextSibling);
-    intro.classList.add('svc-intro', 'mm-inverso');
+    /* ASTRO-2 · lamina «Intro»: el titular, el parrafo y el enlace de siempre, centrados dentro
+     * de un marco de dos esquinas. Las tres fotos del mosaico salen (no son texto) y con ellas
+     * sus `data-w-id`. La seccion deja de llamarse `trusted-section` para no heredar la regla
+     * global de Webflow que siguen usando las demas plantillas. */
+    const h2 = intro.querySelector('h2');
+    const p = intro.querySelector('.text-divider p');
+    const a = intro.querySelector('.wrapper-buttons a');
+    if (!h2 || !p || !a) throw new Error(`${ruta}: la intro no trae titular, parrafo o enlace`);
+    const nueva = doc.createElement('section');
+    nueva.setAttribute('class', 'svc-intro mm-intro');
+    // El rotulador va en el territorio, que es como cierran los 14 titulares.
+    const tit = h2.innerHTML.replace(/((?:North &amp; South )?Florida(?: Homes)?)\s*$/, '<span class="mm-rot">$1</span>');
+    if (tit === h2.innerHTML) throw new Error(`${ruta}: el titular de la intro no cierra con el territorio`);
+    nueva.innerHTML = `<div class="mm-marco"><h2 class="mm-h2">${tit}</h2><p class="mm-p">${p.innerHTML}</p>`
+      + `<a class="mm-flecha" href="${a.getAttribute('href')}">${a.innerHTML}${FLECHA}</a></div>`;
+    intro.replaceWith(nueva);
   }
 
   /* ── 4 · EL MARCADOR DE LA BANDA DE INVERSION ──────────────────────────────────────────
@@ -1989,7 +2007,7 @@ for (const [ruta] of RUTAS) {
     /* El formulario va DETRAS de la intro, no pegado a `ConfianzaCore`: entre los dos queda la
      * seccion fundida de C4. `trusted-section` es hermana de primer nivel porque el bloque
      * 3.bis la subio ahi; antes de eso este `matches` no casaba nunca. */
-    if (CAPTACION[ruta] && n.matches?.('section.trusted-section')) {
+    if (CAPTACION[ruta] && n.matches?.('section.svc-intro')) {
       acumulado += MARCA + 'FormularioCore' + MARCA;
       usados.add('FormularioCore');
     }

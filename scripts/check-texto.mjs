@@ -2954,8 +2954,9 @@ function bloquesCaptacion(ruta) {
   //     queda en medio sale del baseline, no de aqui, y su reorden va en
   //     REORDENADAS_A_PROPOSITO.
   bloques.push([
-    capitaliza(c.confianza.rotulo),
-    ...c.confianza.tarjetas.flatMap((t) => [capitaliza(t.titulo), t.texto]),
+    // ASTRO-2 (T-69): rotulo en `.mm-etiqueta` (mayusculas por CSS) y titulares sin `capitalize`.
+    c.confianza.rotulo.toUpperCase(),
+    ...c.confianza.tarjetas.flatMap((t) => [t.titulo, t.texto]),
   ]);
 
   // 2.bis · «what happens» + formulario, detras de la intro.
@@ -3165,6 +3166,27 @@ function reescribeArticulo(ruta, lineas) {
 }
 
 /** Diferencia legible entre dos textos, línea a línea. */
+/**
+ * ASTRO-2 · T-69 · LAS MAYUSCULAS QUE PONIA EL CSS. `webflow.css` capitaliza `h1`-`h4` y los
+ * botones, y eso altera `innerText`; las piezas del sistema nuevo (`.mm-h2`, `.mm-conf-t`…) no
+ * capitalizan, y `.mm-etiqueta` pone mayusculas. El HTML lleva las mismas letras. Una linea
+ * esperada que no esta tal cual, pero si esta IGUAL SALVO MAYUSCULAS, se da por la misma linea
+ * — solo en las 141 rutas de ASTRO-2, y contandolas a la vista, no en silencio.
+ */
+let soloMayusculas = 0;
+function sinMayusculasDeCss(ruta, esperado, hay) {
+  if (!ruta.startsWith('/services/')) return esperado;
+  const medidas = hay.split('\n');
+  const exactas = new Set(medidas);
+  const porMinuscula = new Map(medidas.map((l) => [l.toLowerCase(), l]));
+  return esperado.split('\n').map((l) => {
+    const m = porMinuscula.get(l.toLowerCase());
+    if (exactas.has(l) || !m) return l;
+    soloMayusculas++;
+    return m;
+  }).join('\n');
+}
+
 function diferencias(ruta, esperado, hay) {
   const a = esperado.split('\n'), b = hay.split('\n');
   const declaradas = new Set(QUITADAS_A_PROPOSITO
@@ -3329,8 +3351,8 @@ for (const ruta of RUTAS_A_MEDIR) {
       console.log(`  capt ${ruta} — ${medido.split('\n').length} lineas`);
       continue;
     }
-    const esperadoP = esperadoPropio(ruta, fs.readFileSync(refPropia, 'utf8').trimEnd().split('\n')).join('\n');
     const hayP = medidoPropio(ruta, medido.split('\n')).join('\n');
+    const esperadoP = sinMayusculasDeCss(ruta, esperadoPropio(ruta, fs.readFileSync(refPropia, 'utf8').trimEnd().split('\n')).join('\n'), hayP);
     if (hayP === esperadoP) { ok++; okPropias++; console.log(`  ok   ${ruta}   (referencia propia)`); continue; }
     mal++;
     const dP = diferencias(ruta, esperadoP, hayP);
@@ -3386,7 +3408,7 @@ for (const ruta of RUTAS_A_MEDIR) {
     rojos.push({ ruta, falta: [ocultasFallo], sobra: [], fuera: [] });
     continue;
   }
-  const esperado = subeGaleriaCiudad(ruta, reordena(ruta, heroAStitch(ruta, cascaronStitch(piePropio(ctaHeroe(ruta,
+  const esperadoCrudo = subeGaleriaCiudad(ruta, reordena(ruta, heroAStitch(ruta, cascaronStitch(piePropio(ctaHeroe(ruta,
     sinOcultas
       .filter((l) => !declaradas.has(l)).map((l) => traduce(ruta, l)))))))).join('\n');
   const bruto = (await textoNormalizado(pag)).trimEnd();
@@ -3411,6 +3433,7 @@ for (const ruta of RUTAS_A_MEDIR) {
     rojos.push({ ruta, falta: [`${cual}: presente pero no seguido y en orden`], sobra: [], fuera: [] });
     continue;
   }
+  const esperado = sinMayusculasDeCss(ruta, esperadoCrudo, hay);
   if (hay === esperado) {
     ok++;
     console.log(`  ok   ${ruta}${ANADIDAS_A_PROPOSITO[ruta] ? '   (con el bloque declarado de '
@@ -3455,6 +3478,7 @@ if (rojos.length) {
 /* Sin tercer cubo a proposito: todo lo que no es `ok` es `mal`, y `mal` manda en el
  * veredicto y en el codigo de salida. El motivo de cada rojo —diferencia, baseline
  * ausente, medicion invalida o pagina que no carga— va en el detalle de arriba. */
+if (soloMayusculas) console.log(`\n  --   T-69: ${soloMayusculas} linea(s) iguales salvo mayusculas (text-transform de CSS), dadas por la misma.`);
 if (CAPTURAR_PROPIO) {
   console.log(`\n  CAPTURA DE REFERENCIA PROPIA: ${capturadas} escritas · ${yaExistian} ya existian y no se tocaron`
     + ` · ${mal} fallidas   (${RUTAS_PROPIAS.length} rutas propias)\n`);

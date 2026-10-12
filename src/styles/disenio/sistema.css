@@ -269,6 +269,42 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
   .mm-datos--3 { grid-auto-flow: column; grid-template-columns: none; }
   .mm-datos--3 .mm-dato:nth-child(3) { grid-column: auto; border-left: 1px solid var(--mm-borde); padding-left: var(--mm-e-24); border-top: 0; }
 }
+/* ── Confianza e intro (ASTRO-2 · laminas «Confianza» e «Intro») ─────────────────────── */
+.mm-h2 { margin: 0; font-family: var(--mm-familia); font-size: 28px; line-height: 1.15; font-weight: 700; letter-spacing: -0.02em; color: var(--mm-navy); text-wrap: balance; text-transform: none; }
+.mm-flecha { display: inline-flex; align-items: center; gap: var(--mm-e-8); min-height: var(--mm-ctl-s); font-family: var(--mm-familia); font-size: 16px; line-height: 1.2; font-weight: 700; color: var(--mm-navy); text-decoration: none; border-radius: var(--mm-r-8); }
+.mm-flecha svg { flex: none; transition: transform var(--mm-dur-pasar) var(--mm-curva); }
+.mm-flecha:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); box-shadow: var(--mm-foco-halo); }
+.mm-conf { background: var(--mm-blanco); font-family: var(--mm-familia); color: var(--mm-tinta-texto); padding: var(--mm-e-40) var(--mm-e-24) var(--mm-e-48); }
+.mm-conf-caja { box-sizing: border-box; max-width: var(--mm-contenedor); margin: 0 auto; }
+.mm-conf-lista { list-style: none; margin: var(--mm-e-12) 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); border-top: 1px solid var(--mm-borde); }
+.mm-conf-item { padding: var(--mm-e-16) 0; border-top: 1px solid var(--mm-borde); }
+.mm-conf-item:first-child { border-top: 0; }
+.mm-conf-t { margin: 0 0 var(--mm-e-8); font-family: var(--mm-familia); font-size: 18px; line-height: 1.3; font-weight: 700; letter-spacing: 0; color: var(--mm-navy); text-transform: none; }
+.mm-conf-p { margin: 0; font-size: 14px; line-height: 1.5; color: var(--mm-tinta-texto); }
+.mm-intro { background: var(--mm-blanco); font-family: var(--mm-familia); padding: var(--mm-e-64) var(--mm-e-24); }
+.mm-marco { position: relative; box-sizing: border-box; max-width: 920px; margin: 0 auto; padding: var(--mm-e-32) var(--mm-e-20); display: flex; flex-direction: column; align-items: center; gap: var(--mm-e-20); text-align: center; }
+.mm-marco::before, .mm-marco::after { content: ""; position: absolute; width: 32px; height: 32px; border: 0 solid var(--mm-navy); }
+.mm-marco::before { left: 0; top: 0; border-left-width: 2px; border-top-width: 2px; }
+.mm-marco::after { right: 0; bottom: 0; border-right-width: 2px; border-bottom-width: 2px; }
+@media (hover: hover) and (pointer: fine) { .mm-flecha:hover svg { transform: translateX(4px); } }
+@media (min-width: 768px) {
+  .mm-conf { padding: var(--mm-e-32) var(--mm-e-32) var(--mm-e-40); }
+  .mm-conf-lista { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .mm-conf-item { padding: var(--mm-e-20) var(--mm-e-24); border-top: 0; border-left: 1px solid var(--mm-borde); }
+  .mm-conf-item:nth-child(odd) { padding-left: 0; border-left: 0; }
+  .mm-intro { padding: 56px var(--mm-e-32); }
+  .mm-marco { padding: var(--mm-e-40) var(--mm-e-64); }
+  .mm-marco .mm-p { font-size: 18px; }
+  .mm-h2 { font-size: 34px; line-height: 1.14; }
+}
+@media (min-width: 992px) {
+  .mm-conf-lista { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .mm-conf-item { padding-bottom: 0; }
+  .mm-conf-item:nth-child(odd) { padding-left: var(--mm-e-24); border-left: 1px solid var(--mm-borde); }
+  .mm-conf-item:first-child { padding-left: 0; border-left: 0; }
+  .mm-h2 { font-size: 40px; }
+}
+@media (min-width: 1200px) { .mm-conf, .mm-intro { padding-inline: var(--mm-e-64); } }
 @media (prefers-reduced-motion: reduce) {
   .mm-cab-item, .mm-cab-item svg, .mm-cab-cta, .mm-cab-sub, .mm-cab-flecha svg, .mm-menu-fila svg, .mm-barra, .mm-barra-btn, .mm-btn { transition: none; }
 }

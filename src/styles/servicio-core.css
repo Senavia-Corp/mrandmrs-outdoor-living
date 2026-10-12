@@ -63,78 +63,8 @@
  * escrito para `.fin-icono` en `financiacion.css:131`.
  */
 
-/* ══ 1 · FRANJA DE CONFIANZA ══════════════════════════════════════════════════════════════
- * Cuatro diferenciadores. La rejilla es DETERMINISTA por breakpoint, nunca `auto-fit`: el
- * recuento no puede crecer al estrechar la pantalla, que es el defecto que R12 documento en
- * el feed (6/5/3/2, con tablet mas grande que escritorio). Aqui: 1 -> 2 -> 4, y cuatro
- * tarjetas llenan fila completa en los tres tramos. */
-/* R18 — AQUI HABIA UN `padding-block-end: var(--mm-e-32)` Y SE HA QUITADO.
- * Su motivo era bueno cuando lo escribi y dejo de serlo con el fondo navy: decia que la franja
- * y el formulario eran dos secciones BLANCAS vecinas cuyos paddings sumaban 160 px de aire
- * muerto, asi que recortaba el de abajo. Con la franja tenida eso deja de ser aire entre
- * secciones y pasa a ser el margen INTERIOR de un bloque de color: medido, 96 px arriba contra
- * 32 abajo a 1440, una asimetria de 3 a 1 que hace que la banda parezca recortada y no
- * compuesta. El aire de abajo ya no se suma al de la seccion siguiente porque entre los dos hay
- * un cambio de plano, que es lo que cierra una seccion tenida. Se deja mandar a `.mm-seccion`
- * y queda simetrico: 48 / 64 / 96. Quitar la regla ADEMAS devuelve bytes. */
-.svc-confianza__tit { text-wrap: balance; }
-
-.svc-confianza__lista {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--mm-e-24);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-@media (min-width: 480px) { .svc-confianza__lista { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 992px) { .svc-confianza__lista { grid-template-columns: repeat(4, 1fr); } }
-
-/* EL FILETE DE ORO, Y POR QUE NO HAY CUATRO DISCOS. Cuatro circunferencias identicas con un
- * icono dentro son exactamente el efecto «cuatro cajas iguales»: la vista no encuentra donde
- * entrar. El filete superior hace de indice -como una tabla- y convierte la retahila en una
- * lectura. Son 2 px porque 1 px de oro sobre navy se pierde a 1x.
- *
- * ES EL UNICO ORO DE ESTA PAGINA QUE NO ES EL BOTON, y cabe: `base.css` reserva el oro para
- * `.mm-accion` porque sobre BLANCO da 1,86:1 y no marca nada. Aqui el fondo es navy y da
- * 8,40:1. El propio `.mm-inverso` ya pone oro claro como color de enlace en su ambito, o sea
- * que oro sobre oscuro es un registro que el sistema YA usa. El CTA dorado sigue viviendo solo
- * en el fondo claro de abajo, asi que no se le hace competencia. */
-.svc-confianza__item {
-  display: flex;
-  flex-direction: column;
-  gap: var(--mm-e-12);
-  padding-block-start: var(--mm-e-24);
-  border-block-start: 2px solid var(--mm-oro);
-}
-/* `capitalize` vive en `h3` (webflow.css) y SI altera el innerText: el rotulo se pinta en
- * Title Case y asi esta declarado en `check-texto.mjs`. No se toca esa regla.
- *
- * `2lh` NO es adorno: «Florida Licensed Pool Contractor» y «3D Design Before You Commit» ocupan
- * dos lineas y los otros dos una, asi que los cuerpos arrancaban a cuatro alturas distintas.
- * Reservando dos lineas comparten linea base sin tocar el texto. */
-.svc-confianza__rotulo { margin: 0; min-block-size: 2lh; }
-
-/* El circulo del icono. Mismo patron que `.fin-icono`, en su propio nombre para no cruzar
- * dos familias: el dia que una cambie, la otra no se entera.
- *
- * SE LLAMA `.svc-confianza__icono` Y NO `.svc-icono` POR UNA COLISION REAL, MEDIDA.
- * `ServiciosPorCategoria.astro` ya tiene un `.svc-icono` propio —un `<img>` de 30 px dentro de
- * `.svc-barra`— y lo montan `/`, `/where-we-serve/north-florida` y `/where-we-serve/south-florida`:
- * 42 iconos en tres paginas que este encargo promete intactas. Su regla va SCOPED por Astro
- * (`.svc-icono[data-astro-cid-tbqwuwa5]`, 0-2-0) y ganaba en todo lo que declara, pero
- * `display`, `place-items` y `color` NO los declara: esos tres se colaban desde esta hoja, que
- * es global. Hoy no se veia —el `<img>` es hijo de un `display:flex`, asi que ya estaba
- * blockificado, y `place-items`/`color` no pintan nada en un elemento reemplazado sin hijos—,
- * pero dos cosas distintas con el mismo nombre en el mismo espacio es una bomba de relojeria.
- * El prefijo `.svc-` NO era libre. */
-/* AVISO PARA QUIEN ANADA UN ENLACE A ESTA FRANJA: dentro de `.mm-inverso` el oro ES el color de
- * enlace (`--mm-enlace-inverso`, base.css). Hoy no hay conflicto -la banda tiene 0 enlaces y 0
- * botones, y los cuatro glifos van `aria-hidden`-, pero el dia que entre un `<a>` aqui, un
- * glifo dorado decorativo y un enlace dorado hablaran el mismo idioma. Si eso pasa, el enlace
- * se distingue por subrayado (`.mm-vinculo`), no por color. */
-.svc-confianza__icono { display: block; color: var(--mm-oro); }
-.svc-confianza__icono svg { inline-size: var(--mm-e-48); block-size: var(--mm-e-48); }
+/* ASTRO-2: la franja de confianza y la intro de la ficha viven en `disenio/sistema.css`
+   (`.mm-conf`, `.mm-intro`). Sus reglas de aqui se retiraron con sus laminas. */
 
 /* ══ 2 · EL FORMULARIO ════════════════════════════════════════════════════════════════════
  * Dos columnas a partir de 992: el formulario manda y «What happens after you reach out» va
@@ -537,53 +467,6 @@
   align-items: center;
   min-height: 44px;
 }
-/* ═══ C4 · LA SECCION FUNDIDA: «Why homeowners pick us» + «Custom Pool & Spa Builders…» ═══
- *
- * Las dos eran secciones distintas con fondos distintos, y Sebastian pidio que fueran UNA.
- * El generador las deja pegadas y le pone a la intro las marcas `svc-intro` y `mm-inverso`
- * (`build-paginas.mjs`, bloque 3.bis). Aqui se corrige lo que queda.
- *
- * POR QUE NO SE COPIA EL FONDO DE ONDA, QUE ERA LO PRIMERO QUE SE PENSO (C1). Tres razones,
- * y las tres son medidas, no gusto:
- *
- * 1 · NO HAY CAJA COMUN. Las dos son secciones HERMANAS; no existe un envoltorio al que
- *     colgarle un solo fondo. Dos cajas con `background-size: cover` son DOS recortes
- *     distintos de la misma imagen, y el salto entre ambos es una costura horizontal justo
- *     donde el diseno promete continuidad. Fundir es precisamente lo que no admite costura.
- * 2 · LA BANDA DE CIAN. `R19-CAMBIOS.md` §C1 midio el fondo aislado por bandas a 1440: el 10 %
- *     superior es `#98e2f1` y da 1,45:1 con blanco -y 1,10:1 con el cuerpo atenuado-. Sobre
- *     `.trusted-section` no se notaba porque su texto cae en la zona seca; el `<h2>` de «Why»
- *     va arriba del todo, o sea JUSTO en la banda mala. Y como la seccion fundida es mas alta,
- *     `cover` reescala y la banda se muda de sitio: heredar la medida vieja seria dar por
- *     bueno un numero que ya no describe la caja.
- * 3 · EL COLOR PLANO NO TIENE ESE PROBLEMA Y CUESTA CERO. `mm-inverso` ya da el navy y ademas
- *     redefine tinta, enlace, borde y foco del ambito. Medido en `disenio/base.css`:
- *     blanco 15,60:1 · atenuada `#c7cddd` 9,81:1 · oro claro 8,51:1. Los tres pasan con
- *     margen en CUALQUIER banda, porque no hay bandas: es un plano.
- *
- * OJO A LA TRAMPA QUE CASI CUELA: poner la intro `transparent` NO la vuelve navy, la vuelve
- * BLANCA — son hermanas, debajo esta el fondo de pagina. Tiene que TOMAR el navy, no perder
- * el suyo.
- *
- * Y EL FONDO SE DECLARA AQUI AUNQUE `mm-inverso` YA LO PONGA, con doble clase (0-2-0).
- * `propio.css:261` lleva `.trusted-section { background-color: var(--mm-azul-500) }` y se
- * carga DESPUES de esta hoja (`Base.astro:132` frente a `:135`), asi que a igualdad de peso
- * gana el azul. `intro.css` y `webflow.css` cargan antes y con 0-1-0 basta para ellos; este
- * es el unico que necesita el empate roto. */
-/* FONDO AGUA (12-sep-2026): el navy plano de aqui arriba se retira. Lo que protegia —las bandas
- * de contraste de la foto con `cover`— ya no existe, porque la foto se fue; y el bloque fundido
- * `.svc-confianza` + `.svc-intro` pasa a ser UN solo cuerpo de agua con la regla de juntas del
- * final de `propio.css`. Queda el relleno, que es de maqueta. */
-.svc-intro.svc-intro {
-  padding-block-start: var(--mm-e-64);
-}
-
-/* La costura de aire. Fundidas, las dos sumaban su relleno: 96 de `mm-seccion` abajo mas 96
- * de `.trusted-section` arriba = 192 px de hueco muerto EN MEDIO de una seccion que dice ser
- * una. Se anula el de la franja y la intro entra con 64, que es menos que los 96 que la
- * seccion deja por fuera: asi el bloque se lee como uno con dos partes, y no como dos cosas
- * que se tocan. */
-.svc-confianza { padding-block-end: 0; }
 
 /* C5 - EL RITMO DE LAS TRES ULTIMAS LINEAS. Medido antes de tocar nada, a tres anchos:
  *
