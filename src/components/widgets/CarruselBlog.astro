@@ -91,6 +91,20 @@ const posts = ficha ? ficha.posts : datos.posts;
 import captacion from '../../data/captacion-servicios.json';
 const enLista = ruta.startsWith('/services/');
 const accion = (captacion as Record<string, { heroe?: { cta?: string } }>)[ruta]?.heroe?.cta ?? 'Get a Free Estimate';
+/* Las miniaturas llevan `width` y `height` (ninguna imagen sin medidas: no salta la maqueta).
+ * `blogs.json` no las trae, asi que se leen del fichero al construir, una vez por imagen. */
+import sharp from 'sharp';
+import path from 'node:path';
+const MEDIDAS: Map<string, { w: number; h: number }> = ((globalThis as any).__mmMedidasBlog ??= new Map());
+const medidasDe = async (src: string) => {
+  if (!MEDIDAS.has(src)) {
+    const m = await sharp(path.join(process.cwd(), 'public', src)).metadata();
+    if (!m.width || !m.height) throw new Error(`CarruselBlog: no puedo medir ${src}`);
+    MEDIDAS.set(src, { w: m.width, h: m.height });
+  }
+  return MEDIDAS.get(src)!;
+};
+const visibles = enLista ? await Promise.all(posts.slice(0, 3).map(async (p) => ({ ...p, dim: await medidasDe(p.imagen.src) }))) : [];
 const FLECHA = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>';
 ---
 {enLista && (
@@ -104,10 +118,10 @@ const FLECHA = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 2
     </div>
     <div class="mm-arts-cuerpo">
       <ul class="mm-arts" role="list">
-        {posts.slice(0, 3).map((p) => (
+        {visibles.map((p) => (
           <li>
             <a class="mm-art" href={p.enlace}>
-              <span class="mm-art-foto"><img alt={p.imagen.alt} loading="lazy" decoding="async" src={p.imagen.src} sizes="(min-width: 768px) 280px, 100vw" srcset={p.imagen.srcset} /></span>
+              <span class="mm-art-foto"><img alt={p.imagen.alt} width={p.dim.w} height={p.dim.h} loading="lazy" decoding="async" src={p.imagen.src} sizes="(min-width: 768px) 280px, 100vw" srcset={p.imagen.srcset} /></span>
               <span class="mm-art-txt">
                 <h3 class="mm-art-t">{p.titulo}</h3>
                 <span class="mm-art-p">{p.resumen}</span>

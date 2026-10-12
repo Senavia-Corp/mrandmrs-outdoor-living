@@ -50,7 +50,10 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 /* En movil las dos columnas se reparten el ancho y el valor puede partir: tres licencias seguidas
  * no caben en 342 px (medido a 390 en las fichas con SCC). */
 .mm-datos--3 { grid-auto-flow: row; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
-.mm-datos--3 .mm-dato-val { overflow-wrap: anywhere; }
+.mm-datos--3 .mm-dato-val { overflow-wrap: anywhere; font-size: clamp(14px, 4vw, 16px); }
+/* A 390 un telefono de 17 caracteres no cabia en media banda y se partia en dos renglones. */
+.mm-datos--3 .mm-dato { padding-inline: var(--mm-e-12); }
+.mm-datos--3 .mm-dato:first-child, .mm-datos--3 .mm-dato:nth-child(3) { padding-left: 0; }
 .mm-datos--3 .mm-dato:nth-child(3) { grid-column: 1 / -1; border-left: 0; padding-left: 0; border-top: 1px solid var(--mm-borde); }
 
 /* ── G2 · Hero A (ficha de servicio y servicio × ciudad) ─────────────────────────────── */
@@ -61,6 +64,8 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 .mm-hero-a-acc { display: flex; flex-wrap: wrap; gap: var(--mm-e-12); width: 100%; padding: var(--mm-e-4) 0 var(--mm-e-8); }
 .mm-hero-a-acc .mm-btn { flex: 1 1 auto; }
 .mm-pie-foto { display: none; }
+/* Hero A de ciudad: el subtitulo (el `<h2>` de siempre) y la variante sin foto. */
+.mm-hero-a-sub { margin: 0; font-family: var(--mm-familia); font-size: 16px; line-height: 1.5; font-weight: 500; letter-spacing: 0; color: var(--mm-tinta-texto); text-transform: none; text-wrap: pretty; }
 .mm-hero-a-logos { display: flex; flex-direction: column; gap: var(--mm-e-12); padding: var(--mm-e-32) 0 var(--mm-e-32) var(--mm-e-24); background: var(--mm-azul-50); }
 .mm-hero-a-fila { list-style: none; margin: 0; padding: 0 var(--mm-e-24) 0 0; display: flex; flex-wrap: nowrap; align-items: center; gap: var(--mm-e-32); overflow-x: auto; }
 .mm-hero-a-fila li { flex: none; }
@@ -271,6 +276,7 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 }
 /* ── Confianza e intro (ASTRO-2 · laminas «Confianza» e «Intro») ─────────────────────── */
 .mm-h2 { margin: 0; font-family: var(--mm-familia); font-size: 28px; line-height: 1.15; font-weight: 700; letter-spacing: -0.02em; color: var(--mm-navy); text-wrap: balance; text-transform: none; }
+.mm-nb { white-space: nowrap; }
 .mm-flecha { display: inline-flex; align-items: center; gap: var(--mm-e-8); min-height: var(--mm-ctl-s); font-family: var(--mm-familia); font-size: 16px; line-height: 1.2; font-weight: 700; color: var(--mm-navy); text-decoration: none; border-radius: var(--mm-r-8); }
 .mm-flecha svg { flex: none; transition: transform var(--mm-dur-pasar) var(--mm-curva); }
 .mm-flecha:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); box-shadow: var(--mm-foco-halo); }
@@ -633,6 +639,11 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
   .mm-cierre + .mm-form-sec .mm-form-lado { padding-top: 200px; }
 }
 @media (min-width: 1200px) { .mm-cierre, .mm-form-sec { --mm-canal: var(--mm-e-64); } .mm-cierre .mm-h2 { font-size: 56px; } }
+@media (min-width: 768px) { .mm-hero-a-sub { font-size: 18px; line-height: 1.55; } }
+@media (min-width: 992px) {
+  .mm-hero-a--sin { grid-template-columns: minmax(0, 1fr); }
+  .mm-hero-a--sin .mm-hero-a-txt { max-width: 860px; padding-right: var(--mm-e-64); }
+}
 @media (prefers-reduced-motion: reduce) {
   .mm-cab-item, .mm-cab-item svg, .mm-cab-cta, .mm-cab-sub, .mm-cab-flecha svg, .mm-menu-fila svg, .mm-barra, .mm-barra-btn, .mm-btn { transition: none; }
 }

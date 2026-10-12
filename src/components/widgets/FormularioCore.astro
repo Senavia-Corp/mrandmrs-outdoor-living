@@ -96,6 +96,9 @@ const PROPIEDAD = ['Yes, I own this property', 'No', 'Other'];
 
 /* La licencia junto al boton (T-19): la misma cadena del hero, partida en rotulo y dato. */
 const licencia = DATOS[ruta]?.heroe?.licencias?.split(' · ');
+/* D-51: «Design-Build» no se parte entre lineas. El titulo sale de un JSON del repo, sin HTML. */
+const escT = (t) => String(t ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
+const tituloNb = escT(d?.titulo).replace(/Design-Buil[dt]/g, '<span class="mm-nb">$&</span>');
 ---
 {/* `tabindex="-1"` PARA QUE EL ANCLA MUEVA TAMBIEN EL FOCO, NO SOLO EL SCROLL.
     Los CTA de estas paginas apuntan a `#estimate`. Sin esto el navegador desplaza la pagina
@@ -230,7 +233,7 @@ const licencia = DATOS[ruta]?.heroe?.licencias?.split(' · ');
           de cierre, justo encima. Los tres pasos de «que pasa despues» van al lado. */}
       <aside class="mm-form-lado">
         <div class="mm-form-intro">
-          <h2 class="mm-etiqueta">{d.titulo}</h2>
+          <h2 class="mm-etiqueta" set:html={tituloNb} />
           <p class="mm-p">{d.entradilla}</p>
         </div>
         <div>

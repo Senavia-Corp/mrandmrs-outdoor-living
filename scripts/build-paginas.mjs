@@ -85,6 +85,7 @@ function pieDeFoto(heroe) {
 }
 /* LA FRANJA DE LOGOS, estática y dentro del hero. Los mismos logos y el mismo titular que la
  * marquesina `section.logos-section` del origen, una vez cada uno y en su orden. */
+const nbIntro = (html) => String(html).replace(/Design-Buil[dt]/g, '<span class="mm-nb">$&</span>');
 /** La flecha de los enlaces de linea del sistema (`.mm-flecha`). Decorativa. */
 const FLECHA = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>';
 
@@ -94,7 +95,14 @@ function franjaDeLogos(doc) {
   const titulo = sec.querySelector('h2')?.textContent.trim() ?? '';
   const vistos = new Set();
   const logos = [...sec.querySelectorAll('img')].filter((i) => { const u = i.getAttribute('src'); if (vistos.has(u)) return false; vistos.add(u); return true; })
-    .map((i) => `<li><img src="${i.getAttribute('src')}" alt="" width="${i.getAttribute('width')}" height="${i.getAttribute('height')}" loading="lazy" decoding="async"></li>`).join('');
+    .map((i) => {
+      // Las medidas salen del manifiesto: estas `<img>` no las traen del origen, y `getAttribute`
+      // devolvia `null`, que acababa escrito tal cual en el HTML (`width="null"`).
+      const src = i.getAttribute('src');
+      const d = DIM.get(src) ?? DIM_CDN.get(src);
+      if (!d) throw new Error(`franjaDeLogos: ${src} no tiene medidas en el manifiesto`);
+      return `<li><img src="${src}" alt="" width="${d.w}" height="${d.h}" loading="lazy" decoding="async"></li>`;
+    }).join('');
   return `<div class="mm-hero-a-logos"><h2 class="mm-etiqueta">${titulo}</h2><ul class="mm-hero-a-fila">${logos}</ul></div>`;
 }
 /* Las clases de `<img>` a las que se les reserva el hueco (§ limpia()). Enumeradas y medidas:
@@ -797,7 +805,7 @@ function mosaicoDeObra(doc, ruta) {
   SOBRANTES.set(ruta, fotos.slice(6).map((f) => ({ ...f, ...(f.w && f.h ? {} : { w: DIM.get(f.src)?.w, h: DIM.get(f.src)?.h }) })).filter((f) => f.w && f.h));
   const nueva = doc.createElement('section');
   nueva.setAttribute('class', 'mm-gal');
-  nueva.innerHTML = `<div class="mm-sec-cab"><h2 class="mm-h2">${tit}</h2><div class="mm-sec-lado"><p class="mm-p">${linea.innerHTML}</p>`
+  nueva.innerHTML = `<div class="mm-sec-cab"><h2 class="mm-h2">${nbIntro(tit)}</h2><div class="mm-sec-lado"><p class="mm-p">${linea.innerHTML}</p>`
     + `<div class="mm-sec-acc"><a class="mm-btn mm-btn--linea" href="${cta.getAttribute('href')}">${cta.innerHTML}</a>`
     + `<a class="mm-flecha" href="/gallery">Project Gallery${FLECHA}</a></div></div></div>`
     + `<div class="mm-mosaico mm-mosaico--${enMosaico.length}">${celdas}</div>`
@@ -817,9 +825,12 @@ function mosaicoDeObra(doc, ruta) {
  * «WHAT WE DO»: las cuatro filas con foto pasan a cuatro grupos en lista (titular, entradilla y
  * sus subservicios en `<dl>`), con UNA foto: la primera de las cuatro que tenga procedencia
  * verificada. Los iconos de subservicio salen; los enlaces a otra ficha se conservan. */
+/** D-51: «Design-Build» y «Design-Built» no se parten entre lineas en un titular. Un `<span>` con
+ *  `white-space: nowrap`, no un guion duro: el texto del HTML no cambia ni un caracter. */
+const nb = (html) => String(html).replace(/Design-Buil[dt]/g, '<span class="mm-nb">$&</span>');
 const FOTO_VERIFICADA = (src) => GALERIA_USABLE.has(src) || /^\/images\/(obra|projects)\//.test(src);
 const cabeceraDeSeccion = (tit, linea, cta, antetitulo = '') => '<div class="mm-sec-cab">'
-  + (antetitulo ? `<div class="mm-sec-tit"><p class="mm-etiqueta">${antetitulo}</p><h2 class="mm-h2">${tit}</h2></div>` : `<h2 class="mm-h2">${tit}</h2>`)
+  + (antetitulo ? `<div class="mm-sec-tit"><p class="mm-etiqueta">${antetitulo}</p><h2 class="mm-h2">${nb(tit)}</h2></div>` : `<h2 class="mm-h2">${nb(tit)}</h2>`)
   + `<div class="mm-sec-lado"><p class="mm-p">${linea}</p>${cta ? `<div class="mm-sec-acc"><a class="mm-btn mm-btn--linea" href="${cta.getAttribute('href')}">${cta.innerHTML}</a></div>` : ''}</div></div>`;
 const RESENAS_PERFIL = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/resenas.json'), 'utf8')).enlacePerfil;
 const BANDA_TELEFONOS = '<div class="mm-datos">' + TELEFONOS.map((t) => `<a class="mm-dato" href="tel:${t.tel}"><span class="mm-dato-rot">${t.zona}</span><span class="mm-dato-val">${t.visible}</span></a>`).join('') + '</div>';
@@ -939,7 +950,7 @@ function listasDePlano(doc, ruta) {
   const rfoto = SOBRANTES.get(ruta)?.[2];
   const nr = doc.createElement('section');
   nr.setAttribute('class', `mm-res${rfoto ? '' : ' mm-res--sin'}`);
-  nr.innerHTML = `<div class="mm-sec-cab"><div class="mm-sec-tit"><p class="mm-etiqueta">${rlabel.innerHTML}</p><h2 class="mm-h2">${rh2.innerHTML.replace(/\b(Clients)\b/, '<span class="mm-rot">$1</span>')}</h2></div>`
+  nr.innerHTML = `<div class="mm-sec-cab"><div class="mm-sec-tit"><p class="mm-etiqueta">${rlabel.innerHTML}</p><h2 class="mm-h2">${nb(rh2.innerHTML.replace(/\b(Clients)\b/, '<span class="mm-rot">$1</span>'))}</h2></div>`
     + `<div class="mm-sec-lado"><p class="mm-p">${rp.innerHTML}</p><div class="mm-sec-acc"><a class="mm-btn mm-btn--linea" href="${cta.getAttribute('href')}">${cta.innerHTML}</a>`
     + `<a class="mm-flecha" href="${RESENAS_PERFIL}" target="_blank" rel="noopener noreferrer">See all reviews${FLECHA}</a></div></div></div>`
     + `<div class="mm-res-cuerpo"><div class="mm-res-col">${widget.outerHTML}${BANDA_TELEFONOS}</div>`
@@ -964,7 +975,7 @@ function listasDePlano(doc, ruta) {
   const nc = doc.createElement('section');
   nc.setAttribute('class', `mm-cierre${cfoto ? '' : ' mm-cierre--sin'}`);
   nc.innerHTML = '<div class="mm-cierre-caja"><div class="mm-cierre-txt">'
-    + `<h2 class="mm-h2">${ch2.innerHTML}</h2><p class="mm-p">${cp.innerHTML}</p>${BANDA_TELEFONOS}</div>`
+    + `<h2 class="mm-h2">${nb(ch2.innerHTML)}</h2><p class="mm-p">${cp.innerHTML}</p>${BANDA_TELEFONOS}</div>`
     + (cfoto ? `<figure class="mm-cierre-medio"><img src="${cfoto.src}" alt="${escAttr(cfoto.alt)}" width="${cfoto.w}" height="${cfoto.h}" loading="lazy" decoding="async"></figure>` : '')
     + '</div>';
   const invMarca = [...nuevo.parentNode.childNodes].find((x) => x.nodeType === 3 && x.textContent.includes('InversionCore'));
@@ -1239,7 +1250,7 @@ function captacion(doc, ruta) {
     // El rotulador va en el territorio, que es como cierran los 14 titulares.
     const tit = h2.innerHTML.replace(/((?:North &amp; South )?Florida(?: Homes)?)\s*$/, '<span class="mm-rot">$1</span>');
     if (tit === h2.innerHTML) throw new Error(`${ruta}: el titular de la intro no cierra con el territorio`);
-    nueva.innerHTML = `<div class="mm-marco"><h2 class="mm-h2">${tit}</h2><p class="mm-p">${p.innerHTML}</p>`
+    nueva.innerHTML = `<div class="mm-marco"><h2 class="mm-h2">${nbIntro(tit)}</h2><p class="mm-p">${p.innerHTML}</p>`
       + `<a class="mm-flecha" href="${a.getAttribute('href')}">${a.innerHTML}${FLECHA}</a></div>`;
     intro.replaceWith(nueva);
   }
