@@ -63,6 +63,7 @@ const slides = [...PROPIAS.obras.filter((o) => o.enCarrusel !== false), ...MIGRA
  * D-68, D-56: uno de los proyectos sigue enlazado en el indice, pero no entra entre los destacados. */
 import captacion from '../../data/captacion-servicios.json';
 import TELEFONOS from '../../data/telefonos.json';
+import { zonasDeCondado } from '../../lib/condados.mjs';
 import sharp from 'sharp';
 import path from 'node:path';
 const enLista = /^\/services\/[^/]+\/[^/]+$/.test(ruta);
@@ -71,7 +72,8 @@ const anclaAccion = /-county-fl$/.test(ruta) ? '/request-estimated' : '#estimate
 const SOLO_EN_INDICE = 'luxury-pool-spa-screen-enclosure-north-florida';
 const cap = (captacion as Record<string, { heroe?: { cta?: string; zonas?: string[] } }>)[ruta];
 const accion = cap?.heroe?.cta ?? 'Get a Free Estimate';
-const zonas = (cap?.heroe?.zonas ?? TELEFONOS.items.map((x) => x.zona)).map((z) => TELEFONOS.items.find((x) => x.zona === z)!);
+// El orden de los dos telefonos: el de la entrada de captacion; en condado, el de `condados.mjs`.
+const zonas = (cap?.heroe?.zonas ?? (/-county-fl$/.test(ruta) ? zonasDeCondado(ruta) : TELEFONOS.items.map((x) => x.zona))).map((z) => TELEFONOS.items.find((x) => x.zona === z)!);
 const MEDIDAS: Map<string, { w: number; h: number }> = ((globalThis as any).__mmMedidasProyecto ??= new Map());
 const medidasDe = async (src: string) => {
   if (!MEDIDAS.has(src)) {

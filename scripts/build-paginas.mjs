@@ -34,6 +34,7 @@ import { logoLigero, ALTO_LOGO } from '../src/lib/logo-ligero.mjs';
 import { OCULTAS, serviciosDe } from '../src/lib/filtro-proyectos.mjs';
 import { tramosMiga } from '../src/lib/miga-tramos.mjs';
 import { fotoDeHeroe, fotosDeSeccion as fotosDeSeccionCiudad } from '../src/lib/heroe-ciudad.mjs';
+import { zonasDeCondado } from '../src/lib/condados.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const man = JSON.parse(fs.readFileSync(path.join(RAIZ, '_source/assets-manifest.json'), 'utf8')).assets;
@@ -896,6 +897,11 @@ function condadoStitch(doc, ruta) {
   const [antes, ...resto] = titulo.split(marca);
   const [rotLic, ...valLic] = CAPTACION['/services/pool-builders'].heroe.licencias.split(' · ');
   const tramos = tramosMiga(ruta);
+  // D-134: los dos condados del sur pintan «South Florida» primero, como sus ciudades.
+  const tels = zonasDeCondado(ruta).map((z) => TELEFONOS.find((t) => t.zona === z));
+  if (tels.some((t) => !t)) falta('una zona de `condados.mjs` no esta en telefonos.json');
+  const datoTel = (t) => `<a class="mm-dato" href="tel:${t.tel}"><span class="mm-dato-rot">${t.zona}</span><span class="mm-dato-val">${t.visible}</span></a>`;
+  const bandaTel = `<div class="mm-datos mm-datos--tel">${tels.map(datoTel).join('')}</div>`;
   const nh = doc.createElement('section');
   nh.setAttribute('class', 'mm-hero-a');
   nh.innerHTML = '<div class="mm-hero-a-txt">'
@@ -906,7 +912,7 @@ function condadoStitch(doc, ruta) {
     + `<p class="mm-p">${apoyo.innerHTML}</p>`
     + `<div class="mm-hero-a-acc"><a class="mm-btn" href="${boton.getAttribute('href')}">${esc(boton.textContent.trim())}</a></div>`
     + '<div class="mm-datos mm-datos--3">'
-    + TELEFONOS.map((t) => `<a class="mm-dato" href="tel:${t.tel}"><span class="mm-dato-rot">${t.zona}</span><span class="mm-dato-val">${t.visible}</span></a>`).join('')
+    + tels.map(datoTel).join('')
     + `<div class="mm-dato"><span class="mm-dato-rot">${esc(rotLic)}</span><span class="mm-dato-val">${esc(valLic.join(' · '))}</span></div>`
     + '</div></div>'
     + `<figure class="mm-hero-a-medio"><img sizes="(min-width: 992px) 50vw, 100vw" src="${foto.src}" alt="${escAttr(foto.alt)}" width="${foto.ancho}" height="${foto.alto}" loading="eager" fetchpriority="high" decoding="async">`
@@ -955,8 +961,10 @@ function condadoStitch(doc, ruta) {
   const np = doc.createElement('section');
   np.setAttribute('class', 'mm-proc mm-proc--sin');
   np.innerHTML = cabeceraDeSeccion(sh2.innerHTML.replace(/(Process)\s*$/, '<span class="mm-rot">$1</span>'), sp.innerHTML, cta)
-    + '<div class="mm-proc-cuerpo"><ol class="mm-pasos">'
-    + pasos.map((x, k) => `<li class="mm-paso"><span class="mm-paso-n">${k + 1}</span><h3 class="mm-paso-t">${x.tit.innerHTML}</h3>${x.txt.innerHTML}</li>`).join('')
+    // D-134: sin el circulo numerado de la lista. El titulo de cada paso ya trae su «1. » del
+    // origen y no se toca; con los dos, el numero se leia dos veces.
+    + '<div class="mm-proc-cuerpo"><ol class="mm-pasos mm-pasos--sin-num">'
+    + pasos.map((x) => `<li class="mm-paso"><h3 class="mm-paso-t">${x.tit.innerHTML}</h3>${x.txt.innerHTML}</li>`).join('')
     + '</ol></div>';
   hermana(st, 'el proceso').replaceWith(np);
 
@@ -973,7 +981,7 @@ function condadoStitch(doc, ruta) {
   nr.innerHTML = `<div class="mm-sec-cab"><div class="mm-sec-tit"><p class="mm-etiqueta">${rlabel.innerHTML}</p><h2 class="mm-h2">${rh2.innerHTML.replace(/\b(Homeowners)\b/, '<span class="mm-rot">$1</span>')}</h2></div>`
     + `<div class="mm-sec-lado"><p class="mm-p">${rp.innerHTML}</p><div class="mm-sec-acc"><a class="mm-btn mm-btn--linea" href="${cta.getAttribute('href')}">${cta.innerHTML}</a>`
     + `<a class="mm-flecha" href="${RESENAS_PERFIL}" target="_blank" rel="noopener noreferrer">See all reviews${FLECHA}</a></div></div></div>`
-    + `<div class="mm-res-cuerpo"><div class="mm-res-col">${widget.outerHTML}${BANDA_TELEFONOS}</div>${figura(fres, 'mm-res-medio')}</div>`;
+    + `<div class="mm-res-cuerpo"><div class="mm-res-col">${widget.outerHTML}${bandaTel}</div>${figura(fres, 'mm-res-medio')}</div>`;
   hermana(res, 'las resenas').replaceWith(nr);
 
   // 6 · BANDA DE CIERRE: la banda de media pagina pasa al final, navy, con los telefonos. Conserva
@@ -986,7 +994,7 @@ function condadoStitch(doc, ruta) {
   const nc = doc.createElement('section');
   nc.setAttribute('class', `mm-cierre mm-cierre--sola${fcierre ? '' : ' mm-cierre--sin'}`);
   nc.innerHTML = '<div class="mm-cierre-caja"><div class="mm-cierre-txt">'
-    + `<h2 class="mm-h2">${nb(bh2.innerHTML)}</h2><p class="mm-p">${bp.innerHTML}</p>${BANDA_TELEFONOS}`
+    + `<h2 class="mm-h2">${nb(bh2.innerHTML)}</h2><p class="mm-p">${bp.innerHTML}</p>${bandaTel}`
     + `<a class="mm-btn" href="${bb.getAttribute('href')}">${esc(bb.textContent.trim())}</a></div>`
     + `${figura(fcierre, 'mm-cierre-medio')}</div>`;
   hermana(banda, 'la banda').remove();

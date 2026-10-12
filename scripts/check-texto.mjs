@@ -30,6 +30,7 @@ import { lineasTarjetas, lineasBanda, lineasSrBanda } from '../src/lib/galeria-c
 import { OCULTAS, lineasFiltro } from '../src/lib/filtro-proyectos.mjs';
 import { fotoDeHeroe } from '../src/lib/heroe-ciudad.mjs';
 import { ciudadesDeFicha, SERVICIOS_CIUDAD } from '../src/lib/servicios-ciudad.mjs';
+import { zonasDeCondado } from '../src/lib/condados.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 
@@ -3077,7 +3078,8 @@ function bloquesCaptacion(ruta) {
     const pie = fotoDeHeroe(ruta)?.pie;
     return [
       tramosMiga(ruta).map((t) => t.nombre),
-      [...TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]), lic[0].toUpperCase(), lic.slice(1).join(' · '),
+      // D-134: en Broward y Palm Beach, «South Florida» primero (`condados.mjs`).
+      [...zonasDeCondado(ruta).map((z) => TELEFONOS.items.find((t) => t.zona === z)).flatMap((t) => [t.zona.toUpperCase(), t.visible]), lic[0].toUpperCase(), lic.slice(1).join(' · '),
         ...(pie ? ['PROJECT', pie] : [])],
     ];
   }
@@ -3554,7 +3556,7 @@ function listasStitch(ruta, lineas) {
      *   · FAQ: los telefonos de la tarjeta, justo detras de su boton (que ya estaba al pie de la FAQ);
      *   · cierre: los telefonos, justo detras del parrafo de la banda final. */
     // En el orden de zonas de la ruta: las ciudades del sur pintan «South Florida» delante.
-    const zonasRuta = CAPTACION_JSON[ruta]?.heroe?.zonas ?? TELEFONOS.items.map((x) => x.zona);
+    const zonasRuta = CAPTACION_JSON[ruta]?.heroe?.zonas ?? (esCondado(ruta) ? zonasDeCondado(ruta) : TELEFONOS.items.map((x) => x.zona));
     const tels = zonasRuta.map((z) => TELEFONOS.items.find((x) => x.zona === z)).flatMap((t) => [t.zona.toUpperCase(), t.visible]);
     const hayTels = (k) => tels.every((l, x) => out[k + x] === l);
     const r = out.indexOf(RESENAS_MARCADOR);
@@ -3593,13 +3595,15 @@ function listasStitch(ruta, lineas) {
         && out[x + 1] === accion && out[x + 2] === 'Project Gallery');
       if (k >= 0) out.splice(k + 1, 2);
     }
-    /* PROCESO DE CONDADO (T-85): las pestanas —un paso a la vista— pasan a lista con los cuatro,
-     * y la cabecera lleva la accion de la pagina. Se comprueba el tramo nuevo ENTERO (linea,
-     * accion y los cuatro pasos con su numero, su titulo y su texto, leidos del origen) y solo
-     * entonces se devuelve a lo que se veia: los cuatro numeros y el primer paso. */
+    /* PROCESO DE CONDADO (T-85, D-134): las pestanas —un paso a la vista— pasan a lista con los
+     * cuatro, y la cabecera lleva la accion de la pagina. Los rotulos `1` `2` `3` `4` de las
+     * pestanas salen: el titulo de cada paso ya trae su «1. » y el circulo lo repetia. Se
+     * comprueba el tramo nuevo ENTERO (linea, accion y los cuatro pasos con su titulo y su texto,
+     * leidos del origen) y solo entonces se devuelve a lo que se veia: los cuatro rotulos y el
+     * primer paso. */
     if (esCondado(ruta)) {
       const { linea, pasos } = pasosDelOrigen(ruta);
-      const nuevo = [linea, accion, ...pasos.flatMap((p, k) => [String(k + 1), ...p])];
+      const nuevo = [linea, accion, ...pasos.flat()];
       const i = out.findIndex((_, k) => nuevo.every((l, j) => out[k + j] === l));
       if (i >= 0) out.splice(i, nuevo.length, linea, ...pasos.map((_, k) => String(k + 1)), ...pasos[0]);
     }
