@@ -134,7 +134,8 @@ for (const [ruta, f] of paginas) {
    *
    * Lo que se exige en las dos: un solo `h1` como mucho, y ningun salto de nivel.
    */
-  const cuerpo = d.querySelector('.w-richtext');
+  /* ASTRO-4: el cuerpo del articulo es `.mm-prosa`; las legales siguen en `.w-richtext` hasta su lote. */
+  const cuerpo = d.querySelector('.mm-prosa, .w-richtext');
   if (cuerpo) {
     conCuerpo++;
     const hs = [...cuerpo.querySelectorAll('h1,h2,h3,h4,h5,h6')];

@@ -71,21 +71,9 @@
 
 /* ═══════════════ COMÚN · la capa de lectura — esto ship a las 13 rutas ═══════════════ */
 
-/* 1 · LA SECCIÓN.
-   `overflow: clip` recorta igual que `hidden` pero NO crea contenedor de scroll, que es lo
-   que mataba el `sticky` del raíl. MEDIDO a 1440: con `hidden` el raíl baja 1:1 con la página
-   (railTop 566 → −934 → −3434 → −7434); con `clip` se clava en 101 entre scroll 1500 y 4000
-   y se despega solo al llegar al fondo de su contenedor. Sin desborde horizontal.
-
-   El aire: Webflow pone `6em 2em` sobre un cuerpo que cambia de tamaño, así que el padding
-   oscila 42px (a 479) → 108px (a 1440) sin que nadie lo haya decidido. Pasa a la escala. */
-.blog-section {
-  overflow: clip;
-  padding-block: var(--mm-e-48);
-  padding-inline: var(--mm-canal);
-}
-@media (min-width: 768px) { .blog-section { padding-block: var(--mm-e-64); } }
-@media (min-width: 992px) { .blog-section { padding-block: var(--mm-e-96); } }
+/* 1 · LA SECCIÓN y la VARIANTE B (el raíl de «Most Read Articles») eran de `.blog-section`, la
+   ficha de blog. ASTRO-4 la pasó a `.mm-lect` / `.mm-prosa` (disenio/sistema.css) y esas reglas
+   salieron. Lo que queda aquí pinta las 3 legales (`.article-body`) hasta su lote. */
 
 /* 2 · LA MEDIDA.
    Medido sobre 25 párrafos reales de `complete-guide` (el más largo, 29.838 chars):
@@ -100,7 +88,7 @@
    `em`: 37em ≈ 68 caracteres a cualquier cuerpo (medido, 650/67 = 9,70px por carácter a 18px
    y 650/86 = 7,56px a 14px — 0,54em en los dos casos). El `min()` deja mandar a `--mm-medida`
    donde es más restrictivo y al `em` donde lo es él. */
-:is(.blog-section, .article-body) .w-richtext {
+.article-body .w-richtext {
   max-width: min(var(--mm-medida), 37em);
 }
 
@@ -109,24 +97,24 @@
    larga son 29 encabezados sin un solo respiro encima: eso es el muro. La proporción es 2:1:1
    — h2 el doble que h3, h3 el doble que el salto de párrafo — y así la jerarquía la lleva el
    aire, que es lo único que puede llevarla cuando a 479 el h2 y el h3 solo se separan 4px. */
-:is(.blog-section, .article-body) .w-richtext > * { margin-block: 0; }
-:is(.blog-section, .article-body) .w-richtext > * + * { margin-top: var(--mm-e-24); }
-:is(.blog-section, .article-body) .w-richtext > h2 { margin-top: var(--mm-e-64); }
-:is(.blog-section, .article-body) .w-richtext > h3 { margin-top: var(--mm-e-32); }
+.article-body .w-richtext > * { margin-block: 0; }
+.article-body .w-richtext > * + * { margin-top: var(--mm-e-24); }
+.article-body .w-richtext > h2 { margin-top: var(--mm-e-64); }
+.article-body .w-richtext > h3 { margin-top: var(--mm-e-32); }
 
 /* Las listas: `li` viene con margen 0 y los puntos se pegan entre sí. */
-:is(.blog-section, .article-body) .w-richtext :is(ul, ol) { padding-left: var(--mm-e-24); }
-:is(.blog-section, .article-body) .w-richtext li + li { margin-top: var(--mm-e-8); }
+.article-body .w-richtext :is(ul, ol) { padding-left: var(--mm-e-24); }
+.article-body .w-richtext li + li { margin-top: var(--mm-e-8); }
 
 /* 4 · EL INTERLINEADO.
    Webflow da 1.4 (25,2/18), que es interlineado de tarjeta y etiqueta. A 67 caracteres y diez
    minutos de lectura se queda corto.
    ⚠️ `--mm-alto-lectura` está PEDIDO al director y todavía no concedido; el valor de reserva
    lo sostiene mientras tanto y desaparece solo el día que se declare en `disenio/tokens.css`. */
-:is(.blog-section, .article-body) .w-richtext :is(p, li) {
+.article-body .w-richtext :is(p, li) {
   line-height: var(--mm-alto-lectura, 1.65);
 }
-:is(.blog-section, .article-body) .w-richtext :is(h2, h3) { text-wrap: balance; }
+.article-body .w-richtext :is(h2, h3) { text-wrap: balance; }
 
 /* 5 · `<strong>`.
    Hasta 325 por ficha (89 en `complete-guide`, 12 en un solo párrafo), a peso 700 contra un
@@ -137,7 +125,7 @@
    el cuerpo (medido: `rt.querySelectorAll("a").length === 0` en las 10). Sería una afordancia
    falsa que invita a pulsar donde no hay nada, y en el raíl compite con los «Read More», que
    sí son navy y negrita. El color se queda como está: solo baja el peso. */
-:is(.blog-section, .article-body) .w-richtext strong {
+.article-body .w-richtext strong {
   font-weight: var(--mm-peso-fuerte);
 }
 
@@ -150,12 +138,12 @@
    decorativo, y WCAG 1.4.11 exige 3:1 solo a lo que identifica un control. Misma coartada que
    `--mm-borde` a 1,27:1 en `blog-indice.css:102-105`.
    El h3 NO lo lleva: es justo lo que impide confundir los dos niveles. */
-:is(.blog-section, .article-body) .w-richtext > h2 {
+.article-body .w-richtext > h2 {
   position: relative;
   border-top: 1px solid var(--mm-borde);
   padding-top: var(--mm-e-24);
 }
-:is(.blog-section, .article-body) .w-richtext > h2::before {
+.article-body .w-richtext > h2::before {
   content: "";
   position: absolute;
   inset-block-start: -1px;
@@ -164,118 +152,19 @@
   border-top: 3px solid var(--mm-oro);
 }
 /* El primer bloque del artículo no abre con filete ni con 64px de aire: ya viene del héroe. */
-:is(.blog-section, .article-body) .w-richtext > :first-child {
+.article-body .w-richtext > :first-child {
   margin-top: 0;
   border-top: 0;
   padding-top: 0;
 }
-:is(.blog-section, .article-body) .w-richtext > :first-child::before { content: none; }
+.article-body .w-richtext > :first-child::before { content: none; }
 
 /* 7 · LAS FIGURAS — existen en 1 ficha de 10 (`top-10-luxury`, 4 de ellas).
    `max-width: 60%` las dejaba en tierra de nadie: ni acompañan a la medida ni la rompen. */
-:is(.blog-section, .article-body) .w-richtext figure { max-width: 100%; }
-:is(.blog-section, .article-body) .w-richtext figure img {
+.article-body .w-richtext figure { max-width: 100%; }
+.article-body .w-richtext figure img {
   display: block;
   width: 100%;
   height: auto;
   border-radius: var(--mm-r-8);
-}
-
-/* ═══════════ VARIANTE B · dos columnas, raíl pegajoso con tarjeta de la casa ═══════════
-   Mantiene el 70/30. El raíl se pega y adopta el lenguaje de tarjeta ya asentado
-   (`disenio/base.css:190` .mm-tarjeta, replicado en `blog.css:72` y `blog-indice.css:110`):
-   superficie + borde 1px + r-16 + sombra-1, hover a sombra-3 + translateY(-2px).
-   Es lo más cercano a lo que hay: el cliente reconoce su web. */
-
-/* La precondición del sticky, además del `overflow: clip` de la capa común: con el `stretch`
-   por defecto la columna mide lo mismo que la fila y no hay nada por lo que pegarse
-   (`contacto.css:136-137`). */
-.blog-section .wrapper-cms-blog { align-items: flex-start; }
-.blog-section .cms-blogs-block { align-items: stretch; }
-
-@media (min-width: 992px) {
-  /* El desfase es la altura del nav MÁS aire, no un número que da la casualidad de que
-     despeja: `--mm-nav-alto` es el token semántico correcto (`folletos.css:203-204`). */
-  .blog-section .cms-blogs-block {
-    position: sticky;
-    top: calc(var(--mm-nav-alto) + var(--mm-e-16));
-  }
-}
-
-/* La tarjeta. Webflow deja `#ececec` con sombra negra a 0.2 y `align-items: flex-start`. */
-.blog-section .card.related-blogs {
-  align-items: stretch;
-  background-color: var(--mm-superficie);
-  border: 1px solid var(--mm-borde);
-  border-radius: var(--mm-r-16);
-  box-shadow: var(--mm-sombra-1);
-  position: relative;
-  transition-property: box-shadow, transform;
-  transition-duration: .18s;
-}
-@media (prefers-reduced-motion: reduce) {
-  .blog-section .card.related-blogs { transition: none; }
-}
-.blog-section .card.related-blogs:hover {
-  box-shadow: var(--mm-sombra-3);
-  transform: translateY(-2px);
-}
-
-/* `height: auto` va en la MISMA regla que `aspect-ratio`: Webflow trae `height: 200px` y con
-   la altura ya declarada `aspect-ratio` calcula el ANCHO y desborda la columna. */
-.blog-section .related-image {
-  height: auto;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  display: block;
-  width: 100%;
-}
-
-.blog-section .wrapper-content-related-blogs {
-  gap: var(--mm-e-8);
-  padding: var(--mm-e-24);
-}
-.blog-section .cms-blogs-block h3 {
-  font-size: var(--mm-paso-3);
-  line-height: var(--mm-alto-titulo);
-  font-weight: var(--mm-peso-medio);
-  color: var(--mm-tinta);
-  margin: 0;
-  text-wrap: balance;
-}
-/* `.paragraph-mini` pinta 113 rutas: se escala DESDE `.cms-blogs-block`, nunca a pelo.
-   `line-clamp` recorta en pantalla sin tocar `innerText` (`blog.css:103-107`). */
-.blog-section .cms-blogs-block .paragraph-mini {
-  font-size: var(--mm-paso-1);
-  line-height: var(--mm-alto-cuerpo);
-  color: var(--mm-tinta-atenuada);
-  margin: 0;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  overflow: hidden;
-}
-.blog-section .cms-blogs-block .wrapper-buttons {
-  margin-top: auto;
-  padding-top: var(--mm-e-8);
-}
-
-/* La diana. `webflow.css:10` pone `a { position: relative }` a TODO enlace del sitio, así que
-   sin `position: static` el `::after` se ancla al botón y no a la tarjeta — que es exactamente
-   por lo que el mismo patrón está INERTE en las 63 rutas de `blog.css:145-150`. */
-.blog-section .cms-blogs-block .button-styles {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  padding-inline: var(--mm-e-24);
-  border-radius: var(--mm-r-8);
-  position: static;
-}
-.blog-section .cms-blogs-block .button-styles::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: var(--mm-r-16);
 }

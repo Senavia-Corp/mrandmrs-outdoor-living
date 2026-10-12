@@ -66,11 +66,6 @@
 }
 
 /* Dentro del panel desplegado el fondo es el degradado navy→cian. */
-.dropdown-list-submenu a:focus-visible,
-.dropdown-list-submenu [tabindex]:focus-visible {
-  outline: var(--mm-foco-grosor) solid var(--mm-foco-inverso);
-  outline-offset: var(--mm-foco-aire);
-}
 
 /* Por debajo de 992 el menú entero se sirve sobre `--blue_dark`, así que los enlaces
  * de primer nivel cambian de fondo y el anillo navy dejaría de verse. Se usa el
@@ -92,15 +87,6 @@
  *
  * Solo se ve con el panel ABIERTO, y las capturas del baseline son con todo cerrado.
  * ------------------------------------------------------------------------- */
-.dropdown-toggle-menu .icon-menu {
-  transition: transform 160ms cubic-bezier(.455, .03, .515, .955);
-}
-.dropdown-toggle-menu.w--open .icon-menu {
-  transform: rotate(180deg);
-}
-@media (prefers-reduced-motion: reduce) {
-  .dropdown-toggle-menu .icon-menu { transition: none }
-}
 
 /* ─────────────────────────────────────────────────────────────────────────────
  * NAV — el logo se solapa con «Resources ⌄» entre 992 y 1204 px.
@@ -146,44 +132,22 @@
 @media screen and (min-width: 992px) and (max-width: 1239px) {
   /* El gutter de la banda. Lo lleva `.navbar` y no `.wrapper-menu` porque el logo cuelga de
    * `.navbar`: con el padding en el wrapper el logo se pegaba al borde (medido: left = 0). */
-  .navbar {
-    justify-content: flex-start;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
+  
 
-  .navbar-logo {
-    position: static;          /* <- lo que quita el solape; lo demás es que quepa */
-    flex: 0 0 auto;
-    height: 52px;
-    margin-right: 1.25rem;
-  }
+  
 
-  .wrapper-menu {
-    flex: 1;
-    width: auto;
-    min-width: 0;              /* sin esto un flex item no baja de su contenido y desborda */
-    padding-left: 0;
-    padding-right: 0;
-  }
+  
 
-  .nav-menu { margin-left: 0 }
+  
 
   /* Los 7 enlaces van en DOS `.divider-navs-links` que `space-between` empuja a los extremos
    * del carril. Con el logo ya dentro del reparto ese hueco se queda en 10,3 px a 992
    * -medido-, o sea que los dos grupos se tocan y el `space-between` no compra nada. En la
    * banda leen mejor como UNA tirada seguida, y el aire que sobra se junta en un solo sitio:
    * entre los enlaces y el CTA, que es donde parece intencionado. */
-  .wrapper-nav-menu {
-    width: auto;
-    justify-content: flex-start;
-  }
+  
 
-  .nav-link,
-  .dropdown-toggle-menu {
-    padding-left: 5px;
-    padding-right: 5px;
-  }
+  
 }
 
 /* ══ EL DEGRADADO DEL PIE — RETIRADO (FONDO AGUA, 12-sep-2026) ════════════════════
@@ -218,8 +182,6 @@
  * FONDO AGUA (12-sep-2026): el degradado contra el que se midio ya no existe. Contra el agua el
  * mismo filete da 3,93:1 en el techo (#3767e1) y 11,18:1 en el fondo (#002175), que es donde
  * cae de verdad el `border-bottom`. Sigue por encima de 3:1 en todo el recorrido. */
-.footer { border-bottom-color: var(--mm-borde); }
-.footer-divider { background-color: var(--mm-borde); }
 
 /* ── 2 · LA RESERVA DE `.trusted-section` Y `.gallery` — RETIRADA (FONDO AGUA, 12-sep-2026) ──
  *
@@ -382,10 +344,6 @@
  *
  * No cambia ni un pixel pintado: el enlace no tiene fondo ni borde, y el texto se queda donde
  * estaba (el padding lo baja 4, el margen lo sube 4). `check:visual` no deberia moverse. */
-.footer-link {
-  padding-block: 4px;
-  margin-block: -4px;
-}
 
 /* ══════════════════════════════════════════════════════════════════════════════
  * M8 (auditoria 5-sep-2026) — EL BOTON DE LLAMAR TAPA EL PIE, Y AHI NO SE PUEDE SCROLLEAR
@@ -414,9 +372,6 @@
  * deja intactas las de 991, 1440 y 1920 — tres de las cuatro que compara `check:visual`.
  *
  * 80 px = 58 del boton + 16 de su separacion + 6 de aire. */
-@media (max-width: 767px) {
-  .wrapper-footer-info { padding-bottom: 80px; }
-}
 
 /* ══════════════════════════════════════════════════════════════════════════════
  * M10 (auditoria 5-sep-2026) — `.grey` NO LLEGA AL MINIMO DE CONTRASTE
@@ -498,7 +453,6 @@
 .testimonial-section,
 .cta-footer,
 .cta-page-section,
-.hero-project,
 .hero-about,
 .footer,
 .mm-seccion.mm-inverso,
@@ -514,7 +468,7 @@
 }
 @media (min-width: 768px) {
   .trusted-section, .gallery, .testimonial-section,
-  .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer,
+  .cta-footer, .cta-page-section, .hero-about, .footer,
   .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section {
     background-size: 100% 340px, 180px 180px, 100% 100%;
   }
@@ -552,12 +506,12 @@
  *
  * ⚠️ LA LISTA DE LA FAMILIA SE REPITE: en la regla de arriba, en su @media y en los `:is()` de
  * aqui abajo. Quien meta una banda nueva la mete en los tres sitios, o su junta volvera a cortar. */
-:is(.trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section):has(+ :is(.trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section)),
+:is(.trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section):has(+ :is(.trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section)),
 main:has(+ .footer) > .cta-footer:last-child {
   background-color: var(--mm-azul-500);
   background-image: var(--agua-cresta), var(--agua-grano), var(--agua-profundidad-alta);
 }
-:is(.trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section) + :is(.trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section),
+:is(.trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section) + :is(.trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section),
 main:has(> .cta-footer:last-child) + .footer {
   background-color: var(--mm-azul-800);
   background-image: var(--agua-grano), var(--agua-profundidad-honda);
@@ -565,7 +519,7 @@ main:has(> .cta-footer:last-child) + .footer {
   background-position: top left, top center;
   background-size: 180px 180px, 100% 100%;
 }
-:is(.trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section) + :is(.trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section):has(+ :is(.trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-project, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section)) {
+:is(.trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section) + :is(.trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section):has(+ :is(.trusted-section, .gallery, .testimonial-section, .cta-footer, .cta-page-section, .hero-about, .footer, .mm-seccion.mm-inverso, .meet-us-section, .form-section, .ty-hero, .before-after-section)) {
   background-color: var(--mm-azul-500);
   background-image: var(--agua-grano);
   background-repeat: repeat;
@@ -601,16 +555,6 @@ main:has(> .cta-footer:last-child) + .footer {
   background-color: var(--mm-azul-800);
   background-image: var(--agua-cresta), var(--agua-grano), var(--agua-profundidad);
 }
-.testimonial-section.testimonial-section + .cta-footer.cta-footer:has(+ .footer.footer),
-.testimonial-section.testimonial-section + .cta-footer + .footer,
-main:has(+ .footer) > .testimonial-section.testimonial-section + .cta-footer.cta-footer:last-child,
-main:has(> .testimonial-section + .cta-footer:last-child) + .footer.footer {
-  background-color: var(--mm-azul-800);
-  background-image: var(--agua-grano);
-  background-repeat: repeat;
-  background-position: top left;
-  background-size: 180px 180px;
-}
 
 /* ── REDISEÑO STITCH (ASTRO-1, 12-oct-2026) · LA CABECERA YA NO VA ENCIMA DEL CONTENIDO ──────
  * El `.menu` de Webflow era `position: fixed` y estas ocho piezas reservaban su alto con un
@@ -618,7 +562,6 @@ main:has(> .testimonial-section + .cta-footer:last-child) + .footer.footer {
  * flujo, asi que ese margen pasa a ser un hueco blanco bajo ella. Medido sobre las 234 rutas
  * del build: 94 con hueco, repartidas en estas ocho clases; las otras 136 abren a sangre.
  * Se quita aqui y no en `webflow.css`, que no se toca. */
-main > .hero-project,
 main > .hero-section,
 main > .hero-about,
 main > .half-hero-section,

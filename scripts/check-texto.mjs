@@ -3402,8 +3402,9 @@ let soloMayusculas = 0;
 /** Que lineas son, para que el recuento de T-69 se pueda leer y no solo contar (D-135). */
 const rotulosT69 = new Map();
 function sinMayusculasDeCss(ruta, esperado, hay) {
-  // Las rutas ya migradas a las piezas nuevas: las 141 de servicio y, desde ASTRO-4, las 15 de proyecto.
-  if (!ruta.startsWith('/services/') && !ruta.startsWith('/project/')) return esperado;
+  // Las rutas ya migradas a las piezas nuevas: las 141 de servicio y, desde ASTRO-4, las 15 de
+  // proyecto y los 47 articulos (las cabeceras de sus tablas).
+  if (!/^\/(services|project|blogs)\//.test(ruta)) return esperado;
   const medidas = hay.split('\n');
   const esperadas = esperado.split('\n');
   /* POR POSICION cuando las dos listas miden lo mismo, que es el caso de una ruta en verde: la
@@ -3583,13 +3584,16 @@ function fichaProyectoTexto(ruta, lineas) {
   const out = [...lineas];
   const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
   const hayTels = (k) => tels.every((l, x) => out[k + x] === l);
-  const quita = (bloque) => {
+  /* Lo declarado es OBLIGATORIO: un tramo que falta mete una linea que no casa con nada y la ruta
+   * sale roja diciendo cual. Sin esto la puerta fallaba ABIERTA. */
+  const faltas = [];
+  const quita = (bloque, que) => {
     const i = out.findIndex((_, k) => bloque.every((l, j) => out[k + j] === l));
-    if (i >= 0) out.splice(i, bloque.length);
+    if (i >= 0) out.splice(i, bloque.length); else faltas.push(que);
   };
   const d = out.indexOf('Project Details');
   const b = d < 0 ? -1 : out.indexOf('Get A Free Estimate', d);
-  if (b > d && hayTels(b + 1)) out.splice(b + 1, tels.length);
+  if (b > d && hayTels(b + 1)) out.splice(b + 1, tels.length); else faltas.push('los dos telefonos de «Project Details» (T-56)');
   const lee = (f) => JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data', f), 'utf8')).obras;
   const lista = [...lee('proyectos-propios.json').filter((o) => o.enCarrusel !== false), ...lee('obras-migradas.json')]
     .filter((o) => o.slug !== ruta.split('/')[2]);
@@ -3597,15 +3601,43 @@ function fichaProyectoTexto(ruta, lineas) {
   quita(['More Projects',
     'Selected custom pool and outdoor living projects from our Florida portfolio, to inspire your design.',
     'See All Projects',
-    ...[...destacadas, ...lista.filter((o) => !destacadas.includes(o))].flatMap((o) => [capitaliza(tituloObra(o)), 'See Project'])]);
+    ...[...destacadas, ...lista.filter((o) => !destacadas.includes(o))].flatMap((o) => [capitaliza(tituloObra(o)), 'See Project'])],
+  '«More Projects» con sus obras, en el orden del componente (T-60)');
   const c = out.findIndex((l) => l.startsWith(CIERRE_CIUDAD));
-  if (c >= 0 && hayTels(c + 1)) out.splice(c + 1, tels.length, 'Get A Free Estimate');
-  quita(formularioNuevo(CAPTACION_JSON['/services/pool-builders']));
+  if (c >= 0 && hayTels(c + 1)) out.splice(c + 1, tels.length, 'Get A Free Estimate'); else faltas.push('los dos telefonos de la banda final (T-57)');
+  quita(formularioNuevo(CAPTACION_JSON['/services/pool-builders']), 'el formulario en dos pasos (D-82)');
+  return [...out, ...faltas.map((f) => `⟦FALTA: ${f}⟧`)];
+}
+
+/**
+ * ASTRO-4 · EL ARTICULO (laminas «Articulo», «CuerpoArticulo» y «Relacionados»), sobre LO MEDIDO de
+ * las 47 rutas de `/blogs/`. Titular, resumen, cuerpo, FAQ, fuentes, «Most Read Articles» con sus
+ * tarjetas y la banda final son los de la referencia, en su orden. Lo que el articulo GANA se
+ * comprueba entero y en su sitio, y solo entonces se descuenta (T-88):
+ *   · la tarjeta de accion (T-49, D-84, D-97), entre el cuerpo y «Most Read Articles»: su rotulo,
+ *     sus dos botones y los dos telefonos;
+ *   · los dos telefonos de la banda final, detras de su boton (T-56).
+ * Las cabeceras de las tablas se pintan en versalitas (S11) y las cuenta T-69.
+ * Si un tramo no esta tal cual, no se toca y la ruta sale roja.
+ */
+function articuloTexto(ruta, lineas) {
+  const out = [...lineas];
+  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const tarjeta = ['POOL COST ESTIMATOR', 'Request A Design-Build Project Evaluation', 'Try The Pool Cost Estimator', ...tels];
+  /* Lo declarado es OBLIGATORIO: si un tramo falta o no esta en su sitio, entra una linea que no
+   * casa con nada y la ruta sale roja diciendo cual. Sin esto la puerta fallaba ABIERTA. */
+  const m = out.indexOf('Most Read Articles') - tarjeta.length;
+  if (m >= 0 && tarjeta.every((l, j) => out[m + j] === l)) out.splice(m, tarjeta.length);
+  else out.push('⟦FALTA: la tarjeta de accion del articulo (T-49), delante de «Most Read Articles»⟧');
+  const c = out.findIndex((l) => l.startsWith(CIERRE_CIUDAD));
+  if (c >= 0 && out[c + 1] === 'Get A Free Estimate' && tels.every((l, x) => out[c + 2 + x] === l)) out.splice(c + 2, tels.length);
+  else out.push('⟦FALTA: los dos telefonos de la banda final (T-56), detras de su boton⟧');
   return out;
 }
 
 function listasStitch(ruta, lineas) {
   if (ruta.startsWith('/project/')) return fichaProyectoTexto(ruta, lineas);
+  if (ruta.startsWith('/blogs/')) return articuloTexto(ruta, lineas);
   if (!ruta.startsWith('/services/')) return lineas;
   if (!esFicha(ruta)) {
     /* PAGINAS DE CIUDAD (T-47): la cabecera de articulos lleva la accion de la pagina, justo delante
@@ -4045,7 +4077,7 @@ if (rojos.length) {
  * veredicto y en el codigo de salida. El motivo de cada rojo —diferencia, baseline
  * ausente, medicion invalida o pagina que no carga— va en el detalle de arriba. */
 if (soloMayusculas) {
-  console.log(`\n  --   T-69: ${soloMayusculas} linea(s) de rotulo en VERSALITAS (\`uppercase\` de CSS: .mm-etiqueta, .mm-dato-rot), dadas por la misma.`);
+  console.log(`\n  --   T-69: ${soloMayusculas} linea(s) de rotulo en VERSALITAS (\`uppercase\` de CSS: .mm-etiqueta, .mm-dato-rot, cabeceras de .mm-tabla), dadas por la misma.`);
   console.log(`       Solo cuenta la linea medida que es la esperada ENTERA en mayusculas (D-135). Son ${rotulosT69.size} rotulo(s) distinto(s):`);
   for (const [l, n] of [...rotulosT69].sort((a, b) => b[1] - a[1])) console.log(`         ${String(n).padStart(4)} × ${l.slice(0, 70)}`);
 }

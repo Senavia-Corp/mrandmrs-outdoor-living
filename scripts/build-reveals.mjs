@@ -46,6 +46,8 @@ const RETIRADAS = new Set([
   'e94ffec7-4812-fbc6-e930-59a019961ce9', '98524246-2fbc-e691-5ab8-2715913bd179', '98524246-2fbc-e691-5ab8-2715913bd17e',
   // cada foto de la galeria de las 15 fichas de proyecto (ASTRO-4: mosaico de «Project Details»)
   '333e7244-2382-3d5a-9f96-e9d5e0ad3eae',
+  // el bloque de texto del hero antiguo de proyecto y de articulo (ASTRO-4: hero C)
+  '4e3ac630-04d8-ebcf-c5f5-c24ea7e9ba56',
 ]);
 
 const porId = {};

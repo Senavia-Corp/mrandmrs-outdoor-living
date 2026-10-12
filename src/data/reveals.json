@@ -583,17 +583,6 @@
     ]
    }
   ],
-  "4e3ac630-04d8-ebcf-c5f5-c24ea7e9ba56": [
-   {
-    "anim": "growIn",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
   "c5943ea8-2479-0b18-7289-2e4baa1a48c8": [
    {
     "anim": "growIn",

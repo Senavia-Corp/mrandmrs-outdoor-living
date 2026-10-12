@@ -915,3 +915,62 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 }
 @media (min-width: 1200px) { .mm-det { --mm-canal: var(--mm-e-64); } }
 @media (prefers-reduced-motion: reduce) { .mm-hero-c-foto img, .mm-det-foto img { transition: none; } }
+
+/* ── ARTICULO (ASTRO-4 lote A; laminas «Articulo», «CuerpoArticulo» y «Relacionados») ──────────
+   Hero C con la portada CONTENIDA a su tamano (D-85: las 47 miden 800 px y no se amplian), una
+   columna de lectura de 720 px y, desde 992, la tarjeta de accion pegada al recorrer (D-84, D-97).
+   Los titulares del cuerpo van capitalizados porque asi los pinta la referencia (D-135). */
+.mm-hero-c-medio > img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.mm-lect { --mm-canal: var(--mm-e-24); box-sizing: border-box; max-width: calc(var(--mm-contenedor) + 2 * var(--mm-canal)); margin: 0 auto; padding: 88px var(--mm-canal) var(--mm-e-64); font-family: var(--mm-familia); color: var(--mm-tinta-texto); }
+.mm-lado { display: none; }
+.mm-prosa { max-width: 720px; font-size: 16px; line-height: 1.65; }
+.mm-prosa > :first-child { margin-top: 0; }
+.mm-prosa p { margin: 0 0 var(--mm-e-20); }
+.mm-prosa h2, .mm-prosa h3 { font-family: var(--mm-familia); font-weight: 700; color: var(--mm-navy); text-transform: capitalize; }
+.mm-prosa h2 { margin: var(--mm-e-40) 0 var(--mm-e-16); padding-top: var(--mm-e-24); border-top: 1px solid var(--mm-borde); font-size: 22px; line-height: 1.2; letter-spacing: -0.015em; }
+.mm-prosa h3 { margin: var(--mm-e-32) 0 var(--mm-e-8); font-size: 18px; line-height: 1.3; }
+.mm-prosa strong { font-weight: 700; color: var(--mm-navy); font-variant-numeric: tabular-nums; }
+.mm-prosa a { font-size: inherit; line-height: inherit; color: var(--mm-navy); font-weight: 600; text-decoration: underline; text-decoration-color: var(--mm-oro); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.mm-prosa a:focus-visible, .mm-tabla:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); box-shadow: var(--mm-foco-halo); }
+.mm-prosa ul, .mm-prosa ol { list-style: none; margin: 0 0 var(--mm-e-24); padding: 0; border-top: 1px solid var(--mm-borde); counter-reset: mm-ol; }
+.mm-prosa li { position: relative; padding: var(--mm-e-12) 0 var(--mm-e-12) var(--mm-e-24); border-bottom: 1px solid var(--mm-borde); }
+.mm-prosa ul > li::before { content: ""; position: absolute; left: 0; top: calc(var(--mm-e-12) + 0.825em - 1px); width: 8px; height: 2px; background: var(--mm-navy); }
+.mm-prosa ol > li { counter-increment: mm-ol; padding-left: var(--mm-e-32); }
+.mm-prosa ol > li::before { content: counter(mm-ol) "."; position: absolute; left: 0; font-weight: 700; color: var(--mm-navy); font-variant-numeric: tabular-nums; }
+/* Las fuentes son un enlace por fila: el enlace ocupa la fila entera (48 px), no solo su renglon. */
+.mm-fuentes a { display: block; margin: calc(-1 * var(--mm-e-12)) 0; padding: var(--mm-e-12) 0; }
+.mm-prosa figure { margin: var(--mm-e-24) calc(-1 * var(--mm-canal)); }
+.mm-prosa figure img { display: block; width: 100%; height: auto; }
+.mm-prosa figcaption { padding: var(--mm-e-8) var(--mm-canal) 0; font-size: 14px; line-height: 1.5; color: var(--mm-tinta-suave); }
+/* La tabla de S11. Se desplaza dentro de su caja, que es alcanzable con teclado (`tabindex`). */
+.mm-tabla { margin: var(--mm-e-24) 0 var(--mm-e-32); overflow-x: auto; border-top: 2px solid var(--mm-navy); border-bottom: 1px solid var(--mm-borde); }
+.mm-tabla table { border-collapse: collapse; width: 100%; min-width: 440px; font-size: 16px; line-height: 1.5; }
+.mm-tabla caption { caption-side: top; padding: var(--mm-e-12) 0; text-align: left; font-weight: 700; color: var(--mm-navy); }
+.mm-tabla th, .mm-tabla td { padding: var(--mm-e-16) var(--mm-e-16) var(--mm-e-16) 0; text-align: left; vertical-align: top; }
+.mm-tabla thead th { padding-block: var(--mm-e-12); font-size: 12px; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; color: var(--mm-tinta-suave); border-bottom: 1px solid var(--mm-borde); }
+.mm-tabla tbody th { font-weight: 700; color: var(--mm-navy); }
+.mm-tabla td { font-variant-numeric: tabular-nums; }
+.mm-tabla tbody tr + tr > * { border-top: 1px solid var(--mm-borde); }
+.mm-rel { --mm-canal: var(--mm-e-24); padding: var(--mm-e-64) 0; background: var(--mm-azul-50); font-family: var(--mm-familia); color: var(--mm-tinta-texto); }
+.mm-rel-caja { box-sizing: border-box; max-width: calc(var(--mm-contenedor) + 2 * var(--mm-canal)); margin: 0 auto; padding: 0 var(--mm-canal); display: flex; flex-direction: column; gap: var(--mm-e-24); }
+.mm-rel .mm-h2 { margin: 0; }
+@media (min-width: 768px) {
+  .mm-lect, .mm-rel { --mm-canal: var(--mm-e-32); }
+  .mm-prosa figure { margin: var(--mm-e-40) 0; border-radius: var(--mm-r-12); overflow: hidden; }
+  .mm-prosa figcaption { padding-inline: 0; }
+}
+@media (min-width: 992px) {
+  .mm-hero-c--art .mm-hero-c-medio { max-width: 800px; aspect-ratio: 16 / 9; }
+  .mm-lect { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); column-gap: var(--mm-e-64); align-items: start; padding: 176px var(--mm-canal) var(--mm-e-96); }
+  .mm-prosa { font-size: 18px; }
+  .mm-prosa h2 { margin-top: var(--mm-e-64); font-size: 28px; }
+  .mm-prosa h3 { font-size: 20px; }
+  .mm-lado { position: sticky; top: calc(var(--mm-util-alto) + var(--mm-cabecera-alto) + var(--mm-e-24)); display: flex; flex-direction: column; gap: var(--mm-e-12); padding: var(--mm-e-24); background: var(--mm-blanco); border: 1px solid var(--mm-borde); border-radius: var(--mm-r-12); }
+  .mm-lado .mm-btn { justify-content: center; text-align: center; }
+  .mm-lado .mm-datos { border-top: 0; }
+  .mm-rel { padding: var(--mm-e-96) 0; }
+  .mm-cierre--alta .mm-cierre-medio { aspect-ratio: 4 / 5; }
+  .mm-rel-caja { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--mm-e-64); align-items: start; }
+}
+@media (min-width: 1200px) { .mm-lect, .mm-rel { --mm-canal: var(--mm-e-64); } .mm-lect { column-gap: 144px; } }
+
