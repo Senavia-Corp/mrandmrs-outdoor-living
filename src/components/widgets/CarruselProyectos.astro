@@ -66,7 +66,11 @@ import TELEFONOS from '../../data/telefonos.json';
 import { zonasDeCondado } from '../../lib/condados.mjs';
 import sharp from 'sharp';
 import path from 'node:path';
-const enLista = /^\/services\/[^/]+\/[^/]+$/.test(ruta);
+/* ASTRO-4 · «More Projects» en la ficha de proyecto (D-86, T-60): la misma pieza de lista, sin la
+ * obra que se esta viendo, sin boton en la cabecera (la accion de esa pagina va en «Project
+ * Details») y sin telefonos (van arriba y en el cierre). */
+const enProyecto = /^\/project\//.test(ruta);
+const enLista = /^\/services\/[^/]+\/[^/]+$/.test(ruta) || enProyecto;
 // Los condados no tienen formulario en la pagina: su accion lleva al presupuesto, como su hero.
 const anclaAccion = /-county-fl$/.test(ruta) ? '/request-estimated' : '#estimate';
 const SOLO_EN_INDICE = 'luxury-pool-spa-screen-enclosure-north-florida';
@@ -83,11 +87,16 @@ const medidasDe = async (src: string) => {
   }
   return MEDIDAS.get(src)!;
 };
-const destacables = slides.filter((o) => o.slug !== SOLO_EN_INDICE).slice(0, 3);
+const lista = enProyecto ? slides.filter((o) => o.slug !== ruta.split('/')[2]) : slides;
+const destacables = lista.filter((o) => o.slug !== SOLO_EN_INDICE).slice(0, 3);
 const destacados = enLista ? await Promise.all(destacables.map(async (o) => ({ ...o, dim: await medidasDe(o.portada) }))) : [];
-const resto = slides.filter((o) => !destacables.includes(o));
-if (enLista && slides.slice(0, 3).some((o) => o.slug === SOLO_EN_INDICE)) throw new Error('CarruselProyectos: el proyecto que va solo en el indice esta entre los tres primeros; el orden del indice cambiaria');
-const tituloRot = String(tituloFinal).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/(Projects)\s*$/, '<span class="mm-rot">$1</span>');
+const resto = lista.filter((o) => !destacables.includes(o));
+if (enLista && !enProyecto && slides.slice(0, 3).some((o) => o.slug === SOLO_EN_INDICE)) throw new Error('CarruselProyectos: el proyecto que va solo en el indice esta entre los tres primeros; el orden del indice cambiaria');
+// En la ficha de proyecto el titular es «More Projects» y la entradilla, la de la pieza en las
+// paginas de ciudad (la de la lamina).
+const TITULO_OTROS = 'More Projects';
+const ENTRADILLA_OTROS = 'Selected custom pool and outdoor living projects from our Florida portfolio, to inspire your design.';
+const tituloRot = String(enProyecto ? TITULO_OTROS : tituloFinal).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/(Projects)\s*$/, '<span class="mm-rot">$1</span>');
 const FLECHA = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>';
 ---
 {enLista && (
@@ -95,9 +104,9 @@ const FLECHA = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 2
     <div class="mm-sec-cab">
       <h2 class="mm-h2" set:html={tituloRot} />
       <div class="mm-sec-lado">
-        <p class="mm-p">{entradillaFinal}</p>
+        <p class="mm-p">{enProyecto ? ENTRADILLA_OTROS : entradillaFinal}</p>
         <div class="mm-sec-acc">
-          <a class="mm-btn mm-btn--linea" href={anclaAccion}>{accion}</a>
+          {!enProyecto && <a class="mm-btn mm-btn--linea" href={anclaAccion}>{accion}</a>}
           <a class="mm-flecha mm-may" href="/projects">See all Projects<Fragment set:html={FLECHA} /></a>
         </div>
       </div>
@@ -111,7 +120,7 @@ const FLECHA = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 2
       ))}
     </div>
     <div class="mm-proy-resto">
-      <div class="mm-datos mm-datos--tel">{zonas.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}</div>
+{!enProyecto &&       <div class="mm-datos mm-datos--tel">{zonas.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}</div>}
       <ul class="mm-indice" role="list">
         {resto.map((o) => (
           <li><a class="mm-linea" href={`/project/${o.slug}`}><span class="mm-linea-t" set:html={o.tituloHtml} /><span class="mm-art-ver">See Project<Fragment set:html={FLECHA} /></span></a></li>

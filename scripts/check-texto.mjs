@@ -3402,7 +3402,8 @@ let soloMayusculas = 0;
 /** Que lineas son, para que el recuento de T-69 se pueda leer y no solo contar (D-135). */
 const rotulosT69 = new Map();
 function sinMayusculasDeCss(ruta, esperado, hay) {
-  if (!ruta.startsWith('/services/')) return esperado;
+  // Las rutas ya migradas a las piezas nuevas: las 141 de servicio y, desde ASTRO-4, las 15 de proyecto.
+  if (!ruta.startsWith('/services/') && !ruta.startsWith('/project/')) return esperado;
   const medidas = hay.split('\n');
   const esperadas = esperado.split('\n');
   /* POR POSICION cuando las dos listas miden lo mismo, que es el caso de una ruta en verde: la
@@ -3561,7 +3562,50 @@ const PRIMER_ARTICULO = (JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/bl
 const TEXTO_BANDA_CAT = 'See pools, pergolas and outdoor kitchens we have built for Florida homeowners.';   // `TEXTO_BANDA` de galeria-categorias.mjs
 /** Como empieza el parrafo de la banda final de las paginas de ciudad (texto fijo de la plantilla). */
 const CIERRE_CIUDAD = 'Share your property details, project scope, and investment range.';
+/**
+ * ASTRO-4 · LA FICHA DE PROYECTO (laminas «Proyecto» y «ProyectoDetalle»), sobre LO MEDIDO de las
+ * 15 rutas de `/project/`. El texto de la obra no cambia —titular, relato, «Project Details» con
+ * sus tres datos y su boton, y la banda final—; lo que la ficha GANA se comprueba entero y en su
+ * sitio, y solo entonces se descuenta (T-87):
+ *   · los dos telefonos, detras del boton de «Project Details» (T-56);
+ *   · «More Projects» (T-60, D-86): titular, entradilla, «See All Projects», las tres obras
+ *     destacadas y el indice de las demas, sin la obra de la propia ruta y en el orden en que las
+ *     pinta `CarruselProyectos.astro`;
+ *   · en la banda final, los dos telefonos EN LUGAR del boton, que sale porque debajo hay
+ *     formulario (T-57, D-82): se devuelve el boton a su sitio para casar con la referencia;
+ *   · el formulario en dos pasos de la ficha de piscinas (D-82), con sus mismas lineas.
+ * Si un tramo no esta tal cual, no se toca y la ruta sale roja.
+ */
+const SOLO_EN_INDICE_PROYECTOS = 'luxury-pool-spa-screen-enclosure-north-florida';
+/** El titulo de una obra como texto: las propias traen `titulo`; las migradas, solo `tituloHtml`. */
+const tituloObra = (o) => o.titulo ?? o.tituloHtml.replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+function fichaProyectoTexto(ruta, lineas) {
+  const out = [...lineas];
+  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const hayTels = (k) => tels.every((l, x) => out[k + x] === l);
+  const quita = (bloque) => {
+    const i = out.findIndex((_, k) => bloque.every((l, j) => out[k + j] === l));
+    if (i >= 0) out.splice(i, bloque.length);
+  };
+  const d = out.indexOf('Project Details');
+  const b = d < 0 ? -1 : out.indexOf('Get A Free Estimate', d);
+  if (b > d && hayTels(b + 1)) out.splice(b + 1, tels.length);
+  const lee = (f) => JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data', f), 'utf8')).obras;
+  const lista = [...lee('proyectos-propios.json').filter((o) => o.enCarrusel !== false), ...lee('obras-migradas.json')]
+    .filter((o) => o.slug !== ruta.split('/')[2]);
+  const destacadas = lista.filter((o) => o.slug !== SOLO_EN_INDICE_PROYECTOS).slice(0, 3);
+  quita(['More Projects',
+    'Selected custom pool and outdoor living projects from our Florida portfolio, to inspire your design.',
+    'See All Projects',
+    ...[...destacadas, ...lista.filter((o) => !destacadas.includes(o))].flatMap((o) => [capitaliza(tituloObra(o)), 'See Project'])]);
+  const c = out.findIndex((l) => l.startsWith(CIERRE_CIUDAD));
+  if (c >= 0 && hayTels(c + 1)) out.splice(c + 1, tels.length, 'Get A Free Estimate');
+  quita(formularioNuevo(CAPTACION_JSON['/services/pool-builders']));
+  return out;
+}
+
 function listasStitch(ruta, lineas) {
+  if (ruta.startsWith('/project/')) return fichaProyectoTexto(ruta, lineas);
   if (!ruta.startsWith('/services/')) return lineas;
   if (!esFicha(ruta)) {
     /* PAGINAS DE CIUDAD (T-47): la cabecera de articulos lleva la accion de la pagina, justo delante

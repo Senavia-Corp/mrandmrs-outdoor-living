@@ -44,6 +44,8 @@ const RETIRADAS = new Set([
   'dce80844-cc8a-923f-8fa1-aa91c1419f9d', '9f159d33-eb67-9087-202c-bab1e4077bc3',
   // hero y cabeceras de las 9 paginas de condado (ASTRO-2)
   'e94ffec7-4812-fbc6-e930-59a019961ce9', '98524246-2fbc-e691-5ab8-2715913bd179', '98524246-2fbc-e691-5ab8-2715913bd17e',
+  // cada foto de la galeria de las 15 fichas de proyecto (ASTRO-4: mosaico de «Project Details»)
+  '333e7244-2382-3d5a-9f96-e9d5e0ad3eae',
 ]);
 
 const porId = {};

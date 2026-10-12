@@ -107,7 +107,9 @@ const MUESTRA = filtro ? [filtro] : [
   // ASTRO-2 (12-oct-2026): era `/services/pool-builders/alachua-county-fl`; los condados pasan a
   // mosaico (`check:mosaico`) y la unica ruta que conserva este marcado es `/industry-solutions`.
   '/industry-solutions',                                         // lightbox-link, grupo «images»
-  '/project/luxury-pool-spa-screen-enclosure-north-florida',     // lightbox-link-2, grupo «Gallery»
+  // ASTRO-4 (12-oct-2026): la segunda muestra era una ficha de `/project/` (`lightbox-link-2`). Ese
+  // marcado ya no existe en ninguna ruta: las fotos de proyecto son botones del visor nuevo, y lo
+  // mide `check:mosaico` en una ficha de proyecto.
 ];
 const ANCHOS = [[390, 844], [1440, 900]];
 

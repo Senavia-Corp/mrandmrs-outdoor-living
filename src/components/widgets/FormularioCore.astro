@@ -60,7 +60,12 @@ import DATOS from '../../data/captacion-servicios.json';
  * enrutado y por tanto no tiene el pathname de la ficha. El generador no pasa props: en
  * produccion siempre manda `Astro.url.pathname`. */
 const ruta = (Astro.props.ruta ?? Astro.url.pathname).replace(/(.)\/$/, '$1');
-const d = DATOS[ruta]?.formulario;
+/* ASTRO-4 (D-82): la ficha de proyecto monta el formulario de la ficha de piscinas, que es el de
+ * su lamina. La pagina desde la que se envia ya viaja en `__ruta` (`Formularios.astro`) y llega
+ * en el correo: ese es el dato que dice que obra se estaba viendo. Un campo nuevo no llegaria,
+ * porque el destino lee una lista cerrada de campos. */
+const entrada = /^\/project\//.test(ruta) ? '/services/pool-builders' : ruta;
+const d = DATOS[entrada]?.formulario;
 
 /* Las 6 de `/request-estimated`, copiadas caracter a caracter. El separador es U+2013. */
 const PRESUPUESTOS = [
@@ -97,11 +102,11 @@ const PROPIEDAD = ['Yes, I own this property', 'No', 'Other'];
 /* D-125 · EL SERVICIO QUE ENVIA EL FORMULARIO: el de la ficha de la ruta (`servicio` en
  * `captacion-servicios.json`, uno por ficha, con el vocabulario de las 14 casillas de
  * `/request-estimated`). Las paginas de ciudad envian el de su ficha. Sin dato no se construye. */
-const SERVICIO = DATOS[`/services/${ruta.split('/')[2]}`]?.servicio;
+const SERVICIO = DATOS[`/services/${entrada.split('/')[2]}`]?.servicio;
 if (d && !SERVICIO) throw new Error(`FormularioCore: ${ruta} no tiene \`servicio\` en la ficha de captacion-servicios.json`);
 
 /* La licencia junto al boton (T-19): la misma cadena del hero, partida en rotulo y dato. */
-const licencia = DATOS[ruta]?.heroe?.licencias?.split(' · ');
+const licencia = DATOS[entrada]?.heroe?.licencias?.split(' · ');
 /* D-51: «Design-Build» no se parte entre lineas. El titulo sale de un JSON del repo, sin HTML. */
 const escT = (t) => String(t ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
 const tituloNb = escT(d?.titulo).replace(/Design-Buil[dt]/g, '<span class="mm-nb">$&</span>');

@@ -15,7 +15,9 @@ import path from 'node:path';
 
 const D = path.resolve(import.meta.dirname, '../.vercel/output/static');
 // + una pagina de ciudad (`GaleriaObra.astro`) y una de condado (`condadoStitch`): el mismo mosaico.
-const RUTAS = ['/services/pool-builders', '/services/retractable-screens', '/services/irrigation-systems', '/services/pool-builders/alachua-fl', '/services/pool-builders/marion-county-fl'];
+// + una ficha de proyecto (ASTRO-4): portada y mosaico de «Project Details» son botones del mismo visor.
+const RUTAS = ['/services/pool-builders', '/services/retractable-screens', '/services/irrigation-systems', '/services/pool-builders/alachua-fl', '/services/pool-builders/marion-county-fl',
+  '/project/modern-pool-motorized-pergola-south-florida'];
 const rojos = [];
 const b = await chromium.launch();
 for (const ruta of RUTAS) {
@@ -29,7 +31,9 @@ for (const ruta of RUTAS) {
   });
   await p.goto('http://mm.test' + ruta, { waitUntil: 'load' });
   const mal = (m) => rojos.push(`${ruta}: ${m}`);
-  const celdas = p.locator('.mm-mosaico > button.mm-celda');
+  // En la ficha de proyecto las fotos del visor son la portada y las del mosaico de detalle, en ese orden.
+  const SEL = ruta.startsWith('/project/') ? 'button[data-mm-foto]' : '.mm-mosaico > button.mm-celda';
+  const celdas = p.locator(SEL);
   const n = await celdas.count();
   // D-117: las fotos que no caben en el mosaico van en una segunda fila, a la vista y en el HTML.
   const extras = await p.locator('.mm-mosaico-resto > button.mm-celda[data-mm-foto]').count();
@@ -51,10 +55,10 @@ for (const ruta of RUTAS) {
   await p.keyboard.press('Escape');
   e = await estado();
   if (e.abierto) mal('Esc no cierra el visor');
-  if (!await p.evaluate(() => document.activeElement === document.querySelectorAll('.mm-mosaico > button.mm-celda')[1])) mal('al cerrar, el foco no vuelve a la celda');
+  if (!await p.evaluate((sel) => document.activeElement === document.querySelectorAll(sel)[1], SEL)) mal('al cerrar, el foco no vuelve a la celda');
   const rotas = await p.evaluate(async () => {
     const out = [];
-    for (const i of document.querySelectorAll('.mm-celda img')) {
+    for (const i of document.querySelectorAll('button[data-mm-foto] img')) {
       i.loading = 'eager';
       if (!i.complete) await new Promise((r) => { i.onload = i.onerror = r; });
       if (!i.naturalWidth) out.push(i.getAttribute('src'));

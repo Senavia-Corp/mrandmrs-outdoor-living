@@ -870,3 +870,48 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
    en la maqueta heredada y ahora es un enlace de linea). `.mm-min`: al reves, un boton cuyo texto
    la referencia pinta tal como esta escrito. La regla es una: lo que diga la referencia. */
 .mm-btn.mm-min { text-transform: none; }
+
+/* ── ASTRO-4 · Ficha de proyecto: hero C y «Project Details» (laminas «Proyecto» y
+   «ProyectoDetalle») ───────────────────────────────────────────────────────────────────────
+   Hero C: titular y relato sobre fondo claro y, debajo, la portada, que monta sobre la seccion
+   siguiente. Detalle: los tres datos en banda con la accion, y todas las fotos en un mosaico que
+   alterna 7/5 y 5/7 (en movil, una debajo de otra y a sangre). Las fotos son botones del visor. */
+.mm-hero-c { background: var(--mm-azul-50); font-family: var(--mm-familia); color: var(--mm-tinta-texto); }
+.mm-hero-c-caja { box-sizing: border-box; max-width: calc(var(--mm-contenedor) + 128px); margin: 0 auto; padding: var(--mm-e-32) var(--mm-e-24) 0; display: flex; flex-direction: column; gap: var(--mm-e-24); }
+.mm-hero-c-txt { display: flex; flex-direction: column; gap: var(--mm-e-12); }
+.mm-hero-c-medio { position: relative; z-index: 1; margin: 0 0 calc(-1 * var(--mm-e-48)); aspect-ratio: 3 / 2; border-radius: var(--mm-r-12); overflow: hidden; }
+.mm-hero-c-foto, .mm-det-foto { display: block; width: 100%; height: 100%; margin: 0; padding: 0; border: 0; background: var(--mm-azul-100); overflow: hidden; cursor: pointer; }
+.mm-hero-c-foto img, .mm-det-foto img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform var(--mm-dur-abrir) var(--mm-curva); }
+.mm-hero-c-foto:focus-visible, .mm-det-foto:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: calc(-1 * var(--mm-foco-grosor)); }
+.mm-det { --mm-canal: var(--mm-e-24); display: flex; flex-direction: column; gap: var(--mm-e-24); padding: var(--mm-e-96) 0 var(--mm-e-64); background: var(--mm-blanco); font-family: var(--mm-familia); color: var(--mm-tinta-texto); }
+.mm-det-lado { display: flex; flex-direction: column; align-items: flex-start; gap: var(--mm-e-16); }
+.mm-det-datos { grid-auto-flow: row; grid-auto-columns: auto; grid-template-columns: minmax(0, 1fr); align-self: stretch; }
+.mm-det-datos .mm-dato { padding: var(--mm-e-12) 0; border-left: 0; border-top: 1px solid var(--mm-borde); }
+.mm-det-datos .mm-dato:first-child { border-top: 0; }
+.mm-det-fotos { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--mm-e-8); }
+.mm-det-foto { aspect-ratio: 3 / 2; }
+.mm-det-tel { padding: 0 var(--mm-canal); }
+.mm-det-tel .mm-datos { border-top: 0; }
+@media (hover: hover) and (pointer: fine) { .mm-hero-c-foto:hover img, .mm-det-foto:hover img { transform: scale(1.03); } }
+@media (min-width: 768px) {
+  .mm-det { --mm-canal: var(--mm-e-32); gap: var(--mm-e-40); }
+  .mm-det-datos { grid-auto-flow: column; grid-auto-columns: max-content; grid-template-columns: none; align-self: auto; }
+  .mm-det-datos .mm-dato { padding: var(--mm-e-12) var(--mm-e-24); border-top: 0; border-left: 1px solid var(--mm-borde); }
+  .mm-det-datos .mm-dato:first-child { padding-left: 0; border-left: 0; }
+  /* Fila a fila: 7/5, 5/7. La de 7 marca el alto de la fila (3:2) y su pareja lo iguala. */
+  .mm-det-fotos { grid-template-columns: repeat(12, minmax(0, 1fr)); padding: 0 var(--mm-canal); }
+  .mm-det-foto { grid-column: span 7; border-radius: var(--mm-r-8); }
+  .mm-det-foto:nth-child(4n + 2), .mm-det-foto:nth-child(4n + 3) { grid-column: span 5; aspect-ratio: auto; height: auto; min-height: 0; }
+  .mm-det-fotos--impar .mm-det-foto:last-child { grid-column: 1 / -1; aspect-ratio: 21 / 9; }
+}
+@media (min-width: 992px) {
+  .mm-hero-c-caja { padding: var(--mm-e-64) var(--mm-e-64) 0; gap: var(--mm-e-48); }
+  .mm-hero-c-txt { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--mm-e-64); align-items: end; }
+  .mm-hero-c-medio { margin-bottom: -80px; border-radius: var(--mm-r-16); }
+  .mm-det { gap: 56px; padding: 144px 0 var(--mm-e-96); }
+  .mm-det-cab { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); }
+  .mm-det-lado { flex-direction: row; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--mm-e-24) var(--mm-e-48); }
+  .mm-det-fotos, .mm-det-tel { box-sizing: border-box; width: 100%; max-width: calc(var(--mm-contenedor) + 2 * var(--mm-canal)); margin-inline: auto; }
+}
+@media (min-width: 1200px) { .mm-det { --mm-canal: var(--mm-e-64); } }
+@media (prefers-reduced-motion: reduce) { .mm-hero-c-foto img, .mm-det-foto img { transition: none; } }

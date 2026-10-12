@@ -30,6 +30,8 @@ const SERVICIO = {
   '/services/deck-builders': 'Custom Decks',
   '/services/pool-builders/alachua-fl': 'New Pool and Spa Construction',
   '/services/louvered-roofs/weston-fl': 'Louvered Roof Systems',
+  // ASTRO-4 (D-82): la ficha de proyecto monta el formulario de la ficha de piscinas.
+  '/project/modern-pool-motorized-pergola-south-florida': 'New Pool and Spa Construction',
 };
 const RUTAS = Object.keys(SERVICIO);
 /** Los campos que el formulario mandaba antes de ASTRO-2 (`FormularioCore.astro` en origin/main). */
@@ -96,6 +98,9 @@ for (const ruta of RUTAS) {
       if (par.get('__form') !== nombre) mal(`__form es «${par.get('__form')}» y el formulario se llama «${nombre}»`);
       if (par.get('Project-Type') !== porDefecto) mal('«Project-Type» no viaja con la opcion marcada');
       if (par.get('ref_id')) mal('el honeypot viaja relleno');
+    // D-82: la pagina desde la que se envia viaja en `__ruta`; en una ficha de proyecto es lo que
+    // dice que obra se estaba viendo.
+    if (par.get('__ruta') !== ruta) mal(`\`__ruta\` viaja con «${par.get('__ruta')}» y la pagina es ${ruta}`);
     if (par.get('checkbox') !== SERVICIO[ruta]) mal(`el campo oculto «checkbox» viaja con «${par.get('checkbox')}» y esta pagina es de «${SERVICIO[ruta]}» (D-125)`);
     }
   } catch (e) { mal(`la prueba no pudo completarse: ${String(e.message ?? e).split('\n')[0]}`); }

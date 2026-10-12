@@ -594,17 +594,6 @@
     ]
    }
   ],
-  "333e7244-2382-3d5a-9f96-e9d5e0ad3eae": [
-   {
-    "anim": "growIn",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
   "c5943ea8-2479-0b18-7289-2e4baa1a48c8": [
    {
     "anim": "growIn",

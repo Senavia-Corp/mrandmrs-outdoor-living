@@ -35,6 +35,7 @@ import { OCULTAS, serviciosDe } from '../src/lib/filtro-proyectos.mjs';
 import { tramosMiga } from '../src/lib/miga-tramos.mjs';
 import { fotoDeHeroe, fotosDeSeccion as fotosDeSeccionCiudad } from '../src/lib/heroe-ciudad.mjs';
 import { zonasDeCondado } from '../src/lib/condados.mjs';
+import { heroProyectoHtml, detalleProyectoHtml, cierreProyectoHtml } from '../src/lib/ficha-proyecto.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const man = JSON.parse(fs.readFileSync(path.join(RAIZ, '_source/assets-manifest.json'), 'utf8')).assets;
@@ -1007,6 +1008,46 @@ function condadoStitch(doc, ruta) {
   padre.insertBefore(nr, blog.nextSibling);
   padre.insertBefore(nc, nr.nextSibling);
   doc.querySelector('section.social-media')?.remove();
+}
+
+/* ── ASTRO-4 · LA FICHA DE PROYECTO (laminas «Proyecto» y «ProyectoDetalle») ──────────────
+ * Las 10 fichas de `/project/` que salen del origen. El marcado nuevo lo escribe
+ * `src/lib/ficha-proyecto.mjs`, el mismo que usa `FichaObra.astro` para las 5 de autoria propia:
+ * aqui solo se LEE el origen —titular, parrafo, los tres datos, el boton, las fotos de la
+ * galeria y la banda final— y se le pasa. «More Projects» y el formulario los cuelga el bucle
+ * de salida, delante y detras de la banda de cierre. */
+const esProyecto = (ruta) => ruta.startsWith('/project/');
+function proyectoStitch(doc, ruta) {
+  if (!esProyecto(ruta)) return;
+  const falta = (que) => { throw new Error(`${ruta}: ${que}`); };
+  const hero = doc.querySelector('section.hero-project');
+  const h1 = hero?.querySelector('h1');
+  const resumen = h1?.nextElementSibling;
+  const gal = doc.querySelector('section.project-gallery');
+  const caja = gal?.querySelector('.div-block-5');
+  const dh2 = caja?.querySelector('h2');
+  const boton = gal?.querySelector('.wrapper-buttons a');
+  const banda = doc.querySelector('section.cta-footer');
+  const [bh2, bp] = ['.wrapper-vertical-text h2', '.text-block-3'].map((q) => banda?.querySelector(q));
+  if (!h1 || !resumen || !gal || !dh2 || !boton || !bh2 || !bp) falta('la ficha de proyecto no trae hero, galeria con «Project Details» y banda final');
+  if (gal.parentNode !== hero.parentNode || banda.parentNode !== hero.parentNode) falta('hero, galeria y banda no son hermanas');
+  localizar(gal);
+  const fotos = [...gal.querySelectorAll('.cms-list-workgallery img')].map((i) => {
+    const src = i.getAttribute('src');
+    const d = DIM.get(src);
+    if (!d) falta(`${src} no tiene medidas en el manifiesto`);
+    return { src, alt: i.getAttribute('alt') ?? '', w: d.w, h: d.h };
+  });
+  if (fotos.length < 2) falta(`la galeria solo trae ${fotos.length} foto(s)`);
+  const datos = [...caja.querySelectorAll('.heading-deco')].map((r) => [r.textContent.trim(), r.nextElementSibling?.textContent.trim() ?? '']);
+  const tmp = doc.createElement('div');
+  tmp.innerHTML = heroProyectoHtml({ tituloHtml: h1.innerHTML, resumenHtml: resumen.innerHTML, fotos })
+    + detalleProyectoHtml({ tituloHtml: dh2.innerHTML, datos, fotos, accion: { href: boton.getAttribute('href'), texto: boton.textContent.trim() }, telefonos: TELEFONOS })
+    + cierreProyectoHtml({ tituloHtml: bh2.innerHTML, parrafoHtml: bp.innerHTML, telefonos: TELEFONOS });
+  const [nh, nd, nc] = [...tmp.children];
+  hero.replaceWith(nh);
+  gal.replaceWith(nd);
+  banda.replaceWith(nc);
 }
 
 /* ── ASTRO-2 · PROCESO Y «WHAT WE DO», EN LISTA DE PLANO (laminas «Proceso» y «QueHacemos») ──
@@ -2097,6 +2138,7 @@ for (const [ruta] of RUTAS) {
   textosCorregidos += textosPropios(doc, ruta);
   // Los condados hacen su propio mosaico y su propio orden (§ condadoStitch).
   condadoStitch(doc, ruta);
+  proyectoStitch(doc, ruta);
   if (!esCondado(ruta)) {
     mosaicoDeObra(doc, ruta);
     listasDePlano(doc, ruta);
@@ -2487,7 +2529,17 @@ for (const [ruta] of RUTAS) {
     }
     // ASTRO-2: la franja de logos ya va dentro del hero; la seccion vieja no se emite, pero
     // sigue sirviendo de ancla para lo que cuelga detras de ella.
+    // ASTRO-4: en la ficha de proyecto, «More Projects» va delante de la banda de cierre.
+    if (esProyecto(ruta) && n.matches?.('section.mm-cierre')) {
+      acumulado += MARCA + 'CarruselProyectos' + MARCA;
+      usados.add('CarruselProyectos');
+    }
     if (!n.hasAttribute?.('data-mm-retirada')) acumulado += limpia(n);
+    // …y el formulario, detras (D-82): el cierre fundido de D-77.
+    if (esProyecto(ruta) && n.matches?.('section.mm-cierre')) {
+      acumulado += MARCA + 'FormularioCore' + MARCA;
+      usados.add('FormularioCore');
+    }
     if (CAPTACION[ruta] && n.matches?.('section.logos-section') && primerLogos) {
       primerLogos = false;
       acumulado += MARCA + 'ConfianzaCore' + MARCA;
