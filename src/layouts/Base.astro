@@ -310,6 +310,11 @@ const CON_MAIN = /<main[\s>]/.test(contenido);
     {FUENTES_PRECARGA.map((u) => (
       <link rel="preload" href={u} as="font" type="font/woff2" crossorigin="anonymous" />
     ))}
+    {/* REDISEÑO STITCH (ASTRO-1, D-104): Manrope es la fuente del cascarón nuevo, que se pinta en
+        el primer fotograma. Sin precarga entra tarde con `swap` y mueve el ancho del menú, que
+        es el mismo CLS que arregló la precarga de Inter el 4-oct. Único cambio de <head>
+        autorizado. Las de Inter y Montserrat se quedan hasta que migre la última sección. */}
+    <link rel="preload" href="/fonts/manrope-v20-latin-variable.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
     {/* GOOGLE TAG MANAGER — la unica fuente de medicion del sitio.
         `is:inline` es OBLIGATORIO: sin el, Astro lo empaqueta como modulo, lo mueve al final
         y deja de ser el snippet sincrono que Google espera; el contenedor cargaria tarde y
