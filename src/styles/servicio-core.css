@@ -450,9 +450,6 @@
  * 17 rutas de `.location`. `svc-ubicacion` la pone `build-paginas.mjs` (bloque 8b) solo en
  * esas 14. `--mm-e-128` a secas quedaba en 1,52x: la tinta del titular cae 2 px por debajo
  * del borde de la caja, por eso el `+ --mm-e-8`. */
-.location.svc-ubicacion { padding-top: calc(var(--mm-e-64) + var(--mm-e-8)); }
-@media (min-width: 768px) { .location.svc-ubicacion { padding-top: var(--mm-e-96); } }
-@media (min-width: 992px) { .location.svc-ubicacion { padding-top: calc(var(--mm-e-128) + var(--mm-e-8)); } }
 
 /* ═══ R21-CIUDADES · EL HEROE DE LAS DOS LANDINGS DE PAGO ════════════════════════════════════
  *

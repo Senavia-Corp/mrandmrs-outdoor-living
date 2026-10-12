@@ -31,7 +31,7 @@ const ESTATICO = path.join(RAIZ, '.vercel/output/static');
 const ESPERADO = [
   'mm-hero-a', 'svc-confianza', 'svc-intro', 'appointment-section',
   'mm-gal', 'mm-que', 'mm-proc', 'svc-inversion', 'mm-faq', 'testimonial-section',
-  'location', 'blog-section-page', 'social-media', 'cta-footer',
+  'mm-zonas', 'blog-section-page', 'social-media', 'cta-footer',
 ];   // ASTRO-2: la franja de logos va DENTRO del hero y la repetida junto al pie se retira (D-53)
 
 /** Excepciones declaradas: las dos fichas de piscina recuperan el antes/despues entre los servicios

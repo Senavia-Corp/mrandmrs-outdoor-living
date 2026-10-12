@@ -901,6 +901,32 @@ function listasDePlano(doc, ruta) {
     + (ffoto ? `<figure class="mm-lam-medio mm-faq-medio"><img class="mm-lam-foto" src="${ffoto.src}" alt="${escAttr(ffoto.alt)}" width="${ffoto.w}" height="${ffoto.h}" loading="lazy" decoding="async"></figure>` : '')
     + `<div class="mm-faq-accion"><a class="mm-btn" href="${cta.getAttribute('href')}">${cta.innerHTML}</a>${BANDA_TELEFONOS}</div></div></div>`;
   faq.replaceWith(nf);
+
+  /* ZONAS (lamina «Zonas»): las dos tarjetas con foto de fondo pasan a dos columnas de texto con
+   * su telefono y su enlace, junto a un mapa en linea decorativo. Mismos textos y mismos dos
+   * enlaces. «Where We Serve» sigue siendo el `<h2>`, pintado como rotulo; el lema que lo
+   * acompana se pinta grande pero sigue siendo un parrafo: los encabezados no cambian. */
+  const zon = doc.querySelector('section.location');
+  const zh2 = zon?.querySelector('.header-location h2');
+  const zlema = zon?.querySelector('.header-location p');
+  const zonas = [...(zon?.querySelectorAll('.item-country') ?? [])].map((it) => ({ t: it.querySelector('h3'), p: it.querySelector('.block-info-country p'), a: it.querySelector('a') }));
+  if (!zh2 || !zlema || zonas.length !== 2 || zonas.some((z) => !z.t || !z.p || !z.a)) throw new Error(`${ruta}: «Where We Serve» no trae rotulo, lema y dos zonas con texto y enlace`);
+  const nz = doc.createElement('section');
+  nz.setAttribute('class', 'mm-zonas');
+  nz.innerHTML = '<div class="mm-zonas-caja"><div class="mm-zonas-txt">'
+    + `<div class="mm-sec-tit"><h2 class="mm-etiqueta">${zh2.innerHTML}</h2><p class="mm-h2">${zlema.innerHTML.replace(/\b(Coverage)\b/, '<span class="mm-rot">$1</span>')}</p></div>`
+    + '<div class="mm-zonas-lista">' + zonas.map((z) => {
+      const tel = TELEFONOS.find((t) => t.zona === z.t.textContent.trim());
+      if (!tel) throw new Error(`${ruta}: la zona «${z.t.textContent.trim()}» no tiene telefono en telefonos.json`);
+      return `<article class="mm-zona"><h3 class="mm-zona-t">${z.t.innerHTML}</h3><p>${z.p.innerHTML}</p>`
+        + `<div class="mm-datos"><a class="mm-dato" href="tel:${tel.tel}"><span class="mm-dato-rot">${tel.zona}</span><span class="mm-dato-val">${tel.visible}</span></a></div>`
+        + `<a class="mm-flecha" href="${z.a.getAttribute('href')}">${z.a.innerHTML}${FLECHA}</a></article>`;
+    }).join('') + '</div></div>'
+    + '<svg class="mm-mapa" viewBox="0 0 420 460" aria-hidden="true" focusable="false">'
+    + '<path d="M20 60 H250 L262 40 H330 L352 92 L372 150 L386 214 L392 280 L384 340 L360 392 L334 420 L318 404 L300 350 L270 300 L246 250 L226 196 L214 150 L196 118 L150 104 L96 110 L60 96 L20 92 Z" class="mm-plano-vaso"></path>'
+    + '<path d="M212 200 L392 236" class="mm-plano-cota" stroke-dasharray="6 6"></path>'
+    + '<circle cx="300" cy="130" r="5" class="mm-plano-punto"></circle><circle cx="348" cy="330" r="5" class="mm-plano-punto"></circle></svg></div>';
+  zon.replaceWith(nz);
 }
 
 /**
@@ -2176,7 +2202,7 @@ for (const [ruta] of RUTAS) {
     /* LOOP-CIUDADES (5-oct-2026): detras de «Where We Serve», la linea de enlaces a las landings
      * `/services/<servicio>/<ciudad>-fl` de la ficha. El componente no pinta nada si la ficha no
      * tiene landings, asi que montarlo en las 14 no cambia las que no las tienen. */
-    if (esFicha(ruta) && n.matches?.('section.location')) {
+    if (esFicha(ruta) && n.matches?.('section.mm-zonas')) {
       acumulado += MARCA + 'CiudadesServicio' + MARCA;
       usados.add('CiudadesServicio');
     }

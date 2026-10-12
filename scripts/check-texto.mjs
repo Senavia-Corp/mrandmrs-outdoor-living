@@ -304,7 +304,10 @@ function esperadoPropio(ruta, lineas) {
 }
 /** Lo medido de una ruta propia, sin las lineas que una declaracion con su nombre añade. */
 function medidoPropio(ruta, lineas) {
-  const out = marcaCabecera(lineas);
+  let out = listasStitch(ruta, marcaCabecera(lineas));
+  // T-35: los rotulos del plano en linea de la inversion, en las rutas de piscina. En las rutas con
+  // referencia de Webflow los descuenta `bloquesCaptacion`; las de referencia propia no pasan por ahi.
+  if (/^\/services\/pool-(builders|remodeling)(\/|$)/.test(ruta)) out = quitaBloque(out, ['SIZE', 'DESIGN', 'FINISHES', 'SITE CONDITIONS']) ?? out;
   for (const d of LINEAS_ANADIDAS) {
     if (!d.rutas?.includes(ruta)) continue;
     for (const l of d.lineas) { const i = out.indexOf(l); if (i >= 0) out.splice(i, 1); }
@@ -320,6 +323,13 @@ function medidoPropio(ruta, lineas) {
  * propio Elfsight, no contenido del cliente.
  */
 const QUITADAS_A_PROPOSITO = [
+  /* ASTRO-2 · T-44: en las paginas de servicio × ciudad los articulos dejan de ser carrusel. Los
+   * tres primeros conservan su resumen; del cuarto en adelante quedan el titulo y «Read More», y el
+   * resumen sale de la vista. Leidos de `blogs.json`, que es de donde los pinta `CarruselBlog.astro`. */
+  ...JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/blogs.json'), 'utf8')).posts.slice(3)
+    .map((p) => [(p.resumen ?? '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim(),
+      'ASTRO-2 (T-44): resumen de un articulo que pasa al indice de texto',
+      RUTAS_A_MEDIR.filter((r) => r.startsWith('/services/') && !esFicha(r))]),
   ['12', 'la paginación del widget de Elfsight en /videos: la galería nativa los pinta todos'],
   ['Free YouTube Video Gallery Widget', 'la marca de Elfsight en /videos. Se va con el widget'],
 
@@ -2390,11 +2400,7 @@ function lineasBlog(ruta) {
     const ficha = JSON.parse(fs.readFileSync(fFicha, 'utf8')).rutas?.[ruta];
     if (ficha) {
       const n = (x) => (x ?? '').replace(/ /g, ' ').replace(/\s+/g, ' ').trim();
-      return [
-        capitaliza(n(ficha.titulo)),
-        n(ficha.entradilla),
-        ...ficha.posts.flatMap((p) => [capitaliza(n(p.titulo)), n(p.resumen), capitaliza(n(p.cta))]),
-      ];
+      return articulosEnLista(ruta, n(ficha.titulo), n(ficha.entradilla), ficha.posts, n);
     }
   }
 
@@ -2434,6 +2440,7 @@ function lineasBlog(ruta) {
    */
   // (la funcion vive en ambito de modulo: la usan dos derivaciones, blog y obras propias)
 
+  if (ruta?.startsWith('/services/')) return articulosEnLista(ruta, norm(titulo), norm(entradilla), posts, norm);
   return [
     capitaliza(norm(titulo)),
     norm(entradilla),
@@ -2442,6 +2449,16 @@ function lineasBlog(ruta) {
      * «…Property Value In Florida» y la declaracion decia «…in Florida». El resumen NO, que
      * va en un `<p>` y no lleva la regla. */
     ...posts.flatMap((p) => [capitaliza(norm(p.titulo)), norm(p.resumen), capitaliza(norm(p.cta))]),
+  ];
+}
+/** ASTRO-2 · la seccion de articulos de las 141 rutas de `/services/` (`CarruselBlog.astro`, rama
+ *  `enLista`): titular y titulos sin `capitalize`, la accion de la pagina en la cabecera (T-47), los
+ *  tres primeros con su resumen y el resto en indice de titulo + «Read More», sin resumen (T-44). */
+function articulosEnLista(ruta, titulo, entradilla, posts, n) {
+  return [
+    titulo, entradilla, capitaliza(CAPTACION_JSON[ruta]?.heroe?.cta ?? 'Get a Free Estimate'),
+    ...posts.slice(0, 3).flatMap((p) => [n(p.titulo), n(p.resumen), n(p.cta)]),
+    ...posts.slice(3).flatMap((p) => [n(p.titulo), n(p.cta)]),
   ];
 }
 
@@ -3219,8 +3236,19 @@ function pasosDelOrigen(ruta) {
   }
   return PASOS_ORIGEN.get(ruta);
 }
+const PRIMER_ARTICULO = (JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/blogs.json'), 'utf8')).posts[0]?.titulo ?? '')
+  .replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
 function listasStitch(ruta, lineas) {
-  if (!esFicha(ruta)) return lineas;
+  if (!ruta.startsWith('/services/')) return lineas;
+  if (!esFicha(ruta)) {
+    /* PAGINAS DE CIUDAD (T-47): la cabecera de articulos lleva la accion de la pagina, justo delante
+     * del primer articulo. Se quita solo si esta ahi. (En las fichas el bloque de articulos es
+     * declarado entero: § articulosEnLista.) */
+    const out = [...lineas];
+    const j = out.indexOf(PRIMER_ARTICULO);
+    if (j > 0 && out[j - 1] === capitalizaH2(CAPTACION_JSON[ruta]?.heroe?.cta ?? 'Get a Free Estimate')) out.splice(j - 1, 1);
+    return out;
+  }
   const c = CAPTACION_JSON[ruta];
   const accion = capitalizaH2(c.heroe.cta ?? 'Get a Free Estimate');
   let out = [...lineas];
@@ -3229,6 +3257,13 @@ function listasStitch(ruta, lineas) {
   const i = out.findIndex((_, k) => nuevo.every((l, j) => out[k + j] === l));
   if (i >= 0) {
     out.splice(i, nuevo.length, linea, ...pasos.map((_, k) => String(k + 1)), capitalizaH2(pasos[0][0]), ...pasos[0].slice(1));
+  }
+  // ZONAS (T-70): cada zona lleva su telefono entre el parrafo y el enlace. Se quita el par
+  // solo si va justo delante del enlace de ESA zona.
+  for (const t of TELEFONOS.items) {
+    const z = out.findIndex((l, j) => l === t.zona.toUpperCase() && out[j + 1] === t.visible
+      && out[j + 2] === `View ${t.zona} Service Areas`);
+    if (z >= 0) out.splice(z, 2);
   }
   const filas = c.servicios?.detalle ?? [];
   const k = filas.length ? out.indexOf(filas[0].titulo) : -1;

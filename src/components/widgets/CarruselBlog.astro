@@ -83,7 +83,56 @@ if (esFicha(ruta) && !ficha && !pendientes[ruta]) {
   );
 }
 const posts = ficha ? ficha.posts : datos.posts;
+
+/* ASTRO-2: en las 141 rutas de `/services/` (fichas y paginas de ciudad) la seccion ya no es un
+ * carrusel: los tres primeros articulos van en lista con foto y resumen, y el resto en un indice
+ * de titulo + «Read More» (T-44). La home y `/where-we-serve/*` siguen con el carrusel hasta
+ * ASTRO-4. La accion de la cabecera es la del hero de la ruta. */
+import captacion from '../../data/captacion-servicios.json';
+const enLista = ruta.startsWith('/services/');
+const accion = (captacion as Record<string, { heroe?: { cta?: string } }>)[ruta]?.heroe?.cta ?? 'Get a Free Estimate';
+const FLECHA = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>';
 ---
+{enLista && (
+  <section class="blog-section-page mm-arts-sec">
+    <div class="mm-sec-cab">
+      <h2 class="mm-h2">{tituloFinal}</h2>
+      <div class="mm-sec-lado">
+        <p class="mm-p">{entradillaFinal}</p>
+        <div class="mm-sec-acc"><a class="mm-btn mm-btn--linea" href="#estimate">{accion}</a></div>
+      </div>
+    </div>
+    <div class="mm-arts-cuerpo">
+      <ul class="mm-arts" role="list">
+        {posts.slice(0, 3).map((p) => (
+          <li>
+            <a class="mm-art" href={p.enlace}>
+              <span class="mm-art-foto"><img alt={p.imagen.alt} loading="lazy" decoding="async" src={p.imagen.src} sizes="(min-width: 768px) 280px, 100vw" srcset={p.imagen.srcset} /></span>
+              <span class="mm-art-txt">
+                <h3 class="mm-art-t">{p.titulo}</h3>
+                <span class="mm-art-p">{p.resumen}</span>
+                <span class="mm-flecha">{p.cta}<span class="mm-sr">: {p.titulo}</span><Fragment set:html={FLECHA} /></span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      {posts.length > 3 && (
+        <ul class="mm-arts-indice" role="list">
+          {posts.slice(3).map((p) => (
+            <li>
+              <a class="mm-art-linea" href={p.enlace}>
+                <span class="mm-art-linea-t">{p.titulo}</span>
+                <span class="mm-art-ver">{p.cta}<span class="mm-sr">: {p.titulo}</span><Fragment set:html={FLECHA} /></span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </section>
+)}
+{!enLista && (
 <section class="blog-section-page">
   <div class="w-layout-blockcontainer container-blog w-container">
     <div class="header-blog">
@@ -144,3 +193,4 @@ const posts = ficha ? ficha.posts : datos.posts;
     </div>
   </div>
 </section>
+)}
