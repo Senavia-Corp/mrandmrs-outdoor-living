@@ -772,6 +772,18 @@ const GALERIA_USABLE = new Set([
   ...JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/banco-imagenes.json'), 'utf8'))
     .filter((e) => e.src && e.procedencia === 'obra_real' && /^aprobada/.test(e.estado)).map((e) => e.src),
 ]);
+/* D-124 (12-oct-2026): el mosaico de una ficha puede completar con las demas fotos de la galeria
+ * de su servicio que constan en el registro, segun `galeria-complementaria.json`. Solo en el
+ * mosaico de SU ficha, detras de las primeras (limite c), sin pie (limite b) y nunca las
+ * `excluidas` (limite a). Una excluida que ya no conste en el registro es un fichero que se ha
+ * quedado viejo: revienta. */
+const COMPLEMENTARIA = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/galeria-complementaria.json'), 'utf8'));
+const RESTO_GALERIA = Object.values(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/gallery-procedencia.json'), 'utf8')).servicios)
+  .flat().filter((x) => !x.usable).map((x) => x.src);
+for (const src of COMPLEMENTARIA.excluidas) {
+  if (!RESTO_GALERIA.includes(src)) throw new Error(`galeria-complementaria.json excluye ${src}, que no consta en el resto de la galeria del registro`);
+}
+const GALERIA_COMPLEMENTARIA = new Set(RESTO_GALERIA.filter((src) => !COMPLEMENTARIA.excluidas.includes(src)));
 const escAttr = (t) => String(t).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 let mosaicos = 0;
 /** Las fotos de seccion de cada ficha (FAQ, cierre, resenas, por ese orden): ids del banco elegidos
@@ -803,11 +815,14 @@ function mosaicoDeObra(doc, ruta) {
     w: i.getAttribute('width'), h: i.getAttribute('height') }));
   // La foto del hero no se repite en la galeria (screen rooms y riego toman el hero de ella, D-122).
   const delHero = doc.querySelector('.mm-hero-a-medio img')?.getAttribute('src');
-  const fotos = todas.filter((f) => GALERIA_USABLE.has(f.src) && f.src !== delHero);
+  // Primero las usables del registro, en su orden; detras, las complementarias (D-124, limite c).
+  const fotos = [...todas.filter((f) => GALERIA_USABLE.has(f.src)), ...todas.filter((f) => !GALERIA_USABLE.has(f.src) && GALERIA_COMPLEMENTARIA.has(f.src))]
+    .filter((f) => f.src !== delHero);
   // Las apaisadas delante, en su orden: la primera celda ocupa media anchura y una vertical ahi
   // se recorta a la mitad (visto en la hoja de contactos de las 14, 12-oct-2026).
   const apaisada = (f) => (DIM.get(f.src)?.w ?? f.w) / (DIM.get(f.src)?.h ?? f.h) >= 1.2;
-  fotos.sort((x, y) => apaisada(y) - apaisada(x));
+  const real = (f) => GALERIA_USABLE.has(f.src);
+  fotos.sort((x, y) => (real(y) - real(x)) || (apaisada(y) - apaisada(x)));
   // Tres es el suelo: una grande y dos apiladas (riego, que cede una de sus cuatro al hero).
   if (fotos.length < 3) throw new Error(`${ruta}: la galeria solo tiene ${fotos.length} fotos con procedencia verificada; el mosaico pide 3`);
   const marca = CAPTACION[ruta].heroe.marca;

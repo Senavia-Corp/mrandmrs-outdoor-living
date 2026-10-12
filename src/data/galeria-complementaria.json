@@ -1,0 +1,13 @@
+{
+  "_lee_esto": [
+    "LISTA COMPLEMENTARIA DE FOTOS DE GALERIA (D-124).",
+    "El mosaico de la ficha de un servicio pinta primero las fotos de su galeria que",
+    "`gallery-procedencia.json` da por usables y, detras, las demas fotos de esa misma galeria",
+    "que constan en ese registro, menos las de `excluidas`.",
+    "Solo en el mosaico de la ficha de su propio servicio, y sin pie de foto."
+  ],
+  "complementarias": "las demas fotos de la galeria del servicio que constan en `gallery-procedencia.json`, menos `excluidas`",
+  "excluidas": [
+    "/images/images/pool-screen-1/pool-screen-enclosure-builders-florida-01.jpg"
+  ]
+}
