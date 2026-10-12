@@ -45,6 +45,9 @@ const fotos: { src: string; alt: string; ancho: number; alto: number; pos?: stri
 
 const tituloHtml = marca && tituloFinal.includes(marca) ? tituloFinal.replace(marca, `<span class="mm-rot">${marca}</span>`) : tituloFinal;
 const FLECHA = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>';
+/* Lo que ocupa cada celda, para que `srcset-auto.mjs` no sirva el original de 1600 px a una celda
+ * de 300: la primera va a media anchura (entera en movil); las demas a un cuarto (media en movil). */
+const SIZES = { grande: '(min-width: 768px) 50vw, 100vw', celda: '(min-width: 768px) 25vw, 50vw', resto: '(min-width: 768px) 20vw, 50vw' };
 const enMosaico = fotos.slice(0, 6);
 const resto = fotos.slice(6);
 if (enMosaico.length < 3) throw new Error(`GaleriaObra (${ruta}): ${enMosaico.length} fotos; el mosaico pide 3.`);
@@ -63,14 +66,14 @@ if (enMosaico.length < 3) throw new Error(`GaleriaObra (${ruta}): ${enMosaico.le
   </div>
   <div class="mm-fotos">
     <div class={`mm-mosaico mm-mosaico--${enMosaico.length}`}>
-      {enMosaico.map((f) => (
-        <button type="button" class="mm-celda" data-mm-foto={f.src} aria-label={`Open photo: ${f.alt}`}><img src={f.src} alt={f.alt} width={f.ancho} height={f.alto} style={f.pos ? `object-position:${f.pos}` : undefined} loading="lazy" decoding="async" /></button>
+      {enMosaico.map((f, i) => (
+        <button type="button" class="mm-celda" data-mm-foto={f.src} aria-label={`Open photo: ${f.alt}`}><img src={f.src} alt={f.alt} width={f.ancho} height={f.alto} sizes={i === 0 ? SIZES.grande : SIZES.celda} style={f.pos ? `object-position:${f.pos}` : undefined} loading="lazy" decoding="async" /></button>
       ))}
     </div>
     {resto.length > 0 && (
       <div class:list={['mm-mosaico-resto', resto.length === 5 && 'mm-mosaico-resto--5']}>
         {resto.map((f) => (
-          <button type="button" class="mm-celda mm-celda--resto" data-mm-foto={f.src} aria-label={`Open photo: ${f.alt}`}><img src={f.src} alt={f.alt} width={f.ancho} height={f.alto} style={f.pos ? `object-position:${f.pos}` : undefined} loading="lazy" decoding="async" /></button>
+          <button type="button" class="mm-celda mm-celda--resto" data-mm-foto={f.src} aria-label={`Open photo: ${f.alt}`}><img src={f.src} alt={f.alt} width={f.ancho} height={f.alto} sizes={SIZES.resto} style={f.pos ? `object-position:${f.pos}` : undefined} loading="lazy" decoding="async" /></button>
         ))}
       </div>
     )}

@@ -101,7 +101,7 @@ const FLECHA = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 2
     <div class="mm-proy-dest">
       {destacados.map((o) => (
         <a class="mm-ficha" href={`/project/${o.slug}`}>
-          <span class="mm-ficha-foto"><img src={o.portada} alt={o.alt} width={o.dim.w} height={o.dim.h} loading="lazy" decoding="async" /></span>
+          <span class="mm-ficha-foto"><img src={o.portada} alt={o.alt} width={o.dim.w} height={o.dim.h} sizes="(min-width: 768px) 50vw, 100vw" loading="lazy" decoding="async" /></span>
           <span class="mm-ficha-txt"><h3 class="mm-ficha-t" set:html={o.tituloHtml} /><span class="mm-flecha">See Project<Fragment set:html={FLECHA} /></span></span>
         </a>
       ))}

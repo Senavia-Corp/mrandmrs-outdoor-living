@@ -17,6 +17,7 @@ import ConfianzaCore from './widgets/ConfianzaCore.astro';
 import FormularioCore from './widgets/FormularioCore.astro';
 import InversionCore from './widgets/InversionCore.astro';
 import ServiciosIndice from './widgets/ServiciosIndice.astro';
+import { logoLigero } from '../lib/logo-ligero.mjs';
 import GaleriaObra from './widgets/GaleriaObra.astro';
 import { fotoDeHeroe, fotosDeSeccion } from '../lib/heroe-ciudad.mjs';
 import { tramosMiga } from '../lib/miga-tramos.mjs';
@@ -415,14 +416,15 @@ const SEO = FAQ
     </div>
     {HERO_FOTO && (
       <figure class="mm-hero-a-medio">
-        <img src={HERO_FOTO.src} alt={HERO_FOTO.alt} width={HERO_FOTO.ancho} height={HERO_FOTO.alto} loading="eager" fetchpriority="high" decoding="async" />
+        <img sizes="(min-width: 992px) 50vw, 100vw" src={HERO_FOTO.src} alt={HERO_FOTO.alt} width={HERO_FOTO.ancho} height={HERO_FOTO.alto} loading="eager" fetchpriority="high" decoding="async" />
         <figcaption class="mm-pie-foto"><span class="mm-dato-rot">Project</span><span>{HERO_FOTO.pie}</span></figcaption>
       </figure>
     )}
     <div class="mm-hero-a-logos">
       <h2 class="mm-etiqueta">{LOGOS_TITULO}</h2>
       <ul class="mm-hero-a-fila">
-        {LOGOS.map((u) => <li><img src={u} alt="" width={DIM_LOGO.get(u).w} height={DIM_LOGO.get(u).h} loading="lazy" decoding="async" /></li>)}
+        {/* D-132: a 36 px de alto se sirve la version ligera del logo si la hay. */}
+        {LOGOS.map((u) => logoLigero(u, DIM_LOGO.get(u))).map((l) => <li><img src={l.src} alt="" width={l.w} height={l.h} loading="lazy" decoding="async" /></li>)}
       </ul>
     </div>
   </section>
@@ -492,7 +494,7 @@ const SEO = FAQ
         </div>
         <div class="mm-faq-lado">
           {FOTO_FAQ && (
-            <figure class="mm-lam-medio mm-faq-medio"><img class="mm-lam-foto" src={FOTO_FAQ.src} alt={FOTO_FAQ.alt} width={FOTO_FAQ.ancho} height={FOTO_FAQ.alto} loading="lazy" decoding="async" /></figure>
+            <figure class="mm-lam-medio mm-faq-medio"><img class="mm-lam-foto" sizes="(min-width: 992px) 42vw, 100vw" src={FOTO_FAQ.src} alt={FOTO_FAQ.alt} width={FOTO_FAQ.ancho} height={FOTO_FAQ.alto} loading="lazy" decoding="async" /></figure>
           )}
           <div class="mm-faq-accion">
             <a class="mm-btn" href="#estimate">{CTA_CIERRE}</a>

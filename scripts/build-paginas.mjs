@@ -30,6 +30,7 @@ import path from 'node:path';
 import { JSDOM } from 'jsdom';
 import { renombra, origen, esFicha, esCondado } from './lib/renombradas.mjs';
 import { CATEGORIAS as GALERIA_CATEGORIAS, tarjetasHtml } from '../src/lib/galeria-categorias.mjs';
+import { logoLigero, ALTO_LOGO } from '../src/lib/logo-ligero.mjs';
 import { OCULTAS, serviciosDe } from '../src/lib/filtro-proyectos.mjs';
 import { tramosMiga } from '../src/lib/miga-tramos.mjs';
 
@@ -102,7 +103,11 @@ function franjaDeLogos(doc) {
       const src = i.getAttribute('src');
       const d = DIM.get(src) ?? DIM_CDN.get(src);
       if (!d) throw new Error(`franjaDeLogos: ${src} no tiene medidas en el manifiesto`);
-      return `<li><img src="${src}" alt="" width="${d.w}" height="${d.h}" loading="lazy" decoding="async"></li>`;
+      // D-132: a 36 px de alto se sirve la version ligera del logo si la hay (`logo-ligero.mjs`).
+      // Aqui `src` aun puede ser la URL del CDN de Webflow: la ligera se busca por su ruta local.
+      const l = logoLigero(man[src]?.publico ?? src, d);
+      if (l.h !== ALTO_LOGO) l.src = src;
+      return `<li><img src="${l.src}" alt="" width="${l.w}" height="${l.h}" loading="lazy" decoding="async"></li>`;
     }).join('');
   return `<div class="mm-hero-a-logos"><h2 class="mm-etiqueta">${titulo}</h2><ul class="mm-hero-a-fila">${logos}</ul></div>`;
 }
@@ -832,10 +837,12 @@ function mosaicoDeObra(doc, ruta) {
     if (!d) throw new Error(`${ruta}: ${f.src} no tiene medidas en el manifiesto`);
     return d;
   };
-  const celda = (f, clase) => {
+  /* `sizes`: lo que ocupa la celda, para que `srcset-auto.mjs` no sirva el original de 1600 px a
+   * una celda de 300 (la primera va a media anchura; las demas, a un cuarto; en movil, entera y media). */
+  const celda = (f, clase, sizes) => {
     const d = medidas(f);
     return `<button type="button" class="${clase}" data-mm-foto="${f.src}" aria-label="Open photo: ${escAttr(f.alt)}">`
-      + `<img src="${f.src}" alt="${escAttr(f.alt)}" width="${d.w}" height="${d.h}" loading="lazy" decoding="async"></button>`;
+      + `<img src="${f.src}" alt="${escAttr(f.alt)}" width="${d.w}" height="${d.h}" sizes="${sizes}" loading="lazy" decoding="async"></button>`;
   };
   /* D-117: TODAS las fotos de la galeria siguen en el HTML y a la vista. Seis en el mosaico y el
    * resto en una segunda fila pequena; todas abren el mismo visor, en su orden. */
@@ -849,8 +856,8 @@ function mosaicoDeObra(doc, ruta) {
   nueva.innerHTML = `<div class="mm-sec-cab"><h2 class="mm-h2">${nbIntro(tit)}</h2><div class="mm-sec-lado"><p class="mm-p">${linea.innerHTML}</p>`
     + `<div class="mm-sec-acc"><a class="mm-btn mm-btn--linea" href="${cta.getAttribute('href')}">${cta.innerHTML}</a>`
     + `<a class="mm-flecha" href="/gallery">Project Gallery${FLECHA}</a>${aProyectos}</div></div></div>`
-    + `<div class="mm-fotos"><div class="mm-mosaico mm-mosaico--${enMosaico.length}">${enMosaico.map((f) => celda(f, 'mm-celda')).join('')}</div>`
-    + (resto.length ? `<div class="mm-mosaico-resto">${resto.map((f) => celda(f, 'mm-celda mm-celda--resto')).join('')}</div>` : '') + '</div>';
+    + `<div class="mm-fotos"><div class="mm-mosaico mm-mosaico--${enMosaico.length}">${enMosaico.map((f, i) => celda(f, 'mm-celda', i === 0 ? '(min-width: 768px) 50vw, 100vw' : '(min-width: 768px) 25vw, 50vw')).join('')}</div>`
+    + (resto.length ? `<div class="mm-mosaico-resto">${resto.map((f) => celda(f, 'mm-celda mm-celda--resto', '(min-width: 768px) 25vw, 50vw')).join('')}</div>` : '') + '</div>';
   sec.replaceWith(nueva);
   mosaicos++;
 }
@@ -876,7 +883,7 @@ const cabeceraDeSeccion = (tit, linea, cta, antetitulo = '') => '<div class="mm-
 const RESENAS_PERFIL = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/resenas.json'), 'utf8')).enlacePerfil;
 const BANDA_TELEFONOS = '<div class="mm-datos mm-datos--tel">' + TELEFONOS.map((t) => `<a class="mm-dato" href="tel:${t.tel}"><span class="mm-dato-rot">${t.zona}</span><span class="mm-dato-val">${t.visible}</span></a>`).join('') + '</div>';
 const CHEVRON = '<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>';
-const imgDe = (i, clase) => `<img class="${clase}" src="${i.getAttribute('src')}" alt="${escAttr(i.getAttribute('alt') ?? '')}" width="${i.getAttribute('width')}" height="${i.getAttribute('height')}" loading="lazy" decoding="async"${i.getAttribute('style') ? ` style="${i.getAttribute('style')}"` : ''}>`;
+const imgDe = (i, clase) => `<img class="${clase}" sizes="(min-width: 992px) 42vw, 100vw" src="${i.getAttribute('src')}" alt="${escAttr(i.getAttribute('alt') ?? '')}" width="${i.getAttribute('width')}" height="${i.getAttribute('height')}" loading="lazy" decoding="async"${i.getAttribute('style') ? ` style="${i.getAttribute('style')}"` : ''}>`;
 function listasDePlano(doc, ruta) {
   if (!esFicha(ruta)) return;
   const cta = doc.querySelector('.mm-hero-a-acc > a.mm-btn');
@@ -951,7 +958,7 @@ function listasDePlano(doc, ruta) {
   nf.innerHTML = cabeceraDeSeccion(fh2.innerHTML.replace(/(FAQs?)\s*$/, '<span class="mm-rot">$1</span>'), flinea.innerHTML, null)
     + '<div class="mm-faq-cuerpo"><div class="mm-faq-lista">' + preguntas.map((x) => `<details class="mm-faq-item"><summary><h3>${x.q.innerHTML}</h3>${CHEVRON}</summary><div class="mm-faq-r">${x.r.innerHTML}</div></details>`).join('') + '</div>'
     + '<div class="mm-faq-lado">'
-    + (ffoto ? `<figure class="mm-lam-medio mm-faq-medio"><img class="mm-lam-foto" src="${ffoto.src}" alt="${escAttr(ffoto.alt)}" width="${ffoto.w}" height="${ffoto.h}" loading="lazy" decoding="async"></figure>` : '')
+    + (ffoto ? `<figure class="mm-lam-medio mm-faq-medio"><img class="mm-lam-foto" sizes="(min-width: 992px) 42vw, 100vw" src="${ffoto.src}" alt="${escAttr(ffoto.alt)}" width="${ffoto.w}" height="${ffoto.h}" loading="lazy" decoding="async"></figure>` : '')
     + `<div class="mm-faq-accion"><a class="mm-btn" href="${cta.getAttribute('href')}">${cta.innerHTML}</a>${BANDA_TELEFONOS}</div></div></div>`;
   faq.replaceWith(nf);
 
@@ -1196,7 +1203,7 @@ function captacion(doc, ruta) {
         + TELEFONOS.map((t) => `<a class="mm-dato" href="tel:${t.tel}"><span class="mm-dato-rot">${t.zona}</span><span class="mm-dato-val">${t.visible}</span></a>`).join('')
         + `<div class="mm-dato"><span class="mm-dato-rot">${esc(rotLic)}</span><span class="mm-dato-val">${esc(valLic.join(' · '))}</span></div>`
         + '</div></div>'
-        + `<figure class="mm-hero-a-medio"><img src="${img.getAttribute('src')}" alt="${img.getAttribute('alt').replace(/&/g, '&amp;').replace(/"/g, '&quot;')}" width="${c.heroe.ancho}" height="${c.heroe.alto}" loading="eager" fetchpriority="high" decoding="async">${pieDeFoto(c.heroe)}</figure>`
+        + `<figure class="mm-hero-a-medio"><img sizes="(min-width: 992px) 50vw, 100vw" src="${img.getAttribute('src')}" alt="${img.getAttribute('alt').replace(/&/g, '&amp;').replace(/"/g, '&quot;')}" width="${c.heroe.ancho}" height="${c.heroe.alto}" loading="eager" fetchpriority="high" decoding="async">${pieDeFoto(c.heroe)}</figure>`
         + franjaDeLogos(doc);
       heroe.replaceWith(nuevo);
       /* La marquesina de logos de Webflow se va de la ficha: la primera pasa a ser la fila
