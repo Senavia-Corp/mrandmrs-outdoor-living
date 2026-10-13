@@ -54,9 +54,6 @@ if (!fs.existsSync(ESTATICO)) { console.error('\nROJO no hay build: npm run buil
 
 /** [ruta, tipo, fragmento de la falta, por que]. Bloques del origen; ver la cabecera. */
 const HEREDADOS = [
-  ['/where-we-serve/north-florida', 'LocalBusiness', 'sin address', 'el WebPage del origen anida un LocalBusiness (`#organization`, dominio sin www) sin direccion ni telefono'],
-  ['/where-we-serve/south-florida', 'LocalBusiness', 'sin address', 'idem'],
-  ['/pool-cost-estimator', 'BreadcrumbList', 'no es una URL absoluta', 'la miga anidada en el WebPage del origen lleva rutas relativas en sus dos escalones'],
   ['/industry-solutions', 'ItemList', 'va sin url ni item', 'el ItemList del origen lista diez publicos por nombre y descripcion, sin enlace'],
 ];
 const PROPIO = /#(negocio|miga|servicio|obras|videos)$/;

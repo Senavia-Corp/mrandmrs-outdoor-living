@@ -838,6 +838,40 @@ for (const [ruta, nombre, descripcion] of [
 }
 
 /**
+ * ── D-172 (13-oct-2026) · DOS HEREDADOS DE FORMA ────────────────────────────────────────────────
+ *
+ * · Las dos paginas de estado anidaban en `mainEntity` un segundo `LocalBusiness` (`#organization`, dominio sin
+ *   www, sin direccion ni telefono): una segunda entidad para la misma empresa. Pasa a ser la referencia a
+ *   `#negocio`. El «era» va escrito entero: si el origen lo cambiara, la declaracion deja de casar.
+ * · La miga anidada en el WebPage de `/pool-cost-estimator` traia rutas relativas; `item` pide URL absolutas.
+ */
+for (const [ruta, zona, descripcion] of [
+  ['/where-we-serve/north-florida', 'North Florida', 'Licensed luxury pool builders in North Florida specializing in custom inground pools and outdoor living design-build projects, engineered for structural integrity and long-term durability.'],
+  ['/where-we-serve/south-florida', 'South Florida', 'Licensed luxury pool builders in South Florida specializing in custom inground pools and outdoor living design-build projects, engineered, permitted, and built for high-end residential properties.'],
+]) {
+  const ya = JSONLD_ARREGLADO[ruta];
+  JSONLD_ARREGLADO[ruta] = {
+    ...ya,
+    motivo: `${ya.motivo} · D-172: mainEntity deja de ser un segundo LocalBusiness y referencia a #negocio.`,
+    cambios: [...ya.cambios, ['mainEntity', {
+      '@id': 'https://mrandmrsoutdoorliving.com/#organization', '@type': 'LocalBusiness', areaServed: { '@type': 'Place', name: zona },
+      description: descripcion, name: 'Mr & Mrs Outdoor Living', url: 'https://mrandmrsoutdoorliving.com/',
+    }, { '@id': `${SITIO_R22}/#negocio` }]],
+  };
+}
+{
+  const ruta = '/pool-cost-estimator', ya = JSONLD_ARREGLADO[ruta];
+  JSONLD_ARREGLADO[ruta] = {
+    bloque: 0,
+    ...ya,
+    motivo: `${ya?.motivo ? `${ya.motivo} · ` : ''}D-172: la miga anidada pasa a URL absolutas.`,
+    cambios: [...(ya?.cambios ?? []),
+      ['breadcrumb.itemListElement.0.item', '/', `${SITIO_R22}/`],
+      ['breadcrumb.itemListElement.1.item', '/pool-cost-estimator', `${SITIO_R22}/pool-cost-estimator`]],
+  };
+}
+
+/**
  * ── SEO-REMEDIACION (4-oct-2026) · LA FAQ DE /about ─────────────────────────────────────────────
  *
  * Las cinco respuestas eran la MISMA frase comercial, tambien en el `FAQPage` anidado en el
@@ -1151,11 +1185,14 @@ for (const ruta of conPropias(RUTAS)) {
         if (ja && i === ja.bloque) {
           const esperado = JSON.parse(JSON.stringify(e));
           const malas = [];
+          // D-172: un valor declarado puede ser un OBJETO (un nodo anidado que se sustituye entero); se compara por contenido.
+          const mismo = (a, b) => a === b || (a && b && typeof a === 'object' && typeof b === 'object' && JSON.stringify(ordena(a)) === JSON.stringify(ordena(b)));
+          const dice = (v) => (v && typeof v === 'object' ? JSON.stringify(v) : v);
           for (const [camino, era, es] of ja.cambios) {
             const enBase = porCamino(esperado, camino);
-            if (enBase !== era) malas.push(`arreglo "${camino}": el origen ya no dice "${era}" sino "${enBase}" — revisa la declaracion`);
+            if (!mismo(enBase, era)) malas.push(`arreglo "${camino}": el origen ya no dice "${dice(era)}" sino "${dice(enBase)}" — revisa la declaracion`);
             const enBuild = porCamino(mio, camino);
-            if (enBuild !== es) malas.push(`arreglo "${camino}": el build dice "${enBuild}", se declaro "${es}"`);
+            if (!mismo(enBuild, es)) malas.push(`arreglo "${camino}": el build dice "${dice(enBuild)}", se declaro "${dice(es)}"`);
             ponCamino(esperado, camino, es);
           }
           /* SEO-REMEDIACION (4-oct-2026): una ficha puede sustituir VARIAS respuestas

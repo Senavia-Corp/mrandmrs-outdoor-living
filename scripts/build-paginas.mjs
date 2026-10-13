@@ -3441,6 +3441,14 @@ for (const [ruta] of RUTAS) {
     }
   }
 
+  /* D-172: la miga que el origen anida en el WebPage de esta pagina trae rutas relativas («/», «/pool-cost-estimator»)
+   * y Google pide URL absolutas en `item`. Es forma, no contenido. Si el origen la arreglara, se para aqui. */
+  if (ruta === '/pool-cost-estimator') {
+    const miga = jsonLd[0]?.breadcrumb?.itemListElement;
+    if (!Array.isArray(miga) || miga.length !== 2 || miga.some((x) => !String(x.item).startsWith('/'))) { console.error(`\n  ROJO ${ruta}: la miga del origen ya no son dos rutas relativas\n`); process.exit(1); }
+    for (const x of miga) x.item = `https://www.mrandmrsoutdoorliving.com${x.item}`;
+  }
+
   // La profundidad importa: /blogs/{slug} vive en src/pages/blogs/, asi que necesita ../../
   const arriba = '../'.repeat((ruta.match(/\//g) ?? []).length);
   const imports = [...usados].map((c) => `import ${c} from '${arriba}components/widgets/${c}.astro';`).join('\n');

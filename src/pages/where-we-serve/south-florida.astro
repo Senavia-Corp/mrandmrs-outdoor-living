@@ -20,6 +20,7 @@ import HEROES from '../../data/heroes-ciudad.json';
 import BANCO from '../../data/banco-imagenes.json';
 import { logoLigero, ALTO_LOGO } from '../../lib/logo-ligero.mjs';
 import { franjaLogos } from '../../lib/logos-franja.mjs';
+import { ID_NEGOCIO } from '../../lib/negocio.mjs';
 
 const telefonos = TELEFONOS.items;
 const ACCION = "Get a Free Estimate";
@@ -47,6 +48,11 @@ const SEO = {"meta":{"og:title":"Luxury Pool Builders in South Florida | Design-
 // esa parte de sitio, se para el build en vez de pisar otra en silencio.
 if (SEO.jsonLd[0].hasPart[1].name !== 'Luxury Pool Features &amp; Integrated Upgrades') throw new Error('south-florida: hasPart[1] ya no es la banda');
 Object.assign(SEO.jsonLd[0].hasPart[1], { name: TITULO_BANDA, description: TEXTO_BANDA });
+// D-172: el WebPage del origen anidaba en `mainEntity` un SEGUNDO LocalBusiness (`#organization`, dominio sin www, sin
+// direccion ni telefono) para la misma empresa. Dos entidades que se contradicen confunden la senal local: pasa a ser
+// la referencia al unico negocio de la casa, el `#negocio` que `Base.astro` pone en todas las paginas.
+if (SEO.jsonLd[0].mainEntity?.['@id'] !== 'https://mrandmrsoutdoorliving.com/#organization') throw new Error('south-florida: mainEntity ya no es el LocalBusiness del origen');
+SEO.jsonLd[0].mainEntity = { '@id': ID_NEGOCIO };
 const LD_CRUDO = [];
 ---
 <Base titulo="Luxury Pool Builders in South Florida | Design-Build Contractors" descripcion="Licensed luxury pool builders in South Florida specializing in custom inground pools and outdoor living design-build projects engineered for coastal conditions and long-term durability." ruta="/where-we-serve/south-florida" seo={SEO} jsonLdCrudo={LD_CRUDO}>
