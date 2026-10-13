@@ -103,7 +103,8 @@ import '../styles/proyectos.css';
 // NO confundir con `blog.css` de arriba: aquel es `.blog-section-page` y son 63 rutas. Los
 // dos nombres se diferencian en un sufijo, los dos ficheros los escriben chats distintos, y
 // un `grep` de la subcadena `blog-section` casa los 87 ficheros de las dos cosas juntas.
-import '../styles/lectura.css';
+// `lectura.css` (la ficha de blog y las tres legales de Webflow) se retiro con ASTRO-4: el articulo y las
+// legales pintan `.mm-prosa` (disenio/sistema.css) y ninguna de sus reglas pintaba ya nada.
 // LAS SIETE SECCIONES DE LA HOME que NO son solo de la home. Medido el 1-sep-2026: de las 11
 // secciones de `/`, la UNICA que existe unicamente ahi es el heroe. Las demas se pintan entre
 // 12 y 102 rutas, asi que «redisenar la home» es redisenar medio sitio — y un fichero

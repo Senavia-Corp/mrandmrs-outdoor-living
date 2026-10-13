@@ -1233,6 +1233,73 @@ function contactoStitch(doc, ruta) {
   fin.replaceWith(nc);
 }
 
+/**
+ * ASTRO-4 lote C · LAS DOS PIEZAS COMUNES de las paginas que no tienen lamina propia.
+ *
+ * `heroD`: el `section.hero-section` de Webflow (titular centrado sobre azul, con filete) pasa al
+ * hero D del sistema: titular a la izquierda y entradilla a la derecha, sobre blanco. Mismo `h1`,
+ * mismo texto. Devuelve la seccion nueva.
+ *
+ * `bandaFinal`: `section.cta-footer` pasa a la banda navy del sistema, con su titular, su parrafo
+ * y su boton, los dos telefonos (T-56) y una foto de obra de la bolsa de `heroes-ciudad.json`
+ * (obra real, terminada, recorte 4:5 seguro). `k` elige la foto, para que no sea la misma en
+ * todas las paginas.
+ */
+const BOLSA_BANDA = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/heroes-ciudad.json'), 'utf8')).bolsas['pool-builders'];
+function heroD(doc, ruta) {
+  const hero = doc.querySelector('section.hero-section');
+  const h1 = hero?.querySelector('h1');
+  const tx = hero?.querySelector('.text-block-4');
+  if (!h1) throw new Error(`${ruta}: el hero no trae titular`);
+  const nh = doc.createElement('section');
+  nh.setAttribute('class', 'mm-hero-d');
+  nh.innerHTML = `<div class="mm-hero-d-caja"><div class="mm-sec-cab"><h1 class="mm-h1">${h1.innerHTML}</h1>${tx ? `<div class="mm-sec-lado"><p class="mm-p">${tx.innerHTML}</p></div>` : ''}</div></div>`;
+  hero.replaceWith(nh);
+  return nh;
+}
+function bandaFinal(doc, ruta, k) {
+  const fin = doc.querySelector('section.cta-footer');
+  const [h2, p, a] = ['h2', '.text-block-3', 'a'].map((q) => fin?.querySelector(q));
+  if (!h2 || !p || !a) throw new Error(`${ruta}: la banda final no trae titular, parrafo y boton`);
+  const e = BANCO_POR_ID.get(BOLSA_BANDA[k % BOLSA_BANDA.length]);
+  if (!e || e.procedencia !== 'obra_real' || !e.alt) throw new Error(`${ruta}: la foto de la banda no es obra real con alt`);
+  const nc = doc.createElement('section');
+  nc.setAttribute('class', 'mm-cierre mm-cierre--sola mm-cierre--alta');
+  nc.innerHTML = '<div class="mm-cierre-caja"><div class="mm-cierre-txt">'
+    + `<h2 class="mm-h2">${h2.innerHTML.replace(/Design-Buil[dt]/g, '<span class="mm-nb">$&</span>')}</h2><p class="mm-p">${p.innerHTML}</p>`
+    + `<a class="mm-btn" href="${a.getAttribute('href')}">${a.innerHTML}</a>${BANDA_TELEFONOS}</div>`
+    + `<figure class="mm-cierre-medio"><img src="${e.src}" alt="${escAttr(e.alt)}" width="${e.ancho}" height="${e.alto}" sizes="(min-width: 992px) 42vw, 100vw" loading="lazy" decoding="async"></figure></div>`;
+  fin.replaceWith(nc);
+  return nc;
+}
+
+/**
+ * ASTRO-4 lote C · LAS TRES LEGALES (`/articles/*`; lamina «Legal»). El titular sale del cuerpo y
+ * abre la pagina en el hero D; el cuerpo pasa a la columna de lectura del articulo (`.mm-prosa`),
+ * sin tarjeta al lado; y la banda final, a la del sistema. El texto y su orden no cambian.
+ * `check-encabezados.mjs` deja de esperar el `h1` dentro del cuerpo.
+ */
+function legalStitch(doc, ruta) {
+  if (!ruta.startsWith('/articles/')) return;
+  const sec = doc.querySelector('section.article-body');
+  const rt = sec?.querySelector('.w-richtext');
+  const h1 = rt?.querySelector('h1');
+  if (!h1) throw new Error(`${ruta}: la pagina legal no trae su titular dentro del cuerpo`);
+  const titulo = h1.innerHTML;
+  h1.remove();
+  const ns = doc.createElement('section');
+  ns.setAttribute('class', 'mm-lect mm-lect--sola');
+  // Con el titular fuera, los apartados (`h3` en el origen, colgados del `h1` del cuerpo) pasan a
+  // `h2`: es su nivel de verdad y `check:encabezados` lo exige.
+  ns.innerHTML = `<div class="mm-prosa mm-prosa--legal">${rt.innerHTML.replace(/<(\/?)h3\b/g, '<$1h2')}</div>`;
+  const nh = doc.createElement('section');
+  nh.setAttribute('class', 'mm-hero-d');
+  nh.innerHTML = `<div class="mm-hero-d-caja"><div class="mm-sec-cab"><h1 class="mm-h1">${titulo}</h1></div></div>`;
+  sec.replaceWith(ns);
+  ns.parentNode.insertBefore(nh, ns);
+  bandaFinal(doc, ruta, 6 + ['accessibility', 'privacy-policy', 'terms-conditions'].indexOf(ruta.split('/').pop()));
+}
+
 const esProyecto = (ruta) => ruta.startsWith('/project/');
 function proyectoStitch(doc, ruta) {
   if (!esProyecto(ruta)) return;
@@ -2393,6 +2460,7 @@ for (const [ruta] of RUTAS) {
   proyectoStitch(doc, ruta);
   presupuestoStitch(doc, ruta);
   contactoStitch(doc, ruta);
+  legalStitch(doc, ruta);
   if (!esCondado(ruta)) {
     mosaicoDeObra(doc, ruta);
     listasDePlano(doc, ruta);

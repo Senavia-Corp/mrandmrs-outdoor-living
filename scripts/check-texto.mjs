@@ -3851,7 +3851,22 @@ function contactoTexto(lineas) {
   return [...out.slice(0, zi), ...Rv, ...Zv, ...FINv, ...faltas.map((f) => `⟦FALTA: ${f}⟧`)];
 }
 
+/**
+ * ASTRO-4 lote C · LA BANDA FINAL con los dos telefonos (T-56), en las paginas que solo ganan eso:
+ * titular, parrafo y boton son los de la referencia, y detras entran los dos telefonos. Se exige.
+ */
+function bandaConTelefonos(lineas) {
+  const out = [...lineas];
+  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const b = out.findIndex((l, x) => l.startsWith(CIERRE_CIUDAD) && out[x + 1] === 'Get A Free Estimate');
+  if (b >= 0 && tels.every((l, k) => out[b + 2 + k] === l)) { out.splice(b + 2, tels.length); return out; }
+  return [...out, '⟦FALTA: los dos telefonos de la banda final (T-56), detras de su boton⟧'];
+}
+/** Las rutas del lote C que solo cambian en eso (hero y cuerpo conservan sus lineas y su orden). */
+const SOLO_BANDA = (ruta) => ruta.startsWith('/articles/');
+
 function listasStitch(ruta, lineas) {
+  if (SOLO_BANDA(ruta)) return bandaConTelefonos(lineas);
   if (ruta === '/contact-us') return contactoTexto(lineas);
   if (ruta === '/') return homeTexto(lineas);
   if (ruta === '/request-estimated') return presupuestoTexto(lineas);

@@ -1165,3 +1165,9 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 }
 @media (min-width: 1200px) { .mm-contacto { --mm-canal: var(--mm-e-64); } }
 
+/* ── LEGALES (ASTRO-4 lote C; lamina «Legal») ── la columna de lectura sola, sin tarjeta, y sus
+   apartados a 22 px, que son muchos y cortos. */
+.mm-lect--sola { padding-top: var(--mm-e-16); }
+.mm-prosa--legal h2 { margin-top: var(--mm-e-40); font-size: 22px; }
+@media (min-width: 992px) { .mm-lect--sola { display: block; padding-top: var(--mm-e-16); } }
+
