@@ -3119,7 +3119,6 @@
       "/gallery",
       "/gallery/decks",
       "/services/deck-builders",
-      "megamenu",
       "/",
       "/where-we-serve/north-florida",
       "/where-we-serve/south-florida",
@@ -3130,8 +3129,7 @@
     "publicada_como": [
       "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-heroe.avif",
       "/images/obra/og/custom-deck-builders-in-north-south-florida.jpg",
-      "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-full.avif",
-      "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-menu.avif"
+      "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-full.avif"
     ]
   },
   {
@@ -6265,10 +6263,14 @@
     "usada_en": [
       "/blogs/is-a-motorized-louvered-roof-worth-it-in-florida",
       "/gallery",
-      "/gallery/louvered-roofs"
+      "/gallery/louvered-roofs",
+      "megamenu"
     ],
     "origen": "EQUINOX LOUVERED ROOF/14c22f1d-0b8a-4056-a50d-e55eba61613d 2.jpg",
-    "sha256": "00313d1d57aa16f871a99cde9d1ee8c8892270ee2e9980de422e9e29a2ee5135"
+    "sha256": "00313d1d57aa16f871a99cde9d1ee8c8892270ee2e9980de422e9e29a2ee5135",
+    "publicada_como": [
+      "/images/obra/obra-026/louvered-roof-white-blades-open-underside-detail-florida-menu.avif"
+    ]
   },
   {
     "id": "bi-0167",
@@ -8172,10 +8174,14 @@
       "/blogs/how-much-does-a-motorized-louvered-roof-cost",
       "/gallery",
       "/gallery/louvered-roofs",
-      "/services/soffit-led-lighting"
+      "/services/soffit-led-lighting",
+      "megamenu"
     ],
     "origen": "EQUINOX LOUVERED ROOF/IMG_0046.JPG",
-    "sha256": "32079cc00ad7d3e2d972ae2116a4b5c588dd006b63cce74ad7d81bf0a09cd418"
+    "sha256": "32079cc00ad7d3e2d972ae2116a4b5c588dd006b63cce74ad7d81bf0a09cd418",
+    "publicada_como": [
+      "/images/obra/obra-033/louvered-roof-recessed-lights-night-patio-florida-menu.avif"
+    ]
   },
   {
     "id": "bi-0218",
@@ -8887,7 +8893,6 @@
       "/gallery/louvered-roofs",
       "/services/louvered-roofs",
       "/services/outdoor-furniture",
-      "megamenu",
       "/",
       "/where-we-serve/north-florida",
       "/where-we-serve/south-florida"
@@ -8897,8 +8902,7 @@
     "publicada_como": [
       "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-heroe.avif",
       "/images/obra/og/motorized-louvered-roof-systems-in-north-south-florida.jpg",
-      "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-full.avif",
-      "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-menu.avif"
+      "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-full.avif"
     ]
   },
   {
@@ -11039,13 +11043,17 @@
       "pavimento algo quemado"
     ],
     "usada_en": [
+      "megamenu",
       "/services/landscaping/gainesville-fl",
       "/services/landscaping/ocala-fl",
       "/services/landscaping/palatka-fl",
       "/services/landscaping/fort-lauderdale-fl"
     ],
     "origen": "LANDSCAPING/20140516_120259.jpg",
-    "sha256": "5825a7a5a60be548cba9eed7c7eb706290ee1eabda617a8bfe77f5b534509005"
+    "sha256": "5825a7a5a60be548cba9eed7c7eb706290ee1eabda617a8bfe77f5b534509005",
+    "publicada_como": [
+      "/images/obra/obra-038/landscaping-curved-walkway-caladium-border-path-lights-florida-menu.avif"
+    ]
   },
   {
     "id": "bi-0303",
@@ -11247,7 +11255,6 @@
       "/gallery",
       "/gallery/landscaping",
       "/services/landscaping",
-      "megamenu",
       "/",
       "/where-we-serve/north-florida",
       "/where-we-serve/south-florida"
@@ -11257,8 +11264,7 @@
     "publicada_como": [
       "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-heroe.avif",
       "/images/obra/og/professional-landscaping-services-in-north-south-florida.jpg",
-      "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-full.avif",
-      "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-menu.avif"
+      "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-full.avif"
     ]
   },
   {
@@ -11718,10 +11724,14 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/decks"
+      "/gallery/decks",
+      "megamenu"
     ],
     "origen": "LANDSCAPING/20250414_132113.jpg",
-    "sha256": "57850ce907e9c5684a9f6b9e36d367a9ed7172ea06135a5c5d4cb819b84c9cb7"
+    "sha256": "57850ce907e9c5684a9f6b9e36d367a9ed7172ea06135a5c5d4cb819b84c9cb7",
+    "publicada_como": [
+      "/images/obra/obra-042/wood-deck-lounge-platform-artificial-turf-beachfront-florida-menu.avif"
+    ]
   },
   {
     "id": "bi-0319",
@@ -18469,7 +18479,6 @@
       "/gallery",
       "/gallery/pool-remodeling",
       "/services/pool-remodeling",
-      "megamenu",
       "/",
       "/where-we-serve/north-florida",
       "/where-we-serve/south-florida"
@@ -18479,8 +18488,7 @@
     "publicada_como": [
       "/images/obra/obra-048/pool-remodeling-travertine-deck-glass-tile-completed.avif",
       "/images/obra/og/pool-remodeling-renovation-florida.jpg",
-      "/images/obra/obra-048/pool-remodeling-travertine-deck-rock-landscaping-florida-full.avif",
-      "/images/obra/obra-048/pool-remodeling-travertine-deck-rock-landscaping-florida-menu.avif"
+      "/images/obra/obra-048/pool-remodeling-travertine-deck-rock-landscaping-florida-full.avif"
     ]
   },
   {
@@ -21833,6 +21841,7 @@
       "clorador flotante sobre el murete"
     ],
     "usada_en": [
+      "megamenu",
       "/services/pool-remodeling/gainesville-fl",
       "/services/pool-remodeling/ocala-fl",
       "/services/pool-remodeling/palatka-fl",
@@ -21850,7 +21859,10 @@
       "/services/pool-remodeling/delray-beach-fl"
     ],
     "origen": "NEW JOBS CONSTRUCTION/FOTOS DE TODO/67242095369__44ECCE34-586D-4739-AD4E-0AD7585E2A8F.JPEG",
-    "sha256": "338d4bab63c2f30219fbf190135cbf9b1717a7ee58bda3222e126de658f4cf84"
+    "sha256": "338d4bab63c2f30219fbf190135cbf9b1717a7ee58bda3222e126de658f4cf84",
+    "publicada_como": [
+      "/images/obra/obra-051/pool-remodeling-travertine-deck-blue-mosaic-tile-florida-menu.avif"
+    ]
   },
   {
     "id": "bi-0615",
@@ -23838,12 +23850,12 @@
     ],
     "defectos": [],
     "usada_en": [
+      "/",
       "/blogs/dark-pool-finishes-in-florida",
       "/services/pool-builders",
-      "megamenu",
-      "/",
       "/where-we-serve/north-florida",
-      "/where-we-serve/south-florida"
+      "/where-we-serve/south-florida",
+      "megamenu"
     ],
     "origen": "NEW JOBS CONSTRUCTION/Fort Lauderdale Pool/IMG_2374.JPEG",
     "sha256": "219dcf8a6205180f23f0d1f4e35b6d02ef6b47fffc8d718e583a0e96e4643c88",
@@ -28016,6 +28028,7 @@
     "usada_en": [
       "/gallery",
       "/gallery/outdoor-kitchens",
+      "megamenu",
       "/services/outdoor-kitchens/gainesville-fl",
       "/services/outdoor-kitchens/ocala-fl",
       "/services/outdoor-kitchens/palatka-fl",
@@ -28028,7 +28041,10 @@
       "/services/outdoor-kitchens/manalapan-fl"
     ],
     "origen": "OUTDOOR KICTCHEN/IMG_0049.jpg",
-    "sha256": "65d00b2e24e92fe83f7bdbb4091cc4c564d4b53e33f974d3d819d84bdf7ea296"
+    "sha256": "65d00b2e24e92fe83f7bdbb4091cc4c564d4b53e33f974d3d819d84bdf7ea296",
+    "publicada_como": [
+      "/images/obra/obra-071/outdoor-kitchen-white-stacked-stone-lake-florida-menu.avif"
+    ]
   },
   {
     "id": "bi-0772",
@@ -28997,7 +29013,6 @@
       "/gallery",
       "/gallery/outdoor-kitchens",
       "/services/outdoor-kitchens",
-      "megamenu",
       "/",
       "/where-we-serve/north-florida",
       "/where-we-serve/south-florida"
@@ -29007,8 +29022,7 @@
     "publicada_como": [
       "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-heroe.avif",
       "/images/obra/og/custom-outdoor-kitchens-for-north-south-florida-homes.jpg",
-      "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-full.avif",
-      "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-menu.avif"
+      "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-full.avif"
     ]
   },
   {
@@ -30447,7 +30461,6 @@
       "/gallery",
       "/gallery/aluminum-pergolas",
       "/services/soffit-led-lighting",
-      "megamenu",
       "/",
       "/where-we-serve/north-florida",
       "/where-we-serve/south-florida"
@@ -30457,8 +30470,7 @@
     "publicada_como": [
       "/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-heroe.avif",
       "/images/obra/og/smart-soffit-led-lighting-installation-in-north-south-florida.jpg",
-      "/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-full.avif",
-      "/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-menu.avif"
+      "/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-full.avif"
     ]
   },
   {
@@ -32204,7 +32216,6 @@
     "usada_en": [
       "/gallery",
       "/services/pergola-builders",
-      "megamenu",
       "/",
       "/where-we-serve/north-florida",
       "/where-we-serve/south-florida",
@@ -32215,7 +32226,6 @@
     "publicada_como": [
       "/images/images/pergolas-8/custom-pergola-patio-cover-builders-florida-08.jpg",
       "/images/residentials/custom-aluminum-pergola-builders-in-north-south-florida/custom-wood-pergola-florida.avif",
-      "/images/obra/obra-079/pergola-outdoor-kitchen-stacked-stone-u-shape-florida-menu.avif",
       "/images/obra/obra-079/pergola-outdoor-kitchen-stacked-stone-u-shape-florida-full.avif"
     ],
     "adjudicada": "Sebastian, 3-oct-2026: pide usarla como foto de Aluminum Pergolas (obra propia)"
@@ -33560,7 +33570,6 @@
       "/gallery",
       "/gallery/aluminum-pergolas",
       "/services/outdoor-furniture",
-      "megamenu",
       "/",
       "/where-we-serve/north-florida",
       "/where-we-serve/south-florida"
@@ -33570,8 +33579,7 @@
     "publicada_como": [
       "/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-heroe.avif",
       "/images/obra/og/premium-outdoor-furniture-for-north-south-florida-homes.jpg",
-      "/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-full.avif",
-      "/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-menu.avif"
+      "/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-full.avif"
     ]
   },
   {
@@ -40492,7 +40500,6 @@
     "defectos": [],
     "usada_en": [
       "/services/steel-buildings-pole-barns",
-      "megamenu",
       "/",
       "/where-we-serve/north-florida",
       "/where-we-serve/south-florida"
@@ -40502,8 +40509,7 @@
     "publicada_como": [
       "/images/obra/suelta/pole-barn-narrow-open-shelter-new-wood-posts-florida-heroe.avif",
       "/images/obra/og/steel-building-pole-barn-construction-in-north-south-florida.jpg",
-      "/images/obra/suelta/pole-barn-narrow-open-shelter-new-wood-posts-florida-full.avif",
-      "/images/obra/suelta/pole-barn-narrow-open-shelter-new-wood-posts-florida-menu.avif"
+      "/images/obra/suelta/pole-barn-narrow-open-shelter-new-wood-posts-florida-full.avif"
     ]
   },
   {
@@ -43182,5 +43188,128 @@
     "usada_en": [],
     "origen": "POLE BARN/tack-room-in-a-barn-horse-saddles-and-harnesses-antique-saddles-the-FMMCX3.jpg",
     "sha256": "ef6d3d6804d10b5cc2aa220dcc8be4aaa5c03db649c74d72b9c4b561db3bd618"
+  },
+  {
+    "id": "bi-1270",
+    "src": "/images/banco/pergolas/aluminum-pergola-white-slatted-privacy-wall-bar-stools-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1067,
+    "alt": "White aluminum pergola with a slatted privacy wall and a row of white bar stools on a paver patio.",
+    "descripcion": "Pérgola de aluminio blanca exenta con pared de lamas horizontales y fila de taburetes altos blancos; césped en primer plano y cielo cubierto claro. Foto de sesión profesional.",
+    "tags": [
+      "pergola",
+      "aluminum",
+      "privacy wall",
+      "bar stools",
+      "white"
+    ],
+    "espacio_texto": "ninguno",
+    "recortes_seguros": [
+      "16:9",
+      "3:2",
+      "4:5"
+    ],
+    "defectos": [],
+    "usada_en": [
+      "megamenu"
+    ],
+    "origen": "menu-2026-10-13/Pictures-01.jpg",
+    "sha256": "1ca5dc95a6b2a43fce7db24cee7bdc45ae78568b2119243450c3160caa6361dd",
+    "publicada_como": [
+      "/images/obra/suelta/aluminum-pergola-white-slatted-privacy-wall-bar-stools-florida-menu.avif"
+    ]
+  },
+  {
+    "id": "bi-1271",
+    "src": "/images/banco/rooms/patio-screen-room-dark-frame-insulated-roof-corner-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "rooms"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1067,
+    "alt": "Dark-framed patio screen room under an insulated roof, with a dining set seen through the mesh.",
+    "descripcion": "Esquina de un screen room de perfil oscuro bajo techo aislado, con comedor dentro visto a través de la malla; arriate con canto rodado y cielo azul. Foto de sesión profesional.",
+    "tags": [
+      "screen room",
+      "insulated roof",
+      "dark frame",
+      "mesh",
+      "dining set"
+    ],
+    "espacio_texto": "ninguno",
+    "recortes_seguros": [
+      "16:9",
+      "3:2",
+      "4:5"
+    ],
+    "defectos": [],
+    "usada_en": [
+      "megamenu"
+    ],
+    "origen": "menu-2026-10-13/patio-screen-rooms-alt--Pictures-15.jpg",
+    "sha256": "0ac15af6638770ef1290bef58b0fa18b122043d6adcd8135c7e5e5ad1dbbc7bd",
+    "publicada_como": [
+      "/images/obra/suelta/patio-screen-room-dark-frame-insulated-roof-corner-florida-menu.avif"
+    ]
+  },
+  {
+    "id": "bi-1272",
+    "src": "/images/banco/screens/retractable-screens-motorized-dark-mesh-lanai-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "screens"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1067,
+    "alt": "Motorized retractable screens half lowered on a covered patio, with wicker seating and palms beyond.",
+    "descripcion": "Desde dentro del porche: pantallas enrollables motorizadas de malla oscura a media altura entre montantes, con mesa y sofás de mimbre en primer plano y palmeras al fondo. Foto de sesión profesional.",
+    "tags": [
+      "retractable screens",
+      "motorized",
+      "mesh",
+      "lanai",
+      "wicker seating"
+    ],
+    "espacio_texto": "ninguno",
+    "recortes_seguros": [
+      "16:9",
+      "3:2",
+      "4:5"
+    ],
+    "defectos": [],
+    "usada_en": [
+      "megamenu"
+    ],
+    "origen": "menu-2026-10-13/retractable-screens--Pictures-07.jpg",
+    "sha256": "79581a32ba7cd626c935e14ebb8805d5522ea684e91cd598129910ea5cef42e2",
+    "publicada_como": [
+      "/images/obra/suelta/retractable-screens-motorized-dark-mesh-lanai-florida-menu.avif"
+    ]
   }
 ]

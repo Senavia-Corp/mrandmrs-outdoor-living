@@ -34,7 +34,7 @@
    "href": "/services/pool-screen-enclosures",
    "titulo": "Pool Screen Enclosures",
    "frase": "Custom pool screen enclosures designed for comfort, protection, and airflow.",
-   "foto": null
+   "foto": "enclosures"
   },
   {
    "nombre": "Outdoor Kitchens",
@@ -48,14 +48,14 @@
    "href": "/services/retractable-screens",
    "titulo": "Retractable Screen Systems",
    "frase": "Retractable screens providing shade, privacy, and insect protection.",
-   "foto": null
+   "foto": "screens"
   },
   {
    "nombre": "Patio Screen Rooms",
    "href": "/services/patio-screen-rooms",
    "titulo": "Patio Screen Rooms",
    "frase": "Screened patio rooms designed for comfort, airflow, and outdoor enjoyment.",
-   "foto": null
+   "foto": "rooms"
   },
   {
    "nombre": "Custom Decks",
@@ -83,7 +83,7 @@
    "href": "/services/irrigation-systems",
    "titulo": "Automated Irrigation Systems",
    "frase": "Automated irrigation systems for efficient water management and healthy lawns.",
-   "foto": null
+   "foto": "irrigation"
   },
   {
    "nombre": "Pole Barn & Steel Buildings",
