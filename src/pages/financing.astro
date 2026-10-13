@@ -21,7 +21,7 @@
  * Es ademas la trampa de AMS que documenta `Base.astro:15-20`.
  *
  * PIEZAS (ASTRO-4 lote C): todas del sistema —hero D, proceso numerado, ficha de obra, resenas en
- * lista, FAQ en `<details>` y banda de cierre—; lo unico propio son las dos secciones `.mm-fin`
+ * lista, FAQ en `<details>` y banda de cierre—; lo unico propio son las dos secciones `.mm-franja`
  * de `sistema.css`. Las fotos de los seis servicios son obra real del registro de galeria.
  *
  * NI UNA CIFRA FINANCIERA, por decision de Sebastian del 2-sep-2026: ni APR, ni plazos, ni
@@ -108,7 +108,7 @@ const SERVICIOS = [
     foto('/images/images/motorized-louvered-roof-8/motorized-louvered-roof-installers-florida-08.jpg', 1250, 682, 'Freestanding louvered roof with white louvers over a paver patio')],
 ];
 
-// A que ancho se pinta la foto en `.mm-fin-lista`: tres columnas desde 992, dos desde 768, una por debajo.
+// A que ancho se pinta la foto en `.mm-franja-lista`: tres columnas desde 992, dos desde 768, una por debajo.
 const TAMANOS_FOTO = '(min-width: 992px) 33vw, (min-width: 768px) 50vw, 100vw';
 
 /** El FAQ. Ninguna respuesta menciona una cifra, un plazo ni un tiempo de aprobacion. */
@@ -206,12 +206,12 @@ const SEO = {
     </ol>
   </section>
 
-  <section class="mm-fin">
+  <section class="mm-franja">
     <div class="mm-sec-cab">
       <h2 class="mm-h2">What you can finance</h2>
       <div class="mm-sec-lado"><p class="mm-p">Anything we build, from a single structure to a full outdoor living project.</p></div>
     </div>
-    <ul class="mm-fin-lista" role="list">
+    <ul class="mm-franja-lista" role="list">
       {SERVICIOS.map(([nombre, texto, href, f]) => (
         <li>
           <a class="mm-ficha mm-ficha--indice" href={href}>
@@ -227,21 +227,21 @@ const SEO = {
     </ul>
   </section>
 
-  <section class="mm-fin mm-fin--navy">
+  <section class="mm-franja mm-franja--navy">
     <div class="mm-sec-cab">
       <h2 class="mm-h2">Why it matters who builds it</h2>
       <div class="mm-sec-lado"><p class="mm-p">Financing pays for the project. It does not protect it. That part is on the contractor you hire.</p></div>
     </div>
-    <ul class="mm-fin-lista" role="list">
-      <li class="mm-fin-item">
+    <ul class="mm-franja-lista mm-franja-lista--filas" role="list">
+      <li class="mm-franja-item">
         <h3 class="mm-conf-t">Licensed and insured</h3>
         <p class="mm-conf-p">We are a licensed Florida contractor. Your project is pulled under our license, with the insurance that goes with it.</p>
       </li>
-      <li class="mm-fin-item">
+      <li class="mm-franja-item">
         <h3 class="mm-conf-t">Engineered and permitted</h3>
         <p class="mm-conf-p">Structures are engineered and permitted for Florida wind and soil conditions before anything gets built.</p>
       </li>
-      <li class="mm-fin-item">
+      <li class="mm-franja-item">
         <h3 class="mm-conf-t">One contract, one point of contact</h3>
         <p class="mm-conf-p">Design, permitting, and construction run through us. You are not coordinating separate trades against a payment schedule.</p>
       </li>

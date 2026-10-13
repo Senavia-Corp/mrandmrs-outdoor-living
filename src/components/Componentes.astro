@@ -302,7 +302,7 @@ const SLIDERS = JSON.stringify(
           foto.alt = f.alt; foto.style.objectPosition = f.style.objectPosition;
         }
         pie.dataset.n = `${dos(k + 1)} / ${dos(pasos.length)}`;
-        pie.dataset.t = pasos[k].querySelector('h3')?.textContent ?? '';
+        pie.dataset.t = pasos[k].querySelector('.mm-paso-t')?.textContent ?? '';   // h3 en la ficha, h2 en /about
       };
       const obs = new IntersectionObserver((es) => {
         for (const e of es) if (e.isIntersecting) activa(pasos.indexOf(e.target));

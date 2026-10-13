@@ -3465,7 +3465,7 @@ const rotulosT69 = new Map();
 function sinMayusculasDeCss(ruta, esperado, hay) {
   // Las rutas ya migradas a las piezas nuevas: las 141 de servicio y, desde ASTRO-4, las 15 de
   // proyecto y los 47 articulos (las cabeceras de sus tablas).
-  if (!/^\/(services|project|blogs)\//.test(ruta) && !['/', '/request-estimated', '/contact-us', '/videos', '/financing'].includes(ruta)) return esperado;
+  if (!/^\/(services|project|blogs)\//.test(ruta) && !['/', '/request-estimated', '/contact-us', '/videos', '/financing', '/about'].includes(ruta)) return esperado;
   const medidas = hay.split('\n');
   const esperadas = esperado.split('\n');
   /* POR POSICION cuando las dos listas miden lo mismo, que es el caso de una ruta en verde: la
@@ -3998,12 +3998,49 @@ function financiacionTexto(lineas) {
   return [...out, ...faltas.map((x) => `⟦FALTA: ${x}⟧`)];
 }
 
+/**
+ * `/about` (T-97). Sobre LO MEDIDO. Titulares, razones, mision, vision, valores, pasos y FAQ
+ * conservan sus lineas y su orden. Lo que entra se comprueba entero y en su sitio, y lo que cambia
+ * de orden —las zonas, norte delante y cada una con su telefono— se devuelve a la forma de siempre:
+ *   · hero: los dos telefonos detras del parrafo;
+ *   · «Why … Choose», «Meet Rob & Val»: la accion de la pagina detras de su parrafo;
+ *   · gestion de obra: la accion y los dos telefonos delante del primer rotulo;
+ *   · FAQ: la tarjeta de accion (boton y telefonos) detras de la ultima pregunta;
+ *   · banda final: sus dos telefonos (T-56).
+ */
+function aboutTexto(lineas) {
+  let out = [...lineas];
+  const faltas = [];
+  const GFE = 'Get A Free Estimate';
+  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const quita = (desde, que, nombre) => {
+    if (desde >= 0 && que.every((l, k) => out[desde + k] === l)) out.splice(desde, que.length);
+    else faltas.push(nombre);
+  };
+  const tras = (prefijo) => { const x = out.findIndex((l) => l.startsWith(prefijo)); return x >= 0 ? x + 1 : -1; };
+  quita(tras('Mr & Mrs Outdoor Living is a family-owned company'), tels, 'los dos telefonos del hero, detras de su parrafo');
+  quita(tras('As a true one-stop shop'), [GFE], 'la accion en la cabecera de «Why … Choose»');
+  const pm = out.indexOf('PROJECT MANAGEMENT');
+  quita(pm >= 0 ? pm - 1 - tels.length : -1, [GFE, ...tels], 'la accion y los telefonos delante de la gestion de obra');
+  quita(tras('Rob and Val are a licensed'), [GFE], 'la accion en «Meet Rob & Val»');
+  quita(tras('Do You Design The Pool In 3D Before Construction?'), [GFE, ...tels], 'la tarjeta de accion del FAQ, detras de la ultima pregunta');
+  const zi = out.indexOf('WHERE WE SERVE');
+  const Z = zi >= 0 ? out.slice(zi, zi + 12) : [];
+  const tel = (z) => TELEFONOS.items.find((t) => t.zona === z).visible;
+  if (Z.length === 12 && Z[2] === 'North Florida' && Z[4] === 'NORTH FLORIDA' && Z[5] === tel('North Florida') && Z[7] === 'South Florida' && Z[9] === 'SOUTH FLORIDA' && Z[10] === tel('South Florida')) {
+    out.splice(zi, 12, 'Where We Serve', Z[1], Z[7], Z[8], Z[11], Z[2], Z[3], Z[6]);
+  } else faltas.push('las dos zonas con su telefono, norte delante');
+  out = bandaConTelefonos(out);
+  return [...out, ...faltas.map((x) => `⟦FALTA: ${x}⟧`)];
+}
+
 function listasStitch(ruta, lineas) {
   if (ruta === '/blogs-tips') return indiceBlogTexto(lineas);
   if (SOLO_BANDA(ruta)) return bandaConTelefonos(lineas);
   if (ruta === '/testimonials' || ruta === '/videos') return resenasEnPagina(ruta, lineas);
   if (ruta === '/industry-solutions') return industriasTexto(ruta, lineas);
   if (ruta === '/financing') return financiacionTexto(lineas);
+  if (ruta === '/about') return aboutTexto(lineas);
   if (ruta === '/contact-us') return contactoTexto(lineas);
   if (ruta === '/') return homeTexto(lineas);
   if (ruta === '/request-estimated') return presupuestoTexto(lineas);

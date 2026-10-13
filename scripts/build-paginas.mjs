@@ -1447,6 +1447,145 @@ function industriasStitch(doc, ruta) {
   bandaFinal(doc, ruta, 3);
 }
 
+/**
+ * «Where We Serve» (lamina «Zonas»): `section.location` del origen —dos tarjetas con foto de fondo—
+ * pasa a dos columnas de texto, norte delante, cada una con su telefono y su enlace, junto al mapa
+ * en linea. Es la misma pieza de la ficha y de `/contact-us`, para las paginas que no pasan por ahi.
+ */
+function zonasDeLocation(doc, ruta) {
+  const zon = doc.querySelector('section.location');
+  const [zh2, zlema] = ['.header-location h2', '.header-location p'].map((q) => zon?.querySelector(q));
+  const zonas = [...(zon?.querySelectorAll('.item-country') ?? [])].map((it) => ({ t: it.querySelector('h3'), p: it.querySelector('.block-info-country p'), a: it.querySelector('a') }));
+  if (!zh2 || !zlema || zonas.length !== 2 || zonas.some((z) => !z.t || !z.p || !z.a)) throw new Error(`${ruta}: «Where We Serve» no trae rotulo, lema y dos zonas con texto y enlace`);
+  const telDe = (z) => TELEFONOS.find((t) => t.zona === z.t.textContent.trim());
+  if (zonas.some((z) => !telDe(z))) throw new Error(`${ruta}: una zona de «Where We Serve» no tiene telefono`);
+  zonas.sort((x, y) => TELEFONOS.indexOf(telDe(x)) - TELEFONOS.indexOf(telDe(y)));
+  const nz = doc.createElement('section');
+  nz.setAttribute('class', 'mm-zonas');
+  nz.innerHTML = '<div class="mm-zonas-caja"><div class="mm-zonas-txt">'
+    + `<div class="mm-sec-tit"><h2 class="mm-etiqueta">${zh2.innerHTML}</h2><p class="mm-h2">${zlema.innerHTML.replace(/\b(Coverage)\b/, '<span class="mm-rot">$1</span>')}</p></div>`
+    + '<div class="mm-zonas-lista">' + zonas.map((z) => `<article class="mm-zona"><h3 class="mm-zona-t">${z.t.innerHTML}</h3><p>${z.p.innerHTML}</p>`
+      + `<div class="mm-datos"><a class="mm-dato" href="tel:${telDe(z).tel}"><span class="mm-dato-rot">${telDe(z).zona}</span><span class="mm-dato-val">${telDe(z).visible}</span></a></div>`
+      + `<a class="mm-flecha" href="${z.a.getAttribute('href')}">${z.a.innerHTML}${FLECHA}</a></article>`).join('') + '</div></div>'
+    + '<svg class="mm-mapa" viewBox="0 0 420 460" aria-hidden="true" focusable="false">'
+    + '<path d="M20 60 H250 L262 40 H330 L352 92 L372 150 L386 214 L392 280 L384 340 L360 392 L334 420 L318 404 L300 350 L270 300 L246 250 L226 196 L214 150 L196 118 L150 104 L96 110 L60 96 L20 92 Z" class="mm-plano-vaso"></path>'
+    + '<path d="M212 200 L392 236" class="mm-plano-cota" stroke-dasharray="6 6"></path>'
+    + '<circle cx="300" cy="130" r="5" class="mm-plano-punto"></circle><circle cx="348" cy="330" r="5" class="mm-plano-punto"></circle></svg></div>';
+  zon.replaceWith(nz);
+}
+
+/**
+ * ASTRO-4 lote C · `/about` (lamina «About»).
+ *
+ * QUE CAMBIA DE COMPOSICION. La pagina era un hero oscuro con los fundadores recortados, tarjetas
+ * con icono, tres filas alternas de foto y texto y dos tarjetas de zona con foto de fondo. Ahora:
+ *   · hero partido: titular, subtitulo, parrafo y los dos telefonos, y al lado la foto ENTERA de
+ *     los fundadores (la que estaba en «Meet Rob & Val»; sale el recorte con transparencia);
+ *   · «What Sets Us Apart»: las seis razones en rejilla de tres, sin iconos;
+ *   · «Why … Choose»: mision y vision a un lado, y los cuatro valores con su letra al otro;
+ *   · la gestion de obra, en tres pasos con la foto que acompana al paso que se lee (la pieza de
+ *     proceso de la ficha); los numeros los pinta el CSS, no son texto;
+ *   · «Meet Rob & Val», el unico bloque navy, solo texto: su foto abre la pagina;
+ *   · FAQ en `<details>`, con la foto que acompanaba a «What Sets Us Apart» y la tarjeta de accion;
+ *   · zonas con mapa en linea y banda final.
+ * Mismos textos y mismo orden, salvo las zonas (norte delante). Lo que entra —la accion de la
+ * pagina en tres cabeceras y en el FAQ, y los telefonos— lo declara `check-texto.mjs` (T-97).
+ */
+function aboutStitch(doc, ruta) {
+  if (ruta !== '/about') return;
+  const falta = (que) => { throw new Error(`${ruta}: ${que}`); };
+  const accion = doc.querySelector('section.cta-footer a') ?? falta('la banda final no trae boton');
+  const boton = (clase) => `<a class="mm-btn${clase ? ` ${clase}` : ''}" href="${accion.getAttribute('href')}">${accion.innerHTML}</a>`;
+  /* Las fotos de este cuerpo ya vienen canjeadas por `fotosPorRuta()`, con su src, su alt y sus
+   * medidas. Del estilo en linea se conserva el encuadre; la proporcion la pone la pieza. */
+  const fotoDe = (i, clase, sizes) => {
+    const pos = (i.getAttribute('style') ?? '').match(/object-position:[^;]+/);
+    if (!i.getAttribute('width') || !i.getAttribute('height')) falta(`${i.getAttribute('src')} no trae medidas`);
+    return `<img class="${clase}" src="${i.getAttribute('src')}" alt="${escAttr(i.getAttribute('alt') ?? '')}" width="${i.getAttribute('width')}" height="${i.getAttribute('height')}" sizes="${sizes}" loading="lazy" decoding="async"${pos ? ` style="${pos[0]}"` : ''}>`;
+  };
+
+  // 1 · hero
+  const hero = doc.querySelector('section.hero-about');
+  const [h1, h2, hp] = ['h1', 'h2', '.hero-about-text p'].map((q) => hero?.querySelector(q));
+  const fund = doc.querySelector('section.meet-us-section img');
+  if (!h1 || !h2 || !hp || !fund) falta('el hero no trae titular, subtitulo y parrafo, o falta la foto de los fundadores');
+  const fsrc = local(fund.getAttribute('src'));
+  const fd = DIM.get(fsrc) ?? falta(`${fsrc} no tiene medidas en el manifiesto`);
+  const nh = doc.createElement('section');
+  nh.setAttribute('class', 'mm-hero-a mm-hero-a--about');
+  nh.innerHTML = `<div class="mm-hero-a-txt"><h1 class="mm-h1">${h1.innerHTML}</h1><h2 class="mm-hero-a-sub">${h2.innerHTML}</h2><p class="mm-p">${hp.innerHTML}</p>${BANDA_TELEFONOS}</div>`
+    + `<figure class="mm-hero-a-medio"><img sizes="(min-width: 992px) 50vw, 100vw" src="${fsrc}" alt="${escAttr(fund.getAttribute('alt') ?? '')}" width="${fd.w}" height="${fd.h}" loading="eager" fetchpriority="high" decoding="async"></figure>`
+    + franjaDeLogos(doc);
+  hero.replaceWith(nh);
+  doc.querySelector('section.logos-section')?.remove();
+
+  // 2 · las seis razones
+  const ws = doc.querySelector('section.whatsetus-section');
+  const [wh2, wp, wimg] = ['.header-whatsetus h2', '.header-whatsetus p', 'img.image-left'].map((q) => ws?.querySelector(q));
+  const razones = [...(ws?.querySelectorAll('.wsua-component') ?? [])].map((c) => [c.querySelector('h3'), c.querySelector('p')]);
+  if (!wh2 || !wp || !wimg || razones.length !== 6 || razones.some((r) => r.some((n) => !n))) falta('«What Sets Us Apart» no trae cabecera, foto y seis razones');
+  const fotoFaq = fotoDe(wimg, 'mm-lam-foto', '(min-width: 992px) 42vw, 100vw');
+  const nw = doc.createElement('section');
+  nw.setAttribute('class', 'mm-franja mm-franja--blanca');
+  nw.innerHTML = cabeceraDeSeccion(wh2.innerHTML.replace(/\b(Apart)\b/, '<span class="mm-rot">$1</span>'), wp.innerHTML, null)
+    + '<ul class="mm-franja-lista mm-franja-lista--filas" role="list">' + razones.map(([h, p]) => `<li class="mm-franja-item"><h3 class="mm-conf-t">${h.innerHTML}</h3><p class="mm-conf-p">${p.innerHTML}</p></li>`).join('') + '</ul>';
+  ws.replaceWith(nw);
+
+  // 3 · mision, vision y valores
+  const wc = doc.querySelector('section.whychooseus-section');
+  const [ch2, cp, vh] = ['.header-title h2', '.header-title p', '.wrapper-vertical-text h2'].map((q) => wc?.querySelector(q));
+  const mv = [...(wc?.querySelectorAll('.block-info') ?? [])].map((b) => [b.querySelector('h2'), b.querySelector('p')]);
+  const valores = [...(wc?.querySelectorAll('.pool-card') ?? [])].map((c) => [c.querySelector('.letter'), c.querySelector('h3'), c.querySelector('p')]);
+  if (!ch2 || !cp || !vh || mv.length !== 2 || valores.length !== 4 || [...mv, ...valores].some((r) => r.some((n) => !n))) falta('«Why … Choose» no trae cabecera, mision, vision y cuatro valores');
+  const nc = doc.createElement('section');
+  nc.setAttribute('class', 'mm-franja mm-ab');
+  nc.innerHTML = `<div class="mm-sec-cab"><h2 class="mm-h2">${ch2.innerHTML.replace(/\b(Choose)\b/, '<span class="mm-rot">$1</span>')}</h2><div class="mm-sec-lado"><p class="mm-p">${cp.innerHTML}</p><div class="mm-sec-acc">${boton('mm-btn--navy')}</div></div></div>`
+    + '<div class="mm-ab-cuerpo"><div class="mm-ab-mv">' + mv.map(([h, p]) => `<div class="mm-ab-bloque"><h3 class="mm-conf-t">${h.innerHTML}</h3><p class="mm-conf-p">${p.innerHTML}</p></div>`).join('') + '</div>'
+    + `<div class="mm-ab-pool"><h3 class="mm-conf-t">${vh.innerHTML}</h3><ul class="mm-ab-valores" role="list">`
+    + valores.map(([l, h, p]) => `<li class="mm-ab-valor"><span class="mm-ab-letra">${l.innerHTML}</span><div><h4 class="mm-conf-t">${h.innerHTML}</h4><p class="mm-conf-p">${p.innerHTML}</p></div></li>`).join('') + '</ul></div></div>';
+  wc.replaceWith(nc);
+
+  // 4 · la gestion de obra, en tres pasos
+  const au = doc.querySelector('section.aboutus-section');
+  const pasos = [...(au?.querySelectorAll('.fullwrapper') ?? [])].map((w) => ({ rot: w.querySelector('h4'), t: w.querySelector('h2'), p: w.querySelector('p'), img: w.querySelector('img') }));
+  if (pasos.length !== 3 || pasos.some((x) => !x.rot || !x.t || !x.p || !x.img)) falta('el bloque de gestion de obra no trae sus tres filas con rotulo, titular, parrafo y foto');
+  const np = doc.createElement('section');
+  np.setAttribute('class', 'mm-proc mm-proc--about');
+  // La accion y los telefonos van en la columna de los pasos, encima del primero (lamina).
+  np.innerHTML = '<div class="mm-proc-cuerpo">'
+    + `<figure class="mm-lam-medio mm-proc-medio" data-mm-pasos-medio>${fotoDe(pasos[0].img, 'mm-lam-foto', '(min-width: 992px) 42vw, 100vw')}<div class="mm-lam-pie" aria-hidden="true" data-n="01 / 03" data-t="${escAttr(pasos[0].t.textContent.trim())}"></div></figure>`
+    + `<div class="mm-ab-pasos"><div class="mm-ab-acc">${boton('mm-btn--linea')}${BANDA_TELEFONOS}</div>`
+    + '<ol class="mm-pasos mm-pasos--auto" data-mm-pasos>' + pasos.map((x) => `<li class="mm-paso"><span class="mm-paso-n" aria-hidden="true"></span>${fotoDe(x.img, 'mm-paso-foto', '(min-width: 992px) 42vw, 100vw')}`
+      + `<span class="mm-etiqueta">${x.rot.innerHTML}</span><h2 class="mm-paso-t">${x.t.innerHTML}</h2><p>${x.p.innerHTML}</p></li>`).join('') + '</ol></div></div>';
+  au.replaceWith(np);
+
+  // 5 · los fundadores, en navy
+  const me = doc.querySelector('section.meet-us-section');
+  const [mh2, mp] = ['.block-info-team h2', '.block-info-team p'].map((q) => me?.querySelector(q));
+  if (!mh2 || !mp) falta('«Meet Rob & Val» no trae titular y parrafo');
+  const nm = doc.createElement('section');
+  nm.setAttribute('class', 'mm-franja mm-franja--navy');
+  nm.innerHTML = `<div class="mm-sec-cab"><h2 class="mm-h2">${mh2.innerHTML}</h2><div class="mm-sec-lado"><p class="mm-p">${mp.innerHTML}</p><div class="mm-sec-acc">${boton('mm-btn--linea-inv')}</div></div></div>`;
+  me.replaceWith(nm);
+
+  // 6 · FAQ
+  const faq = doc.querySelector('section.faq-section');
+  const fh2 = faq?.querySelector('.header-faq h2');
+  const preguntas = [...(faq?.querySelectorAll('.dropdown-faq') ?? [])].map((d) => ({ q: d.querySelector('h3.dropdown-text'), r: d.querySelector('.dropdown-list') }));
+  if (!fh2 || preguntas.length < 2 || preguntas.some((x) => !x.q || !x.r)) falta('la FAQ no trae titular y preguntas con respuesta');
+  for (const x of preguntas) for (const p of x.r.querySelectorAll('p.grey')) p.removeAttribute('class');
+  const nf = doc.createElement('section');
+  nf.setAttribute('class', 'mm-faq');
+  nf.innerHTML = `<div class="mm-sec-cab"><h2 class="mm-h2">${fh2.innerHTML.replace(/\b(Construction)\s*$/, '<span class="mm-rot">$1</span>')}</h2></div>`
+    + '<div class="mm-faq-cuerpo"><div class="mm-faq-lista">' + preguntas.map((x) => `<details class="mm-faq-item"><summary><h3>${x.q.innerHTML}</h3>${CHEVRON}</summary><div class="mm-faq-r">${x.r.innerHTML}</div></details>`).join('') + '</div>'
+    + `<div class="mm-faq-lado"><figure class="mm-lam-medio mm-faq-medio">${fotoFaq}</figure><div class="mm-faq-accion">${boton('')}${BANDA_TELEFONOS}</div></div></div>`;
+  faq.replaceWith(nf);
+
+  // 7 · zonas y banda
+  zonasDeLocation(doc, ruta);
+  bandaFinal(doc, ruta, 8);
+}
+
 /** ASTRO-4 lote C · `/brochures`: el hero D y la tipografia del sistema. El muro de catalogos, su
  *  filtro por categoria y sus 57 enlaces a PDF conservan el diseno propio que ya tenian (FOLLETOS). */
 function folletosStitch(doc, ruta) {
@@ -2648,6 +2787,7 @@ for (const [ruta] of RUTAS) {
   proyectosIndiceStitch(doc, ruta);
   folletosStitch(doc, ruta);
   industriasStitch(doc, ruta);
+  aboutStitch(doc, ruta);
   if (!esCondado(ruta)) {
     mosaicoDeObra(doc, ruta);
     listasDePlano(doc, ruta);

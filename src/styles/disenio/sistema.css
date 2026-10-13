@@ -1232,22 +1232,45 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 @media (min-width: 992px) { .mm-ind { padding-bottom: var(--mm-e-96); } }
 @media (min-width: 1200px) { .mm-ind { --mm-canal: var(--mm-e-64); } .mm-ind-lista { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--mm-e-24); } }
 
-/* ── `/financing` (ASTRO-4 lote C): dos secciones propias con piezas del sistema dentro. Lo
-   financiable, en fichas de obra sobre azul-50; «quien construye», el unico bloque navy. */
-.mm-fin { --mm-canal: var(--mm-e-24); display: flex; flex-direction: column; gap: var(--mm-e-24); padding: var(--mm-e-64) 0; background: var(--mm-azul-50); font-family: var(--mm-familia); color: var(--mm-tinta-texto); }
-.mm-fin-lista { box-sizing: border-box; width: 100%; max-width: calc(var(--mm-contenedor) + 2 * var(--mm-canal)); margin: 0 auto; padding: 0 var(--mm-canal); list-style: none; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--mm-e-40) var(--mm-e-32); }
-.mm-fin .mm-ficha-t { margin: 0; }
-.mm-fin--navy { background: var(--mm-navy); color: var(--mm-blanco); }
-.mm-fin--navy .mm-h2, .mm-fin--navy .mm-conf-t { color: var(--mm-blanco); }
-.mm-fin--navy .mm-p, .mm-fin--navy .mm-conf-p { color: var(--mm-tinta-suave-inversa); }
-.mm-fin--navy .mm-conf-p { font-size: 16px; line-height: 1.55; }
-.mm-fin--navy .mm-fin-lista { gap: 0; }
-.mm-fin-item { padding: var(--mm-e-20) 0; border-top: 1px solid var(--mm-borde-inverso); }
-@media (min-width: 768px) { .mm-fin { --mm-canal: var(--mm-e-32); gap: var(--mm-e-40); } .mm-fin-lista { grid-template-columns: repeat(2, minmax(0, 1fr)); } .mm-fin--navy .mm-fin-lista { grid-template-columns: minmax(0, 1fr); } }
+/* ── FRANJA (ASTRO-4 lote C; `/financing` y `/about`): una seccion con la cabecera del sistema y una
+   rejilla de una, dos y tres columnas. Sobre azul-50, blanco (`--blanca`) o navy (`--navy`). */
+.mm-franja { --mm-canal: var(--mm-e-24); display: flex; flex-direction: column; gap: var(--mm-e-24); padding: var(--mm-e-64) 0; background: var(--mm-azul-50); font-family: var(--mm-familia); color: var(--mm-tinta-texto); }
+.mm-franja--blanca { background: var(--mm-blanco); }
+.mm-franja--navy { background: var(--mm-navy); color: var(--mm-blanco); }
+.mm-franja--navy .mm-h2, .mm-franja--navy .mm-conf-t { color: var(--mm-blanco); }
+.mm-franja--navy .mm-p, .mm-franja--navy .mm-conf-p { color: var(--mm-tinta-suave-inversa); }
+.mm-franja-lista { box-sizing: border-box; width: 100%; max-width: calc(var(--mm-contenedor) + 2 * var(--mm-canal)); margin: 0 auto; padding: 0 var(--mm-canal); list-style: none; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--mm-e-40) var(--mm-e-32); }
+.mm-franja-lista--filas { gap: 0; }
+.mm-franja .mm-ficha-t { margin: 0; }
+.mm-franja .mm-conf-p { font-size: 16px; line-height: 1.55; }
+.mm-franja-item { padding: var(--mm-e-20) 0; border-top: 1px solid var(--mm-borde); }
+.mm-franja--navy .mm-franja-item { border-color: var(--mm-borde-inverso); }
+@media (min-width: 768px) { .mm-franja { --mm-canal: var(--mm-e-32); gap: var(--mm-e-40); } .mm-franja-lista { grid-template-columns: repeat(2, minmax(0, 1fr)); } .mm-franja-lista--filas { grid-template-columns: minmax(0, 1fr); } }
 @media (min-width: 992px) {
-  .mm-fin { padding: var(--mm-e-96) 0; }
-  .mm-fin-lista, .mm-fin--navy .mm-fin-lista { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .mm-fin-item { padding: 0 var(--mm-e-32); border-top: 0; border-left: 1px solid var(--mm-borde-inverso); }
-  .mm-fin-item:first-child { padding-left: 0; border-left: 0; }
+  .mm-franja { padding: var(--mm-e-96) 0; }
+  .mm-franja-lista, .mm-franja-lista--filas { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .mm-franja-lista--filas { row-gap: var(--mm-e-40); }
+  .mm-franja-item { padding: 0 var(--mm-e-32); border-top: 0; border-left: 1px solid var(--mm-borde); }
+  .mm-franja-item:nth-child(3n+1) { padding-left: 0; border-left: 0; }
 }
-@media (min-width: 1200px) { .mm-fin { --mm-canal: var(--mm-e-64); } }
+@media (min-width: 1200px) { .mm-franja { --mm-canal: var(--mm-e-64); } }
+
+/* ── `/about` (ASTRO-4 lote C, lamina «About»): mision y vision junto a los cuatro valores con su
+   letra, y los pasos numerados por CSS (el numero no es texto de la pagina). */
+/* La foto de los fundadores: el encuadre sube para que el recorte no les corte la cabeza. */
+.mm-hero-a--about .mm-hero-a-medio img { object-position: 50% 22%; }
+.mm-ab-cuerpo { box-sizing: border-box; width: 100%; max-width: calc(var(--mm-contenedor) + 2 * var(--mm-canal)); margin: 0 auto; padding: 0 var(--mm-canal); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--mm-e-40); }
+.mm-ab-bloque { padding: var(--mm-e-20) 0; border-top: 1px solid var(--mm-borde); }
+.mm-ab-bloque:first-child { border-top-color: var(--mm-navy); }
+.mm-ab-pool > .mm-conf-t { margin: 0; padding: var(--mm-e-20) 0 var(--mm-e-12); border-top: 1px solid var(--mm-navy); }
+.mm-ab-valores { list-style: none; margin: 0; padding: 0; }
+.mm-ab-valor { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: var(--mm-e-16); align-items: start; padding: var(--mm-e-16) 0; border-top: 1px solid var(--mm-borde); }
+.mm-ab-letra { font-size: 40px; line-height: 1; font-weight: 800; letter-spacing: -0.02em; color: var(--mm-navy); }
+.mm-pasos--auto { counter-reset: mm-paso; }
+.mm-pasos--auto .mm-paso { counter-increment: mm-paso; }
+.mm-pasos--auto .mm-paso-n::before { content: counter(mm-paso); }
+.mm-paso .mm-etiqueta { display: block; padding-top: var(--mm-e-12); }
+.mm-paso .mm-etiqueta + .mm-paso-t { padding-top: 0; }
+.mm-ab-acc { display: flex; flex-wrap: wrap; align-items: center; gap: var(--mm-e-16) var(--mm-e-32); margin: 0 var(--mm-canal) var(--mm-e-32); }
+.mm-ab-acc .mm-datos { border-top: 0; }
+@media (min-width: 992px) { .mm-ab-cuerpo { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); column-gap: var(--mm-e-64); } .mm-ab-acc { margin: 0 0 var(--mm-e-40); } }
