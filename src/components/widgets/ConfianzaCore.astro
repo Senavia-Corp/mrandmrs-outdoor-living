@@ -3,8 +3,14 @@
  * FRANJA DE CONFIANZA — R17-CORE, captacion de las fichas de `/services/`.
  *
  * Cuatro diferenciadores en una banda de datos (lamina «Confianza», ASTRO-2): rotulo,
- * regla y cuatro celdas de titular + linea, sin iconos. Entre el hero y la intro. Responde «¿por que
+ * regla y cuatro razones de titular + linea. Entre el hero y la intro. Responde «¿por que
  * vosotros?» ANTES de pedir datos, que es el orden en el que lo pregunta quien compra.
+ *
+ * LOS ICONOS (E8) VAN POR DATO Y DE CUATRO EN CUATRO. Cada razon trae su clave (`icono`) en el
+ * JSON y el dibujo es `src/assets/iconos-conf/<clave>.svg`: un fichero por clave, en linea y con
+ * `currentColor`. Una seccion pinta sus cuatro iconos o ninguno — una fila con un hueco se lee
+ * como rota —, asi que mientras a una clave le falte el dibujo, las secciones que la usan salen
+ * con la misma rejilla y sin tesela. Lo vigila `check:iconos-conf`.
  *
  * LOS CUATRO SON LOS TEMAS DE LOS RSA QUE LA PAGINA YA SOSTIENE, y solo esos. Contado sobre
  * el texto visible de la ruta: `3D` 6, `permit` 7, `licensed` 11, design-build en la tarjeta
@@ -30,16 +36,23 @@ import DATOS from '../../data/captacion-servicios.json';
  * produccion siempre manda `Astro.url.pathname`. */
 const ruta = (Astro.props.ruta ?? Astro.url.pathname).replace(/(.)\/$/, '$1');
 const d = DATOS[ruta]?.confianza;
+/* En linea no hace falta `xmlns`; son decorativos, el titulo ya dice lo mismo. */
+const DIBUJOS = Object.fromEntries(Object.entries(import.meta.glob('../../assets/iconos-conf/*.svg', { query: '?raw', import: 'default', eager: true }))
+  .map(([f, svg]) => [f.match(/([^/]+)\.svg$/)[1], svg.replace(' xmlns="http://www.w3.org/2000/svg"', ' aria-hidden="true" focusable="false"')]));
+const conIconos = !!d && d.tarjetas.every((t) => DIBUJOS[t.icono]);
+/* Un numero de licencia no se parte entre dos lineas y va en cifras tabulares. */
+const LICENCIA = /\b((?:CPC|SCC)\d{7,9})\b/;
 ---
 {d && (
   <section class="svc-confianza mm-conf" aria-labelledby="mm-conf-h">
     <div class="mm-conf-caja">
       <h2 id="mm-conf-h" class="mm-etiqueta">{d.rotulo}</h2>
-      <ul class="mm-conf-lista" role="list">
-        {d.tarjetas.map(({ titulo, texto }) => (
-          <li class="mm-conf-item">
+      <ul class:list={['mm-razones', { 'mm-razones--ico': conIconos }]} role="list">
+        {d.tarjetas.map(({ icono, titulo, texto }) => (
+          <li class="mm-razon">
+            {conIconos && <span class="mm-razon-ico" set:html={DIBUJOS[icono]} />}
             <h3 class="mm-conf-t">{titulo}</h3>
-            <p class="mm-conf-p">{texto}</p>
+            <p class="mm-conf-p">{texto.split(LICENCIA).map((t, i) => (i % 2 ? <span class="mm-conf-num">{t}</span> : t))}</p>
           </li>
         ))}
       </ul>

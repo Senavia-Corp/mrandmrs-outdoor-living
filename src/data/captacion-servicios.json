@@ -73,22 +73,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -321,22 +321,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida aluminum contractor",
           "texto": "SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered to wind load",
           "texto": "Every structure is engineered to local wind-load specifications."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
         }
@@ -544,22 +544,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Built for the Florida climate",
           "texto": "Composite that resists warping, fading and rot; pressure-treated wood sealed and stained."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "One team takes the design through permits, engineering and construction."
         }
@@ -767,22 +767,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Appliances made for outdoors",
           "texto": "Outdoor-rated grills, smokers and refrigeration, engineered into the layout with their utilities."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits, HOA and ARB handled",
           "texto": "We manage the full permitting process, including HOA and ARB submissions."
         }
@@ -975,22 +975,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered for Florida wind",
           "texto": "Reinforced extruded aluminum and marine-grade stainless hardware, with wind-load engineering documentation."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permitted and inspected",
           "texto": "Installed to local building codes, and the electrical additions are permitted too."
         }
@@ -1173,22 +1173,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Certified MaestroShield dealer",
           "texto": "Screens that deploy from compact overhead housings by remote or app."
         },
         {
-          "icono": "contrato",
+          "icono": null,
           "titulo": "Built for the Florida coast",
           "texto": "Powder-coated aluminum tracks and UV-stabilized mesh for sun, humidity and salt air."
         }
@@ -1308,22 +1308,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Aluminum frame, reinforced mesh",
           "texto": "Rust-resistant powder-coated frames built to Florida hurricane and wind-load codes."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "One team takes the design through permits, engineering and construction."
         }
@@ -1443,22 +1443,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered for Florida wind",
           "texto": "Powder-coated aluminum framing and reinforced mesh built to wind-load codes, HVHZ included."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "A permitted pool barrier",
           "texto": "A permitted enclosure meets Florida Building Code Chapter 45 barrier requirements."
         }
@@ -1582,22 +1582,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida certified pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Modern finishes and equipment",
           "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Brought up to current code",
           "texto": "VGB-compliant safety features, with the permits and inspections handled."
         }
@@ -1827,22 +1827,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Materials that survive the sun",
           "texto": "High-density polyethylene wicker that resists UV fading, moisture, cracking and mold."
         },
         {
-          "icono": "contrato",
+          "icono": null,
           "titulo": "Cushions that dry fast",
           "texto": "Solution-dyed acrylic engineered for UV fading, mildew and moisture resistance."
         }
@@ -1972,22 +1972,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Plants chosen for the site",
           "texto": "Salt-tolerant, wind-resistant species selected for coastal and inland Florida."
         },
         {
-          "icono": "contrato",
+          "icono": null,
           "titulo": "Drainage sorted first",
           "texto": "We improve soil drainage so the planting survives its first wet season."
         }
@@ -2170,22 +2170,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Controllers that watch the weather",
           "texto": "Smart controllers, sprinkler zones and drip lines sized for the planting they serve."
         },
         {
-          "icono": "contrato",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "The irrigation is planned with the landscape, not bolted on afterwards."
         }
@@ -2315,22 +2315,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Certified Gemstone Lights dealer",
           "texto": "Smart colour and brightness control from a permanently installed track."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Wired to code",
           "texto": "Professional installation for safety, warranty and code compliance."
         }
@@ -2528,22 +2528,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered past 180 mph",
           "texto": "Structures engineered to meet Florida building codes and withstand winds over 180 mph."
         },
         {
-          "icono": "contrato",
+          "icono": null,
           "titulo": "Built to outlast wood",
           "texto": "Steel resists hurricanes, moisture, mold and pests, with less long-term maintenance."
         }
@@ -2740,22 +2740,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida certified pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Modern finishes and equipment",
           "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Brought up to current code",
           "texto": "VGB-compliant safety features, with the permits and inspections handled."
         }
@@ -2850,22 +2850,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida certified pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Modern finishes and equipment",
           "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Brought up to current code",
           "texto": "VGB-compliant safety features, with the permits and inspections handled."
         }
@@ -2968,22 +2968,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida certified pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Modern finishes and equipment",
           "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Brought up to current code",
           "texto": "VGB-compliant safety features, with the permits and inspections handled."
         }
@@ -3082,22 +3082,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida certified pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Modern finishes and equipment",
           "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Brought up to current code",
           "texto": "VGB-compliant safety features, with the permits and inspections handled."
         }
@@ -3192,22 +3192,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida certified pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Modern finishes and equipment",
           "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Brought up to current code",
           "texto": "VGB-compliant safety features, with the permits and inspections handled."
         }
@@ -3302,22 +3302,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida certified pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Modern finishes and equipment",
           "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Brought up to current code",
           "texto": "VGB-compliant safety features, with the permits and inspections handled."
         }
@@ -3420,22 +3420,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida certified pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Modern finishes and equipment",
           "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Brought up to current code",
           "texto": "VGB-compliant safety features, with the permits and inspections handled."
         }
@@ -3530,22 +3530,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida certified pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Modern finishes and equipment",
           "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Brought up to current code",
           "texto": "VGB-compliant safety features, with the permits and inspections handled."
         }
@@ -3644,22 +3644,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida certified pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Modern finishes and equipment",
           "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Brought up to current code",
           "texto": "VGB-compliant safety features, with the permits and inspections handled."
         }
@@ -3754,22 +3754,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida certified pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Modern finishes and equipment",
           "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Brought up to current code",
           "texto": "VGB-compliant safety features, with the permits and inspections handled."
         }
@@ -3868,22 +3868,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida certified pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Modern finishes and equipment",
           "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Brought up to current code",
           "texto": "VGB-compliant safety features, with the permits and inspections handled."
         }
@@ -3982,22 +3982,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida certified pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Modern finishes and equipment",
           "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Brought up to current code",
           "texto": "VGB-compliant safety features, with the permits and inspections handled."
         }
@@ -4092,22 +4092,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida certified pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Modern finishes and equipment",
           "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Brought up to current code",
           "texto": "VGB-compliant safety features, with the permits and inspections handled."
         }
@@ -4206,22 +4206,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida certified pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Modern finishes and equipment",
           "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Brought up to current code",
           "texto": "VGB-compliant safety features, with the permits and inspections handled."
         }
@@ -4320,22 +4320,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida certified pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Modern finishes and equipment",
           "texto": "Plaster, quartz and pebble finishes, and energy-efficient variable-speed equipment."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Brought up to current code",
           "texto": "VGB-compliant safety features, with the permits and inspections handled."
         }
@@ -4434,22 +4434,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida aluminum contractor",
           "texto": "SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered to wind load",
           "texto": "Every structure is engineered to local wind-load specifications."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
         }
@@ -4543,22 +4543,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida aluminum contractor",
           "texto": "SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered to wind load",
           "texto": "Every structure is engineered to local wind-load specifications."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
         }
@@ -4652,22 +4652,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida aluminum contractor",
           "texto": "SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered to wind load",
           "texto": "Every structure is engineered to local wind-load specifications."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
         }
@@ -4761,22 +4761,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida aluminum contractor",
           "texto": "SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered to wind load",
           "texto": "Every structure is engineered to local wind-load specifications."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
         }
@@ -4866,22 +4866,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida aluminum contractor",
           "texto": "SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered to wind load",
           "texto": "Every structure is engineered to local wind-load specifications."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
         }
@@ -4971,22 +4971,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida aluminum contractor",
           "texto": "SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered to wind load",
           "texto": "Every structure is engineered to local wind-load specifications."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
         }
@@ -5080,22 +5080,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida aluminum contractor",
           "texto": "SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered to wind load",
           "texto": "Every structure is engineered to local wind-load specifications."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
         }
@@ -5193,22 +5193,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida aluminum contractor",
           "texto": "SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered to wind load",
           "texto": "Every structure is engineered to local wind-load specifications."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
         }
@@ -5306,22 +5306,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida aluminum contractor",
           "texto": "SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered to wind load",
           "texto": "Every structure is engineered to local wind-load specifications."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
         }
@@ -5415,22 +5415,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida aluminum contractor",
           "texto": "SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered to wind load",
           "texto": "Every structure is engineered to local wind-load specifications."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
         }
@@ -5532,22 +5532,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida aluminum contractor",
           "texto": "SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered to wind load",
           "texto": "Every structure is engineered to local wind-load specifications."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
         }
@@ -5645,22 +5645,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida aluminum contractor",
           "texto": "SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered to wind load",
           "texto": "Every structure is engineered to local wind-load specifications."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
         }
@@ -5754,22 +5754,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida aluminum contractor",
           "texto": "SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered to wind load",
           "texto": "Every structure is engineered to local wind-load specifications."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We manage the permits and the HOA or ARB review, and coordinate inspections."
         }
@@ -5867,22 +5867,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered for Florida wind",
           "texto": "Reinforced extruded aluminum and marine-grade stainless hardware, with wind-load engineering documentation."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permitted and inspected",
           "texto": "Installed to local building codes, and the electrical additions are permitted too."
         }
@@ -5980,22 +5980,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered for Florida wind",
           "texto": "Reinforced extruded aluminum and marine-grade stainless hardware, with wind-load engineering documentation."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permitted and inspected",
           "texto": "Installed to local building codes, and the electrical additions are permitted too."
         }
@@ -6093,22 +6093,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered for Florida wind",
           "texto": "Reinforced extruded aluminum and marine-grade stainless hardware, with wind-load engineering documentation."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permitted and inspected",
           "texto": "Installed to local building codes, and the electrical additions are permitted too."
         }
@@ -6206,22 +6206,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered for Florida wind",
           "texto": "Reinforced extruded aluminum and marine-grade stainless hardware, with wind-load engineering documentation."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permitted and inspected",
           "texto": "Installed to local building codes, and the electrical additions are permitted too."
         }
@@ -6315,22 +6315,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered for Florida wind",
           "texto": "Reinforced extruded aluminum and marine-grade stainless hardware, with wind-load engineering documentation."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permitted and inspected",
           "texto": "Installed to local building codes, and the electrical additions are permitted too."
         }
@@ -6424,22 +6424,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered for Florida wind",
           "texto": "Reinforced extruded aluminum and marine-grade stainless hardware, with wind-load engineering documentation."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permitted and inspected",
           "texto": "Installed to local building codes, and the electrical additions are permitted too."
         }
@@ -6537,22 +6537,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered for Florida wind",
           "texto": "Reinforced extruded aluminum and marine-grade stainless hardware, with wind-load engineering documentation."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permitted and inspected",
           "texto": "Installed to local building codes, and the electrical additions are permitted too."
         }
@@ -6654,22 +6654,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered for Florida wind",
           "texto": "Reinforced extruded aluminum and marine-grade stainless hardware, with wind-load engineering documentation."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permitted and inspected",
           "texto": "Installed to local building codes, and the electrical additions are permitted too."
         }
@@ -6771,22 +6771,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered for Florida wind",
           "texto": "Reinforced extruded aluminum and marine-grade stainless hardware, with wind-load engineering documentation."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permitted and inspected",
           "texto": "Installed to local building codes, and the electrical additions are permitted too."
         }
@@ -6884,22 +6884,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered for Florida wind",
           "texto": "Reinforced extruded aluminum and marine-grade stainless hardware, with wind-load engineering documentation."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permitted and inspected",
           "texto": "Installed to local building codes, and the electrical additions are permitted too."
         }
@@ -7005,22 +7005,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered for Florida wind",
           "texto": "Reinforced extruded aluminum and marine-grade stainless hardware, with wind-load engineering documentation."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permitted and inspected",
           "texto": "Installed to local building codes, and the electrical additions are permitted too."
         }
@@ -7122,22 +7122,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered for Florida wind",
           "texto": "Reinforced extruded aluminum and marine-grade stainless hardware, with wind-load engineering documentation."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permitted and inspected",
           "texto": "Installed to local building codes, and the electrical additions are permitted too."
         }
@@ -7235,22 +7235,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Engineered for Florida wind",
           "texto": "Reinforced extruded aluminum and marine-grade stainless hardware, with wind-load engineering documentation."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permitted and inspected",
           "texto": "Installed to local building codes, and the electrical additions are permitted too."
         }
@@ -7352,22 +7352,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Built for the Florida climate",
           "texto": "Composite that resists warping, fading and rot; pressure-treated wood sealed and stained."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "One team takes the design through permits, engineering and construction."
         }
@@ -7465,22 +7465,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Built for the Florida climate",
           "texto": "Composite that resists warping, fading and rot; pressure-treated wood sealed and stained."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "One team takes the design through permits, engineering and construction."
         }
@@ -7578,22 +7578,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Built for the Florida climate",
           "texto": "Composite that resists warping, fading and rot; pressure-treated wood sealed and stained."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "One team takes the design through permits, engineering and construction."
         }
@@ -7687,22 +7687,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Built for the Florida climate",
           "texto": "Composite that resists warping, fading and rot; pressure-treated wood sealed and stained."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "One team takes the design through permits, engineering and construction."
         }
@@ -7796,22 +7796,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Built for the Florida climate",
           "texto": "Composite that resists warping, fading and rot; pressure-treated wood sealed and stained."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "One team takes the design through permits, engineering and construction."
         }
@@ -7905,22 +7905,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Built for the Florida climate",
           "texto": "Composite that resists warping, fading and rot; pressure-treated wood sealed and stained."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "One team takes the design through permits, engineering and construction."
         }
@@ -8014,22 +8014,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Built for the Florida climate",
           "texto": "Composite that resists warping, fading and rot; pressure-treated wood sealed and stained."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "One team takes the design through permits, engineering and construction."
         }
@@ -8127,22 +8127,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Built for the Florida climate",
           "texto": "Composite that resists warping, fading and rot; pressure-treated wood sealed and stained."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "One team takes the design through permits, engineering and construction."
         }
@@ -8240,22 +8240,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Built for the Florida climate",
           "texto": "Composite that resists warping, fading and rot; pressure-treated wood sealed and stained."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "One team takes the design through permits, engineering and construction."
         }
@@ -8349,22 +8349,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Built for the Florida climate",
           "texto": "Composite that resists warping, fading and rot; pressure-treated wood sealed and stained."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "One team takes the design through permits, engineering and construction."
         }
@@ -8462,22 +8462,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Appliances made for outdoors",
           "texto": "Outdoor-rated grills, smokers and refrigeration, engineered into the layout with their utilities."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits, HOA and ARB handled",
           "texto": "We manage the full permitting process, including HOA and ARB submissions."
         }
@@ -8579,22 +8579,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Appliances made for outdoors",
           "texto": "Outdoor-rated grills, smokers and refrigeration, engineered into the layout with their utilities."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits, HOA and ARB handled",
           "texto": "We manage the full permitting process, including HOA and ARB submissions."
         }
@@ -8692,22 +8692,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Appliances made for outdoors",
           "texto": "Outdoor-rated grills, smokers and refrigeration, engineered into the layout with their utilities."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits, HOA and ARB handled",
           "texto": "We manage the full permitting process, including HOA and ARB submissions."
         }
@@ -8801,22 +8801,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Appliances made for outdoors",
           "texto": "Outdoor-rated grills, smokers and refrigeration, engineered into the layout with their utilities."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits, HOA and ARB handled",
           "texto": "We manage the full permitting process, including HOA and ARB submissions."
         }
@@ -8910,22 +8910,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Appliances made for outdoors",
           "texto": "Outdoor-rated grills, smokers and refrigeration, engineered into the layout with their utilities."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits, HOA and ARB handled",
           "texto": "We manage the full permitting process, including HOA and ARB submissions."
         }
@@ -9019,22 +9019,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Appliances made for outdoors",
           "texto": "Outdoor-rated grills, smokers and refrigeration, engineered into the layout with their utilities."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits, HOA and ARB handled",
           "texto": "We manage the full permitting process, including HOA and ARB submissions."
         }
@@ -9128,22 +9128,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Appliances made for outdoors",
           "texto": "Outdoor-rated grills, smokers and refrigeration, engineered into the layout with their utilities."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits, HOA and ARB handled",
           "texto": "We manage the full permitting process, including HOA and ARB submissions."
         }
@@ -9241,22 +9241,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Appliances made for outdoors",
           "texto": "Outdoor-rated grills, smokers and refrigeration, engineered into the layout with their utilities."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits, HOA and ARB handled",
           "texto": "We manage the full permitting process, including HOA and ARB submissions."
         }
@@ -9354,22 +9354,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Appliances made for outdoors",
           "texto": "Outdoor-rated grills, smokers and refrigeration, engineered into the layout with their utilities."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits, HOA and ARB handled",
           "texto": "We manage the full permitting process, including HOA and ARB submissions."
         }
@@ -9463,22 +9463,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Appliances made for outdoors",
           "texto": "Outdoor-rated grills, smokers and refrigeration, engineered into the layout with their utilities."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits, HOA and ARB handled",
           "texto": "We manage the full permitting process, including HOA and ARB submissions."
         }
@@ -9576,22 +9576,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Plants chosen for the site",
           "texto": "Salt-tolerant, wind-resistant species selected for coastal and inland Florida."
         },
         {
-          "icono": "contrato",
+          "icono": null,
           "titulo": "Drainage sorted first",
           "texto": "We improve soil drainage so the planting survives its first wet season."
         }
@@ -9693,22 +9693,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Plants chosen for the site",
           "texto": "Salt-tolerant, wind-resistant species selected for coastal and inland Florida."
         },
         {
-          "icono": "contrato",
+          "icono": null,
           "titulo": "Drainage sorted first",
           "texto": "We improve soil drainage so the planting survives its first wet season."
         }
@@ -9810,22 +9810,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Plants chosen for the site",
           "texto": "Salt-tolerant, wind-resistant species selected for coastal and inland Florida."
         },
         {
-          "icono": "contrato",
+          "icono": null,
           "titulo": "Drainage sorted first",
           "texto": "We improve soil drainage so the planting survives its first wet season."
         }
@@ -9923,22 +9923,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, permits, engineering and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed and insured",
           "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "florida",
           "titulo": "Plants chosen for the site",
           "texto": "Salt-tolerant, wind-resistant species selected for coastal and inland Florida."
         },
         {
-          "icono": "contrato",
+          "icono": null,
           "titulo": "Drainage sorted first",
           "texto": "We improve soil drainage so the planting survives its first wet season."
         }
@@ -10040,22 +10040,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the Marion County inspections."
         }
@@ -10145,22 +10145,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the Alachua County inspections."
         }
@@ -10250,22 +10250,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -10341,22 +10341,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -10432,22 +10432,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -10523,22 +10523,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -10614,22 +10614,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -10705,22 +10705,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -10796,22 +10796,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -10887,22 +10887,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -10978,22 +10978,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -11069,22 +11069,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -11160,22 +11160,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -11251,22 +11251,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -11342,22 +11342,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -11433,22 +11433,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -11524,22 +11524,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -11615,22 +11615,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -11706,22 +11706,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -11797,22 +11797,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -11888,22 +11888,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -11979,22 +11979,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -12070,22 +12070,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -12161,22 +12161,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -12252,22 +12252,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -12343,22 +12343,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -12434,22 +12434,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -12525,22 +12525,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -12616,22 +12616,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -12707,22 +12707,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -12798,22 +12798,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -12889,22 +12889,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -12980,22 +12980,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -13071,22 +13071,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -13162,22 +13162,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -13253,22 +13253,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -13344,22 +13344,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -13435,22 +13435,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -13526,22 +13526,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -13617,22 +13617,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -13708,22 +13708,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -13799,22 +13799,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -13890,22 +13890,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -13981,22 +13981,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -14072,22 +14072,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -14163,22 +14163,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -14254,22 +14254,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -14345,22 +14345,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -14436,22 +14436,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -14527,22 +14527,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -14618,22 +14618,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -14709,22 +14709,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }
@@ -14800,22 +14800,22 @@
       "rotulo": "Why homeowners pick us",
       "tarjetas": [
         {
-          "icono": "manos",
+          "icono": "plano",
           "titulo": "One design-build team",
           "texto": "Design, engineering, permits and construction under one roof."
         },
         {
-          "icono": "escudo",
+          "icono": "licencia",
           "titulo": "Florida licensed pool contractor",
           "texto": "CPC1461119 and CPC1460562, published on every page of this site."
         },
         {
-          "icono": "plano",
+          "icono": "3d",
           "titulo": "3D design before you commit",
           "texto": "You review a 3D design of your pool before anything is dug."
         },
         {
-          "icono": "contrato",
+          "icono": "permisos",
           "titulo": "Permits and code handled",
           "texto": "We pull the permits and coordinate the county inspections."
         }

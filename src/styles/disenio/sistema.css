@@ -370,6 +370,31 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
   .mm-h2 { font-size: 40px; }
 }
 @media (min-width: 1200px) { .mm-conf, .mm-intro { padding-inline: var(--mm-e-64); } }
+/* ── Las cuatro razones (E8): «Why homeowners pick us» en las 14 fichas y las 118 ciudades ──
+   Una banda entre dos filetes. Cada razon arranca en su tesela (icono navy de 24 px sobre azul-50,
+   44 x 44) y titulo y texto cuelgan de FILAS COMPARTIDAS (`subgrid`): los cuatro textos empiezan a
+   la misma altura aunque un titulo ocupe dos lineas. Sin filetes entre columnas: la tesela ya dice
+   donde empieza cada una. En movil es una lista: tesela a la izquierda, texto a la derecha.
+   Sin oro (D-76): aqui no hay ni marcador ni accion.
+   Una seccion sin sus cuatro dibujos (`.mm-razones` a secas) lleva la misma rejilla sin la tesela.
+   `.mm-conf-lista` y `.mm-conf-item` siguen arriba, intactas, para `/industry-solutions`. */
+.svc-confianza { padding-block: var(--mm-e-40); }
+.mm-razones { list-style: none; margin: var(--mm-e-12) 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); border-block: 1px solid var(--mm-borde); }
+.mm-razon { display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; padding: var(--mm-e-16) 0; border-top: 1px solid var(--mm-borde); }
+.mm-razon:first-child { border-top: 0; }
+.mm-razones--ico .mm-razon { grid-template-columns: 44px minmax(0, 1fr); column-gap: var(--mm-e-16); }
+.mm-razon-ico { grid-row: 1 / span 2; display: grid; place-items: center; width: 44px; height: 44px; border-radius: var(--mm-r-8); background: var(--mm-azul-50); color: var(--mm-navy); }
+.mm-razon-ico svg { display: block; width: 24px; height: 24px; }
+.mm-razon .mm-conf-t { margin-bottom: var(--mm-e-4); }
+.mm-conf-num { white-space: nowrap; font-variant-numeric: tabular-nums; }
+@media (min-width: 600px) {
+  .mm-razones { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--mm-e-32); padding-block: var(--mm-e-24); }
+  .mm-razon, .mm-razones--ico .mm-razon { grid-template-columns: minmax(0, 1fr); grid-template-rows: subgrid; grid-row: span 2; row-gap: 0; padding: 0; border-top: 0; }
+  .mm-razones--ico .mm-razon { grid-row: span 3; }
+  .mm-razon-ico { grid-row: auto; margin-bottom: var(--mm-e-16); }
+  .mm-razon .mm-conf-t { margin-bottom: var(--mm-e-8); }
+}
+@media (min-width: 992px) { .mm-razones { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 /* ── Secciones de la ficha: cabecera comun, galeria, proceso y «What we do» (ASTRO-2) ───
    `--mm-canal` es el margen lateral de la seccion: lo llevan la cabecera y las listas, y NO la
    seccion, porque las fotos del proceso y de «What we do» sangran hasta el borde de la pagina. */

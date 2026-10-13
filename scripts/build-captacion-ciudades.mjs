@@ -110,13 +110,13 @@ function entradaCaptacion(c) {
     confianza: {
       rotulo: 'Why homeowners pick us',
       tarjetas: [
-        { icono: 'manos', titulo: 'One design-build team',
+        { icono: 'plano', titulo: 'One design-build team',
           texto: 'Design, engineering, permits and construction under one roof.' },
-        { icono: 'escudo', titulo: 'Florida licensed pool contractor',
+        { icono: 'licencia', titulo: 'Florida licensed pool contractor',
           texto: `${DE_PISCINA.join(' and ')}, published on every page of this site.` },
-        { icono: 'plano', titulo: '3D design before you commit',
+        { icono: '3d', titulo: '3D design before you commit',
           texto: 'You review a 3D design of your pool before anything is dug.' },
-        { icono: 'contrato', titulo: 'Permits and code handled',
+        { icono: 'permisos', titulo: 'Permits and code handled',
           texto: `We pull the permits and coordinate the ${cond} inspections.` },
       ],
     },
