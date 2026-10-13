@@ -14,7 +14,7 @@
  */
 import path from 'node:path';
 import sharp from 'sharp';
-import { heroProyectoHtml, detalleProyectoHtml, cierreProyectoHtml } from '../lib/ficha-proyecto.mjs';
+import { heroProyectoHtml, detalleProyectoHtml, cierreProyectoHtml, conAlt } from '../lib/ficha-proyecto.mjs';
 import TELEFONOS from '../data/telefonos.json';
 import CarruselProyectos from './widgets/CarruselProyectos.astro';
 import FormularioCore from './widgets/FormularioCore.astro';
@@ -24,11 +24,11 @@ interface Props { obra: { tituloFicha: string; resumen: string; ubicacion: strin
 const { obra } = Astro.props;
 
 const esc = (t: string) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
-const fotos = await Promise.all(obra.galeria.map(async (f) => {
+const fotos = conAlt(await Promise.all(obra.galeria.map(async (f) => {
   const m = await sharp(path.join(process.cwd(), 'public', f.src)).metadata();
   if (!m.width || !m.height) throw new Error(`FichaObra: no puedo medir ${f.src}`);
   return { ...f, w: m.width, h: m.height };
-}));
+})), obra.tituloFicha);
 const telefonos = TELEFONOS.items;
 ---
 <Fragment set:html={heroProyectoHtml({ tituloHtml: esc(obra.tituloFicha), resumenHtml: esc(obra.resumen), fotos })} />

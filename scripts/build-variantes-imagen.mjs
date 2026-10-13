@@ -60,12 +60,17 @@ const usadas = new Set();
  *  heroe de Pool Builders (146 KB, 1250 px) se servia entero a un movil de 412 px. */
 const prioritarias = new Set();
 const fotosLcp = new Set();
+const faltanMedidas = new Set();
 for (const f of html) {
   for (const m of fs.readFileSync(f, 'utf8').matchAll(/<img\b[^>]*>/g)) {
     // E5 (D-155): la foto que pinta el LCP, traiga o no `srcset` (las portadas del blog lo traen).
     const pri = /fetchpriority="high"/.test(m[0]) && m[0].match(/\ssrc="(\/images\/[^"]+\.(?:avif|jpe?g|webp))"/i);
     // Los posters de video no: tienen sus propios anchos y su propia precarga (`video-fondo.mjs`).
     if (pri && !pri[1].startsWith('/images/site/posters/')) fotosLcp.add(pri[1]);
+    // E5-SEO (punto 6): las que llegan sin `width` o `height` (el muro del indice de galeria, sobre
+    // todo) se anotan para que `srcset-auto.mjs` se las ponga: sin medidas, la pagina salta al cargar.
+    const sinMedidas = !(/\swidth="\d+"/.test(m[0]) && /\sheight="\d+"/.test(m[0])) && m[0].match(/\ssrc="(\/images\/[^"]+\.(?:avif|jpe?g|webp|png))"/i);
+    if (sinMedidas) faltanMedidas.add(sinMedidas[1]);
     if (/\ssrcset=/.test(m[0])) continue;
     const s = m[0].match(/\ssrc="(\/images\/[^"]+\.(?:avif|jpe?g|webp))"/i);
     if (s && !/-mm\d+\./.test(s[1])) {
@@ -80,7 +85,9 @@ for (const f of html) {
  *  movil sumaban mas peso que la pagina de produccion. */
 /* ASTRO-4 lote C: y las de `/industry-solutions` (1250 px, 140-148 KB), que su pagina ensena ahora
  * en fichas y en muro: cuatro quedaban justo bajo el corte y se servian enteras a un movil. */
-const umbralBajo = (u) => prioritarias.has(u) || u.startsWith('/images/projects/') || /^\/images\/(images\/commercial-\d+|site\/commercial-pool-)/.test(u);
+// E5-SEO (punto 6): toda foto del sitio lleva `srcset`. El umbral bajo —40 KB y 700 px— vale ya
+// para todas: quedaban 87 ficheros de 60 a 300 KB que un movil se bajaba enteros.
+const umbralBajo = () => true;
 
 const previo = fs.existsSync(INDICE) ? JSON.parse(fs.readFileSync(INDICE, 'utf8')).imagenes : {};
 /* EL INDICE SE ACUMULA, NO SE REHACE. Una imagen que ya esta en el indice sale del build CON
@@ -147,11 +154,22 @@ for (const u of [...fotosLcp].sort()) {
   lcp[u] = vars;
 }
 
+const medidasPrevias = fs.existsSync(INDICE) ? (JSON.parse(fs.readFileSync(INDICE, 'utf8')).medidas ?? {}) : {};
+const medidas = { ...medidasPrevias };
+for (const u of [...faltanMedidas].sort()) {
+  const orig = path.join(RAIZ, 'public', decodeURI(u));
+  if (!fs.existsSync(orig)) continue;
+  const md = await sharp(orig).metadata().catch(() => null);
+  if (md?.width && md?.height) medidas[u] = md.orientation >= 5 ? [md.height, md.width] : [md.width, md.height];
+}
+
 fs.writeFileSync(INDICE, JSON.stringify({
   _lee_esto: 'GENERADO por scripts/build-variantes-imagen.mjs desde el build. Lo lee src/lib/srcset-auto.mjs. No editar a mano.',
   imagenes,
   lcp,
+  medidas,
 }, null, 1) + '\n');
+console.log(`medidas: ${Object.keys(medidas).length} imagenes que llegan sin width/height`);
 console.log(`fotos LCP: ${Object.keys(lcp).length} con sus AVIF de movil · ${nuevasLcp} ficheros nuevos`);
 console.log(`variantes: ${Object.keys(imagenes).length} originales en el indice · esta pasada: ${(bytesOrig / 1048576).toFixed(1)} MB de originales · `
   + `${nuevas} ficheros nuevos · variantes ${(bytesVar / 1048576).toFixed(1)} MB en total`);

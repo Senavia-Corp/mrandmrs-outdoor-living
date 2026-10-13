@@ -19,6 +19,13 @@
  */
 const esc = (t) => String(t ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 
+/**
+ * E5-SEO (punto 6): 54 fotos de las fichas llegan del origen SIN `alt`. Ni el banco ni el registro
+ * de galeria las describen, asi que se nombran por lo que si se sabe de ellas: la obra a la que
+ * pertenecen y su posicion. No describe la foto, pero deja de ser una imagen muda.
+ */
+export const conAlt = (fotos, titulo) => fotos.map((f, k) => (f.alt ? f : { ...f, alt: `${String(titulo).replace(/\s+/g, ' ').trim()}, photo ${k + 1} of ${fotos.length}` }));
+
 /** El nombre accesible de una foto pulsable: su `alt`, o su posicion si el origen no lo trae. */
 const nombreDe = (f, k, n) => (f.alt ? `Open photo: ${f.alt}` : `Open photo ${k + 1} of ${n}`);
 

@@ -13,11 +13,15 @@ import INDICE from '../data/variantes-imagen.json';
 const IMG = INDICE.imagenes ?? {};
 /* E5 (D-155): los AVIF de movil de la foto que pinta el LCP (`build-variantes-imagen.mjs`). */
 const LCP = INDICE.lcp ?? {};
+/* E5-SEO (punto 6): `width` y `height` de las `<img>` que llegan sin ellos. */
+const MEDIDAS = INDICE.medidas ?? {};
 const MEDIA_LCP = '(max-width: 767px)';
 
 export function srcsetAuto(html) {
   let n = 0;
   const out = html.replace(/<img\b[^>]*>/g, (tag) => {
+    const m0 = !(/\swidth="\d+"/.test(tag) && /\sheight="\d+"/.test(tag)) && MEDIDAS[tag.match(/\ssrc="([^"]+)"/)?.[1]];
+    if (m0) tag = tag.replace(/\s(?:width|height)="[^"]*"/g, '').replace(/<img\b/, `<img width="${m0[0]}" height="${m0[1]}"`);
     if (/\ssrcset=/.test(tag)) return tag;
     const s = tag.match(/\ssrc="([^"]+)"/);
     const e = s && IMG[s[1]];

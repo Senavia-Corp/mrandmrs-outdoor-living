@@ -35,7 +35,7 @@ import { OCULTAS, serviciosDe } from '../src/lib/filtro-proyectos.mjs';
 import { tramosMiga } from '../src/lib/miga-tramos.mjs';
 import { fotoDeHeroe, fotosDeSeccion as fotosDeSeccionCiudad } from '../src/lib/heroe-ciudad.mjs';
 import { zonasDeCondado } from '../src/lib/condados.mjs';
-import { heroProyectoHtml, detalleProyectoHtml, cierreProyectoHtml } from '../src/lib/ficha-proyecto.mjs';
+import { heroProyectoHtml, detalleProyectoHtml, cierreProyectoHtml, conAlt } from '../src/lib/ficha-proyecto.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const man = JSON.parse(fs.readFileSync(path.join(RAIZ, '_source/assets-manifest.json'), 'utf8')).assets;
@@ -1702,12 +1702,12 @@ function proyectoStitch(doc, ruta) {
   if (!h1 || !resumen || !gal || !dh2 || !boton || !bh2 || !bp) falta('la ficha de proyecto no trae hero, galeria con «Project Details» y banda final');
   if (gal.parentNode !== hero.parentNode || banda.parentNode !== hero.parentNode) falta('hero, galeria y banda no son hermanas');
   localizar(gal);
-  const fotos = [...gal.querySelectorAll('.cms-list-workgallery img')].map((i) => {
+  const fotos = conAlt([...gal.querySelectorAll('.cms-list-workgallery img')].map((i) => {
     const src = i.getAttribute('src');
     const d = DIM.get(src);
     if (!d) falta(`${src} no tiene medidas en el manifiesto`);
     return { src, alt: i.getAttribute('alt') ?? '', w: d.w, h: d.h };
-  });
+  }), h1.textContent);
   if (fotos.length < 2) falta(`la galeria solo trae ${fotos.length} foto(s)`);
   const datos = [...caja.querySelectorAll('.heading-deco')].map((r) => [r.textContent.trim(), r.nextElementSibling?.textContent.trim() ?? '']);
   const tmp = doc.createElement('div');
