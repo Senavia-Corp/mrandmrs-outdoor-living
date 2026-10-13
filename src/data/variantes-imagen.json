@@ -6679,6 +6679,71 @@
      "/images/projects/south-florida-backyard-pool-wood-pergola/south-florida-pool-wood-pergola-outdoor-living-6-mm1024.avif"
     ]
    ]
+  },
+  "/images/images/commercial-2/commercial-lap-pools-fitness-centers-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/commercial-2/commercial-lap-pools-fitness-centers-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/images/commercial-2/commercial-lap-pools-fitness-centers-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/images/commercial-4/country-club-pool-design-build-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/commercial-4/country-club-pool-design-build-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/images/commercial-4/country-club-pool-design-build-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/images/commercial-7/medical-hydrotherapy-pool-construction-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/images/commercial-7/medical-hydrotherapy-pool-construction-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/images/commercial-7/medical-hydrotherapy-pool-construction-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/site/commercial-pool-contractors-architects-design-firms-florida-1commercial-pool-contractors-architects-design-firms-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/site/commercial-pool-contractors-architects-design-firms-florida-1commercial-pool-contractors-architects-design-firms-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/site/commercial-pool-contractors-architects-design-firms-florida-1commercial-pool-contractors-architects-design-firms-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/site/founders-mr-and-mrs-outdoor-living-company-florida.avif": {
+   "ancho": 1250,
+   "variantes": [
+    [
+     640,
+     "/images/site/founders-mr-and-mrs-outdoor-living-company-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/site/founders-mr-and-mrs-outdoor-living-company-florida-mm1024.avif"
+    ]
+   ]
   }
  }
 }

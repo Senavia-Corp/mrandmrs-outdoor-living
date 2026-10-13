@@ -73,7 +73,9 @@ for (const f of html) {
 /** D-146: las fotos de una ficha de proyecto entran tambien con el umbral bajo. Son 1250 px y
  *  80-150 KB cada una, por debajo del corte general, pero la ficha ensena TODA su galeria: en
  *  movil sumaban mas peso que la pagina de produccion. */
-const umbralBajo = (u) => prioritarias.has(u) || u.startsWith('/images/projects/');
+/* ASTRO-4 lote C: y las de `/industry-solutions` (1250 px, 140-148 KB), que su pagina ensena ahora
+ * en fichas y en muro: cuatro quedaban justo bajo el corte y se servian enteras a un movil. */
+const umbralBajo = (u) => prioritarias.has(u) || u.startsWith('/images/projects/') || /^\/images\/(images\/commercial-\d+|site\/commercial-pool-)/.test(u);
 
 const previo = fs.existsSync(INDICE) ? JSON.parse(fs.readFileSync(INDICE, 'utf8')).imagenes : {};
 /* EL INDICE SE ACUMULA, NO SE REHACE. Una imagen que ya esta en el indice sale del build CON

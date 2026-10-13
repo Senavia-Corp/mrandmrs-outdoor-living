@@ -36,7 +36,9 @@ const SUELO_PAGINAS = 65;
 /* ASTRO-2 (12-oct-2026, D-113): el video de fondo sale del hero de las 118 paginas de servicio ×
  * ciudad, que pasan al Hero A con foto. Medido tras el cambio: 80 paginas, 83 bloques (antes 130 y
  * 201). Las 50 rojas que arrastraba esta puerta eran esas ciudades con foto en vez de video. */
-const SUELO_BLOQUES = 83;
+// ASTRO-4 lote C: las dos paginas de estado pierden el video del hero (pasa a hero partido con
+// foto) y conservan el del 3D. Medido tras el cambio: 80 paginas, 81 bloques.
+const SUELO_BLOQUES = 81;
 
 if (!fs.existsSync(ESTATICO)) {
   console.error('✗ no hay build en .vercel/output/static — ejecuta `npm run build` antes.');
