@@ -29,6 +29,7 @@ import { AREAS_PIE, ORDEN_SERVICIOS_PIE, COPYRIGHT_ORIGEN, copyright } from '../
 import { lineasTarjetas, lineasBanda, lineasSrBanda, CATEGORIAS as GAL_CATEGORIAS } from '../src/lib/galeria-categorias.mjs';
 import { OCULTAS, lineasFiltro } from '../src/lib/filtro-proyectos.mjs';
 import { CATEGORIAS_PISCINA } from '../src/lib/blog-groq.mjs';
+import { enlazadoDeCiudad, ciudadesDePiscinaPorZona } from '../src/lib/vecinas.mjs';
 import { fotoDeHeroe } from '../src/lib/heroe-ciudad.mjs';
 import { ciudadesDeFicha, SERVICIOS_CIUDAD } from '../src/lib/servicios-ciudad.mjs';
 import { zonasDeCondado } from '../src/lib/condados.mjs';
@@ -1393,6 +1394,10 @@ const LINEAS_CIUDADES_FICHA = [...new Set(Object.keys(PAGINAS_CIUDAD_SERVICIO).m
   .filter(({ l }) => l)
   .map(({ ficha, l }) => ({ rutas: [ficha], tras: ['View South Florida Service Areas'], lineas: [l.linea],
     motivo: 'LOOP-CIUDADES: la ficha enlaza a sus landings de ciudad, detras de «Where We Serve»' }));
+/* E5-SEO (punto 3, T-101): la ficha de piscina, que no enlazaba a ninguna de sus 53 ciudades, las
+ * enlaza en dos lineas, norte y sur. Derivadas de la misma funcion que las pinta. */
+LINEAS_CIUDADES_FICHA.push({ rutas: ['/services/pool-builders'], tras: ['View South Florida Service Areas'], lineas: ciudadesDePiscinaPorZona().map((z) => z.linea),
+  motivo: 'E5-SEO: la ficha de piscina enlaza a sus 53 landings de ciudad, por zona, detras de «Where We Serve»' });
 
 const LINEAS_ANADIDAS = [
   ...LINEAS_CIUDADES_FICHA,
@@ -4135,6 +4140,19 @@ function listasStitch(ruta, lineas) {
      * del primer articulo. Se quita solo si esta ahi. (En las fichas el bloque de articulos es
      * declarado entero: § articulosEnLista.) */
     const out = [...lineas];
+    /* E5-SEO (T-100) · EL ENLAZADO BAJO EL FAQ. Las 53 de piscina ganan la fila «More for <ciudad>
+     * homeowners: …» que las otras 65 ya traian en su referencia, y las 118, una segunda con las
+     * ciudades vecinas del mismo servicio. Las dos lineas se derivan con la MISMA funcion que las
+     * pinta (`src/lib/vecinas.mjs`) y son obligatorias: si falta una, la ruta sale roja. */
+    const enlazado = esCondado(ruta) ? null : enlazadoDeCiudad(ruta);
+    if (enlazado) {
+      const esperadas = [[ruta.startsWith('/services/pool-builders/') ? enlazado.lineaMas : null, 'la fila «More for … homeowners» de la pagina de piscina'], [enlazado.lineaVecinas, 'la fila de ciudades vecinas del mismo servicio']];
+      for (const [linea, que] of esperadas) {
+        if (!linea) continue;
+        const k = out.indexOf(linea);
+        if (k >= 0) out.splice(k, 1); else out.push(`⟦FALTA: ${que} (T-100)⟧`);
+      }
+    }
     const accion = capitalizaH2(CAPTACION_JSON[ruta]?.heroe?.cta ?? 'Get a Free Estimate');
     const j = out.indexOf(capitaliza(PRIMER_ARTICULO));   // D-135: `.mm-art-t` con `capitalize`
     if (j > 0 && out[j - 1] === accion) out.splice(j - 1, 1);

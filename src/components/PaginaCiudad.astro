@@ -9,6 +9,7 @@
 // mismo para todos, que es lo que pide el encargo («mismo diseno exacto»).
 // La cabecera historica de la plantilla (los cinco cambios a mano) sigue en la pagina de
 // pool-builders, que es donde vive `getStaticPaths` con Sanity.
+import { enlazadoDeCiudad } from '../lib/vecinas.mjs';
 import Base from '../layouts/Base.astro';
 import ResenasGoogle from './widgets/ResenasGoogle.astro';
 import CarruselBlog from './widgets/CarruselBlog.astro';
@@ -49,6 +50,7 @@ function aplanar(o, pref = '', prof = 0, salida = {}) {
 // `Astro.params.slug` es el tramo publico (`ocala-fl`). RUTA es la URL servida.
 const { doc, ruta: RUTA, servicio: SV, seoRutas: SEO_RUTAS, fotosCiudad: FOTOS_CIUDAD, enlaces: ENLACES, heroeFoto: HEROE_FOTO } = Astro.props;
 const slug = doc.slug;
+const VECINDAD = enlazadoDeCiudad(RUTA);
 const d = aplanar(doc);
 /**
  * CUARTO CAMBIO A MANO (SEO-AEO-GEO A3) — OVERRIDE POR CIUDAD.
@@ -491,6 +493,19 @@ const SEO = FAQ
               ].map((e, i) => (<>{i ? ' · ' : ''}<a href={e.href}>{e.nombre}</a></>))}
             </p>
           )}
+          {/* E5-SEO (puntos 2 y 4): las 53 de piscina ganan la misma fila —su ficha, los otros servicios
+               de su ciudad y su condado—, y las 118, una segunda con hasta cinco ciudades del mismo
+               servicio en su condado o en su zona. Todo sale de `src/lib/vecinas.mjs`. */}
+          {!ENLACES && VECINDAD && (
+            <p class="mm-faq-fuentes mm-faq-mas">{VECINDAD.rotuloMas}{' '}
+              {VECINDAD.mas.map((e, i) => (<>{i ? ' · ' : ''}<a href={e.href}>{e.nombre}</a></>))}
+            </p>
+          )}
+          {VECINDAD?.vecinas.length ? (
+            <p class="mm-faq-fuentes mm-faq-mas">{VECINDAD.rotuloVecinas}{' '}
+              {VECINDAD.vecinas.map((e, i) => (<>{i ? ' · ' : ''}<a href={e.href}>{e.nombre}</a></>))}
+            </p>
+          ) : null}
         </div>
         <div class="mm-faq-lado">
           {FOTO_FAQ && (

@@ -16,14 +16,26 @@
  */
 import DATOS from '../../data/ciudades-servicios.json';
 import { ciudadesDeFicha } from '../../lib/servicios-ciudad.mjs';
+import { ciudadesDePiscinaPorZona } from '../../lib/vecinas.mjs';
 
 const ruta = Astro.url.pathname.replace(/(.)\/$/, '$1');
 const L = ciudadesDeFicha(ruta, DATOS.paginas);
+// E5-SEO (punto 3): la ficha de piscina enlaza a sus 53 ciudades, en dos lineas, norte y sur.
+const ZONAS = ruta === '/services/pool-builders' ? ciudadesDePiscinaPorZona() : null;
 ---
 {L && (
   <div class="w-layout-blockcontainer container w-container mm-ciudades-servicio">
     <p class="grey mm-faq-fuentes">{L.rotulo}:{' '}
       {L.ciudades.map((c, i) => (<>{i ? ' · ' : ''}<a href={c.href}>{c.nombre}</a></>))}
     </p>
+  </div>
+)}
+{ZONAS && (
+  <div class="w-layout-blockcontainer container w-container mm-ciudades-servicio">
+    {ZONAS.map((z) => (
+      <p class="grey mm-faq-fuentes">{z.rotulo} · {z.zona}:{' '}
+        {z.ciudades.map((c, i) => (<>{i ? ' · ' : ''}<a href={c.href}>{c.nombre}</a></>))}
+      </p>
+    ))}
   </div>
 )}
