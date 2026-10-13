@@ -1143,6 +1143,13 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 .mm-consent input { flex: none; width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--mm-navy); }
 .mm-form-legal { margin: 0; font-size: 12px; line-height: 1.5; color: var(--mm-tinta-suave); }
 .mm-form-legal a { font-size: inherit; line-height: inherit; font-weight: 600; color: var(--mm-navy); }
+/* E6 · EL ANILLO DEL SISTEMA DONDE FALTABA. Estos cuatro controles enfocaban con el anillo del
+   navegador, que no es el de la casa ni llega a 2 px (medido con `check:accesible`): los enlaces
+   de la linea legal del formulario, la casilla de consentimiento, el titulo de cada video, las
+   filas de enlaces a ciudades y fuentes (`.mm-faq-fuentes`) y el enlace de la nota del cierre,
+   que va sobre navy y lleva el anillo inverso. */
+.mm-form-legal a:focus-visible, .mm-consent input:focus-visible, .mm-videos .mm-yt .mm-yt__vtitulo a:focus-visible, .mm-faq-fuentes a:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); }
+.mm-cierre-nota a:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco-inverso); outline-offset: var(--mm-foco-aire); }
 @media (min-width: 768px) { .mm-pres { --mm-canal: var(--mm-e-32); } }
 @media (min-width: 992px) {
   .mm-pres { padding: var(--mm-e-64) 0 var(--mm-e-96); }

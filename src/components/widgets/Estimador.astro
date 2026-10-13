@@ -377,14 +377,14 @@ const miles = (n: number) => n.toLocaleString('en-US');
               <form data-name="Pool Estimator Form" data-mm-envia="1" method="post" action="/api/formulario" novalidate>
                 <div class="pe-campos">
                   <div class="pe-campos pe-dos">
-                    <input class="pe-campo" type="text" name="Full-Name" placeholder="Full name" autocomplete="name" required />
-                    <input class="pe-campo" type="email" name="email" placeholder="Email" autocomplete="email" required />
+                    <input class="pe-campo" type="text" name="Full-Name" aria-label="Full name" placeholder="Full name" autocomplete="name" required />
+                    <input class="pe-campo" type="email" name="email" aria-label="Email" placeholder="Email" autocomplete="email" required />
                   </div>
                   <div class="pe-campos pe-dos">
-                    <input class="pe-campo" type="tel" name="Phone" placeholder="Phone" autocomplete="tel" />
-                    <input class="pe-campo" type="text" name="ZIP-Code" placeholder="ZIP code" autocomplete="postal-code" inputmode="numeric" />
+                    <input class="pe-campo" type="tel" name="Phone" aria-label="Phone" placeholder="Phone" autocomplete="tel" />
+                    <input class="pe-campo" type="text" name="ZIP-Code" aria-label="ZIP code" placeholder="ZIP code" autocomplete="postal-code" inputmode="numeric" />
                   </div>
-                  <textarea class="pe-campo" name="Message" rows="2" placeholder="Anything we should know? (optional)"></textarea>
+                  <textarea class="pe-campo" name="Message" rows="2" aria-label="Anything we should know? (optional)" placeholder="Anything we should know? (optional)"></textarea>
                 </div>
                 {/* Los ocultos los reescribe `recalcula()` en cada cambio: lo que se envía es
                     siempre lo ÚLTIMO que el visitante eligió, no un estado de hace tres pasos. */}

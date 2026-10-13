@@ -206,6 +206,8 @@
 }
 #pool-estimator input[type=checkbox]:checked::before { transform: scale(1); }
 #pool-estimator input:focus-visible { outline: 2px solid var(--pe-cielo); outline-offset: 2px; }
+/* E6: los dos botones del estimador enfocaban con el anillo del navegador. El mismo que sus campos. */
+#pool-estimator .pe-boton:focus-visible, #pool-estimator .pe-desplegar:focus-visible { outline: 2px solid var(--pe-cielo); outline-offset: 2px; }
 /* En las opciones-tarjeta el control se alinea con la primera línea (`mt-1` del original). */
 #pool-estimator .pe-opcion > input { margin-top: 4px; }
 

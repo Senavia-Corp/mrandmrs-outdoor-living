@@ -2735,6 +2735,9 @@ for (const [ruta] of RUTAS) {
       for (const it of fuera) it.remove();
       galeriaExcluida += fuera.length;
     }
+    // E6: el desplegable del filtro no tiene `<label>` ni texto al lado; sin esto no tiene nombre
+    // para un lector de pantalla. No anade texto a la vista.
+    doc.querySelector('select.service-filter')?.setAttribute('aria-label', 'Filter photos by service');
     const listaFotos = doc.querySelector('.cms-list-pictures');
     const moldeFoto = listaFotos?.querySelector('.cms-item-pictures');
     // Falla RUIDOSAMENTE: sin molde no hay forma de item que heredar, y publicar /gallery con
