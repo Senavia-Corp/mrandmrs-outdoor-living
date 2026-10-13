@@ -27,6 +27,13 @@
  *     su `gtag config` no cuenta ni una llamada, y la pagina se ve perfecta. Duplicarlo es
  *     peor: cuenta la misma llamada dos veces y el coste por lead sale barato mintiendo.
  *   · EL RECUENTO DEL SITEMAP. 119, no 113.
+ *   · LA CONVERSION DEL FORMULARIO (ASTRO-3). El formulario de dos pasos puede mandar un envio
+ *     PARCIAL al pulsar «Continue» (`mandaParcial`, apagado por defecto). Un parcial no es un
+ *     lead: si escribiera `mm_lead`, redirigiese a `/thank-you` o empujase un evento, cada
+ *     abandono contaria como conversion en Ads y en GA4, y el coste por lead bajaria mintiendo.
+ *     Se mira en la FUENTE, porque el fallo no depende de ninguna pagina: la llave y la
+ *     redireccion se escriben UNA vez en `Formularios.astro`, las dos fuera del parcial, y
+ *     `generate_lead` solo en `/thank-you`. El recorrido en navegador lo mira `check:parcial`.
  *
  * ⚠️ Esto mide `.vercel/output/static`, el artefacto CONSTRUIDO. Nunca `astro dev`.
  */
@@ -230,6 +237,25 @@ else {
   const locs = [...fs.readFileSync(sm, 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
   if (PROD) check(`${LOCS_ESPERADAS} <loc> (113 del origen + 6 propias + 2 de la auditoria + ${BLOGS_PROPIOS} de blog)`, locs.length === LOCS_ESPERADAS, `hay ${locs.length}`);
   else check('vacio fuera de produccion', locs.length === 0, `hay ${locs.length}`);
+}
+
+console.log('\n  LA CONVERSION DEL FORMULARIO — el envio parcial (ASTRO-3) no es un lead');
+{
+  const sinComentarios = (s) => s.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+  const formularios = sinComentarios(fs.readFileSync(path.join(RAIZ, 'src/components/Formularios.astro'), 'utf8'));
+  const cuenta = (s, re) => (s.match(re) ?? []).length;
+  // El cuerpo de `mandaParcial`: de su declaracion al cierre con su misma sangria.
+  const m = formularios.match(/^( *)const mandaParcial = \(\) => \{\n([\s\S]*?)\n\1\};/m);
+  check('`mandaParcial` existe en Formularios.astro (si se renombra, esta puerta no mira nada)', !!m);
+  const prohibido = /sessionStorage\.setItem|location\.(assign|replace|href)|dataLayer|gtag\(|thank-you|\bdl\(/;
+  check('el parcial no escribe la llave, no redirige y no empuja ningun evento', !!m && !prohibido.test(m[2]), m ? (m[2].match(prohibido) ?? [''])[0] : '');
+  check('la llave `mm_lead` y la redireccion a /thank-you se escriben UNA vez cada una',
+    cuenta(formularios, /sessionStorage\.setItem\('mm_lead'/g) === 1 && cuenta(formularios, /location\.assign\('\/thank-you/g) === 1,
+    `${cuenta(formularios, /sessionStorage\.setItem\('mm_lead'/g)} y ${cuenta(formularios, /location\.assign\('\/thank-you/g)}`);
+  const conEvento = [];
+  const anda = (d) => { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const f = path.join(d, e.name); if (e.isDirectory()) anda(f); else if (/\.(astro|ts|mjs|js)$/.test(e.name) && /event:\s*'generate_lead'/.test(sinComentarios(fs.readFileSync(f, 'utf8')))) conEvento.push(path.relative(RAIZ, f)); } };
+  anda(path.join(RAIZ, 'src'));
+  check('`generate_lead` solo lo dispara /thank-you', conEvento.length === 1 && conEvento[0] === 'src/pages/thank-you.astro', conEvento.join(', '));
 }
 
 console.log('\n  EXCEPCIONES DECLARADAS — se imprimen siempre, no se perdonan callando');

@@ -60,6 +60,53 @@ const DESTINO = env('LEAD_TO') || 'info@mrandmrsoutdoorliving.com';
 const ultimaPorIp = new Map<string, number>();
 const VENTANA_MS = 8000;
 
+/**
+ * ── ASTRO-3 · EL ENVIO PARCIAL DEL PASO 1 ────────────────────────────────────────────────────
+ *
+ * APAGADO POR DEFECTO. Solo existe con `PUBLIC_FORM_PARCIAL=1`. Es UNA variable para las dos
+ * mitades: el build la lee para que el navegador mande el parcial y ensene la frase que lo
+ * avisa, y este endpoint la lee al atender. Con dos variables cabria el estado en que la pagina
+ * dice «tus datos se guardan» y el servidor los descarta. Apagado, este endpoint hace
+ * exactamente lo que hacia: nada de lo de abajo cambia una cabecera, un asunto ni un byte del
+ * aviso completo.
+ *
+ * QUE ES. Quien rellena el paso 1 —nombre, telefono, correo y codigo postal— y pulsa «Continue»
+ * queda registrado aunque no termine el paso 2: el navegador manda `etapa=parcial` con un
+ * identificador de contacto que genera el mismo. Sale un aviso marcado como parcial.
+ *
+ * LAS CUATRO COSAS QUE LO ROMPERIAN, y como se evitan:
+ *   · LIMITE POR IP. El completo llega segundos despues del parcial y recibiria un 429. Por eso
+ *     los parciales llevan su PROPIO reloj: un parcial solo frena a otro parcial de esa IP, y un
+ *     completo solo a otro completo, que es exactamente lo que pasaba antes. Asi un parcial —el
+ *     propio o el de otra persona detras de la misma IP— nunca puede tumbar un envio completo.
+ *     El tope por IP y ventana pasa de un correo a dos: un parcial y un completo.
+ *   · TURNSTILE es de un solo uso: el navegador pide un token nuevo despues del parcial.
+ *   · CONSENTIMIENTO. La casilla de SMS esta en el paso 2: un parcial NO ha consentido. El aviso
+ *     lo dice en su primera linea.
+ *   · MEDICION. Un parcial no es una conversion: el navegador no redirige a `/thank-you`.
+ *
+ * EL HILO. El PRIMER aviso parcial sale con un `Message-ID` que se deriva del identificador, y el
+ * completo con ese identificador lleva `In-Reply-To` y `References` a el. Se deriva en vez de
+ * guardarse porque el parcial y el completo pueden caer en dos instancias distintas de la funcion.
+ * Si el visitante corrige el paso 1 y vuelve a avanzar, ese segundo parcial (`parcial_n` > 1) NO
+ * repite el `Message-ID` —un buzon descarta por duplicado el segundo mensaje con el mismo, y se
+ * perderia justo la correccion—: sale con uno propio y cuelga del primero como el completo.
+ */
+const parcialActivo = () => env('PUBLIC_FORM_PARCIAL') === '1';
+const ID_CONTACTO = /^[A-Za-z0-9-]{8,64}$/;
+/** Los campos del paso 1 de los formularios de dos pasos. Un parcial solo lleva estos. */
+const CAMPOS_PASO_1 = new Set(['Full-Name', 'Phone', 'email', 'ZIP-Code']);
+const ultimoParcialPorIp = new Map<string, number>();
+const MARCA_PARCIAL = '[PARTIAL CONTACT]';
+const AVISO_PARCIAL = 'PARTIAL CONTACT — step 1 only, the form was not finished. NO SMS CONSENT: reach out by phone call or email only.';
+const idDeMensaje = (id: string) => `<parcial.${id}@mrandmrsoutdoorliving.com>`;
+/**
+ * TRANSPORTE SIMULADO, para probar sin enviar nada a nadie: con `LEAD_SIMULADO_DIR` el mensaje se
+ * compone igual y se ESCRIBE en esa carpeta en vez de salir por SMTP. En Vercel se ignora
+ * siempre: una variable puesta por error ahi no puede dejar los avisos en un disco que nadie lee.
+ */
+const dirSimulado = () => (env('VERCEL') ? '' : env('LEAD_SIMULADO_DIR').trim());
+
 /** Los campos de cada formulario, con su etiqueta legible para el correo. */
 /**
  * LAS CATORCE FICHAS DE `/services/` COMPARTEN ESTOS CAMPOS, Y SU TABLA SE DERIVA DEL JSON.
@@ -227,15 +274,25 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   const transcurrido = Number(datos.get('elapsedMs') ?? 0);
   if (!Number.isFinite(transcurrido) || transcurrido < 1000) return responde(200, { ok: true, entregado: false });
 
+  // ASTRO-3 · la etapa. Con el interruptor apagado un parcial no existe: se contesta como a un
+  // bot, sin gastar el token ni tocar el limite por IP, y no sale ningun correo.
+  const esParcial = String(datos.get('etapa') ?? '') === 'parcial';
+  if (esParcial && !parcialActivo()) return responde(200, { ok: true, entregado: false });
+  const idCrudo = String(datos.get('contacto_id') ?? '').trim();
+  const idContacto = parcialActivo() && ID_CONTACTO.test(idCrudo) ? idCrudo : '';
+  if (esParcial && !idContacto) return responde(400, { ok: false, error: 'falta el identificador de contacto' });
+
   // 3 · Turnstile
   const veredicto = await validaTurnstile(String(datos.get('turnstileToken') ?? '') || null, ip);
   if (veredicto !== 'ok') return responde(403, { ok: false, error: 'verificacion fallida' });
 
   // 4 · rate-limit por IP
   const ahora = Date.now();
-  const previo = ultimaPorIp.get(ip) ?? 0;
+  // ASTRO-3 · cada etapa con su reloj: un parcial no gasta la ventana del envio completo.
+  const reloj = esParcial ? ultimoParcialPorIp : ultimaPorIp;
+  const previo = reloj.get(ip) ?? 0;
   if (ahora - previo < VENTANA_MS) return responde(429, { ok: false, error: 'demasiado rapido' });
-  ultimaPorIp.set(ip, ahora);
+  reloj.set(ip, ahora);
 
   const nombreForm = String(datos.get('__form') ?? '');
   const def = FORMULARIOS[nombreForm];
@@ -248,7 +305,8 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   }
 
   const campos: CampoAviso[] = [];
-  for (const [campo, etiqueta] of def.campos) {
+  // ASTRO-3 · un parcial solo lleva los campos del paso 1; los del paso 2 no se le exigen.
+  for (const [campo, etiqueta] of (esParcial ? def.campos.filter(([c]) => CAMPOS_PASO_1.has(c)) : def.campos)) {
     const valores = datos.getAll(campo).map((v) => String(v).trim()).filter(Boolean);
     if (valores.length) campos.push({ campo, etiqueta, valor: valores.join(', ') });
   }
@@ -277,6 +335,19 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     fecha: new Date(),
   });
 
+  /* ASTRO-3 · el aviso parcial. La plantilla del aviso completo NO se toca: al parcial solo se le
+   * antepone una marca inequivoca en el asunto, con su identificador, y una PRIMERA linea que
+   * dice en claro que no hay consentimiento de SMS. El completo con identificador solo gana las
+   * cabeceras de hilo. Con el interruptor apagado las tres constantes son las de siempre. */
+  const asuntoFinal = esParcial ? `${MARCA_PARCIAL} ${asunto} · ${idContacto}` : asunto;
+  const textoFinal = esParcial ? `${AVISO_PARCIAL}\nContact ID: ${idContacto}\n\n${texto}` : texto;
+  const franja = `<div style="font:700 14px/1.5 Arial,sans-serif;color:#001c63;background:#fdf0d8;border:1px solid #f4b248;padding:12px 16px;margin:0 0 16px">${AVISO_PARCIAL}<br><span style="font-weight:400">Contact ID: ${idContacto}</span></div>`;
+  const htmlFinal = esParcial ? (/<body[^>]*>/i.test(html) ? html.replace(/<body[^>]*>/i, (m) => m + franja) : franja + html) : html;
+  const primerParcial = esParcial && !(Number(datos.get('parcial_n')) > 1);
+  const hilo = primerParcial ? { messageId: idDeMensaje(idContacto) }
+    : idContacto ? { inReplyTo: idDeMensaje(idContacto), references: idDeMensaje(idContacto) } : {};
+  const simulado = dirSimulado();
+
   // ── el envio. `ok` solo es true si esto SALE. ──────────────────────────
   // 🚨 Se LIMPIAN los dos. Google ensena la contrasena de aplicacion en grupos de cuatro
   // («abcd efgh ijkl mnop») y se pega tal cual una y otra vez; Gmail entonces responde
@@ -286,7 +357,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   // romper una clave valida, y arregla el error de copiado mas comun que existe.
   const usuario = env('SMTP_USER').trim();
   const clave = env('SMTP_PASS').replace(/\s+/g, '');
-  if (!usuario || !clave) {
+  if (!simulado && (!usuario || !clave)) {
     console.error('[formulario] faltan SMTP_USER / SMTP_PASS: el lead NO se ha entregado', { texto });
     return responde(500, { ok: false, error: 'el correo no esta configurado' });
   }
@@ -297,29 +368,38 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     // produccion con `Cannot find module`. Como el envio suele ir en try/catch, el sintoma es
     // «el lead se guarda y el aviso nunca llega».
     const { default: nodemailer } = await import('nodemailer');
-    const t = nodemailer.createTransport({
-      host: env('SMTP_HOST') || 'smtp.gmail.com',
-      port: Number(env('SMTP_PORT') || 465),
-      secure: true,
-      auth: { user: usuario, pass: clave },
-    });
+    const t = simulado
+      ? nodemailer.createTransport({ streamTransport: true, buffer: true, newline: 'unix' })
+      : nodemailer.createTransport({
+        host: env('SMTP_HOST') || 'smtp.gmail.com',
+        port: Number(env('SMTP_PORT') || 465),
+        secure: true,
+        auth: { user: usuario, pass: clave },
+      });
     const info = await t.sendMail({
-      from: `"Mr & Mrs Outdoor Living" <${usuario}>`,
+      from: `"Mr & Mrs Outdoor Living" <${usuario || 'simulado@mm.test'}>`,
       to: DESTINO,
       replyTo: correo,
-      subject: asunto,
+      subject: asuntoFinal,
+      ...hilo,
       // 🚨 LOS DOS, SIEMPRE. El texto plano es accesibilidad y ademas los filtros antispam
       // penalizan el correo solo-HTML: quitarlo manda los avisos a la carpeta de spam y el
       // sintoma —«ya no me llegan leads»— no apunta a esta linea.
-      text: texto,
-      html,
+      text: textoFinal,
+      html: htmlFinal,
     });
+    if (simulado) {
+      const { mkdir, writeFile } = await import('node:fs/promises');
+      await mkdir(simulado, { recursive: true });
+      await writeFile(`${simulado}/${Date.now()}-${esParcial ? 'parcial' : 'completo'}.eml`, (info as { message: Buffer }).message);
+      return responde(200, { ok: true, entregado: true, ...(esParcial ? { parcial: true } : {}) });
+    }
     // Si el servidor rechaza al destinatario, esto NO es una entrega.
     if (!info.accepted?.length) {
       console.error('[formulario] el servidor no acepto ningun destinatario', info);
       return responde(502, { ok: false, error: 'el correo no fue aceptado' });
     }
-    return responde(200, { ok: true, entregado: true });
+    return responde(200, { ok: true, entregado: true, ...(esParcial ? { parcial: true } : {}) });
   } catch (e) {
     console.error('[formulario] fallo el envio, el lead NO se ha entregado:', e);
     return responde(502, { ok: false, error: 'fallo el envio' });

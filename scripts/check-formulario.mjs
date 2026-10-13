@@ -15,7 +15,11 @@
  *     contrato con el correo y el CRM), el nombre del formulario, el SERVICIO de la pagina en el
  *     campo oculto (D-125) y redirige a `/thank-you?f=`;
  *   · sin JS: los dos pasos a la vista, sin «Continue» ni «Back», y el envio nativo apunta al
- *     mismo sitio.
+ *     mismo sitio;
+ *   · ASTRO-3, el interruptor del envio parcial APAGADO, que es como se construye por defecto:
+ *     en todo el recorrido sale UNA peticion, la del envio; «Continue» no manda nada, el envio
+ *     no lleva `etapa` ni `contacto_id` (los caza la lista de campos) y la frase del parcial no
+ *     esta en la pagina. Con el interruptor encendido lo mira `check:parcial`.
  */
 import { chromium } from 'playwright';
 import fs from 'node:fs';
@@ -57,9 +61,9 @@ for (const ruta of RUTAS) {
   const antes = rojos.length;
 
   // ── con JS ────────────────────────────────────────────────────────────────────────────
-  let enviado = null;
+  let enviado = null; let peticiones = 0;
   const ctx = await b.newContext({ viewport: { width: 1280, height: 900 } });
-  await sirve(ctx, (req) => { enviado = req.postDataBuffer()?.toString('latin1') ?? ''; });
+  await sirve(ctx, (req) => { peticiones++; enviado = req.postDataBuffer()?.toString('latin1') ?? ''; });
   const p = await ctx.newPage();
   await p.goto('http://mm.test' + ruta, { waitUntil: 'load' });
   p.setDefaultTimeout(6000);
@@ -90,8 +94,10 @@ for (const ruta of RUTAS) {
     const nombre = await form.getAttribute('data-name');
     const porDefecto = await form.locator('[name="Project-Type"]:checked').inputValue().catch(() => '');
     if (!porDefecto) mal('«Project type» no trae opcion marcada por defecto');
+    if (await form.locator('[data-mm-parcial-nota]').count().catch(() => 0)) mal('la frase del envio parcial esta en la pagina con el interruptor apagado');
     await form.locator('[type=submit]').click();
     await p.waitForURL(/\/thank-you\?f=/, { timeout: 8000 }).catch(() => mal(`tras enviar no redirige a /thank-you?f= (esta en ${p.url()})`));
+    if (peticiones > 1) mal(`en todo el recorrido salen ${peticiones} peticiones a /api/formulario; con el envio parcial apagado es UNA`);
     if (enviado === null) mal('no se ha hecho ningun POST a /api/formulario');
     else {
       const par = new Map([...enviado.matchAll(/name="([^"]+)"\r\n\r\n([^\r]*)/g)].map((m) => [m[1], m[2]]));

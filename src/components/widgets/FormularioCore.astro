@@ -164,6 +164,9 @@ const tituloNb = escT(d?.titulo).replace(/Design-Buil[dt]/g, '<span class="mm-nb
             </div>
             <div class="mm-form-pie">
               <button type="button" class="mm-btn" data-mm-sig hidden>Continue</button>
+              {/* ASTRO-3 (T-17): solo con el envio parcial encendido en el build, y solo con JS, que es
+                  quien lo manda. Apagado, esta linea no existe en el HTML. */}
+              {import.meta.env.PUBLIC_FORM_PARCIAL === '1' && <p class="mm-form-legal" data-mm-parcial-nota hidden>Your contact details are saved when you continue.</p>}
               {licencia && <div class="mm-dato mm-form-lic"><span class="mm-dato-rot">{licencia[0]}</span><span class="mm-dato-val">{licencia.slice(1).join(' · ')}</span></div>}
             </div>
           </div>

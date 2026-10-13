@@ -2911,11 +2911,15 @@ const SMS_CAPTACION = 'I agree to receive SMS messages related to project update
   + 'communications from Mr. & Mrs. Outdoor Living. This is optional and is not required to get '
   + 'an estimate. I understand that I may opt out at any time by replying STOP. Message and data '
   + 'rates may apply.';
+/* T-17 / T-73 (ASTRO-3) · la frase que avisa del envio parcial SOLO existe en un build hecho con
+ * `PUBLIC_FORM_PARCIAL=1`, que es el mismo interruptor que lo enciende. Se mide con la misma
+ * variable: apagado, la frase en pantalla es rojo; encendido, es rojo que falte. */
+const FRASE_PARCIAL = process.env.PUBLIC_FORM_PARCIAL === '1' ? ['Your contact details are saved when you continue.'] : [];
 const camposCaptacion = (c) => {
   const [rotLic, ...valLic] = c.heroe.licencias.split(' · ');
   const lic = [rotLic.toUpperCase(), valLic.join(' · ')];
   return [
-    'Step 1 of 2', 'Full name', 'Phone', 'Email', 'ZIP code', 'Continue', ...lic,
+    'Step 1 of 2', 'Full name', 'Phone', 'Email', 'ZIP code', 'Continue', ...FRASE_PARCIAL, ...lic,
     'Step 2 of 2',
     'Project type', ...(c.formulario.proyectos ?? ['New Custom Pool', 'Complete Pool Remodel']),
     'Do you own this property?', 'Select one...', 'Yes, I own this property', 'No', 'Other',

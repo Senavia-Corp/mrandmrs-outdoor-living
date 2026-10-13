@@ -142,6 +142,11 @@
        * la vista; aqui se oculta el que no toca y se ensenan «Continue» y «Back». No se envia nada
        * al pasar de paso: el envio sigue siendo uno, el de siempre, al final (el parcial es
        * ASTRO-3). «Continue» valida con la validacion nativa los campos del paso 1. */
+      // ASTRO-3: el interruptor del envio parcial lo fija el build; apagado por defecto.
+      const PARCIAL = import.meta.env.PUBLIC_FORM_PARCIAL === '1';
+      let contactoId = '';
+      let huellaParcial = '';
+      let nParcial = 0;
       const pasos = [...form.querySelectorAll('[data-paso]')];
       if (form.hasAttribute('data-mm-pasos') && pasos.length === 2) {
         const sig = form.querySelector('[data-mm-sig]');
@@ -151,12 +156,51 @@
           form.dataset.mmPaso = String(n);
           if (foco) campos(pasos[n - 1])[0]?.focus();
         };
+        /* ASTRO-3 · EL ENVIO PARCIAL. Solo si el build se hizo con `PUBLIC_FORM_PARCIAL=1`; si no,
+         * `PARCIAL` es `false` y de aqui no sale ninguna peticion. Al avanzar con el paso 1 valido
+         * se manda, SIN ESPERAR, lo que el usuario acaba de escribir, con un identificador de
+         * contacto que se genera aqui. Si falla no se ve nada y el envio completo sigue igual.
+         * «Back» y volver a avanzar sin cambiar nada no reenvia. No redirige ni escribe `mm_lead`:
+         * un parcial no es una conversion. */
+        const mandaParcial = () => {
+          if (!PARCIAL) return;
+          const d = new FormData();
+          const huella = [];
+          for (const c of campos(pasos[0])) if (c.name) { d.append(c.name, c.value); huella.push(c.name + '=' + c.value); }
+          if (huella.join('&') === huellaParcial) return;
+          huellaParcial = huella.join('&');
+          if (!contactoId) contactoId = window.crypto?.randomUUID ? window.crypto.randomUUID() : 'c' + Date.now().toString(36) + Math.random().toString(36).slice(2, 12);
+          d.set('etapa', 'parcial');
+          d.set('contacto_id', contactoId);
+          // El ordinal: si corrige el paso 1 y vuelve a avanzar, el segundo aviso no puede salir con
+          // el mismo `Message-ID` que el primero, o el buzon lo descartaria por duplicado.
+          d.set('parcial_n', String(++nParcial));
+          d.set('__form', form.dataset.name ?? '');
+          d.set('__form_id', idDe(form));
+          d.set('__ruta', location.pathname);
+          d.set('elapsedMs', String(Date.now() - inicio));
+          d.set('ref_id', form.querySelector('[name="ref_id"]')?.value ?? '');
+          try {
+            const org = JSON.parse(sessionStorage.getItem('mm_origen') || '{}');
+            for (const k in org) if (org[k]) d.set('origen_' + k, String(org[k]));
+          } catch { /* modo privado: se pierde el origen, nunca el contacto */ }
+          const ts = window.turnstile;
+          let token = '';
+          try { if (ts && idWidget !== null) token = ts.getResponse(idWidget) ?? ''; } catch { /* sin token: lo decide el servidor */ }
+          if (ts && idWidget !== null) d.set('turnstileToken', token);
+          fetch('/api/formulario', { method: 'POST', body: d, keepalive: true }).catch(() => { /* el usuario no ve nada */ });
+          // El token de Turnstile es de un solo uso: si se ha gastado uno, se pide otro para el
+          // envio completo. Si aun no habia, no se reinicia: se cortaria el reto en curso.
+          try { if (token) ts.reset(idWidget); } catch { /* nada */ }
+        };
         const avanza = () => {
           for (const c of campos(pasos[0])) if (!c.reportValidity()) return;
           ir(2, true);
+          mandaParcial();
         };
         if (sig && atras) {
           sig.hidden = false; atras.hidden = false;
+          if (PARCIAL) form.querySelector('[data-mm-parcial-nota]')?.removeAttribute('hidden');
           ir(1, false);
           sig.addEventListener('click', avanza);
           atras.addEventListener('click', () => ir(1, true));
@@ -199,8 +243,19 @@
         } catch (e) { /* modo privado: se pierde el origen, nunca el lead */ }
         try {
           const ts = window.turnstile;
-          if (ts && idWidget !== null) datos.set('turnstileToken', ts.getResponse(idWidget) ?? '');
+          if (ts && idWidget !== null) {
+            let token = ts.getResponse(idWidget) ?? '';
+            // ASTRO-3: tras un parcial el token se renueva. Si el envio llega antes que el nuevo,
+            // se le espera unos segundos; sin parcial, este bucle no corre.
+            for (let i = 0; PARCIAL && contactoId && !token && i < 40; i++) {
+              await new Promise((r) => setTimeout(r, 150));
+              token = ts.getResponse(idWidget) ?? '';
+            }
+            datos.set('turnstileToken', token);
+          }
         } catch { /* sin token: lo decide el servidor */ }
+        // ASTRO-3: el completo lleva el identificador de su parcial, si lo hubo.
+        if (contactoId) datos.set('contacto_id', contactoId);
 
         const textoBoton = boton?.value;
         if (boton) { boton.disabled = true; boton.value = boton.dataset.wait || 'Please wait...'; }
