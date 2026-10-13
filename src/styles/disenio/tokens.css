@@ -337,7 +337,9 @@
    * fontsource el nav cayo al 95,85 % (un a.nav-link medio 57,35px en vez de
    * 59,54). Montserrat existe en el sitio pero solo en 2 selectores de
    * formulario: no es una fuente de titulos y no entra en el sistema. */
-  --mm-fuente: Inter, sans-serif;
+  /* E5 (D-148): con todas las secciones migradas, el token heredado apunta a la familia del
+   * sistema. Lo usaban todavia las pastillas del indice del blog, unico texto que pintaba Inter. */
+  --mm-fuente: var(--mm-familia);
 
   --mm-peso-normal: 400;   /* 21 declaraciones en Webflow */
   --mm-peso-medio:  500;   /* 18 — es el peso de h2 */

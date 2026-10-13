@@ -36,7 +36,6 @@ import Formularios from '../components/Formularios.astro';
 // fontsource el nav salía al 95,85 % contra el baseline porque un a.nav-link medía 57,35 px
 // en vez de 59,54. Ver scripts/fetch-fuentes.mjs.
 import '../styles/fuentes.css';
-import fuentesCrudo from '../styles/fuentes.css?raw';
 import '../styles/webflow.css';
 /**
  * LA CAPA DE DISENO (fase R7). El orden es el contrato, y gana por ORDEN, no por peso:
@@ -80,7 +79,6 @@ import '../styles/disenio/sistema.css';
 // declara alcance de 1 sola ruta (ver su cabecera) y este hero vive en 55 (53 de
 // pool-builders/ via plantilla-pool-builders.json + los 2 where-we-serves/*.astro). Va
 // DESPUES de home.css y ANTES de blog.css, mismo criterio de orden que el resto de la capa.
-import '../styles/hero-zona.css';
 // La seccion de BLOG (R9-BLOG-01). NO cabe en home.css y por eso tiene fichero propio: la
 // seccion se pinta en 63 rutas —1 index + 9 country/ + las 53 de pool-builders/ via
 // plantilla-pool-builders.json—, asi que un fichero llamado `home` mentiria sobre su alcance
@@ -91,7 +89,6 @@ import '../styles/blog.css';
 // La BANDA DE CONFIANZA (`.trusted-section`), en 80 rutas. Mismo criterio que blog.css y
 // servicios.css: el selector reparte 80/71 solo -las 9 de country/ no llevan
 // `.block-contect-intro`- asi que no hay lista de rutas que mantener.
-import '../styles/intro.css';
 // EL PORTAFOLIO (R10, lote `project/`), propiedad exclusiva del chat PULIDOR-1. Alcance
 // medido: `.project-gallery` 10 rutas -las fichas- y `.project-page` 11 -indice + fichas-.
 // Fichero propio y no dentro de propio.css porque el radio de impacto tiene que ser
@@ -111,13 +108,9 @@ import '../styles/proyectos.css';
 // `home.css` que las llevara mentiria sobre su alcance, que es exactamente como nacio la mina
 // de `blog.css`. Una hoja por seccion, con su alcance en la cabecera y su dueno declarado.
 import '../styles/cta.css';            // .cta-page-section 12 + .cta-footer 102   -> HOME
-import '../styles/obra.css';           // .projects-section 66                     -> PULIDOR-1
 // `antes-despues.css` (el deslizador `.before-after-section`) se retiro con ASTRO-4: las dos rutas
 // que lo llevaban ensenan el par lado a lado (`.mm-ad`, D-96).
-import '../styles/render3d.css';       // ._3d-section 65                          -> PULIDOR-2
-import '../styles/ubicacion.css';      // .location 17                             -> PULIDOR-2
 import '../styles/social.css';         // .social-media 79                         -> PULIDOR-2
-import '../styles/caracteristicas.css';// .animated-divs-section 55                -> R17-CARAC
 // LAS 4 PAGINAS INDICE (fase R12) + su heroe comun. Medido: de lo que se ve en /gallery,
 // /brochures, /blogs-tips y /contact-us, solo la rejilla y el formulario son exclusivos de su
 // pagina; el heroe lo comparten las OCHO paginas indice con marcado identico —421-452 ch y las
@@ -139,6 +132,9 @@ import '../styles/folletos.css';       // .brochures-section-page 1             
 // de la capa de diseño, porque solo tiene que ganar a `disenio/base.css` — con `propio.css`,
 // que parchea clases de Webflow, no se cruza: ni un selector en comun.
 // `financiacion.css` (`.fin-*`) se retiro con ASTRO-4: `/financing` pasa a piezas del sistema.
+// E5 (D-154): salen siete hojas heredadas sin ninguna regla viva tras el rediseño —`caracteristicas`,
+// `faq`, `hero-zona`, `intro`, `obra`, `render3d` y `ubicacion`—. `social.css` se queda: sus clases
+// aparecen cuando el feed tiene contenido.
 // LA CAPA DE CAPTACION DE LAS FICHAS DE `/services/` (R17-CORE). Las tres secciones nuevas que
 // montan ConfianzaCore, FormularioCore e InversionCore. Hoy la monta 1 ruta —la Final URL del ad
 // group «Pool Builders Core»—, porque `src/data/captacion-servicios.json` tiene 1 entrada; la
@@ -152,7 +148,6 @@ import '../styles/folletos.css';       // .brochures-section-page 1             
 // ultima de las hojas de seccion porque corrige marcado de Webflow (`.header-faq`,
 // `.wrapper-faq-components`, `.dropdown-*`) y gana por orden, sin un solo `!important`; con el
 // resto de la capa no se cruza: ni un selector en comun.
-import '../styles/faq.css';            // .faq-section 16                          -> FAQ-COLLAGE
 // CSS de autor, DESPUES de webflow.css para ganar por orden y sin `!important`.
 // Hoy solo lleva el arreglo del solape del logo del nav entre 992 y 1204 px.
 import '../styles/propio.css';
@@ -189,35 +184,6 @@ const { titulo, descripcion, ruta = Astro.url.pathname, conPie = true, seo = {},
  */
 const ES_PRODUCCION = import.meta.env.PUBLIC_ES_PRODUCCION === '1';
 
-/**
- * PRECARGA DE LAS DOS CARAS DE INTER QUE PINTA EL NAV.
- *
- * MEDIDO: el mayor desplazamiento de 4 de las 6 plantillas es `div.wrapper-menu` —los enlaces
- * del nav— y Lighthouse lo atribuye a `inter-…woff2`. Es un reflujo HORIZONTAL: `y,alto` no
- * cambian (`0,85 -> 0,85`), cambia el ancho del texto cuando la fuente entra y sustituye a
- * Arial. Con `font-display: swap` y sin precarga, esa ventana dura lo que tarde la fuente, y
- * bajo el estrangulamiento de Lighthouse eso son 0.0978 (`/`) a 0.1564 (`/services/*`) de CLS.
- *
- * LAS URLS SE SACAN DE `fuentes.css`, NO SE CABLEAN. Ese fichero es DERIVADO
- * (`scripts/fetch-fuentes.mjs`) y los nombres llevan el hash de Google: cablearlos aqui
- * significa que la proxima regeneracion deja dos `<link rel=preload>` apuntando a ficheros que
- * ya no existen —y un preload roto no da error, solo deja de servir—. Se filtra por
- * `unicode-range` del subconjunto `latin` (empieza en U+0000-00FF), que es el unico que pinta
- * texto ingles, y por las dos familias que usa el cascaron.
- *
- * SALEN DOS, uno por familia, y no por recorte: las 5 caras latinas de Inter comparten el
- * MISMO .woff2 —es variable— y otro tanto Montserrat. Precargar las 46 declaraciones seria
- * pelear con la propia pagina por el ancho de banda; aqui no hay nada que recortar.
- */
-const FUENTES_PRECARGA = [...new Set([...String(fuentesCrudo).matchAll(/@font-face\s*\{([^}]*)\}/g)]
-  .map((m) => m[1])
-  // El subconjunto `latin` es el unico que pinta texto ingles; su rango empieza en U+0000-00FF.
-  .filter((b) => /unicode-range:\s*U\+0000-00FF/.test(b))
-  // Y solo la redonda: la cursiva no la pinta nada del cascaron, y un preload que el
-  // navegador no usa en los primeros segundos sale en consola como aviso y gasta banda.
-  .filter((b) => /font-style:\s*normal/.test(b))
-  .map((b) => b.match(/url\((\/fonts\/[^)]+)\)/)?.[1])
-  .filter(Boolean))];
 const canonica = ES_PRODUCCION ? new URL(ruta, Astro.site).href : null;
 /**
  * `og:image` y `twitter:image` tienen que ser ABSOLUTAS: los rastreadores sociales no
@@ -301,8 +267,9 @@ const jsonLd = [...(seo.jsonLd ?? []), ...inyectados];
 const { html: conVideo, heroe: posterHeroe } = videoFondo(await Astro.slots.render('default'));
 /* Y los titulos que saltan nivel reciben `aria-level` (ver `src/lib/niveles-titulo.mjs`). */
 /* Y las imagenes grandes sin `srcset` reciben sus variantes (ver `src/lib/srcset-auto.mjs`). */
-const { html: contenido } = srcsetAuto(nivelesSinSaltos(conVideo).html);
-const precargas = posterHeroe ? precargaPoster(posterHeroe) : [];
+const { html: contenido, lcp: fotoLcp } = srcsetAuto(nivelesSinSaltos(conVideo).html);
+// E5 (D-155): donde el LCP es la foto del hero y no un poster de video, se precarga su AVIF de movil.
+const precargas = posterHeroe ? precargaPoster(posterHeroe) : fotoLcp ? [fotoLcp] : [];
 const CON_MAIN = /<main[\s>]/.test(contenido);
 ---
 <!doctype html>
@@ -314,9 +281,9 @@ const CON_MAIN = /<main[\s>]/.test(contenido);
       <link rel="preload" as="image" type="image/avif" media={p.media} imagesrcset={p.imagesrcset}
         imagesizes={p.imagesizes} fetchpriority="high" />
     ))}
-    {FUENTES_PRECARGA.map((u) => (
-      <link rel="preload" href={u} as="font" type="font/woff2" crossorigin="anonymous" />
-    ))}
+    {/* E5 (D-148, D-155): las precargas de Inter y Montserrat salen. Medido por plantilla sobre el
+        build: todo el texto visible se pinta en Manrope, y esos 82 KB competian con la foto del
+        hero por la red justo antes del LCP. Las dos familias siguen declaradas en `fuentes.css`. */}
     {/* REDISEÑO STITCH (ASTRO-1, D-104): Manrope es la fuente del cascarón nuevo, que se pinta en
         el primer fotograma. Sin precarga entra tarde con `swap` y mueve el ancho del menú, que
         es el mismo CLS que arregló la precarga de Inter el 4-oct. Único cambio de <head>

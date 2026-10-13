@@ -568,3 +568,12 @@ main > .half-hero-section,
 main > .article-body,
 main > .appointment-section,
 main > .cost { margin-top: 0; }
+
+/* E5 (D-148): la tipografia base del documento es la del sistema. `webflow.css` dejaba `body` en
+   Inter y la heredaban lo que no declara familia —los botones del visor de fotos, los rotulos y
+   `placeholder` del formulario de galeria, las pastillas del indice del blog—. */
+body { font-family: var(--mm-familia); }
+
+/* E5 (D-155): la foto del LCP va dentro de un `<picture>`. No pinta caja: la `<img>` se maqueta como
+   si siguiera siendo hija directa de su figura. */
+picture { display: contents; }

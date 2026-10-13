@@ -68,7 +68,8 @@ const RAICES_BLOQUES = ['src/components', 'src/layouts', 'src/pages', 'src/data'
 const EXT_BLOQUES = new Set(['.astro', '.json', '.ts']);
 
 /** Suelos. Una puerta que mide menos de lo que hay no debe poder salir verde. */
-const MIN_HOJAS = 15;
+// E5 (D-154): salen siete hojas heredadas sin ninguna regla viva. Quedan 11, y ese es el suelo.
+const MIN_HOJAS = 11;
 const MIN_BLOQUES = 7;
 
 /** Presupuesto de peso de la capa, sin comentarios.
@@ -190,7 +191,12 @@ const MIN_BLOQUES = 7;
  *  Lo que NO cambia: la puerta sigue midiendo, sigue roja si se pasa, y la pregunta de que sobra
  *  (`estimacion.css`, `contacto.css`) sigue abierta y sigue siendo del director.
  */
-const TOPE_BYTES = fs.statSync(path.join(RAIZ, 'src/styles/webflow.css')).size;
+/* E5 (D-154): `src/styles/webflow.css` sale ya PODADA (`build-css.mjs`), y medir el tope contra ella
+ * lo habria hundido de 167 KB a una quinta parte sin que nadie lo decidiera. El tope sigue siendo
+ * el de la regla: el peso de la base de Webflow que la capa de autor eleva, que es la hoja de
+ * ORIGEN, entera. El numero no cambia. */
+const ORIGEN_WEBFLOW = path.join(RAIZ, '_source/webflow-css');
+const TOPE_BYTES = fs.statSync(path.join(ORIGEN_WEBFLOW, fs.readdirSync(ORIGEN_WEBFLOW).filter((f) => f.endsWith('.css'))[0])).size;
 
 const sinComentarios = (s) => s.replace(/\/\*[\s\S]*?\*\//g, '');
 

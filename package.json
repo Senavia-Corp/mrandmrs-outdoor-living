@@ -12,6 +12,7 @@
     "assets": "node scripts/download-assets.mjs",
     "fuentes": "node scripts/fetch-fuentes.mjs",
     "css": "node scripts/build-css.mjs",
+    "css:vivas": "node scripts/build-css-vivas.mjs",
     "paginas": "node scripts/build-paginas.mjs",
     "plantillas": "node scripts/build-plantillas.mjs",
     "captacion:ciudades": "node scripts/build-captacion-ciudades.mjs",
