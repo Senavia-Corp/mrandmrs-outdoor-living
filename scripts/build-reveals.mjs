@@ -65,7 +65,13 @@ const RETIRADAS = new Set([
   'a5871642-3b6c-271b-3ec9-9fed5cbdb3f3', 'cf0c09d3-d0b4-ba92-42a2-cec01a9dee35', 'dfdd7317-58e7-27b3-99a6-2c20a5e8a7be',
   'dfdd7317-58e7-27b3-99a6-2c20a5e8a7c8', 'f811c775-c524-2700-ed75-4a83bcf40c57',
   // hero, presentacion y cobertura de `/where-we-serve` (ASTRO-4 lote C)
-  '92e1d430-1509-d840-e593-ae3928b4eb32', '906333cc-167b-479c-ae94-f7ad46037af5', '11be53e8-68d1-13b1-051c-1b12ca00c3c8',
+  '92e1d430-1509-d840-e593-ae3928b4eb32', '906333cc-167b-479c-ae94-f7ad46037af5', '11be53e8-68d1-13b1-051c-1b12ca00c3c8',  // las dos paginas de estado, `/where-we-serve/north-florida` y `south-florida` (ASTRO-4 lote C)
+  '12c8e489-ab6c-f74d-d0c2-18c43511ead7', '1751d21a-c7f6-4875-4d5c-669cd0d5b935', '1b3f0000-6760-ab5a-e8a8-0451b5923b92',
+  '330b3a3f-e72c-3f91-1f24-8dfe4f37952f', '330b3a3f-e72c-3f91-1f24-8dfe4f379534', '53f4d2e0-9a7a-0e16-e20a-ab8f9e03c935',
+  '74852c7c-aeb3-35a7-5cf1-44f4ce6ecae5', '8bad508e-9f02-2bc9-bf6d-6ac47990da3b', '90fb4871-cccb-5a13-f9e4-95b1df0636a2',
+  'a1f123ae-345b-86a9-18b8-ddb864de3fab', 'a9d58cee-a069-e584-e711-80e05d28f337', 'a9d58cee-a069-e584-e711-80e05d28f33c',
+  'c6964fce-5218-8f0d-f211-580d83969ae1', 'cf60ca62-e5b4-3461-9fff-7f4e9e3b64a9', 'd0e26d17-17a7-1637-e349-7157550d6e66',
+  'f72979fc-9196-9930-356a-1756486557d5', 'fd6a65e1-6acd-7404-311b-159de074845d',
 ]);
 
 const porId = {};

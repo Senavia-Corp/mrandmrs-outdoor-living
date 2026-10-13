@@ -58,8 +58,8 @@ const slides = [...PROPIAS.obras.filter((o) => o.enCarrusel !== false), ...MIGRA
 
 /* ASTRO-2 · lamina «Proyectos», en las 118 paginas de servicio × ciudad: el carrusel pasa a tres
  * proyectos destacados con foto y el resto en un indice de titulo + «See Project». Los mismos
- * proyectos, los mismos enlaces y el mismo orden. La home, `/industry-solutions`,
- * `/where-we-serve/*` y los 9 condados siguen con el carrusel hasta que les toque.
+ * proyectos, los mismos enlaces y el mismo orden. Con ASTRO-4 (lote C) ya van en lista todas las
+ * rutas que montan esta pieza: no queda ninguna con el carrusel.
  * D-68, D-56: uno de los proyectos sigue enlazado en el indice, pero no entra entre los destacados. */
 import captacion from '../../data/captacion-servicios.json';
 import TELEFONOS from '../../data/telefonos.json';
@@ -71,9 +71,9 @@ import path from 'node:path';
  * Details») y sin telefonos (van arriba y en el cierre). */
 const enProyecto = /^\/project\//.test(ruta);
 // ASTRO-4: la home tambien va en lista (tres destacadas e indice), con su titular y su accion.
-const enLista = /^\/services\/[^/]+\/[^/]+$/.test(ruta) || enProyecto || ruta === '/' || ruta === '/industry-solutions';
+const enLista = /^\/services\/[^/]+\/[^/]+$/.test(ruta) || enProyecto || ruta === '/' || ruta === '/industry-solutions' || /^\/where-we-serve\/[^/]+$/.test(ruta);
 // Los condados no tienen formulario en la pagina: su accion lleva al presupuesto, como su hero.
-const anclaAccion = /-county-fl$/.test(ruta) || ruta === '/industry-solutions' ? '/request-estimated' : '#estimate';
+const anclaAccion = /-county-fl$/.test(ruta) || ruta === '/industry-solutions' || ruta.startsWith('/where-we-serve/') ? '/request-estimated' : '#estimate';
 const SOLO_EN_INDICE = 'luxury-pool-spa-screen-enclosure-north-florida';
 const cap = (captacion as Record<string, { heroe?: { cta?: string; zonas?: string[] } }>)[ruta];
 const accion = cap?.heroe?.cta ?? (ruta === '/' ? 'Request a Design-Build Project Evaluation' : 'Get a Free Estimate');

@@ -89,7 +89,9 @@ const posts = ficha ? ficha.posts : datos.posts;
  * de titulo + «Read More» (T-44). La home y `/where-we-serve/*` siguen con el carrusel hasta
  * ASTRO-4. La accion de la cabecera es la del hero de la ruta. */
 import captacion from '../../data/captacion-servicios.json';
-const enLista = ruta.startsWith('/services/') || ruta === '/';
+const enLista = ruta.startsWith('/services/') || ruta === '/' || /^\/where-we-serve\/[^/]+$/.test(ruta);
+// Las paginas de estado no tienen formulario: su accion lleva al presupuesto.
+const anclaAccion = ruta.startsWith('/where-we-serve/') ? '/request-estimated' : '#estimate';
 const accion = (captacion as Record<string, { heroe?: { cta?: string } }>)[ruta]?.heroe?.cta ?? (ruta === '/' ? 'Request a Design-Build Project Evaluation' : 'Get a Free Estimate');
 /* Las miniaturas llevan `width` y `height` (ninguna imagen sin medidas: no salta la maqueta).
  * `blogs.json` no las trae, asi que se leen del fichero al construir, una vez por imagen. */
@@ -113,7 +115,7 @@ const FLECHA = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 2
       <h2 class="mm-h2">{tituloFinal}</h2>
       <div class="mm-sec-lado">
         <p class="mm-p">{entradillaFinal}</p>
-        <div class="mm-sec-acc"><a class="mm-btn mm-btn--linea" href="#estimate">{accion}</a></div>
+        <div class="mm-sec-acc"><a class="mm-btn mm-btn--linea" href={anclaAccion}>{accion}</a></div>
       </div>
     </div>
     <div class="mm-arts-cuerpo">

@@ -88,9 +88,23 @@ const casa = (r) => !filtro.length
 // en lista); quedan las dos rutas que si, y la primera es la que tiene autoplay que medir.
 // ASTRO-4 lote C: tambien sale `/industry-solutions`. Sus tres carruseles pasan a fichas, muro e
 // indice, y con ellos se va la instancia `fs-slider-sliderindustries`.
-const RUTAS = [
-  '/where-we-serve/north-florida',
-].filter(casa);
+// ASTRO-4 lote C, cierre: las dos paginas de estado tambien pasan a lista y en el sitio no queda
+// NINGUN carrusel. Las rutas ya no son fijas: salen del build, las que lleven una instancia del
+// motor. Si no hay ninguna, la puerta lo dice y sale en verde SIN haber medido nada: no es una
+// medida aprobada, es que no hay que medir. El dia que vuelva un carrusel, vuelve a medirlo.
+const conCarrusel = [];
+(function recorre(d) {
+  for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+    const p = path.join(d, e.name);
+    if (e.isDirectory()) { if (!['_astro', 'images', 'videos', 'fonts'].includes(e.name)) recorre(p); }
+    else if (e.name === 'index.html' && /\sfs-slider-instance="/.test(fs.readFileSync(p, 'utf8'))) conCarrusel.push('/' + path.relative(ESTATICO, d));
+  }
+})(ESTATICO);
+if (!conCarrusel.length) {
+  console.log('\n  --   check:carrusel — 0 rutas del build llevan un carrusel (`fs-slider-instance`). NADA QUE MEDIR:\n       la puerta no ha comprobado nada en esta corrida.\n');
+  process.exit(0);
+}
+const RUTAS = conCarrusel.sort().slice(0, 3).filter(casa);
 if (!RUTAS.length) { console.error(`\nROJO ninguna de las rutas fijas casa el filtro "${filtro.join(' ')}"\n`); process.exit(1); }
 
 let fallos = 0;

@@ -25,144 +25,7 @@
  "duracion": 1000,
  "amplitudLateral": 100,
  "porId": {
-  "12c8e489-ab6c-f74d-d0c2-18c43511ead7": [
-   {
-    "anim": "growIn",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
-  "cf60ca62-e5b4-3461-9fff-7f4e9e3b64a9": [
-   {
-    "anim": "growIn",
-    "bps": [
-     "medium",
-     "small",
-     "tiny",
-     "main"
-    ]
-   }
-  ],
-  "90fb4871-cccb-5a13-f9e4-95b1df0636a2": [
-   {
-    "anim": "slideInRight",
-    "bps": [
-     "main"
-    ]
-   },
-   {
-    "anim": "growIn",
-    "bps": [
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
-  "330b3a3f-e72c-3f91-1f24-8dfe4f37952f": [
-   {
-    "anim": "growIn",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
-  "330b3a3f-e72c-3f91-1f24-8dfe4f379534": [
-   {
-    "anim": "growIn",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
-  "a1f123ae-345b-86a9-18b8-ddb864de3fab": [
-   {
-    "anim": "growIn",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
-  "d0e26d17-17a7-1637-e349-7157550d6e66": [
-   {
-    "anim": "slideInBottom",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
-  "fd6a65e1-6acd-7404-311b-159de074845d": [
-   {
-    "anim": "growIn",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
-  "1b3f0000-6760-ab5a-e8a8-0451b5923b92": [
-   {
-    "anim": "growIn",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
-  "c6964fce-5218-8f0d-f211-580d83969ae1": [
-   {
-    "anim": "growIn",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
   "34cd3ced-83f1-045b-fd89-afc4ef847f4a": [
-   {
-    "anim": "growIn",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
-  "74852c7c-aeb3-35a7-5cf1-44f4ce6ecae5": [
-   {
-    "anim": "growIn",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
-  "1751d21a-c7f6-4875-4d5c-669cd0d5b935": [
    {
     "anim": "growIn",
     "bps": [
@@ -299,30 +162,6 @@
     ]
    }
   ],
-  "a9d58cee-a069-e584-e711-80e05d28f337": [
-   {
-    "anim": "growIn",
-    "bps": [
-     "main"
-    ]
-   }
-  ],
-  "a9d58cee-a069-e584-e711-80e05d28f33c": [
-   {
-    "anim": "growIn",
-    "bps": [
-     "medium",
-     "small",
-     "tiny"
-    ]
-   },
-   {
-    "anim": "slideInBottom",
-    "bps": [
-     "main"
-    ]
-   }
-  ],
   "f5ae371f-3a5a-84b7-3844-edd7198a776d": [
    {
     "anim": "slideInLeft",
@@ -375,39 +214,6 @@
   "df442948-7719-1c67-0f50-9201c368c52f": [
    {
     "anim": "slideInBottom",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
-  "f72979fc-9196-9930-356a-1756486557d5": [
-   {
-    "anim": "growIn",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
-  "53f4d2e0-9a7a-0e16-e20a-ab8f9e03c935": [
-   {
-    "anim": "growIn",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
-  "8bad508e-9f02-2bc9-bf6d-6ac47990da3b": [
-   {
-    "anim": "growIn",
     "bps": [
      "main",
      "medium",

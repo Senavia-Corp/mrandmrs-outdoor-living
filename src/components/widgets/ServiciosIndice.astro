@@ -43,7 +43,8 @@ interface Props {
   ancla?: string;
 }
 const { servicio, accion, ancla = '#estimate' } = Astro.props;
-const dp = DATOS['/'];
+// Las dos paginas de estado traen su propio titular y su propio orden de categorias (ASTRO-4 lote C).
+const dp = (DATOS as Record<string, typeof DATOS['/']>)[Astro.url.pathname.replace(/(.)\/$/, '$1')] ?? DATOS['/'];
 const nm = (x: string) => x.replace(/\s+/g, ' ').trim();
 const texto = (x: string) => nm(x.replace(/&amp;/g, '&').replace(/<[^>]+>/g, ''));
 

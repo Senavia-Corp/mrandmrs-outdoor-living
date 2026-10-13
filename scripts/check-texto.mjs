@@ -2413,7 +2413,7 @@ function lineasResenas(ruta) {
    * enlace «See all reviews» sube a la cabecera, delante; el nombre va como esta escrito (D-142; hasta
    * entonces, en versalitas por CSS); y en las filas de la lista el nombre y la fecha se pintan a la izquierda
    * de la cita, pero en el HTML van detras, como siempre. Las mismas ocho, las mismas lineas. */
-  if (ruta && (esFicha(ruta) || esCiudadA(ruta) || esCondado(ruta) || ['/', '/contact-us', '/testimonials', '/videos', '/industry-solutions', '/financing'].includes(ruta))) {   // y la home, contacto, testimonios, videos e industrias (ASTRO-4)
+  if (ruta && (esFicha(ruta) || esCiudadA(ruta) || esCondado(ruta) || ['/', '/contact-us', '/testimonials', '/videos', '/industry-solutions', '/financing'].includes(ruta) || /^\/where-we-serve\/[^/]+$/.test(ruta))) {   // y la home, contacto, testimonios, videos e industrias (ASTRO-4)
     return [
       RESENAS_MARCADOR,
       ...(d.valoracion != null ? [d.valoracion.toFixed(1)] : []),
@@ -3465,7 +3465,7 @@ const rotulosT69 = new Map();
 function sinMayusculasDeCss(ruta, esperado, hay) {
   // Las rutas ya migradas a las piezas nuevas: las 141 de servicio y, desde ASTRO-4, las 15 de
   // proyecto y los 47 articulos (las cabeceras de sus tablas).
-  if (!/^\/(services|project|blogs)\//.test(ruta) && !['/', '/request-estimated', '/contact-us', '/videos', '/financing', '/about', '/thank-you'].includes(ruta)) return esperado;
+  if (!/^\/(services|project|blogs|where-we-serve)\//.test(ruta) && !['/', '/request-estimated', '/contact-us', '/videos', '/financing', '/about', '/thank-you'].includes(ruta)) return esperado;
   const medidas = hay.split('\n');
   const esperadas = esperado.split('\n');
   /* POR POSICION cuando las dos listas miden lo mismo, que es el caso de una ruta en verde: la
@@ -3705,6 +3705,78 @@ function articuloTexto(ruta, lineas) {
 }
 
 /**
+ * SERVICIOS, del indice a las pestanas (D-69, como T-82), sobre `out` y EN SU SITIO: la ficha abierta
+ * delante y los 14 nombres bajo el rotulo de su grupo vuelven a la forma de la referencia —los
+ * rotulos de las pestanas y, de la primera, sus servicios con la ficha del activo—. Devuelve si
+ * encontro el bloque entero. `dp` es la entrada de la ruta en `servicios-categoria.json`.
+ */
+function serviciosDeIndiceAPestanas(out, dp) {
+  const nm = (x) => (x ?? '').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+  const visto = new Set();
+  const porGrupo = dp.categorias.map((c) => { const suyos = dp.servicios.filter((sv) => sv.categorias.includes(c.slug) && !visto.has(sv.id)); suyos.forEach((sv) => visto.add(sv.id)); return suyos; });
+  const act = porGrupo[0][0];
+  const ficha = [nm(act.titulo), nm(act.texto), nm(act.cta), `: ${nm(act.titulo)}`];
+  const nuevo = [nm(dp.titulo), nm(dp.subtitulo), ...ficha, ...dp.categorias.flatMap((c, k) => [nm(c.nombre), ...porGrupo[k].map((sv) => nm(sv.nombre))])];
+  const igual = (x, y) => x !== undefined && x.toLowerCase() === y.toLowerCase();
+  const i = out.findIndex((_, k) => nuevo.every((l, j) => igual(out[k + j], l)));
+  if (i < 0) return false;
+  const deLaPestana = dp.servicios.filter((sv) => sv.categorias.includes(dp.categorias[0].slug));
+  out.splice(i, nuevo.length, out[i], out[i + 1], ...dp.categorias.map((c) => nm(c.nombre)), ...deLaPestana.flatMap((sv) => (sv.id === act.id ? [nm(sv.nombre), ...ficha] : [nm(sv.nombre)])));
+  return true;
+}
+
+/**
+ * LAS DOS PAGINAS DE ESTADO (T-99), sobre LO MEDIDO. Hero, presentacion y condados conservan sus
+ * lineas y su orden. Lo demas se comprueba ENTERO y vuelve a la forma de la referencia:
+ *   · servicios: de pestanas a indice (D-69);
+ *   · galeria compacta, 3D, obras, resenas y articulos ganan la accion de la pagina en su cabecera;
+ *     la del 3D ocupa el sitio de la banda repetida a media pagina, que sale (T-50);
+ *   · obras: «See All Projects» sube a la cabecera y detras de las tres destacadas van los telefonos;
+ *   · resenas: los dos telefonos detras; articulos: tres con resumen y siete en indice (T-44);
+ *   · banda final: sus telefonos (T-56).
+ */
+function estadoTexto(ruta, lineas) {
+  let out = [...lineas];
+  const faltas = [];
+  const GFE = 'Get A Free Estimate';
+  const ACC = 'Request A Design-Build Project Evaluation';
+  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const nm = (x) => (x ?? '').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+  const hay = (x) => tels.every((l, j) => out[x + j] === l);
+  // La banda final, lo primero: despues vuelve la de media pagina y habria dos con el mismo parrafo.
+  out = bandaConTelefonos(out);
+  if (!serviciosDeIndiceAPestanas(out, SERVICIOS_CAT[ruta])) faltas.push('el indice de los 14 servicios con la primera ficha abierta (D-69)');
+  const pb = out.indexOf(TEXTO_BANDA_CAT);
+  if (pb >= 0 && out[pb + 1] === GFE) out.splice(pb + 1, 1); else faltas.push('la accion en la cabecera de la galeria');
+  const ps = out.indexOf('Project Showcase');
+  const fin = out.findIndex((l, k) => k > ps && l === ACC && (out[k + 1] ?? '').startsWith(CIERRE_CIUDAD));
+  if (ps > 0 && out[ps - 1] === GFE && fin > ps) out.splice(ps - 1, 0, ACC, out[fin + 1]);
+  else faltas.push('la accion en la cabecera del 3D, en el sitio de la banda de media pagina (T-50)');
+  const sap = out.findIndex((l, k) => l === 'See All Projects' && out[k - 1] === GFE);
+  if (sap > 0) {
+    out.splice(sap - 1, 2);
+    let k = sap - 1;
+    let vistos = 0;
+    while (out[k + 1] === 'See Project' || hay(k)) { if (hay(k)) { out.splice(k, tels.length); vistos++; } else k += 2; }
+    out.splice(k, 0, 'See All Projects');
+    if (vistos !== 1) faltas.push('los dos telefonos detras de las tres obras destacadas');
+  } else faltas.push('la accion y «See All Projects» en la cabecera de las obras');
+  const r = out.indexOf(RESENAS_MARCADOR);
+  if (r > 0 && out[r - 1] === GFE) out.splice(r - 1, 1); else faltas.push('la accion en la cabecera de resenas');
+  const u = out.findIndex((l) => /^Updated [A-Z][a-z]{2} \d{4}$/.test(l));
+  if (u >= 0 && hay(u + 1)) out.splice(u + 1, tels.length); else faltas.push('los dos telefonos detras de las resenas');
+  {
+    const posts = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/blogs.json'), 'utf8')).posts;
+    const t = (p) => capitaliza(nm(p.titulo));
+    const nuevo = [GFE, ...posts.slice(0, 3).flatMap((p) => [t(p), nm(p.resumen), 'Read More', `: ${t(p)}`]), ...posts.slice(3).flatMap((p) => [t(p), 'Read More', `: ${t(p)}`])];
+    const i = out.findIndex((_, k) => nuevo.every((l, j) => out[k + j] === l));
+    if (i >= 0) out.splice(i, nuevo.length, ...posts.flatMap((p) => [t(p), nm(p.resumen), 'Read More', `: ${t(p)}`]));
+    else faltas.push('los articulos: tres con resumen y siete en indice, con la accion en la cabecera (T-44)');
+  }
+  return [...out, ...faltas.map((x) => `⟦FALTA: ${x}⟧`)];
+}
+
+/**
  * ASTRO-4 · LA HOME (lamina «Home»), sobre LO MEDIDO de `/`. Ninguna cadena cambia; cambian de
  * sitio, de forma o de numero, y cada cosa se comprueba ENTERA y en su orden antes de devolver lo
  * medido a la forma de la referencia (T-89). Lo que falte mete una linea que no casa con nada.
@@ -3733,19 +3805,7 @@ function homeTexto(lineas) {
   const s0 = out.findIndex((_, k) => son(k, SELLOS) && out[k - 1] === 'Project Gallery' && out[k - 2] === ACC);
   if (s0 >= 4) { out.splice(s0, 4); out.splice(s0 - 4, 0, ...SELLOS); } else faltas.push('los cuatro sellos del hero, detras de sus dos botones');
   // 2 · servicios
-  {
-    const dp = SERVICIOS_CAT['/'];
-    const visto = new Set();
-    const porGrupo = dp.categorias.map((c) => { const suyos = dp.servicios.filter((sv) => sv.categorias.includes(c.slug) && !visto.has(sv.id)); suyos.forEach((sv) => visto.add(sv.id)); return suyos; });
-    const act = porGrupo[0][0];
-    const ficha = [nm(act.titulo), nm(act.texto), nm(act.cta), `: ${nm(act.titulo)}`];
-    const nuevo = [nm(dp.titulo), nm(dp.subtitulo), ...ficha, ...dp.categorias.flatMap((c, k) => [nm(c.nombre), ...porGrupo[k].map((sv) => nm(sv.nombre))])];
-    const igual = (x, y) => x !== undefined && x.toLowerCase() === y.toLowerCase();
-    const i = out.findIndex((_, k) => nuevo.every((l, j) => igual(out[k + j], l)));
-    const deLaPestana = dp.servicios.filter((sv) => sv.categorias.includes(dp.categorias[0].slug));
-    if (i >= 0) out.splice(i, nuevo.length, out[i], out[i + 1], ...dp.categorias.map((c) => nm(c.nombre)), ...deLaPestana.flatMap((sv) => (sv.id === act.id ? [nm(sv.nombre), ...ficha] : [nm(sv.nombre)])));
-    else faltas.push('el indice de los 14 servicios con la primera ficha abierta (D-69)');
-  }
+  if (!serviciosDeIndiceAPestanas(out, SERVICIOS_CAT['/'])) faltas.push('el indice de los 14 servicios con la primera ficha abierta (D-69)');
   // 3 · el orden de las secciones del final: zonas, antes/despues, articulos, resenas, cierre
   const posts = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/blogs.json'), 'utf8')).posts;
   const zi = out.indexOf('WHERE WE SERVE');
@@ -4062,6 +4122,7 @@ function listasStitch(ruta, lineas) {
   if (ruta === '/financing') return financiacionTexto(lineas);
   if (ruta === '/about') return aboutTexto(lineas);
   if (ruta === '/where-we-serve') return zonasPaginaTexto(lineas);
+  if (/^\/where-we-serve\/[^/]+$/.test(ruta)) return estadoTexto(ruta, lineas);
   if (ruta === '/contact-us') return contactoTexto(lineas);
   if (ruta === '/') return homeTexto(lineas);
   if (ruta === '/request-estimated') return presupuestoTexto(lineas);
