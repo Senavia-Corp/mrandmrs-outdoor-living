@@ -2413,7 +2413,7 @@ function lineasResenas(ruta) {
    * enlace «See all reviews» sube a la cabecera, delante; el nombre va como esta escrito (D-142; hasta
    * entonces, en versalitas por CSS); y en las filas de la lista el nombre y la fecha se pintan a la izquierda
    * de la cita, pero en el HTML van detras, como siempre. Las mismas ocho, las mismas lineas. */
-  if (ruta && (esFicha(ruta) || esCiudadA(ruta) || esCondado(ruta) || ['/', '/contact-us', '/testimonials', '/videos'].includes(ruta))) {   // y la home, contacto, testimonios y videos (ASTRO-4)
+  if (ruta && (esFicha(ruta) || esCiudadA(ruta) || esCondado(ruta) || ['/', '/contact-us', '/testimonials', '/videos', '/industry-solutions'].includes(ruta))) {   // y la home, contacto, testimonios, videos e industrias (ASTRO-4)
     return [
       RESENAS_MARCADOR,
       ...(d.valoracion != null ? [d.valoracion.toFixed(1)] : []),
@@ -3944,7 +3944,7 @@ function resenasEnPagina(ruta, lineas) {
   const u = out.findIndex((l) => /^Updated [A-Z][a-z]{2} \d{4}$/.test(l));
   if (u >= 0 && tels.every((l, k) => out[u + 1 + k] === l)) out.splice(u + 1, tels.length);
   else faltas.push('los dos telefonos detras de las resenas');
-  if (ruta === '/videos') {
+  if (ruta === '/videos' || ruta === '/industry-solutions') {
     const r = out.indexOf(RESENAS_MARCADOR);
     if (r > 0 && out[r - 1] === 'Get A Free Estimate') out.splice(r - 1, 1);
     else faltas.push('la accion de la pagina en la cabecera de resenas');
@@ -3953,10 +3953,35 @@ function resenasEnPagina(ruta, lineas) {
   return [...out, ...faltas.map((f) => `⟦FALTA: ${f}⟧`)];
 }
 
+/**
+ * `/industry-solutions` (T-95). Los tres primeros bloques conservan sus lineas y su orden (fichas,
+ * muro e indice en vez de carruseles): no hay nada que devolver a su forma. Lo que cambia:
+ *   · resenas, como en `/videos`: la accion en su cabecera y los dos telefonos detras;
+ *   · obras, en lista: la accion y «See All Projects» suben a la cabecera, y detras de las tres
+ *     destacadas van los dos telefonos;
+ *   · la banda final gana sus telefonos.
+ */
+function industriasTexto(ruta, lineas) {
+  const out = resenasEnPagina(ruta, lineas);
+  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const hay = (x) => tels.every((l, j) => out[x + j] === l);
+  const sap = out.findIndex((l, k) => l === 'See All Projects' && out[k - 1] === 'Get A Free Estimate');
+  if (sap < 1) return [...out, '⟦FALTA: la accion y «See All Projects» en la cabecera de obras⟧'];
+  out.splice(sap - 1, 2);
+  let k = sap - 1;
+  let vistos = 0;
+  while (out[k + 1] === 'See Project' || hay(k)) {
+    if (hay(k)) { out.splice(k, tels.length); vistos++; } else k += 2;
+  }
+  out.splice(k, 0, 'See All Projects');
+  return vistos === 1 ? out : [...out, '⟦FALTA: los dos telefonos detras de las tres obras destacadas⟧'];
+}
+
 function listasStitch(ruta, lineas) {
   if (ruta === '/blogs-tips') return indiceBlogTexto(lineas);
   if (SOLO_BANDA(ruta)) return bandaConTelefonos(lineas);
   if (ruta === '/testimonials' || ruta === '/videos') return resenasEnPagina(ruta, lineas);
+  if (ruta === '/industry-solutions') return industriasTexto(ruta, lineas);
   if (ruta === '/contact-us') return contactoTexto(lineas);
   if (ruta === '/') return homeTexto(lineas);
   if (ruta === '/request-estimated') return presupuestoTexto(lineas);

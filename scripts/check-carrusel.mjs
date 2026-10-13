@@ -86,9 +86,10 @@ const casa = (r) => !filtro.length
 
 // ASTRO-4: la home sale de la lista. Ya no lleva ningun carrusel (obras, articulos y resenas van
 // en lista); quedan las dos rutas que si, y la primera es la que tiene autoplay que medir.
+// ASTRO-4 lote C: tambien sale `/industry-solutions`. Sus tres carruseles pasan a fichas, muro e
+// indice, y con ellos se va la instancia `fs-slider-sliderindustries`.
 const RUTAS = [
   '/where-we-serve/north-florida',
-  '/industry-solutions',
 ].filter(casa);
 if (!RUTAS.length) { console.error(`\nROJO ninguna de las rutas fijas casa el filtro "${filtro.join(' ')}"\n`); process.exit(1); }
 

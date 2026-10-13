@@ -1346,26 +1346,32 @@ function testimoniosStitch(doc, ruta) {
   sec.replaceWith(ns);
   bandaFinal(doc, ruta, 10);
 }
+/** Las resenas con su cabecera de siempre (rotulo, titular, entradilla), en lista: la accion de la
+ *  pagina y el enlace al perfil en la cabecera, los dos telefonos detras y una foto de obra al lado. */
+function resenasConCabecera(doc, ruta, k) {
+  const res = doc.querySelector('section.testimonial-section');
+  const [rlabel, rh2, rp] = ['.header-reviews .label', '.header-reviews h2', '.header-reviews p'].map((x) => res?.querySelector(x));
+  const widget = res?.querySelector('[class*="elfsight-app-"]');
+  const fa = doc.querySelector('section.cta-footer a');
+  if (!rlabel || !rh2 || !rp || !widget || !fa) throw new Error(`${ruta}: no trae las resenas con su cabecera y la banda`);
+  const nr = doc.createElement('section');
+  nr.setAttribute('class', 'mm-res');
+  nr.innerHTML = `<div class="mm-sec-cab"><div class="mm-sec-tit"><p class="mm-etiqueta">${rlabel.innerHTML}</p><h2 class="mm-h2">${rh2.innerHTML.replace(/\b(Clients)\b/, '<span class="mm-rot">$1</span>')}</h2></div>`
+    + `<div class="mm-sec-lado"><p class="mm-p">${rp.innerHTML}</p><div class="mm-sec-acc"><a class="mm-btn mm-btn--linea" href="${fa.getAttribute('href')}">${fa.innerHTML}</a>${VER_RESENAS()}</div></div></div>`
+    + `<div class="mm-res-cuerpo"><div class="mm-res-col">${widget.outerHTML}${BANDA_TELEFONOS}</div><figure class="mm-res-medio">${fotoBolsa(ruta, k)}</figure></div>`;
+  res.replaceWith(nr);
+}
 function videosStitch(doc, ruta) {
   if (ruta !== '/videos') return;
   heroD(doc, ruta);
   const sec = doc.querySelector('section.videos-section');
   const yt = sec?.querySelector('[class*="elfsight-app-"]');
-  const res = doc.querySelector('section.testimonial-section');
-  const [rlabel, rh2, rp] = ['.header-reviews .label', '.header-reviews h2', '.header-reviews p'].map((x) => res?.querySelector(x));
-  const widget = res?.querySelector('[class*="elfsight-app-"]');
-  const fa = doc.querySelector('section.cta-footer a');
-  if (!yt || !rlabel || !rh2 || !rp || !widget || !fa) throw new Error('/videos: no trae la galeria de videos, las resenas con su cabecera y la banda');
+  if (!yt) throw new Error('/videos: no trae la galeria de videos');
   const nv = doc.createElement('section');
   nv.setAttribute('class', 'mm-videos');
   nv.innerHTML = `<div class="mm-videos-caja">${yt.outerHTML}</div>`;
   sec.replaceWith(nv);
-  const nr = doc.createElement('section');
-  nr.setAttribute('class', 'mm-res');
-  nr.innerHTML = `<div class="mm-sec-cab"><div class="mm-sec-tit"><p class="mm-etiqueta">${rlabel.innerHTML}</p><h2 class="mm-h2">${rh2.innerHTML.replace(/\b(Clients)\b/, '<span class="mm-rot">$1</span>')}</h2></div>`
-    + `<div class="mm-sec-lado"><p class="mm-p">${rp.innerHTML}</p><div class="mm-sec-acc"><a class="mm-btn mm-btn--linea" href="${fa.getAttribute('href')}">${fa.innerHTML}</a>${VER_RESENAS()}</div></div></div>`
-    + `<div class="mm-res-cuerpo"><div class="mm-res-col">${widget.outerHTML}${BANDA_TELEFONOS}</div><figure class="mm-res-medio">${fotoBolsa(ruta, 0)}</figure></div>`;
-  res.replaceWith(nr);
+  resenasConCabecera(doc, ruta, 0);
   bandaFinal(doc, ruta, 1);
 }
 
@@ -1380,6 +1386,67 @@ function videosStitch(doc, ruta) {
  * Cada obra sigue siendo su `.cms-item-work` con su `data-servicios`, que es lo que lee el filtro
  * (`FiltroProyectos.astro`). Mismo titular, mismo relato, mismo enlace y en el mismo orden.
  */
+/**
+ * ASTRO-4 lote C · `/industry-solutions` (sin lamina propia: hero D y piezas aprobadas).
+ *
+ * QUE CAMBIA DE COMPOSICION: eran tres carruseles apilados —el de galeria sacaba la pagina de su
+ * ancho a 1440— y las diez fotos se ensenaban dos veces, una en cada carrusel. Ahora se lee de
+ * arriba abajo: con quien trabajamos, en cuatro fichas con su foto; la galeria, en un muro de
+ * diez fotos que se abren en el visor de siempre; los diez tipos de propiedad, en un indice de
+ * nombre y frase, todos a la vista; las resenas en lista, las obras con la ficha del sistema
+ * (`CarruselProyectos.astro`, rama de lista) y la banda final.
+ * Mismos textos y mismo orden. Sale la foto vertical que hacia de centro del primer bloque y
+ * las diez fotos repetidas del tercero: cada foto se ensena una vez.
+ */
+function industriasStitch(doc, ruta) {
+  if (ruta !== '/industry-solutions') return;
+  heroD(doc, ruta);
+  const foto = (img, sizes) => {
+    const src = local(img.getAttribute('src'));   // a esta altura aun puede venir la URL del origen
+    const d = DIM.get(src);
+    if (!d) throw new Error(`${ruta}: ${src} no tiene medidas en el manifiesto`);
+    return `<img src="${src}" alt="${escAttr(img.getAttribute('alt') ?? '')}" width="${d.w}" height="${d.h}" sizes="${sizes}" loading="lazy" decoding="async">`;
+  };
+
+  const pub = doc.querySelector('section.industries-section');
+  const publicos = [...(pub?.querySelectorAll('.industrie-component') ?? [])].map((c) => ['img', 'h3', 'p'].map((q) => c.querySelector(q)));
+  if (publicos.length !== 4 || publicos.some((c) => c.some((n) => !n))) throw new Error(`${ruta}: el primer bloque no trae sus cuatro publicos con foto, titulo y parrafo`);
+  const np = doc.createElement('section');
+  np.setAttribute('class', 'mm-ind');
+  np.innerHTML = '<ul class="mm-ind-lista" role="list">' + publicos.map(([img, h, p]) => '<li class="mm-ficha">'
+    + `<span class="mm-ficha-foto">${foto(img, '(min-width: 1200px) 25vw, (min-width: 768px) 50vw, 100vw')}</span>`
+    + `<div class="mm-ficha-cuerpo"><h2 class="mm-ficha-t">${h.innerHTML}</h2><p class="mm-ficha-p">${p.innerHTML}</p></div></li>`).join('') + '</ul>';
+  pub.replaceWith(np);
+
+  const gal = doc.querySelector('section.gallery');
+  const [gh2, gp] = ['.header-gallery h2', '.header-gallery h2 + div'].map((q) => gal?.querySelector(q));
+  const enlaces = [...(gal?.querySelectorAll('a.w-lightbox') ?? [])];
+  if (!gh2 || !gp || enlaces.length !== 10 || enlaces.some((a) => !a.querySelector('img') || !a.querySelector('script.w-json'))) throw new Error(`${ruta}: la galeria no trae su cabecera y sus diez fotos con visor`);
+  // Dos filas de 7+5 y dos de tres. En movil, a dos columnas: la grande y las que quedarian sueltas, enteras.
+  const PIEZAS = [7, 5, 4, 4, 4, 5, 7, 4, 4, 4];
+  const ENTERAS = new Set([0, 5, 6, 9]);
+  const ng = doc.createElement('section');
+  ng.setAttribute('class', 'mm-muro-sec mm-ind-gal');
+  ng.innerHTML = `<div class="mm-sec-cab"><h2 class="mm-h2">${gh2.innerHTML}</h2><div class="mm-sec-lado"><p class="mm-p">${gp.innerHTML}</p></div></div><div class="mm-muro" role="list">`
+    + enlaces.map((a, k) => `<div role="listitem" class="mm-muro-foto mm-muro-foto--${PIEZAS[k]}${ENTERAS.has(k) && PIEZAS[k] !== 7 ? ' mm-muro-foto--ancha' : ''}"><a href="#" class="${a.getAttribute('class')}">`
+      + foto(a.querySelector('img'), `(min-width: 768px) ${{ 7: 58, 5: 42, 4: 33 }[PIEZAS[k]]}vw, ${ENTERAS.has(k) ? 100 : 50}vw`)
+      + `${a.querySelector('script.w-json').outerHTML}</a></div>`).join('') + '</div>';
+  gal.replaceWith(ng);
+
+  const ind = doc.querySelector('section.industries-section-page');
+  const [ih2, ip] = ['.header-industries h2', '.header-industries p'].map((q) => ind?.querySelector(q));
+  const tipos = [...(ind?.querySelectorAll('.card') ?? [])].map((c) => ['h3', '.content-card p'].map((q) => c.querySelector(q)));
+  if (!ih2 || !ip || tipos.length !== 10 || tipos.some((c) => c.some((n) => !n))) throw new Error(`${ruta}: el bloque de industrias no trae su cabecera y sus diez tipos con frase`);
+  const ni = doc.createElement('section');
+  ni.setAttribute('class', 'mm-rel mm-ind-tipos');
+  ni.innerHTML = `<div class="mm-rel-caja"><div class="mm-rel-cab"><h2 class="mm-h2">${ih2.innerHTML}</h2><p class="mm-p">${ip.innerHTML}</p></div>`
+    + '<ul class="mm-indice" role="list">' + tipos.map(([h, p]) => `<li class="mm-linea mm-linea--doble"><div class="mm-linea-txt"><h3 class="mm-linea-t">${h.innerHTML}</h3><p class="mm-linea-p">${p.innerHTML}</p></div></li>`).join('') + '</ul></div>';
+  ind.replaceWith(ni);
+
+  resenasConCabecera(doc, ruta, 4);
+  bandaFinal(doc, ruta, 3);
+}
+
 /** ASTRO-4 lote C · `/brochures`: el hero D y la tipografia del sistema. El muro de catalogos, su
  *  filtro por categoria y sus 57 enlaces a PDF conservan el diseno propio que ya tenian (FOLLETOS). */
 function folletosStitch(doc, ruta) {
@@ -2580,6 +2647,7 @@ for (const [ruta] of RUTAS) {
   videosStitch(doc, ruta);
   proyectosIndiceStitch(doc, ruta);
   folletosStitch(doc, ruta);
+  industriasStitch(doc, ruta);
   if (!esCondado(ruta)) {
     mosaicoDeObra(doc, ruta);
     listasDePlano(doc, ruta);

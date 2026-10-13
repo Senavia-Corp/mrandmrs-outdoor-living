@@ -56,7 +56,10 @@ const RETIRADAS = new Set([
   // la cabecera y el bloque del formulario de `/request-estimated` (ASTRO-4 lote B)
   'd01628ed-7f34-9b3f-2b4a-9f22c92ec16a', '69e4df55-86c1-a89d-281e-f454cb25cb86',
   // la caja de contacto de `/contact-us` (ASTRO-4 lote B)
-  '53096b5c-0f9c-8865-b9e9-f40105bfcddf',
+  '53096b5c-0f9c-8865-b9e9-f40105bfcddf',  // hero, bloque de publicos, galeria e industrias de `/industry-solutions` (ASTRO-4 lote C)
+  'da22a66a-ad39-0d6d-2fa2-62cb4e178480', '1e09eb34-5dfa-c000-dc70-f8f9d5c27f43', '474f47ea-6325-34d5-2f9c-e6f5417b28fa',
+  'cd6507e1-0ec2-bd3c-9308-2d1cad256861', '3e7b68e7-e033-ed34-b3a7-e87aed50972d', '7740b952-2d34-d915-8ab9-fb41fe6bef4f',
+  'd211c388-c60a-576c-7bc5-bd0a69d515f2',
 ]);
 
 const porId = {};
