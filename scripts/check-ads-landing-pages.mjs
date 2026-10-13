@@ -172,9 +172,12 @@ for (const L of LANDINGS) {
   if (titulos.has(titulo)) mal(L.ruta, `<title> repetido con ${titulos.get(titulo)}: dos landings compitiendo por la misma consulta.`);
   titulos.set(titulo, L.ruta);
 
-  // 4 · indexacion
+  // 4 · indexacion. SOLO EN PRODUCCION, como dice la cabecera: fuera de ella TODA la salida lleva
+  // `noindex` a proposito (modo previa, falla cerrado), y medirlo ahi dejaba la puerta —y con
+  // ella la cadena de `npm run check`— roja para siempre sin proteger nada: ningun anuncio
+  // apunta a una vista previa. Mismo trato que en `check:medicion`.
   const robots = d.querySelector('meta[name="robots"]')?.getAttribute('content') ?? '';
-  if (/noindex/i.test(robots)) mal(L.ruta, 'lleva noindex. Una landing de pago con noindex pierde Landing Page Experience.');
+  if (PROD && /noindex/i.test(robots)) mal(L.ruta, 'lleva noindex. Una landing de pago con noindex pierde Landing Page Experience.');
   if (PROD) {
     const can = d.querySelector('link[rel="canonical"]')?.getAttribute('href') ?? '';
     if (can !== `${SITIO}${L.ruta}`) mal(L.ruta, `canonica «${can}», se esperaba «${SITIO}${L.ruta}».`);
@@ -451,6 +454,7 @@ console.log('\n── evento de conversion (lado del sitio) ──');
   }
 }
 
+if (!PROD) console.log('\n  --   noindex y canonica: NO medidos fuera de produccion (PUBLIC_ES_PRODUCCION=1). No cuentan como verde.');
 console.log(`\n${fallos ? `PUERTA ROJA — ${fallos} fallo(s)` : 'PUERTA VERDE'}\n`);
 console.log('  NOTA: esta puerta NO mide Quality Score. Mide los invariantes que el sitio SI');
 console.log('  controla. Expected CTR y el historico del anuncio no se ven desde aqui.');
