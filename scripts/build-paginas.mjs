@@ -1363,6 +1363,16 @@ function videosStitch(doc, ruta) {
  * Cada obra sigue siendo su `.cms-item-work` con su `data-servicios`, que es lo que lee el filtro
  * (`FiltroProyectos.astro`). Mismo titular, mismo relato, mismo enlace y en el mismo orden.
  */
+/** ASTRO-4 lote C · `/brochures`: el hero D y la tipografia del sistema. El muro de catalogos, su
+ *  filtro por categoria y sus 57 enlaces a PDF conservan el diseno propio que ya tenian (FOLLETOS). */
+function folletosStitch(doc, ruta) {
+  if (ruta !== '/brochures') return;
+  heroD(doc, ruta);
+  const sec = doc.querySelector('section.brochures-section-page');
+  if (!sec) throw new Error('/brochures: no trae la seccion de catalogos');
+  sec.classList.add('mm-folletos');
+}
+
 function proyectosIndiceStitch(doc, ruta) {
   if (ruta !== '/projects') return;
   heroD(doc, ruta);
@@ -2552,6 +2562,7 @@ for (const [ruta] of RUTAS) {
   testimoniosStitch(doc, ruta);
   videosStitch(doc, ruta);
   proyectosIndiceStitch(doc, ruta);
+  folletosStitch(doc, ruta);
   if (!esCondado(ruta)) {
     mosaicoDeObra(doc, ruta);
     listasDePlano(doc, ruta);
