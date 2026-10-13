@@ -188,8 +188,16 @@ for (const ruta of rutas) {
     // 4 · foco a la vista con la barra inferior
     await p.evaluate(() => { scrollTo(0, 900); document.querySelector('main a, main button')?.focus(); });
     let tapados = 0;
+    /* SE JUZGA TRAS UNOS FOTOGRAMAS, NO EN EL MISMO INSTANTE. La barra se esconde desde un
+     * `IntersectionObserver` (BarraMovil.astro), y sus avisos llegan con el siguiente pintado, no
+     * dentro de la pulsacion. Medido: 9 ms en Chromium y 23-49 ms (3 fotogramas) en WebKit desde
+     * que el formulario entra en pantalla. Mirando en el acto, WebKit daba por tapado el primer
+     * campo de `/contact-us` con una barra que ya se estaba yendo. Seis fotogramas: lo que siga
+     * tapado despues, lo esta de verdad para quien navega con teclado. */
+    const SEIS_FOTOGRAMAS = () => new Promise((ok) => { let n = 0; const f = () => (++n < 6 ? requestAnimationFrame(f) : ok()); requestAnimationFrame(f); });
     for (let i = 0; i < 20; i++) {
       await p.keyboard.press(TAB);
+      await p.evaluate(SEIS_FOTOGRAMAS);
       tapados += await p.evaluate(() => { const a = document.activeElement; const b = document.querySelector('.mm-barra'); if (!a || a === document.body || a.closest('.mm-cab, .mm-barra') || b.hasAttribute('data-oculta')) return 0; const r = a.getBoundingClientRect(); const q = b.getBoundingClientRect(); const c = document.querySelector('.mm-cab-fila').getBoundingClientRect(); if (r.height > 0 && ((r.bottom > q.top + 1 && r.top < q.bottom) || (r.top < c.bottom - 1 && r.bottom > c.top))) { (window.__tap ??= []).push(`${a.tagName.toLowerCase()}.${String(a.className).split(' ')[0]} «${(a.textContent || '').trim().slice(0, 24)}» ${Math.round(r.top)}-${Math.round(r.bottom)}`); return 1; } return 0; });
     }
     check('el foco no queda bajo la cabecera ni la barra (20 tabulaciones)', tapados === 0, `${tapados} tapado(s): ${(await p.evaluate(() => window.__tap ?? [])).join(' · ')}`);
