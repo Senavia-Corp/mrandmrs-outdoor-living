@@ -1391,8 +1391,8 @@ function videosStitch(doc, ruta) {
  *
  * QUE CAMBIA DE COMPOSICION: eran tres carruseles apilados —el de galeria sacaba la pagina de su
  * ancho a 1440— y las diez fotos se ensenaban dos veces, una en cada carrusel. Ahora se lee de
- * arriba abajo: con quien trabajamos, en cuatro fichas con su foto; la galeria, en un muro de
- * diez fotos que se abren en el visor de siempre; los diez tipos de propiedad, en un indice de
+ * arriba abajo: con quien trabajamos, en cuatro bloques de texto; la galeria, en un muro de
+ * diez fotos de obra real del banco (D-152) que se abren en el visor de siempre; los diez tipos de propiedad, en un indice de
  * nombre y frase, todos a la vista; las resenas en lista, las obras con la ficha del sistema
  * (`CarruselProyectos.astro`, rama de lista) y la banda final.
  * Mismos textos y mismo orden. Sale la foto vertical que hacia de centro del primer bloque y
@@ -1402,20 +1402,22 @@ function industriasStitch(doc, ruta) {
   if (ruta !== '/industry-solutions') return;
   heroD(doc, ruta);
   const foto = (img, sizes) => {
-    const src = local(img.getAttribute('src'));   // a esta altura aun puede venir la URL del origen
-    const d = DIM.get(src);
-    if (!d) throw new Error(`${ruta}: ${src} no tiene medidas en el manifiesto`);
-    return `<img src="${src}" alt="${escAttr(img.getAttribute('alt') ?? '')}" width="${d.w}" height="${d.h}" sizes="${sizes}" loading="lazy" decoding="async">`;
+    // D-152: las diez fotos de la galeria llegan ya canjeadas por `fotosPorRuta()` (obra real del
+    // banco), con su src, su alt y sus medidas.
+    const [src, w, h] = ['src', 'width', 'height'].map((k) => img.getAttribute(k));
+    if (!src?.startsWith('/images/banco/') || !w || !h) throw new Error(`${ruta}: ${src} no es una foto del banco con medidas (fotos-por-ruta.json)`);
+    return `<img src="${src}" alt="${escAttr(img.getAttribute('alt') ?? '')}" width="${w}" height="${h}" sizes="${sizes}" loading="lazy" decoding="async">`;
   };
 
   const pub = doc.querySelector('section.industries-section');
-  const publicos = [...(pub?.querySelectorAll('.industrie-component') ?? [])].map((c) => ['img', 'h3', 'p'].map((q) => c.querySelector(q)));
-  if (publicos.length !== 4 || publicos.some((c) => c.some((n) => !n))) throw new Error(`${ruta}: el primer bloque no trae sus cuatro publicos con foto, titulo y parrafo`);
+  // D-152: los cuatro publicos van sin foto (las suyas no estaban en ningun registro): la lista de
+  // confianza del sistema, que esta hecha para cuatro.
+  const publicos = [...(pub?.querySelectorAll('.industrie-component') ?? [])].map((c) => ['h3', 'p'].map((q) => c.querySelector(q)));
+  if (publicos.length !== 4 || publicos.some((c) => c.some((n) => !n))) throw new Error(`${ruta}: el primer bloque no trae sus cuatro publicos con titulo y parrafo`);
   const np = doc.createElement('section');
-  np.setAttribute('class', 'mm-ind');
-  np.innerHTML = '<ul class="mm-ind-lista" role="list">' + publicos.map(([img, h, p]) => '<li class="mm-ficha">'
-    + `<span class="mm-ficha-foto">${foto(img, '(min-width: 1200px) 25vw, (min-width: 768px) 50vw, 100vw')}</span>`
-    + `<div class="mm-ficha-cuerpo"><h2 class="mm-ficha-t">${h.innerHTML}</h2><p class="mm-ficha-p">${p.innerHTML}</p></div></li>`).join('') + '</ul>';
+  np.setAttribute('class', 'mm-conf mm-conf--sola');
+  np.innerHTML = '<div class="mm-conf-caja"><ul class="mm-conf-lista" role="list">' + publicos.map(([h, p]) =>
+    `<li class="mm-conf-item"><h2 class="mm-conf-t">${h.innerHTML}</h2><p class="mm-conf-p">${p.innerHTML}</p></li>`).join('') + '</ul></div>';
   pub.replaceWith(np);
 
   const gal = doc.querySelector('section.gallery');

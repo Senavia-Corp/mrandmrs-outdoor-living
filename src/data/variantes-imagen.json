@@ -6744,6 +6744,19 @@
      "/images/site/founders-mr-and-mrs-outdoor-living-company-florida-mm1024.avif"
     ]
    ]
+  },
+  "/images/banco/pergolas/pergola-outdoor-kitchen-stacked-stone-u-shape-florida-01.webp": {
+   "ancho": 1080,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/pergola-outdoor-kitchen-stacked-stone-u-shape-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/pergola-outdoor-kitchen-stacked-stone-u-shape-florida-01-mm1024.webp"
+    ]
+   ]
   }
  },
  "lcp": {

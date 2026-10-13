@@ -340,5 +340,99 @@
         "_por_que": null
       }
     ]
+  },
+  "/industry-solutions": {
+    "section.gallery img.image-gallery": [
+      {
+        "src": "/images/banco/construction/pool-construction-l-shaped-pool-spa-aerial-florida-01.webp",
+        "alt": "Aerial view of an L-shaped pool with square raised spa, gray marble deck and turf border on a rural property.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0486",
+        "_por_que": "D-152: la galeria de esta pagina ensenaba diez imagenes que no estan en ningun registro. Obra real, terminada y apaisada del banco, que la pagina no ensena en otro sitio."
+      },
+      {
+        "src": "/images/banco/construction/pool-construction-blue-glass-tile-spillover-pergola-florida-01.webp",
+        "alt": "Pool with iridescent blue glass tile and spillover edge, raised spa under a bronze pergola and artificial turf",
+        "ancho": 1440,
+        "alto": 812,
+        "pos": "50% 50%",
+        "_banco": "bi-1039",
+        "_por_que": "D-152: la galeria de esta pagina ensenaba diez imagenes que no estan en ningun registro. Obra real, terminada y apaisada del banco, que la pagina no ensena en otro sitio."
+      },
+      {
+        "src": "/images/banco/construction/pool-construction-spa-turf-stepping-pads-house-florida-01.webp",
+        "alt": "New pool with raised spa, travertine deck and stepping pads in artificial turf behind a two-story home.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0505",
+        "_por_que": "D-152: la galeria de esta pagina ensenaba diez imagenes que no estan en ningun registro. Obra real, terminada y apaisada del banco, que la pagina no ensena en otro sitio."
+      },
+      {
+        "src": "/images/banco/pergolas/pergola-outdoor-kitchen-stacked-stone-u-shape-florida-01.webp",
+        "alt": "Brown pergola with two ceiling fans over a U-shaped stacked stone outdoor kitchen.",
+        "ancho": 1080,
+        "alto": 718,
+        "pos": "50% 50%",
+        "_banco": "bi-0895",
+        "_por_que": "D-152: la galeria de esta pagina ensenaba diez imagenes que no estan en ningun registro. Obra real, terminada y apaisada del banco, que la pagina no ensena en otro sitio."
+      },
+      {
+        "src": "/images/banco/louvered/louvered-roof-blades-motor-solar-sensor-top-view-florida-01.webp",
+        "alt": "Top of a white louvered roof showing blades, motors and a small solar panel beside a modern home",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0225",
+        "_por_que": "D-152: la galeria de esta pagina ensenaba diez imagenes que no estan en ningun registro. Obra real, terminada y apaisada del banco, que la pagina no ensena en otro sitio."
+      },
+      {
+        "src": "/images/banco/construction/pool-construction-spa-travertine-deck-wide-florida-01.webp",
+        "alt": "Wide view of a new pool with raised spa and ivory travertine deck framed by hedges and palm trees.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0504",
+        "_por_que": "D-152: la galeria de esta pagina ensenaba diez imagenes que no estan en ningun registro. Obra real, terminada y apaisada del banco, que la pagina no ensena en otro sitio."
+      },
+      {
+        "src": "/images/banco/construction/pool-spa-glass-tile-louvered-pergola-kitchen-florida-01.webp",
+        "alt": "Pool with raised glass-tile spa in front of a louvered pergola and outdoor bar.",
+        "ancho": 1280,
+        "alto": 960,
+        "pos": "50% 50%",
+        "_banco": "bi-0633",
+        "_por_que": "D-152: la galeria de esta pagina ensenaba diez imagenes que no estan en ningun registro. Obra real, terminada y apaisada del banco, que la pagina no ensena en otro sitio."
+      },
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-marble-waterfall-patio-cover-florida-01.webp",
+        "alt": "Marble waterfall outdoor kitchen under an insulated patio cover with black posts.",
+        "ancho": 1201,
+        "alto": 902,
+        "pos": "50% 50%",
+        "_banco": "bi-0761",
+        "_por_que": "D-152: la galeria de esta pagina ensenaba diez imagenes que no estan en ningun registro. Obra real, terminada y apaisada del banco, que la pagina no ensena en otro sitio."
+      },
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-u-shape-pizza-oven-pool-view-florida-01.webp",
+        "alt": "U-shaped outdoor kitchen with pizza oven, open grill and side burner beside a pool.",
+        "ancho": 1440,
+        "alto": 960,
+        "pos": "50% 50%",
+        "_banco": "bi-0757",
+        "_por_que": "D-152: la galeria de esta pagina ensenaba diez imagenes que no estan en ningun registro. Obra real, terminada y apaisada del banco, que la pagina no ensena en otro sitio."
+      },
+      {
+        "src": "/images/banco/decks/limestone-paver-patio-lake-view-herringbone-florida-01.webp",
+        "alt": "Raised limestone paver patio in a herringbone layout overlooking a lake and golf course.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0079",
+        "_por_que": "D-152: la galeria de esta pagina ensenaba diez imagenes que no estan en ningun registro. Obra real, terminada y apaisada del banco, que la pagina no ensena en otro sitio."
+      }
+    ]
   }
 }
