@@ -116,7 +116,12 @@ console.log('\n── 6. sitemap');
 const sitemapTxt = fs.readFileSync(path.join(ESTATICO, 'sitemap.xml'), 'utf8');
 const locs = [...sitemapTxt.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
 const PROD = locs.length > 0;
-const canonicaDe = (f) => new JSDOM(fs.readFileSync(f, 'utf8')).window.document.querySelector('link[rel=canonical]')?.getAttribute('href') ?? null;
+/* UNA VENTANA DE JSDOM A LA VEZ: al abrir la siguiente se cierra la anterior. Con una por pagina
+ * abierta hasta el final, la puerta moria por memoria (heap de Node agotado) en modo produccion,
+ * que es cuando corre el punto 8 y se suman 234 documentos mas. */
+let ventana = null;
+const docDe = (f) => { ventana?.close(); ventana = new JSDOM(fs.readFileSync(f, 'utf8')).window; return ventana.document; };
+const canonicaDe = (f) => docDe(f).querySelector('link[rel=canonical]')?.getAttribute('href') ?? null;
 if (!PROD) {
   console.log('  SALTADA el sitemap esta vacio (build sin PUBLIC_ES_PRODUCCION=1): los puntos 6 y 8 NO se han medido');
 } else {
@@ -180,7 +185,7 @@ if (!PROD) {
   for (const f of htmls) {
     const ruta = rutaDe(f);
     if (ruta.startsWith('/lab/') || ruta.startsWith('/_')) continue;
-    const d = new JSDOM(fs.readFileSync(f, 'utf8')).window.document;
+    const d = docDe(f);
     if (d.querySelector('meta[name=robots][content*="noindex"]')) continue;   // /thank-you, a proposito
     const can = d.querySelector('link[rel=canonical]')?.getAttribute('href');
     const esperada = `${SITIO}${ruta === '/' ? '' : ruta}`;
@@ -201,7 +206,7 @@ const ldViejas = new Set(); const migaRota = new Set();
  * cosa (`/images/pool-builders/alachua-florida/...` es un fichero, no la URL vieja). */
 const reViejas = new RegExp('(?:^|[^\\w/.-])(?:https?://[^/"\x27\\s]+)?(' + [...VIEJAS.keys()].map((v) => v.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')(?![\\w/-])');
 for (const f of htmls) {
-  const d = new JSDOM(fs.readFileSync(f, 'utf8')).window.document;
+  const d = docDe(f);
   for (const sc of d.querySelectorAll('script[type="application/ld+json"]')) {
     if (reViejas.test(sc.textContent)) ldViejas.add(rutaDe(f));
     let b; try { b = JSON.parse(sc.textContent); } catch { continue; }
