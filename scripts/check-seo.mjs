@@ -1130,9 +1130,11 @@ for (const ruta of conPropias(RUTAS)) {
         if (vd[0]['@type'] !== 'ItemList' || vd[0].numberOfItems !== items.length) problemas.push('#videos: no es un ItemList o numberOfItems no cuadra');
         if (items.some((v) => v['@type'] !== 'VideoObject')) problemas.push('#videos: un item que no es VideoObject');
         if (!iguales(items.map((v) => v.name), videos.map((c) => texto(c.querySelector('.mm-yt__vtitulo'))))) problemas.push('#videos: los nombres no son los titulos que se leen');
-        // La fecha del marcado es la que la pagina ensena (dia/mes/año), pasada a ISO. Ni una mas.
+        // El DIA del marcado es el que la pagina ensena (dia/mes/año), pasado a ISO; detras puede llevar la hora
+        // real de publicacion con su zona (D-173), que la pagina no ensena y Google recomienda.
         const aIso = (f) => { const m = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(f); return m ? `${m[3]}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}` : `¿${f}?`; };
-        if (!iguales(items.map((v) => v.uploadDate), videos.map((c) => aIso(texto(c.querySelector('.mm-yt__fecha')))))) problemas.push('#videos: uploadDate no es la fecha que la pagina ensena');
+        if (!iguales(items.map((v) => String(v.uploadDate).slice(0, 10)), videos.map((c) => aIso(texto(c.querySelector('.mm-yt__fecha')))))) problemas.push('#videos: uploadDate no es la fecha que la pagina ensena');
+        if (items.some((v) => !/^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}[+-]\d{2}:\d{2})?$/.test(String(v.uploadDate)))) problemas.push('#videos: un uploadDate que no es ni el dia ni el dia con hora y zona');
         if (!iguales(items.map((v) => v.url), videos.map((c) => c.querySelector('.mm-yt__vtitulo a')?.getAttribute('href')))) problemas.push('#videos: url no es el enlace de cada video');
         for (const [k, v] of items.entries()) {
           const id = (/[?&]v=([\w-]{6,})/.exec(v.url ?? '') ?? [])[1];

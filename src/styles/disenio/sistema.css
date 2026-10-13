@@ -502,6 +502,7 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 .mm-faq-r p:last-child { margin-bottom: 0; }
 .mm-faq-col { display: flex; flex-direction: column; gap: var(--mm-e-16); min-width: 0; }
 .mm-faq .mm-faq-fuentes { margin: var(--mm-e-12) 0 0; font-size: 14px; line-height: 1.6; color: var(--mm-tinta-suave); }
+.mm-ciudades-servicio .mm-faq-fuentes { color: var(--mm-tinta-suave); }
 .mm-faq .mm-faq-mas { margin: 0 var(--mm-canal); }
 .mm-faq .mm-faq-fuentes a { color: var(--mm-navy); font-weight: 600; text-decoration: underline; text-decoration-color: var(--mm-oro); text-decoration-thickness: 2px; text-underline-offset: 3px; display: inline-flex; align-items: center; min-height: var(--mm-ctl-s); }
 .mm-faq-lado { display: flex; flex-direction: column; }

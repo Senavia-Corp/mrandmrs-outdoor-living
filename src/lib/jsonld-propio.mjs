@@ -40,6 +40,14 @@ const fechaIso = (f, id) => {
   if (!m || +m[2] > 12 || +m[1] > 31) throw new Error(`jsonld-propio: la fecha «${f}» del video ${id} no es dia/mes/año; no se inventa`);
   return `${m[3]}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}`;
 };
+/** Cuando se subio: la hora real con su zona (`publicado`, cotejada en el canal) si el video la tiene, y si no el dia.
+ *  Tiene que caer en el MISMO dia que la pagina ensena: el marcado no dice una fecha que no se lee. */
+const subido = (v) => {
+  const dia = fechaIso(v.fecha, v.id);
+  if (!v.publicado) return dia;
+  if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[+-]\d{2}:\d{2}$/.test(v.publicado) || !v.publicado.startsWith(dia)) throw new Error(`jsonld-propio: «publicado» del video ${v.id} (${v.publicado}) no es ISO 8601 con zona o no cae en el ${dia} que la pagina ensena`);
+  return v.publicado;
+};
 /** «01:10» o «1:02:03» → «PT1M10S» / «PT1H2M3S». */
 const duracionIso = (d, id) => {
   const p = String(d ?? '').split(':').map(Number);
@@ -99,7 +107,7 @@ export function bloquesPropios(ruta, ldOrigen = []) {
           // La descripcion es la primera linea de la del canal. Dos videos no tienen: va sin ella.
           ...(v.descripcion?.[0] ? { description: v.descripcion[0] } : {}),
           ...(v.miniatura ? { thumbnailUrl: [`${SITIO}${v.miniatura}`] } : {}),
-          uploadDate: fechaIso(v.fecha, v.id),
+          uploadDate: subido(v),
           duration: duracionIso(v.duracion, v.id),
           embedUrl: `https://www.youtube.com/embed/${v.id}`,
           url: v.enlace,
