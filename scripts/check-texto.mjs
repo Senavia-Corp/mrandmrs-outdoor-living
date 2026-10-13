@@ -2413,7 +2413,7 @@ function lineasResenas(ruta) {
    * enlace «See all reviews» sube a la cabecera, delante; el nombre va como esta escrito (D-142; hasta
    * entonces, en versalitas por CSS); y en las filas de la lista el nombre y la fecha se pintan a la izquierda
    * de la cita, pero en el HTML van detras, como siempre. Las mismas ocho, las mismas lineas. */
-  if (ruta && (esFicha(ruta) || esCiudadA(ruta) || esCondado(ruta) || ['/', '/contact-us', '/testimonials', '/videos', '/industry-solutions'].includes(ruta))) {   // y la home, contacto, testimonios, videos e industrias (ASTRO-4)
+  if (ruta && (esFicha(ruta) || esCiudadA(ruta) || esCondado(ruta) || ['/', '/contact-us', '/testimonials', '/videos', '/industry-solutions', '/financing'].includes(ruta))) {   // y la home, contacto, testimonios, videos e industrias (ASTRO-4)
     return [
       RESENAS_MARCADOR,
       ...(d.valoracion != null ? [d.valoracion.toFixed(1)] : []),
@@ -3465,7 +3465,7 @@ const rotulosT69 = new Map();
 function sinMayusculasDeCss(ruta, esperado, hay) {
   // Las rutas ya migradas a las piezas nuevas: las 141 de servicio y, desde ASTRO-4, las 15 de
   // proyecto y los 47 articulos (las cabeceras de sus tablas).
-  if (!/^\/(services|project|blogs)\//.test(ruta) && !['/', '/request-estimated', '/contact-us', '/videos'].includes(ruta)) return esperado;
+  if (!/^\/(services|project|blogs)\//.test(ruta) && !['/', '/request-estimated', '/contact-us', '/videos', '/financing'].includes(ruta)) return esperado;
   const medidas = hay.split('\n');
   const esperadas = esperado.split('\n');
   /* POR POSICION cuando las dos listas miden lo mismo, que es el caso de una ruta en verde: la
@@ -3977,11 +3977,33 @@ function industriasTexto(ruta, lineas) {
   return vistos === 1 ? out : [...out, '⟦FALTA: los dos telefonos detras de las tres obras destacadas⟧'];
 }
 
+/**
+ * `/financing` (T-96). Titulares, pasos, servicios, confianza y FAQ conservan sus lineas y su orden.
+ * Entran, y se comprueban enteros y en su sitio: los dos telefonos detras de las resenas, la
+ * tarjeta de accion del FAQ (boton y telefonos) detras de la ultima pregunta, y los telefonos de
+ * la banda final detras de su linea legal.
+ */
+function financiacionTexto(lineas) {
+  const out = [...lineas];
+  const faltas = [];
+  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const quita = (desde, que, nombre) => {
+    if (desde >= 0 && que.every((l, k) => out[desde + k] === l)) out.splice(desde, que.length);
+    else faltas.push(nombre);
+  };
+  const tras = (x) => (x >= 0 ? x + 1 : -1);
+  quita(tras(out.findIndex((l) => /^Updated [A-Z][a-z]{2} \d{4}$/.test(l))), tels, 'los dos telefonos detras de las resenas');
+  quita(tras(out.indexOf('Can I Get An Estimate If I Am Not Financing?')), ['Get A Free Estimate', ...tels], 'la tarjeta de accion del FAQ, detras de la ultima pregunta');
+  quita(tras(out.findIndex((l) => l.startsWith('Financing is provided by Acorn Finance'))), tels, 'los dos telefonos de la banda final, detras de su linea legal');
+  return [...out, ...faltas.map((x) => `⟦FALTA: ${x}⟧`)];
+}
+
 function listasStitch(ruta, lineas) {
   if (ruta === '/blogs-tips') return indiceBlogTexto(lineas);
   if (SOLO_BANDA(ruta)) return bandaConTelefonos(lineas);
   if (ruta === '/testimonials' || ruta === '/videos') return resenasEnPagina(ruta, lineas);
   if (ruta === '/industry-solutions') return industriasTexto(ruta, lineas);
+  if (ruta === '/financing') return financiacionTexto(lineas);
   if (ruta === '/contact-us') return contactoTexto(lineas);
   if (ruta === '/') return homeTexto(lineas);
   if (ruta === '/request-estimated') return presupuestoTexto(lineas);

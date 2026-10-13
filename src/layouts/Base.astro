@@ -123,7 +123,8 @@ import '../styles/caracteristicas.css';// .animated-divs-section 55             
 // pagina; el heroe lo comparten las OCHO paginas indice con marcado identico —421-452 ch y las
 // mismas 5 clases, solo cambia el texto—. Por eso el heroe es UN encargo y no cuatro: cuatro
 // chats tocandolo darian cuatro heroes distintos en el mismo sitio.
-import '../styles/hero-indice.css';    // .hero-section 8                          -> HERO-INDICE
+// `hero-indice.css` (`.hero-section` de las paginas indice) se retiro con ASTRO-4: todas abren con el
+// hero D del sistema y la hoja no tenia ya ninguna regla viva.
 // `galeria.css` (la rejilla y el filtro de `/gallery`) se retiro con ASTRO-4: el indice y las diez
 // categorias pintan el muro del sistema (`.mm-muro`, disenio/sistema.css).
 import '../styles/folletos.css';       // .brochures-section-page 1                -> FOLLETOS
@@ -137,7 +138,7 @@ import '../styles/folletos.css';       // .brochures-section-page 1             
 // hoja que rediseña marcado heredado, es la unica que viste marcado nuestro. Va aqui, al final
 // de la capa de diseño, porque solo tiene que ganar a `disenio/base.css` — con `propio.css`,
 // que parchea clases de Webflow, no se cruza: ni un selector en comun.
-import '../styles/financiacion.css';   // .fin-* 1                                  -> FINANCIACION
+// `financiacion.css` (`.fin-*`) se retiro con ASTRO-4: `/financing` pasa a piezas del sistema.
 // LA CAPA DE CAPTACION DE LAS FICHAS DE `/services/` (R17-CORE). Las tres secciones nuevas que
 // montan ConfianzaCore, FormularioCore e InversionCore. Hoy la monta 1 ruta —la Final URL del ad
 // group «Pool Builders Core»—, porque `src/data/captacion-servicios.json` tiene 1 entrada; la
