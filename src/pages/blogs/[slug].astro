@@ -34,6 +34,7 @@
  */
 import Base from '../../layouts/Base.astro';
 import { aHtml } from '../../lib/portable-text.mjs';
+import { CATEGORIAS_PISCINA } from '../../lib/blog-groq.mjs';
 import TELEFONOS from '../../data/telefonos.json';
 import HEROES from '../../data/heroes-ciudad.json';
 import BANCO from '../../data/banco-imagenes.json';
@@ -52,6 +53,8 @@ export async function getStaticPaths() {
 }
 
 const { doc, puesto } = Astro.props;
+/* D-145: el estimador de piscina solo se ofrece donde el articulo habla de piscinas. */
+const dePiscina = CATEGORIAS_PISCINA.includes(doc.categoria?.slug);
 const ruta = `/blogs/${doc.slug}`;
 
 /* Guardas de forma. Un articulo al que le falte esto no se pinta a medias: se para el build con
@@ -230,9 +233,9 @@ const SEO = {
   <section class="mm-lect">
     <div class="mm-prosa" set:html={cuerpo} />
     <aside class="mm-lado">
-      <span class="mm-dato-rot">Pool cost estimator</span>
+      {dePiscina && <span class="mm-dato-rot">Pool cost estimator</span>}
       <a class="mm-btn mm-btn--navy" href="/request-estimated">Request a Design-Build Project Evaluation</a>
-      <a class="mm-btn mm-btn--linea" href="/pool-cost-estimator">Try the pool cost estimator</a>
+      {dePiscina && <a class="mm-btn mm-btn--linea" href="/pool-cost-estimator">Try the pool cost estimator</a>}
       <div class="mm-datos mm-datos--pila">{telefonos.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}</div>
     </aside>
   </section>

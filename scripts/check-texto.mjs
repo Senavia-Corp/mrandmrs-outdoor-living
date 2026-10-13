@@ -28,6 +28,7 @@ import { tramosMiga } from '../src/lib/miga-tramos.mjs';
 import { AREAS_PIE, ORDEN_SERVICIOS_PIE, COPYRIGHT_ORIGEN, copyright } from '../src/lib/pie.mjs';
 import { lineasTarjetas, lineasBanda, lineasSrBanda, CATEGORIAS as GAL_CATEGORIAS } from '../src/lib/galeria-categorias.mjs';
 import { OCULTAS, lineasFiltro } from '../src/lib/filtro-proyectos.mjs';
+import { CATEGORIAS_PISCINA } from '../src/lib/blog-groq.mjs';
 import { fotoDeHeroe } from '../src/lib/heroe-ciudad.mjs';
 import { ciudadesDeFicha, SERVICIOS_CIUDAD } from '../src/lib/servicios-ciudad.mjs';
 import { zonasDeCondado } from '../src/lib/condados.mjs';
@@ -3680,10 +3681,18 @@ function fichaProyectoTexto(ruta, lineas) {
  * Las cabeceras de las tablas se pintan en versalitas (S11) y las cuenta T-69.
  * Si un tramo no esta tal cual, no se toca y la ruta sale roja.
  */
+/** slug del articulo → slug de su categoria, de la cache versionada del dataset. */
+const CATEGORIA_DE_ARTICULO = (() => {
+  const f = path.join(RAIZ, 'src/data/blogs-sanity.json');
+  return fs.existsSync(f) ? Object.fromEntries(JSON.parse(fs.readFileSync(f, 'utf8')).map((p) => [p.slug, p.categoria?.slug])) : {};
+})();
 function articuloTexto(ruta, lineas) {
   const out = [...lineas];
   const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
-  const tarjeta = ['POOL COST ESTIMATOR', 'Request A Design-Build Project Evaluation', 'Try The Pool Cost Estimator', ...tels];
+  // D-145: rotulo y enlace del estimador, solo en los articulos de categoria de piscina.
+  const dePiscina = CATEGORIAS_PISCINA.includes(CATEGORIA_DE_ARTICULO[ruta.split('/').pop()]);
+  const tarjeta = [...(dePiscina ? ['POOL COST ESTIMATOR'] : []), 'Request A Design-Build Project Evaluation',
+    ...(dePiscina ? ['Try The Pool Cost Estimator'] : []), ...tels];
   /* Lo declarado es OBLIGATORIO: si un tramo falta o no esta en su sitio, entra una linea que no
    * casa con nada y la ruta sale roja diciendo cual. Sin esto la puerta fallaba ABIERTA. */
   const m = out.indexOf('Most Read Articles') - tarjeta.length;
