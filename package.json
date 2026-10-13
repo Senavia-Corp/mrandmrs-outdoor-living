@@ -57,6 +57,7 @@
     "check:mosaico": "node scripts/check-mosaico.mjs",
     "check:formulario": "node scripts/check-formulario.mjs",
     "check:parcial": "node scripts/check-parcial.mjs",
+    "check:jsonld": "node scripts/check-jsonld.mjs",
     "check:captacion": "node scripts/build-captacion-ciudades.mjs --check && node scripts/build-ciudades-servicios.mjs --check",
     "check:ciudades-servicios": "node scripts/check-ciudades-servicios.mjs",
     "check:aviso": "node scripts/test-aviso.mjs",
