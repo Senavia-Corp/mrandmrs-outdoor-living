@@ -272,5 +272,32 @@ if (!fs.existsSync(ESTATICO)) {
   console.log(`  ${fuera}/${CONDADOS.length + 1} rutas fuera de alcance (ficha + condados) sin la galeria`);
 }
 
+// ═════════════════════════════════════════════════════════════════════════════════════════════
+// 3 · LAS EXCLUIDAS (D-124, limite a) — en TODO el build
+// ═════════════════════════════════════════════════════════════════════════════════════════════
+/* `src/data/galeria-complementaria.json > excluidas` son fotos que constan en el registro y no se
+ * pintan en ningun sitio: ni en un mosaico ni en la rejilla de `/gallery`. El fichero sigue en
+ * disco; lo que se exige es que ninguna pagina lo pinte, tampoco en una de sus variantes. */
+if (fs.existsSync(ESTATICO)) {
+  console.log('\n── 3. ninguna pagina pinta una foto excluida');
+  const EXCLUIDAS = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/galeria-complementaria.json'), 'utf8')).excluidas;
+  const pintan = [];
+  let paginas = 0;
+  (function anda(d) {
+    for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+      const f = path.join(d, e.name);
+      if (e.isDirectory()) anda(f);
+      else if (e.name.endsWith('.html')) {
+        paginas++;
+        const t = fs.readFileSync(f, 'utf8');
+        for (const src of EXCLUIDAS) if (t.includes(src.replace(/\.[a-z0-9]+$/i, ''))) pintan.push(`/${path.relative(ESTATICO, path.dirname(f))} ← ${path.basename(src)}`);
+      }
+    }
+  })(ESTATICO);
+  if (!EXCLUIDAS.length) mal('galeria-complementaria.json', '`excluidas` esta vacia: esta comprobacion no mira nada');
+  else if (pintan.length) mal('excluidas', `${pintan.length} pagina(s) la pintan: ${pintan.slice(0, 5).join(' · ')}`);
+  else console.log(`  ${EXCLUIDAS.length} excluida(s), ${paginas} paginas: ninguna la pinta`);
+}
+
 console.log(`\n${fallos ? `PUERTA ROJA — ${fallos} fallo(s)` : 'PUERTA VERDE — un set, las 53 ciudades, obra real trazada'}\n`);
 process.exit(fallos ? 1 : 0);

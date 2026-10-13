@@ -542,6 +542,7 @@ const OBRAS_PROPIAS = JSON.parse(
  * el casting es contenido, no codigo: quien lo revise no deberia tener que leer este script. */
 const GALERIA_PAGINA = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/galeria-pagina.json'), 'utf8'));
 let galeriaPropiaInsertada = 0;
+let galeriaExcluida = 0;
 
 const OBRAS_EN = {
   '/projects': {
@@ -2719,6 +2720,21 @@ for (const [ruta] of RUTAS) {
    * Van al PRINCIPIO de la lista, y por eso se recorre al reves: son las de mas definicion de
    * la pagina y las unicas con trazabilidad al banco activo por activo. */
   if (ruta === '/gallery') {
+    /* E6 (D-124, limite a) · LAS `excluidas` SALEN TAMBIEN DEL INDICE. Son las fotos de
+     * `galeria-complementaria.json` que no se pintan en ningun mosaico; la rejilla de `/gallery`
+     * las seguia trayendo del origen. Se quita el item entero —foto y entrada del visor—; el
+     * fichero no se borra. Una excluida que el origen ya no traiga revienta: una lista que no
+     * excluye nada es una lista que se ha quedado vieja. Va ANTES de elegir el molde. */
+    for (const src of COMPLEMENTARIA.excluidas) {
+      const fuera = [...doc.querySelectorAll('.gallery-page .cms-item-pictures')]
+        .filter((it) => local(it.querySelector('img')?.getAttribute('src') ?? '') === src);
+      if (!fuera.length) {
+        console.error(`\n  ROJO /gallery: \`excluidas\` nombra ${src} y la rejilla del origen no la trae\n`);
+        process.exit(1);
+      }
+      for (const it of fuera) it.remove();
+      galeriaExcluida += fuera.length;
+    }
     const listaFotos = doc.querySelector('.cms-list-pictures');
     const moldeFoto = listaFotos?.querySelector('.cms-item-pictures');
     // Falla RUIDOSAMENTE: sin molde no hay forma de item que heredar, y publicar /gallery con
@@ -3537,7 +3553,7 @@ if (galeriaPropiaInsertada !== GALERIA_PROPIA_ESPERADA) {
   console.error(`\n  ROJO /gallery: se insertaron ${galeriaPropiaInsertada} fotos del banco y el casting trae ${GALERIA_PROPIA_ESPERADA}\n`);
   process.exit(1);
 }
-console.log(`  ${galeriaPropiaInsertada} fotos del banco insertadas en /gallery\n`);
+console.log(`  ${galeriaPropiaInsertada} fotos del banco insertadas en /gallery · ${galeriaExcluida} retirada(s) de su rejilla por \`excluidas\`\n`);
 
 const OBRAS_ESPERADAS = OBRAS_PROPIAS.length * Object.keys(OBRAS_EN).length;
 console.log(`  obras propias insertadas en el indice: ${obrasInsertadas}`
