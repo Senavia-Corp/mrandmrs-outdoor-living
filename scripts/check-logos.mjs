@@ -101,9 +101,11 @@ for (const ruta of RUTAS) {
   // velocidad y bucle
   for (const ancho of [390, 1440, 1920]) {
     const { ctx, p } = await abre(ruta, ancho);
-    // El reloj y la posicion se leen JUNTOS y dentro de la pagina: con el reloj de fuera, la ida y
-    // vuelta de cada lectura entraba en la cuenta y una pagina pesada salia un 5 % lenta en falso.
-    const { x0, x1, dt } = await p.evaluate(async () => { const pi = document.querySelector('.mm-logos-pista'); const lee = () => [new DOMMatrixReadOnly(getComputedStyle(pi).transform).m41, performance.now()];
+    // El reloj y la posicion se leen JUNTOS, dentro de la pagina y del MISMO fotograma: la posicion
+    // que devuelve el navegador es la del ultimo fotograma pintado, asi que el reloj tiene que ser
+    // el de ese fotograma (`document.timeline`), no el de pared. Con el reloj de fuera, o con
+    // `performance.now()`, una pagina que carga —la home, con su video— salia un 6 % lenta en falso.
+    const { x0, x1, dt } = await p.evaluate(async () => { const pi = document.querySelector('.mm-logos-pista'); const lee = () => [new DOMMatrixReadOnly(getComputedStyle(pi).transform).m41, document.timeline.currentTime];
       const [a, ta] = lee(); await new Promise((r) => setTimeout(r, 2000)); const [c, tc] = lee(); return { x0: a, x1: c, dt: (tc - ta) / 1000 }; });
     const g = await geo(p);
     // Si en esos dos segundos se cerro una vuelta, el transform ha vuelto atras: se le suma la vuelta.
