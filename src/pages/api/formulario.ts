@@ -337,12 +337,18 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
   /* ASTRO-3 · el aviso parcial. La plantilla del aviso completo NO se toca: al parcial solo se le
    * antepone una marca inequivoca en el asunto, con su identificador, y una PRIMERA linea que
-   * dice en claro que no hay consentimiento de SMS. El completo con identificador solo gana las
-   * cabeceras de hilo. Con el interruptor apagado las tres constantes son las de siempre. */
+   * dice en claro que no hay consentimiento de SMS. El completo con identificador gana las
+   * cabeceras de hilo y una ULTIMA linea, `Contact ID:`, que lo empareja con su parcial aunque el
+   * buzon no los agrupe (D-161). Con el interruptor apagado `idContacto` esta vacio y las tres
+   * constantes son las de siempre, byte a byte. */
+  const pieContacto = !esParcial && idContacto ? `Contact ID: ${idContacto}` : '';
+  const pieHtml = `<p style="font:400 12px/1.6 Arial,sans-serif;color:#596b9a;margin:12px 0 0;text-align:center">${pieContacto}</p>`;
   const asuntoFinal = esParcial ? `${MARCA_PARCIAL} ${asunto} · ${idContacto}` : asunto;
-  const textoFinal = esParcial ? `${AVISO_PARCIAL}\nContact ID: ${idContacto}\n\n${texto}` : texto;
+  const textoFinal = esParcial ? `${AVISO_PARCIAL}\nContact ID: ${idContacto}\n\n${texto}`
+    : pieContacto ? `${texto}\n\n${pieContacto}` : texto;
   const franja = `<div style="font:700 14px/1.5 Arial,sans-serif;color:#001c63;background:#fdf0d8;border:1px solid #f4b248;padding:12px 16px;margin:0 0 16px">${AVISO_PARCIAL}<br><span style="font-weight:400">Contact ID: ${idContacto}</span></div>`;
-  const htmlFinal = esParcial ? (/<body[^>]*>/i.test(html) ? html.replace(/<body[^>]*>/i, (m) => m + franja) : franja + html) : html;
+  const htmlFinal = esParcial ? (/<body[^>]*>/i.test(html) ? html.replace(/<body[^>]*>/i, (m) => m + franja) : franja + html)
+    : pieContacto ? (/<\/body>/i.test(html) ? html.replace(/<\/body>/i, (m) => pieHtml + m) : html + pieHtml) : html;
   const primerParcial = esParcial && !(Number(datos.get('parcial_n')) > 1);
   const hilo = primerParcial ? { messageId: idDeMensaje(idContacto) }
     : idContacto ? { inReplyTo: idDeMensaje(idContacto), references: idDeMensaje(idContacto) } : {};

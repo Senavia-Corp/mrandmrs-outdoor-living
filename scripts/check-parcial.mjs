@@ -58,7 +58,8 @@ const lee = (f) => {
   const de = (n) => palabra((plano.match(new RegExp(`^${n}: (.*)$`, 'mi')) ?? [])[1] ?? '');
   const qp = (t) => Buffer.from(t.replace(/=\n/g, '').replace(/=([0-9A-F]{2})/g, (_, h) => String.fromCharCode(parseInt(h, 16))), 'latin1').toString('utf8');
   const texto = qp((crudo.match(/Content-Type: text\/plain[^\n]*\n(?:[A-Za-z-]+: [^\n]*\n)*\n([\s\S]*?)\n--/) ?? [])[1] ?? '');
-  return { asunto: de('Subject'), id: de('Message-ID'), respuestaA: de('In-Reply-To'), referencias: de('References'), texto, crudo };
+  const html = qp((crudo.match(/Content-Type: text\/html[^\n]*\n(?:[A-Za-z-]+: [^\n]*\n)*\n([\s\S]*?)\n--/) ?? [])[1] ?? '');
+  return { asunto: de('Subject'), id: de('Message-ID'), respuestaA: de('In-Reply-To'), referencias: de('References'), texto, html, crudo };
 };
 const correos = () => fs.readdirSync(CORREOS).sort();
 const nuevos = (antes) => correos().filter((f) => !antes.includes(f));
@@ -74,7 +75,8 @@ console.log('\n── servidor · interruptor APAGADO (sin PUBLIC_FORM_PARCIAL)'
   const m = nuevos(antes).map(lee);
   ok(c.estado === 200 && c.j.entregado === true && m.length === 1, 'el completo sale, y justo detras del parcial ignorado: el parcial no toco el limite por IP', JSON.stringify(c));
   ok(m[0] && !m[0].respuestaA && !m[0].referencias && !/PARTIAL/i.test(m[0].asunto) && !/PARTIAL/i.test(m[0].texto), 'el completo no gana cabeceras de hilo ni marca, aunque traiga un identificador');
-  globalThis.__asuntoApagado = m[0]?.asunto;
+  ok(m[0] && !/Contact ID/.test(m[0].crudo), 'ni la linea «Contact ID:»: apagado, el identificador no deja un byte en el aviso');
+  globalThis.__asuntoApagado = m[0]?.asunto; globalThis.__textoApagado = m[0]?.texto ?? ''; globalThis.__htmlApagado = m[0]?.html ?? '';
 }
 
 console.log('\n── servidor · ENCENDIDO, camino feliz (parcial y completo)');
@@ -93,7 +95,13 @@ process.env.PUBLIC_FORM_PARCIAL = '1';
     ok(par.texto.includes(`Contact ID: ${ID(2)}`) && !/SMS consent/i.test(par.texto.split('\n').slice(2).join('\n')) && !par.texto.includes('Timeline'), 'lleva el identificador y solo los campos del paso 1');
     ok(par.id === `<parcial.${ID(2)}@mrandmrsoutdoorliving.com>`, 'su Message-ID se deriva del identificador', par.id);
     ok(com.respuestaA === par.id && com.referencias === par.id, 'el completo va en su hilo: In-Reply-To y References al parcial', `${com.respuestaA} / ${com.referencias}`);
-    ok(com.asunto === globalThis.__asuntoApagado && !/PARTIAL/i.test(com.texto), 'el asunto y el cuerpo del completo son los de siempre', com.asunto);
+    ok(com.asunto === globalThis.__asuntoApagado && !/PARTIAL/i.test(com.texto), 'el asunto del completo es el de siempre y su cuerpo no lleva la marca', com.asunto);
+    const lineas = com.texto.trimEnd().split('\n');
+    ok(lineas.at(-1) === `Contact ID: ${ID(2)}` && lineas.at(-2) === '' && com.html.includes(`>Contact ID: ${ID(2)}</p>`), 'el completo acaba en la linea «Contact ID:» de su parcial, en el texto y en el HTML (D-161)', lineas.at(-1));
+    // Los dos casos salen de IP distinta y con un minuto de diferencia como mucho: se igualan esas dos lineas.
+    const sinIpNiHora = (s) => s.trimEnd().replace(/^IP: .*$/m, 'IP: —').replace(/^.*\d{4} · \d{1,2}:\d{2} [AP]M .*$/m, '— hora —');
+    ok(sinIpNiHora(lineas.slice(0, -2).join('\n')) === sinIpNiHora(globalThis.__textoApagado), 'y quitando esa linea su texto es, letra a letra, el del completo con el interruptor apagado');
+    ok(com.html.replace(/<p [^>]*>Contact ID: [^<]*<\/p>/, '').replace(/IP [0-9.]+/, 'IP —').replace(/[A-Z][a-z]{2} \d{1,2}, \d{4} · \d{1,2}:\d{2} [AP]M [A-Z]+/g, '— hora —') === globalThis.__htmlApagado.replace(/IP [0-9.]+/, 'IP —').replace(/[A-Z][a-z]{2} \d{1,2}, \d{4} · \d{1,2}:\d{2} [AP]M [A-Z]+/g, '— hora —'), 'y su HTML tambien');
     console.log(`       parcial  · Subject: ${par.asunto}\n                · Message-ID: ${par.id}\n       completo · Subject: ${com.asunto}\n                · In-Reply-To: ${com.respuestaA}\n                · References: ${com.referencias}`);
   }
 }
