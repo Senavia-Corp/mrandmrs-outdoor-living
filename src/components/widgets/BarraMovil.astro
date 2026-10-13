@@ -11,6 +11,10 @@
 //     la página: el botón del hero, un formulario o la banda final.
 import TELEFONOS from '../../data/telefonos.json';
 import ICO from '../../data/iconos-cascaron.json';
+
+// D-151: en `/request-estimated` el boton no recarga la pagina en la que ya se esta; baja a su
+// formulario. (Con el formulario en pantalla la barra ya no se pinta: ver ACCIONES.)
+const presupuesto = Astro.url.pathname.replace(/\/$/, '') === '/request-estimated' ? '#wf-form-Request-Quote-Form' : '/request-estimated';
 ---
 <div class="mm-barra" data-mm-barra>
   <details class="mm-llama" data-mm-llama>
@@ -19,7 +23,7 @@ import ICO from '../../data/iconos-cascaron.json';
       {TELEFONOS.items.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}
     </div>
   </details>
-  <a class="mm-barra-btn mm-barra-btn--navy" href="/request-estimated">Get a Free Estimate</a>
+  <a class="mm-barra-btn mm-barra-btn--navy" href={presupuesto}>Get a Free Estimate</a>
 </div>
 
 <script>

@@ -1017,6 +1017,23 @@ function condadoStitch(doc, ruta) {
  * galeria y la banda final— y se le pasa. «More Projects» y el formulario los cuelga el bucle
  * de salida, delante y detras de la banda de cierre. */
 /**
+ * D-150: «Terms» y «Privacy Policy» del consentimiento de un formulario llevaban a otro dominio
+ * (el del origen, con una «s» de mas). Van a las dos rutas legales del sitio, las del pie.
+ * Si el origen cambia de forma, para: un enlace legal no se reescribe a medias.
+ */
+const LEGALES_PROPIOS = [
+  ['https://mrandmrsoutdoorsliving.com/terms-of-service', '/articles/terms-conditions'],
+  ['https://mrandmrsoutdoorsliving.com/privacy-policy-page', '/articles/privacy-policy'],
+];
+function legalPropio(html) {
+  for (const [de, a] of LEGALES_PROPIOS) {
+    if (!html.includes(`href="${de}"`)) throw new Error(`legalPropio: no encuentro ${de} en el consentimiento del formulario`);
+    html = html.replace(`href="${de}"`, `href="${a}"`);
+  }
+  return html;
+}
+
+/**
  * ASTRO-4 lote B · `/request-estimated` (lamina «Presupuesto»; D-88, D-87).
  *
  * QUE CONSIGUE: que quien llega desde un boton de presupuesto deje primero como localizarle.
@@ -1076,7 +1093,7 @@ function presupuestoStitch(doc, ruta) {
   const acepto = q('#Checkbox'); acepto.removeAttribute('class');
   const aceptoTxt = acepto.parentElement.querySelector('.w-form-label')?.innerHTML;
   const envia = q('input[type="submit"]');
-  const legal = q('.text-block-7').innerHTML.replace(/ class="link-4"/g, '');
+  const legal = legalPropio(q('.text-block-7').innerHTML.replace(/ class="link-4"/g, ''));
   const sig = q('#msf-next').textContent.trim();
   const atras = q('#msf-back').textContent.trim();
   if (!aceptoTxt) throw new Error('/request-estimated: la casilla de consentimiento no trae texto');
@@ -1160,7 +1177,7 @@ function contactoStitch(doc, ruta) {
   const acepto = q('#Checkbox'); acepto.removeAttribute('class');
   const aceptoTxt = acepto.parentElement.querySelector('.w-form-label')?.innerHTML;
   const envia = q('input[type="submit"]');
-  const legal = q('.text-block-7').innerHTML.replace(/ class="link-4"/g, '');
+  const legal = legalPropio(q('.text-block-7').innerHTML.replace(/ class="link-4"/g, ''));
   if (radios.length !== 6 || !rotRadios || !aceptoTxt) falta('el formulario no trae sus seis opciones, su rotulo y el consentimiento');
   const campos = '<div class="mm-form-rejilla">' + ['#First-Name', '#Last-Name', '#Email', '#Phone-Number'].map(campo).join('') + '</div>'
     + campo('#Project-Type')
