@@ -2404,7 +2404,7 @@ function lineasResenas(ruta) {
    * enlace «See all reviews» sube a la cabecera, delante; el nombre va como esta escrito (D-142; hasta
    * entonces, en versalitas por CSS); y en las filas de la lista el nombre y la fecha se pintan a la izquierda
    * de la cita, pero en el HTML van detras, como siempre. Las mismas ocho, las mismas lineas. */
-  if (ruta && (esFicha(ruta) || esCiudadA(ruta) || esCondado(ruta) || ruta === '/')) {   // y la home (ASTRO-4)
+  if (ruta && (esFicha(ruta) || esCiudadA(ruta) || esCondado(ruta) || ruta === '/' || ruta === '/contact-us')) {   // y la home y contacto (ASTRO-4)
     return [
       RESENAS_MARCADOR,
       ...(d.valoracion != null ? [d.valoracion.toFixed(1)] : []),
@@ -3405,7 +3405,7 @@ const rotulosT69 = new Map();
 function sinMayusculasDeCss(ruta, esperado, hay) {
   // Las rutas ya migradas a las piezas nuevas: las 141 de servicio y, desde ASTRO-4, las 15 de
   // proyecto y los 47 articulos (las cabeceras de sus tablas).
-  if (!/^\/(services|project|blogs)\//.test(ruta) && ruta !== '/' && ruta !== '/request-estimated') return esperado;
+  if (!/^\/(services|project|blogs)\//.test(ruta) && !['/', '/request-estimated', '/contact-us'].includes(ruta)) return esperado;
   const medidas = hay.split('\n');
   const esperadas = esperado.split('\n');
   /* POR POSICION cuando las dos listas miden lo mismo, que es el caso de una ruta en verde: la
@@ -3821,7 +3821,38 @@ function presupuestoTexto(lineas) {
   return [...out, '⟦FALTA: el formulario en dos pasos de /request-estimated, con el contacto delante (T-91)⟧'];
 }
 
+/**
+ * ASTRO-4 lote B · `/contact-us` (lamina «Contacto»; T-92). El bloque de contacto y el formulario
+ * conservan sus lineas y su orden. Lo demas se comprueba entero y se devuelve a la referencia:
+ *   · las zonas suben delante de las resenas, norte delante, cada una con su telefono;
+ *   · las resenas van en lista, con «Get A Free Estimate» en la cabecera y los dos telefonos al final;
+ *   · la banda final gana los dos telefonos (T-56).
+ */
+function contactoTexto(lineas) {
+  const out = [...lineas];
+  const faltas = [];
+  const GFE = 'Get A Free Estimate';
+  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const zi = out.indexOf('WHERE WE SERVE');
+  const ri = out.findIndex((l, k) => k > zi && l === 'TESTIMONIALS');
+  const ci = out.findIndex((l, k) => k > ri && (out[k + 1] ?? '').startsWith(CIERRE_CIUDAD));
+  if (!(zi > 0 && ri > zi && ci > ri)) return [...out, '⟦FALTA: el orden de /contact-us (zonas, resenas, banda final)⟧'];
+  const Z = out.slice(zi, ri); const R = out.slice(ri, ci); const FIN = out.slice(ci);
+  let Zv = Z; let Rv = R; let FINv = FIN;
+  if (Z.length === 12 && Z[2] === 'North Florida' && Z[4] === 'NORTH FLORIDA' && Z[7] === 'South Florida' && Z[9] === 'SOUTH FLORIDA'
+    && Z[5] === TELEFONOS.items.find((t) => t.zona === 'North Florida').visible && Z[10] === TELEFONOS.items.find((t) => t.zona === 'South Florida').visible) {
+    Zv = ['Where We Serve', Z[1], Z[7], Z[8], Z[11], Z[2], Z[3], Z[6]];
+  } else faltas.push('las dos zonas con su telefono, norte delante');
+  const m = R.indexOf(RESENAS_MARCADOR);
+  if (m > 0 && R[m - 1] === GFE && tels.every((l, k) => R[R.length - tels.length + k] === l)) Rv = [...R.slice(0, m - 1), ...R.slice(m, R.length - tels.length)];
+  else faltas.push('las resenas con la accion en la cabecera y los dos telefonos al final');
+  if (FIN[2] === GFE && tels.every((l, k) => FIN[3 + k] === l)) FINv = [...FIN.slice(0, 3), ...FIN.slice(3 + tels.length)];
+  else faltas.push('los dos telefonos de la banda final (T-56)');
+  return [...out.slice(0, zi), ...Rv, ...Zv, ...FINv, ...faltas.map((f) => `⟦FALTA: ${f}⟧`)];
+}
+
 function listasStitch(ruta, lineas) {
+  if (ruta === '/contact-us') return contactoTexto(lineas);
   if (ruta === '/') return homeTexto(lineas);
   if (ruta === '/request-estimated') return presupuestoTexto(lineas);
   if (ruta === '/gallery' || ruta.startsWith('/gallery/')) return galeriaTexto(ruta, lineas);

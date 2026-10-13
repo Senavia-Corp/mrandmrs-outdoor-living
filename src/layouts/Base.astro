@@ -127,7 +127,8 @@ import '../styles/hero-indice.css';    // .hero-section 8                       
 // categorias pintan el muro del sistema (`.mm-muro`, disenio/sistema.css).
 import '../styles/folletos.css';       // .brochures-section-page 1                -> FOLLETOS
 import '../styles/blog-indice.css';    // .articles-section 1                      -> BLOG-INDICE
-import '../styles/contacto.css';       // .form-section 1 (+4 clases en 2 rutas)    -> CONTACTO
+// `contacto.css` (`/contact-us` de Webflow, `.form-section`) se retiro con ASTRO-4: la pagina pasa a
+// `.mm-contacto` y a las piezas del formulario del sistema; ninguna de sus 73 reglas pintaba ya nada.
 // `estimacion.css` (`/request-estimated` de Webflow, `.appointment-section`) se retiro con ASTRO-4: la
 // pagina pasa a `.mm-pres` y al formulario del sistema, y ninguna de sus 76 reglas pintaba ya nada.
 // LA PRIMERA RUTA DE AUTORIA PROPIA. `/financing` no existe en el origen de Webflow: no es una

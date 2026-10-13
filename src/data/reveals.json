@@ -483,22 +483,6 @@
     ]
    }
   ],
-  "53096b5c-0f9c-8865-b9e9-f40105bfcddf": [
-   {
-    "anim": "slideInLeft",
-    "bps": [
-     "main"
-    ]
-   },
-   {
-    "anim": "growIn",
-    "bps": [
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
   "e8f76016-477e-e66e-7c25-4392c5f6cba0": [
    {
     "anim": "slideInLeft",

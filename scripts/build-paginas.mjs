@@ -1116,6 +1116,123 @@ function presupuestoStitch(doc, ruta) {
   doc.querySelector('section.logos-section')?.remove();
 }
 
+/**
+ * ASTRO-4 lote B · `/contact-us` (lamina «Contacto»; D-93, D-76).
+ *
+ * QUE CONSIGUE: que quien quiere escribir tenga el formulario en la primera pantalla y, al lado,
+ * las otras tres formas de llegar (correo y los dos telefonos).
+ *
+ * QUE CAMBIA DE COMPOSICION: el hero oscuro y la caja de contacto sobre foto pasan a hero claro y
+ * a un bloque partido —datos de contacto a un lado, panel del formulario al otro—; las zonas van
+ * en dos columnas con su telefono y el mapa, las resenas en lista y la banda final gana foto.
+ *
+ * EL FORMULARIO SIGUE SIENDO EL SUYO, DE UN PASO (D-93): los mismos campos con sus `name`, `id` y
+ * opciones, el mismo destino. El unico boton oro de la pagina es el de envio (D-76): los otros
+ * dos «Get a Free Estimate» van en navy y en linea. Sale el `autofocus` que traian cuatro campos
+ * (se llevaba el foco, y la vista, al formulario nada mas cargar).
+ */
+function contactoStitch(doc, ruta) {
+  if (ruta !== '/contact-us') return;
+  const falta = (que) => { throw new Error(`/contact-us: ${que}`); };
+  const hero = doc.querySelector('section.hero-section');
+  const [h1, htx] = ['h1', '.text-block-4'].map((q) => hero?.querySelector(q));
+  const sec = doc.querySelector('section.form-section');
+  const [bh2, bp] = ['.header-box-info h2', '.header-box-info p'].map((q) => sec?.querySelector(q));
+  const correo = sec?.querySelector('a[href^="mailto:"]');
+  const tels = [...(sec?.querySelectorAll('.phone-wrapper a[href^="tel:"]') ?? [])];
+  const zona = sec?.querySelector('.wrapper-icons > div.label');
+  const bcta = sec?.querySelector('.box-info-contact .wrapper-buttons a');
+  const form = sec?.querySelector('form');
+  const [done, fail] = ['.w-form-done', '.w-form-fail'].map((q) => sec?.querySelector(q));
+  if (!h1 || !htx || !bh2 || !bp || !correo || tels.length !== 2 || !zona || !bcta || !form || !done || !fail) falta('no trae hero, caja de contacto con correo, dos telefonos, zona y boton, y formulario con sus mensajes');
+  const q = (sel) => form.querySelector(sel) ?? falta(`falta ${sel}`);
+  const prepara = (e) => { e.removeAttribute('class'); e.removeAttribute('autofocus'); if (e.getAttribute('placeholder') === '') e.removeAttribute('placeholder'); return e; };
+  const campo = (sel) => {
+    const e = q(sel);
+    const lab = form.querySelector(`label[for="${e.id}"]`) ?? falta(`${sel} no trae etiqueta`);
+    return `<div class="mm-campo"><label for="${e.id}">${lab.innerHTML}</label>${prepara(e).outerHTML}</div>`;
+  };
+  const radios = [...form.querySelectorAll('.wrapper-radio-buttons label.w-radio')].map((l) => {
+    const i = l.querySelector('input'); i.removeAttribute('class');
+    return `<label class="mm-opcion">${i.outerHTML}${l.querySelector('.w-form-label').textContent.trim()}</label>`;
+  });
+  const rotRadios = form.querySelector('.wrapper-radio-buttons')?.parentElement.querySelector(':scope > label')?.innerHTML;
+  const acepto = q('#Checkbox'); acepto.removeAttribute('class');
+  const aceptoTxt = acepto.parentElement.querySelector('.w-form-label')?.innerHTML;
+  const envia = q('input[type="submit"]');
+  const legal = q('.text-block-7').innerHTML.replace(/ class="link-4"/g, '');
+  if (radios.length !== 6 || !rotRadios || !aceptoTxt) falta('el formulario no trae sus seis opciones, su rotulo y el consentimiento');
+  const campos = '<div class="mm-form-rejilla">' + ['#First-Name', '#Last-Name', '#Email', '#Phone-Number'].map(campo).join('') + '</div>'
+    + campo('#Project-Type')
+    + `<fieldset class="mm-grupo-campo"><legend>${rotRadios}</legend><div class="mm-opciones">${radios.join('')}</div></fieldset>`
+    + campo('#Message')
+    + `<label class="mm-consent">${acepto.outerHTML}<span>${aceptoTxt}</span></label>`
+    + `<div class="mm-form-pie"><input type="submit" data-wait="${escAttr(envia.getAttribute('data-wait') ?? '')}" class="mm-btn" value="${escAttr(envia.getAttribute('value'))}"><p class="mm-form-legal">${legal}</p></div>`;
+  form.setAttribute('class', 'mm-form mm-form--uno');
+  form.innerHTML = campos;
+  const nh = doc.createElement('section');
+  nh.setAttribute('class', 'mm-hero-d');
+  nh.innerHTML = `<div class="mm-hero-d-caja"><div class="mm-sec-cab"><h1 class="mm-h1">${h1.innerHTML}</h1><div class="mm-sec-lado"><p class="mm-p">${htx.innerHTML}</p></div></div></div>`;
+  hero.replaceWith(nh);
+  const fila = (a) => `<a class="mm-contacto-fila" href="${a.getAttribute('href')}">${a.innerHTML}</a>`;
+  const ns = doc.createElement('section');
+  ns.setAttribute('class', 'mm-contacto');
+  ns.innerHTML = '<div class="mm-contacto-caja"><div class="mm-contacto-lado">'
+    + `<h2 class="mm-h2">${bh2.innerHTML.trim().replace(/\b(Vision)\b/, '<span class="mm-rot">$1</span>')}</h2><p class="mm-p">${bp.innerHTML}</p>`
+    + `<div class="mm-contacto-filas">${fila(correo)}${tels.map(fila).join('')}<p class="mm-contacto-fila">${zona.innerHTML}</p></div>`
+    + `<a class="mm-btn mm-btn--navy" href="${bcta.getAttribute('href')}" target="_blank" rel="noopener">${bcta.innerHTML}</a></div>`
+    + `<div class="mm-form-panel">${form.outerHTML}${done.outerHTML}${fail.outerHTML}</div></div>`;
+  sec.replaceWith(ns);
+
+  // ZONAS, RESENAS y BANDA FINAL: las mismas piezas que la ficha de servicio (§ listasDePlano).
+  const zon = doc.querySelector('section.location');
+  const zh2 = zon?.querySelector('.header-location h2');
+  const zlema = zon?.querySelector('.header-location p');
+  const zonas = [...(zon?.querySelectorAll('.item-country') ?? [])].map((it) => ({ t: it.querySelector('h3'), p: it.querySelector('.block-info-country p'), a: it.querySelector('a') }));
+  if (!zh2 || !zlema || zonas.length !== 2 || zonas.some((z) => !z.t || !z.p || !z.a)) falta('«Where We Serve» no trae rotulo, lema y dos zonas con texto y enlace');
+  zonas.sort((x, y) => TELEFONOS.findIndex((t) => t.zona === x.t.textContent.trim()) - TELEFONOS.findIndex((t) => t.zona === y.t.textContent.trim()));
+  const nz = doc.createElement('section');
+  nz.setAttribute('class', 'mm-zonas');
+  nz.innerHTML = '<div class="mm-zonas-caja"><div class="mm-zonas-txt">'
+    + `<div class="mm-sec-tit"><h2 class="mm-etiqueta">${zh2.innerHTML}</h2><p class="mm-h2">${zlema.innerHTML.replace(/\b(Coverage)\b/, '<span class="mm-rot">$1</span>')}</p></div>`
+    + '<div class="mm-zonas-lista">' + zonas.map((z) => {
+      const tel = TELEFONOS.find((t) => t.zona === z.t.textContent.trim()) ?? falta(`la zona «${z.t.textContent.trim()}» no tiene telefono`);
+      return `<article class="mm-zona"><h3 class="mm-zona-t">${z.t.innerHTML}</h3><p>${z.p.innerHTML}</p>`
+        + `<div class="mm-datos"><a class="mm-dato" href="tel:${tel.tel}"><span class="mm-dato-rot">${tel.zona}</span><span class="mm-dato-val">${tel.visible}</span></a></div>`
+        + `<a class="mm-flecha" href="${z.a.getAttribute('href')}">${z.a.innerHTML}${FLECHA}</a></article>`;
+    }).join('') + '</div></div>'
+    + '<svg class="mm-mapa" viewBox="0 0 420 460" aria-hidden="true" focusable="false">'
+    + '<path d="M20 60 H250 L262 40 H330 L352 92 L372 150 L386 214 L392 280 L384 340 L360 392 L334 420 L318 404 L300 350 L270 300 L246 250 L226 196 L214 150 L196 118 L150 104 L96 110 L60 96 L20 92 Z" class="mm-plano-vaso"></path>'
+    + '<path d="M212 200 L392 236" class="mm-plano-cota" stroke-dasharray="6 6"></path>'
+    + '<circle cx="300" cy="130" r="5" class="mm-plano-punto"></circle><circle cx="348" cy="330" r="5" class="mm-plano-punto"></circle></svg></div>';
+  const res = doc.querySelector('section.testimonial-section');
+  const [rlabel, rh2, rp] = ['.header-reviews .label', '.header-reviews h2', '.header-reviews p'].map((x) => res?.querySelector(x));
+  const widget = res?.querySelector('[class*="elfsight-app-"]');
+  const fin = doc.querySelector('section.cta-footer');
+  const [fh2, fp, fa] = ['h2', '.text-block-3', 'a'].map((x) => fin?.querySelector(x));
+  if (!rlabel || !rh2 || !rp || !widget || !fh2 || !fp || !fa) falta('las resenas o la banda final no traen lo de siempre');
+  const bolsa = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/heroes-ciudad.json'), 'utf8')).bolsas['pool-builders'];
+  const [fres, fcie] = [4, 5].map((k) => { const e = BANCO_POR_ID.get(bolsa[k]); if (!e || e.procedencia !== 'obra_real' || !e.alt) falta(`la foto ${k} de la bolsa no es obra real con alt`); return e; });
+  const img = (e, sizes) => `<img src="${e.src}" alt="${escAttr(e.alt)}" width="${e.ancho}" height="${e.alto}" sizes="${sizes}" loading="lazy" decoding="async">`;
+  const nr = doc.createElement('section');
+  nr.setAttribute('class', 'mm-res');
+  nr.innerHTML = `<div class="mm-sec-cab"><div class="mm-sec-tit"><p class="mm-etiqueta">${rlabel.innerHTML}</p><h2 class="mm-h2">${rh2.innerHTML.replace(/\b(Clients)\b/, '<span class="mm-rot">$1</span>')}</h2></div>`
+    + `<div class="mm-sec-lado"><p class="mm-p">${rp.innerHTML}</p><div class="mm-sec-acc"><a class="mm-btn mm-btn--linea" href="${fa.getAttribute('href')}">${fa.innerHTML}</a>`
+    + `<a class="mm-flecha" href="${RESENAS_PERFIL}" target="_blank" rel="noopener noreferrer">See all reviews${FLECHA}</a></div></div></div>`
+    + `<div class="mm-res-cuerpo"><div class="mm-res-col">${widget.outerHTML}${BANDA_TELEFONOS}</div>`
+    + `<figure class="mm-res-medio">${img(fres, '(min-width: 992px) 33vw, 100vw')}</figure></div>`;
+  const nc = doc.createElement('section');
+  nc.setAttribute('class', 'mm-cierre mm-cierre--sola mm-cierre--alta');
+  nc.innerHTML = '<div class="mm-cierre-caja"><div class="mm-cierre-txt">'
+    + `<h2 class="mm-h2">${fh2.innerHTML.replace(/Design-Buil[dt]/g, '<span class="mm-nb">$&</span>')}</h2><p class="mm-p">${fp.innerHTML}</p>`
+    + `<a class="mm-btn mm-btn--linea mm-btn--linea-inv" href="${fa.getAttribute('href')}">${fa.innerHTML}</a>${BANDA_TELEFONOS}</div>`
+    + `<figure class="mm-cierre-medio">${img(fcie, '(min-width: 992px) 42vw, 100vw')}</figure></div>`;
+  zon.remove(); res.remove();
+  ns.parentNode.insertBefore(nz, ns.nextSibling);
+  nz.parentNode.insertBefore(nr, nz.nextSibling);
+  fin.replaceWith(nc);
+}
+
 const esProyecto = (ruta) => ruta.startsWith('/project/');
 function proyectoStitch(doc, ruta) {
   if (!esProyecto(ruta)) return;
@@ -2270,6 +2387,7 @@ for (const [ruta] of RUTAS) {
   condadoStitch(doc, ruta);
   proyectoStitch(doc, ruta);
   presupuestoStitch(doc, ruta);
+  contactoStitch(doc, ruta);
   if (!esCondado(ruta)) {
     mosaicoDeObra(doc, ruta);
     listasDePlano(doc, ruta);

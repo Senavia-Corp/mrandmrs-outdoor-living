@@ -1132,7 +1132,7 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 .mm-pres-lado { display: flex; flex-direction: column; gap: var(--mm-e-32); }
 .mm-pres .mm-hero-a-logos { padding: 0; background: transparent; }
 .mm-pres .mm-hero-a-fila { max-width: none; padding: 0; flex-wrap: wrap; row-gap: var(--mm-e-16); overflow: visible; }
-.mm-consent { display: flex; align-items: flex-start; gap: var(--mm-e-12); margin: 0; font-size: 14px; line-height: 1.5; font-weight: 400; color: var(--mm-tinta-texto); }
+.mm-consent { display: flex; align-items: flex-start; gap: var(--mm-e-12); min-height: var(--mm-ctl-s); margin: 0; font-size: 14px; line-height: 1.5; font-weight: 400; color: var(--mm-tinta-texto); }
 .mm-consent input { flex: none; width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--mm-navy); }
 .mm-form-legal { margin: 0; font-size: 12px; line-height: 1.5; color: var(--mm-tinta-suave); }
 .mm-form-legal a { font-size: inherit; line-height: inherit; font-weight: 600; color: var(--mm-navy); }
@@ -1145,4 +1145,23 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
   .mm-pres-lado { grid-area: lado; padding-right: var(--mm-e-64); }
 }
 @media (min-width: 1200px) { .mm-pres { --mm-canal: var(--mm-e-64); } }
+
+/* ── /contact-us (ASTRO-4 lote B; lamina «Contacto», D-93) ────────────────────────────────────
+   Los datos de contacto a un lado y el panel del formulario, de un paso, al otro. */
+.mm-contacto { --mm-canal: var(--mm-e-24); padding: var(--mm-e-48) 0 var(--mm-e-64); background: var(--mm-azul-50); font-family: var(--mm-familia); color: var(--mm-tinta-texto); }
+.mm-contacto-caja { box-sizing: border-box; max-width: calc(var(--mm-contenedor) + 2 * var(--mm-canal)); margin: 0 auto; padding: 0 var(--mm-canal); display: flex; flex-direction: column; gap: var(--mm-e-32); }
+.mm-contacto-lado { display: flex; flex-direction: column; align-items: flex-start; gap: var(--mm-e-16); }
+.mm-contacto-lado .mm-h2, .mm-contacto-lado .mm-p { margin: 0; }
+.mm-contacto-filas { align-self: stretch; display: flex; flex-direction: column; border-bottom: 1px solid var(--mm-borde); }
+.mm-contacto-fila { display: flex; align-items: center; min-height: var(--mm-fila); margin: 0; border-top: 1px solid var(--mm-borde); font-size: 16px; line-height: 1.4; font-weight: 600; color: var(--mm-navy); text-decoration: none; overflow-wrap: anywhere; }
+.mm-contacto-filas a:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); }
+.mm-form--uno { display: flex; flex-direction: column; gap: var(--mm-e-20); }
+@media (hover: hover) and (pointer: fine) { .mm-contacto-filas a:hover { color: var(--mm-azul-500); } }
+@media (min-width: 768px) { .mm-contacto { --mm-canal: var(--mm-e-32); } }
+@media (min-width: 992px) {
+  .mm-contacto { padding: var(--mm-e-64) 0 var(--mm-e-96); }
+  .mm-contacto-caja { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--mm-e-64); align-items: start; }
+  .mm-contacto .mm-form-panel { padding: var(--mm-e-32); }
+}
+@media (min-width: 1200px) { .mm-contacto { --mm-canal: var(--mm-e-64); } }
 

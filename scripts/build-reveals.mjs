@@ -55,6 +55,8 @@ const RETIRADAS = new Set([
   '29867a8a-c7e7-06a6-ef63-f3ef2789a89f', 'c5943ea8-2479-0b18-7289-2e4baa1a48c8', 'c5943ea8-2479-0b18-7289-2e4baa1a48ce',
   // la cabecera y el bloque del formulario de `/request-estimated` (ASTRO-4 lote B)
   'd01628ed-7f34-9b3f-2b4a-9f22c92ec16a', '69e4df55-86c1-a89d-281e-f454cb25cb86',
+  // la caja de contacto de `/contact-us` (ASTRO-4 lote B)
+  '53096b5c-0f9c-8865-b9e9-f40105bfcddf',
 ]);
 
 const porId = {};
