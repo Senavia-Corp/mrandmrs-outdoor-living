@@ -184,49 +184,6 @@
     ]
    }
   ],
-  "906333cc-167b-479c-ae94-f7ad46037af5": [
-   {
-    "anim": "growIn",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
-  "11be53e8-68d1-13b1-051c-1b12ca00c3c8": [
-   {
-    "anim": "slideInRight",
-    "bps": [
-     "main"
-    ]
-   },
-   {
-    "anim": "growIn",
-    "bps": [
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
-  "92e1d430-1509-d840-e593-ae3928b4eb32": [
-   {
-    "anim": "slideInLeft",
-    "bps": [
-     "main"
-    ]
-   },
-   {
-    "anim": "growIn",
-    "bps": [
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
   "1b20b605-66d2-6f57-e097-e26fe4167c0a": [
    {
     "anim": "growIn",

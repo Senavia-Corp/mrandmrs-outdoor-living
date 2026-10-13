@@ -1274,3 +1274,24 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 .mm-ab-acc { display: flex; flex-wrap: wrap; align-items: center; gap: var(--mm-e-16) var(--mm-e-32); margin: 0 var(--mm-canal) var(--mm-e-32); }
 .mm-ab-acc .mm-datos { border-top: 0; }
 @media (min-width: 992px) { .mm-ab-cuerpo { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); column-gap: var(--mm-e-64); } .mm-ab-acc { margin: 0 0 var(--mm-e-40); } }
+
+/* ── `/where-we-serve` (ASTRO-4 lote C, lamina «ZonasPagina»): la presentacion en dos columnas y la
+   cobertura, con el mapa en linea a un lado y las dos zonas al otro, cada condado en una linea. */
+.mm-zp-intro { box-sizing: border-box; width: 100%; max-width: calc(var(--mm-contenedor) + 2 * var(--mm-canal)); margin: 0 auto; padding: 0 var(--mm-canal); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--mm-e-16) var(--mm-e-40); }
+.mm-zp-intro .mm-p { margin: 0; }
+.mm-zp-acc { display: flex; flex-wrap: wrap; align-items: center; gap: var(--mm-e-16) var(--mm-e-32); padding-top: var(--mm-e-8); }
+.mm-zp-acc .mm-datos { border-top: 0; }
+.mm-zp { --mm-canal: var(--mm-e-24); padding: var(--mm-e-64) 0; background: var(--mm-azul-50); font-family: var(--mm-familia); color: var(--mm-tinta-texto); }
+.mm-zp-caja { box-sizing: border-box; max-width: calc(var(--mm-contenedor) + 2 * var(--mm-canal)); margin: 0 auto; padding: 0 var(--mm-canal); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--mm-e-40); }
+.mm-zp-cab { display: flex; flex-direction: column; align-items: flex-start; gap: var(--mm-e-16); }
+.mm-zp-cab .mm-h2, .mm-zp-cab .mm-p { margin: 0; }
+.mm-zp-cab .mm-mapa { order: 0; max-width: 240px; margin-top: var(--mm-e-16); }
+.mm-zp-zonas { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--mm-e-40) var(--mm-e-32); }
+.mm-zp-zona { display: flex; flex-direction: column; gap: var(--mm-e-12); }
+.mm-zp-zona .mm-zona-t, .mm-zp-zona p { margin: 0; }
+.mm-zp-zona .mm-indice { grid-template-columns: minmax(0, 1fr); }
+.mm-zp-zona .mm-flecha { align-self: flex-start; }
+@media (min-width: 768px) { .mm-zp { --mm-canal: var(--mm-e-32); } .mm-zp-intro, .mm-zp-zonas { grid-template-columns: repeat(2, minmax(0, 1fr)); } .mm-zp-acc { grid-column: 1 / -1; } }
+@media (min-width: 992px) { .mm-zp { padding: var(--mm-e-96) 0; } .mm-zp-caja { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); column-gap: var(--mm-e-64); } }
+/* El hero partido de una pagina de poco texto: la foto apaisada, a la altura del texto. */
+@media (min-width: 1200px) { .mm-zp { --mm-canal: var(--mm-e-64); } .mm-hero-a--bajo .mm-hero-a-medio { aspect-ratio: 4 / 3; } }

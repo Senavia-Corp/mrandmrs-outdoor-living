@@ -4034,6 +4034,26 @@ function aboutTexto(lineas) {
   return [...out, ...faltas.map((x) => `⟦FALTA: ${x}⟧`)];
 }
 
+/**
+ * `/where-we-serve` (T-98). Hero, presentacion y cobertura conservan sus lineas y su orden. Entran:
+ * los dos telefonos detras de «More About Us», la accion de la pagina en la cabecera de la
+ * cobertura (detras de su parrafo) y los telefonos de la banda final (T-56).
+ */
+function zonasPaginaTexto(lineas) {
+  let out = [...lineas];
+  const faltas = [];
+  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const quita = (desde, que, nombre) => {
+    if (desde >= 0 && que.every((l, k) => out[desde + k] === l)) out.splice(desde, que.length);
+    else faltas.push(nombre);
+  };
+  const tras = (linea) => { const x = out.indexOf(linea); return x >= 0 ? x + 1 : -1; };
+  quita(tras('More About Us'), tels, 'los dos telefonos detras de «More About Us»');
+  quita(tras('Licensed contractors serving North and South Florida'), ['Get A Free Estimate'], 'la accion en la cabecera de la cobertura');
+  out = bandaConTelefonos(out);
+  return [...out, ...faltas.map((x) => `⟦FALTA: ${x}⟧`)];
+}
+
 function listasStitch(ruta, lineas) {
   if (ruta === '/blogs-tips') return indiceBlogTexto(lineas);
   if (SOLO_BANDA(ruta)) return bandaConTelefonos(lineas);
@@ -4041,6 +4061,7 @@ function listasStitch(ruta, lineas) {
   if (ruta === '/industry-solutions') return industriasTexto(ruta, lineas);
   if (ruta === '/financing') return financiacionTexto(lineas);
   if (ruta === '/about') return aboutTexto(lineas);
+  if (ruta === '/where-we-serve') return zonasPaginaTexto(lineas);
   if (ruta === '/contact-us') return contactoTexto(lineas);
   if (ruta === '/') return homeTexto(lineas);
   if (ruta === '/request-estimated') return presupuestoTexto(lineas);

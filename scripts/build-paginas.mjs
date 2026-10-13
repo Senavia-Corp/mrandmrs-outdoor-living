@@ -1467,10 +1467,7 @@ function zonasDeLocation(doc, ruta) {
     + '<div class="mm-zonas-lista">' + zonas.map((z) => `<article class="mm-zona"><h3 class="mm-zona-t">${z.t.innerHTML}</h3><p>${z.p.innerHTML}</p>`
       + `<div class="mm-datos"><a class="mm-dato" href="tel:${telDe(z).tel}"><span class="mm-dato-rot">${telDe(z).zona}</span><span class="mm-dato-val">${telDe(z).visible}</span></a></div>`
       + `<a class="mm-flecha" href="${z.a.getAttribute('href')}">${z.a.innerHTML}${FLECHA}</a></article>`).join('') + '</div></div>'
-    + '<svg class="mm-mapa" viewBox="0 0 420 460" aria-hidden="true" focusable="false">'
-    + '<path d="M20 60 H250 L262 40 H330 L352 92 L372 150 L386 214 L392 280 L384 340 L360 392 L334 420 L318 404 L300 350 L270 300 L246 250 L226 196 L214 150 L196 118 L150 104 L96 110 L60 96 L20 92 Z" class="mm-plano-vaso"></path>'
-    + '<path d="M212 200 L392 236" class="mm-plano-cota" stroke-dasharray="6 6"></path>'
-    + '<circle cx="300" cy="130" r="5" class="mm-plano-punto"></circle><circle cx="348" cy="330" r="5" class="mm-plano-punto"></circle></svg></div>';
+    + MAPA_FLORIDA + '</div>';
   zon.replaceWith(nz);
 }
 
@@ -1584,6 +1581,72 @@ function aboutStitch(doc, ruta) {
   // 7 · zonas y banda
   zonasDeLocation(doc, ruta);
   bandaFinal(doc, ruta, 8);
+}
+
+/** El mapa en linea de Florida con sus dos oficinas. Decorativo: los telefonos van en texto. */
+const MAPA_FLORIDA = '<svg class="mm-mapa" viewBox="0 0 420 460" aria-hidden="true" focusable="false">'
+  + '<path d="M20 60 H250 L262 40 H330 L352 92 L372 150 L386 214 L392 280 L384 340 L360 392 L334 420 L318 404 L300 350 L270 300 L246 250 L226 196 L214 150 L196 118 L150 104 L96 110 L60 96 L20 92 Z" class="mm-plano-vaso"></path>'
+  + '<path d="M212 200 L392 236" class="mm-plano-cota" stroke-dasharray="6 6"></path>'
+  + '<circle cx="300" cy="130" r="5" class="mm-plano-punto"></circle><circle cx="348" cy="330" r="5" class="mm-plano-punto"></circle></svg>';
+
+/** El hero partido (A) de una pagina sin obra propia: titular, subtitulo, parrafo, el boton del
+ *  origen en oro y, al lado, una foto de la bolsa de heroes (obra real, terminada, con alt). */
+function heroPartido(doc, ruta, { h1, sub, p, a, k, extra = '', clase = '' }) {
+  const e = BANCO_POR_ID.get(BOLSA_BANDA[k % BOLSA_BANDA.length]);
+  if (!e || e.procedencia !== 'obra_real' || !e.alt) throw new Error(`${ruta}: la foto ${k} de la bolsa no es obra real con alt`);
+  const nh = doc.createElement('section');
+  nh.setAttribute('class', `mm-hero-a${clase ? ` ${clase}` : ''}`);
+  nh.innerHTML = `<div class="mm-hero-a-txt"><h1 class="mm-h1">${h1.innerHTML}</h1>${sub ? `<h2 class="mm-hero-a-sub">${sub.innerHTML}</h2>` : ''}<p class="mm-p">${p.innerHTML}</p>`
+    + `<div class="mm-hero-a-acc"><a class="mm-btn" href="${a.getAttribute('href')}">${a.innerHTML}</a></div>${extra}</div>`
+    + `<figure class="mm-hero-a-medio"><img sizes="(min-width: 992px) 50vw, 100vw" src="${e.src}" alt="${escAttr(e.alt)}" width="${e.ancho}" height="${e.alto}" loading="eager" fetchpriority="high" decoding="async"></figure>`;
+  return nh;
+}
+
+/**
+ * ASTRO-4 lote C · `/where-we-serve` (lamina «ZonasPagina»).
+ *
+ * QUE CAMBIA DE COMPOSICION: el medio hero con una imagen compuesta, el collage de tres fotos y
+ * las dos vistas aereas salen. Queda lo que la pagina tiene que hacer —llevar a cada condado—:
+ * hero partido con una foto de obra y el boton en oro; la presentacion en dos columnas con su
+ * enlace y los dos telefonos; y la cobertura con el mapa en linea a un lado y, al otro, las dos
+ * zonas, cada condado en una linea entera pulsable. Mismos textos, mismos enlaces, mismo orden.
+ */
+function zonasPaginaStitch(doc, ruta) {
+  if (ruta !== '/where-we-serve') return;
+  const falta = (que) => { throw new Error(`${ruta}: ${que}`); };
+  const hero = doc.querySelector('section.half-hero-section');
+  const [h1, sub, p, a] = ['h1', 'h2', '.wrapper-hero-page p', '.wrapper-hero-page a'].map((q) => hero?.querySelector(q));
+  if (!h1 || !sub || !p || !a) falta('el hero no trae titular, subtitulo, parrafo y boton');
+  hero.replaceWith(heroPartido(doc, ruta, { h1, sub, p, a, k: 1, clase: 'mm-hero-a--bajo' }));
+
+  const tr = doc.querySelector('section.trusted-section');
+  const [th2, tp, ta] = ['.block-contect-intro h2', '.block-contect-intro p', '.block-contect-intro a'].map((q) => tr?.querySelector(q));
+  const parrafos = (tp?.innerHTML ?? '').split(/(?:<br\s*\/?>\s*){2,}/).map((x) => x.trim()).filter(Boolean);
+  if (!th2 || !ta || parrafos.length !== 2) falta('la presentacion no trae titular, dos parrafos y enlace');
+  const nt = doc.createElement('section');
+  nt.setAttribute('class', 'mm-franja mm-franja--blanca');
+  nt.innerHTML = `<div class="mm-sec-cab"><h2 class="mm-h2">${th2.innerHTML.replace(/(North &amp; South Florida)\s*$/, '<span class="mm-rot">$1</span>')}</h2></div>`
+    + `<div class="mm-zp-intro">${parrafos.map((x) => `<p class="mm-p">${x}</p>`).join('')}`
+    + `<div class="mm-zp-acc"><a class="mm-flecha" href="${ta.getAttribute('href')}">${ta.textContent.trim()}${FLECHA}</a>${BANDA_TELEFONOS}</div></div>`;
+  tr.replaceWith(nt);
+
+  const cv = doc.querySelector('section.coverage-section');
+  const [deco, ch2, cp] = ['.header-country .heading-deco', '.header-country h2', '.header-country p'].map((q) => cv?.querySelector(q));
+  const zonas = [...(cv?.querySelectorAll('.wrapper-service-areas') ?? [])].map((w) => ({
+    h: w.querySelector('.wrapper-vertical-text h3'), p: w.querySelector('.wrapper-vertical-text p'),
+    condados: [...w.querySelectorAll('.item-cities-cms a')], zona: w.querySelector('.wrapper-buttons a'),
+  }));
+  if (!deco || !ch2 || !cp || zonas.length !== 2 || zonas.some((z) => !z.h || !z.p || !z.condados.length || !z.zona)) falta('la cobertura no trae cabecera y dos zonas con condados y enlace');
+  const nv = doc.createElement('section');
+  nv.setAttribute('class', 'mm-zp');
+  nv.innerHTML = '<div class="mm-zp-caja"><div class="mm-zp-cab">'
+    + `<div class="mm-sec-tit"><p class="mm-etiqueta">${deco.innerHTML}</p><h2 class="mm-h2">${ch2.innerHTML.replace(/\b(areas)\s*$/i, '<span class="mm-rot">$1</span>')}</h2></div>`
+    + `<p class="mm-p">${cp.innerHTML}</p><a class="mm-btn mm-btn--navy" href="${a.getAttribute('href')}">${a.innerHTML}</a>${MAPA_FLORIDA}</div>`
+    + '<div class="mm-zp-zonas">' + zonas.map((z) => `<article class="mm-zp-zona"><h3 class="mm-zona-t">${z.h.innerHTML}</h3><p>${z.p.innerHTML}</p>`
+      + '<ul class="mm-indice" role="list">' + z.condados.map((c) => `<li><a class="mm-linea" href="${c.getAttribute('href')}"><span class="mm-linea-t">${c.textContent.trim()}</span>${FLECHA}</a></li>`).join('') + '</ul>'
+      + `<a class="mm-flecha" href="${z.zona.getAttribute('href')}">${z.zona.textContent.trim()}${FLECHA}</a></article>`).join('') + '</div></div>';
+  cv.replaceWith(nv);
+  bandaFinal(doc, ruta, 7);
 }
 
 /** ASTRO-4 lote C · `/brochures`: el hero D y la tipografia del sistema. El muro de catalogos, su
@@ -2788,6 +2851,7 @@ for (const [ruta] of RUTAS) {
   folletosStitch(doc, ruta);
   industriasStitch(doc, ruta);
   aboutStitch(doc, ruta);
+  zonasPaginaStitch(doc, ruta);
   if (!esCondado(ruta)) {
     mosaicoDeObra(doc, ruta);
     listasDePlano(doc, ruta);

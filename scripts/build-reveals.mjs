@@ -64,6 +64,8 @@ const RETIRADAS = new Set([
   '0826fe29-babd-e8fb-0a42-82cd5580ecf8', '764f3c21-6644-7827-7b7a-25bbd0e40a23', '8cc34998-48e5-bb72-accf-221a7753f4ed',
   'a5871642-3b6c-271b-3ec9-9fed5cbdb3f3', 'cf0c09d3-d0b4-ba92-42a2-cec01a9dee35', 'dfdd7317-58e7-27b3-99a6-2c20a5e8a7be',
   'dfdd7317-58e7-27b3-99a6-2c20a5e8a7c8', 'f811c775-c524-2700-ed75-4a83bcf40c57',
+  // hero, presentacion y cobertura de `/where-we-serve` (ASTRO-4 lote C)
+  '92e1d430-1509-d840-e593-ae3928b4eb32', '906333cc-167b-479c-ae94-f7ad46037af5', '11be53e8-68d1-13b1-051c-1b12ca00c3c8',
 ]);
 
 const porId = {};
