@@ -1187,3 +1187,17 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 @media (min-width: 992px) { .mm-videos { padding-bottom: var(--mm-e-96); } }
 @media (min-width: 1200px) { .mm-videos { --mm-canal: var(--mm-e-64); } }
 
+/* ── /projects (ASTRO-4 lote C) ── el indice de obras: el filtro y la ficha de obra con su relato. */
+.mm-obras { --mm-canal: var(--mm-e-24); padding: 0 0 var(--mm-e-64); background: var(--mm-blanco); font-family: var(--mm-familia); color: var(--mm-tinta-texto); }
+.mm-obras > .container { box-sizing: border-box; max-width: calc(var(--mm-contenedor) + 2 * var(--mm-canal)); padding: 0 var(--mm-canal); }
+.mm-obras-lista { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--mm-e-40) var(--mm-e-32); }
+/* `.cms-item-work` (webflow.css) trae relleno, y la seccion, texto centrado: se anulan (la clase sigue: la lee el filtro). */
+.mm-obras .cms-item-work { padding: 0; text-align: left; }
+.mm-ficha-cuerpo { display: flex; flex-direction: column; align-items: flex-start; gap: var(--mm-e-8); }
+.mm-ficha-p { font-size: 16px; line-height: 1.55; color: var(--mm-tinta-texto); }
+.mm-ficha--indice .mm-ficha-foto { aspect-ratio: 3 / 2; }
+@media (hover: hover) and (pointer: fine) { .mm-ficha--indice:hover .mm-ficha-foto img { transform: scale(1.03); } }
+@media (min-width: 768px) { .mm-obras { --mm-canal: var(--mm-e-32); } .mm-obras-lista { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 992px) { .mm-obras { padding-bottom: var(--mm-e-96); } }
+@media (min-width: 1200px) { .mm-obras { --mm-canal: var(--mm-e-64); } .mm-obras-lista { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+

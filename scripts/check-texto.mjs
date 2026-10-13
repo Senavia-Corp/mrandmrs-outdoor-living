@@ -3863,7 +3863,7 @@ function bandaConTelefonos(lineas) {
   return [...out, '⟦FALTA: los dos telefonos de la banda final (T-56), detras de su boton⟧'];
 }
 /** Las rutas del lote C que solo cambian en eso (hero y cuerpo conservan sus lineas y su orden). */
-const SOLO_BANDA = (ruta) => ruta.startsWith('/articles/');
+const SOLO_BANDA = (ruta) => ruta.startsWith('/articles/') || ruta === '/projects';
 /**
  * `/testimonials` y `/videos` (T-93): las resenas van en lista, con los dos telefonos detras; en
  * `/videos`, ademas, «Get A Free Estimate» en la cabecera de resenas, delante de «See all reviews».

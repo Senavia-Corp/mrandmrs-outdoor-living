@@ -1352,6 +1352,42 @@ function videosStitch(doc, ruta) {
   bandaFinal(doc, ruta, 1);
 }
 
+/**
+ * ASTRO-4 lote C · `/projects`, el indice de las 15 obras (sin lamina propia: hero D y la tarjeta
+ * de obra del sistema).
+ *
+ * QUE CAMBIA DE COMPOSICION: las tarjetas con su caja, su sombra y un boton oro cada una pasan a la
+ * ficha de obra del sistema —foto, titular, relato y enlace de linea—, entera pulsable, en dos
+ * columnas (tres desde 1200). El oro de la pagina es el de la cabecera.
+ *
+ * Cada obra sigue siendo su `.cms-item-work` con su `data-servicios`, que es lo que lee el filtro
+ * (`FiltroProyectos.astro`). Mismo titular, mismo relato, mismo enlace y en el mismo orden.
+ */
+function proyectosIndiceStitch(doc, ruta) {
+  if (ruta !== '/projects') return;
+  heroD(doc, ruta);
+  const sec = doc.querySelector('section.project-page');
+  const lista = sec?.querySelector('.cms-list-work');
+  const items = [...(lista?.querySelectorAll('.cms-item-work') ?? [])];
+  if (!lista || items.length < 10) throw new Error(`/projects: ${items.length} obras en la lista`);
+  for (const it of items) {
+    const img = it.querySelector('img.img-work');
+    const h = it.querySelector('.title-work');
+    const p = h?.nextElementSibling;
+    const a = it.querySelector('a[href^="/project/"]');
+    if (!img || !h || !p || !a) throw new Error('/projects: una obra no trae foto, titular, relato y enlace');
+    img.removeAttribute('class');
+    img.setAttribute('sizes', '(min-width: 1200px) 33vw, (min-width: 768px) 50vw, 100vw');
+    img.setAttribute('decoding', 'async');
+    it.innerHTML = `<a class="mm-ficha mm-ficha--indice" href="${a.getAttribute('href')}"><span class="mm-ficha-foto">${img.outerHTML}</span>`
+      + `<span class="mm-ficha-cuerpo"><h2 class="mm-ficha-t">${h.innerHTML}</h2><span class="mm-ficha-p">${p.innerHTML}</span>`
+      + `<span class="mm-flecha">${a.innerHTML}${FLECHA}</span></span></a>`;
+  }
+  sec.setAttribute('class', 'project-page mm-obras');
+  lista.classList.add('mm-obras-lista');
+  bandaFinal(doc, ruta, 2);
+}
+
 const esProyecto = (ruta) => ruta.startsWith('/project/');
 function proyectoStitch(doc, ruta) {
   if (!esProyecto(ruta)) return;
@@ -2515,6 +2551,7 @@ for (const [ruta] of RUTAS) {
   legalStitch(doc, ruta);
   testimoniosStitch(doc, ruta);
   videosStitch(doc, ruta);
+  proyectosIndiceStitch(doc, ruta);
   if (!esCondado(ruta)) {
     mosaicoDeObra(doc, ruta);
     listasDePlano(doc, ruta);
