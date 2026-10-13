@@ -136,7 +136,8 @@ if (!portada.includes('mrandmrsoutdoorliving')) {
   servidor.close(); process.exit(1);
 }
 
-const nav = await chromium.launch();
+// `MM_MOTOR=webkit`: el mismo guion en el motor de Safari (E6). Por defecto, Chromium.
+const nav = await (process.env.MM_MOTOR === 'webkit' ? (await import('playwright')).webkit : chromium).launch();
 const mal = { noAbre: [], salto: [], chicos: [], noPasa: [], noCierraEsc: [], noCierraVelo: [], foco: [], mudas: [] };
 let nombradas = 0;
 let medidas = 0;

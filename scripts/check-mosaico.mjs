@@ -19,7 +19,8 @@ const D = path.resolve(import.meta.dirname, '../.vercel/output/static');
 const RUTAS = ['/services/pool-builders', '/services/retractable-screens', '/services/irrigation-systems', '/services/pool-builders/alachua-fl', '/services/pool-builders/marion-county-fl',
   '/project/modern-pool-motorized-pergola-south-florida'];
 const rojos = [];
-const b = await chromium.launch();
+// `MM_MOTOR=webkit`: el mismo guion en el motor de Safari (E6). Por defecto, Chromium.
+const b = await (process.env.MM_MOTOR === 'webkit' ? (await import('playwright')).webkit : chromium).launch();
 for (const ruta of RUTAS) {
   const p = await b.newPage({ viewport: { width: 1280, height: 800 } });
   await p.route('**/*', (x) => {

@@ -55,7 +55,8 @@ const sirve = async (ctx, alEnviar) => ctx.route('**/*', (x) => {
   return fs.existsSync(f) ? x.fulfill({ path: f }) : x.fulfill({ status: 404, body: '' });
 });
 
-const b = await chromium.launch();
+// `MM_MOTOR=webkit`: el mismo guion en el motor de Safari (E6). Por defecto, Chromium.
+const b = await (process.env.MM_MOTOR === 'webkit' ? (await import('playwright')).webkit : chromium).launch();
 for (const ruta of RUTAS) {
   const mal = (m) => rojos.push(`${ruta}: ${m}`);
   const antes = rojos.length;
