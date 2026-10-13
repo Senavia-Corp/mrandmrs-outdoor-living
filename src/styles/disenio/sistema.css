@@ -1171,3 +1171,19 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 .mm-prosa--legal h2 { margin-top: var(--mm-e-40); font-size: 22px; }
 @media (min-width: 992px) { .mm-lect--sola { display: block; padding-top: var(--mm-e-16); } }
 
+/* ── /testimonials y /videos (ASTRO-4 lote C) ── las resenas sin cabecera propia (la lleva el
+   hero) y la caja de la galeria de YouTube, que conserva su hoja de componente. */
+.mm-res--pagina { padding-top: var(--mm-e-16); }
+.mm-videos { --mm-canal: var(--mm-e-24); padding: 0 0 var(--mm-e-64); background: var(--mm-blanco); }
+/* La galeria conserva su hoja de componente (va en linea en el <head> de la pagina y no se toca para
+   no moverla de ahi). Aqui solo: la tipografia del sistema, sus tres enlaces a 44 px de alto (median
+   12, 40 y 17: heredaban el `line-height: 12px` de la regla global de `a`) y el boton del canal en
+   linea, sin el degradado dorado (el oro de la pagina es el de la cabecera, D-76). */
+.mm-videos .mm-yt .mm-yt__titulo { display: inline-flex; align-items: center; min-height: var(--mm-ctl-s); font-family: var(--mm-familia); line-height: 1.3; }
+.mm-videos .mm-yt .mm-yt__sub { box-sizing: border-box; min-width: var(--mm-ctl-l); min-height: var(--mm-ctl-s); padding: 0 var(--mm-e-16); border: 1.5px solid var(--mm-navy); border-radius: var(--mm-r-8); background: var(--mm-blanco); }
+.mm-videos .mm-yt .mm-yt__vtitulo a { display: flex; align-items: center; min-height: var(--mm-ctl-s); font-size: inherit; line-height: inherit; }
+.mm-videos-caja { box-sizing: border-box; max-width: calc(var(--mm-contenedor) + 2 * var(--mm-canal)); margin: 0 auto; padding: 0 var(--mm-canal); }
+@media (min-width: 768px) { .mm-videos { --mm-canal: var(--mm-e-32); } }
+@media (min-width: 992px) { .mm-videos { padding-bottom: var(--mm-e-96); } }
+@media (min-width: 1200px) { .mm-videos { --mm-canal: var(--mm-e-64); } }
+

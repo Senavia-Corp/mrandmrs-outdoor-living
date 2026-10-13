@@ -1300,6 +1300,58 @@ function legalStitch(doc, ruta) {
   bandaFinal(doc, ruta, 6 + ['accessibility', 'privacy-policy', 'terms-conditions'].indexOf(ruta.split('/').pop()));
 }
 
+/**
+ * ASTRO-4 lote C · `/testimonials` y `/videos` (sin lamina propia: hero D y piezas aprobadas).
+ *
+ * `/testimonials`: el titular y su entradilla en el hero, con el enlace al perfil de Google; las
+ * ocho resenas en lista (no en carrusel) con una foto de obra al lado y los dos telefonos; banda.
+ * `/videos`: hero, la galeria de YouTube tal cual (es un componente con su hoja propia), las
+ * resenas con su cabecera de siempre en lista, y la banda.
+ * Las resenas las pinta `ResenasGoogle.astro` en su rama de lista. Mismos textos.
+ */
+function fotoBolsa(ruta, k) {
+  const e = BANCO_POR_ID.get(BOLSA_BANDA[k % BOLSA_BANDA.length]);
+  if (!e || e.procedencia !== 'obra_real' || !e.alt) throw new Error(`${ruta}: la foto ${k} de la bolsa no es obra real con alt`);
+  return `<img src="${e.src}" alt="${escAttr(e.alt)}" width="${e.ancho}" height="${e.alto}" sizes="(min-width: 992px) 33vw, 100vw" loading="lazy" decoding="async">`;
+}
+const VER_RESENAS = () => `<a class="mm-flecha" href="${RESENAS_PERFIL}" target="_blank" rel="noopener noreferrer">See all reviews${FLECHA}</a>`;
+function testimoniosStitch(doc, ruta) {
+  if (ruta !== '/testimonials') return;
+  const nh = heroD(doc, ruta);
+  const sec = doc.querySelector('section.testimonials-page-section');
+  const widget = sec?.querySelector('[class*="elfsight-app-"]');
+  const lado = nh.querySelector('.mm-sec-lado');
+  if (!widget || !lado) throw new Error('/testimonials: no trae entradilla y widget de resenas');
+  lado.insertAdjacentHTML('beforeend', `<div class="mm-sec-acc">${VER_RESENAS()}</div>`);
+  const ns = doc.createElement('section');
+  ns.setAttribute('class', 'mm-res mm-res--pagina');
+  ns.innerHTML = `<div class="mm-res-cuerpo"><div class="mm-res-col">${widget.outerHTML}${BANDA_TELEFONOS}</div><figure class="mm-res-medio">${fotoBolsa(ruta, 9)}</figure></div>`;
+  sec.replaceWith(ns);
+  bandaFinal(doc, ruta, 10);
+}
+function videosStitch(doc, ruta) {
+  if (ruta !== '/videos') return;
+  heroD(doc, ruta);
+  const sec = doc.querySelector('section.videos-section');
+  const yt = sec?.querySelector('[class*="elfsight-app-"]');
+  const res = doc.querySelector('section.testimonial-section');
+  const [rlabel, rh2, rp] = ['.header-reviews .label', '.header-reviews h2', '.header-reviews p'].map((x) => res?.querySelector(x));
+  const widget = res?.querySelector('[class*="elfsight-app-"]');
+  const fa = doc.querySelector('section.cta-footer a');
+  if (!yt || !rlabel || !rh2 || !rp || !widget || !fa) throw new Error('/videos: no trae la galeria de videos, las resenas con su cabecera y la banda');
+  const nv = doc.createElement('section');
+  nv.setAttribute('class', 'mm-videos');
+  nv.innerHTML = `<div class="mm-videos-caja">${yt.outerHTML}</div>`;
+  sec.replaceWith(nv);
+  const nr = doc.createElement('section');
+  nr.setAttribute('class', 'mm-res');
+  nr.innerHTML = `<div class="mm-sec-cab"><div class="mm-sec-tit"><p class="mm-etiqueta">${rlabel.innerHTML}</p><h2 class="mm-h2">${rh2.innerHTML.replace(/\b(Clients)\b/, '<span class="mm-rot">$1</span>')}</h2></div>`
+    + `<div class="mm-sec-lado"><p class="mm-p">${rp.innerHTML}</p><div class="mm-sec-acc"><a class="mm-btn mm-btn--linea" href="${fa.getAttribute('href')}">${fa.innerHTML}</a>${VER_RESENAS()}</div></div></div>`
+    + `<div class="mm-res-cuerpo"><div class="mm-res-col">${widget.outerHTML}${BANDA_TELEFONOS}</div><figure class="mm-res-medio">${fotoBolsa(ruta, 0)}</figure></div>`;
+  res.replaceWith(nr);
+  bandaFinal(doc, ruta, 1);
+}
+
 const esProyecto = (ruta) => ruta.startsWith('/project/');
 function proyectoStitch(doc, ruta) {
   if (!esProyecto(ruta)) return;
@@ -2461,6 +2513,8 @@ for (const [ruta] of RUTAS) {
   presupuestoStitch(doc, ruta);
   contactoStitch(doc, ruta);
   legalStitch(doc, ruta);
+  testimoniosStitch(doc, ruta);
+  videosStitch(doc, ruta);
   if (!esCondado(ruta)) {
     mosaicoDeObra(doc, ruta);
     listasDePlano(doc, ruta);

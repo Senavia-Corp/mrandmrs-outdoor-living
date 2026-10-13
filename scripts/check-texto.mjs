@@ -2404,7 +2404,7 @@ function lineasResenas(ruta) {
    * enlace «See all reviews» sube a la cabecera, delante; el nombre va como esta escrito (D-142; hasta
    * entonces, en versalitas por CSS); y en las filas de la lista el nombre y la fecha se pintan a la izquierda
    * de la cita, pero en el HTML van detras, como siempre. Las mismas ocho, las mismas lineas. */
-  if (ruta && (esFicha(ruta) || esCiudadA(ruta) || esCondado(ruta) || ruta === '/' || ruta === '/contact-us')) {   // y la home y contacto (ASTRO-4)
+  if (ruta && (esFicha(ruta) || esCiudadA(ruta) || esCondado(ruta) || ['/', '/contact-us', '/testimonials', '/videos'].includes(ruta))) {   // y la home, contacto, testimonios y videos (ASTRO-4)
     return [
       RESENAS_MARCADOR,
       ...(d.valoracion != null ? [d.valoracion.toFixed(1)] : []),
@@ -3405,7 +3405,7 @@ const rotulosT69 = new Map();
 function sinMayusculasDeCss(ruta, esperado, hay) {
   // Las rutas ya migradas a las piezas nuevas: las 141 de servicio y, desde ASTRO-4, las 15 de
   // proyecto y los 47 articulos (las cabeceras de sus tablas).
-  if (!/^\/(services|project|blogs)\//.test(ruta) && !['/', '/request-estimated', '/contact-us'].includes(ruta)) return esperado;
+  if (!/^\/(services|project|blogs)\//.test(ruta) && !['/', '/request-estimated', '/contact-us', '/videos'].includes(ruta)) return esperado;
   const medidas = hay.split('\n');
   const esperadas = esperado.split('\n');
   /* POR POSICION cuando las dos listas miden lo mismo, que es el caso de una ruta en verde: la
@@ -3864,9 +3864,30 @@ function bandaConTelefonos(lineas) {
 }
 /** Las rutas del lote C que solo cambian en eso (hero y cuerpo conservan sus lineas y su orden). */
 const SOLO_BANDA = (ruta) => ruta.startsWith('/articles/');
+/**
+ * `/testimonials` y `/videos` (T-93): las resenas van en lista, con los dos telefonos detras; en
+ * `/videos`, ademas, «Get A Free Estimate» en la cabecera de resenas, delante de «See all reviews».
+ * Y la banda final con sus telefonos.
+ */
+function resenasEnPagina(ruta, lineas) {
+  let out = [...lineas];
+  const faltas = [];
+  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const u = out.findIndex((l) => /^Updated [A-Z][a-z]{2} \d{4}$/.test(l));
+  if (u >= 0 && tels.every((l, k) => out[u + 1 + k] === l)) out.splice(u + 1, tels.length);
+  else faltas.push('los dos telefonos detras de las resenas');
+  if (ruta === '/videos') {
+    const r = out.indexOf(RESENAS_MARCADOR);
+    if (r > 0 && out[r - 1] === 'Get A Free Estimate') out.splice(r - 1, 1);
+    else faltas.push('la accion de la pagina en la cabecera de resenas');
+  }
+  out = bandaConTelefonos(out);
+  return [...out, ...faltas.map((f) => `⟦FALTA: ${f}⟧`)];
+}
 
 function listasStitch(ruta, lineas) {
   if (SOLO_BANDA(ruta)) return bandaConTelefonos(lineas);
+  if (ruta === '/testimonials' || ruta === '/videos') return resenasEnPagina(ruta, lineas);
   if (ruta === '/contact-us') return contactoTexto(lineas);
   if (ruta === '/') return homeTexto(lineas);
   if (ruta === '/request-estimated') return presupuestoTexto(lineas);
