@@ -19,6 +19,7 @@ import FormularioCore from './widgets/FormularioCore.astro';
 import InversionCore from './widgets/InversionCore.astro';
 import ServiciosIndice from './widgets/ServiciosIndice.astro';
 import { logoLigero } from '../lib/logo-ligero.mjs';
+import { franjaLogos } from '../lib/logos-franja.mjs';
 import GaleriaObra from './widgets/GaleriaObra.astro';
 import { fotoDeHeroe, fotosDeSeccion } from '../lib/heroe-ciudad.mjs';
 import { tramosMiga } from '../lib/miga-tramos.mjs';
@@ -422,13 +423,9 @@ const SEO = FAQ
         <figcaption class="mm-pie-foto"><span class="mm-dato-rot">Project</span><span>{HERO_FOTO.pie}</span></figcaption>
       </figure>
     )}
-    <div class="mm-hero-a-logos">
-      <h2 class="mm-etiqueta">{LOGOS_TITULO}</h2>
-      <ul class="mm-hero-a-fila">
-        {/* D-132: a 36 px de alto se sirve la version ligera del logo si la hay. */}
-        {LOGOS.map((u) => logoLigero(u, DIM_LOGO.get(u))).map((l) => <li><img src={l.src} alt="" width={l.w} height={l.h} loading="lazy" decoding="async" /></li>)}
-      </ul>
-    </div>
+    {/* E7 (D-166): la franja de logos desfila. Marcado y duracion, en `logos-franja.mjs`.
+        D-132: a 36 px de alto se sirve la version ligera del logo si la hay. */}
+    <Fragment set:html={franjaLogos(LOGOS_TITULO, LOGOS.map((u) => logoLigero(u, DIM_LOGO.get(u))))} />
   </section>
   {/* ASTRO-2 (12-oct-2026) · ORDEN DE LA LAMINA «Ciudad»: confianza · intro · galeria de obra · render
        3D · servicios · inversion · FAQ · galeria por categorias · proyectos · articulos · resenas ·

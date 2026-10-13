@@ -24,6 +24,7 @@
  * en las 115 páginas. Medido, no supuesto.
  */
 import TEXTOS_PROPIOS_RAW from '../src/data/textos-propios.json' with { type: 'json' };
+import { franjaLogos } from '../src/lib/logos-franja.mjs';
 const TEXTOS_PROPIOS = TEXTOS_PROPIOS_RAW;
 import fs from 'node:fs';
 import path from 'node:path';
@@ -112,9 +113,10 @@ function franjaDeLogos(doc) {
       // Aqui `src` aun puede ser la URL del CDN de Webflow: la ligera se busca por su ruta local.
       const l = logoLigero(man[src]?.publico ?? src, d);
       if (l.h !== ALTO_LOGO) l.src = src;
-      return `<li><img src="${l.src}" alt="" width="${l.w}" height="${l.h}" loading="lazy" decoding="async"></li>`;
-    }).join('');
-  return `<div class="mm-hero-a-logos"><h2 class="mm-etiqueta">${titulo}</h2><ul class="mm-hero-a-fila">${logos}</ul></div>`;
+      return { src: l.src, w: l.w, h: l.h };
+    });
+  // E7 (D-166): la franja desfila. El marcado y la duracion de la vuelta salen de `logos-franja.mjs`.
+  return franjaLogos(titulo, logos);
 }
 /* Las clases de `<img>` a las que se les reserva el hueco (§ limpia()). Enumeradas y medidas:
  * cada una entro aqui con una cifra de `layout-shift` detras, no por precaucion.

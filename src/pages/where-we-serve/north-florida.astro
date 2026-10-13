@@ -19,6 +19,7 @@ import RESENAS from '../../data/resenas.json';
 import HEROES from '../../data/heroes-ciudad.json';
 import BANCO from '../../data/banco-imagenes.json';
 import { logoLigero, ALTO_LOGO } from '../../lib/logo-ligero.mjs';
+import { franjaLogos } from '../../lib/logos-franja.mjs';
 
 const telefonos = TELEFONOS.items;
 const ACCION = "Get a Free Estimate";
@@ -60,10 +61,8 @@ const LD_CRUDO = [];
       </div>
     </div>
     <figure class="mm-hero-a-medio"><img src={FOTO_HERO.src} alt={FOTO_HERO.alt} width={FOTO_HERO.ancho} height={FOTO_HERO.alto} sizes="(min-width: 992px) 50vw, 100vw" loading="eager" fetchpriority="high" decoding="async" /></figure>
-    <div class="mm-hero-a-logos">
-      <h2 class="mm-etiqueta">Trusted by Florida's finest homeowners</h2>
-      <ul class="mm-hero-a-fila">{LOGOS.map((l) => <li><img src={l.src} alt="" width={l.w} height={l.h} loading="lazy" decoding="async" /></li>)}</ul>
-    </div>
+    {/* E7 (D-166): la franja de logos desfila. Marcado y duracion, en `logos-franja.mjs`. */}
+    <Fragment set:html={franjaLogos("Trusted by Florida's finest homeowners", LOGOS)} />
   </section>
 
   <section class="mm-franja mm-franja--blanca">

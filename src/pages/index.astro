@@ -30,6 +30,7 @@ import CAPTACION from '../data/captacion-servicios.json';
 import HEROES from '../data/heroes-ciudad.json';
 import BANCO from '../data/banco-imagenes.json';
 import { logoLigero, ALTO_LOGO } from '../lib/logo-ligero.mjs';
+import { franjaLogos } from '../lib/logos-franja.mjs';
 
 const telefonos = TELEFONOS.items;
 const ACCION = 'Request a Design-Build Project Evaluation';
@@ -103,10 +104,8 @@ const SEO_HOME = {
     <ul class="mm-hero-b-sellos" role="list">
       {SELLOS.map((x) => <li><img src={x.icono} alt="" width="24" height="24" loading="lazy" decoding="async" /><span>{x.texto}</span></li>)}
     </ul>
-    <div class="mm-hero-a-logos">
-      <h2 class="mm-etiqueta">Trusted by Florida's finest homeowners</h2>
-      <ul class="mm-hero-a-fila">{LOGOS.map((l) => <li><img src={l.src} alt="" width={l.w} height={l.h} loading="lazy" decoding="async" /></li>)}</ul>
-    </div>
+    {/* E7 (D-166): la franja de logos desfila. Marcado y duracion, en `logos-franja.mjs`. */}
+    <Fragment set:html={franjaLogos("Trusted by Florida's finest homeowners", LOGOS)} />
   </section>
 
   <section class="svc-intro mm-intro mm-intro--home">

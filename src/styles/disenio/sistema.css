@@ -79,10 +79,40 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 .mm-miga a { display: inline-flex; align-items: center; min-height: var(--mm-ctl-s); color: var(--mm-navy); text-decoration: none; border-radius: var(--mm-r-8); }
 .mm-miga a:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); box-shadow: var(--mm-foco-halo); }
 .mm-hero-a-sub { margin: 0; font-family: var(--mm-familia); font-size: 16px; line-height: 1.5; font-weight: 500; letter-spacing: 0; color: var(--mm-tinta-texto); text-transform: none; text-wrap: pretty; }
-.mm-hero-a-logos { display: flex; flex-direction: column; gap: var(--mm-e-12); padding: var(--mm-e-32) 0 var(--mm-e-32) var(--mm-e-24); background: var(--mm-azul-50); }
-.mm-hero-a-fila { list-style: none; margin: 0; padding: 0 var(--mm-e-24) 0 0; display: flex; flex-wrap: nowrap; align-items: center; gap: var(--mm-e-32); overflow-x: auto; }
-.mm-hero-a-fila li { flex: none; }
-.mm-hero-a-fila img { display: block; width: auto; height: 36px; max-width: 140px; object-fit: contain; }
+/* ── LA FRANJA DE LOGOS (E7, D-166) ─────────────────────────────────────────────────────────
+   Una cinta que desfila dentro de una ventana con los bordes fundidos; el rotulo, fijo encima.
+   SIN JAVASCRIPT: la pista lleva la lista dos veces (`logos-franja.mjs`) y recorre exactamente
+   la mitad de su ancho, asi que al cerrar la vuelta la copia esta donde empezo la primera. La
+   duracion la calcula el build para ir a 60 px/s y llega en `--mm-logos-dur`: depende de los
+   TRES numeros de abajo —36 de alto, 140 de tope y 32 de hueco—; si cambian aqui, cambian alli.
+   El ancho de cada logo lo escribe el build en su `<li>`, redondeado: la vuelta mide un numero
+   entero de pixeles y al cerrarse no hay ni un tercio de pixel de diferencia.
+   El hueco va DETRAS de cada logo (`margin-right`) y no como `gap`: con `gap` la pista mediria
+   dos listas y un hueco de menos, y la mitad no caeria en el arranque de la copia.
+   Los bordes se funden con `mask-image`, no con un degradado encima: la pieza vive sobre
+   azul-50, sobre blanco y dentro de `/request-estimated`, y una mascara no depende del fondo.
+   Se para con el raton encima y con el foco dentro; la ventana es enfocable para eso, y porque
+   con `prefers-reduced-motion` deja de moverse y pasa a ser una fila con scroll. */
+.mm-logos { --mm-logos-funde: var(--mm-e-24); display: flex; flex-direction: column; gap: var(--mm-e-12); min-width: 0; padding: var(--mm-e-32) 0; background: var(--mm-azul-50); }
+.mm-logos .mm-etiqueta { padding: 0 var(--mm-e-24); }
+.mm-logos-vista { min-width: 0; overflow: hidden; }
+.mm-logos-vista:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); }
+/* La mascara va en una caja de DENTRO, no en la ventana: una mascara recorta tambien el contorno
+   del elemento que la lleva, y el anillo de foco de la ventana desaparecia. */
+.mm-logos-marco { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, var(--mm-navy) var(--mm-logos-funde), var(--mm-navy) calc(100% - var(--mm-logos-funde)), transparent); mask-image: linear-gradient(90deg, transparent, var(--mm-navy) var(--mm-logos-funde), var(--mm-navy) calc(100% - var(--mm-logos-funde)), transparent); }
+.mm-logos-pista { display: flex; width: max-content; animation: mm-logos-desfila var(--mm-logos-dur, 30s) linear infinite; }
+.mm-logos-lista { list-style: none; flex: none; display: flex; align-items: center; margin: 0; padding: 0; }
+.mm-logos-lista li { flex: none; margin-right: var(--mm-e-32); }
+.mm-logos-lista img { display: block; width: 100%; height: 36px; max-width: 140px; object-fit: contain; }
+.mm-logos:focus-within .mm-logos-pista { animation-play-state: paused; }
+@media (hover: hover) and (pointer: fine) { .mm-logos:hover .mm-logos-pista { animation-play-state: paused; } }
+@keyframes mm-logos-desfila { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .mm-logos-pista { animation: none; }
+  .mm-logos-vista { overflow-x: auto; }
+  .mm-logos-marco { width: max-content; overflow: visible; -webkit-mask-image: none; mask-image: none; }
+  .mm-logos-lista[aria-hidden="true"] { display: none; }
+}
 
 /* ── G1 · Cabecera ──────────────────────────────────────────────────────────────────── */
 .mm-cab { position: sticky; top: 0; z-index: 1000; font-family: var(--mm-familia); color: var(--mm-tinta-texto); }
@@ -277,8 +307,12 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
   .mm-hero-a-medio img { position: absolute; inset: 0; border-radius: 0 0 0 var(--mm-r-16); }
   .mm-pie-foto { position: absolute; left: var(--mm-e-16); bottom: -24px; display: flex; flex-direction: column; gap: 2px; box-sizing: border-box; max-width: 280px; padding: var(--mm-e-12) var(--mm-e-16); border: 1px solid var(--mm-borde); border-radius: var(--mm-r-12); background: var(--mm-blanco); }
   .mm-pie-foto span:last-child { font-size: 14px; line-height: 1.4; font-weight: 600; color: var(--mm-navy); }
-  .mm-hero-a-logos { grid-column: 1 / -1; gap: var(--mm-e-16); padding: var(--mm-e-40) var(--mm-e-64) var(--mm-e-48); }
-  .mm-hero-a-fila { max-width: 46%; padding: 0; overflow: hidden; }
+  /* La franja pinta su fondo a todo el ancho —la foto monta 80 px sobre ella—, pero el rotulo y la
+     ventana de los logos van SOLO en la columna del texto: la franja hereda las columnas del hero
+     (`subgrid`) y mete a los dos en la primera. El corte lo hace la mascara de la ventana, no un
+     `max-width` a ojo que dejaba siete logos cortados contra la foto. */
+  .mm-hero-a > .mm-logos { --mm-logos-funde: var(--mm-e-48); grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; row-gap: var(--mm-e-16); padding: var(--mm-e-40) 0 var(--mm-e-48); }
+  .mm-hero-a > .mm-logos > .mm-etiqueta, .mm-hero-a > .mm-logos > .mm-logos-vista { grid-column: 1; }
   .mm-hero-a-acc { padding: var(--mm-e-8) 0 var(--mm-e-16); }
   .mm-zocalo-cols { gap: var(--mm-e-64); }
 }
@@ -290,7 +324,6 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
   .mm-hero-a { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: var(--mm-e-64); }
   .mm-hero-a-medio { align-self: start; aspect-ratio: 4 / 5; min-height: 0; }
   .mm-pie-foto { left: -40px; bottom: var(--mm-e-40); }
-  .mm-hero-a-fila { max-width: 52%; }
   .mm-datos--3 { grid-auto-flow: column; grid-template-columns: none; }
   .mm-datos--3 .mm-dato:nth-child(3) { grid-column: auto; border-left: 1px solid var(--mm-borde); padding-left: var(--mm-e-24); border-top: 0; }
 }
@@ -856,7 +889,9 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
      pagina. Se redondea al despegarse: 0 hasta 1440, 16 px desde 1456, sin corte nuevo. */
 .mm-hero-a { container-type: inline-size; }
 @media (min-width: 992px) {
-  .mm-hero-a-txt, .mm-hero-a-logos { padding-left: max(var(--mm-e-64), calc((100cqw - var(--mm-contenedor)) / 2)); }
+  .mm-hero-a-txt { padding-left: max(var(--mm-e-64), calc((100cqw - var(--mm-contenedor)) / 2)); }
+  .mm-hero-a > .mm-logos > .mm-etiqueta { padding: 0 0 0 max(var(--mm-e-64), calc((100cqw - var(--mm-contenedor)) / 2)); }
+  .mm-hero-a > .mm-logos > .mm-logos-vista { margin-left: max(var(--mm-e-64), calc((100cqw - var(--mm-contenedor)) / 2)); }
   .mm-proc-medio .mm-lam-foto, .mm-faq-medio .mm-lam-foto { border-top-left-radius: clamp(0px, calc(100vw - 1440px), var(--mm-r-16)); border-bottom-left-radius: clamp(0px, calc(100vw - 1440px), var(--mm-r-16)); }
   .mm-que-medio .mm-lam-foto, .mm-cierre-medio, .mm-serv-medio { border-top-right-radius: clamp(0px, calc(100vw - 1440px), var(--mm-r-16)); border-bottom-right-radius: clamp(0px, calc(100vw - 1440px), var(--mm-r-16)); }
 }
@@ -1011,14 +1046,15 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
   .mm-hero-b-sellos li:nth-child(odd) { border-left: 1px solid var(--mm-borde); }
   .mm-hero-b-sellos li:first-child { border-left: 0; }
 }
-/* La franja de logos, a todo el ancho y en dos filas si hace falta (en el hero A va en una columna). */
-.mm-hero-b .mm-hero-a-fila { max-width: none; }
 /* La intro de la home (lamina «IntroHome»): titular a la izquierda y el texto en dos columnas, sin marco. */
 .mm-intro--home { background: var(--mm-azul-50); }
 .mm-intro--home .mm-marco { max-width: var(--mm-contenedor); padding: 0; align-items: flex-start; text-align: left; }
 .mm-intro--home .mm-marco::before, .mm-intro--home .mm-marco::after { content: none; }
 @media (min-width: 992px) {
-  .mm-hero-b .mm-hero-a-fila { flex-wrap: wrap; row-gap: var(--mm-e-20); overflow: visible; }
+  /* La franja de la home: una sola fila, del ancho del contenedor. Antes partia en dos y a partir
+     de 1920 la primera se salia por la derecha. */
+  .mm-hero-b > .mm-logos { --mm-logos-funde: var(--mm-e-48); gap: var(--mm-e-16); padding: var(--mm-e-40) max(var(--mm-e-64), calc((100cqw - var(--mm-contenedor)) / 2)) var(--mm-e-48); }
+  .mm-hero-b > .mm-logos .mm-etiqueta { padding: 0; }
   .mm-intro--home { padding-block: var(--mm-e-96); }
   .mm-intro--home .mm-h2 { max-width: 20em; }
   .mm-intro--home .mm-p { align-self: flex-end; max-width: 880px; columns: 2; column-gap: var(--mm-e-32); }
@@ -1137,8 +1173,8 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 .mm-pres .mm-form-intro .mm-form-pasos-t { margin-bottom: var(--mm-e-4); }
 .mm-pres .mm-form-intro .mm-p { margin: 0; font-size: 14px; }
 .mm-pres-lado { display: flex; flex-direction: column; gap: var(--mm-e-32); }
-.mm-pres .mm-hero-a-logos { padding: 0; background: transparent; }
-.mm-pres .mm-hero-a-fila { max-width: none; padding: 0; flex-wrap: wrap; row-gap: var(--mm-e-16); overflow: visible; }
+.mm-pres .mm-logos { padding: 0; background: transparent; }
+.mm-pres .mm-logos .mm-etiqueta { padding: 0; }
 .mm-consent { display: flex; align-items: flex-start; gap: var(--mm-e-12); min-height: var(--mm-ctl-s); margin: 0; font-size: 14px; line-height: 1.5; font-weight: 400; color: var(--mm-tinta-texto); }
 .mm-consent input { flex: none; width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--mm-navy); }
 .mm-form-legal { margin: 0; font-size: 12px; line-height: 1.5; color: var(--mm-tinta-suave); }
