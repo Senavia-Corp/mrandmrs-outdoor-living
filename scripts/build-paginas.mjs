@@ -2357,7 +2357,12 @@ for (const [ruta] of RUTAS) {
     gp.insertAdjacentHTML('beforebegin', indiceGaleriaHtml(BANDA_TELEFONOS.replace('mm-datos--tel', 'mm-datos--pila')));
     gp.classList.add('mm-muro-sec', 'mm-galeria');
     lista.classList.add('mm-muro', 'mm-muro--uniforme');
-    for (const it of lista.querySelectorAll('.cms-item-pictures')) it.classList.add('mm-muro-foto');
+    // Cada foto del muro ocupa media pantalla en movil, un tercio desde 768 y un cuarto desde 1200:
+    // sin `sizes` el navegador pedia la variante de pantalla entera para una tesela de 320 px.
+    for (const it of lista.querySelectorAll('.cms-item-pictures')) {
+      it.classList.add('mm-muro-foto');
+      it.querySelector('img')?.setAttribute('sizes', '(min-width: 1200px) 25vw, (min-width: 768px) 33vw, 50vw');
+    }
     const fotoBanda = BANCO_POR_ID.get(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/heroes-ciudad.json'), 'utf8')).bolsas['pool-builders'][2]);
     if (!fotoBanda || fotoBanda.procedencia !== 'obra_real' || !fotoBanda.alt) throw new Error('/gallery: la foto de la banda no es obra real con alt');
     const nc2 = doc.createElement('section');
