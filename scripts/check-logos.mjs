@@ -105,7 +105,10 @@ for (const ruta of RUTAS) {
     // que devuelve el navegador es la del ultimo fotograma pintado, asi que el reloj tiene que ser
     // el de ese fotograma (`document.timeline`), no el de pared. Con el reloj de fuera, o con
     // `performance.now()`, una pagina que carga —la home, con su video— salia un 6 % lenta en falso.
+    // Y la primera lectura espera a que la animacion haya ARRANCADO: en una pagina que aun carga puede seguir
+    // pendiente medio segundo, y ese medio segundo quieto salia como una franja a 46 px/s (visto una vez de cinco).
     const { x0, x1, dt } = await p.evaluate(async () => { const pi = document.querySelector('.mm-logos-pista'); const lee = () => [new DOMMatrixReadOnly(getComputedStyle(pi).transform).m41, document.timeline.currentTime];
+      const an = pi.getAnimations()[0]; await an.ready; while (!(an.currentTime > 0)) await new Promise((r) => requestAnimationFrame(r));
       const [a, ta] = lee(); await new Promise((r) => setTimeout(r, 2000)); const [c, tc] = lee(); return { x0: a, x1: c, dt: (tc - ta) / 1000 }; });
     const g = await geo(p);
     // Si en esos dos segundos se cerro una vuelta, el transform ha vuelto atras: se le suma la vuelta.
