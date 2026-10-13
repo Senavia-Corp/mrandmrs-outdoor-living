@@ -199,10 +199,19 @@ const tels = TELEFONOS.items;
   // Foco a la vista. `scroll-padding-top` (sistema.css) ya lo resuelve en Chromium y Firefox;
   // Safari no lo aplica al desplazar por foco, y un campo enfocado quedaba bajo la fila fija
   // (medido con check:menu:webkit en /contact-us). Si pasa, se baja lo justo.
+  //
+  // SOLO PARA EL FOCO DE TECLADO (`:focus-visible`). E6: Safari no enfoca un boton, una casilla
+  // ni una tarjeta de opcion al pulsarlos con el raton; enfoca su ancestro enfocable mas cercano,
+  // que en las 148 paginas con formulario es `section#estimate` (`tabindex="-1"`, para el ancla).
+  // Esa seccion es mas alta que la pantalla, «pisa» la fila fija, y esto subia la pagina hasta
+  // su borde superior —437 px en el paso 2 de la ficha de piscinas— ENTRE el `mousedown` y el
+  // `mouseup`: el clic caia en otro sitio y se perdia. «Back» no volvia, y el primer clic en
+  // una opcion o en el boton de envio no hacia nada. Quien pulsa con el raton ya tiene delante
+  // lo que pulsa; no hay nada que traer a la vista.
   const fila = cab?.querySelector<HTMLElement>('.mm-cab-fila');
   if (cab && fila) document.addEventListener('focusin', (e) => {
     const el = e.target as HTMLElement;
-    if (cab.contains(el) || el.closest('dialog')) return;
+    if (cab.contains(el) || el.closest('dialog') || !el.matches(':focus-visible')) return;
     const r = el.getBoundingClientRect(); const c = fila.getBoundingClientRect();
     if (r.height > 0 && r.top < c.bottom && r.bottom > c.top) scrollBy(0, r.top - c.bottom - 16);
   });
