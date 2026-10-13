@@ -790,6 +790,7 @@ function ctaHeroe(ruta, lineas) {
  * no las toca: las declara `INDICE_BLOG` como añadidas. Las dos cosas son disjuntas.
  */
 const INDICE_BLOG_ORDEN = (() => {
+  return [];   // ASTRO-4 (T-94): el indice entero se deriva y se exige en § reescribeIndiceBlog / indiceBlogTexto.
   const ref = path.join(RAIZ, 'baseline/text/blogs-tips.txt');
   const cache = path.join(RAIZ, 'src/data/blogs-sanity.json');
   if (!fs.existsSync(ref) || !fs.existsSync(cache)) return [];
@@ -1335,6 +1336,7 @@ const ANADIDAS_A_PROPOSITO = {
  * eliminacion sin ancla se llevaria ESA y descuadraria el resto. Medido.
  */
 const INDICE_BLOG = (() => {
+  return [];   // ASTRO-4 (T-94): idem. Lo de abajo queda como estaba; ya no se usa.
   const f = path.join(RAIZ, 'src/data/blogs-sanity.json');
   if (!fs.existsSync(f)) return [];
   const posts = JSON.parse(fs.readFileSync(f, 'utf8'));
@@ -1362,7 +1364,13 @@ const INDICE_BLOG = (() => {
     motivo: `${MOTIVO} Recuento + chip «All» + ${cats.length} categorias con articulos.`,
   }];
 
+  /* SOLO LAS QUE SE VEN AL CARGAR. La pagina lleva las 47 tarjetas en el HTML y esconde con `hidden`
+   * las que pasan de 10 (1 destacada + `LOTE` = 9, `blogs-tips.astro`) hasta que se pulsa «Load
+   * more». Esta declaracion las daba todas por visibles y por eso la ruta salia ROJA ya en
+   * `origin/main`: pedia la categoria de la tarjeta 11, que no esta a la vista. */
+  const VISIBLES_AL_CARGAR = 10;
   orden.forEach((p, i) => {
+    if (i >= VISIBLES_AL_CARGAR) return;
     if (!p.categoria?.name) return;
     const prev = orden[i - 1];
     entradas.push({
@@ -3360,11 +3368,62 @@ function lineasArticuloReescrito(ruta) {
     ...rel.flatMap((r) => [capitaliza(normLinea(r.title)), normLinea(r.summary), 'Read More']),
   ];
 }
+/**
+ * ── ASTRO-4 · `/blogs-tips` (T-94) ─────────────────────────────────────────────────────────────
+ *
+ * ESTA RUTA SALIA ROJA YA EN `origin/main`, y por dos cosas a la vez:
+ *   1. el indice dejo de ser las 10 tarjetas de Webflow: son los 47 articulos de Sanity, con sus
+ *      titulares de tarjeta y sus resumenes reescritos, en otro orden. La referencia congelada
+ *      sigue trayendo las 10 de entonces, y las declaraciones que habia solo cubrian un reorden y
+ *      la categoria de cada tarjeta;
+ *   2. la pagina solo ensena 10 hasta que se pulsa «Load more» (las demas van con `hidden`), y la
+ *      declaracion pedia las 47.
+ *
+ * COMO SE DICE AHORA LA VERDAD, igual que en los articulos reescritos (§ reescribeArticulo): el
+ * tramo del indice se DERIVA del mismo dato que lo pinta —`src/data/blogs-sanity.json`— y se
+ * exige ENTERO sobre lo medido: el recuento, «All» y las categorias en su orden, las diez primeras
+ * filas (categoria, titular capitalizado, resumen, «Read More» y su sufijo oculto) y «Load more».
+ * Si casa, lo medido y la referencia cambian ese tramo por la misma marca; si no, la ruta sale
+ * roja. El resto de la pagina (hero, banda final, cabecera y pie) se compara como siempre.
+ */
+const INTRO_INDICE_BLOG = 'Explore expert insights, project tips, and industry updates on pool construction'
+  + ' and outdoor living across Florida, written to help property owners and professionals make'
+  + ' informed decisions.';
+const MARCA_INDICE_BLOG = '⟦indice de articulos: derivado de src/data/blogs-sanity.json y comprobado entero⟧';
+function reescribeIndiceBlog(lineas) {
+  reescritoFallo = null;
+  const i = lineas.indexOf(INTRO_INDICE_BLOG);
+  const f = i < 0 ? -1 : lineas.indexOf(CIERRE_ARTICULO, i + 1);
+  if (i < 0 || f < 0) { reescritoFallo = 'indice de blog: la referencia no trae la entradilla del hero y la banda final'; return null; }
+  return [...lineas.slice(0, i + 1), MARCA_INDICE_BLOG, ...lineas.slice(f)];
+}
+function indiceBlogTexto(lineas) {
+  const posts = [...CACHE_BLOG_REESCRITOS].sort((a, b) => {
+    if (Boolean(a.destacadoIndice) !== Boolean(b.destacadoIndice)) return a.destacadoIndice ? -1 : 1;
+    const oa = a.ordenIndice ?? 9999; const ob = b.ordenIndice ?? 9999;
+    return oa !== ob ? oa - ob : a.slug.localeCompare(b.slug);
+  });
+  const cats = [...new Map(posts.filter((x) => x.categoria?.slug).map((x) => [x.categoria.slug, x.categoria])).values()]
+    .sort((a, b) => (a.orden ?? 999) - (b.orden ?? 999));
+  const fila = (p) => [...(p.categoria?.name ? [p.categoria.name] : []), capitaliza(normLinea(p.cardTitle?.trim() ? p.cardTitle : p.title)),
+    normLinea(p.summary), 'Read More', `: ${capitaliza(normLinea(p.title))}`];
+  const VISIBLES_AL_CARGAR = 10;   // 1 + `LOTE` de `blogs-tips.astro`
+  const bloque = [`${posts.length} articles`, 'All', ...cats.map((c) => c.name), ...posts.slice(0, VISIBLES_AL_CARGAR).flatMap(fila), 'Load more'];
+  const out = [...lineas];
+  const i = out.indexOf(INTRO_INDICE_BLOG);
+  if (i >= 0 && bloque.every((l, k) => out[i + 1 + k] === l)) out.splice(i + 1, bloque.length, MARCA_INDICE_BLOG);
+  else {
+    if (process.env.MM_TEXTO_DIFF && i >= 0) bloque.forEach((l, k) => { if (out[i + 1 + k] !== l) console.log(`     indice: se esperaba «${l.slice(0, 70)}» y hay «${String(out[i + 1 + k]).slice(0, 70)}»`); });
+    out.push('⟦FALTA: el indice de articulos tal como lo dice blogs-sanity.json (T-94)⟧');
+  }
+  return bandaConTelefonos(out);
+}
 let reescritosCasados = 0;
 let reescritoFallo = null;
 const CIERRE_ARTICULO = 'Request A Design-Build Project Evaluation';
 /** Sustituye en el baseline el tramo h1..CTA por el derivado. `null` si los anclajes no casan. */
 function reescribeArticulo(ruta, lineas) {
+  if (ruta === '/blogs-tips') return reescribeIndiceBlog(lineas);
   const d = REESCRITOS[ruta];
   if (!d) return lineas;
   reescritoFallo = null;
@@ -3886,6 +3945,7 @@ function resenasEnPagina(ruta, lineas) {
 }
 
 function listasStitch(ruta, lineas) {
+  if (ruta === '/blogs-tips') return indiceBlogTexto(lineas);
   if (SOLO_BANDA(ruta)) return bandaConTelefonos(lineas);
   if (ruta === '/testimonials' || ruta === '/videos') return resenasEnPagina(ruta, lineas);
   if (ruta === '/contact-us') return contactoTexto(lineas);

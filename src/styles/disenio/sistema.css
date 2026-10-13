@@ -1201,3 +1201,16 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 @media (min-width: 992px) { .mm-obras { padding-bottom: var(--mm-e-96); } }
 @media (min-width: 1200px) { .mm-obras { --mm-canal: var(--mm-e-64); } .mm-obras-lista { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
+/* ── /blogs-tips (ASTRO-4 lote C) ── el indice de articulos: la caja, la categoria de cada fila y
+   las filas que el filtro esconde. El buscador y las pastillas conservan la hoja de su pagina. */
+.mm-indice-blog { --mm-canal: var(--mm-e-24); padding: 0 0 var(--mm-e-64); background: var(--mm-blanco); font-family: var(--mm-familia); color: var(--mm-tinta-texto); }
+.mm-indice-blog-caja { box-sizing: border-box; max-width: calc(var(--mm-contenedor) + 2 * var(--mm-canal)); margin: 0 auto; padding: 0 var(--mm-canal); }
+/* `.blogs-list` (la rejilla de tarjetas de antes) se anula: la lista es una columna de filas. */
+.mm-indice-blog .blogs-list { display: block; }
+.mm-indice-blog .item-blogs { width: auto; max-width: none; margin: 0; padding: 0; }
+.mm-indice-blog .item-blogs[hidden] { display: none; }
+.mm-art-cat { font-size: 14px; line-height: 1.4; font-weight: 700; color: var(--mm-tinta-suave); }
+@media (min-width: 768px) { .mm-indice-blog { --mm-canal: var(--mm-e-32); } }
+@media (min-width: 992px) { .mm-indice-blog { padding-bottom: var(--mm-e-96); } }
+@media (min-width: 1200px) { .mm-indice-blog { --mm-canal: var(--mm-e-64); } }
+
