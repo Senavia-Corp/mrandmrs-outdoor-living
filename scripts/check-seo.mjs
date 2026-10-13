@@ -999,7 +999,9 @@ for (const ruta of conPropias(RUTAS)) {
      * utiles, porque un bloque inyectado vacio seria peor que ninguno.
      */
     const esInyectado = (b) => {
-      try { return /#(negocio|miga)$/.test(JSON.parse(b.textContent)['@id'] ?? ''); }
+      // `#servicio` solo es inyectado en una FICHA (D-156); en una pagina de ciudad ese `@id` es
+      // el del Service que sustituye al LocalBusiness del origen, y lo examina BLOQUES_SUSTITUIDOS.
+      try { const id = JSON.parse(b.textContent)['@id'] ?? ''; return /#(negocio|miga|obras|videos)$/.test(id) || (esFicha(ruta) && /#servicio$/.test(id)); }
       catch { return false; }
     };
     const inyectados = todos.filter(esInyectado);
@@ -1045,6 +1047,68 @@ for (const ruta of conPropias(RUTAS)) {
       // Sin miga solo se acepta si la pagina ya traia una del origen.
       const propia = JSON.stringify(espLd).includes('BreadcrumbList');
       if (!propia) problemas.push('sin BreadcrumbList: ni inyectada ni del origen');
+    }
+    /* ── E5 (D-156) · TRES BLOQUES PROPIOS MAS: `#servicio`, `#obras` y `#videos` ────────────
+     * (`src/lib/jsonld-propio.mjs`). Se exige que esten donde la pagina ensena lo que describen,
+     * que NO esten en ninguna otra, y que digan LO MISMO QUE SE LEE: se comparan con el HTML
+     * construido, no con el dato del que salen, que seria comparar el dato consigo mismo. */
+    {
+      const propios = inyectados.map((b) => JSON.parse(b.textContent)).filter((x) => /#(servicio|obras|videos)$/.test(x['@id']));
+      const texto = (e) => (e?.textContent ?? '').replace(/\s+/g, ' ').trim();
+      const iguales = (x, y) => x.length === y.length && x.every((v, i) => v === y[i]);
+      const el = (sufijo) => propios.filter((x) => x['@id'] === `${SITIO_R22}${ruta}#${sufijo}`);
+      const sobra = propios.filter((x) => !x['@id'].startsWith(`${SITIO_R22}${ruta}#`));
+      if (sobra.length) problemas.push(`JSON-LD propio de otra ruta: ${sobra.map((x) => x['@id']).join(', ')}`);
+
+      const ciudades = esFicha(ruta) ? [...d.querySelectorAll('.mm-ciudades-servicio a[href^="/services/"]')].map(texto) : [];
+      const sv = el('servicio');
+      if (!ciudades.length) { if (sv.length) problemas.push('#servicio: hay un Service con areaServed en una pagina que no enlaza ciudades'); }
+      else if (sv.length !== 1) problemas.push(`#servicio: la ficha enlaza ${ciudades.length} ciudades y trae ${sv.length} bloque(s)`);
+      else {
+        const s = sv[0];
+        if (s['@type'] !== 'Service') problemas.push(`#servicio: @type "${s['@type']}"`);
+        if (s.provider?.['@id'] !== `${SITIO_R22}/#negocio`) problemas.push('#servicio: provider no es #negocio');
+        if (s.url !== `${SITIO_R22}${ruta}`) problemas.push(`#servicio: url "${s.url}"`);
+        if (!String(s.name ?? '').trim()) problemas.push('#servicio: sin name');
+        const zona = Array.isArray(s.areaServed) ? s.areaServed : [];
+        if (zona.some((c) => c?.['@type'] !== 'City' || c.containedInPlace?.name !== 'Florida')) problemas.push('#servicio: areaServed con algo que no es una City de Florida');
+        if (!iguales(zona.map((c) => `${c?.name}, FL`), ciudades)) problemas.push(`#servicio: areaServed (${zona.length}) no dice las mismas ciudades, en el mismo orden, que la pagina enlaza (${ciudades.length})`);
+      }
+
+      const tarjetas = ruta === '/projects' ? [...d.querySelectorAll('.mm-obras-lista [role="listitem"]')] : [];
+      const ob = el('obras');
+      if (!tarjetas.length) { if (ob.length) problemas.push('#obras: hay una lista de obras en una pagina sin tarjetas de obra'); }
+      else if (ob.length !== 1) problemas.push(`#obras: ${tarjetas.length} tarjetas y ${ob.length} bloque(s)`);
+      else {
+        const items = Array.isArray(ob[0].itemListElement) ? ob[0].itemListElement : [];
+        if (ob[0]['@type'] !== 'ItemList' || ob[0].numberOfItems !== items.length) problemas.push('#obras: no es un ItemList o numberOfItems no cuadra');
+        if (!iguales(items.map((i) => i?.url), tarjetas.map((c) => SITIO_R22 + c.querySelector('a[href^="/project/"]')?.getAttribute('href')))) problemas.push(`#obras: las ${items.length} url no son, en orden, las de las ${tarjetas.length} tarjetas`);
+        if (!iguales(items.map((i) => i?.name), tarjetas.map((c) => texto(c.querySelector('h2, h3'))))) problemas.push('#obras: los nombres no son los titulos de las tarjetas');
+        if (!iguales(items.map((i) => i?.position), items.map((_, k) => k + 1))) problemas.push('#obras: position no va de 1 a n');
+      }
+
+      const videos = ruta === '/videos' ? [...d.querySelectorAll('.mm-yt__tarjeta')] : [];
+      const vd = el('videos');
+      if (!videos.length) { if (vd.length) problemas.push('#videos: hay una lista de videos en una pagina sin videos'); }
+      else if (vd.length !== 1) problemas.push(`#videos: ${videos.length} videos en la pagina y ${vd.length} bloque(s)`);
+      else {
+        const items = (Array.isArray(vd[0].itemListElement) ? vd[0].itemListElement : []).map((i) => i?.item ?? {});
+        if (vd[0]['@type'] !== 'ItemList' || vd[0].numberOfItems !== items.length) problemas.push('#videos: no es un ItemList o numberOfItems no cuadra');
+        if (items.some((v) => v['@type'] !== 'VideoObject')) problemas.push('#videos: un item que no es VideoObject');
+        if (!iguales(items.map((v) => v.name), videos.map((c) => texto(c.querySelector('.mm-yt__vtitulo'))))) problemas.push('#videos: los nombres no son los titulos que se leen');
+        // La fecha del marcado es la que la pagina ensena (dia/mes/año), pasada a ISO. Ni una mas.
+        const aIso = (f) => { const m = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(f); return m ? `${m[3]}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}` : `¿${f}?`; };
+        if (!iguales(items.map((v) => v.uploadDate), videos.map((c) => aIso(texto(c.querySelector('.mm-yt__fecha')))))) problemas.push('#videos: uploadDate no es la fecha que la pagina ensena');
+        if (!iguales(items.map((v) => v.url), videos.map((c) => c.querySelector('.mm-yt__vtitulo a')?.getAttribute('href')))) problemas.push('#videos: url no es el enlace de cada video');
+        for (const [k, v] of items.entries()) {
+          const id = (/[?&]v=([\w-]{6,})/.exec(v.url ?? '') ?? [])[1];
+          if (!id || v.embedUrl !== `https://www.youtube.com/embed/${id}`) problemas.push(`#videos: el video ${k + 1} lleva un embedUrl que no es el de su enlace`);
+          if (!/^PT(\d+H)?\d+M\d+S$/.test(v.duration ?? '')) problemas.push(`#videos: el video ${k + 1} lleva una duracion que no es ISO 8601`);
+          const mini = (v.thumbnailUrl ?? [])[0];
+          if (!mini || !mini.startsWith(SITIO_R22 + '/') || !fs.existsSync(path.join(ESTATICO, mini.slice(SITIO_R22.length)))) problemas.push(`#videos: la miniatura del video ${k + 1} no esta en el build`);
+          if ('description' in v && !String(v.description).trim()) problemas.push(`#videos: el video ${k + 1} lleva description vacia: se omite o se rellena`);
+        }
+      }
     }
     ldInyectados += inyectados.length;
     if (bloques.length !== espLd.length) {

@@ -21,6 +21,7 @@ import Nav from '../components/Nav.astro';
 import META_PROPIA from '../data/meta-propia.json';
 import TELEFONOS from '../data/telefonos.json';
 import { negocio, miga } from '../lib/negocio.mjs';
+import { bloquesPropios } from '../lib/jsonld-propio.mjs';
 import { videoFondo, precargaPoster } from '../lib/video-fondo.mjs';
 import { nivelesSinSaltos } from '../lib/niveles-titulo.mjs';
 import { srcsetAuto } from '../lib/srcset-auto.mjs';
@@ -254,6 +255,9 @@ const YA_TIENE_MIGA = (seo.jsonLd ?? []).some(
 const inyectados = [negocio()];
 const laMiga = YA_TIENE_MIGA ? null : miga(ruta);
 if (laMiga) inyectados.push(laMiga);
+// E5 (D-156): un `Service` con las ciudades que la ficha enlaza, la lista de obras de `/projects`
+// y los videos de `/videos`. Bloques NUEVOS, al final; los del origen no se tocan.
+inyectados.push(...bloquesPropios(ruta.replace(/(.)\/$/, '$1'), seo.jsonLd ?? []));
 
 const jsonLd = [...(seo.jsonLd ?? []), ...inyectados];
 
