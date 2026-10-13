@@ -239,8 +239,9 @@ for (const ruta of RUTAS) {
          * color: al volver transparentes los glifos, la segunda captura los cogia A MEDIO
          * DESVANECER, y ese gris intermedio se tomaba por el respaldo. Un boton navy sobre oro
          * (8,40:1) salia a 3,91, y una cita sobre navy a 1,00. Con las transiciones quitadas el
-         * cambio es instantaneo en los dos sentidos. No se tocan las animaciones. */
-        await p.addStyleTag({ content: '*, *::before, *::after { transition: none !important; }' });
+         * cambio es instantaneo en los dos sentidos. De las animaciones solo se para la franja
+         * de logos, que se mueve entre una captura y la siguiente. */
+        await p.addStyleTag({ content: '*, *::before, *::after { transition: none !important; } .mm-logos-pista { animation: none !important; }' });
         await p.evaluate(() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))));
         for (let y = 0; y < alto; y += paso) {
           await p.evaluate((yy) => scrollTo(0, yy), y);

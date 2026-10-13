@@ -70,6 +70,9 @@ export const CONGELAR_CSS = [
   // diagnosticar del todo (MIGRACION-LOG.md, causa distinta), así que esto no se da por bueno
   // sin probarlo: se clava también por CSS, sin esperar a que animations:'disabled' baste.
   '.trusted-section .grid-column,.trusted-section .grid-row{animation-play-state:paused!important}',
+  // E7 (D-166): la franja de logos desfila con un @keyframes. Se clava en su arranque —la lista
+  // en su sitio, sin desplazar—, que es ademas lo que ve quien pide menos movimiento.
+  '.mm-logos-pista{animation:none!important}',
 ].join('');
 
 /** Nombre de fichero de una ruta. `/` es `index`; el resto, la ruta sin la barra inicial. */
