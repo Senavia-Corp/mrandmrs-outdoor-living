@@ -921,7 +921,9 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
    Hero C con la portada CONTENIDA a su tamano (D-85: las 47 miden 800 px y no se amplian), una
    columna de lectura de 720 px y, desde 992, la tarjeta de accion pegada al recorrer (D-84, D-97).
    Los titulares del cuerpo van capitalizados porque asi los pinta la referencia (D-135). */
-.mm-hero-c-medio > img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* E5: la portada puede ir dentro de un `<picture>` (la foto del LCP, D-155). El hijo directo sigue
+   siendo lo que se pide: no alcanza a la `<img>` del boton de la ficha de proyecto. */
+.mm-hero-c-medio > img, .mm-hero-c-medio > picture > img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .mm-lect { --mm-canal: var(--mm-e-24); box-sizing: border-box; max-width: calc(var(--mm-contenedor) + 2 * var(--mm-canal)); margin: 0 auto; padding: 88px var(--mm-canal) var(--mm-e-64); font-family: var(--mm-familia); color: var(--mm-tinta-texto); }
 .mm-lado { display: none; }
 .mm-prosa { max-width: 720px; font-size: 16px; line-height: 1.65; }

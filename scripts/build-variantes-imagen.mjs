@@ -38,7 +38,7 @@ const variante = (u, w) => u.replace(/\.(avif|jpe?g|webp)$/i, `-mm${w}.$1`);
 
 if (CHECK) {
   const idx = JSON.parse(fs.readFileSync(INDICE, 'utf8'));
-  const faltan = Object.values(idx.imagenes).flatMap((e) => e.variantes.map(([, u]) => u))
+  const faltan = [...Object.values(idx.imagenes).flatMap((e) => e.variantes.map(([, u]) => u)), ...Object.values(idx.lcp ?? {}).flatMap((v) => v.map(([, u]) => u))]
     .filter((u) => !fs.existsSync(path.join(RAIZ, 'public', decodeURI(u))));
   if (faltan.length) { console.error(`✗ ${faltan.length} variantes no estan en public/:\n  ${faltan.slice(0, 10).join('\n  ')}`); process.exit(1); }
   console.log(`✓ variantes de imagen: ${Object.keys(idx.imagenes).length} originales, todas sus variantes en disco`);
@@ -59,8 +59,13 @@ const usadas = new Set();
 /** Las que pintan el LCP (`fetchpriority="high"` o `loading="eager"`) entran desde 40 KB: el
  *  heroe de Pool Builders (146 KB, 1250 px) se servia entero a un movil de 412 px. */
 const prioritarias = new Set();
+const fotosLcp = new Set();
 for (const f of html) {
   for (const m of fs.readFileSync(f, 'utf8').matchAll(/<img\b[^>]*>/g)) {
+    // E5 (D-155): la foto que pinta el LCP, traiga o no `srcset` (las portadas del blog lo traen).
+    const pri = /fetchpriority="high"/.test(m[0]) && m[0].match(/\ssrc="(\/images\/[^"]+\.(?:avif|jpe?g|webp))"/i);
+    // Los posters de video no: tienen sus propios anchos y su propia precarga (`video-fondo.mjs`).
+    if (pri && !pri[1].startsWith('/images/site/posters/')) fotosLcp.add(pri[1]);
     if (/\ssrcset=/.test(m[0])) continue;
     const s = m[0].match(/\ssrc="(\/images\/[^"]+\.(?:avif|jpe?g|webp))"/i);
     if (s && !/-mm\d+\./.test(s[1])) {
@@ -113,10 +118,41 @@ for (const u of [...usadas].sort()) {
   imagenes[u] = { ancho: md.width, variantes: vars };
 }
 
+/**
+ * E5 (D-155) · LA FOTO DEL LCP, EN AVIF Y A TAMAÑO DE MOVIL. Con el rediseño el LCP de ciudad,
+ * articulo, ficha y proyecto dejo de ser texto: es la foto del hero, y en un movil se bajaba la de
+ * 1024 px en WebP (80-150 KB). Para cada `<img fetchpriority="high">` del build se generan dos
+ * AVIF, a 800 y 1024 px (los que quepan en el original), y `srcset-auto.mjs` los sirve por debajo
+ * de 768 px en un `<source>` y los precarga `Base.astro`. El `<img>` y su `srcset` no cambian: son
+ * el respaldo de quien no lee AVIF y lo que ve un escritorio.
+ */
+const ANCHOS_LCP = [800, 1024];
+const lcpPrevio = fs.existsSync(INDICE) ? (JSON.parse(fs.readFileSync(INDICE, 'utf8')).lcp ?? {}) : {};
+const lcp = Object.fromEntries(Object.entries(lcpPrevio).filter(([k]) => !k.startsWith('/images/site/posters/')).filter(([, v]) => v.every(([, u]) => fs.existsSync(path.join(RAIZ, 'public', decodeURI(u))))));
+let nuevasLcp = 0;
+for (const u of [...fotosLcp].sort()) {
+  const orig = path.join(RAIZ, 'public', decodeURI(u));
+  if (!fs.existsSync(orig)) continue;
+  const md = await sharp(orig).metadata().catch(() => null);
+  if (!md?.width) continue;
+  const anchos = ANCHOS_LCP.filter((w) => w <= md.width);
+  if (!anchos.length) anchos.push(md.width);
+  const vars = [];
+  for (const w of anchos) {
+    const vu = u.replace(/\.(avif|jpe?g|webp)$/i, `-lcp${w}.avif`);
+    const vp = path.join(RAIZ, 'public', decodeURI(vu));
+    if (!fs.existsSync(vp)) { await sharp(orig).rotate().resize({ width: w }).avif({ quality: 50, effort: 5 }).toFile(vp); nuevasLcp++; }
+    vars.push([w, vu]);
+  }
+  lcp[u] = vars;
+}
+
 fs.writeFileSync(INDICE, JSON.stringify({
   _lee_esto: 'GENERADO por scripts/build-variantes-imagen.mjs desde el build. Lo lee src/lib/srcset-auto.mjs. No editar a mano.',
   imagenes,
+  lcp,
 }, null, 1) + '\n');
+console.log(`fotos LCP: ${Object.keys(lcp).length} con sus AVIF de movil · ${nuevasLcp} ficheros nuevos`);
 console.log(`variantes: ${Object.keys(imagenes).length} originales en el indice · esta pasada: ${(bytesOrig / 1048576).toFixed(1)} MB de originales · `
   + `${nuevas} ficheros nuevos · variantes ${(bytesVar / 1048576).toFixed(1)} MB en total`);
 const perdidas = Object.keys(previo).filter((k) => !imagenes[k]);

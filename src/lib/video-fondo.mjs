@@ -37,7 +37,9 @@ export const POSTERS = {
   'bg-video': { fichero: 'bg-video-poster.0000000.jpg', w: 1280, h: 534, heroe: true }, // 55 de zona
   'bg-video-3d': { fichero: 'bg-video-3d-poster.0000000.jpg', w: 1280, h: 720, heroe: false }, // 3D
 };
-export const ANCHOS = [640, 960, 1280];
+// E5 (D-155): entra 800. El hero partido de la home pinta el poster a todo el ancho en movil, y a
+// 390 px con pantalla ×2 hacen falta 780: sin el, se bajaba el de 960.
+export const ANCHOS = [640, 800, 960, 1280];
 /** Ancho del recorte móvil 9:16 a resolución nativa (no se escala hacia arriba). */
 export const anchoMovil = (h) => Math.round((h * 9) / 16);
 

@@ -11,6 +11,9 @@
 import INDICE from '../data/variantes-imagen.json';
 
 const IMG = INDICE.imagenes ?? {};
+/* E5 (D-155): los AVIF de movil de la foto que pinta el LCP (`build-variantes-imagen.mjs`). */
+const LCP = INDICE.lcp ?? {};
+const MEDIA_LCP = '(max-width: 767px)';
 
 export function srcsetAuto(html) {
   let n = 0;
@@ -24,5 +27,16 @@ export function srcsetAuto(html) {
     const sizes = /\ssizes=/.test(tag) ? '' : ' sizes="100vw"';
     return tag.replace(/<img\b/, `<img srcset="${srcset}"${sizes}`);
   });
-  return { html: out, n };
+  /* LA FOTO DEL LCP. Por debajo de 768 px ocupa el ancho de la pantalla en todas las plantillas, asi
+   * que su `<source>` va con `sizes="100vw"`. El `<img>` queda intacto dentro del `<picture>`:
+   * respaldo sin AVIF y version de escritorio. La primera de la pagina se devuelve para precargarla. */
+  let lcp = null;
+  const conLcp = out.replace(/<img\b[^>]*fetchpriority="high"[^>]*>/g, (tag) => {
+    const v = LCP[tag.match(/\ssrc="([^"]+)"/)?.[1]];
+    if (!v?.length) return tag;
+    const srcset = v.map(([w, u]) => `${u} ${w}w`).join(', ');
+    lcp ??= { media: MEDIA_LCP, imagesrcset: srcset, imagesizes: '100vw' };
+    return `<picture><source type="image/avif" media="${MEDIA_LCP}" srcset="${srcset}" sizes="100vw">${tag}</picture>`;
+  });
+  return { html: conLcp, n, lcp };
 }
