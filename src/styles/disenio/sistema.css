@@ -322,7 +322,13 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
   .mm-zocalo-cols > nav:first-child { grid-column: auto; }
   .mm-cab-panel--servicios { grid-template-columns: minmax(0, 1fr) 304px 392px; }
   .mm-hero-a { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: var(--mm-e-64); }
-  .mm-hero-a-medio { align-self: start; aspect-ratio: 4 / 5; min-height: 0; }
+  /* D-176: la foto ya no manda sobre el alto del hero. Era 4:5 del ancho de su columna: a 2000 px media
+     1008 de alto, dejaba 370 px de blanco bajo el texto y echaba la franja de logos de la primera pantalla.
+     Ahora mide lo que el texto mas los 80 px que monta sobre la franja, con un suelo que sigue a la
+     ventana (72vh, entre 560 y 720 px), y el texto se centra en lo que sobre. Sin `aspect-ratio`: con
+     el alto ya dado por la fila calcularia el ancho y desbordaria la columna. */
+  .mm-hero-a-medio { min-height: clamp(560px, 72vh, 720px); }
+  .mm-hero-a-txt { align-self: center; }
   .mm-pie-foto { left: -40px; bottom: var(--mm-e-40); }
   .mm-datos--3 { grid-auto-flow: column; grid-template-columns: none; }
   .mm-datos--3 .mm-dato:nth-child(3) { grid-column: auto; border-left: 1px solid var(--mm-borde); padding-left: var(--mm-e-24); border-top: 0; }
@@ -1342,8 +1348,10 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 .mm-zp-zona .mm-flecha { align-self: flex-start; }
 @media (min-width: 768px) { .mm-zp { --mm-canal: var(--mm-e-32); } .mm-zp-intro, .mm-zp-zonas { grid-template-columns: repeat(2, minmax(0, 1fr)); } .mm-zp-acc { grid-column: 1 / -1; } }
 @media (min-width: 992px) { .mm-zp { padding: var(--mm-e-96) 0; } .mm-zp-caja { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); column-gap: var(--mm-e-64); } }
-/* El hero partido de una pagina de poco texto: la foto apaisada, a la altura del texto. */
-@media (min-width: 1200px) { .mm-zp { --mm-canal: var(--mm-e-64); } .mm-hero-a--bajo .mm-hero-a-medio { aspect-ratio: 4 / 3; } }
+/* El hero partido de una pagina de poco texto: la foto apaisada, a la altura del texto. Con tope (D-176):
+   el texto mide ~420 px y la foto monta 80, asi que por encima de 500 solo anadia blanco debajo. El ancho va
+   dicho: con el alto topado, `aspect-ratio` estrecharia la foto en vez de recortarla. */
+@media (min-width: 1200px) { .mm-zp { --mm-canal: var(--mm-e-64); } .mm-hero-a--bajo .mm-hero-a-medio { align-self: start; width: 100%; aspect-ratio: 4 / 3; min-height: 0; max-height: 500px; } }
 
 /* ── `/thank-you` (ASTRO-4 lote C, lamina «Gracias»): los pasos a un lado y la tarjeta de llamar al otro. */
 .mm-gracias { box-sizing: border-box; width: 100%; max-width: calc(var(--mm-contenedor) + 2 * var(--mm-canal)); margin: 0 auto; padding: 0 var(--mm-canal); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--mm-e-40); }
