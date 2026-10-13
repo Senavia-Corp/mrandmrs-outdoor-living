@@ -70,6 +70,11 @@ for (const f of html) {
   }
 }
 
+/** D-146: las fotos de una ficha de proyecto entran tambien con el umbral bajo. Son 1250 px y
+ *  80-150 KB cada una, por debajo del corte general, pero la ficha ensena TODA su galeria: en
+ *  movil sumaban mas peso que la pagina de produccion. */
+const umbralBajo = (u) => prioritarias.has(u) || u.startsWith('/images/projects/');
+
 const previo = fs.existsSync(INDICE) ? JSON.parse(fs.readFileSync(INDICE, 'utf8')).imagenes : {};
 /* EL INDICE SE ACUMULA, NO SE REHACE. Una imagen que ya esta en el indice sale del build CON
  * `srcset` (se lo puso `srcset-auto.mjs`), asi que esta pasada ya no la ve: rehacer el indice solo
@@ -83,9 +88,9 @@ for (const u of [...usadas].sort()) {
   const orig = path.join(RAIZ, 'public', decodeURI(u));
   if (!fs.existsSync(orig)) continue;
   const st = fs.statSync(orig).size;
-  if (st < (prioritarias.has(u) ? MIN_BYTES_LCP : MIN_BYTES)) continue;
+  if (st < (umbralBajo(u) ? MIN_BYTES_LCP : MIN_BYTES)) continue;
   const md = await sharp(orig).metadata().catch(() => null);
-  if (!md?.width || md.width < (prioritarias.has(u) ? 700 : MIN_ANCHO)) continue;
+  if (!md?.width || md.width < (umbralBajo(u) ? 700 : MIN_ANCHO)) continue;
   const ext = path.extname(orig).slice(1).toLowerCase();
   const vars = [];
   for (const w of ANCHOS.filter((x) => x < md.width)) {
