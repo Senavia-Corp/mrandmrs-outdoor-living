@@ -62,7 +62,8 @@ if (process.argv.includes('--check')) {
   }
   const servidos = new Set(banco.filter(aprobada).map(e => e.src));
   const huerfanos = fs.existsSync(BANCO)
-    ? fs.readdirSync(BANCO, { recursive: true }).filter(f => f.endsWith('.webp')).map(f => '/images/banco/' + f.split(path.sep).join('/')).filter(u => !servidos.has(u))
+    // las variantes de ancho (`-mm640.webp`, de `npm run variantes`) cuelgan de una foto aprobada: no son huerfanas si su foto esta
+    ? fs.readdirSync(BANCO, { recursive: true }).filter(f => f.endsWith('.webp')).map(f => '/images/banco/' + f.split(path.sep).join('/')).filter(u => !servidos.has(u.replace(/-mm\d+\.webp$/, '.webp')))
     : [];
   for (const u of huerfanos) { console.log(`  🔴 fichero sin entrada aprobada: ${u}`); fallos++; }
   console.log(fallos ? `\n🔴 banco: ${fallos} fallo(s)` : `✅ banco: ${banco.length} entradas, ${servidos.size} aprobadas con fichero, sin metadatos`);
