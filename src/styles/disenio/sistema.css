@@ -376,7 +376,7 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
    la misma altura aunque un titulo ocupe dos lineas. Sin filetes entre columnas: la tesela ya dice
    donde empieza cada una. En movil es una lista: tesela a la izquierda, texto a la derecha.
    Sin oro (D-76): aqui no hay ni marcador ni accion.
-   Una seccion sin sus cuatro dibujos (`.mm-razones` a secas) lleva la misma rejilla sin la tesela.
+   Hoy las 132 llevan sus cuatro iconos (`--ico`, D-182); `.mm-razones` a secas es la misma rejilla sin tesela.
    `.mm-conf-lista` y `.mm-conf-item` siguen arriba, intactas, para `/industry-solutions`. */
 .svc-confianza { padding-block: var(--mm-e-40); }
 .mm-razones { list-style: none; margin: var(--mm-e-12) 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); border-block: 1px solid var(--mm-borde); }
