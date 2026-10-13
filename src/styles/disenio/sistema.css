@@ -1115,3 +1115,34 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 }
 @media (min-width: 1200px) { .mm-galeria { --mm-canal: var(--mm-e-64); } .mm-muro--uniforme { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 
+/* ── /request-estimated (ASTRO-4 lote B; lamina «Presupuesto», D-88) ──────────────────────────
+   Titular y entradilla, la foto de obra y el panel del formulario montando sobre ella; debajo,
+   lo que pasa despues y la franja de logos. Los campos usan las piezas del formulario de ficha. */
+.mm-pres { --mm-canal: var(--mm-e-24); padding: var(--mm-e-32) 0 var(--mm-e-64); background: var(--mm-azul-50); font-family: var(--mm-familia); color: var(--mm-tinta-texto); }
+.mm-pres .mm-h1 { margin: 0; }
+.mm-pres-cuerpo { box-sizing: border-box; max-width: calc(var(--mm-contenedor) + 2 * var(--mm-canal)); margin: var(--mm-e-24) auto 0; padding: 0 var(--mm-canal); display: flex; flex-direction: column; gap: var(--mm-e-24); }
+.mm-pres-medio { margin: 0 calc(-1 * var(--mm-canal)) calc(-1 * var(--mm-e-64)); aspect-ratio: 21 / 9; overflow: hidden; background: var(--mm-azul-100); }
+.mm-pres-medio img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.mm-pres .mm-form-panel { position: relative; z-index: 1; }
+.mm-pres .mm-form { display: flex; flex-direction: column; }
+.mm-pres .mm-form-paso { display: flex; flex-direction: column; gap: var(--mm-e-20); }
+.mm-pres .mm-form-paso + .mm-form-paso { margin-top: var(--mm-e-32); }
+.mm-pres .mm-form-intro .mm-form-pasos-t { margin-bottom: var(--mm-e-4); }
+.mm-pres .mm-form-intro .mm-p { margin: 0; font-size: 14px; }
+.mm-pres-lado { display: flex; flex-direction: column; gap: var(--mm-e-32); }
+.mm-pres .mm-hero-a-logos { padding: 0; background: transparent; }
+.mm-pres .mm-hero-a-fila { max-width: none; padding: 0; flex-wrap: wrap; row-gap: var(--mm-e-16); overflow: visible; }
+.mm-consent { display: flex; align-items: flex-start; gap: var(--mm-e-12); margin: 0; font-size: 14px; line-height: 1.5; font-weight: 400; color: var(--mm-tinta-texto); }
+.mm-consent input { flex: none; width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--mm-navy); }
+.mm-form-legal { margin: 0; font-size: 12px; line-height: 1.5; color: var(--mm-tinta-suave); }
+.mm-form-legal a { font-size: inherit; line-height: inherit; font-weight: 600; color: var(--mm-navy); }
+@media (min-width: 768px) { .mm-pres { --mm-canal: var(--mm-e-32); } }
+@media (min-width: 992px) {
+  .mm-pres { padding: var(--mm-e-64) 0 var(--mm-e-96); }
+  .mm-pres-cuerpo { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-areas: "medio panel" "lado panel"; gap: var(--mm-e-40) 0; align-items: start; margin-top: var(--mm-e-48); }
+  .mm-pres-medio { grid-area: medio; margin: 0 calc(-1 * var(--mm-e-48)) 0 0; aspect-ratio: 4 / 3; border-radius: var(--mm-r-16); }
+  .mm-pres .mm-form-panel { grid-area: panel; margin-top: var(--mm-e-40); padding: var(--mm-e-32); }
+  .mm-pres-lado { grid-area: lado; padding-right: var(--mm-e-64); }
+}
+@media (min-width: 1200px) { .mm-pres { --mm-canal: var(--mm-e-64); } }
+

@@ -499,28 +499,6 @@
     ]
    }
   ],
-  "d01628ed-7f34-9b3f-2b4a-9f22c92ec16a": [
-   {
-    "anim": "growIn",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
-  "69e4df55-86c1-a89d-281e-f454cb25cb86": [
-   {
-    "anim": "growIn",
-    "bps": [
-     "main",
-     "medium",
-     "small",
-     "tiny"
-    ]
-   }
-  ],
   "e8f76016-477e-e66e-7c25-4392c5f6cba0": [
    {
     "anim": "slideInLeft",

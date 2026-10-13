@@ -1016,6 +1016,106 @@ function condadoStitch(doc, ruta) {
  * aqui solo se LEE el origen —titular, parrafo, los tres datos, el boton, las fotos de la
  * galeria y la banda final— y se le pasa. «More Projects» y el formulario los cuelga el bucle
  * de salida, delante y detras de la banda de cierre. */
+/**
+ * ASTRO-4 lote B · `/request-estimated` (lamina «Presupuesto»; D-88, D-87).
+ *
+ * QUE CONSIGUE: que quien llega desde un boton de presupuesto deje primero como localizarle.
+ * El formulario tenia tres pasos y pedia el contacto en el ultimo; ahora son dos, el contacto
+ * (nombre, telefono, correo y codigo postal) delante, y el proyecto —servicios, presupuesto,
+ * propiedad, plazo y direccion— detras.
+ *
+ * QUE CAMBIA DE COMPOSICION: el formulario centrado sobre fondo blanco pasa a un bloque partido:
+ * foto de obra y, montando sobre ella, el panel del formulario; debajo de la foto, lo que pasa
+ * despues de enviar y la franja de logos, que sube dentro del bloque. Detras, solo el pie.
+ *
+ * LOS CAMPOS SON LOS MISMOS NODOS DEL ORIGEN, con sus `name`, `id`, `data-name` y opciones: se
+ * mueven, no se reescriben, y `/api/formulario` recibe lo de siempre. Lo que cambia es quien los
+ * mueve entre pasos: el formulario gana `data-mm-pasos` y lo lleva `Formularios.astro`, como el
+ * de las fichas (validacion nativa del navegador). El script incrustado de Webflow se queda sin
+ * su `#msf` y no hace nada. Los campos de texto no traian etiqueta, solo `placeholder`: ganan la
+ * suya, con su `data-name`.
+ */
+function presupuestoStitch(doc, ruta) {
+  if (ruta !== '/request-estimated') return;
+  const sec = doc.querySelector('section.appointment-section');
+  const form = sec?.querySelector('form');
+  const h1 = sec?.querySelector('.header-form-block h1');
+  const intro = h1?.nextElementSibling;
+  const pasos = [1, 2, 3].map((n) => form?.querySelector(`[data-step="${n}"]`));
+  const [done, fail] = ['.w-form-done', '.w-form-fail'].map((q) => sec?.querySelector(q));
+  const logos = franjaDeLogos(doc);
+  if (!form || !h1 || !intro || pasos.some((x) => !x) || !done || !fail || !logos) throw new Error('/request-estimated: no trae titular, formulario de tres pasos, mensajes y franja de logos');
+  const q = (sel) => { const e = form.querySelector(sel); if (!e) throw new Error(`/request-estimated: falta ${sel}`); return e; };
+  const prepara = (e, extra = {}) => {
+    e.removeAttribute('class'); e.removeAttribute('placeholder');
+    if (e.getAttribute('data-required') === 'true') e.setAttribute('required', '');
+    e.removeAttribute('data-required');
+    for (const [k, v] of Object.entries(extra)) e.setAttribute(k, v);
+    return e;
+  };
+  // Un campo de texto con su etiqueta nueva (el `data-name` del propio campo).
+  const campo = (sel, extra) => {
+    const e = prepara(q(sel), extra);
+    const opc = e.hasAttribute('required') ? '' : ' <span class="mm-campo-opc">(optional)</span>';
+    return `<div class="mm-campo"><label for="${e.id}">${e.getAttribute('data-name')}${opc}</label>${e.outerHTML}</div>`;
+  };
+  // Un desplegable con la etiqueta que ya traia.
+  const lista = (sel) => {
+    const e = q(sel);
+    const lab = e.parentElement.querySelector('label');
+    if (!lab) throw new Error(`/request-estimated: ${sel} no trae etiqueta`);
+    return `<div class="mm-campo"><label for="${e.id}">${lab.innerHTML}</label>${prepara(e).outerHTML}</div>`;
+  };
+  const cab = (p) => { const h = p.querySelector('.header-form h2'); const t = h?.nextElementSibling; if (!h || !t) throw new Error('/request-estimated: un paso no trae titular y texto'); return { h: h.innerHTML, t: t.innerHTML }; };
+  const [c1, c2, c3] = pasos.map(cab);
+  const servicios = [...pasos[0].querySelectorAll('.services-form label.w-checkbox')].map((l) => {
+    const i = l.querySelector('input'); i.removeAttribute('class');
+    return `<label class="mm-opcion">${i.outerHTML}${l.querySelector('.w-form-label').textContent.trim()}</label>`;
+  });
+  if (servicios.length !== 14) throw new Error(`/request-estimated: ${servicios.length} servicios y son 14`);
+  const acepto = q('#Checkbox'); acepto.removeAttribute('class');
+  const aceptoTxt = acepto.parentElement.querySelector('.w-form-label')?.innerHTML;
+  const envia = q('input[type="submit"]');
+  const legal = q('.text-block-7').innerHTML.replace(/ class="link-4"/g, '');
+  const sig = q('#msf-next').textContent.trim();
+  const atras = q('#msf-back').textContent.trim();
+  if (!aceptoTxt) throw new Error('/request-estimated: la casilla de consentimiento no trae texto');
+  const pastilla = (n) => `<div class="mm-form-cab"><span class="mm-pastilla" id="pres-paso-${n}">Step ${n} of 2</span><span class="mm-progreso" aria-hidden="true"><span class="hecho"></span><span${n === 2 ? ' class="hecho"' : ''}></span></span></div>`;
+  const paso1 = `<div class="mm-form-paso" data-paso="1" role="group" aria-labelledby="pres-paso-1">${pastilla(1)}`
+    + `<div class="mm-form-intro"><h2 class="mm-form-pasos-t">${c3.h}</h2><p class="mm-p">${c3.t}</p></div>`
+    + `<div class="mm-form-rejilla">${campo('#Full-Name', { autocomplete: 'name' })}${campo('#Phone', { autocomplete: 'tel', pattern: '[0-9()+\\-\\s]{7,}' })}`
+    + `${campo('#email', { autocomplete: 'email' })}${campo('#ZIP-Code', { autocomplete: 'postal-code', inputmode: 'numeric' })}</div>`
+    + `<div class="mm-form-pie"><button type="button" class="mm-btn" data-mm-sig hidden>${sig}</button></div></div>`;
+  const paso2 = `<div class="mm-form-paso" data-paso="2" role="group" aria-labelledby="pres-paso-2">${pastilla(2)}`
+    + `<div class="mm-form-intro"><h2 class="mm-form-pasos-t" id="pres-servicios">${c1.h}</h2><p class="mm-p">${c1.t}</p></div>`
+    + `<div class="mm-form-rejilla">${lista('#Estimated-Project-Budget')}${lista('#Type')}${lista('#Timeline')}</div>`
+    + `<div class="mm-opciones mm-opciones--2" role="group" aria-labelledby="pres-servicios">${servicios.join('')}</div>`
+    + `<div class="mm-form-intro"><h3 class="mm-form-pasos-t">${c2.h}</h3><p class="mm-p">${c2.t}</p></div>`
+    + `<div class="mm-form-rejilla">${campo('#Street-Address', { autocomplete: 'address-line1' })}${campo('#City', { autocomplete: 'address-level2' })}${campo('#State', { autocomplete: 'address-level1' })}</div>`
+    + `<label class="mm-consent">${acepto.outerHTML}<span>${aceptoTxt}</span></label>`
+    + `<div class="mm-form-pie"><button type="button" class="mm-btn mm-btn--linea" data-mm-atras hidden>${atras}</button>`
+    + `<input type="submit" data-wait="${escAttr(envia.getAttribute('data-wait') ?? '')}" class="mm-btn" value="${escAttr(envia.getAttribute('value'))}"></div>`
+    + `<p class="mm-form-legal">${legal}</p></div>`;
+  form.setAttribute('class', 'mm-form');
+  form.setAttribute('data-mm-pasos', '');
+  // El campo trampa (`ref_id`) lo anade mas abajo el paso comun de formularios.
+  form.innerHTML = paso1 + paso2;
+  const foto = BANCO_POR_ID.get(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/heroes-ciudad.json'), 'utf8')).bolsas['pool-builders'][3]);
+  if (!foto || foto.procedencia !== 'obra_real' || !foto.alt) throw new Error('/request-estimated: la foto del bloque no es obra real con alt');
+  const cap = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/captacion-servicios.json'), 'utf8'))['/services/pool-builders'].formulario;
+  const ns = doc.createElement('section');
+  ns.setAttribute('class', 'mm-pres');
+  ns.innerHTML = `<div class="mm-sec-cab"><h1 class="mm-h1">${h1.textContent.trim().replace(/&/g, '&amp;').replace(/(Outdoor Living)/, '<span class="mm-rot">$1</span>')}</h1>`
+    + `<div class="mm-sec-lado"><p class="mm-p">${intro.innerHTML}</p></div></div>`
+    + '<div class="mm-pres-cuerpo">'
+    + `<figure class="mm-pres-medio"><img src="${foto.src}" alt="${escAttr(foto.alt)}" width="${foto.ancho}" height="${foto.alto}" sizes="(min-width: 992px) 45vw, 100vw" loading="eager" fetchpriority="high" decoding="async"></figure>`
+    + `<div class="mm-form-panel">${form.outerHTML}${done.outerHTML}${fail.outerHTML}</div>`
+    + `<aside class="mm-pres-lado"><div><h2 class="mm-form-pasos-t">${cap.pasosTitulo}</h2><ol class="mm-form-pasos" role="list">${cap.pasos.map((x) => `<li>${x}</li>`).join('')}</ol></div>${logos}</aside>`
+    + '</div>';
+  sec.replaceWith(ns);
+  doc.querySelector('section.logos-section')?.remove();
+}
+
 const esProyecto = (ruta) => ruta.startsWith('/project/');
 function proyectoStitch(doc, ruta) {
   if (!esProyecto(ruta)) return;
@@ -2169,6 +2269,7 @@ for (const [ruta] of RUTAS) {
   // Los condados hacen su propio mosaico y su propio orden (§ condadoStitch).
   condadoStitch(doc, ruta);
   proyectoStitch(doc, ruta);
+  presupuestoStitch(doc, ruta);
   if (!esCondado(ruta)) {
     mosaicoDeObra(doc, ruta);
     listasDePlano(doc, ruta);

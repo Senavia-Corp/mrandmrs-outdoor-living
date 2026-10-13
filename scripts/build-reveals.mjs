@@ -53,6 +53,8 @@ const RETIRADAS = new Set([
   'bf5925c7-6577-ba84-77a6-25f8d09f7373', 'cf6e6112-50b1-b164-fee5-1e4b8c413043', 'cf6e6112-50b1-b164-fee5-1e4b8c413058',
   '29867a8a-c7e7-06a6-ef63-f3ef2789a898', '29867a8a-c7e7-06a6-ef63-f3ef2789a89b', '29867a8a-c7e7-06a6-ef63-f3ef2789a89d',
   '29867a8a-c7e7-06a6-ef63-f3ef2789a89f', 'c5943ea8-2479-0b18-7289-2e4baa1a48c8', 'c5943ea8-2479-0b18-7289-2e4baa1a48ce',
+  // la cabecera y el bloque del formulario de `/request-estimated` (ASTRO-4 lote B)
+  'd01628ed-7f34-9b3f-2b4a-9f22c92ec16a', '69e4df55-86c1-a89d-281e-f454cb25cb86',
 ]);
 
 const porId = {};

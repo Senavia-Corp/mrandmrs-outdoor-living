@@ -3405,7 +3405,7 @@ const rotulosT69 = new Map();
 function sinMayusculasDeCss(ruta, esperado, hay) {
   // Las rutas ya migradas a las piezas nuevas: las 141 de servicio y, desde ASTRO-4, las 15 de
   // proyecto y los 47 articulos (las cabeceras de sus tablas).
-  if (!/^\/(services|project|blogs)\//.test(ruta) && ruta !== '/') return esperado;
+  if (!/^\/(services|project|blogs)\//.test(ruta) && ruta !== '/' && ruta !== '/request-estimated') return esperado;
   const medidas = hay.split('\n');
   const esperadas = esperado.split('\n');
   /* POR POSICION cuando las dos listas miden lo mismo, que es el caso de una ruta en verde: la
@@ -3792,8 +3792,38 @@ function galeriaTexto(ruta, lineas) {
   return [...out, ...faltas.map((f) => `⟦FALTA: ${f}⟧`)];
 }
 
+/**
+ * ASTRO-4 lote B · `/request-estimated` (lamina «Presupuesto»; T-91). El formulario pasa de tres
+ * pasos a dos, con el contacto delante. Esta puerta mide los dos pasos a la vez, asi que lo que
+ * antes se veia al cargar —servicios, presupuesto, propiedad y plazo— sigue ahi, detras del paso
+ * de contacto. Se comprueba el tramo nuevo ENTERO y en su orden, y se devuelve a la forma de la
+ * referencia (el paso de servicios y «Next»). Lo que entra:
+ *   · «Step 1 of 2» / «Step 2 of 2»; el paso de contacto con su titular y su texto (estaban en el
+ *     tercer paso, oculto) y las etiquetas de sus cuatro campos, que solo traian `placeholder`;
+ *   · la direccion (su titular, su texto y tres etiquetas), el consentimiento, «Back» y la linea
+ *     legal, que tambien estaban en pasos ocultos;
+ *   · «What Happens After You Reach Out» y sus tres pasos, los de la ficha de piscinas.
+ */
+function presupuestoTexto(lineas) {
+  const out = [...lineas];
+  const A = ['Step 1 of 2', 'Contact Information', 'Provide your contact details so our design team can review your request and guide you through the next steps.', 'Full Name', 'Phone', 'Email', 'ZIP Code', 'Next', 'Step 2 of 2'];
+  const D = ['Project Property Address', 'Enter the address where the project will take place so we can confirm service availability and prepare an accurate estimate.', 'Street Address', 'City', 'State (optional)',
+    'I agree to receive SMS messages related to project updates, promotions, and company communications from Mr. & Mrs. Outdoor Living. I understand that I may opt out at any time by replying STOP. Message and data rates may apply.',
+    'Back', 'By submitting this form, you agree to our Terms & Privacy Policy.',
+    'What Happens After You Reach Out', ...CAPTACION_JSON['/services/pool-builders'].formulario.pasos];
+  const son = (k, bloque) => bloque.every((l, j) => out[k + j] === l);
+  const a = out.indexOf(A[0]);
+  const d = out.indexOf(D[0]);
+  if (a > 0 && d > a + A.length && son(a, A) && son(d, D) && out[a + A.length] === 'Select Services & Estimate Your Project Budget') {
+    out.splice(a, d + D.length - a, ...out.slice(a + A.length, d), 'Next');
+    return out;
+  }
+  return [...out, '⟦FALTA: el formulario en dos pasos de /request-estimated, con el contacto delante (T-91)⟧'];
+}
+
 function listasStitch(ruta, lineas) {
   if (ruta === '/') return homeTexto(lineas);
+  if (ruta === '/request-estimated') return presupuestoTexto(lineas);
   if (ruta === '/gallery' || ruta.startsWith('/gallery/')) return galeriaTexto(ruta, lineas);
   if (ruta.startsWith('/project/')) return fichaProyectoTexto(ruta, lineas);
   if (ruta.startsWith('/blogs/')) return articuloTexto(ruta, lineas);
