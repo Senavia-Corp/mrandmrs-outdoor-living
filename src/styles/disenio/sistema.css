@@ -1295,3 +1295,13 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 @media (min-width: 992px) { .mm-zp { padding: var(--mm-e-96) 0; } .mm-zp-caja { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); column-gap: var(--mm-e-64); } }
 /* El hero partido de una pagina de poco texto: la foto apaisada, a la altura del texto. */
 @media (min-width: 1200px) { .mm-zp { --mm-canal: var(--mm-e-64); } .mm-hero-a--bajo .mm-hero-a-medio { aspect-ratio: 4 / 3; } }
+
+/* ── `/thank-you` (ASTRO-4 lote C, lamina «Gracias»): los pasos a un lado y la tarjeta de llamar al otro. */
+.mm-gracias { box-sizing: border-box; width: 100%; max-width: calc(var(--mm-contenedor) + 2 * var(--mm-canal)); margin: 0 auto; padding: 0 var(--mm-canal); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--mm-e-40); }
+.mm-gracias-pasos { display: flex; flex-direction: column; gap: var(--mm-e-32); }
+.mm-gracias-pasos .mm-h2 { margin: 0; }
+.mm-gracias-pasos .mm-pasos { margin: 0; }
+.mm-gracias-lado { display: flex; flex-direction: column; align-items: flex-start; gap: var(--mm-e-12); padding: var(--mm-e-24); border: 1px solid var(--mm-borde); border-radius: var(--mm-r-12); background: var(--mm-blanco); }
+.mm-gracias-lado .mm-conf-t, .mm-gracias-lado .mm-conf-p { margin: 0; }
+.mm-gracias-lado .mm-datos { align-self: stretch; }
+@media (min-width: 992px) { .mm-gracias { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: var(--mm-e-64); align-items: start; } }

@@ -3465,7 +3465,7 @@ const rotulosT69 = new Map();
 function sinMayusculasDeCss(ruta, esperado, hay) {
   // Las rutas ya migradas a las piezas nuevas: las 141 de servicio y, desde ASTRO-4, las 15 de
   // proyecto y los 47 articulos (las cabeceras de sus tablas).
-  if (!/^\/(services|project|blogs)\//.test(ruta) && !['/', '/request-estimated', '/contact-us', '/videos', '/financing', '/about'].includes(ruta)) return esperado;
+  if (!/^\/(services|project|blogs)\//.test(ruta) && !['/', '/request-estimated', '/contact-us', '/videos', '/financing', '/about', '/thank-you'].includes(ruta)) return esperado;
   const medidas = hay.split('\n');
   const esperadas = esperado.split('\n');
   /* POR POSICION cuando las dos listas miden lo mismo, que es el caso de una ruta en verde: la
