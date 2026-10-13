@@ -29,7 +29,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { JSDOM } from 'jsdom';
 import { renombra, origen, esFicha, esCondado } from './lib/renombradas.mjs';
-import { CATEGORIAS as GALERIA_CATEGORIAS, tarjetasHtml } from '../src/lib/galeria-categorias.mjs';
+import { CATEGORIAS as GALERIA_CATEGORIAS, indiceGaleriaHtml } from '../src/lib/galeria-categorias.mjs';
 import { logoLigero, ALTO_LOGO } from '../src/lib/logo-ligero.mjs';
 import { OCULTAS, serviciosDe } from '../src/lib/filtro-proyectos.mjs';
 import { tramosMiga } from '../src/lib/miga-tramos.mjs';
@@ -2119,7 +2119,37 @@ for (const [ruta] of RUTAS) {
       console.error('\n  ROJO /gallery: no encuentro «.gallery-page .nav-gallery» para poner las tarjetas delante\n');
       process.exit(1);
     }
-    navFiltro.insertAdjacentHTML('beforebegin', tarjetasHtml());
+    /* ASTRO-4 lote B (lamina «Galeria»). El hero deja de ir ENCIMA de la cabecera y entra en la
+     * pagina (hero D: titular y entradilla); las diez categorias van delante de la seccion de
+     * fotos, con la accion dentro (D-100); la lista de fotos gana las clases del muro —el filtro y
+     * el visor de captacion siguen leyendo las suyas, que no se tocan—; y la banda final pasa a
+     * la del sistema, con los dos telefonos. */
+    const heroG = doc.querySelector('section.hero-section');
+    const gh1 = heroG?.querySelector('h1');
+    const gtx = heroG?.querySelector('.text-block-4');
+    const gp = doc.querySelector('section.gallery-page');
+    const lista = gp?.querySelector('.cms-list-pictures');
+    const finG = doc.querySelector('section.cta-footer');
+    const [fh2, fp, fa] = ['h2', '.text-block-3', 'a'].map((q) => finG?.querySelector(q));
+    if (!gh1 || !gtx || !lista || !fh2 || !fp || !fa) throw new Error('/gallery: no trae hero con titular y entradilla, lista de fotos y banda final');
+    const nh = doc.createElement('section');
+    nh.setAttribute('class', 'mm-hero-d');
+    nh.innerHTML = `<div class="mm-hero-d-caja"><div class="mm-sec-cab"><h1 class="mm-h1">${gh1.innerHTML}</h1><div class="mm-sec-lado"><p class="mm-p">${gtx.innerHTML}</p></div></div></div>`;
+    heroG.remove();
+    gp.parentNode.insertBefore(nh, gp);
+    gp.insertAdjacentHTML('beforebegin', indiceGaleriaHtml(BANDA_TELEFONOS.replace('mm-datos--tel', 'mm-datos--pila')));
+    gp.classList.add('mm-muro-sec', 'mm-galeria');
+    lista.classList.add('mm-muro', 'mm-muro--uniforme');
+    for (const it of lista.querySelectorAll('.cms-item-pictures')) it.classList.add('mm-muro-foto');
+    const fotoBanda = BANCO_POR_ID.get(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/heroes-ciudad.json'), 'utf8')).bolsas['pool-builders'][2]);
+    if (!fotoBanda || fotoBanda.procedencia !== 'obra_real' || !fotoBanda.alt) throw new Error('/gallery: la foto de la banda no es obra real con alt');
+    const nc2 = doc.createElement('section');
+    nc2.setAttribute('class', 'mm-cierre mm-cierre--sola mm-cierre--alta');
+    nc2.innerHTML = '<div class="mm-cierre-caja"><div class="mm-cierre-txt">'
+      + `<h2 class="mm-h2">${fh2.innerHTML.replace(/Design-Buil[dt]/g, '<span class="mm-nb">$&</span>')}</h2><p class="mm-p">${fp.innerHTML}</p>`
+      + `<a class="mm-btn" href="${fa.getAttribute('href')}">${fa.innerHTML}</a>${BANDA_TELEFONOS}</div>`
+      + `<figure class="mm-cierre-medio"><img src="${fotoBanda.src}" alt="${escAttr(fotoBanda.alt)}" width="${fotoBanda.ancho}" height="${fotoBanda.alto}" sizes="(min-width: 992px) 42vw, 100vw" loading="lazy" decoding="async"></figure></div>`;
+    finG.replaceWith(nc2);
   }
 
   const menu = doc.querySelector('section.menu');

@@ -26,7 +26,7 @@ import { ARGS_NAVEGADOR, aSlug, asentar, textoNormalizado } from './lib/captura.
 import { origen, rutaCiudad, esFicha, esCiudad, esCondado } from './lib/renombradas.mjs';
 import { tramosMiga } from '../src/lib/miga-tramos.mjs';
 import { AREAS_PIE, ORDEN_SERVICIOS_PIE, COPYRIGHT_ORIGEN, copyright } from '../src/lib/pie.mjs';
-import { lineasTarjetas, lineasBanda, lineasSrBanda } from '../src/lib/galeria-categorias.mjs';
+import { lineasTarjetas, lineasBanda, lineasSrBanda, CATEGORIAS as GAL_CATEGORIAS } from '../src/lib/galeria-categorias.mjs';
 import { OCULTAS, lineasFiltro } from '../src/lib/filtro-proyectos.mjs';
 import { fotoDeHeroe } from '../src/lib/heroe-ciudad.mjs';
 import { ciudadesDeFicha, SERVICIOS_CIUDAD } from '../src/lib/servicios-ciudad.mjs';
@@ -3743,8 +3743,58 @@ function homeTexto(lineas) {
   return [...cab, ...(Rv ?? R), ...(Zv ?? Z), ...(BLv ?? BL), ...(FINv ?? FIN), ...faltas.map((f) => `⟦FALTA: ${f}⟧`)];
 }
 
+/**
+ * ASTRO-4 lote B · LA GALERIA (laminas «Galeria» y «GaleriaCategoria»), sobre LO MEDIDO de `/gallery`
+ * y de sus diez categorias. Ninguna cadena cambia; lo que entra se comprueba entero y en su sitio
+ * antes de descontarlo, y lo que falte pone la ruta en rojo (T-90):
+ *   · la tesela de accion (D-100): «Seen something you like?», su boton y los dos telefonos. En el
+ *     indice va una, detras de la sexta categoria; en cada categoria, una cada dos bloques del muro;
+ *   · los dos telefonos junto a «More project galleries» y en la banda final (T-56);
+ *   · en el indice, el hero deja de ir encima de la cabecera y entra en la pagina: se devuelve
+ *     delante de ella, que es donde lo trae la referencia.
+ */
+function galeriaTexto(ruta, lineas) {
+  const out = [...lineas];
+  const faltas = [];
+  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const tesela = ['Seen something you like?', 'Get a free estimate', ...tels];
+  const son = (k, bloque) => bloque.every((l, j) => out[k + j] === l);
+  if (ruta === '/gallery') {
+    const t = out.findIndex((l) => l.startsWith('Explore real custom pool and outdoor living projects'));
+    const c = out.findIndex((l) => l === 'Skip to content' || l.startsWith('⟦cabecera'));
+    if (t > 0 && c >= 0 && c < t && out[t - 1] === 'Project Gallery' && out[t + 1] === 'Browse by service') out.splice(c, 0, ...out.splice(t - 1, 2));
+    else faltas.push('el hero del indice (titular y entradilla), justo delante de «Browse by service»');
+    const k = out.indexOf('See decks');
+    if (k >= 0 && son(k + 1, tesela) && out[k + 1 + tesela.length] === 'Landscaping') out.splice(k + 1, tesela.length);
+    else faltas.push('la tesela de accion detras de la sexta categoria (D-100)');
+    const b = out.findIndex((l, x) => l.startsWith(CIERRE_CIUDAD) && out[x + 1] === 'Get A Free Estimate');
+    if (b >= 0 && son(b + 2, tels)) out.splice(b + 2, tels.length);
+    else faltas.push('los dos telefonos de la banda final (T-56)');
+  } else {
+    const c = GAL_CATEGORIAS.find((x) => `/gallery/${x.slug}` === ruta);
+    // Las mismas cuentas que `[categoria].astro`: bloque par, foto grande + tesela; impar, dos fotos; y tres detras.
+    let teselas = 0;
+    for (let i = 0, bloque = 0; i < c.fotos.length; bloque++) {
+      if (bloque % 2 === 0) { i += 1; teselas++; } else i += Math.min(2, c.fotos.length - i);
+      i += Math.min(3, c.fotos.length - i);
+    }
+    const m = out.indexOf('More project galleries');
+    const ini = m - teselas * tesela.length;
+    if (m > 0 && ini > 0 && Array.from({ length: teselas }, (_, j) => son(ini + j * tesela.length, tesela)).every(Boolean) && out[ini - 1] !== tesela.at(-1)) out.splice(ini, teselas * tesela.length);
+    else faltas.push(`las ${teselas} teselas de accion del muro, delante de «More project galleries» (D-100)`);
+    const m2 = out.indexOf('More project galleries');
+    if (m2 >= 0 && son(m2 + 1, tels)) out.splice(m2 + 1, tels.length);
+    else faltas.push('los dos telefonos junto a «More project galleries» (T-56)');
+    const w = out.findIndex((l) => l.startsWith('Want the details first?'));
+    if (w >= 0 && son(w + 1, tels)) out.splice(w + 1, tels.length);
+    else faltas.push('los dos telefonos de la banda final (T-56)');
+  }
+  return [...out, ...faltas.map((f) => `⟦FALTA: ${f}⟧`)];
+}
+
 function listasStitch(ruta, lineas) {
   if (ruta === '/') return homeTexto(lineas);
+  if (ruta === '/gallery' || ruta.startsWith('/gallery/')) return galeriaTexto(ruta, lineas);
   if (ruta.startsWith('/project/')) return fichaProyectoTexto(ruta, lineas);
   if (ruta.startsWith('/blogs/')) return articuloTexto(ruta, lineas);
   if (!ruta.startsWith('/services/')) return lineas;

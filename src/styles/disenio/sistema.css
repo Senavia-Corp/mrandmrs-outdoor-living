@@ -1039,3 +1039,79 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
   .mm-hero-c--art .mm-p { grid-column: 2; grid-row: 2; max-width: none; padding-bottom: var(--mm-e-40); }
 }
 
+/* ── GALERIA POR CATEGORIA (ASTRO-4 lote B; lamina «GaleriaCategoria», D-100) ─────────────────
+   Hero D (miga, titular y entradilla con sus dos acciones), el muro en mosaico con la tesela de
+   accion dentro, y las demas galerias en lista. Las fotos siguen siendo `a.w-lightbox`. */
+.mm-hero-d, .mm-muro-sec { --mm-canal: var(--mm-e-24); background: var(--mm-blanco); font-family: var(--mm-familia); color: var(--mm-tinta-texto); }
+.mm-hero-d { padding: var(--mm-e-24) 0 var(--mm-e-40); }
+.mm-hero-d-caja { display: flex; flex-direction: column; gap: var(--mm-e-16); }
+.mm-hero-d .mm-miga, .mm-muro { box-sizing: border-box; width: 100%; max-width: calc(var(--mm-contenedor) + 2 * var(--mm-canal)); margin: 0 auto; padding: 0 var(--mm-canal); }
+/* `.gallery-page` (webflow.css) trae relleno lateral, texto centrado y una proporcion fija en cada
+   enlace: aqui se anulan, que la clase tiene que seguir para el visor de captacion. */
+.mm-muro-sec { padding: 0 0 var(--mm-e-64); text-align: left; }
+.mm-muro { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--mm-e-8); }
+.mm-muro-foto { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--mm-azul-100); }
+.mm-muro-foto--7, .mm-muro-foto--12, .mm-muro-foto--ancha, .mm-muro-accion { grid-column: 1 / -1; }
+.mm-muro-foto--7, .mm-muro-foto--12, .mm-muro-foto--ancha { aspect-ratio: 3 / 2; }
+.mm-muro-foto a { position: absolute; inset: 0; display: block; width: 100%; height: 100%; aspect-ratio: auto; }
+.mm-muro-foto img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform var(--mm-dur-foto) var(--mm-curva); }
+.mm-muro-foto a:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: calc(-1 * var(--mm-foco-grosor)); }
+.mm-muro-accion { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: var(--mm-e-16); padding: var(--mm-e-24); border: 1px solid var(--mm-borde); }
+.mm-muro-t { margin: 0; font-size: 22px; line-height: 1.2; font-weight: 700; letter-spacing: -0.015em; color: var(--mm-navy); }
+.mm-muro-accion .mm-datos { align-self: stretch; border-top: 0; }
+.mm-rel-cab { display: flex; flex-direction: column; gap: var(--mm-e-16); }
+.mm-rel-cab .mm-datos { border-top: 0; }
+.mm-linea--doble { flex-wrap: wrap; }
+.mm-linea-txt { display: flex; flex-direction: column; gap: 2px; }
+.mm-linea-p { font-size: 14px; line-height: 1.4; font-weight: 500; color: var(--mm-tinta-texto); }
+.mm-cierre-nota { margin: 0; font-size: 14px; line-height: 1.5; color: var(--mm-tinta-suave-inversa); }
+.mm-cierre-nota a { font-size: inherit; line-height: inherit; font-weight: 600; color: var(--mm-blanco); text-decoration: underline; text-underline-offset: 3px; }
+.mm-h2.mm-min { text-transform: none; }
+@media (hover: hover) and (pointer: fine) { .mm-muro-foto a:hover img { transform: scale(1.03); } }
+@media (prefers-reduced-motion: reduce) { .mm-muro-foto img { transition: none; } }
+@media (min-width: 768px) {
+  .mm-hero-d, .mm-muro-sec { --mm-canal: var(--mm-e-32); }
+  .mm-muro { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .mm-muro-foto--7 { grid-column: span 7; }
+  .mm-muro-foto--5, .mm-muro-accion { grid-column: span 5; }
+  .mm-muro-foto--4, .mm-muro-foto--4.mm-muro-foto--ancha { grid-column: span 4; aspect-ratio: 4 / 3; }
+  .mm-muro-foto--6, .mm-muro-foto--6.mm-muro-foto--ancha { grid-column: span 6; aspect-ratio: 4 / 3; }
+  .mm-muro-foto--5, .mm-muro-foto--5.mm-muro-foto--ancha { aspect-ratio: auto; }
+  .mm-muro-foto--12 { aspect-ratio: 21 / 9; }
+  .mm-muro-accion { padding: var(--mm-e-40); }
+}
+@media (min-width: 992px) { .mm-hero-d { padding: var(--mm-e-32) 0 var(--mm-e-64); } .mm-muro-sec { padding: 0 0 var(--mm-e-96); } }
+@media (min-width: 1200px) { .mm-hero-d, .mm-muro-sec { --mm-canal: var(--mm-e-64); } }
+
+/* ── INDICE DE GALERIA (ASTRO-4 lote B; lamina «Galeria») ─────────────────────────────────────
+   Las diez categorias (seis teselas, la tesela de accion y cuatro en lista), el filtro y el muro
+   uniforme: 239 fotos a dos columnas en movil, tres desde 768 y cuatro desde 1200. */
+.mm-cat--indice { padding-top: var(--mm-e-64); }
+.mm-cat--indice .mm-cat-fila, .mm-cat-resto { box-sizing: border-box; width: 100%; max-width: calc(var(--mm-contenedor) + 2 * var(--mm-canal)); margin-inline: auto; }
+.mm-cat--indice .mm-cat-tesela:first-child { grid-column: 1 / -1; }
+.mm-cat--indice .mm-muro-accion { background: var(--mm-blanco); border-radius: var(--mm-r-12); }
+/* El enlace de cada tesela, suelto (en la banda compacta va dentro del parrafo): 44 px y puede partirse. */
+.mm-cat--indice .mm-cat-ver { display: inline-flex; align-items: center; min-height: var(--mm-ctl-s); padding-block: 0; white-space: normal; }
+.mm-cat-resto { padding: 0 var(--mm-canal); }
+.mm-galeria { padding-top: var(--mm-e-48); }
+.mm-galeria > .container { max-width: none; padding: 0; }
+.mm-galeria .nav-gallery { box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: var(--mm-e-8) var(--mm-e-16); width: 100%; max-width: calc(var(--mm-contenedor) + 2 * var(--mm-canal)); margin: 0 auto var(--mm-e-24); padding: 0 var(--mm-canal); }
+.mm-galeria .heading-brochure-nav { font-size: 14px; line-height: 1.4; font-weight: 700; color: var(--mm-navy); }
+.mm-galeria .gallery-filters { position: relative; display: flex; width: auto; padding: 0; background: transparent; }
+.mm-galeria .gallery-filter-form { width: auto; margin: 0; }
+.mm-galeria .service-filter { appearance: none; width: auto; max-width: 100%; height: auto; min-height: var(--mm-ctl-l); margin: 0; padding: 0 var(--mm-e-48) 0 var(--mm-e-16); border: 1.5px solid var(--mm-navy); border-radius: var(--mm-r-8); background: var(--mm-blanco); font-family: var(--mm-familia); font-size: 16px; font-weight: 600; color: var(--mm-navy); }
+.mm-galeria .gallery-filters::after { content: ""; position: absolute; top: 50%; right: var(--mm-e-20); width: 8px; height: 8px; margin-top: -6px; border-right: 2px solid var(--mm-navy); border-bottom: 2px solid var(--mm-navy); transform: rotate(45deg); pointer-events: none; }
+.mm-galeria .service-filter:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); }
+@media (min-width: 768px) {
+  .mm-cat--indice .mm-cat-fila { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .mm-cat--indice .mm-muro-accion { grid-column: auto; padding: var(--mm-e-24); }
+  .mm-muro--uniforme { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (min-width: 992px) {
+  .mm-cat--indice { padding-top: var(--mm-e-96); }
+  .mm-cat--indice .mm-cat-fila { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .mm-cat--indice .mm-cat-tesela:first-child { grid-column: span 2; }
+  .mm-galeria { padding-top: var(--mm-e-64); }
+}
+@media (min-width: 1200px) { .mm-galeria { --mm-canal: var(--mm-e-64); } .mm-muro--uniforme { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
