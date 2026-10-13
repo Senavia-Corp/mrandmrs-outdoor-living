@@ -623,6 +623,11 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 .mm-campo-opc { font-weight: 400; color: var(--mm-tinta-suave); }
 .mm-campo input, .mm-campo select, .mm-campo textarea { box-sizing: border-box; width: 100%; min-height: var(--mm-ctl-m); margin: 0; padding: 0 var(--mm-e-16); font-family: inherit; font-size: 16px; line-height: 1.5; color: var(--mm-navy); background-color: var(--mm-blanco); border: 1px solid var(--mm-borde-control); border-radius: var(--mm-r-8); }
 .mm-campo textarea { padding: var(--mm-e-12) var(--mm-e-16); min-height: 96px; resize: vertical; }
+/* E6 · EL DESPLEGABLE, TAMBIEN EN SAFARI. Con su aspecto nativo, Safari ignora `min-height` y
+   pinta el `<select>` a 27 px junto a campos de 48 (medido en WebKit en `/contact-us`). Se le
+   quita el aspecto nativo y la flecha pasa a ser del sistema: dos degradados en navy, sin
+   imagen ni color fuera de los tokens. */
+.mm-campo select { -webkit-appearance: none; appearance: none; padding-right: var(--mm-e-48); background-image: linear-gradient(45deg, transparent 50%, var(--mm-navy) 50%), linear-gradient(135deg, var(--mm-navy) 50%, transparent 50%); background-position: calc(100% - 22px) 50%, calc(100% - 16px) 50%; background-size: 6px 6px, 6px 6px; background-repeat: no-repeat; }
 .mm-campo input:focus-visible, .mm-campo select:focus-visible, .mm-campo textarea:focus-visible, .mm-opcion:focus-within { border-color: var(--mm-navy); outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); box-shadow: var(--mm-foco-halo); }
 .mm-grupo-campo { border: 0; margin: 0; padding: 0; min-width: 0; display: flex; flex-direction: column; gap: var(--mm-e-8); }
 .mm-opciones { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--mm-e-8); }
