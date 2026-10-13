@@ -261,6 +261,7 @@ const SLIDERS = JSON.stringify(
         pinta();
       };
 
+      let abridor = null;
       for (const a of enlaces) {
         if (!a.dataset.mmLbGrupo) continue;
         a.addEventListener('click', (ev) => {
@@ -271,10 +272,16 @@ const SLIDERS = JSON.stringify(
           // embed de la pagina hace lo mismo.
           ev.stopPropagation();
           actual = { grupo: a.dataset.mmLbGrupo, i: Number(a.dataset.mmLbIndice) };
+          abridor = a;
           pinta();
           dlg.showModal();
         });
       }
+      /* E6 · AL CERRAR, EL FOCO VUELVE A QUIEN LO ABRIO, TAMBIEN EN SAFARI. El `<dialog>` devuelve
+       * el foco a lo que lo tenia al abrirse; Safari no enfoca un enlace ni un boton al pulsarlos
+       * con el raton, asi que no habia a quien devolverselo y lo dejaba en `<body>`: quien abre
+       * una foto con el raton y sigue con el teclado volvia a empezar desde arriba. */
+      dlg.addEventListener('close', () => { if (abridor && document.activeElement !== abridor) abridor.focus({ preventScroll: true }); });
       dlg.querySelector('.mm-lb__x')?.addEventListener('click', () => dlg.close());
       dlg.querySelector('.mm-lb__nav--prev')?.addEventListener('click', () => mueve(-1));
       dlg.querySelector('.mm-lb__nav--next')?.addEventListener('click', () => mueve(1));
