@@ -32,15 +32,16 @@ import Componentes from '../components/Componentes.astro';
 import GalleryLeadLightbox from '../components/GalleryLeadLightbox.astro';
 import GaleriaCategoriasCss from '../components/GaleriaCategoriasCss.astro';
 import Formularios from '../components/Formularios.astro';
-// Las fuentes son los .woff2 EXACTOS de Google, no @fontsource: con el Inter variable de
-// fontsource el nav salía al 95,85 % contra el baseline porque un a.nav-link medía 57,35 px
-// en vez de 59,54. Ver scripts/fetch-fuentes.mjs.
-import '../styles/fuentes.css';
+// E5 (D-158): `fuentes.css` —46 `@font-face` de Inter y Montserrat, 15 KB que bloquean el
+// pintado— ya no se importa aqui. Medido en las 233 rutas que pasan por este layout
+// (`herramientas/build-familias.mjs`): todo elemento que pinta letra, a la vista u oculto,
+// declara Manrope, cuyo `@font-face` va en `sistema.css`. La sigue importando
+// `pool-investment-estimator.astro`, la unica ruta que pinta Inter.
 import '../styles/webflow.css';
 /**
  * LA CAPA DE DISENO (fase R7). El orden es el contrato, y gana por ORDEN, no por peso:
  *
- *   fuentes.css -> webflow.css -> disenio/tokens.css -> disenio/base.css -> propio.css
+ *   webflow.css -> disenio/tokens.css -> disenio/base.css -> propio.css
  *
  * Antes de webflow.css no ganaria nada y el rediseno «no se aplicaria» sin ningun error
  * visible. Y NADA de esto va envuelto en `@layer`: webflow.css son 167 KB SIN capa, y
@@ -283,7 +284,7 @@ const CON_MAIN = /<main[\s>]/.test(contenido);
     ))}
     {/* E5 (D-148, D-155): las precargas de Inter y Montserrat salen. Medido por plantilla sobre el
         build: todo el texto visible se pinta en Manrope, y esos 82 KB competian con la foto del
-        hero por la red justo antes del LCP. Las dos familias siguen declaradas en `fuentes.css`. */}
+        hero por la red justo antes del LCP. Desde D-158 tampoco se carga su hoja, `fuentes.css`. */}
     {/* REDISEÑO STITCH (ASTRO-1, D-104): Manrope es la fuente del cascarón nuevo, que se pinta en
         el primer fotograma. Sin precarga entra tarde con `swap` y mueve el ancho del menú, que
         es el mismo CLS que arregló la precarga de Inter el 4-oct. Único cambio de <head>
@@ -353,13 +354,10 @@ const CON_MAIN = /<main[\s>]/.test(contenido);
     {!ES_PRODUCCION && <meta name="robots" content="noindex, nofollow" />}
     {jsonLd.map((b) => <script type="application/ld+json" set:html={JSON.stringify(b)} />)}
     {jsonLdCrudo.map((b) => <script type="application/ld+json" set:html={b} />)}
-    {/* SEO-REMEDIACION (4-oct-2026) — CLS DEL NAV EN MOVIL. Lighthouse atribuye el mayor
-        desplazamiento (0,12-0,19 en `/` movil) a `div.wrapper-menu`: el texto se pinta en la
-        `sans-serif` del sistema y se reflowea cuando entra Inter. La familia de reserva
-        «Inter Fallback» es Arial (o sus clones metricos Liberation Sans / Arimo) con las metricas
-        de Inter forzadas, asi que ocupa lo mismo y el cambio no mueve nada. Cuando Inter llega,
-        se pinta Inter igual que antes: el aspecto final no cambia. */}
-    <style is:inline set:html={`@font-face{font-family:"Inter Fallback";src:local("Arial"),local("ArialMT"),local("Liberation Sans"),local("Arimo"),local("Helvetica");ascent-override:90.44%;descent-override:22.52%;line-gap-override:0%;size-adjust:107.12%}body{font-family:Inter,"Inter Fallback",sans-serif}`} />
+    {/* E5 (D-158): aqui iba un `<style>` en linea con la familia de reserva «Inter Fallback» y
+        `body{font-family:Inter,…}`, que evitaba el salto del menu mientras llegaba Inter. Con
+        todo el cascaron en Manrope esa regla la pisaba siempre `propio.css` y la reserva no
+        reservaba nada: sale junto con la hoja de Inter. */}
     <link rel="shortcut icon" href="/images/site/favicon.png" />
     <link rel="apple-touch-icon" href="/images/site/webclip.png" />
     {/* Webflow marca el <html> con w-mod-js y w-mod-touch y HAY CSS QUE DEPENDE DE ELLO.
