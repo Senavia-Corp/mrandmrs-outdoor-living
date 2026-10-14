@@ -109,7 +109,8 @@ const tituloRot = (t, palabra) => String(t).replace(/&/g, '&amp;').replace(/</g,
 ---
 
 <Base titulo={c.title} descripcion={c.description} ruta={ruta} seo={SEO}>
-  <main>
+  {/* D-198: el `id` al que apunta «Skip to content» del nav; Base solo lo pone si la pagina no trae `<main>`. */}
+  <main id="contenido">
     <section class="mm-hero-d">
       <div class="mm-hero-d-caja">
         <nav class="mm-miga" aria-label="Breadcrumb">

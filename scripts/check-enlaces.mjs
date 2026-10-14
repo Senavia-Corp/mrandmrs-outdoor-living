@@ -265,5 +265,26 @@ lista(fuera);
 console.log('     (git ls-files, no el disco: el disco es esta maquina, donde acaba de');
 console.log('      dejarlo todo el instalador, y por eso nunca puede ver el fallo)');
 
+/* ── D-198 (14-oct-2026): «SKIP TO CONTENT» LLEGA A ALGUN SITIO ────────────────────────────────
+ * El salto del nav (`a.mm-salto`, Nav.astro) apunta a `#contenido`. Base pone ese `id` en el
+ * `<main>` que crea; una plantilla que trae su propio `<main>` tiene que ponerlo ella. Sin destino
+ * el enlace no mueve el foco, y Lighthouse lo daba como fallo en /financing y en las 10 de
+ * /gallery/*. Se mide donde HAY salto: la pagina que no monta el nav (/pool-investment-estimator)
+ * no tiene nada que saltar. Fuera de los `<script>`, que citan selectores con `href="#..."`. */
+const conSalto = []; const saltoSinDestino = [];
+for (const f of ficheros.filter((x) => x.endsWith('.html'))) {
+  const t = fs.readFileSync(f, 'utf8').replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, '');
+  const a = t.match(/<a\b[^>]*\bclass="mm-salto"[^>]*>/)?.[0];
+  if (!a) continue;
+  conSalto.push(f);
+  const destino = a.match(/\shref="#([^"]+)"/)?.[1];
+  if (!destino || !new RegExp(`\\sid="${destino.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`).test(t)) {
+    saltoSinDestino.push(`/${path.relative(ESTATICO, f).replace(/(^|\/)index\.html$/, '')} -> #${destino ?? '(sin href)'}`);
+  }
+}
+check(`${conSalto.length} paginas con «Skip to content»: todas con su destino en la pagina`, saltoSinDestino.length === 0,
+  `${saltoSinDestino.length} sin destino`);
+lista(saltoSinDestino);
+
 console.log(`\n${fallos === 0 ? 'PUERTA VERDE' : `PUERTA ROJA — ${fallos} fallo(s)`}\n`);
 process.exit(fallos ? 1 : 0);
