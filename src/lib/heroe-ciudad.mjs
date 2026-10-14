@@ -59,13 +59,19 @@ function valida(id, clave, donde, porTabla = false) {
   return e;
 }
 
-/** E13 (D-200): `ruta de ciudad -> { id, condado }` de la tabla por condado de piscina nueva. */
+/** E13 (D-200): `ruta de ciudad -> { id, condado, servicio }` de la tabla por condado de piscina nueva. */
+const sinNotas = (o) => Object.entries(o ?? {}).filter(([k]) => !k.startsWith('_'));
+const CONDADO_DE = new Map(sinNotas(DATOS.porCondado).flatMap(([condado, ciudades]) => Object.keys(ciudades).map((c) => [c, condado])));
 const TABLA = new Map([
-  ...Object.entries(DATOS.porCondado ?? {}).filter(([k]) => !k.startsWith('_'))
-    .flatMap(([condado, ciudades]) => Object.entries(ciudades).map(([c, id]) => [`/services/pool-builders/${c}`, { id, condado }])),
+  ...sinNotas(DATOS.porCondado)
+    .flatMap(([condado, ciudades]) => Object.entries(ciudades).map(([c, id]) => [`/services/pool-builders/${c}`, { id, condado, servicio: 'pool-builders' }])),
   // E13 etapa 3: la pagina del condado, con su propia foto.
-  ...Object.entries(DATOS.condados ?? {}).filter(([k]) => !k.startsWith('_'))
-    .map(([condado, id]) => [`/services/pool-builders/${condado}`, { id, condado }]),
+  ...sinNotas(DATOS.condados).map(([condado, id]) => [`/services/pool-builders/${condado}`, { id, condado, servicio: 'pool-builders' }]),
+  // E13 etapa 4: los demas servicios, con el condado de cada ciudad sacado de `porCondado`.
+  ...sinNotas(DATOS.porServicio).flatMap(([servicio, { tabla }]) => sinNotas(tabla).map(([c, id]) => {
+    if (!CONDADO_DE.has(c)) throw new Error(`[heroe-ciudad] porServicio.${servicio}: ${c} no tiene condado en porCondado`);
+    return [`/services/${servicio}/${c}`, { id, condado: CONDADO_DE.get(c), servicio }];
+  })),
 ]);
 const CASI = (DATOS.casiIguales ?? []).map(([a, b]) => [a, b]);
 /** D-204: el alt (y el pie) del hero dice donde se hizo la foto solo en la pagina de ese mismo sitio, con el GPS
@@ -77,23 +83,27 @@ function conLugar(e, ruta) {
   return sitio ? e.alt.replace(/(\.?)$/, ` in ${sitio}$1`) : e.alt;
 }
 let condadosComprobados = false;
-/** LA REGLA DEL CONDADO, una vez por proceso: ninguna foto repetida entre sus paginas (la del condado incluida) y
- *  nunca juntas dos casi iguales. Falla cerrado, con el condado y las rutas en el mensaje. */
+/** LA REGLA DEL CONDADO, una vez por proceso y por servicio: ninguna foto repetida entre sus paginas (la del
+ *  condado incluida, en piscina nueva) salvo lo declarado en `porServicio.<servicio>.repetidas`, y nunca juntas
+ *  dos casi iguales. Falla cerrado, con el condado y las rutas en el mensaje. */
 function compruebaCondados() {
   if (condadosComprobados) return;
   condadosComprobados = true;
-  const porCondado = new Map();
-  for (const [ruta, { condado }] of TABLA) (porCondado.get(condado) ?? porCondado.set(condado, []).get(condado)).push(ruta);
-  for (const [condado, rutas] of porCondado) {
-    const paginas = [...new Set([`/services/pool-builders/${condado}`, ...rutas])];
+  const grupos = new Map();
+  for (const [ruta, { condado, servicio }] of TABLA) { const k = `${servicio}|${condado}`; (grupos.get(k) ?? grupos.set(k, []).get(k)).push(ruta); }
+  for (const [k, rutas] of grupos) {
+    const [servicio, condado] = k.split('|');
+    const paginas = [...new Set([...(servicio === 'pool-builders' ? [`/services/pool-builders/${condado}`] : []), ...rutas])];
     const fotos = paginas.map((r) => [r, fotoDeHeroe(r).id]);
+    const max = DATOS.porServicio?.[servicio]?.repetidas?.[condado]?.max ?? 1;
     const vistas = new Map();
     for (const [r, id] of fotos) {
-      if (vistas.has(id)) throw new Error(`[heroe-ciudad] ${condado}: ${r} y ${vistas.get(id)} comparten hero (${id})`);
-      vistas.set(id, r);
+      const ya = vistas.get(id) ?? [];
+      if (ya.length >= max) throw new Error(`[heroe-ciudad] ${servicio} · ${condado}: ${r} y ${ya.join(', ')} comparten hero (${id})${max > 1 ? `, y se declararon ${max} como mucho` : ''}`);
+      vistas.set(id, [...ya, r]);
     }
     for (const [a, b] of CASI) {
-      if (vistas.has(a) && vistas.has(b)) throw new Error(`[heroe-ciudad] ${condado}: ${vistas.get(a)} (${a}) y ${vistas.get(b)} (${b}) llevan dos fotos casi iguales`);
+      if (vistas.has(a) && vistas.has(b)) throw new Error(`[heroe-ciudad] ${servicio} · ${condado}: ${vistas.get(a)[0]} (${a}) y ${vistas.get(b)[0]} (${b}) llevan dos fotos casi iguales`);
     }
   }
 }
@@ -132,7 +142,8 @@ export function fotoDeHeroe(ruta, rutasDelServicio = rutasDeCiudad(ruta.split('/
 export function fotosDeSeccion(ruta, rutasDelServicio = rutasDeCiudad(ruta.split('/')[2])) {
   const servicio = ruta.split('/')[2];
   const deTabla = TABLA.has(ruta);
-  const bolsa = (deTabla ? DATOS.seccion?.[servicio] : DATOS.bolsas[servicio]) ?? [];
+  // Una pagina por tabla sin lista de seccion propia (reforma, E13 etapa 4) sigue con la bolsa de su servicio.
+  const bolsa = ((deTabla && DATOS.seccion?.[servicio]) || DATOS.bolsas[servicio]) ?? [];
   const hero = fotoDeHeroe(ruta, rutasDelServicio);
   // E13 etapa 3: un condado rota solo entre condados. Intercalados con las ciudades, cuatro caian en
   // la misma foto; asi cada foto de la lista sale como mucho dos veces en los nueve.

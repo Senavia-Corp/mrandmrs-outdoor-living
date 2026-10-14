@@ -206,5 +206,32 @@ for (const [condado, ciudades] of Object.entries(HEROES.porCondado ?? {}).filter
   if (!repetida) condadosOk++;
 }
 console.log(`  ${condadosOk} condado(s) cerrados: sus ciudades son las que enlaza el condado y ningun hero se repite`);
+
+/* E13 etapa 4: los demas servicios por tabla. La tabla cubre EXACTAMENTE las ciudades del servicio (si falta una,
+ * esa pagina vuelve a la bolsa sin que nadie lo vea) y, en lo desplegado, ninguna foto sale en un condado mas
+ * veces de las que declara `repetidas`. */
+const CONDADO_DE = new Map(Object.entries(HEROES.porCondado ?? {}).filter(([k]) => !k.startsWith('_')).flatMap(([co, cs]) => Object.keys(cs).map((c) => [c, co])));
+const PAGINAS_SERVICIO = Object.keys(leerJson('src/data/ciudades-servicios.json').paginas);
+for (const [servicio, { tabla, repetidas = {} }] of Object.entries(HEROES.porServicio ?? {}).filter(([k]) => !k.startsWith('_'))) {
+  const enTabla = Object.keys(tabla).filter((k) => !k.startsWith('_'));
+  const delServicio = PAGINAS_SERVICIO.filter((r) => r.split('/')[2] === servicio).map((r) => r.split('/')[3]);
+  const sobran = enTabla.filter((c) => !delServicio.includes(c)); const faltan = delServicio.filter((c) => !enTabla.includes(c));
+  if (sobran.length || faltan.length) { mal(servicio, `la tabla no casa con las paginas del servicio — sobran: ${sobran.join(', ') || '—'} · faltan: ${faltan.join(', ') || '—'}`); continue; }
+  const cuenta = new Map();
+  for (const c of enTabla) {
+    const h = leer(`/services/${servicio}/${c}`);
+    const img = h && new JSDOM(h).window.document.querySelector('.mm-hero-a-medio img');
+    if (!img) { mal(`${servicio}/${c}`, 'sin foto de hero'); continue; }
+    const k = `${CONDADO_DE.get(c)}|${sinVariante(img.getAttribute('src'))}`;
+    cuenta.set(k, [...(cuenta.get(k) ?? []), c]);
+  }
+  let declaradas = 0;
+  for (const [k, cs] of cuenta) {
+    const [co, f] = k.split('|'); const max = repetidas[co]?.max ?? 1;
+    if (cs.length > max) mal(`${servicio} · ${co}`, `${f} es el hero de ${cs.join(', ')}: ${cs.length} veces y se declararon ${max}`);
+    else if (cs.length > 1) declaradas++;
+  }
+  console.log(`  ${servicio}: ${enTabla.length} ciudades por tabla · ${declaradas} foto(s) repetida(s) en su condado, todas declaradas`);
+}
 console.log(`${fallos ? `PUERTA ROJA — ${fallos} fallo(s)` : 'PUERTA VERDE — dos formas y solo dos'}\n`);
 process.exit(fallos ? 1 : 0);

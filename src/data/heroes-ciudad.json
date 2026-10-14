@@ -130,6 +130,10 @@
     [
       "bi-0661",
       "bi-0662"
+    ],
+    [
+      "bi-0520",
+      "bi-0521"
     ]
   ],
   "seccion": {
@@ -163,5 +167,31 @@
     "_lee_esto": "D-204: donde se hizo la foto, por el GPS de su original (lo leyo el director con mdls; esa tabla no va a la rama publica y no guarda coordenadas). Solo ciudad o condado. El hero de una pagina por tabla anade «in <Ciudad>, FL» o «in <Condado> County» a su alt y a su pie SOLO si la pagina es de esa ciudad o de ese condado. Nada entra aqui sin esa tabla delante.",
     "bi-0661": { "condado": "broward-county-fl", "ciudad": "fort-lauderdale-fl" },
     "bi-1016": { "condado": "broward-county-fl", "ciudad": null }
+  },
+  "porServicio": {
+    "_lee_esto": "E13 etapa 4: el hero por tabla de los servicios que no son piscina nueva. El condado de cada ciudad es el de `porCondado`. En un condado no se repite hero ni van juntas dos casi iguales; `repetidas` dice, con su motivo, cuantas veces puede salir una foto donde el banco no da para mas. Lo que no este ahi tumba el build.",
+    "pool-remodeling": {
+      "tabla": {
+        "boca-raton-fl": "bi-0519",
+        "boynton-beach-fl": "bi-0521",
+        "cedar-key-fl": "bi-0614",
+        "dania-beach-fl": "bi-0519",
+        "delray-beach-fl": "bi-0521",
+        "fort-lauderdale-fl": "bi-0614",
+        "gainesville-fl": "bi-0519",
+        "gulf-stream-fl": "bi-0614",
+        "hollywood-fl": "bi-0521",
+        "manalapan-fl": "bi-0519",
+        "mcintosh-fl": "bi-0521",
+        "miramar-fl": "bi-0614",
+        "ocala-fl": "bi-0519",
+        "palatka-fl": "bi-0521",
+        "west-palm-beach-fl": "bi-0614"
+      },
+      "repetidas": {
+        "palm-beach-county-fl": { "max": 2, "motivo": "6 ciudades y 3 fotos de reforma terminada que se distinguen (bi-0520 es casi igual a bi-0521 y sale en el indice de servicios de todas)" },
+        "broward-county-fl": { "max": 2, "motivo": "4 ciudades y las mismas 3 fotos" }
+      }
+    }
   }
 }
