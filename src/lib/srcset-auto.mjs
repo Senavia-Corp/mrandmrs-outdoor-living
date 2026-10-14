@@ -35,11 +35,14 @@ const MEDIA_LCP = '(max-width: 767px)';
  * de alto (700 por debajo de 1200); ficha del indice de servicios, 53vw y 765 px desde 1440, a 3:2.
  * Si esas cajas cambian en `sistema.css`, cambian aqui. */
 const DESDE = 992;
+/* Un fichero que se queda a menos de un 3 % de cubrir, cubre igual. Sin esta holgura una foto 3:2 pedia 1025 px, la
+ * variante de 1024 no valia por un pixel y el navegador se bajaba el original de 1800 (271 KB en vez de 60). */
+const HOLGURA = 0.97;
 const FOTOS_HUECO = HUECO.fotos ?? {};
 const SIZES_HUECO = {
-  lam: (r) => { const k = Math.max(1, 1.25 * r); return `(min-width: 1440px) ${Math.ceil(547 * k)}px, (min-width: ${DESDE}px) ${Math.ceil(38 * k)}vw, 100vw`; },
-  hero: (r) => `(min-width: 1200px) max(41vw, ${Math.ceil(720 * r)}px), (min-width: ${DESDE}px) max(48vw, ${Math.ceil(700 * r)}px), 100vw`,
-  serv: (r) => { const k = Math.max(1, r / 1.5); return `(min-width: 1440px) ${Math.ceil(765 * k)}px, (min-width: ${DESDE}px) ${Math.ceil(53 * k)}vw, 100vw`; },
+  lam: (r) => { const k = Math.max(1, 1.25 * r) * HOLGURA; return `(min-width: 1440px) ${Math.round(547 * k)}px, (min-width: ${DESDE}px) ${Math.round(38 * k)}vw, 100vw`; },
+  hero: (r) => `(min-width: 1200px) max(40vw, ${Math.round(720 * r * HOLGURA)}px), (min-width: ${DESDE}px) max(47vw, ${Math.round(700 * r * HOLGURA)}px), 100vw`,
+  serv: (r) => { const k = Math.max(1, r / 1.5) * HOLGURA; return `(min-width: 1440px) ${Math.round(765 * k)}px, (min-width: ${DESDE}px) ${Math.round(53 * k)}vw, 100vw`; },
 };
 const attr = (tag, n) => tag.match(new RegExp(`\\s${n}="([^"]*)"`))?.[1];
 function enHueco(tipo, img, antes = '') {

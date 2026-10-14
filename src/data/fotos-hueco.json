@@ -466,8 +466,8 @@
       "/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-full-serv800.avif"
      ],
      [
-      1200,
-      "/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-full-serv1200.avif"
+      1215,
+      "/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-full-serv1215.avif"
      ]
     ],
     "_hecha": "/images/banco/pergolas/insulated-patio-cover-black-frame-lap-pool-sunset-florida-01.webp · 50% 55%"
@@ -552,6 +552,808 @@
      ]
     ],
     "_hecha": "/images/banco/construction/pool-construction-l-shaped-pool-spa-aerial-florida-01.webp · 45% 50%"
+   }
+  },
+  "/images/obra/obra-064/pool-shell-repair-spa-bond-beam-rebuild.avif": {
+   "lam": {
+    "de": "/images/banco/remodeling/pool-remodeling-spa-new-bond-beam-drained-pool-florida-01.webp",
+    "pos": "55% 30%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/obra/obra-064/pool-shell-repair-spa-bond-beam-rebuild-lam560.avif"
+     ],
+     [
+      857,
+      "/images/obra/obra-064/pool-shell-repair-spa-bond-beam-rebuild-lam857.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/remodeling/pool-remodeling-spa-new-bond-beam-drained-pool-florida-01.webp · 55% 30% · zoom 1.4",
+    "zoom": 1.4
+   }
+  },
+  "/images/banco/remodeling/pool-remodeling-travertine-deck-glass-tile-finished-florida-01.webp": {
+   "lam": {
+    "de": "/images/banco/remodeling/pool-remodeling-travertine-deck-glass-tile-finished-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/banco/remodeling/pool-remodeling-travertine-deck-glass-tile-finished-florida-01-lam560.avif"
+     ],
+     [
+      800,
+      "/images/banco/remodeling/pool-remodeling-travertine-deck-glass-tile-finished-florida-01-lam800.avif"
+     ],
+     [
+      960,
+      "/images/banco/remodeling/pool-remodeling-travertine-deck-glass-tile-finished-florida-01-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/remodeling/pool-remodeling-travertine-deck-glass-tile-finished-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/obra-053/pool-renovation-travertine-deck-cobalt-tile-spa.avif": {
+   "lam": {
+    "de": "/images/banco/remodeling/pool-remodeling-travertine-deck-raised-spa-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/obra/obra-053/pool-renovation-travertine-deck-cobalt-tile-spa-lam560.avif"
+     ],
+     [
+      800,
+      "/images/obra/obra-053/pool-renovation-travertine-deck-cobalt-tile-spa-lam800.avif"
+     ],
+     [
+      960,
+      "/images/obra/obra-053/pool-renovation-travertine-deck-cobalt-tile-spa-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/remodeling/pool-remodeling-travertine-deck-raised-spa-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/obra-048/pool-remodeling-crew-at-work-on-drained-pool.avif": {
+   "lam": {
+    "de": "/images/banco/remodeling/pool-remodeling-travertine-deck-crew-working-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/obra/obra-048/pool-remodeling-crew-at-work-on-drained-pool-lam560.avif"
+     ],
+     [
+      800,
+      "/images/obra/obra-048/pool-remodeling-crew-at-work-on-drained-pool-lam800.avif"
+     ],
+     [
+      1100,
+      "/images/obra/obra-048/pool-remodeling-crew-at-work-on-drained-pool-lam1100.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/remodeling/pool-remodeling-travertine-deck-crew-working-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/obra-064/pool-renovation-new-white-plaster-hand-troweled.avif": {
+   "lam": {
+    "de": "/images/banco/remodeling/pool-remodeling-workers-troweling-new-plaster-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/obra/obra-064/pool-renovation-new-white-plaster-hand-troweled-lam560.avif"
+     ],
+     [
+      800,
+      "/images/obra/obra-064/pool-renovation-new-white-plaster-hand-troweled-lam800.avif"
+     ],
+     [
+      1100,
+      "/images/obra/obra-064/pool-renovation-new-white-plaster-hand-troweled-lam1100.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/remodeling/pool-remodeling-workers-troweling-new-plaster-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/banco/louvered/louvered-roof-white-open-blades-travertine-patio-florida-01.webp": {
+   "lam": {
+    "de": "/images/banco/louvered/louvered-roof-white-open-blades-travertine-patio-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/banco/louvered/louvered-roof-white-open-blades-travertine-patio-florida-01-lam560.avif"
+     ],
+     [
+      800,
+      "/images/banco/louvered/louvered-roof-white-open-blades-travertine-patio-florida-01-lam800.avif"
+     ],
+     [
+      960,
+      "/images/banco/louvered/louvered-roof-white-open-blades-travertine-patio-florida-01-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/louvered/louvered-roof-white-open-blades-travertine-patio-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/banco/louvered/louvered-roof-rooftop-terrace-closed-blades-aerial-florida-01.webp": {
+   "lam": {
+    "de": "/images/banco/louvered/louvered-roof-rooftop-terrace-closed-blades-aerial-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/banco/louvered/louvered-roof-rooftop-terrace-closed-blades-aerial-florida-01-lam560.avif"
+     ],
+     [
+      800,
+      "/images/banco/louvered/louvered-roof-rooftop-terrace-closed-blades-aerial-florida-01-lam800.avif"
+     ],
+     [
+      960,
+      "/images/banco/louvered/louvered-roof-rooftop-terrace-closed-blades-aerial-florida-01-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/louvered/louvered-roof-rooftop-terrace-closed-blades-aerial-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-heroe.avif": {
+   "hero": {
+    "de": "/images/banco/louvered/louvered-roof-white-large-span-travertine-patio-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 1.3333,
+    "fuentes": [
+     [
+      960,
+      "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-heroe-hero960.avif"
+     ],
+     [
+      1280,
+      "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-heroe-hero1280.avif"
+     ],
+     [
+      1600,
+      "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-heroe-hero1600.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/louvered/louvered-roof-white-large-span-travertine-patio-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/obra-010/driveway-demolition-skid-steer-base-grading-florida-proceso0.avif": {
+   "lam": {
+    "de": "/images/banco/decks/driveway-demolition-skid-steer-base-grading-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/obra/obra-010/driveway-demolition-skid-steer-base-grading-florida-proceso0-lam560.avif"
+     ],
+     [
+      800,
+      "/images/obra/obra-010/driveway-demolition-skid-steer-base-grading-florida-proceso0-lam800.avif"
+     ],
+     [
+      960,
+      "/images/obra/obra-010/driveway-demolition-skid-steer-base-grading-florida-proceso0-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/decks/driveway-demolition-skid-steer-base-grading-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/banco/decks/limestone-pool-deck-round-spa-trellis-wall-florida-01.webp": {
+   "lam": {
+    "de": "/images/banco/decks/limestone-pool-deck-round-spa-trellis-wall-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/banco/decks/limestone-pool-deck-round-spa-trellis-wall-florida-01-lam560.avif"
+     ],
+     [
+      800,
+      "/images/banco/decks/limestone-pool-deck-round-spa-trellis-wall-florida-01-lam800.avif"
+     ],
+     [
+      960,
+      "/images/banco/decks/limestone-pool-deck-round-spa-trellis-wall-florida-01-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/decks/limestone-pool-deck-round-spa-trellis-wall-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/obra-010/concrete-paver-driveway-formwork-grid-florida-proceso2.avif": {
+   "lam": {
+    "de": "/images/banco/decks/concrete-paver-driveway-formwork-grid-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/obra/obra-010/concrete-paver-driveway-formwork-grid-florida-proceso2-lam560.avif"
+     ],
+     [
+      800,
+      "/images/obra/obra-010/concrete-paver-driveway-formwork-grid-florida-proceso2-lam800.avif"
+     ],
+     [
+      1100,
+      "/images/obra/obra-010/concrete-paver-driveway-formwork-grid-florida-proceso2-lam1100.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/decks/concrete-paver-driveway-formwork-grid-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/obra-048/travertine-pool-deck-french-pattern-rock-border-florida-proceso3.avif": {
+   "lam": {
+    "de": "/images/banco/decks/travertine-pool-deck-french-pattern-rock-border-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/obra/obra-048/travertine-pool-deck-french-pattern-rock-border-florida-proceso3-lam560.avif"
+     ],
+     [
+      800,
+      "/images/obra/obra-048/travertine-pool-deck-french-pattern-rock-border-florida-proceso3-lam800.avif"
+     ],
+     [
+      960,
+      "/images/obra/obra-048/travertine-pool-deck-french-pattern-rock-border-florida-proceso3-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/decks/travertine-pool-deck-french-pattern-rock-border-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-heroe.avif": {
+   "hero": {
+    "de": "/images/banco/decks/limestone-paver-patio-lake-view-herringbone-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 1.3333,
+    "fuentes": [
+     [
+      960,
+      "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-heroe-hero960.avif"
+     ],
+     [
+      1280,
+      "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-heroe-hero1280.avif"
+     ],
+     [
+      1600,
+      "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-heroe-hero1600.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/decks/limestone-paver-patio-lake-view-herringbone-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/banco/landscaping/landscaping-poolside-tropical-bed-palm-trunks-mulch-florida-01.webp": {
+   "lam": {
+    "de": "/images/banco/landscaping/landscaping-poolside-tropical-bed-palm-trunks-mulch-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/banco/landscaping/landscaping-poolside-tropical-bed-palm-trunks-mulch-florida-01-lam560.avif"
+     ],
+     [
+      800,
+      "/images/banco/landscaping/landscaping-poolside-tropical-bed-palm-trunks-mulch-florida-01-lam800.avif"
+     ],
+     [
+      956,
+      "/images/banco/landscaping/landscaping-poolside-tropical-bed-palm-trunks-mulch-florida-01-lam956.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/landscaping/landscaping-poolside-tropical-bed-palm-trunks-mulch-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/suelta/modern-patio-cover-woodgrain-ceiling-lights-night-florida-proceso0.avif": {
+   "lam": {
+    "de": "/images/banco/pergolas/modern-patio-cover-woodgrain-ceiling-lights-night-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/obra/suelta/modern-patio-cover-woodgrain-ceiling-lights-night-florida-proceso0-lam560.avif"
+     ],
+     [
+      800,
+      "/images/obra/suelta/modern-patio-cover-woodgrain-ceiling-lights-night-florida-proceso0-lam800.avif"
+     ],
+     [
+      960,
+      "/images/obra/suelta/modern-patio-cover-woodgrain-ceiling-lights-night-florida-proceso0-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pergolas/modern-patio-cover-woodgrain-ceiling-lights-night-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/suelta/large-patio-cover-recessed-lighting-night-pavers-florida-proceso1.avif": {
+   "lam": {
+    "de": "/images/banco/pergolas/large-patio-cover-recessed-lighting-night-pavers-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/obra/suelta/large-patio-cover-recessed-lighting-night-pavers-florida-proceso1-lam560.avif"
+     ],
+     [
+      800,
+      "/images/obra/suelta/large-patio-cover-recessed-lighting-night-pavers-florida-proceso1-lam800.avif"
+     ],
+     [
+      960,
+      "/images/obra/suelta/large-patio-cover-recessed-lighting-night-pavers-florida-proceso1-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pergolas/large-patio-cover-recessed-lighting-night-pavers-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/obra-033/louvered-roof-blue-led-night-outdoor-lounge-florida-proceso3.avif": {
+   "lam": {
+    "de": "/images/banco/louvered/louvered-roof-blue-led-night-outdoor-lounge-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/obra/obra-033/louvered-roof-blue-led-night-outdoor-lounge-florida-proceso3-lam560.avif"
+     ],
+     [
+      800,
+      "/images/obra/obra-033/louvered-roof-blue-led-night-outdoor-lounge-florida-proceso3-lam800.avif"
+     ],
+     [
+      960,
+      "/images/obra/obra-033/louvered-roof-blue-led-night-outdoor-lounge-florida-proceso3-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/louvered/louvered-roof-blue-led-night-outdoor-lounge-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-heroe.avif": {
+   "hero": {
+    "de": "/images/banco/pergolas/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 1.3333,
+    "fuentes": [
+     [
+      960,
+      "/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-heroe-hero960.avif"
+     ],
+     [
+      1280,
+      "/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-heroe-hero1280.avif"
+     ],
+     [
+      1600,
+      "/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-heroe-hero1600.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pergolas/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/obra-045/pole-barn-construction-slab-prep-aerial-florida-proceso0.avif": {
+   "lam": {
+    "de": "/images/banco/pole/pole-barn-construction-slab-prep-aerial-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/obra/obra-045/pole-barn-construction-slab-prep-aerial-florida-proceso0-lam560.avif"
+     ],
+     [
+      800,
+      "/images/obra/obra-045/pole-barn-construction-slab-prep-aerial-florida-proceso0-lam800.avif"
+     ],
+     [
+      960,
+      "/images/obra/obra-045/pole-barn-construction-slab-prep-aerial-florida-proceso0-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pole/pole-barn-construction-slab-prep-aerial-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/banco/pole/pole-barn-enclosed-tan-metal-siding-lean-to-florida-01.webp": {
+   "lam": {
+    "de": "/images/banco/pole/pole-barn-enclosed-tan-metal-siding-lean-to-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/banco/pole/pole-barn-enclosed-tan-metal-siding-lean-to-florida-01-lam560.avif"
+     ],
+     [
+      800,
+      "/images/banco/pole/pole-barn-enclosed-tan-metal-siding-lean-to-florida-01-lam800.avif"
+     ],
+     [
+      960,
+      "/images/banco/pole/pole-barn-enclosed-tan-metal-siding-lean-to-florida-01-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pole/pole-barn-enclosed-tan-metal-siding-lean-to-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/banco/pole/pole-barn-long-equipment-shed-metal-roof-aerial-florida-01.webp": {
+   "lam": {
+    "de": "/images/banco/pole/pole-barn-long-equipment-shed-metal-roof-aerial-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/banco/pole/pole-barn-long-equipment-shed-metal-roof-aerial-florida-01-lam560.avif"
+     ],
+     [
+      800,
+      "/images/banco/pole/pole-barn-long-equipment-shed-metal-roof-aerial-florida-01-lam800.avif"
+     ],
+     [
+      960,
+      "/images/banco/pole/pole-barn-long-equipment-shed-metal-roof-aerial-florida-01-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pole/pole-barn-long-equipment-shed-metal-roof-aerial-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/obra-114/pole-barn-construction-posts-steel-trusses-aerial-florida-proceso1.avif": {
+   "lam": {
+    "de": "/images/banco/pole/pole-barn-construction-posts-steel-trusses-aerial-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/obra/obra-114/pole-barn-construction-posts-steel-trusses-aerial-florida-proceso1-lam560.avif"
+     ],
+     [
+      800,
+      "/images/obra/obra-114/pole-barn-construction-posts-steel-trusses-aerial-florida-proceso1-lam800.avif"
+     ],
+     [
+      960,
+      "/images/obra/obra-114/pole-barn-construction-posts-steel-trusses-aerial-florida-proceso1-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pole/pole-barn-construction-posts-steel-trusses-aerial-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/obra-114/pole-barn-construction-roof-purlins-crew-florida-proceso2.avif": {
+   "lam": {
+    "de": "/images/banco/pole/pole-barn-construction-roof-purlins-crew-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/obra/obra-114/pole-barn-construction-roof-purlins-crew-florida-proceso2-lam560.avif"
+     ],
+     [
+      800,
+      "/images/obra/obra-114/pole-barn-construction-roof-purlins-crew-florida-proceso2-lam800.avif"
+     ],
+     [
+      960,
+      "/images/obra/obra-114/pole-barn-construction-roof-purlins-crew-florida-proceso2-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pole/pole-barn-construction-roof-purlins-crew-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/obra-114/pole-barn-construction-metal-roof-install-aerial-florida-proceso3.avif": {
+   "lam": {
+    "de": "/images/banco/pole/pole-barn-construction-metal-roof-install-aerial-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/obra/obra-114/pole-barn-construction-metal-roof-install-aerial-florida-proceso3-lam560.avif"
+     ],
+     [
+      800,
+      "/images/obra/obra-114/pole-barn-construction-metal-roof-install-aerial-florida-proceso3-lam800.avif"
+     ],
+     [
+      960,
+      "/images/obra/obra-114/pole-barn-construction-metal-roof-install-aerial-florida-proceso3-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pole/pole-barn-construction-metal-roof-install-aerial-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/suelta/pole-barn-narrow-open-shelter-new-wood-posts-florida-heroe.avif": {
+   "hero": {
+    "de": "/images/banco/pole/pole-barn-narrow-open-shelter-new-wood-posts-florida-01.webp",
+    "pos": "50% 45%",
+    "recorte": "8/9",
+    "ratio": 0.8889,
+    "fuentes": [
+     [
+      960,
+      "/images/obra/suelta/pole-barn-narrow-open-shelter-new-wood-posts-florida-heroe-hero960.avif"
+     ],
+     [
+      1200,
+      "/images/obra/suelta/pole-barn-narrow-open-shelter-new-wood-posts-florida-heroe-hero1200.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pole/pole-barn-narrow-open-shelter-new-wood-posts-florida-01.webp · 50% 45% · 8/9"
+   }
+  },
+  "/images/banco/louvered/louvered-pergola-bronze-closed-roof-dining-area-florida-01.webp": {
+   "lam": {
+    "de": "/images/banco/louvered/louvered-pergola-bronze-closed-roof-dining-area-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/banco/louvered/louvered-pergola-bronze-closed-roof-dining-area-florida-01-lam560.avif"
+     ],
+     [
+      800,
+      "/images/banco/louvered/louvered-pergola-bronze-closed-roof-dining-area-florida-01-lam800.avif"
+     ],
+     [
+      960,
+      "/images/banco/louvered/louvered-pergola-bronze-closed-roof-dining-area-florida-01-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/louvered/louvered-pergola-bronze-closed-roof-dining-area-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/obra-048/pool-remodeling-travertine-deck-glass-tile-completed.avif": {
+   "hero": {
+    "de": "/images/banco/remodeling/pool-remodeling-travertine-deck-rock-landscaping-florida-02.webp",
+    "pos": "50% 50%",
+    "ratio": 1.3333,
+    "fuentes": [
+     [
+      960,
+      "/images/obra/obra-048/pool-remodeling-travertine-deck-glass-tile-completed-hero960.avif"
+     ],
+     [
+      1280,
+      "/images/obra/obra-048/pool-remodeling-travertine-deck-glass-tile-completed-hero1280.avif"
+     ],
+     [
+      1600,
+      "/images/obra/obra-048/pool-remodeling-travertine-deck-glass-tile-completed-hero1600.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/remodeling/pool-remodeling-travertine-deck-rock-landscaping-florida-02.webp · 50% 50%"
+   }
+  },
+  "/images/obra/obra-100/freestanding-pergola-dark-bronze-pool-spa-canal-florida-heroe.avif": {
+   "hero": {
+    "de": "/images/banco/pergolas/freestanding-pergola-dark-bronze-pool-spa-canal-florida-02.webp",
+    "pos": "50% 50%",
+    "recorte": "16/9",
+    "ratio": 1.7778,
+    "fuentes": [
+     [
+      1280,
+      "/images/obra/obra-100/freestanding-pergola-dark-bronze-pool-spa-canal-florida-heroe-hero1280.avif"
+     ],
+     [
+      1600,
+      "/images/obra/obra-100/freestanding-pergola-dark-bronze-pool-spa-canal-florida-heroe-hero1600.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pergolas/freestanding-pergola-dark-bronze-pool-spa-canal-florida-02.webp · 50% 50% · 16/9"
+   }
+  },
+  "/images/images/motorized-louvered-roof-9/motorized-louvered-roof-installers-florida-09.jpg": {
+   "lam": {
+    "de": "/images/images/motorized-louvered-roof-9/motorized-louvered-roof-installers-florida-09.jpg",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/images/motorized-louvered-roof-9/motorized-louvered-roof-installers-florida-09-lam560.avif"
+     ],
+     [
+      746,
+      "/images/images/motorized-louvered-roof-9/motorized-louvered-roof-installers-florida-09-lam746.avif"
+     ]
+    ],
+    "_hecha": "/images/images/motorized-louvered-roof-9/motorized-louvered-roof-installers-florida-09.jpg · 50% 50%"
+   }
+  },
+  "/images/images/pool-screen-9/pool-screen-enclosure-builders-florida-09.jpg": {
+   "lam": {
+    "de": "/images/images/pool-screen-9/pool-screen-enclosure-builders-florida-09.jpg",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      558,
+      "/images/images/pool-screen-9/pool-screen-enclosure-builders-florida-09-lam558.avif"
+     ]
+    ],
+    "_hecha": "/images/images/pool-screen-9/pool-screen-enclosure-builders-florida-09.jpg · 50% 50%"
+   }
+  },
+  "/images/images/pool-screen-7/pool-screen-enclosure-builders-florida-07.jpg": {
+   "hero": {
+    "de": "/images/images/pool-screen-7/pool-screen-enclosure-builders-florida-07.jpg",
+    "pos": "50% 50%",
+    "recorte": "1250/698",
+    "ratio": 1.7908,
+    "fuentes": [
+     [
+      1250,
+      "/images/images/pool-screen-7/pool-screen-enclosure-builders-florida-07-hero1250.avif"
+     ]
+    ],
+    "_hecha": "/images/images/pool-screen-7/pool-screen-enclosure-builders-florida-07.jpg · 50% 50% · 1250/698"
+   }
+  },
+  "/images/images/retractable-screen-1/retractable-screen-installation-contractors-florida-1.jpg": {
+   "lam": {
+    "de": "/images/images/retractable-screen-1/retractable-screen-installation-contractors-florida-1.jpg",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/images/retractable-screen-1/retractable-screen-installation-contractors-florida-1-lam560.avif"
+     ],
+     [
+      666,
+      "/images/images/retractable-screen-1/retractable-screen-installation-contractors-florida-1-lam666.avif"
+     ]
+    ],
+    "_hecha": "/images/images/retractable-screen-1/retractable-screen-installation-contractors-florida-1.jpg · 50% 50%"
+   }
+  },
+  "/images/images/patio-screen-8/patio-screen-enclosure-builders-contractors-north-south-florida-08.jpg": {
+   "lam": {
+    "de": "/images/images/patio-screen-8/patio-screen-enclosure-builders-contractors-north-south-florida-08.jpg",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/images/patio-screen-8/patio-screen-enclosure-builders-contractors-north-south-florida-08-lam560.avif"
+     ],
+     [
+      671,
+      "/images/images/patio-screen-8/patio-screen-enclosure-builders-contractors-north-south-florida-08-lam671.avif"
+     ]
+    ],
+    "_hecha": "/images/images/patio-screen-8/patio-screen-enclosure-builders-contractors-north-south-florida-08.jpg · 50% 50%"
+   }
+  },
+  "/images/images/deck-9/custom-deck-builders-contractors-north-south-florida-09.jpg": {
+   "lam": {
+    "de": "/images/images/deck-9/custom-deck-builders-contractors-north-south-florida-09.jpg",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      558,
+      "/images/images/deck-9/custom-deck-builders-contractors-north-south-florida-09-lam558.avif"
+     ]
+    ],
+    "_hecha": "/images/images/deck-9/custom-deck-builders-contractors-north-south-florida-09.jpg · 50% 50%"
+   }
+  },
+  "/images/images/landscaping-9/luxury-landscaping-construction-contractors-florida-09.jpg": {
+   "lam": {
+    "de": "/images/images/landscaping-9/luxury-landscaping-construction-contractors-florida-09.jpg",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      558,
+      "/images/images/landscaping-9/luxury-landscaping-construction-contractors-florida-09-lam558.avif"
+     ]
+    ],
+    "_hecha": "/images/images/landscaping-9/luxury-landscaping-construction-contractors-florida-09.jpg · 50% 50%"
+   }
+  },
+  "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-heroe.avif": {
+   "hero": {
+    "de": "/images/banco/landscaping/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-01.webp",
+    "pos": "50% 50%",
+    "recorte": "16/9",
+    "ratio": 1.7778,
+    "fuentes": [
+     [
+      1280,
+      "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-heroe-hero1280.avif"
+     ],
+     [
+      1600,
+      "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-heroe-hero1600.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/landscaping/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-01.webp · 50% 50% · 16/9"
+   }
+  },
+  "/images/images/irrigation-9/automated-irrigation-system-installers-florida-09.jpg": {
+   "lam": {
+    "de": "/images/images/irrigation-9/automated-irrigation-system-installers-florida-09.jpg",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      558,
+      "/images/images/irrigation-9/automated-irrigation-system-installers-florida-09-lam558.avif"
+     ]
+    ],
+    "_hecha": "/images/images/irrigation-9/automated-irrigation-system-installers-florida-09.jpg · 50% 50%"
+   }
+  },
+  "/images/images/irrigation-10/automated-irrigation-system-installers-florida-10.jpg": {
+   "hero": {
+    "de": "/images/images/irrigation-10/automated-irrigation-system-installers-florida-10.jpg",
+    "pos": "50% 50%",
+    "recorte": "1250/698",
+    "ratio": 1.7908,
+    "fuentes": [
+     [
+      1250,
+      "/images/images/irrigation-10/automated-irrigation-system-installers-florida-10-hero1250.avif"
+     ]
+    ],
+    "_hecha": "/images/images/irrigation-10/automated-irrigation-system-installers-florida-10.jpg · 50% 50% · 1250/698"
+   }
+  },
+  "/images/images/pole-barn-10/pole-barn-steel-building-contractors-florida-10.jpg": {
+   "lam": {
+    "de": "/images/images/pole-barn-10/pole-barn-steel-building-contractors-florida-10.jpg",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/images/pole-barn-10/pole-barn-steel-building-contractors-florida-10-lam560.avif"
+     ],
+     [
+      746,
+      "/images/images/pole-barn-10/pole-barn-steel-building-contractors-florida-10-lam746.avif"
+     ]
+    ],
+    "_hecha": "/images/images/pole-barn-10/pole-barn-steel-building-contractors-florida-10.jpg · 50% 50%"
+   }
+  },
+  "/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-heroe.avif": {
+   "hero": {
+    "de": "/images/banco/pergolas/insulated-patio-cover-black-frame-lap-pool-sunset-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 1.3333,
+    "fuentes": [
+     [
+      960,
+      "/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-heroe-hero960.avif"
+     ],
+     [
+      1215,
+      "/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-heroe-hero1215.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pergolas/insulated-patio-cover-black-frame-lap-pool-sunset-florida-01.webp · 50% 50%"
    }
   }
  }

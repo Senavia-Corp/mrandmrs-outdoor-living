@@ -308,7 +308,13 @@ const SLIDERS = JSON.stringify(
           foto.srcset = f.srcset; foto.sizes = f.sizes; foto.src = f.getAttribute('src');
           foto.alt = f.alt; foto.style.objectPosition = f.style.objectPosition;
           // E10: en escritorio la figura pinta la derivada 4:5 del paso (`<source>`); sin ella, el `<img>`.
-          const fuente = medioPasos.querySelector('source');
+          // Si el primer paso no tenia derivada la figura llega sin `<picture>`: lo estrena el primero que la tenga.
+          let fuente = medioPasos.querySelector('source');
+          if (!fuente && f.dataset.mmHueco) {
+            fuente = Object.assign(document.createElement('source'), { type: 'image/avif', media: '(min-width: 992px)', sizes: '(min-width: 1440px) 547px, 38vw' });
+            const marco = document.createElement('picture');
+            foto.replaceWith(marco); marco.append(fuente, foto);
+          }
           if (fuente) { if (f.dataset.mmHueco) fuente.srcset = f.dataset.mmHueco; else fuente.removeAttribute('srcset'); }
         }
         pie.dataset.n = `${dos(k + 1)} / ${dos(pasos.length)}`;

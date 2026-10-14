@@ -21,6 +21,9 @@
  *   serv · indice de servicios · 3:2 · 800, 1200 y 1530 px (la caja mide 765 x 510)
  *
  * Una receta puede llevar `recorte` ("8/9") si a esa foto le va otra proporcion que la del hueco.
+ * Y `zoom` (1.4) para cerrar el encuadre sobre `pos` cuando el cuadro entero ensena algo que sobra.
+ * La fuente puede ser el propio JPEG que se sirve (mismo encuadre, en AVIF y sin lo que la caja tira);
+ * de un AVIF ya servido no se deriva: recomprimirlo resta y no añade.
  * Nunca amplia: si el recorte da menos que un ancho, ese ancho se queda en lo que da. Y dice a
  * cuanto queda cada foto en su caja a densidad 2: por debajo de 1,5x no merece derivada, es
  * candidata a otra foto.
@@ -34,12 +37,13 @@ const DATOS = path.join(RAIZ, 'src/data/fotos-hueco.json');
 const CHECK = process.argv.includes('--check');
 const HUECOS = {
   lam: { ratio: 4 / 5, anchos: [560, 800, 1100], caja: [547, 683] },
-  hero: { ratio: 4 / 3, anchos: [960, 1280, 1600], caja: [573, 648] },
+  hero: { ratio: 4 / 3, anchos: [960, 1280, 1600], caja: [573, 648], altoMin: 560 },   // la caja del hero nunca baja de 560 px de alto
   serv: { ratio: 3 / 2, anchos: [800, 1200, 1530], caja: [765, 510] },
 };
 const enDisco = (u) => path.join(RAIZ, 'public', decodeURI(u));
 const datos = JSON.parse(fs.readFileSync(DATOS, 'utf8'));
 let fallos = 0, nuevas = 0, total = 0;
+const esperadas = new Set();
 
 for (const [src, huecos] of Object.entries(datos.fotos)) for (const [tipo, d] of Object.entries(huecos)) {
   if (!HUECOS[tipo]) { console.error(`✗ ${src} · hueco «${tipo}» no existe`); fallos++; continue; }
@@ -50,12 +54,15 @@ for (const [src, huecos] of Object.entries(datos.fotos)) for (const [tipo, d] of
   // el recorte `cover` a la proporcion del hueco, con `pos` como `object-position`
   let w = m.width, h = Math.round(w / H.ratio);
   if (h > m.height) { h = m.height; w = Math.round(h * H.ratio); }
+  // `zoom: 1.4` cierra el recorte sobre `pos` para dejar fuera lo que estorba en los bordes; cuesta nitidez, y se dice
+  if (d.zoom > 1) { w = Math.round(w / d.zoom); h = Math.round(w / H.ratio); }
   const [px, py] = d.pos.split(/\s+/).map((v) => parseFloat(v) / 100);
   const recorte = { left: Math.round((m.width - w) * px), top: Math.round((m.height - h) * py), width: w, height: h };
-  const anchos = [...new Set(H.anchos.map((a) => Math.min(a, w)))].filter((a, i, l) => i === 0 || a - l[i - 1] >= 80);
+  // el mayor siempre es todo lo que da el recorte; un ancho que quede a menos de 80 px del siguiente sobra
+  const anchos = [...new Set(H.anchos.map((a) => Math.min(a, w)))].filter((a, i, l) => i === l.length - 1 || (l[i + 1] - a >= 80 && a / H.ratio >= (H.altoMin ?? 0)));
   const fuentes = anchos.map((a) => [a, src.replace(/\.\w+$/, `-${tipo}${a}.avif`)]);
   // la receta con la que se hicieron los ficheros: si `de`, `pos` o `recorte` cambian, se rehacen (y `--check` lo dice)
-  const receta = [d.de, d.pos, d.recorte].filter(Boolean).join(' · ');
+  const receta = [d.de, d.pos, d.recorte, d.zoom && `zoom ${d.zoom}`].filter(Boolean).join(' · ');
   if (CHECK) {
     if (JSON.stringify(d.fuentes) !== JSON.stringify(fuentes) || d.ratio !== +H.ratio.toFixed(4) || d._hecha !== receta) { console.error(`✗ ${src} · ${tipo}: \`fuentes\` no es lo que sale de su receta: vuelve a correr el guion`); fallos++; continue; }
     for (const [a, u] of fuentes) {
@@ -69,6 +76,14 @@ for (const [src, huecos] of Object.entries(datos.fotos)) for (const [tipo, d] of
     console.log(`${da < 1.5 ? '!!' : 'ok'} ${tipo.padEnd(4)} ${da.toFixed(2)}x a densidad 2 · ${w}x${h} de ${m.width}x${m.height} · ${path.basename(src)}${da < 1.5 ? ' — no llega a 1,5x: candidata a otra foto' : ''}`);
   }
   total += fuentes.length;
+  for (const [, u] of fuentes) esperadas.add(u);
+}
+// derivadas que ya no pide ninguna receta: se borran (y `--check` las canta), que el repo no acumule ficheros sin uso
+const carpetas = new Set(Object.keys(datos.fotos).map((u) => path.dirname(u)));
+for (const c of carpetas) for (const f of fs.existsSync(enDisco(c)) ? fs.readdirSync(enDisco(c)) : []) {
+  const u = `${c}/${f}`;
+  if (!/-(?:lam|hero|serv)\d+\.avif$/.test(f) || esperadas.has(u)) continue;
+  if (CHECK) { console.error(`✗ derivada sin receta: ${u}`); fallos++; } else { fs.unlinkSync(enDisco(u)); console.log(`   borrada, ya sin receta: ${u}`); }
 }
 if (!CHECK) fs.writeFileSync(DATOS, JSON.stringify(datos, null, 1) + '\n');
 if (fallos) { console.error(`\n✗ fotos de hueco: ${fallos} fallo(s)`); process.exit(1); }
