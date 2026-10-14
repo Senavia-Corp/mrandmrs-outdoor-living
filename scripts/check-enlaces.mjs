@@ -265,26 +265,27 @@ lista(fuera);
 console.log('     (git ls-files, no el disco: el disco es esta maquina, donde acaba de');
 console.log('      dejarlo todo el instalador, y por eso nunca puede ver el fallo)');
 
-/* ── D-198 (14-oct-2026): «SKIP TO CONTENT» LLEGA A ALGUN SITIO ────────────────────────────────
- * El salto del nav (`a.mm-salto`, Nav.astro) apunta a `#contenido`. Base pone ese `id` en el
- * `<main>` que crea; una plantilla que trae su propio `<main>` tiene que ponerlo ella. Sin destino
- * el enlace no mueve el foco, y Lighthouse lo daba como fallo en /financing y en las 10 de
- * /gallery/*. Se mide donde HAY salto: la pagina que no monta el nav (/pool-investment-estimator)
- * no tiene nada que saltar. Fuera de los `<script>`, que citan selectores con `href="#..."`. */
-const conSalto = []; const saltoSinDestino = [];
+/* ── D-198 / D-199 (14-oct-2026): TODO `href="#x"` LLEGA A ALGUN SITIO ──────────────────────────
+ * Un ancla a la misma pagina sin destino no hace nada al pulsarla, y nada lo avisa: ni da 404 ni
+ * sale en un rastreo. Paso dos veces: el salto del nav (`#contenido`) en /financing y las 10 de
+ * /gallery/*, cuyas plantillas traen su propio `<main>` sin el `id` que pone Base (D-198); y el
+ * «Get a Free Estimate» de los articulos en las 9 de condado, a un `#estimate` que no existe porque
+ * los condados no tienen formulario (D-199). Se mide en TODAS las paginas, fuera de los `<script>`
+ * (citan selectores con `href="#..."`); vale un `id` o un `<a name>` de la misma pagina. */
+const anclasMal = []; let anclas = 0, conAnclas = 0;
 for (const f of ficheros.filter((x) => x.endsWith('.html'))) {
   const t = fs.readFileSync(f, 'utf8').replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, '');
-  const a = t.match(/<a\b[^>]*\bclass="mm-salto"[^>]*>/)?.[0];
-  if (!a) continue;
-  conSalto.push(f);
-  const destino = a.match(/\shref="#([^"]+)"/)?.[1];
-  if (!destino || !new RegExp(`\\sid="${destino.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`).test(t)) {
-    saltoSinDestino.push(`/${path.relative(ESTATICO, f).replace(/(^|\/)index\.html$/, '')} -> #${destino ?? '(sin href)'}`);
+  const destinos = new Set([...t.matchAll(/\sid="([^"]+)"/g), ...t.matchAll(/<a\b[^>]*\sname="([^"]+)"/g)].map((m) => m[1]));
+  const pedidas = new Set([...t.matchAll(/\shref="#([^"]+)"/g)].map((m) => m[1]));
+  if (pedidas.size) conAnclas++;
+  for (const x of pedidas) {
+    anclas++;
+    if (!destinos.has(x)) anclasMal.push(`/${path.relative(ESTATICO, f).replace(/(^|\/)index\.html$/, '')} -> #${x}`);
   }
 }
-check(`${conSalto.length} paginas con «Skip to content»: todas con su destino en la pagina`, saltoSinDestino.length === 0,
-  `${saltoSinDestino.length} sin destino`);
-lista(saltoSinDestino);
+check(`${conAnclas} paginas con anclas a si mismas (${anclas} anclas en total): todas con su destino en la pagina`,
+  anclasMal.length === 0, `${anclasMal.length} sin destino`);
+lista(anclasMal, 12);
 
 console.log(`\n${fallos === 0 ? 'PUERTA VERDE' : `PUERTA ROJA — ${fallos} fallo(s)`}\n`);
 process.exit(fallos ? 1 : 0);

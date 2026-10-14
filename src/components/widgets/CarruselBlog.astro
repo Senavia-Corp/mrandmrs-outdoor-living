@@ -90,8 +90,9 @@ const posts = ficha ? ficha.posts : datos.posts;
  * ASTRO-4. La accion de la cabecera es la del hero de la ruta. */
 import captacion from '../../data/captacion-servicios.json';
 const enLista = ruta.startsWith('/services/') || ruta === '/' || /^\/where-we-serve\/[^/]+$/.test(ruta);
-// Las paginas de estado no tienen formulario: su accion lleva al presupuesto.
-const anclaAccion = ruta.startsWith('/where-we-serve/') ? '/request-estimated' : '#estimate';
+// Las paginas de estado y las de condado no tienen formulario: su accion lleva al presupuesto, como en
+// `CarruselProyectos.astro` (D-199: en los condados apuntaba a un `#estimate` que no existe).
+const anclaAccion = ruta.startsWith('/where-we-serve/') || /-county-fl$/.test(ruta) ? '/request-estimated' : '#estimate';
 const accion = (captacion as Record<string, { heroe?: { cta?: string } }>)[ruta]?.heroe?.cta ?? (ruta === '/' ? 'Request a Design-Build Project Evaluation' : 'Get a Free Estimate');
 /* Las miniaturas llevan `width` y `height` (ninguna imagen sin medidas: no salta la maqueta).
  * `blogs.json` no las trae, asi que se leen del fichero al construir, una vez por imagen. */
