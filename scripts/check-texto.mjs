@@ -3832,11 +3832,15 @@ function homeTexto(lineas) {
     && Z[5] === TELEFONOS.items.find((t) => t.zona === 'North Florida').visible && Z[10] === TELEFONOS.items.find((t) => t.zona === 'South Florida').visible) {
     Zv = ['Where We Serve', Z[1], Z[7], Z[8], Z[11], Z[2], Z[3], Z[6]];
   } else faltas.push('las dos zonas con su telefono, norte delante');
-  // antes/despues: titular, parrafo, los dos enlaces, los dos rotulos de foto y las dos tarjetas
+  // antes/despues: titular, parrafo, los dos enlaces, los dos rotulos del deslizador, la linea que lo dice y las dos
+  // tarjetas. E11 (D-194, decidido el 14-oct-2026): el par de produccion vuelve ROTULADO como visualizacion.
+  // «Before»/«After» se retiran de la home y entran tres cadenas nuevas (T-103 a T-105): `Visualization`, `Completed` y la
+  // linea de abajo. Se devuelven a la forma de la referencia solo si estan las tres, en su sitio y exactas.
   let BAv = null;
-  if (BA.length === 10 && BA[2] === GFE && BA[3] === 'View All Projects' && BA[4] === 'Before' && BA[5] === 'After' && BA[6] === 'DESIGN-BUILD AUTHORITY' && BA[8] === 'LICENSED & ENGINEERED') {
-    BAv = ['Before', 'After', BA[0], BA[1], 'Design-Build Authority', BA[7], 'Licensed & Engineered', BA[9], 'View All Projects', GFE];
-  } else faltas.push('el antes/despues lado a lado con sus enlaces en la cabecera (D-96)');
+  const NOTA_AD = 'Design visualization created from a completed Mr & Mrs project.';
+  if (BA.length === 11 && BA[2] === GFE && BA[3] === 'View All Projects' && BA[4] === 'Visualization' && BA[5] === 'Completed' && BA[6] === NOTA_AD && BA[7] === 'DESIGN-BUILD AUTHORITY' && BA[9] === 'LICENSED & ENGINEERED') {
+    BAv = ['Before', 'After', BA[0], BA[1], 'Design-Build Authority', BA[8], 'Licensed & Engineered', BA[10], 'View All Projects', GFE];
+  } else faltas.push('el antes/despues con deslizador, rotulado `Visualization` / `Completed` y con su linea (D-194, T-103 a T-105)');
   // articulos: cabecera con la accion, tres con resumen y siete en indice
   let BLv = null;
   {

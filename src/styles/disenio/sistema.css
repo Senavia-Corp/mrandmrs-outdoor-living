@@ -764,6 +764,30 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 .mm-ad-datos > div:first-child { border-top: 0; }
 .mm-ad-datos h3 { margin: 0; font-family: var(--mm-familia); }
 .mm-ad-datos p { margin: var(--mm-e-8) 0 0; max-width: 520px; font-size: 16px; line-height: 1.55; color: var(--mm-tinta-texto); }
+/* EL DESLIZADOR DEL ANTES/DESPUES (E11, D-194). Las dos imagenes, una encima de otra, y la de encima recortada hasta
+ * `--mm-desl`, que pinta el guion de `Componentes.astro`. El control es un `range` NATIVO y transparente: una franja de
+ * 44 px a media altura, la del tirador. Teclado (flechas, Inicio, Fin) y tactil de serie; fuera de la franja el dedo
+ * desplaza la pagina como siempre. Nada de `opacity: 0`: pulgar y pista se pintan transparentes. (Cubriendo toda la
+ * foto, Safari deja el pulgar arriba de la pista y en iPhone el tirador no se podria arrastrar.) El pulgar mide 44 px y
+ * su centro recorre de 22 px a «ancho - 22 px»; el guion pone la costura en ese mismo punto, asi que no se separan.
+ * Sin JS se queda partido al 50 %. Nada se anima: no hay `transition`. */
+.mm-desl { display: flex; flex-direction: column; gap: var(--mm-e-12); padding: 0 var(--mm-canal); }
+.mm-desl-marco { position: relative; margin: 0; aspect-ratio: 2000 / 1116; overflow: hidden; border-radius: var(--mm-r-16); background: var(--mm-azul-100); }
+.mm-desl-foto { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
+.mm-desl-foto--vis { clip-path: inset(0 calc(100% - var(--mm-desl, 50%)) 0 0); }
+.mm-desl-marco .mm-ad-etq { z-index: 1; pointer-events: none; }
+.mm-desl-rango { position: absolute; top: 50%; left: 0; z-index: 2; width: 100%; height: 44px; margin: 0; background: transparent; cursor: ew-resize; transform: translateY(-50%); -webkit-appearance: none; appearance: none; }
+.mm-desl-rango::-webkit-slider-runnable-track { height: 100%; background: transparent; border: 0; }
+.mm-desl-rango::-webkit-slider-thumb { width: 44px; height: 44px; border: 0; border-radius: 50%; background: transparent; -webkit-appearance: none; appearance: none; }
+.mm-desl-rango::-moz-range-track { height: 100%; background: transparent; border: 0; }
+.mm-desl-rango::-moz-range-thumb { width: 44px; height: 44px; border: 0; border-radius: 50%; background: transparent; }
+.mm-desl-costura { position: absolute; top: 0; bottom: 0; left: var(--mm-desl, 50%); z-index: 3; width: 2px; margin-left: -1px; background: var(--mm-blanco); pointer-events: none; }
+.mm-desl-tirador { position: absolute; top: 50%; left: 50%; display: grid; place-items: center; box-sizing: border-box; width: 44px; height: 44px; border: 2px solid var(--mm-blanco); border-radius: 50%; background: var(--mm-navy); color: var(--mm-blanco); transform: translate(-50%, -50%); }
+/* El anillo de foco va en el propio control (la franja) y POR DENTRO: el marco recorta lo que salga. Blanco sobre navy,
+ * que se lee sobre cielo y sobre cesped; y el tirador lo repite. */
+.mm-desl-rango:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco-inverso); outline-offset: calc(-2 * var(--mm-foco-grosor)); box-shadow: inset 0 0 0 calc(3 * var(--mm-foco-grosor)) var(--mm-foco); }
+.mm-desl-rango:focus-visible + .mm-desl-costura .mm-desl-tirador { outline: var(--mm-foco-grosor) solid var(--mm-foco-inverso); outline-offset: var(--mm-foco-aire); }
+.mm-desl-nota { margin: 0; font-size: 13px; line-height: 1.5; color: var(--mm-tinta-suave); }
 @media (min-width: 768px) {
   .mm-ad { --mm-canal: var(--mm-e-32); gap: var(--mm-e-40); }
   .mm-ad-par { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -773,7 +797,7 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 }
 @media (min-width: 992px) {
   .mm-ad { gap: 56px; padding: var(--mm-e-96) 0; }
-  .mm-ad-par, .mm-ad-datos { box-sizing: border-box; width: calc(100% - 2 * var(--mm-canal)); max-width: var(--mm-contenedor); margin-inline: auto; padding: 0; }
+  .mm-ad-par, .mm-ad-datos, .mm-desl { box-sizing: border-box; width: calc(100% - 2 * var(--mm-canal)); max-width: var(--mm-contenedor); margin-inline: auto; padding: 0; }
 }
 @media (min-width: 1200px) { .mm-ad { --mm-canal: var(--mm-e-64); } }
 /* ── Proyectos: tres destacados y el resto en indice (ASTRO-2 · lamina «Proyectos») ───────── */

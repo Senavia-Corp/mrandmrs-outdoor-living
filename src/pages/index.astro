@@ -10,8 +10,8 @@
 // (texto sobre navy, obra al lado; D-38: 6/6), con el video solo desde 992 px y de 12 s; las
 // pestanas de servicios pasan al indice de los 14 con su ficha (D-69); los carruseles de obras y
 // de articulos, a lista editorial; las zonas, a dos columnas con su telefono y el mapa; el
-// antes/despues deja el deslizador y ensena las dos fotos reales de una reforma, lado a lado
-// (D-96, D-138); y la banda final se funde con el formulario. Salen la banda repetida a media
+// antes/despues vuelve a su par de produccion con deslizador, rotulado como visualizacion (D-194,
+// que revoca D-96 y D-138 en la home); y la banda final se funde con el formulario. Salen la banda repetida a media
 // pagina (D-83, T-50) y la seccion de Instagram (T-42).
 //
 // EL TEXTO NO SE TOCA: cada cadena de abajo es la del origen. Lo que entra y lo que cambia de
@@ -26,7 +26,6 @@ import CarruselBlog from '../components/widgets/CarruselBlog.astro';
 import FormularioCore from '../components/widgets/FormularioCore.astro';
 import TELEFONOS from '../data/telefonos.json';
 import RESENAS from '../data/resenas.json';
-import CAPTACION from '../data/captacion-servicios.json';
 import HEROES from '../data/heroes-ciudad.json';
 import BANCO from '../data/banco-imagenes.json';
 import { logoLigero, ALTO_LOGO } from '../lib/logo-ligero.mjs';
@@ -50,8 +49,18 @@ const LOGOS = await Promise.all(SRC_LOGOS.map(async (src) => {
   return l.h === ALTO_LOGO ? l : { ...l, src };
 }));
 
-/* El par del antes/despues es el de la ficha de reforma: dos fotos reales de la misma obra. */
-const PAR = (CAPTACION as any)['/services/pool-remodeling'].antesDespues;
+/* EL ANTES/DESPUES (D-194, decidido el 14-oct-2026). El par de produccion, que casa al pixel
+ * porque el «antes» esta hecho a partir del «despues» (D-95): por eso va ROTULADO como lo que es,
+ * `Visualization` / `Completed`, con una linea que lo dice, y el `alt` izquierdo empieza por
+ * «Illustration:». No entra en ningun `ImageObject` ni en `/projects`. Deslizador: `.mm-desl` en
+ * `sistema.css` y su guion en `Componentes.astro`. */
+const AD_ANCHOS = [640, 960, 1280, 1600, 2000];
+const adSrcset = (nombre: string) => AD_ANCHOS.map((w) => `/images/site/${nombre}-${w}.avif ${w}w`).join(', ');
+const AD = {
+  vis: { nombre: 'backyard-transformation-before-empty-lawn-concrete-patio', alt: 'Illustration: the backyard of a two-story house shown as an empty lawn with a small concrete patio.' },
+  hecho: { nombre: 'backyard-transformation-after-louvered-pergola-pool-travertine-deck', alt: 'Completed backyard with a rectangular pool behind a safety fence, a dark louvered patio cover, a light paver deck and loungers.' },
+};
+const AD_SIZES = '(min-width: 1440px) 1312px, (min-width: 1200px) calc(100vw - 128px), (min-width: 768px) calc(100vw - 64px), calc(100vw - 48px)';
 
 /* Las fotos de resenas y de la banda final salen de la bolsa de piscina nueva de
  * `heroes-ciudad.json` (obra real, terminada, con recorte 4:5 seguro). */
@@ -156,7 +165,7 @@ const SEO_HOME = {
 
   <section class="mm-ad">
     <div class="mm-sec-cab">
-      <h2 class="mm-h2">Before &amp; After <span class="mm-rot">Transformations</span></h2>
+      <h2 class="mm-h2" id="mm-ad-titulo">Before &amp; After <span class="mm-rot">Transformations</span></h2>
       <div class="mm-sec-lado">
         <p class="mm-p">Most homeowners don't realize what their outdoor space is capable of until they see it transformed. From empty slabs to resort-style living — our licensed design-build team handles every detail, from permitting to final startup.</p>
         <div class="mm-sec-acc">
@@ -165,9 +174,16 @@ const SEO_HOME = {
         </div>
       </div>
     </div>
-    <div class="mm-ad-par">
-      <figure class="mm-ad-foto"><img src={PAR.antes.src} srcset={PAR.antes.srcset} sizes="(min-width: 768px) 50vw, 100vw" alt={PAR.antes.alt} width={PAR.antes.ancho} height={PAR.antes.alto} loading="lazy" decoding="async" /><figcaption class="mm-ad-etq mm-ad-etq--antes">Before</figcaption></figure>
-      <figure class="mm-ad-foto"><img src={PAR.despues.src} srcset={PAR.despues.srcset} sizes="(min-width: 768px) 50vw, 100vw" alt={PAR.despues.alt} width={PAR.despues.ancho} height={PAR.despues.alto} loading="lazy" decoding="async" /><figcaption class="mm-ad-etq mm-ad-etq--despues">After</figcaption></figure>
+    <div class="mm-desl" data-mm-desl style="--mm-desl: 50%">
+      <figure class="mm-desl-marco">
+        <img class="mm-desl-foto" src={`/images/site/${AD.hecho.nombre}-1280.avif`} srcset={adSrcset(AD.hecho.nombre)} sizes={AD_SIZES} alt={AD.hecho.alt} width="2000" height="1116" loading="lazy" decoding="async" />
+        <img class="mm-desl-foto mm-desl-foto--vis" src={`/images/site/${AD.vis.nombre}-1280.avif`} srcset={adSrcset(AD.vis.nombre)} sizes={AD_SIZES} alt={AD.vis.alt} width="2000" height="1116" loading="lazy" decoding="async" />
+        <span class="mm-ad-etq mm-ad-etq--antes">Visualization</span>
+        <span class="mm-ad-etq mm-ad-etq--despues">Completed</span>
+        <input class="mm-desl-rango" type="range" min="0" max="100" value="50" step="1" aria-labelledby="mm-ad-titulo" />
+        <span class="mm-desl-costura" aria-hidden="true"><span class="mm-desl-tirador"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6-6 6 6 6"></path><path d="m15 6 6 6-6 6"></path></svg></span></span>
+      </figure>
+      <p class="mm-desl-nota">Design visualization created from a completed Mr &amp; Mrs project.</p>
     </div>
     <div class="mm-ad-datos">
       <div><h3 class="mm-dato-rot">Design-Build Authority</h3><p>One team handles design, permits, engineering, and construction. No subcontractor surprises, no gaps in accountability.</p></div>

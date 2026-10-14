@@ -292,6 +292,14 @@ const SLIDERS = JSON.stringify(
       });
     }
 
+    // ── 0 · el deslizador del antes/despues (E11, D-194). El `range` es nativo: teclado y tactil de serie. Esto
+    // solo pone la costura donde esta el centro del pulgar (44 px), que recorre de 22 px a «ancho - 22 px».
+    document.querySelectorAll('[data-mm-desl]').forEach((d) => {
+      const r = d.querySelector('.mm-desl-rango');
+      const pinta = () => d.style.setProperty('--mm-desl', `calc(22px + (100% - 44px) * ${r.value / 100})`);
+      r.addEventListener('input', pinta); pinta();
+    });
+
     // ── 1.bis · proceso de la ficha (ASTRO-2): la figura fija ensena la foto del paso que se lee.
     // Sin esto la figura se queda en el paso 1 y la lista se lee igual.
     const listaPasos = document.querySelector('[data-mm-pasos]');
