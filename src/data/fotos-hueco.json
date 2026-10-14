@@ -21,6 +21,26 @@
      ]
     ],
     "_hecha": "/images/banco/construction/pool-construction-spa-marble-deck-evening-florida-01.webp · 50% 50%"
+   },
+   "hero": {
+    "de": "/images/banco/construction/pool-construction-spa-marble-deck-evening-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 1.3333,
+    "fuentes": [
+     [
+      960,
+      "/images/banco/construction/pool-construction-spa-marble-deck-evening-florida-01-hero960.avif"
+     ],
+     [
+      1280,
+      "/images/banco/construction/pool-construction-spa-marble-deck-evening-florida-01-hero1280.avif"
+     ],
+     [
+      1600,
+      "/images/banco/construction/pool-construction-spa-marble-deck-evening-florida-01-hero1600.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/construction/pool-construction-spa-marble-deck-evening-florida-01.webp · 50% 50%"
    }
   },
   "/images/obra/obra-065/custom-pool-construction-backyard-lot-before-excavation.avif": {
@@ -62,6 +82,26 @@
      [
       960,
       "/images/banco/construction/pool-construction-raised-spa-sun-shelf-travertine-florida-01-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/construction/pool-construction-raised-spa-sun-shelf-travertine-florida-01.webp · 50% 50%"
+   },
+   "hero": {
+    "de": "/images/banco/construction/pool-construction-raised-spa-sun-shelf-travertine-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 1.3333,
+    "fuentes": [
+     [
+      960,
+      "/images/banco/construction/pool-construction-raised-spa-sun-shelf-travertine-florida-01-hero960.avif"
+     ],
+     [
+      1280,
+      "/images/banco/construction/pool-construction-raised-spa-sun-shelf-travertine-florida-01-hero1280.avif"
+     ],
+     [
+      1600,
+      "/images/banco/construction/pool-construction-raised-spa-sun-shelf-travertine-florida-01-hero1600.avif"
      ]
     ],
     "_hecha": "/images/banco/construction/pool-construction-raised-spa-sun-shelf-travertine-florida-01.webp · 50% 50%"
@@ -1543,6 +1583,31 @@
      6000,
      4000
     ]
+   },
+   "hero": {
+    "de": "/images/banco/screens/retractable-screens-raised-covered-patio-pool-florida-01.webp",
+    "origen": "Senavia Picture /Pictures-04.jpg",
+    "pos": "50% 50%",
+    "ratio": 1.3333,
+    "fuentes": [
+     [
+      960,
+      "/images/banco/screens/retractable-screens-raised-covered-patio-pool-florida-01-hero960.avif"
+     ],
+     [
+      1280,
+      "/images/banco/screens/retractable-screens-raised-covered-patio-pool-florida-01-hero1280.avif"
+     ],
+     [
+      1600,
+      "/images/banco/screens/retractable-screens-raised-covered-patio-pool-florida-01-hero1600.avif"
+     ]
+    ],
+    "_hecha": "Senavia Picture /Pictures-04.jpg · 50% 50%",
+    "mide": [
+     6000,
+     4000
+    ]
    }
   },
   "/images/banco/furniture/outdoor-furniture-wicker-lounge-patio-cover-ceiling-fans-florida-01.webp": {
@@ -1641,6 +1706,31 @@
      3682,
      3682
     ]
+   },
+   "hero": {
+    "de": "/images/banco/pergolas/freestanding-pergola-long-pool-lounge-set-potted-plant-florida-01.webp",
+    "origen": "Senavia Picture /Pictures-21.jpg",
+    "pos": "50% 50%",
+    "ratio": 1.3333,
+    "fuentes": [
+     [
+      960,
+      "/images/banco/pergolas/freestanding-pergola-long-pool-lounge-set-potted-plant-florida-01-hero960.avif"
+     ],
+     [
+      1280,
+      "/images/banco/pergolas/freestanding-pergola-long-pool-lounge-set-potted-plant-florida-01-hero1280.avif"
+     ],
+     [
+      1600,
+      "/images/banco/pergolas/freestanding-pergola-long-pool-lounge-set-potted-plant-florida-01-hero1600.avif"
+     ]
+    ],
+    "_hecha": "Senavia Picture /Pictures-21.jpg · 50% 50%",
+    "mide": [
+     3682,
+     3682
+    ]
    }
   },
   "/images/banco/pergolas/patio-cover-ceiling-fans-wicker-lounge-travertine-florida-01.webp": {
@@ -1688,6 +1778,31 @@
      [
       1100,
       "/images/banco/louvered/white-louvered-pergola-curved-pool-patio-lounge-florida-01-lam1100.avif"
+     ]
+    ],
+    "_hecha": "Senavia Picture /Pictures-35.jpg · 50% 50%",
+    "mide": [
+     6000,
+     3376
+    ]
+   },
+   "hero": {
+    "de": "/images/banco/louvered/white-louvered-pergola-curved-pool-patio-lounge-florida-01.webp",
+    "origen": "Senavia Picture /Pictures-35.jpg",
+    "pos": "50% 50%",
+    "ratio": 1.3333,
+    "fuentes": [
+     [
+      960,
+      "/images/banco/louvered/white-louvered-pergola-curved-pool-patio-lounge-florida-01-hero960.avif"
+     ],
+     [
+      1280,
+      "/images/banco/louvered/white-louvered-pergola-curved-pool-patio-lounge-florida-01-hero1280.avif"
+     ],
+     [
+      1600,
+      "/images/banco/louvered/white-louvered-pergola-curved-pool-patio-lounge-florida-01-hero1600.avif"
      ]
     ],
     "_hecha": "Senavia Picture /Pictures-35.jpg · 50% 50%",
@@ -1749,6 +1864,302 @@
      5333,
      4000
     ]
+   }
+  },
+  "/images/banco/construction/pool-construction-l-shaped-pool-spa-aerial-florida-01.webp": {
+   "hero": {
+    "de": "/images/banco/construction/pool-construction-l-shaped-pool-spa-aerial-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 1.3333,
+    "fuentes": [
+     [
+      960,
+      "/images/banco/construction/pool-construction-l-shaped-pool-spa-aerial-florida-01-hero960.avif"
+     ],
+     [
+      1280,
+      "/images/banco/construction/pool-construction-l-shaped-pool-spa-aerial-florida-01-hero1280.avif"
+     ],
+     [
+      1600,
+      "/images/banco/construction/pool-construction-l-shaped-pool-spa-aerial-florida-01-hero1600.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/construction/pool-construction-l-shaped-pool-spa-aerial-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/banco/construction/pool-construction-spa-travertine-deck-wide-florida-01.webp": {
+   "hero": {
+    "de": "/images/banco/construction/pool-construction-spa-travertine-deck-wide-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 1.3333,
+    "fuentes": [
+     [
+      960,
+      "/images/banco/construction/pool-construction-spa-travertine-deck-wide-florida-01-hero960.avif"
+     ],
+     [
+      1280,
+      "/images/banco/construction/pool-construction-spa-travertine-deck-wide-florida-01-hero1280.avif"
+     ],
+     [
+      1600,
+      "/images/banco/construction/pool-construction-spa-travertine-deck-wide-florida-01-hero1600.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/construction/pool-construction-spa-travertine-deck-wide-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/banco/decks/travertine-pool-deck-herringbone-turf-border-florida-01.webp": {
+   "hero": {
+    "de": "/images/banco/decks/travertine-pool-deck-herringbone-turf-border-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 1.3333,
+    "fuentes": [
+     [
+      960,
+      "/images/banco/decks/travertine-pool-deck-herringbone-turf-border-florida-01-hero960.avif"
+     ],
+     [
+      1280,
+      "/images/banco/decks/travertine-pool-deck-herringbone-turf-border-florida-01-hero1280.avif"
+     ],
+     [
+      1600,
+      "/images/banco/decks/travertine-pool-deck-herringbone-turf-border-florida-01-hero1600.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/decks/travertine-pool-deck-herringbone-turf-border-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-florida-01.webp": {
+   "hero": {
+    "de": "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 1.3333,
+    "fuentes": [
+     [
+      960,
+      "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-florida-01-hero960.avif"
+     ],
+     [
+      1280,
+      "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-florida-01-hero1280.avif"
+     ],
+     [
+      1600,
+      "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-florida-01-hero1600.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-florida-01.webp · 50% 50%"
+   },
+   "lam": {
+    "de": "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-florida-01-lam560.avif"
+     ],
+     [
+      800,
+      "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-florida-01-lam800.avif"
+     ],
+     [
+      960,
+      "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-florida-01-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-spa-florida-01.webp": {
+   "hero": {
+    "de": "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-spa-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 1.3333,
+    "fuentes": [
+     [
+      960,
+      "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-spa-florida-01-hero960.avif"
+     ],
+     [
+      1280,
+      "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-spa-florida-01-hero1280.avif"
+     ],
+     [
+      1600,
+      "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-spa-florida-01-hero1600.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-spa-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/banco/pergolas/modern-patio-cover-black-frame-two-story-home-pool-florida-01.webp": {
+   "hero": {
+    "de": "/images/banco/pergolas/modern-patio-cover-black-frame-two-story-home-pool-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 1.3333,
+    "fuentes": [
+     [
+      960,
+      "/images/banco/pergolas/modern-patio-cover-black-frame-two-story-home-pool-florida-01-hero960.avif"
+     ],
+     [
+      1280,
+      "/images/banco/pergolas/modern-patio-cover-black-frame-two-story-home-pool-florida-01-hero1280.avif"
+     ],
+     [
+      1600,
+      "/images/banco/pergolas/modern-patio-cover-black-frame-two-story-home-pool-florida-01-hero1600.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pergolas/modern-patio-cover-black-frame-two-story-home-pool-florida-01.webp · 50% 50%"
+   },
+   "lam": {
+    "de": "/images/banco/pergolas/modern-patio-cover-black-frame-two-story-home-pool-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/banco/pergolas/modern-patio-cover-black-frame-two-story-home-pool-florida-01-lam560.avif"
+     ],
+     [
+      800,
+      "/images/banco/pergolas/modern-patio-cover-black-frame-two-story-home-pool-florida-01-lam800.avif"
+     ],
+     [
+      960,
+      "/images/banco/pergolas/modern-patio-cover-black-frame-two-story-home-pool-florida-01-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pergolas/modern-patio-cover-black-frame-two-story-home-pool-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/banco/pergolas/white-patio-cover-pool-wicker-loungers-palms-florida-01.webp": {
+   "hero": {
+    "de": "/images/banco/pergolas/white-patio-cover-pool-wicker-loungers-palms-florida-01.webp",
+    "origen": "Senavia Picture /Pictures-29.jpg",
+    "pos": "50% 50%",
+    "ratio": 1.3333,
+    "fuentes": [
+     [
+      960,
+      "/images/banco/pergolas/white-patio-cover-pool-wicker-loungers-palms-florida-01-hero960.avif"
+     ],
+     [
+      1280,
+      "/images/banco/pergolas/white-patio-cover-pool-wicker-loungers-palms-florida-01-hero1280.avif"
+     ],
+     [
+      1600,
+      "/images/banco/pergolas/white-patio-cover-pool-wicker-loungers-palms-florida-01-hero1600.avif"
+     ]
+    ],
+    "_hecha": "Senavia Picture /Pictures-29.jpg · 50% 50%",
+    "mide": [
+     4713,
+     3535
+    ]
+   },
+   "lam": {
+    "de": "/images/banco/pergolas/white-patio-cover-pool-wicker-loungers-palms-florida-01.webp",
+    "origen": "Senavia Picture /Pictures-29.jpg",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/banco/pergolas/white-patio-cover-pool-wicker-loungers-palms-florida-01-lam560.avif"
+     ],
+     [
+      800,
+      "/images/banco/pergolas/white-patio-cover-pool-wicker-loungers-palms-florida-01-lam800.avif"
+     ],
+     [
+      1100,
+      "/images/banco/pergolas/white-patio-cover-pool-wicker-loungers-palms-florida-01-lam1100.avif"
+     ]
+    ],
+    "_hecha": "Senavia Picture /Pictures-29.jpg · 50% 50%",
+    "mide": [
+     4713,
+     3535
+    ]
+   }
+  },
+  "/images/banco/rooms/patio-screen-room-dark-frame-insulated-roof-corner-florida-01.webp": {
+   "serv": {
+    "de": "/images/banco/rooms/patio-screen-room-dark-frame-insulated-roof-corner-florida-01.webp",
+    "origen": "Senavia Picture /Pictures-15.jpg",
+    "pos": "60% 50%",
+    "ratio": 1.5,
+    "fuentes": [
+     [
+      800,
+      "/images/banco/rooms/patio-screen-room-dark-frame-insulated-roof-corner-florida-01-serv800.avif"
+     ],
+     [
+      1200,
+      "/images/banco/rooms/patio-screen-room-dark-frame-insulated-roof-corner-florida-01-serv1200.avif"
+     ],
+     [
+      1530,
+      "/images/banco/rooms/patio-screen-room-dark-frame-insulated-roof-corner-florida-01-serv1530.avif"
+     ]
+    ],
+    "_hecha": "Senavia Picture /Pictures-15.jpg · 60% 50%",
+    "mide": [
+     6000,
+     4000
+    ]
+   }
+  },
+  "/images/banco/screens/retractable-screens-motorized-dark-mesh-lanai-florida-01.webp": {
+   "serv": {
+    "de": "/images/banco/screens/retractable-screens-motorized-dark-mesh-lanai-florida-01.webp",
+    "origen": "Senavia Picture /Pictures-07.jpg",
+    "pos": "72% 50%",
+    "ratio": 1.5,
+    "fuentes": [
+     [
+      800,
+      "/images/banco/screens/retractable-screens-motorized-dark-mesh-lanai-florida-01-serv800.avif"
+     ],
+     [
+      1200,
+      "/images/banco/screens/retractable-screens-motorized-dark-mesh-lanai-florida-01-serv1200.avif"
+     ],
+     [
+      1530,
+      "/images/banco/screens/retractable-screens-motorized-dark-mesh-lanai-florida-01-serv1530.avif"
+     ]
+    ],
+    "_hecha": "Senavia Picture /Pictures-07.jpg · 72% 50%",
+    "mide": [
+     6000,
+     4000
+    ]
+   }
+  },
+  "/images/images/irrigation-2/automated-irrigation-system-installers-florida-02.jpg": {
+   "serv": {
+    "de": "/images/images/irrigation-2/automated-irrigation-system-installers-florida-02.jpg",
+    "pos": "40% 50%",
+    "ratio": 1.5,
+    "fuentes": [
+     [
+      800,
+      "/images/images/irrigation-2/automated-irrigation-system-installers-florida-02-serv800.avif"
+     ],
+     [
+      1047,
+      "/images/images/irrigation-2/automated-irrigation-system-installers-florida-02-serv1047.avif"
+     ]
+    ],
+    "_hecha": "/images/images/irrigation-2/automated-irrigation-system-installers-florida-02.jpg · 40% 50%"
    }
   }
  }

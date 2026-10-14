@@ -15,10 +15,12 @@
  * y ahora se ven, las categorias como rotulo).
  *
  * FOTOS (D-122, D-130). La de cada ficha es la del panel de siempre si el banco la tiene como obra
- * real (10 de 14). Las otras cuatro venian de Webflow y no estan en ningun registro: riego y
- * jaulas pintan el hero de su ficha de servicio, que `gallery-procedencia.json` da por usable;
- * screen rooms y pantallas retractiles, una foto usable de su galeria elegida en hoja de
- * contactos (`DE_GALERIA`). Una ficha sin ninguna de las tres saldria sin foto; hoy no hay.
+ * real (10 de 14). Jaulas pinta el hero de su ficha de servicio, que `gallery-procedencia.json` da
+ * por usable. Screen rooms, pantallas y riego llevan LA FOTO DEL MENU de E9 (`DEL_MENU`, E13, D-200):
+ * la de screen rooms es la misma escena que la de Webflow que habia, desde el original; la de
+ * pantallas, de la sesion profesional; la de riego, la usable de su galeria que ya pinta el menu. Y
+ * su alt es el del menu, que describe lo que se ve: el de Webflow afirmaba «North & South Florida».
+ * Una ficha sin foto saldria sin ella; hoy no hay.
  *
  * ORDEN DEL DOM: fichas y despues indice, que es el orden en que se lee en movil. En escritorio
  * el indice se coloca a la izquierda por rejilla y la ficha se queda pegada mientras se recorre.
@@ -33,6 +35,7 @@ import DATOS from '../../data/servicios-categoria.json';
 import BANCO from '../../data/banco-imagenes.json';
 import PROCEDENCIA from '../../data/gallery-procedencia.json';
 import CAPTACION from '../../data/captacion-servicios.json';
+import MENU from '../../data/fotos-megamenu.json';
 
 interface Props {
   /** Slug del servicio de la ruta (`deck-builders`): su ficha es la que sale abierta. En la home
@@ -61,19 +64,16 @@ if (!activo) throw new Error(`ServiciosIndice: ningun servicio del panel enlaza 
 
 const REAL = new Set((BANCO as any[]).filter((b) => b.procedencia === 'obra_real').flatMap((b) => [b.src, ...(b.publicada_como ?? [])]));
 const GALERIA = new Map(Object.values(PROCEDENCIA.servicios as Record<string, any[]>).flat().filter((f) => f.usable).map((f) => [f.src, f]));
-/* D-130 · elegidas en hoja de contactos (12-oct-2026) entre las usables de su galeria. */
-const DE_GALERIA: Record<string, string> = {
-  rooms: '/images/images/patio-screen-5/patio-screen-enclosure-builders-contractors-north-south-florida-05.jpg',
-  screens: '/images/images/retractable-screen-7/retractable-screen-installation-contractors-florida-7.jpg',
-};
+/* E13 (D-200): la fuente de la foto del menu (`_ajuste.de`) y su alt, con el encuadre de la ficha 3:2. */
+const DEL_MENU: Record<string, string> = { rooms: '60% 50%', screens: '72% 50%', irrigation: '40% 50%' };
 const medidas = async (src: string) => { const m = await sharp(path.join(process.cwd(), 'public', src)).metadata(); return { w: m.width, h: m.height }; };
 const fotoDe = async (s: any) => {
   if (REAL.has(s.foto)) return { src: s.foto, alt: s.alt, w: s.ancho, h: s.alto, pos: s.pos };
-  const g = DE_GALERIA[s.id];
-  if (g) {
-    const reg = GALERIA.get(g);
-    if (!reg) throw new Error(`ServiciosIndice: ${g} no esta como usable en gallery-procedencia.json.`);
-    return { src: g, alt: reg.altGaleria, ...(await medidas(g)), pos: undefined };
+  if (DEL_MENU[s.id]) {
+    const m = (MENU as any)[s.id];
+    const src = m?._ajuste?.de;
+    if (!src || !m.alt || !(REAL.has(src) || GALERIA.has(src))) throw new Error(`ServiciosIndice: la foto del menu de «${s.id}» no es obra real ni usable de galeria con alt.`);
+    return { src, alt: m.alt, ...(await medidas(src)), pos: DEL_MENU[s.id] };
   }
   const h = (CAPTACION as any)[s.enlace]?.heroe;
   if (!h?.foto || !(REAL.has(h.foto) || GALERIA.has(h.foto))) return null;

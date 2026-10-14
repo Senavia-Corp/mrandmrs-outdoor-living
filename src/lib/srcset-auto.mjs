@@ -41,18 +41,19 @@ const HOLGURA = 0.97;
 const FOTOS_HUECO = HUECO.fotos ?? {};
 const SIZES_HUECO = {
   lam: (r) => { const k = Math.max(1, 1.25 * r) * HOLGURA; return `(min-width: 1440px) ${Math.round(547 * k)}px, (min-width: ${DESDE}px) ${Math.round(38 * k)}vw, 100vw`; },
-  hero: (r) => `(min-width: 1200px) max(40vw, ${Math.round(720 * r * HOLGURA)}px), (min-width: ${DESDE}px) max(47vw, ${Math.round(700 * r * HOLGURA)}px), 100vw`,
+  // `alto`: la altura de la caja desde 1200. 720 en las fichas; 760 en las ciudades, cuya columna de texto la estira (E13).
+  hero: (r, alto = 720) => `(min-width: 1200px) max(40vw, ${Math.round(alto * r * HOLGURA)}px), (min-width: ${DESDE}px) max(47vw, ${Math.round((alto - 20) * r * HOLGURA)}px), 100vw`,
   serv: (r) => { const k = Math.max(1, r / 1.5) * HOLGURA; return `(min-width: 1440px) ${Math.round(765 * k)}px, (min-width: ${DESDE}px) ${Math.round(53 * k)}vw, 100vw`; },
 };
 const attr = (tag, n) => tag.match(new RegExp(`\\s${n}="([^"]*)"`))?.[1];
-function enHueco(tipo, img, antes = '') {
+function enHueco(tipo, img, antes = '', alto = undefined) {
   const w = +attr(img, 'width'), h = +attr(img, 'height');
   if (!(w && h)) return antes ? `<picture>${antes}${img}</picture>` : img;
-  const sizes = SIZES_HUECO[tipo](w / h);
+  const sizes = SIZES_HUECO[tipo](w / h, alto);
   const conSizes = /\ssizes=/.test(img) ? img.replace(/\ssizes="[^"]*"/, ` sizes="${sizes}"`) : img.replace(/<img\b/, `<img sizes="${sizes}"`);
   const d = FOTOS_HUECO[attr(img, 'src')]?.[tipo];
   if (!d?.fuentes?.length) return antes ? `<picture>${antes}${conSizes}</picture>` : conSizes;
-  const fuente = `<source type="image/avif" media="(min-width: ${DESDE}px)" srcset="${d.fuentes.map(([a, u]) => `${u} ${a}w`).join(', ')}" sizes="${SIZES_HUECO[tipo](d.ratio).replace(/, 100vw$/, '')}">`;
+  const fuente = `<source type="image/avif" media="(min-width: ${DESDE}px)" srcset="${d.fuentes.map(([a, u]) => `${u} ${a}w`).join(', ')}" sizes="${SIZES_HUECO[tipo](d.ratio, alto).replace(/, 100vw$/, '')}">`;
   return `<picture>${antes}${fuente}${conSizes}</picture>`;
 }
 /** Las derivadas de escritorio de la foto de un paso: el guion del proceso las pone en la figura fija al cambiar de paso. */
@@ -89,7 +90,10 @@ export function srcsetAuto(html) {
   });
   const conHuecos = conLcp
     .replace(/(<figure class="mm-(?:lam|res)-medio[^"]*"[^>]*>)(<img\b[^>]*>)/g, (_, fig, img) => fig + enHueco('lam', img))
-    .replace(/(<section class="mm-hero-a">(?:(?!<\/section>)[\s\S])*?<figure class="mm-hero-a-medio"[^>]*>)(?:<picture>(<source\b[^>]*>))?(<img\b[^>]*>)(?:<\/picture>)?/g, (_, antes, movil, img) => antes + enHueco('hero', img, movil ?? ''))
+    // E13: tambien el hero de las paginas de ciudad (`mm-hero-a--ciudad`), pero SOLO si su foto tiene receta de
+    // hero: sin ella, `enHueco` reescribiria el `sizes` y el escritorio bajaria otro fichero en paginas sin tocar.
+    .replace(/(<section class="mm-hero-a( mm-hero-a--ciudad)?">(?:(?!<\/section>)[\s\S])*?<figure class="mm-hero-a-medio"[^>]*>)(?:<picture>(<source\b[^>]*>))?(<img\b[^>]*>)(?:<\/picture>)?/g, (todo, antes, ciudad, movil, img) =>
+      (ciudad && !FOTOS_HUECO[attr(img, 'src')]?.hero ? todo : antes + enHueco('hero', img, movil ?? '', ciudad ? 760 : undefined)))
     .replace(/(<div class="mm-serv-medio">)(<img\b[^>]*>)/g, (_, caja, img) => caja + enHueco('serv', img))
     .replace(/<img\b[^>]*\sclass="mm-paso-foto"[^>]*>/g, pasoConHueco);
   return { html: conHuecos, n, lcp };

@@ -173,5 +173,38 @@ for (const ruta of TODAS) {
 }
 
 console.log(`\n  ${conCaptacion} con capa de captacion · ${sinCaptacion} exactamente como estaban`);
+
+/* ── E13 (D-200): EL HERO, POR CONDADO ─────────────────────────────────────────────────────────
+ * `heroes-ciudad.json` → `porCondado` dice que ciudades son de cada condado y que foto lleva cada una.
+ * `heroe-ciudad.mjs` ya tumba el build si dos comparten foto; esto lo mira en lo DESPLEGADO y comprueba
+ * el dato del que depende la regla: que las ciudades de la tabla son EXACTAMENTE las que enlaza la
+ * pagina del condado. Si la tabla pusiera una ciudad en otro condado, la regla se cumpliria en el papel
+ * y no en el mapa. La foto se compara por su nombre sin sufijo de variante: dos derivadas de la misma
+ * foto son la misma foto. */
+console.log('\n── el hero de cada ciudad, por condado (E13) ──');
+const HEROES = leerJson('src/data/heroes-ciudad.json');
+const sinVariante = (u) => decodeURIComponent(u).split('/').pop().replace(/\.\w+$/, '').replace(/-(?:mm|lcp|hero|lam|serv)\d+$/, '');
+let condadosOk = 0;
+for (const [condado, ciudades] of Object.entries(HEROES.porCondado ?? {}).filter(([k]) => !k.startsWith('_'))) {
+  const html = leer(`/services/pool-builders/${condado}`);
+  if (!html) { mal(condado, 'la pagina del condado no esta en el build'); continue; }
+  const main = new JSDOM(html).window.document.querySelector('main') ?? new JSDOM(html).window.document;
+  const enlazadas = new Set([...main.querySelectorAll('a[href^="/services/pool-builders/"]')].map((a) => a.getAttribute('href').split('/').pop())
+    .filter((s) => /-fl$/.test(s) && !/-county-fl$/.test(s)));
+  const tabla = new Set(Object.keys(ciudades));
+  const sobran = [...tabla].filter((c) => !enlazadas.has(c)); const faltan = [...enlazadas].filter((c) => !tabla.has(c));
+  if (sobran.length || faltan.length) { mal(condado, `la tabla no casa con la pagina del condado — en la tabla y no enlazadas: ${sobran.join(', ') || '—'} · enlazadas y no en la tabla: ${faltan.join(', ') || '—'}`); continue; }
+  const vistas = new Map(); let repetida = false;
+  for (const c of [condado, ...tabla]) {
+    const h = leer(`/services/pool-builders/${c}`);
+    const img = h && new JSDOM(h).window.document.querySelector('.mm-hero-a-medio img');
+    if (!img) { mal(c, 'sin foto de hero'); repetida = true; continue; }
+    const f = sinVariante(img.getAttribute('src'));
+    if (vistas.has(f)) { mal(c, `comparte hero con ${vistas.get(f)} (${f}), las dos de ${condado}`); repetida = true; }
+    vistas.set(f, c);
+  }
+  if (!repetida) condadosOk++;
+}
+console.log(`  ${condadosOk} condado(s) cerrados: sus ciudades son las que enlaza el condado y ningun hero se repite`);
 console.log(`${fallos ? `PUERTA ROJA — ${fallos} fallo(s)` : 'PUERTA VERDE — dos formas y solo dos'}\n`);
 process.exit(fallos ? 1 : 0);

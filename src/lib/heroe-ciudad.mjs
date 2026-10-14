@@ -42,17 +42,47 @@ export function rutasDeCiudad(servicio) {
   return RUTAS.get(servicio);
 }
 
-function valida(id, clave, donde) {
+/* `porTabla`: la foto la eligio alguien en hoja de contactos para esa pagina (E13). En piscina nueva no se le
+ * exige la etiqueta `construction` —una cubierta junto a una piscina no es «construccion de piscina» en el
+ * banco, y etiquetarla asi seria afirmarlo—, sino que su alt diga que hay piscina. */
+function valida(id, clave, donde, porTabla = false) {
   const e = POR_ID.get(id);
+  const delServicio = porTabla && clave === 'construction' ? /\bpool\b/i.test(e?.alt ?? '') : e?.servicios.includes(clave);
   const falla = !e ? 'no esta en el banco'
     : e.procedencia !== 'obra_real' ? `procedencia «${e.procedencia}»`
       : !/^aprobada/.test(e.estado ?? '') ? `estado «${e.estado}»`
         : e.etapa !== 'terminado' ? `etapa «${e.etapa}»`
           : !(e.recortes_seguros ?? []).includes('4:5') ? 'sin recorte 4:5 seguro'
-            : !e.servicios.includes(clave) ? `no esta etiquetada como «${clave}»`
+            : !delServicio ? (porTabla ? 'su alt no dice que haya piscina' : `no esta etiquetada como «${clave}»`)
               : !e.src || !e.alt ? 'sin fichero o sin alt' : null;
   if (falla) throw new Error(`[heroe-ciudad] ${donde}: ${id} no vale para el hero — ${falla}`);
   return e;
+}
+
+/** E13 (D-200): `ruta de ciudad -> { id, condado }` de la tabla por condado de piscina nueva. */
+const TABLA = new Map(Object.entries(DATOS.porCondado ?? {}).filter(([k]) => !k.startsWith('_'))
+  .flatMap(([condado, ciudades]) => Object.entries(ciudades).map(([c, id]) => [`/services/pool-builders/${c}`, { id, condado }])));
+const CASI = (DATOS.casiIguales ?? []).map(([a, b]) => [a, b]);
+let condadosComprobados = false;
+/** LA REGLA DEL CONDADO, una vez por proceso: ninguna foto repetida entre sus paginas (la del condado incluida) y
+ *  nunca juntas dos casi iguales. Falla cerrado, con el condado y las rutas en el mensaje. */
+function compruebaCondados() {
+  if (condadosComprobados) return;
+  condadosComprobados = true;
+  const porCondado = new Map();
+  for (const [ruta, { condado }] of TABLA) (porCondado.get(condado) ?? porCondado.set(condado, []).get(condado)).push(ruta);
+  for (const [condado, rutas] of porCondado) {
+    const paginas = [`/services/pool-builders/${condado}`, ...rutas];
+    const fotos = paginas.map((r) => [r, fotoDeHeroe(r).id]);
+    const vistas = new Map();
+    for (const [r, id] of fotos) {
+      if (vistas.has(id)) throw new Error(`[heroe-ciudad] ${condado}: ${r} y ${vistas.get(id)} comparten hero (${id})`);
+      vistas.set(id, r);
+    }
+    for (const [a, b] of CASI) {
+      if (vistas.has(a) && vistas.has(b)) throw new Error(`[heroe-ciudad] ${condado}: ${vistas.get(a)} (${a}) y ${vistas.get(b)} (${b}) llevan dos fotos casi iguales`);
+    }
+  }
 }
 
 export function fotoDeHeroe(ruta, rutasDelServicio = rutasDeCiudad(ruta.split('/')[2])) {
@@ -63,8 +93,15 @@ export function fotoDeHeroe(ruta, rutasDelServicio = rutasDeCiudad(ruta.split('/
     const e = valida(fija.id, clave, ruta);
     return { id: e.id, src: e.src, ancho: e.ancho, alto: e.alto, alt: e.alt, pie: fija.pie };
   }
+  const deTabla = TABLA.get(ruta);
+  if (deTabla) {
+    compruebaCondados();
+    const e = valida(deTabla.id, clave, ruta, true);
+    return { id: e.id, src: e.src, ancho: e.ancho, alto: e.alto, alt: e.alt, pie: e.alt };
+  }
   const bolsa = DATOS.bolsas[servicio];
   if (!bolsa?.length) return null;
+  // El orden de la bolsa NO excluye las rutas de la tabla: asi las paginas que siguen con bolsa no cambian.
   const orden = [...rutasDelServicio].filter((r) => !DATOS.fijas[r]).sort();
   const i = orden.indexOf(ruta);
   if (i < 0) throw new Error(`[heroe-ciudad] ${ruta} no esta en la lista de rutas de «${servicio}»`);
@@ -80,7 +117,8 @@ export function fotoDeHeroe(ruta, rutasDelServicio = rutasDeCiudad(ruta.split('/
  */
 export function fotosDeSeccion(ruta, rutasDelServicio = rutasDeCiudad(ruta.split('/')[2])) {
   const servicio = ruta.split('/')[2];
-  const bolsa = DATOS.bolsas[servicio] ?? [];
+  const deTabla = TABLA.has(ruta);
+  const bolsa = (deTabla ? DATOS.seccion?.[servicio] : DATOS.bolsas[servicio]) ?? [];
   const hero = fotoDeHeroe(ruta, rutasDelServicio);
   const orden = [...rutasDelServicio].filter((r) => !DATOS.fijas[r]).sort();
   const i = Math.max(0, orden.indexOf(ruta));
@@ -89,7 +127,7 @@ export function fotosDeSeccion(ruta, rutasDelServicio = rutasDeCiudad(ruta.split
     const id = bolsa[(i + k) % bolsa.length];
     if (id !== hero?.id && !ids.includes(id)) ids.push(id);
   }
-  return ids.map((id) => { const e = valida(id, DATOS.clave[servicio], ruta); return { id: e.id, src: e.src, ancho: e.ancho, alto: e.alto, alt: e.alt }; });
+  return ids.map((id) => { const e = valida(id, DATOS.clave[servicio], ruta, deTabla); return { id: e.id, src: e.src, ancho: e.ancho, alto: e.alto, alt: e.alt }; });
 }
 
 /** Para el parte y para la puerta: cuantas ciudades comparten cada foto de cada bolsa. */

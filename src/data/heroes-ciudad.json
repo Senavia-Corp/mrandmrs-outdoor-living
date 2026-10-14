@@ -32,5 +32,81 @@
   },
   "fijas": {
     "/services/pool-builders/alachua-fl": { "id": "bi-0596", "pie": "Pool with sun shelf and raised spa in Alachua" }
+  },
+  "porCondado": {
+    "_lee_esto": [
+      "E13 (D-200, 14-oct-2026): EL HERO DE LAS CIUDADES DE PISCINA NUEVA, POR TABLA Y POR CONDADO. Sustituye al reparto de",
+      "la bolsa (puesto modulo tamano) en las ciudades que estan aqui; las demas siguen con la bolsa y con el MISMO orden de",
+      "antes, para que no cambie ninguna pagina fuera de la etapa. Se cierra un condado entero cada vez (etapa 1: los siete",
+      "del norte). La pagina del condado aun no esta aqui (etapa 3): conserva su foto de bolsa, y la tabla la evita.",
+      "REGLA que `heroe-ciudad.mjs` hace cumplir al construir: dentro de un condado ninguna foto se repite (contando la del",
+      "propio condado) y nunca van juntas dos de `casiIguales`. `check:estructura:ciudades` comprueba ademas, sobre el build,",
+      "que las ciudades de cada condado son las que enlaza la pagina del condado.",
+      "Elegidas en la hoja de contactos con el recorte del hero (STITCH-PARTE-45). Ningun alt dice ciudad: el pie es el alt",
+      "del banco, como en la bolsa. alachua-fl sigue en `fijas` (GPS de obra-049, D-201); aqui va para que la regla la cuente."
+    ],
+    "alachua-county-fl": {
+      "alachua-fl": "bi-0596",
+      "archer-fl": "bi-0501",
+      "gainesville-fl": "bi-1010",
+      "hawthorne-fl": "bi-0662",
+      "high-springs-fl": "bi-1016",
+      "micanopy-fl": "bi-0486",
+      "newberry-fl": "bi-1280",
+      "waldo-fl": "bi-0237"
+    },
+    "columbia-county-fl": {
+      "lake-city-fl": "bi-0487"
+    },
+    "dixie-county-fl": {
+      "cross-city-fl": "bi-1057",
+      "old-town-fl": "bi-0501"
+    },
+    "gilchrist-county-fl": {
+      "trenton-fl": "bi-1010"
+    },
+    "levy-county-fl": {
+      "cedar-key-fl": "bi-0508",
+      "chiefland-fl": "bi-1024",
+      "fanning-springs-fl": "bi-0661",
+      "williston-fl": "bi-1286"
+    },
+    "marion-county-fl": {
+      "mcintosh-fl": "bi-0504",
+      "ocala-fl": "bi-1275",
+      "reddick-fl": "bi-1014"
+    },
+    "putnam-county-fl": {
+      "palatka-fl": "bi-0662"
+    }
+  },
+  "casiIguales": [
+    [
+      "bi-0501",
+      "bi-0504"
+    ],
+    [
+      "bi-1008",
+      "bi-1009"
+    ],
+    [
+      "bi-0661",
+      "bi-0662"
+    ]
+  ],
+  "seccion": {
+    "_lee_esto": "E13: FAQ, cierre y resenas de las ciudades de `porCondado`, rotando desde el puesto de la ciudad y sin repetir su hero. Obra real con piscina; las apaisadas llevan su derivada 4:5 en fotos-hueco.json.",
+    "pool-builders": [
+      "bi-0662",
+      "bi-1280",
+      "bi-1010",
+      "bi-1286",
+      "bi-0237",
+      "bi-1284",
+      "bi-0661",
+      "bi-1014",
+      "bi-0614",
+      "bi-1057"
+    ]
   }
 }

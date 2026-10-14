@@ -9105,6 +9105,7 @@
     ],
     "usada_en": [
       "/about",
+      "/services/pool-builders/waldo-fl",
       "/services/louvered-roofs/gainesville-fl",
       "/services/louvered-roofs/ocala-fl",
       "/services/louvered-roofs/palatka-fl",
@@ -16798,7 +16799,8 @@
     "recortes_seguros": [
       "16:9",
       "3:2",
-      "1:1"
+      "1:1",
+      "4:5"
     ],
     "defectos": [
       "manguera cruzando el deck",
@@ -16917,7 +16919,9 @@
       "barbacoa, carretilla y tubos junto a la casa a la izquierda",
       "deck en sombra, dominante azul"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/pool-builders/lake-city-fl"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Brannen/20250914_223035000_iOS.jpg",
     "sha256": "d755bfec1b356dbeec64bf9072d9147890591f75711eda5d0ea768fb6936a66d"
   },
@@ -17458,7 +17462,10 @@
       "manguera del limpiafondos en el agua",
       "canasta de baloncesto cortada en el borde derecho"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/pool-builders/archer-fl",
+      "/services/pool-builders/old-town-fl"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Brier/IMG_3831.JPEG",
     "sha256": "fd4fcaad678e91720ab232a136519080670ce497fe3cd48532f73e04d7b9e51e"
   },
@@ -17594,7 +17601,8 @@
     "espacio_texto": "arriba",
     "recortes_seguros": [
       "16:9",
-      "3:2"
+      "3:2",
+      "4:5"
     ],
     "defectos": [
       "dos canastas de baloncesto en el deck",
@@ -17603,7 +17611,8 @@
     ],
     "usada_en": [
       "/project/luxury-pool-raised-spa-travertine-deck-south-florida",
-      "/industry-solutions"
+      "/industry-solutions",
+      "/services/pool-builders/mcintosh-fl"
     ],
     "origen": "NEW JOBS CONSTRUCTION/Brier/IMG_3834.JPEG",
     "sha256": "c4bab612dd64dae8a96829574998246e573963d7bda184973f97defe4fa1c96f"
@@ -17814,7 +17823,8 @@
     "espacio_texto": "arriba",
     "recortes_seguros": [
       "16:9",
-      "3:2"
+      "3:2",
+      "4:5"
     ],
     "defectos": [
       "destello del sol",
@@ -17825,7 +17835,8 @@
       "/blogs/before-and-after-pool-remodel-ideas",
       "/gallery",
       "/gallery/decks",
-      "/project/luxury-pool-raised-spa-travertine-deck-south-florida"
+      "/project/luxury-pool-raised-spa-travertine-deck-south-florida",
+      "/services/pool-builders/cedar-key-fl"
     ],
     "origen": "NEW JOBS CONSTRUCTION/Brier/IMG_3838.JPEG",
     "sha256": "2bb2567256cf27680ff4da6977ce2f3f6228c9291cf7fdc0259adc10a2d25189"
@@ -23797,14 +23808,16 @@
     "espacio_texto": "ninguno",
     "recortes_seguros": [
       "16:9",
-      "3:2"
+      "3:2",
+      "4:5"
     ],
     "defectos": [
       "caja blanca (alarma de piscina) sobre el coping abajo a la derecha"
     ],
     "usada_en": [
       "/blogs/top-10-luxury-pool-designs-for-florida-homes",
-      "/about"
+      "/about",
+      "/services/pool-builders/fanning-springs-fl"
     ],
     "origen": "NEW JOBS CONSTRUCTION/Fort Lauderdale Pool/IMG_2373.JPEG",
     "sha256": "228c148288104b5ab27c5b90d16a3a8ee51a7c8b77eff83778e745ca52ef3003"
@@ -23851,7 +23864,9 @@
       "/services/pool-builders",
       "/where-we-serve/north-florida",
       "/where-we-serve/south-florida",
-      "megamenu"
+      "megamenu",
+      "/services/pool-builders/hawthorne-fl",
+      "/services/pool-builders/palatka-fl"
     ],
     "origen": "NEW JOBS CONSTRUCTION/Fort Lauderdale Pool/IMG_2374.JPEG",
     "sha256": "219dcf8a6205180f23f0d1f4e35b6d02ef6b47fffc8d718e583a0e96e4643c88",
@@ -36880,7 +36895,8 @@
     "espacio_texto": "ninguno",
     "recortes_seguros": [
       "16:9",
-      "3:2"
+      "3:2",
+      "4:5"
     ],
     "defectos": [
       "nevera roja y cubo de basura junto a la puerta",
@@ -36889,7 +36905,8 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/aluminum-pergolas"
+      "/gallery/aluminum-pergolas",
+      "/services/pool-builders/reddick-fl"
     ],
     "origen": "PERGOLA/COVER PERGOLA DECO TIPS/IMG_1435.jpeg",
     "sha256": "efc9108640b46e209acc9ae910ac296ec1d67ed60dbf389bf1619bac015c77b2"
@@ -36960,14 +36977,17 @@
     ],
     "espacio_texto": "ninguno",
     "recortes_seguros": [
-      "3:2"
+      "3:2",
+      "4:5"
     ],
     "defectos": [
       "barbacoa tapada y hamaca a la izquierda",
       "muebles y nevera en el deck",
       "limpiafondos en el agua"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/pool-builders/high-springs-fl"
+    ],
     "origen": "PERGOLA/COVER PERGOLA DECO TIPS/IMG_1437.jpeg",
     "sha256": "741f424961a061fd1ab3183b5d17223f7b5afffb7e4943462f31a71f4aec7d10"
   },
@@ -37257,7 +37277,9 @@
       "limpiafondos en el agua",
       "alero en la esquina superior izquierda"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/pool-builders/chiefland-fl"
+    ],
     "origen": "PERGOLA/COVER PERGOLA DECO TIPS/IMG_6675.JPG",
     "sha256": "ee22de31788add28812cd2be160b2d7f787c724fade0643eabdbd3e576d8a3bd"
   },
@@ -38676,7 +38698,8 @@
     "espacio_texto": "ninguno",
     "recortes_seguros": [
       "3:2",
-      "1:1"
+      "1:1",
+      "4:5"
     ],
     "defectos": [
       "señal de STOP y motores de barco a la derecha",
@@ -38686,7 +38709,8 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/aluminum-pergolas"
+      "/gallery/aluminum-pergolas",
+      "/services/pool-builders/cross-city-fl"
     ],
     "origen": "PERGOLA/Moderna/3.jpeg",
     "sha256": "6d09327679c389f52d0adf808dcca338d0fefad7765fe64d23ee6a9db1d43a19"
@@ -43433,11 +43457,13 @@
       "4:3",
       "1:1",
       "16:9",
-      "3:2"
+      "3:2",
+      "4:5"
     ],
     "defectos": [],
     "usada_en": [
-      "/services/retractable-screens"
+      "/services/retractable-screens",
+      "/services/pool-builders/ocala-fl"
     ],
     "origen": "Senavia Picture /Pictures-04.jpg",
     "sha256": "80fd4a40039e48b28b9d95da2c93430f67eadc17e31640accb0f69cca1443881"
@@ -43645,7 +43671,8 @@
     ],
     "defectos": [],
     "usada_en": [
-      "/request-estimated"
+      "/request-estimated",
+      "/services/pool-builders/newberry-fl"
     ],
     "origen": "Senavia Picture /Pictures-29.jpg",
     "sha256": "3160ef5f46eccbc316c411bee93e28bdd6d8ccb17d1af190da434ea5db90d0e8"
@@ -43877,7 +43904,8 @@
     ],
     "defectos": [],
     "usada_en": [
-      "/about"
+      "/about",
+      "/services/pool-builders/williston-fl"
     ],
     "origen": "Senavia Picture /Pictures-35.jpg",
     "sha256": "508702e9e9e36201379fa3098ffedb80212be96421228ea39433d352261b3adf"

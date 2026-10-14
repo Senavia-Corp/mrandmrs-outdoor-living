@@ -8037,6 +8037,45 @@
      "/images/banco/pergolas/white-patio-cover-pool-wicker-loungers-palms-florida-01-mm1024.webp"
     ]
    ]
+  },
+  "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-spa-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-spa-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-spa-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/rooms/patio-screen-room-dark-frame-insulated-roof-corner-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/rooms/patio-screen-room-dark-frame-insulated-roof-corner-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/rooms/patio-screen-room-dark-frame-insulated-roof-corner-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/screens/retractable-screens-motorized-dark-mesh-lanai-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/screens/retractable-screens-motorized-dark-mesh-lanai-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/screens/retractable-screens-motorized-dark-mesh-lanai-florida-01-mm1024.webp"
+    ]
+   ]
   }
  },
  "lcp": {
@@ -9230,6 +9269,106 @@
    [
     1024,
     "/images/banco/pergolas/white-patio-cover-pool-wicker-loungers-palms-florida-01-lcp1024.avif"
+   ]
+  ],
+  "/images/banco/construction/new-pool-raised-spa-blue-glass-tile-travertine-deck-florida-01.webp": [
+   [
+    800,
+    "/images/banco/construction/new-pool-raised-spa-blue-glass-tile-travertine-deck-florida-01-lcp800.avif"
+   ],
+   [
+    1024,
+    "/images/banco/construction/new-pool-raised-spa-blue-glass-tile-travertine-deck-florida-01-lcp1024.avif"
+   ]
+  ],
+  "/images/banco/construction/pool-construction-l-shaped-pool-spa-aerial-florida-01.webp": [
+   [
+    800,
+    "/images/banco/construction/pool-construction-l-shaped-pool-spa-aerial-florida-01-lcp800.avif"
+   ],
+   [
+    1024,
+    "/images/banco/construction/pool-construction-l-shaped-pool-spa-aerial-florida-01-lcp1024.avif"
+   ]
+  ],
+  "/images/banco/construction/pool-construction-spa-travertine-deck-wide-florida-01.webp": [
+   [
+    800,
+    "/images/banco/construction/pool-construction-spa-travertine-deck-wide-florida-01-lcp800.avif"
+   ],
+   [
+    1024,
+    "/images/banco/construction/pool-construction-spa-travertine-deck-wide-florida-01-lcp1024.avif"
+   ]
+  ],
+  "/images/banco/decks/travertine-pool-deck-herringbone-turf-border-florida-01.webp": [
+   [
+    800,
+    "/images/banco/decks/travertine-pool-deck-herringbone-turf-border-florida-01-lcp800.avif"
+   ],
+   [
+    1024,
+    "/images/banco/decks/travertine-pool-deck-herringbone-turf-border-florida-01-lcp1024.avif"
+   ]
+  ],
+  "/images/banco/louvered/white-louvered-pergola-curved-pool-patio-lounge-florida-01.webp": [
+   [
+    800,
+    "/images/banco/louvered/white-louvered-pergola-curved-pool-patio-lounge-florida-01-lcp800.avif"
+   ],
+   [
+    1024,
+    "/images/banco/louvered/white-louvered-pergola-curved-pool-patio-lounge-florida-01-lcp1024.avif"
+   ]
+  ],
+  "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-florida-01.webp": [
+   [
+    800,
+    "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-florida-01-lcp800.avif"
+   ],
+   [
+    1024,
+    "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-florida-01-lcp1024.avif"
+   ]
+  ],
+  "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-spa-florida-01.webp": [
+   [
+    800,
+    "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-spa-florida-01-lcp800.avif"
+   ],
+   [
+    1024,
+    "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-pool-spa-florida-01-lcp1024.avif"
+   ]
+  ],
+  "/images/banco/pergolas/modern-patio-cover-black-frame-two-story-home-pool-florida-01.webp": [
+   [
+    800,
+    "/images/banco/pergolas/modern-patio-cover-black-frame-two-story-home-pool-florida-01-lcp800.avif"
+   ],
+   [
+    1024,
+    "/images/banco/pergolas/modern-patio-cover-black-frame-two-story-home-pool-florida-01-lcp1024.avif"
+   ]
+  ],
+  "/images/banco/screens/retractable-screens-raised-covered-patio-pool-florida-01.webp": [
+   [
+    800,
+    "/images/banco/screens/retractable-screens-raised-covered-patio-pool-florida-01-lcp800.avif"
+   ],
+   [
+    1024,
+    "/images/banco/screens/retractable-screens-raised-covered-patio-pool-florida-01-lcp1024.avif"
+   ]
+  ],
+  "/images/banco/louvered/louvered-pergola-bronze-waterfront-pool-deck-florida-01.webp": [
+   [
+    800,
+    "/images/banco/louvered/louvered-pergola-bronze-waterfront-pool-deck-florida-01-lcp800.avif"
+   ],
+   [
+    1024,
+    "/images/banco/louvered/louvered-pergola-bronze-waterfront-pool-deck-florida-01-lcp1024.avif"
    ]
   ]
  },
