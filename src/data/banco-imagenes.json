@@ -8079,9 +8079,7 @@
     "defectos": [
       "algo de ruido por poca luz"
     ],
-    "usada_en": [
-      "/services/soffit-led-lighting"
-    ],
+    "usada_en": [],
     "origen": "EQUINOX LOUVERED ROOF/IMG_0044.JPG",
     "sha256": "9416b274938a4f4163cece55de43c89e71de3f131e40da229d586770c7b804b5"
   },
@@ -8174,14 +8172,10 @@
       "/blogs/how-much-does-a-motorized-louvered-roof-cost",
       "/gallery",
       "/gallery/louvered-roofs",
-      "/services/soffit-led-lighting",
-      "megamenu"
+      "/services/soffit-led-lighting"
     ],
     "origen": "EQUINOX LOUVERED ROOF/IMG_0046.JPG",
-    "sha256": "32079cc00ad7d3e2d972ae2116a4b5c588dd006b63cce74ad7d81bf0a09cd418",
-    "publicada_como": [
-      "/images/obra/obra-033/louvered-roof-recessed-lights-night-patio-florida-menu.avif"
-    ]
+    "sha256": "32079cc00ad7d3e2d972ae2116a4b5c588dd006b63cce74ad7d81bf0a09cd418"
   },
   {
     "id": "bi-0218",
@@ -8942,7 +8936,6 @@
       "muy oscura"
     ],
     "usada_en": [
-      "/services/soffit-led-lighting",
       "/services/louvered-roofs/gainesville-fl",
       "/services/louvered-roofs/ocala-fl",
       "/services/louvered-roofs/palatka-fl",

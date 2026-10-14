@@ -140,17 +140,17 @@
     }
   },
   "lighting": {
-    "src": "/images/obra/obra-033/louvered-roof-recessed-lights-night-patio-florida-menu.avif",
-    "alt": "Louvered roof with white recessed lights over a travertine patio with lounge and dining furniture at night",
+    "src": "/images/obra/suelta/home-soffit-led-lighting-dusk-florida-menu.avif",
+    "alt": "Two-story home at dusk with warm LED lighting along its soffits and tropical planting in front.",
     "ancho": 784,
     "alto": 1146,
-    "_banco": "bi-0217",
+    "_seccion": "/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/smart-soffit-led-lighting-florida.avif",
     "_ajuste": {
       "recorte": "392/573",
-      "pos": "10% 50%",
+      "pos": "42% 50%",
       "ancho": 784,
       "q": 46,
-      "de": "/images/banco/louvered/louvered-roof-recessed-lights-night-patio-florida-01.webp"
+      "de": "/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/smart-soffit-led-lighting-florida.avif"
     }
   },
   "irrigation": {

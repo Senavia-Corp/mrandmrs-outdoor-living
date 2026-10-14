@@ -804,10 +804,19 @@ let mosaicos = 0;
  *  ya no pueden salir de ella. Se validan aqui: una que no cumpla tumba el script. */
 const FOTOS_SECCION = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/fotos-seccion-fichas.json'), 'utf8'));
 const BANCO_POR_ID = new Map(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/banco-imagenes.json'), 'utf8')).map((e) => [e.id, e]));
+/** D-185: la ficha de luces de alero ensena el SISTEMA sobre una casa, y de eso no hay obra propia. Sus fotos de seccion
+ *  son las que ya ensenaba la pagina de origen, que no estan en el banco: van como objeto y solo valen en esta ruta. */
+const SECCION_FUERA_DEL_BANCO = new Set(['/services/soffit-led-lighting']);
 function fotoDeSeccion(ruta, k) {
   if (!(ruta in FOTOS_SECCION)) throw new Error(`${ruta}: no esta en fotos-seccion-fichas.json (una lista vacia vale; faltar, no)`);
   const id = FOTOS_SECCION[ruta][k];
   if (!id) return null;
+  if (typeof id === 'object') {
+    const mal = !SECCION_FUERA_DEL_BANCO.has(ruta) ? 'esta ruta no tiene declarada la excepcion' : !id.alt ? 'sin alt' : !(id.w > id.h * 1.05) ? 'no es apaisada'
+      : !fs.existsSync(path.join(RAIZ, 'public', id.src)) ? 'falta el fichero' : null;
+    if (mal) throw new Error(`${ruta}: ${id.src} no vale de foto de seccion — ${mal}`);
+    return { src: id.src, alt: id.alt, w: id.w, h: id.h };
+  }
   const e = BANCO_POR_ID.get(id);
   const falla = !e ? 'no esta en el banco' : e.procedencia !== 'obra_real' ? `procedencia «${e.procedencia}»`
     : !/^aprobada/.test(e.estado ?? '') ? `estado «${e.estado}»` : e.etapa !== 'terminado' ? `etapa «${e.etapa}»`
@@ -824,7 +833,7 @@ function mosaicoDeObra(doc, ruta) {
   const cta = doc.querySelector('.mm-hero-a-acc > a.mm-btn');
   if (!h2 || !linea || !cta) throw new Error(`${ruta}: la galeria no trae titular y linea, o el hero no trae su accion`);
   localizar(sec);
-  const todas = [...sec.querySelectorAll('img.image-gallery')].map((i) => ({ src: i.getAttribute('src'), alt: i.getAttribute('alt') ?? '',
+  const todas = [...sec.querySelectorAll('img.image-gallery')].map((i) => ({ src: i.getAttribute('src'), alt: COMPLEMENTARIA.ilustraciones?.[i.getAttribute('src')] ?? i.getAttribute('alt') ?? '',
     w: i.getAttribute('width'), h: i.getAttribute('height') }));
   // La foto del hero no se repite en la galeria (screen rooms y riego toman el hero de ella, D-122).
   const delHero = doc.querySelector('.mm-hero-a-medio img')?.getAttribute('src');
