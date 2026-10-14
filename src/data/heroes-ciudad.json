@@ -84,7 +84,7 @@
       "dania-beach-fl": "bi-1024",
       "davie-fl": "bi-0487",
       "deerfield-beach-fl": "bi-0614",
-      "fort-lauderdale-fl": "bi-1284",
+      "fort-lauderdale-fl": "bi-0661",
       "hallandale-beach-fl": "bi-0168",
       "hillsboro-beach-fl": "bi-1286",
       "hollywood-fl": "bi-1280",
@@ -161,6 +161,7 @@
   },
   "lugar": {
     "_lee_esto": "D-204: donde se hizo la foto, por el GPS de su original (lo leyo el director con mdls; esa tabla no va a la rama publica y no guarda coordenadas). Solo ciudad o condado. El hero de una pagina por tabla anade «in <Ciudad>, FL» o «in <Condado> County» a su alt y a su pie SOLO si la pagina es de esa ciudad o de ese condado. Nada entra aqui sin esa tabla delante.",
+    "bi-0661": { "condado": "broward-county-fl", "ciudad": "fort-lauderdale-fl" },
     "bi-1016": { "condado": "broward-county-fl", "ciudad": null }
   }
 }
