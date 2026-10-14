@@ -2161,6 +2161,77 @@
     ],
     "_hecha": "/images/images/irrigation-2/automated-irrigation-system-installers-florida-02.jpg · 40% 50%"
    }
+  },
+  "/images/banco/remodeling/pool-remodeling-travertine-deck-rock-landscaping-florida-01.webp": {
+   "hero": {
+    "de": "/images/banco/remodeling/pool-remodeling-travertine-deck-rock-landscaping-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 1.3333,
+    "fuentes": [
+     [
+      960,
+      "/images/banco/remodeling/pool-remodeling-travertine-deck-rock-landscaping-florida-01-hero960.avif"
+     ],
+     [
+      1280,
+      "/images/banco/remodeling/pool-remodeling-travertine-deck-rock-landscaping-florida-01-hero1280.avif"
+     ],
+     [
+      1600,
+      "/images/banco/remodeling/pool-remodeling-travertine-deck-rock-landscaping-florida-01-hero1600.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/remodeling/pool-remodeling-travertine-deck-rock-landscaping-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp": {
+   "hero": {
+    "de": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp",
+    "pos": "50% 50%",
+    "ratio": 1.3333,
+    "fuentes": [
+     [
+      960,
+      "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02-hero960.avif"
+     ],
+     [
+      1280,
+      "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02-hero1280.avif"
+     ],
+     [
+      1600,
+      "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02-hero1600.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp · 50% 50%"
+   }
+  },
+  "/images/banco/pergolas/white-patio-cover-dark-beams-pool-deck-fence-palms-florida-01.webp": {
+   "hero": {
+    "de": "/images/banco/pergolas/white-patio-cover-dark-beams-pool-deck-fence-palms-florida-01.webp",
+    "origen": "Senavia Picture /Pictures-18.jpg",
+    "pos": "50% 50%",
+    "ratio": 1.3333,
+    "fuentes": [
+     [
+      960,
+      "/images/banco/pergolas/white-patio-cover-dark-beams-pool-deck-fence-palms-florida-01-hero960.avif"
+     ],
+     [
+      1280,
+      "/images/banco/pergolas/white-patio-cover-dark-beams-pool-deck-fence-palms-florida-01-hero1280.avif"
+     ],
+     [
+      1600,
+      "/images/banco/pergolas/white-patio-cover-dark-beams-pool-deck-fence-palms-florida-01-hero1600.avif"
+     ]
+    ],
+    "_hecha": "Senavia Picture /Pictures-18.jpg · 50% 50%",
+    "mide": [
+     5333,
+     4000
+    ]
+   }
   }
  }
 }

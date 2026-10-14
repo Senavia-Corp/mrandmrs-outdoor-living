@@ -39,6 +39,7 @@
       "la bolsa (puesto modulo tamano) en las ciudades que estan aqui; las demas siguen con la bolsa y con el MISMO orden de",
       "antes, para que no cambie ninguna pagina fuera de la etapa. Se cierra un condado entero cada vez (etapa 1: los siete",
       "del norte). La pagina del condado aun no esta aqui (etapa 3): conserva su foto de bolsa, y la tabla la evita.",
+      "Etapa 2: Broward y Palm Beach. Sus ciudades no usan bi-0661 ni bi-0662, reservadas para la pagina del condado.",
       "REGLA que `heroe-ciudad.mjs` hace cumplir al construir: dentro de un condado ninguna foto se repite (contando la del",
       "propio condado) y nunca van juntas dos de `casiIguales`. `check:estructura:ciudades` comprueba ademas, sobre el build,",
       "que las ciudades de cada condado son las que enlaza la pagina del condado.",
@@ -78,6 +79,43 @@
     },
     "putnam-county-fl": {
       "palatka-fl": "bi-0662"
+    },
+    "broward-county-fl": {
+      "dania-beach-fl": "bi-1024",
+      "davie-fl": "bi-0487",
+      "deerfield-beach-fl": "bi-0614",
+      "fort-lauderdale-fl": "bi-1284",
+      "hallandale-beach-fl": "bi-0168",
+      "hillsboro-beach-fl": "bi-1286",
+      "hollywood-fl": "bi-1280",
+      "lighthouse-point-fl": "bi-0508",
+      "miramar-fl": "bi-1287",
+      "parkland-fl": "bi-0504",
+      "pembroke-pines-fl": "bi-0520",
+      "plantation-fl": "bi-1014",
+      "pompano-beach-fl": "bi-1057",
+      "southwest-ranches-fl": "bi-0486",
+      "weston-fl": "bi-1010",
+      "wilton-manors-fl": "bi-0237"
+    },
+    "palm-beach-county-fl": {
+      "atlantis-fl": "bi-1280",
+      "boca-raton-fl": "bi-0487",
+      "boynton-beach-fl": "bi-0614",
+      "delray-beach-fl": "bi-0237",
+      "gulf-stream-fl": "bi-0501",
+      "hypoluxo-fl": "bi-0508",
+      "juno-beach-fl": "bi-1275",
+      "jupiter-fl": "bi-1284",
+      "manalapan-fl": "bi-0520",
+      "north-palm-beach-fl": "bi-1286",
+      "ocean-ridge-fl": "bi-1014",
+      "palm-beach-gardens-fl": "bi-0486",
+      "royal-palm-beach-fl": "bi-1057",
+      "south-palm-beach-fl": "bi-0946",
+      "tequesta-fl": "bi-0168",
+      "wellington-fl": "bi-1287",
+      "west-palm-beach-fl": "bi-1024"
     }
   },
   "casiIguales": [

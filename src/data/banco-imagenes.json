@@ -6341,7 +6341,9 @@
     "usada_en": [
       "/blogs/is-a-motorized-louvered-roof-worth-it-in-florida",
       "/gallery",
-      "/gallery/louvered-roofs"
+      "/gallery/louvered-roofs",
+      "/services/pool-builders/tequesta-fl",
+      "/services/pool-builders/hallandale-beach-fl"
     ],
     "origen": "EQUINOX LOUVERED ROOF/32.jpg",
     "sha256": "8ef1635d4b860689505de338de31b174e3d1b0aa2d69e1f22aeec530847622cc"
@@ -9106,6 +9108,8 @@
     "usada_en": [
       "/about",
       "/services/pool-builders/waldo-fl",
+      "/services/pool-builders/delray-beach-fl",
+      "/services/pool-builders/wilton-manors-fl",
       "/services/louvered-roofs/gainesville-fl",
       "/services/louvered-roofs/ocala-fl",
       "/services/louvered-roofs/palatka-fl",
@@ -16920,7 +16924,9 @@
       "deck en sombra, dominante azul"
     ],
     "usada_en": [
-      "/services/pool-builders/lake-city-fl"
+      "/services/pool-builders/lake-city-fl",
+      "/services/pool-builders/boca-raton-fl",
+      "/services/pool-builders/davie-fl"
     ],
     "origen": "NEW JOBS CONSTRUCTION/Brannen/20250914_223035000_iOS.jpg",
     "sha256": "d755bfec1b356dbeec64bf9072d9147890591f75711eda5d0ea768fb6936a66d"
@@ -17464,7 +17470,8 @@
     ],
     "usada_en": [
       "/services/pool-builders/archer-fl",
-      "/services/pool-builders/old-town-fl"
+      "/services/pool-builders/old-town-fl",
+      "/services/pool-builders/gulf-stream-fl"
     ],
     "origen": "NEW JOBS CONSTRUCTION/Brier/IMG_3831.JPEG",
     "sha256": "fd4fcaad678e91720ab232a136519080670ce497fe3cd48532f73e04d7b9e51e"
@@ -17612,7 +17619,8 @@
     "usada_en": [
       "/project/luxury-pool-raised-spa-travertine-deck-south-florida",
       "/industry-solutions",
-      "/services/pool-builders/mcintosh-fl"
+      "/services/pool-builders/mcintosh-fl",
+      "/services/pool-builders/parkland-fl"
     ],
     "origen": "NEW JOBS CONSTRUCTION/Brier/IMG_3834.JPEG",
     "sha256": "c4bab612dd64dae8a96829574998246e573963d7bda184973f97defe4fa1c96f"
@@ -17836,7 +17844,9 @@
       "/gallery",
       "/gallery/decks",
       "/project/luxury-pool-raised-spa-travertine-deck-south-florida",
-      "/services/pool-builders/cedar-key-fl"
+      "/services/pool-builders/cedar-key-fl",
+      "/services/pool-builders/hypoluxo-fl",
+      "/services/pool-builders/lighthouse-point-fl"
     ],
     "origen": "NEW JOBS CONSTRUCTION/Brier/IMG_3838.JPEG",
     "sha256": "2bb2567256cf27680ff4da6977ce2f3f6228c9291cf7fdc0259adc10a2d25189"
@@ -18380,7 +18390,8 @@
     "espacio_texto": "arriba",
     "recortes_seguros": [
       "16:9",
-      "3:2"
+      "3:2",
+      "4:5"
     ],
     "defectos": [
       "zona de tierra removida junto a la grava",
@@ -21848,6 +21859,8 @@
     ],
     "usada_en": [
       "megamenu",
+      "/services/pool-builders/boynton-beach-fl",
+      "/services/pool-builders/deerfield-beach-fl",
       "/services/pool-remodeling/gainesville-fl",
       "/services/pool-remodeling/ocala-fl",
       "/services/pool-remodeling/palatka-fl",
@@ -34305,12 +34318,14 @@
     "recortes_seguros": [
       "16:9",
       "3:2",
-      "1:1"
+      "1:1",
+      "4:5"
     ],
     "defectos": [
       "caja de carton bajo la cubierta"
     ],
     "usada_en": [
+      "/services/pool-builders/south-palm-beach-fl",
       "/services/pergola-builders/gainesville-fl",
       "/services/pergola-builders/ocala-fl",
       "/services/pergola-builders/palatka-fl",
@@ -36906,7 +36921,9 @@
     "usada_en": [
       "/gallery",
       "/gallery/aluminum-pergolas",
-      "/services/pool-builders/reddick-fl"
+      "/services/pool-builders/reddick-fl",
+      "/services/pool-builders/ocean-ridge-fl",
+      "/services/pool-builders/plantation-fl"
     ],
     "origen": "PERGOLA/COVER PERGOLA DECO TIPS/IMG_1435.jpeg",
     "sha256": "efc9108640b46e209acc9ae910ac296ec1d67ed60dbf389bf1619bac015c77b2"
@@ -37278,7 +37295,9 @@
       "alero en la esquina superior izquierda"
     ],
     "usada_en": [
-      "/services/pool-builders/chiefland-fl"
+      "/services/pool-builders/chiefland-fl",
+      "/services/pool-builders/west-palm-beach-fl",
+      "/services/pool-builders/dania-beach-fl"
     ],
     "origen": "PERGOLA/COVER PERGOLA DECO TIPS/IMG_6675.JPG",
     "sha256": "ee22de31788add28812cd2be160b2d7f787c724fade0643eabdbd3e576d8a3bd"
@@ -38710,7 +38729,9 @@
     "usada_en": [
       "/gallery",
       "/gallery/aluminum-pergolas",
-      "/services/pool-builders/cross-city-fl"
+      "/services/pool-builders/cross-city-fl",
+      "/services/pool-builders/royal-palm-beach-fl",
+      "/services/pool-builders/pompano-beach-fl"
     ],
     "origen": "PERGOLA/Moderna/3.jpeg",
     "sha256": "6d09327679c389f52d0adf808dcca338d0fefad7765fe64d23ee6a9db1d43a19"
@@ -43463,7 +43484,8 @@
     "defectos": [],
     "usada_en": [
       "/services/retractable-screens",
-      "/services/pool-builders/ocala-fl"
+      "/services/pool-builders/ocala-fl",
+      "/services/pool-builders/juno-beach-fl"
     ],
     "origen": "Senavia Picture /Pictures-04.jpg",
     "sha256": "80fd4a40039e48b28b9d95da2c93430f67eadc17e31640accb0f69cca1443881"
@@ -43672,7 +43694,9 @@
     "defectos": [],
     "usada_en": [
       "/request-estimated",
-      "/services/pool-builders/newberry-fl"
+      "/services/pool-builders/newberry-fl",
+      "/services/pool-builders/atlantis-fl",
+      "/services/pool-builders/hollywood-fl"
     ],
     "origen": "Senavia Picture /Pictures-29.jpg",
     "sha256": "3160ef5f46eccbc316c411bee93e28bdd6d8ccb17d1af190da434ea5db90d0e8"
@@ -43826,7 +43850,9 @@
     ],
     "defectos": [],
     "usada_en": [
-      "/about"
+      "/about",
+      "/services/pool-builders/jupiter-fl",
+      "/services/pool-builders/fort-lauderdale-fl"
     ],
     "origen": "Senavia Picture /Pictures-21.jpg",
     "sha256": "ec35c4152c538df32723fd28630300efb2f1ca4d4f2286ba2658a5b86c57d615"
@@ -43905,9 +43931,50 @@
     "defectos": [],
     "usada_en": [
       "/about",
-      "/services/pool-builders/williston-fl"
+      "/services/pool-builders/williston-fl",
+      "/services/pool-builders/north-palm-beach-fl",
+      "/services/pool-builders/hillsboro-beach-fl"
     ],
     "origen": "Senavia Picture /Pictures-35.jpg",
     "sha256": "508702e9e9e36201379fa3098ffedb80212be96421228ea39433d352261b3adf"
+  },
+  {
+    "id": "bi-1287",
+    "src": "/images/banco/pergolas/white-patio-cover-dark-beams-pool-deck-fence-palms-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1200,
+    "alt": "White patio cover with dark beams over a pool deck, with a fenced pool, palms and a lake beyond.",
+    "descripcion": "Cubierta de patio blanca con vigas oscuras sobre la playa de una piscina rectangular; valla blanca, palmeras y un lago al fondo; una silla plegable y una barbacoa tapada a la derecha. Foto de sesión profesional.",
+    "tags": [
+      "patio cover",
+      "pool deck",
+      "palms",
+      "lake view"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:3",
+      "4:5",
+      "16:9",
+      "3:2"
+    ],
+    "defectos": [],
+    "usada_en": [
+      "/services/pool-builders/wellington-fl",
+      "/services/pool-builders/miramar-fl"
+    ],
+    "origen": "Senavia Picture /Pictures-18.jpg",
+    "sha256": "dff7298c368042d8dc38eaad793ed883f48d6959eb02238d6cff174a8d06125d"
   }
 ]

@@ -8076,6 +8076,32 @@
      "/images/banco/screens/retractable-screens-motorized-dark-mesh-lanai-florida-01-mm1024.webp"
     ]
    ]
+  },
+  "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/white-patio-cover-dark-beams-pool-deck-fence-palms-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/white-patio-cover-dark-beams-pool-deck-fence-palms-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/white-patio-cover-dark-beams-pool-deck-fence-palms-florida-01-mm1024.webp"
+    ]
+   ]
   }
  },
  "lcp": {
@@ -9369,6 +9395,46 @@
    [
     1024,
     "/images/banco/louvered/louvered-pergola-bronze-waterfront-pool-deck-florida-01-lcp1024.avif"
+   ]
+  ],
+  "/images/banco/pergolas/freestanding-pergola-long-pool-lounge-set-potted-plant-florida-01.webp": [
+   [
+    800,
+    "/images/banco/pergolas/freestanding-pergola-long-pool-lounge-set-potted-plant-florida-01-lcp800.avif"
+   ],
+   [
+    1024,
+    "/images/banco/pergolas/freestanding-pergola-long-pool-lounge-set-potted-plant-florida-01-lcp1024.avif"
+   ]
+  ],
+  "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02.webp": [
+   [
+    800,
+    "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02-lcp800.avif"
+   ],
+   [
+    1024,
+    "/images/banco/pergolas/insulated-patio-cover-black-fascia-white-home-pool-florida-02-lcp1024.avif"
+   ]
+  ],
+  "/images/banco/pergolas/white-patio-cover-dark-beams-pool-deck-fence-palms-florida-01.webp": [
+   [
+    800,
+    "/images/banco/pergolas/white-patio-cover-dark-beams-pool-deck-fence-palms-florida-01-lcp800.avif"
+   ],
+   [
+    1024,
+    "/images/banco/pergolas/white-patio-cover-dark-beams-pool-deck-fence-palms-florida-01-lcp1024.avif"
+   ]
+  ],
+  "/images/banco/remodeling/pool-remodeling-travertine-deck-rock-landscaping-florida-01.webp": [
+   [
+    800,
+    "/images/banco/remodeling/pool-remodeling-travertine-deck-rock-landscaping-florida-01-lcp800.avif"
+   ],
+   [
+    1024,
+    "/images/banco/remodeling/pool-remodeling-travertine-deck-rock-landscaping-florida-01-lcp1024.avif"
    ]
   ]
  },
