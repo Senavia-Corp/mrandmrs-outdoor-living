@@ -11124,7 +11124,9 @@
       "cartel inmobiliario con nombre, telefono y foto a la izquierda",
       "recortada en origen: el cuadro completo tenía un problema de privacidad"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/landscaping"
+    ],
     "origen": "LANDSCAPING/20160806_151649.jpg",
     "sha256": "5bc3b32fd6010cbf05d3dad53d7359d46e865eb3ea3c47e48b641404f80a391d",
     "recorte": {
@@ -11132,7 +11134,10 @@
       "top": 0,
       "width": 0.563,
       "height": 1
-    }
+    },
+    "publicada_como": [
+      "/images/obra/obra-039/landscaping-driveway-island-bromeliads-river-rock-florida.avif"
+    ]
   },
   {
     "id": "bi-0305",
@@ -39731,9 +39736,14 @@
     "defectos": [
       "objeto naranja en el suelo abajo a la derecha"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/steel-buildings-pole-barns"
+    ],
     "origen": "POLE BARN 2/10.jpg",
-    "sha256": "2e56393450262c94a1f250a7df6b5d217576c20ca91b7bdf4d779063f301f70f"
+    "sha256": "2e56393450262c94a1f250a7df6b5d217576c20ca91b7bdf4d779063f301f70f",
+    "publicada_como": [
+      "/images/obra/obra-111/pole-barn-enclosed-tan-metal-siding-brown-trim-florida.avif"
+    ]
   },
   {
     "id": "bi-1084",

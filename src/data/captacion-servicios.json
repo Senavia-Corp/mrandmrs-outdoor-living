@@ -2058,16 +2058,24 @@
         {
           "titulo": "Sod, Trees & Planting Beds",
           "parrafo": "We lay certified sod over graded, amended soil so roots knit into the base instead of sitting on loose sand. Trees and shrubs go in at nursery depth, staked against Florida wind, and beds get defined edges plus mulch that holds moisture through the dry season.",
-          "foto": "/images/images/landscaping-9/luxury-landscaping-construction-contractors-florida-09.jpg",
+          "foto": "/images/obra/obra-039/landscaping-driveway-island-bromeliads-river-rock-florida.avif",
           "alt": "Front-yard planting beds with palms along a paver drive",
-          "ancho": 1250,
-          "alto": 698,
+          "ancho": 1599,
+          "alto": 1599,
           "lado": "izquierda",
           "items": [
             "Sod Installation Contractors",
             "Plant & Tree Installation Services",
             "Mulching & Edging Services"
-          ]
+          ],
+          "_banco": "bi-0304",
+          "_ajuste": {
+            "recorte": "1/1",
+            "pos": "50% 50%",
+            "ancho": 1599,
+            "q": 52,
+            "de": "/images/banco/landscaping/landscaping-driveway-island-bromeliads-river-rock-florida-02.webp"
+          }
         },
         {
           "titulo": "Pavers, Patios & Walkways",
@@ -2614,15 +2622,23 @@
         {
           "titulo": "Garages, Workshops, Storage Buildings",
           "parrafo": "Steel garages and workshops sit on a slab we pour with thickened edges, with anchor bolts set to the column layout. Insulated panels and a vented ridge hold down the radiant heat these buildings trap in a Florida summer, and we size doors around the trucks, boats or equipment going inside.",
-          "foto": "/images/images/pole-barn-10/pole-barn-steel-building-contractors-florida-10.jpg",
-          "alt": "Pole barn frame with timber posts and roof trusses",
-          "ancho": 1250,
-          "alto": 933,
+          "foto": "/images/obra/obra-111/pole-barn-enclosed-tan-metal-siding-brown-trim-florida.avif",
+          "alt": "Enclosed pole barn with tan metal siding, brown trim and an open bay under steel trusses",
+          "ancho": 1200,
+          "alto": 1600,
           "lado": "izquierda",
           "items": [
             "Steel Garage Construction",
             "Custom Workshop & Storage Buildings"
-          ]
+          ],
+          "_banco": "bi-1083",
+          "_ajuste": {
+            "recorte": "3/4",
+            "pos": "50% 50%",
+            "ancho": 1200,
+            "q": 52,
+            "de": "/images/banco/pole/pole-barn-enclosed-tan-metal-siding-brown-trim-florida-01.webp"
+          }
         },
         {
           "titulo": "Engineered Kits, Wind Ratings",

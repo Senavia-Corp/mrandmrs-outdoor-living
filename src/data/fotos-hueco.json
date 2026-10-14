@@ -1571,6 +1571,50 @@
      3712
     ]
    }
+  },
+  "/images/obra/obra-039/landscaping-driveway-island-bromeliads-river-rock-florida.avif": {
+   "lam": {
+    "de": "/images/banco/landscaping/landscaping-driveway-island-bromeliads-river-rock-florida-02.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/obra/obra-039/landscaping-driveway-island-bromeliads-river-rock-florida-lam560.avif"
+     ],
+     [
+      800,
+      "/images/obra/obra-039/landscaping-driveway-island-bromeliads-river-rock-florida-lam800.avif"
+     ],
+     [
+      1100,
+      "/images/obra/obra-039/landscaping-driveway-island-bromeliads-river-rock-florida-lam1100.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/landscaping/landscaping-driveway-island-bromeliads-river-rock-florida-02.webp · 50% 50%"
+   }
+  },
+  "/images/obra/obra-111/pole-barn-enclosed-tan-metal-siding-brown-trim-florida.avif": {
+   "lam": {
+    "de": "/images/banco/pole/pole-barn-enclosed-tan-metal-siding-brown-trim-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/obra/obra-111/pole-barn-enclosed-tan-metal-siding-brown-trim-florida-lam560.avif"
+     ],
+     [
+      800,
+      "/images/obra/obra-111/pole-barn-enclosed-tan-metal-siding-brown-trim-florida-lam800.avif"
+     ],
+     [
+      1100,
+      "/images/obra/obra-111/pole-barn-enclosed-tan-metal-siding-brown-trim-florida-lam1100.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pole/pole-barn-enclosed-tan-metal-siding-brown-trim-florida-01.webp · 50% 50%"
+   }
   }
  }
 }

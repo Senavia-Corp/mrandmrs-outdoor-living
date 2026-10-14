@@ -7907,6 +7907,32 @@
      "/images/obra/suelta/retractable-screens-motorized-dark-mesh-lanai-florida-mm1024.avif"
     ]
    ]
+  },
+  "/images/obra/obra-039/landscaping-driveway-island-bromeliads-river-rock-florida.avif": {
+   "ancho": 1599,
+   "variantes": [
+    [
+     640,
+     "/images/obra/obra-039/landscaping-driveway-island-bromeliads-river-rock-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/obra/obra-039/landscaping-driveway-island-bromeliads-river-rock-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/obra/obra-111/pole-barn-enclosed-tan-metal-siding-brown-trim-florida.avif": {
+   "ancho": 1200,
+   "variantes": [
+    [
+     640,
+     "/images/obra/obra-111/pole-barn-enclosed-tan-metal-siding-brown-trim-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/obra/obra-111/pole-barn-enclosed-tan-metal-siding-brown-trim-florida-mm1024.avif"
+    ]
+   ]
   }
  },
  "lcp": {
