@@ -16866,14 +16866,16 @@
       "/services/pool-remodeling",
       "/where-we-serve/north-florida",
       "/where-we-serve/south-florida",
-      "/industry-solutions"
+      "/industry-solutions",
+      "/services/pool-builders"
     ],
     "origen": "NEW JOBS CONSTRUCTION/Brannen/20250816_191637429_iOS 1.jpg",
     "sha256": "0fd64fb6a10cfab6745215a65ecd81ef3fea15baf0fe62fd3df1a892e4621e9f",
     "publicada_como": [
       "/images/residentials/pool-remodeling-renovation-in-north-south-florida/pool-resurfacing-tile-finish-upgrade-florida.avif",
       "/images/countries/custom-pool-builders-alachua-county-fl/south-florida-custom-pool-builders-resort-style-backyar.avif",
-      "/images/images/pool-remodeling-4/custom-pool-remodeling-contractors-florida-04.jpg"
+      "/images/images/pool-remodeling-4/custom-pool-remodeling-contractors-florida-04.jpg",
+      "/images/obra/obra-045/pool-construction-l-shaped-pool-spa-aerial-florida.avif"
     ]
   },
   {
@@ -34396,10 +34398,14 @@
       "/services/pool-builders/west-palm-beach-fl",
       "/services/pool-builders/weston-fl",
       "/services/pool-builders/williston-fl",
-      "/services/pool-builders/wilton-manors-fl"
+      "/services/pool-builders/wilton-manors-fl",
+      "/services/pool-builders"
     ],
     "origen": "PERGOLA/COVER ALUMINUM ROOF/IMG_1377.HEIC",
-    "sha256": "5a98d6b222775effce56d693d32ed6f38abe4c222fe5fdb052e6c54de294b889"
+    "sha256": "5a98d6b222775effce56d693d32ed6f38abe4c222fe5fdb052e6c54de294b889",
+    "publicada_como": [
+      "/images/obra/obra-090/pool-construction-spa-travertine-deck-sun-shelf-florida-heroe.avif"
+    ]
   },
   {
     "id": "bi-0948",

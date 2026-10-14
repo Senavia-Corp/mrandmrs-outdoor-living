@@ -512,6 +512,47 @@
     ],
     "_hecha": "/images/banco/pergolas/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-01.webp · 50% 45%"
    }
+  },
+  "/images/obra/obra-090/pool-construction-spa-travertine-deck-sun-shelf-florida-heroe.avif": {
+   "hero": {
+    "de": "/images/banco/construction/pool-construction-spa-travertine-deck-sun-shelf-florida-01.webp",
+    "pos": "50% 62%",
+    "recorte": "8/9",
+    "ratio": 0.8889,
+    "fuentes": [
+     [
+      960,
+      "/images/obra/obra-090/pool-construction-spa-travertine-deck-sun-shelf-florida-heroe-hero960.avif"
+     ],
+     [
+      1200,
+      "/images/obra/obra-090/pool-construction-spa-travertine-deck-sun-shelf-florida-heroe-hero1200.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/construction/pool-construction-spa-travertine-deck-sun-shelf-florida-01.webp · 50% 62% · 8/9"
+   }
+  },
+  "/images/obra/obra-045/pool-construction-l-shaped-pool-spa-aerial-florida.avif": {
+   "lam": {
+    "de": "/images/banco/construction/pool-construction-l-shaped-pool-spa-aerial-florida-01.webp",
+    "pos": "45% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/obra/obra-045/pool-construction-l-shaped-pool-spa-aerial-florida-lam560.avif"
+     ],
+     [
+      800,
+      "/images/obra/obra-045/pool-construction-l-shaped-pool-spa-aerial-florida-lam800.avif"
+     ],
+     [
+      960,
+      "/images/obra/obra-045/pool-construction-l-shaped-pool-spa-aerial-florida-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/construction/pool-construction-l-shaped-pool-spa-aerial-florida-01.webp · 45% 50%"
+   }
   }
  }
 }

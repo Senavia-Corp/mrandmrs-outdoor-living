@@ -343,7 +343,8 @@ const JSONLD_ARREGLADO = {
       ['about.serviceType', 'Smart Soffit LED Lighting Installation', 'Custom Pool Construction'],
       ['about.name', 'Pool  Construction', 'Pool Construction'],
       ['about.image', 'New pool and spa construction in Florida by licensed custom pool builders',
-        '/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-2.avif'],
+        // E10: la `image` del JSON-LD es la foto del hero, y sigue a la que el hero lleve
+        '/images/obra/obra-090/pool-construction-spa-travertine-deck-sun-shelf-florida-heroe.avif'],
       ['dateModified', '2026-05-18T19:50:50.150Z', '2026-05-18T19:55:49.094Z'],
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:50:50.150Z'],
       ['mainEntity.mainEntity.4.name', 'construction', 'Can I finance a custom pool project in Florida?'],

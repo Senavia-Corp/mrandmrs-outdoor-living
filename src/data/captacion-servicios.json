@@ -59,12 +59,21 @@
     "servicio": "New Pool and Spa Construction",
     "heroe": {
       "apoyo": "New custom inground pools for North Florida homeowners — 3D design, permits, construction and final start-up, from one licensed team. We also build across South Florida.",
-      "foto": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-2.avif",
-      "alt": "Custom inground pool and raised spa on a Florida acreage lot, built by Mr & Mrs Outdoor Living",
-      "ancho": 1250,
-      "alto": 698,
+      "foto": "/images/obra/obra-090/pool-construction-spa-travertine-deck-sun-shelf-florida-heroe.avif",
+      "alt": "Rectangular pool with raised spa, sun shelf loungers and ivory travertine deck under a blue sky",
+      "ancho": 1200,
+      "alto": 675,
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
+      "_banco": "bi-0947",
+      "_proyecto": "obra-090",
+      "_ajuste": {
+        "recorte": "16/9",
+        "pos": "50% 68%",
+        "ancho": 1200,
+        "q": 50,
+        "de": "/images/banco/construction/pool-construction-spa-travertine-deck-sun-shelf-florida-01.webp"
+      },
       "og": "/images/obra/og/custom-pool-spa-builders-florida.jpg",
       "cta": "Request a Design-Build Project Evaluation",
       "marca": "Pool"
@@ -128,11 +137,19 @@
         {
           "titulo": "Designed Around Your Lot",
           "parrafo": "Every pool starts with your lot, not a catalog shape. We survey the site, model the pool in 3D against setbacks, soil conditions and the Florida Building Code, and you approve the rendering before we pull a permit.",
-          "foto": "/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-1.avif",
+          "foto": "/images/obra/obra-045/pool-construction-l-shaped-pool-spa-aerial-florida.avif",
           "alt": "Aerial view of a custom pool and spa sited on a Florida acreage lot",
-          "ancho": 1250,
-          "alto": 698,
+          "ancho": 1600,
+          "alto": 1200,
           "lado": "derecha",
+          "_banco": "bi-0486",
+          "_ajuste": {
+            "recorte": "4/3",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/construction/pool-construction-l-shaped-pool-spa-aerial-florida-01.webp"
+          },
           "items": [
             "Custom Pool Design & Engineering"
           ]

@@ -7694,6 +7694,19 @@
     ]
    ]
   },
+  "/images/obra/obra-045/pool-construction-l-shaped-pool-spa-aerial-florida.avif": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/obra-045/pool-construction-l-shaped-pool-spa-aerial-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/obra/obra-045/pool-construction-l-shaped-pool-spa-aerial-florida-mm1024.avif"
+    ]
+   ]
+  },
   "/images/obra/obra-051/pool-remodeling-travertine-deck-blue-mosaic-tile-florida-menu.avif": {
    "ancho": 784,
    "variantes": [
@@ -7718,6 +7731,19 @@
     [
      640,
      "/images/obra/obra-071/outdoor-kitchen-white-stacked-stone-lake-florida-menu-mm640.avif"
+    ]
+   ]
+  },
+  "/images/obra/obra-090/pool-construction-spa-travertine-deck-sun-shelf-florida-heroe.avif": {
+   "ancho": 1200,
+   "variantes": [
+    [
+     640,
+     "/images/obra/obra-090/pool-construction-spa-travertine-deck-sun-shelf-florida-heroe-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/obra/obra-090/pool-construction-spa-travertine-deck-sun-shelf-florida-heroe-mm1024.avif"
     ]
    ]
   },
@@ -8920,6 +8946,16 @@
    [
     1024,
     "/images/obra/project-062/mrandmrs-pool-spa-a2-gallery-project-062-25-lcp1024.avif"
+   ]
+  ],
+  "/images/obra/obra-090/pool-construction-spa-travertine-deck-sun-shelf-florida-heroe.avif": [
+   [
+    800,
+    "/images/obra/obra-090/pool-construction-spa-travertine-deck-sun-shelf-florida-heroe-lcp800.avif"
+   ],
+   [
+    1024,
+    "/images/obra/obra-090/pool-construction-spa-travertine-deck-sun-shelf-florida-heroe-lcp1024.avif"
    ]
   ]
  },
