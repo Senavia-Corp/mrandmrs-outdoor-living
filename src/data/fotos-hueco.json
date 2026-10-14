@@ -1,0 +1,517 @@
+{
+ "_lee_esto": "Recetas a mano (`de`, `pos`); `ratio` y `fuentes` las escribe scripts/build-fotos-hueco.mjs. Lo lee src/lib/srcset-auto.mjs. La clave es el `src` que se sirve.",
+ "fotos": {
+  "/images/banco/construction/pool-construction-spa-marble-deck-evening-florida-01.webp": {
+   "lam": {
+    "de": "/images/banco/construction/pool-construction-spa-marble-deck-evening-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/banco/construction/pool-construction-spa-marble-deck-evening-florida-01-lam560.avif"
+     ],
+     [
+      800,
+      "/images/banco/construction/pool-construction-spa-marble-deck-evening-florida-01-lam800.avif"
+     ],
+     [
+      960,
+      "/images/banco/construction/pool-construction-spa-marble-deck-evening-florida-01-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/construction/pool-construction-spa-marble-deck-evening-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/obra-065/custom-pool-construction-backyard-lot-before-excavation.avif": {
+   "lam": {
+    "de": "/images/banco/construction/pool-construction-layout-marked-backyard-farmhouse-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/obra/obra-065/custom-pool-construction-backyard-lot-before-excavation-lam560.avif"
+     ],
+     [
+      800,
+      "/images/obra/obra-065/custom-pool-construction-backyard-lot-before-excavation-lam800.avif"
+     ],
+     [
+      960,
+      "/images/obra/obra-065/custom-pool-construction-backyard-lot-before-excavation-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/construction/pool-construction-layout-marked-backyard-farmhouse-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/banco/construction/pool-construction-raised-spa-sun-shelf-travertine-florida-01.webp": {
+   "lam": {
+    "de": "/images/banco/construction/pool-construction-raised-spa-sun-shelf-travertine-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/banco/construction/pool-construction-raised-spa-sun-shelf-travertine-florida-01-lam560.avif"
+     ],
+     [
+      800,
+      "/images/banco/construction/pool-construction-raised-spa-sun-shelf-travertine-florida-01-lam800.avif"
+     ],
+     [
+      960,
+      "/images/banco/construction/pool-construction-raised-spa-sun-shelf-travertine-florida-01-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/construction/pool-construction-raised-spa-sun-shelf-travertine-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/obra-065/custom-pool-and-spa-layout-painted-on-site-aerial.avif": {
+   "lam": {
+    "de": "/images/banco/construction/pool-construction-layout-paint-lines-top-down-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/obra/obra-065/custom-pool-and-spa-layout-painted-on-site-aerial-lam560.avif"
+     ],
+     [
+      800,
+      "/images/obra/obra-065/custom-pool-and-spa-layout-painted-on-site-aerial-lam800.avif"
+     ],
+     [
+      960,
+      "/images/obra/obra-065/custom-pool-and-spa-layout-painted-on-site-aerial-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/construction/pool-construction-layout-paint-lines-top-down-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/obra-107/insulated-patio-cover-black-frame-new-pavers-install-florida-proceso0.avif": {
+   "lam": {
+    "de": "/images/banco/pergolas/insulated-patio-cover-black-frame-new-pavers-install-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/obra/obra-107/insulated-patio-cover-black-frame-new-pavers-install-florida-proceso0-lam560.avif"
+     ],
+     [
+      800,
+      "/images/obra/obra-107/insulated-patio-cover-black-frame-new-pavers-install-florida-proceso0-lam800.avif"
+     ],
+     [
+      960,
+      "/images/obra/obra-107/insulated-patio-cover-black-frame-new-pavers-install-florida-proceso0-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pergolas/insulated-patio-cover-black-frame-new-pavers-install-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/images/pergolas-9/custom-pergola-patio-cover-builders-florida-09.jpg": {
+   "lam": {
+    "de": "/images/banco/pergolas/polycarbonate-pergola-dark-frame-brick-patio-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/images/pergolas-9/custom-pergola-patio-cover-builders-florida-09-lam560.avif"
+     ],
+     [
+      800,
+      "/images/images/pergolas-9/custom-pergola-patio-cover-builders-florida-09-lam800.avif"
+     ],
+     [
+      1002,
+      "/images/images/pergolas-9/custom-pergola-patio-cover-builders-florida-09-lam1002.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pergolas/polycarbonate-pergola-dark-frame-brick-patio-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01.webp": {
+   "lam": {
+    "de": "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01-lam560.avif"
+     ],
+     [
+      800,
+      "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01-lam800.avif"
+     ],
+     [
+      960,
+      "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pergolas/wood-pergola-outdoor-kitchen-putting-green-lake-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/banco/pergolas/pergola-outdoor-kitchen-privacy-screen-gray-tile-florida-01.webp": {
+   "lam": {
+    "de": "/images/banco/pergolas/pergola-outdoor-kitchen-privacy-screen-gray-tile-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/banco/pergolas/pergola-outdoor-kitchen-privacy-screen-gray-tile-florida-01-lam560.avif"
+     ],
+     [
+      800,
+      "/images/banco/pergolas/pergola-outdoor-kitchen-privacy-screen-gray-tile-florida-01-lam800.avif"
+     ],
+     [
+      960,
+      "/images/banco/pergolas/pergola-outdoor-kitchen-privacy-screen-gray-tile-florida-01-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pergolas/pergola-outdoor-kitchen-privacy-screen-gray-tile-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/suelta/modern-patio-cover-black-frame-slat-walls-install-florida-proceso1.avif": {
+   "lam": {
+    "de": "/images/banco/pergolas/modern-patio-cover-black-frame-slat-walls-install-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/obra/suelta/modern-patio-cover-black-frame-slat-walls-install-florida-proceso1-lam560.avif"
+     ],
+     [
+      800,
+      "/images/obra/suelta/modern-patio-cover-black-frame-slat-walls-install-florida-proceso1-lam800.avif"
+     ],
+     [
+      960,
+      "/images/obra/suelta/modern-patio-cover-black-frame-slat-walls-install-florida-proceso1-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pergolas/modern-patio-cover-black-frame-slat-walls-install-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/obra-002/aluminum-pergola-frame-installation-crew-ladders-florida-proceso2.avif": {
+   "lam": {
+    "de": "/images/banco/pergolas/aluminum-pergola-frame-installation-crew-ladders-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/obra/obra-002/aluminum-pergola-frame-installation-crew-ladders-florida-proceso2-lam560.avif"
+     ],
+     [
+      800,
+      "/images/obra/obra-002/aluminum-pergola-frame-installation-crew-ladders-florida-proceso2-lam800.avif"
+     ],
+     [
+      960,
+      "/images/obra/obra-002/aluminum-pergola-frame-installation-crew-ladders-florida-proceso2-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pergolas/aluminum-pergola-frame-installation-crew-ladders-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/obra-061/insulated-patio-cover-ceiling-bronze-frame-florida-proceso3.avif": {
+   "lam": {
+    "de": "/images/banco/pergolas/insulated-patio-cover-ceiling-bronze-frame-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/obra/obra-061/insulated-patio-cover-ceiling-bronze-frame-florida-proceso3-lam560.avif"
+     ],
+     [
+      800,
+      "/images/obra/obra-061/insulated-patio-cover-ceiling-bronze-frame-florida-proceso3-lam800.avif"
+     ],
+     [
+      960,
+      "/images/obra/obra-061/insulated-patio-cover-ceiling-bronze-frame-florida-proceso3-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pergolas/insulated-patio-cover-ceiling-bronze-frame-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/banco/kitchens/outdoor-kitchen-patio-cover-slat-wall-night-florida-01.webp": {
+   "lam": {
+    "de": "/images/banco/kitchens/outdoor-kitchen-patio-cover-slat-wall-night-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/banco/kitchens/outdoor-kitchen-patio-cover-slat-wall-night-florida-01-lam560.avif"
+     ],
+     [
+      800,
+      "/images/banco/kitchens/outdoor-kitchen-patio-cover-slat-wall-night-florida-01-lam800.avif"
+     ],
+     [
+      960,
+      "/images/banco/kitchens/outdoor-kitchen-patio-cover-slat-wall-night-florida-01-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/kitchens/outdoor-kitchen-patio-cover-slat-wall-night-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/banco/kitchens/outdoor-kitchen-white-stacked-stone-lake-florida-01.webp": {
+   "lam": {
+    "de": "/images/banco/kitchens/outdoor-kitchen-white-stacked-stone-lake-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/banco/kitchens/outdoor-kitchen-white-stacked-stone-lake-florida-01-lam560.avif"
+     ],
+     [
+      800,
+      "/images/banco/kitchens/outdoor-kitchen-white-stacked-stone-lake-florida-01-lam800.avif"
+     ],
+     [
+      960,
+      "/images/banco/kitchens/outdoor-kitchen-white-stacked-stone-lake-florida-01-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/kitchens/outdoor-kitchen-white-stacked-stone-lake-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-heroe.avif": {
+   "hero": {
+    "de": "/images/banco/kitchens/pergola-outdoor-kitchen-black-granite-lake-view-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 1.3333,
+    "fuentes": [
+     [
+      960,
+      "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-heroe-hero960.avif"
+     ],
+     [
+      1280,
+      "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-heroe-hero1280.avif"
+     ],
+     [
+      1600,
+      "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-heroe-hero1600.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/kitchens/pergola-outdoor-kitchen-black-granite-lake-view-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/obra-063/new-pool-cobalt-glass-tile-sun-shelf-bubblers-spa-florida-full.avif": {
+   "serv": {
+    "de": "/images/banco/construction/new-pool-cobalt-glass-tile-sun-shelf-bubblers-spa-florida-01.webp",
+    "pos": "50% 55%",
+    "ratio": 1.5,
+    "fuentes": [
+     [
+      800,
+      "/images/obra/obra-063/new-pool-cobalt-glass-tile-sun-shelf-bubblers-spa-florida-full-serv800.avif"
+     ],
+     [
+      1200,
+      "/images/obra/obra-063/new-pool-cobalt-glass-tile-sun-shelf-bubblers-spa-florida-full-serv1200.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/construction/new-pool-cobalt-glass-tile-sun-shelf-bubblers-spa-florida-01.webp · 50% 55%"
+   }
+  },
+  "/images/obra/obra-079/pergola-outdoor-kitchen-stacked-stone-u-shape-florida-full.avif": {
+   "serv": {
+    "de": "/images/banco/pergolas/pergola-outdoor-kitchen-stacked-stone-u-shape-florida-01.webp",
+    "pos": "50% 30%",
+    "ratio": 1.5,
+    "fuentes": [
+     [
+      800,
+      "/images/obra/obra-079/pergola-outdoor-kitchen-stacked-stone-u-shape-florida-full-serv800.avif"
+     ],
+     [
+      1077,
+      "/images/obra/obra-079/pergola-outdoor-kitchen-stacked-stone-u-shape-florida-full-serv1077.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pergolas/pergola-outdoor-kitchen-stacked-stone-u-shape-florida-01.webp · 50% 30%"
+   }
+  },
+  "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-full.avif": {
+   "serv": {
+    "de": "/images/banco/louvered/louvered-roof-white-large-span-travertine-patio-florida-01.webp",
+    "pos": "50% 40%",
+    "ratio": 1.5,
+    "fuentes": [
+     [
+      800,
+      "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-full-serv800.avif"
+     ],
+     [
+      1200,
+      "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-full-serv1200.avif"
+     ],
+     [
+      1530,
+      "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-full-serv1530.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/louvered/louvered-roof-white-large-span-travertine-patio-florida-01.webp · 50% 40%"
+   }
+  },
+  "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-full.avif": {
+   "serv": {
+    "de": "/images/banco/kitchens/pergola-outdoor-kitchen-black-granite-lake-view-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 1.5,
+    "fuentes": [
+     [
+      800,
+      "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-full-serv800.avif"
+     ],
+     [
+      1200,
+      "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-full-serv1200.avif"
+     ],
+     [
+      1530,
+      "/images/obra/obra-075/pergola-outdoor-kitchen-black-granite-lake-view-florida-full-serv1530.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/kitchens/pergola-outdoor-kitchen-black-granite-lake-view-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/obra-048/pool-remodeling-travertine-deck-rock-landscaping-florida-full.avif": {
+   "serv": {
+    "de": "/images/banco/remodeling/pool-remodeling-travertine-deck-rock-landscaping-florida-02.webp",
+    "pos": "50% 62%",
+    "ratio": 1.5,
+    "fuentes": [
+     [
+      800,
+      "/images/obra/obra-048/pool-remodeling-travertine-deck-rock-landscaping-florida-full-serv800.avif"
+     ],
+     [
+      1200,
+      "/images/obra/obra-048/pool-remodeling-travertine-deck-rock-landscaping-florida-full-serv1200.avif"
+     ],
+     [
+      1530,
+      "/images/obra/obra-048/pool-remodeling-travertine-deck-rock-landscaping-florida-full-serv1530.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/remodeling/pool-remodeling-travertine-deck-rock-landscaping-florida-02.webp · 50% 62%"
+   }
+  },
+  "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-full.avif": {
+   "serv": {
+    "de": "/images/banco/landscaping/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-01.webp",
+    "pos": "50% 50%",
+    "ratio": 1.5,
+    "fuentes": [
+     [
+      800,
+      "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-full-serv800.avif"
+     ],
+     [
+      1200,
+      "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-full-serv1200.avif"
+     ],
+     [
+      1350,
+      "/images/obra/obra-039/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-full-serv1350.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/landscaping/landscaping-tropical-poolside-palms-kidney-pool-spa-florida-01.webp · 50% 50%"
+   }
+  },
+  "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-full.avif": {
+   "serv": {
+    "de": "/images/banco/decks/limestone-paver-patio-lake-view-herringbone-florida-01.webp",
+    "pos": "50% 70%",
+    "ratio": 1.5,
+    "fuentes": [
+     [
+      800,
+      "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-full-serv800.avif"
+     ],
+     [
+      1200,
+      "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-full-serv1200.avif"
+     ],
+     [
+      1530,
+      "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-full-serv1530.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/decks/limestone-paver-patio-lake-view-herringbone-florida-01.webp · 50% 70%"
+   }
+  },
+  "/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-full.avif": {
+   "serv": {
+    "de": "/images/banco/pergolas/insulated-patio-cover-black-frame-lap-pool-sunset-florida-01.webp",
+    "pos": "50% 55%",
+    "ratio": 1.5,
+    "fuentes": [
+     [
+      800,
+      "/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-full-serv800.avif"
+     ],
+     [
+      1200,
+      "/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-full-serv1200.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pergolas/insulated-patio-cover-black-frame-lap-pool-sunset-florida-01.webp · 50% 55%"
+   }
+  },
+  "/images/obra/suelta/pole-barn-narrow-open-shelter-new-wood-posts-florida-full.avif": {
+   "serv": {
+    "de": "/images/banco/pole/pole-barn-narrow-open-shelter-new-wood-posts-florida-01.webp",
+    "pos": "50% 45%",
+    "ratio": 1.5,
+    "fuentes": [
+     [
+      800,
+      "/images/obra/suelta/pole-barn-narrow-open-shelter-new-wood-posts-florida-full-serv800.avif"
+     ],
+     [
+      1200,
+      "/images/obra/suelta/pole-barn-narrow-open-shelter-new-wood-posts-florida-full-serv1200.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pole/pole-barn-narrow-open-shelter-new-wood-posts-florida-01.webp · 50% 45%"
+   }
+  },
+  "/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-full.avif": {
+   "serv": {
+    "de": "/images/banco/pergolas/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-01.webp",
+    "pos": "50% 45%",
+    "ratio": 1.5,
+    "fuentes": [
+     [
+      800,
+      "/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-full-serv800.avif"
+     ],
+     [
+      1200,
+      "/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-full-serv1200.avif"
+     ],
+     [
+      1530,
+      "/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-full-serv1530.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/pergolas/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-01.webp · 50% 45%"
+   }
+  }
+ }
+}

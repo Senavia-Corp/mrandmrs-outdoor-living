@@ -307,6 +307,9 @@ const SLIDERS = JSON.stringify(
         if (f && foto.getAttribute('src') !== f.getAttribute('src')) {
           foto.srcset = f.srcset; foto.sizes = f.sizes; foto.src = f.getAttribute('src');
           foto.alt = f.alt; foto.style.objectPosition = f.style.objectPosition;
+          // E10: en escritorio la figura pinta la derivada 4:5 del paso (`<source>`); sin ella, el `<img>`.
+          const fuente = medioPasos.querySelector('source');
+          if (fuente) { if (f.dataset.mmHueco) fuente.srcset = f.dataset.mmHueco; else fuente.removeAttribute('srcset'); }
         }
         pie.dataset.n = `${dos(k + 1)} / ${dos(pasos.length)}`;
         pie.dataset.t = pasos[k].querySelector('.mm-paso-t')?.textContent ?? '';   // h3 en la ficha, h2 en /about

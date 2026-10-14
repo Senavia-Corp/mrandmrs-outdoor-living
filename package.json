@@ -69,7 +69,8 @@
     "posters": "node scripts/build-posters-video.mjs",
     "check:identidad": "node scripts/check-identidad.mjs",
     "variantes": "node scripts/build-variantes-imagen.mjs",
-    "check:variantes": "node scripts/build-variantes-imagen.mjs --check"
+    "fotos-hueco": "node scripts/build-fotos-hueco.mjs",
+    "check:variantes": "node scripts/build-variantes-imagen.mjs --check && node scripts/build-fotos-hueco.mjs --check"
   },
   "dependencies": {
     "@astrojs/vercel": "^11.0.8",
