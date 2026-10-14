@@ -68,6 +68,14 @@ const TABLA = new Map([
     .map(([condado, id]) => [`/services/pool-builders/${condado}`, { id, condado }]),
 ]);
 const CASI = (DATOS.casiIguales ?? []).map(([a, b]) => [a, b]);
+/** D-204: el alt (y el pie) del hero dice donde se hizo la foto solo en la pagina de ese mismo sitio, con el GPS
+ *  del original detras (`lugar`). «fort-lauderdale-fl» -> «Fort Lauderdale, FL»; «broward-county-fl» -> «Broward County». */
+const nombre = (slug) => slug.replace(/-fl$/, '').split('-').map((p) => p[0].toUpperCase() + p.slice(1)).join(' ');
+function conLugar(e, ruta) {
+  const l = DATOS.lugar?.[e.id]; const pag = ruta.split('/')[3];
+  const sitio = !l ? null : pag === l.ciudad ? `${nombre(pag)}, FL` : pag === l.condado ? nombre(pag) : null;
+  return sitio ? e.alt.replace(/(\.?)$/, ` in ${sitio}$1`) : e.alt;
+}
 let condadosComprobados = false;
 /** LA REGLA DEL CONDADO, una vez por proceso: ninguna foto repetida entre sus paginas (la del condado incluida) y
  *  nunca juntas dos casi iguales. Falla cerrado, con el condado y las rutas en el mensaje. */
@@ -102,7 +110,8 @@ export function fotoDeHeroe(ruta, rutasDelServicio = rutasDeCiudad(ruta.split('/
   if (deTabla) {
     compruebaCondados();
     const e = valida(deTabla.id, clave, ruta, true);
-    return { id: e.id, src: e.src, ancho: e.ancho, alto: e.alto, alt: e.alt, pie: e.alt };
+    const alt = conLugar(e, ruta);
+    return { id: e.id, src: e.src, ancho: e.ancho, alto: e.alto, alt, pie: alt };
   }
   const bolsa = DATOS.bolsas[servicio];
   if (!bolsa?.length) return null;
