@@ -801,7 +801,7 @@ const escAttr = (t) => String(t).replace(/&/g, '&amp;').replace(/"/g, '&quot;').
 let mosaicos = 0;
 /** Las fotos de seccion de cada ficha (FAQ, cierre, resenas, por ese orden): ids del banco elegidos
  *  en hoja de contactos (`fotos-seccion-fichas.json`). Con las 10 de la galeria a la vista (D-117)
- *  ya no pueden salir de ella. Se validan aqui: una que no cumpla tumba el script. */
+ *  ya no pueden salir de ella. Se validan aqui: una que no cumpla tumba el script. Vertical vale si aguanta 3:2 (D-193). */
 const FOTOS_SECCION = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/fotos-seccion-fichas.json'), 'utf8'));
 const BANCO_POR_ID = new Map(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/banco-imagenes.json'), 'utf8')).map((e) => [e.id, e]));
 /** D-185: la ficha de luces de alero ensena el SISTEMA sobre una casa, y de eso no hay obra propia. Sus fotos de seccion
@@ -820,7 +820,9 @@ function fotoDeSeccion(ruta, k) {
   const e = BANCO_POR_ID.get(id);
   const falla = !e ? 'no esta en el banco' : e.procedencia !== 'obra_real' ? `procedencia «${e.procedencia}»`
     : !/^aprobada/.test(e.estado ?? '') ? `estado «${e.estado}»` : e.etapa !== 'terminado' ? `etapa «${e.etapa}»`
-      : e.orientacion !== 'horizontal' ? `orientacion «${e.orientacion}»` : !e.src || !e.alt ? 'sin fichero o sin alt'
+      // D-193: ya no hace falta que sea apaisada (desde 992 px la seccion va en 4:5 con su derivada); lo que si hace falta
+      // es que aguante la caja 3:2 de movil y del cierre, y eso lo dice el banco en `recortes_seguros`.
+      : e.orientacion !== 'horizontal' && !(e.recortes_seguros ?? []).includes('3:2') ? `${e.orientacion} y sin recorte 3:2 seguro (la caja de movil es 3:2)` : !e.src || !e.alt ? 'sin fichero o sin alt'
         : id === CAPTACION[ruta].heroe._banco ? 'es la foto del hero de la ficha' : null;
   if (falla) throw new Error(`${ruta}: ${id} no vale de foto de seccion — ${falla}`);
   return { src: e.src, alt: e.alt, w: e.ancho, h: e.alto };
