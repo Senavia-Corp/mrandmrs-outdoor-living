@@ -42,8 +42,6 @@ const TITULO_PROPIO_M2 = new Map([
     'Luxury Pool with Motorized Pergola & Outdoor Kitchen | North Florida'],
   ['/project/luxury-pool-motorized-pergola-screen-enclosure-north-florida',
     'Luxury Pool with Motorized Pergola & Screen Enclosure | North Florida'],
-  ['/project/luxury-pool-spa-screen-enclosure-north-florida',
-    'Luxury Pool & Spa with Screen Enclosure & Outdoor Kitchen | North Florida'],
 ]);
 
 /**

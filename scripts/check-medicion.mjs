@@ -79,7 +79,8 @@ const CIUDADES_SERVICIO = (() => {
   if (!fs.existsSync(f)) return 0;
   return Object.keys(JSON.parse(fs.readFileSync(f, 'utf8')).paginas).length;
 })();
-const PAGINAS_ESPERADAS = 122 + BLOGS_PROPIOS + GALERIAS_PROPIAS + CIUDADES_SERVICIO;
+// D-195 (14-oct-2026): una menos en las dos cuentas — la ficha de proyecto que redirige a su hermana.
+const PAGINAS_ESPERADAS = 121 + BLOGS_PROPIOS + GALERIAS_PROPIAS + CIUDADES_SERVICIO;
 /**
  * 121 = 113 del sitemap del origen + 6 adiciones de autoria propia + 2 de la auditoria
  * (5-sep-2026). Las dos nuevas son rutas DEL ORIGEN que el sitemap del origen no listaba:
@@ -90,7 +91,7 @@ const PAGINAS_ESPERADAS = 122 + BLOGS_PROPIOS + GALERIAS_PROPIAS + CIUDADES_SERV
 /* …MAS LAS DE BLOG PROPIAS, por la misma razon que PAGINAS_ESPERADAS: el sitemap las deriva de
  * `blogs-rutas.json` (build-seo-ficheros.mjs ADICIONES_BLOG), asi que cablear 121 ponia esta
  * puerta roja con cada articulo publicado (medido el 1-oct-2026: «121 <loc> — hay 155»). */
-const LOCS_ESPERADAS = 121 + BLOGS_PROPIOS + GALERIAS_PROPIAS + CIUDADES_SERVICIO;
+const LOCS_ESPERADAS = 120 + BLOGS_PROPIOS + GALERIAS_PROPIAS + CIUDADES_SERVICIO;
 const SOLO_NOINDEX = new Set(['/thank-you']);
 
 /**
@@ -235,7 +236,7 @@ const sm = path.join(ESTATICO, 'sitemap.xml');
 if (!fs.existsSync(sm)) check('existe sitemap.xml', false);
 else {
   const locs = [...fs.readFileSync(sm, 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-  if (PROD) check(`${LOCS_ESPERADAS} <loc> (113 del origen + 6 propias + 2 de la auditoria + ${BLOGS_PROPIOS} de blog)`, locs.length === LOCS_ESPERADAS, `hay ${locs.length}`);
+  if (PROD) check(`${LOCS_ESPERADAS} <loc> (112 del origen + 6 propias + 2 de la auditoria + ${BLOGS_PROPIOS} de blog)`, locs.length === LOCS_ESPERADAS, `hay ${locs.length}`);
   else check('vacio fuera de produccion', locs.length === 0, `hay ${locs.length}`);
 }
 

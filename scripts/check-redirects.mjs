@@ -10,7 +10,9 @@
  * LO QUE EXIGE, y cada punto es una regresion real que podria colarse en silencio:
  *   1. las 76 URLs nuevas estan construidas (= 200 en Vercel);
  *   2. las 76 viejas NO estan construidas y tienen redirect permanente DIRECTO a su nueva;
- *   3. los 14 historicos siguen, permanentes, y apuntan a una pagina construida;
+ *   3. los historicos siguen, permanentes, y apuntan a una pagina construida; y su source NO
+ *      se construye (D-195: la unica ruta que el rediseño retira vive aqui, y volver a construirla
+ *      seria servir la ficha retirada y su redirect a la vez);
  *   4. NINGUN destino es a su vez un source (eso es una cadena A -> B -> C), y ningun source
  *      vuelve a si mismo por ningun camino (bucle); ningun source repetido;
  *   5. `vercel.json` coincide con la tabla (`build-redirects.mjs --check`);
@@ -21,9 +23,10 @@
  *      redirect salvo los 3 que el menu enlaza a proposito (MENU-PLAN.md), que se declaran;
  *   8. canonica y `og:url` (si hay) de cada pagina construida: absoluta, `www`, igual a su
  *      propia ruta, y no es un source de redirect;
- *   9. JSON-LD: ninguna URL vieja; cada `item` de la miga (`#miga`) resuelve a pagina construida;
+ *   9. JSON-LD: ninguna URL vieja ni source historico; cada `item` de la miga (`#miga`) resuelve a
+ *      pagina construida;
  *  10. no vuelve a construirse nada bajo `/pool-builders/` ni `/country/`, ni un slug largo de
- *      los 14 de antes; `_source/routes.csv` no lleva ninguna vieja;
+ *      los 14 de antes; `_source/routes.csv` no lleva ninguna vieja ni ningun source historico;
  *  11. normalizacion: rutas construidas en minuscula, sin `%20`, sin `//`, sin `.html` en hrefs.
  *
  * FUERA DE PRODUCCION (sin `PUBLIC_ES_PRODUCCION=1` al construir) no hay canonicas ni sitemap:
@@ -76,11 +79,14 @@ check(`${VIEJAS.size - sinRedirect.length}/${VIEJAS.size} viejas con redirect pe
 lista(sinRedirect);
 
 // ── 3 · los historicos ──────────────────────────────────────────────────────
-console.log('\n── 3. los 14 redirects historicos siguen y llegan a una pagina');
+console.log(`\n── 3. los ${LEGACY.length} redirects historicos siguen y llegan a una pagina`);
 const legacyMal = LEGACY.filter((l) => { const r = porSource.get(l.source); return !r || r.destination !== l.destination || r.permanent !== true || !construida(l.destination); })
   .map((l) => `${l.source} -> ${l.destination}`);
 check(`${LEGACY.length - legacyMal.length}/${LEGACY.length} historicos permanentes y con destino construido`, legacyMal.length === 0);
 lista(legacyMal);
+const legacyConstruidos = LEGACY.filter((l) => construida(l.source)).map((l) => l.source);
+check('0 historicos con pagina construida (D-195)', legacyConstruidos.length === 0);
+lista(legacyConstruidos);
 
 // ── 4 · ni cadenas, ni bucles, ni sources repetidos ─────────────────────────
 console.log('\n── 4. cadenas y bucles');
@@ -204,7 +210,7 @@ console.log('\n── 9. datos estructurados');
 const ldViejas = new Set(); const migaRota = new Set();
 /* Ruta vieja EXACTA: precedida de nada, de un delimitador o de un host, y nunca como tramo de otra
  * cosa (`/images/pool-builders/alachua-florida/...` es un fichero, no la URL vieja). */
-const reViejas = new RegExp('(?:^|[^\\w/.-])(?:https?://[^/"\x27\\s]+)?(' + [...VIEJAS.keys()].map((v) => v.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')(?![\\w/-])');
+const reViejas = new RegExp('(?:^|[^\\w/.-])(?:https?://[^/"\x27\\s]+)?(' + [...VIEJAS.keys(), ...LEGACY.map((l) => l.source)].map((v) => v.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')(?![\\w/-])');
 for (const f of htmls) {
   const d = docDe(f);
   for (const sc of d.querySelectorAll('script[type="application/ld+json"]')) {
@@ -219,7 +225,7 @@ for (const f of htmls) {
     }
   }
 }
-check('0 paginas con URLs viejas en application/ld+json', ldViejas.size === 0, `${ldViejas.size}`); lista([...ldViejas]);
+check('0 paginas con URLs viejas o sources historicos en application/ld+json', ldViejas.size === 0, `${ldViejas.size}`); lista([...ldViejas]);
 check('cada item de la miga (#miga) resuelve a una pagina construida en www', migaRota.size === 0, `${migaRota.size}`); lista([...migaRota]);
 
 // ── 10 · que no vuelvan ─────────────────────────────────────────────────────
@@ -231,6 +237,8 @@ check('0 paginas bajo /pool-builders/, /country/ o con los slugs largos de /serv
 const csv = fs.readFileSync(path.join(RAIZ, '_source/routes.csv'), 'utf8');
 const csvViejas = [...VIEJAS.keys()].filter((v) => csv.includes(`"${v}"`));
 check('_source/routes.csv no lleva ninguna de las 76 viejas', csvViejas.length === 0); lista(csvViejas);
+const csvLegacy = LEGACY.map((l) => l.source).filter((s) => csv.includes(`"${s}"`));
+check('_source/routes.csv no lleva ningun source historico (D-195)', csvLegacy.length === 0); lista(csvLegacy);
 const csvNuevas = [...NUEVAS].filter((n) => !csv.includes(`"${n}"`));
 check('_source/routes.csv lleva las 76 nuevas', csvNuevas.length === 0); lista(csvNuevas);
 

@@ -302,7 +302,9 @@ const PROPIAS = new Set(RUTAS_PROPIAS);
 const RUTAS_A_MEDIR = CAPTURAR_PROPIO ? RUTAS_PROPIAS : [...RUTAS, ...RUTAS_PROPIAS];
 
 /** Lo esperado de una ruta propia: su referencia, con SOLO las declaraciones que la nombran. */
-function esperadoPropio(ruta, lineas) {
+function esperadoPropio(ruta, lineasRef) {
+  // D-195: en las propias, solo donde se nombra — las 65 de ciudad de los demas servicios.
+  const lineas = ruta in PAGINAS_CIUDAD_SERVICIO ? quitaRetiradaD195(lineasRef) : lineasRef;
   const quitadas = new Set(QUITADAS_A_PROPOSITO.filter(([, , rutas]) => rutas?.includes(ruta)).map(([l]) => l));
   let out = lineas.filter((l) => !quitadas.has(l)).map((l) => {
     const t = TRADUCIDAS_A_PROPOSITO.find(([viejo, , , rutas]) => viejo === l && rutas?.includes(ruta));
@@ -1143,20 +1145,37 @@ const quitaAntesDespues = (ruta, lineas) => {
  * Se quitan del BASELINE, como el antes/despues de arriba, y por el mismo motivo no valen
  * `QUITADAS_A_PROPOSITO`: «View Full Project» sale una vez por tarjeta y dos tarjetas comparten
  * titulo. Se quita el GRUPO CONTIGUO titulo · resumen · «View Full Project» de cada oculta, y el
- * titulo se deriva de `obras-migradas.json` por slug (las ocultas son migradas: las propias se
- * descuentan en `lineasObras`). Si una oculta no casa, ROJO: una declaracion que ya no quita
- * nada es una puerta que dejo de medir sin decirlo.
+ * titulo y el resumen se leen de la tarjeta del ORIGEN (`_source/vivo/projects.html`) por slug: las
+ * propias no estan ahi y las descuenta `lineasObras`. El resumen hace falta desde D-195: la oculta
+ * de esa decision comparte titulo con la hermana que se queda, y por titulo solo se quitaba la
+ * hermana. Si una oculta no casa, ROJO: una declaracion que ya no quita nada es una puerta que
+ * dejo de medir sin decirlo.
  */
 let ocultasFallo = null;
+/**
+ * D-195 (14-oct-2026): LA OBRA RETIRADA DE LAS LISTAS DE PROYECTOS. Su ficha redirige a la hermana
+ * y sale de `obras-migradas.json`, pero las referencias la siguen teniendo como ultima obra migrada
+ * de la lista. Lleva el MISMO titulo que la hermana, asi que `QUITADAS_A_PROPOSITO` no sirve (se
+ * llevaria las dos): se quita el par titulo · «See Project» que va DETRAS de la obra que la
+ * precedia, y solo ahi. Si no esta en ese sitio no se quita, y la ruta sale roja si la lista
+ * construida ya no la trae; si la trajera otra vez, tambien.
+ */
+const RETIRADA_D195 = {
+  tras: ['Residential Pool With Pergola & Outdoor Dining', 'See Project'],
+  quita: ['Luxury Pool & Spa With Screen Enclosure North Florida', 'See Project'],
+};
+const quitaRetiradaD195 = (lineas) => lineas && (quitaTras(lineas, RETIRADA_D195.tras, RETIRADA_D195.quita) ?? lineas);
+const plano = (s) => String(s ?? '').replace(/\s+/g, ' ').trim();
 const quitaOcultasDelIndice = (ruta, lineas) => {
   if (ruta !== '/projects') return lineas;
-  const migradas = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/obras-migradas.json'), 'utf8')).obras;
+  const doc = new JSDOM(fs.readFileSync(path.join(RAIZ, '_source/vivo/projects.html'), 'utf8')).window.document;
   let out = lineas;
   for (const slug of OCULTAS) {
-    const o = migradas.find((m) => m.slug === slug);
-    if (!o) continue;                       // oculta propia: la descuenta `lineasObras`
-    const titulo = capitaliza(o.tituloHtml.replace(/&amp;/g, '&'));
-    const i = out.findIndex((l, k) => l === titulo && out[k + 2] === 'View Full Project');
+    const tarjeta = doc.querySelector(`.cms-item-work a[href="/project/${slug}"]`)?.closest('.cms-item-work');
+    if (!tarjeta) continue;                 // oculta propia: la descuenta `lineasObras`
+    const titulo = capitaliza(plano(tarjeta.querySelector('.title-work')?.textContent));
+    const resumen = plano(tarjeta.querySelector('.block-content-work > div')?.textContent);
+    const i = out.findIndex((l, k) => l === titulo && out[k + 1] === resumen && out[k + 2] === 'View Full Project');
     if (i < 0) { ocultasFallo = `la tarjeta oculta «${titulo}» no esta en el baseline de /projects`; return null; }
     out = [...out.slice(0, i), ...out.slice(i + 3)];
   }
@@ -3647,7 +3666,6 @@ const CIERRE_CIUDAD = 'Share your property details, project scope, and investmen
  *   · el formulario en dos pasos de la ficha de piscinas (D-82), con sus mismas lineas.
  * Si un tramo no esta tal cual, no se toca y la ruta sale roja.
  */
-const SOLO_EN_INDICE_PROYECTOS = 'luxury-pool-spa-screen-enclosure-north-florida';
 /** El titulo de una obra como texto: las propias traen `titulo`; las migradas, solo `tituloHtml`. */
 const tituloObra = (o) => o.titulo ?? o.tituloHtml.replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
 function fichaProyectoTexto(ruta, lineas) {
@@ -3667,7 +3685,7 @@ function fichaProyectoTexto(ruta, lineas) {
   const lee = (f) => JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data', f), 'utf8')).obras;
   const lista = [...lee('proyectos-propios.json').filter((o) => o.enCarrusel !== false), ...lee('obras-migradas.json')]
     .filter((o) => o.slug !== ruta.split('/')[2]);
-  const destacadas = lista.filter((o) => o.slug !== SOLO_EN_INDICE_PROYECTOS).slice(0, 3);
+  const destacadas = lista.slice(0, 3);
   quita(['More Projects',
     'Selected custom pool and outdoor living projects from our Florida portfolio, to inspire your design.',
     'See All Projects',
@@ -4516,7 +4534,7 @@ for (const ruta of RUTAS_A_MEDIR) {
     rojos.push({ ruta, falta: [reescritoFallo], sobra: [], fuera: [] });
     continue;
   }
-  const sinOcultas = quitaOcultasDelIndice(ruta, quitaAntesDespues(ruta, baseReescrita));
+  const sinOcultas = quitaRetiradaD195(quitaOcultasDelIndice(ruta, quitaAntesDespues(ruta, baseReescrita)));
   if (sinOcultas === null) {
     mal++;
     console.log(`  ROJO ${ruta} — ${ocultasFallo}`);

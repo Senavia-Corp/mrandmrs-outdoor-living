@@ -7,6 +7,7 @@
     "(la puerta: 76 nuevas en 200, 76 viejas con 308 directo, sin cadenas, sin bucles, sitemap limpio).",
     "`legacy` son los redirects historicos que ya existian; su `destination` apunta SIEMPRE a la URL",
     "final, nunca a una `old` de `migraciones` (eso seria una cadena, y check-redirects la caza).",
+    "Desde D-195 (14-oct-2026) `legacy` lleva tambien la unica ruta que el rediseño retira: su source ya no se construye ni esta en _source/routes.csv.",
     "`sanitySlug` en las ciudades es el `slug.current` del documento poolBuilder en Sanity: es la",
     "IDENTIDAD del documento y no se renombra en el CMS (igual que serviceRegion y service); la URL",
     "publica la deriva el codigo con `rutaCiudad()`. /pool-builders/beach-florida era Hillsboro Beach.",
@@ -519,6 +520,11 @@
       "source": "/pool-builders/pool-builders-mcintosh-florida",
       "destination": "/services/pool-builders/mcintosh-fl",
       "motivo": "Legacy de Webflow (slug con el prefijo repetido), con impresiones en Search Console. Apunta DIRECTO a la ciudad migrada el 3-oct-2026: nunca a /pool-builders/*, que ahora tambien redirige."
+    },
+    {
+      "source": "/project/luxury-pool-spa-screen-enclosure-north-florida",
+      "destination": "/project/luxury-pool-spa-with-screen-enclosure-north-florida",
+      "motivo": "D-195 (14-oct-2026): la ficha se retira del sitio y su URL pasa a la ficha hermana, que lleva el mismo titulo. El 301 conserva la senal de la URL; sale del sitemap, de /projects y de las listas de proyectos."
     }
   ]
 }

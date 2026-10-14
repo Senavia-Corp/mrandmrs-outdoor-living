@@ -183,6 +183,10 @@ const SIN_ENLACE_INTERNO = new Map([
     'Ruta heredada que ya devolvia 404 antes de la migracion. 11 impresiones en posicion 8,3. '
     + 'Destino a criterio: la excavacion es parte de la construccion de piscina. Si se decide '
     + 'que no procede, se borra la entrada y se deja el 404 — pero que sea una decision.'],
+  ['/project/luxury-pool-spa-screen-enclosure-north-florida',
+    'D-195 (14-oct-2026): la ficha se retira y su URL pasa a la hermana, que lleva el mismo '
+    + 'titulo. Era publica y estaba en el sitemap: el 301 es para el indice y los enlaces de '
+    + 'fuera. Dentro sale de /projects y de las listas de proyectos, no se repunta.'],
 ]);
 
 /**

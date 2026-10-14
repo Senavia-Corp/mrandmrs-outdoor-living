@@ -3355,6 +3355,9 @@ for (const [ruta] of RUTAS) {
    *   luxury-pool-spa-screen-enclosure-...       desc: «... screen enclosure and outdoor kitchen»
    *   luxury-pool-spa-with-screen-enclosure-...  desc: «... screen enclosure»   <- se queda igual
    *
+   * D-195 (14-oct-2026): la tercera ya no existe —su URL redirige a la cuarta—, asi que su titulo
+   * sale de la tabla y el par queda resuelto por la redireccion.
+   *
    * Solo cambia `<title>`. `og:title` y `twitter:title` conservan el texto del origen: no
    * pesan en posicionamiento y tocarlos ensancharia la desviacion de paridad sin ganar nada.
    * `check-seo.mjs` lo tiene declarado en `TITULO_PROPIO` y lo dice por pantalla.
@@ -3364,8 +3367,6 @@ for (const [ruta] of RUTAS) {
       'Luxury Pool with Motorized Pergola & Outdoor Kitchen | North Florida'],
     ['/project/luxury-pool-motorized-pergola-screen-enclosure-north-florida',
       'Luxury Pool with Motorized Pergola & Screen Enclosure | North Florida'],
-    ['/project/luxury-pool-spa-screen-enclosure-north-florida',
-      'Luxury Pool & Spa with Screen Enclosure & Outdoor Kitchen | North Florida'],
   ]);
   const titulo = TITULO_PROPIO.get(ruta) ?? doc.querySelector('title')?.textContent ?? '';
   let desc = doc.querySelector('meta[name="description"]')?.getAttribute('content') ?? '';
@@ -3601,8 +3602,9 @@ if (imgSinDim.length) {
 }
 console.log(`  huecos de SEO rellenados: ${huecosRellenados} de ${Object.keys(HUECOS_SEO).length}`
   + `${huecosRellenados === Object.keys(HUECOS_SEO).length ? '' : '   <<< FALTA ALGUNA'}`);
+// 7 desde D-195: una de las 8 era la ficha de proyecto que se retiro.
 console.log(`  JSON-LD del origen reparado (caracter de control): ${ldReparados}`
-  + `${ldReparados === 8 ? '' : '   <<< SE ESPERABAN 8'}`);
+  + `${ldReparados === 7 ? '' : '   <<< SE ESPERABAN 7'}`);
 console.log(`  «Read More» del HTML crudo con aria-label: ${ctaEtiquetados}`
   + `${ctaEtiquetados === 80 ? '' : '   <<< SE ESPERABAN 80'}`);
 if (ctaSinTitulo.length) {

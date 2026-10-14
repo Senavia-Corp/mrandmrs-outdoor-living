@@ -31,7 +31,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import { esFicha, esCiudad, esCondado } from './lib/renombradas.mjs';
+import { esFicha, esCiudad, esCondado, LEGACY } from './lib/renombradas.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const PUB = path.join(RAIZ, 'public');
@@ -44,6 +44,7 @@ const PROD = process.env.PUBLIC_ES_PRODUCCION === '1';
  */
 const SITIO = process.env.PUBLIC_SITE_URL || 'https://www.mrandmrsoutdoorliving.com';
 
+const RETIRADAS = new Set(LEGACY.map((l) => l.source));
 // Las 113 del sitemap del origen, tal cual, para no inventarse el orden ni el conjunto.
 const original = fs.readFileSync(path.join(RAIZ, 'baseline/sitemap.xml'), 'utf8');
 /**
@@ -57,7 +58,10 @@ const original = fs.readFileSync(path.join(RAIZ, 'baseline/sitemap.xml'), 'utf8'
  * del sitemap con el de las canonicas.
  */
 const delOrigen = [...original.matchAll(/<loc>([^<]+)<\/loc>/g)]
-  .map((m) => m[1].replace(/^https?:\/\/[^/]+/, SITIO));
+  .map((m) => m[1].replace(/^https?:\/\/[^/]+/, SITIO))
+  // D-195 (14-oct-2026): y sin las que ahora redirigen. Un source de redirect en el sitemap le
+  // pide a Google que indexe un 308; `check:redirects` (punto 6) lo pone en rojo.
+  .filter((u) => !RETIRADAS.has(new URL(u).pathname));
 
 /**
  * ADICIONES DELIBERADAS: rutas de autoría propia, que por definición no están en el sitemap

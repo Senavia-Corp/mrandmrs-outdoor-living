@@ -26,6 +26,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { LEGACY, MIGRACIONES } from './lib/renombradas.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
@@ -55,19 +56,25 @@ export function redirectsDeRuta() {
   return reglas;
 }
 
-const actual = JSON.parse(fs.readFileSync(VJSON, 'utf8'));
-const deHost = (actual.redirects ?? []).filter((r) => Array.isArray(r.has) && r.has.some((h) => h?.type === 'host'));
-const esperado = { ...actual, redirects: [...redirectsDeRuta(), ...deHost] };
-const texto = JSON.stringify(esperado, null, 2) + '\n';
-const igual = fs.readFileSync(VJSON, 'utf8') === texto;
+/* SOLO SE ESCRIBE AL EJECUTARLO, NUNCA AL IMPORTARLO (D-195, 14-oct-2026). `check-redirects.mjs`
+ * importa `redirectsDeRuta()`, y con este bloque a nivel de modulo la puerta reescribia vercel.json
+ * desde la tabla ANTES de leerlo: su punto 5 («vercel.json = tabla») no podia salir rojo nunca, y la
+ * puerta tocaba un fichero versionado. Lo destapo romperla a proposito quitando un redirect. */
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  const actual = JSON.parse(fs.readFileSync(VJSON, 'utf8'));
+  const deHost = (actual.redirects ?? []).filter((r) => Array.isArray(r.has) && r.has.some((h) => h?.type === 'host'));
+  const esperado = { ...actual, redirects: [...redirectsDeRuta(), ...deHost] };
+  const texto = JSON.stringify(esperado, null, 2) + '\n';
+  const igual = fs.readFileSync(VJSON, 'utf8') === texto;
 
-if (SOLO_CHECK) {
-  if (!igual) {
-    console.error('\nROJO vercel.json no coincide con src/data/seo-url-migrations.json. Corre: npm run redirects\n');
-    process.exit(1);
+  if (SOLO_CHECK) {
+    if (!igual) {
+      console.error('\nROJO vercel.json no coincide con src/data/seo-url-migrations.json. Corre: npm run redirects\n');
+      process.exit(1);
+    }
+    console.log(`  ok   vercel.json: ${redirectsDeRuta().length} redirects de ruta + ${deHost.length} de host, en sincronia con la tabla`);
+    process.exit(0);
   }
-  console.log(`  ok   vercel.json: ${redirectsDeRuta().length} redirects de ruta + ${deHost.length} de host, en sincronia con la tabla`);
-  process.exit(0);
+  fs.writeFileSync(VJSON, texto);
+  console.log(`  vercel.json: ${redirectsDeRuta().length} redirects de ruta (${LEGACY.length} historicos + ${MIGRACIONES.length} de la migracion) + ${deHost.length} de host${igual ? ' (sin cambios)' : ''}`);
 }
-fs.writeFileSync(VJSON, texto);
-console.log(`  vercel.json: ${redirectsDeRuta().length} redirects de ruta (${LEGACY.length} historicos + ${MIGRACIONES.length} de la migracion) + ${deHost.length} de host${igual ? ' (sin cambios)' : ''}`);
