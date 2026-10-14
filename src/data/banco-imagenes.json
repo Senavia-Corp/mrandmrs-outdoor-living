@@ -43303,12 +43303,305 @@
     ],
     "defectos": [],
     "usada_en": [
-      "megamenu"
+      "megamenu",
+      "/services/retractable-screens"
     ],
     "origen": "menu-2026-10-13/retractable-screens--Pictures-07.jpg",
     "sha256": "79581a32ba7cd626c935e14ebb8805d5522ea684e91cd598129910ea5cef42e2",
     "publicada_como": [
-      "/images/obra/suelta/retractable-screens-motorized-dark-mesh-lanai-florida-menu.avif"
+      "/images/obra/suelta/retractable-screens-motorized-dark-mesh-lanai-florida-menu.avif",
+      "/images/obra/suelta/retractable-screens-motorized-dark-mesh-lanai-florida.avif"
     ]
+  },
+  {
+    "id": "bi-1273",
+    "src": "/images/banco/pergolas/freestanding-pergola-poolside-lounge-seating-hedge-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas",
+      "louvered"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1200,
+    "alt": "Freestanding dark bronze pergola with a slatted roof over a lounge set beside a pool, with a clipped hedge behind.",
+    "descripcion": "Pérgola exenta de aluminio bronce oscuro con cubierta de lamas sobre un conjunto de sofá y butacas, al borde de una piscina; seto recortado y palmeras detrás, sombrilla a la izquierda. Foto de sesión profesional.",
+    "tags": [
+      "freestanding pergola",
+      "poolside",
+      "lounge seating",
+      "hedge",
+      "dark bronze"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:3",
+      "1:1",
+      "16:9",
+      "4:5"
+    ],
+    "defectos": [],
+    "usada_en": [
+      "/services/pergola-builders"
+    ],
+    "origen": "Senavia Picture /Pictures-24.jpg",
+    "sha256": "0dfdb7e4d8a015784173c71d8b0c38948698e2fc8eabe22a8b4b47fb45ce7399",
+    "publicada_como": [
+      "/images/obra/suelta/freestanding-pergola-poolside-lounge-seating-hedge-florida-heroe.avif"
+    ]
+  },
+  {
+    "id": "bi-1274",
+    "src": "/images/banco/screens/retractable-screens-lowered-covered-patio-pool-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "screens"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1067,
+    "alt": "Motorized retractable screens fully lowered around a covered patio beside a pool, on a house with a clay tile roof.",
+    "descripcion": "Exterior: porche cubierto con las pantallas enrollables motorizadas bajadas del todo en sus tres lados, piscina y dos tumbonas delante, casa de teja árabe. Pareja de la foto con las pantallas subidas. Foto de sesión profesional.",
+    "tags": [
+      "retractable screens",
+      "motorized",
+      "covered patio",
+      "pool",
+      "lowered"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:3",
+      "1:1",
+      "16:9",
+      "3:2"
+    ],
+    "defectos": [],
+    "usada_en": [
+      "/services/retractable-screens"
+    ],
+    "origen": "Senavia Picture /Pictures-05.jpg",
+    "sha256": "f7b3e83dcd081712469974f510c486c90330d89ec2b666511d10c3de06dc3f63",
+    "publicada_como": [
+      "/images/obra/suelta/retractable-screens-lowered-covered-patio-pool-florida-heroe.avif"
+    ]
+  },
+  {
+    "id": "bi-1275",
+    "src": "/images/banco/screens/retractable-screens-raised-covered-patio-pool-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "screens"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1067,
+    "alt": "Covered patio with its motorized retractable screens raised, open to a pool and travertine deck.",
+    "descripcion": "Exterior: el mismo porche con las pantallas subidas; se ven las correderas, la parrilla y el comedor bajo la cubierta, piscina y tumbonas delante. Pareja de la foto con las pantallas bajadas. Foto de sesión profesional.",
+    "tags": [
+      "retractable screens",
+      "covered patio",
+      "pool",
+      "raised"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:3",
+      "1:1",
+      "16:9",
+      "3:2"
+    ],
+    "defectos": [],
+    "usada_en": [
+      "/services/retractable-screens"
+    ],
+    "origen": "Senavia Picture /Pictures-04.jpg",
+    "sha256": "80fd4a40039e48b28b9d95da2c93430f67eadc17e31640accb0f69cca1443881"
+  },
+  {
+    "id": "bi-1276",
+    "src": "/images/banco/kitchens/outdoor-kitchen-built-in-grill-pizza-oven-white-slat-wall-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "kitchens"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1066,
+    "alt": "Outdoor kitchen with a built-in grill, countertop pizza oven, sink and fridge in front of a white slatted privacy wall.",
+    "descripcion": "Cocina exterior en línea: parrilla empotrada de acero, horno de pizza de sobremesa a la izquierda, fregadero y nevera bajo encimera, cajones y puertas de acero; detrás, muro de privacidad de lamas blancas. Foto de sesión profesional.",
+    "tags": [
+      "outdoor kitchen",
+      "built-in grill",
+      "pizza oven",
+      "privacy wall",
+      "stainless"
+    ],
+    "espacio_texto": "ninguno",
+    "recortes_seguros": [
+      "3:2",
+      "4:3",
+      "16:9",
+      "4:5"
+    ],
+    "defectos": [],
+    "usada_en": [
+      "/services/outdoor-kitchens"
+    ],
+    "origen": "Senavia Picture /Pictures-19.jpg",
+    "sha256": "383de56707c49d64ac931e5a0262c60fa7845374d239822b6d0f1e3928750351",
+    "publicada_como": [
+      "/images/obra/suelta/outdoor-kitchen-built-in-grill-pizza-oven-white-slat-wall-florida.avif"
+    ]
+  },
+  {
+    "id": "bi-1277",
+    "src": "/images/banco/louvered/louvered-pergola-freestanding-lounge-seating-hedge-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "louvered",
+      "pergolas"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1200,
+    "alt": "Freestanding louvered pergola with open blades casting striped shade over a lounge set in front of a tall hedge.",
+    "descripcion": "Pérgola bioclimática exenta vista de frente, con las lamas abiertas y su sombra a rayas sobre el suelo; sofá y dos butacas con mesitas, seto alto detrás. Foto de sesión profesional.",
+    "tags": [
+      "louvered pergola",
+      "open louvers",
+      "lounge seating",
+      "hedge",
+      "freestanding"
+    ],
+    "espacio_texto": "ninguno",
+    "recortes_seguros": [
+      "4:3",
+      "1:1",
+      "4:5",
+      "16:9"
+    ],
+    "defectos": [],
+    "usada_en": [
+      "/services/louvered-roofs"
+    ],
+    "origen": "Senavia Picture /Pictures-20.jpg",
+    "sha256": "30a5733afa73943a6423ec44974a7747d738779d898df1fbe34abd4e4003c0fb",
+    "publicada_como": [
+      "/images/obra/suelta/louvered-pergola-freestanding-lounge-seating-hedge-florida.avif"
+    ]
+  },
+  {
+    "id": "bi-1278",
+    "src": "/images/banco/furniture/outdoor-furniture-wicker-sectional-bar-under-pergola-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "furniture",
+      "pergolas"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1200,
+    "alt": "Wicker sectional, ottomans and a bar with stools under a dark pergola on a flagstone patio surrounded by tropical plants.",
+    "descripcion": "Bajo una pérgola oscura: sofá modular de mimbre con cojines beige, pufs, barra con dos taburetes; suelo de laja, plantas tropicales y crotones alrededor, sombrilla cerrada al fondo. Foto de sesión profesional.",
+    "tags": [
+      "outdoor furniture",
+      "wicker sectional",
+      "bar stools",
+      "pergola",
+      "flagstone"
+    ],
+    "espacio_texto": "ninguno",
+    "recortes_seguros": [
+      "4:3",
+      "1:1",
+      "4:5",
+      "16:9"
+    ],
+    "defectos": [],
+    "usada_en": [
+      "/services/outdoor-furniture"
+    ],
+    "origen": "Senavia Picture /Pictures-30.jpg",
+    "sha256": "383e93b8113116d5e2bc5ea7e8db9e42f026dbafca5d0cfe059a69c04170d2bc",
+    "publicada_como": [
+      "/images/obra/suelta/outdoor-furniture-wicker-sectional-bar-under-pergola-florida-heroe.avif"
+    ]
+  },
+  {
+    "id": "bi-1279",
+    "src": "/images/banco/furniture/outdoor-furniture-wicker-lounge-patio-cover-ceiling-fans-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "furniture",
+      "pergolas"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1200,
+    "alt": "Wicker lounge set on a patterned rug under a dark-framed patio cover with ceiling fans, pool and lake beyond.",
+    "descripcion": "Bajo una cubierta de patio de marco oscuro con dos ventiladores: sofás y butacas de mimbre sobre una alfombra verde, celosía decorativa a la izquierda, mueble naranja y juguete a la derecha, piscina al fondo. Foto de sesión profesional.",
+    "tags": [
+      "outdoor furniture",
+      "wicker lounge",
+      "patio cover",
+      "ceiling fans"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:3",
+      "1:1",
+      "4:5"
+    ],
+    "defectos": [
+      "mueble naranja y juguete verde en el borde derecho"
+    ],
+    "usada_en": [
+      "/services/outdoor-furniture"
+    ],
+    "origen": "Senavia Picture /Pictures-27.jpg",
+    "sha256": "100f2d7a990f07bd83e2e6f38e9ec60436c9e6e4a2f19280280593691dbd4446"
   }
 ]

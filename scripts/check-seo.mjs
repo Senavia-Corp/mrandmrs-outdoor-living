@@ -381,7 +381,8 @@ const JSONLD_ARREGLADO = {
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Custom Aluminum Pergola Design & Installation'],
       ['about.image', 'Custom aluminum pergolas built by outdoor living contractors in Florida.',
-        '/images/obra/obra-100/freestanding-pergola-dark-bronze-pool-spa-canal-florida-heroe.avif'],
+        // E10: la `image` del JSON-LD es la foto del hero, y sigue a la que el hero lleve
+        '/images/obra/suelta/freestanding-pergola-poolside-lounge-seating-hedge-florida-heroe.avif'],
       ['dateModified', '2026-05-19T13:22:48.310Z', '2026-05-19T13:23:24.377Z'],
       ['datePublished', '2026-05-19T13:23:24.377Z', '2026-05-19T13:22:48.310Z'],
     ],
@@ -429,7 +430,8 @@ const JSONLD_ARREGLADO = {
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Motorized Retractable Screen Installation'],
       ['about.image', 'Retractable screens installed by professional outdoor living contractors in Florida.',
-        '/images/projects/luxury-pool-motorized-pergola-screens-south-florida/luxury-pool-motorized-pergola-screens-south-florida-4.avif'],
+        // E10: la `image` del JSON-LD es la foto del hero, y sigue a la que el hero lleve
+        '/images/obra/suelta/retractable-screens-lowered-covered-patio-pool-florida-heroe.avif'],
       ['dateModified', '2026-05-18T19:54:35.687Z', '2026-05-18T19:55:49.094Z'],
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:54:35.687Z'],
     ],
@@ -491,7 +493,8 @@ const JSONLD_ARREGLADO = {
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Premium Outdoor Furniture Supply & Installation'],
       ['about.image', 'Teak dining set and wicker lounge chairs on Florida patio.',
-        '/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-heroe.avif'],
+        // E10: la `image` del JSON-LD es la foto del hero, y sigue a la que el hero lleve
+        '/images/obra/suelta/outdoor-furniture-wicker-sectional-bar-under-pergola-florida-heroe.avif'],
       ['dateModified', '2026-05-18T19:53:23.229Z', '2026-05-18T19:55:49.094Z'],
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:53:23.229Z'],
     ],

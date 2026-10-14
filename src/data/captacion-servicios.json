@@ -316,20 +316,19 @@
     "servicio": "Aluminum and Wood Pergolas",
     "heroe": {
       "apoyo": "Custom pergola builders and installation company serving North & South Florida, delivering durable designs that enhance outdoor comfort and style.",
-      "foto": "/images/obra/obra-100/freestanding-pergola-dark-bronze-pool-spa-canal-florida-heroe.avif",
-      "alt": "Dark bronze freestanding lattice pergola framing a blue-tiled spa with canal, boats and palms behind",
+      "foto": "/images/obra/suelta/freestanding-pergola-poolside-lounge-seating-hedge-florida-heroe.avif",
+      "alt": "Freestanding dark bronze pergola with a slatted roof over a lounge set beside a pool, with a clipped hedge behind.",
       "ancho": 1600,
       "alto": 900,
       "licencias": "Florida aluminum contractor · SCC131153553",
       "ancla": "#estimate",
-      "_banco": "bi-1046",
-      "_proyecto": "obra-100",
+      "_banco": "bi-1273",
       "_ajuste": {
         "recorte": "16/9",
-        "pos": "50% 55%",
+        "pos": "50% 60%",
         "ancho": 1600,
-        "q": 50,
-        "de": "/images/banco/pergolas/freestanding-pergola-dark-bronze-pool-spa-canal-florida-02.webp"
+        "q": 52,
+        "de": "/images/banco/pergolas/freestanding-pergola-poolside-lounge-seating-hedge-florida-01.webp"
       },
       "og": "/images/obra/og/custom-aluminum-pergola-builders-in-north-south-florida.jpg",
       "marca": "Pergola"
@@ -823,15 +822,23 @@
         {
           "titulo": "Grill Islands & Pizza Ovens",
           "parrafo": "Built-in grills need code clearance to combustibles, a rated hood where the island sits under a solid roof, and gas and electrical runs sized for the appliance. Wood-fired and gas ovens weigh hundreds of pounds, so they land on a slab that carries the load or on footings we pour.",
-          "foto": "/images/images/kitchen-7/modern-custom-outdoor-kitchen-design-florida.avif",
-          "alt": "Outdoor kitchen with a built-in pizza oven beside a Florida pool",
-          "ancho": 1250,
-          "alto": 698,
+          "foto": "/images/obra/suelta/outdoor-kitchen-built-in-grill-pizza-oven-white-slat-wall-florida.avif",
+          "alt": "Outdoor kitchen with a built-in grill and a countertop pizza oven in front of a white slatted privacy wall",
+          "ancho": 1599,
+          "alto": 1066,
           "lado": "izquierda",
           "items": [
             "Grilling Island Construction",
             "Outdoor Pizza Oven Builders"
-          ]
+          ],
+          "_banco": "bi-1276",
+          "_ajuste": {
+            "recorte": "3/2",
+            "pos": "50% 50%",
+            "ancho": 1599,
+            "q": 52,
+            "de": "/images/banco/kitchens/outdoor-kitchen-built-in-grill-pizza-oven-white-slat-wall-florida-01.webp"
+          }
         },
         {
           "titulo": "Bars, Beverages & Remodels",
@@ -1031,15 +1038,23 @@
         {
           "titulo": "Automation, Lighting, Fans",
           "parrafo": "Rain sensors close the louvers on their own when a storm moves in, so the furniture underneath stays dry. We run low-voltage wiring inside the beams for LED lighting, ceiling fans, and motorized screens, and a licensed electrician ties the wet-rated fixtures into your panel.",
-          "foto": "/images/images/motorized-louvered-roof-9/motorized-louvered-roof-installers-florida-09.jpg",
+          "foto": "/images/obra/suelta/louvered-pergola-freestanding-lounge-seating-hedge-florida.avif",
           "alt": "Louvered roof with the slats open above patio loungers",
-          "ancho": 1250,
-          "alto": 933,
+          "ancho": 1600,
+          "alto": 1200,
           "lado": "izquierda",
           "items": [
             "Smart Sensor Roof Integration",
             "LED Lighting & Fan Installation"
-          ]
+          ],
+          "_banco": "bi-1277",
+          "_ajuste": {
+            "recorte": "4/3",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/louvered/louvered-pergola-freestanding-lounge-seating-hedge-florida-01.webp"
+          }
         },
         {
           "titulo": "Layouts, Finishes, Approvals",
@@ -1178,13 +1193,21 @@
     "servicio": "Retractable Screens",
     "heroe": {
       "apoyo": "Motorized retractable screen installation contractors serving North & South Florida, delivering flexible shade and insect control.",
-      "foto": "/images/projects/luxury-pool-motorized-pergola-screens-south-florida/luxury-pool-motorized-pergola-screens-south-florida-4.avif",
-      "alt": "Motorized retractable screen partly lowered along a covered poolside patio, installed in South Florida by Mr & Mrs Outdoor Living",
-      "ancho": 1250,
-      "alto": 698,
+      "foto": "/images/obra/suelta/retractable-screens-lowered-covered-patio-pool-florida-heroe.avif",
+      "alt": "Motorized retractable screens fully lowered around a covered patio beside a pool, on a house with a clay tile roof.",
+      "ancho": 1600,
+      "alto": 900,
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "marca": "Retractable"
+      "marca": "Retractable",
+      "_banco": "bi-1274",
+      "_ajuste": {
+        "recorte": "16/9",
+        "pos": "50% 60%",
+        "ancho": 1600,
+        "q": 52,
+        "de": "/images/banco/screens/retractable-screens-lowered-covered-patio-pool-florida-01.webp"
+      }
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -1256,14 +1279,22 @@
         {
           "titulo": "Repairs, Motors & Rescreening",
           "parrafo": "Salt air and UV finish off mesh, motors and hardware long before the tracks give out. We rescreen torn fabric, replace corroded rollers and burned-out motors, and service systems other contractors installed, moving coastal openings onto stainless fasteners that survive the exposure.",
-          "foto": "/images/images/retractable-screen-1/retractable-screen-installation-contractors-florida-1.jpg",
+          "foto": "/images/obra/suelta/retractable-screens-motorized-dark-mesh-lanai-florida.avif",
           "alt": "Screened lanai with seating and a pool beyond",
-          "ancho": 1250,
-          "alto": 833,
+          "ancho": 1600,
+          "alto": 1067,
           "lado": "izquierda",
           "items": [
             "Screen Replacement & Repair Contractors"
-          ]
+          ],
+          "_banco": "bi-1272",
+          "_ajuste": {
+            "recorte": "3/2",
+            "pos": "50% 50%",
+            "ancho": 1600,
+            "q": 52,
+            "de": "/images/banco/screens/retractable-screens-motorized-dark-mesh-lanai-florida-01.webp"
+          }
         }
       ]
     },
@@ -1822,20 +1853,19 @@
     "servicio": "Outdoor Furniture",
     "heroe": {
       "apoyo": "Outdoor furniture installation company for North & South Florida homes, offering durable, premium solutions for modern outdoor living.",
-      "foto": "/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-heroe.avif",
-      "alt": "Black-framed insulated patio cover with ceiling fans and wicker sofas beside a lap pool at sunset",
-      "ancho": 1215,
-      "alto": 683,
+      "foto": "/images/obra/suelta/outdoor-furniture-wicker-sectional-bar-under-pergola-florida-heroe.avif",
+      "alt": "Wicker sectional, ottomans and a bar with stools under a dark pergola on a flagstone patio surrounded by tropical plants.",
+      "ancho": 1600,
+      "alto": 900,
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "_banco": "bi-0928",
-      "_proyecto": "obra-087",
+      "_banco": "bi-1278",
       "_ajuste": {
         "recorte": "16/9",
         "pos": "50% 55%",
-        "ancho": 1215,
-        "q": 50,
-        "de": "/images/banco/pergolas/insulated-patio-cover-black-frame-lap-pool-sunset-florida-01.webp"
+        "ancho": 1600,
+        "q": 52,
+        "de": "/images/banco/furniture/outdoor-furniture-wicker-sectional-bar-under-pergola-florida-01.webp"
       },
       "og": "/images/obra/og/premium-outdoor-furniture-for-north-south-florida-homes.jpg",
       "marca": "Outdoor Furniture"

@@ -5,7 +5,7 @@ Fotografía de obra propia, clasificada el 1-oct-2026 desde
 
 | Qué | Dónde |
 |---|---|
-| Índice — **lo único que hay que leer** | `src/data/banco-imagenes.json` (1.272 entradas, 518 aprobadas) |
+| Índice — **lo único que hay que leer** | `src/data/banco-imagenes.json` (1.279 entradas, 525 aprobadas) |
 | Ficheros servidos (WebP, 1600 px, sin EXIF) | `public/images/banco/<servicio>/<slug>.webp` → URL `/images/banco/…` |
 | Hojas de contactos de lo aprobado | `banco/hojas/<servicio>-<etapa>-NN.jpg` |
 | Dudosas, con su pregunta | `banco/DUDOSAS.md` + `banco/hojas-dudosas/` |
@@ -44,8 +44,9 @@ Campos: `etapa` (`terminado` · `construccion` · `antes`), `servicios` (protago
 7. **El slug no se cambia nunca**: es una URL. Y no lleva región: `region` es `desconocida` salvo
    en una obra, porque ni la carpeta ni el EXIF la prueban.
 8. **Si el banco no tiene la foto que el hueco pide, el hueco se queda como está y se reporta.**
-   Ceros hoy: `irrigation`, `lighting` y `furniture` como protagonista; `rooms` y `screens` tienen
-   una cada una y `enclosures` una sola. De `enclosures`, `decks`, `pole` e `irrigation` hay obra
+   Ceros hoy: `irrigation` y `lighting` como protagonista; `furniture` tiene dos y `screens` tres
+   como protagonista desde E10 (sesión profesional, carpeta `Senavia Picture/`), `rooms` una y
+   `enclosures` ninguna. De `enclosures`, `decks`, `pole` e `irrigation` hay obra
    real fuera del banco, en las galerías de su ficha: la clasifica `src/data/gallery-procedencia.json`.
 
 ## Añadir fotos

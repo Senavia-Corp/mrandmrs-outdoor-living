@@ -1355,6 +1355,222 @@
     ],
     "_hecha": "/images/banco/pergolas/insulated-patio-cover-black-frame-lap-pool-sunset-florida-01.webp · 50% 50%"
    }
+  },
+  "/images/obra/suelta/freestanding-pergola-poolside-lounge-seating-hedge-florida-heroe.avif": {
+   "hero": {
+    "de": "/images/banco/pergolas/freestanding-pergola-poolside-lounge-seating-hedge-florida-01.webp",
+    "origen": "Senavia Picture /Pictures-24.jpg",
+    "pos": "50% 50%",
+    "ratio": 1.3333,
+    "fuentes": [
+     [
+      960,
+      "/images/obra/suelta/freestanding-pergola-poolside-lounge-seating-hedge-florida-heroe-hero960.avif"
+     ],
+     [
+      1280,
+      "/images/obra/suelta/freestanding-pergola-poolside-lounge-seating-hedge-florida-heroe-hero1280.avif"
+     ],
+     [
+      1600,
+      "/images/obra/suelta/freestanding-pergola-poolside-lounge-seating-hedge-florida-heroe-hero1600.avif"
+     ]
+    ],
+    "_hecha": "Senavia Picture /Pictures-24.jpg · 50% 50%",
+    "mide": [
+     5333,
+     4000
+    ]
+   }
+  },
+  "/images/obra/suelta/retractable-screens-lowered-covered-patio-pool-florida-heroe.avif": {
+   "hero": {
+    "de": "/images/banco/screens/retractable-screens-lowered-covered-patio-pool-florida-01.webp",
+    "origen": "Senavia Picture /Pictures-05.jpg",
+    "pos": "50% 50%",
+    "ratio": 1.3333,
+    "fuentes": [
+     [
+      960,
+      "/images/obra/suelta/retractable-screens-lowered-covered-patio-pool-florida-heroe-hero960.avif"
+     ],
+     [
+      1280,
+      "/images/obra/suelta/retractable-screens-lowered-covered-patio-pool-florida-heroe-hero1280.avif"
+     ],
+     [
+      1600,
+      "/images/obra/suelta/retractable-screens-lowered-covered-patio-pool-florida-heroe-hero1600.avif"
+     ]
+    ],
+    "_hecha": "Senavia Picture /Pictures-05.jpg · 50% 50%",
+    "mide": [
+     6000,
+     4000
+    ]
+   }
+  },
+  "/images/obra/suelta/outdoor-furniture-wicker-sectional-bar-under-pergola-florida-heroe.avif": {
+   "hero": {
+    "de": "/images/banco/furniture/outdoor-furniture-wicker-sectional-bar-under-pergola-florida-01.webp",
+    "origen": "Senavia Picture /Pictures-30.jpg",
+    "pos": "50% 50%",
+    "ratio": 1.3333,
+    "fuentes": [
+     [
+      960,
+      "/images/obra/suelta/outdoor-furniture-wicker-sectional-bar-under-pergola-florida-heroe-hero960.avif"
+     ],
+     [
+      1280,
+      "/images/obra/suelta/outdoor-furniture-wicker-sectional-bar-under-pergola-florida-heroe-hero1280.avif"
+     ],
+     [
+      1600,
+      "/images/obra/suelta/outdoor-furniture-wicker-sectional-bar-under-pergola-florida-heroe-hero1600.avif"
+     ]
+    ],
+    "_hecha": "Senavia Picture /Pictures-30.jpg · 50% 50%",
+    "mide": [
+     5251,
+     3938
+    ]
+   }
+  },
+  "/images/obra/suelta/outdoor-kitchen-built-in-grill-pizza-oven-white-slat-wall-florida.avif": {
+   "lam": {
+    "de": "/images/banco/kitchens/outdoor-kitchen-built-in-grill-pizza-oven-white-slat-wall-florida-01.webp",
+    "origen": "Senavia Picture /Pictures-19.jpg",
+    "pos": "8% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/obra/suelta/outdoor-kitchen-built-in-grill-pizza-oven-white-slat-wall-florida-lam560.avif"
+     ],
+     [
+      800,
+      "/images/obra/suelta/outdoor-kitchen-built-in-grill-pizza-oven-white-slat-wall-florida-lam800.avif"
+     ],
+     [
+      1100,
+      "/images/obra/suelta/outdoor-kitchen-built-in-grill-pizza-oven-white-slat-wall-florida-lam1100.avif"
+     ]
+    ],
+    "_hecha": "Senavia Picture /Pictures-19.jpg · 8% 50%",
+    "mide": [
+     5666,
+     3777
+    ]
+   }
+  },
+  "/images/obra/suelta/louvered-pergola-freestanding-lounge-seating-hedge-florida.avif": {
+   "lam": {
+    "de": "/images/banco/louvered/louvered-pergola-freestanding-lounge-seating-hedge-florida-01.webp",
+    "origen": "Senavia Picture /Pictures-20.jpg",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/obra/suelta/louvered-pergola-freestanding-lounge-seating-hedge-florida-lam560.avif"
+     ],
+     [
+      800,
+      "/images/obra/suelta/louvered-pergola-freestanding-lounge-seating-hedge-florida-lam800.avif"
+     ],
+     [
+      1100,
+      "/images/obra/suelta/louvered-pergola-freestanding-lounge-seating-hedge-florida-lam1100.avif"
+     ]
+    ],
+    "_hecha": "Senavia Picture /Pictures-20.jpg · 50% 50%",
+    "mide": [
+     4641,
+     3481
+    ]
+   }
+  },
+  "/images/obra/suelta/retractable-screens-motorized-dark-mesh-lanai-florida.avif": {
+   "lam": {
+    "de": "/images/banco/screens/retractable-screens-motorized-dark-mesh-lanai-florida-01.webp",
+    "origen": "Senavia Picture /Pictures-07.jpg",
+    "pos": "60% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/obra/suelta/retractable-screens-motorized-dark-mesh-lanai-florida-lam560.avif"
+     ],
+     [
+      800,
+      "/images/obra/suelta/retractable-screens-motorized-dark-mesh-lanai-florida-lam800.avif"
+     ],
+     [
+      1100,
+      "/images/obra/suelta/retractable-screens-motorized-dark-mesh-lanai-florida-lam1100.avif"
+     ]
+    ],
+    "_hecha": "Senavia Picture /Pictures-07.jpg · 60% 50%",
+    "mide": [
+     6000,
+     4000
+    ]
+   }
+  },
+  "/images/banco/screens/retractable-screens-raised-covered-patio-pool-florida-01.webp": {
+   "lam": {
+    "de": "/images/banco/screens/retractable-screens-raised-covered-patio-pool-florida-01.webp",
+    "origen": "Senavia Picture /Pictures-04.jpg",
+    "pos": "30% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/banco/screens/retractable-screens-raised-covered-patio-pool-florida-01-lam560.avif"
+     ],
+     [
+      800,
+      "/images/banco/screens/retractable-screens-raised-covered-patio-pool-florida-01-lam800.avif"
+     ],
+     [
+      1100,
+      "/images/banco/screens/retractable-screens-raised-covered-patio-pool-florida-01-lam1100.avif"
+     ]
+    ],
+    "_hecha": "Senavia Picture /Pictures-04.jpg · 30% 50%",
+    "mide": [
+     6000,
+     4000
+    ]
+   }
+  },
+  "/images/banco/furniture/outdoor-furniture-wicker-lounge-patio-cover-ceiling-fans-florida-01.webp": {
+   "lam": {
+    "de": "/images/banco/furniture/outdoor-furniture-wicker-lounge-patio-cover-ceiling-fans-florida-01.webp",
+    "origen": "Senavia Picture /Pictures-27.jpg",
+    "pos": "30% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/banco/furniture/outdoor-furniture-wicker-lounge-patio-cover-ceiling-fans-florida-01-lam560.avif"
+     ],
+     [
+      800,
+      "/images/banco/furniture/outdoor-furniture-wicker-lounge-patio-cover-ceiling-fans-florida-01-lam800.avif"
+     ],
+     [
+      1100,
+      "/images/banco/furniture/outdoor-furniture-wicker-lounge-patio-cover-ceiling-fans-florida-01-lam1100.avif"
+     ]
+    ],
+    "_hecha": "Senavia Picture /Pictures-27.jpg · 30% 50%",
+    "mide": [
+     4950,
+     3712
+    ]
+   }
   }
  }
 }

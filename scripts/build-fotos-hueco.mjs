@@ -24,6 +24,8 @@
  * Y `zoom` (1.4) para cerrar el encuadre sobre `pos` cuando el cuadro entero ensena algo que sobra.
  * La fuente puede ser el propio JPEG que se sirve (mismo encuadre, en AVIF y sin lo que la caja tira);
  * de un AVIF ya servido no se deriva: recomprimirlo resta y no añade.
+ * Con `origen` (la ruta del original dentro de BANCO_ORIGEN, como en el banco) deriva del original y
+ * guarda sus medidas en `mide`: el original no entra en el repo y `--check` no lo necesita.
  * Nunca amplia: si el recorte da menos que un ancho, ese ancho se queda en lo que da. Y dice a
  * cuanto queda cada foto en su caja a densidad 2: por debajo de 1,5x no merece derivada, es
  * candidata a otra foto.
@@ -35,6 +37,7 @@ import sharp from 'sharp';
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const DATOS = path.join(RAIZ, 'src/data/fotos-hueco.json');
 const CHECK = process.argv.includes('--check');
+const ORIGEN = process.env.BANCO_ORIGEN;   // solo para las recetas con `origen`: el original, que no entra en el repo
 const HUECOS = {
   lam: { ratio: 4 / 5, anchos: [560, 800, 1100], caja: [547, 683] },
   hero: { ratio: 4 / 3, anchos: [960, 1280, 1600], caja: [573, 648], altoMin: 560 },   // la caja del hero nunca baja de 560 px de alto
@@ -49,8 +52,13 @@ for (const [src, huecos] of Object.entries(datos.fotos)) for (const [tipo, d] of
   if (!HUECOS[tipo]) { console.error(`✗ ${src} · hueco «${tipo}» no existe`); fallos++; continue; }
   // `recorte: "8/9"` cambia la proporcion de esa foto: un hero que sale de una vertical rinde mas a la de la caja que a 4:3
   const H = { ...HUECOS[tipo], ...(d.recorte && { ratio: d.recorte.split('/').reduce((a, b) => a / b) }) };
-  if (!fs.existsSync(enDisco(d.de))) { console.error(`✗ ${src} · su fuente no esta: ${d.de}`); fallos++; continue; }
-  const m = await sharp(enDisco(d.de)).metadata();
+  // `origen` (ruta dentro de BANCO_ORIGEN, la misma del banco): se deriva del ORIGINAL, que da para 2x donde el `.webp`
+  // del banco (1600 px) no llega. El original no esta en el repo: la receta guarda `mide` y `--check` no lo necesita.
+  const fuente = d.origen ? (ORIGEN ? path.join(ORIGEN, d.origen) : null) : enDisco(d.de);
+  const hay = fuente && fs.existsSync(fuente);
+  if (!hay && !(d.origen && d.mide)) { console.error(`✗ ${src} · su fuente no esta: ${d.origen ? `${d.origen} (BANCO_ORIGEN=${ORIGEN ?? 'sin poner'})` : d.de}`); fallos++; continue; }
+  const meta = hay ? await sharp(fuente).metadata() : null;
+  const m = !hay ? { width: d.mide[0], height: d.mide[1] } : meta.orientation >= 5 ? { width: meta.height, height: meta.width } : { width: meta.width, height: meta.height };
   // el recorte `cover` a la proporcion del hueco, con `pos` como `object-position`
   let w = m.width, h = Math.round(w / H.ratio);
   if (h > m.height) { h = m.height; w = Math.round(h * H.ratio); }
@@ -62,7 +70,7 @@ for (const [src, huecos] of Object.entries(datos.fotos)) for (const [tipo, d] of
   const anchos = [...new Set(H.anchos.map((a) => Math.min(a, w)))].filter((a, i, l) => i === l.length - 1 || (l[i + 1] - a >= 80 && a / H.ratio >= (H.altoMin ?? 0)));
   const fuentes = anchos.map((a) => [a, src.replace(/\.\w+$/, `-${tipo}${a}.avif`)]);
   // la receta con la que se hicieron los ficheros: si `de`, `pos` o `recorte` cambian, se rehacen (y `--check` lo dice)
-  const receta = [d.de, d.pos, d.recorte, d.zoom && `zoom ${d.zoom}`].filter(Boolean).join(' · ');
+  const receta = [d.origen ?? d.de, d.pos, d.recorte, d.zoom && `zoom ${d.zoom}`].filter(Boolean).join(' · ');
   if (CHECK) {
     if (JSON.stringify(d.fuentes) !== JSON.stringify(fuentes) || d.ratio !== +H.ratio.toFixed(4) || d._hecha !== receta) { console.error(`✗ ${src} · ${tipo}: \`fuentes\` no es lo que sale de su receta: vuelve a correr el guion`); fallos++; continue; }
     for (const [a, u] of fuentes) {
@@ -70,8 +78,10 @@ for (const [src, huecos] of Object.entries(datos.fotos)) for (const [tipo, d] of
       if (!v) { console.error(`✗ falta ${u}`); fallos++; } else if (v.width !== a || v.height !== Math.round(a / H.ratio)) { console.error(`✗ ${u} mide ${v.width}x${v.height}, tenia que medir ${a}x${Math.round(a / H.ratio)}`); fallos++; }
     }
   } else {
-    for (const [a, u] of fuentes) if (d._hecha !== receta || !fs.existsSync(enDisco(u))) { await sharp(enDisco(d.de)).rotate().extract(recorte).resize(a, Math.round(a / H.ratio)).avif({ quality: 52, effort: 5 }).toFile(enDisco(u)); nuevas++; }
-    d.ratio = +H.ratio.toFixed(4); d.fuentes = fuentes; d._hecha = receta;
+    for (const [a, u] of fuentes) if (d._hecha !== receta || !fs.existsSync(enDisco(u))) {
+      if (!hay) { console.error(`✗ ${src} · hay que derivar ${path.basename(u)} y falta el original: BANCO_ORIGEN=<carpeta de originales>`); fallos++; break; }
+      await sharp(await sharp(fuente).rotate().toBuffer()).extract(recorte).resize(a, Math.round(a / H.ratio)).avif({ quality: 52, effort: 5 }).toFile(enDisco(u)); nuevas++; }
+    d.ratio = +H.ratio.toFixed(4); d.fuentes = fuentes; d._hecha = receta; if (d.origen) d.mide = [m.width, m.height];
     const da = Math.min(w / H.caja[0], h / H.caja[1]);
     console.log(`${da < 1.5 ? '!!' : 'ok'} ${tipo.padEnd(4)} ${da.toFixed(2)}x a densidad 2 · ${w}x${h} de ${m.width}x${m.height} · ${path.basename(src)}${da < 1.5 ? ' — no llega a 1,5x: candidata a otra foto' : ''}`);
   }

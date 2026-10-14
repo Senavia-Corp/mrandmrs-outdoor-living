@@ -7803,6 +7803,110 @@
      "/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/smart-led-soffit-lighting-night-florida-mm1024.avif"
     ]
    ]
+  },
+  "/images/banco/furniture/outdoor-furniture-wicker-lounge-patio-cover-ceiling-fans-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/furniture/outdoor-furniture-wicker-lounge-patio-cover-ceiling-fans-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/furniture/outdoor-furniture-wicker-lounge-patio-cover-ceiling-fans-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/screens/retractable-screens-raised-covered-patio-pool-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/screens/retractable-screens-raised-covered-patio-pool-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/screens/retractable-screens-raised-covered-patio-pool-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/obra/suelta/freestanding-pergola-poolside-lounge-seating-hedge-florida-heroe.avif": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/suelta/freestanding-pergola-poolside-lounge-seating-hedge-florida-heroe-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/obra/suelta/freestanding-pergola-poolside-lounge-seating-hedge-florida-heroe-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/obra/suelta/louvered-pergola-freestanding-lounge-seating-hedge-florida.avif": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/suelta/louvered-pergola-freestanding-lounge-seating-hedge-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/obra/suelta/louvered-pergola-freestanding-lounge-seating-hedge-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/obra/suelta/outdoor-furniture-wicker-sectional-bar-under-pergola-florida-heroe.avif": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/suelta/outdoor-furniture-wicker-sectional-bar-under-pergola-florida-heroe-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/obra/suelta/outdoor-furniture-wicker-sectional-bar-under-pergola-florida-heroe-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/obra/suelta/outdoor-kitchen-built-in-grill-pizza-oven-white-slat-wall-florida.avif": {
+   "ancho": 1599,
+   "variantes": [
+    [
+     640,
+     "/images/obra/suelta/outdoor-kitchen-built-in-grill-pizza-oven-white-slat-wall-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/obra/suelta/outdoor-kitchen-built-in-grill-pizza-oven-white-slat-wall-florida-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/obra/suelta/retractable-screens-lowered-covered-patio-pool-florida-heroe.avif": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/suelta/retractable-screens-lowered-covered-patio-pool-florida-heroe-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/obra/suelta/retractable-screens-lowered-covered-patio-pool-florida-heroe-mm1024.avif"
+    ]
+   ]
+  },
+  "/images/obra/suelta/retractable-screens-motorized-dark-mesh-lanai-florida.avif": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/obra/suelta/retractable-screens-motorized-dark-mesh-lanai-florida-mm640.avif"
+    ],
+    [
+     1024,
+     "/images/obra/suelta/retractable-screens-motorized-dark-mesh-lanai-florida-mm1024.avif"
+    ]
+   ]
   }
  },
  "lcp": {
@@ -8956,6 +9060,36 @@
    [
     1024,
     "/images/obra/obra-090/pool-construction-spa-travertine-deck-sun-shelf-florida-heroe-lcp1024.avif"
+   ]
+  ],
+  "/images/obra/suelta/freestanding-pergola-poolside-lounge-seating-hedge-florida-heroe.avif": [
+   [
+    800,
+    "/images/obra/suelta/freestanding-pergola-poolside-lounge-seating-hedge-florida-heroe-lcp800.avif"
+   ],
+   [
+    1024,
+    "/images/obra/suelta/freestanding-pergola-poolside-lounge-seating-hedge-florida-heroe-lcp1024.avif"
+   ]
+  ],
+  "/images/obra/suelta/outdoor-furniture-wicker-sectional-bar-under-pergola-florida-heroe.avif": [
+   [
+    800,
+    "/images/obra/suelta/outdoor-furniture-wicker-sectional-bar-under-pergola-florida-heroe-lcp800.avif"
+   ],
+   [
+    1024,
+    "/images/obra/suelta/outdoor-furniture-wicker-sectional-bar-under-pergola-florida-heroe-lcp1024.avif"
+   ]
+  ],
+  "/images/obra/suelta/retractable-screens-lowered-covered-patio-pool-florida-heroe.avif": [
+   [
+    800,
+    "/images/obra/suelta/retractable-screens-lowered-covered-patio-pool-florida-heroe-lcp800.avif"
+   ],
+   [
+    1024,
+    "/images/obra/suelta/retractable-screens-lowered-covered-patio-pool-florida-heroe-lcp1024.avif"
    ]
   ]
  },
