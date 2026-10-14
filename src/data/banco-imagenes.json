@@ -3030,7 +3030,6 @@
       "reflejos en el ventanal"
     ],
     "usada_en": [
-      "/about",
       "/gallery",
       "/gallery/decks"
     ],
@@ -18931,9 +18930,7 @@
       "4:5"
     ],
     "defectos": [],
-    "usada_en": [
-      "/about"
-    ],
+    "usada_en": [],
     "origen": "NEW JOBS CONSTRUCTION/Curtis/Tile1.jpeg",
     "sha256": "58beca2f32c5f3b4b6fa1a821f59045d0f963a249d83a62764b564db50481f41"
   },
@@ -19908,9 +19905,7 @@
     "defectos": [
       "marca de la máquina visible"
     ],
-    "usada_en": [
-      "/about"
-    ],
+    "usada_en": [],
     "origen": "NEW JOBS CONSTRUCTION/Darr Pool/20260314_174745259_iOS.heic",
     "sha256": "7cf98854329206ab286334351b11c4fba4206e76f97c5541d7712681a94e879e"
   },
@@ -23808,7 +23803,8 @@
       "caja blanca (alarma de piscina) sobre el coping abajo a la derecha"
     ],
     "usada_en": [
-      "/blogs/top-10-luxury-pool-designs-for-florida-homes"
+      "/blogs/top-10-luxury-pool-designs-for-florida-homes",
+      "/about"
     ],
     "origen": "NEW JOBS CONSTRUCTION/Fort Lauderdale Pool/IMG_2373.JPEG",
     "sha256": "228c148288104b5ab27c5b90d16a3a8ee51a7c8b77eff83778e745ca52ef3003"
@@ -43613,5 +43609,277 @@
     ],
     "origen": "Senavia Picture /Pictures-27.jpg",
     "sha256": "100f2d7a990f07bd83e2e6f38e9ec60436c9e6e4a2f19280280593691dbd4446"
+  },
+  {
+    "id": "bi-1280",
+    "src": "/images/banco/pergolas/white-patio-cover-pool-wicker-loungers-palms-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas",
+      "construction"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1200,
+    "alt": "Pool with a travertine deck and wicker loungers beside a white patio cover with ceiling fans, an outdoor bar and palms.",
+    "descripcion": "Piscina de vaso redondeado con playa de travertino, tumbonas de mimbre en fila y, detrás, cubierta de patio blanca con ventiladores sobre una barra exterior y comedor; palmeras y cielo azul. Foto de sesión profesional.",
+    "tags": [
+      "pool",
+      "patio cover",
+      "loungers",
+      "travertine deck",
+      "palms"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:3",
+      "3:2",
+      "4:5",
+      "16:9"
+    ],
+    "defectos": [],
+    "usada_en": [
+      "/request-estimated"
+    ],
+    "origen": "Senavia Picture /Pictures-29.jpg",
+    "sha256": "3160ef5f46eccbc316c411bee93e28bdd6d8ccb17d1af190da434ea5db90d0e8"
+  },
+  {
+    "id": "bi-1281",
+    "src": "/images/banco/louvered/white-louvered-roof-patio-dining-yellow-house-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "louvered",
+      "pergolas"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 900,
+    "alt": "White louvered roof with open blades over a patio dining set and potted plants beside a yellow house.",
+    "descripcion": "Techo de lamas blanco con las lamas abiertas sobre un comedor de patio, junto a una casa amarilla; macetas con crotos rojos y palmeras al fondo. Foto de sesión profesional.",
+    "tags": [
+      "louvered roof",
+      "patio dining",
+      "white aluminum",
+      "yellow house"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "16:9",
+      "3:2",
+      "4:3"
+    ],
+    "defectos": [],
+    "usada_en": [
+      "/financing"
+    ],
+    "origen": "Senavia Picture /Pictures-37.jpg",
+    "sha256": "74e739d95e8184c59da6b8b3ea384cb48df448887a35f303821e708aec232bc1"
+  },
+  {
+    "id": "bi-1282",
+    "src": "/images/banco/pergolas/dark-pergola-slatted-roof-tropical-patio-wicker-bar-lake-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas",
+      "louvered"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1200,
+    "alt": "Dark aluminum pergola with a slatted roof over a flagstone patio with wicker lounge chairs, a bar and tropical plants.",
+    "descripcion": "Pérgola de aluminio oscuro con cubierta de lamas sobre un patio de laja: butacas de mimbre con cojines azules, barra de mimbre con taburetes, plantas tropicales y un lago con palmeras detrás. Foto de sesión profesional.",
+    "tags": [
+      "pergola",
+      "slatted roof",
+      "flagstone patio",
+      "wicker furniture",
+      "lake view"
+    ],
+    "espacio_texto": "ninguno",
+    "recortes_seguros": [
+      "4:3",
+      "3:2",
+      "4:5",
+      "1:1"
+    ],
+    "defectos": [],
+    "usada_en": [
+      "/financing"
+    ],
+    "origen": "Senavia Picture /Pictures-28.jpg",
+    "sha256": "8373bed13e31c17b92eb56ffb02ae6be2d4e760c2ccb6c91f52876463ce375c7"
+  },
+  {
+    "id": "bi-1283",
+    "src": "/images/banco/pergolas/patio-cover-dining-table-flowers-lake-view-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1200,
+    "alt": "Outdoor dining table with flowers under a dark-framed patio cover, looking over a fenced lawn to a lake.",
+    "descripcion": "Mesa de comedor exterior con un jarrón de flores bajo una cubierta de patio de marco oscuro; césped vallado, lago y casas al otro lado. Foto de sesión profesional.",
+    "tags": [
+      "patio cover",
+      "outdoor dining",
+      "lake view",
+      "dark frame"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:3",
+      "3:2",
+      "4:5"
+    ],
+    "defectos": [],
+    "usada_en": [
+      "/financing"
+    ],
+    "origen": "Senavia Picture /Pictures-16.jpg",
+    "sha256": "eec791093125844a80cfed9044311bf5ef8a7c79fd83b768720502eecbc3fe99"
+  },
+  {
+    "id": "bi-1284",
+    "src": "/images/banco/pergolas/freestanding-pergola-long-pool-lounge-set-potted-plant-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas",
+      "louvered"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "cuadrada",
+    "ancho": 1600,
+    "alto": 1600,
+    "alt": "Freestanding bronze pergola over a white lounge set beside a long pool, with a clipped hedge and a potted plant.",
+    "descripcion": "Pérgola exenta de aluminio bronce sobre un conjunto de sofá blanco junto a una piscina alargada; seto recortado detrás, sombrilla a la izquierda y una maceta de barro con flores amarillas delante. Foto de sesión profesional.",
+    "tags": [
+      "freestanding pergola",
+      "pool",
+      "lounge set",
+      "hedge"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "1:1",
+      "4:5",
+      "4:3",
+      "3:2"
+    ],
+    "defectos": [],
+    "usada_en": [
+      "/about"
+    ],
+    "origen": "Senavia Picture /Pictures-21.jpg",
+    "sha256": "ec35c4152c538df32723fd28630300efb2f1ca4d4f2286ba2658a5b86c57d615"
+  },
+  {
+    "id": "bi-1285",
+    "src": "/images/banco/pergolas/patio-cover-ceiling-fans-wicker-lounge-travertine-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas",
+      "furniture"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "cuadrada",
+    "ancho": 1600,
+    "alto": 1600,
+    "alt": "Dark-framed patio cover with two ceiling fans over a wicker lounge set on a travertine patio, with bougainvillea in front.",
+    "descripcion": "Cubierta de patio de marco oscuro con dos ventiladores sobre un conjunto de sofás de mimbre en un patio de travertino; buganvillas en primer plano y palmeras al fondo. Foto de sesión profesional.",
+    "tags": [
+      "patio cover",
+      "ceiling fans",
+      "wicker lounge",
+      "travertine"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "1:1",
+      "4:5",
+      "4:3",
+      "3:2"
+    ],
+    "defectos": [],
+    "usada_en": [
+      "/about"
+    ],
+    "origen": "Senavia Picture /Pictures-40.jpg",
+    "sha256": "5f6e4bcb4a5b2467f5872f9f48cc46d686ae4bb90680959fa1caab64a0a6fcfc"
+  },
+  {
+    "id": "bi-1286",
+    "src": "/images/banco/louvered/white-louvered-pergola-curved-pool-patio-lounge-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "louvered",
+      "pergolas"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 900,
+    "alt": "Curved pool in front of a patio with gray lounge furniture and a white louvered pergola beside a yellow house.",
+    "descripcion": "Piscina de borde curvo delante de un patio con sofás grises, comedor bajo una pérgola de lamas blanca y una casa amarilla con porche y ventilador; crotos rojos en macetas. Foto de sesión profesional.",
+    "tags": [
+      "louvered pergola",
+      "pool",
+      "patio lounge",
+      "yellow house"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "16:9",
+      "3:2",
+      "4:3",
+      "4:5"
+    ],
+    "defectos": [],
+    "usada_en": [
+      "/about"
+    ],
+    "origen": "Senavia Picture /Pictures-35.jpg",
+    "sha256": "508702e9e9e36201379fa3098ffedb80212be96421228ea39433d352261b3adf"
   }
 ]

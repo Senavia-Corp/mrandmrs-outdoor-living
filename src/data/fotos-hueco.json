@@ -1615,6 +1615,141 @@
     ],
     "_hecha": "/images/banco/pole/pole-barn-enclosed-tan-metal-siding-brown-trim-florida-01.webp · 50% 50%"
    }
+  },
+  "/images/banco/pergolas/freestanding-pergola-long-pool-lounge-set-potted-plant-florida-01.webp": {
+   "lam": {
+    "de": "/images/banco/pergolas/freestanding-pergola-long-pool-lounge-set-potted-plant-florida-01.webp",
+    "origen": "Senavia Picture /Pictures-21.jpg",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/banco/pergolas/freestanding-pergola-long-pool-lounge-set-potted-plant-florida-01-lam560.avif"
+     ],
+     [
+      800,
+      "/images/banco/pergolas/freestanding-pergola-long-pool-lounge-set-potted-plant-florida-01-lam800.avif"
+     ],
+     [
+      1100,
+      "/images/banco/pergolas/freestanding-pergola-long-pool-lounge-set-potted-plant-florida-01-lam1100.avif"
+     ]
+    ],
+    "_hecha": "Senavia Picture /Pictures-21.jpg · 50% 50%",
+    "mide": [
+     3682,
+     3682
+    ]
+   }
+  },
+  "/images/banco/pergolas/patio-cover-ceiling-fans-wicker-lounge-travertine-florida-01.webp": {
+   "lam": {
+    "de": "/images/banco/pergolas/patio-cover-ceiling-fans-wicker-lounge-travertine-florida-01.webp",
+    "origen": "Senavia Picture /Pictures-40.jpg",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/banco/pergolas/patio-cover-ceiling-fans-wicker-lounge-travertine-florida-01-lam560.avif"
+     ],
+     [
+      800,
+      "/images/banco/pergolas/patio-cover-ceiling-fans-wicker-lounge-travertine-florida-01-lam800.avif"
+     ],
+     [
+      1100,
+      "/images/banco/pergolas/patio-cover-ceiling-fans-wicker-lounge-travertine-florida-01-lam1100.avif"
+     ]
+    ],
+    "_hecha": "Senavia Picture /Pictures-40.jpg · 50% 50%",
+    "mide": [
+     3365,
+     3365
+    ]
+   }
+  },
+  "/images/banco/louvered/white-louvered-pergola-curved-pool-patio-lounge-florida-01.webp": {
+   "lam": {
+    "de": "/images/banco/louvered/white-louvered-pergola-curved-pool-patio-lounge-florida-01.webp",
+    "origen": "Senavia Picture /Pictures-35.jpg",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/banco/louvered/white-louvered-pergola-curved-pool-patio-lounge-florida-01-lam560.avif"
+     ],
+     [
+      800,
+      "/images/banco/louvered/white-louvered-pergola-curved-pool-patio-lounge-florida-01-lam800.avif"
+     ],
+     [
+      1100,
+      "/images/banco/louvered/white-louvered-pergola-curved-pool-patio-lounge-florida-01-lam1100.avif"
+     ]
+    ],
+    "_hecha": "Senavia Picture /Pictures-35.jpg · 50% 50%",
+    "mide": [
+     6000,
+     3376
+    ]
+   }
+  },
+  "/images/banco/pergolas/dark-pergola-slatted-roof-tropical-patio-wicker-bar-lake-florida-01.webp": {
+   "lam": {
+    "de": "/images/banco/pergolas/dark-pergola-slatted-roof-tropical-patio-wicker-bar-lake-florida-01.webp",
+    "origen": "Senavia Picture /Pictures-28.jpg",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/banco/pergolas/dark-pergola-slatted-roof-tropical-patio-wicker-bar-lake-florida-01-lam560.avif"
+     ],
+     [
+      800,
+      "/images/banco/pergolas/dark-pergola-slatted-roof-tropical-patio-wicker-bar-lake-florida-01-lam800.avif"
+     ],
+     [
+      1100,
+      "/images/banco/pergolas/dark-pergola-slatted-roof-tropical-patio-wicker-bar-lake-florida-01-lam1100.avif"
+     ]
+    ],
+    "_hecha": "Senavia Picture /Pictures-28.jpg · 50% 50%",
+    "mide": [
+     5333,
+     4000
+    ]
+   }
+  },
+  "/images/banco/pergolas/patio-cover-dining-table-flowers-lake-view-florida-01.webp": {
+   "lam": {
+    "de": "/images/banco/pergolas/patio-cover-dining-table-flowers-lake-view-florida-01.webp",
+    "origen": "Senavia Picture /Pictures-16.jpg",
+    "pos": "50% 50%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/banco/pergolas/patio-cover-dining-table-flowers-lake-view-florida-01-lam560.avif"
+     ],
+     [
+      800,
+      "/images/banco/pergolas/patio-cover-dining-table-flowers-lake-view-florida-01-lam800.avif"
+     ],
+     [
+      1100,
+      "/images/banco/pergolas/patio-cover-dining-table-flowers-lake-view-florida-01-lam1100.avif"
+     ]
+    ],
+    "_hecha": "Senavia Picture /Pictures-16.jpg · 50% 50%",
+    "mide": [
+     5333,
+     4000
+    ]
+   }
   }
  }
 }

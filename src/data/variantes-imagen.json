@@ -7933,6 +7933,110 @@
      "/images/obra/obra-111/pole-barn-enclosed-tan-metal-siding-brown-trim-florida-mm1024.avif"
     ]
    ]
+  },
+  "/images/banco/construction/new-pool-raised-spa-blue-glass-tile-travertine-deck-florida-01.webp": {
+   "ancho": 1200,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/new-pool-raised-spa-blue-glass-tile-travertine-deck-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/construction/new-pool-raised-spa-blue-glass-tile-travertine-deck-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/louvered/white-louvered-pergola-curved-pool-patio-lounge-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/louvered/white-louvered-pergola-curved-pool-patio-lounge-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/louvered/white-louvered-pergola-curved-pool-patio-lounge-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/louvered/white-louvered-roof-patio-dining-yellow-house-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/louvered/white-louvered-roof-patio-dining-yellow-house-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/louvered/white-louvered-roof-patio-dining-yellow-house-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/dark-pergola-slatted-roof-tropical-patio-wicker-bar-lake-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/dark-pergola-slatted-roof-tropical-patio-wicker-bar-lake-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/dark-pergola-slatted-roof-tropical-patio-wicker-bar-lake-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/freestanding-pergola-long-pool-lounge-set-potted-plant-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/freestanding-pergola-long-pool-lounge-set-potted-plant-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/freestanding-pergola-long-pool-lounge-set-potted-plant-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/patio-cover-ceiling-fans-wicker-lounge-travertine-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/patio-cover-ceiling-fans-wicker-lounge-travertine-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/patio-cover-ceiling-fans-wicker-lounge-travertine-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/patio-cover-dining-table-flowers-lake-view-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/patio-cover-dining-table-flowers-lake-view-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/patio-cover-dining-table-flowers-lake-view-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/white-patio-cover-pool-wicker-loungers-palms-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/white-patio-cover-pool-wicker-loungers-palms-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/white-patio-cover-pool-wicker-loungers-palms-florida-01-mm1024.webp"
+    ]
+   ]
   }
  },
  "lcp": {
@@ -9116,6 +9220,16 @@
    [
     1024,
     "/images/obra/suelta/retractable-screens-lowered-covered-patio-pool-florida-heroe-lcp1024.avif"
+   ]
+  ],
+  "/images/banco/pergolas/white-patio-cover-pool-wicker-loungers-palms-florida-01.webp": [
+   [
+    800,
+    "/images/banco/pergolas/white-patio-cover-pool-wicker-loungers-palms-florida-01-lcp800.avif"
+   ],
+   [
+    1024,
+    "/images/banco/pergolas/white-patio-cover-pool-wicker-loungers-palms-florida-01-lcp1024.avif"
    ]
   ]
  },

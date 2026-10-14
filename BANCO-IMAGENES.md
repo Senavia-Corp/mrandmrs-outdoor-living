@@ -5,7 +5,7 @@ Fotografía de obra propia, clasificada el 1-oct-2026 desde
 
 | Qué | Dónde |
 |---|---|
-| Índice — **lo único que hay que leer** | `src/data/banco-imagenes.json` (1.279 entradas, 525 aprobadas) |
+| Índice — **lo único que hay que leer** | `src/data/banco-imagenes.json` (1.286 entradas, 532 aprobadas) |
 | Ficheros servidos (WebP, 1600 px, sin EXIF) | `public/images/banco/<servicio>/<slug>.webp` → URL `/images/banco/…` |
 | Hojas de contactos de lo aprobado | `banco/hojas/<servicio>-<etapa>-NN.jpg` |
 | Dudosas, con su pregunta | `banco/DUDOSAS.md` + `banco/hojas-dudosas/` |

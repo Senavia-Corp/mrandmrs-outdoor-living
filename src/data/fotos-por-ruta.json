@@ -15,34 +15,34 @@
     ],
     "section.aboutus-section img.image-about": [
       {
-        "src": "/images/banco/construction/pool-construction-excavation-excavator-backyard-florida-01.webp",
-        "alt": "Mini excavator digging a new pool beside a white brick home with a screened patio.",
-        "ancho": 1200,
-        "alto": 1600,
-        "pos": "50% 50%",
-        "_banco": "bi-0557",
-        "_bloque": "Project Management",
-        "_por_que": "Obra en curso con el vaso replanteado. No subir la pos: en la tira de 3,7 (991 px) la cabina queda a 10 px del borde. bi-0558, del mismo dia, ya sale en un blog."
-      },
-      {
-        "src": "/images/banco/remodeling/pool-remodeling-step-tile-trim-detail-florida-01.webp",
-        "alt": "Pool steps and bench with new blue glass tile trim set before plaster, with the travertine deck above.",
-        "ancho": 1200,
-        "alto": 1600,
-        "pos": "50% 45%",
-        "_banco": "bi-0533",
-        "_bloque": "Project Monitoring",
-        "_por_que": "Un punto que se inspecciona antes del plaster. bi-0567 (ferralla de obra-049) descartada: pala en primer plano visible de 992 a 1270 px."
-      },
-      {
-        "src": "/images/banco/decks/limestone-pool-deck-round-spa-trellis-wall-florida-01.webp",
-        "alt": "Wet limestone pavers cut to follow the curve of a round spa with a blue glass mosaic tile band, beside a vine trellis wall and bromeliads.",
+        "src": "/images/banco/pergolas/freestanding-pergola-long-pool-lounge-set-potted-plant-florida-01.webp",
+        "alt": "Freestanding bronze pergola over a white lounge set beside a long pool, with a clipped hedge and a potted plant.",
         "ancho": 1600,
-        "alto": 1200,
-        "pos": "0% 50%",
-        "_banco": "bi-0077",
+        "alto": 1600,
+        "pos": "50% 55%",
+        "_banco": "bi-1284",
+        "_bloque": "Project Management",
+        "_por_que": "E12 (D-197, 14-oct-2026): obra terminada en lugar de la excavacion. Pergola, piscina y salon en el mismo plano; foto de sesion profesional, derivada del original."
+      },
+      {
+        "src": "/images/banco/pergolas/patio-cover-ceiling-fans-wicker-lounge-travertine-florida-01.webp",
+        "alt": "Dark-framed patio cover with two ceiling fans over a wicker lounge set on a travertine patio, with bougainvillea in front.",
+        "ancho": 1600,
+        "alto": 1600,
+        "pos": "50% 60%",
+        "_banco": "bi-1285",
+        "_bloque": "Project Monitoring",
+        "_por_que": "E12: el resultado que se supervisa, no un detalle de obra a medias. Cubierta con ventiladores sobre un salon de exterior; sesion profesional."
+      },
+      {
+        "src": "/images/banco/louvered/white-louvered-pergola-curved-pool-patio-lounge-florida-01.webp",
+        "alt": "Curved pool in front of a patio with gray lounge furniture and a white louvered pergola beside a yellow house.",
+        "ancho": 1600,
+        "alto": 900,
+        "pos": "50% 60%",
+        "_banco": "bi-1286",
         "_bloque": "Quality",
-        "_por_que": "Piedra cortada al radio del spa y banda de mosaico: el acabado. Ninguna terminada de obra-049 pasa (manguera, tierra, capturas de pantalla)."
+        "_por_que": "E12: acabado aspiracional (piscina, patio y pergola de lamas) en lugar de la solera mojada. Panoramica 16:9: la caja 4:5 de escritorio va con su derivada del original."
       }
     ]
   },

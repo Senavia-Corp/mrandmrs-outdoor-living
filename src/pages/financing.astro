@@ -33,18 +33,18 @@
 import Base from '../layouts/Base.astro';
 import ResenasGoogle from '../components/widgets/ResenasGoogle.astro';
 import TELEFONOS from '../data/telefonos.json';
-import HEROES from '../data/heroes-ciudad.json';
 import BANCO from '../data/banco-imagenes.json';
 import RESENAS from '../data/resenas.json';
 
 
 const ACORN = 'https://your.acornfinance.com/apply?d=NXJVM';
 
-/* ASTRO-4: las tres fotos de obra que acompanan a resenas, FAQ y banda salen de la bolsa de heroes
- * de piscina nueva (obra real, terminada, con alt), como en el resto de paginas sin obra propia. */
-const FOTOS = [6, 7, 5].map((k) => {
-  const e = (BANCO as any[]).find((x) => x.id === HEROES.bolsas['pool-builders'][k % HEROES.bolsas['pool-builders'].length]);
-  if (!e || e.procedencia !== 'obra_real' || !e.alt) throw new Error(`/financing: la foto ${k} de la bolsa no es obra real con alt`);
+/* ASTRO-4: las tres fotos de obra que acompanan a resenas, FAQ y banda (obra real, terminada, con
+ * alt). E12 (D-197): resenas y FAQ llevan las suyas, de la sesion profesional; la banda sigue con la
+ * de la bolsa de piscina nueva, que es vertical y llena la caja 4:5 sin derivada. */
+const FOTOS = ['bi-1282', 'bi-1283', 'bi-0969'].map((id) => {
+  const e = (BANCO as any[]).find((x) => x.id === id);
+  if (!e || e.procedencia !== 'obra_real' || !e.alt) throw new Error(`/financing: la foto ${id} no es obra real con alt`);
   return e;
 });
 const FLECHA = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>';
@@ -105,7 +105,8 @@ const SERVICIOS = [
   ['Screen enclosures', 'Pool cages and patio enclosures.', '/services/pool-screen-enclosures',
     foto('/images/images/pool-screen-3/pool-screen-enclosure-builders-florida-03.jpg', 1250, 698, 'Screen enclosure over a pool and spa with a view of a lake and fountain')],
   ['Louvered roofs', 'Motorized louvered roof systems for shade on demand.', '/services/louvered-roofs',
-    foto('/images/images/motorized-louvered-roof-8/motorized-louvered-roof-installers-florida-08.jpg', 1250, 682, 'Freestanding louvered roof with white louvers over a paver patio')],
+    // E12: la de antes era un techo de lamas sin muebles junto a una pista de tenis; esta es del banco (bi-1281).
+    foto('/images/banco/louvered/white-louvered-roof-patio-dining-yellow-house-florida-01.webp', 1600, 900, 'White louvered roof with open blades over a patio dining set and potted plants beside a yellow house.', false)],
 ];
 
 // A que ancho se pinta la foto en `.mm-franja-lista`: tres columnas desde 992, dos desde 768, una por debajo.
@@ -215,7 +216,7 @@ const SEO = {
       {SERVICIOS.map(([nombre, texto, href, f]) => (
         <li>
           <a class="mm-ficha mm-ficha--indice" href={href}>
-            <span class="mm-ficha-foto"><img src={f.src} srcset={f.srcset} sizes={f.srcset && TAMANOS_FOTO} width={f.ancho} height={f.alto} alt={f.alt} loading="lazy" decoding="async" /></span>
+            <span class="mm-ficha-foto"><img src={f.src} srcset={f.srcset} sizes={TAMANOS_FOTO} width={f.ancho} height={f.alto} alt={f.alt} loading="lazy" decoding="async" /></span>
             <span class="mm-ficha-cuerpo">
               <h3 class="mm-ficha-t">{nombre}</h3>
               <span class="mm-ficha-p">{texto}</span>

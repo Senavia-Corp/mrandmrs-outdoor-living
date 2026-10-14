@@ -1131,7 +1131,8 @@ function presupuestoStitch(doc, ruta) {
   form.setAttribute('data-mm-pasos', '');
   // El campo trampa (`ref_id`) lo anade mas abajo el paso comun de formularios.
   form.innerHTML = paso1 + paso2;
-  const foto = BANCO_POR_ID.get(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/heroes-ciudad.json'), 'utf8')).bolsas['pool-builders'][3]);
+  // E12 (D-197): junto al formulario, la obra mas completa (piscina, cubierta, barra y tumbonas). En movil es la LCP.
+  const foto = BANCO_POR_ID.get('bi-1280');
   if (!foto || foto.procedencia !== 'obra_real' || !foto.alt) throw new Error('/request-estimated: la foto del bloque no es obra real con alt');
   const cap = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/captacion-servicios.json'), 'utf8'))['/services/pool-builders'].formulario;
   const ns = doc.createElement('section');
@@ -1139,7 +1140,9 @@ function presupuestoStitch(doc, ruta) {
   ns.innerHTML = `<div class="mm-sec-cab"><h1 class="mm-h1">${h1.textContent.trim().replace(/&/g, '&amp;').replace(/(Outdoor Living)/, '<span class="mm-rot">$1</span>')}</h1>`
     + `<div class="mm-sec-lado"><p class="mm-p">${intro.innerHTML}</p></div></div>`
     + '<div class="mm-pres-cuerpo">'
-    + `<figure class="mm-pres-medio"><img src="${foto.src}" alt="${escAttr(foto.alt)}" width="${foto.ancho}" height="${foto.alto}" sizes="(min-width: 992px) 45vw, 100vw" loading="eager" fetchpriority="high" decoding="async"></figure>`
+    // E12: en movil la caja es una franja con la tarjeta del formulario encima de su borde inferior; el
+    // encuadre baja para que se vean la cubierta, las tumbonas y el borde de la piscina. En escritorio es 4:3, como la foto.
+    + `<figure class="mm-pres-medio"><img src="${foto.src}" alt="${escAttr(foto.alt)}" width="${foto.ancho}" height="${foto.alto}" sizes="(min-width: 992px) 45vw, 100vw" loading="eager" fetchpriority="high" decoding="async" style="object-position:50% 85%"></figure>`
     + `<div class="mm-form-panel">${form.outerHTML}${done.outerHTML}${fail.outerHTML}</div>`
     + `<aside class="mm-pres-lado"><div><h2 class="mm-form-pasos-t">${cap.pasosTitulo}</h2><ol class="mm-form-pasos" role="list">${cap.pasos.map((x) => `<li>${x}</li>`).join('')}</ol></div>${logos}</aside>`
     + '</div>';
@@ -1274,7 +1277,7 @@ function contactoStitch(doc, ruta) {
  * `bandaFinal`: `section.cta-footer` pasa a la banda navy del sistema, con su titular, su parrafo
  * y su boton, los dos telefonos (T-56) y una foto de obra de la bolsa de `heroes-ciudad.json`
  * (obra real, terminada, recorte 4:5 seguro). `k` elige la foto, para que no sea la misma en
- * todas las paginas.
+ * todas las paginas; o es el id del banco cuando la pagina tiene la suya (E12, D-197).
  */
 const BOLSA_BANDA = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/heroes-ciudad.json'), 'utf8')).bolsas['pool-builders'];
 function heroD(doc, ruta) {
@@ -1292,7 +1295,7 @@ function bandaFinal(doc, ruta, k) {
   const fin = doc.querySelector('section.cta-footer');
   const [h2, p, a] = ['h2', '.text-block-3', 'a'].map((q) => fin?.querySelector(q));
   if (!h2 || !p || !a) throw new Error(`${ruta}: la banda final no trae titular, parrafo y boton`);
-  const e = BANCO_POR_ID.get(BOLSA_BANDA[k % BOLSA_BANDA.length]);
+  const e = BANCO_POR_ID.get(typeof k === 'string' ? k : BOLSA_BANDA[k % BOLSA_BANDA.length]);
   if (!e || e.procedencia !== 'obra_real' || !e.alt) throw new Error(`${ruta}: la foto de la banda no es obra real con alt`);
   const nc = doc.createElement('section');
   nc.setAttribute('class', 'mm-cierre mm-cierre--sola mm-cierre--alta');
@@ -1596,7 +1599,8 @@ function aboutStitch(doc, ruta) {
 
   // 7 · zonas y banda
   zonasDeLocation(doc, ruta);
-  bandaFinal(doc, ruta, 8);
+  // E12 (D-197): la banda de /about lleva su foto, vertical para que la caja 4:5 no la amplie a densidad 1.
+  bandaFinal(doc, ruta, 'bi-0661');
 }
 
 /** El mapa en linea de Florida con sus dos oficinas. Decorativo: los telefonos van en texto. */
