@@ -39,11 +39,11 @@
  * que ya no ocurra tambien, porque sobra. En un bloque PROPIO (`#negocio`, `#miga`, `#servicio`,
  * `#obras`, `#videos`) no se admite ninguna: lo que la casa anade tiene que cumplir.
  *
- * UNA EXCEPCION, DECLARADA Y SIEMPRE IMPRESA: el `LocalBusiness` de la casa (`#negocio`) va SIN
- * `address`. Es un negocio de area de servicio sin direccion publicable (`src/lib/negocio.mjs`);
- * inventar una seria peor que no optar al resultado de negocio local. Si un dia hay direccion,
- * se anade alli y esta excepcion se borra: mientras `address` falte se imprime, y si aparece,
- * la excepcion sobra y la puerta lo dice.
+ * UNA EXCEPCION CONOCIDA, DECLARADA Y SIEMPRE IMPRESA: el `LocalBusiness` de la casa (`#negocio`)
+ * va SIN `address`. D-196 (decidido el 14-oct-2026): negocio de area de servicio, sin direccion
+ * publicada (`src/lib/negocio.mjs`); inventar una seria peor que no optar al resultado de negocio
+ * local. Si un dia hay direccion, se anade alli y esta excepcion se borra: mientras `address`
+ * falte se imprime, y si aparece, la excepcion sobra y la puerta lo dice.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -200,7 +200,7 @@ HEREDADOS.forEach(([ruta, tipo, frag, porque], i) => {
 
 console.log('\n── excepcion declarada — se imprime siempre, no se perdona callando');
 const sinDir = cuenta.LocalBusiness?.aviso.get('sin address')?.length ?? 0;
-if (sinDir) console.log(`  --   LocalBusiness #negocio sin \`address\` en ${sinDir} pagina(s): negocio de area de servicio sin direccion\n       publicable (src/lib/negocio.mjs). Google la da por OBLIGATORIA para su resultado de negocio local.`);
+if (sinDir) console.log(`  --   excepcion conocida (D-196): LocalBusiness #negocio sin \`address\` en ${sinDir} pagina(s): negocio de area de\n       servicio, sin direccion publicada (src/lib/negocio.mjs). Google la da por OBLIGATORIA para su resultado de negocio local.`);
 else { console.log('  ROJO el #negocio ya lleva `address`: la excepcion de esta puerta sobra, borrala'); fallos++; }
 console.log('  --   FAQPage: Google ya no muestra el resultado enriquecido de FAQ; el marcado se valida por su forma.');
 console.log('  --   ItemList: Google solo pinta carrusel para cursos, peliculas, recetas y restaurantes; estas listas no optan.');
