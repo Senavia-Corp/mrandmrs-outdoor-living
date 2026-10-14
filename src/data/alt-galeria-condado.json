@@ -1,0 +1,20 @@
+{
+  "_lee_esto": [
+    "E13 (D-202, 14-oct-2026): ALT PROPIO de las fotos de galeria que el mosaico de los CONDADOS pinta con el alt de Webflow.",
+    "El de Webflow afirmaba region («in South Florida», «North & South Florida») sin procedencia que lo pruebe, tambien en los",
+    "siete condados del norte. Este describe lo que se ve y el servicio; no dice ni ciudad ni region. Escrito mirando cada foto",
+    "en la hoja de contactos. Lo lee `build-paginas.mjs` (mosaicoDeObra), solo en las paginas de condado."
+  ],
+  "alts": {
+    "/images/images/pool-remodeling-1/custom-pool-remodeling-contractors-florida-01.jpg": "Rectangular pool with a raised spa and sun shelf on a travertine deck, stepping pads in the lawn and a basketball hoop.",
+    "/images/images/pool-remodeling-2/custom-pool-remodeling-contractors-florida-02.jpg": "Aerial view of a pool and raised spa beside a two-story home with a white pergola, palms and a travertine deck.",
+    "/images/images/pool-remodeling-3/custom-pool-remodeling-contractors-florida-03.jpg": "Pool with a sun shelf, loungers in the water and a raised square spa on a light travertine deck.",
+    "/images/images/pool-remodeling-4/custom-pool-remodeling-contractors-florida-04.jpg": "Aerial view of a long L-shaped pool with a square spa and a gray deck on an open lot with a pasture beyond.",
+    "/images/images/pool-remodeling-5/custom-pool-remodeling-contractors-florida-05.jpg": "Pool with a raised spa wall and a travertine deck behind a two-story home, with a pergola at the back of the yard.",
+    "/images/images/pool-remodeling-6/custom-pool-remodeling-contractors-florida-06.jpg": "Pool with a sun shelf and a travertine deck beside a dark patio cover, with palms and a basketball hoop.",
+    "/images/images/pool-remodeling-7/custom-pool-remodeling-contractors-florida-07.jpg": "Pool with a raised mosaic spa and a travertine deck behind a two-story home with a dark pergola.",
+    "/images/images/pool-remodeling-8/custom-pool-remodeling-contractors-florida-08.jpg": "Pool with a stacked water-feature wall, a sun shelf with loungers and artificial turf strips in a white deck.",
+    "/images/images/pool-remodeling-9/custom-pool-remodeling-contractors-florida-09.jpg": "Pool with a sun shelf, a raised spa and a travertine deck beside a modern home with a dark patio cover.",
+    "/images/images/pool-remodeling-10/custom-pool-remodeling-contractors-florida-10.jpg": "Aerial view of a fenced rectangular pool with a covered patio and stepping pads beside a two-story home."
+  }
+}

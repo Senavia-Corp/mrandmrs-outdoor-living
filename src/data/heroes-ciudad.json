@@ -146,5 +146,17 @@
       "bi-0614",
       "bi-1057"
     ]
+  },
+  "condados": {
+    "_lee_esto": "E13 etapa 3: el hero de la pagina de cada condado. Ninguno es el de una de sus ciudades (`heroe-ciudad.mjs` lo comprueba con la misma regla). Broward y Palm Beach llevan bi-0661 y bi-0662, de region south_fl en el banco, que sus ciudades no usan; Marion, bi-0520 (obra a ~29 km de Ocala por GPS, probable y no verificada: el alt no lo dice).",
+    "alachua-county-fl": "bi-0487",
+    "broward-county-fl": "bi-0661",
+    "columbia-county-fl": "bi-1057",
+    "dixie-county-fl": "bi-1010",
+    "gilchrist-county-fl": "bi-1287",
+    "levy-county-fl": "bi-0486",
+    "marion-county-fl": "bi-0520",
+    "palm-beach-county-fl": "bi-0662",
+    "putnam-county-fl": "bi-1014"
   }
 }

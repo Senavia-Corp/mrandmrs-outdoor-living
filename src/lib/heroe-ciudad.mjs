@@ -60,8 +60,13 @@ function valida(id, clave, donde, porTabla = false) {
 }
 
 /** E13 (D-200): `ruta de ciudad -> { id, condado }` de la tabla por condado de piscina nueva. */
-const TABLA = new Map(Object.entries(DATOS.porCondado ?? {}).filter(([k]) => !k.startsWith('_'))
-  .flatMap(([condado, ciudades]) => Object.entries(ciudades).map(([c, id]) => [`/services/pool-builders/${c}`, { id, condado }])));
+const TABLA = new Map([
+  ...Object.entries(DATOS.porCondado ?? {}).filter(([k]) => !k.startsWith('_'))
+    .flatMap(([condado, ciudades]) => Object.entries(ciudades).map(([c, id]) => [`/services/pool-builders/${c}`, { id, condado }])),
+  // E13 etapa 3: la pagina del condado, con su propia foto.
+  ...Object.entries(DATOS.condados ?? {}).filter(([k]) => !k.startsWith('_'))
+    .map(([condado, id]) => [`/services/pool-builders/${condado}`, { id, condado }]),
+]);
 const CASI = (DATOS.casiIguales ?? []).map(([a, b]) => [a, b]);
 let condadosComprobados = false;
 /** LA REGLA DEL CONDADO, una vez por proceso: ninguna foto repetida entre sus paginas (la del condado incluida) y
@@ -72,7 +77,7 @@ function compruebaCondados() {
   const porCondado = new Map();
   for (const [ruta, { condado }] of TABLA) (porCondado.get(condado) ?? porCondado.set(condado, []).get(condado)).push(ruta);
   for (const [condado, rutas] of porCondado) {
-    const paginas = [`/services/pool-builders/${condado}`, ...rutas];
+    const paginas = [...new Set([`/services/pool-builders/${condado}`, ...rutas])];
     const fotos = paginas.map((r) => [r, fotoDeHeroe(r).id]);
     const vistas = new Map();
     for (const [r, id] of fotos) {
@@ -120,7 +125,10 @@ export function fotosDeSeccion(ruta, rutasDelServicio = rutasDeCiudad(ruta.split
   const deTabla = TABLA.has(ruta);
   const bolsa = (deTabla ? DATOS.seccion?.[servicio] : DATOS.bolsas[servicio]) ?? [];
   const hero = fotoDeHeroe(ruta, rutasDelServicio);
-  const orden = [...rutasDelServicio].filter((r) => !DATOS.fijas[r]).sort();
+  // E13 etapa 3: un condado rota solo entre condados. Intercalados con las ciudades, cuatro caian en
+  // la misma foto; asi cada foto de la lista sale como mucho dos veces en los nueve.
+  const esCondado = ruta.endsWith('-county-fl');
+  const orden = rutasDelServicio.filter((r) => !DATOS.fijas[r] && (!esCondado || r.endsWith('-county-fl'))).sort();
   const i = Math.max(0, orden.indexOf(ruta));
   const ids = [];
   for (let k = 1; k <= bolsa.length && ids.length < 3; k++) {

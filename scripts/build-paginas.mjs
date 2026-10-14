@@ -827,6 +827,8 @@ function fotoDeSeccion(ruta, k) {
   if (falla) throw new Error(`${ruta}: ${id} no vale de foto de seccion — ${falla}`);
   return { src: e.src, alt: e.alt, w: e.ancho, h: e.alto };
 }
+/* E13 (D-202): en los condados, el alt propio de `alt-galeria-condado.json` en lugar del de Webflow, que afirmaba region. */
+const ALT_GALERIA_CONDADO = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/alt-galeria-condado.json'), 'utf8')).alts;
 function mosaicoDeObra(doc, ruta) {
   if (!esFicha(ruta) && !esCondado(ruta)) return;
   const sec = doc.querySelector('section.gallery');
@@ -835,7 +837,7 @@ function mosaicoDeObra(doc, ruta) {
   const cta = doc.querySelector('.mm-hero-a-acc > a.mm-btn');
   if (!h2 || !linea || !cta) throw new Error(`${ruta}: la galeria no trae titular y linea, o el hero no trae su accion`);
   localizar(sec);
-  const todas = [...sec.querySelectorAll('img.image-gallery')].map((i) => ({ src: i.getAttribute('src'), alt: COMPLEMENTARIA.ilustraciones?.[i.getAttribute('src')] ?? i.getAttribute('alt') ?? '',
+  const todas = [...sec.querySelectorAll('img.image-gallery')].map((i) => ({ src: i.getAttribute('src'), alt: (esCondado(ruta) && ALT_GALERIA_CONDADO[i.getAttribute('src')]) || COMPLEMENTARIA.ilustraciones?.[i.getAttribute('src')] || i.getAttribute('alt') || '',
     w: i.getAttribute('width'), h: i.getAttribute('height') }));
   // La foto del hero no se repite en la galeria (screen rooms y riego toman el hero de ella, D-122).
   const delHero = doc.querySelector('.mm-hero-a-medio img')?.getAttribute('src');
@@ -985,7 +987,11 @@ function condadoStitch(doc, ruta) {
 
   // 5 · RESENAS: su cabecera con la accion y el enlace al perfil, la lista (la pinta
   //     `ResenasGoogle.astro`), los telefonos y una foto de la bolsa
-  const [, fcierre, fres] = [null, ...fotosDeSeccionCiudad(ruta)];
+  // E13: la caja del cierre es 4:5 y no lleva derivada; una apaisada baja de 1x a densidad 1. Va
+  // la primera vertical de las tres, y las resenas (que si tienen derivada 4:5) se quedan otra.
+  const fsec = fotosDeSeccionCiudad(ruta);
+  const fcierre = fsec.find((f) => f.alto > f.ancho) ?? fsec[0];
+  const fres = fsec.find((f) => f !== fcierre);
   const res = doc.querySelector('section.testimonial-section');
   const [rlabel, rh2, rp] = ['.header-reviews .label', '.header-reviews h2', '.header-reviews p'].map((q) => res?.querySelector(q));
   const widget = res?.querySelector('[class*="elfsight-app-"]');
@@ -1666,7 +1672,8 @@ function zonasPaginaStitch(doc, ruta) {
       + '<ul class="mm-indice" role="list">' + z.condados.map((c) => `<li><a class="mm-linea" href="${c.getAttribute('href')}"><span class="mm-linea-t">${c.textContent.trim()}</span>${FLECHA}</a></li>`).join('') + '</ul>'
       + `<a class="mm-flecha" href="${z.zona.getAttribute('href')}">${z.zona.textContent.trim()}${FLECHA}</a></article>`).join('') + '</div></div>';
   cv.replaceWith(nv);
-  bandaFinal(doc, ruta, 7);
+  // E13 (etapa 3): la de la bolsa era un suelo de porcelanico sin obra a la vista. Vertical, como pide la caja 4:5 del cierre.
+  bandaFinal(doc, ruta, 'bi-0237');
 }
 
 /** ASTRO-4 lote C · `/brochures`: el hero D y la tipografia del sistema. El muro de catalogos, su
