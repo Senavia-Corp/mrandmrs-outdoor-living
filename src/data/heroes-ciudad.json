@@ -288,6 +288,60 @@
         "ocala-fl": ["bi-0503", "bi-0761", "bi-0771"],
         "palatka-fl": ["bi-1276", "bi-0771", "bi-1296"]
       }
+    },
+    "deck-builders": {
+      "_lee_esto": "LOOP-AREAS L5: hero por tabla con el solado de foco (D-220). bi-0077 (caliza mojada con el spa; 4/3) y bi-0084 (marmol gris mojado; 3/3) son las unicas que el juez deja de hero: bi-0079 es la tarjeta del indice (D-209) y bi-0070 y bi-0983 llevan manguera (1). bi-0084 va donde la resena era 4:3, para que la de 4:3 (bi-0077) siga en resenas y el alto de la pagina no cambie en movil.",
+      "repetidas": {
+        "palm-beach-county-fl": {
+          "max": 2,
+          "motivo": "calidad (D-206): solo dos heros de solado pasan el juez; bi-0084 en Delray Beach y Manalapan"
+        },
+        "broward-county-fl": {
+          "max": 2,
+          "motivo": "calidad (D-206): bi-0084 en Dania Beach y Hollywood, con su resena 4:3 (bi-0077)"
+        }
+      },
+      "tabla": {
+        "cedar-key-fl": "bi-0077",
+        "dania-beach-fl": "bi-0084",
+        "delray-beach-fl": "bi-0084",
+        "gainesville-fl": "bi-0084",
+        "gulf-stream-fl": "bi-0077",
+        "hollywood-fl": "bi-0084",
+        "manalapan-fl": "bi-0084",
+        "mcintosh-fl": "bi-0084",
+        "ocala-fl": "bi-0077",
+        "palatka-fl": "bi-0084"
+      },
+      "seccionPorCiudad": {
+        "_lee_esto": "FAQ, cierre y resenas por ciudad. Cierre bi-0508 (travertino en espiga, 3) en las 10; bi-0086 (marmol con vetas, 3) en FAQ o resenas. Resenas con la misma proporcion que antes donde se puede (en movil esa caja crece con la foto); Gainesville y McIntosh tenian una 1:1 sin sustituta.",
+        "cedar-key-fl": ["bi-0086", "bi-0508", "bi-0084"],
+        "dania-beach-fl": ["bi-0086", "bi-0508", "bi-0077"],
+        "delray-beach-fl": ["bi-0086", "bi-0508", "bi-0077"],
+        "gainesville-fl": ["bi-0077", "bi-0508", "bi-0086"],
+        "gulf-stream-fl": ["bi-0086", "bi-0508", "bi-0084"],
+        "hollywood-fl": ["bi-0086", "bi-0508", "bi-0077"],
+        "manalapan-fl": ["bi-0086", "bi-0508", "bi-0077"],
+        "mcintosh-fl": ["bi-0077", "bi-0508", "bi-0086"],
+        "ocala-fl": ["bi-0086", "bi-0508", "bi-0084"],
+        "palatka-fl": ["bi-0086", "bi-0508", "bi-0077"]
+      }
+    },
+    "landscaping": {
+      "_lee_esto": "LOOP-AREAS L5: hero por tabla con el jardin de foco (D-220): bi-0499 (pasos de caliza sobre pizarra; 4/4), la unica que el juez aprueba. Salen bi-0130 (tumbonas), bi-0313 (macetas) y bi-0305, que es la tesela de la galeria (D-209). bi-0310 sigue en apoyo (4) aunque mide 739 px de alto: no hay otro jardin apaisado de 4.",
+      "tabla": {
+        "fort-lauderdale-fl": "bi-0499",
+        "gainesville-fl": "bi-0499",
+        "ocala-fl": "bi-0499",
+        "palatka-fl": "bi-0499"
+      },
+      "seccionPorCiudad": {
+        "_lee_esto": "FAQ, cierre y resenas por ciudad: cierre bi-0120 (green del bosque, 4 en 3:2); FAQ bi-0323 (pasos sobre cesped, 3) donde habia un 2 o la tesela; Gainesville conserva su FAQ de 4 y su resena.",
+        "fort-lauderdale-fl": ["bi-0323", "bi-0120", "bi-0310"],
+        "gainesville-fl": ["bi-0310", "bi-0120", "bi-0130"],
+        "ocala-fl": ["bi-0323", "bi-0120", "bi-0310"],
+        "palatka-fl": ["bi-0323", "bi-0120", "bi-0310"]
+      }
     }
   }
 }

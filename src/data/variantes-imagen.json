@@ -8254,6 +8254,58 @@
      "/images/banco/kitchens/outdoor-kitchen-granite-waterfall-grill-ice-maker-florida-01-mm640.webp"
     ]
    ]
+  },
+  "/images/banco/landscaping/landscaping-artificial-turf-side-yard-stone-path-florida-01.webp": {
+   "ancho": 1200,
+   "variantes": [
+    [
+     640,
+     "/images/banco/landscaping/landscaping-artificial-turf-side-yard-stone-path-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/landscaping/landscaping-artificial-turf-side-yard-stone-path-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/landscaping/landscaping-front-yard-boxwood-mandevilla-mulch-bed-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/landscaping/landscaping-front-yard-boxwood-mandevilla-mulch-bed-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/landscaping/landscaping-front-yard-boxwood-mandevilla-mulch-bed-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/landscaping/landscaping-tropical-poolside-planting-crotons-palms-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/landscaping/landscaping-tropical-poolside-planting-crotons-palms-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/landscaping/landscaping-tropical-poolside-planting-crotons-palms-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/pergola-slat-privacy-walls-travertine-pool-deck-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/pergola-slat-privacy-walls-travertine-pool-deck-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/pergola-slat-privacy-walls-travertine-pool-deck-florida-01-mm1024.webp"
+    ]
+   ]
   }
  },
  "lcp": {
@@ -9627,6 +9679,26 @@
    [
     1024,
     "/images/banco/louvered/louvered-pergola-outdoor-kitchen-bar-marble-lake-florida-01-lcp1024.avif"
+   ]
+  ],
+  "/images/banco/decks/gray-marble-paver-patio-lake-view-florida-01.webp": [
+   [
+    800,
+    "/images/banco/decks/gray-marble-paver-patio-lake-view-florida-01-lcp800.avif"
+   ],
+   [
+    1024,
+    "/images/banco/decks/gray-marble-paver-patio-lake-view-florida-01-lcp1024.avif"
+   ]
+  ],
+  "/images/banco/landscaping/landscaping-stepping-stone-path-black-slate-chips-florida-01.webp": [
+   [
+    800,
+    "/images/banco/landscaping/landscaping-stepping-stone-path-black-slate-chips-florida-01-lcp800.avif"
+   ],
+   [
+    1024,
+    "/images/banco/landscaping/landscaping-stepping-stone-path-black-slate-chips-florida-01-lcp1024.avif"
    ]
   ]
  },

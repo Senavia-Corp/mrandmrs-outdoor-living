@@ -498,13 +498,13 @@
         "_proyecto": "obra-015"
       },
       {
-        "src": "/images/banco/decks/porcelain-pool-deck-marble-look-turquoise-pool-florida-02.webp",
-        "alt": "Large-format marble-look porcelain pavers on a pool deck beside a turquoise pool.",
-        "ancho": 1200,
-        "alto": 1600,
+        "src": "/images/banco/decks/limestone-paver-patio-steps-tropical-landscape-florida-01.webp",
+        "alt": "Limestone paver patio with a step down between planting beds and a fan palm.",
+        "ancho": 1600,
+        "alto": 1200,
         "pos": "50% 50%",
-        "_banco": "bi-0083",
-        "_proyecto": "obra-014"
+        "_banco": "bi-0078",
+        "_proyecto": "obra-012"
       },
       {
         "src": "/images/banco/decks/limestone-paver-patio-angled-border-detail-florida-01.webp",
@@ -516,58 +516,58 @@
         "_proyecto": "obra-012"
       },
       {
-        "src": "/images/banco/decks/concrete-slab-pool-enclosure-backyard-florida-01.webp",
-        "alt": "New concrete slab beside a black screen pool enclosure under a dramatic sky.",
+        "src": "/images/banco/decks/wood-deck-lounge-platform-artificial-turf-beachfront-florida-01.webp",
+        "alt": "Dark hardwood lounge deck with daybeds set on artificial turf beside dune planting.",
+        "ancho": 1600,
+        "alto": 739,
+        "pos": "50% 50%",
+        "_banco": "bi-0318",
+        "_proyecto": "obra-042"
+      },
+      {
+        "src": "/images/banco/pergolas/pergola-slat-privacy-walls-travertine-pool-deck-florida-01.webp",
+        "alt": "Brown aluminum pergola with slat privacy walls on both sides over a travertine patio and pool deck",
         "ancho": 1600,
         "alto": 1200,
         "pos": "50% 50%",
-        "_banco": "bi-0048",
-        "_proyecto": "obra-005"
+        "_banco": "bi-1487",
+        "_proyecto": "obra-122"
       },
       {
-        "src": "/images/banco/decks/concrete-slab-large-pad-control-joints-florida-01.webp",
-        "alt": "Large rectangular concrete slab with control joints on a rural lot with black fence.",
+        "src": "/images/banco/decks/travertine-patio-pool-deck-drain-channel-florida-01.webp",
+        "alt": "Travertine paving running from a covered patio to the pool deck with a linear drain.",
+        "ancho": 1296,
+        "alto": 972,
+        "pos": "50% 50%",
+        "_banco": "bi-0595",
+        "_proyecto": "obra-049"
+      },
+      {
+        "src": "/images/banco/decks/porcelain-pool-deck-louvered-pergola-kitchen-florida-01.webp",
+        "alt": "Large-format porcelain pool deck leading to a white louvered pergola and outdoor kitchen.",
+        "ancho": 1280,
+        "alto": 960,
+        "pos": "50% 50%",
+        "_banco": "bi-0630",
+        "_proyecto": "obra-059"
+      },
+      {
+        "src": "/images/banco/decks/paver-patio-brown-blend-new-construction-florida-01.webp",
+        "alt": "Brown and cream blend concrete paver patio outside sliding doors of a new white house.",
+        "ancho": 1599,
+        "alto": 899,
+        "pos": "50% 50%",
+        "_banco": "bi-0113",
+        "_proyecto": "obra-017"
+      },
+      {
+        "src": "/images/banco/decks/travertine-paver-pads-resort-lawn-sunset-beachfront-florida-01.webp",
+        "alt": "Row of travertine pads with paver borders set in a resort lawn at sunset.",
         "ancho": 1600,
         "alto": 1200,
         "pos": "50% 50%",
-        "_banco": "bi-0047",
-        "_proyecto": "obra-005"
-      },
-      {
-        "src": "/images/banco/decks/concrete-patio-slab-raised-new-home-florida-02.webp",
-        "alt": "Corner view of a raised broom-finished concrete patio slab beside a blue-gray stucco house.",
-        "ancho": 1200,
-        "alto": 1200,
-        "pos": "50% 50%",
-        "_banco": "bi-0036",
-        "_proyecto": "obra-006"
-      },
-      {
-        "src": "/images/banco/decks/concrete-patio-slab-raised-new-home-florida-01.webp",
-        "alt": "Raised concrete patio slab wrapping the back porch of a new blue-gray stucco house.",
-        "ancho": 1200,
-        "alto": 1200,
-        "pos": "50% 50%",
-        "_banco": "bi-0035",
-        "_proyecto": "obra-006"
-      },
-      {
-        "src": "/images/banco/decks/concrete-patio-slab-extension-screen-room-florida-01.webp",
-        "alt": "New concrete patio slab extending along a white screen room on a two-story house.",
-        "ancho": 1200,
-        "alto": 1600,
-        "pos": "50% 50%",
-        "_banco": "bi-0034",
-        "_proyecto": null
-      },
-      {
-        "src": "/images/banco/decks/concrete-shed-pad-slab-control-joints-florida-01.webp",
-        "alt": "Square concrete pad with cross control joints poured in a wooded lot.",
-        "ancho": 1600,
-        "alto": 1200,
-        "pos": "50% 50%",
-        "_banco": "bi-0039",
-        "_proyecto": null
+        "_banco": "bi-0321",
+        "_proyecto": "obra-043"
       }
     ],
     "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
@@ -692,13 +692,13 @@
         "_proyecto": null
       },
       {
-        "src": "/images/banco/landscaping/artificial-turf-stepping-stones-path-lights-travertine-florida-01.webp",
-        "alt": "Stone steppers set in artificial turf with bronze path lights, leading from a travertine patio.",
-        "ancho": 1200,
-        "alto": 1600,
+        "src": "/images/banco/landscaping/backyard-putting-green-artificial-turf-palm-trees-florida-02.webp",
+        "alt": "Large backyard putting green with nine flags surrounded by artificial turf and coconut palms.",
+        "ancho": 1600,
+        "alto": 1200,
         "pos": "50% 50%",
-        "_banco": "bi-0323",
-        "_proyecto": "obra-043"
+        "_banco": "bi-0134",
+        "_proyecto": "obra-002"
       },
       {
         "src": "/images/banco/landscaping/artificial-turf-coconut-palms-beachfront-resort-florida-01.webp",
@@ -710,13 +710,13 @@
         "_proyecto": "obra-042"
       },
       {
-        "src": "/images/banco/landscaping/landscaping-side-yard-gravel-path-stepping-stones-florida-01.webp",
-        "alt": "Side yard path of white gravel with round red stepping stones between a wood fence and the house.",
+        "src": "/images/banco/landscaping/landscaping-pygmy-palm-bed-river-rock-impatiens-florida-01.webp",
+        "alt": "Planting bed with pygmy date palms, agaves and pink impatiens edged in river rock.",
         "ancho": 1600,
-        "alto": 900,
+        "alto": 739,
         "pos": "50% 50%",
-        "_banco": "bi-0309",
-        "_proyecto": "obra-039"
+        "_banco": "bi-0314",
+        "_proyecto": "obra-041"
       },
       {
         "src": "/images/banco/landscaping/backyard-putting-green-artificial-turf-palm-uplights-florida-01.webp",
@@ -728,58 +728,58 @@
         "_proyecto": "obra-002"
       },
       {
-        "src": "/images/banco/landscaping/backyard-putting-green-artificial-turf-oak-trees-florida-02.webp",
-        "alt": "Finished kidney-shaped putting green with fringe turf and steel edging under oak trees.",
-        "ancho": 1200,
-        "alto": 1600,
-        "pos": "50% 50%",
-        "_banco": "bi-0120",
-        "_proyecto": "obra-018"
-      },
-      {
-        "src": "/images/banco/landscaping/putting-green-turf-installation-in-progress-florida-01.webp",
-        "alt": "Putting surface turf cut and laid on a curved base with rolls of fringe turf waiting in front.",
-        "ancho": 1200,
-        "alto": 1600,
-        "pos": "50% 50%",
-        "_banco": "bi-0119",
-        "_proyecto": "obra-018"
-      },
-      {
-        "src": "/images/banco/landscaping/artificial-turf-putting-green-installation-florida-01.webp",
-        "alt": "Artificial turf putting green being installed beside a gray marble deck with seat walls, dogs on the green.",
-        "ancho": 1200,
-        "alto": 1600,
-        "pos": "50% 50%",
-        "_banco": "bi-0489",
-        "_proyecto": "obra-045"
-      },
-      {
-        "src": "/images/banco/landscaping/artificial-turf-putting-green-bunker-installation-florida-01.webp",
-        "alt": "Dog sitting on freshly laid artificial turf next to a sand bunker under construction on a backyard putting green.",
+        "src": "/images/banco/landscaping/backyard-putting-green-artificial-turf-oak-trees-florida-01.webp",
+        "alt": "Kidney-shaped artificial turf putting green with fringe under tall oak trees and gravel paths.",
         "ancho": 1600,
         "alto": 1200,
         "pos": "50% 50%",
-        "_banco": "bi-0490",
-        "_proyecto": "obra-045"
+        "_banco": "bi-0117",
+        "_proyecto": "obra-018"
       },
       {
-        "src": "/images/banco/landscaping/artificial-turf-installation-roll-edge-base-florida-01.webp",
-        "alt": "Edge of newly laid artificial turf over a compacted base with a turf roll waiting nearby and a dog standing on it.",
+        "src": "/images/banco/landscaping/artificial-turf-beachfront-resort-wood-decks-palms-florida-01.webp",
+        "alt": "Artificial turf lawns and wood deck platforms between sand paths at a beachfront resort.",
+        "ancho": 1600,
+        "alto": 739,
+        "pos": "50% 50%",
+        "_banco": "bi-0315",
+        "_proyecto": "obra-042"
+      },
+      {
+        "src": "/images/banco/landscaping/landscaping-artificial-turf-side-yard-stone-path-florida-01.webp",
+        "alt": "Artificial turf side yard with limestone paver walkway, clusia hedge and palms seen through an open gate.",
         "ancho": 1200,
         "alto": 1600,
         "pos": "50% 50%",
-        "_banco": "bi-0491",
-        "_proyecto": "obra-045"
-      },
-      {
-        "src": "/images/banco/landscaping/landscaping-stepping-stone-path-black-slate-chips-florida-01.webp",
-        "alt": "Side-yard path of square limestone stepping stones set in black slate chips leading to a metal gate.",
-        "ancho": 1200,
-        "alto": 1600,
-        "pos": "50% 50%",
-        "_banco": "bi-0499",
+        "_banco": "bi-0500",
         "_proyecto": "obra-046"
+      },
+      {
+        "src": "/images/banco/landscaping/backyard-putting-green-artificial-turf-sunset-florida-01.webp",
+        "alt": "Large artificial turf putting green with white flags at sunset, pines and hedge behind.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0137",
+        "_proyecto": "obra-002"
+      },
+      {
+        "src": "/images/banco/landscaping/landscaping-tropical-poolside-planting-crotons-palms-florida-01.webp",
+        "alt": "Poolside planting of crotons, orchids and palms against a green hedge behind a raised spa.",
+        "ancho": 1600,
+        "alto": 900,
+        "pos": "50% 50%",
+        "_banco": "bi-0308",
+        "_proyecto": "obra-039"
+      },
+      {
+        "src": "/images/banco/landscaping/landscaping-front-yard-boxwood-mandevilla-mulch-bed-florida-01.webp",
+        "alt": "Front yard bed with boxwood balls, pink mandevilla and podocarpus in fresh mulch.",
+        "ancho": 1600,
+        "alto": 1195,
+        "pos": "50% 50%",
+        "_banco": "bi-0325",
+        "_proyecto": "obra-039"
       }
     ],
     "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"

@@ -1218,18 +1218,7 @@
       "camioneta al fondo",
       "juguetes visibles dentro del cerramiento"
     ],
-    "usada_en": [
-      "/services/deck-builders/gainesville-fl",
-      "/services/deck-builders/ocala-fl",
-      "/services/deck-builders/palatka-fl",
-      "/services/deck-builders/cedar-key-fl",
-      "/services/deck-builders/mcintosh-fl",
-      "/services/deck-builders/hollywood-fl",
-      "/services/deck-builders/dania-beach-fl",
-      "/services/deck-builders/delray-beach-fl",
-      "/services/deck-builders/gulf-stream-fl",
-      "/services/deck-builders/manalapan-fl"
-    ],
+    "usada_en": [],
     "origen": "DECKING/Concrete/Concrete Slab/14.jpeg",
     "sha256": "115573eed172757346ec56fd4cde2bc8f5ee8e3dcb70cbc4868429bb3ac59207"
   },
@@ -1264,18 +1253,7 @@
       "camioneta y remolque al fondo",
       "recortada en origen: el cuadro completo tenía un problema de privacidad"
     ],
-    "usada_en": [
-      "/services/deck-builders/gainesville-fl",
-      "/services/deck-builders/ocala-fl",
-      "/services/deck-builders/palatka-fl",
-      "/services/deck-builders/cedar-key-fl",
-      "/services/deck-builders/mcintosh-fl",
-      "/services/deck-builders/hollywood-fl",
-      "/services/deck-builders/dania-beach-fl",
-      "/services/deck-builders/delray-beach-fl",
-      "/services/deck-builders/gulf-stream-fl",
-      "/services/deck-builders/manalapan-fl"
-    ],
+    "usada_en": [],
     "origen": "DECKING/Concrete/Concrete Slab/15.jpeg",
     "sha256": "90e03bca4de15f34b8e5f9c8923da5ba1e49420fafa348af85dd53a0a34190be",
     "recorte": {
@@ -1316,18 +1294,7 @@
       "bolsa junto a la bajante",
       "recortada en origen: el cuadro completo tenía un problema de privacidad"
     ],
-    "usada_en": [
-      "/services/deck-builders/gainesville-fl",
-      "/services/deck-builders/ocala-fl",
-      "/services/deck-builders/palatka-fl",
-      "/services/deck-builders/cedar-key-fl",
-      "/services/deck-builders/mcintosh-fl",
-      "/services/deck-builders/hollywood-fl",
-      "/services/deck-builders/dania-beach-fl",
-      "/services/deck-builders/delray-beach-fl",
-      "/services/deck-builders/gulf-stream-fl",
-      "/services/deck-builders/manalapan-fl"
-    ],
+    "usada_en": [],
     "origen": "DECKING/Concrete/Concrete Slab/17.jpeg",
     "sha256": "ffb6df713cc081d477218b03b8ba30e8b06855d952c1fc0da0d68704ba59165b",
     "recorte": {
@@ -1450,18 +1417,7 @@
       "sombras de ramas sobre la losa",
       "manguera en el borde izquierdo"
     ],
-    "usada_en": [
-      "/services/deck-builders/gainesville-fl",
-      "/services/deck-builders/ocala-fl",
-      "/services/deck-builders/palatka-fl",
-      "/services/deck-builders/cedar-key-fl",
-      "/services/deck-builders/mcintosh-fl",
-      "/services/deck-builders/hollywood-fl",
-      "/services/deck-builders/dania-beach-fl",
-      "/services/deck-builders/delray-beach-fl",
-      "/services/deck-builders/gulf-stream-fl",
-      "/services/deck-builders/manalapan-fl"
-    ],
+    "usada_en": [],
     "origen": "DECKING/Concrete/Concrete Slab/20.jpeg",
     "sha256": "e76fd8caa5ea9ce816c3f700675db5668054a044b475a1371c4ca791918f96d0"
   },
@@ -1773,18 +1729,7 @@
       "cortadora en la esquina inferior derecha",
       "camioneta y remolque al fondo"
     ],
-    "usada_en": [
-      "/services/deck-builders/gainesville-fl",
-      "/services/deck-builders/ocala-fl",
-      "/services/deck-builders/palatka-fl",
-      "/services/deck-builders/cedar-key-fl",
-      "/services/deck-builders/mcintosh-fl",
-      "/services/deck-builders/hollywood-fl",
-      "/services/deck-builders/dania-beach-fl",
-      "/services/deck-builders/delray-beach-fl",
-      "/services/deck-builders/gulf-stream-fl",
-      "/services/deck-builders/manalapan-fl"
-    ],
+    "usada_en": [],
     "origen": "DECKING/Concrete/Concrete Slab/8.jpeg",
     "sha256": "aeaf570dc1554c56975dadf9f8adea7533df5caee0586aeb65f1ea01a475114d"
   },
@@ -1822,18 +1767,7 @@
       "herramientas en primer plano",
       "cubo junto a la jaula"
     ],
-    "usada_en": [
-      "/services/deck-builders/gainesville-fl",
-      "/services/deck-builders/ocala-fl",
-      "/services/deck-builders/palatka-fl",
-      "/services/deck-builders/cedar-key-fl",
-      "/services/deck-builders/mcintosh-fl",
-      "/services/deck-builders/hollywood-fl",
-      "/services/deck-builders/dania-beach-fl",
-      "/services/deck-builders/delray-beach-fl",
-      "/services/deck-builders/gulf-stream-fl",
-      "/services/deck-builders/manalapan-fl"
-    ],
+    "usada_en": [],
     "origen": "DECKING/Concrete/Concrete Slab/9.jpeg",
     "sha256": "54f2eec96f90dda37fa21a4737f95d962c421f0cee82bf0f4c12e3b7f609d957"
   },
@@ -3073,7 +3007,17 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/decks"
+      "/gallery/decks",
+      "/services/deck-builders/gainesville-fl",
+      "/services/deck-builders/ocala-fl",
+      "/services/deck-builders/palatka-fl",
+      "/services/deck-builders/cedar-key-fl",
+      "/services/deck-builders/mcintosh-fl",
+      "/services/deck-builders/hollywood-fl",
+      "/services/deck-builders/dania-beach-fl",
+      "/services/deck-builders/delray-beach-fl",
+      "/services/deck-builders/gulf-stream-fl",
+      "/services/deck-builders/manalapan-fl"
     ],
     "origen": "DECKING/Pavers/20251013_141750000_iOS 2.jpg",
     "sha256": "aa8864dfcdc7d2e233f821475207bbe36b22ab544896e14986a9a44aad10f02e"
@@ -3282,18 +3226,7 @@
       "lata y botella en el alféizar",
       "manguera sobre el deck"
     ],
-    "usada_en": [
-      "/services/deck-builders/gainesville-fl",
-      "/services/deck-builders/ocala-fl",
-      "/services/deck-builders/palatka-fl",
-      "/services/deck-builders/cedar-key-fl",
-      "/services/deck-builders/mcintosh-fl",
-      "/services/deck-builders/hollywood-fl",
-      "/services/deck-builders/dania-beach-fl",
-      "/services/deck-builders/delray-beach-fl",
-      "/services/deck-builders/gulf-stream-fl",
-      "/services/deck-builders/manalapan-fl"
-    ],
+    "usada_en": [],
     "origen": "DECKING/Pavers/20251013_141808835_iOS.jpg",
     "sha256": "df8e5420b2e87fb09a84557cfdcbb9567edffc419af0c8e54f9a8930e9e1e680"
   },
@@ -3324,7 +3257,8 @@
     "espacio_texto": "arriba",
     "recortes_seguros": [
       "4:5",
-      "1:1"
+      "1:1",
+      "16:9"
     ],
     "defectos": [],
     "usada_en": [
@@ -4319,7 +4253,17 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/decks"
+      "/gallery/decks",
+      "/services/deck-builders/gainesville-fl",
+      "/services/deck-builders/ocala-fl",
+      "/services/deck-builders/palatka-fl",
+      "/services/deck-builders/cedar-key-fl",
+      "/services/deck-builders/mcintosh-fl",
+      "/services/deck-builders/hollywood-fl",
+      "/services/deck-builders/dania-beach-fl",
+      "/services/deck-builders/delray-beach-fl",
+      "/services/deck-builders/gulf-stream-fl",
+      "/services/deck-builders/manalapan-fl"
     ],
     "origen": "DECKING/Pavers/WhatsApp Image 2026-04-21 at 5.31.39 PM.jpeg",
     "sha256": "005bd99f715b702a7ce7bc588384f20999b7894dd11b1c3044d7462ed2b31e4a"
@@ -4458,7 +4402,11 @@
     "usada_en": [
       "/gallery",
       "/gallery/landscaping",
-      "/services/landscaping"
+      "/services/landscaping",
+      "/services/landscaping/gainesville-fl",
+      "/services/landscaping/ocala-fl",
+      "/services/landscaping/palatka-fl",
+      "/services/landscaping/fort-lauderdale-fl"
     ],
     "origen": "DECKING/TURF/12.1.jpeg",
     "sha256": "5764dfd1853f5efefb529c34c3598dbc8ad876bdee06f802054681051cdd91b5"
@@ -4533,12 +4481,7 @@
       "rollos y lona en primer plano",
       "carretillas al fondo"
     ],
-    "usada_en": [
-      "/services/landscaping/gainesville-fl",
-      "/services/landscaping/ocala-fl",
-      "/services/landscaping/palatka-fl",
-      "/services/landscaping/fort-lauderdale-fl"
-    ],
+    "usada_en": [],
     "origen": "DECKING/TURF/12.3.jpeg",
     "sha256": "e5d78a8a39a8dc8c8952f20e9476d85ad3bbec9867e317a4de6d32abcf6bb9c4"
   },
@@ -4570,17 +4513,13 @@
     "espacio_texto": "arriba",
     "recortes_seguros": [
       "4:5",
-      "1:1"
+      "1:1",
+      "3:2"
     ],
     "defectos": [
       "manguera en el borde derecho"
     ],
-    "usada_en": [
-      "/services/landscaping/gainesville-fl",
-      "/services/landscaping/ocala-fl",
-      "/services/landscaping/palatka-fl",
-      "/services/landscaping/fort-lauderdale-fl"
-    ],
+    "usada_en": [],
     "origen": "DECKING/TURF/12.jpeg",
     "sha256": "796716ed407821b622900eac3e2d2b687df2c58c9d894fcc205a63bdd4d76471"
   },
@@ -5095,7 +5034,11 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/landscaping"
+      "/gallery/landscaping",
+      "/services/landscaping/gainesville-fl",
+      "/services/landscaping/ocala-fl",
+      "/services/landscaping/palatka-fl",
+      "/services/landscaping/fort-lauderdale-fl"
     ],
     "origen": "DECKING/TURF/IMG_4120.jpeg",
     "sha256": "903af1152ab043158d476ce884da3ef0dc22bf75f88873f2e91e2faeb2cd376e"
@@ -5211,7 +5154,11 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/landscaping"
+      "/gallery/landscaping",
+      "/services/landscaping/gainesville-fl",
+      "/services/landscaping/ocala-fl",
+      "/services/landscaping/palatka-fl",
+      "/services/landscaping/fort-lauderdale-fl"
     ],
     "origen": "DECKING/TURF/IMG_4122.jpeg",
     "sha256": "d76041386de175f687871d4c2d6d3e25064d15ad8592f8c76386ea4e2bf3931a"
@@ -11305,7 +11252,11 @@
     ],
     "usada_en": [
       "/gallery",
-      "/services/landscaping"
+      "/services/landscaping",
+      "/services/landscaping/gainesville-fl",
+      "/services/landscaping/ocala-fl",
+      "/services/landscaping/palatka-fl",
+      "/services/landscaping/fort-lauderdale-fl"
     ],
     "origen": "LANDSCAPING/20160806_151810.jpg",
     "sha256": "692d9ba769d3b671a5e76ac283af565ffdae8731e02b41ca772776bc4ccb8523",
@@ -11348,12 +11299,7 @@
       "bombona de gas y cables a la vista",
       "contraluz duro"
     ],
-    "usada_en": [
-      "/services/landscaping/gainesville-fl",
-      "/services/landscaping/ocala-fl",
-      "/services/landscaping/palatka-fl",
-      "/services/landscaping/fort-lauderdale-fl"
-    ],
+    "usada_en": [],
     "origen": "LANDSCAPING/20160806_151835.jpg",
     "sha256": "3d7bbf9de4221df6dd7fa41f5731b9055d1478be16b01af385ebb129d6242b7d"
   },
@@ -11559,7 +11505,11 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/landscaping"
+      "/gallery/landscaping",
+      "/services/landscaping/gainesville-fl",
+      "/services/landscaping/ocala-fl",
+      "/services/landscaping/palatka-fl",
+      "/services/landscaping/fort-lauderdale-fl"
     ],
     "origen": "LANDSCAPING/20250122_143812.jpg",
     "sha256": "b24404bc76409c6fa150908b1e873d4d97348fa1795aa488db888efe0da75be8"
@@ -11602,7 +11552,11 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/landscaping"
+      "/gallery/landscaping",
+      "/services/landscaping/gainesville-fl",
+      "/services/landscaping/ocala-fl",
+      "/services/landscaping/palatka-fl",
+      "/services/landscaping/fort-lauderdale-fl"
     ],
     "origen": "LANDSCAPING/20250306_144817.jpg",
     "sha256": "ef8ec3e59b3154b436300c2134a86c341e2c619cfdf66279b6c547c932a9c032"
@@ -11727,7 +11681,17 @@
     "usada_en": [
       "/gallery",
       "/gallery/decks",
-      "megamenu"
+      "megamenu",
+      "/services/deck-builders/gainesville-fl",
+      "/services/deck-builders/ocala-fl",
+      "/services/deck-builders/palatka-fl",
+      "/services/deck-builders/cedar-key-fl",
+      "/services/deck-builders/mcintosh-fl",
+      "/services/deck-builders/hollywood-fl",
+      "/services/deck-builders/dania-beach-fl",
+      "/services/deck-builders/delray-beach-fl",
+      "/services/deck-builders/gulf-stream-fl",
+      "/services/deck-builders/manalapan-fl"
     ],
     "origen": "LANDSCAPING/20250414_132113.jpg",
     "sha256": "57850ce907e9c5684a9f6b9e36d367a9ed7172ea06135a5c5d4cb819b84c9cb7",
@@ -11858,7 +11822,17 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/decks"
+      "/gallery/decks",
+      "/services/deck-builders/gainesville-fl",
+      "/services/deck-builders/ocala-fl",
+      "/services/deck-builders/palatka-fl",
+      "/services/deck-builders/cedar-key-fl",
+      "/services/deck-builders/mcintosh-fl",
+      "/services/deck-builders/hollywood-fl",
+      "/services/deck-builders/dania-beach-fl",
+      "/services/deck-builders/delray-beach-fl",
+      "/services/deck-builders/gulf-stream-fl",
+      "/services/deck-builders/manalapan-fl"
     ],
     "origen": "LANDSCAPING/IMG_0031.HEIC",
     "sha256": "85c7de933c2950e0c6c3040f1b26d9a32f26a00ab790386b6b02fd87313d7920"
@@ -11928,12 +11902,7 @@
     "defectos": [
       "mitad inferior ocupada por el pavimento"
     ],
-    "usada_en": [
-      "/services/landscaping/gainesville-fl",
-      "/services/landscaping/ocala-fl",
-      "/services/landscaping/palatka-fl",
-      "/services/landscaping/fort-lauderdale-fl"
-    ],
+    "usada_en": [],
     "origen": "LANDSCAPING/IMG_0522.HEIC",
     "sha256": "0c3db4046ed1ddd0ba1960652f7b1b4e733752186aec2e17c3fa6cc996c58662"
   },
@@ -12008,7 +11977,12 @@
       "arqueta de riego en la esquina inferior izquierda",
       "sombra dura"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/landscaping/gainesville-fl",
+      "/services/landscaping/ocala-fl",
+      "/services/landscaping/palatka-fl",
+      "/services/landscaping/fort-lauderdale-fl"
+    ],
     "origen": "LANDSCAPING/IMG_0657.JPG",
     "sha256": "28efa6b3ef8ffa43d5b7022df00e8cc60a60af361312978b7b6ce1d265002ae3"
   },
@@ -17009,12 +16983,7 @@
     "defectos": [
       "caja y restos en el borde inferior"
     ],
-    "usada_en": [
-      "/services/landscaping/gainesville-fl",
-      "/services/landscaping/ocala-fl",
-      "/services/landscaping/palatka-fl",
-      "/services/landscaping/fort-lauderdale-fl"
-    ],
+    "usada_en": [],
     "origen": "NEW JOBS CONSTRUCTION/Brannen/IMG_2885.jpeg",
     "sha256": "0184b6fe211b05bbf19569f8e79f3ca53bb19e5fabe8812270805aad975f6e1c"
   },
@@ -17050,12 +17019,7 @@
       "1:1"
     ],
     "defectos": [],
-    "usada_en": [
-      "/services/landscaping/gainesville-fl",
-      "/services/landscaping/ocala-fl",
-      "/services/landscaping/palatka-fl",
-      "/services/landscaping/fort-lauderdale-fl"
-    ],
+    "usada_en": [],
     "origen": "NEW JOBS CONSTRUCTION/Brannen/IMG_2886.jpeg",
     "sha256": "6c6ce1c3d07fe811d7cad7f6902dc0570ab2256b6e773f55c82fb895c175f3e2"
   },
@@ -17091,12 +17055,7 @@
     "defectos": [
       "bloque blanco en el borde izquierdo"
     ],
-    "usada_en": [
-      "/services/landscaping/gainesville-fl",
-      "/services/landscaping/ocala-fl",
-      "/services/landscaping/palatka-fl",
-      "/services/landscaping/fort-lauderdale-fl"
-    ],
+    "usada_en": [],
     "origen": "NEW JOBS CONSTRUCTION/Brannen/IMG_2887.jpeg",
     "sha256": "63dad6e61a63a5f8cbd676354e20e7ac0c4fd8b2160355b3cb240b1609be8622"
   },
@@ -17381,17 +17340,14 @@
     "espacio_texto": "arriba",
     "recortes_seguros": [
       "4:5",
-      "1:1"
+      "1:1",
+      "16:9"
     ],
     "defectos": [
       "adoquin rojo antiguo en la esquina inferior derecha"
     ],
     "usada_en": [
-      "/services/landscaping",
-      "/services/landscaping/gainesville-fl",
-      "/services/landscaping/ocala-fl",
-      "/services/landscaping/palatka-fl",
-      "/services/landscaping/fort-lauderdale-fl"
+      "/services/landscaping"
     ],
     "origen": "NEW JOBS CONSTRUCTION/Brier/IMG_3829.JPEG",
     "sha256": "6856ecc3b597539b19e2b28a95f0979c6eb3e4f8e6e6fb9cad24e8a5c3cdbd9a"
@@ -17429,7 +17385,12 @@
       "cancela negra en primer plano a la derecha",
       "valla a la izquierda"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/landscaping/gainesville-fl",
+      "/services/landscaping/ocala-fl",
+      "/services/landscaping/palatka-fl",
+      "/services/landscaping/fort-lauderdale-fl"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Brier/IMG_3830.JPEG",
     "sha256": "148c27c27722211fd10fa1f722007456f2e0d9548b174a4ece6beb6720cb3f16"
   },
@@ -21117,7 +21078,17 @@
     "usada_en": [
       "/blogs/common-pool-construction-mistakes-we-see-in-florida",
       "/gallery",
-      "/gallery/decks"
+      "/gallery/decks",
+      "/services/deck-builders/gainesville-fl",
+      "/services/deck-builders/ocala-fl",
+      "/services/deck-builders/palatka-fl",
+      "/services/deck-builders/cedar-key-fl",
+      "/services/deck-builders/mcintosh-fl",
+      "/services/deck-builders/hollywood-fl",
+      "/services/deck-builders/dania-beach-fl",
+      "/services/deck-builders/delray-beach-fl",
+      "/services/deck-builders/gulf-stream-fl",
+      "/services/deck-builders/manalapan-fl"
     ],
     "origen": "NEW JOBS CONSTRUCTION/Darr Pool/WhatsApp Image 2026-04-25 at 3.18.37 PM.jpeg",
     "sha256": "91e37890a01f105f8f695214f6660fd6c88f5a1ed0028f16577d1cbd6384d085"
@@ -22421,7 +22392,17 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/decks"
+      "/gallery/decks",
+      "/services/deck-builders/gainesville-fl",
+      "/services/deck-builders/ocala-fl",
+      "/services/deck-builders/palatka-fl",
+      "/services/deck-builders/cedar-key-fl",
+      "/services/deck-builders/mcintosh-fl",
+      "/services/deck-builders/hollywood-fl",
+      "/services/deck-builders/dania-beach-fl",
+      "/services/deck-builders/delray-beach-fl",
+      "/services/deck-builders/gulf-stream-fl",
+      "/services/deck-builders/manalapan-fl"
     ],
     "origen": "NEW JOBS CONSTRUCTION/FOTOS DE TODO/IMG_1349.JPG",
     "sha256": "04e94a00bb91347a8bbaa61fc8d23b181969926e589fa46f7152b92c89d98493"
@@ -50588,7 +50569,18 @@
     "defectos": [
       "planta en maceta roja en el centro"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/deck-builders/gainesville-fl",
+      "/services/deck-builders/ocala-fl",
+      "/services/deck-builders/palatka-fl",
+      "/services/deck-builders/cedar-key-fl",
+      "/services/deck-builders/mcintosh-fl",
+      "/services/deck-builders/hollywood-fl",
+      "/services/deck-builders/dania-beach-fl",
+      "/services/deck-builders/delray-beach-fl",
+      "/services/deck-builders/gulf-stream-fl",
+      "/services/deck-builders/manalapan-fl"
+    ],
     "origen": "PICTURES/PRIVACY WALLS/Privacy 1.jpeg",
     "sha256": "847fb05afc4355aca6048d9ef83eae65ea6cca8b3a1bdc7c3d4d7e057943b841"
   },
