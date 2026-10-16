@@ -43976,5 +43976,860 @@
     ],
     "origen": "Senavia Picture /Pictures-18.jpg",
     "sha256": "dff7298c368042d8dc38eaad793ed883f48d6959eb02238d6cff174a8d06125d"
+  },
+  {
+    "id": "bi-1288",
+    "src": "/images/banco/pergolas/dark-aluminum-pergola-white-roof-panels-pool-deck-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1200,
+    "alt": "Dark aluminum pergola with white roof panels over a pool deck, with blue glass tile at the waterline.",
+    "descripcion": "Pérgola de aluminio oscuro con paneles blancos entre las vigas, adosada a una casa amarilla, sobre la playa de una piscina con gresite azul en la línea de agua; valla negra y arboleda detrás. No es techo de lamas: los paneles son fijos. Foto de sesión profesional.",
+    "tags": [
+      "pergola",
+      "pool deck",
+      "glass tile",
+      "aluminum",
+      "dark frame"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:3",
+      "3:2",
+      "16:9"
+    ],
+    "defectos": [
+      "cartel del permiso de obra en la columna de la casa",
+      "escoba y fregona apoyadas en la columna",
+      "manguera del limpiafondos dentro del agua"
+    ],
+    "usada_en": [],
+    "origen": "Senavia Picture /Pictures-26.jpg",
+    "sha256": "c20560b9034cd7d5457558ab51334d8efb6875e5dfa7c33dd5d2157fb6eda2ca"
+  },
+  {
+    "id": "bi-1289",
+    "src": "/images/banco/remodeling/pool-remodeling-courtyard-night-lighting-aerial-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "remodeling",
+      "construction"
+    ],
+    "fase_obra": null,
+    "proyecto": "obra-115",
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "aerea",
+    "orientacion": "vertical",
+    "ancho": 1200,
+    "alto": 1600,
+    "alt": "Remodeled pool glowing blue at night in a courtyard, seen from above, with a pale stone deck and landscape lighting.",
+    "descripcion": "Lacircle: la piscina reformada del condominio, de noche y desde arriba: agua iluminada en azul, playa de piedra clara, palmeras con focos al pie. Vertical.",
+    "tags": [
+      "pool remodeling",
+      "night",
+      "aerial",
+      "pool lighting",
+      "condominium"
+    ],
+    "espacio_texto": "ninguno",
+    "recortes_seguros": [
+      "4:5",
+      "1:1"
+    ],
+    "defectos": [
+      "vista cenital: la forma se lee, el material no"
+    ],
+    "usada_en": [],
+    "origen": "POOL REMODEL/Lacircle/2.jpeg",
+    "sha256": "a131105ec1dfd8b4c3d89be825eb626feb97f118630afffbc98637002903d62e"
+  },
+  {
+    "id": "bi-1290",
+    "src": "/images/banco/remodeling/pool-remodeling-navy-waterline-tile-bench-steps-fence-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "remodeling",
+      "construction"
+    ],
+    "fase_obra": null,
+    "proyecto": "obra-115",
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1200,
+    "alt": "Remodeled pool with navy waterline tile, bench steps and a light porcelain deck behind a white aluminum fence.",
+    "descripcion": "Lacircle de día: la piscina del condominio reformada, gresite azul marino en la línea de agua y en los peldaños, playa de porcelánico claro, valla blanca de aluminio y el edificio detrás. Piscina sin vestir.",
+    "tags": [
+      "pool remodeling",
+      "waterline tile",
+      "bench steps",
+      "porcelain deck",
+      "condominium"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:3",
+      "3:2",
+      "16:9"
+    ],
+    "defectos": [
+      "manguera sobre la playa a la derecha",
+      "piscina sin mobiliario"
+    ],
+    "usada_en": [],
+    "origen": "POOL REMODEL/Lacircle/WhatsApp Image 2026-01-09 at 2.19.42 .jpeg",
+    "sha256": "223ed0b6b381535214d383c9a550ab988b892f7d3e22875f39a536560b63ea2d"
+  },
+  {
+    "id": "bi-1291",
+    "src": "/images/banco/remodeling/pool-remodeling-freeform-entry-steps-white-stone-deck-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "remodeling",
+      "construction"
+    ],
+    "fase_obra": null,
+    "proyecto": "obra-115",
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1200,
+    "alt": "Remodeled freeform pool with navy waterline tile, wide entry steps and a white stone-look deck by a condo building.",
+    "descripcion": "Lacircle de día desde la otra esquina: piscina de forma libre con escalera ancha, gresite azul marino y playa blanca tipo mármol; el edificio de balcones detrás.",
+    "tags": [
+      "pool remodeling",
+      "freeform pool",
+      "entry steps",
+      "stone deck",
+      "condominium"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:3",
+      "3:2",
+      "16:9"
+    ],
+    "defectos": [
+      "cono naranja y carteles de normas junto al edificio"
+    ],
+    "usada_en": [],
+    "origen": "POOL REMODEL/Lacircle/oi.jpeg",
+    "sha256": "cff681a8f343067b11603d7e08766689b0a96395ea79cbcb14b01c086c8ad6a6"
+  },
+  {
+    "id": "bi-1292",
+    "src": "/images/banco/remodeling/pool-remodeling-glass-tile-waterline-screen-enclosure-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "remodeling",
+      "construction"
+    ],
+    "fase_obra": null,
+    "proyecto": "obra-116",
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "vertical",
+    "ancho": 1200,
+    "alto": 1600,
+    "alt": "Remodeled rectangular pool with a blue glass tile waterline and a textured deck under a screen enclosure.",
+    "descripcion": "Petra: piscina rectangular reformada bajo jaula, gresite azul en la línea de agua y en el peldaño, playa texturizada; valla de madera al fondo. P372 y P374 son casi iguales a esta y no entran.",
+    "tags": [
+      "pool remodeling",
+      "screen enclosure",
+      "glass tile",
+      "textured deck"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:5",
+      "1:1"
+    ],
+    "defectos": [
+      "pértiga del limpiafondos sobre la playa",
+      "sombras de la jaula sobre el agua"
+    ],
+    "usada_en": [],
+    "origen": "POOL REMODEL/Petra/3.jpg",
+    "sha256": "9e47180fde1dd097e6910af6643cb2bef015e0ad921d3f4b7f4c8935398d171f"
+  },
+  {
+    "id": "bi-1293",
+    "src": "/images/banco/pergolas/white-aluminum-pergola-slat-wall-outdoor-bar-stools-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas"
+    ],
+    "fase_obra": null,
+    "proyecto": "obra-118",
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1067,
+    "alt": "White aluminum pergola with a slatted privacy wall over an outdoor bar with white stools and artificial turf.",
+    "descripcion": "Pérgola blanca de cubierta lisa con muro de lamas blancas, barra con taburetes blancos, césped artificial y palmeras; casa blanca a la izquierda. Misma obra que P543 (la cocina, al otro lado). Foto de sesión profesional.",
+    "tags": [
+      "pergola",
+      "privacy wall",
+      "outdoor bar",
+      "bar stools",
+      "white"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:3",
+      "3:2",
+      "16:9"
+    ],
+    "defectos": [],
+    "usada_en": [],
+    "origen": "Senavia Picture /Pictures-06.jpg",
+    "sha256": "935d18048a763599e0c32a512dd6da8937538143edfbe0be28044315d633cebb"
+  },
+  {
+    "id": "bi-1294",
+    "src": "/images/banco/pergolas/covered-lanai-white-insulated-roof-dark-posts-pool-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1067,
+    "alt": "Covered lanai with a white insulated roof on dark posts, an outdoor sofa set and a pool overlooking a lawn.",
+    "descripcion": "Porche cubierto con techo aislado blanco sobre postes oscuros, salón exterior con sofás y mesa, la piscina y un césped con palmeras detrás. Foto de sesión profesional.",
+    "tags": [
+      "patio cover",
+      "insulated roof",
+      "lanai",
+      "pool",
+      "outdoor sofa"
+    ],
+    "espacio_texto": "ninguno",
+    "recortes_seguros": [
+      "4:3",
+      "3:2",
+      "16:9"
+    ],
+    "defectos": [
+      "por la ventana de la derecha se ve el interior"
+    ],
+    "usada_en": [],
+    "origen": "Senavia Picture /Pictures-08.jpg",
+    "sha256": "4f6057a10bf187f13fabab1eb49714735a7594775df76eb57c6ec6e9c947b3cc"
+  },
+  {
+    "id": "bi-1295",
+    "src": "/images/banco/louvered/louvered-roof-open-blades-sunlight-from-below-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "louvered"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "detalle",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1200,
+    "alt": "Aluminum louvered roof seen from below, with sunlight passing between the open blades.",
+    "descripcion": "Techo de lamas oscuro visto desde abajo, lamas abiertas y el sol entre ellas. Detalle que vende el techo de lamas. Foto de sesión profesional.",
+    "tags": [
+      "louvered roof",
+      "open blades",
+      "aluminum",
+      "sunlight"
+    ],
+    "espacio_texto": "ninguno",
+    "recortes_seguros": [
+      "4:3",
+      "3:2",
+      "1:1",
+      "16:9"
+    ],
+    "defectos": [
+      "destello del sol"
+    ],
+    "usada_en": [],
+    "origen": "Senavia Picture /Pictures-13.jpg",
+    "sha256": "f29bb4306fb50b3030ec881f63481c92115c0cb1852b85ff0f6b39de01d27f4c"
+  },
+  {
+    "id": "bi-1296",
+    "src": "/images/banco/kitchens/outdoor-kitchen-dark-slat-pergola-stucco-grill-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "kitchens",
+      "pergolas"
+    ],
+    "fase_obra": null,
+    "proyecto": "obra-117",
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1200,
+    "alt": "Dark aluminum slat pergola with a privacy screen over a stucco outdoor kitchen with a built-in grill.",
+    "descripcion": "Pérgola de lamas de aluminio oscuro con celosía lateral sobre una cocina de estuco gris con parrilla empotrada y fregadero, junto a una casa moderna de dos plantas; sombras de las lamas en la pared. Foto de sesión profesional.",
+    "tags": [
+      "outdoor kitchen",
+      "pergola",
+      "privacy screen",
+      "built-in grill",
+      "stucco"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:3",
+      "3:2",
+      "4:5"
+    ],
+    "defectos": [],
+    "usada_en": [],
+    "origen": "Senavia Picture /Pictures-14.jpg",
+    "sha256": "0ed7121a2032ae05f5a683c16989917e70f9209a240c5932059c8c11975f1a98"
+  },
+  {
+    "id": "bi-1297",
+    "src": "/images/banco/kitchens/outdoor-kitchen-white-cover-slat-wall-pizza-oven-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "kitchens",
+      "pergolas"
+    ],
+    "fase_obra": null,
+    "proyecto": "obra-118",
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1067,
+    "alt": "Outdoor kitchen with a grill and pizza oven under a white aluminum cover with a slatted privacy wall.",
+    "descripcion": "La cocina de bi-1276 vista más abierta: cubierta blanca, muro de lamas, parrilla, horno de pizza y encimera de mármol en primer plano. Casi igual a bi-1276 (D-212). Foto de sesión profesional.",
+    "tags": [
+      "outdoor kitchen",
+      "pizza oven",
+      "built-in grill",
+      "marble countertop",
+      "privacy wall"
+    ],
+    "espacio_texto": "ninguno",
+    "recortes_seguros": [
+      "4:3",
+      "3:2",
+      "16:9"
+    ],
+    "defectos": [
+      "silla en primer plano a la derecha"
+    ],
+    "usada_en": [],
+    "origen": "Senavia Picture /Pictures-34.jpg",
+    "sha256": "6ee2ad3fc03fc596ba8513550e7e540948e18c43d299ff30b4076446a98e499e"
+  },
+  {
+    "id": "bi-1298",
+    "src": "/images/banco/louvered/white-motorized-louvered-pergola-patio-dining-pool-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "louvered",
+      "pergolas"
+    ],
+    "fase_obra": null,
+    "proyecto": "obra-119",
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "vertical",
+    "ancho": 1200,
+    "alto": 1600,
+    "alt": "White motorized louvered pergola attached to a yellow house, over a patio dining set beside the pool.",
+    "descripcion": "Pérgola blanca de lamas orientables con motor, adosada a una casa amarilla, sobre un comedor exterior; el borde de la piscina abajo. Vertical. Foto de sesión profesional.",
+    "tags": [
+      "louvered roof",
+      "motorized",
+      "patio dining",
+      "pool",
+      "white"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:5",
+      "1:1"
+    ],
+    "defectos": [
+      "motor y cámara visibles sobre la estructura",
+      "barbacoa tapada"
+    ],
+    "usada_en": [],
+    "origen": "Senavia Picture /Pictures-36.jpg",
+    "sha256": "9f8d902e8b4c3403ce8683c7c3f3efc462c43c30958862dcbff2bc898c4fbaeb"
+  },
+  {
+    "id": "bi-1299",
+    "src": "/images/banco/louvered/white-louvered-roof-corner-post-detail-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "louvered"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "detalle",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1067,
+    "alt": "Corner of a white aluminum louvered roof against a clear sky, with its bolted post and open blades.",
+    "descripcion": "Detalle de esquina de un techo de lamas blanco: poste atornillado y lamas abiertas contra el cielo; tejado de tejas asfálticas detrás. Foto de sesión profesional.",
+    "tags": [
+      "louvered roof",
+      "detail",
+      "aluminum",
+      "white"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:3",
+      "3:2",
+      "1:1"
+    ],
+    "defectos": [
+      "detalle: no enseña el conjunto"
+    ],
+    "usada_en": [],
+    "origen": "Senavia Picture /Pictures-02.jpg",
+    "sha256": "b63897d7f1127f1d10943f34bb9ca7ed8d896af1ef005450b65a7f90e3475fb4"
+  },
+  {
+    "id": "bi-1300",
+    "src": "/images/banco/pergolas/dark-gray-pergola-corner-screen-housing-detail-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas",
+      "screens"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "detalle",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1067,
+    "alt": "Corner of a dark gray aluminum pergola frame with a built-in screen housing against a blue sky.",
+    "descripcion": "Detalle de esquina de una pérgola gris oscuro con el cajón de la mosquitera integrado, en contrapicado. Foto de sesión profesional.",
+    "tags": [
+      "pergola",
+      "detail",
+      "retractable screen",
+      "aluminum"
+    ],
+    "espacio_texto": "derecha",
+    "recortes_seguros": [
+      "4:3",
+      "3:2",
+      "1:1"
+    ],
+    "defectos": [
+      "detalle: no enseña el conjunto"
+    ],
+    "usada_en": [],
+    "origen": "Senavia Picture /Pictures-09.jpg",
+    "sha256": "e93fdc99241c7d98639cdac3046af9dc2af74846f3c5adc9ed2b9504de779bfe"
+  },
+  {
+    "id": "bi-1301",
+    "src": "/images/banco/kitchens/outdoor-kitchen-dark-slat-pergola-hedge-walkway-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "kitchens",
+      "pergolas"
+    ],
+    "fase_obra": null,
+    "proyecto": "obra-117",
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1200,
+    "alt": "Dark aluminum slat pergola over an outdoor kitchen at the end of a walkway lined with flowering hedges.",
+    "descripcion": "La cocina de P523 desde el pasillo lateral: setos con flores a los lados, la pérgola de lamas oscuras al fondo. Foto de sesión profesional.",
+    "tags": [
+      "outdoor kitchen",
+      "pergola",
+      "walkway",
+      "hedges"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:3",
+      "3:2"
+    ],
+    "defectos": [
+      "la cocina queda estrecha al fondo"
+    ],
+    "usada_en": [],
+    "origen": "Senavia Picture /Pictures-10.jpg",
+    "sha256": "968501bbc6110f226065e999958e75fae1907a810e0dd2a8bfaeb07d728add84"
+  },
+  {
+    "id": "bi-1302",
+    "src": "/images/banco/pergolas/dark-aluminum-slat-pergola-privacy-screen-outdoor-kitchen-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas",
+      "kitchens"
+    ],
+    "fase_obra": null,
+    "proyecto": "obra-117",
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1200,
+    "alt": "Dark aluminum slat pergola and side privacy screen over a stucco outdoor kitchen with a sink and grill.",
+    "descripcion": "La pérgola de P523 de cerca: lamas y celosía de aluminio oscuro, fregadero bajo la ventana y parrilla. Foto de sesión profesional.",
+    "tags": [
+      "pergola",
+      "privacy screen",
+      "outdoor kitchen",
+      "aluminum"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:3",
+      "3:2",
+      "1:1"
+    ],
+    "defectos": [
+      "rollo de papel de cocina sobre la encimera"
+    ],
+    "usada_en": [],
+    "origen": "Senavia Picture /Pictures-11.jpg",
+    "sha256": "8ee6f1da7cc6e68dd2272603ad097a29a1c2ac5a0cc17e2bc0d05d39d103cc16"
+  },
+  {
+    "id": "bi-1303",
+    "src": "/images/banco/pergolas/dark-aluminum-pergola-slats-beams-detail-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas"
+    ],
+    "fase_obra": null,
+    "proyecto": "obra-117",
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "detalle",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1200,
+    "alt": "Dark aluminum pergola slats and beams seen from below against a modern two-story house.",
+    "descripcion": "Detalle en contrapicado de las lamas y vigas de la pérgola de P523. Foto de sesión profesional.",
+    "tags": [
+      "pergola",
+      "detail",
+      "aluminum",
+      "slats"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:3",
+      "3:2",
+      "1:1"
+    ],
+    "defectos": [
+      "detalle: no enseña el conjunto"
+    ],
+    "usada_en": [],
+    "origen": "Senavia Picture /Pictures-12.jpg",
+    "sha256": "5ec3285af7d7ad0d8e1ec34447e425403c40a23c420104593acac89da47474e0"
+  },
+  {
+    "id": "bi-1304",
+    "src": "/images/banco/pergolas/black-frame-insulated-patio-cover-wicker-seating-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 983,
+    "alt": "Black aluminum frame with a white insulated roof over a paver patio with wicker sofas and lounge chairs.",
+    "descripcion": "Cubierta aislada blanca sobre marco negro exento, patio de adoquín con sofás de mimbre y sillas Adirondack rojas. Foto de sesión profesional.",
+    "tags": [
+      "patio cover",
+      "insulated roof",
+      "black frame",
+      "pavers",
+      "wicker seating"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:3",
+      "3:2",
+      "16:9"
+    ],
+    "defectos": [
+      "toalla y funda colgadas en la pared",
+      "cubo azul y barbacoa tapada"
+    ],
+    "usada_en": [],
+    "origen": "Senavia Picture /Pictures-17.jpg",
+    "sha256": "205e3dc1893415da0067e6ed0d9fccc8ffe331433f816096e59a3737f74f2db1"
+  },
+  {
+    "id": "bi-1305",
+    "src": "/images/banco/rooms/screened-patio-enclosure-insulated-roof-two-story-home-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "rooms",
+      "pergolas"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1200,
+    "alt": "Insulated roof and screened patio enclosure across the back of a two-story home, with a lawn and fence.",
+    "descripcion": "Cubierta aislada con cerramiento de mosquitera a lo largo de la trasera de una casa de dos plantas; césped y valla metálica en primer plano. Foto de sesión profesional.",
+    "tags": [
+      "screen room",
+      "insulated roof",
+      "two-story home",
+      "lawn"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:3",
+      "3:2",
+      "16:9"
+    ],
+    "defectos": [
+      "valla metálica en primer plano"
+    ],
+    "usada_en": [],
+    "origen": "Senavia Picture /Pictures-25.jpg",
+    "sha256": "6706487be45b8f9098ca110f76715c61ad766a6ffb8305f15b1bb0bda8e8f0af"
+  },
+  {
+    "id": "bi-1306",
+    "src": "/images/banco/pergolas/gray-aluminum-pergola-translucent-roof-french-doors-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1200,
+    "alt": "Gray aluminum pergola with a translucent roof over a patio with French doors and wicker chairs.",
+    "descripcion": "Pérgola de aluminio gris con techo traslúcido sobre puertas francesas, sillones de mimbre y macetas; césped en primer plano. Foto de sesión profesional.",
+    "tags": [
+      "pergola",
+      "translucent roof",
+      "aluminum",
+      "patio",
+      "french doors"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:3",
+      "3:2",
+      "16:9"
+    ],
+    "defectos": [],
+    "usada_en": [],
+    "origen": "Senavia Picture /Pictures-31.jpg",
+    "sha256": "a01b0784b5d3e27bfe0b043f0daa15c0d3ae330cd22d16b59c1598207199e1ca"
+  },
+  {
+    "id": "bi-1307",
+    "src": "/images/banco/louvered/white-louvered-roof-open-blades-yellow-house-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "louvered"
+    ],
+    "fase_obra": null,
+    "proyecto": "obra-119",
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "detalle",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1066,
+    "alt": "White aluminum louvered roof seen from below, attached to a yellow house with its blades open.",
+    "descripcion": "La pérgola de lamas de P545 desde abajo: lamas abiertas y casa amarilla. Foto de sesión profesional.",
+    "tags": [
+      "louvered roof",
+      "open blades",
+      "white",
+      "detail"
+    ],
+    "espacio_texto": "derecha",
+    "recortes_seguros": [
+      "4:3",
+      "3:2",
+      "1:1"
+    ],
+    "defectos": [
+      "cámara y figura decorativa sobre la viga"
+    ],
+    "usada_en": [],
+    "origen": "Senavia Picture /Pictures-38.jpg",
+    "sha256": "8aebaa5406b9af4e99490b9cf889257151992e595b9e8681d6e2ebcfde690728"
+  },
+  {
+    "id": "bi-1308",
+    "src": "/images/banco/pergolas/brown-pergola-rafter-tails-glass-lanterns-detail-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "detalle",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1200,
+    "alt": "Brown pergola rafters with scalloped tails and hanging glass lanterns beside a stucco wall and bougainvillea.",
+    "descripcion": "Detalle de la pérgola marrón de bi-1048 (misma casa): vigas con remate, faroles de cristal de colores, buganvillas. Foto de sesión profesional.",
+    "tags": [
+      "pergola",
+      "rafter tails",
+      "lanterns",
+      "detail"
+    ],
+    "espacio_texto": "arriba",
+    "recortes_seguros": [
+      "4:3",
+      "3:2",
+      "1:1"
+    ],
+    "defectos": [
+      "antena parabólica en el tejado",
+      "toalla colgada"
+    ],
+    "usada_en": [],
+    "origen": "Senavia Picture /Pictures-39.jpg",
+    "sha256": "35fcd8176f2cbf4bb02afbec2bbae769ee725b0539a8c73e73fd6ee95d1fcf4a"
+  },
+  {
+    "id": "bi-1309",
+    "src": null,
+    "estado": "duplicado",
+    "etapa": "terminado",
+    "servicios": [
+      "kitchens"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": null,
+    "orientacion": null,
+    "ancho": null,
+    "alto": null,
+    "alt": null,
+    "descripcion": "La misma toma que bi-1276 (copia de 2048 px en PROFIT KITCHENS).",
+    "tags": [],
+    "espacio_texto": null,
+    "recortes_seguros": [],
+    "defectos": [
+      "misma toma que bi-1276"
+    ],
+    "usada_en": [],
+    "origen": "PROFIT KITCHENS/Copy of Stucco Finish Outdoor Kitchen Straight.jpg",
+    "sha256": "51716b0d6bcf2898033b3beb973936129cdab57a3132bf5ebd33ef4d89211966",
+    "duplicado_de": "bi-1276"
+  },
+  {
+    "id": "bi-1310",
+    "src": null,
+    "estado": "duplicado",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": null,
+    "orientacion": null,
+    "ancho": null,
+    "alto": null,
+    "alt": null,
+    "descripcion": "La misma toma que bi-1048, de la misma sesión profesional.",
+    "tags": [],
+    "espacio_texto": null,
+    "recortes_seguros": [],
+    "defectos": [
+      "misma toma que bi-1048"
+    ],
+    "usada_en": [],
+    "origen": "Senavia Picture /Pictures-32.jpg",
+    "sha256": "55bd3f85c1e161e1a9403631a80e479b833eefbf276199d6c172dd3416901c69",
+    "duplicado_de": "bi-1048"
   }
 ]
