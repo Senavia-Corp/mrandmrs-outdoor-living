@@ -7,7 +7,7 @@ origen, con `PICTURES/` delante en el `origen` de lo que viene de ahí.
 
 | Qué | Dónde |
 |---|---|
-| Índice — **lo único que hay que leer** | `src/data/banco-imagenes.json` (1.548 entradas, 652 aprobadas) |
+| Índice — **lo único que hay que leer** | `src/data/banco-imagenes.json` (1.549 entradas, 653 aprobadas) |
 | Ficheros servidos (WebP, 1600 px, sin EXIF) | `public/images/banco/<servicio>/<slug>.webp` → URL `/images/banco/…` |
 | Hojas de contactos de lo aprobado | `banco/hojas/<servicio>-<etapa>-NN.jpg` |
 | Dudosas, con su pregunta | `banco/DUDOSAS.md` + `banco/hojas-dudosas/` |

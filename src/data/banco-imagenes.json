@@ -52484,5 +52484,44 @@
     "usada_en": [],
     "origen": "PICTURES/Senavia Picture /Pictures-33.jpg",
     "sha256": "c77a921c9ef0b06e2f9b313dfa8078b475325cf644d384973608f2ae8c9ff585"
+  },
+  {
+    "id": "bi-1549",
+    "src": "/images/banco/decks/gray-marble-paver-driveway-gold-veining-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "decks"
+    ],
+    "fase_obra": null,
+    "proyecto": "obra-016",
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "cuadrada",
+    "ancho": 1536,
+    "alto": 1536,
+    "alt": "Gray marble pavers with gold veining and a mitered edge along a landscaped bed.",
+    "descripcion": "Recorte 1:1 de la mitad baja del mismo original que bi-0086 (LOOP-AREAS L5, D-232): el mármol gris con vetas doradas y el remate a inglete contra el parterre, sin la calle ni la casa vecina. Para la reseña de las páginas que tenían una 1:1.",
+    "tags": [
+      "gray marble pavers",
+      "driveway",
+      "mitered edge"
+    ],
+    "espacio_texto": "ninguno",
+    "recortes_seguros": [
+      "1:1",
+      "4:5"
+    ],
+    "defectos": [],
+    "usada_en": [],
+    "origen": "DECKING/Pavers/20251013_141821954_iOS.jpg",
+    "sha256": "526756d048b2cd0c4c7a69fadaa80d7f5a9083689ac29a06db459e73a0f16c67",
+    "recorte": {
+      "left": 0,
+      "top": 0.25,
+      "width": 1,
+      "height": 0.75
+    }
   }
 ]

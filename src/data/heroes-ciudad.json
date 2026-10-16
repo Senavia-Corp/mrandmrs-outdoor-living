@@ -142,6 +142,10 @@
     [
       "bi-1270",
       "bi-1293"
+    ],
+    [
+      "bi-0086",
+      "bi-1549"
     ]
   ],
   "seccion": {
@@ -314,15 +318,15 @@
         "palatka-fl": "bi-0084"
       },
       "seccionPorCiudad": {
-        "_lee_esto": "FAQ, cierre y resenas por ciudad. Cierre bi-0508 (travertino en espiga, 3) en las 10; bi-0086 (marmol con vetas, 3) en FAQ o resenas. Resenas con la misma proporcion que antes donde se puede (en movil esa caja crece con la foto); Gainesville y McIntosh tenian una 1:1 sin sustituta.",
+        "_lee_esto": "FAQ, cierre y resenas por ciudad. Cierre bi-0508 (travertino en espiga, 3) en las 10; bi-0086 (marmol con vetas, 3) en FAQ o resenas. Resenas con la misma proporcion que antes donde se puede (en movil esa caja crece con la foto); Gainesville y McIntosh tenian una 1:1: llevan bi-1549, el recorte 1:1 de bi-0086 (3, D-232).",
         "cedar-key-fl": ["bi-0086", "bi-0508", "bi-0084"],
         "dania-beach-fl": ["bi-0086", "bi-0508", "bi-0077"],
         "delray-beach-fl": ["bi-0086", "bi-0508", "bi-0077"],
-        "gainesville-fl": ["bi-0077", "bi-0508", "bi-0086"],
+        "gainesville-fl": ["bi-0077", "bi-0508", "bi-1549"],
         "gulf-stream-fl": ["bi-0086", "bi-0508", "bi-0084"],
         "hollywood-fl": ["bi-0086", "bi-0508", "bi-0077"],
         "manalapan-fl": ["bi-0086", "bi-0508", "bi-0077"],
-        "mcintosh-fl": ["bi-0077", "bi-0508", "bi-0086"],
+        "mcintosh-fl": ["bi-0077", "bi-0508", "bi-1549"],
         "ocala-fl": ["bi-0086", "bi-0508", "bi-0084"],
         "palatka-fl": ["bi-0086", "bi-0508", "bi-0077"]
       }

@@ -8306,6 +8306,19 @@
      "/images/banco/pergolas/pergola-slat-privacy-walls-travertine-pool-deck-florida-01-mm1024.webp"
     ]
    ]
+  },
+  "/images/banco/decks/gray-marble-paver-driveway-gold-veining-florida-01.webp": {
+   "ancho": 1536,
+   "variantes": [
+    [
+     640,
+     "/images/banco/decks/gray-marble-paver-driveway-gold-veining-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/decks/gray-marble-paver-driveway-gold-veining-florida-01-mm1024.webp"
+    ]
+   ]
   }
  },
  "lcp": {
