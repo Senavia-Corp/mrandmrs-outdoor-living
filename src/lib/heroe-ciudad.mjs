@@ -142,6 +142,14 @@ export function fotoDeHeroe(ruta, rutasDelServicio = rutasDeCiudad(ruta.split('/
 export function fotosDeSeccion(ruta, rutasDelServicio = rutasDeCiudad(ruta.split('/')[2])) {
   const servicio = ruta.split('/')[2];
   const deTabla = TABLA.has(ruta);
+  // LOOP-AREAS L3: una ciudad puede fijar sus tres fotos (FAQ, cierre, resenas) en `porServicio.<servicio>.seccionPorCiudad`,
+  // para no bajar de nota una que ya vende al rotar. Mismas reglas: distintas, ninguna es el hero.
+  const fija = DATOS.porServicio?.[servicio]?.seccionPorCiudad?.[ruta.split('/')[3]];
+  if (fija) {
+    const hero = fotoDeHeroe(ruta, rutasDelServicio);
+    if (new Set(fija).size !== fija.length || fija.includes(hero?.id)) throw new Error(`[heroe-ciudad] ${ruta}: seccionPorCiudad repite foto o el hero`);
+    return fija.map((id) => { const e = valida(id, DATOS.clave[servicio], ruta, true); return { id: e.id, src: e.src, ancho: e.ancho, alto: e.alto, alt: e.alt }; });
+  }
   // Una pagina por tabla sin lista de seccion propia (reforma, E13 etapa 4) sigue con la bolsa de su servicio.
   const bolsa = ((deTabla && DATOS.seccion?.[servicio]) || DATOS.bolsas[servicio]) ?? [];
   const hero = fotoDeHeroe(ruta, rutasDelServicio);

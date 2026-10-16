@@ -23135,20 +23135,7 @@
     ],
     "usada_en": [
       "/blogs/questions-to-ask-a-louvered-roof-installer",
-      "/services/soffit-led-lighting",
-      "/services/louvered-roofs/gainesville-fl",
-      "/services/louvered-roofs/ocala-fl",
-      "/services/louvered-roofs/palatka-fl",
-      "/services/louvered-roofs/cedar-key-fl",
-      "/services/louvered-roofs/mcintosh-fl",
-      "/services/louvered-roofs/hollywood-fl",
-      "/services/louvered-roofs/weston-fl",
-      "/services/louvered-roofs/dania-beach-fl",
-      "/services/louvered-roofs/west-palm-beach-fl",
-      "/services/louvered-roofs/boca-raton-fl",
-      "/services/louvered-roofs/delray-beach-fl",
-      "/services/louvered-roofs/gulf-stream-fl",
-      "/services/louvered-roofs/manalapan-fl"
+      "/services/soffit-led-lighting"
     ],
     "origen": "NEW JOBS CONSTRUCTION/FOTOS DE TODO/IMG_1567.JPEG",
     "sha256": "6e6a00af8baedc173af8fb45f0f22d1eea9d60707e45c587a58d973437ab03fa",
@@ -23299,21 +23286,7 @@
     "defectos": [
       "jardineras vacías en primer plano"
     ],
-    "usada_en": [
-      "/services/louvered-roofs/gainesville-fl",
-      "/services/louvered-roofs/ocala-fl",
-      "/services/louvered-roofs/palatka-fl",
-      "/services/louvered-roofs/cedar-key-fl",
-      "/services/louvered-roofs/mcintosh-fl",
-      "/services/louvered-roofs/hollywood-fl",
-      "/services/louvered-roofs/weston-fl",
-      "/services/louvered-roofs/dania-beach-fl",
-      "/services/louvered-roofs/west-palm-beach-fl",
-      "/services/louvered-roofs/boca-raton-fl",
-      "/services/louvered-roofs/delray-beach-fl",
-      "/services/louvered-roofs/gulf-stream-fl",
-      "/services/louvered-roofs/manalapan-fl"
-    ],
+    "usada_en": [],
     "origen": "NEW JOBS CONSTRUCTION/FOTOS DE TODO/IMG_1574.JPEG",
     "sha256": "8ab5e7ded785fdb10ffca4b7f90f0a3882dbbc4a788af82014f30bf27c1adabb"
   },
@@ -23473,21 +23446,7 @@
       "tablero en la esquina inferior izquierda",
       "anclajes en el suelo"
     ],
-    "usada_en": [
-      "/services/louvered-roofs/gainesville-fl",
-      "/services/louvered-roofs/ocala-fl",
-      "/services/louvered-roofs/palatka-fl",
-      "/services/louvered-roofs/cedar-key-fl",
-      "/services/louvered-roofs/mcintosh-fl",
-      "/services/louvered-roofs/hollywood-fl",
-      "/services/louvered-roofs/weston-fl",
-      "/services/louvered-roofs/dania-beach-fl",
-      "/services/louvered-roofs/west-palm-beach-fl",
-      "/services/louvered-roofs/boca-raton-fl",
-      "/services/louvered-roofs/delray-beach-fl",
-      "/services/louvered-roofs/gulf-stream-fl",
-      "/services/louvered-roofs/manalapan-fl"
-    ],
+    "usada_en": [],
     "origen": "NEW JOBS CONSTRUCTION/FOTOS DE TODO/IMG_1631.JPEG",
     "sha256": "960e2552b915b0caa8fa3007b108b5245a931b9186f90e896ffaee9809670553"
   },
@@ -23525,21 +23484,7 @@
     "defectos": [
       "bordes blancos de captura de pantalla, 1125 px"
     ],
-    "usada_en": [
-      "/services/louvered-roofs/gainesville-fl",
-      "/services/louvered-roofs/ocala-fl",
-      "/services/louvered-roofs/palatka-fl",
-      "/services/louvered-roofs/cedar-key-fl",
-      "/services/louvered-roofs/mcintosh-fl",
-      "/services/louvered-roofs/hollywood-fl",
-      "/services/louvered-roofs/weston-fl",
-      "/services/louvered-roofs/dania-beach-fl",
-      "/services/louvered-roofs/west-palm-beach-fl",
-      "/services/louvered-roofs/boca-raton-fl",
-      "/services/louvered-roofs/delray-beach-fl",
-      "/services/louvered-roofs/gulf-stream-fl",
-      "/services/louvered-roofs/manalapan-fl"
-    ],
+    "usada_en": [],
     "origen": "NEW JOBS CONSTRUCTION/FOTOS DE TODO/IMG_1632.JPEG",
     "sha256": "a8815db344329beaa1e38c132f9da459d6bcae0a0269ff1123d671dba0d5f95d"
   },
@@ -44421,7 +44366,21 @@
     "defectos": [
       "detalle: no enseña el conjunto"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/louvered-roofs/gainesville-fl",
+      "/services/louvered-roofs/ocala-fl",
+      "/services/louvered-roofs/palatka-fl",
+      "/services/louvered-roofs/cedar-key-fl",
+      "/services/louvered-roofs/mcintosh-fl",
+      "/services/louvered-roofs/hollywood-fl",
+      "/services/louvered-roofs/weston-fl",
+      "/services/louvered-roofs/dania-beach-fl",
+      "/services/louvered-roofs/west-palm-beach-fl",
+      "/services/louvered-roofs/boca-raton-fl",
+      "/services/louvered-roofs/delray-beach-fl",
+      "/services/louvered-roofs/gulf-stream-fl",
+      "/services/louvered-roofs/manalapan-fl"
+    ],
     "origen": "PICTURES/Senavia Picture /Pictures-02.jpg",
     "sha256": "b63897d7f1127f1d10943f34bb9ca7ed8d896af1ef005450b65a7f90e3475fb4"
   },
@@ -52386,7 +52345,21 @@
       "1:1"
     ],
     "defectos": [],
-    "usada_en": [],
+    "usada_en": [
+      "/services/louvered-roofs/gainesville-fl",
+      "/services/louvered-roofs/ocala-fl",
+      "/services/louvered-roofs/palatka-fl",
+      "/services/louvered-roofs/cedar-key-fl",
+      "/services/louvered-roofs/mcintosh-fl",
+      "/services/louvered-roofs/hollywood-fl",
+      "/services/louvered-roofs/weston-fl",
+      "/services/louvered-roofs/dania-beach-fl",
+      "/services/louvered-roofs/west-palm-beach-fl",
+      "/services/louvered-roofs/boca-raton-fl",
+      "/services/louvered-roofs/delray-beach-fl",
+      "/services/louvered-roofs/gulf-stream-fl",
+      "/services/louvered-roofs/manalapan-fl"
+    ],
     "origen": "PICTURES/Senavia Picture /Pictures-03.jpg",
     "sha256": "509deedad1ac9875ed9291c4f2eba8703a97ccbf9b87743b61d564fab0e4a70d"
   },
@@ -52420,7 +52393,21 @@
       "1:1"
     ],
     "defectos": [],
-    "usada_en": [],
+    "usada_en": [
+      "/services/louvered-roofs/gainesville-fl",
+      "/services/louvered-roofs/ocala-fl",
+      "/services/louvered-roofs/palatka-fl",
+      "/services/louvered-roofs/cedar-key-fl",
+      "/services/louvered-roofs/mcintosh-fl",
+      "/services/louvered-roofs/hollywood-fl",
+      "/services/louvered-roofs/weston-fl",
+      "/services/louvered-roofs/dania-beach-fl",
+      "/services/louvered-roofs/west-palm-beach-fl",
+      "/services/louvered-roofs/boca-raton-fl",
+      "/services/louvered-roofs/delray-beach-fl",
+      "/services/louvered-roofs/gulf-stream-fl",
+      "/services/louvered-roofs/manalapan-fl"
+    ],
     "origen": "PICTURES/Senavia Picture /Pictures-22.jpg",
     "sha256": "b2ed3dec64a7c8847eecb4b08666664044f3e4cb836e6789c27a9cd8954b7e6b"
   },
@@ -52455,7 +52442,21 @@
       "1:1"
     ],
     "defectos": [],
-    "usada_en": [],
+    "usada_en": [
+      "/services/louvered-roofs/gainesville-fl",
+      "/services/louvered-roofs/ocala-fl",
+      "/services/louvered-roofs/palatka-fl",
+      "/services/louvered-roofs/cedar-key-fl",
+      "/services/louvered-roofs/mcintosh-fl",
+      "/services/louvered-roofs/hollywood-fl",
+      "/services/louvered-roofs/weston-fl",
+      "/services/louvered-roofs/dania-beach-fl",
+      "/services/louvered-roofs/west-palm-beach-fl",
+      "/services/louvered-roofs/boca-raton-fl",
+      "/services/louvered-roofs/delray-beach-fl",
+      "/services/louvered-roofs/gulf-stream-fl",
+      "/services/louvered-roofs/manalapan-fl"
+    ],
     "origen": "PICTURES/Senavia Picture /Pictures-23.jpg",
     "sha256": "1b261e834fa42aaf9d46dfbfa0073e34ae7bb615fd42f73690e3ff269d31cd06"
   },

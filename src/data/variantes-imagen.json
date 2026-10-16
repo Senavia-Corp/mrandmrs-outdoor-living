@@ -8167,6 +8167,71 @@
      "/images/banco/pergolas/gray-aluminum-pergola-translucent-roof-french-doors-florida-01-mm1024.webp"
     ]
    ]
+  },
+  "/images/banco/louvered/bronze-louvered-pergola-corner-housing-detail-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/louvered/bronze-louvered-pergola-corner-housing-detail-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/louvered/bronze-louvered-pergola-corner-housing-detail-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/louvered/louvered-roof-linear-actuator-motor-beam-detail-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/louvered/louvered-roof-linear-actuator-motor-beam-detail-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/louvered/louvered-roof-linear-actuator-motor-beam-detail-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/louvered/louvered-roof-open-blades-pivot-mechanism-detail-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/louvered/louvered-roof-open-blades-pivot-mechanism-detail-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/louvered/louvered-roof-open-blades-pivot-mechanism-detail-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/louvered/white-louvered-roof-corner-post-detail-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/louvered/white-louvered-roof-corner-post-detail-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/louvered/white-louvered-roof-corner-post-detail-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/louvered/white-motorized-louvered-pergola-patio-dining-pool-florida-01.webp": {
+   "ancho": 1200,
+   "variantes": [
+    [
+     640,
+     "/images/banco/louvered/white-motorized-louvered-pergola-patio-dining-pool-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/louvered/white-motorized-louvered-pergola-patio-dining-pool-florida-01-mm1024.webp"
+    ]
+   ]
   }
  },
  "lcp": {
@@ -9510,6 +9575,16 @@
    [
     1024,
     "/images/banco/pergolas/freestanding-pergola-poolside-lounge-seating-hedge-florida-01-lcp1024.avif"
+   ]
+  ],
+  "/images/banco/louvered/white-motorized-louvered-pergola-patio-dining-pool-florida-01.webp": [
+   [
+    800,
+    "/images/banco/louvered/white-motorized-louvered-pergola-patio-dining-pool-florida-01-lcp800.avif"
+   ],
+   [
+    1024,
+    "/images/banco/louvered/white-motorized-louvered-pergola-patio-dining-pool-florida-01-lcp1024.avif"
    ]
   ]
  },

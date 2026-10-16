@@ -392,13 +392,13 @@
         "_proyecto": "obra-034"
       },
       {
-        "src": "/images/banco/louvered/louvered-pergola-frames-condo-pool-terrace-florida-02.webp",
-        "alt": "Rooftop terrace with white pergola frames under assembly and planters in the foreground.",
+        "src": "/images/banco/louvered/louvered-roof-linear-actuator-motor-beam-detail-florida-01.webp",
+        "alt": "Linear actuator motor mounted on a white louvered roof beam, the open blades against a blue sky",
         "ancho": 1600,
-        "alto": 1200,
+        "alto": 1067,
         "pos": "50% 50%",
-        "_banco": "bi-0650",
-        "_proyecto": "obra-050"
+        "_banco": "bi-1545",
+        "_proyecto": null
       },
       {
         "src": "/images/banco/louvered/louvered-pergola-outdoor-kitchen-bar-marble-lake-florida-01.webp",
@@ -419,13 +419,13 @@
         "_proyecto": "obra-059"
       },
       {
-        "src": "/images/banco/louvered/louvered-roof-closed-louvers-underside-detail-florida-01.webp",
-        "alt": "Underside of a white louvered roof with louvers closed, wall lights on the left.",
+        "src": "/images/banco/louvered/louvered-roof-open-blades-pivot-mechanism-detail-florida-01.webp",
+        "alt": "Open white louvered roof blades and their pivot mechanism on a bronze beam, with tropical foliage behind",
         "ancho": 1600,
         "alto": 1200,
         "pos": "50% 50%",
-        "_banco": "bi-0646",
-        "_proyecto": "obra-050"
+        "_banco": "bi-1546",
+        "_proyecto": null
       },
       {
         "src": "/images/banco/louvered/louvered-roof-blue-led-strips-night-florida-01.webp",
@@ -437,22 +437,22 @@
         "_proyecto": "obra-033"
       },
       {
-        "src": "/images/banco/louvered/louvered-pergola-row-condo-terrace-ocean-florida-01.webp",
-        "alt": "Row of finished white louvered pergolas along a condo terrace with ocean beyond.",
-        "ancho": 1125,
-        "alto": 850,
+        "src": "/images/banco/louvered/bronze-louvered-pergola-corner-housing-detail-florida-01.webp",
+        "alt": "Corner of a bronze aluminum louvered pergola with a white housing on top, against a blue sky",
+        "ancho": 1600,
+        "alto": 1067,
         "pos": "50% 50%",
-        "_banco": "bi-0655",
-        "_proyecto": "obra-050"
+        "_banco": "bi-1547",
+        "_proyecto": null
       },
       {
-        "src": "/images/banco/louvered/louvered-pergola-condo-rooftop-porcelain-deck-florida-01.webp",
-        "alt": "Finished white louvered pergolas at the edge of a porcelain-tiled condo rooftop.",
-        "ancho": 1125,
-        "alto": 933,
+        "src": "/images/banco/louvered/white-louvered-roof-corner-post-detail-florida-01.webp",
+        "alt": "Corner of a white aluminum louvered roof against a clear sky, with its bolted post and open blades.",
+        "ancho": 1600,
+        "alto": 1067,
         "pos": "50% 50%",
-        "_banco": "bi-0654",
-        "_proyecto": "obra-050"
+        "_banco": "bi-1299",
+        "_proyecto": null
       },
       {
         "src": "/images/banco/louvered/louvered-pergola-bronze-tennis-court-shade-florida-01.webp",

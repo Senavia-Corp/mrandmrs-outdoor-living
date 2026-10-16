@@ -175,6 +175,7 @@
   "lugar": {
     "_lee_esto": "D-204: donde se hizo la foto, por el GPS de su original (lo leyo el director con mdls; esa tabla no va a la rama publica y no guarda coordenadas). Solo ciudad o condado. El hero de una pagina por tabla anade «in <Ciudad>, FL» o «in <Condado> County» a su alt y a su pie SOLO si la pagina es de esa ciudad o de ese condado. Nada entra aqui sin esa tabla delante.",
     "bi-0661": { "condado": "broward-county-fl", "ciudad": "fort-lauderdale-fl" },
+    "bi-0225": { "condado": "broward-county-fl", "ciudad": "weston-fl" },
     "bi-1016": { "condado": "broward-county-fl", "ciudad": null }
   },
   "porServicio": {
@@ -221,6 +222,43 @@
       },
       "repetidas": {
         "palm-beach-county-fl": { "max": 2, "motivo": "calidad (D-206): 5 ciudades y 3 fotos que el juez aprueba como hero de pergolas" }
+      }
+    },
+    "louvered-roofs": {
+      "_lee_esto": "LOOP-AREAS L3: hero por tabla y seccion propia (`seccion.louvered-roofs`). Salen bi-0220 (reservada: es tesela), bi-0224 (coches) y bi-0235 (manguera, nevera); entran las que el juez prefiere en el recorte real: bi-0233, bi-1298 y bi-0225 (Weston, con su GPS: D-208). bi-0168 se queda donde estaba. Repetidas, declarado: calidad (D-206).",
+      "tabla": {
+        "boca-raton-fl": "bi-0168",
+        "cedar-key-fl": "bi-0233",
+        "dania-beach-fl": "bi-0233",
+        "delray-beach-fl": "bi-0225",
+        "gainesville-fl": "bi-0233",
+        "gulf-stream-fl": "bi-1298",
+        "hollywood-fl": "bi-1298",
+        "manalapan-fl": "bi-0168",
+        "mcintosh-fl": "bi-1298",
+        "ocala-fl": "bi-0233",
+        "palatka-fl": "bi-0225",
+        "west-palm-beach-fl": "bi-0233",
+        "weston-fl": "bi-0225"
+      },
+      "repetidas": {
+        "palm-beach-county-fl": { "max": 2, "motivo": "calidad (D-206): bi-0168 sigue en Boca Raton y Manalapan, como en la bolsa de antes" }
+      },
+      "seccionPorCiudad": {
+        "_lee_esto": "FAQ, cierre y resenas por ciudad: se quedan las que el juez da por buenas (bi-0233 4, bi-0168 y bi-0225 sin defecto) y salen bi-0220 (reservada, tesela), bi-0224, bi-0235 y bi-0236 (1-2). Entran bi-0652 (cierre, 4), bi-0233 y bi-1282.",
+        "boca-raton-fl": ["bi-0233", "bi-0652", "bi-0225"],
+        "cedar-key-fl": ["bi-1282", "bi-0225", "bi-0168"],
+        "dania-beach-fl": ["bi-0225", "bi-0652", "bi-1282"],
+        "delray-beach-fl": ["bi-0233", "bi-0652", "bi-1282"],
+        "gainesville-fl": ["bi-1282", "bi-0652", "bi-0168"],
+        "gulf-stream-fl": ["bi-0233", "bi-0168", "bi-0225"],
+        "hollywood-fl": ["bi-0168", "bi-0652", "bi-0233"],
+        "manalapan-fl": ["bi-0233", "bi-0652", "bi-0225"],
+        "mcintosh-fl": ["bi-1282", "bi-0225", "bi-0233"],
+        "ocala-fl": ["bi-0225", "bi-0652", "bi-1282"],
+        "palatka-fl": ["bi-0233", "bi-0652", "bi-1282"],
+        "west-palm-beach-fl": ["bi-1282", "bi-0652", "bi-0168"],
+        "weston-fl": ["bi-0233", "bi-0652", "bi-0168"]
       }
     }
   }
