@@ -2232,6 +2232,33 @@
      4000
     ]
    }
+  },
+  "/images/banco/louvered/louvered-pergola-freestanding-lounge-seating-hedge-florida-01.webp": {
+   "serv": {
+    "de": "/images/banco/louvered/louvered-pergola-freestanding-lounge-seating-hedge-florida-01.webp",
+    "origen": "Senavia Picture /Pictures-20.jpg",
+    "pos": "50% 55%",
+    "ratio": 1.5,
+    "fuentes": [
+     [
+      800,
+      "/images/banco/louvered/louvered-pergola-freestanding-lounge-seating-hedge-florida-01-serv800.avif"
+     ],
+     [
+      1200,
+      "/images/banco/louvered/louvered-pergola-freestanding-lounge-seating-hedge-florida-01-serv1200.avif"
+     ],
+     [
+      1530,
+      "/images/banco/louvered/louvered-pergola-freestanding-lounge-seating-hedge-florida-01-serv1530.avif"
+     ]
+    ],
+    "_hecha": "Senavia Picture /Pictures-20.jpg · 50% 55%",
+    "mide": [
+     4641,
+     3481
+    ]
+   }
   }
  }
 }

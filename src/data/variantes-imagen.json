@@ -8102,6 +8102,19 @@
      "/images/banco/pergolas/white-patio-cover-dark-beams-pool-deck-fence-palms-florida-01-mm1024.webp"
     ]
    ]
+  },
+  "/images/banco/louvered/louvered-pergola-freestanding-lounge-seating-hedge-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/louvered/louvered-pergola-freestanding-lounge-seating-hedge-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/louvered/louvered-pergola-freestanding-lounge-seating-hedge-florida-01-mm1024.webp"
+    ]
+   ]
   }
  },
  "lcp": {

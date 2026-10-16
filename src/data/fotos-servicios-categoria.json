@@ -45,19 +45,12 @@
     }
   },
   "louvered": {
-    "foto": "/images/obra/obra-033/louvered-roof-white-large-span-travertine-patio-florida-full.avif",
-    "alt": "Large white louvered roof with partly open blades over a travertine patio with wicker lounge furniture",
-    "ancho": 1500,
-    "alto": 800,
-    "pos": "50% 40%",
-    "_banco": "bi-0233",
-    "_ajuste": {
-      "recorte": "750/400",
-      "pos": "50% 40%",
-      "ancho": 1500,
-      "q": 50,
-      "de": "/images/banco/louvered/louvered-roof-white-large-span-travertine-patio-florida-01.webp"
-    }
+    "foto": "/images/banco/louvered/louvered-pergola-freestanding-lounge-seating-hedge-florida-01.webp",
+    "alt": "Freestanding louvered pergola with open blades casting striped shade over a lounge set in front of a tall hedge.",
+    "ancho": 1600,
+    "alto": 1200,
+    "pos": "50% 55%",
+    "_banco": "bi-1277"
   },
   "pole": {
     "foto": "/images/obra/suelta/pole-barn-narrow-open-shelter-new-wood-posts-florida-full.avif",
