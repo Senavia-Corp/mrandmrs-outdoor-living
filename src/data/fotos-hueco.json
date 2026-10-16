@@ -2259,6 +2259,33 @@
      3481
     ]
    }
+  },
+  "/images/banco/kitchens/outdoor-kitchen-built-in-grill-pizza-oven-white-slat-wall-florida-01.webp": {
+   "hero": {
+    "de": "/images/banco/kitchens/outdoor-kitchen-built-in-grill-pizza-oven-white-slat-wall-florida-01.webp",
+    "origen": "Senavia Picture /Pictures-19.jpg",
+    "pos": "50% 50%",
+    "ratio": 1.3333,
+    "fuentes": [
+     [
+      960,
+      "/images/banco/kitchens/outdoor-kitchen-built-in-grill-pizza-oven-white-slat-wall-florida-01-hero960.avif"
+     ],
+     [
+      1280,
+      "/images/banco/kitchens/outdoor-kitchen-built-in-grill-pizza-oven-white-slat-wall-florida-01-hero1280.avif"
+     ],
+     [
+      1600,
+      "/images/banco/kitchens/outdoor-kitchen-built-in-grill-pizza-oven-white-slat-wall-florida-01-hero1600.avif"
+     ]
+    ],
+    "_hecha": "Senavia Picture /Pictures-19.jpg · 50% 50%",
+    "mide": [
+     5666,
+     3777
+    ]
+   }
   }
  }
 }

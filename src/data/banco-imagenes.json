@@ -17563,17 +17563,7 @@
       "/blogs/outdoor-kitchen-layout-guide",
       "/gallery",
       "/gallery/outdoor-kitchens",
-      "/project/luxury-pool-raised-spa-travertine-deck-south-florida",
-      "/services/outdoor-kitchens/gainesville-fl",
-      "/services/outdoor-kitchens/ocala-fl",
-      "/services/outdoor-kitchens/palatka-fl",
-      "/services/outdoor-kitchens/cedar-key-fl",
-      "/services/outdoor-kitchens/mcintosh-fl",
-      "/services/outdoor-kitchens/hollywood-fl",
-      "/services/outdoor-kitchens/dania-beach-fl",
-      "/services/outdoor-kitchens/delray-beach-fl",
-      "/services/outdoor-kitchens/gulf-stream-fl",
-      "/services/outdoor-kitchens/manalapan-fl"
+      "/project/luxury-pool-raised-spa-travertine-deck-south-florida"
     ],
     "origen": "NEW JOBS CONSTRUCTION/Brier/IMG_3833.JPEG",
     "sha256": "54ca9fca84442b17a2ebd369587ad226e8e2f9ab75f954966ab6f0e70d285a15"
@@ -19495,18 +19485,7 @@
       "camioneta al fondo (matrícula no legible)",
       "caja de cartón bajo la isla"
     ],
-    "usada_en": [
-      "/services/outdoor-kitchens/gainesville-fl",
-      "/services/outdoor-kitchens/ocala-fl",
-      "/services/outdoor-kitchens/palatka-fl",
-      "/services/outdoor-kitchens/cedar-key-fl",
-      "/services/outdoor-kitchens/mcintosh-fl",
-      "/services/outdoor-kitchens/hollywood-fl",
-      "/services/outdoor-kitchens/dania-beach-fl",
-      "/services/outdoor-kitchens/delray-beach-fl",
-      "/services/outdoor-kitchens/gulf-stream-fl",
-      "/services/outdoor-kitchens/manalapan-fl"
-    ],
+    "usada_en": [],
     "origen": "NEW JOBS CONSTRUCTION/Curtis/kitchen curtis build granite.jpeg",
     "sha256": "e4b19230dccf83d75aacfb6a3933a0aea317811c5db09120470909372469bbe0"
   },
@@ -19573,18 +19552,7 @@
     "defectos": [
       "marcas del fabricante visibles en los tableros de la cocina"
     ],
-    "usada_en": [
-      "/services/outdoor-kitchens/gainesville-fl",
-      "/services/outdoor-kitchens/ocala-fl",
-      "/services/outdoor-kitchens/palatka-fl",
-      "/services/outdoor-kitchens/cedar-key-fl",
-      "/services/outdoor-kitchens/mcintosh-fl",
-      "/services/outdoor-kitchens/hollywood-fl",
-      "/services/outdoor-kitchens/dania-beach-fl",
-      "/services/outdoor-kitchens/delray-beach-fl",
-      "/services/outdoor-kitchens/gulf-stream-fl",
-      "/services/outdoor-kitchens/manalapan-fl"
-    ],
+    "usada_en": [],
     "origen": "NEW JOBS CONSTRUCTION/Curtis/kitchen curtis building.jpeg",
     "sha256": "f3384094fdf43f484d808105c1276931be97ad5f6f3e25be2392e6503493cacd"
   },
@@ -22539,7 +22507,17 @@
       "/services/louvered-roofs/boca-raton-fl",
       "/services/louvered-roofs/delray-beach-fl",
       "/services/louvered-roofs/gulf-stream-fl",
-      "/services/louvered-roofs/manalapan-fl"
+      "/services/louvered-roofs/manalapan-fl",
+      "/services/outdoor-kitchens/gainesville-fl",
+      "/services/outdoor-kitchens/ocala-fl",
+      "/services/outdoor-kitchens/palatka-fl",
+      "/services/outdoor-kitchens/cedar-key-fl",
+      "/services/outdoor-kitchens/mcintosh-fl",
+      "/services/outdoor-kitchens/hollywood-fl",
+      "/services/outdoor-kitchens/dania-beach-fl",
+      "/services/outdoor-kitchens/delray-beach-fl",
+      "/services/outdoor-kitchens/gulf-stream-fl",
+      "/services/outdoor-kitchens/manalapan-fl"
     ],
     "origen": "NEW JOBS CONSTRUCTION/FOTOS DE TODO/IMG_1351.JPG",
     "sha256": "3ae1ebfb15451e6965d8e933494a7bfd4e3ff4c41e9215d911562a649bf17746",
@@ -27486,17 +27464,7 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/outdoor-kitchens",
-      "/services/outdoor-kitchens/gainesville-fl",
-      "/services/outdoor-kitchens/ocala-fl",
-      "/services/outdoor-kitchens/palatka-fl",
-      "/services/outdoor-kitchens/cedar-key-fl",
-      "/services/outdoor-kitchens/mcintosh-fl",
-      "/services/outdoor-kitchens/hollywood-fl",
-      "/services/outdoor-kitchens/dania-beach-fl",
-      "/services/outdoor-kitchens/delray-beach-fl",
-      "/services/outdoor-kitchens/gulf-stream-fl",
-      "/services/outdoor-kitchens/manalapan-fl"
+      "/gallery/outdoor-kitchens"
     ],
     "origen": "OUTDOOR KICTCHEN/20251015_131940877_iOS.jpg",
     "sha256": "b701090cadf6c6ff972fa50a16238e2c5058080e9562889f404c38529d6d5bb3"
@@ -27774,18 +27742,7 @@
     "defectos": [
       "parrilla con plástico protector"
     ],
-    "usada_en": [
-      "/services/outdoor-kitchens/gainesville-fl",
-      "/services/outdoor-kitchens/ocala-fl",
-      "/services/outdoor-kitchens/palatka-fl",
-      "/services/outdoor-kitchens/cedar-key-fl",
-      "/services/outdoor-kitchens/mcintosh-fl",
-      "/services/outdoor-kitchens/hollywood-fl",
-      "/services/outdoor-kitchens/dania-beach-fl",
-      "/services/outdoor-kitchens/delray-beach-fl",
-      "/services/outdoor-kitchens/gulf-stream-fl",
-      "/services/outdoor-kitchens/manalapan-fl"
-    ],
+    "usada_en": [],
     "origen": "OUTDOOR KICTCHEN/695677DA-A220-4433-A643-4BDC7CF8996D.jpg",
     "sha256": "95f671f429f0de3642665adac6ee2f0ec5129757743e02867f29f4d344f1f324"
   },
@@ -27955,17 +27912,7 @@
     "usada_en": [
       "/gallery",
       "/gallery/outdoor-kitchens",
-      "megamenu",
-      "/services/outdoor-kitchens/gainesville-fl",
-      "/services/outdoor-kitchens/ocala-fl",
-      "/services/outdoor-kitchens/palatka-fl",
-      "/services/outdoor-kitchens/cedar-key-fl",
-      "/services/outdoor-kitchens/mcintosh-fl",
-      "/services/outdoor-kitchens/hollywood-fl",
-      "/services/outdoor-kitchens/dania-beach-fl",
-      "/services/outdoor-kitchens/delray-beach-fl",
-      "/services/outdoor-kitchens/gulf-stream-fl",
-      "/services/outdoor-kitchens/manalapan-fl"
+      "megamenu"
     ],
     "origen": "OUTDOOR KICTCHEN/IMG_0049.jpg",
     "sha256": "65d00b2e24e92fe83f7bdbb4091cc4c564d4b53e33f974d3d819d84bdf7ea296",
@@ -28891,7 +28838,17 @@
       "/blogs/outdoor-kitchen-layout-guide",
       "/gallery",
       "/gallery/outdoor-kitchens",
-      "/services/outdoor-kitchens"
+      "/services/outdoor-kitchens",
+      "/services/outdoor-kitchens/gainesville-fl",
+      "/services/outdoor-kitchens/ocala-fl",
+      "/services/outdoor-kitchens/palatka-fl",
+      "/services/outdoor-kitchens/cedar-key-fl",
+      "/services/outdoor-kitchens/mcintosh-fl",
+      "/services/outdoor-kitchens/hollywood-fl",
+      "/services/outdoor-kitchens/dania-beach-fl",
+      "/services/outdoor-kitchens/delray-beach-fl",
+      "/services/outdoor-kitchens/gulf-stream-fl",
+      "/services/outdoor-kitchens/manalapan-fl"
     ],
     "origen": "OUTDOOR KICTCHEN/PHOTO-2021-10-11-09-36-28.jpg",
     "sha256": "ae9cc6c75ed29a388c4c499cb93b71cd69340efd04b257ee4e06d9d602ae8f68",
@@ -29081,7 +29038,17 @@
     ],
     "usada_en": [
       "/gallery",
-      "/gallery/outdoor-kitchens"
+      "/gallery/outdoor-kitchens",
+      "/services/outdoor-kitchens/gainesville-fl",
+      "/services/outdoor-kitchens/ocala-fl",
+      "/services/outdoor-kitchens/palatka-fl",
+      "/services/outdoor-kitchens/cedar-key-fl",
+      "/services/outdoor-kitchens/mcintosh-fl",
+      "/services/outdoor-kitchens/hollywood-fl",
+      "/services/outdoor-kitchens/dania-beach-fl",
+      "/services/outdoor-kitchens/delray-beach-fl",
+      "/services/outdoor-kitchens/gulf-stream-fl",
+      "/services/outdoor-kitchens/manalapan-fl"
     ],
     "origen": "OUTDOOR KICTCHEN/PHOTO-2021-10-11-09-36-32.jpg",
     "sha256": "f2bc08c05247aada4234c064ea7ef8cf6b9d142540fc7ecd7862b4d9a7d00ce2"
@@ -30438,7 +30405,17 @@
       "hojas en el suelo"
     ],
     "usada_en": [
-      "/blogs/outdoor-kitchen-layout-guide"
+      "/blogs/outdoor-kitchen-layout-guide",
+      "/services/outdoor-kitchens/gainesville-fl",
+      "/services/outdoor-kitchens/ocala-fl",
+      "/services/outdoor-kitchens/palatka-fl",
+      "/services/outdoor-kitchens/cedar-key-fl",
+      "/services/outdoor-kitchens/mcintosh-fl",
+      "/services/outdoor-kitchens/hollywood-fl",
+      "/services/outdoor-kitchens/dania-beach-fl",
+      "/services/outdoor-kitchens/delray-beach-fl",
+      "/services/outdoor-kitchens/gulf-stream-fl",
+      "/services/outdoor-kitchens/manalapan-fl"
     ],
     "origen": "OUTDOOR KICTCHEN/briar.jpg",
     "sha256": "b7a6f51439e477b029d34921e5953817e6f4f5334d3576abd8101516d2d7022d"
@@ -30563,7 +30540,17 @@
     "usada_en": [
       "/blogs/outdoor-kitchen-appliance-decisions",
       "/gallery",
-      "/gallery/outdoor-kitchens"
+      "/gallery/outdoor-kitchens",
+      "/services/outdoor-kitchens/gainesville-fl",
+      "/services/outdoor-kitchens/ocala-fl",
+      "/services/outdoor-kitchens/palatka-fl",
+      "/services/outdoor-kitchens/cedar-key-fl",
+      "/services/outdoor-kitchens/mcintosh-fl",
+      "/services/outdoor-kitchens/hollywood-fl",
+      "/services/outdoor-kitchens/dania-beach-fl",
+      "/services/outdoor-kitchens/delray-beach-fl",
+      "/services/outdoor-kitchens/gulf-stream-fl",
+      "/services/outdoor-kitchens/manalapan-fl"
     ],
     "origen": "OUTDOOR KICTCHEN/edff9bb7-c100-4f9c-9a5b-2b7ec8179085 2.jpg",
     "sha256": "b3a06771a6285c34e2941c46754eb0789b2bdbeb5b9abf59fc0d65c171cc00de"
@@ -32251,7 +32238,17 @@
       "/services/pergola-builders/boca-raton-fl",
       "/services/pergola-builders/delray-beach-fl",
       "/services/pergola-builders/gulf-stream-fl",
-      "/services/pergola-builders/manalapan-fl"
+      "/services/pergola-builders/manalapan-fl",
+      "/services/outdoor-kitchens/gainesville-fl",
+      "/services/outdoor-kitchens/ocala-fl",
+      "/services/outdoor-kitchens/palatka-fl",
+      "/services/outdoor-kitchens/cedar-key-fl",
+      "/services/outdoor-kitchens/mcintosh-fl",
+      "/services/outdoor-kitchens/hollywood-fl",
+      "/services/outdoor-kitchens/dania-beach-fl",
+      "/services/outdoor-kitchens/delray-beach-fl",
+      "/services/outdoor-kitchens/gulf-stream-fl",
+      "/services/outdoor-kitchens/manalapan-fl"
     ],
     "origen": "PERGOLA - KITCHEN/PHOTO-2021-10-11-09-36-32 3.jpeg",
     "sha256": "86994d689e1d1d81c5471e2aad7b272023e051cb7262a0c54ddfc95f9c3404df"

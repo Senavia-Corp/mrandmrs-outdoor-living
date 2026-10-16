@@ -586,31 +586,31 @@
         "_proyecto": "obra-077"
       },
       {
-        "src": "/images/banco/kitchens/outdoor-kitchen-white-stucco-black-granite-grill-florida-01.webp",
-        "alt": "White stucco outdoor kitchen with black granite countertop and a built-in grill still wrapped.",
-        "ancho": 1440,
-        "alto": 1440,
-        "pos": "50% 50%",
-        "_banco": "bi-0767",
-        "_proyecto": "obra-070"
-      },
-      {
-        "src": "/images/banco/kitchens/outdoor-kitchen-marble-waterfall-kamado-grill-florida-01.webp",
-        "alt": "U-shaped outdoor kitchen with marble waterfall counters and a kamado grill under a patio cover.",
-        "ancho": 1199,
-        "alto": 899,
-        "pos": "50% 50%",
-        "_banco": "bi-0760",
-        "_proyecto": "obra-069"
-      },
-      {
-        "src": "/images/banco/kitchens/outdoor-kitchen-granite-waterfall-counter-grill-florida-01.webp",
-        "alt": "Outdoor kitchen with granite waterfall countertop, built-in grill and undercounter fridge on a stone patio.",
+        "src": "/images/banco/kitchens/outdoor-kitchen-gray-tile-granite-pergola-florida-01.webp",
+        "alt": "U-shaped outdoor kitchen with gray tile, granite countertop and grill under a pergola.",
         "ancho": 1600,
         "alto": 1200,
         "pos": "50% 50%",
-        "_banco": "bi-0503",
-        "_proyecto": "obra-046"
+        "_banco": "bi-0797",
+        "_proyecto": "obra-076"
+      },
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-wood-slat-cabinets-stainless-doors-florida-01.webp",
+        "alt": "Outdoor kitchen with vertical wood slat cladding, stainless grill, side burner and access doors.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0793",
+        "_proyecto": "obra-074"
+      },
+      {
+        "src": "/images/banco/louvered/louvered-pergola-outdoor-kitchen-stacked-stone-florida-01.webp",
+        "alt": "White louvered pergola covering an outdoor kitchen with stacked stone island and lounge seating.",
+        "ancho": 1280,
+        "alto": 960,
+        "pos": "50% 50%",
+        "_banco": "bi-0632",
+        "_proyecto": "obra-059"
       },
       {
         "src": "/images/banco/kitchens/outdoor-kitchen-pizza-oven-grill-louvered-roof-florida-01.webp",
@@ -622,31 +622,31 @@
         "_proyecto": "obra-066"
       },
       {
-        "src": "/images/banco/kitchens/outdoor-kitchen-white-stacked-stone-lake-florida-01.webp",
-        "alt": "L-shaped outdoor kitchen in white stacked stone with built-in grill, sink and lake view.",
+        "src": "/images/banco/pergolas/white-pergola-outdoor-kitchen-wood-cabinets-deck-florida-01.webp",
+        "alt": "White pergola over an outdoor kitchen with wood-look cabinets and wine fridge on a composite deck.",
         "ancho": 1600,
         "alto": 1200,
         "pos": "50% 50%",
-        "_banco": "bi-0771",
-        "_proyecto": "obra-071"
+        "_banco": "bi-0897",
+        "_proyecto": "obra-081"
       },
       {
-        "src": "/images/banco/kitchens/outdoor-kitchen-under-louvered-pergola-construction-florida-01.webp",
-        "alt": "Outdoor kitchen islands with quartz tops and grill being built under a dark louvered pergola.",
-        "ancho": 1200,
-        "alto": 1600,
+        "src": "/images/banco/kitchens/outdoor-kitchen-wood-slat-cabinets-tv-lanai-florida-01.webp",
+        "alt": "Long wood slat outdoor kitchen with grill, beverage fridges and wall TV under a large ceiling fan.",
+        "ancho": 1600,
+        "alto": 1200,
         "pos": "50% 50%",
-        "_banco": "bi-0548",
-        "_proyecto": "obra-048"
+        "_banco": "bi-0843",
+        "_proyecto": "obra-074"
       },
       {
-        "src": "/images/banco/kitchens/outdoor-kitchen-grill-island-quartz-countertop-florida-01.webp",
-        "alt": "L-shaped outdoor kitchen island with built-in grill and quartz countertop in progress.",
-        "ancho": 1200,
-        "alto": 1600,
+        "src": "/images/banco/kitchens/outdoor-kitchen-granite-waterfall-grill-ice-maker-florida-01.webp",
+        "alt": "L-shaped stucco outdoor kitchen with granite waterfall end, grill, ice maker and fridge.",
+        "ancho": 1024,
+        "alto": 768,
         "pos": "50% 50%",
-        "_banco": "bi-0550",
-        "_proyecto": "obra-048"
+        "_banco": "bi-0840",
+        "_proyecto": null
       },
       {
         "src": "/images/banco/kitchens/outdoor-kitchen-louvered-pergola-poolside-florida-01.webp",

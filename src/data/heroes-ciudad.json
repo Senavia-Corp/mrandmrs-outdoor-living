@@ -260,6 +260,34 @@
         "west-palm-beach-fl": ["bi-1282", "bi-0652", "bi-0168"],
         "weston-fl": ["bi-0233", "bi-0652", "bi-0168"]
       }
+    },
+    "outdoor-kitchens": {
+      "_lee_esto": "LOOP-AREAS L4: hero por tabla, con la cocina de foco (D-220): bi-0768 (barra de marmol con taburetes) y bi-1276 (cocina con muro de listones), las que el juez prefiere en el recorte real; bi-0503 se queda en Delray Beach y Palatka. Salen bi-0479 y bi-0480 (trapos y cajas), bi-0509, bi-0781 (flotador) y bi-0783. bi-0761 (marmol en U, 4) solo en el cierre: su original mide 1201 px y como hero se queda a 1,39x.",
+      "tabla": {
+        "cedar-key-fl": "bi-0768",
+        "dania-beach-fl": "bi-1276",
+        "delray-beach-fl": "bi-0503",
+        "gainesville-fl": "bi-1276",
+        "gulf-stream-fl": "bi-1276",
+        "hollywood-fl": "bi-0768",
+        "manalapan-fl": "bi-0768",
+        "mcintosh-fl": "bi-0768",
+        "ocala-fl": "bi-1276",
+        "palatka-fl": "bi-0503"
+      },
+      "seccionPorCiudad": {
+        "_lee_esto": "FAQ, cierre y resenas por ciudad: se quedan bi-0771 (4) y bi-0503 (3) donde estaban; entran bi-0761 en el cierre (4) y bi-1296 y bi-1276 donde habia un 1 o un 2. bi-0771 no va con el hero bi-0768: es la misma casa. En resenas solo 4:3: en movil esa caja crece con la foto y una 3:2 cambiaria el alto de la pagina; bi-1276 (3:2) va en la FAQ.",
+        "cedar-key-fl": ["bi-1276", "bi-0761", "bi-1296"],
+        "dania-beach-fl": ["bi-0503", "bi-0761", "bi-0771"],
+        "delray-beach-fl": ["bi-1276", "bi-0771", "bi-1296"],
+        "gainesville-fl": ["bi-0771", "bi-0761", "bi-1296"],
+        "gulf-stream-fl": ["bi-0771", "bi-0761", "bi-1296"],
+        "hollywood-fl": ["bi-1276", "bi-0761", "bi-1296"],
+        "manalapan-fl": ["bi-1296", "bi-0761", "bi-0503"],
+        "mcintosh-fl": ["bi-1276", "bi-0761", "bi-1296"],
+        "ocala-fl": ["bi-0503", "bi-0761", "bi-0771"],
+        "palatka-fl": ["bi-1276", "bi-0771", "bi-1296"]
+      }
     }
   }
 }

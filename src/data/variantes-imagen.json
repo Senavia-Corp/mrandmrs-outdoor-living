@@ -8232,6 +8232,28 @@
      "/images/banco/louvered/white-motorized-louvered-pergola-patio-dining-pool-florida-01-mm1024.webp"
     ]
    ]
+  },
+  "/images/banco/kitchens/outdoor-kitchen-built-in-grill-pizza-oven-white-slat-wall-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/kitchens/outdoor-kitchen-built-in-grill-pizza-oven-white-slat-wall-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/kitchens/outdoor-kitchen-built-in-grill-pizza-oven-white-slat-wall-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/kitchens/outdoor-kitchen-granite-waterfall-grill-ice-maker-florida-01.webp": {
+   "ancho": 1024,
+   "variantes": [
+    [
+     640,
+     "/images/banco/kitchens/outdoor-kitchen-granite-waterfall-grill-ice-maker-florida-01-mm640.webp"
+    ]
+   ]
   }
  },
  "lcp": {
@@ -9585,6 +9607,26 @@
    [
     1024,
     "/images/banco/louvered/white-motorized-louvered-pergola-patio-dining-pool-florida-01-lcp1024.avif"
+   ]
+  ],
+  "/images/banco/kitchens/outdoor-kitchen-built-in-grill-pizza-oven-white-slat-wall-florida-01.webp": [
+   [
+    800,
+    "/images/banco/kitchens/outdoor-kitchen-built-in-grill-pizza-oven-white-slat-wall-florida-01-lcp800.avif"
+   ],
+   [
+    1024,
+    "/images/banco/kitchens/outdoor-kitchen-built-in-grill-pizza-oven-white-slat-wall-florida-01-lcp1024.avif"
+   ]
+  ],
+  "/images/banco/louvered/louvered-pergola-outdoor-kitchen-bar-marble-lake-florida-01.webp": [
+   [
+    800,
+    "/images/banco/louvered/louvered-pergola-outdoor-kitchen-bar-marble-lake-florida-01-lcp800.avif"
+   ],
+   [
+    1024,
+    "/images/banco/louvered/louvered-pergola-outdoor-kitchen-bar-marble-lake-florida-01-lcp1024.avif"
    ]
   ]
  },
