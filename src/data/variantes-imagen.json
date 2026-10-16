@@ -8115,6 +8115,58 @@
      "/images/banco/louvered/louvered-pergola-freestanding-lounge-seating-hedge-florida-01-mm1024.webp"
     ]
    ]
+  },
+  "/images/banco/kitchens/outdoor-kitchen-dark-slat-pergola-stucco-grill-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/kitchens/outdoor-kitchen-dark-slat-pergola-stucco-grill-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/kitchens/outdoor-kitchen-dark-slat-pergola-stucco-grill-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/covered-lanai-white-insulated-roof-dark-posts-pool-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/covered-lanai-white-insulated-roof-dark-posts-pool-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/covered-lanai-white-insulated-roof-dark-posts-pool-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/freestanding-pergola-poolside-lounge-seating-hedge-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/freestanding-pergola-poolside-lounge-seating-hedge-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/freestanding-pergola-poolside-lounge-seating-hedge-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/gray-aluminum-pergola-translucent-roof-french-doors-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/gray-aluminum-pergola-translucent-roof-french-doors-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/gray-aluminum-pergola-translucent-roof-french-doors-florida-01-mm1024.webp"
+    ]
+   ]
   }
  },
  "lcp": {
@@ -9448,6 +9500,16 @@
    [
     1024,
     "/images/banco/remodeling/pool-remodeling-travertine-deck-rock-landscaping-florida-01-lcp1024.avif"
+   ]
+  ],
+  "/images/banco/pergolas/freestanding-pergola-poolside-lounge-seating-hedge-florida-01.webp": [
+   [
+    800,
+    "/images/banco/pergolas/freestanding-pergola-poolside-lounge-seating-hedge-florida-01-lcp800.avif"
+   ],
+   [
+    1024,
+    "/images/banco/pergolas/freestanding-pergola-poolside-lounge-seating-hedge-florida-01-lcp1024.avif"
    ]
   ]
  },

@@ -277,13 +277,13 @@
         "_proyecto": "obra-108"
       },
       {
-        "src": "/images/banco/pergolas/modern-insulated-patio-cover-black-fascia-gray-house-florida-01.webp",
-        "alt": "Black-fascia flat insulated patio cover with slatted privacy panel on a gray stucco house over a travertine patio",
-        "ancho": 1600,
-        "alto": 1200,
+        "src": "/images/banco/pergolas/freestanding-pergola-dark-bronze-pool-spa-canal-florida-01.webp",
+        "alt": "Dark bronze freestanding lattice pergola over a blue-tiled spa with canal and palms behind",
+        "ancho": 1440,
+        "alto": 812,
         "pos": "50% 50%",
-        "_banco": "bi-1056",
-        "_proyecto": null
+        "_banco": "bi-1038",
+        "_proyecto": "obra-100"
       },
       {
         "src": "/images/banco/pergolas/freestanding-pergola-dark-bronze-turf-pool-florida-01.webp",
@@ -313,13 +313,13 @@
         "_proyecto": "obra-101"
       },
       {
-        "src": "/images/banco/pergolas/insulated-aluminum-patio-cover-white-dusk-florida-01.webp",
-        "alt": "White insulated aluminum patio cover attached to a white house at dusk with palm trees and path lights",
-        "ancho": 1440,
-        "alto": 1080,
+        "src": "/images/banco/kitchens/outdoor-kitchen-dark-slat-pergola-stucco-grill-florida-01.webp",
+        "alt": "Dark aluminum slat pergola with a privacy screen over a stucco outdoor kitchen with a built-in grill.",
+        "ancho": 1600,
+        "alto": 1200,
         "pos": "50% 50%",
-        "_banco": "bi-0916",
-        "_proyecto": null
+        "_banco": "bi-1296",
+        "_proyecto": "obra-117"
       },
       {
         "src": "/images/banco/pergolas/insulated-patio-cover-black-frame-loungers-lawn-florida-01.webp",
@@ -331,31 +331,31 @@
         "_proyecto": "obra-088"
       },
       {
-        "src": "/images/banco/pergolas/freestanding-insulated-pergola-white-travertine-florida-01.webp",
-        "alt": "Underside of a white freestanding insulated pergola with square rafter tails over a travertine patio",
-        "ancho": 1440,
-        "alto": 1083,
+        "src": "/images/banco/kitchens/outdoor-kitchen-marble-waterfall-patio-cover-florida-01.webp",
+        "alt": "Marble waterfall outdoor kitchen under an insulated patio cover with black posts.",
+        "ancho": 1201,
+        "alto": 902,
         "pos": "50% 50%",
-        "_banco": "bi-0984",
-        "_proyecto": "obra-094"
+        "_banco": "bi-0761",
+        "_proyecto": "obra-069"
       },
       {
-        "src": "/images/banco/pergolas/gable-insulated-patio-cover-dark-frame-travertine-florida-02.webp",
-        "alt": "Side view under a dark-framed gable patio cover over a travertine patio with a white fence",
-        "ancho": 1440,
-        "alto": 1081,
-        "pos": "50% 50%",
-        "_banco": "bi-0923",
-        "_proyecto": "obra-085"
-      },
-      {
-        "src": "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-french-door-florida-01.webp",
-        "alt": "Brown insulated patio cover with scalloped rafter tails over French doors on a yellow stucco house",
+        "src": "/images/banco/pergolas/white-pergola-outdoor-kitchen-wood-cabinets-deck-florida-01.webp",
+        "alt": "White pergola over an outdoor kitchen with wood-look cabinets and wine fridge on a composite deck.",
         "ancho": 1600,
         "alto": 1200,
         "pos": "50% 50%",
-        "_banco": "bi-1006",
-        "_proyecto": "obra-096"
+        "_banco": "bi-0897",
+        "_proyecto": "obra-081"
+      },
+      {
+        "src": "/images/banco/pergolas/gray-aluminum-pergola-translucent-roof-french-doors-florida-01.webp",
+        "alt": "Gray aluminum pergola with a translucent roof over a patio with French doors and wicker chairs.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-1306",
+        "_proyecto": null
       }
     ],
     "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"

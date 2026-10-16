@@ -157,7 +157,8 @@
       "bi-1014",
       "bi-0614",
       "bi-1057"
-    ]
+    ],
+    "pergola-builders": ["bi-0842", "bi-1282", "bi-0759", "bi-1294"]
   },
   "condados": {
     "_lee_esto": "E13 etapa 3: el hero de la pagina de cada condado. Ninguno es el de una de sus ciudades (`heroe-ciudad.mjs` lo comprueba con la misma regla). Broward y Palm Beach llevan bi-0661 y bi-0662, de region south_fl en el banco, que sus ciudades no usan; Marion, bi-0520 (obra a ~29 km de Ocala por GPS, probable y no verificada: el alt no lo dice).",
@@ -199,6 +200,27 @@
       "repetidas": {
         "palm-beach-county-fl": { "max": 2, "motivo": "6 ciudades y 3 fotos de reforma terminada que se distinguen (bi-0520 es casi igual a bi-0521 y sale en el indice de servicios de todas)" },
         "broward-county-fl": { "max": 2, "motivo": "4 ciudades y las mismas 3 fotos" }
+      }
+    },
+    "pergola-builders": {
+      "_lee_esto": "LOOP-AREAS L2 (D-226): hero por tabla y seccion desacoplada (`seccion.pergola-builders`). Solo las que el juez a ciegas aprueba en el recorte real como hero (4:5 de escritorio y franja de movil): bi-1273, bi-0842 y bi-0759. Las tres se repiten entre ciudades, declarado: calidad (D-206).",
+      "tabla": {
+        "boca-raton-fl": "bi-1273",
+        "cedar-key-fl": "bi-1273",
+        "dania-beach-fl": "bi-0842",
+        "delray-beach-fl": "bi-0842",
+        "gainesville-fl": "bi-0842",
+        "gulf-stream-fl": "bi-0759",
+        "hollywood-fl": "bi-1273",
+        "manalapan-fl": "bi-1273",
+        "mcintosh-fl": "bi-1273",
+        "ocala-fl": "bi-0759",
+        "palatka-fl": "bi-0759",
+        "west-palm-beach-fl": "bi-0842",
+        "weston-fl": "bi-0759"
+      },
+      "repetidas": {
+        "palm-beach-county-fl": { "max": 2, "motivo": "calidad (D-206): 5 ciudades y 3 fotos que el juez aprueba como hero de pergolas" }
       }
     }
   }
