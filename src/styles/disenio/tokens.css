@@ -556,4 +556,13 @@
   --mm-barra-alto: 68px;
   --mm-t-display-movil: 36px;
   --mm-contenedor: 1312px;
+  /* CIUDADES-BUSCADOR (17-oct-2026): el ancho del campo de busqueda de ciudades a partir de 768. 520 px
+   * son ~45 caracteres a 16 px: cabe el nombre mas largo («Lighthouse Point») con aire y no se lee
+   * como un campo de formulario a sangre. Pedido en vez de escrito como literal en sistema.css. */
+  --mm-ancho-busqueda: 520px;
+  /* navy al 48 % sobre --mm-azul-50 = 3,04:1 contra esa banda (y 3,31:1 sobre blanco). Es el minimo que
+   * cumple WCAG 1.4.11 para un control apoyado en la superficie clara: `--mm-borde-control` (47 % sobre
+   * blanco) da solo 2,77:1 ahi. Medido subiendo el alfa de 1 en 1, como su gemelo. Lo usan el campo y
+   * los chips del buscador de ciudades. */
+  --mm-borde-control-tenue: #7d8db4;
 }

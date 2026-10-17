@@ -49,13 +49,33 @@ for (const f of fs.readdirSync(DIR_CONDADOS).filter((x) => x.endsWith('-county-f
 }
 if (Object.keys(CONDADO_DE).length < 40) throw new Error(`vecinas: solo ${Object.keys(CONDADO_DE).length} ciudades leidas de las paginas de condado; se esperaban 53`);
 
-const OTRAS = Object.keys(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/ciudades-servicios.json'), 'utf8')).paginas);
+const PAGINAS_OTRAS = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/ciudades-servicios.json'), 'utf8')).paginas;
+const OTRAS = Object.keys(PAGINAS_OTRAS);
 /** Las 118 rutas de servicio × ciudad: las 53 de piscina y las 65 del resto. */
 export const RUTAS_CIUDAD = [...Object.keys(CONDADO_DE).map((c) => `/services/pool-builders/${c}`), ...OTRAS].sort();
 
 const tramo = (ruta) => ruta.split('/').pop();
-const nombreCondado = (c) => `${c.replace(/-county-fl$/, '').split('-').map((p) => p[0].toUpperCase() + p.slice(1)).join(' ')} County`;
-const zonaDe = (ruta) => (SUR.has(CONDADO_DE[tramo(ruta)]) ? 'South Florida' : 'North Florida');
+export const nombreCondado = (c) => `${c.replace(/-county-fl$/, '').split('-').map((p) => p[0].toUpperCase() + p.slice(1)).join(' ')} County`;
+export const zonaDeCondado = (condado) => (SUR.has(condado) ? 'South Florida' : 'North Florida');
+const zonaDe = (ruta) => zonaDeCondado(CONDADO_DE[tramo(ruta)]);
+
+/**
+ * CIUDADES-BUSCADOR (17-oct-2026): el condado y el nombre visible de CADA una de las 118 rutas, en
+ * un solo mapa. Las 53 de piscina salen de las paginas de condado (arriba); las 65 del resto, de
+ * `ciudades-servicios-filas.json > ciudades.<doc.slug>.condado`, que es la fila que ya escribe su
+ * parrafo de permisos. Si una no tiene condado, aqui queda `null`: el buscador la agrupa en «Other»
+ * y el informe lo dice; nunca se inventa. Hoy las 118 resuelven.
+ */
+const FILAS = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/ciudades-servicios-filas.json'), 'utf8')).ciudades;
+const slugCondado = (nombre) => (nombre ? `${nombre.toLowerCase().replace(/\s+/g, '-')}-county-fl` : null);
+export const CONDADO_DE_RUTA = Object.fromEntries([
+  ...Object.keys(CONDADO_DE).map((c) => [`/services/pool-builders/${c}`, CONDADO_DE[c]]),
+  ...Object.entries(PAGINAS_OTRAS).map(([r, p]) => [r, slugCondado(FILAS[p.doc.slug]?.condado)]),
+]);
+export const NOMBRE_DE_RUTA = Object.fromEntries([
+  ...Object.keys(CONDADO_DE).map((c) => [`/services/pool-builders/${c}`, NOMBRE_DE[c]]),
+  ...Object.entries(PAGINAS_OTRAS).map(([r, p]) => [r, p.doc.name]),
+]);
 
 export function enlazadoDeCiudad(ruta) {
   const [, , servicio, ciudad] = ruta.split('/');
@@ -95,18 +115,6 @@ export function enlazadoDeCiudad(ruta) {
   };
 }
 
-/**
- * E5-SEO, punto 3 · LAS CIUDADES DE LA FICHA DE PISCINA. Las otras seis fichas ya enlazan a todas
- * sus landings en una linea (`ciudadesDeFicha`); la de piscina, que tiene 53, no enlazaba a
- * ninguna y por eso quedaban a tres clics. Van en dos lineas, norte y sur, con la misma forma.
- */
-export function ciudadesDePiscinaPorZona() {
-  const rotulo = 'Custom pool builders by city';
-  return ['North Florida', 'South Florida'].map((zona) => {
-    const ciudades = Object.keys(CONDADO_DE).filter((c) => zonaDe(c) === zona)
-      .map((c) => ({ href: `/services/pool-builders/${c}`, nombre: `${NOMBRE_DE[c]}, FL` }))
-      .sort((a, b) => a.nombre.localeCompare(b.nombre));
-    return { rotulo, zona, ciudades, linea: `${rotulo} · ${zona}: ${ciudades.map((c) => c.nombre).join(' · ')}` };
-  });
-}
+/* `ciudadesDePiscinaPorZona()` (E5-SEO, punto 3) se retiro el 17-oct-2026: la ficha de piscina entra
+ * en `ciudadesDeFicha()` (servicios-ciudad.mjs) como las otras seis, con `CONDADO_DE_RUTA`. */
 

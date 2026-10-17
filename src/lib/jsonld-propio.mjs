@@ -21,17 +21,15 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { SITIO, ID_NEGOCIO } from './negocio.mjs';
 import { SERVICIOS_CIUDAD, ciudadesDeFicha } from './servicios-ciudad.mjs';
-import { ciudadesDePiscinaPorZona } from './vecinas.mjs';
 
 const lee = (rel) => JSON.parse(fs.readFileSync(path.resolve(process.cwd(), rel), 'utf8'));
 const CTX = 'https://schema.org';
 
-/** Las ciudades que la ficha enlaza, igual que las reune `CiudadesServicio.astro`. */
+/** Las ciudades que la ficha enlaza, en el orden en que `CiudadesServicio.astro` las pinta (por
+ *  condado, norte y luego sur). CIUDADES-BUSCADOR: la de piscina entra por la misma funcion. */
 export function ciudadesEnlazadas(ruta) {
   if (!/^\/services\/[^/]+$/.test(ruta)) return [];
-  const linea = ciudadesDeFicha(ruta, lee('src/data/ciudades-servicios.json').paginas)?.ciudades ?? [];
-  const zonas = ruta === '/services/pool-builders' ? ciudadesDePiscinaPorZona().flatMap((z) => z.ciudades) : [];
-  return [...linea, ...zonas];
+  return ciudadesDeFicha(ruta)?.ciudades ?? [];
 }
 
 /** «26/1/2026» (dia/mes/año, como lo da el canal) → «2026-01-26». Si no se puede leer, falla. */
@@ -73,7 +71,7 @@ export function bloquesPropios(ruta, ldOrigen = []) {
       // La misma forma que el `Service` de cada pagina de ciudad: el nombre sin «, FL», que lo
       // dice `containedInPlace`.
       areaServed: ciudades.map((c) => ({
-        '@type': 'City', name: c.nombre.replace(/, FL$/, ''), containedInPlace: { '@type': 'State', name: 'Florida' },
+        '@type': 'City', name: c.nombre, containedInPlace: { '@type': 'State', name: 'Florida' },
       })),
     }];
   }

@@ -527,7 +527,6 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 .mm-faq-r p:last-child { margin-bottom: 0; }
 .mm-faq-col { display: flex; flex-direction: column; gap: var(--mm-e-16); min-width: 0; }
 .mm-faq .mm-faq-fuentes { margin: var(--mm-e-12) 0 0; font-size: 14px; line-height: 1.6; color: var(--mm-tinta-suave); }
-.mm-ciudades-servicio .mm-faq-fuentes { color: var(--mm-tinta-suave); }
 .mm-faq .mm-faq-mas { margin: 0 var(--mm-canal); }
 .mm-faq .mm-faq-fuentes a { color: var(--mm-navy); font-weight: 600; text-decoration: underline; text-decoration-color: var(--mm-oro); text-decoration-thickness: 2px; text-underline-offset: 3px; display: inline-flex; align-items: center; min-height: var(--mm-ctl-s); }
 .mm-faq-lado { display: flex; flex-direction: column; }
@@ -611,6 +610,78 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
   .mm-arts-cuerpo { box-sizing: border-box; width: 100%; max-width: calc(var(--mm-contenedor) + 2 * var(--mm-canal)); margin-inline: auto; display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: var(--mm-e-64); align-items: start; }
 }
 @media (min-width: 1200px) { .mm-zonas { padding-inline: var(--mm-e-64); } .mm-arts-sec { --mm-canal: var(--mm-e-64); } }
+/* ── Buscador de ciudades de la ficha (CIUDADES-BUSCADOR, 17-oct-2026) ─────────────────────────
+ * Continua la banda de «Where We Serve» (mismo fondo, mismo canal lateral, mismo contenedor): es su
+ * indice de ciudades, no una nota al pie. Tarjetas blancas sin sombra sobre la banda; el acento es el
+ * `<h3>` de condado con su cuenta y una regla que corre hasta el borde, como un indice. Hover solo
+ * bajo puntero fino y solo color/transform (D-05). Columnas 1 / 2 / 3 / 4 en 480 / 768 / 992. */
+.mm-ciudades { background: var(--mm-azul-50); font-family: var(--mm-familia); color: var(--mm-tinta-texto); padding: 0 var(--mm-e-24) var(--mm-e-64); }
+/* `hidden` manda sobre cualquier `display` de clase: sin esto, `.mm-flecha { display: inline-flex }` ganaba al
+ * `[hidden]` del navegador y los 9 enlaces de condado del pie se veian (medido: 75 objetivos en vez de 66). */
+.mm-ciudades [hidden] { display: none; }
+.mm-ciudades-caja { box-sizing: border-box; max-width: var(--mm-contenedor); margin: 0 auto; display: flex; flex-direction: column; gap: var(--mm-e-24); padding-top: var(--mm-e-40); border-top: 1px solid var(--mm-borde); }
+.mm-ciudades-cab { display: flex; flex-direction: column; gap: var(--mm-e-8); }
+.mm-ciudades-apoyo { margin: 0; font-size: 16px; line-height: 1.5; font-variant-numeric: tabular-nums; color: var(--mm-tinta-suave); }
+.mm-ciudades-ctl { display: flex; flex-direction: column; gap: var(--mm-e-16); }
+.mm-ciudades-campo { position: relative; }
+.mm-ciudades-campo > svg { position: absolute; left: var(--mm-e-16); top: 50%; width: 20px; height: 20px; transform: translateY(-50%); color: var(--mm-tinta-suave); pointer-events: none; }
+.mm-ciudades-q { box-sizing: border-box; width: 100%; min-height: var(--mm-ctl-m); margin: 0; padding: 0 var(--mm-e-48); font-family: inherit; font-size: var(--mm-paso-campo); line-height: 1.5; color: var(--mm-navy); background: var(--mm-blanco); border: 1px solid var(--mm-borde-control-tenue); border-radius: var(--mm-r-8); appearance: none; }
+.mm-ciudades-q::placeholder { color: var(--mm-tinta-suave); opacity: 1; }
+/* El aspa nativa del `type=search` no se pinta con `appearance: none` (y el reset de webflow.css la quita en todo el sitio), asi
+ * que el boton de limpiar es propio: 44 x 44 dentro del campo, solo cuando hay texto (`hidden` lo alterna el script). */
+.mm-ciudades-x { position: absolute; right: var(--mm-e-4); top: 50%; display: inline-flex; align-items: center; justify-content: center; width: var(--mm-ctl-s); height: var(--mm-ctl-s); margin: 0; padding: 0; border: 0; border-radius: var(--mm-r-8); background: transparent; color: var(--mm-tinta-suave); cursor: pointer; transform: translateY(-50%); }
+.mm-ciudades-x svg { width: 18px; height: 18px; }
+.mm-ciudades-x:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: calc(-1 * var(--mm-foco-aire)); }
+/* El recuento al filtrar: nace vacio (no suma a `innerText` al cargar) y lo leen la vista y el lector (`aria-live`). */
+.mm-ciudades-estado { margin: 0; font-size: 14px; line-height: 1.5; font-variant-numeric: tabular-nums; color: var(--mm-tinta-suave); }
+.mm-ciudades-estado:empty { display: none; }
+.mm-ciudades-q:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); box-shadow: var(--mm-foco-halo); }
+/* <768: una fila que se desplaza, sangrada hasta el borde de la banda para que el ultimo chip no se corte
+ * contra el canal; `scroll-padding` deja el primero alineado con el texto. */
+.mm-ciudades-chips { display: flex; gap: var(--mm-e-8); margin: 0 calc(-1 * var(--mm-e-24)); padding: var(--mm-e-4) var(--mm-e-24); overflow-x: auto; scroll-snap-type: x proximity; scroll-padding-inline: var(--mm-e-24); scrollbar-width: none; }
+.mm-ciudades-chips::-webkit-scrollbar { display: none; }
+.mm-chip { flex: none; scroll-snap-align: start; display: inline-block; box-sizing: border-box; min-height: var(--mm-ctl-s); margin: 0; padding: var(--mm-e-12) var(--mm-e-16); border: 1px solid var(--mm-borde-control-tenue); border-radius: var(--mm-r-pastilla); background: var(--mm-blanco); font: 600 14px/1.3 var(--mm-familia); color: var(--mm-navy); white-space: nowrap; cursor: pointer; transition: background-color var(--mm-dur-pasar) var(--mm-curva), border-color var(--mm-dur-pasar) var(--mm-curva), color var(--mm-dur-pasar) var(--mm-curva); }
+.mm-chip-n { display: inline-block; margin-left: var(--mm-e-4); font-weight: 700; font-variant-numeric: tabular-nums; color: var(--mm-tinta-suave); }
+.mm-chip[aria-pressed="true"] { background: var(--mm-navy); border-color: var(--mm-navy); color: var(--mm-blanco); }
+.mm-chip[aria-pressed="true"] .mm-chip-n { color: var(--mm-tinta-suave-inversa); }
+.mm-chip:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); box-shadow: var(--mm-foco-halo); }
+.mm-ciudades-grupo { display: flex; flex-direction: column; gap: var(--mm-e-12); }
+.mm-ciudades-h3 { display: flex; align-items: center; gap: var(--mm-e-16); margin: 0; font-family: var(--mm-familia); font-size: 18px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em; color: var(--mm-navy); text-transform: none; }
+.mm-ciudades-h3::after { content: ""; flex: 1 1 auto; border-top: 1px solid var(--mm-borde); }
+.mm-ciudades-n { margin-left: var(--mm-e-4); font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--mm-tinta-suave); }
+.mm-ciudades-rejilla { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--mm-e-8); }
+.mm-ciudades-rejilla > li { display: grid; }
+.mm-ciudad { display: grid; grid-template-columns: 20px minmax(0, 1fr) 20px; grid-template-areas: "pin n f" "pin s f"; column-gap: var(--mm-e-12); align-items: center; box-sizing: border-box; min-height: var(--mm-fila); padding: var(--mm-e-12) var(--mm-e-16); background: var(--mm-blanco); border: 1px solid var(--mm-borde); border-radius: var(--mm-r-8); color: var(--mm-navy); text-decoration: none; transition: border-color var(--mm-dur-pasar) var(--mm-curva); }
+.mm-ciudad-pin { grid-area: pin; width: 20px; height: 20px; color: var(--mm-azul-400); }
+.mm-ciudad-n { grid-area: n; font-size: 16px; line-height: 1.3; font-weight: 600; overflow-wrap: anywhere; }
+.mm-ciudad-s { grid-area: s; font-size: 13px; line-height: 1.4; color: var(--mm-tinta-suave); }
+.mm-ciudad-f { grid-area: f; width: 20px; height: 20px; transition: transform var(--mm-dur-pasar) var(--mm-curva); }
+.mm-ciudad:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); box-shadow: var(--mm-foco-halo); }
+.mm-ciudades-vacio { margin: 0; font-size: 16px; line-height: 1.5; color: var(--mm-tinta-texto); }
+.mm-ciudades-pie { display: flex; flex-wrap: wrap; gap: var(--mm-e-8) var(--mm-e-32); padding-top: var(--mm-e-16); border-top: 1px solid var(--mm-borde); }
+@media (hover: hover) and (pointer: fine) {
+  .mm-chip:hover { background: var(--mm-azul-100); border-color: var(--mm-navy); }
+  .mm-ciudades-x:hover { color: var(--mm-navy); }
+  .mm-chip[aria-pressed="true"]:hover { background: var(--mm-azul-800); border-color: var(--mm-azul-800); }
+  .mm-ciudad:hover { border-color: var(--mm-azul-400); }
+  .mm-ciudad:hover .mm-ciudad-f { transform: translateX(4px); }
+}
+@media (min-width: 480px) {
+  .mm-ciudades-rejilla { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 768px) {
+  .mm-ciudades { padding-inline: var(--mm-e-32); }
+  .mm-ciudades-campo { max-width: var(--mm-ancho-busqueda); }
+  .mm-ciudades-chips { flex-wrap: wrap; margin: 0; padding: 0; overflow: visible; }
+  .mm-ciudades-rejilla { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (min-width: 992px) {
+  .mm-ciudades { padding-bottom: var(--mm-e-96); }
+  .mm-ciudades-caja { gap: var(--mm-e-32); }
+  .mm-ciudades-rejilla { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--mm-e-12); }
+}
+/* Mismo canal que `.mm-zonas` a partir de 1200 (su regla esta arriba): va DETRAS del bloque de 768 o pierde en la cascada. */
+@media (min-width: 1200px) { .mm-ciudades { padding-inline: var(--mm-e-64); } }
 /* ── Resenas en lista (ASTRO-2 · lamina «Resenas») ──────────────────────────────────── */
 .mm-res { --mm-canal: var(--mm-e-24); display: flex; flex-direction: column; gap: var(--mm-e-24); padding: var(--mm-e-64) 0 0; background: var(--mm-blanco); font-family: var(--mm-familia); color: var(--mm-tinta-texto); }
 .mm-res-cuerpo { display: flex; flex-direction: column; gap: var(--mm-e-32); }
