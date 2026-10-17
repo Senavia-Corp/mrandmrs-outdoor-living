@@ -28,11 +28,12 @@ const ESTATICO = path.join(RAIZ, '.vercel/output/static');
 /** El orden de Sebastian (13-sep-2026; galeria y resenas canjeadas el 21-sep-2026). Escrito aqui
  *  a mano a proposito: derivarlo del generador que lo produce seria comparar la salida consigo
  *  misma. */
+/** ASTRO-2 (12-oct-2026): el orden pasa a ser el de las laminas de la Etapa 4, con el formulario
+ *  al final, fundido con la banda de cierre (D-77), y sin el feed de Instagram (T-42). */
 const ESPERADO = [
-  'hero-services', 'logos-section', 'svc-confianza', 'trusted-section', 'appointment-section',
-  'gallery', 'services', 'process-section', 'svc-inversion', 'faq-section', 'testimonial-section',
-  'location', 'blog-section-page', 'social-media', 'cta-footer', 'logos-section',
-];
+  'mm-hero-a', 'svc-confianza', 'svc-intro', 'mm-gal', 'mm-proc', 'mm-que', 'svc-inversion', 'mm-faq',
+  'mm-zonas', 'blog-section-page', 'mm-res', 'mm-cierre', 'mm-form-sec',
+];   // ASTRO-2: la franja de logos va DENTRO del hero y la repetida junto al pie se retira (D-53)
 
 /** Excepciones declaradas: las dos fichas de piscina recuperan el antes/despues entre los servicios
  *  y el proceso. Remodelacion con el par real del banco (R24-FOTO-PISCINAS, 1-oct-2026); obra nueva
@@ -40,14 +41,24 @@ const ESPERADO = [
  *  derivasen de `antesDespues` en el JSON, la puerta daria por bueno cualquier sitio donde el
  *  generador la pusiera. */
 const VARIANTES = {
-  '/services/pool-remodeling': { tras: 'services', va: 'before-after-section' },
-  '/services/pool-builders': { tras: 'services', va: 'before-after-section' },
+  '/services/pool-remodeling': { tras: 'mm-que', va: 'mm-ad' },
+  // ASTRO-2: `/services/pool-builders` lo pierde: no hay par fotografiado desde el mismo punto (D-95).
 };
-const esperadoDe = (ruta) => {
+/** Secciones OPCIONALES: solo pueden aparecer en el puesto declarado, y pueden faltar. CIUDADES-BUSCADOR
+ *  (17-oct-2026): el buscador de ciudades es `<section class="mm-ciudades">` detras de «Where We Serve» y
+ *  solo lo pintan las 7 fichas con landings de ciudad; las otras 7 no cambian. Se escribe a mano por lo
+ *  mismo que `ESPERADO`: si se leyera de `ciudadesDeFicha()`, la puerta daria por bueno cualquier sitio. */
+const OPCIONALES = { 'mm-ciudades': { tras: 'mm-zonas' } };
+const esperadoDe = (ruta, cuerpo = []) => {
+  let orden = ESPERADO;
   const v = VARIANTES[ruta];
-  if (!v) return ESPERADO;
-  const i = ESPERADO.indexOf(v.tras);
-  return [...ESPERADO.slice(0, i + 1), v.va, ...ESPERADO.slice(i + 1)];
+  if (v) { const i = orden.indexOf(v.tras); orden = [...orden.slice(0, i + 1), v.va, ...orden.slice(i + 1)]; }
+  for (const [sec, { tras }] of Object.entries(OPCIONALES)) {
+    if (!cuerpo.includes(sec)) continue;
+    const i = orden.indexOf(tras);
+    orden = [...orden.slice(0, i + 1), sec, ...orden.slice(i + 1)];
+  }
+  return orden;
 };
 
 const RUTAS = Object.keys(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/captacion-servicios.json'), 'utf8')))
@@ -73,17 +84,22 @@ for (const ruta of RUTAS) {
   const clases = [...d.querySelectorAll('section')]
     .filter((s) => !s.parentElement?.closest('section'))
     .map((s) => s.classList[0]);
-  const cuerpo = clases.slice(clases.indexOf('hero-services'), clases.lastIndexOf('footer'));
-  const esperado = esperadoDe(ruta);
+  // ASTRO-1 (12-oct-2026): el pie es <footer class="mm-zocalo">, ya no un <section class="footer">,
+  // asi que deja de salir en `clases`. Sin pie-seccion, el cuerpo llega hasta la ultima seccion.
+  const finPie = clases.lastIndexOf('footer');
+  const cuerpo = clases.slice(clases.indexOf('mm-hero-a'), finPie >= 0 ? finPie : clases.length);
+  const esperado = esperadoDe(ruta, cuerpo);
   if (cuerpo.join(' ') !== esperado.join(' ')) {
     const i = esperado.findIndex((c, k) => cuerpo[k] !== c);
     mal(ruta, `puesto ${i + 1}: se esperaba «${esperado[i] ?? '(nada)'}» y hay «${cuerpo[i] ?? '(nada)'}»\n`
       + `       orden: ${cuerpo.join(' · ')}`);
     continue;
   }
-  const slides = d.querySelectorAll('section.gallery [fs-slider-element="slide"]').length;
-  if (!slides) { mal(ruta, 'la gallery esta pero sin slides'); continue; }
-  console.log(`  ok   ${ruta}   (${slides} slides en la galeria)${VARIANTES[ruta] ? `   + ${VARIANTES[ruta].va} tras ${VARIANTES[ruta].tras} (declarada)` : ''}`);
+  // ASTRO-2: la galeria es un mosaico de 3 a 6 botones con su foto, no un carrusel.
+  const slides = d.querySelectorAll('section.mm-gal .mm-mosaico > button.mm-celda[data-mm-foto] > img[width][height]').length;
+  if (slides < 3 || slides > 6) { mal(ruta, `el mosaico de la galeria tiene ${slides} celdas; van de 3 a 6`); continue; }
+  const opcionales = Object.keys(OPCIONALES).filter((s) => cuerpo.includes(s));
+  console.log(`  ok   ${ruta}   (${slides} slides en la galeria)${VARIANTES[ruta] ? `   + ${VARIANTES[ruta].va} tras ${VARIANTES[ruta].tras} (declarada)` : ''}${opcionales.length ? `   + ${opcionales.join(', ')} (opcional)` : ''}`);
 }
 
 console.log(`\n${fallos ? `PUERTA ROJA — ${fallos} fallo(s)` : `PUERTA VERDE — ${RUTAS.length} fichas, un solo orden (+ ${Object.keys(VARIANTES).length} variante(s) declarada(s))`}\n`);

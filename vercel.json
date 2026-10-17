@@ -74,6 +74,11 @@
       "permanent": true
     },
     {
+      "source": "/project/luxury-pool-spa-screen-enclosure-north-florida",
+      "destination": "/project/luxury-pool-spa-with-screen-enclosure-north-florida",
+      "permanent": true
+    },
+    {
       "source": "/services/custom-pool-spa-builders-in-north-south-florida",
       "destination": "/services/pool-builders",
       "permanent": true

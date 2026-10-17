@@ -14,6 +14,7 @@
  */
 import fs from 'node:fs';
 import { groq, SIN_BORRADORES } from './lib/sanity.mjs';
+import { renombra } from './lib/renombradas.mjs';
 
 let fallos = 0;
 const check = (n, ok, d = '') => {
@@ -155,10 +156,15 @@ const SIN_ANCLA_POSIBLE = new Set([
   'commercial-pool-construction-in-florida-what-decision-makers-must-know',
   'how-outdoor-living-spaces-increase-property-value-in-florida',
 ]);
+/* El slug del servicio en Sanity es el de ANTES de la migracion de las 76 URLs al silo
+ * `/services/` (`custom-aluminum-pergola-builders-in-north-south-florida`); la ficha se sirve en
+ * la ruta nueva (`/services/pergola-builders`) y es a esa a la que enlazan los articulos. Sin
+ * pasar el slug por el renombrado, esta comprobacion daba por rotos 45 enlaces que estan bien. */
 const sinSuServicio = posts.filter((p) => {
   const suyo = p.servicios?.[0]?.slug;
   if (!suyo || SIN_ANCLA_POSIBLE.has(p.slug)) return false;
-  return !enlacesDe(p).includes(`/services/${suyo}`);
+  const enlaces = enlacesDe(p);
+  return !enlaces.includes(renombra(`/services/${suyo}`)) && !enlaces.includes(`/services/${suyo}`);
 });
 check('todos enlazan a su ficha de servicio primaria', sinSuServicio.length === 0,
   lista(sinSuServicio.map((p) => `${p.slug} -> /services/${p.servicios[0].slug}`)));
@@ -206,9 +212,12 @@ const pendientes = Object.entries(RUTAS_FICHA.pendientes ?? {});
 console.log('');
 check('las 14 fichas de servicio estan declaradas', conTrio.length + pendientes.length === servicios.length,
   `${conTrio.length + pendientes.length} de ${servicios.length}`);
-check('las fichas con trio tienen EXACTAMENTE 3', conTrio.every(([, r]) => r.posts?.length === 3),
+/* Son CINCO desde que el carrusel de blog de la ficha subio de 3 a 5 articulos; es lo que exige
+ * `build-blog-por-servicio.mjs`, que no escribe la ficha si no los reune. Esta linea seguia
+ * pidiendo 3 y salia roja con las cinco fichas bien montadas. */
+check('las fichas con sus articulos tienen EXACTAMENTE 5', conTrio.every(([, r]) => r.posts?.length === 5),
   conTrio.filter(([, r]) => r.posts?.length !== 3).map(([k, r]) => `${k} tiene ${r.posts?.length}`).join(' · '));
-console.log(`  --   ${conTrio.length}/${servicios.length} fichas con sus 3 articulos · ${pendientes.length} pendiente(s) del roadmap`);
+console.log(`  --   ${conTrio.length}/${servicios.length} fichas con sus 5 articulos · ${pendientes.length} pendiente(s) del roadmap`);
 for (const [ruta, p] of pendientes.slice(0, 4)) {
   console.log(`       ${ruta.replace('/services/', '').slice(0, 34).padEnd(36)} faltan ${p.faltan.length}`);
 }

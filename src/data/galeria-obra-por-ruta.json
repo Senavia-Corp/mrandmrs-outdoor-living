@@ -225,13 +225,13 @@
         "_proyecto": "obra-048"
       },
       {
-        "src": "/images/banco/remodeling/pool-remodel-freeform-new-finish-glass-tile-florida-01.webp",
-        "alt": "Drained freeform pool with new pebble finish, blue glass tile and rock waterfall spa.",
-        "ancho": 1200,
-        "alto": 1600,
+        "src": "/images/banco/remodeling/pool-remodeling-refilled-pool-navy-tile-porcelain-deck-florida-01.webp",
+        "alt": "Remodeled condo pool refilled with water, navy waterline tile, new coping and a pale porcelain deck",
+        "ancho": 1600,
+        "alto": 1200,
         "pos": "50% 50%",
-        "_banco": "bi-0090",
-        "_proyecto": "obra-012"
+        "_banco": "bi-1436",
+        "_proyecto": "obra-115"
       },
       {
         "src": "/images/banco/remodeling/pool-remodeling-new-glass-waterline-tile-bond-coat-florida-01.webp",
@@ -277,13 +277,13 @@
         "_proyecto": "obra-108"
       },
       {
-        "src": "/images/banco/pergolas/modern-insulated-patio-cover-black-fascia-gray-house-florida-01.webp",
-        "alt": "Black-fascia flat insulated patio cover with slatted privacy panel on a gray stucco house over a travertine patio",
-        "ancho": 1600,
-        "alto": 1200,
+        "src": "/images/banco/pergolas/freestanding-pergola-dark-bronze-pool-spa-canal-florida-01.webp",
+        "alt": "Dark bronze freestanding lattice pergola over a blue-tiled spa with canal and palms behind",
+        "ancho": 1440,
+        "alto": 812,
         "pos": "50% 50%",
-        "_banco": "bi-1056",
-        "_proyecto": null
+        "_banco": "bi-1038",
+        "_proyecto": "obra-100"
       },
       {
         "src": "/images/banco/pergolas/freestanding-pergola-dark-bronze-turf-pool-florida-01.webp",
@@ -313,13 +313,13 @@
         "_proyecto": "obra-101"
       },
       {
-        "src": "/images/banco/pergolas/insulated-aluminum-patio-cover-white-dusk-florida-01.webp",
-        "alt": "White insulated aluminum patio cover attached to a white house at dusk with palm trees and path lights",
-        "ancho": 1440,
-        "alto": 1080,
+        "src": "/images/banco/kitchens/outdoor-kitchen-dark-slat-pergola-stucco-grill-florida-01.webp",
+        "alt": "Dark aluminum slat pergola with a privacy screen over a stucco outdoor kitchen with a built-in grill.",
+        "ancho": 1600,
+        "alto": 1200,
         "pos": "50% 50%",
-        "_banco": "bi-0916",
-        "_proyecto": null
+        "_banco": "bi-1296",
+        "_proyecto": "obra-117"
       },
       {
         "src": "/images/banco/pergolas/insulated-patio-cover-black-frame-loungers-lawn-florida-01.webp",
@@ -331,31 +331,31 @@
         "_proyecto": "obra-088"
       },
       {
-        "src": "/images/banco/pergolas/freestanding-insulated-pergola-white-travertine-florida-01.webp",
-        "alt": "Underside of a white freestanding insulated pergola with square rafter tails over a travertine patio",
-        "ancho": 1440,
-        "alto": 1083,
+        "src": "/images/banco/kitchens/outdoor-kitchen-marble-waterfall-patio-cover-florida-01.webp",
+        "alt": "Marble waterfall outdoor kitchen under an insulated patio cover with black posts.",
+        "ancho": 1201,
+        "alto": 902,
         "pos": "50% 50%",
-        "_banco": "bi-0984",
-        "_proyecto": "obra-094"
+        "_banco": "bi-0761",
+        "_proyecto": "obra-069"
       },
       {
-        "src": "/images/banco/pergolas/gable-insulated-patio-cover-dark-frame-travertine-florida-02.webp",
-        "alt": "Side view under a dark-framed gable patio cover over a travertine patio with a white fence",
-        "ancho": 1440,
-        "alto": 1081,
-        "pos": "50% 50%",
-        "_banco": "bi-0923",
-        "_proyecto": "obra-085"
-      },
-      {
-        "src": "/images/banco/pergolas/insulated-patio-cover-brown-rafter-tails-french-door-florida-01.webp",
-        "alt": "Brown insulated patio cover with scalloped rafter tails over French doors on a yellow stucco house",
+        "src": "/images/banco/pergolas/white-pergola-outdoor-kitchen-wood-cabinets-deck-florida-01.webp",
+        "alt": "White pergola over an outdoor kitchen with wood-look cabinets and wine fridge on a composite deck.",
         "ancho": 1600,
         "alto": 1200,
         "pos": "50% 50%",
-        "_banco": "bi-1006",
-        "_proyecto": "obra-096"
+        "_banco": "bi-0897",
+        "_proyecto": "obra-081"
+      },
+      {
+        "src": "/images/banco/pergolas/gray-aluminum-pergola-translucent-roof-french-doors-florida-01.webp",
+        "alt": "Gray aluminum pergola with a translucent roof over a patio with French doors and wicker chairs.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-1306",
+        "_proyecto": null
       }
     ],
     "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
@@ -392,13 +392,13 @@
         "_proyecto": "obra-034"
       },
       {
-        "src": "/images/banco/louvered/louvered-pergola-frames-condo-pool-terrace-florida-02.webp",
-        "alt": "Rooftop terrace with white pergola frames under assembly and planters in the foreground.",
+        "src": "/images/banco/louvered/louvered-roof-linear-actuator-motor-beam-detail-florida-01.webp",
+        "alt": "Linear actuator motor mounted on a white louvered roof beam, the open blades against a blue sky",
         "ancho": 1600,
-        "alto": 1200,
+        "alto": 1067,
         "pos": "50% 50%",
-        "_banco": "bi-0650",
-        "_proyecto": "obra-050"
+        "_banco": "bi-1545",
+        "_proyecto": null
       },
       {
         "src": "/images/banco/louvered/louvered-pergola-outdoor-kitchen-bar-marble-lake-florida-01.webp",
@@ -419,13 +419,13 @@
         "_proyecto": "obra-059"
       },
       {
-        "src": "/images/banco/louvered/louvered-roof-closed-louvers-underside-detail-florida-01.webp",
-        "alt": "Underside of a white louvered roof with louvers closed, wall lights on the left.",
+        "src": "/images/banco/louvered/louvered-roof-open-blades-pivot-mechanism-detail-florida-01.webp",
+        "alt": "Open white louvered roof blades and their pivot mechanism on a bronze beam, with tropical foliage behind",
         "ancho": 1600,
         "alto": 1200,
         "pos": "50% 50%",
-        "_banco": "bi-0646",
-        "_proyecto": "obra-050"
+        "_banco": "bi-1546",
+        "_proyecto": null
       },
       {
         "src": "/images/banco/louvered/louvered-roof-blue-led-strips-night-florida-01.webp",
@@ -437,22 +437,22 @@
         "_proyecto": "obra-033"
       },
       {
-        "src": "/images/banco/louvered/louvered-pergola-row-condo-terrace-ocean-florida-01.webp",
-        "alt": "Row of finished white louvered pergolas along a condo terrace with ocean beyond.",
-        "ancho": 1125,
-        "alto": 850,
+        "src": "/images/banco/louvered/bronze-louvered-pergola-corner-housing-detail-florida-01.webp",
+        "alt": "Corner of a bronze aluminum louvered pergola with a white housing on top, against a blue sky",
+        "ancho": 1600,
+        "alto": 1067,
         "pos": "50% 50%",
-        "_banco": "bi-0655",
-        "_proyecto": "obra-050"
+        "_banco": "bi-1547",
+        "_proyecto": null
       },
       {
-        "src": "/images/banco/louvered/louvered-pergola-condo-rooftop-porcelain-deck-florida-01.webp",
-        "alt": "Finished white louvered pergolas at the edge of a porcelain-tiled condo rooftop.",
-        "ancho": 1125,
-        "alto": 933,
+        "src": "/images/banco/louvered/white-louvered-roof-corner-post-detail-florida-01.webp",
+        "alt": "Corner of a white aluminum louvered roof against a clear sky, with its bolted post and open blades.",
+        "ancho": 1600,
+        "alto": 1067,
         "pos": "50% 50%",
-        "_banco": "bi-0654",
-        "_proyecto": "obra-050"
+        "_banco": "bi-1299",
+        "_proyecto": null
       },
       {
         "src": "/images/banco/louvered/louvered-pergola-bronze-tennis-court-shade-florida-01.webp",
@@ -498,13 +498,13 @@
         "_proyecto": "obra-015"
       },
       {
-        "src": "/images/banco/decks/porcelain-pool-deck-marble-look-turquoise-pool-florida-02.webp",
-        "alt": "Large-format marble-look porcelain pavers on a pool deck beside a turquoise pool.",
-        "ancho": 1200,
-        "alto": 1600,
+        "src": "/images/banco/decks/limestone-paver-patio-steps-tropical-landscape-florida-01.webp",
+        "alt": "Limestone paver patio with a step down between planting beds and a fan palm.",
+        "ancho": 1600,
+        "alto": 1200,
         "pos": "50% 50%",
-        "_banco": "bi-0083",
-        "_proyecto": "obra-014"
+        "_banco": "bi-0078",
+        "_proyecto": "obra-012"
       },
       {
         "src": "/images/banco/decks/limestone-paver-patio-angled-border-detail-florida-01.webp",
@@ -516,58 +516,58 @@
         "_proyecto": "obra-012"
       },
       {
-        "src": "/images/banco/decks/concrete-slab-pool-enclosure-backyard-florida-01.webp",
-        "alt": "New concrete slab beside a black screen pool enclosure under a dramatic sky.",
+        "src": "/images/banco/decks/wood-deck-lounge-platform-artificial-turf-beachfront-florida-01.webp",
+        "alt": "Dark hardwood lounge deck with daybeds set on artificial turf beside dune planting.",
+        "ancho": 1600,
+        "alto": 739,
+        "pos": "50% 50%",
+        "_banco": "bi-0318",
+        "_proyecto": "obra-042"
+      },
+      {
+        "src": "/images/banco/pergolas/pergola-slat-privacy-walls-travertine-pool-deck-florida-01.webp",
+        "alt": "Brown aluminum pergola with slat privacy walls on both sides over a travertine patio and pool deck",
         "ancho": 1600,
         "alto": 1200,
         "pos": "50% 50%",
-        "_banco": "bi-0048",
-        "_proyecto": "obra-005"
+        "_banco": "bi-1487",
+        "_proyecto": "obra-122"
       },
       {
-        "src": "/images/banco/decks/concrete-slab-large-pad-control-joints-florida-01.webp",
-        "alt": "Large rectangular concrete slab with control joints on a rural lot with black fence.",
+        "src": "/images/banco/decks/travertine-patio-pool-deck-drain-channel-florida-01.webp",
+        "alt": "Travertine paving running from a covered patio to the pool deck with a linear drain.",
+        "ancho": 1296,
+        "alto": 972,
+        "pos": "50% 50%",
+        "_banco": "bi-0595",
+        "_proyecto": "obra-049"
+      },
+      {
+        "src": "/images/banco/decks/porcelain-pool-deck-louvered-pergola-kitchen-florida-01.webp",
+        "alt": "Large-format porcelain pool deck leading to a white louvered pergola and outdoor kitchen.",
+        "ancho": 1280,
+        "alto": 960,
+        "pos": "50% 50%",
+        "_banco": "bi-0630",
+        "_proyecto": "obra-059"
+      },
+      {
+        "src": "/images/banco/decks/paver-patio-brown-blend-new-construction-florida-01.webp",
+        "alt": "Brown and cream blend concrete paver patio outside sliding doors of a new white house.",
+        "ancho": 1599,
+        "alto": 899,
+        "pos": "50% 50%",
+        "_banco": "bi-0113",
+        "_proyecto": "obra-017"
+      },
+      {
+        "src": "/images/banco/decks/travertine-paver-pads-resort-lawn-sunset-beachfront-florida-01.webp",
+        "alt": "Row of travertine pads with paver borders set in a resort lawn at sunset.",
         "ancho": 1600,
         "alto": 1200,
         "pos": "50% 50%",
-        "_banco": "bi-0047",
-        "_proyecto": "obra-005"
-      },
-      {
-        "src": "/images/banco/decks/concrete-patio-slab-raised-new-home-florida-02.webp",
-        "alt": "Corner view of a raised broom-finished concrete patio slab beside a blue-gray stucco house.",
-        "ancho": 1200,
-        "alto": 1200,
-        "pos": "50% 50%",
-        "_banco": "bi-0036",
-        "_proyecto": "obra-006"
-      },
-      {
-        "src": "/images/banco/decks/concrete-patio-slab-raised-new-home-florida-01.webp",
-        "alt": "Raised concrete patio slab wrapping the back porch of a new blue-gray stucco house.",
-        "ancho": 1200,
-        "alto": 1200,
-        "pos": "50% 50%",
-        "_banco": "bi-0035",
-        "_proyecto": "obra-006"
-      },
-      {
-        "src": "/images/banco/decks/concrete-patio-slab-extension-screen-room-florida-01.webp",
-        "alt": "New concrete patio slab extending along a white screen room on a two-story house.",
-        "ancho": 1200,
-        "alto": 1600,
-        "pos": "50% 50%",
-        "_banco": "bi-0034",
-        "_proyecto": null
-      },
-      {
-        "src": "/images/banco/decks/concrete-shed-pad-slab-control-joints-florida-01.webp",
-        "alt": "Square concrete pad with cross control joints poured in a wooded lot.",
-        "ancho": 1600,
-        "alto": 1200,
-        "pos": "50% 50%",
-        "_banco": "bi-0039",
-        "_proyecto": null
+        "_banco": "bi-0321",
+        "_proyecto": "obra-043"
       }
     ],
     "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"
@@ -586,31 +586,31 @@
         "_proyecto": "obra-077"
       },
       {
-        "src": "/images/banco/kitchens/outdoor-kitchen-white-stucco-black-granite-grill-florida-01.webp",
-        "alt": "White stucco outdoor kitchen with black granite countertop and a built-in grill still wrapped.",
-        "ancho": 1440,
-        "alto": 1440,
-        "pos": "50% 50%",
-        "_banco": "bi-0767",
-        "_proyecto": "obra-070"
-      },
-      {
-        "src": "/images/banco/kitchens/outdoor-kitchen-marble-waterfall-kamado-grill-florida-01.webp",
-        "alt": "U-shaped outdoor kitchen with marble waterfall counters and a kamado grill under a patio cover.",
-        "ancho": 1199,
-        "alto": 899,
-        "pos": "50% 50%",
-        "_banco": "bi-0760",
-        "_proyecto": "obra-069"
-      },
-      {
-        "src": "/images/banco/kitchens/outdoor-kitchen-granite-waterfall-counter-grill-florida-01.webp",
-        "alt": "Outdoor kitchen with granite waterfall countertop, built-in grill and undercounter fridge on a stone patio.",
+        "src": "/images/banco/kitchens/outdoor-kitchen-gray-tile-granite-pergola-florida-01.webp",
+        "alt": "U-shaped outdoor kitchen with gray tile, granite countertop and grill under a pergola.",
         "ancho": 1600,
         "alto": 1200,
         "pos": "50% 50%",
-        "_banco": "bi-0503",
-        "_proyecto": "obra-046"
+        "_banco": "bi-0797",
+        "_proyecto": "obra-076"
+      },
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-wood-slat-cabinets-stainless-doors-florida-01.webp",
+        "alt": "Outdoor kitchen with vertical wood slat cladding, stainless grill, side burner and access doors.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0793",
+        "_proyecto": "obra-074"
+      },
+      {
+        "src": "/images/banco/louvered/louvered-pergola-outdoor-kitchen-stacked-stone-florida-01.webp",
+        "alt": "White louvered pergola covering an outdoor kitchen with stacked stone island and lounge seating.",
+        "ancho": 1280,
+        "alto": 960,
+        "pos": "50% 50%",
+        "_banco": "bi-0632",
+        "_proyecto": "obra-059"
       },
       {
         "src": "/images/banco/kitchens/outdoor-kitchen-pizza-oven-grill-louvered-roof-florida-01.webp",
@@ -622,31 +622,31 @@
         "_proyecto": "obra-066"
       },
       {
-        "src": "/images/banco/kitchens/outdoor-kitchen-white-stacked-stone-lake-florida-01.webp",
-        "alt": "L-shaped outdoor kitchen in white stacked stone with built-in grill, sink and lake view.",
+        "src": "/images/banco/pergolas/white-pergola-outdoor-kitchen-wood-cabinets-deck-florida-01.webp",
+        "alt": "White pergola over an outdoor kitchen with wood-look cabinets and wine fridge on a composite deck.",
         "ancho": 1600,
         "alto": 1200,
         "pos": "50% 50%",
-        "_banco": "bi-0771",
-        "_proyecto": "obra-071"
+        "_banco": "bi-0897",
+        "_proyecto": "obra-081"
       },
       {
-        "src": "/images/banco/kitchens/outdoor-kitchen-under-louvered-pergola-construction-florida-01.webp",
-        "alt": "Outdoor kitchen islands with quartz tops and grill being built under a dark louvered pergola.",
-        "ancho": 1200,
-        "alto": 1600,
+        "src": "/images/banco/kitchens/outdoor-kitchen-wood-slat-cabinets-tv-lanai-florida-01.webp",
+        "alt": "Long wood slat outdoor kitchen with grill, beverage fridges and wall TV under a large ceiling fan.",
+        "ancho": 1600,
+        "alto": 1200,
         "pos": "50% 50%",
-        "_banco": "bi-0548",
-        "_proyecto": "obra-048"
+        "_banco": "bi-0843",
+        "_proyecto": "obra-074"
       },
       {
-        "src": "/images/banco/kitchens/outdoor-kitchen-grill-island-quartz-countertop-florida-01.webp",
-        "alt": "L-shaped outdoor kitchen island with built-in grill and quartz countertop in progress.",
-        "ancho": 1200,
-        "alto": 1600,
+        "src": "/images/banco/kitchens/outdoor-kitchen-granite-waterfall-grill-ice-maker-florida-01.webp",
+        "alt": "L-shaped stucco outdoor kitchen with granite waterfall end, grill, ice maker and fridge.",
+        "ancho": 1024,
+        "alto": 768,
         "pos": "50% 50%",
-        "_banco": "bi-0550",
-        "_proyecto": "obra-048"
+        "_banco": "bi-0840",
+        "_proyecto": null
       },
       {
         "src": "/images/banco/kitchens/outdoor-kitchen-louvered-pergola-poolside-florida-01.webp",
@@ -692,13 +692,13 @@
         "_proyecto": null
       },
       {
-        "src": "/images/banco/landscaping/artificial-turf-stepping-stones-path-lights-travertine-florida-01.webp",
-        "alt": "Stone steppers set in artificial turf with bronze path lights, leading from a travertine patio.",
-        "ancho": 1200,
-        "alto": 1600,
+        "src": "/images/banco/landscaping/backyard-putting-green-artificial-turf-palm-trees-florida-02.webp",
+        "alt": "Large backyard putting green with nine flags surrounded by artificial turf and coconut palms.",
+        "ancho": 1600,
+        "alto": 1200,
         "pos": "50% 50%",
-        "_banco": "bi-0323",
-        "_proyecto": "obra-043"
+        "_banco": "bi-0134",
+        "_proyecto": "obra-002"
       },
       {
         "src": "/images/banco/landscaping/artificial-turf-coconut-palms-beachfront-resort-florida-01.webp",
@@ -710,13 +710,13 @@
         "_proyecto": "obra-042"
       },
       {
-        "src": "/images/banco/landscaping/landscaping-side-yard-gravel-path-stepping-stones-florida-01.webp",
-        "alt": "Side yard path of white gravel with round red stepping stones between a wood fence and the house.",
+        "src": "/images/banco/landscaping/landscaping-pygmy-palm-bed-river-rock-impatiens-florida-01.webp",
+        "alt": "Planting bed with pygmy date palms, agaves and pink impatiens edged in river rock.",
         "ancho": 1600,
-        "alto": 900,
+        "alto": 739,
         "pos": "50% 50%",
-        "_banco": "bi-0309",
-        "_proyecto": "obra-039"
+        "_banco": "bi-0314",
+        "_proyecto": "obra-041"
       },
       {
         "src": "/images/banco/landscaping/backyard-putting-green-artificial-turf-palm-uplights-florida-01.webp",
@@ -728,58 +728,58 @@
         "_proyecto": "obra-002"
       },
       {
-        "src": "/images/banco/landscaping/backyard-putting-green-artificial-turf-oak-trees-florida-02.webp",
-        "alt": "Finished kidney-shaped putting green with fringe turf and steel edging under oak trees.",
-        "ancho": 1200,
-        "alto": 1600,
-        "pos": "50% 50%",
-        "_banco": "bi-0120",
-        "_proyecto": "obra-018"
-      },
-      {
-        "src": "/images/banco/landscaping/putting-green-turf-installation-in-progress-florida-01.webp",
-        "alt": "Putting surface turf cut and laid on a curved base with rolls of fringe turf waiting in front.",
-        "ancho": 1200,
-        "alto": 1600,
-        "pos": "50% 50%",
-        "_banco": "bi-0119",
-        "_proyecto": "obra-018"
-      },
-      {
-        "src": "/images/banco/landscaping/artificial-turf-putting-green-installation-florida-01.webp",
-        "alt": "Artificial turf putting green being installed beside a gray marble deck with seat walls, dogs on the green.",
-        "ancho": 1200,
-        "alto": 1600,
-        "pos": "50% 50%",
-        "_banco": "bi-0489",
-        "_proyecto": "obra-045"
-      },
-      {
-        "src": "/images/banco/landscaping/artificial-turf-putting-green-bunker-installation-florida-01.webp",
-        "alt": "Dog sitting on freshly laid artificial turf next to a sand bunker under construction on a backyard putting green.",
+        "src": "/images/banco/landscaping/backyard-putting-green-artificial-turf-oak-trees-florida-01.webp",
+        "alt": "Kidney-shaped artificial turf putting green with fringe under tall oak trees and gravel paths.",
         "ancho": 1600,
         "alto": 1200,
         "pos": "50% 50%",
-        "_banco": "bi-0490",
-        "_proyecto": "obra-045"
+        "_banco": "bi-0117",
+        "_proyecto": "obra-018"
       },
       {
-        "src": "/images/banco/landscaping/artificial-turf-installation-roll-edge-base-florida-01.webp",
-        "alt": "Edge of newly laid artificial turf over a compacted base with a turf roll waiting nearby and a dog standing on it.",
+        "src": "/images/banco/landscaping/artificial-turf-beachfront-resort-wood-decks-palms-florida-01.webp",
+        "alt": "Artificial turf lawns and wood deck platforms between sand paths at a beachfront resort.",
+        "ancho": 1600,
+        "alto": 739,
+        "pos": "50% 50%",
+        "_banco": "bi-0315",
+        "_proyecto": "obra-042"
+      },
+      {
+        "src": "/images/banco/landscaping/landscaping-artificial-turf-side-yard-stone-path-florida-01.webp",
+        "alt": "Artificial turf side yard with limestone paver walkway, clusia hedge and palms seen through an open gate.",
         "ancho": 1200,
         "alto": 1600,
         "pos": "50% 50%",
-        "_banco": "bi-0491",
-        "_proyecto": "obra-045"
-      },
-      {
-        "src": "/images/banco/landscaping/landscaping-stepping-stone-path-black-slate-chips-florida-01.webp",
-        "alt": "Side-yard path of square limestone stepping stones set in black slate chips leading to a metal gate.",
-        "ancho": 1200,
-        "alto": 1600,
-        "pos": "50% 50%",
-        "_banco": "bi-0499",
+        "_banco": "bi-0500",
         "_proyecto": "obra-046"
+      },
+      {
+        "src": "/images/banco/landscaping/backyard-putting-green-artificial-turf-sunset-florida-01.webp",
+        "alt": "Large artificial turf putting green with white flags at sunset, pines and hedge behind.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0137",
+        "_proyecto": "obra-002"
+      },
+      {
+        "src": "/images/banco/landscaping/landscaping-tropical-poolside-planting-crotons-palms-florida-01.webp",
+        "alt": "Poolside planting of crotons, orchids and palms against a green hedge behind a raised spa.",
+        "ancho": 1600,
+        "alto": 900,
+        "pos": "50% 50%",
+        "_banco": "bi-0308",
+        "_proyecto": "obra-039"
+      },
+      {
+        "src": "/images/banco/landscaping/landscaping-front-yard-boxwood-mandevilla-mulch-bed-florida-01.webp",
+        "alt": "Front yard bed with boxwood balls, pink mandevilla and podocarpus in fresh mulch.",
+        "ancho": 1600,
+        "alto": 1195,
+        "pos": "50% 50%",
+        "_banco": "bi-0325",
+        "_proyecto": "obra-039"
       }
     ],
     "_derivado": "src/data/ciudades-servicios-filas.json — no editar a mano: npm run ciudades:servicios"

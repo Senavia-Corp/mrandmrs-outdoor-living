@@ -55,7 +55,80 @@ const entradillaFinal = entradilla ?? propio?.entradilla ?? ENCABEZADOS._defecto
 // Las obras del banco (PROMPT-PROYECTOS-BANCO) llevan `enCarrusel: false`: salen en /projects y
 // en su ficha, no en las 66 rutas de este carrusel. `check-texto.mjs` (`lineasObras`) filtra igual.
 const slides = [...PROPIAS.obras.filter((o) => o.enCarrusel !== false), ...MIGRADAS.obras];
+
+/* ASTRO-2 · lamina «Proyectos», en las 118 paginas de servicio × ciudad: el carrusel pasa a tres
+ * proyectos destacados con foto y el resto en un indice de titulo + «See Project». Los mismos
+ * proyectos, los mismos enlaces y el mismo orden. Con ASTRO-4 (lote C) ya van en lista todas las
+ * rutas que montan esta pieza: no queda ninguna con el carrusel.
+ * D-195: la obra que D-68/D-56 dejaban solo en el indice ya no existe (su ficha redirige). */
+import captacion from '../../data/captacion-servicios.json';
+import TELEFONOS from '../../data/telefonos.json';
+import { zonasDeCondado } from '../../lib/condados.mjs';
+import sharp from 'sharp';
+import path from 'node:path';
+/* ASTRO-4 · «More Projects» en la ficha de proyecto (D-86, T-60): la misma pieza de lista, sin la
+ * obra que se esta viendo, sin boton en la cabecera (la accion de esa pagina va en «Project
+ * Details») y sin telefonos (van arriba y en el cierre). */
+const enProyecto = /^\/project\//.test(ruta);
+// ASTRO-4: la home tambien va en lista (tres destacadas e indice), con su titular y su accion.
+const enLista = /^\/services\/[^/]+\/[^/]+$/.test(ruta) || enProyecto || ruta === '/' || ruta === '/industry-solutions' || /^\/where-we-serve\/[^/]+$/.test(ruta);
+// Los condados no tienen formulario en la pagina: su accion lleva al presupuesto, como su hero.
+const anclaAccion = /-county-fl$/.test(ruta) || ruta === '/industry-solutions' || ruta.startsWith('/where-we-serve/') ? '/request-estimated' : '#estimate';
+const cap = (captacion as Record<string, { heroe?: { cta?: string; zonas?: string[] } }>)[ruta];
+const accion = cap?.heroe?.cta ?? (ruta === '/' ? 'Request a Design-Build Project Evaluation' : 'Get a Free Estimate');
+// El orden de los dos telefonos: el de la entrada de captacion; en condado, el de `condados.mjs`.
+const zonas = (cap?.heroe?.zonas ?? (/-county-fl$/.test(ruta) ? zonasDeCondado(ruta) : TELEFONOS.items.map((x) => x.zona))).map((z) => TELEFONOS.items.find((x) => x.zona === z)!);
+const MEDIDAS: Map<string, { w: number; h: number }> = ((globalThis as any).__mmMedidasProyecto ??= new Map());
+const medidasDe = async (src: string) => {
+  if (!MEDIDAS.has(src)) {
+    const m = await sharp(path.join(process.cwd(), 'public', src)).metadata();
+    if (!m.width || !m.height) throw new Error(`CarruselProyectos: no puedo medir ${src}`);
+    MEDIDAS.set(src, { w: m.width, h: m.height });
+  }
+  return MEDIDAS.get(src)!;
+};
+const lista = enProyecto ? slides.filter((o) => o.slug !== ruta.split('/')[2]) : slides;
+const destacables = lista.slice(0, 3);
+const destacados = enLista ? await Promise.all(destacables.map(async (o) => ({ ...o, dim: await medidasDe(o.portada) }))) : [];
+const resto = lista.filter((o) => !destacables.includes(o));
+// En la ficha de proyecto el titular es «More Projects» y la entradilla, la de la pieza en las
+// paginas de ciudad (la de la lamina).
+const TITULO_OTROS = 'More Projects';
+const ENTRADILLA_OTROS = 'Selected custom pool and outdoor living projects from our Florida portfolio, to inspire your design.';
+const tituloRot = String(enProyecto ? TITULO_OTROS : tituloFinal).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/(Projects|Showcase)\s*$/i, '<span class="mm-rot">$1</span>');
+const FLECHA = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>';
 ---
+{enLista && (
+  <section class="mm-proy">
+    <div class="mm-sec-cab">
+      <h2 class="mm-h2" set:html={tituloRot} />
+      <div class="mm-sec-lado">
+        <p class="mm-p">{enProyecto ? ENTRADILLA_OTROS : entradillaFinal}</p>
+        <div class="mm-sec-acc">
+          {!enProyecto && <a class="mm-btn mm-btn--linea" href={anclaAccion}>{accion}</a>}
+          <a class="mm-flecha mm-may" href="/projects">See all Projects<Fragment set:html={FLECHA} /></a>
+        </div>
+      </div>
+    </div>
+    <div class="mm-proy-dest">
+      {destacados.map((o) => (
+        <a class="mm-ficha" href={`/project/${o.slug}`}>
+          <span class="mm-ficha-foto"><img src={o.portada} alt={o.alt} width={o.dim.w} height={o.dim.h} sizes="(min-width: 768px) 50vw, 100vw" loading="lazy" decoding="async" /></span>
+          <span class="mm-ficha-txt"><h3 class="mm-ficha-t" set:html={o.tituloHtml} /><span class="mm-flecha">See Project<Fragment set:html={FLECHA} /></span></span>
+        </a>
+      ))}
+    </div>
+    <div class="mm-proy-resto">
+{!enProyecto &&       <div class="mm-datos mm-datos--tel">{zonas.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}</div>}
+      <ul class="mm-indice" role="list">
+        {resto.map((o) => (
+          <li><a class="mm-linea" href={`/project/${o.slug}`}><span class="mm-linea-t" set:html={o.tituloHtml} /><span class="mm-art-ver">See Project<Fragment set:html={FLECHA} /></span></a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
+{!enLista && (
 <section class="projects-section">
   <div class="w-layout-blockcontainer container w-container">
     <div data-w-id="1b3f0000-6760-ab5a-e8a8-0451b5923b92" class="header-projects">
@@ -109,3 +182,4 @@ const slides = [...PROPIAS.obras.filter((o) => o.enCarrusel !== false), ...MIGRA
     </div>
   </div>
 </section>
+)}

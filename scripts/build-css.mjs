@@ -31,6 +31,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { poda } from './lib/css-vivo.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const ORIGEN = path.join(RAIZ, '_source/webflow-css');
@@ -80,6 +81,23 @@ for (const nombre of nombresCorruptos) {
 const imports = (css.match(/@import[^;]+;/g) ?? []).filter((i) => /fonts\.googleapis/.test(i));
 for (const i of imports) css = css.replace(i, '');
 
+/**
+ * E5 (D-154) · LA PODA. Con el rediseño las secciones de Webflow salieron de las 234 rutas, pero su
+ * hoja se servia entera y bloquea el pintado. Se quitan las reglas que ya no pueden casar con
+ * ningun elemento: las que nombran una clase que no esta ni en el HTML construido ni en el
+ * JavaScript que el sitio sirve. Esa lista es `src/data/css-clases-vivas.json`, que escribe
+ * `scripts/build-css-vivas.mjs` DESDE EL BUILD (criterio y motivos, alli y en `lib/css-vivo.mjs`).
+ * Sin el fichero no se poda nada: la hoja sale entera, como siempre.
+ * Si vuelve a hacer falta una regla: `npm run build && npm run css:vivas && npm run css`.
+ */
+const VIVAS = path.join(RAIZ, 'src/data/css-clases-vivas.json');
+const bytesEntera = css.length;
+let podadas = 0;
+if (fs.existsSync(VIVAS)) {
+  const r = poda(css, new Set(JSON.parse(fs.readFileSync(VIVAS, 'utf8')).clases));
+  css = r.css;
+  podadas = r.quitadas;
+}
 const cabecera = `/* DERIVADO — no editar a mano. Lo genera scripts/build-css.mjs desde\n`
   + ` * _source/webflow-css/${entradas[0]}, que es el CSS que sirve el sitio vivo\n`
   + ` * y con el que se capturaron las 460 imágenes del baseline.\n`
@@ -88,6 +106,7 @@ const cabecera = `/* DERIVADO — no editar a mano. Lo genera scripts/build-css.
   + ` *   · ${reescritas} url() del CDN de Webflow -> rutas locales\n`
   + ` *   · ${nombresCorruptos.length} variables con el nombre corrupto -> su valor resuelto\n`
   + ` *   · ${imports.length} @import de Google Fonts -> las fuentes se auto-alojan\n`
+  + ` *   · ${podadas} reglas que ya no casan con ningun elemento del sitio -> fuera (css-clases-vivas.json)\n`
   + ` */\n`;
 
 fs.mkdirSync(path.dirname(DESTINO), { recursive: true });
@@ -99,6 +118,7 @@ console.log(`  url() reescritas       : ${reescritas}`);
 console.log(`  variables corruptas    : ${nombresCorruptos.length} resueltas`);
 console.log(`  @import de Google Fonts: ${imports.length} quitados`);
 console.log(`  referencias a Webflow   : ${quedan}`);
+console.log(`  reglas podadas         : ${podadas}  (${bytesEntera} -> ${css.length} bytes)`);
 console.log(`  bytes                  : ${bytesAntes} -> ${css.length}`);
 if (quedan) { console.error('\n🔴 quedan referencias a Webflow en el CSS\n'); process.exit(1); }
 console.log(`\n  ✅ src/styles/webflow.css\n`);

@@ -2,8 +2,15 @@
 /**
  * FRANJA DE CONFIANZA — R17-CORE, captacion de las fichas de `/services/`.
  *
- * Cuatro diferenciadores con icono, entre los logos y el formulario. Responde «¿por que
+ * Cuatro diferenciadores en una banda de datos (lamina «Confianza», ASTRO-2): rotulo,
+ * regla y cuatro razones de titular + linea. Entre el hero y la intro. Responde «¿por que
  * vosotros?» ANTES de pedir datos, que es el orden en el que lo pregunta quien compra.
+ *
+ * LAS CUATRO RAZONES LLEVAN SIEMPRE ICONO (E8, D-182). Cada razon trae su clave (`icono`) en el
+ * JSON y el dibujo es `src/assets/iconos-conf/<clave>.svg`: un fichero por clave, en linea y con
+ * `currentColor`. Si la clave no tiene dibujo, o la razon no tiene clave, sale el de su posicion
+ * en la fila (`lib/iconos-conf.mjs`). Una fila con un hueco se lee como rota, asi que una seccion
+ * que no resuelva sus cuatro para el build. Lo vigila `check:iconos-conf`.
  *
  * LOS CUATRO SON LOS TEMAS DE LOS RSA QUE LA PAGINA YA SOSTIENE, y solo esos. Contado sobre
  * el texto visible de la ruta: `3D` 6, `permit` 7, `licensed` 11, design-build en la tarjeta
@@ -24,37 +31,32 @@
  * que deja a las otras 13 fichas byte a byte iguales.
  */
 import DATOS from '../../data/captacion-servicios.json';
-import Manos from '../../iconos/financing/manos.svg';
-import Escudo from '../../iconos/financing/escudo.svg';
-import Plano from '../../iconos/financing/plano.svg';
-import Contrato from '../../iconos/financing/contrato.svg';
-
-/* Los 4 iconos salen de `src/iconos/financing/`, ya en `<mask>` + `currentColor` y de la misma
- * familia de Recraft. Cero iconos generados para esto: los siete existentes cubren los cuatro
- * huecos con su semantica correcta. */
-const ICONOS = { manos: Manos, escudo: Escudo, plano: Plano, contrato: Contrato };
-
+import { dibujoDe } from '../../lib/iconos-conf.mjs';
 /* `Astro.props.ruta` existe SOLO para el laboratorio `_lab-servicio.astro`, que no esta
  * enrutado y por tanto no tiene el pathname de la ficha. El generador no pasa props: en
  * produccion siempre manda `Astro.url.pathname`. */
 const ruta = (Astro.props.ruta ?? Astro.url.pathname).replace(/(.)\/$/, '$1');
 const d = DATOS[ruta]?.confianza;
+/* En linea no hace falta `xmlns`; son decorativos, el titulo ya dice lo mismo. */
+const DIBUJOS = Object.fromEntries(Object.entries(import.meta.glob('../../assets/iconos-conf/*.svg', { query: '?raw', import: 'default', eager: true }))
+  .map(([f, svg]) => [f.match(/([^/]+)\.svg$/)[1], svg.replace(' xmlns="http://www.w3.org/2000/svg"', ' aria-hidden="true" focusable="false"')]));
+const iconos = (d?.tarjetas ?? []).map((t, i) => DIBUJOS[dibujoDe(t.icono, i, (k) => k in DIBUJOS)]);
+if (d && (iconos.length !== 4 || iconos.some((svg) => !svg))) throw new Error(`ConfianzaCore: ${ruta} no resuelve sus cuatro iconos`);
+/* Un numero de licencia no se parte entre dos lineas y va en cifras tabulares. */
+const LICENCIA = /\b((?:CPC|SCC)\d{7,9})\b/;
 ---
 {d && (
-  <section class="svc-confianza mm-seccion mm-inverso">
-    <div class="mm-caja mm-pila mm-pila--32">
-      <h2 class="mm-tit-2 svc-confianza__tit">{d.rotulo}</h2>
-      <ul class="svc-confianza__lista" role="list">
-        {d.tarjetas.map(({ icono, titulo, texto }) => {
-          const Icono = ICONOS[icono];
-          return (
-            <li class="svc-confianza__item">
-              <span class="svc-confianza__icono" aria-hidden="true">{Icono && <Icono focusable="false" />}</span>
-              <h3 class="mm-tit-3 svc-confianza__rotulo">{titulo}</h3>
-              <p class="mm-txt-menudo">{texto}</p>
-            </li>
-          );
-        })}
+  <section class="svc-confianza mm-conf" aria-labelledby="mm-conf-h">
+    <div class="mm-conf-caja">
+      <h2 id="mm-conf-h" class="mm-etiqueta">{d.rotulo}</h2>
+      <ul class="mm-razones mm-razones--ico" role="list">
+        {d.tarjetas.map(({ titulo, texto }, i) => (
+          <li class="mm-razon">
+            <span class="mm-razon-ico" set:html={iconos[i]} />
+            <h3 class="mm-conf-t">{titulo}</h3>
+            <p class="mm-conf-p">{texto.split(LICENCIA).map((t, i) => (i % 2 ? <span class="mm-conf-num">{t}</span> : t))}</p>
+          </li>
+        ))}
       </ul>
     </div>
   </section>

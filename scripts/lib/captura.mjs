@@ -70,6 +70,9 @@ export const CONGELAR_CSS = [
   // diagnosticar del todo (MIGRACION-LOG.md, causa distinta), así que esto no se da por bueno
   // sin probarlo: se clava también por CSS, sin esperar a que animations:'disabled' baste.
   '.trusted-section .grid-column,.trusted-section .grid-row{animation-play-state:paused!important}',
+  // E7 (D-166): la franja de logos desfila con un @keyframes. Se clava en su arranque —la lista
+  // en su sitio, sin desplazar—, que es ademas lo que ve quien pide menos movimiento.
+  '.mm-logos-pista{animation:none!important}',
 ].join('');
 
 /** Nombre de fichero de una ruta. `/` es `index`; el resto, la ruta sin la barra inicial. */
@@ -315,7 +318,10 @@ export const disparar = (pag) => pag.screenshot({
 });
 
 /** El texto normalizado: espacios colapsados, un nodo por línea, sin líneas vacías. */
-export const textoNormalizado = (pag) => pag.evaluate(() => document.body.innerText
+/* D-34: el formulario de dos pasos (`form[data-mm-paso]`) oculta con JS el paso que no toca. Antes
+ * de leer se ensenan los dos, que es como va el HTML servido: el texto del paso 2 es texto de la
+ * pagina y la puerta lo compara. */
+export const textoNormalizado = (pag) => pag.evaluate(() => (document.querySelectorAll('form[data-mm-paso]').forEach((f) => f.removeAttribute('data-mm-paso')), document.body.innerText)
   .replace(/ /g, ' ').split('\n')
   .map((s) => s.replace(/[ \t]+/g, ' ').trim()).filter(Boolean).join('\n'));
 

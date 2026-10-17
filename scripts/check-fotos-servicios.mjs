@@ -84,7 +84,7 @@ for (const u of unidades) {
   if (u.tipo === 'ficha') {
     const vistos = new Map();
     for (const img of d.querySelectorAll('img[src]')) {
-      if (img.closest('section.menu, section.footer, .w-nav, footer')) continue;
+      if (img.closest('section.menu, section.footer, .w-nav, footer, .mm-cab, .mm-menu')) continue;
       const s = img.getAttribute('src');
       if (!s.startsWith('/images/') || /\/(site\/icon|subservices|logos?)\//.test(s) || s.endsWith('.svg')) continue;
       vistos.set(s, (vistos.get(s) ?? 0) + 1);
@@ -95,10 +95,11 @@ for (const u of unidades) {
     }
     // Intocables contra la linea base.
     const base = ESTADO.intocables[u.ruta];
-    const intro = [...d.querySelectorAll('section.trusted-section.svc-intro img.image')].map((i) => i.getAttribute('src'));
+    // ASTRO-2: la intro ya no lleva mosaico (lamina «Intro»); lo que se vigila es que no vuelva.
+    const intro = [...d.querySelectorAll('section.svc-intro img')].map((i) => i.getAttribute('src'));
     const wwd = [...d.querySelectorAll('section.services img.svc-detalle__foto')].map((i) => i.getAttribute('src'));
     if (!base) rojo(u.id, 'sin linea base de intocables');
-    else if (JSON.stringify(intro) !== JSON.stringify(base.intro)) rojo(u.id, `la intro ha cambiado: ${JSON.stringify(intro)}`);
+    else if (intro.length) rojo(u.id, `la intro vuelve a llevar fotos: ${JSON.stringify(intro)}`);
     else if (JSON.stringify(wwd) !== JSON.stringify(base.what_we_do)) rojo(u.id, `«What we do» ha cambiado: ${JSON.stringify(wwd)}`);
   }
 }

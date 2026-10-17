@@ -1,11 +1,13 @@
 # Banco de imágenes — cómo se consulta
 
 Fotografía de obra propia, clasificada el 1-oct-2026 desde
-`~/Documents/Pictures Mr and Mrs Outdoor Living` (1.269 ficheros, 1.129 únicos).
+`~/Documents/Pictures Mr and Mrs Outdoor Living` (1.269 ficheros, 1.129 únicos). El 16-oct-2026 (LOOP-AREAS, lote LB)
+entró también su subcarpeta `PICTURES/` (sesión profesional, reformas Lacircle y Petra, pantallas, tarimas…): un solo
+origen, con `PICTURES/` delante en el `origen` de lo que viene de ahí.
 
 | Qué | Dónde |
 |---|---|
-| Índice — **lo único que hay que leer** | `src/data/banco-imagenes.json` (1.269 entradas, 514 aprobadas) |
+| Índice — **lo único que hay que leer** | `src/data/banco-imagenes.json` (1.550 entradas, 654 aprobadas) |
 | Ficheros servidos (WebP, 1600 px, sin EXIF) | `public/images/banco/<servicio>/<slug>.webp` → URL `/images/banco/…` |
 | Hojas de contactos de lo aprobado | `banco/hojas/<servicio>-<etapa>-NN.jpg` |
 | Dudosas, con su pregunta | `banco/DUDOSAS.md` + `banco/hojas-dudosas/` |
@@ -44,12 +46,14 @@ Campos: `etapa` (`terminado` · `construccion` · `antes`), `servicios` (protago
 7. **El slug no se cambia nunca**: es una URL. Y no lleva región: `region` es `desconocida` salvo
    en una obra, porque ni la carpeta ni el EXIF la prueban.
 8. **Si el banco no tiene la foto que el hueco pide, el hueco se queda como está y se reporta.**
-   Ceros hoy: `irrigation`, `lighting`, `furniture`, `rooms` y `screens` como protagonista;
-   `enclosures` tiene una sola.
+   Ceros hoy: `irrigation` y `lighting` como protagonista; `furniture` tiene dos, `screens` diez
+   (tres de E10 y siete de LB, 16-oct-2026), `rooms` tres y `enclosures` una. De `enclosures`, `decks`, `pole` e `irrigation` hay obra
+   real fuera del banco, en las galerías de su ficha: la clasifica `src/data/gallery-procedencia.json`.
 
 ## Añadir fotos
 
 Entrada nueva en el índice (`origen` relativo a la carpeta de originales, `sha256`, `estado`,
 `src`…) → `node scripts/build-banco.mjs` → `--hojas` → `--check`. Los originales no entran en git;
-la ruta se cambia con `BANCO_ORIGEN=…`. El trabajo intermedio de la clasificación (previews,
+la ruta se cambia con `BANCO_ORIGEN=…`; por defecto es la carpeta de arriba, y
+`node scripts/build-banco.mjs` encuentra todos los originales sin cambiarla. El trabajo intermedio de la clasificación (previews,
 inventario, decisiones por lote) está en `banco/.trabajo/`, ignorado por git.

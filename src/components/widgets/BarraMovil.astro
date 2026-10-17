@@ -1,0 +1,50 @@
+---
+// LA BARRA INFERIOR MÓVIL (G7) — REDISEÑO STITCH, ASTRO-1 (12-oct-2026).
+//
+// Sustituye al botón flotante de `ClickToCall` por debajo de 992 px. Dos acciones: llamar
+// (selector de zona, North primero: son dos oficinas, D2) y pedir presupuesto.
+//
+//   · «Call us» es un <details>: sin JS también despliega los dos teléfonos.
+//   · Cada `tel:` pinta `visible` de telefonos.json, el texto que sustituye el `gtag config`
+//     de conversión de llamadas de Base.astro. No se cambia el formato.
+//   · Se esconde, y sale del foco con `inert`, cuando ya hay en pantalla una acción propia de
+//     la página: el botón del hero, un formulario o la banda final.
+import TELEFONOS from '../../data/telefonos.json';
+import ICO from '../../data/iconos-cascaron.json';
+
+// D-151: en `/request-estimated` el boton no recarga la pagina en la que ya se esta; baja a su
+// formulario. (Con el formulario en pantalla la barra ya no se pinta: ver ACCIONES.)
+const presupuesto = Astro.url.pathname.replace(/\/$/, '') === '/request-estimated' ? '#wf-form-Request-Quote-Form' : '/request-estimated';
+---
+<div class="mm-barra" data-mm-barra>
+  <details class="mm-llama" data-mm-llama>
+    <summary class="mm-barra-btn"><Fragment set:html={ICO.tel} />Call us</summary>
+    <div class="mm-llama-panel mm-llama-panel--arriba mm-datos mm-datos--pila">
+      {TELEFONOS.items.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}
+    </div>
+  </details>
+  <a class="mm-barra-btn mm-barra-btn--navy" href={presupuesto}>Get a Free Estimate</a>
+</div>
+
+<script>
+  const barra = document.querySelector<HTMLElement>('[data-mm-barra]');
+  if (barra && 'IntersectionObserver' in window) {
+    // Lo que ya es una acción en pantalla: botón de presupuesto del hero, formularios y banda final.
+    const ACCIONES = 'main a[href="#estimate"], main a[href="/request-estimated"], main form, .cta-footer, .cta-page-section';
+    const vistos = new Set<Element>();
+    const poner = () => {
+      const oculta = vistos.size > 0;
+      barra.toggleAttribute('data-oculta', oculta);
+      barra.inert = oculta;
+      if (oculta) barra.querySelector('details')?.removeAttribute('open');
+    };
+    const io = new IntersectionObserver((es) => {
+      for (const e of es) e.isIntersecting ? vistos.add(e.target) : vistos.delete(e.target);
+      poner();
+    }, { rootMargin: '-64px 0px -68px 0px' });
+    document.querySelectorAll(ACCIONES).forEach((el) => io.observe(el));
+    const d = barra.querySelector('details');
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && d?.open) { d.open = false; d.querySelector('summary')?.focus(); } });
+    document.addEventListener('click', (e) => { if (d?.open && !d.contains(e.target as Node)) d.open = false; });
+  }
+</script>

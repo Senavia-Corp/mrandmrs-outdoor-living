@@ -40,6 +40,11 @@ permiso para cada caso.
 
 ### 2. Solo CSS en las 114 paginas
 
+> **DEROGADA el 5-oct-2026, lo decide Sebastian.** El markup de una seccion se puede rehacer en
+> cualquier ruta mientras `check:texto` siga verde, y `disenio/tokens.css` lo amplia quien
+> redisena. Manda `docs/encargos/00-PRINCIPIOS.md` §1 y `CLAUDE.md` §0. Lo de abajo queda como
+> historia.
+
 El markup se toca **unicamente en `src/pages/index.astro`**, y solo en la fase R9. Cada cambio se
 anota en `MIGRACION-LOG.md`.
 

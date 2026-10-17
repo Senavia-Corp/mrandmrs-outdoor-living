@@ -57,6 +57,10 @@ const canal = {
 const logo = g.querySelector('.yottie-widget-header-logo img');
 if (logo?.src) canal.logo = await bajar(logo.src, 'canal.jpg');
 
+// La hora de publicacion con su zona no esta en el DOM del widget, que solo da dia/mes/año: se cotejo en el canal y
+// vive en el propio JSON (`publicado`). Al regenerar se conserva por id; un video nuevo sale sin ella.
+const F_SALIDA = path.join(RAIZ, 'src/data/youtube.json');
+const publicado = fs.existsSync(F_SALIDA) ? Object.fromEntries(JSON.parse(fs.readFileSync(F_SALIDA, 'utf8')).videos.map((v) => [v.id, v.publicado])) : {};
 const videos = [];
 for (const v of g.querySelectorAll('.yottie-widget-video')) {
   const id = v.getAttribute('data-yt-id');
@@ -70,6 +74,7 @@ for (const v of g.querySelectorAll('.yottie-widget-video')) {
     titulo: txt(v.querySelector('.yottie-widget-video-info-title')),
     duracion: txt(v.querySelector('.yottie-widget-video-preview-marker-duration')),
     fecha: txt(v.querySelector('.yottie-widget-video-info-passed-time')),
+    publicado: publicado[id],
     // Se pasa por el DOM en vez de recortar etiquetas a mano: `replace(/<[^>]+>/g,'')` deja
     // las entidades sin decodificar y la descripcion salia con "&amp" dentro.
     descripcion: desc ? (() => {
@@ -92,7 +97,7 @@ const salida = {
     + 'de Elfsight. Datos reales del canal del cliente. Regenerar: npm run youtube',
   canal, videos,
 };
-fs.writeFileSync(path.join(RAIZ, 'src/data/youtube.json'), JSON.stringify(salida, null, 1));
+fs.writeFileSync(F_SALIDA, JSON.stringify(salida, null, 1));
 console.log(`\n  canal      : ${canal.titulo} — ${canal.propiedades.join(' / ')}`);
 console.log(`  videos     : ${videos.length}`);
 console.log(`  miniaturas : ${bajadas.length} nuevas en public/images/site/youtube/`);
