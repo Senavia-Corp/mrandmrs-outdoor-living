@@ -26,7 +26,7 @@ import { ARGS_NAVEGADOR, aSlug, asentar, textoNormalizado } from './lib/captura.
 import { origen, rutaCiudad, esFicha, esCiudad, esCondado } from './lib/renombradas.mjs';
 import { tramosMiga } from '../src/lib/miga-tramos.mjs';
 import { AREAS_PIE, ORDEN_SERVICIOS_PIE, COPYRIGHT_ORIGEN, copyright } from '../src/lib/pie.mjs';
-import { lineasTarjetas, lineasBanda, lineasSrBanda, CATEGORIAS as GAL_CATEGORIAS } from '../src/lib/galeria-categorias.mjs';
+import { lineasTarjetas, lineasBanda, lineasSrBanda, lineasBandaCompacta, CATEGORIAS as GAL_CATEGORIAS } from '../src/lib/galeria-categorias.mjs';
 import { OCULTAS, lineasFiltro } from '../src/lib/filtro-proyectos.mjs';
 import { CATEGORIAS_PISCINA } from '../src/lib/blog-groq.mjs';
 import { enlazadoDeCiudad, ciudadesDePiscinaPorZona } from '../src/lib/vecinas.mjs';
@@ -3002,6 +3002,17 @@ function diagnosticaBloque(lineas, bloque) {
 function sinElBloque(ruta, hay) {
   bloqueQueFallo = null;
   let lineas = hay.split('\n');
+
+  // 0.a · GALERIA-FICHAS (17-oct-2026): la banda «Project Gallery» entra en las 14 fichas entre
+  //       los servicios y la inversion. No esta en su baseline: se quita SEGUIDA y EN ORDEN, derivada de
+  //       `lineasBandaCompacta()` -la misma fuente que el marcado- con la accion que pinta build-paginas.mjs
+  //       (la del hero de captacion o «Get a Free Estimate»), capitalizada como la
+  //       pinta `.mm-btn`. Va ANTES de los sufijos, porque los suyos van dentro del bloque.
+  if (ES_FICHA(ruta)) {
+    const accion = capitaliza(CAPTACION_JSON[ruta]?.heroe?.cta ?? 'Get a Free Estimate');
+    lineas = quitaBloque(lineas, lineasBandaCompacta(accion));
+    if (lineas === null) { bloqueQueFallo = 'la banda «Project Gallery» de la ficha (lineasBandaCompacta)'; return null; }
+  }
 
   // 0 · los sufijos ocultos de los CTA genericos (§ .mm-sr). VAN LOS PRIMEROS a proposito:
   //     en las 16 rutas de BLOG_RUTAS caen DENTRO del bloque que declara `lineasBlog()` y lo

@@ -231,6 +231,14 @@ export const lineasBanda = () => [
   ...PANELES.flatMap((c) => [c.nombre, `${c.linea} ${VISIBLE_PANEL}`]),
 ];
 
+/** GALERIA-FICHAS (17-oct-2026): las lineas que la banda COMPACTA pone en el `innerText` de una ficha, en
+ *  orden: titular, entradilla, la accion de la cabecera y, por panel, nombre, linea con «See photos» y su
+ *  sufijo `.mm-sr`. `check-texto.mjs` la quita SEGUIDA de las 14 fichas, que en el baseline no la tienen. */
+export const lineasBandaCompacta = (accion) => [
+  TITULO_BANDA, TEXTO_BANDA, accion,
+  ...PANELES.flatMap((c) => [c.nombre, `${c.linea} ${VISIBLE_PANEL}`, sufijoPanel(c)]),
+];
+
 /** El sufijo `.mm-sr` del enlace sale en `innerText` como linea PROPIA, justo detras de la del parrafo.
  *  `check-texto.mjs` la declara con `LINEAS_ANADIDAS`, derivada de aqui. */
 export const lineasSrBanda = () => PANELES.map((c) => ({ tras: `${c.linea} ${VISIBLE_PANEL}`, linea: sufijoPanel(c) }));

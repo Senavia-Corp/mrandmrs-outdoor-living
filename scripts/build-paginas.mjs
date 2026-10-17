@@ -30,7 +30,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { JSDOM } from 'jsdom';
 import { renombra, origen, esFicha, esCondado } from './lib/renombradas.mjs';
-import { CATEGORIAS as GALERIA_CATEGORIAS, indiceGaleriaHtml } from '../src/lib/galeria-categorias.mjs';
+import { CATEGORIAS as GALERIA_CATEGORIAS, indiceGaleriaHtml, bandaCompactaHtml } from '../src/lib/galeria-categorias.mjs';
 import { logoLigero, ALTO_LOGO } from '../src/lib/logo-ligero.mjs';
 import { OCULTAS, serviciosDe } from '../src/lib/filtro-proyectos.mjs';
 import { tramosMiga } from '../src/lib/miga-tramos.mjs';
@@ -3277,6 +3277,10 @@ for (const [ruta] of RUTAS) {
   let acumulado = '';
   for (let n = menu.nextElementSibling; n && n !== pie; n = n.nextElementSibling) {
     if (esFicha(ruta) && n.matches?.('section.mm-faq')) {
+      /* GALERIA-FICHAS (17-oct-2026): la banda «Project Gallery» de las paginas de ciudad
+       * (`bandaCompactaHtml`, las seis teselas con su enlace a /gallery/<categoria>) entra tal cual entre
+       * la seccion de servicios y «What Will My … Cost?», con la accion de la cabecera de la ficha. */
+      acumulado += bandaCompactaHtml(CAPTACION[ruta]?.heroe?.cta ?? 'Get a Free Estimate');
       acumulado += MARCA + 'InversionCore' + MARCA;
       usados.add('InversionCore');
     }
