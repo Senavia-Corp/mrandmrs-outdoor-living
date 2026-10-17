@@ -83,19 +83,12 @@
     }
   },
   "lighting": {
-    "foto": "/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-full.avif",
-    "alt": "Dark wood pavilion with outdoor bar, sculptural stools, LED toe-kick lights and lounge at dusk.",
-    "ancho": 1500,
-    "alto": 800,
-    "pos": "50% 45%",
-    "_banco": "bi-0839",
-    "_ajuste": {
-      "recorte": "750/400",
-      "pos": "50% 45%",
-      "ancho": 1500,
-      "q": 50,
-      "de": "/images/banco/pergolas/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-01.webp"
-    }
+    "foto": "/images/banco/louvered/louvered-roof-blue-led-lighting-dusk-patio-florida-01.webp",
+    "alt": "White louvered roof lit with blue LED lights over a travertine patio with wicker seating at dusk",
+    "ancho": 1600,
+    "alto": 1200,
+    "pos": "50% 50%",
+    "_banco": "bi-0215"
   },
   "decks": {
     "foto": "/images/obra/obra-012/limestone-paver-patio-lake-view-herringbone-florida-full.avif",

@@ -8027,7 +8027,11 @@
     "defectos": [
       "algo de ruido por poca luz"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/",
+      "/where-we-serve/north-florida",
+      "/where-we-serve/south-florida"
+    ],
     "origen": "EQUINOX LOUVERED ROOF/IMG_0044.JPG",
     "sha256": "9416b274938a4f4163cece55de43c89e71de3f131e40da229d586770c7b804b5"
   },
