@@ -7552,3 +7552,10 @@ Las 6 familias duplicadas que pedía el encargo (`/pool-builders/{gainesville,oc
 
 ### Puertas
 Ver `SEO_IMPLEMENTATION_FINAL_REPORT.md` §24 con la salida literal. Roja heredada y ajena: `/blogs-tips` en `check:texto` (mismo rojo sobre el build de `main`, medido en un worktree). `check:visual` roja donde cambia el maquetado (pie en todas, ciudades, home): re-baseline pendiente de Sebastian.
+
+---
+
+## CIUDADES-BUSCADOR — las fichas enlazan sus ciudades con un buscador, no con una línea corrida · 17-oct-2026   🟡 en revisión
+
+**Pedido:** `PROMPT-CIUDADES-BUSCADOR.md` (Sebastian, 17-oct) · **Base:** `06912299` (`origin/stitch-sitio`) · **Rama:** `ciudades-buscador` (worktree, sin push)
+La línea «<Servicio> by city: A, FL · B, FL · …» de las 7 fichas con landings (53 enlaces de 19 px sin separación en la de piscina) pasa a `<section class="mm-ciudades">`: H2 propio, cuenta real, campo de búsqueda, chips por condado con cuenta y rejilla de tarjetas-enlace agrupadas por condado bajo un `<h3>` (1/2/3/4 columnas). Sin JS se ven todas las tarjetas; el JS (1 KB, `is:inline`) enciende campo y chips. Una sola fuente (`ciudadesDeFicha()`) para el componente, `check-texto.mjs` y el JSON-LD. Texto nuevo en `STITCH-TEXTO.md` T-107 a T-114, **provisional hasta el visto de Sebastian**. Informe: `docs/encargos/CIUDADES-BUSCADOR-INFORME.md`.
