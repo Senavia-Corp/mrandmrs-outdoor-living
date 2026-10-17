@@ -1483,3 +1483,53 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 .mm-gracias-lado .mm-conf-t, .mm-gracias-lado .mm-conf-p { margin: 0; }
 .mm-gracias-lado .mm-datos { align-self: stretch; }
 @media (min-width: 992px) { .mm-gracias { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: var(--mm-e-64); align-items: start; } }
+
+/* ── TABLA DE DIFERENCIALES (home, bajo el antes/despues) ──────────────────────────────────
+ * Hoja de alcance del proyecto: la columna de Mr & Mrs es un lomo navy continuo con un check de
+ * oro por fila; las alternativas, en blanco y tinta suave. Las filas de grupo son una banda
+ * tenue que cruza la hoja sin romper el lomo. En <768 la hoja no se encoge: scroll horizontal
+ * con la primera columna fija y la region enfocable. Datos en `src/lib/diferenciales.mjs`.
+ * Toda regla de celda cuelga de `.mm-cmp-tabla`: la base `th, td` es (0,1,1) y una clase suelta
+ * (0,1,0) perdia contra ella (medido: el lomo salia blanco). */
+.mm-cmp { --mm-canal: var(--mm-e-24); display: flex; flex-direction: column; gap: var(--mm-e-24); padding: var(--mm-e-64) 0; background: var(--mm-azul-50); font-family: var(--mm-familia); color: var(--mm-tinta-texto); }
+.mm-cmp-scroll { box-sizing: border-box; overflow-x: auto; overscroll-behavior-x: contain; padding: 0 var(--mm-canal) var(--mm-e-8); scrollbar-color: var(--mm-azul-400) transparent; }
+.mm-cmp-scroll:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: calc(-1 * var(--mm-foco-grosor)); }
+.mm-cmp-tabla { width: 100%; min-width: 680px; border-collapse: separate; border-spacing: 0; table-layout: fixed; }
+/* <768: anchos fijos para que a 390 asome la tercera columna (24 + 196 + 120 = 340 px) y se vea que la hoja sigue. */
+.mm-cmp-tabla thead .mm-cmp-nec { width: 196px; }
+.mm-cmp-tabla thead .mm-cmp-mm { width: 120px; }
+.mm-cmp-tabla th, .mm-cmp-tabla td { box-sizing: border-box; padding: var(--mm-e-12) var(--mm-e-16); vertical-align: middle; text-align: left; font-size: 15px; line-height: 1.4; font-weight: 500; color: var(--mm-tinta-texto); background: var(--mm-blanco); border-bottom: 1px solid var(--mm-borde); }
+.mm-cmp-tabla thead th { padding-top: var(--mm-e-20); vertical-align: bottom; font-size: 14px; line-height: 1.3; font-weight: 700; color: var(--mm-navy); }
+.mm-cmp-tabla .mm-cmp-nec { position: sticky; left: 0; z-index: 1; font-weight: 600; color: var(--mm-navy); box-shadow: inset -1px 0 0 var(--mm-borde); }
+.mm-cmp-tabla thead .mm-cmp-nec { font-weight: 500; color: var(--mm-tinta-suave); }
+.mm-cmp-tabla .mm-cmp-mm { text-align: center; color: var(--mm-oro); background: var(--mm-navy); border-bottom-color: var(--mm-borde-inverso); }
+.mm-cmp-tabla thead .mm-cmp-mm { color: var(--mm-blanco); border-radius: var(--mm-r-12) var(--mm-r-12) 0 0; box-shadow: inset 0 4px 0 var(--mm-oro); }
+.mm-cmp-tabla tbody:last-child tr:last-child .mm-cmp-mm { border-bottom: 0; border-radius: 0 0 var(--mm-r-12) var(--mm-r-12); }
+.mm-cmp-tabla .mm-cmp-alt { text-align: center; font-size: 14px; color: var(--mm-tinta-suave); }
+/* En el bloque de servicios cada alternativa es UNA celda: con fondo tenue se lee como panel, no como catorce filas vacias. */
+.mm-cmp-tabla .mm-cmp-alt--todo { background: var(--mm-azul-50); box-shadow: inset 1px 0 0 var(--mm-blanco); }
+.mm-cmp-tabla .mm-cmp-grupo th, .mm-cmp-tabla .mm-cmp-grupo td { padding-top: var(--mm-e-20); padding-bottom: var(--mm-e-8); font-size: 13px; font-weight: 700; letter-spacing: 0.01em; color: var(--mm-tinta-suave); background: var(--mm-azul-50); border-bottom-color: var(--mm-azul-200); }
+.mm-cmp-tabla .mm-cmp-grupo .mm-cmp-mm { background: var(--mm-navy); border-bottom-color: var(--mm-borde-inverso); }
+/* Las 14 filas de servicio van mas prietas: solo un nombre y un check (minimo 44 px, medido 46). */
+.mm-cmp-tabla tbody:last-child tr:not(.mm-cmp-grupo) th, .mm-cmp-tabla tbody:last-child tr:not(.mm-cmp-grupo) td { padding-top: var(--mm-e-8); padding-bottom: var(--mm-e-8); }
+.mm-cmp-ico { display: inline-block; vertical-align: middle; }
+.mm-cmp-ico--si { color: var(--mm-oro); }
+.mm-cmp-ico--no { color: var(--mm-tinta-suave); }
+.mm-cmp-nota { margin: 0; padding: 0 var(--mm-canal); font-size: 13px; line-height: 1.5; color: var(--mm-tinta-suave); }
+@media (min-width: 768px) {
+  .mm-cmp { --mm-canal: var(--mm-e-32); gap: var(--mm-e-40); }
+  .mm-cmp-scroll { overflow-x: visible; padding-bottom: 0; }
+  .mm-cmp-tabla { min-width: 0; }
+  .mm-cmp-tabla .mm-cmp-nec { position: static; box-shadow: none; }
+  .mm-cmp-tabla thead .mm-cmp-nec { width: 34%; }
+  .mm-cmp-tabla thead .mm-cmp-mm { width: 22%; }
+}
+@media (min-width: 992px) {
+  .mm-cmp { gap: 56px; padding: var(--mm-e-96) 0; }
+  .mm-cmp-scroll, .mm-cmp-nota { box-sizing: border-box; width: calc(100% - 2 * var(--mm-canal)); max-width: var(--mm-contenedor); margin-inline: auto; padding: 0; }
+  .mm-cmp-tabla th, .mm-cmp-tabla td { padding: var(--mm-e-16) var(--mm-e-20); font-size: 16px; }
+  .mm-cmp-tabla thead th { padding-top: var(--mm-e-24); font-size: 15px; }
+  .mm-cmp-tabla .mm-cmp-alt { font-size: 15px; }
+  .mm-cmp-tabla tbody:last-child tr:not(.mm-cmp-grupo) th, .mm-cmp-tabla tbody:last-child tr:not(.mm-cmp-grupo) td { padding-top: var(--mm-e-12); padding-bottom: var(--mm-e-12); }
+}
+@media (min-width: 1200px) { .mm-cmp { --mm-canal: var(--mm-e-64); } }

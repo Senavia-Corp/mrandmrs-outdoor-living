@@ -1,0 +1,58 @@
+---
+/**
+ * TABLA DE DIFERENCIALES (home, bajo «Before & After»): hoja de alcance del proyecto. La columna
+ * de Mr & Mrs es un lomo navy continuo con un check de oro por fila; las dos alternativas dicen
+ * con palabras lo que cubren. Datos y texto en `src/lib/diferenciales.mjs` (fuente unica con
+ * `check-texto.mjs`). En <768 la tabla no se encoge: scroll horizontal con la primera columna
+ * fija; la region de scroll es enfocable para que el teclado tambien la mueva.
+ */
+import { COLUMNAS, GRUPOS, TITULO, PARRAFO, RESUMEN, NOTA, INCLUIDO, NO_INCLUIDO } from '../../lib/diferenciales.mjs';
+
+const CHECK = `<svg class="mm-cmp-ico mm-cmp-ico--si" role="img" aria-label="${INCLUIDO}" width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="14" fill="currentColor"></circle><path d="m8.5 14.5 3.5 3.5 7.5-8" stroke="var(--mm-sobre-accion)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>`;
+const ASPA = `<svg class="mm-cmp-ico mm-cmp-ico--no" role="img" aria-label="${NO_INCLUIDO}" width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9.5 9.5 9 9M18.5 9.5l-9 9"></path></svg>`;
+const celda = (v: unknown) => (v === true ? CHECK : v === false ? ASPA : String(v ?? ''));
+const [tit, lema] = [TITULO.replace(/,\s*One Team$/, ','), 'One Team'];
+---
+
+<section class="mm-cmp" aria-labelledby="mm-cmp-titulo">
+  <div class="mm-sec-cab">
+    <h2 class="mm-h2" id="mm-cmp-titulo">{tit} <span class="mm-rot">{lema}</span></h2>
+    <div class="mm-sec-lado"><p class="mm-p">{PARRAFO}</p></div>
+  </div>
+  <div class="mm-cmp-scroll" tabindex="0" role="region" aria-labelledby="mm-cmp-titulo">
+    <table class="mm-cmp-tabla">
+      <caption class="mm-sr">{RESUMEN}</caption>
+      <thead>
+        <tr>
+          <th scope="col" class="mm-cmp-nec">{COLUMNAS.necesidad}</th>
+          <th scope="col" class="mm-cmp-mm">{COLUMNAS.mm}</th>
+          <th scope="col" class="mm-cmp-alt">{COLUMNAS.oficio}</th>
+          <th scope="col" class="mm-cmp-alt">{COLUMNAS.varios}</th>
+        </tr>
+      </thead>
+      {GRUPOS.map((g) => (
+        <tbody>
+          <tr class="mm-cmp-grupo">
+            <th scope="rowgroup" class="mm-cmp-nec">{g.titulo}</th>
+            <td class="mm-cmp-mm"></td>
+            <td class="mm-cmp-alt"></td>
+            <td class="mm-cmp-alt"></td>
+          </tr>
+          {g.filas.map((f, i) => (
+            <tr>
+              <th scope="row" class="mm-cmp-nec">{f.necesidad}</th>
+              <td class="mm-cmp-mm"><Fragment set:html={celda(f.mm)} /></td>
+              {g.oficio
+                ? i === 0 && <td class="mm-cmp-alt mm-cmp-alt--todo" rowspan={g.filas.length}>{g.oficio}</td>
+                : <td class="mm-cmp-alt"><Fragment set:html={celda(f.oficio)} /></td>}
+              {g.varios
+                ? i === 0 && <td class="mm-cmp-alt mm-cmp-alt--todo" rowspan={g.filas.length}>{g.varios}</td>
+                : <td class="mm-cmp-alt"><Fragment set:html={celda(f.varios)} /></td>}
+            </tr>
+          ))}
+        </tbody>
+      ))}
+    </table>
+  </div>
+  <p class="mm-cmp-nota">{NOTA}</p>
+</section>
