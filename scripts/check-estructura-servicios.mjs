@@ -44,11 +44,21 @@ const VARIANTES = {
   '/services/pool-remodeling': { tras: 'mm-que', va: 'mm-ad' },
   // ASTRO-2: `/services/pool-builders` lo pierde: no hay par fotografiado desde el mismo punto (D-95).
 };
-const esperadoDe = (ruta) => {
+/** Secciones OPCIONALES: solo pueden aparecer en el puesto declarado, y pueden faltar. CIUDADES-BUSCADOR
+ *  (17-oct-2026): el buscador de ciudades es `<section class="mm-ciudades">` detras de «Where We Serve» y
+ *  solo lo pintan las 7 fichas con landings de ciudad; las otras 7 no cambian. Se escribe a mano por lo
+ *  mismo que `ESPERADO`: si se leyera de `ciudadesDeFicha()`, la puerta daria por bueno cualquier sitio. */
+const OPCIONALES = { 'mm-ciudades': { tras: 'mm-zonas' } };
+const esperadoDe = (ruta, cuerpo = []) => {
+  let orden = ESPERADO;
   const v = VARIANTES[ruta];
-  if (!v) return ESPERADO;
-  const i = ESPERADO.indexOf(v.tras);
-  return [...ESPERADO.slice(0, i + 1), v.va, ...ESPERADO.slice(i + 1)];
+  if (v) { const i = orden.indexOf(v.tras); orden = [...orden.slice(0, i + 1), v.va, ...orden.slice(i + 1)]; }
+  for (const [sec, { tras }] of Object.entries(OPCIONALES)) {
+    if (!cuerpo.includes(sec)) continue;
+    const i = orden.indexOf(tras);
+    orden = [...orden.slice(0, i + 1), sec, ...orden.slice(i + 1)];
+  }
+  return orden;
 };
 
 const RUTAS = Object.keys(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/captacion-servicios.json'), 'utf8')))
@@ -78,7 +88,7 @@ for (const ruta of RUTAS) {
   // asi que deja de salir en `clases`. Sin pie-seccion, el cuerpo llega hasta la ultima seccion.
   const finPie = clases.lastIndexOf('footer');
   const cuerpo = clases.slice(clases.indexOf('mm-hero-a'), finPie >= 0 ? finPie : clases.length);
-  const esperado = esperadoDe(ruta);
+  const esperado = esperadoDe(ruta, cuerpo);
   if (cuerpo.join(' ') !== esperado.join(' ')) {
     const i = esperado.findIndex((c, k) => cuerpo[k] !== c);
     mal(ruta, `puesto ${i + 1}: se esperaba «${esperado[i] ?? '(nada)'}» y hay «${cuerpo[i] ?? '(nada)'}»\n`
@@ -88,7 +98,8 @@ for (const ruta of RUTAS) {
   // ASTRO-2: la galeria es un mosaico de 3 a 6 botones con su foto, no un carrusel.
   const slides = d.querySelectorAll('section.mm-gal .mm-mosaico > button.mm-celda[data-mm-foto] > img[width][height]').length;
   if (slides < 3 || slides > 6) { mal(ruta, `el mosaico de la galeria tiene ${slides} celdas; van de 3 a 6`); continue; }
-  console.log(`  ok   ${ruta}   (${slides} slides en la galeria)${VARIANTES[ruta] ? `   + ${VARIANTES[ruta].va} tras ${VARIANTES[ruta].tras} (declarada)` : ''}`);
+  const opcionales = Object.keys(OPCIONALES).filter((s) => cuerpo.includes(s));
+  console.log(`  ok   ${ruta}   (${slides} slides en la galeria)${VARIANTES[ruta] ? `   + ${VARIANTES[ruta].va} tras ${VARIANTES[ruta].tras} (declarada)` : ''}${opcionales.length ? `   + ${opcionales.join(', ')} (opcional)` : ''}`);
 }
 
 console.log(`\n${fallos ? `PUERTA ROJA — ${fallos} fallo(s)` : `PUERTA VERDE — ${RUTAS.length} fichas, un solo orden (+ ${Object.keys(VARIANTES).length} variante(s) declarada(s))`}\n`);

@@ -1096,7 +1096,9 @@ for (const ruta of conPropias(RUTAS)) {
       const sobra = propios.filter((x) => !x['@id'].startsWith(`${SITIO_R22}${ruta}#`));
       if (sobra.length) problemas.push(`JSON-LD propio de otra ruta: ${sobra.map((x) => x['@id']).join(', ')}`);
 
-      const ciudades = esFicha(ruta) ? [...d.querySelectorAll('.mm-ciudades-servicio a[href^="/services/"]')].map(texto) : [];
+      // CIUDADES-BUSCADOR (17-oct-2026): la ficha pinta tarjetas `a.mm-ciudad` (nombre + servicio) agrupadas
+      // por condado; el nombre de ciudad es `.mm-ciudad-n`, sin «, FL».
+      const ciudades = esFicha(ruta) ? [...d.querySelectorAll('.mm-ciudades a.mm-ciudad[href^="/services/"] .mm-ciudad-n')].map(texto) : [];
       const sv = el('servicio');
       if (!ciudades.length) { if (sv.length) problemas.push('#servicio: hay un Service con areaServed en una pagina que no enlaza ciudades'); }
       else if (sv.length !== 1) problemas.push(`#servicio: la ficha enlaza ${ciudades.length} ciudades y trae ${sv.length} bloque(s)`);
@@ -1108,7 +1110,7 @@ for (const ruta of conPropias(RUTAS)) {
         if (!String(s.name ?? '').trim()) problemas.push('#servicio: sin name');
         const zona = Array.isArray(s.areaServed) ? s.areaServed : [];
         if (zona.some((c) => c?.['@type'] !== 'City' || c.containedInPlace?.name !== 'Florida')) problemas.push('#servicio: areaServed con algo que no es una City de Florida');
-        if (!iguales(zona.map((c) => `${c?.name}, FL`), ciudades)) problemas.push(`#servicio: areaServed (${zona.length}) no dice las mismas ciudades, en el mismo orden, que la pagina enlaza (${ciudades.length})`);
+        if (!iguales(zona.map((c) => c?.name), ciudades)) problemas.push(`#servicio: areaServed (${zona.length}) no dice las mismas ciudades, en el mismo orden, que la pagina enlaza (${ciudades.length})`);
       }
 
       const tarjetas = ruta === '/projects' ? [...d.querySelectorAll('.mm-obras-lista [role="listitem"]')] : [];
