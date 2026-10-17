@@ -84,19 +84,19 @@
       "dania-beach-fl": "bi-1024",
       "davie-fl": "bi-0487",
       "deerfield-beach-fl": "bi-0614",
-      "fort-lauderdale-fl": "bi-0661",
-      "hallandale-beach-fl": "bi-0168",
-      "hillsboro-beach-fl": "bi-1286",
+      "fort-lauderdale-fl": "bi-0486",
+      "hallandale-beach-fl": "bi-0969",
+      "hillsboro-beach-fl": "bi-0969",
       "hollywood-fl": "bi-1280",
       "lighthouse-point-fl": "bi-0508",
-      "miramar-fl": "bi-1287",
+      "miramar-fl": "bi-1024",
       "parkland-fl": "bi-0504",
-      "pembroke-pines-fl": "bi-0520",
+      "pembroke-pines-fl": "bi-0614",
       "plantation-fl": "bi-1014",
       "pompano-beach-fl": "bi-1057",
       "southwest-ranches-fl": "bi-0486",
       "weston-fl": "bi-1010",
-      "wilton-manors-fl": "bi-0237"
+      "wilton-manors-fl": "bi-0487"
     },
     "palm-beach-county-fl": {
       "atlantis-fl": "bi-1280",
@@ -191,11 +191,12 @@
     "pool-builders": {
       "_lee_esto": "LOOP-AREAS L6a (D-233): sin tabla propia; el hero sigue en porCondado. Aqui va el apoyo por ciudad. Con el limpiafondos pequeno y lateral como 3 (D-233), las de hero con foco de piscina son bi-0486 (4/3), bi-1024, bi-0487 y bi-0969 (3/3). En piscina un condado no repite hero (check:estructura:ciudades, E13): en Alachua ya estan bi-0487 (condado) y bi-0486 (Micanopy), asi que Hawthorne lleva bi-1024 y Waldo bi-0969; Desde D-234 la puerta admite repetir si se declara: Archer, Gainesville y Newberry repiten bi-0486, bi-0487 y bi-1024.",
       "repetidas": {
+        "broward-county-fl": {"max": 2, "motivo": "calidad (D-206, D-234): cinco heros de piscina pasan el juez para 16 paginas; bi-0486 en Southwest Ranches y Fort Lauderdale, bi-0614 en Deerfield Beach y Pembroke Pines, bi-0969 en Hallandale Beach y Hillsboro Beach, bi-1024 en Dania Beach y Miramar, bi-0487 en Davie y Wilton Manors"},
         "alachua-county-fl": {"max": 2, "motivo": "calidad (D-206, D-234): cuatro heros de piscina pasan el juez para 9 paginas; bi-0486 en Micanopy y Archer, bi-1024 en Hawthorne y Newberry, bi-0487 en el condado y Gainesville"}
       },
       "tabla": {},
       "seccionPorCiudad": {
-        "_lee_esto": "FAQ, cierre y resenas por ciudad (L6a y L6b). Cierre bi-0614 (4) o bi-1280 (4). Cada resena conserva la proporcion de la que sustituye (D-232): 3:4 por 3:4, 4:3 por 4:3, y la 16:9 de Alachua por una 3:2 exacta (bi-1550, la copia de bi-1294 sin la fila de mas).",
+        "_lee_esto": "FAQ, cierre y resenas por ciudad (L6a, L6b y L7). Cierre bi-0614 (4) o bi-1280 (4). Cada resena conserva la proporcion de la que sustituye (D-232): 3:4 por 3:4, 4:3 por 4:3, y la 16:9 de Alachua por una 3:2 exacta (bi-1550, la copia de bi-1294 sin la fila de mas).",
         "alachua-fl": ["bi-1280", "bi-0614", "bi-1550"],
         "archer-fl": ["bi-1280", "bi-0614", "bi-0237"],
         "gainesville-fl": ["bi-0614", "bi-1280", "bi-1024"],
@@ -214,7 +215,21 @@
         "ocala-fl": ["bi-1284", "bi-0614", "bi-1280"],
         "reddick-fl": ["bi-1284", "bi-1280", "bi-0614"],
         "palatka-fl": ["bi-1280", "bi-0614", "bi-0237"],
-        "old-town-fl": ["bi-1280", "bi-0614", "bi-1550"]
+        "old-town-fl": ["bi-1280", "bi-0614", "bi-1550"],
+        "dania-beach-fl": ["bi-1280", "bi-0614", "bi-1550"],
+        "davie-fl": ["bi-1280", "bi-0614", "bi-0237"],
+        "fort-lauderdale-fl": ["bi-1280", "bi-0614", "bi-1287"],
+        "hallandale-beach-fl": ["bi-1280", "bi-0614", "bi-1550"],
+        "hillsboro-beach-fl": ["bi-0237", "bi-1284", "bi-0614"],
+        "hollywood-fl": ["bi-1284", "bi-0614", "bi-1287"],
+        "lighthouse-point-fl": ["bi-1280", "bi-0614", "bi-1550"],
+        "miramar-fl": ["bi-1280", "bi-1284", "bi-0614"],
+        "parkland-fl": ["bi-1284", "bi-0614", "bi-1280"],
+        "pembroke-pines-fl": ["bi-1280", "bi-1284", "bi-1024"],
+        "plantation-fl": ["bi-0614", "bi-1280", "bi-1024"],
+        "pompano-beach-fl": ["bi-0614", "bi-1284", "bi-1280"],
+        "weston-fl": ["bi-1284", "bi-0614", "bi-1280"],
+        "wilton-manors-fl": ["bi-1280", "bi-0614", "bi-1550"]
       }
     },
     "pool-remodeling": {
