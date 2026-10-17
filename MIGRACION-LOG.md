@@ -3,6 +3,27 @@
 Webflow → Astro 5 + Sanity + Vercel. Una entrada por fase, **escrita al cerrar la fase**,
 nunca al empezarla. Si una fase se reabre, se añade una entrada nueva; no se edita la vieja.
 
+## ABOUT-OBRA — /about enseña la obra en marcha, con cuadrilla y maquinaria (17-oct-2026)
+
+Encargo de Sebastian, viendo la vista previa de `stitch-sitio`: «fotos de construcción de piscinas, trabajadores,
+maquinaria y proyectos de lujo». Revierte D-197 (E12, 14-oct), que había puesto obra terminada en esos huecos. Cuatro
+fotos del banco, todas `obra_real` aprobadas y sin uso previo en el sitio, elegidas mirándolas (no por el nombre):
+
+- **Project Management** (foto grande, 4:5 en escritorio) **bi-0694**: dron de la excavación con casa, hoyo,
+  excavadora, minicargadora, varilla y un operario. Derivadas `lam` 560/800/960 (de 1600×1200 no sale 1100).
+- **Project Monitoring** (solo móvil) **bi-0722**: operario proyectando gunite sobre la malla, de espaldas.
+- **Quality** (solo móvil) **bi-0671**: dos operarios alisando el enlucido tras el spa de mosaico de vidrio.
+- **Lateral de la FAQ** **bi-0518**: piscina y spa iluminados al anochecer con el travertino a medio colocar y la
+  minicargadora al fondo: el proyecto de lujo todavía en obra. Derivadas `lam` 560/800/1100.
+
+Solo cambian `fotos-por-ruta.json`, `fotos-hueco.json` (dos recetas `lam`), `variantes-imagen.json` (8 ficheros
+`mm640/mm1024`) y `usada_en` del banco (entra `/about` en las cuatro, sale de bi-0237, bi-1284, bi-1285 y bi-1286).
+El héroe (fundadores) y la foto del cierre (piscina terminada) se quedan. Puertas sobre el build: `check:tokens`,
+`check:texto =/about` (100 %), `check:seo`, `check:variantes` y `check:assets` verdes. `check:visual` sale rojo en
+`/about`, pero **ya lo estaba**: las alturas de las ocho secciones medidas a 1920 y 991 son idénticas a las del
+despliegue anterior, así que el rojo defiende una referencia anterior al rediseño de la página, no este cambio.
+Capturas en `docs/encargos/capturas/about-obra/`. Pendiente: visto de Sebastian y re-baseline de `/about`.
+
 ## GALERIA-REJILLA — «Project Gallery» deja de ser acordeón: rejilla 3×2 a sangre (5-oct-2026)
 
 Encargo de Sebastian: rediseño, no pulido. Las 55 rutas de la banda (53 `/services/pool-builders/*` + las 2

@@ -2286,6 +2286,50 @@
      3777
     ]
    }
+  },
+  "/images/banco/construction/pool-excavation-aerial-farmhouse-excavator-rebar-florida-01.webp": {
+   "lam": {
+    "de": "/images/banco/construction/pool-excavation-aerial-farmhouse-excavator-rebar-florida-01.webp",
+    "pos": "50% 55%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/banco/construction/pool-excavation-aerial-farmhouse-excavator-rebar-florida-01-lam560.avif"
+     ],
+     [
+      800,
+      "/images/banco/construction/pool-excavation-aerial-farmhouse-excavator-rebar-florida-01-lam800.avif"
+     ],
+     [
+      960,
+      "/images/banco/construction/pool-excavation-aerial-farmhouse-excavator-rebar-florida-01-lam960.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/construction/pool-excavation-aerial-farmhouse-excavator-rebar-florida-01.webp · 50% 55%"
+   }
+  },
+  "/images/banco/construction/pool-construction-led-lights-spa-dusk-travertine-florida-01.webp": {
+   "lam": {
+    "de": "/images/banco/construction/pool-construction-led-lights-spa-dusk-travertine-florida-01.webp",
+    "pos": "50% 45%",
+    "ratio": 0.8,
+    "fuentes": [
+     [
+      560,
+      "/images/banco/construction/pool-construction-led-lights-spa-dusk-travertine-florida-01-lam560.avif"
+     ],
+     [
+      800,
+      "/images/banco/construction/pool-construction-led-lights-spa-dusk-travertine-florida-01-lam800.avif"
+     ],
+     [
+      1100,
+      "/images/banco/construction/pool-construction-led-lights-spa-dusk-travertine-florida-01-lam1100.avif"
+     ]
+    ],
+    "_hecha": "/images/banco/construction/pool-construction-led-lights-spa-dusk-travertine-florida-01.webp · 50% 45%"
+   }
   }
  }
 }

@@ -8358,6 +8358,58 @@
      "/images/banco/remodeling/pool-remodeling-refilled-pool-navy-tile-porcelain-deck-florida-01-mm1024.webp"
     ]
    ]
+  },
+  "/images/banco/construction/pool-construction-gunite-shooting-rebar-shell-aerial-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-construction-gunite-shooting-rebar-shell-aerial-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/construction/pool-construction-gunite-shooting-rebar-shell-aerial-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-construction-led-lights-spa-dusk-travertine-florida-01.webp": {
+   "ancho": 1200,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-construction-led-lights-spa-dusk-travertine-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/construction/pool-construction-led-lights-spa-dusk-travertine-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-excavation-aerial-farmhouse-excavator-rebar-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-excavation-aerial-farmhouse-excavator-rebar-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/construction/pool-excavation-aerial-farmhouse-excavator-rebar-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/remodeling/pool-remodeling-plaster-crew-spa-glass-tile-florida-01.webp": {
+   "ancho": 1200,
+   "variantes": [
+    [
+     640,
+     "/images/banco/remodeling/pool-remodeling-plaster-crew-spa-glass-tile-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/remodeling/pool-remodeling-plaster-crew-spa-glass-tile-florida-01-mm1024.webp"
+    ]
+   ]
   }
  },
  "lcp": {

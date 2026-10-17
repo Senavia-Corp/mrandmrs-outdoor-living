@@ -9041,7 +9041,6 @@
       "cielo nublado"
     ],
     "usada_en": [
-      "/about",
       "/services/pool-builders/waldo-fl",
       "/services/pool-builders/delray-beach-fl",
       "/services/pool-builders/wilton-manors-fl",
@@ -18183,7 +18182,7 @@
     "defectos": [
       "obra sin terminar al fondo: minicargadora, aspiradora, cubos"
     ],
-    "usada_en": [],
+    "usada_en": ["/about"],
     "origen": "NEW JOBS CONSTRUCTION/Curtis/IMG_1881.JPEG",
     "sha256": "5cb7ee3524e5b8544629a538e1cb8c5fa29fd5ef8602eaffe408e2df4e5403b7"
   },
@@ -24101,7 +24100,7 @@
       "ventilador y mangueras",
       "recortada en origen: el cuadro completo tenía un problema de privacidad"
     ],
-    "usada_en": [],
+    "usada_en": ["/about"],
     "origen": "NEW JOBS CONSTRUCTION/Greenberg/5.jpg",
     "sha256": "dc480c97b1d30c80900c2cbece918a7c15876b0c30770a41ea65a2b771426af5",
     "recorte": {
@@ -24993,7 +24992,7 @@
       "marca de la minicargadora legible",
       "operario de pie a la derecha (cara tapada)"
     ],
-    "usada_en": [],
+    "usada_en": ["/about"],
     "origen": "NEW JOBS CONSTRUCTION/Happy Home/20250914_202134000_iOS.jpg",
     "sha256": "298f8a71dc73ff6e90b04cab23c56d5141be544bc2c1ea6ae2c85542eeb3d2fa"
   },
@@ -25959,7 +25958,7 @@
     "defectos": [
       "logo del subcontratista de gunite en la espalda de la camiseta"
     ],
-    "usada_en": [],
+    "usada_en": ["/about"],
     "origen": "NEW JOBS CONSTRUCTION/Happy Home/20250918_135311000_iOS.jpg",
     "sha256": "6c884f771c10d87bf698fdd16a3adf0acc7aae97b4a580039f577fffbf2c83d9"
   },
@@ -43684,7 +43683,6 @@
     ],
     "defectos": [],
     "usada_en": [
-      "/about",
       "/services/pool-builders/jupiter-fl",
       "/services/pool-builders/fort-lauderdale-fl"
     ],
@@ -43724,9 +43722,7 @@
       "3:2"
     ],
     "defectos": [],
-    "usada_en": [
-      "/about"
-    ],
+    "usada_en": [],
     "origen": "PICTURES/Senavia Picture /Pictures-40.jpg",
     "sha256": "5f6e4bcb4a5b2467f5872f9f48cc46d686ae4bb90680959fa1caab64a0a6fcfc"
   },
@@ -43764,7 +43760,6 @@
     ],
     "defectos": [],
     "usada_en": [
-      "/about",
       "/services/pool-builders/williston-fl",
       "/services/pool-builders/north-palm-beach-fl",
       "/services/pool-builders/hillsboro-beach-fl"
