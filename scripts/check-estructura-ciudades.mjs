@@ -198,7 +198,10 @@ for (const [condado, ciudades] of Object.entries(HEROES.porCondado ?? {}).filter
   // `porServicio.pool-builders.repetidas.<condado>` (max 2 y motivo «calidad (D-206)»). Lo no declarado sigue en rojo.
   const decl = HEROES.porServicio?.['pool-builders']?.repetidas?.[condado];
   const max = decl?.max ?? 1;
-  if (decl && (max > 2 || !/calidad \(D-206/.test(decl.motivo ?? ''))) mal(condado, `repetidas: max ${max} o sin motivo «calidad (D-206)» (D-234 deja 2 como mucho)`);
+  // D-235: hasta 3 solo para corregir el foco del hero, con el motivo «foco (D-220)»; para lo demas, 2 y «calidad (D-206)».
+  const porFoco = /foco \(D-220/.test(decl?.motivo ?? '');
+  if (decl && (max > 3 || (max === 3 && !porFoco) || (!porFoco && !/calidad \(D-206/.test(decl.motivo ?? ''))))
+    mal(condado, `repetidas: max ${max} con motivo «${decl.motivo ?? ''}» (D-234: 2 con «calidad (D-206)»; D-235: 3 solo con «foco (D-220)»)`);
   const vistas = new Map(); let repetida = false;
   for (const c of [condado, ...tabla]) {
     const h = leer(`/services/pool-builders/${c}`);
@@ -211,7 +214,7 @@ for (const [condado, ciudades] of Object.entries(HEROES.porCondado ?? {}).filter
   }
   if (!repetida) condadosOk++;
 }
-console.log(`  ${condadosOk} condado(s) cerrados: sus ciudades son las que enlaza el condado y ningun hero se repite sin declarar (D-234)`);
+console.log(`  ${condadosOk} condado(s) cerrados: sus ciudades son las que enlaza el condado y ningun hero se repite sin declarar (D-234, D-235)`);
 
 /* E13 etapa 4: los demas servicios por tabla. La tabla cubre EXACTAMENTE las ciudades del servicio (si falta una,
  * esa pagina vuelve a la bolsa sin que nadie lo vea) y, en lo desplegado, ninguna foto sale en un condado mas

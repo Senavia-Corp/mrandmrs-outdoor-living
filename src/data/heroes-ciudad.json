@@ -87,7 +87,7 @@
       "fort-lauderdale-fl": "bi-0486",
       "hallandale-beach-fl": "bi-0969",
       "hillsboro-beach-fl": "bi-0969",
-      "hollywood-fl": "bi-1280",
+      "hollywood-fl": "bi-0486",
       "lighthouse-point-fl": "bi-0508",
       "miramar-fl": "bi-1024",
       "parkland-fl": "bi-0504",
@@ -99,7 +99,7 @@
       "wilton-manors-fl": "bi-0487"
     },
     "palm-beach-county-fl": {
-      "atlantis-fl": "bi-1280",
+      "atlantis-fl": "bi-0486",
       "boca-raton-fl": "bi-0487",
       "boynton-beach-fl": "bi-0614",
       "delray-beach-fl": "bi-0969",
@@ -109,11 +109,11 @@
       "jupiter-fl": "bi-0614",
       "manalapan-fl": "bi-0969",
       "north-palm-beach-fl": "bi-0487",
-      "ocean-ridge-fl": "bi-1014",
+      "ocean-ridge-fl": "bi-0487",
       "palm-beach-gardens-fl": "bi-0486",
-      "royal-palm-beach-fl": "bi-1057",
-      "south-palm-beach-fl": "bi-0946",
-      "tequesta-fl": "bi-0168",
+      "royal-palm-beach-fl": "bi-0969",
+      "south-palm-beach-fl": "bi-1024",
+      "tequesta-fl": "bi-0614",
       "wellington-fl": "bi-1024",
       "west-palm-beach-fl": "bi-1024"
     }
@@ -191,8 +191,8 @@
     "pool-builders": {
       "_lee_esto": "LOOP-AREAS L6a (D-233): sin tabla propia; el hero sigue en porCondado. Aqui va el apoyo por ciudad. Con el limpiafondos pequeno y lateral como 3 (D-233), las de hero con foco de piscina son bi-0486 (4/3), bi-1024, bi-0487 y bi-0969 (3/3). En piscina un condado no repite hero (check:estructura:ciudades, E13): en Alachua ya estan bi-0487 (condado) y bi-0486 (Micanopy), asi que Hawthorne lleva bi-1024 y Waldo bi-0969; Desde D-234 la puerta admite repetir si se declara: Archer, Gainesville y Newberry repiten bi-0486, bi-0487 y bi-1024.",
       "repetidas": {
-        "palm-beach-county-fl": {"max": 2, "motivo": "calidad (D-206, D-234): cinco heros de piscina pasan el juez para 17 paginas; bi-0969 en Manalapan y Delray Beach, bi-0486 en Palm Beach Gardens y Juno Beach, bi-0614 en Boynton Beach y Jupiter, bi-1024 en West Palm Beach y Wellington, bi-0487 en Boca Raton y North Palm Beach"},
-        "broward-county-fl": {"max": 2, "motivo": "calidad (D-206, D-234): cinco heros de piscina pasan el juez para 16 paginas; bi-0486 en Southwest Ranches y Fort Lauderdale, bi-0614 en Deerfield Beach y Pembroke Pines, bi-0969 en Hallandale Beach y Hillsboro Beach, bi-1024 en Dania Beach y Miramar, bi-0487 en Davie y Wilton Manors"},
+        "palm-beach-county-fl": {"max": 3, "motivo": "foco (D-220, D-235): cinco heros de piscina para 17 paginas; el tercer uso de cada una corrige un hero cuyo foco no era la piscina (Atlantis, Tequesta, South Palm Beach) o de nota 1 (Ocean Ridge, Royal Palm Beach). bi-0969: Manalapan, Delray Beach, Royal Palm Beach; bi-0486: Palm Beach Gardens, Juno Beach, Atlantis; bi-0614: Boynton Beach, Jupiter, Tequesta; bi-1024: West Palm Beach, Wellington, South Palm Beach; bi-0487: Boca Raton, North Palm Beach, Ocean Ridge"},
+        "broward-county-fl": {"max": 3, "motivo": "foco (D-220, D-235): cinco heros de piscina para 16 paginas; bi-0486 sale tres veces (Southwest Ranches, Fort Lauderdale y Hollywood, que dejaba la pergola de foco); las demas, dos: bi-0614 en Deerfield Beach y Pembroke Pines, bi-0969 en Hallandale Beach y Hillsboro Beach, bi-1024 en Dania Beach y Miramar, bi-0487 en Davie y Wilton Manors"},
         "alachua-county-fl": {"max": 2, "motivo": "calidad (D-206, D-234): cuatro heros de piscina pasan el juez para 9 paginas; bi-0486 en Micanopy y Archer, bi-1024 en Hawthorne y Newberry, bi-0487 en el condado y Gainesville"}
       },
       "tabla": {},
@@ -245,7 +245,7 @@
         "palm-beach-gardens-fl": ["bi-0237", "bi-1284", "bi-0614"],
         "royal-palm-beach-fl": ["bi-1280", "bi-0614", "bi-1550"],
         "south-palm-beach-fl": ["bi-1280", "bi-0614", "bi-0237"],
-        "tequesta-fl": ["bi-0237", "bi-1284", "bi-0614"],
+        "tequesta-fl": ["bi-0237", "bi-1284", "bi-1024"],
         "wellington-fl": ["bi-1284", "bi-0614", "bi-1280"],
         "west-palm-beach-fl": ["bi-0237", "bi-1280", "bi-0614"]
       }
