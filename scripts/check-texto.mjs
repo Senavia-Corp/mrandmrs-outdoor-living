@@ -31,6 +31,7 @@ import { OCULTAS, lineasFiltro } from '../src/lib/filtro-proyectos.mjs';
 import { CATEGORIAS_PISCINA } from '../src/lib/blog-groq.mjs';
 import { enlazadoDeCiudad } from '../src/lib/vecinas.mjs';
 import { fotoDeHeroe } from '../src/lib/heroe-ciudad.mjs';
+import { lineasDiferenciales } from '../src/lib/diferenciales.mjs';
 import { ciudadesDeFicha, SERVICIOS_CIUDAD } from '../src/lib/servicios-ciudad.mjs';
 import { zonasDeCondado } from '../src/lib/condados.mjs';
 
@@ -3837,6 +3838,16 @@ function homeTexto(lineas) {
   const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
   const son = (k, bloque) => bloque.every((l, j) => out[k + j] === l);
   const nm = (x) => (x ?? '').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+  // 0 · TABLA-DIFERENCIALES (17-oct-2026): la tabla bajo el antes/despues, derivada de la MISMA fuente que
+  // la pinta (`src/lib/diferenciales.mjs`). Texto nuevo registrado en STITCH-TEXTO.md (T-115 a T-122),
+  // PROVISIONAL (D-10). Se descuenta solo si va entera, contigua y pegada detras de la tarjeta
+  // «Licensed & Engineered»; si falta una linea o se mueve, la home sale roja.
+  {
+    const TAB = lineasDiferenciales();
+    const ti = out.findIndex((_, k) => son(k, TAB));
+    if (ti > 1 && out[ti - 2] === 'LICENSED & ENGINEERED') out.splice(ti, TAB.length);
+    else faltas.push('la tabla de diferenciales entera, detras de «Licensed & Engineered» (TABLA-DIFERENCIALES, T-115 a T-122)');
+  }
   // 1 · hero
   const SELLOS = ['Licensed & Insured', 'Financing Available', '3D Design', 'North & South Florida'];
   const s0 = out.findIndex((_, k) => son(k, SELLOS) && out[k - 1] === 'Project Gallery' && out[k - 2] === ACC);
