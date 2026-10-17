@@ -3,6 +3,19 @@
 Webflow → Astro 5 + Sanity + Vercel. Una entrada por fase, **escrita al cerrar la fase**,
 nunca al empezarla. Si una fase se reabre, se añade una entrada nueva; no se edita la vieja.
 
+## TABLA-DIFERENCIALES — la home compara el alcance: un equipo frente a un oficio o varios proveedores · 17-oct-2026   🟡 en revisión
+
+**Pedido:** director, 17-oct (tabla comparativa bajo «Before & After») · **Base:** `5a78a010` (`origin/stitch-sitio`, tras incorporar CIUDADES-BUSCADOR y ABOUT-OBRA; nació sobre `06912299`) · **Rama:** `tabla-diferenciales` (worktree, sin push)
+Nueva `<section class="mm-cmp">` solo en `/`, detrás del antes/después: una `<table>` real (`<caption>`, `<th scope>`, dos
+`<tbody>` con fila de grupo) compuesta como hoja de alcance: la columna de Mr & Mrs es un lomo navy continuo con un check
+de oro por fila (7 pasos del proyecto + los 14 servicios con ficha); las alternativas, «Single-trade contractor» y
+«Multiple vendors or DIY», dicen en palabras lo que cubren y en el bloque de servicios son una sola celda. Cada
+afirmación sale de lo que el sitio ya dice (`/financing`, `/about`, `/services/outdoor-kitchens`, hero); sin cifras.
+<768 scroll horizontal con la primera columna fija y región enfocable. Fuente única `src/lib/diferenciales.mjs` para el
+markup y para `check-texto` (texto nuevo T-115 a T-122, provisional, D-10). Puertas: tokens, texto, seo, encabezados,
+rutas, enlaces y accesible verdes; visual rojo solo en `/` (esperado); estructura roja heredada (`mm-cat`). Informe y
+capturas: `docs/encargos/TABLA-DIFERENCIALES-INFORME.md`, `docs/encargos/capturas/tabla-diferenciales/`.
+
 ## ABOUT-OBRA — /about enseña la obra en marcha, con cuadrilla y maquinaria (17-oct-2026)
 
 Encargo de Sebastian, viendo la vista previa de `stitch-sitio`: «fotos de construcción de piscinas, trabajadores,
