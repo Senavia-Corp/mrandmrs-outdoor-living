@@ -1371,6 +1371,21 @@ if (PROD) {
     fallos++;
     console.log('       astro.config.mjs y scripts/build-seo-ficheros.mjs tienen que decir LO MISMO.');
   }
+
+  // D-216 (LOOP-AREAS): cada una de las 130 paginas de area declara en el sitemap la foto que su hero pinta.
+  const urls = new Map([...(fs.existsSync(sm) ? fs.readFileSync(sm, 'utf8') : '').matchAll(/<url>\s*<loc>([^<]+)<\/loc>([\s\S]*?)<\/url>/g)]
+    .map((m) => [new URL(m[1]).pathname, [...m[2].matchAll(/<image:loc>([^<]+)<\/image:loc>/g)].map((x) => new URL(x[1]).pathname)]));
+  const areas = [...urls.keys()].filter((r) => /^\/services\/[a-z-]+\/[a-z-]+-fl$/.test(r) || /^\/where-we-serve(\/(north|south)-florida)?$/.test(r));
+  const mal = areas.filter((r) => {
+    const f = path.join(ESTATICO, r, 'index.html');
+    const h = fs.existsSync(f) ? fs.readFileSync(f, 'utf8') : '';
+    const i = h.indexOf('mm-hero-a-medio');
+    const src = i < 0 ? null : h.slice(i, h.indexOf('</figure>', i)).match(/<img[^>]*?\ssrc="([^"]+)"/)?.[1];
+    return !src || !urls.get(r).includes(src);
+  });
+  const okAreas = areas.length === 130 && !mal.length;
+  console.log(`  ${okAreas ? 'ok  ' : 'ROJO'} image:image del hero en las paginas de area: ${areas.length - mal.length} de ${areas.length} (D-216, han de ser 130)`);
+  if (!okAreas) { fallos++; for (const r of mal.slice(0, 10)) console.log(`       ${r}: el sitemap no declara la foto de su hero`); }
 }
 
 console.log(`\n${fallos === 0 ? 'PUERTA VERDE' : `PUERTA ROJA — ${fallos} pagina(s)`}\n`);

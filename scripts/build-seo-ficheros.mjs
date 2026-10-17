@@ -32,6 +32,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { esFicha, esCiudad, esCondado, LEGACY } from './lib/renombradas.mjs';
+import { fotoDeHeroe, rutasDeCiudad } from '../src/lib/heroe-ciudad.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const PUB = path.join(RAIZ, 'public');
@@ -170,6 +171,29 @@ const imagenes = (() => {
     return [`${SITIO}${r}`, [...new Set(fotos)].map((f) => `${SITIO}${f}`)];
   }));
 })();
+/**
+ * Y EL HERO DE LAS 130 PAGINAS DE AREA (LOOP-AREAS, D-216). Sale de `fotoDeHeroe`, la misma funcion que
+ * lo pinta, que ya exige obra real terminada. Las tres de zona eligen su hero en su propio fichero
+ * (`build-paginas.mjs` para `/where-we-serve`, los `.astro` de las zonas), asi que aqui se declaran;
+ * `check:seo` coteja en produccion las 130 contra el `<img>` del hero construido, y una que se desvie sale roja.
+ */
+const ZONAS = {
+  '/where-we-serve': 'bi-0486',
+  '/where-we-serve/north-florida': JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/heroes-ciudad.json'), 'utf8')).bolsas['pool-builders'][0],
+  '/where-we-serve/south-florida': 'bi-0486',
+};
+{
+  const banco = new Map(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/banco-imagenes.json'), 'utf8')).map((e) => [e.id, e]));
+  const heroes = Object.entries(ZONAS).map(([r, id]) => [r, banco.get(id)?.src]);
+  for (const s of new Set(Object.keys(PAGINAS_CIUDAD_SERVICIO).map((r) => r.split('/')[2]).concat('pool-builders'))) {
+    for (const r of rutasDeCiudad(s)) heroes.push([r, fotoDeHeroe(r)?.src]);
+  }
+  for (const [r, src] of heroes) {
+    if (!src) throw new Error(`sitemap de imagenes: ${r} no tiene hero`);
+    const u = `${SITIO}${r}`;
+    imagenes.set(u, [...new Set([`${SITIO}${src}`, ...(imagenes.get(u) ?? [])])]);
+  }
+}
 for (const u of imagenes.keys()) {
   if (!locs.includes(u)) throw new Error(`sitemap de imagenes: ${u} no esta en el sitemap`);
 }
