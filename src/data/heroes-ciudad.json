@@ -263,26 +263,52 @@
     "pool-remodeling": {
       "tabla": {
         "boca-raton-fl": "bi-0519",
-        "boynton-beach-fl": "bi-0521",
+        "boynton-beach-fl": "bi-0614",
         "cedar-key-fl": "bi-0614",
         "dania-beach-fl": "bi-0519",
-        "delray-beach-fl": "bi-0521",
+        "delray-beach-fl": "bi-0519",
         "fort-lauderdale-fl": "bi-0614",
-        "gainesville-fl": "bi-0519",
+        "gainesville-fl": "bi-0614",
         "gulf-stream-fl": "bi-0614",
-        "hollywood-fl": "bi-0521",
+        "hollywood-fl": "bi-0614",
         "manalapan-fl": "bi-0519",
-        "mcintosh-fl": "bi-0521",
+        "mcintosh-fl": "bi-0519",
         "miramar-fl": "bi-0614",
-        "ocala-fl": "bi-0519",
-        "palatka-fl": "bi-0521",
+        "ocala-fl": "bi-0614",
+        "palatka-fl": "bi-0614",
         "west-palm-beach-fl": "bi-0614"
       },
       "repetidas": {
-        "palm-beach-county-fl": { "max": 2, "motivo": "6 ciudades y 3 fotos de reforma terminada que se distinguen (bi-0520 es casi igual a bi-0521 y sale en el indice de servicios de todas)" },
-        "broward-county-fl": { "max": 2, "motivo": "4 ciudades y las mismas 3 fotos" }
-      }
+        "palm-beach-county-fl": {
+          "max": 3,
+          "motivo": "reservada (D-209, D-236): bi-0521 es la tarjeta de reforma del indice y sale de los heros; solo hay dos de reforma utilizables para 6 ciudades. bi-0614 en Gulf Stream, West Palm Beach y Boynton Beach; bi-0519 en Boca Raton, Manalapan y Delray Beach"
+        },
+        "broward-county-fl": {
+          "max": 3,
+          "motivo": "reservada (D-209, D-236): bi-0614 en Fort Lauderdale, Miramar y Hollywood, que dejaba bi-0521"
+        }
+      },
+      "seccionPorCiudad": {
+        "_lee_esto": "LOOP-AREAS L10 (D-236): FAQ y cierre por ciudad (las resenas de reforma van sin foto, como antes). Sale bi-0521, la tarjeta del indice; entra bi-1290 (Lacircle de dia, 3 en seccion y cierre: manguera fina en el borde) donde lo de hoy repetia la tarjeta o era 2.",
+        "boca-raton-fl": ["bi-1290", "bi-0614"],
+        "boynton-beach-fl": ["bi-0519", "bi-1290"],
+        "cedar-key-fl": ["bi-0519", "bi-1290"],
+        "dania-beach-fl": ["bi-1290", "bi-0614"],
+        "delray-beach-fl": ["bi-0614", "bi-1290"],
+        "fort-lauderdale-fl": ["bi-0519", "bi-1290"],
+        "gainesville-fl": ["bi-0519", "bi-1290"],
+        "gulf-stream-fl": ["bi-0519", "bi-1290"],
+        "hollywood-fl": ["bi-0519", "bi-1290"],
+        "manalapan-fl": ["bi-1290", "bi-0614"],
+        "mcintosh-fl": ["bi-0614", "bi-1290"],
+        "miramar-fl": ["bi-0519", "bi-1290"],
+        "ocala-fl": ["bi-0519", "bi-1290"],
+        "palatka-fl": ["bi-0519", "bi-1290"],
+        "west-palm-beach-fl": ["bi-0519", "bi-1290"]
+      },
+      "_lee_esto": "LOOP-AREAS L10 (D-236): bi-0614 (4/4) donde cabe y bi-0519 (2/2) en el resto; bi-0521 (la tarjeta del indice) sale de todos los heros. P301 (bi-1289) queda fuera: coches aparcados en todos los recortes. McIntosh lleva bi-0519, porque su pagina de piscina lleva bi-0614."
     },
+
     "pergola-builders": {
       "_lee_esto": "LOOP-AREAS L2 (D-226): hero por tabla y seccion desacoplada (`seccion.pergola-builders`). Solo las que el juez a ciegas aprueba en el recorte real como hero (4:5 de escritorio y franja de movil): bi-1273, bi-0842 y bi-0759. Las tres se repiten entre ciudades, declarado: calidad (D-206).",
       "tabla": {

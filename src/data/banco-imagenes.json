@@ -3530,23 +3530,7 @@
       "palés y restos dentro del vaso",
       "bidón rojo a la izquierda"
     ],
-    "usada_en": [
-      "/services/pool-remodeling/gainesville-fl",
-      "/services/pool-remodeling/ocala-fl",
-      "/services/pool-remodeling/palatka-fl",
-      "/services/pool-remodeling/cedar-key-fl",
-      "/services/pool-remodeling/mcintosh-fl",
-      "/services/pool-remodeling/fort-lauderdale-fl",
-      "/services/pool-remodeling/hollywood-fl",
-      "/services/pool-remodeling/dania-beach-fl",
-      "/services/pool-remodeling/west-palm-beach-fl",
-      "/services/pool-remodeling/boca-raton-fl",
-      "/services/pool-remodeling/boynton-beach-fl",
-      "/services/pool-remodeling/gulf-stream-fl",
-      "/services/pool-remodeling/manalapan-fl",
-      "/services/pool-remodeling/miramar-fl",
-      "/services/pool-remodeling/delray-beach-fl"
-    ],
+    "usada_en": [],
     "origen": "DECKING/Pavers/20251013_142105712_iOS.jpg",
     "sha256": "ae46685e8cb104944afe50e118dd3160101f2a4d42bacf746314de01e2e02003"
   },
@@ -43935,7 +43919,8 @@
     "recortes_seguros": [
       "4:3",
       "3:2",
-      "16:9"
+      "16:9",
+      "4:5"
     ],
     "defectos": [
       "manguera sobre la playa a la derecha",
@@ -48913,7 +48898,23 @@
       "manguera negra sobre el deck",
       "piscina sin mobiliario"
     ],
-    "usada_en": [],
+    "usada_en": [
+      "/services/pool-remodeling/gainesville-fl",
+      "/services/pool-remodeling/ocala-fl",
+      "/services/pool-remodeling/palatka-fl",
+      "/services/pool-remodeling/cedar-key-fl",
+      "/services/pool-remodeling/mcintosh-fl",
+      "/services/pool-remodeling/fort-lauderdale-fl",
+      "/services/pool-remodeling/hollywood-fl",
+      "/services/pool-remodeling/dania-beach-fl",
+      "/services/pool-remodeling/west-palm-beach-fl",
+      "/services/pool-remodeling/boca-raton-fl",
+      "/services/pool-remodeling/boynton-beach-fl",
+      "/services/pool-remodeling/gulf-stream-fl",
+      "/services/pool-remodeling/manalapan-fl",
+      "/services/pool-remodeling/miramar-fl",
+      "/services/pool-remodeling/delray-beach-fl"
+    ],
     "origen": "PICTURES/POOL REMODEL/Lacircle/WhatsApp Image 2026-01-09 at 2.19.42 PM.jpeg",
     "sha256": "d13b5832d66a8306e4da599e134fb65ac66ab722364988d1a01e50d34e704175"
   },

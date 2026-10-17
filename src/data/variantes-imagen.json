@@ -8332,6 +8332,32 @@
      "/images/banco/pergolas/covered-lanai-white-insulated-roof-dark-posts-pool-lawn-florida-01-mm1024.webp"
     ]
    ]
+  },
+  "/images/banco/remodeling/pool-remodeling-navy-waterline-tile-bench-steps-fence-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/remodeling/pool-remodeling-navy-waterline-tile-bench-steps-fence-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/remodeling/pool-remodeling-navy-waterline-tile-bench-steps-fence-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/remodeling/pool-remodeling-refilled-pool-navy-tile-porcelain-deck-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/remodeling/pool-remodeling-refilled-pool-navy-tile-porcelain-deck-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/remodeling/pool-remodeling-refilled-pool-navy-tile-porcelain-deck-florida-01-mm1024.webp"
+    ]
+   ]
   }
  },
  "lcp": {

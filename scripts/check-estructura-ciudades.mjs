@@ -234,6 +234,11 @@ for (const [servicio, { tabla, repetidas = {} }] of Object.entries(HEROES.porSer
     const k = `${CONDADO_DE.get(c)}|${sinVariante(img.getAttribute('src'))}`;
     cuenta.set(k, [...(cuenta.get(k) ?? []), c]);
   }
+  // D-235/D-236: el tercer uso en un condado solo con «foco (D-220)», o con «reservada (D-209)» en reforma; nunca mas de 3.
+  for (const [co, d] of Object.entries(repetidas).filter(([k]) => !k.startsWith('_'))) {
+    const ok3 = /foco \(D-220/.test(d.motivo ?? '') || (servicio === 'pool-remodeling' && /reservada \(D-209/.test(d.motivo ?? ''));
+    if (d.max > 3 || (d.max === 3 && !ok3)) mal(`${servicio} · ${co}`, `repetidas: max ${d.max} con motivo «${d.motivo ?? ''}» (3 solo con «foco (D-220)», o «reservada (D-209)» en reforma)`);
+  }
   let declaradas = 0;
   for (const [k, cs] of cuenta) {
     const [co, f] = k.split('|'); const max = repetidas[co]?.max ?? 1;
