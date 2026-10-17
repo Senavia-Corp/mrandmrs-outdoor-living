@@ -194,18 +194,24 @@ for (const [condado, ciudades] of Object.entries(HEROES.porCondado ?? {}).filter
   const tabla = new Set(Object.keys(ciudades));
   const sobran = [...tabla].filter((c) => !enlazadas.has(c)); const faltan = [...enlazadas].filter((c) => !tabla.has(c));
   if (sobran.length || faltan.length) { mal(condado, `la tabla no casa con la pagina del condado — en la tabla y no enlazadas: ${sobran.join(', ') || '—'} · enlazadas y no en la tabla: ${faltan.join(', ') || '—'}`); continue; }
+  // D-234 (LOOP-AREAS): como en los demas servicios, una foto puede repetir en el condado si esta DECLARADA en
+  // `porServicio.pool-builders.repetidas.<condado>` (max 2 y motivo «calidad (D-206)»). Lo no declarado sigue en rojo.
+  const decl = HEROES.porServicio?.['pool-builders']?.repetidas?.[condado];
+  const max = decl?.max ?? 1;
+  if (decl && (max > 2 || !/calidad \(D-206/.test(decl.motivo ?? ''))) mal(condado, `repetidas: max ${max} o sin motivo «calidad (D-206)» (D-234 deja 2 como mucho)`);
   const vistas = new Map(); let repetida = false;
   for (const c of [condado, ...tabla]) {
     const h = leer(`/services/pool-builders/${c}`);
     const img = h && new JSDOM(h).window.document.querySelector('.mm-hero-a-medio img');
     if (!img) { mal(c, 'sin foto de hero'); repetida = true; continue; }
     const f = sinVariante(img.getAttribute('src'));
-    if (vistas.has(f)) { mal(c, `comparte hero con ${vistas.get(f)} (${f}), las dos de ${condado}`); repetida = true; }
-    vistas.set(f, c);
+    const ya = vistas.get(f) ?? [];
+    if (ya.length >= max) { mal(c, `comparte hero con ${ya.join(', ')} (${f}), las dos de ${condado}${max > 1 ? `, y se declararon ${max} como mucho` : ''}`); repetida = true; }
+    vistas.set(f, [...ya, c]);
   }
   if (!repetida) condadosOk++;
 }
-console.log(`  ${condadosOk} condado(s) cerrados: sus ciudades son las que enlaza el condado y ningun hero se repite`);
+console.log(`  ${condadosOk} condado(s) cerrados: sus ciudades son las que enlaza el condado y ningun hero se repite sin declarar (D-234)`);
 
 /* E13 etapa 4: los demas servicios por tabla. La tabla cubre EXACTAMENTE las ciudades del servicio (si falta una,
  * esa pagina vuelve a la bolsa sin que nadie lo vea) y, en lo desplegado, ninguna foto sale en un condado mas
