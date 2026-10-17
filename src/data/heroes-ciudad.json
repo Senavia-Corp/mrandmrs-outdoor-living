@@ -50,11 +50,11 @@
       "alachua-fl": "bi-0596",
       "archer-fl": "bi-0501",
       "gainesville-fl": "bi-1010",
-      "hawthorne-fl": "bi-0662",
+      "hawthorne-fl": "bi-1024",
       "high-springs-fl": "bi-1016",
       "micanopy-fl": "bi-0486",
       "newberry-fl": "bi-1280",
-      "waldo-fl": "bi-0237"
+      "waldo-fl": "bi-0969"
     },
     "columbia-county-fl": {
       "lake-city-fl": "bi-0487"
@@ -64,7 +64,7 @@
       "old-town-fl": "bi-0501"
     },
     "gilchrist-county-fl": {
-      "trenton-fl": "bi-1010"
+      "trenton-fl": "bi-1024"
     },
     "levy-county-fl": {
       "cedar-key-fl": "bi-0508",
@@ -146,6 +146,10 @@
     [
       "bi-0086",
       "bi-1549"
+    ],
+    [
+      "bi-1294",
+      "bi-1550"
     ]
   ],
   "seccion": {
@@ -184,6 +188,22 @@
   },
   "porServicio": {
     "_lee_esto": "E13 etapa 4: el hero por tabla de los servicios que no son piscina nueva. El condado de cada ciudad es el de `porCondado`. En un condado no se repite hero ni van juntas dos casi iguales; `repetidas` dice, con su motivo, cuantas veces puede salir una foto donde el banco no da para mas. Lo que no este ahi tumba el build.",
+    "pool-builders": {
+      "_lee_esto": "LOOP-AREAS L6a (D-233): sin tabla propia; el hero sigue en porCondado. Aqui va el apoyo por ciudad. Con el limpiafondos pequeno y lateral como 3 (D-233), las de hero con foco de piscina son bi-0486 (4/3), bi-1024, bi-0487 y bi-0969 (3/3). En piscina un condado no repite hero (check:estructura:ciudades, E13): en Alachua ya estan bi-0487 (condado) y bi-0486 (Micanopy), asi que Hawthorne lleva bi-1024 y Waldo bi-0969; Archer, Gainesville y Newberry se quedan con su falta.",
+      "tabla": {},
+      "seccionPorCiudad": {
+        "_lee_esto": "FAQ, cierre y resenas por ciudad (L6a). Cierre bi-0614 (4) o bi-1280 (4). Cada resena conserva la proporcion de la que sustituye (D-232): 3:4 por 3:4, 4:3 por 4:3, y la 16:9 de Alachua por una 3:2 exacta (bi-1550, la copia de bi-1294 sin la fila de mas).",
+        "alachua-fl": ["bi-1280", "bi-0614", "bi-1550"],
+        "archer-fl": ["bi-1280", "bi-0614", "bi-0237"],
+        "gainesville-fl": ["bi-0614", "bi-1280", "bi-1024"],
+        "hawthorne-fl": ["bi-1280", "bi-0614", "bi-0237"],
+        "lake-city-fl": ["bi-1284", "bi-0614", "bi-1280"],
+        "micanopy-fl": ["bi-1284", "bi-0614", "bi-1280"],
+        "newberry-fl": ["bi-1284", "bi-0614", "bi-1287"],
+        "trenton-fl": ["bi-1284", "bi-0614", "bi-1280"],
+        "waldo-fl": ["bi-1280", "bi-1284", "bi-0614"]
+      }
+    },
     "pool-remodeling": {
       "tabla": {
         "boca-raton-fl": "bi-0519",

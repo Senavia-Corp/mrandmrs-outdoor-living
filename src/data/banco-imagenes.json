@@ -16891,7 +16891,8 @@
     "espacio_texto": "arriba",
     "recortes_seguros": [
       "1:1",
-      "4:5"
+      "4:5",
+      "16:9"
     ],
     "defectos": [
       "barbacoa, carretilla y tubos junto a la casa a la izquierda",
@@ -21736,7 +21737,8 @@
     "espacio_texto": "ninguno",
     "recortes_seguros": [
       "1:1",
-      "4:5"
+      "4:5",
+      "3:2"
     ],
     "defectos": [
       "clorador flotante sobre el murete"
@@ -35111,7 +35113,8 @@
     "espacio_texto": "arriba",
     "recortes_seguros": [
       "4:5",
-      "1:1"
+      "1:1",
+      "16:9"
     ],
     "defectos": [
       "caseta vieja detras de la pergola",
@@ -37126,7 +37129,8 @@
     "espacio_texto": "arriba",
     "recortes_seguros": [
       "4:5",
-      "1:1"
+      "1:1",
+      "16:9"
     ],
     "defectos": [
       "limpiafondos en el agua",
@@ -52522,6 +52526,51 @@
       "top": 0.25,
       "width": 1,
       "height": 0.75
+    }
+  },
+  {
+    "id": "bi-1550",
+    "src": "/images/banco/pergolas/covered-lanai-white-insulated-roof-dark-posts-pool-lawn-florida-01.webp",
+    "estado": "aprobada",
+    "etapa": "terminado",
+    "servicios": [
+      "pergolas"
+    ],
+    "fase_obra": null,
+    "proyecto": null,
+    "region": "desconocida",
+    "procedencia": "obra_real",
+    "vista": "suelo",
+    "orientacion": "horizontal",
+    "ancho": 1600,
+    "alto": 1066,
+    "alt": "Covered lanai with a white insulated roof on dark posts, an outdoor sofa set and a pool overlooking a lawn.",
+    "descripcion": "Copia de bi-1294 a 3:2 exacto (LOOP-AREAS L6a): el original mide 6000 x 4000 y su derivada sale de 1600 x 1067, una fila mas alta que 3:2, lo que estira la caja de resenas en movil. Este recorte quita dos filas del original y nada mas.",
+    "tags": [
+      "patio cover",
+      "insulated roof",
+      "lanai",
+      "pool",
+      "outdoor sofa"
+    ],
+    "espacio_texto": "ninguno",
+    "recortes_seguros": [
+      "4:3",
+      "3:2",
+      "16:9",
+      "4:5"
+    ],
+    "defectos": [
+      "por la ventana de la derecha se ve el interior"
+    ],
+    "usada_en": [],
+    "origen": "PICTURES/Senavia Picture /Pictures-08.jpg",
+    "sha256": "4f6057a10bf187f13fabab1eb49714735a7594775df76eb57c6ec6e9c947b3cc",
+    "recorte": {
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 0.9995
     }
   }
 ]
