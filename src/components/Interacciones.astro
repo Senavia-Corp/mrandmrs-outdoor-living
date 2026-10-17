@@ -460,7 +460,9 @@ const REVEALS = JSON.stringify(reveals.porId);
     const ahorro = !!(navigator.connection && navigator.connection.saveData);
     const videos = [...document.querySelectorAll('video[data-mm-video]')];
     const cargaVideo = (video) => {
+      // `data-mm-min`: el ancho minimo propio de ese video (el hero partido de la home, 992).
       if (video.dataset.mmCargado !== undefined || !ancho.matches) return;
+      if (video.dataset.mmMin && !matchMedia(`(min-width: ${+video.dataset.mmMin}px)`).matches) return;
       const fuentes = video.querySelectorAll('source[data-src]');
       if (!fuentes.length) return;
       for (const f of fuentes) f.src = f.dataset.src;
@@ -500,6 +502,7 @@ const REVEALS = JSON.stringify(reveals.porId);
       else addEventListener('load', tras, { once: true });
       // Si se gira la tableta o se agranda la ventana por encima de 768, que llegue el video.
       ancho.addEventListener('change', (m) => { if (m.matches && document.readyState === 'complete') arranca(); });
+      matchMedia('(min-width: 992px)').addEventListener('change', (m) => { if (m.matches && document.readyState === 'complete') arranca(); });
     }
     for (const b of document.querySelectorAll('.w-background-video--control')) {
       const video = b.closest('.w-background-video')?.querySelector('video');

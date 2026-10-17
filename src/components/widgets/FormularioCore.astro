@@ -60,7 +60,12 @@ import DATOS from '../../data/captacion-servicios.json';
  * enrutado y por tanto no tiene el pathname de la ficha. El generador no pasa props: en
  * produccion siempre manda `Astro.url.pathname`. */
 const ruta = (Astro.props.ruta ?? Astro.url.pathname).replace(/(.)\/$/, '$1');
-const d = DATOS[ruta]?.formulario;
+/* ASTRO-4 (D-82): la ficha de proyecto monta el formulario de la ficha de piscinas, que es el de
+ * su lamina. La pagina desde la que se envia ya viaja en `__ruta` (`Formularios.astro`) y llega
+ * en el correo: ese es el dato que dice que obra se estaba viendo. Un campo nuevo no llegaria,
+ * porque el destino lee una lista cerrada de campos. */
+const entrada = /^\/project\//.test(ruta) || ruta === '/' ? '/services/pool-builders' : ruta;
+const d = DATOS[entrada]?.formulario;
 
 /* Las 6 de `/request-estimated`, copiadas caracter a caracter. El separador es U+2013. */
 const PRESUPUESTOS = [
@@ -93,6 +98,18 @@ const PLAZOS = ['As soon as possible', '1-3 months', '3-6 months', '6-12 months'
 /* «Other» existe porque un no-propietario sigue siendo un lead valido -un promotor, una
  * comunidad-: lo que importa es poder separarlo, no descartarlo en el formulario. */
 const PROPIEDAD = ['Yes, I own this property', 'No', 'Other'];
+
+/* D-125 · EL SERVICIO QUE ENVIA EL FORMULARIO: el de la ficha de la ruta (`servicio` en
+ * `captacion-servicios.json`, uno por ficha, con el vocabulario de las 14 casillas de
+ * `/request-estimated`). Las paginas de ciudad envian el de su ficha. Sin dato no se construye. */
+const SERVICIO = DATOS[`/services/${entrada.split('/')[2]}`]?.servicio;
+if (d && !SERVICIO) throw new Error(`FormularioCore: ${ruta} no tiene \`servicio\` en la ficha de captacion-servicios.json`);
+
+/* La licencia junto al boton (T-19): la misma cadena del hero, partida en rotulo y dato. */
+const licencia = DATOS[entrada]?.heroe?.licencias?.split(' · ');
+/* D-51: «Design-Build» no se parte entre lineas. El titulo sale de un JSON del repo, sin HTML. */
+const escT = (t) => String(t ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
+const tituloNb = escT(d?.titulo).replace(/Design-Buil[dt]/g, '<span class="mm-nb">$&</span>');
 ---
 {/* `tabindex="-1"` PARA QUE EL ANCLA MUEVA TAMBIEN EL FOCO, NO SOLO EL SCROLL.
     Los CTA de estas paginas apuntan a `#estimate`. Sin esto el navegador desplaza la pagina
@@ -102,35 +119,18 @@ const PROPIEDAD = ['Yes, I own this property', 'No', 'Other'];
     -`-1` es alcanzable por programa y por fragmento, nunca por Tab-.
     Medido antes de escribirlo: `grep -rn "hashchange\|scrollIntoView" src/components/ src/layouts/`
     devuelve CERO, o sea que no habia ningun manejador que ya lo hiciera. */}
+{/* ASTRO-2 · FORMULARIO EN DOS PASOS (lamina «Formulario», D-34), sin envio parcial todavia.
+    Los mismos campos, los mismos `name` y `data-name`, el mismo destino y la misma redireccion:
+    lo unico que cambia es que el contacto se pide primero y el proyecto despues, y que tres
+    desplegables pasan a tarjetas de opcion (radios con el mismo `name` y los mismos valores).
+    LOS DOS PASOS VAN EN EL HTML Y A LA VISTA. Es `Formularios.astro` quien, con JS, pone
+    `data-mm-paso` en el `<form>` y ensena los botones «Continue» y «Back»: sin JS se ve el
+    formulario entero y se envia igual. La nota «Your contact details are saved when you
+    continue» de la lamina NO se pinta: hoy no es verdad (el envio parcial es ASTRO-3). */}
 {d && (
-  <section id="estimate" tabindex="-1" class="appointment-section svc-captacion">
-    <div class="mm-caja svc-captacion__rejilla">
-
-      {/* LOS TRES PASOS VAN DELANTE DEL FORMULARIO, Y ES UNA DECISION MEDIDA.
-          Antes iban al lado en una rejilla de dos columnas, y eso fallaba por dos sitios a la
-          vez: de 992 para arriba la columna derecha se quedaba vacia entre 554 y 620 px -del
-          65 al 72 % de la fila, cuando la auditoria de /financing trato un 34 % como defecto-,
-          y de 992 para abajo la tira se apilaba DETRAS del boton de envio, o sea que la
-          tranquilidad llegaba despues de la decision. Delante y a lo ancho resuelve las dos: 0
-          de hueco, y se lee antes de rellenar a TODOS los anchos. De paso el campo baja de 800
-          a 404 px a 991, que es una medida de formulario y no una regla de un metro. */}
-      <aside class="svc-captacion__pasos">
-        <h3 class="mm-tit-3">{d.pasosTitulo}</h3>
-        <ol class="svc-pasos" role="list">
-          {d.pasos.map((p, i) => (
-            <li class="svc-pasos__item">
-              <span class="svc-pasos__n" aria-hidden="true">{i + 1}</span>
-              <p class="mm-txt-menudo">{p}</p>
-            </li>
-          ))}
-        </ol>
-      </aside>
-      <div class="form-block w-form svc-captacion__panel">
-        <div class="mm-pila svc-captacion__intro">
-          <h2 class="mm-tit-2">{d.titulo}</h2>
-          <p class="mm-txt mm-medida">{d.entradilla}</p>
-        </div>
-
+  <section id="estimate" tabindex="-1" class="mm-form-sec svc-captacion">
+    <div class="mm-form-caja">
+      <div class="mm-form-panel">
         <form
           id={`wf-form-${d.nombre.replace(/\s+/g, '-')}`}
           name={`wf-form-${d.nombre.replace(/\s+/g, '-')}`}
@@ -139,120 +139,126 @@ const PROPIEDAD = ['Yes, I own this property', 'No', 'Other'];
           method="post"
           action="/api/formulario"
           data-mm-envia="1"
-          class="svc-form"
+          data-mm-pasos
+          class="mm-form"
         >
-          <div class="svc-form__rejilla">
-            <div class="form-div">
-              <label for="svc-Full-Name">Full name</label>
-              <input class="text-field-form w-input" maxlength="256" type="text"
-                id="svc-Full-Name" name="Full-Name" data-name="Full Name"
-                autocomplete="name" required />
+          <div class="mm-form-paso" data-paso="1" role="group" aria-labelledby="svc-paso-1">
+            <div class="mm-form-cab"><span class="mm-pastilla" id="svc-paso-1">Step 1 of 2</span><span class="mm-progreso" aria-hidden="true"><span class="hecho"></span><span></span></span></div>
+            <div class="mm-form-rejilla">
+              <div class="mm-campo">
+                <label for="svc-Full-Name">Full name</label>
+                <input maxlength="256" type="text" id="svc-Full-Name" name="Full-Name" data-name="Full Name" autocomplete="name" required />
+              </div>
+              <div class="mm-campo">
+                <label for="svc-Phone">Phone</label>
+                <input maxlength="256" type="tel" id="svc-Phone" name="Phone" data-name="Phone" autocomplete="tel" required />
+              </div>
+              <div class="mm-campo">
+                <label for="svc-email">Email</label>
+                <input maxlength="256" type="email" id="svc-email" name="email" data-name="Email" autocomplete="email" required />
+              </div>
+              <div class="mm-campo">
+                <label for="svc-ZIP-Code">ZIP code</label>
+                <input maxlength="5" type="text" id="svc-ZIP-Code" name="ZIP-Code" data-name="ZIP Code" inputmode="numeric" pattern="[0-9]{5}" autocomplete="postal-code" required />
+              </div>
             </div>
-            <div class="form-div">
-              <label for="svc-Phone">Phone</label>
-              <input class="text-field-form w-input" maxlength="256" type="tel"
-                id="svc-Phone" name="Phone" data-name="Phone"
-                autocomplete="tel" required />
+            <div class="mm-form-pie">
+              <button type="button" class="mm-btn" data-mm-sig hidden>Continue</button>
+              {/* ASTRO-3 (T-17): solo con el envio parcial encendido en el build, y solo con JS, que es
+                  quien lo manda. Apagado, esta linea no existe en el HTML. */}
+              {import.meta.env.PUBLIC_FORM_PARCIAL === '1' && <p class="mm-form-legal" data-mm-parcial-nota hidden>Your contact details are saved when you continue.</p>}
+              {licencia && <div class="mm-dato mm-form-lic"><span class="mm-dato-rot">{licencia[0]}</span><span class="mm-dato-val">{licencia.slice(1).join(' · ')}</span></div>}
             </div>
-            <div class="form-div">
-              <label for="svc-email">Email</label>
-              <input class="text-field-form w-input" maxlength="256" type="email"
-                id="svc-email" name="email" data-name="Email"
-                autocomplete="email" required />
-            </div>
-            <div class="form-div">
-              <label for="svc-ZIP-Code">ZIP code</label>
-              <input class="text-field-form w-input" maxlength="5" type="text"
-                id="svc-ZIP-Code" name="ZIP-Code" data-name="ZIP Code"
-                inputmode="numeric" pattern="[0-9]{5}" autocomplete="postal-code" required />
-            </div>
-            <div class="form-div">
-              <label for="svc-Project-Type">Project type</label>
-              <select id="svc-Project-Type" name="Project-Type" data-name="Project Type"
-                class="select-field w-select" required>
+          </div>
+
+          <div class="mm-form-paso" data-paso="2" role="group" aria-labelledby="svc-paso-2">
+            <div class="mm-form-cab"><span class="mm-pastilla" id="svc-paso-2">Step 2 of 2</span><span class="mm-progreso" aria-hidden="true"><span class="hecho"></span><span class="hecho"></span></span></div>
+            <fieldset class="mm-grupo-campo">
+              <legend>Project type</legend>
+              <div class="mm-opciones mm-opciones--2">
                 {PROYECTOS.map((p) => (
-                  <option value={p} selected={p === d.proyectoPorDefecto}>{p}</option>
+                  <label class="mm-opcion"><input type="radio" name="Project-Type" data-name="Project Type" value={p} checked={p === d.proyectoPorDefecto} required />{p}</label>
                 ))}
-              </select>
-            </div>
-            <div class="form-div">
+              </div>
+            </fieldset>
+            <div class="mm-campo">
               <label for="svc-Type">Do you own this property?</label>
-              <select id="svc-Type" name="Type" data-name="Type" class="select-field w-select" required>
+              <select id="svc-Type" name="Type" data-name="Type" required>
                 <option value="">Select one...</option>
                 {PROPIEDAD.map((o) => <option value={o}>{o}</option>)}
               </select>
             </div>
-            <div class="form-div">
-              <label for="svc-Estimated-Project-Budget">Investment range</label>
-              <select id="svc-Estimated-Project-Budget" name="Estimated-Project-Budget"
-                data-name="Estimated Project Budget" class="select-field w-select" required>
-                <option value="">Select one...</option>
-                {PRESUPUESTOS.map((o) => <option value={o}>{o}</option>)}
-              </select>
+            <fieldset class="mm-grupo-campo">
+              <legend>Investment range</legend>
+              <div class="mm-opciones">
+                {PRESUPUESTOS.map((o) => (
+                  <label class="mm-opcion"><input type="radio" name="Estimated-Project-Budget" data-name="Estimated Project Budget" value={o} required />{o}</label>
+                ))}
+              </div>
+            </fieldset>
+            <fieldset class="mm-grupo-campo">
+              <legend>Timeline</legend>
+              <div class="mm-opciones">
+                {PLAZOS.map((o) => (
+                  <label class="mm-opcion"><input type="radio" name="Timeline" data-name="Timeline" value={o} required />{o}</label>
+                ))}
+              </div>
+            </fieldset>
+            <div class="mm-campo">
+              <label for="svc-Message">Project details <span class="mm-campo-opc">(optional)</span></label>
+              <textarea id="svc-Message" name="Message" data-name="Message" maxlength="5000" rows="3"></textarea>
             </div>
-            <div class="form-div">
-              <label for="svc-Timeline">Timeline</label>
-              <select id="svc-Timeline" name="Timeline" data-name="Timeline"
-                class="select-field w-select" required>
-                <option value="">Select one...</option>
-                {PLAZOS.map((o) => <option value={o}>{o}</option>)}
-              </select>
-            </div>
-            <div class="form-div svc-form__ancho">
-              <label for="svc-Message">Project details <span class="svc-form__opcional">(optional)</span></label>
-              <textarea id="svc-Message" name="Message" data-name="Message" maxlength="5000"
-                class="text-field-form svc-form__area w-input"></textarea>
+
+            {/* EL SERVICIO DE LA PAGINA, no una eleccion del visitante (D-125). Alimenta la
+                dimension `service_interest` de `generate_lead` y la linea «Services of interest»
+                del aviso que recibe el equipo. Hasta el 12-oct-2026 valia «New Pool and Spa
+                Construction» en TODAS las paginas, tambien en decks o pergolas. */}
+            <input type="hidden" name="checkbox" value={SERVICIO} />
+
+            {/* EL CONSENTIMIENTO DE SMS ES OPCIONAL AQUI, y es una desviacion deliberada respecto a
+                los otros formularios del sitio: 47 CFR 64.1200(a)(2) no permite condicionar un
+                servicio a un consentimiento de marketing. El valor es `Yes` y no `on` porque el
+                correo lo lee un comercial. */}
+            <label class="mm-sms">
+              <input type="checkbox" id="svc-Checkbox" name="Checkbox" data-name="Checkbox" value="Yes" />
+              <span>I agree to receive SMS messages related to project updates, promotions, and company communications from Mr. &amp; Mrs. Outdoor Living. This is optional and is not required to get an estimate. I understand that I may opt out at any time by replying STOP. Message and data rates may apply.</span>
+            </label>
+
+            <div class="mm-form-pie">
+              <button type="button" class="mm-btn mm-btn--linea" data-mm-atras hidden>Back</button>
+              <input type="submit" data-wait="Please wait..." class="mm-btn" value={d.boton ?? 'Get a Free Estimate'} />
+              {licencia && <div class="mm-dato mm-form-lic"><span class="mm-dato-rot">{licencia[0]}</span><span class="mm-dato-val">{licencia.slice(1).join(' · ')}</span></div>}
             </div>
           </div>
 
-          {/* EL SERVICIO DE LA PAGINA, no una eleccion del visitante: esta ficha ES la de obra
-              nueva. Alimenta la dimension `service_interest`, que ya existe en `generate_lead`
-              y si no se quedaria vacia en el formulario de MAYOR intencion del sitio. El valor
-              sale del vocabulario aprobado de 14 servicios, no se inventa. */}
-          <input type="hidden" name="checkbox" value="New Pool and Spa Construction" />
-
-          {/* EL CONSENTIMIENTO DE SMS ES OPCIONAL AQUI, Y ES UNA DESVIACION DELIBERADA.
-              Los otros cuatro formularios del sitio (`/contact-us`, `/request-estimated`,
-              `/brochures` y el lightbox de `/gallery`) lo traen `required` desde Webflow: no se
-              puede enviar sin aceptar SMS de «promotions». Eso condiciona un servicio a un
-              consentimiento de MARKETING, que es justo lo que 47 CFR 64.1200(a)(2) no permite
-              -el consentimiento no puede exigirse como condicion de compra-, y ademas es el
-              unico campo obligatorio que no aporta NADA a la estimacion: quien no lo marca se
-              va sin dejar el lead que ya se pago con el clic.
-
-              Aqui va opcional. La calidad del lead no baja -los ocho cualificadores siguen
-              siendo obligatorios-; lo unico que cambia es por que canal se le puede escribir
-              despues. El valor es `Yes` y no `on` porque el correo lo lee un comercial.
-
-              Las OTRAS CUATRO no se tocan: son rutas fuera de este encargo y el patron es del
-              origen. Va como pendiente para Sebastian en `R17-CORE.md`. */}
-          <label class="w-checkbox checkbox-field svc-form__consentimiento">
-            <input type="checkbox" id="svc-Checkbox" name="Checkbox" data-name="Checkbox"
-              value="Yes" class="w-checkbox-input" />
-            <span class="checkbox-label-3 w-form-label" for="svc-Checkbox">I agree to receive SMS messages related to project updates, promotions, and company communications from Mr. &amp; Mrs. Outdoor Living. This is optional and is not required to get an estimate. I understand that I may opt out at any time by replying STOP. Message and data rates may apply.</span>
-          </label>
-
-          <div class="svc-form__envio">
-            <input type="submit" data-wait="Please wait..." class="button w-button" value={d.boton ?? 'Get a Free Estimate'} />
-          </div>
-
-          {/* HONEYPOT. En los derivados lo inyecta `build-paginas.mjs`; este componente no pasa
-              por el generador, asi que va escrito, igual que en `GalleryLeadLightbox.astro`.
-              Se llama `ref_id` a proposito: `company_url` y similares los autorellenan los
-              gestores de contrasenas y tiraban leads buenos. */}
+          {/* HONEYPOT. Se llama `ref_id` a proposito: `company_url` y similares los autorellenan
+              los gestores de contrasenas y tiraban leads buenos. */}
           <input type="text" name="ref_id" tabindex="-1" autocomplete="off" aria-hidden="true"
             style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
         </form>
 
         <div class="success-message-form w-form-done">
-          <p class="mm-txt">Thank you. Your request has been received.</p>
+          <p class="mm-p">Thank you. Your request has been received.</p>
         </div>
         <div class="w-form-fail">
-          <p class="mm-txt">Oops! Something went wrong while submitting the form.</p>
+          <p class="mm-p">Oops! Something went wrong while submitting the form.</p>
         </div>
       </div>
 
-
+      {/* El titular del formulario baja a rotulo (D-77): el titular grande es el de la banda
+          de cierre, justo encima. Los tres pasos de «que pasa despues» van al lado. */}
+      <aside class="mm-form-lado">
+        <div class="mm-form-intro">
+          <h2 class="mm-etiqueta" set:html={tituloNb} />
+          <p class="mm-p">{d.entradilla}</p>
+        </div>
+        <div>
+          <h3 class="mm-form-pasos-t">{d.pasosTitulo}</h3>
+          <ol class="mm-form-pasos" role="list">
+            {d.pasos.map((p) => <li>{p}</li>)}
+          </ol>
+        </div>
+      </aside>
     </div>
   </section>
 )}

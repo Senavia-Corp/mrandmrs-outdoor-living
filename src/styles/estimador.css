@@ -29,8 +29,10 @@
 
 #pool-estimator {
   /* La paleta que el propio original declara en `#pool-estimator{...}`. */
-  --pe-navy: #001c63;
-  --pe-oro: #f4b248;
+  /* ASTRO-4: los dos colores de marca salen de los tokens del sistema. El literal es el respaldo
+     de la pagina suelta (`/pool-investment-estimator`), que es su propio documento y no los carga. */
+  --pe-navy: var(--mm-navy, #001c63);
+  --pe-oro: var(--mm-oro, #f4b248);
   --pe-cielo: #31c2f6;
   /* Los grises de Tailwind, en oklch como los sirve el original: convertirlos a sRGB movería
      el color medio punto y `check:visual` mide píxeles. */
@@ -204,6 +206,8 @@
 }
 #pool-estimator input[type=checkbox]:checked::before { transform: scale(1); }
 #pool-estimator input:focus-visible { outline: 2px solid var(--pe-cielo); outline-offset: 2px; }
+/* E6: los dos botones del estimador enfocaban con el anillo del navegador. El mismo que sus campos. */
+#pool-estimator .pe-boton:focus-visible, #pool-estimator .pe-desplegar:focus-visible { outline: 2px solid var(--pe-cielo); outline-offset: 2px; }
 /* En las opciones-tarjeta el control se alinea con la primera línea (`mt-1` del original). */
 #pool-estimator .pe-opcion > input { margin-top: 4px; }
 
@@ -271,8 +275,9 @@
 #pool-estimator .pe-boton {
   flex: 1 1 0%;
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  height: 36px; padding: 8px 12px; border-radius: 14px; border: 0;
-  font: inherit; color: #000;
+  /* ASTRO-4: el boton del sistema —44 px de alto, radio 8, texto navy en 700— en vez de 36 px. */
+  min-height: 44px; padding: 8px 16px; border-radius: var(--mm-r-8, 8px); border: 0;
+  font: inherit; font-weight: 700; color: var(--pe-navy);
   background: var(--pe-oro); cursor: pointer; white-space: nowrap;
 }
 #pool-estimator .pe-boton.pe-fantasma { background: transparent; border: 1px solid var(--pe-navy); color: var(--pe-navy); }
@@ -299,6 +304,7 @@
   display: flex; align-items: center; justify-content: space-between; width: 100%;
   background: none; border: 0; padding: 0; cursor: pointer;
   font: inherit; color: #fff;
+  min-height: 44px;   /* ASTRO-4: media 20-25 px de alto; el desglose se abre con el dedo */
 }
 #pool-estimator .pe-desplegar > span { font-weight: 600; }
 #pool-estimator .pe-desplegar svg { width: 20px; height: 20px; flex-shrink: 0; }
@@ -342,6 +348,11 @@
 }
 #pool-estimator .w-form-done { background: rgba(255, 255, 255, .12); color: #fff; }
 #pool-estimator .w-form-fail { background: rgba(255, 90, 90, .18); color: #ffd9d9; }
-#pool-estimator .mm-turnstile { display: flex; justify-content: center; }
+/* ASTRO-4: el alto del widget se reserva, para que el formulario no salte cuando carga. */
+#pool-estimator .mm-turnstile { display: flex; justify-content: center; min-height: 65px; }
 
 #pool-estimator [hidden] { display: none !important; }
+
+/* ASTRO-4: dentro del cascaron del sitio el estimador habla con la tipografia del sistema. La
+   pagina suelta no la carga y se queda con la suya. */
+#pool-estimator:not(.pe-suelta) { font-family: var(--mm-familia, inherit); }

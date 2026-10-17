@@ -34,6 +34,11 @@
  */
 import Base from '../../layouts/Base.astro';
 import { aHtml } from '../../lib/portable-text.mjs';
+import { CATEGORIAS_PISCINA } from '../../lib/blog-groq.mjs';
+import TELEFONOS from '../../data/telefonos.json';
+import HEROES from '../../data/heroes-ciudad.json';
+import BANCO from '../../data/banco-imagenes.json';
+import SERVICIOS from '../../data/servicios-categoria.json';
 
 export async function getStaticPaths() {
   /* El `fetch`, la guarda de fallo cerrado y la cache de escape viven en
@@ -41,10 +46,15 @@ export async function getStaticPaths() {
    * no responde» divergen, y la que falle ABIERTA sera la que nadie mira. */
   const { traeBlog } = await import('../../lib/blog-datos.mjs');
   const docs = await traeBlog();
-  return docs.map((doc) => ({ params: { slug: doc.slug }, props: { doc } }));
+  /* `puesto`: el del articulo en la lista ordenada por slug. Reparte la foto de la banda de
+   * cierre sin depender del orden en que Sanity devuelva los documentos. */
+  const orden = docs.map((d) => d.slug).sort();
+  return docs.map((doc) => ({ params: { slug: doc.slug }, props: { doc, puesto: orden.indexOf(doc.slug) } }));
 }
 
-const { doc } = Astro.props;
+const { doc, puesto } = Astro.props;
+/* D-145: el estimador de piscina solo se ofrece donde el articulo habla de piscinas. */
+const dePiscina = CATEGORIAS_PISCINA.includes(doc.categoria?.slug);
 const ruta = `/blogs/${doc.slug}`;
 
 /* Guardas de forma. Un articulo al que le falte esto no se pinta a medias: se para el build con
@@ -90,7 +100,7 @@ const bloqueFaq = faq.length
     + faq.map((f) => `<h3>${esc(f.question)}</h3><p>${esc(f.answer)}</p>`).join('')
   : '';
 const bloqueFuentes = fuentes.length
-  ? '<h2>Sources</h2><ul role="list">'
+  ? '<h2>Sources</h2><ul role="list" class="mm-fuentes">'
     + fuentes.map((f) => `<li><a href="${escAttr(f.url)}" rel="nofollow noopener">${esc(f.label)}</a></li>`).join('')
     + '</ul>'
   : '';
@@ -119,6 +129,42 @@ const cuerpo = cuerpoBase + bloqueFaq + bloqueFuentes;
 const relacionados = (doc.relacionados ?? [])
   .filter((r) => r?.slug && r?.portada)
   .map((r) => ({ ...r, esActual: r.slug === doc.slug }));
+
+/**
+ * ── LA PLANTILLA (ASTRO-4 lote A, laminas «Articulo» y «CuerpoArticulo») ─────────────────────
+ *
+ * QUE CONSIGUE: que el articulo se lea. Una columna de lectura de 720 px con la portada a su
+ * tamano real (D-85: las 47 son de 800 px y no se amplian), y al lado una sola accion, quieta,
+ * que acompana toda la lectura (D-84, D-97: sin oro, que el oro es el de la cabecera).
+ *
+ * QUE CAMBIA DE COMPOSICION: el hero oscuro con la foto de fondo pasa a hero C claro; el rail
+ * «Most Read Articles», que competia con el texto desde la columna derecha, baja detras del
+ * articulo como lista editorial (D-86); en su sitio queda la tarjeta de accion, pegada al
+ * recorrer; y la banda de cierre gana foto de obra y los dos telefonos.
+ *
+ * EL TEXTO NO SE TOCA: titular, resumen, cuerpo, FAQ, fuentes, «Most Read Articles» con sus
+ * tarjetas y la banda son los de siempre, en su orden. Lo nuevo es la tarjeta (T-49) y los
+ * telefonos de la banda (T-56), y `check-texto.mjs` lo declara.
+ *
+ * LA TARJETA NO SALE POR DEBAJO DE 992 px, como en la lamina movil: ahi la accion es la barra
+ * fija, y una tarjeta entre el cuerpo y los relacionados serian tres llamadas seguidas.
+ */
+const telefonos = TELEFONOS.items;
+const FLECHA = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>';
+
+/* LA FOTO DE LA BANDA sale de las bolsas de `heroes-ciudad.json`, que ya estan validadas para un
+ * hero (obra real, terminada, con recorte 4:5 seguro): la del servicio del articulo y, si no
+ * tiene, la de piscina nueva, que es de lo que habla la banda. Nunca una que el articulo ya
+ * ensene en la portada o en el cuerpo (las del blog son `mm-bi-NNNN`, la `bi-NNNN` del banco). */
+const nm = (x) => String(x ?? '').replace(/\s+/g, ' ').trim();
+const fichaDe = (doc.servicios ?? []).map((sv) => SERVICIOS['/'].servicios.find((x) => nm(x.nombre) === nm(sv.name))?.enlace?.split('/').pop())
+  .find((slug) => HEROES.bolsas[slug]?.length);
+const yaVistas = new Set([...JSON.stringify(doc).matchAll(/mm-bi-(\d+)/g)].map((m) => `bi-${m[1]}`));
+const bolsa = HEROES.bolsas[fichaDe ?? 'pool-builders'].filter((id) => !yaVistas.has(id));
+const fotoBanda = BANCO.find((e) => e.id === bolsa[puesto % bolsa.length]);
+if (!fotoBanda || fotoBanda.procedencia !== 'obra_real' || !(fotoBanda.recortes_seguros ?? []).includes('4:5') || !fotoBanda.alt) {
+  throw new Error(`${ruta}: la foto de la banda (${bolsa[puesto % bolsa.length]}) no es obra real con recorte 4:5 y alt`);
+}
 
 /* El JSON-LD conserva la forma que ya servia —mismas claves, `description` del `summary` (no
  * de `seo.description`, que es la que va al og)— con DOS cambios de SEO-SAFE (1-oct-2026):
@@ -177,11 +223,52 @@ const SEO = {
 };
 ---
 <Base titulo={doc.seo.title} descripcion={doc.seo.description} ruta={ruta} seo={SEO} jsonLdCrudo={[]}>
-  <section class="hero-project"><div class="w-layout-blockcontainer container w-container"><div class="wrapper-hero-project"><div data-w-id="4e3ac630-04d8-ebcf-c5f5-c24ea7e9ba56" class="block-right-hero"><h1 class="white">{doc.title}</h1><p>{doc.summary}</p></div></div></div></section>
+  <section class="mm-hero-c mm-hero-c--art">
+    <div class="mm-hero-c-caja">
+      <div class="mm-hero-c-txt"><h1 class="mm-h1">{doc.title}</h1><p class="mm-p">{doc.summary}</p></div>
+      <figure class="mm-hero-c-medio"><img src={doc.portada.src} srcset={doc.portada.srcset} sizes="(min-width: 992px) 800px, 100vw" alt={doc.portada.alt} width={doc.portada.ancho} height={doc.portada.alto} loading="eager" fetchpriority="high" decoding="async" /></figure>
+    </div>
+  </section>
 
-  <section class="blog-section"><div class="w-layout-blockcontainer container w-container"><div class="wrapper-cms-blog"><div class="blog-block"><div class="w-richtext" set:html={cuerpo} /></div><div class="cms-blogs-block"><h2>Most Read Articles</h2><div class="cms-related-articles w-dyn-list"><div role="list" class="list-related-articles w-dyn-items">{relacionados.map((r) => (
-    <div role="listitem" class="w-dyn-item"><div class="card related-blogs"><img src={r.portada.src} loading="lazy" alt="" sizes={r.portada.sizes} srcset={r.portada.srcset} class="related-image" /><div class="wrapper-content-related-blogs"><h3>{r.title}</h3><p class="paragraph-mini">{r.summary}</p><div class="wrapper-buttons right"><a href={`/blogs/${r.slug}`} aria-current={r.esActual ? 'page' : undefined} class={r.esActual ? 'button button-styles secundary w-button w--current' : 'button button-styles secundary w-button'} aria-label={`Read More: ${r.title}`}>Read More<span class="mm-sr">: {r.title}</span></a></div></div></div></div>
-  ))}</div></div></div></div></div></section>
+  <section class="mm-lect">
+    <div class="mm-prosa" set:html={cuerpo} />
+    <aside class="mm-lado">
+      {dePiscina && <span class="mm-dato-rot">Pool cost estimator</span>}
+      <a class="mm-btn mm-btn--navy" href="/request-estimated">Request a Design-Build Project Evaluation</a>
+      {dePiscina && <a class="mm-btn mm-btn--linea" href="/pool-cost-estimator">Try the pool cost estimator</a>}
+      <div class="mm-datos mm-datos--pila">{telefonos.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}</div>
+    </aside>
+  </section>
 
-  <section class="cta-footer"><div class="w-layout-blockcontainer container w-container"><div class="wrapper-cta-footer"><div data-w-id="1751d21a-c7f6-4875-4d5c-669cd0d5b935" class="wrapper-vertical-text"><h2>Request a Design-Build Project Evaluation</h2><div class="text-block-3">Share your property details, project scope, and investment range. Our licensed design-build pool builders will review your request and confirm alignment before next steps.</div><div class="wrapper-buttons-center"><a href="/request-estimated" class="button button-styles w-button">Get a Free Estimate</a></div></div></div></div></section>
+  <section class="mm-rel">
+    <div class="mm-rel-caja">
+      <h2 class="mm-h2">Most Read <span class="mm-rot">Articles</span></h2>
+      <ul class="mm-arts" role="list">
+        {relacionados.map((r) => (
+          <li>
+            <a class="mm-art" href={`/blogs/${r.slug}`} aria-current={r.esActual ? 'page' : undefined}>
+              <span class="mm-art-foto"><img src={r.portada.src} srcset={r.portada.srcset} sizes="(min-width: 768px) 280px, 100vw" alt="" width={r.portada.ancho} height={r.portada.alto} loading="lazy" decoding="async" /></span>
+              <span class="mm-art-txt">
+                <h3 class="mm-art-t">{r.title}</h3>
+                <span class="mm-art-p">{r.summary}</span>
+                <span class="mm-flecha">Read More<span class="mm-sr">: {r.title}</span><Fragment set:html={FLECHA} /></span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="mm-cierre mm-cierre--sola mm-cierre--alta">
+    <div class="mm-cierre-caja">
+      <div class="mm-cierre-txt">
+        <h2 class="mm-h2">Request a <span class="mm-nb">Design-Build</span> Project Evaluation</h2>
+        <p class="mm-p">Share your property details, project scope, and investment range. Our licensed design-build pool builders will review your request and confirm alignment before next steps.</p>
+        <a class="mm-btn" href="/request-estimated">Get a Free Estimate</a>
+        <div class="mm-datos mm-datos--tel">{telefonos.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}</div>
+      </div>
+      <figure class="mm-cierre-medio"><img src={fotoBanda.src} alt={fotoBanda.alt} width={fotoBanda.ancho} height={fotoBanda.alto} sizes="(min-width: 992px) 42vw, 100vw" loading="lazy" decoding="async" /></figure>
+    </div>
+  </section>
 </Base>

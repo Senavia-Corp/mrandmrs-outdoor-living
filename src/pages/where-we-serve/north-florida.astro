@@ -1,55 +1,146 @@
 ---
-// DERIVADO EN ORIGEN, PERO YA NO REGENERABLE: esta ruta esta en NO_REGENERAR de
-// scripts/build-paginas.mjs desde el rediseno del heroe (3-sep-2026), asi que
-// `npm run paginas` la deja en paz y lo que se toque aqui SE MANTIENE A MANO.
-// Segundo cambio a mano, R15-IG: el carrusel de blog pasa a ir ANTES del feed de
-// Instagram, para que el feed quede pegado al `.cta-footer` como en la home y como
-// en las 14 de services/ -alli lo hace el generador, aqui no puede-. El origen ya
-// traia `social-media -> cta-footer` pegados; con el feed vacio no se notaba.
-// PANELES-GALERIA (2-oct-2026): la banda de seis paneles ya no vive en T2. La pinta
-// bandaGaleriaHtml() de src/lib/galeria-categorias.mjs, la misma que en las 53 /services/pool-builders/.
-// Lo genero scripts/build-paginas.mjs desde
-// _source/vivo/where-we-serves_custom-pool-builders-north-florida.html (el HTML que sirve el sitio vivo).
+// ASTRO-4 lote C (12-oct-2026). Esta ruta sigue en NO_REGENERAR de scripts/build-paginas.mjs: se
+// mantiene A MANO. Era la home antigua en pequeno —hero de cristal, pestanas de servicios, banda
+// de paneles, banda de accion a media pagina y tres carruseles—; ahora usa las piezas del sistema:
+// hero partido con foto de obra, la presentacion con los condados en indice, los servicios en
+// indice, la galeria compacta, el 3D en el unico bloque navy, y obras, resenas y articulos en lista.
+// Mismos textos y mismos enlaces; lo que cambia de sitio lo declara `check-texto.mjs` (T-99).
+import path from 'node:path';
+import sharp from 'sharp';
 import Base from '../../layouts/Base.astro';
-import ServiciosPorCategoria from '../../components/widgets/ServiciosPorCategoria.astro';
+import ServiciosIndice from '../../components/widgets/ServiciosIndice.astro';
 import ResenasGoogle from '../../components/widgets/ResenasGoogle.astro';
 import FeedInstagram from '../../components/widgets/FeedInstagram.astro';
 import CarruselBlog from '../../components/widgets/CarruselBlog.astro';
-import { sinAperturaDelFeed } from '../../lib/feed-social.mjs';
 import CarruselProyectos from '../../components/widgets/CarruselProyectos.astro';
-import { bandaGaleriaHtml, TITULO_BANDA, TEXTO_BANDA } from '../../lib/galeria-categorias.mjs';
+import { bandaCompactaHtml, TITULO_BANDA, TEXTO_BANDA } from '../../lib/galeria-categorias.mjs';
+import TELEFONOS from '../../data/telefonos.json';
+import RESENAS from '../../data/resenas.json';
+import HEROES from '../../data/heroes-ciudad.json';
+import BANCO from '../../data/banco-imagenes.json';
+import { logoLigero, ALTO_LOGO } from '../../lib/logo-ligero.mjs';
+import { franjaLogos } from '../../lib/logos-franja.mjs';
+import { ID_NEGOCIO } from '../../lib/negocio.mjs';
 
-const T0 = "<section class=\"hero-glass-section\"><div class=\"w-layout-blockcontainer container w-container\"><div class=\"wrapper-hero\"><div data-w-id=\"cf60ca62-e5b4-3461-9fff-7f4e9e3b64a9\" class=\"hero-home-block\"><div class=\"wrapper-main-hero-page\"><h1>Luxury Pool Builders in North Florida</h1><h2 class=\"yellow\">Custom Inground Pools &amp; Outdoor Living Design-Build</h2><div class=\"text-divider-hero-city\"><p class=\"paragraph-2\">Licensed luxury pool builders in North Florida specializing in custom inground pools and outdoor living design-build projects, engineered for structural integrity and long-term durability.</p><div class=\"wrapper-buttons-center\"><a href=\"/request-estimated\" class=\"button button-styles w-button\">Get a Free Estimate</a><a href=\"/gallery\" class=\"button button-styles secundary w-button\">Project Gallery</a></div></div></div><div class=\"glass-effect-block\"></div></div></div></div><div class=\"wrapper-logos\"><div class=\"w-layout-blockcontainer container w-container\"><div data-w-id=\"12c8e489-ab6c-f74d-d0c2-18c43511ead7\" class=\"logos-wrapper\"><div class=\"header-logos\"><h2 class=\"heading-logos\">Trusted by Florida's finest homeowners</h2></div><div fs-marquee-type=\"cms\" fs-marquee-element=\"marquee\" fs-marquee-instance=\"fs-marquee-logoscms\" class=\"fs-marquee-logoscms_instance\"><div fs-marquee-element=\"wrapper\" class=\"fs-marquee-logoscms_list-wrapper w-dyn-list\"><div fs-marquee-element=\"list\" role=\"list\" class=\"fs-marquee-logoscms_list w-dyn-items\"><div fs-marquee-element=\"item\" role=\"listitem\" class=\"fs-marquee-logoscms_item w-dyn-item\"><img loading=\"lazy\" src=\"/images/logos/delta/delta-removebg-preview.png\" alt=\"\" sizes=\"100vw\" srcset=\"/images/site/delta-removebg-preview-p-500.png 500w, /images/logos/delta/delta-removebg-preview.png 700w\" class=\"fs-marquee-logoscms_logo\" width=\"700\" height=\"220\"></div><div fs-marquee-element=\"item\" role=\"listitem\" class=\"fs-marquee-logoscms_item w-dyn-item\"><img loading=\"lazy\" src=\"/images/logos/biggreen/bge-logo-lineup-removebg-preview.png\" alt=\"\" sizes=\"100vw\" srcset=\"/images/site/bge-logo-lineup-removebg-preview-p-500.png 500w, /images/site/bge-logo-lineup-removebg-preview-p-800.png 800w, /images/logos/biggreen/bge-logo-lineup-removebg-preview.png 840w\" class=\"fs-marquee-logoscms_logo\" width=\"840\" height=\"271\"></div><div fs-marquee-element=\"item\" role=\"listitem\" class=\"fs-marquee-logoscms_item w-dyn-item\"><img loading=\"lazy\" src=\"/images/logos/alfresco/alfresco-logo-removebg-preview.png\" alt=\"\" sizes=\"100vw\" srcset=\"/images/site/alfresco-logo-removebg-preview-p-500.png 500w, /images/site/alfresco-logo-removebg-preview-p-800.png 800w, /images/logos/alfresco/alfresco-logo-removebg-preview.png 842w\" class=\"fs-marquee-logoscms_logo\" width=\"842\" height=\"296\"></div><div fs-marquee-element=\"item\" role=\"listitem\" class=\"fs-marquee-logoscms_item w-dyn-item\"><img loading=\"lazy\" src=\"/images/logos/sunbrella/530-5307608-awning-vector-colorful-sunbrella-logo-transparent-hd-png-removebg-preview.png\" alt=\"\" class=\"fs-marquee-logoscms_logo\" width=\"280\" height=\"280\"></div><div fs-marquee-element=\"item\" role=\"listitem\" class=\"fs-marquee-logoscms_item w-dyn-item\"><img loading=\"lazy\" src=\"/images/logos/zodiac/zodiac-new.png\" alt=\"\" class=\"fs-marquee-logoscms_logo\" width=\"232\" height=\"127\"></div><div fs-marquee-element=\"item\" role=\"listitem\" class=\"fs-marquee-logoscms_item w-dyn-item\"><img loading=\"lazy\" src=\"/images/logos/sgm/sgm-pool-logo-e1585262761892.jpg\" alt=\"\" class=\"fs-marquee-logoscms_logo\" width=\"480\" height=\"167\"></div><div fs-marquee-element=\"item\" role=\"listitem\" class=\"fs-marquee-logoscms_item w-dyn-item\"><img loading=\"lazy\" src=\"/images/logos/npt/medium-tveat8emx4.png\" alt=\"\" sizes=\"100vw\" srcset=\"/images/site/medium-tveat8emx4-p-500.png 500w, /images/site/medium-tveat8emx4-p-800.png 800w, /images/site/medium-tveat8emx4-p-1080.png 1080w, /images/logos/npt/medium-tveat8emx4.png 1222w\" class=\"fs-marquee-logoscms_logo\" width=\"1222\" height=\"700\"></div><div fs-marquee-element=\"item\" role=\"listitem\" class=\"fs-marquee-logoscms_item w-dyn-item\"><img loading=\"lazy\" src=\"/images/logos/pelican-reef/logo-pelican-reef-800x800tiny.png\" alt=\"\" class=\"fs-marquee-logoscms_logo\" width=\"800\" height=\"800\"></div><div fs-marquee-element=\"item\" role=\"listitem\" class=\"fs-marquee-logoscms_item w-dyn-item\"><img loading=\"lazy\" src=\"/images/logos/jandy/jandy-logo.png\" alt=\"\" class=\"fs-marquee-logoscms_logo\" width=\"334\" height=\"105\"></div><div fs-marquee-element=\"item\" role=\"listitem\" class=\"fs-marquee-logoscms_item w-dyn-item\"><img loading=\"lazy\" src=\"/images/logos/irrigreen/irrigreen-logo-black-web.png\" alt=\"\" class=\"fs-marquee-logoscms_logo\" width=\"600\" height=\"280\"></div><div fs-marquee-element=\"item\" role=\"listitem\" class=\"fs-marquee-logoscms_item w-dyn-item\"><img loading=\"lazy\" src=\"/images/logos/milestone-p8m6r/image.png\" alt=\"\" sizes=\"100vw\" srcset=\"/images/site/image-p-500.png 500w, /images/site/image-p-800.png 800w, /images/logos/milestone-p8m6r/image.png 1040w\" class=\"fs-marquee-logoscms_logo\" width=\"1040\" height=\"260\"></div><div fs-marquee-element=\"item\" role=\"listitem\" class=\"fs-marquee-logoscms_item w-dyn-item\"><img loading=\"lazy\" src=\"/images/logos/gemstone/gemstonelights-newlogo.png\" alt=\"\" class=\"fs-marquee-logoscms_logo\" width=\"930\" height=\"201\"></div><div fs-marquee-element=\"item\" role=\"listitem\" class=\"fs-marquee-logoscms_item w-dyn-item\"><img loading=\"lazy\" src=\"/images/logos/coyote/coyote-logo-glow.png\" alt=\"\" sizes=\"100vw\" srcset=\"/images/site/coyote-logo-glow-p-500.png 500w, /images/site/coyote-logo-glow-p-800.png 800w, /images/site/coyote-logo-glow-p-1080.png 1080w, /images/site/coyote-logo-glow-p-1600.png 1600w, /images/site/coyote-logo-glow-p-2000.png 2000w, /images/site/coyote-logo-glow-p-2600.png 2600w, /images/logos/coyote/coyote-logo-glow.png 2637w\" class=\"fs-marquee-logoscms_logo\" width=\"2637\" height=\"752\"></div><div fs-marquee-element=\"item\" role=\"listitem\" class=\"fs-marquee-logoscms_item w-dyn-item\"><img loading=\"lazy\" src=\"/images/logos/alumawood/alumawood.png\" alt=\"\" sizes=\"100vw\" srcset=\"/images/site/alumawood-p-500.png 500w, /images/site/alumawood-p-800.png 800w, /images/site/alumawood-p-1080.png 1080w, /images/site/alumawood-p-1600.png 1600w, /images/site/alumawood-p-2000.png 2000w, /images/site/alumawood-p-2600.png 2600w, /images/logos/alumawood/alumawood.png 2744w\" class=\"fs-marquee-logoscms_logo\" width=\"2744\" height=\"792\"></div></div></div><div class=\"block-fade-in-2\"></div><div class=\"block-fade-in-1\"></div></div></div></div></div><div data-poster-url=\"/images/site/bg-video-poster.0000000.jpg\" data-video-urls=\"/videos/bg-video-mp4.mp4,/videos/bg-video-webm.webm\" data-autoplay=\"true\" data-loop=\"true\" data-wf-ignore=\"true\" class=\"background-video-page w-background-video w-background-video-atom\"><video id=\"4f1e2509-1d3c-7268-5f24-1f8a9df8a26e-video\" autoplay=\"\" loop=\"\" style=\"background-image:url(/images/site/bg-video-poster.0000000.jpg)\" muted=\"\" playsinline=\"\" data-wf-ignore=\"true\" data-object-fit=\"cover\"><source src=\"/videos/bg-video-mp4.mp4\" data-wf-ignore=\"true\"><source src=\"/videos/bg-video-webm.webm\" data-wf-ignore=\"true\"></video></div></section><section class=\"trusted-section\"><div class=\"w-layout-blockcontainer container w-container\"><div class=\"wrapper-trusted\"><div class=\"trusted-divider-left\"><div class=\"grid-wrapper\"><div class=\"grid-column column1\"><img src=\"/images/countries/custom-pool-builders-alachua-county-fl/south-florida-custom-pool-builders-resort-style-backyar.avif\" loading=\"lazy\" data-w-id=\"f72979fc-9196-9930-356a-1756486557d5\" alt=\"Resort-style custom pool in North Florida designed for luxury homes, featuring expansive patio space and premium outdoor living design.\" class=\"image\"></div><div class=\"grid-column column2\"><div class=\"grid-row row1\"><img src=\"/images/countries/custom-pool-builders-alachua-county-fl/luxury-custom-pool-design-south-florida-outdoor-living.avif\" loading=\"lazy\" data-w-id=\"53f4d2e0-9a7a-0e16-e20a-ab8f9e03c935\" alt=\"Luxury custom pool design in North Florida featuring modern architecture, premium decking, and upscale outdoor living space.\" class=\"image\"></div><div class=\"grid-row row2\"><img src=\"/images/where-we-serves/custom-pool-builders-north-florida/south-florida-custom-pool-builders-modern-backyard-design.avif\" loading=\"lazy\" data-w-id=\"8bad508e-9f02-2bc9-bf6d-6ac47990da3b\" alt=\"Modern custom pool in North Florida with clean geometric design, high-end finishes, and professionally designed outdoor living area.\" class=\"image\"></div></div></div></div><div data-w-id=\"90fb4871-cccb-5a13-f9e4-95b1df0636a2\" class=\"trusted-divider-right\"><div class=\"block-contect-intro\"><h2 class=\"white\">Your Luxury Outdoor Living &amp; Pool Specialists in North Florida</h2><div class=\"text-divider white\"><p>We proudly serve homeowners across North Florida with sophisticated design, premium craftsmanship, and a seamless project experience. Our team combines modern engineering, durable materials, and thoughtful planning to deliver outdoor spaces built for comfort, performance, and long-term value. From concept to completion, we prioritize clear communication, respect timelines and budgets, and provide a true white-glove experience.</p><div class=\"div-block-7\"><div class=\"wrapper-cities-cms w-dyn-list\"><div role=\"list\" class=\"list-cities-cms-copy w-dyn-items\"><div role=\"listitem\" class=\"item-cities-cms w-dyn-item\"><a href=\"/services/pool-builders/marion-county-fl\" class=\"link-block-page w-inline-block\"><img src=\"/images/site/close-toggle.svg\" loading=\"lazy\" alt=\"\" class=\"icon thin\"><div>Marion County</div></a></div><div role=\"listitem\" class=\"item-cities-cms w-dyn-item\"><a href=\"/services/pool-builders/putnam-county-fl\" class=\"link-block-page w-inline-block\"><img src=\"/images/site/close-toggle.svg\" loading=\"lazy\" alt=\"\" class=\"icon thin\"><div>Putnam County</div></a></div><div role=\"listitem\" class=\"item-cities-cms w-dyn-item\"><a href=\"/services/pool-builders/alachua-county-fl\" class=\"link-block-page w-inline-block\"><img src=\"/images/site/close-toggle.svg\" loading=\"lazy\" alt=\"\" class=\"icon thin\"><div>Alachua County</div></a></div><div role=\"listitem\" class=\"item-cities-cms w-dyn-item\"><a href=\"/services/pool-builders/columbia-county-fl\" class=\"link-block-page w-inline-block\"><img src=\"/images/site/close-toggle.svg\" loading=\"lazy\" alt=\"\" class=\"icon thin\"><div>Columbia County</div></a></div><div role=\"listitem\" class=\"item-cities-cms w-dyn-item\"><a href=\"/services/pool-builders/levy-county-fl\" class=\"link-block-page w-inline-block\"><img src=\"/images/site/close-toggle.svg\" loading=\"lazy\" alt=\"\" class=\"icon thin\"><div>Levy County</div></a></div><div role=\"listitem\" class=\"item-cities-cms w-dyn-item\"><a href=\"/services/pool-builders/dixie-county-fl\" class=\"link-block-page w-inline-block\"><img src=\"/images/site/close-toggle.svg\" loading=\"lazy\" alt=\"\" class=\"icon thin\"><div>Dixie County</div></a></div><div role=\"listitem\" class=\"item-cities-cms w-dyn-item\"><a href=\"/services/pool-builders/gilchrist-county-fl\" class=\"link-block-page w-inline-block\"><img src=\"/images/site/close-toggle.svg\" loading=\"lazy\" alt=\"\" class=\"icon thin\"><div>Gilchrist County</div></a></div></div></div></div><div class=\"wrapper-buttons\"><a href=\"/about\" class=\"button button-styles w-button\">More About Us</a></div></div></div></div></div></div></section>";
-const T2 = "<section class=\"_3d-section\"><img src=\"/images/site/design2.webp\" loading=\"lazy\" sizes=\"(max-width: 1919px) 100vw, 1920px\" srcset=\"/images/site/design2-p-500.webp 500w, /images/site/design2-p-800.webp 800w, /images/site/design2-p-1080.webp 1080w, /images/site/design2-p-1600.webp 1600w, /images/site/design2.webp 1920w\" alt=\"\" class=\"design-bg\"><div class=\"w-layout-blockcontainer container w-container\"><div class=\"wrapper-video\"><div data-w-id=\"a1f123ae-345b-86a9-18b8-ddb864de3fab\" class=\"header-3d-section\"><h2>See Your Pool Before It’s Built</h2><p>Preview your North Florida pool design with realistic 3D renderings before construction begins.</p></div><div data-w-id=\"d0e26d17-17a7-1637-e349-7157550d6e66\" class=\"block-video\"><div data-poster-url=\"/images/site/bg-video-3d-poster.0000000.jpg\" data-video-urls=\"/videos/bg-video-3d-mp4.mp4,/videos/bg-video-3d-webm.webm\" data-autoplay=\"true\" data-loop=\"true\" data-wf-ignore=\"true\" class=\"background-video-3d w-background-video w-background-video-atom\"><video id=\"530cbcaa-1f3f-21e1-a774-0f91a89c10ec-video\" autoplay=\"\" loop=\"\" style=\"background-image:url(/images/site/bg-video-3d-poster.0000000.jpg)\" muted=\"\" playsinline=\"\" data-wf-ignore=\"true\" data-object-fit=\"cover\"><source src=\"/videos/bg-video-3d-mp4.mp4\" data-wf-ignore=\"true\"><source src=\"/videos/bg-video-3d-webm.webm\" data-wf-ignore=\"true\"></video><noscript><style>\n  [data-wf-bgvideo-fallback-img] {\n    display: none;\n  }\n  @media (prefers-reduced-motion: reduce) {\n    [data-wf-bgvideo-fallback-img] {\n      position: absolute;\n      z-index: -100;\n      display: inline-block;\n      height: 100%;\n      width: 100%;\n      object-fit: cover;\n    }\n  }</style><img data-wf-bgvideo-fallback-img=\"true\" src=\"/images/site/bg-video-3d-poster.0000000.jpg\" alt=\"\"></noscript><div aria-live=\"polite\"><button type=\"button\" data-w-bg-video-control=\"true\" aria-controls=\"530cbcaa-1f3f-21e1-a774-0f91a89c10ec-video\" class=\"w-backgroundvideo-backgroundvideoplaypausebutton w-background-video--control\"><span><img src=\"/images/site/pause.svg\" loading=\"lazy\" alt=\"Pause video\"></span><span hidden=\"\"><img loading=\"lazy\" alt=\"Play video\" src=\"/images/site/play-24.svg\"></span></button></div></div></div></div></div></section><section class=\"cta-page-section\"><div class=\"w-layout-blockcontainer container w-container\"><div data-w-id=\"fd6a65e1-6acd-7404-311b-159de074845d\" class=\"wrapper-cta-page\"><h2 class=\"white\">Request a Design-Build Project Evaluation</h2><div>Share your property details, project scope, and investment range. Our licensed design-build pool builders will review your request and confirm alignment before next steps.</div><div class=\"wrapper-buttons-center\"><a href=\"/request-estimated\" class=\"button button-styles w-button\">Get a Free Estimate</a></div></div></div></section>";
-const T2B = "<section class=\"testimonial-section\"><div class=\"w-layout-blockcontainer container w-container\"><div data-w-id=\"74852c7c-aeb3-35a7-5cf1-44f4ce6ecae5\" class=\"header-reviews\"><div class=\"label\">TESTIMONIALS</div><h2 class=\"white\">What Our Clients Say About Mr &amp; Mrs Outdoor Living</h2><p>Homeowners across North &amp; South Florida trust our custom pool builders for exceptional pool construction, remodeling, and outdoor living projects.</p></div>";
-const T4 = "</div></section><section class=\"social-media\">";
-// R15-IG: T4 pega el cierre de `.testimonial-section` a la apertura del feed, y el
-// carrusel tiene que entrar EN MEDIO. T6 era el `</section>` suelto que cerraba el feed;
-// ya no se renderiza porque la seccion se escribe entera abajo, como en la home.
-const T4_CIERRE = sinAperturaDelFeed(T4, '/where-we-serve/north-florida T4');
-const T8 = "<section class=\"cta-footer\"><div class=\"w-layout-blockcontainer container w-container\"><div class=\"wrapper-cta-footer\"><div data-w-id=\"1751d21a-c7f6-4875-4d5c-669cd0d5b935\" class=\"wrapper-vertical-text\"><h2>Request a Design-Build Project Evaluation</h2><div class=\"text-block-3\">Share your property details, project scope, and investment range. Our licensed design-build pool builders will review your request and confirm alignment before next steps.</div><div class=\"wrapper-buttons-center\"><a href=\"/request-estimated\" class=\"button button-styles w-button\">Get a Free Estimate</a></div></div></div></div></section>";
+const telefonos = TELEFONOS.items;
+const ACCION = "Get a Free Estimate";
+const FLECHA = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>';
+const VIDEO_3D = "<div data-poster-url=\"/images/site/bg-video-3d-poster.0000000.jpg\" data-video-urls=\"/videos/bg-video-3d-mp4.mp4,/videos/bg-video-3d-webm.webm\" data-autoplay=\"true\" data-loop=\"true\" data-wf-ignore=\"true\" class=\"background-video-3d w-background-video w-background-video-atom\"><video id=\"530cbcaa-1f3f-21e1-a774-0f91a89c10ec-video\" autoplay=\"\" loop=\"\" style=\"background-image:url(/images/site/bg-video-3d-poster.0000000.jpg)\" muted=\"\" playsinline=\"\" data-wf-ignore=\"true\" data-object-fit=\"cover\"><source src=\"/videos/bg-video-3d-mp4.mp4\" data-wf-ignore=\"true\"><source src=\"/videos/bg-video-3d-webm.webm\" data-wf-ignore=\"true\"></video><div aria-live=\"polite\"><button type=\"button\" data-w-bg-video-control=\"true\" aria-controls=\"530cbcaa-1f3f-21e1-a774-0f91a89c10ec-video\" class=\"w-backgroundvideo-backgroundvideoplaypausebutton w-background-video--control\"><span><img src=\"/images/site/pause.svg\" loading=\"lazy\" alt=\"Pause video\"></span><span hidden=\"\"><img loading=\"lazy\" alt=\"Play video\" src=\"/images/site/play-24.svg\"></span></button></div></div>";
+const CONDADOS = [{"href": "/services/pool-builders/marion-county-fl", "nombre": "Marion County"}, {"href": "/services/pool-builders/putnam-county-fl", "nombre": "Putnam County"}, {"href": "/services/pool-builders/alachua-county-fl", "nombre": "Alachua County"}, {"href": "/services/pool-builders/columbia-county-fl", "nombre": "Columbia County"}, {"href": "/services/pool-builders/levy-county-fl", "nombre": "Levy County"}, {"href": "/services/pool-builders/dixie-county-fl", "nombre": "Dixie County"}, {"href": "/services/pool-builders/gilchrist-county-fl", "nombre": "Gilchrist County"}];
+const SRC_LOGOS = ["/images/logos/delta/delta-removebg-preview.png", "/images/logos/biggreen/bge-logo-lineup-removebg-preview.png", "/images/logos/alfresco/alfresco-logo-removebg-preview.png", "/images/logos/sunbrella/530-5307608-awning-vector-colorful-sunbrella-logo-transparent-hd-png-removebg-preview.png", "/images/logos/zodiac/zodiac-new.png", "/images/logos/sgm/sgm-pool-logo-e1585262761892.jpg", "/images/logos/npt/medium-tveat8emx4.png", "/images/logos/pelican-reef/logo-pelican-reef-800x800tiny.png", "/images/logos/jandy/jandy-logo.png", "/images/logos/irrigreen/irrigreen-logo-black-web.png", "/images/logos/milestone-p8m6r/image.png", "/images/logos/gemstone/gemstonelights-newlogo.png", "/images/logos/coyote/coyote-logo-glow.png", "/images/logos/alumawood/alumawood.png"];
+const LOGOS = await Promise.all(SRC_LOGOS.map(async (src) => {
+  const m = await sharp(path.join(process.cwd(), 'public', src)).metadata();
+  const l = logoLigero(src, { w: m.width, h: m.height });
+  return l.h === ALTO_LOGO ? l : { ...l, src };
+}));
+/* Las tres fotos salen de la bolsa de heroes de piscina nueva: obra real, terminada y con alt. */
+const deBolsa = (k: number) => {
+  const e = (BANCO as any[]).find((x) => x.id === HEROES.bolsas['pool-builders'][k]);
+  if (!e || e.procedencia !== 'obra_real' || !e.alt) throw new Error(`/where-we-serve/north-florida: la foto ${k} de la bolsa no es obra real con alt`);
+  return e;
+};
+/* E13 (etapa 3): una foto concreta del banco, con las mismas comprobaciones que la bolsa. */
+const delBanco = (id: string) => {
+  const e = (BANCO as any[]).find((x) => x.id === id);
+  if (!e || e.procedencia !== 'obra_real' || !e.alt) throw new Error(`/where-we-serve/north-florida: ${id} no es obra real con alt`);
+  return e;
+};
+const FOTO_HERO = deBolsa(0);
+const FOTO_RES = delBanco('bi-1280');   // LOOP-AREAS L9: bi-0168 (lamas, 1,0x en escritorio) -> una piscina 4:3, como la de antes
+const FOTO_CIERRE = delBanco('bi-0614');   // LOOP-AREAS L9: la de la bolsa (bi-0662) es la tarjeta de piscina del indice de esta pagina
 const SEO = {"meta":{"og:title":"Luxury Pool Builders in North Florida | Design-Build Contractors","og:description":"Licensed luxury pool builders in North Florida specializing in custom inground pools and outdoor living design-build projects engineered for local soil conditions and long-term durability.","og:image":"/images/where-we-serves/custom-pool-builders-north-florida/south-florida-custom-pool-builders-modern-backyard-design.avif","twitter:title":"Luxury Pool Builders in North Florida | Design-Build Contractors","twitter:description":"Licensed luxury pool builders in North Florida specializing in custom inground pools and outdoor living design-build projects engineered for local soil conditions and long-term durability.","twitter:image":"/images/where-we-serves/custom-pool-builders-north-florida/south-florida-custom-pool-builders-modern-backyard-design.avif","og:type":"website","twitter:card":"summary_large_image"},"jsonLd":[{"@context":"https://schema.org","@type":"WebPage","dateModified":"2026-02-08T01:08:57.035Z","datePublished":"2026-02-08T01:09:19.662Z","description":"Licensed luxury pool builders in North Florida specializing in custom inground pools and outdoor living design-build projects, engineered for structural integrity and long-term durability.","hasPart":[{"@type":"WebPageElement","description":"We proudly serve homeowners across North Florida with sophisticated design, premium craftsmanship, and a seamless project experience. Our team combines modern engineering, durable materials, and thoughtful planning to deliver outdoor spaces built for comfort, performance, and long-term value. From concept to completion, we prioritize clear communication, respect timelines and budgets, and provide a true white-glove experience.","image":[{"@type":"ImageObject","caption":"Modern custom pool in North Florida with clean geometric design, high-end finishes, and professionally designed outdoor living area.","url":"/images/where-we-serves/custom-pool-builders-north-florida/south-florida-custom-pool-builders-modern-backyard-design.avif"},{"@type":"ImageObject","caption":"Luxury custom pool design in North Florida featuring modern architecture, premium decking, and upscale outdoor living space.","url":"/images/countries/custom-pool-builders-alachua-county-fl/luxury-custom-pool-design-south-florida-outdoor-living.avif"},{"@type":"ImageObject","caption":"Resort-style custom pool in North Florida designed for luxury homes, featuring expansive patio space and premium outdoor living design.","url":"/images/countries/custom-pool-builders-alachua-county-fl/south-florida-custom-pool-builders-resort-style-backyar.avif"}],"name":"Your Luxury Outdoor Living &amp; Pool Specialists in North Florida"},{"@type":"WebPageElement","description":"Our advanced 3D rendering technology allows you to preview your North Florida luxury pool and outdoor living space before construction begins. As luxury pool builders in North Florida, we create photorealistic designs that help you explore layouts, materials, and finishes in detail. This collaborative process improves clarity, minimizes surprises, and ensures your final project reflects your vision with confidence.","name":"Featured Luxury Pool Projects Across North Florida"},{"@type":"WebPageElement","description":"Preview your North Florida pool design with realistic 3D renderings before construction begins.","name":"See Your Pool Before It’s Built"},{"@type":"WebPageElement","description":"Explore completed North Florida projects featuring custom pools and refined outdoor living spaces.","name":"Featured Luxury Pool Projects Across North Florida"},{"@type":"WebPageElement","description":"North Florida homeowners praise our craftsmanship, professionalism, and premium outdoor living results.","name":"What Homeowners Across North Florida Are Saying"},{"@type":"WebPageElement","description":"Explore expert tips, design trends, and ideas for pools and outdoor living in North Florida.","name":"Insights &amp; Inspiration "}],"image":{"@type":"ImageObject","caption":"Service areas map showing North Florida coverage for luxury custom pool builders and outdoor living services.","url":"/images/where-we-serves/custom-pool-builders-north-florida/service-areas-north-south-florida-pools.avif"},"inLanguage":"en","mainEntity":{"@id":"https://mrandmrsoutdoorliving.com/#organization","@type":"LocalBusiness","areaServed":{"@type":"Place","name":"North Florida"},"description":"Licensed luxury pool builders in North Florida specializing in custom inground pools and outdoor living design-build projects, engineered for structural integrity and long-term durability.","name":"Mr & Mrs Outdoor Living","url":"https://mrandmrsoutdoorliving.com/"},"name":"Luxury Pool Builders in North Florida","url":"/where-we-serve/north-florida"}]};
 // PANELES-GALERIA: la parte 1 del JSON-LD describia la banda vieja («Featured Luxury Pool Projects Across North Florida»), que ya
 // no se ve. Describe la que se ve, con las mismas constantes que la pintan. Si el origen moviera
 // esa parte de sitio, se para el build en vez de pisar otra en silencio.
 if (SEO.jsonLd[0].hasPart[1].name !== 'Featured Luxury Pool Projects Across North Florida') throw new Error('north-florida: hasPart[1] ya no es la banda');
 Object.assign(SEO.jsonLd[0].hasPart[1], { name: TITULO_BANDA, description: TEXTO_BANDA });
+// D-172: el WebPage del origen anidaba en `mainEntity` un SEGUNDO LocalBusiness (`#organization`, dominio sin www, sin
+// direccion ni telefono) para la misma empresa. Dos entidades que se contradicen confunden la senal local: pasa a ser
+// la referencia al unico negocio de la casa, el `#negocio` que `Base.astro` pone en todas las paginas.
+if (SEO.jsonLd[0].mainEntity?.['@id'] !== 'https://mrandmrsoutdoorliving.com/#organization') throw new Error('north-florida: mainEntity ya no es el LocalBusiness del origen');
+SEO.jsonLd[0].mainEntity = { '@id': ID_NEGOCIO };
 const LD_CRUDO = [];
 ---
 <Base titulo="Luxury Pool Builders in North Florida | Design-Build Contractors" descripcion="Licensed luxury pool builders in North Florida specializing in custom inground pools and outdoor living design-build projects engineered for local soil conditions and long-term durability." ruta="/where-we-serve/north-florida" seo={SEO} jsonLdCrudo={LD_CRUDO}>
-  
-  <Fragment set:html={T0} />
-  <ServiciosPorCategoria />
-  <Fragment set:html={bandaGaleriaHtml()} />
-  <Fragment set:html={T2} />
+  <section class="mm-hero-a">
+    <div class="mm-hero-a-txt">
+      <h1 class="mm-h1">Luxury Pool Builders in North Florida</h1>
+      <h2 class="mm-hero-a-sub">Custom Inground Pools &amp; Outdoor Living Design-Build</h2>
+      <p class="mm-p">Licensed luxury pool builders in North Florida specializing in custom inground pools and outdoor living design-build projects, engineered for structural integrity and long-term durability.</p>
+      <div class="mm-hero-a-acc">
+        <a class="mm-btn" href="/request-estimated">{ACCION}</a>
+        <a class="mm-btn mm-btn--linea" href="/gallery">Project Gallery</a>
+      </div>
+    </div>
+    <figure class="mm-hero-a-medio"><img src={FOTO_HERO.src} alt={FOTO_HERO.alt} width={FOTO_HERO.ancho} height={FOTO_HERO.alto} sizes="(min-width: 992px) 50vw, 100vw" loading="eager" fetchpriority="high" decoding="async" /></figure>
+    {/* E7 (D-166): la franja de logos desfila. Marcado y duracion, en `logos-franja.mjs`. */}
+    <Fragment set:html={franjaLogos("Trusted by Florida's finest homeowners", LOGOS)} />
+  </section>
+
+  <section class="mm-franja mm-franja--blanca">
+    <div class="mm-sec-cab">
+      <h2 class="mm-h2">Your Luxury Outdoor Living &amp; Pool Specialists in North Florida</h2>
+      <div class="mm-sec-lado"><p class="mm-p">We proudly serve homeowners across North Florida with sophisticated design, premium craftsmanship, and a seamless project experience. Our team combines modern engineering, durable materials, and thoughtful planning to deliver outdoor spaces built for comfort, performance, and long-term value. From concept to completion, we prioritize clear communication, respect timelines and budgets, and provide a true white-glove experience.</p></div>
+    </div>
+    <div class="mm-zp-condados">
+      <ul class="mm-indice" role="list">
+        {CONDADOS.map((c) => <li><a class="mm-linea" href={c.href}><span class="mm-linea-t">{c.nombre}</span><Fragment set:html={FLECHA} /></a></li>)}
+      </ul>
+      <a class="mm-flecha" href="/about">More About Us<Fragment set:html={FLECHA} /></a>
+    </div>
+  </section>
+
+  <ServiciosIndice />
+
+  <Fragment set:html={bandaCompactaHtml(ACCION, '/request-estimated')} />
+
+  <section class="mm-3d">
+    <div class="mm-sec-cab">
+      <h2 class="mm-h2">See Your Pool Before It’s Built</h2>
+      <div class="mm-sec-lado">
+        <p class="mm-p">Preview your North Florida pool design with realistic 3D renderings before construction begins.</p>
+        <div class="mm-sec-acc"><a class="mm-btn mm-btn--linea mm-btn--linea-inv" href="/request-estimated">{ACCION}</a></div>
+      </div>
+    </div>
+    <figure class="mm-3d-medio"><Fragment set:html={VIDEO_3D} /></figure>
+  </section>
+
   <CarruselProyectos />
-  <Fragment set:html={T2B} />
-  <ResenasGoogle />
-  <Fragment set:html={T4_CIERRE} />
+
+  <section class="mm-res">
+    <div class="mm-sec-cab">
+      <div class="mm-sec-tit"><p class="mm-etiqueta">TESTIMONIALS</p><h2 class="mm-h2">What Our <span class="mm-rot">Clients</span> Say About Mr &amp; Mrs Outdoor Living</h2></div>
+      <div class="mm-sec-lado">
+        <p class="mm-p">Homeowners across North &amp; South Florida trust our custom pool builders for exceptional pool construction, remodeling, and outdoor living projects.</p>
+        <div class="mm-sec-acc">
+          <a class="mm-btn mm-btn--linea" href="/request-estimated">{ACCION}</a>
+          <a class="mm-flecha" href={RESENAS.enlacePerfil} target="_blank" rel="noopener noreferrer">See all reviews<Fragment set:html={FLECHA} /></a>
+        </div>
+      </div>
+    </div>
+    <div class="mm-res-cuerpo">
+      <div class="mm-res-col">
+        <ResenasGoogle />
+        <div class="mm-datos mm-datos--tel">{telefonos.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}</div>
+      </div>
+      <figure class="mm-res-medio"><img src={FOTO_RES.src} alt={FOTO_RES.alt} width={FOTO_RES.ancho} height={FOTO_RES.alto} sizes="(min-width: 992px) 33vw, 100vw" loading="lazy" decoding="async" /></figure>
+    </div>
+  </section>
+
   <CarruselBlog />
   <section class="social-media">
     <FeedInstagram />
   </section>
-  <Fragment set:html={T8} />
-  
+
+  <section class="mm-cierre mm-cierre--sola mm-cierre--alta">
+    <div class="mm-cierre-caja">
+      <div class="mm-cierre-txt">
+        <h2 class="mm-h2">Request a <span class="mm-nb">Design-Build</span> Project Evaluation</h2>
+        <p class="mm-p">Share your property details, project scope, and investment range. Our licensed design-build pool builders will review your request and confirm alignment before next steps.</p>
+        <a class="mm-btn" href="/request-estimated">Get a Free Estimate</a>
+        <div class="mm-datos mm-datos--tel">{telefonos.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}</div>
+      </div>
+      <figure class="mm-cierre-medio"><img src={FOTO_CIERRE.src} alt={FOTO_CIERRE.alt} width={FOTO_CIERRE.ancho} height={FOTO_CIERRE.alto} sizes="(min-width: 992px) 42vw, 100vw" loading="lazy" decoding="async" /></figure>
+    </div>
+  </section>
 </Base>

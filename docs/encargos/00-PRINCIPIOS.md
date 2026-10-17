@@ -2,29 +2,35 @@
 
 Aplican a los tres frentes. Si tu encargo dice algo que contradice esto, manda esto.
 
-## 1. Se ELEVA la base de Webflow, no se sustituye
+## 1. Se REMODELA: la base de Webflow es el punto de partida, no el techo
 
-**Esto no es un rediseño desde cero.** El diseño exportado de Webflow es la base y se
-conserva: su estructura de secciones, su composición, su identidad, sus componentes. Lo que
-se eleva es **cómo está ejecutado**:
+> **Cambiado el 5-oct-2026, lo decide Sebastian.** Hasta hoy esta sección decía «se eleva, no
+> se sustituye» y prohibía recomponer. El resultado medido fueron encargos de rediseño que
+> devolvían retoques de padding. Lo que sigue es lo que manda ahora.
 
-- **Espaciado y ritmo** — paddings, márgenes, el aire entre bloques, la relación entre
-  secciones vecinas. Es donde más se nota que un sitio lo hizo un equipo y no una plantilla.
-- **Jerarquía** — tamaños, pesos y contraste que digan en qué orden hay que leer. Hoy muchas
-  secciones tienen todo al mismo peso, que es lo mismo que no tener jerarquía.
-- **Estructura interna del componente** — la rejilla de una tarjeta, la alineación de un
-  icono con su texto, dónde cae el CTA. Sin inventar secciones que no existen.
-- **Superficie** — bordes, radios, sombras tintadas de navy (nunca negro puro), estados de
-  foco y hover que hoy no existen o están invertidos.
-- **Legibilidad** — medida de línea, interlineado, contraste medido.
+**Rediseñar una sección es replantearla**, no pulir la que hay. Antes de escribir una regla se
+decide una dirección —qué tiene que conseguir la sección, qué se lee primero, qué la hace
+memorable— y se ejecuta entera. Está permitido, y se espera:
 
-**Lo que NO se hace:** cambiar la identidad, inventar secciones nuevas, mover el contenido de
-sitio porque «quedaría mejor en otro orden», ni sustituir un componente entero por otro con
-otra idea. Si crees que una sección sobra o falta, **dilo en el informe** — es decisión de
-Sebastian, no tuya.
+- **Recomponer** — otra rejilla, otra proporción, otro orden de los elementos dentro de la
+  sección, romper la columna centrada, solapar, sangrar la foto al borde.
+- **Sustituir un componente por otro con otra idea** — tres tarjetas iguales pueden ser una
+  pieza editorial; una lista puede ser una línea de tiempo.
+- **Cambiar el markup** de la sección en cualquier ruta, no solo en la home, mientras
+  `check:texto` siga verde (§2).
+- **Escala y jerarquía con intención** — titulares grandes de verdad, contraste de tamaños,
+  aire generoso. Sombras, radios, superficies, estados y movimiento al servicio de esa idea.
+- **Añadir lo que la dirección pida** — tokens nuevos, elementos decorativos, fotos del banco.
 
-Criterio para dudar: si un cliente que conoce su web actual la abriera, tiene que reconocerla
-al instante y pensar «esto está mejor hecho», no «me han cambiado la web».
+**Lo que se conserva es la marca, no la maqueta:** el logo, el navy y el oro, que sea
+reconocible como Mr & Mrs. La composición de Webflow no es marca.
+
+**Lo que sigue siendo decisión de Sebastian:** quitar una sección entera, añadir una con texto
+nuevo, o cambiar el orden de las secciones de una página. Se propone en el informe.
+
+Criterio para dudar: si el antes y el después solo se distinguen poniéndolos lado a lado, **no
+es un rediseño y no se entrega como tal**. El cliente tiene que abrir la página y pensar «han
+rehecho esto», reconociendo la marca.
 
 ## 2. El texto no se toca, y por eso puedes tocar el resto
 
@@ -63,9 +69,13 @@ fotograma tampoco.
 
 - Cero `!important`. Cero `@layer`: `webflow.css` son 167 KB **sin capa**, y cualquier regla
   sin capa gana a toda regla con capa. Ganas por **orden de carga**.
-- Ningún literal de color: solo `var(--mm-*)` de `disenio/tokens.css`. Token que falte, se
-  **pide** al director; `disenio/` no lo escribe nadie más.
-- `min-width` 480 / 768 / 992, jamás mezclado con los `max-width` de Webflow.
+- Ningún literal de color: solo `var(--mm-*)` de `disenio/tokens.css`. Token que falte
+  —color, espaciado, radio, sombra, paso tipográfico— **se añade ahí** en el mismo cambio, con
+  su ratio medido si es un color. No se pide ni se espera (cambiado el 5-oct-2026).
+- `min-width`, jamás mezclado en la misma regla con los `max-width` de Webflow. 480 / 768 / 992
+  son los de la casa; si el diseño pide otro corte o una `@container`, se usa y se dice.
+- El peso de la capa no se mide antes de diseñar: el tope de `check:tokens` es el peso de `webflow.css` (167 KB) y es
+  alarma, no presupuesto por sección.
 - Nunca `animation-fill-mode: forwards`. Ningún `opacity: 0` fuera de `html[data-anim]`.
 - El oro `#f4b248` da **1,86:1 sobre blanco**: nunca marca estado. Vive en fondos de CTA con
   texto navy (8,40:1). Medido, no se rediscute.

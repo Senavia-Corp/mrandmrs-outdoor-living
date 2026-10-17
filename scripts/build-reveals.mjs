@@ -29,10 +29,55 @@ const filas = lineas.slice(1).map((l) => {
 /** Las 4 entradas por scroll. Duraciones y easing salen del catálogo, no de la memoria. */
 const REVEALS = new Set(['growIn', 'slideInLeft', 'slideInRight', 'slideInBottom']);
 
+/**
+ * RETIRADAS POR EL REDISENO (ASTRO-1 y ASTRO-2, oct-2026). El elemento que llevaba cada uno de
+ * estos `data-w-id` ya no se pinta en ninguna ruta: la seccion paso a las piezas `.mm-*`, que no
+ * entran por scroll. Dejarlos seria declarar animaciones que no animan nada, y `check:ix2` los
+ * cuenta como huerfanos (con ellos, 25; sin ellos, los 14 de siempre). Si un bloque de estos
+ * volviera a pintarse con su `data-w-id`, se saca de aqui.
+ */
+const RETIRADAS = new Set([
+  // pie heredado, en las 232 paginas (ASTRO-1: pie nuevo `.mm-zocalo`)
+  'd04947c9-3ba7-2add-caaa-9414425e8391', 'd04947c9-3ba7-2add-caaa-9414425e83ec', 'd04947c9-3ba7-2add-caaa-9414425e83ed',
+  // secciones de las 14 fichas de servicio (ASTRO-2)
+  '983862a7-3688-6e3b-afeb-1962d292774b', 'f2721b05-6e5e-044b-b7c9-7a2a8bd783b4', 'dce80844-cc8a-923f-8fa1-aa91c1419f9a',
+  'dce80844-cc8a-923f-8fa1-aa91c1419f9d', '9f159d33-eb67-9087-202c-bab1e4077bc3',
+  // hero y cabeceras de las 9 paginas de condado (ASTRO-2)
+  'e94ffec7-4812-fbc6-e930-59a019961ce9', '98524246-2fbc-e691-5ab8-2715913bd179', '98524246-2fbc-e691-5ab8-2715913bd17e',
+  // cada foto de la galeria de las 15 fichas de proyecto (ASTRO-4: mosaico de «Project Details»)
+  '333e7244-2382-3d5a-9f96-e9d5e0ad3eae',
+  // el bloque de texto del hero antiguo de proyecto y de articulo (ASTRO-4: hero C)
+  '4e3ac630-04d8-ebcf-c5f5-c24ea7e9ba56',
+  // la home antigua (ASTRO-4): bloque del hero, cabecera y cuerpo de las pestanas de servicios,
+  // las tres fotos y la columna de la intro, y la cabecera y el carrusel de articulos
+  'bf5925c7-6577-ba84-77a6-25f8d09f7373', 'cf6e6112-50b1-b164-fee5-1e4b8c413043', 'cf6e6112-50b1-b164-fee5-1e4b8c413058',
+  '29867a8a-c7e7-06a6-ef63-f3ef2789a898', '29867a8a-c7e7-06a6-ef63-f3ef2789a89b', '29867a8a-c7e7-06a6-ef63-f3ef2789a89d',
+  '29867a8a-c7e7-06a6-ef63-f3ef2789a89f', 'c5943ea8-2479-0b18-7289-2e4baa1a48c8', 'c5943ea8-2479-0b18-7289-2e4baa1a48ce',
+  // la cabecera y el bloque del formulario de `/request-estimated` (ASTRO-4 lote B)
+  'd01628ed-7f34-9b3f-2b4a-9f22c92ec16a', '69e4df55-86c1-a89d-281e-f454cb25cb86',
+  // la caja de contacto de `/contact-us` (ASTRO-4 lote B)
+  '53096b5c-0f9c-8865-b9e9-f40105bfcddf',  // hero, bloque de publicos, galeria e industrias de `/industry-solutions` (ASTRO-4 lote C)
+  'da22a66a-ad39-0d6d-2fa2-62cb4e178480', '1e09eb34-5dfa-c000-dc70-f8f9d5c27f43', '474f47ea-6325-34d5-2f9c-e6f5417b28fa',
+  'cd6507e1-0ec2-bd3c-9308-2d1cad256861', '3e7b68e7-e033-ed34-b3a7-e87aed50972d', '7740b952-2d34-d915-8ab9-fb41fe6bef4f',
+  'd211c388-c60a-576c-7bc5-bd0a69d515f2',
+  // hero, razones, valores, gestion de obra, fundadores y zonas de `/about` (ASTRO-4 lote C)
+  '0826fe29-babd-e8fb-0a42-82cd5580ecf8', '764f3c21-6644-7827-7b7a-25bbd0e40a23', '8cc34998-48e5-bb72-accf-221a7753f4ed',
+  'a5871642-3b6c-271b-3ec9-9fed5cbdb3f3', 'cf0c09d3-d0b4-ba92-42a2-cec01a9dee35', 'dfdd7317-58e7-27b3-99a6-2c20a5e8a7be',
+  'dfdd7317-58e7-27b3-99a6-2c20a5e8a7c8', 'f811c775-c524-2700-ed75-4a83bcf40c57',
+  // hero, presentacion y cobertura de `/where-we-serve` (ASTRO-4 lote C)
+  '92e1d430-1509-d840-e593-ae3928b4eb32', '906333cc-167b-479c-ae94-f7ad46037af5', '11be53e8-68d1-13b1-051c-1b12ca00c3c8',  // las dos paginas de estado, `/where-we-serve/north-florida` y `south-florida` (ASTRO-4 lote C)
+  '12c8e489-ab6c-f74d-d0c2-18c43511ead7', '1751d21a-c7f6-4875-4d5c-669cd0d5b935', '1b3f0000-6760-ab5a-e8a8-0451b5923b92',
+  '330b3a3f-e72c-3f91-1f24-8dfe4f37952f', '330b3a3f-e72c-3f91-1f24-8dfe4f379534', '53f4d2e0-9a7a-0e16-e20a-ab8f9e03c935',
+  '74852c7c-aeb3-35a7-5cf1-44f4ce6ecae5', '8bad508e-9f02-2bc9-bf6d-6ac47990da3b', '90fb4871-cccb-5a13-f9e4-95b1df0636a2',
+  'a1f123ae-345b-86a9-18b8-ddb864de3fab', 'a9d58cee-a069-e584-e711-80e05d28f337', 'a9d58cee-a069-e584-e711-80e05d28f33c',
+  'c6964fce-5218-8f0d-f211-580d83969ae1', 'cf60ca62-e5b4-3461-9fff-7f4e9e3b64a9', 'd0e26d17-17a7-1637-e349-7157550d6e66',
+  'f72979fc-9196-9930-356a-1756486557d5', 'fd6a65e1-6acd-7404-311b-159de074845d',
+]);
+
 const porId = {};
 let arrancanEnCero = 0;
 for (const f of filas) {
-  if (!REVEALS.has(f.actionListId)) continue;
+  if (!REVEALS.has(f.actionListId) || RETIRADAS.has(f.dataWId)) continue;
   const bps = f.mediaQueries.split('|').filter(Boolean);
   const prev = porId[f.dataWId];
   if (prev) {

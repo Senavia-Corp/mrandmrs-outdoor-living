@@ -11,7 +11,12 @@
  * puerta no mide solo el blog: mide el mecanismo, y de paso cubre `fs-slider-resenas`,
  * `fs-slider-projects` y `fs-slider-gallery`, que viven en las mismas paginas.
  *
- * 5 RUTAS FIJAS, NO 64. La regla dura del repo es no barrer las 115 (ni siquiera las 64 de
+ * ASTRO-2 (12-oct-2026): la pagina de CIUDAD ya no tiene ningun carrusel —galeria, proyectos,
+ * articulos y resenas pasan a mosaico y a listas— y sale de las rutas fijas. Lo que mide de ella
+ * `check:mosaico` (el visor) y `check:estructura:ciudades` (que las secciones sean las nuevas).
+ * Lo mismo las 9 de CONDADO, migradas despues en el mismo encargo: tambien salen.
+ *
+ * 3 RUTAS FIJAS (eran 5), NO 64. La regla dura del repo es no barrer las 115 (ni siquiera las 64 de
  * area de servicio) en una puerta que corre en cada `npm run check`: portada (el carrusel ya
  * existia ahi) + una de cada nivel nuevo -Estado, Condado, Ciudad- + `/industry-solutions`.
  * Estado es la unica con TRES instancias del motor en la misma pagina (`-projects`, `-resenas`,
@@ -79,14 +84,28 @@ const filtro = process.argv.slice(2).filter((a) => !a.startsWith('--'));
 const casa = (r) => !filtro.length
   || filtro.some((f) => (f.startsWith('=') ? r === f.slice(1) : r.includes(f)));
 
-const RUTAS = [
-  '/',
-  '/where-we-serve/north-florida',
-  '/services/pool-builders/marion-county-fl',
-  '/services/pool-builders/gainesville-fl',
-  '/industry-solutions',
-].filter(casa);
-if (!RUTAS.length) { console.error(`\nROJO ninguna de las 5 rutas fijas casa el filtro "${filtro.join(' ')}"\n`); process.exit(1); }
+// ASTRO-4: la home sale de la lista. Ya no lleva ningun carrusel (obras, articulos y resenas van
+// en lista); quedan las dos rutas que si, y la primera es la que tiene autoplay que medir.
+// ASTRO-4 lote C: tambien sale `/industry-solutions`. Sus tres carruseles pasan a fichas, muro e
+// indice, y con ellos se va la instancia `fs-slider-sliderindustries`.
+// ASTRO-4 lote C, cierre: las dos paginas de estado tambien pasan a lista y en el sitio no queda
+// NINGUN carrusel. Las rutas ya no son fijas: salen del build, las que lleven una instancia del
+// motor. Si no hay ninguna, la puerta lo dice y sale en verde SIN haber medido nada: no es una
+// medida aprobada, es que no hay que medir. El dia que vuelva un carrusel, vuelve a medirlo.
+const conCarrusel = [];
+(function recorre(d) {
+  for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+    const p = path.join(d, e.name);
+    if (e.isDirectory()) { if (!['_astro', 'images', 'videos', 'fonts'].includes(e.name)) recorre(p); }
+    else if (e.name === 'index.html' && /\sfs-slider-instance="/.test(fs.readFileSync(p, 'utf8'))) conCarrusel.push('/' + path.relative(ESTATICO, d));
+  }
+})(ESTATICO);
+if (!conCarrusel.length) {
+  console.log('\n  --   check:carrusel — 0 rutas del build llevan un carrusel (`fs-slider-instance`). NADA QUE MEDIR:\n       la puerta no ha comprobado nada en esta corrida.\n');
+  process.exit(0);
+}
+const RUTAS = conCarrusel.sort().slice(0, 3).filter(casa);
+if (!RUTAS.length) { console.error(`\nROJO ninguna de las rutas fijas casa el filtro "${filtro.join(' ')}"\n`); process.exit(1); }
 
 let fallos = 0;
 const check = (n, ok, d = '') => { console.log(`  ${ok ? 'ok  ' : 'ROJO'} ${n}${d ? ' — ' + d : ''}`); if (!ok) fallos++; return ok; };

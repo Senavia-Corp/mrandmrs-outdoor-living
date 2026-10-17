@@ -38,7 +38,7 @@ const variante = (u, w) => u.replace(/\.(avif|jpe?g|webp)$/i, `-mm${w}.$1`);
 
 if (CHECK) {
   const idx = JSON.parse(fs.readFileSync(INDICE, 'utf8'));
-  const faltan = Object.values(idx.imagenes).flatMap((e) => e.variantes.map(([, u]) => u))
+  const faltan = [...Object.values(idx.imagenes).flatMap((e) => e.variantes.map(([, u]) => u)), ...Object.values(idx.lcp ?? {}).flatMap((v) => v.map(([, u]) => u))]
     .filter((u) => !fs.existsSync(path.join(RAIZ, 'public', decodeURI(u))));
   if (faltan.length) { console.error(`✗ ${faltan.length} variantes no estan en public/:\n  ${faltan.slice(0, 10).join('\n  ')}`); process.exit(1); }
   console.log(`✓ variantes de imagen: ${Object.keys(idx.imagenes).length} originales, todas sus variantes en disco`);
@@ -59,8 +59,18 @@ const usadas = new Set();
 /** Las que pintan el LCP (`fetchpriority="high"` o `loading="eager"`) entran desde 40 KB: el
  *  heroe de Pool Builders (146 KB, 1250 px) se servia entero a un movil de 412 px. */
 const prioritarias = new Set();
+const fotosLcp = new Set();
+const faltanMedidas = new Set();
 for (const f of html) {
   for (const m of fs.readFileSync(f, 'utf8').matchAll(/<img\b[^>]*>/g)) {
+    // E5 (D-155): la foto que pinta el LCP, traiga o no `srcset` (las portadas del blog lo traen).
+    const pri = /fetchpriority="high"/.test(m[0]) && m[0].match(/\ssrc="(\/images\/[^"]+\.(?:avif|jpe?g|webp))"/i);
+    // Los posters de video no: tienen sus propios anchos y su propia precarga (`video-fondo.mjs`).
+    if (pri && !pri[1].startsWith('/images/site/posters/')) fotosLcp.add(pri[1]);
+    // E5-SEO (punto 6): las que llegan sin `width` o `height` (el muro del indice de galeria, sobre
+    // todo) se anotan para que `srcset-auto.mjs` se las ponga: sin medidas, la pagina salta al cargar.
+    const sinMedidas = !(/\swidth="\d+"/.test(m[0]) && /\sheight="\d+"/.test(m[0])) && m[0].match(/\ssrc="(\/images\/[^"]+\.(?:avif|jpe?g|webp|png))"/i);
+    if (sinMedidas) faltanMedidas.add(sinMedidas[1]);
     if (/\ssrcset=/.test(m[0])) continue;
     const s = m[0].match(/\ssrc="(\/images\/[^"]+\.(?:avif|jpe?g|webp))"/i);
     if (s && !/-mm\d+\./.test(s[1])) {
@@ -69,6 +79,15 @@ for (const f of html) {
     }
   }
 }
+
+/** D-146: las fotos de una ficha de proyecto entran tambien con el umbral bajo. Son 1250 px y
+ *  80-150 KB cada una, por debajo del corte general, pero la ficha ensena TODA su galeria: en
+ *  movil sumaban mas peso que la pagina de produccion. */
+/* ASTRO-4 lote C: y las de `/industry-solutions` (1250 px, 140-148 KB), que su pagina ensena ahora
+ * en fichas y en muro: cuatro quedaban justo bajo el corte y se servian enteras a un movil. */
+// E5-SEO (punto 6): toda foto del sitio lleva `srcset`. El umbral bajo —40 KB y 700 px— vale ya
+// para todas: quedaban 87 ficheros de 60 a 300 KB que un movil se bajaba enteros.
+const umbralBajo = () => true;
 
 const previo = fs.existsSync(INDICE) ? JSON.parse(fs.readFileSync(INDICE, 'utf8')).imagenes : {};
 /* EL INDICE SE ACUMULA, NO SE REHACE. Una imagen que ya esta en el indice sale del build CON
@@ -83,9 +102,9 @@ for (const u of [...usadas].sort()) {
   const orig = path.join(RAIZ, 'public', decodeURI(u));
   if (!fs.existsSync(orig)) continue;
   const st = fs.statSync(orig).size;
-  if (st < (prioritarias.has(u) ? MIN_BYTES_LCP : MIN_BYTES)) continue;
+  if (st < (umbralBajo(u) ? MIN_BYTES_LCP : MIN_BYTES)) continue;
   const md = await sharp(orig).metadata().catch(() => null);
-  if (!md?.width || md.width < (prioritarias.has(u) ? 700 : MIN_ANCHO)) continue;
+  if (!md?.width || md.width < (umbralBajo(u) ? 700 : MIN_ANCHO)) continue;
   const ext = path.extname(orig).slice(1).toLowerCase();
   const vars = [];
   for (const w of ANCHOS.filter((x) => x < md.width)) {
@@ -106,10 +125,52 @@ for (const u of [...usadas].sort()) {
   imagenes[u] = { ancho: md.width, variantes: vars };
 }
 
+/**
+ * E5 (D-155) · LA FOTO DEL LCP, EN AVIF Y A TAMAÑO DE MOVIL. Con el rediseño el LCP de ciudad,
+ * articulo, ficha y proyecto dejo de ser texto: es la foto del hero, y en un movil se bajaba la de
+ * 1024 px en WebP (80-150 KB). Para cada `<img fetchpriority="high">` del build se generan dos
+ * AVIF, a 800 y 1024 px (los que quepan en el original), y `srcset-auto.mjs` los sirve por debajo
+ * de 768 px en un `<source>` y los precarga `Base.astro`. El `<img>` y su `srcset` no cambian: son
+ * el respaldo de quien no lee AVIF y lo que ve un escritorio.
+ */
+const ANCHOS_LCP = [800, 1024];
+const lcpPrevio = fs.existsSync(INDICE) ? (JSON.parse(fs.readFileSync(INDICE, 'utf8')).lcp ?? {}) : {};
+const lcp = Object.fromEntries(Object.entries(lcpPrevio).filter(([k]) => !k.startsWith('/images/site/posters/')).filter(([, v]) => v.every(([, u]) => fs.existsSync(path.join(RAIZ, 'public', decodeURI(u))))));
+let nuevasLcp = 0;
+for (const u of [...fotosLcp].sort()) {
+  const orig = path.join(RAIZ, 'public', decodeURI(u));
+  if (!fs.existsSync(orig)) continue;
+  const md = await sharp(orig).metadata().catch(() => null);
+  if (!md?.width) continue;
+  const anchos = ANCHOS_LCP.filter((w) => w <= md.width);
+  if (!anchos.length) anchos.push(md.width);
+  const vars = [];
+  for (const w of anchos) {
+    const vu = u.replace(/\.(avif|jpe?g|webp)$/i, `-lcp${w}.avif`);
+    const vp = path.join(RAIZ, 'public', decodeURI(vu));
+    if (!fs.existsSync(vp)) { await sharp(orig).rotate().resize({ width: w }).avif({ quality: 50, effort: 5 }).toFile(vp); nuevasLcp++; }
+    vars.push([w, vu]);
+  }
+  lcp[u] = vars;
+}
+
+const medidasPrevias = fs.existsSync(INDICE) ? (JSON.parse(fs.readFileSync(INDICE, 'utf8')).medidas ?? {}) : {};
+const medidas = { ...medidasPrevias };
+for (const u of [...faltanMedidas].sort()) {
+  const orig = path.join(RAIZ, 'public', decodeURI(u));
+  if (!fs.existsSync(orig)) continue;
+  const md = await sharp(orig).metadata().catch(() => null);
+  if (md?.width && md?.height) medidas[u] = md.orientation >= 5 ? [md.height, md.width] : [md.width, md.height];
+}
+
 fs.writeFileSync(INDICE, JSON.stringify({
   _lee_esto: 'GENERADO por scripts/build-variantes-imagen.mjs desde el build. Lo lee src/lib/srcset-auto.mjs. No editar a mano.',
   imagenes,
+  lcp,
+  medidas,
 }, null, 1) + '\n');
+console.log(`medidas: ${Object.keys(medidas).length} imagenes que llegan sin width/height`);
+console.log(`fotos LCP: ${Object.keys(lcp).length} con sus AVIF de movil · ${nuevasLcp} ficheros nuevos`);
 console.log(`variantes: ${Object.keys(imagenes).length} originales en el indice · esta pasada: ${(bytesOrig / 1048576).toFixed(1)} MB de originales · `
   + `${nuevas} ficheros nuevos · variantes ${(bytesVar / 1048576).toFixed(1)} MB en total`);
 const perdidas = Object.keys(previo).filter((k) => !imagenes[k]);

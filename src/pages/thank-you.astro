@@ -24,8 +24,14 @@
  */
 import Base from '../layouts/Base.astro';
 import telefonos from '../data/telefonos.json';
+import HEROES from '../data/heroes-ciudad.json';
+import BANCO from '../data/banco-imagenes.json';
 
 const { items } = telefonos;
+// ASTRO-4: la foto del hero sale de la bolsa de heroes de piscina nueva (obra real, con alt).
+const FOTO = (BANCO as any[]).find((e) => e.id === HEROES.bolsas['pool-builders'][1]);
+if (!FOTO || FOTO.procedencia !== 'obra_real' || !FOTO.alt) throw new Error('/thank-you: la foto del hero no es obra real con alt');
+const FLECHA = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>';
 /* El host sale de `Astro.site` y no de un literal: eran las dos ultimas URLs a fuego del
    repo y se habrian quedado en el apex al unificar a `www`, dejando el JSON-LD nombrando un
    host distinto del de su propia canonica. */
@@ -83,54 +89,40 @@ const PASOS = [
   ruta="/thank-you"
   seo={SEO}
 >
-  <section class="ty-hero">
-    <div class="w-layout-blockcontainer container w-container">
-      <div class="ty-hero__caja">
-        <svg class="ty-marca" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4"
-                stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-        <h1 class="ty-titulo">Your request is in.</h1>
-        <p class="ty-entrada">
-          A member of our design-build team will review your project and get back to you
-          within one business day.
-        </p>
-      </div>
+  {/* ASTRO-4 lote C (lamina «Gracias»): hero corto con una foto de obra, los tres pasos con la
+      pieza de proceso del sistema y, al lado, la tarjeta para llamar ya. Mismos textos y mismos
+      enlaces. El script de conversion de abajo NO cambia (D-92). */}
+  <section class="mm-hero-a mm-hero-a--bajo">
+    <div class="mm-hero-a-txt">
+      <h1 class="mm-h1">Your request is in.</h1>
+      <p class="mm-p">A member of our design-build team will review your project and get back to you within one business day.</p>
     </div>
+    <figure class="mm-hero-a-medio"><img src={FOTO.src} alt={FOTO.alt} width={FOTO.ancho} height={FOTO.alto} sizes="(min-width: 992px) 50vw, 100vw" loading="eager" fetchpriority="high" decoding="async" /></figure>
   </section>
 
-  <section class="ty-cuerpo">
-    <div class="w-layout-blockcontainer container w-container">
-      <h2 class="ty-h2">What happens next</h2>
-      <ol class="ty-pasos">
-        {PASOS.map((p, i) => (
-          <li class="ty-paso">
-            <span class="ty-paso__n" aria-hidden="true">{i + 1}</span>
-            <div>
-              <h3 class="ty-paso__t">{p.titulo}</h3>
-              <p class="ty-paso__p">{p.texto}</p>
-            </div>
-          </li>
-        ))}
-      </ol>
-
-      <div class="ty-ahora">
-        <h2 class="ty-h2 ty-h2--ajustado">Rather talk now?</h2>
-        <p class="ty-ahora__p">Both offices answer during business hours.</p>
-        <div class="ty-tels">
-          {items.map((t) => (
-            <a class="ty-tel" href={`tel:${t.tel}`}>
-              <span class="ty-tel__zona">{t.zona}</span>
-              <span class="ty-tel__cifra">{t.visible}</span>
-            </a>
+  <section class="mm-franja mm-franja--blanca">
+    <div class="mm-gracias">
+      <div class="mm-gracias-pasos">
+        <h2 class="mm-h2">What happens <span class="mm-rot">next</span></h2>
+        <ol class="mm-pasos">
+          {PASOS.map((p, i) => (
+            <li class="mm-paso">
+              <span class="mm-paso-n" aria-hidden="true">{i + 1}</span>
+              <h3 class="mm-paso-t">{p.titulo}</h3>
+              <p>{p.texto}</p>
+            </li>
           ))}
+        </ol>
+      </div>
+      <aside class="mm-gracias-lado">
+        <h2 class="mm-conf-t">Rather talk now?</h2>
+        <p class="mm-conf-p">Both offices answer during business hours.</p>
+        <div class="mm-datos mm-datos--pila">
+          {items.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}
         </div>
-      </div>
-
-      <div class="ty-salidas">
-        <a href="/projects" class="button button-styles w-button">See recent projects</a>
-        <a href="/gallery" class="ty-enlace">Browse the gallery</a>
-      </div>
+        <a class="mm-flecha mm-may" href="/projects">See recent projects<Fragment set:html={FLECHA} /></a>
+        <a class="mm-flecha" href="/gallery">Browse the gallery<Fragment set:html={FLECHA} /></a>
+      </aside>
     </div>
   </section>
 
@@ -168,171 +160,3 @@ const PASOS = [
   </script>
 </Base>
 
-<style>
-  /* Sin un solo literal de color: todo por token (§1.3 de tokens.css). La identidad es la
-     que ya tiene el sitio —navy de marca H223 y el oro de `.button-styles`—, no una nueva.
-     Aqui lo unico que se decide es la COMPOSICION. */
-
-  /* ── ENTRADA ──────────────────────────────────────────────────────────────
-   * Navy a sangre y centrado. Es el unico momento centrado del sitio y esta justificado:
-   * la pagina tiene UN mensaje y ninguna eleccion que ofrecer todavia. */
-  /* FONDO AGUA (12-sep-2026): el `background` navy se retira; la entrada toma el fondo unico
-     del sitio desde `propio.css`. Con estilo de ambito, `.ty-hero[data-astro-cid-…]` pesa
-     0-2-0 y le habria ganado a la regla compartida. */
-  .ty-hero {
-    color: var(--mm-tinta-inversa);
-    padding: calc(var(--mm-nav-alto) + var(--mm-e-64)) 0 var(--mm-e-64);
-  }
-  .ty-hero__caja {
-    max-width: 34rem;
-    margin-inline: auto;
-    text-align: center;
-  }
-  /* El tic es la unica pieza grafica y por eso carga el acento. Nada mas en la pagina
-     usa el oro, que es como se consigue que se mire aqui primero. */
-  .ty-marca {
-    width: 3.25rem;
-    height: 3.25rem;
-    color: var(--mm-oro);
-    margin-bottom: var(--mm-e-24);
-  }
-  .ty-titulo {
-    font-size: var(--mm-paso-5);
-    line-height: var(--mm-alto-titulo);
-    font-weight: var(--mm-peso-negro);
-    color: var(--mm-tinta-inversa);
-    margin: 0 0 var(--mm-e-16);
-  }
-  .ty-entrada {
-    font-size: var(--mm-paso-1);
-    line-height: var(--mm-alto-cuerpo);
-    color: var(--mm-tinta-suave-inversa);
-    margin: 0;
-  }
-
-  /* ── CUERPO ───────────────────────────────────────────────────────────── */
-  .ty-cuerpo {
-    background: var(--mm-fondo);
-    padding: var(--mm-e-64) 0 var(--mm-e-96);
-  }
-  .ty-h2 {
-    font-size: var(--mm-paso-3);
-    line-height: var(--mm-alto-titulo);
-    font-weight: var(--mm-peso-fuerte);
-    color: var(--mm-tinta);
-    margin: 0 0 var(--mm-e-32);
-  }
-  .ty-h2--ajustado { margin-bottom: var(--mm-e-8); }
-
-  /* Los pasos. Rejilla de dos columnas por fila: el numero manda el ancho y el texto
-     ocupa el resto, asi las tres entradas alinean su cuerpo aunque el numero cambie. */
-  .ty-pasos {
-    list-style: none;
-    margin: 0 0 var(--mm-e-64);
-    padding: 0;
-    display: grid;
-    gap: var(--mm-e-32);
-    max-width: var(--mm-medida);
-  }
-  .ty-paso {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: var(--mm-e-16);
-    align-items: start;
-  }
-  .ty-paso__n {
-    display: grid;
-    place-items: center;
-    inline-size: 2.25rem;
-    block-size: 2.25rem;
-    border-radius: 50%;
-    background: var(--mm-navy);
-    color: var(--mm-tinta-inversa);
-    font-size: var(--mm-paso-0);
-    font-weight: var(--mm-peso-fuerte);
-    /* La cifra centrada optica: sin esto baila medio pixel contra el circulo. */
-    line-height: 1;
-  }
-  .ty-paso__t {
-    font-size: var(--mm-paso-1);
-    line-height: var(--mm-alto-apretado);
-    font-weight: var(--mm-peso-fuerte);
-    color: var(--mm-tinta);
-    margin: 0 0 var(--mm-e-4);
-  }
-  .ty-paso__p {
-    font-size: var(--mm-paso-0);
-    line-height: var(--mm-alto-cuerpo);
-    color: var(--mm-tinta-cuerpo);
-    margin: 0;
-  }
-
-  /* ── LLAMAR AHORA ─────────────────────────────────────────────────────── */
-  .ty-ahora {
-    border-top: 1px solid var(--mm-borde);
-    padding-top: var(--mm-e-32);
-    margin-bottom: var(--mm-e-48);
-  }
-  .ty-ahora__p {
-    font-size: var(--mm-paso-0);
-    color: var(--mm-tinta-cuerpo);
-    margin: 0 0 var(--mm-e-24);
-  }
-  .ty-tels {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--mm-e-16);
-  }
-  /* Los dos numeros son objetivos tactiles de primera: alto real, no un enlace de texto.
-     El negocio tiene DOS oficinas y mandar al del sur a la del norte es perder el lead. */
-  .ty-tel {
-    display: grid;
-    gap: 2px;
-    padding: var(--mm-e-12) var(--mm-e-24);
-    min-block-size: 44px;
-    align-content: center;
-    border: 1px solid var(--mm-borde-control);
-    border-radius: var(--mm-r-8);
-    background: var(--mm-superficie);
-    text-decoration: none;
-    transition: border-color .18s ease, background-color .18s ease;
-  }
-  .ty-tel:hover { border-color: var(--mm-navy); background: var(--mm-fondo-tenue); }
-  .ty-tel:focus-visible {
-    outline: var(--mm-foco-grosor) solid var(--mm-foco);
-    outline-offset: var(--mm-foco-aire);
-  }
-  .ty-tel__zona {
-    font-size: var(--mm-paso-0);
-    color: var(--mm-tinta-atenuada);
-  }
-  .ty-tel__cifra {
-    font-size: var(--mm-paso-1);
-    font-weight: var(--mm-peso-fuerte);
-    color: var(--mm-navy);
-  }
-
-  /* ── SALIDAS ──────────────────────────────────────────────────────────────
-   * Un callejon sin salida desperdicia a alguien que acaba de demostrar interes. */
-  .ty-salidas {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--mm-e-24);
-  }
-  .ty-enlace {
-    color: var(--mm-enlace);
-    font-weight: var(--mm-peso-medio);
-    text-underline-offset: 3px;
-  }
-  .ty-enlace:focus-visible {
-    outline: var(--mm-foco-grosor) solid var(--mm-foco);
-    outline-offset: var(--mm-foco-aire);
-  }
-
-  @media (min-width: 768px) {
-    .ty-hero { padding: calc(var(--mm-nav-alto) + var(--mm-e-96)) 0 var(--mm-e-96); }
-    .ty-titulo { font-size: var(--mm-paso-6); }
-    .ty-pasos { gap: var(--mm-e-48); }
-  }
-</style>

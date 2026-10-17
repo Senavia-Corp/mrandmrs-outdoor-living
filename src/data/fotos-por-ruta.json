@@ -15,34 +15,34 @@
     ],
     "section.aboutus-section img.image-about": [
       {
-        "src": "/images/banco/construction/pool-construction-excavation-excavator-backyard-florida-01.webp",
-        "alt": "Mini excavator digging a new pool beside a white brick home with a screened patio.",
-        "ancho": 1200,
-        "alto": 1600,
-        "pos": "50% 50%",
-        "_banco": "bi-0557",
-        "_bloque": "Project Management",
-        "_por_que": "Obra en curso con el vaso replanteado. No subir la pos: en la tira de 3,7 (991 px) la cabina queda a 10 px del borde. bi-0558, del mismo dia, ya sale en un blog."
-      },
-      {
-        "src": "/images/banco/remodeling/pool-remodeling-step-tile-trim-detail-florida-01.webp",
-        "alt": "Pool steps and bench with new blue glass tile trim set before plaster, with the travertine deck above.",
-        "ancho": 1200,
-        "alto": 1600,
-        "pos": "50% 45%",
-        "_banco": "bi-0533",
-        "_bloque": "Project Monitoring",
-        "_por_que": "Un punto que se inspecciona antes del plaster. bi-0567 (ferralla de obra-049) descartada: pala en primer plano visible de 992 a 1270 px."
-      },
-      {
-        "src": "/images/banco/decks/limestone-pool-deck-round-spa-trellis-wall-florida-01.webp",
-        "alt": "Wet limestone pavers cut to follow the curve of a round spa with a blue glass mosaic tile band, beside a vine trellis wall and bromeliads.",
+        "src": "/images/banco/pergolas/freestanding-pergola-long-pool-lounge-set-potted-plant-florida-01.webp",
+        "alt": "Freestanding bronze pergola over a white lounge set beside a long pool, with a clipped hedge and a potted plant.",
         "ancho": 1600,
-        "alto": 1200,
-        "pos": "0% 50%",
-        "_banco": "bi-0077",
+        "alto": 1600,
+        "pos": "50% 55%",
+        "_banco": "bi-1284",
+        "_bloque": "Project Management",
+        "_por_que": "E12 (D-197, 14-oct-2026): obra terminada en lugar de la excavacion. Pergola, piscina y salon en el mismo plano; foto de sesion profesional, derivada del original."
+      },
+      {
+        "src": "/images/banco/pergolas/patio-cover-ceiling-fans-wicker-lounge-travertine-florida-01.webp",
+        "alt": "Dark-framed patio cover with two ceiling fans over a wicker lounge set on a travertine patio, with bougainvillea in front.",
+        "ancho": 1600,
+        "alto": 1600,
+        "pos": "50% 60%",
+        "_banco": "bi-1285",
+        "_bloque": "Project Monitoring",
+        "_por_que": "E12: el resultado que se supervisa, no un detalle de obra a medias. Cubierta con ventiladores sobre un salon de exterior; sesion profesional."
+      },
+      {
+        "src": "/images/banco/louvered/white-louvered-pergola-curved-pool-patio-lounge-florida-01.webp",
+        "alt": "Curved pool in front of a patio with gray lounge furniture and a white louvered pergola beside a yellow house.",
+        "ancho": 1600,
+        "alto": 900,
+        "pos": "50% 60%",
+        "_banco": "bi-1286",
         "_bloque": "Quality",
-        "_por_que": "Piedra cortada al radio del spa y banda de mosaico: el acabado. Ninguna terminada de obra-049 pasa (manguera, tierra, capturas de pantalla)."
+        "_por_que": "E12: acabado aspiracional (piscina, patio y pergola de lamas) en lugar de la solera mojada. Panoramica 16:9: la caja 4:5 de escritorio va con su derivada del original."
       }
     ]
   },
@@ -213,15 +213,7 @@
         "_banco": "bi-0217",
         "_por_que": null
       },
-      {
-        "src": "/images/banco/louvered/louvered-roof-blue-led-strips-night-florida-01.webp",
-        "alt": "Louvered roof glowing with blue LED strips and spotlights over a dark patio at night",
-        "ancho": 1600,
-        "alto": 1200,
-        "pos": "50% 50%",
-        "_banco": "bi-0234",
-        "_por_que": null
-      },
+      null,
       {
         "src": "/images/banco/kitchens/outdoor-kitchen-island-slat-front-led-lighting-night-florida-01.webp",
         "alt": "Outdoor kitchen island with slatted front and warm LED strip under blue ceiling lights at dusk.",
@@ -250,15 +242,7 @@
         "_banco": "bi-0214",
         "_por_que": null
       },
-      {
-        "src": "/images/banco/louvered/louvered-roof-blue-led-lighting-dusk-patio-florida-01.webp",
-        "alt": "White louvered roof lit with blue LED lights over a travertine patio with wicker seating at dusk",
-        "ancho": 1600,
-        "alto": 1200,
-        "pos": "50% 50%",
-        "_banco": "bi-0215",
-        "_por_que": null
-      },
+      null,
       null,
       null
     ]
@@ -338,6 +322,100 @@
         "pos": "50% 50%",
         "_banco": "bi-0977",
         "_por_que": null
+      }
+    ]
+  },
+  "/industry-solutions": {
+    "section.gallery img.image-gallery": [
+      {
+        "src": "/images/banco/construction/pool-construction-l-shaped-pool-spa-aerial-florida-01.webp",
+        "alt": "Aerial view of an L-shaped pool with square raised spa, gray marble deck and turf border on a rural property.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0486",
+        "_por_que": "D-152: la galeria de esta pagina ensenaba diez imagenes que no estan en ningun registro. Obra real, terminada y apaisada del banco, que la pagina no ensena en otro sitio."
+      },
+      {
+        "src": "/images/banco/construction/pool-construction-blue-glass-tile-spillover-pergola-florida-01.webp",
+        "alt": "Pool with iridescent blue glass tile and spillover edge, raised spa under a bronze pergola and artificial turf",
+        "ancho": 1440,
+        "alto": 812,
+        "pos": "50% 50%",
+        "_banco": "bi-1039",
+        "_por_que": "D-152: la galeria de esta pagina ensenaba diez imagenes que no estan en ningun registro. Obra real, terminada y apaisada del banco, que la pagina no ensena en otro sitio."
+      },
+      {
+        "src": "/images/banco/construction/pool-construction-spa-turf-stepping-pads-house-florida-01.webp",
+        "alt": "New pool with raised spa, travertine deck and stepping pads in artificial turf behind a two-story home.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0505",
+        "_por_que": "D-152: la galeria de esta pagina ensenaba diez imagenes que no estan en ningun registro. Obra real, terminada y apaisada del banco, que la pagina no ensena en otro sitio."
+      },
+      {
+        "src": "/images/banco/pergolas/pergola-outdoor-kitchen-stacked-stone-u-shape-florida-01.webp",
+        "alt": "Brown pergola with two ceiling fans over a U-shaped stacked stone outdoor kitchen.",
+        "ancho": 1080,
+        "alto": 718,
+        "pos": "50% 50%",
+        "_banco": "bi-0895",
+        "_por_que": "D-152: la galeria de esta pagina ensenaba diez imagenes que no estan en ningun registro. Obra real, terminada y apaisada del banco, que la pagina no ensena en otro sitio."
+      },
+      {
+        "src": "/images/banco/louvered/louvered-roof-blades-motor-solar-sensor-top-view-florida-01.webp",
+        "alt": "Top of a white louvered roof showing blades, motors and a small solar panel beside a modern home",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0225",
+        "_por_que": "D-152: la galeria de esta pagina ensenaba diez imagenes que no estan en ningun registro. Obra real, terminada y apaisada del banco, que la pagina no ensena en otro sitio."
+      },
+      {
+        "src": "/images/banco/construction/pool-construction-spa-travertine-deck-wide-florida-01.webp",
+        "alt": "Wide view of a new pool with raised spa and ivory travertine deck framed by hedges and palm trees.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0504",
+        "_por_que": "D-152: la galeria de esta pagina ensenaba diez imagenes que no estan en ningun registro. Obra real, terminada y apaisada del banco, que la pagina no ensena en otro sitio."
+      },
+      {
+        "src": "/images/banco/construction/pool-spa-glass-tile-louvered-pergola-kitchen-florida-01.webp",
+        "alt": "Pool with raised glass-tile spa in front of a louvered pergola and outdoor bar.",
+        "ancho": 1280,
+        "alto": 960,
+        "pos": "50% 50%",
+        "_banco": "bi-0633",
+        "_por_que": "D-152: la galeria de esta pagina ensenaba diez imagenes que no estan en ningun registro. Obra real, terminada y apaisada del banco, que la pagina no ensena en otro sitio."
+      },
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-marble-waterfall-patio-cover-florida-01.webp",
+        "alt": "Marble waterfall outdoor kitchen under an insulated patio cover with black posts.",
+        "ancho": 1201,
+        "alto": 902,
+        "pos": "50% 50%",
+        "_banco": "bi-0761",
+        "_por_que": "D-152: la galeria de esta pagina ensenaba diez imagenes que no estan en ningun registro. Obra real, terminada y apaisada del banco, que la pagina no ensena en otro sitio."
+      },
+      {
+        "src": "/images/banco/kitchens/outdoor-kitchen-u-shape-pizza-oven-pool-view-florida-01.webp",
+        "alt": "U-shaped outdoor kitchen with pizza oven, open grill and side burner beside a pool.",
+        "ancho": 1440,
+        "alto": 960,
+        "pos": "50% 50%",
+        "_banco": "bi-0757",
+        "_por_que": "D-152: la galeria de esta pagina ensenaba diez imagenes que no estan en ningun registro. Obra real, terminada y apaisada del banco, que la pagina no ensena en otro sitio."
+      },
+      {
+        "src": "/images/banco/decks/limestone-paver-patio-lake-view-herringbone-florida-01.webp",
+        "alt": "Raised limestone paver patio in a herringbone layout overlooking a lake and golf course.",
+        "ancho": 1600,
+        "alto": 1200,
+        "pos": "50% 50%",
+        "_banco": "bi-0079",
+        "_por_que": "D-152: la galeria de esta pagina ensenaba diez imagenes que no estan en ningun registro. Obra real, terminada y apaisada del banco, que la pagina no ensena en otro sitio."
       }
     ]
   }

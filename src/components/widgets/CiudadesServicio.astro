@@ -9,21 +9,34 @@
  *
  * NO ES UNA `<section>` A PROPOSITO: `check-estructura-servicios.mjs` exige un solo orden de
  * secciones en las 14 fichas, y esto es una linea de enlaces, no un bloque nuevo. Reusa la clase
- * de la linea de fuentes de la FAQ (`mm-faq-fuentes`), asi que no cuesta CSS.
+ * de la linea de fuentes de la FAQ (`mm-faq-fuentes`). Fuera de la FAQ solo le falta la tinta, que
+ * le pone `sistema.css`: la suave del sistema (5,26:1), no el gris de Webflow (4,54:1).
  *
  * Una ficha sin landings no pinta NADA (ni un byte): las fichas sin ciudades salen como estaban.
  * Se localiza por `Astro.url.pathname`, como los demas widgets que inserta `build-paginas.mjs`.
  */
 import DATOS from '../../data/ciudades-servicios.json';
 import { ciudadesDeFicha } from '../../lib/servicios-ciudad.mjs';
+import { ciudadesDePiscinaPorZona } from '../../lib/vecinas.mjs';
 
 const ruta = Astro.url.pathname.replace(/(.)\/$/, '$1');
 const L = ciudadesDeFicha(ruta, DATOS.paginas);
+// E5-SEO (punto 3): la ficha de piscina enlaza a sus 53 ciudades, en dos lineas, norte y sur.
+const ZONAS = ruta === '/services/pool-builders' ? ciudadesDePiscinaPorZona() : null;
 ---
 {L && (
   <div class="w-layout-blockcontainer container w-container mm-ciudades-servicio">
-    <p class="grey mm-faq-fuentes">{L.rotulo}:{' '}
+    <p class="mm-faq-fuentes">{L.rotulo}:{' '}
       {L.ciudades.map((c, i) => (<>{i ? ' · ' : ''}<a href={c.href}>{c.nombre}</a></>))}
     </p>
+  </div>
+)}
+{ZONAS && (
+  <div class="w-layout-blockcontainer container w-container mm-ciudades-servicio">
+    {ZONAS.map((z) => (
+      <p class="mm-faq-fuentes">{z.rotulo} · {z.zona}:{' '}
+        {z.ciudades.map((c, i) => (<>{i ? ' · ' : ''}<a href={c.href}>{c.nombre}</a></>))}
+      </p>
+    ))}
   </div>
 )}

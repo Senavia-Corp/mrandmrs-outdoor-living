@@ -26,9 +26,9 @@ const FIN = '<div class="wrapper-buttons-center-page">'
   + '<a href="/projects" class="button button-styles w-button">See all Projects</a>'
   + '</div></div></section>';
 
-/** Cuantos slides tiene que traer el tramo que se descarta. Son los 10 de Webflow, que hoy
- *  emite `src/data/obras-migradas.json` — si la plantilla trajera otra cifra, es que ya no es
- *  el mismo bloque y no se puede dar por equivalente. */
+/** Cuantos slides tiene que traer el tramo que se descarta. Son los 10 de Webflow (de ellos,
+ *  `src/data/obras-migradas.json` emite 9 desde D-195) — si la plantilla trajera otra cifra, es
+ *  que ya no es el mismo bloque y no se puede dar por equivalente. */
 const SLIDES_ESPERADOS = 10;
 
 /**

@@ -154,6 +154,67 @@ export function bandaGaleriaHtml() {
  * contrato que `partirEn`: si el marcador no esta UNA vez, el build cae con la ruta puesta en vez
  * de servir media seccion o dos bandas.
  */
+/**
+ * ASTRO-2 · la banda en su forma COMPACTA (lamina «Ciudad», D-79 y D-100): cabecera de seccion
+ * con la accion de la pagina dentro, y las seis teselas en una fila, foto arriba y texto debajo.
+ * Las MISMAS seis teselas, los mismos seis enlaces y el mismo texto que `bandaGaleriaHtml()`: el
+ * enlace sigue dentro del parrafo, asi que `innerText` da las mismas lineas (§ lineasBanda). Lo
+ * unico nuevo es la accion de la cabecera.
+ */
+const FLECHA_SISTEMA = '<svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>';
+export function bandaCompactaHtml(accion, ancla = '#estimate') {
+  const teselas = PANELES.map((c) => {
+    const { ancho, alto, anchos } = recorteTesela(c);
+    const ref = anchos.includes(480) ? 480 : anchos[0];
+    return '<li class="mm-cat-tesela">'
+      + `<span class="mm-cat-foto"><img src="${fotoTesela(c, ref)}" alt="" width="${ancho}" height="${alto}" loading="lazy" decoding="async"`
+      + ` sizes="(min-width: 992px) 17vw, (min-width: 768px) 33vw, 50vw"`
+      + ` srcset="${anchos.map((w) => `${fotoTesela(c, w)} ${w}w`).join(', ')}"`
+      + ` style="object-position:${c.panel.x}% ${c.panel.y}%"></span>`
+      + `<h3 class="mm-cat-t">${esc(c.nombre)}</h3>`
+      + `<p class="mm-cat-p"><span>${esc(c.linea)}</span> `
+      + `<a class="mm-cat-ver" href="${rutaDe(c)}">${VISIBLE_PANEL}`
+      + `<span class="mm-sr"> ${esc(sufijoPanel(c))}</span>${FLECHA_SISTEMA}</a></p>`
+      + '</li>';
+  }).join('');
+  const [antes, ultima] = [TITULO_BANDA.split(' ').slice(0, -1).join(' '), TITULO_BANDA.split(' ').slice(-1)[0]];
+  return '<section class="mm-cat">'
+    + `<div class="mm-sec-cab"><h2 class="mm-h2">${esc(antes)} <span class="mm-rot">${esc(ultima)}</span></h2>`
+    + `<div class="mm-sec-lado"><p class="mm-p">${esc(TEXTO_BANDA)}</p>`
+    + `<div class="mm-sec-acc"><a class="mm-btn mm-btn--linea" href="${ancla}">${esc(accion)}</a></div></div></div>`
+    + `<ul class="mm-cat-fila" role="list">${teselas}</ul>`
+    + '</section>';
+}
+
+/**
+ * ASTRO-4 lote B (lamina «Galeria», D-100) · LAS DIEZ CATEGORIAS DEL INDICE DE GALERIA. Seis
+ * teselas con foto (las de la banda compacta), la tesela de accion y las otras cuatro en lista.
+ * Las mismas lineas y el mismo orden que `tarjetasHtml()` (§ lineasTarjetas); lo nuevo es la tesela
+ * de accion, que entra detras de la sexta.
+ */
+export function indiceGaleriaHtml(telefonosHtml) {
+  const tesela = (c) => {
+    const { ancho, alto, anchos } = recorteTesela(c);
+    const ref = anchos.includes(800) ? 800 : anchos[0];
+    return '<li class="mm-cat-tesela">'
+      + `<span class="mm-cat-foto"><img src="${fotoTesela(c, ref)}" alt="" width="${ancho}" height="${alto}" loading="lazy" decoding="async"`
+      + ' sizes="(min-width: 992px) 25vw, 50vw"'
+      + ` srcset="${anchos.map((w) => `${fotoTesela(c, w)} ${w}w`).join(', ')}"></span>`
+      + `<h3 class="mm-cat-t">${esc(c.nombre)}</h3><p class="mm-cat-p">${esc(c.linea)}</p>`
+      + `<a class="mm-cat-ver" href="${rutaDe(c)}">${esc(enlaceDe(c))}${FLECHA_SISTEMA}</a></li>`;
+  };
+  const linea = (c) => `<li><a class="mm-linea mm-linea--doble" href="${rutaDe(c)}"><span class="mm-linea-txt">`
+    + `<span class="mm-linea-t" role="heading" aria-level="3">${esc(c.nombre)}</span><span class="mm-linea-p">${esc(c.linea)}</span></span>`
+    + `<span class="mm-art-ver">${esc(enlaceDe(c))}${FLECHA_SISTEMA}</span></a></li>`;
+  return '<nav class="mm-cat mm-cat--indice" aria-labelledby="gal-cats-tit">'
+    + `<div class="mm-sec-cab"><h2 class="mm-h2 mm-min" id="gal-cats-tit">${esc(TITULO_TARJETAS).replace(/(service)$/, '<span class="mm-rot">$1</span>')}</h2></div>`
+    + `<ul class="mm-cat-fila" role="list">${PANELES.map(tesela).join('')}`
+    + '<li class="mm-muro-accion"><p class="mm-muro-t">Seen something you like?</p>'
+    + `<a class="mm-btn mm-btn--linea mm-min" href="/request-estimated">Get a free estimate</a>${telefonosHtml}</li></ul>`
+    + `<ul class="mm-arts-indice mm-cat-resto" role="list">${CATEGORIAS.filter((c) => !c.panel).map(linea).join('')}</ul>`
+    + '</nav>';
+}
+
 export function conBandaGaleria(cadena, donde) {
   const i = cadena.indexOf(INICIO_BANDA);
   if (i < 0 || cadena.indexOf(INICIO_BANDA, i + 1) >= 0) {
@@ -168,6 +229,14 @@ export function conBandaGaleria(cadena, donde) {
 export const lineasBanda = () => [
   TITULO_BANDA, TEXTO_BANDA,
   ...PANELES.flatMap((c) => [c.nombre, `${c.linea} ${VISIBLE_PANEL}`]),
+];
+
+/** GALERIA-FICHAS (17-oct-2026): las lineas que la banda COMPACTA pone en el `innerText` de una ficha, en
+ *  orden: titular, entradilla, la accion de la cabecera y, por panel, nombre, linea con «See photos» y su
+ *  sufijo `.mm-sr`. `check-texto.mjs` la quita SEGUIDA de las 14 fichas, que en el baseline no la tienen. */
+export const lineasBandaCompacta = (accion) => [
+  TITULO_BANDA, TEXTO_BANDA, accion,
+  ...PANELES.flatMap((c) => [c.nombre, `${c.linea} ${VISIBLE_PANEL}`, sufijoPanel(c)]),
 ];
 
 /** El sufijo `.mm-sr` del enlace sale en `innerText` como linea PROPIA, justo detras de la del parrafo.

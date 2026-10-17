@@ -99,7 +99,8 @@ if (!portada.includes('mrandmrsoutdoorliving')) {
   servidor.close(); process.exit(1);
 }
 
-const nav = await chromium.launch();
+// `MM_MOTOR=webkit`: el mismo guion en el motor de Safari (E6). Por defecto, Chromium.
+const nav = await (process.env.MM_MOTOR === 'webkit' ? (await import('playwright')).webkit : chromium).launch();
 const mal = {
   noAbre: [], dosALaVez: [], sinLock: [], lockPersiste: [], noPasa: [],
   noCierraEsc: [], noCierraVelo: [], noCierraX: [], foco: [], noPasos: [], sinTurnstile: [], layout: [],
@@ -239,8 +240,14 @@ for (const [ancho, alto] of ANCHOS) {
         if (c.hidden || getComputedStyle(c).display === 'none') continue;
         const r = c.getBoundingClientRect();
         if (r.width === 0 && r.height === 0) continue;   // vive en un paso que ahora no toca
-        if (r.width < MIN || r.height < MIN) {
-          tactil.push(`paso ${paso}: ${c.className || c.tagName} mide ${Math.round(r.width)}x${Math.round(r.height)}`);
+        /* SE MIDE LA CAJA, NO EL GESTO. Las flechas se encogen al 94 % mientras se pulsan
+         * (`:active`, 150 ms): `getBoundingClientRect` incluye esa transformacion, y medir justo
+         * despues de pulsar «siguiente» daba 43,x px a un control de 44 —en WebKit, que tarda un
+         * poco mas en soltarlo—. Se toma el mayor entre la caja pintada y la de maquetacion: un
+         * control pequeno de verdad lo es en las dos. */
+        const ancho = Math.max(r.width, c.offsetWidth); const alto = Math.max(r.height, c.offsetHeight);
+        if (ancho < MIN || alto < MIN) {
+          tactil.push(`paso ${paso}: ${c.className || c.tagName} mide ${Math.round(ancho)}x${Math.round(alto)}`);
         }
       }
 

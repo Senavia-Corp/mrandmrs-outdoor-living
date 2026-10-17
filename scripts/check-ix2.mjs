@@ -190,25 +190,30 @@ for (const [ancho, alto, que] of [[1920, 1080, 'desplegable'], [479, 850, 'menu 
   await pag.bringToFront();
   if (que === 'desplegable') {
     const r = await pag.evaluate(async () => {
-      const b = document.querySelector('.w-dropdown-toggle');
+      // REDISENO STITCH (ASTRO-1): la cabecera es `.mm-cab` y sus desplegables son `<details>`
+      // (`.mm-cab-grupo`), no `.w-dropdown`. El detalle de menu y foco lo mide `check:menu`.
+      const d = document.querySelector('.mm-cab-grupo');
+      const b = d?.querySelector(':scope > summary');
       if (!b) return 'no hay desplegable';
       b.click(); await new Promise((x) => setTimeout(x, 250));
-      const abierto = !!document.querySelector('.w-dropdown-list.w--open');
+      const abierto = d.open;
       b.click(); await new Promise((x) => setTimeout(x, 250));
-      return { abre: abierto, cierra: !document.querySelector('.w-dropdown-list.w--open') };
+      return { abre: abierto, cierra: !d.open };
     });
     check(`${ancho}: el desplegable abre y cierra`, r.abre === true && r.cierra === true, JSON.stringify(r));
   } else {
     const r = await pag.evaluate(async () => {
-      const b = document.querySelector('.w-nav-button');
-      const ov = document.querySelector('.w-nav-overlay');
+      // REDISENO STITCH (ASTRO-1): el menu movil es `<dialog class="mm-menu">`, que abre
+      // `[data-mm-abrir]` y cierra `[data-mm-cerrar]`; ya no hay `.w-nav-button` ni overlay.
+      const b = document.querySelector('[data-mm-abrir]');
+      const ov = document.querySelector('dialog.mm-menu');
       if (!b || !ov) return 'falta el boton o el overlay';
       b.click(); await new Promise((x) => setTimeout(x, 500));
-      const abierto = ov.hasAttribute('data-abierto') && ov.querySelector('.w-nav-menu') !== null;
-      const enPantalla = (() => { const m = ov.querySelector('.w-nav-menu'); if (!m) return false;
-        const r2 = m.getBoundingClientRect(); return r2.right > 0 && r2.left < innerWidth; })();
-      b.click(); await new Promise((x) => setTimeout(x, 500));
-      return { abre: abierto, visible: enPantalla, cierra: !ov.hasAttribute('data-abierto') };
+      const abierto = ov.open;
+      const r2 = ov.getBoundingClientRect();
+      const enPantalla = r2.width > 0 && r2.right > 0 && r2.left < innerWidth;
+      ov.querySelector('[data-mm-cerrar]')?.click(); await new Promise((x) => setTimeout(x, 500));
+      return { abre: abierto, visible: enPantalla, cierra: !ov.open };
     });
     check(`${ancho}: el menu movil abre, se ve y cierra`,
       r.abre === true && r.visible === true && r.cierra === true, JSON.stringify(r));

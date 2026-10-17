@@ -23,12 +23,16 @@ import http from 'node:http';
 import { chromium } from 'playwright';
 import { JSDOM } from 'jsdom';
 import { ARGS_NAVEGADOR, aSlug, asentar, textoNormalizado } from './lib/captura.mjs';
-import { origen, rutaCiudad, esFicha, esCiudad } from './lib/renombradas.mjs';
+import { origen, rutaCiudad, esFicha, esCiudad, esCondado } from './lib/renombradas.mjs';
 import { tramosMiga } from '../src/lib/miga-tramos.mjs';
 import { AREAS_PIE, ORDEN_SERVICIOS_PIE, COPYRIGHT_ORIGEN, copyright } from '../src/lib/pie.mjs';
-import { lineasTarjetas, lineasBanda, lineasSrBanda } from '../src/lib/galeria-categorias.mjs';
+import { lineasTarjetas, lineasBanda, lineasSrBanda, lineasBandaCompacta, CATEGORIAS as GAL_CATEGORIAS } from '../src/lib/galeria-categorias.mjs';
 import { OCULTAS, lineasFiltro } from '../src/lib/filtro-proyectos.mjs';
-import { ciudadesDeFicha } from '../src/lib/servicios-ciudad.mjs';
+import { CATEGORIAS_PISCINA } from '../src/lib/blog-groq.mjs';
+import { enlazadoDeCiudad, ciudadesDePiscinaPorZona } from '../src/lib/vecinas.mjs';
+import { fotoDeHeroe } from '../src/lib/heroe-ciudad.mjs';
+import { ciudadesDeFicha, SERVICIOS_CIUDAD } from '../src/lib/servicios-ciudad.mjs';
+import { zonasDeCondado } from '../src/lib/condados.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 
@@ -202,7 +206,14 @@ const SERVICIOS_CAT = JSON.parse(
   fs.readFileSync(path.join(RAIZ, 'src/data/servicios-categoria.json'), 'utf8'));
 const GALERIA_OBRA = JSON.parse(
   fs.readFileSync(path.join(RAIZ, 'src/data/galeria-obra-por-ruta.json'), 'utf8'));
-const ESTATICO = path.join(RAIZ, '.vercel/output/static');
+/* D-127 · `MM_ESTATICO=<carpeta>`: medir una COPIA del build en vez de `.vercel/output/static`, para
+ * que una corrida larga no impida seguir construyendo. Se dice SIEMPRE que carpeta se ha medido y de
+ * cuando es su `index.html`: una copia vieja no puede pasar por el build de ahora. */
+const ESTATICO = process.env.MM_ESTATICO ? path.resolve(process.env.MM_ESTATICO) : path.join(RAIZ, '.vercel/output/static');
+const fechaDelBuild = (dir) => {
+  const f = path.join(dir, 'index.html');
+  return fs.existsSync(f) ? fs.statSync(f).mtime.toLocaleString('sv-SE', { timeZone: 'America/New_York' }).slice(0, 16) : 'sin index.html';
+};
 
 /**
  * FILTRO POSICIONAL. Cada argumento es una SUBCADENA de la ruta, salvo que empiece por `=`,
@@ -219,7 +230,9 @@ const ESTATICO = path.join(RAIZ, '.vercel/output/static');
  */
 const filtro = process.argv.slice(2).filter((a) => !a.startsWith('--'));
 const casa = (r) => !filtro.length || filtro.some((f) => (f.startsWith('=') ? r === f.slice(1) : r.includes(f)));
-if (!fs.existsSync(ESTATICO)) { console.error('\nROJO falta .vercel/output/static — corre `npm run build`\n'); process.exit(1); }
+if (!fs.existsSync(ESTATICO)) { console.error(`\nROJO falta ${ESTATICO} — corre \`npm run build\`${process.env.MM_ESTATICO ? ' o revisa MM_ESTATICO' : ''}\n`); process.exit(1); }
+console.log(`  build medido: ${path.relative(RAIZ, ESTATICO) || ESTATICO} · de ${fechaDelBuild(ESTATICO)} (hora de Florida)`
+  + (process.env.MM_ESTATICO ? `   ← COPIA por MM_ESTATICO; el build en curso es de ${fechaDelBuild(path.join(RAIZ, '.vercel/output/static'))}` : ''));
 
 const TIPO = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript',
   '.avif': 'image/avif', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg',
@@ -240,9 +253,169 @@ await new Promise((r) => servidor.listen(0, r));
 const BASE = `http://localhost:${servidor.address().port}`;
 
 const csv = fs.readFileSync(path.join(RAIZ, '_source/routes.csv'), 'utf8');
-const RUTAS = csv.trim().split('\n').slice(1)
-  .map((l) => l.match(/"((?:[^"]|"")*)"/g)[0].slice(1, -1))
-  .filter(casa);
+const RUTAS_CSV = csv.trim().split('\n').slice(1)
+  .map((l) => l.match(/"((?:[^"]|"")*)"/g)[0].slice(1, -1));
+const RUTAS = RUTAS_CSV.filter(casa);
+
+/**
+ * ── LA BARANDILLA CUBRE TODO LO CONSTRUIDO (STITCH-E2-BARANDILLA, D-33/D-36, 12-oct-2026) ──────
+ *
+ * `routes.csv` son las 115 rutas que existian en Webflow. El sitio construye 234. Hasta hoy las
+ * otras 119 no se abrian: ni verdes ni rojas. Se pidio `=/financing` y la puerta contesto
+ * «3/3 rutas medidas» sobre cuatro pedidas (STITCH-PARTE-5 §3.0).
+ *
+ * Desde ahora la lista sale del BUILD: toda pagina `.html` construida se mide. Hay dos tipos de
+ * referencia y no se mezclan:
+ *
+ *   baseline/text/         las 115. `innerText` del Webflow vivo + los ajustes declarados de
+ *                          este fichero. NO se toca.
+ *   baseline/text-propio/  las que nunca estuvieron en Webflow. `innerText` del propio build en
+ *                          el commit que dice su ORIGEN.md. Se comparan EN CRUDO.
+ *
+ * Construida y sin referencia en ninguna de las dos = ROJO. Sin tercer cubo.
+ *
+ * A las propias solo les aplica una declaracion si NOMBRA la ruta (`rutas`/`ruta`). Las
+ * declaraciones globales de este fichero describen la distancia entre Webflow y el build, y la
+ * referencia propia ya ES el build: aplicarselas la falsearia.
+ *
+ * `--capturar-propio` escribe la referencia de las propias que no la tengan, con la misma
+ * `asentar()` + `textoNormalizado()` y el mismo navegador que la medicion. SE NIEGA a
+ * sobrescribir: una referencia que ya existe solo se cambia borrandola a mano, a la vista.
+ */
+const DIR_PROPIO = path.join(RAIZ, 'baseline/text-propio');
+const CAPTURAR_PROPIO = process.argv.includes('--capturar-propio');
+const htmlConstruidos = (function recorre(dir, out = []) {
+  for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+    const f = path.join(dir, e.name);
+    if (e.isDirectory()) recorre(f, out);
+    else if (e.name.endsWith('.html')) out.push(f);
+  }
+  return out;
+})(ESTATICO);
+const RUTAS_CONSTRUIDAS = htmlConstruidos.map((f) => {
+  const r = '/' + path.relative(ESTATICO, f).split(path.sep).join('/');
+  return r.replace(/\/index\.html$/, '').replace(/\.html$/, '') || '/';
+}).sort();
+const EN_CSV = new Set(RUTAS_CSV);
+const RUTAS_PROPIAS = RUTAS_CONSTRUIDAS.filter((r) => !EN_CSV.has(r)).filter(casa);
+const PROPIAS = new Set(RUTAS_PROPIAS);
+const RUTAS_A_MEDIR = CAPTURAR_PROPIO ? RUTAS_PROPIAS : [...RUTAS, ...RUTAS_PROPIAS];
+
+/** Lo esperado de una ruta propia: su referencia, con SOLO las declaraciones que la nombran. */
+function esperadoPropio(ruta, lineasRef) {
+  // D-195: en las propias, solo donde se nombra — las 65 de ciudad de los demas servicios.
+  const lineas = ruta in PAGINAS_CIUDAD_SERVICIO ? quitaRetiradaD195(lineasRef) : lineasRef;
+  const quitadas = new Set(QUITADAS_A_PROPOSITO.filter(([, , rutas]) => rutas?.includes(ruta)).map(([l]) => l));
+  let out = lineas.filter((l) => !quitadas.has(l)).map((l) => {
+    const t = TRADUCIDAS_A_PROPOSITO.find(([viejo, , , rutas]) => viejo === l && rutas?.includes(ruta));
+    return t ? t[1] : l;
+  });
+  for (const d of REORDENADAS_A_PROPOSITO) {
+    if (d.ruta !== ruta && !d.rutas?.includes(ruta)) continue;
+    const i = out.findIndex((_, k) => d.antes.every((l, j) => out[k + j] === l));
+    if (i >= 0) out = [...out.slice(0, i), ...d.despues, ...out.slice(i + d.antes.length)];
+  }
+  // ASTRO-2 · HERO A DE CIUDAD: las referencias propias guardan el hero de Webflow (licencia, h1, h2,
+  // parrafo, linea de telefonos, accion, «Project Gallery»). Se cambia ese tramo, EXACTO y seguido,
+  // por el nuevo: mismos textos, la licencia y los telefonos en banda de datos detras de los
+  // botones, y el pie de foto donde hay foto (T-66, T-67). Si no esta tal cual, no se toca.
+  const ch = CAPTACION_JSON[ruta]?.heroe;
+  if (ch && !esFicha(ruta) && ruta.startsWith('/services/')) {
+    const zonas = (ch.zonas ?? TELEFONOS.items.map((x) => x.zona)).map((z) => TELEFONOS.items.find((x) => x.zona === z));
+    const lineaTel = zonas.map((t) => `${t.visible} ${t.zona}`).join(' · ');
+    const k = out.findIndex((l, x) => l === ch.licencias && out[x + 4] === lineaTel && out[x + 6] === 'Project Gallery');
+    if (k >= 0) {
+      const [rot, ...val] = ch.licencias.split(' · ');
+      const pie = fotoDeHeroe(ruta)?.pie;
+      out = [...out.slice(0, k), out[k + 1], out[k + 2], out[k + 3], out[k + 5], 'Project Gallery',
+        ...zonas.flatMap((t) => [t.zona.toUpperCase(), t.visible]), rot.toUpperCase(), val.join(' · '),
+        ...(pie ? ['PROJECT', pie] : []), ...out.slice(k + 7)];
+    }
+  }
+  // La miga pasa de ir detras de la franja de logos a abrir el hero.
+  if (ch && esCiudadA(ruta)) {
+    const miga = tramosMiga(ruta).map((t) => t.nombre);
+    const m = out.findIndex((_, x) => miga.every((l, y) => out[x + y] === l));
+    const h = out.findIndex((l) => l === CAPTACION_JSON[ruta].heroe.licencias.split(' · ')[0].toUpperCase());
+    // `h` es el rotulo de la licencia de la banda de datos; el h1 esta 9 lineas antes (h1, h2,
+    // parrafo, accion, «Project Gallery», y los dos telefonos con su rotulo).
+    if (m >= 0 && h >= 9 && m > h) {
+      out.splice(m, miga.length);
+      out.splice(h - 9, 0, ...miga);
+    }
+  }
+  // ASTRO-2: las referencias propias de las paginas de ciudad guardan el formulario de un paso.
+  // Se cambia ese tramo, EXACTO y seguido, por el de dos pasos; si no esta tal cual, no se toca.
+  const cf = CAPTACION_JSON[ruta];
+  if (cf?.formulario) {
+    const viejo = formularioViejo(cf);
+    const k = out.findIndex((_, x) => viejo.every((l, y) => out[x + y] === l));
+    if (k >= 0) out = [...out.slice(0, k), ...formularioNuevo(cf), ...out.slice(k + viejo.length)];
+  }
+  out = ordenCiudadPropia(ruta, out);
+  return cascaronStitch(out);   // las referencias propias se capturaron con el cascaron de Webflow
+}
+/**
+ * ASTRO-2 · EL ORDEN DE LA LAMINA «Ciudad», sobre la REFERENCIA PROPIA de las 65 paginas de ciudad de
+ * los demas servicios. La referencia es el texto entero de la pagina en su orden anterior:
+ *     … · formulario · galeria (+3D) · banda de categorias · FAQ · inversion · servicios · resenas ·
+ *     proyectos · articulos · banda final · …
+ * y la lamina lo deja en
+ *     … · galeria (+3D) · servicios · inversion · FAQ · banda de categorias · proyectos · articulos ·
+ *     resenas · banda final (sin su boton, T-57) · formulario · …
+ * Cada tramo se localiza por su PRIMERA linea, que sale de los mismos datos que pintan la pagina. Si
+ * falta una sola marca o no van en el orden esperado, no se toca nada y la ruta sale roja.
+ */
+function ordenCiudadPropia(ruta, lineas) {
+  const c = CAPTACION_JSON[ruta];
+  const pag = PAGINAS_CIUDAD_SERVICIO[ruta];
+  if (!c || !pag || !esCiudadA(ruta)) return lineas;
+  const ci = (t) => lineas.findIndex((l) => l.toLowerCase() === String(t).toLowerCase());
+  const marcas = {
+    form: lineas.indexOf('Step 1 of 2'),
+    banda: lineas.findIndex((l, k) => l === 'Project Gallery' && (lineas[k + 1] ?? '').startsWith('See pools, pergolas')),
+    faq: ci(c.faq.titulo),
+    inv: ci(c.inversion.titulo),
+    serv: ci(SERVICIOS_CAT['/'].titulo.replace(/&amp;/g, '&')),
+    res: lineas.indexOf('TESTIMONIALS'),
+    blog: ci(pag.doc.headingBlog),
+    cta: lineas.findIndex((l) => l.startsWith(CIERRE_CIUDAD)) - 1,
+  };
+  const nForm = formularioNuevo(c).length;
+  const nRes = 3 + lineasResenas().length;   // rotulo, titular, parrafo + el bloque de siempre
+  const gal = marcas.form + nForm;
+  const proy = marcas.res + nRes;
+  const fin = marcas.cta + 3;               // titular, parrafo y el boton que sale
+  const orden = [marcas.form, gal, marcas.banda, marcas.faq, marcas.inv, marcas.serv, marcas.res, proy, marcas.blog, marcas.cta, fin];
+  if (orden.some((x) => x < 0) || orden.some((x, k) => k && x <= orden[k - 1]) || lineas[fin - 1] !== 'Get A Free Estimate') return lineas;
+  const tramo = (a, b) => lineas.slice(a, b);
+  return [
+    ...tramo(0, marcas.form),
+    ...tramo(gal, marcas.banda),
+    ...tramo(marcas.serv, marcas.res),
+    ...tramo(marcas.inv, marcas.serv),
+    ...tramo(marcas.faq, marcas.inv),
+    ...tramo(marcas.banda, marcas.faq),
+    ...tramo(proy, marcas.blog),
+    ...tramo(marcas.blog, marcas.cta),
+    ...tramo(marcas.res, proy),
+    ...tramo(marcas.cta, fin - 1),
+    ...tramo(marcas.form, gal),
+    ...tramo(fin, lineas.length),
+  ];
+}
+/** Lo medido de una ruta propia, sin las lineas que una declaracion con su nombre añade. */
+function medidoPropio(ruta, lineas) {
+  let out = listasStitch(ruta, marcaCabecera(lineas));
+  // T-35: los rotulos del plano en linea de la inversion, en las rutas de piscina. En las rutas con
+  // referencia de Webflow los descuenta `bloquesCaptacion`; las de referencia propia no pasan por ahi.
+  if (/^\/services\/pool-(builders|remodeling)(\/|$)/.test(ruta)) out = quitaBloque(out, ['SIZE', 'DESIGN', 'FINISHES', 'SITE CONDITIONS']) ?? out;
+  for (const d of LINEAS_ANADIDAS) {
+    if (!d.rutas?.includes(ruta)) continue;
+    for (const l of d.lineas) { const i = out.indexOf(l); if (i >= 0) out.splice(i, 1); }
+  }
+  return out;
+}
 
 /**
  * Líneas del baseline que YA NO EXISTEN a propósito, con su motivo. Una a una: bajar el
@@ -252,6 +425,13 @@ const RUTAS = csv.trim().split('\n').slice(1)
  * propio Elfsight, no contenido del cliente.
  */
 const QUITADAS_A_PROPOSITO = [
+  /* ASTRO-2 · T-44: en las paginas de servicio × ciudad los articulos dejan de ser carrusel. Los
+   * tres primeros conservan su resumen; del cuarto en adelante quedan el titulo y «Read More», y el
+   * resumen sale de la vista. Leidos de `blogs.json`, que es de donde los pinta `CarruselBlog.astro`. */
+  ...JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/blogs.json'), 'utf8')).posts.slice(3)
+    .map((p) => [(p.resumen ?? '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim(),
+      'ASTRO-2 (T-44): resumen de un articulo que pasa al indice de texto',
+      RUTAS_A_MEDIR.filter((r) => r.startsWith('/services/') && !esFicha(r))]),
   ['12', 'la paginación del widget de Elfsight en /videos: la galería nativa los pinta todos'],
   ['Free YouTube Video Gallery Widget', 'la marca de Elfsight en /videos. Se va con el widget'],
 
@@ -467,6 +647,94 @@ const traduce = (ruta, l) => {
  *   · el año del copyright.
  * Con GUARDA: si el baseline no trae exactamente esos tramos, no se toca nada y sale rojo.
  */
+/**
+ * ── REDISEÑO STITCH · ASTRO-1 (12-oct-2026) · EL CASCARON NUEVO ─────────────────────────────
+ * `Nav.astro` y `Footer.astro` dejan de ser el marcado de Webflow. Lo que cambia de texto esta
+ * en docs/encargos/STITCH-TEXTO.md y se declara AQUI, de una vez para todas las rutas, sobre lo
+ * ESPERADO (el baseline no se toca). Los telefonos, los servicios y las zonas salen de las
+ * mismas fuentes que pinta la pagina (`telefonos.json`, `src/lib/pie.mjs`).
+ *
+ *   CABECERA
+ *   · T-01  `Home` sale de la barra de escritorio (el logo enlaza a `/`).
+ *   · T-03/T-04/T-05  entran la licencia y los dos telefonos con su zona, en la franja.
+ *   · `Financing` y `Contact Us` pasan a la franja: mismo texto, ANTES de `Services`.
+ *   · T-62  `Skip to content`, el enlace de salto (nuevo; visible solo con el foco).
+ *   · T-02  los tres iconos de redes del menu no tenian texto: nada que declarar aqui.
+ *   PIE
+ *   · T-23  «Mr. & Mrs. Outdoor Living - Licensed & Insured | CPC… | CPC… | SCC…» pasa a ser
+ *           el rotulo `Licensed & Insured` y las tres licencias como dato.
+ *   · T-63  los dos telefonos con su zona, nuevos en el pie.
+ *   · Los tres rotulos de columna salen en MAYUSCULAS: es `text-transform` en CSS, el texto
+ *     del HTML es el de siempre. Y «Residential Services» va antes que «Quick Links».
+ *
+ * CON GUARDA, como `piePropio`: si lo esperado no trae EXACTAMENTE el tramo viejo, no se toca
+ * nada y la ruta sale roja. Va DESPUES de `piePropio`, que es quien ordena servicios y zonas.
+ */
+/** Las 118 paginas de servicio × ciudad que monta `PaginaCiudad.astro` (no los 9 condados). */
+const esCiudadA = (r) => /^\/services\/[^/]+\/[^/]+$/.test(r) && !/-county-fl$/.test(r);
+/** El `alt` del banco por id: es el pie de foto del Hero A (D-109). Misma fuente que el generador. */
+const BANCO_ALT = new Map(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/banco-imagenes.json'), 'utf8'))
+  .filter((e) => e.procedencia === 'obra_real').map((e) => [e.id, e.alt]));
+/**
+ * ASTRO-2 · lo que el Hero A cambia en lineas que SI vienen del baseline, en las 14 fichas:
+ *   · el antetitulo («Licensed & Insured Contractors») sale en MAYUSCULAS: es `.mm-etiqueta`,
+ *     `text-transform` en CSS; el texto del HTML es el mismo;
+ *   · «Trusted By Florida's Finest Homeowners» salia DOS veces (la marquesina tras el hero y la
+ *     repetida junto al pie). Queda una, dentro del hero y en mayusculas por lo mismo; la segunda
+ *     se retira (D-53, T-22 y T-43).
+ * CON GUARDA: si la ficha no trae exactamente esas lineas, no se toca nada y sale roja.
+ */
+const ANTETITULO_FICHA = 'Licensed & Insured Contractors';
+const LOGOS_TITULO = "Trusted By Florida's Finest Homeowners";
+function heroAStitch(ruta, lineas) {
+  if (!esFicha(ruta)) return lineas;
+  const out = [...lineas];
+  const a = out.indexOf(ANTETITULO_FICHA);
+  const l1 = out.indexOf(LOGOS_TITULO);
+  const l2 = out.lastIndexOf(LOGOS_TITULO);
+  if (a < 0 || l1 < 0 || l2 === l1) return lineas;
+  out[a] = ANTETITULO_FICHA.toUpperCase();
+  out[l1] = LOGOS_TITULO.toUpperCase();
+  out.splice(l2, 1);
+  return out;
+}
+const MENU_VIEJO = ['Home', 'Services', 'About Us', 'Project Gallery', 'Resources', 'Financing', 'Contact Us', 'Get A Free Estimate'];
+const MENU_NUEVO = ['Skip to content', 'Florida certified pool contractor · CPC1461119 · CPC1460562',
+  ...TELEFONOS.items.flatMap((t) => [t.zona, t.visible]),
+  'Financing', 'Contact Us', 'Services', 'About Us', 'Project Gallery', 'Resources', 'Get A Free Estimate'];
+const PIE_LICENCIA_VIEJA = 'Mr. & Mrs. Outdoor Living - Licensed & Insured | CPC1461119 | CPC1460562 | SCC131153553';
+const PIE_RAPIDOS = ['Home', 'About Us', 'Our Feature Projects', 'Customer Reviews', 'Blog & Tips', 'Contact Us'];
+/* La cabecera se compara como UNA marca, no linea a linea: su licencia («Florida certified pool
+ * contractor · …») es la MISMA cadena que ya pinta el hero de las fichas, y los descuentos de
+ * bloques de mas abajo (`sinElBloque`) buscan por primera aparicion: se llevaban la de la
+ * cabecera y dejaban la del hero. En lo medido, `marcaCabecera` cambia el tramo nuevo, EXACTO y
+ * seguido, por la marca; en lo esperado, `cascaronStitch` cambia el viejo por la misma marca.
+ * Si la pagina no trae el tramo nuevo tal cual, no hay marca y la ruta sale roja. */
+const MARCA_CABECERA = '\u27e6cabecera G1: ' + MENU_NUEVO.join(' | ') + '\u27e7';
+function marcaCabecera(lineas) {
+  const out = [...lineas];
+  const m = out.findIndex((_, k) => MENU_NUEVO.every((l, j) => out[k + j] === l));
+  // La ultima linea («Get A Free Estimate») se queda fuera de la marca: hay declaraciones de
+  // mas abajo ancladas `tras` ella (/gallery, /projects).
+  if (m >= 0) out.splice(m, MENU_NUEVO.length - 1, MARCA_CABECERA);
+  return out;
+}
+function cascaronStitch(lineas) {
+  let out = [...lineas];
+  const m = out.findIndex((_, k) => MENU_VIEJO.every((l, j) => out[k + j] === l));
+  if (m >= 0) out.splice(m, MENU_VIEJO.length - 1, MARCA_CABECERA);
+  const servicios = ORDEN_SERVICIOS_PIE.map((x) => x.texto);
+  const zonas = AREAS_PIE.map((x) => x.texto);
+  const viejo = [PIE_LICENCIA_VIEJA, 'Quick Links', ...PIE_RAPIDOS, 'Residential Services', ...servicios, 'Areas We Serve', ...zonas];
+  const p = out.findIndex((_, k) => viejo.every((l, j) => out[k + j] === l));
+  if (p >= 0) {
+    out.splice(p, viejo.length,
+      ...TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]),
+      'LICENSED & INSURED', 'CPC1461119 · CPC1460562 · SCC131153553',
+      'RESIDENTIAL SERVICES', ...servicios, 'QUICK LINKS', ...PIE_RAPIDOS, 'AREAS WE SERVE', ...zonas);
+  }
+  return out;
+}
 function piePropio(lineas) {
   const out = [...lineas];
   const s = out.indexOf('Residential Services');
@@ -526,6 +794,7 @@ function ctaHeroe(ruta, lineas) {
  * no las toca: las declara `INDICE_BLOG` como añadidas. Las dos cosas son disjuntas.
  */
 const INDICE_BLOG_ORDEN = (() => {
+  return [];   // ASTRO-4 (T-94): el indice entero se deriva y se exige en § reescribeIndiceBlog / indiceBlogTexto.
   const ref = path.join(RAIZ, 'baseline/text/blogs-tips.txt');
   const cache = path.join(RAIZ, 'src/data/blogs-sanity.json');
   if (!fs.existsSync(ref) || !fs.existsSync(cache)) return [];
@@ -876,20 +1145,37 @@ const quitaAntesDespues = (ruta, lineas) => {
  * Se quitan del BASELINE, como el antes/despues de arriba, y por el mismo motivo no valen
  * `QUITADAS_A_PROPOSITO`: «View Full Project» sale una vez por tarjeta y dos tarjetas comparten
  * titulo. Se quita el GRUPO CONTIGUO titulo · resumen · «View Full Project» de cada oculta, y el
- * titulo se deriva de `obras-migradas.json` por slug (las ocultas son migradas: las propias se
- * descuentan en `lineasObras`). Si una oculta no casa, ROJO: una declaracion que ya no quita
- * nada es una puerta que dejo de medir sin decirlo.
+ * titulo y el resumen se leen de la tarjeta del ORIGEN (`_source/vivo/projects.html`) por slug: las
+ * propias no estan ahi y las descuenta `lineasObras`. El resumen hace falta desde D-195: la oculta
+ * de esa decision comparte titulo con la hermana que se queda, y por titulo solo se quitaba la
+ * hermana. Si una oculta no casa, ROJO: una declaracion que ya no quita nada es una puerta que
+ * dejo de medir sin decirlo.
  */
 let ocultasFallo = null;
+/**
+ * D-195 (14-oct-2026): LA OBRA RETIRADA DE LAS LISTAS DE PROYECTOS. Su ficha redirige a la hermana
+ * y sale de `obras-migradas.json`, pero las referencias la siguen teniendo como ultima obra migrada
+ * de la lista. Lleva el MISMO titulo que la hermana, asi que `QUITADAS_A_PROPOSITO` no sirve (se
+ * llevaria las dos): se quita el par titulo · «See Project» que va DETRAS de la obra que la
+ * precedia, y solo ahi. Si no esta en ese sitio no se quita, y la ruta sale roja si la lista
+ * construida ya no la trae; si la trajera otra vez, tambien.
+ */
+const RETIRADA_D195 = {
+  tras: ['Residential Pool With Pergola & Outdoor Dining', 'See Project'],
+  quita: ['Luxury Pool & Spa With Screen Enclosure North Florida', 'See Project'],
+};
+const quitaRetiradaD195 = (lineas) => lineas && (quitaTras(lineas, RETIRADA_D195.tras, RETIRADA_D195.quita) ?? lineas);
+const plano = (s) => String(s ?? '').replace(/\s+/g, ' ').trim();
 const quitaOcultasDelIndice = (ruta, lineas) => {
   if (ruta !== '/projects') return lineas;
-  const migradas = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/obras-migradas.json'), 'utf8')).obras;
+  const doc = new JSDOM(fs.readFileSync(path.join(RAIZ, '_source/vivo/projects.html'), 'utf8')).window.document;
   let out = lineas;
   for (const slug of OCULTAS) {
-    const o = migradas.find((m) => m.slug === slug);
-    if (!o) continue;                       // oculta propia: la descuenta `lineasObras`
-    const titulo = capitaliza(o.tituloHtml.replace(/&amp;/g, '&'));
-    const i = out.findIndex((l, k) => l === titulo && out[k + 2] === 'View Full Project');
+    const tarjeta = doc.querySelector(`.cms-item-work a[href="/project/${slug}"]`)?.closest('.cms-item-work');
+    if (!tarjeta) continue;                 // oculta propia: la descuenta `lineasObras`
+    const titulo = capitaliza(plano(tarjeta.querySelector('.title-work')?.textContent));
+    const resumen = plano(tarjeta.querySelector('.block-content-work > div')?.textContent);
+    const i = out.findIndex((l, k) => l === titulo && out[k + 1] === resumen && out[k + 2] === 'View Full Project');
     if (i < 0) { ocultasFallo = `la tarjeta oculta «${titulo}» no esta en el baseline de /projects`; return null; }
     out = [...out.slice(0, i), ...out.slice(i + 3)];
   }
@@ -1071,6 +1357,7 @@ const ANADIDAS_A_PROPOSITO = {
  * eliminacion sin ancla se llevaria ESA y descuadraria el resto. Medido.
  */
 const INDICE_BLOG = (() => {
+  return [];   // ASTRO-4 (T-94): idem. Lo de abajo queda como estaba; ya no se usa.
   const f = path.join(RAIZ, 'src/data/blogs-sanity.json');
   if (!fs.existsSync(f)) return [];
   const posts = JSON.parse(fs.readFileSync(f, 'utf8'));
@@ -1098,7 +1385,13 @@ const INDICE_BLOG = (() => {
     motivo: `${MOTIVO} Recuento + chip «All» + ${cats.length} categorias con articulos.`,
   }];
 
+  /* SOLO LAS QUE SE VEN AL CARGAR. La pagina lleva las 47 tarjetas en el HTML y esconde con `hidden`
+   * las que pasan de 10 (1 destacada + `LOTE` = 9, `blogs-tips.astro`) hasta que se pulsa «Load
+   * more». Esta declaracion las daba todas por visibles y por eso la ruta salia ROJA ya en
+   * `origin/main`: pedia la categoria de la tarjeta 11, que no esta a la vista. */
+  const VISIBLES_AL_CARGAR = 10;
   orden.forEach((p, i) => {
+    if (i >= VISIBLES_AL_CARGAR) return;
     if (!p.categoria?.name) return;
     const prev = orden[i - 1];
     entradas.push({
@@ -1120,9 +1413,49 @@ const LINEAS_CIUDADES_FICHA = [...new Set(Object.keys(PAGINAS_CIUDAD_SERVICIO).m
   .filter(({ l }) => l)
   .map(({ ficha, l }) => ({ rutas: [ficha], tras: ['View South Florida Service Areas'], lineas: [l.linea],
     motivo: 'LOOP-CIUDADES: la ficha enlaza a sus landings de ciudad, detras de «Where We Serve»' }));
+/* E5-SEO (punto 3, T-101): la ficha de piscina, que no enlazaba a ninguna de sus 53 ciudades, las
+ * enlaza en dos lineas, norte y sur. Derivadas de la misma funcion que las pinta. */
+LINEAS_CIUDADES_FICHA.push({ rutas: ['/services/pool-builders'], tras: ['View South Florida Service Areas'], lineas: ciudadesDePiscinaPorZona().map((z) => z.linea),
+  motivo: 'E5-SEO: la ficha de piscina enlaza a sus 53 landings de ciudad, por zona, detras de «Where We Serve»' });
 
 const LINEAS_ANADIDAS = [
   ...LINEAS_CIUDADES_FICHA,
+  /* ASTRO-2 · T-29: junto al FAQ de las 14 fichas, la tarjeta de accion: el boton de la pagina (oro,
+   * D-76) y los dos telefonos. Cinco lineas seguidas, detras de las preguntas. Va DELANTE de la
+   * declaracion de «What we do» porque esta lleva la accion pegada a los telefonos y aquella no. */
+  ...Object.keys(CAPTACION_JSON).filter(esFicha).map((r) => ({
+    rutas: [r], tras: [],
+    lineas: [capitalizaH2(CAPTACION_JSON[r].heroe.cta ?? 'Get a Free Estimate'), ...TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible])],
+    motivo: 'ASTRO-2 (T-29): tarjeta de accion del FAQ.',
+  })),
+  /* ASTRO-2 · T-47: en las resenas de las 14 fichas, la accion de la pagina en la cabecera (delante
+   * de «See all reviews») y los dos telefonos detras de la lista. Cuando esto corre el bloque de
+   * resenas ya se ha descontado (§ sinElBloque, paso 2), asi que las cinco lineas quedan seguidas:
+   * las mismas cinco que la tarjeta del FAQ, y por eso es una segunda declaracion identica. */
+  ...Object.keys(CAPTACION_JSON).filter(esFicha).map((r) => ({
+    rutas: [r], tras: [],
+    lineas: [capitalizaH2(CAPTACION_JSON[r].heroe.cta ?? 'Get a Free Estimate'), ...TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible])],
+    motivo: 'ASTRO-2 (T-47): accion en la cabecera de las resenas y telefonos al pie.',
+  })),
+  /* ASTRO-2 · T-47: los dos telefonos al pie de «What we do», en banda de datos (rotulo de zona en
+   * mayusculas por CSS). El hero lleva las mismas cuatro lineas, pero su bloque ya se ha descontado
+   * (§ bloquesCaptacion) cuando esto corre, asi que la primera aparicion es esta. */
+  {
+    rutas: Object.keys(CAPTACION_JSON).filter(esFicha), tras: [],
+    lineas: TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]),
+    motivo: 'ASTRO-2 (T-47): telefonos al pie de «What we do».',
+  },
+  /* ASTRO-2 · T-28 y T-47: la cabecera de la galeria de obra de las 14 fichas lleva la accion de
+   * la pagina en boton de linea (D-76; el mismo texto que el boton del hero) y el enlace
+   * «Project Gallery». Van seguidas y solo ahi, asi que el par se quita sin ancla. */
+  ...Object.keys(CAPTACION_JSON).filter(esFicha).map((r) => ({
+    rutas: [r], tras: [],
+    // D-119: `/services/pool-builders` recupera ahi su enlace a `/projects` («View All Projects»), que
+    // iba en el antes/despues que la ficha pierde.
+    lineas: [capitalizaH2(CAPTACION_JSON[r].heroe.cta ?? 'Get a Free Estimate'), 'Project Gallery',
+      ...(r === '/services/pool-builders' ? ['View All Projects'] : [])],
+    motivo: 'ASTRO-2 (T-28, T-47, D-119): accion y enlaces en la cabecera de la galeria de obra.',
+  })),
   /* SEO-REMEDIACION (4-oct-2026): los cualificadores opcionales de `/request-estimated`, leidos
    * del mismo JSON que los inserta (`src/data/textos-propios.json`). */
   ...Object.entries(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/textos-propios.json'), 'utf8')))
@@ -1251,34 +1584,8 @@ const LINEAS_ANADIDAS = [
     motivo: 'D6: el pie enlaza `/articles/accessibility`, que antes no enlazaba nadie. Las otras '
       + 'dos legales solo cambian de href y no cuestan texto; esta es un enlace NUEVO.',
   },
-  {
-    /**
-     * R17-CORE · EL CTA DE LA REJILLA DE SUBSERVICIOS, que no lo descontaba nadie.
-     *
-     * El encargo cierra la rejilla con un paso siguiente («Nunca quedan mas de 2 secciones
-     * seguidas sin un paso siguiente: … servicios->CTA …», R17-CORE §5), y el dato ya lo
-     * declara: `servicios.cta.texto` en `src/data/captacion-servicios.json`, solo en esta ficha.
-     * `bloquesCaptacion()` no lo recogia, asi que sobraba una ocurrencia de «Get A Free
-     * Estimate» — y `diferencias()` cuenta por CONJUNTO, donde una linea que ya sale otras tres
-     * veces no «sobra»: por eso salia «faltan 0, sobran 0» y solo se quejaba del orden. Estaba
-     * tapado por el rojo del carrusel del proceso, igual que el ancla de `bajaResenas()`.
-     *
-     * VA AQUI Y NO EN `bloquesCaptacion()`: es UNA linea, y «Get A Free Estimate» sale cuatro
-     * veces en la ficha, asi que `quitaBloque` se llevaria la primera —la del heroe— y
-     * desordenaria todo lo de debajo. Esta tabla es la que sabe anclar, y el ancla es la ultima
-     * tarjeta de la rejilla: si el CTA aparece en otro sitio, no casa y la ficha vuelve a rojo.
-     *
-     * Se escribe con la forma que RENDERIZA: el JSON dice «Get a Free Estimate» y
-     * `webflow.css` pone `text-transform: capitalize` en `.button`, que SI altera `innerText`.
-     */
-    rutas: ['/services/pool-builders'],
-    tras: ['Pool deck remodeling using pavers or concrete for safety and durability.'],
-    /* SEO-REMEDIACION (4-oct-2026): se lee del JSON, ya no se cablea; hoy dice «Request a
-     * Design-Build Project Evaluation». `capitaliza` por el `text-transform` de `.button`. */
-    lineas: [capitalizaH2(CAPTACION_JSON['/services/pool-builders'].servicios.cta.texto)],
-    motivo: 'R17-CORE: la rejilla de subservicios de la landing de pago cierra con un CTA '
-      + '(`servicios.cta` en captacion-servicios.json). Es la unica ficha que lo lleva.',
-  },
+  /* ASTRO-2: aqui iba el CTA de cierre de la rejilla de `/services/pool-builders`. El boton sube a
+   * la cabecera de la seccion, como en las otras trece (§ listasStitch). */
   {
     rutas: ['/pool-cost-estimator'],
     tras: [],
@@ -2119,13 +2426,27 @@ const mesDelNegocio = (iso) => (iso
   : '');
 
 /** Las líneas de `innerText` que emite la sección de reseñas, en orden. Vacío si no publica. */
-function lineasResenas() {
+function lineasResenas(ruta) {
   const f = path.join(RAIZ, 'src/data/resenas.json');
   if (!fs.existsSync(f)) return [];
   const d = JSON.parse(fs.readFileSync(f, 'utf8'));
   const items = d.items ?? [];
   if (d.publicar === false || !items.length) return [];
   const norm = (s) => (s ?? '').replace(/ /g, ' ').replace(/\s+/g, ' ').trim();
+  /* ASTRO-2: en las 14 fichas las resenas van en lista (`ResenasGoogle.astro`, rama `enLista`). El
+   * enlace «See all reviews» sube a la cabecera, delante; el nombre va como esta escrito (D-142; hasta
+   * entonces, en versalitas por CSS); y en las filas de la lista el nombre y la fecha se pintan a la izquierda
+   * de la cita, pero en el HTML van detras, como siempre. Las mismas ocho, las mismas lineas. */
+  if (ruta && (esFicha(ruta) || esCiudadA(ruta) || esCondado(ruta) || ['/', '/contact-us', '/testimonials', '/videos', '/industry-solutions', '/financing'].includes(ruta) || /^\/where-we-serve\/[^/]+$/.test(ruta))) {   // y la home, contacto, testimonios, videos e industrias (ASTRO-4)
+    return [
+      RESENAS_MARCADOR,
+      ...(d.valoracion != null ? [d.valoracion.toFixed(1)] : []),
+      ...(d.total != null ? [`${d.total} Google reviews`] : []),
+      ...items.flatMap((r) => [norm(r.texto), norm(r.autor),   // D-142: el autor, como esta escrito
+        ...(r.fecha ? [mesDelNegocio(r.fecha)] : [])]),
+      ...(d.actualizado ? [`Updated ${mesDelNegocio(d.actualizado)}`] : []),
+    ];
+  }
   return [
     ...(d.valoracion != null ? [d.valoracion.toFixed(1)] : []),
     ...(d.total != null ? [`${d.total} Google reviews`] : []),
@@ -2238,11 +2559,7 @@ function lineasBlog(ruta) {
     const ficha = JSON.parse(fs.readFileSync(fFicha, 'utf8')).rutas?.[ruta];
     if (ficha) {
       const n = (x) => (x ?? '').replace(/ /g, ' ').replace(/\s+/g, ' ').trim();
-      return [
-        capitaliza(n(ficha.titulo)),
-        n(ficha.entradilla),
-        ...ficha.posts.flatMap((p) => [capitaliza(n(p.titulo)), n(p.resumen), capitaliza(n(p.cta))]),
-      ];
+      return articulosEnLista(ruta, n(ficha.titulo), n(ficha.entradilla), ficha.posts, n);
     }
   }
 
@@ -2282,6 +2599,7 @@ function lineasBlog(ruta) {
    */
   // (la funcion vive en ambito de modulo: la usan dos derivaciones, blog y obras propias)
 
+  if (ruta?.startsWith('/services/')) return articulosEnLista(ruta, norm(titulo), norm(entradilla), posts, norm);
   return [
     capitaliza(norm(titulo)),
     norm(entradilla),
@@ -2290,6 +2608,17 @@ function lineasBlog(ruta) {
      * «…Property Value In Florida» y la declaracion decia «…in Florida». El resumen NO, que
      * va en un `<p>` y no lleva la regla. */
     ...posts.flatMap((p) => [capitaliza(norm(p.titulo)), norm(p.resumen), capitaliza(norm(p.cta))]),
+  ];
+}
+/** ASTRO-2 · la seccion de articulos de las 141 rutas de `/services/` (`CarruselBlog.astro`, rama
+ *  `enLista`): titular y titulos sin `capitalize`, la accion de la pagina en la cabecera (T-47), los
+ *  tres primeros con su resumen y el resto en indice de titulo + «Read More», sin resumen (T-44). */
+function articulosEnLista(ruta, titulo, entradilla, posts, n) {
+  return [
+    capitaliza(titulo), entradilla, capitaliza(CAPTACION_JSON[ruta]?.heroe?.cta ?? 'Get a Free Estimate'),
+    // D-135: los titulos de articulo (`.mm-art-t`, `.mm-art-linea-t`) se pintan con `capitalize`.
+    ...posts.slice(0, 3).flatMap((p) => [capitaliza(n(p.titulo)), n(p.resumen), n(p.cta)]),
+    ...posts.slice(3).flatMap((p) => [capitaliza(n(p.titulo)), n(p.cta)]),
   ];
 }
 
@@ -2573,6 +2902,7 @@ function lineasObras(ruta) {
   // un <div> pelado; los rotulos de boton se escriben ya capitalizados, como en el origen.
   return obras.flatMap((o) => (d.forma === 'tarjeta'
     ? [capitaliza(o.titulo), o.resumen, 'View Full Project']
+    // D-135: tambien en la lista de ciudad y de condado (`.mm-ficha-t`, `.mm-linea-t`) van con `capitalize`.
     : [capitaliza(o.titulo), 'See Project']));
 }
 
@@ -2594,6 +2924,62 @@ function quitaTras(lineas, contexto, anadidas) {
 
 /** Cual de los bloques declarados fallo, para que el rojo diga la verdad. Antes el mensaje
  *  etiquetaba TODO fallo como «bloque de reseñas» y me mando a depurar el bloque equivocado. */
+/* Espejo del formulario de `FormularioCore.astro` (a nivel de modulo: lo usan `sinElBloque` y
+ * `esperadoPropio`). El porque de cada lista, en § bloquesCaptacion. */
+const SMS_CAPTACION = 'I agree to receive SMS messages related to project updates, promotions, and company '
+  + 'communications from Mr. & Mrs. Outdoor Living. This is optional and is not required to get '
+  + 'an estimate. I understand that I may opt out at any time by replying STOP. Message and data '
+  + 'rates may apply.';
+/* T-17 / T-73 (ASTRO-3) · la frase que avisa del envio parcial SOLO existe en un build hecho con
+ * `PUBLIC_FORM_PARCIAL=1`, que es el mismo interruptor que lo enciende. Se mide con la misma
+ * variable: apagado, la frase en pantalla es rojo; encendido, es rojo que falte. */
+const FRASE_PARCIAL = process.env.PUBLIC_FORM_PARCIAL === '1' ? ['Your contact details are saved when you continue.'] : [];
+const camposCaptacion = (c) => {
+  const [rotLic, ...valLic] = c.heroe.licencias.split(' · ');
+  const lic = [rotLic.toUpperCase(), valLic.join(' · ')];
+  return [
+    'Step 1 of 2', 'Full name', 'Phone', 'Email', 'ZIP code', 'Continue', ...FRASE_PARCIAL, ...lic,
+    'Step 2 of 2',
+    'Project type', ...(c.formulario.proyectos ?? ['New Custom Pool', 'Complete Pool Remodel']),
+    'Do you own this property?', 'Select one...', 'Yes, I own this property', 'No', 'Other',
+    'Investment range',
+    'Under $25,000', '$25,000 – $50,000', '$50,000 – $75,000',
+    '$75,000 – $100,000', '$100,000 – $150,000', '$150,000+',
+    'Timeline',
+    'As soon as possible', '1-3 months', '3-6 months', '6-12 months', 'Just exploring',
+    'Project details (optional)',
+    SMS_CAPTACION,
+    'Back', ...lic,
+  ];
+};
+/** El formulario ANTES de ASTRO-2, tal como lo guardan las referencias propias de las paginas de
+ *  ciudad (`baseline/text-propio/`): sirve para cambiar ese tramo por el nuevo en lo esperado. */
+const formularioViejo = (c) => [
+  capitaliza(c.formulario.pasosTitulo),
+  ...c.formulario.pasos.flatMap((p, i) => [String(i + 1), p]),
+  capitaliza(c.formulario.titulo),
+  c.formulario.entradilla,
+  'Full name', 'Phone', 'Email', 'ZIP code',
+  'Project type', ...(c.formulario.proyectos ?? ['New Custom Pool', 'Complete Pool Remodel']),
+  'Do you own this property?', 'Select one...', 'Yes, I own this property', 'No', 'Other',
+  'Investment range', 'Select one...',
+  'Under $25,000', '$25,000 – $50,000', '$50,000 – $75,000',
+  '$75,000 – $100,000', '$100,000 – $150,000', '$150,000+',
+  'Timeline', 'Select one...',
+  'As soon as possible', '1-3 months', '3-6 months', '6-12 months', 'Just exploring',
+  'Project details (optional)',
+  SMS_CAPTACION,
+];
+/** El formulario de hoy: el panel de dos pasos y, detras, el titular (rotulo en mayusculas por CSS),
+ *  la entradilla y los tres pasos de «que pasa despues», cuyos numeros son ya contadores de CSS. */
+const formularioNuevo = (c) => [
+  ...camposCaptacion(c),
+  c.formulario.titulo.toUpperCase(),
+  c.formulario.entradilla,
+  capitaliza(c.formulario.pasosTitulo),   // D-135: `.mm-form-pasos-t` con `capitalize`
+  ...c.formulario.pasos,
+];
+
 let bloqueQueFallo = null;
 
 /** Cuantas lineas de sufijo oculto (§ .mm-sr) se quitaron en toda la corrida, para el resumen. */
@@ -2601,10 +2987,32 @@ let sufijosQuitados = 0;
 /** Bloques de la capa de captacion descontados (R17-CORE), para el resumen. */
 let conCaptacion = 0;
 
+/** `MM_TEXTO_DIFF=1`: de un bloque declarado que no casa, que lineas no estan tal cual y cual es
+ *  la que mas se le parece (igual salvo mayusculas). Solo diagnostico; no cambia el veredicto. */
+function diagnosticaBloque(lineas, bloque) {
+  if (!process.env.MM_TEXTO_DIFF) return;
+  const porMin = new Map(lineas.map((l) => [l.toLowerCase(), l]));
+  for (const l of bloque) {
+    if (lineas.includes(l)) continue;
+    console.log(`     bloque: «${l.slice(0, 80)}» no esta` + (porMin.has(l.toLowerCase()) ? ` · en la pagina: «${porMin.get(l.toLowerCase()).slice(0, 80)}»` : ''));
+  }
+}
+
 /** Quita de `hay` los bloques declarados para esa ruta. `null` si alguno falla. */
 function sinElBloque(ruta, hay) {
   bloqueQueFallo = null;
   let lineas = hay.split('\n');
+
+  // 0.a · GALERIA-FICHAS (17-oct-2026): la banda «Project Gallery» entra en las 14 fichas entre
+  //       los servicios y la inversion. No esta en su baseline: se quita SEGUIDA y EN ORDEN, derivada de
+  //       `lineasBandaCompacta()` -la misma fuente que el marcado- con la accion que pinta build-paginas.mjs
+  //       (la del hero de captacion o «Get a Free Estimate»), capitalizada como la
+  //       pinta `.mm-btn`. Va ANTES de los sufijos, porque los suyos van dentro del bloque.
+  if (ES_FICHA(ruta)) {
+    const accion = capitaliza(CAPTACION_JSON[ruta]?.heroe?.cta ?? 'Get a Free Estimate');
+    lineas = quitaBloque(lineas, lineasBandaCompacta(accion));
+    if (lineas === null) { bloqueQueFallo = 'la banda «Project Gallery» de la ficha (lineasBandaCompacta)'; return null; }
+  }
 
   // 0 · los sufijos ocultos de los CTA genericos (§ .mm-sr). VAN LOS PRIMEROS a proposito:
   //     en las 16 rutas de BLOG_RUTAS caen DENTRO del bloque que declara `lineasBlog()` y lo
@@ -2626,7 +3034,7 @@ function sinElBloque(ruta, hay) {
 
   // 2 · las reseñas, derivadas del JSON. Los dos bloques son disjuntos: /pool-cost-estimator
   //     no monta reseñas, así que no pueden solaparse.
-  const res = lineasResenas();
+  const res = lineasResenas(ruta);
   if (res.length && lineas.includes(RESENAS_MARCADOR)) {
     lineas = quitaBloque(lineas, res);
     if (lineas === null) { bloqueQueFallo = 'el bloque de reseñas (src/data/resenas.json)'; return null; }
@@ -2636,8 +3044,9 @@ function sinElBloque(ruta, hay) {
   if (enBlogRutas(ruta)) {
     const bl = lineasBlog(ruta);
     if (bl.length) {
+      const antesDelBlog = lineas;
       lineas = quitaBloque(lineas, bl);
-      if (lineas === null) { bloqueQueFallo = 'el bloque de blog (src/data/blogs.json)'; return null; }
+      if (lineas === null) { diagnosticaBloque(antesDelBlog, bl); bloqueQueFallo = 'el bloque de blog (src/data/blogs.json)'; return null; }
     }
   }
 
@@ -2665,7 +3074,9 @@ function sinElBloque(ruta, hay) {
   //     de `/` cae muy por debajo del carrusel de proyectos.
   const ob = lineasObras(ruta);
   if (ob.length) {
+    const antesDeObras = lineas;
     lineas = quitaTras(lineas, OBRAS_PROPIAS_EN[ruta].tras, ob);
+    if (lineas === null) diagnosticaBloque(antesDeObras, [...OBRAS_PROPIAS_EN[ruta].tras, ...ob]);
     if (lineas === null) {
       bloqueQueFallo = `el bloque de ${OBRAS_PROPIAS_EN[ruta].forma}s de las obras propias `
         + '(src/data/proyectos-propios.json)';
@@ -2701,23 +3112,11 @@ function sinElBloque(ruta, hay) {
 /* R19: los tipos de proyecto DEPENDEN DE LA FICHA (`formulario.proyectos`), asi que esto deja
  * de ser una lista y pasa a ser una funcion de la ficha. Lo demas es identico en las catorce
  * porque lo pinta un solo componente. El respaldo es el par de la ruta piloto. */
-const camposCaptacion = (c) => [
-  'Full name', 'Phone', 'Email', 'ZIP code',
-  'Project type', ...(c.formulario.proyectos ?? ['New Custom Pool', 'Complete Pool Remodel']),
-  'Do you own this property?', 'Select one...', 'Yes, I own this property', 'No', 'Other',
-  'Investment range', 'Select one...',
-  'Under $25,000', '$25,000 – $50,000', '$50,000 – $75,000',
-  '$75,000 – $100,000', '$100,000 – $150,000', '$150,000+',
-  'Timeline', 'Select one...',
-  'As soon as possible', '1-3 months', '3-6 months', '6-12 months', 'Just exploring',
-  'Project details (optional)',
-  /* R17-CORE F3e: la casilla paso a OPCIONAL y la etiqueta lo DICE. Esta puerta cazo la deriva
-   * -cambie la etiqueta en el componente y no aqui-, que es exactamente para lo que esta. */
-  'I agree to receive SMS messages related to project updates, promotions, and company '
-  + 'communications from Mr. & Mrs. Outdoor Living. This is optional and is not required to get '
-  + 'an estimate. I understand that I may opt out at any time by replying STOP. Message and data '
-  + 'rates may apply.',
-];
+/* ASTRO-2 (D-34): el formulario va en dos pasos y los dos estan en el HTML; `textoNormalizado()`
+ * los ensena antes de leer. Mismos campos y mismas opciones; cambia la forma: «Investment range» y
+ * «Timeline» son tarjetas (sin «Select one...», T-20), cada paso lleva su pastilla (T-15), sus
+ * botones (T-16, T-18; «Continue» y «Back» en `.mm-btn`, que no los altera) y la licencia (T-19).
+ * El boton de envio es un `<input>`: su texto no sale en `innerText`, igual que antes. */
 
 /** Los bloques contiguos que aporta la capa de captacion en `ruta`. Vacio si no la lleva. */
 /**
@@ -2731,6 +3130,20 @@ const ctaCierre = (c) => c?.heroe?.cta ?? 'Get a Free Estimate';
 
 function bloquesCaptacion(ruta) {
   const c = CAPTACION_JSON[ruta];
+  /* ASTRO-2 · CONDADOS (T-84). No tienen entrada de captacion, pero su Hero A anade lo mismo que
+   * el de la ciudad: la miga visible (D-118, de `miga-tramos.mjs`) y, detras del boton, la banda
+   * de datos —los dos telefonos y la licencia de piscinas (T-66)— y el pie de la foto de obra
+   * (T-80, de `heroe-ciudad.mjs`). Dos bloques, cada uno contiguo. */
+  if (!c && esCondado(ruta)) {
+    const lic = CAPTACION_JSON['/services/pool-builders'].heroe.licencias.split(' · ');
+    const pie = fotoDeHeroe(ruta)?.pie;
+    return [
+      tramosMiga(ruta).map((t) => t.nombre),
+      // D-134: en Broward y Palm Beach, «South Florida» primero (`condados.mjs`).
+      [...zonasDeCondado(ruta).map((z) => TELEFONOS.items.find((t) => t.zona === z)).flatMap((t) => [t.zona.toUpperCase(), t.visible]), lic[0].toUpperCase(), lic.slice(1).join(' · '),
+        ...(pie ? ['PROJECT', pie] : [])],
+    ];
+  }
   if (!c) return [];
   const bloques = [];
 
@@ -2757,6 +3170,29 @@ function bloquesCaptacion(ruta) {
    * Y el ` · ` de los telefonos SIGUE AHI. La forma nueva son dos chips, pero el separador no se
    * quita: `innerText` lo ve y el texto no se toca (Principio 2). */
   const zonas = c.heroe.zonas ?? TELEFONOS.items.map((x) => x.zona);
+  // D-118: la miga visible en el hero de las 14 fichas, de la misma funcion que la pinta y que da
+  // el `BreadcrumbList` del JSON-LD (`miga-tramos.mjs`). Las barras van en `::before`.
+  if (esFicha(ruta)) bloques.push(tramosMiga(ruta).map((t) => t.nombre));
+  // ASTRO-2: el Hero A lo llevan las 14 fichas y las 118 paginas de servicio × ciudad de `PaginaCiudad.astro`.
+  if (ruta.startsWith('/services/')) {
+    /* REDISEÑO STITCH · ASTRO-2 · HERO A de las 14 fichas. Los dos telefonos y la licencia pasan
+     * de dos renglones sueltos a la banda de datos `.mm-datos`: mismo contenido, otra forma. Cada
+     * dato son dos lineas (rotulo en MAYUSCULAS por CSS + valor), y los tres van seguidos. Detras,
+     * el pie de foto cuando el hero esta en el banco (D-109): `Project` + el `alt` del banco, tal
+     * cual. T-11, T-12 y T-66 de STITCH-TEXTO.md. Derivado de las mismas fuentes que el generador. */
+    const [rotLic, ...valLic] = c.heroe.licencias.split(' · ');
+    // El pie de la ciudad lo da la MISMA funcion que reparte la foto (`heroe-ciudad.mjs`, D-112 a D-114).
+    const pie = esFicha(ruta) ? (c.heroe._banco && BANCO_ALT.get(c.heroe._banco)) : fotoDeHeroe(ruta)?.pie;
+    bloques.push([
+      ...zonas.flatMap((z) => {
+        const tel = TELEFONOS.items.find((x) => x.zona === z);
+        if (!tel) throw new Error(`check-texto: heroe.zonas pide «${z}» y telefonos.json no lo trae`);
+        return [tel.zona.toUpperCase(), tel.visible];
+      }),
+      rotLic.toUpperCase(), valLic.join(' · '),
+      ...(pie ? ['PROJECT', pie] : []),
+    ]);
+  } else {
   bloques.push([
     zonas.map((z) => {
       const tel = TELEFONOS.items.find((x) => x.zona === z);
@@ -2765,6 +3201,7 @@ function bloquesCaptacion(ruta) {
     }).join(' · '),
   ]);
   bloques.push([c.heroe.licencias]);
+  }
 
   // 2 · franja de confianza. SOLA, y esto es el cambio de R19 C4.
   //     R18: los pasos van DELANTE del formulario desde el rediseno de la seccion. No hace
@@ -2781,25 +3218,26 @@ function bloquesCaptacion(ruta) {
   //     queda en medio sale del baseline, no de aqui, y su reorden va en
   //     REORDENADAS_A_PROPOSITO.
   bloques.push([
-    capitaliza(c.confianza.rotulo),
+    // ASTRO-2 (T-69): rotulo en `.mm-etiqueta` (mayusculas por CSS) y titulares sin `capitalize`.
+    c.confianza.rotulo.toUpperCase(),
+    // D-135: el titulo de cada tarjeta (`.mm-conf-t`) se pinta con `capitalize`.
     ...c.confianza.tarjetas.flatMap((t) => [capitaliza(t.titulo), t.texto]),
   ]);
 
   // 2.bis · «what happens» + formulario, detras de la intro.
-  bloques.push([
-    capitaliza(c.formulario.pasosTitulo),
-    ...c.formulario.pasos.flatMap((p, i) => [String(i + 1), p]),
-    capitaliza(c.formulario.titulo),
-    c.formulario.entradilla,
-    ...camposCaptacion(c),
-  ]);
+  bloques.push(formularioNuevo(c));
 
   // 3 · banda de inversion. Desde el 13-sep-2026 ninguna ficha pinta `CarruselProyectos` detras:
   //     las catorce llevan su `gallery`, y sus dos lineas salen del baseline (§ `subeGaleria`).
   bloques.push([
-    capitaliza(c.inversion.titulo),
+    // ASTRO-2: titular en `.mm-h2` (sin `capitalize`) y los dos botones en `.mm-btn` (con el).
+    capitaliza(c.inversion.titulo),   // D-135: `.mm-h2` con `capitalize`
     c.inversion.texto,
+    // D-135: los dos botones del panel se pintan como estan escritos (`.mm-min`), igual que en produccion.
     ...c.inversion.ctas.map((x) => x.texto),
+    // T-35: los cuatro rotulos del plano en linea, solo en las rutas de piscina (`InversionCore.astro`).
+    // Son `<text>` de un SVG con `aria-hidden`, pero `innerText` los lee.
+    ...(/^\/services\/pool-(builders|remodeling)(\/|$)/.test(ruta) ? ['SIZE', 'DESIGN', 'FINISHES', 'SITE CONDITIONS'] : []),
   ]);
 
   /* 3.bis · EL PANEL DE SERVICIOS DE LA HOME (R21, pedido de Sebastian 18-sep-2026).
@@ -2858,9 +3296,12 @@ function bloquesCaptacion(ruta) {
   //     la FAQ ya venia del origen y alli solo se ANADEN preguntas.
   if (c.faq?.anade?.length) {
     bloques.push(c.faq.titulo
+      // ASTRO-2: `section.mm-faq` con `<details>`: titular y preguntas sin `capitalize`; el boton
+      // de la tarjeta de accion (`.mm-btn`) si lo lleva. Los telefonos de la tarjeta los quita
+      // `listasStitch`.
       ? [capitaliza(c.faq.titulo), c.faq.entradilla,
         ...c.faq.anade.map((q) => capitaliza(q.pregunta)), capitaliza(ctaCierre(c))]
-      : c.faq.anade.map((q) => capitaliza(q.pregunta)));
+      : c.faq.anade.map((q) => capitaliza(q.pregunta)));   // D-135: titular y preguntas con `capitalize`, como en la referencia
   }
 
   return bloques;
@@ -2869,8 +3310,10 @@ function bloquesCaptacion(ruta) {
   // 5.bis · la capa de captacion (§ bloquesCaptacion). Disjunta de las cinco anteriores: sus
   //          lineas no salen en ningun baseline ni las produce ningun otro bloque declarado.
   for (const bl of bloquesCaptacion(ruta)) {
+    const antesDelBloque = lineas;
     lineas = quitaBloque(lineas, bl);
     if (lineas === null) {
+      diagnosticaBloque(antesDelBloque, bl);
       bloqueQueFallo = `el bloque de captacion que empieza en "${bl[0]}" `
         + '(src/data/captacion-servicios.json + FormularioCore.astro)';
       return null;
@@ -2965,11 +3408,62 @@ function lineasArticuloReescrito(ruta) {
     ...rel.flatMap((r) => [capitaliza(normLinea(r.title)), normLinea(r.summary), 'Read More']),
   ];
 }
+/**
+ * ── ASTRO-4 · `/blogs-tips` (T-94) ─────────────────────────────────────────────────────────────
+ *
+ * ESTA RUTA SALIA ROJA YA EN `origin/main`, y por dos cosas a la vez:
+ *   1. el indice dejo de ser las 10 tarjetas de Webflow: son los 47 articulos de Sanity, con sus
+ *      titulares de tarjeta y sus resumenes reescritos, en otro orden. La referencia congelada
+ *      sigue trayendo las 10 de entonces, y las declaraciones que habia solo cubrian un reorden y
+ *      la categoria de cada tarjeta;
+ *   2. la pagina solo ensena 10 hasta que se pulsa «Load more» (las demas van con `hidden`), y la
+ *      declaracion pedia las 47.
+ *
+ * COMO SE DICE AHORA LA VERDAD, igual que en los articulos reescritos (§ reescribeArticulo): el
+ * tramo del indice se DERIVA del mismo dato que lo pinta —`src/data/blogs-sanity.json`— y se
+ * exige ENTERO sobre lo medido: el recuento, «All» y las categorias en su orden, las diez primeras
+ * filas (categoria, titular capitalizado, resumen, «Read More» y su sufijo oculto) y «Load more».
+ * Si casa, lo medido y la referencia cambian ese tramo por la misma marca; si no, la ruta sale
+ * roja. El resto de la pagina (hero, banda final, cabecera y pie) se compara como siempre.
+ */
+const INTRO_INDICE_BLOG = 'Explore expert insights, project tips, and industry updates on pool construction'
+  + ' and outdoor living across Florida, written to help property owners and professionals make'
+  + ' informed decisions.';
+const MARCA_INDICE_BLOG = '⟦indice de articulos: derivado de src/data/blogs-sanity.json y comprobado entero⟧';
+function reescribeIndiceBlog(lineas) {
+  reescritoFallo = null;
+  const i = lineas.indexOf(INTRO_INDICE_BLOG);
+  const f = i < 0 ? -1 : lineas.indexOf(CIERRE_ARTICULO, i + 1);
+  if (i < 0 || f < 0) { reescritoFallo = 'indice de blog: la referencia no trae la entradilla del hero y la banda final'; return null; }
+  return [...lineas.slice(0, i + 1), MARCA_INDICE_BLOG, ...lineas.slice(f)];
+}
+function indiceBlogTexto(lineas) {
+  const posts = [...CACHE_BLOG_REESCRITOS].sort((a, b) => {
+    if (Boolean(a.destacadoIndice) !== Boolean(b.destacadoIndice)) return a.destacadoIndice ? -1 : 1;
+    const oa = a.ordenIndice ?? 9999; const ob = b.ordenIndice ?? 9999;
+    return oa !== ob ? oa - ob : a.slug.localeCompare(b.slug);
+  });
+  const cats = [...new Map(posts.filter((x) => x.categoria?.slug).map((x) => [x.categoria.slug, x.categoria])).values()]
+    .sort((a, b) => (a.orden ?? 999) - (b.orden ?? 999));
+  const fila = (p) => [...(p.categoria?.name ? [p.categoria.name] : []), capitaliza(normLinea(p.cardTitle?.trim() ? p.cardTitle : p.title)),
+    normLinea(p.summary), 'Read More', `: ${capitaliza(normLinea(p.title))}`];
+  const VISIBLES_AL_CARGAR = 10;   // 1 + `LOTE` de `blogs-tips.astro`
+  const bloque = [`${posts.length} articles`, 'All', ...cats.map((c) => c.name), ...posts.slice(0, VISIBLES_AL_CARGAR).flatMap(fila), 'Load more'];
+  const out = [...lineas];
+  const i = out.indexOf(INTRO_INDICE_BLOG);
+  if (i >= 0 && bloque.every((l, k) => out[i + 1 + k] === l)) out.splice(i + 1, bloque.length, MARCA_INDICE_BLOG);
+  else {
+    if (process.env.MM_TEXTO_DIFF && i >= 0) bloque.forEach((l, k) => { if (out[i + 1 + k] !== l) console.log(`     indice: se esperaba «${l.slice(0, 70)}» y hay «${String(out[i + 1 + k]).slice(0, 70)}»`); });
+    out.push('⟦FALTA: el indice de articulos tal como lo dice blogs-sanity.json (T-94)⟧');
+  }
+  return bandaConTelefonos(out);
+}
 let reescritosCasados = 0;
 let reescritoFallo = null;
 const CIERRE_ARTICULO = 'Request A Design-Build Project Evaluation';
 /** Sustituye en el baseline el tramo h1..CTA por el derivado. `null` si los anclajes no casan. */
 function reescribeArticulo(ruta, lineas) {
+  if (ruta === '/blogs-tips') return reescribeIndiceBlog(lineas);
   const d = REESCRITOS[ruta];
   if (!d) return lineas;
   reescritoFallo = null;
@@ -2992,6 +3486,844 @@ function reescribeArticulo(ruta, lineas) {
 }
 
 /** Diferencia legible entre dos textos, línea a línea. */
+/**
+ * T-69 · LOS ROTULOS EN VERSALITAS (D-135, 12-oct-2026). `.mm-etiqueta` y `.mm-dato-rot` pintan su
+ * texto en mayusculas por CSS (`uppercase`, D-31) y eso altera `innerText`: «Trusted by Florida's
+ * finest homeowners» se mide «TRUSTED BY FLORIDA'S FINEST HOMEOWNERS». Una linea medida que es la
+ * esperada ENTERA en mayusculas, en su misma posicion, se da por la misma — solo en las 141 rutas
+ * de `/services/`, contandola y listandola a la vista.
+ *
+ * Hasta D-135 esta funcion daba por iguales dos lineas que solo cambiaran de mayusculas, fueran
+ * lo que fueran: 4 839 lineas en la corrida de las 141, casi todas titulares que el rediseno
+ * habia dejado de capitalizar. Eso ya no vale: los titulares se pintan como en la referencia
+ * (`text-transform: capitalize`, al final de `sistema.css`) y aqui tienen que salir IGUALES.
+ */
+let soloMayusculas = 0;
+/** Que lineas son, para que el recuento de T-69 se pueda leer y no solo contar (D-135). */
+const rotulosT69 = new Map();
+function sinMayusculasDeCss(ruta, esperado, hay) {
+  // Las rutas ya migradas a las piezas nuevas: las 141 de servicio y, desde ASTRO-4, las 15 de
+  // proyecto y los 47 articulos (las cabeceras de sus tablas).
+  if (!/^\/(services|project|blogs|where-we-serve)\//.test(ruta) && !['/', '/request-estimated', '/contact-us', '/videos', '/financing', '/about', '/thank-you'].includes(ruta)) return esperado;
+  const medidas = hay.split('\n');
+  const esperadas = esperado.split('\n');
+  /* POR POSICION cuando las dos listas miden lo mismo, que es el caso de una ruta en verde: la
+   * misma cadena sale a veces con dos formas en la pagina («Request A Design-Build…» en un boton y
+   * «Request a Design-Build…» en un titular), y casar por contenido las cruzaba. */
+  if (medidas.length === esperadas.length) {
+    return esperadas.map((l, k) => {
+      // D-135: solo los rotulos en VERSALITAS (`.mm-etiqueta`, `.mm-dato-rot`: `uppercase` por
+      // CSS). La linea medida tiene que ser la esperada entera en mayusculas; un titular que
+      // cambie de mayusculas ya no se da por bueno.
+      if (l === medidas[k] || medidas[k] !== l.toUpperCase()) return l;
+      soloMayusculas++;
+      rotulosT69.set(medidas[k], (rotulosT69.get(medidas[k]) ?? 0) + 1);
+      return medidas[k];
+    }).join('\n');
+  }
+  // Si no miden lo mismo la ruta sale roja igual, y sin posicion no se sabe que linea es un rotulo:
+  // no se da nada por bueno (casar por contenido cruzaba «Get a free estimate» con el rotulo del formulario).
+  return esperado;
+}
+
+/**
+ * ASTRO-2 · PROCESO Y «WHAT WE DO» EN LISTA DE PLANO, sobre LO MEDIDO de las 14 fichas.
+ *
+ * PROCESO (T-46, T-32). El baseline trae `linea, 1, 2, 3, 4, titulo 1, texto 1`: en Webflow solo
+ * se veia el paso activo. Ahora se ven los cuatro, cada numero con su paso, y la cabecera lleva
+ * la accion de la pagina. Lo medido tiene que ser EXACTAMENTE
+ *     linea, accion, 1, titulo 1, texto 1, 2, titulo 2, texto 2, 3, …, 4, …
+ * con los ocho textos leidos del origen (`_source/vivo`), y entonces se devuelve a la forma del
+ * baseline. Si un paso no casa con el origen, no se toca nada y la ruta sale roja.
+ *
+ * «WHAT WE DO» (T-47). La accion va tras la linea de cabecera, delante del titulo de la fila 1; se
+ * quita. Y los titulos de fila se devuelven a la forma capitalizada con la que estan declarados
+ * (R22-DETALLE, § LINEAS_ANADIDAS): el HTML no ha cambiado, el `capitalize` de Webflow si (T-69).
+ */
+/**
+ * ASTRO-2 · EL ORDEN DE LAS LAMINAS Y EL CIERRE FUNDIDO, sobre LO ESPERADO de las 14 fichas.
+ * Tres cosas cambian de sitio o salen respecto a como dejan el baseline las funciones de arriba:
+ *   · el proceso sube delante de «What we do» (va justo detras de la galeria);
+ *   · la cabecera de las resenas baja detras de «Where We Serve» (va justo delante del cierre);
+ *   · la banda final pierde su boton «Get A Free Estimate» (T-57): tiene el formulario pegado.
+ * Los tramos se localizan por el texto del ORIGEN (`_source/vivo`), no por posicion. Si alguno no
+ * esta tal cual, no se toca nada de ese paso y la ruta sale roja.
+ */
+const ORIGEN_FICHA = new Map();
+function origenDeFicha(ruta) {
+  if (!ORIGEN_FICHA.has(ruta)) {
+    const f = path.join(RAIZ, `_source/vivo/${aSlug(origen(ruta))}.html`);
+    const d = new JSDOM(fs.readFileSync(f, 'utf8')).window.document;
+    const t = (q) => (d.querySelector(q)?.textContent ?? '').replace(/\s+/g, ' ').trim();
+    ORIGEN_FICHA.set(ruta, {
+      galeria: t('section.gallery .header-gallery h2 + div'),
+      procesoTit: t('section.process-section .process-header h2'),
+      resenas: [t('section.testimonial-section .header-reviews .label'), t('section.testimonial-section .header-reviews h2'), t('section.testimonial-section .header-reviews p')],
+      cierre: [t('section.cta-footer .wrapper-vertical-text h2'), t('section.cta-footer .text-block-3')],
+    });
+  }
+  return ORIGEN_FICHA.get(ruta);
+}
+function ordenFicha(ruta, lineas) {
+  if (esCiudadA(ruta)) {
+    /* CIUDADES (lamina «Ciudad»). De lo que sale del baseline solo cambia de sitio la cabecera de las
+     * resenas (rotulo, titular, parrafo), que baja justo delante de la banda final; y la banda pierde
+     * su boton (T-57). Lo demas que se mueve son bloques declarados, que se descuentan esten donde
+     * esten. */
+    const out = [...lineas];
+    const t = out.indexOf('TESTIMONIALS');
+    let c = out.findIndex((l) => l.startsWith(CIERRE_CIUDAD)) - 1;
+    if (t >= 0 && c > t + 2) {
+      const cab = out.splice(t, 3);
+      c -= 3;
+      out.splice(c, 0, ...cab);
+      c += 3;
+    }
+    if (c >= 0 && out[c + 2] === 'Get A Free Estimate') out.splice(c + 2, 1);
+    return out;
+  }
+  if (esCondado(ruta)) {
+    /* CONDADOS (ASTRO-2, lamina «Ciudad»). Del baseline cambian de sitio tres bloques, sin perder
+     * ni una linea: la galeria sube delante del 3D; y de la cola —banda, proyectos, resenas,
+     * articulos— la cabecera de resenas baja detras de los articulos y la banda (titular,
+     * parrafo y su boton, que aqui se conserva) cierra la pagina. Cada bloque por su ancla
+     * exacta; si alguna no esta, no se toca nada y la puerta sale roja por orden. */
+    const out = [...lineas];
+    const { titulo: proc, tresD } = pasosDelOrigen(ruta);
+    const d3 = out.findIndex((l) => l.toLowerCase() === tresD.toLowerCase());
+    if (d3 >= 0 && out[d3 + 4]?.toLowerCase() === proc.toLowerCase()) out.splice(d3, 0, ...out.splice(d3 + 2, 2));
+    const b = out.findIndex((l) => l.startsWith(CIERRE_CIUDAD)) - 1;
+    const t = out.indexOf('TESTIMONIALS');
+    // Los articulos son lo ultimo del contenido: su ultimo «Read More» es el final del bloque.
+    if (b >= 0 && t > b && out.lastIndexOf('Read More') > t && out[b + 2] === 'Get A Free Estimate') {
+      const cab = out.splice(t, 3);
+      const banda = out.splice(b, 3);
+      out.splice(out.lastIndexOf('Read More') + 1, 0, ...cab, ...banda);
+    }
+    return out;
+  }
+  if (!esFicha(ruta)) return lineas;
+  const o = origenDeFicha(ruta);
+  let out = [...lineas];
+  const mueve = (bloque, destinoDe) => {
+    const i = out.findIndex((_, k) => bloque.every((l, j) => out[k + j].toLowerCase() === l.toLowerCase()));
+    if (i < 0) return;
+    const tramo = out.splice(i, bloque.length);
+    const d = destinoDe();
+    if (d < 0) { out.splice(i, 0, ...tramo); return; }
+    out.splice(d, 0, ...tramo);
+  };
+  const { linea, pasos } = pasosDelOrigen(ruta);
+  mueve([o.procesoTit, linea, '1', '2', '3', '4', ...pasos[0]], () => out.indexOf(o.galeria) + 1 || -1);
+  mueve(o.resenas, () => out.findIndex((l, k) => l.toLowerCase() === o.cierre[0].toLowerCase() && out[k + 1] === o.cierre[1]));
+  const c = out.indexOf(o.cierre[1]);
+  if (c >= 0 && out[c + 1] === 'Get A Free Estimate') out.splice(c + 1, 1);
+  /* ANTES/DESPUES LADO A LADO (D-96, D-120; solo `/services/pool-remodeling`). El bloque del baseline
+   * es «Before, After, titular, parrafo, tarjeta 1 (2 lineas), tarjeta 2 (2 lineas), View All
+   * Projects, Get A Free Estimate». Ahora van titular, parrafo y los dos enlaces en la cabecera, las
+   * dos fotos con su rotulo y las dos tarjetas. Las mismas diez lineas. */
+  const ia = out.findIndex((l, k) => l === 'Before' && out[k + 1] === 'After' && out[k + 8] === 'View All Projects' && out[k + 9] === 'Get A Free Estimate');
+  if (ia >= 0) {
+    const [antes, despues, tit, par, t1, p1, t2, p2, ver, pedir] = out.slice(ia, ia + 10);
+    out.splice(ia, 10, tit, par, pedir, ver, antes, despues, t1, p1, t2, p2);
+  }
+  return out;
+}
+
+const PASOS_ORIGEN = new Map();
+function pasosDelOrigen(ruta) {
+  if (!PASOS_ORIGEN.has(ruta)) {
+    const f = path.join(RAIZ, `_source/vivo/${aSlug(origen(ruta))}.html`);
+    const doc = new JSDOM(fs.readFileSync(f, 'utf8')).window.document;
+    const limpia = (el) => (el?.textContent ?? '').replace(/\s+/g, ' ').trim();
+    // Las fichas traen `process-section`; los condados, el mismo proceso en pestanas (`stepbystep-section`).
+    const sec = doc.querySelector('section.process-section');
+    const tab = sec ? null : doc.querySelector('section.stepbystep-section');
+    PASOS_ORIGEN.set(ruta, sec ? {
+      linea: limpia(sec.querySelector('.process-header p')),
+      pasos: [...sec.querySelectorAll('.process-content-item')].map((it) => [
+        limpia(it.querySelector('.content-step-tab h2')),
+        ...[...it.querySelectorAll('.w-richtext p')].map(limpia).filter(Boolean),
+      ]),
+    } : {
+      titulo: limpia(tab.querySelector('.wrapper-vertical-text h2')),
+      // El titular del 3D cambia de un condado a otro («… & Visualization», «… & Planning»).
+      tresD: limpia(doc.querySelector('section._3d-section h2')),
+      linea: limpia(tab.querySelector('.wrapper-vertical-text p')),
+      pasos: [...tab.querySelectorAll('.w-tab-pane')].map((it) => [
+        limpia(it.querySelector('.content-step-tab h2')),
+        ...[...it.querySelectorAll('.text-divider p')].map(limpia).filter(Boolean),
+      ]),
+    });
+  }
+  return PASOS_ORIGEN.get(ruta);
+}
+const PRIMER_ARTICULO = (JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/blogs.json'), 'utf8')).posts[0]?.titulo ?? '')
+  .replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+const TEXTO_BANDA_CAT = 'See pools, pergolas and outdoor kitchens we have built for Florida homeowners.';   // `TEXTO_BANDA` de galeria-categorias.mjs
+/** Como empieza el parrafo de la banda final de las paginas de ciudad (texto fijo de la plantilla). */
+const CIERRE_CIUDAD = 'Share your property details, project scope, and investment range.';
+/**
+ * ASTRO-4 · LA FICHA DE PROYECTO (laminas «Proyecto» y «ProyectoDetalle»), sobre LO MEDIDO de las
+ * 15 rutas de `/project/`. El texto de la obra no cambia —titular, relato, «Project Details» con
+ * sus tres datos y su boton, y la banda final—; lo que la ficha GANA se comprueba entero y en su
+ * sitio, y solo entonces se descuenta (T-87):
+ *   · los dos telefonos, detras del boton de «Project Details» (T-56);
+ *   · «More Projects» (T-60, D-86): titular, entradilla, «See All Projects», las tres obras
+ *     destacadas y el indice de las demas, sin la obra de la propia ruta y en el orden en que las
+ *     pinta `CarruselProyectos.astro`;
+ *   · en la banda final, los dos telefonos EN LUGAR del boton, que sale porque debajo hay
+ *     formulario (T-57, D-82): se devuelve el boton a su sitio para casar con la referencia;
+ *   · el formulario en dos pasos de la ficha de piscinas (D-82), con sus mismas lineas.
+ * Si un tramo no esta tal cual, no se toca y la ruta sale roja.
+ */
+/** El titulo de una obra como texto: las propias traen `titulo`; las migradas, solo `tituloHtml`. */
+const tituloObra = (o) => o.titulo ?? o.tituloHtml.replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+function fichaProyectoTexto(ruta, lineas) {
+  const out = [...lineas];
+  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const hayTels = (k) => tels.every((l, x) => out[k + x] === l);
+  /* Lo declarado es OBLIGATORIO: un tramo que falta mete una linea que no casa con nada y la ruta
+   * sale roja diciendo cual. Sin esto la puerta fallaba ABIERTA. */
+  const faltas = [];
+  const quita = (bloque, que) => {
+    const i = out.findIndex((_, k) => bloque.every((l, j) => out[k + j] === l));
+    if (i >= 0) out.splice(i, bloque.length); else faltas.push(que);
+  };
+  const d = out.indexOf('Project Details');
+  const b = d < 0 ? -1 : out.indexOf('Get A Free Estimate', d);
+  if (b > d && hayTels(b + 1)) out.splice(b + 1, tels.length); else faltas.push('los dos telefonos de «Project Details» (T-56)');
+  const lee = (f) => JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data', f), 'utf8')).obras;
+  const lista = [...lee('proyectos-propios.json').filter((o) => o.enCarrusel !== false), ...lee('obras-migradas.json')]
+    .filter((o) => o.slug !== ruta.split('/')[2]);
+  const destacadas = lista.slice(0, 3);
+  quita(['More Projects',
+    'Selected custom pool and outdoor living projects from our Florida portfolio, to inspire your design.',
+    'See All Projects',
+    ...[...destacadas, ...lista.filter((o) => !destacadas.includes(o))].flatMap((o) => [capitaliza(tituloObra(o)), 'See Project'])],
+  '«More Projects» con sus obras, en el orden del componente (T-60)');
+  const c = out.findIndex((l) => l.startsWith(CIERRE_CIUDAD));
+  if (c >= 0 && hayTels(c + 1)) out.splice(c + 1, tels.length, 'Get A Free Estimate'); else faltas.push('los dos telefonos de la banda final (T-57)');
+  quita(formularioNuevo(CAPTACION_JSON['/services/pool-builders']), 'el formulario en dos pasos (D-82)');
+  return [...out, ...faltas.map((f) => `⟦FALTA: ${f}⟧`)];
+}
+
+/**
+ * ASTRO-4 · EL ARTICULO (laminas «Articulo», «CuerpoArticulo» y «Relacionados»), sobre LO MEDIDO de
+ * las 47 rutas de `/blogs/`. Titular, resumen, cuerpo, FAQ, fuentes, «Most Read Articles» con sus
+ * tarjetas y la banda final son los de la referencia, en su orden. Lo que el articulo GANA se
+ * comprueba entero y en su sitio, y solo entonces se descuenta (T-88):
+ *   · la tarjeta de accion (T-49, D-84, D-97), entre el cuerpo y «Most Read Articles»: su rotulo,
+ *     sus dos botones y los dos telefonos;
+ *   · los dos telefonos de la banda final, detras de su boton (T-56).
+ * Las cabeceras de las tablas se pintan en versalitas (S11) y las cuenta T-69.
+ * Si un tramo no esta tal cual, no se toca y la ruta sale roja.
+ */
+/** slug del articulo → slug de su categoria, de la cache versionada del dataset. */
+const CATEGORIA_DE_ARTICULO = (() => {
+  const f = path.join(RAIZ, 'src/data/blogs-sanity.json');
+  return fs.existsSync(f) ? Object.fromEntries(JSON.parse(fs.readFileSync(f, 'utf8')).map((p) => [p.slug, p.categoria?.slug])) : {};
+})();
+function articuloTexto(ruta, lineas) {
+  const out = [...lineas];
+  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  // D-145: rotulo y enlace del estimador, solo en los articulos de categoria de piscina.
+  const dePiscina = CATEGORIAS_PISCINA.includes(CATEGORIA_DE_ARTICULO[ruta.split('/').pop()]);
+  const tarjeta = [...(dePiscina ? ['POOL COST ESTIMATOR'] : []), 'Request A Design-Build Project Evaluation',
+    ...(dePiscina ? ['Try The Pool Cost Estimator'] : []), ...tels];
+  /* Lo declarado es OBLIGATORIO: si un tramo falta o no esta en su sitio, entra una linea que no
+   * casa con nada y la ruta sale roja diciendo cual. Sin esto la puerta fallaba ABIERTA. */
+  const m = out.indexOf('Most Read Articles') - tarjeta.length;
+  if (m >= 0 && tarjeta.every((l, j) => out[m + j] === l)) out.splice(m, tarjeta.length);
+  else out.push('⟦FALTA: la tarjeta de accion del articulo (T-49), delante de «Most Read Articles»⟧');
+  const c = out.findIndex((l) => l.startsWith(CIERRE_CIUDAD));
+  if (c >= 0 && out[c + 1] === 'Get A Free Estimate' && tels.every((l, x) => out[c + 2 + x] === l)) out.splice(c + 2, tels.length);
+  else out.push('⟦FALTA: los dos telefonos de la banda final (T-56), detras de su boton⟧');
+  return out;
+}
+
+/**
+ * SERVICIOS, del indice a las pestanas (D-69, como T-82), sobre `out` y EN SU SITIO: la ficha abierta
+ * delante y los 14 nombres bajo el rotulo de su grupo vuelven a la forma de la referencia —los
+ * rotulos de las pestanas y, de la primera, sus servicios con la ficha del activo—. Devuelve si
+ * encontro el bloque entero. `dp` es la entrada de la ruta en `servicios-categoria.json`.
+ */
+function serviciosDeIndiceAPestanas(out, dp) {
+  const nm = (x) => (x ?? '').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+  const visto = new Set();
+  const porGrupo = dp.categorias.map((c) => { const suyos = dp.servicios.filter((sv) => sv.categorias.includes(c.slug) && !visto.has(sv.id)); suyos.forEach((sv) => visto.add(sv.id)); return suyos; });
+  const act = porGrupo[0][0];
+  const ficha = [nm(act.titulo), nm(act.texto), nm(act.cta), `: ${nm(act.titulo)}`];
+  const nuevo = [nm(dp.titulo), nm(dp.subtitulo), ...ficha, ...dp.categorias.flatMap((c, k) => [nm(c.nombre), ...porGrupo[k].map((sv) => nm(sv.nombre))])];
+  const igual = (x, y) => x !== undefined && x.toLowerCase() === y.toLowerCase();
+  const i = out.findIndex((_, k) => nuevo.every((l, j) => igual(out[k + j], l)));
+  if (i < 0) return false;
+  const deLaPestana = dp.servicios.filter((sv) => sv.categorias.includes(dp.categorias[0].slug));
+  out.splice(i, nuevo.length, out[i], out[i + 1], ...dp.categorias.map((c) => nm(c.nombre)), ...deLaPestana.flatMap((sv) => (sv.id === act.id ? [nm(sv.nombre), ...ficha] : [nm(sv.nombre)])));
+  return true;
+}
+
+/**
+ * LAS DOS PAGINAS DE ESTADO (T-99), sobre LO MEDIDO. Hero, presentacion y condados conservan sus
+ * lineas y su orden. Lo demas se comprueba ENTERO y vuelve a la forma de la referencia:
+ *   · servicios: de pestanas a indice (D-69);
+ *   · galeria compacta, 3D, obras, resenas y articulos ganan la accion de la pagina en su cabecera;
+ *     la del 3D ocupa el sitio de la banda repetida a media pagina, que sale (T-50);
+ *   · obras: «See All Projects» sube a la cabecera y detras de las tres destacadas van los telefonos;
+ *   · resenas: los dos telefonos detras; articulos: tres con resumen y siete en indice (T-44);
+ *   · banda final: sus telefonos (T-56).
+ */
+function estadoTexto(ruta, lineas) {
+  let out = [...lineas];
+  const faltas = [];
+  const GFE = 'Get A Free Estimate';
+  const ACC = 'Request A Design-Build Project Evaluation';
+  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const nm = (x) => (x ?? '').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+  const hay = (x) => tels.every((l, j) => out[x + j] === l);
+  // La banda final, lo primero: despues vuelve la de media pagina y habria dos con el mismo parrafo.
+  out = bandaConTelefonos(out);
+  if (!serviciosDeIndiceAPestanas(out, SERVICIOS_CAT[ruta])) faltas.push('el indice de los 14 servicios con la primera ficha abierta (D-69)');
+  const pb = out.indexOf(TEXTO_BANDA_CAT);
+  if (pb >= 0 && out[pb + 1] === GFE) out.splice(pb + 1, 1); else faltas.push('la accion en la cabecera de la galeria');
+  const ps = out.indexOf('Project Showcase');
+  const fin = out.findIndex((l, k) => k > ps && l === ACC && (out[k + 1] ?? '').startsWith(CIERRE_CIUDAD));
+  if (ps > 0 && out[ps - 1] === GFE && fin > ps) out.splice(ps - 1, 0, ACC, out[fin + 1]);
+  else faltas.push('la accion en la cabecera del 3D, en el sitio de la banda de media pagina (T-50)');
+  const sap = out.findIndex((l, k) => l === 'See All Projects' && out[k - 1] === GFE);
+  if (sap > 0) {
+    out.splice(sap - 1, 2);
+    let k = sap - 1;
+    let vistos = 0;
+    while (out[k + 1] === 'See Project' || hay(k)) { if (hay(k)) { out.splice(k, tels.length); vistos++; } else k += 2; }
+    out.splice(k, 0, 'See All Projects');
+    if (vistos !== 1) faltas.push('los dos telefonos detras de las tres obras destacadas');
+  } else faltas.push('la accion y «See All Projects» en la cabecera de las obras');
+  const r = out.indexOf(RESENAS_MARCADOR);
+  if (r > 0 && out[r - 1] === GFE) out.splice(r - 1, 1); else faltas.push('la accion en la cabecera de resenas');
+  const u = out.findIndex((l) => /^Updated [A-Z][a-z]{2} \d{4}$/.test(l));
+  if (u >= 0 && hay(u + 1)) out.splice(u + 1, tels.length); else faltas.push('los dos telefonos detras de las resenas');
+  {
+    const posts = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/blogs.json'), 'utf8')).posts;
+    const t = (p) => capitaliza(nm(p.titulo));
+    const nuevo = [GFE, ...posts.slice(0, 3).flatMap((p) => [t(p), nm(p.resumen), 'Read More', `: ${t(p)}`]), ...posts.slice(3).flatMap((p) => [t(p), 'Read More', `: ${t(p)}`])];
+    const i = out.findIndex((_, k) => nuevo.every((l, j) => out[k + j] === l));
+    if (i >= 0) out.splice(i, nuevo.length, ...posts.flatMap((p) => [t(p), nm(p.resumen), 'Read More', `: ${t(p)}`]));
+    else faltas.push('los articulos: tres con resumen y siete en indice, con la accion en la cabecera (T-44)');
+  }
+  return [...out, ...faltas.map((x) => `⟦FALTA: ${x}⟧`)];
+}
+
+/**
+ * ASTRO-4 · LA HOME (lamina «Home»), sobre LO MEDIDO de `/`. Ninguna cadena cambia; cambian de
+ * sitio, de forma o de numero, y cada cosa se comprueba ENTERA y en su orden antes de devolver lo
+ * medido a la forma de la referencia (T-89). Lo que falte mete una linea que no casa con nada.
+ *   · hero: los cuatro sellos pasan de delante del titular a detras de los botones;
+ *   · servicios: de pestanas a indice (D-69, como T-82): la ficha abierta delante y los 14
+ *     nombres a la vista bajo el rotulo de su grupo (7 que antes escondia la pestana);
+ *   · antes/despues: baja detras de las zonas, con sus enlaces en la cabecera (D-96);
+ *   · 3D, obras, articulos y resenas ganan la accion de la pagina en su cabecera; la banda
+ *     repetida a media pagina sale (T-50: su parrafo y su boton), y las obras y las resenas
+ *     ganan los dos telefonos (T-56);
+ *   · obras: «See All Projects» sube a la cabecera;
+ *   · zonas: suben detras de las obras, norte delante, cada una con su telefono;
+ *   · articulos: los tres primeros con resumen y los otros siete en indice, sin el (T-44);
+ *   · cierre: los telefonos en lugar del boton (T-57) y, detras, el formulario (D-82).
+ */
+function homeTexto(lineas) {
+  let out = [...lineas];
+  const faltas = [];
+  const ACC = 'Request A Design-Build Project Evaluation';
+  const GFE = 'Get A Free Estimate';
+  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const son = (k, bloque) => bloque.every((l, j) => out[k + j] === l);
+  const nm = (x) => (x ?? '').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+  // 1 · hero
+  const SELLOS = ['Licensed & Insured', 'Financing Available', '3D Design', 'North & South Florida'];
+  const s0 = out.findIndex((_, k) => son(k, SELLOS) && out[k - 1] === 'Project Gallery' && out[k - 2] === ACC);
+  if (s0 >= 4) { out.splice(s0, 4); out.splice(s0 - 4, 0, ...SELLOS); } else faltas.push('los cuatro sellos del hero, detras de sus dos botones');
+  // 2 · servicios
+  if (!serviciosDeIndiceAPestanas(out, SERVICIOS_CAT['/'])) faltas.push('el indice de los 14 servicios con la primera ficha abierta (D-69)');
+  // 3 · el orden de las secciones del final: zonas, antes/despues, articulos, resenas, cierre
+  const posts = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/blogs.json'), 'utf8')).posts;
+  const zi = out.indexOf('WHERE WE SERVE');
+  const bai = out.indexOf('Before & After Transformations');
+  const bli = out.findIndex((l, k) => k > bai && out[k + 2] === ACC && out[k + 3] === capitaliza(nm(posts[0].titulo)));
+  const ri = out.findIndex((l, k) => k > bli && l === 'TESTIMONIALS');
+  const ci = out.findIndex((l, k) => k > ri && l === ACC && (out[k + 1] ?? '').startsWith(CIERRE_CIUDAD));
+  const d3 = out.indexOf('3D Pool Design & Visualization');
+  if (!(d3 > 0 && d3 < zi && zi < bai && bai < bli && bli < ri && ri < ci)) return [...out, ...faltas.map((f) => `⟦FALTA: ${f}⟧`), '⟦FALTA: el orden de la home (3D, obras, zonas, antes/despues, articulos, resenas, cierre)⟧'];
+  const Z = out.slice(zi, bai); const BA = out.slice(bai, bli); const BL = out.slice(bli, ri); const R = out.slice(ri, ci); const FIN = out.slice(ci);
+  const parrafoBanda = FIN[1];
+  // zonas: rotulo, lema y dos zonas de titulo, parrafo, telefono (rotulo + numero) y enlace; norte delante
+  let Zv = null;
+  if (Z.length === 12 && Z[2] === 'North Florida' && Z[4] === 'NORTH FLORIDA' && Z[7] === 'South Florida' && Z[9] === 'SOUTH FLORIDA'
+    && Z[5] === TELEFONOS.items.find((t) => t.zona === 'North Florida').visible && Z[10] === TELEFONOS.items.find((t) => t.zona === 'South Florida').visible) {
+    Zv = ['Where We Serve', Z[1], Z[7], Z[8], Z[11], Z[2], Z[3], Z[6]];
+  } else faltas.push('las dos zonas con su telefono, norte delante');
+  // antes/despues: titular, parrafo, los dos enlaces, los dos rotulos del deslizador, la linea que lo dice y las dos
+  // tarjetas. E11 (D-194, decidido el 14-oct-2026): el par de produccion vuelve ROTULADO como visualizacion.
+  // «Before»/«After» se retiran de la home y entran tres cadenas nuevas (T-103 a T-105): `Visualization`, `Completed` y la
+  // linea de abajo. Se devuelven a la forma de la referencia solo si estan las tres, en su sitio y exactas.
+  let BAv = null;
+  const NOTA_AD = 'Design visualization created from a completed Mr & Mrs project.';
+  if (BA.length === 11 && BA[2] === GFE && BA[3] === 'View All Projects' && BA[4] === 'Visualization' && BA[5] === 'Completed' && BA[6] === NOTA_AD && BA[7] === 'DESIGN-BUILD AUTHORITY' && BA[9] === 'LICENSED & ENGINEERED') {
+    BAv = ['Before', 'After', BA[0], BA[1], 'Design-Build Authority', BA[8], 'Licensed & Engineered', BA[10], 'View All Projects', GFE];
+  } else faltas.push('el antes/despues con deslizador, rotulado `Visualization` / `Completed` y con su linea (D-194, T-103 a T-105)');
+  // articulos: cabecera con la accion, tres con resumen y siete en indice
+  let BLv = null;
+  {
+    const t = (p) => capitaliza(nm(p.titulo));
+    const nuevo = [BL[0], BL[1], ACC, ...posts.slice(0, 3).flatMap((p) => [t(p), nm(p.resumen), 'Read More', `: ${t(p)}`]), ...posts.slice(3).flatMap((p) => [t(p), 'Read More', `: ${t(p)}`])];
+    if (BL.length === nuevo.length && nuevo.every((l, k) => BL[k] === l)) BLv = [BL[0], BL[1], ...posts.flatMap((p) => [t(p), nm(p.resumen), 'Read More', `: ${t(p)}`])];
+    else faltas.push('los articulos: tres con resumen y siete en indice, con la accion en la cabecera (T-44)');
+  }
+  // resenas: la accion delante de «See all reviews» y los telefonos al final
+  let Rv = null;
+  {
+    const m = R.indexOf(RESENAS_MARCADOR);
+    if (m > 0 && R[m - 1] === ACC && tels.every((l, k) => R[R.length - tels.length + k] === l)) Rv = [...R.slice(0, m - 1), ...R.slice(m, R.length - tels.length)];
+    else faltas.push('las resenas con la accion en la cabecera y los dos telefonos al final');
+  }
+  // cierre: telefonos en lugar del boton y, detras, el formulario
+  let FINv = null;
+  {
+    const form = formularioNuevo(CAPTACION_JSON['/services/pool-builders']);
+    if (tels.every((l, k) => FIN[2 + k] === l) && form.every((l, k) => FIN[2 + tels.length + k] === l)) FINv = [FIN[0], FIN[1], GFE, ...FIN.slice(2 + tels.length + form.length)];
+    else faltas.push('el cierre con los dos telefonos y el formulario en dos pasos (T-57, D-82)');
+  }
+  // cabeza: hasta las zonas. El 3D gana la accion y pierde detras la banda repetida (T-50); las
+  // obras, como en las paginas de ciudad (accion y «See All Projects» arriba, telefonos tras las tres).
+  let cab = out.slice(0, zi);
+  {
+    const k = cab.indexOf('3D Pool Design & Visualization');
+    if (cab[k + 2] === ACC && cab[k + 3] === 'Project Showcase') cab.splice(k + 3, 0, parrafoBanda, GFE);
+    else faltas.push('la accion de la pagina en la cabecera del 3D');
+    if (BAv) cab.splice(k, 0, ...BAv);
+    const sap = cab.findIndex((l, x) => l === 'See All Projects' && cab[x - 1] === ACC);
+    if (sap > 0) {
+      cab.splice(sap - 1, 2);
+      let x = sap - 1; let vistos = 0;
+      const hayTels = (y) => tels.every((l, j) => cab[y + j] === l);
+      while (cab[x + 1] === 'See Project' || hayTels(x)) { if (hayTels(x)) { cab.splice(x, tels.length); vistos++; } else x += 2; }
+      cab.splice(x, 0, 'See All Projects');
+      if (vistos !== 1) faltas.push('los dos telefonos detras de las tres obras destacadas');
+    } else faltas.push('la accion y «See All Projects» en la cabecera de las obras');
+  }
+  return [...cab, ...(Rv ?? R), ...(Zv ?? Z), ...(BLv ?? BL), ...(FINv ?? FIN), ...faltas.map((f) => `⟦FALTA: ${f}⟧`)];
+}
+
+/**
+ * ASTRO-4 lote B · LA GALERIA (laminas «Galeria» y «GaleriaCategoria»), sobre LO MEDIDO de `/gallery`
+ * y de sus diez categorias. Ninguna cadena cambia; lo que entra se comprueba entero y en su sitio
+ * antes de descontarlo, y lo que falte pone la ruta en rojo (T-90):
+ *   · la tesela de accion (D-100): «Seen something you like?», su boton y los dos telefonos. En el
+ *     indice va una, detras de la sexta categoria; en cada categoria, una cada dos bloques del muro;
+ *   · los dos telefonos junto a «More project galleries» y en la banda final (T-56);
+ *   · en el indice, el hero deja de ir encima de la cabecera y entra en la pagina: se devuelve
+ *     delante de ella, que es donde lo trae la referencia.
+ */
+function galeriaTexto(ruta, lineas) {
+  const out = [...lineas];
+  const faltas = [];
+  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const tesela = ['Seen something you like?', 'Get a free estimate', ...tels];
+  const son = (k, bloque) => bloque.every((l, j) => out[k + j] === l);
+  if (ruta === '/gallery') {
+    const t = out.findIndex((l) => l.startsWith('Explore real custom pool and outdoor living projects'));
+    const c = out.findIndex((l) => l === 'Skip to content' || l.startsWith('⟦cabecera'));
+    if (t > 0 && c >= 0 && c < t && out[t - 1] === 'Project Gallery' && out[t + 1] === 'Browse by service') out.splice(c, 0, ...out.splice(t - 1, 2));
+    else faltas.push('el hero del indice (titular y entradilla), justo delante de «Browse by service»');
+    const k = out.indexOf('See decks');
+    if (k >= 0 && son(k + 1, tesela) && out[k + 1 + tesela.length] === 'Landscaping') out.splice(k + 1, tesela.length);
+    else faltas.push('la tesela de accion detras de la sexta categoria (D-100)');
+    const b = out.findIndex((l, x) => l.startsWith(CIERRE_CIUDAD) && out[x + 1] === 'Get A Free Estimate');
+    if (b >= 0 && son(b + 2, tels)) out.splice(b + 2, tels.length);
+    else faltas.push('los dos telefonos de la banda final (T-56)');
+  } else {
+    const c = GAL_CATEGORIAS.find((x) => `/gallery/${x.slug}` === ruta);
+    // Las mismas cuentas que `[categoria].astro`: bloque par, foto grande + tesela; impar, dos fotos; y tres detras.
+    let teselas = 0;
+    for (let i = 0, bloque = 0; i < c.fotos.length; bloque++) {
+      if (bloque % 2 === 0) { i += 1; teselas++; } else i += Math.min(2, c.fotos.length - i);
+      i += Math.min(3, c.fotos.length - i);
+    }
+    const m = out.indexOf('More project galleries');
+    const ini = m - teselas * tesela.length;
+    if (m > 0 && ini > 0 && Array.from({ length: teselas }, (_, j) => son(ini + j * tesela.length, tesela)).every(Boolean) && out[ini - 1] !== tesela.at(-1)) out.splice(ini, teselas * tesela.length);
+    else faltas.push(`las ${teselas} teselas de accion del muro, delante de «More project galleries» (D-100)`);
+    const m2 = out.indexOf('More project galleries');
+    if (m2 >= 0 && son(m2 + 1, tels)) out.splice(m2 + 1, tels.length);
+    else faltas.push('los dos telefonos junto a «More project galleries» (T-56)');
+    const w = out.findIndex((l) => l.startsWith('Want the details first?'));
+    if (w >= 0 && son(w + 1, tels)) out.splice(w + 1, tels.length);
+    else faltas.push('los dos telefonos de la banda final (T-56)');
+  }
+  return [...out, ...faltas.map((f) => `⟦FALTA: ${f}⟧`)];
+}
+
+/**
+ * ASTRO-4 lote B · `/request-estimated` (lamina «Presupuesto»; T-91). El formulario pasa de tres
+ * pasos a dos, con el contacto delante. Esta puerta mide los dos pasos a la vez, asi que lo que
+ * antes se veia al cargar —servicios, presupuesto, propiedad y plazo— sigue ahi, detras del paso
+ * de contacto. Se comprueba el tramo nuevo ENTERO y en su orden, y se devuelve a la forma de la
+ * referencia (el paso de servicios y «Next»). Lo que entra:
+ *   · «Step 1 of 2» / «Step 2 of 2»; el paso de contacto con su titular y su texto (estaban en el
+ *     tercer paso, oculto) y las etiquetas de sus cuatro campos, que solo traian `placeholder`;
+ *   · la direccion (su titular, su texto y tres etiquetas), el consentimiento, «Back» y la linea
+ *     legal, que tambien estaban en pasos ocultos;
+ *   · «What Happens After You Reach Out» y sus tres pasos, los de la ficha de piscinas.
+ */
+function presupuestoTexto(lineas) {
+  const out = [...lineas];
+  const A = ['Step 1 of 2', 'Contact Information', 'Provide your contact details so our design team can review your request and guide you through the next steps.', 'Full Name', 'Phone', 'Email', 'ZIP Code', 'Next', 'Step 2 of 2'];
+  const D = ['Project Property Address', 'Enter the address where the project will take place so we can confirm service availability and prepare an accurate estimate.', 'Street Address', 'City', 'State (optional)',
+    'I agree to receive SMS messages related to project updates, promotions, and company communications from Mr. & Mrs. Outdoor Living. I understand that I may opt out at any time by replying STOP. Message and data rates may apply.',
+    'Back', 'By submitting this form, you agree to our Terms & Privacy Policy.',
+    'What Happens After You Reach Out', ...CAPTACION_JSON['/services/pool-builders'].formulario.pasos];
+  const son = (k, bloque) => bloque.every((l, j) => out[k + j] === l);
+  const a = out.indexOf(A[0]);
+  const d = out.indexOf(D[0]);
+  if (a > 0 && d > a + A.length && son(a, A) && son(d, D) && out[a + A.length] === 'Select Services & Estimate Your Project Budget') {
+    out.splice(a, d + D.length - a, ...out.slice(a + A.length, d), 'Next');
+    return out;
+  }
+  return [...out, '⟦FALTA: el formulario en dos pasos de /request-estimated, con el contacto delante (T-91)⟧'];
+}
+
+/**
+ * ASTRO-4 lote B · `/contact-us` (lamina «Contacto»; T-92). El bloque de contacto y el formulario
+ * conservan sus lineas y su orden. Lo demas se comprueba entero y se devuelve a la referencia:
+ *   · las zonas suben delante de las resenas, norte delante, cada una con su telefono;
+ *   · las resenas van en lista, con «Get A Free Estimate» en la cabecera y los dos telefonos al final;
+ *   · la banda final gana los dos telefonos (T-56).
+ */
+function contactoTexto(lineas) {
+  const out = [...lineas];
+  const faltas = [];
+  const GFE = 'Get A Free Estimate';
+  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const zi = out.indexOf('WHERE WE SERVE');
+  const ri = out.findIndex((l, k) => k > zi && l === 'TESTIMONIALS');
+  const ci = out.findIndex((l, k) => k > ri && (out[k + 1] ?? '').startsWith(CIERRE_CIUDAD));
+  if (!(zi > 0 && ri > zi && ci > ri)) return [...out, '⟦FALTA: el orden de /contact-us (zonas, resenas, banda final)⟧'];
+  const Z = out.slice(zi, ri); const R = out.slice(ri, ci); const FIN = out.slice(ci);
+  let Zv = Z; let Rv = R; let FINv = FIN;
+  if (Z.length === 12 && Z[2] === 'North Florida' && Z[4] === 'NORTH FLORIDA' && Z[7] === 'South Florida' && Z[9] === 'SOUTH FLORIDA'
+    && Z[5] === TELEFONOS.items.find((t) => t.zona === 'North Florida').visible && Z[10] === TELEFONOS.items.find((t) => t.zona === 'South Florida').visible) {
+    Zv = ['Where We Serve', Z[1], Z[7], Z[8], Z[11], Z[2], Z[3], Z[6]];
+  } else faltas.push('las dos zonas con su telefono, norte delante');
+  const m = R.indexOf(RESENAS_MARCADOR);
+  if (m > 0 && R[m - 1] === GFE && tels.every((l, k) => R[R.length - tels.length + k] === l)) Rv = [...R.slice(0, m - 1), ...R.slice(m, R.length - tels.length)];
+  else faltas.push('las resenas con la accion en la cabecera y los dos telefonos al final');
+  if (FIN[2] === GFE && tels.every((l, k) => FIN[3 + k] === l)) FINv = [...FIN.slice(0, 3), ...FIN.slice(3 + tels.length)];
+  else faltas.push('los dos telefonos de la banda final (T-56)');
+  return [...out.slice(0, zi), ...Rv, ...Zv, ...FINv, ...faltas.map((f) => `⟦FALTA: ${f}⟧`)];
+}
+
+/**
+ * ASTRO-4 lote C · LA BANDA FINAL con los dos telefonos (T-56), en las paginas que solo ganan eso:
+ * titular, parrafo y boton son los de la referencia, y detras entran los dos telefonos. Se exige.
+ */
+function bandaConTelefonos(lineas) {
+  const out = [...lineas];
+  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const b = out.findIndex((l, x) => l.startsWith(CIERRE_CIUDAD) && out[x + 1] === 'Get A Free Estimate');
+  if (b >= 0 && tels.every((l, k) => out[b + 2 + k] === l)) { out.splice(b + 2, tels.length); return out; }
+  return [...out, '⟦FALTA: los dos telefonos de la banda final (T-56), detras de su boton⟧'];
+}
+/** Las rutas del lote C que solo cambian en eso (hero y cuerpo conservan sus lineas y su orden). */
+const SOLO_BANDA = (ruta) => ruta.startsWith('/articles/') || ruta === '/projects';
+/**
+ * `/testimonials` y `/videos` (T-93): las resenas van en lista, con los dos telefonos detras; en
+ * `/videos`, ademas, «Get A Free Estimate» en la cabecera de resenas, delante de «See all reviews».
+ * Y la banda final con sus telefonos.
+ */
+function resenasEnPagina(ruta, lineas) {
+  let out = [...lineas];
+  const faltas = [];
+  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const u = out.findIndex((l) => /^Updated [A-Z][a-z]{2} \d{4}$/.test(l));
+  if (u >= 0 && tels.every((l, k) => out[u + 1 + k] === l)) out.splice(u + 1, tels.length);
+  else faltas.push('los dos telefonos detras de las resenas');
+  if (ruta === '/videos' || ruta === '/industry-solutions') {
+    const r = out.indexOf(RESENAS_MARCADOR);
+    if (r > 0 && out[r - 1] === 'Get A Free Estimate') out.splice(r - 1, 1);
+    else faltas.push('la accion de la pagina en la cabecera de resenas');
+  }
+  out = bandaConTelefonos(out);
+  return [...out, ...faltas.map((f) => `⟦FALTA: ${f}⟧`)];
+}
+
+/**
+ * `/industry-solutions` (T-95). Los tres primeros bloques conservan sus lineas y su orden (fichas,
+ * muro e indice en vez de carruseles): no hay nada que devolver a su forma. Lo que cambia:
+ *   · resenas, como en `/videos`: la accion en su cabecera y los dos telefonos detras;
+ *   · obras, en lista: la accion y «See All Projects» suben a la cabecera, y detras de las tres
+ *     destacadas van los dos telefonos;
+ *   · la banda final gana sus telefonos.
+ */
+function industriasTexto(ruta, lineas) {
+  const out = resenasEnPagina(ruta, lineas);
+  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const hay = (x) => tels.every((l, j) => out[x + j] === l);
+  const sap = out.findIndex((l, k) => l === 'See All Projects' && out[k - 1] === 'Get A Free Estimate');
+  if (sap < 1) return [...out, '⟦FALTA: la accion y «See All Projects» en la cabecera de obras⟧'];
+  out.splice(sap - 1, 2);
+  let k = sap - 1;
+  let vistos = 0;
+  while (out[k + 1] === 'See Project' || hay(k)) {
+    if (hay(k)) { out.splice(k, tels.length); vistos++; } else k += 2;
+  }
+  out.splice(k, 0, 'See All Projects');
+  return vistos === 1 ? out : [...out, '⟦FALTA: los dos telefonos detras de las tres obras destacadas⟧'];
+}
+
+/**
+ * `/financing` (T-96). Titulares, pasos, servicios, confianza y FAQ conservan sus lineas y su orden.
+ * Entran, y se comprueban enteros y en su sitio: los dos telefonos detras de las resenas, la
+ * tarjeta de accion del FAQ (boton y telefonos) detras de la ultima pregunta, y los telefonos de
+ * la banda final detras de su linea legal.
+ */
+function financiacionTexto(lineas) {
+  const out = [...lineas];
+  const faltas = [];
+  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const quita = (desde, que, nombre) => {
+    if (desde >= 0 && que.every((l, k) => out[desde + k] === l)) out.splice(desde, que.length);
+    else faltas.push(nombre);
+  };
+  const tras = (x) => (x >= 0 ? x + 1 : -1);
+  quita(tras(out.findIndex((l) => /^Updated [A-Z][a-z]{2} \d{4}$/.test(l))), tels, 'los dos telefonos detras de las resenas');
+  quita(tras(out.indexOf('Can I Get An Estimate If I Am Not Financing?')), ['Get A Free Estimate', ...tels], 'la tarjeta de accion del FAQ, detras de la ultima pregunta');
+  quita(tras(out.findIndex((l) => l.startsWith('Financing is provided by Acorn Finance'))), tels, 'los dos telefonos de la banda final, detras de su linea legal');
+  return [...out, ...faltas.map((x) => `⟦FALTA: ${x}⟧`)];
+}
+
+/**
+ * `/about` (T-97). Sobre LO MEDIDO. Titulares, razones, mision, vision, valores, pasos y FAQ
+ * conservan sus lineas y su orden. Lo que entra se comprueba entero y en su sitio, y lo que cambia
+ * de orden —las zonas, norte delante y cada una con su telefono— se devuelve a la forma de siempre:
+ *   · hero: los dos telefonos detras del parrafo;
+ *   · «Why … Choose», «Meet Rob & Val»: la accion de la pagina detras de su parrafo;
+ *   · gestion de obra: la accion y los dos telefonos delante del primer rotulo;
+ *   · FAQ: la tarjeta de accion (boton y telefonos) detras de la ultima pregunta;
+ *   · banda final: sus dos telefonos (T-56).
+ */
+function aboutTexto(lineas) {
+  let out = [...lineas];
+  const faltas = [];
+  const GFE = 'Get A Free Estimate';
+  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const quita = (desde, que, nombre) => {
+    if (desde >= 0 && que.every((l, k) => out[desde + k] === l)) out.splice(desde, que.length);
+    else faltas.push(nombre);
+  };
+  const tras = (prefijo) => { const x = out.findIndex((l) => l.startsWith(prefijo)); return x >= 0 ? x + 1 : -1; };
+  quita(tras('Mr & Mrs Outdoor Living is a family-owned company'), tels, 'los dos telefonos del hero, detras de su parrafo');
+  quita(tras('As a true one-stop shop'), [GFE], 'la accion en la cabecera de «Why … Choose»');
+  const pm = out.indexOf('PROJECT MANAGEMENT');
+  quita(pm >= 0 ? pm - 1 - tels.length : -1, [GFE, ...tels], 'la accion y los telefonos delante de la gestion de obra');
+  quita(tras('Rob and Val are a licensed'), [GFE], 'la accion en «Meet Rob & Val»');
+  quita(tras('Do You Design The Pool In 3D Before Construction?'), [GFE, ...tels], 'la tarjeta de accion del FAQ, detras de la ultima pregunta');
+  const zi = out.indexOf('WHERE WE SERVE');
+  const Z = zi >= 0 ? out.slice(zi, zi + 12) : [];
+  const tel = (z) => TELEFONOS.items.find((t) => t.zona === z).visible;
+  if (Z.length === 12 && Z[2] === 'North Florida' && Z[4] === 'NORTH FLORIDA' && Z[5] === tel('North Florida') && Z[7] === 'South Florida' && Z[9] === 'SOUTH FLORIDA' && Z[10] === tel('South Florida')) {
+    out.splice(zi, 12, 'Where We Serve', Z[1], Z[7], Z[8], Z[11], Z[2], Z[3], Z[6]);
+  } else faltas.push('las dos zonas con su telefono, norte delante');
+  out = bandaConTelefonos(out);
+  return [...out, ...faltas.map((x) => `⟦FALTA: ${x}⟧`)];
+}
+
+/**
+ * `/where-we-serve` (T-98). Hero, presentacion y cobertura conservan sus lineas y su orden. Entran:
+ * los dos telefonos detras de «More About Us», la accion de la pagina en la cabecera de la
+ * cobertura (detras de su parrafo) y los telefonos de la banda final (T-56).
+ */
+function zonasPaginaTexto(lineas) {
+  let out = [...lineas];
+  const faltas = [];
+  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const quita = (desde, que, nombre) => {
+    if (desde >= 0 && que.every((l, k) => out[desde + k] === l)) out.splice(desde, que.length);
+    else faltas.push(nombre);
+  };
+  const tras = (linea) => { const x = out.indexOf(linea); return x >= 0 ? x + 1 : -1; };
+  quita(tras('More About Us'), tels, 'los dos telefonos detras de «More About Us»');
+  quita(tras('Licensed contractors serving North and South Florida'), ['Get A Free Estimate'], 'la accion en la cabecera de la cobertura');
+  out = bandaConTelefonos(out);
+  return [...out, ...faltas.map((x) => `⟦FALTA: ${x}⟧`)];
+}
+
+function listasStitch(ruta, lineas) {
+  if (ruta === '/blogs-tips') return indiceBlogTexto(lineas);
+  if (SOLO_BANDA(ruta)) return bandaConTelefonos(lineas);
+  if (ruta === '/testimonials' || ruta === '/videos') return resenasEnPagina(ruta, lineas);
+  if (ruta === '/industry-solutions') return industriasTexto(ruta, lineas);
+  if (ruta === '/financing') return financiacionTexto(lineas);
+  if (ruta === '/about') return aboutTexto(lineas);
+  if (ruta === '/where-we-serve') return zonasPaginaTexto(lineas);
+  if (/^\/where-we-serve\/[^/]+$/.test(ruta)) return estadoTexto(ruta, lineas);
+  if (ruta === '/contact-us') return contactoTexto(lineas);
+  if (ruta === '/') return homeTexto(lineas);
+  if (ruta === '/request-estimated') return presupuestoTexto(lineas);
+  if (ruta === '/gallery' || ruta.startsWith('/gallery/')) return galeriaTexto(ruta, lineas);
+  if (ruta.startsWith('/project/')) return fichaProyectoTexto(ruta, lineas);
+  if (ruta.startsWith('/blogs/')) return articuloTexto(ruta, lineas);
+  if (!ruta.startsWith('/services/')) return lineas;
+  if (!esFicha(ruta)) {
+    /* PAGINAS DE CIUDAD (T-47): la cabecera de articulos lleva la accion de la pagina, justo delante
+     * del primer articulo. Se quita solo si esta ahi. (En las fichas el bloque de articulos es
+     * declarado entero: § articulosEnLista.) */
+    const out = [...lineas];
+    /* E5-SEO (T-100) · EL ENLAZADO BAJO EL FAQ. Las 53 de piscina ganan la fila «More for <ciudad>
+     * homeowners: …» que las otras 65 ya traian en su referencia, y las 118, una segunda con las
+     * ciudades vecinas del mismo servicio. Las dos lineas se derivan con la MISMA funcion que las
+     * pinta (`src/lib/vecinas.mjs`) y son obligatorias: si falta una, la ruta sale roja. */
+    const enlazado = esCondado(ruta) ? null : enlazadoDeCiudad(ruta);
+    if (enlazado) {
+      const esperadas = [[ruta.startsWith('/services/pool-builders/') ? enlazado.lineaMas : null, 'la fila «More for … homeowners» de la pagina de piscina'], [enlazado.lineaVecinas, 'la fila de ciudades vecinas del mismo servicio']];
+      for (const [linea, que] of esperadas) {
+        if (!linea) continue;
+        const k = out.indexOf(linea);
+        if (k >= 0) out.splice(k, 1); else out.push(`⟦FALTA: ${que} (T-100)⟧`);
+      }
+    }
+    const accion = capitalizaH2(CAPTACION_JSON[ruta]?.heroe?.cta ?? 'Get a Free Estimate');
+    const j = out.indexOf(capitaliza(PRIMER_ARTICULO));   // D-135: `.mm-art-t` con `capitalize`
+    if (j > 0 && out[j - 1] === accion) out.splice(j - 1, 1);
+    /* PIEZAS COMPARTIDAS CON LA FICHA (T-29, T-47), cada una por su ancla exacta:
+     *   · resenas: la accion de la cabecera va justo delante de «See all reviews»; los telefonos,
+     *     justo detras de «Updated …»;
+     *   · FAQ: los telefonos de la tarjeta, justo detras de su boton (que ya estaba al pie de la FAQ);
+     *   · cierre: los telefonos, justo detras del parrafo de la banda final. */
+    // En el orden de zonas de la ruta: las ciudades del sur pintan «South Florida» delante.
+    const zonasRuta = CAPTACION_JSON[ruta]?.heroe?.zonas ?? (esCondado(ruta) ? zonasDeCondado(ruta) : TELEFONOS.items.map((x) => x.zona));
+    const tels = zonasRuta.map((z) => TELEFONOS.items.find((x) => x.zona === z)).flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+    const hayTels = (k) => tels.every((l, x) => out[k + x] === l);
+    const r = out.indexOf(RESENAS_MARCADOR);
+    if (r > 0 && out[r - 1] === accion) out.splice(r - 1, 1);
+    const u = out.findIndex((l) => /^Updated [A-Z][a-z]{2} \d{4}$/.test(l));
+    if (u >= 0 && hayTels(u + 1)) out.splice(u + 1, tels.length);
+    const ci = out.findIndex((l) => l.startsWith(CIERRE_CIUDAD));
+    if (ci >= 0 && hayTels(ci + 1)) out.splice(ci + 1, tels.length);
+    // GALERIA POR CATEGORIAS (D-79, D-100) y RENDER 3D: la accion de la pagina en la cabecera, justo
+    // detras del parrafo de la banda y del parrafo del 3D.
+    const pb = out.indexOf(TEXTO_BANDA_CAT);
+    if (pb >= 0 && out[pb + 1] === accion) out.splice(pb + 1, 1);
+    const p3 = out.findIndex((l) => l.toLowerCase() === (esCondado(ruta) ? pasosDelOrigen(ruta).tresD.toLowerCase() : '3d pool design & visualization'));
+    if (p3 >= 0 && out[p3 + 2] === accion) out.splice(p3 + 2, 1);
+    /* PROYECTOS (T-33, T-47): la cabecera lleva la accion y «See all Projects», que antes cerraba
+     * el carrusel; detras de los tres destacados van los telefonos. Lo medido se devuelve a la
+     * forma de siempre: sin la accion, sin los telefonos y con «See all Projects» al final de la
+     * lista. Solo si el par esta en la cabecera y la lista es una sucesion de titulo + «See Project». */
+    // D-135: el enlace se pinta «See All Projects», como en la referencia (`.mm-may`).
+    const sap = out.findIndex((l, k) => l === 'See All Projects' && out[k - 1] === accion);
+    if (sap > 0) {
+      out.splice(sap - 1, 2);
+      let k = sap - 1;
+      while (out[k + 1] === 'See Project' || hayTels(k)) {
+        if (hayTels(k)) out.splice(k, tels.length); else k += 2;
+      }
+      out.splice(k, 0, 'See All Projects');
+    }
+    /* GALERIA DE OBRA EN MOSAICO (T-81): su cabecera lleva la accion de la pagina y el enlace
+     * «Project Gallery», justo detras de la entradilla. Se quitan solo si estan ahi, los dos. */
+    const svCiudad = SERVICIOS_CIUDAD[ruta.split('/')[2]];
+    {
+      const g = { ...GALERIA_OBRA._defecto, ...(GALERIA_OBRA[ruta] ?? GALERIA_OBRA[svCiudad?.galeria] ?? {}) };
+      // En condado la entradilla es la de su propia pagina: el par va justo delante del 3D.
+      const tresD = esCondado(ruta) ? pasosDelOrigen(ruta).tresD.toLowerCase() : null;
+      const k = out.findIndex((l, x) => (l === g.entradilla || (tresD && (out[x + 3] ?? '').toLowerCase() === tresD))
+        && out[x + 1] === accion && out[x + 2] === 'Project Gallery');
+      if (k >= 0) out.splice(k + 1, 2);
+    }
+    /* PROCESO DE CONDADO (T-85, D-134): las pestanas —un paso a la vista— pasan a lista con los
+     * cuatro, y la cabecera lleva la accion de la pagina. Los rotulos `1` `2` `3` `4` de las
+     * pestanas salen: el titulo de cada paso ya trae su «1. » y el circulo lo repetia. Se
+     * comprueba el tramo nuevo ENTERO (linea, accion y los cuatro pasos con su titulo y su texto,
+     * leidos del origen) y solo entonces se devuelve a lo que se veia: los cuatro rotulos y el
+     * primer paso. */
+    if (esCondado(ruta)) {
+      const { linea, pasos } = pasosDelOrigen(ruta);
+      const nuevo = [linea, accion, ...pasos.flat()];
+      const i = out.findIndex((_, k) => nuevo.every((l, j) => out[k + j] === l));
+      if (i >= 0) out.splice(i, nuevo.length, linea, ...pasos.map((_, k) => String(k + 1)), ...pasos[0]);
+    }
+    /* SERVICIOS (T-82, D-69; lamina «Servicios»). El panel pasa de pestanas a indice: los 14
+     * nombres a la vista bajo el rotulo de su categoria (antes solo los de la pestana abierta),
+     * la ficha abierta delante del indice, y la accion de la pagina en la cabecera en vez de al
+     * pie. Se comprueba el tramo nuevo ENTERO y en su orden —titular, parrafo, accion, ficha y
+     * los tres grupos con sus nombres— y solo si esta tal cual se devuelve a la forma de siempre
+     * (pestanas, filas de la categoria por defecto con la ficha tras la primera, accion). Un
+     * nombre que falte, uno de mas o una ficha distinta lo dejan sin tocar: sale rojo.
+     *
+     * D-129 (T-83): la ficha ABIERTA es la del servicio de la pagina, no la primera de su
+     * categoria. En piscinas, pergolas y cocinas es la misma de antes; en remodelacion, techos
+     * de lamas, decks y jardineria cambia: se exige la del servicio (`propia`) y lo que se
+     * devuelve a la referencia es la que habia (`act`). */
+    {
+      const dp = SERVICIOS_CAT['/'];
+      const nm = (x) => (x ?? '').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+      const act = dp.servicios.find((sv) => sv.categorias.includes(svCiudad?.categoria));
+      if (act) {
+        const visto = new Set();
+        const grupos = dp.categorias.flatMap((c) => {
+          const suyos = dp.servicios.filter((sv) => sv.categorias.includes(c.slug) && !visto.has(sv.id));
+          suyos.forEach((sv) => visto.add(sv.id));
+          return [nm(c.nombre), ...suyos.map((sv) => nm(sv.nombre))];
+        });
+        const fichaDe = (sv) => [nm(sv.titulo), nm(sv.texto), nm(sv.cta), `: ${nm(sv.titulo)}`];
+        const propia = dp.servicios.find((sv) => sv.enlace === `/services/${ruta.split('/')[2]}`) ?? act;
+        const ficha = fichaDe(act);
+        const nuevo = [nm(dp.titulo), nm(dp.subtitulo), accion, ...fichaDe(propia), ...grupos];
+        const igual = (x, y) => x !== undefined && x.toLowerCase() === y.toLowerCase();
+        const i = out.findIndex((_, k) => nuevo.every((l, j) => igual(out[k + j], l)));
+        if (i >= 0) {
+          const deLaPestana = dp.servicios.filter((sv) => sv.categorias.includes(svCiudad.categoria));
+          out.splice(i, nuevo.length, out[i], out[i + 1], ...dp.categorias.map((c) => nm(c.nombre)),
+            ...deLaPestana.flatMap((sv) => (sv.id === act.id ? [nm(sv.nombre), ...ficha] : [nm(sv.nombre)])), accion);
+        }
+      }
+    }
+    const faq = CAPTACION_JSON[ruta]?.faq;
+    if (faq?.titulo) {
+      const f0 = out.findIndex((l) => l.toLowerCase() === faq.titulo.toLowerCase());
+      const fb = f0 < 0 ? -1 : out.findIndex((l, k) => k > f0 && l === accion && hayTels(k + 1));
+      if (fb >= 0) out.splice(fb + 1, tels.length);
+    }
+    return out;
+  }
+  const c = CAPTACION_JSON[ruta];
+  const accion = capitalizaH2(c.heroe.cta ?? 'Get a Free Estimate');
+  let out = [...lineas];
+  const { linea, pasos } = pasosDelOrigen(ruta);
+  const nuevo = [linea, accion, ...pasos.flatMap((p, k) => [String(k + 1), ...p])];
+  const i = out.findIndex((_, k) => nuevo.every((l, j) => out[k + j] === l));
+  if (i >= 0) {
+    out.splice(i, nuevo.length, linea, ...pasos.map((_, k) => String(k + 1)), capitalizaH2(pasos[0][0]), ...pasos[0].slice(1));
+  }
+  // CIERRE (T-47): la banda final lleva los dos telefonos detras de su parrafo.
+  {
+    const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+    const z = out.indexOf(origenDeFicha(ruta).cierre[1]);
+    if (z >= 0 && tels.every((l, j) => out[z + 1 + j] === l)) out.splice(z + 1, tels.length);
+  }
+  // ZONAS (T-70): cada zona lleva su telefono entre el parrafo y el enlace. Se quita el par
+  // solo si va justo delante del enlace de ESA zona.
+  for (const t of TELEFONOS.items) {
+    const z = out.findIndex((l, j) => l === t.zona.toUpperCase() && out[j + 1] === t.visible
+      && out[j + 2] === `View ${t.zona} Service Areas`);
+    if (z >= 0) out.splice(z, 2);
+  }
+  const filas = c.servicios?.detalle ?? [];
+  const k = filas.length ? out.indexOf(filas[0].titulo) : -1;
+  if (k > 0 && out[k - 1] === accion) out.splice(k - 1, 1);
+  for (const f of filas) { const j = out.indexOf(f.titulo); if (j >= 0) out[j] = capitalizaH2(f.titulo); }
+  return out;
+}
+
 function diferencias(ruta, esperado, hay) {
   const a = esperado.split('\n'), b = hay.split('\n');
   const declaradas = new Set(QUITADAS_A_PROPOSITO
@@ -3008,12 +4340,46 @@ function diferencias(ruta, esperado, hay) {
   return { falta, sobra, fuera };
 }
 
-const nav = await chromium.launch({ headless: false, args: ARGS_NAVEGADOR });
+/**
+ * ── ORDEN-CIUDADES-2 (27179ce, 6-oct-2026): REORDENADO YA EN PRODUCCION, DECLARADO AQUI ────────
+ *
+ * Ese commit subio la banda «Project Gallery» de `PaginaCiudad.astro` delante de los
+ * testimonios y actualizo `check-estructura-ciudades.mjs`, pero no esta puerta: las 55 rutas del
+ * CSV con la plantilla de ciudad salian ROJAS en `origin/main` con «faltan 0, sobran 0 · linea
+ * 19: orden cambiado» (STITCH-PARTE-5 §3.0, medido en /services/pool-builders/alachua-fl).
+ *
+ * Medido en STITCH-PARTE-7: es una ROTACION limpia de dos bloques contiguos. A = 26 lineas, de
+ * «TESTIMONIALS» a «See All Projects»; B = las 14 de la banda de galeria, que empiezan en
+ * «Project Gallery». El origen dice A+B; el build dice B+A. Mismas 40 lineas.
+ *
+ * Se deriva, no se enumera: la banda lleva el nombre de la ciudad, asi que 55 entradas a mano
+ * serian 55 sitios donde equivocarse. Si una ruta de ciudad no tiene los dos bloques donde se
+ * esperan, no se toca y sale roja por su propio pie.
+ */
+const BANDA_GALERIA_CIUDAD = 14;
+function subeGaleriaCiudad(ruta, lineas) {
+  if (!esCiudad(ruta)) return lineas;
+  const i = lineas.indexOf('TESTIMONIALS');
+  const j = i < 0 ? -1 : lineas.indexOf('Project Gallery', i);
+  if (i < 0 || j < 0 || lineas[j - 1] !== 'See All Projects') return lineas;
+  const b = lineas.slice(j, j + BANDA_GALERIA_CIUDAD);
+  if (b.length !== BANDA_GALERIA_CIUDAD) return lineas;
+  return [...lineas.slice(0, i), ...b, ...lineas.slice(i, j), ...lineas.slice(j + BANDA_GALERIA_CIUDAD)];
+}
+
+/* `--headless` (o MM_TEXTO_HEADLESS=1): la misma medicion sin ventana. OPCION EXPLICITA; por
+ * defecto sigue siendo visible, que es como se capturo el baseline (ver `lib/captura.mjs`: con
+ * ventana hay un puntero real y eventos que en headless no existen). Se anadio en ASTRO-1
+ * (12-oct-2026) tras comprobar, en una ruta por familia, que da el mismo veredicto que la
+ * visible; sirve para la corrida completa sin secuestrar la pantalla. */
+const HEADLESS = process.argv.includes('--headless') || process.env.MM_TEXTO_HEADLESS === '1';
+const nav = await chromium.launch({ headless: HEADLESS, args: ARGS_NAVEGADOR });
 const ctx = await nav.newContext({ viewport: { width: 1920, height: 1080 },
   deviceScaleFactor: 1, reducedMotion: 'no-preference' });
 const pag = await ctx.newPage();
 
 let ok = 0, mal = 0, noCargaron = 0, conResenas = 0, conBlog = 0, conObras = 0, conFeed = 0;
+let okPropias = 0, capturadas = 0, yaExistian = 0;
 const rojos = [];
 
 /**
@@ -3035,11 +4401,27 @@ const BLOG_ESPERADAS = lineasBlog().length ? 16 : 0;
 /** Las 79 rutas que montan `section.social-media`: home + 53 Ciudad + 14 servicios + 9 Condado
  *  + 2 Estado. Derivado del estado igual que los otros dos: con `items: []` se esperan 0, asi
  *  que vaciar el feed no obliga a editar la puerta. */
-const FEED_ESPERADAS = lineasFeed().length ? 79 : 0;
+// ASTRO-2 (T-42): las 14 fichas de `/services/` ya no montan el feed de Instagram: 79 - 14.
+const FEED_ESPERADAS = lineasFeed().length ? 65 : 0;
 
-for (const ruta of RUTAS) {
+for (const ruta of RUTAS_A_MEDIR) {
   const slug = aSlug(ruta);
   const ref = path.join(RAIZ, 'baseline/text', `${slug}.txt`);
+  const refPropia = path.join(DIR_PROPIO, `${slug}.txt`);
+  /* Construida y sin referencia: ROJO antes de abrir nada. No hace falta cargar la pagina
+   * para saber que no hay con que compararla. */
+  if (PROPIAS.has(ruta) && !CAPTURAR_PROPIO && !fs.existsSync(refPropia)) {
+    mal++;
+    const causa = 'CONSTRUIDA Y SIN REFERENCIA DE TEXTO — no esta en baseline/text ni en baseline/text-propio';
+    rojos.push({ ruta, falta: [], sobra: [], fuera: [causa] });
+    console.log(`  ROJO ${ruta} — ${causa}`);
+    continue;
+  }
+  if (PROPIAS.has(ruta) && CAPTURAR_PROPIO && fs.existsSync(refPropia)) {
+    yaExistian++;
+    console.log(`  --   ${ruta} — ya tiene referencia propia; NO se sobrescribe`);
+    continue;
+  }
   let resp = await pag.goto(BASE + ruta, { waitUntil: 'load', timeout: 30000 }).catch(() => null);
   if (!resp?.ok()) {
     /* UN SEGUNDO INTENTO ANTES DE CANTAR ROJO. La objecion es de R9-BLOG-01 y es buena:
@@ -3086,6 +4468,42 @@ for (const ruta of RUTAS) {
     console.log(`  ROJO ${ruta} — ${causa}`);
     continue;
   }
+  if (PROPIAS.has(ruta)) {
+    let estP;
+    try {
+      await pag.bringToFront();
+      estP = await asentar(pag);
+    } catch (e) {
+      mal++;
+      const causa = `MURIO LA MEDICION — ${String(e.message ?? e).split('\n')[0]}`;
+      rojos.push({ ruta, falta: [], sobra: [], fuera: [causa] });
+      console.log(`  ROJO ${ruta} — ${causa}`);
+      continue;
+    }
+    if (!estP.valida) { console.log(`  ROJO ${ruta} — medicion invalida ${JSON.stringify(estP.sonda)}`); mal++; continue; }
+    const medido = (await textoNormalizado(pag)).trimEnd();
+    if (CAPTURAR_PROPIO) {
+      fs.mkdirSync(DIR_PROPIO, { recursive: true });
+      fs.writeFileSync(refPropia, medido + '\n', { flag: 'wx' });   // 'wx': falla si existe
+      capturadas++;
+      console.log(`  capt ${ruta} — ${medido.split('\n').length} lineas`);
+      continue;
+    }
+    const hayP = medidoPropio(ruta, medido.split('\n')).join('\n');
+    const esperadoP = sinMayusculasDeCss(ruta, esperadoPropio(ruta, fs.readFileSync(refPropia, 'utf8').trimEnd().split('\n')).join('\n'), hayP);
+    if (hayP === esperadoP) { ok++; okPropias++; console.log(`  ok   ${ruta}   (referencia propia)`); continue; }
+    mal++;
+    // `MM_TEXTO_VOLCAR=<dir>`: tambien las rutas de referencia propia (solo diagnostico).
+    if (process.env.MM_TEXTO_VOLCAR) {
+      fs.mkdirSync(process.env.MM_TEXTO_VOLCAR, { recursive: true });
+      fs.writeFileSync(path.join(process.env.MM_TEXTO_VOLCAR, aSlug(ruta) + '.esperado.txt'), esperadoP);
+      fs.writeFileSync(path.join(process.env.MM_TEXTO_VOLCAR, aSlug(ruta) + '.medido.txt'), hayP);
+    }
+    const dP = diferencias(ruta, esperadoP, hayP);
+    rojos.push({ ruta, ...dP });
+    console.log(`  ROJO ${ruta} — faltan ${dP.falta.length} lineas, sobran ${dP.sobra.length}   (referencia propia)`);
+    continue;
+  }
   if (!fs.existsSync(ref)) { console.log(`  ROJO ${ruta} — no hay baseline de texto`); mal++; continue; }
 
   /**
@@ -3127,16 +4545,16 @@ for (const ruta of RUTAS) {
     rojos.push({ ruta, falta: [reescritoFallo], sobra: [], fuera: [] });
     continue;
   }
-  const sinOcultas = quitaOcultasDelIndice(ruta, quitaAntesDespues(ruta, baseReescrita));
+  const sinOcultas = quitaRetiradaD195(quitaOcultasDelIndice(ruta, quitaAntesDespues(ruta, baseReescrita)));
   if (sinOcultas === null) {
     mal++;
     console.log(`  ROJO ${ruta} — ${ocultasFallo}`);
     rojos.push({ ruta, falta: [ocultasFallo], sobra: [], fuera: [] });
     continue;
   }
-  const esperado = reordena(ruta, piePropio(ctaHeroe(ruta,
+  const esperadoCrudo = ordenFicha(ruta, subeGaleriaCiudad(ruta, reordena(ruta, heroAStitch(ruta, cascaronStitch(piePropio(ctaHeroe(ruta,
     sinOcultas
-      .filter((l) => !declaradas.has(l)).map((l) => traduce(ruta, l))))).join('\n');
+      .filter((l) => !declaradas.has(l)).map((l) => traduce(ruta, l))))))))).join('\n');
   const bruto = (await textoNormalizado(pag)).trimEnd();
   if (bruto.includes(RESENAS_MARCADOR)) conResenas++;
   if (enBlogRutas(ruta) && lineasBlog(ruta).length
@@ -3148,7 +4566,7 @@ for (const ruta of RUTAS) {
    * acusando de «se ha colado en alguna ruta de mas». El descuento de `sinElBloque` nunca
    * estuvo afectado: alli se compara sobre el ARRAY, o sea linea completa. */
   if (lineasFeed().length && bruto.split('\n').includes(lineasFeed()[0])) conFeed++;
-  const hay = sinElBloque(ruta, bruto);
+  const hay = sinElBloque(ruta, listasStitch(ruta, marcaCabecera(bruto.split('\n'))).join('\n'));
   if (hay === null) {
     mal++;
     /* Cual de los dos bloques fallo. Antes esto leia `ANADIDAS_A_PROPOSITO[ruta].bloque` a
@@ -3159,6 +4577,7 @@ for (const ruta of RUTAS) {
     rojos.push({ ruta, falta: [`${cual}: presente pero no seguido y en orden`], sobra: [], fuera: [] });
     continue;
   }
+  const esperado = sinMayusculasDeCss(ruta, esperadoCrudo, hay);
   if (hay === esperado) {
     ok++;
     console.log(`  ok   ${ruta}${ANADIDAS_A_PROPOSITO[ruta] ? '   (con el bloque declarado de '
@@ -3171,6 +4590,13 @@ for (const ruta of RUTAS) {
   rojos.push({ ruta, ...d });
   /* `MM_TEXTO_DIFF=1`: vuelca esperado/medido alrededor de la primera linea distinta. Solo
    * diagnostico (SEO-REMEDIACION, 4-oct-2026); no cambia el veredicto. */
+  /* `MM_TEXTO_VOLCAR=<dir>`: escribe esperado y medido enteros de cada ruta en rojo. Solo
+   * diagnostico (REDISEÑO STITCH, ASTRO-1); no cambia el veredicto. */
+  if (process.env.MM_TEXTO_VOLCAR) {
+    fs.mkdirSync(process.env.MM_TEXTO_VOLCAR, { recursive: true });
+    fs.writeFileSync(path.join(process.env.MM_TEXTO_VOLCAR, aSlug(ruta) + '.esperado.txt'), esperado);
+    fs.writeFileSync(path.join(process.env.MM_TEXTO_VOLCAR, aSlug(ruta) + '.medido.txt'), hay);
+  }
   if (process.env.MM_TEXTO_DIFF) {
     const a = esperado.split('\n'); const b = hay.split('\n');
     const k = a.findIndex((l, i) => l !== b[i]);
@@ -3196,7 +4622,18 @@ if (rojos.length) {
 /* Sin tercer cubo a proposito: todo lo que no es `ok` es `mal`, y `mal` manda en el
  * veredicto y en el codigo de salida. El motivo de cada rojo —diferencia, baseline
  * ausente, medicion invalida o pagina que no carga— va en el detalle de arriba. */
-console.log(`\n  ${ok} identicas · ${mal} en rojo   (${ok + mal}/${RUTAS.length} rutas medidas)`);
+if (soloMayusculas) {
+  console.log(`\n  --   T-69: ${soloMayusculas} linea(s) de rotulo en VERSALITAS (\`uppercase\` de CSS: .mm-etiqueta, .mm-dato-rot, cabeceras de .mm-tabla), dadas por la misma.`);
+  console.log(`       Solo cuenta la linea medida que es la esperada ENTERA en mayusculas (D-135). Son ${rotulosT69.size} rotulo(s) distinto(s):`);
+  for (const [l, n] of [...rotulosT69].sort((a, b) => b[1] - a[1])) console.log(`         ${String(n).padStart(4)} × ${l.slice(0, 70)}`);
+}
+if (CAPTURAR_PROPIO) {
+  console.log(`\n  CAPTURA DE REFERENCIA PROPIA: ${capturadas} escritas · ${yaExistian} ya existian y no se tocaron`
+    + ` · ${mal} fallidas   (${RUTAS_PROPIAS.length} rutas propias)\n`);
+  process.exit(mal ? 1 : 0);
+}
+console.log(`\n  ${ok} identicas · ${mal} en rojo   (${ok + mal}/${RUTAS_A_MEDIR.length} rutas medidas:`
+  + ` ${RUTAS.length} con referencia de Webflow + ${RUTAS_PROPIAS.length} con referencia propia, ${okPropias} de ellas en verde)`);
 
 /* DIAGNOSTICO, no puerta. `noCargaron` NO tiene camino propio en el veredicto —ya sumo en
  * `mal`—: esto solo separa «el sitio esta roto» de «el andamio esta roto», que es la

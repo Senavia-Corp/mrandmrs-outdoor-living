@@ -1,0 +1,17 @@
+{
+  "_lee_esto": [
+    "LISTA COMPLEMENTARIA DE FOTOS DE GALERIA (D-124).",
+    "El mosaico de la ficha de un servicio pinta primero las fotos de su galeria que",
+    "`gallery-procedencia.json` da por usables y, detras, las demas fotos de esa misma galeria",
+    "que constan en ese registro, menos las de `excluidas`.",
+    "Solo en el mosaico de la ficha de su propio servicio, y sin pie de foto.",
+    "`ilustraciones` (D-185): las que el registro da por imagen sintetica y aun asi se pintan en la ficha de su servicio. Su `alt` empieza por «Illustration»; nunca en proyectos ni con pie de obra."
+  ],
+  "complementarias": "las demas fotos de la galeria del servicio que constan en `gallery-procedencia.json`, menos `excluidas`",
+  "excluidas": [
+    "/images/images/pool-screen-1/pool-screen-enclosure-builders-florida-01.jpg"
+  ],
+  "ilustraciones": {
+    "/images/images/light-3/smart-soffit-led-lighting-installation-contractors-florida-03.jpg": "Illustration of permanent LED soffit lighting outlining the roofline of a two-story home at dusk"
+  }
+}
