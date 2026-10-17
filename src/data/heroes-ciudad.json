@@ -60,25 +60,25 @@
       "lake-city-fl": "bi-0487"
     },
     "dixie-county-fl": {
-      "cross-city-fl": "bi-1057",
-      "old-town-fl": "bi-0501"
+      "cross-city-fl": "bi-1024",
+      "old-town-fl": "bi-0486"
     },
     "gilchrist-county-fl": {
       "trenton-fl": "bi-1024"
     },
     "levy-county-fl": {
-      "cedar-key-fl": "bi-0508",
+      "cedar-key-fl": "bi-0487",
       "chiefland-fl": "bi-1024",
-      "fanning-springs-fl": "bi-0661",
-      "williston-fl": "bi-1286"
+      "fanning-springs-fl": "bi-0969",
+      "williston-fl": "bi-0614"
     },
     "marion-county-fl": {
-      "mcintosh-fl": "bi-0504",
-      "ocala-fl": "bi-1275",
-      "reddick-fl": "bi-1014"
+      "mcintosh-fl": "bi-0614",
+      "ocala-fl": "bi-0486",
+      "reddick-fl": "bi-1024"
     },
     "putnam-county-fl": {
-      "palatka-fl": "bi-0662"
+      "palatka-fl": "bi-0487"
     },
     "broward-county-fl": {
       "dania-beach-fl": "bi-1024",
@@ -195,7 +195,7 @@
       },
       "tabla": {},
       "seccionPorCiudad": {
-        "_lee_esto": "FAQ, cierre y resenas por ciudad (L6a). Cierre bi-0614 (4) o bi-1280 (4). Cada resena conserva la proporcion de la que sustituye (D-232): 3:4 por 3:4, 4:3 por 4:3, y la 16:9 de Alachua por una 3:2 exacta (bi-1550, la copia de bi-1294 sin la fila de mas).",
+        "_lee_esto": "FAQ, cierre y resenas por ciudad (L6a y L6b). Cierre bi-0614 (4) o bi-1280 (4). Cada resena conserva la proporcion de la que sustituye (D-232): 3:4 por 3:4, 4:3 por 4:3, y la 16:9 de Alachua por una 3:2 exacta (bi-1550, la copia de bi-1294 sin la fila de mas).",
         "alachua-fl": ["bi-1280", "bi-0614", "bi-1550"],
         "archer-fl": ["bi-1280", "bi-0614", "bi-0237"],
         "gainesville-fl": ["bi-0614", "bi-1280", "bi-1024"],
@@ -204,7 +204,17 @@
         "micanopy-fl": ["bi-1284", "bi-0614", "bi-1280"],
         "newberry-fl": ["bi-1284", "bi-0614", "bi-1287"],
         "trenton-fl": ["bi-1284", "bi-0614", "bi-1280"],
-        "waldo-fl": ["bi-1280", "bi-1284", "bi-0614"]
+        "waldo-fl": ["bi-1280", "bi-1284", "bi-0614"],
+        "cedar-key-fl": ["bi-1284", "bi-0614", "bi-1280"],
+        "chiefland-fl": ["bi-1280", "bi-1284", "bi-0614"],
+        "cross-city-fl": ["bi-1284", "bi-1280", "bi-0614"],
+        "fanning-springs-fl": ["bi-1284", "bi-0614", "bi-1280"],
+        "williston-fl": ["bi-1284", "bi-1280", "bi-1024"],
+        "mcintosh-fl": ["bi-1280", "bi-1284", "bi-1024"],
+        "ocala-fl": ["bi-1284", "bi-0614", "bi-1280"],
+        "reddick-fl": ["bi-1284", "bi-1280", "bi-0614"],
+        "palatka-fl": ["bi-1280", "bi-0614", "bi-0237"],
+        "old-town-fl": ["bi-1280", "bi-0614", "bi-1550"]
       }
     },
     "pool-remodeling": {
