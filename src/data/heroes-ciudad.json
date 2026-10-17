@@ -172,13 +172,13 @@
     "_lee_esto": "E13 etapa 3: el hero de la pagina de cada condado. Ninguno es el de una de sus ciudades (`heroe-ciudad.mjs` lo comprueba con la misma regla). Broward y Palm Beach llevan bi-0661 y bi-0662, de region south_fl en el banco, que sus ciudades no usan; Marion, bi-0520 (obra a ~29 km de Ocala por GPS, probable y no verificada: el alt no lo dice).",
     "alachua-county-fl": "bi-0487",
     "broward-county-fl": "bi-1016",
-    "columbia-county-fl": "bi-1057",
-    "dixie-county-fl": "bi-1010",
-    "gilchrist-county-fl": "bi-1287",
-    "levy-county-fl": "bi-0486",
-    "marion-county-fl": "bi-0520",
+    "columbia-county-fl": "bi-0614",
+    "dixie-county-fl": "bi-0487",
+    "gilchrist-county-fl": "bi-0614",
+    "levy-county-fl": "bi-0487",
+    "marion-county-fl": "bi-0487",
     "palm-beach-county-fl": "bi-0662",
-    "putnam-county-fl": "bi-1014"
+    "putnam-county-fl": "bi-1024"
   },
   "lugar": {
     "_lee_esto": "D-204: donde se hizo la foto, por el GPS de su original (lo leyo el director con mdls; esa tabla no va a la rama publica y no guarda coordenadas). Solo ciudad o condado. El hero de una pagina por tabla anade «in <Ciudad>, FL» o «in <Condado> County» a su alt y a su pie SOLO si la pagina es de esa ciudad o de ese condado. Nada entra aqui sin esa tabla delante.",
@@ -192,12 +192,13 @@
       "_lee_esto": "LOOP-AREAS L6a (D-233): sin tabla propia; el hero sigue en porCondado. Aqui va el apoyo por ciudad. Con el limpiafondos pequeno y lateral como 3 (D-233), las de hero con foco de piscina son bi-0486 (4/3), bi-1024, bi-0487 y bi-0969 (3/3). En piscina un condado no repite hero (check:estructura:ciudades, E13): en Alachua ya estan bi-0487 (condado) y bi-0486 (Micanopy), asi que Hawthorne lleva bi-1024 y Waldo bi-0969; Desde D-234 la puerta admite repetir si se declara: Archer, Gainesville y Newberry repiten bi-0486, bi-0487 y bi-1024.",
       "repetidas": {
         "palm-beach-county-fl": {"max": 3, "motivo": "foco (D-220, D-235): cinco heros de piscina para 17 paginas; el tercer uso de cada una corrige un hero cuyo foco no era la piscina (Atlantis, Tequesta, South Palm Beach) o de nota 1 (Ocean Ridge, Royal Palm Beach). bi-0969: Manalapan, Delray Beach, Royal Palm Beach; bi-0486: Palm Beach Gardens, Juno Beach, Atlantis; bi-0614: Boynton Beach, Jupiter, Tequesta; bi-1024: West Palm Beach, Wellington, South Palm Beach; bi-0487: Boca Raton, North Palm Beach, Ocean Ridge"},
+        "levy-county-fl": {"max": 2, "motivo": "calidad (D-206, D-234): la pagina del condado deja bi-0486, que su galeria ya ensena (pool-remodeling-4 es la misma foto), y repite bi-0487 con Cedar Key; las otras cuatro de piscina ya estan en Levy"},
         "broward-county-fl": {"max": 3, "motivo": "foco (D-220, D-235): cinco heros de piscina para 16 paginas; bi-0486 sale tres veces (Southwest Ranches, Fort Lauderdale y Hollywood, que dejaba la pergola de foco); las demas, dos: bi-0614 en Deerfield Beach y Pembroke Pines, bi-0969 en Hallandale Beach y Hillsboro Beach, bi-1024 en Dania Beach y Miramar, bi-0487 en Davie y Wilton Manors"},
         "alachua-county-fl": {"max": 2, "motivo": "calidad (D-206, D-234): cuatro heros de piscina pasan el juez para 9 paginas; bi-0486 en Micanopy y Archer, bi-1024 en Hawthorne y Newberry, bi-0487 en el condado y Gainesville"}
       },
       "tabla": {},
       "seccionPorCiudad": {
-        "_lee_esto": "FAQ, cierre y resenas por ciudad (L6a, L6b, L7, L8a y L8b). Cierre bi-0614 (4) o bi-1280 (4). Cada resena conserva la proporcion de la que sustituye (D-232): 3:4 por 3:4, 4:3 por 4:3, y la 16:9 de Alachua por una 3:2 exacta (bi-1550, la copia de bi-1294 sin la fila de mas).",
+        "_lee_esto": "FAQ, cierre y resenas por ciudad y por condado (L6a a L9). Cierre bi-0614 (4) o bi-1280 (4). Cada resena conserva la proporcion de la que sustituye (D-232): 3:4 por 3:4, 4:3 por 4:3, y la 16:9 de Alachua por una 3:2 exacta (bi-1550, la copia de bi-1294 sin la fila de mas).",
         "alachua-fl": ["bi-1280", "bi-0614", "bi-1550"],
         "archer-fl": ["bi-1280", "bi-0614", "bi-0237"],
         "gainesville-fl": ["bi-0614", "bi-1280", "bi-1024"],
@@ -247,7 +248,16 @@
         "south-palm-beach-fl": ["bi-1280", "bi-0614", "bi-0237"],
         "tequesta-fl": ["bi-0237", "bi-1284", "bi-1024"],
         "wellington-fl": ["bi-1284", "bi-0614", "bi-1280"],
-        "west-palm-beach-fl": ["bi-0237", "bi-1280", "bi-0614"]
+        "west-palm-beach-fl": ["bi-0237", "bi-1280", "bi-0614"],
+        "alachua-county-fl": ["bi-1280", "bi-0614", "bi-1550"],
+        "broward-county-fl": ["bi-1280", "bi-0614", "bi-0237"],
+        "columbia-county-fl": ["bi-1280", "bi-0487", "bi-1284"],
+        "dixie-county-fl": ["bi-0237", "bi-1284", "bi-0614"],
+        "gilchrist-county-fl": ["bi-1284", "bi-0487", "bi-1280"],
+        "levy-county-fl": ["bi-1280", "bi-1284", "bi-0614"],
+        "marion-county-fl": ["bi-1284", "bi-0614", "bi-1280"],
+        "palm-beach-county-fl": ["bi-0614", "bi-1284", "bi-1280"],
+        "putnam-county-fl": ["bi-1284", "bi-0614", "bi-1280"]
       }
     },
     "pool-remodeling": {

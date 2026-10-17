@@ -1617,8 +1617,8 @@ const MAPA_FLORIDA = '<svg class="mm-mapa" viewBox="0 0 420 460" aria-hidden="tr
 
 /** El hero partido (A) de una pagina sin obra propia: titular, subtitulo, parrafo, el boton del
  *  origen en oro y, al lado, una foto de la bolsa de heroes (obra real, terminada, con alt). */
-function heroPartido(doc, ruta, { h1, sub, p, a, k, extra = '', clase = '' }) {
-  const e = BANCO_POR_ID.get(BOLSA_BANDA[k % BOLSA_BANDA.length]);
+function heroPartido(doc, ruta, { h1, sub, p, a, k, id, extra = '', clase = '' }) {
+  const e = BANCO_POR_ID.get(id ?? BOLSA_BANDA[k % BOLSA_BANDA.length]);
   if (!e || e.procedencia !== 'obra_real' || !e.alt) throw new Error(`${ruta}: la foto ${k} de la bolsa no es obra real con alt`);
   const nh = doc.createElement('section');
   nh.setAttribute('class', `mm-hero-a${clase ? ` ${clase}` : ''}`);
@@ -1643,7 +1643,8 @@ function zonasPaginaStitch(doc, ruta) {
   const hero = doc.querySelector('section.half-hero-section');
   const [h1, sub, p, a] = ['h1', 'h2', '.wrapper-hero-page p', '.wrapper-hero-page a'].map((q) => hero?.querySelector(q));
   if (!h1 || !sub || !p || !a) falta('el hero no trae titular, subtitulo, parrafo y boton');
-  hero.replaceWith(heroPartido(doc, ruta, { h1, sub, p, a, k: 1, clase: 'mm-hero-a--bajo' }));
+  // LOOP-AREAS L9: la 1 de la bolsa (bi-0501) lleva la manguera del limpiafondos en el centro y una canasta; la piscina en L, de dron.
+  hero.replaceWith(heroPartido(doc, ruta, { h1, sub, p, a, id: 'bi-0486', clase: 'mm-hero-a--bajo' }));
 
   const tr = doc.querySelector('section.trusted-section');
   const [th2, tp, ta] = ['.block-contect-intro h2', '.block-contect-intro p', '.block-contect-intro a'].map((q) => tr?.querySelector(q));
