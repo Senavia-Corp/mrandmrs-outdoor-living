@@ -1,0 +1,10 @@
+{
+  "_lee_esto": "Excepciones de check-publicar. Solo las añade el director con su D-nnn en el buzón.",
+  "hero_sin_imagen": { "motivo": "D-255a: rutas con hero de texto (.mm-hero-d); no se exige preload", "selector": ".mm-hero-d" },
+  "alt_vacio_permitido": { "motivo": "D-255b: marquesina de logos, decorativa", "selectores": [".mm-logos img"] },
+  "sin_img_en_main": { "motivo": "D-255c", "rutas": ["/pool-cost-estimator", "/pool-investment-estimator"] },
+  "fuera_del_enlazado": { "motivo": "D-255d: noindex y fuera del sitemap", "rutas": ["/thank-you"] },
+  "titulo_largo": { "motivo": "ninguna declarada: se corrigen en L1", "rutas": [] },
+  "descripcion_larga": { "motivo": "ninguna declarada: se corrigen en L1", "rutas": [] },
+  "pares_parecidos": { "motivo": "D-250: pares de ciudades que legítimamente se parecen; ninguno hoy", "pares": [] }
+}
