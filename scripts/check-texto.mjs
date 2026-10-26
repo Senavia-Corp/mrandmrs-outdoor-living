@@ -4442,12 +4442,13 @@ const rojos = [];
  * el bloque en ninguna, asi que esperar 83 fallaria solo al apagar. Apagar y encender no
  * puede exigir editar la puerta.
  */
-const RESENAS_ESPERADAS = lineasResenas().length ? 83 : 0;
+// D-249 (L0b) / D-283: 83 -> 82. La ficha de Soffit, retirada con 308 a /services/louvered-roofs, montaba el bloque.
+const RESENAS_ESPERADAS = lineasResenas().length ? 82 : 0;
 
-/** Las 14 fichas de `services/` + las 2 de `where-we-serves/`. Derivado del estado, igual que
+/** Las 13 fichas de `services/` + las 2 de `where-we-serves/` (D-249 / D-283: eran 14 fichas; Soffit sale). Derivado del estado, igual que
  *  el de reseñas: si el dato se vacia, se esperan 0 y apagar la seccion no obliga a editar la
  *  puerta. */
-const BLOG_ESPERADAS = lineasBlog().length ? 16 : 0;
+const BLOG_ESPERADAS = lineasBlog().length ? 15 : 0;
 
 /** Las 79 rutas que montan `section.social-media`: home + 53 Ciudad + 14 servicios + 9 Condado
  *  + 2 Estado. Derivado del estado igual que los otros dos: con `items: []` se esperan 0, asi
