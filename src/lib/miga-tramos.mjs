@@ -47,6 +47,17 @@ const SIN_PAGINA = new Set(['services', 'articles']);
 const ITEM_DE = { blogs: '/blogs-tips', project: '/projects' };
 
 const capitaliza = (s) => s.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+/* S6 / L5 de PUBLICAR (26-oct-2026): el ultimo escalon de una obra o un articulo es su TITULO, no el slug
+ * capitalizado («Aluminum Patio Cover & Pool Deck», no «Aluminum Patio Cover Pool Deck South Florida»). Se lee
+ * de los mismos datos que pintan la pagina; lo que no este ahi sigue saliendo del slug. */
+import fs from 'node:fs';
+import path from 'node:path';
+const leeJson = (p) => { try { return JSON.parse(fs.readFileSync(path.join(process.cwd(), p), 'utf8')); } catch { return null; } };
+const sinHtml = (t) => String(t ?? '').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+const TITULO_OBRA = Object.fromEntries([...(leeJson('src/data/proyectos-propios.json')?.obras ?? []), ...(leeJson('src/data/obras-migradas.json')?.obras ?? [])]
+  .map((o) => [o.slug, sinHtml(o.titulo ?? o.tituloHtml)]).filter(([, t]) => t));
+const TITULO_ARTICULO = Object.fromEntries((leeJson('src/data/blogs-sanity.json') ?? []).map((p) => [p.slug, sinHtml(p.title)]).filter(([, t]) => t));
+const tituloDe = (padre, slug) => (padre === 'project' ? TITULO_OBRA[slug] : padre === 'blogs' ? TITULO_ARTICULO[slug] : null);
 /** `ocala-fl` -> «Ocala, FL»; `palm-beach-county-fl` -> «Palm Beach County, FL». */
 const titula = (s) => NOMBRE_TRAMO[s]
   ?? (/-fl$/.test(s) ? `${capitaliza(s.replace(/-fl$/, ''))}, FL` : capitaliza(s));
@@ -57,10 +68,10 @@ export function tramosMiga(ruta) {
   if (!tramos.length) return [];
   const items = [{ nombre: 'Home', href: '/' }];
   let acum = '';
-  for (const t of tramos) {
+  for (const [k, t] of tramos.entries()) {
     acum += `/${t}`;
     if (SIN_PAGINA.has(t)) continue;
-    items.push({ nombre: titula(t), href: ITEM_DE[t] ?? acum });
+    items.push({ nombre: (k === 1 && tituloDe(tramos[0], t)) || titula(t), href: ITEM_DE[t] ?? acum });
   }
   return items;
 }

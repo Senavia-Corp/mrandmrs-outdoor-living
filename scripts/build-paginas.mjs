@@ -1861,7 +1861,7 @@ function proyectoStitch(doc, ruta) {
   if (fotos.length < 2) falta(`la galeria solo trae ${fotos.length} foto(s)`);
   const datos = [...caja.querySelectorAll('.heading-deco')].map((r) => [r.textContent.trim(), r.nextElementSibling?.textContent.trim() ?? '']);
   const tmp = doc.createElement('div');
-  tmp.innerHTML = heroProyectoHtml({ tituloHtml: h1.innerHTML, resumenHtml: resumen.innerHTML, fotos })
+  tmp.innerHTML = heroProyectoHtml({ tituloHtml: h1.innerHTML, resumenHtml: resumen.innerHTML, fotos, tramos: tramosMiga(ruta) })
     + detalleProyectoHtml({ tituloHtml: dh2.innerHTML, datos, fotos, accion: { href: boton.getAttribute('href'), texto: boton.textContent.trim() }, telefonos: TELEFONOS })
     + cierreProyectoHtml({ tituloHtml: bh2.innerHTML, parrafoHtml: bp.innerHTML, telefonos: TELEFONOS });
   const [nh, nd, nc] = [...tmp.children];
@@ -3570,6 +3570,19 @@ for (const [ruta] of RUTAS) {
   }
   /* S3 (D-254, L3a de PUBLICAR): el condado gana un `FAQPage` derivado del MISMO array que pinta el acordeon y un
    * `Service` prestado por #negocio en el condado (AdministrativeArea). `check-seo.mjs` los declara en BLOQUES_PROPIOS. */
+  /* L5 de PUBLICAR (6.5): en las fichas de obra heredadas, `about` pasa de Project (una organizacion en schema.org) a
+   * CreativeWork y las URL relativas se vuelven absolutas; `check-seo.mjs` lo declara ruta a ruta desde el baseline. */
+  if (esProyecto(ruta) && jsonLd[0]) {
+    const b = jsonLd[0]; const abs = (p) => (typeof p === 'string' && p.startsWith('/') ? `${SITIO_ABS}${p}` : p);
+    if (b.about?.['@type'] === 'Project') b.about['@type'] = 'CreativeWork';
+    b.url = abs(b.url); if (b.image?.url) b.image.url = abs(b.image.url); if (b.about?.image) b.about.image = abs(b.about.image);
+  }
+  /* L5 de PUBLICAR (6.5): /gallery gana un ImageGallery propio cuyas partes son las 14 galerias por categoria. */
+  if (ruta === '/gallery') {
+    const cats = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/galeria-categorias.json'), 'utf8')).categorias;
+    jsonLd.push({ '@context': 'https://schema.org', '@type': 'ImageGallery', '@id': `${SITIO_ABS}/gallery#galeria`, name: 'Project Gallery', url: `${SITIO_ABS}/gallery`,
+      hasPart: cats.map((c) => ({ '@type': 'ImageGallery', name: c.h1, url: `${SITIO_ABS}/gallery/${c.slug}` })) });
+  }
   if (esCondado(ruta)) {
     const local = bloqueLocal(ruta);
     const abs = `${SITIO_ABS}${ruta}`;

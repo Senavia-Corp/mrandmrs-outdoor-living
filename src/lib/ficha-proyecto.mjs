@@ -36,11 +36,15 @@ const boton = (f, k, n, clase, extra) => `<button type="button" class="${clase}"
  * @param {{ tituloHtml: string, resumenHtml: string, fotos: {src:string, alt:string, w:number, h:number}[] }} p
  *   `fotos[0]` es la portada. `tituloHtml` y `resumenHtml` llegan ya como HTML del origen.
  */
-export function heroProyectoHtml({ tituloHtml, resumenHtml, fotos }) {
+export function heroProyectoHtml({ tituloHtml, resumenHtml, fotos, tramos = [] }) {
   const [portada] = fotos;
   if (!portada?.w || !portada?.h) throw new Error('ficha-proyecto: la portada no trae medidas');
+  // S6 (D-254, L5 de PUBLICAR): la miga a la vista, con el titulo de la obra como ultimo escalon (miga-tramos.mjs).
+  const escT = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+  const miga = tramos.length > 1 ? '<nav class="mm-miga" aria-label="Breadcrumb"><ol>'
+    + tramos.map((t, k) => (k === tramos.length - 1 ? `<li aria-current="page">${escT(t.nombre)}</li>` : `<li><a href="${t.href}">${escT(t.nombre)}</a></li>`)).join('') + '</ol></nav>' : '';
   return '<section class="mm-hero-c"><div class="mm-hero-c-caja">'
-    + `<div class="mm-hero-c-txt"><h1 class="mm-h1">${tituloHtml}</h1><p class="mm-p">${resumenHtml}</p></div>`
+    + `<div class="mm-hero-c-txt">${miga}<h1 class="mm-h1">${tituloHtml}</h1><p class="mm-p">${resumenHtml}</p></div>`
     + `<figure class="mm-hero-c-medio">${boton(portada, 0, fotos.length, 'mm-hero-c-foto',
       'sizes="(min-width: 1440px) 1312px, 100vw" loading="eager" fetchpriority="high" decoding="async"')}</figure>`
     + '</div></section>';

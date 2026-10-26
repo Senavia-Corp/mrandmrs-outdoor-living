@@ -1581,3 +1581,25 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
  * regla de oro del sistema y el cuerpo mas grande, sin tocar el texto ni su orden. */
 .mm-prosa--art > p:first-child { margin: 0 0 var(--mm-e-32); padding: 0 0 var(--mm-e-24) var(--mm-e-20); border-left: 3px solid var(--mm-oro); border-bottom: 1px solid var(--mm-borde); font-size: 19px; line-height: 1.5; font-weight: 500; color: var(--mm-navy); text-wrap: pretty; }
 
+/* ── S5 parte 2 (D-254, L5 de PUBLICAR, 26-oct-2026) · FIRMA Y FECHAS DEL ARTICULO ─────────────────────────
+ * Una linea bajo el lede: quien firma y cuando se publico y actualizo. Separador en ::before, fuera del texto. */
+.mm-art-meta { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--mm-e-4) var(--mm-e-12); font-size: 14px; line-height: 1.5; color: var(--mm-tinta-suave); }
+.mm-art-meta li + li::before { content: "\00b7"; margin-right: var(--mm-e-12); }
+.mm-art-meta time { font-variant-numeric: tabular-nums; }
+.mm-hero-c--art .mm-hero-c-txt { gap: var(--mm-e-12); }
+/* Por debajo de 992 px la firma y las fechas van una por linea, sin el punto separador (que al partir la linea quedaba delante). */
+@media (max-width: 991px) {
+  .mm-art-meta { flex-direction: column; gap: var(--mm-e-4); }
+  .mm-art-meta li + li::before { content: none; margin: 0; }
+}
+@media (min-width: 992px) {
+  /* S6: la miga ocupa la primera fila entera del hero de obra, no una celda junto al titular. */
+  .mm-hero-c-txt > .mm-miga { grid-column: 1 / -1; align-self: start; }
+  /* S5 parte 2: en el articulo la firma va como antetitulo, encima del h1, a todo el ancho; el DOM sigue siendo
+   * titulo, lede, firma (orden de lectura), y por debajo de 992 px se ve en ese orden. */
+  .mm-hero-c--art .mm-art-meta { grid-column: 1 / -1; grid-row: 1; margin-bottom: calc(-1 * var(--mm-e-24)); }
+  .mm-hero-c--art .mm-h1 { grid-row: 2; }
+  .mm-hero-c--art .mm-hero-c-medio { grid-row: 3; }
+  .mm-hero-c--art .mm-p { grid-row: 3; }
+}
+

@@ -31,6 +31,7 @@ import { OCULTAS, lineasFiltro } from '../src/lib/filtro-proyectos.mjs';
 import { CATEGORIAS_PISCINA } from '../src/lib/blog-groq.mjs';
 import { enlazadoDeCiudad, CONDADO_DE_RUTA, nombreCondado, zonaDeCondado } from '../src/lib/vecinas.mjs';
 import { bloqueLocal, lineasLocal } from '../src/lib/local-ciudad.mjs';
+import { metaArticulo, ledeRepetido } from '../src/lib/articulo-meta.mjs';
 import { fotoDeHeroe } from '../src/lib/heroe-ciudad.mjs';
 import { lineasDiferenciales } from '../src/lib/diferenciales.mjs';
 import { ciudadesDeFicha, SERVICIOS_CIUDAD } from '../src/lib/servicios-ciudad.mjs';
@@ -1492,6 +1493,11 @@ function lineasDonde() {
     ...(p.faq ?? []).map((q) => capitalizaH2(q.pregunta ?? q.question)), p.title];   // las preguntas van en summary h3: capitalize
 }
 const LINEAS_ANADIDAS = [
+  /* S5 parte 2 (D-254, L5 de PUBLICAR, 26-oct-2026, T-275…T-277): la firma y las fechas del articulo, en los 37 de
+   * referencia propia; los 10 heredados las llevan en `lineasArticuloReescrito`. Derivadas de la misma funcion. */
+  ...(() => { const rees = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/blog-reescritos.json'), 'utf8')).rutas ?? {};
+    return JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/blogs-sanity.json'), 'utf8')).filter((p) => !rees[`/blogs/${p.slug}`])
+      .map((p) => ({ rutas: [`/blogs/${p.slug}`], tras: [], lineas: metaArticulo(p).lineas, motivo: 'S5 parte 2 (L5, T-275…T-277): firma y fechas del articulo, derivadas de articulo-meta.mjs' })); })(),
   /* S2 / S3 (D-254, L3a de PUBLICAR, 25-oct-2026, T-247…): el bloque local de las 53 ciudades de piscina y los 9
    * condados, DERIVADO de la misma funcion que lo pinta (`src/lib/local-ciudad.mjs`): titular (capitalize de
    * `.mm-h2`), parrafo en las 9 de D-252, la frase de condado y zona, el rotulo en versalitas y el alt de cada foto
@@ -3423,6 +3429,7 @@ function lineasArticuloReescrito(ruta) {
   const rel = (p.relacionados ?? []).filter((r) => r?.slug && r?.portada);
   return [
     capitaliza(normLinea(p.title)), normLinea(p.summary),
+    ...metaArticulo(p).lineas,   // S5 parte 2 (L5): firma y fechas, de la misma funcion que las pinta
     ...lineasCuerpoArticulo(p.blog, ruta),
     ...(faq.length ? [capitaliza('Common questions'), ...faq.flatMap((f) => [capitaliza(normLinea(f.question)), normLinea(f.answer)])] : []),
     ...(fuentes.length ? ['Sources', ...fuentes.map((f) => normLinea(f.label))] : []),
@@ -3712,6 +3719,8 @@ function fichaProyectoTexto(ruta, lineas) {
     const i = out.findIndex((_, k) => bloque.every((l, j) => out[k + j] === l));
     if (i >= 0) out.splice(i, bloque.length); else faltas.push(que);
   };
+  // S6 (D-254, L5 de PUBLICAR): la miga a la vista en el hero, derivada de `miga-tramos.mjs` (ultimo escalon = titulo de la obra).
+  quita(tramosMiga(ruta).map((t) => t.nombre), 'la miga del hero de la obra (S6, T-278)');
   const d = out.indexOf('Project Details');
   const b = d < 0 ? -1 : out.indexOf('Get A Free Estimate', d);
   if (b > d && hayTels(b + 1)) out.splice(b + 1, tels.length); else faltas.push('los dos telefonos de «Project Details» (T-56)');
@@ -3752,11 +3761,11 @@ function articuloTexto(ruta, lineas) {
    * `[slug].astro` no lo pinta dos veces. Se repone aqui, detras del titular, con la misma regla y la misma cache. */
   {
     const p = CACHE_BLOG_REESCRITOS.find((x) => `/blogs/${x.slug}` === ruta);
-    const b = p?.blog?.find((x) => x?._type === 'block' && (x.style ?? 'normal') === 'normal' && !x.listItem);
-    const primero = b ? normLinea((b.children ?? []).map((c) => c.text ?? '').join('')) : null;
-    if (p && primero && primero === normLinea(p.summary)) {
+    // L5: misma regla que la plantilla (primera frase), de `articulo-meta.mjs`; se repone el summary tal cual.
+    if (p && ledeRepetido(p)) {
       const t = out.indexOf(capitaliza(normLinea(p.title)));
-      if (t >= 0 && out[t + 1] !== primero) out.splice(t + 1, 0, primero);
+      const resumen = normLinea(p.summary);
+      if (t >= 0 && out[t + 1] !== resumen) out.splice(t + 1, 0, resumen);
     }
   }
   const tels = TELEFONOS.items.map((t) => t.visible);

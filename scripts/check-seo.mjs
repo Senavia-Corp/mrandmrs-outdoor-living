@@ -294,6 +294,13 @@ function apartaUnBloquePropio(ruta, lista, problemas, d) {
     if (o['@type'] !== d.tipo) { quedan.push(b); continue; }
     visto++;
     if (d.tipo === 'Service') { for (const m of validaServicioPropio(o, ruta)) problemas.push(`Service propio: ${m}`); continue; }
+    if (d.tipo === 'ImageGallery') {
+      const partes = Array.isArray(o.hasPart) ? o.hasPart : [];
+      if (o['@id'] !== `${SITIO_R22}${ruta}#galeria`) problemas.push(`ImageGallery propio: @id "${o['@id']}"`);
+      if (!partes.length) problemas.push('ImageGallery propio: hasPart vacio');
+      for (const [k, p] of partes.entries()) if (!String(p?.name ?? '').trim() || !String(p?.url ?? '').startsWith(`${SITIO_R22}/gallery/`)) problemas.push(`ImageGallery propio: la parte ${k} va sin name o con url fuera de /gallery/`);
+      continue;
+    }
     const entradas = o[d.clave];
     if (!Array.isArray(entradas) || entradas.length !== d.n) {
       problemas.push(`${d.tipo} propio: ${d.n} entrada(s) declarada(s) en ${d.clave} y hay `
@@ -804,6 +811,12 @@ for (const [ruta, c] of Object.entries(JSON.parse(
       cambios.push(['publisher.url', ld.publisher?.url, `${SITIO_R22}/`]);
       cambios.push(['mainEntityOfPage.@type', ld.mainEntityOfPage?.['@type'], 'WebPage']);
       cambios.push(['mainEntityOfPage.@id', ld.mainEntityOfPage?.['@id'], `${SITIO_R22}${ruta}`]);
+      // L5 de PUBLICAR (6.5): autor y editor son la entidad (#negocio) con su unico nombre.
+      for (const q of ['author', 'publisher']) {
+        cambios.push([`${q}.name`, ld[q]?.name, 'Mr & Mrs Outdoor Living']);
+        cambios.push([`${q}.@id`, ld[q]?.['@id'], `${SITIO_R22}/#negocio`]);
+      }
+      cambios.push(['author.url', ld.author?.url, SITIO_R22]);
       if (cambios.length) {
         JSONLD_ARREGLADO[ruta] = {
           ...(ya ?? {}),
@@ -958,6 +971,31 @@ for (const [ruta, zona, descripcion] of [
   const me = base['/request-estimated']?.jsonLd?.[0]?.mainEntity ?? {};
   fusiona('/request-estimated', [['mainEntity.serviceType', me.serviceType, (me.serviceType ?? []).filter((x) => x !== RETIRADO)]],
     'D-249: el servicio retirado sale del serviceType.');
+}
+
+/**
+ * ── L5 de PUBLICAR (6.5, 26-oct-2026) · LAS FICHAS DE OBRA HEREDADAS Y LA GALERIA ──────────────────────
+ * /project/*: `about.@type` pasa de Project a CreativeWork y `url`, `image.url` y `about.image` se vuelven absolutas
+ * (lo hace `build-paginas.mjs`). Se declara leyendo el «era» del baseline, ruta a ruta, y se FUSIONA con lo que la
+ * ruta ya tuviera declarado. /gallery emite ademas un ImageGallery propio (#galeria) con las 14 galerias por categoria.
+ */
+{
+  const base = JSON.parse(fs.readFileSync(path.join(RAIZ, 'baseline/seo.json'), 'utf8'));
+  const absR = (p) => (typeof p === 'string' && p.startsWith('/') ? `${SITIO_R22}${p}` : p);
+  const porCaminoL5 = (o, c) => c.split('.').reduce((x, k) => (x == null ? x : x[k]), o);   // `porCamino` se define mas abajo
+  for (const [ruta, e] of Object.entries(base)) {
+    if (!ruta.startsWith('/project/')) continue;
+    const b = e?.jsonLd?.[0]; if (!b) continue;
+    const cambios = [];
+    if (b.about?.['@type'] === 'Project') cambios.push(['about.@type', 'Project', 'CreativeWork']);
+    // Las imagenes del baseline son URL del CDN de Webflow; la puerta las compara ya localizadas (`aLocal`), asi que el «era» es la local.
+    // El «era» es el valor del baseline TAL CUAL (la URL del CDN en las imagenes); el «es», la local absoluta que emite el build.
+    for (const camino of ['url', 'image.url', 'about.image']) { const v = porCaminoL5(b, camino); if (typeof v !== 'string') continue; const local = aLocal(v); if (local.startsWith('/')) cambios.push([camino, v, absR(local)]); }
+    if (!cambios.length) continue;
+    const ya = JSONLD_ARREGLADO[ruta];
+    JSONLD_ARREGLADO[ruta] = { ...(ya ?? {}), bloque: 0, motivo: `${ya?.motivo ? `${ya.motivo} · ` : ''}L5 (6.5): about es CreativeWork y las URL van absolutas`, cambios: [...(ya?.cambios ?? []), ...cambios] };
+  }
+  BLOQUES_PROPIOS['/gallery'] = { tipo: 'ImageGallery', motivo: 'L5 (6.5): la galeria declara sus 14 galerias por categoria como hasPart' };
 }
 
 /** Lee/escribe por camino con puntos: `mainEntity.mainEntity.4.name`. */

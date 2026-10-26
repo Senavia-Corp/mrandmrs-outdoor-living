@@ -15,6 +15,7 @@
 import path from 'node:path';
 import sharp from 'sharp';
 import { heroProyectoHtml, detalleProyectoHtml, cierreProyectoHtml, conAlt } from '../lib/ficha-proyecto.mjs';
+import { tramosMiga } from '../lib/miga-tramos.mjs';
 import TELEFONOS from '../data/telefonos.json';
 import CarruselProyectos from './widgets/CarruselProyectos.astro';
 import FormularioCore from './widgets/FormularioCore.astro';
@@ -31,7 +32,7 @@ const fotos = conAlt(await Promise.all(obra.galeria.map(async (f) => {
 })), obra.tituloFicha);
 const telefonos = TELEFONOS.items;
 ---
-<Fragment set:html={heroProyectoHtml({ tituloHtml: esc(obra.tituloFicha), resumenHtml: esc(obra.resumen), fotos })} />
+<Fragment set:html={heroProyectoHtml({ tituloHtml: esc(obra.tituloFicha), resumenHtml: esc(obra.resumen), fotos, tramos: tramosMiga(`/project/${obra.slug}`) })} />
 <Fragment set:html={detalleProyectoHtml({
   tituloHtml: 'Project Details',
   datos: [['Location', obra.ubicacion], ['Design Style', obra.estilo], ['Project Type', obra.tipo]],
