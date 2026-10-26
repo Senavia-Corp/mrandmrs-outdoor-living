@@ -31,7 +31,8 @@ const ESTATICO = path.join(RAIZ, '.vercel/output/static');
 /** ASTRO-2 (12-oct-2026): el orden pasa a ser el de las laminas de la Etapa 4, con el formulario
  *  al final, fundido con la banda de cierre (D-77), y sin el feed de Instagram (T-42). */
 const ESPERADO = [
-  'mm-hero-a', 'svc-confianza', 'svc-intro', 'mm-gal', 'mm-proc', 'mm-que', 'svc-inversion', 'mm-faq',
+  // D-264 (25-oct-2026): la banda «Project Gallery» (`mm-cat`, D-237 / 06912299) va detras de «What we do» en las 13.
+  'mm-hero-a', 'svc-confianza', 'svc-intro', 'mm-gal', 'mm-proc', 'mm-que', 'mm-cat', 'svc-inversion', 'mm-faq',
   'mm-zonas', 'blog-section-page', 'mm-res', 'mm-cierre', 'mm-form-sec',
 ];   // ASTRO-2: la franja de logos va DENTRO del hero y la repetida junto al pie se retira (D-53)
 
