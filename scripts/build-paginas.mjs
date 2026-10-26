@@ -29,11 +29,12 @@ const TEXTOS_PROPIOS = TEXTOS_PROPIOS_RAW;
 import fs from 'node:fs';
 import path from 'node:path';
 import { JSDOM } from 'jsdom';
-import { renombra, origen, esFicha, esCondado } from './lib/renombradas.mjs';
+import { renombra, origen, esFicha, esCondado, FICHA_POOL_BUILDERS } from './lib/renombradas.mjs';
 import { CATEGORIAS as GALERIA_CATEGORIAS, indiceGaleriaHtml, bandaCompactaHtml } from '../src/lib/galeria-categorias.mjs';
 import { logoLigero, ALTO_LOGO } from '../src/lib/logo-ligero.mjs';
 import { OCULTAS, serviciosDe } from '../src/lib/filtro-proyectos.mjs';
 import { tramosMiga } from '../src/lib/miga-tramos.mjs';
+import { CONDADO_DE_RUTA, nombreCondado, zonaDeCondado } from '../src/lib/vecinas.mjs';
 import { fotoDeHeroe, fotosDeSeccion as fotosDeSeccionCiudad } from '../src/lib/heroe-ciudad.mjs';
 import { heroProyectoHtml, detalleProyectoHtml, cierreProyectoHtml, conAlt } from '../src/lib/ficha-proyecto.mjs';
 
@@ -1758,6 +1759,49 @@ function folletosStitch(doc, ruta) {
   }
 }
 
+/**
+ * S1 (D-254, L2 de PUBLICAR, 25-oct-2026) · «WHERE WE BUILD» Y «HOW TO CHOOSE A POOL BUILDER», solo en la ficha de piscinas.
+ *
+ * La ficha es la duena del cluster generico («pool builders near me», §6.2 del encargo) y le faltaba decir DONDE
+ * construye y COMO elegir constructor, en forma extraible. Todo sale de datos del repo: los condados de
+ * `vecinas.mjs` (los mismos que enlazan las 53 ciudades), las cuentas de condados y ciudades, y la guia del blog
+ * «How to Choose a Pool Builder in Florida» tal como esta en la cache de Sanity (sus tres preguntas y su FAQ,
+ * literales). El `FAQPage` de la pagina sigue siendo el de su FAQ (check:ads exige que case 1:1 con `.mm-faq`); las cuatro
+ * preguntas de la guia se ven aqui y viven en el articulo. Texto nuevo: T-240…T-243 (STITCH-TEXTO.md). Se declara en `check-texto.mjs` desde los mismos datos.
+ */
+const GUIA_ELEGIR = 'how-to-choose-a-pool-builder-in-florida';
+function guiaElegir() {
+  const posts = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/blogs-sanity.json'), 'utf8'));
+  const p = posts.find((x) => x.slug === GUIA_ELEGIR);
+  if (!p) throw new Error(`S1: la guia ${GUIA_ELEGIR} no esta en blogs-sanity.json`);
+  const bloques = p.blog.filter((b) => b._type === 'block').map((b) => ({ ...b, texto: b.children.map((ch) => ch.text ?? '').join('') }));
+  const i = bloques.findIndex((b) => b.texto === 'If you only ask three:');
+  const tres = bloques.slice(i + 1).filter((b, k, a) => b.listItem === 'number' && a.slice(0, k).every((x) => x.listItem === 'number')).map((b) => b.texto);
+  if (i < 0 || tres.length !== 3) throw new Error(`S1: la guia no trae «If you only ask three:» con tres preguntas (${tres.length})`);
+  const faq = (p.faq ?? []).map((q) => ({ pregunta: q.pregunta ?? q.question, respuesta: q.respuesta ?? q.answer })).filter((q) => q.pregunta && q.respuesta);
+  if (faq.length < 3) throw new Error('S1: la guia no trae FAQ');
+  return { titulo: p.title, enlace: `/blogs/${p.slug}`, intro: bloques[i].texto, tres, faq };
+}
+function dondeConstruimos(c) {
+  const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+  const condados = [...new Set(Object.values(CONDADO_DE_RUTA))].sort();
+  const ciudades = Object.keys(CONDADO_DE_RUTA).filter((r) => r.startsWith('/services/pool-builders/')).length;   // las 53 de piscina, no las 118 ciudad x servicio
+  const porZona = ['North Florida', 'South Florida'].map((z) => ({ zona: z, lista: condados.filter((k) => zonaDeCondado(k) === z) }));
+  const g = guiaElegir();
+  const parrafo = `We design, permit and build custom inground pools and spas in ${condados.length} Florida counties, north and south, and ${ciudades} cities have their own page. Start with your county, or find your city below.`;
+  return '<section class="mm-donde"><div class="mm-donde-caja">'
+    + '<div class="mm-donde-col"><h2 class="mm-h2">Where we build</h2>'
+    + `<p class="mm-p">${esc(parrafo)}</p>`
+    + porZona.map((z) => `<div class="mm-donde-zona"><h3 class="mm-donde-zona-t">${esc(z.zona)}</h3><ul class="mm-donde-lista">`
+      + z.lista.map((k) => `<li><a href="/services/pool-builders/${k}">${esc(nombreCondado(k))}</a></li>`).join('') + '</ul></div>').join('')
+    + `<a class="mm-flecha" href="#ciudades">Find your city${FLECHA}</a></div>`
+    + `<div class="mm-donde-col mm-donde-col--elegir"><h2 class="mm-h2">How to choose a pool builder</h2>`
+    + `<p class="mm-p">${esc(g.intro)}</p><ol class="mm-donde-tres">${g.tres.map((t) => `<li>${esc(t)}</li>`).join('')}</ol>`
+    + '<div class="mm-faq-lista mm-donde-faq">' + g.faq.map((q) => `<details class="mm-faq-item"><summary><h3>${esc(q.pregunta)}</h3>${CHEVRON}</summary><div class="mm-faq-r"><p>${esc(q.respuesta)}</p></div></details>`).join('') + '</div>'
+    + `<a class="mm-flecha" href="${g.enlace}">${esc(g.titulo)}${FLECHA}</a></div>`
+    + '</div></section>';
+}
+
 function proyectosIndiceStitch(doc, ruta) {
   if (ruta !== '/projects') return;
   heroD(doc, ruta);
@@ -2147,7 +2191,8 @@ function captacion(doc, ruta) {
         + tramos.map((t, k) => (k === tramos.length - 1 ? `<li aria-current="page">${esc(t.nombre)}</li>` : `<li><a href="${t.href}">${esc(t.nombre)}</a></li>`)).join('')
         + '</ol></nav>' : '';
       nuevo.innerHTML = '<div class="mm-hero-a-txt">' + miga
-        + (deco ? `<p class="mm-etiqueta">${esc(deco.textContent.trim())}</p>` : '')
+        // S1 (D-254, L2): el rotulo puede venir de la fuente de captacion (`heroe.rotulo`); si no, el del origen.
+        + (c.heroe.rotulo ? `<p class="mm-etiqueta">${esc(c.heroe.rotulo)}</p>` : deco ? `<p class="mm-etiqueta">${esc(deco.textContent.trim())}</p>` : '')
         + `<h1 class="mm-h1">${esc(antes)}<span class="mm-rot">${esc(c.heroe.marca)}</span>${esc(resto.join(c.heroe.marca))}</h1>`
         + `<p class="mm-p">${esc(c.heroe.apoyo)}</p>`
         + `<div class="mm-hero-a-acc"><a class="mm-btn" href="${cta.getAttribute('href')}">${esc(cta.textContent.trim())}</a></div>`
@@ -2158,6 +2203,7 @@ function captacion(doc, ruta) {
         + `<figure class="mm-hero-a-medio"><img sizes="(min-width: 992px) 50vw, 100vw" src="${img.getAttribute('src')}" alt="${img.getAttribute('alt').replace(/&/g, '&amp;').replace(/"/g, '&quot;')}" width="${c.heroe.ancho}" height="${c.heroe.alto}" loading="eager" fetchpriority="high" decoding="async">${pieDeFoto(c.heroe)}</figure>`
         + franjaDeLogos(doc);
       heroe.replaceWith(nuevo);
+      if (ruta === FICHA_POOL_BUILDERS) nuevo.insertAdjacentHTML('afterend', dondeConstruimos(c));
       /* La marquesina de logos de Webflow se va de la ficha: la primera pasa a ser la fila
        * estática de dentro del hero (lámina G2-A) y la repetida junto al pie se retira (D-53). */
       /* SE MARCAN, NO SE QUITAN AQUI: los bloques de mas abajo usan `logos-section` de ancla

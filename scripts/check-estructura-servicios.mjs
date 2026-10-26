@@ -49,7 +49,9 @@ const VARIANTES = {
  *  (17-oct-2026): el buscador de ciudades es `<section class="mm-ciudades">` detras de «Where We Serve» y
  *  solo lo pintan las 7 fichas con landings de ciudad; las otras 7 no cambian. Se escribe a mano por lo
  *  mismo que `ESPERADO`: si se leyera de `ciudadesDeFicha()`, la puerta daria por bueno cualquier sitio. */
-const OPCIONALES = { 'mm-ciudades': { tras: 'mm-zonas' } };
+/** S1 (D-254, L2 de PUBLICAR, 25-oct-2026): «Where we build / How to choose» es `<section class="mm-donde">` justo
+ *  detras del hero y solo la pinta la ficha de piscinas; las otras 12 no cambian. */
+const OPCIONALES = { 'mm-donde': { tras: 'mm-hero-a' }, 'mm-ciudades': { tras: 'mm-zonas' } };
 const esperadoDe = (ruta, cuerpo = []) => {
   let orden = ESPERADO;
   const v = VARIANTES[ruta];

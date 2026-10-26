@@ -58,7 +58,7 @@
   "/services/pool-builders": {
     "servicio": "New Pool and Spa Construction",
     "heroe": {
-      "apoyo": "New custom inground pools for North Florida homeowners — 3D design, permits, construction and final start-up, from one licensed team. We also build across South Florida.",
+      "apoyo": "Custom inground pools and spas for North & South Florida homeowners: 3D design, permits, construction and final start-up, from one licensed team.",
       "foto": "/images/obra/obra-090/pool-construction-spa-travertine-deck-sun-shelf-florida-heroe.avif",
       "alt": "Rectangular pool with raised spa, sun shelf loungers and ivory travertine deck under a blue sky",
       "ancho": 1200,
@@ -76,7 +76,8 @@
       },
       "og": "/images/obra/og/custom-pool-spa-builders-florida.jpg",
       "cta": "Request a Design-Build Project Evaluation",
-      "marca": "Pool"
+      "marca": "Pool",
+      "rotulo": "Pool and spa builders across North & South Florida"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -9684,7 +9685,7 @@
     },
     "faq": {
       "titulo": "Ocala pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool in Marion County.",
+      "entradilla": "Cost and permits: what is worth settling before you start a custom pool in Marion County.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Ocala?",
@@ -9693,10 +9694,6 @@
         {
           "pregunta": "Who pulls the permits for a pool in Marion County?",
           "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the Marion County inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         },
         {
           "pregunta": "Which office reviews a pool permit in Ocala?",
@@ -9785,7 +9782,7 @@
     },
     "faq": {
       "titulo": "Gainesville pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool in Alachua County.",
+      "entradilla": "Cost and permits: what is worth settling before you start a custom pool in Alachua County.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Gainesville?",
@@ -9794,10 +9791,6 @@
         {
           "pregunta": "Who pulls the permits for a pool in Alachua County?",
           "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the Alachua County inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         },
         {
           "pregunta": "Which office reviews a pool permit in Gainesville?",
@@ -9886,19 +9879,11 @@
     },
     "faq": {
       "titulo": "Alachua pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Alachua?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -9973,19 +9958,11 @@
     },
     "faq": {
       "titulo": "Archer pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Archer?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -10060,19 +10037,11 @@
     },
     "faq": {
       "titulo": "Atlantis pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Atlantis?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -10147,19 +10116,11 @@
     },
     "faq": {
       "titulo": "Hillsboro Beach pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Hillsboro Beach?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -10234,19 +10195,11 @@
     },
     "faq": {
       "titulo": "Boca Raton pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Boca Raton?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -10321,19 +10274,11 @@
     },
     "faq": {
       "titulo": "Boynton Beach pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Boynton Beach?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -10408,19 +10353,11 @@
     },
     "faq": {
       "titulo": "Cedar Key pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Cedar Key?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -10495,19 +10432,11 @@
     },
     "faq": {
       "titulo": "Chiefland pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Chiefland?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -10582,19 +10511,11 @@
     },
     "faq": {
       "titulo": "Cross City pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Cross City?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -10669,19 +10590,11 @@
     },
     "faq": {
       "titulo": "Dania Beach pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Dania Beach?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -10756,19 +10669,11 @@
     },
     "faq": {
       "titulo": "Davie pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Davie?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -10843,19 +10748,11 @@
     },
     "faq": {
       "titulo": "Deerfield Beach pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Deerfield Beach?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -10930,19 +10827,11 @@
     },
     "faq": {
       "titulo": "Delray Beach pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Delray Beach?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -11017,19 +10906,11 @@
     },
     "faq": {
       "titulo": "Fanning Springs pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Fanning Springs?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -11104,19 +10985,11 @@
     },
     "faq": {
       "titulo": "Fort Lauderdale pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Fort Lauderdale?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -11191,19 +11064,11 @@
     },
     "faq": {
       "titulo": "Gulf Stream pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Gulf Stream?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -11278,19 +11143,11 @@
     },
     "faq": {
       "titulo": "Hallandale Beach pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Hallandale Beach?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -11365,19 +11222,11 @@
     },
     "faq": {
       "titulo": "Hawthorne pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Hawthorne?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -11452,19 +11301,11 @@
     },
     "faq": {
       "titulo": "High Springs pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in High Springs?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -11539,19 +11380,11 @@
     },
     "faq": {
       "titulo": "Hollywood pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Hollywood?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -11626,19 +11459,11 @@
     },
     "faq": {
       "titulo": "Hypoluxo pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Hypoluxo?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -11713,19 +11538,11 @@
     },
     "faq": {
       "titulo": "Juno Beach pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Juno Beach?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -11800,19 +11617,11 @@
     },
     "faq": {
       "titulo": "Jupiter pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Jupiter?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -11887,19 +11696,11 @@
     },
     "faq": {
       "titulo": "Lake City pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Lake City?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -11974,19 +11775,11 @@
     },
     "faq": {
       "titulo": "Lighthouse Point pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Lighthouse Point?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -12061,19 +11854,11 @@
     },
     "faq": {
       "titulo": "Manalapan pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Manalapan?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -12148,19 +11933,11 @@
     },
     "faq": {
       "titulo": "McIntosh pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in McIntosh?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -12235,19 +12012,11 @@
     },
     "faq": {
       "titulo": "Micanopy pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Micanopy?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -12322,19 +12091,11 @@
     },
     "faq": {
       "titulo": "Miramar pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Miramar?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -12409,19 +12170,11 @@
     },
     "faq": {
       "titulo": "Newberry pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Newberry?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -12496,19 +12249,11 @@
     },
     "faq": {
       "titulo": "North Palm Beach pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in North Palm Beach?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -12583,19 +12328,11 @@
     },
     "faq": {
       "titulo": "Ocean Ridge pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Ocean Ridge?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -12670,19 +12407,11 @@
     },
     "faq": {
       "titulo": "Old Town pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Old Town?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -12757,19 +12486,11 @@
     },
     "faq": {
       "titulo": "Palatka pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Palatka?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -12844,19 +12565,11 @@
     },
     "faq": {
       "titulo": "Palm Beach Gardens pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Palm Beach Gardens?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -12931,19 +12644,11 @@
     },
     "faq": {
       "titulo": "Parkland pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Parkland?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -13018,19 +12723,11 @@
     },
     "faq": {
       "titulo": "Pembroke Pines pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Pembroke Pines?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -13105,19 +12802,11 @@
     },
     "faq": {
       "titulo": "Plantation pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Plantation?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -13192,19 +12881,11 @@
     },
     "faq": {
       "titulo": "Pompano Beach pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Pompano Beach?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -13279,19 +12960,11 @@
     },
     "faq": {
       "titulo": "Reddick pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Reddick?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -13366,19 +13039,11 @@
     },
     "faq": {
       "titulo": "Royal Palm Beach pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Royal Palm Beach?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -13453,19 +13118,11 @@
     },
     "faq": {
       "titulo": "South Palm Beach pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in South Palm Beach?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -13540,19 +13197,11 @@
     },
     "faq": {
       "titulo": "Southwest Ranches pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Southwest Ranches?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -13627,19 +13276,11 @@
     },
     "faq": {
       "titulo": "Tequesta pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Tequesta?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -13714,19 +13355,11 @@
     },
     "faq": {
       "titulo": "Trenton pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Trenton?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -13801,19 +13434,11 @@
     },
     "faq": {
       "titulo": "Waldo pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Waldo?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -13888,19 +13513,11 @@
     },
     "faq": {
       "titulo": "Wellington pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Wellington?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -13975,19 +13592,11 @@
     },
     "faq": {
       "titulo": "West Palm Beach pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in West Palm Beach?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -14062,19 +13671,11 @@
     },
     "faq": {
       "titulo": "Weston pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Weston?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -14149,19 +13750,11 @@
     },
     "faq": {
       "titulo": "Williston pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Williston?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },
@@ -14236,19 +13829,11 @@
     },
     "faq": {
       "titulo": "Wilton Manors pool construction FAQs",
-      "entradilla": "Cost, permits and scope: the three things worth settling before you start a custom pool.",
+      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Wilton Manors?",
           "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
-        },
-        {
-          "pregunta": "Who pulls the permits for a pool in Florida?",
-          "respuesta": "We do. Permitting and code compliance are part of the build: we prepare the submittal, pull the permits and coordinate the county inspections through to final start-up."
-        },
-        {
-          "pregunta": "What is included in a custom pool project?",
-          "respuesta": "Design and 3D rendering, engineering, permitting, excavation, the gunite shell, plumbing and circulation, electrical and equipment, interior finish, tile and coping, the deck, and final start-up."
         }
       ]
     },

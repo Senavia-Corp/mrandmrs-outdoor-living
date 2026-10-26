@@ -28,7 +28,7 @@ const F = ciudadesDeFicha(ruta);
 const condadosConPagina = F ? F.condados.filter((c) => c.href) : [];
 ---
 {F && (
-  <section class="mm-ciudades" data-mm-ciudades>
+  <section class="mm-ciudades" id="ciudades" data-mm-ciudades>
     <svg hidden aria-hidden="true" focusable="false"><symbol id="mm-pin" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 4.9 5.6 11.2 6.3 11.9a1 1 0 0 0 1.4 0C13.4 20.2 19 13.9 19 9a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></symbol><symbol id="mm-ir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></symbol></svg>
     <div class="mm-ciudades-caja">
       <div class="mm-ciudades-cab">

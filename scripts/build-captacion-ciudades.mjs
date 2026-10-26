@@ -151,25 +151,22 @@ function entradaCaptacion(c) {
     },
     faq: {
       titulo: `${c.ciudad} pool construction FAQs`,
+      /* D-257 (25-oct-2026, L2 de PUBLICAR): «Who pulls the permits for a pool in Florida?» y «What is included in a
+       * custom pool project?» eran las mismas que en la ficha de piscinas, palabra por palabra, en 51 y 53 ciudades
+       * (canibalizacion medida en D1). Salen; cada ciudad conserva solo preguntas con su ciudad o su condado. La FAQ
+       * local de verdad entra en L3a (S2). Filas T-244…T-246 de STITCH-TEXTO.md. */
       entradilla: conCondado
-        ? `Cost, permits and scope: the three things worth settling before you start a custom `
-          + `pool in ${cond}.`
-        : 'Cost, permits and scope: the three things worth settling before you start a custom pool.',
+        ? `Cost and permits: what is worth settling before you start a custom pool in ${cond}.`
+        : 'Cost: the first thing worth settling before you start a custom pool.',
       anade: [
         { pregunta: `How much does a custom pool cost in ${c.ciudad}?`,
           respuesta: 'There is no single number: a custom pool is priced from its own design, '
             + 'size, finishes and site conditions. Our estimator walks you through the choices '
             + 'that move the price, and you get a fixed project price in writing before you commit.' },
-        { pregunta: conCondado
-            ? `Who pulls the permits for a pool in ${cond}?`
-            : 'Who pulls the permits for a pool in Florida?',
+        ...(conCondado ? [{ pregunta: `Who pulls the permits for a pool in ${cond}?`,
           respuesta: 'We do. Permitting and code compliance are part of the build: we prepare '
             + `the submittal, pull the permits and coordinate the ${cond} inspections through to `
-            + 'final start-up.' },
-        { pregunta: 'What is included in a custom pool project?',
-          respuesta: 'Design and 3D rendering, engineering, permitting, excavation, the gunite '
-            + 'shell, plumbing and circulation, electrical and equipment, interior finish, tile '
-            + 'and coping, the deck, and final start-up.' },
+            + 'final start-up.' }] : []),
         /* SEO-SAFE (1-oct-2026): LA PREGUNTA LOCAL, SOLO DONDE HAY ALGO LOCAL QUE DECIR. La fila
          * puede traer `faqExtra`: objeciones propias de esa ciudad (que oficina revisa el permiso,
          * septico y caliza en North Florida) con su `_fuente` al lado, que no se publica. Hoy la

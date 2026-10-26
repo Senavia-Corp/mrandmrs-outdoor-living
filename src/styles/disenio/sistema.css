@@ -1531,3 +1531,21 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
   .mm-cmp-tabla tbody:last-child tr:not(.mm-cmp-grupo) th, .mm-cmp-tabla tbody:last-child tr:not(.mm-cmp-grupo) td { padding-top: var(--mm-e-12); padding-bottom: var(--mm-e-12); }
 }
 @media (min-width: 1200px) { .mm-cmp { --mm-canal: var(--mm-e-64); } }
+
+/* ── S1 (D-254, L2 de PUBLICAR): «Where we build / How to choose a pool builder», solo en /services/pool-builders ── */
+.mm-donde { --mm-canal: var(--mm-e-24); padding: var(--mm-e-64) 0; background: var(--mm-blanco); font-family: var(--mm-familia); color: var(--mm-tinta-texto); }
+.mm-donde-caja { display: grid; gap: var(--mm-e-32); padding: 0 var(--mm-canal); max-width: var(--mm-ancho); margin: 0 auto; }
+.mm-donde-col { display: flex; flex-direction: column; gap: var(--mm-e-16); min-width: 0; }
+.mm-donde-col .mm-flecha { align-self: flex-start; }
+.mm-donde-zona-t { margin: 0; font-size: 12px; line-height: 1.5; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; color: var(--mm-tinta-suave); }
+.mm-donde-lista { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--mm-e-8) var(--mm-e-12); }
+.mm-donde-lista a { display: inline-flex; align-items: center; min-height: var(--mm-ctl-s); padding: 0 var(--mm-e-12); border: 1px solid var(--mm-borde); border-radius: 6px; color: var(--mm-tinta); text-decoration: none; font-weight: 600; }
+.mm-donde-lista a:hover { border-color: var(--mm-navy); }
+.mm-donde-lista a:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); }
+.mm-donde-tres { list-style: none; margin: 0; padding: 0; counter-reset: mm-tres; border-top: 2px solid var(--mm-oro); }
+.mm-donde-tres li { counter-increment: mm-tres; display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: var(--mm-e-12); padding: var(--mm-e-16) 0; border-bottom: 1px solid var(--mm-borde); font-size: clamp(18px, 1.1rem + 0.6vw, 24px); line-height: 1.25; font-weight: 700; letter-spacing: -0.01em; color: var(--mm-navy); }
+.mm-donde-tres li::before { content: counter(mm-tres); font-size: 14px; font-weight: 700; color: var(--mm-oro); padding-top: 0.35em; font-variant-numeric: tabular-nums; }
+.mm-donde-faq.mm-faq-lista { margin: 0; }
+@media (min-width: 992px) {
+  .mm-donde-caja { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--mm-e-48); }
+}

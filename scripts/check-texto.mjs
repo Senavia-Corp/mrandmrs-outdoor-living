@@ -29,7 +29,7 @@ import { AREAS_PIE, ORDEN_SERVICIOS_PIE, COPYRIGHT_ORIGEN, copyright } from '../
 import { lineasTarjetas, lineasBanda, lineasSrBanda, lineasBandaCompacta, CATEGORIAS as GAL_CATEGORIAS } from '../src/lib/galeria-categorias.mjs';
 import { OCULTAS, lineasFiltro } from '../src/lib/filtro-proyectos.mjs';
 import { CATEGORIAS_PISCINA } from '../src/lib/blog-groq.mjs';
-import { enlazadoDeCiudad } from '../src/lib/vecinas.mjs';
+import { enlazadoDeCiudad, CONDADO_DE_RUTA, nombreCondado, zonaDeCondado } from '../src/lib/vecinas.mjs';
 import { fotoDeHeroe } from '../src/lib/heroe-ciudad.mjs';
 import { lineasDiferenciales } from '../src/lib/diferenciales.mjs';
 import { ciudadesDeFicha, SERVICIOS_CIUDAD } from '../src/lib/servicios-ciudad.mjs';
@@ -495,6 +495,8 @@ const QUITADAS_A_PROPOSITO = [
  * para que coincidan con lo que renderiza el navegador. Es la cuarta vez que esto muerde en
  * este repo; ver el comentario de `lineasBlog()`.
  */
+/** El antetitulo del hero de las fichas tal como lo trae el origen (lo usa S1 para traducir el del hub). */
+const ANTETITULO_FICHA_ORIGEN = 'Licensed & Insured Contractors';
 const TRADUCIDAS_A_PROPOSITO = [
   ['Artículos Más Leídos', 'Most Read Articles',
     'el h2 del raíl de artículos relacionados, en las 10 fichas de /blogs/. Estaba en español '
@@ -616,11 +618,15 @@ const TRADUCIDAS_A_PROPOSITO = [
     'Complete pool remodeling for North Florida homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team. We also remodel across South Florida.',
     'apoyo del heroe de la landing «Full Remodel»: remodelacion completa, North Florida delante, '
     + 'y el alcance en una frase', ['/services/pool-remodeling']],
+  /* S1 (D-254, L2 de PUBLICAR, 25-oct-2026, T-241): el apoyo se lee de la MISMA fuente que lo pinta
+   * (`captacion-servicios.json`). Hasta L2 decia «New custom inground pools for North Florida homeowners … We also
+   * build across South Florida.»; ahora no encierra la ficha en una zona (es la duena del cluster generico). */
   ['Custom pool and spa builders serving North & South Florida, delivering high-quality construction and long-term outdoor value.',
-    'New custom inground pools for North Florida homeowners — 3D design, permits, construction and final start-up, from one licensed team. We also build across South Florida.',
-    'apoyo del heroe: resuelve QUE, DONDE, PARA QUIEN y QUE HACER AHORA, con North Florida '
-    + 'delante. El anterior decia «North & South Florida» en la landing cuyo anuncio promete '
-    + 'North Florida', ['/services/pool-builders']],
+    CAPTACION_JSON['/services/pool-builders'].heroe.apoyo,
+    'apoyo del heroe de la ficha de piscinas, de captacion-servicios.json (S1, T-241)', ['/services/pool-builders']],
+  /* S1 (T-240): el rotulo del hero del hub tambien sale de la fuente de captacion (`heroe.rotulo`). */
+  [ANTETITULO_FICHA_ORIGEN, CAPTACION_JSON['/services/pool-builders'].heroe.rotulo,
+    'rotulo del hero de la ficha de piscinas, de captacion-servicios.json (S1, T-240)', ['/services/pool-builders']],
   ['What Do We Do!', 'What We Do',
     'la errata del rotulo de la rejilla de subservicios: exclamacion por interrogacion. Se '
     + 'corrige SOLO en la landing de pago; en las otras 13 fichas sigue igual', ['/services/pool-builders']],
@@ -713,11 +719,13 @@ const LOGOS_TITULO = "Trusted By Florida's Finest Homeowners";
 function heroAStitch(ruta, lineas) {
   if (!esFicha(ruta)) return lineas;
   const out = [...lineas];
-  const a = out.indexOf(ANTETITULO_FICHA);
+  // S1 (L2): una ficha puede llevar rotulo propio (`heroe.rotulo`); si no, el del origen.
+  const ANTE = CAPTACION_JSON[ruta]?.heroe?.rotulo ?? ANTETITULO_FICHA;
+  const a = out.indexOf(ANTE);
   const l1 = out.indexOf(LOGOS_TITULO);
   const l2 = out.lastIndexOf(LOGOS_TITULO);
   if (a < 0 || l1 < 0 || l2 === l1) return lineas;
-  out[a] = ANTETITULO_FICHA.toUpperCase();
+  out[a] = ANTE.toUpperCase();
   out[l1] = LOGOS_TITULO.toUpperCase();
   out.splice(l2, 1);
   return out;
@@ -1465,7 +1473,25 @@ const LINEAS_CIUDADES_FICHA =Object.keys(SERVICIOS_CIUDAD).map((s) => `/services
   .map(({ ficha, l }) => ({ rutas: [ficha], tras: ['View South Florida Service Areas'], lineas: l.lineas,
     motivo: 'CIUDADES-BUSCADOR: la ficha enlaza a sus landings de ciudad en un buscador, detras de «Where We Serve»' }));
 
+/* S1 (D-254, L2 de PUBLICAR, 25-oct-2026, T-243): «Where we build / How to choose a pool builder» en la ficha de
+ * piscinas, DERIVADO de lo mismo que lo pinta (`build-paginas.mjs` · dondeConstruimos): condados de `vecinas.mjs`
+ * y la guia «how-to-choose-a-pool-builder-in-florida» de la cache de Sanity. Las respuestas del acordeon no entran
+ * en `innerText` (details cerrados). Los h2 salen capitalizados por `.mm-h2`; el rotulo de zona, en versalitas. */
+function lineasDonde() {
+  const posts = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/blogs-sanity.json'), 'utf8'));
+  const p = posts.find((x) => x.slug === 'how-to-choose-a-pool-builder-in-florida');
+  const bloques = p.blog.filter((b) => b._type === 'block').map((b) => ({ ...b, texto: b.children.map((ch) => ch.text ?? '').join('') }));
+  const i = bloques.findIndex((b) => b.texto === 'If you only ask three:');
+  const tres = bloques.slice(i + 1).filter((b, k, a) => b.listItem === 'number' && a.slice(0, k).every((x) => x.listItem === 'number')).map((b) => b.texto);
+  const condados = [...new Set(Object.values(CONDADO_DE_RUTA))].sort();
+  const porZona = ['North Florida', 'South Florida'].map((z) => [z.toUpperCase(), ...condados.filter((k) => zonaDeCondado(k) === z).map(nombreCondado)]);
+  return ['Where We Build',
+    `We design, permit and build custom inground pools and spas in ${condados.length} Florida counties, north and south, and ${Object.keys(CONDADO_DE_RUTA).filter((r) => r.startsWith('/services/pool-builders/')).length} cities have their own page. Start with your county, or find your city below.`,
+    ...porZona.flat(), 'Find your city', 'How To Choose A Pool Builder', bloques[i].texto, ...tres,
+    ...(p.faq ?? []).map((q) => capitalizaH2(q.pregunta ?? q.question)), p.title];   // las preguntas van en summary h3: capitalize
+}
 const LINEAS_ANADIDAS = [
+  { rutas: ['/services/pool-builders'], tras: [], lineas: lineasDonde(), motivo: 'S1 (D-254, T-243): «Where we build / How to choose a pool builder», derivado de vecinas.mjs y de la guia del blog' },
   /* D-256 (25-oct-2026, T-137): /pool-investment-estimator deja de ser huerfana; la linea va bajo la entradilla del
    * estimador. Derivada del mismo componente que la pinta (Estimador.astro). */
   { rutas: ['/pool-cost-estimator'], tras: ['Answer 7 quick questions to see what your custom pool in Florida could cost.'],
