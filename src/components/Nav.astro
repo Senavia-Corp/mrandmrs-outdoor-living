@@ -39,7 +39,7 @@ const tels = TELEFONOS.items;
       <p class="mm-cab-lic"><Fragment set:html={ICO.escudo} /><span>Florida certified pool contractor · CPC1461119 · CPC1460562</span></p>
       <div class="mm-cab-enlaces">
         {tels.map((t) => (
-          <a class="mm-cab-util-a" href={`tel:${t.tel}`}><span class="mm-cab-util-zona">{t.zona}</span><span class="mm-cab-util-num">{t.visible}</span></a>
+          <a class="mm-cab-util-a" href={`tel:${t.tel}`}><span class="mm-cab-util-num">{t.visible}</span></a>
         ))}
         <span class="mm-cab-raya" aria-hidden="true"></span>
         <a class="mm-cab-util-a" href="/financing" aria-current={aqui('/financing')}>financing</a>
@@ -113,7 +113,7 @@ const tels = TELEFONOS.items;
         <details class="mm-llama" data-mm-llama>
           <summary class="mm-cab-icono" aria-label="Call us"><Fragment set:html={ICO.tel} /></summary>
           <div class="mm-llama-panel mm-datos mm-datos--pila">
-            {tels.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}
+            {tels.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-val">{t.visible}</span></a>)}
           </div>
         </details>
         <button type="button" class="mm-cab-icono" aria-label="Open menu" aria-haspopup="dialog" aria-controls="mm-menu" data-mm-abrir><Fragment set:html={ICO.menu} /></button>
@@ -154,7 +154,7 @@ const tels = TELEFONOS.items;
   <div class="mm-menu-pie">
     <a class="mm-barra-btn mm-barra-btn--oro" href="/request-estimated">Get a Free Estimate</a>
     <div class="mm-menu-tels">
-      {tels.map((t) => <a class="mm-barra-tel" href={`tel:${t.tel}`}><span class="mm-barra-tel-zona">{t.zona}</span><span class="mm-barra-tel-num">{t.visible}</span></a>)}
+      {tels.map((t) => <a class="mm-barra-tel" href={`tel:${t.tel}`}><span class="mm-barra-tel-num">{t.visible}</span></a>)}
     </div>
   </div>
 </dialog>

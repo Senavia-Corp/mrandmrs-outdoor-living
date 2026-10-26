@@ -140,6 +140,13 @@ lista(noPermanentes.map((r) => r.source));
  * Sigue siendo falsable: si el destino desaparece, la comprobacion de arriba lo dice igual.
  */
 const SIN_ENLACE_INTERNO = new Map([
+  ['/services/soffit-led-lighting',
+    'D-249 (25-oct-2026): el servicio Smart Soffit & LED Lighting se retira del sitio y su URL pasa, con 308, '
+    + 'a /services/louvered-roofs. Era publica y estaba en el sitemap: el redirect es para el indice y los enlaces '
+    + 'de fuera. Dentro sale del menu, el pie, los indices y los formularios, no se repunta.'],
+  ['/services/smart-soffit-led-lighting-installation-in-north-south-florida',
+    'D-249 (25-oct-2026): la URL vieja de Webflow del mismo servicio retirado apunta directa al destino final, '
+    + 'sin cadena; nadie de dentro la enlaza.'],
   ['/where-we-serves/custom-pool-builders-north-florida',
     'Tier 1 de SEO-URLS-PLAN.md: renombrada a /where-we-serve/north-florida el 3-sep-2026. Los '
     + 'enlaces internos apuntan ya a la nueva; este 301 es para el indice de Google.'],

@@ -75,7 +75,7 @@ The reason the structural question comes first is that on something this light, 
 
 | If this is true on your site | The layout usually picks itself |
 |---|---|
-| The wall has block, a tie beam or framing to bolt through, and the beam fits between the door head and the soffit | Attached |
+| The wall has block, a tie beam or framing to bolt through, and the beam fits between the door head and the eave | Attached |
 | The eave is low, the wall is stucco over foam, or it is a gable end with nothing continuous at that height | Freestanding, or freestanding tucked under the eave |
 | The place you actually sit is more than a few feet off the house | Freestanding |
 | Pool plumbing, a drainfield or an easement sits where posts would land | Attached, or move the structure |
@@ -102,7 +102,7 @@ The price of that freedom is that you have to know what is underground. Posts la
 
 ### The door head
 
-The beam of an attached pergola has to clear the top of the slider or french door it passes over, and it has to tuck under the soffit. On a single-story Florida house those two lines are often only a few inches apart. If the beam will not fit between them, attached is finished as an option — no design gets you around it.
+The beam of an attached pergola has to clear the top of the slider or french door it passes over, and it has to tuck under the eave. On a single-story Florida house those two lines are often only a few inches apart. If the beam will not fit between them, attached is finished as an option — no design gets you around it.
 
 Measure both heights before anyone draws anything. That gap is your entire attached option, expressed as a number.
 
@@ -138,7 +138,7 @@ If the area you are covering faces west, understand before you commit that an op
 
 ## Height is the thing attached gives up
 
-An attached pergola's height is dictated to you by the soffit above and the door head below. A freestanding one lets you choose it, and that choice does more work than it looks like.
+An attached pergola's height is dictated to you by the eave above and the door head below. A freestanding one lets you choose it, and that choice does more work than it looks like.
 
 Higher feels airier, moves more air, and lets more low sun underneath. Lower shades better late in the day and traps more heat. In between sits the clearance a ceiling fan needs, which on a Florida patio does more for comfort than anything else you can hang — and which an attached pergola sometimes cannot fit under a low eave.
 
@@ -181,7 +181,7 @@ Both are workable when they come up before the layout is drawn. [Eight features 
 ## How to settle it this weekend
 
 1. Sit where you actually sit. Not where the pergola would look best from the kitchen window.
-2. Measure from the patio to the top of the slider, and from the patio to the underside of the soffit. Write both down.
+2. Measure from the patio to the top of the slider, and from the patio to the underside of the eave. Write both down.
 3. Stake the four post positions you would want and find out what is underneath them.
 4. Watch the roof edge during the next afternoon storm and see where the water lands.
 5. Then call about setbacks and, if you have one, the HOA.

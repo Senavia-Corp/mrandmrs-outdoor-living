@@ -128,8 +128,11 @@ const AFIRMACIONES_PROHIBIDAS = [
   [/\bguaranteed\b/i, 'garantia sin terminos confirmados'],
 ];
 
-const TEL_NF = '(352) 740-3361';
-const TEL_SF = '(954) 913-7112';
+/* D-248 (P-9, 25-oct-2026): UN solo telefono, leido de la fuente unica. Hasta entonces aqui habia dos
+ * literales (`TEL_NF`, `TEL_SF`) y la regla 8 exigia «North antes que South». */
+const TELEFONOS = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/telefonos.json'), 'utf8')).items;
+const TEL_VISIBLES = TELEFONOS.map((t) => t.visible.replace(/^\+1\s*/, ''));   // «(352) 740-3361»
+const RE_TEL = /\(\d{3}\) \d{3}-\d{4}/g;
 
 let fallos = 0;
 const mal = (r, m) => { fallos++; console.log(`  ROJO ${r}\n       ${m}`); };
@@ -214,10 +217,15 @@ for (const L of LANDINGS) {
   const aDestino = [...d.querySelectorAll('a[href]')].some((a) => DESTINOS.some((x) => a.getAttribute('href').startsWith(x)));
   if (!aDestino) mal(L.ruta, `sin camino a conversion: ningun enlace a ${DESTINOS.join(' / ')}.`);
 
-  // 8 · telefono de North Florida primero (hoja 24)
-  const iNF = cuerpo.indexOf(TEL_NF); const iSF = cuerpo.indexOf(TEL_SF);
-  if (iNF < 0) mal(L.ruta, `no aparece el telefono de North Florida ${TEL_NF}, que es el que debe ver el trafico de pago.`);
-  else if (iSF >= 0 && iSF < iNF) mal(L.ruta, 'el telefono de South Florida sale antes que el de North Florida.');
+  // 8 · el telefono del negocio aparece en el cuerpo, y NINGUN otro (D-248). Antes (hoja 24): «el de North
+  //     Florida antes que el de South». Lo que cuenta como retirado es cualquier (NNN) NNN-NNNN que no este
+  //     en `telefonos.json`; asi no hace falta cablear el numero viejo para vigilarlo.
+  for (const t of TEL_VISIBLES) {
+    if (cuerpo.indexOf(t) < 0) mal(L.ruta, `no aparece el telefono ${t}, que es el que debe ver el trafico de pago.`);
+  }
+  for (const otro of new Set(cuerpo.match(RE_TEL) ?? [])) {
+    if (!TEL_VISIBLES.includes(otro)) mal(L.ruta, `telefono que no esta en telefonos.json: ${otro}.`);
+  }
 
   // 9 · JSON-LD valido
   if (!LD.length) mal(L.ruta, 'sin un solo bloque de JSON-LD.');

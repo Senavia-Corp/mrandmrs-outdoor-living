@@ -21,6 +21,9 @@
 ---
 
 <script>
+  // D-248: el aviso de fallo pinta el telefono desde la fuente unica, no cableado. Import CON NOMBRE a
+  // proposito: asi al bundle del cliente solo viaja `items`, no los comentarios del JSON.
+  import { items as TELEFONOS_ITEMS } from '../data/telefonos.json';
   (function () {
     'use strict';
     const CLAVE_SITIO = '0x4AAAAAAEnkUHbX6ap29qsu';
@@ -345,9 +348,9 @@
               salida.style.margin = '.5rem 0 0';
               fail.appendChild(salida);
             }
+            // D-248 (25-oct-2026): UN telefono, de `telefonos.json`. Antes escribia los dos a mano.
             salida.innerHTML = 'Prefer to talk to us? Call '
-              + '<a href="tel:+13527403361">+1 (352) 740-3361</a> (North Florida) or '
-              + '<a href="tel:+19549137112">+1 (954) 913-7112</a> (South Florida).';
+              + TELEFONOS_ITEMS.map(function (t) { return '<a href="tel:' + t.tel + '">' + t.visible + '</a>'; }).join(' or ') + '.';
             fail.style.display = 'block';
           }
           try { window.turnstile?.reset(idWidget); } catch { /* nada */ }
@@ -373,7 +376,8 @@
    * Este componente lo incluye `Base.astro` (121 paginas) y lo importa aparte
    * `pool-investment-estimator.astro` (la 122a): un solo sitio cubre las 122.
    *
-   * 🚨 SOLO CATEGORICOS. `phone_region` es la zona, no el numero. Ningun dato del visitante.
+   * 🚨 SOLO CATEGORICOS. Ningun dato del visitante. `phone_region` (north/south) se retiro en
+   * D-248 (25-oct-2026): con un solo telefono no distinguia nada.
    */
   (function () {
     'use strict';
@@ -388,14 +392,9 @@
       if (!a) return;
       var href = a.getAttribute('href') || '';
 
-      // Los dos numeros del negocio. 352 = North Florida, 954 = South Florida (data/telefonos.json).
-      // Se mira el prefijo sobre los digitos, no la cadena: `tel:` admite espacios y guiones.
+      // Un solo telefono desde D-248 (25-oct-2026): ya no se clasifica la zona por prefijo.
       if (href.indexOf('tel:') === 0) {
-        var digitos = href.replace(/\D/g, '');
-        var zona = 'unknown';
-        if (digitos.indexOf('1352') === 0 || digitos.indexOf('352') === 0) zona = 'north';
-        else if (digitos.indexOf('1954') === 0 || digitos.indexOf('954') === 0) zona = 'south';
-        dl('click_to_call', { phone_region: zona, form_location: location.pathname });
+        dl('click_to_call', { form_location: location.pathname });
         return;
       }
 

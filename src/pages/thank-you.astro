@@ -116,9 +116,10 @@ const PASOS = [
       </div>
       <aside class="mm-gracias-lado">
         <h2 class="mm-conf-t">Rather talk now?</h2>
-        <p class="mm-conf-p">Both offices answer during business hours.</p>
+        {/* D-248 (25-oct-2026): decia «Both offices answer during business hours.», y con un solo telefono mentia (T-123). */}
+        <p class="mm-conf-p">We answer during business hours.</p>
         <div class="mm-datos mm-datos--pila">
-          {items.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}
+          {items.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-val">{t.visible}</span></a>)}
         </div>
         <a class="mm-flecha mm-may" href="/projects">See recent projects<Fragment set:html={FLECHA} /></a>
         <a class="mm-flecha" href="/gallery">Browse the gallery<Fragment set:html={FLECHA} /></a>

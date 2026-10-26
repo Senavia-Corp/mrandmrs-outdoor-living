@@ -241,7 +241,8 @@ for (const u of LOGOS) if (!DIM_LOGO.has(u)) throw new Error(`${slug}: el logo $
 const HERO_FOTO = fotoDeHeroe(RUTA);
 // El rotulador va en la ciudad, que es como cierran los titulares: «… in Alachua, Florida».
 const H1 = esc(d.h1Title).replace(/(\bin\s+)([^,]+?)(,\s*Florida)?\s*$/i, (m, a, c, f) => `${a}<span class="mm-rot">${c}</span>${f ?? ''}`);
-const HERO_ZONAS = (CAP.heroe.zonas ?? TELEFONOS.items.map((x) => x.zona)).map((z) => TELEFONOS.items.find((x) => x.zona === z));
+/* D-248 (P-9): un telefono y sin etiqueta de zona. `heroe.zonas` (el orden de los dos numeros, el de la region primero) dejo de existir. */
+const HERO_ZONAS = TELEFONOS.items;
 const [HERO_LIC_ROT, ...HERO_LIC_VAL] = CAP.heroe.licencias.split(' · ');
 
 const FAQ = CAP?.faq?.anade?.length ? CAP.faq : null;
@@ -413,7 +414,7 @@ const SEO = FAQ
         <a class="mm-btn mm-btn--linea" href="/gallery">Project Gallery</a>
       </div>
       <div class="mm-datos mm-datos--3">
-        {HERO_ZONAS.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}
+        {HERO_ZONAS.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-val">{t.visible}</span></a>)}
         <div class="mm-dato"><span class="mm-dato-rot">{HERO_LIC_ROT}</span><span class="mm-dato-val">{HERO_LIC_VAL.join(' · ')}</span></div>
       </div>
     </div>
@@ -510,7 +511,7 @@ const SEO = FAQ
           )}
           <div class="mm-faq-accion">
             <a class="mm-btn" href="#estimate">{CTA_CIERRE}</a>
-            <div class="mm-datos mm-datos--tel">{HERO_ZONAS.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}</div>
+            <div class="mm-datos mm-datos--tel">{HERO_ZONAS.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-val">{t.visible}</span></a>)}</div>
           </div>
         </div>
       </div>
@@ -533,7 +534,7 @@ const SEO = FAQ
     <div class="mm-res-cuerpo">
       <div class="mm-res-col">
         <ResenasGoogle />
-        <div class="mm-datos mm-datos--tel">{HERO_ZONAS.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}</div>
+        <div class="mm-datos mm-datos--tel">{HERO_ZONAS.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-val">{t.visible}</span></a>)}</div>
       </div>
       {FOTO_RES && (
         <figure class="mm-res-medio"><img src={FOTO_RES.src} alt={FOTO_RES.alt} width={FOTO_RES.ancho} height={FOTO_RES.alto} loading="lazy" decoding="async" /></figure>
@@ -545,7 +546,7 @@ const SEO = FAQ
       <div class="mm-cierre-txt">
         <h2 class="mm-h2" set:html={CIERRE_H2} />
         <p class="mm-p" set:html={CIERRE_P} />
-        <div class="mm-datos mm-datos--tel">{HERO_ZONAS.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}</div>
+        <div class="mm-datos mm-datos--tel">{HERO_ZONAS.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-val">{t.visible}</span></a>)}</div>
       </div>
       {FOTO_CIERRE && (
         <figure class="mm-cierre-medio"><img src={FOTO_CIERRE.src} alt={FOTO_CIERRE.alt} width={FOTO_CIERRE.ancho} height={FOTO_CIERRE.alto} loading="lazy" decoding="async" /></figure>

@@ -101,11 +101,9 @@ function entradaCaptacion(c) {
        * de vender «Free Estimate» y pide una evaluacion del proyecto, que es lo que de verdad se
        * hace —visita, diseno 3D, alcance y precio por escrito—. «Free» sigue en la entradilla. */
       cta: CTA_EVALUACION,
-      /* El de SU region primero. En North Florida coincide con el orden de `telefonos.json`;
-       * en una ciudad de Broward o Palm Beach (fase 2) no, y ahi esta la razon de la clave. */
-      zonas: c.region === 'South Florida'
-        ? ['South Florida', 'North Florida']
-        : ['North Florida', 'South Florida'],
+      /* Hasta D-248 (25-oct-2026) aqui iba `zonas`, el orden de los dos telefonos con el de SU
+       * region primero. Con un solo numero no hay orden que declarar: el heroe lo lee de
+       * `telefonos.json` tal cual (`src/lib/captacion-ciudad.mjs`). */
     },
     confianza: {
       rotulo: 'Why homeowners pick us',

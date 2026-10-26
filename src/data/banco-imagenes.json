@@ -7968,8 +7968,7 @@
       "/blogs/features-to-compare-before-buying-a-louvered-roof",
       "/gallery",
       "/gallery/louvered-roofs",
-      "/services/louvered-roofs",
-      "/services/soffit-led-lighting"
+      "/services/louvered-roofs"
     ],
     "origen": "EQUINOX LOUVERED ROOF/IMG_0043.JPG",
     "sha256": "f33a80e109b37e2d56611d97394bad55f846e90a59256fb71eace5845a685287"
@@ -8057,9 +8056,7 @@
       "muy oscura",
       "interior de la casa visible por las ventanas"
     ],
-    "usada_en": [
-      "/services/soffit-led-lighting"
-    ],
+    "usada_en": [],
     "origen": "EQUINOX LOUVERED ROOF/IMG_0045.JPG",
     "sha256": "0fb580fa92378034cd158992bde58aa93e0a167fbf01393c2436d9a7b176011e",
     "publicada_como": [
@@ -8107,8 +8104,7 @@
     "usada_en": [
       "/blogs/how-much-does-a-motorized-louvered-roof-cost",
       "/gallery",
-      "/gallery/louvered-roofs",
-      "/services/soffit-led-lighting"
+      "/gallery/louvered-roofs"
     ],
     "origen": "EQUINOX LOUVERED ROOF/IMG_0046.JPG",
     "sha256": "32079cc00ad7d3e2d972ae2116a4b5c588dd006b63cce74ad7d81bf0a09cd418"
@@ -8700,9 +8696,7 @@
     "defectos": [
       "entorno muy oscuro"
     ],
-    "usada_en": [
-      "/services/soffit-led-lighting"
-    ],
+    "usada_en": [],
     "origen": "EQUINOX LOUVERED ROOF/IMG_1870.jpeg",
     "sha256": "07aa2524eac31885ab20054b0d76aafd8aac1c6ee72ec6e861ebfb379ee5dfd6"
   },
@@ -10862,9 +10856,7 @@
       "dominante azul fuerte",
       "botella sobre la encimera"
     ],
-    "usada_en": [
-      "/services/soffit-led-lighting"
-    ],
+    "usada_en": [],
     "origen": "KITCHEN FINISH/6.jpg",
     "sha256": "da21776df52e75c65d512c8be7da4792f7db8bb850da6bc3ae2c349f9c28e83c"
   },
@@ -18182,7 +18174,9 @@
     "defectos": [
       "obra sin terminar al fondo: minicargadora, aspiradora, cubos"
     ],
-    "usada_en": ["/about"],
+    "usada_en": [
+      "/about"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Curtis/IMG_1881.JPEG",
     "sha256": "5cb7ee3524e5b8544629a538e1cb8c5fa29fd5ef8602eaffe408e2df4e5403b7"
   },
@@ -23084,8 +23078,7 @@
       "escalera en la esquina inferior"
     ],
     "usada_en": [
-      "/blogs/questions-to-ask-a-louvered-roof-installer",
-      "/services/soffit-led-lighting"
+      "/blogs/questions-to-ask-a-louvered-roof-installer"
     ],
     "origen": "NEW JOBS CONSTRUCTION/FOTOS DE TODO/IMG_1567.JPEG",
     "sha256": "6e6a00af8baedc173af8fb45f0f22d1eea9d60707e45c587a58d973437ab03fa",
@@ -24100,7 +24093,9 @@
       "ventilador y mangueras",
       "recortada en origen: el cuadro completo tenía un problema de privacidad"
     ],
-    "usada_en": ["/about"],
+    "usada_en": [
+      "/about"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Greenberg/5.jpg",
     "sha256": "dc480c97b1d30c80900c2cbece918a7c15876b0c30770a41ea65a2b771426af5",
     "recorte": {
@@ -24992,7 +24987,9 @@
       "marca de la minicargadora legible",
       "operario de pie a la derecha (cara tapada)"
     ],
-    "usada_en": ["/about"],
+    "usada_en": [
+      "/about"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Happy Home/20250914_202134000_iOS.jpg",
     "sha256": "298f8a71dc73ff6e90b04cab23c56d5141be544bc2c1ea6ae2c85542eeb3d2fa"
   },
@@ -25958,7 +25955,9 @@
     "defectos": [
       "logo del subcontratista de gunite en la espalda de la camiseta"
     ],
-    "usada_en": ["/about"],
+    "usada_en": [
+      "/about"
+    ],
     "origen": "NEW JOBS CONSTRUCTION/Happy Home/20250918_135311000_iOS.jpg",
     "sha256": "6c884f771c10d87bf698fdd16a3adf0acc7aae97b4a580039f577fffbf2c83d9"
   },
@@ -27987,9 +27986,7 @@
     "defectos": [
       "muy oscura, dominante azul"
     ],
-    "usada_en": [
-      "/services/soffit-led-lighting"
-    ],
+    "usada_en": [],
     "origen": "OUTDOOR KICTCHEN/IMG_0869 2.jpeg",
     "sha256": "00b6be32d51c74a71e4f240be096153d0f9ca301f227a37dfb7dedd5049b405a"
   },
@@ -30326,7 +30323,6 @@
       "/blogs/outdoor-living-design-guide-for-florida-homes",
       "/gallery",
       "/gallery/aluminum-pergolas",
-      "/services/soffit-led-lighting",
       "/",
       "/where-we-serve/north-florida",
       "/where-we-serve/south-florida"
@@ -38682,9 +38678,7 @@
       "destellos de los focos",
       "adoquines sueltos"
     ],
-    "usada_en": [
-      "/services/soffit-led-lighting"
-    ],
+    "usada_en": [],
     "origen": "PERGOLA/Moderna/6.jpeg",
     "sha256": "517cceb3445721b670d03001cbe318d1540510d9f909952ccf161714796c293b",
     "publicada_como": [
@@ -38728,8 +38722,7 @@
       "poste en primer plano"
     ],
     "usada_en": [
-      "/blogs/pergola-design-decisions-before-construction",
-      "/services/soffit-led-lighting"
+      "/blogs/pergola-design-decisions-before-construction"
     ],
     "origen": "PERGOLA/Moderna/7.jpeg",
     "sha256": "e0fcdc2a4f47f4aedf8909113cc310bb14b1e615fc8d43bde276f4d8c87e528c",

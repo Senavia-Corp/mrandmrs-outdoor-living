@@ -67,7 +67,7 @@ for (const ruta of RUTAS) {
     return out;
   });
   if (rotas.length) mal(`fotos que no cargan: ${rotas.join(', ')}`);
-  /* EL PANEL DE SERVICIOS DE LA PAGINA DE CIUDAD (`ServiciosIndice.astro`): 14 filas y 14 fichas,
+  /* EL PANEL DE SERVICIOS DE LA PAGINA DE CIUDAD (`ServiciosIndice.astro`): 13 filas y 13 fichas (14 hasta D-249),
    * una sola a la vista; pulsar una fila ensena SU ficha y solo ella lleva `aria-current`. */
   let panel = '';
   if (await p.locator('.mm-serv').count()) {
@@ -76,7 +76,7 @@ for (const ruta of RUTAS) {
       fichas: [...document.querySelectorAll('.mm-serv [data-mm-serv-ficha]')].map((x) => [x.dataset.mmServFicha, !x.hidden && x.getClientRects().length > 0, !!x.querySelector('a[href^="/services/"]')]),
     }));
     let e = await lee();
-    if (e.filas.length !== 14 || e.fichas.length !== 14) mal(`panel de servicios: ${e.filas.length} filas y ${e.fichas.length} fichas; son 14 y 14`);
+    if (e.filas.length !== 13 || e.fichas.length !== 13) mal(`panel de servicios: ${e.filas.length} filas y ${e.fichas.length} fichas; son 13 y 13 (D-249)`);
     if (e.fichas.some((f) => !f[2])) mal('panel de servicios: una ficha no enlaza a su servicio');
     const abiertas = (x) => x.fichas.filter((f) => f[1]).map((f) => f[0]);
     const actuales = (x) => x.filas.filter((f) => f[1] === 'true').map((f) => f[0]);
@@ -85,7 +85,7 @@ for (const ruta of RUTAS) {
     await p.locator(`.mm-serv [data-mm-serv="${otra}"]`).click();
     e = await lee();
     if (abiertas(e).join() !== otra || actuales(e).join() !== otra) mal(`panel de servicios: tras pulsar «${otra}», a la vista ${abiertas(e)} y actual ${actuales(e)}`);
-    panel = ' · panel de servicios: 14 filas, cambia de ficha';
+    panel = ' · panel de servicios: 13 filas, cambia de ficha';
   }
   console.log(`  ${rojos.some((r) => r.startsWith(ruta)) ? 'ROJO' : 'ok  '} ${ruta}   (${n} celdas + ${extras} en la segunda fila${panel})`);
   await p.close();

@@ -1,10 +1,41 @@
 {
   "_lee_esto": "Excepciones de check-publicar. Solo las añade el director con su D-nnn en el buzón.",
-  "hero_sin_imagen": { "motivo": "D-255a: rutas con hero de texto (.mm-hero-d); no se exige preload", "selector": ".mm-hero-d" },
-  "alt_vacio_permitido": { "motivo": "D-255b: marquesina de logos, decorativa", "selectores": [".mm-logos img"] },
-  "sin_img_en_main": { "motivo": "D-255c", "rutas": ["/pool-cost-estimator", "/pool-investment-estimator"] },
-  "fuera_del_enlazado": { "motivo": "D-255d: noindex y fuera del sitemap", "rutas": ["/thank-you"] },
-  "titulo_largo": { "motivo": "ninguna declarada: se corrigen en L1", "rutas": [] },
-  "descripcion_larga": { "motivo": "ninguna declarada: se corrigen en L1", "rutas": [] },
-  "pares_parecidos": { "motivo": "D-250: pares de ciudades que legítimamente se parecen; ninguno hoy", "pares": [] }
+  "hero_sin_imagen": {
+    "motivo": "D-255a: rutas con hero de texto (.mm-hero-d); no se exige preload",
+    "selector": ".mm-hero-d"
+  },
+  "alt_vacio_permitido": {
+    "motivo": "D-255b: marquesina de logos, decorativa · D-260 (25-oct-2026): fotos de tarjeta de articulo (`.mm-art-foto` es el span que envuelve la foto, por eso el selector lleva `img`; la tarjeta ya lleva el titulo del articulo como texto del enlace) y los iconos de los sellos del hero de / y el logo del canal en /videos; los posters de video (.mm-video-poster-marco) NO entran: van a L6 con alt = titulo del video",
+    "selectores": [
+      ".mm-logos img",
+      ".mm-art-foto img",
+      ".mm-hero-b-sellos img",
+      ".mm-yt__logo"
+    ]
+  },
+  "sin_img_en_main": {
+    "motivo": "D-255c",
+    "rutas": [
+      "/pool-cost-estimator",
+      "/pool-investment-estimator"
+    ]
+  },
+  "fuera_del_enlazado": {
+    "motivo": "D-255d: noindex y fuera del sitemap",
+    "rutas": [
+      "/thank-you"
+    ]
+  },
+  "titulo_largo": {
+    "motivo": "ninguna declarada: se corrigen en L1",
+    "rutas": []
+  },
+  "descripcion_larga": {
+    "motivo": "ninguna declarada: se corrigen en L1",
+    "rutas": []
+  },
+  "pares_parecidos": {
+    "motivo": "D-250: pares de ciudades que legítimamente se parecen; ninguno hoy",
+    "pares": []
+  }
 }

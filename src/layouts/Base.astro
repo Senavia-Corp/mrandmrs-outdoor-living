@@ -326,7 +326,7 @@ const CON_MAIN = /<main[\s>]/.test(contenido);
         mano en la interfaz; aquí es un diff que se revisa. COROLARIO: se pone en un sitio o
         en el otro, NUNCA en los dos, o cada llamada se cuenta dos veces.
 
-        EL NÚMERO SALE DE `telefonos.json` — el mismo que pintan ClickToCall, el nav y el pie.
+        EL NÚMERO SALE DE `telefonos.json` — el mismo que pintan la barra móvil, el nav y el pie.
         No lo escribas a mano aquí: el intercambio sólo ocurre si la cadena del snippet es
         EXACTAMENTE la del DOM, y el día que las dos copias se separen deja de sustituir sin
         avisar de nada.
@@ -398,7 +398,7 @@ const CON_MAIN = /<main[\s>]/.test(contenido);
         del estimador. Va en su sitio o cambia el orden del documento. */}
     <slot name="tras-pie" />
     {/* REDISEÑO STITCH (ASTRO-1): la barra inferior móvil sustituye al botón flotante de
-        ClickToCall. Mismos dos teléfonos, de telefonos.json. */}
+        ClickToCall. El teléfono, de telefonos.json (uno desde D-248). */}
     <BarraMovil />
     <Interacciones />
     <MosaicoConfianza />

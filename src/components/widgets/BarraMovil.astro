@@ -20,7 +20,7 @@ const presupuesto = Astro.url.pathname.replace(/\/$/, '') === '/request-estimate
   <details class="mm-llama" data-mm-llama>
     <summary class="mm-barra-btn"><Fragment set:html={ICO.tel} />Call us</summary>
     <div class="mm-llama-panel mm-llama-panel--arriba mm-datos mm-datos--pila">
-      {TELEFONOS.items.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}
+      {TELEFONOS.items.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-val">{t.visible}</span></a>)}
     </div>
   </details>
   <a class="mm-barra-btn mm-barra-btn--navy" href={presupuesto}>Get a Free Estimate</a>

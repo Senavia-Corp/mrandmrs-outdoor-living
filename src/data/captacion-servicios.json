@@ -2344,219 +2344,6 @@
       "alto": 698
     }
   },
-  "/services/soffit-led-lighting": {
-    "servicio": "Smart Soffit LED Lighting",
-    "heroe": {
-      "apoyo": "Smart soffit and LED lighting installation company serving North & South Florida, enhancing curb appeal and exterior security.",
-      "foto": "/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-heroe.avif",
-      "alt": "Dark wood pavilion with outdoor bar, sculptural stools, LED toe-kick lights and lounge at dusk.",
-      "ancho": 1600,
-      "alto": 900,
-      "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
-      "ancla": "#estimate",
-      "_banco": "bi-0839",
-      "_proyecto": "obra-078",
-      "_ajuste": {
-        "recorte": "16/9",
-        "pos": "50% 50%",
-        "ancho": 1600,
-        "q": 50,
-        "de": "/images/banco/pergolas/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-01.webp"
-      },
-      "og": "/images/obra/og/smart-soffit-led-lighting-installation-in-north-south-florida.jpg",
-      "marca": "LED Lighting"
-    },
-    "confianza": {
-      "rotulo": "Why homeowners pick us",
-      "tarjetas": [
-        {
-          "icono": "plano",
-          "titulo": "One design-build team",
-          "texto": "Design, permits, engineering and construction under one roof."
-        },
-        {
-          "icono": "licencia",
-          "titulo": "Florida licensed and insured",
-          "texto": "CPC1461119, CPC1460562 and SCC131153553, published on every page of this site."
-        },
-        {
-          "icono": "florida",
-          "titulo": "Certified Gemstone Lights dealer",
-          "texto": "Smart colour and brightness control from a permanently installed track."
-        },
-        {
-          "icono": "permisos",
-          "titulo": "Wired to code",
-          "texto": "Professional installation for safety, warranty and code compliance."
-        }
-      ]
-    },
-    "servicios": {
-      "detalle": [
-        {
-          "titulo": "Custom Runs & Concealed Channels",
-          "parrafo": "We mount the LED run tight to the soffit line in aluminum channel finished to match your fascia, so the diodes stay out of sight and only the light shows. Crews pull low-voltage wire inside the soffit, seal every penetration against water, and mount the transformer where you can reach it.",
-          "foto": "/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/smart-soffit-led-lighting-florida.avif",
-          "alt": "Warm soffit LED lighting along the eaves of a modern Florida home",
-          "ancho": 1950,
-          "alto": 1219,
-          "lado": "derecha",
-          "items": [
-            "Custom Soffit LED Installation",
-            "Low‑Profile LED Channel Installation"
-          ]
-        },
-        {
-          "titulo": "Sealed Housings & LED Retrofits",
-          "parrafo": "Salt air and UV break down open fixtures, so we install IP68-rated channel and stainless fasteners anchored into framing rather than bare soffit panel, which is what holds a run together in coastal Florida wind. Retrofits pull aging halogen strands and put LED diodes on a low-voltage circuit.",
-          "foto": "/images/images/light-2/smart-soffit-led-lighting-installation-contractors-florida-02.jpg",
-          "alt": "Close view of eave lighting at sunset",
-          "ancho": 1250,
-          "alto": 698,
-          "lado": "izquierda",
-          "items": [
-            "Weather‑Resistant Soffit Lighting",
-            "Energy‑Efficient Soffit LED Upgrades"
-          ]
-        },
-        {
-          "titulo": "Controllers, Zones & RGBW Color",
-          "parrafo": "Each node on the track carries its own RGBW diode, so one run gives you warm white for a regular night and full color when you want it. The controller mounts by the panel and talks to your phone, and we split the run into zones that follow the elevations of the house.",
-          "foto": "/images/images/light-8/smart-soffit-led-lighting-installation-contractors-florida-08.jpg",
-          "alt": "Colour-changing LED lighting across a two-storey home at night",
-          "ancho": 1250,
-          "alto": 698,
-          "lado": "derecha",
-          "items": [
-            "Smartphone‑Controlled Lighting Setup",
-            "Custom Color & Pattern LED Systems"
-          ]
-        },
-        {
-          "titulo": "Security Lighting & Holiday Color",
-          "parrafo": "Soffit LEDs wash the walls, entry, and driveway, which removes the dark corners a camera cannot resolve and keeps light off your neighbor's windows. The same permanent track carries holiday color, so nobody is on a ladder in December stapling strands to the fascia.",
-          "foto": "/images/images/light-3/smart-soffit-led-lighting-installation-contractors-florida-03.jpg",
-          "alt": "Warm LED lighting on a stone and timber home at dusk",
-          "ancho": 1250,
-          "alto": 698,
-          "lado": "izquierda",
-          "items": [
-            "Security Accent Lighting Contractors",
-            "Permanent Holiday Lighting Installers"
-          ]
-        }
-      ]
-    },
-    "formulario": {
-      "titulo": "Get a Free Estimate",
-      "entradilla": "Tell us about your project and we will come back with next steps. No cost, no obligation.",
-      "proyectos": [
-        "Soffit LED Lighting",
-        "Permanent Holiday Lighting"
-      ],
-      "proyectoPorDefecto": "Soffit LED Lighting",
-      "nombre": "Soffit Lighting Form",
-      "aviso": "Soffit lighting lead",
-      "ga4": "luces",
-      "pasosTitulo": "What happens after you reach out",
-      "pasos": [
-        "We call you back and set a time to see your space.",
-        "We measure the runs and plan the circuits with the soffit line.",
-        "You get the scope in writing and a fixed project price before anything is wired."
-      ]
-    },
-    "schema": {
-      "serviceType": "Smart Soffit & LED Lighting Installation"
-    },
-    "inversion": {
-      "titulo": "What will my soffit lighting cost?",
-      "texto": "Soffit lighting is priced from the length of the runs, how many circuits it needs, the controller you choose and the access to the soffit. Tell us about the house and we will come back with the scope in writing and a fixed project price.",
-      "ctas": [
-        {
-          "texto": "Get a free estimate",
-          "href": "#estimate",
-          "principal": true
-        },
-        {
-          "texto": "Financing available",
-          "href": "/financing",
-          "principal": false
-        }
-      ],
-      "foto": "/images/projects/modern-pool-motorized-pergola-south-florida/modern-pool-motorized-pergola-south-florida-project-5.avif",
-      "alt": "Covered poolside patio with integrated ceiling lighting in South Florida, built by Mr & Mrs Outdoor Living",
-      "ancho": 1250,
-      "alto": 698
-    },
-    "proceso": {
-      "fotos": [
-        {
-          "foto": "/images/obra/suelta/modern-patio-cover-woodgrain-ceiling-lights-night-florida-proceso0.avif",
-          "alt": "Black-framed patio cover with woodgrain ceiling, recessed lights and fan at night over a travertine patio",
-          "ancho": 1600,
-          "alto": 873,
-          "pos": "50% 50%",
-          "_banco": "bi-1061",
-          "_proyecto": null,
-          "_ajuste": {
-            "recorte": "1408/768",
-            "pos": "50% 50%",
-            "ancho": 1600,
-            "q": 52,
-            "de": "/images/banco/pergolas/modern-patio-cover-woodgrain-ceiling-lights-night-florida-01.webp"
-          }
-        },
-        {
-          "foto": "/images/obra/suelta/large-patio-cover-recessed-lighting-night-pavers-florida-proceso1.avif",
-          "alt": "Large dark-framed insulated patio cover with rows of recessed lights glowing at night over a paver court",
-          "ancho": 1600,
-          "alto": 873,
-          "pos": "50% 50%",
-          "_banco": "bi-1060",
-          "_proyecto": null,
-          "_ajuste": {
-            "recorte": "1408/768",
-            "pos": "50% 50%",
-            "ancho": 1600,
-            "q": 52,
-            "de": "/images/banco/pergolas/large-patio-cover-recessed-lighting-night-pavers-florida-01.webp"
-          }
-        },
-        {
-          "foto": "/images/obra/obra-050/louvered-roof-closed-louvers-underside-detail-florida-proceso2.avif",
-          "alt": "Underside of a white louvered roof with louvers closed, wall lights on the left.",
-          "ancho": 1600,
-          "alto": 873,
-          "pos": "50% 50%",
-          "_banco": "bi-0646",
-          "_proyecto": "obra-050",
-          "_ajuste": {
-            "recorte": "1408/768",
-            "pos": "50% 50%",
-            "ancho": 1600,
-            "q": 52,
-            "de": "/images/banco/louvered/louvered-roof-closed-louvers-underside-detail-florida-01.webp"
-          }
-        },
-        {
-          "foto": "/images/obra/obra-033/louvered-roof-blue-led-night-outdoor-lounge-florida-proceso3.avif",
-          "alt": "Outdoor lounge and dining set under a louvered roof washed in blue LED light at night",
-          "ancho": 1600,
-          "alto": 873,
-          "pos": "50% 50%",
-          "_banco": "bi-0216",
-          "_proyecto": "obra-033",
-          "_ajuste": {
-            "recorte": "1408/768",
-            "pos": "50% 50%",
-            "ancho": 1600,
-            "q": 52,
-            "de": "/images/banco/louvered/louvered-roof-blue-led-night-outdoor-lounge-florida-01.webp"
-          }
-        }
-      ]
-    }
-  },
   "/services/steel-buildings-pole-barns": {
     "servicio": "Pole Barn and Steel Buildings",
     "heroe": {
@@ -2793,11 +2580,7 @@
       "apoyo": "Complete pool remodeling for Gainesville homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -2903,11 +2686,7 @@
       "apoyo": "Complete pool remodeling for Ocala homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -3021,11 +2800,7 @@
       "apoyo": "Complete pool remodeling for Palatka homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -3135,11 +2910,7 @@
       "apoyo": "Complete pool remodeling for Cedar Key homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -3245,11 +3016,7 @@
       "apoyo": "Complete pool remodeling for McIntosh homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -3355,11 +3122,7 @@
       "apoyo": "Complete pool remodeling for Fort Lauderdale homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -3473,11 +3236,7 @@
       "apoyo": "Complete pool remodeling for Hollywood homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -3583,11 +3342,7 @@
       "apoyo": "Complete pool remodeling for Dania Beach homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -3697,11 +3452,7 @@
       "apoyo": "Complete pool remodeling for West Palm Beach homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -3807,11 +3558,7 @@
       "apoyo": "Complete pool remodeling for Boca Raton homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -3921,11 +3668,7 @@
       "apoyo": "Complete pool remodeling for Boynton Beach homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -4035,11 +3778,7 @@
       "apoyo": "Complete pool remodeling for Gulf Stream homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -4145,11 +3884,7 @@
       "apoyo": "Complete pool remodeling for Manalapan homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -4259,11 +3994,7 @@
       "apoyo": "Complete pool remodeling for Miramar homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -4373,11 +4104,7 @@
       "apoyo": "Complete pool remodeling for Delray Beach homeowners — resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -4487,11 +4214,7 @@
       "apoyo": "Custom pergola builders and installation company serving Gainesville homeowners, delivering durable designs that enhance outdoor comfort and style.",
       "licencias": "Florida aluminum contractor · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -4596,11 +4319,7 @@
       "apoyo": "Custom pergola builders and installation company serving Ocala homeowners, delivering durable designs that enhance outdoor comfort and style.",
       "licencias": "Florida aluminum contractor · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -4705,11 +4424,7 @@
       "apoyo": "Custom pergola builders and installation company serving Palatka homeowners, delivering durable designs that enhance outdoor comfort and style.",
       "licencias": "Florida aluminum contractor · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -4814,11 +4529,7 @@
       "apoyo": "Custom pergola builders and installation company serving Cedar Key homeowners, delivering durable designs that enhance outdoor comfort and style.",
       "licencias": "Florida aluminum contractor · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -4919,11 +4630,7 @@
       "apoyo": "Custom pergola builders and installation company serving McIntosh homeowners, delivering durable designs that enhance outdoor comfort and style.",
       "licencias": "Florida aluminum contractor · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -5024,11 +4731,7 @@
       "apoyo": "Custom pergola builders and installation company serving Hollywood homeowners, delivering durable designs that enhance outdoor comfort and style.",
       "licencias": "Florida aluminum contractor · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -5133,11 +4836,7 @@
       "apoyo": "Custom pergola builders and installation company serving Weston homeowners, delivering durable designs that enhance outdoor comfort and style.",
       "licencias": "Florida aluminum contractor · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -5246,11 +4945,7 @@
       "apoyo": "Custom pergola builders and installation company serving Dania Beach homeowners, delivering durable designs that enhance outdoor comfort and style.",
       "licencias": "Florida aluminum contractor · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -5359,11 +5054,7 @@
       "apoyo": "Custom pergola builders and installation company serving West Palm Beach homeowners, delivering durable designs that enhance outdoor comfort and style.",
       "licencias": "Florida aluminum contractor · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -5468,11 +5159,7 @@
       "apoyo": "Custom pergola builders and installation company serving Boca Raton homeowners, delivering durable designs that enhance outdoor comfort and style.",
       "licencias": "Florida aluminum contractor · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -5585,11 +5272,7 @@
       "apoyo": "Custom pergola builders and installation company serving Delray Beach homeowners, delivering durable designs that enhance outdoor comfort and style.",
       "licencias": "Florida aluminum contractor · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -5698,11 +5381,7 @@
       "apoyo": "Custom pergola builders and installation company serving Gulf Stream homeowners, delivering durable designs that enhance outdoor comfort and style.",
       "licencias": "Florida aluminum contractor · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -5807,11 +5486,7 @@
       "apoyo": "Custom pergola builders and installation company serving Manalapan homeowners, delivering durable designs that enhance outdoor comfort and style.",
       "licencias": "Florida aluminum contractor · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -5920,11 +5595,7 @@
       "apoyo": "Motorized louvered roof builders and installation contractors serving Gainesville, offering adjustable shade and weather protection.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -6033,11 +5704,7 @@
       "apoyo": "Motorized louvered roof builders and installation contractors serving Ocala, offering adjustable shade and weather protection.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -6146,11 +5813,7 @@
       "apoyo": "Motorized louvered roof builders and installation contractors serving Palatka, offering adjustable shade and weather protection.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -6259,11 +5922,7 @@
       "apoyo": "Motorized louvered roof builders and installation contractors serving Cedar Key, offering adjustable shade and weather protection.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -6368,11 +6027,7 @@
       "apoyo": "Motorized louvered roof builders and installation contractors serving McIntosh, offering adjustable shade and weather protection.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -6477,11 +6132,7 @@
       "apoyo": "Motorized louvered roof builders and installation contractors serving Hollywood, offering adjustable shade and weather protection.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -6590,11 +6241,7 @@
       "apoyo": "Motorized louvered roof builders and installation contractors serving Weston, offering adjustable shade and weather protection.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -6707,11 +6354,7 @@
       "apoyo": "Motorized louvered roof builders and installation contractors serving Dania Beach, offering adjustable shade and weather protection.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -6824,11 +6467,7 @@
       "apoyo": "Motorized louvered roof builders and installation contractors serving West Palm Beach, offering adjustable shade and weather protection.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -6937,11 +6576,7 @@
       "apoyo": "Motorized louvered roof builders and installation contractors serving Boca Raton, offering adjustable shade and weather protection.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -7058,11 +6693,7 @@
       "apoyo": "Motorized louvered roof builders and installation contractors serving Delray Beach, offering adjustable shade and weather protection.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -7175,11 +6806,7 @@
       "apoyo": "Motorized louvered roof builders and installation contractors serving Gulf Stream, offering adjustable shade and weather protection.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -7288,11 +6915,7 @@
       "apoyo": "Motorized louvered roof builders and installation contractors serving Manalapan, offering adjustable shade and weather protection.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -7405,11 +7028,7 @@
       "apoyo": "Professional deck builders and installation contractors serving Gainesville with durable, stylish outdoor deck solutions.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -7518,11 +7137,7 @@
       "apoyo": "Professional deck builders and installation contractors serving Ocala with durable, stylish outdoor deck solutions.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -7631,11 +7246,7 @@
       "apoyo": "Professional deck builders and installation contractors serving Palatka with durable, stylish outdoor deck solutions.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -7740,11 +7351,7 @@
       "apoyo": "Professional deck builders and installation contractors serving Cedar Key with durable, stylish outdoor deck solutions.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -7849,11 +7456,7 @@
       "apoyo": "Professional deck builders and installation contractors serving McIntosh with durable, stylish outdoor deck solutions.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -7958,11 +7561,7 @@
       "apoyo": "Professional deck builders and installation contractors serving Hollywood with durable, stylish outdoor deck solutions.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -8067,11 +7666,7 @@
       "apoyo": "Professional deck builders and installation contractors serving Dania Beach with durable, stylish outdoor deck solutions.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -8180,11 +7775,7 @@
       "apoyo": "Professional deck builders and installation contractors serving Delray Beach with durable, stylish outdoor deck solutions.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -8293,11 +7884,7 @@
       "apoyo": "Professional deck builders and installation contractors serving Gulf Stream with durable, stylish outdoor deck solutions.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -8402,11 +7989,7 @@
       "apoyo": "Professional deck builders and installation contractors serving Manalapan with durable, stylish outdoor deck solutions.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -8515,11 +8098,7 @@
       "apoyo": "Outdoor kitchen builders and installation contractors serving Gainesville with custom layouts for entertaining and daily use.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -8632,11 +8211,7 @@
       "apoyo": "Outdoor kitchen builders and installation contractors serving Ocala with custom layouts for entertaining and daily use.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -8745,11 +8320,7 @@
       "apoyo": "Outdoor kitchen builders and installation contractors serving Palatka with custom layouts for entertaining and daily use.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -8854,11 +8425,7 @@
       "apoyo": "Outdoor kitchen builders and installation contractors serving Cedar Key with custom layouts for entertaining and daily use.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -8963,11 +8530,7 @@
       "apoyo": "Outdoor kitchen builders and installation contractors serving McIntosh with custom layouts for entertaining and daily use.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -9072,11 +8635,7 @@
       "apoyo": "Outdoor kitchen builders and installation contractors serving Hollywood with custom layouts for entertaining and daily use.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -9181,11 +8740,7 @@
       "apoyo": "Outdoor kitchen builders and installation contractors serving Dania Beach with custom layouts for entertaining and daily use.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -9294,11 +8849,7 @@
       "apoyo": "Outdoor kitchen builders and installation contractors serving Delray Beach with custom layouts for entertaining and daily use.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -9407,11 +8958,7 @@
       "apoyo": "Outdoor kitchen builders and installation contractors serving Gulf Stream with custom layouts for entertaining and daily use.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -9516,11 +9063,7 @@
       "apoyo": "Outdoor kitchen builders and installation contractors serving Manalapan with custom layouts for entertaining and daily use.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -9629,11 +9172,7 @@
       "apoyo": "Landscaping design and installation company serving Gainesville, providing complete outdoor solutions that improve curb appeal.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -9746,11 +9285,7 @@
       "apoyo": "Landscaping design and installation company serving Ocala, providing complete outdoor solutions that improve curb appeal.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -9863,11 +9398,7 @@
       "apoyo": "Landscaping design and installation company serving Palatka, providing complete outdoor solutions that improve curb appeal.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -9976,11 +9507,7 @@
       "apoyo": "Landscaping design and installation company serving Fort Lauderdale, providing complete outdoor solutions that improve curb appeal.",
       "licencias": "Florida licensed & insured · CPC1461119 · CPC1460562 · SCC131153553",
       "ancla": "#estimate",
-      "cta": "Get a Free Estimate",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Get a Free Estimate"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -10093,11 +9620,7 @@
       "apoyo": "New custom inground pools for Ocala homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -10198,11 +9721,7 @@
       "apoyo": "New custom inground pools for Gainesville homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -10303,11 +9822,7 @@
       "apoyo": "New custom inground pools for Alachua homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -10394,11 +9909,7 @@
       "apoyo": "New custom inground pools for Archer homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -10485,11 +9996,7 @@
       "apoyo": "New custom inground pools for Atlantis homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -10576,11 +10083,7 @@
       "apoyo": "New custom inground pools for Hillsboro Beach homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -10667,11 +10170,7 @@
       "apoyo": "New custom inground pools for Boca Raton homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -10758,11 +10257,7 @@
       "apoyo": "New custom inground pools for Boynton Beach homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -10849,11 +10344,7 @@
       "apoyo": "New custom inground pools for Cedar Key homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -10940,11 +10431,7 @@
       "apoyo": "New custom inground pools for Chiefland homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -11031,11 +10518,7 @@
       "apoyo": "New custom inground pools for Cross City homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -11122,11 +10605,7 @@
       "apoyo": "New custom inground pools for Dania Beach homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -11213,11 +10692,7 @@
       "apoyo": "New custom inground pools for Davie homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -11304,11 +10779,7 @@
       "apoyo": "New custom inground pools for Deerfield Beach homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -11395,11 +10866,7 @@
       "apoyo": "New custom inground pools for Delray Beach homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -11486,11 +10953,7 @@
       "apoyo": "New custom inground pools for Fanning Springs homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -11577,11 +11040,7 @@
       "apoyo": "New custom inground pools for Fort Lauderdale homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -11668,11 +11127,7 @@
       "apoyo": "New custom inground pools for Gulf Stream homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -11759,11 +11214,7 @@
       "apoyo": "New custom inground pools for Hallandale Beach homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -11850,11 +11301,7 @@
       "apoyo": "New custom inground pools for Hawthorne homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -11941,11 +11388,7 @@
       "apoyo": "New custom inground pools for High Springs homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -12032,11 +11475,7 @@
       "apoyo": "New custom inground pools for Hollywood homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -12123,11 +11562,7 @@
       "apoyo": "New custom inground pools for Hypoluxo homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -12214,11 +11649,7 @@
       "apoyo": "New custom inground pools for Juno Beach homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -12305,11 +11736,7 @@
       "apoyo": "New custom inground pools for Jupiter homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -12396,11 +11823,7 @@
       "apoyo": "New custom inground pools for Lake City homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -12487,11 +11910,7 @@
       "apoyo": "New custom inground pools for Lighthouse Point homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -12578,11 +11997,7 @@
       "apoyo": "New custom inground pools for Manalapan homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -12669,11 +12084,7 @@
       "apoyo": "New custom inground pools for McIntosh homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -12760,11 +12171,7 @@
       "apoyo": "New custom inground pools for Micanopy homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -12851,11 +12258,7 @@
       "apoyo": "New custom inground pools for Miramar homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -12942,11 +12345,7 @@
       "apoyo": "New custom inground pools for Newberry homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -13033,11 +12432,7 @@
       "apoyo": "New custom inground pools for North Palm Beach homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -13124,11 +12519,7 @@
       "apoyo": "New custom inground pools for Ocean Ridge homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -13215,11 +12606,7 @@
       "apoyo": "New custom inground pools for Old Town homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -13306,11 +12693,7 @@
       "apoyo": "New custom inground pools for Palatka homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -13397,11 +12780,7 @@
       "apoyo": "New custom inground pools for Palm Beach Gardens homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -13488,11 +12867,7 @@
       "apoyo": "New custom inground pools for Parkland homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -13579,11 +12954,7 @@
       "apoyo": "New custom inground pools for Pembroke Pines homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -13670,11 +13041,7 @@
       "apoyo": "New custom inground pools for Plantation homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -13761,11 +13128,7 @@
       "apoyo": "New custom inground pools for Pompano Beach homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -13852,11 +13215,7 @@
       "apoyo": "New custom inground pools for Reddick homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -13943,11 +13302,7 @@
       "apoyo": "New custom inground pools for Royal Palm Beach homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -14034,11 +13389,7 @@
       "apoyo": "New custom inground pools for South Palm Beach homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -14125,11 +13476,7 @@
       "apoyo": "New custom inground pools for Southwest Ranches homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -14216,11 +13563,7 @@
       "apoyo": "New custom inground pools for Tequesta homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -14307,11 +13650,7 @@
       "apoyo": "New custom inground pools for Trenton homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -14398,11 +13737,7 @@
       "apoyo": "New custom inground pools for Waldo homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -14489,11 +13824,7 @@
       "apoyo": "New custom inground pools for Wellington homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -14580,11 +13911,7 @@
       "apoyo": "New custom inground pools for West Palm Beach homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -14671,11 +13998,7 @@
       "apoyo": "New custom inground pools for Weston homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -14762,11 +14085,7 @@
       "apoyo": "New custom inground pools for Williston homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "North Florida",
-        "South Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",
@@ -14853,11 +14172,7 @@
       "apoyo": "New custom inground pools for Wilton Manors homeowners — 3D design, permits, construction and final start-up, from one licensed team.",
       "licencias": "Florida certified pool contractor · CPC1461119 · CPC1460562",
       "ancla": "#estimate",
-      "cta": "Request a Design-Build Project Evaluation",
-      "zonas": [
-        "South Florida",
-        "North Florida"
-      ]
+      "cta": "Request a Design-Build Project Evaluation"
     },
     "confianza": {
       "rotulo": "Why homeowners pick us",

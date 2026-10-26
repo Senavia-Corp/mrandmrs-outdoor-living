@@ -136,12 +136,10 @@ export function heroeDeCaptacion(cadena, cap, telefonos, donde) {
         + 'captacion-servicios.json. Sin `ancla` el CTA de la landing apunta a ninguna parte.');
     }
   }
-  const zonas = cap.heroe?.zonas ?? telefonos.map((x) => x.zona);
-  const orden = zonas.map((z) => telefonos.find((x) => x.zona === z));
-  if (orden.some((x) => !x)) {
-    throw new Error(`[captacion-ciudad] ${donde}: heroe.zonas pide ${JSON.stringify(zonas)} y `
-      + `src/data/telefonos.json solo trae ${JSON.stringify(telefonos.map((x) => x.zona))}.`);
-  }
+  /* D-248 (25-oct-2026): UN telefono. `heroe.zonas` dejo de existir en el JSON -no hay orden que
+   * decidir con un item- y la etiqueta de zona no se pinta: el chip es el numero solo. */
+  if (!telefonos.length) throw new Error(`[captacion-ciudad] ${donde}: telefonos.json sin items.`);
+  const orden = telefonos;
   /* CADA TELEFONO EN SU CHIP, Y EL `&middot;` SE QUEDA DONDE ESTABA.
    * El separador no es adorno que se pueda quitar: `innerText` lo ve, y `check:texto` compara la
    * linea entera sin tolerancia (`bloquesCaptacion`, que la deriva con `.join(' · ')`). Quitarlo
@@ -164,7 +162,7 @@ export function heroeDeCaptacion(cadena, cap, telefonos, donde) {
    * normales de linea y el texto no se mueve. */
   const tel = orden
     .map((x) => `<span class="svc-heroe__chip">${AURICULAR}`
-      + `<a href="tel:${esc(x.tel)}">${esc(x.visible)}</a> ${esc(x.zona)}</span>`)
+      + `<a href="tel:${esc(x.tel)}">${esc(x.visible)}</a></span>`)
     .join('<span class="svc-heroe__sep" aria-hidden="true"> &middot; </span>');
   /* 🚨 EL REEMPLAZO VA POR FUNCION, NO POR CADENA, Y NO ES ESTILO.
    * `String.prototype.replace` interpreta `$&`, `$\``, `$'` y `$1` DENTRO del texto de

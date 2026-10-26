@@ -66,7 +66,7 @@ export function detalleProyectoHtml({ tituloHtml, datos, fotos, accion, telefono
       + resto.map((f, k) => boton(f, k + 1, fotos.length, 'mm-det-foto',
         'sizes="(min-width: 768px) 58vw, 100vw" loading="lazy" decoding="async"')).join('') + '</div>' : '')
     + '<div class="mm-det-tel"><div class="mm-datos mm-datos--tel">'
-    + telefonos.map((t) => `<a class="mm-dato" href="tel:${t.tel}"><span class="mm-dato-rot">${t.zona}</span><span class="mm-dato-val">${t.visible}</span></a>`).join('')
+    + telefonos.map((t) => `<a class="mm-dato" href="tel:${t.tel}"><span class="mm-dato-val">${t.visible}</span></a>`).join('')
     + '</div></div></section>';
 }
 
@@ -80,6 +80,6 @@ export function cierreProyectoHtml({ tituloHtml, parrafoHtml, telefonos }) {
   return '<section class="mm-cierre mm-cierre--sin"><div class="mm-cierre-caja"><div class="mm-cierre-txt">'
     + `<h2 class="mm-h2">${tituloHtml.replace(/Design-Buil[dt]/g, '<span class="mm-nb">$&</span>')}</h2><p class="mm-p">${parrafoHtml}</p>`
     + '<div class="mm-datos mm-datos--tel">'
-    + telefonos.map((t) => `<a class="mm-dato" href="tel:${t.tel}"><span class="mm-dato-rot">${t.zona}</span><span class="mm-dato-val">${t.visible}</span></a>`).join('')
+    + telefonos.map((t) => `<a class="mm-dato" href="tel:${t.tel}"><span class="mm-dato-val">${t.visible}</span></a>`).join('')
     + '</div></div></div></section>';
 }

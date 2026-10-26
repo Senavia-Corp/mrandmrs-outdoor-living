@@ -14,7 +14,7 @@
  */
 import fs from 'node:fs';
 import { groq, SIN_BORRADORES } from './lib/sanity.mjs';
-import { renombra } from './lib/renombradas.mjs';
+import { renombra, LEGACY } from './lib/renombradas.mjs';
 
 let fallos = 0;
 const check = (n, ok, d = '') => {
@@ -33,6 +33,13 @@ const posts = await groq(`*[_type == "blogPost" && ${SIN_BORRADORES}]{
 }`);
 const borradores = await groq('count(*[_type == "blogPost" && _id in path("drafts.**")])');
 const servicios = await groq(`*[_type == "service" && ${SIN_BORRADORES}]{ "slug": slug.current }`);
+/* D-249 (25-oct-2026): un servicio retirado del sitio (su ruta es source de un redirect historico) puede
+ * seguir en Sanity hasta que se limpie el CMS tras publicar; aqui no cuenta: no tiene ficha que declarar. */
+const RETIRADAS_SEO = new Set(LEGACY.map((l) => l.source));
+const retirado = (slug) => RETIRADAS_SEO.has(renombra(`/services/${slug}`)) || RETIRADAS_SEO.has(`/services/${slug}`);
+const retiradosSanity = servicios.filter((x) => retirado(x.slug)).map((x) => x.slug);
+if (retiradosSanity.length) console.log(`  --   ${retiradosSanity.length} servicio(s) retirado(s) que Sanity aun lista y aqui no cuentan (D-249): ${retiradosSanity.join(', ')}`);
+servicios.splice(0, servicios.length, ...servicios.filter((x) => !retirado(x.slug)));
 
 console.log(`\n── el dataset: ${posts.length} articulos publicados, ${borradores} en borrador\n`);
 
@@ -210,7 +217,7 @@ const RUTAS_FICHA = JSON.parse(fs.readFileSync(new URL('../src/data/blog-por-ser
 const conTrio = Object.entries(RUTAS_FICHA.rutas ?? {});
 const pendientes = Object.entries(RUTAS_FICHA.pendientes ?? {});
 console.log('');
-check('las 14 fichas de servicio estan declaradas', conTrio.length + pendientes.length === servicios.length,
+check('las fichas de servicio estan declaradas (13 desde D-249)', conTrio.length + pendientes.length === servicios.length,
   `${conTrio.length + pendientes.length} de ${servicios.length}`);
 /* Son CINCO desde que el carrusel de blog de la ficha subio de 3 a 5 articulos; es lo que exige
  * `build-blog-por-servicio.mjs`, que no escribe la ficha si no los reune. Esta linea seguia

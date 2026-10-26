@@ -521,18 +521,6 @@ const JSONLD_ARREGLADO = {
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:50:08.396Z'],
     ],
   },
-  '/services/soffit-led-lighting': {
-    bloque: 0,
-    motivo: 'R19: los tres defectos del origen en esta ficha.',
-    cambios: [
-      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
-        'Smart Soffit & LED Lighting Installation'],
-      ['about.image', 'Smart soffit LED lighting installed by professional outdoor lighting contractors in Florida.',
-        '/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-heroe.avif'],
-      ['dateModified', '2026-05-18T19:55:20.436Z', '2026-05-18T19:55:49.094Z'],
-      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:55:20.436Z'],
-    ],
-  },
   '/services/steel-buildings-pole-barns': {
     bloque: 0,
     motivo: 'R19: los tres defectos del origen en esta ficha.',
@@ -900,6 +888,37 @@ for (const [ruta, zona, descripcion] of [
       cambios: [...(ya?.cambios ?? []), ...cambios],
     };
   }
+}
+
+/**
+ * ── D-248 / D-249 (25-oct-2026) · UN TELEFONO Y UN SERVICIO MENOS EN LOS JSON-LD DEL ORIGEN ────
+ *
+ * /contact-us: el ContactPage del origen declara dos `telephone` y dos `contactPoint` (North y South
+ * Florida); el 954 se retira del sitio y `build-paginas.mjs` (unTelefono) lo quita al derivar. Y su
+ * `about.serviceType` —igual que el `mainEntity.serviceType` del Service de /request-estimated— lista
+ * «Smart Soffit LED Lighting», servicio retirado (sinServicioRetirado). Se declara leyendo el «era» del
+ * BASELINE y derivando el «es» con los mismos datos que usa build-paginas.mjs: si el origen cambiara, la
+ * declaracion deja de casar y esto vuelve a ROJO. `areaServed` sigue trayendo «South Florida»: el
+ * negocio sigue trabajando alli; lo que cambia es el numero al que se llama.
+ */
+{
+  const base = JSON.parse(fs.readFileSync(path.join(RAIZ, 'baseline/seo.json'), 'utf8'));
+  const vigentes = new Set(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/telefonos.json'), 'utf8'))
+    .items.map((t) => `${t.tel.slice(0, 2)}-${t.tel.slice(2, 5)}-${t.tel.slice(5, 8)}-${t.tel.slice(8)}`));
+  const RETIRADO = 'Smart Soffit LED Lighting';
+  const fusiona = (ruta, cambios, motivo) => {
+    const ya = JSONLD_ARREGLADO[ruta];
+    JSONLD_ARREGLADO[ruta] = { bloque: 0, motivo: `${ya?.motivo ? `${ya.motivo} · ` : ''}${motivo}`, cambios: [...(ya?.cambios ?? []), ...cambios] };
+  };
+  const about = base['/contact-us']?.jsonLd?.[0]?.about ?? {};
+  fusiona('/contact-us', [
+    ['about.telephone', about.telephone, (about.telephone ?? []).filter((t) => vigentes.has(t))],
+    ['about.contactPoint', about.contactPoint, (about.contactPoint ?? []).filter((c) => vigentes.has(c?.telephone))],
+    ['about.serviceType', about.serviceType, (about.serviceType ?? []).filter((x) => x !== RETIRADO)],
+  ], 'D-248: un solo telefono (telephone y contactPoint del 954 fuera) · D-249: el servicio retirado sale del serviceType.');
+  const me = base['/request-estimated']?.jsonLd?.[0]?.mainEntity ?? {};
+  fusiona('/request-estimated', [['mainEntity.serviceType', me.serviceType, (me.serviceType ?? []).filter((x) => x !== RETIRADO)]],
+    'D-249: el servicio retirado sale del serviceType.');
 }
 
 /** Lee/escribe por camino con puntos: `mainEntity.mainEntity.4.name`. */

@@ -125,7 +125,6 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 .mm-cab-raya { width: 1px; height: 20px; background: var(--mm-borde-inverso); }
 .mm-cab-util-a { display: inline-flex; align-items: center; gap: var(--mm-e-8); min-height: var(--mm-util-alto); font-size: 14px; font-weight: 600; color: var(--mm-blanco); text-decoration: none; text-transform: capitalize; border-radius: var(--mm-r-8); }
 .mm-cab-util-a span { text-transform: none; }
-.mm-cab-util-zona { font-weight: 500; color: var(--mm-tinta-suave-inversa); }
 .mm-cab-util-num { font-weight: 700; font-variant-numeric: tabular-nums; }
 
 .mm-cab-fila { background: var(--mm-blanco); border-bottom: 1px solid var(--mm-borde); }
@@ -214,7 +213,6 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 .mm-barra-btn--oro { border: 0; background: var(--mm-oro); color: var(--mm-navy); box-shadow: var(--mm-losa-sombra); }
 .mm-barra-btn--oro:active { background: var(--mm-oro-pulsado); transform: translateY(1px); box-shadow: var(--mm-losa-sombra-pulsado); }
 .mm-barra-tel { display: flex; flex-direction: column; justify-content: center; gap: 2px; min-height: var(--mm-fila); box-sizing: border-box; padding: var(--mm-e-8) var(--mm-e-16); border: 1.5px solid var(--mm-navy); border-radius: var(--mm-r-8); background: var(--mm-blanco); text-decoration: none; }
-.mm-barra-tel-zona { font-size: 12px; line-height: 1.5; font-weight: 700; letter-spacing: 0.02em; color: var(--mm-tinta-suave); }
 .mm-barra-tel-num { font-size: 15px; line-height: 1.2; font-weight: 700; color: var(--mm-navy); font-variant-numeric: tabular-nums; }
 /* El pie no queda debajo de la barra (regla en el propio pie, más abajo en cascada). */
 

@@ -27,7 +27,6 @@ const NOMBRE_TRAMO = {
   'irrigation-systems': 'Irrigation Systems',
   'outdoor-furniture': 'Outdoor Furniture',
   'steel-buildings-pole-barns': 'Steel Buildings & Pole Barns',
-  'soffit-led-lighting': 'Soffit LED Lighting',
 };
 
 /**

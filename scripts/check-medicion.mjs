@@ -80,7 +80,8 @@ const CIUDADES_SERVICIO = (() => {
   return Object.keys(JSON.parse(fs.readFileSync(f, 'utf8')).paginas).length;
 })();
 // D-195 (14-oct-2026): una menos en las dos cuentas — la ficha de proyecto que redirige a su hermana.
-const PAGINAS_ESPERADAS = 121 + BLOGS_PROPIOS + GALERIAS_PROPIAS + CIUDADES_SERVICIO;
+// D-249 (25-oct-2026): otra menos — la ficha de Soffit, que redirige a la de techos de lamas.
+const PAGINAS_ESPERADAS = 120 + BLOGS_PROPIOS + GALERIAS_PROPIAS + CIUDADES_SERVICIO;
 /**
  * 121 = 113 del sitemap del origen + 6 adiciones de autoria propia + 2 de la auditoria
  * (5-sep-2026). Las dos nuevas son rutas DEL ORIGEN que el sitemap del origen no listaba:
@@ -91,7 +92,7 @@ const PAGINAS_ESPERADAS = 121 + BLOGS_PROPIOS + GALERIAS_PROPIAS + CIUDADES_SERV
 /* …MAS LAS DE BLOG PROPIAS, por la misma razon que PAGINAS_ESPERADAS: el sitemap las deriva de
  * `blogs-rutas.json` (build-seo-ficheros.mjs ADICIONES_BLOG), asi que cablear 121 ponia esta
  * puerta roja con cada articulo publicado (medido el 1-oct-2026: «121 <loc> — hay 155»). */
-const LOCS_ESPERADAS = 120 + BLOGS_PROPIOS + GALERIAS_PROPIAS + CIUDADES_SERVICIO;
+const LOCS_ESPERADAS = 119 + BLOGS_PROPIOS + GALERIAS_PROPIAS + CIUDADES_SERVICIO;
 const SOLO_NOINDEX = new Set(['/thank-you']);
 
 /**

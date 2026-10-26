@@ -95,7 +95,7 @@ Three smaller points worth settling at the same time:
 
 - **Zones, not a switch.** At minimum, separate the perimeter from the task lighting. They are almost never wanted at the same level.
 - **Rated for where they are.** A closed louvered roof is not a dry interior ceiling. Rain arrives sideways, and the fixtures have to be rated for that.
-- **Match the house.** If the house already carries [permanent soffit and exterior LED lighting](/services/soffit-led-lighting), agreeing the color temperature before anything is ordered is a two-minute conversation. Afterwards it is a re-order.
+- **Match the house.** If the house already carries permanent exterior LED lighting, agreeing the color temperature before anything is ordered is a two-minute conversation. Afterwards it is a re-order.
 
 ## Fans: clearance, and what the beam was specified to carry
 

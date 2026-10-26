@@ -60,7 +60,7 @@ for (const n of [1, 2, 3]) check(`trae el paso data-step="${n}"`, html.includes(
 check('trae los paneles de exito y fallo', html.includes('success-message-form') && html.includes('w-form-fail'));
 
 const valores = [...html.matchAll(/name="checkbox"[^>]*value="([^"]+)"/g)].map((m) => m[1]);
-check('las 14 casillas de servicio llevan value', valores.length === 14, `${valores.length} encontradas`);
+check('las 13 casillas de servicio llevan value (14 hasta D-249)', valores.length === 13, `${valores.length} encontradas`);
 
 let fuera = 0;
 for (const [ruta, fichero] of paginas) {

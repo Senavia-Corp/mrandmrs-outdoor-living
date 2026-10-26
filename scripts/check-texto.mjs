@@ -33,7 +33,6 @@ import { enlazadoDeCiudad } from '../src/lib/vecinas.mjs';
 import { fotoDeHeroe } from '../src/lib/heroe-ciudad.mjs';
 import { lineasDiferenciales } from '../src/lib/diferenciales.mjs';
 import { ciudadesDeFicha, SERVICIOS_CIUDAD } from '../src/lib/servicios-ciudad.mjs';
-import { zonasDeCondado } from '../src/lib/condados.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 
@@ -322,14 +321,19 @@ function esperadoPropio(ruta, lineasRef) {
   // botones, y el pie de foto donde hay foto (T-66, T-67). Si no esta tal cual, no se toca.
   const ch = CAPTACION_JSON[ruta]?.heroe;
   if (ch && !esFicha(ruta) && ruta.startsWith('/services/')) {
-    const zonas = (ch.zonas ?? TELEFONOS.items.map((x) => x.zona)).map((z) => TELEFONOS.items.find((x) => x.zona === z));
-    const lineaTel = zonas.map((t) => `${t.visible} ${t.zona}`).join(' · ');
-    const k = out.findIndex((l, x) => l === ch.licencias && out[x + 4] === lineaTel && out[x + 6] === 'Project Gallery');
+    const zonas = TELEFONOS.items;   // D-248 (25-oct-2026): un telefono y sin etiqueta de zona; `heroe.zonas` ya no existe
+    /* La referencia propia guarda la linea de telefonos de entonces: chips «+1 (NNN) NNN-NNNN Zona» unidos por ` · `,
+     * los dos numeros y el de la region primero. Se reconoce por su forma (uno de los chips es el numero vigente) y se
+     * cambia por la banda nueva con el numero solo; el 954 y las etiquetas de zona son T-124/T-125. */
+    const CHIP = /^\+1 \(\d{3}\) \d{3}-\d{4} (?:North|South) Florida$/;
+    const lineaTel = (l) => l === zonas.map((t) => t.visible).join(' · ')
+      || (l.split(' · ').every((c) => CHIP.test(c)) && zonas.every((t) => l.includes(t.visible)));
+    const k = out.findIndex((l, x) => l === ch.licencias && lineaTel(out[x + 4] ?? '') && out[x + 6] === 'Project Gallery');
     if (k >= 0) {
       const [rot, ...val] = ch.licencias.split(' · ');
       const pie = fotoDeHeroe(ruta)?.pie;
       out = [...out.slice(0, k), out[k + 1], out[k + 2], out[k + 3], out[k + 5], 'Project Gallery',
-        ...zonas.flatMap((t) => [t.zona.toUpperCase(), t.visible]), rot.toUpperCase(), val.join(' · '),
+        ...zonas.map((t) => t.visible), rot.toUpperCase(), val.join(' · '),
         ...(pie ? ['PROJECT', pie] : []), ...out.slice(k + 7)];
     }
   }
@@ -338,11 +342,12 @@ function esperadoPropio(ruta, lineasRef) {
     const miga = tramosMiga(ruta).map((t) => t.nombre);
     const m = out.findIndex((_, x) => miga.every((l, y) => out[x + y] === l));
     const h = out.findIndex((l) => l === CAPTACION_JSON[ruta].heroe.licencias.split(' · ')[0].toUpperCase());
-    // `h` es el rotulo de la licencia de la banda de datos; el h1 esta 9 lineas antes (h1, h2,
-    // parrafo, accion, «Project Gallery», y los dos telefonos con su rotulo).
-    if (m >= 0 && h >= 9 && m > h) {
+    // `h` es el rotulo de la licencia de la banda de datos; el h1 esta delante de h1, h2, parrafo, accion,
+    // «Project Gallery» y una linea por telefono (D-248: el numero solo; antes, dos lineas por cada uno de los dos).
+    const antesDelH1 = 5 + TELEFONOS.items.length;
+    if (m >= 0 && h >= antesDelH1 && m > h) {
       out.splice(m, miga.length);
-      out.splice(h - 9, 0, ...miga);
+      out.splice(h - antesDelH1, 0, ...miga);
     }
   }
   // ASTRO-2: las referencias propias de las paginas de ciudad guardan el formulario de un paso.
@@ -434,6 +439,21 @@ const QUITADAS_A_PROPOSITO = [
       'ASTRO-2 (T-44): resumen de un articulo que pasa al indice de texto',
       RUTAS_A_MEDIR.filter((r) => r.startsWith('/services/') && !esFicha(r))]),
   ['12', 'la paginación del widget de Elfsight en /videos: la galería nativa los pinta todos'],
+  /* ── D-248 (P-9, 25-oct-2026) · UN SOLO TELEFONO (T-125) ──────────────────────────────────
+   * El de South Florida, +1 (954) 913-7112, desaparece del sitio. El baseline lo trae en tres rutas y las
+   * tres se DECLARAN, no se re-baselinizan: la fila de `div.phone-wrapper` de /contact-us (la quita
+   * `build-paginas.mjs` · unTelefono), la linea del cuerpo de /articles/accessibility y la misma linea en
+   * SEIS descripciones de /videos (la quita `extract-youtube.mjs`; en YouTube la cambia el cliente).
+   * Acotadas por ruta: fuera de esas tres, una linea asi es un 954 que ha vuelto y sale ROJO. */
+  ['South Florida: +1 (954) 913-7112', 'D-248 (telefono unico, T-125): la fila de South Florida de /contact-us se va', ['/contact-us']],
+  ['📞 South Florida: +1 (954) 913-7112', 'D-248 (telefono unico, T-125): linea de contacto del articulo y de 6 descripciones de video', ['/articles/accessibility', '/videos']],
+  /* ── D-249 (P-10, 25-oct-2026) · FUERA SOFFIT (T-127) ─────────────────────────────────────
+   * La casilla del formulario de /request-estimated y la opcion del filtro de /gallery con el servicio
+   * retirado salen al derivar (`build-paginas.mjs` · sinServicioRetirado). El pie y el indice de servicios
+   * van por su propia derivacion (cascaronStitch, serviciosDeIndiceAPestanas). */
+  ['Smart Soffit LED Lighting', 'D-249 (servicio retirado, T-127): casilla de /request-estimated y opcion del filtro de /gallery', ['/request-estimated', '/gallery']],
+  // Y en las 65 ciudades con referencia propia: su panel de servicios y su pie lo guardaban con 14.
+  ['Smart Soffit LED Lighting', 'D-249 (servicio retirado, T-127): panel de servicios y pie de las referencias propias de ciudad', RUTAS_A_MEDIR.filter((r) => r.startsWith('/services/') && !esFicha(r) && !r.startsWith('/services/pool-builders/'))],
   ['Free YouTube Video Gallery Widget', 'la marca de Elfsight en /videos. Se va con el widget'],
 
   /* ── LAS 14 FICHAS DE `/services/` NO LLEVAN DECLARACIONES AQUI, Y ES A PROPOSITO ─────────
@@ -483,6 +503,9 @@ const TRADUCIDAS_A_PROPOSITO = [
    * seguro este en vigor sigue pendiente de confirmar (`SEO_REQUIRES_CLIENT_DATA.md`); esto solo
    * arregla la palabra, que el pie ya escribe bien («Licensed & Insured»). */
   ['Licensed & Insurance', 'Licensed & Insured', 'errata de la insignia del heroe de la home', ['/']],
+  /* D-248 (25-oct-2026, T-125): con un solo telefono la etiqueta «North Florida:» le dice al visitante del sur
+   * que ese numero no es para el. Se quita (D-263); lo hace `build-paginas.mjs` (unTelefono) al derivar /contact-us. */
+  ['North Florida: +1 (352) 740-3361', '+1 (352) 740-3361', 'D-248 (telefono unico): el unico numero de /contact-us, sin etiqueta de zona', ['/contact-us']],
   /* SEO-REMEDIACION (4-oct-2026): dos resumenes de subservicio de la landing de remodelacion que
    * atraian leads de reparacion suelta («repairs addressing cracks, leaks»). Se reescriben como
    * parte de una remodelacion completa; el nuevo se lee de `servicios.textos` del JSON. */
@@ -701,9 +724,12 @@ function heroAStitch(ruta, lineas) {
 }
 const MENU_VIEJO = ['Home', 'Services', 'About Us', 'Project Gallery', 'Resources', 'Financing', 'Contact Us', 'Get A Free Estimate'];
 const MENU_NUEVO = ['Skip to content', 'Florida certified pool contractor · CPC1461119 · CPC1460562',
-  ...TELEFONOS.items.flatMap((t) => [t.zona, t.visible]),
+  ...TELEFONOS.items.map((t) => t.visible),   // D-248: sin etiqueta de zona
   'Financing', 'Contact Us', 'Services', 'About Us', 'Project Gallery', 'Resources', 'Get A Free Estimate'];
 const PIE_LICENCIA_VIEJA = 'Mr. & Mrs. Outdoor Living - Licensed & Insured | CPC1461119 | CPC1460562 | SCC131153553';
+/* D-249 (25-oct-2026, T-127): el pie y el indice de servicios de Webflow listaban 14; el servicio retirado sigue en el
+ * baseline y ya no en la pagina. Se descuenta aqui, por nombre, y no se toca el baseline. */
+const SERVICIOS_RETIRADOS_PIE = ['Smart Soffit LED Lighting'];
 const PIE_RAPIDOS = ['Home', 'About Us', 'Our Feature Projects', 'Customer Reviews', 'Blog & Tips', 'Contact Us'];
 /* La cabecera se compara como UNA marca, no linea a linea: su licencia («Florida certified pool
  * contractor · …») es la MISMA cadena que ya pinta el hero de las fichas, y los descuentos de
@@ -712,12 +738,17 @@ const PIE_RAPIDOS = ['Home', 'About Us', 'Our Feature Projects', 'Customer Revie
  * seguido, por la marca; en lo esperado, `cascaronStitch` cambia el viejo por la misma marca.
  * Si la pagina no trae el tramo nuevo tal cual, no hay marca y la ruta sale roja. */
 const MARCA_CABECERA = '\u27e6cabecera G1: ' + MENU_NUEVO.join(' | ') + '\u27e7';
+/* D-248 (25-oct-2026): las referencias propias guardan la cabecera de entonces, con los dos telefonos y su zona.
+ * Se reconoce tambien esa forma y se cambia por la misma marca (T-124, T-125). */
+const MENU_NUEVO_DOS_TELEFONOS = [MENU_NUEVO[0], MENU_NUEVO[1], 'North Florida', '+1 (352) 740-3361', 'South Florida', '+1 (954) 913-7112', ...MENU_NUEVO.slice(2 + TELEFONOS.items.length)];
 function marcaCabecera(lineas) {
   const out = [...lineas];
-  const m = out.findIndex((_, k) => MENU_NUEVO.every((l, j) => out[k + j] === l));
-  // La ultima linea («Get A Free Estimate») se queda fuera de la marca: hay declaraciones de
-  // mas abajo ancladas `tras` ella (/gallery, /projects).
-  if (m >= 0) out.splice(m, MENU_NUEVO.length - 1, MARCA_CABECERA);
+  for (const menu of [MENU_NUEVO, MENU_NUEVO_DOS_TELEFONOS]) {
+    const m = out.findIndex((_, k) => menu.every((l, j) => out[k + j] === l));
+    // La ultima linea («Get A Free Estimate») se queda fuera de la marca: hay declaraciones de
+    // mas abajo ancladas `tras` ella (/gallery, /projects).
+    if (m >= 0) { out.splice(m, menu.length - 1, MARCA_CABECERA); break; }
+  }
   return out;
 }
 function cascaronStitch(lineas) {
@@ -726,11 +757,25 @@ function cascaronStitch(lineas) {
   if (m >= 0) out.splice(m, MENU_VIEJO.length - 1, MARCA_CABECERA);
   const servicios = ORDEN_SERVICIOS_PIE.map((x) => x.texto);
   const zonas = AREAS_PIE.map((x) => x.texto);
-  const viejo = [PIE_LICENCIA_VIEJA, 'Quick Links', ...PIE_RAPIDOS, 'Residential Services', ...servicios, 'Areas We Serve', ...zonas];
-  const p = out.findIndex((_, k) => viejo.every((l, j) => out[k + j] === l));
+  // `piePropio` ya ha puesto los del baseline en el orden del pie, con los retirados (D-249) al final.
+  /* El tramo de servicios del pie se compara como CONJUNTO (13 del pie, o 14 con el retirado de D-249 en
+   * cualquier posicion: las referencias propias lo guardan donde lo pintaba el pie de entonces, y en /gallery y
+   * /request-estimated ya salio por QUITADAS_A_PROPOSITO). Lo demas del bloque, linea a linea y en su orden. */
+  const cabeza = [PIE_LICENCIA_VIEJA, 'Quick Links', ...PIE_RAPIDOS, 'Residential Services'];
+  const cola = ['Areas We Serve', ...zonas];
+  const mismoConjunto = (xs, ys) => [...xs].sort().join('|') === [...ys].sort().join('|');
+  let p = -1; let viejo = [];
+  for (let k = 0; k < out.length && p < 0; k++) {
+    if (!cabeza.every((l, j) => out[k + j] === l)) continue;
+    for (const n of [servicios.length, servicios.length + SERVICIOS_RETIRADOS_PIE.length]) {
+      const tramo = out.slice(k + cabeza.length, k + cabeza.length + n);
+      const esperados = n === servicios.length ? servicios : [...servicios, ...SERVICIOS_RETIRADOS_PIE];
+      if (mismoConjunto(tramo, esperados) && cola.every((l, j) => out[k + cabeza.length + n + j] === l)) { p = k; viejo = [...cabeza, ...tramo, ...cola]; break; }
+    }
+  }
   if (p >= 0) {
     out.splice(p, viejo.length,
-      ...TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]),
+      ...TELEFONOS.items.map((t) => t.visible),
       'LICENSED & INSURED', 'CPC1461119 · CPC1460562 · SCC131153553',
       'RESIDENTIAL SERVICES', ...servicios, 'QUICK LINKS', ...PIE_RAPIDOS, 'AREAS WE SERVE', ...zonas);
   }
@@ -740,10 +785,13 @@ function piePropio(lineas) {
   const out = [...lineas];
   const s = out.indexOf('Residential Services');
   if (s >= 0) {
-    const n = ORDEN_SERVICIOS_PIE.length;
-    const tramo = out.slice(s + 1, s + 1 + n);
     const nuevo = ORDEN_SERVICIOS_PIE.map((x) => x.texto);
-    if ([...tramo].sort().join('|') === [...nuevo].sort().join('|')) out.splice(s + 1, n, ...nuevo);
+    // Lo medido trae los 13 del pie; el baseline, 14 (con el retirado de D-249). Cada tramo se compara con su conjunto.
+    for (const lista of [nuevo, [...nuevo, ...SERVICIOS_RETIRADOS_PIE]]) {
+      const n = lista.length;
+      const tramo = out.slice(s + 1, s + 1 + n);
+      if ([...tramo].sort().join('|') === [...lista].sort().join('|')) { out.splice(s + 1, n, ...lista); break; }
+    }
   }
   const a = out.indexOf('Areas We Serve');
   const c = out.indexOf(COPYRIGHT_ORIGEN);
@@ -910,11 +958,10 @@ const REORDENADAS_A_PROPOSITO = [
     antes: ['All', 'New Pool and Spa Construction', 'Pool Remodeling and Renovation',
       'Aluminum and Wood Pergolas', 'Louvered Roof Systems', 'Pool Screen Enclosures',
       'Patio Screen Rooms', 'Pole Barn and Steel Buildings', 'Landscaping', 'Automated Irrigation',
-      'Custom Decks', 'Outdoor Furniture', 'Outdoor Kitchens', 'Retractable Screens',
-      'Smart Soffit LED Lighting'],
+      'Custom Decks', 'Outdoor Furniture', 'Outdoor Kitchens', 'Retractable Screens'],
     despues: ['All', 'New Pool and Spa Construction', 'Pool Remodeling and Renovation',
       'Outdoor Kitchens', 'Aluminum and Wood Pergolas', 'Retractable Screens',
-      'Smart Soffit LED Lighting', 'Louvered Roof Systems', 'Pool Screen Enclosures',
+      'Louvered Roof Systems', 'Pool Screen Enclosures',
       'Patio Screen Rooms', 'Pole Barn and Steel Buildings', 'Landscaping', 'Automated Irrigation',
       'Custom Decks', 'Outdoor Furniture'],
     motivo: 'el filtro de la galeria sigue el orden comercial de la rejilla (piscinas primero). '
@@ -1425,7 +1472,7 @@ const LINEAS_ANADIDAS = [
    * declaracion de «What we do» porque esta lleva la accion pegada a los telefonos y aquella no. */
   ...Object.keys(CAPTACION_JSON).filter(esFicha).map((r) => ({
     rutas: [r], tras: [],
-    lineas: [capitalizaH2(CAPTACION_JSON[r].heroe.cta ?? 'Get a Free Estimate'), ...TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible])],
+    lineas: [capitalizaH2(CAPTACION_JSON[r].heroe.cta ?? 'Get a Free Estimate'), ...TELEFONOS.items.map((t) => t.visible)],
     motivo: 'ASTRO-2 (T-29): tarjeta de accion del FAQ.',
   })),
   /* ASTRO-2 · T-47: en las resenas de las 14 fichas, la accion de la pagina en la cabecera (delante
@@ -1434,7 +1481,7 @@ const LINEAS_ANADIDAS = [
    * las mismas cinco que la tarjeta del FAQ, y por eso es una segunda declaracion identica. */
   ...Object.keys(CAPTACION_JSON).filter(esFicha).map((r) => ({
     rutas: [r], tras: [],
-    lineas: [capitalizaH2(CAPTACION_JSON[r].heroe.cta ?? 'Get a Free Estimate'), ...TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible])],
+    lineas: [capitalizaH2(CAPTACION_JSON[r].heroe.cta ?? 'Get a Free Estimate'), ...TELEFONOS.items.map((t) => t.visible)],
     motivo: 'ASTRO-2 (T-47): accion en la cabecera de las resenas y telefonos al pie.',
   })),
   /* ASTRO-2 · T-47: los dos telefonos al pie de «What we do», en banda de datos (rotulo de zona en
@@ -1442,7 +1489,7 @@ const LINEAS_ANADIDAS = [
    * (§ bloquesCaptacion) cuando esto corre, asi que la primera aparicion es esta. */
   {
     rutas: Object.keys(CAPTACION_JSON).filter(esFicha), tras: [],
-    lineas: TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]),
+    lineas: TELEFONOS.items.map((t) => t.visible),
     motivo: 'ASTRO-2 (T-47): telefonos al pie de «What we do».',
   },
   /* ASTRO-2 · T-28 y T-47: la cabecera de la galeria de obra de las 14 fichas lleva la accion de
@@ -2256,59 +2303,6 @@ const LINEAS_ANADIDAS = [
         + 'taller eaves, wider bays and slabs rated for loaders and trailers. On an existing '
         + 'barn we replace corroded purlins and rusted skin, add a lean-to or enclose open '
         + 'bays, and bring the older structure up to current code.',
-    ],
-    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
-  },
-  // /services/soffit-led-lighting
-  {
-    rutas: ['/services/soffit-led-lighting'],
-    tras: ['We install smart soffit and LED lighting systems in North & South Florida, '
-        + 'boosting curb appeal, security, and energy efficiency.'],
-    lineas: [
-      'Custom Runs & Concealed Channels',
-      'We mount the LED run tight to the soffit line in aluminum channel finished to '
-        + 'match your fascia, so the diodes stay out of sight and only the light shows. Crews '
-        + 'pull low-voltage wire inside the soffit, seal every penetration against water, and '
-        + 'mount the transformer where you can reach it.',
-    ],
-    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
-  },
-  {
-    rutas: ['/services/soffit-led-lighting'],
-    tras: ['Custom installers conceal wiring in color‑matched aluminum channels for a sleek '
-        + 'residential finish.'],
-    lineas: [
-      'Sealed Housings & LED Retrofits',
-      'Salt air and UV break down open fixtures, so we install IP68-rated channel and '
-        + 'stainless fasteners anchored into framing rather than bare soffit panel, which is '
-        + 'what holds a run together in coastal Florida wind. Retrofits pull aging halogen '
-        + 'strands and put LED diodes on a low-voltage circuit.',
-    ],
-    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
-  },
-  {
-    rutas: ['/services/soffit-led-lighting'],
-    tras: ['South Florida installers retrofit existing soffit lighting with energy‑efficient '
-        + 'LED technology.'],
-    lineas: [
-      'Controllers, Zones & RGBW Color',
-      'Each node on the track carries its own RGBW diode, so one run gives you warm white '
-        + 'for a regular night and full color when you want it. The controller mounts by the '
-        + 'panel and talks to your phone, and we split the run into zones that follow the '
-        + 'elevations of the house.',
-    ],
-    motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
-  },
-  {
-    rutas: ['/services/soffit-led-lighting'],
-    tras: ['Builders install LED systems offering millions of colors and patterns for '
-        + 'personalized illumination.'],
-    lineas: [
-      'Security Lighting & Holiday Color',
-      'Soffit LEDs wash the walls, entry, and driveway, which removes the dark corners a '
-        + 'camera cannot resolve and keeps light off your neighbor\'s windows. The same '
-        + 'permanent track carries holiday color, so nobody is on a ladder in December '
-        + 'stapling strands to the fascia.',
     ],
     motivo: 'R22-DETALLE: cabecera y entradilla de una fila de la rejilla de subservicios.',
   },
@@ -3139,8 +3133,8 @@ function bloquesCaptacion(ruta) {
     const pie = fotoDeHeroe(ruta)?.pie;
     return [
       tramosMiga(ruta).map((t) => t.nombre),
-      // D-134: en Broward y Palm Beach, «South Florida» primero (`condados.mjs`).
-      [...zonasDeCondado(ruta).map((z) => TELEFONOS.items.find((t) => t.zona === z)).flatMap((t) => [t.zona.toUpperCase(), t.visible]), lic[0].toUpperCase(), lic.slice(1).join(' · '),
+      // D-248: un telefono, sin etiqueta de zona (hasta entonces dos, «South Florida» primero en Broward y Palm Beach, D-134).
+      [...TELEFONOS.items.map((t) => t.visible), lic[0].toUpperCase(), lic.slice(1).join(' · '),
         ...(pie ? ['PROJECT', pie] : [])],
     ];
   }
@@ -3169,7 +3163,7 @@ function bloquesCaptacion(ruta) {
    *
    * Y el ` · ` de los telefonos SIGUE AHI. La forma nueva son dos chips, pero el separador no se
    * quita: `innerText` lo ve y el texto no se toca (Principio 2). */
-  const zonas = c.heroe.zonas ?? TELEFONOS.items.map((x) => x.zona);
+  // D-248 (25-oct-2026): UN telefono y sin etiqueta de zona; `heroe.zonas` ya no existe en el JSON.
   // D-118: la miga visible en el hero de las 14 fichas, de la misma funcion que la pinta y que da
   // el `BreadcrumbList` del JSON-LD (`miga-tramos.mjs`). Las barras van en `::before`.
   if (esFicha(ruta)) bloques.push(tramosMiga(ruta).map((t) => t.nombre));
@@ -3184,22 +3178,12 @@ function bloquesCaptacion(ruta) {
     // El pie de la ciudad lo da la MISMA funcion que reparte la foto (`heroe-ciudad.mjs`, D-112 a D-114).
     const pie = esFicha(ruta) ? (c.heroe._banco && BANCO_ALT.get(c.heroe._banco)) : fotoDeHeroe(ruta)?.pie;
     bloques.push([
-      ...zonas.flatMap((z) => {
-        const tel = TELEFONOS.items.find((x) => x.zona === z);
-        if (!tel) throw new Error(`check-texto: heroe.zonas pide «${z}» y telefonos.json no lo trae`);
-        return [tel.zona.toUpperCase(), tel.visible];
-      }),
+      ...TELEFONOS.items.map((t) => t.visible),
       rotLic.toUpperCase(), valLic.join(' · '),
       ...(pie ? ['PROJECT', pie] : []),
     ]);
   } else {
-  bloques.push([
-    zonas.map((z) => {
-      const tel = TELEFONOS.items.find((x) => x.zona === z);
-      if (!tel) throw new Error(`check-texto: heroe.zonas pide «${z}» y telefonos.json no lo trae`);
-      return `${tel.visible} ${tel.zona}`;
-    }).join(' · '),
-  ]);
+  bloques.push([TELEFONOS.items.map((t) => t.visible).join(' · ')]);
   bloques.push([c.heroe.licencias]);
   }
 
@@ -3681,7 +3665,7 @@ const CIERRE_CIUDAD = 'Share your property details, project scope, and investmen
 const tituloObra = (o) => o.titulo ?? o.tituloHtml.replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
 function fichaProyectoTexto(ruta, lineas) {
   const out = [...lineas];
-  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const tels = TELEFONOS.items.map((t) => t.visible);
   const hayTels = (k) => tels.every((l, x) => out[k + x] === l);
   /* Lo declarado es OBLIGATORIO: un tramo que falta mete una linea que no casa con nada y la ruta
    * sale roja diciendo cual. Sin esto la puerta fallaba ABIERTA. */
@@ -3726,7 +3710,7 @@ const CATEGORIA_DE_ARTICULO = (() => {
 })();
 function articuloTexto(ruta, lineas) {
   const out = [...lineas];
-  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const tels = TELEFONOS.items.map((t) => t.visible);
   // D-145: rotulo y enlace del estimador, solo en los articulos de categoria de piscina.
   const dePiscina = CATEGORIAS_PISCINA.includes(CATEGORIA_DE_ARTICULO[ruta.split('/').pop()]);
   const tarjeta = [...(dePiscina ? ['POOL COST ESTIMATOR'] : []), 'Request A Design-Build Project Evaluation',
@@ -3759,7 +3743,9 @@ function serviciosDeIndiceAPestanas(out, dp) {
   const i = out.findIndex((_, k) => nuevo.every((l, j) => igual(out[k + j], l)));
   if (i < 0) return false;
   const deLaPestana = dp.servicios.filter((sv) => sv.categorias.includes(dp.categorias[0].slug));
-  out.splice(i, nuevo.length, out[i], out[i + 1], ...dp.categorias.map((c) => nm(c.nombre)), ...deLaPestana.flatMap((sv) => (sv.id === act.id ? [nm(sv.nombre), ...ficha] : [nm(sv.nombre)])));
+  // D-249 (T-127): el baseline cerraba la primera pestana («Outdoor Living») con el servicio retirado; se devuelve ahi.
+  const retirados = dp.categorias[0].slug === 'outdoor-living' ? SERVICIOS_RETIRADOS_PIE : [];
+  out.splice(i, nuevo.length, out[i], out[i + 1], ...dp.categorias.map((c) => nm(c.nombre)), ...deLaPestana.flatMap((sv) => (sv.id === act.id ? [nm(sv.nombre), ...ficha] : [nm(sv.nombre)])), ...retirados);
   return true;
 }
 
@@ -3778,7 +3764,7 @@ function estadoTexto(ruta, lineas) {
   const faltas = [];
   const GFE = 'Get A Free Estimate';
   const ACC = 'Request A Design-Build Project Evaluation';
-  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const tels = TELEFONOS.items.map((t) => t.visible);
   const nm = (x) => (x ?? '').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
   const hay = (x) => tels.every((l, j) => out[x + j] === l);
   // La banda final, lo primero: despues vuelve la de media pagina y habria dos con el mismo parrafo.
@@ -3835,7 +3821,7 @@ function homeTexto(lineas) {
   const faltas = [];
   const ACC = 'Request A Design-Build Project Evaluation';
   const GFE = 'Get A Free Estimate';
-  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const tels = TELEFONOS.items.map((t) => t.visible);
   const son = (k, bloque) => bloque.every((l, j) => out[k + j] === l);
   const nm = (x) => (x ?? '').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
   // 0 · TABLA-DIFERENCIALES (17-oct-2026): la tabla bajo el antes/despues, derivada de la MISMA fuente que
@@ -3867,10 +3853,10 @@ function homeTexto(lineas) {
   const parrafoBanda = FIN[1];
   // zonas: rotulo, lema y dos zonas de titulo, parrafo, telefono (rotulo + numero) y enlace; norte delante
   let Zv = null;
-  if (Z.length === 12 && Z[2] === 'North Florida' && Z[4] === 'NORTH FLORIDA' && Z[7] === 'South Florida' && Z[9] === 'SOUTH FLORIDA'
-    && Z[5] === TELEFONOS.items.find((t) => t.zona === 'North Florida').visible && Z[10] === TELEFONOS.items.find((t) => t.zona === 'South Florida').visible) {
-    Zv = ['Where We Serve', Z[1], Z[7], Z[8], Z[11], Z[2], Z[3], Z[6]];
-  } else faltas.push('las dos zonas con su telefono, norte delante');
+  // D-248 (25-oct-2026): la tarjeta de zona ya no lleva telefono (habia uno por zona; ahora hay uno solo, en las bandas).
+  if (Z.length === 8 && Z[2] === 'North Florida' && Z[5] === 'South Florida') {
+    Zv = ['Where We Serve', Z[1], Z[5], Z[6], Z[7], Z[2], Z[3], Z[4]];
+  } else faltas.push('las dos zonas, norte delante y sin telefono (D-248)');
   // antes/despues: titular, parrafo, los dos enlaces, los dos rotulos del deslizador, la linea que lo dice y las dos
   // tarjetas. E11 (D-194, decidido el 14-oct-2026): el par de produccion vuelve ROTULADO como visualizacion.
   // «Before»/«After» se retiran de la home y entran tres cadenas nuevas (T-103 a T-105): `Visualization`, `Completed` y la
@@ -3936,7 +3922,7 @@ function homeTexto(lineas) {
 function galeriaTexto(ruta, lineas) {
   const out = [...lineas];
   const faltas = [];
-  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const tels = TELEFONOS.items.map((t) => t.visible);
   const tesela = ['Seen something you like?', 'Get a free estimate', ...tels];
   const son = (k, bloque) => bloque.every((l, j) => out[k + j] === l);
   if (ruta === '/gallery') {
@@ -4012,17 +3998,17 @@ function contactoTexto(lineas) {
   const out = [...lineas];
   const faltas = [];
   const GFE = 'Get A Free Estimate';
-  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const tels = TELEFONOS.items.map((t) => t.visible);
   const zi = out.indexOf('WHERE WE SERVE');
   const ri = out.findIndex((l, k) => k > zi && l === 'TESTIMONIALS');
   const ci = out.findIndex((l, k) => k > ri && (out[k + 1] ?? '').startsWith(CIERRE_CIUDAD));
   if (!(zi > 0 && ri > zi && ci > ri)) return [...out, '⟦FALTA: el orden de /contact-us (zonas, resenas, banda final)⟧'];
   const Z = out.slice(zi, ri); const R = out.slice(ri, ci); const FIN = out.slice(ci);
   let Zv = Z; let Rv = R; let FINv = FIN;
-  if (Z.length === 12 && Z[2] === 'North Florida' && Z[4] === 'NORTH FLORIDA' && Z[7] === 'South Florida' && Z[9] === 'SOUTH FLORIDA'
-    && Z[5] === TELEFONOS.items.find((t) => t.zona === 'North Florida').visible && Z[10] === TELEFONOS.items.find((t) => t.zona === 'South Florida').visible) {
-    Zv = ['Where We Serve', Z[1], Z[7], Z[8], Z[11], Z[2], Z[3], Z[6]];
-  } else faltas.push('las dos zonas con su telefono, norte delante');
+  // D-248 (25-oct-2026): la tarjeta de zona ya no lleva telefono (habia uno por zona; ahora hay uno solo, en las bandas).
+  if (Z.length === 8 && Z[2] === 'North Florida' && Z[5] === 'South Florida') {
+    Zv = ['Where We Serve', Z[1], Z[5], Z[6], Z[7], Z[2], Z[3], Z[4]];
+  } else faltas.push('las dos zonas, norte delante y sin telefono (D-248)');
   const m = R.indexOf(RESENAS_MARCADOR);
   if (m > 0 && R[m - 1] === GFE && tels.every((l, k) => R[R.length - tels.length + k] === l)) Rv = [...R.slice(0, m - 1), ...R.slice(m, R.length - tels.length)];
   else faltas.push('las resenas con la accion en la cabecera y los dos telefonos al final');
@@ -4037,7 +4023,7 @@ function contactoTexto(lineas) {
  */
 function bandaConTelefonos(lineas) {
   const out = [...lineas];
-  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const tels = TELEFONOS.items.map((t) => t.visible);
   const b = out.findIndex((l, x) => l.startsWith(CIERRE_CIUDAD) && out[x + 1] === 'Get A Free Estimate');
   if (b >= 0 && tels.every((l, k) => out[b + 2 + k] === l)) { out.splice(b + 2, tels.length); return out; }
   return [...out, '⟦FALTA: los dos telefonos de la banda final (T-56), detras de su boton⟧'];
@@ -4052,7 +4038,7 @@ const SOLO_BANDA = (ruta) => ruta.startsWith('/articles/') || ruta === '/project
 function resenasEnPagina(ruta, lineas) {
   let out = [...lineas];
   const faltas = [];
-  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const tels = TELEFONOS.items.map((t) => t.visible);
   const u = out.findIndex((l) => /^Updated [A-Z][a-z]{2} \d{4}$/.test(l));
   if (u >= 0 && tels.every((l, k) => out[u + 1 + k] === l)) out.splice(u + 1, tels.length);
   else faltas.push('los dos telefonos detras de las resenas');
@@ -4075,7 +4061,7 @@ function resenasEnPagina(ruta, lineas) {
  */
 function industriasTexto(ruta, lineas) {
   const out = resenasEnPagina(ruta, lineas);
-  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const tels = TELEFONOS.items.map((t) => t.visible);
   const hay = (x) => tels.every((l, j) => out[x + j] === l);
   const sap = out.findIndex((l, k) => l === 'See All Projects' && out[k - 1] === 'Get A Free Estimate');
   if (sap < 1) return [...out, '⟦FALTA: la accion y «See All Projects» en la cabecera de obras⟧'];
@@ -4098,7 +4084,7 @@ function industriasTexto(ruta, lineas) {
 function financiacionTexto(lineas) {
   const out = [...lineas];
   const faltas = [];
-  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const tels = TELEFONOS.items.map((t) => t.visible);
   const quita = (desde, que, nombre) => {
     if (desde >= 0 && que.every((l, k) => out[desde + k] === l)) out.splice(desde, que.length);
     else faltas.push(nombre);
@@ -4124,7 +4110,7 @@ function aboutTexto(lineas) {
   let out = [...lineas];
   const faltas = [];
   const GFE = 'Get A Free Estimate';
-  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const tels = TELEFONOS.items.map((t) => t.visible);
   const quita = (desde, que, nombre) => {
     if (desde >= 0 && que.every((l, k) => out[desde + k] === l)) out.splice(desde, que.length);
     else faltas.push(nombre);
@@ -4137,11 +4123,11 @@ function aboutTexto(lineas) {
   quita(tras('Rob and Val are a licensed'), [GFE], 'la accion en «Meet Rob & Val»');
   quita(tras('Do You Design The Pool In 3D Before Construction?'), [GFE, ...tels], 'la tarjeta de accion del FAQ, detras de la ultima pregunta');
   const zi = out.indexOf('WHERE WE SERVE');
-  const Z = zi >= 0 ? out.slice(zi, zi + 12) : [];
-  const tel = (z) => TELEFONOS.items.find((t) => t.zona === z).visible;
-  if (Z.length === 12 && Z[2] === 'North Florida' && Z[4] === 'NORTH FLORIDA' && Z[5] === tel('North Florida') && Z[7] === 'South Florida' && Z[9] === 'SOUTH FLORIDA' && Z[10] === tel('South Florida')) {
-    out.splice(zi, 12, 'Where We Serve', Z[1], Z[7], Z[8], Z[11], Z[2], Z[3], Z[6]);
-  } else faltas.push('las dos zonas con su telefono, norte delante');
+  const Z = zi >= 0 ? out.slice(zi, zi + 8) : [];
+  // D-248 (25-oct-2026): la tarjeta de zona ya no lleva telefono.
+  if (Z.length === 8 && Z[2] === 'North Florida' && Z[5] === 'South Florida') {
+    out.splice(zi, 8, 'Where We Serve', Z[1], Z[5], Z[6], Z[7], Z[2], Z[3], Z[4]);
+  } else faltas.push('las dos zonas, norte delante y sin telefono (D-248)');
   out = bandaConTelefonos(out);
   return [...out, ...faltas.map((x) => `⟦FALTA: ${x}⟧`)];
 }
@@ -4154,7 +4140,7 @@ function aboutTexto(lineas) {
 function zonasPaginaTexto(lineas) {
   let out = [...lineas];
   const faltas = [];
-  const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+  const tels = TELEFONOS.items.map((t) => t.visible);
   const quita = (desde, que, nombre) => {
     if (desde >= 0 && que.every((l, k) => out[desde + k] === l)) out.splice(desde, que.length);
     else faltas.push(nombre);
@@ -4208,9 +4194,8 @@ function listasStitch(ruta, lineas) {
      *     justo detras de «Updated …»;
      *   · FAQ: los telefonos de la tarjeta, justo detras de su boton (que ya estaba al pie de la FAQ);
      *   · cierre: los telefonos, justo detras del parrafo de la banda final. */
-    // En el orden de zonas de la ruta: las ciudades del sur pintan «South Florida» delante.
-    const zonasRuta = CAPTACION_JSON[ruta]?.heroe?.zonas ?? (esCondado(ruta) ? zonasDeCondado(ruta) : TELEFONOS.items.map((x) => x.zona));
-    const tels = zonasRuta.map((z) => TELEFONOS.items.find((x) => x.zona === z)).flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+    // D-248: un telefono, sin etiqueta de zona (hasta entonces dos, en el orden de zonas de la ruta).
+    const tels = TELEFONOS.items.map((t) => t.visible);
     const hayTels = (k) => tels.every((l, x) => out[k + x] === l);
     const r = out.indexOf(RESENAS_MARCADOR);
     if (r > 0 && out[r - 1] === accion) out.splice(r - 1, 1);
@@ -4316,17 +4301,12 @@ function listasStitch(ruta, lineas) {
   }
   // CIERRE (T-47): la banda final lleva los dos telefonos detras de su parrafo.
   {
-    const tels = TELEFONOS.items.flatMap((t) => [t.zona.toUpperCase(), t.visible]);
+    const tels = TELEFONOS.items.map((t) => t.visible);
     const z = out.indexOf(origenDeFicha(ruta).cierre[1]);
     if (z >= 0 && tels.every((l, j) => out[z + 1 + j] === l)) out.splice(z + 1, tels.length);
   }
-  // ZONAS (T-70): cada zona lleva su telefono entre el parrafo y el enlace. Se quita el par
-  // solo si va justo delante del enlace de ESA zona.
-  for (const t of TELEFONOS.items) {
-    const z = out.findIndex((l, j) => l === t.zona.toUpperCase() && out[j + 1] === t.visible
-      && out[j + 2] === `View ${t.zona} Service Areas`);
-    if (z >= 0) out.splice(z, 2);
-  }
+  // ZONAS (T-70): hasta D-248 (25-oct-2026) cada zona llevaba su telefono entre el parrafo y el enlace;
+  // con un solo numero la tarjeta de zona no pinta telefono y no hay par que descontar.
   const filas = c.servicios?.detalle ?? [];
   const k = filas.length ? out.indexOf(filas[0].titulo) : -1;
   if (k > 0 && out[k - 1] === accion) out.splice(k - 1, 1);

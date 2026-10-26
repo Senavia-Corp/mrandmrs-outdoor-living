@@ -12,7 +12,8 @@
     "IDENTIDAD del documento y no se renombra en el CMS (igual que serviceRegion y service); la URL",
     "publica la deriva el codigo con `rutaCiudad()`. /pool-builders/beach-florida era Hillsboro Beach.",
     "OJO: las `old` de aqui son las UNICAS apariciones legitimas de las URLs viejas en src/: una",
-    "sustitucion global de rutas viejas por nuevas tiene que saltarse este fichero."
+    "sustitucion global de rutas viejas por nuevas tiene que saltarse este fichero.",
+    "Desde D-249 (25-oct-2026) `legacy` lleva tambien la ficha de Soffit retirada y su URL vieja de Webflow, las dos directas a /services/louvered-roofs."
   ],
   "fecha": "2026-10-03",
   "migraciones": [
@@ -79,11 +80,6 @@
     {
       "old": "/services/steel-building-pole-barn-construction-in-north-south-florida",
       "new": "/services/steel-buildings-pole-barns",
-      "type": "service"
-    },
-    {
-      "old": "/services/smart-soffit-led-lighting-installation-in-north-south-florida",
-      "new": "/services/soffit-led-lighting",
       "type": "service"
     },
     {
@@ -525,6 +521,16 @@
       "source": "/project/luxury-pool-spa-screen-enclosure-north-florida",
       "destination": "/project/luxury-pool-spa-with-screen-enclosure-north-florida",
       "motivo": "D-195 (14-oct-2026): la ficha se retira del sitio y su URL pasa a la ficha hermana, que lleva el mismo titulo. El 301 conserva la senal de la URL; sale del sitemap, de /projects y de las listas de proyectos."
+    },
+    {
+      "source": "/services/smart-soffit-led-lighting-installation-in-north-south-florida",
+      "destination": "/services/louvered-roofs",
+      "motivo": "D-249 (25-oct-2026): el servicio Smart Soffit & LED Lighting se retira; su URL vieja de Webflow apunta DIRECTO al destino final, sin pasar por /services/soffit-led-lighting (sin cadena)."
+    },
+    {
+      "source": "/services/soffit-led-lighting",
+      "destination": "/services/louvered-roofs",
+      "motivo": "D-249 (25-oct-2026): decision del cliente. La ficha se retira del sitio con 308 permanente a la de techos de lamas (la tarjeta de Soffit ya usaba una foto de techo de lamas con LED). Sale del menu, del pie, de los indices, del megamenu, de formularios, llms.txt, sitemap y JSON-LD; sus fotos vuelven al banco sin usada_en."
     }
   ]
 }

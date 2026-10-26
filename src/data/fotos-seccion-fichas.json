@@ -17,11 +17,6 @@
   "/services/pool-builders": ["bi-0501", "bi-0504", "bi-1039"],
   "/services/pool-remodeling": ["bi-0519", "bi-0520"],
   "/services/retractable-screens": ["bi-1275"],
-  "/services/soffit-led-lighting": [
-    {"src": "/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/smart-led-soffit-lighting-night-florida.avif", "alt": "Smart LED soffit lighting illuminating a Florida home at night", "w": 1250, "h": 698},
-    {"src": "/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/outdoor-led-soffit-lighting-system-florida.avif", "alt": "Outdoor LED soffit lighting system providing energy-efficient illumination in Florida", "w": 1250, "h": 698},
-    {"src": "/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/architectural-soffit-led-lighting-florida.avif", "alt": "Illustration of architectural soffit LED lighting on a modern Florida home exterior", "w": 1250, "h": 698}
-  ],
   "/services/steel-buildings-pole-barns": ["bi-1089", "bi-1099", "bi-1096"],
   "/services/irrigation-systems": [],
   "/services/patio-screen-rooms": [],

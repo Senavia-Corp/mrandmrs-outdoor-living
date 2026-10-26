@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PUERTA de estructura — las 14 fichas de `/services/` con LAS MISMAS secciones y en EL MISMO orden.
+ * PUERTA de estructura — las 13 fichas de `/services/` (14 hasta D-249, 25-oct-2026) con LAS MISMAS secciones y en EL MISMO orden.
  *
  *     npm run check:estructura
  *
@@ -62,7 +62,7 @@ const esperadoDe = (ruta, cuerpo = []) => {
 };
 
 const RUTAS = Object.keys(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/captacion-servicios.json'), 'utf8')))
-  .filter(esFicha);   // las 14 fichas, no el silo /services/pool-builders/<x>
+  .filter(esFicha);   // las 13 fichas, no el silo /services/pool-builders/<x>
 
 const leer = (ruta) => {
   for (const p of [path.join(ESTATICO, ruta, 'index.html'), path.join(ESTATICO, `${ruta}.html`)]) {
@@ -75,7 +75,7 @@ let fallos = 0;
 const mal = (r, m) => { fallos++; console.log(`  ROJO ${r}\n       ${m}`); };
 
 console.log('\n── estructura de las fichas de /services/ ──');
-if (RUTAS.length !== 14) mal('captacion-servicios.json', `declara ${RUTAS.length} fichas de /services/ y son 14`);
+if (RUTAS.length !== 13) mal('captacion-servicios.json', `declara ${RUTAS.length} fichas de /services/ y son 13 (D-249)`);
 
 for (const ruta of RUTAS) {
   const html = leer(ruta);

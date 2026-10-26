@@ -25,7 +25,7 @@ What most people do not anticipate is how much the two states change the result.
 Three smaller points worth settling at the same time:
 Zones, not a switch. At minimum, separate the perimeter from the task lighting. They are almost never wanted at the same level.
 Rated for where they are. A closed louvered roof is not a dry interior ceiling. Rain arrives sideways, and the fixtures have to be rated for that.
-Match the house. If the house already carries permanent soffit and exterior LED lighting, agreeing the color temperature before anything is ordered is a two-minute conversation. Afterwards it is a re-order.
+Match the house. If the house already carries permanent exterior LED lighting, agreeing the color temperature before anything is ordered is a two-minute conversation. Afterwards it is a re-order.
 Fans: Clearance, And What The Beam Was Specified To Carry
 A fan is the single most useful thing under a louvered roof, for a reason that only shows up in the closed state: when a storm closes the roof, the fan is what keeps the space usable instead of stuffy. That is also why it cannot be an afterthought.
 Two constraints decide where it goes.

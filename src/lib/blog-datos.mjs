@@ -13,6 +13,35 @@
  * Sanity se serviria como si fuera el CMS vivo.
  */
 import { CONSULTA_BLOG } from './blog-groq.mjs';
+import RETIRADO from '../data/blog-texto-retirado.json' with { type: 'json' };
+
+/**
+ * D-262 (25-oct-2026): lo que el CMS vivo aun dice del servicio retirado se quita AQUI, al cargar, por
+ * dato (`src/data/blog-texto-retirado.json`): fuera los enlaces a su ruta y cada cadena declarada por
+ * la suya, solo en su articulo. Cuando Sanity se corrija, esto no encuentra nada y no hace nada.
+ */
+const ENLACES_RETIRADOS = new Set(RETIRADO.enlaces_retirados);
+function retiraTexto(post) {
+  const slug = typeof post.slug === 'string' ? post.slug : post.slug?.current;
+  const pares = RETIRADO.sustituciones[slug] ?? [];
+  const anda = (o) => {
+    if (Array.isArray(o)) return o.map(anda);
+    if (o && typeof o === 'object') {
+      if (o._type === 'block' && Array.isArray(o.markDefs)) {
+        const fuera = new Set(o.markDefs.filter((m) => m._type === 'link' && ENLACES_RETIRADOS.has(m.href)).map((m) => m._key));
+        if (fuera.size) {
+          o.markDefs = o.markDefs.filter((m) => !fuera.has(m._key));
+          for (const sp of o.children ?? []) if (Array.isArray(sp.marks)) sp.marks = sp.marks.filter((k) => !fuera.has(k));
+        }
+      }
+      for (const k of Object.keys(o)) o[k] = anda(o[k]);
+      return o;
+    }
+    if (typeof o === 'string') { let t = o; for (const [de, a] of pares) t = t.split(de).join(a); return t; }
+    return o;
+  };
+  return anda(post);
+}
 
 export async function traeBlog() {
   const PID = import.meta.env.PUBLIC_SANITY_PROJECT_ID ?? 'm273z6jc';
@@ -31,12 +60,12 @@ export async function traeBlog() {
     const { default: cache } = await import('../data/blogs-sanity.json');
     console.warn(`>>> Sanity no responde y MM_SANITY_CACHE=1: se construyen los ${cache.length} `
       + 'articulos de la cache. Es una copia versionada, NO es el CMS vivo.');
-    return cache;
+    return cache.map(retiraTexto);
   }
   if (error || !result?.length) {
     throw new Error('Sanity no devolvio blogPost: ' + JSON.stringify(error ?? 'vacio'));
   }
-  return result;
+  return result.map(retiraTexto);
 }
 
 /**

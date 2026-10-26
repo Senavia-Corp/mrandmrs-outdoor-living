@@ -41,7 +41,7 @@ const ENLACES = [
   ['/services/pool-screen-enclosures', 'Pool Screen Enclosures'], ['/services/outdoor-kitchens', 'Outdoor Kitchens'],
   ['/services/retractable-screens', 'Retractable Screens'], ['/services/patio-screen-rooms', 'Patio Screen Rooms'],
   ['/services/deck-builders', 'Custom Decks'], ['/services/landscaping', 'Landscaping'],
-  ['/services/soffit-led-lighting', 'Smart Soffit LED Lighting'], ['/services/irrigation-systems', 'Automated Irrigation'],
+  ['/services/irrigation-systems', 'Automated Irrigation'],
   ['/services/steel-buildings-pole-barns', 'Pole Barn & Steel Buildings'], ['/services/outdoor-furniture', 'Outdoor Furniture'],
   ['/commercial-services/commercial-pool-construction-north-south-florida', 'Commercial Pool Construction'],
   ['/commercial-services/commercial-pool-renovations-north-south-florida', 'Commercial Pool Renovations'],

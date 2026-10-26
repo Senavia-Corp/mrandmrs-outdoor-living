@@ -230,23 +230,6 @@
         "ancho": 1200,
         "alto": 640,
         "pos": "50% 45%"
-      },
-      {
-        "id": "lighting",
-        "nombre": "Smart Soffit LED Lighting",
-        "icono": "/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/artboard-12.svg",
-        "categorias": [
-          "outdoor-living"
-        ],
-        "foto": "/images/banco/louvered/louvered-roof-blue-led-lighting-dusk-patio-florida-01.webp",
-        "alt": "White louvered roof lit with blue LED lights over a travertine patio with wicker seating at dusk",
-        "titulo": "Smart Soffit &amp; LED Lighting Installation",
-        "texto": "Smart soffit and LED lighting installation company serving North &amp; South Florida, enhancing curb appeal and exterior security.",
-        "enlace": "/services/soffit-led-lighting",
-        "cta": "See More",
-        "ancho": 1600,
-        "alto": 1200,
-        "pos": "50% 50%"
       }
     ]
   },
@@ -288,23 +271,6 @@
         "ancho": 1080,
         "alto": 576,
         "pos": "50% 30%"
-      },
-      {
-        "id": "lighting",
-        "nombre": "Smart Soffit LED Lighting",
-        "icono": "/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/artboard-12.svg",
-        "categorias": [
-          "outdoor-living"
-        ],
-        "foto": "/images/banco/louvered/louvered-roof-blue-led-lighting-dusk-patio-florida-01.webp",
-        "alt": "White louvered roof lit with blue LED lights over a travertine patio with wicker seating at dusk",
-        "titulo": "Smart Soffit &amp; LED Lighting Installation",
-        "texto": "Smart soffit and LED lighting installation company serving North &amp; South Florida, enhancing curb appeal and exterior security.",
-        "enlace": "/services/soffit-led-lighting",
-        "cta": "See More",
-        "ancho": 1600,
-        "alto": 1200,
-        "pos": "50% 50%"
       },
       {
         "id": "pole",
@@ -539,23 +505,6 @@
         "ancho": 1080,
         "alto": 576,
         "pos": "50% 30%"
-      },
-      {
-        "id": "lighting",
-        "nombre": "Smart Soffit LED Lighting",
-        "icono": "/images/residentials/smart-soffit-led-lighting-installation-in-north-south-florida/artboard-12.svg",
-        "categorias": [
-          "outdoor-living"
-        ],
-        "foto": "/images/banco/louvered/louvered-roof-blue-led-lighting-dusk-patio-florida-01.webp",
-        "alt": "White louvered roof lit with blue LED lights over a travertine patio with wicker seating at dusk",
-        "titulo": "Smart Soffit &amp; LED Lighting Installation",
-        "texto": "Smart soffit and LED lighting installation company serving North &amp; South Florida, enhancing curb appeal and exterior security.",
-        "enlace": "/services/soffit-led-lighting",
-        "cta": "See More",
-        "ancho": 1600,
-        "alto": 1200,
-        "pos": "50% 50%"
       },
       {
         "id": "pole",

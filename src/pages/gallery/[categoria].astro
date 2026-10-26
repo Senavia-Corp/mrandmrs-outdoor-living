@@ -139,7 +139,7 @@ const tituloRot = (t, palabra) => String(t).replace(/&/g, '&amp;').replace(/</g,
           <div role="listitem" class="mm-muro-accion">
             <p class="mm-muro-t">Seen something you like?</p>
             <a class="mm-btn mm-btn--linea mm-min" href="/request-estimated">Get a free estimate</a>
-            <div class="mm-datos mm-datos--pila">{telefonos.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}</div>
+            <div class="mm-datos mm-datos--pila">{telefonos.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-val">{t.visible}</span></a>)}</div>
           </div>
         ) : (
           <div role="listitem" class:list={['mm-muro-foto', `mm-muro-foto--${p.k}`, p.ancha && 'mm-muro-foto--ancha']} data-service-id={c.id}>
@@ -159,7 +159,7 @@ const tituloRot = (t, palabra) => String(t).replace(/&/g, '&amp;').replace(/</g,
       <div class="mm-rel-caja">
         <div class="mm-rel-cab">
           <h2 class="mm-h2 mm-min" set:html={tituloRot(TITULO_OTRAS, 'galleries')} />
-          <div class="mm-datos mm-datos--tel">{telefonos.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}</div>
+          <div class="mm-datos mm-datos--tel">{telefonos.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-val">{t.visible}</span></a>)}</div>
         </div>
         <ul class="mm-arts-indice" role="list">
           {otras.map((o) => (
@@ -188,7 +188,7 @@ const tituloRot = (t, palabra) => String(t).replace(/&/g, '&amp;').replace(/</g,
             <a href={c.servicio.enlace}>{c.servicio.ancla.toLowerCase()}</a>{' '}
             service, or go back to the <a href="/gallery">full project gallery</a>.
           </p>
-          <div class="mm-datos mm-datos--tel">{telefonos.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}</div>
+          <div class="mm-datos mm-datos--tel">{telefonos.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-val">{t.visible}</span></a>)}</div>
         </div>
         <figure class="mm-cierre-medio"><img src={c.fotos[c.fotos.length - 1].src} alt={c.fotos[c.fotos.length - 1].alt} width={c.fotos[c.fotos.length - 1].ancho} height={c.fotos[c.fotos.length - 1].alto} sizes="(min-width: 992px) 42vw, 100vw" loading="lazy" decoding="async" /></figure>
       </div>

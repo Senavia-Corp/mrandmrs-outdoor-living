@@ -260,7 +260,8 @@ const llms = PROD ? (() => {
   const titulo = (r) => propia[r]?.title ?? base[r]?.title ?? tituloAstro(r);
   const desc = (r) => propia[r]?.description ?? base[r]?.meta?.description ?? '';
   const linea = (r, t = titulo(r), d = desc(r)) => `- [${t}](${SITIO}${r})${d ? `: ${d}` : ''}`;
-  const servicios = Object.keys(base).filter(esFicha).sort();
+  // D-249 (25-oct-2026): las rutas retiradas (source de un redirect historico) tampoco van en llms.txt.
+  const servicios = Object.keys(base).filter(esFicha).filter((r) => !RETIRADAS.has(r)).sort();
   const condados = Object.keys(base).filter(esCondado).sort();
   const posts = fs.existsSync(path.join(RAIZ, 'src/data/blogs-sanity.json'))
     ? lee('src/data/blogs-sanity.json') : [];

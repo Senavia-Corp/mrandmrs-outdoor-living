@@ -35,7 +35,6 @@ import { logoLigero, ALTO_LOGO } from '../src/lib/logo-ligero.mjs';
 import { OCULTAS, serviciosDe } from '../src/lib/filtro-proyectos.mjs';
 import { tramosMiga } from '../src/lib/miga-tramos.mjs';
 import { fotoDeHeroe, fotosDeSeccion as fotosDeSeccionCiudad } from '../src/lib/heroe-ciudad.mjs';
-import { zonasDeCondado } from '../src/lib/condados.mjs';
 import { heroProyectoHtml, detalleProyectoHtml, cierreProyectoHtml, conAlt } from '../src/lib/ficha-proyecto.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
@@ -77,6 +76,79 @@ const CAPTACION = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/captacion
  */
 const RUTAS_CAPTACION_SERVICIOS = Object.keys(CAPTACION).filter(esFicha);
 const TELEFONOS = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/telefonos.json'), 'utf8')).items;
+/* D-248 (P-9, 25-oct-2026): UN telefono y SIN etiqueta de zona. Hasta entonces cada celda llevaba el rotulo
+ * «North Florida» / «South Florida» encima del numero; con un solo numero la etiqueta solo sirve para que el
+ * visitante del sur crea que no es para el. La celda es el valor solo, y la pinta esta unica funcion. */
+const ZONAS_ORDEN = ['North Florida', 'South Florida'];   // «Where We Serve»: norte delante (hasta D-248 lo daba el orden de telefonos.json)
+const DATO_TEL = (t) => `<a class="mm-dato" href="tel:${t.tel}"><span class="mm-dato-val">${t.visible}</span></a>`;
+/* D-248 · lo que `_source/vivo/` trae cableado del numero retirado se corrige AQUI, al derivar, por dato: todo
+ * `tel:`, toda cadena E.164 del JSON-LD y toda linea visible con un numero que `telefonos.json` ya no trae. Si
+ * manana vuelve un segundo telefono, se pega en el JSON y esto deja de quitarlo solo. (Receta de D-238 en main.) */
+const E164 = (t) => `${t.slice(0, 2)}-${t.slice(2, 5)}-${t.slice(5, 8)}-${t.slice(8)}`;
+const TEL_VIGENTES = new Set(TELEFONOS.map((t) => t.tel));
+const E164_VIGENTES = new Set(TELEFONOS.map((t) => E164(t.tel)));
+const RE_TEL_VISIBLE = /\+1 \(\d{3}\) \d{3}-\d{4}/g;
+const esE164Retirado = (v) => typeof v === 'string' && /^\+1-\d{3}-\d{3}-\d{4}$/.test(v) && !E164_VIGENTES.has(v);
+const retirados = { enlaces: 0, lineas: 0, jsonld: 0, etiquetas: 0 };
+function sinRetirados(v) {
+  if (Array.isArray(v)) {
+    const q = v.filter((x) => !esE164Retirado(x) && !(x && typeof x === 'object' && esE164Retirado(x.telephone)));
+    retirados.jsonld += v.length - q.length;
+    return q.map(sinRetirados);
+  }
+  if (v && typeof v === 'object') { for (const k of Object.keys(v)) v[k] = sinRetirados(v[k]); }
+  return v;
+}
+function unTelefono(doc) {
+  for (const a of doc.body.querySelectorAll('a[href^="tel:"]')) {
+    const num = a.getAttribute('href').slice(4).replace(/[^\d+]/g, '');
+    if (!TEL_VIGENTES.has(num)) { a.remove(); retirados.enlaces++; continue; }
+    const vigente = TELEFONOS.find((t) => t.tel === num);
+    if (a.closest('.phone-wrapper') && a.textContent.trim() !== vigente.visible) { a.textContent = vigente.visible; retirados.etiquetas++; }
+  }
+  const andador = doc.createTreeWalker(doc.body, doc.defaultView.NodeFilter.SHOW_TEXT);
+  const textos = [];
+  for (let n = andador.nextNode(); n; n = andador.nextNode()) textos.push(n);
+  for (const n of textos) {
+    const nums = (n.textContent.match(RE_TEL_VISIBLE) ?? []).map((s) => s.replace(/\D/g, ''));
+    if (!nums.length || nums.every((d) => TEL_VIGENTES.has(`+${d}`))) continue;
+    if (n.parentElement?.closest('script,style')) continue;
+    const prev = n.previousSibling;
+    if (prev?.nodeName === 'BR') prev.remove();
+    n.remove(); retirados.lineas++;
+  }
+  for (const sc of doc.head.querySelectorAll('script[type="application/ld+json"]')) {
+    let o; try { o = JSON.parse(sc.textContent); } catch { continue; }
+    const antes = retirados.jsonld;
+    const q = sinRetirados(o);
+    if (retirados.jsonld !== antes) sc.textContent = JSON.stringify(q, null, 2);
+  }
+}
+/* D-249 (P-10, 25-oct-2026): el servicio Smart Soffit & LED Lighting se retira del sitio (su ruta responde 308 a
+ * /services/louvered-roofs). Lo que `_source/vivo/` trae de el se quita al derivar: la casilla del formulario,
+ * la opcion del filtro de la galeria, los enlaces a su ruta y su nombre en los `serviceType` del JSON-LD.
+ * `check-seo.mjs` declara los dos JSON-LD que cambian; `check-texto.mjs`, las lineas visibles que se van. */
+const SERVICIOS_RETIRADOS = [{ ruta: '/services/soffit-led-lighting', nombre: 'Smart Soffit LED Lighting', id: 'lighting', filtro: 'light' }];  // id: catalogo de la home; filtro: galeria
+const retiradosServicio = { opciones: 0, casillas: 0, enlaces: 0, jsonld: 0, fotos: 0 };
+function sinServicioRetirado(doc) {
+  for (const s of SERVICIOS_RETIRADOS) {
+    for (const o of doc.querySelectorAll(`option[value="${s.filtro}"]`)) { o.remove(); retiradosServicio.opciones++; }
+    for (const it of [...doc.querySelectorAll(`.cms-item-pictures[data-service-id="${s.filtro}"]`)]) { it.remove(); retiradosServicio.fotos++; }
+    for (const l of [...doc.querySelectorAll('label')]) if (l.textContent.replace(/\s+/g, ' ').trim() === s.nombre) { l.remove(); retiradosServicio.casillas++; }
+    for (const a of [...doc.body.querySelectorAll(`a[href="${s.ruta}"]`)]) { (a.closest('li') ?? a).remove(); retiradosServicio.enlaces++; }
+    const quita = (v) => {
+      if (Array.isArray(v)) { const q = v.filter((x) => x !== s.nombre); retiradosServicio.jsonld += v.length - q.length; return q.map(quita); }
+      if (v && typeof v === 'object') { for (const k of Object.keys(v)) v[k] = quita(v[k]); }
+      return v;
+    };
+    for (const sc of doc.head.querySelectorAll('script[type="application/ld+json"]')) {
+      let o; try { o = JSON.parse(sc.textContent); } catch { continue; }
+      const antes = retiradosServicio.jsonld;
+      const q = quita(o);
+      if (retiradosServicio.jsonld !== antes) sc.textContent = JSON.stringify(q, null, 2);
+    }
+  }
+}
 
 /* ── REDISEÑO STITCH · ASTRO-2 · piezas del Hero A ────────────────────────────────────────────
  * EL PIE DE FOTO (D-109). Solo cuando la foto del hero está en el banco: el pie es su `alt` del
@@ -315,7 +387,8 @@ function extraeServicios(sec, ruta) {
     nombre: t(tab.querySelector('.js-service-cat-name')),
   }));
 
-  const servicios = [...sec.querySelectorAll('.cms-item-services')].map((it) => {
+  // D-249: el servicio retirado no entra en el catalogo (mismo `data-service-id` que el filtro de la galeria).
+  const servicios = [...sec.querySelectorAll('.cms-item-services')].filter((it) => !SERVICIOS_RETIRADOS.some((r) => r.id === at(it, 'data-service-id'))).map((it) => {
     const ficha = it.querySelector('.block-services-info');
     return {
       id: at(it, 'data-service-id'),
@@ -806,7 +879,7 @@ const FOTOS_SECCION = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/fotos
 const BANCO_POR_ID = new Map(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/banco-imagenes.json'), 'utf8')).map((e) => [e.id, e]));
 /** D-185: la ficha de luces de alero ensena el SISTEMA sobre una casa, y de eso no hay obra propia. Sus fotos de seccion
  *  son las que ya ensenaba la pagina de origen, que no estan en el banco: van como objeto y solo valen en esta ruta. */
-const SECCION_FUERA_DEL_BANCO = new Set(['/services/soffit-led-lighting']);
+const SECCION_FUERA_DEL_BANCO = new Set([]);   // D-249: la ficha de luces de alero se retira; la excepcion queda vacia
 function fotoDeSeccion(ruta, k) {
   if (!(ruta in FOTOS_SECCION)) throw new Error(`${ruta}: no esta en fotos-seccion-fichas.json (una lista vacia vale; faltar, no)`);
   const id = FOTOS_SECCION[ruta][k];
@@ -914,11 +987,8 @@ function condadoStitch(doc, ruta) {
   const [antes, ...resto] = titulo.split(marca);
   const [rotLic, ...valLic] = CAPTACION['/services/pool-builders'].heroe.licencias.split(' · ');
   const tramos = tramosMiga(ruta);
-  // D-134: los dos condados del sur pintan «South Florida» primero, como sus ciudades.
-  const tels = zonasDeCondado(ruta).map((z) => TELEFONOS.find((t) => t.zona === z));
-  if (tels.some((t) => !t)) falta('una zona de `condados.mjs` no esta en telefonos.json');
-  const datoTel = (t) => `<a class="mm-dato" href="tel:${t.tel}"><span class="mm-dato-rot">${t.zona}</span><span class="mm-dato-val">${t.visible}</span></a>`;
-  const bandaTel = `<div class="mm-datos mm-datos--tel">${tels.map(datoTel).join('')}</div>`;
+  // D-248: un telefono; el orden por zona de D-134 (sur primero en Broward y Palm Beach) ya no tiene que ordenar nada.
+  const bandaTel = `<div class="mm-datos mm-datos--tel">${TELEFONOS.map(DATO_TEL).join('')}</div>`;
   const nh = doc.createElement('section');
   nh.setAttribute('class', 'mm-hero-a');
   nh.innerHTML = '<div class="mm-hero-a-txt">'
@@ -929,7 +999,7 @@ function condadoStitch(doc, ruta) {
     + `<p class="mm-p">${apoyo.innerHTML}</p>`
     + `<div class="mm-hero-a-acc"><a class="mm-btn" href="${boton.getAttribute('href')}">${esc(boton.textContent.trim())}</a></div>`
     + '<div class="mm-datos mm-datos--3">'
-    + tels.map(datoTel).join('')
+    + TELEFONOS.map(DATO_TEL).join('')   // D-248
     + `<div class="mm-dato"><span class="mm-dato-rot">${esc(rotLic)}</span><span class="mm-dato-val">${esc(valLic.join(' · '))}</span></div>`
     + '</div></div>'
     + `<figure class="mm-hero-a-medio"><img sizes="(min-width: 992px) 50vw, 100vw" src="${foto.src}" alt="${escAttr(foto.alt)}" width="${foto.ancho}" height="${foto.alto}" loading="eager" fetchpriority="high" decoding="async">`
@@ -1109,7 +1179,8 @@ function presupuestoStitch(doc, ruta) {
     const i = l.querySelector('input'); i.removeAttribute('class');
     return `<label class="mm-opcion">${i.outerHTML}${l.querySelector('.w-form-label').textContent.trim()}</label>`;
   });
-  if (servicios.length !== 14) throw new Error(`/request-estimated: ${servicios.length} servicios y son 14`);
+  // D-249: tantas casillas como fichas de servicio haya (13 desde que se retiro la de Soffit; eran 14).
+  if (servicios.length !== RUTAS_CAPTACION_SERVICIOS.length) throw new Error(`/request-estimated: ${servicios.length} servicios y son ${RUTAS_CAPTACION_SERVICIOS.length}`);
   const acepto = q('#Checkbox'); acepto.removeAttribute('class');
   const aceptoTxt = acepto.parentElement.querySelector('.w-form-label')?.innerHTML;
   const envia = q('input[type="submit"]');
@@ -1184,7 +1255,8 @@ function contactoStitch(doc, ruta) {
   const bcta = sec?.querySelector('.box-info-contact .wrapper-buttons a');
   const form = sec?.querySelector('form');
   const [done, fail] = ['.w-form-done', '.w-form-fail'].map((q) => sec?.querySelector(q));
-  if (!h1 || !htx || !bh2 || !bp || !correo || tels.length !== 2 || !zona || !bcta || !form || !done || !fail) falta('no trae hero, caja de contacto con correo, dos telefonos, zona y boton, y formulario con sus mensajes');
+  // D-248: los telefonos que quedan en `.phone-wrapper` tras `unTelefono` son los de la fuente unica (uno hoy; eran dos).
+  if (!h1 || !htx || !bh2 || !bp || !correo || tels.length !== TELEFONOS.length || !zona || !bcta || !form || !done || !fail) falta('no trae hero, caja de contacto con correo, los telefonos de telefonos.json, zona y boton, y formulario con sus mensajes');
   const q = (sel) => form.querySelector(sel) ?? falta(`falta ${sel}`);
   const prepara = (e) => { e.removeAttribute('class'); e.removeAttribute('autofocus'); if (e.getAttribute('placeholder') === '') e.removeAttribute('placeholder'); return e; };
   const campo = (sel) => {
@@ -1228,17 +1300,14 @@ function contactoStitch(doc, ruta) {
   const zon = doc.querySelector('section.location');
   const zh2 = zon?.querySelector('.header-location h2');
   const zlema = zon?.querySelector('.header-location p');
-  const zonas = [...(zon?.querySelectorAll('.item-country') ?? [])].map((it) => ({ t: it.querySelector('h3'), p: it.querySelector('.block-info-country p'), a: it.querySelector('a') }));
+  const zonas = [...(zon?.querySelectorAll('.item-country') ?? [])].map((it) => ({ t: it.querySelector('h3'), p: it.querySelector('.block-info-country p'), a: it.querySelector('a') })).sort((x, y) => ZONAS_ORDEN.indexOf(x.t?.textContent.trim()) - ZONAS_ORDEN.indexOf(y.t?.textContent.trim()));
   if (!zh2 || !zlema || zonas.length !== 2 || zonas.some((z) => !z.t || !z.p || !z.a)) falta('«Where We Serve» no trae rotulo, lema y dos zonas con texto y enlace');
-  zonas.sort((x, y) => TELEFONOS.findIndex((t) => t.zona === x.t.textContent.trim()) - TELEFONOS.findIndex((t) => t.zona === y.t.textContent.trim()));
   const nz = doc.createElement('section');
   nz.setAttribute('class', 'mm-zonas');
   nz.innerHTML = '<div class="mm-zonas-caja"><div class="mm-zonas-txt">'
     + `<div class="mm-sec-tit"><h2 class="mm-etiqueta">${zh2.innerHTML}</h2><p class="mm-h2">${zlema.innerHTML.replace(/\b(Coverage)\b/, '<span class="mm-rot">$1</span>')}</p></div>`
     + '<div class="mm-zonas-lista">' + zonas.map((z) => {
-      const tel = TELEFONOS.find((t) => t.zona === z.t.textContent.trim()) ?? falta(`la zona «${z.t.textContent.trim()}» no tiene telefono`);
       return `<article class="mm-zona"><h3 class="mm-zona-t">${z.t.innerHTML}</h3><p>${z.p.innerHTML}</p>`
-        + `<div class="mm-datos"><a class="mm-dato" href="tel:${tel.tel}"><span class="mm-dato-rot">${tel.zona}</span><span class="mm-dato-val">${tel.visible}</span></a></div>`
         + `<a class="mm-flecha" href="${z.a.getAttribute('href')}">${z.a.innerHTML}${FLECHA}</a></article>`;
     }).join('') + '</div></div>'
     + '<svg class="mm-mapa" viewBox="0 0 420 460" aria-hidden="true" focusable="false">'
@@ -1480,17 +1549,13 @@ function industriasStitch(doc, ruta) {
 function zonasDeLocation(doc, ruta) {
   const zon = doc.querySelector('section.location');
   const [zh2, zlema] = ['.header-location h2', '.header-location p'].map((q) => zon?.querySelector(q));
-  const zonas = [...(zon?.querySelectorAll('.item-country') ?? [])].map((it) => ({ t: it.querySelector('h3'), p: it.querySelector('.block-info-country p'), a: it.querySelector('a') }));
+  const zonas = [...(zon?.querySelectorAll('.item-country') ?? [])].map((it) => ({ t: it.querySelector('h3'), p: it.querySelector('.block-info-country p'), a: it.querySelector('a') })).sort((x, y) => ZONAS_ORDEN.indexOf(x.t?.textContent.trim()) - ZONAS_ORDEN.indexOf(y.t?.textContent.trim()));
   if (!zh2 || !zlema || zonas.length !== 2 || zonas.some((z) => !z.t || !z.p || !z.a)) throw new Error(`${ruta}: «Where We Serve» no trae rotulo, lema y dos zonas con texto y enlace`);
-  const telDe = (z) => TELEFONOS.find((t) => t.zona === z.t.textContent.trim());
-  if (zonas.some((z) => !telDe(z))) throw new Error(`${ruta}: una zona de «Where We Serve» no tiene telefono`);
-  zonas.sort((x, y) => TELEFONOS.indexOf(telDe(x)) - TELEFONOS.indexOf(telDe(y)));
   const nz = doc.createElement('section');
   nz.setAttribute('class', 'mm-zonas');
   nz.innerHTML = '<div class="mm-zonas-caja"><div class="mm-zonas-txt">'
     + `<div class="mm-sec-tit"><h2 class="mm-etiqueta">${zh2.innerHTML}</h2><p class="mm-h2">${zlema.innerHTML.replace(/\b(Coverage)\b/, '<span class="mm-rot">$1</span>')}</p></div>`
     + '<div class="mm-zonas-lista">' + zonas.map((z) => `<article class="mm-zona"><h3 class="mm-zona-t">${z.t.innerHTML}</h3><p>${z.p.innerHTML}</p>`
-      + `<div class="mm-datos"><a class="mm-dato" href="tel:${telDe(z).tel}"><span class="mm-dato-rot">${telDe(z).zona}</span><span class="mm-dato-val">${telDe(z).visible}</span></a></div>`
       + `<a class="mm-flecha" href="${z.a.getAttribute('href')}">${z.a.innerHTML}${FLECHA}</a></article>`).join('') + '</div></div>'
     + MAPA_FLORIDA + '</div>';
   zon.replaceWith(nz);
@@ -1765,7 +1830,7 @@ const cabeceraDeSeccion = (tit, linea, cta, antetitulo = '') => '<div class="mm-
   + (antetitulo ? `<div class="mm-sec-tit"><p class="mm-etiqueta">${antetitulo}</p><h2 class="mm-h2">${nb(tit)}</h2></div>` : `<h2 class="mm-h2">${nb(tit)}</h2>`)
   + `<div class="mm-sec-lado"><p class="mm-p">${linea}</p>${cta ? `<div class="mm-sec-acc"><a class="mm-btn mm-btn--linea" href="${cta.getAttribute('href')}">${cta.innerHTML}</a></div>` : ''}</div></div>`;
 const RESENAS_PERFIL = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/resenas.json'), 'utf8')).enlacePerfil;
-const BANDA_TELEFONOS = '<div class="mm-datos mm-datos--tel">' + TELEFONOS.map((t) => `<a class="mm-dato" href="tel:${t.tel}"><span class="mm-dato-rot">${t.zona}</span><span class="mm-dato-val">${t.visible}</span></a>`).join('') + '</div>';
+const BANDA_TELEFONOS = '<div class="mm-datos mm-datos--tel">' + TELEFONOS.map(DATO_TEL).join('') + '</div>';
 const CHEVRON = '<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>';
 const imgDe = (i, clase) => `<img class="${clase}" sizes="(min-width: 992px) 42vw, 100vw" src="${i.getAttribute('src')}" alt="${escAttr(i.getAttribute('alt') ?? '')}" width="${i.getAttribute('width')}" height="${i.getAttribute('height')}" loading="lazy" decoding="async"${i.getAttribute('style') ? ` style="${i.getAttribute('style')}"` : ''}>`;
 function listasDePlano(doc, ruta) {
@@ -1853,17 +1918,14 @@ function listasDePlano(doc, ruta) {
   const zon = doc.querySelector('section.location');
   const zh2 = zon?.querySelector('.header-location h2');
   const zlema = zon?.querySelector('.header-location p');
-  const zonas = [...(zon?.querySelectorAll('.item-country') ?? [])].map((it) => ({ t: it.querySelector('h3'), p: it.querySelector('.block-info-country p'), a: it.querySelector('a') }));
+  const zonas = [...(zon?.querySelectorAll('.item-country') ?? [])].map((it) => ({ t: it.querySelector('h3'), p: it.querySelector('.block-info-country p'), a: it.querySelector('a') })).sort((x, y) => ZONAS_ORDEN.indexOf(x.t?.textContent.trim()) - ZONAS_ORDEN.indexOf(y.t?.textContent.trim()));
   if (!zh2 || !zlema || zonas.length !== 2 || zonas.some((z) => !z.t || !z.p || !z.a)) throw new Error(`${ruta}: «Where We Serve» no trae rotulo, lema y dos zonas con texto y enlace`);
   const nz = doc.createElement('section');
   nz.setAttribute('class', 'mm-zonas');
   nz.innerHTML = '<div class="mm-zonas-caja"><div class="mm-zonas-txt">'
     + `<div class="mm-sec-tit"><h2 class="mm-etiqueta">${zh2.innerHTML}</h2><p class="mm-h2">${zlema.innerHTML.replace(/\b(Coverage)\b/, '<span class="mm-rot">$1</span>')}</p></div>`
     + '<div class="mm-zonas-lista">' + zonas.map((z) => {
-      const tel = TELEFONOS.find((t) => t.zona === z.t.textContent.trim());
-      if (!tel) throw new Error(`${ruta}: la zona «${z.t.textContent.trim()}» no tiene telefono en telefonos.json`);
       return `<article class="mm-zona"><h3 class="mm-zona-t">${z.t.innerHTML}</h3><p>${z.p.innerHTML}</p>`
-        + `<div class="mm-datos"><a class="mm-dato" href="tel:${tel.tel}"><span class="mm-dato-rot">${tel.zona}</span><span class="mm-dato-val">${tel.visible}</span></a></div>`
         + `<a class="mm-flecha" href="${z.a.getAttribute('href')}">${z.a.innerHTML}${FLECHA}</a></article>`;
     }).join('') + '</div></div>'
     + '<svg class="mm-mapa" viewBox="0 0 420 460" aria-hidden="true" focusable="false">'
@@ -2041,7 +2103,7 @@ function captacion(doc, ruta) {
       const tel = doc.createElement('p');
       tel.className = 'svc-heroe__tel';
       tel.innerHTML = TELEFONOS
-        .map((t) => `<a href="tel:${t.tel}">${t.visible}</a> ${t.zona}`)
+        .map((t) => `<a href="tel:${t.tel}">${t.visible}</a>`)
         .join(' &middot; ');
       const lic = doc.createElement('p');
       lic.className = 'svc-heroe__lic';
@@ -2084,7 +2146,7 @@ function captacion(doc, ruta) {
         + `<p class="mm-p">${esc(c.heroe.apoyo)}</p>`
         + `<div class="mm-hero-a-acc"><a class="mm-btn" href="${cta.getAttribute('href')}">${esc(cta.textContent.trim())}</a></div>`
         + '<div class="mm-datos mm-datos--3">'
-        + TELEFONOS.map((t) => `<a class="mm-dato" href="tel:${t.tel}"><span class="mm-dato-rot">${t.zona}</span><span class="mm-dato-val">${t.visible}</span></a>`).join('')
+        + TELEFONOS.map(DATO_TEL).join('')
         + `<div class="mm-dato"><span class="mm-dato-rot">${esc(rotLic)}</span><span class="mm-dato-val">${esc(valLic.join(' · '))}</span></div>`
         + '</div></div>'
         + `<figure class="mm-hero-a-medio"><img sizes="(min-width: 992px) 50vw, 100vw" src="${img.getAttribute('src')}" alt="${img.getAttribute('alt').replace(/&/g, '&amp;').replace(/"/g, '&quot;')}" width="${c.heroe.ancho}" height="${c.heroe.alto}" loading="eager" fetchpriority="high" decoding="async">${pieDeFoto(c.heroe)}</figure>`
@@ -2668,6 +2730,8 @@ for (const [ruta] of RUTAS) {
   const fichero = path.join(RAIZ, '_source/vivo', `${slug}.html`);
   if (!fs.existsSync(fichero)) { console.error(`  ROJO falta _source/vivo/${slug}.html`); continue; }
   const doc = new JSDOM(fs.readFileSync(fichero, 'utf8')).window.document;
+  unTelefono(doc);          // D-248, antes de cualquier otra transformacion
+  sinServicioRetirado(doc); // D-249, idem
 
   // Las obras de autoria propia, al principio de la lista (§ OBRAS_PROPIAS).
   const inj = OBRAS_EN[ruta];
@@ -3607,6 +3671,8 @@ console.log('        manual, con scripts/migrar-blog-pool-builders.mjs (npm run 
 console.log('        salta con «0 paginas · ya convertida»).\n');
 console.log(`  enlaces reescritos a una ruta renombrada: ${enlacesRenombrados}`);
 console.log(`  imagenes con hueco reservado (width+height): ${huecosReservados}`);
+console.log(`  D-248 telefonos retirados del origen: ${retirados.enlaces} enlace(s) tel:, ${retirados.lineas} linea(s) de texto, ${retirados.jsonld} valor(es) de JSON-LD; ${retirados.etiquetas} etiqueta(s) de zona quitada(s)`);
+console.log(`  D-249 servicio retirado: ${retiradosServicio.opciones} opcion(es) de filtro, ${retiradosServicio.casillas} casilla(s), ${retiradosServicio.enlaces} enlace(s), ${retiradosServicio.jsonld} valor(es) de JSON-LD, ${retiradosServicio.fotos} foto(s) del muro de la galeria`);
 console.log(`  heroes que dejan de ser lazy (imagen LCP): ${heroesDesperezados}`);
 console.log(`  logos con sizes="200px": ${logosConSizes} · rel="noopener" anadidos: ${relAnadidos}`
   + ` · telefonos en .mm-tel: ${telefonosEnvueltos}`);

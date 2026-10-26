@@ -58,7 +58,7 @@
     },
     {
       "question": "What should go under a pool deck before it is poured?",
-      "answer": "Anything that would otherwise have to cross it later: gas, water, drain and power sleeves toward a future outdoor kitchen, conduit for landscape or soffit lighting and for irrigation, and the footing locations for a pergola. If a screen enclosure is likely, the deck also has to be built to carry its anchors."
+      "answer": "Anything that would otherwise have to cross it later: gas, water, drain and power sleeves toward a future outdoor kitchen, conduit for landscape or exterior lighting and for irrigation, and the footing locations for a pergola. If a screen enclosure is likely, the deck also has to be built to carry its anchors."
     },
     {
       "question": "Does the pool interior finish have to be chosen early?",
@@ -126,7 +126,7 @@ Our estimator prices pool LEDs at $450 per fixture, so the difference between on
 
 The count follows the shape, not the square footage. A fixture throws in one direction, so a pool with a deep end, a spa and a sun shelf has three areas that each go dark on their own.
 
-Which wall each niche goes in matters as much as how many there are, and it is the part that never reaches the proposal. A fixture set in the far wall throws its light away from the house and the seating; the same fixture in the near wall throws it back at the people looking at the water. Ask which wall, not just how many. Lighting the house and the yard is a separate system — see [permanent soffit and LED lighting](/services/soffit-led-lighting) — but the path it travels runs under your new deck, which is item 7.
+Which wall each niche goes in matters as much as how many there are, and it is the part that never reaches the proposal. A fixture set in the far wall throws its light away from the house and the seating; the same fixture in the near wall throws it back at the people looking at the water. Ask which wall, not just how many. Lighting the house and the yard is a separate system — see permanent exterior LED lighting — but the path it travels runs under your new deck, which is item 7.
 
 ## The three that only need something in the ground
 

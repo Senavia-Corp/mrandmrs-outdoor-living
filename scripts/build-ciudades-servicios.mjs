@@ -384,14 +384,13 @@ for (const [servicio, cfg] of Object.entries(FILAS.servicios)) {
       },
     };
 
-    const zonas = c.region === 'South Florida' ? ['South Florida', 'North Florida'] : ['North Florida', 'South Florida'];
+    // D-248 (25-oct-2026): aqui iba `zonas`, el orden de los dos telefonos con el de SU region primero; con uno no hay orden.
     entradas[ruta] = {
       heroe: {
         apoyo: T.apoyo(c),
         licencias: F.heroe.licencias,
         ancla: '#estimate',
         cta: F.heroe.cta ?? 'Get a Free Estimate',
-        zonas,
       },
       confianza: structuredClone(F.confianza),
       formulario: { ...structuredClone(F.formulario), ...T.formulario(c) },

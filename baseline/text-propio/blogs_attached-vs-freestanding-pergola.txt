@@ -11,7 +11,7 @@ Most homeowners settle this by looks. On site it gets settled by the height of y
 The house usually decides this, not taste. Attach the pergola when the space you actually use touches the house and the wall behind it has something structural to bolt through. Build it freestanding when either of those is missing, or when the spot you really sit in is out in the yard. Everything else — material, roof type, finish — is a separate decision you make after this one, and material in particular is covered in aluminum vs. wood over the long term.
 The reason the structural question comes first is that on something this light, the load that governs is wind trying to lift it, not weight pressing down. An attached pergola sends that uplift into the house. A freestanding one sends it into its own footings. That single difference is what turns a layout preference into an engineering constraint.
 If this is true on your site The layout usually picks itself
-The wall has block, a tie beam or framing to bolt through, and the beam fits between the door head and the soffit Attached
+The wall has block, a tie beam or framing to bolt through, and the beam fits between the door head and the eave Attached
 The eave is low, the wall is stucco over foam, or it is a gable end with nothing continuous at that height Freestanding, or freestanding tucked under the eave
 The place you actually sit is more than a few feet off the house Freestanding
 Pool plumbing, a drainfield or an easement sits where posts would land Attached, or move the structure
@@ -24,7 +24,7 @@ Its own footings, one under each post, sized and placed by whoever engineers the
 The price of that freedom is that you have to know what is underground. Posts landing on pool plumbing, an irrigation main, a septic drainfield or a utility easement either move the structure or stop it. That is a site walk with locates, not something you settle from a rendering.
 Five Things On The House That Decide It Before You Do
 The Door Head
-The beam of an attached pergola has to clear the top of the slider or french door it passes over, and it has to tuck under the soffit. On a single-story Florida house those two lines are often only a few inches apart. If the beam will not fit between them, attached is finished as an option — no design gets you around it.
+The beam of an attached pergola has to clear the top of the slider or french door it passes over, and it has to tuck under the eave. On a single-story Florida house those two lines are often only a few inches apart. If the beam will not fit between them, attached is finished as an option — no design gets you around it.
 Measure both heights before anyone draws anything. That gap is your entire attached option, expressed as a number.
 What Is Already On The Wall
 Walk it and write down what is there: windows, the condenser, the electrical panel, the gas meter, the hose bib, the dryer vent. Building over a condenser means roofing over equipment that needs clearance and service access.
@@ -42,7 +42,7 @@ An open pergola only shades while the sun is high enough for the rafters to cast
 Attached fixes that geometry for you. The rafters span from the ledger out to the front beam, perpendicular to the wall, because that is the only way the structure works. Freestanding lets you turn the whole thing: orient the rafters against the worst sun, or set it far enough off the house that the house itself blocks the late light.
 If the area you are covering faces west, understand before you commit that an open top will not solve four o'clock in either layout. That is a roof decision rather than a layout one, and it is the subject of pergola vs. louvered roof.
 Height Is The Thing Attached Gives Up
-An attached pergola's height is dictated to you by the soffit above and the door head below. A freestanding one lets you choose it, and that choice does more work than it looks like.
+An attached pergola's height is dictated to you by the eave above and the door head below. A freestanding one lets you choose it, and that choice does more work than it looks like.
 Higher feels airier, moves more air, and lets more low sun underneath. Lower shades better late in the day and traps more heat. In between sits the clearance a ceiling fan needs, which on a Florida patio does more for comfort than anything else you can hang — and which an attached pergola sometimes cannot fit under a low eave.
 What Each One Actually Costs You
 Our estimator prices a pergola at $8,500 as its base line, and what we show is that figure plus or minus 10%. It does not split by attachment, because the difference is site-specific:
@@ -64,7 +64,7 @@ Footings cannot land on pool plumbing or the equipment runs, which narrows where
 Both are workable when they come up before the layout is drawn. Eight features worth planning together goes through the rest of the pool-adjacent list.
 How To Settle It This Weekend
 Sit where you actually sit. Not where the pergola would look best from the kitchen window.
-Measure from the patio to the top of the slider, and from the patio to the underside of the soffit. Write both down.
+Measure from the patio to the top of the slider, and from the patio to the underside of the eave. Write both down.
 Stake the four post positions you would want and find out what is underneath them.
 Watch the roof edge during the next afternoon storm and see where the water lands.
 Then call about setbacks and, if you have one, the HOA.

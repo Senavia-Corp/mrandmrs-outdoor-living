@@ -9,7 +9,7 @@
 // QUE CAMBIA DE COMPOSICION: el hero a sangre con el video detras del texto pasa a hero partido
 // (texto sobre navy, obra al lado; D-38: 6/6), con el video solo desde 992 px y de 12 s; las
 // pestanas de servicios pasan al indice de los 14 con su ficha (D-69); los carruseles de obras y
-// de articulos, a lista editorial; las zonas, a dos columnas con su telefono y el mapa; el
+// de articulos, a lista editorial; las zonas, a dos columnas con el mapa (sin telefono por tarjeta desde D-248/D-263); el
 // antes/despues vuelve a su par de produccion con deslizador, rotulado como visualizacion (D-194,
 // que revoca D-96 y D-138 en la home); y la banda final se funde con el formulario. Salen la banda repetida a media
 // pagina (D-83, T-50) y la seccion de Instagram (T-42).
@@ -149,13 +149,11 @@ const SEO_HOME = {
           <article class="mm-zona">
             <h3 class="mm-zona-t">North Florida</h3>
             <p>Licensed luxury pool builders in North Florida specializing in custom inground pools and outdoor living design-build projects, engineered for structural integrity and long-term durability.</p>
-            <div class="mm-datos">{telefonos.filter((t) => t.zona === 'North Florida').map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}</div>
             <a class="mm-flecha" href="/where-we-serve/north-florida">View North Florida Service Areas<Fragment set:html={FLECHA} /></a>
           </article>
           <article class="mm-zona">
             <h3 class="mm-zona-t">South Florida</h3>
             <p>Licensed luxury pool builders in South Florida specializing in custom inground pools and outdoor living design-build projects, engineered, permitted, and built for high-end residential properties.</p>
-            <div class="mm-datos">{telefonos.filter((t) => t.zona === 'South Florida').map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}</div>
             <a class="mm-flecha" href="/where-we-serve/south-florida">View South Florida Service Areas<Fragment set:html={FLECHA} /></a>
           </article>
         </div>
@@ -210,7 +208,7 @@ const SEO_HOME = {
     <div class="mm-res-cuerpo">
       <div class="mm-res-col">
         <ResenasGoogle />
-        <div class="mm-datos mm-datos--tel">{telefonos.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}</div>
+        <div class="mm-datos mm-datos--tel">{telefonos.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-val">{t.visible}</span></a>)}</div>
       </div>
       <figure class="mm-res-medio"><img src={FOTO_RES.src} alt={FOTO_RES.alt} width={FOTO_RES.ancho} height={FOTO_RES.alto} loading="lazy" decoding="async" /></figure>
     </div>
@@ -221,7 +219,7 @@ const SEO_HOME = {
       <div class="mm-cierre-txt">
         <h2 class="mm-h2">Request a <span class="mm-nb">Design-Build</span> Project Evaluation</h2>
         <p class="mm-p">Share your property details, project scope, and investment range. Our licensed design-build pool builders will review your request and confirm alignment before next steps.</p>
-        <div class="mm-datos mm-datos--tel">{telefonos.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-rot">{t.zona}</span><span class="mm-dato-val">{t.visible}</span></a>)}</div>
+        <div class="mm-datos mm-datos--tel">{telefonos.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-val">{t.visible}</span></a>)}</div>
       </div>
       <figure class="mm-cierre-medio"><img src={FOTO_CIERRE.src} alt={FOTO_CIERRE.alt} width={FOTO_CIERRE.ancho} height={FOTO_CIERRE.alto} loading="lazy" decoding="async" /></figure>
     </div>
