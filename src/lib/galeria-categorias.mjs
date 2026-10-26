@@ -97,6 +97,8 @@ const INICIO_BANDA = '<section class="animated-divs-section">';
 const BANCO = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), 'src/data/banco-imagenes.json'), 'utf8'));
 const FICHA = new Map(BANCO.map((e) => [e.id, e]));
 export const ANCHOS_TESELA = [480, 800, 1200, 1600];
+/* L6 de PUBLICAR (D-260): la tesela lleva el `alt` del banco de la foto que pinta; un atributo, con comillas escapadas. */
+const altA = (t) => String(t ?? '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 export function recorteTesela(c) {
   const e = FICHA.get(c.panel.bancoId);
   if (!e) throw new Error(`galeria-categorias: el panel ${c.slug} apunta a ${c.panel.bancoId}, que no esta en el banco`);
@@ -128,10 +130,10 @@ const FLECHA = '<svg class="mm-gal-flecha" aria-hidden="true" focusable="false" 
  * lineas de `innerText` y `check:texto` caeria. */
 export function bandaGaleriaHtml() {
   const teselas = PANELES.map((c) => {
-    const { ancho, alto, anchos } = recorteTesela(c);
+    const { ficha, ancho, alto, anchos } = recorteTesela(c);
     const ref = anchos.includes(800) ? 800 : anchos[anchos.length - 1];
     return '<div class="mm-gal-tesela">'
-      + `<img class="mm-gal-foto" src="${fotoTesela(c, ref)}" alt="" width="${ancho}" height="${alto}" loading="lazy" decoding="async"`
+      + `<img class="mm-gal-foto" src="${fotoTesela(c, ref)}" alt="${altA(ficha.alt)}" width="${ancho}" height="${alto}" loading="lazy" decoding="async"`
       + ` sizes="(min-width: 992px) 34vw, (min-width: 768px) 50vw, 100vw"`
       + ` srcset="${anchos.map((w) => `${fotoTesela(c, w)} ${w}w`).join(', ')}"`
       + ` style="object-position:${c.panel.x}% ${c.panel.y}%">`
@@ -164,10 +166,10 @@ export function bandaGaleriaHtml() {
 const FLECHA_SISTEMA = '<svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>';
 export function bandaCompactaHtml(accion, ancla = '#estimate') {
   const teselas = PANELES.map((c) => {
-    const { ancho, alto, anchos } = recorteTesela(c);
+    const { ficha, ancho, alto, anchos } = recorteTesela(c);
     const ref = anchos.includes(480) ? 480 : anchos[0];
     return '<li class="mm-cat-tesela">'
-      + `<span class="mm-cat-foto"><img src="${fotoTesela(c, ref)}" alt="" width="${ancho}" height="${alto}" loading="lazy" decoding="async"`
+      + `<span class="mm-cat-foto"><img src="${fotoTesela(c, ref)}" alt="${altA(ficha.alt)}" width="${ancho}" height="${alto}" loading="lazy" decoding="async"`
       + ` sizes="(min-width: 992px) 17vw, (min-width: 768px) 33vw, 50vw"`
       + ` srcset="${anchos.map((w) => `${fotoTesela(c, w)} ${w}w`).join(', ')}"`
       + ` style="object-position:${c.panel.x}% ${c.panel.y}%"></span>`
@@ -194,10 +196,10 @@ export function bandaCompactaHtml(accion, ancla = '#estimate') {
  */
 export function indiceGaleriaHtml(telefonosHtml) {
   const tesela = (c) => {
-    const { ancho, alto, anchos } = recorteTesela(c);
+    const { ficha, ancho, alto, anchos } = recorteTesela(c);
     const ref = anchos.includes(800) ? 800 : anchos[0];
     return '<li class="mm-cat-tesela">'
-      + `<span class="mm-cat-foto"><img src="${fotoTesela(c, ref)}" alt="" width="${ancho}" height="${alto}" loading="lazy" decoding="async"`
+      + `<span class="mm-cat-foto"><img src="${fotoTesela(c, ref)}" alt="${altA(ficha.alt)}" width="${ancho}" height="${alto}" loading="lazy" decoding="async"`
       + ' sizes="(min-width: 992px) 25vw, 50vw"'
       + ` srcset="${anchos.map((w) => `${fotoTesela(c, w)} ${w}w`).join(', ')}"></span>`
       + `<h3 class="mm-cat-t">${esc(c.nombre)}</h3><p class="mm-cat-p">${esc(c.linea)}</p>`

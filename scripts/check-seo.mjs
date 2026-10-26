@@ -26,6 +26,7 @@ import path from 'node:path';
 import { JSDOM } from 'jsdom';
 import { esPropia, conPropias } from './lib/rutas-propias.mjs';
 import { esFicha, esCiudad } from './lib/renombradas.mjs';
+import { fotoDeHeroe } from '../src/lib/heroe-ciudad.mjs';
 import { TITULO_BANDA, TEXTO_BANDA } from '../src/lib/galeria-categorias.mjs';
 import { OCULTAS, propiasEnIndice } from '../src/lib/filtro-proyectos.mjs';
 
@@ -613,6 +614,18 @@ for (const [ruta, c] of Object.entries(JSON.parse(
   if (!esFicha(ruta) || !c?.heroe?.og) continue;
   const abs = SITIO_R22 + c.heroe.og;
   META_PROPIA.set(ruta, { ...(META_PROPIA.get(ruta) ?? {}), 'og:image': abs, 'twitter:image': abs });
+}
+/* L6 de PUBLICAR (6.6): la tarjeta social de cada ciudad y condado es su hero real (`heroe-ciudad.mjs`), en vez de la
+ * foto compartida del origen. Misma via que R22/R24: la referencia pasa a ser el valor declarado, absoluto. */
+{
+  const base = JSON.parse(fs.readFileSync(path.join(RAIZ, 'baseline/seo.json'), 'utf8'));
+  for (const ruta of Object.keys(base)) {
+    if (!/^\/services\/[^/]+\/[a-z-]+-fl$/.test(ruta)) continue;
+    let f = null; try { f = fotoDeHeroe(ruta); } catch { f = null; }
+    if (!f?.src) continue;
+    const abs = SITIO_R22 + f.src;
+    META_PROPIA.set(ruta, { ...(META_PROPIA.get(ruta) ?? {}), 'og:image': abs, 'twitter:image': abs });
+  }
 }
 {
   const base = JSON.parse(fs.readFileSync(path.join(RAIZ, 'baseline/seo.json'), 'utf8'));

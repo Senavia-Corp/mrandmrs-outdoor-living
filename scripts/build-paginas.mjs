@@ -1110,6 +1110,31 @@ function condadoStitch(doc, ruta) {
   doc.querySelector('section.social-media')?.remove();
 }
 
+
+/* ── S4 parte 1 (D-254, L6 de PUBLICAR) · LAS TESELAS DE /gallery ENLAZAN ─────────────────────────────
+ * Las anclas del visor traian `href="#"` (240 en D1, 127 hoy). Cada una pasa a enlazar la obra de la foto, si el
+ * banco la tiene publicada en /project/*, o la galeria de su categoria (`data-service-id` -> galeria-categorias);
+ * los tres filtros sin galeria propia (furniture, irrigation, screens) enlazan su ficha. El visor sigue abriendose
+ * igual: GalleryLeadLightbox.astro hace preventDefault sobre `a.w-lightbox`. */
+const FICHA_DE_FILTRO = { furniture: '/services/outdoor-furniture', irrigation: '/services/irrigation-systems', screens: '/services/retractable-screens' };
+let teselasEnlazadas = { obra: 0, categoria: 0, ficha: 0, sin: 0 };
+function enlazaTeselasGaleria(doc, cats) {
+  const porSrc = new Map([...BANCO.values()].map((e) => [e.src, e]));
+  const base = (src) => String(src ?? '').replace(/-mm\d+(\.\w+)$/, '$1');
+  for (const a of doc.querySelectorAll('.gallery-page .cms-item-pictures a.gallery-picture[href="#"]')) {
+    const item = a.closest('.cms-item-pictures');
+    const sid = item?.getAttribute('data-service-id');
+    const e = porSrc.get(base(a.querySelector('img')?.getAttribute('src')));
+    const obra = (e?.usada_en ?? []).find((u) => u.startsWith('/project/'));
+    const cat = cats.find((c) => c.id === sid);
+    const href = obra ?? (cat ? `/gallery/${cat.slug}` : FICHA_DE_FILTRO[sid] ?? null);
+    if (!href) { teselasEnlazadas.sin++; continue; }
+    a.setAttribute('href', href);
+    teselasEnlazadas[obra ? 'obra' : cat ? 'categoria' : 'ficha']++;
+  }
+  console.log(`  /gallery · teselas enlazadas: obra ${teselasEnlazadas.obra} · categoria ${teselasEnlazadas.categoria} · ficha ${teselasEnlazadas.ficha} · sin destino ${teselasEnlazadas.sin}`);
+}
+
 /* ── ASTRO-4 · LA FICHA DE PROYECTO (laminas «Proyecto» y «ProyectoDetalle») ──────────────
  * Las 10 fichas de `/project/` que salen del origen. El marcado nuevo lo escribe
  * `src/lib/ficha-proyecto.mjs`, el mismo que usa `FichaObra.astro` para las 5 de autoria propia:
@@ -2950,6 +2975,9 @@ for (const [ruta] of RUTAS) {
       }
     }
 
+    // S4 parte 1 (L6): con la rejilla completa (origen + banco), cada tesela enlaza su obra, su categoria o su ficha.
+    enlazaTeselasGaleria(doc, GALERIA_CATEGORIAS);
+
     /* ── LAS TARJETAS DE CATEGORIA, ARRIBA DEL FILTRO (2-oct-2026) ────────────────────────
      * Una por pagina `/gallery/<slug>`. El marcado sale de `src/lib/galeria-categorias.mjs`,
      * que es el mismo que pinta el pie de cada pagina de categoria. */
@@ -3555,6 +3583,13 @@ for (const [ruta] of RUTAS) {
   const sanea = (t) => t.replace(/"((?:[^"\\]|\\.)*)"/g, (m) => m
     .replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, '\\t'));
 
+  /* L6 de PUBLICAR (6.6): la tarjeta social apunta a la foto del hero real: el condado a su hero (heroe-ciudad.mjs) y
+   * /gallery a la portada de su primera categoria (antes, el logo por defecto de M18). check-seo lo declara. */
+  if (esCondado(ruta)) { const f = fotoDeHeroe(ruta); if (f?.src) { metaSeo['og:image'] = f.src; metaSeo['twitter:image'] = f.src; } }
+  if (ruta === '/gallery') {
+    const cats = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/galeria-categorias.json'), 'utf8')).categorias;
+    metaSeo['og:image'] = cats[0].portada; metaSeo['twitter:image'] = cats[0].portada;
+  }
   const jsonLd = [];
   const jsonLdCrudo = [];
   for (const sc of doc.head.querySelectorAll('script[type="application/ld+json"]')) {

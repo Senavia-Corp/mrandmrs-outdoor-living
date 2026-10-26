@@ -69,7 +69,10 @@ export function precargaPoster(nombre) {
   ];
 }
 
-function picture(nombre) {
+const sinHtml = (t) => String(t ?? '').replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+const altA = (t) => String(t).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+/* L6 de PUBLICAR (D-260): el poster no es decorativo; su alt es el titular (h1/h2) mas cercano por delante del video. */
+function picture(nombre, alt = '') {
   const p = POSTERS[nombre];
   const fuentes = [];
   if (p.heroe && !p.partido) {
@@ -83,7 +86,7 @@ function picture(nombre) {
   const carga = p.heroe ? 'loading="eager" fetchpriority="high"' : 'loading="lazy" decoding="async"';
   return `<picture class="mm-video-poster-marco">${fuentes.join('')}`
     + `<img class="mm-video-poster" src="${DIR}/${nombre}-1280.webp" srcset="${srcset(nombre, 'webp')}" sizes="${sizes}"`
-    + ` width="${p.w}" height="${p.h}" alt="" ${carga}></picture>`;
+    + ` width="${p.w}" height="${p.h}" alt="${altA(alt)}" ${carga}></picture>`;
 }
 
 /* El `<noscript>` y el boton de pausa son OPCIONALES: los heroes de las 55 de zona no los traen
@@ -96,8 +99,10 @@ const RE_BLOQUE = /(<div data-poster-url="\/images\/site\/([a-z0-9-]+)-poster\.0
  */
 export function videoFondo(html) {
   let heroe = null;
-  const out = html.replace(RE_BLOQUE, (todo, div, nombre, video, fuentes, control) => {
+  const out = html.replace(RE_BLOQUE, (todo, div, nombre, video, fuentes, control, desde) => {
     const p = POSTERS[nombre];
+    const previo = [...html.slice(0, desde).matchAll(/<h([12])[^>]*>([\s\S]*?)<\/h\1>/g)].pop();
+    const titulo = previo ? sinHtml(previo[2]) : '';
     if (!p) return todo; // un vídeo que no conocemos se queda como estaba: falla abierto
     if (p.heroe && !heroe) heroe = nombre;
     const v = video
@@ -109,7 +114,7 @@ export function videoFondo(html) {
     // codecs propietarios). Ninguna se pide hasta que el cargador copia `data-src` a `src`.
     const src = [...fuentes.matchAll(/<source src="([^"]+)"[^>]*>/g)]
       .map(([, u]) => `<source data-src="${u}" type="video/${u.endsWith('.webm') ? 'webm' : 'mp4'}">`).join('');
-    return `${div}${picture(nombre)}${v}${src}</video>${control ? '<div aria-live="polite" hidden>' : ''}`;
+    return `${div}${picture(nombre, titulo)}${v}${src}</video>${control ? '<div aria-live="polite" hidden>' : ''}`;
   });
   /* L1 (D-255, punto 7): los dos iconos de los controles (`play-24.svg`, `pause.svg`) llegan del origen sin
    * `width`/`height`; la pagina los pinta a 24 px. Se les ponen aqui, que es por donde pasan los 80 bloques. */

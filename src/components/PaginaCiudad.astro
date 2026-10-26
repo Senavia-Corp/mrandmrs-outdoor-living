@@ -217,7 +217,7 @@ if (HEROE_FOTO) {
   if (n !== 1) throw new Error(`${slug}: esperaba UN video de fondo en el heroe y hay ${n}`);
   b0 = b0.replace(RE_VIDEO, () => '<div class="background-video-page w-background-video w-background-video-atom">'
     + `<picture class="mm-video-poster-marco"><img class="mm-video-poster" src="${esc(HEROE_FOTO.src)}" `
-    + `width="${HEROE_FOTO.ancho}" height="${HEROE_FOTO.alto}" alt="" loading="eager" fetchpriority="high"></picture></div>`);
+    + `width="${HEROE_FOTO.ancho}" height="${HEROE_FOTO.alto}" alt="${esc(HEROE_FOTO.alt).replace(/"/g, '&quot;')}" loading="eager" fetchpriority="high"></picture></div>`);   // L6 (D-260): el poster del hero no es decorativo
 }
 let ANTES_CONF = '', ANTES_FORM = '';
 if (CAP) {
@@ -401,7 +401,10 @@ const SEO = FAQ
         acceptedAnswer: { '@type': 'Answer', text: q.respuesta },
       })),
     }] }
-  : SEO_ORIGEN;---
+  : SEO_ORIGEN;
+/* L6 de PUBLICAR (6.6): la tarjeta social de la ciudad es su hero real, no la foto compartida del origen. `check-seo` lo declara. */
+if (HERO_FOTO?.src) SEO.meta = { ...SEO.meta, 'og:image': HERO_FOTO.src, 'twitter:image': HERO_FOTO.src };   // HERO_FOTO = fotoDeHeroe(RUTA), la misma que check-seo declara
+---
 <Base titulo={d["seo.title"]} descripcion={d["seo.description"]} ruta={RUTA} seo={SEO} jsonLdCrudo={LD_CRUDO}>
   <section class:list={['mm-hero-a', 'mm-hero-a--ciudad', !HERO_FOTO && 'mm-hero-a--sin']}>
     <div class="mm-hero-a-txt">

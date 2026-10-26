@@ -23,6 +23,8 @@ const BANCO = lee('src/data/banco-imagenes.json');
 const UBICACION = Object.fromEntries(Object.entries(lee('src/data/obra-ubicacion.json')).filter(([k]) => !k.startsWith('_')));
 export const TEXTO_LOCAL = Object.fromEntries(Object.entries(lee('src/data/texto-local.json')).filter(([k]) => !k.startsWith('_')));
 const GALERIA = new Set((lee('src/data/galeria-obra-por-ruta.json')._defecto?.fotos ?? []).map((f) => f.src));
+/* D-271 (L6): dos fotos declaradas casi iguales en el banco (`heroes-ciudad.json > casiIguales`) no salen juntas. */
+const CASI = new Map(); for (const [a, b] of (lee('src/data/heroes-ciudad.json').casiIguales ?? [])) { CASI.set(a, b); CASI.set(b, a); }
 
 const FOTOS_MAX = 3;
 const esPiscina = (r) => /^\/services\/pool-builders\/[a-z-]+-fl$/.test(r);
@@ -61,7 +63,7 @@ function fotosDeObra(ruta, slug, condado) {
   for (const [bolsa, donde] of bolsas) {
     for (const f of bolsa) {
       if (fotos.length === FOTOS_MAX) break;
-      if (vistas.has(f.id)) continue;
+      if (vistas.has(f.id) || (CASI.has(f.id) && vistas.has(CASI.get(f.id)))) continue;
       vistas.add(f.id); fotos.push({ ...sinNada(f), donde });
     }
   }
