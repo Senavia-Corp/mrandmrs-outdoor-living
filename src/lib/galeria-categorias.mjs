@@ -195,11 +195,15 @@ export function bandaCompactaHtml(accion, ancla = '#estimate') {
  * de accion, que entra detras de la sexta.
  */
 export function indiceGaleriaHtml(telefonosHtml) {
-  const tesela = (c) => {
+  /* L7 de PUBLICAR (6.7): en /gallery el hero es de texto y el LCP movil es la primera tesela del indice (medido con
+   * build-lab). Va con prioridad alta y sin `lazy`; con `fetchpriority="high"`, build-variantes-imagen.mjs le genera sus
+   * AVIF de movil y srcset-auto.mjs los sirve y los precarga, como el hero de una ciudad. Las otras cinco siguen lazy. */
+  const tesela = (c, k) => {
     const { ficha, ancho, alto, anchos } = recorteTesela(c);
     const ref = anchos.includes(800) ? 800 : anchos[0];
+    const carga = k === 0 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy" decoding="async"';
     return '<li class="mm-cat-tesela">'
-      + `<span class="mm-cat-foto"><img src="${fotoTesela(c, ref)}" alt="${altA(ficha.alt)}" width="${ancho}" height="${alto}" loading="lazy" decoding="async"`
+      + `<span class="mm-cat-foto"><img src="${fotoTesela(c, ref)}" alt="${altA(ficha.alt)}" width="${ancho}" height="${alto}" ${carga}"`
       + ' sizes="(min-width: 992px) 25vw, 50vw"'
       + ` srcset="${anchos.map((w) => `${fotoTesela(c, w)} ${w}w`).join(', ')}"></span>`
       + `<h3 class="mm-cat-t">${esc(c.nombre)}</h3><p class="mm-cat-p">${esc(c.linea)}</p>`
@@ -210,7 +214,7 @@ export function indiceGaleriaHtml(telefonosHtml) {
     + `<span class="mm-art-ver">${esc(enlaceDe(c))}${FLECHA_SISTEMA}</span></a></li>`;
   return '<nav class="mm-cat mm-cat--indice" aria-labelledby="gal-cats-tit">'
     + `<div class="mm-sec-cab"><h2 class="mm-h2 mm-min" id="gal-cats-tit">${esc(TITULO_TARJETAS).replace(/(service)$/, '<span class="mm-rot">$1</span>')}</h2></div>`
-    + `<ul class="mm-cat-fila" role="list">${PANELES.map(tesela).join('')}`
+    + `<ul class="mm-cat-fila" role="list">${PANELES.map((c, k) => tesela(c, k)).join('')}`
     + '<li class="mm-muro-accion"><p class="mm-muro-t">Seen something you like?</p>'
     + `<a class="mm-btn mm-btn--linea mm-min" href="/request-estimated">Get a free estimate</a>${telefonosHtml}</li></ul>`
     + `<ul class="mm-arts-indice mm-cat-resto" role="list">${CATEGORIAS.filter((c) => !c.panel).map(linea).join('')}</ul>`

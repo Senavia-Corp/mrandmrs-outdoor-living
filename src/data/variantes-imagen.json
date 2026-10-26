@@ -8410,6 +8410,338 @@
      "/images/banco/remodeling/pool-remodeling-plaster-crew-spa-glass-tile-florida-01-mm1024.webp"
     ]
    ]
+  },
+  "/images/banco/construction/new-pool-raised-spa-travertine-deck-wet-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/new-pool-raised-spa-travertine-deck-wet-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/construction/new-pool-raised-spa-travertine-deck-wet-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-construction-excavation-excavator-backyard-florida-02.webp": {
+   "ancho": 1200,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-construction-excavation-excavator-backyard-florida-02-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/construction/pool-construction-excavation-excavator-backyard-florida-02-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-construction-excavation-first-dig-florida-01.webp": {
+   "ancho": 1200,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-construction-excavation-first-dig-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/construction/pool-construction-excavation-first-dig-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-construction-excavation-machinery-backyard-florida-01.webp": {
+   "ancho": 1200,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-construction-excavation-machinery-backyard-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/construction/pool-construction-excavation-machinery-backyard-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-construction-excavation-side-view-florida-01.webp": {
+   "ancho": 1200,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-construction-excavation-side-view-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/construction/pool-construction-excavation-side-view-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-construction-excavation-site-access-florida-01.webp": {
+   "ancho": 1200,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-construction-excavation-site-access-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/construction/pool-construction-excavation-site-access-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-construction-gunite-shell-waterline-tile-florida-01.webp": {
+   "ancho": 768,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-construction-gunite-shell-waterline-tile-florida-01-mm640.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-construction-iridescent-step-tile-trim-florida-01.webp": {
+   "ancho": 899,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-construction-iridescent-step-tile-trim-florida-01-mm640.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-construction-iridescent-step-tile-trim-florida-02.webp": {
+   "ancho": 1599,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-construction-iridescent-step-tile-trim-florida-02-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/construction/pool-construction-iridescent-step-tile-trim-florida-02-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-construction-iridescent-waterline-tile-shell-florida-01.webp": {
+   "ancho": 768,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-construction-iridescent-waterline-tile-shell-florida-01-mm640.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-construction-new-pool-spa-travertine-deck-florida-01.webp": {
+   "ancho": 1296,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-construction-new-pool-spa-travertine-deck-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/construction/pool-construction-new-pool-spa-travertine-deck-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-construction-plumbing-trench-pvc-pipes-florida-01.webp": {
+   "ancho": 768,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-construction-plumbing-trench-pvc-pipes-florida-01-mm640.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-construction-raised-spa-tile-travertine-florida-01.webp": {
+   "ancho": 1599,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-construction-raised-spa-tile-travertine-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/construction/pool-construction-raised-spa-tile-travertine-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-construction-steel-rebar-formwork-florida-01.webp": {
+   "ancho": 1200,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-construction-steel-rebar-formwork-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/construction/pool-construction-steel-rebar-formwork-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-construction-steel-rebar-formwork-florida-02.webp": {
+   "ancho": 1200,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-construction-steel-rebar-formwork-florida-02-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/construction/pool-construction-steel-rebar-formwork-florida-02-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-construction-steel-rebar-formwork-house-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-construction-steel-rebar-formwork-house-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/construction/pool-construction-steel-rebar-formwork-house-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-construction-steel-rebar-grid-close-florida-01.webp": {
+   "ancho": 1200,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-construction-steel-rebar-grid-close-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/construction/pool-construction-steel-rebar-grid-close-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-construction-travertine-deck-raised-spa-dusk-florida-01.webp": {
+   "ancho": 1296,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-construction-travertine-deck-raised-spa-dusk-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/construction/pool-construction-travertine-deck-raised-spa-dusk-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-construction-waterline-tile-dog-sunset-florida-01.webp": {
+   "ancho": 1200,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-construction-waterline-tile-dog-sunset-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/construction/pool-construction-waterline-tile-dog-sunset-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-equipment-heat-pump-automation-panel-florida-01.webp": {
+   "ancho": 1024,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-equipment-heat-pump-automation-panel-florida-01-mm640.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/pool-equipment-pad-filter-pump-heater-florida-01.webp": {
+   "ancho": 1024,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/pool-equipment-pad-filter-pump-heater-florida-01-mm640.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/travertine-pool-deck-french-pattern-flash-dusk-florida-01.webp": {
+   "ancho": 1599,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/travertine-pool-deck-french-pattern-flash-dusk-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/construction/travertine-pool-deck-french-pattern-flash-dusk-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/travertine-pool-deck-installation-stacked-pavers-florida-01.webp": {
+   "ancho": 768,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/travertine-pool-deck-installation-stacked-pavers-florida-01-mm640.webp"
+    ]
+   ]
+  },
+  "/images/banco/construction/travertine-pool-deck-installation-worker-florida-01.webp": {
+   "ancho": 768,
+   "variantes": [
+    [
+     640,
+     "/images/banco/construction/travertine-pool-deck-installation-worker-florida-01-mm640.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/freestanding-pergola-dark-bronze-pool-spa-travertine-florida-01.webp": {
+   "ancho": 1440,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/freestanding-pergola-dark-bronze-pool-spa-travertine-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/freestanding-pergola-dark-bronze-pool-spa-travertine-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/insulated-aluminum-patio-cover-new-marble-pavers-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/insulated-aluminum-patio-cover-new-marble-pavers-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/insulated-aluminum-patio-cover-new-marble-pavers-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pergolas/pool-construction-aluminum-patio-cover-new-deck-florida-01.webp": {
+   "ancho": 1200,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pergolas/pool-construction-aluminum-patio-cover-new-deck-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pergolas/pool-construction-aluminum-patio-cover-new-deck-florida-01-mm1024.webp"
+    ]
+   ]
+  },
+  "/images/banco/pole/pole-barn-construction-slab-prep-aerial-florida-01.webp": {
+   "ancho": 1600,
+   "variantes": [
+    [
+     640,
+     "/images/banco/pole/pole-barn-construction-slab-prep-aerial-florida-01-mm640.webp"
+    ],
+    [
+     1024,
+     "/images/banco/pole/pole-barn-construction-slab-prep-aerial-florida-01-mm1024.webp"
+    ]
+   ]
   }
  },
  "lcp": {
@@ -9803,6 +10135,12 @@
    [
     1024,
     "/images/banco/landscaping/landscaping-stepping-stone-path-black-slate-chips-florida-01-lcp1024.avif"
+   ]
+  ],
+  "/images/obra/teselas/gallery-tile-pools-and-spas-800.webp": [
+   [
+    800,
+    "/images/obra/teselas/gallery-tile-pools-and-spas-800-lcp800.avif"
    ]
   ]
  },
