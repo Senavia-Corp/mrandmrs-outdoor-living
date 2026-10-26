@@ -1549,3 +1549,29 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 @media (min-width: 992px) {
   .mm-donde-caja { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--mm-e-48); }
 }
+
+/* ── S2 / S3 (D-254, L3a de PUBLICAR, 25-oct-2026) · EL BLOQUE LOCAL DE LAS RUTAS DE PISCINA ──────
+ * Dos columnas: lo que se afirma de la ciudad (titular, parrafo de las 9, la frase de condado y zona con
+ * el condado enlazado; en el condado, la FAQ) y, a la derecha, hasta tres fotos de obra ubicada con su
+ * rotulo «In <Ciudad>» / «In <Condado> County». Una regla de oro sobre la frase; sin tarjetas. */
+.mm-local { --mm-canal: var(--mm-e-24); padding: var(--mm-e-64) 0; background: var(--mm-blanco); font-family: var(--mm-familia); color: var(--mm-tinta-texto); }
+.mm-local-caja { display: grid; gap: var(--mm-e-32); padding: 0 var(--mm-canal); max-width: var(--mm-ancho); margin: 0 auto; }
+.mm-local-txt { display: flex; flex-direction: column; gap: var(--mm-e-16); min-width: 0; }
+.mm-local-lead { font-size: 18px; line-height: 1.5; }
+.mm-local-dato { margin: 0; max-width: 650px; padding-top: var(--mm-e-12); border-top: 2px solid var(--mm-oro); font-size: 16px; line-height: 1.5; font-weight: 600; color: var(--mm-navy); }
+.mm-local-dato a { color: inherit; text-underline-offset: 3px; }
+.mm-local-dato a:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); }
+.mm-local-faq.mm-faq-lista { margin: var(--mm-e-8) 0 0; }
+/* El enlace a la fuente bajo una respuesta local: control de 44 px, no una linea de 19. */
+.mm-faq-enlace a { display: inline-flex; align-items: center; min-height: var(--mm-ctl-s); font-weight: 600; }
+.mm-local-obra { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--mm-e-16) var(--mm-e-12); align-content: start; }
+.mm-local-foto { margin: 0; display: flex; flex-direction: column; gap: var(--mm-e-8); min-width: 0; }
+.mm-local-foto:first-child { grid-column: 1 / -1; }
+.mm-local-foto img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--mm-r-8); background: var(--mm-azul-100); }
+.mm-local-foto:first-child img { aspect-ratio: 16 / 10; }
+.mm-local-pie { display: flex; flex-direction: column; gap: 2px; font-size: 13px; line-height: 1.4; color: var(--mm-tinta-texto); text-wrap: pretty; }
+.mm-local-rot { font-size: 12px; line-height: 1.5; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--mm-tinta-suave); }
+@media (min-width: 992px) {
+  .mm-local-caja { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--mm-e-48); align-items: start; }
+  .mm-local--sin .mm-local-caja { grid-template-columns: minmax(0, 1fr); }
+}

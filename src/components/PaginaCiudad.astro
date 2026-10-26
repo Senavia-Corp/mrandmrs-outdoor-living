@@ -10,6 +10,7 @@
 // La cabecera historica de la plantilla (los cinco cambios a mano) sigue en la pagina de
 // pool-builders, que es donde vive `getStaticPaths` con Sanity.
 import { enlazadoDeCiudad } from '../lib/vecinas.mjs';
+import { bloqueLocal, htmlLocal } from '../lib/local-ciudad.mjs';
 import Base from '../layouts/Base.astro';
 import ResenasGoogle from './widgets/ResenasGoogle.astro';
 import CarruselBlog from './widgets/CarruselBlog.astro';
@@ -52,6 +53,9 @@ function aplanar(o, pref = '', prof = 0, salida = {}) {
 const { doc, ruta: RUTA, servicio: SV, seoRutas: SEO_RUTAS, fotosCiudad: FOTOS_CIUDAD, enlaces: ENLACES, heroeFoto: HEROE_FOTO } = Astro.props;
 const slug = doc.slug;
 const VECINDAD = enlazadoDeCiudad(RUTA);
+/* S2 (D-254, L3a de PUBLICAR): el bloque local de las 53 de piscina, bajo la galeria. Null en los otros servicios. */
+const LOCAL = bloqueLocal(RUTA);
+const escAttr = (s) => esc(s).replace(/"/g, '&quot;');
 const d = aplanar(doc);
 /**
  * CUARTO CAMBIO A MANO (SEO-AEO-GEO A3) — OVERRIDE POR CIUDAD.
@@ -442,6 +446,7 @@ const SEO = FAQ
     </div>
   </section>
   <GaleriaObra clave={SV.galeria} accion={CTA_CIERRE} marca={MARCA_SERVICIO} />
+  {LOCAL && <Fragment set:html={htmlLocal(LOCAL, { esc, escAttr, chevron: CHEVRON })} />}
   {R3D && (
     <section class="mm-3d">
       <div class="mm-sec-cab">
@@ -471,6 +476,7 @@ const SEO = FAQ
                 <summary><h3>{q.pregunta}</h3><Fragment set:html={CHEVRON} /></summary>
                 <div class="mm-faq-r">
                   <p>{q.respuesta}</p>
+                  {q.enlace ? (<p class="mm-faq-fuentes mm-faq-enlace"><a href={q.enlace.href}>{q.enlace.texto}</a></p>) : null}
                   {q.fuentes?.length ? (
                     <p class="mm-faq-fuentes">Official sources:{' '}
                       {q.fuentes.map((f, i) => (<>{i ? ' · ' : ''}<a href={f.url} target="_blank" rel="noopener">{f.nombre}</a></>))}

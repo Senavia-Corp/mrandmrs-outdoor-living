@@ -30,6 +30,7 @@ import { lineasTarjetas, lineasBanda, lineasSrBanda, lineasBandaCompacta, CATEGO
 import { OCULTAS, lineasFiltro } from '../src/lib/filtro-proyectos.mjs';
 import { CATEGORIAS_PISCINA } from '../src/lib/blog-groq.mjs';
 import { enlazadoDeCiudad, CONDADO_DE_RUTA, nombreCondado, zonaDeCondado } from '../src/lib/vecinas.mjs';
+import { bloqueLocal, lineasLocal } from '../src/lib/local-ciudad.mjs';
 import { fotoDeHeroe } from '../src/lib/heroe-ciudad.mjs';
 import { lineasDiferenciales } from '../src/lib/diferenciales.mjs';
 import { ciudadesDeFicha, SERVICIOS_CIUDAD } from '../src/lib/servicios-ciudad.mjs';
@@ -1491,6 +1492,13 @@ function lineasDonde() {
     ...(p.faq ?? []).map((q) => capitalizaH2(q.pregunta ?? q.question)), p.title];   // las preguntas van en summary h3: capitalize
 }
 const LINEAS_ANADIDAS = [
+  /* S2 / S3 (D-254, L3a de PUBLICAR, 25-oct-2026, T-247…): el bloque local de las 53 ciudades de piscina y los 9
+   * condados, DERIVADO de la misma funcion que lo pinta (`src/lib/local-ciudad.mjs`): titular (capitalize de
+   * `.mm-h2`), parrafo en las 9 de D-252, la frase de condado y zona, el rotulo en versalitas y el alt de cada foto
+   * de obra ubicada (D-253) y, en el condado, las preguntas del acordeon (capitalize de `summary h3`). */
+  ...RUTAS_A_MEDIR.filter((r) => /^\/services\/pool-builders\/[a-z-]+-fl$/.test(r))
+    .map((r) => ({ rutas: [r], tras: [], lineas: lineasLocal(bloqueLocal(r), capitalizaH2), motivo: 'S2/S3 (D-254, T-247…): el bloque local, derivado de local-ciudad.mjs' }))
+    .filter((d) => d.lineas.length),
   { rutas: ['/services/pool-builders'], tras: [], lineas: lineasDonde(), motivo: 'S1 (D-254, T-243): «Where we build / How to choose a pool builder», derivado de vecinas.mjs y de la guia del blog' },
   /* D-256 (25-oct-2026, T-137): /pool-investment-estimator deja de ser huerfana; la linea va bajo la entradilla del
    * estimador. Derivada del mismo componente que la pinta (Estimador.astro). */
@@ -4261,7 +4269,9 @@ function listasStitch(ruta, lineas) {
       const g = { ...GALERIA_OBRA._defecto, ...(GALERIA_OBRA[ruta] ?? GALERIA_OBRA[svCiudad?.galeria] ?? {}) };
       // En condado la entradilla es la de su propia pagina: el par va justo delante del 3D.
       const tresD = esCondado(ruta) ? pasosDelOrigen(ruta).tresD.toLowerCase() : null;
-      const k = out.findIndex((l, x) => (l === g.entradilla || (tresD && (out[x + 3] ?? '').toLowerCase() === tresD))
+      // S3 (D-254, L3a): entre la galeria y el 3D del condado va ahora el bloque local; se salta por su tamaño real.
+      const salto = esCondado(ruta) ? lineasLocal(bloqueLocal(ruta), capitalizaH2).length : 0;
+      const k = out.findIndex((l, x) => (l === g.entradilla || (tresD && (out[x + 3 + salto] ?? '').toLowerCase() === tresD))
         && out[x + 1] === accion && out[x + 2] === 'Project Gallery');
       if (k >= 0) out.splice(k + 1, 2);
     }

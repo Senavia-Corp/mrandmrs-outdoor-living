@@ -35,6 +35,9 @@ import { logoLigero, ALTO_LOGO } from '../src/lib/logo-ligero.mjs';
 import { OCULTAS, serviciosDe } from '../src/lib/filtro-proyectos.mjs';
 import { tramosMiga } from '../src/lib/miga-tramos.mjs';
 import { CONDADO_DE_RUTA, nombreCondado, zonaDeCondado } from '../src/lib/vecinas.mjs';
+import { bloqueLocal, htmlLocal } from '../src/lib/local-ciudad.mjs';
+/* El origen absoluto para los JSON-LD propios del condado (S3): el mismo que usa `check-seo.mjs`. */
+const SITIO_ABS = (process.env.PUBLIC_SITE_URL || 'https://www.mrandmrsoutdoorliving.com').replace(/\/$/, '');
 import { fotoDeHeroe, fotosDeSeccion as fotosDeSeccionCiudad } from '../src/lib/heroe-ciudad.mjs';
 import { heroProyectoHtml, detalleProyectoHtml, cierreProyectoHtml, conAlt } from '../src/lib/ficha-proyecto.mjs';
 
@@ -1095,6 +1098,12 @@ function condadoStitch(doc, ruta) {
   const proy = hermana(doc.querySelector('section.projects-section'), 'proyectos');
   const blog = hermana(doc.querySelector('section.blog-section-page'), 'articulos');
   padre.insertBefore(gal, n3);
+  // S3 (D-254, L3a de PUBLICAR): el bloque local del condado, bajo la galeria, con su FAQ (2 preguntas).
+  const local = bloqueLocal(ruta);
+  if (!local?.faq?.length) falta('el condado no trae FAQ local en texto-local.json');
+  const envoltorio = doc.createElement('div');
+  envoltorio.innerHTML = htmlLocal(local, { esc, escAttr, chevron: CHEVRON });
+  padre.insertBefore(envoltorio.firstElementChild, n3);
   padre.insertBefore(np, proy);
   padre.insertBefore(nr, blog.nextSibling);
   padre.insertBefore(nc, nr.nextSibling);
@@ -3558,6 +3567,18 @@ for (const [ruta] of RUTAS) {
       try { jsonLd.push(ordena(JSON.parse(sanea(t)))); ldReparados++; }
       catch { jsonLdCrudo.push(t); }
     }
+  }
+  /* S3 (D-254, L3a de PUBLICAR): el condado gana un `FAQPage` derivado del MISMO array que pinta el acordeon y un
+   * `Service` prestado por #negocio en el condado (AdministrativeArea). `check-seo.mjs` los declara en BLOQUES_PROPIOS. */
+  if (esCondado(ruta)) {
+    const local = bloqueLocal(ruta);
+    const abs = `${SITIO_ABS}${ruta}`;
+    jsonLd.push(
+      { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: local.faq.map((q) => ({ '@type': 'Question', name: q.pregunta, acceptedAnswer: { '@type': 'Answer', text: q.respuesta } })) },
+      { '@context': 'https://schema.org', '@type': 'Service', '@id': `${abs}#servicio`, name: `Custom pool construction in ${local.nombre}, FL`, serviceType: 'Custom inground pool construction',
+        description: desc, url: abs, provider: { '@id': `${SITIO_ABS}/#negocio` },
+        areaServed: { '@type': 'AdministrativeArea', name: local.nombre, containedInPlace: { '@type': 'State', name: 'Florida' } } },
+    );
   }
 
   /**

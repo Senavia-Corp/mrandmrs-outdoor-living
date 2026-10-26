@@ -1,0 +1,372 @@
+{
+  "_lee_esto": "S2/S3 (D-254, L3a de PUBLICAR, 25-oct-2026). Texto local por ruta de piscina: `parrafo` (las 9 ciudades de D-252, 40-60 palabras que responden a sus consultas de Search Console, D1/gsc/gsc-ciudades.md; Jupiter y Miramar no tienen desglose por consulta y responden a «pool builders <ciudad>») y `faq` (condados: 2 de 3 preguntas con el condado en el enunciado; las ciudades llevan su FAQ por captacion-servicios.json). Cada respuesta sale de la ruta que `enlace` nombra y la enlaza (encargo §3): permisos -> articulo de permisos, plazos -> articulo de plazos, financiacion -> /financing, coste -> /pool-cost-estimator. Ni cifras, ni plazos, ni barrios, ni autoridades (D-258). Filas T-247… de STITCH-TEXTO.md. Lo lee src/lib/local-ciudad.mjs y build-captacion-ciudades.mjs.",
+  "/services/pool-builders/pembroke-pines-fl": {
+    "parrafo": "Looking for inground pool contractors in Pembroke Pines? We build the whole pool, not a part of it: 3D design, engineering, permits, excavation, the shell, plumbing, electrical and finishes, through to a closed permit at start-up, under one Florida pool contractor license. The same team designs the deck and the outdoor living around the water.",
+    "faq": [
+      {
+        "pregunta": "Who pulls the pool permit in Pembroke Pines?",
+        "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+        "enlace": {
+          "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+          "texto": "What Permits Are Required for Pool Construction in Florida?"
+        }
+      },
+      {
+        "pregunta": "How long does it take to build a custom pool in Pembroke Pines?",
+        "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+        "enlace": {
+          "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+          "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+        }
+      }
+    ]
+  },
+  "/services/pool-builders/davie-fl": {
+    "parrafo": "Spa builders in Davie: a raised or integrated spa is designed with the pool, not added to it. The 3D design shows the spa, its depth and the deck around it before anything is dug, and the same crew pours the shell, runs the plumbing and finishes both as one project. We also add and remodel spas in existing pools.",
+    "faq": [
+      {
+        "pregunta": "Who pulls the pool permit in Davie?",
+        "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+        "enlace": {
+          "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+          "texto": "What Permits Are Required for Pool Construction in Florida?"
+        }
+      },
+      {
+        "pregunta": "Can a new pool in Davie be financed?",
+        "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
+        "enlace": {
+          "href": "/financing",
+          "texto": "Financing Your Outdoor Project"
+        }
+      }
+    ]
+  },
+  "/services/pool-builders/fort-lauderdale-fl": {
+    "parrafo": "Pool builders in Broward County with work you can see in Fort Lauderdale: the projects below were built here. For a new custom pool this is the page; for an existing one, Fort Lauderdale has its own pool remodeling page and form, because new construction and remodeling are separate services with separate scopes.",
+    "faq": [
+      {
+        "pregunta": "How long does it take to build a custom pool in Fort Lauderdale?",
+        "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+        "enlace": {
+          "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+          "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+        }
+      },
+      {
+        "pregunta": "Can a new pool in Fort Lauderdale be financed?",
+        "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
+        "enlace": {
+          "href": "/financing",
+          "texto": "Financing Your Outdoor Project"
+        }
+      }
+    ]
+  },
+  "/services/pool-builders/boca-raton-fl": {
+    "parrafo": "Pool construction in Boca Raton starts with a site evaluation and a 3D design you approve before engineering, so every selection is locked before the permit goes in. If you already have a pool, Boca Raton has its own pool remodeling page, and the pergolas and louvered roofs for the deck around it are built by the same team.",
+    "faq": [
+      {
+        "pregunta": "Who pulls the pool permit in Boca Raton?",
+        "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+        "enlace": {
+          "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+          "texto": "What Permits Are Required for Pool Construction in Florida?"
+        }
+      },
+      {
+        "pregunta": "How long does it take to build a custom pool in Boca Raton?",
+        "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+        "enlace": {
+          "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+          "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+        }
+      }
+    ]
+  },
+  "/services/pool-builders/delray-beach-fl": {
+    "parrafo": "Luxury pool builders in Delray Beach: what makes a pool luxury here is the design work, a custom shape, a raised spa or a sun shelf, finishes and a deck chosen in 3D before construction, and premium materials specified for Florida sun and salt air. Delray Beach also has pages for pool remodeling, pergolas, louvered roofs, decks and outdoor kitchens.",
+    "faq": [
+      {
+        "pregunta": "Who pulls the pool permit in Delray Beach?",
+        "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+        "enlace": {
+          "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+          "texto": "What Permits Are Required for Pool Construction in Florida?"
+        }
+      },
+      {
+        "pregunta": "Can a new pool in Delray Beach be financed?",
+        "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
+        "enlace": {
+          "href": "/financing",
+          "texto": "Financing Your Outdoor Project"
+        }
+      }
+    ]
+  },
+  "/services/pool-builders/jupiter-fl": {
+    "parrafo": "Jupiter is one of the Palm Beach County cities where we design and build custom inground pools and spas. The process is the same as everywhere we build: a site evaluation, a 3D design you approve, sealed engineering, the permit pulled under our license, construction with an inspection at each stage, and start-up with a closed permit.",
+    "faq": [
+      {
+        "pregunta": "How long does it take to build a custom pool in Jupiter?",
+        "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+        "enlace": {
+          "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+          "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+        }
+      },
+      {
+        "pregunta": "Can a new pool in Jupiter be financed?",
+        "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
+        "enlace": {
+          "href": "/financing",
+          "texto": "Financing Your Outdoor Project"
+        }
+      }
+    ]
+  },
+  "/services/pool-builders/miramar-fl": {
+    "parrafo": "Miramar homeowners reach us for two different jobs: a new custom pool, which is this page, and the remodel of an existing one, which has its own Miramar page and form. Both start with a 3D design and a fixed project price in writing before you commit, and both are permitted and inspected under our Florida pool contractor license.",
+    "faq": [
+      {
+        "pregunta": "Who pulls the pool permit in Miramar?",
+        "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+        "enlace": {
+          "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+          "texto": "What Permits Are Required for Pool Construction in Florida?"
+        }
+      },
+      {
+        "pregunta": "How long does it take to build a custom pool in Miramar?",
+        "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+        "enlace": {
+          "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+          "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+        }
+      }
+    ]
+  },
+  "/services/pool-builders/deerfield-beach-fl": {
+    "parrafo": "Need someone to build a backyard pool in Deerfield Beach? That is the job this page is for: design, permits and construction of a new custom pool. Pool remodeling and renovation of an existing pool is a separate service with its own page, and the estimator covers both so you can see the range before you call.",
+    "faq": [
+      {
+        "pregunta": "Who pulls the pool permit in Deerfield Beach?",
+        "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+        "enlace": {
+          "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+          "texto": "What Permits Are Required for Pool Construction in Florida?"
+        }
+      },
+      {
+        "pregunta": "Can a new pool in Deerfield Beach be financed?",
+        "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
+        "enlace": {
+          "href": "/financing",
+          "texto": "Financing Your Outdoor Project"
+        }
+      }
+    ]
+  },
+  "/services/pool-builders/hollywood-fl": {
+    "parrafo": "Pool contractors in Hollywood with work in Hollywood: the projects below were built here, in Broward County. For a new custom pool this is the page; Hollywood also has its own pages for pool remodeling, pergolas, louvered roofs, decks and outdoor kitchens, so the pool and the outdoor living around it come from one licensed team.",
+    "faq": [
+      {
+        "pregunta": "How long does it take to build a custom pool in Hollywood?",
+        "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+        "enlace": {
+          "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+          "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+        }
+      },
+      {
+        "pregunta": "Can a new pool in Hollywood be financed?",
+        "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
+        "enlace": {
+          "href": "/financing",
+          "texto": "Financing Your Outdoor Project"
+        }
+      }
+    ]
+  },
+  "/services/pool-builders/alachua-county-fl": {
+    "faq": [
+      {
+        "pregunta": "Who pulls the pool permit in Alachua County?",
+        "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+        "enlace": {
+          "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+          "texto": "What Permits Are Required for Pool Construction in Florida?"
+        }
+      },
+      {
+        "pregunta": "How long does it take to build a custom pool in Alachua County?",
+        "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+        "enlace": {
+          "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+          "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+        }
+      }
+    ]
+  },
+  "/services/pool-builders/broward-county-fl": {
+    "faq": [
+      {
+        "pregunta": "Who pulls the pool permit in Broward County?",
+        "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+        "enlace": {
+          "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+          "texto": "What Permits Are Required for Pool Construction in Florida?"
+        }
+      },
+      {
+        "pregunta": "Can a new pool in Broward County be financed?",
+        "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
+        "enlace": {
+          "href": "/financing",
+          "texto": "Financing Your Outdoor Project"
+        }
+      }
+    ]
+  },
+  "/services/pool-builders/columbia-county-fl": {
+    "faq": [
+      {
+        "pregunta": "How long does it take to build a custom pool in Columbia County?",
+        "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+        "enlace": {
+          "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+          "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+        }
+      },
+      {
+        "pregunta": "Can a new pool in Columbia County be financed?",
+        "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
+        "enlace": {
+          "href": "/financing",
+          "texto": "Financing Your Outdoor Project"
+        }
+      }
+    ]
+  },
+  "/services/pool-builders/dixie-county-fl": {
+    "faq": [
+      {
+        "pregunta": "Who pulls the pool permit in Dixie County?",
+        "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+        "enlace": {
+          "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+          "texto": "What Permits Are Required for Pool Construction in Florida?"
+        }
+      },
+      {
+        "pregunta": "How long does it take to build a custom pool in Dixie County?",
+        "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+        "enlace": {
+          "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+          "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+        }
+      }
+    ]
+  },
+  "/services/pool-builders/gilchrist-county-fl": {
+    "faq": [
+      {
+        "pregunta": "Who pulls the pool permit in Gilchrist County?",
+        "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+        "enlace": {
+          "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+          "texto": "What Permits Are Required for Pool Construction in Florida?"
+        }
+      },
+      {
+        "pregunta": "Can a new pool in Gilchrist County be financed?",
+        "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
+        "enlace": {
+          "href": "/financing",
+          "texto": "Financing Your Outdoor Project"
+        }
+      }
+    ]
+  },
+  "/services/pool-builders/levy-county-fl": {
+    "faq": [
+      {
+        "pregunta": "How long does it take to build a custom pool in Levy County?",
+        "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+        "enlace": {
+          "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+          "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+        }
+      },
+      {
+        "pregunta": "Can a new pool in Levy County be financed?",
+        "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
+        "enlace": {
+          "href": "/financing",
+          "texto": "Financing Your Outdoor Project"
+        }
+      }
+    ]
+  },
+  "/services/pool-builders/marion-county-fl": {
+    "faq": [
+      {
+        "pregunta": "Who pulls the pool permit in Marion County?",
+        "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+        "enlace": {
+          "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+          "texto": "What Permits Are Required for Pool Construction in Florida?"
+        }
+      },
+      {
+        "pregunta": "How long does it take to build a custom pool in Marion County?",
+        "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+        "enlace": {
+          "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+          "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+        }
+      }
+    ]
+  },
+  "/services/pool-builders/palm-beach-county-fl": {
+    "faq": [
+      {
+        "pregunta": "Who pulls the pool permit in Palm Beach County?",
+        "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+        "enlace": {
+          "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+          "texto": "What Permits Are Required for Pool Construction in Florida?"
+        }
+      },
+      {
+        "pregunta": "Can a new pool in Palm Beach County be financed?",
+        "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
+        "enlace": {
+          "href": "/financing",
+          "texto": "Financing Your Outdoor Project"
+        }
+      }
+    ]
+  },
+  "/services/pool-builders/putnam-county-fl": {
+    "faq": [
+      {
+        "pregunta": "How long does it take to build a custom pool in Putnam County?",
+        "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+        "enlace": {
+          "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+          "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+        }
+      },
+      {
+        "pregunta": "Can a new pool in Putnam County be financed?",
+        "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
+        "enlace": {
+          "href": "/financing",
+          "texto": "Financing Your Outdoor Project"
+        }
+      }
+    ]
+  }
+}

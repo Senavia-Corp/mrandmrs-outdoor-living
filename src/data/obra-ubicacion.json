@@ -1,0 +1,91 @@
+{
+  "_lee_esto": "D-253 (PUBLICAR, 25-oct-2026): donde se hizo la obra, a nivel de ciudad o condado y nada mas. Derivado una vez de docs/encargos/referencias/e13/gps-banco.json (GPS de los originales, ciudad a <= 3 km, condado por caja), sin coordenadas ni distancias. Clave = id de obra (banco-imagenes.json > proyecto); las fotos con GPS que no pertenecen a ninguna obra registrada van por su propio id (bi-nnnn). null = no verificado. Lo lee PaginaCiudad (bloque local S2), el condado (S3) y similitud-ciudades.mjs (suelo de palabras).",
+  "obra-002": {
+    "ciudad": "parkland-fl",
+    "condado": "broward-county-fl"
+  },
+  "obra-027": {
+    "ciudad": "hollywood-fl",
+    "condado": "broward-county-fl"
+  },
+  "obra-028": {
+    "ciudad": null,
+    "condado": "broward-county-fl"
+  },
+  "obra-029": {
+    "ciudad": "weston-fl",
+    "condado": "broward-county-fl"
+  },
+  "obra-039": {
+    "ciudad": null,
+    "condado": "broward-county-fl"
+  },
+  "obra-045": {
+    "ciudad": "trenton-fl",
+    "condado": "gilchrist-county-fl"
+  },
+  "obra-049": {
+    "ciudad": null,
+    "condado": "alachua-county-fl"
+  },
+  "obra-050": {
+    "ciudad": null,
+    "condado": "broward-county-fl"
+  },
+  "obra-056": {
+    "ciudad": "trenton-fl",
+    "condado": "gilchrist-county-fl"
+  },
+  "obra-061": {
+    "ciudad": "parkland-fl",
+    "condado": "broward-county-fl"
+  },
+  "obra-063": {
+    "ciudad": "fort-lauderdale-fl",
+    "condado": "broward-county-fl"
+  },
+  "obra-066": {
+    "ciudad": "parkland-fl",
+    "condado": "broward-county-fl"
+  },
+  "obra-071": {
+    "ciudad": null,
+    "condado": "palm-beach-county-fl"
+  },
+  "obra-086": {
+    "ciudad": null,
+    "condado": "broward-county-fl"
+  },
+  "obra-091": {
+    "ciudad": "hollywood-fl",
+    "condado": "broward-county-fl"
+  },
+  "obra-098": {
+    "ciudad": "dania-beach-fl",
+    "condado": "broward-county-fl"
+  },
+  "obra-099": {
+    "ciudad": null,
+    "condado": "broward-county-fl"
+  },
+  "obra-100": {
+    "ciudad": "fort-lauderdale-fl",
+    "condado": "broward-county-fl"
+  },
+  "bi-0229": {
+    "ciudad": null,
+    "condado": "broward-county-fl"
+  },
+  "bi-0230": {
+    "ciudad": "plantation-fl",
+    "condado": "broward-county-fl"
+  },
+  "bi-0950": {
+    "ciudad": null,
+    "condado": "broward-county-fl"
+  },
+  "bi-0955": {
+    "ciudad": "fort-lauderdale-fl",
+    "condado": "broward-county-fl"
+  }
+}

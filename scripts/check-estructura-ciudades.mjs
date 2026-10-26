@@ -70,14 +70,15 @@ const SIN = [
   /* ORDEN-CIUDADES-2 (6-oct-2026): esta lista NO cambia, y no es olvido. Sin captacion no hay
    * FAQ ni `svc-inversion` (`InversionCore` lee el mismo `captacion-servicios.json` y sin entrada
    * no pinta), asi que la banda ya estaba pegada al 3D, que es donde la pone el orden nuevo. */
-  'mm-hero-a', 'trusted-section', 'gallery', '_3d-section',
+  'mm-hero-a', 'trusted-section', 'gallery', 'mm-local', '_3d-section',
   'animated-divs-section', 'testimonial-section', 'projects-section', 'blog-section-page',
   'social-media', 'cta-footer',
 ];
 /* ASTRO-2 (12-oct-2026): el orden de la lamina «Ciudad», con el formulario al final, fundido con la
  * banda de cierre (D-77), sin el feed de Instagram (T-42) y con la miga dentro del hero. */
 const CON = [
-  'mm-hero-a', 'svc-confianza', 'svc-intro', 'mm-gal', 'mm-3d', 'mm-serv',
+  // S2 (D-254, L3a de PUBLICAR): `mm-local` (condado y zona, obra ubicada, parrafo en las 9) bajo la galeria.
+  'mm-hero-a', 'svc-confianza', 'svc-intro', 'mm-gal', 'mm-local', 'mm-3d', 'mm-serv',
   'svc-inversion', 'mm-faq', 'mm-cat', 'mm-proy', 'blog-section-page',
   'mm-res', 'mm-cierre', 'mm-form-sec',
 ];

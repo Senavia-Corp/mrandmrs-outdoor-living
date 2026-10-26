@@ -245,6 +245,20 @@ const BLOQUES_PROPIOS = Object.fromEntries(
     }]),
 );
 
+/* S3 (D-254, L3a de PUBLICAR, 25-oct-2026): los 9 condados montan su FAQ local (2 preguntas de `texto-local.json`,
+ * el mismo array que pinta el acordeon) y un `Service` prestado por #negocio en el condado. Son DOS bloques propios
+ * por ruta: la declaracion pasa a admitir una lista, y cada uno se examina por su tipo. */
+{
+  const TEXTO_LOCAL = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/texto-local.json'), 'utf8'));
+  for (const [ruta, t] of Object.entries(TEXTO_LOCAL)) {
+    if (!/-county-fl$/.test(ruta) || !t?.faq?.length) continue;
+    BLOQUES_PROPIOS[ruta] = [
+      { tipo: 'FAQPage', clave: 'mainEntity', n: t.faq.length, motivo: 'S3 (D-254): la FAQ local del condado y su FAQPage, del mismo array' },
+      { tipo: 'Service', motivo: 'S3 (D-254): el Service del condado, prestado por #negocio, areaServed AdministrativeArea' },
+    ];
+  }
+}
+
 /** Cuantos bloques propios se casaron, para decir por pantalla si la declaracion se aplico. */
 let propiosCasados = 0;
 
@@ -255,6 +269,23 @@ let propiosCasados = 0;
 function apartaBloquesPropios(ruta, lista, problemas) {
   const d = BLOQUES_PROPIOS[ruta];
   if (!d) return lista;
+  let quedan = lista;
+  for (const decl of (Array.isArray(d) ? d : [d])) quedan = apartaUnBloquePropio(ruta, quedan, problemas, decl);
+  return quedan;
+}
+/** Un `Service` propio (condado, S3): la misma forma que el de ciudad, con AdministrativeArea en vez de City. */
+function validaServicioPropio(n, r) {
+  const m = [];
+  const abs = `${SITIO_R22}${r}`;
+  if (n['@id'] !== `${abs}#servicio`) m.push(`@id "${n['@id']}", se esperaba "${abs}#servicio"`);
+  if (n.url !== abs) m.push(`url "${n.url}" no es la canonica`);
+  if (n.provider?.['@id'] !== `${SITIO_R22}/#negocio`) m.push('provider no es #negocio');
+  if (n.areaServed?.['@type'] !== 'AdministrativeArea' || !String(n.areaServed?.name ?? '').trim()) m.push('areaServed sin AdministrativeArea');
+  for (const c of ['address', 'geo', 'priceRange', 'aggregateRating']) if (c in n) m.push(`trae ${c}: un Service no tiene sede`);
+  if (!String(n.serviceType ?? '').trim() || !String(n.description ?? '').trim()) m.push('sin serviceType o description');
+  return m;
+}
+function apartaUnBloquePropio(ruta, lista, problemas, d) {
   const quedan = [];
   let visto = 0;
   for (const b of lista) {
@@ -262,6 +293,7 @@ function apartaBloquesPropios(ruta, lista, problemas) {
     try { o = JSON.parse(b.textContent); } catch { quedan.push(b); continue; }
     if (o['@type'] !== d.tipo) { quedan.push(b); continue; }
     visto++;
+    if (d.tipo === 'Service') { for (const m of validaServicioPropio(o, ruta)) problemas.push(`Service propio: ${m}`); continue; }
     const entradas = o[d.clave];
     if (!Array.isArray(entradas) || entradas.length !== d.n) {
       problemas.push(`${d.tipo} propio: ${d.n} entrada(s) declarada(s) en ${d.clave} y hay `
