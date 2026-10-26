@@ -21,6 +21,9 @@
 ---
 
 <script>
+  // D-248: el aviso de fallo pinta el telefono desde la fuente unica, no cableado. Import CON NOMBRE a
+  // proposito: asi al bundle del cliente solo viaja `items`, no los comentarios del JSON.
+  import { items as TELEFONOS_ITEMS } from '../data/telefonos.json';
   (function () {
     'use strict';
     const CLAVE_SITIO = '0x4AAAAAAEnkUHbX6ap29qsu';
@@ -99,7 +102,30 @@
           // que ya es limpio y ademas es el mismo `form_name` que viaja a GA4: una sola
           // nomenclatura para las dos cosas.
           const accion = idDe(form);
-          idWidget = ts.render(caja, { sitekey: CLAVE_SITIO, action: accion });
+          /* D-143 · UN FALLO SE REGISTRA UNA VEZ, NO EN BUCLE. Sin `error-callback`, el widget
+           * reintenta solo y lanza un `TurnstileError` sin capturar en cada intento (105 en pocos
+           * segundos en un dominio que la clave no admite). Devolver `true` le dice que el error
+           * esta atendido. Uno de CONFIGURACION (familia 110: clave o dominio) no se arregla
+           * reintentando: se retira el widget y el formulario queda como cuando el script no
+           * carga —sin token, con su panel de fallo y los dos telefonos—. Los demas (red, reto
+           * fallido) siguen con el reintento propio del widget. */
+          let avisado = false;
+          idWidget = ts.render(caja, {
+            sitekey: CLAVE_SITIO,
+            action: accion,
+            'error-callback': (codigo) => {
+              if (!avisado) {
+                avisado = true;
+                console.error(`[turnstile] error ${codigo}: sin token el servidor rechazara el envio con 403.`);
+              }
+              if (String(codigo).startsWith('110')) {
+                try { ts.remove(caja); } catch { /* nada */ }
+                idWidget = null;
+                caja.style.margin = '';
+              }
+              return true;
+            },
+          });
           caja.style.margin = '.75rem 0';
         })
         // ⚠️ Si el SCRIPT no carga (bloqueador, extension de privacidad, firewall corporativo:
@@ -114,6 +140,81 @@
           // pasar, que se vea en la consola en vez de perder leads en silencio.
           console.error('[turnstile] el widget NO se ha pintado: los envios iran sin token y el servidor los rechazara con 403.', e);
         });
+
+      /* ASTRO-2 · DOS PASOS (`FormularioCore.astro`, `data-mm-pasos`). Los dos van en el HTML y a
+       * la vista; aqui se oculta el que no toca y se ensenan «Continue» y «Back». No se envia nada
+       * al pasar de paso: el envio sigue siendo uno, el de siempre, al final (el parcial es
+       * ASTRO-3). «Continue» valida con la validacion nativa los campos del paso 1. */
+      // ASTRO-3: el interruptor del envio parcial lo fija el build; apagado por defecto.
+      const PARCIAL = import.meta.env.PUBLIC_FORM_PARCIAL === '1';
+      let contactoId = '';
+      let huellaParcial = '';
+      let nParcial = 0;
+      const pasos = [...form.querySelectorAll('[data-paso]')];
+      if (form.hasAttribute('data-mm-pasos') && pasos.length === 2) {
+        const sig = form.querySelector('[data-mm-sig]');
+        const atras = form.querySelector('[data-mm-atras]');
+        const campos = (p) => [...p.querySelectorAll('input:not([type=hidden]), select, textarea')];
+        const ir = (n, foco) => {
+          form.dataset.mmPaso = String(n);
+          if (foco) campos(pasos[n - 1])[0]?.focus();
+        };
+        /* ASTRO-3 · EL ENVIO PARCIAL. Solo si el build se hizo con `PUBLIC_FORM_PARCIAL=1`; si no,
+         * `PARCIAL` es `false` y de aqui no sale ninguna peticion. Al avanzar con el paso 1 valido
+         * se manda, SIN ESPERAR, lo que el usuario acaba de escribir, con un identificador de
+         * contacto que se genera aqui. Si falla no se ve nada y el envio completo sigue igual.
+         * «Back» y volver a avanzar sin cambiar nada no reenvia. No redirige ni escribe `mm_lead`:
+         * un parcial no es una conversion. */
+        const mandaParcial = () => {
+          if (!PARCIAL) return;
+          const d = new FormData();
+          const huella = [];
+          for (const c of campos(pasos[0])) if (c.name) { d.append(c.name, c.value); huella.push(c.name + '=' + c.value); }
+          if (huella.join('&') === huellaParcial) return;
+          huellaParcial = huella.join('&');
+          if (!contactoId) contactoId = window.crypto?.randomUUID ? window.crypto.randomUUID() : 'c' + Date.now().toString(36) + Math.random().toString(36).slice(2, 12);
+          d.set('etapa', 'parcial');
+          d.set('contacto_id', contactoId);
+          // El ordinal: si corrige el paso 1 y vuelve a avanzar, el segundo aviso no puede salir con
+          // el mismo `Message-ID` que el primero, o el buzon lo descartaria por duplicado.
+          d.set('parcial_n', String(++nParcial));
+          d.set('__form', form.dataset.name ?? '');
+          d.set('__form_id', idDe(form));
+          d.set('__ruta', location.pathname);
+          d.set('elapsedMs', String(Date.now() - inicio));
+          d.set('ref_id', form.querySelector('[name="ref_id"]')?.value ?? '');
+          try {
+            const org = JSON.parse(sessionStorage.getItem('mm_origen') || '{}');
+            for (const k in org) if (org[k]) d.set('origen_' + k, String(org[k]));
+          } catch { /* modo privado: se pierde el origen, nunca el contacto */ }
+          const ts = window.turnstile;
+          let token = '';
+          try { if (ts && idWidget !== null) token = ts.getResponse(idWidget) ?? ''; } catch { /* sin token: lo decide el servidor */ }
+          if (ts && idWidget !== null) d.set('turnstileToken', token);
+          fetch('/api/formulario', { method: 'POST', body: d, keepalive: true }).catch(() => { /* el usuario no ve nada */ });
+          // El token de Turnstile es de un solo uso: si se ha gastado uno, se pide otro para el
+          // envio completo. Si aun no habia, no se reinicia: se cortaria el reto en curso.
+          try { if (token) ts.reset(idWidget); } catch { /* nada */ }
+        };
+        const avanza = () => {
+          for (const c of campos(pasos[0])) if (!c.reportValidity()) return;
+          ir(2, true);
+          mandaParcial();
+        };
+        if (sig && atras) {
+          sig.hidden = false; atras.hidden = false;
+          if (PARCIAL) form.querySelector('[data-mm-parcial-nota]')?.removeAttribute('hidden');
+          ir(1, false);
+          sig.addEventListener('click', avanza);
+          atras.addEventListener('click', () => ir(1, true));
+          // Intro en un campo del paso 1 enviaria el formulario con el paso 2 oculto y sin rellenar.
+          pasos[0].addEventListener('keydown', (ev) => {
+            if (ev.key === 'Enter' && ev.target.matches('input')) { ev.preventDefault(); avanza(); }
+          });
+          // Si al enviar falla un campo del paso 1 (autorrelleno borrado), se vuelve a el.
+          form.addEventListener('invalid', (ev) => { if (pasos[0].contains(ev.target)) ir(1, false); }, true);
+        }
+      }
 
       form.addEventListener('submit', async (ev) => {
         ev.preventDefault();
@@ -145,8 +246,19 @@
         } catch (e) { /* modo privado: se pierde el origen, nunca el lead */ }
         try {
           const ts = window.turnstile;
-          if (ts && idWidget !== null) datos.set('turnstileToken', ts.getResponse(idWidget) ?? '');
+          if (ts && idWidget !== null) {
+            let token = ts.getResponse(idWidget) ?? '';
+            // ASTRO-3: tras un parcial el token se renueva. Si el envio llega antes que el nuevo,
+            // se le espera unos segundos; sin parcial, este bucle no corre.
+            for (let i = 0; PARCIAL && contactoId && !token && i < 40; i++) {
+              await new Promise((r) => setTimeout(r, 150));
+              token = ts.getResponse(idWidget) ?? '';
+            }
+            datos.set('turnstileToken', token);
+          }
         } catch { /* sin token: lo decide el servidor */ }
+        // ASTRO-3: el completo lleva el identificador de su parcial, si lo hubo.
+        if (contactoId) datos.set('contacto_id', contactoId);
 
         const textoBoton = boton?.value;
         if (boton) { boton.disabled = true; boton.value = boton.dataset.wait || 'Please wait...'; }
@@ -236,9 +348,9 @@
               salida.style.margin = '.5rem 0 0';
               fail.appendChild(salida);
             }
+            // D-248 (25-oct-2026): UN telefono, de `telefonos.json`. Antes escribia los dos a mano.
             salida.innerHTML = 'Prefer to talk to us? Call '
-              + '<a href="tel:+13527403361">+1 (352) 740-3361</a> (North Florida) or '
-              + '<a href="tel:+19549137112">+1 (954) 913-7112</a> (South Florida).';
+              + TELEFONOS_ITEMS.map(function (t) { return '<a href="tel:' + t.tel + '">' + t.visible + '</a>'; }).join(' or ') + '.';
             fail.style.display = 'block';
           }
           try { window.turnstile?.reset(idWidget); } catch { /* nada */ }
@@ -264,7 +376,8 @@
    * Este componente lo incluye `Base.astro` (121 paginas) y lo importa aparte
    * `pool-investment-estimator.astro` (la 122a): un solo sitio cubre las 122.
    *
-   * 🚨 SOLO CATEGORICOS. `phone_region` es la zona, no el numero. Ningun dato del visitante.
+   * 🚨 SOLO CATEGORICOS. Ningun dato del visitante. `phone_region` (north/south) se retiro en
+   * D-248 (25-oct-2026): con un solo telefono no distinguia nada.
    */
   (function () {
     'use strict';
@@ -279,14 +392,9 @@
       if (!a) return;
       var href = a.getAttribute('href') || '';
 
-      // Los dos numeros del negocio. 352 = North Florida, 954 = South Florida (data/telefonos.json).
-      // Se mira el prefijo sobre los digitos, no la cadena: `tel:` admite espacios y guiones.
+      // Un solo telefono desde D-248 (25-oct-2026): ya no se clasifica la zona por prefijo.
       if (href.indexOf('tel:') === 0) {
-        var digitos = href.replace(/\D/g, '');
-        var zona = 'unknown';
-        if (digitos.indexOf('1352') === 0 || digitos.indexOf('352') === 0) zona = 'north';
-        else if (digitos.indexOf('1954') === 0 || digitos.indexOf('954') === 0) zona = 'south';
-        dl('click_to_call', { phone_region: zona, form_location: location.pathname });
+        dl('click_to_call', { form_location: location.pathname });
         return;
       }
 

@@ -26,6 +26,7 @@ import path from 'node:path';
 import { JSDOM } from 'jsdom';
 import { esPropia, conPropias } from './lib/rutas-propias.mjs';
 import { esFicha, esCiudad } from './lib/renombradas.mjs';
+import { fotoDeHeroe } from '../src/lib/heroe-ciudad.mjs';
 import { TITULO_BANDA, TEXTO_BANDA } from '../src/lib/galeria-categorias.mjs';
 import { OCULTAS, propiasEnIndice } from '../src/lib/filtro-proyectos.mjs';
 
@@ -39,11 +40,12 @@ const PROD = process.env.PUBLIC_ES_PRODUCCION === '1';
  */
 const TITULO_PROPIO_M2 = new Map([
   ['/project/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida',
-    'Luxury Pool with Motorized Pergola & Outdoor Kitchen | North Florida'],
+    'Luxury Pool, Pergola & Outdoor Kitchen | North Florida'],
   ['/project/luxury-pool-motorized-pergola-screen-enclosure-north-florida',
-    'Luxury Pool with Motorized Pergola & Screen Enclosure | North Florida'],
-  ['/project/luxury-pool-spa-screen-enclosure-north-florida',
-    'Luxury Pool & Spa with Screen Enclosure & Outdoor Kitchen | North Florida'],
+    'Luxury Pool, Pergola & Screen Enclosure | North Florida'],
+  // L1 (D-255e): tres titles de proyecto a ≤ 60 car.; «Motorized» y «Project» salen del title, no del h1.
+  ['/project/luxury-pool-pergola-outdoor-kitchen-south-florida',
+    'Luxury Pool, Pergola & Outdoor Kitchen | South Florida'],
 ]);
 
 /**
@@ -244,6 +246,20 @@ const BLOQUES_PROPIOS = Object.fromEntries(
     }]),
 );
 
+/* S3 (D-254, L3a de PUBLICAR, 25-oct-2026): los 9 condados montan su FAQ local (2 preguntas de `texto-local.json`,
+ * el mismo array que pinta el acordeon) y un `Service` prestado por #negocio en el condado. Son DOS bloques propios
+ * por ruta: la declaracion pasa a admitir una lista, y cada uno se examina por su tipo. */
+{
+  const TEXTO_LOCAL = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/texto-local.json'), 'utf8'));
+  for (const [ruta, t] of Object.entries(TEXTO_LOCAL)) {
+    if (!/-county-fl$/.test(ruta) || !t?.faq?.length) continue;
+    BLOQUES_PROPIOS[ruta] = [
+      { tipo: 'FAQPage', clave: 'mainEntity', n: t.faq.length, motivo: 'S3 (D-254): la FAQ local del condado y su FAQPage, del mismo array' },
+      { tipo: 'Service', motivo: 'S3 (D-254): el Service del condado, prestado por #negocio, areaServed AdministrativeArea' },
+    ];
+  }
+}
+
 /** Cuantos bloques propios se casaron, para decir por pantalla si la declaracion se aplico. */
 let propiosCasados = 0;
 
@@ -254,6 +270,23 @@ let propiosCasados = 0;
 function apartaBloquesPropios(ruta, lista, problemas) {
   const d = BLOQUES_PROPIOS[ruta];
   if (!d) return lista;
+  let quedan = lista;
+  for (const decl of (Array.isArray(d) ? d : [d])) quedan = apartaUnBloquePropio(ruta, quedan, problemas, decl);
+  return quedan;
+}
+/** Un `Service` propio (condado, S3): la misma forma que el de ciudad, con AdministrativeArea en vez de City. */
+function validaServicioPropio(n, r) {
+  const m = [];
+  const abs = `${SITIO_R22}${r}`;
+  if (n['@id'] !== `${abs}#servicio`) m.push(`@id "${n['@id']}", se esperaba "${abs}#servicio"`);
+  if (n.url !== abs) m.push(`url "${n.url}" no es la canonica`);
+  if (n.provider?.['@id'] !== `${SITIO_R22}/#negocio`) m.push('provider no es #negocio');
+  if (n.areaServed?.['@type'] !== 'AdministrativeArea' || !String(n.areaServed?.name ?? '').trim()) m.push('areaServed sin AdministrativeArea');
+  for (const c of ['address', 'geo', 'priceRange', 'aggregateRating']) if (c in n) m.push(`trae ${c}: un Service no tiene sede`);
+  if (!String(n.serviceType ?? '').trim() || !String(n.description ?? '').trim()) m.push('sin serviceType o description');
+  return m;
+}
+function apartaUnBloquePropio(ruta, lista, problemas, d) {
   const quedan = [];
   let visto = 0;
   for (const b of lista) {
@@ -261,6 +294,14 @@ function apartaBloquesPropios(ruta, lista, problemas) {
     try { o = JSON.parse(b.textContent); } catch { quedan.push(b); continue; }
     if (o['@type'] !== d.tipo) { quedan.push(b); continue; }
     visto++;
+    if (d.tipo === 'Service') { for (const m of validaServicioPropio(o, ruta)) problemas.push(`Service propio: ${m}`); continue; }
+    if (d.tipo === 'ImageGallery') {
+      const partes = Array.isArray(o.hasPart) ? o.hasPart : [];
+      if (o['@id'] !== `${SITIO_R22}${ruta}#galeria`) problemas.push(`ImageGallery propio: @id "${o['@id']}"`);
+      if (!partes.length) problemas.push('ImageGallery propio: hasPart vacio');
+      for (const [k, p] of partes.entries()) if (!String(p?.name ?? '').trim() || !String(p?.url ?? '').startsWith(`${SITIO_R22}/gallery/`)) problemas.push(`ImageGallery propio: la parte ${k} va sin name o con url fuera de /gallery/`);
+      continue;
+    }
     const entradas = o[d.clave];
     if (!Array.isArray(entradas) || entradas.length !== d.n) {
       problemas.push(`${d.tipo} propio: ${d.n} entrada(s) declarada(s) en ${d.clave} y hay `
@@ -343,7 +384,8 @@ const JSONLD_ARREGLADO = {
       ['about.serviceType', 'Smart Soffit LED Lighting Installation', 'Custom Pool Construction'],
       ['about.name', 'Pool  Construction', 'Pool Construction'],
       ['about.image', 'New pool and spa construction in Florida by licensed custom pool builders',
-        '/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-2.avif'],
+        // E10: la `image` del JSON-LD es la foto del hero, y sigue a la que el hero lleve
+        '/images/obra/obra-090/pool-construction-spa-travertine-deck-sun-shelf-florida-heroe.avif'],
       ['dateModified', '2026-05-18T19:50:50.150Z', '2026-05-18T19:55:49.094Z'],
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:50:50.150Z'],
       ['mainEntity.mainEntity.4.name', 'construction', 'Can I finance a custom pool project in Florida?'],
@@ -380,14 +422,16 @@ const JSONLD_ARREGLADO = {
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Custom Aluminum Pergola Design & Installation'],
       ['about.image', 'Custom aluminum pergolas built by outdoor living contractors in Florida.',
-        '/images/obra/obra-100/freestanding-pergola-dark-bronze-pool-spa-canal-florida-heroe.avif'],
+        // E10: la `image` del JSON-LD es la foto del hero, y sigue a la que el hero lleve
+        '/images/obra/suelta/freestanding-pergola-poolside-lounge-seating-hedge-florida-heroe.avif'],
       ['dateModified', '2026-05-19T13:22:48.310Z', '2026-05-19T13:23:24.377Z'],
       ['datePublished', '2026-05-19T13:23:24.377Z', '2026-05-19T13:22:48.310Z'],
     ],
   },
   '/services/deck-builders': {
     bloque: 0,
-    motivo: 'R19: los tres defectos del origen en esta ficha.',
+    motivo: 'R19: los tres defectos del origen en esta ficha. · L4 de PUBLICAR (6.4): una pregunta anadida al FAQPage, la misma que se ve en la FAQ (captacion-servicios.json > faq.anade).',
+    anadidas: { camino: 'mainEntity.mainEntity', n: 1 },
     cambios: [
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Custom Deck Design & Construction'],
@@ -428,14 +472,16 @@ const JSONLD_ARREGLADO = {
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Motorized Retractable Screen Installation'],
       ['about.image', 'Retractable screens installed by professional outdoor living contractors in Florida.',
-        '/images/projects/luxury-pool-motorized-pergola-screens-south-florida/luxury-pool-motorized-pergola-screens-south-florida-4.avif'],
+        // E10: la `image` del JSON-LD es la foto del hero, y sigue a la que el hero lleve
+        '/images/obra/suelta/retractable-screens-lowered-covered-patio-pool-florida-heroe.avif'],
       ['dateModified', '2026-05-18T19:54:35.687Z', '2026-05-18T19:55:49.094Z'],
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:54:35.687Z'],
     ],
   },
   '/services/patio-screen-rooms': {
     bloque: 0,
-    motivo: 'R19: los tres defectos del origen en esta ficha.',
+    motivo: 'R19: los tres defectos del origen en esta ficha. · L4 de PUBLICAR (6.4): una pregunta anadida al FAQPage, la misma que se ve en la FAQ (captacion-servicios.json > faq.anade).',
+    anadidas: { camino: 'mainEntity.mainEntity', n: 1 },
     cambios: [
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Patio Screen Room Design & Construction'],
@@ -452,7 +498,7 @@ const JSONLD_ARREGLADO = {
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Pool Screen Enclosure Design & Installation'],
       ['about.image', 'Pool screen enclosures installed by licensed Florida enclosure contractors',
-        '/images/projects/luxury-pool-spa-screen-enclosure-north-florida/luxury-pool-spa-screen-enclosure-outdoor-kitchen-florida-2.avif'],
+        '/images/images/pool-screen-7/pool-screen-enclosure-builders-florida-07.jpg'],
       ['dateModified', '2026-05-18T19:49:53.691Z', '2026-05-18T19:55:49.094Z'],
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:49:53.691Z'],
     ],
@@ -490,7 +536,8 @@ const JSONLD_ARREGLADO = {
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Premium Outdoor Furniture Supply & Installation'],
       ['about.image', 'Teak dining set and wicker lounge chairs on Florida patio.',
-        '/images/obra/obra-087/insulated-patio-cover-black-frame-lap-pool-sunset-florida-heroe.avif'],
+        // E10: la `image` del JSON-LD es la foto del hero, y sigue a la que el hero lleve
+        '/images/obra/suelta/outdoor-furniture-wicker-sectional-bar-under-pergola-florida-heroe.avif'],
       ['dateModified', '2026-05-18T19:53:23.229Z', '2026-05-18T19:55:49.094Z'],
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:53:23.229Z'],
     ],
@@ -514,21 +561,9 @@ const JSONLD_ARREGLADO = {
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Smart Irrigation System Installation'],
       ['about.image', 'Professional automated irrigation system installation for tropical landscapes in Florida. Efficient watering solutions designed to protect lawns, plants, and landscaping year-round',
-        '/images/projects/estate-pool-spa-sun-shelf-north-florida/estate-pool-spa-sun-shelf-north-florida-project-4.avif'],
+        '/images/images/irrigation-10/automated-irrigation-system-installers-florida-10.jpg'],
       ['dateModified', '2026-05-18T19:50:08.396Z', '2026-05-18T19:55:49.094Z'],
       ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:50:08.396Z'],
-    ],
-  },
-  '/services/soffit-led-lighting': {
-    bloque: 0,
-    motivo: 'R19: los tres defectos del origen en esta ficha.',
-    cambios: [
-      ['about.serviceType', 'Smart Soffit LED Lighting Installation',
-        'Smart Soffit & LED Lighting Installation'],
-      ['about.image', 'Smart soffit LED lighting installed by professional outdoor lighting contractors in Florida.',
-        '/images/obra/obra-078/wood-pergola-pavilion-outdoor-bar-led-lighting-dusk-florida-heroe.avif'],
-      ['dateModified', '2026-05-18T19:55:20.436Z', '2026-05-18T19:55:49.094Z'],
-      ['datePublished', '2026-05-18T19:55:49.094Z', '2026-05-18T19:55:20.436Z'],
     ],
   },
   '/services/steel-buildings-pole-barns': {
@@ -579,6 +614,18 @@ for (const [ruta, c] of Object.entries(JSON.parse(
   if (!esFicha(ruta) || !c?.heroe?.og) continue;
   const abs = SITIO_R22 + c.heroe.og;
   META_PROPIA.set(ruta, { ...(META_PROPIA.get(ruta) ?? {}), 'og:image': abs, 'twitter:image': abs });
+}
+/* L6 de PUBLICAR (6.6): la tarjeta social de cada ciudad y condado es su hero real (`heroe-ciudad.mjs`), en vez de la
+ * foto compartida del origen. Misma via que R22/R24: la referencia pasa a ser el valor declarado, absoluto. */
+{
+  const base = JSON.parse(fs.readFileSync(path.join(RAIZ, 'baseline/seo.json'), 'utf8'));
+  for (const ruta of Object.keys(base)) {
+    if (!/^\/services\/[^/]+\/[a-z-]+-fl$/.test(ruta)) continue;
+    let f = null; try { f = fotoDeHeroe(ruta); } catch { f = null; }
+    if (!f?.src) continue;
+    const abs = SITIO_R22 + f.src;
+    META_PROPIA.set(ruta, { ...(META_PROPIA.get(ruta) ?? {}), 'og:image': abs, 'twitter:image': abs });
+  }
 }
 {
   const base = JSON.parse(fs.readFileSync(path.join(RAIZ, 'baseline/seo.json'), 'utf8'));
@@ -746,11 +793,13 @@ for (const [ruta, c] of Object.entries(JSON.parse(
       }
       const motivo = `SEO-SAFE (${d.fecha}): ${d.motivo}`;
       const mp = () => META_PROPIA.get(ruta) ?? {};
-      if (p.seo?.title && p.seo.title !== b.title) {
+      /* L1 de PUBLICAR (D-255e, 25-oct-2026): si `meta-propia.json` declara title o description para el articulo,
+       * manda la declaracion (es lo que emite Base.astro); la cache de Sanity solo rellena lo que no este declarado. */
+      if (!mp()['og:title'] && p.seo?.title && p.seo.title !== b.title) {
         TITULO_PROPIO.set(ruta, p.seo.title);
         META_PROPIA.set(ruta, { ...mp(), 'og:title': p.seo.title, 'twitter:title': p.seo.title });
       }
-      if (p.seo?.description && p.seo.description !== b.meta?.description) {
+      if (!mp().description && p.seo?.description && p.seo.description !== b.meta?.description) {
         META_PROPIA.set(ruta, { ...mp(), description: p.seo.description,
           'og:description': p.seo.description, 'twitter:description': p.seo.description });
       }
@@ -775,6 +824,12 @@ for (const [ruta, c] of Object.entries(JSON.parse(
       cambios.push(['publisher.url', ld.publisher?.url, `${SITIO_R22}/`]);
       cambios.push(['mainEntityOfPage.@type', ld.mainEntityOfPage?.['@type'], 'WebPage']);
       cambios.push(['mainEntityOfPage.@id', ld.mainEntityOfPage?.['@id'], `${SITIO_R22}${ruta}`]);
+      // L5 de PUBLICAR (6.5): autor y editor son la entidad (#negocio) con su unico nombre.
+      for (const q of ['author', 'publisher']) {
+        cambios.push([`${q}.name`, ld[q]?.name, 'Mr & Mrs Outdoor Living']);
+        cambios.push([`${q}.@id`, ld[q]?.['@id'], `${SITIO_R22}/#negocio`]);
+      }
+      cambios.push(['author.url', ld.author?.url, SITIO_R22]);
       if (cambios.length) {
         JSONLD_ARREGLADO[ruta] = {
           ...(ya ?? {}),
@@ -838,6 +893,40 @@ for (const [ruta, nombre, descripcion] of [
 }
 
 /**
+ * ── D-172 (13-oct-2026) · DOS HEREDADOS DE FORMA ────────────────────────────────────────────────
+ *
+ * · Las dos paginas de estado anidaban en `mainEntity` un segundo `LocalBusiness` (`#organization`, dominio sin
+ *   www, sin direccion ni telefono): una segunda entidad para la misma empresa. Pasa a ser la referencia a
+ *   `#negocio`. El «era» va escrito entero: si el origen lo cambiara, la declaracion deja de casar.
+ * · La miga anidada en el WebPage de `/pool-cost-estimator` traia rutas relativas; `item` pide URL absolutas.
+ */
+for (const [ruta, zona, descripcion] of [
+  ['/where-we-serve/north-florida', 'North Florida', 'Licensed luxury pool builders in North Florida specializing in custom inground pools and outdoor living design-build projects, engineered for structural integrity and long-term durability.'],
+  ['/where-we-serve/south-florida', 'South Florida', 'Licensed luxury pool builders in South Florida specializing in custom inground pools and outdoor living design-build projects, engineered, permitted, and built for high-end residential properties.'],
+]) {
+  const ya = JSONLD_ARREGLADO[ruta];
+  JSONLD_ARREGLADO[ruta] = {
+    ...ya,
+    motivo: `${ya.motivo} · D-172: mainEntity deja de ser un segundo LocalBusiness y referencia a #negocio.`,
+    cambios: [...ya.cambios, ['mainEntity', {
+      '@id': 'https://mrandmrsoutdoorliving.com/#organization', '@type': 'LocalBusiness', areaServed: { '@type': 'Place', name: zona },
+      description: descripcion, name: 'Mr & Mrs Outdoor Living', url: 'https://mrandmrsoutdoorliving.com/',
+    }, { '@id': `${SITIO_R22}/#negocio` }]],
+  };
+}
+{
+  const ruta = '/pool-cost-estimator', ya = JSONLD_ARREGLADO[ruta];
+  JSONLD_ARREGLADO[ruta] = {
+    bloque: 0,
+    ...ya,
+    motivo: `${ya?.motivo ? `${ya.motivo} · ` : ''}D-172: la miga anidada pasa a URL absolutas.`,
+    cambios: [...(ya?.cambios ?? []),
+      ['breadcrumb.itemListElement.0.item', '/', `${SITIO_R22}/`],
+      ['breadcrumb.itemListElement.1.item', '/pool-cost-estimator', `${SITIO_R22}/pool-cost-estimator`]],
+  };
+}
+
+/**
  * ── SEO-REMEDIACION (4-oct-2026) · LA FAQ DE /about ─────────────────────────────────────────────
  *
  * Las cinco respuestas eran la MISMA frase comercial, tambien en el `FAQPage` anidado en el
@@ -864,6 +953,63 @@ for (const [ruta, nombre, descripcion] of [
       cambios: [...(ya?.cambios ?? []), ...cambios],
     };
   }
+}
+
+/**
+ * ── D-248 / D-249 (25-oct-2026) · UN TELEFONO Y UN SERVICIO MENOS EN LOS JSON-LD DEL ORIGEN ────
+ *
+ * /contact-us: el ContactPage del origen declara dos `telephone` y dos `contactPoint` (North y South
+ * Florida); el 954 se retira del sitio y `build-paginas.mjs` (unTelefono) lo quita al derivar. Y su
+ * `about.serviceType` —igual que el `mainEntity.serviceType` del Service de /request-estimated— lista
+ * «Smart Soffit LED Lighting», servicio retirado (sinServicioRetirado). Se declara leyendo el «era» del
+ * BASELINE y derivando el «es» con los mismos datos que usa build-paginas.mjs: si el origen cambiara, la
+ * declaracion deja de casar y esto vuelve a ROJO. `areaServed` sigue trayendo «South Florida»: el
+ * negocio sigue trabajando alli; lo que cambia es el numero al que se llama.
+ */
+{
+  const base = JSON.parse(fs.readFileSync(path.join(RAIZ, 'baseline/seo.json'), 'utf8'));
+  const vigentes = new Set(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/telefonos.json'), 'utf8'))
+    .items.map((t) => `${t.tel.slice(0, 2)}-${t.tel.slice(2, 5)}-${t.tel.slice(5, 8)}-${t.tel.slice(8)}`));
+  const RETIRADO = 'Smart Soffit LED Lighting';
+  const fusiona = (ruta, cambios, motivo) => {
+    const ya = JSONLD_ARREGLADO[ruta];
+    JSONLD_ARREGLADO[ruta] = { bloque: 0, motivo: `${ya?.motivo ? `${ya.motivo} · ` : ''}${motivo}`, cambios: [...(ya?.cambios ?? []), ...cambios] };
+  };
+  const about = base['/contact-us']?.jsonLd?.[0]?.about ?? {};
+  fusiona('/contact-us', [
+    ['about.telephone', about.telephone, (about.telephone ?? []).filter((t) => vigentes.has(t))],
+    ['about.contactPoint', about.contactPoint, (about.contactPoint ?? []).filter((c) => vigentes.has(c?.telephone))],
+    ['about.serviceType', about.serviceType, (about.serviceType ?? []).filter((x) => x !== RETIRADO)],
+  ], 'D-248: un solo telefono (telephone y contactPoint del 954 fuera) · D-249: el servicio retirado sale del serviceType.');
+  const me = base['/request-estimated']?.jsonLd?.[0]?.mainEntity ?? {};
+  fusiona('/request-estimated', [['mainEntity.serviceType', me.serviceType, (me.serviceType ?? []).filter((x) => x !== RETIRADO)]],
+    'D-249: el servicio retirado sale del serviceType.');
+}
+
+/**
+ * ── L5 de PUBLICAR (6.5, 26-oct-2026) · LAS FICHAS DE OBRA HEREDADAS Y LA GALERIA ──────────────────────
+ * /project/*: `about.@type` pasa de Project a CreativeWork y `url`, `image.url` y `about.image` se vuelven absolutas
+ * (lo hace `build-paginas.mjs`). Se declara leyendo el «era» del baseline, ruta a ruta, y se FUSIONA con lo que la
+ * ruta ya tuviera declarado. /gallery emite ademas un ImageGallery propio (#galeria) con las 14 galerias por categoria.
+ */
+{
+  const base = JSON.parse(fs.readFileSync(path.join(RAIZ, 'baseline/seo.json'), 'utf8'));
+  const absR = (p) => (typeof p === 'string' && p.startsWith('/') ? `${SITIO_R22}${p}` : p);
+  const porCaminoL5 = (o, c) => c.split('.').reduce((x, k) => (x == null ? x : x[k]), o);   // `porCamino` se define mas abajo
+  for (const [ruta, e] of Object.entries(base)) {
+    if (!ruta.startsWith('/project/')) continue;
+    const b = e?.jsonLd?.[0]; if (!b) continue;
+    const cambios = [];
+    if (b.about?.['@type'] === 'Project') cambios.push(['about.@type', 'Project', 'CreativeWork']);
+    if (b.about && b.about.url === undefined) cambios.push(['about.url', undefined, `${SITIO_R22}${ruta}`]);   // D-276
+    // Las imagenes del baseline son URL del CDN de Webflow; la puerta las compara ya localizadas (`aLocal`), asi que el «era» es la local.
+    // El «era» es el valor del baseline TAL CUAL (la URL del CDN en las imagenes); el «es», la local absoluta que emite el build.
+    for (const camino of ['url', 'image.url', 'about.image']) { const v = porCaminoL5(b, camino); if (typeof v !== 'string') continue; const local = aLocal(v); if (local.startsWith('/')) cambios.push([camino, v, absR(local)]); }
+    if (!cambios.length) continue;
+    const ya = JSONLD_ARREGLADO[ruta];
+    JSONLD_ARREGLADO[ruta] = { ...(ya ?? {}), bloque: 0, motivo: `${ya?.motivo ? `${ya.motivo} · ` : ''}L5 (6.5): about es CreativeWork y las URL van absolutas`, cambios: [...(ya?.cambios ?? []), ...cambios] };
+  }
+  BLOQUES_PROPIOS['/gallery'] = { tipo: 'ImageGallery', motivo: 'L5 (6.5): la galeria declara sus 14 galerias por categoria como hasPart' };
 }
 
 /** Lee/escribe por camino con puntos: `mainEntity.mainEntity.4.name`. */
@@ -999,7 +1145,9 @@ for (const ruta of conPropias(RUTAS)) {
      * utiles, porque un bloque inyectado vacio seria peor que ninguno.
      */
     const esInyectado = (b) => {
-      try { return /#(negocio|miga)$/.test(JSON.parse(b.textContent)['@id'] ?? ''); }
+      // `#servicio` solo es inyectado en una FICHA (D-156); en una pagina de ciudad ese `@id` es
+      // el del Service que sustituye al LocalBusiness del origen, y lo examina BLOQUES_SUSTITUIDOS.
+      try { const id = JSON.parse(b.textContent)['@id'] ?? ''; return /#(negocio|miga|obras|videos)$/.test(id) || (esFicha(ruta) && /#servicio$/.test(id)); }
       catch { return false; }
     };
     const inyectados = todos.filter(esInyectado);
@@ -1046,6 +1194,72 @@ for (const ruta of conPropias(RUTAS)) {
       const propia = JSON.stringify(espLd).includes('BreadcrumbList');
       if (!propia) problemas.push('sin BreadcrumbList: ni inyectada ni del origen');
     }
+    /* ── E5 (D-156) · TRES BLOQUES PROPIOS MAS: `#servicio`, `#obras` y `#videos` ────────────
+     * (`src/lib/jsonld-propio.mjs`). Se exige que esten donde la pagina ensena lo que describen,
+     * que NO esten en ninguna otra, y que digan LO MISMO QUE SE LEE: se comparan con el HTML
+     * construido, no con el dato del que salen, que seria comparar el dato consigo mismo. */
+    {
+      const propios = inyectados.map((b) => JSON.parse(b.textContent)).filter((x) => /#(servicio|obras|videos)$/.test(x['@id']));
+      const texto = (e) => (e?.textContent ?? '').replace(/\s+/g, ' ').trim();
+      const iguales = (x, y) => x.length === y.length && x.every((v, i) => v === y[i]);
+      const el = (sufijo) => propios.filter((x) => x['@id'] === `${SITIO_R22}${ruta}#${sufijo}`);
+      const sobra = propios.filter((x) => !x['@id'].startsWith(`${SITIO_R22}${ruta}#`));
+      if (sobra.length) problemas.push(`JSON-LD propio de otra ruta: ${sobra.map((x) => x['@id']).join(', ')}`);
+
+      // CIUDADES-BUSCADOR (17-oct-2026): la ficha pinta tarjetas `a.mm-ciudad` (nombre + servicio) agrupadas
+      // por condado; el nombre de ciudad es `.mm-ciudad-n`, sin «, FL».
+      const ciudades = esFicha(ruta) ? [...d.querySelectorAll('.mm-ciudades a.mm-ciudad[href^="/services/"] .mm-ciudad-n')].map(texto) : [];
+      const sv = el('servicio');
+      if (!ciudades.length) { if (sv.length) problemas.push('#servicio: hay un Service con areaServed en una pagina que no enlaza ciudades'); }
+      else if (sv.length !== 1) problemas.push(`#servicio: la ficha enlaza ${ciudades.length} ciudades y trae ${sv.length} bloque(s)`);
+      else {
+        const s = sv[0];
+        if (s['@type'] !== 'Service') problemas.push(`#servicio: @type "${s['@type']}"`);
+        if (s.provider?.['@id'] !== `${SITIO_R22}/#negocio`) problemas.push('#servicio: provider no es #negocio');
+        if (s.url !== `${SITIO_R22}${ruta}`) problemas.push(`#servicio: url "${s.url}"`);
+        if (!String(s.name ?? '').trim()) problemas.push('#servicio: sin name');
+        const zona = Array.isArray(s.areaServed) ? s.areaServed : [];
+        if (zona.some((c) => c?.['@type'] !== 'City' || c.containedInPlace?.name !== 'Florida')) problemas.push('#servicio: areaServed con algo que no es una City de Florida');
+        if (!iguales(zona.map((c) => c?.name), ciudades)) problemas.push(`#servicio: areaServed (${zona.length}) no dice las mismas ciudades, en el mismo orden, que la pagina enlaza (${ciudades.length})`);
+      }
+
+      const tarjetas = ruta === '/projects' ? [...d.querySelectorAll('.mm-obras-lista [role="listitem"]')] : [];
+      const ob = el('obras');
+      if (!tarjetas.length) { if (ob.length) problemas.push('#obras: hay una lista de obras en una pagina sin tarjetas de obra'); }
+      else if (ob.length !== 1) problemas.push(`#obras: ${tarjetas.length} tarjetas y ${ob.length} bloque(s)`);
+      else {
+        const items = Array.isArray(ob[0].itemListElement) ? ob[0].itemListElement : [];
+        if (ob[0]['@type'] !== 'ItemList' || ob[0].numberOfItems !== items.length) problemas.push('#obras: no es un ItemList o numberOfItems no cuadra');
+        if (!iguales(items.map((i) => i?.url), tarjetas.map((c) => SITIO_R22 + c.querySelector('a[href^="/project/"]')?.getAttribute('href')))) problemas.push(`#obras: las ${items.length} url no son, en orden, las de las ${tarjetas.length} tarjetas`);
+        if (!iguales(items.map((i) => i?.name), tarjetas.map((c) => texto(c.querySelector('h2, h3'))))) problemas.push('#obras: los nombres no son los titulos de las tarjetas');
+        if (!iguales(items.map((i) => i?.position), items.map((_, k) => k + 1))) problemas.push('#obras: position no va de 1 a n');
+      }
+
+      const videos = ruta === '/videos' ? [...d.querySelectorAll('.mm-yt__tarjeta')] : [];
+      const vd = el('videos');
+      if (!videos.length) { if (vd.length) problemas.push('#videos: hay una lista de videos en una pagina sin videos'); }
+      else if (vd.length !== 1) problemas.push(`#videos: ${videos.length} videos en la pagina y ${vd.length} bloque(s)`);
+      else {
+        const items = (Array.isArray(vd[0].itemListElement) ? vd[0].itemListElement : []).map((i) => i?.item ?? {});
+        if (vd[0]['@type'] !== 'ItemList' || vd[0].numberOfItems !== items.length) problemas.push('#videos: no es un ItemList o numberOfItems no cuadra');
+        if (items.some((v) => v['@type'] !== 'VideoObject')) problemas.push('#videos: un item que no es VideoObject');
+        if (!iguales(items.map((v) => v.name), videos.map((c) => texto(c.querySelector('.mm-yt__vtitulo'))))) problemas.push('#videos: los nombres no son los titulos que se leen');
+        // El DIA del marcado es el que la pagina ensena (dia/mes/año), pasado a ISO; detras puede llevar la hora
+        // real de publicacion con su zona (D-173), que la pagina no ensena y Google recomienda.
+        const aIso = (f) => { const m = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(f); return m ? `${m[3]}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}` : `¿${f}?`; };
+        if (!iguales(items.map((v) => String(v.uploadDate).slice(0, 10)), videos.map((c) => aIso(texto(c.querySelector('.mm-yt__fecha')))))) problemas.push('#videos: uploadDate no es la fecha que la pagina ensena');
+        if (items.some((v) => !/^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}[+-]\d{2}:\d{2})?$/.test(String(v.uploadDate)))) problemas.push('#videos: un uploadDate que no es ni el dia ni el dia con hora y zona');
+        if (!iguales(items.map((v) => v.url), videos.map((c) => c.querySelector('.mm-yt__vtitulo a')?.getAttribute('href')))) problemas.push('#videos: url no es el enlace de cada video');
+        for (const [k, v] of items.entries()) {
+          const id = (/[?&]v=([\w-]{6,})/.exec(v.url ?? '') ?? [])[1];
+          if (!id || v.embedUrl !== `https://www.youtube.com/embed/${id}`) problemas.push(`#videos: el video ${k + 1} lleva un embedUrl que no es el de su enlace`);
+          if (!/^PT(\d+H)?\d+M\d+S$/.test(v.duration ?? '')) problemas.push(`#videos: el video ${k + 1} lleva una duracion que no es ISO 8601`);
+          const mini = (v.thumbnailUrl ?? [])[0];
+          if (!mini || !mini.startsWith(SITIO_R22 + '/') || !fs.existsSync(path.join(ESTATICO, mini.slice(SITIO_R22.length)))) problemas.push(`#videos: la miniatura del video ${k + 1} no esta en el build`);
+          if ('description' in v && !String(v.description).trim()) problemas.push(`#videos: el video ${k + 1} lleva description vacia: se omite o se rellena`);
+        }
+      }
+    }
     ldInyectados += inyectados.length;
     if (bloques.length !== espLd.length) {
       problemas.push(`JSON-LD: ${espLd.length} bloque(s) -> ${bloques.length}`);
@@ -1087,11 +1301,14 @@ for (const ruta of conPropias(RUTAS)) {
         if (ja && i === ja.bloque) {
           const esperado = JSON.parse(JSON.stringify(e));
           const malas = [];
+          // D-172: un valor declarado puede ser un OBJETO (un nodo anidado que se sustituye entero); se compara por contenido.
+          const mismo = (a, b) => a === b || (a && b && typeof a === 'object' && typeof b === 'object' && JSON.stringify(ordena(a)) === JSON.stringify(ordena(b)));
+          const dice = (v) => (v && typeof v === 'object' ? JSON.stringify(v) : v);
           for (const [camino, era, es] of ja.cambios) {
             const enBase = porCamino(esperado, camino);
-            if (enBase !== era) malas.push(`arreglo "${camino}": el origen ya no dice "${era}" sino "${enBase}" — revisa la declaracion`);
+            if (!mismo(enBase, era)) malas.push(`arreglo "${camino}": el origen ya no dice "${dice(era)}" sino "${dice(enBase)}" — revisa la declaracion`);
             const enBuild = porCamino(mio, camino);
-            if (enBuild !== es) malas.push(`arreglo "${camino}": el build dice "${enBuild}", se declaro "${es}"`);
+            if (!mismo(enBuild, es)) malas.push(`arreglo "${camino}": el build dice "${dice(enBuild)}", se declaro "${dice(es)}"`);
             ponCamino(esperado, camino, es);
           }
           /* SEO-REMEDIACION (4-oct-2026): una ficha puede sustituir VARIAS respuestas
@@ -1266,6 +1483,21 @@ if (PROD) {
     fallos++;
     console.log('       astro.config.mjs y scripts/build-seo-ficheros.mjs tienen que decir LO MISMO.');
   }
+
+  // D-216 (LOOP-AREAS): cada una de las 130 paginas de area declara en el sitemap la foto que su hero pinta.
+  const urls = new Map([...(fs.existsSync(sm) ? fs.readFileSync(sm, 'utf8') : '').matchAll(/<url>\s*<loc>([^<]+)<\/loc>([\s\S]*?)<\/url>/g)]
+    .map((m) => [new URL(m[1]).pathname, [...m[2].matchAll(/<image:loc>([^<]+)<\/image:loc>/g)].map((x) => new URL(x[1]).pathname)]));
+  const areas = [...urls.keys()].filter((r) => /^\/services\/[a-z-]+\/[a-z-]+-fl$/.test(r) || /^\/where-we-serve(\/(north|south)-florida)?$/.test(r));
+  const mal = areas.filter((r) => {
+    const f = path.join(ESTATICO, r, 'index.html');
+    const h = fs.existsSync(f) ? fs.readFileSync(f, 'utf8') : '';
+    const i = h.indexOf('mm-hero-a-medio');
+    const src = i < 0 ? null : h.slice(i, h.indexOf('</figure>', i)).match(/<img[^>]*?\ssrc="([^"]+)"/)?.[1];
+    return !src || !urls.get(r).includes(src);
+  });
+  const okAreas = areas.length === 130 && !mal.length;
+  console.log(`  ${okAreas ? 'ok  ' : 'ROJO'} image:image del hero en las paginas de area: ${areas.length - mal.length} de ${areas.length} (D-216, han de ser 130)`);
+  if (!okAreas) { fallos++; for (const r of mal.slice(0, 10)) console.log(`       ${r}: el sitemap no declara la foto de su hero`); }
 }
 
 console.log(`\n${fallos === 0 ? 'PUERTA VERDE' : `PUERTA ROJA — ${fallos} pagina(s)`}\n`);

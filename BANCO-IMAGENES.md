@@ -1,11 +1,13 @@
 # Banco de imágenes — cómo se consulta
 
 Fotografía de obra propia, clasificada el 1-oct-2026 desde
-`~/Documents/Pictures Mr and Mrs Outdoor Living` (1.269 ficheros, 1.129 únicos).
+`~/Documents/Pictures Mr and Mrs Outdoor Living` (1.269 ficheros, 1.129 únicos). El 16-oct-2026 (LOOP-AREAS, lote LB)
+entró también su subcarpeta `PICTURES/` (sesión profesional, reformas Lacircle y Petra, pantallas, tarimas…): un solo
+origen, con `PICTURES/` delante en el `origen` de lo que viene de ahí.
 
 | Qué | Dónde |
 |---|---|
-| Índice — **lo único que hay que leer** | `src/data/banco-imagenes.json` (1.269 entradas, 514 aprobadas) |
+| Índice — **lo único que hay que leer** | `src/data/banco-imagenes.json` (1.567 entradas, 654 aprobadas + 17 de ambiente) |
 | Ficheros servidos (WebP, 1600 px, sin EXIF) | `public/images/banco/<servicio>/<slug>.webp` → URL `/images/banco/…` |
 | Hojas de contactos de lo aprobado | `banco/hojas/<servicio>-<etapa>-NN.jpg` |
 | Dudosas, con su pregunta | `banco/DUDOSAS.md` + `banco/hojas-dudosas/` |
@@ -36,7 +38,8 @@ Campos: `etapa` (`terminado` · `construccion` · `antes`), `servicios` (protago
    con qué fichero). El cruce no detecta recortes ni ediciones fuertes: que esté vacío no
    garantiza que esa obra no salga ya en la web.
 4. **Solo `procedencia: obra_real` se publica como obra.** `stock`, `generada_ia` y
-   `no_es_del_cliente` están en el índice para que nadie las vuelva a proponer.
+   `no_es_del_cliente` están en el índice para que nadie las vuelva a proponer — salvo las de
+   `estado: "ambiente"`, que se sirven con límites (ver «Lo que no es obra»).
 5. **`dudosa` no se usa** hasta que Sebastian la adjudique. «Happy House» es de los mismos dueños:
    sus fotos son obra propia (dicho por Sebastian el 1-oct-2026).
 6. **Las que llevan `recorte` se sirven ya recortadas** (el cuadro entero tenía una cara o un número
@@ -44,12 +47,32 @@ Campos: `etapa` (`terminado` · `construccion` · `antes`), `servicios` (protago
 7. **El slug no se cambia nunca**: es una URL. Y no lleva región: `region` es `desconocida` salvo
    en una obra, porque ni la carpeta ni el EXIF la prueban.
 8. **Si el banco no tiene la foto que el hueco pide, el hueco se queda como está y se reporta.**
-   Ceros hoy: `irrigation`, `lighting`, `furniture`, `rooms` y `screens` como protagonista;
-   `enclosures` tiene una sola.
+   Ceros hoy: `irrigation` y `lighting` como protagonista; `furniture` tiene dos, `screens` diez
+   (tres de E10 y siete de LB, 16-oct-2026), `rooms` tres y `enclosures` una. De `enclosures`, `decks`, `pole` e `irrigation` hay obra
+   real fuera del banco, en las galerías de su ficha: la clasifica `src/data/gallery-procedencia.json`.
+
+## Lo que no es obra: `estado: "ambiente"`
+
+Decidido por Sebastian el 11-oct-2026: 17 imágenes que **no son obra** se sirven igualmente.
+No empiezan por `aprobada`, así que las consultas de arriba nunca las devuelven; hay que pedirlas.
+
+| `uso` | Carpeta | Qué son | Dónde valen |
+|---|---|---|---|
+| `ambiente` | `/images/banco/ia/` (15) | Generadas o retocadas con IA (Higgsfield, GPT) | Heros, fondos, cabeceras de sección |
+| `diseno-3d` | `/images/banco/render/` (2) | Material de Pool Studio (Structure Studios) | Solo para ilustrar el servicio de diseño 3D |
+
+**Nunca** en galería, fichas de proyecto, antes/después ni junto a un texto que las presente como
+trabajo hecho («our work», «recent project»). El `alt` ya dice «Illustration» o «render»: no se cambia.
+Hoja de contactos: `banco/hojas/NO-OBRA-*.jpg`.
+
+```bash
+jq '.[] | select(.estado=="ambiente" and .uso=="ambiente") | {id, src, alt, orientacion, defectos}' src/data/banco-imagenes.json
+```
 
 ## Añadir fotos
 
 Entrada nueva en el índice (`origen` relativo a la carpeta de originales, `sha256`, `estado`,
 `src`…) → `node scripts/build-banco.mjs` → `--hojas` → `--check`. Los originales no entran en git;
-la ruta se cambia con `BANCO_ORIGEN=…`. El trabajo intermedio de la clasificación (previews,
+la ruta se cambia con `BANCO_ORIGEN=…`; por defecto es la carpeta de arriba, y
+`node scripts/build-banco.mjs` encuentra todos los originales sin cambiarla. El trabajo intermedio de la clasificación (previews,
 inventario, decisiones por lote) está en `banco/.trabajo/`, ignorado por git.

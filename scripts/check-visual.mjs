@@ -144,7 +144,7 @@ const DISTINTAS_A_PROPOSITO = {
  * /articles/accessibility 3052 -> 3132, /articles/privacy-policy 3371 -> 3451,
  * /blogs-tips 6977 -> 7057, comparando contra el build del estado anterior (33baf7e).
  *
- * SON ESTAS 28 Y NO MAS. Las otras 88 que salen rojas a 479 ya lo estaban antes de la
+ * SON ESTAS 28 Y NO MAS (27 desde D-195, que retiro una ficha de proyecto). Las otras 88 que salen rojas a 479 ya lo estaban antes de la
  * auditoria por el rediseño de R9-R16, y esas NO se declaran aqui: se arreglan mirandolas y
  * re-aprobando su referencia, que es lo que pide PROMPT-REDISENO §5.3.
  */
@@ -171,7 +171,6 @@ const M8_479 = [
   '/project/luxury-pool-pergola-outdoor-living-south-florida',
   '/project/luxury-pool-raised-spa-travertine-deck-south-florida',
   '/project/luxury-pool-spa-aluminum-pergola-south-florida',
-  '/project/luxury-pool-spa-screen-enclosure-north-florida',
   '/project/luxury-pool-spa-with-screen-enclosure-north-florida',
   '/project/modern-pool-motorized-pergola-south-florida',
   '/project/pool-raised-spa-marble-deck-south-florida',

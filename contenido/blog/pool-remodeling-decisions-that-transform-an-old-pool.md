@@ -167,7 +167,7 @@ Our estimator prices LED pool lights at **$450 each**. That number is not the in
 
 An older pool typically has one large fixture in the deep end aimed back at the house. It lights the water from one side, leaves the shallow end dark, and shines directly at whoever is sitting on the far deck. More fixtures and better aim fix all three. A pool fixture is not a lamp you screw in: the wall is formed around its housing and a conduit run back to power, which makes the count and the aiming a shell decision rather than an equipment one.
 
-The exception worth knowing is lighting mounted on the house itself, like [permanent soffit LED lighting](/services/soffit-led-lighting), which is not trapped by the deck at all. That is a reason to decide it separately and later, not a reason to leave the yard dark.
+The exception worth knowing is lighting mounted on the house itself, like permanent exterior LED lighting, which is not trapped by the deck at all. That is a reason to decide it separately and later, not a reason to leave the yard dark.
 
 ### 9. The interior finish, and what you are buying with it
 

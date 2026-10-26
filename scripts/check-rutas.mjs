@@ -17,6 +17,10 @@
  * `lib/rutas-propias.mjs`, y ahí está el motivo de cada una. Lo que esta puerta NO permite es
  * que aparezca una que no figure en ningún sitio, que es de lo que protegía el día uno.
  *
+ * DESDE EL 14-OCT-2026 SON 114 (D-195): `/project/luxury-pool-spa-screen-enclosure-north-florida`
+ * sale de `_source/routes.csv` y redirige a su hermana. Si su pagina volviera al build, aqui sale
+ * como ruta DE MAS; `check:redirects` la caza por el otro lado (source construido).
+ *
  * Se mide sobre `.vercel/output/static`, que es LO QUE SE DESPLIEGA, no sobre `src/pages`.
  */
 import fs from 'node:fs';

@@ -23,3 +23,7 @@ export const CONSULTA_BLOG = `*[_type == "blogPost" && defined(slug.current) && 
     "servicios": relatedServices[]->{ "slug": slug.current, name },
     "relacionados": relatedPosts[]->{ "slug": slug.current, title, cardTitle, summary, portada }
   } | order(slug asc)`;
+
+/** D-145: las categorias cuyo articulo ofrece el estimador de piscina en su tarjeta lateral.
+ *  La leen la pagina del articulo y `check-texto.mjs`: una sola lista. */
+export const CATEGORIAS_PISCINA = ['new-pool-construction', 'pool-remodeling', 'pool-design-planning', 'commercial-multifamily'];

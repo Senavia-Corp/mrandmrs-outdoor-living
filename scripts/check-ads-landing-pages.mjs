@@ -49,7 +49,7 @@ const LANDINGS = [
       campo: 'Project-Type',
       preseleccion: 'New Custom Pool',
     },
-    heroe: 'img.image-bg-hero-services',
+    heroe: '.mm-hero-a-medio img',
     /* La regla 14 existe POR ESTA LANDING: R17-CORE §4.3 la encontro publicando en su `FAQPage`
      * una pregunta que no estaba en la pagina, con una cifra sin verificar dentro. Dejarla sin
      * cubrir seria escribir la puerta y no cerrarla. Son 8: las 5 del origen mas las 3 de R17. */
@@ -68,6 +68,9 @@ const LANDINGS = [
      * seria inventarse un selector para que salga verde. Sale en PENDIENTE, con el motivo, que
      * es lo unico honesto mientras el heroe siga siendo vídeo.
      */
+    /* ASTRO-2 (12-oct-2026, D-113): el heroe de ciudad deja de ser video y pasa al Hero A con foto.
+     * La regla 12 ya se le puede aplicar, con el mismo selector que a las fichas. */
+    heroe: '.mm-hero-a-medio img',
     formulario: {
       dataName: 'Gainesville Pool Builders Form',
       campo: 'Project-Type',
@@ -75,7 +78,7 @@ const LANDINGS = [
     },
     /* 3 de la plantilla de ciudad + 1 local (SEO-SAFE, 1-oct-2026: que oficina revisa el permiso
      * segun el lado del limite municipal, y el septico). Solo Gainesville y Ocala la llevan. */
-    faq: { n: 4 },
+    faq: { n: 5 },   // D-257: fuera «What is included…» · L3b (S2): coste, permisos del condado, oficina y dos preguntas locales de texto-local.json
   },
   {
     grupo: 'Ocala',
@@ -83,14 +86,15 @@ const LANDINGS = [
     exige: [/pool builders?/i, /ocala/i],
     exigeCuerpo: [/inground|in-ground/i, /marion|north florida/i],
     prohibeArriba: [/pergola/i, /outdoor kitchen/i, /commercial/i],
-    /* Idem que Gainesville: formulario propio si, heroe de imagen no (ver alli el motivo). */
+    /* Idem que Gainesville: formulario propio y, desde ASTRO-2, heroe de imagen (D-113). */
+    heroe: '.mm-hero-a-medio img',
     formulario: {
       dataName: 'Ocala Pool Builders Form',
       campo: 'Project-Type',
       preseleccion: 'New Custom Pool',
     },
     /* Idem: 3 de plantilla + 1 local (oficina segun el limite municipal, caliza y septico). */
-    faq: { n: 4 },
+    faq: { n: 5 },   // D-257: fuera «What is included…» · L3b (S2): coste, permisos del condado, oficina y dos preguntas locales de texto-local.json
   },
   {
     grupo: 'Full Remodel',
@@ -106,7 +110,7 @@ const LANDINGS = [
       campo: 'Project-Type',
       preseleccion: 'Complete Pool Remodel',
     },
-    heroe: 'img.image-bg-hero-services',
+    heroe: '.mm-hero-a-medio img',
     /* SEO-SAFE (1-oct-2026): las 5 del origen mas las 3 objeciones que ya tenia el Core. */
     faq: { n: 8 },
   },
@@ -124,8 +128,11 @@ const AFIRMACIONES_PROHIBIDAS = [
   [/\bguaranteed\b/i, 'garantia sin terminos confirmados'],
 ];
 
-const TEL_NF = '(352) 740-3361';
-const TEL_SF = '(954) 913-7112';
+/* D-248 (P-9, 25-oct-2026): UN solo telefono, leido de la fuente unica. Hasta entonces aqui habia dos
+ * literales (`TEL_NF`, `TEL_SF`) y la regla 8 exigia «North antes que South». */
+const TELEFONOS = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/telefonos.json'), 'utf8')).items;
+const TEL_VISIBLES = TELEFONOS.map((t) => t.visible.replace(/^\+1\s*/, ''));   // «(352) 740-3361»
+const RE_TEL = /\(\d{3}\) \d{3}-\d{4}/g;
 
 let fallos = 0;
 const mal = (r, m) => { fallos++; console.log(`  ROJO ${r}\n       ${m}`); };
@@ -168,9 +175,12 @@ for (const L of LANDINGS) {
   if (titulos.has(titulo)) mal(L.ruta, `<title> repetido con ${titulos.get(titulo)}: dos landings compitiendo por la misma consulta.`);
   titulos.set(titulo, L.ruta);
 
-  // 4 · indexacion
+  // 4 · indexacion. SOLO EN PRODUCCION, como dice la cabecera: fuera de ella TODA la salida lleva
+  // `noindex` a proposito (modo previa, falla cerrado), y medirlo ahi dejaba la puerta —y con
+  // ella la cadena de `npm run check`— roja para siempre sin proteger nada: ningun anuncio
+  // apunta a una vista previa. Mismo trato que en `check:medicion`.
   const robots = d.querySelector('meta[name="robots"]')?.getAttribute('content') ?? '';
-  if (/noindex/i.test(robots)) mal(L.ruta, 'lleva noindex. Una landing de pago con noindex pierde Landing Page Experience.');
+  if (PROD && /noindex/i.test(robots)) mal(L.ruta, 'lleva noindex. Una landing de pago con noindex pierde Landing Page Experience.');
   if (PROD) {
     const can = d.querySelector('link[rel="canonical"]')?.getAttribute('href') ?? '';
     if (can !== `${SITIO}${L.ruta}`) mal(L.ruta, `canonica «${can}», se esperaba «${SITIO}${L.ruta}».`);
@@ -207,10 +217,15 @@ for (const L of LANDINGS) {
   const aDestino = [...d.querySelectorAll('a[href]')].some((a) => DESTINOS.some((x) => a.getAttribute('href').startsWith(x)));
   if (!aDestino) mal(L.ruta, `sin camino a conversion: ningun enlace a ${DESTINOS.join(' / ')}.`);
 
-  // 8 · telefono de North Florida primero (hoja 24)
-  const iNF = cuerpo.indexOf(TEL_NF); const iSF = cuerpo.indexOf(TEL_SF);
-  if (iNF < 0) mal(L.ruta, `no aparece el telefono de North Florida ${TEL_NF}, que es el que debe ver el trafico de pago.`);
-  else if (iSF >= 0 && iSF < iNF) mal(L.ruta, 'el telefono de South Florida sale antes que el de North Florida.');
+  // 8 · el telefono del negocio aparece en el cuerpo, y NINGUN otro (D-248). Antes (hoja 24): «el de North
+  //     Florida antes que el de South». Lo que cuenta como retirado es cualquier (NNN) NNN-NNNN que no este
+  //     en `telefonos.json`; asi no hace falta cablear el numero viejo para vigilarlo.
+  for (const t of TEL_VISIBLES) {
+    if (cuerpo.indexOf(t) < 0) mal(L.ruta, `no aparece el telefono ${t}, que es el que debe ver el trafico de pago.`);
+  }
+  for (const otro of new Set(cuerpo.match(RE_TEL) ?? [])) {
+    if (!TEL_VISIBLES.includes(otro)) mal(L.ruta, `telefono que no esta en telefonos.json: ${otro}.`);
+  }
 
   // 9 · JSON-LD valido
   if (!LD.length) mal(L.ruta, 'sin un solo bloque de JSON-LD.');
@@ -255,7 +270,9 @@ for (const L of LANDINGS) {
    * que ya existian- y no son una afirmacion de la pagina, sino una eleccion del visitante.
    */
   const sinSelects = new JSDOM(html).window.document;
-  sinSelects.querySelectorAll('script,style,noscript,header,section.menu,select').forEach((e) => e.remove());
+  // ASTRO-2: «Investment range» pasa de `<select>` a tarjetas de opcion (radios con los mismos valores).
+  // Siguen siendo el cualificador del formulario, no una afirmacion de la pagina.
+  sinSelects.querySelectorAll('script,style,noscript,header,section.menu,select,form[data-mm-envia] fieldset.mm-grupo-campo').forEach((e) => e.remove());
   const cifras = [...new Set((sinSelects.body?.textContent ?? '').match(/\$\s?[0-9][0-9,]*\+?/g) ?? [])];
   if (cifras.length) {
     mal(L.ruta, `cifra(s) de dinero en el cuerpo: ${cifras.join(', ')}. Un precio en una landing `
@@ -309,7 +326,8 @@ for (const L of LANDINGS) {
           + `"${L.formulario.dataName}". Ese valor es la clave de FORMULARIOS en la API y el `
           + 'form_name de GA4: si no casa, el lead se pierde o se mezcla con otro formulario.');
       }
-      const sel = f.querySelector(`select[name="${L.formulario.campo}"] option[selected]`);
+      // ASTRO-2: el campo puede ser un `<select>` o, en el formulario de dos pasos, un grupo de radios.
+      const sel = f.querySelector(`select[name="${L.formulario.campo}"] option[selected], input[type="radio"][name="${L.formulario.campo}"][checked]`);
       if (sel?.value !== L.formulario.preseleccion) {
         mal(L.ruta, `${L.formulario.campo} preseleccionado en "${sel?.value ?? '(nada)'}", se `
           + `esperaba "${L.formulario.preseleccion}".`);
@@ -348,7 +366,7 @@ for (const L of LANDINGS) {
    * titular, no la pregunta.
    */
   if (L.faq) {
-    const visibles = [...d.querySelectorAll('.faq-section h3.dropdown-text')]
+    const visibles = [...d.querySelectorAll('.faq-section h3.dropdown-text, .mm-faq summary h3')]
       .map((h) => h.textContent.trim());
     /* EL `FAQPage` PUEDE IR SUELTO O COLGADO DE UN `WebPage`, y hay que mirar los dos sitios.
      * Las 2 ciudades lo emiten como bloque propio (el origen no traia ninguno); las 14 fichas de
@@ -393,7 +411,7 @@ console.log('\n── pendiente de extender (A1 / heroe) ──');
     const html = leer(L.ruta) ?? '';
     const dd = new JSDOM(html).window.document;
     const nForms = [...dd.querySelectorAll('form')].filter((f) => f.getAttribute('data-mm-envia') === '1').length;
-    const hi = dd.querySelector('img.image-bg-hero-services');
+    const hi = dd.querySelector('.mm-hero-a-medio img, img.image-bg-hero-services');
     const falta = [];
     if (!L.formulario) falta.push(`sin formulario propio declarado (${nForms} en la pagina)`);
     if (!L.heroe) {
@@ -444,6 +462,7 @@ console.log('\n── evento de conversion (lado del sitio) ──');
   }
 }
 
+if (!PROD) console.log('\n  --   noindex y canonica: NO medidos fuera de produccion (PUBLIC_ES_PRODUCCION=1). No cuentan como verde.');
 console.log(`\n${fallos ? `PUERTA ROJA — ${fallos} fallo(s)` : 'PUERTA VERDE'}\n`);
 console.log('  NOTA: esta puerta NO mide Quality Score. Mide los invariantes que el sitio SI');
 console.log('  controla. Expected CTR y el historico del anuncio no se ven desde aqui.');

@@ -18,7 +18,8 @@
  */
 import Base from '../../layouts/Base.astro';
 import { SITIO } from '../../lib/negocio.mjs';
-import { CATEGORIAS, rutaDe, tarjetasHtml, TITULO_OTRAS } from '../../lib/galeria-categorias.mjs';
+import { CATEGORIAS, rutaDe, enlaceDe, TITULO_OTRAS } from '../../lib/galeria-categorias.mjs';
+import TELEFONOS from '../../data/telefonos.json';
 
 export function getStaticPaths() {
   return CATEGORIAS.map((c) => ({ params: { categoria: c.slug }, props: { c } }));
@@ -51,7 +52,7 @@ const SEO = {
   jsonLd: [
     {
       '@context': 'https://schema.org',
-      '@type': 'CollectionPage',
+      '@type': 'ImageGallery',   // L5 de PUBLICAR (6.5): subtipo de CollectionPage; lo que esta pagina es
       '@id': `${url}#pagina`,
       url,
       name: c.h1,
@@ -81,81 +82,115 @@ const SEO = {
 };
 
 // La primera fila se pinta ya; el resto espera al scroll. 3 es el maximo de columnas.
-const PRIMERA_FILA = 3;
+
+/* ── EL MURO (ASTRO-4 lote B, lamina «GaleriaCategoria»; D-100) ───────────────────────────────
+ * Las fotos en mosaico: una fila con una foto grande (7/12) y otra pieza (5/12), y una fila de
+ * tres. La otra pieza es, bloque si y bloque no, la tesela de accion —titular, boton de linea y
+ * los dos telefonos— y si no, otra foto. Asi hay una accion a mano cada ~1.700 px sin repetirla
+ * en cada fila. El orden de las fotos no cambia y cada una sigue siendo un `a.w-lightbox` dentro
+ * de `.gallery-page`, que es lo que engancha el visor de captacion. */
+const telefonos = TELEFONOS.items;
+const FLECHA = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>';
+const piezas = [];
+for (let i = 0, bloque = 0; i < c.fotos.length; bloque++) {
+  if (bloque % 2 === 0) piezas.push({ f: c.fotos[i++], k: 7 }, { tarjeta: true, k: 5 });
+  else if (i + 1 < c.fotos.length) piezas.push({ f: c.fotos[i++], k: 7 }, { f: c.fotos[i++], k: 5 });
+  else piezas.push({ f: c.fotos[i++], k: 12 });
+  const r = Math.min(3, c.fotos.length - i);
+  for (let j = 0; j < r; j++) piezas.push({ f: c.fotos[i++], k: 12 / r });
+  // En movil las piezas pequenas van de dos en dos: si en el bloque quedan impares, la ultima va
+  // a todo el ancho y no deja un hueco.
+  const menudas = r + (bloque % 2 === 0 || piezas.at(-1 - r)?.k !== 5 ? 0 : 1);
+  if (r && r < 12 && menudas % 2 === 1 && piezas.at(-1).k !== 12) piezas.at(-1).ancha = true;
+}
+const SIZES = { 12: '100vw', 7: '(min-width: 768px) 58vw, 100vw', 6: '(min-width: 768px) 50vw, 100vw', 5: '(min-width: 768px) 42vw, 50vw', 4: '(min-width: 768px) 33vw, 50vw' };
+const otras = CATEGORIAS.filter((o) => o.slug !== c.slug);
+const tituloRot = (t, palabra) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(new RegExp(`(${palabra})\\s*$`), '<span class="mm-rot">$1</span>');
 ---
 
 <Base titulo={c.title} descripcion={c.description} ruta={ruta} seo={SEO}>
-  <main>
-    <section class="hero-section gal-hero">
-      <div class="w-layout-blockcontainer container w-container">
-        <div class="header-hero-page">
-          <nav class="gal-migas" aria-label="Breadcrumb">
-            <ol>
-              <li><a href="/">Home</a></li>
-              <li><a href="/gallery">Project Gallery</a></li>
-              <li aria-current="page">{c.nombre}</li>
-            </ol>
-          </nav>
-          <h1 class="heading-hero-page">{c.h1}</h1>
-          <div class="text-block-4">{c.intro}</div>
-          <div class="gal-hero__acciones">
-            <a href="/request-estimated" class="mm-accion">Get a free estimate</a>
-            <a href={c.servicio.enlace} class="mm-vinculo">{c.servicio.ancla}</a>
+  {/* D-198: el `id` al que apunta «Skip to content» del nav; Base solo lo pone si la pagina no trae `<main>`. */}
+  <main id="contenido">
+    <section class="mm-hero-d">
+      <div class="mm-hero-d-caja">
+        <nav class="mm-miga" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/gallery">Project Gallery</a></li>
+            <li aria-current="page">{c.nombre}</li>
+          </ol>
+        </nav>
+        <div class="mm-sec-cab">
+          <h1 class="mm-h1" set:html={tituloRot(c.h1, 'Gallery')} />
+          <div class="mm-sec-lado">
+            <p class="mm-p">{c.intro}</p>
+            <div class="mm-sec-acc">
+              <a class="mm-btn mm-min" href="/request-estimated">Get a free estimate</a>
+              <a class="mm-flecha" href={c.servicio.enlace}>{c.servicio.ancla}<Fragment set:html={FLECHA} /></a>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="gallery-page gal-pagina" aria-label={`${c.nombre} photos`}>
-      <div class="w-layout-blockcontainer container w-container">
-        <div class="block-pictures">
-          <div class="cms-wrapper-pictures w-dyn-list">
-            <div role="list" class="cms-list-pictures w-dyn-items">
-              {c.fotos.map((f, i) => (
-                <div role="listitem" class="cms-item-pictures w-dyn-item" data-service-id={c.id}>
-                  <a href="#" class="gallery-picture w-inline-block w-lightbox">
-                    <img
-                      src={f.src}
-                      alt={f.alt}
-                      width={f.ancho}
-                      height={f.alto}
-                      class="image-gallery"
-                      loading={i < PRIMERA_FILA ? 'eager' : 'lazy'}
-                      decoding="async"
-                    />
-                    <script type="application/json" class="w-json" is:inline set:html={JSON.stringify({
-                      items: [{ url: f.src, type: 'image' }],
-                      group: 'images',
-                    })} />
-                  </a>
-                </div>
-              ))}
-            </div>
+    <section class="gallery-page mm-muro-sec" aria-label={`${c.nombre} photos`}>
+      <div role="list" class="mm-muro">
+        {piezas.map((p, i) => (p.tarjeta ? (
+          <div role="listitem" class="mm-muro-accion">
+            <p class="mm-muro-t">Seen something you like?</p>
+            <a class="mm-btn mm-btn--linea mm-min" href="/request-estimated">Get a free estimate</a>
+            <div class="mm-datos mm-datos--pila">{telefonos.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-val">{t.visible}</span></a>)}</div>
           </div>
-        </div>
-        <Fragment set:html={tarjetasHtml({ titulo: TITULO_OTRAS, sin: c.slug, perezosa: true })} />
+        ) : (
+          <div role="listitem" class:list={['mm-muro-foto', `mm-muro-foto--${p.k}`, p.ancha && 'mm-muro-foto--ancha']} data-service-id={c.id}>
+            <a href="#" class="gallery-picture w-inline-block w-lightbox">
+              <img src={p.f.src} alt={p.f.alt} width={p.f.ancho} height={p.f.alto} sizes={SIZES[p.k]} loading={i < 2 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined} decoding="async" />
+              <script type="application/json" class="w-json" is:inline set:html={JSON.stringify({
+                items: [{ url: p.f.src, type: 'image' }],
+                group: 'images',
+              })} />
+            </a>
+          </div>
+        )))}
       </div>
     </section>
 
-    <section class="cta-footer">
-      <div class="w-layout-blockcontainer container w-container">
-        <div class="wrapper-cta-footer">
-          <div class="wrapper-vertical-text">
-            <h2>Seen something you like?</h2>
-            <div class="text-block-3">
-              Tell us which photos are closest to what you have in mind and where the project
-              is. We will review it and come back with a design and a price.
-            </div>
-            <div class="wrapper-buttons-center">
-              <a href="/request-estimated" class="mm-accion">Get a free estimate</a>
-            </div>
-            <p class="mm-txt-menudo">
-              Want the details first? Read about our{' '}
-              <a class="mm-vinculo" href={c.servicio.enlace}>{c.servicio.ancla.toLowerCase()}</a>{' '}
-              service, or go back to the <a class="mm-vinculo" href="/gallery">full project gallery</a>.
-            </p>
-          </div>
+    <section class="mm-rel">
+      <div class="mm-rel-caja">
+        <div class="mm-rel-cab">
+          <h2 class="mm-h2 mm-min" set:html={tituloRot(TITULO_OTRAS, 'galleries')} />
+          <div class="mm-datos mm-datos--tel">{telefonos.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-val">{t.visible}</span></a>)}</div>
         </div>
+        <ul class="mm-arts-indice" role="list">
+          {otras.map((o) => (
+            <li>
+              <a class="mm-linea mm-linea--doble" href={rutaDe(o)}>
+                <span class="mm-linea-txt"><span class="mm-linea-t" role="heading" aria-level="3">{o.nombre}</span><span class="mm-linea-p">{o.linea}</span></span>
+                <span class="mm-art-ver">{enlaceDe(o)}<Fragment set:html={FLECHA} /></span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="mm-cierre mm-cierre--sola mm-cierre--alta">
+      <div class="mm-cierre-caja">
+        <div class="mm-cierre-txt">
+          <h2 class="mm-h2">Seen something you like?</h2>
+          <p class="mm-p">
+            Tell us which photos are closest to what you have in mind and where the project
+            is. We will review it and come back with a design and a price.
+          </p>
+          <a class="mm-btn mm-min" href="/request-estimated">Get a free estimate</a>
+          <p class="mm-cierre-nota">
+            Want the details first? Read about our{' '}
+            <a href={c.servicio.enlace}>{c.servicio.ancla.toLowerCase()}</a>{' '}
+            service, or go back to the <a href="/gallery">full project gallery</a>.
+          </p>
+          <div class="mm-datos mm-datos--tel">{telefonos.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-val">{t.visible}</span></a>)}</div>
+        </div>
+        <figure class="mm-cierre-medio"><img src={c.fotos[c.fotos.length - 1].src} alt={c.fotos[c.fotos.length - 1].alt} width={c.fotos[c.fotos.length - 1].ancho} height={c.fotos[c.fotos.length - 1].alto} sizes="(min-width: 992px) 42vw, 100vw" loading="lazy" decoding="async" /></figure>
       </div>
     </section>
   </main>

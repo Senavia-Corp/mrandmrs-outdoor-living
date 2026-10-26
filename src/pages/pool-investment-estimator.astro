@@ -79,7 +79,10 @@ const canonica = ES_PRODUCCION ? new URL('/pool-investment-estimator', Astro.sit
     <link rel="icon" type="image/png" href="/images/site/favicon.png" />
   </head>
   <body>
-    <Estimador suelta />
+    {/* E5 (D-154): el documento suelto no tenia landmark principal. */}
+    <main>
+      <Estimador suelta />
+    </main>
     <Formularios />
     {/* La página es su propio documento: el reset va aquí y NO en `estimador.css`, que se
         carga también dentro de /pool-cost-estimator y allí no puede tocar nada global. */}

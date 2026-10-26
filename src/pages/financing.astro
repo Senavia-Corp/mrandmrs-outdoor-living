@@ -20,13 +20,9 @@
  * que no anima nunca, o sea marcado que miente. Esta pagina no lleva reveals y no los finge.
  * Es ademas la trampa de AMS que documenta `Base.astro:15-20`.
  *
- * MARCADO REUTILIZADO, no inventado:
- *   · el heroe    -> `.hero-section` de las 8 paginas indice, estilado por `hero-indice.css`
- *   · el acordeon -> `.dropdown-faq` de las 14 fichas de `/services/`, movido por
- *                    `Interacciones.astro:180-235` (aria-expanded, aria-controls y Esc)
- *   · el cierre   -> `.cta-footer`, el remate de conversion de 102 rutas
- * Lo nuevo vive en `.fin-*` (`src/styles/financiacion.css`): la secuencia numerada, los
- * iconos de `src/iconos/financing/` y las fotos de obra de las tarjetas de servicio.
+ * PIEZAS (ASTRO-4 lote C): todas del sistema —hero D, proceso numerado, ficha de obra, resenas en
+ * lista, FAQ en `<details>` y banda de cierre—; lo unico propio son las dos secciones `.mm-franja`
+ * de `sistema.css`. Las fotos de los seis servicios son obra real del registro de galeria.
  *
  * NI UNA CIFRA FINANCIERA, por decision de Sebastian del 2-sep-2026: ni APR, ni plazos, ni
  * cuotas, ni importes, ni tiempos de aprobacion. Nombrar una tasa o una cuota dispara
@@ -36,20 +32,23 @@
  */
 import Base from '../layouts/Base.astro';
 import ResenasGoogle from '../components/widgets/ResenasGoogle.astro';
+import TELEFONOS from '../data/telefonos.json';
+import BANCO from '../data/banco-imagenes.json';
+import RESENAS from '../data/resenas.json';
 
-/* LOS 7 ICONOS. Generados en Higgsfield (Recraft V4.1, modo vector) con UN SOLO prompt base para
- * que salgan de la misma familia, y convertidos a `<mask>` + `currentColor`: Recraft dibuja por
- * capas —silueta negra, hueco blanco encima, detalle negro encima— y quitar los blancos rellenaba
- * los huecos. Asi el color lo pone el CSS: navy en los pasos, oro en la banda oscura. */
-import Plano from '../iconos/financing/plano.svg';
-import Contrato from '../iconos/financing/contrato.svg';
-import Calculadora from '../iconos/financing/calculadora.svg';
-import Casco from '../iconos/financing/casco.svg';
-import Escudo from '../iconos/financing/escudo.svg';
-import Compas from '../iconos/financing/compas.svg';
-import Manos from '../iconos/financing/manos.svg';
 
 const ACORN = 'https://your.acornfinance.com/apply?d=NXJVM';
+
+/* ASTRO-4: las tres fotos de obra que acompanan a resenas, FAQ y banda (obra real, terminada, con
+ * alt). E12 (D-197): resenas y FAQ llevan las suyas, de la sesion profesional; la banda sigue con la
+ * de la bolsa de piscina nueva, que es vertical y llena la caja 4:5 sin derivada. */
+const FOTOS = ['bi-1282', 'bi-1283', 'bi-0969'].map((id) => {
+  const e = (BANCO as any[]).find((x) => x.id === id);
+  if (!e || e.procedencia !== 'obra_real' || !e.alt) throw new Error(`/financing: la foto ${id} no es obra real con alt`);
+  return e;
+});
+const FLECHA = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>';
+const ABRE = '<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>';
 
 /** Los 4 pasos. El orden ES el contenido: la financiacion va DESPUES del precio cerrado. */
 const PASOS = [
@@ -57,27 +56,22 @@ const PASOS = [
     n: '1',
     titulo: 'Design consultation',
     texto: 'We walk your property, talk through how you want to use the space, and put a design on paper.',
-    icono: Plano,
   },
   {
     n: '2',
     titulo: 'Written scope and fixed price',
     texto: 'You get the scope in writing and a fixed project price. This is the number you build on.',
-    icono: Contrato,
   },
   {
     n: '3',
     titulo: 'Review your financing options',
     texto: 'With the price settled, you review options through our lending partner. Approval and terms come from the lender.',
-    icono: Calculadora,
     clave: true,
   },
   {
     n: '4',
     titulo: 'Permitting and construction',
     texto: 'Engineering, permits, and the build itself, managed by a licensed Florida contractor.',
-    icono: Casco,
-    ancho: true,
   },
 ];
 
@@ -111,13 +105,12 @@ const SERVICIOS = [
   ['Screen enclosures', 'Pool cages and patio enclosures.', '/services/pool-screen-enclosures',
     foto('/images/images/pool-screen-3/pool-screen-enclosure-builders-florida-03.jpg', 1250, 698, 'Screen enclosure over a pool and spa with a view of a lake and fountain')],
   ['Louvered roofs', 'Motorized louvered roof systems for shade on demand.', '/services/louvered-roofs',
-    foto('/images/images/motorized-louvered-roof-8/motorized-louvered-roof-installers-florida-08.jpg', 1250, 682, 'Freestanding louvered roof with white louvers over a paver patio')],
+    // E12: la de antes era un techo de lamas sin muebles junto a una pista de tenis; esta es del banco (bi-1281).
+    foto('/images/banco/louvered/white-louvered-roof-patio-dining-yellow-house-florida-01.webp', 1600, 900, 'White louvered roof with open blades over a patio dining set and potted plants beside a yellow house.', false)],
 ];
 
-/* A que ancho se pinta la foto, medido sobre la rejilla de `.fin-servicios` (minmax 320px, gap
- * 24, canal 24 -> 32 desde 768): 3 columnas desde 1072px de viewport (~320-400px cada una),
- * 2 desde 712 y 1 por debajo. */
-const TAMANOS_FOTO = '(min-width: 1072px) 400px, (min-width: 712px) calc(50vw - 36px), calc(100vw - 48px)';
+// A que ancho se pinta la foto en `.mm-franja-lista`: tres columnas desde 992, dos desde 768, una por debajo.
+const TAMANOS_FOTO = '(min-width: 992px) 33vw, (min-width: 768px) 50vw, 100vw';
 
 /** El FAQ. Ninguna respuesta menciona una cifra, un plazo ni un tiempo de aprobacion. */
 const FAQ = [
@@ -178,213 +171,134 @@ const SEO = {
       rediseño encubierto que ademas habria que re-baselinizar entero.
       Verificado antes de ponerlo: `webflow.css` NO tiene ni una regla sobre el elemento
       `main` —lo que parecia serlo era la cola de `.w-hidden-main{display:none!important}`—,
-      asi que no hereda display ni margenes de nadie y no mueve un pixel. */}
-  <main>
-  {/* HEROE — mismo marcado que las 8 paginas indice, estilado por `hero-indice.css`. */}
-  <section class="hero-section">
-    <div class="w-layout-blockcontainer container w-container">
-      <div class="header-hero-page">
-        <h1 class="heading-hero-page">Financing your outdoor project</h1>
-        <div class="text-block-4">
-          Design your project and settle the price first. Then review financing options with
-          our lending partner, working from a fixed number instead of a rough estimate.
-        </div>
+      asi que no hereda display ni margenes de nadie y no mueve un pixel.
+      D-198: lleva el `id` al que apunta «Skip to content» del nav, como el `<main>` de Base. */}
+  <main id="contenido">
+  {/* ASTRO-4 lote C (sin lamina propia: hero D y piezas aprobadas del sistema).
+      QUE CAMBIA DE COMPOSICION: las tarjetas con icono, caja y sombra pasan a las piezas del
+      sistema. La pagina defiende una sola idea —la financiacion es el tercer paso, no el primero—
+      y la ensena en el proceso numerado con ese paso marcado; lo financiable son seis fichas de
+      obra enteras pulsables; «quien construye» es el unico bloque navy; resenas en lista, FAQ en
+      `<details>` con su tarjeta de accion y la banda final con Acorn. Mismos textos, mismo orden. */}
+  <section class="mm-hero-d">
+    <div class="mm-hero-d-caja">
+      <div class="mm-sec-cab">
+        <h1 class="mm-h1">Financing your outdoor project</h1>
+        <div class="mm-sec-lado"><p class="mm-p">Design your project and settle the price first. Then review financing options with our lending partner, working from a fixed number instead of a rough estimate.</p></div>
       </div>
     </div>
   </section>
 
-  {/* LA SECUENCIA. Es la pieza propia de la pagina y su unico acento.
-
-      EL PASO 3 SE MARCA SOLO CON EL FILETE DE ORO, y el color no es el unico indicador
-      (WCAG 1.4.1) porque el titular de la propia tarjeta lo dice: «Review your financing
-      options». La informacion la lleva el texto; el oro solo la subraya.
-
-      Hubo un rotulo extra dentro de esa tarjeta y se quito con una medida delante: al llevar
-      UN ELEMENTO MAS que las otras tres, la rejilla igualaba las cuatro a su altura y dejaba
-      entre 74 y 111 px de blanco muerto en las otras tres —el 34% de la tarjeta a 1280—.
-      Acortar el texto no bastaba: el coste no era el largo del rotulo, era su existencia.
-      El icono no repite ese error: lo llevan LAS CUATRO, asi que la altura sube igual en todas.
-
-      `fin-sin-techo`: el heroe ya deja 96px de suelo a >=992, y sumarle los 96 de techo de esta
-      seccion daba 192px de blanco. Lo mismo entre esta y la siguiente, que es blanca tambien. */}
-  <section class="mm-seccion fin-sin-techo">
-    <div class="mm-caja mm-pila mm-pila--32">
-      <div class="mm-pila mm-pila--16 mm-medida">
-        <p class="mm-rotulo">The order matters</p>
-        <h2 class="mm-tit-2">Where financing fits in your build</h2>
-        <p class="mm-txt">
-          Financing is the third step, not the first. You settle the design and the price
-          before it ever comes up, so you know exactly what you are financing.
-        </p>
+  <section class="mm-proc mm-proc--sin">
+    <div class="mm-sec-cab">
+      <div class="mm-sec-tit">
+        <p class="mm-etiqueta">The order matters</p>
+        <h2 class="mm-h2">Where financing fits in your build</h2>
       </div>
-
-      <ol class="mm-rejilla fin-lista fin-pasos">
-        {PASOS.map(({ icono: Icono, ...p }) => (
-          <li class:list={['mm-tarjeta', 'mm-pila', 'fin-paso', p.clave && 'fin-paso--clave']}>
-            <span class:list={['fin-icono', p.ancho && 'fin-icono--ancho']} aria-hidden="true"><Icono focusable="false" /></span>
-            <span class="fin-paso__n" aria-hidden="true">{p.n}</span>
-            <h3 class="mm-tit-3">{p.titulo}</h3>
-            <p class="mm-txt">{p.texto}</p>
-          </li>
-        ))}
-      </ol>
+      <div class="mm-sec-lado"><p class="mm-p">Financing is the third step, not the first. You settle the design and the price before it ever comes up, so you know exactly what you are financing.</p></div>
     </div>
-  </section>
-
-  {/* QUE SE PUEDE FINANCIAR. Cada tarjeta enlaza a su ficha real de servicio y abre con una
-      foto de obra propia: la tarjeta entera es el enlace (el `::after` de «See …»). */}
-  <section class="mm-seccion fin-sin-techo">
-    <div class="mm-caja mm-pila mm-pila--32">
-      <div class="mm-pila mm-pila--16 mm-medida">
-        <h2 class="mm-tit-2">What you can finance</h2>
-        <p class="mm-txt">
-          Anything we build, from a single structure to a full outdoor living project.
-        </p>
-      </div>
-
-      <ul class="mm-rejilla fin-lista fin-servicios">
-        {SERVICIOS.map(([nombre, texto, href, f]) => (
-          <li class="mm-tarjeta mm-pila mm-pila--16 fin-servicio">
-            <div class="fin-servicio__foto">
-              <img
-                src={f.src}
-                srcset={f.srcset}
-                sizes={f.srcset && TAMANOS_FOTO}
-                width={f.ancho}
-                height={f.alto}
-                alt={f.alt}
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <h3 class="mm-tit-3">{nombre}</h3>
-            <p class="mm-txt">{texto}</p>
-            <a class="mm-vinculo fin-mas" href={href}>See {nombre.toLowerCase()}</a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  {/* POR QUE IMPORTA QUIEN LO CONSTRUYE. Banda oscura: `.mm-inverso` redefine los papeles
-      de color en su ambito, asi que las tarjetas de dentro se vuelven oscuras solas.
-      Sin `mm-seccion--holgada`: sus 128px eran el unico escalon distinto de la pagina, y ahora
-      todas las secciones respiran lo mismo (96 / 64 / 48). */}
-  <section class="mm-seccion mm-inverso">
-    <div class="mm-caja mm-pila mm-pila--32">
-      <div class="mm-pila mm-pila--16 mm-medida">
-        <h2 class="mm-tit-2">Why it matters who builds it</h2>
-        <p class="mm-txt">
-          Financing pays for the project. It does not protect it. That part is on the
-          contractor you hire.
-        </p>
-      </div>
-
-      <ul class="mm-rejilla fin-lista">
-        <li class="mm-tarjeta mm-pila mm-pila--16">
-          <span class="fin-icono fin-icono--oro" aria-hidden="true"><Escudo focusable="false" /></span>
-          <h3 class="mm-tit-3">Licensed and insured</h3>
-          <p class="mm-txt">
-            We are a licensed Florida contractor. Your project is pulled under our license,
-            with the insurance that goes with it.
-          </p>
+    <ol class="mm-pasos">
+      {PASOS.map((p) => (
+        <li class:list={['mm-paso', p.clave && 'mm-paso--activo']}>
+          <span class="mm-paso-n">{p.n}</span>
+          <h3 class="mm-paso-t">{p.titulo}</h3>
+          <p>{p.texto}</p>
         </li>
-        <li class="mm-tarjeta mm-pila mm-pila--16">
-          <span class="fin-icono fin-icono--oro" aria-hidden="true"><Compas focusable="false" /></span>
-          <h3 class="mm-tit-3">Engineered and permitted</h3>
-          <p class="mm-txt">
-            Structures are engineered and permitted for Florida wind and soil conditions
-            before anything gets built.
-          </p>
-        </li>
-        <li class="mm-tarjeta mm-pila mm-pila--16">
-          <span class="fin-icono fin-icono--oro fin-icono--ancho" aria-hidden="true"><Manos focusable="false" /></span>
-          <h3 class="mm-tit-3">One contract, one point of contact</h3>
-          <p class="mm-txt">
-            Design, permitting, and construction run through us. You are not coordinating
-            separate trades against a payment schedule.
-          </p>
-        </li>
-      </ul>
-    </div>
+      ))}
+    </ol>
   </section>
 
-  {/* PRUEBA SOCIAL. El mismo componente nativo que ya sirve a 83 rutas. */}
-  <section class="testimonial-section">
-    <div class="w-layout-blockcontainer container w-container">
-      <ResenasGoogle />
+  <section class="mm-franja">
+    <div class="mm-sec-cab">
+      <h2 class="mm-h2">What you can finance</h2>
+      <div class="mm-sec-lado"><p class="mm-p">Anything we build, from a single structure to a full outdoor living project.</p></div>
     </div>
+    <ul class="mm-franja-lista" role="list">
+      {SERVICIOS.map(([nombre, texto, href, f]) => (
+        <li>
+          <a class="mm-ficha mm-ficha--indice" href={href}>
+            <span class="mm-ficha-foto"><img src={f.src} srcset={f.srcset} sizes={TAMANOS_FOTO} width={f.ancho} height={f.alto} alt={f.alt} loading="lazy" decoding="async" /></span>
+            <span class="mm-ficha-cuerpo">
+              <h3 class="mm-ficha-t">{nombre}</h3>
+              <span class="mm-ficha-p">{texto}</span>
+              <span class="mm-flecha">See {nombre.toLowerCase()}<Fragment set:html={FLECHA} /></span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
   </section>
 
-  {/* FAQ — marcado de las 14 fichas de `/services/`, sin `data-w-id`. Lo mueve
-      `Interacciones.astro:180-235`, que le pone role, aria-expanded y aria-controls. */}
-  <section class="faq-section">
-    <div class="w-layout-blockcontainer container w-container">
-      <div class="header-faq">
-        <h2>Financing FAQs</h2>
-        <div>
-          Common questions from Florida homeowners about paying for an outdoor living
-          project over time.
-        </div>
+  <section class="mm-franja mm-franja--navy">
+    <div class="mm-sec-cab">
+      <h2 class="mm-h2">Why it matters who builds it</h2>
+      <div class="mm-sec-lado"><p class="mm-p">Financing pays for the project. It does not protect it. That part is on the contractor you hire.</p></div>
+    </div>
+    <ul class="mm-franja-lista mm-franja-lista--filas" role="list">
+      <li class="mm-franja-item">
+        <h3 class="mm-conf-t">Licensed and insured</h3>
+        <p class="mm-conf-p">We are a licensed Florida contractor. Your project is pulled under our license, with the insurance that goes with it.</p>
+      </li>
+      <li class="mm-franja-item">
+        <h3 class="mm-conf-t">Engineered and permitted</h3>
+        <p class="mm-conf-p">Structures are engineered and permitted for Florida wind and soil conditions before anything gets built.</p>
+      </li>
+      <li class="mm-franja-item">
+        <h3 class="mm-conf-t">One contract, one point of contact</h3>
+        <p class="mm-conf-p">Design, permitting, and construction run through us. You are not coordinating separate trades against a payment schedule.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section class="mm-res">
+    <div class="mm-sec-cab">
+      <div class="mm-sec-acc"><a class="mm-flecha" href={RESENAS.enlacePerfil} target="_blank" rel="noopener noreferrer">See all reviews<Fragment set:html={FLECHA} /></a></div>
+    </div>
+    <div class="mm-res-cuerpo">
+      <div class="mm-res-col">
+        <ResenasGoogle />
+        <div class="mm-datos mm-datos--tel">{TELEFONOS.items.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-val">{t.visible}</span></a>)}</div>
       </div>
-      <div class="wrapper-faq-components">
+      <figure class="mm-res-medio"><img src={FOTOS[0].src} alt={FOTOS[0].alt} width={FOTOS[0].ancho} height={FOTOS[0].alto} sizes="(min-width: 992px) 33vw, 100vw" loading="lazy" decoding="async" /></figure>
+    </div>
+  </section>
+
+  <section class="mm-faq">
+    <div class="mm-sec-cab">
+      <h2 class="mm-h2">Financing <span class="mm-rot">FAQs</span></h2>
+      <div class="mm-sec-lado"><p class="mm-p">Common questions from Florida homeowners about paying for an outdoor living project over time.</p></div>
+    </div>
+    <div class="mm-faq-cuerpo">
+      <div class="mm-faq-lista">
         {FAQ.map(([pregunta, respuesta]) => (
-          <div data-delay="0" data-hover="false" class="dropdown-faq w-dropdown">
-            <div class="dropdown-toggle w-dropdown-toggle">
-              <div class="block-arrow-faq">
-                <img loading="lazy" src="/images/site/open-toggle.svg" alt="" class="icon-dropdown-open" />
-                <img loading="lazy" src="/images/site/close-toggle.svg" alt="" class="icon-dropdown-close" />
-              </div>
-              <h3 class="dropdown-text">{pregunta}</h3>
-            </div>
-            <nav class="dropdown-list w-dropdown-list">
-              <p class="grey">{respuesta}</p>
-            </nav>
-          </div>
+          <details class="mm-faq-item">
+            <summary><h3>{pregunta}</h3><Fragment set:html={ABRE} /></summary>
+            <div class="mm-faq-r"><p>{respuesta}</p></div>
+          </details>
         ))}
+      </div>
+      <div class="mm-faq-lado">
+        <figure class="mm-lam-medio mm-faq-medio"><img class="mm-lam-foto" src={FOTOS[1].src} alt={FOTOS[1].alt} width={FOTOS[1].ancho} height={FOTOS[1].alto} sizes="(min-width: 992px) 42vw, 100vw" loading="lazy" decoding="async" /></figure>
+        <div class="mm-faq-accion">
+          <a class="mm-btn" href="/request-estimated">Get a Free Estimate</a>
+          {/* D-256 (25-oct-2026, T-138): segundo enlace entrante a la version desnuda del estimador. */}
+          <a class="mm-flecha" href="/pool-investment-estimator">See the Pool Investment Estimator<Fragment set:html={FLECHA} /></a>
+          <div class="mm-datos mm-datos--tel">{TELEFONOS.items.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-val">{t.visible}</span></a>)}</div>
+        </div>
       </div>
     </div>
   </section>
 
-  {/* CIERRE — `.cta-footer`, el remate que ya usan 102 rutas.
-      El enlace a Acorn es el unico externo que pone ESTA pagina; el otro que sale en el HTML
-      construido (maps.google.com) lo mete el widget de resenas, igual que en las otras 83
-      rutas que lo montan. Y desde que el nav apunta a /financing, este es el unico enlace a
-      Acorn de todo el sitio: antes habia uno por pagina, 115 en total. */}
-  <section class="cta-footer">
-    <div class="w-layout-blockcontainer container w-container">
-      <div class="wrapper-cta-footer">
-        <div class="wrapper-vertical-text">
-          <h2>Review your financing options</h2>
-          <div class="text-block-3">
-            Already have your scope and price? Review options with our lending partner.
-            Still deciding what to build? Start with the design and the estimate.
-          </div>
-          <div class="wrapper-buttons-center">
-            {/* `.mm-accion` y no el `.button-styles` de Webflow, que mide 36 px de alto: el
-                boton de la casa trae `min-height: 44px` y oro con tinta navy a 8,40:1 (AAA).
-                Es el CTA principal de la primera pagina propia del sitio; usar aqui el boton
-                heredado seria estrenar la gramatica en todo menos en lo que se pulsa. */}
-            <a href={ACORN} target="_blank" rel="noopener" class="mm-accion">
-              Review options with Acorn Finance
-            </a>
-          </div>
-          {/* EL `{' '}` NO SOBRA. Astro se come el salto de linea contiguo a una etiqueta —entre
-              dos nodos de texto si lo convierte en espacio, por eso el resto del parrafo sale
-              bien—, y sin el se servia «Get a free estimateif you would rather». Estaba en el
-              HTML construido, no era un artefacto de render, y justo en la letra pequeña de
-              responsabilidad legal, que es donde peor sienta una errata.
-              `.mm-medida` porque sin ella este parrafo era la linea mas larga de la pagina:
-              1186 px medidos a 1440, contra los 850 de `.text-block-3` del que cuelga. Los dos
-              van centrados, asi que la diferencia se veia. */}
-          <p class="mm-txt-menudo mm-medida fin-legal">
-            Financing is provided by Acorn Finance, a third-party lending partner. Approval,
-            terms, and servicing are determined by the lender. Mr &amp; Mrs Outdoor Living is
-            not a lender. <a class="mm-vinculo" href="/request-estimated">Get a free estimate</a>{' '}
-            if you would rather start with the design.
-          </p>
-        </div>
+  <section class="mm-cierre mm-cierre--sola mm-cierre--alta">
+    <div class="mm-cierre-caja">
+      <div class="mm-cierre-txt">
+        <h2 class="mm-h2">Review your financing options</h2>
+        <p class="mm-p">Already have your scope and price? Review options with our lending partner. Still deciding what to build? Start with the design and the estimate.</p>
+        <a class="mm-btn mm-min" href={ACORN} target="_blank" rel="noopener">Review options with Acorn Finance</a>
+        <p class="mm-cierre-nota">Financing is provided by Acorn Finance, a third-party lending partner. Approval, terms, and servicing are determined by the lender. Mr &amp; Mrs Outdoor Living is not a lender. <a href="/request-estimated">Get a free estimate</a>{' '}if you would rather start with the design.</p>
+        <div class="mm-datos mm-datos--tel">{TELEFONOS.items.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-val">{t.visible}</span></a>)}</div>
       </div>
+      <figure class="mm-cierre-medio"><img src={FOTOS[2].src} alt={FOTOS[2].alt} width={FOTOS[2].ancho} height={FOTOS[2].alto} sizes="(min-width: 992px) 42vw, 100vw" loading="lazy" decoding="async" /></figure>
     </div>
   </section>
   </main>

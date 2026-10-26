@@ -74,6 +74,21 @@
       "permanent": true
     },
     {
+      "source": "/project/luxury-pool-spa-screen-enclosure-north-florida",
+      "destination": "/project/luxury-pool-spa-with-screen-enclosure-north-florida",
+      "permanent": true
+    },
+    {
+      "source": "/services/smart-soffit-led-lighting-installation-in-north-south-florida",
+      "destination": "/services/louvered-roofs",
+      "permanent": true
+    },
+    {
+      "source": "/services/soffit-led-lighting",
+      "destination": "/services/louvered-roofs",
+      "permanent": true
+    },
+    {
       "source": "/services/custom-pool-spa-builders-in-north-south-florida",
       "destination": "/services/pool-builders",
       "permanent": true
@@ -136,11 +151,6 @@
     {
       "source": "/services/steel-building-pole-barn-construction-in-north-south-florida",
       "destination": "/services/steel-buildings-pole-barns",
-      "permanent": true
-    },
-    {
-      "source": "/services/smart-soffit-led-lighting-installation-in-north-south-florida",
-      "destination": "/services/soffit-led-lighting",
       "permanent": true
     },
     {

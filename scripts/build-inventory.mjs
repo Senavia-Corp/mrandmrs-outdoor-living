@@ -1,10 +1,10 @@
 // Genera los dos inventarios que congelan el alcance de la migración:
-//   _source/routes.csv            las 115 rutas públicas -> colección -> plantilla
+//   _source/routes.csv            las 114 rutas públicas (115 de Webflow menos la de D-195) -> colección -> plantilla
 //   _source/assets-inventory.csv  todo asset referenciado, deduplicado por URL
 // Ambos son idempotentes: mismas entradas -> mismo fichero, byte a byte.
 import fs from 'node:fs';
 import path from 'node:path';
-import { RENOMBRADAS } from './lib/renombradas.mjs';
+import { RENOMBRADAS, LEGACY } from './lib/renombradas.mjs';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const CMS = path.join(ROOT, '_source/cms');
@@ -61,10 +61,13 @@ const enSitemap = (r) => sitemap ? (sitemap.has(r) ? 'si' : 'NO') : '?';
 
 for (const [r, t] of ESTATICAS) rutas.push([r, 'estatica', '', t, enSitemap(r)]);
 for (const [r, t] of FUERA_SITEMAP) rutas.push([r, 'estatica-oculta', '', t, 'NO']);
+const RETIRADAS = new Set(LEGACY.map((l) => l.source));
 for (const [base, col, tpl] of COLECCIONES) {
   for (const item of load(col)) {
     if (item.Archived === 'true') continue;
     const r = `${base}/${item.Slug}`;
+    // D-195 (14-oct-2026): una ruta que redirige ya no es ruta del sitio, aunque siga en el CMS.
+    if (RETIRADAS.has(r)) continue;
     rutas.push([RENOMBRADAS.get(r) ?? r, 'coleccion', col, tpl, enSitemap(r)]);
   }
 }

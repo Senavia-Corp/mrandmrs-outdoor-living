@@ -37,7 +37,6 @@ export const ORDEN_SERVICIOS_PIE = [
   { href: '/services/landscaping', texto: 'Landscaping' },
   { href: '/services/irrigation-systems', texto: 'Automated Irrigation' },
   { href: '/services/outdoor-furniture', texto: 'Outdoor Furniture' },
-  { href: '/services/soffit-led-lighting', texto: 'Smart Soffit LED Lighting' },
   { href: '/services/steel-buildings-pole-barns', texto: 'Pole Barn and Steel Buildings' },
 ];
 

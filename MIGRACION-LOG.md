@@ -3,6 +3,40 @@
 Webflow → Astro 5 + Sanity + Vercel. Una entrada por fase, **escrita al cerrar la fase**,
 nunca al empezarla. Si una fase se reabre, se añade una entrada nueva; no se edita la vieja.
 
+## TABLA-DIFERENCIALES — la home compara el alcance: un equipo frente a un oficio o varios proveedores · 17-oct-2026   🟡 en revisión
+
+**Pedido:** director, 17-oct (tabla comparativa bajo «Before & After») · **Base:** `5a78a010` (`origin/stitch-sitio`, tras incorporar CIUDADES-BUSCADOR y ABOUT-OBRA; nació sobre `06912299`) · **Rama:** `tabla-diferenciales` (worktree, sin push)
+Nueva `<section class="mm-cmp">` solo en `/`, detrás del antes/después: una `<table>` real (`<caption>`, `<th scope>`, dos
+`<tbody>` con fila de grupo) compuesta como hoja de alcance: la columna de Mr & Mrs es un lomo navy continuo con un check
+de oro por fila (7 pasos del proyecto + los 14 servicios con ficha); las alternativas, «Single-trade contractor» y
+«Multiple vendors or DIY», dicen en palabras lo que cubren y en el bloque de servicios son una sola celda. Cada
+afirmación sale de lo que el sitio ya dice (`/financing`, `/about`, `/services/outdoor-kitchens`, hero); sin cifras.
+<768 scroll horizontal con la primera columna fija y región enfocable. Fuente única `src/lib/diferenciales.mjs` para el
+markup y para `check-texto` (texto nuevo T-115 a T-122, provisional, D-10). Puertas: tokens, texto, seo, encabezados,
+rutas, enlaces y accesible verdes; visual rojo solo en `/` (esperado); estructura roja heredada (`mm-cat`). Informe y
+capturas: `docs/encargos/TABLA-DIFERENCIALES-INFORME.md`, `docs/encargos/capturas/tabla-diferenciales/`.
+
+## ABOUT-OBRA — /about enseña la obra en marcha, con cuadrilla y maquinaria (17-oct-2026)
+
+Encargo de Sebastian, viendo la vista previa de `stitch-sitio`: «fotos de construcción de piscinas, trabajadores,
+maquinaria y proyectos de lujo». Revierte D-197 (E12, 14-oct), que había puesto obra terminada en esos huecos. Cuatro
+fotos del banco, todas `obra_real` aprobadas y sin uso previo en el sitio, elegidas mirándolas (no por el nombre):
+
+- **Project Management** (foto grande, 4:5 en escritorio) **bi-0694**: dron de la excavación con casa, hoyo,
+  excavadora, minicargadora, varilla y un operario. Derivadas `lam` 560/800/960 (de 1600×1200 no sale 1100).
+- **Project Monitoring** (solo móvil) **bi-0722**: operario proyectando gunite sobre la malla, de espaldas.
+- **Quality** (solo móvil) **bi-0671**: dos operarios alisando el enlucido tras el spa de mosaico de vidrio.
+- **Lateral de la FAQ** **bi-0518**: piscina y spa iluminados al anochecer con el travertino a medio colocar y la
+  minicargadora al fondo: el proyecto de lujo todavía en obra. Derivadas `lam` 560/800/1100.
+
+Solo cambian `fotos-por-ruta.json`, `fotos-hueco.json` (dos recetas `lam`), `variantes-imagen.json` (8 ficheros
+`mm640/mm1024`) y `usada_en` del banco (entra `/about` en las cuatro, sale de bi-0237, bi-1284, bi-1285 y bi-1286).
+El héroe (fundadores) y la foto del cierre (piscina terminada) se quedan. Puertas sobre el build: `check:tokens`,
+`check:texto =/about` (100 %), `check:seo`, `check:variantes` y `check:assets` verdes. `check:visual` sale rojo en
+`/about`, pero **ya lo estaba**: las alturas de las ocho secciones medidas a 1920 y 991 son idénticas a las del
+despliegue anterior, así que el rojo defiende una referencia anterior al rediseño de la página, no este cambio.
+Capturas en `docs/encargos/capturas/about-obra/`. Pendiente: visto de Sebastian y re-baseline de `/about`.
+
 ## GALERIA-REJILLA — «Project Gallery» deja de ser acordeón: rejilla 3×2 a sangre (5-oct-2026)
 
 Encargo de Sebastian: rediseño, no pulido. Las 55 rutas de la banda (53 `/services/pool-builders/*` + las 2
@@ -7531,7 +7565,7 @@ Un solo fichero: `src/components/widgets/ServiciosPorCategoria.astro` (`<style>`
 
 ---
 
-## SEO-REMEDIACIÓN — vídeo con póster, ciudades honestas, cifras fuera, identidad y pie · 4-oct-2026   🟡 en curso
+## SEO-REMEDIACIÓN — vídeo con póster, ciudades honestas, cifras fuera, identidad y pie · 4-oct-2026   ✅ desplegado (PR #42, `b005bdf`)
 
 **Pedido:** «MASTER IMPLEMENTATION PROMPT — FULL SEO REMEDIATION…» de Sebastian · **Base:** `2b800c7` (`origin/main`) · **Rama:** `claude/fervent-planck-ofawfo`
 **Decisiones de Sebastian en esta sesión:** móvil solo póster (vídeo solo ≥768 tras la carga) · CTA principal «Request a Design-Build Project Evaluation» en las 4 landings de pago y el héroe de la home · la banda «Project Gallery» y el panel de servicios bajan detrás de la FAQ en las 53 ciudades · PR, merge y despliegue autorizados.
@@ -7552,3 +7586,13 @@ Las 6 familias duplicadas que pedía el encargo (`/pool-builders/{gainesville,oc
 
 ### Puertas
 Ver `SEO_IMPLEMENTATION_FINAL_REPORT.md` §24 con la salida literal. Roja heredada y ajena: `/blogs-tips` en `check:texto` (mismo rojo sobre el build de `main`, medido en un worktree). `check:visual` roja donde cambia el maquetado (pie en todas, ciudades, home): re-baseline pendiente de Sebastian.
+
+### Despliegue y medida
+Mergeado como `b005bdf` y comprobado en vivo: 308 en un salto a 200 en las URLs viejas, sitemap con 168 y 0 heredadas, apex y `.vercel.app` → 308 a `www`, póster y precarga en home y ciudades, cabeceras `Cache-Control`. Lighthouse móvil, mediana de 5 corridas antes/después (`seo-audit/lighthouse/summary.md`): home 84→89 (LCP 3,39→2,71 s, 16,8 MB→1,0 MB), Gainesville 78→83, Ocala 77→79, About 83→97 (CLS 0,278→0); accesibilidad 100 en las seis. **Abierto:** el LCP de laboratorio de Pool Builders (5,1→5,7 s) y Pool Remodeling (4,8→5,0 s) es ruido de Lantern con el peso ya a la mitad, y el CLS móvil del menú (0,13–0,16) también está en `main`. QA responsive: 42 combinaciones, 0 incidencias (`seo-audit/qa/`).
+
+---
+
+## CIUDADES-BUSCADOR — las fichas enlazan sus ciudades con un buscador, no con una línea corrida · 17-oct-2026   🟡 en revisión
+
+**Pedido:** `PROMPT-CIUDADES-BUSCADOR.md` (Sebastian, 17-oct) · **Base:** `06912299` (`origin/stitch-sitio`) · **Rama:** `ciudades-buscador` (worktree, sin push)
+La línea «<Servicio> by city: A, FL · B, FL · …» de las 7 fichas con landings (53 enlaces de 19 px sin separación en la de piscina) pasa a `<section class="mm-ciudades">`: H2 propio, cuenta real, campo de búsqueda, chips por condado con cuenta y rejilla de tarjetas-enlace agrupadas por condado bajo un `<h3>` (1/2/3/4 columnas). Sin JS se ven todas las tarjetas; el JS (1 KB, `is:inline`) enciende campo y chips. Una sola fuente (`ciudadesDeFicha()`) para el componente, `check-texto.mjs` y el JSON-LD. Texto nuevo en `STITCH-TEXTO.md` T-107 a T-114, **provisional hasta el visto de Sebastian**. Informe: `docs/encargos/CIUDADES-BUSCADOR-INFORME.md`.

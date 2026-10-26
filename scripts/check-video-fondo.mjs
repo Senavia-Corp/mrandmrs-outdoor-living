@@ -33,7 +33,12 @@ const RAIZ = path.resolve(import.meta.dirname, '..');
 const ESTATICO = path.join(RAIZ, '.vercel/output/static');
 const PUBLICO = path.join(RAIZ, 'public');
 const SUELO_PAGINAS = 65;
-const SUELO_BLOQUES = 121;
+/* ASTRO-2 (12-oct-2026, D-113): el video de fondo sale del hero de las 118 paginas de servicio ×
+ * ciudad, que pasan al Hero A con foto. Medido tras el cambio: 80 paginas, 83 bloques (antes 130 y
+ * 201). Las 50 rojas que arrastraba esta puerta eran esas ciudades con foto en vez de video. */
+// ASTRO-4 lote C: las dos paginas de estado pierden el video del hero (pasa a hero partido con
+// foto) y conservan el del 3D. Medido tras el cambio: 80 paginas, 81 bloques.
+const SUELO_BLOQUES = 81;
 
 if (!fs.existsSync(ESTATICO)) {
   console.error('✗ no hay build en .vercel/output/static — ejecuta `npm run build` antes.');
@@ -55,8 +60,30 @@ let bloques = 0;
 const existe = (url) => fs.existsSync(path.join(PUBLICO, decodeURI(url.split('?')[0])));
 const urlsDe = (srcset) => (srcset || '').split(',').map((s) => s.trim().split(/\s+/)[0]).filter(Boolean);
 
+let heroesA = 0;
 for (const f of html) {
   const crudo = fs.readFileSync(f, 'utf8');
+  /* 8 · HERO A (fichas y paginas de ciudad, ASTRO-2). Lo que esta puerta defiende —que el LCP no
+   * sea un video— aqui se mide asi: el hero no lleva `<video>`; si lleva foto, es la UNICA imagen
+   * con `fetchpriority="high"`, sin `loading="lazy"` y con medidas; si no lleva foto, ninguna. */
+  // La clase exacta: la home (hero B) lleva `mm-hero-a-sub`, que no es un Hero A.
+  if (/class="mm-hero-a[ "]/.test(crudo)) {
+    const r = '/' + path.relative(ESTATICO, f).replace(/(^|\/)index\.html$/, '').replace(/\.html$/, '');
+    const d = new JSDOM(crudo).window.document;
+    const hero = d.querySelector('section.mm-hero-a');
+    const malA = (m) => fallos.push(`${r}: ${m}`);
+    heroesA++;
+    if (hero.querySelector('video, .w-background-video')) malA('el Hero A lleva video de fondo (regla 8, D-113)');
+    const foto = hero.querySelector('.mm-hero-a-medio img');
+    const altas = [...d.body.querySelectorAll('[fetchpriority="high"]')];
+    if (foto) {
+      if (altas.length !== 1 || altas[0] !== foto) malA(`${altas.length} fetchpriority="high" y deberia ser solo la foto del hero (regla 8)`);
+      if (foto.getAttribute('loading') === 'lazy') malA('la foto del hero es lazy (regla 8)');
+      if (!Number(foto.getAttribute('width')) || !Number(foto.getAttribute('height'))) malA('la foto del hero no lleva medidas (regla 8)');
+      if (!existe(foto.getAttribute('src'))) malA(`la foto del hero no existe en public/: ${foto.getAttribute('src')}`);
+    } else if (altas.length) malA('hero sin foto y hay un fetchpriority="high" en la pagina (regla 8)');
+    d.defaultView.close();   // 141 documentos mas: sin cerrarlos la puerta se queda sin memoria
+  }
   if (!crudo.includes('w-background-video')) continue;
   const ruta = '/' + path.relative(ESTATICO, f).replace(/(^|\/)index\.html$/, '').replace(/\.html$/, '');
   const doc = new JSDOM(crudo).window.document;
@@ -103,7 +130,10 @@ if (paginas < SUELO_PAGINAS || bloques < SUELO_BLOQUES) {
   fallos.push(`solo ${paginas} páginas / ${bloques} bloques con vídeo de fondo; el suelo medido es ${SUELO_PAGINAS} / ${SUELO_BLOQUES}. La puerta no ve lo que dice medir.`);
 }
 
-console.log(`check:video-fondo — ${paginas} páginas, ${bloques} bloques .w-background-video`);
+/* Las 14 fichas y las 118 paginas de ciudad de `PaginaCiudad.astro`. Si baja, el hero nuevo ha
+ * dejado de pintarse en alguna y la regla 8 ya no la esta mirando. */
+if (heroesA < 141) fallos.push(`solo ${heroesA} paginas con Hero A; se esperan 141 (14 fichas + 118 ciudades + 9 condados)`);
+console.log(`check:video-fondo — ${paginas} páginas, ${bloques} bloques .w-background-video · ${heroesA} con Hero A`);
 if (fallos.length) {
   console.error(`\n✗ PUERTA ROJA — ${fallos.length} fallo(s):`);
   for (const m of fallos.slice(0, 40)) console.error('  ' + m);

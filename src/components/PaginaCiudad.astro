@@ -9,24 +9,31 @@
 // mismo para todos, que es lo que pide el encargo («mismo diseno exacto»).
 // La cabecera historica de la plantilla (los cinco cambios a mano) sigue en la pagina de
 // pool-builders, que es donde vive `getStaticPaths` con Sanity.
+import { enlazadoDeCiudad } from '../lib/vecinas.mjs';
+import { bloqueLocal, htmlLocal } from '../lib/local-ciudad.mjs';
 import Base from '../layouts/Base.astro';
 import ResenasGoogle from './widgets/ResenasGoogle.astro';
-import FeedInstagram from './widgets/FeedInstagram.astro';
 import CarruselBlog from './widgets/CarruselBlog.astro';
 import CarruselProyectos from './widgets/CarruselProyectos.astro';
 import ConfianzaCore from './widgets/ConfianzaCore.astro';
 import FormularioCore from './widgets/FormularioCore.astro';
 import InversionCore from './widgets/InversionCore.astro';
-import ServiciosPorCategoria from './widgets/ServiciosPorCategoria.astro';
+import ServiciosIndice from './widgets/ServiciosIndice.astro';
+import { logoLigero } from '../lib/logo-ligero.mjs';
+import { franjaLogos } from '../lib/logos-franja.mjs';
 import GaleriaObra from './widgets/GaleriaObra.astro';
-import MigaVisible from './MigaVisible.astro';
+import { fotoDeHeroe, fotosDeSeccion } from '../lib/heroe-ciudad.mjs';
+import { tramosMiga } from '../lib/miga-tramos.mjs';
+import ASSETS from '../data/assets-locales.json';
 import CAPTACION from '../data/captacion-servicios.json';
 import TELEFONOS from '../data/telefonos.json';
 import { sinAperturaDelFeed } from '../lib/feed-social.mjs';
 import { partirPorElCarrusel } from '../lib/carrusel-proyectos.mjs';
 import { partirEn, heroeDeCaptacion } from '../lib/captacion-ciudad.mjs';
-import { conBandaGaleria } from '../lib/galeria-categorias.mjs';
+import { conBandaGaleria, bandaCompactaHtml } from '../lib/galeria-categorias.mjs';
 import LIT from '../data/plantilla-pool-builders.json';
+import RESENAS from '../data/resenas.json';
+const RESENAS_PERFIL = RESENAS.enlacePerfil;
 
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
@@ -45,6 +52,10 @@ function aplanar(o, pref = '', prof = 0, salida = {}) {
 // `Astro.params.slug` es el tramo publico (`ocala-fl`). RUTA es la URL servida.
 const { doc, ruta: RUTA, servicio: SV, seoRutas: SEO_RUTAS, fotosCiudad: FOTOS_CIUDAD, enlaces: ENLACES, heroeFoto: HEROE_FOTO } = Astro.props;
 const slug = doc.slug;
+const VECINDAD = enlazadoDeCiudad(RUTA);
+/* S2 (D-254, L3a de PUBLICAR): el bloque local de las 53 de piscina, bajo la galeria. Null en los otros servicios. */
+const LOCAL = bloqueLocal(RUTA);
+const escAttr = (s) => esc(s).replace(/"/g, '&quot;');
 const d = aplanar(doc);
 /**
  * CUARTO CAMBIO A MANO (SEO-AEO-GEO A3) — OVERRIDE POR CIUDAD.
@@ -206,7 +217,7 @@ if (HEROE_FOTO) {
   if (n !== 1) throw new Error(`${slug}: esperaba UN video de fondo en el heroe y hay ${n}`);
   b0 = b0.replace(RE_VIDEO, () => '<div class="background-video-page w-background-video w-background-video-atom">'
     + `<picture class="mm-video-poster-marco"><img class="mm-video-poster" src="${esc(HEROE_FOTO.src)}" `
-    + `width="${HEROE_FOTO.ancho}" height="${HEROE_FOTO.alto}" alt="" loading="eager" fetchpriority="high"></picture></div>`);
+    + `width="${HEROE_FOTO.ancho}" height="${HEROE_FOTO.alto}" alt="${esc(HEROE_FOTO.alt).replace(/"/g, '&quot;')}" loading="eager" fetchpriority="high"></picture></div>`);   // L6 (D-260): el poster del hero no es decorativo
 }
 let ANTES_CONF = '', ANTES_FORM = '';
 if (CAP) {
@@ -214,6 +225,29 @@ if (CAP) {
   [ANTES_CONF, b0] = partirEn(b0, '<section class="trusted-section"', `${RUTA} B[0]`);
   [ANTES_FORM, b0] = partirEn(b0, '<section class="_3d-section"', `${RUTA} B[0]`);
 }
+
+/* ── ASTRO-2 · HERO A DE CIUDAD (lamina «HeroA», D-112 a D-114) ───────────────────────────────
+ * El hero de Webflow (video de fondo, texto centrado, marquesina de logos) deja de pintarse: de
+ * `ANTES_CONF` solo se leen los logos y su titular. Lo que se pinta sale de los mismos campos de
+ * siempre (`h1Title`, `h2Title`, `intro`) y de la entrada de captacion (accion, telefonos,
+ * licencia). EL VIDEO DE FONDO SALE de estas 118 paginas (D-113): el LCP pasa a ser una foto con
+ * medidas y `fetchpriority="high"`, o texto en las que no tienen bolsa.
+ * La foto la reparte `heroe-ciudad.mjs`; el pie es el `alt` del banco y no situa la obra en ninguna
+ * ciudad, salvo en Alachua, que es la unica con obra verificada alli (D-80). */
+if (!CAP) throw new Error(`${slug}: sin entrada en captacion-servicios.json no hay hero que pintar`);
+// `assets-locales.json` es {id de Sanity: ruta publica} y el id lleva las medidas («…-842x296-png»).
+const DIM_LOGO = new Map(Object.entries(ASSETS).map(([id, pub]) => [pub, id.match(/-(\d+)x(\d+)-[a-z0-9]+$/)])
+  .filter(([, m]) => m).map(([pub, m]) => [pub, { w: Number(m[1]), h: Number(m[2]) }]));
+const LOGOS = [...new Set([...ANTES_CONF.matchAll(/<img[^>]*src="(\/images\/logos\/[^"]+)"/g)].map((m) => m[1]))];
+const LOGOS_TITULO = (ANTES_CONF.match(/<h2 class="heading-logos">([^<]*)<\/h2>/) ?? [])[1];
+if (!LOGOS.length || !LOGOS_TITULO) throw new Error(`${slug}: el hero de origen ya no trae la franja de logos`);
+for (const u of LOGOS) if (!DIM_LOGO.has(u)) throw new Error(`${slug}: el logo ${u} no tiene medidas en assets-locales.json`);
+const HERO_FOTO = fotoDeHeroe(RUTA);
+// El rotulador va en la ciudad, que es como cierran los titulares: «… in Alachua, Florida».
+const H1 = esc(d.h1Title).replace(/(\bin\s+)([^,]+?)(,\s*Florida)?\s*$/i, (m, a, c, f) => `${a}<span class="mm-rot">${c}</span>${f ?? ''}`);
+/* D-248 (P-9): un telefono y sin etiqueta de zona. `heroe.zonas` (el orden de los dos numeros, el de la region primero) dejo de existir. */
+const HERO_ZONAS = TELEFONOS.items;
+const [HERO_LIC_ROT, ...HERO_LIC_VAL] = CAP.heroe.licencias.split(' · ');
 
 const FAQ = CAP?.faq?.anade?.length ? CAP.faq : null;
 
@@ -249,6 +283,8 @@ const P_ANTES_PINTADO = SV.sin3d ? '' : P_ANTES;
 
 /** El `.svc-cierre` repite el CTA del heroe (`heroe.cta`, generado por build-captacion-ciudades). */
 const CTA_CIERRE = CAP?.heroe?.cta ?? 'Get a Free Estimate';
+// La palabra con rotulador del titular de la galeria: la `marca` de la ficha del servicio.
+const MARCA_SERVICIO = CAPTACION[`/services/${RUTA.split('/')[2]}`]?.heroe?.marca;
 
 const CTA_PIE = sinAperturaDelFeed(B[2], `${RUTA} B[2]`);
 // Y B[3] deja de renderizarse, asi que hay que AFIRMAR que no era mas que ese cierre: si la
@@ -257,6 +293,46 @@ if (B[3] !== '</section>') {
   throw new Error(`${slug}: B[3] ya no es el cierre suelto del feed, es ${JSON.stringify(B[3])}. `
     + 'Al dejar de renderizarlo se estaria tirando contenido — revisa scripts/build-plantillas.mjs.');
 }
+
+/* ── ASTRO-2 · LAS PIEZAS QUE LA CIUDAD COMPARTE CON LA FICHA ──────────────────────────────
+ * Intro, FAQ, resenas y cierre dejan de pintarse desde las cadenas de la plantilla de Webflow
+ * (`ANTES_FORM`, `P_DESPUES`, `CTA_PIE`): de ellas solo se LEE el texto fijo que no esta en ningun
+ * campo —el enlace de la intro, el rotulo de las resenas, el titular y el parrafo de la banda
+ * final—. Si la plantilla deja de traerlo, el build revienta con el nombre de la pieza. */
+const lee = (cadena, re, que) => {
+  const m = String(cadena).match(re);
+  if (!m) throw new Error(`${slug}: la plantilla ya no trae ${que}`);
+  return m;
+};
+const FLECHA = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>';
+const CHEVRON = '<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>';
+const nb = (html) => String(html).replace(/Design-Buil[dt]/g, '<span class="mm-nb">$&</span>');
+const MIGA = tramosMiga(RUTA);
+const mIntro = lee(ANTES_FORM, /<a href="([^"]+)"[^>]*class="[^"]*button[^"]*"[^>]*>([^<]+)<\/a>/, 'el enlace de la intro');
+const INTRO_ENLACE = { href: mIntro[1], texto: mIntro[2] };
+// El rotulador, en el territorio: «… Contractors in Gainesville and Alachua County».
+const INTRO_H2 = nb(esc(d.headingIntro).replace(/(\bin\s+)(.+?)\s*$/i, (m, a, c) => `${a}<span class="mm-rot">${c}</span>`));
+const RES_ROTULO = lee(P_DESPUES, /<div class="label">([^<]+)<\/div>/, 'el rotulo de las resenas')[1];
+const RES_H2 = nb(esc(d.headingReviews).replace(/\b(Clients)\b/, '<span class="mm-rot">$1</span>'));
+const CIERRE_H2 = nb(lee(CTA_PIE, /<h2>([\s\S]*?)<\/h2>/, 'el titular de la banda final')[1]);
+const CIERRE_P = lee(CTA_PIE, /<div class="text-block-3">([\s\S]*?)<\/div>/, 'el parrafo de la banda final')[1];
+const [FOTO_FAQ, FOTO_CIERRE, FOTO_RES] = fotosDeSeccion(RUTA);
+
+/* RENDER 3D (lamina «Render3d»; solo los servicios que lo llevan). De la seccion de Webflow se leen
+ * el titular, el parrafo y el bloque del video TAL CUAL: `Base.astro` (`video-fondo.mjs`) lo sigue
+ * reescribiendo igual —poster local, `preload="none"`, carga diferida y boton de pausa—, que es lo
+ * que mide `check:video-fondo`. Lo demas (fondo decorativo, envoltorios, `data-w-id`) sale. */
+let R3D = null;
+if (P_ANTES_PINTADO) {
+  const m3 = lee(P_ANTES_PINTADO, /class="header-3d-section"><h2>([\s\S]*?)<\/h2><p>([\s\S]*?)<\/p><\/div>/, 'el titular y el parrafo del render 3D');
+  const i3 = P_ANTES_PINTADO.indexOf('<div data-poster-url=');
+  const f3 = P_ANTES_PINTADO.lastIndexOf('</div></div></div></section>');
+  if (i3 < 0 || f3 < i3) throw new Error(`${slug}: la seccion 3D ya no trae el bloque del video donde se esperaba`);
+  // Los dos iconos del boton de pausa no traen medidas del origen: se les ponen (24 x 24).
+  R3D = { h2: nb(m3[1]), p: m3[2], video: P_ANTES_PINTADO.slice(i3, f3) };
+}
+
+const FAQ_H2 = FAQ ? nb(esc(FAQ.titulo).replace(/(FAQs?)\s*$/, '<span class="mm-rot">$1</span>')) : '';
 
 const { seo: SEO_WEBFLOW, ldCrudo: LD_CRUDO } = SEO_RUTAS[slug];
 
@@ -325,168 +401,166 @@ const SEO = FAQ
         acceptedAnswer: { '@type': 'Answer', text: q.respuesta },
       })),
     }] }
-  : SEO_ORIGEN;---
+  : SEO_ORIGEN;
+/* L6 de PUBLICAR (6.6): la tarjeta social de la ciudad es su hero real, no la foto compartida del origen. `check-seo` lo declara. */
+if (HERO_FOTO?.src) SEO.meta = { ...SEO.meta, 'og:image': HERO_FOTO.src, 'twitter:image': HERO_FOTO.src };   // HERO_FOTO = fotoDeHeroe(RUTA), la misma que check-seo declara
+---
 <Base titulo={d["seo.title"]} descripcion={d["seo.description"]} ruta={RUTA} seo={SEO} jsonLdCrudo={LD_CRUDO}>
-  <Fragment set:html={ANTES_CONF} />
-  {/* SEO-REMEDIACION (4-oct-2026): la miga visible, de la misma fuente que el `#miga` del JSON-LD. */}
-  <MigaVisible ruta={RUTA} />
+  <section class:list={['mm-hero-a', 'mm-hero-a--ciudad', !HERO_FOTO && 'mm-hero-a--sin']}>
+    <div class="mm-hero-a-txt">
+      {MIGA.length > 1 && (
+        <nav class="mm-miga" aria-label="Breadcrumb"><ol>
+          {MIGA.map((t, i) => (i === MIGA.length - 1 ? <li aria-current="page">{t.nombre}</li> : <li><a href={t.href}>{t.nombre}</a></li>))}
+        </ol></nav>
+      )}
+      <h1 class="mm-h1" set:html={H1} />
+      <h2 class="mm-hero-a-sub">{d.h2Title}</h2>
+      <p class="mm-p">{d.intro}</p>
+      <div class="mm-hero-a-acc">
+        <a class="mm-btn" href={CAP.heroe.ancla}>{CAP.heroe.cta ?? 'Get a Free Estimate'}</a>
+        <a class="mm-btn mm-btn--linea" href="/gallery">Project Gallery</a>
+      </div>
+      <div class="mm-datos mm-datos--3">
+        {HERO_ZONAS.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-val">{t.visible}</span></a>)}
+        <div class="mm-dato"><span class="mm-dato-rot">{HERO_LIC_ROT}</span><span class="mm-dato-val">{HERO_LIC_VAL.join(' · ')}</span></div>
+      </div>
+    </div>
+    {HERO_FOTO && (
+      <figure class="mm-hero-a-medio">
+        <img sizes="(min-width: 992px) 50vw, 100vw" src={HERO_FOTO.src} alt={HERO_FOTO.alt} width={HERO_FOTO.ancho} height={HERO_FOTO.alto} loading="eager" fetchpriority="high" decoding="async" />
+        <figcaption class="mm-pie-foto"><span class="mm-dato-rot">Project</span><span>{HERO_FOTO.pie}</span></figcaption>
+      </figure>
+    )}
+    {/* E7 (D-166): la franja de logos desfila. Marcado y duracion, en `logos-franja.mjs`.
+        D-132: a 36 px de alto se sirve la version ligera del logo si la hay. */}
+    <Fragment set:html={franjaLogos(LOGOS_TITULO, LOGOS.map((u) => logoLigero(u, DIM_LOGO.get(u))))} />
+  </section>
+  {/* ASTRO-2 (12-oct-2026) · ORDEN DE LA LAMINA «Ciudad»: confianza · intro · galeria de obra · render
+       3D · servicios · inversion · FAQ · galeria por categorias · proyectos · articulos · resenas ·
+       cierre · formulario. El porque de cada orden anterior (R20, R21, ORDEN-CIUDADES 1 y 2) esta en
+       el historial de este fichero; el vigente lo afirma `check-estructura-ciudades.mjs`.
+       La miga va dentro del hero. El feed de Instagram sale (T-42). */}
   <ConfianzaCore ruta={RUTA} />
-  <Fragment set:html={ANTES_FORM} />
-  <FormularioCore ruta={RUTA} />
-  {/* LA GALERIA DE OBRA, ENTRE EL FORMULARIO Y EL 3D (R21, pedido de Sebastian 18-sep-2026).
-       El corte ya existia: `partirEn(b0, '<section class="_3d-section"')` lo dejo hecho F1, asi
-       que esto es una linea y no cirugia sobre el HTML derivado.
-
-       R20 DECLINO ESTA SECCION A PROPOSITO (`R20-CIUDADES.md` §3: `section.gallery` -> NO CHANGE,
-       «el carrusel de obra y el feed ya ensenan resultado»). Sebastian lo ha visto en produccion y
-       lo revierte; ademas hay un argumento que entonces no existia: LA POSICION. Alli se descarto
-       ponerla abajo, compitiendo con «Project Showcase». Aqui va ARRIBA, pegada al formulario:
-       quien no lo ha rellenado ve obra inmediatamente.
-
-       Las fotos son del banco del cliente, no de `public/images/images/*`: 1600x1067 contra los
-       1250 px que eran el techo de TODA la obra del sitio, y con procedencia verificada. Eso
-       ademas rompe el solape que arrastraba esta pagina, donde el set `construction` ya salia
-       tres veces (trusted-section, collage de la FAQ y feed de Instagram).
-
-       SIN LA GUARDA `CAP` DESDE EL 4-OCT-2026 (encargo de galeria de ciudades). Iba acotada porque
-       R21 la encendio solo en las rutas con captacion; hoy las 53 tienen entrada, pero «las 53 con
-       la misma galeria» no puede depender de que una ciudad tenga fila en `captacion-servicios.json`.
-       El sitio no cambia: en la forma SIN captacion `FormularioCore` no pinta nada y la galeria cae
-       igual entre `trusted-section` y `_3d-section`, que es lo que declara
-       `check-estructura-ciudades.mjs`. Las fotos son UN set para las 53 (`_defecto.fotos`) y
-       `check-galeria-obra.mjs` comprueba que las 53 lo pintan entero y en orden. */}
-  <GaleriaObra clave={SV.galeria} />
-  <Fragment set:html={P_ANTES_PINTADO} />
-  {/* LA PRUEBA SOCIAL, DELANTE DE LA OBRA (R20-CIUDADES F2, decision de Sebastian 14-sep-2026).
-      El orden era Pool Features -> Project Showcase -> resenas. Ahora las resenas van EN MEDIO:
-      quien acaba de leer las mejoras de la piscina se encuentra la opinion de otros ANTES de
-      ponerse a mirar fotos, y el carrusel -cuya unica salida, «See all Projects», lleva FUERA
-      de la pagina- deja de ser lo primero que aparece despues de las mejoras.
-
-      ESTO NO ABRE NI UN CORTE NUEVO, y por eso es barato: `partirPorElCarrusel` ya dejaba las
-      piezas sueltas. `P_ANTES` cierra en `</section>` tras `animated-divs-section`; `P_DESPUES`
-      son los 250 B que ABREN `testimonial-section`; `<ResenasGoogle>` la llena; `B[1]` es el
-      `</div></section>` que la cierra. Adelantar ese trio al componente es reordenar CUATRO
-      lineas, no cirugia sobre el HTML derivado — ni marcador nuevo, ni guarda nueva, ni CSS.
-
-      LAS 53, NO SOLO LAS 2: «las 53 deben tener la misma estructura» (Sebastian). Por eso esto
-      NO va acotado con `CAP`, y por eso cambian las DOS listas de `check-estructura-ciudades.mjs`
-      —la de con captacion y la de sin—, no solo una.
-
-      AQUI ESTABA EL `<section class="svc-cierre">` con «Get a Free Estimate», quitado a peticion
-      de Sebastian. Lo que se pierde queda dicho, no callado: entre el formulario y los dos CTA de
-      `svc-inversion` quedan cuatro secciones sin vuelta al `#estimate`. El gemelo de la FAQ
-      -`<p class="svc-cierre">`- sigue en pie y es el que devuelve al formulario. */}
-  {/* ORDEN-CIUDADES (Sebastian, 5-oct-2026): EL BLOQUE DE DECISION SUBE, LA PRUEBA BAJA.
-      Detras del 3D van ahora, seguidos, inversion -> FAQ -> banda «Project Gallery» -> panel de
-      servicios; las resenas y «Project Showcase» —el trio `P_DESPUES` + `ResenasGoogle` + `B[1]`
-      y `CarruselProyectos`, que el comentario de arriba describe— pasan enteros a la cola, justo
-      antes del blog. Quien acaba de ver el diseno 3D pregunta «¿cuanto cuesta?» antes de seguir
-      mirando obra. No abre ningun corte; el orden lo afirma `check-estructura-ciudades.mjs`.
-
-      OJO, QUE ESTO MATIZA SEO-REMEDIACION (4-oct): la banda y el panel siguen DETRAS de la FAQ,
-      pero vuelven a quedar por ENCIMA de las resenas y la obra. Es el orden que pidio Sebastian
-      seccion por seccion; se deja dicho para que nadie lo «arregle» de vuelta. */}
-  {/* ORDEN-CIUDADES-2 (Sebastian, 6-oct-2026): «PROJECT GALLERY» SUBE, «POOL COST» BAJA.
-      Detras del 3D el tramo queda banda «Project Gallery» -> FAQ -> inversion -> panel de
-      servicios. Son las mismas cuatro piezas que fijo ORDEN-CIUDADES, cambiadas de sitio: ni
-      marcado, ni CSS, ni corte nuevo (el de `BANDA` sigue igual, solo cambia donde se pinta).
-      Sin FAQ queda banda -> inversion; los servicios `sin3d` arrancan el tramo en la banda.
-
-      OJO, QUE ESTO MATIZA LAS DOS NOTAS ANTERIORES: la banda vuelve a ir por ENCIMA de la FAQ
-      -lo contrario de lo que fijo SEO-REMEDIACION (4-oct)- por decision de Sebastian, y la
-      inversion deja de ir pegada al 3D. El panel de los 14 servicios SIGUE debajo de la FAQ. Es
-      el orden vigente; el que lo «arregle» de vuelta a cualquiera de los dos anteriores rompe
-      `check-estructura-ciudades.mjs`, que lo afirma. */}
-  <Fragment set:html={BANDA} />
-  {/* LA FAQ, QUE ESTAS RUTAS NO TENIAN. Marcado de acordeon de la casa: `Interacciones.astro`
-      recorre TODOS los `.w-dropdown` del documento y les pone rol, `tabindex`, `aria-expanded`,
-      `aria-controls` y teclado. NO se copia el `data-w-id` de las fichas de `/services/`: ese
-      atributo es de IX2 —reveals y anti-FOUC—, no del desplegable, y duplicarlo es la via mas
-      corta a un elemento atrapado en `opacity:0` (regla 1 de `check:ix2`). */}
+  <section class="svc-intro mm-intro">
+    <div class="mm-marco">
+      <h2 class="mm-h2" set:html={INTRO_H2} />
+      <p class="mm-p">{d.paragraphIntro}</p>
+      <a class="mm-flecha" href={INTRO_ENLACE.href}>{INTRO_ENLACE.texto}<Fragment set:html={FLECHA} /></a>
+    </div>
+  </section>
+  <GaleriaObra clave={SV.galeria} accion={CTA_CIERRE} marca={MARCA_SERVICIO} />
+  {LOCAL && <Fragment set:html={htmlLocal(LOCAL, { esc, escAttr, chevron: CHEVRON })} />}
+  {R3D && (
+    <section class="mm-3d">
+      <div class="mm-sec-cab">
+        <h2 class="mm-h2" set:html={R3D.h2} />
+        <div class="mm-sec-lado">
+          <p class="mm-p" set:html={R3D.p} />
+          <div class="mm-sec-acc"><a class="mm-btn mm-btn--linea mm-btn--linea-inv" href="#estimate">{CTA_CIERRE}</a></div>
+        </div>
+      </div>
+      <figure class="mm-3d-medio" set:html={R3D.video} />
+    </section>
+  )}
+  {/* Los 14 servicios a la vista, abierta la ficha del servicio de la pagina (D-129), con la accion en la cabecera. */}
+  <ServiciosIndice servicio={RUTA.split('/')[2]} accion={CTA_CIERRE} />
+  <InversionCore ruta={RUTA} />
   {FAQ && (
-    <section class="faq-section">
-      <div class="w-layout-blockcontainer container w-container">
-        <div class="header-faq">
-          <h2>{FAQ.titulo}</h2>
-          <div>{FAQ.entradilla}</div>
-        </div>
-        <div class="wrapper-faq-components">
-          {FAQ.anade.map((q) => (
-            <div data-delay="0" data-hover="false" class="dropdown-faq w-dropdown">
-              <div class="dropdown-toggle w-dropdown-toggle">
-                <div class="block-arrow-faq">
-                  <img loading="lazy" src="/images/site/open-toggle.svg" alt="" class="icon-dropdown-open" width="12" height="7" />
-                  <img loading="lazy" src="/images/site/close-toggle.svg" alt="" class="icon-dropdown-close" width="7" height="12" />
+    <section class:list={['mm-faq', !FOTO_FAQ && 'mm-faq--sin']}>
+      <div class="mm-sec-cab">
+        <h2 class="mm-h2" set:html={FAQ_H2} />
+        <div class="mm-sec-lado"><p class="mm-p">{FAQ.entradilla}</p></div>
+      </div>
+      <div class="mm-faq-cuerpo">
+        <div class="mm-faq-col">
+          <div class="mm-faq-lista">
+            {FAQ.anade.map((q) => (
+              <details class="mm-faq-item">
+                <summary><h3>{q.pregunta}</h3><Fragment set:html={CHEVRON} /></summary>
+                <div class="mm-faq-r">
+                  <p>{q.respuesta}</p>
+                  {q.enlace ? (<p class="mm-faq-fuentes mm-faq-enlace"><a href={q.enlace.href}>{q.enlace.texto}</a></p>) : null}
+                  {q.fuentes?.length ? (
+                    <p class="mm-faq-fuentes">Official sources:{' '}
+                      {q.fuentes.map((f, i) => (<>{i ? ' · ' : ''}<a href={f.url} target="_blank" rel="noopener">{f.nombre}</a></>))}
+                    </p>
+                  ) : null}
                 </div>
-                <h3 class="dropdown-text">{q.pregunta}</h3>
-              </div>
-              <nav class="dropdown-list w-dropdown-list">
-                <p class="grey">{q.respuesta}</p>
-                {q.fuentes?.length ? (
-                  <p class="grey mm-faq-fuentes">Official sources:{' '}
-                    {q.fuentes.map((f, i) => (<>{i ? ' · ' : ''}<a href={f.url} target="_blank" rel="noopener">{f.nombre}</a></>))}
-                  </p>
-                ) : null}
-              </nav>
-            </div>
-          ))}
+              </details>
+            ))}
+          </div>
+          {/* LOOP-CIUDADES: el enlazado de las landings —su ficha, su condado y los otros servicios
+               de la MISMA ciudad—. Las 53 de piscina no traen `enlaces` y no pintan nada. */}
+          {ENLACES && (
+            <p class="mm-faq-fuentes mm-faq-mas">More for {doc.name} homeowners:{' '}
+              {[
+                { href: ENLACES.ficha, nombre: `${SV.nombre} in Florida` },
+                ...ENLACES.hermanas.map((h) => ({ href: h.href, nombre: `${h.nombre} in ${doc.name}` })),
+                ...(ENLACES.condado ? [{ href: ENLACES.condado, nombre: `${FILA_CIUDAD?.condado} County` }] : []),
+              ].map((e, i) => (<>{i ? ' · ' : ''}<a href={e.href}>{e.nombre}</a></>))}
+            </p>
+          )}
+          {/* E5-SEO (puntos 2 y 4): las 53 de piscina ganan la misma fila —su ficha, los otros servicios
+               de su ciudad y su condado—, y las 118, una segunda con hasta cinco ciudades del mismo
+               servicio en su condado o en su zona. Todo sale de `src/lib/vecinas.mjs`. */}
+          {!ENLACES && VECINDAD && (
+            <p class="mm-faq-fuentes mm-faq-mas">{VECINDAD.rotuloMas}{' '}
+              {VECINDAD.mas.map((e, i) => (<>{i ? ' · ' : ''}<a href={e.href}>{e.nombre}</a></>))}
+            </p>
+          )}
+          {VECINDAD?.vecinas.length ? (
+            <p class="mm-faq-fuentes mm-faq-mas">{VECINDAD.rotuloVecinas}{' '}
+              {VECINDAD.vecinas.map((e, i) => (<>{i ? ' · ' : ''}<a href={e.href}>{e.nombre}</a></>))}
+            </p>
+          ) : null}
         </div>
-        {/* LOOP-CIUDADES: el enlazado de las landings nuevas —su ficha, su condado y los otros
-             servicios de la MISMA ciudad— en una linea con el estilo de las fuentes oficiales de
-             la FAQ, sin seccion nueva. Las 53 de piscina no traen `enlaces` y no pintan nada. */}
-        {ENLACES && (
-          <p class="grey mm-faq-fuentes">More for {doc.name} homeowners:{' '}
-            {[
-              { href: ENLACES.ficha, nombre: `${SV.nombre} in Florida` },
-              ...ENLACES.hermanas.map((h) => ({ href: h.href, nombre: `${h.nombre} in ${doc.name}` })),
-              ...(ENLACES.condado ? [{ href: ENLACES.condado, nombre: `${FILA_CIUDAD?.condado} County` }] : []),
-            ].map((e, i) => (<>{i ? ' · ' : ''}<a href={e.href}>{e.nombre}</a></>))}
-          </p>
-        )}
-        <p class="svc-cierre"><a href="#estimate" class="button button-styles w-button">{CTA_CIERRE}</a></p>
+        <div class="mm-faq-lado">
+          {FOTO_FAQ && (
+            <figure class="mm-lam-medio mm-faq-medio"><img class="mm-lam-foto" sizes="(min-width: 992px) 42vw, 100vw" src={FOTO_FAQ.src} alt={FOTO_FAQ.alt} width={FOTO_FAQ.ancho} height={FOTO_FAQ.alto} loading="lazy" decoding="async" /></figure>
+          )}
+          <div class="mm-faq-accion">
+            <a class="mm-btn" href="#estimate">{CTA_CIERRE}</a>
+            <div class="mm-datos mm-datos--tel">{HERO_ZONAS.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-val">{t.visible}</span></a>)}</div>
+          </div>
+        </div>
       </div>
     </section>
   )}
-  {/* ORDEN-CIUDADES-2: la inversion, detras de la FAQ. Sin entrada en el JSON no pinta nada. */}
-  <InversionCore ruta={RUTA} />
-  {/* SEO-REMEDIACION (Sebastian, 4-oct-2026): el panel de servicios baja aqui, detras de la FAQ
-       -y desde ORDEN-CIUDADES-2 tambien detras de la inversion-. La banda «Project Gallery», que
-       bajaba con el, va desde el 6-oct delante de la FAQ (ver ORDEN-CIUDADES-2 arriba). */}
-  {CAP && (
-    /* EL PANEL DE SERVICIOS DE LA HOME, ENTRE «Pool Features» Y LOS TESTIMONIOS (R21, pedido de
-       Sebastian 18-sep-2026). El sitio que pide es EXACTAMENTE la juntura que F2 ya dejo abierta
-       entre `P_ANTES` y `P_DESPUES`: ni marcador nuevo, ni `partirEn` nuevo, ni cirugia sobre el
-       HTML derivado. Una linea.
-
-       `clave="/"` PORQUE EL JSON NO TIENE CIUDADES y no puede tenerlas: `build-paginas.mjs:1581`
-       reescribe `servicios-categoria.json` desde el origen, asi que una clave a mano se pierde a
-       la siguiente generacion. El panel es identico al de la home; lo unico propio de la landing
-       es que abre por «Pool Solutions», que es correspondencia con el ad group.
-
-       ACOTADO CON `CAP`, Y AQUI ME SEPARO DE LO QUE PEDIA EL ENCARGO. `PROMPT-R21` §2.6 proponia
-       montarlo en las 53 «porque la re-baseline se paga una vez». Pero las otras 51 van a recibir
-       heroe, ritmo y galeria cuando les toque su fila de captacion, y entonces habria que
-       re-baselinizarlas OTRA VEZ. Acotado, este PR re-baseliniza 2 rutas; las 51 se re-baselinizan
-       una sola vez, ya en su forma final. La doctrina de F2 —«las 53, la misma estructura»— es
-       sobre el estado final, y la cabecera del propio encargo ya separa las 51 en su fase.
-
-       CIERRA CON `.svc-cierre`. La seccion mete 14 enlaces de salida a `/services/*` y justo
-       debajo queda «Project Showcase» con la suya: dos fugas seguidas antes de la prueba social,
-       en una pagina que se paga por clic. El cierre lo mitiga por una linea y es el gemelo
-       literal del que ya vive al pie de la FAQ. */
-    <ServiciosPorCategoria clave="/" defecto={SV.categoria}>
-      <p slot="cierre" class="svc-cierre"><a href="#estimate" class="button button-styles w-button">{CTA_CIERRE}</a></p>
-    </ServiciosPorCategoria>
-  )}
-  {/* ORDEN-CIUDADES: la cola de prueba. Resenas y obra, enteras, detras del panel de servicios. */}
-  <Fragment set:html={P_DESPUES} />
-  <ResenasGoogle />
-  <Fragment set:html={B[1]} />
+  <Fragment set:html={bandaCompactaHtml(CTA_CIERRE)} />
   <CarruselProyectos titulo={d['headingPortfolio']} entradilla={d['paragraphPortfolio']} />
   <CarruselBlog titulo={d['headingBlog']} entradilla={d['paragraphBlog']} />
-  <section class="social-media">
-    <FeedInstagram />
+  <section class:list={['mm-res', !FOTO_RES && 'mm-res--sin']}>
+    <div class="mm-sec-cab">
+      <div class="mm-sec-tit"><p class="mm-etiqueta">{RES_ROTULO}</p><h2 class="mm-h2" set:html={RES_H2} /></div>
+      <div class="mm-sec-lado">
+        <p class="mm-p">{d.paragraphReviews}</p>
+        <div class="mm-sec-acc">
+          <a class="mm-btn mm-btn--linea" href="#estimate">{CTA_CIERRE}</a>
+          <a class="mm-flecha" href={RESENAS_PERFIL} target="_blank" rel="noopener noreferrer">See all reviews<Fragment set:html={FLECHA} /></a>
+        </div>
+      </div>
+    </div>
+    <div class="mm-res-cuerpo">
+      <div class="mm-res-col">
+        <ResenasGoogle />
+        <div class="mm-datos mm-datos--tel">{HERO_ZONAS.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-val">{t.visible}</span></a>)}</div>
+      </div>
+      {FOTO_RES && (
+        <figure class="mm-res-medio"><img src={FOTO_RES.src} alt={FOTO_RES.alt} width={FOTO_RES.ancho} height={FOTO_RES.alto} loading="lazy" decoding="async" /></figure>
+      )}
+    </div>
   </section>
-  <Fragment set:html={CTA_PIE} />
+  <section class:list={['mm-cierre', !FOTO_CIERRE && 'mm-cierre--sin']}>
+    <div class="mm-cierre-caja">
+      <div class="mm-cierre-txt">
+        <h2 class="mm-h2" set:html={CIERRE_H2} />
+        <p class="mm-p" set:html={CIERRE_P} />
+        <div class="mm-datos mm-datos--tel">{HERO_ZONAS.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-val">{t.visible}</span></a>)}</div>
+      </div>
+      {FOTO_CIERRE && (
+        <figure class="mm-cierre-medio"><img src={FOTO_CIERRE.src} alt={FOTO_CIERRE.alt} width={FOTO_CIERRE.ancho} height={FOTO_CIERRE.alto} loading="lazy" decoding="async" /></figure>
+      )}
+    </div>
+  </section>
+  <FormularioCore ruta={RUTA} />
 </Base>

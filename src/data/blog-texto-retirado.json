@@ -1,0 +1,48 @@
+{
+  "_lee_esto": "D-262 (25-oct-2026, decision del cliente): el servicio Smart Soffit & LED Lighting se retira del sitio, tambien del blog. El blog se trae de Sanity EN VIVO al construir (src/lib/blog-datos.mjs), asi que lo que aqui se declara se aplica al cargar: los enlaces a la ruta retirada se quitan (el texto del enlace se queda, reescrito) y cada cadena de `sustituciones` se cambia por la suya, solo en su articulo. Mismas sustituciones en contenido/blog/*.md y en la cache blogs-sanity.json. Cuando los cuatro documentos se corrijan en Sanity (despues de publicar; D-262), estas sustituciones dejan de encontrar nada y se pueden borrar. Cada cadena es una fila T-xxx de STITCH-TEXTO.md.",
+  "enlaces_retirados": [
+    "/services/soffit-led-lighting"
+  ],
+  "sustituciones": {
+    "attached-vs-freestanding-pergola": [
+      [
+        "between the door head and the soffit",
+        "between the door head and the eave"
+      ],
+      [
+        "it has to tuck under the soffit.",
+        "it has to tuck under the eave."
+      ],
+      [
+        "dictated to you by the soffit above",
+        "dictated to you by the eave above"
+      ],
+      [
+        "to the underside of the soffit.",
+        "to the underside of the eave."
+      ]
+    ],
+    "designing-a-complete-louvered-roof-system": [
+      [
+        "permanent soffit and exterior LED lighting",
+        "permanent exterior LED lighting"
+      ]
+    ],
+    "pool-remodeling-decisions-that-transform-an-old-pool": [
+      [
+        "permanent soffit LED lighting",
+        "permanent exterior LED lighting"
+      ]
+    ],
+    "pool-upgrades-worth-planning-before-construction": [
+      [
+        "permanent soffit and LED lighting",
+        "permanent exterior LED lighting"
+      ],
+      [
+        "conduit for landscape or soffit lighting",
+        "conduit for landscape or exterior lighting"
+      ]
+    ]
+  }
+}

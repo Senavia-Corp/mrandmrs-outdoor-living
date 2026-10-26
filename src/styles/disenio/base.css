@@ -32,20 +32,12 @@
 /* Los tres titulos. Color, peso y altura son los que Webflow ya da a h1/h2/h3
  * (navy, 700/500/400, 110 %/120 %/120 %): al ponerle la clase a un titulo
  * existente lo unico que cambia es el TAMANO. */
-.mm-tit-1 {
-  font-family: var(--mm-fuente);
-  font-size: var(--mm-paso-6);
-  font-weight: var(--mm-peso-negro);
-  line-height: var(--mm-alto-apretado);
-  color: var(--mm-tinta);
-}
 
 /* Escape para R10: una h1 de seccion AUN NO REDISENADA. Reproduce el escalon
  * 45/45/35/30 de Webflow y por tanto mueve 0 px en los 4 anchos de la puerta.
  * Se usa junto a la base -> class="mm-tit-1 mm-tit-1--paridad". Cuando la
  * seccion se redisene y se re-baselinice, se quita el modificador y se queda la
  * curva fluida. Es la unica diferencia entre las dos: el tamano. */
-.mm-tit-1--paridad { font-size: var(--mm-paso-h1-paridad); }
 
 .mm-tit-2 {
   font-family: var(--mm-fuente);
@@ -64,19 +56,11 @@
 }
 
 /* Entradilla: el parrafo que va bajo un titulo y lo explica. Paso 3 (el de h4). */
-.mm-guia {
-  font-family: var(--mm-fuente);
-  font-size: var(--mm-paso-3);
-  line-height: var(--mm-alto-cuerpo);
-  color: var(--mm-tinta-atenuada);
-}
 
 .mm-txt        { font-family: var(--mm-fuente); font-size: var(--mm-paso-2);
                  line-height: var(--mm-alto-cuerpo); color: var(--mm-tinta-cuerpo); }
 .mm-txt-menudo { font-family: var(--mm-fuente); font-size: var(--mm-paso-1);
                  line-height: var(--mm-alto-cuerpo); color: var(--mm-tinta-cuerpo); }
-.mm-txt-micro  { font-family: var(--mm-fuente); font-size: var(--mm-paso-0);
-                 line-height: var(--mm-alto-cuerpo); color: var(--mm-tinta-atenuada); }
 
 /* Rotulo / antetitulo. El `letter-spacing` de 1px es el que ya usa Webflow en
  * sus 2 declaraciones de espaciado positivo; no es un valor nuevo.
@@ -145,15 +129,14 @@
   padding-block: var(--mm-e-48);
   padding-inline: var(--mm-canal);
 }
-.mm-seccion--holgada { padding-block: var(--mm-e-64); }
 
 @media (min-width: 768px) {
   .mm-seccion          { padding-block: var(--mm-e-64); }
-  .mm-seccion--holgada { padding-block: var(--mm-e-96); }
+  
 }
 @media (min-width: 992px) {
   .mm-seccion          { padding-block: var(--mm-e-96); }
-  .mm-seccion--holgada { padding-block: var(--mm-e-128); }
+  
 }
 
 /* Contenedor. `--mm-ancho` es 1250px, el tope real de `.nav-menu` y el
@@ -171,9 +154,8 @@
 .mm-pila { display: flex; flex-direction: column; gap: var(--mm-e-16); }
 .mm-pila > * { margin-block: 0; }
 .mm-pila--16 { gap: var(--mm-e-16); }
-.mm-pila--24 { gap: var(--mm-e-24); }
+
 .mm-pila--32 { gap: var(--mm-e-32); }
-.mm-pila--48 { gap: var(--mm-e-48); }
 
 /* Rejilla que se reparte sola. `auto-fit` + `minmax` evita tener que declarar
  * un numero de columnas por breakpoint; `min()` impide que el minimo desborde
@@ -183,7 +165,6 @@
   gap: var(--mm-e-24);
   grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
 }
-.mm-rejilla--holgada { gap: var(--mm-e-32); }
 
 /* ── SUPERFICIES ──────────────────────────────────────────────────────────── */
 
@@ -194,14 +175,9 @@
   box-shadow: var(--mm-sombra-1);
   padding: var(--mm-e-24);
 }
-.mm-tarjeta--alta { box-shadow: var(--mm-sombra-2); }
 
 /* Bloque tenido: la superficie clara alternativa (#edf0f8, token real de
  * Webflow). Texto navy encima = 13,72:1. */
-.mm-tono {
-  background-color: var(--mm-fondo-tenue);
-  border-radius: var(--mm-r-24);
-}
 
 /* ── SECCION OSCURA ───────────────────────────────────────────────────────── */
 
@@ -226,7 +202,6 @@
   --mm-foco:            var(--mm-foco-inverso);
   color: var(--mm-tinta-cuerpo);
 }
-.mm-inverso--hondo { background-color: var(--mm-fondo-hondo); }
 
 /* Dentro de oscuro la tarjeta no lleva sombra: una sombra navy sobre navy no se
  * ve, solo ensucia. La separacion la hace el borde. */
@@ -268,16 +243,11 @@
  * claro es navy sobre blanco (15,60:1) y en `.mm-inverso` es blanco sobre navy
  * (15,60:1) sin una regla extra. El borde llega a 3:1 en los dos casos porque
  * ES la tinta, no un gris. */
-.mm-accion--linea {
-  background-color: transparent;
-  border-color: var(--mm-tinta);
-  color: var(--mm-tinta);
-}
+
 /* Va DESPUES de `.mm-accion:hover` a proposito: las dos reglas tienen la misma
  * especificidad (0,2,0), asi que gana la ultima. Es la misma mecanica por la
  * que `propio.css` gana a Webflow, y por la que aqui tampoco hace falta un
  * `!important`. */
-.mm-accion--linea:hover { background-color: transparent; border-color: var(--mm-accion); }
 
 /* ── ENLACE ───────────────────────────────────────────────────────────────── */
 

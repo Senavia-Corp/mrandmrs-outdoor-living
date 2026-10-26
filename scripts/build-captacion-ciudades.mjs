@@ -39,6 +39,13 @@ const P_CAPTA = path.join(RAIZ, 'src/data/captacion-servicios.json');
 const P_NEGOCIO = path.join(RAIZ, 'src/lib/negocio.mjs');
 
 const SOLO_COMPROBAR = process.argv.includes('--check');
+/* S2 (D-254, L3a de PUBLICAR, 25-oct-2026): la FAQ local de las 9 ciudades de D-252 vive en `texto-local.json`
+ * (2 preguntas con la ciudad en el enunciado, respuesta de 40-60 palabras que sale de una ruta del sitio y la
+ * enlaza). Aqui solo se monta detras de la de coste, que gana su enlace al estimador. */
+const TEXTO_LOCAL = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/texto-local.json'), 'utf8'));
+/* L3b: cada pregunta local trae su `tema` (permits, timing, financing, the license, the bid, change orders, the deposit, the
+ * price decisions); la entradilla se deriva de ellos. */
+const temaDe = (q) => q.tema ?? null;
 const leer = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
 
 /**
@@ -83,6 +90,19 @@ const BOTON_EVALUACION = 'Request My Project Evaluation';
 const LICENCIAS = LINEA_PISCINA;
 
 function entradaCaptacion(c) {
+  const e = entradaBase(c);
+  const local = TEXTO_LOCAL[rutaCiudad(c.slug)];
+  if (local?.faq?.length) {
+    const [coste, ...resto] = e.faq.anade;
+    e.faq.anade = [{ ...coste, enlace: { href: '/pool-cost-estimator', texto: 'Try the pool cost estimator' } }, ...local.faq, ...resto];
+    // Gainesville y Ocala conservan su pregunta de permisos del condado (conCondado): el tema entra en la entradilla.
+    const temas = ['cost', ...(c.condado ? ['permits'] : []), ...local.faq.map(temaDe)];
+    if (temas.some((t) => !t) || new Set(temas).size !== temas.length) throw new Error(`[captacion-ciudades] ${c.slug}: la FAQ local trae una pregunta sin tema o dos del mismo tema`);
+    e.faq.entradilla = `${temas[0][0].toUpperCase()}${temas[0].slice(1)}, ${temas.slice(1, -1).join(', ')}${temas.length > 2 ? ' and ' : ''}${temas[temas.length - 1]}: what is worth settling before you start a custom pool in ${c.ciudad}.`;
+  }
+  return e;
+}
+function entradaBase(c) {
   /* El condado solo entra en el copy si esta verificado. Sin el, la frase se escribe sin el
    * condado: una ciudad sin condado publicado es correcta; una con el condado equivocado, no. */
   const conCondado = !!c.condado;
@@ -101,22 +121,20 @@ function entradaCaptacion(c) {
        * de vender «Free Estimate» y pide una evaluacion del proyecto, que es lo que de verdad se
        * hace —visita, diseno 3D, alcance y precio por escrito—. «Free» sigue en la entradilla. */
       cta: CTA_EVALUACION,
-      /* El de SU region primero. En North Florida coincide con el orden de `telefonos.json`;
-       * en una ciudad de Broward o Palm Beach (fase 2) no, y ahi esta la razon de la clave. */
-      zonas: c.region === 'South Florida'
-        ? ['South Florida', 'North Florida']
-        : ['North Florida', 'South Florida'],
+      /* Hasta D-248 (25-oct-2026) aqui iba `zonas`, el orden de los dos telefonos con el de SU
+       * region primero. Con un solo numero no hay orden que declarar: el heroe lo lee de
+       * `telefonos.json` tal cual (`src/lib/captacion-ciudad.mjs`). */
     },
     confianza: {
       rotulo: 'Why homeowners pick us',
       tarjetas: [
-        { icono: 'manos', titulo: 'One design-build team',
+        { icono: 'plano', titulo: 'One design-build team',
           texto: 'Design, engineering, permits and construction under one roof.' },
-        { icono: 'escudo', titulo: 'Florida licensed pool contractor',
+        { icono: 'licencia', titulo: 'Florida licensed pool contractor',
           texto: `${DE_PISCINA.join(' and ')}, published on every page of this site.` },
-        { icono: 'plano', titulo: '3D design before you commit',
+        { icono: '3d', titulo: '3D design before you commit',
           texto: 'You review a 3D design of your pool before anything is dug.' },
-        { icono: 'contrato', titulo: 'Permits and code handled',
+        { icono: 'permisos', titulo: 'Permits and code handled',
           texto: `We pull the permits and coordinate the ${cond} inspections.` },
       ],
     },
@@ -153,25 +171,22 @@ function entradaCaptacion(c) {
     },
     faq: {
       titulo: `${c.ciudad} pool construction FAQs`,
+      /* D-257 (25-oct-2026, L2 de PUBLICAR): «Who pulls the permits for a pool in Florida?» y «What is included in a
+       * custom pool project?» eran las mismas que en la ficha de piscinas, palabra por palabra, en 51 y 53 ciudades
+       * (canibalizacion medida en D1). Salen; cada ciudad conserva solo preguntas con su ciudad o su condado. La FAQ
+       * local de verdad entra en L3a (S2). Filas T-244…T-246 de STITCH-TEXTO.md. */
       entradilla: conCondado
-        ? `Cost, permits and scope: the three things worth settling before you start a custom `
-          + `pool in ${cond}.`
-        : 'Cost, permits and scope: the three things worth settling before you start a custom pool.',
+        ? `Cost and permits: what is worth settling before you start a custom pool in ${cond}.`
+        : 'Cost: the first thing worth settling before you start a custom pool.',
       anade: [
         { pregunta: `How much does a custom pool cost in ${c.ciudad}?`,
           respuesta: 'There is no single number: a custom pool is priced from its own design, '
             + 'size, finishes and site conditions. Our estimator walks you through the choices '
             + 'that move the price, and you get a fixed project price in writing before you commit.' },
-        { pregunta: conCondado
-            ? `Who pulls the permits for a pool in ${cond}?`
-            : 'Who pulls the permits for a pool in Florida?',
+        ...(conCondado ? [{ pregunta: `Who pulls the permits for a pool in ${cond}?`,
           respuesta: 'We do. Permitting and code compliance are part of the build: we prepare '
             + `the submittal, pull the permits and coordinate the ${cond} inspections through to `
-            + 'final start-up.' },
-        { pregunta: 'What is included in a custom pool project?',
-          respuesta: 'Design and 3D rendering, engineering, permitting, excavation, the gunite '
-            + 'shell, plumbing and circulation, electrical and equipment, interior finish, tile '
-            + 'and coping, the deck, and final start-up.' },
+            + 'final start-up.' }] : []),
         /* SEO-SAFE (1-oct-2026): LA PREGUNTA LOCAL, SOLO DONDE HAY ALGO LOCAL QUE DECIR. La fila
          * puede traer `faqExtra`: objeciones propias de esa ciudad (que oficina revisa el permiso,
          * septico y caliza en North Florida) con su `_fuente` al lado, que no se publica. Hoy la

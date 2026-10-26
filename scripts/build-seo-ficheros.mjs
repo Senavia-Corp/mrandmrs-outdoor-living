@@ -31,7 +31,8 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import { esFicha, esCiudad, esCondado } from './lib/renombradas.mjs';
+import { esFicha, esCiudad, esCondado, LEGACY } from './lib/renombradas.mjs';
+import { fotoDeHeroe, rutasDeCiudad } from '../src/lib/heroe-ciudad.mjs';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
 const PUB = path.join(RAIZ, 'public');
@@ -44,6 +45,7 @@ const PROD = process.env.PUBLIC_ES_PRODUCCION === '1';
  */
 const SITIO = process.env.PUBLIC_SITE_URL || 'https://www.mrandmrsoutdoorliving.com';
 
+const RETIRADAS = new Set(LEGACY.map((l) => l.source));
 // Las 113 del sitemap del origen, tal cual, para no inventarse el orden ni el conjunto.
 const original = fs.readFileSync(path.join(RAIZ, 'baseline/sitemap.xml'), 'utf8');
 /**
@@ -57,7 +59,10 @@ const original = fs.readFileSync(path.join(RAIZ, 'baseline/sitemap.xml'), 'utf8'
  * del sitemap con el de las canonicas.
  */
 const delOrigen = [...original.matchAll(/<loc>([^<]+)<\/loc>/g)]
-  .map((m) => m[1].replace(/^https?:\/\/[^/]+/, SITIO));
+  .map((m) => m[1].replace(/^https?:\/\/[^/]+/, SITIO))
+  // D-195 (14-oct-2026): y sin las que ahora redirigen. Un source de redirect en el sitemap le
+  // pide a Google que indexe un 308; `check:redirects` (punto 6) lo pone en rojo.
+  .filter((u) => !RETIRADAS.has(new URL(u).pathname));
 
 /**
  * ADICIONES DELIBERADAS: rutas de autoría propia, que por definición no están en el sitemap
@@ -166,6 +171,29 @@ const imagenes = (() => {
     return [`${SITIO}${r}`, [...new Set(fotos)].map((f) => `${SITIO}${f}`)];
   }));
 })();
+/**
+ * Y EL HERO DE LAS 130 PAGINAS DE AREA (LOOP-AREAS, D-216). Sale de `fotoDeHeroe`, la misma funcion que
+ * lo pinta, que ya exige obra real terminada. Las tres de zona eligen su hero en su propio fichero
+ * (`build-paginas.mjs` para `/where-we-serve`, los `.astro` de las zonas), asi que aqui se declaran;
+ * `check:seo` coteja en produccion las 130 contra el `<img>` del hero construido, y una que se desvie sale roja.
+ */
+const ZONAS = {
+  '/where-we-serve': 'bi-0486',
+  '/where-we-serve/north-florida': JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/heroes-ciudad.json'), 'utf8')).bolsas['pool-builders'][0],
+  '/where-we-serve/south-florida': 'bi-0486',
+};
+{
+  const banco = new Map(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/banco-imagenes.json'), 'utf8')).map((e) => [e.id, e]));
+  const heroes = Object.entries(ZONAS).map(([r, id]) => [r, banco.get(id)?.src]);
+  for (const s of new Set(Object.keys(PAGINAS_CIUDAD_SERVICIO).map((r) => r.split('/')[2]).concat('pool-builders'))) {
+    for (const r of rutasDeCiudad(s)) heroes.push([r, fotoDeHeroe(r)?.src]);
+  }
+  for (const [r, src] of heroes) {
+    if (!src) throw new Error(`sitemap de imagenes: ${r} no tiene hero`);
+    const u = `${SITIO}${r}`;
+    imagenes.set(u, [...new Set([`${SITIO}${src}`, ...(imagenes.get(u) ?? [])])]);
+  }
+}
 for (const u of imagenes.keys()) {
   if (!locs.includes(u)) throw new Error(`sitemap de imagenes: ${u} no esta en el sitemap`);
 }
@@ -232,7 +260,8 @@ const llms = PROD ? (() => {
   const titulo = (r) => propia[r]?.title ?? base[r]?.title ?? tituloAstro(r);
   const desc = (r) => propia[r]?.description ?? base[r]?.meta?.description ?? '';
   const linea = (r, t = titulo(r), d = desc(r)) => `- [${t}](${SITIO}${r})${d ? `: ${d}` : ''}`;
-  const servicios = Object.keys(base).filter(esFicha).sort();
+  // D-249 (25-oct-2026): las rutas retiradas (source de un redirect historico) tampoco van en llms.txt.
+  const servicios = Object.keys(base).filter(esFicha).filter((r) => !RETIRADAS.has(r)).sort();
   const condados = Object.keys(base).filter(esCondado).sort();
   const posts = fs.existsSync(path.join(RAIZ, 'src/data/blogs-sanity.json'))
     ? lee('src/data/blogs-sanity.json') : [];

@@ -1,88 +1,49 @@
 ---
 /**
- * LA FICHA DE UNA OBRA DE AUTORIA PROPIA.
+ * LA FICHA DE UNA OBRA DE AUTORIA PROPIA (ASTRO-4 lote A).
  *
- * Reproduce el cuerpo de las 10 fichas derivadas de `/project/` —heroe, galeria con lightbox,
- * «Project Details» y CTA— para que una obra nuestra no se distinga de una migrada. El marcado
- * se copio de la ficha SANA `modern-pool-motorized-pergola-south-florida`, no de una de las 8
- * que emiten JSON-LD roto.
+ * Las 5 obras de `proyectos-propios.json` pintan la MISMA ficha que las 10 que salen del origen:
+ * el marcado lo escribe `src/lib/ficha-proyecto.mjs`, que es tambien el que usa
+ * `scripts/build-paginas.mjs` para aquellas. Aqui solo se le pasan los datos de la obra.
  *
- * TRES `data-w-id` REUTILIZADOS, NO INVENTADOS. Son los mismos que llevan las 10 fichas y estan
- * los tres en `src/data/reveals.json`, asi que la entrada por scroll funciona sin tocar nada.
- * Un `data-w-id` nuevo no casaria con ninguna clave, no recibiria `data-rev` y seria marcado
- * que miente: una entrada por scroll que no anima nunca (`Interacciones.astro:41` y la cabecera
- * de `src/pages/financing.astro`).
+ *   hero C (titular, relato y portada) · «Project Details» con sus tres datos, la accion y todas
+ *   las fotos a la vista · «More Projects» · banda de cierre · formulario (D-82).
  *
- * DOS COSAS DEL ORIGEN QUE NO SE COPIAN, y por que:
- *   · `<script type="text/x-wf-template">` — es el andamio del repetidor del CMS de Webflow,
- *     una copia URL-codificada del primer item. Aqui no hay repetidor que hidratar.
- *   · `<div class="w-dyn-hide w-dyn-empty">No items found.</div>` — el estado vacio de una
- *     coleccion que aqui no existe: la galeria la escribimos nosotros y nunca esta vacia.
- *
- * Y UNA QUE SE CORRIGE: el `alt` de la galeria. En las 10 del origen viene VACIO en todas las
- * imagenes. `check:galeria` solo lo informa, no falla por ello, pero replicar eso en contenido
- * nuestro seria heredar un defecto a proposito. Aqui cada foto lleva su alt real.
+ * Cada foto de la galeria lleva su `alt` real (en las del origen viene vacio) y sus medidas, que
+ * se leen del fichero: el JSON no las trae.
  */
+import path from 'node:path';
+import sharp from 'sharp';
+import { heroProyectoHtml, detalleProyectoHtml, cierreProyectoHtml, conAlt } from '../lib/ficha-proyecto.mjs';
+import { tramosMiga } from '../lib/miga-tramos.mjs';
+import TELEFONOS from '../data/telefonos.json';
+import CarruselProyectos from './widgets/CarruselProyectos.astro';
+import FormularioCore from './widgets/FormularioCore.astro';
+
 interface Props { obra: { tituloFicha: string; resumen: string; ubicacion: string;
   estilo: string; tipo: string; galeria: { src: string; alt: string }[] } }
 const { obra } = Astro.props;
+
+const esc = (t: string) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+const fotos = conAlt(await Promise.all(obra.galeria.map(async (f) => {
+  const m = await sharp(path.join(process.cwd(), 'public', f.src)).metadata();
+  if (!m.width || !m.height) throw new Error(`FichaObra: no puedo medir ${f.src}`);
+  return { ...f, w: m.width, h: m.height };
+})), obra.tituloFicha);
+const telefonos = TELEFONOS.items;
 ---
-<section class="hero-project">
-  <div class="w-layout-blockcontainer container w-container">
-    <div class="wrapper-hero-project">
-      <div data-w-id="4e3ac630-04d8-ebcf-c5f5-c24ea7e9ba56" class="block-right-hero">
-        <h1 class="white">{obra.tituloFicha}</h1>
-        <p>{obra.resumen}</p>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="project-gallery">
-  <div class="w-layout-blockcontainer container w-container">
-    <div class="wrapper-project-gallery">
-      <div class="block-left-project-page">
-        <div class="w-dyn-list">
-          <div role="list" class="cms-list-workgallery w-dyn-items">
-            {obra.galeria.map((f) => (
-              <div data-w-id="333e7244-2382-3d5a-9f96-e9d5e0ad3eae" role="listitem" class="collection-item-2 w-dyn-item w-dyn-repeater-item">
-                <a href="#" class="lightbox-link-2 w-inline-block w-lightbox">
-                  <img src={f.src} loading="lazy" alt={f.alt} class="image-animation" />
-                  <script type="application/json" class="w-json" is:inline set:html={JSON.stringify({ items: [{ url: f.src, type: 'image' }], group: 'Gallery' })} />
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-      <div class="block-right-project-page">
-        <div class="block-cta">
-          <div class="div-block-5">
-            <h2 class="blue">Project Details </h2>
-            <div class="heading-deco">Location</div>
-            <div>{obra.ubicacion}</div>
-            <div class="heading-deco">Design Style</div>
-            <div>{obra.estilo}</div>
-            <div class="heading-deco">Project Type</div>
-            <div>{obra.tipo}</div>
-          </div>
-        </div>
-        <div class="wrapper-buttons">
-          <a href="/request-estimated" class="button-styles w-button">Get a Free Estimate</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="cta-footer">
-  <div class="w-layout-blockcontainer container w-container">
-    <div class="wrapper-cta-footer">
-      <div data-w-id="1751d21a-c7f6-4875-4d5c-669cd0d5b935" class="wrapper-vertical-text">
-        <h2>Request a Design-Build Project Evaluation</h2>
-        <div class="text-block-3">Share your property details, project scope, and investment range. Our licensed design-build pool builders will review your request and confirm alignment before next steps.</div>
-        <div class="wrapper-buttons-center">
-          <a href="/request-estimated" class="button button-styles w-button">Get a Free Estimate</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<Fragment set:html={heroProyectoHtml({ tituloHtml: esc(obra.tituloFicha), resumenHtml: esc(obra.resumen), fotos, tramos: tramosMiga(`/project/${obra.slug}`) })} />
+<Fragment set:html={detalleProyectoHtml({
+  tituloHtml: 'Project Details',
+  datos: [['Location', obra.ubicacion], ['Design Style', obra.estilo], ['Project Type', obra.tipo]],
+  fotos,
+  accion: { href: '/request-estimated', texto: 'Get a Free Estimate' },
+  telefonos,
+})} />
+<CarruselProyectos />
+<Fragment set:html={cierreProyectoHtml({
+  tituloHtml: 'Request a Design-Build Project Evaluation',
+  parrafoHtml: 'Share your property details, project scope, and investment range. Our licensed design-build pool builders will review your request and confirm alignment before next steps.',
+  telefonos,
+})} />
+<FormularioCore />

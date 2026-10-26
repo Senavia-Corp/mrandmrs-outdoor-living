@@ -104,8 +104,12 @@ const filtro = process.argv[2];
 // el guard de Componentes.astro (a.closest('.gallery-page'))-, las abre el lightbox partido de
 // GalleryLeadLightbox.astro/.mm-lbx en su lugar. Cubierto por check-galeria-formulario.mjs.
 const MUESTRA = filtro ? [filtro] : [
-  '/services/pool-builders/alachua-county-fl',             // lightbox-link, grupo «images»
-  '/project/luxury-pool-spa-screen-enclosure-north-florida',     // lightbox-link-2, grupo «Gallery»
+  // ASTRO-2 (12-oct-2026): era `/services/pool-builders/alachua-county-fl`; los condados pasan a
+  // mosaico (`check:mosaico`) y la unica ruta que conserva este marcado es `/industry-solutions`.
+  '/industry-solutions',                                         // lightbox-link, grupo «images»
+  // ASTRO-4 (12-oct-2026): la segunda muestra era una ficha de `/project/` (`lightbox-link-2`). Ese
+  // marcado ya no existe en ninguna ruta: las fotos de proyecto son botones del visor nuevo, y lo
+  // mide `check:mosaico` en una ficha de proyecto.
 ];
 const ANCHOS = [[390, 844], [1440, 900]];
 
@@ -132,7 +136,8 @@ if (!portada.includes('mrandmrsoutdoorliving')) {
   servidor.close(); process.exit(1);
 }
 
-const nav = await chromium.launch();
+// `MM_MOTOR=webkit`: el mismo guion en el motor de Safari (E6). Por defecto, Chromium.
+const nav = await (process.env.MM_MOTOR === 'webkit' ? (await import('playwright')).webkit : chromium).launch();
 const mal = { noAbre: [], salto: [], chicos: [], noPasa: [], noCierraEsc: [], noCierraVelo: [], foco: [], mudas: [] };
 let nombradas = 0;
 let medidas = 0;

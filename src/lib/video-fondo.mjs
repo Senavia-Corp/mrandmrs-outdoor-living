@@ -31,11 +31,15 @@
 /** nombre → { póster de Webflow, ancho y alto del fotograma, ¿héroe? }. Lo lee también
  *  `scripts/build-posters-video.mjs`, que genera los derivados en `/images/site/posters/`. */
 export const POSTERS = {
-  'bg-video-1': { fichero: 'bg-video-1-poster.0000000.jpg', w: 1280, h: 720, heroe: true }, // home
+  // ASTRO-4: el hero de la home es partido (foto a media pantalla en escritorio y franja apaisada en
+  // movil): pinta el fotograma apaisado a todos los anchos, sin el recorte 9:16 de los heroes a sangre.
+  'bg-video-1': { fichero: 'bg-video-1-poster.0000000.jpg', w: 1280, h: 720, heroe: true, partido: true }, // home
   'bg-video': { fichero: 'bg-video-poster.0000000.jpg', w: 1280, h: 534, heroe: true }, // 55 de zona
   'bg-video-3d': { fichero: 'bg-video-3d-poster.0000000.jpg', w: 1280, h: 720, heroe: false }, // 3D
 };
-export const ANCHOS = [640, 960, 1280];
+// E5 (D-155): entra 800. El hero partido de la home pinta el poster a todo el ancho en movil, y a
+// 390 px con pantalla ×2 hacen falta 780: sin el, se bajaba el de 960.
+export const ANCHOS = [640, 800, 960, 1280];
 /** Ancho del recorte móvil 9:16 a resolución nativa (no se escala hacia arriba). */
 export const anchoMovil = (h) => Math.round((h * 9) / 16);
 
@@ -51,10 +55,13 @@ const sizesHeroe = ({ w, h }) =>
   `(max-aspect-ratio: ${w}/${h}) ${Math.round((w / h) * 100)}vh, 100vw`;
 /** La 3D es un bloque dentro del contenedor: 342 px a 390, 704 a 768, 1250 a 1440 (medido). */
 const SIZES_3D = '(max-width: 991px) 92vw, 1250px';
+/** El hero partido de la home: media pantalla desde 992, el ancho entero por debajo. */
+const SIZES_PARTIDO = '(min-width: 992px) 50vw, 100vw';
 
 /** Atributos de la imagen que el héroe precarga en el `<head>` (misma URL que pinta). */
 export function precargaPoster(nombre) {
   const p = POSTERS[nombre];
+  if (p.partido) return [{ media: undefined, imagesrcset: srcset(nombre, 'avif'), imagesizes: SIZES_PARTIDO }];
   const m = anchoMovil(p.h);
   return [
     { media: '(max-width: 767px)', imagesrcset: `${DIR}/${nombre}-m-${m}.avif ${m}w`, imagesizes: '100vw' },
@@ -62,21 +69,24 @@ export function precargaPoster(nombre) {
   ];
 }
 
-function picture(nombre) {
+const sinHtml = (t) => String(t ?? '').replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+const altA = (t) => String(t).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+/* L6 de PUBLICAR (D-260): el poster no es decorativo; su alt es el titular (h1/h2) mas cercano por delante del video. */
+function picture(nombre, alt = '') {
   const p = POSTERS[nombre];
   const fuentes = [];
-  if (p.heroe) {
+  if (p.heroe && !p.partido) {
     const m = anchoMovil(p.h);
     fuentes.push(`<source media="(max-width: 767px)" type="image/avif" srcset="${DIR}/${nombre}-m-${m}.avif ${m}w" sizes="100vw">`);
     fuentes.push(`<source media="(max-width: 767px)" type="image/webp" srcset="${DIR}/${nombre}-m-${m}.webp ${m}w" sizes="100vw">`);
   }
-  const sizes = p.heroe ? sizesHeroe(p) : SIZES_3D;
+  const sizes = p.partido ? SIZES_PARTIDO : p.heroe ? sizesHeroe(p) : SIZES_3D;
   fuentes.push(`<source type="image/avif" srcset="${srcset(nombre, 'avif')}" sizes="${sizes}">`);
   // El del heroe es el LCP: sin `decoding="async"`, que puede retrasar su primer pintado.
   const carga = p.heroe ? 'loading="eager" fetchpriority="high"' : 'loading="lazy" decoding="async"';
   return `<picture class="mm-video-poster-marco">${fuentes.join('')}`
     + `<img class="mm-video-poster" src="${DIR}/${nombre}-1280.webp" srcset="${srcset(nombre, 'webp')}" sizes="${sizes}"`
-    + ` width="${p.w}" height="${p.h}" alt="" ${carga}></picture>`;
+    + ` width="${p.w}" height="${p.h}" alt="${altA(alt)}" ${carga}></picture>`;
 }
 
 /* El `<noscript>` y el boton de pausa son OPCIONALES: los heroes de las 55 de zona no los traen
@@ -89,8 +99,10 @@ const RE_BLOQUE = /(<div data-poster-url="\/images\/site\/([a-z0-9-]+)-poster\.0
  */
 export function videoFondo(html) {
   let heroe = null;
-  const out = html.replace(RE_BLOQUE, (todo, div, nombre, video, fuentes, control) => {
+  const out = html.replace(RE_BLOQUE, (todo, div, nombre, video, fuentes, control, desde) => {
     const p = POSTERS[nombre];
+    const previo = [...html.slice(0, desde).matchAll(/<h([12])[^>]*>([\s\S]*?)<\/h\1>/g)].pop();
+    const titulo = previo ? sinHtml(previo[2]) : '';
     if (!p) return todo; // un vídeo que no conocemos se queda como estaba: falla abierto
     if (p.heroe && !heroe) heroe = nombre;
     const v = video
@@ -102,7 +114,10 @@ export function videoFondo(html) {
     // codecs propietarios). Ninguna se pide hasta que el cargador copia `data-src` a `src`.
     const src = [...fuentes.matchAll(/<source src="([^"]+)"[^>]*>/g)]
       .map(([, u]) => `<source data-src="${u}" type="video/${u.endsWith('.webm') ? 'webm' : 'mp4'}">`).join('');
-    return `${div}${picture(nombre)}${v}${src}</video>${control ? '<div aria-live="polite" hidden>' : ''}`;
+    return `${div}${picture(nombre, titulo)}${v}${src}</video>${control ? '<div aria-live="polite" hidden>' : ''}`;
   });
-  return { html: out, heroe };
+  /* L1 (D-255, punto 7): los dos iconos de los controles (`play-24.svg`, `pause.svg`) llegan del origen sin
+   * `width`/`height`; la pagina los pinta a 24 px. Se les ponen aqui, que es por donde pasan los 80 bloques. */
+  const conMedidas = out.replace(/<img\b(?![^>]*\bwidth=)([^>]*\bsrc="\/images\/site\/(?:play-24|pause)\.svg"[^>]*)>/g, '<img$1 width="24" height="24">');
+  return { html: conMedidas, heroe };
 }

@@ -21,13 +21,17 @@ const ORIGEN = process.env.BANCO_ORIGEN || '/Users/senavia/Documents/Pictures Mr
 const SERVICIOS = ['construction', 'remodeling', 'pergolas', 'louvered', 'rooms', 'enclosures', 'screens',
   'kitchens', 'decks', 'landscaping', 'irrigation', 'lighting', 'furniture', 'pole'];
 const ETAPAS = ['terminado', 'construccion', 'antes'];
-const ESTADOS = ['aprobada', 'aprobada_con_recorte', 'rechazada', 'dudosa', 'duplicado'];
+const ESTADOS = ['aprobada', 'aprobada_con_recorte', 'ambiente', 'rechazada', 'dudosa', 'duplicado'];
+// `ambiente`: se sirve pero NO es obra (IA, render de software). No empieza por «aprobada» a propósito:
+// quien filtre por startswith("aprobada") nunca la recibe. `uso` dice para qué vale y fija la carpeta.
+const USOS = { ambiente: 'ia', 'diseno-3d': 'render' };
 const PROCEDENCIAS = ['obra_real', 'generada_ia', 'stock', 'no_es_del_cliente', 'dudosa'];
 const SLUG = /^\/images\/banco\/([a-z]+)\/([a-z0-9]+(?:-[a-z0-9]+)*)\.webp$/;
 const VETADO = /(^|-)(north|south|img|dsc|whatsapp)(-|$)/;
 
 const banco = JSON.parse(fs.readFileSync(INDICE, 'utf8'));
 const aprobada = (e) => e.estado.startsWith('aprobada');
+const servida = (e) => aprobada(e) || e.estado === 'ambiente';
 const enDisco = (e) => path.join(PUB, e.src);
 
 if (process.argv.includes('--check')) {
@@ -40,7 +44,7 @@ if (process.argv.includes('--check')) {
     if (!PROCEDENCIAS.includes(e.procedencia)) mal(e, `procedencia «${e.procedencia}»`);
     if (!e.origen || !e.sha256) mal(e, 'sin origen o sin sha256');
     if (e.estado === 'duplicado' && !ids.has(e.duplicado_de) && !banco.some(x => x.id === e.duplicado_de)) mal(e, 'duplicado_de no existe');
-    if (!aprobada(e) && e.estado !== 'dudosa') continue;
+    if (!servida(e) && e.estado !== 'dudosa') continue;
     // de aquí abajo: lo que una sesión futura puede llegar a publicar
     if (!ETAPAS.includes(e.etapa)) mal(e, `etapa «${e.etapa}»`);
     if (!e.servicios?.length || e.servicios.some(s => !SERVICIOS.includes(s))) mal(e, `servicios «${e.servicios}»`);
@@ -48,24 +52,26 @@ if (process.argv.includes('--check')) {
     const m = SLUG.exec(e.src ?? '');
     if (!m) mal(e, `src fuera de norma: ${e.src}`);
     else {
-      if (m[1] !== e.servicios?.[0]) mal(e, 'la carpeta no es la del servicio protagonista');
+      if (e.estado === 'ambiente' ? m[1] !== USOS[e.uso] : m[1] !== e.servicios?.[0]) mal(e, 'la carpeta no es la del servicio protagonista (o la de su `uso`)');
       if (VETADO.test(m[2])) mal(e, `slug con palabra vetada: ${m[2]}`);
       if (m[2].length > 70) mal(e, 'slug de más de 70 caracteres');
     }
     if (srcs.has(e.src)) mal(e, `src repetido: ${e.src}`); srcs.add(e.src);
-    if (!aprobada(e)) continue;
-    if (e.procedencia !== 'obra_real') mal(e, `aprobada con procedencia «${e.procedencia}»`);
+    if (!servida(e)) continue;
+    if (aprobada(e) && e.procedencia !== 'obra_real') mal(e, `aprobada con procedencia «${e.procedencia}»`);
+    if (e.estado === 'ambiente' && (e.procedencia === 'obra_real' || !USOS[e.uso])) mal(e, `ambiente con procedencia «${e.procedencia}» o uso «${e.uso}»`);
     if (!fs.existsSync(enDisco(e))) { mal(e, 'aprobada sin fichero en disco'); continue; }
     const md = await sharp(enDisco(e)).metadata();
     if (md.exif || md.xmp || md.iptc) mal(e, 'el derivado conserva metadatos (EXIF/XMP/IPTC)');
     if (md.width !== e.ancho || md.height !== e.alto) mal(e, `dimensiones ${md.width}×${md.height} ≠ índice`);
   }
-  const servidos = new Set(banco.filter(aprobada).map(e => e.src));
+  const servidos = new Set(banco.filter(servida).map(e => e.src));
   const huerfanos = fs.existsSync(BANCO)
-    ? fs.readdirSync(BANCO, { recursive: true }).filter(f => f.endsWith('.webp')).map(f => '/images/banco/' + f.split(path.sep).join('/')).filter(u => !servidos.has(u))
+    // las variantes de ancho (`-mm640.webp`, de `npm run variantes`) cuelgan de una foto aprobada: no son huerfanas si su foto esta
+    ? fs.readdirSync(BANCO, { recursive: true }).filter(f => f.endsWith('.webp')).map(f => '/images/banco/' + f.split(path.sep).join('/')).filter(u => !servidos.has(u.replace(/-mm\d+\.webp$/, '.webp')))
     : [];
-  for (const u of huerfanos) { console.log(`  🔴 fichero sin entrada aprobada: ${u}`); fallos++; }
-  console.log(fallos ? `\n🔴 banco: ${fallos} fallo(s)` : `✅ banco: ${banco.length} entradas, ${servidos.size} aprobadas con fichero, sin metadatos`);
+  for (const u of huerfanos) { console.log(`  🔴 fichero sin entrada servida: ${u}`); fallos++; }
+  console.log(fallos ? `\n🔴 banco: ${fallos} fallo(s)` : `✅ banco: ${banco.length} entradas, ${servidos.size} servidas con fichero (${banco.filter(e => e.estado === 'ambiente').length} de ambiente, no obra), sin metadatos`);
   process.exit(fallos ? 1 : 0);
 }
 
@@ -74,7 +80,7 @@ if (process.argv.includes('--hojas')) {
   const W = 480, H = 360, PAD = 8, LAB = 30, COLS = 4, ROWS = 3;
   const dir = path.join(ROOT, 'banco/hojas');
   fs.rmSync(dir, { recursive: true, force: true }); fs.mkdirSync(dir, { recursive: true });
-  const grupos = Object.groupBy(banco.filter(aprobada), e => `${e.servicios[0]}-${e.etapa}`);
+  const grupos = Object.groupBy(banco.filter(servida), e => e.estado === 'ambiente' ? `NO-OBRA-${USOS[e.uso]}` : `${e.servicios[0]}-${e.etapa}`);
   for (const [g, lista] of Object.entries(grupos)) {
     for (let i = 0, h = 1; i < lista.length; i += COLS * ROWS, h++) {
       const comp = [];
@@ -94,7 +100,7 @@ if (process.argv.includes('--hojas')) {
 
 // derivar: WebP, 1600 px de lado largo, q80. sharp re-codifica desde píxeles y no copia EXIF.
 let hechos = 0;
-for (const e of banco.filter(aprobada)) {
+for (const e of banco.filter(servida)) {
   const dst = enDisco(e);
   const medidas = (i) => {
     e.ancho = i.width; e.alto = i.height;
@@ -122,4 +128,4 @@ for (const e of banco.filter(aprobada)) {
   hechos++;
 }
 fs.writeFileSync(INDICE, JSON.stringify(banco, null, 2) + '\n');
-console.log(`derivadas ${hechos}; aprobadas en total ${banco.filter(aprobada).length}`);
+console.log(`derivadas ${hechos}; aprobadas en total ${banco.filter(aprobada).length}; de ambiente ${banco.filter(e => e.estado === 'ambiente').length}`);

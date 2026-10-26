@@ -1,0 +1,24 @@
+{
+  "_lee_esto": [
+    "LAS FOTOS DE SECCION DE LAS 14 FICHAS DE /services/ (ASTRO-2, tras D-117): FAQ, cierre y resenas,",
+    "por ese orden. Ids del banco. Con las 10 fotos de la galeria a la vista ya no pueden salir de",
+    "ella sin repetirse, asi que salen del banco del servicio.",
+    "ELEGIDAS EN HOJA DE CONTACTOS (12-oct-2026). `build-paginas.mjs` las valida: obra_real, aprobada,",
+    "etapa terminado, apaisada, etiquetada con el servicio y que no sea la del hero de la ficha.",
+    "Lista corta o vacia = variante sin foto en lo que falte. Riego, screen rooms y jaulas no tienen",
+    "ninguna valida en el banco; pantallas retractiles, una."
+  ],
+  "/services/deck-builders": ["bi-0077"],
+  "/services/landscaping": ["bi-0305", "bi-0310", "bi-0324"],
+  "/services/louvered-roofs": ["bi-0220", "bi-0168", "bi-0224"],
+  "/services/outdoor-furniture": ["bi-0235", "bi-0768", "bi-1279"],
+  "/services/outdoor-kitchens": ["bi-0479", "bi-0503", "bi-0771"],
+  "/services/pergola-builders": ["bi-0842", "bi-0897", "bi-0796"],
+  "/services/pool-builders": ["bi-0501", "bi-0504", "bi-1039"],
+  "/services/pool-remodeling": ["bi-0519", "bi-0520"],
+  "/services/retractable-screens": ["bi-1275"],
+  "/services/steel-buildings-pole-barns": ["bi-1089", "bi-1099", "bi-1096"],
+  "/services/irrigation-systems": [],
+  "/services/patio-screen-rooms": [],
+  "/services/pool-screen-enclosures": []
+}

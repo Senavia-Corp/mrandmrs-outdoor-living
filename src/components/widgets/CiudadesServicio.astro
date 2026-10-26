@@ -1,29 +1,128 @@
 ---
 /**
- * LAS CIUDADES DE UN SERVICIO, EN SU FICHA (LOOP-CIUDADES, 5-oct-2026).
+ * EL BUSCADOR DE CIUDADES DE UNA FICHA (CIUDADES-BUSCADOR, 17-oct-2026).
  *
- * La ficha `/services/<servicio>` enlaza a sus landings `/services/<servicio>/<ciudad>-fl`: sin esto
- * las paginas nuevas solo las enlazarian sus hermanas, y la ficha —la pagina con autoridad del
- * servicio— no diria donde se presta. Va detras de «Where We Serve» (`section.location`), que es
- * donde el visitante ya esta mirando por zonas.
+ * La ficha `/services/<servicio>` enlaza a sus landings `/services/<servicio>/<ciudad>-fl`. Hasta hoy
+ * era una linea de texto corrido con hasta 53 enlaces de 19 px de alto y sin separacion entre ellos
+ * (medido a 320..1920): ilegible en movil y casi imposible de pulsar. Ahora es el indice de ciudades
+ * de «Where We Serve», en su misma banda: titulo propio, cuenta real, un campo de busqueda, un chip
+ * por condado con su cuenta y una rejilla de tarjetas-enlace agrupadas por condado bajo un `<h3>`.
  *
- * NO ES UNA `<section>` A PROPOSITO: `check-estructura-servicios.mjs` exige un solo orden de
- * secciones en las 14 fichas, y esto es una linea de enlaces, no un bloque nuevo. Reusa la clase
- * de la linea de fuentes de la FAQ (`mm-faq-fuentes`), asi que no cuesta CSS.
+ * ES UNA `<section>` A PROPOSITO (antes era un `div` para no tocar `check-estructura-servicios.mjs`):
+ * lleva H2, y un H2 fuera de `<section>` rompe el patron de las demas fichas. La puerta la admite
+ * como seccion OPCIONAL detras de `mm-zonas` (las 7 fichas sin landings no la pintan, ni un byte).
  *
- * Una ficha sin landings no pinta NADA (ni un byte): las fichas sin ciudades salen como estaban.
- * Se localiza por `Astro.url.pathname`, como los demas widgets que inserta `build-paginas.mjs`.
+ * MEJORA PROGRESIVA. Sin JS se ven las N tarjetas agrupadas por condado con sus `<h3>` —lo que ve
+ * Googlebot—; el campo y los chips nacen `hidden` y el script los enciende. Filtrar pone `hidden` a
+ * la tarjeta y al grupo vacio, nunca los quita del DOM. El script va `is:inline` para correr durante
+ * el parseo y no desplazar nada despues del primer pintado (cero CLS). Sin `localStorage`, sin `?q=`.
+ *
+ * Los datos y las cadenas salen de `ciudadesDeFicha()` (servicios-ciudad.mjs), la misma funcion que
+ * declara `check-texto.mjs` y que lista las ciudades en el JSON-LD. El pin es UN `<symbol>` por
+ * pagina y 53 `<use>`, no 53 trazados.
  */
-import DATOS from '../../data/ciudades-servicios.json';
 import { ciudadesDeFicha } from '../../lib/servicios-ciudad.mjs';
 
 const ruta = Astro.url.pathname.replace(/(.)\/$/, '$1');
-const L = ciudadesDeFicha(ruta, DATOS.paginas);
+const F = ciudadesDeFicha(ruta);
+const condadosConPagina = F ? F.condados.filter((c) => c.href) : [];
 ---
-{L && (
-  <div class="w-layout-blockcontainer container w-container mm-ciudades-servicio">
-    <p class="grey mm-faq-fuentes">{L.rotulo}:{' '}
-      {L.ciudades.map((c, i) => (<>{i ? ' · ' : ''}<a href={c.href}>{c.nombre}</a></>))}
-    </p>
-  </div>
+{F && (
+  <section class="mm-ciudades" id="ciudades" data-mm-ciudades>
+    <svg hidden aria-hidden="true" focusable="false"><symbol id="mm-pin" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 4.9 5.6 11.2 6.3 11.9a1 1 0 0 0 1.4 0C13.4 20.2 19 13.9 19 9a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></symbol><symbol id="mm-ir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></symbol></svg>
+    <div class="mm-ciudades-caja">
+      <div class="mm-ciudades-cab">
+        <h2 class="mm-h2">{F.titulo}</h2>
+        <p class="mm-ciudades-apoyo">{F.apoyo}</p>
+      </div>
+      {F.buscador && (
+        <div class="mm-ciudades-ctl" hidden data-mm-ctl>
+          <div class="mm-ciudades-campo">
+            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <label class="mm-sr" for="mm-ciudades-q">{F.textos.buscar}</label>
+            <input class="mm-ciudades-q" id="mm-ciudades-q" type="search" placeholder={F.textos.buscar} autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" />
+            <button type="button" class="mm-ciudades-x" aria-label={F.textos.limpiar} hidden data-mm-x><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+          </div>
+          <div class="mm-ciudades-chips" role="group" aria-label={F.textos.filtro}>
+            <button type="button" class="mm-chip" aria-pressed="true" data-condado="">{F.textos.todas} <span class="mm-chip-n">{F.total}</span></button>
+            {F.condados.map((c) => (
+              <button type="button" class="mm-chip" aria-pressed="false" data-condado={c.slug}>{c.nombre} <span class="mm-chip-n">{c.cuenta}</span></button>
+            ))}
+          </div>
+          <p class="mm-ciudades-estado" aria-live="polite" data-mm-estado></p>
+        </div>
+      )}
+      {F.condados.map((c) => (
+        <div class="mm-ciudades-grupo" data-grupo={c.slug}>
+          <h3 class="mm-ciudades-h3"><span>{c.nombre} <span class="mm-ciudades-n">{c.cuenta}</span></span></h3>
+          <ul class="mm-ciudades-rejilla">
+            {c.ciudades.map((x) => (
+              <li><a class="mm-ciudad" href={x.href} data-q={x.nombre}>
+                <svg class="mm-ciudad-pin" aria-hidden="true" focusable="false"><use href="#mm-pin"/></svg>
+                <span class="mm-ciudad-n">{x.nombre}</span>
+                <span class="mm-ciudad-s">{F.servicio}</span>
+                <svg class="mm-ciudad-f" aria-hidden="true" focusable="false"><use href="#mm-ir"/></svg>
+              </a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+      {F.buscador && <p class="mm-ciudades-vacio" hidden data-mm-vacio>{F.textos.vacio}</p>}
+      <div class="mm-ciudades-pie">
+        {F.zonas.map((z) => (
+          <a class="mm-flecha" href={z.href}>{z.texto}<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+        ))}
+        {F.buscador && condadosConPagina.map((c) => (
+          <a class="mm-flecha" href={c.href} hidden data-pie-condado={c.slug}>{c.nombre}<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+        ))}
+      </div>
+    </div>
+    {F.buscador && (
+      <script is:inline>
+        (() => {
+          const s = document.querySelector('[data-mm-ciudades]');
+          const ctl = s && s.querySelector('[data-mm-ctl]');
+          if (!ctl) return;
+          ctl.hidden = false;
+          const q = ctl.querySelector('input');
+          const x = ctl.querySelector('[data-mm-x]');
+          const chips = [...ctl.querySelectorAll('[data-condado]')];
+          const estado = ctl.querySelector('[data-mm-estado]');
+          const grupos = [...s.querySelectorAll('[data-grupo]')];
+          const vacio = s.querySelector('[data-mm-vacio]');
+          const pies = [...s.querySelectorAll('[data-pie-condado]')];
+          const norm = (t) => t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
+          let condado = '';
+          const filtra = () => {
+            const t = norm(q.value);
+            x.hidden = !t;
+            let n = 0;
+            for (const g of grupos) {
+              let m = 0;
+              for (const li of g.querySelectorAll('li')) {
+                const ok = (!condado || g.dataset.grupo === condado) && (!t || norm(li.firstElementChild.dataset.q).includes(t));
+                li.hidden = !ok;
+                if (ok) m++;
+              }
+              g.hidden = !m;
+              n += m;
+            }
+            vacio.hidden = n > 0;
+            for (const p of pies) p.hidden = p.dataset.pieCondado !== condado;
+            const chip = chips.find((b) => b.dataset.condado === condado);
+            estado.textContent = `${n} ${n === 1 ? 'city' : 'cities'}${condado ? ` in ${chip.firstChild.textContent.trim()}` : ''}`;
+          };
+          q.addEventListener('input', filtra);
+          x.addEventListener('click', () => { q.value = ''; filtra(); q.focus(); });
+          for (const b of chips) {
+            b.addEventListener('click', () => {
+              condado = b.dataset.condado;
+              for (const x of chips) x.setAttribute('aria-pressed', String(x === b));
+              filtra();
+            });
+          }
+        })();
+      </script>
+    )}
+  </section>
 )}

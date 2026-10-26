@@ -140,6 +140,13 @@ lista(noPermanentes.map((r) => r.source));
  * Sigue siendo falsable: si el destino desaparece, la comprobacion de arriba lo dice igual.
  */
 const SIN_ENLACE_INTERNO = new Map([
+  ['/services/soffit-led-lighting',
+    'D-249 (25-oct-2026): el servicio Smart Soffit & LED Lighting se retira del sitio y su URL pasa, con 308, '
+    + 'a /services/louvered-roofs. Era publica y estaba en el sitemap: el redirect es para el indice y los enlaces '
+    + 'de fuera. Dentro sale del menu, el pie, los indices y los formularios, no se repunta.'],
+  ['/services/smart-soffit-led-lighting-installation-in-north-south-florida',
+    'D-249 (25-oct-2026): la URL vieja de Webflow del mismo servicio retirado apunta directa al destino final, '
+    + 'sin cadena; nadie de dentro la enlaza.'],
   ['/where-we-serves/custom-pool-builders-north-florida',
     'Tier 1 de SEO-URLS-PLAN.md: renombrada a /where-we-serve/north-florida el 3-sep-2026. Los '
     + 'enlaces internos apuntan ya a la nueva; este 301 es para el indice de Google.'],
@@ -183,6 +190,10 @@ const SIN_ENLACE_INTERNO = new Map([
     'Ruta heredada que ya devolvia 404 antes de la migracion. 11 impresiones en posicion 8,3. '
     + 'Destino a criterio: la excavacion es parte de la construccion de piscina. Si se decide '
     + 'que no procede, se borra la entrada y se deja el 404 — pero que sea una decision.'],
+  ['/project/luxury-pool-spa-screen-enclosure-north-florida',
+    'D-195 (14-oct-2026): la ficha se retira y su URL pasa a la hermana, que lleva el mismo '
+    + 'titulo. Era publica y estaba en el sitemap: el 301 es para el indice y los enlaces de '
+    + 'fuera. Dentro sale de /projects y de las listas de proyectos, no se repunta.'],
 ]);
 
 /**
@@ -260,6 +271,28 @@ check(`${pedidos.size - fuera.length}/${pedidos.size} ficheros de public/ pedido
 lista(fuera);
 console.log('     (git ls-files, no el disco: el disco es esta maquina, donde acaba de');
 console.log('      dejarlo todo el instalador, y por eso nunca puede ver el fallo)');
+
+/* ── D-198 / D-199 (14-oct-2026): TODO `href="#x"` LLEGA A ALGUN SITIO ──────────────────────────
+ * Un ancla a la misma pagina sin destino no hace nada al pulsarla, y nada lo avisa: ni da 404 ni
+ * sale en un rastreo. Paso dos veces: el salto del nav (`#contenido`) en /financing y las 10 de
+ * /gallery/*, cuyas plantillas traen su propio `<main>` sin el `id` que pone Base (D-198); y el
+ * «Get a Free Estimate» de los articulos en las 9 de condado, a un `#estimate` que no existe porque
+ * los condados no tienen formulario (D-199). Se mide en TODAS las paginas, fuera de los `<script>`
+ * (citan selectores con `href="#..."`); vale un `id` o un `<a name>` de la misma pagina. */
+const anclasMal = []; let anclas = 0, conAnclas = 0;
+for (const f of ficheros.filter((x) => x.endsWith('.html'))) {
+  const t = fs.readFileSync(f, 'utf8').replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, '');
+  const destinos = new Set([...t.matchAll(/\sid="([^"]+)"/g), ...t.matchAll(/<a\b[^>]*\sname="([^"]+)"/g)].map((m) => m[1]));
+  const pedidas = new Set([...t.matchAll(/\shref="#([^"]+)"/g)].map((m) => m[1]));
+  if (pedidas.size) conAnclas++;
+  for (const x of pedidas) {
+    anclas++;
+    if (!destinos.has(x)) anclasMal.push(`/${path.relative(ESTATICO, f).replace(/(^|\/)index\.html$/, '')} -> #${x}`);
+  }
+}
+check(`${conAnclas} paginas con anclas a si mismas (${anclas} anclas en total): todas con su destino en la pagina`,
+  anclasMal.length === 0, `${anclasMal.length} sin destino`);
+lista(anclasMal, 12);
 
 console.log(`\n${fallos === 0 ? 'PUERTA VERDE' : `PUERTA ROJA — ${fallos} fallo(s)`}\n`);
 process.exit(fallos ? 1 : 0);

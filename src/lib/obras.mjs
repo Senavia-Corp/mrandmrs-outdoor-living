@@ -17,8 +17,12 @@
  */
 
 /** El `<head>` de la obra: los `meta` og/twitter y el bloque JSON-LD, listos para `<Base seo>`. */
+import { SITIO } from './negocio.mjs';
+/* L5 de PUBLICAR (6.5): `about` es una obra (CreativeWork, no Project, que en schema.org es una organizacion) y las
+ * URL van absolutas, que es lo que un consumidor fuera de la pagina puede resolver. */
 export function seoDeObra(o) {
-  const url = `/project/${o.slug}`;
+  const url = `${SITIO}/project/${o.slug}`;
+  const abs = (p) => (String(p).startsWith('/') ? `${SITIO}${p}` : p);
   return {
     meta: {
       'og:title': o.seo.titulo,
@@ -39,14 +43,15 @@ export function seoDeObra(o) {
       inLanguage: 'en',
       datePublished: o.publicado,
       dateModified: o.publicado,
-      image: { '@type': 'ImageObject', url: o.portada, description: o.alt },
+      image: { '@type': 'ImageObject', url: abs(o.portada), description: o.alt },
       about: {
-        '@type': 'Project',
+        '@type': 'CreativeWork',
+        url,   // D-276: la obra tiene su URL, la canonica de la ficha
         name: o.titulo,
         description: o.resumen,
         location: { '@type': 'Place', name: o.ubicacion },
         additionalType: o.tipo,
-        image: o.portada,
+        image: abs(o.portada),
         keywords: o.estilo,
       },
     }],

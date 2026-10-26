@@ -21,27 +21,28 @@ import Nav from '../components/Nav.astro';
 import META_PROPIA from '../data/meta-propia.json';
 import TELEFONOS from '../data/telefonos.json';
 import { negocio, miga } from '../lib/negocio.mjs';
+import { bloquesPropios } from '../lib/jsonld-propio.mjs';
 import { videoFondo, precargaPoster } from '../lib/video-fondo.mjs';
 import { nivelesSinSaltos } from '../lib/niveles-titulo.mjs';
 import { srcsetAuto } from '../lib/srcset-auto.mjs';
 import Footer from '../components/Footer.astro';
-import ClickToCall from '../components/widgets/ClickToCall.astro';
+import BarraMovil from '../components/widgets/BarraMovil.astro';
 import Interacciones from '../components/Interacciones.astro';
 import MosaicoConfianza from '../components/MosaicoConfianza.astro';
 import Componentes from '../components/Componentes.astro';
 import GalleryLeadLightbox from '../components/GalleryLeadLightbox.astro';
 import GaleriaCategoriasCss from '../components/GaleriaCategoriasCss.astro';
 import Formularios from '../components/Formularios.astro';
-// Las fuentes son los .woff2 EXACTOS de Google, no @fontsource: con el Inter variable de
-// fontsource el nav salía al 95,85 % contra el baseline porque un a.nav-link medía 57,35 px
-// en vez de 59,54. Ver scripts/fetch-fuentes.mjs.
-import '../styles/fuentes.css';
-import fuentesCrudo from '../styles/fuentes.css?raw';
+// E5 (D-158): `fuentes.css` —46 `@font-face` de Inter y Montserrat, 15 KB que bloquean el
+// pintado— ya no se importa aqui. Medido en las 233 rutas que pasan por este layout
+// (`herramientas/build-familias.mjs`): todo elemento que pinta letra, a la vista u oculto,
+// declara Manrope, cuyo `@font-face` va en `sistema.css`. La sigue importando
+// `pool-investment-estimator.astro`, la unica ruta que pinta Inter.
 import '../styles/webflow.css';
 /**
  * LA CAPA DE DISENO (fase R7). El orden es el contrato, y gana por ORDEN, no por peso:
  *
- *   fuentes.css -> webflow.css -> disenio/tokens.css -> disenio/base.css -> propio.css
+ *   webflow.css -> disenio/tokens.css -> disenio/base.css -> propio.css
  *
  * Antes de webflow.css no ganaria nada y el rediseno «no se aplicaria» sin ningun error
  * visible. Y NADA de esto va envuelto en `@layer`: webflow.css son 167 KB SIN capa, y
@@ -67,29 +68,29 @@ import '../styles/disenio/tokens.css';
  */
 import '../styles/disenio/puente.css';
 import '../styles/disenio/base.css';
+// LA HOJA DEL SISTEMA (REDISEÑO STITCH, ASTRO-1): clases `.mm-*` del cascarón nuevo. Después de
+// webflow.css, tokens y base; sin `@layer` ni `!important`.
+import '../styles/disenio/sistema.css';
 // La capa de la HOME (fase R9 paso 2), propiedad exclusiva del chat de diseño. Va DESPUES de
 // disenio/base.css para poder ajustar sus clases sin pelearse con ellas, y ANTES de propio.css,
 // donde viven los parches sobre clases de Webflow. Hoy solo lleva comentarios: no emite una
 // sola regla, asi que el CSS construido no cambia y el hash del bundle se queda donde estaba.
-import '../styles/home.css';
+// `home.css` (el hero y los sellos de la home de Webflow) se retiro con ASTRO-4: la home pasa a
+// `.mm-hero-b` (disenio/sistema.css) y ninguna de sus 20 reglas pintaba ya ninguna ruta.
 // EL HEROE DE AREA DE SERVICIO (R9-HERO, continuacion). NO cabe en home.css: home.css
 // declara alcance de 1 sola ruta (ver su cabecera) y este hero vive en 55 (53 de
 // pool-builders/ via plantilla-pool-builders.json + los 2 where-we-serves/*.astro). Va
 // DESPUES de home.css y ANTES de blog.css, mismo criterio de orden que el resto de la capa.
-import '../styles/hero-zona.css';
 // La seccion de BLOG (R9-BLOG-01). NO cabe en home.css y por eso tiene fichero propio: la
 // seccion se pinta en 63 rutas —1 index + 9 country/ + las 53 de pool-builders/ via
 // plantilla-pool-builders.json—, asi que un fichero llamado `home` mentiria sobre su alcance
 // y el dia que alguien lo acotara a `/` romperia 53 paginas en silencio.
 import '../styles/blog.css';
-// La seccion de SUBSERVICIOS de las 14 fichas de services/ (R10, lote 1). Mismo criterio que
-// blog.css: `section.services` existe SOLO en esas 14 —verificado, 1 seccion y 1 rejilla por
-// pagina— y todas sus reglas cuelgan de `.services`, asi que el radio de impacto es medible.
-import '../styles/servicios.css';
+// `servicios.css` (la seccion de subservicios de las 14 fichas) se retiro con ASTRO-2: todas sus
+// reglas colgaban de `.services`, que ninguna ruta pinta ya (la seccion es `.mm-que`).
 // La BANDA DE CONFIANZA (`.trusted-section`), en 80 rutas. Mismo criterio que blog.css y
 // servicios.css: el selector reparte 80/71 solo -las 9 de country/ no llevan
 // `.block-contect-intro`- asi que no hay lista de rutas que mantener.
-import '../styles/intro.css';
 // EL PORTAFOLIO (R10, lote `project/`), propiedad exclusiva del chat PULIDOR-1. Alcance
 // medido: `.project-gallery` 10 rutas -las fichas- y `.project-page` 11 -indice + fichas-.
 // Fichero propio y no dentro de propio.css porque el radio de impacto tiene que ser
@@ -101,48 +102,54 @@ import '../styles/proyectos.css';
 // NO confundir con `blog.css` de arriba: aquel es `.blog-section-page` y son 63 rutas. Los
 // dos nombres se diferencian en un sufijo, los dos ficheros los escriben chats distintos, y
 // un `grep` de la subcadena `blog-section` casa los 87 ficheros de las dos cosas juntas.
-import '../styles/lectura.css';
+// `lectura.css` (la ficha de blog y las tres legales de Webflow) se retiro con ASTRO-4: el articulo y las
+// legales pintan `.mm-prosa` (disenio/sistema.css) y ninguna de sus reglas pintaba ya nada.
 // LAS SIETE SECCIONES DE LA HOME que NO son solo de la home. Medido el 1-sep-2026: de las 11
 // secciones de `/`, la UNICA que existe unicamente ahi es el heroe. Las demas se pintan entre
 // 12 y 102 rutas, asi que «redisenar la home» es redisenar medio sitio — y un fichero
 // `home.css` que las llevara mentiria sobre su alcance, que es exactamente como nacio la mina
 // de `blog.css`. Una hoja por seccion, con su alcance en la cabecera y su dueno declarado.
 import '../styles/cta.css';            // .cta-page-section 12 + .cta-footer 102   -> HOME
-import '../styles/obra.css';           // .projects-section 66                     -> PULIDOR-1
-import '../styles/antes-despues.css';  // .before-after-section 3                  -> PULIDOR-1
-import '../styles/render3d.css';       // ._3d-section 65                          -> PULIDOR-2
-import '../styles/ubicacion.css';      // .location 17                             -> PULIDOR-2
+// `antes-despues.css` (el deslizador `.before-after-section`) se retiro con ASTRO-4: las dos rutas
+// que lo llevaban ensenan el par lado a lado (`.mm-ad`, D-96).
 import '../styles/social.css';         // .social-media 79                         -> PULIDOR-2
-import '../styles/caracteristicas.css';// .animated-divs-section 55                -> R17-CARAC
 // LAS 4 PAGINAS INDICE (fase R12) + su heroe comun. Medido: de lo que se ve en /gallery,
 // /brochures, /blogs-tips y /contact-us, solo la rejilla y el formulario son exclusivos de su
 // pagina; el heroe lo comparten las OCHO paginas indice con marcado identico —421-452 ch y las
 // mismas 5 clases, solo cambia el texto—. Por eso el heroe es UN encargo y no cuatro: cuatro
 // chats tocandolo darian cuatro heroes distintos en el mismo sitio.
-import '../styles/hero-indice.css';    // .hero-section 8                          -> HERO-INDICE
-import '../styles/galeria.css';        // .gallery-page 1                          -> GALERIA
+// `hero-indice.css` (`.hero-section` de las paginas indice) se retiro con ASTRO-4: todas abren con el
+// hero D del sistema y la hoja no tenia ya ninguna regla viva.
+// `galeria.css` (la rejilla y el filtro de `/gallery`) se retiro con ASTRO-4: el indice y las diez
+// categorias pintan el muro del sistema (`.mm-muro`, disenio/sistema.css).
 import '../styles/folletos.css';       // .brochures-section-page 1                -> FOLLETOS
-import '../styles/blog-indice.css';    // .articles-section 1                      -> BLOG-INDICE
-import '../styles/contacto.css';       // .form-section 1 (+4 clases en 2 rutas)    -> CONTACTO
-import '../styles/estimacion.css';     // .appointment-section 1 (+7 clases en 2)   -> ESTIMACION
+// `blog-indice.css` (las tarjetas de `/blogs-tips`, `.articles-section`) se retiro con ASTRO-4: el indice
+// pinta la lista editorial del sistema (`.mm-art`) y ninguna de sus 24 reglas pintaba ya nada.
+// `contacto.css` (`/contact-us` de Webflow, `.form-section`) se retiro con ASTRO-4: la pagina pasa a
+// `.mm-contacto` y a las piezas del formulario del sistema; ninguna de sus 73 reglas pintaba ya nada.
+// `estimacion.css` (`/request-estimated` de Webflow, `.appointment-section`) se retiro con ASTRO-4: la
+// pagina pasa a `.mm-pres` y al formulario del sistema, y ninguna de sus 76 reglas pintaba ya nada.
 // LA PRIMERA RUTA DE AUTORIA PROPIA. `/financing` no existe en el origen de Webflow: no es una
 // hoja que rediseña marcado heredado, es la unica que viste marcado nuestro. Va aqui, al final
 // de la capa de diseño, porque solo tiene que ganar a `disenio/base.css` — con `propio.css`,
 // que parchea clases de Webflow, no se cruza: ni un selector en comun.
-import '../styles/financiacion.css';   // .fin-* 1                                  -> FINANCIACION
+// `financiacion.css` (`.fin-*`) se retiro con ASTRO-4: `/financing` pasa a piezas del sistema.
+// E5 (D-154): salen siete hojas heredadas sin ninguna regla viva tras el rediseño —`caracteristicas`,
+// `faq`, `hero-zona`, `intro`, `obra`, `render3d` y `ubicacion`—. `social.css` se queda: sus clases
+// aparecen cuando el feed tiene contenido.
 // LA CAPA DE CAPTACION DE LAS FICHAS DE `/services/` (R17-CORE). Las tres secciones nuevas que
 // montan ConfianzaCore, FormularioCore e InversionCore. Hoy la monta 1 ruta —la Final URL del ad
 // group «Pool Builders Core»—, porque `src/data/captacion-servicios.json` tiene 1 entrada; la
 // hoja ya esta escrita para las 14. Va DESPUES de `estimacion.css` porque el formulario reutiliza
 // el ancestro `.appointment-section` y aqui solo se ajusta la composicion.
-import '../styles/servicio-core.css';   // .svc-* 1 (14 cuando se extienda)           -> R17-CORE
+// `servicio-core.css` (el hero de captacion de ciudad y su cierre, `.svc-heroe--ciudad`, `.svc-cierre`)
+// se retiro con ASTRO-2: ninguna ruta pinta ya esas clases (el hero es `.mm-hero-a`).
 // LA FAQ A DOS COLUMNAS CON COLLAGE DE OBRA (FAQ-COLLAGE). Las 16 rutas que montan
 // `.faq-section` — las 14 de `/services/`, `/about` y `/financing`— medidas con
 // `grep -rl 'class="faq-section' .vercel/output/static --include='*.html' | wc -l`. Va la
 // ultima de las hojas de seccion porque corrige marcado de Webflow (`.header-faq`,
 // `.wrapper-faq-components`, `.dropdown-*`) y gana por orden, sin un solo `!important`; con el
 // resto de la capa no se cruza: ni un selector en comun.
-import '../styles/faq.css';            // .faq-section 16                          -> FAQ-COLLAGE
 // CSS de autor, DESPUES de webflow.css para ganar por orden y sin `!important`.
 // Hoy solo lleva el arreglo del solape del logo del nav entre 992 y 1204 px.
 import '../styles/propio.css';
@@ -179,35 +186,6 @@ const { titulo, descripcion, ruta = Astro.url.pathname, conPie = true, seo = {},
  */
 const ES_PRODUCCION = import.meta.env.PUBLIC_ES_PRODUCCION === '1';
 
-/**
- * PRECARGA DE LAS DOS CARAS DE INTER QUE PINTA EL NAV.
- *
- * MEDIDO: el mayor desplazamiento de 4 de las 6 plantillas es `div.wrapper-menu` —los enlaces
- * del nav— y Lighthouse lo atribuye a `inter-…woff2`. Es un reflujo HORIZONTAL: `y,alto` no
- * cambian (`0,85 -> 0,85`), cambia el ancho del texto cuando la fuente entra y sustituye a
- * Arial. Con `font-display: swap` y sin precarga, esa ventana dura lo que tarde la fuente, y
- * bajo el estrangulamiento de Lighthouse eso son 0.0978 (`/`) a 0.1564 (`/services/*`) de CLS.
- *
- * LAS URLS SE SACAN DE `fuentes.css`, NO SE CABLEAN. Ese fichero es DERIVADO
- * (`scripts/fetch-fuentes.mjs`) y los nombres llevan el hash de Google: cablearlos aqui
- * significa que la proxima regeneracion deja dos `<link rel=preload>` apuntando a ficheros que
- * ya no existen —y un preload roto no da error, solo deja de servir—. Se filtra por
- * `unicode-range` del subconjunto `latin` (empieza en U+0000-00FF), que es el unico que pinta
- * texto ingles, y por las dos familias que usa el cascaron.
- *
- * SALEN DOS, uno por familia, y no por recorte: las 5 caras latinas de Inter comparten el
- * MISMO .woff2 —es variable— y otro tanto Montserrat. Precargar las 46 declaraciones seria
- * pelear con la propia pagina por el ancho de banda; aqui no hay nada que recortar.
- */
-const FUENTES_PRECARGA = [...new Set([...String(fuentesCrudo).matchAll(/@font-face\s*\{([^}]*)\}/g)]
-  .map((m) => m[1])
-  // El subconjunto `latin` es el unico que pinta texto ingles; su rango empieza en U+0000-00FF.
-  .filter((b) => /unicode-range:\s*U\+0000-00FF/.test(b))
-  // Y solo la redonda: la cursiva no la pinta nada del cascaron, y un preload que el
-  // navegador no usa en los primeros segundos sale en consola como aviso y gasta banda.
-  .filter((b) => /font-style:\s*normal/.test(b))
-  .map((b) => b.match(/url\((\/fonts\/[^)]+)\)/)?.[1])
-  .filter(Boolean))];
 const canonica = ES_PRODUCCION ? new URL(ruta, Astro.site).href : null;
 /**
  * `og:image` y `twitter:image` tienen que ser ABSOLUTAS: los rastreadores sociales no
@@ -277,6 +255,9 @@ const YA_TIENE_MIGA = (seo.jsonLd ?? []).some(
 const inyectados = [negocio()];
 const laMiga = YA_TIENE_MIGA ? null : miga(ruta);
 if (laMiga) inyectados.push(laMiga);
+// E5 (D-156): un `Service` con las ciudades que la ficha enlaza, la lista de obras de `/projects`
+// y los videos de `/videos`. Bloques NUEVOS, al final; los del origen no se tocan.
+inyectados.push(...bloquesPropios(ruta.replace(/(.)\/$/, '$1'), seo.jsonLd ?? []));
 
 const jsonLd = [...(seo.jsonLd ?? []), ...inyectados];
 
@@ -291,8 +272,9 @@ const jsonLd = [...(seo.jsonLd ?? []), ...inyectados];
 const { html: conVideo, heroe: posterHeroe } = videoFondo(await Astro.slots.render('default'));
 /* Y los titulos que saltan nivel reciben `aria-level` (ver `src/lib/niveles-titulo.mjs`). */
 /* Y las imagenes grandes sin `srcset` reciben sus variantes (ver `src/lib/srcset-auto.mjs`). */
-const { html: contenido } = srcsetAuto(nivelesSinSaltos(conVideo).html);
-const precargas = posterHeroe ? precargaPoster(posterHeroe) : [];
+const { html: contenido, lcp: fotoLcp } = srcsetAuto(nivelesSinSaltos(conVideo).html);
+// E5 (D-155): donde el LCP es la foto del hero y no un poster de video, se precarga su AVIF de movil.
+const precargas = posterHeroe ? precargaPoster(posterHeroe) : fotoLcp ? [fotoLcp] : [];
 const CON_MAIN = /<main[\s>]/.test(contenido);
 ---
 <!doctype html>
@@ -304,9 +286,14 @@ const CON_MAIN = /<main[\s>]/.test(contenido);
       <link rel="preload" as="image" type="image/avif" media={p.media} imagesrcset={p.imagesrcset}
         imagesizes={p.imagesizes} fetchpriority="high" />
     ))}
-    {FUENTES_PRECARGA.map((u) => (
-      <link rel="preload" href={u} as="font" type="font/woff2" crossorigin="anonymous" />
-    ))}
+    {/* E5 (D-148, D-155): las precargas de Inter y Montserrat salen. Medido por plantilla sobre el
+        build: todo el texto visible se pinta en Manrope, y esos 82 KB competian con la foto del
+        hero por la red justo antes del LCP. Desde D-158 tampoco se carga su hoja, `fuentes.css`. */}
+    {/* REDISEÑO STITCH (ASTRO-1, D-104): Manrope es la fuente del cascarón nuevo, que se pinta en
+        el primer fotograma. Sin precarga entra tarde con `swap` y mueve el ancho del menú, que
+        es el mismo CLS que arregló la precarga de Inter el 4-oct. Único cambio de <head>
+        autorizado. Las de Inter y Montserrat se quedan hasta que migre la última sección. */}
+    <link rel="preload" href="/fonts/manrope-v20-latin-variable.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
     {/* GOOGLE TAG MANAGER — la unica fuente de medicion del sitio.
         `is:inline` es OBLIGATORIO: sin el, Astro lo empaqueta como modulo, lo mueve al final
         y deja de ser el snippet sincrono que Google espera; el contenedor cargaria tarde y
@@ -339,7 +326,7 @@ const CON_MAIN = /<main[\s>]/.test(contenido);
         mano en la interfaz; aquí es un diff que se revisa. COROLARIO: se pone en un sitio o
         en el otro, NUNCA en los dos, o cada llamada se cuenta dos veces.
 
-        EL NÚMERO SALE DE `telefonos.json` — el mismo que pintan ClickToCall, el nav y el pie.
+        EL NÚMERO SALE DE `telefonos.json` — el mismo que pintan la barra móvil, el nav y el pie.
         No lo escribas a mano aquí: el intercambio sólo ocurre si la cadena del snippet es
         EXACTAMENTE la del DOM, y el día que las dos copias se separen deja de sustituir sin
         avisar de nada.
@@ -371,13 +358,10 @@ const CON_MAIN = /<main[\s>]/.test(contenido);
     {!ES_PRODUCCION && <meta name="robots" content="noindex, nofollow" />}
     {jsonLd.map((b) => <script type="application/ld+json" set:html={JSON.stringify(b)} />)}
     {jsonLdCrudo.map((b) => <script type="application/ld+json" set:html={b} />)}
-    {/* SEO-REMEDIACION (4-oct-2026) — CLS DEL NAV EN MOVIL. Lighthouse atribuye el mayor
-        desplazamiento (0,12-0,19 en `/` movil) a `div.wrapper-menu`: el texto se pinta en la
-        `sans-serif` del sistema y se reflowea cuando entra Inter. La familia de reserva
-        «Inter Fallback» es Arial (o sus clones metricos Liberation Sans / Arimo) con las metricas
-        de Inter forzadas, asi que ocupa lo mismo y el cambio no mueve nada. Cuando Inter llega,
-        se pinta Inter igual que antes: el aspecto final no cambia. */}
-    <style is:inline set:html={`@font-face{font-family:"Inter Fallback";src:local("Arial"),local("ArialMT"),local("Liberation Sans"),local("Arimo"),local("Helvetica");ascent-override:90.44%;descent-override:22.52%;line-gap-override:0%;size-adjust:107.12%}body{font-family:Inter,"Inter Fallback",sans-serif}`} />
+    {/* E5 (D-158): aqui iba un `<style>` en linea con la familia de reserva «Inter Fallback» y
+        `body{font-family:Inter,…}`, que evitaba el salto del menu mientras llegaba Inter. Con
+        todo el cascaron en Manrope esa regla la pisaba siempre `propio.css` y la reserva no
+        reservaba nada: sale junto con la hoja de Inter. */}
     <link rel="shortcut icon" href="/images/site/favicon.png" />
     <link rel="apple-touch-icon" href="/images/site/webclip.png" />
     {/* Webflow marca el <html> con w-mod-js y w-mod-touch y HAY CSS QUE DEPENDE DE ELLO.
@@ -413,7 +397,9 @@ const CON_MAIN = /<main[\s>]/.test(contenido);
     {/* 2 páginas llevan un <script>+<style> DESPUÉS del pie: el redimensionador del iframe
         del estimador. Va en su sitio o cambia el orden del documento. */}
     <slot name="tras-pie" />
-    <ClickToCall />
+    {/* REDISEÑO STITCH (ASTRO-1): la barra inferior móvil sustituye al botón flotante de
+        ClickToCall. El teléfono, de telefonos.json (uno desde D-248). */}
+    <BarraMovil />
     <Interacciones />
     <MosaicoConfianza />
     <Componentes />

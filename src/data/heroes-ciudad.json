@@ -1,0 +1,975 @@
+{
+  "_lee_esto": [
+    "LA BOLSA DE FOTOS DEL HERO DE LAS PAGINAS DE SERVICIO x CIUDAD (D-112 a D-114, 12-oct-2026).",
+    "Una lista de ids del banco por servicio. Cada pagina de ciudad toma la que le toca por su puesto",
+    "en la lista ordenada de ciudades de ese servicio (indice modulo tamano de la bolsa): dos ciudades",
+    "vecinas no repiten foto mientras la bolsa tenga mas de una.",
+    "ELEGIDAS MIRANDO LA HOJA DE CONTACTOS con el recorte 4:5 del hero, no por nombre de fichero.",
+    "`src/lib/heroe-ciudad.mjs` las valida al construir: obra_real, aprobada, etapa terminado, recorte",
+    "4:5 seguro, etiquetada con el servicio y con fichero. Una que no cumpla tumba el build.",
+    "NINGUNA FOTO DE LA BOLSA DICE CIUDAD. La unica pagina con obra de su ciudad verificada por GPS es",
+    "Alachua (obra-049, bi-0596): va en `fijas`, con su pie propio (D-80), y no entra en la bolsa.",
+    "Tampoco entran las fotos que la pagina ya ensena en su galeria de obra (`galeria-obra-por-ruta.json`):",
+    "`check:galeria-obra` exige que ninguna foto del set salga dos veces. Por eso faltan bi-0947, bi-0485 y bi-0914."
+  ],
+  "clave": {
+    "pool-builders": "construction",
+    "pool-remodeling": "remodeling",
+    "deck-builders": "decks",
+    "landscaping": "landscaping",
+    "louvered-roofs": "louvered",
+    "outdoor-kitchens": "kitchens",
+    "pergola-builders": "pergolas"
+  },
+  "bolsas": {
+    "pool-builders": [
+      "bi-0487",
+      "bi-0501",
+      "bi-0662",
+      "bi-1010",
+      "bi-1024",
+      "bi-0969",
+      "bi-0909",
+      "bi-0083",
+      "bi-0615",
+      "bi-0948",
+      "bi-0908"
+    ],
+    "pool-remodeling": [
+      "bi-0519",
+      "bi-0521",
+      "bi-0614"
+    ],
+    "deck-builders": [
+      "bi-0077",
+      "bi-0079",
+      "bi-0983",
+      "bi-0070"
+    ],
+    "landscaping": [
+      "bi-0130",
+      "bi-0305",
+      "bi-0310",
+      "bi-0313"
+    ],
+    "louvered-roofs": [
+      "bi-0168",
+      "bi-0220",
+      "bi-0224",
+      "bi-0225",
+      "bi-0233",
+      "bi-0235",
+      "bi-0236"
+    ],
+    "outdoor-kitchens": [
+      "bi-0479",
+      "bi-0480",
+      "bi-0503",
+      "bi-0509",
+      "bi-0771",
+      "bi-0781",
+      "bi-0783"
+    ],
+    "pergola-builders": [
+      "bi-0796",
+      "bi-0839",
+      "bi-0842",
+      "bi-0897",
+      "bi-0907",
+      "bi-0962",
+      "bi-1018",
+      "bi-1048",
+      "bi-1074",
+      "bi-0759",
+      "bi-0925",
+      "bi-0930"
+    ]
+  },
+  "fijas": {
+    "/services/pool-builders/alachua-fl": {
+      "id": "bi-0596",
+      "pie": "Pool with sun shelf and raised spa in Alachua"
+    }
+  },
+  "porCondado": {
+    "_lee_esto": [
+      "E13 (D-200, 14-oct-2026): EL HERO DE LAS CIUDADES DE PISCINA NUEVA, POR TABLA Y POR CONDADO. Sustituye al reparto de",
+      "la bolsa (puesto modulo tamano) en las ciudades que estan aqui; las demas siguen con la bolsa y con el MISMO orden de",
+      "antes, para que no cambie ninguna pagina fuera de la etapa. Se cierra un condado entero cada vez (etapa 1: los siete",
+      "del norte). La pagina del condado aun no esta aqui (etapa 3): conserva su foto de bolsa, y la tabla la evita.",
+      "Etapa 2: Broward y Palm Beach. Sus ciudades no usan bi-0661 ni bi-0662, reservadas para la pagina del condado.",
+      "REGLA que `heroe-ciudad.mjs` hace cumplir al construir: dentro de un condado ninguna foto se repite (contando la del",
+      "propio condado) y nunca van juntas dos de `casiIguales`. `check:estructura:ciudades` comprueba ademas, sobre el build,",
+      "que las ciudades de cada condado son las que enlaza la pagina del condado.",
+      "Elegidas en la hoja de contactos con el recorte del hero (STITCH-PARTE-45). Ningun alt dice ciudad: el pie es el alt",
+      "del banco, como en la bolsa. alachua-fl sigue en `fijas` (GPS de obra-049, D-201); aqui va para que la regla la cuente."
+    ],
+    "alachua-county-fl": {
+      "alachua-fl": "bi-0596",
+      "archer-fl": "bi-0486",
+      "gainesville-fl": "bi-0487",
+      "hawthorne-fl": "bi-1024",
+      "high-springs-fl": "bi-1016",
+      "micanopy-fl": "bi-0486",
+      "newberry-fl": "bi-1024",
+      "waldo-fl": "bi-0969"
+    },
+    "columbia-county-fl": {
+      "lake-city-fl": "bi-0487"
+    },
+    "dixie-county-fl": {
+      "cross-city-fl": "bi-1024",
+      "old-town-fl": "bi-0486"
+    },
+    "gilchrist-county-fl": {
+      "trenton-fl": "bi-1024"
+    },
+    "levy-county-fl": {
+      "cedar-key-fl": "bi-0487",
+      "chiefland-fl": "bi-1024",
+      "fanning-springs-fl": "bi-0969",
+      "williston-fl": "bi-0614"
+    },
+    "marion-county-fl": {
+      "mcintosh-fl": "bi-0614",
+      "ocala-fl": "bi-0486",
+      "reddick-fl": "bi-1024"
+    },
+    "putnam-county-fl": {
+      "palatka-fl": "bi-0487"
+    },
+    "broward-county-fl": {
+      "dania-beach-fl": "bi-1024",
+      "davie-fl": "bi-0487",
+      "deerfield-beach-fl": "bi-0614",
+      "fort-lauderdale-fl": "bi-0486",
+      "hallandale-beach-fl": "bi-0969",
+      "hillsboro-beach-fl": "bi-0969",
+      "hollywood-fl": "bi-0486",
+      "lighthouse-point-fl": "bi-0508",
+      "miramar-fl": "bi-1024",
+      "parkland-fl": "bi-0504",
+      "pembroke-pines-fl": "bi-0614",
+      "plantation-fl": "bi-1014",
+      "pompano-beach-fl": "bi-1057",
+      "southwest-ranches-fl": "bi-0486",
+      "weston-fl": "bi-1010",
+      "wilton-manors-fl": "bi-0487"
+    },
+    "palm-beach-county-fl": {
+      "atlantis-fl": "bi-0486",
+      "boca-raton-fl": "bi-0487",
+      "boynton-beach-fl": "bi-0614",
+      "delray-beach-fl": "bi-0969",
+      "gulf-stream-fl": "bi-0501",
+      "hypoluxo-fl": "bi-0508",
+      "juno-beach-fl": "bi-0486",
+      "jupiter-fl": "bi-0614",
+      "manalapan-fl": "bi-0969",
+      "north-palm-beach-fl": "bi-0487",
+      "ocean-ridge-fl": "bi-0487",
+      "palm-beach-gardens-fl": "bi-0486",
+      "royal-palm-beach-fl": "bi-0969",
+      "south-palm-beach-fl": "bi-1024",
+      "tequesta-fl": "bi-0614",
+      "wellington-fl": "bi-1024",
+      "west-palm-beach-fl": "bi-1024"
+    }
+  },
+  "casiIguales": [
+    [
+      "bi-0501",
+      "bi-0504"
+    ],
+    [
+      "bi-1008",
+      "bi-1009"
+    ],
+    [
+      "bi-0661",
+      "bi-0662"
+    ],
+    [
+      "bi-0520",
+      "bi-0521"
+    ],
+    [
+      "bi-1276",
+      "bi-1297"
+    ],
+    [
+      "bi-1270",
+      "bi-1293"
+    ],
+    [
+      "bi-0086",
+      "bi-1549"
+    ],
+    [
+      "bi-1294",
+      "bi-1550"
+    ],
+    [
+      "bi-1027",
+      "bi-1038"
+    ]
+  ],
+  "seccion": {
+    "_lee_esto": "E13: FAQ, cierre y resenas de las ciudades de `porCondado`, rotando desde el puesto de la ciudad y sin repetir su hero. Obra real con piscina; las apaisadas llevan su derivada 4:5 en fotos-hueco.json.",
+    "pool-builders": [
+      "bi-0662",
+      "bi-1280",
+      "bi-1010",
+      "bi-1286",
+      "bi-0237",
+      "bi-1284",
+      "bi-0661",
+      "bi-1014",
+      "bi-0614",
+      "bi-1057"
+    ],
+    "pergola-builders": [
+      "bi-0842",
+      "bi-1282",
+      "bi-0759",
+      "bi-1294"
+    ]
+  },
+  "condados": {
+    "_lee_esto": "E13 etapa 3: el hero de la pagina de cada condado. Ninguno es el de una de sus ciudades (`heroe-ciudad.mjs` lo comprueba con la misma regla). Broward y Palm Beach llevan bi-0661 y bi-0662, de region south_fl en el banco, que sus ciudades no usan; Marion, bi-0520 (obra a ~29 km de Ocala por GPS, probable y no verificada: el alt no lo dice).",
+    "alachua-county-fl": "bi-0487",
+    "broward-county-fl": "bi-1016",
+    "columbia-county-fl": "bi-0614",
+    "dixie-county-fl": "bi-0487",
+    "gilchrist-county-fl": "bi-0614",
+    "levy-county-fl": "bi-0487",
+    "marion-county-fl": "bi-0487",
+    "palm-beach-county-fl": "bi-0662",
+    "putnam-county-fl": "bi-1024"
+  },
+  "lugar": {
+    "_lee_esto": "D-204: donde se hizo la foto, por el GPS de su original (lo leyo el director con mdls; esa tabla no va a la rama publica y no guarda coordenadas). Solo ciudad o condado. El hero de una pagina por tabla anade «in <Ciudad>, FL» o «in <Condado> County» a su alt y a su pie SOLO si la pagina es de esa ciudad o de ese condado. Nada entra aqui sin esa tabla delante.",
+    "bi-0661": {
+      "condado": "broward-county-fl",
+      "ciudad": "fort-lauderdale-fl"
+    },
+    "bi-0225": {
+      "condado": "broward-county-fl",
+      "ciudad": "weston-fl"
+    },
+    "bi-1016": {
+      "condado": "broward-county-fl",
+      "ciudad": null
+    }
+  },
+  "porServicio": {
+    "_lee_esto": "E13 etapa 4: el hero por tabla de los servicios que no son piscina nueva. El condado de cada ciudad es el de `porCondado`. En un condado no se repite hero ni van juntas dos casi iguales; `repetidas` dice, con su motivo, cuantas veces puede salir una foto donde el banco no da para mas. Lo que no este ahi tumba el build.",
+    "pool-builders": {
+      "_lee_esto": "LOOP-AREAS L6a (D-233): sin tabla propia; el hero sigue en porCondado. Aqui va el apoyo por ciudad. Con el limpiafondos pequeno y lateral como 3 (D-233), las de hero con foco de piscina son bi-0486 (4/3), bi-1024, bi-0487 y bi-0969 (3/3). En piscina un condado no repite hero (check:estructura:ciudades, E13): en Alachua ya estan bi-0487 (condado) y bi-0486 (Micanopy), asi que Hawthorne lleva bi-1024 y Waldo bi-0969; Desde D-234 la puerta admite repetir si se declara: Archer, Gainesville y Newberry repiten bi-0486, bi-0487 y bi-1024.",
+      "repetidas": {
+        "palm-beach-county-fl": {
+          "max": 3,
+          "motivo": "foco (D-220, D-235): cinco heros de piscina para 17 paginas; el tercer uso de cada una corrige un hero cuyo foco no era la piscina (Atlantis, Tequesta, South Palm Beach) o de nota 1 (Ocean Ridge, Royal Palm Beach). bi-0969: Manalapan, Delray Beach, Royal Palm Beach; bi-0486: Palm Beach Gardens, Juno Beach, Atlantis; bi-0614: Boynton Beach, Jupiter, Tequesta; bi-1024: West Palm Beach, Wellington, South Palm Beach; bi-0487: Boca Raton, North Palm Beach, Ocean Ridge"
+        },
+        "levy-county-fl": {
+          "max": 2,
+          "motivo": "calidad (D-206, D-234): la pagina del condado deja bi-0486, que su galeria ya ensena (pool-remodeling-4 es la misma foto), y repite bi-0487 con Cedar Key; las otras cuatro de piscina ya estan en Levy"
+        },
+        "broward-county-fl": {
+          "max": 3,
+          "motivo": "foco (D-220, D-235): cinco heros de piscina para 16 paginas; bi-0486 sale tres veces (Southwest Ranches, Fort Lauderdale y Hollywood, que dejaba la pergola de foco); las demas, dos: bi-0614 en Deerfield Beach y Pembroke Pines, bi-0969 en Hallandale Beach y Hillsboro Beach, bi-1024 en Dania Beach y Miramar, bi-0487 en Davie y Wilton Manors"
+        },
+        "alachua-county-fl": {
+          "max": 2,
+          "motivo": "calidad (D-206, D-234): cuatro heros de piscina pasan el juez para 9 paginas; bi-0486 en Micanopy y Archer, bi-1024 en Hawthorne y Newberry, bi-0487 en el condado y Gainesville"
+        }
+      },
+      "tabla": {},
+      "seccionPorCiudad": {
+        "_lee_esto": "FAQ, cierre y resenas por ciudad y por condado (L6a a L9). Cierre bi-0614 (4) o bi-1280 (4). Cada resena conserva la proporcion de la que sustituye (D-232): 3:4 por 3:4, 4:3 por 4:3, y la 16:9 de Alachua por una 3:2 exacta (bi-1550, la copia de bi-1294 sin la fila de mas).",
+        "alachua-fl": [
+          "bi-1280",
+          "bi-0614",
+          "bi-1550"
+        ],
+        "archer-fl": [
+          "bi-1280",
+          "bi-0614",
+          "bi-0237"
+        ],
+        "gainesville-fl": [
+          "bi-0614",
+          "bi-1280",
+          "bi-1024"
+        ],
+        "hawthorne-fl": [
+          "bi-1280",
+          "bi-0614",
+          "bi-0237"
+        ],
+        "lake-city-fl": [
+          "bi-1284",
+          "bi-0614",
+          "bi-1280"
+        ],
+        "micanopy-fl": [
+          "bi-1284",
+          "bi-0614",
+          "bi-1280"
+        ],
+        "newberry-fl": [
+          "bi-1284",
+          "bi-0614",
+          "bi-1287"
+        ],
+        "trenton-fl": [
+          "bi-1284",
+          "bi-0614",
+          "bi-1280"
+        ],
+        "waldo-fl": [
+          "bi-1280",
+          "bi-1284",
+          "bi-0614"
+        ],
+        "cedar-key-fl": [
+          "bi-1284",
+          "bi-0614",
+          "bi-1280"
+        ],
+        "chiefland-fl": [
+          "bi-1280",
+          "bi-1284",
+          "bi-0614"
+        ],
+        "cross-city-fl": [
+          "bi-1284",
+          "bi-1280",
+          "bi-0614"
+        ],
+        "fanning-springs-fl": [
+          "bi-1284",
+          "bi-0614",
+          "bi-1280"
+        ],
+        "williston-fl": [
+          "bi-1284",
+          "bi-1280",
+          "bi-1024"
+        ],
+        "mcintosh-fl": [
+          "bi-1280",
+          "bi-1284",
+          "bi-1024"
+        ],
+        "ocala-fl": [
+          "bi-1284",
+          "bi-0614",
+          "bi-1280"
+        ],
+        "reddick-fl": [
+          "bi-1284",
+          "bi-1280",
+          "bi-0614"
+        ],
+        "palatka-fl": [
+          "bi-1280",
+          "bi-0614",
+          "bi-0237"
+        ],
+        "old-town-fl": [
+          "bi-1280",
+          "bi-0614",
+          "bi-1550"
+        ],
+        "dania-beach-fl": [
+          "bi-1280",
+          "bi-0614",
+          "bi-1550"
+        ],
+        "davie-fl": [
+          "bi-1280",
+          "bi-0614",
+          "bi-0237"
+        ],
+        "fort-lauderdale-fl": [
+          "bi-1280",
+          "bi-0614",
+          "bi-1287"
+        ],
+        "hallandale-beach-fl": [
+          "bi-1280",
+          "bi-0614",
+          "bi-1550"
+        ],
+        "hillsboro-beach-fl": [
+          "bi-0237",
+          "bi-1284",
+          "bi-0614"
+        ],
+        "hollywood-fl": [
+          "bi-1284",
+          "bi-0614",
+          "bi-1287"
+        ],
+        "lighthouse-point-fl": [
+          "bi-1280",
+          "bi-0614",
+          "bi-1550"
+        ],
+        "miramar-fl": [
+          "bi-1280",
+          "bi-1284",
+          "bi-0614"
+        ],
+        "parkland-fl": [
+          "bi-1284",
+          "bi-0614",
+          "bi-1280"
+        ],
+        "pembroke-pines-fl": [
+          "bi-1280",
+          "bi-1284",
+          "bi-1024"
+        ],
+        "plantation-fl": [
+          "bi-0614",
+          "bi-1280",
+          "bi-1024"
+        ],
+        "pompano-beach-fl": [
+          "bi-0614",
+          "bi-1284",
+          "bi-1280"
+        ],
+        "weston-fl": [
+          "bi-1284",
+          "bi-0614",
+          "bi-1280"
+        ],
+        "wilton-manors-fl": [
+          "bi-1280",
+          "bi-0614",
+          "bi-1550"
+        ],
+        "atlantis-fl": [
+          "bi-0614",
+          "bi-0237",
+          "bi-1284"
+        ],
+        "boca-raton-fl": [
+          "bi-0237",
+          "bi-1284",
+          "bi-0614"
+        ],
+        "boynton-beach-fl": [
+          "bi-1284",
+          "bi-0487",
+          "bi-1280"
+        ],
+        "delray-beach-fl": [
+          "bi-1284",
+          "bi-0614",
+          "bi-1280"
+        ],
+        "gulf-stream-fl": [
+          "bi-1284",
+          "bi-1280",
+          "bi-0614"
+        ],
+        "hypoluxo-fl": [
+          "bi-1280",
+          "bi-1284",
+          "bi-0614"
+        ],
+        "juno-beach-fl": [
+          "bi-1284",
+          "bi-0614",
+          "bi-1280"
+        ],
+        "jupiter-fl": [
+          "bi-1280",
+          "bi-1284",
+          "bi-1024"
+        ],
+        "manalapan-fl": [
+          "bi-1280",
+          "bi-0614",
+          "bi-0237"
+        ],
+        "north-palm-beach-fl": [
+          "bi-0614",
+          "bi-1280",
+          "bi-1024"
+        ],
+        "ocean-ridge-fl": [
+          "bi-1284",
+          "bi-1280",
+          "bi-0614"
+        ],
+        "palm-beach-gardens-fl": [
+          "bi-0237",
+          "bi-1284",
+          "bi-0614"
+        ],
+        "royal-palm-beach-fl": [
+          "bi-1280",
+          "bi-0614",
+          "bi-1550"
+        ],
+        "south-palm-beach-fl": [
+          "bi-1280",
+          "bi-0614",
+          "bi-0237"
+        ],
+        "tequesta-fl": [
+          "bi-0237",
+          "bi-1284",
+          "bi-1024"
+        ],
+        "wellington-fl": [
+          "bi-1284",
+          "bi-0614",
+          "bi-1280"
+        ],
+        "west-palm-beach-fl": [
+          "bi-0237",
+          "bi-1280",
+          "bi-0614"
+        ],
+        "alachua-county-fl": [
+          "bi-1280",
+          "bi-0614",
+          "bi-1550"
+        ],
+        "broward-county-fl": [
+          "bi-1280",
+          "bi-0614",
+          "bi-0237"
+        ],
+        "columbia-county-fl": [
+          "bi-1280",
+          "bi-0487",
+          "bi-1284"
+        ],
+        "dixie-county-fl": [
+          "bi-0237",
+          "bi-1284",
+          "bi-0614"
+        ],
+        "gilchrist-county-fl": [
+          "bi-1284",
+          "bi-0487",
+          "bi-1280"
+        ],
+        "levy-county-fl": [
+          "bi-1280",
+          "bi-1284",
+          "bi-0614"
+        ],
+        "marion-county-fl": [
+          "bi-1284",
+          "bi-0614",
+          "bi-1280"
+        ],
+        "palm-beach-county-fl": [
+          "bi-0614",
+          "bi-1284",
+          "bi-1280"
+        ],
+        "putnam-county-fl": [
+          "bi-1284",
+          "bi-0614",
+          "bi-1280"
+        ]
+      }
+    },
+    "pool-remodeling": {
+      "tabla": {
+        "boca-raton-fl": "bi-0519",
+        "boynton-beach-fl": "bi-0614",
+        "cedar-key-fl": "bi-0614",
+        "dania-beach-fl": "bi-0519",
+        "delray-beach-fl": "bi-0519",
+        "fort-lauderdale-fl": "bi-0614",
+        "gainesville-fl": "bi-0614",
+        "gulf-stream-fl": "bi-0614",
+        "hollywood-fl": "bi-0614",
+        "manalapan-fl": "bi-0519",
+        "mcintosh-fl": "bi-0519",
+        "miramar-fl": "bi-0614",
+        "ocala-fl": "bi-0614",
+        "palatka-fl": "bi-0614",
+        "west-palm-beach-fl": "bi-0614"
+      },
+      "repetidas": {
+        "palm-beach-county-fl": {
+          "max": 3,
+          "motivo": "reservada (D-209, D-236): bi-0521 es la tarjeta de reforma del indice y sale de los heros; solo hay dos de reforma utilizables para 6 ciudades. bi-0614 en Gulf Stream, West Palm Beach y Boynton Beach; bi-0519 en Boca Raton, Manalapan y Delray Beach"
+        },
+        "broward-county-fl": {
+          "max": 3,
+          "motivo": "reservada (D-209, D-236): bi-0614 en Fort Lauderdale, Miramar y Hollywood, que dejaba bi-0521"
+        }
+      },
+      "seccionPorCiudad": {
+        "_lee_esto": "LOOP-AREAS L10 (D-236): FAQ y cierre por ciudad (las resenas de reforma van sin foto, como antes). Sale bi-0521, la tarjeta del indice; entra bi-1290 (Lacircle de dia, 3 en seccion y cierre: manguera fina en el borde) donde lo de hoy repetia la tarjeta o era 2.",
+        "boca-raton-fl": [
+          "bi-1290",
+          "bi-0614"
+        ],
+        "boynton-beach-fl": [
+          "bi-0519",
+          "bi-1290"
+        ],
+        "cedar-key-fl": [
+          "bi-0519",
+          "bi-1290"
+        ],
+        "dania-beach-fl": [
+          "bi-1290",
+          "bi-0614"
+        ],
+        "delray-beach-fl": [
+          "bi-0614",
+          "bi-1290"
+        ],
+        "fort-lauderdale-fl": [
+          "bi-0519",
+          "bi-1290"
+        ],
+        "gainesville-fl": [
+          "bi-0519",
+          "bi-1290"
+        ],
+        "gulf-stream-fl": [
+          "bi-0519",
+          "bi-1290"
+        ],
+        "hollywood-fl": [
+          "bi-0519",
+          "bi-1290"
+        ],
+        "manalapan-fl": [
+          "bi-1290",
+          "bi-0614"
+        ],
+        "mcintosh-fl": [
+          "bi-0614",
+          "bi-1290"
+        ],
+        "miramar-fl": [
+          "bi-0519",
+          "bi-1290"
+        ],
+        "ocala-fl": [
+          "bi-0519",
+          "bi-1290"
+        ],
+        "palatka-fl": [
+          "bi-0519",
+          "bi-1290"
+        ],
+        "west-palm-beach-fl": [
+          "bi-0519",
+          "bi-1290"
+        ]
+      },
+      "_lee_esto": "LOOP-AREAS L10 (D-236): bi-0614 (4/4) donde cabe y bi-0519 (2/2) en el resto; bi-0521 (la tarjeta del indice) sale de todos los heros. P301 (bi-1289) queda fuera: coches aparcados en todos los recortes. McIntosh lleva bi-0519, porque su pagina de piscina lleva bi-0614."
+    },
+    "pergola-builders": {
+      "_lee_esto": "LOOP-AREAS L2 (D-226): hero por tabla y seccion desacoplada (`seccion.pergola-builders`). Solo las que el juez a ciegas aprueba en el recorte real como hero (4:5 de escritorio y franja de movil): bi-1273, bi-0842 y bi-0759. Las tres se repiten entre ciudades, declarado: calidad (D-206).",
+      "tabla": {
+        "boca-raton-fl": "bi-1273",
+        "cedar-key-fl": "bi-1273",
+        "dania-beach-fl": "bi-0842",
+        "delray-beach-fl": "bi-0842",
+        "gainesville-fl": "bi-0842",
+        "gulf-stream-fl": "bi-0759",
+        "hollywood-fl": "bi-1273",
+        "manalapan-fl": "bi-1273",
+        "mcintosh-fl": "bi-1273",
+        "ocala-fl": "bi-0759",
+        "palatka-fl": "bi-0759",
+        "west-palm-beach-fl": "bi-0842",
+        "weston-fl": "bi-0759"
+      },
+      "repetidas": {
+        "palm-beach-county-fl": {
+          "max": 2,
+          "motivo": "calidad (D-206): 5 ciudades y 3 fotos que el juez aprueba como hero de pergolas"
+        }
+      }
+    },
+    "louvered-roofs": {
+      "_lee_esto": "LOOP-AREAS L3: hero por tabla y seccion propia (`seccion.louvered-roofs`). Salen bi-0220 (reservada: es tesela), bi-0224 (coches) y bi-0235 (manguera, nevera); entran las que el juez prefiere en el recorte real: bi-0233, bi-1298 y bi-0225 (Weston, con su GPS: D-208). bi-0168 se queda donde estaba. Repetidas, declarado: calidad (D-206).",
+      "tabla": {
+        "boca-raton-fl": "bi-0168",
+        "cedar-key-fl": "bi-0233",
+        "dania-beach-fl": "bi-0233",
+        "delray-beach-fl": "bi-0225",
+        "gainesville-fl": "bi-0233",
+        "gulf-stream-fl": "bi-1298",
+        "hollywood-fl": "bi-1298",
+        "manalapan-fl": "bi-0168",
+        "mcintosh-fl": "bi-1298",
+        "ocala-fl": "bi-0233",
+        "palatka-fl": "bi-0225",
+        "west-palm-beach-fl": "bi-0233",
+        "weston-fl": "bi-0225"
+      },
+      "repetidas": {
+        "palm-beach-county-fl": {
+          "max": 2,
+          "motivo": "calidad (D-206): bi-0168 sigue en Boca Raton y Manalapan, como en la bolsa de antes"
+        }
+      },
+      "seccionPorCiudad": {
+        "_lee_esto": "FAQ, cierre y resenas por ciudad: se quedan las que el juez da por buenas (bi-0233 4, bi-0168 y bi-0225 sin defecto) y salen bi-0220 (reservada, tesela), bi-0224, bi-0235 y bi-0236 (1-2). Entran bi-0652 (cierre, 4), bi-0233 y bi-1282.",
+        "boca-raton-fl": [
+          "bi-0233",
+          "bi-0652",
+          "bi-0225"
+        ],
+        "cedar-key-fl": [
+          "bi-1282",
+          "bi-0225",
+          "bi-0168"
+        ],
+        "dania-beach-fl": [
+          "bi-0225",
+          "bi-0652",
+          "bi-1282"
+        ],
+        "delray-beach-fl": [
+          "bi-0233",
+          "bi-0652",
+          "bi-1282"
+        ],
+        "gainesville-fl": [
+          "bi-1282",
+          "bi-0652",
+          "bi-0168"
+        ],
+        "gulf-stream-fl": [
+          "bi-0233",
+          "bi-0168",
+          "bi-0225"
+        ],
+        "hollywood-fl": [
+          "bi-0168",
+          "bi-0652",
+          "bi-0233"
+        ],
+        "manalapan-fl": [
+          "bi-0233",
+          "bi-0652",
+          "bi-0225"
+        ],
+        "mcintosh-fl": [
+          "bi-1282",
+          "bi-0225",
+          "bi-0233"
+        ],
+        "ocala-fl": [
+          "bi-0225",
+          "bi-0652",
+          "bi-1282"
+        ],
+        "palatka-fl": [
+          "bi-0233",
+          "bi-0652",
+          "bi-1282"
+        ],
+        "west-palm-beach-fl": [
+          "bi-1282",
+          "bi-0652",
+          "bi-0168"
+        ],
+        "weston-fl": [
+          "bi-0233",
+          "bi-0652",
+          "bi-0168"
+        ]
+      }
+    },
+    "outdoor-kitchens": {
+      "_lee_esto": "LOOP-AREAS L4: hero por tabla, con la cocina de foco (D-220): bi-0768 (barra de marmol con taburetes) y bi-1276 (cocina con muro de listones), las que el juez prefiere en el recorte real; bi-0503 se queda en Delray Beach y Palatka. Salen bi-0479 y bi-0480 (trapos y cajas), bi-0509, bi-0781 (flotador) y bi-0783. bi-0761 (marmol en U, 4) solo en el cierre: su original mide 1201 px y como hero se queda a 1,39x.",
+      "tabla": {
+        "cedar-key-fl": "bi-0768",
+        "dania-beach-fl": "bi-1276",
+        "delray-beach-fl": "bi-0503",
+        "gainesville-fl": "bi-1276",
+        "gulf-stream-fl": "bi-1276",
+        "hollywood-fl": "bi-0768",
+        "manalapan-fl": "bi-0768",
+        "mcintosh-fl": "bi-0768",
+        "ocala-fl": "bi-1276",
+        "palatka-fl": "bi-0503"
+      },
+      "seccionPorCiudad": {
+        "_lee_esto": "FAQ, cierre y resenas por ciudad: se quedan bi-0771 (4) y bi-0503 (3) donde estaban; entran bi-0761 en el cierre (4) y bi-1296 y bi-1276 donde habia un 1 o un 2. bi-0771 no va con el hero bi-0768: es la misma casa. En resenas solo 4:3: en movil esa caja crece con la foto y una 3:2 cambiaria el alto de la pagina; bi-1276 (3:2) va en la FAQ.",
+        "cedar-key-fl": [
+          "bi-1276",
+          "bi-0761",
+          "bi-1296"
+        ],
+        "dania-beach-fl": [
+          "bi-0503",
+          "bi-0761",
+          "bi-0771"
+        ],
+        "delray-beach-fl": [
+          "bi-1276",
+          "bi-0771",
+          "bi-1296"
+        ],
+        "gainesville-fl": [
+          "bi-0771",
+          "bi-0761",
+          "bi-1296"
+        ],
+        "gulf-stream-fl": [
+          "bi-0771",
+          "bi-0761",
+          "bi-1296"
+        ],
+        "hollywood-fl": [
+          "bi-1276",
+          "bi-0761",
+          "bi-1296"
+        ],
+        "manalapan-fl": [
+          "bi-1296",
+          "bi-0761",
+          "bi-0503"
+        ],
+        "mcintosh-fl": [
+          "bi-1276",
+          "bi-0761",
+          "bi-1296"
+        ],
+        "ocala-fl": [
+          "bi-0503",
+          "bi-0761",
+          "bi-0771"
+        ],
+        "palatka-fl": [
+          "bi-1276",
+          "bi-0771",
+          "bi-1296"
+        ]
+      }
+    },
+    "deck-builders": {
+      "_lee_esto": "LOOP-AREAS L5: hero por tabla con el solado de foco (D-220). bi-0077 (caliza mojada con el spa; 4/3) y bi-0084 (marmol gris mojado; 3/3) son las unicas que el juez deja de hero: bi-0079 es la tarjeta del indice (D-209) y bi-0070 y bi-0983 llevan manguera (1). bi-0084 va donde la resena era 4:3, para que la de 4:3 (bi-0077) siga en resenas y el alto de la pagina no cambie en movil.",
+      "repetidas": {
+        "palm-beach-county-fl": {
+          "max": 2,
+          "motivo": "calidad (D-206): solo dos heros de solado pasan el juez; bi-0084 en Delray Beach y Manalapan"
+        },
+        "broward-county-fl": {
+          "max": 2,
+          "motivo": "calidad (D-206): bi-0084 en Dania Beach y Hollywood, con su resena 4:3 (bi-0077)"
+        }
+      },
+      "tabla": {
+        "cedar-key-fl": "bi-0077",
+        "dania-beach-fl": "bi-0084",
+        "delray-beach-fl": "bi-0084",
+        "gainesville-fl": "bi-0084",
+        "gulf-stream-fl": "bi-0077",
+        "hollywood-fl": "bi-0084",
+        "manalapan-fl": "bi-0084",
+        "mcintosh-fl": "bi-0084",
+        "ocala-fl": "bi-0077",
+        "palatka-fl": "bi-0084"
+      },
+      "seccionPorCiudad": {
+        "_lee_esto": "FAQ, cierre y resenas por ciudad. Cierre bi-0508 (travertino en espiga, 3) en las 10; bi-0086 (marmol con vetas, 3) en FAQ o resenas. Resenas con la misma proporcion que antes donde se puede (en movil esa caja crece con la foto); Gainesville y McIntosh tenian una 1:1: llevan bi-1549, el recorte 1:1 de bi-0086 (3, D-232).",
+        "cedar-key-fl": [
+          "bi-0086",
+          "bi-0508",
+          "bi-0084"
+        ],
+        "dania-beach-fl": [
+          "bi-0086",
+          "bi-0508",
+          "bi-0077"
+        ],
+        "delray-beach-fl": [
+          "bi-0086",
+          "bi-0508",
+          "bi-0077"
+        ],
+        "gainesville-fl": [
+          "bi-0077",
+          "bi-0508",
+          "bi-1549"
+        ],
+        "gulf-stream-fl": [
+          "bi-0086",
+          "bi-0508",
+          "bi-0084"
+        ],
+        "hollywood-fl": [
+          "bi-0086",
+          "bi-0508",
+          "bi-0077"
+        ],
+        "manalapan-fl": [
+          "bi-0086",
+          "bi-0508",
+          "bi-0077"
+        ],
+        "mcintosh-fl": [
+          "bi-0077",
+          "bi-0508",
+          "bi-1549"
+        ],
+        "ocala-fl": [
+          "bi-0086",
+          "bi-0508",
+          "bi-0084"
+        ],
+        "palatka-fl": [
+          "bi-0086",
+          "bi-0508",
+          "bi-0077"
+        ]
+      }
+    },
+    "landscaping": {
+      "_lee_esto": "LOOP-AREAS L5: hero por tabla con el jardin de foco (D-220): bi-0499 (pasos de caliza sobre pizarra; 4/4), la unica que el juez aprueba. Salen bi-0130 (tumbonas), bi-0313 (macetas) y bi-0305, que es la tesela de la galeria (D-209). bi-0310 sigue en apoyo (4) aunque mide 739 px de alto: no hay otro jardin apaisado de 4.",
+      "tabla": {
+        "fort-lauderdale-fl": "bi-0499",
+        "gainesville-fl": "bi-0499",
+        "ocala-fl": "bi-0499",
+        "palatka-fl": "bi-0499"
+      },
+      "seccionPorCiudad": {
+        "_lee_esto": "FAQ, cierre y resenas por ciudad: cierre bi-0120 (green del bosque, 4 en 3:2); FAQ bi-0323 (pasos sobre cesped, 3) donde habia un 2 o la tesela; Gainesville conserva su FAQ de 4 y su resena.",
+        "fort-lauderdale-fl": [
+          "bi-0323",
+          "bi-0120",
+          "bi-0310"
+        ],
+        "gainesville-fl": [
+          "bi-0310",
+          "bi-0120",
+          "bi-0130"
+        ],
+        "ocala-fl": [
+          "bi-0323",
+          "bi-0120",
+          "bi-0310"
+        ],
+        "palatka-fl": [
+          "bi-0323",
+          "bi-0120",
+          "bi-0310"
+        ]
+      }
+    }
+  }
+}

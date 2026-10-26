@@ -27,6 +27,18 @@ import path from 'node:path';
 import { JSDOM } from 'jsdom';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
+/* D-248 (25-oct-2026): el canal de YouTube sigue publicando «📞 South Florida: +1 (954) 913-7112» en seis
+ * descripciones; el sitio ya no tiene ese telefono. La linea se quita AQUI, al extraer (el JSON se regenera),
+ * y por dato: toda linea con un numero que `telefonos.json` no traiga. EN YOUTUBE las cambia el cliente. */
+const TEL_VIGENTES = new Set(JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/telefonos.json'), 'utf8')).items.map((t) => t.tel));
+const RE_TEL_VISIBLE = /\+1 \(\d{3}\) \d{3}-\d{4}/g;
+let lineasRetiradas = 0;
+const conTelefonoRetirado = (l) => {
+  const nums = (l.match(RE_TEL_VISIBLE) ?? []).map((s) => `+${s.replace(/\D/g, '')}`);
+  const fuera = nums.length > 0 && !nums.every((n) => TEL_VIGENTES.has(n));
+  if (fuera) lineasRetiradas++;
+  return fuera;
+};
 const DEST_IMG = path.join(RAIZ, 'public/images/site/youtube');
 const ORIGEN = path.join(RAIZ, 'baseline/html/videos.html');
 
@@ -57,6 +69,10 @@ const canal = {
 const logo = g.querySelector('.yottie-widget-header-logo img');
 if (logo?.src) canal.logo = await bajar(logo.src, 'canal.jpg');
 
+// La hora de publicacion con su zona no esta en el DOM del widget, que solo da dia/mes/año: se cotejo en el canal y
+// vive en el propio JSON (`publicado`). Al regenerar se conserva por id; un video nuevo sale sin ella.
+const F_SALIDA = path.join(RAIZ, 'src/data/youtube.json');
+const publicado = fs.existsSync(F_SALIDA) ? Object.fromEntries(JSON.parse(fs.readFileSync(F_SALIDA, 'utf8')).videos.map((v) => [v.id, v.publicado])) : {};
 const videos = [];
 for (const v of g.querySelectorAll('.yottie-widget-video')) {
   const id = v.getAttribute('data-yt-id');
@@ -70,12 +86,14 @@ for (const v of g.querySelectorAll('.yottie-widget-video')) {
     titulo: txt(v.querySelector('.yottie-widget-video-info-title')),
     duracion: txt(v.querySelector('.yottie-widget-video-preview-marker-duration')),
     fecha: txt(v.querySelector('.yottie-widget-video-info-passed-time')),
+    publicado: publicado[id],
     // Se pasa por el DOM en vez de recortar etiquetas a mano: `replace(/<[^>]+>/g,'')` deja
     // las entidades sin decodificar y la descripcion salia con "&amp" dentro.
     descripcion: desc ? (() => {
       const tmp = doc.createElement('div');
       tmp.innerHTML = desc.innerHTML.replace(/<br\s*\/?>/gi, '\n');
-      return tmp.textContent.split('\n').map((x) => x.trim()).filter(Boolean);
+      return tmp.textContent.split('\n').map((x) => x.trim()).filter(Boolean)
+        .filter((x) => !conTelefonoRetirado(x));
     })() : [],
     // El divisor `•` vive DENTRO de cada item, así que hay que leer el <span> hermano,
     // no el item entero: si no, cada contador sale como "• 1 Views".
@@ -92,9 +110,10 @@ const salida = {
     + 'de Elfsight. Datos reales del canal del cliente. Regenerar: npm run youtube',
   canal, videos,
 };
-fs.writeFileSync(path.join(RAIZ, 'src/data/youtube.json'), JSON.stringify(salida, null, 1));
+fs.writeFileSync(F_SALIDA, JSON.stringify(salida, null, 1));
 console.log(`\n  canal      : ${canal.titulo} — ${canal.propiedades.join(' / ')}`);
 console.log(`  videos     : ${videos.length}`);
 console.log(`  miniaturas : ${bajadas.length} nuevas en public/images/site/youtube/`);
 console.log(`  sin descripcion: ${videos.filter((v) => !v.descripcion.length).length}`);
+console.log(`  D-248 lineas con telefono retirado quitadas: ${lineasRetiradas}`);
 console.log('\n  OK src/data/youtube.json\n');

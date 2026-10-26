@@ -39,6 +39,9 @@
  * `check:ix2` las tiene clavadas en 14, que es justo el tope. Medido.
  */
 import Base from '../layouts/Base.astro';
+import TELEFONOS from '../data/telefonos.json';
+import HEROES from '../data/heroes-ciudad.json';
+import BANCO from '../data/banco-imagenes.json';
 import { traeBlog, ordenaIndice, tituloTarjeta } from '../lib/blog-datos.mjs';
 
 const RUTA = '/blogs-tips';
@@ -47,6 +50,14 @@ const REVEAL = 'fcac010e-d972-8847-d717-c8f4bdcd6aaa';
 const LOTE = 9;
 
 const posts = ordenaIndice(await traeBlog());
+
+/* ASTRO-4 lote C. El indice pasa a las piezas del sistema: hero claro, la lista editorial de
+ * articulos (`.mm-art`, la misma de «Most Read Articles») y la banda final con foto y telefonos.
+ * El buscador, las pastillas y «Load more» son los de siempre: mismos ganchos (`data-*`,
+ * `.blogs-list .item-blogs`), mismo script. */
+const FLECHA = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>';
+const FOTO_BANDA = (BANCO as any[]).find((e) => e.id === HEROES.bolsas['pool-builders'][3]);
+if (!FOTO_BANDA || FOTO_BANDA.procedencia !== 'obra_real' || !FOTO_BANDA.alt) throw new Error('/blogs-tips: la foto de la banda no es obra real con alt');
 
 /* Las categorias que DE VERDAD tienen articulos, en el orden declarado en Sanity. Un chip que
  * no filtra nada es un chip que miente, asi que las vacias no salen. */
@@ -100,10 +111,12 @@ const SEO = {
 };
 ---
 <Base titulo="Luxury Pool Construction Guides & Design-Build Insights | Florida" descripcion="Expert insights on luxury pool construction and outdoor living design-build projects in Florida, written for homeowners planning high-end custom builds." ruta={RUTA} seo={SEO} jsonLdCrudo={[]}>
-  <section class="hero-section"><div class="w-layout-blockcontainer container w-container"><div data-w-id="da22a66a-ad39-0d6d-2fa2-62cb4e178480" class="header-hero-page"><h1 class="heading-hero-page">Blog &amp; Tips</h1><div class="text-block-4">Explore expert insights, project tips, and industry updates on pool construction and outdoor living across Florida, written to help property owners and professionals make informed decisions.</div></div></div></section>
+  <section class="mm-hero-d">
+    <div class="mm-hero-d-caja"><div class="mm-sec-cab"><h1 class="mm-h1">Blog &amp; Tips</h1><div class="mm-sec-lado"><p class="mm-p">Explore expert insights, project tips, and industry updates on pool construction and outdoor living across Florida, written to help property owners and professionals make informed decisions.</p></div></div></div>
+  </section>
 
-  <section class="articles-section">
-    <div class="w-layout-blockcontainer container-blog w-container">
+  <section class="mm-indice-blog">
+    <div class="mm-indice-blog-caja">
 
       <div class="mm-filtro" data-filtro>
         <div class="mm-filtro__linea">
@@ -126,44 +139,26 @@ const SEO = {
         </div>
       </div>
 
-      <div class="cms-blogs w-dyn-list">
-        <div role="list" class="blogs-list w-dyn-items">
+      <div class="cms-blogs">
+        <div role="list" class="blogs-list mm-arts">
           {posts.map((p, i) => (
             <div
               data-w-id={REVEAL}
               role="listitem"
-              class="item-blogs w-dyn-item"
+              class="item-blogs"
               data-cat={p.categoria?.slug ?? ''}
               data-busca={textoDeBusqueda(p)}
               data-orden={i}
             >
-              <div class="card">
-                <div class="image-card">
-                  <img
-                    class="img-blog"
-                    src={p.portada.src}
-                    srcset={p.portada.srcset}
-                    sizes={p.portada.sizes}
-                    alt={p.portada.alt}
-                    width={p.portada.ancho}
-                    height={p.portada.alto}
-                    loading={i === 0 ? 'eager' : 'lazy'}
-                    decoding="async"
-                  />
-                </div>
-                <div class="content-card">
-                  {p.categoria?.name && <p class="mm-cat">{p.categoria.name}</p>}
-                  <h4>{tituloTarjeta(p)}</h4>
-                  <p class="paragraph-mini">{p.summary}</p>
-                  <div class="wrapper-buttons">
-                    <a
-                      href={`/blogs/${p.slug}`}
-                      class="button-styles w-button"
-                      aria-label={`Read More: ${tituloTarjeta(p)}`}
-                    >Read More</a>
-                  </div>
-                </div>
-              </div>
+              <a class="mm-art" href={`/blogs/${p.slug}`}>
+                <span class="mm-art-foto"><img src={p.portada.src} srcset={p.portada.srcset} sizes="(min-width: 768px) 280px, 100vw" alt={p.portada.alt} width={p.portada.ancho} height={p.portada.alto} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" /></span>
+                <span class="mm-art-txt">
+                  {p.categoria?.name && <span class="mm-art-cat">{p.categoria.name}</span>}
+                  <h2 class="mm-art-t">{tituloTarjeta(p)}</h2>
+                  <span class="mm-art-p">{p.summary}</span>
+                  <span class="mm-flecha">Read More<span class="mm-sr">: {p.title}</span><Fragment set:html={FLECHA} /></span>
+                </span>
+              </a>
             </div>
           ))}
         </div>
@@ -172,13 +167,23 @@ const SEO = {
       <p class="mm-vacio" data-vacio hidden>No articles match that search.</p>
 
       <div class="mm-mas" data-envoltorio-mas>
-        <button type="button" class="mm-mas__boton" data-mas>Load more</button>
+        <button type="button" class="mm-btn mm-btn--linea mm-min" data-mas>Load more</button>
       </div>
 
     </div>
   </section>
 
-  <section class="cta-footer"><div class="w-layout-blockcontainer container w-container"><div class="wrapper-cta-footer"><div data-w-id="1751d21a-c7f6-4875-4d5c-669cd0d5b935" class="wrapper-vertical-text"><h2>Request a Design-Build Project Evaluation</h2><div class="text-block-3">Share your property details, project scope, and investment range. Our licensed design-build pool builders will review your request and confirm alignment before next steps.</div><div class="wrapper-buttons-center"><a href="/request-estimated" class="button button-styles w-button">Get a Free Estimate</a></div></div></div></div></section>
+  <section class="mm-cierre mm-cierre--sola mm-cierre--alta">
+    <div class="mm-cierre-caja">
+      <div class="mm-cierre-txt">
+        <h2 class="mm-h2">Request a <span class="mm-nb">Design-Build</span> Project Evaluation</h2>
+        <p class="mm-p">Share your property details, project scope, and investment range. Our licensed design-build pool builders will review your request and confirm alignment before next steps.</p>
+        <a class="mm-btn" href="/request-estimated">Get a Free Estimate</a>
+        <div class="mm-datos mm-datos--tel">{TELEFONOS.items.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-val">{t.visible}</span></a>)}</div>
+      </div>
+      <figure class="mm-cierre-medio"><img src={FOTO_BANDA.src} alt={FOTO_BANDA.alt} width={FOTO_BANDA.ancho} height={FOTO_BANDA.alto} sizes="(min-width: 992px) 42vw, 100vw" loading="lazy" decoding="async" /></figure>
+    </div>
+  </section>
 </Base>
 
 <script define:vars={{ LOTE }}>
@@ -275,7 +280,7 @@ const SEO = {
    *   chip en reposo      navy #001c63 sobre blanco ............ 15,60:1   (texto, >=4,5)
    *   chip elegido        blanco sobre navy .................... 15,60:1   (texto, >=4,5)
    *   borde del chip      #8794b6 sobre blanco .................. 3,03:1   (control, >=3)
-   *   recuento y pista    #767676 sobre blanco ................... 4,54:1  (texto, >=4,5)
+   *   recuento y pista    #596b9a sobre blanco ................... 5,26:1  (texto, >=4,5; era #767676, 4,54:1)
    *   categoria en tarjeta #596b9a sobre blanco .................. 5,26:1  (texto, >=4,5)
    *   anillo de foco      navy sobre blanco ..................... 15,60:1  (>=3 por los dos lados:
    *                       el `outline-offset` deja blanco a ambos lados del anillo)
@@ -326,11 +331,11 @@ const SEO = {
     font-size: var(--mm-paso-campo);
   }
 
-  .mm-filtro__campo::placeholder { color: var(--mm-gris-aa); }
+  .mm-filtro__campo::placeholder { color: var(--mm-tinta-suave); }
 
   .mm-filtro__cuenta {
     margin: 0;
-    color: var(--mm-gris-aa);
+    color: var(--mm-tinta-suave);
     font-size: var(--mm-paso-0);
   }
 
@@ -388,12 +393,8 @@ const SEO = {
    * Segundo eje de lectura de la rejilla: con ~100 articulos el titulo solo no basta para
    * saber de que va. `.content-card` ya es columna con `gap`, asi que no lleva margen propio.
    * ------------------------------------------------------------------------ */
-  .mm-cat {
-    margin: 0;
-    color: var(--mm-tinta-suave);
-    font-size: var(--mm-paso-0);
-    font-weight: var(--mm-peso-medio);
-  }
+  /* La categoria de cada articulo se pinta con `.mm-art-cat` (disenio/sistema.css). La clase de antes,
+     `.mm-cat`, chocaba con la banda de galeria del sistema, que se llama igual. */
 
   /* ── 6 · VACIO Y «LOAD MORE» ──────────────────────────────────────────────
    * `[hidden]` necesita el `display:none` explicito: la regla del navegador la gana cualquier
