@@ -1544,7 +1544,7 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 .mm-donde-lista a:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); }
 .mm-donde-tres { list-style: none; margin: 0; padding: 0; counter-reset: mm-tres; border-top: 2px solid var(--mm-oro); }
 .mm-donde-tres li { counter-increment: mm-tres; display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: var(--mm-e-12); padding: var(--mm-e-16) 0; border-bottom: 1px solid var(--mm-borde); font-size: clamp(18px, 1.1rem + 0.6vw, 24px); line-height: 1.25; font-weight: 700; letter-spacing: -0.01em; color: var(--mm-navy); }
-.mm-donde-tres li::before { content: counter(mm-tres); font-size: 14px; font-weight: 700; color: var(--mm-oro); padding-top: 0.35em; font-variant-numeric: tabular-nums; }
+.mm-donde-tres li::before { content: counter(mm-tres); font-size: 14px; font-weight: 700; color: var(--mm-tinta-suave); padding-top: 0.35em; font-variant-numeric: tabular-nums; } /* D-267: el oro sobre blanco daba 1,86:1 en 14 px; el gris de los «01 02» del acordeon, 5,4:1 */
 .mm-donde-faq.mm-faq-lista { margin: 0; }
 @media (min-width: 992px) {
   .mm-donde-caja { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--mm-e-48); }
